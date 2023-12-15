@@ -1,205 +1,129 @@
-Return-Path: <devicetree+bounces-25747-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25748-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2833A814601
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 11:53:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 19AB18146AE
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 12:19:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 178B91C23261
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 10:53:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 48C7D1C210C6
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 11:19:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6ADB1C292;
-	Fri, 15 Dec 2023 10:53:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="z7bJj3OD"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4B6D24A03;
+	Fri, 15 Dec 2023 11:19:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EBB51BDDA
-	for <devicetree@vger.kernel.org>; Fri, 15 Dec 2023 10:53:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-50bdec453c8so484653e87.3
-        for <devicetree@vger.kernel.org>; Fri, 15 Dec 2023 02:53:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702637611; x=1703242411; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ky94Slah7vEYb2lMfwMgiZxeElOcz1Re2jQmzmdgNXE=;
-        b=z7bJj3ODNyFvp7p8ID4SiyvBY6YzUPtZMCi6C972yad/yotVegk44gp1w3bUQ/doDs
-         Tjeuy8DWG89BbS37PSRNSPXCYTqfbYIhu0CariSStl6BiyzzE2q6ruqe1zfYFbVKS3r+
-         qmEV0Wlkesy1FUeAtSQxbBedJEycIAAE83Pr/HOdlyodCGrDPmt3la5pXaSoRKzWb3hJ
-         Uyd1QMj7kBw0l6KiEVDc3rbiU/Hbeyu+et38azHy7rRq17vGpSepJGXLCKl30S/XjKr6
-         JKUH/TbsWDOJ9myTFByTlhIVqjyzdIPYhB2L0JUrJm47WJog2w1Bvkslb8aEGwSu/PzL
-         jk5A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702637611; x=1703242411;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ky94Slah7vEYb2lMfwMgiZxeElOcz1Re2jQmzmdgNXE=;
-        b=F1GWjhdeejic7a2sO44p46rDZ0KUBBXt4pbG0qpOzm9KcI101ToH5NRooQlA0ySEO5
-         7M/oWth4Fhl/toSY3ermyA8LZZWl9TPbWjw/b2FXk/AgVxd2VX8tahym2f6MHBY6L8Oo
-         qV2nafhHAs/8pGdLaGbJJyFUIZSlQor5vkw6NHwKOUEjSNXARJjYPAhNKGCP633u8rs6
-         STeedb5vOwxtCOu3i6ZfAWgT6Yb+Byyn/WOX1Woj/vCS19k39GT+NwJ3EvvFEVuNfepC
-         bTD+zsJYM2B+2Y8slHFOZsIMr7B0AxWCQoDVJ4tUpEnb2KBONDAfxlfwNVPy4d+0GNo0
-         DxDA==
-X-Gm-Message-State: AOJu0Yzd2sNMy7Q3WGFymH6ouRjCH47xsFkJ//9z6RCYGBld7f1EgzHZ
-	1fXunB7HDz9IefjRPXpcCSADOQ==
-X-Google-Smtp-Source: AGHT+IEaYGHmfQYNE9iSPshT/L5K+RrPz7l2Y60dAFD1JcQY4/4wj1kqU3TfXDEDLBmltngCEKBlYQ==
-X-Received: by 2002:a05:6512:1042:b0:50e:e2c:b39d with SMTP id c2-20020a056512104200b0050e0e2cb39dmr3009229lfb.58.1702637611188;
-        Fri, 15 Dec 2023 02:53:31 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id bn2-20020a170906c0c200b00a23152a543dsm1119517ejb.202.2023.12.15.02.53.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 15 Dec 2023 02:53:30 -0800 (PST)
-Message-ID: <5a8095e6-b6a6-4d11-b006-31519e8d8622@linaro.org>
-Date: Fri, 15 Dec 2023 11:53:28 +0100
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E40F1C2A9;
+	Fri, 15 Dec 2023 11:19:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1D56AC15;
+	Fri, 15 Dec 2023 03:20:17 -0800 (PST)
+Received: from [192.168.1.3] (unknown [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 7BBA53F738;
+	Fri, 15 Dec 2023 03:19:29 -0800 (PST)
+Message-ID: <09447d69-e0ce-13e9-95ea-0db475b8bb6e@arm.com>
+Date: Fri, 15 Dec 2023 11:19:24 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 5/5] dt-bindings: net: ipq4019-mdio: Document ipq5332
- platform
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH v3 1/8] dt-bindings: arm: Add support for CMB element size
 Content-Language: en-US
-To: Jie Luo <quic_luoj@quicinc.com>, Conor Dooley <conor@kernel.org>
-Cc: agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
- davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
- pabeni@redhat.com, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, andrew@lunn.ch, hkallweit1@gmail.com,
- linux@armlinux.org.uk, robert.marko@sartura.hr,
- linux-arm-msm@vger.kernel.org, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- quic_srichara@quicinc.com
-References: <20231212115151.20016-1-quic_luoj@quicinc.com>
- <20231212115151.20016-6-quic_luoj@quicinc.com>
- <20231212-caution-improvise-ed3cc6a1d305@spud>
- <11ffc985-3f2b-46b9-ae0b-911f7abe98d1@quicinc.com>
- <20231214-outshine-shush-8a11c68607cd@spud>
- <c5123ce7-6fdc-43c7-ac07-251c39196e66@quicinc.com>
- <a1e5ffec-a20d-4389-83f9-ee09bd9d733d@linaro.org>
- <a84a36af-69f8-46af-967e-b06d028597a3@quicinc.com>
- <26c8b0b1-5ea9-45cc-adf3-0d0b03a1284d@linaro.org>
- <4b9c56b8-3b29-4861-a3d5-2da26fbc14b4@quicinc.com>
- <2e77e3b1-00b6-46b9-bfed-7cae3ffa15e9@linaro.org>
- <7bae46fd-63fd-4b86-9a56-73052cf0ea95@quicinc.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <7bae46fd-63fd-4b86-9a56-73052cf0ea95@quicinc.com>
+To: Tao Zhang <quic_taozha@quicinc.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: Jinlong Mao <quic_jinlmao@quicinc.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, coresight@lists.linaro.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, Tingwei Zhang <quic_tingweiz@quicinc.com>,
+ Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+ Trilok Soni <quic_tsoni@quicinc.com>, Song Chai <quic_songchai@quicinc.com>,
+ linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+ Mathieu Poirier <mathieu.poirier@linaro.org>,
+ Suzuki K Poulose <suzuki.poulose@arm.com>,
+ Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+ Konrad Dybcio <konradybcio@gmail.com>, Mike Leach <mike.leach@linaro.org>
+References: <1700533494-19276-1-git-send-email-quic_taozha@quicinc.com>
+ <1700533494-19276-2-git-send-email-quic_taozha@quicinc.com>
+From: James Clark <james.clark@arm.com>
+In-Reply-To: <1700533494-19276-2-git-send-email-quic_taozha@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 15/12/2023 11:40, Jie Luo wrote:
-> 
-> 
-> On 12/15/2023 6:37 PM, Krzysztof Kozlowski wrote:
->> On 15/12/2023 11:33, Jie Luo wrote:
->>>>>>>>>>> +  cmn-reference-clock:
->>>>>>>>>>> +    oneOf:
->>>>>>>>>>> +      - items:
->>>>>>>>>>> +          - enum:
->>>>>>>>>>> +              - 0   # CMN PLL reference internal 48MHZ
->>>>>>>>>>> +              - 1   # CMN PLL reference external 25MHZ
->>>>>>>>>>> +              - 2   # CMN PLL reference external 31250KHZ
->>>>>>>>>>> +              - 3   # CMN PLL reference external 40MHZ
->>>>>>>>>>> +              - 4   # CMN PLL reference external 48MHZ
->>>>>>>>>>> +              - 5   # CMN PLL reference external 50MHZ
->>>>>>>>>>> +              - 6   # CMN PLL reference internal 96MHZ
->>>>>>>>>>
->>>>>>>>>> Why is this not represented by an element of the clocks property?
->>>>>>>>>
->>>>>>>>> This property is for the reference clock source selection of CMN PLL,
->>>>>>>>> CMN PLL generates the different clock rates for the different Ethernet
->>>>>>>>> blocks, this CMN PLL configuration is not located in the GCC, so the
->>>>>>>>> clock framework can't be used, which is the general hardware register
->>>>>>>>> instead of RCG register for GCC.
->>>>>>>>
->>>>>>>> I don't see how the clock being provided by the "GCC" (whatever that is)
->>>>>>>> or by some other clock controller or fixed clock makes a difference.
->>>>>>>> Why can't the other clock provider be represented in the devicetree?
->>>>>>>>
->>>>>>>
->>>>>>> cmn-reference-clock is for selecting the reference clock source for the
->>>>>>> whole Ethernet block, which is just the standalone configure register.
->>>>>>
->>>>>> Sure, you are aware though that all clocks are just configure registers?
->>>>>>
->>>>>> Which clocks are these mentioned in the property? From where do they come?
->>>>>>
->>>>>> Anyway, property is in existing form is not correct - this is not a
->>>>>> generic property.
->>>>>>
->>>>>
->>>>> This property cmn-reference-clock is just the hardware register
->>>>> configuration, since the different IPQ platform needs to select
->>>>> the different reference clock source for the CMN PLL block that
->>>>> provides the various clock outputs to the all kinds of Ethernet
->>>>> devices, which is not from GCC provider.
->>>>
->>>> AGAIN: where do the clocks come from? Which device generates them?
->>>
->>> Oh, OK, the reference clock is from wifi that provides 48MHZ to
->>> Ethernet block.
->>
->> Then WiFi should be providing you the clock and this device should be
->> clock consumer, right?
-> 
-> Yes, wifi provides 48MHz clock to CMM PLL block, there is no GCC
-> for this 48MHZ clock output, it is the hardware PIN connection.
 
-All clocks are some hardware pin connections.
 
-Best regards,
-Krzysztof
+On 21/11/2023 02:24, Tao Zhang wrote:
+> Add property "qcom,cmb-elem-size" to support CMB(Continuous
+> Multi-Bit) element for TPDM. The associated aggregator will read
+> this size before it is enabled. CMB element size currently only
+> supports 32-bit and 64-bit.
+> 
+> Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
+> Signed-off-by: Mao Jinlong <quic_jinlmao@quicinc.com>
+> ---
+>  .../bindings/arm/qcom,coresight-tpdm.yaml     | 28 +++++++++++++++++++
+>  1 file changed, 28 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/qcom,coresight-tpdm.yaml b/Documentation/devicetree/bindings/arm/qcom,coresight-tpdm.yaml
+> index 61ddc3b5b247..0d9fe01a8b15 100644
+> --- a/Documentation/devicetree/bindings/arm/qcom,coresight-tpdm.yaml
+> +++ b/Documentation/devicetree/bindings/arm/qcom,coresight-tpdm.yaml
+> @@ -52,6 +52,15 @@ properties:
+>      $ref: /schemas/types.yaml#/definitions/uint8
+>      enum: [32, 64]
+>  
+> +  qcom,cmb-element-size:
+> +    description:
+> +      Specifies the CMB(Continuous Multi-Bit) element size supported by
+> +      the monitor. The associated aggregator will read this size before it
+> +      is enabled. CMB element size currently only supports 8-bit, 32-bit
+> +      and 64-bit.
+> +    $ref: /schemas/types.yaml#/definitions/uint8
+> +    enum: [8, 32, 64]
+> +
+>    qcom,dsb-msrs-num:
+>      description:
+>        Specifies the number of DSB(Discrete Single Bit) MSR(mux select register)
+> @@ -110,4 +119,23 @@ examples:
+>        };
+>      };
+>  
+> +    tpdm@6c29000 {
+> +      compatible = "qcom,coresight-tpdm", "arm,primecell";
+> +      reg = <0x06c29000 0x1000>;
+> +      reg-names = "tpdm-base";
 
+I think this one gives this error:
+
+ $ make dt_binding_check DT_SCHEMA_FILES=arm/qcom,coresight
+
+ DTC_CHK Documentation/devicetree/bindings/arm/qcom,coresight-
+  tpdm.example.dtb
+ qcom,coresight-tpdm.example.dtb: tpdm@6c29000: 'reg-names' does not
+  match any of the regexes: 'pinctrl-[0-9]+'
+        from schema $id: http://devicetree.org/schemas
+        /arm/qcom,coresight-tpdm.yaml#
+
+> +
+> +      qcom,cmb-element-size = /bits/ 8 <64>;
+> +
+> +      clocks = <&aoss_qmp>;
+> +      clock-names = "apb_pclk";
+> +
+> +      out-ports {
+> +        port {
+> +          tpdm_ipcc_out_funnel_center: endpoint {
+> +            remote-endpoint =
+> +              <&funnel_center_in_tpdm_ipcc>;
+> +          };
+> +        };
+> +      };
+> +    };
+>  ...
 
