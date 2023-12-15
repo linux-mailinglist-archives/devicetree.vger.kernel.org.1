@@ -1,242 +1,167 @@
-Return-Path: <devicetree+bounces-25777-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25778-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72D628147C2
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 13:13:09 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6918C8147C6
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 13:14:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 979141C233A9
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 12:13:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2F361284A1E
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 12:14:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FD5028E2B;
-	Fri, 15 Dec 2023 12:13:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 448392C689;
+	Fri, 15 Dec 2023 12:14:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="I7ZtUIBX"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="sBeBMfcv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 458FE2C68A;
-	Fri, 15 Dec 2023 12:12:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0369458.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 3BF9dxop002855;
-	Fri, 15 Dec 2023 13:12:42 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	date:from:to:cc:subject:message-id:references:mime-version
-	:content-type:in-reply-to; s=selector1; bh=kvE5XBu2+Fd93UaI428vG
-	WnjnWCMDEpyRUaHUxWJrW0=; b=I7ZtUIBX3AT99QeCJLaVB0aVgc10L3IImwTqj
-	1gafLIseHZqpj2t5QQep7K8ZyoOJNIThwKPcGQ3PZzdo8e2xZSQ+IPGHNDNYTSOo
-	x/ZA1ofwp59DpNn5HVtHi3WK7YrlvEi3i+aMt4iksblgxFC6ZaYZ5xgS7+weZSXM
-	lnmFXMK5RtheNLKpvT+zKH3kZNWimdDf0QIbWeBqUC8XgeNhjPpvFiO7jNMBFido
-	0pHT/95P0Dfh5Wm+zq8LoKsxrcyuaUNFYgqjjmf+55q6WwiEhXuP/cqwvCZp8I6D
-	Xn6RM1foPk9+pmkuox3wfy6eo++A3wGNp8rJ0gSpStx8SvpzA==
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3uxvh9n7pj-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 15 Dec 2023 13:12:42 +0100 (CET)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 4E9B3100052;
-	Fri, 15 Dec 2023 13:12:41 +0100 (CET)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 3D041217B7B;
-	Fri, 15 Dec 2023 13:12:41 +0100 (CET)
-Received: from gnbcxd0016.gnb.st.com (10.129.178.213) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Fri, 15 Dec
- 2023 13:12:40 +0100
-Date: Fri, 15 Dec 2023 13:12:31 +0100
-From: Alain Volmat <alain.volmat@foss.st.com>
-To: Andi Shyti <andi.shyti@kernel.org>
-CC: Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue
-	<alexandre.torgue@foss.st.com>,
-        Pierre-Yves MORDRET
-	<pierre-yves.mordret@foss.st.com>,
-        Conor Dooley <conor@kernel.org>, Rob
- Herring <robh@kernel.org>,
-        Valentin Caron <valentin.caron@foss.st.com>,
-        <linux-i2c@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 4/7] i2c: stm32f7: add support for stm32mp25 soc
-Message-ID: <20231215121231.GA3866676@gnbcxd0016.gnb.st.com>
-Mail-Followup-To: Andi Shyti <andi.shyti@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Pierre-Yves MORDRET <pierre-yves.mordret@foss.st.com>,
-	Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>,
-	Valentin Caron <valentin.caron@foss.st.com>,
-	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20231208164719.3584028-1-alain.volmat@foss.st.com>
- <20231208164719.3584028-5-alain.volmat@foss.st.com>
- <20231209000747.4l6462nlzj3po3sf@zenone.zhora.eu>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B89B328E23
+	for <devicetree@vger.kernel.org>; Fri, 15 Dec 2023 12:14:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-54cd2281ccbso673518a12.2
+        for <devicetree@vger.kernel.org>; Fri, 15 Dec 2023 04:14:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1702642481; x=1703247281; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=QsGNsrF8cVXU+JIQmnXKczEbibuzzO7GegprNh90Qgs=;
+        b=sBeBMfcvVlqzpvn+Lmq+yWXKx6YrU9VNcfegEjarUDK2R9vljEZhuv31vXvUPjbTml
+         XcDAIAp5Zux+4wJyhjQYgIepNHqYXp95XqMona+Vu8+jwp6dan+oacxW/lWjqxlhxuSj
+         t5B57PoTcWI5oQeWS2uaXUsPKl9hT7Y8lfUhVP23ArDsv+UI+GD3WEjhxYkQ3r8uoYD6
+         5IHXvdNUltAZaCFKK2OTFo5PGGEbqT6OtFHUasIFLV4FyoXdw9BDvJXFYj2Vc0ZVjO/f
+         1oCOx1gw3RvUWquyYR3jHePSyzC6J7v0qW64diVfyd68DItsphpYo6Jsffs2aez4DSrL
+         qnmw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702642481; x=1703247281;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=QsGNsrF8cVXU+JIQmnXKczEbibuzzO7GegprNh90Qgs=;
+        b=ZFtaoZ65kytIq/rA5X4jJ4cC31y21p05txhasjDBp2h7yvoYWHfOM3XqTr2WLiFa0+
+         iYPAEszEq/ph3KFrcLiQSA5YNzpL7fwTAKhUeu75h/IEPE0hlmuLlBH313Qv7KkT1P5j
+         sW7EvKwJaTDMfRh+Vzt85+YIDcpJELlHOskE9Sz01PGKiULpOE1HeedyuZHb2aahKFv/
+         K9vitmq7A3deEKKo9XE1qsBDjva+h6h3xKgmyTW8HLs4eICcUh70s1snUwBN+bPb8ISf
+         wnj/nm0sfNCiBu9I+can2avUze+wVYcT+FJBZJYPLooJXBkvux6xVWE0BXVBQE7ITKz9
+         b4MQ==
+X-Gm-Message-State: AOJu0Yw16je9uF+uAS75YkQICg6qHV5zuMzHP8arJR30HuvtVS+h/xav
+	Q8h/mnI3+6JuwfR0KKM/Akptrg==
+X-Google-Smtp-Source: AGHT+IHzJdkW1d5xdmfJw6DaYo/3tReDG2eQrJggfy18B9flPGEmLJpeLgwD+qhK77kGWgmSpq889g==
+X-Received: by 2002:a17:906:750:b0:a1d:f3aa:a4bc with SMTP id z16-20020a170906075000b00a1df3aaa4bcmr6621973ejb.60.1702642480968;
+        Fri, 15 Dec 2023 04:14:40 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.218.27])
+        by smtp.gmail.com with ESMTPSA id un7-20020a170907cb8700b009fc42f37970sm10777653ejc.171.2023.12.15.04.14.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 15 Dec 2023 04:14:40 -0800 (PST)
+Message-ID: <6acecb29-2a6c-40af-a5a3-bec3e7286df7@linaro.org>
+Date: Fri, 15 Dec 2023 13:14:38 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20231209000747.4l6462nlzj3po3sf@zenone.zhora.eu>
-X-Disclaimer: ce message est personnel / this message is private
-X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-12-15_06,2023-12-14_01,2023-05-22_02
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 5/5] dt-bindings: net: ipq4019-mdio: Document ipq5332
+ platform
+Content-Language: en-US
+To: Jie Luo <quic_luoj@quicinc.com>, agross@kernel.org, andersson@kernel.org,
+ konrad.dybcio@linaro.org, davem@davemloft.net, edumazet@google.com,
+ kuba@kernel.org, pabeni@redhat.com, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, andrew@lunn.ch,
+ hkallweit1@gmail.com, linux@armlinux.org.uk, robert.marko@sartura.hr
+Cc: linux-arm-msm@vger.kernel.org, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ quic_srichara@quicinc.com
+References: <20231214090304.16884-1-quic_luoj@quicinc.com>
+ <20231214090304.16884-6-quic_luoj@quicinc.com>
+ <1e4c55c8-8ed6-4f2e-8328-8a173f09b62f@linaro.org>
+ <3c8e33b4-6ebc-476f-a00f-15cc8a1ad9e4@quicinc.com>
+ <b89abf8c-57f8-46a6-a071-b1591340fbdf@linaro.org>
+ <3de98516-9a28-4f58-8951-2a7752621fee@quicinc.com>
+ <1fa2d219-63d7-45cf-9e05-b85dbce24076@linaro.org>
+ <f16dfe78-2e31-45fb-b2fe-f72b7e6c51a5@quicinc.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <f16dfe78-2e31-45fb-b2fe-f72b7e6c51a5@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Andi,
+On 15/12/2023 13:03, Jie Luo wrote:
+>>> If i do not declare the property "reset-assert-us" and
+>>> "reset-deassert-us", the warning will be reported by "make
+>>> dt_binding_check" since i
+>>> add a example in this file.
+>>
+>> This argument does not make sense, sorry. Obviously if property is not
+>> allowed, it should be removed.
+>>
+>> Provide rationale, in terms of hardware, why this property must be added
+>> and why it cannot be deduced from the compatible.
+>>
+>> Best regards,
+>> Krzysztof
+>>
+> 
+> So i can remove "reset-assert-us" and "reset-deassert-us" from the added
+> example to avoid the dt check warning? even these two properties are
+> needed to be defined in the device tree to make this driver working
+> correctly.
 
-thanks for your review.
+Sorry, that does not answer my question at all. First, "Driver" is not
+hardware. My second question was simply ignored. In the v2 thread you as
+well respond with some short, unrelated sentences not answering to the
+real questions. It's a waste of my time. Please reach internally in
+Qualcomm for guidance how to upstream patches and how to write bindings.
 
-I'll shortly post a v3 to correct all your comments.
+Best regards,
+Krzysztof
 
-On Sat, Dec 09, 2023 at 01:07:47AM +0100, Andi Shyti wrote:
-> Hi Alain,
-> 
-> On Fri, Dec 08, 2023 at 05:47:13PM +0100, Alain Volmat wrote:
-> > The stm32mp25 has only a single interrupt line used for both
-> > events and errors. In order to cope with that, reorganise the
-> > error handling code so that it can be called either from the
-> > common handler (used in case of SoC having only a single IT line)
-> > and the error handler for others.
-> > The CR1 register also embeds a new FMP bit, necessary when running
-> > at Fast Mode Plus frequency. This bit should be used instead of
-> > the SYSCFG bit used on other platforms.
-> > Add a new compatible to distinguish between the SoCs and two
-> > boolean within the setup structure in order to know if the
-> > platform has a single/multiple IT lines and if the FMP bit
-> > within CR1 is available or not.
-> > 
-> > Signed-off-by: Alain Volmat <alain.volmat@foss.st.com>
-> > Signed-off-by: Valentin Caron <valentin.caron@foss.st.com>
-> 
-> your SoB here should come last because you are the one sending
-> the patch.
-
-Fixed.
-
-> 
-> > ---
-> >  drivers/i2c/busses/i2c-stm32f7.c | 230 ++++++++++++++++++-------------
-> >  1 file changed, 133 insertions(+), 97 deletions(-)
-> > 
-> > diff --git a/drivers/i2c/busses/i2c-stm32f7.c b/drivers/i2c/busses/i2c-stm32f7.c
-> > index 2a011deec3c5..5634332900fb 100644
-> > --- a/drivers/i2c/busses/i2c-stm32f7.c
-> > +++ b/drivers/i2c/busses/i2c-stm32f7.c
-> > @@ -50,6 +50,7 @@
-> >  #define STM32F7_I2C_TXDR			0x28
-> >  
-> >  /* STM32F7 I2C control 1 */
-> > +#define STM32_I2C_CR1_FMP			BIT(24)
-> >  #define STM32F7_I2C_CR1_PECEN			BIT(23)
-> >  #define STM32F7_I2C_CR1_ALERTEN			BIT(22)
-> >  #define STM32F7_I2C_CR1_SMBHEN			BIT(20)
-> > @@ -226,6 +227,8 @@ struct stm32f7_i2c_spec {
-> >   * @rise_time: Rise time (ns)
-> >   * @fall_time: Fall time (ns)
-> >   * @fmp_clr_offset: Fast Mode Plus clear register offset from set register
-> > + * @single_it_line: Only a single IT line is used for both events/errors
-> > + * @fmp_cr1_bit: Fast Mode Plus control is done via a bit in CR1
-> 
-> Is the Fast Mode Plus an optional feature?
-
-Yes, from what I've seen, it seems an optional feature on some versions
-of stm32f7.
-
-> 
-> >   */
-> >  struct stm32f7_i2c_setup {
-> >  	u32 speed_freq;
-> > @@ -233,6 +236,8 @@ struct stm32f7_i2c_setup {
-> >  	u32 rise_time;
-> >  	u32 fall_time;
-> >  	u32 fmp_clr_offset;
-> > +	bool single_it_line;
-> > +	bool fmp_cr1_bit;
-> >  };
-> 
-> [...]
-> 
-> > -static irqreturn_t stm32f7_i2c_slave_isr_event(struct stm32f7_i2c_dev *i2c_dev)
-> > +static irqreturn_t stm32f7_i2c_slave_isr_event(struct stm32f7_i2c_dev *i2c_dev, u32 status)
-> >  {
-> >  	void __iomem *base = i2c_dev->base;
-> > -	u32 cr2, status, mask;
-> > +	u32 cr2, mask;
-> >  	u8 val;
-> >  	int ret;
-> >  
-> > -	status = readl_relaxed(i2c_dev->base + STM32F7_I2C_ISR);
-> > -
-> 
-> good to see this change here, relates to my comment in patch 1.
-> But I think this should go on a different patch.
-
-Agreed. I've split this small change into a dedicated commit done before
-this patch.
-
-> 
-> >  	/* Slave transmitter mode */
-> >  	if (status & STM32F7_I2C_ISR_TXIS) {
-> >  		i2c_slave_event(i2c_dev->slave_running,
-> > @@ -1494,17 +1504,81 @@ static irqreturn_t stm32f7_i2c_slave_isr_event(struct stm32f7_i2c_dev *i2c_dev)
-> >  	return IRQ_HANDLED;
-> >  }
-> 
-> [...]
-> 
-> > -	setup = of_device_get_match_data(&pdev->dev);
-> > -	if (!setup) {
-> > -		dev_err(&pdev->dev, "Can't get device data\n");
-> > -		return -ENODEV;
-> > +		ret = devm_request_threaded_irq(&pdev->dev, irq_error,
-> > +						NULL,
-> > +						stm32f7_i2c_isr_error_thread,
-> > +						IRQF_ONESHOT,
-> > +						pdev->name, i2c_dev);
-> > +		if (ret) {
-> > +			dev_err(&pdev->dev, "Failed to request irq error %i\n",
-> > +				irq_error);
-> 
-> please use dev_err_probe();
-
-Done as well in a dedicated commit at the very beginning of the serie.
-
-> 
-> > +			return ret;
-> > +		}
-> 
-> out of the scope of the patch and just for curiosity: does the
-> driver work without being able to signal on the error interrupt
-> line?
-
-Sorry, not sure to understand the question.  Just for clarification,
-on the MP25 not having a dedicated error line doesn't mean we are not
-signaled for errors.  It is simply they just come via the same
-interrupt line, hence we need to check for both event and error
-within the same handler.
-On systems using two interrupts line, the error interrupt irq line
-should be handled in order to tackle those errors cases.
-Sorry, does this answer your question ?
-
-> 
-> Overall the patch looks good to me, though.
-> 
-> Andi
 
