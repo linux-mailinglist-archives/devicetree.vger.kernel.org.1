@@ -1,64 +1,56 @@
-Return-Path: <devicetree+bounces-25702-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25703-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81FD48143BD
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 09:37:03 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B7BBE8143C3
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 09:38:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 38F601F22A28
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 08:37:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7D942283A9F
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 08:38:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 943FE1548D;
-	Fri, 15 Dec 2023 08:36:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D06B13AE1;
+	Fri, 15 Dec 2023 08:38:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Leb/BHI7"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="RnQalmDh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B74D12E65
-	for <devicetree@vger.kernel.org>; Fri, 15 Dec 2023 08:36:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-a1d2f89ddabso46476766b.1
-        for <devicetree@vger.kernel.org>; Fri, 15 Dec 2023 00:36:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702629408; x=1703234208; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=hYJTQeGviqxV0+wlbBbT+zL/h3oRcie5GyoUe3f4G08=;
-        b=Leb/BHI7VAeNSyVIyNrHG1HJfQ3nszVTHIPTcovUE25Il8fGLiJFAjGbnytOzpMvZH
-         INz3jvBB17MSTvOqtfAI2bmvDxjQoBpoY1R02JhgCRf1YdKd8GE3+9rAX11HbTc5GiBW
-         VbfiyfD+3TRQ/FwpmoX0cQJvtbjN38S8XSBh+iTEXoNKUr99d5l/O3FzKg6HHlq3nA0d
-         GHMOaKcQbHUP1QDvZV7Pm/dRSgopJ2I+yZJ0o79CTBnzoxbW2/TlPUVFSUdF92FoAia2
-         1CjZqQ+53MTLgIaUBlwYcaKfFJ0vNa0Bsp/54P7SCtUsc8/1i9689TzJKeFIzQOVPXIT
-         OXsA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702629408; x=1703234208;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=hYJTQeGviqxV0+wlbBbT+zL/h3oRcie5GyoUe3f4G08=;
-        b=BzbvwBojL3YoUEljXFHUMO31Qe59+9bQglEZbIWNZH+ArBWwaOExa8mIhcrUF9W4VR
-         W8UfK53EauYJiEHFevvSPLtSNPnBnFCj+yJEe1c1wsMauz+0NcW4xadoObsWq/YXtwmK
-         v3xuWQvSPM91k3QrWZm5d0j2vI2aW+rIXlnigpQkLIggCI4FNzPckQEA9Gl0szNquE88
-         gIZi6AU25EyBXEdjoeeycXJhsVZv1nn28SDTl2Aa8EbXHYLH4qIPdJuXp2+xPnUzqRci
-         T0+pixDFSUbItIbDoTVpzX8+ae5gdZaHPx9LEDP0wxZ3zA53V7iYwEagomNEGWUds5o6
-         OQeg==
-X-Gm-Message-State: AOJu0YxiELRv+Xs/vZEbE5GoqAksX06fY4pbh3BBVJfj6F2IRSY/ruSb
-	PnQOnpi75Ghye7V1ANwZAFwsLw==
-X-Google-Smtp-Source: AGHT+IHcYAuFRklHIOXfO0mKpZIahGq1+K0wHuz4DnBlDmcJXYp4ADbUUkmYVUtrbHX97M0/67RBJg==
-X-Received: by 2002:a17:906:c7cf:b0:a00:772c:c879 with SMTP id dc15-20020a170906c7cf00b00a00772cc879mr5730276ejb.38.1702629408215;
-        Fri, 15 Dec 2023 00:36:48 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id mb8-20020a170906eb0800b00a1de512fa1fsm10401976ejb.186.2023.12.15.00.36.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 15 Dec 2023 00:36:47 -0800 (PST)
-Message-ID: <0f39e9b9-63f9-4267-a5f7-94bca9626964@linaro.org>
-Date: Fri, 15 Dec 2023 09:36:45 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6511C12E58;
+	Fri, 15 Dec 2023 08:38:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 3BF0WxGm017503;
+	Fri, 15 Dec 2023 09:37:58 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	selector1; bh=foVGm1JHcXFuc8EJ3+zkhcqA896idI7R38EPjajihAA=; b=Rn
+	QalmDhMGlLt6seKKSVLmENFevzmlPdE3V4tdHTYwcUBXyacEdQiceuZyPWq1cTCQ
+	5FOzMLhPrMw6jhk8t8BuOAWxqF4g3zQg2205rzr3YHTlZl8Hf5s3uuUAfqnOWS1P
+	6Np8DWuNj3c6/kCJmEOlfTA+fIalJRx32y03HYRxGQY0lJrv/UgtGoQMrWXBWLG0
+	TUp4NoclQw76OIv76qrr3lErMXODfU7G61VAHvcziLBZ2ip7yJi2nlWBv47HDzhM
+	Tm/m3v4umF1MvcFkzIM+R8UC/m7DzvO7avpKDRmraekXf62hSoZ/lo0Ynkjcq7lM
+	ddkc0AEXVhVWDGnx4AGg==
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3v0cbtsft7-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 15 Dec 2023 09:37:58 +0100 (CET)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id A164F100058;
+	Fri, 15 Dec 2023 09:37:57 +0100 (CET)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 8CC68209BB2;
+	Fri, 15 Dec 2023 09:37:57 +0100 (CET)
+Received: from [10.201.21.122] (10.201.21.122) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Fri, 15 Dec
+ 2023 09:37:56 +0100
+Message-ID: <afc15b94-ae98-4dc7-b522-2e69d7b6bb03@foss.st.com>
+Date: Fri, 15 Dec 2023 09:37:55 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,91 +58,58 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 09/10] arm64: dts: qcom: ipq5332: Add PCIe related nodes
+Subject: Re: [PATCH v9 0/5] Add support for DCMIPP camera interface of
+ STMicroelectronics STM32 SoC series
 Content-Language: en-US
-To: Praveenkumar I <quic_ipkumar@quicinc.com>, agross@kernel.org,
- andersson@kernel.org, konrad.dybcio@linaro.org, mturquette@baylibre.com,
- sboyd@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, bhelgaas@google.com, lpieralisi@kernel.org,
- kw@linux.com, vkoul@kernel.org, kishon@kernel.org, mani@kernel.org,
- quic_nsekar@quicinc.com, quic_srichara@quicinc.com,
- linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-pci@vger.kernel.org, linux-phy@lists.infradead.org
-Cc: quic_varada@quicinc.com, quic_devipriy@quicinc.com,
- quic_kathirav@quicinc.com, quic_anusha@quicinc.com
-References: <20231214062847.2215542-1-quic_ipkumar@quicinc.com>
- <20231214062847.2215542-10-quic_ipkumar@quicinc.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231214062847.2215542-10-quic_ipkumar@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
+To: Alain Volmat <alain.volmat@foss.st.com>,
+        Mauro Carvalho Chehab
+	<mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Russell King
+	<linux@armlinux.org.uk>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+CC: Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Laurent Pinchart
+	<laurent.pinchart@ideasonboard.com>,
+        Dan Scally
+	<dan.scally@ideasonboard.com>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+References: <20231127170828.1426117-1-alain.volmat@foss.st.com>
+From: Alexandre TORGUE <alexandre.torgue@foss.st.com>
+In-Reply-To: <20231127170828.1426117-1-alain.volmat@foss.st.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-12-15_04,2023-12-14_01,2023-05-22_02
 
-On 14/12/2023 07:28, Praveenkumar I wrote:
-> Add phy and controller nodes for pcie0_x1 and pcie1_x2.
+Hi Alain
+
+On 11/27/23 18:08, Alain Volmat wrote:
+> This patchset introduces support for Digital Camera Memory Interface
+> Pixel Processor (DCMIPP) of STMicroelectronics STM32 SoC series.
 > 
-> Signed-off-by: Praveenkumar I <quic_ipkumar@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/ipq5332.dtsi | 189 +++++++++++++++++++++++++-
->  1 file changed, 187 insertions(+), 2 deletions(-)
+> This initial support implements a single capture pipe
+> allowing RGB565, YUV, Y, RAW8 and JPEG capture with
+> frame skipping, prescaling and cropping.
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/ipq5332.dtsi b/arch/arm64/boot/dts/qcom/ipq5332.dtsi
-> index f0d92effb783..367641ab4938 100644
-> --- a/arch/arm64/boot/dts/qcom/ipq5332.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/ipq5332.dtsi
-> @@ -166,6 +166,58 @@ usbphy0: phy@7b000 {
->  			status = "disabled";
->  		};
->  
-> +		pcie0_phy: phy@4b0000{
+> DCMIPP is exposed through 3 subdevices:
+> - dcmipp_dump_parallel: parallel interface handling
+> - dcmipp_dump_postproc: frame skipping, prescaling and cropping control
+> - dcmipp_dump_capture: video device capture node
+> 
 
-Nodes look like put in random place.
 
-Best regards,
-Krzysztof
+Patches [4] & [5] applied on stm32-next.
 
+Thanks
+Alex
 
