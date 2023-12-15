@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-25658-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25659-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0FB44814283
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 08:36:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B695814286
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 08:36:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id ACEB41F2103E
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 07:36:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E05731F21258
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 07:36:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F654D523;
-	Fri, 15 Dec 2023 07:35:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F967D30E;
+	Fri, 15 Dec 2023 07:36:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="CSUBo34y"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="c8NpYo+i"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
+Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B7D0101D0
-	for <devicetree@vger.kernel.org>; Fri, 15 Dec 2023 07:35:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8632D515
+	for <devicetree@vger.kernel.org>; Fri, 15 Dec 2023 07:36:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-552d4483414so153945a12.2
-        for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 23:35:12 -0800 (PST)
+Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-5529a38eccbso323012a12.3
+        for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 23:36:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702625710; x=1703230510; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1702625807; x=1703230607; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=eT2qPXqxSkWiufqcwwm7R6MK0GeUZ4e8AAHF3nb65NE=;
-        b=CSUBo34yNwcf2QdUbBmyhwb4B6dCl5tDE9hdUOMBIwMQjUnRRdmc7lMP12FgBn7Ucb
-         QNocjmHmmV4awKoAPnL37BTROVTQi6PvSjSpmjLlbLDxOZ76DU4207B3M6++C4UJSajJ
-         8GkVBXIxqajFrne0neWD2VBhS/9kjbqA9mZ8yVh4x+4xgBPJBa7c9EJFUcgauhHZ470g
-         WDUtHXcgn9lCpV26SQ0tapmq6AYYnCXXpO40z9fDkrAxIIVv943TTGB1hhnbHFt6hwyz
-         dmrJSqYePBIN2Pc6ca8brI63o4vYmUAafEOyfP0DVvzPQlnmIdW3dQdNANC4b4q5V65w
-         097Q==
+        bh=frPzA9xTLGKz92/1qTzuW4BZr6aA4/SEQGAGAcHMDq0=;
+        b=c8NpYo+iEZIqQkaM5iIfHROZKG0dsLeEs/qiaN5TLeM90aFlaTpZpYXY77eL3aLokn
+         gw3me5Rc1OquJS2yhb07EDfzSBVHEQm+KRBRiq1qsGBW/N8bZpkXFgNc/JCa9AUefqc5
+         n5BaOKoYFywEuWOL99JuFaAEOxRU+qeE/DzfLmtgYq7WJl7CLpdVAFp4X3IIIORSEUiW
+         u78cLaq7kxLP9HOM3ve/Pi+FCOT7YX8T46crEoyM+2vnHmcI2NYMX+BqdxT7BhTpZdS7
+         isCzNrbBWXaxfcSG1foOJ3U8j4Zkw/yXk0F/QPjEZpn/Dcpk2i7rQvrDaoOK13n8UQFD
+         B8uA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702625710; x=1703230510;
+        d=1e100.net; s=20230601; t=1702625807; x=1703230607;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=eT2qPXqxSkWiufqcwwm7R6MK0GeUZ4e8AAHF3nb65NE=;
-        b=UE3aYBrPJ7PYOBgV25+GcT/P1W4FxkboU7MTMCNZ58ffSgGDF4fvSnWQMnICY8hI+S
-         rcx5WyiwTs5FaeSfVQLwEuclIR953/zavdzXAu5bwOu2O3TEZmwGnvezdy/a5V4JUDPO
-         U6whowHLHb1vavOU6xiHpgz2tbe1RuyCzEgmw+rABxje5xRY7FxRwM/zdXN38ToIXsB5
-         lEBB1kDj8uNMGMQF7mYQR8iahM0YUeunHycX7FHtiXgKH4vB7OzZMXws7CyICG672B7/
-         0EqgupKCpMRNrNt/qWLbRiqKknG2DtMo/WzwLo41e2uDJORmVEKvr4buTTI3s90BkRvQ
-         /Lng==
-X-Gm-Message-State: AOJu0YybwVTwwIQ0zqIy4e8zDawCkQsOZUINO0njSEq+Iye33BNU6VdV
-	PsqFRRQ3gFmc+ue65xmQYsBtnw==
-X-Google-Smtp-Source: AGHT+IHpKthQgX+b1orPnVGAtViU1j5ArjWgTOnOLl8zaYovMW75D050acpts8fQwFc1sRXRLZ6m8w==
-X-Received: by 2002:a50:d011:0:b0:552:8392:9dd1 with SMTP id j17-20020a50d011000000b0055283929dd1mr962099edf.67.1702625710582;
-        Thu, 14 Dec 2023 23:35:10 -0800 (PST)
+        bh=frPzA9xTLGKz92/1qTzuW4BZr6aA4/SEQGAGAcHMDq0=;
+        b=nXcDwEyoYETbUVkg2QgicfQfVee8ZClZghkYUfTuXilIPwBVEjtxD5gENkxqR6J3vF
+         ixjzPsg/xN1xpsIWCvVU5rDe7KPt4x6A0PIwdalV1Z2N1QxAzHEq03IDqp9eWAelqIcx
+         YCfn7l5LeN32O++a6k9zinM5FpI69Zlz1NK4sIKJz02k0GMFKMcW2FJOIgF8pvvpbpDj
+         7tyxzLZtTh79YT23/QhnazVYrGJi7f+mS5+sto6bxDSPt4aKaTdObDJqalbD6mahML9p
+         Q3R+kYXzF0C/tDbaBk6l+mB1HOoGeIb1uzY5uHNDo5BFGRXMFy8sSlaU2LZmjN8r3dtm
+         cYMg==
+X-Gm-Message-State: AOJu0Yx6QyuypPCkKYdsQTT12SrjNmFIQLWCBBtoP1YXGd0DEzosURx6
+	TZ/+JHNYJEOm9x4kBBWUaNDHMQ==
+X-Google-Smtp-Source: AGHT+IFLu3IzW1GdoPuPzsqFBHKs+amYl6Tq/sMls8BhuNAw7AcNrl2M6sFfog+h0EvGqQIUKi0+Og==
+X-Received: by 2002:a50:bb69:0:b0:54c:4fec:ce with SMTP id y96-20020a50bb69000000b0054c4fec00cemr3275311ede.93.1702625807016;
+        Thu, 14 Dec 2023 23:36:47 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id et14-20020a056402378e00b005527cfaa2dfsm1217270edb.49.2023.12.14.23.35.08
+        by smtp.gmail.com with ESMTPSA id et14-20020a056402378e00b005527cfaa2dfsm1217270edb.49.2023.12.14.23.36.45
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 Dec 2023 23:35:10 -0800 (PST)
-Message-ID: <66a211d8-de40-4827-9e84-b226545986c6@linaro.org>
-Date: Fri, 15 Dec 2023 08:35:07 +0100
+        Thu, 14 Dec 2023 23:36:46 -0800 (PST)
+Message-ID: <d50abf1a-1ee7-4f84-9f53-69dfe9aad103@linaro.org>
+Date: Fri, 15 Dec 2023 08:36:45 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,25 +66,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 4/8] ARM: dts: aspeed: System1: Add i2c and muxes
+Subject: Re: [PATCH v2 1/3] dt-bindings: usb: mtk-xhci: add a property for
+ Gen1 isoc-in transfer issue
 Content-Language: en-US
-To: Ninad Palsule <ninad@linux.ibm.com>, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, joel@jms.id.au,
- andrew@codeconstruct.com.au, peterhuewe@gmx.de, jarkko@kernel.org,
- jgg@ziepe.ca, keescook@chromium.org, tony.luck@intel.com,
- gpiccoli@igalia.com, johannes.holland@infineon.com, linux@roeck-us.net,
- broonie@kernel.org
-Cc: patrick.rudolph@9elements.com, vincent@vtremblay.dev,
- peteryin.openbmc@gmail.com, lakshmiy@us.ibm.com, bhelgaas@google.com,
- naresh.solanki@9elements.com, alexander.stein@ew.tq-group.com,
- festevam@denx.de, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
- linux-kernel@vger.kernel.org, linux-integrity@vger.kernel.org,
- linux-hardening@vger.kernel.org, geissonator@yahoo.com
-References: <20231212164004.1683589-1-ninad@linux.ibm.com>
- <20231212164004.1683589-5-ninad@linux.ibm.com>
- <72a749b9-b9be-4496-9bcc-37519044c109@linaro.org>
- <8cdadff2-055a-48ab-8495-45c8285d3d8f@linux.ibm.com>
+To: Chunfeng Yun <chunfeng.yun@mediatek.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: Conor Dooley <conor+dt@kernel.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ Mathias Nyman <mathias.nyman@intel.com>, linux-usb@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Macpaul Lin <macpaul.lin@mediatek.com>, Eddie Hung <eddie.hung@mediatek.com>
+References: <20231215073431.8512-1-chunfeng.yun@mediatek.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -130,36 +126,50 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <8cdadff2-055a-48ab-8495-45c8285d3d8f@linux.ibm.com>
+In-Reply-To: <20231215073431.8512-1-chunfeng.yun@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 14/12/2023 19:34, Ninad Palsule wrote:
->>>   	chosen {
->>>   		stdout-path = &uart5;
->>>   		bootargs = "console=ttyS4,115200n8 earlycon";
->>> @@ -54,10 +113,12 @@ vga_memory: region@bf000000 {
->>>   			reg = <0xbf000000 0x01000000>;  /* 16M */
->>>   		};
->>>   	};
->>> +
->> You need to clean your patchset...
-> I made changes about the stdout-path, is that what you mean?
+On 15/12/2023 08:34, Chunfeng Yun wrote:
+> For Gen1 isoc-in endpoint on controller before about SSUSB IPM v1.6.0, it
+> still send out unexpected ACK after receiving a short packet in burst
+> transfer, this will cause an exception on connected device, specially for
+> a 4k camera.
+> Add a quirk property "rx-fifo-depth" to work around this hardware issue,
+> prefer to use 2;
+> The side-effect is that may cause performance drop about 10%, including
+> bulk transfer.
+> 
+> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+> ---
+> v2: change 'mediatek,rxfifo-depth' to 'rx-fifo-depth'
+> ---
+>  .../devicetree/bindings/usb/mediatek,mtk-xhci.yaml   | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml b/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml
+> index e9644e333d78..e44a71acb5c0 100644
+> --- a/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml
+> +++ b/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml
+> @@ -124,6 +124,18 @@ properties:
+>        defined in the xHCI spec on MTK's controller.
+>      default: 5000
+>  
+> +  rx-fifo-depth:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      It is a quirk used to work around Gen1 isoc-in endpoint transfer issue
+> +      that still send out unexpected ACK after device finish the burst transfer
+> +      with a short packet and cause an exception, specially on a 4K camera
+> +      device, it happens on controller before about IPM v1.6.0; the side-effect
+> +      is that may cause performance drop about 10%, include bulk transfer,
+> +      prefer to use 2 here.
 
-No, I meant you made irrelevant changes in this patch.
+What is the meaning of 0-3? bytes? words?
 
->>
->>
->>>   };
->>>   
->>>   &adc1 {
->>>   	status = "okay";
->>> +
->> Really.
-> I need to add "status = okay" otherwise its not instantiated.
+> +    minimum: 0
+> +    maximum: 3
 
-That was about blank line. How is it related to this patch "Add i2c and
-muxes"?
 
 Best regards,
 Krzysztof
