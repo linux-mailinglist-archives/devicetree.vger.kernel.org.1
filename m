@@ -1,123 +1,195 @@
-Return-Path: <devicetree+bounces-25876-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25877-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 071E0814ED9
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 18:32:25 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E042A814EDB
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 18:32:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 64C0CB243D9
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 17:32:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 984FE2874F8
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 17:32:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D6F83FE43;
-	Fri, 15 Dec 2023 17:30:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 348F482EC8;
+	Fri, 15 Dec 2023 17:32:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zAyVNbdv"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="0b+fpO2r"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
+Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87CA03FE4E
-	for <devicetree@vger.kernel.org>; Fri, 15 Dec 2023 17:30:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-50bf69afa99so1091696e87.3
-        for <devicetree@vger.kernel.org>; Fri, 15 Dec 2023 09:30:14 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E3293010D
+	for <devicetree@vger.kernel.org>; Fri, 15 Dec 2023 17:31:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-2c9f099cf3aso12730001fa.1
+        for <devicetree@vger.kernel.org>; Fri, 15 Dec 2023 09:31:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702661412; x=1703266212; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1702661517; x=1703266317; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=ZuB7T2TvtfzYulUsGwmzST1mtpoBCzmPcfLxjPTBXtc=;
-        b=zAyVNbdvNydDUSfny5TzGH4PvLNXQceE35qqEdkDjkVuDQUT8VrkhAzm7nUbWKbxUl
-         NUOGyeLDYLjnwREBzGIPznThTo2WfbOJwmSV1owRe08ywgXunqI6DCaRLgu1HcJjBPGJ
-         J0/0RhUcNp0OO3GYWkPdPKoQ2CLQrqE0mlqE70hg3JUbHsYhUSgXnlYifslOCbh2ljFd
-         Obl631QU9IHt1oBHKS54dfkVx8ResyoF2dIhomXzh4ueAed7cj/pBmgDRuuJH0I+5jMH
-         LCFnmQKc+o4kzm+UchpdGAjopBsTb0JTVm2LB7emDXmNPCSI9XMQVv4i6hHoc4tkYChE
-         LCnQ==
+        bh=13gliIVcQbLU7hKnOSD6BJq01ueaRAAu4jm5L+NVTns=;
+        b=0b+fpO2rkETJEdiGFDBfneuXk59LoQQyQ3OsOBqPNdHwU4D67rH7OZWW1DU/EOzYNU
+         ly2Mb3bDAJ+m/zQ37+1iFUpxwodVL9zr5kRXaD0e1D7QNzZEay85FSTYouLFo7bbDjvj
+         AVJBD7pq1XT9twqiF5GsgYy1yhZvEbv0x8TxndhEvSoexLQzNN6okGpO9oRv5FzzjxBQ
+         3am0bk4jCIQ9Je7tA6o07osbp4ZS6xL2U1LGCO2vQ8ysq3Zf9ysZnjyb2tVMuk+Icn2I
+         kZxtFv8bBEYm7HujV4hXI1/1Gn6SQOjfhKRkquylMSWzBe++G66HVIPM0WXIZBq4NVWg
+         KjyA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702661412; x=1703266212;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1702661517; x=1703266317;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=ZuB7T2TvtfzYulUsGwmzST1mtpoBCzmPcfLxjPTBXtc=;
-        b=vFdsAK10YkdVDfYyCKKS/42H4FsN6/VAC9SdZ8pHq14+fp1uEJ9OVwPoD1PlImsW1G
-         P2bUwYmX6W0Sh4MevIjO2XC4wP1UBcK41j9Lo1Z1nVRHzV/nTr9SgoTTVdtxN6IQZLJY
-         D2UjDJ7dVAPdGMIIMnmLV7GANaOshg+pUixUBjd601gFSaU/yqrjl5/Va/oW36B9Fj1A
-         ZCcnRQqBufuUTWYblFWSxiz1JFowS21NZS4JFT3Zw4q7YLcu74LpQm0OyMbTQpzf754A
-         kqFiI1nxIN/4r78pqcnkokeUx5jWlEoqXtG+BfpWFRn1OBFFteQwMN8ZihAKq4FdgKHR
-         zyxQ==
-X-Gm-Message-State: AOJu0YzGwYRpq7z1bG5NnfukzA7NYCFUyEX0KN4SZai04W6csBBJWUxc
-	U3+vnxztoMZo/mU7EbhRLfZPJQ==
-X-Google-Smtp-Source: AGHT+IEPLjpVgNbe9nBxVwGSFSX9zn7rmswGw82ggEzdpfzFloeg6DJ2uf7unFMM0hO/T0qrCNwzPA==
-X-Received: by 2002:a05:6512:1188:b0:50d:1a16:e89 with SMTP id g8-20020a056512118800b0050d1a160e89mr8338568lfr.36.1702661412574;
-        Fri, 15 Dec 2023 09:30:12 -0800 (PST)
-Received: from eriador.lumag.spb.ru (85-76-13-188-nat.elisa-mobile.fi. [85.76.13.188])
-        by smtp.gmail.com with ESMTPSA id g8-20020a056512118800b0050bf54b9f18sm2202274lfr.113.2023.12.15.09.30.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 15 Dec 2023 09:30:12 -0800 (PST)
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: "Rob Herring" <robh+dt@kernel.org>,
-	"Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-	"Conor Dooley" <conor+dt@kernel.org>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>
-Cc: devicetree@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org,
-	linux-usb@vger.kernel.org
-Subject: [PATCH RESEND v2 2/2] usb: typec: tcpm: Parse Accessory Mode information
-Date: Fri, 15 Dec 2023 19:30:05 +0200
-Message-ID: <20231215173005.313422-3-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20231215173005.313422-1-dmitry.baryshkov@linaro.org>
-References: <20231215173005.313422-1-dmitry.baryshkov@linaro.org>
+        bh=13gliIVcQbLU7hKnOSD6BJq01ueaRAAu4jm5L+NVTns=;
+        b=QZgN0gEaOkmeVF3wqLgRE6EQ0bBIk5y3dijHOk7xUjJkGNlTzS6w7gOfr7lTie1XYi
+         /RBCSnuw+dt+xR/ZyBti2f8TEIZGDpeKP7zzpcOjm/ubgDuKlJcNn3pD6n8isEWVUS/U
+         2/JWjBMru/zTiy++AKSfY7YIvfu+BA+bGIsYP01FPrL2bD1gFp4Hg++Og4y+5kVW4rsS
+         pXIFcATupFR6uAVaRjS/hLFA5gBdMzOlRRv+us2FgRI2LfV76uCROqjX01mntnQ9gjUK
+         VtBqtGhIPhxheCCScjqYvug9b1JCZK1zylEfHcS9ePP1jj+jUzmrG3wIoOqtjvLJ+F6l
+         cRYQ==
+X-Gm-Message-State: AOJu0YyrSA16nwKym7LDjaWvPT2Flz5ZpYGL5KiFYH/AJcw5cEylPCQ4
+	IHNy29rd/uiiRLRNJhVVe9v7AhSCypVAUf3RxnKR8Q==
+X-Google-Smtp-Source: AGHT+IFxmmKUPom/holribS2VHUERs+Ifa/Hn3mwBjJChRW4DE+E8HwHzNK/uqopAZogvwI1KxYaH/zKVAEN73mIK7g=
+X-Received: by 2002:a05:651c:220b:b0:2cc:1c1f:a895 with SMTP id
+ y11-20020a05651c220b00b002cc1c1fa895mr5329917ljq.22.1702661517493; Fri, 15
+ Dec 2023 09:31:57 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20231215-ad7380-mainline-v3-0-7a11ebf642b9@baylibre.com>
+ <20231215-ad7380-mainline-v3-3-7a11ebf642b9@baylibre.com> <66e9fe7a-927b-465f-aafe-8aea0e5998a4@wanadoo.fr>
+In-Reply-To: <66e9fe7a-927b-465f-aafe-8aea0e5998a4@wanadoo.fr>
+From: David Lechner <dlechner@baylibre.com>
+Date: Fri, 15 Dec 2023 18:31:46 +0100
+Message-ID: <CAMknhBEPxYtZps2cFk0ZPckbcHenXJ_v4Dv+82ENg47J52gHxQ@mail.gmail.com>
+Subject: Re: [PATCH v3 3/3] iio: adc: ad7380: new driver for AD7380 ADCs
+To: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+Cc: broonie@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org, 
+	jic23@kernel.org, krzysztof.kozlowski+dt@linaro.org, lgirdwood@gmail.com, 
+	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-spi@vger.kernel.org, michael.hennerich@analog.com, nuno.sa@analog.com, 
+	robh+dt@kernel.org, stefan.popa@analog.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Some of the boards supported by the TCPM drivers can support USB-C
-Accessory Modes (Analog Audio, Debug). Parse information about supported
-modes from the device tree.
+On Fri, Dec 15, 2023 at 5:53=E2=80=AFPM Christophe JAILLET
+<christophe.jaillet@wanadoo.fr> wrote:
+>
+> Le 15/12/2023 =C3=A0 11:32, David Lechner a =C3=A9crit :
+> > This adds a new driver for the AD7380 family ADCs.
+> >
+> > The driver currently implements basic support for the AD7380, AD7381,
+> > AD7383, and AD7384 2-channel differential ADCs. Support for additional
+> > single-ended and 4-channel chips that use the same register map as well
+> > as additional features of the chip will be added in future patches.
+> >
+> > Co-developed-by: Stefan Popa <stefan.popa-OyLXuOCK7orQT0dZR+AlfA@public=
+.gmane.org>
+> > Signed-off-by: Stefan Popa <stefan.popa-OyLXuOCK7orQT0dZR+AlfA@public.g=
+mane.org>
+> > Reviewed-by: Nuno Sa <nuno.sa-OyLXuOCK7orQT0dZR+AlfA@public.gmane.org>
+> > Signed-off-by: David Lechner <dlechner-rdvid1DuHRBWk0Htik3J/w@public.gm=
+ane.org>
+> > ---
+>
+> ...
+>
+> > +static void ad7380_regulator_disable(void *p)
+> > +{
+> > +     regulator_disable(p);
+> > +}
+> > +
+> > +static int ad7380_probe(struct spi_device *spi)
+> > +{
+> > +     struct iio_dev *indio_dev;
+> > +     struct ad7380_state *st;
+> > +     int ret;
+> > +
+> > +     indio_dev =3D devm_iio_device_alloc(&spi->dev, sizeof(*st));
+> > +     if (!indio_dev)
+> > +             return -ENOMEM;
+> > +
+> > +     st =3D iio_priv(indio_dev);
+> > +     st->spi =3D spi;
+> > +     st->chip_info =3D spi_get_device_match_data(spi);
+> > +     if (!st->chip_info)
+> > +             return dev_err_probe(&spi->dev, -EINVAL, "missing match d=
+ata\n");
+> > +
+> > +     st->vref =3D devm_regulator_get_optional(&spi->dev, "refio");
+>
+> Hi,
+>
+> devm_regulator_get_enable_optional()?
+> to save some LoC below and ad7380_regulator_disable()
 
-Reviewed-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- drivers/usb/typec/tcpm/tcpm.c | 9 +++++++++
- 1 file changed, 9 insertions(+)
+It would be nice if we could, but we need the pointer to the regulator
+to read the voltage of the regulator (it is the reference voltage for
+an ADC). So we can't use devm_regulator_get_enable_optional() because
+it only an int and not the pointer to the regulator.
 
-diff --git a/drivers/usb/typec/tcpm/tcpm.c b/drivers/usb/typec/tcpm/tcpm.c
-index 8372f98de757..cf70f1cf2f61 100644
---- a/drivers/usb/typec/tcpm/tcpm.c
-+++ b/drivers/usb/typec/tcpm/tcpm.c
-@@ -6144,6 +6144,7 @@ static int tcpm_fw_get_caps(struct tcpm_port *port,
- {
- 	const char *opmode_str;
- 	int ret;
-+	int mode;
- 	u32 mw, frs_current;
- 
- 	if (!fwnode)
-@@ -6162,6 +6163,14 @@ static int tcpm_fw_get_caps(struct tcpm_port *port,
- 	if (ret < 0)
- 		return ret;
- 
-+	mode = 0;
-+
-+	if (fwnode_property_read_bool(fwnode, "accessory-mode-audio"))
-+		port->typec_caps.accessory[mode++] = TYPEC_ACCESSORY_AUDIO;
-+
-+	if (fwnode_property_read_bool(fwnode, "accessory-mode-debug"))
-+		port->typec_caps.accessory[mode++] = TYPEC_ACCESSORY_DEBUG;
-+
- 	port->port_type = port->typec_caps.type;
- 	port->pd_supported = !fwnode_property_read_bool(fwnode, "pd-disable");
- 
--- 
-2.43.0
-
+>
+> CJ
+>
+> > +     if (IS_ERR(st->vref)) {
+> > +             /*
+> > +              * If there is no REFIO supply, then it means that we are=
+ using
+> > +              * the internal 2.5V reference.
+> > +              */
+> > +             if (PTR_ERR(st->vref) =3D=3D -ENODEV)
+> > +                     st->vref =3D NULL;
+> > +             else
+> > +                     return dev_err_probe(&spi->dev, PTR_ERR(st->vref)=
+,
+> > +                                          "Failed to get refio regulat=
+or\n");
+> > +     }
+> > +
+> > +     if (st->vref) {
+> > +             ret =3D regulator_enable(st->vref);
+> > +             if (ret)
+> > +                     return ret;
+> > +
+> > +             ret =3D devm_add_action_or_reset(&spi->dev, ad7380_regula=
+tor_disable,
+> > +                                            st->vref);
+> > +             if (ret)
+> > +                     return ret;
+> > +     }
+> > +
+> > +     st->regmap =3D devm_regmap_init(&spi->dev, NULL, st, &ad7380_regm=
+ap_config);
+> > +     if (IS_ERR(st->regmap))
+> > +             return dev_err_probe(&spi->dev, PTR_ERR(st->regmap),
+> > +                                  "failed to allocate register map\n")=
+;
+> > +
+> > +     indio_dev->channels =3D st->chip_info->channels;
+> > +     indio_dev->num_channels =3D st->chip_info->num_channels;
+> > +     indio_dev->name =3D st->chip_info->name;
+> > +     indio_dev->info =3D &ad7380_info;
+> > +     indio_dev->modes =3D INDIO_DIRECT_MODE;
+> > +     indio_dev->available_scan_masks =3D ad7380_2_channel_scan_masks;
+> > +
+> > +     ret =3D devm_iio_triggered_buffer_setup(&spi->dev, indio_dev,
+> > +                                           iio_pollfunc_store_time,
+> > +                                           ad7380_trigger_handler, NUL=
+L);
+> > +     if (ret)
+> > +             return ret;
+> > +
+> > +     ret =3D ad7380_init(st);
+> > +     if (ret)
+> > +             return ret;
+> > +
+> > +     return devm_iio_device_register(&spi->dev, indio_dev);
+> > +}
+>
+> ...
+>
 
