@@ -1,120 +1,112 @@
-Return-Path: <devicetree+bounces-26057-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26058-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BBBD3815714
-	for <lists+devicetree@lfdr.de>; Sat, 16 Dec 2023 04:40:12 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9881381572B
+	for <lists+devicetree@lfdr.de>; Sat, 16 Dec 2023 05:07:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 436DCB24188
-	for <lists+devicetree@lfdr.de>; Sat, 16 Dec 2023 03:40:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0B459286D61
+	for <lists+devicetree@lfdr.de>; Sat, 16 Dec 2023 04:07:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0EB914406;
-	Sat, 16 Dec 2023 03:40:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFDC710A02;
+	Sat, 16 Dec 2023 04:07:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="cCFIDyfY"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QkaAgdu0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ot1-f53.google.com (mail-ot1-f53.google.com [209.85.210.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8082820F6;
-	Sat, 16 Dec 2023 03:40:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1702698005; x=1734234005;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=8iTbdebOpdgOKk0llu7oM4iOfYfF2+G5imBwjpyg9rI=;
-  b=cCFIDyfYV0AI2OTiamtwCt+LOX1ftnUnQZnJ4T06kBNegOE34Y2IUSzW
-   hRDKu9iyaiP0SMZ9xNHRaqNYVkrNeyr78INpNh2dSdZRiZYuZc1XRihd0
-   zgvgU+IBYxS+Q3fuLYucbsWhS2eF9swCoiEr3+UBi5yVDxLI09umqcFon
-   BgSbaPkG6xPZNlSBDOkpOs8fxX9oDHmFR1ZexjmA/8x0E3gNvdoz2hfyK
-   iKnz63Y9eOzynSWIbYrA8YnBv/EEs2/M1//p6k7LEj5KrHmRk1nCofMNQ
-   4P3W3bST7sT5BM7qLHGzUhcQncRDzaF+z/64/ZdjXXSnx5suMg+R9bi/E
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10925"; a="394230239"
-X-IronPort-AV: E=Sophos;i="6.04,280,1695711600"; 
-   d="scan'208";a="394230239"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Dec 2023 19:40:04 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10925"; a="840865508"
-X-IronPort-AV: E=Sophos;i="6.04,280,1695711600"; 
-   d="scan'208";a="840865508"
-Received: from lkp-server02.sh.intel.com (HELO b07ab15da5fe) ([10.239.97.151])
-  by fmsmga008.fm.intel.com with ESMTP; 15 Dec 2023 19:39:59 -0800
-Received: from kbuild by b07ab15da5fe with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1rELWv-00016c-0d;
-	Sat, 16 Dec 2023 03:39:57 +0000
-Date: Sat, 16 Dec 2023 11:39:29 +0800
-From: kernel test robot <lkp@intel.com>
-To: Dumitru Ceclan <mitrutzceclan@gmail.com>
-Cc: oe-kbuild-all@lists.linux.dev, linus.walleij@linaro.org, brgl@bgdev.pl,
-	andy@kernel.org, linux-gpio@vger.kernel.org,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BC3B10953;
+	Sat, 16 Dec 2023 04:07:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ot1-f53.google.com with SMTP id 46e09a7af769-6d9d307a732so977722a34.1;
+        Fri, 15 Dec 2023 20:07:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1702699631; x=1703304431; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=lh1fPASUA2RVK3PUb6yIztNzpjqxC47uH/J5SJ+A7yY=;
+        b=QkaAgdu0TxJztWJF7AQPUjHia/ywruRw7xFzyJR6uBQz9ySX9rtCw/fHNgbTVl88cN
+         vL+JAUM92yOaEqEpLRSrvY7+jqRx78D54YTOPs8RJSuJoVjxEdk+EBTe+QxkB76HgWvI
+         +hqVTFhrk+hD5xI9pjCNnmbs8tn7Ql/855uJYGEIRIJUIWIV5aVjarMHRZGBkpmDJG24
+         RhsPgpVAAAbzgSxyd0Ag6TipdE4secb8KJpn10w6fEOggw89coolxI5UPIuKMoOzjq/v
+         fYqCu6E4glunHy8pGRadH6+IB2mN8DXz/8ROOu1sWxzkDsNlv8r6aRVZkZoNP4k7PwM4
+         BRtg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702699631; x=1703304431;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=lh1fPASUA2RVK3PUb6yIztNzpjqxC47uH/J5SJ+A7yY=;
+        b=cgOexhWC5S2Q+cA9yWVE/cQ9qmX/LrJ2/e/QWTIHh2AwC+gzchSUZRoeFNXEvVxmbw
+         Ubas3boTWCqq94D8+x0MkqzYcYfPYvh/edHEtvnyDglqLUAt8+klztp71RTaDJOXyn0U
+         hYkYfECEIsy2APza3kDf5+C6+CbzKZRIec4TutfTLxq6n6+VBClBMklSml1Ee5HoBRqz
+         c+FueEX9tTu8EzEXe4B3qNjHUgxrxPjazYZzLNkYHY+FSlaXdreJW1t8U3uEi7P0TpFG
+         78O5JyoIAiz9okHzIUGS82UvkYQwIvYGrZyQUBTB8PxqQ+kSvqGCsA94jvY/DS9tVY/v
+         CKGA==
+X-Gm-Message-State: AOJu0YxkUpnLOzPgYLJ7yc2hCV8ma9eRLBubqK7H40SVLpoo5teXFE2y
+	LPaOuynDYMihS5xvwQ0vdpc=
+X-Google-Smtp-Source: AGHT+IFcAdimm0eRg4pVwTxwgiiokcG0S1CDTXH57Tb0zgAxZ+ctCXVTXDZ7OB/TWvwa9DxP8a2jLQ==
+X-Received: by 2002:a9d:6297:0:b0:6d9:cf49:f5e2 with SMTP id x23-20020a9d6297000000b006d9cf49f5e2mr12531859otk.19.1702699630980;
+        Fri, 15 Dec 2023 20:07:10 -0800 (PST)
+Received: from buildbot-shaka.infra.immortalwrt.org ([38.150.14.243])
+        by smtp.gmail.com with ESMTPSA id f26-20020aa79d9a000000b006cb94825843sm14216936pfq.180.2023.12.15.20.07.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 15 Dec 2023 20:07:10 -0800 (PST)
+From: Tianling Shen <cnsztl@gmail.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Michael Walle <michael@walle.cc>,
-	Andy Shevchenko <andy.shevchenko@gmail.com>,
-	Arnd Bergmann <arnd@arndb.de>, ChiaEn Wu <chiaen_wu@richtek.com>,
-	Niklas Schnelle <schnelle@linux.ibm.com>,
-	Leonard =?iso-8859-1?Q?G=F6hrs?= <l.goehrs@pengutronix.de>,
-	Mike Looijmans <mike.looijmans@topic.nl>,
-	Haibo Chen <haibo.chen@nxp.com>,
-	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-	Ceclan Dumitru <dumitru.ceclan@analog.com>,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	Heiko Stuebner <heiko@sntech.de>,
+	Tianling Shen <cnsztl@gmail.com>
+Cc: devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
-	Dumitru Ceclan <mitrutzceclan@gmail.com>
-Subject: Re: [PATCH v9 1/2] dt-bindings: adc: add AD7173
-Message-ID: <202312161107.L0HDURj1-lkp@intel.com>
-References: <20231215133512.28735-1-mitrutzceclan@gmail.com>
+	stable@vger.kernel.org
+Subject: [PATCH] arm64: dts: rockchip: configure pad driver strength for orangepi r1 plus lts
+Date: Sat, 16 Dec 2023 12:07:23 +0800
+Message-ID: <20231216040723.17864-1-cnsztl@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231215133512.28735-1-mitrutzceclan@gmail.com>
+Content-Transfer-Encoding: 8bit
 
-Hi Dumitru,
+The default strength is not enough to provide stable connection
+under 3.3v LDO voltage.
 
-kernel test robot noticed the following build warnings:
+Fixes: 387b3bbac5ea ("arm64: dts: rockchip: Add Xunlong OrangePi R1 Plus LTS")
 
-[auto build test WARNING on jic23-iio/togreg]
-[also build test WARNING on linus/master v6.7-rc5 next-20231215]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Cc: stable@vger.kernel.org # 6.6+
+Signed-off-by: Tianling Shen <cnsztl@gmail.com>
+---
+ arch/arm64/boot/dts/rockchip/rk3328-orangepi-r1-plus-lts.dts | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Dumitru-Ceclan/iio-adc-ad7173-add-AD7173-driver/20231215-213722
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git togreg
-patch link:    https://lore.kernel.org/r/20231215133512.28735-1-mitrutzceclan%40gmail.com
-patch subject: [PATCH v9 1/2] dt-bindings: adc: add AD7173
-compiler: loongarch64-linux-gcc (GCC) 13.2.0
-reproduce: (https://download.01.org/0day-ci/archive/20231216/202312161107.L0HDURj1-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202312161107.L0HDURj1-lkp@intel.com/
-
-dtcheck warnings: (new ones prefixed by >>)
->> Documentation/devicetree/bindings/iio/adc/adi,ad7173.yaml: patternProperties:^channel@[0-9a-f]$:properties:adi,reference-select:type: 'string' is not one of ['boolean', 'object']
-   	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
->> Documentation/devicetree/bindings/iio/adc/adi,ad7173.yaml: patternProperties:^channel@[0-9a-f]$:properties:adi,reference-select:type: 'boolean' was expected
-   	hint: A vendor boolean property can use "type: boolean"
-   	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-
+diff --git a/arch/arm64/boot/dts/rockchip/rk3328-orangepi-r1-plus-lts.dts b/arch/arm64/boot/dts/rockchip/rk3328-orangepi-r1-plus-lts.dts
+index 5d7d567283e5..4237f2ee8fee 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3328-orangepi-r1-plus-lts.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3328-orangepi-r1-plus-lts.dts
+@@ -26,9 +26,11 @@ yt8531c: ethernet-phy@0 {
+ 			compatible = "ethernet-phy-ieee802.3-c22";
+ 			reg = <0>;
+ 
++			motorcomm,auto-sleep-disabled;
+ 			motorcomm,clk-out-frequency-hz = <125000000>;
+ 			motorcomm,keep-pll-enabled;
+-			motorcomm,auto-sleep-disabled;
++			motorcomm,rx-clk-drv-microamp = <5020>;
++			motorcomm,rx-data-drv-microamp = <5020>;
+ 
+ 			pinctrl-0 = <&eth_phy_reset_pin>;
+ 			pinctrl-names = "default";
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.43.0
+
 
