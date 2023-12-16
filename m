@@ -1,100 +1,117 @@
-Return-Path: <devicetree+bounces-26069-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26068-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1B228158F6
-	for <lists+devicetree@lfdr.de>; Sat, 16 Dec 2023 13:26:28 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 828FA8158F3
+	for <lists+devicetree@lfdr.de>; Sat, 16 Dec 2023 13:26:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5F254285911
-	for <lists+devicetree@lfdr.de>; Sat, 16 Dec 2023 12:26:27 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0A05EB2390A
+	for <lists+devicetree@lfdr.de>; Sat, 16 Dec 2023 12:26:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A4ED219E6;
-	Sat, 16 Dec 2023 12:26:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4159210FA;
+	Sat, 16 Dec 2023 12:26:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="OmENd/29"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PS9YnZQW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 872F32C68C;
-	Sat, 16 Dec 2023 12:26:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=1fTVB9sYYSZDswzP8ZR5w94cl2xSjwWVlr0JVBmTllU=; b=OmENd/29KCx0N8en2zQgO4eOWZ
-	O9ZsdqUo04tt4tYAR6Pdc9fD+Y4+23nas555EbUIsinjefGi1uiebcyl/DbnNDGMnH0bHsfYX8ztq
-	VkQjsVgEBOcx7OBrwMxszgcPlqGPBwdIXxLTuMoVxCMB3VjBch0DkD1+cD8C86wghI3Q=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1rETjw-003668-D2; Sat, 16 Dec 2023 13:25:56 +0100
-Date: Sat, 16 Dec 2023 13:25:56 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: 20231214201442.660447-5-tobias@waldekranz.com
-Cc: Tobias Waldekranz <tobias@waldekranz.com>, davem@davemloft.net,
-	kuba@kernel.org, linux@armlinux.org.uk, kabel@kernel.org,
-	hkallweit1@gmail.com, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next 4/4] dt-bindings: net: marvell10g: Document LED
- polarity
-Message-ID: <3bc3b802-7575-4f0c-b66b-086a767efdb6@lunn.ch>
-References: <657c8e53.050a0220.dd6f2.9aaf@mx.google.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE32414AA5;
+	Sat, 16 Dec 2023 12:26:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A4C64C433C8;
+	Sat, 16 Dec 2023 12:26:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1702729567;
+	bh=0oeIUsrlXs5c6NYNpXEs7Wnj16HATAm77+R7IxPQ1qU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=PS9YnZQWHOao0EY1i6Oy9j43am7WUay4ybAfqccsc0TphcvQMagpFiM4I3wwTOo7O
+	 aYSHVe0r4vIXuTSYtcw3UPahEk7MnA7U+EQOTmLtbm99GtY4ZZxNva63ehrPRM4Jw3
+	 OX+Q5CtVKmHQJe3tUKvCN8NIAba/tecmk85ItVV+Yhi0gFWqTBcFzRqMCc1DYCxgiA
+	 ovDKqV04TEpPniSCAJdsq7zGuGolGSTX0FtX1il2NMbPpUjFC205s1Bcb2PyFjKsMY
+	 bH60W2Q+m4UzK+is8AkUFBdfMUEXU6q07ECq6YrwqUsC7TUyKQhd8a15R5OVVrwQ8T
+	 9PiIaeQ3WnB9w==
+Date: Sat, 16 Dec 2023 12:26:02 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Zhifeng Tang <zhifeng.tang@unisoc.com>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Orson Zhai <orsonzhai@gmail.com>,
+	Baolin Wang <baolin.wang@linux.alibaba.com>,
+	Chunyan Zhang <zhang.lyra@gmail.com>, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Zhifeng Tang <zhifeng.tang23@gmail.com>,
+	Wenming Wu <wenming.wu@unisoc.com>
+Subject: Re: [PATCH 4/4] dt-bindings: clock: Add reset controller bindings
+ for Unisoc's UMS512.
+Message-ID: <20231216-service-gallows-797dea781edb@spud>
+References: <20231215081003.8373-1-zhifeng.tang@unisoc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="GgSUqh2kPZiHFsMB"
+Content-Disposition: inline
+In-Reply-To: <20231215081003.8373-1-zhifeng.tang@unisoc.com>
+
+
+--GgSUqh2kPZiHFsMB
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <657c8e53.050a0220.dd6f2.9aaf@mx.google.com>
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Dec 15, 2023 at 03:22:11PM +0100, Christian Marangi wrote:
-> > > +        properties:
-> > > +          marvell,polarity:
-> > > +            description: |
-> > > +              Electrical polarity and drive type for this LED. In the
-> > > +              active state, hardware may drive the pin either low or
-> > > +              high. In the inactive state, the pin can either be
-> > > +              driven to the opposite logic level, or be tristated.
-> > > +            $ref: /schemas/types.yaml#/definitions/string
-> > > +            enum:
-> > > +              - active-low
-> > > +              - active-high
-> > > +              - active-low-tristate
-> > > +              - active-high-tristate
-> > 
-> > Christian is working on adding a generic active-low property, which
-> > any PHY LED could use. The assumption being if the bool property is
-> > not present, it defaults to active-high.
-> > 
-> 
-> Hi, it was pointed out this series sorry for not noticing before.
-> 
-> > So we should consider, how popular are these two tristate values? Is
-> > this a Marvell only thing, or do other PHYs also have them? Do we want
-> > to make them part of the generic PHY led binding? Also, is an enum the
-> > correct representation? Maybe tristate should be another bool
-> > property? Hi/Low and tristate seem to be orthogonal, so maybe two
-> > properties would make it cleaner with respect to generic properties?
-> 
-> For parsing it would make it easier to have the thing split.
-> 
-> But on DT I feel an enum like it's done here might be more clear.
+On Fri, Dec 15, 2023 at 04:10:03PM +0800, Zhifeng Tang wrote:
+> Add Reset Controller bindings to clock bindings for Unisoc's UMS512.
 
-I took a look at a datasheet for a standalone 1G Marvell PHY. It has
-the same capabilities. So this is something which can be reused by a
-few devices.
+This is what the diff is doing, but there's no justification for why
+this is the case. I _assume_ that the clock controller register block
+also contains reset bits for some of these peripherals, but the commit
+message needs to say that.
 
-So an enum in DT, and an enum for the API to the PHY driver seems like
-a good idea. I doubt there will be too many more variants, but it does
-give us an easy way to add more values.
+Cheers,
+Conor.
 
-	Andrew
+>=20
+> Signed-off-by: Zhifeng Tang <zhifeng.tang@unisoc.com>
+> ---
+>  Documentation/devicetree/bindings/clock/sprd,ums512-clk.yaml | 3 +++
+>  1 file changed, 3 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/clock/sprd,ums512-clk.yaml=
+ b/Documentation/devicetree/bindings/clock/sprd,ums512-clk.yaml
+> index 43d2b6c31357..6b0892d637fe 100644
+> --- a/Documentation/devicetree/bindings/clock/sprd,ums512-clk.yaml
+> +++ b/Documentation/devicetree/bindings/clock/sprd,ums512-clk.yaml
+> @@ -34,6 +34,9 @@ properties:
+>    "#clock-cells":
+>      const: 1
+> =20
+> +  "#reset-cells":
+> +    const: 1
+> +
+>    clocks:
+>      minItems: 1
+>      maxItems: 4
+> --=20
+> 2.17.1
+>=20
+
+--GgSUqh2kPZiHFsMB
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZX2XWgAKCRB4tDGHoIJi
+0kiJAP43JtrM14++P35LKrXG5klsr/OJjlApZw7S1S0MkmbavgD/QuEZ0BzUaDvP
+ONpLEnqB2jvHnLpzkb58PHDSqhgQBgk=
+=clIu
+-----END PGP SIGNATURE-----
+
+--GgSUqh2kPZiHFsMB--
 
