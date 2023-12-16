@@ -1,127 +1,114 @@
-Return-Path: <devicetree+bounces-26150-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26151-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53494815B60
-	for <lists+devicetree@lfdr.de>; Sat, 16 Dec 2023 20:39:04 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC020815B64
+	for <lists+devicetree@lfdr.de>; Sat, 16 Dec 2023 20:43:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4B05D1C21626
-	for <lists+devicetree@lfdr.de>; Sat, 16 Dec 2023 19:39:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9218C1F234C9
+	for <lists+devicetree@lfdr.de>; Sat, 16 Dec 2023 19:43:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F97E31A85;
-	Sat, 16 Dec 2023 19:38:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC90431A9C;
+	Sat, 16 Dec 2023 19:43:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="e44+90st"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JLb4vos1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDE4F328B4
-	for <devicetree@vger.kernel.org>; Sat, 16 Dec 2023 19:38:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 35DC93F2C9
-	for <devicetree@vger.kernel.org>; Sat, 16 Dec 2023 19:38:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-	s=20210705; t=1702755535;
-	bh=2c7dacoDuG5K0tl+4E3IQI93Dvy5OouinIjtAewN7Os=;
-	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
-	 To:Cc:Content-Type;
-	b=e44+90stt3l/ScDqFCt0bG6NKsJ/Mnf+Qs0a7LWfGhTtdRmu9YGpDJolyJM3eGWXo
-	 rOxrY3DDdfuQAvS1nLovn7rvG1rAMVzOxjAQZU+c0hx/T4BtYt0jbVhtdtMnFr8dqM
-	 x0wLuYK/sRWNlKG/GoHcnrDde5ssJOy0br3+r/RTtTWilHxhRvbmZ1u7ksKz80DAAe
-	 4cNKdTvknaVdPmg2jo8O8vvDAzKX3qwm3lRVCRUGyLYJs2mdWGRsZSkL18F+pZCBdt
-	 xt/wSVBGSPEMHxCTMQL61lkX4GcdlAwnOv/+aUnx1wzjfjW7Noq1VwmrL5INZCoqEi
-	 uiiCOMDE0NSlQ==
-Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-4258a2540ceso29057161cf.1
-        for <devicetree@vger.kernel.org>; Sat, 16 Dec 2023 11:38:55 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60C65321AD;
+	Sat, 16 Dec 2023 19:43:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-3363eba94ebso1460508f8f.3;
+        Sat, 16 Dec 2023 11:43:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1702755815; x=1703360615; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=yCmkrZfjoxLFm+4nqoSbVgLwqbupCRvqqsqwf2McxGQ=;
+        b=JLb4vos1J5IcClDggkmmJLyCFObNoQ3N5HH13AVIUenBzeMUge53u0X5fRu7ohPrdV
+         zrxh2gM1qNZaDsUK2SBMHf/6h+3LANhEUIxTEp6f8mob6gB73VkwXyUDXAL2GXeZxam5
+         coEh/RZFHuSP2mlYip74H+vNjKSqOG1OG4erKBKIp3ynx5At6SpXtuhqqqZndupOmztC
+         4JJYjY6Gw7C+spjGhNuhl/jKK9K9o21gPK2QvbQsGm0+DmcZzZI67KiSzRZ+ep2GK+q8
+         HZXybzJ8O+5/E8twxXXvzqcw8+7R67Et0o+2G8fWIhWyyqzg3QdzIimPKcK3g1WZrzfZ
+         dnjA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702755534; x=1703360334;
-        h=cc:to:subject:message-id:date:mime-version:references:in-reply-to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2c7dacoDuG5K0tl+4E3IQI93Dvy5OouinIjtAewN7Os=;
-        b=SVbWCNy04K2hHNfuWroNO61kAxwO7wBoAD+uXWDjRp1nrKFTKvtTfCfZPAdXRzQL8z
-         7b7sGu0peQaT8znW4chceZL6FX8OxMzokwbwPwd9XS4nYQgoXmwutqgOItGDCh3yHdDz
-         aLb6c2ESF8DPoFKmtHaitTcGCj1ldTlktewe7dBoO8hLJwnWNkJtAQvZdbI1B72oia/w
-         mOfhucGl8VnAlZpCn+7gcJiMLXCCDPFIQ7gV5vAgGcO8kFUCJlq20SbP7GDHifJ+ta9c
-         ty1osh72CUz8tT8cJlxKOGJOT2rZoxTrZpdLqRY7ZJOpbL2Wv17hGbUMcle2ZR0uXjkp
-         fo/Q==
-X-Gm-Message-State: AOJu0YyWYnilyv3lDpzGwGICQ2bzPrMqCAj50GqSxRQNC0DghYgCHXHa
-	OQl13l9pKnYuIBm0etfSFnLIVQ1Li+lYa8d5dzQoa0Yv429Zl3Zlw2GUXBijKZekIK6OQmWU1zR
-	kGCvZFteFqUs2RIdnuMXSs/AdWeTQYJQ+ffoAQ32gajnrlpBTHkwE620=
-X-Received: by 2002:a05:622a:1c8:b0:425:4043:18bd with SMTP id t8-20020a05622a01c800b00425404318bdmr20333351qtw.112.1702755534010;
-        Sat, 16 Dec 2023 11:38:54 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFkdKr9ZA1ECc64gwyj30qjy4snj5vZUkODgrjSVIiFsMAP3aqvVWnQrSXJixVzRgLW2ZfvbY5zJh4SCWF268k=
-X-Received: by 2002:a05:622a:1c8:b0:425:4043:18bd with SMTP id
- t8-20020a05622a01c800b00425404318bdmr20333325qtw.112.1702755533644; Sat, 16
- Dec 2023 11:38:53 -0800 (PST)
-Received: from 348282803490 named unknown by gmailapi.google.com with
- HTTPREST; Sat, 16 Dec 2023 11:38:53 -0800
-From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-In-Reply-To: <20231215204050.2296404-6-cristian.ciocaltea@collabora.com>
-References: <20231215204050.2296404-1-cristian.ciocaltea@collabora.com> <20231215204050.2296404-6-cristian.ciocaltea@collabora.com>
+        d=1e100.net; s=20230601; t=1702755815; x=1703360615;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=yCmkrZfjoxLFm+4nqoSbVgLwqbupCRvqqsqwf2McxGQ=;
+        b=pDPX0l6cEEQnseJLB71UCjo4Xws328QQl6JZN9Yues8Mv00w01qGzQCQwLu9OZpJp/
+         x71AdQjdJpIXriSlvmBghxH1Sc2U6kh3es7nG0uLTnABH0z2W380RkpEgcvgVnF7iCfc
+         CArCsylAGf32Hl55m/nQybBCejtlTmvqSOGhhXxGz7/s4c5yxirVkjO4adroVMNLFqIa
+         lyWjWPe53wZw1Piu8QTxu3vHRZDtlUQGimeywCeTGhFzIOCF3RrZDpipx5XrP5NrJ9DX
+         jmwdF2Mfqw3S44vhbeYWQ26iSlbzAfzlkVqnzhDZByLwkA7lSq4z2Eg3NYaTnYfK/mQo
+         IhIA==
+X-Gm-Message-State: AOJu0YwraePZJRty001AlU751x58DN++ob/e6np4IuQDQMQAvRTPeqy6
+	Yrb17OybWKf3ZWSlfqfUe2A=
+X-Google-Smtp-Source: AGHT+IEfhn0+BXu1pgYXx1zCrSVrpn/Nh8liJ85zWRvJGZh9fCT+0KbESW76eQRK+9ccxXnl+rqD2w==
+X-Received: by 2002:a05:6000:196a:b0:334:b160:86f4 with SMTP id da10-20020a056000196a00b00334b16086f4mr3061404wrb.163.1702755815336;
+        Sat, 16 Dec 2023 11:43:35 -0800 (PST)
+Received: from corebook.localdomain (2001-1c00-020d-1300-1b1c-4449-176a-89ea.cable.dynamic.v6.ziggo.nl. [2001:1c00:20d:1300:1b1c:4449:176a:89ea])
+        by smtp.gmail.com with ESMTPSA id t16-20020a056402241000b00552743342c8sm2781953eda.59.2023.12.16.11.43.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 16 Dec 2023 11:43:34 -0800 (PST)
+From: Eric Woudstra <ericwouds@gmail.com>
+To: "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	"Frank Wunderlich" <frank-w@public-files.de>,
+	Daniel Golle <daniel@makrotopia.org>,
+	Lucien Jheng  <lucien.jheng@airoha.com>,
+	Zhi-Jun You <hujy652@protonmail.com>
+Cc: netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Eric Woudstra <ericwouds@gmail.com>
+Subject: [PATCH RFC net-next 0/2] Add en8811h phy driver and devicetree binding doc
+Date: Sat, 16 Dec 2023 20:43:16 +0100
+Message-ID: <20231216194321.18928-1-ericwouds@gmail.com>
+X-Mailer: git-send-email 2.42.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Date: Sat, 16 Dec 2023 11:38:53 -0800
-Message-ID: <CAJM55Z-bg0EGPaLHtxcu2AzqN59zfuiT0eE7oCShrx7dG_QK1g@mail.gmail.com>
-Subject: Re: [PATCH v3 5/9] riscv: dts: starfive: jh7100-common: Setup pinmux
- and enable gmac
-To: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Emil Renner Berthing <kernel@esmil.dk>, Samin Guo <samin.guo@starfivetech.com>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Hal Feng <hal.feng@starfivetech.com>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Alexandre Torgue <alexandre.torgue@foss.st.com>, Jose Abreu <joabreu@synopsys.com>, 
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Richard Cochran <richardcochran@gmail.com>, 
-	Giuseppe Cavallaro <peppe.cavallaro@st.com>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	linux-clk@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
-	linux-arm-kernel@lists.infradead.org, kernel@collabora.com, 
-	Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Content-Type: text/plain; charset="UTF-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 
-Cristian Ciocaltea wrote:
-> Add pinmux configuration for DWMAC found on the JH7100 based boards and
-> enable the related DT node, providing a basic PHY configuration.
->
-> Co-developed-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-> Signed-off-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-> ---
->  .../boot/dts/starfive/jh7100-common.dtsi      | 85 +++++++++++++++++++
->  1 file changed, 85 insertions(+)
->
-> diff --git a/arch/riscv/boot/dts/starfive/jh7100-common.dtsi b/arch/riscv/boot/dts/starfive/jh7100-common.dtsi
-> index 42fb61c36068..5cafe8f5c2e7 100644
-> --- a/arch/riscv/boot/dts/starfive/jh7100-common.dtsi
-> +++ b/arch/riscv/boot/dts/starfive/jh7100-common.dtsi
-> @@ -72,7 +72,92 @@ wifi_pwrseq: wifi-pwrseq {
->  	};
->  };
->
-> +&gmac {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&gmac_pins>;
-> +	phy-mode = "rgmii-id";
-> +	phy-handle = <&phy>;
+Add the Airoha EN8811H 2.5 Gigabit PHY.
 
-I'm not sure if it's a generic policy or not, but I don't really like adding a
-reference to a non-existant node here. I'd move this property to the board
-files where the phy node is actually defined.
+The phy supports 100/1000/2500 Mbps with auto negotiotion only.
 
-/Emil
+The driver uses two firmware files, which are added to linux-firmware already.
+
+This patch series adds the driver and the devicetree binding documentation.
+
+Eric Woudstra (2):
+  Add en8811h bindings documentation yaml
+  Add the Airoha EN8811H PHY driver
+
+ .../bindings/net/airoha,en8811h.yaml          |   42 +
+ drivers/net/phy/Kconfig                       |    5 +
+ drivers/net/phy/Makefile                      |    1 +
+ drivers/net/phy/air_en8811h.c                 | 1044 +++++++++++++++++
+ 4 files changed, 1092 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/airoha,en8811h.yaml
+ create mode 100644 drivers/net/phy/air_en8811h.c
+
+-- 
+2.42.1
+
 
