@@ -1,258 +1,214 @@
-Return-Path: <devicetree+bounces-26093-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26094-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 499F3815A00
-	for <lists+devicetree@lfdr.de>; Sat, 16 Dec 2023 16:37:46 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 94B63815A0F
+	for <lists+devicetree@lfdr.de>; Sat, 16 Dec 2023 17:01:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B8C4CB21CEF
-	for <lists+devicetree@lfdr.de>; Sat, 16 Dec 2023 15:37:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0532E1F231DA
+	for <lists+devicetree@lfdr.de>; Sat, 16 Dec 2023 16:01:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 591F42D033;
-	Sat, 16 Dec 2023 15:37:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2BD13011A;
+	Sat, 16 Dec 2023 16:01:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="ZmY88sC5"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NJrjGe2k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C123D30108;
-	Sat, 16 Dec 2023 15:37:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 3BGFaYwv014522;
-	Sat, 16 Dec 2023 15:37:20 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=uGlb/TPNWpEJl79n9W8Wm6WCK61dQReXPFFaCE45owc=; b=Zm
-	Y88sC5CrFHI3xDKOSXJ3BduaK4sqeem4iAC19Nsui+6+UOZysvF5U3IRNUSZ4F7L
-	5SPbCNvzqZVxV0K6Seg8MsWPWRIXwpl4cu28qMRfFyvcaOQDWJ2kkznSjZkK1Wui
-	Eu0B2WslUGuhePxUWATXwGXn5s7Z1w12pWqY/AqPO8a4su+W74ygzBLdsOn0goT8
-	ONves22MhnoNHLDsMADSQB7pm6Ewznh23SFm7yB4yuTAk8BvsfYpQDFsbpHYVhDO
-	9qPa4ylvlzGECVf+u/+WopnStaLLJrTx4qgv5mUqcQdWnFDlrVPhXgPHGAVkXsQ7
-	ZO7IIi7oiiZW5JVvM5bQ==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3v152q8rj1-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sat, 16 Dec 2023 15:37:19 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3BGFbG4M013078
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sat, 16 Dec 2023 15:37:16 GMT
-Received: from [10.253.9.247] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Sat, 16 Dec
- 2023 07:37:11 -0800
-Message-ID: <af1dff98-a63e-47b3-a709-6f4110a97529@quicinc.com>
-Date: Sat, 16 Dec 2023 23:37:08 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FD0418E0F;
+	Sat, 16 Dec 2023 16:01:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-40d13e4f7abso586675e9.2;
+        Sat, 16 Dec 2023 08:01:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1702742486; x=1703347286; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=rPPChdRLnAk4gYqif9RBtjKJ77L8HfV9AvVUL8H5eqU=;
+        b=NJrjGe2k+P6XktY3IkLY8131hUqnEIIABsxjPsG9uf4F90F6VkGv8ST0E5c1/YGvHL
+         8523nxeN2Po4sWLCto4AIc0tCmZ4mzFniw3+3noWkJ7K8be2de+AhxvkRjd6StWH6fIC
+         sGW+GbEoC2rieS1lAEGshqfLH95eBl4+7W2tBv33HufcHqNWKWSFGIr8Otn+FDNXywD7
+         IydIXnAB1RUNXTZL0N3qw6/VCQCS+NEgXxT7iU4guizpOObUIThUBR+VWpFX4Jako54K
+         mzaQpAfBxu/HKPCCZ87ZuA1LlIFG2oQ6LrqlvGgAxqj+tw5tgJoS8u0W9JI26w9nrF69
+         9PTg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702742486; x=1703347286;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=rPPChdRLnAk4gYqif9RBtjKJ77L8HfV9AvVUL8H5eqU=;
+        b=sv70QFu2Cd+lo3E+nOyoHOnCN6OIlYAbe3nLJM8I8S7Rrxbc9gLM7lik7mk/m4dfcc
+         e9oOHhNlZqRHUhUuNbxGlhMYfy/3b2yTgrLgns/S0ADZrWCPUrXviS8jFkTRZ7jJy6cG
+         LppbVbB2tHc4HLzu9mxQLLDI9F2s5OOsdsKOy0rxKCWzc+DaHTCnoJREb21vtKEPUj/m
+         nwzAFmSrD5u8xqBLwj4KkHSVdpzehy6E0wcxKmMxRi9qf/IUxCVWrR2P1PvcPuzgbrHN
+         ENCgVb4J+vjcIrPpQ3YRp1cwFcVNifOTCozq5paAoP+IkLggOD84bdW4jBqd1iEmNvqO
+         yjDw==
+X-Gm-Message-State: AOJu0YzYYAHW0XQFYaw+wurPm68SqUNRmv3188W07/MwqoKQ6vB1OR5G
+	Q0iq0wF+t5vvoZfUcY6tr+4=
+X-Google-Smtp-Source: AGHT+IHuUzERz4MDl25m8vZZr5qHvuCPfRh3Oi/rYMhDAFXOiHO+B93YGNhQJ1ivZNoJOjPEfWs9zg==
+X-Received: by 2002:a05:600c:2259:b0:40c:78c:f2b0 with SMTP id a25-20020a05600c225900b0040c078cf2b0mr8045696wmm.2.1702742485693;
+        Sat, 16 Dec 2023 08:01:25 -0800 (PST)
+Received: from Ansuel-xps. (93-34-89-13.ip49.fastwebnet.it. [93.34.89.13])
+        by smtp.gmail.com with ESMTPSA id l15-20020a05600c1d0f00b003feae747ff2sm36668732wms.35.2023.12.16.08.01.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 16 Dec 2023 08:01:24 -0800 (PST)
+Message-ID: <657dc9d4.050a0220.e1913.c983@mx.google.com>
+X-Google-Original-Message-ID: <ZX3J0a83LQEMIl80@Ansuel-xps.>
+Date: Sat, 16 Dec 2023 17:01:21 +0100
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: Jie Luo <quic_luoj@quicinc.com>
+Cc: "Russell King (Oracle)" <linux@armlinux.org.uk>,
+	Andrew Lunn <andrew@lunn.ch>, davem@davemloft.net,
+	edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, hkallweit1@gmail.com, corbet@lwn.net,
+	p.zabel@pengutronix.de, f.fainelli@gmail.com,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
+Subject: Re: [PATCH v8 14/14] dt-bindings: net: ar803x: add qca8084 PHY
+ properties
+References: <20231215074005.26976-1-quic_luoj@quicinc.com>
+ <20231215074005.26976-15-quic_luoj@quicinc.com>
+ <60b9081c-76fa-4122-b7ae-5c3dcf7229f9@lunn.ch>
+ <a65ad12d-b990-4439-b196-903f4a5f096a@quicinc.com>
+ <f5c5cbce-c36e-498a-97e2-35f06d927d74@lunn.ch>
+ <a9798333-3105-422f-8033-76c0b1d4f439@quicinc.com>
+ <7c05b08a-bb6d-4fa1-8cee-c1051badc9d9@lunn.ch>
+ <ZX2rU5OFcZFyBmGl@shell.armlinux.org.uk>
+ <6abe5d6f-9d00-445f-8c81-9c89b9da3e0a@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 5/5] dt-bindings: net: ipq4019-mdio: Document ipq5332
- platform
-Content-Language: en-US
-To: Conor Dooley <conor@kernel.org>
-CC: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, <agross@kernel.org>,
-        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
-        <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
-        <pabeni@redhat.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <andrew@lunn.ch>, <hkallweit1@gmail.com>, <linux@armlinux.org.uk>,
-        <robert.marko@sartura.hr>, <linux-arm-msm@vger.kernel.org>,
-        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <quic_srichara@quicinc.com>
-References: <26c8b0b1-5ea9-45cc-adf3-0d0b03a1284d@linaro.org>
- <4b9c56b8-3b29-4861-a3d5-2da26fbc14b4@quicinc.com>
- <2e77e3b1-00b6-46b9-bfed-7cae3ffa15e9@linaro.org>
- <7bae46fd-63fd-4b86-9a56-73052cf0ea95@quicinc.com>
- <5a8095e6-b6a6-4d11-b006-31519e8d8622@linaro.org>
- <7466b655-2b7e-44f2-a510-6e0cc1b95248@quicinc.com>
- <602759ce-c93d-4111-9272-1dce7e4a170a@linaro.org>
- <f656d1c7-ea86-405a-9165-9eb079ea6f2a@quicinc.com>
- <20231215-gauze-sprinkled-172729f22b6c@spud>
- <9eab958e-d91f-4f3c-aadd-6b34eaed2cef@quicinc.com>
- <20231216-unearned-lucid-4bd2ddcd4ac2@spud>
-From: Jie Luo <quic_luoj@quicinc.com>
-In-Reply-To: <20231216-unearned-lucid-4bd2ddcd4ac2@spud>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: ApFIEr5kM3vkvqXQ_SqxM_VKXP6SgMOc
-X-Proofpoint-GUID: ApFIEr5kM3vkvqXQ_SqxM_VKXP6SgMOc
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-12-09_01,2023-12-07_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- impostorscore=0 phishscore=0 suspectscore=0 mlxscore=0 lowpriorityscore=0
- bulkscore=0 adultscore=0 clxscore=1015 malwarescore=0 mlxlogscore=999
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2311290000 definitions=main-2312160121
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <6abe5d6f-9d00-445f-8c81-9c89b9da3e0a@quicinc.com>
 
-
-
-On 12/16/2023 10:16 PM, Conor Dooley wrote:
-> On Sat, Dec 16, 2023 at 09:16:49PM +0800, Jie Luo wrote:
->>
->>
->> On 12/15/2023 9:41 PM, Conor Dooley wrote:
->>> On Fri, Dec 15, 2023 at 08:40:20PM +0800, Jie Luo wrote:
->>>>
->>>>
->>>> On 12/15/2023 8:19 PM, Krzysztof Kozlowski wrote:
->>>>> On 15/12/2023 12:42, Jie Luo wrote:
->>>>>>>>>>>>> Which clocks are these mentioned in the property? From where do they come?
->>>>>>>>>>>>>
->>>>>>>>>>>>> Anyway, property is in existing form is not correct - this is not a
->>>>>>>>>>>>> generic property.
->>>>>>>>>>>>>
->>>>>>>>>>>>
->>>>>>>>>>>> This property cmn-reference-clock is just the hardware register
->>>>>>>>>>>> configuration, since the different IPQ platform needs to select
->>>>>>>>>>>> the different reference clock source for the CMN PLL block that
->>>>>>>>>>>> provides the various clock outputs to the all kinds of Ethernet
->>>>>>>>>>>> devices, which is not from GCC provider.
->>>>>>>>>>>
->>>>>>>>>>> AGAIN: where do the clocks come from? Which device generates them?
->>>>>>>>>>
->>>>>>>>>> Oh, OK, the reference clock is from wifi that provides 48MHZ to
->>>>>>>>>> Ethernet block.
->>>>>>>>>
->>>>>>>>> Then WiFi should be providing you the clock and this device should be
->>>>>>>>> clock consumer, right?
->>>>>>>>
->>>>>>>> Yes, wifi provides 48MHz clock to CMM PLL block, there is no GCC
->>>>>>>> for this 48MHZ clock output, it is the hardware PIN connection.
->>>>>>>
->>>>>>> All clocks are some hardware pin connections.
->>>>>>>
->>>>>>> Best regards,
->>>>>>> Krzysztof
->>>>>>>
->>>>>>
->>>>>> Yes, all reference clocks here are from hardware pin connection.
->>>>>
->>>>> You keep answering with short sentences without touching the root of the
->>>>> problem. I don't know exactly why, but I feel this discussion leads
->>>>> nowhere. After long discussion you finally admitted that clocks came
->>>>> from another device - Wifi. It took us like 6 emails?
->>>>>
->>>>> So last statement: if you have clock provider and clock consumer, you
->>>>> must represent it in the bindings or provide rationale why it should not
->>>>> or must not be represented in the bindings. So far I do not see any of
->>>>> such arguments.
->>>>>
->>>>> If you use arguments like:
->>>>> "My driver....": sorry, bindings are not about drivers
->>>>> "I don't have clock driver for WiFi": sorry, it does not matter if you
->>>>> can write one, right?
->>>>>
->>>>> Please reach internally your colleagues to solve these problems and make
->>>>> review process smoother.
->>>
->>>> These reference clocks source do not need the hardware configuration,
->>>> that is the reason why the clock provider is not needed, some reference
->>>> clock source are even from external crystal.
->>>
->>> I fail to understand how that makes this clock different to the clocks
->>> on any other platform. Clocks from external crystals are present in many
->>> many systems. See for example fixed-clock.yaml.
->>
->> The reference clock rate has no meaning to the CMN PLL block, since the
->> software can't control the behavior of CMN PLL, and various output
->> clocks of CMN PLL block are fixed, adding this custom property is just
->> for selecting the different reference clock source, since different
->> IPQ platform needs to be configured the different reference clock source
->> for the CMN PLL block.
+On Sat, Dec 16, 2023 at 10:41:28PM +0800, Jie Luo wrote:
 > 
-> Many, many other systems are in the same situation, where clocks are
-> provided to a peripheral that has no control over the clock rate, but
-> has to pick internal dividers or set bits in a config register depending
-> on what clock rate is provided to it. That is not something special
-> about this particular platform and other systems are able to use the
-> clocks property for this purpose.
+> 
+> On 12/16/2023 9:51 PM, Russell King (Oracle) wrote:
+> > On Sat, Dec 16, 2023 at 11:21:53AM +0100, Andrew Lunn wrote:
+> > > > The following is the chip package, the chip can work on the switch mode
+> > > > like the existed upstream code qca8k, where PHY1-PHY4 is connected with
+> > > > MAC1-MAC4 directly;
+> > > 
+> > > Ah, that is new information, and has a big effect on the design.
+> > 
+> > This QCA8084 that's being proposed in these patches is not a PHY in
+> > itself, but is a SoC. I came across this:
+> > 
+> >   https://www.rt-rk.com/android-tv-solution-tv-in-smartphone-pantsstb-based-on-qualcomm-soc-design/
+> 
+> The chip mentioned in the link you mentioned is SoC, which is not the
+> chip that the qca8084 driver work for.
+> 
+> qca8084/qca8386 is just the Ethernet CHIP, not SoC, for the switch mode
+> qca8386, which is most like qca8337 the dsa drive qca8k.c is already in
+> upstream.
 
-Sure, Thanks Conor for this information.
-i will try to replace this custom property with clocks property and
-verify the drive.
+Hi,
+sorry for stepping in. I guess here there is a massive confusion with
+naming and using qca8k.
+
+Since it seems the same name is used for PHY and for Switch stuff, I
+would add PHY and MAC prefix when referring to qca8064.
+
+With the previous message I was a bit confused by the use of qca8k and
+didn't know you were actually referring to the DSA driver.
+Interesting... this is for the upcoming WiFi 7 platoform right? (ipq9574)
+
+All these discussion comes for the problem of using this PHY as an
+integrated PHY in the qca8386 switch and trying to select the mode in
+the PHY driver.
+
+Considering you would use the same logic of the current DSA qca8k driver
+with the integrated PHY, the problem doesn't apply or a different
+implementation should be used (and actually handled later when the
+actual DSA code will come)
+
+I would expect in the integrated mode, the switch to handle the PHY (as
+it's done by qca8337) with the PHY defined in the switch node and qca8k
+handling the PHY registration. With the following implementation flags
+can be passed and PHY can be configured to integrated mode. (or virtual
+PHY ID can be used for such scope with dedicated functions in the PHY
+driver)
+
+With this in mind the entire integrated problem can put on hold and
+dropped to be later reimplemented when it's time. (assuming that all the
+prereq are already here and the very same implementation of qca8k will
+be used)
+
+Anyway, I'm more or less the maintainer of the qca8k.c DSA driver and I
+would be more than happy to help you guys internally or externally on
+pushing and make this proceed further. (again assuming this is ipq9574
+stuff, it would be good to finally have proper DSA driver instead of
+leaving the thing unusable as it's the current situation with ipq8074)
 
 > 
->> let's say if we register 48MHZ reference clock as the fix clock, we
->> can't distinguish it is internal 48MHZ or external 48MHZ, for these
->> two reference clock sources, there are different hardware configuration
->> of CMN PLL block
+> i qca8084 chip package includes 4 PHYs, 2 PCSs and the common chip level
+> modules such as GCC and security control modules, all these modules are
+> located in the qca8084 chip package, since qca8084 works on PHY mode, so
+> the MACs are not used.
 > 
-> That's easy, if the reference is external, it is provided by the clocks
-> property. If it internal, then there will be no clocks property
-> providing it.
+> qca8084 is connected with the SoC CHIP such as IPQ platform by PCS1
+> working on 10g-qxgmii mode and the fourth PHY can also optionally
+> be connected with the IPQ SoC PCS by sgmii mode, there is no more
+> interface on qca8084 to connect the external chips.
+> 
+> > It's sounding like what we have here is some PHY IP that is integrated
+> > into a larger SoC, and the larger SoC needs to be configured so the
+> > PHY IP can work correctly.
+> 
+> qca8084 is not a SoC, it is the Ethernet chip, in this qca8084 package,
+> there are GCC that is driving the PHY working on the various link speed.
+> that is the reason we need to do these package level common clocks and
+> resets initialization before probing PHY correctly.
+> 
+> > 
+> > Given that this package of four PHYs seems to be rather unique, I think
+> > we need Jie Luo to provide sufficient information so we can understand:
+> > 
+> > 1) this package of four PHYs itself
+> 
+> Yes, this chip package for all 4 PHYs itself, also including the PCSes
+> and common package level modules such as GCC.
+> 
+> > 2) how this package is integrated into the SoC
+> 
+> the qca8084 is connected with SoC by PCSes.
+> 
+> > 
+> > Specifically, what resets and clocks are controlled from within the
+> > package's register space, which are external to the package
+> > register space (and thus are provided by other IPs in the SoC).
+> 
+> All clocks and resets mentioned for qca8084 drive including package
+> level and PCS & PHY clocks and resets from the qca8084 internal GCC
+> modules register space,
+> 
+> > 
+> > As I've said previously, the lack of DT example doesn't help to further
+> > our understanding. The lack of details of what the package encompases
+> > also doesn't help us understand the hardware.
+> 
+> Indeed, i will add the qca8084 DT example in the next patch set.
+> BTW, i also replied your earlier comments by providing the DTS defined
+> for the current qca8084 drive code.
+> 
+> hope you can have a better understanding with the provided DTS code in
+> earlier reply of this email thread.
+> > 
+> > Unless we can gain that understanding, I feel that Jie Luo's patches
+> > are effectively unreviewable and can't be accepted into mainline.
+> > 
 
-Thanks for this detail.
-
-> 
->> and this reference clock selection is not applicable
->> for the IPQ4019 platform.
-> 
-> Isn't this a patch for the IPQ4019? Why would it not be relevant?
-IPQ4019 is the legacy chip, and the same MDIO bus driver is also
-extended to support the new IPQ platform, since the MDIO hardware
-is leveraged by the new IPQ platform.
-
-For the CMN PLL block, which is not existed on the legacy platform
-IPQ4019, but it does not matter, we can also distinguish it according
-to the CMN register base defined or not, the CMN reference clocks is
-configured only when the CMN register base defined in the reg  property.
-
-> 
->>>> There is also no enable control for the reference clocks since it is
->>>> inputted by the hardware PIN connection, i will update these description
->>>> in the DT to make it more clear.
->>>
->>> Again, this does not justify having custom properties for this clock,
->>> as it is no different to other platforms. As far as I can tell, the only
->>> thing that a standard "clocks" property cannot convey here is the
->>> internal reference. I would suggest that since there is only one
->>> internal clock frequency, the absence of this particular clock in the
->>> "clocks" property can be used to determine that the reference is the
->>> internal on
-> 
-> I'm surprised you didn't pick up on this, but there are actually _2_
-> internal references, which I have just noticed while double checking the
-> binding patch.
-
-i noticed this, the reference clock source can be supported by clocks as
-you suggested here, it is really helpful.
-> 
-> What is the impact of using the 48 MHz or 96 MHz internal reference?
-They works on the different IPQ platform, 96MHZ internal reference is
-used on IPQ5018, the internal 48MHZ is used on the IPQ5332, that is
-same as what you describe above, the different clock source rate is
-selected as the different register value, then the PLL can do the
-corresponding config to output the correct clock rate, the external
-clock source is also same if the clock rate is same, just the different
-hardware PIN is selected if the external reference source is configured.
-
-Thanks.
-
-> 
-> Thanks,
-> Conor.
-> 
->> Yes, we can get the clock rate of the clocks property if we register
->> these as the fix clock to distinguish the different clock source.
->>
->> Since the reference clock rate value has no matter with the CMN clock
->> configuration, it is just the reference clock source selection, so
->> i did not use the fix clock for this.
->>
->> Thanks for this suggestion, i will verify the fix clock register solution.
+-- 
+	Ansuel
 
