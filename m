@@ -1,247 +1,229 @@
-Return-Path: <devicetree+bounces-26165-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26166-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id EAB26815C92
-	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 00:33:54 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 293EA815C9D
+	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 00:55:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 737D91F2240A
-	for <lists+devicetree@lfdr.de>; Sat, 16 Dec 2023 23:33:54 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 35DFBB217D1
+	for <lists+devicetree@lfdr.de>; Sat, 16 Dec 2023 23:55:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15F853714E;
-	Sat, 16 Dec 2023 23:33:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AFA1374D7;
+	Sat, 16 Dec 2023 23:55:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="g/Z0c/jx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="r8YvkXZ+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE7B73035B;
-	Sat, 16 Dec 2023 23:33:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=gFPfZefQvB16Ck50ZBFNAfLpHddhdBF8xQnSlz9P0sA=; b=g/Z0c/jxyulZar4Lsf8noLHiho
-	bPa9EekbpVXgLUqfSGNLry+BkCQKfrBpoNGFKIUJZMVf86U7Qux/HHlbXvx5dy550tkkquy0OBjle
-	WgIb+bVu5FM/uSSkOq0MUk9Krft5H/uNxBUXXgIWHqiYKvmaXmAsUzqofrga/kxoEeLM=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1rEe9m-0037pr-Bv; Sun, 17 Dec 2023 00:33:18 +0100
-Date: Sun, 17 Dec 2023 00:33:18 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Eric Woudstra <ericwouds@gmail.com>
-Cc: "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Frank Wunderlich <frank-w@public-files.de>,
-	Daniel Golle <daniel@makrotopia.org>,
-	Lucien Jheng <lucien.jheng@airoha.com>,
-	Zhi-Jun You <hujy652@protonmail.com>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH RFC net-next 2/2] Add the Airoha EN8811H PHY driver
-Message-ID: <370ec3e9-033a-49d4-8f9d-44eedd404be7@lunn.ch>
-References: <20231216194432.18963-2-ericwouds@gmail.com>
- <20231216194432.18963-3-ericwouds@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5113D39ADF;
+	Sat, 16 Dec 2023 23:55:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 61AA1C433C8;
+	Sat, 16 Dec 2023 23:55:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1702770909;
+	bh=jUWCpQuntd7FLZ5VSvblzKYwGE3d0UrsZ5sCSburff4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=r8YvkXZ+g+79moR5UrJbKEVmttUNh0VC3orUH1inTDoh4QrTY0xYJSiCjOY0+Sa/u
+	 ifenv2hVyrBHS2iWoOxLC7C0rj/T57R7I2LcbwGMuJVbdRQuVWy4Sg+l+tUtfnNySO
+	 R7UYfZ2/D8OUG2jMpkNwFW/D2WpfzA5m0NFrEQXJXpEbyebMcbdLRfobjzHhm9z32F
+	 +ks3eMaF1YkBCxcuwesnSnwSqxYT/axFlBMefhaIp53uJ1VAUc+ZShZVWpt+VHUPXe
+	 ohot3Dql1+eU4WbVtrG1LEiJtBhNpZCbIVnp/9Lr2x+II2/khXim3yJwXsjyHnICit
+	 Z6n2Jde364EWA==
+Date: Sat, 16 Dec 2023 23:55:04 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Marcelo Schmitt <marcelo.schmitt@analog.com>
+Cc: apw@canonical.com, joe@perches.com, dwaipayanray1@gmail.com,
+	lukas.bulwahn@gmail.com, paul.cercueil@analog.com,
+	Michael.Hennerich@analog.com, lars@metafoo.de, jic23@kernel.org,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, dan.carpenter@linaro.org,
+	dlechner@baylibre.com, marcelo.schmitt1@gmail.com,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 12/15] dt-bindings: iio: Add AD7091R-8
+Message-ID: <20231216-curfew-sandbox-69a0aac58010@spud>
+References: <cover.1702746240.git.marcelo.schmitt1@gmail.com>
+ <7c725dbb0ddeeec77d56bb67c77e819b4ba78e2e.1702746240.git.marcelo.schmitt1@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="Th6k7RUxHz5pajtC"
+Content-Disposition: inline
+In-Reply-To: <7c725dbb0ddeeec77d56bb67c77e819b4ba78e2e.1702746240.git.marcelo.schmitt1@gmail.com>
+
+
+--Th6k7RUxHz5pajtC
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231216194432.18963-3-ericwouds@gmail.com>
+Content-Transfer-Encoding: quoted-printable
 
-> index 107880d13d21..bb89cf57de25 100644
-> --- a/drivers/net/phy/Kconfig
-> +++ b/drivers/net/phy/Kconfig
-> @@ -409,6 +409,11 @@ config XILINX_GMII2RGMII
->  	  the Reduced Gigabit Media Independent Interface(RGMII) between
->  	  Ethernet physical media devices and the Gigabit Ethernet controller.
->  
-> +config AIR_EN8811H_PHY
-> +	tristate "Drivers for Airoha EN8811H 2.5 Gigabit PHY"
+On Sat, Dec 16, 2023 at 02:50:11PM -0300, Marcelo Schmitt wrote:
+> Add device tree documentation for AD7091R-8.
+>=20
+> Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
 
-If you look at the naming pattern, this should be
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
-tristate "Airoha EN8811H 2.5 Gigabit PHY"
+Cheers,
+Conor.
 
-and these Kconfig entries are sorted for the tristate value, so this
-should be between Analog and aquantia.
-
-> --- a/drivers/net/phy/Makefile
-> +++ b/drivers/net/phy/Makefile
-> @@ -95,3 +95,4 @@ obj-$(CONFIG_STE10XP)		+= ste10Xp.o
->  obj-$(CONFIG_TERANETICS_PHY)	+= teranetics.o
->  obj-$(CONFIG_VITESSE_PHY)	+= vitesse.o
->  obj-$(CONFIG_XILINX_GMII2RGMII) += xilinx_gmii2rgmii.o
-> +obj-$(CONFIG_AIR_EN8811H_PHY)   += air_en8811h.o
-
-Makefile is sorted by CONFIG_ so that belongs much earlier.
-
-> + * - Forced speed (AN off) is not supported by hardware (!00Mbps)
-> + * - Hardware does not report link-partner 2500Base-T advertisement
-> +static int __air_buckpbus_reg_write(struct phy_device *phydev,
-> +				    u32 pbus_address, u32 pbus_data)
-> +{
-> +	int ret;
+> ---
+>  .../bindings/iio/adc/adi,ad7091r5.yaml        | 82 ++++++++++++++++++-
+>  1 file changed, 78 insertions(+), 4 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7091r5.yaml =
+b/Documentation/devicetree/bindings/iio/adc/adi,ad7091r5.yaml
+> index ce7ba634643c..ddec9747436c 100644
+> --- a/Documentation/devicetree/bindings/iio/adc/adi,ad7091r5.yaml
+> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7091r5.yaml
+> @@ -4,36 +4,92 @@
+>  $id: http://devicetree.org/schemas/iio/adc/adi,ad7091r5.yaml#
+>  $schema: http://devicetree.org/meta-schemas/core.yaml#
+> =20
+> -title: Analog Devices AD7091R5 4-Channel 12-Bit ADC
+> +title: Analog Devices AD7091R-2/-4/-5/-8 Multi-Channel 12-Bit ADCs
+> =20
+>  maintainers:
+>    - Michael Hennerich <michael.hennerich@analog.com>
+> +  - Marcelo Schmitt <marcelo.schmitt@analog.com>
+> =20
+>  description: |
+> -  Analog Devices AD7091R5 4-Channel 12-Bit ADC
+> +  Analog Devices AD7091R5 4-Channel 12-Bit ADC supporting I2C interface
+>    https://www.analog.com/media/en/technical-documentation/data-sheets/ad=
+7091r-5.pdf
+> +  Analog Devices AD7091R-2/AD7091R-4/AD7091R-8 2-/4-/8-Channel 12-Bit AD=
+Cs
+> +  supporting SPI interface
+> +  https://www.analog.com/media/en/technical-documentation/data-sheets/AD=
+7091R-2_7091R-4_7091R-8.pdf
+> =20
+>  properties:
+>    compatible:
+>      enum:
+> +      - adi,ad7091r2
+> +      - adi,ad7091r4
+>        - adi,ad7091r5
+> +      - adi,ad7091r8
+> =20
+>    reg:
+>      maxItems: 1
+> =20
+> +  vdd-supply:
+> +    description:
+> +      Provide VDD power to the sensor (VDD range is from 2.7V to 5.25V).
 > +
-> +	ret = __phy_write(phydev, AIR_EXT_PAGE_ACCESS, AIR_PHY_PAGE_EXTENDED_4);
-> +	if (ret < 0)
-> +		return ret;
-
-
-
-> +	ret = __phy_write(phydev, AIR_EXT_PAGE_ACCESS, AIR_PHY_PAGE_STANDARD);
-> +	if (ret < 0)
-> +		return ret;
-
-Please implement the .read_page and .write_page methods in struct phy_driver
-
+> +  vdrive-supply:
+> +    description:
+> +      Determines the voltage level at which the interface logic will ope=
+rate.
+> +      The V_drive voltage range is from 1.8V to 5.25V and must not excee=
+d VDD by
+> +      more than 0.3V.
 > +
-> +	return 0;
-> +}
+>    vref-supply:
+>      description:
+>        Phandle to the vref power supply
+> =20
+> -  interrupts:
+> +  convst-gpios:
+> +    description:
+> +      GPIO connected to the CONVST pin.
+> +      This logic input is used to initiate conversions on the analog
+> +      input channels.
+>      maxItems: 1
+> =20
+> +  reset-gpios:
+> +    maxItems: 1
 > +
-> +static int air_buckpbus_reg_write(struct phy_device *phydev,
-> +				  u32 pbus_address, u32 pbus_data)
-> +{
-> +	int ret;
+> +  interrupts:
+> +    description:
+> +      Interrupt for signaling when conversion results exceed the high li=
+mit for
+> +      ADC readings or fall below the low limit for them. Interrupt sourc=
+e must
+> +      be attached to ALERT/BUSY/GPO0 pin.
+> +    maxItems: 1
+> =20
+>  required:
+>    - compatible
+>    - reg
+> =20
+> -additionalProperties: false
+> +allOf:
+> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
 > +
-> +	phy_lock_mdio_bus(phydev);
-> +	ret = __air_buckpbus_reg_write(phydev, pbus_address, pbus_data);
-> +	phy_unlock_mdio_bus(phydev);
-
-This then becomes:
-
-        saved_page = phy_save_page(phydev);
-	ret = __air_buckpbus_reg_write(phydev, pbus_address, pbus_data);
-	return phy_restore_page(phydev, saved_page, ret);
-
-and all the locking is performed for you.
-
-> +	for (offset = 0; offset < fw->size; offset += 4) {
-> +		val = MAKEWORD(fw->data[offset + 2], fw->data[offset + 3]);
-
-get_unaligned_le16() might do what you want. Its better to use the
-existing macros than define your own. They are also more likely to do
-the correct thing on big-endian.
-
-> +static int en8811h_load_firmware(struct phy_device *phydev)
-> +{
-> +	struct device *dev = &phydev->mdio.dev;
-> +	const struct firmware *fw1, *fw2;
-> +	int ret;
-> +	unsigned int pbus_value;
-
-netdev uses reverse christmass tree. Longest lines first, shortest
-last.
-
-> +static int en8811h_config_aneg(struct phy_device *phydev)
-> +{
-> +	u32 adv;
-> +	bool changed = false;
-> +	int ret;
+> +  # AD7091R-2 does not have ALERT/BUSY/GPO pin
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - adi,ad7091r2
+> +    then:
+> +      properties:
+> +        interrupts: false
 > +
-> +	phydev_dbg(phydev, "%s: advertising=%*pb\n", __func__,
-> +		   __ETHTOOL_LINK_MODE_MASK_NBITS, phydev->advertising);
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - adi,ad7091r2
+> +              - adi,ad7091r4
+> +              - adi,ad7091r8
+> +    then:
+> +      required:
+> +        - convst-gpios
 > +
-> +	if (phydev->autoneg == AUTONEG_DISABLE)
-> +		return genphy_c45_pma_setup_forced(phydev);
+> +unevaluatedProperties: false
+> =20
+>  examples:
+>    - |
+> @@ -51,4 +107,22 @@ examples:
+>              interrupt-parent =3D <&gpio>;
+>          };
+>      };
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    spi {
+> +        #address-cells =3D <1>;
+> +        #size-cells =3D <0>;
+> +
+> +        adc@0 {
+> +            compatible =3D "adi,ad7091r8";
+> +            reg =3D <0x0>;
+> +            spi-max-frequency =3D <1000000>;
+> +            vref-supply =3D <&adc_vref>;
+> +            convst-gpios =3D <&gpio 25 GPIO_ACTIVE_LOW>;
+> +            reset-gpios =3D <&gpio 27 GPIO_ACTIVE_LOW>;
+> +            interrupts =3D <22 IRQ_TYPE_EDGE_FALLING>;
+> +            interrupt-parent =3D <&gpio>;
+> +        };
+> +    };
+>  ...
+> --=20
+> 2.42.0
+>=20
 
-There is a comment saying AUTONEG Off is not supported?
+--Th6k7RUxHz5pajtC
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> +
-> +	ret = genphy_c45_an_config_aneg(phydev);
-> +	if (ret < 0)
-> +		return ret;
-> +	if (ret > 0)
-> +		changed = true;
-> +
-> +	/* Clause 45 has no standardized support for 1000BaseT, therefore
-> +	 * use Clause 22 registers for this mode.
-> +	 */
-> +	adv = linkmode_adv_to_mii_ctrl1000_t(phydev->advertising);
-> +	ret = phy_modify_changed(phydev, MII_CTRL1000, ADVERTISE_1000FULL, adv);
-> +	if (ret < 0)
-> +		return ret;
-> +	if (ret > 0)
-> +		changed = true;
-> +
+-----BEGIN PGP SIGNATURE-----
 
-Could genphy_config_advert() be used here for the C22 registers?
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZX442AAKCRB4tDGHoIJi
+0puPAP481u/M1/SE7A3mGnzFFhFkdDY4nGG8wkkWzNIYlFCwqgEAxTcIAVT87Vjy
+v52dK6ZRY/blA9VyxQfCS/FpCiyx8QI=
+=0TDZ
+-----END PGP SIGNATURE-----
 
-> +int en8811h_c45_read_link(struct phy_device *phydev)
-> +{
-> +	int val;
-> +
-> +	/* Read link state from known reliable register (latched) */
-> +
-> +	if (!phy_polling_mode(phydev) || !phydev->link) {
-> +		val = phy_read_mmd(phydev, MDIO_MMD_AN, MDIO_STAT1);
-> +		if (val < 0)
-> +			return val;
-> +		phydev->link = !!(val & MDIO_STAT1_LSTATUS);
-> +
-> +		if (phydev->link)
-> +			return 0;
-> +	}
-> +
-> +	val = phy_read_mmd(phydev, MDIO_MMD_AN, MDIO_STAT1);
-> +	if (val < 0)
-> +		return val;
-> +	phydev->link = !!(val & MDIO_STAT1_LSTATUS);
-> +
-> +	return 0;
-> +}
-> +
-> +static int en8811h_read_status(struct phy_device *phydev)
-> +{
-> +	int ret, lpagb;
-> +	unsigned int pbus_value;
-> +
-> +	ret = en8811h_c45_read_link(phydev);
-> +	if (ret)
-> +		return ret;
-> +
-> +	phydev->speed = SPEED_UNKNOWN;
-> +	phydev->duplex = DUPLEX_UNKNOWN;
-> +	phydev->pause = 0;
-> +	phydev->asym_pause = 0;
-> +
-> +	if (phydev->autoneg == AUTONEG_ENABLE) {
-> +		ret = genphy_c45_read_lpa(phydev);
-> +		if (ret)
-> +			return ret;
-> +
-> +		/* Clause 45 has no standardized support for 1000BaseT,
-> +		 * therefore use Clause 22 registers for this mode.
-> +		 */
-> +		lpagb = phy_read(phydev, MII_STAT1000);
-> +		if (lpagb < 0)
-> +			return lpagb;
-> +		mii_stat1000_mod_linkmode_lpa_t(phydev->lp_advertising, lpagb);
-
-Can you use genphy_read_lpa() here?
-
-In general, if you can use the genphy_ functions to handle the
-10/100/1000 speeds, please do.
-
-
-    Andrew
-
----
-pw-bot: cr
+--Th6k7RUxHz5pajtC--
 
