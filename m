@@ -1,69 +1,89 @@
-Return-Path: <devicetree+bounces-26048-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26049-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F305081560C
-	for <lists+devicetree@lfdr.de>; Sat, 16 Dec 2023 02:45:02 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4710F815610
+	for <lists+devicetree@lfdr.de>; Sat, 16 Dec 2023 02:49:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B04B82877BF
-	for <lists+devicetree@lfdr.de>; Sat, 16 Dec 2023 01:45:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EDA9E285E7A
+	for <lists+devicetree@lfdr.de>; Sat, 16 Dec 2023 01:49:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07CA5110E;
-	Sat, 16 Dec 2023 01:44:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UVzeJKUA"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E07E7111B;
+	Sat, 16 Dec 2023 01:49:17 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2C7B110D
-	for <devicetree@vger.kernel.org>; Sat, 16 Dec 2023 01:44:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9E21AC433C7;
-	Sat, 16 Dec 2023 01:44:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1702691097;
-	bh=NDaKnxFpSatWuIe4Y6JQ3p44xynVtrAD0kB0didCRyg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=UVzeJKUAu0Ln7bHeeXO5WC5nHQClGazOU1967qbdmYe+06spY7L78EjDJPISPqlwz
-	 ccWeDAlIUGgZtGMnByhdh89wpgjkCLyx/7M4fYflNoZuHIoYtdnn9tGpgHuezbEPyn
-	 NhufZePTlkjrIwuf1C+MFUdtez1dJQAuaxirkO9oFmc6l7EKBjRfiUy2yPu1ljDmoX
-	 3fGyJnpxXXRDuc2dRnXkqjO5dW/WMhooFEdzoLsUIzCYkrWiR8fqjoryKbOm8EHam4
-	 Tz+iEktWyTfxDe0sSYfprTqzaknQpNkeeeagzT05NOaSZiZhbop6WnztSJlfmr5DPQ
-	 AWl5Lx7+HCcQA==
-Date: Sat, 16 Dec 2023 09:44:52 +0800
-From: Shawn Guo <shawnguo@kernel.org>
-To: Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	NXP Linux Team <linux-imx@nxp.com>, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/1] arm64: dts: freescale: imx8qxp: Disable dsp reserved
- memory by default
-Message-ID: <20231216014452.GL270430@dragon>
-References: <20231214134259.1933541-1-alexander.stein@ew.tq-group.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7923110D;
+	Sat, 16 Dec 2023 01:49:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+	by fd01.gateway.ufhost.com (Postfix) with ESMTP id 7E67E7F98;
+	Sat, 16 Dec 2023 09:49:10 +0800 (CST)
+Received: from EXMBX072.cuchost.com (172.16.6.82) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Sat, 16 Dec
+ 2023 09:49:10 +0800
+Received: from localhost.localdomain (202.188.176.82) by EXMBX072.cuchost.com
+ (172.16.6.82) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Sat, 16 Dec
+ 2023 09:49:06 +0800
+From: Ji Sheng Teoh <jisheng.teoh@starfivetech.com>
+To: Xingyu Wu <xingyu.wu@starfivetech.com>, Samin Guo
+	<samin.guo@starfivetech.com>, Wim Van Sebroeck <wim@linux-watchdog.org>,
+	Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+	<conor+dt@kernel.org>
+CC: Ji Sheng Teoh <jisheng.teoh@starfivetech.com>, Ley Foon Tan
+	<leyfoon.tan@starfivetech.com>, <linux-watchdog@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v4 0/1] Add StarFive JH8100 watchdog
+Date: Sat, 16 Dec 2023 09:48:49 +0800
+Message-ID: <20231216014850.1011344-1-jisheng.teoh@starfivetech.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231214134259.1933541-1-alexander.stein@ew.tq-group.com>
+Content-Type: text/plain
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX072.cuchost.com
+ (172.16.6.82)
+X-YovoleRuleAgent: yovoleflag
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Dec 14, 2023 at 02:42:59PM +0100, Alexander Stein wrote:
-> Even if the 'dsp' node is disabled the memory intended to be used by the
-> DSP is reserved. This limits the memory range suitable for CMA allocation.
-> Thus disable the dsp_reserved node. DSP users need to enable it in parallel
-> to the 'dsp' node.
-> 
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+Changes since v3:
+- Drop items in compatible field.
+- Replace items with maxItems in reset field.
+- Replace maxItems with items: -description in if else reset field
 
-Applied, thanks!
+Changes since v2:
+- Express JH8100 compatibility to JH7110 in dt-bindings.
+- Rework min/maxItems constraint for JH8100 resets property.
+
+Changes since v1:
+- Drop "starfive,jh8100-wdt" compatible field in starfive-wdt.c,
+  and express them in dt-bindings.
+- Use minItems in resets field to cater for single reset signal
+  in JH8100.
+- Reword Watchdog reset to Core reset for JH8100.
+
+StarFive's JH8100 watchdog reuses JH7100 register mapping.
+DT-binding of JH7100 watchdog is extended to support JH8100.
+Since JH8100 only uses 1 reset signal, update the binding to
+support one reset for "starfive,jh8100-wdt" compatible.
+
+Ji Sheng Teoh (1):
+  dt-bindings: watchdog: starfive,jh7100-wdt: Add compatible for JH8100
+
+ .../watchdog/starfive,jh7100-wdt.yaml         | 29 +++++++++++++++----
+ 1 file changed, 23 insertions(+), 6 deletions(-)
+
+--=20
+2.25.1
+
 
