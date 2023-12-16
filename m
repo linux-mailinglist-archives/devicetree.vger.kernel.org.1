@@ -1,101 +1,105 @@
-Return-Path: <devicetree+bounces-26158-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26159-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D5EA815BA8
-	for <lists+devicetree@lfdr.de>; Sat, 16 Dec 2023 21:23:47 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id E998C815BD6
+	for <lists+devicetree@lfdr.de>; Sat, 16 Dec 2023 22:22:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5F6541C21592
-	for <lists+devicetree@lfdr.de>; Sat, 16 Dec 2023 20:23:46 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 33300B239A0
+	for <lists+devicetree@lfdr.de>; Sat, 16 Dec 2023 21:22:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27007328DE;
-	Sat, 16 Dec 2023 20:23:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 339F835283;
+	Sat, 16 Dec 2023 21:22:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VDWbmCsE"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="c2WDYNMf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7316328D6;
-	Sat, 16 Dec 2023 20:23:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE24D3527E;
+	Sat, 16 Dec 2023 21:21:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-a2339262835so20613466b.3;
-        Sat, 16 Dec 2023 12:23:41 -0800 (PST)
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-40b5155e154so22232625e9.3;
+        Sat, 16 Dec 2023 13:21:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1702758220; x=1703363020; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=JvDfT9hUlqd//b2qmA2Q0ZygPz1sbEjPpPLswigsGbw=;
-        b=VDWbmCsEFgT/qW4KPG9KLZaZD7c3CHuV/lAD4YuuctGgId5Ma9gMfYi1ckvZJX6ykx
-         nWEkuR+f96xsWmXSVTCEB2ZqFTep5RWbEq8F90cZJz1mWejaCmIruEnPrUAEEkgKeivV
-         iPCmhlTqEkmgm2UUmjdk/hzj/lG69HZ0OGo8wV/vL9vxfnTw0mwDjsSzVUfRo1IuAm98
-         ua3JfJDXJiwmik+DX7jKJZiVNeeppq5jS58/yHtdac0x+ycWwcK0F1tESfbb/iIL5A6b
-         6u5N3EB5I1TI4g7P/guIXaYuXZwx0UvKg2dcFOnRYNqOKArosC8upc7oSY8iopLTEv9Z
-         /80w==
+        d=gmail.com; s=20230601; t=1702761716; x=1703366516; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Ep6QV7S0LD+l2v1oGCSbwLCeiUsCxqLVqe3qakJ/WRg=;
+        b=c2WDYNMfxaRxXEeIk4OGBqyhuLof+iZLr/lrwY1HeZLYH3kSJyovR3/EaCqYTyhHMW
+         lkQIubnoiySz6i18v77huwAp/4xedbi7RLO30TNGLApszatPVMTlceE6BO9sdVB4KfoT
+         yGUNPieO/kcGXKCfSTakwldqiJBBe5lq67PjBKvs2rl0wOVo8BklrEB3QJNR/+kU38Qc
+         65Yz1tfYw+OvHo1c3mHrPJ8udxDWm+5Aqxg6xA6QyuCXEGll0oyKzMh/0/n5Er+tJCix
+         7WYlrLR314GdbUwASQJLptgIEAtFoBeTo1htfErYP4aOuS1juyNCGJ7Fzyi6/8dqK5oZ
+         uqNg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702758220; x=1703363020;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=JvDfT9hUlqd//b2qmA2Q0ZygPz1sbEjPpPLswigsGbw=;
-        b=tzN8/eO0B1BN6zy0ZZcdTauo9WQ60tFjrpTRyReSwu8IZ3SoHK0I1Y5k/NxHOxT1zG
-         jk4kuZvFa5h4hXVAeU+slIGgo9BM51azmX9rO1eII2Nve5pM9xwYhOE71iJEQdvhfkog
-         hW18MGQBlGHn39+WbAkHjJrY2xYdMG7kqGLkK16RtnC3PpvhaSXyabHv+ZuNfhBQvh/g
-         cheR9ysgNmJcnqRt8swY3xLnZHh1C2K+8R6l3cStYWOSR37OLBiD1t/KsZMDWzBp32k+
-         bH2AwUCMJEz7RnyUKJ17qymwvORVg6dkYHX3dNLcyFvYxnKrprJRGZskwFWkkaLc16FU
-         Te2g==
-X-Gm-Message-State: AOJu0YzzwWyTXUcTcztrmcz7ZhnW4S2irq1Krfu5y6CYd4zV9S2qjpU0
-	NQB6Tm/Dpm8c7gnGF7VcAmk=
-X-Google-Smtp-Source: AGHT+IGv3TjKn9mKLtvthLiz2xswkA4zxxNvNgsA6ZCF80vG1PfJNNksoFMPi2V5JzAzmgUtfGy6BA==
-X-Received: by 2002:a17:906:1d7:b0:a23:309b:e0cb with SMTP id 23-20020a17090601d700b00a23309be0cbmr377715ejj.155.1702758219852;
-        Sat, 16 Dec 2023 12:23:39 -0800 (PST)
-Received: from ?IPV6:2001:1c00:20d:1300:1b1c:4449:176a:89ea? (2001-1c00-020d-1300-1b1c-4449-176a-89ea.cable.dynamic.v6.ziggo.nl. [2001:1c00:20d:1300:1b1c:4449:176a:89ea])
-        by smtp.gmail.com with ESMTPSA id lm11-20020a17090718cb00b00a1cf3fce937sm12170176ejc.162.2023.12.16.12.23.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 16 Dec 2023 12:23:39 -0800 (PST)
-Message-ID: <cd60b227-df1c-4fea-9554-695261c9d6a9@gmail.com>
-Date: Sat, 16 Dec 2023 21:23:38 +0100
+        d=1e100.net; s=20230601; t=1702761716; x=1703366516;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Ep6QV7S0LD+l2v1oGCSbwLCeiUsCxqLVqe3qakJ/WRg=;
+        b=WKFXMAkKQpQLFQjKk50PyfPTqy2IBzlmWrzWB1cmz66Uf+CB626So5biI9mZVsipaq
+         ucwZUUe35KQ7zzIbuzehD0pXPbaMohWWUKLB/Z1vz26Sk8CGuLnR7/SpuKrtho+ZFE6R
+         OoWJAxmLnY71qN/nBWMKaifdU0a7Qx+grz/u0gsv25qqQpW3uR9Js2BsxVbgG+aK2xAj
+         lYI90NsL3qgBWmcG52GHPjjbXEkF4FbvFqDvVx3aG+7D0SNtgYKn3mW80pG6B6BVdCx9
+         fFi6eRfTgSJJf9HQ/IbC91rxHSjOTQOlOZN6gfXXB5Zruku1y2BYf3viDqGOB+qbkmda
+         /QlQ==
+X-Gm-Message-State: AOJu0YyWU4NAQc2OHQmxyrbhHM5+C+TKjIjixyx1azVAwjjqL3YUHQGK
+	2kBwGImyS4w2YJwEN9OSeGRI7gJwjgR8PQ==
+X-Google-Smtp-Source: AGHT+IG7B+FTcFzeYXt/n4qfZysDGamT9Gb/+0TSs44EIYdfPhgymDIRV2BJdHte+Snez1QdL4VB3A==
+X-Received: by 2002:a05:600c:444a:b0:40c:6e2a:70b with SMTP id v10-20020a05600c444a00b0040c6e2a070bmr1307239wmn.12.1702761716244;
+        Sat, 16 Dec 2023 13:21:56 -0800 (PST)
+Received: from apple.sigmaris.info ([2a02:8010:6606:0:c984:6cfa:50ea:c4cb])
+        by smtp.gmail.com with ESMTPSA id j18-20020a05600c191200b0040c6b667dccsm8166767wmq.25.2023.12.16.13.21.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 16 Dec 2023 13:21:56 -0800 (PST)
+From: Hugh Cole-Baker <sigmaris@gmail.com>
+To: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>
+Cc: Hugh Cole-Baker <sigmaris@gmail.com>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: rockchip: Support poweroff on NanoPC-T6
+Date: Sat, 16 Dec 2023 21:21:34 +0000
+Message-Id: <20231216212134.23314-1-sigmaris@gmail.com>
+X-Mailer: git-send-email 2.39.3 (Apple Git-145)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC net-next 2/2] Add the Airoha EN8811H PHY driver
-Content-Language: en-US
-To: Heiner Kallweit <hkallweit1@gmail.com>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
- Russell King <linux@armlinux.org.uk>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Frank Wunderlich <frank-w@public-files.de>,
- Daniel Golle <daniel@makrotopia.org>, Lucien Jheng
- <lucien.jheng@airoha.com>, Zhi-Jun You <hujy652@protonmail.com>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org
-References: <20231216194432.18963-2-ericwouds@gmail.com>
- <20231216194432.18963-3-ericwouds@gmail.com>
- <a0a47222-769b-4aaf-9143-1d7ad3e6ade9@gmail.com>
-From: Eric Woudstra <ericwouds@gmail.com>
-In-Reply-To: <a0a47222-769b-4aaf-9143-1d7ad3e6ade9@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
+The RK806 on the NanoPC-T6 can be used to power on/off the whole board.
+Mark it as the system power controller.
 
+Signed-off-by: Hugh Cole-Baker <sigmaris@gmail.com>
+---
+ arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dts | 2 ++
+ 1 file changed, 2 insertions(+)
 
-> 
-> Why don't you use the module_phy_driver() macro?
-> 
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dts b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dts
+index 612107615e66..0fc48fb0d34d 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dts
+@@ -569,6 +569,8 @@ pmic@0 {
+ 		pinctrl-0 = <&pmic_pins>, <&rk806_dvs1_null>,
+ 			    <&rk806_dvs2_null>, <&rk806_dvs3_null>;
+ 
++		system-power-controller;
++
+ 		vcc1-supply = <&vcc4v0_sys>;
+ 		vcc2-supply = <&vcc4v0_sys>;
+ 		vcc3-supply = <&vcc4v0_sys>;
+-- 
+2.39.3 (Apple Git-145)
 
-Thanks for the tip, I missed that in the conversion to recent kernel.
-
-I will.
 
