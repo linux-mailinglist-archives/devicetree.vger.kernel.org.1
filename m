@@ -1,75 +1,68 @@
-Return-Path: <devicetree+bounces-26163-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26164-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27ECD815C07
-	for <lists+devicetree@lfdr.de>; Sat, 16 Dec 2023 23:08:00 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF738815C13
+	for <lists+devicetree@lfdr.de>; Sat, 16 Dec 2023 23:13:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 59B1F1C2127B
-	for <lists+devicetree@lfdr.de>; Sat, 16 Dec 2023 22:07:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E137C1C2137B
+	for <lists+devicetree@lfdr.de>; Sat, 16 Dec 2023 22:13:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9ABCB34CFD;
-	Sat, 16 Dec 2023 22:07:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A89C0358B9;
+	Sat, 16 Dec 2023 22:13:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DqkRTEKL"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Ko4WYXcg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f51.google.com (mail-qv1-f51.google.com [209.85.219.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F7AE36AE6;
-	Sat, 16 Dec 2023 22:07:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qv1-f51.google.com with SMTP id 6a1803df08f44-67ee17ab697so16830006d6.0;
-        Sat, 16 Dec 2023 14:07:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1702764473; x=1703369273; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=jwJtOVzDALEiJLugl6CGKr+41IZkmLCFTtfJq15ISN4=;
-        b=DqkRTEKL4h/rtlHt8Pn94FE1e3ODKansgseDG738nFP1TQbr3aEV/EahzJH3iLIwY2
-         oB07uFa1Md2nZAWlcwMNC3QwJkuTgrUFAo6+wxWUl8wPjPCINNlkE7SIN3Y0O3qeBYCK
-         TnGj1lJqhTz0GNsBZ9kiffOXDBulxjh4lF8PWMDuQBhK4/an5lp2hMxRkei+OGarHVMF
-         gfJtXTUpHTbfwlRnsW8vJ4AZOPGitkjYO/QvzNETwYBHR/WeFMBAP8Rnzk6qp97RcPib
-         33pMpujQOdqSiO8zEgdw98gtYXg2aZpy0RIniBvyOx7avD264JMW38yAU5pLWwbTuasE
-         wLMg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702764473; x=1703369273;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=jwJtOVzDALEiJLugl6CGKr+41IZkmLCFTtfJq15ISN4=;
-        b=vRscS9VdOLE2NyGjjtO+N/7e93VAf4yj8frLALys7sPTdTejBvDB/2TqkCH8AIl38e
-         VTnFmDWlULP/5sgJv65kpMFE8H5MT3ApZSPRni7JF2zWhlvfzLSmfl0Zk3PtqGtxQGIL
-         eB5pCLjuGwFJguYfOdtx6Hm2rne4X1H0VI1Ab4HgENT93qK7MmpJVJCSh5afK4baTlKc
-         3z9Id2SN9L/MSwtUHoIk1Y1UPHGjDouFY9WkPUBFF5a4iVADU9MZ1Ed16YUd31M9kUkY
-         6ifx/xa1s2mKBbMASonmUVJS2fgL5NehUIb1/jbNQevM8ztbUI85VAjrXahH82jX4dHi
-         Deaw==
-X-Gm-Message-State: AOJu0Ywm870QB3VibPwOOKyYTvXXSHFwC7tA2SBzfjSzGk2lpk+YiUU/
-	lTfpoOCOV2TcukorOn1cIKE=
-X-Google-Smtp-Source: AGHT+IE3+UOgYbTWfDhQYqYlMvxrqc3oL7PkPxf8DD+XLHf9CF2u2jUNttsRs0fbcYgsJ9isAUifTQ==
-X-Received: by 2002:a05:6214:1023:b0:67a:be9a:e9df with SMTP id k3-20020a056214102300b0067abe9ae9dfmr15601156qvr.17.1702764473088;
-        Sat, 16 Dec 2023 14:07:53 -0800 (PST)
-Received: from abdel ([174.95.13.129])
-        by smtp.gmail.com with ESMTPSA id u3-20020a0cf883000000b0067eec0ef4b7sm3122821qvn.66.2023.12.16.14.07.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 16 Dec 2023 14:07:52 -0800 (PST)
-Date: Sat, 16 Dec 2023 17:07:42 -0500
-From: Abdel Alkuor <alkuor@gmail.com>
-To: Guenter Roeck <linux@roeck-us.net>
-Cc: Jean Delvare <jdelvare@suse.com>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>, linux-hwmon@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org
-Subject: Re: [PATCH 2/2] hwmon: Add AMS AS6200 temperature sensor
-Message-ID: <ZX4frjGqOGb4zMmx@abdel>
-References: <149032e99136a9fe47c3533b57a71092646e497d.1702744180.git.alkuor@gmail.com>
- <63e352150ed51eefce90ca4058af5459730174b2.1702744180.git.alkuor@gmail.com>
- <aa93010a-7ab0-4b9d-bb5d-25ea15b81120@roeck-us.net>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7277835880;
+	Sat, 16 Dec 2023 22:13:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1702764784; x=1734300784;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=LrrLMVtF5thE9H16OS3pY7snAyvKHmli7OPtS5+MFRI=;
+  b=Ko4WYXcgB/tuBNXaOWo12meBtGJKXFfHsLSU92X0HJwX8iVy5z/7L+Yr
+   ssjcNX1G1t+PcdULQ6cAKD8mv1hYg7BW7mVWHcwj1rPAEDlfs61c1NROz
+   isqCEaeF8GDQR4zW2RrjVKlWIgJAnh5YYgu+amuGhxiz6X/yd/Ho/16/g
+   CHFrailQBZbAyHNjNT0MsozcdzmGMLWQVQVakwUp+dSxB90HaFyUEk8th
+   /bT++eSfneUDHuRWBxahVIwhkRAh393hTkVO+YSjjwbVwxerxUxyyiwQg
+   EWZkjYfCJtd8Y7HggCHq8eqOGPrFGNlklj76zfSlT4mVU/TKfebEVysEM
+   w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10926"; a="8815304"
+X-IronPort-AV: E=Sophos;i="6.04,282,1695711600"; 
+   d="scan'208";a="8815304"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Dec 2023 14:13:03 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10926"; a="845504176"
+X-IronPort-AV: E=Sophos;i="6.04,282,1695711600"; 
+   d="scan'208";a="845504176"
+Received: from lkp-server02.sh.intel.com (HELO b07ab15da5fe) ([10.239.97.151])
+  by fmsmga004.fm.intel.com with ESMTP; 16 Dec 2023 14:13:01 -0800
+Received: from kbuild by b07ab15da5fe with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1rEcu3-0002GY-0U;
+	Sat, 16 Dec 2023 22:12:59 +0000
+Date: Sun, 17 Dec 2023 06:12:43 +0800
+From: kernel test robot <lkp@intel.com>
+To: Jia Jie Ho <jiajie.ho@starfivetech.com>,
+	Herbert Xu <herbert@gondor.apana.org.au>,
+	"David S . Miller" <davem@davemloft.net>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-crypto@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev
+Subject: Re: [PATCH 4/5] crypto: starfive: Add sm3 support for JH8100
+Message-ID: <202312170614.24rtwf9x-lkp@intel.com>
+References: <20231216141234.417498-5-jiajie.ho@starfivetech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,25 +71,76 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <aa93010a-7ab0-4b9d-bb5d-25ea15b81120@roeck-us.net>
+In-Reply-To: <20231216141234.417498-5-jiajie.ho@starfivetech.com>
 
-On Sat, Dec 16, 2023 at 10:46:53AM -0800, Guenter Roeck wrote:
-> On 12/16/23 08:39, Abdel Alkuor wrote:
-> Please explain why the lm75 driver would not work for this chip.
-> I don't immediately see the problem, especially with TMP112 using almost
-> the same configuration register layout.
-> 
-Hi Guenter,
+Hi Jia,
 
-That's a good point, tmp112 is very similar to as6200 except R0/R1 and
-EM bits don't exist in as6200. That being said, the current config for
-tmp112 in lm75 driver can be used for as6200 as the default R0/R1 is
-set to 12bits which is the only resolution supported in as6200.
+kernel test robot noticed the following build warnings:
 
-Should I use tmp112 params for as6200?
+[auto build test WARNING on herbert-cryptodev-2.6/master]
+[also build test WARNING on next-20231215]
+[cannot apply to robh/for-next linus/master v6.7-rc5]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Also, can we add support for hwmon_temp_alarm and alert interrupt?
+url:    https://github.com/intel-lab-lkp/linux/commits/Jia-Jie-Ho/dt-bindings-crypto-starfive-Add-jh8100-compatible-string/20231216-221614
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/herbert/cryptodev-2.6.git master
+patch link:    https://lore.kernel.org/r/20231216141234.417498-5-jiajie.ho%40starfivetech.com
+patch subject: [PATCH 4/5] crypto: starfive: Add sm3 support for JH8100
+config: powerpc-allmodconfig (https://download.01.org/0day-ci/archive/20231217/202312170614.24rtwf9x-lkp@intel.com/config)
+compiler: clang version 17.0.0 (https://github.com/llvm/llvm-project.git 4a5ac14ee968ff0ad5d2cc1ffa0299048db4c88a)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231217/202312170614.24rtwf9x-lkp@intel.com/reproduce)
 
-Thanks,
-Abdel
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202312170614.24rtwf9x-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/crypto/starfive/jh8100-sm3.c:179:6: warning: no previous prototype for function 'starfive_sm3_done_task' [-Wmissing-prototypes]
+     179 | void starfive_sm3_done_task(unsigned long param)
+         |      ^
+   drivers/crypto/starfive/jh8100-sm3.c:179:1: note: declare 'static' if the function is not intended to be used outside of this translation unit
+     179 | void starfive_sm3_done_task(unsigned long param)
+         | ^
+         | static 
+>> drivers/crypto/starfive/jh8100-sm3.c:524:5: warning: no previous prototype for function 'starfive_sm3_register_algs' [-Wmissing-prototypes]
+     524 | int starfive_sm3_register_algs(void)
+         |     ^
+   drivers/crypto/starfive/jh8100-sm3.c:524:1: note: declare 'static' if the function is not intended to be used outside of this translation unit
+     524 | int starfive_sm3_register_algs(void)
+         | ^
+         | static 
+>> drivers/crypto/starfive/jh8100-sm3.c:529:6: warning: no previous prototype for function 'starfive_sm3_unregister_algs' [-Wmissing-prototypes]
+     529 | void starfive_sm3_unregister_algs(void)
+         |      ^
+   drivers/crypto/starfive/jh8100-sm3.c:529:1: note: declare 'static' if the function is not intended to be used outside of this translation unit
+     529 | void starfive_sm3_unregister_algs(void)
+         | ^
+         | static 
+   3 warnings generated.
+
+
+vim +/starfive_sm3_done_task +179 drivers/crypto/starfive/jh8100-sm3.c
+
+   178	
+ > 179	void starfive_sm3_done_task(unsigned long param)
+   180	{
+   181		struct starfive_cryp_dev *cryp = (struct starfive_cryp_dev *)param;
+   182		int err;
+   183	
+   184		err = starfive_sm3_copy_hash(cryp->req.hreq);
+   185	
+   186		/* Reset to clear hash_done in irq register*/
+   187		writel(STARFIVE_SM3_RESET, cryp->base + STARFIVE_SM3_CSR);
+   188	
+   189		crypto_finalize_hash_request(cryp->engine, cryp->req.hreq, err);
+   190	}
+   191	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
