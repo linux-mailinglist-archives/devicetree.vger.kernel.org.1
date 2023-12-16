@@ -1,282 +1,85 @@
-Return-Path: <devicetree+bounces-26082-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26083-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE5D78159AD
-	for <lists+devicetree@lfdr.de>; Sat, 16 Dec 2023 14:58:17 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2A508159C2
+	for <lists+devicetree@lfdr.de>; Sat, 16 Dec 2023 15:13:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F2F251C2178B
-	for <lists+devicetree@lfdr.de>; Sat, 16 Dec 2023 13:58:16 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 56FDBB23B9F
+	for <lists+devicetree@lfdr.de>; Sat, 16 Dec 2023 14:13:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CA232DF84;
-	Sat, 16 Dec 2023 13:58:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="s7136yAp"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B56EC2D7A9;
+	Sat, 16 Dec 2023 14:13:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2319830644
-	for <devicetree@vger.kernel.org>; Sat, 16 Dec 2023 13:58:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
-Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 91BAB3F2C5
-	for <devicetree@vger.kernel.org>; Sat, 16 Dec 2023 13:57:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-	s=20210705; t=1702735076;
-	bh=1IDqTgxXQymbTimq5NcK1mhvY0gI9NehYSyLAkXJSA4=;
-	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
-	 To:Cc:Content-Type;
-	b=s7136yApbUMQIVm5zgZmdOTlzWyCrnNdkOAFsY5rmrEctRk7Ji4EE+b+lh4dxJQ/4
-	 EstfAwxqgzdF2QW+9uEwprda72J2+s+1W6Nbf+S1kCyGBkLWJO+XoKyrItVAvovK1B
-	 m50AEF8cKQQqrgq8EC0iK20eM2p2ze8CPvGEqDVsDqsoOCKdgSZw6pIKdL5CCku5SG
-	 tvJFQ4BnSvWF7FEP9924+je/593NZk8l332anB4kl9UfawKcPSPFgJ3kmPt0FLnVUG
-	 DC8HbVPDMsUywzD6Db9qxcIVceb+BotGpU6YJLyr0PA1PUHjmPuwUgYlCuZuX7Kj4Z
-	 I/AR8E7IRiiSw==
-Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-425886864f4so25942991cf.2
-        for <devicetree@vger.kernel.org>; Sat, 16 Dec 2023 05:57:56 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702735075; x=1703339875;
-        h=cc:to:subject:message-id:date:mime-version:references:in-reply-to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=1IDqTgxXQymbTimq5NcK1mhvY0gI9NehYSyLAkXJSA4=;
-        b=bTw3KlnM1gwDpi+2Y+gRPrFL6maCt58SJ0f3BJqcmSoqC4LPKYcEkgyA/nF6/56NEt
-         +03g+vZ8jSEX+dGXq2FeaWi8sH60SH7mayxEojAeoCHtup9/xGF9AQFNVAkM26kAi+8w
-         HVA3rCHbsUyew9/PlOuAFo73wiSFBnXONBLyL2ShsKBR8YGP1BjocaBvkORUc+NyJV0I
-         HcWTCEToclpGKuGpSqSsB6MrZ+ICsRracpOG0YtLQbOUgXrc2PWTFf3ijAw0zTwnfD2z
-         +FN7c+BuPMu30MpiUl16myOncfT3tsUYBRbfiLfH4ZUTE4JRnpJhajTjf3QiZQvcFBl/
-         AcKA==
-X-Gm-Message-State: AOJu0YzUfZXtRxjaZ3SQaI78UXzh4as0nytRsRoBDHJKx2TdnoqUFl6R
-	6eyIsgE/8w4MM+LgRR6xBUkzXYKBBbgGkVg5tb7UzFo/13L1lsXFVMQHMcOkt2X/JwZkIIwuZGK
-	6prh9iO7antlNW09Dn1UQ7IJbxXr0f7mLwWZ9TSsj5BD6e+qfP3RQwfI=
-X-Received: by 2002:ac8:5d8d:0:b0:425:72f3:efc2 with SMTP id d13-20020ac85d8d000000b0042572f3efc2mr17906430qtx.23.1702735075349;
-        Sat, 16 Dec 2023 05:57:55 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IE2z15djvfq92lfCW5SVLTfQogWiKIQlYCWLwzNRZaqcornDI7KUR95VQS0vrC8KmFSlGJ+d0WEqwEbw0+MxUQ=
-X-Received: by 2002:ac8:5d8d:0:b0:425:72f3:efc2 with SMTP id
- d13-20020ac85d8d000000b0042572f3efc2mr17906407qtx.23.1702735074956; Sat, 16
- Dec 2023 05:57:54 -0800 (PST)
-Received: from 348282803490 named unknown by gmailapi.google.com with
- HTTPREST; Sat, 16 Dec 2023 05:57:54 -0800
-From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-In-Reply-To: <20231215202137.GA317624-robh@kernel.org>
-References: <20231215143906.3651122-1-emil.renner.berthing@canonical.com>
- <20231215143906.3651122-2-emil.renner.berthing@canonical.com> <20231215202137.GA317624-robh@kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D0712D797;
+	Sat, 16 Dec 2023 14:12:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+	by fd01.gateway.ufhost.com (Postfix) with ESMTP id 304B024DB83;
+	Sat, 16 Dec 2023 22:12:51 +0800 (CST)
+Received: from EXMBX068.cuchost.com (172.16.6.68) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Sat, 16 Dec
+ 2023 22:12:51 +0800
+Received: from ubuntu.localdomain (161.142.156.108) by EXMBX068.cuchost.com
+ (172.16.6.68) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Sat, 16 Dec
+ 2023 22:12:46 +0800
+From: Jia Jie Ho <jiajie.ho@starfivetech.com>
+To: Herbert Xu <herbert@gondor.apana.org.au>, "David S . Miller"
+	<davem@davemloft.net>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+	<linux-crypto@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>
+Subject: [PATCH 0/5] crypto: starfive: Add support for JH8100
+Date: Sat, 16 Dec 2023 22:12:29 +0800
+Message-ID: <20231216141234.417498-1-jiajie.ho@starfivetech.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Date: Sat, 16 Dec 2023 05:57:54 -0800
-Message-ID: <CAJM55Z9pBpYfwpxPH7bUumuosVDn9DHLSBngW6CtG7aK_z+_bQ@mail.gmail.com>
-Subject: Re: [PATCH v1 1/8] dt-bindings: pinctrl: Add thead,th1520-pinctrl bindings
-To: Rob Herring <robh@kernel.org>, 
-	Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	Hoan Tran <hoan@os.amperecomputing.com>, Serge Semin <fancer.lancer@gmail.com>, 
-	Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, 
-	Andy Shevchenko <andy@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Jisheng Zhang <jszhang@kernel.org>, Guo Ren <guoren@kernel.org>, 
-	Fu Wei <wefu@redhat.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>
-Content-Type: text/plain; charset="UTF-8"
+MIME-Version: 1.0
+Content-Type: text/plain
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX068.cuchost.com
+ (172.16.6.68)
+X-YovoleRuleAgent: yovoleflag
+Content-Transfer-Encoding: quoted-printable
 
-Rob Herring wrote:
-> On Fri, Dec 15, 2023 at 03:38:59PM +0100, Emil Renner Berthing wrote:
-> > Add bindings for the pin controllers on the T-Head TH1520 RISC-V SoC.
-> >
-> > Signed-off-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-> > ---
-> >  .../pinctrl/thead,th1520-pinctrl.yaml         | 156 ++++++++++++++++++
-> >  1 file changed, 156 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/pinctrl/thead,th1520-pinctrl.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/pinctrl/thead,th1520-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/thead,th1520-pinctrl.yaml
-> > new file mode 100644
-> > index 000000000000..1b1b446cd498
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/pinctrl/thead,th1520-pinctrl.yaml
-> > @@ -0,0 +1,156 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/pinctrl/thead,th1520-pinctrl.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: T-Head TH1520 SoC pin controller
-> > +
-> > +maintainers:
-> > +  - Emil Renner Berthing <emil.renner.berthing@canonical.com>
-> > +
-> > +description: |
-> > +  Pinmux and pinconf controller in the T-Head TH1520 RISC-V SoC.
-> > +
-> > +  The TH1520 has 3 groups of pads each controlled from different memory ranges.
-> > +  Confusingly the memory ranges are named
-> > +    PADCTRL_AOSYS  -> PAD Group 1
-> > +    PADCTRL1_APSYS -> PAD Group 2
-> > +    PADCTRL0_APSYS -> PAD Group 3
->
-> Are the programming models different?
+This patch series add driver support for StarFive JH8100 SoC crypto
+engine. Patch 1 adds compatible for jh8100 to dt-bindings. Patch 2 and 3
+updates current driver dma usage for compatibility with different device
+variants. Patch 4 and 5 adds new sm3 and sm4 algo support to device
+driver.
 
-Yes, they control different pads and different number of pads. Pad group 1 also
-has some special pins that have bespoke pinconf, no pinconf and/or no
-pinmux and a
-"gap" in the registers. Also if some day we'll need to set up pinmux
-on behald of the
-audio co-processor then pad group 1 will be even more special.
+Jia Jie Ho (5):
+  dt-bindings: crypto: starfive: Add jh8100 compatible string
+  crypto: starfive: Update hash dma usage
+  crypto: starfive: Use dma for aes requests
+  crypto: starfive: Add sm3 support for JH8100
+  crypto: starfive: Add sm4 support for JH8100
 
-> > +
-> > +  Each pad can be muxed individually to up to 5 different functions. For most
-> > +  pads only a few of those 5 configurations are valid though, and a few pads in
-> > +  group 1 does not support muxing at all.
-> > +
-> > +  Pinconf is fairly regular except for a few pads in group 1 that either can't
-> > +  be configured or has some special functions. The rest have configurable drive
-> > +  strength, input enable, schmitt trigger, slew rate, pull-up and pull-down in
-> > +  addition to a special strong pull up.
-> > +
-> > +  Certain pads in group 1 can be muxed to AUDIO_PA0 - AUDIO_PA30 functions and
-> > +  are then meant to be used by the audio co-processor. Each such pad can then
-> > +  be further muxed to either audio GPIO or one of 4 functions such as UART, I2C
-> > +  and I2S. If the audio pad is muxed to one of the 4 functions then pinconf is
-> > +  also configured in different registers. All of this is done from a different
-> > +  AUDIO_IOCTRL memory range and is left to the audio co-processor for now.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - thead,th1520-group1-pinctrl
-> > +      - thead,th1520-group2-pinctrl
-> > +      - thead,th1520-group3-pinctrl
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +patternProperties:
-> > +  '-[0-9]+$':
->
-> Please make this a bit more specific. "-grp-[0-9]+$"?
+ .../crypto/starfive,jh7110-crypto.yaml        |    6 +-
+ drivers/crypto/starfive/Kconfig               |   28 +
+ drivers/crypto/starfive/Makefile              |    3 +
+ drivers/crypto/starfive/jh7110-aes.c          |  583 ++++++---
+ drivers/crypto/starfive/jh7110-cryp.c         |   65 +-
+ drivers/crypto/starfive/jh7110-cryp.h         |  102 +-
+ drivers/crypto/starfive/jh7110-hash.c         |  275 ++--
+ drivers/crypto/starfive/jh8100-sm3.c          |  532 ++++++++
+ drivers/crypto/starfive/jh8100-sm4.c          | 1107 +++++++++++++++++
+ 9 files changed, 2327 insertions(+), 374 deletions(-)
+ create mode 100644 drivers/crypto/starfive/jh8100-sm3.c
+ create mode 100644 drivers/crypto/starfive/jh8100-sm4.c
 
-Oh, I was just trying to copy what other drivers did, but I see now that eg.
-mediatek,mt6779-pinctrl is not in the majority. Unfortunately "group" already
-has 2 meanings in this context. One are the pad groups from the datasheet
-described above and then there are the mux groups in the pinctrl framework,
-which in this case just contains a single pin since each pin can be muxed
-individually. Can we come up with a better name or should we just add this 3rd
-type of group?
+--=20
+2.34.1
 
-> > +    patternProperties:
-> > +      '-pins$':
-> > +        type: object
-> > +        $ref: /schemas/pinctrl/pincfg-node.yaml
-> > +        description:
-> > +          A pinctrl node should contain at least one subnode describing one
-> > +          or more pads and their associated pinmux and pinconf settings.
-> > +
-> > +        properties:
-> > +          pins:
-> > +            $ref: /schemas/types.yaml#/definitions/string-array
->
-> Type is defined in pinmux-node.yaml. You need to reference it and drop
-> this.
->
-> Normally the possible values are listed out.
-
-This seems to work for me:
-
-allOf:
-  - if:
-      properties:
-        compatible:
-          const: thead,th1520-group1-pinctrl
-    then:
-      patternProperties:
-        '-[0-9]+$':
-          patternProperties:
-            '-pins$':
-              properties:
-                pins:
-                  items:
-                    enum:
-                      - OSC_CLK_IN
-                      - OSC_CLK_OUT
-		      ...
-  - if:
-      properties:
-        compatible:
-          const: thead,th1520-group2-pinctrl
-    then:
-      patternProperties:
-        '-[0-9]+$':
-          patternProperties:
-            '-pins$':
-              properties:
-                pins:
-                  items:
-                    enum:
-                      - QSPI1_SCLK
-                      - QSPI1_CSN0
-		      ...
-  ...
-
-Would that be the way to go about it?
-
-> > +            description: List of pads that properties in the node apply to.
-> > +
-> > +          function:
-> > +            $ref: /schemas/types.yaml#/definitions/string
-> > +            enum: [ "0", "1", "2", "3", "4", "5" ]
-> > +            description: The mux function to select for the given pins.
-> > +
-> > +          bias-disable: true
-> > +
-> > +          bias-pull-up:
-> > +            type: boolean
-> > +
-> > +          bias-pull-down:
-> > +            type: boolean
-> > +
-> > +          drive-strength:
-> > +            enum: [ 1, 2, 3, 5, 7, 8, 10, 12, 13, 15, 16, 18, 20, 21, 23, 25 ]
-> > +
-> > +          input-enable: true
-> > +
-> > +          input-disable: true
-> > +
-> > +          input-schmitt-enable: true
-> > +
-> > +          input-schmitt-disable: true
-> > +
-> > +          slew-rate:
-> > +            maximum: 1
-> > +
-> > +          thead,strong-pull-up:
-> > +            oneOf:
-> > +              - type: boolean
-> > +              - $ref: /schemas/types.yaml#/definitions/uint32
-> > +                enum: [ 0, 2100 ]
-> > +            description: Enable or disable strong 2.1kOhm pull-up.
->
-> bias-pull-up can already specify the strength in Ohms.
-
-The strong pull up is a separate bit that can be enabled independently from the
-regular pull-up/down, so in theory you could enable both the regular pull-up
-and the strong pull-up at the same time, or even the regular poll-down and the
-strong pull-up which is probably not advised.
-So the idea here was just to make sure that you can do eg.
-
-	thead,strong-pull-up = <0>;
-
-to make sure the bit is cleared.
-
-Thanks!
-/Emil
 
