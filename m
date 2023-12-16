@@ -1,105 +1,92 @@
-Return-Path: <devicetree+bounces-26159-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26160-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E998C815BD6
-	for <lists+devicetree@lfdr.de>; Sat, 16 Dec 2023 22:22:07 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A9B47815BDE
+	for <lists+devicetree@lfdr.de>; Sat, 16 Dec 2023 22:31:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 33300B239A0
-	for <lists+devicetree@lfdr.de>; Sat, 16 Dec 2023 21:22:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6428F285600
+	for <lists+devicetree@lfdr.de>; Sat, 16 Dec 2023 21:31:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 339F835283;
-	Sat, 16 Dec 2023 21:22:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="c2WDYNMf"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDEE43528E;
+	Sat, 16 Dec 2023 21:31:24 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE24D3527E;
-	Sat, 16 Dec 2023 21:21:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 745331E493;
+	Sat, 16 Dec 2023 21:31:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-40b5155e154so22232625e9.3;
-        Sat, 16 Dec 2023 13:21:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1702761716; x=1703366516; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Ep6QV7S0LD+l2v1oGCSbwLCeiUsCxqLVqe3qakJ/WRg=;
-        b=c2WDYNMfxaRxXEeIk4OGBqyhuLof+iZLr/lrwY1HeZLYH3kSJyovR3/EaCqYTyhHMW
-         lkQIubnoiySz6i18v77huwAp/4xedbi7RLO30TNGLApszatPVMTlceE6BO9sdVB4KfoT
-         yGUNPieO/kcGXKCfSTakwldqiJBBe5lq67PjBKvs2rl0wOVo8BklrEB3QJNR/+kU38Qc
-         65Yz1tfYw+OvHo1c3mHrPJ8udxDWm+5Aqxg6xA6QyuCXEGll0oyKzMh/0/n5Er+tJCix
-         7WYlrLR314GdbUwASQJLptgIEAtFoBeTo1htfErYP4aOuS1juyNCGJ7Fzyi6/8dqK5oZ
-         uqNg==
+Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-1d3a64698b3so2641065ad.0;
+        Sat, 16 Dec 2023 13:31:23 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702761716; x=1703366516;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Ep6QV7S0LD+l2v1oGCSbwLCeiUsCxqLVqe3qakJ/WRg=;
-        b=WKFXMAkKQpQLFQjKk50PyfPTqy2IBzlmWrzWB1cmz66Uf+CB626So5biI9mZVsipaq
-         ucwZUUe35KQ7zzIbuzehD0pXPbaMohWWUKLB/Z1vz26Sk8CGuLnR7/SpuKrtho+ZFE6R
-         OoWJAxmLnY71qN/nBWMKaifdU0a7Qx+grz/u0gsv25qqQpW3uR9Js2BsxVbgG+aK2xAj
-         lYI90NsL3qgBWmcG52GHPjjbXEkF4FbvFqDvVx3aG+7D0SNtgYKn3mW80pG6B6BVdCx9
-         fFi6eRfTgSJJf9HQ/IbC91rxHSjOTQOlOZN6gfXXB5Zruku1y2BYf3viDqGOB+qbkmda
-         /QlQ==
-X-Gm-Message-State: AOJu0YyWU4NAQc2OHQmxyrbhHM5+C+TKjIjixyx1azVAwjjqL3YUHQGK
-	2kBwGImyS4w2YJwEN9OSeGRI7gJwjgR8PQ==
-X-Google-Smtp-Source: AGHT+IG7B+FTcFzeYXt/n4qfZysDGamT9Gb/+0TSs44EIYdfPhgymDIRV2BJdHte+Snez1QdL4VB3A==
-X-Received: by 2002:a05:600c:444a:b0:40c:6e2a:70b with SMTP id v10-20020a05600c444a00b0040c6e2a070bmr1307239wmn.12.1702761716244;
-        Sat, 16 Dec 2023 13:21:56 -0800 (PST)
-Received: from apple.sigmaris.info ([2a02:8010:6606:0:c984:6cfa:50ea:c4cb])
-        by smtp.gmail.com with ESMTPSA id j18-20020a05600c191200b0040c6b667dccsm8166767wmq.25.2023.12.16.13.21.55
+        d=1e100.net; s=20230601; t=1702762283; x=1703367083;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=4443SmRtx3Ll3c6RsS4u7u/jos4/hCHtDUV3C2hmXnY=;
+        b=ruWak0qXMU4i9nSrAfVcUfb/j0W+HxFQBXb+jGRpqxX23fHiGViYg35TQTniNwGnwn
+         /ikHdC9HWNxLXnc6iOeYsq2D20Xj743tY5QeFiTzbD5cKmTs0r5oad3cKaJnGqpE1LSR
+         LE+XBz/Oujek338Bh7DBdTz/NH5H2nzs14IvOEEDtAfixFKJ2VQ9Rp2c30MztkZGrrTW
+         7nZ9OAwvOjlNNSByvSy7DqAPKDU0iNqQRouInn5AiQdZ2Wf/mBAabtaBJAaj5neH7gIt
+         cRNTA0MtkWzs7OunOB2A8z6C07ypUr5wpuatxcQMEWoEvgZxp18S9jyEz4Zl27i7lfyD
+         3dkA==
+X-Gm-Message-State: AOJu0YwVNR+dfhDF1aPSwOVEvzxyHpWB9rSIpRFSJ2bVnG8u3zWpNhnD
+	EPQJPHVqlgilbY1XOMOFtls=
+X-Google-Smtp-Source: AGHT+IHuutMIArrggGyEjyRV5foQfX/Zzbo6BZkznmf4+W8PKBLVKdrscCfYxVHd7AFcFGqzZvyrLw==
+X-Received: by 2002:a17:902:ea0e:b0:1d0:cec3:4568 with SMTP id s14-20020a170902ea0e00b001d0cec34568mr17170399plg.54.1702762282829;
+        Sat, 16 Dec 2023 13:31:22 -0800 (PST)
+Received: from localhost (fpd11144dd.ap.nuro.jp. [209.17.68.221])
+        by smtp.gmail.com with ESMTPSA id x7-20020a1709029a4700b001cf7bd9ade5sm16235198plv.3.2023.12.16.13.31.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 16 Dec 2023 13:21:56 -0800 (PST)
-From: Hugh Cole-Baker <sigmaris@gmail.com>
-To: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>
-Cc: Hugh Cole-Baker <sigmaris@gmail.com>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: rockchip: Support poweroff on NanoPC-T6
-Date: Sat, 16 Dec 2023 21:21:34 +0000
-Message-Id: <20231216212134.23314-1-sigmaris@gmail.com>
-X-Mailer: git-send-email 2.39.3 (Apple Git-145)
+        Sat, 16 Dec 2023 13:31:22 -0800 (PST)
+Date: Sun, 17 Dec 2023 06:31:21 +0900
+From: Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>
+To: Thippeswamy Havalige <thippeswamy.havalige@amd.com>
+Cc: linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	bhelgaas@google.com, lpieralisi@kernel.org, robh@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, colnor+dt@kernel.org,
+	michal.simek@amd.com, bharat.kumar.gogada@amd.com
+Subject: Re: [PATCH v5 RESEND 0/4] increase ecam size value to discover 256
+ buses during
+Message-ID: <20231216213121.GB3302836@rocinante>
+References: <20231016051102.1180432-1-thippeswamy.havalige@amd.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231016051102.1180432-1-thippeswamy.havalige@amd.com>
 
-The RK806 on the NanoPC-T6 can be used to power on/off the whole board.
-Mark it as the system power controller.
+Hello,
 
-Signed-off-by: Hugh Cole-Baker <sigmaris@gmail.com>
----
- arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dts | 2 ++
- 1 file changed, 2 insertions(+)
+> Current driver is supports up to 16 buses. The following code fixes 
+> to support up to 256 buses.
+> 
+> update "NWL_ECAM_VALUE_DEFAULT " to 16  can access up to 256MB ECAM
+> region to detect 256 buses.
+> 
+> Update ecam size to 256MB in device tree binding example.
+> 
+> Remove unwanted code.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dts b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dts
-index 612107615e66..0fc48fb0d34d 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dts
-@@ -569,6 +569,8 @@ pmic@0 {
- 		pinctrl-0 = <&pmic_pins>, <&rk806_dvs1_null>,
- 			    <&rk806_dvs2_null>, <&rk806_dvs3_null>;
- 
-+		system-power-controller;
-+
- 		vcc1-supply = <&vcc4v0_sys>;
- 		vcc2-supply = <&vcc4v0_sys>;
- 		vcc3-supply = <&vcc4v0_sys>;
--- 
-2.39.3 (Apple Git-145)
+Applied to controller/xilinx-ecam, thank you!
 
+[01/04] PCI: xilinx-nwl: Remove redundant code that sets Type 1 header fields
+        https://git.kernel.org/pci/pci/c/a2492ff1fcb9
+[02/04] dt-bindings: PCI: xilinx-nwl: Modify ECAM size in the DT example
+        https://git.kernel.org/pci/pci/c/22f38a244273
+[03/04] PCI: xilinx-nwl: Rename the NWL_ECAM_VALUE_DEFAULT macro
+        https://git.kernel.org/pci/pci/c/177692115f6f
+[04/04] PCI: xilinx-nwl: Modify ECAM size to enable support for 256 buses
+        https://git.kernel.org/pci/pci/c/2fccd11518f1
+
+	Krzysztof
 
