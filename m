@@ -1,77 +1,70 @@
-Return-Path: <devicetree+bounces-26054-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26055-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B2ED81566C
-	for <lists+devicetree@lfdr.de>; Sat, 16 Dec 2023 03:35:05 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E2ED78156B2
+	for <lists+devicetree@lfdr.de>; Sat, 16 Dec 2023 04:18:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 885211C23787
-	for <lists+devicetree@lfdr.de>; Sat, 16 Dec 2023 02:35:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9F5D0285E7A
+	for <lists+devicetree@lfdr.de>; Sat, 16 Dec 2023 03:18:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8DFF1384;
-	Sat, 16 Dec 2023 02:34:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0A731C2E;
+	Sat, 16 Dec 2023 03:18:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SZQI4qUQ"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="UzR69Fbn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f54.google.com (mail-qv1-f54.google.com [209.85.219.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35492812;
-	Sat, 16 Dec 2023 02:34:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qv1-f54.google.com with SMTP id 6a1803df08f44-67f16446498so8727046d6.1;
-        Fri, 15 Dec 2023 18:34:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1702694097; x=1703298897; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=lNlfUS9v3pfkTO0w/8Oq2nDjf4pESr7zqgOW0Dmjp2E=;
-        b=SZQI4qUQtIxHAcM/o3HztmRkqM5MtREMSsm1DbnndvaHeqxd+nxPAjVleZ1vuq5n0I
-         IZaDmqlNF+kV96+cf//yGvUdWKiZAZF149DEZAiC675zFOOoCu9InH2P3KUXYFBW2yPT
-         lPu27embmUiaU3u9tp+7Cj/SjXOtEIU8zo3MGwIeq8FrdBjkEP5rFds7rRzdFK5ZkM6b
-         7spBX2AyfUm9KGQxhchhXp+/P87QPPXoWzhJ4bTbQ8e901slEak2VLCgGKh39TOSrInw
-         YO6qWCASrT5aJdNE1a5IngyPrcwBF11+QRIt1D7F/IhSDiAg/9xPmQa9Xp4777Ggwa08
-         9BwA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702694097; x=1703298897;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=lNlfUS9v3pfkTO0w/8Oq2nDjf4pESr7zqgOW0Dmjp2E=;
-        b=SiSGoiNbbPjgAOp5mA0nCO93Yir5N3IrcvB2NtJkM6n6eIc6pdPXsEhl3Sl3qGgTDQ
-         KrpzUHQetGPOuQRrZw+2F9ey7FAl3eU4qTIDT6scPFzHSaB1w/q7OGdJ7KE3M/523Uiu
-         zfAXVemht+Ksd/CB0PBthx+8hVsAxR5nno86aSOebvbyAXLGrIrA8mOSzfidCZIo9qlX
-         H0HTSr+NGBznyRa05VJHk0gxICao4hnHA5v9GxNoVcw6Z86CIxSd9ubBKEYb6J5E6Gu5
-         nRIDubADDJI01yBQKm+C8OT8Nv8PqgObUwwnDIVVE0nS5tnmrSkWbwF2V8KFvn61Lrw+
-         69kg==
-X-Gm-Message-State: AOJu0Yz/JtdRmuBIB5GojZqGwiN3eGz+kGkHqNsqAYZxEoDl2O42ywiY
-	SdSkmQPN3v6kPSMkU9hfqCw=
-X-Google-Smtp-Source: AGHT+IE+UUMI/+B/RdPUlDebfLff6Bo0TPgbhcY5nw7DhwN6KqQx9zmak9JXsj5B2YgpwxCNu1MZYA==
-X-Received: by 2002:ad4:5c6f:0:b0:67f:86b:72f5 with SMTP id i15-20020ad45c6f000000b0067f086b72f5mr5480739qvh.102.1702694097079;
-        Fri, 15 Dec 2023 18:34:57 -0800 (PST)
-Received: from localhost ([2607:fea8:529e:7800::a768])
-        by smtp.gmail.com with ESMTPSA id q2-20020a0ce202000000b0067a93291d3dsm7340689qvl.78.2023.12.15.18.34.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 15 Dec 2023 18:34:56 -0800 (PST)
-Date: Fri, 15 Dec 2023 21:34:53 -0500
-From: Richard Acayan <mailingradian@gmail.com>
-To: Johan Hovold <johan+linaro@kernel.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, Andy Gross <agross@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E4A41FDA;
+	Sat, 16 Dec 2023 03:18:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1702696682; x=1734232682;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=wyWUUzZO259IedYMAoIcGOmFoX5vdeINYbm46xHknGw=;
+  b=UzR69FbnQWZe8la8WoiiNLC6+HPbeoaNHuQPKyqw/hsaM1wcFO4TLwel
+   nvuQisy0TCO+vyHFzgiN5Dl6KM+/xLVSzSN/lpY+db92iGY4tBjjfw+JB
+   Pka15SLF0XO029ha0PoWtVV03UbJVBLhTVN/0rCEIzLFjzfiEbnf0ZDJl
+   Jg91hRcx1RQL5kfhsOH2vcuZUmenYC9PU+b7/6ENb3n2drz3dorzeWwBV
+   Z68bCy1H86Rn5eaNsdx37DBayzI39exVnbWUKXeAHj2gevVr44751Wcf+
+   Sfl5FPgX36mI/3wgNz3YRgMDr9h6C7Dnk25+oeMbZUnU46IHR+Tyhy1p+
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10925"; a="461812251"
+X-IronPort-AV: E=Sophos;i="6.04,280,1695711600"; 
+   d="scan'208";a="461812251"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Dec 2023 19:18:01 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10925"; a="724650666"
+X-IronPort-AV: E=Sophos;i="6.04,280,1695711600"; 
+   d="scan'208";a="724650666"
+Received: from lkp-server02.sh.intel.com (HELO b07ab15da5fe) ([10.239.97.151])
+  by orsmga003.jf.intel.com with ESMTP; 15 Dec 2023 19:17:58 -0800
+Received: from kbuild by b07ab15da5fe with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1rELBc-00015w-2Q;
+	Sat, 16 Dec 2023 03:17:56 +0000
+Date: Sat, 16 Dec 2023 11:16:57 +0800
+From: kernel test robot <lkp@intel.com>
+To: Chunyan Zhang <chunyan.zhang@unisoc.com>,
 	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Subject: Re: [PATCH 1/3] arm64: dts: qcom: sdm670: fix USB DP/DM HS PHY
- interrupts
-Message-ID: <ZX0MzT5jX_s_m_1Y@radian>
-References: <20231214074319.11023-1-johan+linaro@kernel.org>
- <20231214074319.11023-2-johan+linaro@kernel.org>
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>
+Cc: oe-kbuild-all@lists.linux.dev, devicetree@vger.kernel.org,
+	linux-serial@vger.kernel.org,
+	Baolin Wang <baolin.wang@linux.alibaba.com>,
+	Orson Zhai <orsonzhai@gmail.com>,
+	Chunyan Zhang <zhang.lyra@gmail.com>,
+	LKML <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 4/4] arm64: dts: sprd: Add support for Unisoc's UMS9620
+Message-ID: <202312161154.pVCPezKU-lkp@intel.com>
+References: <20231215085630.984892-5-chunyan.zhang@unisoc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -80,53 +73,48 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231214074319.11023-2-johan+linaro@kernel.org>
+In-Reply-To: <20231215085630.984892-5-chunyan.zhang@unisoc.com>
 
-On Thu, Dec 14, 2023 at 08:43:17AM +0100, Johan Hovold wrote:
-> The USB DP/DM HS PHY interrupts need to be provided by the PDC interrupt
-> controller in order to be able to wake the system up from low-power
-> states and to be able to detect disconnect events, which requires
-> triggering on falling edges.
->
-> A recent commit updated the trigger type but failed to change the
-> interrupt provider as required. This leads to the current Linux driver
-> failing to probe instead of printing an error during suspend and USB
-> wakeup not working as intended.
->
-> Fixes: de3b3de30999 ("arm64: dts: qcom: sdm670: fix USB wakeup interrupt types")
-> Fixes: 07c8ded6e373 ("arm64: dts: qcom: add sdm670 and pixel 3a device trees")
-> Cc: stable@vger.kernel.org      # 6.2
+Hi Chunyan,
 
-I almost forgot to mention, both SDM670 patches seem to depend on
-b51ee205dc4f ("arm64: dts: qcom: sdm670: Add PDC") in 6.6 to compile
-properly.
+kernel test robot noticed the following build errors:
 
-> Cc: Richard Acayan <mailingradian@gmail.com>
-> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
-> ---
->  arch/arm64/boot/dts/qcom/sdm670.dtsi | 8 ++++----
->  1 file changed, 4 insertions(+), 4 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/qcom/sdm670.dtsi b/arch/arm64/boot/dts/qcom/sdm670.dtsi
-> index c873560ae9d5..fe4067c012a0 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm670.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sdm670.dtsi
-> @@ -1295,10 +1295,10 @@ usb_1: usb@a6f8800 {
->  					  <&gcc GCC_USB30_PRIM_MASTER_CLK>;
->  			assigned-clock-rates = <19200000>, <150000000>;
->  
-> -			interrupts = <GIC_SPI 131 IRQ_TYPE_LEVEL_HIGH>,
-> -				     <GIC_SPI 486 IRQ_TYPE_LEVEL_HIGH>,
-> -				     <GIC_SPI 488 IRQ_TYPE_EDGE_BOTH>,
-> -				     <GIC_SPI 489 IRQ_TYPE_EDGE_BOTH>;
-> +			interrupts-extended = <&intc GIC_SPI 131 IRQ_TYPE_LEVEL_HIGH>,
-> +					      <&intc GIC_SPI 486 IRQ_TYPE_LEVEL_HIGH>,
-> +					      <&pdc 8 IRQ_TYPE_EDGE_BOTH>,
-> +					      <&pdc 9 IRQ_TYPE_EDGE_BOTH>;
->  			interrupt-names = "hs_phy_irq", "ss_phy_irq",
->  					  "dm_hs_phy_irq", "dp_hs_phy_irq";
->  
-> -- 
-> 2.41.0
->
+[auto build test ERROR on robh/for-next]
+[also build test ERROR on lee-mfd/for-mfd-next tty/tty-next tty/tty-linus krzk/for-next krzk-mem-ctrl/for-next linus/master v6.7-rc5 next-20231215]
+[cannot apply to tty/tty-testing lee-mfd/for-mfd-fixes]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Chunyan-Zhang/dt-bindings-mfd-sprd-Add-support-for-UMS9620/20231215-165956
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20231215085630.984892-5-chunyan.zhang%40unisoc.com
+patch subject: [PATCH 4/4] arm64: dts: sprd: Add support for Unisoc's UMS9620
+config: arm64-defconfig (https://download.01.org/0day-ci/archive/20231216/202312161154.pVCPezKU-lkp@intel.com/config)
+compiler: aarch64-linux-gcc (GCC) 13.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231216/202312161154.pVCPezKU-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202312161154.pVCPezKU-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   In file included from arch/arm64/boot/dts/sprd/ums9620-2h10.dts:10:
+>> arch/arm64/boot/dts/sprd/ums9620.dtsi:8:10: fatal error: dt-bindings/clock/sprd,ums9620-clk.h: No such file or directory
+       8 | #include <dt-bindings/clock/sprd,ums9620-clk.h>
+         |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   compilation terminated.
+
+
+vim +8 arch/arm64/boot/dts/sprd/ums9620.dtsi
+
+   > 8	#include <dt-bindings/clock/sprd,ums9620-clk.h>
+     9	#include <dt-bindings/interrupt-controller/arm-gic.h>
+    10	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
