@@ -1,114 +1,282 @@
-Return-Path: <devicetree+bounces-26081-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26082-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06171815995
-	for <lists+devicetree@lfdr.de>; Sat, 16 Dec 2023 14:51:47 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE5D78159AD
+	for <lists+devicetree@lfdr.de>; Sat, 16 Dec 2023 14:58:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B5763284934
-	for <lists+devicetree@lfdr.de>; Sat, 16 Dec 2023 13:51:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F2F251C2178B
+	for <lists+devicetree@lfdr.de>; Sat, 16 Dec 2023 13:58:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AACE2D02B;
-	Sat, 16 Dec 2023 13:51:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CA232DF84;
+	Sat, 16 Dec 2023 13:58:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="IoXaWU4d"
+	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="s7136yAp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E8152C6A9;
-	Sat, 16 Dec 2023 13:51:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=dSsrLnhvQMh6fed+BTCDMZIum7s58eYFEwcQNJr4BqE=; b=IoXaWU4dUaeDmsuhAoOpjm0sd1
-	HKoOolEwFK2gD1iF5p99cML3WccY5XjkOnhu4UMZKmToZqqCH+hiLjvMN9jBKK+dYfDMAm1zXNA4W
-	6Mk+75xgCTm+tulWvITlE4xFal1mtk7fzv9ibLC7TU9P9Fb4ljxK7g0J+mEijHuAOhf7iQkpgWbAQ
-	1kZhD08zTk9W7asMgGI+tx9/oDwtlCzpx8sbvqJ6vsak5wKTn6ji4hH12MjxiN/edLqTJnk3J+/ar
-	pVv7Tl243xLUkI7wK8ZVuvXfjwU9bQd8EfYiXFinqZNN1QluCuZw9iN+m2GvZ+XgvSdPHfDsK70R4
-	h3akB9TQ==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:55866)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1rEV4X-0003ms-22;
-	Sat, 16 Dec 2023 13:51:17 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1rEV4V-0004i2-WF; Sat, 16 Dec 2023 13:51:16 +0000
-Date: Sat, 16 Dec 2023 13:51:15 +0000
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: Jie Luo <quic_luoj@quicinc.com>, davem@davemloft.net,
-	edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, hkallweit1@gmail.com, corbet@lwn.net,
-	p.zabel@pengutronix.de, f.fainelli@gmail.com,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
-	Christian Marangi <ansuelsmth@gmail.com>
-Subject: Re: [PATCH v8 14/14] dt-bindings: net: ar803x: add qca8084 PHY
- properties
-Message-ID: <ZX2rU5OFcZFyBmGl@shell.armlinux.org.uk>
-References: <20231215074005.26976-1-quic_luoj@quicinc.com>
- <20231215074005.26976-15-quic_luoj@quicinc.com>
- <60b9081c-76fa-4122-b7ae-5c3dcf7229f9@lunn.ch>
- <a65ad12d-b990-4439-b196-903f4a5f096a@quicinc.com>
- <f5c5cbce-c36e-498a-97e2-35f06d927d74@lunn.ch>
- <a9798333-3105-422f-8033-76c0b1d4f439@quicinc.com>
- <7c05b08a-bb6d-4fa1-8cee-c1051badc9d9@lunn.ch>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2319830644
+	for <devicetree@vger.kernel.org>; Sat, 16 Dec 2023 13:58:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
+Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 91BAB3F2C5
+	for <devicetree@vger.kernel.org>; Sat, 16 Dec 2023 13:57:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+	s=20210705; t=1702735076;
+	bh=1IDqTgxXQymbTimq5NcK1mhvY0gI9NehYSyLAkXJSA4=;
+	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
+	 To:Cc:Content-Type;
+	b=s7136yApbUMQIVm5zgZmdOTlzWyCrnNdkOAFsY5rmrEctRk7Ji4EE+b+lh4dxJQ/4
+	 EstfAwxqgzdF2QW+9uEwprda72J2+s+1W6Nbf+S1kCyGBkLWJO+XoKyrItVAvovK1B
+	 m50AEF8cKQQqrgq8EC0iK20eM2p2ze8CPvGEqDVsDqsoOCKdgSZw6pIKdL5CCku5SG
+	 tvJFQ4BnSvWF7FEP9924+je/593NZk8l332anB4kl9UfawKcPSPFgJ3kmPt0FLnVUG
+	 DC8HbVPDMsUywzD6Db9qxcIVceb+BotGpU6YJLyr0PA1PUHjmPuwUgYlCuZuX7Kj4Z
+	 I/AR8E7IRiiSw==
+Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-425886864f4so25942991cf.2
+        for <devicetree@vger.kernel.org>; Sat, 16 Dec 2023 05:57:56 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702735075; x=1703339875;
+        h=cc:to:subject:message-id:date:mime-version:references:in-reply-to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=1IDqTgxXQymbTimq5NcK1mhvY0gI9NehYSyLAkXJSA4=;
+        b=bTw3KlnM1gwDpi+2Y+gRPrFL6maCt58SJ0f3BJqcmSoqC4LPKYcEkgyA/nF6/56NEt
+         +03g+vZ8jSEX+dGXq2FeaWi8sH60SH7mayxEojAeoCHtup9/xGF9AQFNVAkM26kAi+8w
+         HVA3rCHbsUyew9/PlOuAFo73wiSFBnXONBLyL2ShsKBR8YGP1BjocaBvkORUc+NyJV0I
+         HcWTCEToclpGKuGpSqSsB6MrZ+ICsRracpOG0YtLQbOUgXrc2PWTFf3ijAw0zTwnfD2z
+         +FN7c+BuPMu30MpiUl16myOncfT3tsUYBRbfiLfH4ZUTE4JRnpJhajTjf3QiZQvcFBl/
+         AcKA==
+X-Gm-Message-State: AOJu0YzUfZXtRxjaZ3SQaI78UXzh4as0nytRsRoBDHJKx2TdnoqUFl6R
+	6eyIsgE/8w4MM+LgRR6xBUkzXYKBBbgGkVg5tb7UzFo/13L1lsXFVMQHMcOkt2X/JwZkIIwuZGK
+	6prh9iO7antlNW09Dn1UQ7IJbxXr0f7mLwWZ9TSsj5BD6e+qfP3RQwfI=
+X-Received: by 2002:ac8:5d8d:0:b0:425:72f3:efc2 with SMTP id d13-20020ac85d8d000000b0042572f3efc2mr17906430qtx.23.1702735075349;
+        Sat, 16 Dec 2023 05:57:55 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IE2z15djvfq92lfCW5SVLTfQogWiKIQlYCWLwzNRZaqcornDI7KUR95VQS0vrC8KmFSlGJ+d0WEqwEbw0+MxUQ=
+X-Received: by 2002:ac8:5d8d:0:b0:425:72f3:efc2 with SMTP id
+ d13-20020ac85d8d000000b0042572f3efc2mr17906407qtx.23.1702735074956; Sat, 16
+ Dec 2023 05:57:54 -0800 (PST)
+Received: from 348282803490 named unknown by gmailapi.google.com with
+ HTTPREST; Sat, 16 Dec 2023 05:57:54 -0800
+From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+In-Reply-To: <20231215202137.GA317624-robh@kernel.org>
+References: <20231215143906.3651122-1-emil.renner.berthing@canonical.com>
+ <20231215143906.3651122-2-emil.renner.berthing@canonical.com> <20231215202137.GA317624-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <7c05b08a-bb6d-4fa1-8cee-c1051badc9d9@lunn.ch>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+Mime-Version: 1.0
+Date: Sat, 16 Dec 2023 05:57:54 -0800
+Message-ID: <CAJM55Z9pBpYfwpxPH7bUumuosVDn9DHLSBngW6CtG7aK_z+_bQ@mail.gmail.com>
+Subject: Re: [PATCH v1 1/8] dt-bindings: pinctrl: Add thead,th1520-pinctrl bindings
+To: Rob Herring <robh@kernel.org>, 
+	Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	Hoan Tran <hoan@os.amperecomputing.com>, Serge Semin <fancer.lancer@gmail.com>, 
+	Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, 
+	Andy Shevchenko <andy@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Jisheng Zhang <jszhang@kernel.org>, Guo Ren <guoren@kernel.org>, 
+	Fu Wei <wefu@redhat.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>
+Content-Type: text/plain; charset="UTF-8"
 
-On Sat, Dec 16, 2023 at 11:21:53AM +0100, Andrew Lunn wrote:
-> > The following is the chip package, the chip can work on the switch mode
-> > like the existed upstream code qca8k, where PHY1-PHY4 is connected with
-> > MAC1-MAC4 directly;
-> 
-> Ah, that is new information, and has a big effect on the design.
+Rob Herring wrote:
+> On Fri, Dec 15, 2023 at 03:38:59PM +0100, Emil Renner Berthing wrote:
+> > Add bindings for the pin controllers on the T-Head TH1520 RISC-V SoC.
+> >
+> > Signed-off-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+> > ---
+> >  .../pinctrl/thead,th1520-pinctrl.yaml         | 156 ++++++++++++++++++
+> >  1 file changed, 156 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/pinctrl/thead,th1520-pinctrl.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/pinctrl/thead,th1520-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/thead,th1520-pinctrl.yaml
+> > new file mode 100644
+> > index 000000000000..1b1b446cd498
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/pinctrl/thead,th1520-pinctrl.yaml
+> > @@ -0,0 +1,156 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/pinctrl/thead,th1520-pinctrl.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: T-Head TH1520 SoC pin controller
+> > +
+> > +maintainers:
+> > +  - Emil Renner Berthing <emil.renner.berthing@canonical.com>
+> > +
+> > +description: |
+> > +  Pinmux and pinconf controller in the T-Head TH1520 RISC-V SoC.
+> > +
+> > +  The TH1520 has 3 groups of pads each controlled from different memory ranges.
+> > +  Confusingly the memory ranges are named
+> > +    PADCTRL_AOSYS  -> PAD Group 1
+> > +    PADCTRL1_APSYS -> PAD Group 2
+> > +    PADCTRL0_APSYS -> PAD Group 3
+>
+> Are the programming models different?
 
-This QCA8084 that's being proposed in these patches is not a PHY in
-itself, but is a SoC. I came across this:
+Yes, they control different pads and different number of pads. Pad group 1 also
+has some special pins that have bespoke pinconf, no pinconf and/or no
+pinmux and a
+"gap" in the registers. Also if some day we'll need to set up pinmux
+on behald of the
+audio co-processor then pad group 1 will be even more special.
 
- https://www.rt-rk.com/android-tv-solution-tv-in-smartphone-pantsstb-based-on-qualcomm-soc-design/
+> > +
+> > +  Each pad can be muxed individually to up to 5 different functions. For most
+> > +  pads only a few of those 5 configurations are valid though, and a few pads in
+> > +  group 1 does not support muxing at all.
+> > +
+> > +  Pinconf is fairly regular except for a few pads in group 1 that either can't
+> > +  be configured or has some special functions. The rest have configurable drive
+> > +  strength, input enable, schmitt trigger, slew rate, pull-up and pull-down in
+> > +  addition to a special strong pull up.
+> > +
+> > +  Certain pads in group 1 can be muxed to AUDIO_PA0 - AUDIO_PA30 functions and
+> > +  are then meant to be used by the audio co-processor. Each such pad can then
+> > +  be further muxed to either audio GPIO or one of 4 functions such as UART, I2C
+> > +  and I2S. If the audio pad is muxed to one of the 4 functions then pinconf is
+> > +  also configured in different registers. All of this is done from a different
+> > +  AUDIO_IOCTRL memory range and is left to the audio co-processor for now.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - thead,th1520-group1-pinctrl
+> > +      - thead,th1520-group2-pinctrl
+> > +      - thead,th1520-group3-pinctrl
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +patternProperties:
+> > +  '-[0-9]+$':
+>
+> Please make this a bit more specific. "-grp-[0-9]+$"?
 
-It's sounding like what we have here is some PHY IP that is integrated
-into a larger SoC, and the larger SoC needs to be configured so the
-PHY IP can work correctly.
+Oh, I was just trying to copy what other drivers did, but I see now that eg.
+mediatek,mt6779-pinctrl is not in the majority. Unfortunately "group" already
+has 2 meanings in this context. One are the pad groups from the datasheet
+described above and then there are the mux groups in the pinctrl framework,
+which in this case just contains a single pin since each pin can be muxed
+individually. Can we come up with a better name or should we just add this 3rd
+type of group?
 
-Given that this package of four PHYs seems to be rather unique, I think
-we need Jie Luo to provide sufficient information so we can understand:
+> > +    patternProperties:
+> > +      '-pins$':
+> > +        type: object
+> > +        $ref: /schemas/pinctrl/pincfg-node.yaml
+> > +        description:
+> > +          A pinctrl node should contain at least one subnode describing one
+> > +          or more pads and their associated pinmux and pinconf settings.
+> > +
+> > +        properties:
+> > +          pins:
+> > +            $ref: /schemas/types.yaml#/definitions/string-array
+>
+> Type is defined in pinmux-node.yaml. You need to reference it and drop
+> this.
+>
+> Normally the possible values are listed out.
 
-1) this package of four PHYs itself
-2) how this package is integrated into the SoC
+This seems to work for me:
 
-Specifically, what resets and clocks are controlled from within the
-package's register space, which are external to the package
-register space (and thus are provided by other IPs in the SoC).
+allOf:
+  - if:
+      properties:
+        compatible:
+          const: thead,th1520-group1-pinctrl
+    then:
+      patternProperties:
+        '-[0-9]+$':
+          patternProperties:
+            '-pins$':
+              properties:
+                pins:
+                  items:
+                    enum:
+                      - OSC_CLK_IN
+                      - OSC_CLK_OUT
+		      ...
+  - if:
+      properties:
+        compatible:
+          const: thead,th1520-group2-pinctrl
+    then:
+      patternProperties:
+        '-[0-9]+$':
+          patternProperties:
+            '-pins$':
+              properties:
+                pins:
+                  items:
+                    enum:
+                      - QSPI1_SCLK
+                      - QSPI1_CSN0
+		      ...
+  ...
 
-As I've said previously, the lack of DT example doesn't help to further
-our understanding. The lack of details of what the package encompases
-also doesn't help us understand the hardware.
+Would that be the way to go about it?
 
-Unless we can gain that understanding, I feel that Jie Luo's patches
-are effectively unreviewable and can't be accepted into mainline.
+> > +            description: List of pads that properties in the node apply to.
+> > +
+> > +          function:
+> > +            $ref: /schemas/types.yaml#/definitions/string
+> > +            enum: [ "0", "1", "2", "3", "4", "5" ]
+> > +            description: The mux function to select for the given pins.
+> > +
+> > +          bias-disable: true
+> > +
+> > +          bias-pull-up:
+> > +            type: boolean
+> > +
+> > +          bias-pull-down:
+> > +            type: boolean
+> > +
+> > +          drive-strength:
+> > +            enum: [ 1, 2, 3, 5, 7, 8, 10, 12, 13, 15, 16, 18, 20, 21, 23, 25 ]
+> > +
+> > +          input-enable: true
+> > +
+> > +          input-disable: true
+> > +
+> > +          input-schmitt-enable: true
+> > +
+> > +          input-schmitt-disable: true
+> > +
+> > +          slew-rate:
+> > +            maximum: 1
+> > +
+> > +          thead,strong-pull-up:
+> > +            oneOf:
+> > +              - type: boolean
+> > +              - $ref: /schemas/types.yaml#/definitions/uint32
+> > +                enum: [ 0, 2100 ]
+> > +            description: Enable or disable strong 2.1kOhm pull-up.
+>
+> bias-pull-up can already specify the strength in Ohms.
 
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+The strong pull up is a separate bit that can be enabled independently from the
+regular pull-up/down, so in theory you could enable both the regular pull-up
+and the strong pull-up at the same time, or even the regular poll-down and the
+strong pull-up which is probably not advised.
+So the idea here was just to make sure that you can do eg.
+
+	thead,strong-pull-up = <0>;
+
+to make sure the bit is cleared.
+
+Thanks!
+/Emil
 
