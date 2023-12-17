@@ -1,148 +1,93 @@
-Return-Path: <devicetree+bounces-26302-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26303-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 372F88161AA
-	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 19:47:29 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 917938161DF
+	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 20:59:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DFF731F21E18
-	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 18:47:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4DEE3282E33
+	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 19:59:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A91BE47F5F;
-	Sun, 17 Dec 2023 18:47:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDE52481AB;
+	Sun, 17 Dec 2023 19:59:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cxiOk5dS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aIy5gh//"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BF1641A84;
-	Sun, 17 Dec 2023 18:47:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DB3E4C433C7;
-	Sun, 17 Dec 2023 18:47:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE3E5481A0;
+	Sun, 17 Dec 2023 19:59:33 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D9B6DC433C7;
+	Sun, 17 Dec 2023 19:59:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1702838846;
-	bh=yP6evj5zceY7Ye61hXwY7pu/5SYa4vhY2oqK5+w0LMA=;
+	s=k20201202; t=1702843173;
+	bh=qy8668IHMiBnsf/vjnuSRDLSJJimOnnJOAjf1zI6zZU=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=cxiOk5dS6asXALo/hODL2as9vhZ9Iupkw0t0yZEVcLU1hdupnMg+BiYd3PlMZZLFf
-	 A6KQfP/FF4EDJKLcaRH9lWOiGdKCF3ApY6xW/rRi5uCE6bqpxNX4NwaFCmRxZ04C5/
-	 9ve7p9JX0EezEm0gA4Sq7dpEUm//B7NiROwu55oZZDhvfVSI6AaxWczUIHf46Aw48/
-	 JlNWLIbnTirCOiFlsxjRj2iwBibp97zgjgJWCzmKBcrrJNYR7HvMyvBneV4Q1cOmx3
-	 TcrTrPp3REToZgSbcjrpaHAkUYZ2ektYUweT3KkQ+RzBf46ileYXOZ3IwC5aurWA2V
-	 /CcgaJC7ce1zw==
-From: Jonathan Cameron <jic23@kernel.org>
-To: linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org
-Cc: Rob Herring <robh+dt@kernel.org>,
-	Frank Rowand <frowand.list@gmail.com>,
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>
-Subject: [RFC PATCH 4/4] iio: adc: rcar-gyroadc: use __free(device_node)
-Date: Sun, 17 Dec 2023 18:46:48 +0000
-Message-ID: <20231217184648.185236-5-jic23@kernel.org>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20231217184648.185236-1-jic23@kernel.org>
-References: <20231217184648.185236-1-jic23@kernel.org>
+	b=aIy5gh//oidfPpzTcjRhQCDJfCx6zmRrbV724Eiur2cP8EUsQkW7Nq///EPE009dp
+	 UjRnRepNzhiaigR8itqQn26vSyIsF+UEeC3/nQRVsgY0Y12KEerbx7ENlih9p6UZL0
+	 j35PRwWWs1GpNDhIWLhEGMsuo5K6n0PWdxnGhCW72TK0z/YSnfuVBC0uUuGIWjUMbr
+	 YKtT59SlO7u51i9159IbrEKqj5HrQBX6Uh+4xrFZssSFwhzjKEh9qEsFzbg1DsHlVG
+	 AWMOUsLKhVbDVEUF91cgoaue110Q/pWx5JZSHthdZ+lWU28/3WhCzpkt0AC6q7+A2T
+	 OoVy+pqS+0OrQ==
+From: Bjorn Andersson <andersson@kernel.org>
+To: Andy Gross <agross@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Mathieu Poirier <mathieu.poirier@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	cros-qcom-dts-watchers@chromium.org,
+	Luca Weiss <luca.weiss@fairphone.com>
+Cc: ~postmarketos/upstreaming@lists.sr.ht,
+	phone-devel@vger.kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	=?UTF-8?q?Matti=20Lehtim=C3=A4ki?= <matti.lehtimaki@gmail.com>,
+	linux-arm-msm@vger.kernel.org,
+	linux-remoteproc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: (subset) [PATCH v3 00/11] Remoteprocs (ADSP, CDSP, WPSS) for SC7280
+Date: Sun, 17 Dec 2023 12:03:54 -0800
+Message-ID: <170284338637.3551047.8886362127846527500.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.42.0
+In-Reply-To: <20231208-sc7280-remoteprocs-v3-0-6aa394d33edf@fairphone.com>
+References: <20231208-sc7280-remoteprocs-v3-0-6aa394d33edf@fairphone.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
-From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
 
-Using automated cleanup to replace of_node_put() handling allows for
-a simplfied flow by enabling direct returns on errors.
+On Fri, 08 Dec 2023 16:07:56 +0100, Luca Weiss wrote:
+> This series adds support for the ADSP, CDSP and WPSS remoteprocs found
+> on SC7280. And finally enable them and WiFi on the QCM6490-based
+> Fairphone 5 smartphone.
+> 
+> The first two patches are fixes for the MPSS to fix some dt validation
+> issues. They're included in this series to avoid conflicts with the
+> later patches and keep it simpler.
+> 
+> [...]
 
-Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
----
- drivers/iio/adc/rcar-gyroadc.c | 20 ++++++--------------
- 1 file changed, 6 insertions(+), 14 deletions(-)
+Applied, thanks!
 
-diff --git a/drivers/iio/adc/rcar-gyroadc.c b/drivers/iio/adc/rcar-gyroadc.c
-index d524f2e8e927..9d6227b31724 100644
---- a/drivers/iio/adc/rcar-gyroadc.c
-+++ b/drivers/iio/adc/rcar-gyroadc.c
-@@ -318,7 +318,7 @@ static int rcar_gyroadc_parse_subdevs(struct iio_dev *indio_dev)
- 	struct rcar_gyroadc *priv = iio_priv(indio_dev);
- 	struct device *dev = priv->dev;
- 	struct device_node *np = dev->of_node;
--	struct device_node *child;
-+	struct device_node *child __free(device_node) = NULL;
- 	struct regulator *vref;
- 	unsigned int reg;
- 	unsigned int adcmode = -1, childmode;
-@@ -352,7 +352,7 @@ static int rcar_gyroadc_parse_subdevs(struct iio_dev *indio_dev)
- 			num_channels = ARRAY_SIZE(rcar_gyroadc_iio_channels_3);
- 			break;
- 		default:
--			goto err_e_inval;
-+			return -EINVAL;
- 		}
- 
- 		/*
-@@ -369,7 +369,7 @@ static int rcar_gyroadc_parse_subdevs(struct iio_dev *indio_dev)
- 				dev_err(dev,
- 					"Failed to get child reg property of ADC \"%pOFn\".\n",
- 					child);
--				goto err_of_node_put;
-+				return ret;
- 			}
- 
- 			/* Channel number is too high. */
-@@ -377,7 +377,7 @@ static int rcar_gyroadc_parse_subdevs(struct iio_dev *indio_dev)
- 				dev_err(dev,
- 					"Only %i channels supported with %pOFn, but reg = <%i>.\n",
- 					num_channels, child, reg);
--				goto err_e_inval;
-+				return -EINVAL;
- 			}
- 		}
- 
-@@ -386,7 +386,7 @@ static int rcar_gyroadc_parse_subdevs(struct iio_dev *indio_dev)
- 			dev_err(dev,
- 				"Channel %i uses different ADC mode than the rest.\n",
- 				reg);
--			goto err_e_inval;
-+			return -EINVAL;
- 		}
- 
- 		/* Channel is valid, grab the regulator. */
-@@ -396,8 +396,7 @@ static int rcar_gyroadc_parse_subdevs(struct iio_dev *indio_dev)
- 		if (IS_ERR(vref)) {
- 			dev_dbg(dev, "Channel %i 'vref' supply not connected.\n",
- 				reg);
--			ret = PTR_ERR(vref);
--			goto err_of_node_put;
-+			return PTR_ERR(vref);
- 		}
- 
- 		priv->vref[reg] = vref;
-@@ -422,7 +421,6 @@ static int rcar_gyroadc_parse_subdevs(struct iio_dev *indio_dev)
- 		 * we can stop parsing here.
- 		 */
- 		if (childmode == RCAR_GYROADC_MODE_SELECT_1_MB88101A) {
--			of_node_put(child);
- 			break;
- 		}
- 	}
-@@ -433,12 +431,6 @@ static int rcar_gyroadc_parse_subdevs(struct iio_dev *indio_dev)
- 	}
- 
- 	return 0;
--
--err_e_inval:
--	ret = -EINVAL;
--err_of_node_put:
--	of_node_put(child);
--	return ret;
- }
- 
- static void rcar_gyroadc_deinit_supplies(struct iio_dev *indio_dev)
+[01/11] dt-bindings: remoteproc: qcom: sc7180-pas: Fix SC7280 MPSS PD-names
+        commit: 9d598fab9731055638c6e9333c4f21aa0d174a48
+[05/11] dt-bindings: remoteproc: qcom: sc7180-pas: Add SC7280 compatibles
+        commit: 11eff1020440060c53d2261531432927c9fb4ee3
+[06/11] remoteproc: qcom_q6v5_pas: Add SC7280 ADSP, CDSP & WPSS
+        commit: 300ed425dfa99f6926299ec196a1eedf05f47b21
+
+Best regards,
 -- 
-2.43.0
-
+Bjorn Andersson <andersson@kernel.org>
 
