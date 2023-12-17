@@ -1,100 +1,113 @@
-Return-Path: <devicetree+bounces-26219-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26220-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5865E815EFD
-	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 13:26:38 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB9BF815F1F
+	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 14:02:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0E6141F2117F
-	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 12:26:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 98324282D42
+	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 13:02:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C48732C7A;
-	Sun, 17 Dec 2023 12:26:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA38A42AB8;
+	Sun, 17 Dec 2023 13:02:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="g0nYcEbQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hIP8vS81"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5023B32C6C;
-	Sun, 17 Dec 2023 12:26:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B63F1C433C7;
-	Sun, 17 Dec 2023 12:26:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A233C43147;
+	Sun, 17 Dec 2023 13:02:27 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B6A4DC433C7;
+	Sun, 17 Dec 2023 13:02:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1702815992;
-	bh=bMMSBOiuMZ0m56U4tRIOcLqQcXOJl6kzjOXKm4Kj58Q=;
+	s=k20201202; t=1702818147;
+	bh=totc3bhdIJhST4jH5HrKG/pFIPp32//1T4FxcfKMPPg=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=g0nYcEbQtOtl3KPfOvTcx+B7FhNLdPnpwJtkOB2OJbZCpRWi8OAhy5a89Z+ruKM5h
-	 QdupHmKWrGqWUQ3i4BBoKDvplk9ds0Sin3QX1De4naYFuPZTXSV2vGODK1jwKJLebI
-	 0gL7ae/7fq0lMJBcRuCxlqq0qnT9+rMTsBSd2vZG7PgERWbNPCcKbgjBeFwij4/I52
-	 Iuw7C5jXOb+zQbsjBEr0C4HOjEyrvwvIXl+XFtdXCfNoR2zHH7T5cbNv96ZJBovouS
-	 juS+y/fg81cWV/RRrQXecm9PTMrxSnp+2uvQoK4ETo2epZLXM1lhmSxSa+z3VYuoju
-	 U/oFlCOb4TzLg==
-Date: Sun, 17 Dec 2023 12:26:27 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
-Cc: a.zummo@towertech.it, alexandre.belloni@bootlin.com, robh+dt@kernel.org,
+	b=hIP8vS81QN8xQGOQeCV0N/GyEHaBWKyERYOmoJe64KTzsjv1E+PpSRvJPJ4/8mrNt
+	 qime86vnW6dQyV6RtIgscW3NhC6hgpEeUiriJxWnBy9zj9SoPso9BNuoLdcCWSSp9C
+	 VzqKYs29YIuknddmfyTfKVIfnvbNLAFdanhnD4Q9Rg8nfvy3D5enzAwBg3PXKixndO
+	 omRCnEfR1cbXWLcxLC+JMvYzD+I1YAq6rtQooiiOSRXgSJf4nerbTpZu2d+dqV53bH
+	 tRdFi+O127uMshEDgLW5hMAXgq9wk1EWVCltY4M5tYNtrAoUm3oKssGpdWqgEOxWWk
+	 2lqQcCTlwC3NQ==
+Date: Sun, 17 Dec 2023 13:02:21 +0000
+From: Simon Horman <horms@kernel.org>
+To: Luo Jie <quic_luoj@quicinc.com>
+Cc: andrew@lunn.ch, davem@davemloft.net, edumazet@google.com,
+	kuba@kernel.org, pabeni@redhat.com, robh+dt@kernel.org,
 	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	chao.wei@sophgo.com, unicorn_wang@outlook.com,
-	paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
-	linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, dlan@gentoo.org
-Subject: Re: [PATCH v2 1/3] dt-bindings: rtc: sophgo: add RTC support for
- Sophgo CV1800 series SoC
-Message-ID: <20231217-wrist-flakily-db9974d8b515@spud>
-References: <20231217110952.78784-1-qiujingbao.dlmu@gmail.com>
- <20231217110952.78784-2-qiujingbao.dlmu@gmail.com>
+	hkallweit1@gmail.com, linux@armlinux.org.uk, corbet@lwn.net,
+	p.zabel@pengutronix.de, f.fainelli@gmail.com,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
+Subject: Re: [PATCH v8 13/14] net: phy: at803x: configure qca8084 work mode
+Message-ID: <20231217130221.GZ6288@kernel.org>
+References: <20231215074005.26976-1-quic_luoj@quicinc.com>
+ <20231215074005.26976-14-quic_luoj@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="OdLsfqhVywJgxuvx"
-Content-Disposition: inline
-In-Reply-To: <20231217110952.78784-2-qiujingbao.dlmu@gmail.com>
-
-
---OdLsfqhVywJgxuvx
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+In-Reply-To: <20231215074005.26976-14-quic_luoj@quicinc.com>
 
-On Sun, Dec 17, 2023 at 07:09:50PM +0800, Jingbao Qiu wrote:
+On Fri, Dec 15, 2023 at 03:40:03PM +0800, Luo Jie wrote:
 
-> +  reg:
-> +    items:
-> +      - description: data register
-> +      - description: control register
+...
 
-> +    rtc@5025000{
-> +      compatible = "sophgo,cv1800-rtc";
-> +      reg = <0x5025000 0x1000>, <0x5026000 0x1000>;
+> @@ -1038,6 +1045,46 @@ static int qca8084_common_clock_init(struct phy_device *phydev)
+>  	return clk_prepare_enable(priv->clk[MDIO_MASTER_AHB_CLK]);
+>  }
+>  
+> +static int qca8084_parse_and_set_work_mode(struct phy_device *phydev)
+> +{
+> +	struct device_node *node;
+> +	struct at803x_priv *priv;
+> +	u32 value, work_mode;
+> +	int ret;
+> +
+> +	node = phydev->mdio.dev.of_node;
+> +	priv = phydev->priv;
 
-Why are these two regions rather than just one, given they are located
-next to one another?
-Are they separate on one of the other devices in this family?
+Hi Luo Jie,
 
-Thanks,
-Conor.
+a minor nit from my side: priv is set but otherwise unused in this function.
 
-> +      clocks = <&osc>;
-> +      interrupts = <17 IRQ_TYPE_LEVEL_HIGH>;
-> +    };
+> +
+> +	/* The property "qcom,phy-work-mode" is only defined in one
+> +	 * PHY device tree node.
+> +	 */
+> +	ret = of_property_read_u32(node, "qcom,phy-work-mode", &value);
+> +	if (ret)
+> +		return ret == -EINVAL ? 0 : ret;
+> +
+> +	switch (value) {
+> +	case 0:
+> +		work_mode = QCA8084_WORK_MODE_QXGMII;
+> +		break;
+> +	case 1:
+> +		work_mode = QCA8084_WORK_MODE_QXGMII_PORT4_SGMII;
+> +		break;
+> +	case 2:
+> +		work_mode = QCA8084_WORK_MODE_SWITCH;
+> +		break;
+> +	case 3:
+> +		work_mode = QCA8084_WORK_MODE_SWITCH_PORT4_SGMII;
+> +		break;
+> +	default:
+> +		phydev_err(phydev, "invalid qcom,phy-work-mode %d\n", value);
+> +		return -EINVAL;
+> +	}
+> +
+> +	return qca8084_mii_modify(phydev, QCA8084_WORK_MODE_CFG,
+> +				  QCA8084_WORK_MODE_MASK,
+> +				  FIELD_PREP(QCA8084_WORK_MODE_MASK, work_mode));
+> +}
 
-
---OdLsfqhVywJgxuvx
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZX7o8wAKCRB4tDGHoIJi
-0haNAPsFYNZmM6Mo/NYopCKYD2j3+5K3GyDMMa1C3a6jTdlnKgEA6U5Z2UkuWvx0
-JngeX5rzO1tn3afS6vFy8kGdWM55vAg=
-=YuR3
------END PGP SIGNATURE-----
-
---OdLsfqhVywJgxuvx--
+...
 
