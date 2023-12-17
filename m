@@ -1,117 +1,212 @@
-Return-Path: <devicetree+bounces-26258-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26259-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 614A2816047
-	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 16:54:31 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F75A8160A6
+	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 18:07:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EFDB81F229B9
-	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 15:54:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A2D7A1C20F76
+	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 17:07:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8915244C71;
-	Sun, 17 Dec 2023 15:54:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48CB445BFE;
+	Sun, 17 Dec 2023 17:07:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QjkEMszE"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="bb29152h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com [209.85.214.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6377645966;
-	Sun, 17 Dec 2023 15:54:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EEBBBC433C8;
-	Sun, 17 Dec 2023 15:54:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1702828466;
-	bh=tDPWvMV6+ju7SK93SQJWeIdlKhsA3hrB9iT5eFL+y9I=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=QjkEMszE9913b+/17syBSIP02B3s8+kgf2gHXqV9KR6Gm9xHz3YWqsAhcP7NP+iay
-	 VbGv9u8LHefcRk4ANJ1BqFgCjvEy9h54Eq/pXqj5XozOQRC4pnYO9FdmBlP9mUuOwk
-	 v5WTPC4CTzW71Tw0mXZear6WyYBdgEsLgmtLov5oor/qzhhtzDNl5GQZb1SsboNAIO
-	 CAXZXWOdp9ad34Pc233tyn3vFttjYuBWbL+2wQ48LIKZ6zm3rCIit5+XlXIIACMP7t
-	 scBTNr4y6edfU3CI9ZfSoHBacHHiqrQpfuonEAhG6QEhu6/JtW8xE4P7dhjUjrii0K
-	 0ysl848agY0tw==
-Date: Sun, 17 Dec 2023 15:54:09 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Marcelo Schmitt <marcelo.schmitt@analog.com>
-Cc: <apw@canonical.com>, <joe@perches.com>, <dwaipayanray1@gmail.com>,
- <lukas.bulwahn@gmail.com>, <paul.cercueil@analog.com>,
- <Michael.Hennerich@analog.com>, <lars@metafoo.de>, <robh+dt@kernel.org>,
- <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
- <dan.carpenter@linaro.org>, <dlechner@baylibre.com>,
- <marcelo.schmitt1@gmail.com>, <linux-iio@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v4 15/15] iio: adc: ad7091r: Allow users to configure
- device events
-Message-ID: <20231217155409.4da6b795@jic23-huawei>
-In-Reply-To: <24a9f1bb721e66df65e36797b0c3fd2ca1f95227.1702746240.git.marcelo.schmitt1@gmail.com>
-References: <cover.1702746240.git.marcelo.schmitt1@gmail.com>
-	<24a9f1bb721e66df65e36797b0c3fd2ca1f95227.1702746240.git.marcelo.schmitt1@gmail.com>
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.38; x86_64-pc-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBB5745954
+	for <devicetree@vger.kernel.org>; Sun, 17 Dec 2023 17:07:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pl1-f179.google.com with SMTP id d9443c01a7336-1d38e2be167so7227655ad.3
+        for <devicetree@vger.kernel.org>; Sun, 17 Dec 2023 09:07:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1702832827; x=1703437627; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=/K03hCZQCPV3Olg5sBkXZ+1FaJknZTPPokPGS7pirfk=;
+        b=bb29152hWtc48LdPz4HZM8D1CtyuJ/6ne23dxAFZaM/54eCfzm3043kyGTOiJy3cFv
+         RhexgBvV3g96hJQGy0yaSFK1An0VDDHoCpCgUDnoQ6Oj5ZDXg6ywWqEUeZf1n+4GFCbc
+         RiVE9yMcxxpn1U4k5W1TAfXrj3wCT9uEJosraMOFq6Gztwq1mk6ClpqgfjkGlGekFNtr
+         oWqco0FGxwlvaIT7H0e+TPTnc7RjWbFe5moslWEGMFLIc8kxqHQ2DmmO+CYKbp3DxzuQ
+         btdXBmjgGwdAn7fFtaL2PUqj7O3tk3LXyOzFQGUtvE0I/nvjUc/MKjXH3UyvgYTivb+s
+         bC2Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702832827; x=1703437627;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=/K03hCZQCPV3Olg5sBkXZ+1FaJknZTPPokPGS7pirfk=;
+        b=rupnEj+Rc2nKxY9Gb9jc+oYVW83RoiLCWhphxqsqNuz0wXiRNT1iRjA8sdF7Mw4LQK
+         ejZGq8dmbiudnCsZceUYOvVafFZitV3e4zYFelTgwm5tgiT3KfShU6Y+LjVvERCMUm/1
+         EKG5aUgkNHi+Fz9cdIqHnlPB48XfKhFvSaMWjdUspUeLKxIInAycsdGQ3N0EBd014su/
+         1jltFlXUHa5Y54VrzccyiPZtp9pDUDD9JLI/M6acDPzy8wdY2tOmX94hR0VpNfbTxvOX
+         zgQkgu/Uwis1TyjALJdI1XbNXodQjWUHKm6sdEbB5iE03O1VVriAUEzihkGErOsKmyfn
+         bA/Q==
+X-Gm-Message-State: AOJu0YyBPJJfoFYK4EWlS1BfVUZpQ0OvseBFoedoAH7U4/wrfk8Etu/E
+	c35qvCHJ+QtJO1Zm1ZfbaNpz
+X-Google-Smtp-Source: AGHT+IF87cHE/NtQnAKvY7hzR4Yb1+nieura/Ja8Di49a65zvK6JCuAZ11jhxfgrEwKDGnHgmwq5ug==
+X-Received: by 2002:a17:903:11c7:b0:1d3:4783:cfc with SMTP id q7-20020a17090311c700b001d347830cfcmr5578132plh.93.1702832827014;
+        Sun, 17 Dec 2023 09:07:07 -0800 (PST)
+Received: from thinkpad ([103.28.246.178])
+        by smtp.gmail.com with ESMTPSA id i11-20020a170902c94b00b001d359db2370sm7463049pla.152.2023.12.17.09.06.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 17 Dec 2023 09:07:06 -0800 (PST)
+Date: Sun, 17 Dec 2023 22:36:55 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: krzysztof.kozlowski@linaro.org, bhelgaas@google.com,
+	conor+dt@kernel.org, devicetree@vger.kernel.org, festevam@gmail.com,
+	helgaas@kernel.org, hongxing.zhu@nxp.com, imx@lists.linux.dev,
+	kernel@pengutronix.de, krzysztof.kozlowski+dt@linaro.org,
+	kw@linux.com, l.stach@pengutronix.de,
+	linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
+	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+	lpieralisi@kernel.org, robh@kernel.org, s.hauer@pengutronix.de,
+	shawnguo@kernel.org
+Subject: Re: [PATCH v4 01/15] PCI: imx6: Simplify clock handling by using
+ bulk_clk_*() function
+Message-ID: <20231217170655.GC6748@thinkpad>
+References: <20231217051210.754832-1-Frank.Li@nxp.com>
+ <20231217051210.754832-2-Frank.Li@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20231217051210.754832-2-Frank.Li@nxp.com>
 
-On Sat, 16 Dec 2023 14:51:50 -0300
-Marcelo Schmitt <marcelo.schmitt@analog.com> wrote:
-
-> Implement event configuration callbacks allowing users to read/write
-> event thresholds and enable/disable event generation.
+On Sun, Dec 17, 2023 at 12:11:56AM -0500, Frank Li wrote:
+> Refactors the clock handling logic in the imx6 PCI driver by adding
+> clk_names[] define in drvdata . Simplifies the code and makes it more
+> maintainable, as future additions of SOC support will only require
+> straightforward changes.
 > 
-> Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
+
+Commit description should be in imperative mood as per
+Documentation/process/submitting-patches.rst:
+
+"Describe your changes in imperative mood, e.g. "make xyzzy do frotz"
+instead of "[This patch] makes xyzzy do frotz" or "[I] changed xyzzy
+to do frotz", as if you are giving orders to the codebase to change
+its behaviour."
+
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 > ---
-> This is from a review suggestion David made on v3 [1].
 > 
-> Is this the case for a Suggested-by tag?
+> Notes:
+>     Change from v3 to v4
+>     - using clk_bulk_*() API
+>     Change from v1 to v3
+>     - none
 > 
-> [1]: https://lore.kernel.org/linux-iio/CAMknhBFPbAqp4-AQdmbp+VRW-Ksk1PxaLCG+3n=Zk4gyStqhgw@mail.gmail.com/#t
+>  drivers/pci/controller/dwc/pci-imx6.c | 128 ++++++++------------------
+>  1 file changed, 38 insertions(+), 90 deletions(-)
 > 
->  drivers/iio/adc/ad7091r-base.c | 117 +++++++++++++++++++++++++++++++--
->  1 file changed, 113 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/iio/adc/ad7091r-base.c b/drivers/iio/adc/ad7091r-base.c
-> index 57355ca157a1..64e8baeff258 100644
-> --- a/drivers/iio/adc/ad7091r-base.c
-> +++ b/drivers/iio/adc/ad7091r-base.c
-> @@ -20,19 +20,18 @@ const struct iio_event_spec ad7091r_events[] = {
->  	{
->  		.type = IIO_EV_TYPE_THRESH,
->  		.dir = IIO_EV_DIR_RISING,
-> -		.mask_separate = BIT(IIO_EV_INFO_VALUE) |
-> -				 BIT(IIO_EV_INFO_ENABLE),
-> +		.mask_separate = BIT(IIO_EV_INFO_VALUE),
+> diff --git a/drivers/pci/controller/dwc/pci-imx6.c b/drivers/pci/controller/dwc/pci-imx6.c
+> index 74703362aeec7..2086214345e9a 100644
+> --- a/drivers/pci/controller/dwc/pci-imx6.c
+> +++ b/drivers/pci/controller/dwc/pci-imx6.c
 
-This is an ABI change.  So would need a really strong reason to make it...
-mind you - it seems like this has been broken until now anyway so this change
-may be fine.
+[...]
 
+>  static void imx6_pcie_assert_core_reset(struct imx6_pcie *imx6_pcie)
+> @@ -1305,32 +1265,19 @@ static int imx6_pcie_probe(struct platform_device *pdev)
+>  		return imx6_pcie->reset_gpio;
+>  	}
+>  
+> -	/* Fetch clocks */
+> -	imx6_pcie->pcie_bus = devm_clk_get(dev, "pcie_bus");
+> -	if (IS_ERR(imx6_pcie->pcie_bus))
+> -		return dev_err_probe(dev, PTR_ERR(imx6_pcie->pcie_bus),
+> -				     "pcie_bus clock source missing or invalid\n");
+> +	while (imx6_pcie->drvdata->clk_names[imx6_pcie->clks_cnt]) {
+> +		int i = imx6_pcie->clks_cnt;
+>  
+> -	imx6_pcie->pcie = devm_clk_get(dev, "pcie");
+> -	if (IS_ERR(imx6_pcie->pcie))
+> -		return dev_err_probe(dev, PTR_ERR(imx6_pcie->pcie),
+> -				     "pcie clock source missing or invalid\n");
+> +		imx6_pcie->clks[i].id = imx6_pcie->drvdata->clk_names[i];
+> +		imx6_pcie->clks_cnt++;
 
->  	},
->  	{
->  		.type = IIO_EV_TYPE_THRESH,
->  		.dir = IIO_EV_DIR_FALLING,
-> -		.mask_separate = BIT(IIO_EV_INFO_VALUE) |
-> -				 BIT(IIO_EV_INFO_ENABLE),
-> +		.mask_separate = BIT(IIO_EV_INFO_VALUE),
->  	},
->  	{
->  		.type = IIO_EV_TYPE_THRESH,
->  		.dir = IIO_EV_DIR_EITHER,
->  		.mask_separate = BIT(IIO_EV_INFO_HYSTERESIS),
-> +		.mask_shared_by_all = BIT(IIO_EV_INFO_ENABLE),
-It's relatively unusual that you can't separate the two event directions with careful
-control of the thresholds.  So I think you can implement the existing ABI by
-just setting the thresholds to the either 0 or 2^12 - 1 as appropriate.
-The docs seem to say it must exceed the value, or fall below the min so these values
-should ensure it can't do either.
+You can just initialize clks_cnt in drv_data with sizeof() of clk_names.
 
-You can then enable the event generate if one of them is set.
+> +	}
+> +
+> +	/* Fetch clocks */
+> +	ret = devm_clk_bulk_get(dev, imx6_pcie->clks_cnt, imx6_pcie->clks);
+> +	if (ret)
+> +		return ret;
+>  
+>  	switch (imx6_pcie->drvdata->variant) {
+> -	case IMX6SX:
+> -		imx6_pcie->pcie_inbound_axi = devm_clk_get(dev,
+> -							   "pcie_inbound_axi");
+> -		if (IS_ERR(imx6_pcie->pcie_inbound_axi))
+> -			return dev_err_probe(dev, PTR_ERR(imx6_pcie->pcie_inbound_axi),
+> -					     "pcie_inbound_axi clock missing or invalid\n");
+> -		break;
+> -	case IMX8MQ:
+> -	case IMX8MQ_EP:
+> -		imx6_pcie->pcie_aux = devm_clk_get(dev, "pcie_aux");
+> -		if (IS_ERR(imx6_pcie->pcie_aux))
+> -			return dev_err_probe(dev, PTR_ERR(imx6_pcie->pcie_aux),
+> -					     "pcie_aux clock source missing or invalid\n");
+> -		fallthrough;
+>  	case IMX7D:
+>  		if (dbi_base->start == IMX8MQ_PCIE2_BASE_ADDR)
+>  			imx6_pcie->controller_id = 1;
+> @@ -1353,10 +1300,6 @@ static int imx6_pcie_probe(struct platform_device *pdev)
+>  	case IMX8MM_EP:
+>  	case IMX8MP:
+>  	case IMX8MP_EP:
+> -		imx6_pcie->pcie_aux = devm_clk_get(dev, "pcie_aux");
+> -		if (IS_ERR(imx6_pcie->pcie_aux))
+> -			return dev_err_probe(dev, PTR_ERR(imx6_pcie->pcie_aux),
+> -					     "pcie_aux clock source missing or invalid\n");
+>  		imx6_pcie->apps_reset = devm_reset_control_get_exclusive(dev,
+>  									 "apps");
+>  		if (IS_ERR(imx6_pcie->apps_reset))
+> @@ -1372,14 +1315,6 @@ static int imx6_pcie_probe(struct platform_device *pdev)
+>  	default:
+>  		break;
+>  	}
+> -	/* Don't fetch the pcie_phy clock, if it has abstract PHY driver */
+> -	if (imx6_pcie->phy == NULL) {
+> -		imx6_pcie->pcie_phy = devm_clk_get(dev, "pcie_phy");
+> -		if (IS_ERR(imx6_pcie->pcie_phy))
+> -			return dev_err_probe(dev, PTR_ERR(imx6_pcie->pcie_phy),
+> -					     "pcie_phy clock source missing or invalid\n");
+> -	}
+> -
+>  
+>  	/* Grab turnoff reset */
+>  	imx6_pcie->turnoff_reset = devm_reset_control_get_optional_exclusive(dev, "turnoff");
+> @@ -1470,6 +1405,9 @@ static void imx6_pcie_shutdown(struct platform_device *pdev)
+>  	imx6_pcie_assert_core_reset(imx6_pcie);
+>  }
+>  
+> +#define IMX6_CLKS_COMMON "pcie_bus", "pcie"
+> +#define IMX6_CLKS_NO_PHYDRV IMX6_CLKS_COMMON, "pcie_phy"
+> +
 
+Just use the clock names directly instead of definitions. It makes the code more
+readable.
 
+Rest LGTM!
+
+- Mani
+
+-- 
+மணிவண்ணன் சதாசிவம்
 
