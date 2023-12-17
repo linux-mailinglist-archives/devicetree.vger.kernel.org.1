@@ -1,98 +1,117 @@
-Return-Path: <devicetree+bounces-26306-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26307-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADE3C816208
-	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 21:25:00 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08106816227
+	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 21:47:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DD97A1C20BBA
-	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 20:24:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8675D282EB2
+	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 20:47:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7291348CF2;
-	Sun, 17 Dec 2023 20:24:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5801D47A51;
+	Sun, 17 Dec 2023 20:47:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tE8XIjpi"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="U9tTIX1S"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53D8D48CD7;
-	Sun, 17 Dec 2023 20:24:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1F8B7C433BB;
-	Sun, 17 Dec 2023 20:24:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 342A4481B9;
+	Sun, 17 Dec 2023 20:46:59 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A2B55C433C7;
+	Sun, 17 Dec 2023 20:46:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1702844671;
-	bh=+DX0N7UdIUqjXqpFVCPOLF099qME+OXVv4kkpQPaS9w=;
-	h=From:To:Subject:Date:In-Reply-To:References:From;
-	b=tE8XIjpiaHI1UXKM4RRe8VsYU03DL9s8UV3sNs3LwmPrhwtzOb6o83hzDr2bocAHu
-	 cX/mSKqrtHPzv0Jgw1Iz26EgZs4o62eGBjRsqeY3+/+1bsvE+kUn2POrrOG9eOKMyw
-	 WdabEXIbz0CnHSd2/hxhwqqSMmSotRnlHHal9nGkr7Zdtu4lscOKUN+LaxVfe+jazX
-	 VqdwGckSxuOsJFBtH5nvaAAHwMnUKOGbeT57Ei7yX+H1AlSnZ0rKzAFDo9n5vDX41i
-	 leiFIl/UCSGqybpds17i1hMOt32cAlJjXoWR9bR968AKmpYyME3pXfTiWjglHRqhRF
-	 tyUNqR/rslG4Q==
-From: Bjorn Andersson <andersson@kernel.org>
-To: Rob Clark <robdclark@gmail.com>,
-	Abhinav Kumar <quic_abhinavk@quicinc.com>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	Sean Paul <sean@poorly.run>,
-	Marijn Suijten <marijn.suijten@somainline.org>,
-	David Airlie <airlied@gmail.com>,
-	Daniel Vetter <daniel@ffwll.ch>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Andy Gross <agross@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Robert Foss <rfoss@kernel.org>,
-	Kuogee Hsieh <quic_khsieh@quicinc.com>,
-	Vinod Polimera <quic_vpolimer@quicinc.com>,
-	Ryan McCann <quic_rmccann@quicinc.com>,
-	Jessica Zhang <quic_jesszhan@quicinc.com>,
-	Liu Shixin <liushixin2@huawei.com>,
-	Krishna Manikandan <quic_mkrishn@quicinc.com>,
-	linux-arm-msm@vger.kernel.org,
-	dri-devel@lists.freedesktop.org,
-	freedreno@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	Richard Acayan <mailingradian@gmail.com>
-Subject: Re: (subset) [PATCH v4 0/6] SDM670 display subsystem support
-Date: Sun, 17 Dec 2023 14:24:25 -0600
-Message-ID: <170284466197.74678.17866515484062477720.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20231017021805.1083350-9-mailingradian@gmail.com>
-References: <20231017021805.1083350-9-mailingradian@gmail.com>
+	s=k20201202; t=1702846019;
+	bh=QpN+XwZLK0DlQcc572CwgNkacAX6mTe+aD5d84FlZzE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=U9tTIX1SpB3+Fg3vJqWeVjipaX+Aaimo5Tgibsu4LNULeKvzOI/Sqr0wuJUPSDIju
+	 X8QBePWbnmnuTAKevNw7/lxSWwbWueYZ1dh7DCyx57EEno4jlgKvdWC6KIDpzZP2ae
+	 UUdAdj5Zn3VgMlbIHwVaA61AzT72vbS9UGEfAkpy+5FCyq/TWKPHZnqc9X42ZMWLQ8
+	 SRoA0LMr+oCfZxtQ+A24AtLju6mO/eFC6/kn9cTH2KuQLRunIsu97/CTchgxks7i5t
+	 GawizzV6oE5bI1LIjq0AOVSMIOJ4elfQGYMAmznSN/5AKpjL8ks2y7JkBXb5NmYWt/
+	 PgcyFFRxpkHgg==
+Date: Sun, 17 Dec 2023 20:46:54 +0000
+From: Conor Dooley <conor@kernel.org>
+To: jingbao qiu <qiujingbao.dlmu@gmail.com>
+Cc: a.zummo@towertech.it, alexandre.belloni@bootlin.com, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	chao.wei@sophgo.com, unicorn_wang@outlook.com,
+	paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
+	linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, dlan@gentoo.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: rtc: sophgo: add RTC support for
+ Sophgo CV1800 series SoC
+Message-ID: <20231217-swept-uncorrupt-92ac058dba4b@spud>
+References: <20231217110952.78784-1-qiujingbao.dlmu@gmail.com>
+ <20231217110952.78784-2-qiujingbao.dlmu@gmail.com>
+ <20231217-wrist-flakily-db9974d8b515@spud>
+ <CAJRtX8TQ02swRqzNfPHPrcS-MU=pBN_atjV2PFsAyJeNBF8kgA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="XvhKEa/n8Srf2qdm"
+Content-Disposition: inline
+In-Reply-To: <CAJRtX8TQ02swRqzNfPHPrcS-MU=pBN_atjV2PFsAyJeNBF8kgA@mail.gmail.com>
 
 
-On Mon, 16 Oct 2023 22:18:07 -0400, Richard Acayan wrote:
-> Changes since v3 (20231009233337.485054-8-mailingradian@gmail.com):
->  - move status properties down (review tag retained) (6/6)
->  - accumulate review tag (3/6)
-> 
-> Changes since v2 (20231003012119.857198-9-mailingradian@gmail.com):
->  - rebase on series and reference generic sblk definitions (5/6)
->  - add interconnects properties in example (3/6)
->  - remove phy-names properties from dtsi (6/6)
->  - accumulate review tags (4/6, 6/6)
-> 
-> [...]
+--XvhKEa/n8Srf2qdm
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Applied, thanks!
+On Sun, Dec 17, 2023 at 09:16:39PM +0800, jingbao qiu wrote:
+> On Sun, Dec 17, 2023 at 8:26=E2=80=AFPM Conor Dooley <conor@kernel.org> w=
+rote:
+> >
+> > On Sun, Dec 17, 2023 at 07:09:50PM +0800, Jingbao Qiu wrote:
+> >
+> > > +  reg:
+> > > +    items:
+> > > +      - description: data register
+> > > +      - description: control register
+> >
+> > > +    rtc@5025000{
+> > > +      compatible =3D "sophgo,cv1800-rtc";
+> > > +      reg =3D <0x5025000 0x1000>, <0x5026000 0x1000>;
+> >
+> > Why are these two regions rather than just one, given they are located
+> > next to one another?
+> > Are they separate on one of the other devices in this family?
+> >
+> > Thanks,
+> > Conor.
+> >
+>=20
+> I think there are two reasons, the first one is to distinguish
+> different logical ,
+> REG_ CTRL (base on 0x5025000) controls clock calibration, sleep,and other
+> functions, RTC_ CORE (base on 0x5026000) has basic RTC functionality,
+> The second is the maximum address used by RTC_CTRL (base on 0x5025000)
+> is 0x0ac,which is much smaller than 0x1000. Therefore, the datasheet divi=
+des
+> it into two parts for introduction, and I also divide it into two
+> parts based on this
+> introduction.So do you suggest that I merge them together=EF=BC=9F
 
-[6/6] arm64: dts: qcom: sdm670: add display subsystem
-      commit: 5f8ba4f28ddb432c8a9720c337f9047e38fa7e36
+If all of the cv1800 series devices have them sequentially, I would just
+make them one region.
 
-Best regards,
--- 
-Bjorn Andersson <andersson@kernel.org>
+--XvhKEa/n8Srf2qdm
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZX9eOgAKCRB4tDGHoIJi
+0nBGAP9CpE18F0tCZ5ZZL8oD+sR4o03Wo2uUJVeIkukXO3/g3AD7BTzHdLoIzYY2
+2ujSTOnAoRjAoYWuVbGf616T8GdjNw4=
+=wA1g
+-----END PGP SIGNATURE-----
+
+--XvhKEa/n8Srf2qdm--
 
