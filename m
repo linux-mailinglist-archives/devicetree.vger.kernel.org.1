@@ -1,102 +1,80 @@
-Return-Path: <devicetree+bounces-26237-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26240-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id F083F815FA7
-	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 15:24:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B637F815FB2
+	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 15:29:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2EF5A1C20DFB
-	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 14:24:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E4D631C214D0
+	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 14:29:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D2F0446DF;
-	Sun, 17 Dec 2023 14:24:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C62444C6C;
+	Sun, 17 Dec 2023 14:29:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="X+4WDL0m"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tEE90Lne"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6320A32C6C;
-	Sun, 17 Dec 2023 14:24:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AB586C433C8;
-	Sun, 17 Dec 2023 14:24:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42C27446D3;
+	Sun, 17 Dec 2023 14:29:51 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D14ECC433C8;
+	Sun, 17 Dec 2023 14:29:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1702823084;
-	bh=Z8/lwRis5tILr7LjpCd1oDkaNzTjP6igSnrvdygyoN8=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=X+4WDL0mVWY5IuWWuvqbHt3WQlVMEx8pkRX5YKOqwpdbH9Yps8t14V/O+PSGwSNBW
-	 v7jQS6eTONrPZZ602wTjegg2II1WxiOzUD7ItOhVw2W1hTZn1pXPw6HYZa1bbHeLZZ
-	 5+gEUr94KBW1u/mwA27SRxmjivXgES9OE/5gHnjc7s0imKj4Vpo/yDxepnv4R0Jaj3
-	 ev0sek7uVtGQubfMtIO7hYmVudZhxOrmHPzEkVpJB/4zyUyvILCRd7g/+pfL8Oc/7Q
-	 lqmh0/zGALfn9tCCZ+fQQpTxJp2Hc+m6gjxQtDSSSqCHeUpGP7A1TFd8WfUKCp2EiJ
-	 vYlXNYgCZwwWw==
-Received: (nullmailer pid 876438 invoked by uid 1000);
-	Sun, 17 Dec 2023 14:24:42 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1702823391;
+	bh=1H1tix+lWo7PRIC9NukKzUsFE9MnvTSilpRM7bAhnMg=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=tEE90LnelQAWfxyJmnOzbsKSTycoB8VfXixfekQSuwjBeCFYAV82M0I8slIeh9L44
+	 yv/Qy2H3HhPVidtZSkmE4cjXQkmEkN/NLISwoud2AmfE239dUdQLncBF9SBJnQ+YMi
+	 Fh5KICsf7aammduEeHNyqdPNmgtv+NmVuBQ9pzyR6PUEHBwgqtLFZQHZY6i1mOsDhL
+	 wSgRM4+gs12Mtoc8xJZY//QV4WcnzODBFhHcxzDcHGBYAD1RnoqnnAirexxCr5xuFh
+	 gjr7eKQNY9WvxntIlfPK+Awg10FyFIuvalEeEJtyt6ihEXyuub0pVyWVB9cwvu0uwM
+	 5/8CqEsiRL5uA==
+Date: Sun, 17 Dec 2023 14:29:35 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: David Lechner <dlechner@baylibre.com>
+Cc: linux-iio@vger.kernel.org, linux-spi@vger.kernel.org,
+ devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+ <conor+dt@kernel.org>, Michael Hennerich <michael.hennerich@analog.com>,
+ Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Liam Girdwood
+ <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ linux-kernel@vger.kernel.org, Stefan Popa <stefan.popa@analog.com>
+Subject: Re: [PATCH v3 3/3] iio: adc: ad7380: new driver for AD7380 ADCs
+Message-ID: <20231217142935.56426fba@jic23-huawei>
+In-Reply-To: <20231215-ad7380-mainline-v3-3-7a11ebf642b9@baylibre.com>
+References: <20231215-ad7380-mainline-v3-0-7a11ebf642b9@baylibre.com>
+	<20231215-ad7380-mainline-v3-3-7a11ebf642b9@baylibre.com>
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Rob Herring <robh@kernel.org>
-To: Karel Balej <karelb@gimli.ms.mff.cuni.cz>
-Cc: linux-input@vger.kernel.org, Karel Balej <balejk@matfyz.cz>, Lee Jones <lee@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, phone-devel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, ~postmarketos/upstreaming@lists.sr.ht, Dmitry Torokhov <dmitry.torokhov@gmail.com>, =?utf-8?q?Duje_Mihanovi=C4=87?= <duje.mihanovic@skole.hr>
-In-Reply-To: <20231217131838.7569-2-karelb@gimli.ms.mff.cuni.cz>
-References: <20231217131838.7569-1-karelb@gimli.ms.mff.cuni.cz>
- <20231217131838.7569-2-karelb@gimli.ms.mff.cuni.cz>
-Message-Id: <170282308150.876352.2264944400902507705.robh@kernel.org>
-Subject: Re: [RFC PATCH 1/5] dt-bindings: mfd: add entry for the Marvell
- 88PM88X PMICs
-Date: Sun, 17 Dec 2023 08:24:42 -0600
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
+On Fri, 15 Dec 2023 04:32:04 -0600
+David Lechner <dlechner@baylibre.com> wrote:
 
-On Sun, 17 Dec 2023 14:16:59 +0100, Karel Balej wrote:
-> From: Karel Balej <balejk@matfyz.cz>
+> This adds a new driver for the AD7380 family ADCs.
 > 
-> Marvell 88PM880 and 88PM886 are two similar PMICs with mostly matching
-> register mapping and subdevices such as onkey, regulators or battery and
-> charger. Both seem to come in two revisions which seem to be handled
-> slightly differently in some subdevice drivers.
+> The driver currently implements basic support for the AD7380, AD7381,
+> AD7383, and AD7384 2-channel differential ADCs. Support for additional
+> single-ended and 4-channel chips that use the same register map as well
+> as additional features of the chip will be added in future patches.
 > 
-> Signed-off-by: Karel Balej <balejk@matfyz.cz>
-> ---
->  .../bindings/mfd/marvell,88pm88x.yaml         | 55 +++++++++++++++++++
->  1 file changed, 55 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mfd/marvell,88pm88x.yaml
-> 
+> Co-developed-by: Stefan Popa <stefan.popa@analog.com>
+> Signed-off-by: Stefan Popa <stefan.popa@analog.com>
+> Reviewed-by: Nuno Sa <nuno.sa@analog.com>
+> Signed-off-by: David Lechner <dlechner@baylibre.com>
+LGTM.  Just the Ack from Mark on patch 1 needed now I think
+(unless other reviews come in of course!)
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-Error: Documentation/devicetree/bindings/mfd/marvell,88pm88x.example.dts:30.31-32 syntax error
-FATAL ERROR: Unable to parse input tree
-make[2]: *** [scripts/Makefile.lib:419: Documentation/devicetree/bindings/mfd/marvell,88pm88x.example.dtb] Error 1
-make[2]: *** Waiting for unfinished jobs....
-make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1424: dt_binding_check] Error 2
-make: *** [Makefile:234: __sub-make] Error 2
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20231217131838.7569-2-karelb@gimli.ms.mff.cuni.cz
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+Jonathan
+> +
 
 
