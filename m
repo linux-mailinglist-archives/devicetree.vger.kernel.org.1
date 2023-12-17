@@ -1,132 +1,135 @@
-Return-Path: <devicetree+bounces-26313-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26314-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31B61816245
-	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 22:03:51 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2699981624C
+	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 22:09:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 300211C210F5
-	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 21:03:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B88D3281F81
+	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 21:09:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A1CA481DC;
-	Sun, 17 Dec 2023 21:03:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 197AB481DE;
+	Sun, 17 Dec 2023 21:09:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hvrsPbSD"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="as2+dxmk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6162948CC0;
-	Sun, 17 Dec 2023 21:03:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 61A47C433C7;
-	Sun, 17 Dec 2023 21:03:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1702847023;
-	bh=mCEcMXWBRCUl8ycxVYQtMfuRfaojP7UvcGTxOXhKDaI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=hvrsPbSDBmXRz7fBWAVgf3e4EySM97yOUjYsBwbpgyiOdI9DY8G/gQoVfOAG5b9io
-	 ELWQSRpweiRp25KmFZScZE1R7gu3L4njHUmSeYafmHTHI1hXgkZaaWm+wXueeGyORN
-	 sZLgKSVG117kpnXWB//nwjQTcU5HLd07b5ozYEhy3wzX0cuqZ6M2yicJ+k0XCxRjaU
-	 bYfavnhJ/435XHwjKKNE8uKp5+tbIyQKUqBUcbUdsw3Poed/utfsxAEUQnqJbL1W+U
-	 yBb5EgZjWizSeRZC1XgwZNH1Nz5Hg1OZg9pXcBUMplPIgDrLmtpz+n3p6shg2jcd1L
-	 P3At3ee5NOOhQ==
-Date: Sun, 17 Dec 2023 21:03:36 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Cc: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8610C481D1;
+	Sun, 17 Dec 2023 21:09:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-40c39ef63d9so26553095e9.3;
+        Sun, 17 Dec 2023 13:09:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1702847348; x=1703452148; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=8lQ9koqM5HR+VAaH2z3fBKlko6ZAPGMVyn6jm18Px/Q=;
+        b=as2+dxmk22GakD0mG38ZAn5FglqLQJBxA5N17ew0eMaawA0Mjq0/ecx373dZXsPBJj
+         7cg8Q9xFtMx3GKff1qBrGZ6K7DwwSK2TATnhM+42xGGLp6eaUul4q1gmawmUUfg6BZXr
+         VCfJFG5WEK/MjotYdiFBjilf5KQw6o8+cIYH4gMH+XvutK0L+i+zBVj8L6/k2zf/xdvK
+         c9jXO87v/6NcFAjZ16+HW97BbEkFtL+br3OemXLEwIUEZWjaWeQrxiP4GVG704E4/JJE
+         Xv5ypn6zBE79tEmXI/ntVy4ZRWmowTY7fmO2yFxKwDE93r0bP1iTp1d5svVag/Jijrmi
+         yVKw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702847348; x=1703452148;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=8lQ9koqM5HR+VAaH2z3fBKlko6ZAPGMVyn6jm18Px/Q=;
+        b=iCNVLPr8W5hhNFXGLE6UUaOpPbHjWfnGFHPjz97bJDmT1YSOO+pra0L+5LQ7NGsw7c
+         yE+QP68BDdnVXgPkVKba7EC09Ftf0P9feutpxSmeZRh6ohI6O9mjTfH5Lgbf35V8Ii7+
+         rQ5ejfhLFPg8pxqWVVYIIOOqE8LoRN/L4/cLldj1tL6YKV6SbGJriL2H9gcWGCwOUQy7
+         Vg4iPUhdjrG8nDc8AjDlXYsxjUWjW2OY53cecWcZiMEMksjwUBW25VW16miC5kFdjT4Z
+         hy4PMLCduF1DQDxax+erQM8tgwvWpUEOqwGiqDXwOAw7dQrWOq3DtYOscbMWOW8Mhvad
+         iPJQ==
+X-Gm-Message-State: AOJu0Ywb/0uQNYVzIycntviLp30j8kEu+QkZ+4VZseheMBrt2CNLa5Yv
+	ie73iqZ1QUFLGu3wz3EZXTI=
+X-Google-Smtp-Source: AGHT+IFq0Qw5BzSy9IiEeWETEQaj9PyBVqQP8GjxQaaABXzR63EQjYWKJ9bwUsU+wJyPcCO0JSj5ow==
+X-Received: by 2002:a7b:ce13:0:b0:40c:3820:f002 with SMTP id m19-20020a7bce13000000b0040c3820f002mr8188560wmc.94.1702847347408;
+        Sun, 17 Dec 2023 13:09:07 -0800 (PST)
+Received: from wpc.yadro.com (188-169-139-214.dsl.utg.ge. [188.169.139.214])
+        by smtp.gmail.com with ESMTPSA id vc11-20020a170907d08b00b00a1ce58e9fc7sm13316096ejc.64.2023.12.17.13.09.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 17 Dec 2023 13:09:07 -0800 (PST)
+From: Maksim Kiselev <bigunclemax@gmail.com>
+To: 
+Cc: Andre Przywara <andre.przywara@arm.com>,
+	Maksim Kiselev <bigunclemax@gmail.com>,
+	Vasily Khoruzhick <anarsoul@gmail.com>,
+	Yangtao Li <tiny.windzz@gmail.com>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Zhang Rui <rui.zhang@intel.com>,
+	Lukasz Luba <lukasz.luba@arm.com>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Emil Renner Berthing <kernel@esmil.dk>,
-	Samin Guo <samin.guo@starfivetech.com>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
 	Paul Walmsley <paul.walmsley@sifive.com>,
 	Palmer Dabbelt <palmer@dabbelt.com>,
 	Albert Ou <aou@eecs.berkeley.edu>,
-	Hal Feng <hal.feng@starfivetech.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Jose Abreu <joabreu@synopsys.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Richard Cochran <richardcochran@gmail.com>,
-	Giuseppe Cavallaro <peppe.cavallaro@st.com>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org, linux-clk@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, kernel@collabora.com
-Subject: Re: [PATCH v3 5/9] riscv: dts: starfive: jh7100-common: Setup pinmux
- and enable gmac
-Message-ID: <20231217-rippling-galleria-904152e41f95@spud>
-References: <20231215204050.2296404-1-cristian.ciocaltea@collabora.com>
- <20231215204050.2296404-6-cristian.ciocaltea@collabora.com>
- <CAJM55Z-bg0EGPaLHtxcu2AzqN59zfuiT0eE7oCShrx7dG_QK1g@mail.gmail.com>
+	Marc Kleine-Budde <mkl@pengutronix.de>,
+	John Watts <contact@jookia.org>,
+	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+	linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-sunxi@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org
+Subject: [PATCH v6 0/3] Add D1/T113s thermal sensor controller support
+Date: Mon, 18 Dec 2023 00:06:21 +0300
+Message-Id: <20231217210629.131486-1-bigunclemax@gmail.com>
+X-Mailer: git-send-email 2.40.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="kG7DkOG8HSp8FfWf"
-Content-Disposition: inline
-In-Reply-To: <CAJM55Z-bg0EGPaLHtxcu2AzqN59zfuiT0eE7oCShrx7dG_QK1g@mail.gmail.com>
+Content-Transfer-Encoding: 8bit
 
+This series adds support for Allwinner D1/T113s thermal sensor controller.
+THIS controller is similar to the one on H6, but with only one sensor and
+uses a different scale and offset values.
 
---kG7DkOG8HSp8FfWf
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+v6:
+- Rebased onto 6.7.0-rc5
 
-On Sat, Dec 16, 2023 at 11:38:53AM -0800, Emil Renner Berthing wrote:
-> Cristian Ciocaltea wrote:
-> > Add pinmux configuration for DWMAC found on the JH7100 based boards and
-> > enable the related DT node, providing a basic PHY configuration.
-> >
-> > Co-developed-by: Emil Renner Berthing <emil.renner.berthing@canonical.c=
-om>
-> > Signed-off-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-> > Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-> > ---
-> >  .../boot/dts/starfive/jh7100-common.dtsi      | 85 +++++++++++++++++++
-> >  1 file changed, 85 insertions(+)
-> >
-> > diff --git a/arch/riscv/boot/dts/starfive/jh7100-common.dtsi b/arch/ris=
-cv/boot/dts/starfive/jh7100-common.dtsi
-> > index 42fb61c36068..5cafe8f5c2e7 100644
-> > --- a/arch/riscv/boot/dts/starfive/jh7100-common.dtsi
-> > +++ b/arch/riscv/boot/dts/starfive/jh7100-common.dtsi
-> > @@ -72,7 +72,92 @@ wifi_pwrseq: wifi-pwrseq {
-> >  	};
-> >  };
-> >
-> > +&gmac {
-> > +	pinctrl-names =3D "default";
-> > +	pinctrl-0 =3D <&gmac_pins>;
-> > +	phy-mode =3D "rgmii-id";
-> > +	phy-handle =3D <&phy>;
->=20
-> I'm not sure if it's a generic policy or not, but I don't really like add=
-ing a
-> reference to a non-existant node here. I'd move this property to the board
-> files where the phy node is actually defined.
+v5:
+- Dropeed 'thermal-zones' node from sunxi-d1s-t113.dtsi
 
-FWIW, I don't like the reference-in-the-wrong-place thing either.
+v4:
+- Dropeed DT bindings example
 
---kG7DkOG8HSp8FfWf
-Content-Type: application/pgp-signature; name="signature.asc"
+v3:
+- Fixed SoB tag again
 
------BEGIN PGP SIGNATURE-----
+v2:
+- Fixed SoB tag
+- Moved binding patch before driver changes
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZX9iKAAKCRB4tDGHoIJi
-0ljjAQDdeQS9ySXycX3Kr1uE7USW6FuoSN3axiU/roL2LS3UxAD/QmhKPwhsop/g
-JHAPtH4K9zTWBI5z0reix7grWZuUDgQ=
-=ljQG
------END PGP SIGNATURE-----
+v1:
+- Initial version
 
---kG7DkOG8HSp8FfWf--
+Maxim Kiselev (3):
+  dt-bindings: thermal: sun8i: Add binding for D1/T113s THS controller
+  thermal: sun8i: Add D1/T113s THS controller support
+  riscv: dts: allwinner: d1: Add thermal sensor
+
+ .../thermal/allwinner,sun8i-a83t-ths.yaml       |  7 ++++++-
+ .../boot/dts/allwinner/sunxi-d1s-t113.dtsi      | 17 +++++++++++++++++
+ drivers/thermal/sun8i_thermal.c                 | 13 +++++++++++++
+ 3 files changed, 36 insertions(+), 1 deletion(-)
+
+-- 
+2.40.1
+
 
