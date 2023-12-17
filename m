@@ -1,229 +1,140 @@
-Return-Path: <devicetree+bounces-26166-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26167-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 293EA815C9D
-	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 00:55:19 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id EB515815CA8
+	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 01:09:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 35DFBB217D1
-	for <lists+devicetree@lfdr.de>; Sat, 16 Dec 2023 23:55:16 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3E377B221B8
+	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 00:09:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AFA1374D7;
-	Sat, 16 Dec 2023 23:55:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="r8YvkXZ+"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDDBF195;
+	Sun, 17 Dec 2023 00:09:51 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5113D39ADF;
-	Sat, 16 Dec 2023 23:55:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 61AA1C433C8;
-	Sat, 16 Dec 2023 23:55:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1702770909;
-	bh=jUWCpQuntd7FLZ5VSvblzKYwGE3d0UrsZ5sCSburff4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=r8YvkXZ+g+79moR5UrJbKEVmttUNh0VC3orUH1inTDoh4QrTY0xYJSiCjOY0+Sa/u
-	 ifenv2hVyrBHS2iWoOxLC7C0rj/T57R7I2LcbwGMuJVbdRQuVWy4Sg+l+tUtfnNySO
-	 R7UYfZ2/D8OUG2jMpkNwFW/D2WpfzA5m0NFrEQXJXpEbyebMcbdLRfobjzHhm9z32F
-	 +ks3eMaF1YkBCxcuwesnSnwSqxYT/axFlBMefhaIp53uJ1VAUc+ZShZVWpt+VHUPXe
-	 ohot3Dql1+eU4WbVtrG1LEiJtBhNpZCbIVnp/9Lr2x+II2/khXim3yJwXsjyHnICit
-	 Z6n2Jde364EWA==
-Date: Sat, 16 Dec 2023 23:55:04 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Marcelo Schmitt <marcelo.schmitt@analog.com>
-Cc: apw@canonical.com, joe@perches.com, dwaipayanray1@gmail.com,
-	lukas.bulwahn@gmail.com, paul.cercueil@analog.com,
-	Michael.Hennerich@analog.com, lars@metafoo.de, jic23@kernel.org,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, dan.carpenter@linaro.org,
-	dlechner@baylibre.com, marcelo.schmitt1@gmail.com,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C850E366;
+	Sun, 17 Dec 2023 00:09:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
+Received: from local
+	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
+	 (Exim 4.96.2)
+	(envelope-from <daniel@makrotopia.org>)
+	id 1rEeie-00064Q-1p;
+	Sun, 17 Dec 2023 00:09:21 +0000
+Date: Sun, 17 Dec 2023 00:09:18 +0000
+From: Daniel Golle <daniel@makrotopia.org>
+To: Miquel Raynal <miquel.raynal@bootlin.com>,
+	Richard Weinberger <richard@nod.at>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Daniel Golle <daniel@makrotopia.org>,
+	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+	linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 12/15] dt-bindings: iio: Add AD7091R-8
-Message-ID: <20231216-curfew-sandbox-69a0aac58010@spud>
-References: <cover.1702746240.git.marcelo.schmitt1@gmail.com>
- <7c725dbb0ddeeec77d56bb67c77e819b4ba78e2e.1702746240.git.marcelo.schmitt1@gmail.com>
+Subject: [PATCH v5 0/7] mtd: ubi: allow UBI volumes to provide NVMEM
+Message-ID: <cover.1702770711.git.daniel@makrotopia.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="Th6k7RUxHz5pajtC"
-Content-Disposition: inline
-In-Reply-To: <7c725dbb0ddeeec77d56bb67c77e819b4ba78e2e.1702746240.git.marcelo.schmitt1@gmail.com>
-
-
---Th6k7RUxHz5pajtC
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Sat, Dec 16, 2023 at 02:50:11PM -0300, Marcelo Schmitt wrote:
-> Add device tree documentation for AD7091R-8.
->=20
-> Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
+Similar to how MAC addresses and Wi-Fi calibration data would be
+stored inside an MTD partition on devices coming with NOR flash, a UBI
+volume is used by some vendors in the same way on devices with NAND
+flash.
 
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+The goal of this series is to support such embedded Linux devices which
+got NVMEM bits stored inside a UBI volume.
 
-Cheers,
-Conor.
+Representing the UBI volume in the Device Tree and adding a phandle to
+be referenced by NVMEM consumers allows such devices to come up with
+their correct MAC addresses and device-specific Wi-Fi calibration data
+loaded.
 
-> ---
->  .../bindings/iio/adc/adi,ad7091r5.yaml        | 82 ++++++++++++++++++-
->  1 file changed, 78 insertions(+), 4 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7091r5.yaml =
-b/Documentation/devicetree/bindings/iio/adc/adi,ad7091r5.yaml
-> index ce7ba634643c..ddec9747436c 100644
-> --- a/Documentation/devicetree/bindings/iio/adc/adi,ad7091r5.yaml
-> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7091r5.yaml
-> @@ -4,36 +4,92 @@
->  $id: http://devicetree.org/schemas/iio/adc/adi,ad7091r5.yaml#
->  $schema: http://devicetree.org/meta-schemas/core.yaml#
-> =20
-> -title: Analog Devices AD7091R5 4-Channel 12-Bit ADC
-> +title: Analog Devices AD7091R-2/-4/-5/-8 Multi-Channel 12-Bit ADCs
-> =20
->  maintainers:
->    - Michael Hennerich <michael.hennerich@analog.com>
-> +  - Marcelo Schmitt <marcelo.schmitt@analog.com>
-> =20
->  description: |
-> -  Analog Devices AD7091R5 4-Channel 12-Bit ADC
-> +  Analog Devices AD7091R5 4-Channel 12-Bit ADC supporting I2C interface
->    https://www.analog.com/media/en/technical-documentation/data-sheets/ad=
-7091r-5.pdf
-> +  Analog Devices AD7091R-2/AD7091R-4/AD7091R-8 2-/4-/8-Channel 12-Bit AD=
-Cs
-> +  supporting SPI interface
-> +  https://www.analog.com/media/en/technical-documentation/data-sheets/AD=
-7091R-2_7091R-4_7091R-8.pdf
-> =20
->  properties:
->    compatible:
->      enum:
-> +      - adi,ad7091r2
-> +      - adi,ad7091r4
->        - adi,ad7091r5
-> +      - adi,ad7091r8
-> =20
->    reg:
->      maxItems: 1
-> =20
-> +  vdd-supply:
-> +    description:
-> +      Provide VDD power to the sensor (VDD range is from 2.7V to 5.25V).
-> +
-> +  vdrive-supply:
-> +    description:
-> +      Determines the voltage level at which the interface logic will ope=
-rate.
-> +      The V_drive voltage range is from 1.8V to 5.25V and must not excee=
-d VDD by
-> +      more than 0.3V.
-> +
->    vref-supply:
->      description:
->        Phandle to the vref power supply
-> =20
-> -  interrupts:
-> +  convst-gpios:
-> +    description:
-> +      GPIO connected to the CONVST pin.
-> +      This logic input is used to initiate conversions on the analog
-> +      input channels.
->      maxItems: 1
-> =20
-> +  reset-gpios:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    description:
-> +      Interrupt for signaling when conversion results exceed the high li=
-mit for
-> +      ADC readings or fall below the low limit for them. Interrupt sourc=
-e must
-> +      be attached to ALERT/BUSY/GPO0 pin.
-> +    maxItems: 1
-> =20
->  required:
->    - compatible
->    - reg
-> =20
-> -additionalProperties: false
-> +allOf:
-> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-> +
-> +  # AD7091R-2 does not have ALERT/BUSY/GPO pin
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - adi,ad7091r2
-> +    then:
-> +      properties:
-> +        interrupts: false
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - adi,ad7091r2
-> +              - adi,ad7091r4
-> +              - adi,ad7091r8
-> +    then:
-> +      required:
-> +        - convst-gpios
-> +
-> +unevaluatedProperties: false
-> =20
->  examples:
->    - |
-> @@ -51,4 +107,22 @@ examples:
->              interrupt-parent =3D <&gpio>;
->          };
->      };
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    spi {
-> +        #address-cells =3D <1>;
-> +        #size-cells =3D <0>;
-> +
-> +        adc@0 {
-> +            compatible =3D "adi,ad7091r8";
-> +            reg =3D <0x0>;
-> +            spi-max-frequency =3D <1000000>;
-> +            vref-supply =3D <&adc_vref>;
-> +            convst-gpios =3D <&gpio 25 GPIO_ACTIVE_LOW>;
-> +            reset-gpios =3D <&gpio 27 GPIO_ACTIVE_LOW>;
-> +            interrupts =3D <22 IRQ_TYPE_EDGE_FALLING>;
-> +            interrupt-parent =3D <&gpio>;
-> +        };
-> +    };
->  ...
-> --=20
-> 2.42.0
->=20
+In order for NVMEM bits to be available for other drivers, attaching
+UBI devices has to be moved from late_initcall (which is too late for
+other drivers) to happen earlier. As an alternative to the existing
+kernel cmdline parameter the Device Tree property 'compatible =
+"linux,ubi";' inside an MTD partition can be used to have that MTD
+device attached as UBI device. MTD partitions which serve as UBI
+devices may have a "volumes" subnode with volumes, and volumes may
+have an "nvmem-layout" object which will trigger the creation of an
+emulated NVMEM device on top of the UBI volume.
 
---Th6k7RUxHz5pajtC
-Content-Type: application/pgp-signature; name="signature.asc"
+In this way, other drivers (think: Ethernet, Wi-Fi) can resolve and
+acquire NVMEM bits using the usual device tree phandle, just this time
+the NVMEM content is read from a UBI volume.
 
------BEGIN PGP SIGNATURE-----
+This series is a follow-up and contains most patches of the previous
+series "mtd: ubi: behave like a good MTD citizen"[1] which was meant in
+preparation for implementing the NVMEM provider.
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZX442AAKCRB4tDGHoIJi
-0puPAP481u/M1/SE7A3mGnzFFhFkdDY4nGG8wkkWzNIYlFCwqgEAxTcIAVT87Vjy
-v52dK6ZRY/blA9VyxQfCS/FpCiyx8QI=
-=0TDZ
------END PGP SIGNATURE-----
+[1]: https://patchwork.ozlabs.org/project/linux-mtd/list/?series=353177&state=%2A&archive=both
 
---Th6k7RUxHz5pajtC--
+Changes since v4:
+ * split ubi_open_volume_path() breaking out reusable parts for
+   new match_volume_desc() function as suggested by Richard Weinberger.
+   Doing the same for ubi_open_volume_nm() doesn't work as we are working
+   on struct ubi_volume_info in match_volume_desc() while ubi_open_volume_nm()
+   is working on struct ubi_volume. That reduces the common part to a string
+   comparision and length check which doesn't seem worth breaking out of the
+   existing function.
+ * drop patches and changes not strictly needed for NVMEM use-case:
+   - don't handle ubi detach on MTD removal notification. It was not done
+     until now and the locking hell I was facing when trying to implement
+     that is non trivial.
+   - don't relocate the call to ubiblock device creation to the
+     notification handler
+   - change ubiblock only as far as needed to handle creation from cmdline
+     parameter when a volume is added.
+ * improve commit messages and comments
+
+Changes since v3:
+ * dt-bindings fixes as requested
+
+Changes since v2:
+ * include dt-bindings additions
+
+Changes since v1:
+ * include patch to fix exiting Kconfig formatting issues
+ * fix typo and indentation in Kconfig
+
+Daniel Golle (7):
+  dt-bindings: mtd: add basic bindings for UBI
+  dt-bindings: mtd: ubi-volume: allow UBI volumes to provide NVMEM
+  mtd: ubi: block: use notifier to create ubiblock from parameter
+  mtd: ubi: attach from device tree
+  mtd: ubi: introduce pre-removal notification for UBI volumes
+  mtd: ubi: populate ubi volume fwnode
+  mtd: ubi: provide NVMEM layer over UBI volumes
+
+ .../bindings/mtd/partitions/linux,ubi.yaml    |  75 +++++++
+ .../bindings/mtd/partitions/ubi-volume.yaml   |  40 ++++
+ drivers/mtd/ubi/Kconfig                       |  12 ++
+ drivers/mtd/ubi/Makefile                      |   1 +
+ drivers/mtd/ubi/block.c                       | 136 ++++++-------
+ drivers/mtd/ubi/build.c                       | 154 ++++++++++----
+ drivers/mtd/ubi/kapi.c                        |  56 ++++--
+ drivers/mtd/ubi/nvmem.c                       | 188 ++++++++++++++++++
+ drivers/mtd/ubi/ubi.h                         |   3 +
+ drivers/mtd/ubi/vmt.c                         |  44 +++-
+ include/linux/mtd/ubi.h                       |   2 +
+ 11 files changed, 579 insertions(+), 132 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mtd/partitions/linux,ubi.yaml
+ create mode 100644 Documentation/devicetree/bindings/mtd/partitions/ubi-volume.yaml
+ create mode 100644 drivers/mtd/ubi/nvmem.c
+
+-- 
+2.43.0
 
