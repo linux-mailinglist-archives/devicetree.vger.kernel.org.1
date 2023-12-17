@@ -1,125 +1,89 @@
-Return-Path: <devicetree+bounces-26206-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26214-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 071BC815E98
-	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 11:53:03 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 51A40815EDC
+	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 13:11:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 972F8B21F02
-	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 10:53:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0EC0B2831FA
+	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 12:11:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF06A7482;
-	Sun, 17 Dec 2023 10:52:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C111328D8;
+	Sun, 17 Dec 2023 12:11:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="qZRk0Tlq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout2.hostsharing.net (mailout2.hostsharing.net [83.223.78.233])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D32379C8;
-	Sun, 17 Dec 2023 10:52:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=wunner.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wunner.de
-Received: from h08.hostsharing.net (h08.hostsharing.net [IPv6:2a01:37:1000::53df:5f1c:0])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256
-	 client-signature RSA-PSS (4096 bits) client-digest SHA256)
-	(Client CN "*.hostsharing.net", Issuer "RapidSSL TLS RSA CA G1" (verified OK))
-	by mailout2.hostsharing.net (Postfix) with ESMTPS id 8D69B10189BEB;
-	Sun, 17 Dec 2023 11:52:50 +0100 (CET)
-Received: from localhost (unknown [89.246.108.87])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by h08.hostsharing.net (Postfix) with ESMTPSA id 4F3A66073EFF;
-	Sun, 17 Dec 2023 11:52:50 +0100 (CET)
-X-Mailbox-Line: From 99523409eb5aec9276055ff358ae6f2ceb10be6d Mon Sep 17 00:00:00 2001
-Message-Id: <99523409eb5aec9276055ff358ae6f2ceb10be6d.1702806810.git.lukas@wunner.de>
-In-Reply-To: <cover.1702806810.git.lukas@wunner.de>
-References: <cover.1702806810.git.lukas@wunner.de>
-From: Lukas Wunner <lukas@wunner.de>
-Date: Sun, 17 Dec 2023 11:13:34 +0100
-Subject: [PATCH v3 4/4] dt-bindings: tpm: Document Microsoft fTPM bindings
-To: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Jarkko Sakkinen <jarkko@kernel.org>, Peter Huewe <peterhuewe@gmx.de>, Jason Gunthorpe <jgg@ziepe.ca>
-Cc: devicetree@vger.kernel.org, linux-integrity@vger.kernel.org, Lino Sanfilippo <LinoSanfilippo@gmx.de>, Nayna Jain <nayna@linux.ibm.com>, Thirupathaiah Annapureddy <thiruan@microsoft.com>, Sasha Levin <sashal@kernel.org>, Andrey Pronin <apronin@chromium.org>, Alexander Steffen <Alexander.Steffen@infineon.com>, Johannes Holland <Johannes.Holland@infineon.com>, Amir Mizinski <amirmizi6@gmail.com>, Benoit HOUYERE <benoit.houyere@st.com>, Peter Delevoryas <peter@pjd.dev>, Ninad Palsule <ninad@linux.ibm.com>, Guenter Roeck <linux@roeck-us.net>, Francesco Dolcini <francesco@dolcini.it>, Nishanth Menon <nm@ti.com>
+Received: from m12.mail.163.com (m12.mail.163.com [220.181.12.215])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69135328C9;
+	Sun, 17 Dec 2023 12:11:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=From:Subject:Date:Message-Id:MIME-Version; bh=yKu+k
+	xVU/sZ3fnmu7Mf+YsvGsYLMArOxzariOJwOVno=; b=qZRk0TlqZgOzWS4IG8Z9m
+	V1mtBrHd+aOsuRepNepmwGwpUaaDnrjASTBFVU7JT6fFzCBUA+54AtqHr6cG2fhC
+	2siYqpkth0lYGIqlKU6R95XwLLoIZBcsZk0jOHnaHk70I1bIDU01y3s1b2e/unjK
+	1gfWT0EUITLQ7j5Vmg6Pk0=
+Received: from ProDesk.. (unknown [58.22.7.114])
+	by zwqz-smtp-mta-g5-3 (Coremail) with SMTP id _____wD333AB0H5lTn2nFw--.50366S2;
+	Sun, 17 Dec 2023 18:40:05 +0800 (CST)
+From: Andy Yan <andyshrk@163.com>
+To: heiko@sntech.de
+Cc: krzysztof.kozlowski+dt@linaro.org,
+	robh+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	Andy Yan <andy.yan@rock-chips.com>
+Subject: [PATCH 1/2] arm: dts: rockchip: Add psci for rk3036
+Date: Sun, 17 Dec 2023 18:39:58 +0800
+Message-Id: <20231217103959.2380661-1-andyshrk@163.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:_____wD333AB0H5lTn2nFw--.50366S2
+X-Coremail-Antispam: 1Uf129KBjvdXoW7Gw1kJrW8WFy5Gr13tF48tFb_yoW3JFX_t3
+	WfW3W5Ka1rCr9Iq34DJw4ru347Cw48CFZ3Ww18uF1UJ3WSva1kXFWktayxJr15CFW2grZ3
+	GFWfXa1Sk3W3ujkaLaAFLSUrUUUUUb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IU0Kg4DUUUUU==
+X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/xtbBnAxJXlghmCkkNwAAsc
 
-A driver for Microsoft's firmware-based Trusted Platform Module (fTPM)
-was merged with commit 09e574831b27 ("tpm/tpm_ftpm_tee: A driver for
-firmware TPM running inside TEE"), but its devicetree bindings were not.
+From: Andy Yan <andy.yan@rock-chips.com>
 
-This is the only remaining undocumented compatible string for a TPM,
-so add a DT schema based on the patch linked below.
+The system will hang at bringup secondary CPUs
+without psci node.
 
-Link: https://lore.kernel.org/all/20190409184958.7476-2-sashal@kernel.org/
-Signed-off-by: Lukas Wunner <lukas@wunner.de>
-Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
 ---
-Changes v2 -> v3:
-  * Use "const" instead of "enum" for singleton compatible string.
 
- .../bindings/tpm/microsoft,ftpm.yaml          | 47 +++++++++++++++++++
- 1 file changed, 47 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/tpm/microsoft,ftpm.yaml
+ arch/arm/boot/dts/rockchip/rk3036.dtsi | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/tpm/microsoft,ftpm.yaml b/Documentation/devicetree/bindings/tpm/microsoft,ftpm.yaml
-new file mode 100644
-index 000000000000..fdb81968f03d
---- /dev/null
-+++ b/Documentation/devicetree/bindings/tpm/microsoft,ftpm.yaml
-@@ -0,0 +1,47 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/tpm/microsoft,ftpm.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+diff --git a/arch/arm/boot/dts/rockchip/rk3036.dtsi b/arch/arm/boot/dts/rockchip/rk3036.dtsi
+index 78686fc72ce6..5344803442a1 100644
+--- a/arch/arm/boot/dts/rockchip/rk3036.dtsi
++++ b/arch/arm/boot/dts/rockchip/rk3036.dtsi
+@@ -67,6 +67,11 @@ display-subsystem {
+ 		ports = <&vop_out>;
+ 	};
+ 
++	psci {
++		compatible = "arm,psci-1.0";
++		method = "smc";
++	};
 +
-+title: Microsoft firmware-based Trusted Platform Module (fTPM)
-+
-+maintainers:
-+  - Thirupathaiah Annapureddy <thiruan@microsoft.com>
-+  - Sasha Levin <sashal@kernel.org>
-+
-+description: |
-+  Commodity CPU architectures, such as ARM and Intel CPUs, have started to
-+  offer trusted computing features in their CPUs aimed at displacing dedicated
-+  trusted hardware.  Unfortunately, these CPU architectures raise serious
-+  challenges to building trusted systems because they omit providing secure
-+  resources outside the CPU perimeter.
-+
-+  Microsoft's firmware-based TPM 2.0 (fTPM) leverages ARM TrustZone to overcome
-+  these challenges and provide software with security guarantees similar to
-+  those of dedicated trusted hardware.
-+
-+  https://www.microsoft.com/en-us/research/publication/ftpm-software-implementation-tpm-chip/
-+  https://github.com/Microsoft/ms-tpm-20-ref/tree/main/Samples/ARM32-FirmwareTPM
-+
-+properties:
-+  compatible:
-+    const: microsoft,ftpm
-+
-+required:
-+  - compatible
-+  - linux,sml-base
-+  - linux,sml-size
-+
-+allOf:
-+  - $ref: tpm-common.yaml#
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    tpm {
-+        compatible = "microsoft,ftpm";
-+        linux,sml-base = <0x0 0xc0000000>;
-+        linux,sml-size = <0x10000>;
-+    };
+ 	timer {
+ 		compatible = "arm,armv7-timer";
+ 		arm,cpu-registers-not-fw-configured;
 -- 
-2.40.1
+2.34.1
 
 
