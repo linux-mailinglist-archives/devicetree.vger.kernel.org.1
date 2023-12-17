@@ -1,56 +1,70 @@
-Return-Path: <devicetree+bounces-26312-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26313-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EB0781623B
-	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 22:01:03 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 31B61816245
+	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 22:03:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8D74F282B49
-	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 21:01:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 300211C210F5
+	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 21:03:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D3BA481D1;
-	Sun, 17 Dec 2023 21:00:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A1CA481DC;
+	Sun, 17 Dec 2023 21:03:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iiF/bvFK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hvrsPbSD"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E2B7347C9;
-	Sun, 17 Dec 2023 21:00:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA003C433C9;
-	Sun, 17 Dec 2023 21:00:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6162948CC0;
+	Sun, 17 Dec 2023 21:03:44 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 61A47C433C7;
+	Sun, 17 Dec 2023 21:03:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1702846854;
-	bh=dLUn35UA/Sb7ArEyYqHx1uehSdc2aOYdk53eZo+sKBY=;
+	s=k20201202; t=1702847023;
+	bh=mCEcMXWBRCUl8ycxVYQtMfuRfaojP7UvcGTxOXhKDaI=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=iiF/bvFKOuhi9o3eUE3ldiUAhidrwQRSR4Gvx941UVTpumuCEQPu9kibJJu+omMRe
-	 myLYIVyfrjWI+VqfSxdmfxzchQObPmQL0uqPKCqKS1t5ABtWKdMD8bbk/P7PSDL2Tu
-	 g3jGGfLVFnCQYd7q9UE04budmM6coiSToB9zDL4zbyYorEbqOKrR/e5XBKvgKgZGWU
-	 C36R0DZeySZw0oMI9KBt1VeNPQmwmq7A/CxOo/3qNmuw2JanhGOEP8x9GOBbeW/JH+
-	 uVsE5D29fpIy5BjYoIAzX328HV4xJfkvY81qSrKVeRK8w+KgBk9kyf9sRw4csnP2eN
-	 ppE0YtyB8Vx8A==
-Date: Sun, 17 Dec 2023 21:00:49 +0000
+	b=hvrsPbSDBmXRz7fBWAVgf3e4EySM97yOUjYsBwbpgyiOdI9DY8G/gQoVfOAG5b9io
+	 ELWQSRpweiRp25KmFZScZE1R7gu3L4njHUmSeYafmHTHI1hXgkZaaWm+wXueeGyORN
+	 sZLgKSVG117kpnXWB//nwjQTcU5HLd07b5ozYEhy3wzX0cuqZ6M2yicJ+k0XCxRjaU
+	 bYfavnhJ/435XHwjKKNE8uKp5+tbIyQKUqBUcbUdsw3Poed/utfsxAEUQnqJbL1W+U
+	 yBb5EgZjWizSeRZC1XgwZNH1Nz5Hg1OZg9pXcBUMplPIgDrLmtpz+n3p6shg2jcd1L
+	 P3At3ee5NOOhQ==
+Date: Sun, 17 Dec 2023 21:03:36 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Alex Bee <knaerzche@gmail.com>
-Cc: Sandy Huang <hjc@rock-chips.com>,
-	Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>,
-	Andy Yan <andyshrk@163.com>, Rob Herring <robh+dt@kernel.org>,
+To: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Cc: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 01/27] dt-bindings: display: rockchip,inno-hdmi:
- Document RK3128 compatible
-Message-ID: <20231217-anime-ammonia-0c21d756aa9f@spud>
-References: <20231216162639.125215-1-knaerzche@gmail.com>
- <20231216162639.125215-2-knaerzche@gmail.com>
+	Emil Renner Berthing <kernel@esmil.dk>,
+	Samin Guo <samin.guo@starfivetech.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Hal Feng <hal.feng@starfivetech.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Jose Abreu <joabreu@synopsys.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Richard Cochran <richardcochran@gmail.com>,
+	Giuseppe Cavallaro <peppe.cavallaro@st.com>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org, linux-clk@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, kernel@collabora.com
+Subject: Re: [PATCH v3 5/9] riscv: dts: starfive: jh7100-common: Setup pinmux
+ and enable gmac
+Message-ID: <20231217-rippling-galleria-904152e41f95@spud>
+References: <20231215204050.2296404-1-cristian.ciocaltea@collabora.com>
+ <20231215204050.2296404-6-cristian.ciocaltea@collabora.com>
+ <CAJM55Z-bg0EGPaLHtxcu2AzqN59zfuiT0eE7oCShrx7dG_QK1g@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,36 +72,61 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="YGZ6xIC/6d6TbrZP"
+	protocol="application/pgp-signature"; boundary="kG7DkOG8HSp8FfWf"
 Content-Disposition: inline
-In-Reply-To: <20231216162639.125215-2-knaerzche@gmail.com>
+In-Reply-To: <CAJM55Z-bg0EGPaLHtxcu2AzqN59zfuiT0eE7oCShrx7dG_QK1g@mail.gmail.com>
 
 
---YGZ6xIC/6d6TbrZP
+--kG7DkOG8HSp8FfWf
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On Sat, Dec 16, 2023 at 05:26:12PM +0100, Alex Bee wrote:
-> The integration for this SoC is different from the currently existing: It
-> needs it's PHY's reference clock rate to calculate the DDC bus frequency
-> correctly. The controller is also part of a powerdomain, so this gets added
-> as an mandatory property for this variant.
+On Sat, Dec 16, 2023 at 11:38:53AM -0800, Emil Renner Berthing wrote:
+> Cristian Ciocaltea wrote:
+> > Add pinmux configuration for DWMAC found on the JH7100 based boards and
+> > enable the related DT node, providing a basic PHY configuration.
+> >
+> > Co-developed-by: Emil Renner Berthing <emil.renner.berthing@canonical.c=
+om>
+> > Signed-off-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+> > Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+> > ---
+> >  .../boot/dts/starfive/jh7100-common.dtsi      | 85 +++++++++++++++++++
+> >  1 file changed, 85 insertions(+)
+> >
+> > diff --git a/arch/riscv/boot/dts/starfive/jh7100-common.dtsi b/arch/ris=
+cv/boot/dts/starfive/jh7100-common.dtsi
+> > index 42fb61c36068..5cafe8f5c2e7 100644
+> > --- a/arch/riscv/boot/dts/starfive/jh7100-common.dtsi
+> > +++ b/arch/riscv/boot/dts/starfive/jh7100-common.dtsi
+> > @@ -72,7 +72,92 @@ wifi_pwrseq: wifi-pwrseq {
+> >  	};
+> >  };
+> >
+> > +&gmac {
+> > +	pinctrl-names =3D "default";
+> > +	pinctrl-0 =3D <&gmac_pins>;
+> > +	phy-mode =3D "rgmii-id";
+> > +	phy-handle =3D <&phy>;
+>=20
+> I'm not sure if it's a generic policy or not, but I don't really like add=
+ing a
+> reference to a non-existant node here. I'd move this property to the board
+> files where the phy node is actually defined.
 
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+FWIW, I don't like the reference-in-the-wrong-place thing either.
 
-Cheers,
-Conor.
-
---YGZ6xIC/6d6TbrZP
+--kG7DkOG8HSp8FfWf
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZX9hgQAKCRB4tDGHoIJi
-0gmdAQCoq35UjFbaHME9UwkwUjJmL1alYK13VWsogsFJyz1XMAEAncMIoDK2K0j/
-ScWGK8GBr5Ctm+tYm8iWoY9txXEbxwE=
-=mlNV
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZX9iKAAKCRB4tDGHoIJi
+0ljjAQDdeQS9ySXycX3Kr1uE7USW6FuoSN3axiU/roL2LS3UxAD/QmhKPwhsop/g
+JHAPtH4K9zTWBI5z0reix7grWZuUDgQ=
+=ljQG
 -----END PGP SIGNATURE-----
 
---YGZ6xIC/6d6TbrZP--
+--kG7DkOG8HSp8FfWf--
 
