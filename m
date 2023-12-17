@@ -1,38 +1,38 @@
-Return-Path: <devicetree+bounces-26238-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26239-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 261DC815FAA
-	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 15:25:04 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 98CDC815FAD
+	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 15:25:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BE6ECB21FAE
-	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 14:25:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CA67D1C21EAB
+	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 14:25:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF30F44C82;
-	Sun, 17 Dec 2023 14:24:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB6534596C;
+	Sun, 17 Dec 2023 14:24:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="diz4mBbC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fqzVdyF2"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7FDB44C7F;
-	Sun, 17 Dec 2023 14:24:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F2300C433D9;
-	Sun, 17 Dec 2023 14:24:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F4A545957;
+	Sun, 17 Dec 2023 14:24:49 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5AD6EC433C7;
+	Sun, 17 Dec 2023 14:24:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1702823087;
-	bh=a6KCBlRCq77OBBZrD6RVrWWZcrS/mslm0GyS8oEwpgI=;
+	s=k20201202; t=1702823089;
+	bh=iZ7GtTTkDKgZv+f2+dAAD9uum4soymgyti+OqdtevNU=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=diz4mBbCkP2tZr/hEvAQp07lg+0CPNS5O+rmuMf5OouNEbD6yA5UetsFEvAp+LmVV
-	 hITL4YUH179nMRsdlDOUJPLwflLin7ewrrFc7hqNJS296lfTa/EL6RtyXcm9mHGPYi
-	 ZjjJUlza99jeavqnqv7POvf4vC2kj/Wah1ObO8gfb+/aGU3xnQSG4Nr2RQfgiNypov
-	 dGyly3cJeaTH5ApGBVNKteC0rxsqz+FUHzg2m+wv2KkTUwAtLmr1OsHCr+Xij9kLCI
-	 eNBnU7X9Nl9oFRuRKzdbKFaBAN0WX17Elt+B/OYn4vHyMeuNXYFEScA/BgUsAUS4BF
-	 Wwo6WWKBWVhig==
-Received: (nullmailer pid 876441 invoked by uid 1000);
+	b=fqzVdyF229vhYJqvkuotK/yeL5d3GnXBRroR8wz0X+bG6CQGJRH/457fHTjhoAnv1
+	 tHQSAbYmVbNhlQ61OgqZ3O+zdg+aAWrBWcMIlv22R46yYCQpOqMj6UZ9tVjik+MVEa
+	 QKQU7WzbTluTCLJ+Ju8YjGukuXiIbdiEjasASkyXrnpta+Nv7LgXVAG4CBGv+W+6Du
+	 arv6jpPBA6u3+qhDBnQc4zJ0DO9tzofMq8s66+IpLPs0Ezk0/cYKsae1JO/FrGLY5I
+	 xvaTsnyq9gE16n7E0IUCE1Ue2JznqiuvbGyXvJu8Fg1H45KygnDJZGwkhiLAecEzKT
+	 +xvzAzLna75DA==
+Received: (nullmailer pid 876443 invoked by uid 1000);
 	Sun, 17 Dec 2023 14:24:42 -0000
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -43,28 +43,26 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 From: Rob Herring <robh@kernel.org>
-To: Karel Balej <karelb@gimli.ms.mff.cuni.cz>
-Cc: Conor Dooley <conor+dt@kernel.org>, =?utf-8?q?Duje_Mihanovi=C4=87?= <duje.mihanovic@skole.hr>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>, linux-input@vger.kernel.org, Dmitry Torokhov <dmitry.torokhov@gmail.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, ~postmarketos/upstreaming@lists.sr.ht, Karel Balej <balejk@matfyz.cz>, Lee Jones <lee@kernel.org>
-In-Reply-To: <20231217131838.7569-4-karelb@gimli.ms.mff.cuni.cz>
-References: <20231217131838.7569-1-karelb@gimli.ms.mff.cuni.cz>
- <20231217131838.7569-4-karelb@gimli.ms.mff.cuni.cz>
-Message-Id: <170282308207.876381.2939454348396043606.robh@kernel.org>
-Subject: Re: [RFC PATCH 3/5] dt-bindings: input: add entry for
- 88pm88x-onkey
+To: =?utf-8?q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Mark Brown <broonie@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Liam Girdwood <lgirdwood@gmail.com>
+In-Reply-To: <20231217-tps65132-v1-1-73c69a960d28@apitzsch.eu>
+References: <20231217-tps65132-v1-1-73c69a960d28@apitzsch.eu>
+Message-Id: <170282308261.876422.2237767392476986368.robh@kernel.org>
+Subject: Re: [PATCH] dt-bindings: regulator: Convert ti,tps65133 to YAML
 Date: Sun, 17 Dec 2023 08:24:42 -0600
 
 
-On Sun, 17 Dec 2023 14:17:01 +0100, Karel Balej wrote:
-> From: Karel Balej <balejk@matfyz.cz>
+On Sun, 17 Dec 2023 14:21:39 +0100, André Apitzsch wrote:
+> Convert TI TPS65132 bindings from .txt to .yaml format.
 > 
-> Marvell 88PM88X PMICs provide onkey functionality. Document it.
-> 
-> Signed-off-by: Karel Balej <balejk@matfyz.cz>
+> Signed-off-by: André Apitzsch <git@apitzsch.eu>
 > ---
->  .../bindings/input/marvell,88pm88x-onkey.yaml | 30 +++++++++++++++++++
->  .../bindings/mfd/marvell,88pm88x.yaml         |  4 +++
->  2 files changed, 34 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/input/marvell,88pm88x-onkey.yaml
+> Note, we still have to find a person willing to be listed as maintainer.
+> Suggestions are welcome.
+> ---
+>  .../devicetree/bindings/regulator/ti,tps65132.yaml | 81 ++++++++++++++++++++++
+>  .../bindings/regulator/tps65132-regulator.txt      | 46 ------------
+>  2 files changed, 81 insertions(+), 46 deletions(-)
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -73,11 +71,13 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/regulator/ti,tps65132.yaml: 'maintainers' is a required property
+	hint: Metaschema for devicetree binding documentation
+	from schema $id: http://devicetree.org/meta-schemas/base.yaml#
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20231217131838.7569-4-karelb@gimli.ms.mff.cuni.cz
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20231217-tps65132-v1-1-73c69a960d28@apitzsch.eu
 
 The base for the series is generally the latest rc1. A different dependency
 should be noted in *this* patch.
