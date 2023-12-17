@@ -1,53 +1,61 @@
-Return-Path: <devicetree+bounces-26273-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26274-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C66D68160EA
-	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 18:25:56 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 447B28160EF
+	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 18:26:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 04DC01C21B3E
-	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 17:25:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0108328239C
+	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 17:26:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A162C4B140;
-	Sun, 17 Dec 2023 17:21:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D50834EB5F;
+	Sun, 17 Dec 2023 17:21:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lKtuZneb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nRsl0kLt"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F5D44D5B9;
-	Sun, 17 Dec 2023 17:21:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 33AC0C433CA;
-	Sun, 17 Dec 2023 17:21:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEB954EB53;
+	Sun, 17 Dec 2023 17:21:58 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2A6D2C433C9;
+	Sun, 17 Dec 2023 17:21:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1702833716;
-	bh=kMQB4e2QHPk7g2PPNEnNtBNn08sDePnOrRq8YPpIxq4=;
+	s=k20201202; t=1702833718;
+	bh=dOIViLxZMDjs20JQvpRvlEhn5M+B5/Qyt56y3cRULtE=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=lKtuZnebNKLv2xBCYWTeTvdiRpqZcbatxoHtg3PGcdjwYx+gntxCRJyMLBL2jQsyo
-	 WmD9Epz9NyGbrbH75V41PUTurUGnO2YnWqzpSNAfanWya0YWG26n6rvTFu+LD02jTf
-	 ++z220WwvfdGaO71oPiU+BikqMF22vchHwbPhhfafZtuTdtIqZnZ9+oO0EScfm2U18
-	 Wk791VW5rK+pisufrW9RSI462VuG3fh19ffavy9+9oGw8TWhQy7phjAD0MBbjeOriT
-	 +AtgqSiGSBGf978hXYBIau/HC1xdDNdHEmgo6KQ3dDkPsGlR1qvudIUVu2nJkGwZSu
-	 enl+pxixW9inw==
+	b=nRsl0kLtCHTllI/3n86ZN3x/Cki2M9daoJJ5shClqLmdog/2/sHKpv+GSrK6ZnnsK
+	 GE0K1EypaZp+kstmA5vp1IxFHP+gnAcpfbL6JPfjPD7b1hB+hawWzV0aME2eOlFIiD
+	 OlMu7gCpwFqqsmQVZjr5rmSgQN/N9amzteCEf1SHGQ3emGaS/bVAwjAmj7K3Xj++Hp
+	 S/76PsAG0ZqTZEp8sj2VpwqlB8eXE0EUjPmRXKPvzf18AJji1wUZLpxnY1lYCCZ0A5
+	 wx//CUdVpRAXAHAOkIp9tfI1vhJJUPun9+ajsTYZB6YT4fv15JV74LLWlCK7XPmEOF
+	 e9xxTmiJLMuNw==
 From: Bjorn Andersson <andersson@kernel.org>
-To: Andy Gross <agross@kernel.org>,
+To: Will Deacon <will@kernel.org>,
+	Robin Murphy <robin.murphy@arm.com>,
+	Joerg Roedel <joro@8bytes.org>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
+	Andy Gross <agross@kernel.org>,
 	Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org,
+Cc: Marijn Suijten <marijn.suijten@somainline.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	linux-arm-kernel@lists.infradead.org,
+	iommu@lists.linux.dev,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Subject: Re: [PATCH] arm64: dts: qcom: qrb4210-rb2: Enable MPSS and Wi-Fi
-Date: Sun, 17 Dec 2023 11:21:10 -0600
-Message-ID: <170283349404.66089.15631744354616446674.b4-ty@kernel.org>
+	linux-arm-msm@vger.kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: (subset) [PATCH v2 0/6] SM8450 / SM8550 Adreno
+Date: Sun, 17 Dec 2023 11:21:12 -0600
+Message-ID: <170283349413.66089.744756231960843910.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20231104-topic-rb2_wifi-v1-1-fd45ae535d2f@linaro.org>
-References: <20231104-topic-rb2_wifi-v1-1-fd45ae535d2f@linaro.org>
+In-Reply-To: <20231127-topic-a7xx_dt-v2-0-2a437588e563@linaro.org>
+References: <20231127-topic-a7xx_dt-v2-0-2a437588e563@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,27 +66,26 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Sat, 04 Nov 2023 21:56:35 +0100, Konrad Dybcio wrote:
-> Enable the remote processors and tighten up the regulators to enable
-> Wi-Fi functionality on the RB2.
+On Mon, 04 Dec 2023 13:55:19 +0100, Konrad Dybcio wrote:
+> Following the merging of related bindings, driver and mesa changes, enable
+> the GPU on both of these platforms.
 > 
-> For reference, the hw/sw identifies as:
+> P1 for Will/iommu, rest for qcom
 > 
-> qmi chip_id 0x150 chip_family 0x4002 board_id 0xff soc_id 0x40670000
-> qmi fw_version 0x337302d3 fw_build_timestamp 2023-01-06 01:50
-> fw_build_id QC_IMAGE_VERSION_STRING=WLAN.HL.3.3.7.c2-00723-QCAHLSWMTPLZ-1
-> wcn3990 hw1.0 target 0x00000008 chip_id 0x00000000 sub 0000:0000
-> kconfig debug 0 debugfs 0 tracing 0 dfs 0 testmode 0
-> firmware ver  api 5 features wowlan,mgmt-tx-by-reference,non-bmi
-> crc32 b3d4b790
-> htt-ver 3.114 wmi-op 4 htt-op 3 cal file max-sta 32 raw 0 hwcrypto 1
 > 
-> [...]
 
 Applied, thanks!
 
-[1/1] arm64: dts: qcom: qrb4210-rb2: Enable MPSS and Wi-Fi
-      commit: ff753723bf3916770c1e2580fe1f34ad9d6f0283
+[2/6] arm64: dts: qcom: sm8450: Add GPU nodes
+      commit: 9810647a043678638f3b98ab48ee030bc00c8270
+[3/6] arm64: dts: qcom: sm8550: Add GPU nodes
+      commit: ef19923ae103b527e6762a63024dc7f0b1055546
+[4/6] arm64: dts: qcom: sm8550-qrd: Enable the A740 GPU
+      commit: c9f785d7d546c3f38c2e0308fa91e27ae7ec3fda
+[5/6] arm64: dts: qcom: sm8550-mtp: Enable the A740 GPU
+      commit: e877f075a52c485742cfd170f5557fc49972979e
+[6/6] arm64: dts: qcom: sm8450-hdk: Enable the A730 GPU
+      commit: 0f6f5a220543d1239dc7fc04c9f8f8885fa05637
 
 Best regards,
 -- 
