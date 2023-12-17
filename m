@@ -1,85 +1,56 @@
-Return-Path: <devicetree+bounces-26210-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26212-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2EF5815EA5
-	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 12:10:42 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 18FAE815EBC
+	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 12:32:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 31A9B1C210BA
-	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 11:10:42 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A02E8B20E12
+	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 11:32:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31FB412B9E;
-	Sun, 17 Dec 2023 11:10:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2C0731A8F;
+	Sun, 17 Dec 2023 11:32:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OGDjNVoT"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=ixypsilon.net header.i=@ixypsilon.net header.b="b9hjBFI8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f41.google.com (mail-pj1-f41.google.com [209.85.216.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from uvw.ixypsilon.net (uvw.ixypsilon.net [81.223.58.118])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDF5814F7D;
-	Sun, 17 Dec 2023 11:10:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f41.google.com with SMTP id 98e67ed59e1d1-28a5d0ebf1fso2368188a91.0;
-        Sun, 17 Dec 2023 03:10:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1702811406; x=1703416206; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=mpLgj+Aq6CVLom9PNEYmZqsQRdUdLCvYGUYGYFlcfB0=;
-        b=OGDjNVoTFvLe3LjjSbfIY5uyYUiRws1Tvo3G4pkG3/UX6wFE8yiBNJsXdhBxtX38H5
-         Bb7vpr1m1X3RpbenMToWjZkYCmmoDVeFy2KpSU4OKXD/DWWzxuDNvg09lLY/RYyaI0uw
-         rc+JWyUQOoRylN3SonYEmOpL7sOjBaj1I7ZH7VXJ5XvW+volUByRRtJCJyHnrrnjkyf+
-         ATHLARrtwj9k9tzuFUwxgMwTfJdeje3sbj0TqC9MLwaCPqOBjJbjbq2obgZzUz4CKqqG
-         bbJNg4gviIoU8Vn4MB6fdsfhIkOH3/UxhjdzFBwWMyd2it7LHkhNIK8nRZlQ4OQTdxWc
-         VKng==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702811406; x=1703416206;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=mpLgj+Aq6CVLom9PNEYmZqsQRdUdLCvYGUYGYFlcfB0=;
-        b=kzm3aAh+jU4h+4QFfliOrTXkcoEVLYMiK7nFX3WgkWMDpg66NcxRwp3MIpXhfDJspy
-         JXC/QFqcRH+WiZzrqy++LExPMx9YVzG8GYw00CjYeUycHEva29agYMvpIncX+swjdQ94
-         0Y8BIXHjJOH+zsMvD6hqE9cb32FWtcASq4F10xB9LUkMFVpPYTd/Apc/FZPAHxgMem3K
-         sicFrLWO0w8sgyWOaTUOmV3tL7TxCsygoIZ6gK8toIchct4jrKSuaWJqV32pAXFrb9Z8
-         u3os9iFQvcRR0GmqlQYrguf7EEJs6eb9nTPUZ6TnDI8C1fdPPNy3e996bnv73tjKvZyl
-         XdcA==
-X-Gm-Message-State: AOJu0YzBXqsRv1ePbJy29w3EQL6pc6t2cdemoK8XELvZbH1x0baB9dS6
-	0UL7i5H+YEGk7jW7GDAPikE=
-X-Google-Smtp-Source: AGHT+IGSGhqk36Sb0bNiK9Sn2fYBgsgfe76pjCUWW1+gApLE4Cc0FGCQwd9Te7RuB5CDKuULss5zCQ==
-X-Received: by 2002:a17:90a:77cc:b0:28b:5fc3:36c9 with SMTP id e12-20020a17090a77cc00b0028b5fc336c9mr1613224pjs.29.1702811406171;
-        Sun, 17 Dec 2023 03:10:06 -0800 (PST)
-Received: from localhost ([2404:7ac0:40d7:b2b2:a626:6b41:27ff:87a3])
-        by smtp.gmail.com with ESMTPSA id ms16-20020a17090b235000b0028b06464b62sm1165747pjb.15.2023.12.17.03.10.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 17 Dec 2023 03:10:05 -0800 (PST)
-From: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
-To: a.zummo@towertech.it,
-	alexandre.belloni@bootlin.com,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor@kernel.org,
-	conor+dt@kernel.org,
-	chao.wei@sophgo.com,
-	unicorn_wang@outlook.com,
-	paul.walmsley@sifive.com,
-	palmer@dabbelt.com,
-	aou@eecs.berkeley.edu
-Cc: linux-rtc@vger.kernel.org,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C83AD32197;
+	Sun, 17 Dec 2023 11:32:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixypsilon.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ixypsilon.net
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=ixypsilon.net; s=20210903; h=Content-Transfer-Encoding:MIME-Version:
+	Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=hGbSCr3F1tJTGQuFnfxCa5FlfqtL9YcTXhadpvN5MCI=; t=1702812737; x=1704022337; 
+	b=b9hjBFI81d5RghdNvYKZOWdDVuu1B/y98FrOm/HnqL56qfEhSL0VNq5x3LMCriIcQ4iGsNOGwX1
+	nfHEMZv0lckC6muBZffvgZv7njhRmdz8JlADLeHmcBSaWCA/yJlE0VN/S5YDkbobHG3ctcttAw1kk
+	OQzi7o9KD+Etq8dmsVGv/rKSPi+k2BKIghym0hxFCBngkami7ZjTL45ZuAdqJi6Va8urBaRIn75t9
+	LOBtjExHuUIZdh5lneVK0MuZQOXJBhWVKLSskQ4EQCKHd8op+K3S5Qlk0lCQfAg/xTVnOZ2WI/z2g
+	WTrfMCLylWSFWUFrD7EfJTu99Kz0hfNOnnfg==;
+Received: from [192.168.0.1] (helo=librem14.Hitronhub.home)
+	by uvw.ixypsilon.net with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <stefan.nagy@ixypsilon.net>)
+	id 1rEpNS-0001IQ-1u;
+	Sun, 17 Dec 2023 12:32:12 +0100
+From: Stefan Nagy <stefan.nagy@ixypsilon.net>
+To: Heiko Stuebner <heiko@sntech.de>,
+	Dragan Simic <dsimic@manjaro.org>
+Cc: linux-rockchip@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	dlan@gentoo.org,
-	Jingbao Qiu <qiujingbao.dlmu@gmail.com>
-Subject: [PATCH v2 3/3] riscv: dts: sophgo: add rtc dt node for CV1800
-Date: Sun, 17 Dec 2023 19:09:52 +0800
-Message-Id: <20231217110952.78784-4-qiujingbao.dlmu@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20231217110952.78784-1-qiujingbao.dlmu@gmail.com>
-References: <20231217110952.78784-1-qiujingbao.dlmu@gmail.com>
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2] arm64: dts: rockchip: Increase maximum frequency of SPI flash for ROCK Pi 4A/B/C
+Date: Sun, 17 Dec 2023 12:32:08 +0100
+Message-Id: <20231217113208.64056-1-stefan.nagy@ixypsilon.net>
+X-Mailer: git-send-email 2.30.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -87,32 +58,65 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-Spam_score: -1.0
 
-Add the rtc device tree node to cv1800 SoC.
+The ROCK Pi 4A/B/C boards come with a 32 Mbit SPI NOR flash chip (XTX
+Technology Limited XT25F32) with a maximum clock frequency of 108 MHz.
+Use this value for the device node's spi-max-frequency property.
 
-Signed-off-by: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
+This patch has been tested on ROCK Pi 4A.
+
+Signed-off-by: Stefan Nagy <stefan.nagy@ixypsilon.net>
 ---
- arch/riscv/boot/dts/sophgo/cv1800b.dtsi | 7 +++++++
- 1 file changed, 7 insertions(+)
+Changes from v1:
+- Use the maximum clock frequency the SPI chip actually supports
+  instead of the SPI clock frequency limit of 50 MHz set by the
+  Rockchip SPI driver.
+---
+ arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4a.dts | 2 +-
+ arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4b.dts | 2 +-
+ arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4c.dts | 2 +-
+ 3 files changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/arch/riscv/boot/dts/sophgo/cv1800b.dtsi b/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
-index df40e87ee063..429bee76f677 100644
---- a/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
-+++ b/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
-@@ -119,5 +119,12 @@ clint: timer@74000000 {
- 			reg = <0x74000000 0x10000>;
- 			interrupts-extended = <&cpu0_intc 3>, <&cpu0_intc 7>;
- 		};
-+
-+		rtc@5025000 {
-+			compatible = "sophgo,cv1800-rtc";
-+			reg = <0x5025000 0x1000>, <0x5026000 0x1000>;
-+			clocks = <&osc>;
-+			interrupts = <17 IRQ_TYPE_LEVEL_HIGH>;
-+		};
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4a.dts b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4a.dts
+index d5df8939a..c68f45849 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4a.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4a.dts
+@@ -19,6 +19,6 @@ &spi1 {
+ 	flash@0 {
+ 		compatible = "jedec,spi-nor";
+ 		reg = <0>;
+-		spi-max-frequency = <10000000>;
++		spi-max-frequency = <108000000>;
  	};
  };
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4b.dts b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4b.dts
+index bee6d7588..6ea3180e5 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4b.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4b.dts
+@@ -37,7 +37,7 @@ &spi1 {
+ 	flash@0 {
+ 		compatible = "jedec,spi-nor";
+ 		reg = <0>;
+-		spi-max-frequency = <10000000>;
++		spi-max-frequency = <108000000>;
+ 	};
+ };
+ 
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4c.dts b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4c.dts
+index de2ebe4cb..5274938bf 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4c.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4c.dts
+@@ -49,7 +49,7 @@ &spi1 {
+ 	flash@0 {
+ 		compatible = "jedec,spi-nor";
+ 		reg = <0>;
+-		spi-max-frequency = <10000000>;
++		spi-max-frequency = <108000000>;
+ 	};
+ };
+ 
 -- 
-2.25.1
+2.30.2
 
 
