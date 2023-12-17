@@ -1,172 +1,153 @@
-Return-Path: <devicetree+bounces-26318-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26319-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D262681625B
-	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 22:10:22 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 63919816274
+	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 22:33:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4C4A71F21F4F
-	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 21:10:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 185351F219D6
+	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 21:33:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC0B949F72;
-	Sun, 17 Dec 2023 21:09:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6055448CE7;
+	Sun, 17 Dec 2023 21:33:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FsxGX/S/"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="B0kqyNCH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6AF5F495E1;
-	Sun, 17 Dec 2023 21:09:49 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 317F9C433C8;
-	Sun, 17 Dec 2023 21:09:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1702847388;
-	bh=pDlIZybXRI8LmSUJwxQ9swF4niWXVQabD7yDs33HQw8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=FsxGX/S/ViVVCvVazbG/67dop8rBwKNAK0dNrdbW9ku1xUK7Uy3PWJ/3prB6KR7A3
-	 jaGh7tY7oq7+/vcSnaDXXTMuXA2Qm1tnkWSGSHx5C6c4RYOUrIiREi7tXvCgTG3Lej
-	 eSmpo0Y6z/UH6KL13F/6r8JOuERk45EhQAXHJjBn96lWKFrBXLgK4GafN+SukoCDkj
-	 ZllSmcsT95dO8YHkqIUK3VFP0Al0dgbjW4iZoSw4DLVvwOMLHv4r69rdXPz7OHuISH
-	 Bi2J87TZYPASi2rtj4daAGOhyXv7leeDj8PRokk4Ts0ne4ym7UJYLGGF45GYkYwY11
-	 EMg0VORZNSAeg==
-Date: Sun, 17 Dec 2023 21:09:40 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-Cc: Samuel Holland <samuel.holland@sifive.com>,
-	Jessica Clarke <jrtc27@jrtc27.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Emil Renner Berthing <kernel@esmil.dk>,
-	Samin Guo <samin.guo@starfivetech.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Hal Feng <hal.feng@starfivetech.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Jose Abreu <joabreu@synopsys.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Richard Cochran <richardcochran@gmail.com>,
-	Giuseppe Cavallaro <peppe.cavallaro@st.com>, netdev@vger.kernel.org,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	LKML <linux-kernel@vger.kernel.org>,
-	linux-riscv <linux-riscv@lists.infradead.org>,
-	linux-clk@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, kernel@collabora.com
-Subject: Re: [PATCH v3 2/9] dt-bindings: net: starfive,jh7110-dwmac: Add
- JH7100 SoC compatible
-Message-ID: <20231217-spray-livestock-a59d630b751e@spud>
-References: <20231215204050.2296404-1-cristian.ciocaltea@collabora.com>
- <20231215204050.2296404-3-cristian.ciocaltea@collabora.com>
- <A7C96942-07CB-40FD-AAAA-4A8947DEE7CA@jrtc27.com>
- <65fd52f1-6861-42b0-9148-266766d054b1@sifive.com>
- <6c62e3b2-acde-4580-9b67-56683289e45e@collabora.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBE2D48CE5
+	for <devicetree@vger.kernel.org>; Sun, 17 Dec 2023 21:33:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1702848808;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Umdjp5ksoy+JcwUTo/e1T9qvEs+1ox676Cz4ZgwJJjU=;
+	b=B0kqyNCHfRtKif4rssFTIfOyZ6vnJr0DaRTd9HQbTujvqj/UBbQcrKmQ/EtdLmdj88NaGW
+	ZtGsJNsBaX1DruKU58mb5BMpxIZ8DXLmcmrPKpMB3saFilbVTJUiwpUDRmI12FFMCng6NA
+	2gM6LeDzUHEw2Ufx4NfKQDDwRrPFxj4=
+Received: from mail-wm1-f71.google.com (mail-wm1-f71.google.com
+ [209.85.128.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-64-4SkCtkjyOseyrhgvrnHiig-1; Sun, 17 Dec 2023 16:33:26 -0500
+X-MC-Unique: 4SkCtkjyOseyrhgvrnHiig-1
+Received: by mail-wm1-f71.google.com with SMTP id 5b1f17b1804b1-40c38ae9764so21831475e9.1
+        for <devicetree@vger.kernel.org>; Sun, 17 Dec 2023 13:33:26 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702848806; x=1703453606;
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Umdjp5ksoy+JcwUTo/e1T9qvEs+1ox676Cz4ZgwJJjU=;
+        b=BPpdWQMiYM2jicmQy2Gny/KZhFWSTb9m7IyqzP5rRv6lO9Lto3J3vEh8D6sXMg8iYU
+         1MIq3lsPlaYZin7kiRtt4UiOQtxPqR/A9rq510t9SmnYydYlzsN3njnhLSZ1AfCzCyIq
+         g6hxragnffXDS2jQHg0nX47/P8NK78jS4+UYGk6EW67TPgVsFRBE3NhGsR4h7izsJyFF
+         ZppJ2gNDFP1l+0lzSeFsTbBuZzUNALSPLuB0GbMSpExPGPz5EWS+FIPpP8AHcmkX1FeS
+         my2zvxXqaER9R9Wj1Zr4QKT6wxDswOKjuiRI7SOdde+uPqOzfEIz4MnqPqkfwnxF7TiO
+         lGqw==
+X-Gm-Message-State: AOJu0YxcU2QHb+hHjOqcvvuxVds2dp6VT2d3gbseIIYv+759czxjPr1H
+	T/WBeCn7/DimWukeApo9gezhZvXGcFlpCgVAGs+sIHSbUwSbvGZsvRMTjG0EVrZJFHLKuxHYUDF
+	esDo551qFvqJ/jpBH/zUvVA==
+X-Received: by 2002:a05:600c:3403:b0:401:daf2:2735 with SMTP id y3-20020a05600c340300b00401daf22735mr8294563wmp.31.1702848805788;
+        Sun, 17 Dec 2023 13:33:25 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IElsMH/e3AuKVnouRvSQ1+tNGmbnVzX8Ok7/pjwFuDcho/tdFgjioZuOMxwPzVueDgH+cCPnQ==
+X-Received: by 2002:a05:600c:3403:b0:401:daf2:2735 with SMTP id y3-20020a05600c340300b00401daf22735mr8294553wmp.31.1702848805410;
+        Sun, 17 Dec 2023 13:33:25 -0800 (PST)
+Received: from localhost (205.pool92-176-231.dynamic.orange.es. [92.176.231.205])
+        by smtp.gmail.com with ESMTPSA id e12-20020a05600c4e4c00b0040b398f0585sm39872880wmq.9.2023.12.17.13.33.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 17 Dec 2023 13:33:24 -0800 (PST)
+From: Javier Martinez Canillas <javierm@redhat.com>
+To: Conor Dooley <conor@kernel.org>
+Cc: linux-kernel@vger.kernel.org, Maxime Ripard <mripard@kernel.org>, Thomas
+ Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, Peter
+ Robinson <pbrobinson@gmail.com>, Geert Uytterhoeven
+ <geert@linux-m68k.org>, Conor Dooley <conor+dt@kernel.org>, Daniel Vetter
+ <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Rob Herring <robh+dt@kernel.org>,
+ devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH 1/2] dt-bindings: display: Add SSD133x OLED controllers
+In-Reply-To: <20231217-bacteria-amusable-77efb05770a4@spud>
+References: <20231217100741.1943932-1-javierm@redhat.com>
+ <20231217100741.1943932-2-javierm@redhat.com>
+ <20231217-bacteria-amusable-77efb05770a4@spud>
+Date: Sun, 17 Dec 2023 22:33:24 +0100
+Message-ID: <87fs00ms4b.fsf@minerva.mail-host-address-is-not-set>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="npmbwANzcjocFUKY"
-Content-Disposition: inline
-In-Reply-To: <6c62e3b2-acde-4580-9b67-56683289e45e@collabora.com>
+Content-Type: text/plain
 
+Conor Dooley <conor@kernel.org> writes:
 
---npmbwANzcjocFUKY
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Hello Connor,
 
-On Fri, Dec 15, 2023 at 11:03:24PM +0200, Cristian Ciocaltea wrote:
-> On 12/15/23 22:59, Samuel Holland wrote:
-> > On 2023-12-15 2:47 PM, Jessica Clarke wrote:
-> >> On 15 Dec 2023, at 20:40, Cristian Ciocaltea <cristian.ciocaltea@colla=
-bora.com> wrote:
-> >>>
-> >>> The Synopsys DesignWare MAC found on StarFive JH7100 SoC is mostly
-> >>> similar to the newer JH7110, but it requires only two interrupts and a
-> >>> single reset line, which is 'ahb' instead of the commonly used
-> >>> 'stmmaceth'.
-> >>>
-> >>> Since the common binding 'snps,dwmac' allows selecting 'ahb' only in
-> >>> conjunction with 'stmmaceth', extend the logic to also permit exclusi=
-ve
-> >>> usage of the 'ahb' reset name.  This ensures the following use cases =
-are
-> >>> supported:
-> >>>
-> >>>  JH7110: reset-names =3D "stmmaceth", "ahb";
-> >>>  JH7100: reset-names =3D "ahb";
-> >>>  other:  reset-names =3D "stmmaceth";
-> >>>
-> >>> Also note the need to use a different dwmac fallback, as v5.20 applies
-> >>> to JH7110 only, while JH7100 relies on v3.7x.
-> >>>
-> >>> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-> >>> ---
-> >>> .../devicetree/bindings/net/snps,dwmac.yaml   |  3 +-
-> >>> .../bindings/net/starfive,jh7110-dwmac.yaml   | 74 +++++++++++++------
-> >>> 2 files changed, 55 insertions(+), 22 deletions(-)
-> >>>
-> >>> diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/=
-Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> >>> index 5c2769dc689a..c1380ff1c054 100644
-> >>> --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> >>> +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> >>> @@ -95,6 +95,7 @@ properties:
-> >>>         - snps,dwmac-5.20
-> >>>         - snps,dwxgmac
-> >>>         - snps,dwxgmac-2.10
-> >>> +        - starfive,jh7100-dwmac
-> >>>         - starfive,jh7110-dwmac
-> >>>
-> >>>   reg:
-> >>> @@ -146,7 +147,7 @@ properties:
-> >>>   reset-names:
-> >>>     minItems: 1
-> >>>     items:
-> >>> -      - const: stmmaceth
-> >>> +      - enum: [stmmaceth, ahb]
-> >>>       - const: ahb
-> >>
-> >> I=E2=80=99m not so well-versed in the YAML bindings, but would this no=
-t allow
-> >> reset-names =3D "ahb", "ahb"?
-> >=20
-> > Yes, it would. You need something like:
-> >=20
-> > reset-names:
-> >   oneOf:
-> >     - enum: [stmmaceth, ahb]
-> >     - items:
-> >         - const: stmmaceth
-> >         - const: ahb
->=20
-> Oh yes, I always forget about the "oneOf" thing. Thanks!
+> On Sun, Dec 17, 2023 at 11:07:03AM +0100, Javier Martinez Canillas wrote:
 
-Won't this also relax the naming for all devices that allow a single
-reset, but expect the stmmaceth one? I'm not sure that that actually
-matters, I think the consumer bindings have constraints themselves.
+[...]
 
---npmbwANzcjocFUKY
-Content-Type: application/pgp-signature; name="signature.asc"
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - solomon,ssd1331
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +
+>> +allOf:
+>> +  - $ref: solomon,ssd-common.yaml#
+>> +
+>> +  - if:
+>> +      properties:
+>> +        compatible:
+>> +          contains:
+>> +            const: solomon,ssd1331
+>> +    then:
+>> +      properties:
+>> +        width:
+>> +          default: 96
+>> +        height:
+>> +          default: 64
+>
+> Do you envisage a rake of devices that are going to end up in this
+> binding? Otherwise, why not unconditionally set the constraints?
+>
 
------BEGIN PGP SIGNATURE-----
+Because these are only for the default width and height, there can be
+panels using the same controller but that have a different resolution.
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZX9jlAAKCRB4tDGHoIJi
-0u2kAQDwhBC97TRp152I+1W+AAVbbj170OQONz+W/j8kuDieIwD/cY+M0Ecr1wRq
-sRFbcJiO+jHPZHDgTTISrvusYc5QxwU=
-=mt/n
------END PGP SIGNATURE-----
+For example, there are panels using the SSD1306 controller that have
+128x32 [0], 64x32 [1] or 128x64 [2] resolutions.
 
---npmbwANzcjocFUKY--
+But answering your question, yes I think that more devices for this
+SSD133x family are going to be added later. Looking at [3], there is
+at least SSD1333 that has a different default resolutions (176x176).
+
+I think that even the SSD135x family could be supported by the same
+modsetting pipeline, but I need to get one to figure it out.
+
+[0]: https://es.aliexpress.com/item/1005003648174074.html
+[1]: https://www.buydisplay.com/white-0-49-inch-oled-display-64x32-iic-i2c-ssd1306-connector-fpc
+[2]: https://es.aliexpress.com/item/1005001582340858.html?gatewayAdapt=glo2esp
+[3]: https://www.solomon-systech.com/product-search/?technology=oled-display
+
+> Cheers,
+> Conor.
+
+-- 
+Best regards,
+
+Javier Martinez Canillas
+Core Platforms
+Red Hat
+
 
