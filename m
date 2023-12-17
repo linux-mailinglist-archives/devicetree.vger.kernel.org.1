@@ -1,212 +1,142 @@
-Return-Path: <devicetree+bounces-26230-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26232-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26F19815F58
-	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 14:24:44 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B30B2815F71
+	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 14:31:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D131828327A
-	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 13:24:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E60311C20EEC
+	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 13:31:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00F1344364;
-	Sun, 17 Dec 2023 13:24:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE5474437E;
+	Sun, 17 Dec 2023 13:31:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="P78yriM8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtprelay05.ispgateway.de (smtprelay05.ispgateway.de [80.67.31.93])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65E12374CA;
-	Sun, 17 Dec 2023 13:24:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=apitzsch.eu
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=apitzsch.eu
-Received: from [92.206.191.209] (helo=note-book.lan)
-	by smtprelay05.ispgateway.de with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96.1)
-	(envelope-from <git@apitzsch.eu>)
-	id 1rEr68-0008FK-1V;
-	Sun, 17 Dec 2023 14:22:24 +0100
-From: =?utf-8?q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>
-Date: Sun, 17 Dec 2023 14:21:39 +0100
-Subject: [PATCH] dt-bindings: regulator: Convert ti,tps65133 to YAML
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86C42374CA;
+	Sun, 17 Dec 2023 13:31:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3E22DC433C7;
+	Sun, 17 Dec 2023 13:31:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1702819892;
+	bh=ALp9/9f0txG4FMxlU/u1nEfS+4f4LKu9JESa7bHHH7o=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=P78yriM8EXtFLn7GdBVidKVrrnG4zQat53WdB7LY40S1mCJhumQfQyuBNcbBPNy6y
+	 topLRmfYbnUsZiNcHwFMRBOKCFOyKxcmeYQEaUioqbDsAGDE/UXP+lDoopJ45oqJCk
+	 JxVznpAs5if3+bolAR0Iek+xvsf1sQSKtW0WSc5sPkUDd+YG+ZrFKocSwFoEeiYpKD
+	 fiYomzNwmkCL2EMsgaQ8eYSQ0ra8x6nel+CknYp0CMknE1TLnjDUzppeMl+K7LzJOn
+	 wR/yg2qptA43HbKlQZCRr32jwvJqHV9A9oHo2hSsc1KQQnjyIWbWYl4q+QEoA5b87s
+	 oa1VlhGfqSHGA==
+Date: Sun, 17 Dec 2023 13:31:12 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Andy Shevchenko <andy@kernel.org>
+Cc: Ceclan Dumitru <mitrutzceclan@gmail.com>, Jonathan Cameron
+ <Jonathan.Cameron@huawei.com>, linus.walleij@linaro.org, brgl@bgdev.pl,
+ linux-gpio@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>, Rob
+ Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Michael Walle <michael@walle.cc>, Arnd Bergmann <arnd@arndb.de>, ChiaEn Wu
+ <chiaen_wu@richtek.com>, Niklas Schnelle <schnelle@linux.ibm.com>, Leonard
+ =?UTF-8?B?R8O2aHJz?= <l.goehrs@pengutronix.de>, Mike Looijmans
+ <mike.looijmans@topic.nl>, Haibo Chen <haibo.chen@nxp.com>, Hugo Villeneuve
+ <hvilleneuve@dimonoff.com>, Ceclan Dumitru <dumitru.ceclan@analog.com>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v8 2/2] iio: adc: ad7173: add AD7173 driver
+Message-ID: <20231217133112.0054ef56@jic23-huawei>
+In-Reply-To: <ZXsVgVzcK6Om4td_@smile.fi.intel.com>
+References: <20231212104451.22522-1-mitrutzceclan@gmail.com>
+	<20231212104451.22522-2-mitrutzceclan@gmail.com>
+	<20231214123029.000002f1@Huawei.com>
+	<375bf803-a5d5-4778-938a-b8218b116375@gmail.com>
+	<ZXsVgVzcK6Om4td_@smile.fi.intel.com>
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20231217-tps65132-v1-1-73c69a960d28@apitzsch.eu>
-X-B4-Tracking: v=1; b=H4sIAOL1fmUC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDI2NDI0Nz3ZKCYjNTQ2MjXfM0CyMjy5TkxBRTSyWg8oKi1LTMCrBR0bG1tQD
- mV7z8WgAAAA==
-To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
- Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- =?utf-8?q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>
-X-Mailer: b4 0.12.4
-X-Df-Sender: YW5kcmVAYXBpdHpzY2guZXU=
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-Convert TI TPS65132 bindings from .txt to .yaml format.
+On Thu, 14 Dec 2023 16:47:29 +0200
+Andy Shevchenko <andy@kernel.org> wrote:
 
-Signed-off-by: André Apitzsch <git@apitzsch.eu>
----
-Note, we still have to find a person willing to be listed as maintainer.
-Suggestions are welcome.
----
- .../devicetree/bindings/regulator/ti,tps65132.yaml | 81 ++++++++++++++++++++++
- .../bindings/regulator/tps65132-regulator.txt      | 46 ------------
- 2 files changed, 81 insertions(+), 46 deletions(-)
+> On Thu, Dec 14, 2023 at 02:57:35PM +0200, Ceclan Dumitru wrote:
+> > On 12/14/23 14:30, Jonathan Cameron wrote:  
+> > > On Tue, 12 Dec 2023 12:44:36 +0200
+> > > Dumitru Ceclan <mitrutzceclan@gmail.com> wrote:  
+> 
+> ...
+> 
+> > >> +		ret = fwnode_property_match_property_string(child,
+> > >> +							    "adi,reference-select",
+> > >> +							    ad7173_ref_sel_str,
+> > >> +							    ARRAY_SIZE(ad7173_ref_sel_str));  
+> 
+> > >> +  
+> 
+> Redundant blank line.
+> 
+> > >> +		if (ret < 0)
+> > >> +			ref_sel = AD7173_SETUP_REF_SEL_INT_REF;
+> > >> +		else
+> > >> +			ref_sel = ret;  
+> > > Simpler pattern for properties with a default is not to check the error code.
+> > > 
+> > > 		ref_sel = AD7173_SETUP_REF_SEL_INT_REF;
+> > > 
+> > > 		fwnode_property_match_property_String(child, ...
+> > > 
+> > > so only if it succeeds is the value overridden.  
+> > 
+> > Where exactly would the value be overridden, the function does not have an
+> > argument passed for the found index. The function is written to return either
+> > the found index or a negative error.
+> > 
+> > The proposed pattern would just ignore the returned index and would always
+> > leave ref_sel to default. Am I missing something?
+> > 
+> > I can see in the thread where it was introduced that you proposed:
+> > "Looking at the usecases I wonder if it would be better to pass in
+> > an unsigned int *ret which is only updated on a match?"
+> > 
+> > But on the iio togreg branch that was suggested I could the function on, it
+> > does not have that parameter.  
+> 
+> Yeah, with the current API we can have one check (no 'else' branch):
+> 
+> 		ref_sel = AD7173_SETUP_REF_SEL_INT_REF;
+> 		ret = ...
+> 		if (ret >= 0)
+> 			ref_sel = ret;
+> 
+Yeah. I was clearly lacking in coffee or just being an idiot that day!
 
-diff --git a/Documentation/devicetree/bindings/regulator/ti,tps65132.yaml b/Documentation/devicetree/bindings/regulator/ti,tps65132.yaml
-new file mode 100644
-index 000000000000..0add88dd0e80
---- /dev/null
-+++ b/Documentation/devicetree/bindings/regulator/ti,tps65132.yaml
-@@ -0,0 +1,81 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/regulator/ti,tps65132.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: TI TPS65132 Dual Output Power Regulators
-+
-+description: |
-+  The TPS65132 is designed to supply positive/negative driven applications.
-+
-+  Datasheet is available at:
-+  https://www.ti.com/lit/gpn/tps65132
-+
-+properties:
-+  compatible:
-+    enum:
-+      - ti,tps65132
-+
-+  reg:
-+    maxItems: 1
-+
-+patternProperties:
-+  "^out[pn]$":
-+    type: object
-+    $ref: regulator.yaml#
-+    unevaluatedProperties: false
-+    description:
-+      Properties for single regulator.
-+
-+    properties:
-+      enable-gpios:
-+        maxItems: 1
-+        description:
-+          GPIO specifier to enable the GPIO control (on/off) for regulator.
-+
-+      active-discharge-gpios:
-+        maxItems: 1
-+        description:
-+          GPIO specifier to actively discharge the delay mechanism.
-+
-+      ti,active-discharge-time-us:
-+        description: Regulator active discharge time in microseconds.
-+
-+    dependencies:
-+      active-discharge-gpios: [ 'ti,active-discharge-time-us' ]
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        regulator@3e {
-+            compatible = "ti,tps65132";
-+            reg = <0x3e>;
-+
-+            outp {
-+                regulator-name = "outp";
-+                regulator-boot-on;
-+                regulator-always-on;
-+                enable-gpios = <&gpio 23 GPIO_ACTIVE_HIGH>;
-+            };
-+
-+            outn {
-+                regulator-name = "outn";
-+                regulator-boot-on;
-+                regulator-always-on;
-+                regulator-active-discharge = <0>;
-+                enable-gpios = <&gpio 40 GPIO_ACTIVE_HIGH>;
-+            };
-+        };
-+    };
-diff --git a/Documentation/devicetree/bindings/regulator/tps65132-regulator.txt b/Documentation/devicetree/bindings/regulator/tps65132-regulator.txt
-deleted file mode 100644
-index 3a3505520c69..000000000000
---- a/Documentation/devicetree/bindings/regulator/tps65132-regulator.txt
-+++ /dev/null
-@@ -1,46 +0,0 @@
--TPS65132 regulators
--
--Required properties:
--- compatible: "ti,tps65132"
--- reg: I2C slave address
--
--Optional Subnode:
--Device supports two regulators OUTP and OUTN. A sub node within the
--   device node describe the properties of these regulators. The sub-node
--   names must be as follows:
--	-For regulator outp, the sub node name should be "outp".
--	-For regulator outn, the sub node name should be "outn".
--
---enable-gpios:(active high, output) Regulators are controlled by the input pins.
--   If it is connected to GPIO through host system then provide the
--   gpio number as per gpio.txt.
---active-discharge-gpios: (active high, output) Some configurations use delay mechanisms
--  on the enable pin, to keep the regulator enabled for some time after
--  the enable signal goes low. This GPIO is used to actively discharge
--  the delay mechanism. Requires specification of ti,active-discharge-time-us
---ti,active-discharge-time-us: how long the active discharge gpio should be
--  asserted for during active discharge, in microseconds.
--
--Each regulator is defined using the standard binding for regulators.
--
--Example:
--
--	tps65132@3e {
--		compatible = "ti,tps65132";
--		reg = <0x3e>;
--
--		outp {
--			regulator-name = "outp";
--			regulator-boot-on;
--			regulator-always-on;
--			enable-gpios = <&gpio 23 0>;
--		};
--
--		outn {
--			regulator-name = "outn";
--			regulator-boot-on;
--			regulator-always-on;
--			regulator-active-discharge = <0>;
--			enable-gpios = <&gpio 40 0>;
--		};
--	};
+> But your approach is good to me.
+> 
+> ...
+> 
+> It's always possible to change prototype, and now of course is the best time
+> as all the users are provided in the single tree. That said, patches are
+> welcome if this is what we want. (My proposal was to return index in case of
+> no error, but at the same time leave it in the returned code, so it will be
+> aligned with other match functions of fwnode.
+> 
+> But this in either way will complicate the implementation. And I don't find
+> critical to have if-else in each caller as some of them may do something
+> different on the error case, when option is mandatory. In such cases we
+> usually don't provide output if we know that an error condition occurs.
 
----
-base-commit: 17cb8a20bde66a520a2ca7aad1063e1ce7382240
-change-id: 20231217-tps65132-7f8229dcad59
+I'm fine with it being as it is.  Was just having a slow brain day.
 
-Best regards,
--- 
-André Apitzsch <git@apitzsch.eu>
+J
+> 
 
 
