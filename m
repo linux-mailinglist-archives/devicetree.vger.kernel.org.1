@@ -1,139 +1,123 @@
-Return-Path: <devicetree+bounces-26201-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26202-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9680C815E6E
-	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 11:10:38 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 956CF815E72
+	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 11:26:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BB0971C21129
-	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 10:10:37 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 32475B21967
+	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 10:26:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9575D1FC4;
-	Sun, 17 Dec 2023 10:10:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=ixypsilon.net header.i=@ixypsilon.net header.b="AGoAW/i2"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C58FB2564;
+	Sun, 17 Dec 2023 10:25:56 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from uvw.ixypsilon.net (uvw.ixypsilon.net [81.223.58.118])
+Received: from mailout2.hostsharing.net (mailout2.hostsharing.net [83.223.78.233])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 163211FAD;
-	Sun, 17 Dec 2023 10:10:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixypsilon.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ixypsilon.net
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=ixypsilon.net; s=20210903; h=Content-Transfer-Encoding:MIME-Version:
-	Content-Type:References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender
-	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-	List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=I5qCWbnHdT3J6I/2pNx1YRFPO8CuYS6nTizw89enV14=; t=1702807829; x=1704017429; 
-	b=AGoAW/i266xFMTE7jjgGsNuuWCvKQ8K/9UoRg8bzuMfaP8IK8UbjdL6JlYHu1vIF+1DWrUYld12
-	L0WTG3mucitmI5k8BHUPprYtkd8JciVf8c48018RR36G/25W36INHqEKeyQSHN8E7NbbN5Bzyrw46
-	fD9EJ11G5Q3T3TpJTBTmxUV6UXONY5Hova1UpiWpS6ntlwXRC1OON0UNQJwOiGpFoV9BsuYDrwlyW
-	T53DamA5oWniavJDNFs8qnM7bjL/qm3dUpFcYbL0a7hopPh+hhSoHHy6nGBtN/OL3aFUeFvH1tFEs
-	KNnP/SD0rG9VBUQhgVH0GT2y9avrkmU7jHAg==;
-Received: from [192.168.0.1] (helo=[192.168.0.12])
-	by uvw.ixypsilon.net with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <stefan.nagy@ixypsilon.net>)
-	id 1rEo64-0000o9-1I;
-	Sun, 17 Dec 2023 11:10:10 +0100
-Message-ID: <2f5e3bacaedb979748417dff77364530f3fb7a62.camel@ixypsilon.net>
-Subject: Re: [PATCH] arm64: dts: rockchip: Increase maximum frequency of SPI
- flash for ROCK Pi 4A/B/C
-From: Stefan Nagy <stefan.nagy@ixypsilon.net>
-To: Dragan Simic <dsimic@manjaro.org>
-Cc: Heiko Stuebner <heiko@sntech.de>, linux-rockchip@lists.infradead.org, 
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Date: Sun, 17 Dec 2023 11:10:08 +0100
-In-Reply-To: <4fce0de996d6cc3056d972cd3fc3fb93@manjaro.org>
-References: <20231215122848.59534-1-stefan.nagy@ixypsilon.net>
-	 <33e632c38fa57053585c0016652ed8c8@manjaro.org>
-	 <4fce0de996d6cc3056d972cd3fc3fb93@manjaro.org>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.38.3-1+deb11u2 
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 135E6538D;
+	Sun, 17 Dec 2023 10:25:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=wunner.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wunner.de
+Received: from h08.hostsharing.net (h08.hostsharing.net [83.223.95.28])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256
+	 client-signature RSA-PSS (4096 bits) client-digest SHA256)
+	(Client CN "*.hostsharing.net", Issuer "RapidSSL TLS RSA CA G1" (verified OK))
+	by mailout2.hostsharing.net (Postfix) with ESMTPS id 68DA710189BEB;
+	Sun, 17 Dec 2023 11:18:27 +0100 (CET)
+Received: from localhost (unknown [89.246.108.87])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by h08.hostsharing.net (Postfix) with ESMTPSA id 3923660C436B;
+	Sun, 17 Dec 2023 11:18:27 +0100 (CET)
+X-Mailbox-Line: From 99523409eb5aec9276055ff358ae6f2ceb10be6d Mon Sep 17 00:00:00 2001
+Message-Id: <cover.1702806810.git.lukas@wunner.de>
+From: Lukas Wunner <lukas@wunner.de>
+Date: Sun, 17 Dec 2023 11:13:30 +0100
+Subject: [PATCH v3 0/4] dt-bindings: tpm: Clean all the things
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam_score: -1.0
+To: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Jarkko Sakkinen <jarkko@kernel.org>, Peter Huewe <peterhuewe@gmx.de>, Jason Gunthorpe <jgg@ziepe.ca>
+Cc: devicetree@vger.kernel.org, linux-integrity@vger.kernel.org, Lino Sanfilippo <LinoSanfilippo@gmx.de>, Nayna Jain <nayna@linux.ibm.com>, Thirupathaiah Annapureddy <thiruan@microsoft.com>, Sasha Levin <sashal@kernel.org>, Andrey Pronin <apronin@chromium.org>, Alexander Steffen <Alexander.Steffen@infineon.com>, Johannes Holland <Johannes.Holland@infineon.com>, Amir Mizinski <amirmizi6@gmail.com>, Benoit HOUYERE <benoit.houyere@st.com>, Peter Delevoryas <peter@pjd.dev>, Ninad Palsule <ninad@linux.ibm.com>, Guenter Roeck <linux@roeck-us.net>, Francesco Dolcini <francesco@dolcini.it>, Nishanth Menon <nm@ti.com>
 
-Am Freitag, dem 15.12.2023 um 19:20 +0100 schrieb Dragan Simic:
-> On 2023-12-15 19:15, Dragan Simic wrote:
-> > On 2023-12-15 13:28, Stefan Nagy wrote:
-> > > The ROCK Pi 4A/B/C boards come with a 32 Mbit SPI NOR flash chip
-> > > (XTX Technology Limited XT25F32) which has a maximum clock
-> > > frequency of 108 MHz. However, the Rockchip SPI controller driver
-> > > limits the maximum SPI clock frequency to 50 MHz. Use this limit
-> > > for spi-max-freq.
-> > > 
-> > > This patch has been tested on ROCK Pi 4A.
-> > > 
-> > > Signed-off-by: Stefan Nagy <stefan.nagy@ixypsilon.net>
-> > > ---
-> > >  arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4a.dts | 2 +-
-> > >  arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4b.dts | 2 +-
-> > >  arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4c.dts | 2 +-
-> > >  3 files changed, 3 insertions(+), 3 deletions(-)
-> > > 
-> > > diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4a.dts
-> > > b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4a.dts
-> > > index d5df8939a..30e63e62a 100644
-> > > --- a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4a.dts
-> > > +++ b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4a.dts
-> > > @@ -19,6 +19,6 @@ &spi1 {
-> > >         flash@0 {
-> > >                 compatible = "jedec,spi-nor";
-> > >                 reg = <0>;
-> > > -               spi-max-frequency = <10000000>;
-> > > +               spi-max-frequency = <50000000>;
-> > >         };
-> > >  };
-> > > diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4b.dts
-> > > b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4b.dts
-> > > index bee6d7588..7122bf6c0 100644
-> > > --- a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4b.dts
-> > > +++ b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4b.dts
-> > > @@ -37,7 +37,7 @@ &spi1 {
-> > >         flash@0 {
-> > >                 compatible = "jedec,spi-nor";
-> > >                 reg = <0>;
-> > > -               spi-max-frequency = <10000000>;
-> > > +               spi-max-frequency = <50000000>;
-> > >         };
-> > >  };
-> > > 
-> > > diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4c.dts
-> > > b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4c.dts
-> > > index de2ebe4cb..8af75bc7c 100644
-> > > --- a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4c.dts
-> > > +++ b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4c.dts
-> > > @@ -49,7 +49,7 @@ &spi1 {
-> > >         flash@0 {
-> > >                 compatible = "jedec,spi-nor";
-> > >                 reg = <0>;
-> > > -               spi-max-frequency = <10000000>;
-> > > +               spi-max-frequency = <50000000>;
-> > >         };
-> > >  };
-> > 
-> > It would be better to upstream these changes to the Linux kernel
-> > first, and then sync them back to U-Boot.
-> 
-> Oops, my bad, sorry, I got confused with your other patch on the U-
-> Boot mailing list.
-> 
-> Regarding the new spi-max-frequency value, it should be better to
-> have it set to what the SPI chip actually supports, and let the SPI
-> driver do its thing.
+TPM dt-bindings cleanup, take three.
 
-OK, I agree. I'll send a v2 of this patch with a new spi-max-frequency
-of 108 MHz.
+The existing devicetrees in arch/arm and arch/arm64 contain a few
+violations of the schemas contained herein.  E.g. the nodename is
+not "tpm@..." but "tpmdev@..." in some cases.  I've got patches
+lined up to fix these issues and will submit them separately.
+
+Changes v2 -> v3:
+* [PATCH 1/4]:
+  * Drop clock-frequency property from tcg,tpm-tis-i2c.yaml.
+    It doesn't exist at the peripheral level, only at the
+    controller level.  Document maximum clock frequency for
+    infineon,slb9635tt and infineon,slb9645tt in textual form
+    (as was previously done in trivial-devices.yaml).
+  * Document reset-gpios property as used by:
+    arch/arm64/boot/dts/freescale/imx8mp-beacon-kit.dts
+
+* [PATCH 2/4]:
+  * Introduce new schema specifically for google,cr50 (Rob).
+    Note that I can't use "oneOf" for SPI and I²C properties
+    because a node with only a "reg" property is a valid SPI
+    and I²C node and would match both subschemas.
+    So "anyOf" it is.
+
+* [PATCH 4/4]:
+  * Use "const" instead of "enum" for singleton compatible string.
+
+Link to v2:
+https://lore.kernel.org/linux-devicetree/cover.1701093036.git.lukas@wunner.de/
+
+
+Lukas Wunner (4):
+  dt-bindings: tpm: Consolidate TCG TIS bindings
+  dt-bindings: tpm: Convert Google Cr50 bindings to DT schema
+  dt-bindings: tpm: Convert IBM vTPM bindings to DT schema
+  dt-bindings: tpm: Document Microsoft fTPM bindings
+
+ .../bindings/security/tpm/google,cr50.txt     |  19 ----
+ .../bindings/security/tpm/ibmvtpm.txt         |  41 -------
+ .../bindings/security/tpm/st33zp24-i2c.txt    |  34 ------
+ .../bindings/security/tpm/st33zp24-spi.txt    |  32 ------
+ .../bindings/security/tpm/tpm-i2c.txt         |  26 -----
+ .../bindings/security/tpm/tpm_tis_mmio.txt    |  25 -----
+ .../bindings/security/tpm/tpm_tis_spi.txt     |  23 ----
+ .../devicetree/bindings/tpm/google,cr50.yaml  |  65 +++++++++++
+ .../devicetree/bindings/tpm/ibm,vtpm.yaml     | 104 ++++++++++++++++++
+ .../bindings/tpm/microsoft,ftpm.yaml          |  47 ++++++++
+ .../bindings/tpm/tcg,tpm-tis-i2c.yaml         |  90 +++++++++++++++
+ .../bindings/tpm/tcg,tpm-tis-mmio.yaml        |  49 +++++++++
+ .../bindings/tpm/tcg,tpm_tis-spi.yaml         |  75 +++++++++++++
+ .../devicetree/bindings/tpm/tpm-common.yaml   |  87 +++++++++++++++
+ .../devicetree/bindings/trivial-devices.yaml  |  16 ---
+ 15 files changed, 517 insertions(+), 216 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/security/tpm/google,cr50.txt
+ delete mode 100644 Documentation/devicetree/bindings/security/tpm/ibmvtpm.txt
+ delete mode 100644 Documentation/devicetree/bindings/security/tpm/st33zp24-i2c.txt
+ delete mode 100644 Documentation/devicetree/bindings/security/tpm/st33zp24-spi.txt
+ delete mode 100644 Documentation/devicetree/bindings/security/tpm/tpm-i2c.txt
+ delete mode 100644 Documentation/devicetree/bindings/security/tpm/tpm_tis_mmio.txt
+ delete mode 100644 Documentation/devicetree/bindings/security/tpm/tpm_tis_spi.txt
+ create mode 100644 Documentation/devicetree/bindings/tpm/google,cr50.yaml
+ create mode 100644 Documentation/devicetree/bindings/tpm/ibm,vtpm.yaml
+ create mode 100644 Documentation/devicetree/bindings/tpm/microsoft,ftpm.yaml
+ create mode 100644 Documentation/devicetree/bindings/tpm/tcg,tpm-tis-i2c.yaml
+ create mode 100644 Documentation/devicetree/bindings/tpm/tcg,tpm-tis-mmio.yaml
+ create mode 100644 Documentation/devicetree/bindings/tpm/tcg,tpm_tis-spi.yaml
+ create mode 100644 Documentation/devicetree/bindings/tpm/tpm-common.yaml
+
+-- 
+2.40.1
 
 
