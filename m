@@ -1,323 +1,140 @@
-Return-Path: <devicetree+bounces-26222-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26223-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BEEF3815F27
-	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 14:06:38 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E722F815F29
+	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 14:06:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 455DF1F21EFC
-	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 13:06:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1700E1C20D52
+	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 13:06:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D67E43179;
-	Sun, 17 Dec 2023 13:06:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E77E443AB2;
+	Sun, 17 Dec 2023 13:06:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EpP/TkpV"
+	dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.b="MfPHfxSX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qk1-f180.google.com (mail-qk1-f180.google.com [209.85.222.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C28442ABB;
-	Sun, 17 Dec 2023 13:06:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 29B92C433C8;
-	Sun, 17 Dec 2023 13:06:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1702818391;
-	bh=PaD/icLcaY/GikbVtAiVwoSGKEx0fBa3zQ8gqKHvZnw=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=EpP/TkpVVazLC39hYjGgYkKXH5ImVpGVVDyhA0AsUXdFtD6YsFohGpSlsoiXErC9D
-	 VhUqevuJh9S8nujaRrI/aUYQ19ZZvmdgjDM68ZmZ3glkuNrPTnf9EbKs6ZkIx8einX
-	 RJW2cqS27phpDDz8cwXzYGflqMlKsK7A9uiTJpcwwyoArxTrgtaRXvTisFkIaL7BbL
-	 MDA5qCSLmYvyD5yLl06ZshELSS6DL3fki8a9uNnvyewx62R8FfhVRRW98nuRZf4/Y6
-	 7U0c9rtqq7SYS7IxygF/8SbuXqYCMW4iflrvETBIPySrp8uO5DSDrz02lYhAKHCalV
-	 ts63pUst1TObw==
-Date: Sun, 17 Dec 2023 13:06:13 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Matti Vaittinen <mazziesaccount@gmail.com>, Andre Werner
- <andre.werner@systec-electronic.com>, devicetree@vger.kernel.org
-Cc: Marek Vasut <marex@denx.de>, linux-iio@vger.kernel.org, Alexander Stein
- <alexander.stein@ew.tq-group.com>, Andy Shevchenko
- <andriy.shevchenko@linux.intel.com>, Bjorn Helgaas <bhelgaas@google.com>,
- Conor Dooley <conor+dt@kernel.org>, Fabio Estevam <festevam@denx.de>,
- Guenter Roeck <linux@roeck-us.net>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Lars-Peter Clausen <lars@metafoo.de>,
- Luca Ceresoli <luca.ceresoli@bootlin.com>, Mark Brown <broonie@kernel.org>,
- Naresh Solanki <naresh.solanki@9elements.com>, Patrick Rudolph
- <patrick.rudolph@9elements.com>, Rob Herring <robh+dt@kernel.org>, Stefan
- Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com>, Vincent Tremblay
- <vincent@vtremblay.dev>
-Subject: Re: [PATCH v4 2/2] iio: light: isl76682: Add ISL76682 driver
-Message-ID: <20231217130613.47bab03d@jic23-huawei>
-In-Reply-To: <dff1e2f9-c2a1-4262-b80b-ce0c144fdaf5@gmail.com>
-References: <20231121031043.327614-1-marex@denx.de>
-	<20231121031043.327614-2-marex@denx.de>
-	<8b865546-0e51-45ff-ab76-8189afaa9ad5@gmail.com>
-	<cd21c72f-d9ff-471d-a08d-9b67bf180950@denx.de>
-	<4a39aff2-bb1a-447c-8c33-8bfad06777e3@gmail.com>
-	<dff1e2f9-c2a1-4262-b80b-ce0c144fdaf5@gmail.com>
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.38; x86_64-pc-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AE6B43179
+	for <devicetree@vger.kernel.org>; Sun, 17 Dec 2023 13:06:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ziepe.ca
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ziepe.ca
+Received: by mail-qk1-f180.google.com with SMTP id af79cd13be357-77f2f492a43so172728385a.2
+        for <devicetree@vger.kernel.org>; Sun, 17 Dec 2023 05:06:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ziepe.ca; s=google; t=1702818413; x=1703423213; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=KImPZocudnA0Xid9bPae7bvgNXTlGpXerlYRqfFZmS0=;
+        b=MfPHfxSXkor6ksyXCZguDaP3qwObFWL6B7+wc6rlY1NZWv0fWhwi1atdEEPevaQr10
+         EFq3D5aJYsnu1kqQ+SDxYhJN5lUtpSMeXffTI5KTgDacoxKi6KXhI+FSLB6zum9BiWwg
+         RU+XRgwEyIgzGp5xz6MbBYaLq//fa/AFCfRn2nnwCvFvFvont9210vGskSXLTFcgwcul
+         fuCzyz9ZnT0fE37m2zlEzswqlvXJt+GngC9O7H5GrxK+f1UHcbokfSwb04fy7AYRXmGx
+         mWsVqWU1eM/Gg+ECLTAjaW/wcQ7V8GJYJ9qOyCSVyUUuEWJFARyXfGBCPIoYcXzaQ+qI
+         GB6Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702818413; x=1703423213;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=KImPZocudnA0Xid9bPae7bvgNXTlGpXerlYRqfFZmS0=;
+        b=aQr5+n+Sw7SoLDnQc+Y68OHniyHWmLSN0RkEk9+1I9u+Zw1nrJA0beSbAUVoQ/pobO
+         vI8eMTSwRvWRFFwBUuObRVOB5aAITbxgK/elVcqa2OrtEkCi4r8chMQcF4IiuL02uPrB
+         noR/+XdWCvaKrf5EeIf944MD1IBl9z8xIcrBfuyTaePdIbg9D8FF7TvJJWoSex3uTjK3
+         JWNsBjKeaAS8wFZY6OkoNlVocdTQMd28dSF4V0Ms0iDYx805RWnJfzTvoYOCSwqxRPnS
+         /B8T0QZB+Qizjg4n66L7hgc0ENGFvNxFjPiRxQmp2WGyHWby2e/oTuF44XhiW7d7rTS2
+         ah7w==
+X-Gm-Message-State: AOJu0Yzx51URD4e0IkePa4H162Y2J1/t9A3pqJDWcd+asxOuuwf/gcqT
+	jngunRwnUn0jHG4mGUNP8dwVdw==
+X-Google-Smtp-Source: AGHT+IHTVjfMN59xpIf4XTLv2Tg1BapJF9ANCTlx2a8wYFY7k8a4DvzAyzksTBDM70stjssrCc4n+g==
+X-Received: by 2002:a05:620a:24c2:b0:77f:849f:72a5 with SMTP id m2-20020a05620a24c200b0077f849f72a5mr12897578qkn.94.1702818413199;
+        Sun, 17 Dec 2023 05:06:53 -0800 (PST)
+Received: from ziepe.ca ([208.169.72.58])
+        by smtp.gmail.com with ESMTPSA id a26-20020a05620a439a00b007788bb0ab8esm7536493qkp.19.2023.12.17.05.06.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 17 Dec 2023 05:06:52 -0800 (PST)
+Received: from jgg by jggl with local (Exim 4.95)
+	(envelope-from <jgg@ziepe.ca>)
+	id 1rEqr5-00013m-DC;
+	Sun, 17 Dec 2023 09:06:51 -0400
+Date: Sun, 17 Dec 2023 09:06:51 -0400
+From: Jason Gunthorpe <jgg@ziepe.ca>
+To: Robin Murphy <robin.murphy@arm.com>
+Cc: Jean-Philippe Brucker <jean-philippe@linaro.org>,
+	Joerg Roedel <joro@8bytes.org>, Christoph Hellwig <hch@lst.de>,
+	Vineet Gupta <vgupta@kernel.org>,
+	Russell King <linux@armlinux.org.uk>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, Huacai Chen <chenhuacai@kernel.org>,
+	WANG Xuerui <kernel@xen0n.name>,
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Hanjun Guo <guohanjun@huawei.com>,
+	Sudeep Holla <sudeep.holla@arm.com>,
+	"K. Y. Srinivasan" <kys@microsoft.com>,
+	Haiyang Zhang <haiyangz@microsoft.com>,
+	Wei Liu <wei.liu@kernel.org>, Dexuan Cui <decui@microsoft.com>,
+	Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>,
+	David Woodhouse <dwmw2@infradead.org>,
+	Lu Baolu <baolu.lu@linux.intel.com>,
+	Niklas Schnelle <schnelle@linux.ibm.com>,
+	Matthew Rosato <mjrosato@linux.ibm.com>,
+	Gerald Schaefer <gerald.schaefer@linux.ibm.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Frank Rowand <frowand.list@gmail.com>,
+	Marek Szyprowski <m.szyprowski@samsung.com>,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-acpi@vger.kernel.org, iommu@lists.linux.dev,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 6/7] iommu/dma: Centralise iommu_setup_dma_ops()
+Message-ID: <ZX7ya38NBluYyrOK@ziepe.ca>
+References: <cover.1702486837.git.robin.murphy@arm.com>
+ <5d89190b35720bf5b66621f46b6d3c85323d8eab.1702486837.git.robin.murphy@arm.com>
+ <20231214165126.GA3726750@myrica>
+ <2d87c1dc-cc95-4d92-968c-9d6e6e6439ff@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <2d87c1dc-cc95-4d92-968c-9d6e6e6439ff@arm.com>
 
-On Fri, 15 Dec 2023 14:06:32 +0200
-Matti Vaittinen <mazziesaccount@gmail.com> wrote:
+On Thu, Dec 14, 2023 at 06:22:49PM +0000, Robin Murphy wrote:
 
-> On 11/23/23 09:24, Matti Vaittinen wrote:
-> > On 11/23/23 02:26, Marek Vasut wrote: =20
-> >> On 11/22/23 13:17, Matti Vaittinen wrote: =20
-> >>> On 11/21/23 05:10, Marek Vasut wrote: =20
->=20
-> ..snip
->=20
-> >>> I like this table-based look-up for write (and read) of scales.=20
-> >>> Looking at this I see an analogy to some of the regulator stuff, like=
-=20
-> >>> for example the ramp-up values. What I do very much like in the=20
-> >>> regulator subsystem is the drivers/regulator/helpers.c
-> >>>
-> >>> I wonder if similar approach would be usable in IIO as well? I mean,=
-=20
-> >>> providing readily written iio_regmap_read/write_raw_<functionality>()=
-=20
-> >>> and iio_available_*() helpers for the simple devices where we just=20
-> >>> have value-register mapping? I mean, driver would just populate=20
-> >>> something like:
-> >>>
-> >>> struct iio_scale_desc {
-> >>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0int *scale_val_table;
-> >>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0int *scale_val2_table;
-> >>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0int num_scales; =20
-> >>
-> >> You'd also need type here (fractional, int+micro, ...), right ? =20
-> >=20
-> > Well, my thinking was to go with baby-steps. Eg, start by supporting=20
-> > just int+micro - but yes. As I wrote below, this can be expanded by=20
-> > allowing specifying the type.
-> >  =20
-> >>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0int scale_reg_addr;
-> >>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0int scale_reg_mask;
-> >>> };
-> >>>
-> >>> and call helper like
-> >>> int iio_regmap_read_raw_scale(struct iio_dev *idev,
-> >>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct iio_scale_desc *sd, int *val,
-> >>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 int *val2)"
-> >>> provided by IIO framework.
-> >>>
-> >>> Similar helper for writing new scales and getting available scales.
-> >>>
-> >>> Later this could be expanded by allowing specifying the type of=20
-> >>> provided values (in the example case, IIO_VAL_INT_PLUS_x - but maybe=
-=20
-> >>> this would be extensible (and worth) to support also the other option=
-s?)
-> >>> =20
->=20
-> ... snip
->=20
-> >>
-> >> The only thing I would wonder about is, should such a thing go into=20
-> >> regmap so it can be reused cross-subsystem instead of making this iio=
-=20
-> >> specific ? =20
-> >=20
-> > I definitely think a relation "register value" <=3D> "item from a table=
-"=20
-> > is very much used also outside the IIO. So yes, a generic regmap helper=
-=20
-> > for doing write as a "look value from table and write corresponding=20
-> > value to a register" and "read value from register and return me a=20
-> > corresponding item from a table" would be very usable.
-> >=20
-> > There is a tradeoff when doing a generic one instead of making it=20
-> > targeted for IIO use. Supporting different types of data is likely to=20
-> > make the code a bit hairy. Also, the IIO way of having these IIO_VAL_*=
-=20
-> > flags does probably require IIO - specific wrappers in any case. =20
->=20
-> I had some spare time so drafted following:
->=20
-> +struct reg_val_table {
-> +       int *reg_vals;
-> +       int *vals;
-> +       int num_vals;
-> +};
->=20
-> ...
->=20
-> +/**
-> + * regtable_find_val - find a value matching register setting
-> + *
-> + * Search given table for value mathcing a register setting.
-> + *
-> + * @table:     Table from which the register setting - value pairs are
-> + *             searched.
-> + * @reg:       Register value for which the matching physical value is
-> + *             searched.
-> + * @val:       Pointer to location where the found value will be stored.
-> + *
-> + * returns:    0 on success, negative errno if table is invalid or match=
- is
-> + *             not found.
-> + */
-> +int regtable_find_val(const struct reg_val_table *table, int reg, int *v=
-al)
->=20
->=20
-> +/**
-> + * regtable_find_reg - find a register setting matching given value.
-> + *
-> + * Search given table for a register setting matching a value.
-> + *
-> + * @table:     Table from which the register setting - value pairs are
-> + *             searched.
-> + * @val:       Value for which the matching register setting is searched.
-> + * @reg:       Pointer to location where the found register value will be
-> + *             stored.
-> + *
-> + * returns:    0 on success, negative errno if table is invalid or match=
- is
-> + *             not found.
-> + */
-> +int regtable_find_reg(const struct reg_val_table *table, int val, int *r=
-eg)
->=20
->=20
-> +/**
-> + * regtable_find_greater_than_val - find the closest greater val and reg
-Maybe use rounding terminology rather than greater than?
+> Taking yet another look, there's not actually one single place we can do
+> this right now which will work in a manageable way for all cases.
 
-regtable_find_val_roundup()?
+The dma ops should be set after changing the translation and there is
+only one place that attachs the domain? What prevents putting it
+there?
 
-> + *
-> + * Search given table for the smallest value which is still greater than
-> + * the given value. Both the found value and corresponding register
-> + * setting are returned unless given pointers are NULL.
-> + *
-> + * @table:     Table from which the register setting - value pairs are
-> + *             searched.
-> + * @val_cmp:   Value to which the values stored in table are compared to.
-> + * @reg:       NULL or pointer to location where the matching register
-> + *             setting value will be stored.
-> + * @val:       NULL or pointer to location where the found value will be
-> + *             stored.
-> + *
-> + * returns:    0 on success, negative errno if table is invalid or match=
- is
-> + *             not found.
-> + */
-> +int regtable_find_greater_than_val(const struct reg_val_table *table,=20
-> int val_cmp,
-> +                                  int *reg, int *val)
->=20
->=20
+> @@ -3217,18 +3220,9 @@ static ssize_t iommu_group_store_type(struct iommu_group *group,
+>  	if (ret)
+>  		goto out_unlock;
+> -	/*
+> -	 * Release the mutex here because ops->probe_finalize() call-back of
+> -	 * some vendor IOMMU drivers calls arm_iommu_attach_device() which
+> -	 * in-turn might call back into IOMMU core code, where it tries to take
+> -	 * group->mutex, resulting in a deadlock.
+> -	 */
+> -	mutex_unlock(&group->mutex);
+> -
+>  	/* Make sure dma_ops is appropriatley set */
+>  	for_each_group_device(group, gdev)
+> -		iommu_group_do_probe_finalize(gdev->dev);
+> -	return count;
 
-regtable_find_val_rounddown()?
+If we are turning this into something that only works for the ARM DMA
+then the remaining caller should be guarded by an IS_ENABLED
 
-> +/**
-> + * regtable_find_smaller_than_val - find the closest smaller val and reg
-> + *
-> + * Search given table for the greatest value which is still smaller than
-> + * the given value. Both the found value and corresponding register
-> + * setting are returned unless given pointers are NULL.
-> + *
-> + * @table:     Table from which the register setting - value pairs are
-> + *             searched.
-> + * @val_cmp:   Value to which the values stored in table are compared to.
-> + * @reg:       NULL or pointer to location where the matching register
-> + *             setting value will be stored.
-> + * @val:       NULL or pointer to location where the found value will be
-> + *             stored.
-> + *
-> + * returns:    0 on success, negative errno if table is invalid or match=
- is
-> + *             not found.
-> + */
-> +int regtable_find_smaller_than_val(const struct reg_val_table *table,
-> +                                  int val_cmp, int *reg, int *val)
->=20
->=20
-> and
->=20
-> +struct regmap_regval_table {
-> +       const struct reg_val_table table;
-> +       int reg;
-> +       int mask;
-> +};
->=20
-> +/**
-> + * regmap_table_value_set - update register to match=20
-> human-understandable value
-> + * @map:       Register map
-> + * @table:     Table describing register-value, human-readable value=20
-> relation
-> + * value:      Human understandable value to configure in hardware.
-> + *
-> + * Return:     0 on success, negative errno on error.
-> + */
-> +int regmap_table_value_set(struct regmap *map,
-> +                          const struct regmap_regval_table *table, int=20
-> value)
->=20
->=20
-> +/**
-> + * regmap_table_value_get - return human-understandable configuration
-> + *
-> + * Reads hardware or regmap cache for current hardware configuration and
-> + * converts the read register value to human understandable entity.
-> + * @map:       Register map
-> + * @table:     Table describing register-value, human-readable value=20
-> relation
-> + * value:      Human understandable value to configure in hardware.
-> + *
-> + * Return:     0 on success, negative errno on error.
-> + */
-> +int regmap_table_value_get(struct regmap *map,
-> +                          const struct regmap_regval_table *table, int=20
-> *value)
->=20
->=20
-> (for anyone interested, whole thing + tests can be found from:
-> https://github.com/M-Vaittinen/linux/commits/regtable/
-> Just last 3 commits.)
->=20
-> I am however having difficulties in seeing how this could be utilized by=
-=20
-> IIO, which tends to rely on values being represented by two integers=20
-> (val and val2).
-
-Two integers and a type to make it harder still... IIO_VAL_INT_PLUS_MICRO e=
-tc
-though I guess that might not need representing as generally the caller
-would know what that was.  Fixed point (ish) is a pain, but not come up wit=
-h a better
-presentation yet :(
-
-
->=20
-> Any suggestions regarding this idea? I'm wondering if I should just=20
-> scrap this and try seeing if I can make an IIO-specific helper(s) - or=20
-> if someone sees this would bring additional value worth an proper RFC? I=
-=20
-> don't want to sen an RFC for people to properly review if this idea is=20
-> just plain stupid :)
-
-It seems useful in general but I guess it's a question of whether you can f=
-ind
-enough users to justify it.
-
->=20
-> Yours,
-> 	-- Matti
->=20
-
+Jason
 
