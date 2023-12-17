@@ -1,105 +1,143 @@
-Return-Path: <devicetree+bounces-26213-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26215-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D312C815ECD
-	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 12:50:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 26123815EEC
+	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 13:20:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8E611282E87
-	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 11:50:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D01B0282C52
+	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 12:20:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8F42321AE;
-	Sun, 17 Dec 2023 11:50:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8472432C6D;
+	Sun, 17 Dec 2023 12:20:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Mm2DBawt"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="M4CFEQ3k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CDAD32C63;
-	Sun, 17 Dec 2023 11:50:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1702813811; x=1734349811;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=9IDAZ6s+VCoUbUYOgwDqe6kkFvmADMWSOYAij07BnEs=;
-  b=Mm2DBawtn0sbZ7q1MAX1yqHrtIDlnkThxl8HqJByxR3X3qwiv/wJL6aB
-   HMVPZUYwVHIQQXPLbsrjSrYeR6VcK/4lecr3rvVNtvPINdi/hCEerAyKQ
-   zDeX+PmH2WIGDu+2Ox4J0wlsDwPu0C2NmRYg2vOrlju99Ort7GEYSE4To
-   zOSNXAhpWzqTOPQHMVBZGidM1hvSQGCb5fkJa8rxVuhqzRmy7cnj8oZW0
-   OwarEMEBNSUfPgmCOPRWxcqAk1W1XnojmKCNbwvI+RlME2mlwx0c6RGLp
-   8lp25bUMZxIlViJLPaqnA71hgMGP6IGAAr7ZU1no0wCncYRIhaxg5+FCz
-   A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10926"; a="375562901"
-X-IronPort-AV: E=Sophos;i="6.04,283,1695711600"; 
-   d="scan'208";a="375562901"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Dec 2023 03:50:10 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10926"; a="724977812"
-X-IronPort-AV: E=Sophos;i="6.04,283,1695711600"; 
-   d="scan'208";a="724977812"
-Received: from lkp-server02.sh.intel.com (HELO b07ab15da5fe) ([10.239.97.151])
-  by orsmga003.jf.intel.com with ESMTP; 17 Dec 2023 03:50:07 -0800
-Received: from kbuild by b07ab15da5fe with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1rEpen-0002zS-0R;
-	Sun, 17 Dec 2023 11:50:05 +0000
-Date: Sun, 17 Dec 2023 19:49:54 +0800
-From: kernel test robot <lkp@intel.com>
-To: Abdel Alkuor <alkuor@gmail.com>, Jean Delvare <jdelvare@suse.com>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>
-Cc: oe-kbuild-all@lists.linux.dev, linux-hwmon@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org
-Subject: Re: [PATCH 2/2] hwmon: Add AMS AS6200 temperature sensor
-Message-ID: <202312171951.3y47awo9-lkp@intel.com>
-References: <63e352150ed51eefce90ca4058af5459730174b2.1702744180.git.alkuor@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7F14EADB;
+	Sun, 17 Dec 2023 12:20:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-551c03ae050so2162096a12.2;
+        Sun, 17 Dec 2023 04:20:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1702815642; x=1703420442; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=6xMyvQ0D0+nEZ9Gai87Uhvht57Iu3iXC8pPekH44If4=;
+        b=M4CFEQ3kVnOPO0sqWQWu+rNURTI2SFCcyN4fKjpIGstSQemT0lZJQi0BBA5GLP8ti7
+         t9qVrWBhkAkjUzi6+pN16FzGqoJjM4i66rFPp54IxzP1uKWvl0z0WLxKKULdnceUCU4W
+         K2+cmqx8ZnC5mqSOD1FtuMQaopgzgUh6FRBZ4TOsy4XbdqW19oeVCp6p38H+UekmfNia
+         VmKF9uaBOAeJCRmdfm9lq5K7TZcd5pFbR8JbodO3/e7eE7pbQFmsktav/vWAGG+G/59R
+         cZO+wQfdxgCCTxs4bBPb6b/JV3xozvO1+y4vN3T2QHmZIs+lNXFlRh/xNY+lHlJdrz5w
+         zLCQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702815642; x=1703420442;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=6xMyvQ0D0+nEZ9Gai87Uhvht57Iu3iXC8pPekH44If4=;
+        b=I6HroWnXOYqZHNsq9KiwlseTd6j3tmNRiiZGBRTEcXktF+C3n8pTN7cmKV6K6X9R0s
+         aU31Oe98FYZrgGjn3HBaPkwb3GZ8OQgnJATVkROmeK9U1gWfSZ0JD1yykMk3JniYzbqg
+         aZjERxBsMuLg0hOMX8edvCCsopFsitwY9QhcvBnVeTL2U/U02rSjBe+jtZwQAQbh2n5B
+         i1DvSNAfUKEvqk62+6gWSHSTRPl2ARu0+Egxa+vs6WBHxEE2C3Szu1qOYWcRvmDtUixK
+         i+iuPbrBxEkYh4IZBzvxgWjUBUiY1KB9C8XZLA3ZHcGjKi6ImPwvIsalS/W6s184aevW
+         4YCA==
+X-Gm-Message-State: AOJu0YxC6dGm8Tknn0cfcv6iDLLRlDitiuBokKMfwBCxwC0AfYbW+3YH
+	cx0ISaKLqKAq6MtwCZ+nKA2EKmxGm8EqYQ==
+X-Google-Smtp-Source: AGHT+IF8tBF81mVrLJRXLBc0CJHYJ8+mpwFKXqaSPEhBWtum8EU0q3MnMciWOn80wXXHftsNScwoUg==
+X-Received: by 2002:a50:ccd0:0:b0:54b:f6f7:9c4d with SMTP id b16-20020a50ccd0000000b0054bf6f79c4dmr7435314edj.38.1702815642009;
+        Sun, 17 Dec 2023 04:20:42 -0800 (PST)
+Received: from localhost.localdomain (2a02-8388-0502-f480-6c32-186a-368b-d6a9.cable.dynamic.v6.surfer.at. [2a02:8388:502:f480:6c32:186a:368b:d6a9])
+        by smtp.gmail.com with ESMTPSA id es21-20020a056402381500b0055267663784sm3495621edb.11.2023.12.17.04.20.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 17 Dec 2023 04:20:41 -0800 (PST)
+From: Christoph Winklhofer <cj.winklhofer@gmail.com>
+To: krzysztof.kozlowski@linaro.org,
+	robh+dt@kernel.org,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Christoph Winklhofer <cj.winklhofer@gmail.com>
+Subject: [PATCH 0/2] w1: add UART w1 bus driver
+Date: Sun, 17 Dec 2023 13:20:02 +0100
+Message-ID: <20231217122004.42795-1-cj.winklhofer@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <63e352150ed51eefce90ca4058af5459730174b2.1702744180.git.alkuor@gmail.com>
+Content-Transfer-Encoding: 8bit
 
-Hi Abdel,
+Hello!
 
-kernel test robot noticed the following build warnings:
+This patch set contains a driver for a 1-Wire bus over UART. The driver
+utilizes the UART interface via the Serial Device Bus to create the
+1-Wire timing patterns.
 
-[auto build test WARNING on groeck-staging/hwmon-next]
-[also build test WARNING on robh/for-next linus/master v6.7-rc5 next-20231215]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+It was tested on a "Raspberry Pi 3 Model B+" with a DS18B20 and on a
+"Variscite DART-6UL" with a DS18S20 temperature sensor.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Abdel-Alkuor/hwmon-Add-AMS-AS6200-temperature-sensor/20231217-004310
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/groeck/linux-staging.git hwmon-next
-patch link:    https://lore.kernel.org/r/63e352150ed51eefce90ca4058af5459730174b2.1702744180.git.alkuor%40gmail.com
-patch subject: [PATCH 2/2] hwmon: Add AMS AS6200 temperature sensor
-reproduce: (https://download.01.org/0day-ci/archive/20231217/202312171951.3y47awo9-lkp@intel.com/reproduce)
+Content:
+- Patch 1: device tree binding
+- Patch 2: driver and documentation
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202312171951.3y47awo9-lkp@intel.com/
+The patch was created against the w1 subsytem tree (branch w1-next):
+  Link: https://git.kernel.org/pub/scm/linux/kernel/git/krzk/linux-w1.git/
 
-All warnings (new ones prefixed by >>):
+The checkpatch.pl script reported the following error - which I am not
+sure how to fix:
+  WARNING: added, moved or deleted file(s), does MAINTAINERS need
+  updating?
 
->> Documentation/hwmon/as6200.rst: WARNING: document isn't included in any toctree
+The technical details for 1-Wire over UART are in the document:
+  Link: https://www.analog.com/en/technical-articles/using-a-uart-to-implement-a-1wire-bus-master.html
 
+  In short, the UART peripheral must support full-duplex and operate in
+open-drain mode. The timing patterns are generated by a specific
+combination of baud-rate and transmitted byte, which corresponds to a
+1-Wire read bit, write bit or reset pulse.
+
+For instance the timing pattern for a 1-Wire reset and presence detect
+uses the baud-rate 9600, i.e. 104.2 us per bit. The transmitted byte
+0xf0 over UART (least significant bit first, start-bit low) sets the
+reset low time for 1-Wire to 521 us. A present 1-Wire device changes the
+received byte by pulling the line low, which is used by the driver to
+evaluate the result of the 1-Wire operation.
+
+Similar for a 1-Wire read bit or write bit, which uses the baud-rate
+115200, i.e. 8.7 us per bit. The transmitted byte 0x00 is used for a
+Write-0 operation and the byte 0xff for Read-0, Read-1 and Write-1.
+
+Hope the driver is helpful.
+
+Thanks,
+Christoph
+
+Christoph Winklhofer (2):
+  dt-bindings: w1: UART 1-wire bus
+  w1: add UART w1 bus driver
+
+ .../devicetree/bindings/w1/w1-uart.yaml       |  27 +++
+ Documentation/w1/masters/index.rst            |   1 +
+ Documentation/w1/masters/w1-uart.rst          |  48 +++++
+ drivers/w1/masters/Kconfig                    |  10 +
+ drivers/w1/masters/Makefile                   |   1 +
+ drivers/w1/masters/w1-uart.c                  | 189 ++++++++++++++++++
+ 6 files changed, 276 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/w1/w1-uart.yaml
+ create mode 100644 Documentation/w1/masters/w1-uart.rst
+ create mode 100644 drivers/w1/masters/w1-uart.c
+
+
+base-commit: efc19c44aa442197ddcbb157c6ca54a56eba8c4e
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.43.0
+
 
