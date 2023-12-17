@@ -1,265 +1,229 @@
-Return-Path: <devicetree+bounces-26197-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26198-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 115CA815DA1
-	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 06:17:26 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B9155815DB4
+	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 07:06:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7E2201F21D5D
-	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 05:17:25 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3002FB220C8
+	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 06:06:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 471BA3D69;
-	Sun, 17 Dec 2023 05:13:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC1AA15D4;
+	Sun, 17 Dec 2023 06:06:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="nPZQtDVJ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CJnRGfAX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR04-HE1-obe.outbound.protection.outlook.com (mail-he1eur04on2070.outbound.protection.outlook.com [40.107.7.70])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ua1-f53.google.com (mail-ua1-f53.google.com [209.85.222.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A18911711;
-	Sun, 17 Dec 2023 05:13:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=fMOdLqcSpJSkDHTXqXvyrlDcbQ1cUcjNT0z21s9OLicaHVzbm+Lf4JpA+xiMNYXZyVfC9frANjYz1dPcN6c4LlIwiDq7mNI7FFWjrcQD5G+ZCv29WiLJaTVtq4G+n3L7HdiKagnxg7DybG3iQ/vO5Cr0lTmIIeGAIC41WcFbCefbKVG/IwSthwmlSr8IlCEH41OPi2556r2K8x59YONQIkdpbKbAbRapcZHTLTu7VQsyhIKHOgWZNgWQdRxBvN5SbaBnuAkXqK2L4G0WSlaMk5/htuPXguChLOt7nC8hxRrdCbCJTjUFMi9ixIsYzJ9ChcSY3Lx8lvnOV1408nNhKw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=p+PVnIpfl/eWyOmIFEMJ7rJLgECVqXFQT4MO169xwno=;
- b=KPQyCjfq2Gu8L9DSwHlO118D5EcpC7LobDtl5bpMtS27HAZD3nopAe9/0f66oju//8c3nKlpZ1Z0u+V9++8dekRbliNtYvx1vPZ4Q85NeKjE+AILKY++EMLIMHA22EnHo3jAdnRbDVfYdpch8B1K2fWDoUSL+GP1KfC8ntvPD5ciB56y8jqLZAIAvwYADr9xQWoRHBudpTn9yUuZQqutn/hwYBW2IZt4oR9QlQnysTN2kivLz10iVWMxStq/M6e5B2oi4aHN2r3kd7B+04YelrpMswMfDNacaxyM/mpPLGANjRizGdrGuRmLh48SdzmWY3Yv6OEAsv0LepJcCj6Hkg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=p+PVnIpfl/eWyOmIFEMJ7rJLgECVqXFQT4MO169xwno=;
- b=nPZQtDVJSdBOxbnCqv5uiYUxDlxbVqaAF8cNvG8B9wpm2t/CayDQMN/RLbqOcjARIG2iT7jlXKZs+UV79HUCztEFOLV48ETfE0i+3OkHppywLZvxgwqlfnZpMe9P3sEwHlSXa1kiJZd6u0YVjJjQU4UUAjjLncPS/xqB5F0yS84=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AM6PR04MB4838.eurprd04.prod.outlook.com (2603:10a6:20b:4::16)
- by AM9PR04MB8415.eurprd04.prod.outlook.com (2603:10a6:20b:3b5::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7091.36; Sun, 17 Dec
- 2023 05:13:51 +0000
-Received: from AM6PR04MB4838.eurprd04.prod.outlook.com
- ([fe80::95f5:5118:258f:ee40]) by AM6PR04MB4838.eurprd04.prod.outlook.com
- ([fe80::95f5:5118:258f:ee40%7]) with mapi id 15.20.7091.034; Sun, 17 Dec 2023
- 05:13:51 +0000
-From: Frank Li <Frank.Li@nxp.com>
-To: krzysztof.kozlowski@linaro.org
-Cc: Frank.li@nxp.com,
-	bhelgaas@google.com,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	festevam@gmail.com,
-	helgaas@kernel.org,
-	hongxing.zhu@nxp.com,
-	imx@lists.linux.dev,
-	kernel@pengutronix.de,
-	krzysztof.kozlowski+dt@linaro.org,
-	kw@linux.com,
-	l.stach@pengutronix.de,
-	linux-arm-kernel@lists.infradead.org,
-	linux-imx@nxp.com,
-	linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org,
-	lpieralisi@kernel.org,
-	manivannan.sadhasivam@linaro.org,
-	robh@kernel.org,
-	s.hauer@pengutronix.de,
-	shawnguo@kernel.org
-Subject: [PATCH v4 15/15] PCI: imx6: Add iMX95 Endpoint (EP) function support
-Date: Sun, 17 Dec 2023 00:12:10 -0500
-Message-Id: <20231217051210.754832-16-Frank.Li@nxp.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231217051210.754832-1-Frank.Li@nxp.com>
-References: <20231217051210.754832-1-Frank.Li@nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: BYAPR04CA0007.namprd04.prod.outlook.com
- (2603:10b6:a03:40::20) To AM6PR04MB4838.eurprd04.prod.outlook.com
- (2603:10a6:20b:4::16)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D58917E6;
+	Sun, 17 Dec 2023 06:06:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ua1-f53.google.com with SMTP id a1e0cc1a2514c-7c5cb5eeab1so569119241.3;
+        Sat, 16 Dec 2023 22:06:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1702793167; x=1703397967; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=QCc4fkhc+oDJ/r5+AQtqwzG8eeBYVzNEuSyvoV+hHGc=;
+        b=CJnRGfAXZowqZX0qdhA1Um9BHuDJWOLOX2ik3ScKt2RArDdbo2+unJD8zB3hmGM9YM
+         JIDfRPzaYn0QrnNwwHdVOzcKBjE4pdI4ECJ8doAVKlsGb1OhGcvX7BU7CFUVL6DPfQ+A
+         t2SVYqoVVPOxx4pCc/87+uKXBRdxkfF7hdG4PvsdLgNEmWVBWKFVyTwVhhSTfI9Zwh01
+         jwmqwBi9oQ9CYYixSj2k05rhUglUdEsNoY6jK6ARnMpWDbXViv+lujdXFasAHvCfsWKL
+         N37F/x5xkVuqlN0cZN0zzDoptI0kvKYQM8s1O78ME25Y00nsRHDyEoY2xnw3ykkobeGa
+         lRbw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702793167; x=1703397967;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=QCc4fkhc+oDJ/r5+AQtqwzG8eeBYVzNEuSyvoV+hHGc=;
+        b=iedMsDnl9yp2MXTcVPuefBfA4SR0u7/lszqccB0Q78kMDpKdFqwo5kCQiRGZwbrTIa
+         3/rJe7VillAT0LJHZiTI2ehbQUYF1PqTDb89Ao1IB4uXtGgyL4Cq/UN7O8O9hY5fxJfI
+         RjWbpbjbUBYOvgIXRvwAsoGve0AT5InGxqJiT1a+/8h7IZZ45eTAmYO42hgGu0InE7s3
+         vwkvbCib/Op+x0J1cFhykoVGvYcTN8k0ATsYBApZcHrLHeN+d/iqXJqOss0lTvkOgYyu
+         1BZyo1cP6+Obbedwcr1ZZINZ9Vr4I0vwNkE3Q7hmeB+CKlfJpzkkquKT5t/joC/hbBHb
+         Ul2Q==
+X-Gm-Message-State: AOJu0Yw/z/AOkw+XnQ4WlgHZUHqmIjh59pYXqx90ZD48OJgpLeLB2bGR
+	so5zPNsGGaUcAj9iOCowTkA=
+X-Google-Smtp-Source: AGHT+IHObFZGtYtsx1n/ZyWuij7h+owC/JJOBkt/yYYU/U/C3H5BnxtvBv2Kqhfjvtj/i1GJRt89rA==
+X-Received: by 2002:a05:6102:cc8:b0:464:3c0a:fdd4 with SMTP id g8-20020a0561020cc800b004643c0afdd4mr10957968vst.2.1702793166617;
+        Sat, 16 Dec 2023 22:06:06 -0800 (PST)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id f28-20020a056102151c00b004666fa3fb6bsm364508vsv.0.2023.12.16.22.06.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 16 Dec 2023 22:06:06 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <fbcceae6-2daf-4855-b8f2-f7a832a53339@roeck-us.net>
+Date: Sat, 16 Dec 2023 22:06:03 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM6PR04MB4838:EE_|AM9PR04MB8415:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6157824a-03da-421c-e0c0-08dbfebef51e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	oTGW6ENgUAF8M0VNsEY8Z8rnDeW/vkg9v2R/SyXqVDziru+QvhgiVcLKcLgbvobv0DCYYxE3RCwbzeHNUUci135IEW9ppMrxG61im8Y+DOlCWPjAUfk/iaqO15O4xNN/Au2Q65l+w2rxGDjY/4YwIm4ZUrKMq3LwXWXRKwUWGpWApt1NstfdQyzOcCp5UcKHfJIQmmncm9R+8vP5dv1kAcmeTQ5jvC9YLQmdzf9WHdE4h/YQTEQKeRV58Rmh7r3WLg14kGxWUlBqHa1HzFw7xn1iazikPtKKHGlF3kO3innE8oA1fWtKpAYRqP26v6IUa/lNgupC3I+J+vCL8tXVSNbUEMv8ZZ+2x0usCsD0CeLD/ukEaAVEbyX/hgW1tUlEo92EZxCrxu9I3eraDiiAjmz/kCcAG48Ruof+Bp5R2CiBL3oXuDfexxozDTExs6rrgyfBs9b/YB8/Y6TJaKXIeTjbrkhNADowmQ9ijutsHtmeRCikqGuuzUgQ7L1JVy8CAZLUZLyyeWVTwH4jrWbMAq6MWJ55VSmRnPghGwyPU0bFf414316agDu/PKJXkC6tzKSgRuCpKERzosMZ3Ns0TZFuETUpqJEAuLladka2GcPvdorAiG/x5RwQ3pwXCx2B
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB4838.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(136003)(366004)(376002)(39860400002)(346002)(396003)(230922051799003)(186009)(64100799003)(451199024)(1800799012)(38350700005)(86362001)(36756003)(38100700002)(26005)(52116002)(2616005)(1076003)(478600001)(6486002)(66556008)(66476007)(6916009)(6666004)(6512007)(6506007)(2906002)(8936002)(8676002)(4326008)(66946007)(316002)(5660300002)(7416002)(41300700001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?PmuLbqTbO/tLw5ild+I67jAo6lcTVw6Lj2EKbK5jT1bJtJXtIQ7blGHeMl9B?=
- =?us-ascii?Q?wCC1NabzeXQKieCCQ/TCCxzvSeL0o5ZOsTjtv2vWImE25IIU8IizOTdnJkFD?=
- =?us-ascii?Q?oQVBHvpuTIsqhwSX59H6g1A1/WekdPP8P1YIJSxgrOSPvKKSgC3X8EldBE/w?=
- =?us-ascii?Q?4+17OMnFVWQGXUdXSsJShhPnubWL1vEIqtgwg+IDEfrO+x8kG3Ln5v4pcAmB?=
- =?us-ascii?Q?b3KBIjCV1QBn4tlprgIlIM+IrGLD32nyZW2O1PEKtMGObGa0G4wONZk1jb3W?=
- =?us-ascii?Q?YylV8AY0nHwnQJnRbFuzSfQAu1jzcwpxOBAviFEy+0d/+XVVa0rW7i4IbVMv?=
- =?us-ascii?Q?Qprch/UYU8JRoTlnRC/e3+mNYuYYyX3Ahm2rPlQOmJJJZ7Bt4biwbCUrZuys?=
- =?us-ascii?Q?I5iLVWYUsdNiVrioWRFqhNnwsDmKBh4FCxuer/yEsCSE5uuZ06mNlBwBP3ss?=
- =?us-ascii?Q?vW89CWNRD39gP8BsHepy4jw7Y1RJUPeNhEPz6nuKr03JqvZtp4jwucJeOgVo?=
- =?us-ascii?Q?W8CSKV0yxZb0lJzKtNWGCSIBdem4aJB97i3l3k1OLed1V7ZXGqf46KjdlsAB?=
- =?us-ascii?Q?gD4Zae+y9q4E7VfeKRVoBxBH9fyyPqgKZP9yA5paY8zI117VajDqFh1diQdQ?=
- =?us-ascii?Q?Z3DxZbpZhOsW6Q6lNxHk8z5WUq0Kjxvj9IympIypC5HZBTxRHhs100qYOe7s?=
- =?us-ascii?Q?52OHHLumraNEPb/0/4O6DtXnJIbJplcKiDiTht9bHXLd/oki/LC3S3JzZAMz?=
- =?us-ascii?Q?EvwlASdxgsA0VDj+Ras3flJmA2QF+4e77jDDCwN7eJwWqbrGwfMKyfGc29up?=
- =?us-ascii?Q?tu6IPuADZgCd6v7EA1VoUpA0bW3T8ZXXtZg0MbibRl/VHTbWbne5L+0lXrJd?=
- =?us-ascii?Q?hpGPYopahFObeZY2pNaMzS16ri0uEtfuJAnsiIVz40Ve+SyAYEweTAZtuWY5?=
- =?us-ascii?Q?2o3WVw8GKTHJ/QaD7M5wcFoK1/dWWTyylJNUIZ5qY4EVI+sifvG2q4XWuV1I?=
- =?us-ascii?Q?kDR9MS9/hr5na+uGfcoBWJchCR96F046KI+4ZEAB3ZU1737A+VkLH3bcfwRQ?=
- =?us-ascii?Q?PXGSvqKN9KYi+Qwy8G4PbLVpxO5uHG1ngtM6ThnD1EXLdOKJEFMbbGtUKKOY?=
- =?us-ascii?Q?AdFLhOispBxWPGhm/Cu+RVe4GDnPXHw/IwsCCgQpq2PnFqx1+3+WeQHTbKFq?=
- =?us-ascii?Q?yKM5j7kf/qfuu6WuCFEuYAdjm4kO2VxJy9PfIzQlozrYCheakkm6gYbpg23O?=
- =?us-ascii?Q?ppzKzUjZj2VCR6urLCXYKD7L6k4Sr8EtiAVhl+kr7UGhKp8FxwL4x0Sp1bB4?=
- =?us-ascii?Q?WtVNZynaz25IYglL6NvC+wHmxRVf5KeffJIbLKTojOCsaSL7xPWGdrn4oSj/?=
- =?us-ascii?Q?iQWiqr9ReKdtZsLebPQGeihnOasJNt3bY36yTMHFL9ShOwDGlAYbpP2cjK0A?=
- =?us-ascii?Q?Eah61PIvshOrxfW9YQj6qM6aV5IpT/ZoFv33Wk9SBHOS8VVtkYDHdIDqCz2N?=
- =?us-ascii?Q?xTErmbboeDxCcjA4z9XW3GkY56cqPKVsRBkEEhTw2qUhz/17JM2Ejxyjont2?=
- =?us-ascii?Q?Q6h80J/jcWER0ysFJk4=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6157824a-03da-421c-e0c0-08dbfebef51e
-X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB4838.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Dec 2023 05:13:51.4345
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: qX6K7oHs0JcuTweJhAKs5f1BVotjeRJObmZD2DEqE80dQk4hsbGUJtZPDth+AkWV3+JX49DRUQ1n1KDmgysnRg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB8415
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] hwmon: Add AMS AS6200 temperature sensor
+Content-Language: en-US
+To: Abdel Alkuor <alkuor@gmail.com>
+Cc: Jean Delvare <jdelvare@suse.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+ linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
+References: <149032e99136a9fe47c3533b57a71092646e497d.1702744180.git.alkuor@gmail.com>
+ <63e352150ed51eefce90ca4058af5459730174b2.1702744180.git.alkuor@gmail.com>
+ <aa93010a-7ab0-4b9d-bb5d-25ea15b81120@roeck-us.net> <ZX4frjGqOGb4zMmx@abdel>
+ <c606c40b-8571-4618-827a-555ceab3ae74@roeck-us.net> <ZX6AQg1vz/Zz6JeG@abdel>
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
+In-Reply-To: <ZX6AQg1vz/Zz6JeG@abdel>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Add iMX95 EP function support and add 64bit address support. Internal bus
-bridge for PCI support 64bit dma address in iMX95. So set call
-dma_set_mask_and_coherent(dev, DMA_BIT_MASK(64)).
+On 12/16/23 20:59, Abdel Alkuor wrote:
+> On Sat, Dec 16, 2023 at 05:40:35PM -0800, Guenter Roeck wrote:
+>> On 12/16/23 14:07, Abdel Alkuor wrote:
+>>> On Sat, Dec 16, 2023 at 10:46:53AM -0800, Guenter Roeck wrote:
+>>>> On 12/16/23 08:39, Abdel Alkuor wrote:
+>>> Should I use tmp112 params for as6200?
+>>>
+>>
+>> Sure, or just add a separate entry for as6200.
+>>
+> I think some modifications need to be done regarding setting the default
+> configuration for chips with config reg of 16 bits.
+> 
+> Currently, tmp112 set_mask and clr_mask look like this
+> 
+>     [tmp112] = {
+>     	 .set_mask = 3 << 5,	/* 8 samples / second */
+>     	 .clr_mask = 1 << 7,	/* no one-shot mode*/
+>     	 ...
+>     }
+> 
+> and in probe function, we are using i2c_smbus_read_byte_data which
+> basically reads byte 1 of tmp112 config reg and in lm75_write_config
+> it writes byte 1 of tmp112 config reg. Now based on tmp112 set_mask,
+> we want to set the sample rate but we actually setting R0 and R1 instead.
+> According to tmp112 datasheet on pg. 16, byte 1 is written first then
+> byte 2, where byte 2 has the conversion rate at bit 6 and 7 (CR0/CR1).
+> 
+> tmp112 datasheet: https://www.ti.com/lit/ds/symlink/tmp112.pdf?ts=1702713491401&ref_url=https%253A%252F%252Fwww.google.com%252F
+> 
+> Now, to accommodate 16 bit config register read/write, something along these lines can
+> be done:
+> - In struct lm75_params,
+>    - change set_mask and clr_mask from u8 to u16
+>    - Add config reg two bytes size flag
+> - Use the proper function to read the config reg based on config reg size i.e
+>    For one byte config reg, use i2c_smbus_read_byte_data, and for 2 bytes
+>    config reg, use regmap_read.
+> 
+>    static int lm75_probe(struct i2c_client *client)
+>    {
+>     	...
+> 	if (data->params->config_reg_16bits)
+>    		status = regmap_read(client, LM75_REG_CONF, &regval);
+> 		if (status < 0) {
+> 			dev_dbg(dev, "Can't read config? %d\n", status);
+> 			return status;
+> 		}
+> 		data->orig_conf = regval;
+> 		data->current_conf = regval;
+> 	} else {
+>    		status = i2c_smbus_read_byte_data(client, LM75_REG_CONF);
+> 		if (status < 0) {
+> 			dev_dbg(dev, "Can't read config? %d\n", status);
+> 			return status;
+> 		}
+> 		data->orig_conf = status;
+> 		data->current_conf = status;
+> 	}
+> 	...
+>     }
+> 
+>     static int lm75_write_config(struct lm75_data *data, u16 set_mask,
+>     			     u16 clr_mask)
+>     {
+>       
+>       if (data->params->config_reg_16bits)
+>       	clr_mask |= LM75_SHUTDOWN << 8;
+>       else
+>       	clr_mask |= LM75_SHUTDOWN;
+>       ...
+>       	if (data->params->config_reg_16bits)
+>       		err = regmap_write(data->regmap, LM75_REG_CONF, value);
+>       	else
+>       		err = i2c_smbus_write_byte_data(data->client,
+>       			       			LM75_REG_CONF,
+>       						value);
+>       ...
+>     }
+> 
+> Based on that, the new tmp112 set_mask and clr_mask would look like this instead,
+>    [tmp112] = {
+>    	.set_mask = 3 << 6,	/* 8 samples / second */
+>    	.clr_mask = 1 << 15,	/* no one-shot mode*/
+> 	.config_reg_16bits = 1,
+>    	...
+>    }
+> 
 
-Signed-off-by: Frank Li <Frank.Li@nxp.com>
----
+Yes, you are correct, we'll need something like that. lm75_update_interval()
+tries to solve the problem for tmp112, but that doesn't work with
+set_mask/clear_mask. We should have a separate function lm75_read_config(),
+though, to hide the complexity.
 
-Notes:
-    Change from v3 to v4
-    - change align to 4k for imx95
-    Change from v1 to v3
-    - new patches at v3
+Thanks,
+Guenter
 
- drivers/pci/controller/dwc/pci-imx6.c | 45 +++++++++++++++++++++++++++
- 1 file changed, 45 insertions(+)
-
-diff --git a/drivers/pci/controller/dwc/pci-imx6.c b/drivers/pci/controller/dwc/pci-imx6.c
-index 8f7b1533e2869..5518c1b0d4fc1 100644
---- a/drivers/pci/controller/dwc/pci-imx6.c
-+++ b/drivers/pci/controller/dwc/pci-imx6.c
-@@ -75,6 +75,7 @@ enum imx6_pcie_variants {
- 	IMX8MQ_EP,
- 	IMX8MM_EP,
- 	IMX8MP_EP,
-+	IMX95_EP,
- };
- 
- #define IMX6_PCIE_FLAG_IMX6_PHY			BIT(0)
-@@ -84,6 +85,7 @@ enum imx6_pcie_variants {
- #define IMX6_PCIE_FLAG_HAS_APP_RESET		BIT(4)
- #define IMX6_PCIE_FLAG_HAS_PHY_RESET		BIT(5)
- #define IMX6_PCIE_FLAG_HAS_SERDES		BIT(6)
-+#define IMX6_PCIE_FLAG_SUPPORT_64BIT		BIT(7)
- 
- #define imx6_check_flag(pci, val)     (pci->drvdata->flags & val)
- 
-@@ -620,6 +622,7 @@ static int imx6_pcie_enable_ref_clk(struct imx6_pcie *imx6_pcie)
- 		break;
- 	case IMX7D:
- 	case IMX95:
-+	case IMX95_EP:
- 		break;
- 	case IMX8MM:
- 	case IMX8MM_EP:
-@@ -1063,6 +1066,23 @@ static const struct pci_epc_features imx8m_pcie_epc_features = {
- 	.align = SZ_64K,
- };
- 
-+/*
-+ * BAR#	| Default BAR enable	| Default BAR Type	| Default BAR Size	| BAR Sizing Scheme
-+ * ================================================================================================
-+ * BAR0	| Enable		| 64-bit		| 1 MB			| Programmable Size
-+ * BAR1	| Disable		| 32-bit		| 64 KB			| Fixed Size
-+ *	| (BAR0 is 64-bit)	| if BAR0 is 32-bit	|			| As Bar0 is 64bit
-+ * BAR2	| Enable		| 32-bit		| 1 MB			| Programmable Size
-+ * BAR3	| Enable		| 32-bit		| 64 KB			| Programmable Size
-+ * BAR4	| Enable		| 32-bit		| 1M			| Programmable Size
-+ * BAR5	| Enable		| 32-bit		| 64 KB			| Programmable Size
-+ */
-+static const struct pci_epc_features imx95_pcie_epc_features = {
-+	.msi_capable = true,
-+	.bar_fixed_size[1] = SZ_64K,
-+	.align = SZ_4K,
-+};
-+
- static const struct pci_epc_features*
- imx6_pcie_ep_get_features(struct dw_pcie_ep *ep)
- {
-@@ -1105,6 +1125,14 @@ static int imx6_add_pcie_ep(struct imx6_pcie *imx6_pcie,
- 
- 	pci->dbi_base2 = pci->dbi_base + pcie_dbi2_offset;
- 
-+	/*
-+	 * db2 information should fetch from dtb file. dw_pcie_ep_init() can get dbi_base2 from
-+	 * "dbi2" if pci->dbi_base2 is NULL. All code related pcie_dbi2_offset should be removed
-+	 * after all dts added "dbi2" reg.
-+	 */
-+	if (imx6_pcie->drvdata->variant == IMX95_EP)
-+		pci->dbi_base2 = NULL;
-+
- 	ret = dw_pcie_ep_init(ep);
- 	if (ret) {
- 		dev_err(dev, "failed to initialize endpoint\n");
-@@ -1352,6 +1380,9 @@ static int imx6_pcie_probe(struct platform_device *pdev)
- 					     "unable to find iomuxc registers\n");
- 	}
- 
-+	if (imx6_check_flag(imx6_pcie, IMX6_PCIE_FLAG_SUPPORT_64BIT))
-+		dma_set_mask_and_coherent(dev, DMA_BIT_MASK(64));
-+
- 	/* Grab PCIe PHY Tx Settings */
- 	if (of_property_read_u32(node, "fsl,tx-deemph-gen1",
- 				 &imx6_pcie->tx_deemph_gen1))
-@@ -1557,6 +1588,19 @@ static const struct imx6_pcie_drvdata drvdata[] = {
- 		.mode_mask[0] = IMX6Q_GPR12_DEVICE_TYPE,
- 		.epc_features = &imx8m_pcie_epc_features,
- 	},
-+	[IMX95_EP] = {
-+		.variant = IMX95_EP,
-+		.flags = IMX6_PCIE_FLAG_HAS_SERDES |
-+			 IMX6_PCIE_FLAG_SUPPORT_64BIT,
-+		.clk_names = {IMX6_CLKS_NO_PHYDRV, "pcie_aux"},
-+		.ltssm_off = IMX95_PE0_GEN_CTRL_3,
-+		.ltssm_mask = IMX95_PCIE_LTSSM_EN,
-+		.mode_off[0]  = IMX95_PE0_GEN_CTRL_1,
-+		.mode_mask[0] = IMX95_PCIE_DEVICE_TYPE,
-+		.init_phy = imx95_pcie_init_phy,
-+		.epc_features = &imx95_pcie_epc_features,
-+		.mode = DW_PCIE_EP_TYPE,
-+	},
- };
- 
- static const struct of_device_id imx6_pcie_of_match[] = {
-@@ -1571,6 +1615,7 @@ static const struct of_device_id imx6_pcie_of_match[] = {
- 	{ .compatible = "fsl,imx8mq-pcie-ep", .data = &drvdata[IMX8MQ_EP], },
- 	{ .compatible = "fsl,imx8mm-pcie-ep", .data = &drvdata[IMX8MM_EP], },
- 	{ .compatible = "fsl,imx8mp-pcie-ep", .data = &drvdata[IMX8MP_EP], },
-+	{ .compatible = "fsl,imx95-pcie-ep", .data = &drvdata[IMX95_EP], },
- 	{},
- };
- 
--- 
-2.34.1
 
 
