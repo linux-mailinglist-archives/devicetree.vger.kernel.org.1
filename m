@@ -1,69 +1,70 @@
-Return-Path: <devicetree+bounces-26179-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26180-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0390815D46
-	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 04:09:31 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 52543815D50
+	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 04:41:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3C2DCB218D8
-	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 03:09:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E6ABD1F2230F
+	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 03:41:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C68C0EDD;
-	Sun, 17 Dec 2023 03:09:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A33C10F2;
+	Sun, 17 Dec 2023 03:41:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="O11lIz29"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="WAnxbK/G"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACA14ED8;
-	Sun, 17 Dec 2023 03:09:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B758ED8;
+	Sun, 17 Dec 2023 03:41:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1702782560; x=1734318560;
+  t=1702784482; x=1734320482;
   h=date:from:to:cc:subject:message-id:references:
    mime-version:in-reply-to;
-  bh=ldclQnPKIK3R6DIjY7MVhmWZyFLDghhGP8FiLsTQals=;
-  b=O11lIz29c0oc6S6n5WRGfz4jvfuGvjSdFE2n2/Jo4yKHhvb69dL+VUuE
-   4DN5lQPNDp+Wmeg+Uqab9w1ZBgzwqyDIQwaQX+C+udHcORcT0sMwcpkC2
-   clSj320jTKxKgncSDpCRsxKD0rNEU9oAmbcPVpJUw1Mac34VVmxXRD/1w
-   OvV0q1uv95CUMsMg4/iQCa5XaH+mEUSQy8jBRIS6P/LXE2LWq3W+DVqb4
-   QgsmeeiIflepQ1yYAvqd8yWVxuNv8oGcjIF5UUhqhPhmjqTze/Jom58ny
-   ts7RW+ErX4gz0YQoniVUE8FQT6Xq6D8awaVwjube2HPtWnHFGhhlR0fzH
-   A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10926"; a="398184643"
+  bh=HIJ42y95u2T2fGlqS6b5WZJhajVO2Bqgecuh49Ux0bQ=;
+  b=WAnxbK/G/cfzvJWNOmH4rX0graHdnMmjU+Tp7Sc1eQVhBysXUSG696A+
+   VJKIA7eme0CJJGZoVKpTxJHzQ3a7fCgGQbccW3G7DS51QuKjCP7Y6lo9y
+   Z8zV4ketSPJKznWLCYNiRtSIDT07ivh8ctEE4UdNJpTJSp0sio+RyvxiI
+   ND4h/QDUPTx8QTymJqALO4kYZILwe3cKWrU55NLb9RDVDaAqiq2xHPGg0
+   tH1CbglDBnxzQKCYE2nTNU4Knf+k7zA4MICeULMWxGOEfpNmUm0+nIQKP
+   1N3Gx8CiwYjyI/T3qWGcbJw1PAN1AYZVtX4aZWIKpw/QxTuygMJd4ghK8
+   g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10926"; a="14084164"
 X-IronPort-AV: E=Sophos;i="6.04,282,1695711600"; 
-   d="scan'208";a="398184643"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
-  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Dec 2023 19:09:20 -0800
+   d="scan'208";a="14084164"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Dec 2023 19:41:21 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10926"; a="1022376189"
+X-IronPort-AV: E=McAfee;i="6600,9927,10926"; a="751371940"
 X-IronPort-AV: E=Sophos;i="6.04,282,1695711600"; 
-   d="scan'208";a="1022376189"
+   d="scan'208";a="751371940"
 Received: from lkp-server02.sh.intel.com (HELO b07ab15da5fe) ([10.239.97.151])
-  by fmsmga006.fm.intel.com with ESMTP; 16 Dec 2023 19:09:15 -0800
+  by orsmga006.jf.intel.com with ESMTP; 16 Dec 2023 19:41:17 -0800
 Received: from kbuild by b07ab15da5fe with local (Exim 4.96)
 	(envelope-from <lkp@intel.com>)
-	id 1rEhWj-0002YT-1I;
-	Sun, 17 Dec 2023 03:09:13 +0000
-Date: Sun, 17 Dec 2023 11:08:18 +0800
+	id 1rEi1i-0002aa-2D;
+	Sun, 17 Dec 2023 03:41:14 +0000
+Date: Sun, 17 Dec 2023 11:41:03 +0800
 From: kernel test robot <lkp@intel.com>
-To: Elad Nachman <enachman@marvell.com>, wim@linux-watchdog.org,
-	linux@roeck-us.net, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	gregory.clement@bootlin.com, chris.packham@alliedtelesis.co.nz,
-	andrew@lunn.ch, fu.wei@linaro.org, Suravee.Suthikulpanit@amd.com,
-	al.stone@linaro.org, timur@codeaurora.org,
-	linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, enachman@marvell.com, cyuval@marvell.com
-Subject: Re: [PATCH 3/3] watchdog: sbsa_gwdt: add support for Marvell ac5
-Message-ID: <202312171047.mHNijCmt-lkp@intel.com>
-References: <20231214150414.1849058-4-enachman@marvell.com>
+To: Chunyan Zhang <chunyan.zhang@unisoc.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	devicetree@vger.kernel.org, linux-serial@vger.kernel.org,
+	Baolin Wang <baolin.wang@linux.alibaba.com>,
+	Orson Zhai <orsonzhai@gmail.com>,
+	Chunyan Zhang <zhang.lyra@gmail.com>,
+	LKML <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 4/4] arm64: dts: sprd: Add support for Unisoc's UMS9620
+Message-ID: <202312171120.HfHwFDeV-lkp@intel.com>
+References: <20231215085630.984892-5-chunyan.zhang@unisoc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,42 +73,46 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231214150414.1849058-4-enachman@marvell.com>
+In-Reply-To: <20231215085630.984892-5-chunyan.zhang@unisoc.com>
 
-Hi Elad,
+Hi Chunyan,
 
-kernel test robot noticed the following build warnings:
+kernel test robot noticed the following build errors:
 
-[auto build test WARNING on robh/for-next]
-[also build test WARNING on groeck-staging/hwmon-next linus/master v6.7-rc5 next-20231215]
+[auto build test ERROR on robh/for-next]
+[also build test ERROR on lee-mfd/for-mfd-next tty/tty-next tty/tty-linus krzk/for-next krzk-mem-ctrl/for-next linus/master v6.7-rc5 next-20231215]
+[cannot apply to tty/tty-testing lee-mfd/for-mfd-fixes]
 [If your patch is applied to the wrong git tree, kindly drop us a note.
 And when submitting patch, we suggest to use '--base' as documented in
 https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Elad-Nachman/dt-bindings-watchdog-add-Marvell-AC5-watchdog/20231214-230812
+url:    https://github.com/intel-lab-lkp/linux/commits/Chunyan-Zhang/dt-bindings-mfd-sprd-Add-support-for-UMS9620/20231215-165956
 base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20231214150414.1849058-4-enachman%40marvell.com
-patch subject: [PATCH 3/3] watchdog: sbsa_gwdt: add support for Marvell ac5
-config: arm64-defconfig (https://download.01.org/0day-ci/archive/20231217/202312171047.mHNijCmt-lkp@intel.com/config)
-compiler: aarch64-linux-gcc (GCC) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231217/202312171047.mHNijCmt-lkp@intel.com/reproduce)
+patch link:    https://lore.kernel.org/r/20231215085630.984892-5-chunyan.zhang%40unisoc.com
+patch subject: [PATCH 4/4] arm64: dts: sprd: Add support for Unisoc's UMS9620
+config: arm64-allyesconfig (https://download.01.org/0day-ci/archive/20231217/202312171120.HfHwFDeV-lkp@intel.com/config)
+compiler: clang version 17.0.0 (https://github.com/llvm/llvm-project.git 4a5ac14ee968ff0ad5d2cc1ffa0299048db4c88a)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231217/202312171120.HfHwFDeV-lkp@intel.com/reproduce)
 
 If you fix the issue in a separate patch/commit (i.e. not just a new version of
 the same patch/commit), kindly add following tags
 | Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202312171047.mHNijCmt-lkp@intel.com/
+| Closes: https://lore.kernel.org/oe-kbuild-all/202312171120.HfHwFDeV-lkp@intel.com/
 
-All warnings (new ones prefixed by >>):
+All errors (new ones prefixed by >>):
 
->> scripts/kernel-doc: drivers/watchdog/sbsa_gwdt.c:141: warning: Function parameter or struct member 'reg_read32' not described in 'sbsa_gwdt_regs_ops'
->> scripts/kernel-doc: drivers/watchdog/sbsa_gwdt.c:141: warning: Function parameter or struct member 'reg_read64' not described in 'sbsa_gwdt_regs_ops'
->> scripts/kernel-doc: drivers/watchdog/sbsa_gwdt.c:141: warning: Function parameter or struct member 'reg_write32' not described in 'sbsa_gwdt_regs_ops'
->> scripts/kernel-doc: drivers/watchdog/sbsa_gwdt.c:141: warning: Function parameter or struct member 'reg_write64' not described in 'sbsa_gwdt_regs_ops'
->> scripts/kernel-doc: drivers/watchdog/sbsa_gwdt.c:141: warning: Excess struct member 'reg_read' description in 'sbsa_gwdt_regs_ops'
->> scripts/kernel-doc: drivers/watchdog/sbsa_gwdt.c:141: warning: Excess struct member 'read_write' description in 'sbsa_gwdt_regs_ops'
->> scripts/kernel-doc: drivers/watchdog/sbsa_gwdt.c:141: warning: Excess struct member 'read_write' description in 'sbsa_gwdt_regs_ops'
->> scripts/kernel-doc: drivers/watchdog/sbsa_gwdt.c:141: warning: Excess struct member 'reg_read' description in 'sbsa_gwdt_regs_ops'
->> scripts/kernel-doc: drivers/watchdog/sbsa_gwdt.c:158: warning: Function parameter or struct member 'soc_reg_ops' not described in 'sbsa_gwdt'
+   In file included from arch/arm64/boot/dts/sprd/ums9620-2h10.dts:10:
+>> arch/arm64/boot/dts/sprd/ums9620.dtsi:8:10: fatal error: 'dt-bindings/clock/sprd,ums9620-clk.h' file not found
+       8 | #include <dt-bindings/clock/sprd,ums9620-clk.h>
+         |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   1 error generated.
+
+
+vim +8 arch/arm64/boot/dts/sprd/ums9620.dtsi
+
+   > 8	#include <dt-bindings/clock/sprd,ums9620-clk.h>
+     9	#include <dt-bindings/interrupt-controller/arm-gic.h>
+    10	
 
 -- 
 0-DAY CI Kernel Test Service
