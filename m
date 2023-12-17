@@ -1,52 +1,50 @@
-Return-Path: <devicetree+bounces-26240-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26241-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B637F815FB2
-	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 15:29:57 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DFF6815FF6
+	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 15:46:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E4D631C214D0
-	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 14:29:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1F8E11F21658
+	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 14:46:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C62444C6C;
-	Sun, 17 Dec 2023 14:29:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA0BA44369;
+	Sun, 17 Dec 2023 14:45:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tEE90Lne"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="L61K4gga"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42C27446D3;
-	Sun, 17 Dec 2023 14:29:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D14ECC433C8;
-	Sun, 17 Dec 2023 14:29:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5F612FE2E;
+	Sun, 17 Dec 2023 14:45:56 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 05EDAC433C7;
+	Sun, 17 Dec 2023 14:45:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1702823391;
-	bh=1H1tix+lWo7PRIC9NukKzUsFE9MnvTSilpRM7bAhnMg=;
+	s=k20201202; t=1702824356;
+	bh=kVuXjANOUieH9LrXbZoogYCG3uzkAL+/ag6djbg25Og=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=tEE90LnelQAWfxyJmnOzbsKSTycoB8VfXixfekQSuwjBeCFYAV82M0I8slIeh9L44
-	 yv/Qy2H3HhPVidtZSkmE4cjXQkmEkN/NLISwoud2AmfE239dUdQLncBF9SBJnQ+YMi
-	 Fh5KICsf7aammduEeHNyqdPNmgtv+NmVuBQ9pzyR6PUEHBwgqtLFZQHZY6i1mOsDhL
-	 wSgRM4+gs12Mtoc8xJZY//QV4WcnzODBFhHcxzDcHGBYAD1RnoqnnAirexxCr5xuFh
-	 gjr7eKQNY9WvxntIlfPK+Awg10FyFIuvalEeEJtyt6ihEXyuub0pVyWVB9cwvu0uwM
-	 5/8CqEsiRL5uA==
-Date: Sun, 17 Dec 2023 14:29:35 +0000
+	b=L61K4ggaBYJDjrStvfKdJFi1QM0XjOPUHNMECn+3mLPV527Iv0+Ex2jO4zHYaRvOE
+	 VKelZxqO8ycWZvgcyzEluwDE5VvpsDWbcz/7k8YVbIm7x+wMpS55oFFHXbhwpMbwye
+	 B4bLSrqCOpqW1+PewwqwYbUh/g8Jmyd4ywY74hFowqMFOLXTzwlL78BXwb9gs77MII
+	 3otY2EC/oaNp+4IRV7rl6aCo989eyf0UD2tteDfVxNptTJzNxKw95Idn7plbDVjNlG
+	 QNWOeUe1rQuryOU7v1SRDmEWs5RY9AIf76/W4foZ6UAm7TooEHAGOlt2X9zG+ejf8K
+	 7EiO4NODTWMYg==
+Date: Sun, 17 Dec 2023 14:45:42 +0000
 From: Jonathan Cameron <jic23@kernel.org>
-To: David Lechner <dlechner@baylibre.com>
-Cc: linux-iio@vger.kernel.org, linux-spi@vger.kernel.org,
- devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>, Michael Hennerich <michael.hennerich@analog.com>,
- Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Liam Girdwood
- <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- linux-kernel@vger.kernel.org, Stefan Popa <stefan.popa@analog.com>
-Subject: Re: [PATCH v3 3/3] iio: adc: ad7380: new driver for AD7380 ADCs
-Message-ID: <20231217142935.56426fba@jic23-huawei>
-In-Reply-To: <20231215-ad7380-mainline-v3-3-7a11ebf642b9@baylibre.com>
-References: <20231215-ad7380-mainline-v3-0-7a11ebf642b9@baylibre.com>
-	<20231215-ad7380-mainline-v3-3-7a11ebf642b9@baylibre.com>
+To: Anshul Dalal <anshulusr@gmail.com>
+Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, Lars-Peter
+ Clausen <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ linux-kernel-mentees@lists.linuxfoundation.org
+Subject: Re: [PATCH v5 3/3] iio: chemical: add support for Aosong AGS02MA
+Message-ID: <20231217144542.0794bd0e@jic23-huawei>
+In-Reply-To: <20231215162312.143568-3-anshulusr@gmail.com>
+References: <20231215162312.143568-1-anshulusr@gmail.com>
+	<20231215162312.143568-3-anshulusr@gmail.com>
 X-Mailer: Claws Mail 4.2.0 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -57,24 +55,49 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On Fri, 15 Dec 2023 04:32:04 -0600
-David Lechner <dlechner@baylibre.com> wrote:
+On Fri, 15 Dec 2023 21:53:11 +0530
+Anshul Dalal <anshulusr@gmail.com> wrote:
 
-> This adds a new driver for the AD7380 family ADCs.
+> A simple driver for the TVOC (Total Volatile Organic Compounds)
+> sensor from Aosong: AGS02MA
 > 
-> The driver currently implements basic support for the AD7380, AD7381,
-> AD7383, and AD7384 2-channel differential ADCs. Support for additional
-> single-ended and 4-channel chips that use the same register map as well
-> as additional features of the chip will be added in future patches.
+> Steps in reading the VOC sensor value over i2c:
+>   1. Read 5 bytes from the register `AGS02MA_TVOC_READ_REG` [0x00]
+>   2. The first 4 bytes are taken as the big endian sensor data with final
+>      byte being the CRC
+>   3. The CRC is verified and the value is returned over an
+>      `IIO_CHAN_INFO_RAW` channel as percents
 > 
-> Co-developed-by: Stefan Popa <stefan.popa@analog.com>
-> Signed-off-by: Stefan Popa <stefan.popa@analog.com>
-> Reviewed-by: Nuno Sa <nuno.sa@analog.com>
-> Signed-off-by: David Lechner <dlechner@baylibre.com>
-LGTM.  Just the Ack from Mark on patch 1 needed now I think
-(unless other reviews come in of course!)
+> Tested on Raspberry Pi Zero 2W
+> 
+> Datasheet: https://asairsensors.com/wp-content/uploads/2021/09/AGS02MA.pdf
+> Signed-off-by: Anshul Dalal <anshulusr@gmail.com>
+
+Hi Anshul, Just one trivial thing. I'll fix up whilst applying.
+
+Applied to the togreg branch of iio.git. Will be initially pushed out as testing
+for 0-day to see if it can find anything we missed.
+
+Thanks,
 
 Jonathan
+
 > +
+> +static const struct iio_info ags02ma_info = {
+> +	.read_raw = ags02ma_read_raw,
+> +};
+> +
+> +static const struct iio_chan_spec ags02ma_channel = {
+> +	.type = IIO_CONCENTRATION,
+> +	.channel2 = IIO_MOD_VOC,
+> +	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) | BIT(IIO_CHAN_INFO_SCALE)
+
+Comma after this line. I'll fix up if there isn't much else.
+The reason for this is that it is very plausible we'll add more to this
+channel description in the future and the absence of the comma would make that
+messier.
+
+
+> +};
 
 
