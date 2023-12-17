@@ -1,53 +1,53 @@
-Return-Path: <devicetree+bounces-26262-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26263-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D337B8160BA
-	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 18:21:49 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8CEE58160C2
+	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 18:22:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BAB1E1C21016
-	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 17:21:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2AD581F22715
+	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 17:22:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2384B46524;
-	Sun, 17 Dec 2023 17:21:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B86847A5C;
+	Sun, 17 Dec 2023 17:21:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SpiJ+uON"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BmB5HTx5"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 011EF46456;
-	Sun, 17 Dec 2023 17:21:36 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 68CA5C433CB;
-	Sun, 17 Dec 2023 17:21:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 276DF47A4E;
+	Sun, 17 Dec 2023 17:21:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B2014C43397;
+	Sun, 17 Dec 2023 17:21:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1702833696;
-	bh=aUnbtBvYc5j5FQICjWzIW/hZZLwVpxAe15LU129bb8A=;
+	s=k20201202; t=1702833699;
+	bh=VNFbTsNHChBACkuTvNca5OCPmYKROsyMBUcu/yWYiT4=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=SpiJ+uONUjJtRq6cFLS0HMHHPpgGpXwZrZKgPmLvC2JB6dAjRLhDH8f9qC3BvOrhy
-	 zDOSVT+nAHV/lGtMZyaPvqQJG2Gltdj/iEfSXb8fKhB7UhRF3GRzZYWxUCW+wLADM8
-	 HJ/2Utw0MrL5qocmlXS2J3rBvV5R04L/nFswj4SX5x2p62JCxqYyw8FY4la8cFKpWW
-	 HmZzNgOD9+WKgSyEfq9d9/PTXo2URfw53LwfFNTQnOuhlVALo+Y6PSDmFHhS28XXA3
-	 kmdeLakT31qreH2v/8Q9lLKjq3rQMvtYpQotZZXajPz2RUWeerbaPvZl4jHLVUc+GF
-	 Bcv0ujYK1A/yw==
+	b=BmB5HTx5B9NFoNdIrInf9JTrd8rBkpUBOqV2wOn0/MHobQxXhZ7PZIge565dU7Def
+	 Rf4k1geR5GdoWWnAAYGSmV1yMds9S69FQIEZFz1Jury9De18OrceeJpns4vVLqmq0m
+	 ldk7KUYur63+8m/Y3xdMBgsh48hNqvyYWtSapfriUJcB0TLZVlZ/PU0T4YqwPCfZeA
+	 wTMMEqtSqC90QB87EDoyMN9zq04C3rdJ0Uud3/hPFyMLuT2/9Nzz1U3FaxC5UkutcL
+	 nMtLmdLeclwss4TBqJwULCKoQexVI2XuGfuJu/2GqDRQGddLS/CxglHLWHlyBOls97
+	 Z63sT4MD61Pxg==
 From: Bjorn Andersson <andersson@kernel.org>
-To: Andy Gross <agross@kernel.org>,
+To: Chukun Pan <amadeus@jmu.edu.cn>
+Cc: Andy Gross <agross@kernel.org>,
 	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Abel Vesa <abel.vesa@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: soc: qcom,aoss-qmp: document the X1E80100 Always-On Subsystem side channel
-Date: Sun, 17 Dec 2023 11:20:53 -0600
-Message-ID: <170283349431.66089.9014562198203733569.b4-ty@kernel.org>
+	Rob Herring <robh+dt@kernel.org>,
+	linux-arm-msm@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: (subset) [PATCH v2 1/1] arm64: dts: qcom: ipq6018: Add QUP5 SPI node
+Date: Sun, 17 Dec 2023 11:20:56 -0600
+Message-ID: <170283349408.66089.8909285594268375716.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20231214-x1e80100-soc-qcom-aoss-v1-1-94c46c5182fd@linaro.org>
-References: <20231214-x1e80100-soc-qcom-aoss-v1-1-94c46c5182fd@linaro.org>
+In-Reply-To: <20231203154003.532765-1-amadeus@jmu.edu.cn>
+References: <20231203154003.532765-1-amadeus@jmu.edu.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,15 +58,16 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Thu, 14 Dec 2023 19:35:50 +0200, Abel Vesa wrote:
-> Document the Always-On Subsystem side channel on the X1E80100 Platform.
+On Sun, 03 Dec 2023 23:40:03 +0800, Chukun Pan wrote:
+> Add node to support the QUP5 SPI controller inside of IPQ6018.
+> Some routers use this bus to connect SPI TPM chips.
 > 
 > 
 
 Applied, thanks!
 
-[1/1] dt-bindings: soc: qcom,aoss-qmp: document the X1E80100 Always-On Subsystem side channel
-      commit: ce2e6658cfa02ef7fb7b697abac85742af4cc0c0
+[1/1] arm64: dts: qcom: ipq6018: Add QUP5 SPI node
+      commit: 2e16f9dc9be07f08442d63d682cdf89d6321b408
 
 Best regards,
 -- 
