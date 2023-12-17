@@ -1,153 +1,155 @@
-Return-Path: <devicetree+bounces-26319-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26320-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63919816274
-	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 22:33:58 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EEC39816282
+	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 22:40:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 185351F219D6
-	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 21:33:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ED0241C20D6A
+	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 21:40:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6055448CE7;
-	Sun, 17 Dec 2023 21:33:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BC3E48CE5;
+	Sun, 17 Dec 2023 21:39:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="B0kqyNCH"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jVfGY2KX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ua1-f43.google.com (mail-ua1-f43.google.com [209.85.222.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBE2D48CE5
-	for <devicetree@vger.kernel.org>; Sun, 17 Dec 2023 21:33:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1702848808;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Umdjp5ksoy+JcwUTo/e1T9qvEs+1ox676Cz4ZgwJJjU=;
-	b=B0kqyNCHfRtKif4rssFTIfOyZ6vnJr0DaRTd9HQbTujvqj/UBbQcrKmQ/EtdLmdj88NaGW
-	ZtGsJNsBaX1DruKU58mb5BMpxIZ8DXLmcmrPKpMB3saFilbVTJUiwpUDRmI12FFMCng6NA
-	2gM6LeDzUHEw2Ufx4NfKQDDwRrPFxj4=
-Received: from mail-wm1-f71.google.com (mail-wm1-f71.google.com
- [209.85.128.71]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-64-4SkCtkjyOseyrhgvrnHiig-1; Sun, 17 Dec 2023 16:33:26 -0500
-X-MC-Unique: 4SkCtkjyOseyrhgvrnHiig-1
-Received: by mail-wm1-f71.google.com with SMTP id 5b1f17b1804b1-40c38ae9764so21831475e9.1
-        for <devicetree@vger.kernel.org>; Sun, 17 Dec 2023 13:33:26 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D12B749F90;
+	Sun, 17 Dec 2023 21:39:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ua1-f43.google.com with SMTP id a1e0cc1a2514c-7caa6ec63aaso719410241.2;
+        Sun, 17 Dec 2023 13:39:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1702849180; x=1703453980; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=PmTg3cyN9glIuSuTKyyE6J0EJUKal9T+vAoERdlDXQY=;
+        b=jVfGY2KXHFQgXiLYLPwbsH59LRv/nxVBvxt4HbtukGTFASB+kE57gXCxfXyyPsYuN6
+         zCplEB/4sL24KHyvPDi9lyzu78JICyXj+skfJXrV1a7XY5X95SZgg7GNKym7xc2hVjxO
+         MwfHGkTNMycJOKumBO0CwbPVdjv4HQOcjPtaEnUrcq+l4eBcPnKg+vCaZrlRKPDui39a
+         jIwaHn6WF+x3pMOHP/xN372R8TZru+cYRKam4b0prCfAT4M7pAIgZyrlntyUZsctFz7P
+         wHxHi++hkcLVeyfPWkgM3eMSk2djSeZPu/4svY5IVGbWIm3Yc5zD+V+mQSvSL2N6vv8q
+         Ye0Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702848806; x=1703453606;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Umdjp5ksoy+JcwUTo/e1T9qvEs+1ox676Cz4ZgwJJjU=;
-        b=BPpdWQMiYM2jicmQy2Gny/KZhFWSTb9m7IyqzP5rRv6lO9Lto3J3vEh8D6sXMg8iYU
-         1MIq3lsPlaYZin7kiRtt4UiOQtxPqR/A9rq510t9SmnYydYlzsN3njnhLSZ1AfCzCyIq
-         g6hxragnffXDS2jQHg0nX47/P8NK78jS4+UYGk6EW67TPgVsFRBE3NhGsR4h7izsJyFF
-         ZppJ2gNDFP1l+0lzSeFsTbBuZzUNALSPLuB0GbMSpExPGPz5EWS+FIPpP8AHcmkX1FeS
-         my2zvxXqaER9R9Wj1Zr4QKT6wxDswOKjuiRI7SOdde+uPqOzfEIz4MnqPqkfwnxF7TiO
-         lGqw==
-X-Gm-Message-State: AOJu0YxcU2QHb+hHjOqcvvuxVds2dp6VT2d3gbseIIYv+759czxjPr1H
-	T/WBeCn7/DimWukeApo9gezhZvXGcFlpCgVAGs+sIHSbUwSbvGZsvRMTjG0EVrZJFHLKuxHYUDF
-	esDo551qFvqJ/jpBH/zUvVA==
-X-Received: by 2002:a05:600c:3403:b0:401:daf2:2735 with SMTP id y3-20020a05600c340300b00401daf22735mr8294563wmp.31.1702848805788;
-        Sun, 17 Dec 2023 13:33:25 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IElsMH/e3AuKVnouRvSQ1+tNGmbnVzX8Ok7/pjwFuDcho/tdFgjioZuOMxwPzVueDgH+cCPnQ==
-X-Received: by 2002:a05:600c:3403:b0:401:daf2:2735 with SMTP id y3-20020a05600c340300b00401daf22735mr8294553wmp.31.1702848805410;
-        Sun, 17 Dec 2023 13:33:25 -0800 (PST)
-Received: from localhost (205.pool92-176-231.dynamic.orange.es. [92.176.231.205])
-        by smtp.gmail.com with ESMTPSA id e12-20020a05600c4e4c00b0040b398f0585sm39872880wmq.9.2023.12.17.13.33.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 17 Dec 2023 13:33:24 -0800 (PST)
-From: Javier Martinez Canillas <javierm@redhat.com>
-To: Conor Dooley <conor@kernel.org>
-Cc: linux-kernel@vger.kernel.org, Maxime Ripard <mripard@kernel.org>, Thomas
- Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, Peter
- Robinson <pbrobinson@gmail.com>, Geert Uytterhoeven
- <geert@linux-m68k.org>, Conor Dooley <conor+dt@kernel.org>, Daniel Vetter
- <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Rob Herring <robh+dt@kernel.org>,
- devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH 1/2] dt-bindings: display: Add SSD133x OLED controllers
-In-Reply-To: <20231217-bacteria-amusable-77efb05770a4@spud>
-References: <20231217100741.1943932-1-javierm@redhat.com>
- <20231217100741.1943932-2-javierm@redhat.com>
- <20231217-bacteria-amusable-77efb05770a4@spud>
-Date: Sun, 17 Dec 2023 22:33:24 +0100
-Message-ID: <87fs00ms4b.fsf@minerva.mail-host-address-is-not-set>
+        d=1e100.net; s=20230601; t=1702849180; x=1703453980;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=PmTg3cyN9glIuSuTKyyE6J0EJUKal9T+vAoERdlDXQY=;
+        b=mQ0NKsv0VojPLAXRhv0Ybykg+Hp52zjYPV9zv/IZkqCv4+XyYrH1laEOgMQlSqO+Vk
+         /lItSfW2Lgg49Ddmb+ypW2D6gb33hNqk9F3K3LSWAilzw2yPjMBoCmbNj3DIxMR3iaPZ
+         CcaeCy9HT7n3Dk5fqviDebAUfRw9IIgAtYhDuvpHc3n3sDt/DIm0F8isljqohUV1bjuk
+         tsWwsnLvMm4RR395kEogGuTFTmLlps0IHyokP9FRlaMteqC164MgRjT31PQUNr1QRHO1
+         9lywEXNBa2E1so4oZbwKgdH4iPjWYvQlIEuuohIpeOcfcf72Af1FnmoEaPbSDjXcmV0v
+         PgQA==
+X-Gm-Message-State: AOJu0YzBiheWtjnp2Bkc2zyYgrFAYOL+TP5kb3N4gXU/HmzTrraJX14+
+	kO33g4CLkJtqvIEocYlQs0I=
+X-Google-Smtp-Source: AGHT+IGjPamkJQ4BLltUu0prrN6O8VmCqmJdxWLZQIc0xJi7IiVqg5GPwfox/iJWq5pfDMo+DYvf5Q==
+X-Received: by 2002:a05:6102:3f06:b0:466:1932:23b4 with SMTP id k6-20020a0561023f0600b00466193223b4mr9764714vsv.66.1702849180629;
+        Sun, 17 Dec 2023 13:39:40 -0800 (PST)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id dd12-20020a056102568c00b0046694862260sm68601vsb.18.2023.12.17.13.39.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 17 Dec 2023 13:39:39 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <fb0973e5-0249-4616-ad8a-0b19d8b73094@roeck-us.net>
+Date: Sun, 17 Dec 2023 13:39:37 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: hwmon: Add AMS AS6200 temperature sensor
+Content-Language: en-US
+To: Conor Dooley <conor@kernel.org>, Abdel Alkuor <alkuor@gmail.com>
+Cc: Jean Delvare <jdelvare@suse.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+ linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
+References: <149032e99136a9fe47c3533b57a71092646e497d.1702744180.git.alkuor@gmail.com>
+ <20231217-enlarged-mule-a594e472d007@spud>
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
+In-Reply-To: <20231217-enlarged-mule-a594e472d007@spud>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Conor Dooley <conor@kernel.org> writes:
+On 12/17/23 12:58, Conor Dooley wrote:
+> On Sat, Dec 16, 2023 at 11:39:29AM -0500, Abdel Alkuor wrote:
+>> as6200 is a temperature sensor with a range between -40°C to
+>> 125°C degrees and an accuracy of ±0.4°C degree between 0
+>> and 65°C and ±1°C for the other ranges.
+>>
+>> Signed-off-by: Abdel Alkuor <alkuor@gmail.com>
+> 
+> Is this not v3?
 
-Hello Connor,
+FWIW, I don't recall seeing it.
 
-> On Sun, Dec 17, 2023 at 11:07:03AM +0100, Javier Martinez Canillas wrote:
+> Either way,
+> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> 
 
-[...]
+As I pointed out in my reply to the other patch, this chip is mostly
+compatible to lm75 and almost register-compatible to tmp112, the only
+difference being some configuration register bits.
 
->> +properties:
->> +  compatible:
->> +    enum:
->> +      - solomon,ssd1331
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +
->> +allOf:
->> +  - $ref: solomon,ssd-common.yaml#
->> +
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          contains:
->> +            const: solomon,ssd1331
->> +    then:
->> +      properties:
->> +        width:
->> +          default: 96
->> +        height:
->> +          default: 64
->
-> Do you envisage a rake of devices that are going to end up in this
-> binding? Otherwise, why not unconditionally set the constraints?
->
+Bindings for this chip should be added to
+Documentation/devicetree/bindings/hwmon/lm75.yaml.
 
-Because these are only for the default width and height, there can be
-panels using the same controller but that have a different resolution.
-
-For example, there are panels using the SSD1306 controller that have
-128x32 [0], 64x32 [1] or 128x64 [2] resolutions.
-
-But answering your question, yes I think that more devices for this
-SSD133x family are going to be added later. Looking at [3], there is
-at least SSD1333 that has a different default resolutions (176x176).
-
-I think that even the SSD135x family could be supported by the same
-modsetting pipeline, but I need to get one to figure it out.
-
-[0]: https://es.aliexpress.com/item/1005003648174074.html
-[1]: https://www.buydisplay.com/white-0-49-inch-oled-display-64x32-iic-i2c-ssd1306-connector-fpc
-[2]: https://es.aliexpress.com/item/1005001582340858.html?gatewayAdapt=glo2esp
-[3]: https://www.solomon-systech.com/product-search/?technology=oled-display
-
-> Cheers,
-> Conor.
-
--- 
-Best regards,
-
-Javier Martinez Canillas
-Core Platforms
-Red Hat
+Thanks,
+Guenter
 
 
