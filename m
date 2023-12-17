@@ -1,51 +1,56 @@
-Return-Path: <devicetree+bounces-26268-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26269-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3173F8160D6
-	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 18:24:07 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 35A428160DA
+	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 18:24:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C58DD1F229AA
-	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 17:24:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E6A21281328
+	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 17:24:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAB6949F80;
-	Sun, 17 Dec 2023 17:21:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D99414A9A2;
+	Sun, 17 Dec 2023 17:21:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SEQXF1jg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rBHEp/t7"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADD3349F7B;
-	Sun, 17 Dec 2023 17:21:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 95086C433CB;
-	Sun, 17 Dec 2023 17:21:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B137C4A98C;
+	Sun, 17 Dec 2023 17:21:49 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5AFF4C433C7;
+	Sun, 17 Dec 2023 17:21:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1702833707;
-	bh=7/FEVAzBV3kGhj5iPvQwCTxyyuAVMHLcCH0hiKS56o8=;
+	s=k20201202; t=1702833709;
+	bh=sRjNsixVfdlgg1JXGRRXkSRZ6uJObgQiDCSw7NrCMsU=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=SEQXF1jgK8Kkc6xKTvTjAKDNhFeNzw7CHYs0FWS5UOeTIO6jTbw/6KDvAZTeeNFuX
-	 taXn1dFAMVin0SIsCOVQ9pNgCtt+9htfLlRiXq4PWsMBxsfdH4JqW5LuwpBOWzwaAK
-	 HzB5k9Xqu0hPATFsA3nWMHZkM6R/Qa/kQw7Pvcq09R29Or5RKdW1O0mf10bw9BqAPa
-	 rM+srynJScc5fAaOmfgVhipcgOmx3GYBgRgXh1jMVe93LIkDopW/TiMKuU596KhYtL
-	 j9C6HF/c+7IrGbF50Ns5nlNTDvpNVgsUWuqWgTD5vy9Y29+epAUCCMIIznYxhdUPbY
-	 jXXkKUO2gfw2A==
+	b=rBHEp/t7STlWDwDDZGbGEOzj7q2ihS633C7mQ1cLyyEvy8+RGonwtfsWJ9N/UCVo1
+	 /7v+cL62kuOm7vqABntMKBYEYiWDkI/NotE7IPKH8o4DiqbXqvRmB++gXW81+SGoRy
+	 K4e80ArSGAzsozq9D3oa4bEhSliM44j/ngyDnz2xUEffHSdUMln192ggdjN5LmTbGX
+	 4TrnzjNgDMpwMb42H2C1DpaJpleSOqiHstfkl2HD1qJAL8H7GXTQ6RsiV12YumiiYY
+	 i3INujpdxDaGVfZ5pF4xfhd2RaL5kbx5ca+gfoa+jvhPw3dKLRbrSMbd1RxxxvTm0k
+	 0ql1DSG7raVCw==
 From: Bjorn Andersson <andersson@kernel.org>
 To: Andy Gross <agross@kernel.org>,
 	Konrad Dybcio <konrad.dybcio@linaro.org>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+	Conor Dooley <conor+dt@kernel.org>,
+	=?UTF-8?q?Andr=C3=A9=20Apitzsch?= <git@apitzsch.eu>
 Cc: linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 0/9] arm64: dts: qcom: switch UFS QMP PHY to new style of bindings
-Date: Sun, 17 Dec 2023 11:21:02 -0600
-Message-ID: <170283349413.66089.15925766562815386605.b4-ty@kernel.org>
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	phone-devel@vger.kernel.org,
+	~postmarketos/upstreaming@lists.sr.ht,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: (subset) [PATCH v2 0/2] ARM: dts: qcom: msm8926-motorola-peregrine: Add initial device tree
+Date: Sun, 17 Dec 2023 11:21:04 -0600
+Message-ID: <170283349432.66089.8491386474917760370.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20231205032552.1583336-1-dmitry.baryshkov@linaro.org>
-References: <20231205032552.1583336-1-dmitry.baryshkov@linaro.org>
+In-Reply-To: <20231214-peregrine-v2-0-a35102268442@apitzsch.eu>
+References: <20231214-peregrine-v2-0-a35102268442@apitzsch.eu>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -56,37 +61,22 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Tue, 05 Dec 2023 06:25:43 +0300, Dmitry Baryshkov wrote:
-> This is an unmerged excerpt of the previous series that converted UFS
-> QMP PHY to newer style of bindings (single registers region instead of
-> listing each resource separately and having child node for the PHYs).
+On Thu, 14 Dec 2023 21:59:32 +0100, André Apitzsch wrote:
+> This dts adds support for Motorola Moto G 4G released in 2013.
 > 
-> Changes since v2:
->  - Rebased on linux-next
->  - Dropped merged patches
+> Add a device tree with initial support for:
+> 
+> - GPIO keys
+> - Hall sensor
+> - SDHCI
+> - Vibrator
 > 
 > [...]
 
 Applied, thanks!
 
-[1/9] arm64: dts: qcom: msm8996: switch UFS QMP PHY to new style of bindings
-      commit: f63ba6aa80f520678f35640b347e75c46bd49612
-[2/9] arm64: dts: qcom: msm8998: switch UFS QMP PHY to new style of bindings
-      commit: 963ff488afe100c8ee9fb80933e342719c6fa63d
-[3/9] arm64: dts: qcom: sdm845: switch UFS QMP PHY to new style of bindings
-      commit: 760baba5e79bae651c59df89d441fad2bd0be4a5
-[4/9] arm64: dts: qcom: sm6115: switch UFS QMP PHY to new style of bindings
-      commit: f6874706e311a8743b678613b083e9bf0e1fd112
-[5/9] arm64: dts: qcom: sm6350: switch UFS QMP PHY to new style of bindings
-      commit: 8e89beb32e1f81807c17af8eb07bd681b9ae229b
-[6/9] arm64: dts: qcom: sm8150: switch UFS QMP PHY to new style of bindings
-      commit: 935c76f7f85912962d72eceabdfa2c38c4c07f02
-[7/9] arm64: dts: qcom: sm8250: switch UFS QMP PHY to new style of bindings
-      commit: ba865bdcc688932980b8e5ec2154eaa33cd4a981
-[8/9] arm64: dts: qcom: sm8350: switch UFS QMP PHY to new style of bindings
-      commit: 002a13ed10136e4f59013adbf097b31d608caf67
-[9/9] arm64: dts: qcom: sm8450: switch UFS QMP PHY to new style of bindings
-      commit: 75390b69d5df49d828d0af278c7f27ed74e33064
+[2/2] ARM: dts: qcom: msm8926-motorola-peregrine: Add initial device tree
+      commit: 690e367e0e75a46a0b3d76ae42a14f7f31f451dd
 
 Best regards,
 -- 
