@@ -1,65 +1,102 @@
-Return-Path: <devicetree+bounces-26346-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26348-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3018F81634B
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 00:22:50 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D25E1816352
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 00:24:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0B1E2B2169D
-	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 23:22:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 82C591F2197B
+	for <lists+devicetree@lfdr.de>; Sun, 17 Dec 2023 23:24:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD28649F81;
-	Sun, 17 Dec 2023 23:22:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AWc1oPc8"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDFA949F9A;
+	Sun, 17 Dec 2023 23:24:32 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9180149F74;
-	Sun, 17 Dec 2023 23:22:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D2F56C433C7;
-	Sun, 17 Dec 2023 23:22:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1702855363;
-	bh=7kF1H9/EDgVZxsSZuexSY64jgH3mq2OWdvdCAS2qa+U=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=AWc1oPc8hUfYZ3M1va101JvghU+foufXlR3La7TH3s5qNNnWWA+b9PhHDq+gVlJ3p
-	 chJMhoxJ9ejV3CArhOgv2U8+Yn0Qmlv2pich5jyjGrSyFxUpbS6gch203iDVYzrNXn
-	 qGMQoOPBTD3bYtN1khVfBQ9UkS0klgZx6qwiimOItxcNgOlMQ1TYKS8jwjDnzNa8yx
-	 sZE5b457JQH2xF7kp//2YLg6KKnnfNm2Vnnzs8hFIKiPPyLRoSPUyOeZ64/laVfDdy
-	 11UYBOQmxECv0lNe8yfm91zfw5I4qEoEQMluwJXYi85CzcLp4sagqt0YCwbZiC2hX8
-	 gahLys7Kg7lDg==
-Message-ID: <30b8c150ea929063614990c8a1bd3a87.sboyd@kernel.org>
-Content-Type: text/plain; charset="utf-8"
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE2684AF6F
+	for <devicetree@vger.kernel.org>; Sun, 17 Dec 2023 23:24:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id A3DEF1FB;
+	Sun, 17 Dec 2023 15:25:08 -0800 (PST)
+Received: from localhost.localdomain (unknown [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 70D473F64C;
+	Sun, 17 Dec 2023 15:24:22 -0800 (PST)
+From: Andre Przywara <andre.przywara@arm.com>
+To: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>
+Cc: Icenowy Zheng <uwu@icenowy.me>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-sunxi@lists.linux.dev
+Subject: [PATCH 0/2] arm64: dts: allwinner: Add BananaPi M4 Berry
+Date: Sun, 17 Dec 2023 23:24:03 +0000
+Message-Id: <20231217232405.302-1-andre.przywara@arm.com>
+X-Mailer: git-send-email 2.35.8
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20231119212416.2682-1-zajec5@gmail.com>
-References: <20231119212416.2682-1-zajec5@gmail.com>
-Subject: Re: [PATCH V2] dt-bindings: arm: mediatek: move ethsys controller & convert to DT schema
-From: Stephen Boyd <sboyd@kernel.org>
-Cc: Jianhui Zhao <zhaojh329@gmail.com>, Daniel Golle <daniel@makrotopia.org>, James Liao <jamesjj.liao@mediatek.com>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org, linux-mediatek@lists.infradead.org, =?utf-8?q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>, Rob Herring <robh@kernel.org>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Matthias Brugger <matthias.bgg@gmail.com>, Michael Turquette <mturquette@baylibre.com>, =?utf-8?q?Rafa=C5=82_Mi=C5=82ecki?= <zajec5@gmail.com>, Rob Herring <robh+dt@kernel.org>
-Date: Sun, 17 Dec 2023 15:22:40 -0800
-User-Agent: alot/0.10
+Content-Transfer-Encoding: 8bit
 
-Quoting Rafa=C5=82 Mi=C5=82ecki (2023-11-19 13:24:16)
-> From: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
->=20
-> DT schema helps validating DTS files. Binding was moved to clock/ as
-> this hardware is a clock provider. Example required a small fix for
-> "reg" value (1 address cell + 1 size cell).
->=20
-> Signed-off-by: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> ---
+The BananaPi M4 Berry is a development board with the Allwinner H618
+SoC. It comes with 2GB DRAM and 8GB eMMC flash, with the usual suspects
+like HDMI, SD card, GPIO headers. There are four USB ports connected
+via an on-board hub chip, and a Gigabit Ethernet socket. Also there is
+a USB WiFi chip soldered on the board.
+More details: https://linux-sunxi.org/Sinovoip_Banana_Pi_M4_Berry
 
-Applied to clk-next
+I don't have this board, so this is a "call for testing".
+One thing to consider:
+- The USB WiFi chip has a CHIP_EN pin, which can turn the chip off.
+  It is pulled up by a resistor, so works out of the box, but is also
+  connected to a GPIO (PC2), so the chip can be disabled or reset via
+  this pin. Since this is a USB device, we don't have a DT node to
+  announce this pin. Any ideas how this should be handled? At the moment
+  I ignore it, but it could also be modelled as a USB VBUS regulator for
+  USB port 1, to which it is connected.
+
+When testing this, please have a look at:
+- Does the eMMC work in HS200 mode? The vendor DT described that as a
+  3.3V controlled eMMC only, but clearly the schematic uses 1.8V, which
+  allows faster transfer modes. "hdparm -t" should suffice for a quick
+  test.
+- Do USB full-speed (aka USB v1.1) peripherals like keyboard or mouse
+  work on the USB ports? I disabled the OHCI node, since the hub should
+  not need this, but it would be good to double check.
+- Similarly the USB WiFi chip probably doesn't need USB 1.1 modes, so
+  please check this still works.
+
+Apart from the missing audio and video support (which are due to missing
+bindings for the H616/H618 SoC), most of the peripherals are supported.
+
+Patch 1/2 adds the board compatible string to the bindings, patch 2/2
+adds the actual .dts file.
+
+Please have a look!
+
+Thanks,
+Andre
+
+Andre Przywara (2):
+  dt-bindings: arm: sunxi: document BananaPi M4 Berry board name
+  arm64: dts: allwinner: h618: add BananaPi M4 Berry board
+
+ .../devicetree/bindings/arm/sunxi.yaml        |   5 +
+ arch/arm64/boot/dts/allwinner/Makefile        |   1 +
+ .../sun50i-h618-bananapi-m4-berry.dts         | 229 ++++++++++++++++++
+ 3 files changed, 235 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h618-bananapi-m4-berry.dts
+
+-- 
+2.35.8
+
 
