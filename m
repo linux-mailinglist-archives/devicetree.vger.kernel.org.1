@@ -1,94 +1,358 @@
-Return-Path: <devicetree+bounces-26474-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26476-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86E258169E2
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 10:34:36 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A7BB8169F2
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 10:36:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 43142281E6D
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 09:34:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AED9E1C227E5
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 09:36:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93E9F11721;
-	Mon, 18 Dec 2023 09:34:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B058125D3;
+	Mon, 18 Dec 2023 09:36:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="uYDD1Zf2"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TFZw9C+y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2835D12B61;
-	Mon, 18 Dec 2023 09:34:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=Kn4zmaFBjozESWwWrKfESsTCFZ/blBS5KRsj7FAUpT0=; b=uYDD1Zf2+rVDnY4JLZf2awm+dP
-	Nvwdtr9XH3ac4S/0D1GWjUeFg5i3cT4+7nIVquTQ4MNB2Wc7XISjwImK2ixEFci9VLhrXOK++0oUo
-	FlqToatihkMOqW0NPVNhFKpQXYrbv9qZkeMH5e5TEQEyVYZd+lRH/Q4YIiJCl3Gr1KYk=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1rFA0n-003EBi-V6; Mon, 18 Dec 2023 10:34:09 +0100
-Date: Mon, 18 Dec 2023 10:34:09 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Jie Luo <quic_luoj@quicinc.com>
-Cc: "Russell King (Oracle)" <linux@armlinux.org.uk>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-	pabeni@redhat.com, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	hkallweit1@gmail.com, corbet@lwn.net, p.zabel@pengutronix.de,
-	f.fainelli@gmail.com, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org
-Subject: Re: [PATCH v8 14/14] dt-bindings: net: ar803x: add qca8084 PHY
- properties
-Message-ID: <b4fe4ac4-9b28-4dba-8287-1af4804eb0be@lunn.ch>
-References: <20231215074005.26976-1-quic_luoj@quicinc.com>
- <20231215074005.26976-15-quic_luoj@quicinc.com>
- <bdfba8a7-9197-4aae-a7f9-6075a375f60b@linaro.org>
- <c3391e33-e770-4c61-855e-d90e82b95f75@quicinc.com>
- <4cb2bd57-f3d3-49f9-9c02-a922fd270572@lunn.ch>
- <ed0dd288-be8a-4161-a19f-2d4d2d17b3ec@quicinc.com>
- <ZXxXzm8hP68KrXYs@shell.armlinux.org.uk>
- <3a40570b-40bf-4609-b1f4-a0a6974accea@quicinc.com>
- <b5ff9f69-e341-4846-bc5a-ebe636b7a71a@lunn.ch>
- <27ee13e7-5073-413c-8481-52b92d7c3687@quicinc.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CA22125C8;
+	Mon, 18 Dec 2023 09:36:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-50e23a4df33so2421471e87.2;
+        Mon, 18 Dec 2023 01:36:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1702892191; x=1703496991; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=0YIvodjJ/uqcZK67kNnFAU9qFMXVMgAPp9QJLFWVolA=;
+        b=TFZw9C+y2qSh1V7OF0Df4heF3yx2ECk8rNnJLV3cuue9jgfsyUHKvcvoja14cM475R
+         w2fKO+L5NkYXuxJbDyGskeaWzOVSX/Q+vXtgvCuQrhwPJ4iku9GC3Xcp9uxfg/MI+x+t
+         u+ZG5fy8omZ/YBBiaINbv413LhvQJ7QhYdfLCakFJAY5UMHyAV99LiVuO0FvBtP8z5DP
+         NPeqjePrRTN9sQxe8etGpa6TNZErikRu32midhH+gPSNKnULrbgWq1UO+iks7USn/2zp
+         PuP9OyJNIOTbLuFSKCviZ7Lhevy0Beret0to2/2z21WnBJXgsl5XPQwxQtyh7jmKKXwH
+         Wyaw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702892191; x=1703496991;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=0YIvodjJ/uqcZK67kNnFAU9qFMXVMgAPp9QJLFWVolA=;
+        b=u264fn4DKeCzjqxgD/PwDciAgIZJxUmXvvxLGOeQ9WckmN2DgoE2w7mJwUtpEJvqmj
+         iYkN+z94St1kkcxABMS7HzplltSIaWE8Cp3lvGxeoXpn6f8nnbC1OCjOp9mKVRbZE0o1
+         yL/6+JhXS1yM/SVSueBK3A0bVmUQYaFLsx7FZeOKZOOpYle9HtuejAmFG3/E3St7Iyjd
+         RNYcrNMd01TTd6F67NjaUMyTCdgV1GwQtqvybscsHiJqXu2tv2b15oF1o2r3rmstetSS
+         xA3D0NAeEf0ytTbzL8i2bnc8Yd5fzGFNAUTBDcg5niWu3kNGOS1TojCR55oDdL0C0M/K
+         MjKQ==
+X-Gm-Message-State: AOJu0Yzn6AhbKUn90T9RxIzvFan1tF4GOBT1KoaGahtiVb/4joo08gfV
+	o0QNgrUvBdzca1oRfDWzFww=
+X-Google-Smtp-Source: AGHT+IFuiH1eQ6Y/2h4/4Sh/l4ki28JcGPuWQmiiirVZBcPHW2WlInyyyKcyt6Tvw2TipioPVTt2dA==
+X-Received: by 2002:a05:6512:3086:b0:50e:1ac0:c97c with SMTP id z6-20020a056512308600b0050e1ac0c97cmr4449121lfd.66.1702892190947;
+        Mon, 18 Dec 2023 01:36:30 -0800 (PST)
+Received: from ?IPV6:2001:14ba:16f8:1500::2? (dc78bmyyyyyyyyyyyyyby-3.rev.dnainternet.fi. [2001:14ba:16f8:1500::2])
+        by smtp.gmail.com with ESMTPSA id g42-20020a0565123baa00b0050bfe7a602csm2866425lfv.74.2023.12.18.01.36.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 18 Dec 2023 01:36:30 -0800 (PST)
+Message-ID: <57fbc795-b3ff-4a77-8064-ad6f7e07f96b@gmail.com>
+Date: Mon, 18 Dec 2023 11:36:28 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <27ee13e7-5073-413c-8481-52b92d7c3687@quicinc.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/2] iio: light: isl76682: Add ISL76682 driver
+Content-Language: en-US, en-GB
+To: Jonathan Cameron <jic23@kernel.org>,
+ Andre Werner <andre.werner@systec-electronic.com>, devicetree@vger.kernel.org
+Cc: Marek Vasut <marex@denx.de>, linux-iio@vger.kernel.org,
+ Alexander Stein <alexander.stein@ew.tq-group.com>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Bjorn Helgaas <bhelgaas@google.com>, Conor Dooley <conor+dt@kernel.org>,
+ Fabio Estevam <festevam@denx.de>, Guenter Roeck <linux@roeck-us.net>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Lars-Peter Clausen <lars@metafoo.de>,
+ Luca Ceresoli <luca.ceresoli@bootlin.com>, Mark Brown <broonie@kernel.org>,
+ Naresh Solanki <naresh.solanki@9elements.com>,
+ Patrick Rudolph <patrick.rudolph@9elements.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Stefan Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com>,
+ Vincent Tremblay <vincent@vtremblay.dev>
+References: <20231121031043.327614-1-marex@denx.de>
+ <20231121031043.327614-2-marex@denx.de>
+ <8b865546-0e51-45ff-ab76-8189afaa9ad5@gmail.com>
+ <cd21c72f-d9ff-471d-a08d-9b67bf180950@denx.de>
+ <4a39aff2-bb1a-447c-8c33-8bfad06777e3@gmail.com>
+ <dff1e2f9-c2a1-4262-b80b-ce0c144fdaf5@gmail.com>
+ <20231217130613.47bab03d@jic23-huawei>
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+In-Reply-To: <20231217130613.47bab03d@jic23-huawei>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-> Thanks Andrew for the proposal.
-> For the pure PHY chip qca8084, there is no driver to parse the package
-> level device tree node for common clocks and resets.
+On 12/17/23 15:06, Jonathan Cameron wrote:
+> On Fri, 15 Dec 2023 14:06:32 +0200
+> Matti Vaittinen <mazziesaccount@gmail.com> wrote:
+> 
+>> On 11/23/23 09:24, Matti Vaittinen wrote:
+>>> On 11/23/23 02:26, Marek Vasut wrote:
+>>>> On 11/22/23 13:17, Matti Vaittinen wrote:
+>>>>> On 11/21/23 05:10, Marek Vasut wrote:
+>>
+>> ..snip
+>>
+>>>>> I like this table-based look-up for write (and read) of scales.
+>>>>> Looking at this I see an analogy to some of the regulator stuff, like
+>>>>> for example the ramp-up values. What I do very much like in the
+>>>>> regulator subsystem is the drivers/regulator/helpers.c
+>>>>>
+>>>>> I wonder if similar approach would be usable in IIO as well? I mean,
+>>>>> providing readily written iio_regmap_read/write_raw_<functionality>()
+>>>>> and iio_available_*() helpers for the simple devices where we just
+>>>>> have value-register mapping? I mean, driver would just populate
+>>>>> something like:
+>>>>>
+>>>>> struct iio_scale_desc {
+>>>>>       int *scale_val_table;
+>>>>>       int *scale_val2_table;
+>>>>>       int num_scales;
+>>>>
+>>>> You'd also need type here (fractional, int+micro, ...), right ?
+>>>
+>>> Well, my thinking was to go with baby-steps. Eg, start by supporting
+>>> just int+micro - but yes. As I wrote below, this can be expanded by
+>>> allowing specifying the type.
+>>>    
+>>>>>       int scale_reg_addr;
+>>>>>       int scale_reg_mask;
+>>>>> };
+>>>>>
+>>>>> and call helper like
+>>>>> int iio_regmap_read_raw_scale(struct iio_dev *idev,
+>>>>>                     struct iio_scale_desc *sd, int *val,
+>>>>>                     int *val2)"
+>>>>> provided by IIO framework.
+>>>>>
+>>>>> Similar helper for writing new scales and getting available scales.
+>>>>>
+>>>>> Later this could be expanded by allowing specifying the type of
+>>>>> provided values (in the example case, IIO_VAL_INT_PLUS_x - but maybe
+>>>>> this would be extensible (and worth) to support also the other options?)
+>>>>>   
+>>
+>> ... snip
+>>
+>>>>
+>>>> The only thing I would wonder about is, should such a thing go into
+>>>> regmap so it can be reused cross-subsystem instead of making this iio
+>>>> specific ?
+>>>
+>>> I definitely think a relation "register value" <=> "item from a table"
+>>> is very much used also outside the IIO. So yes, a generic regmap helper
+>>> for doing write as a "look value from table and write corresponding
+>>> value to a register" and "read value from register and return me a
+>>> corresponding item from a table" would be very usable.
+>>>
+>>> There is a tradeoff when doing a generic one instead of making it
+>>> targeted for IIO use. Supporting different types of data is likely to
+>>> make the code a bit hairy. Also, the IIO way of having these IIO_VAL_*
+>>> flags does probably require IIO - specific wrappers in any case.
+>>
+>> I had some spare time so drafted following:
+>>
+>> +struct reg_val_table {
+>> +       int *reg_vals;
+>> +       int *vals;
+>> +       int num_vals;
+>> +};
+>>
+>> ...
+>>
+>> +/**
+>> + * regtable_find_val - find a value matching register setting
+>> + *
+>> + * Search given table for value mathcing a register setting.
+>> + *
+>> + * @table:     Table from which the register setting - value pairs are
+>> + *             searched.
+>> + * @reg:       Register value for which the matching physical value is
+>> + *             searched.
+>> + * @val:       Pointer to location where the found value will be stored.
+>> + *
+>> + * returns:    0 on success, negative errno if table is invalid or match is
+>> + *             not found.
+>> + */
+>> +int regtable_find_val(const struct reg_val_table *table, int reg, int *val)
+>>
+>>
+>> +/**
+>> + * regtable_find_reg - find a register setting matching given value.
+>> + *
+>> + * Search given table for a register setting matching a value.
+>> + *
+>> + * @table:     Table from which the register setting - value pairs are
+>> + *             searched.
+>> + * @val:       Value for which the matching register setting is searched.
+>> + * @reg:       Pointer to location where the found register value will be
+>> + *             stored.
+>> + *
+>> + * returns:    0 on success, negative errno if table is invalid or match is
+>> + *             not found.
+>> + */
+>> +int regtable_find_reg(const struct reg_val_table *table, int val, int *reg)
+>>
+>>
+>> +/**
+>> + * regtable_find_greater_than_val - find the closest greater val and reg
+> Maybe use rounding terminology rather than greater than?
+> 
+> regtable_find_val_roundup()?
 
-So you still have not look at the work Christian is doing. You must
-work together with Christian. This driver is not going to be accepted
-unless you do.
+Would be much better indeed. Thanks!
 
-> > >          ethernet-phy@0 {
-> > >              compatible = "ethernet-phy-id004d.d180";
-> > >              reg = <0>;
-> > >              clocks = <qca8k_nsscc NSS_CC_GEPHY0_SYS_CLK>,
-> > >              clock-names = <"gephy_sys">;
-> > >              resets = <&qca8k_nsscc NSS_CC_GEPHY0_SYS_ARES>,
-> > >                       <&qca8k_nsscc NSS_CC_GEPHY0_ARES>;
-> > >              reset-names = "gephy_sys", "gephy_soft";
+>> + * Search given table for the smallest value which is still greater than
+>> + * the given value. Both the found value and corresponding register
+>> + * setting are returned unless given pointers are NULL.
+>> + *
+>> + * @table:     Table from which the register setting - value pairs are
+>> + *             searched.
+>> + * @val_cmp:   Value to which the values stored in table are compared to.
+>> + * @reg:       NULL or pointer to location where the matching register
+>> + *             setting value will be stored.
+>> + * @val:       NULL or pointer to location where the found value will be
+>> + *             stored.
+>> + *
+>> + * returns:    0 on success, negative errno if table is invalid or match is
+>> + *             not found.
+>> + */
+>> +int regtable_find_greater_than_val(const struct reg_val_table *table,
+>> int val_cmp,
+>> +                                  int *reg, int *val)
+> 
+> regtable_find_val_rounddown()?
 
-Which of these properties exist for the Pure PHY device? Which exist
-for the integrated switch? And by that, i mean which are actual pins
-on the PHY device? We need the device tree binding to list which
-properties are required for each use case.
+Yes.
 
-	   Andrew
+>> +/**
+>> + * regtable_find_smaller_than_val - find the closest smaller val and reg
+>> + *
+>> + * Search given table for the greatest value which is still smaller than
+>> + * the given value. Both the found value and corresponding register
+>> + * setting are returned unless given pointers are NULL.
+>> + *
+>> + * @table:     Table from which the register setting - value pairs are
+>> + *             searched.
+>> + * @val_cmp:   Value to which the values stored in table are compared to.
+>> + * @reg:       NULL or pointer to location where the matching register
+>> + *             setting value will be stored.
+>> + * @val:       NULL or pointer to location where the found value will be
+>> + *             stored.
+>> + *
+>> + * returns:    0 on success, negative errno if table is invalid or match is
+>> + *             not found.
+>> + */
+>> +int regtable_find_smaller_than_val(const struct reg_val_table *table,
+>> +                                  int val_cmp, int *reg, int *val)
+>>
+>>
+>> and
+>>
+>> +struct regmap_regval_table {
+>> +       const struct reg_val_table table;
+>> +       int reg;
+>> +       int mask;
+>> +};
+>>
+>> +/**
+>> + * regmap_table_value_set - update register to match
+>> human-understandable value
+>> + * @map:       Register map
+>> + * @table:     Table describing register-value, human-readable value
+>> relation
+>> + * value:      Human understandable value to configure in hardware.
+>> + *
+>> + * Return:     0 on success, negative errno on error.
+>> + */
+>> +int regmap_table_value_set(struct regmap *map,
+>> +                          const struct regmap_regval_table *table, int
+>> value)
+>>
+>>
+>> +/**
+>> + * regmap_table_value_get - return human-understandable configuration
+>> + *
+>> + * Reads hardware or regmap cache for current hardware configuration and
+>> + * converts the read register value to human understandable entity.
+>> + * @map:       Register map
+>> + * @table:     Table describing register-value, human-readable value
+>> relation
+>> + * value:      Human understandable value to configure in hardware.
+>> + *
+>> + * Return:     0 on success, negative errno on error.
+>> + */
+>> +int regmap_table_value_get(struct regmap *map,
+>> +                          const struct regmap_regval_table *table, int
+>> *value)
+>>
+>>
+>> (for anyone interested, whole thing + tests can be found from:
+>> https://github.com/M-Vaittinen/linux/commits/regtable/
+>> Just last 3 commits.)
+>>
+>> I am however having difficulties in seeing how this could be utilized by
+>> IIO, which tends to rely on values being represented by two integers
+>> (val and val2).
+> 
+> Two integers and a type to make it harder still... IIO_VAL_INT_PLUS_MICRO etc
+> though I guess that might not need representing as generally the caller
+> would know what that was.  Fixed point (ish) is a pain, but not come up with a better
+> presentation yet :(
+
+I think the IIO-representation is fine. Sure it sucks that the real 
+world is set up in such a imperfect way that we do need fractions, but 
+as we do, IIO-way is just fine.
+
+The thing IIO 'stuff' requires (and is not available in this draft) is 
+64 storage bits for the values. I guess I could increase the size in 
+tables to use u64 - and have an IIO-specific layer which could 
+pack/unpack the val and val2 in that 64 bits appropriately - but I'm not 
+sure it's worth the hassle. Besides, when users only need 32bits, 64bit 
+tables would be waste.
+
+Adding support for both 32 and 64 bit tables would probably work - but 
+maybe this is just an overkill for a simple task. Creating just 
+IIO-specific helpers would be much leaner.
+
+>> Any suggestions regarding this idea? I'm wondering if I should just
+>> scrap this and try seeing if I can make an IIO-specific helper(s) - or
+>> if someone sees this would bring additional value worth an proper RFC? I
+>> don't want to sen an RFC for people to properly review if this idea is
+>> just plain stupid :)
+> 
+> It seems useful in general but I guess it's a question of whether you can find
+> enough users to justify it.
+
+You're right of course. I think my question should've been if someone 
+can instantly think a type of devices that could benefit from these 
+helpers :)
+
+Anyways, bit Thank You for the input! Your help is much appreciated as 
+always! :) Let's see if my "hands NOT full" time continues so I can 
+rethink this.
+
+Yours,
+	-- Matti
+
+-- 
+Matti Vaittinen
+Linux kernel developer at ROHM Semiconductors
+Oulu Finland
+
+~~ When things go utterly wrong vim users can always type :help! ~~
+
 
