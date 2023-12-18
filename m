@@ -1,158 +1,535 @@
-Return-Path: <devicetree+bounces-26415-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26416-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 05424816699
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 07:40:40 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C07D98166A1
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 07:43:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8591E1F222BE
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 06:40:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 77F9F282967
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 06:43:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D55D6FC5;
-	Mon, 18 Dec 2023 06:40:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 132F46FBE;
+	Mon, 18 Dec 2023 06:43:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Zg85jWJx"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jYJDW4mu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 293CD6FA4
-	for <devicetree@vger.kernel.org>; Mon, 18 Dec 2023 06:40:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B90977460
+	for <devicetree@vger.kernel.org>; Mon, 18 Dec 2023 06:43:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-553727eb67aso52229a12.0
-        for <devicetree@vger.kernel.org>; Sun, 17 Dec 2023 22:40:30 -0800 (PST)
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-40d13e4f7abso10109545e9.2
+        for <devicetree@vger.kernel.org>; Sun, 17 Dec 2023 22:43:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702881629; x=1703486429; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=bqYDPl1FjmmqN1FcDv7jAW96tqVYP1wpKD1pK0hMxlo=;
-        b=Zg85jWJxpJT7be69lhp5iUn1sFWTaOwuWFuJStqVvmg6vs5b0+GAwzHj/olVw0Z9Ng
-         VOQav1sGLpR5KAZCGMqvMySiagR3IV/d2g8EE0En2kbcsIvdhPlip8CaLjdbN+xsuScU
-         sJ9mw7Q3clXqosE4mIQjYeMsNlxv8i6+IffIr5k0VnvXCrXAkqoKKKGz7HPZwmHtWiXb
-         7hmI+zqIo+fmWXGtlzpqyrcKkB9qWb5/w+lMItKcUOX/Fc1FLkYg15/U9iCLlGFMvMJD
-         uGnuYuiyNBsMMBauufYeENu8qnO184kMbr6fybt9/bd45rMd5Y5IBUfM4z047GllKJYf
-         Vlhw==
+        d=linaro.org; s=google; t=1702881818; x=1703486618; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=zRMFhVRnPcYTJ/c0cX/esmQb+Uzo7IOJzv0jUOywSi4=;
+        b=jYJDW4muSKacqmqnIA4LZccoWPaBPHYGTOf8MOIOWq4b3HoUfql20Wlc7kmAWeD6f/
+         0ibbFL8GCrtr47KcO6jm+ug9eXVOUfQaEk33QVlH1S/32ObiqBwFDDTWa66sUQb1WOSF
+         nO1kN6vH3apP5oVepP6HzpLGIO+cgt2rzfD9srspksZeoR9nSUA5DyMKRQM2U9yZz8uf
+         g3aG7JKcKh1/kksD1l6KcnvE7Lte12GZfkW+mXGsTzKmIlH0llVbPV1Xe8nZXrK+BnjM
+         GPpd5Ie0tH7fBK6A50HMzCpe7AtScC8otYySUcZIsP2mmc7EGedHMtmzjtQ0DHRI6/BJ
+         Qz+A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702881629; x=1703486429;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1702881818; x=1703486618;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=bqYDPl1FjmmqN1FcDv7jAW96tqVYP1wpKD1pK0hMxlo=;
-        b=g5yk2JCJkVXHA71fLjXysNwJjoduY4/8apdwni5cBSa5UmIQyjOoqzwP08HzYHH0hf
-         hF+ta/nJjPVy0u1vRi5x/Yyjg7c/0Wlyaq/rhtjj+JP57tCOJGMqnty11EAQcIYW9cju
-         WcOFWhYpJhtTorb+HvIwb8FkAeo5K4TUSdOFhm27Wtcv7BIfI9P7twP2r+V7fUCZzr9p
-         H/wlRVvmj/LtTKAVEF6wqc9+Mk0b0OvSAms89ynluhn2QC1WaWAU8U+/nGQr0glKr4QE
-         x/th003jLcJTQF5ZpWspExvLhavDQ2Nnu1L9DLnvznVgAhuZVdjyWPy0SFNz1NCEDhFE
-         sGDQ==
-X-Gm-Message-State: AOJu0Ywe/6E8SvmoXYHn2uK6j10B8ye/4J/0uPduv29QvcQglz507vgL
-	abv4+6ovJkYFe7yXDiC/+U6/JA==
-X-Google-Smtp-Source: AGHT+IHWY0JCM5GIc276UNzIoo2myyWWwePp/M3aqDmTbJsUslMoEalVRxdCqpxNF7KYY0aHt20eqA==
-X-Received: by 2002:a17:906:52ce:b0:a23:59f3:5485 with SMTP id w14-20020a17090652ce00b00a2359f35485mr372732ejn.153.1702881628993;
-        Sun, 17 Dec 2023 22:40:28 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id cw15-20020a170907160f00b00a1937153bddsm13639931ejd.20.2023.12.17.22.40.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 17 Dec 2023 22:40:27 -0800 (PST)
-Message-ID: <e029c1d8-2172-4766-9d29-cbb8b4d0c0c8@linaro.org>
-Date: Mon, 18 Dec 2023 07:40:25 +0100
+        bh=zRMFhVRnPcYTJ/c0cX/esmQb+Uzo7IOJzv0jUOywSi4=;
+        b=ZKMoRQ4e2Jvu9+xK2k7PipLH3A75eDSMI50u3gSzi+wGHGodTaddmPZjwYNqNQTBsr
+         X0D6+jepy90+Ow/Tyl06ko7ba7RUOzIRqzty6/zvxI17g4BKIEiFUeNa4laiT3r1Xc7F
+         m3aW1fozXEjgEK8U0HSHQcmtIKUUPsXRg/PfzNLBR3Tsj6jh06rsZmaYsvN2gqWoMLga
+         nf2AAl74KGmP1NK4tzW9BFDRG0LNt2JFWIx6Nks0Vm1/pAt/DaCIPu0G3LgpZABnW25A
+         C8jd9m3d+I3IAtigKRg+gHpNRoY9U/63v5xUop2GK2Sx2tl0XZUHu+jnMGjSpZZgFjww
+         uonA==
+X-Gm-Message-State: AOJu0Yzau78mxr/QLVqQTs+s72NjlCiPOcmmJJJ7gd7T28DojI5n+QSq
+	bvoB9XL1BGpnRi1nDzkNextHUQ==
+X-Google-Smtp-Source: AGHT+IE5lkHrZM6AHQkqq9qlrSVB37Gg7vwe9ill2/yU8LrpGWuH/I8OceXrJuNEfiHCcUW3knu1uA==
+X-Received: by 2002:a05:600c:b43:b0:40b:5e1b:54a5 with SMTP id k3-20020a05600c0b4300b0040b5e1b54a5mr10281406wmr.49.1702881817872;
+        Sun, 17 Dec 2023 22:43:37 -0800 (PST)
+Received: from ta2.c.googlers.com.com (216.131.76.34.bc.googleusercontent.com. [34.76.131.216])
+        by smtp.gmail.com with ESMTPSA id fc17-20020a05600c525100b0040c42681fcesm33580606wmb.15.2023.12.17.22.43.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 17 Dec 2023 22:43:37 -0800 (PST)
+From: Tudor Ambarus <tudor.ambarus@linaro.org>
+To: peter.griffin@linaro.org,
+	krzysztof.kozlowski@linaro.org
+Cc: s.nawrocki@samsung.com,
+	tomasz.figa@gmail.com,
+	cw00.choi@samsung.com,
+	alim.akhtar@samsung.com,
+	mturquette@baylibre.com,
+	sboyd@kernel.org,
+	robh+dt@kernel.org,
+	conor+dt@kernel.org,
+	semen.protsenko@linaro.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	kernel-team@android.com,
+	Tudor Ambarus <tudor.ambarus@linaro.org>
+Subject: [PATCH v2] dt-bindings: clock: google,gs101: rename CMU_TOP gate defines
+Date: Mon, 18 Dec 2023 06:43:33 +0000
+Message-ID: <20231218064333.479885-1-tudor.ambarus@linaro.org>
+X-Mailer: git-send-email 2.43.0.472.g3155946c3a-goog
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: w1: UART 1-wire bus
-To: Christoph Winklhofer <cj.winklhofer@gmail.com>, robh+dt@kernel.org,
- conor+dt@kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20231217122004.42795-1-cj.winklhofer@gmail.com>
- <20231217122004.42795-2-cj.winklhofer@gmail.com>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231217122004.42795-2-cj.winklhofer@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 17/12/2023 13:20, Christoph Winklhofer wrote:
-> Add device tree binding for UART 1-wire bus driver.
+The gs101 clock defines from the bindings header are derived from the
+clock register names found in the datasheet under some certain rules.
 
-Bindings are for hardware, not drivers.
+The CMU TOP gate clock defines missed to include the required "CMU"
+differentiator which will cause collisions with the gate clock defines
+of other clock units. Rename the TOP gate clock defines to include "CMU".
 
-> 
-> Signed-off-by: Christoph Winklhofer <cj.winklhofer@gmail.com>
-> ---
->  .../devicetree/bindings/w1/w1-uart.yaml       | 27 +++++++++++++++++++
->  1 file changed, 27 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/w1/w1-uart.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/w1/w1-uart.yaml b/Documentation/devicetree/bindings/w1/w1-uart.yaml
-> new file mode 100644
-> index 000000000000..1a4fbe1d7c60
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/w1/w1-uart.yaml
-> @@ -0,0 +1,27 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/w1/w1-uart.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: UART 1-Wire Bus
+Update the clock driver to use the new defines in order to not break
+compilation and bisect-ability. There are no device trees that use the
+previous defines.
 
-There are no resources here, no hardware description. I would expect at
-least the latter.
+Fixes: 0a910f160638 ("dt-bindings: clock: Add Google gs101 clock management unit bindings")
+Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
+Reviewed-by: Sam Protsenko <semen.protsenko@linaro.org>
+Reviewed-by: Peter Griffin <peter.griffin@linaro.org>
+---
+v2:
+- update commit's subject and message. First version sent at:
+  - https://lore.kernel.org/linux-arm-kernel/20231214105243.3707730-2-tudor.ambarus@linaro.org/
+- add Sam's and Peter's R-b tags even if I updated the commit subject
+  and message after I got them.
 
+ drivers/clk/samsung/clk-gs101.c          | 167 ++++++++++++-----------
+ include/dt-bindings/clock/google,gs101.h | 144 +++++++++----------
+ 2 files changed, 159 insertions(+), 152 deletions(-)
 
-Best regards,
-Krzysztof
+diff --git a/drivers/clk/samsung/clk-gs101.c b/drivers/clk/samsung/clk-gs101.c
+index a3dda97f5eb9..0964bb11657f 100644
+--- a/drivers/clk/samsung/clk-gs101.c
++++ b/drivers/clk/samsung/clk-gs101.c
+@@ -17,7 +17,7 @@
+ #include "clk-exynos-arm64.h"
+ 
+ /* NOTE: Must be equal to the last clock ID increased by one */
+-#define CLKS_NR_TOP	(CLK_GOUT_TPU_UART + 1)
++#define CLKS_NR_TOP	(CLK_GOUT_CMU_TPU_UART + 1)
+ #define CLKS_NR_APM	(CLK_APM_PLL_DIV16_APM + 1)
+ #define CLKS_NR_MISC	(CLK_GOUT_MISC_XIU_D_MISC_ACLK + 1)
+ 
+@@ -1259,160 +1259,167 @@ static const struct samsung_fixed_factor_clock cmu_top_ffactor[] __initconst = {
+ };
+ 
+ static const struct samsung_gate_clock cmu_top_gate_clks[] __initconst = {
+-	GATE(CLK_GOUT_BUS0_BOOST, "gout_cmu_bus0_boost",
++	GATE(CLK_GOUT_CMU_BUS0_BOOST, "gout_cmu_bus0_boost",
+ 	     "mout_cmu_boost_option1", CLK_CON_GAT_CLKCMU_BUS0_BOOST, 21, 0, 0),
+-	GATE(CLK_GOUT_BUS1_BOOST, "gout_cmu_bus1_boost",
++	GATE(CLK_GOUT_CMU_BUS1_BOOST, "gout_cmu_bus1_boost",
+ 	     "mout_cmu_boost_option1", CLK_CON_GAT_CLKCMU_BUS1_BOOST, 21, 0, 0),
+-	GATE(CLK_GOUT_BUS2_BOOST, "gout_cmu_bus2_boost",
++	GATE(CLK_GOUT_CMU_BUS2_BOOST, "gout_cmu_bus2_boost",
+ 	     "mout_cmu_boost_option1", CLK_CON_GAT_CLKCMU_BUS2_BOOST, 21, 0, 0),
+-	GATE(CLK_GOUT_CORE_BOOST, "gout_cmu_core_boost",
++	GATE(CLK_GOUT_CMU_CORE_BOOST, "gout_cmu_core_boost",
+ 	     "mout_cmu_boost_option1", CLK_CON_GAT_CLKCMU_CORE_BOOST, 21, 0, 0),
+-	GATE(CLK_GOUT_CPUCL0_BOOST, "gout_cmu_cpucl0_boost",
++	GATE(CLK_GOUT_CMU_CPUCL0_BOOST, "gout_cmu_cpucl0_boost",
+ 	     "mout_cmu_boost_option1", CLK_CON_GAT_CLKCMU_CPUCL0_BOOST,
+ 	     21, 0, 0),
+-	GATE(CLK_GOUT_CPUCL1_BOOST, "gout_cmu_cpucl1_boost",
++	GATE(CLK_GOUT_CMU_CPUCL1_BOOST, "gout_cmu_cpucl1_boost",
+ 	     "mout_cmu_boost_option1", CLK_CON_GAT_CLKCMU_CPUCL1_BOOST,
+ 	     21, 0, 0),
+-	GATE(CLK_GOUT_CPUCL2_BOOST, "gout_cmu_cpucl2_boost",
++	GATE(CLK_GOUT_CMU_CPUCL2_BOOST, "gout_cmu_cpucl2_boost",
+ 	     "mout_cmu_boost_option1", CLK_CON_GAT_CLKCMU_CPUCL2_BOOST,
+ 	     21, 0, 0),
+-	GATE(CLK_GOUT_MIF_BOOST, "gout_cmu_mif_boost",
++	GATE(CLK_GOUT_CMU_MIF_BOOST, "gout_cmu_mif_boost",
+ 	     "mout_cmu_boost_option1", CLK_CON_GAT_CLKCMU_MIF_BOOST,
+ 	     21, 0, 0),
+-	GATE(CLK_GOUT_MIF_SWITCH, "gout_cmu_mif_switch", "mout_cmu_mif_switch",
+-	     CLK_CON_GAT_CLKCMU_MIF_SWITCH, 21, 0, 0),
+-	GATE(CLK_GOUT_BO_BUS, "gout_cmu_bo_bus", "mout_cmu_bo_bus",
++	GATE(CLK_GOUT_CMU_MIF_SWITCH, "gout_cmu_mif_switch",
++	     "mout_cmu_mif_switch", CLK_CON_GAT_CLKCMU_MIF_SWITCH, 21, 0, 0),
++	GATE(CLK_GOUT_CMU_BO_BUS, "gout_cmu_bo_bus", "mout_cmu_bo_bus",
+ 	     CLK_CON_GAT_GATE_CLKCMU_BO_BUS, 21, 0, 0),
+-	GATE(CLK_GOUT_BUS0_BUS, "gout_cmu_bus0_bus", "mout_cmu_bus0_bus",
++	GATE(CLK_GOUT_CMU_BUS0_BUS, "gout_cmu_bus0_bus", "mout_cmu_bus0_bus",
+ 	     CLK_CON_GAT_GATE_CLKCMU_BUS0_BUS, 21, 0, 0),
+-	GATE(CLK_GOUT_BUS1_BUS, "gout_cmu_bus1_bus", "mout_cmu_bus1_bus",
++	GATE(CLK_GOUT_CMU_BUS1_BUS, "gout_cmu_bus1_bus", "mout_cmu_bus1_bus",
+ 	     CLK_CON_GAT_GATE_CLKCMU_BUS1_BUS, 21, 0, 0),
+-	GATE(CLK_GOUT_BUS2_BUS, "gout_cmu_bus2_bus", "mout_cmu_bus2_bus",
++	GATE(CLK_GOUT_CMU_BUS2_BUS, "gout_cmu_bus2_bus", "mout_cmu_bus2_bus",
+ 	     CLK_CON_GAT_GATE_CLKCMU_BUS2_BUS, 21, 0, 0),
+-	GATE(CLK_GOUT_CIS_CLK0, "gout_cmu_cis_clk0", "mout_cmu_cis_clk0",
++	GATE(CLK_GOUT_CMU_CIS_CLK0, "gout_cmu_cis_clk0", "mout_cmu_cis_clk0",
+ 	     CLK_CON_GAT_GATE_CLKCMU_CIS_CLK0, 21, 0, 0),
+-	GATE(CLK_GOUT_CIS_CLK1, "gout_cmu_cis_clk1", "mout_cmu_cis_clk1",
++	GATE(CLK_GOUT_CMU_CIS_CLK1, "gout_cmu_cis_clk1", "mout_cmu_cis_clk1",
+ 	     CLK_CON_GAT_GATE_CLKCMU_CIS_CLK1, 21, 0, 0),
+-	GATE(CLK_GOUT_CIS_CLK2, "gout_cmu_cis_clk2", "mout_cmu_cis_clk2",
++	GATE(CLK_GOUT_CMU_CIS_CLK2, "gout_cmu_cis_clk2", "mout_cmu_cis_clk2",
+ 	     CLK_CON_GAT_GATE_CLKCMU_CIS_CLK2, 21, 0, 0),
+-	GATE(CLK_GOUT_CIS_CLK3, "gout_cmu_cis_clk3", "mout_cmu_cis_clk3",
++	GATE(CLK_GOUT_CMU_CIS_CLK3, "gout_cmu_cis_clk3", "mout_cmu_cis_clk3",
+ 	     CLK_CON_GAT_GATE_CLKCMU_CIS_CLK3, 21, 0, 0),
+-	GATE(CLK_GOUT_CIS_CLK4, "gout_cmu_cis_clk4", "mout_cmu_cis_clk4",
++	GATE(CLK_GOUT_CMU_CIS_CLK4, "gout_cmu_cis_clk4", "mout_cmu_cis_clk4",
+ 	     CLK_CON_GAT_GATE_CLKCMU_CIS_CLK4, 21, 0, 0),
+-	GATE(CLK_GOUT_CIS_CLK5, "gout_cmu_cis_clk5", "mout_cmu_cis_clk5",
++	GATE(CLK_GOUT_CMU_CIS_CLK5, "gout_cmu_cis_clk5", "mout_cmu_cis_clk5",
+ 	     CLK_CON_GAT_GATE_CLKCMU_CIS_CLK5, 21, 0, 0),
+-	GATE(CLK_GOUT_CIS_CLK6, "gout_cmu_cis_clk6", "mout_cmu_cis_clk6",
++	GATE(CLK_GOUT_CMU_CIS_CLK6, "gout_cmu_cis_clk6", "mout_cmu_cis_clk6",
+ 	     CLK_CON_GAT_GATE_CLKCMU_CIS_CLK6, 21, 0, 0),
+-	GATE(CLK_GOUT_CIS_CLK7, "gout_cmu_cis_clk7", "mout_cmu_cis_clk7",
++	GATE(CLK_GOUT_CMU_CIS_CLK7, "gout_cmu_cis_clk7", "mout_cmu_cis_clk7",
+ 	     CLK_CON_GAT_GATE_CLKCMU_CIS_CLK7, 21, 0, 0),
+-	GATE(CLK_GOUT_CMU_BOOST, "gout_cmu_cmu_boost", "mout_cmu_cmu_boost",
++	GATE(CLK_GOUT_CMU_CMU_BOOST, "gout_cmu_cmu_boost", "mout_cmu_cmu_boost",
+ 	     CLK_CON_GAT_GATE_CLKCMU_CMU_BOOST, 21, 0, 0),
+-	GATE(CLK_GOUT_CORE_BUS, "gout_cmu_core_bus", "mout_cmu_core_bus",
++	GATE(CLK_GOUT_CMU_CORE_BUS, "gout_cmu_core_bus", "mout_cmu_core_bus",
+ 	     CLK_CON_GAT_GATE_CLKCMU_CORE_BUS, 21, 0, 0),
+-	GATE(CLK_GOUT_CPUCL0_DBG, "gout_cmu_cpucl0_dbg", "mout_cmu_cpucl0_dbg",
+-	     CLK_CON_GAT_GATE_CLKCMU_CPUCL0_DBG_BUS, 21, 0, 0),
+-	GATE(CLK_GOUT_CPUCL0_SWITCH, "gout_cmu_cpucl0_switch",
++	GATE(CLK_GOUT_CMU_CPUCL0_DBG, "gout_cmu_cpucl0_dbg",
++	     "mout_cmu_cpucl0_dbg", CLK_CON_GAT_GATE_CLKCMU_CPUCL0_DBG_BUS,
++	     21, 0, 0),
++	GATE(CLK_GOUT_CMU_CPUCL0_SWITCH, "gout_cmu_cpucl0_switch",
+ 	     "mout_cmu_cpucl0_switch", CLK_CON_GAT_GATE_CLKCMU_CPUCL0_SWITCH,
+ 	     21, 0, 0),
+-	GATE(CLK_GOUT_CPUCL1_SWITCH, "gout_cmu_cpucl1_switch",
++	GATE(CLK_GOUT_CMU_CPUCL1_SWITCH, "gout_cmu_cpucl1_switch",
+ 	     "mout_cmu_cpucl1_switch", CLK_CON_GAT_GATE_CLKCMU_CPUCL1_SWITCH,
+ 	     21, 0, 0),
+-	GATE(CLK_GOUT_CPUCL2_SWITCH, "gout_cmu_cpucl2_switch",
++	GATE(CLK_GOUT_CMU_CPUCL2_SWITCH, "gout_cmu_cpucl2_switch",
+ 	     "mout_cmu_cpucl2_switch", CLK_CON_GAT_GATE_CLKCMU_CPUCL2_SWITCH,
+ 	     21, 0, 0),
+-	GATE(CLK_GOUT_CSIS_BUS, "gout_cmu_csis_bus", "mout_cmu_csis_bus",
++	GATE(CLK_GOUT_CMU_CSIS_BUS, "gout_cmu_csis_bus", "mout_cmu_csis_bus",
+ 	     CLK_CON_GAT_GATE_CLKCMU_CSIS_BUS, 21, 0, 0),
+-	GATE(CLK_GOUT_DISP_BUS, "gout_cmu_disp_bus", "mout_cmu_disp_bus",
++	GATE(CLK_GOUT_CMU_DISP_BUS, "gout_cmu_disp_bus", "mout_cmu_disp_bus",
+ 	     CLK_CON_GAT_GATE_CLKCMU_DISP_BUS, 21, 0, 0),
+-	GATE(CLK_GOUT_DNS_BUS, "gout_cmu_dns_bus", "mout_cmu_dns_bus",
++	GATE(CLK_GOUT_CMU_DNS_BUS, "gout_cmu_dns_bus", "mout_cmu_dns_bus",
+ 	     CLK_CON_GAT_GATE_CLKCMU_DNS_BUS, 21, 0, 0),
+-	GATE(CLK_GOUT_DPU_BUS, "gout_cmu_dpu_bus", "mout_cmu_dpu_bus",
++	GATE(CLK_GOUT_CMU_DPU_BUS, "gout_cmu_dpu_bus", "mout_cmu_dpu_bus",
+ 	     CLK_CON_GAT_GATE_CLKCMU_DPU_BUS, 21, 0, 0),
+-	GATE(CLK_GOUT_EH_BUS, "gout_cmu_eh_bus", "mout_cmu_eh_bus",
++	GATE(CLK_GOUT_CMU_EH_BUS, "gout_cmu_eh_bus", "mout_cmu_eh_bus",
+ 	     CLK_CON_GAT_GATE_CLKCMU_EH_BUS, 21, 0, 0),
+-	GATE(CLK_GOUT_G2D_G2D, "gout_cmu_g2d_g2d", "mout_cmu_g2d_g2d",
++	GATE(CLK_GOUT_CMU_G2D_G2D, "gout_cmu_g2d_g2d", "mout_cmu_g2d_g2d",
+ 	     CLK_CON_GAT_GATE_CLKCMU_G2D_G2D, 21, 0, 0),
+-	GATE(CLK_GOUT_G2D_MSCL, "gout_cmu_g2d_mscl", "mout_cmu_g2d_mscl",
++	GATE(CLK_GOUT_CMU_G2D_MSCL, "gout_cmu_g2d_mscl", "mout_cmu_g2d_mscl",
+ 	     CLK_CON_GAT_GATE_CLKCMU_G2D_MSCL, 21, 0, 0),
+-	GATE(CLK_GOUT_G3AA_G3AA, "gout_cmu_g3aa_g3aa", "mout_cmu_g3aa_g3aa",
++	GATE(CLK_GOUT_CMU_G3AA_G3AA, "gout_cmu_g3aa_g3aa", "mout_cmu_g3aa_g3aa",
+ 	     CLK_CON_MUX_MUX_CLKCMU_G3AA_G3AA, 21, 0, 0),
+-	GATE(CLK_GOUT_G3D_BUSD, "gout_cmu_g3d_busd", "mout_cmu_g3d_busd",
++	GATE(CLK_GOUT_CMU_G3D_BUSD, "gout_cmu_g3d_busd", "mout_cmu_g3d_busd",
+ 	     CLK_CON_GAT_GATE_CLKCMU_G3D_BUSD, 21, 0, 0),
+-	GATE(CLK_GOUT_G3D_GLB, "gout_cmu_g3d_glb", "mout_cmu_g3d_glb",
++	GATE(CLK_GOUT_CMU_G3D_GLB, "gout_cmu_g3d_glb", "mout_cmu_g3d_glb",
+ 	     CLK_CON_GAT_GATE_CLKCMU_G3D_GLB, 21, 0, 0),
+-	GATE(CLK_GOUT_G3D_SWITCH, "gout_cmu_g3d_switch", "mout_cmu_g3d_switch",
+-	     CLK_CON_GAT_GATE_CLKCMU_G3D_SWITCH, 21, 0, 0),
+-	GATE(CLK_GOUT_GDC_GDC0, "gout_cmu_gdc_gdc0", "mout_cmu_gdc_gdc0",
++	GATE(CLK_GOUT_CMU_G3D_SWITCH, "gout_cmu_g3d_switch",
++	     "mout_cmu_g3d_switch", CLK_CON_GAT_GATE_CLKCMU_G3D_SWITCH,
++	     21, 0, 0),
++	GATE(CLK_GOUT_CMU_GDC_GDC0, "gout_cmu_gdc_gdc0", "mout_cmu_gdc_gdc0",
+ 	     CLK_CON_GAT_GATE_CLKCMU_GDC_GDC0, 21, 0, 0),
+-	GATE(CLK_GOUT_GDC_GDC1, "gout_cmu_gdc_gdc1", "mout_cmu_gdc_gdc1",
++	GATE(CLK_GOUT_CMU_GDC_GDC1, "gout_cmu_gdc_gdc1", "mout_cmu_gdc_gdc1",
+ 	     CLK_CON_GAT_GATE_CLKCMU_GDC_GDC1, 21, 0, 0),
+-	GATE(CLK_GOUT_GDC_SCSC, "gout_cmu_gdc_scsc", "mout_cmu_gdc_scsc",
++	GATE(CLK_GOUT_CMU_GDC_SCSC, "gout_cmu_gdc_scsc", "mout_cmu_gdc_scsc",
+ 	     CLK_CON_GAT_GATE_CLKCMU_GDC_SCSC, 21, 0, 0),
+ 	GATE(CLK_GOUT_CMU_HPM, "gout_cmu_hpm", "mout_cmu_hpm",
+ 	     CLK_CON_GAT_GATE_CLKCMU_HPM, 21, 0, 0),
+-	GATE(CLK_GOUT_HSI0_BUS, "gout_cmu_hsi0_bus", "mout_cmu_hsi0_bus",
++	GATE(CLK_GOUT_CMU_HSI0_BUS, "gout_cmu_hsi0_bus", "mout_cmu_hsi0_bus",
+ 	     CLK_CON_GAT_GATE_CLKCMU_HSI0_BUS, 21, 0, 0),
+-	GATE(CLK_GOUT_HSI0_DPGTC, "gout_cmu_hsi0_dpgtc", "mout_cmu_hsi0_dpgtc",
+-	     CLK_CON_GAT_GATE_CLKCMU_HSI0_DPGTC, 21, 0, 0),
+-	GATE(CLK_GOUT_HSI0_USB31DRD, "gout_cmu_hsi0_usb31drd",
++	GATE(CLK_GOUT_CMU_HSI0_DPGTC, "gout_cmu_hsi0_dpgtc",
++	     "mout_cmu_hsi0_dpgtc", CLK_CON_GAT_GATE_CLKCMU_HSI0_DPGTC,
++	     21, 0, 0),
++	GATE(CLK_GOUT_CMU_HSI0_USB31DRD, "gout_cmu_hsi0_usb31drd",
+ 	     "mout_cmu_hsi0_usb31drd", CLK_CON_GAT_GATE_CLKCMU_HSI0_USB31DRD,
+ 	     21, 0, 0),
+-	GATE(CLK_GOUT_HSI0_USBDPDBG, "gout_cmu_hsi0_usbdpdbg",
++	GATE(CLK_GOUT_CMU_HSI0_USBDPDBG, "gout_cmu_hsi0_usbdpdbg",
+ 	     "mout_cmu_hsi0_usbdpdbg", CLK_CON_GAT_GATE_CLKCMU_HSI0_USBDPDBG,
+ 	     21, 0, 0),
+-	GATE(CLK_GOUT_HSI1_BUS, "gout_cmu_hsi1_bus", "mout_cmu_hsi1_bus",
++	GATE(CLK_GOUT_CMU_HSI1_BUS, "gout_cmu_hsi1_bus", "mout_cmu_hsi1_bus",
+ 	     CLK_CON_GAT_GATE_CLKCMU_HSI1_BUS, 21, 0, 0),
+-	GATE(CLK_GOUT_HSI1_PCIE, "gout_cmu_hsi1_pcie", "mout_cmu_hsi1_pcie",
++	GATE(CLK_GOUT_CMU_HSI1_PCIE, "gout_cmu_hsi1_pcie", "mout_cmu_hsi1_pcie",
+ 	     CLK_CON_GAT_GATE_CLKCMU_HSI1_PCIE, 21, 0, 0),
+-	GATE(CLK_GOUT_HSI2_BUS, "gout_cmu_hsi2_bus", "mout_cmu_hsi2_bus",
++	GATE(CLK_GOUT_CMU_HSI2_BUS, "gout_cmu_hsi2_bus", "mout_cmu_hsi2_bus",
+ 	     CLK_CON_GAT_GATE_CLKCMU_HSI2_BUS, 21, 0, 0),
+-	GATE(CLK_GOUT_HSI2_MMC_CARD, "gout_cmu_hsi2_mmc_card",
++	GATE(CLK_GOUT_CMU_HSI2_MMC_CARD, "gout_cmu_hsi2_mmc_card",
+ 	     "mout_cmu_hsi2_mmc_card", CLK_CON_GAT_GATE_CLKCMU_HSI2_MMCCARD,
+ 	     21, 0, 0),
+-	GATE(CLK_GOUT_HSI2_PCIE, "gout_cmu_hsi2_pcie", "mout_cmu_hsi2_pcie",
++	GATE(CLK_GOUT_CMU_HSI2_PCIE, "gout_cmu_hsi2_pcie", "mout_cmu_hsi2_pcie",
+ 	     CLK_CON_GAT_GATE_CLKCMU_HSI2_PCIE, 21, 0, 0),
+-	GATE(CLK_GOUT_HSI2_UFS_EMBD, "gout_cmu_hsi2_ufs_embd",
++	GATE(CLK_GOUT_CMU_HSI2_UFS_EMBD, "gout_cmu_hsi2_ufs_embd",
+ 	     "mout_cmu_hsi2_ufs_embd", CLK_CON_GAT_GATE_CLKCMU_HSI2_UFS_EMBD,
+ 	     21, 0, 0),
+-	GATE(CLK_GOUT_IPP_BUS, "gout_cmu_ipp_bus", "mout_cmu_ipp_bus",
++	GATE(CLK_GOUT_CMU_IPP_BUS, "gout_cmu_ipp_bus", "mout_cmu_ipp_bus",
+ 	     CLK_CON_GAT_GATE_CLKCMU_IPP_BUS, 21, 0, 0),
+-	GATE(CLK_GOUT_ITP_BUS, "gout_cmu_itp_bus", "mout_cmu_itp_bus",
++	GATE(CLK_GOUT_CMU_ITP_BUS, "gout_cmu_itp_bus", "mout_cmu_itp_bus",
+ 	     CLK_CON_GAT_GATE_CLKCMU_ITP_BUS, 21, 0, 0),
+-	GATE(CLK_GOUT_MCSC_ITSC, "gout_cmu_mcsc_itsc", "mout_cmu_mcsc_itsc",
++	GATE(CLK_GOUT_CMU_MCSC_ITSC, "gout_cmu_mcsc_itsc", "mout_cmu_mcsc_itsc",
+ 	     CLK_CON_GAT_GATE_CLKCMU_MCSC_ITSC, 21, 0, 0),
+-	GATE(CLK_GOUT_MCSC_MCSC, "gout_cmu_mcsc_mcsc", "mout_cmu_mcsc_mcsc",
++	GATE(CLK_GOUT_CMU_MCSC_MCSC, "gout_cmu_mcsc_mcsc", "mout_cmu_mcsc_mcsc",
+ 	     CLK_CON_GAT_GATE_CLKCMU_MCSC_MCSC, 21, 0, 0),
+-	GATE(CLK_GOUT_MFC_MFC, "gout_cmu_mfc_mfc", "mout_cmu_mfc_mfc",
++	GATE(CLK_GOUT_CMU_MFC_MFC, "gout_cmu_mfc_mfc", "mout_cmu_mfc_mfc",
+ 	     CLK_CON_GAT_GATE_CLKCMU_MFC_MFC, 21, 0, 0),
+-	GATE(CLK_GOUT_MIF_BUSP, "gout_cmu_mif_busp", "mout_cmu_mif_busp",
++	GATE(CLK_GOUT_CMU_MIF_BUSP, "gout_cmu_mif_busp", "mout_cmu_mif_busp",
+ 	     CLK_CON_GAT_GATE_CLKCMU_MIF_BUSP, 21, 0, 0),
+-	GATE(CLK_GOUT_MISC_BUS, "gout_cmu_misc_bus", "mout_cmu_misc_bus",
++	GATE(CLK_GOUT_CMU_MISC_BUS, "gout_cmu_misc_bus", "mout_cmu_misc_bus",
+ 	     CLK_CON_GAT_GATE_CLKCMU_MISC_BUS, 21, 0, 0),
+-	GATE(CLK_GOUT_MISC_SSS, "gout_cmu_misc_sss", "mout_cmu_misc_sss",
++	GATE(CLK_GOUT_CMU_MISC_SSS, "gout_cmu_misc_sss", "mout_cmu_misc_sss",
+ 	     CLK_CON_GAT_GATE_CLKCMU_MISC_SSS, 21, 0, 0),
+-	GATE(CLK_GOUT_PDP_BUS, "gout_cmu_pdp_bus", "mout_cmu_pdp_bus",
++	GATE(CLK_GOUT_CMU_PDP_BUS, "gout_cmu_pdp_bus", "mout_cmu_pdp_bus",
+ 	     CLK_CON_GAT_GATE_CLKCMU_PDP_BUS, 21, 0, 0),
+-	GATE(CLK_GOUT_PDP_VRA, "gout_cmu_pdp_vra", "mout_cmu_pdp_vra",
++	GATE(CLK_GOUT_CMU_PDP_VRA, "gout_cmu_pdp_vra", "mout_cmu_pdp_vra",
+ 	     CLK_CON_GAT_GATE_CLKCMU_PDP_BUS, 21, 0, 0),
+-	GATE(CLK_GOUT_PERIC0_BUS, "gout_cmu_peric0_bus", "mout_cmu_peric0_bus",
+-	     CLK_CON_GAT_GATE_CLKCMU_PERIC0_BUS, 21, 0, 0),
+-	GATE(CLK_GOUT_PERIC0_IP, "gout_cmu_peric0_ip", "mout_cmu_peric0_ip",
++	GATE(CLK_GOUT_CMU_PERIC0_BUS, "gout_cmu_peric0_bus",
++	     "mout_cmu_peric0_bus", CLK_CON_GAT_GATE_CLKCMU_PERIC0_BUS,
++	     21, 0, 0),
++	GATE(CLK_GOUT_CMU_PERIC0_IP, "gout_cmu_peric0_ip", "mout_cmu_peric0_ip",
+ 	     CLK_CON_GAT_GATE_CLKCMU_PERIC0_IP, 21, 0, 0),
+-	GATE(CLK_GOUT_PERIC1_BUS, "gout_cmu_peric1_bus", "mout_cmu_peric1_bus",
+-	     CLK_CON_GAT_GATE_CLKCMU_PERIC1_BUS, 21, 0, 0),
+-	GATE(CLK_GOUT_PERIC1_IP, "gout_cmu_peric1_ip", "mout_cmu_peric1_ip",
++	GATE(CLK_GOUT_CMU_PERIC1_BUS, "gout_cmu_peric1_bus",
++	     "mout_cmu_peric1_bus", CLK_CON_GAT_GATE_CLKCMU_PERIC1_BUS,
++	     21, 0, 0),
++	GATE(CLK_GOUT_CMU_PERIC1_IP, "gout_cmu_peric1_ip", "mout_cmu_peric1_ip",
+ 	     CLK_CON_GAT_GATE_CLKCMU_PERIC1_IP, 21, 0, 0),
+-	GATE(CLK_GOUT_TNR_BUS, "gout_cmu_tnr_bus", "mout_cmu_tnr_bus",
++	GATE(CLK_GOUT_CMU_TNR_BUS, "gout_cmu_tnr_bus", "mout_cmu_tnr_bus",
+ 	     CLK_CON_GAT_GATE_CLKCMU_TNR_BUS, 21, 0, 0),
+-	GATE(CLK_GOUT_TOP_CMUREF, "gout_cmu_top_cmuref", "mout_cmu_top_cmuref",
+-	     CLK_CON_GAT_GATE_CLKCMU_TOP_CMUREF, 21, 0, 0),
+-	GATE(CLK_GOUT_TPU_BUS, "gout_cmu_tpu_bus", "mout_cmu_tpu_bus",
++	GATE(CLK_GOUT_CMU_TOP_CMUREF, "gout_cmu_top_cmuref",
++	     "mout_cmu_top_cmuref", CLK_CON_GAT_GATE_CLKCMU_TOP_CMUREF,
++	     21, 0, 0),
++	GATE(CLK_GOUT_CMU_TPU_BUS, "gout_cmu_tpu_bus", "mout_cmu_tpu_bus",
+ 	     CLK_CON_GAT_GATE_CLKCMU_TPU_BUS, 21, 0, 0),
+-	GATE(CLK_GOUT_TPU_TPU, "gout_cmu_tpu_tpu", "mout_cmu_tpu_tpu",
++	GATE(CLK_GOUT_CMU_TPU_TPU, "gout_cmu_tpu_tpu", "mout_cmu_tpu_tpu",
+ 	     CLK_CON_GAT_GATE_CLKCMU_TPU_TPU, 21, 0, 0),
+-	GATE(CLK_GOUT_TPU_TPUCTL, "gout_cmu_tpu_tpuctl", "mout_cmu_tpu_tpuctl",
+-	     CLK_CON_GAT_GATE_CLKCMU_TPU_TPUCTL, 21, 0, 0),
+-	GATE(CLK_GOUT_TPU_UART, "gout_cmu_tpu_uart", "mout_cmu_tpu_uart",
++	GATE(CLK_GOUT_CMU_TPU_TPUCTL, "gout_cmu_tpu_tpuctl",
++	     "mout_cmu_tpu_tpuctl", CLK_CON_GAT_GATE_CLKCMU_TPU_TPUCTL,
++	     21, 0, 0),
++	GATE(CLK_GOUT_CMU_TPU_UART, "gout_cmu_tpu_uart", "mout_cmu_tpu_uart",
+ 	     CLK_CON_GAT_GATE_CLKCMU_TPU_UART, 21, 0, 0),
+ };
+ 
+diff --git a/include/dt-bindings/clock/google,gs101.h b/include/dt-bindings/clock/google,gs101.h
+index 9761c0b24e66..21adec22387c 100644
+--- a/include/dt-bindings/clock/google,gs101.h
++++ b/include/dt-bindings/clock/google,gs101.h
+@@ -166,79 +166,79 @@
+ #define CLK_DOUT_CMU_SHARED3_DIV2	150
+ 
+ /* CMU_TOP Gates */
+-#define CLK_GOUT_BUS0_BOOST		151
+-#define CLK_GOUT_BUS1_BOOST		152
+-#define CLK_GOUT_BUS2_BOOST		153
+-#define CLK_GOUT_CORE_BOOST		154
+-#define CLK_GOUT_CPUCL0_BOOST		155
+-#define CLK_GOUT_CPUCL1_BOOST		156
+-#define CLK_GOUT_CPUCL2_BOOST		157
+-#define CLK_GOUT_MIF_BOOST		158
+-#define CLK_GOUT_MIF_SWITCH		159
+-#define CLK_GOUT_BO_BUS			160
+-#define CLK_GOUT_BUS0_BUS		161
+-#define CLK_GOUT_BUS1_BUS		162
+-#define CLK_GOUT_BUS2_BUS		163
+-#define CLK_GOUT_CIS_CLK0		164
+-#define CLK_GOUT_CIS_CLK1		165
+-#define CLK_GOUT_CIS_CLK2		166
+-#define CLK_GOUT_CIS_CLK3		167
+-#define CLK_GOUT_CIS_CLK4		168
+-#define CLK_GOUT_CIS_CLK5		169
+-#define CLK_GOUT_CIS_CLK6		170
+-#define CLK_GOUT_CIS_CLK7		171
+-#define CLK_GOUT_CMU_BOOST		172
+-#define CLK_GOUT_CORE_BUS		173
+-#define CLK_GOUT_CPUCL0_DBG		174
+-#define CLK_GOUT_CPUCL0_SWITCH		175
+-#define CLK_GOUT_CPUCL1_SWITCH		176
+-#define CLK_GOUT_CPUCL2_SWITCH		177
+-#define CLK_GOUT_CSIS_BUS		178
+-#define CLK_GOUT_DISP_BUS		179
+-#define CLK_GOUT_DNS_BUS		180
+-#define CLK_GOUT_DPU_BUS		181
+-#define CLK_GOUT_EH_BUS			182
+-#define CLK_GOUT_G2D_G2D		183
+-#define CLK_GOUT_G2D_MSCL		184
+-#define CLK_GOUT_G3AA_G3AA		185
+-#define CLK_GOUT_G3D_BUSD		186
+-#define CLK_GOUT_G3D_GLB		187
+-#define CLK_GOUT_G3D_SWITCH		188
+-#define CLK_GOUT_GDC_GDC0		189
+-#define CLK_GOUT_GDC_GDC1		190
+-#define CLK_GOUT_GDC_SCSC		191
++#define CLK_GOUT_CMU_BUS0_BOOST		151
++#define CLK_GOUT_CMU_BUS1_BOOST		152
++#define CLK_GOUT_CMU_BUS2_BOOST		153
++#define CLK_GOUT_CMU_CORE_BOOST		154
++#define CLK_GOUT_CMU_CPUCL0_BOOST	155
++#define CLK_GOUT_CMU_CPUCL1_BOOST	156
++#define CLK_GOUT_CMU_CPUCL2_BOOST	157
++#define CLK_GOUT_CMU_MIF_BOOST		158
++#define CLK_GOUT_CMU_MIF_SWITCH		159
++#define CLK_GOUT_CMU_BO_BUS		160
++#define CLK_GOUT_CMU_BUS0_BUS		161
++#define CLK_GOUT_CMU_BUS1_BUS		162
++#define CLK_GOUT_CMU_BUS2_BUS		163
++#define CLK_GOUT_CMU_CIS_CLK0		164
++#define CLK_GOUT_CMU_CIS_CLK1		165
++#define CLK_GOUT_CMU_CIS_CLK2		166
++#define CLK_GOUT_CMU_CIS_CLK3		167
++#define CLK_GOUT_CMU_CIS_CLK4		168
++#define CLK_GOUT_CMU_CIS_CLK5		169
++#define CLK_GOUT_CMU_CIS_CLK6		170
++#define CLK_GOUT_CMU_CIS_CLK7		171
++#define CLK_GOUT_CMU_CMU_BOOST		172
++#define CLK_GOUT_CMU_CORE_BUS		173
++#define CLK_GOUT_CMU_CPUCL0_DBG		174
++#define CLK_GOUT_CMU_CPUCL0_SWITCH	175
++#define CLK_GOUT_CMU_CPUCL1_SWITCH	176
++#define CLK_GOUT_CMU_CPUCL2_SWITCH	177
++#define CLK_GOUT_CMU_CSIS_BUS		178
++#define CLK_GOUT_CMU_DISP_BUS		179
++#define CLK_GOUT_CMU_DNS_BUS		180
++#define CLK_GOUT_CMU_DPU_BUS		181
++#define CLK_GOUT_CMU_EH_BUS		182
++#define CLK_GOUT_CMU_G2D_G2D		183
++#define CLK_GOUT_CMU_G2D_MSCL		184
++#define CLK_GOUT_CMU_G3AA_G3AA		185
++#define CLK_GOUT_CMU_G3D_BUSD		186
++#define CLK_GOUT_CMU_G3D_GLB		187
++#define CLK_GOUT_CMU_G3D_SWITCH		188
++#define CLK_GOUT_CMU_GDC_GDC0		189
++#define CLK_GOUT_CMU_GDC_GDC1		190
++#define CLK_GOUT_CMU_GDC_SCSC		191
+ #define CLK_GOUT_CMU_HPM		192
+-#define CLK_GOUT_HSI0_BUS		193
+-#define CLK_GOUT_HSI0_DPGTC		194
+-#define CLK_GOUT_HSI0_USB31DRD		195
+-#define CLK_GOUT_HSI0_USBDPDBG		196
+-#define CLK_GOUT_HSI1_BUS		197
+-#define CLK_GOUT_HSI1_PCIE		198
+-#define CLK_GOUT_HSI2_BUS		199
+-#define CLK_GOUT_HSI2_MMC_CARD		200
+-#define CLK_GOUT_HSI2_PCIE		201
+-#define CLK_GOUT_HSI2_UFS_EMBD		202
+-#define CLK_GOUT_IPP_BUS		203
+-#define CLK_GOUT_ITP_BUS		204
+-#define CLK_GOUT_MCSC_ITSC		205
+-#define CLK_GOUT_MCSC_MCSC		206
+-#define CLK_GOUT_MFC_MFC		207
+-#define CLK_GOUT_MIF_BUSP		208
+-#define CLK_GOUT_MISC_BUS		209
+-#define CLK_GOUT_MISC_SSS		210
+-#define CLK_GOUT_PDP_BUS		211
+-#define CLK_GOUT_PDP_VRA		212
+-#define CLK_GOUT_G3AA			213
+-#define CLK_GOUT_PERIC0_BUS		214
+-#define CLK_GOUT_PERIC0_IP		215
+-#define CLK_GOUT_PERIC1_BUS		216
+-#define CLK_GOUT_PERIC1_IP		217
+-#define CLK_GOUT_TNR_BUS		218
+-#define CLK_GOUT_TOP_CMUREF		219
+-#define CLK_GOUT_TPU_BUS		220
+-#define CLK_GOUT_TPU_TPU		221
+-#define CLK_GOUT_TPU_TPUCTL		222
+-#define CLK_GOUT_TPU_UART		223
++#define CLK_GOUT_CMU_HSI0_BUS		193
++#define CLK_GOUT_CMU_HSI0_DPGTC		194
++#define CLK_GOUT_CMU_HSI0_USB31DRD	195
++#define CLK_GOUT_CMU_HSI0_USBDPDBG	196
++#define CLK_GOUT_CMU_HSI1_BUS		197
++#define CLK_GOUT_CMU_HSI1_PCIE		198
++#define CLK_GOUT_CMU_HSI2_BUS		199
++#define CLK_GOUT_CMU_HSI2_MMC_CARD	200
++#define CLK_GOUT_CMU_HSI2_PCIE		201
++#define CLK_GOUT_CMU_HSI2_UFS_EMBD	202
++#define CLK_GOUT_CMU_IPP_BUS		203
++#define CLK_GOUT_CMU_ITP_BUS		204
++#define CLK_GOUT_CMU_MCSC_ITSC		205
++#define CLK_GOUT_CMU_MCSC_MCSC		206
++#define CLK_GOUT_CMU_MFC_MFC		207
++#define CLK_GOUT_CMU_MIF_BUSP		208
++#define CLK_GOUT_CMU_MISC_BUS		209
++#define CLK_GOUT_CMU_MISC_SSS		210
++#define CLK_GOUT_CMU_PDP_BUS		211
++#define CLK_GOUT_CMU_PDP_VRA		212
++#define CLK_GOUT_CMU_G3AA		213
++#define CLK_GOUT_CMU_PERIC0_BUS		214
++#define CLK_GOUT_CMU_PERIC0_IP		215
++#define CLK_GOUT_CMU_PERIC1_BUS		216
++#define CLK_GOUT_CMU_PERIC1_IP		217
++#define CLK_GOUT_CMU_TNR_BUS		218
++#define CLK_GOUT_CMU_TOP_CMUREF		219
++#define CLK_GOUT_CMU_TPU_BUS		220
++#define CLK_GOUT_CMU_TPU_TPU		221
++#define CLK_GOUT_CMU_TPU_TPUCTL		222
++#define CLK_GOUT_CMU_TPU_UART		223
+ 
+ /* CMU_APM */
+ #define CLK_MOUT_APM_FUNC				1
+-- 
+2.43.0.472.g3155946c3a-goog
 
 
