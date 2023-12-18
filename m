@@ -1,131 +1,145 @@
-Return-Path: <devicetree+bounces-26613-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26614-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4705B8173D8
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 15:39:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C3178173E9
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 15:41:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DA75A1F240E3
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 14:38:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 03C771F23498
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 14:41:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34ABD37869;
-	Mon, 18 Dec 2023 14:38:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C515200A4;
+	Mon, 18 Dec 2023 14:41:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vdu15u9r"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XtEwqtBW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF4771D157
-	for <devicetree@vger.kernel.org>; Mon, 18 Dec 2023 14:38:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2118101DB
+	for <devicetree@vger.kernel.org>; Mon, 18 Dec 2023 14:41:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a2335d81693so305246966b.0
-        for <devicetree@vger.kernel.org>; Mon, 18 Dec 2023 06:38:39 -0800 (PST)
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a235500d0e1so137403066b.2
+        for <devicetree@vger.kernel.org>; Mon, 18 Dec 2023 06:41:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702910318; x=1703515118; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=T1aDtV/pShDyAWkmUyjEhMPgDCV55yLxt5gxRNXj18Y=;
-        b=vdu15u9rD21O9hC0Rw44hMAgKeKvDsAsa7TR9aJYJ1oRpjuBLDk777yuLaHl/36era
-         chyEf81w9H/BQ4CjMaPaI2D549x8LLHp2ayEAcooB1QKgmPMIZ8xi7uvOZCc3T6DalXN
-         peCyTzAId3sp3EaWO+2TQN1JGl54fV1hBcxI6Ooq1hmtFxSSFIDTAopFcVXIMCkT5Fqs
-         LNtrYP+mfyw0rTmGUhK55UV8HhwUdR1SPFCqk89Ld3AiaIu97VF7PG+XOlxP3dXcjnqQ
-         VazdezdCZcqVAo/cW5OgyY7uExGL/Y+GeRWgqFP75S5stWFUvI0J7UMjGPhWBszSNrOz
-         0brA==
+        d=linaro.org; s=google; t=1702910500; x=1703515300; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=r/kafWXlBuq+FNgnU9qerb7ytxC06Fahl6CcuKGTXow=;
+        b=XtEwqtBW2peWToJca2qKQcH/GyCwslGmYIDSM+rqMwF2UicAJ5SmP0xBDlNJz8vNAw
+         OkHpT5wd9t9BhUu5v2swikfv2kFpts8G8KTBCIeIQFNhOpmzJVNlrKiQVeyZDPOkCNVH
+         L+iKvqUHqToNFaAJL9p9rLA7pmXcp3hFH11KFWjU3Pp3d9C9rsg2cIXRfzSwWlKllUyz
+         8+r6LoYNOA4kgcvT6NecBHoXbgQtF0dnhFM8SsyNrGuySBbcKYs+4cY+NUQsia1kWhUD
+         Gf5nziLTnIhU0PSQBPUrc7g1hfeFRdT9DWCVgtBJu/hREN/eAG+p5LnxVdnkqWlJiLav
+         lxnA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702910318; x=1703515118;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=T1aDtV/pShDyAWkmUyjEhMPgDCV55yLxt5gxRNXj18Y=;
-        b=kJ1UCNfrPeXwIDja72M2eUNcBQFOUb7cNe+34173AT6tocToZKVdiLi8LmyeHXA8xz
-         SpMEImVnDs2kMxDQH+igUgaVBDV+vNFclinJqhSl0UZR8numZGCldoFcdu1mCu73tc7w
-         AUEREkCNk2IsysUJApY4caQmTMZbbPGxq6d4MJtzFpDfFk3yNkgcgqrYErK7MYcLNMuJ
-         TSNcw6d5Hd7cJoUWgVbDYT1GucrENuUph79nnyXAdqCrOQfHNXy6yhunWSG7BcMCZ0RO
-         NArhOi/bTuK0hT3SbSMEdWinCSR56IyN1Ek/3aA24wtFs6LyjTmZ+iDKnuRoDtbtcUuq
-         3Oiw==
-X-Gm-Message-State: AOJu0Yyr2wBILKaov6Yx7Lu+9G8Z1ZK3Bk+8pp9vAOXFYuJS0MDssN2a
-	Cbbm1/+eQkVcGGQOpa9yA5cI8Q==
-X-Google-Smtp-Source: AGHT+IGq2yjJwlHGUer2NhX/byRfpcZ7tQTsvKqTVWVwC0FWST5LtfwgdGv/BQTu7n+dzMK900AXRA==
-X-Received: by 2002:a17:907:c08:b0:a1f:9842:5a4b with SMTP id ga8-20020a1709070c0800b00a1f98425a4bmr17423559ejc.66.1702910318177;
-        Mon, 18 Dec 2023 06:38:38 -0800 (PST)
-Received: from [10.167.154.1] (178235179137.dynamic-4-waw-k-1-3-0.vectranet.pl. [178.235.179.137])
-        by smtp.gmail.com with ESMTPSA id go32-20020a1709070da000b00a1ce98016besm14141718ejc.224.2023.12.18.06.38.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 18 Dec 2023 06:38:37 -0800 (PST)
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-Date: Mon, 18 Dec 2023 15:38:33 +0100
-Subject: [PATCH] arm64: dts: qcom: sc7280: Mark SDHCI hosts as
- cache-coherent
+        d=1e100.net; s=20230601; t=1702910500; x=1703515300;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=r/kafWXlBuq+FNgnU9qerb7ytxC06Fahl6CcuKGTXow=;
+        b=TLStryvusM2AUfz07TcvTQISjsvFMtMMBKDeMkBxtzyD5UMv7nH8fl7eGsVBmPw7kx
+         Aiv3j13p4TMVpe6pxIZIgVMFdMNPCJnr7kYdDC0T706HVCOXIONDAWkvuDOJj9M/HS/e
+         MoFEnK+X0hivLTziwSevSBuomvQZLG/rgzLFluMGrHf9/WduYzynrZw+j9y5i75rtWFh
+         s2Vu4EbUTNghT42tCOQXc06TMLLHAh0tbhafv9AYNlvGCjMfB09giySkxL17vXNqY0Yn
+         jQLMBUL8NwUJTmeL11g6HrtTS5uIkw2F1qQCZXSLuIvn/gbPbcATehzgxEyaETgg0BhS
+         4GIg==
+X-Gm-Message-State: AOJu0YyqNA90rnuU5YXHBgDgDgIo8JG6OeNvNrxUOfQTfugBkGheR0+H
+	H4wBFN1WDKGIJ5TGu6NJbJmu4g==
+X-Google-Smtp-Source: AGHT+IHejKurGuH+DP1QIsnkcv4JC6AQkyiQjGLP2BgBBvnvX3fgHC6mAgyurLCRpft5HoDPrGRoHg==
+X-Received: by 2002:a17:907:2d8f:b0:a23:5666:db39 with SMTP id gt15-20020a1709072d8f00b00a235666db39mr1152302ejc.88.1702910499851;
+        Mon, 18 Dec 2023 06:41:39 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.218.27])
+        by smtp.gmail.com with ESMTPSA id tx17-20020a1709078e9100b00a1b75e0e061sm14290564ejc.130.2023.12.18.06.41.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 18 Dec 2023 06:41:39 -0800 (PST)
+Message-ID: <1d7f9cbe-9ca1-4ccb-b90f-6e474c0740ad@linaro.org>
+Date: Mon, 18 Dec 2023 15:41:37 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/1] dt-bindings: watchdog: starfive,jh7100-wdt: Add
+ compatible for JH8100
+Content-Language: en-US
+To: Ji Sheng Teoh <jisheng.teoh@starfivetech.com>
+Cc: conor+dt@kernel.org, devicetree@vger.kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, leyfoon.tan@starfivetech.com,
+ linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org,
+ linux@roeck-us.net, robh+dt@kernel.org, samin.guo@starfivetech.com,
+ wim@linux-watchdog.org, xingyu.wu@starfivetech.com
+References: <cb16753d-ebec-4342-bed7-ee9a895c8547@linaro.org>
+ <20231218142711.961120-1-jisheng.teoh@starfivetech.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20231218142711.961120-1-jisheng.teoh@starfivetech.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20231218-topic-7280_dmac_sdhci-v1-1-97af7efd64a1@linaro.org>
-X-B4-Tracking: v=1; b=H4sIAGhZgGUC/x2N0QrCMAwAf2Xk2UDbKZ3+isjI0mgDsxuNijD27
- xYf7+C4DUyqisGl26DKR02X0sAfOuBM5SGoqTEEF3of/ICvZVXGGAY3pifxaCmzYk+OopziUc4
- CrZ3IBKdKhXOry3uem1yr3PX7n11v+/4DogKiynwAAAA=
-To: cros-qcom-dts-watchers@chromium.org, 
- Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Stephen Boyd <swboyd@chromium.org>, 
- Shaik Sajida Bhanu <sbhanu@codeaurora.org>
-Cc: Marijn Suijten <marijn.suijten@somainline.org>, 
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Luca Weiss <luca.weiss@fairphone.com>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1702910316; l=1106;
- i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=FIyohTj/QMEcc9QxeFddK2gL9Q6S2as+uH4t0LwM+RA=;
- b=hkEcmF1nVbZohzlbX29PA4k3BMQqBWCvLL+KcGEPwO2aH7wu0TgZHabijsYUmY6v6G7e6N9+1
- VtxxEF7kqzaBmDsDORaILASsTSq9eYKVvuL7vRtQYsajFCAxaIi6Wc0
-X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
- pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 
-The SDHCI hosts on SC7280 are cache-coherent, just like on most fairly
-recent Qualcomm SoCs. Mark them as such.
+On 18/12/2023 15:27, Ji Sheng Teoh wrote:
+>>
+>> I have real doubts that you ever tested your entire solution with this
+>> binding. Where is the DTS?
+>>
+> 
+> Currently, the DTS is still in internal and yet to upstream as it depends
+> on [1].
 
-Fixes: 298c81a7d44f ("arm64: dts: qcom: sc7280: Add nodes for eMMC and SD card")
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
----
- arch/arm64/boot/dts/qcom/sc7280.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-index ff1e07171dc4..83b5b76ba179 100644
---- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-@@ -1000,6 +1000,7 @@ sdhc_1: mmc@7c4000 {
- 
- 			bus-width = <8>;
- 			supports-cqe;
-+			dma-coherent;
- 
- 			qcom,dll-config = <0x0007642c>;
- 			qcom,ddr-config = <0x80040868>;
-@@ -3458,6 +3459,7 @@ sdhc_2: mmc@8804000 {
- 			operating-points-v2 = <&sdhc2_opp_table>;
- 
- 			bus-width = <4>;
-+			dma-coherent;
- 
- 			qcom,dll-config = <0x0007642c>;
- 
-
----
-base-commit: ceb2fe0d438644e1de06b9a6468a1fb8e2199c70
-change-id: 20231218-topic-7280_dmac_sdhci-3a0a7e574e9e
+Yeah, so you send untested code which cannot work or pass tests.  If you
+do not test your code, we need to be able to at least verify it, so send
+your DTS. Otherwise I cannot trust that this works at all.
 
 Best regards,
--- 
-Konrad Dybcio <konrad.dybcio@linaro.org>
+Krzysztof
 
 
