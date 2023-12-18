@@ -1,124 +1,134 @@
-Return-Path: <devicetree+bounces-26644-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26645-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CAC0481769C
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 17:02:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DE9F98176A4
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 17:02:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7D2BB1C25600
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 16:02:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F40C91C2568C
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 16:02:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDE424FF77;
-	Mon, 18 Dec 2023 16:01:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 971EF49883;
+	Mon, 18 Dec 2023 16:02:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="wFVi0Xk6"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="O5ixwYUX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD1E9498B9;
-	Mon, 18 Dec 2023 16:01:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0369458.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 3BIBjRrP011553;
-	Mon, 18 Dec 2023 17:00:55 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	from:to:cc:subject:date:message-id:in-reply-to:references
-	:mime-version:content-transfer-encoding:content-type; s=
-	selector1; bh=7HDI9z3vX+cZEjat9vx52gONmuc7f8NzhUOyiTVAfB4=; b=wF
-	Vi0Xk6aaBMRsGGh6FRLmGeBEQODd1Ag9qIlfyBnnsh1lh6d9FGQAOuQInOstDCYT
-	ISOtqdhpG+gv43Le0eSb3PN4MXTSMaB/zGTCMpE+9PFicgQF/8URLuwGSvtShXUH
-	sgFpSXLzM79JFsFYshEIoCVmhXGK2IJ1YwFmb0nLl6gRGvwpMvxpZK7g7Xks+q4Y
-	9xbqE+gvKvNpbzyF9yuPIHVce9+wEwzzr+WgJUNzehe2inOo8Y8RvfSxZLwgASta
-	tjTKUqgEjjBphyv8hfL5QNJOYZJedbNazYzOs7vcuJP+9Y0sRt3+HZDFvGW6lxro
-	LADzA72+C90hn5plgebA==
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3v1pb4egxa-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 18 Dec 2023 17:00:55 +0100 (CET)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 6C1C710005E;
-	Mon, 18 Dec 2023 17:00:54 +0100 (CET)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 6154425F4BB;
-	Mon, 18 Dec 2023 17:00:54 +0100 (CET)
-Received: from localhost (10.129.178.213) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Mon, 18 Dec
- 2023 17:00:54 +0100
-From: Alain Volmat <alain.volmat@foss.st.com>
-To: Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre
- Torgue <alexandre.torgue@foss.st.com>,
-        Alain Volmat
-	<alain.volmat@foss.st.com>,
-        Erwan Leray <erwan.leray@foss.st.com>,
-        Fabrice
- Gasnier <fabrice.gasnier@foss.st.com>
-CC: <linux-spi@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH 6/6] arm64: dts: st: add spi3 / spi8 properties on stm32mp257f-ev1
-Date: Mon, 18 Dec 2023 16:57:18 +0100
-Message-ID: <20231218155721.359198-7-alain.volmat@foss.st.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20231218155721.359198-1-alain.volmat@foss.st.com>
-References: <20231218155721.359198-1-alain.volmat@foss.st.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B42A73D546
+	for <devicetree@vger.kernel.org>; Mon, 18 Dec 2023 16:02:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-55365730863so1250877a12.1
+        for <devicetree@vger.kernel.org>; Mon, 18 Dec 2023 08:02:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1702915335; x=1703520135; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=c4hFbIwksqnnHMFEIUpDIp2sv6C4RgN/QaxeoGjcsV4=;
+        b=O5ixwYUXcyM9DTz1Ay7bcNMrvbJduiXVJjECpndeDew2JQ+836VanTHZoCHpu4elUf
+         2po8jYki4wvqVIzrZ4LjH6hm5JLOOL6Gl3r+3CfcTZkNN6tw4jUzWhxolSwEjJQwoOFo
+         EWmvGlobwUi9UH6uDU2PszjplMFp+cdJhhesqQKDI73PbNmnqyFeJ0NEkdjHGM9ClGBz
+         Kub4fnURTIbhWt5vkYXOOm819JBFMgGqc2EGGk4VfetCprArdufE/0FvcmYdzbhxFWgj
+         dSR+/NjzR/gYV8rZZJkfDpPC9VJcHphD95wBJX1YSaLVVuI/NwMrcGv9WsPsiQuE9Erq
+         qOLg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702915335; x=1703520135;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=c4hFbIwksqnnHMFEIUpDIp2sv6C4RgN/QaxeoGjcsV4=;
+        b=xJBOZ/c8jXqMShvxOvx408OzLHd5axr3K8Yapy1jrAn+f/tz9DsZ9T9/TIKmB0e7gj
+         NH8yydunTK+TGbkkfmK5uZaxRbyUtbgsDL8TyGPOUyYRjtA6XOtdG4LaDmH7udwkOMNV
+         50CckCNRNZSu/PN+eoywxnwBubL87mmQ7bnn8fX3QIHrOGDfRY5oauaZPyXZcK3oDqDq
+         2AkvHnSJGuxeO2I61mt22/855tfVrzMlO3sVdTAD3yFvf7/riLCyLksxzxDbKYZIYmbb
+         P1hQ8O4WGLMb40ZPzIeKuMg01ZOnE19n/9bhURkNsdAJCRGzuG6ey8XQQ4YXXxqfux+g
+         u7CA==
+X-Gm-Message-State: AOJu0YxyZ+MbE6t6Ht27vDfpWE7j+oj8BuHwu5xrQM0u4uE7fdWHYjKo
+	bKhlCiOQgx2okDZN2CZbdjklaw==
+X-Google-Smtp-Source: AGHT+IGKfxKawkNOG95ldyV5Amy0pn0orRx9Kky6oco0+fkJ1sV58/N2nFdibVGmvUe0F9sZUP8LjA==
+X-Received: by 2002:a17:907:31c3:b0:a19:a1ba:da2d with SMTP id xf3-20020a17090731c300b00a19a1bada2dmr10314351ejb.84.1702915335035;
+        Mon, 18 Dec 2023 08:02:15 -0800 (PST)
+Received: from [10.167.154.1] (178235179137.dynamic-4-waw-k-1-3-0.vectranet.pl. [178.235.179.137])
+        by smtp.gmail.com with ESMTPSA id ts7-20020a170907c5c700b00a1dd58874b8sm14260693ejc.119.2023.12.18.08.02.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 18 Dec 2023 08:02:14 -0800 (PST)
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Subject: [PATCH 00/12] 8550 fixups
+Date: Mon, 18 Dec 2023 17:02:01 +0100
+Message-Id: <20231218-topic-8550_fixes-v1-0-ce1272d77540@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-12-18_10,2023-12-14_01,2023-05-22_02
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAPlsgGUC/x2L0QqDMAwAf0XyvICtOMRfERltms6AVGl0DMR/X
+ 9jjHXcXKFdhhbG5oPJHVLZi4B4N0BLKm1GSMfjWd867AY9tF8Kh79tXli8r+kjPjlJmlxPYFoM
+ yxhoKLTaWc11N7pX/tZlpvu8fJCfhincAAAA=
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Georgi Djakov <djakov@kernel.org>, Abel Vesa <abel.vesa@linaro.org>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Taniya Das <quic_tdas@quicinc.com>, 
+ Jagadeesh Kona <quic_jkona@quicinc.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Sai Prakash Ranjan <quic_saipraka@quicinc.com>
+Cc: Marijn Suijten <marijn.suijten@somainline.org>, 
+ linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, 
+ devicetree@vger.kernel.org, Konrad Dybcio <konrad.dybcio@linaro.org>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1702915332; l=1669;
+ i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
+ bh=6Yb6Qe/+BKF3DV+Lv1BhKuTvaTNyVIFwB8H4W5q8BdI=;
+ b=WN6C/G5NMRK0U5PRvi6RcGbFHGJhOq0WE7mMSQzhNKn7wyhSth6m02iTHjs3EDXx7AmQreUZ+
+ qE3T1qxAX9ED17zx28TncGmUEfwG8aEyZttWnxMiImBy7buOGhSsja0
+X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
+ pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 
-Add properties for spi3 and spi8 available on the stm32mp257f-ev1.
-Both are kept disabled since only used via the gpio expansion connector.
+I found a couple of sneaky bugs concerning 8550, ranging from icc and clk,
+to some usual omissions in the dts. This series attempts to amend them to
+mostly prevent UB due to misconfiguration.
 
-Signed-off-by: Alain Volmat <alain.volmat@foss.st.com>
+Patches 1-2 for icc, rest for qcom
+
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 ---
- arch/arm64/boot/dts/st/stm32mp257f-ev1.dts | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+Konrad Dybcio (12):
+      interconnect: qcom: sm8550: Remove bogus per-RSC BCMs and nodes
+      interconnect: qcom: sm8550: Enable sync_state
+      clk: qcom: gcc-sm8550: Add the missing RETAIN_FF_ENABLE GDSC flag
+      clk: qcom: gcc-sm8550: Mark the PCIe GDSCs votable
+      clk: qcom: gcc-sm8550: use collapse-voting for PCIe GDSCs
+      clk: qcom: gcc-sm8550: Mark RCGs shared where applicable
+      clk: qcom: gpucc-sm8550: Update GPU PLL settings
+      clk: qcom: dispcc-sm8550: Update disp PLL settings
+      clk: qcom: dispcc-sm8550: Use the correct PLL configuration function
+      arm64: dts: qcom: sm8550: Switch UFS from opp-table-hz to opp-v2
+      arm64: dts: qcom: sm8550: Separate out X3 idle state
+      arm64: dts: qcom: sm8550: Update idle state time requirements
 
-diff --git a/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts b/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts
-index b2d3afb15758..1ea3c82ca477 100644
---- a/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts
-+++ b/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts
-@@ -68,6 +68,20 @@ &sdmmc1 {
- 	status = "okay";
- };
- 
-+&spi3 {
-+	pinctrl-names = "default", "sleep";
-+	pinctrl-0 = <&spi3_pins_a>;
-+	pinctrl-1 = <&spi3_sleep_pins_a>;
-+	status = "disabled";
-+};
-+
-+&spi8 {
-+	pinctrl-names = "default", "sleep";
-+	pinctrl-0 = <&spi8_pins_a>;
-+	pinctrl-1 = <&spi8_sleep_pins_a>;
-+	status = "disabled";
-+};
-+
- &usart2 {
- 	pinctrl-names = "default", "idle", "sleep";
- 	pinctrl-0 = <&usart2_pins_a>;
+ arch/arm64/boot/dts/qcom/sm8550.dtsi |  82 +++--
+ drivers/clk/qcom/dispcc-sm8550.c     |  12 +-
+ drivers/clk/qcom/gcc-sm8550.c        | 110 +++----
+ drivers/clk/qcom/gpucc-sm8550.c      |   6 +-
+ drivers/interconnect/qcom/sm8550.c   | 575 +----------------------------------
+ drivers/interconnect/qcom/sm8550.h   | 284 ++++++++---------
+ 6 files changed, 257 insertions(+), 812 deletions(-)
+---
+base-commit: ceb2fe0d438644e1de06b9a6468a1fb8e2199c70
+change-id: 20231218-topic-8550_fixes-2bc63cdfe1fd
+
+Best regards,
 -- 
-2.25.1
+Konrad Dybcio <konrad.dybcio@linaro.org>
 
 
