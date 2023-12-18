@@ -1,110 +1,128 @@
-Return-Path: <devicetree+bounces-26664-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26665-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 895CF817741
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 17:19:21 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E8785817742
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 17:19:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3ED2E1F259D1
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 16:19:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 195421C25D25
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 16:19:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4B123D574;
-	Mon, 18 Dec 2023 16:19:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C1F03D576;
+	Mon, 18 Dec 2023 16:19:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="JBMtH2qN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IXfV4YdX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12EEF3A1D0
-	for <devicetree@vger.kernel.org>; Mon, 18 Dec 2023 16:19:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3BIGJ3c5075461;
-	Mon, 18 Dec 2023 10:19:03 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1702916343;
-	bh=NAYLUNF10DaplXRYwL6AxjS+Gm7LkUcFMBuOIXxUwFQ=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=JBMtH2qNzZfWglM2Pr6aUZyZVOyLpF0O/CH4QzFQB8saannnfza+hG6OvCtMLh3U1
-	 bqfJxyl1sggP3OcTc6aHxqnXvbW6SpQP6MaySac9I5qF1mZkrd1mEwEWHg1D86YwEs
-	 kBv2dLCYxaW1UM/8f8+jwPxneQBgCvFJNNYcAq/E=
-Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3BIGJ3eN009569
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 18 Dec 2023 10:19:03 -0600
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 18
- Dec 2023 10:19:02 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 18 Dec 2023 10:19:02 -0600
-Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3BIGJ2T7033991;
-	Mon, 18 Dec 2023 10:19:02 -0600
-Date: Mon, 18 Dec 2023 10:19:02 -0600
-From: Nishanth Menon <nm@ti.com>
-To: Tony Lindgren <tony@atomide.com>
-CC: Vignesh Raghavendra <vigneshr@ti.com>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, Dhruva Gole <d-gole@ti.com>
-Subject: Re: [PATCH v2 1/1] arm64: dts: ti: k3-am62-wakeup: Configure ti-sysc
- for wkup_uart0
-Message-ID: <20231218161902.nfdht2hk5rctzxuu@grievance>
-References: <20231114073209.40756-1-tony@atomide.com>
- <20231215160047.uiitnlgmirbudmj5@scored>
- <20231218072831.GX5169@atomide.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2260E4237E;
+	Mon, 18 Dec 2023 16:19:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 40F15C433C7;
+	Mon, 18 Dec 2023 16:19:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1702916359;
+	bh=O2FEuDifDL2P4lnmBQkiXP99VZ+Qm7eQRuu60BX1nSw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=IXfV4YdXf5jsq5qlVkCEFGHdm48BTHmeqPG6MW0lYxHcHpDvZ6a7qmRepwayqI7UG
+	 CreEzroBp3BvhY7ErEe7YGRp5mb2mR+AgdIw7ayhcvN6F/d8EAQImqvz8Ua+akkib9
+	 4+gI4V5eldQgpJ3GG9okMaI2YbyNNIAYwIOhPQfYZM4ySzQhk9RCFf9EMhHKtXxDwy
+	 XZPk2WBOHiUbfvnny+tP/H3N5O1wKLEx3LpOUPVUDEzlW8aHSiSAbYygJECrRaDgJ6
+	 9EwZPHaKEYtrgwiPmcMuL2wsXYVFCOLpEwIjxnWTqLH+2QSEQD0uq4hr8eMMAMXOf1
+	 xgrMS3GbdCDpQ==
+Date: Mon, 18 Dec 2023 16:19:13 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Andre Przywara <andre.przywara@arm.com>
+Cc: Brandon Cheo Fusi <fusibrandon13@gmail.com>,
+	Yangtao Li <tiny.windzz@gmail.com>,
+	Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	"Rafael J . Wysocki" <rafael@kernel.org>,
+	Maxime Ripard <mripard@kernel.org>, linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v2 3/5] cpufreq: sun50i: Add D1 support
+Message-ID: <20231218-qualified-mahogany-05e1d6630152@spud>
+References: <20231218110543.64044-1-fusibrandon13@gmail.com>
+ <20231218110543.64044-4-fusibrandon13@gmail.com>
+ <20231218-blabber-slapstick-ab7ae45af019@spud>
+ <20231218155345.476e71ea@donnerap.manchester.arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="WIOIVM4fGS0/A+5Z"
 Content-Disposition: inline
-In-Reply-To: <20231218072831.GX5169@atomide.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+In-Reply-To: <20231218155345.476e71ea@donnerap.manchester.arm.com>
 
-On 09:28-20231218, Tony Lindgren wrote:
-> * Nishanth Menon <nm@ti.com> [231215 16:00]:
-> > On 09:32-20231114, Tony Lindgren wrote:
-> > > -	wkup_uart0: serial@2b300000 {
-> > > -		compatible = "ti,am64-uart", "ti,am654-uart";
-> > > -		reg = <0x00 0x2b300000 0x00 0x100>;
-> > > -		interrupts = <GIC_SPI 186 IRQ_TYPE_LEVEL_HIGH>;
-> > > +	target-module@2b300000 {
-> > 
-> > should be  target-module@2b300050 to match up with reg?
-> 
-> It's best to use the target-module IO range here, not the first reg.
-> The first reg may be tossed anywhere in the target module address
-> space depending on the device.
-> 
-> Ideally of course there would be just a standardized range of target
-> module related registers at the end of the IO space..
 
-Sorry Tony, but the node address must matchup with the reg description
-for the node. I'd rather not sit and argue about this with automated
-tools and deal with trivial patches - so either tools like dtc need to
-ignore this or lets just fix the node address.
- 
-> > > +		wkup_uart0: serial@2b300000 {
-> > 
-> > serial@0  to match up with reg?
-> 
-> Yes thanks for catching this. The 8250 IP is at the beginning of the
-> target module IO space. Will post an updated patch.
-> 
-> Regards,
-> 
-> Tony
+--WIOIVM4fGS0/A+5Z
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+On Mon, Dec 18, 2023 at 03:53:45PM +0000, Andre Przywara wrote:
+> On Mon, 18 Dec 2023 14:55:30 +0000
+> Conor Dooley <conor@kernel.org> wrote:
+>=20
+> Hi,
+>=20
+> > On Mon, Dec 18, 2023 at 12:05:41PM +0100, Brandon Cheo Fusi wrote:
+> > > Add support for D1 based devices to the Allwinner H6 cpufreq
+> > > driver
+> > >=20
+> > > Signed-off-by: Brandon Cheo Fusi <fusibrandon13@gmail.com>
+> > > ---
+> > >  drivers/cpufreq/sun50i-cpufreq-nvmem.c | 1 +
+> > >  1 file changed, 1 insertion(+)
+> > >=20
+> > > diff --git a/drivers/cpufreq/sun50i-cpufreq-nvmem.c b/drivers/cpufreq=
+/sun50i-cpufreq-nvmem.c
+> > > index 32a9c88f8..ccf83780f 100644
+> > > --- a/drivers/cpufreq/sun50i-cpufreq-nvmem.c
+> > > +++ b/drivers/cpufreq/sun50i-cpufreq-nvmem.c
+> > > @@ -160,6 +160,7 @@ static struct platform_driver sun50i_cpufreq_driv=
+er =3D {
+> > > =20
+> > >  static const struct of_device_id sun50i_cpufreq_match_list[] =3D {
+> > >  	{ .compatible =3D "allwinner,sun50i-h6" },
+> > > +	{ .compatible =3D "allwinner,sun20i-d1" }, =20
+> >=20
+> > I thought the feedback in v2 was to drop this change, since the
+> > devicetree has the sun50i-h6 as a fallback compatible?
+>=20
+> Well, this is the *board* (fallback) compatible string, so we cannot assi=
+gn
+
+Oh of course... That's both me and Jernej that tripped up on this.
+Brandon, please ignore the comment from me on this patch.
+
+Thanks,
+Conor.
+
+--WIOIVM4fGS0/A+5Z
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZYBxAAAKCRB4tDGHoIJi
+0vwCAP9HxMt2rr0zzqQjlPunuOySoBKZQSCHZ/XtknDCK5QmRAEAmC4SAoti4deM
+mI0Y9cwGsZF8WY18EbSqa4VWObGbdwA=
+=bD8L
+-----END PGP SIGNATURE-----
+
+--WIOIVM4fGS0/A+5Z--
 
