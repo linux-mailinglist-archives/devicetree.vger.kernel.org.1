@@ -1,57 +1,57 @@
-Return-Path: <devicetree+bounces-26728-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26729-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6A12817C62
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 22:07:19 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FEB6817C65
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 22:07:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5D650284B21
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 21:07:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6783B1C22787
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 21:07:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66C597347E;
-	Mon, 18 Dec 2023 21:07:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9630C7348A;
+	Mon, 18 Dec 2023 21:07:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="JR9lhhoa"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="U8ET36H5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f176.google.com (mail-pf1-f176.google.com [209.85.210.176])
+Received: from mail-pf1-f180.google.com (mail-pf1-f180.google.com [209.85.210.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CBCF73465
-	for <devicetree@vger.kernel.org>; Mon, 18 Dec 2023 21:07:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C37E1E53A
+	for <devicetree@vger.kernel.org>; Mon, 18 Dec 2023 21:07:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
 Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: by mail-pf1-f176.google.com with SMTP id d2e1a72fcca58-6d089e8b1b2so1850815b3a.3
-        for <devicetree@vger.kernel.org>; Mon, 18 Dec 2023 13:07:12 -0800 (PST)
+Received: by mail-pf1-f180.google.com with SMTP id d2e1a72fcca58-6d775f9af42so1438765b3a.3
+        for <devicetree@vger.kernel.org>; Mon, 18 Dec 2023 13:07:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1702933632; x=1703538432; darn=vger.kernel.org;
-        h=message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=xDOf/iNp4SFIK2wLpa9hly0at114GVm3S4kauy8Kz+c=;
-        b=JR9lhhoaiCoo1vCg3mw4u8Vv2jZWsc+038leJJA/95/ibqms5P+Cs8V/JlNP9aUk64
-         yrony8Q75RL6Ox9BfJTr44L03eePxh7PIZKDSmlaMNyvUTeOf1mJvuYD8f8zd+ZYCcFx
-         LTFRV8T38+7ymverkPw4wBPSYmS7sTnCadCCg=
+        d=broadcom.com; s=google; t=1702933640; x=1703538440; darn=vger.kernel.org;
+        h=references:in-reply-to:message-id:date:subject:cc:to:from:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=EesfJzqpwh5aycS6CbpvAwkN10Ycvtzlu4c0XC7gwgw=;
+        b=U8ET36H5q29CCdHk1fEhZrXJxO61Lt4i2BYu2TKBYCQgt1E6tLSNXxcIu6DF0srLp8
+         lGkF9EwGIpHuf/n2FPKmh5UL55ASVVnmchX2rLzjNbGQFHbQhoXVBvqbUwOGGX8f8ZqT
+         1uxhVCPFUClr0coOf384dlNFMhFKOjg8A3bzc=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702933632; x=1703538432;
-        h=message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=xDOf/iNp4SFIK2wLpa9hly0at114GVm3S4kauy8Kz+c=;
-        b=HVn7LXR3nNzkYsizW+Ig7ze95nKs92YEriE6gASgJiQUDNp17cY12eTUinD0hFnhpZ
-         wf+o7A79sETdpJ1wTnb/jaaNVoOudJpjW54ZAAb7KCPSXjFZAvBd2tsDxjDubIQ+ae0Y
-         7OPm4Vx9gb4mXlqBdjv7HFuNK0eNZsjY/Ri6hC7Zrc6vhQQ5QULY4YQWUJAzoRnNU4pA
-         TkvDuq+FKEa8iLCZLJduaCGBc5T2UCPIz6L9oFJzjKBsZpjPIGn2ZEzwgine2i6G0k88
-         aNdcqOmw9VStL6huw51EalOYhynEQxT8CuOXcXG3Xqc/xsTJLBO1w7PZbMLAZz3Alota
-         R5gQ==
-X-Gm-Message-State: AOJu0YxsV7D06TJEcMb41teTQQ8R7YpZbaeiCNQ+BGNJ1bk2uLdXNRJ8
-	yzp6WETjwD8P85zgwVmEkMcjbg==
-X-Google-Smtp-Source: AGHT+IHn6EAt7EFxj7XZeGrGuN6Z67x9x2lFzX+Vp5I/I178DJ6ZnpBoU/74VnkGDxvAxXJsoPwacQ==
-X-Received: by 2002:a05:6a00:6c9d:b0:6d9:31bf:4280 with SMTP id jc29-20020a056a006c9d00b006d931bf4280mr198824pfb.52.1702933632318;
-        Mon, 18 Dec 2023 13:07:12 -0800 (PST)
+        d=1e100.net; s=20230601; t=1702933640; x=1703538440;
+        h=references:in-reply-to:message-id:date:subject:cc:to:from
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=EesfJzqpwh5aycS6CbpvAwkN10Ycvtzlu4c0XC7gwgw=;
+        b=Vr3URt3DClcjk4yy3dAcSMDAN6TrkPUZf+gHHiZagfPD13dfif5iIYp5oLa2IatSbx
+         epd1qNWlDEKo+UUBIKDq4TO7sVGm1CeGBFcJVcaYJxJdar1KaG8elQC1uB+3AqN9GrBC
+         RIZKTxcZVEYL6Ob//ONfLcKyjCcrdf/3cM18uufixqM0DfEOd83h/nzabuJV4CoLWzIC
+         hvv3wHGa/jZo5XFMhJFfbfEeu62TVkSVFOZp74yDewEDfesj3JDRe8of2VjKZutH91U6
+         OGffcBTzdtt0es7k9arbjTqbAZkHu92lLWxP6i4uvF3yef+uVCrO/TSL3sQK0uY0GkKt
+         S1Jw==
+X-Gm-Message-State: AOJu0YzS/WJDBK9KM7fgueIQ0NDHCbk51R61VvdQu1gU5HAwIITFK4Oh
+	MjYkQHqNofcTKCrH1TiIZrf1Cw==
+X-Google-Smtp-Source: AGHT+IGyJgvC30bm64iy0JFa5er1vjPCNnIHEAbsc+Wi8vgzuvbq4LgPgoRIjDdz2zAc83twHV96bw==
+X-Received: by 2002:a05:6a21:a5a3:b0:194:9a48:5929 with SMTP id gd35-20020a056a21a5a300b001949a485929mr264049pzc.54.1702933640436;
+        Mon, 18 Dec 2023 13:07:20 -0800 (PST)
 Received: from mail.broadcom.net ([192.19.144.250])
-        by smtp.gmail.com with ESMTPSA id i17-20020aa787d1000000b006d3b2008406sm4473417pfo.50.2023.12.18.13.07.09
+        by smtp.gmail.com with ESMTPSA id i17-20020aa787d1000000b006d3b2008406sm4473417pfo.50.2023.12.18.13.07.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 18 Dec 2023 13:07:11 -0800 (PST)
+        Mon, 18 Dec 2023 13:07:19 -0800 (PST)
 From: Kamal Dasu <kamal.dasu@broadcom.com>
 To: ulf.hansson@linaro.org,
 	linux-kernel@vger.kernel.org,
@@ -65,51 +65,56 @@ To: ulf.hansson@linaro.org,
 	devicetree@vger.kernel.org
 Cc: f.fainelli@gmail.com,
 	bcm-kernel-feedback-list@broadcom.com,
-	Kamal Dasu <kamal.dasu@broadcom.com>
-Subject: [PATCH v4 0/2] mmc: add new sdhci reset sequence for brcm 74165b0
-Date: Mon, 18 Dec 2023 16:07:03 -0500
-Message-Id: <20231218210705.38201-1-kamal.dasu@broadcom.com>
+	Kamal Dasu <kdasu@broadcom.com>
+Subject: [PATCH v4 1/2] dt-bindings: mmc: brcm,sdhci-brcmstb: Add support for 74165b0
+Date: Mon, 18 Dec 2023 16:07:04 -0500
+Message-Id: <20231218210705.38201-2-kamal.dasu@broadcom.com>
 X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20231218210705.38201-1-kamal.dasu@broadcom.com>
+References: <20231218210705.38201-1-kamal.dasu@broadcom.com>
 Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-	boundary="0000000000004055dc060ccf2232"
+	boundary="000000000000bb688d060ccf2204"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 
---0000000000004055dc060ccf2232
+--000000000000bb688d060ccf2204
 
-v4 changes:
- - Fix for v3 changes that introduced dt schema errors
- - Fix for v3 changes that introduced sdhci-brcmstb build warnings 
- - Added proper PATCH format and cleanup commit messages as per
-   review comments. Added proper 'Reported-by' and 'Closes' tags
- - Added comments for 32-bit register access as per review comments
- - Replaced wait loop polling with readb_poll_timeout() helper as per
-   review comments for the sdhci-brcmstb driver changes
+From: Kamal Dasu <kdasu@broadcom.com>
+
+With newer sdio controller core used for 74165b0 we need to update
+the compatibility with "brcm,bcm74165b0-sdhci".
+
+Signed-off-by: Kamal Dasu <kdasu@broadcom.com>
+Reported-by: kernel test robot <lkp@intel.com>
+Closes: https://lore.kernel.org/oe-kbuild-all/202312101146.IK4Nrw1S-lkp@intel.com/
+---
+ Documentation/devicetree/bindings/mmc/brcm,sdhci-brcmstb.yaml | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/mmc/brcm,sdhci-brcmstb.yaml b/Documentation/devicetree/bindings/mmc/brcm,sdhci-brcmstb.yaml
+index c028039bc477..cbd3d6c6c77f 100644
+--- a/Documentation/devicetree/bindings/mmc/brcm,sdhci-brcmstb.yaml
++++ b/Documentation/devicetree/bindings/mmc/brcm,sdhci-brcmstb.yaml
+@@ -20,10 +20,8 @@ properties:
+           - const: brcm,sdhci-brcmstb
+       - items:
+           - enum:
++              - brcm,bcm74165b0-sdhci
+               - brcm,bcm7445-sdhci
+-          - const: brcm,sdhci-brcmstb
+-      - items:
+-          - enum:
+               - brcm,bcm7425-sdhci
+           - const: brcm,sdhci-brcmstb
  
-v3 changes:
- - Removed extra emun arrayfor possible compatible strings
- - shdci-brcmstb checkpatch warning fixes 
-
-v2 changes:
- - Fixed devicetree bindings for shdci-brcmstb and removed 74165 compatible
-   string as per review comments
-
-Kamal Dasu (2):
-  dt-bindings: mmc: brcm,sdhci-brcmstb: Add support for 74165b0
-  mmc: add new sdhci reset sequence for brcm 74165b0
-
- .../bindings/mmc/brcm,sdhci-brcmstb.yaml      |  4 +-
- drivers/mmc/host/sdhci-brcmstb.c              | 67 +++++++++++++++++--
- 2 files changed, 63 insertions(+), 8 deletions(-)
-
 -- 
 2.17.1
 
 
---0000000000004055dc060ccf2232
+--000000000000bb688d060ccf2204
 Content-Type: application/pkcs7-signature; name="smime.p7s"
 Content-Transfer-Encoding: base64
 Content-Disposition: attachment; filename="smime.p7s"
@@ -180,14 +185,14 @@ NxffjNkeAdgfN/SS9S9Rj4WXD7pF1M0Xq8gPLCLyXrx1i2KkYOYJsj0PWlC6VRg6E1xXkYDte0VL
 fAAG4QsETU27E1HBNQyp5zF1PoPCPvq3EnWQnbLgYk+Jz2iwIUwiqwr/bDgxggJtMIICaQIBATBr
 MFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMTEwLwYDVQQDEyhHbG9i
 YWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgw89WX2Pp7ue922QVkwDQYJYIZI
-AWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIHdIA7MVt+fZ6uYqnv7+MI07vFLcIY986zU9EfQ8
-nkgYMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTIzMTIxODIxMDcx
-MlowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAsGCWCGSAFlAwQB
+AWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIG/0EKvStoX1i1oRmSVcNrWbOcTISXc0Y4o21CEI
+88zVMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTIzMTIxODIxMDcy
+MFowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAsGCWCGSAFlAwQB
 AjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEHMAsGCWCGSAFlAwQCATANBgkq
-hkiG9w0BAQEFAASCAQBhl7H8YbBJXz4Fu1klzrj/cXqP6NuG0X8i9mTevdf2/RilRaafsq2sr+P2
-5wMFr2oDcdw676yo2ABPSsg8s6blX3AzztSg3jFQNvyF5U5RyXO1sgpAOg5J4iUjGAzrZb1t7Nqm
-pFlVrCQ/iWM6XChXC3kjI0QXi//SzdAHhB/3yeKtyQp9LeG0Ew7S49Rvw8+RHufeTV2tCCuIyzWz
-ZA1jgAShTnJC3GqG8JDB8WoAJrl2ASky/loIWGt7lQdzDPaPpxyk3X1tHbp+5lMr9iwEWviklGvO
-O/hIS9dQvmXQUtYM3vaB9DYYqvGR3ayLGfMR8Rf7YezObRevvyAFlCBR
---0000000000004055dc060ccf2232--
+hkiG9w0BAQEFAASCAQBry7/C3wlJDFcOjA/l1ecORSvChPNYQxzx101BV8GRZDf81ojQ9yJKOHch
+SGFOz0Q6gPBxb+6JScx11r1455yVjNsCPbPoVwUVrd7JPl6BGDNXcr+IGBEB1u7WuUva67DYVG9B
+6p1kPkZQc/8OesXDlC9ARZoLPrjJNTwLLJWB7qGTXZsBu2vjhkg7yirCzIDcotjSzKIPTUO4+RuS
+a24s0kw93Z8hw5XQw/wHE8i9WsLczyyIsonh4ixmSi3Pz+9b27DOKybvC1r1yXeKBqWlRtY4PKDa
+ojhpxTaVK9KDODE7/QkwZarVAkK9Qgz5SYkBuUMDI3+prLYls1LR+EA9
+--000000000000bb688d060ccf2204--
 
