@@ -1,200 +1,117 @@
-Return-Path: <devicetree+bounces-26490-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26491-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 252A0816A85
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 11:06:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D6F81816AAA
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 11:13:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 58C5E1C22951
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 10:06:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 15ACB1C22ADC
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 10:13:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C46C612B75;
-	Mon, 18 Dec 2023 10:06:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31C55134BC;
+	Mon, 18 Dec 2023 10:12:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JIjgKonP"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lU19BBON"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4A9D14A99;
-	Mon, 18 Dec 2023 10:06:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9A9E9C433C7;
-	Mon, 18 Dec 2023 10:06:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1702894003;
-	bh=AwkgUvmIIlJRw6wjNIJtQ8AvdNLkhMFC6d/fk8gMjrg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=JIjgKonPzMclEyKuNHco7lMvBubuPnpljdHzARGSMzyAU/Y3QrM9WAK6UHc0beTod
-	 XAItiK9jQmcXA/kxrT6nfsofZkyxVqsBfvjD1bsHKkj8kkUdavPyfuXdSajnszuI9y
-	 emEqal23SmNKd8XvZlsNLHsOSH/8gf55GZptxKODZvyiHpOi8FnFI+FqLKiSu298Od
-	 V57+fD7DlS8SqRxHQM2ZevCl76nw5gsgOu38Ov6oCThXEMvOSdz4ybt/nyBwBIG9I6
-	 Lu/eI/HB0pj/JlXOkRoTG+1McuQ9KHDefdAnBBByckN8pqE2U/pWGCXZeKToYCqmHY
-	 EW4wEutjQYSXw==
-Date: Mon, 18 Dec 2023 11:06:40 +0100
-From: Maxime Ripard <mripard@kernel.org>
-To: Alex Bee <knaerzche@gmail.com>
-Cc: Sandy Huang <hjc@rock-chips.com>, 
-	Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>, Andy Yan <andyshrk@163.com>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 19/27] drm/rockchip: inno_hdmi: Move tmds rate to
- connector state subclass
-Message-ID: <xte5vjc3o77wnlozz6sy5yysiezdxbzvbwdblhbqb5s2nwnnv5@xxknftdeo6uk>
-References: <20231216162639.125215-1-knaerzche@gmail.com>
- <20231216162639.125215-20-knaerzche@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76EEA15492;
+	Mon, 18 Dec 2023 10:12:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-336672406f0so597597f8f.2;
+        Mon, 18 Dec 2023 02:12:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1702894370; x=1703499170; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=6WtXLxQwCFo504IjsHi0YpiharpdePiqBc5i2KE37aE=;
+        b=lU19BBONqPBO3IApsjTmA6DMufnH/A41NV5QhRlZ/2dgfG3blokJ8MMCiiFpxCdugK
+         1pSNJ+0tM/ibODQ8o6cZ86sbzn02+67S1686raH39VKjwcrxOAS6+SaIaKDmCnzUn7Pv
+         r45+1muiXFasXAE233BgpxR9jCjVtBjWe0d5eDlTVcl93XxTBqh4ShFGxB0v0u/kUN47
+         Dzueux1IzDoPURn/WeSDiEwLKvXAzN/LPNPfnU3j+QSZLOF9wILslzyeHiuHR5v+qDV6
+         odM9WQPqf+pJ2rhWEF47ioVKmOapCjYaNKKVBhERZEpCtvOxIxkuX0LN1aqXbtL15Q5t
+         iDaw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702894370; x=1703499170;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=6WtXLxQwCFo504IjsHi0YpiharpdePiqBc5i2KE37aE=;
+        b=D82ULtg9+AUnJBYZeBGX++jHBy/+oEYRMw3yvqFNa70OW7/3O0aPH0LpbfdZvq1HsO
+         EGlfTQnxg9PFk5Wv0StWbdpfOkV/O2pDeSf+llpRaovaKlnb5jxIgiV7JNtD4XzzXjaV
+         XgzJB3DtmegBSCJLWhvbPXaqEE0qbg6Ro8SJ3x6sS+KTI9bO3RtWMBuUNjSpaKuXIXxd
+         T1CI7Y/Jp1GkkHB96NQ16apZxjphZAHhYcuBmEBNu54Wnr+gfvjY82E2djsrejlcQ+xq
+         2SYHaeW3pIs6Qa1Yo2Uaf/xRHkUCsoK2iMBRSg1gA5ogHXzTwhsPiNWP5Z66rrUDVJsN
+         Amrw==
+X-Gm-Message-State: AOJu0Yy6Wz2wVn1o5OUQBZcnZUwqqHwfwC7Up39u2+EUkJfnrRch154c
+	E2b3k7gYNSk3ie8+rASgbYA=
+X-Google-Smtp-Source: AGHT+IEk0WnHrPvB6e5s1TX9Icl5DzhvBKsYduxD+/CToPTHJcdjQhGln4XwMYlycSfTpH6t5eUGow==
+X-Received: by 2002:a5d:670b:0:b0:336:4bc7:1d3d with SMTP id o11-20020a5d670b000000b003364bc71d3dmr3388761wru.57.1702894370453;
+        Mon, 18 Dec 2023 02:12:50 -0800 (PST)
+Received: from lukas-virtualBox.. ([208.127.103.55])
+        by smtp.gmail.com with ESMTPSA id j11-20020a5d564b000000b0033664ffaf5dsm3666051wrw.37.2023.12.18.02.12.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 18 Dec 2023 02:12:49 -0800 (PST)
+From: Lukas Bulwahn <lukas.bulwahn@gmail.com>
+To: Peter Griffin <peter.griffin@linaro.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: kernel-janitors@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Lukas Bulwahn <lukas.bulwahn@gmail.com>
+Subject: [PATCH] MAINTAINERS: adjust file entry in GOOGLE TENSOR SoC SUPPORT
+Date: Mon, 18 Dec 2023 11:12:25 +0100
+Message-Id: <20231218101225.27637-1-lukas.bulwahn@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="ktn4oocwkdhkmjca"
-Content-Disposition: inline
-In-Reply-To: <20231216162639.125215-20-knaerzche@gmail.com>
+Content-Transfer-Encoding: 8bit
 
+Commit 0a910f160638 ("dt-bindings: clock: Add Google gs101 clock
+management unit bindings") adds the file google,gs101.h in
+include/dt-bindings/clock/. However, commit 9d71df3e6eb7 ("MAINTAINERS:
+add entry for Google Tensor SoC") wrongly refers to the file
+google,clk-gs101.h in that directory.
 
---ktn4oocwkdhkmjca
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Hence, ./scripts/get_maintainer.pl --self-test=patterns complains about a
+broken reference.
 
-Hi,
+Adjust the file entry to the actual file in GOOGLE TENSOR SoC SUPPORT.
 
-On Sat, Dec 16, 2023 at 05:26:30PM +0100, Alex Bee wrote:
-> Similar to the othter members of inno_hdmi_connector_state the tmds_rate =
-is
-> not a property of the device, but of the connector state. Move it to
-> inno_hdmi_connector_state and make it a long to comply with the clock
-> framework. To get arround the issue of not having the connector state when
-> inno_hdmi_i2c_init is called in the bind path, getting the tmds rate is
-> wrapped in function which returns the fallback rate if the connector
-> doesn't have a state yet.
->=20
-> Signed-off-by: Alex Bee <knaerzche@gmail.com>
-> ---
-> changes in v2:
->  - new patch
->=20
->  drivers/gpu/drm/rockchip/inno_hdmi.c | 36 +++++++++++++++++++---------
->  1 file changed, 25 insertions(+), 11 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/rockchip/inno_hdmi.c b/drivers/gpu/drm/rockc=
-hip/inno_hdmi.c
-> index f9bfae1e97a2..6799d24501b8 100644
-> --- a/drivers/gpu/drm/rockchip/inno_hdmi.c
-> +++ b/drivers/gpu/drm/rockchip/inno_hdmi.c
-> @@ -47,14 +47,13 @@ struct inno_hdmi {
-> =20
->  	struct inno_hdmi_i2c *i2c;
->  	struct i2c_adapter *ddc;
-> -
-> -	unsigned int tmds_rate;
->  };
-> =20
->  struct inno_hdmi_connector_state {
->  	struct drm_connector_state	base;
->  	unsigned int			enc_out_format;
->  	unsigned int			colorimetry;
-> +	unsigned long			tmds_rate;
->  };
-> =20
->  static struct inno_hdmi *encoder_to_inno_hdmi(struct drm_encoder *encode=
-r)
-> @@ -133,11 +132,33 @@ static inline void hdmi_modb(struct inno_hdmi *hdmi=
-, u16 offset,
->  	hdmi_writeb(hdmi, offset, temp);
->  }
-> =20
-> +static unsigned long inno_hdmi_tmds_rate(struct inno_hdmi *hdmi)
-> +{
-> +	struct drm_connector *connector =3D &hdmi->connector;
-> +	struct drm_connector_state *conn_state =3D  connector->state;
-> +	struct inno_hdmi_connector_state *inno_conn_state;
-> +
-> +	if (conn_state) {
-> +		inno_conn_state =3D to_inno_hdmi_conn_state(conn_state);
-> +		return inno_conn_state->tmds_rate;
-> +	}
-> +
-> +	/*
-> +	 * When IP controller haven't configured to an accurate video
-> +	 * timing, then the TMDS clock source would be switched to
-> +	 * PCLK_HDMI, so we need to init the TMDS rate to PCLK rate,
-> +	 * and reconfigure the DDC clock.
-> +	 */
-> +
-> +	return clk_get_rate(hdmi->pclk);
-> +}
-> +
->  static void inno_hdmi_i2c_init(struct inno_hdmi *hdmi)
->  {
->  	int ddc_bus_freq;
-> +	unsigned long tmds_rate =3D inno_hdmi_tmds_rate(hdmi);
-> =20
-> -	ddc_bus_freq =3D (hdmi->tmds_rate >> 2) / HDMI_SCL_RATE;
-> +	ddc_bus_freq =3D (tmds_rate >> 2) / HDMI_SCL_RATE;
-> =20
->  	hdmi_writeb(hdmi, DDC_BUS_FREQ_L, ddc_bus_freq & 0xFF);
->  	hdmi_writeb(hdmi, DDC_BUS_FREQ_H, (ddc_bus_freq >> 8) & 0xFF);
-> @@ -431,7 +452,7 @@ static int inno_hdmi_setup(struct inno_hdmi *hdmi,
->  	 * DCLK_LCDC, so we need to init the TMDS rate to mode pixel
->  	 * clock rate, and reconfigure the DDC clock.
->  	 */
-> -	hdmi->tmds_rate =3D mode->clock * 1000;
-> +	inno_conn_state->tmds_rate =3D mode->clock * 1000;
->  	inno_hdmi_i2c_init(hdmi);
-> =20
->  	/* Unmute video and audio output */
-> @@ -823,13 +844,6 @@ static int inno_hdmi_bind(struct device *dev, struct=
- device *master,
->  		goto err_disable_clk;
->  	}
-> =20
-> -	/*
-> -	 * When IP controller haven't configured to an accurate video
-> -	 * timing, then the TMDS clock source would be switched to
-> -	 * PCLK_HDMI, so we need to init the TMDS rate to PCLK rate,
-> -	 * and reconfigure the DDC clock.
-> -	 */
-> -	hdmi->tmds_rate =3D clk_get_rate(hdmi->pclk);
->  	inno_hdmi_i2c_init(hdmi);
+Signed-off-by: Lukas Bulwahn <lukas.bulwahn@gmail.com>
+---
+ MAINTAINERS | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-I still think my patch is better there.
+diff --git a/MAINTAINERS b/MAINTAINERS
+index d984bd745e93..d05c81acd849 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -9034,7 +9034,7 @@ S:	Maintained
+ F:	Documentation/devicetree/bindings/clock/google,gs101-clock.yaml
+ F:	arch/arm64/boot/dts/exynos/google/
+ F:	drivers/clk/samsung/clk-gs101.c
+-F:	include/dt-bindings/clock/google,clk-gs101.h
++F:	include/dt-bindings/clock/google,gs101.h
+ 
+ GPD POCKET FAN DRIVER
+ M:	Hans de Goede <hdegoede@redhat.com>
+-- 
+2.34.1
 
-There's two places that use the inno_hdmi.tmds_rate field: the two
-callers of inno_hdmi_i2c_init(). One is at bind time and needs to
-initialise it with a sane default since we don't have a mode set yet,
-the other is to update the internal clock rate while we have a mode set.
-
-Since there's a single "modeset" user, there's no need to store it in
-the state structure at all: it can be a local variable.
-
-And in the bind function, you're not going to use the state structure
-either since there's no state, and it's just a default that has no
-relation to the modeset code at all.
-
-Your function on the other end tries to reconcile and handle the two.
-But there's no reason to, it just makes the code harder to follow. Just
-pass the parent rate you want to init with as an argument and it's easy
-to read and maintain.
-
-Maxime
-
---ktn4oocwkdhkmjca
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZYAZsAAKCRDj7w1vZxhR
-xeeqAP9jWaSu4gtrIA1SHbjksa/UTSfOXdNX566r/ULPL2MxMgD/Sy+flPKM3KE5
-PyZ9MW6Ch2GTdiZgVVTIWW2RsnmW9wA=
-=+y1P
------END PGP SIGNATURE-----
-
---ktn4oocwkdhkmjca--
 
