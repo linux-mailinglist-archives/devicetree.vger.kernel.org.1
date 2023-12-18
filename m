@@ -1,206 +1,220 @@
-Return-Path: <devicetree+bounces-26567-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26566-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDE01816F7C
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 14:06:14 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA1D4816F75
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 14:05:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5817C1F26571
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 13:06:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C065D1C231E7
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 13:05:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C05E3787E;
-	Mon, 18 Dec 2023 12:52:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF11A1D140;
+	Mon, 18 Dec 2023 12:49:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=savoirfairelinux.com header.i=@savoirfairelinux.com header.b="KC9IcCdB"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="P4hl+F9J"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.savoirfairelinux.com (mail.savoirfairelinux.com [208.88.110.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CB8537872;
-	Mon, 18 Dec 2023 12:52:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=savoirfairelinux.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=savoirfairelinux.com
-Received: from localhost (localhost [127.0.0.1])
-	by mail.savoirfairelinux.com (Postfix) with ESMTP id CB7159C04BD;
-	Mon, 18 Dec 2023 07:42:09 -0500 (EST)
-Received: from mail.savoirfairelinux.com ([127.0.0.1])
- by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10032)
- with ESMTP id a22CMRJ0P6OD; Mon, 18 Dec 2023 07:42:09 -0500 (EST)
-Received: from localhost (localhost [127.0.0.1])
-	by mail.savoirfairelinux.com (Postfix) with ESMTP id 22D809C068C;
-	Mon, 18 Dec 2023 07:42:09 -0500 (EST)
-DKIM-Filter: OpenDKIM Filter v2.10.3 mail.savoirfairelinux.com 22D809C068C
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE8901D147;
+	Mon, 18 Dec 2023 12:49:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a2335d81693so261085466b.0;
+        Mon, 18 Dec 2023 04:49:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=savoirfairelinux.com; s=DFC430D2-D198-11EC-948E-34200CB392D2;
-	t=1702903329; bh=nNJwBxDmzL960mEI1mqFgHu2Oy9OWJ5ye2uPUgqVOL8=;
-	h=From:To:Date:Message-Id:MIME-Version;
-	b=KC9IcCdB/ndeBn1iClkNzQdFvCYwcAae8mB8HjDOuwe7VNhtuAysf0Iv6nV2CFid3
-	 DkpOU2cx0klXMN+DKDOxk8e5e0ixq2mAUckeyG+WHeX0HMe6UFvdS6vptU3NuVN3w1
-	 Buxz9EwOLYdfBjg/iEgA4UtCe5oey/qmQdjEU6C4zKRpXHs1q9zZGJA+F+NBEnF0dw
-	 r0vOh6SZZXliSB5dt9R7WXiMEIAFVE3xhro3SfHWX/ctYXpktccGcICcIpgsfVPuOm
-	 a1vT4MAYhBo7gsLEKK0Dw9QAqWr8piej7xrY6Is2n8gO1A6mDQeUYFKWFp3b8/X/9g
-	 yiTaqU9TxyFFA==
-X-Virus-Scanned: amavis at mail.savoirfairelinux.com
-Received: from mail.savoirfairelinux.com ([127.0.0.1])
- by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10026)
- with ESMTP id OZ6vMlRS6mOD; Mon, 18 Dec 2023 07:42:08 -0500 (EST)
-Received: from gerard.rennes.sfl (unknown [192.168.216.3])
-	by mail.savoirfairelinux.com (Postfix) with ESMTPSA id F0A0F9C04BD;
-	Mon, 18 Dec 2023 07:42:06 -0500 (EST)
-From: Elinor Montmasson <elinor.montmasson@savoirfairelinux.com>
-To: Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shengjiu Wang <shengjiu.wang@gmail.com>,
-	Xiubo Li <Xiubo.Lee@gmail.com>,
-	Fabio Estevam <festevam@gmail.com>,
-	Nicolin Chen <nicoleotsuka@gmail.com>,
-	Jaroslav Kysela <perex@perex.cz>,
-	Takashi Iwai <tiwai@suse.com>
-Cc: linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	alsa-devel@alsa-project.org,
-	linuxppc-dev@lists.ozlabs.org,
-	Elinor Montmasson <elinor.montmasson@savoirfairelinux.com>,
-	Philip-Dylan <philip-dylan.gleonec@savoirfairelinux.com>
-Subject: [PATCHv3 RESEND 00/10] ASoC: fsl-asoc-card: compatibility integration of a generic codec use case for use with S/PDIF controller
-Date: Mon, 18 Dec 2023 13:40:48 +0100
-Message-Id: <20231218124058.2047167-1-elinor.montmasson@savoirfairelinux.com>
-X-Mailer: git-send-email 2.25.1
+        d=gmail.com; s=20230601; t=1702903794; x=1703508594; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=T14bfi8c3k3Cq7TyZI+9Bh5hDSnSWfc6TpVsvOYBPic=;
+        b=P4hl+F9JTF+wawqVgpuWAGObb2Aut2FdbYIayLCpTiakxCLMVKljmoS0RziLmJt8p7
+         8NSqr7hBDfbBRvqjzMITaNea/r2z702CyBmd/le7KCEphH5YQ4u47DVssLgeCOxp1nxH
+         CCX3SiOczPQKSV8erwqX4Gm1kLCVZXPPN2xughagoRVaDz45Y0/mMW2alpYddkZPg8OG
+         L0np6c1H2DYFpV5bRDPVT+zox53wzEUkKeteIuCtFVftXkuJUgd++2ZV1Fve/6MuaqBD
+         k/CXimBy08GVDEWA2Iof6B9nanLmcMPk8sPQN5bmPXtBZzLKwe6M7ZUy5hodBQZ5u/ul
+         02Sw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702903794; x=1703508594;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=T14bfi8c3k3Cq7TyZI+9Bh5hDSnSWfc6TpVsvOYBPic=;
+        b=GRaYq6RfHBcNnQ1nS36/rw6fz2R+u3EeqGoIze9eLD5xpkOjKk4O07eHL6C07qQNGn
+         sTwNcmr+IYvaTyIpe0rsEX8ahCmGpo0KP8oYtWp24DhF/wFH5Rsw4EmRg0S12kwmK0s3
+         WEfqMK7jDWoBD+mofglAmhdYXPF3JnsK49/1j40WEsakk4ayZZ27XUZkNkvDW+FYKugh
+         3ngqLx+A3aLk66dpkI0RQvDtpU2yYz9gBQKWCC3WpgKDE3VSIfvOlpxrmRuuNIzzALaj
+         LHLwCGuNWrVqq21mzVZtKvU2WhKmYkENc8yTgvmdIGopnifhw7sCf0C7O5b3YMbBjjFX
+         AtcQ==
+X-Gm-Message-State: AOJu0YzMSL/0WthDitx74mfe+Hv4msiPdySlzPUNjC1nWqH2U36G/2pQ
+	nA1DVXRX1kSJNgQSvoDg/w==
+X-Google-Smtp-Source: AGHT+IGfWK90TdMckm2zjiMGKfCaGR5Yp/VaGkOH1VvcUP7n1r7V+E8WHGK7QCmauy9RUW/2J23nTg==
+X-Received: by 2002:a17:906:241:b0:a1e:842d:ccd5 with SMTP id 1-20020a170906024100b00a1e842dccd5mr14599317ejl.48.1702903793489;
+        Mon, 18 Dec 2023 04:49:53 -0800 (PST)
+Received: from ?IPV6:2a02:810b:f40:4300:4847:f8df:b40e:3aa8? ([2a02:810b:f40:4300:4847:f8df:b40e:3aa8])
+        by smtp.gmail.com with ESMTPSA id vu8-20020a170907a64800b00a1d5c52d628sm14063947ejc.3.2023.12.18.04.49.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 18 Dec 2023 04:49:53 -0800 (PST)
+Message-ID: <cbb7866c-5e72-4656-966e-9c2244afedbd@gmail.com>
+Date: Mon, 18 Dec 2023 13:49:52 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-
-Hello,
-
-This is the v3 of the series of patch aiming to make the machine driver
-"fsl-asoc-card" compatible with use cases where there is no real codec
-driver.
-It proposes to use the "spdif_receiver" and "spdif_transmitter"
-drivers instead of the dummy codec.
-This is a first step in using the S/PDIF controller with the ASRC.
-
-The five first patches add compatibility with the pair of codecs
-"spdif_receiver" and "spdif_transmitter" with a new compatible,
-"fsl,imx-audio-generic".
-Codec parameters are set with default values.
-Consequently, the driver is modified to work with multi-codec use cases.
-It can get 2 codecs phandles from the device tree, and the
-"fsl_asoc_card_priv" struct now has 2 "codec_priv" to store properties
-of both codecs. It is fixed to 2 codecs as only "fsl,imx-audio-generic"
-uses multiple codecs at the moment.
-However, the driver now uses for_each_codecs macros when possible to
-ease future implementations of multi-codec configurations.
-
-The remaining patches add configuration options for the device tree.
-They configure the CPU DAI when using "fsl,imx-audio-generic".
-These options are usually hard-coded in "fsl-asoc-card.c" for each
-audio codec.
-Because the generic codec could be used with other CPU DAIs than
-the S/PDIF controller, setting these parameters could be required.
-
-This series of patch was successfully built for arm64 and x86 on top of
-the latest for-next branch of the ASoC git tree on the 14th of December.
-These modifications have also been tested on an i.MX8MN evaluation
-board, with a linux kernel RT v6.1.26-rt8.
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 19/27] drm/rockchip: inno_hdmi: Move tmds rate to
+ connector state subclass
+Content-Language: en-US, de-DE
+To: Maxime Ripard <mripard@kernel.org>
+Cc: Sandy Huang <hjc@rock-chips.com>, =?UTF-8?Q?Heiko_St=C3=BCbner?=
+ <heiko@sntech.de>, Andy Yan <andyshrk@163.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20231216162639.125215-1-knaerzche@gmail.com>
+ <20231216162639.125215-20-knaerzche@gmail.com>
+ <xte5vjc3o77wnlozz6sy5yysiezdxbzvbwdblhbqb5s2nwnnv5@xxknftdeo6uk>
+From: Alex Bee <knaerzche@gmail.com>
+In-Reply-To: <xte5vjc3o77wnlozz6sy5yysiezdxbzvbwdblhbqb5s2nwnnv5@xxknftdeo6uk>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
 
-We also have a few questions, following remarks made by
-Krzysztof Kozlowski in a previous email for patch 10/10:
+Am 18.12.23 um 11:06 schrieb Maxime Ripard:
+> Hi,
+>
+> On Sat, Dec 16, 2023 at 05:26:30PM +0100, Alex Bee wrote:
+>> Similar to the othter members of inno_hdmi_connector_state the tmds_rate is
+>> not a property of the device, but of the connector state. Move it to
+>> inno_hdmi_connector_state and make it a long to comply with the clock
+>> framework. To get arround the issue of not having the connector state when
+>> inno_hdmi_i2c_init is called in the bind path, getting the tmds rate is
+>> wrapped in function which returns the fallback rate if the connector
+>> doesn't have a state yet.
+>>
+>> Signed-off-by: Alex Bee <knaerzche@gmail.com>
+>> ---
+>> changes in v2:
+>>   - new patch
+>>
+>>   drivers/gpu/drm/rockchip/inno_hdmi.c | 36 +++++++++++++++++++---------
+>>   1 file changed, 25 insertions(+), 11 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/rockchip/inno_hdmi.c b/drivers/gpu/drm/rockchip/inno_hdmi.c
+>> index f9bfae1e97a2..6799d24501b8 100644
+>> --- a/drivers/gpu/drm/rockchip/inno_hdmi.c
+>> +++ b/drivers/gpu/drm/rockchip/inno_hdmi.c
+>> @@ -47,14 +47,13 @@ struct inno_hdmi {
+>>   
+>>   	struct inno_hdmi_i2c *i2c;
+>>   	struct i2c_adapter *ddc;
+>> -
+>> -	unsigned int tmds_rate;
+>>   };
+>>   
+>>   struct inno_hdmi_connector_state {
+>>   	struct drm_connector_state	base;
+>>   	unsigned int			enc_out_format;
+>>   	unsigned int			colorimetry;
+>> +	unsigned long			tmds_rate;
+>>   };
+>>   
+>>   static struct inno_hdmi *encoder_to_inno_hdmi(struct drm_encoder *encoder)
+>> @@ -133,11 +132,33 @@ static inline void hdmi_modb(struct inno_hdmi *hdmi, u16 offset,
+>>   	hdmi_writeb(hdmi, offset, temp);
+>>   }
+>>   
+>> +static unsigned long inno_hdmi_tmds_rate(struct inno_hdmi *hdmi)
+>> +{
+>> +	struct drm_connector *connector = &hdmi->connector;
+>> +	struct drm_connector_state *conn_state =  connector->state;
+>> +	struct inno_hdmi_connector_state *inno_conn_state;
+>> +
+>> +	if (conn_state) {
+>> +		inno_conn_state = to_inno_hdmi_conn_state(conn_state);
+>> +		return inno_conn_state->tmds_rate;
+>> +	}
+>> +
+>> +	/*
+>> +	 * When IP controller haven't configured to an accurate video
+>> +	 * timing, then the TMDS clock source would be switched to
+>> +	 * PCLK_HDMI, so we need to init the TMDS rate to PCLK rate,
+>> +	 * and reconfigure the DDC clock.
+>> +	 */
+>> +
+>> +	return clk_get_rate(hdmi->pclk);
+>> +}
+>> +
+>>   static void inno_hdmi_i2c_init(struct inno_hdmi *hdmi)
+>>   {
+>>   	int ddc_bus_freq;
+>> +	unsigned long tmds_rate = inno_hdmi_tmds_rate(hdmi);
+>>   
+>> -	ddc_bus_freq = (hdmi->tmds_rate >> 2) / HDMI_SCL_RATE;
+>> +	ddc_bus_freq = (tmds_rate >> 2) / HDMI_SCL_RATE;
+>>   
+>>   	hdmi_writeb(hdmi, DDC_BUS_FREQ_L, ddc_bus_freq & 0xFF);
+>>   	hdmi_writeb(hdmi, DDC_BUS_FREQ_H, (ddc_bus_freq >> 8) & 0xFF);
+>> @@ -431,7 +452,7 @@ static int inno_hdmi_setup(struct inno_hdmi *hdmi,
+>>   	 * DCLK_LCDC, so we need to init the TMDS rate to mode pixel
+>>   	 * clock rate, and reconfigure the DDC clock.
+>>   	 */
+>> -	hdmi->tmds_rate = mode->clock * 1000;
+>> +	inno_conn_state->tmds_rate = mode->clock * 1000;
+>>   	inno_hdmi_i2c_init(hdmi);
+>>   
+>>   	/* Unmute video and audio output */
+>> @@ -823,13 +844,6 @@ static int inno_hdmi_bind(struct device *dev, struct device *master,
+>>   		goto err_disable_clk;
+>>   	}
+>>   
+>> -	/*
+>> -	 * When IP controller haven't configured to an accurate video
+>> -	 * timing, then the TMDS clock source would be switched to
+>> -	 * PCLK_HDMI, so we need to init the TMDS rate to PCLK rate,
+>> -	 * and reconfigure the DDC clock.
+>> -	 */
+>> -	hdmi->tmds_rate = clk_get_rate(hdmi->pclk);
+>>   	inno_hdmi_i2c_init(hdmi);
+> I still think my patch is better there.
+>
+> There's two places that use the inno_hdmi.tmds_rate field: the two
+> callers of inno_hdmi_i2c_init(). One is at bind time and needs to
+> initialise it with a sane default since we don't have a mode set yet,
+> the other is to update the internal clock rate while we have a mode set.
+That’s, unfortunately, not fully true: inno_hdmi_set_pwr_mode not only
+called at mode_set-time, but also in inno_hdmi_reset which is called in the
+bind path (where we do not have a mode). That’s the point why I thought
+extracting this in function makes sense. Otherwise I would have to pass the
+tmds_rate to inno_hdmi_set_pwr_mode (also for the LOWER_PWR-case where I
+don't need it) or do that whole fallback-if-no-mode thing in
+inno_hdmi_set_pwr_mode directly. Neither would make the code easier to
+follow. Being able to use it in inno_hdmi_i2c_init also is a nice gimmick.
+I agree, having it in the custom connector state is not strictly required,
+but I'd really like to keep the wrapping function.
 
-> >>> The compatible list for this generic sound card currently:
-> >>> @@ -48,6 +51,8 @@ The compatible list for this generic sound card
-> >>> currently:
-> >>>
-> >>> "fsl,imx-audio-nau8822"
-> >>>
-> >>> + "fsl,imx-audio-generic"
-> >>
-> >> Generic does not look like hardware specific.
-> >
-> > Even if our end goal is to use it with the S/PDIF controller, this ne=
-w
-> > support can be used with different hardware that doesn't
-> > require a codec. Thus, we don't really want to specify "spdif" in it.
-> >
-> > Is this compatible string not suitable ?
-> > Should we rename it to something else, like "fsl,imx-audio-no-codec" =
-?
->=20
-> Maybe Mark or Rob will help here, but for me "imx-audio" is just way to=
-o
-> generic.
+Alex
 
-* Which generic name should we use ? Or how should we change it?
-=20
-> Also, you add several new properties, so I really expect either
-> converting old binding to DT schema first or adding new device in DT
-> schema format.
-
-* fsl-asoc-card.txt currently follows the old dt-bindings format.
-Should we update it to DT schema format in this patch series
-before adding my new properties?
-
-
-Best regards,
-Elinor Montmasson
-
-
-Changelog:
-v2 -> v3:
-* when the bitmaster or framemaster are retrieved from the device tree,
-  the driver will now compare them with the two codecs possibly given in
-  the device tree, and not just the first codec.
-* improve driver modifications to use multiple codecs for better
-  integration of future multi-codec use cases:
-    * use for_each_codec macros when possible.
-    * "fsl_asoc_card_priv" struct now has 2 "codec_priv" as the driver
-      can currently retrieve 2 codec phandles from the device tree.
-* fix subject of patch 10/10 to follow the style of the subsystem and
-  previous commits of the file.
-* v2 patch series at:
-https://lore.kernel.org/alsa-devel/20231027144734.3654829-1-elinor.montma=
-sson@savoirfairelinux.com/
-
-v1 -> v2:
-* replace use of the dummy codec by the pair of codecs
-  "spdif_receiver" / " spdif_transmitter".
-* adapt how dai links codecs are used to take into account the
-  possibility for multiple codecs per link.
-* change compatible name.
-* adapt driver to be able to register two codecs given in the device
-  tree.
-* v1 patch series at:
-https://lore.kernel.org/alsa-devel/20230901144550.520072-1-elinor.montmas=
-son@savoirfairelinux.com/
-
-
-Elinor Montmasson (10):
-  ASoC: fsl-asoc-card: add support for dai links with multiple codecs
-  ASoC: fsl-asoc-card: add second dai link component for codecs
-  ASoC: fsl-asoc-card: add compatibility to use 2 codecs in dai-links
-  ASoC: fsl-asoc-card: add new compatible for a generic codec use case
-  ASoC: fsl-asoc-card: set generic codec as clock provider
-  ASoC: fsl-asoc-card: add dts property "cpu-slot-width"
-  ASoC: fsl-asoc-card: add dts property "cpu-slot-num"
-  ASoC: fsl-asoc-card: add dts properties "cpu-sysclk-freq"
-  ASoC: fsl-asoc-card: add dts properties "cpu-sysclk-dir-out"
-  ASoC: bindings: fsl-asoc-card: add compatible for generic codec
-
- .../bindings/sound/fsl-asoc-card.txt          |  28 +-
- sound/soc/fsl/fsl-asoc-card.c                 | 299 +++++++++++-------
- 2 files changed, 218 insertions(+), 109 deletions(-)
-
---=20
-2.25.1
-
+> Since there's a single "modeset" user, there's no need to store it in
+> the state structure at all: it can be a local variable.
+>
+> And in the bind function, you're not going to use the state structure
+> either since there's no state, and it's just a default that has no
+> relation to the modeset code at all.
+>
+> Your function on the other end tries to reconcile and handle the two.
+> But there's no reason to, it just makes the code harder to follow. Just
+> pass the parent rate you want to init with as an argument and it's easy
+> to read and maintain.
+>
+> Maxime
 
