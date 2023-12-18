@@ -1,157 +1,103 @@
-Return-Path: <devicetree+bounces-26635-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26636-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5E0A81764E
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 16:51:03 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5472481765D
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 16:54:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9D5981F24A7F
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 15:51:03 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DAB02B21BD9
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 15:54:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F7B5200C0;
-	Mon, 18 Dec 2023 15:48:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="E+eaknYD"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A02A64237C;
+	Mon, 18 Dec 2023 15:53:56 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57D313D545;
-	Mon, 18 Dec 2023 15:48:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 24B6757E;
-	Mon, 18 Dec 2023 16:47:42 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1702914462;
-	bh=2sOFBL109jjVIul3F+6t0mZTRAhvxnQtgcLNIu0TqOM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=E+eaknYD0yp0U7kSb+ri0GDGITk+JMNKvwxxoCzsQAkn7n4k+JrNDZD/+k7PVajqC
-	 k5db1V+5k6xL1Ipe5FjVJiLg5ATaQKbOsLwI6FXl9lsn8/DZE0oWP1SnPS0Uy+Wa31
-	 hVVGSh2gpgbr7y2Bk+YrSYDri/Wb60eNOrXKZplk=
-Date: Mon, 18 Dec 2023 17:48:38 +0200
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Cc: Paul Elder <paul.elder@ideasonboard.com>, linux-media@vger.kernel.org,
-	linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-	kieran.bingham@ideasonboard.com, umang.jain@ideasonboard.com,
-	aford173@gmail.com, Dafna Hirschfeld <dafna@fastmail.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	"moderated list:ARM/Rockchip SoC support" <linux-arm-kernel@lists.infradead.org>,
-	open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v4 05/11] media: rkisp1: Fix RSZ_CTRL bits for i.MX8MP
-Message-ID: <20231218154838.GR5290@pendragon.ideasonboard.com>
-References: <20231129092759.242641-1-paul.elder@ideasonboard.com>
- <20231129092759.242641-6-paul.elder@ideasonboard.com>
- <03b98b67-e88c-4bb0-a01d-5a90f78e04a3@ideasonboard.com>
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 116FC3D566;
+	Mon, 18 Dec 2023 15:53:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id C60E92F4;
+	Mon, 18 Dec 2023 07:54:37 -0800 (PST)
+Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id B004F3F5A1;
+	Mon, 18 Dec 2023 07:53:50 -0800 (PST)
+Date: Mon, 18 Dec 2023 15:53:45 +0000
+From: Andre Przywara <andre.przywara@arm.com>
+To: Conor Dooley <conor@kernel.org>
+Cc: Brandon Cheo Fusi <fusibrandon13@gmail.com>, Yangtao Li
+ <tiny.windzz@gmail.com>, Viresh Kumar <vireshk@kernel.org>, Nishanth Menon
+ <nm@ti.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>, Paul Walmsley
+ <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou
+ <aou@eecs.berkeley.edu>, "Rafael J . Wysocki" <rafael@kernel.org>, Maxime
+ Ripard <mripard@kernel.org>, linux-pm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+ linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v2 3/5] cpufreq: sun50i: Add D1 support
+Message-ID: <20231218155345.476e71ea@donnerap.manchester.arm.com>
+In-Reply-To: <20231218-blabber-slapstick-ab7ae45af019@spud>
+References: <20231218110543.64044-1-fusibrandon13@gmail.com>
+	<20231218110543.64044-4-fusibrandon13@gmail.com>
+	<20231218-blabber-slapstick-ab7ae45af019@spud>
+Organization: ARM
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <03b98b67-e88c-4bb0-a01d-5a90f78e04a3@ideasonboard.com>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Mon, Dec 18, 2023 at 05:31:18PM +0200, Tomi Valkeinen wrote:
-> Hi Paul,
-> 
-> On 29/11/2023 11:27, Paul Elder wrote:
-> > The ISP8000Nano, found in the i.MX8MP, has a different architecture to
-> > crop at the resizer input. Instead of the "dual crop" block between the
-> > ISP and the resizers found in the RK3399, cropping has been moved to the
-> > input of the resizer blocks. As a result, the resizer CFG_UPD and
-> > CFG_UPD_AUTO bits have been moved to make space for a new CROP_ENABLE
-> > bit.
+On Mon, 18 Dec 2023 14:55:30 +0000
+Conor Dooley <conor@kernel.org> wrote:
+
+Hi,
+
+> On Mon, Dec 18, 2023 at 12:05:41PM +0100, Brandon Cheo Fusi wrote:
+> > Add support for D1 based devices to the Allwinner H6 cpufreq
+> > driver
 > > 
-> > Fix the resizer shadow update accordingly, using the DUAL_CROP feature
-> > to infer whether or not the resizer implements cropping. Support for
-> > resizer cropping itself will be added in a subsequent commit.
-> > 
-> > Signed-off-by: Paul Elder <paul.elder@ideasonboard.com>
-> > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> 
-> I don't think this one is correct.
-> 
-> The above is perhaps true for ISP8000, but ISP8000Nano does not have 
-> CROP_ENABLE bit, and the CFG_UPD and CFG_UPD_AUTO are at the same 
-> locations as on RK3399.
-> 
-> I don't have documentation to prove this, but experimentation shows that 
-> this is the case.
-
-I agree with you. The missing CROP_ENABLE bit matches the missing
-resizer input crop capability in the i.MX8MP. I don't know if that's
-specific to the i.MX8MP, specific to the ISP8000Nano, or common to all
-ISP8000 versions when the instance is synthesized with a single path
-(which may be what ISP8000Nano is).
-
+> > Signed-off-by: Brandon Cheo Fusi <fusibrandon13@gmail.com>
 > > ---
-> > Changes since v3:
+> >  drivers/cpufreq/sun50i-cpufreq-nvmem.c | 1 +
+> >  1 file changed, 1 insertion(+)
 > > 
-> > - Condition on RKISP1_FEATURE_DUAL_CROP feature
-> > - Update commit message
-> > 
-> > Changes since v2:
-> > 
-> > - Condition on RKISP1_FEATURE_RSZ_CROP feature
-> > - Rename bits
-> > - Use the rkisp1_has_feature() macro
-> > 
-> >   .../media/platform/rockchip/rkisp1/rkisp1-regs.h  |  5 +++++
-> >   .../platform/rockchip/rkisp1/rkisp1-resizer.c     | 15 +++++++++++----
-> >   2 files changed, 16 insertions(+), 4 deletions(-)
-> > 
-> > diff --git a/drivers/media/platform/rockchip/rkisp1/rkisp1-regs.h b/drivers/media/platform/rockchip/rkisp1/rkisp1-regs.h
-> > index 3b19c8411360..95646b45f28b 100644
-> > --- a/drivers/media/platform/rockchip/rkisp1/rkisp1-regs.h
-> > +++ b/drivers/media/platform/rockchip/rkisp1/rkisp1-regs.h
-> > @@ -168,6 +168,11 @@
-> >   #define RKISP1_CIF_RSZ_CTRL_CFG_UPD_AUTO		BIT(9)
-> >   #define RKISP1_CIF_RSZ_SCALER_FACTOR			BIT(16)
-> >   
-> > +/* For resizer instances that support cropping */
-> > +#define RKISP1_CIF_RSZ_CTRL_CROP_ENABLE			BIT(8)
-> > +#define RKISP1_CIF_RSZ_CTRL_CROP_CFG_UPD		BIT(9)
-> > +#define RKISP1_CIF_RSZ_CTRL_CROP_CFG_UPD_AUTO		BIT(10)
-> > +
-> >   /* MI_IMSC - MI_MIS - MI_RIS - MI_ICR - MI_ISR */
-> >   #define RKISP1_CIF_MI_FRAME(stream)			BIT((stream)->id)
-> >   #define RKISP1_CIF_MI_MBLK_LINE				BIT(2)
-> > diff --git a/drivers/media/platform/rockchip/rkisp1/rkisp1-resizer.c b/drivers/media/platform/rockchip/rkisp1/rkisp1-resizer.c
-> > index c1aaeed58acc..6d6ebc53c6e5 100644
-> > --- a/drivers/media/platform/rockchip/rkisp1/rkisp1-resizer.c
-> > +++ b/drivers/media/platform/rockchip/rkisp1/rkisp1-resizer.c
-> > @@ -178,10 +178,17 @@ static void rkisp1_rsz_update_shadow(struct rkisp1_resizer *rsz,
-> >   {
-> >   	u32 ctrl_cfg = rkisp1_rsz_read(rsz, RKISP1_CIF_RSZ_CTRL);
-> >   
-> > -	if (when == RKISP1_SHADOW_REGS_ASYNC)
-> > -		ctrl_cfg |= RKISP1_CIF_RSZ_CTRL_CFG_UPD_AUTO;
-> > -	else
-> > -		ctrl_cfg |= RKISP1_CIF_RSZ_CTRL_CFG_UPD;
-> > +	if (when == RKISP1_SHADOW_REGS_ASYNC) {
-> > +		if (rkisp1_has_feature(rsz->rkisp1, DUAL_CROP))
-> > +			ctrl_cfg |= RKISP1_CIF_RSZ_CTRL_CFG_UPD_AUTO;
-> > +		else
-> > +			ctrl_cfg |= RKISP1_CIF_RSZ_CTRL_CROP_CFG_UPD_AUTO;
-> > +	} else {
-> > +		if (rkisp1_has_feature(rsz->rkisp1, DUAL_CROP))
-> > +			ctrl_cfg |= RKISP1_CIF_RSZ_CTRL_CFG_UPD;
-> > +		else
-> > +			ctrl_cfg |= RKISP1_CIF_RSZ_CTRL_CROP_CFG_UPD;
-> > +	}
-> >   
-> >   	rkisp1_rsz_write(rsz, RKISP1_CIF_RSZ_CTRL, ctrl_cfg);
-> >   }
+> > diff --git a/drivers/cpufreq/sun50i-cpufreq-nvmem.c b/drivers/cpufreq/sun50i-cpufreq-nvmem.c
+> > index 32a9c88f8..ccf83780f 100644
+> > --- a/drivers/cpufreq/sun50i-cpufreq-nvmem.c
+> > +++ b/drivers/cpufreq/sun50i-cpufreq-nvmem.c
+> > @@ -160,6 +160,7 @@ static struct platform_driver sun50i_cpufreq_driver = {
+> >  
+> >  static const struct of_device_id sun50i_cpufreq_match_list[] = {
+> >  	{ .compatible = "allwinner,sun50i-h6" },
+> > +	{ .compatible = "allwinner,sun20i-d1" },  
+> 
+> I thought the feedback in v2 was to drop this change, since the
+> devicetree has the sun50i-h6 as a fallback compatible?
 
--- 
-Regards,
+Well, this is the *board* (fallback) compatible string, so we cannot assign
+it as we like. The whole (existing) scheme is admittedly somewhat weird,
+because we not only match on a particular device compatible
+(like allwinner,sun20i-d1-operating-points), but also need to blocklist and
+re-match some parts against the *board compatible*, owing to the
+cpufreq-dt driver. The board name is basically used as a placeholder to
+find out the SoC, because there is (or was?) no other good way - the
+CPU DT nodes don't work for this. Back when this was introduced, this was
+the "least worst" solution.
 
-Laurent Pinchart
+I don't remember all the details, and didn't find time yet to look into
+this in more detail, but fixing this is non-trivial. If this isn't 6.8
+material, I might have a look at this later this week/month.
+
+Cheers,
+Andre
 
