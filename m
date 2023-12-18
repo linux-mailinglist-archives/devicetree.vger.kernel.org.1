@@ -1,161 +1,173 @@
-Return-Path: <devicetree+bounces-26711-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26712-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 05E98817956
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 19:02:56 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A1F781796A
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 19:13:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A04F3285E16
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 18:02:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4FB611C21FDE
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 18:13:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54CA25D72E;
-	Mon, 18 Dec 2023 18:02:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59D517146A;
+	Mon, 18 Dec 2023 18:13:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=waldekranz-com.20230601.gappssmtp.com header.i=@waldekranz-com.20230601.gappssmtp.com header.b="lU/Dul2r"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Rh/VKYmf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8712F5BFAE
-	for <devicetree@vger.kernel.org>; Mon, 18 Dec 2023 18:02:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=waldekranz.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=waldekranz.com
-Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-50e33fe3856so1929082e87.1
-        for <devicetree@vger.kernel.org>; Mon, 18 Dec 2023 10:02:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=waldekranz-com.20230601.gappssmtp.com; s=20230601; t=1702922565; x=1703527365; darn=vger.kernel.org;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=O97uj9e08s7i9aDFJjFTarMdK1KNX1EjP0tGTzMNUfY=;
-        b=lU/Dul2rHvHzDJJAL07vWE0RX5l7/RZt1WB7UGIcMkur4wNppgJ1QQJr71txsvxx9Z
-         Q6+C2ZsS8XWDanRu0dD72fyjYDXshkuhLhc63BTELgUea476pnweRknF+I9WsELr5ieG
-         0Fv4zvKPmdWruIBFI00vowpAizZuvty+LqlBwhMYCV4YMpExj0hSG+m5SWRg88Z3YUK8
-         c8Yhw9n1N75/5/h+2Ydi4bOSTxLQGiXmBYFv2HhZP9YF6tq7UsNGBFbb+l6ysJ6yiq5a
-         ptYlLmvLyfZEN5j6xCDacvUbucWOa64ZnOxdLHFLDsIxMc6Y1/NdTHPpOpMyLaNwHyO4
-         vGNQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702922565; x=1703527365;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=O97uj9e08s7i9aDFJjFTarMdK1KNX1EjP0tGTzMNUfY=;
-        b=E38Q96Z+AQTyeuLxddFaphYJ+ZWhYIKcL4WxukIUuywW0GX0P7UWDqUK5uumQN8F/v
-         0DaaXZ5tiMbu4MFWpKpfMcYvQJEuQcCtYjrA55BTr/+RmcaoGONDLHqAG8D+ILibl0fP
-         raR/17eegByEzCZbzs24if36hgT4J4goSk8EwgotAfOqVp0SDwaoMt1IZUVjIatbnyIb
-         MXSBW+qB5Lr4gKpmVEr4q7DUCLdVJTbz/D+NdUH+cZN6EQ58sIb17Nvr2ugeGJ233HSO
-         QOWgMLiyIG5cvodXE6TWyQlTKrjKBAuVAEfIkSuvkA8PKE+gH6Xg/vyppZHMiXpRgNyM
-         qSIQ==
-X-Gm-Message-State: AOJu0Yz5VUNP4AwVq/0vcW2dNjbnOS7Lrx5EvcBjfBQG9lWLyjENsiSA
-	Avz32Mcee/d6qr8GJgGx+F0DfeCqlho9GLZmhKE=
-X-Google-Smtp-Source: AGHT+IGeBDtRuHT4pEAlzpm7lZdQbY5RWwW8araiEEgTbOTDMdKguqOI6mkQ3QIsoZKYSZrlc5gdzg==
-X-Received: by 2002:ac2:4ec4:0:b0:50e:3e13:ae89 with SMTP id p4-20020ac24ec4000000b0050e3e13ae89mr420029lfr.66.1702922564804;
-        Mon, 18 Dec 2023 10:02:44 -0800 (PST)
-Received: from wkz-x13 (a124.broadband3.quicknet.se. [46.17.184.124])
-        by smtp.gmail.com with ESMTPSA id o22-20020ac24bd6000000b0050d1672f10csm2839691lfq.39.2023.12.18.10.02.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 18 Dec 2023 10:02:43 -0800 (PST)
-From: Tobias Waldekranz <tobias@waldekranz.com>
-To: "Russell King (Oracle)" <linux@armlinux.org.uk>
-Cc: davem@davemloft.net, kuba@kernel.org, kabel@kernel.org, andrew@lunn.ch,
- hkallweit1@gmail.com, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- netdev@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next 2/4] net: phy: marvell10g: Fix power-up when
- strapped to start powered down
-In-Reply-To: <ZXx0eVzJ3I1PwOa0@shell.armlinux.org.uk>
-References: <20231214201442.660447-1-tobias@waldekranz.com>
- <20231214201442.660447-3-tobias@waldekranz.com>
- <ZXx0eVzJ3I1PwOa0@shell.armlinux.org.uk>
-Date: Mon, 18 Dec 2023 19:02:43 +0100
-Message-ID: <87y1dr75j0.fsf@waldekranz.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3978537896;
+	Mon, 18 Dec 2023 18:12:59 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C37AAC433C7;
+	Mon, 18 Dec 2023 18:12:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1702923179;
+	bh=bRBGCSzMyL/fl+vEUWhNFqGNbp2BbGbBJpmsYUp6o6E=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=Rh/VKYmf0x7RCztzlqfajKNe/3evXxNc/3ftQu8emST7fZDpUiQTn7o71sr/ZEPCg
+	 OBCgKOl0jZ73eU8LDrNyIxSc7PBxXwQ4zEFCPXgk7U0LulQoLhn1jgWfwi5/iTx1GM
+	 CEG1r4T1Gm2USta+AaUB51Ux0odiDhlv4Xt/q1Aku5t15CGjDuLLlC5vaFwnPt0W76
+	 N0GyfXENUjZNy+AZ2b+9wJAC1PW6hDDhSsNHMmDQwARePHj4nZvTup29UJ1oORoCgc
+	 sWoaJIV06BRRe01uqLhSsHNJFE8Td8bpdqLNk09M4Co9XUeFi/GAXDE/tq9cWXidC0
+	 GCVYuqDYOVF/Q==
+Date: Mon, 18 Dec 2023 18:12:43 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Nuno =?UTF-8?B?U8Oh?= <noname.nuno@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Nuno Sa <nuno.sa@analog.com>,
+ devicetree@vger.kernel.org, linux-iio@vger.kernel.org, Greg Kroah-Hartman
+ <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>,
+ Frank Rowand <frowand.list@gmail.com>, Lars-Peter Clausen
+ <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+ <conor+dt@kernel.org>, Olivier Moysan <olivier.moysan@foss.st.com>
+Subject: Re: [PATCH v3 0/8] iio: add new backend framework
+Message-ID: <20231218181243.2b1e17ba@jic23-huawei>
+In-Reply-To: <4531a5b626361a18bba8df640f530fcaeab00e7e.camel@gmail.com>
+References: <20231213-dev-iio-backend-v3-0-bb9f12a5c6dc@analog.com>
+	<20231214141600.GA224419-robh@kernel.org>
+	<fa03e4138fe2c8c7e7f619e11f149701c39445e4.camel@gmail.com>
+	<20231214170326.GA458046-robh@kernel.org>
+	<dfe28945b33ddfd1258586b825e5eb3866ee28d8.camel@gmail.com>
+	<20231217140412.237511b8@jic23-huawei>
+	<4531a5b626361a18bba8df640f530fcaeab00e7e.camel@gmail.com>
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-On fre, dec 15, 2023 at 15:44, "Russell King (Oracle)" <linux@armlinux.org.uk> wrote:
-> On Thu, Dec 14, 2023 at 09:14:40PM +0100, Tobias Waldekranz wrote:
->> On devices which are hardware strapped to start powered down (PDSTATE
->> == 1), make sure that we clear the power-down bit on all units
->> affected by this setting.
->> 
->> Signed-off-by: Tobias Waldekranz <tobias@waldekranz.com>
->> ---
->>  drivers/net/phy/marvell10g.c | 17 ++++++++++++++---
->>  1 file changed, 14 insertions(+), 3 deletions(-)
->> 
->> diff --git a/drivers/net/phy/marvell10g.c b/drivers/net/phy/marvell10g.c
->> index 83233b30d7b0..1c1333d867fb 100644
->> --- a/drivers/net/phy/marvell10g.c
->> +++ b/drivers/net/phy/marvell10g.c
->> @@ -344,11 +344,22 @@ static int mv3310_power_down(struct phy_device *phydev)
->>  
->>  static int mv3310_power_up(struct phy_device *phydev)
->>  {
->> +	static const u16 resets[][2] = {
->> +		{ MDIO_MMD_PCS,    MV_PCS_BASE_R    + MDIO_CTRL1 },
->> +		{ MDIO_MMD_PCS,    MV_PCS_1000BASEX + MDIO_CTRL1 },
->
-> This is not necessary. The documentation states that the power down
-> bit found at each of these is the same physical bit appearing in two
-> different locations. So only one is necessary.
 
-Right, I'll remove the entry for 1000BASE-X in v2.
+> > >  =20
+> > > > =C2=A0  =20
+> > > > > > And if there's another consumer in the chain, then a node could=
+=20
+> > > > > > certainly be both an io-channels consumer and producer.
+> > > > > > =C2=A0  =20
+> > > > >=20
+> > > > > This should also be possible with this architecture. A node can b=
+e both
+> > > > > a backend
+> > > > > (provider) and a consumer and we have an out of tree design that =
+fits
+> > > > > this (that
+> > > > > I
+> > > > > surely want to upstream after the foundations are done).
+> > > > > =C2=A0  =20
+> > > > > > The architecture of the drivers seems odd to me. It looks simil=
+ar to=20
+> > > > > > making a phy driver handle all the state and protocol with the =
+host=20
+> > > > > > controller being a backend.=C2=A0  =20
+> > > > >=20
+> > > > > In this case, it's not really a controller. It's more like an ext=
+ension
+> > > > > of the
+> > > > > device
+> > > > > because we need a way to handle the high sample rates this ADCs c=
+an do.
+> > > > > Then we
+> > > > > can
+> > > > > also do test tones with the backend which is useful for interface=
+ tuning
+> > > > > (as
+> > > > > mentioned above).
+> > > > >=20
+> > > > > To give you a bit more context,=C2=A0I'm adding the generic prope=
+rty because
+> > > > > we will
+> > > > > have
+> > > > > more users for it (from ADI - the next should be the axi-dac core=
+) but
+> > > > > STM is
+> > > > > also
+> > > > > interested in this (likely the next user).
+> > > > >=20
+> > > > > Hope this makes it a bit more clear...=C2=A0  =20
+> > > >=20
+> > > > Yes, thanks.
+> > > >=20
+> > > > I generally ask for 2 users on new common bindings. I've accepted t=
+oo=20
+> > > > many only to have the 2nd user come in a month later and need addit=
+ions.=20
+> > > > An ack on the binding from the STM folks would be nice here. And=20
+> > > > Jonathan too.
+> > > > =C2=A0  =20
+> > >=20
+> > > Olivier, could we get an ack on the bindings patch? Do you also have =
+any
+> > > idea about
+> > > how long it would take for you to send patches so we have another use=
+r of
+> > > the schema?
+> > >=20
+> > > On my side, it might very well take a month or so (given we have holi=
+days
+> > > nearby) as
+> > > the axi-dac core is more complex than the axi-adc. Bah it might take =
+less
+> > > than a
+> > > month to have the first version of it posted in the lists but I can't=
+ make
+> > > any
+> > > promises. =20
+> >=20
+> > For the driver side of things I'd like at least 2, preferably 3 users b=
+efore
+> > merging.
+> > We have more flexibility to rework things as any issues will probably be
+> > internal
+> > interfaces, but I'd rather wait if we are going to have 3 users within =
+another
+> > month
+> > or 2.
+> >  =20
+>=20
+> Totally fine by me. But how would this look like? Could we have an immuta=
+ble
+> branch where we can send patches about this? Or maybe staging? I'm asking
+> because adding more stuff into these series might make it harder to revie=
+w (the
+> axi-dac might have some fun ABI discussion :)). Ideally, we would have th=
+is
+> merged somewhere and then add users on top of it.
 
->> +		{ MDIO_MMD_PCS,    MV_PCS_BASE_T    + MDIO_CTRL1 },
->> +		{ MDIO_MMD_PMAPMD, MDIO_CTRL1 },
->> +		{ MDIO_MMD_VEND2,  MV_V2_PORT_CTRL },
->> +	};
->>  	struct mv3310_priv *priv = dev_get_drvdata(&phydev->mdio.dev);
->> -	int ret;
->> +	int i, ret;
->>  
->> -	ret = phy_clear_bits_mmd(phydev, MDIO_MMD_VEND2, MV_V2_PORT_CTRL,
->> -				 MV_V2_PORT_CTRL_PWRDOWN);
->> +	for (i = 0; i < ARRAY_SIZE(resets); i++) {
->> +		ret = phy_clear_bits_mmd(phydev, resets[i][0], resets[i][1],
->> +					 MV_V2_PORT_CTRL_PWRDOWN);
->
-> While MV_V2_PORT_CTRL_PWRDOWN may correspond with the correct bit for
-> the MDIO CTRL1 register, we have MDIO_CTRL1_LPOWER which describes
-> this bit. Probably the simplest solution would be to leave the
-> existing phy_clear_bits_mmd(), remove the vendor 2 entry from the
-> table, and run through that table first.
+It's fine to post a bunch of series with stated dependencies
+(I've gotten 5 series + deep in the past :)
 
-Yes, I'll fix this in v2.
+Obviously useful to have a git tree with them all on somewhere though
+but if you host that it would be ideal given you are driving this
+work in general.
 
-> Lastly, how does this impact a device which has firmware, and the
-> firmware manages the power-down state (the manual states that unused
-> blocks will be powered down - I assume by the firmware.) If this
-> causes blocks which had been powered down by the firmware because
-> they're not being used to then be powered up, that is a regression.
-> Please check that this is not the case.
+Jonathan
 
-This will be very hard for me to test, as I only have access to boards
-without dedicated FLASHes. That said, I don't think I understand how
-this is related to how the devices load their firmware. As I understand
-it, we should pick up the device in the exact same state after the MDIO
-load as we would if it had booted on its own, via a serial FLASH.
-
-The selection of PDSTATE, based on the sample-at-reset pins, is
-independent of how firmware is loaded.
-
-From the manual:
-
-    The following registers can be set to force the units to power down.
-
-I interpret this as the power-down bits only acting as gates to stop
-firmware from powering up a particular unit. Conversely, clearing one of
-these bits merely indicates that the firmware is free to power up the
-unit in question.
-
-On a device strapped to PDSTATE==0, I would expect all of these bits to
-already be cleared, since the manual states that the value of PDSTATE is
-latched into all these bits at reset.
-
+>=20
+> - Nuno S=C3=A1
 
 
