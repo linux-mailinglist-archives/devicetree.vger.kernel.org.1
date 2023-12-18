@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-26524-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26525-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5380816CA4
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 12:43:04 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 85F78816D06
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 12:55:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9588A28395D
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 11:43:03 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D7C4DB241C3
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 11:55:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 726E231747;
-	Mon, 18 Dec 2023 11:38:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABCCC1A727;
+	Mon, 18 Dec 2023 11:42:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="lFn6oaU5"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="olpcJOvX"
 X-Original-To: devicetree@vger.kernel.org
 Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 591D121364;
-	Mon, 18 Dec 2023 11:38:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD06A4D5BD;
+	Mon, 18 Dec 2023 11:41:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1702899493;
-	bh=V5PA5oyxCd5DFK291fOQmsy6Q17j3UOvBS6drZZobsg=;
+	s=mail; t=1702899716;
+	bh=Ay7Tt9dce00P1AFvH+VR0Quwph8t7Z1Zn8abP+bDKl8=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=lFn6oaU5/zBXfw/lfDzsQZdCaZFrqBfttjH8fN5pBpC+x9ugq0uF/v0dGZEiFXRc6
-	 +7oyXTScJk0y2/u+13P+FgCN9xo9hOk0ujzwxI2YY2XRVgOAS3UHZbgaQf3b/Nyyn8
-	 x9KWS4ulLJGO2JJ/FNGyadTdjybGHs7OxL+L7IeijvJf5RQvh9tMcINNbnZ5A9aGYP
-	 0tQfFgU/lZk8ls4dofDxlacunvvIR+6USPl7W0C7WeZQ9UPXms/MR1v5xiZfdnFQWA
-	 UXhwYOJolTHy+09ThqcCCwO1/J2c1p0e6rjcTtFXobbHcUK49iLD+meFAW+xXeGU3F
-	 nALQ2xfxXz1Rg==
+	b=olpcJOvXtTBBpVcYE8PqF5uNLFcLGnlrd77Yy4U2M1CVK1OMCU44ovp8ox0ABd+vx
+	 vMMIhpPKRjVYneLkb/RvRi7d4oSroIqe2BjDHoHmIw7nn6GftbYRPI/M/z5ce+U1Ax
+	 Xjff2yIbY3xKiaYY9fcWh7LjjHnDZPqbswmEj2DvPmFUBoLeqwQvBZaPBfs9rzAc0I
+	 349sA3zHVM5n127CwidQ+I2ZWhl4UpVTusm8MpYA//tJrf50cwyXU1NSx6rkRG4hhi
+	 9F77N0ItNtAnDrl7xx1QDhAZsFIdKxvgmdmQxMGqqKHZv7I9w2FZ/Ps3gPOjIvAivu
+	 CLedaHr2oRvJg==
 Received: from [100.115.223.179] (cola.collaboradmins.com [195.201.22.229])
 	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: cristicc)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 8A206378149C;
-	Mon, 18 Dec 2023 11:38:11 +0000 (UTC)
-Message-ID: <a06aaab5-b433-44a6-89a4-bdf713d5e1a9@collabora.com>
-Date: Mon, 18 Dec 2023 13:38:10 +0200
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 84CA537814A3;
+	Mon, 18 Dec 2023 11:41:54 +0000 (UTC)
+Message-ID: <cb18617d-e34a-4c3e-a37a-1b051587f8b5@collabora.com>
+Date: Mon, 18 Dec 2023 13:41:53 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,8 +48,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 12/12] [UNTESTED] riscv: dts: starfive:
- beaglev-starlight: Enable gmac
+Subject: Re: [PATCH v3 5/9] riscv: dts: starfive: jh7100-common: Setup pinmux
+ and enable gmac
 Content-Language: en-US
 To: Emil Renner Berthing <emil.renner.berthing@canonical.com>,
  "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
@@ -60,62 +60,55 @@ To: Emil Renner Berthing <emil.renner.berthing@canonical.com>,
  Samin Guo <samin.guo@starfivetech.com>,
  Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
  <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Hal Feng <hal.feng@starfivetech.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Alexandre Torgue <alexandre.torgue@foss.st.com>,
  Jose Abreu <joabreu@synopsys.com>,
  Maxime Coquelin <mcoquelin.stm32@gmail.com>,
  Richard Cochran <richardcochran@gmail.com>,
  Giuseppe Cavallaro <peppe.cavallaro@st.com>
 Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
- linux-stm32@st-md-mailman.stormreply.com,
+ linux-clk@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
  linux-arm-kernel@lists.infradead.org, kernel@collabora.com
-References: <20231029042712.520010-1-cristian.ciocaltea@collabora.com>
- <20231029042712.520010-13-cristian.ciocaltea@collabora.com>
- <CAJM55Z9e=vjGKNnmURN15mvXo2bVd3igBA-3puF9q7eh5hiP+A@mail.gmail.com>
- <2f06ce36-0dc1-495e-b6a6-318951a53e8d@collabora.com>
- <698fbb5d-0750-4f2a-857f-5429e5f589f9@collabora.com>
- <CAJM55Z-e8mkjac-nCF9_w6EmMVbL9ued0mAcjwTMF=pKDLkMsA@mail.gmail.com>
+References: <20231215204050.2296404-1-cristian.ciocaltea@collabora.com>
+ <20231215204050.2296404-6-cristian.ciocaltea@collabora.com>
+ <CAJM55Z-bg0EGPaLHtxcu2AzqN59zfuiT0eE7oCShrx7dG_QK1g@mail.gmail.com>
 From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-In-Reply-To: <CAJM55Z-e8mkjac-nCF9_w6EmMVbL9ued0mAcjwTMF=pKDLkMsA@mail.gmail.com>
+In-Reply-To: <CAJM55Z-bg0EGPaLHtxcu2AzqN59zfuiT0eE7oCShrx7dG_QK1g@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 12/16/23 21:24, Emil Renner Berthing wrote:
+On 12/16/23 21:38, Emil Renner Berthing wrote:
 > Cristian Ciocaltea wrote:
->> On 11/28/23 02:40, Cristian Ciocaltea wrote:
->>> On 11/26/23 23:10, Emil Renner Berthing wrote:
->>>> Cristian Ciocaltea wrote:
->>>>> The BeagleV Starlight SBC uses a Microchip KSZ9031RNXCA PHY supporting
->>>>> RGMII-ID.
->>>>>
+>> Add pinmux configuration for DWMAC found on the JH7100 based boards and
+>> enable the related DT node, providing a basic PHY configuration.
 >>
->> [...]
+>> Co-developed-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+>> Signed-off-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+>> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+>> ---
+>>  .../boot/dts/starfive/jh7100-common.dtsi      | 85 +++++++++++++++++++
+>>  1 file changed, 85 insertions(+)
 >>
->>>> You've alse removed the phy reset gpio on the Starlight board:
->>>>
->>>>   snps,reset-gpios = <&gpio 63 GPIO_ACTIVE_LOW>
->>>>
->>>> Why?
->>>
->>> I missed this in v1 as the gmac handling was done exclusively in
->>> jh7100-common. Thanks for noticing!
+>> diff --git a/arch/riscv/boot/dts/starfive/jh7100-common.dtsi b/arch/riscv/boot/dts/starfive/jh7100-common.dtsi
+>> index 42fb61c36068..5cafe8f5c2e7 100644
+>> --- a/arch/riscv/boot/dts/starfive/jh7100-common.dtsi
+>> +++ b/arch/riscv/boot/dts/starfive/jh7100-common.dtsi
+>> @@ -72,7 +72,92 @@ wifi_pwrseq: wifi-pwrseq {
+>>  	};
+>>  };
 >>
->> Hi Emil,
->>
->> I think the reset doesn't actually trigger because "snps,reset-gpios" is
->> not a valid property, it should have been "snps,reset-gpio" (without the
->> trailing "s").
->>
->> However, this seems to be deprecated now, and the recommended approach
->> would be to define the reset gpio in the phy node, which I did in [1].
->>
->> Hopefully this won't cause any unexpected behaviour. Otherwise we should
->> probably simply drop it.
->>
->> [1]: https://lore.kernel.org/lkml/20231215204050.2296404-8-cristian.ciocaltea@collabora.com/
+>> +&gmac {
+>> +	pinctrl-names = "default";
+>> +	pinctrl-0 = <&gmac_pins>;
+>> +	phy-mode = "rgmii-id";
+>> +	phy-handle = <&phy>;
 > 
-> Oh, nice catch! With your v3 patches the Starlight board still works fine and
-> GPIO63 is correctly grabbed and used for "PHY reset".
+> I'm not sure if it's a generic policy or not, but I don't really like adding a
+> reference to a non-existant node here. I'd move this property to the board
+> files where the phy node is actually defined.
 
-Great, thanks a lot for retesting this!
+Totally agree, I simply went too far while dropping duplicated code and
+didn't realize the mistake.  Thanks for noticing!
 
