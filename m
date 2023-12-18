@@ -1,133 +1,104 @@
-Return-Path: <devicetree+bounces-26427-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26428-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8705A816726
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 08:12:47 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 786F3816742
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 08:19:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 71B2CB2183A
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 07:12:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AB2641C222A1
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 07:19:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FC7FCA44;
-	Mon, 18 Dec 2023 07:12:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 407D879E6;
+	Mon, 18 Dec 2023 07:19:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="M6P04eck"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JHiUM5Wg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f41.google.com (mail-oa1-f41.google.com [209.85.160.41])
+Received: from mail-oa1-f48.google.com (mail-oa1-f48.google.com [209.85.160.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30CE6D2ED;
-	Mon, 18 Dec 2023 07:11:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3B7879D9;
+	Mon, 18 Dec 2023 07:19:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oa1-f41.google.com with SMTP id 586e51a60fabf-20364459774so1734991fac.2;
-        Sun, 17 Dec 2023 23:11:58 -0800 (PST)
+Received: by mail-oa1-f48.google.com with SMTP id 586e51a60fabf-203d93b660aso33347fac.2;
+        Sun, 17 Dec 2023 23:19:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1702883518; x=1703488318; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=UhmvapdjbK4Juob7xVNZEvY20g3FFXidM5reGh1RCcM=;
-        b=M6P04eckv+9wSQoC9OCl9IFGQKjIrt9voGo3DRZ0Gx0MSVZC+gErCPUKOyrmdWNMFY
-         2saHjtzZ9FKV8rFRGRSi6/uw6pPpLigKEG7klmFlgRl5McLVtt1rzlrfPoogs0tP6Pb+
-         8F7P9j46rGHnKSPAf0v/URhSjnRA8F0uxSly5UY90N8lSWdMWQSKyQaEFvYzv7k0poSf
-         wDb9u4mlq7Z4b9fyi3Iopls4qfCybxhVtEq2fbgX6xxd9N7C2zNJbR8nzjVmofm9xQVm
-         ev254tjc5nVvkZZIHJsg3tW/cIzsv1ovXRV7+1n+vHFT76ykZA4uKpugmRn93yiGt9j+
-         ClbA==
+        d=gmail.com; s=20230601; t=1702883952; x=1703488752; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=3psRlmXcavUjlawnzU62rR1l9UyH9mO8Qc/nCsa+TC4=;
+        b=JHiUM5WglmgYZ/VMBmZDWfd1RKeqHtWM+C2X36sPXDbXywINZyHGl9H7yUyisZgis3
+         Y1L88aG7wLzjoeA3Sf0IAlnfKb+WxslSOiFBmpoL5MJDkQvLmc/ADNosFRTnmS8mhU9g
+         p8jPDs6WMYuobILDIcIuMnqPwSjGJ0Yx+ZDjox9OvyR8VewC4cpO4YF08CQzNzAueqhL
+         yTgZ82msm2WgPqSWgOmGp2Xv5HPNR9NBHx1SLI1cAogXRTB2Cs87iw/0s+g7Y4BDOtqy
+         qvxxE+n8LPt99xcR7V9LzTxCvO3+NRZog1QnGa3lRcKsJOy5KxK94FV88Dv7LdlXlHu3
+         UvQg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702883518; x=1703488318;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=UhmvapdjbK4Juob7xVNZEvY20g3FFXidM5reGh1RCcM=;
-        b=goxJa7kFSdd9nF0IguusjC6KGlmp7w1Expwjr/aCDUagWjl/VDXyiRa8pzIhus7c7l
-         1RVnAiTmAfdW1/FBfOSEMHeatg5tGPFcXE6I8SKu0Yi1nKZBTpa//TW4HOh3gXuorfIF
-         jsVU6ckwkMI213xabwIaP9RzCDoDYqnl0vb1S3krgNemklEoKbjI3de6Za+PSsuNilVn
-         6UlgnP95DD0nluzT98ubW/R0JJY9q/rkDFMOzsXNPU2tv7PjEArbwVSlkKA5b8bFLLtG
-         Vs6hmTu9HMfM+tCgPotmsS3OZWoQY2y2BXn7hBUh8SqdEbkOkUQFVJooLZob+9dKT1/j
-         Ijhw==
-X-Gm-Message-State: AOJu0YyR4n/74CriJ5toYzWwqYH3IsYusbgfz1UDHomvw9iFValY77E8
-	YDSiLjONzDla6hQO42wUxeR46weY7K8f3sRT8kM=
-X-Google-Smtp-Source: AGHT+IHPVzt32uHRpOM3hUEPlx1J8EdwKEMu7SdIg1Pona01Ee1GULJv60QTmrXAk4aveIqd54Nvt2t93iq6zl6qHMU=
-X-Received: by 2002:a05:6870:414a:b0:203:b69b:674 with SMTP id
- r10-20020a056870414a00b00203b69b0674mr2011546oad.35.1702883518015; Sun, 17
- Dec 2023 23:11:58 -0800 (PST)
+        d=1e100.net; s=20230601; t=1702883952; x=1703488752;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=3psRlmXcavUjlawnzU62rR1l9UyH9mO8Qc/nCsa+TC4=;
+        b=ihVPDolYhaQDBPyh5uLsX5Lk4dyuu+h4KEz5PIALM6I4lopUloUiA5pEN9lXHTzVsJ
+         3M8IKRry1f4x8HnZW6dsjTm667zqlmUal9cV6e+eKc9di3Qqj7hZOivjdzUv8/HxGneO
+         PutWvGgX/OYCCgXWSXYEqibaa/NfcIsuqNyM9es5PJtzI5Vqux37z3msrTweQ5Pcp0Ie
+         cB+1xw8K2x5lokxzIrweBrBCzwu+hWAbs0UH1o1R20FE4CdYmBLAQLELz2AM4eN3oJvz
+         6uvwuaOxXexHzLgZPxeVlErkUslGggpPqT7Q7nGljdHnYRPBULq6XkDaltuDH6L2DMLC
+         FH9w==
+X-Gm-Message-State: AOJu0Yxz1e54xIKzvcbi2aG5SGj8ZfFL755ziZ5N7RKF02urdeKOLSrb
+	uIRtugKRM3KKtmXguKrG1cEAiA0cv4AC8+/fD4qAknitheM=
+X-Google-Smtp-Source: AGHT+IHti2eGyJH4puKkOt7wvA/AKXJF3FpMvcLaivZ9rYJ7DdoRzEecd7zK8SGMMIjEj2JJuOHgbrlidVWxswhLuRs=
+X-Received: by 2002:a05:6871:5a05:b0:1fb:75a:77bb with SMTP id
+ on5-20020a0568715a0500b001fb075a77bbmr15703452oac.108.1702883952076; Sun, 17
+ Dec 2023 23:19:12 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231217110952.78784-1-qiujingbao.dlmu@gmail.com> <ZX/bUfSS1+32skCM@xhacker>
-In-Reply-To: <ZX/bUfSS1+32skCM@xhacker>
-From: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
-Date: Mon, 18 Dec 2023 15:11:46 +0800
-Message-ID: <CAJRtX8T=bD4S1yMbexuwiMOK7rtwOg5TmVQJsRW6b8Lv9LnPKw@mail.gmail.com>
-Subject: Re: [PATCH v2 0/3] riscv: rtc: sophgo: add rtc support for CV1800
-To: Jisheng Zhang <jszhang@kernel.org>
-Cc: a.zummo@towertech.it, alexandre.belloni@bootlin.com, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor@kernel.org, conor+dt@kernel.org, 
-	chao.wei@sophgo.com, unicorn_wang@outlook.com, paul.walmsley@sifive.com, 
-	palmer@dabbelt.com, aou@eecs.berkeley.edu, linux-rtc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, dlan@gentoo.org
+References: <20231215085630.984892-1-chunyan.zhang@unisoc.com>
+ <20231215085630.984892-5-chunyan.zhang@unisoc.com> <fd927698-6aa3-4a6b-988c-fc82663235ca@linaro.org>
+ <CAAfSe-tTvxLCAdSCCgEw8HMFaVVfOytoowY_Fb2F0H-vo+cCmA@mail.gmail.com> <4faf78f5-5e57-44a1-8fdd-7b6a33b0bd19@linaro.org>
+In-Reply-To: <4faf78f5-5e57-44a1-8fdd-7b6a33b0bd19@linaro.org>
+From: Chunyan Zhang <zhang.lyra@gmail.com>
+Date: Mon, 18 Dec 2023 15:18:35 +0800
+Message-ID: <CAAfSe-teE0RnC9fNtEP4dW3d94ud7pxF4wAB71FLik65HjatNQ@mail.gmail.com>
+Subject: Re: [PATCH 4/4] arm64: dts: sprd: Add support for Unisoc's UMS9620
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Chunyan Zhang <chunyan.zhang@unisoc.com>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Lee Jones <lee@kernel.org>, devicetree@vger.kernel.org, linux-serial@vger.kernel.org, 
+	Baolin Wang <baolin.wang@linux.alibaba.com>, Orson Zhai <orsonzhai@gmail.com>, 
+	LKML <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-On Mon, Dec 18, 2023 at 1:53=E2=80=AFPM Jisheng Zhang <jszhang@kernel.org> =
-wrote:
+On Mon, 18 Dec 2023 at 15:00, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
 >
-> On Sun, Dec 17, 2023 at 07:09:49PM +0800, Jingbao Qiu wrote:
-> > This series adds rtc support for Sophgo CV1800.
+> On 18/12/2023 03:31, Chunyan Zhang wrote:
+> > On Fri, 15 Dec 2023 at 18:36, Krzysztof Kozlowski
+> > <krzysztof.kozlowski@linaro.org> wrote:
+> >>
+> >> On 15/12/2023 09:56, Chunyan Zhang wrote:
+> >>> Add basic support for Unisoc's UMS9620, with this patch,
+> >>> the board ums9620-2h10 can run into console.
+> >>>
+> >>
+> >> ...
+> >>
+> >>> +
+> >>> +     soc: soc {
+> >>
+> >> Are you sure you do not have here W=1 warnings?
 > >
-> > Changes since v1
-> > - fix duplicate names in subject
-> > - using RTC replace RTC controller
-> > - improve the properties of dt-bindings
-> > - using `unevaluatedProperties` replace `additionalProperties`
-> > - dt-bindings passed the test
-> > - using `devm_platform_ioremap_resource()` replace
-> >   `platform_get_resource()` and `devm_ioremap_resource()`
-> > - fix random order of the code
-> > - fix wrong wrapping of the `devm_request_irq()` and map the flag with =
-dts
-> > - using devm_clk_get_enabled replace `devm_clk_get()` and
-> >   `clk_prepare_enable()`
-> > - fix return style
-> > - add rtc clock calibration function
-> > - use spinlock when write register on read/set time
-> >
-> > Jingbao Qiu (3):
-> >   dt-bindings: rtc: sophgo: add RTC support for Sophgo CV1800 series So=
-C
-> >   rtc: sophgo: add rtc support for Sophgo CV1800 SoC
-> >   riscv: dts: sophgo: add rtc dt node for CV1800
+> > Do you mean warnings generated by running "make W=1"? I tried just now
+> > and didn't see warnings on this dts.
 >
-> AFAICT, the rtc subsystem supports not only RTC function but also
-> power/reboot controller, so modeling the rtc subsystem as RTC only doesn'=
-t
-> match the HW. I expect a mfd here.
->
+> No, I meant `dtbs_check W=1` or W=1 coming from dtc (dtbs).
 
-Thanks,I will improve it in the next version.
-
-Best regards,
-Jingbao Qiu
-
-
-> >
-> >  .../bindings/rtc/sophgo,cv1800-rtc.yaml       |  47 ++
-> >  arch/riscv/boot/dts/sophgo/cv1800b.dtsi       |   7 +
-> >  drivers/rtc/Kconfig                           |   6 +
-> >  drivers/rtc/Makefile                          |   1 +
-> >  drivers/rtc/rtc-cv1800.c                      | 400 ++++++++++++++++++
-> >  5 files changed, 461 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/rtc/sophgo,cv1800=
--rtc.yaml
-> >  create mode 100644 drivers/rtc/rtc-cv1800.c
-> >
-> > --
-> > 2.25.1
-> >
+Yes, I just run "make W=1 dtbs",  also have tried `dtbs_check W=1`,
+didn't see warnings on ums9620-2h10.dtb
 
