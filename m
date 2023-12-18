@@ -1,96 +1,158 @@
-Return-Path: <devicetree+bounces-26414-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26415-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16FD5816690
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 07:32:58 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 05424816699
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 07:40:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C629E282989
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 06:32:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8591E1F222BE
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 06:40:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E4946FBE;
-	Mon, 18 Dec 2023 06:32:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D55D6FC5;
+	Mon, 18 Dec 2023 06:40:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jLFpJnfe"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Zg85jWJx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58A456FA5;
-	Mon, 18 Dec 2023 06:32:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AF350C433C7;
-	Mon, 18 Dec 2023 06:32:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1702881171;
-	bh=P+FpMjf2mykyFNclosXhXZPRX1VsrQekgOEK3L9QqY0=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=jLFpJnfeluZNkdrcEvIArVja7yW1RA5z4DELGrRNmRUmceW90bJr5VXBUPF1jkZ9a
-	 fLEhfoCfr6mhZmhRagX12JOoQv8PVxRVj+W81QOwIw+LysPDoa+RSzUjYoNGTAsBev
-	 PeXPGAfzmsj754Pcel6qPSJx1DRiDHxufST2zv/iIJSmwSMazER26DXrWl/yd2iD5V
-	 S6pWel0GmDomrzVn0s99VcakbmLtriKgyPMssIAdkwA/fAYmMndvRqBWuR32qxkkCW
-	 B481tkcDwToqwBBy2f3dE2PPCpNrV+0uC7+O5LJkZqJ538btMyWJZUN2uEEY6VHWDz
-	 e34sRTdSfmHCg==
-Message-ID: <ed6a16e092feb62366d3ddbeb3cbbe64.sboyd@kernel.org>
-Content-Type: text/plain; charset="utf-8"
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 293CD6FA4
+	for <devicetree@vger.kernel.org>; Mon, 18 Dec 2023 06:40:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-553727eb67aso52229a12.0
+        for <devicetree@vger.kernel.org>; Sun, 17 Dec 2023 22:40:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1702881629; x=1703486429; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=bqYDPl1FjmmqN1FcDv7jAW96tqVYP1wpKD1pK0hMxlo=;
+        b=Zg85jWJxpJT7be69lhp5iUn1sFWTaOwuWFuJStqVvmg6vs5b0+GAwzHj/olVw0Z9Ng
+         VOQav1sGLpR5KAZCGMqvMySiagR3IV/d2g8EE0En2kbcsIvdhPlip8CaLjdbN+xsuScU
+         sJ9mw7Q3clXqosE4mIQjYeMsNlxv8i6+IffIr5k0VnvXCrXAkqoKKKGz7HPZwmHtWiXb
+         7hmI+zqIo+fmWXGtlzpqyrcKkB9qWb5/w+lMItKcUOX/Fc1FLkYg15/U9iCLlGFMvMJD
+         uGnuYuiyNBsMMBauufYeENu8qnO184kMbr6fybt9/bd45rMd5Y5IBUfM4z047GllKJYf
+         Vlhw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702881629; x=1703486429;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=bqYDPl1FjmmqN1FcDv7jAW96tqVYP1wpKD1pK0hMxlo=;
+        b=g5yk2JCJkVXHA71fLjXysNwJjoduY4/8apdwni5cBSa5UmIQyjOoqzwP08HzYHH0hf
+         hF+ta/nJjPVy0u1vRi5x/Yyjg7c/0Wlyaq/rhtjj+JP57tCOJGMqnty11EAQcIYW9cju
+         WcOFWhYpJhtTorb+HvIwb8FkAeo5K4TUSdOFhm27Wtcv7BIfI9P7twP2r+V7fUCZzr9p
+         H/wlRVvmj/LtTKAVEF6wqc9+Mk0b0OvSAms89ynluhn2QC1WaWAU8U+/nGQr0glKr4QE
+         x/th003jLcJTQF5ZpWspExvLhavDQ2Nnu1L9DLnvznVgAhuZVdjyWPy0SFNz1NCEDhFE
+         sGDQ==
+X-Gm-Message-State: AOJu0Ywe/6E8SvmoXYHn2uK6j10B8ye/4J/0uPduv29QvcQglz507vgL
+	abv4+6ovJkYFe7yXDiC/+U6/JA==
+X-Google-Smtp-Source: AGHT+IHWY0JCM5GIc276UNzIoo2myyWWwePp/M3aqDmTbJsUslMoEalVRxdCqpxNF7KYY0aHt20eqA==
+X-Received: by 2002:a17:906:52ce:b0:a23:59f3:5485 with SMTP id w14-20020a17090652ce00b00a2359f35485mr372732ejn.153.1702881628993;
+        Sun, 17 Dec 2023 22:40:28 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.218.27])
+        by smtp.gmail.com with ESMTPSA id cw15-20020a170907160f00b00a1937153bddsm13639931ejd.20.2023.12.17.22.40.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 17 Dec 2023 22:40:27 -0800 (PST)
+Message-ID: <e029c1d8-2172-4766-9d29-cbb8b4d0c0c8@linaro.org>
+Date: Mon, 18 Dec 2023 07:40:25 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20231124-alvin-clk-si5351-no-pll-reset-v6-3-69b82311cb90@bang-olufsen.dk>
-References: <20231124-alvin-clk-si5351-no-pll-reset-v6-0-69b82311cb90@bang-olufsen.dk> <20231124-alvin-clk-si5351-no-pll-reset-v6-3-69b82311cb90@bang-olufsen.dk>
-Subject: Re: [PATCH v6 3/3] clk: si5351: allow PLLs to be adjusted without reset
-From: Stephen Boyd <sboyd@kernel.org>
-Cc: Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, Rabeeh Khoury <rabeeh@solid-run.com>, Jacob Siverskog <jacob@teenage.engineering>, Sergej Sawazki <sergej@taudac.com>, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-To: Alvin =?utf-8?q?=C5=A0ipraga?= <alsi@bang-olufsen.dk>, Alvin =?utf-8?q?=C5=A0ipraga?= <alvin@pqrs.dk>, Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Michael Turquette <mturquette@baylibre.com>, Rob Herring <robh+dt@kernel.org>
-Date: Sun, 17 Dec 2023 22:32:49 -0800
-User-Agent: alot/0.10
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: w1: UART 1-wire bus
+To: Christoph Winklhofer <cj.winklhofer@gmail.com>, robh+dt@kernel.org,
+ conor+dt@kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20231217122004.42795-1-cj.winklhofer@gmail.com>
+ <20231217122004.42795-2-cj.winklhofer@gmail.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20231217122004.42795-2-cj.winklhofer@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Quoting Alvin =C5=A0ipraga (2023-11-24 05:17:44)
-> From: Alvin =C5=A0ipraga <alsi@bang-olufsen.dk>
->=20
-> Introduce a new PLL reset mode flag which controls whether or not to
-> reset a PLL after adjusting its rate. The mode can be configured through
-> platform data or device tree.
->=20
-> Since commit 6dc669a22c77 ("clk: si5351: Add PLL soft reset"), the
-> driver unconditionally resets a PLL whenever its rate is adjusted.
-> The rationale was that a PLL reset was required to get three outputs
-> working at the same time. Before this change, the driver never reset the
-> PLLs.
->=20
-> Commit b26ff127c52c ("clk: si5351: Apply PLL soft reset before enabling
-> the outputs") subsequently introduced an option to reset the PLL when
-> enabling a clock output that sourced it. Here, the rationale was that
-> this is required to get a deterministic phase relationship between
-> multiple output clocks.
->=20
-> This clearly shows that it is useful to reset the PLLs in applications
-> where multiple clock outputs are used. However, the Si5351 also allows
-> for glitch-free rate adjustment of its PLLs if one avoids resetting the
-> PLL. In our audio application where a single Si5351 clock output is used
-> to supply a runtime adjustable bit clock, this unconditional PLL reset
-> behaviour introduces unwanted glitches in the clock output.
->=20
-> It would appear that the problem being solved in the former commit
-> may be solved by using the optional device tree property introduced in
-> the latter commit, obviating the need for an unconditional PLL reset
-> after rate adjustment. But it's not OK to break the default behaviour of
-> the driver, and it cannot be assumed that all device trees are using the
-> property introduced in the latter commit. Hence, the new behaviour is
-> made opt-in.
->=20
-> Cc: Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>
-> Cc: Rabeeh Khoury <rabeeh@solid-run.com>
-> Cc: Jacob Siverskog <jacob@teenage.engineering>
-> Cc: Sergej Sawazki <sergej@taudac.com>
-> Signed-off-by: Alvin =C5=A0ipraga <alsi@bang-olufsen.dk>
-> Acked-by: Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>
+On 17/12/2023 13:20, Christoph Winklhofer wrote:
+> Add device tree binding for UART 1-wire bus driver.
+
+Bindings are for hardware, not drivers.
+
+> 
+> Signed-off-by: Christoph Winklhofer <cj.winklhofer@gmail.com>
 > ---
+>  .../devicetree/bindings/w1/w1-uart.yaml       | 27 +++++++++++++++++++
+>  1 file changed, 27 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/w1/w1-uart.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/w1/w1-uart.yaml b/Documentation/devicetree/bindings/w1/w1-uart.yaml
+> new file mode 100644
+> index 000000000000..1a4fbe1d7c60
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/w1/w1-uart.yaml
+> @@ -0,0 +1,27 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/w1/w1-uart.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: UART 1-Wire Bus
 
-Applied to clk-next
+There are no resources here, no hardware description. I would expect at
+least the latter.
+
+
+Best regards,
+Krzysztof
+
 
