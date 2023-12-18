@@ -1,151 +1,173 @@
-Return-Path: <devicetree+bounces-26391-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26392-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79200816565
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 04:33:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 106F0816570
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 04:42:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 34DED28256D
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 03:33:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BC5EF2825CD
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 03:42:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80FA73FF4;
-	Mon, 18 Dec 2023 03:33:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63F905398;
+	Mon, 18 Dec 2023 03:42:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Kuj3DL5X"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="DdpNuqiG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (mail-bn8nam11olkn2010.outbound.protection.outlook.com [40.92.20.10])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19371440A;
-	Mon, 18 Dec 2023 03:33:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 3BI2pK4A010523;
-	Mon, 18 Dec 2023 03:33:18 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=8QxqtTgZPkn+11BMXB8gGJCnSChYrUFsq+roZCMEQVg=; b=Ku
-	j3DL5XTdR4AarRSjvkOLKq0UI6ViSB/srmdUSYD9O2ulTJ8a39a0wr/PhxJy7i1/
-	pBBElLn+zRuThLuZ7TDmrpPfC9Z7ctGt5+QyjuwDiY+5YzNyqerZomvcNxpsaN4Q
-	n5okXOJ4ypvdJEgP+FJfhoYzFxEOx8VCfCH441IfkP21axISwM8NeIB0PM6dT1WT
-	C/37pyrPKeMpOwczUG99x6Kxg0Lwwha6J4HXKAcqmPFDE/iPCEUAWrX8qzuXJCsk
-	m4IugFm+J+5TaDgzVQntCWzFWPXbLgTG8MtD8+5/45VtCmvf0mt6nTZ3+nooAXMx
-	h6/HezHavRkltR+D+Ecg==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3v1536u7ad-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 18 Dec 2023 03:33:18 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3BI3XHeb005017
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 18 Dec 2023 03:33:17 GMT
-Received: from [10.253.9.247] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Sun, 17 Dec
- 2023 19:33:13 -0800
-Message-ID: <a604a08e-def6-427f-b33c-1e62e693bd96@quicinc.com>
-Date: Mon, 18 Dec 2023 11:33:10 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B53663AA;
+	Mon, 18 Dec 2023 03:42:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=PxQKMh+jrJ7FdJmELh6XFKIAuU20oG6V028L4KSK2fxXPk0U0mIh1clbuRSlC59vxkPSH8z9n9blLUsUgcBltb/hi+3z8Ewp8rttyPOmNnqQTnsHhwy/qTxrqCo9fYwKpumH0jV7MmiYScdbwfg1uj0Ceqcxtt5aB44fPFGmfa17RXewNjHDoiKIZQqffPTbKPhkEj8zIfUlPIa4VaeJ81ufTh+Dq0/OvFxxI83Aa8zx9WQFP7gy5RM/meWhncj7+nJglk/V8dNLpnosH00yPDFtHqkSFx5D/64IA9h/rDj3L+5JGZU518gHo1KSnUrZ3dhhykTMfCPfWGJrVX07Cw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=z7LcaDiwEE+5epWB0c3Ot+ju47zO+ahh1oFZKFI0vRY=;
+ b=S3Fh1Mpjv6EHGM0+scI6ddl3t1/vHDJI6flk0z+3/Ni8GkzB2tN7vkV/2SgjmCvsNoApIEi6Gk2s30QPjq68EkAsEMuHRK/2Kth1MYGdaG+gEB4kVxKrNox8MMdji6+d+Ym/qQReOoHVPSqv/pt5v+13hoh9H5PDN5EIoNuyMma14mxBLxVfzrUdq+3iB4uAkOAVodxgkCaylWK4INgiyxb3P32sJKvj+QQScZ/Ntr/2+mzjX2Ag3IquQZNL2MzB7elqn4ldDtODcP+JpSV42rOj+IPMgnRmcjAMMmyVBQ9SUeP6VPuYLUvH2BgxoKnRpJ0YfpRSnlcLLROHfvNgEg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=z7LcaDiwEE+5epWB0c3Ot+ju47zO+ahh1oFZKFI0vRY=;
+ b=DdpNuqiGQv7XAriiTcW1wuYTB3q3Gu7JiCFpCCq8wr+biGMGqj17ijtU+ZjWNs1cTFzh2DisMxcEuQHXyotRIrVbPBG3SR3z0LDRwLeRl4x8WoKSzoy+lzJe7melO2zsEOYWKDR2aIzWmTTZiTEsJbhAhHDhLzHCYePCh2/RAmRY4vtg3d80oktZriFusR1j3el2z3s7xcJjDs68VMJxrGgc9NFkIYDaj67uoRnfQPLjW3aIXYglRAstsIZu1jUOcO5r7/tH2i4mHVBFtiT9iI4Mt2RyByV5nCMt74MmnHWIY5THA9t+Sn+/gOc0TxgSHkXJZt6DAQLHZyIsGTy55Q==
+Received: from IA1PR20MB4953.namprd20.prod.outlook.com (2603:10b6:208:3af::19)
+ by SA0PR20MB3405.namprd20.prod.outlook.com (2603:10b6:806:70::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7091.37; Mon, 18 Dec
+ 2023 03:42:02 +0000
+Received: from IA1PR20MB4953.namprd20.prod.outlook.com
+ ([fe80::55b:c350:980:ad8]) by IA1PR20MB4953.namprd20.prod.outlook.com
+ ([fe80::55b:c350:980:ad8%6]) with mapi id 15.20.7091.034; Mon, 18 Dec 2023
+ 03:42:02 +0000
+From: Inochi Amaoto <inochiama@outlook.com>
+To: Conor Dooley <conor@kernel.org>,
+	jingbao qiu <qiujingbao.dlmu@gmail.com>
+Cc: Inochi Amaoto <inochiama@outlook.com>,
+	a.zummo@towertech.it,
+	alexandre.belloni@bootlin.com,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	chao.wei@sophgo.com,
+	unicorn_wang@outlook.com,
+	paul.walmsley@sifive.com,
+	palmer@dabbelt.com,
+	aou@eecs.berkeley.edu,
+	linux-rtc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	dlan@gentoo.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: rtc: sophgo: add RTC support for Sophgo CV1800 series SoC
+Date: Mon, 18 Dec 2023 11:41:52 +0800
+Message-ID:
+ <IA1PR20MB4953BE30DC29820912321C07BB90A@IA1PR20MB4953.namprd20.prod.outlook.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20231217-swept-uncorrupt-92ac058dba4b@spud>
+References: <20231217-swept-uncorrupt-92ac058dba4b@spud>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-TMN: [Jb0HqSOq7LgehUe6RPZqeIy4AFb9yMo8NjF6K/4uIqI=]
+X-ClientProxiedBy: TYCP286CA0337.JPNP286.PROD.OUTLOOK.COM
+ (2603:1096:400:38e::15) To IA1PR20MB4953.namprd20.prod.outlook.com
+ (2603:10b6:208:3af::19)
+X-Microsoft-Original-Message-ID:
+ <20231218034153.562704-1-inochiama@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 13/14] net: phy: at803x: configure qca8084 work mode
-Content-Language: en-US
-To: Simon Horman <horms@kernel.org>
-CC: <andrew@lunn.ch>, <davem@davemloft.net>, <edumazet@google.com>,
-        <kuba@kernel.org>, <pabeni@redhat.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <hkallweit1@gmail.com>, <linux@armlinux.org.uk>, <corbet@lwn.net>,
-        <p.zabel@pengutronix.de>, <f.fainelli@gmail.com>,
-        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>
-References: <20231215074005.26976-1-quic_luoj@quicinc.com>
- <20231215074005.26976-14-quic_luoj@quicinc.com>
- <20231217130221.GZ6288@kernel.org>
-From: Jie Luo <quic_luoj@quicinc.com>
-In-Reply-To: <20231217130221.GZ6288@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: o1Kxkwi4UZfHb-KHciI_c9Bzk4b3ICQz
-X-Proofpoint-ORIG-GUID: o1Kxkwi4UZfHb-KHciI_c9Bzk4b3ICQz
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-12-09_01,2023-12-07_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 mlxlogscore=894
- mlxscore=0 suspectscore=0 spamscore=0 impostorscore=0 phishscore=0
- priorityscore=1501 malwarescore=0 lowpriorityscore=0 clxscore=1015
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2311290000 definitions=main-2312180024
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: IA1PR20MB4953:EE_|SA0PR20MB3405:EE_
+X-MS-Office365-Filtering-Correlation-Id: f3b9b1ea-7334-4e1b-c79f-08dbff7b4b85
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	b7MuOhDQZ7qXeUGgl/GeRj6UUuSjORV27bXoWDO/Hb791U9yMDQTwcchUhYgeAoTisSeFibxnkjb/X7fEm8984EcBYNmaimE4aHioThnmNzloeUlYP05eCRpAKx91tN6fZdksjN66QJwnk3CrhZny3j5DMoVGp44ICZYz1UC1clAybyXD0nrJyKw1vIHqeP63D8vWqYdpJFvMLMHnhwqAEl6zWwIBfyPYu7SHgYf/5NRvT+5XcCG+kUySY39XFad3KtNyW4DYwzyM7ERYy/Tp7Am/J0tNy8Jfr0IQ8pixI8FRsVQcUd4evwHpOv6VRkoj38/NR9TZBoSK6nQkjQ3qtZeeszitguvqNUPU1xpKx2LFO9CGlVWX0SwfQpFtf7q9kSsHsSABsXJC9CtZlywVT/sqL2DjqDQeLCtNVrdWakaD8/Rv2HNMIEYkrq+voBvFDdDrF2ja4cTl9yxwlDq6doxAPPLJ7CPA4ez8Ayx9w7pxtPeforUvb2YAsrhWRM3X3ORRHBp4W259VZD0wv3Y54o8C+tvbzA89NGvT2zoU87y2z69jC2un93IgAWiufXYZn7swe3aKSOblMwTsveDG0VPEBHOikvy8jhwO1NS+c=
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?qw07aoooew7z6RDFsQhqlzGOKbRLtprYrHiXMdvKitO1mJU6n+IHAgUqXaEZ?=
+ =?us-ascii?Q?kAhioXPYXMp0c/At0C9zabzlsnkFvbCrOzKj/GlMe+p+gh9HOkT5cxsK5sXC?=
+ =?us-ascii?Q?8m8cLzYRattGMaiKa3aZCjx+w45ZwiUl+pUG5WiSIzXXoU3qVjKX01BcnoUL?=
+ =?us-ascii?Q?qbxqqHEt5oWDtVeNIm3vVCoXdownBasPpteEArBzKlsI2UxIQBB7fF9TtET6?=
+ =?us-ascii?Q?QnzSy+yfDEsB6jPqT53zYJ+j9XVGJ+3fQxZhploUefYIvYGfUrdVI+8Nbwxu?=
+ =?us-ascii?Q?xtH1herPb8s2OfqofORoHxHhUMcPiQDHSUa4vv1pkiD5V+etDNWbi6SCgYqh?=
+ =?us-ascii?Q?AeMBJ2THi7phvggD7zRWAEVRLyH8Ybmo8CNoBMo7oAxgw/2IGG4o8qif9tgQ?=
+ =?us-ascii?Q?WBPfQ8Uzax3BFYr+RvDWvs2eiQs5i70DacqcPVrApdOJ8rwBPU0+D0Z2EOIb?=
+ =?us-ascii?Q?78I+IBhlM2MoDoIEd8eqrQtibyvSW3OLfyLsGE82NwRcPJJ87deER7MwmTuU?=
+ =?us-ascii?Q?6jrU1x6othZAkKe8pA/729Sh2a61dT3cDUfawph18/Fd2n8xEj7OQudAjMoy?=
+ =?us-ascii?Q?4AI5CC8sAa5+6V0Ynles2/kMNhK6gQplL+SrliKeZqPJYYrMnZ8uDG6DS8Ec?=
+ =?us-ascii?Q?2B7aeaYgbV7w1zNECIuIMYwrBb/Jf5SUTmtIqYRWwerwzkZ064NpoPWlC90a?=
+ =?us-ascii?Q?FJj8ux4jFqrd4HBYEiHk8+o4lhfSy8j5LgynQd4/T/Sn62wGL9XLrkB9G15/?=
+ =?us-ascii?Q?tA1zm12GKWRYHyQGh9h5vwAY63t+GN2kroT+J5eIsjPhShKSjn/9XUVWSs/g?=
+ =?us-ascii?Q?HV7gQOLbQo+NkHoz+kSsYmsSN79oNVdwA5T2cdlzGWXhNCyFQyxs88DcUZ2E?=
+ =?us-ascii?Q?77a8LyNCgyccJv3dCSuWRPbgAOzeXVhU82yFW5flm2Lr52FYWZrw6Iy1HaA4?=
+ =?us-ascii?Q?D/NBe7TT4Splnpb6jqYPfe1oRPznRxQqC9jrFgCbCA47MKya4iVkJtVx5mZH?=
+ =?us-ascii?Q?wgEX3RS2sPdswjl5qsINROpKiOOQmK4H7WJTEJRP9NpU6C4XtuBLWEeGEKwY?=
+ =?us-ascii?Q?0QA8TBOZpvrCzypjUgw1ABhQhnpdXbY0VsD9rudcp3RBL3MTE4rRh/fsBmOU?=
+ =?us-ascii?Q?TlXbjYzz7gSZZDWF673Twk88K8O5iG1KR4cgfzl78ojOuSoY2WA8txFByY8r?=
+ =?us-ascii?Q?NSikcFMtxSQfQricXFDo3VbfAA0g77LMy+xEDR0ZIudw2yga+pAgjYYG5Fc?=
+ =?us-ascii?Q?=3D?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f3b9b1ea-7334-4e1b-c79f-08dbff7b4b85
+X-MS-Exchange-CrossTenant-AuthSource: IA1PR20MB4953.namprd20.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Dec 2023 03:42:02.0448
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR20MB3405
 
+>On Sun, Dec 17, 2023 at 09:16:39PM +0800, jingbao qiu wrote:
+>> On Sun, Dec 17, 2023 at 8:26=E2=80=AFPM Conor Dooley <conor@kernel.org> w=
+>rote:
+>> >
+>> > On Sun, Dec 17, 2023 at 07:09:50PM +0800, Jingbao Qiu wrote:
+>> >
+>> > > +  reg:
+>> > > +    items:
+>> > > +      - description: data register
+>> > > +      - description: control register
+>> >
+>> > > +    rtc@5025000{
+>> > > +      compatible =3D "sophgo,cv1800-rtc";
+>> > > +      reg =3D <0x5025000 0x1000>, <0x5026000 0x1000>;
+>> >
+>> > Why are these two regions rather than just one, given they are located
+>> > next to one another?
+>> > Are they separate on one of the other devices in this family?
+>> >
+>> > Thanks,
+>> > Conor.
+>> >
+>>=20
+>> I think there are two reasons, the first one is to distinguish
+>> different logical ,
+>> REG_ CTRL (base on 0x5025000) controls clock calibration, sleep,and other
+>> functions, RTC_ CORE (base on 0x5026000) has basic RTC functionality,
+>> The second is the maximum address used by RTC_CTRL (base on 0x5025000)
+>> is 0x0ac,which is much smaller than 0x1000. Therefore, the datasheet divi=
+>des
+>> it into two parts for introduction, and I also divide it into two
+>> parts based on this
+>> introduction.So do you suggest that I merge them together=EF=BC=9F
+>
+>If all of the cv1800 series devices have them sequentially, I would just
+>make them one region.
+>
 
+I agree with using one region. The ctrl and core region are highly
+releated.
 
-On 12/17/2023 9:02 PM, Simon Horman wrote:
-> On Fri, Dec 15, 2023 at 03:40:03PM +0800, Luo Jie wrote:
-> 
-> ...
-> 
->> @@ -1038,6 +1045,46 @@ static int qca8084_common_clock_init(struct phy_device *phydev)
->>   	return clk_prepare_enable(priv->clk[MDIO_MASTER_AHB_CLK]);
->>   }
->>   
->> +static int qca8084_parse_and_set_work_mode(struct phy_device *phydev)
->> +{
->> +	struct device_node *node;
->> +	struct at803x_priv *priv;
->> +	u32 value, work_mode;
->> +	int ret;
->> +
->> +	node = phydev->mdio.dev.of_node;
->> +	priv = phydev->priv;
-> 
-> Hi Luo Jie,
-> 
-> a minor nit from my side: priv is set but otherwise unused in this function.
-
-Thanks Simon, i will update it to remove it.
-
-> 
->> +
->> +	/* The property "qcom,phy-work-mode" is only defined in one
->> +	 * PHY device tree node.
->> +	 */
->> +	ret = of_property_read_u32(node, "qcom,phy-work-mode", &value);
->> +	if (ret)
->> +		return ret == -EINVAL ? 0 : ret;
->> +
->> +	switch (value) {
->> +	case 0:
->> +		work_mode = QCA8084_WORK_MODE_QXGMII;
->> +		break;
->> +	case 1:
->> +		work_mode = QCA8084_WORK_MODE_QXGMII_PORT4_SGMII;
->> +		break;
->> +	case 2:
->> +		work_mode = QCA8084_WORK_MODE_SWITCH;
->> +		break;
->> +	case 3:
->> +		work_mode = QCA8084_WORK_MODE_SWITCH_PORT4_SGMII;
->> +		break;
->> +	default:
->> +		phydev_err(phydev, "invalid qcom,phy-work-mode %d\n", value);
->> +		return -EINVAL;
->> +	}
->> +
->> +	return qca8084_mii_modify(phydev, QCA8084_WORK_MODE_CFG,
->> +				  QCA8084_WORK_MODE_MASK,
->> +				  FIELD_PREP(QCA8084_WORK_MODE_MASK, work_mode));
->> +}
-> 
-> ...
+Moreover, I suggest using syscon to describe this region, the reboot
+device is also in this region.
 
