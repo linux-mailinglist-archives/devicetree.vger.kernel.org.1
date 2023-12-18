@@ -1,97 +1,103 @@
-Return-Path: <devicetree+bounces-26385-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26386-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60CA0816455
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 03:32:18 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E056B816458
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 03:36:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A8B1328281D
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 02:32:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 182391C20DCF
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 02:36:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0286680B;
-	Mon, 18 Dec 2023 02:32:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39A2F23C2;
+	Mon, 18 Dec 2023 02:36:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WrncG6P/"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="oeytA5DB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f48.google.com (mail-ot1-f48.google.com [209.85.210.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEA083C0D;
-	Mon, 18 Dec 2023 02:32:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ot1-f48.google.com with SMTP id 46e09a7af769-6da5250357fso2011402a34.2;
-        Sun, 17 Dec 2023 18:32:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1702866730; x=1703471530; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=7iDfR9gqFIKBbwdorWXDs6zFQNPE6rkq2OxXyUMYp7M=;
-        b=WrncG6P/Rest1mGeNd4zZtfe99ZDu1ot77FuOxU8rKR8Ho3gFlFO+8oixILet+SPRO
-         KmPAX6ZiI4DmpxJXSzyNmI+RL7YwLgOMmyDMSrnkiXCGpn3bvWrXOdocAu0+9nSBzb73
-         Vdd+UaA7ZF1/BKvliPYDb12E8M+XJfvJeilCaHcbcasl59Ezoco+xbYenOEfIsCAYu9M
-         ES7DNR1/nqM+AZLo8qQK0Bn00CjGz10p05u9KSYe88ZsJci48ZyxLN8cyeGpX0wUR4UM
-         Fig36NjmFsH3PuL4Y36uOc/JxhtYTq714UYjgH5PVj5EXx7tKfYTB+i3ztq/ci0SBPKO
-         AlHQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702866730; x=1703471530;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=7iDfR9gqFIKBbwdorWXDs6zFQNPE6rkq2OxXyUMYp7M=;
-        b=HnkxBLCkJm5g7zUT+ONoCr0sOUgx42e7CdSJmRE2BwxChDN58nOsqxr71NbhjoR4w7
-         sGCDWJWkGeiiI3ga+YUt5JmHamMSDipzZGOCWryq1kxUa9odLP0KXHcYUKd5/Wra2ErB
-         mLhMzwkHnEufUE/qIynqYpWidz/O2nTjZUdV+AOpFhYExVAbz2W746Ei9P8oGW4eOMCf
-         lRvbN63ilixtBT3A0BFQeW18I/rUsK7lS3i05lQv+0f/Eso76SP+dVhOUjiUICvM+V4F
-         ixDIPHc/6HKvNTGwX2pMDfziQ+CuhHzhodcTrGVKu9PuWEmBi2Z27dlwPjNc1+q9HndS
-         kDng==
-X-Gm-Message-State: AOJu0YzaFMJl86m+pnAR7JKaYbLKdIKD/ED8kiAEr10uD1PBGsxNxb4i
-	E/5u0+4AWCYziMmq4z4Gov/0Xpds7e8L6e6wPss=
-X-Google-Smtp-Source: AGHT+IG5XXaO//tvIR0OZSVEnw/470w5MK5XqgQhMl5oKfv07MK3HF1Zmh0u+AwTIrnDSA3v9WKJcQBK94g6Am/kMMk=
-X-Received: by 2002:a05:6870:c18c:b0:203:56b9:7eba with SMTP id
- h12-20020a056870c18c00b0020356b97ebamr7866919oad.36.1702866730099; Sun, 17
- Dec 2023 18:32:10 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5154580B
+	for <devicetree@vger.kernel.org>; Mon, 18 Dec 2023 02:36:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 8B949D4A;
+	Mon, 18 Dec 2023 03:36:00 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1702866960;
+	bh=YPAckEBh+UtrsRq0bMrNFh1hjjNvHYAydGDRzbdUjYY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=oeytA5DBvo/zVvbH4ouv3SkLgYbn2QZXrMlQ4dRc/r+8p2cJAiRddvt1YB0KDVx+R
+	 ibSpbduGPuGtN5cOdI6Ald3jMje7zDDrXTM5m5fJEpCTHABhFi7QtKWhoZjJWKF83x
+	 htkLGRsWoCeknWkcF5CeG7K4tW8gk6iIVMKv5GY4=
+Date: Mon, 18 Dec 2023 04:36:55 +0200
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Fabio Estevam <festevam@gmail.com>
+Cc: Adam Ford <aford173@gmail.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Jonas Karlman <jonas@kwiboo.se>, Liu Ying <victor.liu@nxp.com>,
+	Sandor Yu <sandor.yu@nxp.com>, dri-devel@lists.freedesktop.org,
+	NXP Linux Team <linux-imx@nxp.com>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	patchwork-lst@pengutronix.de, devicetree@vger.kernel.org,
+	Rob Herring <robh+dt@kernel.org>,
+	Frieder Schrempf <frieder.schrempf@kontron.de>,
+	Andrzej Hajda <andrzej.hajda@intel.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v3 2/2] drm/bridge: imx: add driver for HDMI TX Parallel
+ Video Interface
+Message-ID: <20231218023655.GG5290@pendragon.ideasonboard.com>
+References: <20230920171009.3193296-1-l.stach@pengutronix.de>
+ <20230920171009.3193296-2-l.stach@pengutronix.de>
+ <20230920205736.GB7723@pendragon.ideasonboard.com>
+ <CAHCN7xJz=rEH_8wHaBCVOUzP0kO6cM_c=zLf6ocjW8bt1FaCBw@mail.gmail.com>
+ <CAOMZO5C7_Rj-Ja0BO0D0Po+gy+XbvyMdQf-wH5YNyhAdMof2vg@mail.gmail.com>
+ <20231215142308.GL21146@pendragon.ideasonboard.com>
+ <CAHCN7xJPg_Nk=o9fKwkZfVTNSB-YL0m7vY6p1O7+i=PHShp7hg@mail.gmail.com>
+ <CAOMZO5AGAkPpds=5H-iQj53djcQtW5GsRQrzdC_JOOrcENhvvw@mail.gmail.com>
+ <CAHCN7xLHMGcS2-QTneqqpHYU66JwuEG4TyR0j0riFGqO6RC8ug@mail.gmail.com>
+ <CAOMZO5B2bWVciDEwSh+YQWu6b_Hp5ijk6Jq-bMePPTDRJ-vHFA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231215085630.984892-1-chunyan.zhang@unisoc.com>
- <20231215085630.984892-5-chunyan.zhang@unisoc.com> <fd927698-6aa3-4a6b-988c-fc82663235ca@linaro.org>
-In-Reply-To: <fd927698-6aa3-4a6b-988c-fc82663235ca@linaro.org>
-From: Chunyan Zhang <zhang.lyra@gmail.com>
-Date: Mon, 18 Dec 2023 10:31:33 +0800
-Message-ID: <CAAfSe-tTvxLCAdSCCgEw8HMFaVVfOytoowY_Fb2F0H-vo+cCmA@mail.gmail.com>
-Subject: Re: [PATCH 4/4] arm64: dts: sprd: Add support for Unisoc's UMS9620
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Chunyan Zhang <chunyan.zhang@unisoc.com>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Lee Jones <lee@kernel.org>, devicetree@vger.kernel.org, linux-serial@vger.kernel.org, 
-	Baolin Wang <baolin.wang@linux.alibaba.com>, Orson Zhai <orsonzhai@gmail.com>, 
-	LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAOMZO5B2bWVciDEwSh+YQWu6b_Hp5ijk6Jq-bMePPTDRJ-vHFA@mail.gmail.com>
 
-On Fri, 15 Dec 2023 at 18:36, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 15/12/2023 09:56, Chunyan Zhang wrote:
-> > Add basic support for Unisoc's UMS9620, with this patch,
-> > the board ums9620-2h10 can run into console.
-> >
->
-> ...
->
-> > +
-> > +     soc: soc {
->
-> Are you sure you do not have here W=1 warnings?
+On Fri, Dec 15, 2023 at 05:09:41PM -0300, Fabio Estevam wrote:
+> On Fri, Dec 15, 2023 at 4:01 PM Adam Ford <aford173@gmail.com> wrote:
+> 
+> > Thanks for the list.  I was able to successfully build the stable 6.6
+> > branch with those patches applied and I have the HDMI working.
+> > Unfortunately, I get build errors on the linux-next, so it's going to
+> > take me a little time to sort through all of this.
+> 
+> If you need help to figure this problem out, please let me know.
+> 
+> I haven't tried it against linux-next.
+> 
+> > I am thinking that it would be better to consolidate all these
+> > together into one series instead of piecemealing it.  However, there
+> > are some items that can be submitted right away without significantly
+> > reworking them against linux-next.  Do people have a preference?
+> 
+> I think it makes sense to re-submit the "easy ones" right away.
 
-Do you mean warnings generated by running "make W=1"? I tried just now
-and didn't see warnings on this dts.
+Agreed. The more we can merge quickly, the easier it will become to
+rebase and upstream the rest.
 
-Thanks,
-Chunyan
+-- 
+Regards,
+
+Laurent Pinchart
 
