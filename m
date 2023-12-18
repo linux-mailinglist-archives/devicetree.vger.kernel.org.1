@@ -1,111 +1,157 @@
-Return-Path: <devicetree+bounces-26551-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26552-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8CC20816DFC
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 13:37:55 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 004E2816E1C
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 13:43:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B1F2E1C22EA6
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 12:37:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 71DF6284940
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 12:43:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CE2C7D5FE;
-	Mon, 18 Dec 2023 12:37:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DE037EFB3;
+	Mon, 18 Dec 2023 12:42:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="d+WsUw26"
+	dkim=pass (2048-bit key) header.d=savoirfairelinux.com header.i=@savoirfairelinux.com header.b="UI24YBub"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.savoirfairelinux.com (mail.savoirfairelinux.com [208.88.110.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB2E5199B2;
-	Mon, 18 Dec 2023 12:37:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-54c70c70952so3583674a12.3;
-        Mon, 18 Dec 2023 04:37:50 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5B657E579;
+	Mon, 18 Dec 2023 12:42:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=savoirfairelinux.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=savoirfairelinux.com
+Received: from localhost (localhost [127.0.0.1])
+	by mail.savoirfairelinux.com (Postfix) with ESMTP id C33D39C3645;
+	Mon, 18 Dec 2023 07:42:38 -0500 (EST)
+Received: from mail.savoirfairelinux.com ([127.0.0.1])
+ by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10032)
+ with ESMTP id Kh6SC-Fsoi_x; Mon, 18 Dec 2023 07:42:38 -0500 (EST)
+Received: from localhost (localhost [127.0.0.1])
+	by mail.savoirfairelinux.com (Postfix) with ESMTP id 5E1DE9C3F1C;
+	Mon, 18 Dec 2023 07:42:38 -0500 (EST)
+DKIM-Filter: OpenDKIM Filter v2.10.3 mail.savoirfairelinux.com 5E1DE9C3F1C
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1702903069; x=1703507869; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=4T70cxyfYBrIT00YJPhgzlaa8IjVEwywR+fjzgz6hnA=;
-        b=d+WsUw26xqkHKaiBguVwyakO18u4pNIyivaUn4vPAkTgnV3VHrU/TzZkhhLXKryz5B
-         QKA62sKxk8ybWtFJsoivwGoKCGuqpIxFqF/t20BfQTpzSD4qXisPMSmVYfOTffEzyV5/
-         2WcfKSdjCS2EeImOc+BvnuwymaPF534SN1UjrfDLdQNz8flWV6J0AKn3kvbCvkkYqOxj
-         yvs6aRAg+qPcF3AXZz1LBoKsDZIAjftM0Clh9K0Gdj54UoCeB9wm+mIkWBxg6oi7qDyQ
-         CEtov8gE/TT2FMUKMFpFJmDSORmUYRzhWf6BjszseDQ8aV0oYxZzSPFomec08Q6UM3kv
-         L7Dg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702903069; x=1703507869;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=4T70cxyfYBrIT00YJPhgzlaa8IjVEwywR+fjzgz6hnA=;
-        b=uzLYtHW2rGrINSXilYRawfNVG5X4yZ6DGO7F3/MiSHYeNlI92PGLAXumimgFATluza
-         fgjY157hJKjg7YYa0sjOBN6ijnTO37zDNbn1AX/VYXBgXRiPbh2ZJztJovhv0562axRj
-         w/am0QlRgqEGqrrEgjRGVULtAlW/K6NMudu/FqgT/x3QS8x+3HQyinENVD8pilPQTpfn
-         DoMclCMyPZbN/5P1s5zI8IIer4PhTA2Tvi3K5pRo1ggQVD2HS08td0NpI2j7ep0Xlo2C
-         8ZDkZDstv248rIcBdDFzg1K9aV6NPrx8yKxHHf9c8y216paZ+YQH8iHAXvsvCilSIr0D
-         jZkg==
-X-Gm-Message-State: AOJu0Yyvot2WmGUX2mx0tIzPH/Z6rNjlO2hFSAGnxxkOkwtG60Y2H3kE
-	r+rrYrApB5WXxM2XyE3orw==
-X-Google-Smtp-Source: AGHT+IEl9hnKaHmsyOpOJuG4izfnlVs83sWcBIPusYmmVQwjw+L77gL9w/VRBPAhCbzD46onZKa2pQ==
-X-Received: by 2002:a50:c346:0:b0:553:7898:e6ac with SMTP id q6-20020a50c346000000b005537898e6acmr137799edb.126.1702903068671;
-        Mon, 18 Dec 2023 04:37:48 -0800 (PST)
-Received: from ?IPV6:2a02:810b:f40:4300:4847:f8df:b40e:3aa8? ([2a02:810b:f40:4300:4847:f8df:b40e:3aa8])
-        by smtp.gmail.com with ESMTPSA id dh6-20020a0564021d2600b0055338547cc1sm1409895edb.70.2023.12.18.04.37.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 18 Dec 2023 04:37:48 -0800 (PST)
-Message-ID: <c58b97ca-3faa-4bf2-8d7c-7ff34e0428ca@gmail.com>
-Date: Mon, 18 Dec 2023 13:37:47 +0100
+	d=savoirfairelinux.com; s=DFC430D2-D198-11EC-948E-34200CB392D2;
+	t=1702903358; bh=u9QYi3UK49RvCOM0jwOPRvXLix0O7m+OZA9DnyWKw9g=;
+	h=From:To:Date:Message-Id:MIME-Version;
+	b=UI24YBubofICoggQzbeSMr0uvYktWGel5+4Si71HbI0s+U5MBrINJ2tp2Hi7vqSkl
+	 I1BFb5hTeBLJ88Fo8styxXAPVU9AhKmd/f4TkYi9YhKhZTWTl7EduBAIzz3S8P9g9h
+	 mjircdeZiQHZfh9snTFR1UYorBV+m1BjQiImgBAvYkJhfV7Sp20s7cI0+zWtAzDiHF
+	 tERB0EBuABQFKX0H14ik9js1nqPMtxg1T3DnB39BQA2GCnxFu3pfkihpiu9K1OcjQE
+	 pCkF77NBkuyWX9chk7MEokrAD0wq8UdgFN7TKdPo0+hhVQ+f8sz2WOxfCVdvU9OLax
+	 BXiMzq2pjziUQ==
+X-Virus-Scanned: amavis at mail.savoirfairelinux.com
+Received: from mail.savoirfairelinux.com ([127.0.0.1])
+ by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10026)
+ with ESMTP id wzya-KG1c6eG; Mon, 18 Dec 2023 07:42:38 -0500 (EST)
+Received: from gerard.rennes.sfl (unknown [192.168.216.3])
+	by mail.savoirfairelinux.com (Postfix) with ESMTPSA id 5B84E9C3645;
+	Mon, 18 Dec 2023 07:42:36 -0500 (EST)
+From: Elinor Montmasson <elinor.montmasson@savoirfairelinux.com>
+To: Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shengjiu Wang <shengjiu.wang@gmail.com>,
+	Xiubo Li <Xiubo.Lee@gmail.com>,
+	Fabio Estevam <festevam@gmail.com>,
+	Nicolin Chen <nicoleotsuka@gmail.com>,
+	Jaroslav Kysela <perex@perex.cz>,
+	Takashi Iwai <tiwai@suse.com>
+Cc: linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	alsa-devel@alsa-project.org,
+	linuxppc-dev@lists.ozlabs.org,
+	Elinor Montmasson <elinor.montmasson@savoirfairelinux.com>,
+	Philip-Dylan <philip-dylan.gleonec@savoirfairelinux.com>
+Subject: [PATCHv3 RESEND 01/10] ASoC: fsl-asoc-card: add support for dai links with multiple codecs
+Date: Mon, 18 Dec 2023 13:40:49 +0100
+Message-Id: <20231218124058.2047167-2-elinor.montmasson@savoirfairelinux.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20231218124058.2047167-1-elinor.montmasson@savoirfairelinux.com>
+References: <20231218124058.2047167-1-elinor.montmasson@savoirfairelinux.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 20/27] drm/rockchip: inno_hdmi: Correctly setup HDMI
- quantization range
-Content-Language: en-US, de-DE
-To: Maxime Ripard <mripard@kernel.org>
-Cc: Sandy Huang <hjc@rock-chips.com>, =?UTF-8?Q?Heiko_St=C3=BCbner?=
- <heiko@sntech.de>, Andy Yan <andyshrk@163.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20231216162639.125215-1-knaerzche@gmail.com>
- <20231216162639.125215-21-knaerzche@gmail.com>
- <rrtknir3vizvcyamp3kfy47r6uppn3wwevb6a5gln2k533t52z@otm6vum6pg43>
-From: Alex Bee <knaerzche@gmail.com>
-In-Reply-To: <rrtknir3vizvcyamp3kfy47r6uppn3wwevb6a5gln2k533t52z@otm6vum6pg43>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
 
+Add support for dai links using multiple codecs for multi-codec
+use cases.
 
-Am 18.12.23 um 10:05 schrieb Maxime Ripard:
-> On Sat, Dec 16, 2023 at 05:26:31PM +0100, Alex Bee wrote:
->> @@ -431,6 +452,9 @@ static int inno_hdmi_setup(struct inno_hdmi *hdmi,
->>   	else
->>   		inno_conn_state->colorimetry = HDMI_COLORIMETRY_ITU_709;
->>   
->> +	inno_conn_state->rgb_limited_range =
->> +		drm_default_rgb_quant_range(mode) == HDMI_QUANTIZATION_RANGE_LIMITED;
->> +
->>   	/* Mute video and audio output */
->>   	hdmi_modb(hdmi, HDMI_AV_MUTE, m_AUDIO_MUTE | m_VIDEO_BLACK,
->>   		  v_AUDIO_MUTE(1) | v_VIDEO_MUTE(1));
-> This needs to be done at atomic_check time: the expectation is that by
-> the time you commit the state, everything is prepared for it.
-OK. I guess that also applies to the other members of
-inno_hdmi_connector_state (former hdmi_data) and was wrong all the time.
+Signed-off-by: Elinor Montmasson <elinor.montmasson@savoirfairelinux.com>
+Co-authored-by: Philip-Dylan Gleonec <philip-dylan.gleonec@savoirfairelin=
+ux.com>
+---
+ sound/soc/fsl/fsl-asoc-card.c | 22 ++++++++++++++--------
+ 1 file changed, 14 insertions(+), 8 deletions(-)
 
-Alex
-> Maxime
+diff --git a/sound/soc/fsl/fsl-asoc-card.c b/sound/soc/fsl/fsl-asoc-card.=
+c
+index 7518ab9d768e..cde31fd38262 100644
+--- a/sound/soc/fsl/fsl-asoc-card.c
++++ b/sound/soc/fsl/fsl-asoc-card.c
+@@ -809,10 +809,10 @@ static int fsl_asoc_card_probe(struct platform_devi=
+ce *pdev)
+=20
+ 	/* Normal DAI Link */
+ 	priv->dai_link[0].cpus->of_node =3D cpu_np;
+-	priv->dai_link[0].codecs->dai_name =3D codec_dai_name;
++	priv->dai_link[0].codecs[0].dai_name =3D codec_dai_name;
+=20
+ 	if (!fsl_asoc_card_is_ac97(priv))
+-		priv->dai_link[0].codecs->of_node =3D codec_np;
++		priv->dai_link[0].codecs[0].of_node =3D codec_np;
+ 	else {
+ 		u32 idx;
+=20
+@@ -823,11 +823,11 @@ static int fsl_asoc_card_probe(struct platform_devi=
+ce *pdev)
+ 			goto asrc_fail;
+ 		}
+=20
+-		priv->dai_link[0].codecs->name =3D
++		priv->dai_link[0].codecs[0].name =3D
+ 				devm_kasprintf(&pdev->dev, GFP_KERNEL,
+ 					       "ac97-codec.%u",
+ 					       (unsigned int)idx);
+-		if (!priv->dai_link[0].codecs->name) {
++		if (!priv->dai_link[0].codecs[0].name) {
+ 			ret =3D -ENOMEM;
+ 			goto asrc_fail;
+ 		}
+@@ -838,13 +838,19 @@ static int fsl_asoc_card_probe(struct platform_devi=
+ce *pdev)
+ 	priv->card.num_links =3D 1;
+=20
+ 	if (asrc_pdev) {
++		int i;
++		struct snd_soc_dai_link_component *codec;
++		struct snd_soc_dai_link *link;
++
+ 		/* DPCM DAI Links only if ASRC exists */
+ 		priv->dai_link[1].cpus->of_node =3D asrc_np;
+ 		priv->dai_link[1].platforms->of_node =3D asrc_np;
+-		priv->dai_link[2].codecs->dai_name =3D codec_dai_name;
+-		priv->dai_link[2].codecs->of_node =3D codec_np;
+-		priv->dai_link[2].codecs->name =3D
+-				priv->dai_link[0].codecs->name;
++		link =3D &(priv->dai_link[2]);
++		for_each_link_codecs(link, i, codec) {
++			codec->dai_name =3D priv->dai_link[0].codecs[i].dai_name;
++			codec->of_node =3D priv->dai_link[0].codecs[i].of_node;
++			codec->name =3D priv->dai_link[0].codecs[i].name;
++		}
+ 		priv->dai_link[2].cpus->of_node =3D cpu_np;
+ 		priv->dai_link[2].dai_fmt =3D priv->dai_fmt;
+ 		priv->card.num_links =3D 3;
+--=20
+2.25.1
+
 
