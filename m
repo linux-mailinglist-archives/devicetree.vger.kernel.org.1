@@ -1,169 +1,182 @@
-Return-Path: <devicetree+bounces-26521-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26522-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDC6E816BF0
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 12:08:36 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 943C2816C05
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 12:17:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D00DD1C230A4
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 11:08:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2844E1F23440
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 11:17:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A8E21C290;
-	Mon, 18 Dec 2023 11:07:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A51718E2D;
+	Mon, 18 Dec 2023 11:17:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gaNksvEp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="O+QCe0tq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE31C1B28E;
-	Mon, 18 Dec 2023 11:07:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-a236ade46e7so6125266b.2;
-        Mon, 18 Dec 2023 03:07:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1702897631; x=1703502431; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=lerjiFsv40IIbLDp1yKfCOrHgxz1kvFlDa/xJlfcdo0=;
-        b=gaNksvEpnyqzbghpic1iMVz7pOQ3JyxURSYeA14gLobNA5tkvFMTt9VVuImOTBiy/n
-         GOXy9AyAjaTGq7tPJTdrdwth3IsKIQ21xqVK51ThPJsgaUcPrqOV9gXaRkW3jJTViA3L
-         BPWc3KwqtLMxUK9ZvW4iFjdAxMKZde07l4b41bGTEiHSzD63DpJy2rea3YPzpp9inuxs
-         lE+tnnWumNGgVN7Xk5hBIcRQm/nFDXPQRHzYQpZ0pQ6oiDoTalngD5kKnkw8LJjp5I9S
-         f/d9baHWv484rPLyKmPN1FfB2Ud/2Z2Ewscnu98Z7nJNjFtAlxWPEGVyXoEmrf/V3Im6
-         FVqQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702897631; x=1703502431;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=lerjiFsv40IIbLDp1yKfCOrHgxz1kvFlDa/xJlfcdo0=;
-        b=aUV5MVaTBC4WpmvcsE3hyeRJbepx5HVZomaQMjMTRur5F85lrNHxRDnY7cZIrlRBOr
-         ZVGZX1R4jPRu21bWh1fRlY7JHrVk5UXDNVNuYAVPNXCfbVZ2uZ0p7UK+9xbhud0Fczqy
-         mAvxv9Uu5h9y/xJo0GVQTu8aTC1cL+F0RKx+6WngvIZwbDCHytp8auIBjVrFAhGJLZOu
-         A1WcFG8u40QRIGBL76IjdO7Kl4NeSWXPofJyrhItWLJ/GGDBEIH5WkdyWDA8PWWVclCA
-         zuTIsxSEXT2Z+LtIZY/MjJvCuyGePZKanbvbXIiJWL9Eq4xz6QYWYwsPwZxjbj+ARX/b
-         Tkag==
-X-Gm-Message-State: AOJu0YyJZYMxoG8WoR82b07p1VW7ys/gBvIkfblYQKl2H8c8k+0qQJvX
-	VeSxl3VfaM8GiP37mVXQw0w=
-X-Google-Smtp-Source: AGHT+IGQMtd6fso8NFusjQjFPqt6Spt8yZ8CBjuG18cqbhcpV/I/x5LWeBsLrRHnA3YL1WPAg7whNQ==
-X-Received: by 2002:a17:906:11cd:b0:a23:365d:fc74 with SMTP id o13-20020a17090611cd00b00a23365dfc74mr870108eja.125.1702897630746;
-        Mon, 18 Dec 2023 03:07:10 -0800 (PST)
-Received: from localhost.localdomain ([154.72.163.164])
-        by smtp.gmail.com with ESMTPSA id pj4-20020a170906d78400b00a2353af1f7bsm1406769ejb.92.2023.12.18.03.07.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 18 Dec 2023 03:07:10 -0800 (PST)
-From: Brandon Cheo Fusi <fusibrandon13@gmail.com>
-To: Yangtao Li <tiny.windzz@gmail.com>,
-	Viresh Kumar <vireshk@kernel.org>,
-	Nishanth Menon <nm@ti.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	"Rafael J . Wysocki" <rafael@kernel.org>,
-	Maxime Ripard <mripard@kernel.org>
-Cc: linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-sunxi@lists.linux.dev,
-	linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	Brandon Cheo Fusi <fusibrandon13@gmail.com>
-Subject: [PATCH v2 5/5] cpufreq: Make sun50i h6 cpufreq Kconfig option arch generic
-Date: Mon, 18 Dec 2023 12:05:43 +0100
-Message-Id: <20231218110543.64044-6-fusibrandon13@gmail.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20231218110543.64044-1-fusibrandon13@gmail.com>
-References: <20231218110543.64044-1-fusibrandon13@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E05BF19447;
+	Mon, 18 Dec 2023 11:17:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 886C4C433C8;
+	Mon, 18 Dec 2023 11:17:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1702898240;
+	bh=jhT+AlpmCfyK9JZxXxSNykpbsTEk5+SjdjTlfBVIDyc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=O+QCe0tqd2vCDzVikw7J9kmofQTYq3GGZXkDl0HrxHbP1Csw36LyitHS1Fl3/fn4f
+	 X5BlFoR5vj6mSuaRKiIFqYBaHds9gAO0Y0KwFHSUDWtN1BmbV70TSciYR4o8q7p9Nu
+	 IPrsqG2MlzFfWaqSuRZjdheUCQu18z8ek6PjY7tX9LvBlb9vDKajJCWsUEEJ0H7SSl
+	 /M3CaAd/COStCa5jev190of+EqNRFOJDciB+Qz3/mEC7YSTF1wraxrvY+pJc+n6FPn
+	 ipb0gXtTglGe5lIfg2DW62WORWLnqgbxlcS8m/SA72azZfkd6AJEqjFeCQCB7FSh1U
+	 7LMWLxFyMB0ig==
+Date: Mon, 18 Dec 2023 11:17:16 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Joshua Yeong <joshua.yeong@starfivetech.com>
+Cc: jeeheng.sia@starfivetech.com, leyfoon.tan@starfivetech.com,
+	jassisinghbrar@gmail.com, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/3] dt-bindings: mailbox: starfive: Add StarFive Meu
+ Mailbox Driver
+Message-ID: <20231218-pawing-unripe-e45ad62ff8c7@spud>
+References: <20231218061201.98136-1-joshua.yeong@starfivetech.com>
+ <20231218061201.98136-3-joshua.yeong@starfivetech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="aQrXQ+3ue3EP+Cq/"
+Content-Disposition: inline
+In-Reply-To: <20231218061201.98136-3-joshua.yeong@starfivetech.com>
 
-Move the Allwinner SUN50I cpufreq driver from Kconfig.arm to the
-main Kconfig file so it supports other architectures, like RISC-V
-in our case, and drop the 'ARM_' prefix.
 
-Signed-off-by: Brandon Cheo Fusi <fusibrandon13@gmail.com>
----
- drivers/cpufreq/Kconfig     | 12 ++++++++++++
- drivers/cpufreq/Kconfig.arm | 12 ------------
- drivers/cpufreq/Makefile    |  2 +-
- 3 files changed, 13 insertions(+), 13 deletions(-)
+--aQrXQ+3ue3EP+Cq/
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/drivers/cpufreq/Kconfig b/drivers/cpufreq/Kconfig
-index 35efb53d5..50aa66cfc 100644
---- a/drivers/cpufreq/Kconfig
-+++ b/drivers/cpufreq/Kconfig
-@@ -301,5 +301,17 @@ config QORIQ_CPUFREQ
- 	  This adds the CPUFreq driver support for Freescale QorIQ SoCs
- 	  which are capable of changing the CPU's frequency dynamically.
- 
-+config ALLWINNER_SUN50I_CPUFREQ_NVMEM
-+	tristate "Allwinner nvmem based SUN50I CPUFreq driver"
-+	depends on ARCH_SUNXI
-+	depends on NVMEM_SUNXI_SID
-+	select PM_OPP
-+	help
-+	  This adds the nvmem based CPUFreq driver for Allwinner
-+	  h6/D1 SoCs.
-+
-+	  To compile this driver as a module, choose M here: the
-+	  module will be called sun50i-cpufreq-nvmem.
-+
- endif
- endmenu
-diff --git a/drivers/cpufreq/Kconfig.arm b/drivers/cpufreq/Kconfig.arm
-index f91160689..98b8e6eef 100644
---- a/drivers/cpufreq/Kconfig.arm
-+++ b/drivers/cpufreq/Kconfig.arm
-@@ -29,18 +29,6 @@ config ACPI_CPPC_CPUFREQ_FIE
- 
- 	  If in doubt, say N.
- 
--config ARM_ALLWINNER_SUN50I_CPUFREQ_NVMEM
--	tristate "Allwinner nvmem based SUN50I CPUFreq driver"
--	depends on ARCH_SUNXI
--	depends on NVMEM_SUNXI_SID
--	select PM_OPP
--	help
--	  This adds the nvmem based CPUFreq driver for Allwinner
--	  h6 SoC.
--
--	  To compile this driver as a module, choose M here: the
--	  module will be called sun50i-cpufreq-nvmem.
--
- config ARM_APPLE_SOC_CPUFREQ
- 	tristate "Apple Silicon SoC CPUFreq support"
- 	depends on ARCH_APPLE || (COMPILE_TEST && 64BIT)
-diff --git a/drivers/cpufreq/Makefile b/drivers/cpufreq/Makefile
-index 8d141c71b..110b676d2 100644
---- a/drivers/cpufreq/Makefile
-+++ b/drivers/cpufreq/Makefile
-@@ -78,7 +78,7 @@ obj-$(CONFIG_ARM_SCMI_CPUFREQ)		+= scmi-cpufreq.o
- obj-$(CONFIG_ARM_SCPI_CPUFREQ)		+= scpi-cpufreq.o
- obj-$(CONFIG_ARM_SPEAR_CPUFREQ)		+= spear-cpufreq.o
- obj-$(CONFIG_ARM_STI_CPUFREQ)		+= sti-cpufreq.o
--obj-$(CONFIG_ARM_ALLWINNER_SUN50I_CPUFREQ_NVMEM) += sun50i-cpufreq-nvmem.o
-+obj-$(CONFIG_ALLWINNER_SUN50I_CPUFREQ_NVMEM) += sun50i-cpufreq-nvmem.o
- obj-$(CONFIG_ARM_TEGRA20_CPUFREQ)	+= tegra20-cpufreq.o
- obj-$(CONFIG_ARM_TEGRA124_CPUFREQ)	+= tegra124-cpufreq.o
- obj-$(CONFIG_ARM_TEGRA186_CPUFREQ)	+= tegra186-cpufreq.o
--- 
-2.30.2
+On Mon, Dec 18, 2023 at 02:12:00PM +0800, Joshua Yeong wrote:
+> The StarFive Meu Mailbox allow communication between AP and SCP cores
+> through mailbox doorbell.
+>=20
+> Co-developed-by: Sia Jee Heng <jeeheng.sia@starfivetech.com>
+> Signed-off-by: Sia Jee Heng <jeeheng.sia@starfivetech.com>
+> Signed-off-by: Joshua Yeong <joshua.yeong@starfivetech.com>
+> Reviewed-by: Ley Foon Tan <leyfoon.tan@starfivetech.com>
+> ---
+>  .../bindings/mailbox/starfive-meu.yaml        | 66 +++++++++++++++++++
+>  1 file changed, 66 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mailbox/starfive-me=
+u.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/mailbox/starfive-meu.yaml =
+b/Documentation/devicetree/bindings/mailbox/starfive-meu.yaml
+> new file mode 100644
+> index 000000000000..dbc5cfdb90ff
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mailbox/starfive-meu.yaml
+> @@ -0,0 +1,66 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mailbox/starfive-meu.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: StarFive MEU Mailbox Controller
+> +
+> +maintainers:
+> +  - Jee Heng Sia <jeeheng.sia@starfivetech.com>
+> +  - Joshua Yeong <joshua.yeong@starfivetech.com>
+> +
+> +description: |
+> +  StarFive's Message-Exchange-Unit (MEU) is a mailbox controller that ha=
+s 62
+> +  independent doorbells. Each MEU channel consist of 31 doorbells and co=
+nsist of
+> +  a pair of Tx/Rx links that shall communicates with remote processor. T=
+he
+> +  sender set the bit in the SET register to indicate data readiness for =
+the
+> +  receiver. An interrupt will be raised whenever receiving notification =
+doorbell
+> +  from remote processor. The receiver will clear the bit in the CLR regi=
+ster
+> +  upon handling the doorbell notification. The sender should poll the ST=
+AT
+> +  register before starting any transaction to ensure all on-going doorbe=
+lls are
+> +  processed.
 
+What is/are the consumer(s) of this mailbox?
+Is part of your RPMI implementation?
+
+Cheers,
+Conor.
+
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - starfive,jh8100-meu
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    items:
+> +      - description: mailbox0
+> +      - description: mailbox1
+> +
+> +  '#mbox-cells':
+> +    description: represents index of the mailbox/doorbell paired channel
+> +      channel  0 - 30 for mailbox0 doorbell
+> +      channel 31 - 61 for mailbox1 doorbell
+> +    const: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - '#mbox-cells'
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    soc {
+> +        #address-cells =3D <2>;
+> +        #size-cells =3D <2>;
+> +
+> +        meu: mailbox@1f370000 {
+> +            compatible =3D "starfive,jh8100-meu";
+> +            reg =3D <0x0 0x1f370000 0 0x8000>;
+> +            interrupts =3D <170>, /* Mailbox0 */
+> +                         <171>; /* Mailbox1 */
+> +            #mbox-cells =3D <1>;
+> +        };
+> +    };
+> +
+> +...
+> --=20
+> 2.25.1
+>=20
+
+--aQrXQ+3ue3EP+Cq/
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZYAqPAAKCRB4tDGHoIJi
+0pAWAP0UxVroFOC8+v7rhvp42LiCfmH/2N8IRe7QzwShM9OO+wD/ZYMubBEEwj3W
+kqYsynjngk1KxjeF1Ez0nidDqz9ndgQ=
+=vSfH
+-----END PGP SIGNATURE-----
+
+--aQrXQ+3ue3EP+Cq/--
 
