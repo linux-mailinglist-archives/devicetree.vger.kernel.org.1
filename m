@@ -1,106 +1,93 @@
-Return-Path: <devicetree+bounces-26495-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26496-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8AFD4816AC4
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 11:17:03 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F881816AD5
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 11:20:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 47632281069
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 10:17:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 71BAB1C225AC
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 10:20:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1A21134D8;
-	Mon, 18 Dec 2023 10:16:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E3A613AC9;
+	Mon, 18 Dec 2023 10:20:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="a5PVsihA"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="z/8ZGLDl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f43.google.com (mail-pj1-f43.google.com [209.85.216.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD70F13FF6;
-	Mon, 18 Dec 2023 10:16:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f43.google.com with SMTP id 98e67ed59e1d1-28b93b04446so150968a91.0;
-        Mon, 18 Dec 2023 02:16:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1702894618; x=1703499418; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=cE+4PArKzxxf52RI2qZGv30986Mi3tB/nuE1GoXNM8Q=;
-        b=a5PVsihAfPpgTtdfTz/CkrMAyKPCOHnL6wlo0LB1B7yZAp0H/KlsDmmZbbnR4NH5kh
-         GVjrGZCOGHQ+hj89QNd3sxjXHPoiMjAx/ENOKmP24wH/MVuk4FUIrkGjz8hcAwFCQt9e
-         +3hcebHO1zaeny9ZrZhEOf49++hEYDiJx60FblNKutrE2xkmc6Cz5AkecEktqH94Inf2
-         3zihByHq/XDyEiHTCj73jvYPqXO10fLEGFH9fA3kQenvlUNh63Mh1pzWdm3L8cNcPODY
-         fx0ggVVaJyo/ibsxk1B5gfK3sWchQNGGKiDCZfPbN3gzd+/blXy/QLgQs7JnVm5/6WO6
-         b+vQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702894618; x=1703499418;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=cE+4PArKzxxf52RI2qZGv30986Mi3tB/nuE1GoXNM8Q=;
-        b=NOUW7LBAU+1V95zj+O7YNSSley6s8en0M8RO2TyKzHZZr4sjLZ6UPGizaKwTELjcvF
-         C3Uk0LzAsxZerWEFl1DQLW+KWMG5P0B9t5r3RvHyoYuybotFEYK3aavuVvBZkI1/fJny
-         hOekq6iQ4NS789xDGn1MiPzed1edjlXIWAInK9PR6UAk2NVuwhSGYKMv0HIuGiJgp7fm
-         kCCGBzqzYVY40L4gzNhsCbtJiAFAx15znQrltaQTEIZ4J6d2EmfieMYgDB6JrCJJRB05
-         1HyWV3IswOseF+atidZELMvPdxDCwyXUsCSgr2T8zzReWEi7cG1rc2smhQ1H+aMBuPQ9
-         4jpg==
-X-Gm-Message-State: AOJu0Yy0Tq1R169QYPsqU+oFoJX2lMNGLFMJEnbT2h//ODzKMoyLha08
-	Ioh8UC5OwlY8529TmyQkZNrcc8Fm+CpjlnbvlRY=
-X-Google-Smtp-Source: AGHT+IHN34Dj3XVOxJpSdc2f7yxWGK98cJd0I+UZvwAYLq6x7/xaYp9IC9nEmMrH1uI1CND4Ly0LKQwP6occKSEFcIA=
-X-Received: by 2002:a17:90a:4583:b0:28b:c60:8dd0 with SMTP id
- v3-20020a17090a458300b0028b0c608dd0mr10301346pjg.2.1702894618069; Mon, 18 Dec
- 2023 02:16:58 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C413913FE6;
+	Mon, 18 Dec 2023 10:19:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1702894798;
+	bh=glj7Dyp4bvg50e13V69m9SNRz5l9Yow0xdICkF4cdqU=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+	b=z/8ZGLDlYg0vi8xNIMJN2DMeOyyQaEmxCOrYeEjaVpITA2cZ6hHenXI3ycSnOQlBv
+	 7XlQvginATUyMhRcPJ4Ejw458otcjAbXPn2hT+QRY53wIsRCjTVEmSSiuRXxyg0omC
+	 +WDE1Sn7ev0O02zyfXzAOtIBqPr3XOb8m94m14BU07FpGo1vPw6Bogj9RtzLMaS0hv
+	 iSvHVoUs6JpmI8TDSIKoUg5odOnWt3ko90H9zQ8i6//LcRxvhAjTRCQKb4u7PhnkJY
+	 ItdneyilXidvfxU735ykRp+awN9e/vPbHtNSjlozNiA9JevfA9J2MGykD5U3yqDC6O
+	 KYuvIOo+RE5Gw==
+Received: from beast.luon.net (cola.collaboradmins.com [IPv6:2a01:4f8:1c1c:5717::1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: sjoerd)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id D59CA37809D0;
+	Mon, 18 Dec 2023 10:19:57 +0000 (UTC)
+Received: by beast.luon.net (Postfix, from userid 1000)
+	id 672D49900106; Mon, 18 Dec 2023 11:19:57 +0100 (CET)
+Message-ID: <6c93241c35153cfb718db1d81e99e01bfb6dede5.camel@collabora.com>
+Subject: Re: [PATCH v2 0/3] Moxtet bus fixes
+From: Sjoerd Simons <sjoerd@collabora.com>
+To: Gregory CLEMENT <gregory.clement@bootlin.com>, Marek
+	=?ISO-8859-1?Q?Beh=FAn?=
+	 <kabel@kernel.org>
+Cc: kernel@collabora.com, Andrew Lunn <andrew@lunn.ch>, Conor Dooley
+ <conor+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>,  Rob Herring <robh+dt@kernel.org>,
+ Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-kernel@vger.kernel.org
+Date: Mon, 18 Dec 2023 11:19:57 +0100
+In-Reply-To: <87fs03cyki.fsf@BL-laptop>
+References: <20231128213536.3764212-1-sjoerd@collabora.com>
+	 <87fs0ceoif.fsf@BL-laptop> <20231208161724.5f4f626a@dellmb>
+	 <87fs03cyki.fsf@BL-laptop>
+Organization: Collabora Ltd.
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.50.2-1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231218085456.3962720-1-xu.yang_2@nxp.com> <20231218085456.3962720-2-xu.yang_2@nxp.com>
-In-Reply-To: <20231218085456.3962720-2-xu.yang_2@nxp.com>
-From: Fabio Estevam <festevam@gmail.com>
-Date: Mon, 18 Dec 2023 07:16:46 -0300
-Message-ID: <CAOMZO5AZ6oLgeqvwf5_u9YhrFvwgRSiNjGq+wVMjXYsq7t3MxA@mail.gmail.com>
-Subject: Re: [PATCH v2 2/5] arm64: dts: imx8ulp-evk: enable usb nodes and add
- ptn5150 nodes
-To: Xu Yang <xu.yang_2@nxp.com>
-Cc: gregkh@linuxfoundation.org, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, shawnguo@kernel.org, 
-	s.hauer@pengutronix.de, kernel@pengutronix.de, linux-imx@nxp.com, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	jun.li@nxp.com, linux-usb@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-On Mon, Dec 18, 2023 at 5:49=E2=80=AFAM Xu Yang <xu.yang_2@nxp.com> wrote:
+On Fri, 2023-12-15 at 15:47 +0100, Gregory CLEMENT wrote:
+> Marek Beh=C3=BAn <kabel@kernel.org> writes:
+>=20
+> > On Fri, 08 Dec 2023 15:51:20 +0100
+> > Gregory CLEMENT <gregory.clement@bootlin.com> wrote:
+> >=20
+> > Gregory, as of yet I've never done a pull request. If you are
+> > willing
+> > to take all 3 patches now, please do. In the future I would like to
+>=20
+> OK I applied them on mvebu/driver.
 
-> +
-> +       ptn5150_1: typec@1d {
-> +               compatible =3D "nxp,ptn5150";
-> +               reg =3D <0x1d>;
-> +               int-gpios =3D <&gpiof 3 IRQ_TYPE_EDGE_FALLING>;
-> +               pinctrl-names =3D "default";
-> +               pinctrl-0 =3D <&pinctrl_typec1>;
-> +               status =3D "disabled";
+Thanks both for moving this patches forward; Gregory looks like you
+only applied two of the three patches (missing the dt patch), are you
+expect that to flow through a different tree or ?
 
-Why disabled?
 
-No connector and no port properties. Please run dt-schema check
-against linux-next.
-
-> +       };
-> +
-> +       ptn5150_2: typec@3d {
-> +               compatible =3D "nxp,ptn5150";
-> +               reg =3D <0x3d>;
-> +               int-gpios =3D <&gpiof 5 IRQ_TYPE_EDGE_FALLING>;
-> +                       pinctrl-names =3D "default";
-> +               pinctrl-0 =3D <&pinctrl_typec2>;
-> +               status =3D "disabled";
-
-Same here.
+Regards,
+--=20
+Sjoerd Simons
+Collabora Ltd.
 
