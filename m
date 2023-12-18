@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-26744-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26745-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 908CC817D14
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 23:02:44 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CF4B817D1E
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 23:10:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 401BC28628C
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 22:02:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D9FADB23747
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 22:10:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B744874E1D;
-	Mon, 18 Dec 2023 22:02:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4735D74E01;
+	Mon, 18 Dec 2023 22:10:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bklji33K"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="D+LabR89"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BA1E740B2;
-	Mon, 18 Dec 2023 22:02:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E070740B0;
+	Mon, 18 Dec 2023 22:10:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-9fa45e75ed9so432762566b.1;
-        Mon, 18 Dec 2023 14:02:26 -0800 (PST)
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-40c68c1990dso43893535e9.0;
+        Mon, 18 Dec 2023 14:10:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1702936945; x=1703541745; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=gmail.com; s=20230601; t=1702937422; x=1703542222; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=j78u/AxbFW/PvB7ob0xH35r+RLxqVn7NFYykJEfCNm4=;
-        b=bklji33KAfGRayu3WeeoF2gNBQubDvJJ3YXQwnFBbQdSEDTa++BzKMRheAezkjQlvq
-         e2u+7LFcAbI8P8QTK3dtFMQax/0zqzI042H0CKUM2+5W1haHRmqN0ZpibJS9DyvEnaxt
-         FG8A+inDwhJZlBhicL8hzP7GcrVvck0310iwINCSpQLDs1ttbQXdEfUc0BZU52xHGPJ+
-         G2funOpAFb89peO/oc/ByERN8/+QiotFQV8d/hK1/b6uFIJLS+j04LSBcOVWEyrHs5NM
-         y0rlidS1Fx+JVl1nKsr4ZWNK4QpZ51kBDcuCZ/nvrv/LoxdxJo7buMfhpKGkGDRx3ofa
-         ZXyA==
+        bh=ZGd5eZtf8Hv14giEbllgU0p0iNlUw0xe+ZL+XhV0YwA=;
+        b=D+LabR89zs8XtEyVkwCoB8K+aNQ42FAcRXkOhDyG7o6lWYwpE75oCM7utjU7LhW0Cz
+         eWRoBSUPOxv4ZNVtMPcUOHz49kYiRIllR8Jj+cxGXWciF+PmuFzudiR48rM/k3iHI31E
+         7tE2zRLahDcJP676QL3vJztwiOwukmzS4+MUYL76lSqiDqa2ENevgMbbD6JFaSw0cxFD
+         4FYXX+AXWVbiSPPlefwh91DxYAiyTL543CSf9c98xZ0YjkNKV/M2sZ81YaYejGNfOKyA
+         zrmGeE+Bwx84cnPL2ifWc/1UK/pptLD6V95vD+vAdw/UmbkfXAALIEmw2hRixxbbzPuH
+         3Daw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702936945; x=1703541745;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1702937422; x=1703542222;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=j78u/AxbFW/PvB7ob0xH35r+RLxqVn7NFYykJEfCNm4=;
-        b=DEZxRNV8juvAykrrVMTtrZdFun5WIwQc6zULjexCkiGjCpmo27uBM8NM5hfkdRt+0Q
-         sqDmzDMNlGRrYd7XcEas6tnapywHatkjYQLo0Sl5wPvI3S7VfkXJ+L0rFf8QierMmTq8
-         vxjlzS/MaXFuKbKZi4Tc1/Ve3AwlhIjyqCwoB7esXfR6dUezHl1zinlGq+013J6kYMeZ
-         r9s7OAyB372C63hZVFEG3bQ0PXHXiIoSUT0Djv8zgiThYdghqT7SJtHloSLRXYfaG++X
-         OaXGhmjhe+d5AAp8FIMRvVX93B7gc57wjkllc0GRYXItTkxiALHwWOnhUW0y1JoMCQmJ
-         C8Og==
-X-Gm-Message-State: AOJu0YyZdk/IxtPzVshOU/IHPx6GGeckjM+0qJ+fDv26jt09siV7c643
-	MV4jknikbhivfP+FgqA1Mc8=
-X-Google-Smtp-Source: AGHT+IEPZqXlfacA0u2n1vljM6X29jA54J6/WAEvQI9gh7KtlZMgF3FICfR713o6WiYGui2vKNrWNQ==
-X-Received: by 2002:a17:906:7386:b0:a14:b151:72e6 with SMTP id f6-20020a170906738600b00a14b15172e6mr7515981ejl.21.1702936945048;
-        Mon, 18 Dec 2023 14:02:25 -0800 (PST)
+        bh=ZGd5eZtf8Hv14giEbllgU0p0iNlUw0xe+ZL+XhV0YwA=;
+        b=edYZFozzI/f2/b7zxbamdBvokYOS5cu76nLHqezan4Qf5TMN7DUaXEZcR5zRq+ysiG
+         9T6Vqi6bWlm0ls4jw6b3lnBTLoM7C33+0OygoMJL8otJYd8sBdB5z3Kud95kHrmS9rsZ
+         wKWJdUlFgPUIwzWOWgoFt1wbvZ10WiY+BsVh8J6JMewUIYNvobp/78F9xn7wM+XoWzPY
+         X2TUhEtNjYr+pSsj5AisDn7tmahoYzEQJuk0WSDwRiXHoZDdM6/iINfyV7qDJXPlhSGc
+         Av93cy4uuvvFo+cuMy7sma+ApCwc//2X8pz6hIGM03bZ/8i+hNiwxdJuntJD64iU5e5Z
+         ++cA==
+X-Gm-Message-State: AOJu0YxMHf22whOr92VrdP+l31PRI1uQPFmEj+t6oLP4O8rDo+mQbETG
+	LlnUGS4ybpw0YeDvx9xcd+M=
+X-Google-Smtp-Source: AGHT+IEBbcmVZ5J1up2cuYJCebaOe8ZMt+KkRSENCjqveVZvpvJnjm6IWHNe5Kipr+m+yLqv2VxZYg==
+X-Received: by 2002:a05:600c:4e8d:b0:40c:2787:571e with SMTP id f13-20020a05600c4e8d00b0040c2787571emr6555783wmq.7.1702937421627;
+        Mon, 18 Dec 2023 14:10:21 -0800 (PST)
 Received: from [192.168.26.149] (031011218106.poznan.vectranet.pl. [31.11.218.106])
-        by smtp.googlemail.com with ESMTPSA id tg10-20020a1709078dca00b00a178b965899sm14647993ejc.100.2023.12.18.14.02.23
+        by smtp.googlemail.com with ESMTPSA id vs6-20020a170907a58600b00a1f99e749dasm11859919ejc.210.2023.12.18.14.10.20
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 18 Dec 2023 14:02:24 -0800 (PST)
-Message-ID: <1b4feb5d-f03c-44b3-9474-901534db5eb7@gmail.com>
-Date: Mon, 18 Dec 2023 23:02:22 +0100
+        Mon, 18 Dec 2023 14:10:21 -0800 (PST)
+Message-ID: <13bc621c-5fcb-4710-912c-06e3e80d7337@gmail.com>
+Date: Mon, 18 Dec 2023 23:10:20 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,112 +66,188 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC] dt-bindings: nvmem: u-boot, env: add any-name MAC
- cells compatible
-To: Simon Glass <sjg@chromium.org>
-Cc: Rob Herring <robh+dt@kernel.org>,
+Subject: Re: [PATCH 4/4] nvmem: layouts: add U-Boot env layout
+Content-Language: en-US
+To: Miquel Raynal <miquel.raynal@bootlin.com>
+Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+ Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
  Conor Dooley <conor+dt@kernel.org>,
- Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
- devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- u-boot@lists.denx.de, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-References: <20231214153620.23998-1-zajec5@gmail.com>
- <CAPnjgZ31AAauR876W1RmU4JPzKUD8XAMCZrJDumE+Dr4miqABQ@mail.gmail.com>
-Content-Language: en-US
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Michael Walle <michael@walle.cc>, linux-mtd@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, u-boot@lists.denx.de,
+ =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+References: <20231218133722.16150-1-zajec5@gmail.com>
+ <20231218133722.16150-4-zajec5@gmail.com> <20231218152116.59d59bad@xps-13>
 From: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-In-Reply-To: <CAPnjgZ31AAauR876W1RmU4JPzKUD8XAMCZrJDumE+Dr4miqABQ@mail.gmail.com>
+In-Reply-To: <20231218152116.59d59bad@xps-13>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-On 14.12.2023 22:27, Simon Glass wrote:
-> On Thu, 14 Dec 2023 at 08:36, Rafał Miłecki <zajec5@gmail.com> wrote:
->>
+On 18.12.2023 15:21, Miquel Raynal wrote:
+> Hi Rafał,
+> 
+> zajec5@gmail.com wrote on Mon, 18 Dec 2023 14:37:22 +0100:
+> 
 >> From: Rafał Miłecki <rafal@milecki.pl>
 >>
->> So far we had a property for "ethaddr" NVMEM cell containing base
->> Ethernet MAC address. The problem is vendors often pick non-standard
->> names for storing MAC(s) (other than "ethaddr"). A few names were
->> noticed over years:
->> 1. "wanaddr" (Edimax, ELECOM, EnGenius, I-O DATA, Sitecom)
->> 2. "et1macaddr" (ASUS)
->> 3. "eth1addr" (Buffalo)
->> 4. "athaddr" (EnGenius)
->> 5. "baseMAC" (Netgear)
->> 6. "mac" (Netgear)
->> 7. "mac_addr" (Moxa)
->> and more ("HW_LAN_MAC", "HW_WAN_MAC", "INIC_MAC_ADDR", "LAN_MAC_ADDR",
->> "RADIOADDR0", "RADIOADDR1", "WAN_MAC_ADDR", "lan1_mac_addr", "wanmac",
->> "wmac1", "wmac2").
+>> This patch moves all generic (NVMEM devices independent) code from NVMEM
+>> device driver to NVMEM layout driver. Then it adds a simple NVMEM layout
+>> code on top of it.
 >>
->> It doesn't make sense to add property for every possible MAC cell name.
->> Instead allow specifying cells with "mac" compatible.
+>> Thanks to proper layout it's possible to support U-Boot env data stored
+>> on any kind of NVMEM device.
+>>
+>> For backward compatibility with old DT bindings we need to keep old
+>> NVMEM device driver functional. To avoid code duplication a parsing
+>> function is exported and reused in it.
 >>
 >> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 >> ---
->> List of devices and their U-Boot MAC variables:
->> alphanetworks,asl56026) wanmac
->> asus,rt-ac65p) et1macaddr
->> asus,rt-ac85p) et1macaddr
->> belkin,f9k1109v1) HW_WAN_MAC + HW_LAN_MAC
->> buffalo,ls220de) eth1addr
->> buffalo,ls421de) eth1addr
->> checkpoint,l-50) lan1_mac_addr
->> dovado,tiny-ac) INIC_MAC_ADDR
->> dovado,tiny-ac) LAN_MAC_ADDR + WAN_MAC_ADDR
->> edimax,ra21s) wanaddr
->> edimax,rg21s) wanaddr
->> elecom,wrc-2533ghbk-i) wanaddr
->> elecom,wrc-2533ghbk2-t) wanaddr
->> engenius,ecb1200) athaddr
->> engenius,ecb1750) athaddr
->> engenius,epg5000) wanaddr
->> engenius,epg600) wanaddr
->> engenius,esr1200) wanaddr
->> engenius,esr1750) wanaddr
->> engenius,esr600) wanaddr
->> engenius,esr600h) wanaddr
->> engenius,esr900) wanaddr
->> enterasys,ws-ap3705i) RADIOADDR0 + RADIOADDR1
->> iodata,wn-ac1167dgr) wanaddr
->> iodata,wn-ac1167gr) wanaddr
->> iodata,wn-ac1600dgr) wanaddr
->> iodata,wn-ac1600dgr2) wanaddr
->> iodata,wn-ac733gr3) wanaddr
->> iodata,wn-ag300dgr) wanaddr
->> iodata,wnpr2600g) wanaddr
->> moxa,awk-1137c) mac_addr
->> netgear,wax220) mac
->> netgear,wndap620) baseMAC
->> netgear,wndap660) baseMAC
->> ocedo,panda) wmac1 + wmac2
->> sitecom,wlr-7100) wanaddr
->> sitecom,wlr-8100) wanaddr
->>
->>   .../devicetree/bindings/nvmem/u-boot,env.yaml | 33 +++++++++++++++++++
->>   1 file changed, 33 insertions(+)
->>
 > 
-> Are these upstream U-Boots, or just vendor forks?
+> I have a couple of comments about the original driver which gets
+> copy-pasted in the new layout driver, maybe you could clean these
+> (the memory leak should be fixed before the migration so it can be
+> backported easily, the others are just style so it can be done after, I
+> don't mind).
+> 
+> ...
+> 
+>> +int u_boot_env_parse(struct device *dev, struct nvmem_device *nvmem,
+>> +		     enum u_boot_env_format format)
+>> +{
+>> +	size_t crc32_data_offset;
+>> +	size_t crc32_data_len;
+>> +	size_t crc32_offset;
+>> +	size_t data_offset;
+>> +	size_t data_len;
+>> +	size_t dev_size;
+>> +	uint32_t crc32;
+>> +	uint32_t calc;
+>> +	uint8_t *buf;
+>> +	int bytes;
+>> +	int err;
+>> +
+>> +	dev_size = nvmem_dev_size(nvmem);
+>> +
+>> +	buf = kcalloc(1, dev_size, GFP_KERNEL);
+> 
+> Out of curiosity, why kcalloc(1,...) rather than kzalloc() ?
 
-I guess most of those devices don't have upstream U-Boot support. Please
-note that while upstreaming vendors changes would be great in most cases
-it doesn't happen. Most vendors sadly don't care and most end users
-don't have enough time for that. In practice we often stick with vendor
-provided bootloader to flash and boot self build Linux system (like
-OpenWrt).
+I used kcalloc() initially as I didn't need buffer to be zeroed.
 
-I'm not sure if/how does it help with this PATCH but please note that
-upstream U-Boot code also supports few extra variables.
+I see that memory-allocation.rst however says:
+ > And, to be on the safe side it's best to use routines that set memory to zero, like kzalloc().
 
-There is generic eth_env_get_enetaddr_by_index() that supports variables
-like "<%s><%d>addr" and "<%s>addr". Right now it's used only for
-"eth<%d>addr" and "ethaddr" so that mostly limits us to "ethaddr",
-"eth1addr", "eth2addr" and "eth3addr".
+It's probably close to zero cost to zero that buffer so it could be kzalloc().
 
- From some rare cases: there are also "usbnet_devaddr" and "wolpassword".
 
-So given that U-Boot oficially supports at least 6 env variables for
-MAC and there are many used with custom U-Boots and firmwares this
-binding would help a lot.
+>> +	if (!buf) {
+>> +		err = -ENOMEM;
+>> +		goto err_out;
+> 
+> We could directly return ENOMEM here I guess.
+> 
+>> +	}
+>> +
+>> +	bytes = nvmem_device_read(nvmem, 0, dev_size, buf);
+>> +	if (bytes < 0)
+>> +		return bytes;
+>> +	else if (bytes != dev_size)
+>> +		return -EIO;
+> 
+> Don't we need to free buf in the above cases?
+> 
+>> +	switch (format) {
+>> +	case U_BOOT_FORMAT_SINGLE:
+>> +		crc32_offset = offsetof(struct u_boot_env_image_single, crc32);
+>> +		crc32_data_offset = offsetof(struct u_boot_env_image_single, data);
+>> +		data_offset = offsetof(struct u_boot_env_image_single, data);
+>> +		break;
+>> +	case U_BOOT_FORMAT_REDUNDANT:
+>> +		crc32_offset = offsetof(struct u_boot_env_image_redundant, crc32);
+>> +		crc32_data_offset = offsetof(struct u_boot_env_image_redundant, data);
+>> +		data_offset = offsetof(struct u_boot_env_image_redundant, data);
+>> +		break;
+>> +	case U_BOOT_FORMAT_BROADCOM:
+>> +		crc32_offset = offsetof(struct u_boot_env_image_broadcom, crc32);
+>> +		crc32_data_offset = offsetof(struct u_boot_env_image_broadcom, data);
+>> +		data_offset = offsetof(struct u_boot_env_image_broadcom, data);
+>> +		break;
+>> +	}
+>> +	crc32 = le32_to_cpu(*(__le32 *)(buf + crc32_offset));
+> 
+> Looks a bit convoluted, any chances we can use intermediate variables
+> to help decipher this?
+> 
+>> +	crc32_data_len = dev_size - crc32_data_offset;
+>> +	data_len = dev_size - data_offset;
+>> +
+>> +	calc = crc32(~0, buf + crc32_data_offset, crc32_data_len) ^ ~0L;
+>> +	if (calc != crc32) {
+>> +		dev_err(dev, "Invalid calculated CRC32: 0x%08x (expected: 0x%08x)\n", calc, crc32);
+>> +		err = -EINVAL;
+>> +		goto err_kfree;
+>> +	}
+>> +
+>> +	buf[dev_size - 1] = '\0';
+>> +	err = u_boot_env_parse_cells(dev, nvmem, buf, data_offset, data_len);
+>> +	if (err)
+>> +		dev_err(dev, "Failed to add cells: %d\n", err);
+> 
+> Please drop this error message, the only reason for which the function
+> call would fail is apparently an ENOMEM case.
+> 
+>> +
+>> +err_kfree:
+>> +	kfree(buf);
+>> +err_out:
+>> +	return err;
+>> +}
+>> +EXPORT_SYMBOL_GPL(u_boot_env_parse);
+>> +
+>> +static int u_boot_env_add_cells(struct device *dev, struct nvmem_device *nvmem)
+>> +{
+>> +	const struct of_device_id *match;
+>> +	struct device_node *layout_np;
+>> +	enum u_boot_env_format format;
+>> +
+>> +	layout_np = of_nvmem_layout_get_container(nvmem);
+>> +	if (!layout_np)
+>> +		return -ENOENT;
+>> +
+>> +	match = of_match_node(u_boot_env_of_match_table, layout_np);
+>> +	if (!match)
+>> +		return -ENOENT;
+>> +
+>> +	format = (uintptr_t)match->data;
+> 
+> In the core there is currently an unused helper called
+> nvmem_layout_get_match_data() which does that. I think the original
+> intent of this function was to be used in this driver, so depending on
+> your preference, can you please either use it or remove it?
+
+The problem is that nvmem_layout_get_match_data() uses:
+layout->dev.driver
+
+It doesn't work with layouts driver (since refactoring?) as driver is
+NULL. That results in NULL pointer dereference when trying to reach
+of_match_table.
+
+That is why I used u_boot_env_of_match_table directly.
+
+If you know how to fix nvmem_layout_get_match_data() that would be
+great. Do we need driver_register() somewhere in NVMEM core?
+
+
+>> +
+>> +	of_node_put(layout_np);
+>> +
+>> +	return u_boot_env_parse(dev, nvmem, format);
+>> +}
+> 
+> Thanks,
+> Miquèl
+
 
