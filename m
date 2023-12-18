@@ -1,121 +1,102 @@
-Return-Path: <devicetree+bounces-26620-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26621-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 554ED81747E
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 15:59:59 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9854C81748B
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 16:00:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EA0341F24469
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 14:59:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BDBC71C23D79
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 15:00:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D1033788D;
-	Mon, 18 Dec 2023 14:59:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mSbBcYtI"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2629037897;
+	Mon, 18 Dec 2023 15:00:47 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail-m155101.qiye.163.com (mail-m155101.qiye.163.com [101.71.155.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45E1E37888;
-	Mon, 18 Dec 2023 14:59:28 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 30277C433C8;
-	Mon, 18 Dec 2023 14:59:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1702911568;
-	bh=+s1PxLoBbDNRFaBMX1KOfgXL4tbGv/n20FEjafyPq/w=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=mSbBcYtIEC/E7RqBQIzkCxec5TKgazZsWXYPY9+enwlKZ6OrEtXBMl8SgdPgJxfni
-	 krjGAU88aSHxxRA9x2MosUdLH2JQEF3QyLCBsR4LT//axdCB2DPmzwqsq8FQ9OuVrQ
-	 9FLgC5B75iasJpQCBSSE/PM26xfwWhdbZy81d6LhGHghtD+3r8iDWC07xhx6g+gh4p
-	 h1ttAeppZzSTCNU8XIlDlD1c8K//wMRQYcfd1poIbVGlHSBJGByodmP+Xa7zynYPx7
-	 dKgH4hQkK0Ik3hIiPZyIbjUigosGJhLSxyisitYnEJ+EFf1Yf/bmYq+R7HPmtThshI
-	 dXPcLYPG7K52A==
-Date: Mon, 18 Dec 2023 14:59:20 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-Cc: Samuel Holland <samuel.holland@sifive.com>,
-	Jessica Clarke <jrtc27@jrtc27.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2A6937874;
+	Mon, 18 Dec 2023 15:00:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
+Received: from amadeus-Vostro-3710.lan (unknown [113.118.189.58])
+	by mail-m121145.qiye.163.com (Hmail) with ESMTPA id 68C108001A7;
+	Mon, 18 Dec 2023 23:00:12 +0800 (CST)
+From: Chukun Pan <amadeus@jmu.edu.cn>
+To: Bjorn Andersson <andersson@kernel.org>
+Cc: Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Andy Gross <agross@kernel.org>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Emil Renner Berthing <kernel@esmil.dk>,
-	Samin Guo <samin.guo@starfivetech.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Hal Feng <hal.feng@starfivetech.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Jose Abreu <joabreu@synopsys.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Richard Cochran <richardcochran@gmail.com>,
-	Giuseppe Cavallaro <peppe.cavallaro@st.com>, netdev@vger.kernel.org,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	LKML <linux-kernel@vger.kernel.org>,
-	linux-riscv <linux-riscv@lists.infradead.org>,
-	linux-clk@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, kernel@collabora.com
-Subject: Re: [PATCH v3 2/9] dt-bindings: net: starfive,jh7110-dwmac: Add
- JH7100 SoC compatible
-Message-ID: <20231218-snowcap-charter-f8c75312eaa9@spud>
-References: <20231215204050.2296404-1-cristian.ciocaltea@collabora.com>
- <20231215204050.2296404-3-cristian.ciocaltea@collabora.com>
- <A7C96942-07CB-40FD-AAAA-4A8947DEE7CA@jrtc27.com>
- <65fd52f1-6861-42b0-9148-266766d054b1@sifive.com>
- <6c62e3b2-acde-4580-9b67-56683289e45e@collabora.com>
- <20231217-spray-livestock-a59d630b751e@spud>
- <fa4b9c1d-6033-4b35-b03c-e03419edb5dc@collabora.com>
+	devicetree@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Chukun Pan <amadeus@jmu.edu.cn>
+Subject: [PATCH v2 1/1] arm64: dts: qcom: ipq8074: add MicroSD node
+Date: Mon, 18 Dec 2023 23:00:09 +0800
+Message-Id: <20231218150009.1227848-1-amadeus@jmu.edu.cn>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="xehaJyWNZIrFr2oM"
-Content-Disposition: inline
-In-Reply-To: <fa4b9c1d-6033-4b35-b03c-e03419edb5dc@collabora.com>
+Content-Transfer-Encoding: 8bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUtXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVkaGB0dVk1JGBhJHR1PGhpPQ1UTARMWGhIXJBQOD1
+	lXWRgSC1lBWUpKSFVKSkNVSkNCVU5DWVdZFhoPEhUdFFlBWUtVS1VLVUtZBg++
+X-HM-Tid: 0a8c7d711708b03akuuu68c108001a7
+X-HM-MType: 10
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6ME06Mzo*ATw6QihLAj4LLx81
+	FDIaFClVSlVKTEtJQkpKTUpITklNVTMWGhIXVRoWGh8eDgg7ERYOVR4fDlUYFUVZV1kSC1lBWUpK
+	SFVKSkNVSkNCVU5DWVdZCAFZQUlOTkk3Bg++
 
+Enable MicroSD card found on ipq8074 devices.
+Tested fine when SD card IO voltage is 3.3v.
 
---xehaJyWNZIrFr2oM
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
+---
+Changes in v2:
+* add dedicated qcom,ipq8074-sdhci compatible
 
+ arch/arm64/boot/dts/qcom/ipq8074.dtsi | 20 ++++++++++++++++++++
+ 1 file changed, 20 insertions(+)
 
-> > Won't this also relax the naming for all devices that allow a single
-> > reset, but expect the stmmaceth one? I'm not sure that that actually
-> > matters, I think the consumer bindings have constraints themselves.
->=20
-> Before commit 843f603762a5 ("dt-bindings: net: snps,dwmac: Add 'ahb'
-> reset/reset-name"), the 'stmmaceth' was the only possible option, hence
-> there was no need for any constraints on the consumer bindings.  But
-> afterwards it was allowed to use both resets, hence I think the bindings
-> should have been updated at that time by adding 'maxItems: 1' to prevent
-> using the 2nd reset.
->=20
-> I could fix this in a separate series, if it's not something mandatory
-> to be handled here.
+diff --git a/arch/arm64/boot/dts/qcom/ipq8074.dtsi b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
+index a4f7ae35be27..4f23c4459112 100644
+--- a/arch/arm64/boot/dts/qcom/ipq8074.dtsi
++++ b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
+@@ -422,6 +422,26 @@ sdhc_1: mmc@7824900 {
+ 			status = "disabled";
+ 		};
+ 
++		sdhc_2: mmc@7864900 {
++			compatible = "qcom,ipq8074-sdhci", "qcom,sdhci-msm-v4";
++			reg = <0x7864900 0x500>, <0x7864000 0x800>;
++			reg-names = "hc", "core";
++
++			interrupts = <GIC_SPI 125 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 221 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "hc_irq", "pwr_irq";
++
++			clocks = <&gcc GCC_SDCC2_AHB_CLK>,
++				 <&gcc GCC_SDCC2_APPS_CLK>,
++				 <&xo>;
++			clock-names = "iface", "core", "xo";
++			resets = <&gcc GCC_SDCC2_BCR>;
++			max-frequency = <192000000>;
++			bus-width = <4>;
++
++			status = "disabled";
++		};
++
+ 		blsp_dma: dma-controller@7884000 {
+ 			compatible = "qcom,bam-v1.7.0";
+ 			reg = <0x07884000 0x2b000>;
+-- 
+2.25.1
 
-If it is not introduced by this series, I don't see why it could not be
-handled separately if needed.
-
---xehaJyWNZIrFr2oM
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZYBeSAAKCRB4tDGHoIJi
-0kaHAQDOEcbXi7+qAEGh2DmnasVoZMuRlaf7aM8UbL0TedMfrAEAz4ujNDzOgg49
-iA4wb0r9fYms/C/CCKtbwb34l7U9Wg8=
-=8B0i
------END PGP SIGNATURE-----
-
---xehaJyWNZIrFr2oM--
 
