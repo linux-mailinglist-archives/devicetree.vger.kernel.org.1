@@ -1,124 +1,123 @@
-Return-Path: <devicetree+bounces-26685-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26687-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A38D817837
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 18:12:07 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 51A4A81783E
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 18:14:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B0E231C208D8
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 17:12:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 00F6C283179
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 17:14:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 025B15A84B;
-	Mon, 18 Dec 2023 17:12:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A59305A874;
+	Mon, 18 Dec 2023 17:14:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=waldekranz-com.20230601.gappssmtp.com header.i=@waldekranz-com.20230601.gappssmtp.com header.b="c6p+/Aj3"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="PiouGzl+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D5E35A84D
-	for <devicetree@vger.kernel.org>; Mon, 18 Dec 2023 17:11:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=waldekranz.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=waldekranz.com
-Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-50e0d1f9fe6so4117928e87.1
-        for <devicetree@vger.kernel.org>; Mon, 18 Dec 2023 09:11:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=waldekranz-com.20230601.gappssmtp.com; s=20230601; t=1702919517; x=1703524317; darn=vger.kernel.org;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=0myEz5mmchGFFDsQbXns7h4YnoVDFFYY18sAmSR5NYY=;
-        b=c6p+/Aj3+dXaDykVOazNClFUONN+ftmKUh/LFWladsUSGY8wOCJ03U6uoCCjyGCOmT
-         +oLy+7aSbWly3Tdo+Mr8zuJ6QfsWZWwHGmSIbtxY5h1NFtrN9GfOyQxWmcKWwMVs4CWq
-         XDdDDqfpRIvNEWS0nliAxSUhXg/foXInLQaXFEgwQt/4d7KOmqZNKHwuuJ0q1PDit9zJ
-         Y3pc/zAS8wMizdOsbfa2D73BMzz0iC7blagSY+HTXLSfkbtdR8UoBJiQGK4gk5qupoYk
-         /9b/vGf1ktWRnlubh4lyYCMUe3VStaCFwp+raplRmItG8Le0Nb3nq1fmXjjGcuv8ALRN
-         arkA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702919517; x=1703524317;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0myEz5mmchGFFDsQbXns7h4YnoVDFFYY18sAmSR5NYY=;
-        b=TYmmC4QQtQxhVJMJP5NfeTHKRS6RWCDwAo25dT9GcPy7FZaVY47FIM7aYxRDyGtZqt
-         SeWvPxzUNR3Xtwaf85zAHEaSi/ODpShI0+8RUzFS/kYuUNaNRJLWhO8drgiWQvO8Ke31
-         u069MuiYFRtQO4Nt+9pKIDT3OYsPYQFhm5t0+wRgkFrXD3b4kq0LAB61wP7/Sxw+N7zD
-         zWOsUlxfvtYtzmWBjkcFEBD1bLd4n/pFXukmhydMeCbNmQK3QdEXeXVYTnMXgt/iz4Tu
-         XOdOVH5qrQ/9tnoxsBkDGwBthHZJd9QTCUZMMw/2cXNsHsRqjXjhWh6TsnJ9I52Cft0/
-         VnRw==
-X-Gm-Message-State: AOJu0YwK6fk9vYxfKlEbL30P7/JhoQk83RAVX+i+LLnVAWcUFgVIzvv1
-	oHBiwiMeKECtC3bexAzXDZq1M9kH6ndECqEX4jw=
-X-Google-Smtp-Source: AGHT+IGcn7F+LIf2qkEpwynVxjLM9eahi6pgLIyCebHo8kn2zHVzzmtiiBJ120axFEkVs5fTXnXAZw==
-X-Received: by 2002:a19:e007:0:b0:50c:2218:7f1e with SMTP id x7-20020a19e007000000b0050c22187f1emr6616472lfg.16.1702919517283;
-        Mon, 18 Dec 2023 09:11:57 -0800 (PST)
-Received: from wkz-x13 (a124.broadband3.quicknet.se. [46.17.184.124])
-        by smtp.gmail.com with ESMTPSA id j10-20020a056512398a00b0050e223d5125sm832508lfu.55.2023.12.18.09.11.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 18 Dec 2023 09:11:56 -0800 (PST)
-From: Tobias Waldekranz <tobias@waldekranz.com>
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: davem@davemloft.net, kuba@kernel.org, linux@armlinux.org.uk,
- kabel@kernel.org, hkallweit1@gmail.com, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- netdev@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next 1/4] net: phy: marvell10g: Support firmware
- loading on 88X3310
-In-Reply-To: <627fbf7d-5992-4c4b-9e32-b34e363db928@lunn.ch>
-References: <20231214201442.660447-1-tobias@waldekranz.com>
- <20231214201442.660447-2-tobias@waldekranz.com>
- <627fbf7d-5992-4c4b-9e32-b34e363db928@lunn.ch>
-Date: Mon, 18 Dec 2023 18:11:55 +0100
-Message-ID: <871qbj8mg4.fsf@waldekranz.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6A6B4FF6D;
+	Mon, 18 Dec 2023 17:14:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 8B6F21BF20A;
+	Mon, 18 Dec 2023 17:14:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1702919664;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=Lyt0fUA8qXAG186dpljc51Fb9nMcLd2wX7HB0Boh4IU=;
+	b=PiouGzl+MlgeZJG+Yp04/ynO3QZiEcefHG1cCb7Sy+fmU3VIBZgzYLBlJTf+rcA2PF0M1E
+	XmAgnL9Oq7v4a1GdTzLycAyg+sycBOHCAkhgzVWsAOyRi0T5FGlc/W//k8wqYKgoyF0RUt
+	SEz1ev8RaHhBnfzVkm7tD49rxO6oQUiyHq6ecOjbBgeDjwG9Pm/lm4PC8LH+zi6hRuohyH
+	PBlO1o/to+3ABoboosI+ed2UYAw4pSoIkLogbVMR+so4n8oZ55jkp9yoEWOYhngWSemPId
+	5q/PQmomsstB+AW8ZtxQUNjACkL69IiS31G2WmgF/QE0WkGJiwQDNCuJfIx87A==
+From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
+Subject: [PATCH 0/5] Add support for Mobileye EyeQ5 clock controller
+Date: Mon, 18 Dec 2023 18:14:15 +0100
+Message-Id: <20231218-mbly-clk-v1-0-44ce54108f06@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAOh9gGUC/3WMQQ6CMBREr0K6tqafChRW3sOwoO1HfgRqWkIkh
+ LtbcGFcuJjFm8y8lQX0hIFVyco8zhTIjRHglDDTNeMdOdnILBWphBg+6H7hpn9wVRjMTHqBVig
+ W50+PLb0O1a2O3FGYnF8O8wx7+5GAFF/JDFxwlesWoCwsSLxq56aexrNxw279c9ESRWZzXWpsf
+ i71tm1vTkSGx9UAAAA=
+To: Gregory CLEMENT <gregory.clement@bootlin.com>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+Cc: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, 
+ linux-mips@vger.kernel.org, linux-clk@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ Tawfik Bayouk <tawfik.bayouk@mobileye.com>, 
+ =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
+X-Mailer: b4 0.12.4
+X-GND-Sasl: theo.lebrun@bootlin.com
 
-On fre, dec 15, 2023 at 15:30, Andrew Lunn <andrew@lunn.ch> wrote:
-> On Thu, Dec 14, 2023 at 09:14:39PM +0100, Tobias Waldekranz wrote:
->> When probing, if a device is waiting for firmware to be loaded into
->> its RAM, ask userspace for the binary and load it over XMDIO.
->
-> Does a device without firmware have valid ID registers? Is the driver
-> going to probe via bus enumeration, or is it necessary to use a
-> compatible with ID values?
->
->> +	for (sect = fw->data; (sect + sizeof(hdr)) < (fw->data + fw->size);) {
->
-> This validates that the firmware is big enough to hold the header...
->
->> +		memcpy(&hdr, sect, sizeof(hdr));
->> +		hdr.data.size = cpu_to_le32(hdr.data.size);
->> +		hdr.data.addr = cpu_to_le32(hdr.data.addr);
->> +		hdr.data.csum = cpu_to_le16(hdr.data.csum);
->> +		hdr.next_hdr = cpu_to_le32(hdr.next_hdr);
->
-> I'm surprised sparse is not complaining about this. You have the same
-> source and destination, and sparse probably wants the destination to
-> be marked as little endian.
->
->> +		hdr.csum = cpu_to_le16(hdr.csum);
->> +
->> +		for (i = 0, csum = 0; i < offsetof(struct mv3310_fw_hdr, csum); i++)
->> +			csum += sect[i];
->> +
->> +		if ((u16)~csum != hdr.csum) {
->> +			dev_err(&phydev->mdio.dev, "Corrupt section header\n");
->> +			err = -EINVAL;
->> +			break;
->> +		}
->> +
->> +		err = mv3310_load_fw_sect(phydev, &hdr, sect + sizeof(hdr));
->
-> What i don't see is any validation that the firmware left at sect +
-> sizeof(hdr) big enough to contain hdr.data.size bytes.
->
+Hi,
 
-Thanks Andrew and Russel, for the review!
+We replace fixed clocks as declared in the initial platform support
+series [1] by read-only clocks exposed by the clock driver implemented
+here. Write-ability is supported by the hardware but not implemented,
+it could be added later-on if the need appears.
 
-You both make valid points, I'll try to be less clever about this whole
-section in v2.
+We expose ten PLLs that derive directly from the main crystal. Also, a divider
+clock is exposed as a child clock of one of the PLLs.
+
+The platform devicetree has many more clock nodes but those are
+fixed-factors that are not hardware controllable; we therefore do not
+deal with them.
+
+This series starts with a fix for a fixed-rate clock registering macro that is
+broken. We are the first upstream users which explains why we found the typo.
+
+We end our patch series by adding the clock controller node to the
+platform devicetree & by replacing hardcoded devicetree clocks by the
+ones exposed by this driver. The controller driver addition is split in
+two commits to simplify reviewing.
+
+[1]: https://lore.kernel.org/lkml/20231212163459.1923041-1-gregory.clement@bootlin.com/
+
+Have a nice day,
+Théo Lebrun
+
+Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
+---
+Théo Lebrun (5):
+      clk: fixed-rate: fix clk_hw_register_fixed_rate_with_accuracy_parent_hw
+      dt-bindings: clock: mobileye,eyeq5-clk: add bindings
+      clk: eyeq5: add controller
+      clk: eyeq5: add OSPI table-based divider clock
+      MIPS: mobileye: eyeq5: add OLB clocks controller node & pinmux nodes
+
+ .../bindings/clock/mobileye,eyeq5-clk.yaml         |  83 +++++
+ MAINTAINERS                                        |   3 +
+ .../{eyeq5-fixed-clocks.dtsi => eyeq5-clocks.dtsi} |  56 +---
+ arch/mips/boot/dts/mobileye/eyeq5.dtsi             |   9 +-
+ drivers/clk/Kconfig                                |  11 +
+ drivers/clk/Makefile                               |   1 +
+ drivers/clk/clk-eyeq5.c                            | 346 +++++++++++++++++++++
+ include/dt-bindings/clock/mobileye,eyeq5-clk.h     |  22 ++
+ include/linux/clk-provider.h                       |   4 +-
+ 9 files changed, 493 insertions(+), 42 deletions(-)
+---
+base-commit: 0bb6b85cadabf93a754df740bd1b6c56ef41ac2c
+change-id: 20231023-mbly-clk-87ce5c241f08
+
+Best regards,
+-- 
+Théo Lebrun <theo.lebrun@bootlin.com>
+
 
