@@ -1,91 +1,83 @@
-Return-Path: <devicetree+bounces-26604-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26605-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16718817117
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 14:54:32 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BDD79817204
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 15:05:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A9F5B28194E
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 13:54:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 59B75284134
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 14:05:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBADF1D159;
-	Mon, 18 Dec 2023 13:54:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F922498A2;
+	Mon, 18 Dec 2023 14:02:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aRbC2DA4"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="DOKiAw5d"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55A6B101D4;
-	Mon, 18 Dec 2023 13:54:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-a2343c31c4bso167016366b.1;
-        Mon, 18 Dec 2023 05:54:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1702907655; x=1703512455; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=CbtU5Dem8n1ByRGdHfRIcdaXiqJKIZaXjO9MiKCPxSw=;
-        b=aRbC2DA4RCGnOCbpTUGe3H2+8A3AvSzghu3VoH8878v+Bsz8Vvsm2HEV4DkJo7d6aD
-         fg2knaCoSpfiLPIsb2mXkZwqImIRsMCTaaApnxPHqKzj2dFoJGPZrQ0riyregW7q5yAd
-         ztaa2P9wZvJVURnJajbQtt/Hoa6Q+62sIZmRknBzh3XWqwX2bz3Bv7sFZ+UBP2KXD2FL
-         +3gKbAZHvRhM6ZNYzxoh1S57NeDlF0zJIWNWkBIrgAQ+kH3GT2NbDWzQW07DoVVMwKWV
-         eLK9cNqfEKR0lHw/r3TgZJLV2Aac6rHwy/T3CK5qBWmTfqPKP81RG7xBo8+aRRG+2wxK
-         7Bng==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702907655; x=1703512455;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=CbtU5Dem8n1ByRGdHfRIcdaXiqJKIZaXjO9MiKCPxSw=;
-        b=WWWldL3mFEVEOpFa8wsPmQmBuoMPWh17mnDMlcNAI+Ns5Tic2zhgzUvMVVcxPnfQQX
-         HDz9d2wZuUhmZNnx3II/cDgmGUk+SBAHVkKNe8WjMEi/M5BbgLwVENCjpPU9+FEBFsLu
-         1joV1zFs5ibOyTin2JVCVV+6KdzJbSA4UR9d0qRFSThy1Os5mVwzR3aJVGexcLcxVzt5
-         dIPDBLQSRDP7U4182YSTh9dTu1b8QSa0egqAzu+uUUjozTT3pSAyxSUWnySVLymHcXZ6
-         xl6PkYY8DJZ2j64yUrX45YbvsiGsCPRbyAMKxznxVNJnTC1ttOgMBdcJ0DZMKPL9xTyZ
-         frHQ==
-X-Gm-Message-State: AOJu0YwHWxQGujaAEXQ/vQgAFUF5z/CpNr7dLibeVDwQyNywcs/hpmpq
-	SzxE+xf6BzJd25tlcjdU4h+rrH3YCvDu5yzBPq8=
-X-Google-Smtp-Source: AGHT+IFccjuA7oI4N2vZVaD408zkZGajffjClRfWqmjz7HiPSzp9vIfLO0uacCVtWGKz7UbIXxVfUaYcwBaZqHng/s0=
-X-Received: by 2002:a17:906:1083:b0:a19:a19b:426a with SMTP id
- u3-20020a170906108300b00a19a19b426amr4772325eju.213.1702907655325; Mon, 18
- Dec 2023 05:54:15 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5BE5498A4;
+	Mon, 18 Dec 2023 14:02:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 1FE7B1BF209;
+	Mon, 18 Dec 2023 14:02:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1702908145;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=g9hdpzX59dlQ8BbL4qFPt1i7iHlvmq58cF5p1A5NsrM=;
+	b=DOKiAw5d7xeVSCsPETCVl3JSgk/hiu/3PuGa55ZqK+Mqil78nGr4xHia+JwjeUxMDrbhI5
+	y3hnlnv+LZXEoRaVYDv8sTz36fwuCXuO+W8MN/u5l6DqOgluyW4NTGfhoQCJUsxmH3IMN8
+	af0EqVjAzehFN+CFmBFMb4pNtYYYwpPvIiBo9sEHnUuNgNDItJvuo4jnMYAqie66OBAU19
+	r7p/HUxwXAbjhyptKwWJyvnCiyMs57PaiBJ9BMU2gk6L047ISKzcrAS+scHnctBctydjaJ
+	PMhepo1FjXI51w3WVgEnUE5Wmp8FWRklZzUDSMAn2vCPSb0+Wt9P72ymNQ2NeQ==
+Date: Mon, 18 Dec 2023 15:02:23 +0100
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+To: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Michael Walle
+ <michael@walle.cc>, linux-mtd@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, u-boot@lists.denx.de, =?UTF-8?B?UmFmYcWC?=
+ =?UTF-8?B?IE1pxYJlY2tp?= <rafal@milecki.pl>
+Subject: Re: [PATCH 3/4] nvmem: u-boot-env: use more nvmem subsystem helpers
+Message-ID: <20231218150223.000aacf0@xps-13>
+In-Reply-To: <20231218133722.16150-3-zajec5@gmail.com>
+References: <20231218133722.16150-1-zajec5@gmail.com>
+	<20231218133722.16150-3-zajec5@gmail.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231218124058.2047167-1-elinor.montmasson@savoirfairelinux.com>
-In-Reply-To: <20231218124058.2047167-1-elinor.montmasson@savoirfairelinux.com>
-From: Daniel Baluta <daniel.baluta@gmail.com>
-Date: Mon, 18 Dec 2023 15:54:03 +0200
-Message-ID: <CAEnQRZAwk-USZqXwLOVuN3iTn7r-55BJH=Sqq5+2Od+DhrK0iw@mail.gmail.com>
-Subject: Re: [PATCHv3 RESEND 00/10] ASoC: fsl-asoc-card: compatibility
- integration of a generic codec use case for use with S/PDIF controller
-To: Elinor Montmasson <elinor.montmasson@savoirfairelinux.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Shengjiu Wang <shengjiu.wang@gmail.com>, Xiubo Li <Xiubo.Lee@gmail.com>, 
-	Fabio Estevam <festevam@gmail.com>, Nicolin Chen <nicoleotsuka@gmail.com>, 
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, linux-sound@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	alsa-devel@alsa-project.org, linuxppc-dev@lists.ozlabs.org, 
-	Philip-Dylan <philip-dylan.gleonec@savoirfairelinux.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-GND-Sasl: miquel.raynal@bootlin.com
 
->
-> * fsl-asoc-card.txt currently follows the old dt-bindings format.
-> Should we update it to DT schema format in this patch series
-> before adding my new properties?
->
->
+Hi Rafa=C5=82,
 
-I know this is extra-work but we would greatly appreciate if you first
-convert fsl-asoc-card.txt
-to yml format and then add your new properties.
+zajec5@gmail.com wrote on Mon, 18 Dec 2023 14:37:21 +0100:
+
+> From: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
+>=20
+> 1. Use nvmem_dev_size() and nvmem_device_read() to make this driver less
+>    mtd dependent
+> 2. Use nvmem_add_one_cell() to simplify adding NVMEM cells
+>=20
+> Signed-off-by: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
+
+Reviewed-by: Miquel Raynal <miquel.raynal@bootlin.com>
+
+Thanks,
+Miqu=C3=A8l
 
