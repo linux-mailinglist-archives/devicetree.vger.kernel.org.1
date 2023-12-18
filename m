@@ -1,64 +1,66 @@
-Return-Path: <devicetree+bounces-26476-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26477-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A7BB8169F2
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 10:36:54 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1659F816A01
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 10:39:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AED9E1C227E5
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 09:36:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3B21C1C22874
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 09:39:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B058125D3;
-	Mon, 18 Dec 2023 09:36:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EF1911CBD;
+	Mon, 18 Dec 2023 09:39:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TFZw9C+y"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="m+Jdg4Pq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
+Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com [209.85.210.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CA22125C8;
-	Mon, 18 Dec 2023 09:36:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-50e23a4df33so2421471e87.2;
-        Mon, 18 Dec 2023 01:36:33 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8ACC125A7
+	for <devicetree@vger.kernel.org>; Mon, 18 Dec 2023 09:39:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pf1-f181.google.com with SMTP id d2e1a72fcca58-6d411636a95so956214b3a.0
+        for <devicetree@vger.kernel.org>; Mon, 18 Dec 2023 01:39:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1702892191; x=1703496991; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=0YIvodjJ/uqcZK67kNnFAU9qFMXVMgAPp9QJLFWVolA=;
-        b=TFZw9C+y2qSh1V7OF0Df4heF3yx2ECk8rNnJLV3cuue9jgfsyUHKvcvoja14cM475R
-         w2fKO+L5NkYXuxJbDyGskeaWzOVSX/Q+vXtgvCuQrhwPJ4iku9GC3Xcp9uxfg/MI+x+t
-         u+ZG5fy8omZ/YBBiaINbv413LhvQJ7QhYdfLCakFJAY5UMHyAV99LiVuO0FvBtP8z5DP
-         NPeqjePrRTN9sQxe8etGpa6TNZErikRu32midhH+gPSNKnULrbgWq1UO+iks7USn/2zp
-         PuP9OyJNIOTbLuFSKCviZ7Lhevy0Beret0to2/2z21WnBJXgsl5XPQwxQtyh7jmKKXwH
-         Wyaw==
+        d=linaro.org; s=google; t=1702892381; x=1703497181; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :references:cc:to:content-language:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=BTYEtunIedVhrIrUbrN5OGHL/0lewttUjOiPfnpbhG4=;
+        b=m+Jdg4Pqa3KDO8JRupZ6tkl5k3/Jt03n+UEIpevEeTp+GWpZCDVjpZber2RoIODSwX
+         1BiHGKp7s2b4jleJcEWhMkm5XFOF+6RI/4A0/QEExdiSMXfK9+z5o2XM7r7PflsZpFfu
+         +gpF6AszArOKAGLXwgqnHkoEPUAoG4Txl2syQdTMOG7VqzfzTeKrRHSdVjytiLJ/Sm+k
+         CcGqLgHTd0xmbK9W8t4gewtKuhAPmtND+A9FC27W6d1JOttqMnZEbbcgRBFCFiXVm9uk
+         BTmLIGB5qtdfrd1R4xfdayECrvc1pFx9LR7z6RfWh7hlfoFMgq1dz06ZAJ8q35q1PgJc
+         9jrA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702892191; x=1703496991;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0YIvodjJ/uqcZK67kNnFAU9qFMXVMgAPp9QJLFWVolA=;
-        b=u264fn4DKeCzjqxgD/PwDciAgIZJxUmXvvxLGOeQ9WckmN2DgoE2w7mJwUtpEJvqmj
-         iYkN+z94St1kkcxABMS7HzplltSIaWE8Cp3lvGxeoXpn6f8nnbC1OCjOp9mKVRbZE0o1
-         yL/6+JhXS1yM/SVSueBK3A0bVmUQYaFLsx7FZeOKZOOpYle9HtuejAmFG3/E3St7Iyjd
-         RNYcrNMd01TTd6F67NjaUMyTCdgV1GwQtqvybscsHiJqXu2tv2b15oF1o2r3rmstetSS
-         xA3D0NAeEf0ytTbzL8i2bnc8Yd5fzGFNAUTBDcg5niWu3kNGOS1TojCR55oDdL0C0M/K
-         MjKQ==
-X-Gm-Message-State: AOJu0Yzn6AhbKUn90T9RxIzvFan1tF4GOBT1KoaGahtiVb/4joo08gfV
-	o0QNgrUvBdzca1oRfDWzFww=
-X-Google-Smtp-Source: AGHT+IFuiH1eQ6Y/2h4/4Sh/l4ki28JcGPuWQmiiirVZBcPHW2WlInyyyKcyt6Tvw2TipioPVTt2dA==
-X-Received: by 2002:a05:6512:3086:b0:50e:1ac0:c97c with SMTP id z6-20020a056512308600b0050e1ac0c97cmr4449121lfd.66.1702892190947;
-        Mon, 18 Dec 2023 01:36:30 -0800 (PST)
-Received: from ?IPV6:2001:14ba:16f8:1500::2? (dc78bmyyyyyyyyyyyyyby-3.rev.dnainternet.fi. [2001:14ba:16f8:1500::2])
-        by smtp.gmail.com with ESMTPSA id g42-20020a0565123baa00b0050bfe7a602csm2866425lfv.74.2023.12.18.01.36.29
+        d=1e100.net; s=20230601; t=1702892381; x=1703497181;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :references:cc:to:content-language:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=BTYEtunIedVhrIrUbrN5OGHL/0lewttUjOiPfnpbhG4=;
+        b=PpcLXvQ5745UJstO5VzQ1PhxCftrUGWN53J99Of6KUQsM8Pr3PbJ/IWL5jHUE17SWQ
+         B6vj3gAEokgrpJ3mUoDb7VHYm7F3CqMObRoz7IdKdk28n6x5fhXusJunXXljHGd/zoKm
+         QnwP2iNnOm9EiFc7U9qRExdR5OB8w9Q+XlHcEiVCOr0n/mRU1nsUm17I23opdfaGwfcr
+         HjW3WOX2CVapklAKMYL53ZyXYlj/u83SvrhmdAHAupmQmMXQ6XvbLVUJJPvh+kDPVMZS
+         xxKWlFQNlENf3HjB+UxiLqNYjg1uS7QVIDK1sWX7jSIocdI9AVyIUx3QcJomuvp6/liL
+         NiBQ==
+X-Gm-Message-State: AOJu0Yx6Wh/tU54x7FNuQOZmBDVpEUSwToSSXOQtAd2wD6wgFZQ/cMiX
+	DHs6DhmyOv3m32zar4TBHBAJ3Q==
+X-Google-Smtp-Source: AGHT+IF92lD4uQGcOvnMiAVb7hcO4gcbwh7m7LghWfKxV9vSCKKOHDlYmmYLmBb0BH9hREskDXqLvQ==
+X-Received: by 2002:a05:6a20:3712:b0:194:341e:8f5c with SMTP id t18-20020a056a20371200b00194341e8f5cmr1602230pze.50.1702892381093;
+        Mon, 18 Dec 2023 01:39:41 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:b425:da5d:c0cf:a505? ([2a01:e0a:982:cbb0:b425:da5d:c0cf:a505])
+        by smtp.gmail.com with ESMTPSA id e10-20020aa798ca000000b006d7bfb2f30csm1333167pfm.148.2023.12.18.01.39.30
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 18 Dec 2023 01:36:30 -0800 (PST)
-Message-ID: <57fbc795-b3ff-4a77-8064-ad6f7e07f96b@gmail.com>
-Date: Mon, 18 Dec 2023 11:36:28 +0200
+        Mon, 18 Dec 2023 01:39:40 -0800 (PST)
+Message-ID: <db90068a-8eac-458e-bc22-aceb59870f5d@linaro.org>
+Date: Mon, 18 Dec 2023 10:39:28 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,293 +68,159 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/2] iio: light: isl76682: Add ISL76682 driver
-Content-Language: en-US, en-GB
-To: Jonathan Cameron <jic23@kernel.org>,
- Andre Werner <andre.werner@systec-electronic.com>, devicetree@vger.kernel.org
-Cc: Marek Vasut <marex@denx.de>, linux-iio@vger.kernel.org,
- Alexander Stein <alexander.stein@ew.tq-group.com>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Bjorn Helgaas <bhelgaas@google.com>, Conor Dooley <conor+dt@kernel.org>,
- Fabio Estevam <festevam@denx.de>, Guenter Roeck <linux@roeck-us.net>,
+From: neil.armstrong@linaro.org
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v9 08/12] clk: meson: g12a: make VCLK2 and ENCL clock path
+ configurable by CCF
+Content-Language: en-US, fr
+To: Jerome Brunet <jbrunet@baylibre.com>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Lars-Peter Clausen <lars@metafoo.de>,
- Luca Ceresoli <luca.ceresoli@bootlin.com>, Mark Brown <broonie@kernel.org>,
- Naresh Solanki <naresh.solanki@9elements.com>,
- Patrick Rudolph <patrick.rudolph@9elements.com>,
- Rob Herring <robh+dt@kernel.org>,
- Stefan Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com>,
- Vincent Tremblay <vincent@vtremblay.dev>
-References: <20231121031043.327614-1-marex@denx.de>
- <20231121031043.327614-2-marex@denx.de>
- <8b865546-0e51-45ff-ab76-8189afaa9ad5@gmail.com>
- <cd21c72f-d9ff-471d-a08d-9b67bf180950@denx.de>
- <4a39aff2-bb1a-447c-8c33-8bfad06777e3@gmail.com>
- <dff1e2f9-c2a1-4262-b80b-ce0c144fdaf5@gmail.com>
- <20231217130613.47bab03d@jic23-huawei>
-From: Matti Vaittinen <mazziesaccount@gmail.com>
-In-Reply-To: <20231217130613.47bab03d@jic23-huawei>
+ Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Jagan Teki <jagan@amarulasolutions.com>, Nicolas Belin
+ <nbelin@baylibre.com>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>, Remi Pommarel
+ <repk@triplefau.lt>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org,
+ linux-phy@lists.infradead.org, Rob Herring <robh@kernel.org>
+References: <20231124-amlogic-v6-4-upstream-dsi-ccf-vim3-v9-0-95256ed139e6@linaro.org>
+ <20231124-amlogic-v6-4-upstream-dsi-ccf-vim3-v9-8-95256ed139e6@linaro.org>
+ <1jbkbjdxk8.fsf@starbuckisacylon.baylibre.com>
+ <b23ddc3b-d995-4cd6-91f2-3efa59d345a5@linaro.org>
+ <1j34wvdtux.fsf@starbuckisacylon.baylibre.com>
+ <41a1246e-c885-460a-8208-16844e95e1ae@linaro.org>
+ <1jjzq3zhaw.fsf@starbuckisacylon.baylibre.com>
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro Developer Services
+In-Reply-To: <1jjzq3zhaw.fsf@starbuckisacylon.baylibre.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 12/17/23 15:06, Jonathan Cameron wrote:
-> On Fri, 15 Dec 2023 14:06:32 +0200
-> Matti Vaittinen <mazziesaccount@gmail.com> wrote:
+Hi,
+
+On 27/11/2023 09:38, Jerome Brunet wrote:
 > 
->> On 11/23/23 09:24, Matti Vaittinen wrote:
->>> On 11/23/23 02:26, Marek Vasut wrote:
->>>> On 11/22/23 13:17, Matti Vaittinen wrote:
->>>>> On 11/21/23 05:10, Marek Vasut wrote:
->>
->> ..snip
->>
->>>>> I like this table-based look-up for write (and read) of scales.
->>>>> Looking at this I see an analogy to some of the regulator stuff, like
->>>>> for example the ramp-up values. What I do very much like in the
->>>>> regulator subsystem is the drivers/regulator/helpers.c
->>>>>
->>>>> I wonder if similar approach would be usable in IIO as well? I mean,
->>>>> providing readily written iio_regmap_read/write_raw_<functionality>()
->>>>> and iio_available_*() helpers for the simple devices where we just
->>>>> have value-register mapping? I mean, driver would just populate
->>>>> something like:
->>>>>
->>>>> struct iio_scale_desc {
->>>>>       int *scale_val_table;
->>>>>       int *scale_val2_table;
->>>>>       int num_scales;
+>>>
 >>>>
->>>> You'd also need type here (fractional, int+micro, ...), right ?
->>>
->>> Well, my thinking was to go with baby-steps. Eg, start by supporting
->>> just int+micro - but yes. As I wrote below, this can be expanded by
->>> allowing specifying the type.
->>>    
->>>>>       int scale_reg_addr;
->>>>>       int scale_reg_mask;
->>>>> };
->>>>>
->>>>> and call helper like
->>>>> int iio_regmap_read_raw_scale(struct iio_dev *idev,
->>>>>                     struct iio_scale_desc *sd, int *val,
->>>>>                     int *val2)"
->>>>> provided by IIO framework.
->>>>>
->>>>> Similar helper for writing new scales and getting available scales.
->>>>>
->>>>> Later this could be expanded by allowing specifying the type of
->>>>> provided values (in the example case, IIO_VAL_INT_PLUS_x - but maybe
->>>>> this would be extensible (and worth) to support also the other options?)
->>>>>   
->>
->> ... snip
->>
+>>>> I suspect mipi_dsi_pxclk_div was added to achieve fractional vclk/bitclk ratios,
+>>>> since it doesn't exist on AXG. Not sure we would ever need it... and none
+>>>> of the other upstream DSI drivers supports such setups.
 >>>>
->>>> The only thing I would wonder about is, should such a thing go into
->>>> regmap so it can be reused cross-subsystem instead of making this iio
->>>> specific ?
->>>
->>> I definitely think a relation "register value" <=> "item from a table"
->>> is very much used also outside the IIO. So yes, a generic regmap helper
->>> for doing write as a "look value from table and write corresponding
->>> value to a register" and "read value from register and return me a
->>> corresponding item from a table" would be very usable.
->>>
->>> There is a tradeoff when doing a generic one instead of making it
->>> targeted for IIO use. Supporting different types of data is likely to
->>> make the code a bit hairy. Also, the IIO way of having these IIO_VAL_*
->>> flags does probably require IIO - specific wrappers in any case.
+>>>> The main reasons I set only mipi_dsi_pxclk in DT is because :
+>>>> 1) the DSI controller requires a bitclk to respond, pclk is not enough
+>>>> 2) GP0 is disabled with an invalid config at cold boot, thus we cannot
+>>>> rely on a default/safe rate on an initial prepare_enable().
+>>>> This permits setting initial valid state for the DSI controller, while
+>>>> the actual bitclk and vclk are calculated dynamically with panel/bridge
+>>>> runtime parameters.
+>>> Nothing against setting rate in DT when it is static. Setting it then
+>>> overriding it is not easy to follow.
 >>
->> I had some spare time so drafted following:
+>> Yup, would be simpler to only have parenting set in DT, since it must
+>> stay static, I'm fine trying to move rate setup to code.
 >>
->> +struct reg_val_table {
->> +       int *reg_vals;
->> +       int *vals;
->> +       int num_vals;
->> +};
+>>> To work around GP0 not being set, assuming you want to keep rate
+>>> propagation as it is, you could call clk_set_rate() on cts_encl (possibly w/o
+>>> enabling it) to force a setup on gp0 then clk_prepare_enable() on
+>>> pxclk. You'd get a your safe rate on GP0 and the clock you need on pxclk.
+>>> It is a bit hackish. Might be better to claim gp0 in your driver to
+>>> manage it directly, cutting rate propagation above it to control each
+>>> branch of the subtree as you need. It seems you need to have control over
+>>> that anyway and it would be clear GP0 is expected to belong to DSI.
 >>
->> ...
->>
->> +/**
->> + * regtable_find_val - find a value matching register setting
->> + *
->> + * Search given table for value mathcing a register setting.
->> + *
->> + * @table:     Table from which the register setting - value pairs are
->> + *             searched.
->> + * @reg:       Register value for which the matching physical value is
->> + *             searched.
->> + * @val:       Pointer to location where the found value will be stored.
->> + *
->> + * returns:    0 on success, negative errno if table is invalid or match is
->> + *             not found.
->> + */
->> +int regtable_find_val(const struct reg_val_table *table, int reg, int *val)
->>
->>
->> +/**
->> + * regtable_find_reg - find a register setting matching given value.
->> + *
->> + * Search given table for a register setting matching a value.
->> + *
->> + * @table:     Table from which the register setting - value pairs are
->> + *             searched.
->> + * @val:       Value for which the matching register setting is searched.
->> + * @reg:       Pointer to location where the found register value will be
->> + *             stored.
->> + *
->> + * returns:    0 on success, negative errno if table is invalid or match is
->> + *             not found.
->> + */
->> +int regtable_find_reg(const struct reg_val_table *table, int val, int *reg)
->>
->>
->> +/**
->> + * regtable_find_greater_than_val - find the closest greater val and reg
-> Maybe use rounding terminology rather than greater than?
+>> Controlling the PLL from the DSI controller seems violating too much layers,
+>> DSI controller driver is not feed directly by the PLL so it's a non-sense
+>> regarding DT properties.
 > 
-> regtable_find_val_roundup()?
+> Not sure what you mean by this. You have shown in your the commit
+> message that the DSI clocks make significant subtree. I don't see a
+> problem if you need to manage the root of that subtree. I'd be great if
+> you didn't need to, but it is what it is ...
 
-Would be much better indeed. Thanks!
+I really think the choice of PLL should not be done by the DSI controller,
+but by the Video pipeline driver or statically until we can do this.
 
->> + * Search given table for the smallest value which is still greater than
->> + * the given value. Both the found value and corresponding register
->> + * setting are returned unless given pointers are NULL.
->> + *
->> + * @table:     Table from which the register setting - value pairs are
->> + *             searched.
->> + * @val_cmp:   Value to which the values stored in table are compared to.
->> + * @reg:       NULL or pointer to location where the matching register
->> + *             setting value will be stored.
->> + * @val:       NULL or pointer to location where the found value will be
->> + *             stored.
->> + *
->> + * returns:    0 on success, negative errno if table is invalid or match is
->> + *             not found.
->> + */
->> +int regtable_find_greater_than_val(const struct reg_val_table *table,
->> int val_cmp,
->> +                                  int *reg, int *val)
+My point is that we should only define the clocks that are related to each
+hardware, for example the whole VCLK/VCLK2 clocks should be defined for the
+VPU HW, then only the few endpoint clocks should be defined for the HDMI
+or DSI controllers, PHY clock and ENCI/ENCP for HDMI, DSI and ENCL for DSI.
+
+The big plan is to entirely switch to CCF for VPU, but first I want to have
+DSI working, and since DSI needs GP0, we need CCF for that so the intermediate
+plan is to have partial CCF handling only for DSI with fixed clock tree in DT,
+then in the future the Meson DRM driver would set up the appropriate clock
+tree for HDMI, DSI, Composite and perhaps DP for T7 SoCs then the controller
+bridge will call the clk_set_rate() in the same design I did for DSI.
+
+Here's the tracked item: https://gitlab.com/amlogic-foss/mainline-linux-issues-tracker/-/issues/9
+
+CCF clock control is a mandatory item to solved dual-head display: https://gitlab.com/amlogic-foss/mainline-linux-issues-tracker/-/issues/6
+
 > 
-> regtable_find_val_rounddown()?
-
-Yes.
-
->> +/**
->> + * regtable_find_smaller_than_val - find the closest smaller val and reg
->> + *
->> + * Search given table for the greatest value which is still smaller than
->> + * the given value. Both the found value and corresponding register
->> + * setting are returned unless given pointers are NULL.
->> + *
->> + * @table:     Table from which the register setting - value pairs are
->> + *             searched.
->> + * @val_cmp:   Value to which the values stored in table are compared to.
->> + * @reg:       NULL or pointer to location where the matching register
->> + *             setting value will be stored.
->> + * @val:       NULL or pointer to location where the found value will be
->> + *             stored.
->> + *
->> + * returns:    0 on success, negative errno if table is invalid or match is
->> + *             not found.
->> + */
->> +int regtable_find_smaller_than_val(const struct reg_val_table *table,
->> +                                  int val_cmp, int *reg, int *val)
 >>
->>
->> and
->>
->> +struct regmap_regval_table {
->> +       const struct reg_val_table table;
->> +       int reg;
->> +       int mask;
->> +};
->>
->> +/**
->> + * regmap_table_value_set - update register to match
->> human-understandable value
->> + * @map:       Register map
->> + * @table:     Table describing register-value, human-readable value
->> relation
->> + * value:      Human understandable value to configure in hardware.
->> + *
->> + * Return:     0 on success, negative errno on error.
->> + */
->> +int regmap_table_value_set(struct regmap *map,
->> +                          const struct regmap_regval_table *table, int
->> value)
->>
->>
->> +/**
->> + * regmap_table_value_get - return human-understandable configuration
->> + *
->> + * Reads hardware or regmap cache for current hardware configuration and
->> + * converts the read register value to human understandable entity.
->> + * @map:       Register map
->> + * @table:     Table describing register-value, human-readable value
->> relation
->> + * value:      Human understandable value to configure in hardware.
->> + *
->> + * Return:     0 on success, negative errno on error.
->> + */
->> +int regmap_table_value_get(struct regmap *map,
->> +                          const struct regmap_regval_table *table, int
->> *value)
->>
->>
->> (for anyone interested, whole thing + tests can be found from:
->> https://github.com/M-Vaittinen/linux/commits/regtable/
->> Just last 3 commits.)
->>
->> I am however having difficulties in seeing how this could be utilized by
->> IIO, which tends to rely on values being represented by two integers
->> (val and val2).
+>> Setting a safe clock from the DSI controller probe is an idea, but again I
+>> don't know which value I should use...
 > 
-> Two integers and a type to make it harder still... IIO_VAL_INT_PLUS_MICRO etc
-> though I guess that might not need representing as generally the caller
-> would know what that was.  Fixed point (ish) is a pain, but not come up with a better
-> presentation yet :(
+> You mentionned that the problem comes DSI bridges that needs to change
+> at runtime. I don't know much about those TBH, but is there
+> anyway you can come up with a static GP0 rate that would then be able to
+> divide to serve all the rates bridge would need in your use case ?
 
-I think the IIO-representation is fine. Sure it sucks that the real 
-world is set up in such a imperfect way that we do need fractions, but 
-as we do, IIO-way is just fine.
+No, there's no such things in the DSI world, MIPI only specifies the electrical
+and transport layer, everything else is custom per vendor.
 
-The thing IIO 'stuff' requires (and is not available in this draft) is 
-64 storage bits for the values. I guess I could increase the size in 
-tables to use u64 - and have an IIO-specific layer which could 
-pack/unpack the val and val2 in that 64 bits appropriately - but I'm not 
-sure it's worth the hassle. Besides, when users only need 32bits, 64bit 
-tables would be waste.
-
-Adding support for both 32 and 64 bit tables would probably work - but 
-maybe this is just an overkill for a simple task. Creating just 
-IIO-specific helpers would be much leaner.
-
->> Any suggestions regarding this idea? I'm wondering if I should just
->> scrap this and try seeing if I can make an IIO-specific helper(s) - or
->> if someone sees this would bring additional value worth an proper RFC? I
->> don't want to sen an RFC for people to properly review if this idea is
->> just plain stupid :)
 > 
-> It seems useful in general but I guess it's a question of whether you can find
-> enough users to justify it.
+> GP0 can go a lot higher than ~100MHz and there are dividers unused in the
+> tree it seems.
+> 
+> I suppose there is a finite number of required rate for each use case ?
+> If there are not too many and there is a common divider that allows a
+> common rate GP0 can do, it would solve your problem. It's a lot of if
+> but It is worth checking.
+> 
+> This is how audio works and DT assigned rate is a good match in this case.
 
-You're right of course. I think my question should've been if someone 
-can instantly think a type of devices that could benefit from these 
-helpers :)
+Yeah I know, but I would love it but no...
 
-Anyways, bit Thank You for the input! Your help is much appreciated as 
-always! :) Let's see if my "hands NOT full" time continues so I can 
-rethink this.
+> 
+>>
+>> I'll review the clk parenting flags and try to hack something.
+>>
+>> Thanks,
+>> Neil
+>>
+>>
 
-Yours,
-	-- Matti
-
--- 
-Matti Vaittinen
-Linux kernel developer at ROHM Semiconductors
-Oulu Finland
-
-~~ When things go utterly wrong vim users can always type :help! ~~
+Thanks,
+Neil
 
 
