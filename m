@@ -1,120 +1,193 @@
-Return-Path: <devicetree+bounces-26727-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26728-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9E2A817C5A
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 22:02:00 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6A12817C62
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 22:07:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 574511F22AA3
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 21:02:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5D650284B21
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 21:07:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0EE1372057;
-	Mon, 18 Dec 2023 21:01:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66C597347E;
+	Mon, 18 Dec 2023 21:07:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OL7jv8za"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="JR9lhhoa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f176.google.com (mail-pf1-f176.google.com [209.85.210.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4BD8A2D;
-	Mon, 18 Dec 2023 21:01:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B7A27C43395;
-	Mon, 18 Dec 2023 21:01:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1702933315;
-	bh=AB00qD3Ni0x+sMJqQuHXkbBurZHwihPTNyuC62l4mIc=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=OL7jv8zagTR9Wa/Z1MKeYECZV7HUW9g6bhf1+6VRaXLN1zJpzTX1rF4u/ixDOjvQp
-	 HgJKxeG29XwsK4pHHylksO5cmdYF9pK7whGbn+pBW1THpuG2ah1iWc0hR0RIEBSzba
-	 W8XIiSmqwFn2CAiuBlgagbXHUyyJD+DQdPpQguxiCEC31h4RA/RIlyrVjj8YKieY2Y
-	 U2EqjrnTrlZcnYCd+pTk/vbBBX3WaR4LDl0tWCz4BDuZeaBHuy1dmHhVx4JBTAjYmw
-	 mIkamE8HJag5c1C3+oyKMrBkW0WWTaScLdvshOc8kTIF17Lzr9K83A7lRwJpWe7LG5
-	 zO2Hse0zcoXTg==
-Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-50e384cd6ebso1847811e87.3;
-        Mon, 18 Dec 2023 13:01:55 -0800 (PST)
-X-Gm-Message-State: AOJu0YzONsUjNAlVTjHNpW8UN/JWYRkC/UDLt3o9HtyRqoLz2/ot/IRL
-	3dIMs+m4ixsLxuPEPtn/nar3Va9qmKfB50wfFQ==
-X-Google-Smtp-Source: AGHT+IFk5wtJASz/OLwqlySUAfrjwRkGoOk+cgnDJrdvoscQSusQODPnNFtFda6GCFbdHjqbNw3yJXK/LYHii9MCWy0=
-X-Received: by 2002:ac2:551b:0:b0:50e:3ccc:a8e with SMTP id
- j27-20020ac2551b000000b0050e3ccc0a8emr525177lfk.30.1702933313826; Mon, 18 Dec
- 2023 13:01:53 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CBCF73465
+	for <devicetree@vger.kernel.org>; Mon, 18 Dec 2023 21:07:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
+Received: by mail-pf1-f176.google.com with SMTP id d2e1a72fcca58-6d089e8b1b2so1850815b3a.3
+        for <devicetree@vger.kernel.org>; Mon, 18 Dec 2023 13:07:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=broadcom.com; s=google; t=1702933632; x=1703538432; darn=vger.kernel.org;
+        h=message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=xDOf/iNp4SFIK2wLpa9hly0at114GVm3S4kauy8Kz+c=;
+        b=JR9lhhoaiCoo1vCg3mw4u8Vv2jZWsc+038leJJA/95/ibqms5P+Cs8V/JlNP9aUk64
+         yrony8Q75RL6Ox9BfJTr44L03eePxh7PIZKDSmlaMNyvUTeOf1mJvuYD8f8zd+ZYCcFx
+         LTFRV8T38+7ymverkPw4wBPSYmS7sTnCadCCg=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702933632; x=1703538432;
+        h=message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=xDOf/iNp4SFIK2wLpa9hly0at114GVm3S4kauy8Kz+c=;
+        b=HVn7LXR3nNzkYsizW+Ig7ze95nKs92YEriE6gASgJiQUDNp17cY12eTUinD0hFnhpZ
+         wf+o7A79sETdpJ1wTnb/jaaNVoOudJpjW54ZAAb7KCPSXjFZAvBd2tsDxjDubIQ+ae0Y
+         7OPm4Vx9gb4mXlqBdjv7HFuNK0eNZsjY/Ri6hC7Zrc6vhQQ5QULY4YQWUJAzoRnNU4pA
+         TkvDuq+FKEa8iLCZLJduaCGBc5T2UCPIz6L9oFJzjKBsZpjPIGn2ZEzwgine2i6G0k88
+         aNdcqOmw9VStL6huw51EalOYhynEQxT8CuOXcXG3Xqc/xsTJLBO1w7PZbMLAZz3Alota
+         R5gQ==
+X-Gm-Message-State: AOJu0YxsV7D06TJEcMb41teTQQ8R7YpZbaeiCNQ+BGNJ1bk2uLdXNRJ8
+	yzp6WETjwD8P85zgwVmEkMcjbg==
+X-Google-Smtp-Source: AGHT+IHn6EAt7EFxj7XZeGrGuN6Z67x9x2lFzX+Vp5I/I178DJ6ZnpBoU/74VnkGDxvAxXJsoPwacQ==
+X-Received: by 2002:a05:6a00:6c9d:b0:6d9:31bf:4280 with SMTP id jc29-20020a056a006c9d00b006d931bf4280mr198824pfb.52.1702933632318;
+        Mon, 18 Dec 2023 13:07:12 -0800 (PST)
+Received: from mail.broadcom.net ([192.19.144.250])
+        by smtp.gmail.com with ESMTPSA id i17-20020aa787d1000000b006d3b2008406sm4473417pfo.50.2023.12.18.13.07.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 18 Dec 2023 13:07:11 -0800 (PST)
+From: Kamal Dasu <kamal.dasu@broadcom.com>
+To: ulf.hansson@linaro.org,
+	linux-kernel@vger.kernel.org,
+	alcooperx@gmail.com,
+	linux-arm-kernel@lists.infradead.org,
+	adrian.hunter@intel.com,
+	linux-mmc@vger.kernel.org,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org
+Cc: f.fainelli@gmail.com,
+	bcm-kernel-feedback-list@broadcom.com,
+	Kamal Dasu <kamal.dasu@broadcom.com>
+Subject: [PATCH v4 0/2] mmc: add new sdhci reset sequence for brcm 74165b0
+Date: Mon, 18 Dec 2023 16:07:03 -0500
+Message-Id: <20231218210705.38201-1-kamal.dasu@broadcom.com>
+X-Mailer: git-send-email 2.17.1
+Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
+	boundary="0000000000004055dc060ccf2232"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-References: <cover.1701093036.git.lukas@wunner.de> <3f56f0a2bb90697a23e83583a21684b75dc7eea2.1701093036.git.lukas@wunner.de>
- <CAL_JsqKwJsaJhoi07gG76TgDtrwh0i=iGtxL-_pbQbGDZ_8C3A@mail.gmail.com>
- <20231213162319.GA31314@wunner.de> <CAL_JsqJ=14b19yHZ=rnVd8uLu=kn5W9y0irk0XA983Eo+ByBnA@mail.gmail.com>
- <20231215152411.GA20902@wunner.de>
-In-Reply-To: <20231215152411.GA20902@wunner.de>
-From: Rob Herring <robh+dt@kernel.org>
-Date: Mon, 18 Dec 2023 15:01:41 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLHV+7Mcw9CeRVrd6qJR0Yv=+XG_ZwLR8B+113Kp2Wn4g@mail.gmail.com>
-Message-ID: <CAL_JsqLHV+7Mcw9CeRVrd6qJR0Yv=+XG_ZwLR8B+113Kp2Wn4g@mail.gmail.com>
-Subject: Re: [PATCH v2 1/3] dt-bindings: tpm: Consolidate TCG TIS bindings
-To: Lukas Wunner <lukas@wunner.de>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jarkko Sakkinen <jarkko@kernel.org>, Peter Huewe <peterhuewe@gmx.de>, Jason Gunthorpe <jgg@ziepe.ca>, 
-	devicetree@vger.kernel.org, linux-integrity@vger.kernel.org, 
-	Lino Sanfilippo <LinoSanfilippo@gmx.de>, Nayna Jain <nayna@linux.ibm.com>, 
-	Thirupathaiah Annapureddy <thiruan@microsoft.com>, Sasha Levin <sashal@kernel.org>, 
-	Alexander Steffen <Alexander.Steffen@infineon.com>, 
-	Johannes Holland <Johannes.Holland@infineon.com>, Amir Mizinski <amirmizi6@gmail.com>, 
-	Benoit HOUYERE <benoit.houyere@st.com>, Peter Delevoryas <peter@pjd.dev>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-On Fri, Dec 15, 2023 at 9:24=E2=80=AFAM Lukas Wunner <lukas@wunner.de> wrot=
-e:
->
-> On Wed, Dec 13, 2023 at 11:01:21AM -0600, Rob Herring wrote:
-> > On Wed, Dec 13, 2023 at 10:23AM Lukas Wunner <lukas@wunner.de> wrote:
-> > > Ideally the validator would match a regex against the $nodename of th=
-e
-> > > parent and see if it contains "spi" or "i2c".  But I think matching
-> > > against the parent's $nodename isn't possible, is it?
-> >
-> > No. I've thought of adding something like that, but haven't.
->
-> Please consider this a feature request. :)
->
-> It would be good if it were possible to define constraints not just
-> for the $nodename of the parent, but any of its properties.
+--0000000000004055dc060ccf2232
 
-You could write such a schema, but it would have to be applied to the
-parent node rather than the child node. It would have to be applied to
-every 'i2c' node and in theory you could have one for every i2c
-device. We could define something like "$defs/parent-schema" within
-the child device schema and make the tools apply it to the parent
-node.
+v4 changes:
+ - Fix for v3 changes that introduced dt schema errors
+ - Fix for v3 changes that introduced sdhci-brcmstb build warnings 
+ - Added proper PATCH format and cleanup commit messages as per
+   review comments. Added proper 'Reported-by' and 'Closes' tags
+ - Added comments for 32-bit register access as per review comments
+ - Replaced wait loop polling with readb_poll_timeout() helper as per
+   review comments for the sdhci-brcmstb driver changes
+ 
+v3 changes:
+ - Removed extra emun arrayfor possible compatible strings
+ - shdci-brcmstb checkpatch warning fixes 
 
-> E.g. with i2c, the clock-frequency is set at the host controller's
-> devicetree node, not at each attached i2c peripheral's node.
-> For ACPI, i2c_acpi_find_bus_speed() walks the bus to find the
-> highest clock speed supported by all attached i2c peripherals,
-> but for OF, the onus is on the devicetree author to manually
-> determine the clock.
->
-> Thus, for a TPM such as infineon,slb9635tt which only supports 100 kHz,
-> I want to validate that the parent node's clock-frequency is less than
-> or equal to that.
->
-> In Documentation/devicetree/bindings/security/tpm/st33zp24-i2c.txt
-> there's an example showing a clock-frequency property at the
-> peripheral's node and I mistakenly carried that over to the yaml
-> schema.  A look at the code reveals that's entirely bogus so I'll
-> drop the clock-frequency property in v3.  I will retain textual
-> hints that infineon,slb9635tt is limited to 100 kHz and
-> infineon,slb9645tt to 400 kHz, but as it stands I can't define
-> rules that would allow the validator to check that automatically.
+v2 changes:
+ - Fixed devicetree bindings for shdci-brcmstb and removed 74165 compatible
+   string as per review comments
 
-We could adapt the bindings to accept that. Makes sense as that's
-mostly a property of each device. SPI freq is per child, but I guess
-I2C has to be the minimum of all the child nodes.
+Kamal Dasu (2):
+  dt-bindings: mmc: brcm,sdhci-brcmstb: Add support for 74165b0
+  mmc: add new sdhci reset sequence for brcm 74165b0
 
-Rob
+ .../bindings/mmc/brcm,sdhci-brcmstb.yaml      |  4 +-
+ drivers/mmc/host/sdhci-brcmstb.c              | 67 +++++++++++++++++--
+ 2 files changed, 63 insertions(+), 8 deletions(-)
+
+-- 
+2.17.1
+
+
+--0000000000004055dc060ccf2232
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+Content-Description: S/MIME Cryptographic Signature
+
+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
+DxuNuBlySpn/GYqPcDcRZd8EENWqnZrjtjHMk0j7ZfrPGXq8sQkbG3OX+DOwSaefPRq1pLGWBZaZ
+YuUo5O7CNHo7h7Hc9GgjiW+6X9BjKAzSaDy8jwIDAQABo4IB2DCCAdQwDgYDVR0PAQH/BAQDAgWg
+MIGjBggrBgEFBQcBAQSBljCBkzBOBggrBgEFBQcwAoZCaHR0cDovL3NlY3VyZS5nbG9iYWxzaWdu
+LmNvbS9jYWNlcnQvZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3J0MEEGCCsGAQUFBzABhjVo
+dHRwOi8vb2NzcC5nbG9iYWxzaWduLmNvbS9nc2djY3IzcGVyc29uYWxzaWduMmNhMjAyMDBNBgNV
+HSAERjBEMEIGCisGAQQBoDIBKAowNDAyBggrBgEFBQcCARYmaHR0cHM6Ly93d3cuZ2xvYmFsc2ln
+bi5jb20vcmVwb3NpdG9yeS8wCQYDVR0TBAIwADBJBgNVHR8EQjBAMD6gPKA6hjhodHRwOi8vY3Js
+Lmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwLmNybDAiBgNVHREEGzAZ
+gRdrYW1hbC5kYXN1QGJyb2FkY29tLmNvbTATBgNVHSUEDDAKBggrBgEFBQcDBDAfBgNVHSMEGDAW
+gBSWM9HmWBdbNHWKgVZk1b5I3qGPzzAdBgNVHQ4EFgQUcRYSWvAVyA3hgTrQ2c4AFquBsG0wDQYJ
+KoZIhvcNAQELBQADggEBAIKB2IOweF2sIYGBZTDm+Hwmhga+sjekM167Sk/KwxxvQFwZYP6i0SnR
+7aR59vbfVQVaAiZH/a+35EYxP/sXaIM4+E3bFykBuXwcGEnYyEn6MceiOCkjkWQq1Co2JyOdNvkP
+nAxyPoWlsJtr+N/MF1EYKGpYMdPM7S2T/gujjO9N56BCGu9yJElszWcXHmBl5IsaQqMS36vhsV0b
+NxffjNkeAdgfN/SS9S9Rj4WXD7pF1M0Xq8gPLCLyXrx1i2KkYOYJsj0PWlC6VRg6E1xXkYDte0VL
+fAAG4QsETU27E1HBNQyp5zF1PoPCPvq3EnWQnbLgYk+Jz2iwIUwiqwr/bDgxggJtMIICaQIBATBr
+MFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMTEwLwYDVQQDEyhHbG9i
+YWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgw89WX2Pp7ue922QVkwDQYJYIZI
+AWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIHdIA7MVt+fZ6uYqnv7+MI07vFLcIY986zU9EfQ8
+nkgYMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTIzMTIxODIxMDcx
+MlowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAsGCWCGSAFlAwQB
+AjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEHMAsGCWCGSAFlAwQCATANBgkq
+hkiG9w0BAQEFAASCAQBhl7H8YbBJXz4Fu1klzrj/cXqP6NuG0X8i9mTevdf2/RilRaafsq2sr+P2
+5wMFr2oDcdw676yo2ABPSsg8s6blX3AzztSg3jFQNvyF5U5RyXO1sgpAOg5J4iUjGAzrZb1t7Nqm
+pFlVrCQ/iWM6XChXC3kjI0QXi//SzdAHhB/3yeKtyQp9LeG0Ew7S49Rvw8+RHufeTV2tCCuIyzWz
+ZA1jgAShTnJC3GqG8JDB8WoAJrl2ASky/loIWGt7lQdzDPaPpxyk3X1tHbp+5lMr9iwEWviklGvO
+O/hIS9dQvmXQUtYM3vaB9DYYqvGR3ayLGfMR8Rf7YezObRevvyAFlCBR
+--0000000000004055dc060ccf2232--
 
