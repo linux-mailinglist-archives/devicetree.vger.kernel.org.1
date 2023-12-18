@@ -1,126 +1,109 @@
-Return-Path: <devicetree+bounces-26637-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26638-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6194D817665
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 16:55:50 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE971817673
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 16:58:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1B1691C23CFA
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 15:55:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6E1B51F23DC2
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 15:58:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4581837872;
-	Mon, 18 Dec 2023 15:55:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C535D3D540;
+	Mon, 18 Dec 2023 15:58:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cEAxDwSX"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="xZ9OGggt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25E21E57C;
-	Mon, 18 Dec 2023 15:55:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 443B0C433C7;
-	Mon, 18 Dec 2023 15:55:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1702914945;
-	bh=gP2p7ltlGa5lLEG8JqiCPcXfF7ayw1/Vq76UN6hkMN0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=cEAxDwSXr+KBw0mipbIjWpGsdFTt4VDbgqixgZramwzYKIYPgdC8qqyK6pk/2cOBZ
-	 0FjTKIHAtfpgovpSgLSLU/G2xVQZHR0Gq8guxJDXg8K+K1WUUqhbgfN4R9MuH9mItg
-	 HRGdAS+NWrofzWXq45qiy0oAR75LCe2EswCUlJGOaHX2eavO61HWoLgRiDy1oX/FrK
-	 nA8Xtxu5+kb8iEBD+KKhsxJKLnZs1x8qaues/DWR121CnkzlYFaI4QNc8M6Fv1RJeq
-	 KFWKG+jMUkO74pgtUHMuDjfv/iu+vIWoupuROJUaCozRGlb1mdQ5MDmS8waIvdl60F
-	 VefDjymjYTiJg==
-Date: Mon, 18 Dec 2023 15:55:40 +0000
-From: Simon Horman <horms@kernel.org>
-To: Tobias Waldekranz <tobias@waldekranz.com>
-Cc: davem@davemloft.net, kuba@kernel.org, linux@armlinux.org.uk,
-	kabel@kernel.org, andrew@lunn.ch, hkallweit1@gmail.com,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next 3/4] net: phy: marvell10g: Add LED support for
- 88X3310
-Message-ID: <20231218155540.GF6288@kernel.org>
-References: <20231214201442.660447-1-tobias@waldekranz.com>
- <20231214201442.660447-4-tobias@waldekranz.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D88A3A1D4;
+	Mon, 18 Dec 2023 15:58:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 3BIBNMin005423;
+	Mon, 18 Dec 2023 16:57:32 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding:content-type; s=selector1; bh=8qvW327
+	JWtzUxk62P/7MbSy0EvIsbaRHUR0tz6Gv+K4=; b=xZ9OGggtdcpVD6mAlStBNb3
+	0YUcYfpIKrScqCsi72tEyovbLfZnpCeUmu74M8XB0VwpKnNjNlFJFRZMuTI3NgZV
+	NJLfX8PyW5rdEeoHbE0QvexVglxF0ts5p8ar/CjsMPPzX9RejMmGMxs5DNp3LBRB
+	FT0aQgHGCUx0xtdYZOuHIfMifHCeevrOT0sclVnkkWxXxWdCU2UYEpxNNvvIwTXL
+	ltVMtpUu2dU3r9FnRqQKHn/doIWg4U5lHNySM6d2N1DenVOeEue3ob2rNQrmAi56
+	vVwPV+KTxaJRNaUk54HGfpbsSPAkia7g9CEtzeHS1rVljhxngoy1i+ci4DUNU2Q=
+	=
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3v126ks3de-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 18 Dec 2023 16:57:32 +0100 (CET)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 3115510005E;
+	Mon, 18 Dec 2023 16:57:31 +0100 (CET)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 29B0E25F4AE;
+	Mon, 18 Dec 2023 16:57:31 +0100 (CET)
+Received: from localhost (10.129.178.213) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Mon, 18 Dec
+ 2023 16:57:30 +0100
+From: Alain Volmat <alain.volmat@foss.st.com>
+To: Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre
+ Torgue <alexandre.torgue@foss.st.com>,
+        Alain Volmat
+	<alain.volmat@foss.st.com>,
+        Erwan Leray <erwan.leray@foss.st.com>,
+        Fabrice
+ Gasnier <fabrice.gasnier@foss.st.com>
+CC: <linux-spi@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH 0/6] spi: stm32: add support for stm32mp25
+Date: Mon, 18 Dec 2023 16:57:12 +0100
+Message-ID: <20231218155721.359198-1-alain.volmat@foss.st.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231214201442.660447-4-tobias@waldekranz.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-12-18_10,2023-12-14_01,2023-05-22_02
 
-On Thu, Dec 14, 2023 at 09:14:41PM +0100, Tobias Waldekranz wrote:
-> Pickup the LEDs from the state in which the hardware reset or
-> bootloader left them, but also support further configuration via
-> device tree. This is primarily needed because the electrical polarity
-> and drive behavior is software controlled and not possible to set via
-> hardware strapping.
-> 
-> Trigger support:
-> - "none"
-> - "timer": Map 60-100 ms periods to the fast rate (81ms) and 1000-1600
->   	   ms periods to the slow rate (1300ms). Defer everything else to
-> 	   software blinking
-> - "netdev": Offload link or duplex information to the solid behavior;
->   	    tx and/or rx activity to blink behavior.
-> 
-> Signed-off-by: Tobias Waldekranz <tobias@waldekranz.com>
+This series adds support for spi bus found on the stm32mp25 and add
+all instances within device-trees.
 
-...
+Alain Volmat (4):
+  spi: stm32: use dma_get_slave_caps prior to configuring dma channel
+  arm64: dts: st: add all 8 spi nodes on stm32mp251
+  arm64: dts: st: add spi3/spi8 pins for stm32mp25
+  arm64: dts: st: add spi3 / spi8 properties on stm32mp257f-ev1
 
-> +static int mv3310_leds_probe(struct phy_device *phydev)
-> +{
-> +	struct mv3310_priv *priv = dev_get_drvdata(&phydev->mdio.dev);
-> +	struct device_node *node = phydev->mdio.dev.of_node;
-> +	struct device_node *pnp, *np;
-> +	int err, val, index;
-> +
-> +	/* Save the config left by HW reset or bootloader, to make
-> +	 * sure that we do not loose any polarity config made by
-> +	 * firmware. This will be overridden by info from DT, if
-> +	 * available.
-> +	 */
-> +	for (index = 0; index < MV3310_N_LEDS; index++) {
-> +		val = phy_read_mmd(phydev, MDIO_MMD_VEND2,
-> +				   MV_V2_LED0_CONTROL + index);
-> +		if (val < 0)
-> +			return val;
-> +
-> +		priv->led[index] = (struct mv3310_led) {
-> +			.index = index,
-> +			.fw_ctrl = val,
-> +		};
-> +	}
-> +
-> +	if (!node)
-> +		return 0;
-> +
-> +	pnp = of_get_child_by_name(node, "leds");
-> +	if (!pnp)
-> +		return 0;
-> +
-> +	for_each_available_child_of_node(pnp, np) {
-> +		err = mv3310_led_probe_of(phydev, np);
-> +		if (err)
+Valentin Caron (2):
+  dt-bindings: spi: stm32: add st,stm32mp25-spi compatible
+  spi: stm32: add st,stm32mp25-spi compatible supporting STM32MP25 soc
 
-Hi Tobias,
+ .../devicetree/bindings/spi/st,stm32-spi.yaml |   1 +
+ arch/arm64/boot/dts/st/stm32mp25-pinctrl.dtsi |  46 ++++++
+ arch/arm64/boot/dts/st/stm32mp251.dtsi        |  88 +++++++++++
+ arch/arm64/boot/dts/st/stm32mp257f-ev1.dts    |  14 ++
+ drivers/spi/spi-stm32.c                       | 145 ++++++++++++++++--
+ 5 files changed, 280 insertions(+), 14 deletions(-)
 
-I think a call to of_node_put(np) is required here to avoid leaking a
-reference.
+-- 
+2.25.1
 
-Flagged by Coccinelle.
-
-> +			return err;
-> +	}
-> +
-> +	return 0;
-> +}
-
-...
 
