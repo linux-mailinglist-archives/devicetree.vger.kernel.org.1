@@ -1,182 +1,141 @@
-Return-Path: <devicetree+bounces-26522-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26523-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 943C2816C05
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 12:17:25 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id ECF4B816C1E
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 12:24:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2844E1F23440
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 11:17:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9A6DF283267
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 11:24:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A51718E2D;
-	Mon, 18 Dec 2023 11:17:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 658BC19463;
+	Mon, 18 Dec 2023 11:24:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="O+QCe0tq"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="bct7G7TE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E05BF19447;
-	Mon, 18 Dec 2023 11:17:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 886C4C433C8;
-	Mon, 18 Dec 2023 11:17:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1702898240;
-	bh=jhT+AlpmCfyK9JZxXxSNykpbsTEk5+SjdjTlfBVIDyc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=O+QCe0tqd2vCDzVikw7J9kmofQTYq3GGZXkDl0HrxHbP1Csw36LyitHS1Fl3/fn4f
-	 X5BlFoR5vj6mSuaRKiIFqYBaHds9gAO0Y0KwFHSUDWtN1BmbV70TSciYR4o8q7p9Nu
-	 IPrsqG2MlzFfWaqSuRZjdheUCQu18z8ek6PjY7tX9LvBlb9vDKajJCWsUEEJ0H7SSl
-	 /M3CaAd/COStCa5jev190of+EqNRFOJDciB+Qz3/mEC7YSTF1wraxrvY+pJc+n6FPn
-	 ipb0gXtTglGe5lIfg2DW62WORWLnqgbxlcS8m/SA72azZfkd6AJEqjFeCQCB7FSh1U
-	 7LMWLxFyMB0ig==
-Date: Mon, 18 Dec 2023 11:17:16 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Joshua Yeong <joshua.yeong@starfivetech.com>
-Cc: jeeheng.sia@starfivetech.com, leyfoon.tan@starfivetech.com,
-	jassisinghbrar@gmail.com, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/3] dt-bindings: mailbox: starfive: Add StarFive Meu
- Mailbox Driver
-Message-ID: <20231218-pawing-unripe-e45ad62ff8c7@spud>
-References: <20231218061201.98136-1-joshua.yeong@starfivetech.com>
- <20231218061201.98136-3-joshua.yeong@starfivetech.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2270A199C1;
+	Mon, 18 Dec 2023 11:23:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 3BIBLcb9032689;
+	Mon, 18 Dec 2023 11:23:46 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=pe0F6W5jgXvs6Rtoq81BDFSKgs1ZkfuHqIk9e9/ity4=; b=bc
+	t7G7TEFcxtphKD02wGYb1XAVddKjmJxFlS9SpESOKB4dfvTdgMfqhEJNOq96cgYe
+	Sr4o6F8pm25jL/v+prI5mdlvgCDS/bbtZMAEWHoWzggvWfE9613aYROBef4yNWpj
+	C5rvXRF8iL6avOdHwfjfa0sWuqso8psgrw6OZQeNNWv9AEbvBsHJQ7YCKDaPXzPq
+	5JTb6RlrKYUBu0tHgkKi9N6s+x5k08UlchBal4wJVdg4uoo3O5PnF8Tp5sN/7yLW
+	O2vdrAmA+FgsRh/+bRZXjpV3VVTflb+9Ob6RAZCINgWTj+HnArDUbD7Njv+C6fCv
+	8PPg1CwhhwKh2uP3dNqg==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3v2j2dgeej-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 18 Dec 2023 11:23:46 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3BIBNjd8029644
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 18 Dec 2023 11:23:45 GMT
+Received: from [10.233.17.145] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Mon, 18 Dec
+ 2023 03:23:40 -0800
+Message-ID: <caa424d3-7af0-43e6-8e13-e87cde0c4f67@quicinc.com>
+Date: Mon, 18 Dec 2023 19:23:37 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="aQrXQ+3ue3EP+Cq/"
-Content-Disposition: inline
-In-Reply-To: <20231218061201.98136-3-joshua.yeong@starfivetech.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 7/8] dt-bindings: arm: Add support for TPDM CMB MSR
+ register
+To: Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski@linaro.org>,
+        Tao Zhang <quic_taozha@quicinc.com>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Alexander Shishkin
+	<alexander.shishkin@linux.intel.com>,
+        Konrad Dybcio <konradybcio@gmail.com>,
+        Mike Leach <mike.leach@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC: Jinlong Mao <quic_jinlmao@quicinc.com>, Leo Yan <leo.yan@linaro.org>,
+        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
+        <coresight@lists.linaro.org>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Yuanfang Zhang
+	<quic_yuanfang@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Song Chai
+	<quic_songchai@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <andersson@kernel.org>
+References: <1700533494-19276-1-git-send-email-quic_taozha@quicinc.com>
+ <1700533494-19276-8-git-send-email-quic_taozha@quicinc.com>
+ <e5fbbfab-02bf-4eda-8353-87c54c307af1@linaro.org>
+ <1d57590d-2ecf-4bf6-9c8f-2a9d1ba08aaa@arm.com>
+From: Tingwei Zhang <quic_tingweiz@quicinc.com>
+In-Reply-To: <1d57590d-2ecf-4bf6-9c8f-2a9d1ba08aaa@arm.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: bcZc92j0kDYOMdnc2vCkINjfwJYfs-Wk
+X-Proofpoint-GUID: bcZc92j0kDYOMdnc2vCkINjfwJYfs-Wk
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-12-09_02,2023-12-07_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 mlxlogscore=777
+ mlxscore=0 bulkscore=0 suspectscore=0 impostorscore=0 priorityscore=1501
+ adultscore=0 malwarescore=0 lowpriorityscore=0 spamscore=0 clxscore=1011
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2311290000
+ definitions=main-2312180082
 
+On 12/18/2023 6:47 PM, Suzuki K Poulose wrote:
+> Tao Zhang,
+> 
+> On 21/11/2023 07:24, Krzysztof Kozlowski wrote:
+>> On 21/11/2023 03:24, Tao Zhang wrote:
+>>> Add property "qcom,cmb_msr_num" to support CMB MSR(mux select register)
+>>> for TPDM. It specifies the number of CMB MSR registers supported by
+>>> the TDPM.
+>>>
+>>> Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
+>>> Signed-off-by: Mao Jinlong <quic_jinlmao@quicinc.com>
+>>> ---
+>>
+>> I prefer not to take any new Qualcomm Coresight bindings or Qualcomm SoC
+>> DTS nodes with Coresight till we fix all existing warnings. I don't know
+>> how to fix them, so I need help with them. No such fixing happened so
+>> far from Qcom, so pushback is my only way to get any attention.
+>>
+>> I already commented on this in other email thread.
+> 
+> Are you addressing this ?
+The DT warning is fixed in 
+https://lore.kernel.org/linux-arm-msm/20231210072633.4243-1-quic_jinlmao@quicinc.com/.
+It's applied to linux-arm-msm yesterday.
+> 
+> Suzuki
+> 
+>>
+>> Best regards,
+>> Krzysztof
+>>
+> 
 
---aQrXQ+3ue3EP+Cq/
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+-- 
+Thanks,
+Tingwei
 
-On Mon, Dec 18, 2023 at 02:12:00PM +0800, Joshua Yeong wrote:
-> The StarFive Meu Mailbox allow communication between AP and SCP cores
-> through mailbox doorbell.
->=20
-> Co-developed-by: Sia Jee Heng <jeeheng.sia@starfivetech.com>
-> Signed-off-by: Sia Jee Heng <jeeheng.sia@starfivetech.com>
-> Signed-off-by: Joshua Yeong <joshua.yeong@starfivetech.com>
-> Reviewed-by: Ley Foon Tan <leyfoon.tan@starfivetech.com>
-> ---
->  .../bindings/mailbox/starfive-meu.yaml        | 66 +++++++++++++++++++
->  1 file changed, 66 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mailbox/starfive-me=
-u.yaml
->=20
-> diff --git a/Documentation/devicetree/bindings/mailbox/starfive-meu.yaml =
-b/Documentation/devicetree/bindings/mailbox/starfive-meu.yaml
-> new file mode 100644
-> index 000000000000..dbc5cfdb90ff
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mailbox/starfive-meu.yaml
-> @@ -0,0 +1,66 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mailbox/starfive-meu.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: StarFive MEU Mailbox Controller
-> +
-> +maintainers:
-> +  - Jee Heng Sia <jeeheng.sia@starfivetech.com>
-> +  - Joshua Yeong <joshua.yeong@starfivetech.com>
-> +
-> +description: |
-> +  StarFive's Message-Exchange-Unit (MEU) is a mailbox controller that ha=
-s 62
-> +  independent doorbells. Each MEU channel consist of 31 doorbells and co=
-nsist of
-> +  a pair of Tx/Rx links that shall communicates with remote processor. T=
-he
-> +  sender set the bit in the SET register to indicate data readiness for =
-the
-> +  receiver. An interrupt will be raised whenever receiving notification =
-doorbell
-> +  from remote processor. The receiver will clear the bit in the CLR regi=
-ster
-> +  upon handling the doorbell notification. The sender should poll the ST=
-AT
-> +  register before starting any transaction to ensure all on-going doorbe=
-lls are
-> +  processed.
-
-What is/are the consumer(s) of this mailbox?
-Is part of your RPMI implementation?
-
-Cheers,
-Conor.
-
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - starfive,jh8100-meu
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    items:
-> +      - description: mailbox0
-> +      - description: mailbox1
-> +
-> +  '#mbox-cells':
-> +    description: represents index of the mailbox/doorbell paired channel
-> +      channel  0 - 30 for mailbox0 doorbell
-> +      channel 31 - 61 for mailbox1 doorbell
-> +    const: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - '#mbox-cells'
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    soc {
-> +        #address-cells =3D <2>;
-> +        #size-cells =3D <2>;
-> +
-> +        meu: mailbox@1f370000 {
-> +            compatible =3D "starfive,jh8100-meu";
-> +            reg =3D <0x0 0x1f370000 0 0x8000>;
-> +            interrupts =3D <170>, /* Mailbox0 */
-> +                         <171>; /* Mailbox1 */
-> +            #mbox-cells =3D <1>;
-> +        };
-> +    };
-> +
-> +...
-> --=20
-> 2.25.1
->=20
-
---aQrXQ+3ue3EP+Cq/
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZYAqPAAKCRB4tDGHoIJi
-0pAWAP0UxVroFOC8+v7rhvp42LiCfmH/2N8IRe7QzwShM9OO+wD/ZYMubBEEwj3W
-kqYsynjngk1KxjeF1Ez0nidDqz9ndgQ=
-=vSfH
------END PGP SIGNATURE-----
-
---aQrXQ+3ue3EP+Cq/--
 
