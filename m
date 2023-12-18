@@ -1,197 +1,124 @@
-Return-Path: <devicetree+bounces-26684-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26685-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09426817835
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 18:11:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A38D817837
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 18:12:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C7D261C22BE8
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 17:11:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B0E231C208D8
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 17:12:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5563E4FF99;
-	Mon, 18 Dec 2023 17:11:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 025B15A84B;
+	Mon, 18 Dec 2023 17:12:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=hotmail.com header.i=@hotmail.com header.b="UB6gxgq2"
+	dkim=pass (2048-bit key) header.d=waldekranz-com.20230601.gappssmtp.com header.i=@waldekranz-com.20230601.gappssmtp.com header.b="c6p+/Aj3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10olkn2092.outbound.protection.outlook.com [40.92.41.92])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B24E54FF6C;
-	Mon, 18 Dec 2023 17:11:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=hotmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hotmail.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=AqYi+ZY2oDJ3zH6AVyQQDEaCgc+ItFaYdAzhdgzLdluvciIlss6CnaAEpgVTqkb18bKg2ChSPWMr0DfzSDyjl5ZbW/sVAxAQOk4VXjwad/rdhiS4+Cuus5cnZwoGRs96rCdsnWSDinaXwF0Ik2jMIBduMmTy1TqR9dTb5K4HpwTkNmLpP/tHVyov5Mdb/MOG201bIrQFKVNFeIfTYBcn1gDES1qzikwuN5LkvzXeORzLn6r+M4BDvoVqWCxl0EocB6/m4hlgGD1mmHrhfh6OD2wcsV+Grr2O6A15KCNSl27KkBbnyClWluoIPTml1m4shT6boFSaYOb24bVT7ffWhA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=s5izcHEqh6h/sgYF94zInFqVgyzHf5EGv7dcFfolhas=;
- b=GwhDN+s060WcPUddYCpMDLPq4Yb16V3NKXCJs9mQRF0WljlMD6YLjudX/ClJ4ZQCRIe3mqVCZ/QmYXirM1ASGj5MnlYVh3YbvAGslrHp0cXB8iAPE8v6BIh3kMq5GXATwO33KHMS+7HUnnN14b0i183uPix7MMnPynAIi7387oyQhV3Rf/NK0HxTOvdVFL+xIxVY0Z4/1ua0vrVE0ZiWw7X7mSFnYZUlpVpGeUefIkamtnhc+fXVyb7Xto7/1vlto6B4pF1spqF1H7RY+bEe6OGTT/qGMQ8diOVw0evfFVtg2sXDid2mpAXUXllje23VYKKs3Xq7hkE+s+wD5OjZ1g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=s5izcHEqh6h/sgYF94zInFqVgyzHf5EGv7dcFfolhas=;
- b=UB6gxgq2j5wGLrj0aS0/g6uVgQqwRIeHBJ5peOyQr69/EDtXhRPRR3r3CoDTHJsbLOSqRAWI0cwakJmTwpvXoFEpApQQu3JkokCoyJTSDZtqu5QE5IENDPR0bJC2OkB/NA9lMQyDo4fRrmCEsJrSiFO9DUwgFNDSbcxGmy5DA8n6Bho1mgTmtqdVic3mXsQpkZ/MJC1Q/tpa5utszsISb04WZEfeyPB8uWGyoi881VmMMNWo8Bb/JNJAlj9vkPmY6/XyFubMwzjnUNXxhy4qUOnDkEjyKyQm3dNYvGdeRIhkOqDQH2VyuAOwzJVxrN3CyhEtFrYre+XY1a+pc7ruow==
-Received: from SN6PR06MB5342.namprd06.prod.outlook.com (2603:10b6:805:f9::31)
- by SA1PR06MB8291.namprd06.prod.outlook.com (2603:10b6:806:1c6::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7091.38; Mon, 18 Dec
- 2023 17:11:28 +0000
-Received: from SN6PR06MB5342.namprd06.prod.outlook.com
- ([fe80::3fca:a39b:c9d2:c834]) by SN6PR06MB5342.namprd06.prod.outlook.com
- ([fe80::3fca:a39b:c9d2:c834%2]) with mapi id 15.20.7091.034; Mon, 18 Dec 2023
- 17:11:28 +0000
-Date: Mon, 18 Dec 2023 11:11:19 -0600
-From: Chris Morgan <macromorgan@hotmail.com>
-To: Artur Rojek <contact@artur-rojek.eu>
-Cc: Chris Morgan <macroalpha82@gmail.com>, linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org, conor+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-	dmitry.torokhov@gmail.com, Paul Cercueil <paul@crapouillou.net>
-Subject: Re: [RFC] dt-bindings: input: Clarify that abs_min must be less than
- abs_max
-Message-ID:
- <SN6PR06MB5342032E6FB4A53C7A3E3A58A590A@SN6PR06MB5342.namprd06.prod.outlook.com>
-References: <20231215024022.122022-1-macroalpha82@gmail.com>
- <03a9a56362b0559234d4a21a4de3e32e@artur-rojek.eu>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <03a9a56362b0559234d4a21a4de3e32e@artur-rojek.eu>
-X-TMN: [eH0RF0354jy2oFYYO3H5UeeOay7vVcQb]
-X-ClientProxiedBy: DM6PR11CA0024.namprd11.prod.outlook.com
- (2603:10b6:5:190::37) To SN6PR06MB5342.namprd06.prod.outlook.com
- (2603:10b6:805:f9::31)
-X-Microsoft-Original-Message-ID: <ZYB9NwugEQjlRiAr@wintermute.localhost.fail>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D5E35A84D
+	for <devicetree@vger.kernel.org>; Mon, 18 Dec 2023 17:11:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=waldekranz.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=waldekranz.com
+Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-50e0d1f9fe6so4117928e87.1
+        for <devicetree@vger.kernel.org>; Mon, 18 Dec 2023 09:11:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=waldekranz-com.20230601.gappssmtp.com; s=20230601; t=1702919517; x=1703524317; darn=vger.kernel.org;
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=0myEz5mmchGFFDsQbXns7h4YnoVDFFYY18sAmSR5NYY=;
+        b=c6p+/Aj3+dXaDykVOazNClFUONN+ftmKUh/LFWladsUSGY8wOCJ03U6uoCCjyGCOmT
+         +oLy+7aSbWly3Tdo+Mr8zuJ6QfsWZWwHGmSIbtxY5h1NFtrN9GfOyQxWmcKWwMVs4CWq
+         XDdDDqfpRIvNEWS0nliAxSUhXg/foXInLQaXFEgwQt/4d7KOmqZNKHwuuJ0q1PDit9zJ
+         Y3pc/zAS8wMizdOsbfa2D73BMzz0iC7blagSY+HTXLSfkbtdR8UoBJiQGK4gk5qupoYk
+         /9b/vGf1ktWRnlubh4lyYCMUe3VStaCFwp+raplRmItG8Le0Nb3nq1fmXjjGcuv8ALRN
+         arkA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702919517; x=1703524317;
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=0myEz5mmchGFFDsQbXns7h4YnoVDFFYY18sAmSR5NYY=;
+        b=TYmmC4QQtQxhVJMJP5NfeTHKRS6RWCDwAo25dT9GcPy7FZaVY47FIM7aYxRDyGtZqt
+         SeWvPxzUNR3Xtwaf85zAHEaSi/ODpShI0+8RUzFS/kYuUNaNRJLWhO8drgiWQvO8Ke31
+         u069MuiYFRtQO4Nt+9pKIDT3OYsPYQFhm5t0+wRgkFrXD3b4kq0LAB61wP7/Sxw+N7zD
+         zWOsUlxfvtYtzmWBjkcFEBD1bLd4n/pFXukmhydMeCbNmQK3QdEXeXVYTnMXgt/iz4Tu
+         XOdOVH5qrQ/9tnoxsBkDGwBthHZJd9QTCUZMMw/2cXNsHsRqjXjhWh6TsnJ9I52Cft0/
+         VnRw==
+X-Gm-Message-State: AOJu0YwK6fk9vYxfKlEbL30P7/JhoQk83RAVX+i+LLnVAWcUFgVIzvv1
+	oHBiwiMeKECtC3bexAzXDZq1M9kH6ndECqEX4jw=
+X-Google-Smtp-Source: AGHT+IGcn7F+LIf2qkEpwynVxjLM9eahi6pgLIyCebHo8kn2zHVzzmtiiBJ120axFEkVs5fTXnXAZw==
+X-Received: by 2002:a19:e007:0:b0:50c:2218:7f1e with SMTP id x7-20020a19e007000000b0050c22187f1emr6616472lfg.16.1702919517283;
+        Mon, 18 Dec 2023 09:11:57 -0800 (PST)
+Received: from wkz-x13 (a124.broadband3.quicknet.se. [46.17.184.124])
+        by smtp.gmail.com with ESMTPSA id j10-20020a056512398a00b0050e223d5125sm832508lfu.55.2023.12.18.09.11.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 18 Dec 2023 09:11:56 -0800 (PST)
+From: Tobias Waldekranz <tobias@waldekranz.com>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: davem@davemloft.net, kuba@kernel.org, linux@armlinux.org.uk,
+ kabel@kernel.org, hkallweit1@gmail.com, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next 1/4] net: phy: marvell10g: Support firmware
+ loading on 88X3310
+In-Reply-To: <627fbf7d-5992-4c4b-9e32-b34e363db928@lunn.ch>
+References: <20231214201442.660447-1-tobias@waldekranz.com>
+ <20231214201442.660447-2-tobias@waldekranz.com>
+ <627fbf7d-5992-4c4b-9e32-b34e363db928@lunn.ch>
+Date: Mon, 18 Dec 2023 18:11:55 +0100
+Message-ID: <871qbj8mg4.fsf@waldekranz.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN6PR06MB5342:EE_|SA1PR06MB8291:EE_
-X-MS-Office365-Filtering-Correlation-Id: 039b8317-deda-49f6-898b-08dbffec5f12
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	RmFN1wR7Bc4BrQcyTQ0mDeEgldUO+9FQz6gSPp1M5JRA1fO+6ykqOThdFpooKuSiCqzPl2/GUgZq5pmX1Anhow6Xh/hXDWnRcGIEPVZrwgn26KtF6nBBVDftfNtUg0R4k4mqx8VskPbfq8pGSK3t45qaQCZRr5VwMh56ZuuANFCaYKF3p3BeR40E/z6UAL03AtQ4IFe9Q9basiV7rVIc8qTOKGzHVYBFInanUG07JzTPmMrpY9PJuyyYH7TI2YGSQhMh+91bXwKsD+44aUUjFdxT0XXXkVrp+WLcL65MVrZLdRiVtum9TKhFuSU5BivcKaG5O5bi39RYWrN5Y0LZZefwDNTUbIJv48/4YrQ6kDWVHpRNK+wlwNEQ20ztfihrcBJ3iZTeOF+Qzb8bE8I+s6LXZfLjnM30VT/wpMGvOItglBQz3ml0BwyLd7usAwmHSHDukXFCt49hHDHWaxJS7ExhS1Y/05RvoAasiCepTCiiFFC+uWUScu/bsRwd1Lmev8JWyxLoNexw4L7DTJvDJ/x7It+PaSNOPj04n5c4+imP907L+SyCCKLYNDjhJrzdTejjsB6RCZqmWR7rl+VggPYfzPRy4a+WHbR7ymyLtqn8x5EvMcru8/VjqULAaexMaEuUPcEgbyaPokOE1fAALw==
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?HsvIBk0VV1p302pgp4ImUTgTNQhC27skpCkbcc1qMlBOmlF0I/iaXmNFY/Si?=
- =?us-ascii?Q?Nem5Nx99sd5CsgQ5uDPqW/FElKhQqRVMiIiDb0B/ksxbswLQZ/7DbJPl2H4P?=
- =?us-ascii?Q?8e9ZfZHBTiHjGSDh2nTRMg5oLsPjet+T2W02qtyE2lO4H9DTkhu6J33nGh8h?=
- =?us-ascii?Q?r9MneFf0/2RlUyvynJaGnymcyq8c8Jh0oGt86NAR9N1K+i3l1fWczCU43v/4?=
- =?us-ascii?Q?icjB1gBG5NXsE/VS7kdxafOP/S2kNwkdFTm98knzjGFgIKdoY/En9khswfSu?=
- =?us-ascii?Q?x2fDvY84HCg25fkglHG95uKVcu7QyzQ6w+ZJNkFz7z551hmdmLjMtHa3EztN?=
- =?us-ascii?Q?/HXD/0wlBVAtQ3a9tqlfq8zNeEg5sg348tfRU9pZ808wN3Kb9yHx/qjQY75r?=
- =?us-ascii?Q?PM9aSY0AdxfthqfK1EKvbH4gw7czOodlXNbdRKNA+5CeYlH36CxnRy0DablA?=
- =?us-ascii?Q?nH5GMyRIsWME9pkIpe2tJMyBVRT//6fSWUw+CPdoWE3rDe6iJ6eZMjS4UY0o?=
- =?us-ascii?Q?vfnIR3CWBmx311MU58pK3xC29TeSnKHQ5QP9KTaXs5Vfb27qVLAp0L9zKWer?=
- =?us-ascii?Q?p3SYFni5Ol5DESUBavsnKuY6vPdVHjcO/piyaWsnk34jHKxhXt2I/yEbcHZL?=
- =?us-ascii?Q?x3uVhpxskNDx/6sTvyigpO9dESnE7qQSJ3qtXLOBBh+YhLzAv99XHg2GegD3?=
- =?us-ascii?Q?NnMblSwwGc/ZsYeGDyh457TJ8wgNVtWd292+ZRUR/kTcuLSHAqkdEjR7qRek?=
- =?us-ascii?Q?BIWcdR8y1Ls7pLInDkucndQDVzxPqE9rVNHs+GEFzD9shtIExv3xW0iIsBrf?=
- =?us-ascii?Q?hp+YdnCkwVV6I2xP7wJ3wp06DpV/vFa3rZHUbB77RyERtSBaM2Y86Sof2PTU?=
- =?us-ascii?Q?h3ck/f3G8D3n+CY8sVOEAzjKt/Zn2Ra5aTiIlu2hDcaicF9GYSybs7RaP/xW?=
- =?us-ascii?Q?lPO8OjJpXdbQ0PufDDsJmlw6obvfm3U7JtDM11T4JjIVSFW9/qEYu/CbsZxT?=
- =?us-ascii?Q?7f4TwmzAAS8uqOUkhOFJhASv4G4Cf5cDfoHFThQGER/q2qFd8Ituv6wQYSWv?=
- =?us-ascii?Q?tzkR/VjcmNSTOqKRdPdOKz5X7yc3Sx2/EjxRXXo397VSjtu99xHv5UvZzsDz?=
- =?us-ascii?Q?RYD6zS3qz1lyjyy/FY4FYoDILLaNlv3RbiyuIbgg2MCQiKpc+xdY+H3FKYSE?=
- =?us-ascii?Q?LgrsBuFCHdgNdH6d49wDkkEsSGyl1UHsqMFkZmEphOsU90Mg4HDIRcAtjKI?=
- =?us-ascii?Q?=3D?=
-X-OriginatorOrg: sct-15-20-4755-11-msonline-outlook-89723.templateTenant
-X-MS-Exchange-CrossTenant-Network-Message-Id: 039b8317-deda-49f6-898b-08dbffec5f12
-X-MS-Exchange-CrossTenant-AuthSource: SN6PR06MB5342.namprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Dec 2023 17:11:28.4317
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR06MB8291
+Content-Type: text/plain
 
-On Fri, Dec 15, 2023 at 12:19:51PM +0100, Artur Rojek wrote:
-> On 2023-12-15 03:40, Chris Morgan wrote:
-> > From: Chris Morgan <macromorgan@hotmail.com>
-> > 
-> > uinput refuses to work with abs devices where the min value is greater
-> > than the max value. uinput_validate_absinfo() returns -EINVAL if this
-> > is the case and prevents using uinput on such a device. Since uinput
-> > has worked this way since at least kernel 2.6 (or prior) I presume that
-> > this is the correct way of doing things, and that this documentation
-> > needs to be clarified that min must always be less than max.
-> > 
-> > uinput is used in my use case to bind together adc-joystick devices
-> > with gpio-keys devices to create a single unified gamepad for
-> > userspace.
-> > 
-> > Note that there are several boards that will need to be corrected,
-> > all but a few of them I maintain. Submitting as an RFC for now to get
-> > comments from the input team and the original author in case there is
-> > something I am missing.
-> > 
-> > Fixes: 7956b0d4694f ("dt-bindings: input: Add docs for ADC driven
-> > joystick")
-> > 
-> > Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-> > ---
-> >  Documentation/devicetree/bindings/input/adc-joystick.yaml | 5 +++--
-> >  1 file changed, 3 insertions(+), 2 deletions(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/input/adc-joystick.yaml
-> > b/Documentation/devicetree/bindings/input/adc-joystick.yaml
-> > index 6c244d66f8ce..8f5cdd5ef190 100644
-> > --- a/Documentation/devicetree/bindings/input/adc-joystick.yaml
-> > +++ b/Documentation/devicetree/bindings/input/adc-joystick.yaml
-> > @@ -73,8 +73,9 @@ patternProperties:
-> >          description: >
-> >            Minimum and maximum values produced by the axis.
-> >            For an ABS_X axis this will be the left-most and right-most
-> > -          inclination of the joystick. If min > max, it is left to
-> > userspace to
-> > -          treat the axis as inverted.
-> > +          inclination of the joystick. The axis must always be
-> > expressed as
-> > +          min < max, if the axis is inverted it is left to userspace to
-> > handle
-> > +          the inversion.
-> 
-> Hi Chris,
-> 
-> Device Tree is supposed to depict the actual state of the hardware.
-> I worded the adc-joytick's adc-range property specifically, so that it
-> covers a case of GCW Zero hardware [1], which has a joystick,  where the
-> ABS_X axis reports increasing values for the left-wards inclination of
-> the joystick, and decreasing values for the right-wards inclination. You
-> are saying that there are even more boards that need to be corrected -
-> those are all situations, where DT depicts the actual behavior of the
-> hardware.
-> What you are trying to do is change hardware description, because of how
-> a driver in an OS works. You should instead fix behavior of said driver,
-> even if nobody stumbled upon that issue since 2.6 :) We fixed libSDL [2]
-> for the same reason.
-> 
-> Cheers,
-> Artur
-> 
-> PS. cc'd Paul to the conversation.
-> 
-> [1] https://github.com/OpenDingux/linux/blob/jz-6.1/arch/mips/boot/dts/ingenic/gcw0.dts#L273C12-L273C12
-> [2] https://github.com/libsdl-org/SDL-1.2/commit/46806790ad043
+On fre, dec 15, 2023 at 15:30, Andrew Lunn <andrew@lunn.ch> wrote:
+> On Thu, Dec 14, 2023 at 09:14:39PM +0100, Tobias Waldekranz wrote:
+>> When probing, if a device is waiting for firmware to be loaded into
+>> its RAM, ask userspace for the binary and load it over XMDIO.
+>
+> Does a device without firmware have valid ID registers? Is the driver
+> going to probe via bus enumeration, or is it necessary to use a
+> compatible with ID values?
+>
+>> +	for (sect = fw->data; (sect + sizeof(hdr)) < (fw->data + fw->size);) {
+>
+> This validates that the firmware is big enough to hold the header...
+>
+>> +		memcpy(&hdr, sect, sizeof(hdr));
+>> +		hdr.data.size = cpu_to_le32(hdr.data.size);
+>> +		hdr.data.addr = cpu_to_le32(hdr.data.addr);
+>> +		hdr.data.csum = cpu_to_le16(hdr.data.csum);
+>> +		hdr.next_hdr = cpu_to_le32(hdr.next_hdr);
+>
+> I'm surprised sparse is not complaining about this. You have the same
+> source and destination, and sparse probably wants the destination to
+> be marked as little endian.
+>
+>> +		hdr.csum = cpu_to_le16(hdr.csum);
+>> +
+>> +		for (i = 0, csum = 0; i < offsetof(struct mv3310_fw_hdr, csum); i++)
+>> +			csum += sect[i];
+>> +
+>> +		if ((u16)~csum != hdr.csum) {
+>> +			dev_err(&phydev->mdio.dev, "Corrupt section header\n");
+>> +			err = -EINVAL;
+>> +			break;
+>> +		}
+>> +
+>> +		err = mv3310_load_fw_sect(phydev, &hdr, sect + sizeof(hdr));
+>
+> What i don't see is any validation that the firmware left at sect +
+> sizeof(hdr) big enough to contain hdr.data.size bytes.
+>
 
-Thank you. Okay, I'll update uinput instead to drop checks for
-min > max, since that's valid/allowed.
+Thanks Andrew and Russel, for the review!
 
-Chris
-
-> 
-> >            This property is interpreted as two signed 32 bit values.
-> > 
-> >        abs-fuzz:
-> 
+You both make valid points, I'll try to be less clever about this whole
+section in v2.
 
