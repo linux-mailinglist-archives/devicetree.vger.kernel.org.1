@@ -1,162 +1,139 @@
-Return-Path: <devicetree+bounces-26399-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26401-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EA50816593
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 05:15:52 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5FB858165C7
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 05:53:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CA5B91F215A8
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 04:15:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 930841C20C17
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 04:53:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 579895396;
-	Mon, 18 Dec 2023 04:15:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B432263AF;
+	Mon, 18 Dec 2023 04:53:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="KOVWs4pY"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XiHBXoWc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12olkn2035.outbound.protection.outlook.com [40.92.22.35])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qt1-f169.google.com (mail-qt1-f169.google.com [209.85.160.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92806538D;
-	Mon, 18 Dec 2023 04:15:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=noULYUg4UNrp7XyyAw1WnlDX7b4EZGqThYBkK+/zJIod9GTFqGrYR7J/JeG+JOzyEoZgSolHRyxJSnnptMwqbIAwiyaoQ9l5P+NHJw5aDsZ8C2D3m8GrEpMg6zUWyNFUonpg7BV4gqJVcGShh3m5LrjiaQcEjwRR7qnG7CO4cSTiYiDoD3zlHWTLCiQ+HDDQo6kTqz4Z8ah/1oIrKUltT2ighnjt9MG8HuAA/9oZKTuKTVGZchbRthvOkPyPTEx2YF+pgbFoQfLGLgB53n2o9vLxobKqJFa9hvYJgVVoEzoVM1SWKeYbGTlz6oyAPuUcZHVUZDc+Od2KKSGHSY9WLg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=V7LoElwMN7arx3uYQfs+gIkmMqkFMhQjtR2nsLeLhiw=;
- b=IycW9J3Xk1HX8HLrf6fPBu+niVlvhypM/ihe1Q1DTKRP8LSJg3n+uuipGWIOK1zaiYKOOkVVqpDVU2moNMvAzDSOBzA2cGGM+8/Snhx9AWACSbEJcNBNp10rINTtOF1xvMETVUm46BSrfSzI4WUKuYi3tZ3FYPa8rkWO5hNnx0Z1UqgSF/0DHTDIbPSRW4tjWxGT44HsXXEsAR7CMxS4WkpUsSxiTxk1O8r/DGDttt5kOqMToH/IiRUVU6Eo1G0HINKmZhiJYMQwrYtxZHDCrYk/7VWKPcA9daZuK3HWZ7WCpdqH9qv9yS9s/Q3v8UrE0+712jdSdH30sysHLfVkDw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=V7LoElwMN7arx3uYQfs+gIkmMqkFMhQjtR2nsLeLhiw=;
- b=KOVWs4pYJhGnI+3l1Ukbf3wNMj6UzSSWYCNsw10GoOG4CxLdDzEeYFq1+ERMnIGVZMmgbyCv5d2YKkWhd4C9jqA7k1aL2dF6lwxCxjlXO12C1kZZv23fryRWHDzWZ8sYF+LwTed3M1/DNiLEF33eIoYSf4vK5y5RbaqIzUmdW1nsazrwn9ZeoeijDT3CnCqV3aUKMpGDmY+fQALmhwXNR/m+2VRhkCCtiKRXRxVYpWHoA44/K1QSzJTHcvGhFXrUkgZ461+kj7hXNVQWii8MZk9NhqLsTnJwFtNiTPCI7SQctPEtYZUEZkCyGk5Kf8cm+r1baAKOWExu7UGGnASPBQ==
-Received: from IA1PR20MB4953.namprd20.prod.outlook.com (2603:10b6:208:3af::19)
- by PH7PR20MB6138.namprd20.prod.outlook.com (2603:10b6:510:2bf::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7091.37; Mon, 18 Dec
- 2023 04:15:40 +0000
-Received: from IA1PR20MB4953.namprd20.prod.outlook.com
- ([fe80::55b:c350:980:ad8]) by IA1PR20MB4953.namprd20.prod.outlook.com
- ([fe80::55b:c350:980:ad8%6]) with mapi id 15.20.7091.034; Mon, 18 Dec 2023
- 04:15:40 +0000
-From: Inochi Amaoto <inochiama@outlook.com>
-To: Jingbao Qiu <qiujingbao.dlmu@gmail.com>,
-	a.zummo@towertech.it,
-	alexandre.belloni@bootlin.com,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor@kernel.org,
-	conor+dt@kernel.org,
-	chao.wei@sophgo.com,
-	unicorn_wang@outlook.com,
-	paul.walmsley@sifive.com,
-	palmer@dabbelt.com,
-	aou@eecs.berkeley.edu
-Cc: Inochi Amaoto <inochiama@outlook.com>,
-	linux-rtc@vger.kernel.org,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5399E63A8;
+	Mon, 18 Dec 2023 04:53:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qt1-f169.google.com with SMTP id d75a77b69052e-4260b657ed5so27341821cf.0;
+        Sun, 17 Dec 2023 20:53:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1702875211; x=1703480011; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=VaTyomZwxtPir8w34v7twVd3Xf9J4c1d0y7WayfPqp4=;
+        b=XiHBXoWcyb5khBc+o+EWX/b9MrYLY48yDetaQ7IbYDolPHbBQ+T0K5B7pYPWIsAm8g
+         tBnQInDFWwOzkU0B6l6UVUMCWwnsBzPYvM/zwp+J2A+dH3kAFSfhyfZ4ib8WaX27az1p
+         114RZEJVnx0UTMI2b8e2fY7NDmM3Cyx1AtD0nvhoIB+qd3xnDEG+8hOKEdGMWOc0tqCf
+         H89N3VEA1t/WqAYYhnBTnNzNZdNenFfrwPRx/HUuY5HSOQyHUv7fg3P5lOZRQ9e42R52
+         eRo1C8A/4LwkACyhyCP5zRzg/AZ6iIhrfnf57L7yC5zSDvLu67YURlcZj1We1Knui0Dn
+         GpeA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702875211; x=1703480011;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=VaTyomZwxtPir8w34v7twVd3Xf9J4c1d0y7WayfPqp4=;
+        b=IyCpPiv8t4nmx+53hD4i0AHWTJDVP20nO8Wle3VIB9PTziC8tdXohL4CkCdNlFagHi
+         PNwXNdKV6TGr1h+klOOijobqMqOevZvJH+X2McokFpThU7ZexRlx7zlzbocgYsj2WkCN
+         jEY/QYR/0xGvn+S4fJV9RXzyCGDVtPfk8L4jYAa+Ctfu3jKergUYlirKkG2Sdp+1yAwY
+         Igx8ubsazqSgNXeSYoIxWagB8W7wtsCSZsq7Q9JbaVcJaBK01JGX30nd5BIVYrJWTAPk
+         7O7bqtUWyEd3OOzVPtJPU8Z5QfcGkSR1Dt92YyA4IGcAClj2qiKtce+xs5fiKOMO+oMV
+         76uw==
+X-Gm-Message-State: AOJu0Yz8DJnVAq03mrEKMSy4ElMtz3l6nc7Neh8eYdBVi9Fav1+/gbqd
+	wLv0ahRmITIXHNu9xt+XFoc=
+X-Google-Smtp-Source: AGHT+IHqmvmG1RooZIHAiqujufEWGIlTnBa/UR8xSxVd32Rv533h8teIaKMjcQNAJzaNQlN79U08IA==
+X-Received: by 2002:ac8:5a43:0:b0:425:4043:50e9 with SMTP id o3-20020ac85a43000000b00425404350e9mr21054133qta.120.1702875211144;
+        Sun, 17 Dec 2023 20:53:31 -0800 (PST)
+Received: from localhost.localdomain ([174.95.13.129])
+        by smtp.gmail.com with ESMTPSA id fv5-20020a05622a4a0500b004275e9cdf15sm716571qtb.11.2023.12.17.20.53.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 17 Dec 2023 20:53:30 -0800 (PST)
+From: Abdel Alkuor <alkuor@gmail.com>
+To: Jean Delvare <jdelvare@suse.com>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>
+Cc: Abdel Alkuor <alkuor@gmail.com>,
+	linux-hwmon@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	dlan@gentoo.org
-Subject: Re: [PATCH v2 3/3] riscv: dts: sophgo: add rtc dt node for CV1800
-Date: Mon, 18 Dec 2023 12:15:14 +0800
-Message-ID:
- <IA1PR20MB49538A79892CC58B13C61DB9BB90A@IA1PR20MB4953.namprd20.prod.outlook.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20231217110952.78784-4-qiujingbao.dlmu@gmail.com>
-References: <20231217110952.78784-4-qiujingbao.dlmu@gmail.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-TMN: [vMBBASEldvm2F6kW7LZSyh62g/HAaQlI7eW1g9dBMCM=]
-X-ClientProxiedBy: TY2PR06CA0045.apcprd06.prod.outlook.com
- (2603:1096:404:2e::33) To IA1PR20MB4953.namprd20.prod.outlook.com
- (2603:10b6:208:3af::19)
-X-Microsoft-Original-Message-ID:
- <20231218041514.579018-1-inochiama@outlook.com>
+	linux-doc@vger.kernel.org
+Subject: [PATCH v2 1/2] dt-bindings: hwmon: (lm75) Add AMS AS6200 temperature sensor
+Date: Sun, 17 Dec 2023 23:52:27 -0500
+Message-Id: <89fb5eec30df734ee8fc58427cf5d94929076514.1702874115.git.alkuor@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: IA1PR20MB4953:EE_|PH7PR20MB6138:EE_
-X-MS-Office365-Filtering-Correlation-Id: 83466a76-86a5-4734-e556-08dbff7ffeb9
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	exqwH3famwu1triOiLxP2PSSR/W0PlMlq//YYj/bd0DHKI7wQt5NeUFhpX4447h+I6GW9lG8ptTYovwxv+xtr+unmqLdDBaFUE0jeLoaOQSAt94bT7zdP5/Zoi8VvbfB236dvCVfFu5TYrYzrgSMW02aOdsSU8M2ejBQbVizgWBHH/pGe57Gt1enP/2z/Yz8mT+RNDjhtCS/lCDY+/qjc2yaaFp7r2X90gDcx8xhwr45t2bzWJeEuDZ4J44eumDKBJdK2spLpneQKUEd30SuMSTGe6ZvsKgYC/XUpIg+SqLKj12LXFc2bhy6h54WRFojuAfhbMruRhuXA7xEKQvkmgU7JJWTrLVt4/UIguatLK8W3DxNyGh9VPrHBMkTf5NhJ6PmnPZ0dG7zmbpMTniBAYKIWxFaoJiovprWF/R0BRgv2HE7ch3yQmSuqAHOS1xGUTHWSih29s+l2muRFKQXOlDeVpc8XjDnvflcQ9YuotsNsl6OrGPd4v7isV5Q3zZ92ONk7XIlL4YTCPNumNV+PKABHeHZYQneqN2WyWzaywAGimCl6x6E8yGyYUj/tHOAnBn5MMieQZCnkxihYbLRNH7KjpoyEwj/qcYst9l2qNHIsLwf+U65lB+NMviQjqrA
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?WEniHVH8XAqMsEpTglnfjTEDLB0yX/ViTidmXb5Z4aOi8jCmgm0vCKQ3Edxx?=
- =?us-ascii?Q?rIVvLirawhWEN2PEJIrolOnKKPWj1WxDMAsj3ci5klTsfRGVBtiGJCttuYTF?=
- =?us-ascii?Q?NgBYMM6BxBnyyeyeGnwGjpe6kz9rjupGHKn4a232UMv19QBPSOCjsLZj7nW+?=
- =?us-ascii?Q?PfCBvtjRMxx4IrvbllKpD+7FQP4O2/PdaYN45r+zMbYdw26nY1De6SQYzylF?=
- =?us-ascii?Q?Adus3lOyGdSGYCZWMnvnTNnsLcuq2Odk3NLg29EkfizyGsfAId2isxKuuTrH?=
- =?us-ascii?Q?q5iVr5/5GYt0d+dwfCGJWQVJ4NyLyEY5S3cexNOyD0DsX+LrZxnBfSWvCAAk?=
- =?us-ascii?Q?roTI0JBDgfwEUtcAWbUKJ1wYD5PL96ztdmQ6Q4QNKLkzk+KfiZ22DLjoivBE?=
- =?us-ascii?Q?WqO3+Q2TwVhO5vRVbYZgU3r1JLBcpBznzq79ZVR87PWU5RvisizVnDNe292P?=
- =?us-ascii?Q?6nsHg2b7UmvH4TTZvUG6QWqjI6AG9PKqZk0UsHdu4YhMOacp7L9AVh7Bnawg?=
- =?us-ascii?Q?6NcX4i+8mYwFHVvPX7NEMoq3e8OpLZCiGlVJaEQat0rmuWwKPBfeMR3UzUgH?=
- =?us-ascii?Q?km1kF+hDRyQEk57syQ0LOo3NPiNaEecXVgnFw4LHlr9hYq/pgSh04Ow6IdHQ?=
- =?us-ascii?Q?F+cjSGShpjzjkHii639JuJbcQaZ2+MLclMQ068dgTD5OA0CBCcmvBJfe0pvR?=
- =?us-ascii?Q?FOb70/3ztsLHUvbtBEUsjVy6+lsiDvn1mNKULA6MpfsiLT0Gq+2ok8o2g4fS?=
- =?us-ascii?Q?rCR+aOy9LPER4bpokq5R7yUNeosFZvCHH5Tzm/yVZVn95ZBfl7/b1SdP5TaU?=
- =?us-ascii?Q?MW7kVqjrRp5IQFhfIUwn7wWLdOvx592mfndQyP73J8DUw7pTOsBZxW5McyCZ?=
- =?us-ascii?Q?WeLL5m5ulELI8l5yAvj1hd1EiaIJtMlY6kRQ8uvHnsQMGDfHvUbbc8rhde9T?=
- =?us-ascii?Q?cjfhBHscRwe9AfmZGaunD4IE2hbTAGlDIXkQin+cmFTcHC6jrvJsvyzw76PT?=
- =?us-ascii?Q?CJhgzAUR2dnsjVw0ewBQlB8gmkKOP11HEDfZjXMOD3mfEgtzQiU4AoNuQZcv?=
- =?us-ascii?Q?wf0jdtf+Cx9dZAq9H16hpmECFqY2zDSaaDA6p5Tuh80asitXK89bkn6wHunw?=
- =?us-ascii?Q?cNQMhuOTw54QCQ2fu7qMolMjCNiALbgbxotwz4gxV1CgQ2UQx+wB3/9yBzCO?=
- =?us-ascii?Q?GQHGPGZAkQfgXj2hHeGO5D6r8WCCHnyhQoup9qNqCqH8LpML61vMU+dX7AY?=
- =?us-ascii?Q?=3D?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 83466a76-86a5-4734-e556-08dbff7ffeb9
-X-MS-Exchange-CrossTenant-AuthSource: IA1PR20MB4953.namprd20.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Dec 2023 04:15:40.5157
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR20MB6138
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
->Add the rtc device tree node to cv1800 SoC.
->
->Signed-off-by: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
->---
-> arch/riscv/boot/dts/sophgo/cv1800b.dtsi | 7 +++++++
-> 1 file changed, 7 insertions(+)
->
->diff --git a/arch/riscv/boot/dts/sophgo/cv1800b.dtsi b/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
->index df40e87ee063..429bee76f677 100644
->--- a/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
->+++ b/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
->@@ -119,5 +119,12 @@ clint: timer@74000000 {
-> 			reg = <0x74000000 0x10000>;
-> 			interrupts-extended = <&cpu0_intc 3>, <&cpu0_intc 7>;
-> 		};
->+
->+		rtc@5025000 {
->+			compatible = "sophgo,cv1800-rtc";
->+			reg = <0x5025000 0x1000>, <0x5026000 0x1000>;
+as6200 is a temperature sensor with a range between -40°C to
+125°C degrees and an accuracy of ±0.4°C degree between 0
+and 65°C and ±1°C for the other ranges.
 
->+			clocks = <&osc>;
+Signed-off-by: Abdel Alkuor <alkuor@gmail.com>
+---
+Changes in v2:
+  - Incorporate as6200 into lm75 bindings
 
-IIRC, the clock is not osc, but the clock controller with id CLK_RTC_25M.
-Please read the manual again and ensure this is the right clock.
+ .../devicetree/bindings/hwmon/lm75.yaml        | 18 ++++++++++++++++++
+ 1 file changed, 18 insertions(+)
 
->+			interrupts = <17 IRQ_TYPE_LEVEL_HIGH>;
->+		};
-> 	};
-> };
->--
->2.25.1
->
+diff --git a/Documentation/devicetree/bindings/hwmon/lm75.yaml b/Documentation/devicetree/bindings/hwmon/lm75.yaml
+index 0b69897f0c63..63b85a83ac18 100644
+--- a/Documentation/devicetree/bindings/hwmon/lm75.yaml
++++ b/Documentation/devicetree/bindings/hwmon/lm75.yaml
+@@ -14,6 +14,7 @@ properties:
+   compatible:
+     enum:
+       - adi,adt75
++      - ams,as6200
+       - atmel,at30ts74
+       - dallas,ds1775
+       - dallas,ds75
+@@ -48,6 +49,9 @@ properties:
+   vs-supply:
+     description: phandle to the regulator that provides the +VS supply
+ 
++  interrupts:
++    maxItems: 1
++
+ required:
+   - compatible
+   - reg
+@@ -66,3 +70,17 @@ examples:
+         vs-supply = <&vs>;
+       };
+     };
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        temperature-sensor@48 {
++            compatible = "ams,as6200";
++            reg = <0x48>;
++            vs-supply = <&vs>;
++            interrupt-parent = <&gpio1>;
++            interrupts = <17 IRQ_TYPE_EDGE_BOTH>;
++        };
++    };
+-- 
+2.34.1
+
 
