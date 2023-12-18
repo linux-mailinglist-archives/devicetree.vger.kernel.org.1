@@ -1,220 +1,115 @@
-Return-Path: <devicetree+bounces-26566-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26568-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA1D4816F75
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 14:05:44 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BDE9F816F8B
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 14:06:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C065D1C231E7
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 13:05:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 68E95288EE5
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 13:06:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF11A1D140;
-	Mon, 18 Dec 2023 12:49:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E357F3A1D4;
+	Mon, 18 Dec 2023 12:55:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="P4hl+F9J"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="QoJUrUrn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE8901D147;
-	Mon, 18 Dec 2023 12:49:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a2335d81693so261085466b.0;
-        Mon, 18 Dec 2023 04:49:55 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71F043A1BD
+	for <devicetree@vger.kernel.org>; Mon, 18 Dec 2023 12:55:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1702903794; x=1703508594; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=T14bfi8c3k3Cq7TyZI+9Bh5hDSnSWfc6TpVsvOYBPic=;
-        b=P4hl+F9JTF+wawqVgpuWAGObb2Aut2FdbYIayLCpTiakxCLMVKljmoS0RziLmJt8p7
-         8NSqr7hBDfbBRvqjzMITaNea/r2z702CyBmd/le7KCEphH5YQ4u47DVssLgeCOxp1nxH
-         CCX3SiOczPQKSV8erwqX4Gm1kLCVZXPPN2xughagoRVaDz45Y0/mMW2alpYddkZPg8OG
-         L0np6c1H2DYFpV5bRDPVT+zox53wzEUkKeteIuCtFVftXkuJUgd++2ZV1Fve/6MuaqBD
-         k/CXimBy08GVDEWA2Iof6B9nanLmcMPk8sPQN5bmPXtBZzLKwe6M7ZUy5hodBQZ5u/ul
-         02Sw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702903794; x=1703508594;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=T14bfi8c3k3Cq7TyZI+9Bh5hDSnSWfc6TpVsvOYBPic=;
-        b=GRaYq6RfHBcNnQ1nS36/rw6fz2R+u3EeqGoIze9eLD5xpkOjKk4O07eHL6C07qQNGn
-         sTwNcmr+IYvaTyIpe0rsEX8ahCmGpo0KP8oYtWp24DhF/wFH5Rsw4EmRg0S12kwmK0s3
-         WEfqMK7jDWoBD+mofglAmhdYXPF3JnsK49/1j40WEsakk4ayZZ27XUZkNkvDW+FYKugh
-         3ngqLx+A3aLk66dpkI0RQvDtpU2yYz9gBQKWCC3WpgKDE3VSIfvOlpxrmRuuNIzzALaj
-         LHLwCGuNWrVqq21mzVZtKvU2WhKmYkENc8yTgvmdIGopnifhw7sCf0C7O5b3YMbBjjFX
-         AtcQ==
-X-Gm-Message-State: AOJu0YzMSL/0WthDitx74mfe+Hv4msiPdySlzPUNjC1nWqH2U36G/2pQ
-	nA1DVXRX1kSJNgQSvoDg/w==
-X-Google-Smtp-Source: AGHT+IGfWK90TdMckm2zjiMGKfCaGR5Yp/VaGkOH1VvcUP7n1r7V+E8WHGK7QCmauy9RUW/2J23nTg==
-X-Received: by 2002:a17:906:241:b0:a1e:842d:ccd5 with SMTP id 1-20020a170906024100b00a1e842dccd5mr14599317ejl.48.1702903793489;
-        Mon, 18 Dec 2023 04:49:53 -0800 (PST)
-Received: from ?IPV6:2a02:810b:f40:4300:4847:f8df:b40e:3aa8? ([2a02:810b:f40:4300:4847:f8df:b40e:3aa8])
-        by smtp.gmail.com with ESMTPSA id vu8-20020a170907a64800b00a1d5c52d628sm14063947ejc.3.2023.12.18.04.49.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 18 Dec 2023 04:49:53 -0800 (PST)
-Message-ID: <cbb7866c-5e72-4656-966e-9c2244afedbd@gmail.com>
-Date: Mon, 18 Dec 2023 13:49:52 +0100
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1702904102; x=1734440102;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=9xjrkKmqOG1ty0S71OhHpx/IKy8QWgddU+KiakHL7MA=;
+  b=QoJUrUrnI1lRaGgDF21eHWQM6yPlaQBR6Z5ckh1IDNzyiiItGZs5Yc35
+   doH4hEk9p6NQmf3qUg1GGq4bDjL+CErIE228evDz5kinCXwhHLvaEZq5q
+   mJklqHW3E5aipxnTBUxzf521BHHasBN2wGBdWVwx11jNiUjfqct2Ujm0M
+   x2sbZeZNcW9Rx5cKYJnFCOmMbRPD7Oq/4xMI8A4pwd+MqHu4pS/3V/t0j
+   WBJlqkQ+VxMrtGli9YaX1pGwY99iB7XkbW6MvcGdQEwPb7jMVzq16p5TB
+   RO65t0h4R7gR++67r8QgyDpEU2m0eesOJ//J5drd5hJ/GQRpVeaT8dUGA
+   w==;
+X-IronPort-AV: E=Sophos;i="6.04,285,1695679200"; 
+   d="scan'208";a="34562687"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 18 Dec 2023 13:54:59 +0100
+Received: from steina-w.tq-net.de (steina-w.tq-net.de [10.123.53.18])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id BA6C2280075;
+	Mon, 18 Dec 2023 13:54:58 +0100 (CET)
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>
+Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	NXP Linux Team <linux-imx@nxp.com>,
+	linux@ew.tq-group.com,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: [PATCH 00/23] TQMa7x/MBa7x DT fixes
+Date: Mon, 18 Dec 2023 13:54:36 +0100
+Message-Id: <20231218125459.2769733-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 19/27] drm/rockchip: inno_hdmi: Move tmds rate to
- connector state subclass
-Content-Language: en-US, de-DE
-To: Maxime Ripard <mripard@kernel.org>
-Cc: Sandy Huang <hjc@rock-chips.com>, =?UTF-8?Q?Heiko_St=C3=BCbner?=
- <heiko@sntech.de>, Andy Yan <andyshrk@163.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20231216162639.125215-1-knaerzche@gmail.com>
- <20231216162639.125215-20-knaerzche@gmail.com>
- <xte5vjc3o77wnlozz6sy5yysiezdxbzvbwdblhbqb5s2nwnnv5@xxknftdeo6uk>
-From: Alex Bee <knaerzche@gmail.com>
-In-Reply-To: <xte5vjc3o77wnlozz6sy5yysiezdxbzvbwdblhbqb5s2nwnnv5@xxknftdeo6uk>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
+Hi,
 
-Am 18.12.23 um 11:06 schrieb Maxime Ripard:
-> Hi,
->
-> On Sat, Dec 16, 2023 at 05:26:30PM +0100, Alex Bee wrote:
->> Similar to the othter members of inno_hdmi_connector_state the tmds_rate is
->> not a property of the device, but of the connector state. Move it to
->> inno_hdmi_connector_state and make it a long to comply with the clock
->> framework. To get arround the issue of not having the connector state when
->> inno_hdmi_i2c_init is called in the bind path, getting the tmds rate is
->> wrapped in function which returns the fallback rate if the connector
->> doesn't have a state yet.
->>
->> Signed-off-by: Alex Bee <knaerzche@gmail.com>
->> ---
->> changes in v2:
->>   - new patch
->>
->>   drivers/gpu/drm/rockchip/inno_hdmi.c | 36 +++++++++++++++++++---------
->>   1 file changed, 25 insertions(+), 11 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/rockchip/inno_hdmi.c b/drivers/gpu/drm/rockchip/inno_hdmi.c
->> index f9bfae1e97a2..6799d24501b8 100644
->> --- a/drivers/gpu/drm/rockchip/inno_hdmi.c
->> +++ b/drivers/gpu/drm/rockchip/inno_hdmi.c
->> @@ -47,14 +47,13 @@ struct inno_hdmi {
->>   
->>   	struct inno_hdmi_i2c *i2c;
->>   	struct i2c_adapter *ddc;
->> -
->> -	unsigned int tmds_rate;
->>   };
->>   
->>   struct inno_hdmi_connector_state {
->>   	struct drm_connector_state	base;
->>   	unsigned int			enc_out_format;
->>   	unsigned int			colorimetry;
->> +	unsigned long			tmds_rate;
->>   };
->>   
->>   static struct inno_hdmi *encoder_to_inno_hdmi(struct drm_encoder *encoder)
->> @@ -133,11 +132,33 @@ static inline void hdmi_modb(struct inno_hdmi *hdmi, u16 offset,
->>   	hdmi_writeb(hdmi, offset, temp);
->>   }
->>   
->> +static unsigned long inno_hdmi_tmds_rate(struct inno_hdmi *hdmi)
->> +{
->> +	struct drm_connector *connector = &hdmi->connector;
->> +	struct drm_connector_state *conn_state =  connector->state;
->> +	struct inno_hdmi_connector_state *inno_conn_state;
->> +
->> +	if (conn_state) {
->> +		inno_conn_state = to_inno_hdmi_conn_state(conn_state);
->> +		return inno_conn_state->tmds_rate;
->> +	}
->> +
->> +	/*
->> +	 * When IP controller haven't configured to an accurate video
->> +	 * timing, then the TMDS clock source would be switched to
->> +	 * PCLK_HDMI, so we need to init the TMDS rate to PCLK rate,
->> +	 * and reconfigure the DDC clock.
->> +	 */
->> +
->> +	return clk_get_rate(hdmi->pclk);
->> +}
->> +
->>   static void inno_hdmi_i2c_init(struct inno_hdmi *hdmi)
->>   {
->>   	int ddc_bus_freq;
->> +	unsigned long tmds_rate = inno_hdmi_tmds_rate(hdmi);
->>   
->> -	ddc_bus_freq = (hdmi->tmds_rate >> 2) / HDMI_SCL_RATE;
->> +	ddc_bus_freq = (tmds_rate >> 2) / HDMI_SCL_RATE;
->>   
->>   	hdmi_writeb(hdmi, DDC_BUS_FREQ_L, ddc_bus_freq & 0xFF);
->>   	hdmi_writeb(hdmi, DDC_BUS_FREQ_H, (ddc_bus_freq >> 8) & 0xFF);
->> @@ -431,7 +452,7 @@ static int inno_hdmi_setup(struct inno_hdmi *hdmi,
->>   	 * DCLK_LCDC, so we need to init the TMDS rate to mode pixel
->>   	 * clock rate, and reconfigure the DDC clock.
->>   	 */
->> -	hdmi->tmds_rate = mode->clock * 1000;
->> +	inno_conn_state->tmds_rate = mode->clock * 1000;
->>   	inno_hdmi_i2c_init(hdmi);
->>   
->>   	/* Unmute video and audio output */
->> @@ -823,13 +844,6 @@ static int inno_hdmi_bind(struct device *dev, struct device *master,
->>   		goto err_disable_clk;
->>   	}
->>   
->> -	/*
->> -	 * When IP controller haven't configured to an accurate video
->> -	 * timing, then the TMDS clock source would be switched to
->> -	 * PCLK_HDMI, so we need to init the TMDS rate to PCLK rate,
->> -	 * and reconfigure the DDC clock.
->> -	 */
->> -	hdmi->tmds_rate = clk_get_rate(hdmi->pclk);
->>   	inno_hdmi_i2c_init(hdmi);
-> I still think my patch is better there.
->
-> There's two places that use the inno_hdmi.tmds_rate field: the two
-> callers of inno_hdmi_i2c_init(). One is at bind time and needs to
-> initialise it with a sane default since we don't have a mode set yet,
-> the other is to update the internal clock rate while we have a mode set.
-That’s, unfortunately, not fully true: inno_hdmi_set_pwr_mode not only
-called at mode_set-time, but also in inno_hdmi_reset which is called in the
-bind path (where we do not have a mode). That’s the point why I thought
-extracting this in function makes sense. Otherwise I would have to pass the
-tmds_rate to inno_hdmi_set_pwr_mode (also for the LOWER_PWR-case where I
-don't need it) or do that whole fallback-if-no-mode thing in
-inno_hdmi_set_pwr_mode directly. Neither would make the code easier to
-follow. Being able to use it in inno_hdmi_i2c_init also is a nice gimmick.
-I agree, having it in the custom connector state is not strictly required,
-but I'd really like to keep the wrapping function.
+this series fixes several issues on TQMa7x DT files in various aspects.
+Probably most notabe one is disabling PCIe due to missing support for internal
+PHY refclock.
 
-Alex
+Best regards,
+Alexander
 
-> Since there's a single "modeset" user, there's no need to store it in
-> the state structure at all: it can be a local variable.
->
-> And in the bind function, you're not going to use the state structure
-> either since there's no state, and it's just a default that has no
-> relation to the modeset code at all.
->
-> Your function on the other end tries to reconcile and handle the two.
-> But there's no reason to, it just makes the code harder to follow. Just
-> pass the parent rate you want to init with as an argument and it's easy
-> to read and maintain.
->
-> Maxime
+Alexander Stein (23):
+  ARM: dts: imx7-tqma7/mba7: convert fsl,pins to uint32-matrix
+  ARM: dts: imx7[d]-mba7: Move ethernet PHY reset into PHY node
+  ARM: dts: imx7[d]-mba7: disable USB OC on USB host and USB OTG2
+  ARM: dts: imx7[d]-mba7: disable PCIe interface
+  ARM: dts: imx7[d]-mba7: hog Mini PCIe signals
+  ARM: dts: imx7-mba7: Mark gpio-buttons as wakeup-source
+  ARM: dts: imx7-mba7: Enable SNVS power key
+  ARM: dts: imx7-mba7: Add RTC aliases
+  ARM: dts: imx7-mba7: Add SPI1_SS0 as chip select 3
+  ARM: dts: imx7-tqma7: Add i2c bus recovery
+  ARM: dts: imx7-mba7: Add i2c bus recovery
+  ARM: dts: imx7-tqma7: fix EEPROM compatible for SE97BTP
+  ARM: dts: imx7-mba7: Fix iomuxc node names
+  ARM: dts: imx7-tqma7: Fix iomuxc node names
+  ARM: dts: imx7-mba7: restrict usdhc interface modes
+  ARM: dts: imx7-tqma7: restrict usdhc interface modes
+  ARM: dts: imx7-tqma7: remove superfluous status property
+  ARM: dts: imx7-tqma7: mark system data eeprom as read-only
+  ARM: dts: imx7-tqma7: rename node for SE97BTP
+  ARM: dts: imx7d-mba7: Remove USB OTG related properties on USB node
+  ARM: dts: imx7-tqma7: Add missing vcc supply to i2c eeproms
+  ARM: dts: imx7-mba7: Add missing vcc supply to i2c devices
+  ARM: dts: imx7-tqma7: Fix PMIC v33 rail voltage range
+
+ arch/arm/boot/dts/nxp/imx/imx7-mba7.dtsi  | 325 ++++++++++++----------
+ arch/arm/boot/dts/nxp/imx/imx7-tqma7.dtsi | 144 +++++-----
+ arch/arm/boot/dts/nxp/imx/imx7d-mba7.dts  |  94 ++++---
+ 3 files changed, 312 insertions(+), 251 deletions(-)
+
+-- 
+2.34.1
+
 
