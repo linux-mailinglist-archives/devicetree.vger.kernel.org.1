@@ -1,82 +1,98 @@
-Return-Path: <devicetree+bounces-26629-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26631-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF8858175BD
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 16:43:02 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 575DA8175FC
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 16:45:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 80F921C248FD
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 15:43:01 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B7DC1B22781
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 15:45:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65FB84FF95;
-	Mon, 18 Dec 2023 15:38:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03E347205F;
+	Mon, 18 Dec 2023 15:40:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iWWjVbuq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 278AD42388;
-	Mon, 18 Dec 2023 15:38:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-	by fd01.gateway.ufhost.com (Postfix) with ESMTP id C7E607FD6;
-	Mon, 18 Dec 2023 23:37:56 +0800 (CST)
-Received: from EXMBX072.cuchost.com (172.16.6.82) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 18 Dec
- 2023 23:37:56 +0800
-Received: from localhost.localdomain (202.188.176.82) by EXMBX072.cuchost.com
- (172.16.6.82) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 18 Dec
- 2023 23:37:50 +0800
-From: Ji Sheng Teoh <jisheng.teoh@starfivetech.com>
-To: <krzysztof.kozlowski@linaro.org>
-CC: <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
-	<jisheng.teoh@starfivetech.com>, <krzysztof.kozlowski+dt@linaro.org>,
-	<leyfoon.tan@starfivetech.com>, <linux-kernel@vger.kernel.org>,
-	<linux-watchdog@vger.kernel.org>, <linux@roeck-us.net>, <robh+dt@kernel.org>,
-	<samin.guo@starfivetech.com>, <wim@linux-watchdog.org>,
-	<xingyu.wu@starfivetech.com>
-Subject: Re: [PATCH v4 1/1] dt-bindings: watchdog: starfive,jh7100-wdt: Add compatible for JH8100
-Date: Mon, 18 Dec 2023 23:37:38 +0800
-Message-ID: <20231218153738.1054393-1-jisheng.teoh@starfivetech.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <1d7f9cbe-9ca1-4ccb-b90f-6e474c0740ad@linaro.org>
-References: <1d7f9cbe-9ca1-4ccb-b90f-6e474c0740ad@linaro.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFE2E7204B;
+	Mon, 18 Dec 2023 15:40:47 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E4953C433C7;
+	Mon, 18 Dec 2023 15:40:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1702914047;
+	bh=kP0KzVP+wAVZYX6I0sfa2j1A+ARxXj0gJm7BlfSRTYU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=iWWjVbuqzUtxKAYbEAcR07YOT+nimr5ntwxRnJE7ByDm2DYEFtTAxVfiYM5c/iAMq
+	 BdcywG+sg6Y6ZTe8SS4kY2ssI+yRjD7zCPQkFnJtEu2gXW3kT9/a/WbXI7Ev7czum/
+	 /wHEJDAospKTTWePuw3/uxxHStZrIJl7Il3R6hl2D0396o51bXcwOO4Xww6VAHl1ev
+	 LNjmVfYAwKrKTlccnjOvbfy3iQlXYbeBPSyO40yWN525mpI1pJzLyA7aA4OC8ITiIA
+	 /S0alap2P4PZF8E59YQWf+ziPbkF8peY9P/lLNt4OGU+rgNV5Okk6UpAkRlpOGuoAo
+	 rFM7qfH1ZKwWA==
+Date: Mon, 18 Dec 2023 21:10:32 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Johan Hovold <johan+linaro@kernel.org>
+Cc: Bjorn Andersson <andersson@kernel.org>, Andy Gross <agross@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, stable@vger.kernel.org,
+	Manivannan Sadhasivam <mani@kernel.org>
+Subject: Re: [PATCH 1/3] ARM: dts: qcom: sdx55: fix pdc '#interrupt-cells'
+Message-ID: <20231218154032.GA50521@thinkpad>
+References: <20231213173131.29436-1-johan+linaro@kernel.org>
+ <20231213173131.29436-2-johan+linaro@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX072.cuchost.com
- (172.16.6.82)
-X-YovoleRuleAgent: yovoleflag
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20231213173131.29436-2-johan+linaro@kernel.org>
 
-On Mon, 18 Dec 2023 15:41:37 +0100
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+On Wed, Dec 13, 2023 at 06:31:29PM +0100, Johan Hovold wrote:
+> The Qualcomm PDC interrupt controller binding expects two cells in
+> interrupt specifiers.
+> 
+> Fixes: 9d038b2e62de ("ARM: dts: qcom: Add SDX55 platform and MTP board support")
+> Cc: stable@vger.kernel.org      # 5.12
+> Cc: Manivannan Sadhasivam <mani@kernel.org>
+> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
 
-> On 18/12/2023 15:27, Ji Sheng Teoh wrote:
-> >>
-> >> I have real doubts that you ever tested your entire solution with
-> >> this binding. Where is the DTS?
-> >> =20
-> >=20
-> > Currently, the DTS is still in internal and yet to upstream as it
-> > depends on [1]. =20
->=20
-> Yeah, so you send untested code which cannot work or pass tests.  If
-> you do not test your code, we need to be able to at least verify it,
-> so send your DTS. Otherwise I cannot trust that this works at all.
->
-Will submit it with DTS once things have cleared up.
-Thanks for the comment.=20
+Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 
-> Best regards,
-> Krzysztof
->=20
+- Mani
+
+> ---
+>  arch/arm/boot/dts/qcom/qcom-sdx55.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm/boot/dts/qcom/qcom-sdx55.dtsi b/arch/arm/boot/dts/qcom/qcom-sdx55.dtsi
+> index e30dbf12990a..0864c99a3da1 100644
+> --- a/arch/arm/boot/dts/qcom/qcom-sdx55.dtsi
+> +++ b/arch/arm/boot/dts/qcom/qcom-sdx55.dtsi
+> @@ -612,7 +612,7 @@ pdc: interrupt-controller@b210000 {
+>  			compatible = "qcom,sdx55-pdc", "qcom,pdc";
+>  			reg = <0x0b210000 0x30000>;
+>  			qcom,pdc-ranges = <0 179 52>;
+> -			#interrupt-cells = <3>;
+> +			#interrupt-cells = <2>;
+>  			interrupt-parent = <&intc>;
+>  			interrupt-controller;
+>  		};
+> -- 
+> 2.41.0
+> 
+
+-- 
+மணிவண்ணன் சதாசிவம்
 
