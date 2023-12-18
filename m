@@ -1,124 +1,187 @@
-Return-Path: <devicetree+bounces-26732-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26733-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1688F817C90
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 22:21:29 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3CA06817CA0
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 22:32:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A2C2E281F1E
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 21:21:27 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C660DB23AAB
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 21:32:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3E9C7349F;
-	Mon, 18 Dec 2023 21:21:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC87D740B0;
+	Mon, 18 Dec 2023 21:32:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Q188g71d"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="YPytoR8U"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com [209.85.208.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 433FD73465;
-	Mon, 18 Dec 2023 21:21:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1702934482; x=1734470482;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=59SP83dOu7bE+wlgAIUbh0lOytZrwfO2TAn0TlI0bMA=;
-  b=Q188g71dZXWjtk2B8M1dLz7bKtn3skdyBvPIfzC5vt4nkly08XkBUZ9f
-   ydbCX7D2k8SCC7AwCQUsV9hgKo215iJBAHMXaX8Jj5YxoyaWVJTzAuhUM
-   /WbOF2XMPJrFTwsSRqMD0DHD8jsCQRJVQE/d0FAEEIYd2ZPs0dE8xnHUN
-   uNz0buXw+EQ6ulH6zuJH5OXhze+dEPQVtc6DdG4dON0o1gxWPz/fSUQdI
-   aBnQRgQyfR7l7HVdv5l+PX3rDYP4Y2AUNmRwHvgrbZph67Ri8GK2lRELY
-   u670GyKFwh2YtgM1EDXlVIfH3pKFYwFvaNU6IHfzNY89TIXbsuJo5DcZs
-   w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10928"; a="392744400"
-X-IronPort-AV: E=Sophos;i="6.04,286,1695711600"; 
-   d="scan'208";a="392744400"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Dec 2023 13:21:21 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10928"; a="919397432"
-X-IronPort-AV: E=Sophos;i="6.04,286,1695711600"; 
-   d="scan'208";a="919397432"
-Received: from lkp-server02.sh.intel.com (HELO b07ab15da5fe) ([10.239.97.151])
-  by fmsmga001.fm.intel.com with ESMTP; 18 Dec 2023 13:21:19 -0800
-Received: from kbuild by b07ab15da5fe with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1rFL36-0004XH-2c;
-	Mon, 18 Dec 2023 21:21:16 +0000
-Date: Tue, 19 Dec 2023 05:20:34 +0800
-From: kernel test robot <lkp@intel.com>
-To: Joshua Yeong <joshua.yeong@starfivetech.com>,
-	jeeheng.sia@starfivetech.com, leyfoon.tan@starfivetech.com,
-	jassisinghbrar@gmail.com, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/3] mailbox: starfive: Add StarFive Meu Mailbox Driver
-Message-ID: <202312190442.dVG2haPq-lkp@intel.com>
-References: <20231218061201.98136-2-joshua.yeong@starfivetech.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2AED740A2
+	for <devicetree@vger.kernel.org>; Mon, 18 Dec 2023 21:32:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-2cc7087c6c4so19630951fa.2
+        for <devicetree@vger.kernel.org>; Mon, 18 Dec 2023 13:32:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1702935120; x=1703539920; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=BSXNxdoZhofQ5RCoswX0f1+//hwvnN3EjdXTFtoy2HI=;
+        b=YPytoR8UoXXL5CGUcl3dfCdIiBvwg6cv8N9QJ1ZrnuxwfYhVI+fQCxLtSjas1k3fMa
+         dQSj5awbalo7vQ+36AI1X8F5cFYniL39UP1LqmBtfa2LV0yvMIHXsOOAm1jOu3H81FhM
+         FaRlOAA65obniearn1MSBnImUrhJM7rGMnia5ABUqfkbVdty9TK/Hwn0nkVlVEmwmrFh
+         P3Y5iW3pqbOYxMb1RT6LqECTLm7b382KNKOh87nHTw6cit8j4VYO1OtNIbLk7N0nEwQA
+         7XWp7Ts8E8S+b1bMvEO/m1FA7hSAerod1ude64Cuv/cddqnfcoakG82l9aGFQq3pLsN5
+         UTkQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702935120; x=1703539920;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=BSXNxdoZhofQ5RCoswX0f1+//hwvnN3EjdXTFtoy2HI=;
+        b=lhjF6Bv2CU3nt+omJ1PC8CCWqi6Km152sS889UTZWPFmocs4xQQ8hcK44ozjAJ6Wgl
+         quo48FHoXZOfV1rLkbReWYdP0F0oZNS/Hxd1mre4fx/kBuotO0p4RJl3Am/HDry7+V1y
+         9cT6Vg7+SM60fBXhsUVo1tTYIypJot/bqaB6R96+wKEuqV2o7eRwmxjwhBq7ohR+vrEW
+         YDx5DB1d7iL8Bw3XK4NF5A6aVxU07fQPmWeZ7dkcIbSOnjMr0o3azFsndhSYzp5hI2tt
+         r2+JekAoPvlNyqOPQYGFnWu0e0pyYivzUoIVBPoJiAkKk53OLhxlpyH1ItFaxqznbTiN
+         M7ug==
+X-Gm-Message-State: AOJu0Yxy6eJhQYH7GvWbuYRwUqmQTQQLOz6jXNuwmKhJYWAYr66OjvBR
+	jrqhZDJE+S8yLMH6reGeW6h4+g==
+X-Google-Smtp-Source: AGHT+IGb9L/7IjmEK6JBuwbQuFPw/cgebNIiMG+aI27+Ezg3cWXCBXy+3+3B2cUOYWuEJ4oyHG7dOg==
+X-Received: by 2002:a05:651c:2009:b0:2cc:63e4:884c with SMTP id s9-20020a05651c200900b002cc63e4884cmr1666186ljo.50.1702935119890;
+        Mon, 18 Dec 2023 13:31:59 -0800 (PST)
+Received: from [172.30.205.119] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
+        by smtp.gmail.com with ESMTPSA id w22-20020a2e9bd6000000b002cc710614besm507393ljj.0.2023.12.18.13.31.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 18 Dec 2023 13:31:59 -0800 (PST)
+Message-ID: <15d2bd66-29f3-435b-8494-d82ec4036413@linaro.org>
+Date: Mon, 18 Dec 2023 22:31:57 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231218061201.98136-2-joshua.yeong@starfivetech.com>
-
-Hi Joshua,
-
-kernel test robot noticed the following build warnings:
-
-[auto build test WARNING on robh/for-next]
-[also build test WARNING on linus/master v6.7-rc6]
-[cannot apply to next-20231218]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Joshua-Yeong/mailbox-starfive-Add-StarFive-Meu-Mailbox-Driver/20231218-141510
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20231218061201.98136-2-joshua.yeong%40starfivetech.com
-patch subject: [PATCH 1/3] mailbox: starfive: Add StarFive Meu Mailbox Driver
-config: loongarch-allmodconfig (https://download.01.org/0day-ci/archive/20231219/202312190442.dVG2haPq-lkp@intel.com/config)
-compiler: loongarch64-linux-gcc (GCC) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231219/202312190442.dVG2haPq-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202312190442.dVG2haPq-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> drivers/mailbox/starfive-meu.c:50: warning: This comment starts with '/**', but isn't a kernel-doc comment. Refer Documentation/doc-guide/kernel-doc.rst
-    * StarFive MEU Mailbox allocated channel information
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 10/12] arm64: dts: qcom: sm8550: Switch UFS from
+ opp-table-hz to opp-v2
+To: Nitin Rawat <quic_nitirawa@quicinc.com>,
+ Bjorn Andersson <andersson@kernel.org>, Georgi Djakov <djakov@kernel.org>,
+ Abel Vesa <abel.vesa@linaro.org>, Michael Turquette
+ <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
+ Taniya Das <quic_tdas@quicinc.com>, Jagadeesh Kona <quic_jkona@quicinc.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Sai Prakash Ranjan <quic_saipraka@quicinc.com>
+Cc: Marijn Suijten <marijn.suijten@somainline.org>,
+ linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20231218-topic-8550_fixes-v1-0-ce1272d77540@linaro.org>
+ <20231218-topic-8550_fixes-v1-10-ce1272d77540@linaro.org>
+ <62f0c623-3819-f6be-115f-6b471ab79a58@quicinc.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <62f0c623-3819-f6be-115f-6b471ab79a58@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
 
-vim +50 drivers/mailbox/starfive-meu.c
 
-    48	
-    49	/**
-  > 50	 * StarFive MEU Mailbox allocated channel information
-    51	 *
-    52	 * @meu: Pointer to parent mailbox device
-    53	 * @pchan: Physical channel within which this doorbell resides in
-    54	 * @doorbell: doorbell number pertaining to this channel
-    55	 */
-    56	struct meu_db_channel {
-    57		struct starfive_meu *meu;
-    58		unsigned int pchan;
-    59		unsigned int doorbell;
-    60	};
-    61	
+On 12/18/23 17:35, Nitin Rawat wrote:
+> 
+> 
+> On 12/18/2023 9:32 PM, Konrad Dybcio wrote:
+>> Now that the non-legacy form of OPP is supported within the UFS driver,
+>> go ahead and switch to it, adding support for more intermediate freq/power
+>> states.
+>>
+>> In doing so, add the CX RPMhPD under GCC to make sure at least some of
+>> the power state requirements are *actually* propagated up the stack.
+>>
+>> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+>> ---
+>>   arch/arm64/boot/dts/qcom/sm8550.dtsi | 50 +++++++++++++++++++++++++++++-------
+>>   1 file changed, 41 insertions(+), 9 deletions(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+>> index d707d15cea5b..d6edd54f3ad3 100644
+>> --- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+>> @@ -1930,6 +1930,7 @@ ufs_mem_hc: ufs@1d84000 {
+>>               iommus = <&apps_smmu 0x60 0x0>;
+>>               dma-coherent;
+>> +            operating-points-v2 = <&ufs_opp_table>;
+>>               interconnects = <&aggre1_noc MASTER_UFS_MEM 0 &mc_virt SLAVE_EBI1 0>,
+>>                       <&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_UFS_MEM_CFG 0>;
+>> @@ -1950,18 +1951,49 @@ ufs_mem_hc: ufs@1d84000 {
+>>                    <&gcc GCC_UFS_PHY_TX_SYMBOL_0_CLK>,
+>>                    <&gcc GCC_UFS_PHY_RX_SYMBOL_0_CLK>,
+>>                    <&gcc GCC_UFS_PHY_RX_SYMBOL_1_CLK>;
+>> -            freq-table-hz =
+>> -                <75000000 300000000>,
+>> -                <0 0>,
+>> -                <0 0>,
+>> -                <75000000 300000000>,
+>> -                <100000000 403000000>,
+>> -                <0 0>,
+>> -                <0 0>,
+>> -                <0 0>;
+>>               qcom,ice = <&ice>;
+>>               status = "disabled";
+>> +
+>> +            ufs_opp_table: opp-table {
+>> +                compatible = "operating-points-v2";
+>> +
+>> +                opp-75000000 {
+>> +                    opp-hz = /bits/ 64 <75000000>,
+>> +                         /bits/ 64 <0>,
+>> +                         /bits/ 64 <0>,
+>> +                         /bits/ 64 <75000000>,
+>> +                         /bits/ 64 <100000000>,
+>> +                         /bits/ 64 <0>,
+>> +                         /bits/ 64 <0>,
+>> +                         /bits/ 64 <0>;
+>> +                    required-opps = <&rpmhpd_opp_low_svs>;
+>> +                };
+>> +
+>> +                opp-150000000 {
+>> +                    opp-hz = /bits/ 64 <150000000>,
+>> +                         /bits/ 64 <0>,
+>> +                         /bits/ 64 <0>,
+>> +                         /bits/ 64 <150000000>,
+>> +                         /bits/ 64 <100000000> > +                         /bits/ 64 <0>,
+>> +                         /bits/ 64 <0>,
+>> +                         /bits/ 64 <0>;
+>> +                    required-opps = <&rpmhpd_opp_svs>;
+>> +                };
+>> +
+>> +                opp-300000000 {
+>> +                    opp-hz = /bits/ 64 <300000000>,
+>> +                         /bits/ 64 <0>,
+>> +                         /bits/ 64 <0>,
+>> +                         /bits/ 64 <300000000>,
+>> +                         /bits/ 64 <100000000>,
+> Hi Konrad,
+> 
+> This entry is for ICE clock ? Shouldn't the entry be 403000000 ?
+> Same for svs as well ?
+Hi Nitin,
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+this entry is for the TCSR_UFS_PAD_CLKREF_EN/"ref_clk" clock,
+which doesn't support ratesetting, so it should probably be 0
+(or its actual value if we know it - I assumed it was 100 MHz
+as it was there before).
+
+The ICE clock is handled separately by the crypto@1d88000 node.
+
+Thinking about it again, the original submission probably included
+the ICE clock within the UFS node and when TCSRCC was created,
+somebody might have omitted the wrong rate value.
+
+Konrad
 
