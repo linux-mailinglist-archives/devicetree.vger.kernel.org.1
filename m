@@ -1,90 +1,79 @@
-Return-Path: <devicetree+bounces-26411-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26412-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E076816656
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 07:13:48 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D992881668B
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 07:32:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 707C41C22217
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 06:13:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 78C7E1F21250
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 06:32:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B34766D19;
-	Mon, 18 Dec 2023 06:13:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17B4C5690;
+	Mon, 18 Dec 2023 06:32:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lpRvyy4t"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66A1079EE;
-	Mon, 18 Dec 2023 06:13:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-	by ex01.ufhost.com (Postfix) with ESMTP id 53C2E24E257;
-	Mon, 18 Dec 2023 14:13:13 +0800 (CST)
-Received: from EXMBX066.cuchost.com (172.16.7.66) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 18 Dec
- 2023 14:13:13 +0800
-Received: from localhost.localdomain (202.188.176.82) by EXMBX066.cuchost.com
- (172.16.6.66) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 18 Dec
- 2023 14:13:09 +0800
-From: Joshua Yeong <joshua.yeong@starfivetech.com>
-To: <joshua.yeong@starfivetech.com>, <jeeheng.sia@starfivetech.com>,
-	<leyfoon.tan@starfivetech.com>, <jassisinghbrar@gmail.com>,
-	<robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-	<conor+dt@kernel.org>
-CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH 3/3] MAINTAINERS: Add entry for StarFive Mailbox MEU
-Date: Mon, 18 Dec 2023 14:12:01 +0800
-Message-ID: <20231218061201.98136-4-joshua.yeong@starfivetech.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20231218061201.98136-1-joshua.yeong@starfivetech.com>
-References: <20231218061201.98136-1-joshua.yeong@starfivetech.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E59056FA2;
+	Mon, 18 Dec 2023 06:32:16 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4A4EAC433C7;
+	Mon, 18 Dec 2023 06:32:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1702881136;
+	bh=0w/82EmxDdtEcR36oapMX0tmq6V73gwFqUVRTEPC6C8=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=lpRvyy4tKQJda+cxtKyuQnl4PWpo7xC9qBUtL77BJkjqBn/1kHsbh5F6qL5DgI+e/
+	 JxavVlwV2Ebc5mdU0QAIQc7jwtLJi+KAhOb7K8/WLml0RkTf9SNE/yzH/XP7OOQ/W3
+	 PmZnB6bLsu1fT+mZC62LnlWBJ1w0IcSyd7UxcEfgK/NOYB5Mt2RIWgyoxXpf/xPLkC
+	 jMhXCLH47fHT8+fwKuSnAySUuM1OxbY8bqTwXMAJUcUM4WahE9QFi6T9C8pWMUyU6m
+	 /FMNAyKJLO0dVBao1mI6g3TEYdouuMJOOFUgBysr4/3b0SFqdsCNBktfCNxR1m1PNr
+	 spW+wI9GmyYNw==
+Message-ID: <26a42eaa71f3826ce165e6bbf08618fc.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX066.cuchost.com
- (172.16.6.66)
-X-YovoleRuleAgent: yovoleflag
 Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20231124-alvin-clk-si5351-no-pll-reset-v6-1-69b82311cb90@bang-olufsen.dk>
+References: <20231124-alvin-clk-si5351-no-pll-reset-v6-0-69b82311cb90@bang-olufsen.dk> <20231124-alvin-clk-si5351-no-pll-reset-v6-1-69b82311cb90@bang-olufsen.dk>
+Subject: Re: [PATCH v6 1/3] dt-bindings: clock: si5351: convert to yaml
+From: Stephen Boyd <sboyd@kernel.org>
+Cc: Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, Rabeeh Khoury <rabeeh@solid-run.com>, Jacob Siverskog <jacob@teenage.engineering>, Sergej Sawazki <sergej@taudac.com>, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>
+To: Alvin =?utf-8?q?=C5=A0ipraga?= <alsi@bang-olufsen.dk>, Alvin =?utf-8?q?=C5=A0ipraga?= <alvin@pqrs.dk>, Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Michael Turquette <mturquette@baylibre.com>, Rob Herring <robh+dt@kernel.org>
+Date: Sun, 17 Dec 2023 22:32:13 -0800
+User-Agent: alot/0.10
 
-Add StarFive Meu Mailbox driver contact point.
+Quoting Alvin =C5=A0ipraga (2023-11-24 05:17:42)
+> From: Alvin =C5=A0ipraga <alsi@bang-olufsen.dk>
+>=20
+> The following additional properties are described:
+>=20
+>   - clock-names
+>   - clock-frequency of the clkout child nodes
+>=20
+> In order to suppress warnings from the DT schema validator, the clkout
+> child nodes are prescribed names clkout@[0-7] rather than clkout[0-7].
+>=20
+> The example is refined as follows:
+>=20
+>   - correct the usage of property pll-master -> silabs,pll-master
+>   - give an example of how the silabs,pll-reset property can be used
+>=20
+> I made myself maintainer of the file as I cannot presume that anybody
+> else wants the responsibility.
+>=20
+> Cc: Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>
+> Cc: Rabeeh Khoury <rabeeh@solid-run.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Alvin =C5=A0ipraga <alsi@bang-olufsen.dk>
+> ---
 
-Co-developed-by: Sia Jee Heng <jeeheng.sia@starfivetech.com>
-Signed-off-by: Sia Jee Heng <jeeheng.sia@starfivetech.com>
-Signed-off-by: Joshua Yeong <joshua.yeong@starfivetech.com>
-Reviewed-by: Ley Foon Tan <leyfoon.tan@starfivetech.com>
----
- MAINTAINERS | 7 +++++++
- 1 file changed, 7 insertions(+)
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 9104430e148e..dc2db4eca31a 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -20685,6 +20685,13 @@ F:	Documentation/devicetree/bindings/phy/starfiv=
-e,jh7110-usb-phy.yaml
- F:	drivers/phy/starfive/phy-jh7110-pcie.c
- F:	drivers/phy/starfive/phy-jh7110-usb.c
-=20
-+STARFIVE MEU DRIVER
-+M:	Joshua Yeong <joshua.yeong@starfivetech.com>
-+M:	Sia Jee Heng <jeeheng.sia@starfivetech.com>
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/mailbox/starfive-meu.yaml
-+F:	drivers/mailbox/starfive-meu.c
-+
- STATIC BRANCH/CALL
- M:	Peter Zijlstra <peterz@infradead.org>
- M:	Josh Poimboeuf <jpoimboe@kernel.org>
---=20
-2.25.1
-
+Applied to clk-next
 
