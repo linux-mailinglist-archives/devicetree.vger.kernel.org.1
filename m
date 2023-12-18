@@ -1,515 +1,304 @@
-Return-Path: <devicetree+bounces-26481-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26482-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2448F816A16
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 10:45:42 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 89145816A58
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 10:58:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 496F61C22850
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 09:45:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F33011F22F72
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 09:58:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF379134A9;
-	Mon, 18 Dec 2023 09:44:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9728125AD;
+	Mon, 18 Dec 2023 09:58:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="pEoALyrk"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="jUgonzWq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12on2056.outbound.protection.outlook.com [40.107.243.56])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E915C125AD;
-	Mon, 18 Dec 2023 09:44:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=kVESFAjoeGwJuDdZM6ZSLp/kl+eCb6SL8tZXaAE42rKqjwS+Mknz7NtDZ5itK0v9dmoChyg8ZZMobt8doHuyE/iaQwQ14eRDnUMxnWm9RyutM9AY2EwPVVE/rzqONJkjo79P/8X276HJ58mqRSIt1YhPvUKbMT8/wV1r6YmH5jbN+A1LMMZmHoaY8TnA40agAOjxD7279F4DuRm5r+e0vqUPDzSHangSGg6ggQGwnupVidLoblL1lMvzRh+mNy8xK+BPVI4myLGVkIvpKOyaV0au8skfHFbBvnTL5zkR1UiFVwNJKj048cR0Rnhy8RzEZ3A/gQUBdvV+WI1oFQFTNg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=rDpFdlDo6QU4GK83BVBhq6ads/H/v+mnlTmia3x1EL0=;
- b=gq+qLVffJatW0qpeizkTJxTju6mgx3uSNSglAmkgg1aG3bwKqz+Ev48pO+0gfcP4nBTiCpr+Xk2zJG70kSKgzl49jl55U7yIeyW7coCCFt45NtFigGurRBf1nJMgU5f6oi/YjSC2Iqx+YIB3cB0Dq9ThqiUwA/GxJy0eLwS1ijkmUkIxjb9KAtLFar120yPVsLclzvAnHi+UqfuQV6l3qd7EDh5bcDH3QAoc/ovokr8jtS869D0A/9tNNteSrVhIe4K7Pz3y+zhmSqB9YUDlDBqPM94CWP7KeJw0PcyszvU09WVy26jFof3R1UVGCo389KzTLypbGRITxWmonUAb/g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=linuxfoundation.org smtp.mailfrom=amd.com;
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=rDpFdlDo6QU4GK83BVBhq6ads/H/v+mnlTmia3x1EL0=;
- b=pEoALyrkqj6xrtU962UQ08FvH2SyfoiQPuXMEu8P+HPvcKsdAOR19Z5pPIGsQJRzckvPlqviSqZt991vhSY2JrX8uf2fzhAZ1avesF4t+oA1tsXQLAm03yZWICVwO4K/khuohcDc6mTBaChrDgtkPfAG63lG7NrQhgdLIA8rEyQ=
-Received: from SJ0PR03CA0141.namprd03.prod.outlook.com (2603:10b6:a03:33c::26)
- by PH0PR12MB5483.namprd12.prod.outlook.com (2603:10b6:510:ee::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7091.37; Mon, 18 Dec
- 2023 09:44:40 +0000
-Received: from MWH0EPF000989E5.namprd02.prod.outlook.com
- (2603:10b6:a03:33c:cafe::9b) by SJ0PR03CA0141.outlook.office365.com
- (2603:10b6:a03:33c::26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7091.37 via Frontend
- Transport; Mon, 18 Dec 2023 09:44:40 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- MWH0EPF000989E5.mail.protection.outlook.com (10.167.241.132) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7113.14 via Frontend Transport; Mon, 18 Dec 2023 09:44:40 +0000
-Received: from SATLEXMB08.amd.com (10.181.40.132) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.34; Mon, 18 Dec
- 2023 03:44:39 -0600
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB08.amd.com
- (10.181.40.132) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.32; Mon, 18 Dec
- 2023 01:44:38 -0800
-Received: from xhdsgoud40.xilinx.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server id 15.1.2507.34 via Frontend
- Transport; Mon, 18 Dec 2023 03:44:35 -0600
-From: Manikanta Guntupalli <manikanta.guntupalli@amd.com>
-To: <git@amd.com>, <michal.simek@amd.com>, <gregkh@linuxfoundation.org>,
-	<robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-	<conor+dt@kernel.org>, <linux-serial@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<jirislaby@kernel.org>, <linux-arm-kernel@lists.infradead.org>
-CC: <radhey.shyam.pandey@amd.com>, <srinivas.goud@amd.com>,
-	<shubhrajyoti.datta@amd.com>, <manion05gk@gmail.com>, Manikanta Guntupalli
-	<manikanta.guntupalli@amd.com>
-Subject: [PATCH V7 3/3] tty: serial: uartps: Add rs485 support to uartps driver
-Date: Mon, 18 Dec 2023 15:14:15 +0530
-Message-ID: <20231218094415.2503672-4-manikanta.guntupalli@amd.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20231218094415.2503672-1-manikanta.guntupalli@amd.com>
-References: <20231218094415.2503672-1-manikanta.guntupalli@amd.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 140F712B61;
+	Mon, 18 Dec 2023 09:58:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 3BI7weGU029514;
+	Mon, 18 Dec 2023 09:58:08 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=6lHtX4h5VX2oEtzX8FS/QeNc9WcK0n6EiGg67AQjDb8=; b=jU
+	gonzWqz13NbA5oU+/3c/9GI3gq86GmQUEmV8tlw5zhyYBVMsIATpC0mt4egP4PWz
+	BrXtnuBN2ebtu1+0xJAMFi/Or9SLJC+0cxfMsu535mJJRx2WtK1KkwkNTboyMntp
+	3yeudVixcg+AJX3vYRxT7Ay3lZ3gNriSdkf7FksASMgBsrEFpsEASd48sGPrRisJ
+	MA+xbV9pQHOYl6SzLYRVcCJsBoFAzKbVcvBM62A0aDrm/Uq9FlqxPw3JfI76KIBt
+	AdbPnKZaXnk6xf9QjEG8OVIo1zr4GImwA4NOOz9kGqVkSJiidkQAvjp4c7xw8Van
+	XIJODhhZ8LzyUt8nARsw==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3v2gw0rd9x-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 18 Dec 2023 09:58:07 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3BI9w6Ik026436
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 18 Dec 2023 09:58:06 GMT
+Received: from [10.217.90.28] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Mon, 18 Dec
+ 2023 01:57:57 -0800
+Message-ID: <8ed8450f-a9c7-4e9d-97b8-3d26668c7eb4@quicinc.com>
+Date: Mon, 18 Dec 2023 15:27:54 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MWH0EPF000989E5:EE_|PH0PR12MB5483:EE_
-X-MS-Office365-Filtering-Correlation-Id: bd468f04-baf9-4c3b-d96e-08dbffadf4c4
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	SAGE5fyvZH4W/6UPRs/cFh1N5ei3YTF++Ly1omunqAZzoiPyjkgfFddwLoh4lBxIqGwxXQRiLfj7G8WiFS+V9+K7V/tBYfDPkkG71N55sQEk44GlG8ZaXDLtWmQwNwOmYzshYK3AXD4rSUj6rZ8KHcnwEGvyDCzWwMSsFenSIQOgV8qW6E4iC3yX8Xt1+oOsCYXD3Hb6bj7v+Dvtehp5fFQQTQW9YpxRNXOEhkuRlH+IqS0NNNyVP/xPzxts/Jr+62HJnQQNofNx+/oPMNI+u+4PdUnAipaDuSSeb53eT9i9Guf9LA3jjpb7heGqujqu1K/K1oafs/iXR0enCgUZ3uytsxfC8fefzzLJWChM54IPMtczbbdL3WICgINL45qSGV2WNjm6l5auguVnTIAQ+fDzGav8Jg9AbkZ43sVPq1wwp+XCFK5ljTtgDjRyzsdlS0Ec/p26TeHBbgU6tmuOTFWp/rOYXiCco+367uDGNx84tF5Q+XlIjkbza7lnQIO71c5pO7qbrveYefsecVXjCSrQ5ZoKoWFxprrEhMccXkZmOK9tmGmM1Z4AtKhTFnuogOHhIJPVK6j36/hFlKMxcoAcVPj8g8O2oJ+msnUv7zh0HVg6whnki8vpRVfuP/kA5A2KHSMXeFP5CydHLZrE3t1Cmx9cPMmkjl/AiiYvIeB6Tv7g0P6T5ESF3z/9iK40c+t8h31wM+cj+ghsq3XgIt5T7Pf/apj94xcVdq0gYi11+4BFvLXPjVUZHkKSa6p7B5KOlyKJ0iH02IiilZd7t3bD1Po+c23OpkFoSuZqFM8=
-X-Forefront-Antispam-Report:
-	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230031)(4636009)(396003)(346002)(39860400002)(376002)(136003)(230922051799003)(82310400011)(1800799012)(64100799003)(451199024)(186009)(46966006)(36840700001)(40470700004)(36756003)(921008)(316002)(83380400001)(426003)(336012)(70586007)(70206006)(30864003)(54906003)(110136005)(7416002)(40480700001)(2906002)(47076005)(8676002)(8936002)(4326008)(5660300002)(44832011)(36860700001)(6666004)(26005)(1076003)(478600001)(2616005)(86362001)(41300700001)(40460700003)(356005)(82740400003)(81166007)(36900700001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Dec 2023 09:44:40.2304
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: bd468f04-baf9-4c3b-d96e-08dbffadf4c4
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	MWH0EPF000989E5.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR12MB5483
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next v6 3/3] net: stmmac: Add driver support for
+ DWMAC5 common safety IRQ
+Content-Language: en-US
+To: Serge Semin <fancer.lancer@gmail.com>
+CC: Vinod Koul <vkoul@kernel.org>, Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        "David S. Miller"
+	<davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>, Jakub Kicinski
+	<kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu
+	<joabreu@synopsys.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>, <netdev@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        Prasad Sodagudi
+	<psodagud@quicinc.com>,
+        Andrew Halaney <ahalaney@redhat.com>, Rob Herring
+	<robh@kernel.org>,
+        <kernel@quicinc.com>
+References: <20231212115841.3800241-1-quic_jsuraj@quicinc.com>
+ <20231212115841.3800241-4-quic_jsuraj@quicinc.com>
+ <bcppwdnscrebqtsap2fyfd6ltpi4al3ojm5dqytzp37h7y7rdy@zqy6bncdhzl2>
+From: Suraj Jaiswal <quic_jsuraj@quicinc.com>
+In-Reply-To: <bcppwdnscrebqtsap2fyfd6ltpi4al3ojm5dqytzp37h7y7rdy@zqy6bncdhzl2>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 8G2h9_YAlPDb10pnGjp-qGq3GfJQ3gbk
+X-Proofpoint-ORIG-GUID: 8G2h9_YAlPDb10pnGjp-qGq3GfJQ3gbk
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-12-09_02,2023-12-07_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 impostorscore=0
+ mlxscore=0 adultscore=0 malwarescore=0 suspectscore=0 spamscore=0
+ clxscore=1015 lowpriorityscore=0 mlxlogscore=999 phishscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2311290000 definitions=main-2312180071
 
-Add rs485 support to uartps driver. Use either rts-gpios or RTS
-to control RS485 phy as driver or a receiver.
 
-Signed-off-by: Manikanta Guntupalli <manikanta.guntupalli@amd.com>
----
-Changes for V2:
-Modify optional gpio name to xlnx,phy-ctrl-gpios.
-Update commit description.
-Add support for RTS, delay_rts_before_send and delay_rts_after_send in RS485 mode.
+Hi Serge,
+Please find commnet inline & let me know if any further action needed
 
-Changes for V3:
-Modify optional gpio name to rts-gpios.
-Update commit description.
-Move cdns_uart_tx_empty function to avoid prototype statement.
-Remove assignment of struct serial_rs485 to port->rs485 as
-serial core performs that.
-Switch to native RTS in non GPIO case.
-Handle rs485 during stop tx.
-Remove explicit calls to configure gpio direction and value,
-as devm_gpiod_get_optional performs that by using GPIOD_OUT_LOW argument.
-Update implementation to support configuration of GPIO/RTS value
-based on user configuration of SER_RS485_RTS_ON_SEND and
-SER_RS485_RTS_AFTER_SEND. Move implementation to start_tx from handle_tx.
+Thanks
+Suraj
 
-Changes for V4:
-Create separate patch for cdns_uart_tx_empty relocation.
-Call cdns_rs485_rx_setup() before uart_add_one_port() in probe.
-Update gpio descriptor name to gpiod_rts.
-Instead of cdns_rs485_config_gpio_rts_high() and
-cdns_rs485_config_gpio_rts_low() functions for RTS/GPIO value
-configuration implement cdns_rts_gpio_enable().
-Disable auto rts and call cdns_uart_stop_tx() from cdns_rs485_config.
-Use timer instead of mdelay for delay_rts_before_send and delay_rts_after_send.
-Update cdns_uart_set_mctrl to support GPIO/RTS.
+On 12/14/2023 8:42 PM, Serge Semin wrote:
+> Hi Suraj
+> 
+> On Tue, Dec 12, 2023 at 05:28:41PM +0530, Suraj Jaiswal wrote:
+>> Add support to listen HW safety IRQ like ECC(error
+>> correction code), DPP(data path parity), FSM(finite state
+>> machine) fault in common IRQ line.
+>>
+>> Signed-off-by: Suraj Jaiswal <quic_jsuraj@quicinc.com>
+>> ---
+>>  drivers/net/ethernet/stmicro/stmmac/common.h  |  1 +
+>>  drivers/net/ethernet/stmicro/stmmac/stmmac.h  |  3 +++
+>>  .../net/ethernet/stmicro/stmmac/stmmac_main.c | 21 +++++++++++++++++++
+>>  .../ethernet/stmicro/stmmac/stmmac_platform.c |  9 ++++++++
+>>  4 files changed, 34 insertions(+)
+>>
+>> diff --git a/drivers/net/ethernet/stmicro/stmmac/common.h b/drivers/net/ethernet/stmicro/stmmac/common.h
+>> index 721c1f8e892f..b9233b09b80f 100644
+>> --- a/drivers/net/ethernet/stmicro/stmmac/common.h
+>> +++ b/drivers/net/ethernet/stmicro/stmmac/common.h
+>> @@ -344,6 +344,7 @@ enum request_irq_err {
+>>  	REQ_IRQ_ERR_ALL,
+>>  	REQ_IRQ_ERR_TX,
+>>  	REQ_IRQ_ERR_RX,
+>> +	REQ_IRQ_ERR_SFTY,
+>>  	REQ_IRQ_ERR_SFTY_UE,
+>>  	REQ_IRQ_ERR_SFTY_CE,
+>>  	REQ_IRQ_ERR_LPI,
+>> diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac.h b/drivers/net/ethernet/stmicro/stmmac/stmmac.h
+>> index 9f89acf31050..ca3d93851bed 100644
+>> --- a/drivers/net/ethernet/stmicro/stmmac/stmmac.h
+>> +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac.h
+>> @@ -31,6 +31,7 @@ struct stmmac_resources {
+>>  	int wol_irq;
+>>  	int lpi_irq;
+>>  	int irq;
+>> +	int sfty_irq;
+>>  	int sfty_ce_irq;
+>>  	int sfty_ue_irq;
+>>  	int rx_irq[MTL_MAX_RX_QUEUES];
+>> @@ -297,6 +298,7 @@ struct stmmac_priv {
+>>  	void __iomem *ptpaddr;
+>>  	void __iomem *estaddr;
+>>  	unsigned long active_vlans[BITS_TO_LONGS(VLAN_N_VID)];
+>> +	int sfty_irq;
+>>  	int sfty_ce_irq;
+>>  	int sfty_ue_irq;
+>>  	int rx_irq[MTL_MAX_RX_QUEUES];
+>> @@ -305,6 +307,7 @@ struct stmmac_priv {
+>>  	char int_name_mac[IFNAMSIZ + 9];
+>>  	char int_name_wol[IFNAMSIZ + 9];
+>>  	char int_name_lpi[IFNAMSIZ + 9];
+>> +	char int_name_sfty[IFNAMSIZ + 10];
+>>  	char int_name_sfty_ce[IFNAMSIZ + 10];
+>>  	char int_name_sfty_ue[IFNAMSIZ + 10];
+>>  	char int_name_rx_irq[MTL_MAX_TX_QUEUES][IFNAMSIZ + 14];
+>> diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+>> index 47de466e432c..6cf289f192a7 100644
+>> --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+>> +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+>> @@ -3592,6 +3592,10 @@ static void stmmac_free_irq(struct net_device *dev,
+>>  		if (priv->wol_irq > 0 && priv->wol_irq != dev->irq)
+>>  			free_irq(priv->wol_irq, dev);
+>>  		fallthrough;
+>> +	case REQ_IRQ_ERR_SFTY:
+>> +		if (priv->sfty_irq > 0 && priv->sfty_irq != dev->irq)
+>> +			free_irq(priv->sfty_irq, dev);
+>> +		fallthrough;
+>>  	case REQ_IRQ_ERR_WOL:
+>>  		free_irq(dev->irq, dev);
+>>  		fallthrough;
+>> @@ -3759,6 +3763,7 @@ static int stmmac_request_irq_single(struct net_device *dev)
+>>  	struct stmmac_priv *priv = netdev_priv(dev);
+>>  	enum request_irq_err irq_err;
+>>  	int ret;
+> 
+>> +	char *int_name;
+> 
+> See my comment below.
+> 
+>>  
+>>  	ret = request_irq(dev->irq, stmmac_interrupt,
+>>  			  IRQF_SHARED, dev->name, dev);
+>> @@ -3798,6 +3803,20 @@ static int stmmac_request_irq_single(struct net_device *dev)
+>>  		}
+>>  	}
+>>  
+> 
+>> +	if (priv->sfty_irq > 0 && priv->sfty_irq != dev->irq) {
+>> +		int_name = priv->int_name_sfty;
+>> +		sprintf(int_name, "%s:%s", dev->name, "safety");
+>> +		ret = request_irq(priv->sfty_irq, stmmac_safety_interrupt,
+>> +				  0, int_name, dev);
+>> +		if (unlikely(ret < 0)) {
+>> +			netdev_err(priv->dev,
+>> +				   "%s: alloc safety failed %d (error: %d)\n",
+>> +				   __func__, priv->sfty_irq, ret);
+>> +			irq_err = REQ_IRQ_ERR_SFTY;
+>> +			goto irq_error;
+>> +		}
+>> +	}
+>> +
+> 
+> Omg, I thought this change belonged to stmmac_request_irq_multi_msi().
+> My bad, sorry. Please move the code above to
+> stmmac_request_irq_multi_msi() and get back the part in
+> stmmac_request_irq_single() as it was in v5, but instead of specifying
+> "safety" IRQ name use "dev->name" as the rest of similar code snippets
+> in here have:
+> 
+> +	if (priv->sfty_irq > 0 && priv->sfty_irq != dev->irq) {
+> +		ret = request_irq(priv->sfty_irq, stmmac_safety_interrupt,
+> +				  0, dev->name, dev);
+> +		if (unlikely(ret < 0)) {
+> +			netdev_err(priv->dev,
+> +				   "%s: alloc safety failed %d (error: %d)\n",
+> +				   __func__, priv->sfty_irq, ret);
+> +			irq_err = REQ_IRQ_ERR_SFTY;
+> +			goto irq_error;
+> +		}
+> +	}
 
-Changes for V5:
-None.
-
-Changes for V6:
-Disable the TX and RX in cdns_rs485_config() when rs485 disabled.
-Hold lock for cdns_uart_handle_tx() in cdns_rs485_tx_callback().
-
-Changes for V7:
-None.
----
- drivers/tty/serial/xilinx_uartps.c | 222 +++++++++++++++++++++++++++--
- 1 file changed, 213 insertions(+), 9 deletions(-)
-
-diff --git a/drivers/tty/serial/xilinx_uartps.c b/drivers/tty/serial/xilinx_uartps.c
-index aafcc2179e0e..04cc23deebdf 100644
---- a/drivers/tty/serial/xilinx_uartps.c
-+++ b/drivers/tty/serial/xilinx_uartps.c
-@@ -22,7 +22,9 @@
- #include <linux/of.h>
- #include <linux/module.h>
- #include <linux/pm_runtime.h>
--#include <linux/iopoll.h>
-+#include <linux/gpio.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/delay.h>
- 
- #define CDNS_UART_TTY_NAME	"ttyPS"
- #define CDNS_UART_NAME		"xuartps"
-@@ -193,6 +195,10 @@ MODULE_PARM_DESC(rx_timeout, "Rx timeout, 1-255");
-  * @clk_rate_change_nb:	Notifier block for clock changes
-  * @quirks:		Flags for RXBS support.
-  * @cts_override:	Modem control state override
-+ * @gpiod_rts:		Pointer to the gpio descriptor
-+ * @rs485_tx_started:	RS485 tx state
-+ * @timer:		Timer for tx and rx
-+ * @stop_tx_timer:	Timer for stop tx
-  */
- struct cdns_uart {
- 	struct uart_port	*port;
-@@ -203,10 +209,22 @@ struct cdns_uart {
- 	struct notifier_block	clk_rate_change_nb;
- 	u32			quirks;
- 	bool cts_override;
-+	struct gpio_desc	*gpiod_rts;
-+	bool			rs485_tx_started;
-+	struct timer_list	timer;
-+	struct timer_list	stop_tx_timer;
- };
- struct cdns_platform_data {
- 	u32 quirks;
- };
-+
-+struct serial_rs485 cdns_rs485_supported = {
-+	.flags = SER_RS485_ENABLED | SER_RS485_RTS_ON_SEND |
-+		 SER_RS485_RTS_AFTER_SEND,
-+	.delay_rts_before_send = 1,
-+	.delay_rts_after_send = 1,
-+};
-+
- #define to_cdns_uart(_nb) container_of(_nb, struct cdns_uart, \
- 		clk_rate_change_nb)
- 
-@@ -305,6 +323,55 @@ static void cdns_uart_handle_rx(void *dev_id, unsigned int isrstatus)
- 	tty_flip_buffer_push(&port->state->port);
- }
- 
-+/**
-+ * cdns_rts_gpio_enable - Configure RTS/GPIO to high/low
-+ * @cdns_uart: Handle to the cdns_uart
-+ * @enable: Value to be set to RTS/GPIO
-+ */
-+static void cdns_rts_gpio_enable(struct cdns_uart *cdns_uart, bool enable)
-+{
-+	u32 val;
-+
-+	if (cdns_uart->gpiod_rts) {
-+		gpiod_set_value(cdns_uart->gpiod_rts, enable);
-+	} else {
-+		val = readl(cdns_uart->port->membase + CDNS_UART_MODEMCR);
-+		if (enable)
-+			val &= ~CDNS_UART_MODEMCR_RTS;
-+		else
-+			val |= CDNS_UART_MODEMCR_RTS;
-+		writel(val, cdns_uart->port->membase + CDNS_UART_MODEMCR);
-+	}
-+}
-+
-+/**
-+ * cdns_rs485_tx_setup - Tx setup specific to rs485
-+ * @cdns_uart: Handle to the cdns_uart
-+ */
-+static void cdns_rs485_tx_setup(struct cdns_uart *cdns_uart)
-+{
-+	if (cdns_uart->port->rs485.flags & SER_RS485_RTS_ON_SEND)
-+		cdns_rts_gpio_enable(cdns_uart, 1);
-+	else
-+		cdns_rts_gpio_enable(cdns_uart, 0);
-+
-+	cdns_uart->rs485_tx_started = true;
-+}
-+
-+/**
-+ * cdns_rs485_rx_setup - Rx setup specific to rs485
-+ * @cdns_uart: Handle to the cdns_uart
-+ */
-+static void cdns_rs485_rx_setup(struct cdns_uart *cdns_uart)
-+{
-+	if (cdns_uart->port->rs485.flags & SER_RS485_RTS_AFTER_SEND)
-+		cdns_rts_gpio_enable(cdns_uart, 1);
-+	else
-+		cdns_rts_gpio_enable(cdns_uart, 0);
-+
-+	cdns_uart->rs485_tx_started = false;
-+}
-+
- /**
-  * cdns_uart_tx_empty -  Check whether TX is empty
-  * @port: Handle to the uart port structure
-@@ -579,6 +646,44 @@ static int cdns_uart_clk_notifier_cb(struct notifier_block *nb,
- }
- #endif
- 
-+/**
-+ * cdns_rs485_rx_callback - Timer rx callback handler for rs485.
-+ * @t: Handle to the timer list structure
-+ */
-+static void cdns_rs485_rx_callback(struct timer_list *t)
-+{
-+	struct cdns_uart *cdns_uart = from_timer(cdns_uart, t, timer);
-+
-+	/*
-+	 * Default Rx should be setup, because Rx signaling path
-+	 * need to enable to receive data.
-+	 */
-+	cdns_rs485_rx_setup(cdns_uart);
-+}
-+
-+/**
-+ * cdns_rs485_tx_callback - Timer tx callback handler for rs485.
-+ * @t: Handle to the timer list structure
-+ */
-+static void cdns_rs485_tx_callback(struct timer_list *t)
-+{
-+	struct cdns_uart *cdns_uart = from_timer(cdns_uart, t, timer);
-+
-+	uart_port_lock(cdns_uart->port);
-+	cdns_uart_handle_tx(cdns_uart->port);
-+
-+	/* Enable the TX Empty interrupt */
-+	writel(CDNS_UART_IXR_TXEMPTY, cdns_uart->port->membase + CDNS_UART_IER);
-+	uart_port_unlock(cdns_uart->port);
-+
-+	if (uart_circ_empty(&cdns_uart->port->state->xmit) ||
-+	    uart_tx_stopped(cdns_uart->port)) {
-+		timer_setup(&cdns_uart->timer, cdns_rs485_rx_callback, 0);
-+		mod_timer(&cdns_uart->timer, jiffies +
-+			  msecs_to_jiffies(cdns_uart->port->rs485.delay_rts_after_send));
-+	}
-+}
-+
- /**
-  * cdns_uart_start_tx -  Start transmitting bytes
-  * @port: Handle to the uart port structure
-@@ -586,6 +691,7 @@ static int cdns_uart_clk_notifier_cb(struct notifier_block *nb,
- static void cdns_uart_start_tx(struct uart_port *port)
- {
- 	unsigned int status;
-+	struct cdns_uart *cdns_uart = port->private_data;
- 
- 	if (uart_tx_stopped(port))
- 		return;
-@@ -604,10 +710,40 @@ static void cdns_uart_start_tx(struct uart_port *port)
- 
- 	writel(CDNS_UART_IXR_TXEMPTY, port->membase + CDNS_UART_ISR);
- 
--	cdns_uart_handle_tx(port);
-+	if (cdns_uart->port->rs485.flags & SER_RS485_ENABLED) {
-+		if (!cdns_uart->rs485_tx_started) {
-+			timer_setup(&cdns_uart->timer,
-+				    cdns_rs485_tx_callback, 0);
-+			cdns_rs485_tx_setup(cdns_uart);
-+			mod_timer(&cdns_uart->timer, jiffies +
-+				  msecs_to_jiffies(port->rs485.delay_rts_before_send));
-+		} else {
-+			if (!timer_pending(&cdns_uart->timer))
-+				mod_timer(&cdns_uart->timer, jiffies);
-+		}
-+	} else {
-+		cdns_uart_handle_tx(port);
- 
--	/* Enable the TX Empty interrupt */
--	writel(CDNS_UART_IXR_TXEMPTY, port->membase + CDNS_UART_IER);
-+		/* Enable the TX Empty interrupt */
-+		writel(CDNS_UART_IXR_TXEMPTY, port->membase + CDNS_UART_IER);
-+	}
-+}
-+
-+/**
-+ * cdns_rs485_stop_tx_callback - Timer stop tx callback handler for rs485.
-+ * @t: Handle to the timer list structure
-+ */
-+static void cdns_rs485_stop_tx_callback(struct timer_list *t)
-+{
-+	unsigned int regval;
-+	struct cdns_uart *cdns_uart = from_timer(cdns_uart, t, stop_tx_timer);
-+
-+	cdns_rs485_rx_setup(cdns_uart);
-+
-+	regval = readl(cdns_uart->port->membase + CDNS_UART_CR);
-+	regval |= CDNS_UART_CR_TX_DIS;
-+	/* Disable the transmitter */
-+	writel(regval, cdns_uart->port->membase + CDNS_UART_CR);
- }
- 
- /**
-@@ -617,11 +753,19 @@ static void cdns_uart_start_tx(struct uart_port *port)
- static void cdns_uart_stop_tx(struct uart_port *port)
- {
- 	unsigned int regval;
-+	struct cdns_uart *cdns_uart = port->private_data;
- 
--	regval = readl(port->membase + CDNS_UART_CR);
--	regval |= CDNS_UART_CR_TX_DIS;
--	/* Disable the transmitter */
--	writel(regval, port->membase + CDNS_UART_CR);
-+	if ((cdns_uart->port->rs485.flags & SER_RS485_ENABLED) &&
-+	    !timer_pending(&cdns_uart->stop_tx_timer) &&
-+	    cdns_uart->rs485_tx_started) {
-+		mod_timer(&cdns_uart->stop_tx_timer, jiffies +
-+			  msecs_to_jiffies(cdns_uart->port->rs485.delay_rts_after_send));
-+	} else {
-+		regval = readl(port->membase + CDNS_UART_CR);
-+		regval |= CDNS_UART_CR_TX_DIS;
-+		/* Disable the transmitter */
-+		writel(regval, port->membase + CDNS_UART_CR);
-+	}
- }
- 
- /**
-@@ -829,6 +973,12 @@ static int cdns_uart_startup(struct uart_port *port)
- 		(CDNS_UART_CR_TXRST | CDNS_UART_CR_RXRST))
- 		cpu_relax();
- 
-+	if (cdns_uart->port->rs485.flags & SER_RS485_ENABLED) {
-+		timer_setup(&cdns_uart->stop_tx_timer,
-+			    cdns_rs485_stop_tx_callback, 0);
-+		cdns_rs485_rx_setup(cdns_uart);
-+	}
-+
- 	/*
- 	 * Clear the RX disable bit and then set the RX enable bit to enable
- 	 * the receiver.
-@@ -888,6 +1038,7 @@ static void cdns_uart_shutdown(struct uart_port *port)
- {
- 	int status;
- 	unsigned long flags;
-+	struct cdns_uart *cdns_uart = port->private_data;
- 
- 	uart_port_lock_irqsave(port, &flags);
- 
-@@ -903,6 +1054,11 @@ static void cdns_uart_shutdown(struct uart_port *port)
- 	uart_port_unlock_irqrestore(port, flags);
- 
- 	free_irq(port->irq, port);
-+
-+	if (cdns_uart->port->rs485.flags & SER_RS485_ENABLED) {
-+		del_timer_sync(&cdns_uart->timer);
-+		del_timer_sync(&cdns_uart->stop_tx_timer);
-+	}
- }
- 
- /**
-@@ -1032,7 +1188,7 @@ static void cdns_uart_set_mctrl(struct uart_port *port, unsigned int mctrl)
- 	mode_reg &= ~CDNS_UART_MR_CHMODE_MASK;
- 
- 	if (mctrl & TIOCM_RTS)
--		val |= CDNS_UART_MODEMCR_RTS;
-+		cdns_rts_gpio_enable(cdns_uart_data, 1);
- 	if (mctrl & TIOCM_DTR)
- 		val |= CDNS_UART_MODEMCR_DTR;
- 	if (mctrl & TIOCM_LOOP)
-@@ -1455,6 +1611,37 @@ MODULE_DEVICE_TABLE(of, cdns_uart_of_match);
- /* Temporary variable for storing number of instances */
- static int instances;
- 
-+/**
-+ * cdns_rs485_config - Called when an application calls TIOCSRS485 ioctl.
-+ * @port: Pointer to the uart_port structure
-+ * @termios: Pointer to the ktermios structure
-+ * @rs485: Pointer to the serial_rs485 structure
-+ *
-+ * Return: 0
-+ */
-+static int cdns_rs485_config(struct uart_port *port, struct ktermios *termios,
-+			     struct serial_rs485 *rs485)
-+{
-+	u32 val;
-+	unsigned int ctrl_reg;
-+
-+	if (rs485->flags & SER_RS485_ENABLED) {
-+		dev_dbg(port->dev, "Setting UART to RS485\n");
-+		/* Make sure auto RTS is disabled */
-+		val = readl(port->membase + CDNS_UART_MODEMCR);
-+		val &= ~CDNS_UART_MODEMCR_FCM;
-+		writel(val, port->membase + CDNS_UART_MODEMCR);
-+		/* Disable transmitter and make Rx setup*/
-+		cdns_uart_stop_tx(port);
-+	} else {
-+		/* Disable the TX and RX */
-+		ctrl_reg = readl(port->membase + CDNS_UART_CR);
-+		ctrl_reg |= CDNS_UART_CR_TX_DIS | CDNS_UART_CR_RX_DIS;
-+		writel(ctrl_reg, port->membase + CDNS_UART_CR);
-+	}
-+	return 0;
-+}
-+
- /**
-  * cdns_uart_probe - Platform driver probe
-  * @pdev: Pointer to the platform device structure
-@@ -1597,9 +1784,23 @@ static int cdns_uart_probe(struct platform_device *pdev)
- 	port->private_data = cdns_uart_data;
- 	port->read_status_mask = CDNS_UART_IXR_TXEMPTY | CDNS_UART_IXR_RXTRIG |
- 			CDNS_UART_IXR_OVERRUN | CDNS_UART_IXR_TOUT;
-+	port->rs485_config = cdns_rs485_config;
-+	port->rs485_supported = cdns_rs485_supported;
- 	cdns_uart_data->port = port;
- 	platform_set_drvdata(pdev, port);
- 
-+	rc = uart_get_rs485_mode(port);
-+	if (rc)
-+		goto err_out_clk_notifier;
-+
-+	cdns_uart_data->gpiod_rts = devm_gpiod_get_optional(&pdev->dev, "rts",
-+							    GPIOD_OUT_LOW);
-+	if (IS_ERR(cdns_uart_data->gpiod_rts)) {
-+		rc = PTR_ERR(cdns_uart_data->gpiod_rts);
-+		dev_err(port->dev, "xuartps: devm_gpiod_get_optional failed\n");
-+		goto err_out_clk_notifier;
-+	}
-+
- 	pm_runtime_use_autosuspend(&pdev->dev);
- 	pm_runtime_set_autosuspend_delay(&pdev->dev, UART_AUTOSUSPEND_TIMEOUT);
- 	pm_runtime_set_active(&pdev->dev);
-@@ -1618,6 +1819,8 @@ static int cdns_uart_probe(struct platform_device *pdev)
- 		console_port = port;
- 	}
- #endif
-+	if (cdns_uart_data->port->rs485.flags & SER_RS485_ENABLED)
-+		cdns_rs485_rx_setup(cdns_uart_data);
- 
- 	rc = uart_add_one_port(&cdns_uart_uart_driver, port);
- 	if (rc) {
-@@ -1646,6 +1849,7 @@ static int cdns_uart_probe(struct platform_device *pdev)
- 	pm_runtime_disable(&pdev->dev);
- 	pm_runtime_set_suspended(&pdev->dev);
- 	pm_runtime_dont_use_autosuspend(&pdev->dev);
-+err_out_clk_notifier:
- #ifdef CONFIG_COMMON_CLK
- 	clk_notifier_unregister(cdns_uart_data->uartclk,
- 			&cdns_uart_data->clk_rate_change_nb);
--- 
-2.25.1
-
+<Suraj> We can not use "dev->name" as this is name already used by "stmmac_interrupt" @ https://elixir.bootlin.com/linux/v6.1.68/source/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c#L3655.
+<
+ret = request_irq(dev->irq, stmmac_interrupt,
+			  IRQF_SHARED, dev->name, dev);
+>
+if we are using same "dev->name" while requesting safety IRQ as well then  "/proc/interrupt" will show same name eth0/eth1 for  both "stmmac_interrupt" & "safety interrupt" and by looking at "/proc/interrupt" output we can not say which IRQ is for safety and which is for stmmac_interrupt.
+> 
+> I guess at some point afterwards we'll need to refactor the IRQs
+> request part of this driver: replace stmmac_request_irq_single() body
+> with the upper part of the stmmac_request_irq_multi_msi() method and
+> then just make the former method being called from the later one...
+> 
+>>  	return 0;
+>>  
+>>  irq_error:
+>> @@ -7462,8 +7481,10 @@ int stmmac_dvr_probe(struct device *device,
+>>  	priv->dev->irq = res->irq;
+>>  	priv->wol_irq = res->wol_irq;
+>>  	priv->lpi_irq = res->lpi_irq;
+>> +	priv->sfty_irq = res->sfty_irq;
+>>  	priv->sfty_ce_irq = res->sfty_ce_irq;
+>>  	priv->sfty_ue_irq = res->sfty_ue_irq;
+> 
+>> +
+> 
+> Please drop this change. The code below is attached to the code above
+> because it basically does the same but in the loop. 
+<Suraj> below loop code "for (i = 0; i < MTL_MAX_RX_QUEUES; i++) priv->rx_irq[i] = res->rx_irq[i];" is not for rx_irq array and will not help for safety irq.
+Let me know if I got your commnet properly .
+> 
+>>  	for (i = 0; i < MTL_MAX_RX_QUEUES; i++)
+>>  		priv->rx_irq[i] = res->rx_irq[i];
+>>  	for (i = 0; i < MTL_MAX_TX_QUEUES; i++)
+>> diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
+>> index 1ffde555da47..3808a3225a7d 100644
+>> --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
+>> +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
+>> @@ -726,6 +726,15 @@ int stmmac_get_platform_resources(struct platform_device *pdev,
+>>  		dev_info(&pdev->dev, "IRQ eth_lpi not found\n");
+>>  	}
+>>  
+>> +	stmmac_res->sfty_irq =
+>> +		platform_get_irq_byname_optional(pdev, "sfty");
+> 
+>> +
+> 
+> Please drop this change too. It's normal to have a method call
+> attached to the error check statement especially seeing the rest of
+> the similar code snippets are designed that way in this function.
+<Suraj> Do you means to remove all below code where we are printing the dev_info() message ?
+We added this code similar to LPM code.
+> 
+> -Serge(y)
+> 
+>> +	if (stmmac_res->sfty_irq < 0) {
+>> +		if (stmmac_res->sfty_irq == -EPROBE_DEFER)
+>> +			return -EPROBE_DEFER;
+>> +		dev_info(&pdev->dev, "IRQ safety IRQ not found\n");
+>> +	}
+>> +
+>>  	stmmac_res->addr = devm_platform_ioremap_resource(pdev, 0);
+>>  
+>>  	return PTR_ERR_OR_ZERO(stmmac_res->addr);
+>> -- 
+>> 2.25.1
+>>
+>>
 
