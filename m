@@ -1,386 +1,115 @@
-Return-Path: <devicetree+bounces-26488-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26489-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A93FC816A7A
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 11:04:56 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 27845816A7D
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 11:05:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C8DC51C2223A
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 10:04:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CF9C21F21736
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 10:05:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3105613ADD;
-	Mon, 18 Dec 2023 10:04:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A61F12B7A;
+	Mon, 18 Dec 2023 10:05:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="0AdP6oK7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from SHSQR01.spreadtrum.com (mx1.unisoc.com [222.66.158.135])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vs1-f45.google.com (mail-vs1-f45.google.com [209.85.217.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28DFA134DA;
-	Mon, 18 Dec 2023 10:04:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=unisoc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=unisoc.com
-Received: from dlp.unisoc.com ([10.29.3.86])
-	by SHSQR01.spreadtrum.com with ESMTP id 3BIA3Opp071197;
-	Mon, 18 Dec 2023 18:03:24 +0800 (+08)
-	(envelope-from Chunyan.Zhang@unisoc.com)
-Received: from SHDLP.spreadtrum.com (bjmbx02.spreadtrum.com [10.0.64.8])
-	by dlp.unisoc.com (SkyGuard) with ESMTPS id 4StwGd3Fqmz2Pj8FL;
-	Mon, 18 Dec 2023 17:57:13 +0800 (CST)
-Received: from ubt.spreadtrum.com (10.0.73.88) by BJMBX02.spreadtrum.com
- (10.0.64.8) with Microsoft SMTP Server (TLS) id 15.0.1497.23; Mon, 18 Dec
- 2023 18:03:22 +0800
-From: Chunyan Zhang <chunyan.zhang@unisoc.com>
-To: Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, Lee
- Jones <lee@kernel.org>
-CC: <devicetree@vger.kernel.org>, <linux-serial@vger.kernel.org>,
-        Baolin Wang
-	<baolin.wang@linux.alibaba.com>,
-        Orson Zhai <orsonzhai@gmail.com>,
-        Chunyan
- Zhang <chunyan.zhang@unisoc.com>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Chunyan Zhang <zhang.lyra@gmail.com>
-Subject: [PATCH V2 3/3] arm64: dts: sprd: Add support for Unisoc's UMS9620
-Date: Mon, 18 Dec 2023 18:02:34 +0800
-Message-ID: <20231218100234.1102916-4-chunyan.zhang@unisoc.com>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20231218100234.1102916-1-chunyan.zhang@unisoc.com>
-References: <20231218100234.1102916-1-chunyan.zhang@unisoc.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9635312B6C
+	for <devicetree@vger.kernel.org>; Mon, 18 Dec 2023 10:05:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
+Received: by mail-vs1-f45.google.com with SMTP id ada2fe7eead31-464811e5b3cso1610959137.1
+        for <devicetree@vger.kernel.org>; Mon, 18 Dec 2023 02:05:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1702893912; x=1703498712; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=L6wrxzNiJLPICSs0iPNMafimclxZEX+Zib5f22SAc0I=;
+        b=0AdP6oK7yehsYJtwC2yYHyK1TVLYscgr2nd1MRYXBjrYRNmZ+nyIQlHCViRsYT6GxX
+         S6qgf1HBMw9IgwFrnq8rdjBXW1AVdDh2hsNBe/aThekQhzt92wkMUtjT0BD9jIU01P5A
+         jSuVQkXY2CvT/mf1CFFCkgot3P51chXyaidk8pICNjsXkYrAdIaejUkhuSr9XVjH+ftI
+         XQQQ6Sgb2rvyfUGSEoR6ZiJW8JtW2yPfE9Dw7COOX6rI8waY+C8V5YrbDuukth7PJV04
+         YDgvldfSTk3tNvsS+BbshNap3rn3W9QhqDbdtI08vyFx0rZi+ak4zdA+TupMPQuE0CX+
+         ONAA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702893912; x=1703498712;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=L6wrxzNiJLPICSs0iPNMafimclxZEX+Zib5f22SAc0I=;
+        b=Eze11On57nOh6kj6kmxWNplnVxDXT7O9vgzFCeJRDt1jX+cnTpxgiIa1nQPUuTmZvW
+         pMBAGoBgfnxLl28heX72AAqzWGoH7uQHFbfZQYTAXLME1IDRG0k29D1GcSGM40syOaT9
+         GkS8KgZoRqYeOUeegAFunJfH5KImzzDy/hADlKJQKd9ev/VdfdJNgFuKOOitMQ1V49dR
+         ez9JUz+qPMJQlNBJcGy1CLBfsyVp7qRwXZoj52oC4Phnxrbws4t5+tmnRg2rQeMZj54P
+         5s7Wygh8LqV0U7izKimL9onD+5/o2FLKrTULqcY0OLMr9JL2FweLVmVSvyf7AnBUdV92
+         OGDQ==
+X-Gm-Message-State: AOJu0Yz/XJL+akzvK2YIKlQRNcLO4weUWLoot2th3CG7ruDcNjF2X58w
+	uGhNSmKk/HhsmTUImFhHOpzLdLu9Z5Y5/8Lv6SIHQA==
+X-Google-Smtp-Source: AGHT+IHxszukyE2ttJO6zuq02rDfSZeRaEjzppPvuzY0whsH7Q37cz7BAVBbB7KrH+ZPYf13rsSeNKkUCMPPIVQXCPo=
+X-Received: by 2002:a05:6102:3e8e:b0:466:5bd2:a2f2 with SMTP id
+ m14-20020a0561023e8e00b004665bd2a2f2mr6539984vsv.1.1702893912242; Mon, 18 Dec
+ 2023 02:05:12 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SHCAS03.spreadtrum.com (10.0.1.207) To
- BJMBX02.spreadtrum.com (10.0.64.8)
-X-MAIL:SHSQR01.spreadtrum.com 3BIA3Opp071197
+References: <20231215143906.3651122-1-emil.renner.berthing@canonical.com> <20231215143906.3651122-5-emil.renner.berthing@canonical.com>
+In-Reply-To: <20231215143906.3651122-5-emil.renner.berthing@canonical.com>
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+Date: Mon, 18 Dec 2023 11:05:01 +0100
+Message-ID: <CAMRc=MfovbsbxDGvheHkhE-oiXyMfpCpcqwKcZRwHbCjKvwJYg@mail.gmail.com>
+Subject: Re: [PATCH v1 4/8] dt-bindings: gpio: dwapb: allow gpio-ranges
+To: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	Hoan Tran <hoan@os.amperecomputing.com>, Serge Semin <fancer.lancer@gmail.com>, 
+	Linus Walleij <linus.walleij@linaro.org>, Andy Shevchenko <andy@kernel.org>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jisheng Zhang <jszhang@kernel.org>, Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Add basic support for Unisoc's UMS9620, with this patch,
-the board ums9620-2h10 can run into console.
+On Fri, Dec 15, 2023 at 3:39=E2=80=AFPM Emil Renner Berthing
+<emil.renner.berthing@canonical.com> wrote:
+>
+> Allow the generic gpio-ranges property so GPIOs can be mapped to their
+> corresponding pin. This way control of GPIO on pins that are already used
+> by other peripherals can be denied and basic pinconf can be done on pin
+> controllers that support it.
+>
+> Signed-off-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+> ---
+>  Documentation/devicetree/bindings/gpio/snps,dw-apb-gpio.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/gpio/snps,dw-apb-gpio.yaml=
+ b/Documentation/devicetree/bindings/gpio/snps,dw-apb-gpio.yaml
+> index eefe7b345286..ab2afc0e4153 100644
+> --- a/Documentation/devicetree/bindings/gpio/snps,dw-apb-gpio.yaml
+> +++ b/Documentation/devicetree/bindings/gpio/snps,dw-apb-gpio.yaml
+> @@ -65,6 +65,8 @@ patternProperties:
+>          minItems: 1
+>          maxItems: 32
+>
+> +      gpio-ranges: true
+> +
+>        ngpios:
+>          default: 32
+>          minimum: 1
+> --
+> 2.40.1
+>
 
-Signed-off-by: Chunyan Zhang <chunyan.zhang@unisoc.com>
----
- arch/arm64/boot/dts/sprd/Makefile         |   3 +-
- arch/arm64/boot/dts/sprd/ums9620-2h10.dts |  38 ++++
- arch/arm64/boot/dts/sprd/ums9620.dtsi     | 245 ++++++++++++++++++++++
- 3 files changed, 285 insertions(+), 1 deletion(-)
- create mode 100644 arch/arm64/boot/dts/sprd/ums9620-2h10.dts
- create mode 100644 arch/arm64/boot/dts/sprd/ums9620.dtsi
+Applied, thanks!
 
-diff --git a/arch/arm64/boot/dts/sprd/Makefile b/arch/arm64/boot/dts/sprd/Makefile
-index 97522fb0bf66..3ce81ad7116f 100644
---- a/arch/arm64/boot/dts/sprd/Makefile
-+++ b/arch/arm64/boot/dts/sprd/Makefile
-@@ -2,4 +2,5 @@
- dtb-$(CONFIG_ARCH_SPRD) += sc9836-openphone.dtb \
- 			sp9860g-1h10.dtb	\
- 			sp9863a-1h10.dtb	\
--			ums512-1h10.dtb
-+			ums512-1h10.dtb		\
-+			ums9620-2h10.dtb
-diff --git a/arch/arm64/boot/dts/sprd/ums9620-2h10.dts b/arch/arm64/boot/dts/sprd/ums9620-2h10.dts
-new file mode 100644
-index 000000000000..b35671192a72
---- /dev/null
-+++ b/arch/arm64/boot/dts/sprd/ums9620-2h10.dts
-@@ -0,0 +1,38 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+/*
-+ * Unisoc UMS9620-2h10 board DTS file
-+ *
-+ * Copyright (C) 2023, Unisoc Inc.
-+ */
-+
-+/dts-v1/;
-+
-+#include "ums9620.dtsi"
-+
-+/ {
-+	model = "Unisoc UMS9620-2H10 Board";
-+
-+	compatible = "sprd,ums9620-2h10", "sprd,ums9620";
-+
-+	aliases {
-+		serial0 = &uart0;
-+		serial1 = &uart1;
-+	};
-+
-+	memory@80000000 {
-+		device_type = "memory";
-+		reg = <0x0 0x80000000 0x2 0x00000000>;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial1:921600n8";
-+	};
-+};
-+
-+&uart0 {
-+	status = "okay";
-+};
-+
-+&uart1 {
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/sprd/ums9620.dtsi b/arch/arm64/boot/dts/sprd/ums9620.dtsi
-new file mode 100644
-index 000000000000..2191f0a4811b
---- /dev/null
-+++ b/arch/arm64/boot/dts/sprd/ums9620.dtsi
-@@ -0,0 +1,245 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+/*
-+ * Unisoc UMS9620 DTS file
-+ *
-+ * Copyright (C) 2023, Unisoc Inc.
-+ */
-+
-+#include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+/ {
-+	interrupt-parent = <&gic>;
-+	#address-cells = <2>;
-+	#size-cells = <2>;
-+
-+	cpus {
-+		#address-cells = <2>;
-+		#size-cells = <0>;
-+
-+		cpu-map {
-+			cluster0 {
-+				core0 {
-+					cpu = <&CPU0>;
-+				};
-+				core1 {
-+					cpu = <&CPU1>;
-+				};
-+				core2 {
-+					cpu = <&CPU2>;
-+				};
-+				core3 {
-+					cpu = <&CPU3>;
-+				};
-+				core4 {
-+					cpu = <&CPU4>;
-+				};
-+				core5 {
-+					cpu = <&CPU5>;
-+				};
-+				core6 {
-+					cpu = <&CPU6>;
-+				};
-+				core7 {
-+					cpu = <&CPU7>;
-+				};
-+			};
-+		};
-+
-+		CPU0: cpu@0 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a55";
-+			reg = <0x0 0x0>;
-+			enable-method = "psci";
-+			cpu-idle-states = <&LIT_CORE_PD>;
-+		};
-+
-+		CPU1: cpu@100 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a55";
-+			reg = <0x0 0x100>;
-+			enable-method = "psci";
-+			cpu-idle-states = <&LIT_CORE_PD>;
-+		};
-+
-+		CPU2: cpu@200 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a55";
-+			reg = <0x0 0x200>;
-+			enable-method = "psci";
-+			cpu-idle-states = <&LIT_CORE_PD>;
-+		};
-+
-+		CPU3: cpu@300 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a55";
-+			reg = <0x0 0x300>;
-+			enable-method = "psci";
-+			cpu-idle-states = <&LIT_CORE_PD>;
-+		};
-+
-+		CPU4: cpu@400 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a76";
-+			reg = <0x0 0x400>;
-+			enable-method = "psci";
-+			cpu-idle-states = <&BIG_CORE_PD>;
-+		};
-+
-+		CPU5: cpu@500 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a76";
-+			reg = <0x0 0x500>;
-+			enable-method = "psci";
-+			cpu-idle-states = <&BIG_CORE_PD>;
-+		};
-+
-+		CPU6: cpu@600 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a76";
-+			reg = <0x0 0x600>;
-+			enable-method = "psci";
-+			cpu-idle-states = <&BIG_CORE_PD>;
-+		};
-+
-+		CPU7: cpu@700 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a76";
-+			reg = <0x0 0x700>;
-+			enable-method = "psci";
-+			cpu-idle-states = <&BIG_CORE_PD>;
-+		};
-+	};
-+
-+	idle-states {
-+		entry-method = "psci";
-+		LIT_CORE_PD: cpu-pd-lit {
-+			compatible = "arm,idle-state";
-+			entry-latency-us = <1000>;
-+			exit-latency-us = <500>;
-+			min-residency-us = <2500>;
-+			local-timer-stop;
-+			arm,psci-suspend-param = <0x00010000>;
-+		};
-+
-+		BIG_CORE_PD: cpu-pd-big {
-+			compatible = "arm,idle-state";
-+			entry-latency-us = <4000>;
-+			exit-latency-us = <4000>;
-+			min-residency-us = <10000>;
-+			local-timer-stop;
-+			arm,psci-suspend-param = <0x00010000>;
-+		};
-+	};
-+
-+	psci {
-+		compatible = "arm,psci-0.2";
-+		method = "smc";
-+	};
-+
-+	timer {
-+		compatible = "arm,armv8-timer";
-+		interrupts = <GIC_PPI 13 IRQ_TYPE_LEVEL_HIGH>, /* Physical Secure PPI */
-+			     <GIC_PPI 14 IRQ_TYPE_LEVEL_HIGH>, /* Physical Non-Secure PPI */
-+			     <GIC_PPI 11 IRQ_TYPE_LEVEL_HIGH>, /* Virtual PPI */
-+			     <GIC_PPI 10 IRQ_TYPE_LEVEL_HIGH>; /* Hipervisor PPI */
-+	};
-+
-+	pmu {
-+		compatible = "arm,armv8-pmuv3";
-+		interrupts = <GIC_SPI 177 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 178 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 179 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 180 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 181 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 182 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 183 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 184 IRQ_TYPE_LEVEL_HIGH>;
-+	};
-+
-+	soc: soc {
-+		compatible = "simple-bus";
-+		ranges;
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+
-+		gic: interrupt-controller@12000000 {
-+			compatible = "arm,gic-v3";
-+			reg = <0x0 0x12000000 0 0x20000>,	/* GICD */
-+			      <0x0 0x12040000 0 0x100000>;	/* GICR */
-+			#interrupt-cells = <3>;
-+			#address-cells = <2>;
-+			#size-cells = <2>;
-+			redistributor-stride = <0x0 0x20000>;	/* 128KB stride */
-+			#redistributor-regions = <1>;
-+			interrupt-controller;
-+			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
-+		};
-+
-+		apb@20200000 {
-+			compatible = "simple-bus";
-+			ranges = <0 0 0x20200000 0x100000>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+
-+			uart0: serial@0 {
-+				compatible = "sprd,ums9620-uart",
-+					     "sprd,sc9836-uart";
-+				reg = <0 0x100>;
-+				interrupts = <GIC_SPI 196 IRQ_TYPE_LEVEL_HIGH>;
-+				clocks = <&ext_26m>;
-+				status = "disabled";
-+			};
-+
-+			uart1: serial@10000 {
-+				compatible = "sprd,ums9620-uart",
-+					     "sprd,sc9836-uart";
-+				reg = <0x10000 0x100>;
-+				interrupts = <GIC_SPI 195 IRQ_TYPE_LEVEL_HIGH>;
-+				clocks = <&ext_26m>;
-+				status = "disabled";
-+			};
-+		};
-+	};
-+
-+	ext_26m: clk-26m {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <26000000>;
-+		clock-output-names = "ext-26m";
-+	};
-+
-+	ext_4m: clk-4m {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <4000000>;
-+		clock-output-names = "ext-4m";
-+	};
-+
-+	ext_32k: clk-32k {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <32768>;
-+		clock-output-names = "ext-32k";
-+	};
-+
-+	rco_100m: clk-100m {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <100000000>;
-+		clock-output-names = "rco-100m";
-+	};
-+
-+	dphy_312m5: dphy-312m5 {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <312500000>;
-+		clock-output-names = "dphy-312m5";
-+	};
-+
-+	dphy_416m7: dphy-416m7 {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <416700000>;
-+		clock-output-names = "dphy-416m7";
-+	};
-+};
--- 
-2.41.0
-
+Bart
 
