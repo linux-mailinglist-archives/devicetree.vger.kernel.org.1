@@ -1,103 +1,126 @@
-Return-Path: <devicetree+bounces-26636-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26637-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5472481765D
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 16:54:12 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6194D817665
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 16:55:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DAB02B21BD9
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 15:54:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1B1691C23CFA
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 15:55:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A02A64237C;
-	Mon, 18 Dec 2023 15:53:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4581837872;
+	Mon, 18 Dec 2023 15:55:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cEAxDwSX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 116FC3D566;
-	Mon, 18 Dec 2023 15:53:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id C60E92F4;
-	Mon, 18 Dec 2023 07:54:37 -0800 (PST)
-Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id B004F3F5A1;
-	Mon, 18 Dec 2023 07:53:50 -0800 (PST)
-Date: Mon, 18 Dec 2023 15:53:45 +0000
-From: Andre Przywara <andre.przywara@arm.com>
-To: Conor Dooley <conor@kernel.org>
-Cc: Brandon Cheo Fusi <fusibrandon13@gmail.com>, Yangtao Li
- <tiny.windzz@gmail.com>, Viresh Kumar <vireshk@kernel.org>, Nishanth Menon
- <nm@ti.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>, Paul Walmsley
- <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou
- <aou@eecs.berkeley.edu>, "Rafael J . Wysocki" <rafael@kernel.org>, Maxime
- Ripard <mripard@kernel.org>, linux-pm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
- linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v2 3/5] cpufreq: sun50i: Add D1 support
-Message-ID: <20231218155345.476e71ea@donnerap.manchester.arm.com>
-In-Reply-To: <20231218-blabber-slapstick-ab7ae45af019@spud>
-References: <20231218110543.64044-1-fusibrandon13@gmail.com>
-	<20231218110543.64044-4-fusibrandon13@gmail.com>
-	<20231218-blabber-slapstick-ab7ae45af019@spud>
-Organization: ARM
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25E21E57C;
+	Mon, 18 Dec 2023 15:55:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 443B0C433C7;
+	Mon, 18 Dec 2023 15:55:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1702914945;
+	bh=gP2p7ltlGa5lLEG8JqiCPcXfF7ayw1/Vq76UN6hkMN0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=cEAxDwSXr+KBw0mipbIjWpGsdFTt4VDbgqixgZramwzYKIYPgdC8qqyK6pk/2cOBZ
+	 0FjTKIHAtfpgovpSgLSLU/G2xVQZHR0Gq8guxJDXg8K+K1WUUqhbgfN4R9MuH9mItg
+	 HRGdAS+NWrofzWXq45qiy0oAR75LCe2EswCUlJGOaHX2eavO61HWoLgRiDy1oX/FrK
+	 nA8Xtxu5+kb8iEBD+KKhsxJKLnZs1x8qaues/DWR121CnkzlYFaI4QNc8M6Fv1RJeq
+	 KFWKG+jMUkO74pgtUHMuDjfv/iu+vIWoupuROJUaCozRGlb1mdQ5MDmS8waIvdl60F
+	 VefDjymjYTiJg==
+Date: Mon, 18 Dec 2023 15:55:40 +0000
+From: Simon Horman <horms@kernel.org>
+To: Tobias Waldekranz <tobias@waldekranz.com>
+Cc: davem@davemloft.net, kuba@kernel.org, linux@armlinux.org.uk,
+	kabel@kernel.org, andrew@lunn.ch, hkallweit1@gmail.com,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next 3/4] net: phy: marvell10g: Add LED support for
+ 88X3310
+Message-ID: <20231218155540.GF6288@kernel.org>
+References: <20231214201442.660447-1-tobias@waldekranz.com>
+ <20231214201442.660447-4-tobias@waldekranz.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231214201442.660447-4-tobias@waldekranz.com>
 
-On Mon, 18 Dec 2023 14:55:30 +0000
-Conor Dooley <conor@kernel.org> wrote:
-
-Hi,
-
-> On Mon, Dec 18, 2023 at 12:05:41PM +0100, Brandon Cheo Fusi wrote:
-> > Add support for D1 based devices to the Allwinner H6 cpufreq
-> > driver
-> > 
-> > Signed-off-by: Brandon Cheo Fusi <fusibrandon13@gmail.com>
-> > ---
-> >  drivers/cpufreq/sun50i-cpufreq-nvmem.c | 1 +
-> >  1 file changed, 1 insertion(+)
-> > 
-> > diff --git a/drivers/cpufreq/sun50i-cpufreq-nvmem.c b/drivers/cpufreq/sun50i-cpufreq-nvmem.c
-> > index 32a9c88f8..ccf83780f 100644
-> > --- a/drivers/cpufreq/sun50i-cpufreq-nvmem.c
-> > +++ b/drivers/cpufreq/sun50i-cpufreq-nvmem.c
-> > @@ -160,6 +160,7 @@ static struct platform_driver sun50i_cpufreq_driver = {
-> >  
-> >  static const struct of_device_id sun50i_cpufreq_match_list[] = {
-> >  	{ .compatible = "allwinner,sun50i-h6" },
-> > +	{ .compatible = "allwinner,sun20i-d1" },  
+On Thu, Dec 14, 2023 at 09:14:41PM +0100, Tobias Waldekranz wrote:
+> Pickup the LEDs from the state in which the hardware reset or
+> bootloader left them, but also support further configuration via
+> device tree. This is primarily needed because the electrical polarity
+> and drive behavior is software controlled and not possible to set via
+> hardware strapping.
 > 
-> I thought the feedback in v2 was to drop this change, since the
-> devicetree has the sun50i-h6 as a fallback compatible?
+> Trigger support:
+> - "none"
+> - "timer": Map 60-100 ms periods to the fast rate (81ms) and 1000-1600
+>   	   ms periods to the slow rate (1300ms). Defer everything else to
+> 	   software blinking
+> - "netdev": Offload link or duplex information to the solid behavior;
+>   	    tx and/or rx activity to blink behavior.
+> 
+> Signed-off-by: Tobias Waldekranz <tobias@waldekranz.com>
 
-Well, this is the *board* (fallback) compatible string, so we cannot assign
-it as we like. The whole (existing) scheme is admittedly somewhat weird,
-because we not only match on a particular device compatible
-(like allwinner,sun20i-d1-operating-points), but also need to blocklist and
-re-match some parts against the *board compatible*, owing to the
-cpufreq-dt driver. The board name is basically used as a placeholder to
-find out the SoC, because there is (or was?) no other good way - the
-CPU DT nodes don't work for this. Back when this was introduced, this was
-the "least worst" solution.
+...
 
-I don't remember all the details, and didn't find time yet to look into
-this in more detail, but fixing this is non-trivial. If this isn't 6.8
-material, I might have a look at this later this week/month.
+> +static int mv3310_leds_probe(struct phy_device *phydev)
+> +{
+> +	struct mv3310_priv *priv = dev_get_drvdata(&phydev->mdio.dev);
+> +	struct device_node *node = phydev->mdio.dev.of_node;
+> +	struct device_node *pnp, *np;
+> +	int err, val, index;
+> +
+> +	/* Save the config left by HW reset or bootloader, to make
+> +	 * sure that we do not loose any polarity config made by
+> +	 * firmware. This will be overridden by info from DT, if
+> +	 * available.
+> +	 */
+> +	for (index = 0; index < MV3310_N_LEDS; index++) {
+> +		val = phy_read_mmd(phydev, MDIO_MMD_VEND2,
+> +				   MV_V2_LED0_CONTROL + index);
+> +		if (val < 0)
+> +			return val;
+> +
+> +		priv->led[index] = (struct mv3310_led) {
+> +			.index = index,
+> +			.fw_ctrl = val,
+> +		};
+> +	}
+> +
+> +	if (!node)
+> +		return 0;
+> +
+> +	pnp = of_get_child_by_name(node, "leds");
+> +	if (!pnp)
+> +		return 0;
+> +
+> +	for_each_available_child_of_node(pnp, np) {
+> +		err = mv3310_led_probe_of(phydev, np);
+> +		if (err)
 
-Cheers,
-Andre
+Hi Tobias,
+
+I think a call to of_node_put(np) is required here to avoid leaking a
+reference.
+
+Flagged by Coccinelle.
+
+> +			return err;
+> +	}
+> +
+> +	return 0;
+> +}
+
+...
 
