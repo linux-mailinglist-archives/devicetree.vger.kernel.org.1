@@ -1,98 +1,128 @@
-Return-Path: <devicetree+bounces-26631-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26632-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 575DA8175FC
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 16:45:25 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 299B5817641
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 16:48:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B7DC1B22781
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 15:45:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ED09528395E
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 15:48:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03E347205F;
-	Mon, 18 Dec 2023 15:40:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC21649882;
+	Mon, 18 Dec 2023 15:45:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iWWjVbuq"
+	dkim=pass (2048-bit key) header.d=marvell.com header.i=@marvell.com header.b="HERX6Iey"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0016f401.pphosted.com (mx0a-0016f401.pphosted.com [67.231.148.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFE2E7204B;
-	Mon, 18 Dec 2023 15:40:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E4953C433C7;
-	Mon, 18 Dec 2023 15:40:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1702914047;
-	bh=kP0KzVP+wAVZYX6I0sfa2j1A+ARxXj0gJm7BlfSRTYU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=iWWjVbuqzUtxKAYbEAcR07YOT+nimr5ntwxRnJE7ByDm2DYEFtTAxVfiYM5c/iAMq
-	 BdcywG+sg6Y6ZTe8SS4kY2ssI+yRjD7zCPQkFnJtEu2gXW3kT9/a/WbXI7Ev7czum/
-	 /wHEJDAospKTTWePuw3/uxxHStZrIJl7Il3R6hl2D0396o51bXcwOO4Xww6VAHl1ev
-	 LNjmVfYAwKrKTlccnjOvbfy3iQlXYbeBPSyO40yWN525mpI1pJzLyA7aA4OC8ITiIA
-	 /S0alap2P4PZF8E59YQWf+ziPbkF8peY9P/lLNt4OGU+rgNV5Okk6UpAkRlpOGuoAo
-	 rFM7qfH1ZKwWA==
-Date: Mon, 18 Dec 2023 21:10:32 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Johan Hovold <johan+linaro@kernel.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, Andy Gross <agross@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, stable@vger.kernel.org,
-	Manivannan Sadhasivam <mani@kernel.org>
-Subject: Re: [PATCH 1/3] ARM: dts: qcom: sdx55: fix pdc '#interrupt-cells'
-Message-ID: <20231218154032.GA50521@thinkpad>
-References: <20231213173131.29436-1-johan+linaro@kernel.org>
- <20231213173131.29436-2-johan+linaro@kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A59FB495DE;
+	Mon, 18 Dec 2023 15:44:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=marvell.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.helo=mx0b-0016f401.pphosted.com
+Received: from pps.filterd (m0045849.ppops.net [127.0.0.1])
+	by mx0a-0016f401.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 3BIFAI1A011936;
+	Mon, 18 Dec 2023 07:44:46 -0800
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=marvell.com; h=
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding:content-type; s=pfpt0220; bh=853J4cZx
+	NdcWTRitkB9n1oPkQmJjhMNR4rmYGkU2xBI=; b=HERX6IeyXAolkY0DlpICNmn3
+	mq/IkxPX8HVPZOsGsFLlqPPTUE/yqk2T1x2r7dsraE+oRE/Q6Endp5oTFGYCwrHa
+	LJCLUCZXDYGUm9SOp6GGMJMG3bJwg4688UwT+xWAGGU+XJO5EeGmZry57ZekhzCw
+	VzBhtmL8ueD0UwUXgB7eLtCnfmDwgVLLGNyuYquADgbFwe2oKV3n26JyPwbGyXxy
+	O95k5Q8+p3jTO2elt7xsYA44FsBAnl9TE1PhlYn4ag8Nax7vEcS0rCVa/x6hwFQ6
+	3FD7Wk6ajScZZ8WJo/+CaICAodKdCvd4i1D7TWrRtEceuS81QeQy1J9/tUPgZg==
+Received: from dc5-exch01.marvell.com ([199.233.59.181])
+	by mx0a-0016f401.pphosted.com (PPS) with ESMTPS id 3v2rg5842q-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
+	Mon, 18 Dec 2023 07:44:46 -0800 (PST)
+Received: from DC5-EXCH01.marvell.com (10.69.176.38) by DC5-EXCH01.marvell.com
+ (10.69.176.38) with Microsoft SMTP Server (TLS) id 15.0.1497.48; Mon, 18 Dec
+ 2023 07:44:44 -0800
+Received: from maili.marvell.com (10.69.176.80) by DC5-EXCH01.marvell.com
+ (10.69.176.38) with Microsoft SMTP Server id 15.0.1497.48 via Frontend
+ Transport; Mon, 18 Dec 2023 07:44:44 -0800
+Received: from dc3lp-swdev041.marvell.com (dc3lp-swdev041.marvell.com [10.6.60.191])
+	by maili.marvell.com (Postfix) with ESMTP id 45CE93F704C;
+	Mon, 18 Dec 2023 07:44:41 -0800 (PST)
+From: Elad Nachman <enachman@marvell.com>
+To: <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <andrew@lunn.ch>, <gregory.clement@bootlin.com>,
+        <sebastian.hesselbarth@gmail.com>, <pali@kernel.org>,
+        <mrkiko.rs@gmail.com>, <chris.packham@alliedtelesis.co.nz>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+CC: <enachman@marvell.com>, <cyuval@marvell.com>
+Subject: [PATCH 0/2] arm64: dts: a7k: add COM Express boards
+Date: Mon, 18 Dec 2023 17:44:29 +0200
+Message-ID: <20231218154431.3789032-1-enachman@marvell.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20231213173131.29436-2-johan+linaro@kernel.org>
+Content-Type: text/plain
+X-Proofpoint-ORIG-GUID: 9jWulKtpFZjAOKS2LA8WSaCcb9_vlXZm
+X-Proofpoint-GUID: 9jWulKtpFZjAOKS2LA8WSaCcb9_vlXZm
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-12-09_02,2023-12-07_01,2023-05-22_02
 
-On Wed, Dec 13, 2023 at 06:31:29PM +0100, Johan Hovold wrote:
-> The Qualcomm PDC interrupt controller binding expects two cells in
-> interrupt specifiers.
-> 
-> Fixes: 9d038b2e62de ("ARM: dts: qcom: Add SDX55 platform and MTP board support")
-> Cc: stable@vger.kernel.org      # 5.12
-> Cc: Manivannan Sadhasivam <mani@kernel.org>
-> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+From: Elad Nachman <enachman@marvell.com>
 
-Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Add support for Armada 7020 Express Type 7 CPU module board by Marvell.
+Add device tree bindings for this board.
+Define this COM Express CPU module as dtsi and provide a dtsi file for
+the carrier board (Marvell DB-98CX85x0 COM Express type 7 carrier board).
 
-- Mani
+Since memory is soldered on CPU module, memory node is on CPU module
+dtsi file.
 
-> ---
->  arch/arm/boot/dts/qcom/qcom-sdx55.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm/boot/dts/qcom/qcom-sdx55.dtsi b/arch/arm/boot/dts/qcom/qcom-sdx55.dtsi
-> index e30dbf12990a..0864c99a3da1 100644
-> --- a/arch/arm/boot/dts/qcom/qcom-sdx55.dtsi
-> +++ b/arch/arm/boot/dts/qcom/qcom-sdx55.dtsi
-> @@ -612,7 +612,7 @@ pdc: interrupt-controller@b210000 {
->  			compatible = "qcom,sdx55-pdc", "qcom,pdc";
->  			reg = <0x0b210000 0x30000>;
->  			qcom,pdc-ranges = <0 179 52>;
-> -			#interrupt-cells = <3>;
-> +			#interrupt-cells = <2>;
->  			interrupt-parent = <&intc>;
->  			interrupt-controller;
->  		};
-> -- 
-> 2.41.0
-> 
+This Carrier board only utilizes the PCIe link, hence no special device
+or driver support is provided by this dtsi file.
+Devise a dts file for the combined com express carrier and CPU module.
+
+The Aramda 7020 CPU COM Express board offers the following features:
+
+1.  Armada 7020 CPU, with dual ARM A72 cores
+2.  DDR4 memory, 8GB, on board soldered
+3.  1Gbit Out of Band Ethernet via RGMII to PHY and RJ45 connector,
+    all are present on A7K CPU module (none on the carrier)
+4.  Optional 10G KR Ethernet going via the COM Express type 7 connector
+5.  On-board 8 Gbit, 8-bit bus width NAND flash
+6.  On-board 512 Mbit SPI flash
+7.  PCIe Root Complex, 4 lanes PCIe gen3 connectivity, going via the
+    COM Express type 7 connector
+8.  m.2 SATA connector
+9.  Micro-SD card connector
+10. USB 2.0 via COM Express type 7 connector
+11. Two i2c interfaces - one to the CPU module, and one to the
+    carrier board via the COM Express type 7 connector
+12. UART (mini USB connector by virtue of FT2232D UART to USB
+    converter, connected to the Armada 7020 UART0)
+
+Elad Nachman (2):
+  dt-bindings: arm64: add Marvell 7k COMe boards
+  arm64: dts: a7k: add COM Express boards
+
+ .../bindings/arm/marvell/armada-7k-8k.yaml    |  11 ++
+ arch/arm64/boot/dts/marvell/Makefile          |   1 +
+ .../dts/marvell/armada-7020-comexpress.dtsi   | 161 ++++++++++++++++++
+ arch/arm64/boot/dts/marvell/armada-70x0.dtsi  |   7 +
+ .../boot/dts/marvell/armada-ap806-dual.dtsi   |   4 +-
+ .../dts/marvell/db-falcon-carrier-a7k.dts     |  27 +++
+ .../boot/dts/marvell/db-falcon-carrier.dtsi   |  22 +++
+ 7 files changed, 231 insertions(+), 2 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/marvell/armada-7020-comexpress.dtsi
+ create mode 100644 arch/arm64/boot/dts/marvell/db-falcon-carrier-a7k.dts
+ create mode 100644 arch/arm64/boot/dts/marvell/db-falcon-carrier.dtsi
 
 -- 
-மணிவண்ணன் சதாசிவம்
+2.25.1
+
 
