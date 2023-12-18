@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-26424-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26425-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id DFCAD8166F5
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 08:01:03 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1617A8166FB
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 08:04:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 56A3CB21919
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 07:01:01 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 52577B21857
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 07:04:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 842BC79C3;
-	Mon, 18 Dec 2023 07:00:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68DBD7490;
+	Mon, 18 Dec 2023 07:03:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DVM1lPlN"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="e7Uru6aK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
+Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EADD87499
-	for <devicetree@vger.kernel.org>; Mon, 18 Dec 2023 07:00:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEF1E79C1
+	for <devicetree@vger.kernel.org>; Mon, 18 Dec 2023 07:03:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-a235500d0e1so69814966b.2
-        for <devicetree@vger.kernel.org>; Sun, 17 Dec 2023 23:00:52 -0800 (PST)
+Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-5537114380bso73120a12.3
+        for <devicetree@vger.kernel.org>; Sun, 17 Dec 2023 23:03:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702882851; x=1703487651; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1702883035; x=1703487835; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=uG8vFckqWQO5CDd7I4Gyr/RdeaQsCH5R2o9TtzRaFsY=;
-        b=DVM1lPlNH51lF7i+1oqdPwa/ENIdvXGmZ+axRbq8Cwsda84nnDy24TBIGv2sqZQ5fe
-         unsj2GIW+UQNRWkcPyK6CgyFAb1tljlTRoVJBMYxPBBmwpHqg69BrZK4CciDrFTvmMnm
-         L4sUELQ+3gScCZlAWtKDWTf3cBoWrExzRDisdzYIG4xZc4a7Aal/IXeXnvBGC7ruAOEB
-         E9xzcsfifOMGRfLmp0trMFzheEdYOS+ej9OYgsFBv8SLHYeYShvYiGPCYCKTf1gmET7V
-         +ADEDMSFolGpp0L7Vnl5JhlGlFgTCqiJCyAkQ6nto3EPzYTXIHvSxxuM4sZJMZF1Eu/u
-         OBgQ==
+        bh=QsoQRZAYykka0WrRROhLIqHAOrmMZHIzpu4UISJFRGA=;
+        b=e7Uru6aKANQHOFBFrddxhtNvAM4nfQw+pGyMfQWfyyf54EFdBcoIvND2cp2ikbO3xF
+         ZDDumJ5DNPlCFkvNn4fg3oRFSiHJB2lcdr0Bs47o6RhfEpoPF6azxF4Le36AkNuPewnV
+         G+abLRW1Ty6SxLUjglc9aVQPFlh9Ao5DM1ncTKeO33IyA7aOmhQwi2UwycPX3Rx8qMjG
+         /AYFm8ao94RaAqtHAFT+4G1/mkfvqyS2J/a68HFFdfLxK3xXS3UMR9jX/kHhFDGFr6ao
+         v+5uXeQ6WCykh3Ngv5yO2XAWWO12kv4+8m9CPnz0FarOgSodgaQ2d4WtN0YkVtnMF7pf
+         uOFg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702882851; x=1703487651;
+        d=1e100.net; s=20230601; t=1702883035; x=1703487835;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=uG8vFckqWQO5CDd7I4Gyr/RdeaQsCH5R2o9TtzRaFsY=;
-        b=Smbr0Bc430rS8nRZNNgvL45Ce7ICMo7JIGqxgl8YCQAU0TvQDGYchf2G1Drolv0ji8
-         0qp7FAMP8HPIs3cuVA7Tme28iCesz5yaYnNnPm6QfssxGg7QWk83E50JLaH3zoGVwHJ7
-         SYo3y93JLwEPj9SA/y8fr1wyfVzSAWLcvnNE3QVSW28zOkSvMZiHx6DIE1boc+NU6HHq
-         8kMUp6CWpjnkChH/D9AvSKiBPJ26ozNhjmP361bpxTe7nDUYGUaZOBXxVnZXLzaTVGwO
-         kNre2RP7WsBQEFXudhSZFvwD3PGz2ibgtSty8xVcQag+dEDH66cvdWQ4PlP5iRFHlH1h
-         TOYQ==
-X-Gm-Message-State: AOJu0YwwdbQQXOPpDgVSfUzLYzlRlU7ayh2zxJNeOyztN/BB4FQnNbtG
-	f334RnO4fZbuQK9fxgWOKT/OOw==
-X-Google-Smtp-Source: AGHT+IG0yhYOXW4A/32NL6zFtH/DvArca7MHmTnWQ7QWXKAQOJUn1TaKnZUZtIC9ngaxUAlLoyKxww==
-X-Received: by 2002:a17:907:7d8c:b0:9b2:cf77:a105 with SMTP id oz12-20020a1709077d8c00b009b2cf77a105mr10484950ejc.15.1702882851012;
-        Sun, 17 Dec 2023 23:00:51 -0800 (PST)
+        bh=QsoQRZAYykka0WrRROhLIqHAOrmMZHIzpu4UISJFRGA=;
+        b=a8Hbp9oloh6Dj3VlGfjFgQtnIlf+6A8XVCYG8R4NIucSfG3IFL2xdxshRbMxxdVplA
+         UP3DidbFjmkCeJoGNkEaz/lqiwi2b3xa4hqVySjTk3WlJvB6CezYBw1akSzhu3brSI/9
+         JjOP80+mbOaSBsm3L8ofr/Q6hd4V677Jvf5xpqw+w+BrRbAIhEo25W9i6pzW7t/WPGLe
+         zX6Od9rpwIHAAWfsZP1JQuRsuEIncEeEGwaomtINko0HpFr1BvSlT3I8daF0VRooXcPi
+         tlLMRao2iYD3Z4gyJecbqeiz0uy6bF3u0qhz5fIUDeEQnxBwnSRwT9p0oRGa/zsC8NvD
+         UGNw==
+X-Gm-Message-State: AOJu0YxKoxG5Us8A7ZlDkhM9vIEiXl4pxuitB5aYMLWMVi0aRmiQSl5z
+	qqc8O52o0ja77q8EwqnNoYQIXA==
+X-Google-Smtp-Source: AGHT+IHkQfX5MhDVIB95DfroK2SGT5HsIQWYCAT1o0wVJ4B7aovLEj2FelvObrEpmI9OTcUSXUVnJA==
+X-Received: by 2002:a50:931d:0:b0:553:621c:70c8 with SMTP id m29-20020a50931d000000b00553621c70c8mr187863eda.77.1702883035107;
+        Sun, 17 Dec 2023 23:03:55 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id k8-20020a17090646c800b00a236378a439sm174101ejs.145.2023.12.17.23.00.49
+        by smtp.gmail.com with ESMTPSA id l12-20020a056402230c00b0054c7aee67acsm10219167eda.97.2023.12.17.23.03.53
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 17 Dec 2023 23:00:49 -0800 (PST)
-Message-ID: <4faf78f5-5e57-44a1-8fdd-7b6a33b0bd19@linaro.org>
-Date: Mon, 18 Dec 2023 08:00:48 +0100
+        Sun, 17 Dec 2023 23:03:54 -0800 (PST)
+Message-ID: <4c78e6f2-d6fb-4da7-9c54-ca6a686f2b58@linaro.org>
+Date: Mon, 18 Dec 2023 08:03:52 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,19 +66,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/4] arm64: dts: sprd: Add support for Unisoc's UMS9620
+Subject: Re: [PATCH v2 4/5] dt-bindings/perf: Add Arm CoreSight PMU
 Content-Language: en-US
-To: Chunyan Zhang <zhang.lyra@gmail.com>
-Cc: Chunyan Zhang <chunyan.zhang@unisoc.com>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Lee Jones <lee@kernel.org>, devicetree@vger.kernel.org,
- linux-serial@vger.kernel.org, Baolin Wang <baolin.wang@linux.alibaba.com>,
- Orson Zhai <orsonzhai@gmail.com>, LKML <linux-kernel@vger.kernel.org>
-References: <20231215085630.984892-1-chunyan.zhang@unisoc.com>
- <20231215085630.984892-5-chunyan.zhang@unisoc.com>
- <fd927698-6aa3-4a6b-988c-fc82663235ca@linaro.org>
- <CAAfSe-tTvxLCAdSCCgEw8HMFaVVfOytoowY_Fb2F0H-vo+cCmA@mail.gmail.com>
+To: Robin Murphy <robin.murphy@arm.com>, will@kernel.org
+Cc: mark.rutland@arm.com, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, suzuki.poulose@arm.com,
+ ilkka@os.amperecomputing.com, bwicaksono@nvidia.com, YWan@nvidia.com,
+ rwiley@nvidia.com, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+References: <cover.1702571292.git.robin.murphy@arm.com>
+ <3c2dd41b585efe44d361f41fcea0181ff2a9c9c5.1702571292.git.robin.murphy@arm.com>
+ <8f583a00-8e9c-4875-936c-ed196d1dae56@linaro.org>
+ <2b8414e5-61d5-4c3e-9613-6d9487ae84a8@arm.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -124,30 +124,30 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <CAAfSe-tTvxLCAdSCCgEw8HMFaVVfOytoowY_Fb2F0H-vo+cCmA@mail.gmail.com>
+In-Reply-To: <2b8414e5-61d5-4c3e-9613-6d9487ae84a8@arm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 18/12/2023 03:31, Chunyan Zhang wrote:
-> On Fri, 15 Dec 2023 at 18:36, Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->>
->> On 15/12/2023 09:56, Chunyan Zhang wrote:
->>> Add basic support for Unisoc's UMS9620, with this patch,
->>> the board ums9620-2h10 can run into console.
->>>
->>
->> ...
->>
+On 15/12/2023 19:39, Robin Murphy wrote:
+>>> +required:
+>>> +  - compatible
+>>> +  - reg
 >>> +
->>> +     soc: soc {
+>>> +additionalProperties: false
 >>
->> Are you sure you do not have here W=1 warnings?
+>> Why no example to validate the binding?
 > 
-> Do you mean warnings generated by running "make W=1"? I tried just now
-> and didn't see warnings on this dts.
+> IMO for such a trivial binding built out of common properties, an 
+> equally trivial example isn't going to add any value, since it won't do 
+> anything more than re-state the individual property definitions above. 
+> In bindings where we have conditional relationships between properties, 
+> or complex encodings where a practical example can help explain a 
+> definition (e.g. a map/mask pair for a set of input values), then 
+> absolutely, an example can add something more to help the author and/or 
+> users. But otherwise, the thing I've really grown to like about schema 
+> is how thoroughly self-describing the definitions themselves can now be.
 
-No, I meant `dtbs_check W=1` or W=1 coming from dtc (dtbs).
+The example is used to validate the schema.
 
 Best regards,
 Krzysztof
