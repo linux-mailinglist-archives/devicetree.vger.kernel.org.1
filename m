@@ -1,82 +1,91 @@
-Return-Path: <devicetree+bounces-26601-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26604-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 047618170A4
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 14:40:12 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 16718817117
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 14:54:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AEE811F232F8
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 13:40:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A9F5B28194E
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 13:54:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A744129EFB;
-	Mon, 18 Dec 2023 13:40:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBADF1D159;
+	Mon, 18 Dec 2023 13:54:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b="PC6JJ39J"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aRbC2DA4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-0301.mail-europe.com (mail-0301.mail-europe.com [188.165.51.139])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 712B5129EE6;
-	Mon, 18 Dec 2023 13:40:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=protonmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=protonmail.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-	s=protonmail3; t=1702906789; x=1703165989;
-	bh=oFxiJsLYp9oMwSWHBY7gyKETjQXSFfN8A+P1KnZ/vZI=;
-	h=Date:To:From:Cc:Subject:Message-ID:Feedback-ID:From:To:Cc:Date:
-	 Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
-	b=PC6JJ39JhDa6cJ6u4SaoAzug2jN0BUgwIF1DovUZLNPXNDVY/f42/FHiI+KsAu/Nn
-	 BIVOCG4MsnvTumx/MGrlexVwCaCobnkPRlz5Okpqfho6N3G9I9H7bkyUTWVGLkRXYU
-	 3NwMHnnYX0GrwgiYzycnvDCzpSDexNSTOccIhwAiraEzOssfYP8SwhMtJoSNxjVY2D
-	 4W6tJk9L+2pO3lmS0xoX0iHI90OLwxlUCAQx9cuTSPI2ZK6xTXhwzcOicdOtDHz6xq
-	 NwINVDY1n8nXAqKwTA3iP6F8RaIsjQ92eM1oL7TjwQfGuVRp3UFEveOnCwrXOxuoed
-	 lnzbi0e9BHJKw==
-Date: Mon, 18 Dec 2023 13:39:42 +0000
-To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>
-From: Yassine Oudjana <y.oudjana@protonmail.com>
-Cc: Yassine Oudjana <y.oudjana@protonmail.com>, Yassine Oudjana <yassine.oudjana@gmail.com>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: qcom: msm8996: Define UFS UniPro clock limits
-Message-ID: <20231218133917.78770-1-y.oudjana@protonmail.com>
-Feedback-ID: 6882736:user:proton
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55A6B101D4;
+	Mon, 18 Dec 2023 13:54:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-a2343c31c4bso167016366b.1;
+        Mon, 18 Dec 2023 05:54:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1702907655; x=1703512455; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=CbtU5Dem8n1ByRGdHfRIcdaXiqJKIZaXjO9MiKCPxSw=;
+        b=aRbC2DA4RCGnOCbpTUGe3H2+8A3AvSzghu3VoH8878v+Bsz8Vvsm2HEV4DkJo7d6aD
+         fg2knaCoSpfiLPIsb2mXkZwqImIRsMCTaaApnxPHqKzj2dFoJGPZrQ0riyregW7q5yAd
+         ztaa2P9wZvJVURnJajbQtt/Hoa6Q+62sIZmRknBzh3XWqwX2bz3Bv7sFZ+UBP2KXD2FL
+         +3gKbAZHvRhM6ZNYzxoh1S57NeDlF0zJIWNWkBIrgAQ+kH3GT2NbDWzQW07DoVVMwKWV
+         eLK9cNqfEKR0lHw/r3TgZJLV2Aac6rHwy/T3CK5qBWmTfqPKP81RG7xBo8+aRRG+2wxK
+         7Bng==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702907655; x=1703512455;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=CbtU5Dem8n1ByRGdHfRIcdaXiqJKIZaXjO9MiKCPxSw=;
+        b=WWWldL3mFEVEOpFa8wsPmQmBuoMPWh17mnDMlcNAI+Ns5Tic2zhgzUvMVVcxPnfQQX
+         HDz9d2wZuUhmZNnx3II/cDgmGUk+SBAHVkKNe8WjMEi/M5BbgLwVENCjpPU9+FEBFsLu
+         1joV1zFs5ibOyTin2JVCVV+6KdzJbSA4UR9d0qRFSThy1Os5mVwzR3aJVGexcLcxVzt5
+         dIPDBLQSRDP7U4182YSTh9dTu1b8QSa0egqAzu+uUUjozTT3pSAyxSUWnySVLymHcXZ6
+         xl6PkYY8DJZ2j64yUrX45YbvsiGsCPRbyAMKxznxVNJnTC1ttOgMBdcJ0DZMKPL9xTyZ
+         frHQ==
+X-Gm-Message-State: AOJu0YwHWxQGujaAEXQ/vQgAFUF5z/CpNr7dLibeVDwQyNywcs/hpmpq
+	SzxE+xf6BzJd25tlcjdU4h+rrH3YCvDu5yzBPq8=
+X-Google-Smtp-Source: AGHT+IFccjuA7oI4N2vZVaD408zkZGajffjClRfWqmjz7HiPSzp9vIfLO0uacCVtWGKz7UbIXxVfUaYcwBaZqHng/s0=
+X-Received: by 2002:a17:906:1083:b0:a19:a19b:426a with SMTP id
+ u3-20020a170906108300b00a19a19b426amr4772325eju.213.1702907655325; Mon, 18
+ Dec 2023 05:54:15 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+References: <20231218124058.2047167-1-elinor.montmasson@savoirfairelinux.com>
+In-Reply-To: <20231218124058.2047167-1-elinor.montmasson@savoirfairelinux.com>
+From: Daniel Baluta <daniel.baluta@gmail.com>
+Date: Mon, 18 Dec 2023 15:54:03 +0200
+Message-ID: <CAEnQRZAwk-USZqXwLOVuN3iTn7r-55BJH=Sqq5+2Od+DhrK0iw@mail.gmail.com>
+Subject: Re: [PATCHv3 RESEND 00/10] ASoC: fsl-asoc-card: compatibility
+ integration of a generic codec use case for use with S/PDIF controller
+To: Elinor Montmasson <elinor.montmasson@savoirfairelinux.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Shengjiu Wang <shengjiu.wang@gmail.com>, Xiubo Li <Xiubo.Lee@gmail.com>, 
+	Fabio Estevam <festevam@gmail.com>, Nicolin Chen <nicoleotsuka@gmail.com>, 
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, linux-sound@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	alsa-devel@alsa-project.org, linuxppc-dev@lists.ozlabs.org, 
+	Philip-Dylan <philip-dylan.gleonec@savoirfairelinux.com>
+Content-Type: text/plain; charset="UTF-8"
 
-These limits were always defined as 0, but that didn't cause any issue
-since the driver had hardcoded limits. In commit b4e13e1ae95e ("scsi: ufs:
-qcom: Add multiple frequency support for MAX_CORE_CLK_1US_CYCLES") the
-hardcoded limits were removed and the driver started reading them from DT,
-causing UFS to stop working on MSM8996. Add real UniPro clock limits to fix
-UFS.
+>
+> * fsl-asoc-card.txt currently follows the old dt-bindings format.
+> Should we update it to DT schema format in this patch series
+> before adding my new properties?
+>
+>
 
-Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
----
- arch/arm64/boot/dts/qcom/msm8996.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qc=
-om/msm8996.dtsi
-index 13667886f50a..4f9939b13c3c 100644
---- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-@@ -2064,7 +2064,7 @@ ufshc: ufshc@624000 {
- =09=09=09=09<0 0>,
- =09=09=09=09<0 0>,
- =09=09=09=09<150000000 300000000>,
--=09=09=09=09<0 0>,
-+=09=09=09=09<75000000 150000000>,
- =09=09=09=09<0 0>,
- =09=09=09=09<0 0>,
- =09=09=09=09<0 0>,
---=20
-2.43.0
-
-
+I know this is extra-work but we would greatly appreciate if you first
+convert fsl-asoc-card.txt
+to yml format and then add your new properties.
 
