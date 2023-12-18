@@ -1,194 +1,94 @@
-Return-Path: <devicetree+bounces-26475-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26474-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93A108169E6
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 10:34:58 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 86E258169E2
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 10:34:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2026C1F23198
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 09:34:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 43142281E6D
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 09:34:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 262AE11C91;
-	Mon, 18 Dec 2023 09:34:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93E9F11721;
+	Mon, 18 Dec 2023 09:34:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=goldelico.com header.i=@goldelico.com header.b="r4xAR7lz";
-	dkim=permerror (0-bit key) header.d=goldelico.com header.i=@goldelico.com header.b="7DiPUNuL"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="uYDD1Zf2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mo4-p02-ob.smtp.rzone.de (mo4-p02-ob.smtp.rzone.de [81.169.146.169])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4004C125DD;
-	Mon, 18 Dec 2023 09:34:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=goldelico.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=goldelico.com
-ARC-Seal: i=1; a=rsa-sha256; t=1702891704; cv=none;
-    d=strato.com; s=strato-dkim-0002;
-    b=By+hnXUCIQX9JhxpuW3LvhfsF4xy8OTbFb9Bl98uZVJHx3C0UY+tHaT7keSQ1fLsY9
-    z2FFtbw9CssCE1tjcAEstOuefSJwc4n4xvDKqj6HEOMWNth+8gqhIJTtemOdLWTrDcY6
-    skRt4USt+2B3E+TABNGroGRxphZBuoJ4kydDsS69URhDZ9xeIq0NSkH5qfHOtaqzlGWk
-    JMrCG7hSLXF+ZtHDxE51BJgFpraOPGGNrX/67kw0/KvuJutZyAuLBTY5ZeifRkLX7tfz
-    /8/TU3fpgaxw1b0d2qQ3qX7XCIRukfktkL3GhecXE03arQcxg84JBJQqp3/nsS6SMIGM
-    Uyuw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1702891704;
-    s=strato-dkim-0002; d=strato.com;
-    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
-    From:Subject:Sender;
-    bh=orHvPqOVlDDdrnR1UyOTGhHdEAgLbgHBy0kaLQRXrCQ=;
-    b=MUtcPD7fdh8cIOjV5VrESwk933SQkgi3oWE8/jv7kD1l9RQmemNiwkFAJhlheg273u
-    OWWrMdufc7MJ+I3W5CevGY0m4Q0Rvc5ZRAqdeTbcbPeJOV/w0dI/eAMHYam+Lfzvk4oH
-    zkPiGHhyiB8VeaOOHyXWseJVK3q+08MiLV0sG9J+vkxaofx4n3/6rT17xjXvwBzJd402
-    MKWerN7crrAhsVstCUoJoZSiTD3VQ704ie0EGsYc1+JArZ5lAjicYY/E3BtegdarPA2v
-    2wnlcuMp0r0leDhE7ycx41iMrsz368ft758/n1miR/dyp+Wc2Xan4tnyAzZmdUlNbR+D
-    RCSA==
-ARC-Authentication-Results: i=1; strato.com;
-    arc=none;
-    dkim=none
-X-RZG-CLASS-ID: mo02
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1702891704;
-    s=strato-dkim-0002; d=goldelico.com;
-    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
-    From:Subject:Sender;
-    bh=orHvPqOVlDDdrnR1UyOTGhHdEAgLbgHBy0kaLQRXrCQ=;
-    b=r4xAR7lzhoKpovVJf5Xcj7DgCdA3rFJmG1cha1iS4IKIuBuySU7g1Le5gJTrR12U0r
-    lkfa71lfPFXm10mjFrkjv3LkCno9gQXoRipNOjQX7tPvSRonyDKR4mKIac4GCI+nKCTT
-    lJZkOfsjqfGBMz44ig3TU6NfI2h/EAyE8oBa3OaLAIgLw12A6YA6n1NS2b7KHDBQQNJG
-    zsKbelPOzNksy7Ve9kzjdLHB2sFyFI0GxilPXJoQKP74dyETDQuFZd0bp858CxH4cTtk
-    hdZ3yWo8ajLByJbb5pD7oiMkkIvySSMBfW5gpA/+uSqJWu+Xz/RGb0SQnLDOPyFxG3Wn
-    eouQ==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1702891704;
-    s=strato-dkim-0003; d=goldelico.com;
-    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
-    From:Subject:Sender;
-    bh=orHvPqOVlDDdrnR1UyOTGhHdEAgLbgHBy0kaLQRXrCQ=;
-    b=7DiPUNuLe7isGNv1dpEl4PT5KX7du/Q5X4P298gTmzsTpJEF0P2dPgyImNprmR3TtD
-    pcoxrTYs2utVi1SmvBBg==
-X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMgPgp8VKxflSZ1P34KBp5hRw/qviAxtjc36ma4ajubELutJ4QmCt0zJkq3gnHsXTZTgRLw=="
-Received: from smtpclient.apple
-    by smtp.strato.de (RZmta 49.10.0 AUTH)
-    with ESMTPSA id wfeb35zBI9SLzBK
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
-	(Client did not present a certificate);
-    Mon, 18 Dec 2023 10:28:21 +0100 (CET)
-Content-Type: text/plain;
-	charset=us-ascii
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2835D12B61;
+	Mon, 18 Dec 2023 09:34:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=Kn4zmaFBjozESWwWrKfESsTCFZ/blBS5KRsj7FAUpT0=; b=uYDD1Zf2+rVDnY4JLZf2awm+dP
+	Nvwdtr9XH3ac4S/0D1GWjUeFg5i3cT4+7nIVquTQ4MNB2Wc7XISjwImK2ixEFci9VLhrXOK++0oUo
+	FlqToatihkMOqW0NPVNhFKpQXYrbv9qZkeMH5e5TEQEyVYZd+lRH/Q4YIiJCl3Gr1KYk=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1rFA0n-003EBi-V6; Mon, 18 Dec 2023 10:34:09 +0100
+Date: Mon, 18 Dec 2023 10:34:09 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Jie Luo <quic_luoj@quicinc.com>
+Cc: "Russell King (Oracle)" <linux@armlinux.org.uk>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+	pabeni@redhat.com, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	hkallweit1@gmail.com, corbet@lwn.net, p.zabel@pengutronix.de,
+	f.fainelli@gmail.com, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org
+Subject: Re: [PATCH v8 14/14] dt-bindings: net: ar803x: add qca8084 PHY
+ properties
+Message-ID: <b4fe4ac4-9b28-4dba-8287-1af4804eb0be@lunn.ch>
+References: <20231215074005.26976-1-quic_luoj@quicinc.com>
+ <20231215074005.26976-15-quic_luoj@quicinc.com>
+ <bdfba8a7-9197-4aae-a7f9-6075a375f60b@linaro.org>
+ <c3391e33-e770-4c61-855e-d90e82b95f75@quicinc.com>
+ <4cb2bd57-f3d3-49f9-9c02-a922fd270572@lunn.ch>
+ <ed0dd288-be8a-4161-a19f-2d4d2d17b3ec@quicinc.com>
+ <ZXxXzm8hP68KrXYs@shell.armlinux.org.uk>
+ <3a40570b-40bf-4609-b1f4-a0a6974accea@quicinc.com>
+ <b5ff9f69-e341-4846-bc5a-ebe636b7a71a@lunn.ch>
+ <27ee13e7-5073-413c-8481-52b92d7c3687@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3774.300.61.1.2\))
-Subject: Re: [PATCH RFC 01/10] dt-bindings: gpu: Add PowerVR Series5 SGX GPUs
-From: H. Nikolaus Schaller <hns@goldelico.com>
-In-Reply-To: <oobcl2kfsuph27er7rflfqvt3lu6athufomxv5chf3uctx4emh@x6rzjtlskhbf>
-Date: Mon, 18 Dec 2023 10:28:09 +0100
-Cc: Andrew Davis <afd@ti.com>,
- Frank Binns <frank.binns@imgtec.com>,
- Donald Robson <donald.robson@imgtec.com>,
- Matt Coster <matt.coster@imgtec.com>,
- Adam Ford <aford173@gmail.com>,
- Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Chen-Yu Tsai <wens@csie.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>,
- =?utf-8?Q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>,
- Tony Lindgren <tony@atomide.com>,
- Nishanth Menon <nm@ti.com>,
- Vignesh Raghavendra <vigneshr@ti.com>,
- Tero Kristo <kristo@kernel.org>,
- Paul Cercueil <paul@crapouillou.net>,
- dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev,
- linux-omap@vger.kernel.org,
- linux-mips@vger.kernel.org
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <F58855EC-D87D-4747-A363-0E7AA5DB1AEC@goldelico.com>
-References: <20231204182245.33683-1-afd@ti.com>
- <20231204182245.33683-2-afd@ti.com>
- <23livt5mcc64bb6lkeec2uxp5cyn4wfekwaj6wzrjnrkndvwgj@6tveqglqpr4v>
- <B3A1B8A7-0363-4ECB-AFBF-576FECA569FA@goldelico.com>
- <vawv2mwhonuyvgmp7uox4rfgdcjwg5fa7hmbcfgl3wiase6e4p@tyavpclppfvu>
- <6BC60156-89E2-4734-BD00-B49A9A6C1D7A@goldelico.com>
- <6gpehpoz54f5lxhmvirqbfwmq7dpgiroy27cljpvu66wtn7aqy@lgrh7wysyxnp>
- <D8AB6CC4-DCA5-40DD-A311-94A16FF59254@goldelico.com>
- <oobcl2kfsuph27er7rflfqvt3lu6athufomxv5chf3uctx4emh@x6rzjtlskhbf>
-To: Maxime Ripard <mripard@kernel.org>
-X-Mailer: Apple Mail (2.3774.300.61.1.2)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <27ee13e7-5073-413c-8481-52b92d7c3687@quicinc.com>
 
-Hi Maxime,
+> Thanks Andrew for the proposal.
+> For the pure PHY chip qca8084, there is no driver to parse the package
+> level device tree node for common clocks and resets.
 
-> Am 15.12.2023 um 14:33 schrieb Maxime Ripard <mripard@kernel.org>:
->=20
->>>=20
->>> It's for a separate architecture, with a separate driver, maintained =
-out
->>> of tree by a separate community, with a separate set of requirements =
-as
->>> evidenced by the other thread. And that's all fine in itself, but
->>> there's very little reason to put these two bindings in the same =
-file.
->>>=20
->>> We could also turn this around, why is it important that it's in the
->>> same file?
->>=20
->> Same vendor. And enough similarity in architectures, even a logical =
-sequence
->> of development of versions (SGX =3D Version 5, Rogue =3D Version 6+) =
-behind.
->> (SGX and Rogue seem to be just trade names for their architecture =
-development).
->=20
-> Again, none of that matters for *where* the binding is stored.
+So you still have not look at the work Christian is doing. You must
+work together with Christian. This driver is not going to be accepted
+unless you do.
 
-So what then speaks against extending the existing bindings file as =
-proposed
-here?
+> > >          ethernet-phy@0 {
+> > >              compatible = "ethernet-phy-id004d.d180";
+> > >              reg = <0>;
+> > >              clocks = <qca8k_nsscc NSS_CC_GEPHY0_SYS_CLK>,
+> > >              clock-names = <"gephy_sys">;
+> > >              resets = <&qca8k_nsscc NSS_CC_GEPHY0_SYS_ARES>,
+> > >                       <&qca8k_nsscc NSS_CC_GEPHY0_ARES>;
+> > >              reset-names = "gephy_sys", "gephy_soft";
 
->=20
->> AFAIK bindings should describe hardware and not communities or =
-drivers
->> or who is currently maintaining it. The latter can change, the first =
-not.
->=20
-> Bindings are supposed to describe hardware indeed. Nothing was ever =
-said
-> about where those bindings are supposed to be located.
->=20
-> There's hundreds of other YAML bindings describing devices of the same
-> vendors and different devices from the same generation.
+Which of these properties exist for the Pure PHY device? Which exist
+for the integrated switch? And by that, i mean which are actual pins
+on the PHY device? We need the device tree binding to list which
+properties are required for each use case.
 
-Usually SoC seem to be split over multiple files by subsystem. Not by =
-versions
-or generations. If the subsystems are similar enough they share the same =
-bindings
-doc instead of having one for each generation duplicating a lot of code.
-
-Here is a comparable example that combines multiple vendors and =
-generations:
-
-Documentation/devicetree/bindings/usb/generic-ehci.yaml
-
-> If anything it'll make it easier for you. I'm really not sure why it =
-is
-> controversial and you're fighting this so hard.
-
-Well, you made it controversial by proposing to split what IMHO belongs =
-together.
-
-I feel that the original patch is good enough for its purpose and =
-follows
-some design pattern that can be deduced from other binding docs.
-
-BR,
-Nikolaus
-
+	   Andrew
 
