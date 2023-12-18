@@ -1,107 +1,106 @@
-Return-Path: <devicetree+bounces-26494-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26495-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A739816ABF
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 11:16:34 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8AFD4816AC4
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 11:17:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AF3691C226A4
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 10:16:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 47632281069
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 10:17:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0DC913AC9;
-	Mon, 18 Dec 2023 10:16:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1A21134D8;
+	Mon, 18 Dec 2023 10:16:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="aqKKm6Rq"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="a5PVsihA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
+Received: from mail-pj1-f43.google.com (mail-pj1-f43.google.com [209.85.216.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E6F6134DA
-	for <devicetree@vger.kernel.org>; Mon, 18 Dec 2023 10:16:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-a1f33c13ff2so223129966b.3
-        for <devicetree@vger.kernel.org>; Mon, 18 Dec 2023 02:16:28 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD70F13FF6;
+	Mon, 18 Dec 2023 10:16:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f43.google.com with SMTP id 98e67ed59e1d1-28b93b04446so150968a91.0;
+        Mon, 18 Dec 2023 02:16:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702894586; x=1703499386; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1702894618; x=1703499418; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=6T4R9okteCkjAhT9eyRdC/jbk1c6KtuDD/NaJ+LcB1s=;
-        b=aqKKm6Rqq8AP1UhsVlg4K0AaN30so0Zd1LW30XR+FlqwCzhCA4W0NuCaau9K4rmKfH
-         KXc7mgb7W9I5v61ejxV+MWkawJao1O6V5ZaEvk9PwU3Yc/LeiIyonZjkKn36pNRPWrat
-         azYaP+1DP5G1JDjKDl4FmCwZB/OR+CTc8+zd3Btm6AiHeuUugA8Z7srzru3mj156yOmQ
-         6nDjLrKfOiiYamV+Dy/h1I4Mpaq4tku1xVvoDNGMTTWFou64mcDa1WccB2+3zbYB8mBh
-         bdssQaVFOs90G1aPTlh7axh6kayrsJP3kG2UPXibJAweZBMZp1UAqy+lNp3Xtf++CQr8
-         M/1w==
+        bh=cE+4PArKzxxf52RI2qZGv30986Mi3tB/nuE1GoXNM8Q=;
+        b=a5PVsihAfPpgTtdfTz/CkrMAyKPCOHnL6wlo0LB1B7yZAp0H/KlsDmmZbbnR4NH5kh
+         GVjrGZCOGHQ+hj89QNd3sxjXHPoiMjAx/ENOKmP24wH/MVuk4FUIrkGjz8hcAwFCQt9e
+         +3hcebHO1zaeny9ZrZhEOf49++hEYDiJx60FblNKutrE2xkmc6Cz5AkecEktqH94Inf2
+         3zihByHq/XDyEiHTCj73jvYPqXO10fLEGFH9fA3kQenvlUNh63Mh1pzWdm3L8cNcPODY
+         fx0ggVVaJyo/ibsxk1B5gfK3sWchQNGGKiDCZfPbN3gzd+/blXy/QLgQs7JnVm5/6WO6
+         b+vQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702894586; x=1703499386;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1702894618; x=1703499418;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=6T4R9okteCkjAhT9eyRdC/jbk1c6KtuDD/NaJ+LcB1s=;
-        b=YfB0sNeJXvFvNbnfImCuZQ8VcOCuCgBEjsbWpZp51iBUx9wNLFxfhDQI7WV7hPAmt9
-         j18RXb2zHc1i6DI/wYhM2fCW1k+oe718NT4sgCOeD2d3v1A7DqP4IOX4ynbg3R55FZCP
-         D5I9bNuOxamco7DNnbBIFpVEea52isBw3VFYExY0I6FDfyyFhrn0ZmjzGKrtXbHQej8a
-         nMc7lpdRbdXCQsxF97NOFjpgD2rGlsDrjuhiLEhBadG7Ubb4ITlENWue+b3x+UtEbzTK
-         8BCLf/utqU9/EAOXkvPymUqWaSrol8dOrMNQlRXAfg7LArW992mg+AF1F/IhVbqVuAKG
-         GELw==
-X-Gm-Message-State: AOJu0Yxsk70AKhXHXWoSQzSXqpHCmH9OwP9A045mmWMIhcHA6foPKe5q
-	ZC+LJO6sJzL0/Ktm1jdNVoXy6Q==
-X-Google-Smtp-Source: AGHT+IHC5w0LaR0hZtZGoebFzWjvqDk4jLHPlKNUseyRe6YfHh7xV+cN4HpsENl4UBR0EZTA8NFZ8Q==
-X-Received: by 2002:a17:906:54f:b0:a23:5bfc:edf6 with SMTP id k15-20020a170906054f00b00a235bfcedf6mr531086eja.73.1702894586619;
-        Mon, 18 Dec 2023 02:16:26 -0800 (PST)
-Received: from [127.0.1.1] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id tb21-20020a1709078b9500b009ad89697c86sm14131552ejc.144.2023.12.18.02.16.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 18 Dec 2023 02:16:25 -0800 (PST)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Peter Griffin <peter.griffin@linaro.org>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org, 
- linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
- devicetree@vger.kernel.org, Lukas Bulwahn <lukas.bulwahn@gmail.com>
-Cc: kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20231218101225.27637-1-lukas.bulwahn@gmail.com>
-References: <20231218101225.27637-1-lukas.bulwahn@gmail.com>
-Subject: Re: [PATCH] MAINTAINERS: adjust file entry in GOOGLE TENSOR SoC
- SUPPORT
-Message-Id: <170289458489.40214.4044639674573718307.b4-ty@linaro.org>
-Date: Mon, 18 Dec 2023 11:16:24 +0100
+        bh=cE+4PArKzxxf52RI2qZGv30986Mi3tB/nuE1GoXNM8Q=;
+        b=NOUW7LBAU+1V95zj+O7YNSSley6s8en0M8RO2TyKzHZZr4sjLZ6UPGizaKwTELjcvF
+         C3Uk0LzAsxZerWEFl1DQLW+KWMG5P0B9t5r3RvHyoYuybotFEYK3aavuVvBZkI1/fJny
+         hOekq6iQ4NS789xDGn1MiPzed1edjlXIWAInK9PR6UAk2NVuwhSGYKMv0HIuGiJgp7fm
+         kCCGBzqzYVY40L4gzNhsCbtJiAFAx15znQrltaQTEIZ4J6d2EmfieMYgDB6JrCJJRB05
+         1HyWV3IswOseF+atidZELMvPdxDCwyXUsCSgr2T8zzReWEi7cG1rc2smhQ1H+aMBuPQ9
+         4jpg==
+X-Gm-Message-State: AOJu0Yy0Tq1R169QYPsqU+oFoJX2lMNGLFMJEnbT2h//ODzKMoyLha08
+	Ioh8UC5OwlY8529TmyQkZNrcc8Fm+CpjlnbvlRY=
+X-Google-Smtp-Source: AGHT+IHN34Dj3XVOxJpSdc2f7yxWGK98cJd0I+UZvwAYLq6x7/xaYp9IC9nEmMrH1uI1CND4Ly0LKQwP6occKSEFcIA=
+X-Received: by 2002:a17:90a:4583:b0:28b:c60:8dd0 with SMTP id
+ v3-20020a17090a458300b0028b0c608dd0mr10301346pjg.2.1702894618069; Mon, 18 Dec
+ 2023 02:16:58 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.12.4
+References: <20231218085456.3962720-1-xu.yang_2@nxp.com> <20231218085456.3962720-2-xu.yang_2@nxp.com>
+In-Reply-To: <20231218085456.3962720-2-xu.yang_2@nxp.com>
+From: Fabio Estevam <festevam@gmail.com>
+Date: Mon, 18 Dec 2023 07:16:46 -0300
+Message-ID: <CAOMZO5AZ6oLgeqvwf5_u9YhrFvwgRSiNjGq+wVMjXYsq7t3MxA@mail.gmail.com>
+Subject: Re: [PATCH v2 2/5] arm64: dts: imx8ulp-evk: enable usb nodes and add
+ ptn5150 nodes
+To: Xu Yang <xu.yang_2@nxp.com>
+Cc: gregkh@linuxfoundation.org, robh+dt@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, shawnguo@kernel.org, 
+	s.hauer@pengutronix.de, kernel@pengutronix.de, linux-imx@nxp.com, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	jun.li@nxp.com, linux-usb@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Mon, Dec 18, 2023 at 5:49=E2=80=AFAM Xu Yang <xu.yang_2@nxp.com> wrote:
 
-On Mon, 18 Dec 2023 11:12:25 +0100, Lukas Bulwahn wrote:
-> Commit 0a910f160638 ("dt-bindings: clock: Add Google gs101 clock
-> management unit bindings") adds the file google,gs101.h in
-> include/dt-bindings/clock/. However, commit 9d71df3e6eb7 ("MAINTAINERS:
-> add entry for Google Tensor SoC") wrongly refers to the file
-> google,clk-gs101.h in that directory.
-> 
-> Hence, ./scripts/get_maintainer.pl --self-test=patterns complains about a
-> broken reference.
-> 
-> [...]
+> +
+> +       ptn5150_1: typec@1d {
+> +               compatible =3D "nxp,ptn5150";
+> +               reg =3D <0x1d>;
+> +               int-gpios =3D <&gpiof 3 IRQ_TYPE_EDGE_FALLING>;
+> +               pinctrl-names =3D "default";
+> +               pinctrl-0 =3D <&pinctrl_typec1>;
+> +               status =3D "disabled";
 
-Applied, thanks!
+Why disabled?
 
-[1/1] MAINTAINERS: adjust file entry in GOOGLE TENSOR SoC SUPPORT
-      https://git.kernel.org/krzk/linux/c/d0da0de31e1d50ff905eb8f095628eea666f8c67
+No connector and no port properties. Please run dt-schema check
+against linux-next.
 
-Best regards,
--- 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> +       };
+> +
+> +       ptn5150_2: typec@3d {
+> +               compatible =3D "nxp,ptn5150";
+> +               reg =3D <0x3d>;
+> +               int-gpios =3D <&gpiof 5 IRQ_TYPE_EDGE_FALLING>;
+> +                       pinctrl-names =3D "default";
+> +               pinctrl-0 =3D <&pinctrl_typec2>;
+> +               status =3D "disabled";
 
+Same here.
 
