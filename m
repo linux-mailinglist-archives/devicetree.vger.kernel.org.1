@@ -1,109 +1,120 @@
-Return-Path: <devicetree+bounces-26617-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26618-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B44F817431
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 15:51:04 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 57EDD81744E
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 15:54:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7FF421C21B4F
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 14:51:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EC2CD1F22604
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 14:54:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7C883788B;
-	Mon, 18 Dec 2023 14:50:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE1BE37881;
+	Mon, 18 Dec 2023 14:54:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RWWLYhXv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GbhPZ5JZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2784737864
-	for <devicetree@vger.kernel.org>; Mon, 18 Dec 2023 14:50:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-a23566e91d5so152577866b.0
-        for <devicetree@vger.kernel.org>; Mon, 18 Dec 2023 06:50:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702911053; x=1703515853; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=PwZoYkBYNDGbxdHHhhA9ml9eCEXVo/RzvZajHy3nCT4=;
-        b=RWWLYhXvOnlitXarVbHz88iJHhdEoHrBW23sn7AJSjc0pcfGJz+LVGsI+gGqa/gxhc
-         hvgWDKwaV0r3LRV3nY6g568HWxxuC4zfFJGzqrBs/58HU8J8vA/4H4sG36lTopkIDnS3
-         A6wAR42hhuFeJXGYViQgYtBEqq5IbUO528C48WSeYF21hV6Y4Bj9cVObIWzCkswE5S7H
-         dgtiVgeFMKRkmTFd/mTYD0DR8J6Sg1HuElXJex4pVy9TfVwsfDqiYg3Q7LIuo6s1rbcM
-         WG32oVGyU7yBSfzwq2NN66mfmSHGF3FWmWuJhy1wIDBtmHY8dOyXoAe6FxNLOCRIelH7
-         6cyw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702911053; x=1703515853;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=PwZoYkBYNDGbxdHHhhA9ml9eCEXVo/RzvZajHy3nCT4=;
-        b=ioIrboucXMd9DiBxXgdiMh9mKXPcddahR6rwyFXRgmJbzpXBseYkMAcmEV0+Q4/ozX
-         +X/pKkiIIssSZ/gIzGg2WS+4zbOVPRd5RI1igXrYfoZr//3bvc/EUKGkAvpjzZEKAV1x
-         hWV4vsYLUjuk7mjr3h62FBlgaEIdBfbHq0EQiyVsyA6qwMurETzT9lrJx/3vAEtec9YH
-         Sta/WA/G21DrW6AC8yh3vG/eBeGxKYdiRFrHaBgX+kXnv/1t0NtMEkBuOAcuB86K6e5e
-         RjWjVFpb+u0fT+Bo1e+RBom/AkIfVJcS9A0yhT+P++PRqkVq+oY2NDE6jnb+JMvk+GMi
-         EogA==
-X-Gm-Message-State: AOJu0YwUskbs4j8gKcFS5mzw4JbIvMnL/HOrSHLH4TG+NOBLMT57HJTe
-	l5cEy7MPDNOfybQyQrTqun9ARA9agsL0RGqqqEAa9g==
-X-Google-Smtp-Source: AGHT+IH6uAXX78npFARzX6yqnSfm4d3d9f+sCviIOufO/KnbKhoCDiQAgMkHMfuZrDpRS3IRffHlcw==
-X-Received: by 2002:a17:906:2242:b0:a1f:ad99:a8d8 with SMTP id 2-20020a170906224200b00a1fad99a8d8mr4286249ejr.113.1702911053454;
-        Mon, 18 Dec 2023 06:50:53 -0800 (PST)
-Received: from krzk-bin.. ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id sf21-20020a1709078a9500b00a1f7cbf28a5sm12969440ejc.106.2023.12.18.06.50.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 18 Dec 2023 06:50:52 -0800 (PST)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8EFE637868;
+	Mon, 18 Dec 2023 14:54:42 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DC24EC433C8;
+	Mon, 18 Dec 2023 14:54:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1702911282;
+	bh=s3iiGBDd0jsA5GpHn3zZNS/JFO1WQ8YGurgE+GdbYWw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=GbhPZ5JZK5Kof/4b0TzkfXcc3GHerqi+g8NhBJJCURhWt72q2okrrd66eYS0Wp66H
+	 Sgjg6D5TbW0P96ptKmP0zlENg771eNxAaTBswnZOX3S1Kpk6aCK3lJ/0RqPvNn9vve
+	 GAvF/kt8TvnBYGB2KREHF74mcav2vVQArDGCXoABjheuzszRK7k7Ucm9D+8i/gVr4V
+	 NIt0yngV6Kh5XUuchlMK/TLveHl7U+I+F/tTaNcHJncwYWdXtIBGyq30P3AO/0RvJn
+	 wT/RYSJ8cBLmhF1Dy+YUmUlRR5RTnYrOu4+qb3+XYRdxuuI3G0hgfHP/k5uLxt4Trz
+	 1hlo72yV1x6EA==
+Date: Mon, 18 Dec 2023 14:54:35 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Brandon Cheo Fusi <fusibrandon13@gmail.com>
+Cc: Yangtao Li <tiny.windzz@gmail.com>, Viresh Kumar <vireshk@kernel.org>,
+	Nishanth Menon <nm@ti.com>, Stephen Boyd <sboyd@kernel.org>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sibi Sankar <quic_sibis@quicinc.com>,
-	Abel Vesa <abel.vesa@linaro.org>,
-	Rajendra Nayak <quic_rjendra@quicinc.com>,
-	linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] arm64: dts: qcom: x1e80100: drop qcom,drv-count
-Date: Mon, 18 Dec 2023 15:50:50 +0100
-Message-Id: <20231218145050.66394-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
+	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	"Rafael J . Wysocki" <rafael@kernel.org>,
+	Maxime Ripard <mripard@kernel.org>, linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v2 2/5] dt-bindings: opp: sun50i: Add binding for D1 CPUs
+Message-ID: <20231218-disprove-judgingly-ee54d39474a7@spud>
+References: <20231218110543.64044-1-fusibrandon13@gmail.com>
+ <20231218110543.64044-3-fusibrandon13@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="Ex3+7jnV//1NaCLU"
+Content-Disposition: inline
+In-Reply-To: <20231218110543.64044-3-fusibrandon13@gmail.com>
 
-Property qcom,drv-count in the RSC node is not allowed and not used:
 
-  x1e80100-crd.dtb: rsc@17500000: 'qcom,drv-count' does not match any of the regexes: '^regulators(-[0-9])?$', 'pinctrl-[0-9]+'
+--Ex3+7jnV//1NaCLU
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Fixes: af16b00578a7 ("arm64: dts: qcom: Add base X1E80100 dtsi and the QCP dts")
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- arch/arm64/boot/dts/qcom/x1e80100.dtsi | 1 -
- 1 file changed, 1 deletion(-)
+On Mon, Dec 18, 2023 at 12:05:40PM +0100, Brandon Cheo Fusi wrote:
+> Add binding for D1 CPU OPPs.
+>=20
+> Signed-off-by: Brandon Cheo Fusi <fusibrandon13@gmail.com>
+> ---
+>  .../bindings/opp/allwinner,sun50i-h6-operating-points.yaml    | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/opp/allwinner,sun50i-h6-op=
+erating-points.yaml b/Documentation/devicetree/bindings/opp/allwinner,sun50=
+i-h6-operating-points.yaml
+> index 51f62c3ae..fddaa3216 100644
+> --- a/Documentation/devicetree/bindings/opp/allwinner,sun50i-h6-operating=
+-points.yaml
+> +++ b/Documentation/devicetree/bindings/opp/allwinner,sun50i-h6-operating=
+-points.yaml
+> @@ -23,7 +23,9 @@ allOf:
+> =20
+>  properties:
+>    compatible:
+> -    const: allwinner,sun50i-h6-operating-points
+> +    enum:
+> +      - allwinner,sun50i-h6-operating-points
+> +      - allwinner,sun20i-d1-operating-points
 
-diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-index da691e2f3209..fd09fbc7d8e7 100644
---- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-+++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-@@ -3315,7 +3315,6 @@ apps_rsc: rsc@17500000 {
- 			      <0 0x17510000 0 0x10000>,
- 			      <0 0x17520000 0 0x10000>;
- 			reg-names = "drv-0", "drv-1", "drv-2";
--			qcom,drv-count = <3>;
- 
- 			interrupts = <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>,
- 				     <GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>,
--- 
-2.34.1
+This doesn't match what you have in your devicetree.
 
+> =20
+>    nvmem-cells:
+>      description: |
+> --=20
+> 2.30.2
+>=20
+
+--Ex3+7jnV//1NaCLU
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZYBdKwAKCRB4tDGHoIJi
+0lyiAP9BYEhi78cgiuyY4EJyb87Pi/R3VwKDPk6tN/UiBYxD8QD7BdhHh5jX6e51
+xmsnQRqdYF7y1UNW76jBO9VI4GrG/w0=
+=i83T
+-----END PGP SIGNATURE-----
+
+--Ex3+7jnV//1NaCLU--
 
