@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-26430-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26431-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4719B81674D
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 08:21:46 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id F00DB816753
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 08:24:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AFC1F1F223EB
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 07:21:45 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 55DF0B20DBE
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 07:24:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 385F279E2;
-	Mon, 18 Dec 2023 07:21:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77A048477;
+	Mon, 18 Dec 2023 07:24:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nkBos6y+"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mxmCJytD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
+Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A292679CB
-	for <devicetree@vger.kernel.org>; Mon, 18 Dec 2023 07:21:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD60379D9
+	for <devicetree@vger.kernel.org>; Mon, 18 Dec 2023 07:24:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-54cb4fa667bso3157403a12.3
-        for <devicetree@vger.kernel.org>; Sun, 17 Dec 2023 23:21:39 -0800 (PST)
+Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-54c5d041c23so2945647a12.2
+        for <devicetree@vger.kernel.org>; Sun, 17 Dec 2023 23:24:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702884098; x=1703488898; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1702884259; x=1703489059; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=g0C2Dj9kxu4ITsEWqxi033kuHIdp0V6w6ek+ZKVXhlc=;
-        b=nkBos6y+I/nf7BIwG2bqUO61u3QC1tjRI/bUaJcsKHX5TTwOFwnf1Yf6m4O5KEzhRq
-         gBKxaHIfpgideF60Efa2wbTJrnl6LUVg44kD+rZ0h3DFf0fZbe/sIORrtI5OV0/At3zY
-         YPyH0z3wmgnxzPKKSPILTUiX9Hwk45obZS3El+cFiMmNyvcwVYl79H9Csac7nyOELXAy
-         w1PI1H8B0fhmq8Pm3EeQEfFgJXROMnSVeFEjqiKo2g3bqgdNqQBxPpUJEhmT7o9gRhyi
-         wwTbYo6kAyNp/sfHPqpEF7jL+LXnco89muE9O0/gnX9Vh2RRFJSWpiwY/CvvXYWXZLeH
-         uCoA==
+        bh=qWGp81WwfDbdrmI4IRwNuSv7pr8EF/d0/d63o4IHGMI=;
+        b=mxmCJytD9/vRCTGxEsAPT1ro9xRZEeHb2/v7moUkstzXD2P5+ot9Sgid7vPEZ8tFAE
+         0Qa1qbR0O0mS+8P667mv36iaJtAMaX6sqk5GGmB/JELk51fWdFFsdBltiO6lTt+kmh4q
+         ZxQW+e7NleJNpW4mDdkbc3fQdzAvPYJpP8thQtSRfT7xaQA5z7UK9otInU1Vo6QITw4W
+         yGzFUwPwrJDvDzdQPkVgv8oPUd9PvyYUVXm0q2A2BQDRv1jFihZ0cPs0AmLUfF5Me42N
+         mNMmcf/Kipg2nOdLMo2B88poLRVuZBGAW9+ERC/tNc8I93sYBt7uQMi1YlnVvBrdkKr8
+         PLqw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702884098; x=1703488898;
+        d=1e100.net; s=20230601; t=1702884259; x=1703489059;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=g0C2Dj9kxu4ITsEWqxi033kuHIdp0V6w6ek+ZKVXhlc=;
-        b=oUfluk6+p7No8zE8ClWKzXlxzIMvrtDdLxsbyVRPABkLReqhiE2LPaSuCM78VEDQeg
-         6OBzxAT0t5GpQ9hG59sRAEdhn4t8/1BPjCogwMGSeqqMsBjcCgWwSAnax29tStYLY2K0
-         8cLn6w99JKbh9khxIfwUh9ViZ9eGjmHdin2D9UzC4f3r/4AOYf0X/9RafLQTugBjYhu4
-         3A5x6MemeLt7lOz9MGT6e1lphqElZgi8zNDF0B9NL1gw8Sf9RWgKIYbLps7Z/4AJyLLr
-         b1RimgzA6/4IzEiF2i0n3uA3D4z1rxROuYET3bS9ymbPRJJMkO+hL3vbV1RLBkSYZ8r+
-         4rXA==
-X-Gm-Message-State: AOJu0YwZkWifC6fopLD37dJBS91z7PR8TzEBDcNTTMuzHExNoQ3fAPAc
-	Y3/Q4PkXeFIl2PAeRB5rXjh1hQ==
-X-Google-Smtp-Source: AGHT+IHxnD3UsecgrZiRAo2Uwbo0io+YHLpnQflHUzHDSPED6zvoAZAocJCWFTpZnX8Gv4RaJw8wig==
-X-Received: by 2002:a17:906:1091:b0:a23:5075:d45 with SMTP id u17-20020a170906109100b00a2350750d45mr599804eju.108.1702884097724;
-        Sun, 17 Dec 2023 23:21:37 -0800 (PST)
+        bh=qWGp81WwfDbdrmI4IRwNuSv7pr8EF/d0/d63o4IHGMI=;
+        b=AtdIiiNbID/3g/fEnk31zshS3OfHtQ6n20TBLqOavolDEzbyxuzKq0dxMBh6AodlSE
+         1hByFATrnwWXo8Vh4ni/slSqkYI11SC0MCz+gvHBr1RHWvmRBn45WQrqNWDTn5Mb+GS0
+         NfsBZlQcSEwOV7dE+9ff3qZ8TfyFy+IL7jHKnGxrsnfntt2j2kbDfRv/cQx9AKAXiqds
+         dTW51kC3d9Z9RiTYdgRLsubeEY1jr+5FenbEdFPPBqwqB0KezFCU17nRQWTn4KK38VrN
+         gCXtp7suk9HihFjAl+F6deZiWBW57F2B+tCUdG8I1Hpxp8/R/2KJtUPoLge1eVyeKHZ5
+         oP+g==
+X-Gm-Message-State: AOJu0Ywt+1hdrAvtsN6+HoreIMdG8d+Wje0pozMK/aotuS0Wx+/P8Ag2
+	r8SOhtmwJ8BzAbR2tr1nwMbhCg==
+X-Google-Smtp-Source: AGHT+IGeFysnDVT9DhWn6gTgntkymbSYn1/6ltLEPPAxhyJucsrNddCeF1WxAYjFnot1R92iXVAJCA==
+X-Received: by 2002:a50:d788:0:b0:548:4b54:31ff with SMTP id w8-20020a50d788000000b005484b5431ffmr4602517edi.30.1702884258897;
+        Sun, 17 Dec 2023 23:24:18 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id re13-20020a170907a2cd00b00a1d13fccec4sm13771868ejc.159.2023.12.17.23.21.36
+        by smtp.gmail.com with ESMTPSA id ew12-20020a056402538c00b00552691fc7f9sm4233391edb.66.2023.12.17.23.24.17
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 17 Dec 2023 23:21:37 -0800 (PST)
-Message-ID: <60c4e8b9-17b5-44e9-b971-abf147735334@linaro.org>
-Date: Mon, 18 Dec 2023 08:21:36 +0100
+        Sun, 17 Dec 2023 23:24:18 -0800 (PST)
+Message-ID: <e1b86dd9-833d-4545-aeb0-b394702dc6dc@linaro.org>
+Date: Mon, 18 Dec 2023 08:24:16 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,18 +66,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: allwinner: h618: add BananaPi M4 Berry
- board
+Subject: Re: [PATCH 2/3] arm64: dts: rockchip: Add support for NanoPi R6S
 Content-Language: en-US
-To: Andre Przywara <andre.przywara@arm.com>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>
-Cc: Icenowy Zheng <uwu@icenowy.me>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev
-References: <20231217232405.302-1-andre.przywara@arm.com>
- <20231217232405.302-3-andre.przywara@arm.com>
+To: efectn@6tel.net, linux-rockchip@lists.infradead.org
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, heiko@sntech.de,
+ sebastian.reichel@collabora.com, jonas@kwiboo.se,
+ Muhammed Efe Cetin <efectn@protonmail.com>
+References: <cover.1702647349.git.efectn@protonmail.com>
+ <25d84712ee3765f5f28dfd355a2392f20f388824.1702647349.git.efectn@protonmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -123,52 +121,222 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231217232405.302-3-andre.przywara@arm.com>
+In-Reply-To: <25d84712ee3765f5f28dfd355a2392f20f388824.1702647349.git.efectn@protonmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 18/12/2023 00:24, Andre Przywara wrote:
-> +	gpio-keys {
-> +		compatible = "gpio-keys";
-> +
-> +		key-sw4 {
-> +			label = "sw3";
-> +			linux,code = <BTN_0>;
-> +			gpios = <&pio 2 7 GPIO_ACTIVE_LOW>;	/* PC7 */
-> +		};
-> +	};
-> +
-> +	reg_vcc5v: vcc5v {
+On 15/12/2023 14:55, efectn@6tel.net wrote:
+> From: Muhammed Efe Cetin <efectn@protonmail.com>
+> 
+> Add basic NanoPi R6S support that comes with USB2, PCIe, SD card, eMMC
+> support.
+> 
+> Signed-off-by: Muhammed Efe Cetin <efectn@protonmail.com>
+> ---
+>  arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+>  .../boot/dts/rockchip/rk3588s-nanopi-r6s.dts  | 755 ++++++++++++++++++
+>  2 files changed, 756 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/rockchip/rk3588s-nanopi-r6s.dts
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
+> index 600c420bc..ed2583dcd 100644
+> --- a/arch/arm64/boot/dts/rockchip/Makefile
+> +++ b/arch/arm64/boot/dts/rockchip/Makefile
+> @@ -114,3 +114,4 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-indiedroid-nova.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-khadas-edge2.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-rock-5a.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-orangepi-5.dtb
+> +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-nanopi-r6s.dtb
+> \ No newline at end of file
 
-regulator prefix to the node name (others have it).
+You have warning here.
 
-> +		/* board wide 5V supply directly from the USB-C socket */
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vcc-5v";
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-max-microvolt = <5000000>;
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-nanopi-r6s.dts b/arch/arm64/boot/dts/rockchip/rk3588s-nanopi-r6s.dts
+> new file mode 100644
+> index 000000000..e575cc403
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/rockchip/rk3588s-nanopi-r6s.dts
+> @@ -0,0 +1,755 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +
+> +/dts-v1/;
+
+...
+
+> +
+> +&i2c2 {
+> +	status = "okay";
+> +
+> +	vdd_npu_s0: rk8602@42 {
+
+Node names should be generic. See also an explanation and list of
+examples (not exhaustive) in DT specification:
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+
+> +		compatible = "rockchip,rk8602";
+> +		reg = <0x42>;
+> +		fcs,suspend-voltage-selector = <1>;
+> +		regulator-compatible = "rk860x-reg";
+> +		regulator-name = "vdd_npu_s0";
+> +		regulator-min-microvolt = <550000>;
+> +		regulator-max-microvolt = <950000>;
+> +		regulator-ramp-delay = <2300>;
+> +		regulator-boot-on;
 > +		regulator-always-on;
-> +	};
+> +		vin-supply = <&vcc5v0_sys>;
 > +
-> +	reg_usb_vbus: regulator-usb-vbus {
-> +		/* separate discrete regulator for the USB ports */
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "usb-vbus";
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-max-microvolt = <5000000>;
-> +		vin-supply = <&reg_vcc5v>;
-> +	};
-> +
-> +	reg_3v3: regulator-3v3 {
-> +		/* separate discrete regulator for WiFi and Ethernet PHY */
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vcc-3v3";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		vin-supply = <&reg_vcc5v>;
+> +		regulator-state-mem {
+> +			regulator-off-in-suspend;
+> +		};
 > +	};
 > +};
 > +
+> +&i2c6 {
+> +	clock-frequency = <200000>;
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&i2c6m0_xfer>;
+> +	status = "okay";
+> +
+> +	hym8563: rtc@51 {
+> +		compatible = "haoyu,hym8563";
+> +		reg = <0x51>;
+> +		#clock-cells = <0>;
+> +		clock-output-names = "hym8563";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&rtc_int>;
+> +		interrupt-parent = <&gpio0>;
+> +		interrupts = <RK_PB0 IRQ_TYPE_LEVEL_LOW>;
+> +		wakeup-source;
+> +	};
+> +};
+> +
+> +&mdio1 {
+> +	rgmii_phy1: ethernet-phy@1 {
+> +		compatible = "ethernet-phy-id001c.c916";
+> +		reg = <0x1>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&rtl8211f_rst>;
+> +		reset-assert-us = <20000>;
+> +		reset-deassert-us = <100000>;
+> +		reset-gpios = <&gpio3 RK_PB7 GPIO_ACTIVE_LOW>;
+> +	};
+> +};
+> +
+> +&pcie2x1l1 {
+> +	reset-gpios = <&gpio1 RK_PA7 GPIO_ACTIVE_HIGH>;
+> +	vpcie3v3-supply = <&vcc_3v3_pcie20>;
+> +	status = "okay";
+> +};
+> +
+> +&pcie2x1l2 {
+> +	reset-gpios = <&gpio3 RK_PD1 GPIO_ACTIVE_HIGH>;
+> +	vpcie3v3-supply = <&vcc_3v3_pcie20>;
+> +	status = "okay";
+> +};
+> +
+> +&pinctrl {
+> +	gpio-key {
+> +		key1_pin: key1-pin {
+> +			rockchip,pins = <1 RK_PC0 RK_FUNC_GPIO &pcfg_pull_up>;
+> +		};
+> +	};
+> +
+> +	gpio-leds {
+> +		sys_led_pin: sys-led-pin {
+> +			rockchip,pins =
+> +				<1 RK_PC1 RK_FUNC_GPIO &pcfg_pull_none>;
+> +		};
+> +
+> +		wan_led_pin: wan-led-pin {
+> +			rockchip,pins =
+> +				<1 RK_PC2 RK_FUNC_GPIO &pcfg_pull_none>;
+> +		};
+> +
+> +		lan1_led_pin: lan1-led-pin {
+> +			rockchip,pins =
+> +				<1 RK_PC3 RK_FUNC_GPIO &pcfg_pull_none>;
+> +		};
+> +
+> +		lan2_led_pin: lan2-led-pin {
+> +			rockchip,pins =
+> +				<1 RK_PC4 RK_FUNC_GPIO &pcfg_pull_none>;
+> +		};
+> +	};
+> +
+> +	hym8563 {
+> +		rtc_int: rtc-int {
+> +			rockchip,pins = <0 RK_PB0 RK_FUNC_GPIO &pcfg_pull_up>;
+> +		};
+> +	};
+> +
+> +	sdmmc {
+> +		sd_s0_pwr: sd-s0-pwr {
+> +			rockchip,pins = <4 RK_PB4 RK_FUNC_GPIO &pcfg_pull_up>;
+> +		};
+> +	};
+> +
+> +	usb {
+> +		typec5v_pwren: typec5v-pwren {
+> +			rockchip,pins = <1 RK_PD2 RK_FUNC_GPIO &pcfg_pull_none>;
+> +		};
+> +
+> +		vcc5v0_host20_en: vcc5v0-host20-en {
+> +			rockchip,pins = <4 RK_PB5 RK_FUNC_GPIO &pcfg_pull_none>;
+> +		};
+> +	};
+> +
+> +	rtl8211f {
+> +		rtl8211f_rst: rtl8211f-rst {
+> +			rockchip,pins = <3 RK_PB7 RK_FUNC_GPIO &pcfg_pull_none>;
+> +		};
+> +	};
+> +};
+> +
+> +&saradc {
+> +	vref-supply = <&avcc_1v8_s0>;
+> +	status = "okay";
+> +};
+> +
+> +&sdhci {
+> +	bus-width = <8>;
+> +	no-sdio;
+> +	no-sd;
+> +	non-removable;
+> +	mmc-hs200-1_8v;
+> +	max-frequency = <200000000>;
+> +	status = "okay";
+> +};
+> +
+> +&sdmmc {
+> +	bus-width = <4>;
+> +	cap-sd-highspeed;
+> +	disable-wp;
+> +	max-frequency = <150000000>;
+> +	no-mmc;
+> +	no-sdio;
+> +	sd-uhs-sdr104;
+> +	vmmc-supply = <&vcc_3v3_sd_s0>;
+> +	vqmmc-supply = <&vccio_sd_s0>;
+> +	status = "okay";
+> +};
+> +
+> +&spi2 {
+> +	status = "okay";
+> +	assigned-clocks = <&cru CLK_SPI2>;
+> +	assigned-clock-rates = <200000000>;
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&spi2m2_cs0 &spi2m2_pins>;
+> +	num-cs = <1>;
+> +
+> +	pmic@0 {
+> +		compatible = "rockchip,rk806";
+> +		spi-max-frequency = <1000000>;
+> +		reg = <0x0>;
+
+reg should be second property.
+
+
 
 Best regards,
 Krzysztof
