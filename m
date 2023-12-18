@@ -1,212 +1,139 @@
-Return-Path: <devicetree+bounces-26608-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26609-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49292817376
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 15:21:51 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9420D81737A
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 15:23:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DE2B61F243EF
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 14:21:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4B01F288453
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 14:23:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35F5A37883;
-	Mon, 18 Dec 2023 14:21:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26345129EF9;
+	Mon, 18 Dec 2023 14:23:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="LpWZMhU+"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="hz1wIecO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DBEE37868;
-	Mon, 18 Dec 2023 14:21:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 40F0E240002;
-	Mon, 18 Dec 2023 14:21:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1702909278;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=VcFINdpUM3413RjJFum1h+gsTWlsCTgB3Zco0HFf37w=;
-	b=LpWZMhU+/FlDz/l6g9cAsHmsE93Bhq4Id8XqSYWOsaMalk5GcvOUsDi//RUZIFy+2Q+nKp
-	r0Ue5TYs8IiSKetzoBq1URx/7EQWB342qgDX9X4FQkp3TvAfan3jwJ/jm+EMzOscAy6PJt
-	z1av9pI3PSW8EUlbraBlXyEOr+LrwjXs4Fm5641BoWxtj/ZC1A/Qt4/8tguLpW2jCJi9YY
-	N4d1OHK+l82zLAWuHEjEGFXpbIQFgiGXVdCq4bJhDwmJDqIhJTzoOkQFokmWPmv+8OtQ/M
-	XljLCSnzggt7fIDqzF58t8GnU7eBiYK4OrDKmG307kg9prYOyXR/b0+KZOspMA==
-Date: Mon, 18 Dec 2023 15:21:16 +0100
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Michael Walle
- <michael@walle.cc>, linux-mtd@lists.infradead.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, u-boot@lists.denx.de, =?UTF-8?B?UmFmYcWC?=
- =?UTF-8?B?IE1pxYJlY2tp?= <rafal@milecki.pl>
-Subject: Re: [PATCH 4/4] nvmem: layouts: add U-Boot env layout
-Message-ID: <20231218152116.59d59bad@xps-13>
-In-Reply-To: <20231218133722.16150-4-zajec5@gmail.com>
-References: <20231218133722.16150-1-zajec5@gmail.com>
-	<20231218133722.16150-4-zajec5@gmail.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FD4B134DF
+	for <devicetree@vger.kernel.org>; Mon, 18 Dec 2023 14:23:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1702909394; x=1734445394;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=A5cVIHv3cv38/+w75fClFY3yEGCAdBHbtSLLA/hAAxM=;
+  b=hz1wIecOZY2yBT1nsA7KlDhILGruoiL2lW1wVm7DloQ48P8mi/MrVnx4
+   WKZoYLUQhUYfi3paiJCDLe1yKGmkQegmRhNu6E5exkdT2kyksD8ve4nlu
+   gvbOS4tOFoLyASpXPL1qYOzw0HLrG2QOa1D+aghPYRzg//8y5oOFE7ugI
+   X6l2jy583WKIkBUuCoKqybrPwF8Zz1Uy4JXCjGgq0GN8ifZPO1Q9h73hO
+   PPHL1VhsmjumgKf+hzCbaBl5GAHtBEGK6Di74YqRk+dWIBecPzGFsqkYl
+   Zsxcsxr3Rsf71eUBFo0beaLfnIdKH3MGnG/LoLnvhwd4GJRlfirmGCvgA
+   g==;
+X-IronPort-AV: E=Sophos;i="6.04,285,1695679200"; 
+   d="scan'208";a="34565308"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 18 Dec 2023 15:23:12 +0100
+Received: from steina-w.tq-net.de (steina-w.tq-net.de [10.123.53.18])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 19913280075;
+	Mon, 18 Dec 2023 15:23:12 +0100 (CET)
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>
+Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	NXP Linux Team <linux-imx@nxp.com>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: [PATCH 1/1] arm64: dts: imx8qxp: add GPU nodes
+Date: Mon, 18 Dec 2023 15:23:12 +0100
+Message-Id: <20231218142312.3175828-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-Sasl: miquel.raynal@bootlin.com
+Content-Transfer-Encoding: 8bit
 
-Hi Rafa=C5=82,
+Add the DT node for the GPU core found on the i.MX8QXP.
 
-zajec5@gmail.com wrote on Mon, 18 Dec 2023 14:37:22 +0100:
+etnaviv-gpu 53100000.gpu: model: GC7000, revision: 6214
+[drm] Initialized etnaviv 1.3.0 20151214 for etnaviv on minor 0
 
-> From: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
->=20
-> This patch moves all generic (NVMEM devices independent) code from NVMEM
-> device driver to NVMEM layout driver. Then it adds a simple NVMEM layout
-> code on top of it.
->=20
-> Thanks to proper layout it's possible to support U-Boot env data stored
-> on any kind of NVMEM device.
->=20
-> For backward compatibility with old DT bindings we need to keep old
-> NVMEM device driver functional. To avoid code duplication a parsing
-> function is exported and reused in it.
->=20
-> Signed-off-by: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
-> ---
+Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+---
+Based on downstream commit [1]. I am not aware if additional
+modifications are necessary in etnaviv driver though. The revision
+number is slightly different to the one from imx8mp:
+etnaviv-gpu 38000000.gpu: model: GC7000, revision: 6204
 
-I have a couple of comments about the original driver which gets
-copy-pasted in the new layout driver, maybe you could clean these
-(the memory leak should be fixed before the migration so it can be
-backported easily, the others are just style so it can be done after, I
-don't mind).
+[1] https://github.com/Freescale/linux-fslc/commit/d0964b3f9afd8a75aca73921fdb0c128cc46c4fe
 
-...
+ .../boot/dts/freescale/imx8-ss-gpu0.dtsi      | 27 +++++++++++++++++++
+ arch/arm64/boot/dts/freescale/imx8qxp.dtsi    |  1 +
+ 2 files changed, 28 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8-ss-gpu0.dtsi
 
-> +int u_boot_env_parse(struct device *dev, struct nvmem_device *nvmem,
-> +		     enum u_boot_env_format format)
-> +{
-> +	size_t crc32_data_offset;
-> +	size_t crc32_data_len;
-> +	size_t crc32_offset;
-> +	size_t data_offset;
-> +	size_t data_len;
-> +	size_t dev_size;
-> +	uint32_t crc32;
-> +	uint32_t calc;
-> +	uint8_t *buf;
-> +	int bytes;
-> +	int err;
-> +
-> +	dev_size =3D nvmem_dev_size(nvmem);
-> +
-> +	buf =3D kcalloc(1, dev_size, GFP_KERNEL);
+diff --git a/arch/arm64/boot/dts/freescale/imx8-ss-gpu0.dtsi b/arch/arm64/boot/dts/freescale/imx8-ss-gpu0.dtsi
+new file mode 100644
+index 000000000000..9b8a44aa63d6
+--- /dev/null
++++ b/arch/arm64/boot/dts/freescale/imx8-ss-gpu0.dtsi
+@@ -0,0 +1,27 @@
++// SPDX-License-Identifier: GPL-2.0+
++/*
++ * Copyright 2019 NXP
++ *	Dong Aisheng <aisheng.dong@nxp.com>
++ */
++
++#include <dt-bindings/firmware/imx/rsrc.h>
++
++gpu0_subsys: bus@53000000 {
++	compatible = "simple-bus";
++	#address-cells = <1>;
++	#size-cells = <1>;
++	ranges = <0x53000000 0x0 0x53000000 0x1000000>;
++
++	gpu_3d0: gpu@53100000 {
++		compatible = "vivante,gc";
++		reg = <0x53100000 0x40000>;
++		interrupts = <GIC_SPI 64 IRQ_TYPE_LEVEL_HIGH>;
++		clocks = <&clk IMX_SC_R_GPU_0_PID0 IMX_SC_PM_CLK_PER>,
++			 <&clk IMX_SC_R_GPU_0_PID0 IMX_SC_PM_CLK_MISC>;
++		clock-names = "core", "shader";
++		assigned-clocks = <&clk IMX_SC_R_GPU_0_PID0 IMX_SC_PM_CLK_PER>,
++				  <&clk IMX_SC_R_GPU_0_PID0 IMX_SC_PM_CLK_MISC>;
++		assigned-clock-rates = <700000000>, <850000000>;
++		power-domains = <&pd IMX_SC_R_GPU_0_PID0>;
++	};
++};
+diff --git a/arch/arm64/boot/dts/freescale/imx8qxp.dtsi b/arch/arm64/boot/dts/freescale/imx8qxp.dtsi
+index fdbb4242b157..10e16d84c0c3 100644
+--- a/arch/arm64/boot/dts/freescale/imx8qxp.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8qxp.dtsi
+@@ -317,6 +317,7 @@ map0 {
+ 	/* sorted in register address */
+ 	#include "imx8-ss-img.dtsi"
+ 	#include "imx8-ss-vpu.dtsi"
++	#include "imx8-ss-gpu0.dtsi"
+ 	#include "imx8-ss-adma.dtsi"
+ 	#include "imx8-ss-conn.dtsi"
+ 	#include "imx8-ss-ddr.dtsi"
+-- 
+2.34.1
 
-Out of curiosity, why kcalloc(1,...) rather than kzalloc() ?
-
-> +	if (!buf) {
-> +		err =3D -ENOMEM;
-> +		goto err_out;
-
-We could directly return ENOMEM here I guess.
-
-> +	}
-> +
-> +	bytes =3D nvmem_device_read(nvmem, 0, dev_size, buf);
-> +	if (bytes < 0)
-> +		return bytes;
-> +	else if (bytes !=3D dev_size)
-> +		return -EIO;
-
-Don't we need to free buf in the above cases?
-
-> +	switch (format) {
-> +	case U_BOOT_FORMAT_SINGLE:
-> +		crc32_offset =3D offsetof(struct u_boot_env_image_single, crc32);
-> +		crc32_data_offset =3D offsetof(struct u_boot_env_image_single, data);
-> +		data_offset =3D offsetof(struct u_boot_env_image_single, data);
-> +		break;
-> +	case U_BOOT_FORMAT_REDUNDANT:
-> +		crc32_offset =3D offsetof(struct u_boot_env_image_redundant, crc32);
-> +		crc32_data_offset =3D offsetof(struct u_boot_env_image_redundant, data=
-);
-> +		data_offset =3D offsetof(struct u_boot_env_image_redundant, data);
-> +		break;
-> +	case U_BOOT_FORMAT_BROADCOM:
-> +		crc32_offset =3D offsetof(struct u_boot_env_image_broadcom, crc32);
-> +		crc32_data_offset =3D offsetof(struct u_boot_env_image_broadcom, data);
-> +		data_offset =3D offsetof(struct u_boot_env_image_broadcom, data);
-> +		break;
-> +	}
-> +	crc32 =3D le32_to_cpu(*(__le32 *)(buf + crc32_offset));
-
-Looks a bit convoluted, any chances we can use intermediate variables
-to help decipher this?
-
-> +	crc32_data_len =3D dev_size - crc32_data_offset;
-> +	data_len =3D dev_size - data_offset;
-> +
-> +	calc =3D crc32(~0, buf + crc32_data_offset, crc32_data_len) ^ ~0L;
-> +	if (calc !=3D crc32) {
-> +		dev_err(dev, "Invalid calculated CRC32: 0x%08x (expected: 0x%08x)\n", =
-calc, crc32);
-> +		err =3D -EINVAL;
-> +		goto err_kfree;
-> +	}
-> +
-> +	buf[dev_size - 1] =3D '\0';
-> +	err =3D u_boot_env_parse_cells(dev, nvmem, buf, data_offset, data_len);
-> +	if (err)
-> +		dev_err(dev, "Failed to add cells: %d\n", err);
-
-Please drop this error message, the only reason for which the function
-call would fail is apparently an ENOMEM case.
-
-> +
-> +err_kfree:
-> +	kfree(buf);
-> +err_out:
-> +	return err;
-> +}
-> +EXPORT_SYMBOL_GPL(u_boot_env_parse);
-> +
-> +static int u_boot_env_add_cells(struct device *dev, struct nvmem_device =
-*nvmem)
-> +{
-> +	const struct of_device_id *match;
-> +	struct device_node *layout_np;
-> +	enum u_boot_env_format format;
-> +
-> +	layout_np =3D of_nvmem_layout_get_container(nvmem);
-> +	if (!layout_np)
-> +		return -ENOENT;
-> +
-> +	match =3D of_match_node(u_boot_env_of_match_table, layout_np);
-> +	if (!match)
-> +		return -ENOENT;
-> +
-> +	format =3D (uintptr_t)match->data;
-
-In the core there is currently an unused helper called
-nvmem_layout_get_match_data() which does that. I think the original
-intent of this function was to be used in this driver, so depending on
-your preference, can you please either use it or remove it?
-
-> +
-> +	of_node_put(layout_np);
-> +
-> +	return u_boot_env_parse(dev, nvmem, format);
-> +}
-
-Thanks,
-Miqu=C3=A8l
 
