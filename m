@@ -1,183 +1,198 @@
-Return-Path: <devicetree+bounces-26504-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26505-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45EF2816B25
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 11:29:43 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C9A1F816B3B
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 11:34:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 45BC9B21397
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 10:29:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 032021C20E42
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 10:34:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FF7C14271;
-	Mon, 18 Dec 2023 10:28:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="L45Kmsk6"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A1E614F7D;
+	Mon, 18 Dec 2023 10:34:33 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CDB314282
-	for <devicetree@vger.kernel.org>; Mon, 18 Dec 2023 10:28:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-40c2c65e6aaso34538465e9.2
-        for <devicetree@vger.kernel.org>; Mon, 18 Dec 2023 02:28:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702895296; x=1703500096; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=zMHQ7FxowXR5FFIdGfBk5jzb/m9p5t8DcpQDDoewRFI=;
-        b=L45Kmsk6go84ASzMYFtO/B1ZGpOYaRres4/vkled7tk+2hLJ2bhUpe6lgfzSK78QXo
-         Hion2y6FHravOj9bhjdlEVwcBNemn+rVj73MfYrow+bWotHY4B/lFjyJmMx7XK5hiWub
-         b3ODzQ8kz1kelcJHzgMX9WFE5gUb6C4XjHXePslCwm5Mp9uUOgB9Mel+vrrLCeKu1W39
-         SyAdIxbDxxVBB0SZ0Pta4DojovSmgqo6bQ2l+gVG6eSDixzPh4AZFsFmNeve/H068u+1
-         pdI4gtyOn5f9o+yU5VxVaFZAATo7qSwYR6mhyKn61VaX0DpEWPwZzHZGee0L7vZMVsw8
-         C70g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702895296; x=1703500096;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=zMHQ7FxowXR5FFIdGfBk5jzb/m9p5t8DcpQDDoewRFI=;
-        b=QJ7QyImdDsepNJXc8q/qpGDlSMc7ZYFGpQS5CL2DXdCUOukQ37YKmjg9u6VFtwN/09
-         YRzjCe5MqTtooNDDZvQyw4hgWLVAA4EJ1jL2IUwwtsjcwcVsQ5d7FU36iicxa7CVS81s
-         z3SRZ8NXrPTiVv2kTGCc5t+E+AUNizKwoL1P14++IbbvmW19+73RrentZg+yMb82fVK2
-         8McjS6MvQej0JpmwAitvmqufWx0NKD0Gm9iP15VB6PlUlF8fEWXhD2vJ2mqz558Cakjv
-         h3TZduzDZ88D1lNH9GBL5Gce8inm9t2msV1wx6RNp88s9NhefafHwP933YHWFYVFgKZ6
-         QE9w==
-X-Gm-Message-State: AOJu0YzN6BhihDqvCGh5jDRp7Fgf4Qs9Up7B8yv3Oho2+dmjWETCeNDE
-	lqN7+qXvTTimEpB4AdMRCe6/iA==
-X-Google-Smtp-Source: AGHT+IFNqdVjTsVfqg55j2HNpFNzKNlJ2ojJ/0gzSRJsrU1bgBZJvUCsm0dU6AGb0FSUTSXUYerbtQ==
-X-Received: by 2002:a05:600c:30d2:b0:40c:4378:f111 with SMTP id h18-20020a05600c30d200b0040c4378f111mr6666736wmn.80.1702895296475;
-        Mon, 18 Dec 2023 02:28:16 -0800 (PST)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id ay35-20020a05600c1e2300b0040b2b38a1fasm41857967wmb.4.2023.12.18.02.28.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 18 Dec 2023 02:28:16 -0800 (PST)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Mon, 18 Dec 2023 11:28:11 +0100
-Subject: [PATCH v6 3/3] remoteproc: qcom: pas: Add SM8650 remoteproc
- support
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8490A14273;
+	Mon, 18 Dec 2023 10:34:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 14DED1FB;
+	Mon, 18 Dec 2023 02:35:15 -0800 (PST)
+Received: from [10.57.46.32] (unknown [10.57.46.32])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 0F2193F7C5;
+	Mon, 18 Dec 2023 02:34:27 -0800 (PST)
+Message-ID: <f4ed3577-f78b-4b78-b306-8284ccb96043@arm.com>
+Date: Mon, 18 Dec 2023 10:34:26 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 3/8] coresight-tpdm: Add CMB dataset support
+Content-Language: en-GB
+To: Tao Zhang <quic_taozha@quicinc.com>,
+ Mathieu Poirier <mathieu.poirier@linaro.org>,
+ Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+ Konrad Dybcio <konradybcio@gmail.com>, Mike Leach <mike.leach@linaro.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: Jinlong Mao <quic_jinlmao@quicinc.com>, Leo Yan <leo.yan@linaro.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, coresight@lists.linaro.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, Tingwei Zhang <quic_tingweiz@quicinc.com>,
+ Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+ Trilok Soni <quic_tsoni@quicinc.com>, Song Chai <quic_songchai@quicinc.com>,
+ linux-arm-msm@vger.kernel.org, andersson@kernel.org
+References: <1700533494-19276-1-git-send-email-quic_taozha@quicinc.com>
+ <1700533494-19276-4-git-send-email-quic_taozha@quicinc.com>
+From: Suzuki K Poulose <suzuki.poulose@arm.com>
+In-Reply-To: <1700533494-19276-4-git-send-email-quic_taozha@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-Id: <20231218-topic-sm8650-upstream-remoteproc-v6-3-3d16b37f154b@linaro.org>
-References: <20231218-topic-sm8650-upstream-remoteproc-v6-0-3d16b37f154b@linaro.org>
-In-Reply-To: <20231218-topic-sm8650-upstream-remoteproc-v6-0-3d16b37f154b@linaro.org>
-To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, 
- Mathieu Poirier <mathieu.poirier@linaro.org>, 
- Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Manivannan Sadhasivam <mani@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2548;
- i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=dRIOpHbtn+6YYLWqsr39smtxV2/mprbkVvuZ9tMTQvg=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBlgB67IsYHxNVpjconBvtj59V1HQ9zeRFPORhCOYk2
- phvMO3yJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZYAeuwAKCRB33NvayMhJ0f9nD/
- 93SMhaFuOPVVU1Er3kqOX598KiaKIl32niAIr2osSGkIxuxenuZvX24Tcn9PztF48p8U6ufxy/O2+0
- +wcC+WtpkpEsjOSgrRBFLQejJwU2ubRcX1IWRaTYsMpb3wY0STsjgAZGkxoZL9ddQlGD1Jyf1011Sx
- 68R2ht4e3csATJtSqje0XwoItD1dJlLMzzHOvbh3qEZAcJpDpvV8mfE+1E4d7f1x9un9tl5Bq8MNRE
- jfMmAh788ZSbYVGu5InJnXVoSM4KRWNamYQtD7Qj93HNTqnxGHNcT1ejCiJSvYp9RxfWloazROERD5
- yp3vTin8wWCqtpirSAMbqJGdr7yNz7iFUjMAkdYz4QCZLBtXkznQ8mLYT522yQWHlmYLEH67dcujwr
- SRfeGb7qWBZXWalL7jHbxNT8MjE0uHRso9+9Vfd6FVss9alvX+1esxTnGB1VZaC1XIgZuDmigNaW6Z
- 85jCws4ah3yUmuBvRLMZy/zoStmMo/JHF1+Fv3r6vNeC/OAJ0pT6GWfq/6TC9eykVZVI7hXc2FdI0h
- RQaM3dFYk+J+glMhDoVvLRSDZZ4iGDwLL4iz6BsJ1ZlP94E4ET9262Quof01Em1tVT0JaYuURNAk/5
- c1eKxDQ9DsWeF2NgIQtJwQyxipomq8tvG0UGlAF/CMlJU0f6nByYWwHytSNA==
-X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
- fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 
-Add DSP Peripheral Authentication Service support for the SM8650 platform.
+On 21/11/2023 02:24, Tao Zhang wrote:
+> CMB (continuous multi-bit) is one of TPDM's dataset type. CMB subunit
+> can be enabled for data collection by writing 1 to the first bit of
+> CMB_CR register. This change is to add enable/disable function for
+> CMB dataset by writing CMB_CR register.
+> 
+> Reviewed-by: James Clark <james.clark@arm.com>
+> Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
+> Signed-off-by: Jinlong Mao <quic_jinlmao@quicinc.com>
+> ---
+>   drivers/hwtracing/coresight/coresight-tpdm.c | 31 ++++++++++++++++++++
+>   drivers/hwtracing/coresight/coresight-tpdm.h |  8 +++++
+>   2 files changed, 39 insertions(+)
+> 
+> diff --git a/drivers/hwtracing/coresight/coresight-tpdm.c b/drivers/hwtracing/coresight/coresight-tpdm.c
+> index 97654aa4b772..c8bb38822e08 100644
+> --- a/drivers/hwtracing/coresight/coresight-tpdm.c
+> +++ b/drivers/hwtracing/coresight/coresight-tpdm.c
+> @@ -131,6 +131,11 @@ static bool tpdm_has_dsb_dataset(struct tpdm_drvdata *drvdata)
+>   	return (drvdata->datasets & TPDM_PIDR0_DS_DSB);
+>   }
+>   
+> +static bool tpdm_has_cmb_dataset(struct tpdm_drvdata *drvdata)
+> +{
+> +	return (drvdata->datasets & TPDM_PIDR0_DS_CMB);
+> +}
+> +
+>   static umode_t tpdm_dsb_is_visible(struct kobject *kobj,
+>   				   struct attribute *attr, int n)
+>   {
+> @@ -267,6 +272,17 @@ static void tpdm_enable_dsb(struct tpdm_drvdata *drvdata)
+>   	writel_relaxed(val, drvdata->base + TPDM_DSB_CR);
+>   }
+>   
+> +static void tpdm_enable_cmb(struct tpdm_drvdata *drvdata)
+> +{
+> +	u32 val;
+> +
+> +	val = readl_relaxed(drvdata->base + TPDM_CMB_CR);
+> +	val |= TPDM_CMB_CR_ENA;
+> +
+> +	/* Set the enable bit of CMB control register to 1 */
+> +	writel_relaxed(val, drvdata->base + TPDM_CMB_CR);
+> +}
+> +
+>   /*
+>    * TPDM enable operations
+>    * The TPDM or Monitor serves as data collection component for various
+> @@ -281,6 +297,8 @@ static void __tpdm_enable(struct tpdm_drvdata *drvdata)
+>   
+>   	if (tpdm_has_dsb_dataset(drvdata))
+>   		tpdm_enable_dsb(drvdata);
+> +	if (tpdm_has_cmb_dataset(drvdata))
+> +		tpdm_enable_cmb(drvdata);
+>   
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
----
- drivers/remoteproc/qcom_q6v5_pas.c | 50 ++++++++++++++++++++++++++++++++++++++
- 1 file changed, 50 insertions(+)
+Don't we need to add this check in the "property read" section ?
+Otherwise, we could generate warnings unnecessarily ?
 
-diff --git a/drivers/remoteproc/qcom_q6v5_pas.c b/drivers/remoteproc/qcom_q6v5_pas.c
-index e90783fd1129..f7967a25ecdb 100644
---- a/drivers/remoteproc/qcom_q6v5_pas.c
-+++ b/drivers/remoteproc/qcom_q6v5_pas.c
-@@ -1213,6 +1213,53 @@ static const struct adsp_data sc7280_wpss_resource = {
- 	.ssctl_id = 0x19,
- };
- 
-+static const struct adsp_data sm8650_cdsp_resource = {
-+	.crash_reason_smem = 601,
-+	.firmware_name = "cdsp.mdt",
-+	.dtb_firmware_name = "cdsp_dtb.mdt",
-+	.pas_id = 18,
-+	.dtb_pas_id = 0x25,
-+	.minidump_id = 7,
-+	.auto_boot = true,
-+	.proxy_pd_names = (char*[]){
-+		"cx",
-+		"mxc",
-+		"nsp",
-+		NULL
-+	},
-+	.load_state = "cdsp",
-+	.ssr_name = "cdsp",
-+	.sysmon_name = "cdsp",
-+	.ssctl_id = 0x17,
-+	.region_assign_idx = 2,
-+	.region_assign_count = 1,
-+	.region_assign_shared = true,
-+	.region_assign_vmid = QCOM_SCM_VMID_CDSP,
-+};
-+
-+static const struct adsp_data sm8650_mpss_resource = {
-+	.crash_reason_smem = 421,
-+	.firmware_name = "modem.mdt",
-+	.dtb_firmware_name = "modem_dtb.mdt",
-+	.pas_id = 4,
-+	.dtb_pas_id = 0x26,
-+	.minidump_id = 3,
-+	.auto_boot = false,
-+	.decrypt_shutdown = true,
-+	.proxy_pd_names = (char*[]){
-+		"cx",
-+		"mss",
-+		NULL
-+	},
-+	.load_state = "modem",
-+	.ssr_name = "mpss",
-+	.sysmon_name = "modem",
-+	.ssctl_id = 0x12,
-+	.region_assign_idx = 2,
-+	.region_assign_count = 2,
-+	.region_assign_vmid = QCOM_SCM_VMID_MSS_MSA,
-+};
-+
- static const struct of_device_id adsp_of_match[] = {
- 	{ .compatible = "qcom,msm8226-adsp-pil", .data = &adsp_resource_init},
- 	{ .compatible = "qcom,msm8953-adsp-pil", .data = &msm8996_adsp_resource},
-@@ -1268,6 +1315,9 @@ static const struct of_device_id adsp_of_match[] = {
- 	{ .compatible = "qcom,sm8550-adsp-pas", .data = &sm8550_adsp_resource},
- 	{ .compatible = "qcom,sm8550-cdsp-pas", .data = &sm8550_cdsp_resource},
- 	{ .compatible = "qcom,sm8550-mpss-pas", .data = &sm8550_mpss_resource},
-+	{ .compatible = "qcom,sm8650-adsp-pas", .data = &sm8550_adsp_resource},
-+	{ .compatible = "qcom,sm8650-cdsp-pas", .data = &sm8650_cdsp_resource},
-+	{ .compatible = "qcom,sm8650-mpss-pas", .data = &sm8650_mpss_resource},
- 	{ },
- };
- MODULE_DEVICE_TABLE(of, adsp_of_match);
+i.e, if (tpdm_has_cmb_..())
+	  rc |= fwnode_..read_property(cmb-elem-size...)
 
--- 
-2.34.1
+Similarly for DSB.
+
+>   	CS_LOCK(drvdata->base);
+>   }
+> @@ -314,6 +332,17 @@ static void tpdm_disable_dsb(struct tpdm_drvdata *drvdata)
+>   	writel_relaxed(val, drvdata->base + TPDM_DSB_CR);
+>   }
+>   
+> +static void tpdm_disable_cmb(struct tpdm_drvdata *drvdata)
+> +{
+> +	u32 val;
+> +
+> +	val = readl_relaxed(drvdata->base + TPDM_CMB_CR);
+> +	val &= ~TPDM_CMB_CR_ENA;
+> +
+> +	/* Set the enable bit of CMB control register to 0 */
+> +	writel_relaxed(val, drvdata->base + TPDM_CMB_CR);
+> +}
+> +
+>   /* TPDM disable operations */
+>   static void __tpdm_disable(struct tpdm_drvdata *drvdata)
+>   {
+> @@ -321,6 +350,8 @@ static void __tpdm_disable(struct tpdm_drvdata *drvdata)
+>   
+>   	if (tpdm_has_dsb_dataset(drvdata))
+>   		tpdm_disable_dsb(drvdata);
+> +	if (tpdm_has_cmb_dataset(drvdata))
+> +		tpdm_disable_cmb(drvdata);
+
+minor nit: Instead of having these :
+
+	if (tpdm_has_XY_()
+		tpdm_{enable/disable}_XY_()
+I prefer :
+
+	tpdm_{enable/disable}_XY_
+
+and the helper take care of returning early if the feature is
+not present.
+
+
+Suzuki
+
+
+>   
+>   	CS_LOCK(drvdata->base);
+>   }
+> diff --git a/drivers/hwtracing/coresight/coresight-tpdm.h b/drivers/hwtracing/coresight/coresight-tpdm.h
+> index 4115b2a17b8d..0098c58dfdd6 100644
+> --- a/drivers/hwtracing/coresight/coresight-tpdm.h
+> +++ b/drivers/hwtracing/coresight/coresight-tpdm.h
+> @@ -9,6 +9,12 @@
+>   /* The max number of the datasets that TPDM supports */
+>   #define TPDM_DATASETS       7
+>   
+> +/* CMB Subunit Registers */
+> +#define TPDM_CMB_CR		(0xA00)
+> +
+> +/* Enable bit for CMB subunit */
+> +#define TPDM_CMB_CR_ENA		BIT(0)
+> +
+>   /* DSB Subunit Registers */
+>   #define TPDM_DSB_CR		(0x780)
+>   #define TPDM_DSB_TIER		(0x784)
+> @@ -79,10 +85,12 @@
+>    *
+>    * PERIPHIDR0[0] : Fix to 1 if ImplDef subunit present, else 0
+>    * PERIPHIDR0[1] : Fix to 1 if DSB subunit present, else 0
+> + * PERIPHIDR0[2] : Fix to 1 if CMB subunit present, else 0
+>    */
+>   
+>   #define TPDM_PIDR0_DS_IMPDEF	BIT(0)
+>   #define TPDM_PIDR0_DS_DSB	BIT(1)
+> +#define TPDM_PIDR0_DS_CMB	BIT(2)
+>   
+>   #define TPDM_DSB_MAX_LINES	256
+>   /* MAX number of EDCR registers */
 
 
