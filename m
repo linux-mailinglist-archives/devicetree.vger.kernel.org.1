@@ -1,99 +1,161 @@
-Return-Path: <devicetree+bounces-26710-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26711-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33D51817936
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 18:52:42 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 05E98817956
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 19:02:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 58DE41C25CDB
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 17:52:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A04F3285E16
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 18:02:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D0C571448;
-	Mon, 18 Dec 2023 17:51:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54CA25D72E;
+	Mon, 18 Dec 2023 18:02:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=waldekranz-com.20230601.gappssmtp.com header.i=@waldekranz-com.20230601.gappssmtp.com header.b="lU/Dul2r"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bmailout1.hostsharing.net (bmailout1.hostsharing.net [83.223.95.100])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEC7972061;
-	Mon, 18 Dec 2023 17:51:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=wunner.de
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=h08.hostsharing.net
-Received: from h08.hostsharing.net (h08.hostsharing.net [IPv6:2a01:37:1000::53df:5f1c:0])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256
-	 client-signature RSA-PSS (4096 bits) client-digest SHA256)
-	(Client CN "*.hostsharing.net", Issuer "RapidSSL TLS RSA CA G1" (verified OK))
-	by bmailout1.hostsharing.net (Postfix) with ESMTPS id 257F330016C04;
-	Mon, 18 Dec 2023 18:51:38 +0100 (CET)
-Received: by h08.hostsharing.net (Postfix, from userid 100393)
-	id EEB731FC00; Mon, 18 Dec 2023 18:51:37 +0100 (CET)
-Date: Mon, 18 Dec 2023 18:51:37 +0100
-From: Lukas Wunner <lukas@wunner.de>
-To: Francesco Dolcini <francesco@dolcini.it>
-Cc: Lino Sanfilippo <l.sanfilippo@kunbus.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-integrity@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/2] reset: Add Infineon SLB9670 TPM reset driver
-Message-ID: <20231218175137.GA12115@wunner.de>
-References: <ae40859b82494d75e9ad7bf616b3264138ad1f6a.1695754856.git.lukas@wunner.de>
- <75b775d0526e72f292e0546a306b37680714686c.1695754856.git.lukas@wunner.de>
- <ZV0+Zk590YSsvhFo@francesco-nb.int.toradex.com>
- <20231122112949.GA18812@wunner.de>
- <ZV4bBowT9ij+BQup@francesco-nb.int.toradex.com>
- <20231123085943.GA15463@wunner.de>
- <ZYCCiMzTQWztcFk9@francesco-nb.int.toradex.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8712F5BFAE
+	for <devicetree@vger.kernel.org>; Mon, 18 Dec 2023 18:02:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=waldekranz.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=waldekranz.com
+Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-50e33fe3856so1929082e87.1
+        for <devicetree@vger.kernel.org>; Mon, 18 Dec 2023 10:02:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=waldekranz-com.20230601.gappssmtp.com; s=20230601; t=1702922565; x=1703527365; darn=vger.kernel.org;
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=O97uj9e08s7i9aDFJjFTarMdK1KNX1EjP0tGTzMNUfY=;
+        b=lU/Dul2rHvHzDJJAL07vWE0RX5l7/RZt1WB7UGIcMkur4wNppgJ1QQJr71txsvxx9Z
+         Q6+C2ZsS8XWDanRu0dD72fyjYDXshkuhLhc63BTELgUea476pnweRknF+I9WsELr5ieG
+         0Fv4zvKPmdWruIBFI00vowpAizZuvty+LqlBwhMYCV4YMpExj0hSG+m5SWRg88Z3YUK8
+         c8Yhw9n1N75/5/h+2Ydi4bOSTxLQGiXmBYFv2HhZP9YF6tq7UsNGBFbb+l6ysJ6yiq5a
+         ptYlLmvLyfZEN5j6xCDacvUbucWOa64ZnOxdLHFLDsIxMc6Y1/NdTHPpOpMyLaNwHyO4
+         vGNQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702922565; x=1703527365;
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=O97uj9e08s7i9aDFJjFTarMdK1KNX1EjP0tGTzMNUfY=;
+        b=E38Q96Z+AQTyeuLxddFaphYJ+ZWhYIKcL4WxukIUuywW0GX0P7UWDqUK5uumQN8F/v
+         0DaaXZ5tiMbu4MFWpKpfMcYvQJEuQcCtYjrA55BTr/+RmcaoGONDLHqAG8D+ILibl0fP
+         raR/17eegByEzCZbzs24if36hgT4J4goSk8EwgotAfOqVp0SDwaoMt1IZUVjIatbnyIb
+         MXSBW+qB5Lr4gKpmVEr4q7DUCLdVJTbz/D+NdUH+cZN6EQ58sIb17Nvr2ugeGJ233HSO
+         QOWgMLiyIG5cvodXE6TWyQlTKrjKBAuVAEfIkSuvkA8PKE+gH6Xg/vyppZHMiXpRgNyM
+         qSIQ==
+X-Gm-Message-State: AOJu0Yz5VUNP4AwVq/0vcW2dNjbnOS7Lrx5EvcBjfBQG9lWLyjENsiSA
+	Avz32Mcee/d6qr8GJgGx+F0DfeCqlho9GLZmhKE=
+X-Google-Smtp-Source: AGHT+IGeBDtRuHT4pEAlzpm7lZdQbY5RWwW8araiEEgTbOTDMdKguqOI6mkQ3QIsoZKYSZrlc5gdzg==
+X-Received: by 2002:ac2:4ec4:0:b0:50e:3e13:ae89 with SMTP id p4-20020ac24ec4000000b0050e3e13ae89mr420029lfr.66.1702922564804;
+        Mon, 18 Dec 2023 10:02:44 -0800 (PST)
+Received: from wkz-x13 (a124.broadband3.quicknet.se. [46.17.184.124])
+        by smtp.gmail.com with ESMTPSA id o22-20020ac24bd6000000b0050d1672f10csm2839691lfq.39.2023.12.18.10.02.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 18 Dec 2023 10:02:43 -0800 (PST)
+From: Tobias Waldekranz <tobias@waldekranz.com>
+To: "Russell King (Oracle)" <linux@armlinux.org.uk>
+Cc: davem@davemloft.net, kuba@kernel.org, kabel@kernel.org, andrew@lunn.ch,
+ hkallweit1@gmail.com, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next 2/4] net: phy: marvell10g: Fix power-up when
+ strapped to start powered down
+In-Reply-To: <ZXx0eVzJ3I1PwOa0@shell.armlinux.org.uk>
+References: <20231214201442.660447-1-tobias@waldekranz.com>
+ <20231214201442.660447-3-tobias@waldekranz.com>
+ <ZXx0eVzJ3I1PwOa0@shell.armlinux.org.uk>
+Date: Mon, 18 Dec 2023 19:02:43 +0100
+Message-ID: <87y1dr75j0.fsf@waldekranz.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZYCCiMzTQWztcFk9@francesco-nb.int.toradex.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain
 
-Hi Francesco,
+On fre, dec 15, 2023 at 15:44, "Russell King (Oracle)" <linux@armlinux.org.uk> wrote:
+> On Thu, Dec 14, 2023 at 09:14:40PM +0100, Tobias Waldekranz wrote:
+>> On devices which are hardware strapped to start powered down (PDSTATE
+>> == 1), make sure that we clear the power-down bit on all units
+>> affected by this setting.
+>> 
+>> Signed-off-by: Tobias Waldekranz <tobias@waldekranz.com>
+>> ---
+>>  drivers/net/phy/marvell10g.c | 17 ++++++++++++++---
+>>  1 file changed, 14 insertions(+), 3 deletions(-)
+>> 
+>> diff --git a/drivers/net/phy/marvell10g.c b/drivers/net/phy/marvell10g.c
+>> index 83233b30d7b0..1c1333d867fb 100644
+>> --- a/drivers/net/phy/marvell10g.c
+>> +++ b/drivers/net/phy/marvell10g.c
+>> @@ -344,11 +344,22 @@ static int mv3310_power_down(struct phy_device *phydev)
+>>  
+>>  static int mv3310_power_up(struct phy_device *phydev)
+>>  {
+>> +	static const u16 resets[][2] = {
+>> +		{ MDIO_MMD_PCS,    MV_PCS_BASE_R    + MDIO_CTRL1 },
+>> +		{ MDIO_MMD_PCS,    MV_PCS_1000BASEX + MDIO_CTRL1 },
+>
+> This is not necessary. The documentation states that the power down
+> bit found at each of these is the same physical bit appearing in two
+> different locations. So only one is necessary.
 
-On Mon, Dec 18, 2023 at 06:34:00PM +0100, Francesco Dolcini wrote:
-> On Thu, Nov 23, 2023 at 09:59:43AM +0100, Lukas Wunner wrote:
-> > On Wed, Nov 22, 2023 at 04:15:18PM +0100, Francesco Dolcini wrote:
-> > > On Wed, Nov 22, 2023 at 12:29:49PM +0100, Lukas Wunner wrote:
-> > > > On Wed, Nov 22, 2023 at 12:33:58AM +0100, Francesco Dolcini wrote:
-> > > > > Not to mention that I was able to see the driver probe succeed in a
-> > > > > similar setup to the one you are describing in the commit message
-> > > > > (different board, arm64, but nothing done by the platform firmware).
-> > > > 
-> > > > Hm, is the RST# pin even connected on that board?
-> > > 
-> > > Yes, it's connected and it is asserted/de-asserted (aka toggled) during
-> > > startup from the HW reset circuit. However this is not implementing the
-> > > reset sequence you are implementing here.
-> > 
-> > Section 4.5 of the datasheet seems to indicate that unless the sequence
-> > in Figure 3 is observed, the TPM may enter a defense mode against
-> > dictionary attacks "from which a recovery is very complex or even not
-> > possible."
-> > 
-> > Simply toggling the RST# pin might therefore not be sufficient to ensure
-> > the TPM is operable.
-> 
-> I am trying to follow-up with infineon on this regard, do you already
-> have any insight from them maybe?
-> 
-> Maybe this procedure is relevant only when the device is in "security
-> defense state"?
+Right, I'll remove the entry for 1000BASE-X in v2.
 
-Sorry, I honestly don't know.  A colleague has talked to an FAE at an
-Infineon reseller but they couldn't give a definitive answer either.
-I'm very interested to hear whatever you learn from Infineon.
+>> +		{ MDIO_MMD_PCS,    MV_PCS_BASE_T    + MDIO_CTRL1 },
+>> +		{ MDIO_MMD_PMAPMD, MDIO_CTRL1 },
+>> +		{ MDIO_MMD_VEND2,  MV_V2_PORT_CTRL },
+>> +	};
+>>  	struct mv3310_priv *priv = dev_get_drvdata(&phydev->mdio.dev);
+>> -	int ret;
+>> +	int i, ret;
+>>  
+>> -	ret = phy_clear_bits_mmd(phydev, MDIO_MMD_VEND2, MV_V2_PORT_CTRL,
+>> -				 MV_V2_PORT_CTRL_PWRDOWN);
+>> +	for (i = 0; i < ARRAY_SIZE(resets); i++) {
+>> +		ret = phy_clear_bits_mmd(phydev, resets[i][0], resets[i][1],
+>> +					 MV_V2_PORT_CTRL_PWRDOWN);
+>
+> While MV_V2_PORT_CTRL_PWRDOWN may correspond with the correct bit for
+> the MDIO CTRL1 register, we have MDIO_CTRL1_LPOWER which describes
+> this bit. Probably the simplest solution would be to leave the
+> existing phy_clear_bits_mmd(), remove the vendor 2 entry from the
+> table, and run through that table first.
 
-Thanks,
+Yes, I'll fix this in v2.
 
-Lukas
+> Lastly, how does this impact a device which has firmware, and the
+> firmware manages the power-down state (the manual states that unused
+> blocks will be powered down - I assume by the firmware.) If this
+> causes blocks which had been powered down by the firmware because
+> they're not being used to then be powered up, that is a regression.
+> Please check that this is not the case.
+
+This will be very hard for me to test, as I only have access to boards
+without dedicated FLASHes. That said, I don't think I understand how
+this is related to how the devices load their firmware. As I understand
+it, we should pick up the device in the exact same state after the MDIO
+load as we would if it had booted on its own, via a serial FLASH.
+
+The selection of PDSTATE, based on the sample-at-reset pins, is
+independent of how firmware is loaded.
+
+From the manual:
+
+    The following registers can be set to force the units to power down.
+
+I interpret this as the power-down bits only acting as gates to stop
+firmware from powering up a particular unit. Conversely, clearing one of
+these bits merely indicates that the firmware is free to power up the
+unit in question.
+
+On a device strapped to PDSTATE==0, I would expect all of these bits to
+already be cleared, since the manual states that the value of PDSTATE is
+latched into all these bits at reset.
+
+
 
