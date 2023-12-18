@@ -1,168 +1,124 @@
-Return-Path: <devicetree+bounces-26731-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26732-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A93DB817C71
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 22:09:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1688F817C90
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 22:21:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 53EFA285A79
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 21:09:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A2C2E281F1E
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 21:21:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96A9C73468;
-	Mon, 18 Dec 2023 21:09:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3E9C7349F;
+	Mon, 18 Dec 2023 21:21:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ciLWQEvo"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Q188g71d"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 774C81EA87;
-	Mon, 18 Dec 2023 21:09:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4BEA4C433C8;
-	Mon, 18 Dec 2023 21:09:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1702933761;
-	bh=3MosmBp20tBwmMyOMpL4/9U1Iq8BUk5yFmEzT3FIu+Y=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ciLWQEvoFSIjUWoq7MmMjRuQzmeI40nckoq5YN8t+0TKtP3DKxNW1UkupnFIUkZdY
-	 ANbkYGZEHTUf/auALal47E3J4Os4Rdqcp4D3QhBmndZ9gcPWugEz0W2aZvSMy2b09e
-	 0+0/RjTSlyMNLBW/Fy4gXIyYRLt4wwf3Q19zD/pjzdxM0jo3Wstr5asw6R6liPa9iw
-	 hWYJRM6x5Kal//jGmY+K+9meZ3k/kPxRF2jkBzNvxrtEXIwZItFQT5iv4IyDBrKGPc
-	 Ko9hV7HU2RmP4YOvNURGhU6MggWrbnOF0FIr80iAzVxgohZigkCZq1aZAJYLGd6odG
-	 ZOQIh1zNj/BBQ==
-Message-ID: <9a86efae-2855-484e-be01-cf5fffdf9f95@kernel.org>
-Date: Mon, 18 Dec 2023 23:09:15 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 433FD73465;
+	Mon, 18 Dec 2023 21:21:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1702934482; x=1734470482;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=59SP83dOu7bE+wlgAIUbh0lOytZrwfO2TAn0TlI0bMA=;
+  b=Q188g71dZXWjtk2B8M1dLz7bKtn3skdyBvPIfzC5vt4nkly08XkBUZ9f
+   ydbCX7D2k8SCC7AwCQUsV9hgKo215iJBAHMXaX8Jj5YxoyaWVJTzAuhUM
+   /WbOF2XMPJrFTwsSRqMD0DHD8jsCQRJVQE/d0FAEEIYd2ZPs0dE8xnHUN
+   uNz0buXw+EQ6ulH6zuJH5OXhze+dEPQVtc6DdG4dON0o1gxWPz/fSUQdI
+   aBnQRgQyfR7l7HVdv5l+PX3rDYP4Y2AUNmRwHvgrbZph67Ri8GK2lRELY
+   u670GyKFwh2YtgM1EDXlVIfH3pKFYwFvaNU6IHfzNY89TIXbsuJo5DcZs
+   w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10928"; a="392744400"
+X-IronPort-AV: E=Sophos;i="6.04,286,1695711600"; 
+   d="scan'208";a="392744400"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Dec 2023 13:21:21 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10928"; a="919397432"
+X-IronPort-AV: E=Sophos;i="6.04,286,1695711600"; 
+   d="scan'208";a="919397432"
+Received: from lkp-server02.sh.intel.com (HELO b07ab15da5fe) ([10.239.97.151])
+  by fmsmga001.fm.intel.com with ESMTP; 18 Dec 2023 13:21:19 -0800
+Received: from kbuild by b07ab15da5fe with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1rFL36-0004XH-2c;
+	Mon, 18 Dec 2023 21:21:16 +0000
+Date: Tue, 19 Dec 2023 05:20:34 +0800
+From: kernel test robot <lkp@intel.com>
+To: Joshua Yeong <joshua.yeong@starfivetech.com>,
+	jeeheng.sia@starfivetech.com, leyfoon.tan@starfivetech.com,
+	jassisinghbrar@gmail.com, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
+Cc: oe-kbuild-all@lists.linux.dev, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/3] mailbox: starfive: Add StarFive Meu Mailbox Driver
+Message-ID: <202312190442.dVG2haPq-lkp@intel.com>
+References: <20231218061201.98136-2-joshua.yeong@starfivetech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/5] dt-bindings: phy: cadence-torrent: Add optional
- input reference clock for PLL1
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Swapnil Kashinath Jakhade <sjakhade@cadence.com>,
- "vkoul@kernel.org" <vkoul@kernel.org>, "kishon@kernel.org"
- <kishon@kernel.org>, "robh+dt@kernel.org" <robh+dt@kernel.org>,
- "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Cc: Milind Parab <mparab@cadence.com>, "s-vadapalli@ti.com"
- <s-vadapalli@ti.com>
-References: <20231212114840.1468903-1-sjakhade@cadence.com>
- <20231212114840.1468903-2-sjakhade@cadence.com>
- <e09e4df8-ec36-4953-9bb0-75a3ce0b535d@linaro.org>
- <DM6PR07MB61548DC520B4BA66D6FC625AC58CA@DM6PR07MB6154.namprd07.prod.outlook.com>
- <38d171ee-b94b-4d1c-8702-60735a005596@linaro.org>
-From: Roger Quadros <rogerq@kernel.org>
-In-Reply-To: <38d171ee-b94b-4d1c-8702-60735a005596@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231218061201.98136-2-joshua.yeong@starfivetech.com>
+
+Hi Joshua,
+
+kernel test robot noticed the following build warnings:
+
+[auto build test WARNING on robh/for-next]
+[also build test WARNING on linus/master v6.7-rc6]
+[cannot apply to next-20231218]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Joshua-Yeong/mailbox-starfive-Add-StarFive-Meu-Mailbox-Driver/20231218-141510
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20231218061201.98136-2-joshua.yeong%40starfivetech.com
+patch subject: [PATCH 1/3] mailbox: starfive: Add StarFive Meu Mailbox Driver
+config: loongarch-allmodconfig (https://download.01.org/0day-ci/archive/20231219/202312190442.dVG2haPq-lkp@intel.com/config)
+compiler: loongarch64-linux-gcc (GCC) 13.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231219/202312190442.dVG2haPq-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202312190442.dVG2haPq-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/mailbox/starfive-meu.c:50: warning: This comment starts with '/**', but isn't a kernel-doc comment. Refer Documentation/doc-guide/kernel-doc.rst
+    * StarFive MEU Mailbox allocated channel information
 
 
-On 14/12/2023 09:22, Krzysztof Kozlowski wrote:
-> On 14/12/2023 08:02, Swapnil Kashinath Jakhade wrote:
->> Hi Krzysztof,
->>
->>> -----Original Message-----
->>> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>> Sent: Wednesday, December 13, 2023 12:19 PM
->>> To: Swapnil Kashinath Jakhade <sjakhade@cadence.com>; vkoul@kernel.org;
->>> kishon@kernel.org; robh+dt@kernel.org; krzysztof.kozlowski+dt@linaro.org;
->>> conor+dt@kernel.org; linux-phy@lists.infradead.org; linux-
->>> kernel@vger.kernel.org; devicetree@vger.kernel.org
->>> Cc: Milind Parab <mparab@cadence.com>; rogerq@kernel.org; s-
->>> vadapalli@ti.com
->>> Subject: Re: [PATCH v2 1/5] dt-bindings: phy: cadence-torrent: Add optional
->>> input reference clock for PLL1
->>>
->>> EXTERNAL MAIL
->>>
->>>
->>> On 12/12/2023 12:48, Swapnil Jakhade wrote:
->>>> Torrent PHY can have two input reference clocks. Update bindings
->>>
->>> It already supports two.
->>>
->>
->> Thanks for your comments.
->> refclk and pll1_refclk are the two input reference clocks for the PLLs.
->> phy_en_refclk is used to enable output reference clock in some cases.
-> 
-> Why input clock is used to enable output reference clock?
+vim +50 drivers/mailbox/starfive-meu.c
 
-Looking at the driver code, "phy_en_refclk" is used at 2 places only to
-set the parent of 2 clocks apparently called "received reference clock"
-and "derived reference clock", either of which can be used to enable an
-optional reference clock output feature.
-
-My understanding is that it is a separate refclk input than 'refclk' (pll0)
-or 'pll1_refclk' which can be used to enable a reference clock output feature.
-
-So this PHY can support a total of 3 input reference clocks:
-"refclk" is PLL0 reference clock and is required on all platforms
-"pll1_refclk" is PLL1 reference clock and is required on some platforms
-"phy_en_refclk" is reference for output reference clock generator and is optional on all platforms
-
-Swapnil, can you please confirm my understanding? Thanks!
-
-> 
->>
->>>> to support dual reference clock multilink configurations.
->>>>
->>>> Signed-off-by: Swapnil Jakhade <sjakhade@cadence.com>
->>>> ---
->>>>  .../devicetree/bindings/phy/phy-cadence-torrent.yaml        | 6 +++---
->>>>  1 file changed, 3 insertions(+), 3 deletions(-)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/phy/phy-cadence-
->>> torrent.yaml b/Documentation/devicetree/bindings/phy/phy-cadence-
->>> torrent.yaml
->>>> index dfb31314face..98946f549895 100644
->>>> --- a/Documentation/devicetree/bindings/phy/phy-cadence-torrent.yaml
->>>> +++ b/Documentation/devicetree/bindings/phy/phy-cadence-torrent.yaml
->>>> @@ -35,14 +35,14 @@ properties:
->>>>      minItems: 1
->>>>      maxItems: 2
->>>>      description:
->>>> -      PHY reference clock for 1 item. Must contain an entry in clock-names.
->>>> -      Optional Parent to enable output reference clock.
->>>> +      PHY input reference clocks - refclk & pll1_refclk (optional).
->>>> +      Optional Parent to enable output reference clock (phy_en_refclk).
->>>
->>> So third clock? But you allow only two? Confusing.
->>>
->>
->> Yes, if both refclk and pll1_refclk are present, phy_en_refclk can't be used.
->>
->>>>
->>>>    clock-names:
->>>>      minItems: 1
->>>>      items:
->>>>        - const: refclk
->>>> -      - const: phy_en_refclk
->>>> +      - enum: [ pll1_refclk, phy_en_refclk ]
->>>
->>> This does not match your commit msg. You already had two clocks there.
->>>
->> Yes, but refclk was the single input reference clock used for PLLs earlier.
->> As stated in commit message, a new input reference clock (pll1_refclk) is added here.
-> 
-> existing phy_en_refclk is also input reference clock, isn't it?
-> 
->>
-> 
-> Best regards,
-> Krzysztof
-> 
+    48	
+    49	/**
+  > 50	 * StarFive MEU Mailbox allocated channel information
+    51	 *
+    52	 * @meu: Pointer to parent mailbox device
+    53	 * @pchan: Physical channel within which this doorbell resides in
+    54	 * @doorbell: doorbell number pertaining to this channel
+    55	 */
+    56	struct meu_db_channel {
+    57		struct starfive_meu *meu;
+    58		unsigned int pchan;
+    59		unsigned int doorbell;
+    60	};
+    61	
 
 -- 
-cheers,
--roger
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
