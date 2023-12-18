@@ -1,59 +1,76 @@
-Return-Path: <devicetree+bounces-26619-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26620-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD108817455
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 15:55:54 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 554ED81747E
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 15:59:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 856DC1C2448F
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 14:55:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EA0341F24469
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 14:59:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 265A43A1C0;
-	Mon, 18 Dec 2023 14:55:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D1033788D;
+	Mon, 18 Dec 2023 14:59:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dYV+TcCa"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mSbBcYtI"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01B583A1B6;
-	Mon, 18 Dec 2023 14:55:36 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5DE83C433C7;
-	Mon, 18 Dec 2023 14:55:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45E1E37888;
+	Mon, 18 Dec 2023 14:59:28 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 30277C433C8;
+	Mon, 18 Dec 2023 14:59:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1702911336;
-	bh=UURxzOfkRIDHP70cvgvabsbuX8qYqf3ZrFU1zvZQ5io=;
+	s=k20201202; t=1702911568;
+	bh=+s1PxLoBbDNRFaBMX1KOfgXL4tbGv/n20FEjafyPq/w=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=dYV+TcCaadw6lq0zV3I5VHGhBYyeOsb4W6fJsF0FwmPXqaiQzo8ETfsFVoKdG4H4r
-	 4FxLC1NHykn9egLbaV01V2uQZcAvzM0WIYhxwDQ5arilC1ErwjP/WF2vq0ZRYWaehl
-	 LkIOcVKNF1VQdHzGVBK/2QWWZslD4MZm5EkzVl7DxdOoU0wKrvU+4DYHBjtfMIhtzN
-	 gppALRstSpSl8dzJr3HIgkD108tzNVXYOPehYAbaSDYSjp2WFgRiYVcRWIBCW5zn1S
-	 eP4+ZQrGmDErsaMBDg6XsT/00sDb7l9+5VoMkJapgS9Than61l+X3VkW096rY1PFRZ
-	 eYCZ3s4lFYlbA==
-Date: Mon, 18 Dec 2023 14:55:30 +0000
+	b=mSbBcYtIEC/E7RqBQIzkCxec5TKgazZsWXYPY9+enwlKZ6OrEtXBMl8SgdPgJxfni
+	 krjGAU88aSHxxRA9x2MosUdLH2JQEF3QyLCBsR4LT//axdCB2DPmzwqsq8FQ9OuVrQ
+	 9FLgC5B75iasJpQCBSSE/PM26xfwWhdbZy81d6LhGHghtD+3r8iDWC07xhx6g+gh4p
+	 h1ttAeppZzSTCNU8XIlDlD1c8K//wMRQYcfd1poIbVGlHSBJGByodmP+Xa7zynYPx7
+	 dKgH4hQkK0Ik3hIiPZyIbjUigosGJhLSxyisitYnEJ+EFf1Yf/bmYq+R7HPmtThshI
+	 dXPcLYPG7K52A==
+Date: Mon, 18 Dec 2023 14:59:20 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Brandon Cheo Fusi <fusibrandon13@gmail.com>
-Cc: Yangtao Li <tiny.windzz@gmail.com>, Viresh Kumar <vireshk@kernel.org>,
-	Nishanth Menon <nm@ti.com>, Stephen Boyd <sboyd@kernel.org>,
+To: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+Cc: Samuel Holland <samuel.holland@sifive.com>,
+	Jessica Clarke <jrtc27@jrtc27.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Emil Renner Berthing <kernel@esmil.dk>,
+	Samin Guo <samin.guo@starfivetech.com>,
 	Paul Walmsley <paul.walmsley@sifive.com>,
 	Palmer Dabbelt <palmer@dabbelt.com>,
 	Albert Ou <aou@eecs.berkeley.edu>,
-	"Rafael J . Wysocki" <rafael@kernel.org>,
-	Maxime Ripard <mripard@kernel.org>, linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v2 3/5] cpufreq: sun50i: Add D1 support
-Message-ID: <20231218-blabber-slapstick-ab7ae45af019@spud>
-References: <20231218110543.64044-1-fusibrandon13@gmail.com>
- <20231218110543.64044-4-fusibrandon13@gmail.com>
+	Hal Feng <hal.feng@starfivetech.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Jose Abreu <joabreu@synopsys.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Richard Cochran <richardcochran@gmail.com>,
+	Giuseppe Cavallaro <peppe.cavallaro@st.com>, netdev@vger.kernel.org,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	LKML <linux-kernel@vger.kernel.org>,
+	linux-riscv <linux-riscv@lists.infradead.org>,
+	linux-clk@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, kernel@collabora.com
+Subject: Re: [PATCH v3 2/9] dt-bindings: net: starfive,jh7110-dwmac: Add
+ JH7100 SoC compatible
+Message-ID: <20231218-snowcap-charter-f8c75312eaa9@spud>
+References: <20231215204050.2296404-1-cristian.ciocaltea@collabora.com>
+ <20231215204050.2296404-3-cristian.ciocaltea@collabora.com>
+ <A7C96942-07CB-40FD-AAAA-4A8947DEE7CA@jrtc27.com>
+ <65fd52f1-6861-42b0-9148-266766d054b1@sifive.com>
+ <6c62e3b2-acde-4580-9b67-56683289e45e@collabora.com>
+ <20231217-spray-livestock-a59d630b751e@spud>
+ <fa4b9c1d-6033-4b35-b03c-e03419edb5dc@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,50 +78,44 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="4Y/+A79iTqO1pQeH"
+	protocol="application/pgp-signature"; boundary="xehaJyWNZIrFr2oM"
 Content-Disposition: inline
-In-Reply-To: <20231218110543.64044-4-fusibrandon13@gmail.com>
+In-Reply-To: <fa4b9c1d-6033-4b35-b03c-e03419edb5dc@collabora.com>
 
 
---4Y/+A79iTqO1pQeH
+--xehaJyWNZIrFr2oM
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Dec 18, 2023 at 12:05:41PM +0100, Brandon Cheo Fusi wrote:
-> Add support for D1 based devices to the Allwinner H6 cpufreq
-> driver
->=20
-> Signed-off-by: Brandon Cheo Fusi <fusibrandon13@gmail.com>
-> ---
->  drivers/cpufreq/sun50i-cpufreq-nvmem.c | 1 +
->  1 file changed, 1 insertion(+)
->=20
-> diff --git a/drivers/cpufreq/sun50i-cpufreq-nvmem.c b/drivers/cpufreq/sun=
-50i-cpufreq-nvmem.c
-> index 32a9c88f8..ccf83780f 100644
-> --- a/drivers/cpufreq/sun50i-cpufreq-nvmem.c
-> +++ b/drivers/cpufreq/sun50i-cpufreq-nvmem.c
-> @@ -160,6 +160,7 @@ static struct platform_driver sun50i_cpufreq_driver =
-=3D {
-> =20
->  static const struct of_device_id sun50i_cpufreq_match_list[] =3D {
->  	{ .compatible =3D "allwinner,sun50i-h6" },
-> +	{ .compatible =3D "allwinner,sun20i-d1" },
 
-I thought the feedback in v2 was to drop this change, since the
-devicetree has the sun50i-h6 as a fallback compatible?
+> > Won't this also relax the naming for all devices that allow a single
+> > reset, but expect the stmmaceth one? I'm not sure that that actually
+> > matters, I think the consumer bindings have constraints themselves.
+>=20
+> Before commit 843f603762a5 ("dt-bindings: net: snps,dwmac: Add 'ahb'
+> reset/reset-name"), the 'stmmaceth' was the only possible option, hence
+> there was no need for any constraints on the consumer bindings.  But
+> afterwards it was allowed to use both resets, hence I think the bindings
+> should have been updated at that time by adding 'maxItems: 1' to prevent
+> using the 2nd reset.
+>=20
+> I could fix this in a separate series, if it's not something mandatory
+> to be handled here.
 
---4Y/+A79iTqO1pQeH
+If it is not introduced by this series, I don't see why it could not be
+handled separately if needed.
+
+--xehaJyWNZIrFr2oM
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZYBdYgAKCRB4tDGHoIJi
-0tB6AP91iVWjmaYX10I36D86nBIbqoU4U/4Umgf27YchmH4OsQD/ZV/idPgamnZq
-+RnYLmusNu1HEX5o2wVaNtYGhLIC3gs=
-=W0H8
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZYBeSAAKCRB4tDGHoIJi
+0kaHAQDOEcbXi7+qAEGh2DmnasVoZMuRlaf7aM8UbL0TedMfrAEAz4ujNDzOgg49
+iA4wb0r9fYms/C/CCKtbwb34l7U9Wg8=
+=8B0i
 -----END PGP SIGNATURE-----
 
---4Y/+A79iTqO1pQeH--
+--xehaJyWNZIrFr2oM--
 
