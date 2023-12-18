@@ -1,324 +1,143 @@
-Return-Path: <devicetree+bounces-26674-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26678-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C0EC817799
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 17:36:25 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 726B38177AC
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 17:38:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E69BC1F23315
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 16:36:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1DC3A28557B
+	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 16:38:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D1A14FF61;
-	Mon, 18 Dec 2023 16:36:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84DB25D74F;
+	Mon, 18 Dec 2023 16:36:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=siemens.com header.i=jan.kiszka@siemens.com header.b="ZZh6KIz5"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="rYAwltur"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mta-65-225.siemens.flowmailer.net (mta-65-225.siemens.flowmailer.net [185.136.65.225])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E72B849888
-	for <devicetree@vger.kernel.org>; Mon, 18 Dec 2023 16:36:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rts-flowmailer.siemens.com
-Received: by mta-65-225.siemens.flowmailer.net with ESMTPSA id 202312181636034ff690da7f57a13a14
-        for <devicetree@vger.kernel.org>;
-        Mon, 18 Dec 2023 17:36:03 +0100
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; s=fm1;
- d=siemens.com; i=jan.kiszka@siemens.com;
- h=Date:From:Subject:To:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:Cc:References:In-Reply-To;
- bh=QEPvUtK31LV+jAo+kM2ZtbylOl+eGbzSdGqDVd1scUE=;
- b=ZZh6KIz5YaO8hQ1W6cDsYbO2yFxZePwfvxJ32mcKHVTyvTu+znOkxCrj28n0fxyrTUgwsd
- 0tbltDUCA00PMz/QiFuOTtksSk0nTPbyGXwBkQ+f+Oy3rq26MZFtvas0Jr3b58WmwoYEl/Dd
- CdyiPhVcspBvpRP2q8k0fqqaHjo+I=;
-From: Jan Kiszka <jan.kiszka@siemens.com>
-To: Nishanth Menon <nm@ti.com>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Tero Kristo <kristo@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Bao Cheng Su <baocheng.su@siemens.com>,
-	Chao Zeng <chao.zeng@siemens.com>,
-	Li Hua Qian <huaqian.li@siemens.com>
-Subject: [PATCH 4/4] dts: iot2050: Support IOT2050-SM variant
-Date: Mon, 18 Dec 2023 17:36:00 +0100
-Message-Id: <11e0b0c8b828254567a8ff89820c067cacad2150.1702917360.git.jan.kiszka@siemens.com>
-In-Reply-To: <cover.1702917360.git.jan.kiszka@siemens.com>
-References: <cover.1702917360.git.jan.kiszka@siemens.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6A445A848
+	for <devicetree@vger.kernel.org>; Mon, 18 Dec 2023 16:36:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-40c31f18274so42393345e9.0
+        for <devicetree@vger.kernel.org>; Mon, 18 Dec 2023 08:36:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1702917405; x=1703522205; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=gEiQXLxdqBICDnY79OHSv3Sv47jiKw8LbCcpfTgH4AA=;
+        b=rYAwlturr+bIMqMBYOyTwtLqEsayxtxFdwk18m/lDSyCXh1s6+KXm6LvfY0dKH4mOK
+         B+/FDrdu3OeTWD2irdRWBgTOnf6LiILkdHJhiOptG1ncJuVLEh+4RHUiuBSP5endswuI
+         J/QKH2H0Tg8OTMT2gsBrcyg3BUlNUK4EQeQIR28ZEFhw4cyvbElUQ5EfTUG1hj9vYOQi
+         wciLta28AwOBfBA7k2jYEFeAppt+ZsurvDXsxYIffgq+xSBPZLn/GIYp8/uz0iS6ukiz
+         JCP2VNOgVsrwGjcYf0cy8qAk1SJnJc5C8dY7IyF7U7OpwsXi1E81rK8blOk4ngNw/4xb
+         jTyw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702917405; x=1703522205;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=gEiQXLxdqBICDnY79OHSv3Sv47jiKw8LbCcpfTgH4AA=;
+        b=wYvd1fttjZ988caGSFTFM+5u1K39te8lzZDryNuHZA9xsLSzGnR0/n1rGhc9ZXusQq
+         /RbHMR0daipELIOTctSYy24EyTceBrZPfdG08E7JJPMPYsAlOsOIe4uLRbB0macFqxew
+         0tGgFZacw2fVbgf5c2z/+wa81zFB94E0gv7f8kHTpti8HY1wTR03LQJ3v1q9aWF8WXHG
+         lNle7AVL/8gmp1yhAqSBEFNR4HBaNAB07wdOgYcD1RRiubb+iCmYgKNM/R2MeLoOW69d
+         WnCbxHLW9FJVaPsQQ2GJWznsUYIXBJC4gV769Mg6WQGwpB3/s1S5gGlRtWdn8r44RX5u
+         8NVw==
+X-Gm-Message-State: AOJu0YwWnNhI+od46EWDsb0Gfp8wFFEv54YWqZZNXK0gbyg6yYm29j4D
+	INV/DbKaIekPzlB90xeh1TOwPw==
+X-Google-Smtp-Source: AGHT+IGcR59A5Bj1YcHV7wLTQuxeAEf6nNsIf2gMifDZJ7RvLX6KX0t1OUKr656X8kPMPXJYtBhlxQ==
+X-Received: by 2002:a05:600c:4454:b0:40c:6af0:ccea with SMTP id v20-20020a05600c445400b0040c6af0cceamr3046238wmn.223.1702917405037;
+        Mon, 18 Dec 2023 08:36:45 -0800 (PST)
+Received: from [127.0.1.1] ([79.115.23.25])
+        by smtp.gmail.com with ESMTPSA id fc17-20020a05600c525100b0040c42681fcesm35836936wmb.15.2023.12.18.08.36.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 18 Dec 2023 08:36:44 -0800 (PST)
+From: Abel Vesa <abel.vesa@linaro.org>
+Date: Mon, 18 Dec 2023 18:36:40 +0200
+Subject: [PATCH] arm64: dts: qcom: x1e80100-qcp: Fix supplies for some LDOs
+ in PM8550
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Flowmailer-Platform: Siemens
-Feedback-ID: 519:519-294854:519-21489:flowmailer
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20231218-x1e80100-qcp-dts-fix-pm8550-regulators-supplies-v1-1-0a313ce87745@linaro.org>
+X-B4-Tracking: v=1; b=H4sIABd1gGUC/x2NQQqDMBAAvyJ77sJugiX0K6WH1Kw2YDXNahHEv
+ 7t4nMPM7KBSsyg8mh2q/LPmeTLgWwPdJ06DYE7G4Mh5dhxwYwnERPjrCqZFsc8blm9oW8Iqwzr
+ GZa6KupYyWhjJJ36L78ndI1i1VDHjOj5fx3EC8amMG4EAAAA=
+To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Abel Vesa <abel.vesa@linaro.org>, 
+ Sibi Sankar <quic_sibis@quicinc.com>, 
+ Rajendra Nayak <quic_rjendra@quicinc.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1502; i=abel.vesa@linaro.org;
+ h=from:subject:message-id; bh=Cl7h63hRqbdjD8FcBXVyS7ODnGEJNkYQ9rmoYCPxuEI=;
+ b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBlgHUaVLNVexMcAhqX6L+thj8elYSTNMwz5ezpi
+ k/tIpAcuxSJAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCZYB1GgAKCRAbX0TJAJUV
+ VqJSEAC5J89LYaPgxDvV0RCxay2Vbk3bACk7uXnEbEoKbLjeNrB01LDgfcRRf3GS3bri0nKitnd
+ 3fSggNdcNLFN34f1F2v1rm6WIU8uHMe+biLnCwL+n4CAU/AcCAoMt8Te6mGO6stfIRu4kuzMRTK
+ UPAr2jjSNwl3jpbpbyw+zFugqFiVuq5gkmC1EJBEJeKLJKsKBtSXLDfanC23S00AiQtpG5LvHlO
+ UKHVsfxhykUGJgbFLmUS5wv2p+8+sn3FpR2OyxJZqTimRP/7ZuxL79QpS3JM2Pxrq2KKDudaH1V
+ 056Z/GMhM3dTuciPekcj3YbqPCHts6DqsfrO6s6U+86vCo1G453lx4NU4XON/lWVNclTeNkvo+/
+ 6g80OmpRXOXt9S5SmEPnRvmk2G54mLKJo6YIT8GikU2ZaSXkyWB8k1TlqCpWW8WXCzZvbyv/9R2
+ MRxBoSpOyBkJnor0903mZLkhYRvGQBn8Ei8/i2jxR5IRK+4/AF3wAjyEj0gP2q7pCEOmfmb2rwC
+ v+Wp04tqo+6JAktjIDCnV/ii8hQpX8pl6DOrkQV83tHv37Yeb+0FcTV+pIVB4wk5IuN08sYEcNv
+ QmDUME4ntIXfl3KJ6BZYSV4al31v5KcDA77sALTH+Brylw0mhxjQcgVoe49UEyWmxkZ8kzYAEDM
+ uMorS+bVjjjZP8g==
+X-Developer-Key: i=abel.vesa@linaro.org; a=openpgp;
+ fpr=6AFF162D57F4223A8770EF5AF7BF214136F41FAE
 
-From: Baocheng Su <baocheng.su@siemens.com>
+The LDOs 1, 4 and 10 from PM8550 share the same supply, the SMPS 4
+from PM8550ve. This needs to be done through shared supply approach
+otherwise the parsing will fail. Also fix a bindings check failure.
 
-Main differences between the new variant and Advanced PG2:
-
-1. Arduino interface is removed. Instead, an new ASIC is added for
-   communicating with PLC 1200 signal modules.
-2. USB 3.0 type A connector is removed, only USB 2.0 type A connector is
-   avaiable.
-3. DP interface is tailored down. Instead, to communicate with the
-   PLC 1200 signal modules, a USB 3.0 type B connector is added but the
-   signal is not USB.
-4. DDR size is increased to 4 GB.
-5. Two sensors are added, one tilt sensor and one light sensor.
-
-The light sensor it not yet added to the DT at this stage as it depends
-on to-be-added bindings.
-
-Co-developed-by: Chao Zeng <chao.zeng@siemens.com>
-Signed-off-by: Chao Zeng <chao.zeng@siemens.com>
-Co-developed-by: Li Hua Qian <huaqian.li@siemens.com>
-Signed-off-by: Li Hua Qian <huaqian.li@siemens.com>
-Signed-off-by: Baocheng Su <baocheng.su@siemens.com>
-[Jan: rebase over arduino refactoring, split-out light sensor]
-Signed-off-by: Jan Kiszka <jan.kiszka@siemens.com>
+Fixes: af16b00578a7 ("arm64: dts: qcom: Add base X1E80100 dtsi and the QCP dts")
+Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
 ---
- arch/arm64/boot/dts/ti/Makefile               |   1 +
- .../dts/ti/k3-am6548-iot2050-advanced-sm.dts  | 210 ++++++++++++++++++
- 2 files changed, 211 insertions(+)
- create mode 100644 arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-sm.dts
+Looks like I forgot to do the same thing for the QCP board.
 
-diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-index 77a347f9f47d..9b15eaad284c 100644
---- a/arch/arm64/boot/dts/ti/Makefile
-+++ b/arch/arm64/boot/dts/ti/Makefile
-@@ -53,6 +53,7 @@ dtb-$(CONFIG_ARCH_K3) += k3-am6528-iot2050-basic-pg2.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am6548-iot2050-advanced.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am6548-iot2050-advanced-m2.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am6548-iot2050-advanced-pg2.dtb
-+dtb-$(CONFIG_ARCH_K3) += k3-am6548-iot2050-advanced-sm.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am654-base-board.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am654-gp-evm.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am654-evm.dtb
-diff --git a/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-sm.dts b/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-sm.dts
-new file mode 100644
-index 000000000000..ab3eef683890
---- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-sm.dts
-@@ -0,0 +1,210 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (c) Siemens AG, 2023
-+ *
-+ * Authors:
-+ *   Baocheng Su <baocheng.su@siemens.com>
-+ *   Chao Zeng <chao.zeng@siemens.com>
-+ *   Huaqian Li <huaqian.li@siemens.com>
-+ *
-+ * AM6548-based (quad-core) IOT2050 SM variant, Product Generation 2
-+ * 4 GB RAM, 16 GB eMMC, USB-serial converter on connector X30
-+ *
-+ * Product homepage:
-+ * https://new.siemens.com/global/en/products/automation/pc-based/iot-gateways/simatic-iot2050.html
-+ */
-+
-+/dts-v1/;
-+
-+#include "k3-am6548-iot2050-advanced-common.dtsi"
-+#include "k3-am65-iot2050-common-pg2.dtsi"
-+
-+/ {
-+	compatible = "siemens,iot2050-advanced-sm", "ti,am654";
-+	model = "SIMATIC IOT2050 Advanced SM";
-+
-+	memory@80000000 {
-+		device_type = "memory";
-+		/* 4G RAM */
-+		reg = <0x00000000 0x80000000 0x00000000 0x80000000>,
-+		      <0x00000008 0x80000000 0x00000000 0x80000000>;
-+	};
-+
-+	aliases {
-+		spi1 = &main_spi0;
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&leds_pins_default>, <&user1_led_pins>;
-+
-+		user-led1-red {
-+			gpios = <&wkup_gpio0 52 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		user-led1-green {
-+			gpios = <&wkup_gpio0 53 GPIO_ACTIVE_HIGH>;
-+		};
-+	};
-+};
-+
-+&main_pmx0 {
-+	main_pcie_enable_pins_default: main-pcie-enable-default-pins {
-+		pinctrl-single,pins = <
-+			AM65X_IOPAD(0x01d8, PIN_OUTPUT, 7)  /* (AH12) GPIO1_22 */
-+		>;
-+	};
-+
-+	main_spi0_pins: main-spi0-default-pins  {
-+		pinctrl-single,pins = <
-+			AM65X_IOPAD(0x01c4, PIN_INPUT, 0) /* (AH13) SPI0_CLK */
-+			AM65X_IOPAD(0x01c8, PIN_INPUT, 0) /* (AE13) SPI0_D0 */
-+			AM65X_IOPAD(0x01cc, PIN_INPUT, 0) /* (AD13) SPI0_D1 */
-+			AM65X_IOPAD(0x01bc, PIN_OUTPUT, 0) /* (AG13) SPI0_CS0 */
-+		>;
-+	};
-+};
-+
-+&main_pmx1 {
-+	asic_spi_mux_ctrl_pin: asic-spi-mux-ctrl-default-pins {
-+		pinctrl-single,pins = <
-+			AM65X_IOPAD(0x0010, PIN_OUTPUT, 7)  /* (D21) GPIO1_86 */
-+		>;
-+	};
-+};
-+
-+&wkup_pmx0 {
-+	user1_led_pins: user1-led-default-pins {
-+		pinctrl-single,pins = <
-+			/* (AB1) WKUP_UART0_RXD:WKUP_GPIO0_52, as USER 1 led red */
-+			AM65X_WKUP_IOPAD(0x00a0, PIN_OUTPUT, 7)
-+			/* (AB5) WKUP_UART0_TXD:WKUP_GPIO0_53, as USER 1 led green */
-+			AM65X_WKUP_IOPAD(0x00a4, PIN_OUTPUT, 7)
-+		>;
-+	};
-+
-+	soc_asic_pins: soc-asic-default-pins {
-+		pinctrl-single,pins = <
-+			AM65X_WKUP_IOPAD(0x0044, PIN_INPUT, 7)  /* (P4) WKUP_GPIO0_29 */
-+			AM65X_WKUP_IOPAD(0x0048, PIN_INPUT, 7)  /* (P5) WKUP_GPIO0_30 */
-+			AM65X_WKUP_IOPAD(0x004c, PIN_INPUT, 7)  /* (P1) WKUP_GPIO0_31 */
-+		>;
-+	};
-+};
-+
-+&main_gpio0 {
-+	gpio-line-names = "main_gpio0-base";
-+};
-+
-+&main_gpio1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 =
-+		<&cp2102n_reset_pin_default>,
-+		<&main_pcie_enable_pins_default>,
-+		<&asic_spi_mux_ctrl_pin>;
-+	gpio-line-names =
-+		/* 0..9 */
-+		"", "", "", "", "", "", "", "", "", "",
-+		/* 10..19 */
-+		"", "", "", "", "", "", "", "", "", "",
-+		/* 20..29 */
-+		"", "", "", "", "CP2102N-RESET", "", "", "", "", "",
-+		/* 30..39 */
-+		"", "", "", "", "", "", "", "", "", "",
-+		/* 40..49 */
-+		"", "", "", "", "", "", "", "", "", "",
-+		/* 50..59 */
-+		"", "", "", "", "", "", "", "", "", "",
-+		/* 60..69 */
-+		"", "", "", "", "", "", "", "", "", "",
-+		/* 70..79 */
-+		"", "", "", "", "", "", "", "", "", "",
-+		/* 80..86 */
-+		"", "", "", "", "", "", "ASIC-spi-mux-ctrl";
-+};
-+
-+&wkup_gpio0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 =
-+		<&push_button_pins_default>,
-+		<&db9_com_mode_pins_default>,
-+		<&soc_asic_pins>;
-+	gpio-line-names =
-+		/* 0..9 */
-+		"wkup_gpio0-base", "", "", "", "UART0-mode1", "UART0-mode0",
-+		"UART0-enable", "UART0-terminate", "", "WIFI-disable",
-+		/* 10..19 */
-+		"", "", "", "", "", "", "", "", "", "",
-+		/* 20..29 */
-+		"", "", "", "", "", "USER-button", "", "", "","ASIC-gpio-0",
-+		/* 30..31 */
-+		"ASIC-gpio-1", "ASIC-gpio-2";
-+};
-+
-+&main_spi0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_spi0_pins>;
-+
-+	#address-cells = <1>;
-+	#size-cells= <0>;
-+};
-+
-+&mcu_spi0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&mcu_spi0_pins_default>;
-+};
-+
-+&main_i2c3 {
-+	accelerometer: lsm6dso@6a {
-+		compatible = "st,lsm6dso";
-+		reg = <0x6a>;
-+	};
-+
-+	/delete-node/ edp-bridge@f;
-+};
-+
-+&dss {
-+	status = "disabled";
-+};
-+
-+&dss_ports {
-+	/delete-node/ port@1;
-+};
-+
-+&serdes0 {
-+	assigned-clocks = <&k3_clks 153 4>, <&serdes0 AM654_SERDES_CMU_REFCLK>;
-+	assigned-clock-parents = <&k3_clks 153 8>, <&k3_clks 153 4>;
-+};
-+
-+&serdes1 {
-+	status = "disabled";
-+};
-+
-+&pcie0_rc {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&minipcie_pins_default>;
-+
-+	num-lanes = <1>;
-+	phys = <&serdes0 PHY_TYPE_PCIE 1>;
-+	phy-names = "pcie-phy0";
-+	reset-gpios = <&wkup_gpio0 27 GPIO_ACTIVE_HIGH>;
-+	status = "okay";
-+};
-+
-+&pcie1_rc {
-+	status = "disabled";
-+};
-+
-+&dwc3_0 {
-+	assigned-clock-parents = <&k3_clks 151 4>,  /* set REF_CLK to 20MHz i.e. PER0_PLL/48 */
-+				 <&k3_clks 151 9>;  /* set PIPE3_TXB_CLK to CLK_12M_RC/256 (for HS only) */
-+	/delete-property/ phys;
-+	/delete-property/ phy-names;
-+};
-+
-+&usb0 {
-+	maximum-speed = "high-speed";
-+	/delete-property/ snps,dis-u1-entry-quirk;
-+	/delete-property/ snps,dis-u2-entry-quirk;
-+};
+Sorry about that.
+---
+ arch/arm64/boot/dts/qcom/x1e80100-qcp.dts | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/x1e80100-qcp.dts b/arch/arm64/boot/dts/qcom/x1e80100-qcp.dts
+index 3746e1de3623..a37ad9475c90 100644
+--- a/arch/arm64/boot/dts/qcom/x1e80100-qcp.dts
++++ b/arch/arm64/boot/dts/qcom/x1e80100-qcp.dts
+@@ -40,13 +40,11 @@ regulators-0 {
+ 
+ 		vdd-bob1-supply = <&vph_pwr>;
+ 		vdd-bob2-supply = <&vph_pwr>;
+-		vdd-l1-supply = <&vreg_s4c_1p8>;
++		vdd-l1-l4-l10-supply = <&vreg_s4c_1p8>;
+ 		vdd-l2-l13-l14-supply = <&vreg_bob1>;
+-		vdd-l4-supply = <&vreg_s4c_1p8>;
+ 		vdd-l5-l16-supply = <&vreg_bob1>;
+ 		vdd-l6-l7-supply = <&vreg_bob2>;
+ 		vdd-l8-l9-supply = <&vreg_bob1>;
+-		vdd-l10-supply = <&vreg_s4c_1p8>;
+ 		vdd-l12-supply = <&vreg_s5j_1p2>;
+ 		vdd-l15-supply = <&vreg_s4c_1p8>;
+ 		vdd-l17-supply = <&vreg_bob2>;
+
+---
+base-commit: 48e8992e33abf054bcc0bb2e77b2d43bb899212e
+change-id: 20231218-x1e80100-qcp-dts-fix-pm8550-regulators-supplies-03d1be3f026a
+
+Best regards,
 -- 
-2.35.3
+Abel Vesa <abel.vesa@linaro.org>
 
 
