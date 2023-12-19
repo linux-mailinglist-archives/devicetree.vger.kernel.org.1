@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-26786-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26787-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id BEAAF8181EA
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 08:03:10 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 07E278181F4
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 08:04:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 39688B24A12
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 07:03:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 743231F2737B
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 07:04:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77A6FC8E0;
-	Tue, 19 Dec 2023 06:59:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01DFE847B;
+	Tue, 19 Dec 2023 07:03:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Gzu/v4Wp"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="rsku3z7Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
+Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8010018E2A
-	for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 06:58:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BDAC882A
+	for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 07:02:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-54cd2281ccbso4811482a12.2
-        for <devicetree@vger.kernel.org>; Mon, 18 Dec 2023 22:58:59 -0800 (PST)
+Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-54c79968ffbso4461397a12.3
+        for <devicetree@vger.kernel.org>; Mon, 18 Dec 2023 23:02:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702969138; x=1703573938; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1702969377; x=1703574177; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=NLIBia1/d/IaC1c6cAScL8pDuXaExKskc6Sm20oW1cU=;
-        b=Gzu/v4WpoS6wEaaV8Fl+aw23JlhEIa3BosDoPBoACxwL8tYPJx92mUwz40qfDJXp2c
-         oiHMMJ8Djnsm7cOnOLC6jTYhU6TsqdooXnSUEDkHH49tC1A7TXmIY/pK9wEvp7sADfy+
-         /oloanXTv+JUes1ttNHmfzMZo2t2IdyVjG9ZAaKAWlO2392MuFhmBKjoCO+bitYR0ba6
-         +0sJG8q9Pa0P+qhS8DqTbYWQu9c6Jy+swrz/vEtn/SH5qLVi+dzxRcGM8PItQef4AaSg
-         ETX0+yUwvJy+CyeyaEYNQK7cyqztiKU4X/kv8HLkk3yc12kJ2LVQoJIvtykv9pIbuJit
-         HROg==
+        bh=MkPfR7lqGwzgji3xkFR/F6aOTx95fUBqDD8cPbAtw+8=;
+        b=rsku3z7Q7POdWN1RHk63mfThfY7C5ZB+WCdB6A8X6I2s8nyeMZrEPk26t63lHK2s8M
+         F/wZoU8Yi8QcQEvYD/626npTzwAueN9fRnsCG96gFC1uVu5k22OYZngGRwRHyuIj2d1R
+         2PKYRfimB32Fcs9F+focJX8GifUq8bf2RP6MURn6urhtzo70RG4lsJVznIEcPjhD951F
+         wSpc8nbweFYXpjEiPsvMEUtjyXaBRG1rboTm9XSRa6bt+q159ibTu8h1aEI7lIda057/
+         N3PtQB5VYfUkemaoBMTH7iYmQbdTv6OAv5xArlMObBJkweeZBIZP3hzMn/MGVVB7PKz7
+         dqSw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702969138; x=1703573938;
+        d=1e100.net; s=20230601; t=1702969377; x=1703574177;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=NLIBia1/d/IaC1c6cAScL8pDuXaExKskc6Sm20oW1cU=;
-        b=ows3Zb2EXJWlBu+y+mAlWN6QbT9YdTz1NseEPsetFDvUYnO70S38Rwqgpre6kxa8W0
-         L+XB3D+NJSu7nRrg6+Cv9Akn/SQ7GM1j2fVbEJqM0W2Tr3+20irCCPty56HKlcx4simQ
-         dSb4iaGLYHTVuXPGhtk6aX7SB7yRRQq6xPluXTc56s21b4Eygh/og2CxuZf+PCg+fN7b
-         w+GDLYNGVoyl2L26U6zcst3l7aOXx3BxfRGw6SQek2jBUaCfkHPlXlUVYu+OcyKtu5tA
-         2QSIfDuDrrc1huhdv8EUalAP6fBu0obtsHZGPqf3I+NTJTmAx367TC1rZDQpJiw2OSU2
-         RloQ==
-X-Gm-Message-State: AOJu0Yxb6lmp6yTb/zMuw9n5QMnHQg29Xon2mIRT93NuRPh5RLLCg+9U
-	anxcrYs1eA3F9HTvjhcURop7fQ==
-X-Google-Smtp-Source: AGHT+IFFrjYyQQNWYnR7SUFse7FkIt2/TvWVCYjloQPJbSRUVXTgyBVnNRHPtoMyHrdqSbPNJqSWTA==
-X-Received: by 2002:aa7:c049:0:b0:54c:4837:93fc with SMTP id k9-20020aa7c049000000b0054c483793fcmr9966186edo.67.1702969137807;
-        Mon, 18 Dec 2023 22:58:57 -0800 (PST)
+        bh=MkPfR7lqGwzgji3xkFR/F6aOTx95fUBqDD8cPbAtw+8=;
+        b=lRo1BtwYIPZJYmHAIyrUhhVPrznnD0FTxoOr2V0JQTVl8agxCk8K6MhUIBLA7LjbTH
+         3r7RP9xo6S5vSG8OhvtQA+UwqNkzN9Az7ipfstz45JpUriwPQpcRtvp5CauYl+MMLw6m
+         UYYwjOxOTwKATsFOQjOxFW9QNi5ausBf0bwZHoNnG+daEnkynay89p5qNziBiDBmVixJ
+         Rf4ZTLRDNam4/VLPMRDwBatUB6CTQ2Ssi9QoCpuVnDoIkCDdzR1/xicTImo/GB7jXi48
+         +jToRels6uYfVx5xks8A65QLj3ypNQRKpIPcwozl8nZceiCGaj5F2hEuTRXGILvH9lYP
+         h88g==
+X-Gm-Message-State: AOJu0Yy8poC9LTT8iCj59iV4t8iqskLGYdmAaO0NGAw0IazTuxf8sffq
+	RrwuM6Fl9qDJCTZXHkcHVNONLA==
+X-Google-Smtp-Source: AGHT+IHoky2a0wT2P75ZQuG73j9o9IJGi6xpCojJy5xOCSuvkVpdwJzWhiLYKEWJ9aT+Q4OJwwrIUw==
+X-Received: by 2002:a17:907:1a51:b0:a23:49f6:3ae9 with SMTP id mf17-20020a1709071a5100b00a2349f63ae9mr1263775ejc.61.1702969377463;
+        Mon, 18 Dec 2023 23:02:57 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id fe1-20020a056402390100b005527c02c1d6sm4976746edb.50.2023.12.18.22.58.56
+        by smtp.gmail.com with ESMTPSA id jw23-20020a17090776b700b00a23365f1290sm3080362ejc.218.2023.12.18.23.02.53
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 18 Dec 2023 22:58:57 -0800 (PST)
-Message-ID: <75f20b9a-f661-4c7f-8b7d-4a37ea790232@linaro.org>
-Date: Tue, 19 Dec 2023 07:58:55 +0100
+        Mon, 18 Dec 2023 23:02:56 -0800 (PST)
+Message-ID: <ec730ce7-2021-4cad-97e6-0a86c6063533@linaro.org>
+Date: Tue, 19 Dec 2023 08:02:49 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,16 +66,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 6/6] arm64: dts: qcom: aim300: add AIM300 AIoT
+Subject: Re: [PATCH v3 4/6] arm64: dts: qcom: qcs8550: introduce qcs8550 dtsi
 Content-Language: en-US
 To: Tengfei Fan <quic_tengfan@quicinc.com>, andersson@kernel.org,
  konrad.dybcio@linaro.org, robh+dt@kernel.org,
  krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
 Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Qiang Yu <quic_qianyu@quicinc.com>,
- Ziyue Zhang <quic_ziyuzhan@quicinc.com>
+ linux-kernel@vger.kernel.org
 References: <20231219005007.11644-1-quic_tengfan@quicinc.com>
- <20231219005007.11644-7-quic_tengfan@quicinc.com>
+ <20231219005007.11644-5-quic_tengfan@quicinc.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -121,60 +120,41 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231219005007.11644-7-quic_tengfan@quicinc.com>
+In-Reply-To: <20231219005007.11644-5-quic_tengfan@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 19/12/2023 01:50, Tengfei Fan wrote:
-> Add AIM300 AIoT board DTS support, including usb, serial, PCIe, and sound
-> card functions support.
+> QCS8550 is derived from SM8550, it is mainly used in IoT scenarios.
+
+What are the differences? You need to describe the hardware, you have
+entire commit msg for something useful which will avoid such comments
+from reviewers.
+
 > 
-> Co-developed-by: Qiang Yu <quic_qianyu@quicinc.com>
-> Signed-off-by: Qiang Yu <quic_qianyu@quicinc.com>
-> Co-developed-by: Ziyue Zhang <quic_ziyuzhan@quicinc.com>
-> Signed-off-by: Ziyue Zhang <quic_ziyuzhan@quicinc.com>
 > Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
 > ---
->  arch/arm64/boot/dts/qcom/Makefile             |   1 +
->  .../boot/dts/qcom/qcs8550-aim300-aiot.dts     | 579 ++++++++++++++++++
->  2 files changed, 580 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/qcs8550-aim300-aiot.dts
+>  arch/arm64/boot/dts/qcom/qcs8550.dtsi | 6 ++++++
+>  1 file changed, 6 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/qcom/qcs8550.dtsi
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> index 39889d5f8e12..fe54f4518165 100644
-> --- a/arch/arm64/boot/dts/qcom/Makefile
-> +++ b/arch/arm64/boot/dts/qcom/Makefile
-> @@ -92,6 +92,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= qcm6490-idp.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-1000.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-4000.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= qcs6490-rb3gen2.dtb
-> +dtb-$(CONFIG_ARCH_QCOM) += qcs8550-aim300-aiot.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= qdu1000-idp.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= qrb2210-rb1.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= qrb4210-rb2.dtb
-> diff --git a/arch/arm64/boot/dts/qcom/qcs8550-aim300-aiot.dts b/arch/arm64/boot/dts/qcom/qcs8550-aim300-aiot.dts
+> diff --git a/arch/arm64/boot/dts/qcom/qcs8550.dtsi b/arch/arm64/boot/dts/qcom/qcs8550.dtsi
 > new file mode 100644
-> index 000000000000..099f28b86559
+> index 000000000000..254657f46c5e
 > --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/qcs8550-aim300-aiot.dts
-> @@ -0,0 +1,579 @@
+> +++ b/arch/arm64/boot/dts/qcom/qcs8550.dtsi
+> @@ -0,0 +1,6 @@
 > +// SPDX-License-Identifier: BSD-3-Clause
 > +/*
 > + * Copyright (c) 2023, Qualcomm Innovation Center, Inc. All rights reserved.
 > + */
 > +
-> +/dts-v1/;
-> +
-> +#include <dt-bindings/leds/common.h>
-> +#include "qcs8550-aim300.dtsi"
-> +
-> +/ {
-> +	model = "Qualcomm Technologies, Inc. QCS8550 AIM300 AIOT";
-> +	compatible = "qcom,qcs8550-aim300-aiot", "qcom,qcs8550-aim300", "qcom,qcs8550";
+> +#include "sm8550.dtsi"
 
-Missing fallback compatible. I think I was clear last time:
-"using sm8550 fallback."
+This is a weird file. I thought qcs8550 has differences from sm8550,
+e.g. lack of modem, so why do you claim you have here MPSS?
 
+It's really confusing now.
 
 Best regards,
 Krzysztof
