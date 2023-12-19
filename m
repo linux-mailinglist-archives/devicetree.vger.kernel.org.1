@@ -1,68 +1,67 @@
-Return-Path: <devicetree+bounces-26777-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26778-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0E098180D3
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 06:10:50 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1E2E818127
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 06:51:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C7C161C21B71
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 05:10:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5699F28502E
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 05:51:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23A7F5C98;
-	Tue, 19 Dec 2023 05:10:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A2C06AA2;
+	Tue, 19 Dec 2023 05:51:26 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3DBB5393;
-	Tue, 19 Dec 2023 05:10:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DAD0749D;
+	Tue, 19 Dec 2023 05:51:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=realtek.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=realtek.com
-X-SpamFilter-By: ArmorX SpamTrap 5.78 with qID 3BJ5AGnrC3951940, This message is accepted by code: ctloc85258
+X-SpamFilter-By: ArmorX SpamTrap 5.78 with qID 3BJ5p64813981591, This message is accepted by code: ctloc85258
 Received: from mail.realtek.com (rtexh36505.realtek.com.tw[172.21.6.25])
-	by rtits2.realtek.com.tw (8.15.2/2.95/5.92) with ESMTPS id 3BJ5AGnrC3951940
+	by rtits2.realtek.com.tw (8.15.2/2.95/5.92) with ESMTPS id 3BJ5p64813981591
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Tue, 19 Dec 2023 13:10:17 +0800
-Received: from RTEXMBS01.realtek.com.tw (172.21.6.94) by
- RTEXH36505.realtek.com.tw (172.21.6.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2375.32; Tue, 19 Dec 2023 13:10:17 +0800
+	Tue, 19 Dec 2023 13:51:06 +0800
 Received: from RTEXMBS03.realtek.com.tw (172.21.6.96) by
- RTEXMBS01.realtek.com.tw (172.21.6.94) with Microsoft SMTP Server
+ RTEXH36505.realtek.com.tw (172.21.6.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Tue, 19 Dec 2023 13:10:16 +0800
+ 15.1.2375.32; Tue, 19 Dec 2023 13:51:06 +0800
+Received: from RTEXMBS03.realtek.com.tw (172.21.6.96) by
+ RTEXMBS03.realtek.com.tw (172.21.6.96) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.7; Tue, 19 Dec 2023 13:51:06 +0800
 Received: from RTEXMBS03.realtek.com.tw ([fe80::5510:ad08:5390:1ed3]) by
  RTEXMBS03.realtek.com.tw ([fe80::5510:ad08:5390:1ed3%2]) with mapi id
- 15.01.2375.007; Tue, 19 Dec 2023 13:10:16 +0800
-From: =?utf-8?B?SmFtZXMgVGFpIFvmiLTlv5fls7Bd?= <james.tai@realtek.com>
-To: Rob Herring <robh+dt@kernel.org>
-CC: Thomas Gleixner <tglx@linutronix.de>, Marc Zyngier <maz@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>,
-        kernel test robot <lkp@intel.com>
+ 15.01.2375.007; Tue, 19 Dec 2023 13:51:06 +0800
+From: =?big5?B?SmFtZXMgVGFpIFvAuafTrnBd?= <james.tai@realtek.com>
+To: Thomas Gleixner <tglx@linutronix.de>, Marc Zyngier <maz@kernel.org>,
+        "Rob
+ Herring" <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        kernel test robot
+	<lkp@intel.com>
 Subject: RE: [PATCH v3 3/6] irqchip: Introduce RTD1319 support using the Realtek common interrupt controller driver
 Thread-Topic: [PATCH v3 3/6] irqchip: Introduce RTD1319 support using the
  Realtek common interrupt controller driver
-Thread-Index: AQHaIociD8/C4U5vBESKdaYAQOIKRbCj5z+AgAwrEXA=
-Date: Tue, 19 Dec 2023 05:10:16 +0000
-Message-ID: <a8c07be6cb1f4b5db506b5b5cbe296b4@realtek.com>
+Thread-Index: AQHaIociD8/C4U5vBESKdaYAQOIKRbCfDcIAgBEkQIA=
+Date: Tue, 19 Dec 2023 05:51:06 +0000
+Message-ID: <981d456fe3724831903b3851f442f755@realtek.com>
 References: <20231129054339.3054202-1-james.tai@realtek.com>
- <20231129054339.3054202-4-james.tai@realtek.com>
- <CAL_Jsq+WJ2me4CoPN14pof4aMegC1F6ei6q_Nt8+RYG3bfJM4g@mail.gmail.com>
-In-Reply-To: <CAL_Jsq+WJ2me4CoPN14pof4aMegC1F6ei6q_Nt8+RYG3bfJM4g@mail.gmail.com>
+ <20231129054339.3054202-4-james.tai@realtek.com> <87a5qkso1t.ffs@tglx>
+In-Reply-To: <87a5qkso1t.ffs@tglx>
 Accept-Language: zh-TW, en-US
 Content-Language: zh-TW
-x-kse-serverinfo: RTEXMBS01.realtek.com.tw, 9
+x-kse-serverinfo: RTEXMBS03.realtek.com.tw, 9
 x-kse-antispam-interceptor-info: fallback
 x-kse-antivirus-interceptor-info: fallback
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset="big5"
 Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -76,16 +75,30 @@ X-KSE-AntiSpam-Interceptor-Info: fallback
 X-KSE-Antivirus-Interceptor-Info: fallback
 X-KSE-AntiSpam-Interceptor-Info: fallback
 
-SGkgUm9iLA0KDQo+PiAtLS0gL2Rldi9udWxsDQo+PiArKysgYi9kcml2ZXJzL2lycWNoaXAvaXJx
-LXJlYWx0ZWstcnRkMTMxOS5jDQo+PiBAQCAtMCwwICsxLDIxOCBAQA0KPj4gKy8vIFNQRFgtTGlj
-ZW5zZS1JZGVudGlmaWVyOiAoR1BMLTIuMC1vci1sYXRlciBPUiBCU0QtMi1DbGF1c2UpDQo+PiAr
-LyoNCj4+ICsgKiBSZWFsdGVrIFJURDEzMTkgaW50ZXJydXB0IGNvbnRyb2xsZXIgZHJpdmVyDQo+
-PiArICoNCj4+ICsgKiBDb3B5cmlnaHQgKGMpIDIwMjMgUmVhbHRlayBTZW1pY29uZHVjdG9yIENv
-cnBvcmF0aW9uICAqLw0KPj4gKw0KPj4gKyNpbmNsdWRlIDxsaW51eC9pbml0Lmg+DQo+PiArI2lu
-Y2x1ZGUgPGxpbnV4L2lvLmg+DQo+PiArI2luY2x1ZGUgPGxpbnV4L2lycWNoaXAuaD4NCj4+ICsj
-aW5jbHVkZSA8bGludXgvb2ZfZGV2aWNlLmg+DQo+DQo+WW91IHByb2JhYmx5IGRvbid0IG5lZWQg
-dGhpcyBoZWFkZXIgYW5kIHRoZSBpbXBsaWNpdCBpbmNsdWRlcyBpdCBtYWtlcyBhcmUNCj5kcm9w
-cGVkIG5vdyBpbiBsaW51eC1uZXh0LiBQbGVhc2UgY2hlY2sgd2hhdCB5b3UgYWN0dWFsbHkgbmVl
-ZCBhbmQgbWFrZSB0aGVtDQo+ZXhwbGljaXQuDQo+DQpUaGFua3MgZm9yIHRoZSByZW1pbmRlci4g
-SSB3aWxsIGFkanVzdCBpdC4NCg0KUmVnYXJkcywNCkphbWVzDQoNCg0K
+SGkgVGhvbWFzLA0KDQo+T24gV2VkLCBOb3YgMjkgMjAyMyBhdCAxMzo0MywgSmFtZXMgVGFpIHdy
+b3RlOg0KPj4gQWRkIHN1cHBvcnQgZm9yIHRoZSBSVEQxMzE5IHBsYXRmb3JtLg0KPj4NCj4+IFJl
+cG9ydGVkLWJ5OiBrZXJuZWwgdGVzdCByb2JvdCA8bGtwQGludGVsLmNvbT4NCj4+IENsb3NlczoN
+Cj4+IGh0dHBzOi8vbG9yZS5rZXJuZWwub3JnL29lLWtidWlsZC1hbGwvMjAyMzExMDYxMjA4LmhK
+bXhHcXltLWxrcEBpbnRlbC4NCj4+IGNvbS8NCj4NCj5BZ2FpbjogVGhlc2UgdGFncyBhcmUganVz
+dCB3cm9uZy4NCg0KSSB3aWxsIHJlbW92ZSBpdC4NCg0KPj4gK3N0YXRpYyBzdHJ1Y3QgcGxhdGZv
+cm1fZHJpdmVyIHJlYWx0ZWtfaW50Y19ydGQxMzE5X2RyaXZlciA9IHsNCj4+ICsgICAgIC5wcm9i
+ZSA9IHJ0ZDEzMTlfaW50Y19wcm9iZSwNCj4+ICsgICAgIC5kcml2ZXIgPSB7DQo+PiArICAgICAg
+ICAgICAgIC5uYW1lID0gInJlYWx0ZWtfaW50Y19ydGQxMzE5IiwNCj4+ICsgICAgICAgICAgICAg
+Lm9mX21hdGNoX3RhYmxlID0gcmVhbHRla19pbnRjX3J0ZDEzMTlfZHRfbWF0Y2hlcywNCj4+ICsg
+ICAgICAgICAgICAgLnN1cHByZXNzX2JpbmRfYXR0cnMgPSB0cnVlLA0KPj4gKyAgICAgICAgICAg
+ICAucG0gPSAmcmVhbHRla19pbnRjX3J0ZDEzMTlfcG1fb3BzLA0KPj4gKyAgICAgfSwNCj4NCj4g
+ICAgICAgIC5wcm9iZSAgPSBydGQxMzE5X2ludGNfcHJvYmUsDQo+ICAgICAgICAuZHJpdmVyID0g
+ew0KPiAgICAgICAgICAgICAgICAubmFtZSAgICAgICAgICAgICAgICAgICA9ICJyZWFsdGVrX2lu
+dGNfcnRkMTMxOSIsDQo+ICAgICAgICAgICAgICAgIC5vZl9tYXRjaF90YWJsZSAgICAgICAgID0N
+Cj5yZWFsdGVrX2ludGNfcnRkMTMxOV9kdF9tYXRjaGVzLA0KPiAgICAgICAgICAgICAgICAuLi4u
+DQo+DQo+UGxlYXNlLg0KPg0KSSB3aWxsIGZpeCBpdC4NCg0KPj4gK307DQo+PiArDQo+PiArc3Rh
+dGljIGludCBfX2luaXQgcmVhbHRla19pbnRjX3J0ZDEzMTlfaW5pdCh2b2lkKSB7DQo+PiArICAg
+ICByZXR1cm4gcGxhdGZvcm1fZHJpdmVyX3JlZ2lzdGVyKCZyZWFsdGVrX2ludGNfcnRkMTMxOV9k
+cml2ZXIpOw0KPj4gK30NCj4+ICtjb3JlX2luaXRjYWxsKHJlYWx0ZWtfaW50Y19ydGQxMzE5X2lu
+aXQpOw0KPg0KPldoYXQ/IFRoaXMgY2FuIGJlIGJ1aWx0IGFzIGEgbW9kdWxlLiBTbyBob3cgaXMg
+Y29yZV9pbml0Y2FsbCgpIGluIGFueSB3YXkgY29ycmVjdA0KPmhlcmU/IG1vZHVsZV9pbml0KCkg
+cGVyaGFwcz8NCj4NCkkgd2FudCB0aGUgZHJpdmVyIHRvIGJlIGJ1aWxkYWJsZSBhcyBhIG1vZHVs
+ZS4gQmFzZWQgb24gbXkgdGVzdCwgdGhlICdjb3JlX2luaXRjYWxsKCknIHdvcmtzLg0KQnV0LCBJ
+IHdpbGwgdXNlICdtb2R1bGVfaW5pdCgpJyBpbnN0ZWFkLg0KDQpUaGFua3MgZm9yIHlvdXIgZmVl
+ZGJhY2suDQoNClJlZ2FyZHMsDQpKYW1lcw0KDQoNCg==
 
