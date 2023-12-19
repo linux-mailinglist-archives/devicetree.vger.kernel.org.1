@@ -1,427 +1,149 @@
-Return-Path: <devicetree+bounces-26773-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26774-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 970BA817FEB
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 03:44:04 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6411D817FFF
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 04:02:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AF41F1C22EE3
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 02:44:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E5E211F24160
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 03:02:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D37417E1;
-	Tue, 19 Dec 2023 02:43:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="N668Owek"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 558C5187F;
+	Tue, 19 Dec 2023 03:02:37 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67A1612B78;
-	Tue, 19 Dec 2023 02:43:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 3BJ2L4eF013107;
-	Tue, 19 Dec 2023 02:43:28 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=vLeydpRxuIUYm6sXBisPN/vmFQWB/Y66+ByYTIEiTXs=; b=N6
-	68Owek3otLS1F6RyyX5uoIEo3oNfvUUM/Tgus3g+SDxPhsHKZ/vcvHCXpGyrz4J6
-	z4VMXQg2E+CNJuxK48cvbeB0zYwBbnxyc4CJ5oC1WThH0X/7Cv2d2whvURZmNutM
-	Q08CXfQmXoTzrDQJAS3/v2S6kOHs3EnQS5t91gN20MDZSs7EZm+dcqdDvr+iTJvY
-	MHjPCI5dAud/uC6OWmP1Mebgx1NTK84HWXknVDBtbRH++Bgzabbjd1O6la1Jl9k2
-	IjOiRfWZDDkUrOc2drKcUXWgKs1plk0TQqeAP8JRmvYt0Spoo0uqIwplYUGVWHuA
-	tjQcZtVZeiilfY0Whngg==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3v2gw0thgh-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 19 Dec 2023 02:43:28 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3BJ2hQAa009346
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 19 Dec 2023 02:43:26 GMT
-Received: from [10.239.133.211] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Mon, 18 Dec
- 2023 18:43:22 -0800
-Message-ID: <b61c3d70-7277-4fe7-ab67-8afc1062c737@quicinc.com>
-Date: Tue, 19 Dec 2023 10:43:19 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26C53468A;
+	Tue, 19 Dec 2023 03:02:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+	by fd01.gateway.ufhost.com (Postfix) with ESMTP id 5C71081DC;
+	Tue, 19 Dec 2023 11:02:23 +0800 (CST)
+Received: from EXMBX162.cuchost.com (172.16.6.72) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 19 Dec
+ 2023 11:02:23 +0800
+Received: from EXMBX066.cuchost.com (172.16.7.66) by EXMBX162.cuchost.com
+ (172.16.6.72) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 19 Dec
+ 2023 11:02:22 +0800
+Received: from EXMBX066.cuchost.com ([fe80::5947:9245:907e:339f]) by
+ EXMBX066.cuchost.com ([fe80::5947:9245:907e:339f%17]) with mapi id
+ 15.00.1497.044; Tue, 19 Dec 2023 11:02:22 +0800
+From: JeeHeng Sia <jeeheng.sia@starfivetech.com>
+To: Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+	"kernel@esmil.dk" <kernel@esmil.dk>, "conor@kernel.org" <conor@kernel.org>,
+	"robh+dt@kernel.org" <robh+dt@kernel.org>,
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+	"paul.walmsley@sifive.com" <paul.walmsley@sifive.com>, "palmer@dabbelt.com"
+	<palmer@dabbelt.com>, "aou@eecs.berkeley.edu" <aou@eecs.berkeley.edu>,
+	"mturquette@baylibre.com" <mturquette@baylibre.com>, "sboyd@kernel.org"
+	<sboyd@kernel.org>, "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>, "Hal
+ Feng" <hal.feng@starfivetech.com>, Xingyu Wu <xingyu.wu@starfivetech.com>
+CC: "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>, Leyfoon Tan
+	<leyfoon.tan@starfivetech.com>
+Subject: RE: [PATCH v1 06/16] clk: starfive: Add JH8100 System clock generator
+ driver
+Thread-Topic: [PATCH v1 06/16] clk: starfive: Add JH8100 System clock
+ generator driver
+Thread-Index: AQHaKDp8qa+gHWDJHkGDh0MGWRuwVrCfD58AgAXCtdCAAc4FgIAJXVZw
+Date: Tue, 19 Dec 2023 03:02:22 +0000
+Message-ID: <d35d3cf480064c69b1125ba07d615446@EXMBX066.cuchost.com>
+References: <20231206115000.295825-1-jeeheng.sia@starfivetech.com>
+ <20231206115000.295825-7-jeeheng.sia@starfivetech.com>
+ <CAJM55Z_VgBGvCPuvwmQahMcMfuWKnOKpZ9bBbbhei_Teu5Apeg@mail.gmail.com>
+ <9ae86c6786bc4ac7b93c971ba00084a6@EXMBX066.cuchost.com>
+ <CAJM55Z9GVFGuwqe=zLXQvBwDfVSz4eA2EXDd4sqWVCKJF2J+fg@mail.gmail.com>
+In-Reply-To: <CAJM55Z9GVFGuwqe=zLXQvBwDfVSz4eA2EXDd4sqWVCKJF2J+fg@mail.gmail.com>
+Accept-Language: en-US, zh-CN
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+x-ms-exchange-transport-fromentityheader: Hosted
+x-yovoleruleagent: yovoleflag
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 6/8] coresight-tpdm: Add timestamp control register
- support for the CMB
-Content-Language: en-US
-To: Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Mathieu Poirier
-	<mathieu.poirier@linaro.org>,
-        Alexander Shishkin
-	<alexander.shishkin@linux.intel.com>,
-        Konrad Dybcio <konradybcio@gmail.com>,
-        Mike Leach <mike.leach@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-CC: Jinlong Mao <quic_jinlmao@quicinc.com>, Leo Yan <leo.yan@linaro.org>,
-        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
-        <coresight@lists.linaro.org>, <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Tingwei Zhang
-	<quic_tingweiz@quicinc.com>,
-        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Song Chai <quic_songchai@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <andersson@kernel.org>
-References: <1700533494-19276-1-git-send-email-quic_taozha@quicinc.com>
- <1700533494-19276-7-git-send-email-quic_taozha@quicinc.com>
- <ebd7e310-d1b4-4b2e-a915-6241e04763d4@arm.com>
-From: Tao Zhang <quic_taozha@quicinc.com>
-In-Reply-To: <ebd7e310-d1b4-4b2e-a915-6241e04763d4@arm.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: ZzPx_HYH-ozU3wokTLsdd4CAA9Otd7-y
-X-Proofpoint-ORIG-GUID: ZzPx_HYH-ozU3wokTLsdd4CAA9Otd7-y
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-12-09_02,2023-12-07_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 impostorscore=0
- mlxscore=0 adultscore=0 malwarescore=0 suspectscore=0 spamscore=0
- clxscore=1015 lowpriorityscore=0 mlxlogscore=999 phishscore=0
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2311290000 definitions=main-2312190020
 
-
-On 12/18/2023 6:46 PM, Suzuki K Poulose wrote:
-> On 21/11/2023 02:24, Tao Zhang wrote:
->> CMB_TIER register is CMB subunit timestamp insertion enable register.
->> Bit 0 is PATT_TSENAB bit. Set this bit to 1 to request a timestamp
->> following a CMB interface pattern match. Bit 1 is XTRIG_TSENAB bit.
->> Set this bit to 1 to request a timestamp following a CMB CTI timestamp
->> request. Bit 2 is TS_ALL bit. Set this bit to 1 to request timestamp
->> for all packets.
->>
->> Reviewed-by: James Clark <james.clark@arm.com>
->> Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
->> Signed-off-by: Jinlong Mao <quic_jinlmao@quicinc.com>
->> ---
->>   .../testing/sysfs-bus-coresight-devices-tpdm  |  35 ++++++
->>   drivers/hwtracing/coresight/coresight-tpdm.c  | 116 +++++++++++++++++-
->>   drivers/hwtracing/coresight/coresight-tpdm.h  |  14 +++
->>   3 files changed, 162 insertions(+), 3 deletions(-)
->>
->> diff --git 
->> a/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm 
->> b/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
->> index 53662ce7c2d0..e0b77107be13 100644
->> --- a/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
->> +++ b/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
->> @@ -214,3 +214,38 @@ KernelVersion    6.7
->>   Contact:    Jinlong Mao (QUIC) <quic_jinlmao@quicinc.com>, Tao 
->> Zhang (QUIC) <quic_taozha@quicinc.com>
->>   Description:
->>           (RW) Set/Get the mask of the pattern for the CMB subunit TPDM.
->> +
->> +What: /sys/bus/coresight/devices/<tpdm-name>/cmb_patt/enable_ts
->> +Date:        September 2023
->> +KernelVersion    6.7
->> +Contact:    Jinlong Mao (QUIC) <quic_jinlmao@quicinc.com>, Tao Zhang 
->> (QUIC) <quic_taozha@quicinc.com>
->> +Description:
->> +        (Write) Set the pattern timestamp of CMB tpdm. Read
->> +        the pattern timestamp of CMB tpdm.
->> +
->> +        Accepts only one of the 2 values -  0 or 1.
->> +        0 : Disable CMB pattern timestamp.
->> +        1 : Enable CMB pattern timestamp.
->> +
->> +What: /sys/bus/coresight/devices/<tpdm-name>/cmb_trig_ts
->> +Date:        September 2023
->> +KernelVersion    6.7
->> +Contact:    Jinlong Mao (QUIC) <quic_jinlmao@quicinc.com>, Tao Zhang 
->> (QUIC) <quic_taozha@quicinc.com>
->> +Description:
->> +        (RW) Set/Get the trigger timestamp of the CMB for tpdm.
->> +
->> +        Accepts only one of the 2 values -  0 or 1.
->> +        0 : Set the CMB trigger type to false
->> +        1 : Set the CMB trigger type to true
->> +
->> +What: /sys/bus/coresight/devices/<tpdm-name>/cmb_ts_all
->> +Date:        September 2023
->> +KernelVersion    6.7
->> +Contact:    Jinlong Mao (QUIC) <quic_jinlmao@quicinc.com>, Tao Zhang 
->> (QUIC) <quic_taozha@quicinc.com>
->> +Description:
->> +        (RW) Read or write the status of timestamp upon all interface.
->> +        Only value 0 and 1  can be written to this node. Set this 
->> node to 1 to requeset
->> +        timestamp to all trace packet.
->> +        Accepts only one of the 2 values -  0 or 1.
->> +        0 : Disable the timestamp of all trace packets.
->> +        1 : Enable the timestamp of all trace packets.
->> diff --git a/drivers/hwtracing/coresight/coresight-tpdm.c 
->> b/drivers/hwtracing/coresight/coresight-tpdm.c
->> index 894d4309f1c7..f6cda5616e84 100644
->> --- a/drivers/hwtracing/coresight/coresight-tpdm.c
->> +++ b/drivers/hwtracing/coresight/coresight-tpdm.c
->> @@ -331,6 +331,36 @@ static void tpdm_enable_dsb(struct tpdm_drvdata 
->> *drvdata)
->>       writel_relaxed(val, drvdata->base + TPDM_DSB_CR);
->>   }
->>   +static void set_cmb_tier(struct tpdm_drvdata *drvdata)
->> +{
->> +    u32 val;
->> +
->> +    val = readl_relaxed(drvdata->base + TPDM_CMB_TIER);
->> +
->> +    /* Clear all relevant fields */
->> +    val &= ~(TPDM_CMB_TIER_PATT_TSENAB | TPDM_CMB_TIER_TS_ALL |
->> +         TPDM_CMB_TIER_XTRIG_TSENAB);
->> +
->> +    /* Set pattern timestamp type and enablement */
->> +    if (drvdata->cmb->patt_ts)
->> +        val |= TPDM_CMB_TIER_PATT_TSENAB;
->
->  -- cut --
->> +    else
->> +        val &= ~TPDM_CMB_TIER_PATT_TSENAB;
->
->
-> All the else cases in this function are superfluous. Please remove all
-> of them.
-I will update this in the next patch.
->
->> +
->> +    /* Set trigger timestamp */
->> +    if (drvdata->cmb->trig_ts)
->> +        val |= TPDM_CMB_TIER_XTRIG_TSENAB;
->> +    else
->> +        val &= ~TPDM_CMB_TIER_XTRIG_TSENAB;
->> +
->> +    /* Set all timestamp enablement*/
->> +    if (drvdata->cmb->ts_all)
->> +        val |= TPDM_CMB_TIER_TS_ALL;
->> +    else
->> +        val &= ~TPDM_CMB_TIER_TS_ALL;
->> +    writel_relaxed(val, drvdata->base + TPDM_CMB_TIER);
->> +}
->> +
->>   static void tpdm_enable_cmb(struct tpdm_drvdata *drvdata)
->>   {
->>       u32 val, i;
->> @@ -347,6 +377,8 @@ static void tpdm_enable_cmb(struct tpdm_drvdata 
->> *drvdata)
->>                   drvdata->base + TPDM_CMB_XPMR(i));
->>       }
->>   +    set_cmb_tier(drvdata);
->> +
->>       val = readl_relaxed(drvdata->base + TPDM_CMB_CR);
->>       /*
->>        * Set to 0 for continuous CMB collection mode,
->> @@ -695,9 +727,17 @@ static ssize_t enable_ts_show(struct device *dev,
->>                     char *buf)
->>   {
->>       struct tpdm_drvdata *drvdata = dev_get_drvdata(dev->parent);
->> +    ssize_t size = 0;
->>   -    return sysfs_emit(buf, "%u\n",
->> -             (unsigned int)drvdata->dsb->patt_ts);
->> +    if (tpdm_has_dsb_dataset(drvdata))
->> +        size = sysfs_emit(buf, "%u\n",
->> +                 (unsigned int)drvdata->dsb->patt_ts);
->> +
->> +    if (tpdm_has_cmb_dataset(drvdata))
->> +        size = sysfs_emit(buf, "%u\n",
->> +                 (unsigned int)drvdata->cmb->patt_ts);
->
-> Why does this need to show two values ? This must only show ONE value.
-> How you deduce that might be based on the availability of the feature
-> set. Or store the TS value in the drvdata and use that instead for
-> controlling CMB/DSB.
-
-Since both of CMB/DSB need to have "enable_ts" SysFs file, can I 
-separate them
-
-as "enable_dsb_ts" and "enable_cmb_ts"? The path will be like below.
-
-tpdm0/dsb_patt/enable_dsb_ts
-
-tpdm1/cmb_patt/enable_cmb_ts
-
-Is this design appropriate?
-
->
-> Also, the sysfs documentation needs update, if this is going to
-> control the CMB.
-
-Sure. I will update the SysFs documentation according to the 
-modification in the
-
-next patch series.
-
-
-Best,
-
-Tao
-
->
-> Suzuki
->
->
->> +
->> +    return size;
->>   }
->>     /*
->> @@ -715,8 +755,13 @@ static ssize_t enable_ts_store(struct device *dev,
->>           return -EINVAL;
->>         spin_lock(&drvdata->spinlock);
->> -    drvdata->dsb->patt_ts = !!val;
->> +    if (tpdm_has_dsb_dataset(drvdata))
->> +        drvdata->dsb->patt_ts = !!val;
->> +
->> +    if (tpdm_has_cmb_dataset(drvdata))
->> +        drvdata->cmb->patt_ts = !!val;
->>       spin_unlock(&drvdata->spinlock);
->> +
->>       return size;
->>   }
->>   static DEVICE_ATTR_RW(enable_ts);
->> @@ -851,6 +896,68 @@ static ssize_t cmb_mode_store(struct device *dev,
->>   }
->>   static DEVICE_ATTR_RW(cmb_mode);
->>   +static ssize_t cmb_ts_all_show(struct device *dev,
->> +                   struct device_attribute *attr,
->> +                   char *buf)
->> +{
->> +    struct tpdm_drvdata *drvdata = dev_get_drvdata(dev->parent);
->> +
->> +    return sysfs_emit(buf, "%u\n",
->> +              (unsigned int)drvdata->cmb->ts_all);
->> +}
->> +
->> +static ssize_t cmb_ts_all_store(struct device *dev,
->> +                struct device_attribute *attr,
->> +                const char *buf,
->> +                size_t size)
->> +{
->> +    struct tpdm_drvdata *drvdata = dev_get_drvdata(dev->parent);
->> +    unsigned long val;
->> +
->> +    if ((kstrtoul(buf, 0, &val)) || (val & ~1UL))
->> +        return -EINVAL;
->> +
->> +    spin_lock(&drvdata->spinlock);
->> +    if (val)
->> +        drvdata->cmb->ts_all = true;
->> +    else
->> +        drvdata->cmb->ts_all = false;
->> +    spin_unlock(&drvdata->spinlock);
->> +    return size;
->> +}
->> +static DEVICE_ATTR_RW(cmb_ts_all);
->> +
->> +static ssize_t cmb_trig_ts_show(struct device *dev,
->> +                struct device_attribute *attr,
->> +                char *buf)
->> +{
->> +    struct tpdm_drvdata *drvdata = dev_get_drvdata(dev->parent);
->> +
->> +    return sysfs_emit(buf, "%u\n",
->> +              (unsigned int)drvdata->cmb->trig_ts);
->> +}
->> +
->> +static ssize_t cmb_trig_ts_store(struct device *dev,
->> +                 struct device_attribute *attr,
->> +                 const char *buf,
->> +                 size_t size)
->> +{
->> +    struct tpdm_drvdata *drvdata = dev_get_drvdata(dev->parent);
->> +    unsigned long val;
->> +
->> +    if ((kstrtoul(buf, 0, &val)) || (val & ~1UL))
->> +        return -EINVAL;
->> +
->> +    spin_lock(&drvdata->spinlock);
->> +    if (val)
->> +        drvdata->cmb->trig_ts = true;
->> +    else
->> +        drvdata->cmb->trig_ts = false;
->> +    spin_unlock(&drvdata->spinlock);
->> +    return size;
->> +}
->> +static DEVICE_ATTR_RW(cmb_trig_ts);
->> +
->>   static struct attribute *tpdm_dsb_edge_attrs[] = {
->>       &dev_attr_ctrl_idx.attr,
->>       &dev_attr_ctrl_val.attr,
->> @@ -973,6 +1080,7 @@ static struct attribute *tpdm_cmb_patt_attrs[] = {
->>       CMB_PATT_ATTR(1),
->>       CMB_PATT_MASK_ATTR(0),
->>       CMB_PATT_MASK_ATTR(1),
->> +    &dev_attr_enable_ts.attr,
->>       NULL,
->>   };
->>   @@ -985,6 +1093,8 @@ static struct attribute *tpdm_dsb_attrs[] = {
->>     static struct attribute *tpdm_cmb_attrs[] = {
->>       &dev_attr_cmb_mode.attr,
->> +    &dev_attr_cmb_ts_all.attr,
->> +    &dev_attr_cmb_trig_ts.attr,
->>       NULL,
->>   };
->>   diff --git a/drivers/hwtracing/coresight/coresight-tpdm.h 
->> b/drivers/hwtracing/coresight/coresight-tpdm.h
->> index e90d008c1cb2..65b7ca6c4077 100644
->> --- a/drivers/hwtracing/coresight/coresight-tpdm.h
->> +++ b/drivers/hwtracing/coresight/coresight-tpdm.h
->> @@ -11,6 +11,8 @@
->>     /* CMB Subunit Registers */
->>   #define TPDM_CMB_CR        (0xA00)
->> +/*CMB subunit timestamp insertion enable register*/
->> +#define TPDM_CMB_TIER        (0xA04)
->>   /*CMB subunit timestamp pattern registers*/
->>   #define TPDM_CMB_TPR(n)        (0xA08 + (n * 4))
->>   /*CMB subunit timestamp pattern mask registers*/
->> @@ -24,6 +26,12 @@
->>   #define TPDM_CMB_CR_ENA        BIT(0)
->>   /* Trace collection mode for CMB subunit */
->>   #define TPDM_CMB_CR_MODE    BIT(1)
->> +/* Timestamp control for pattern match */
->> +#define TPDM_CMB_TIER_PATT_TSENAB    BIT(0)
->> +/* CMB CTI timestamp request */
->> +#define TPDM_CMB_TIER_XTRIG_TSENAB    BIT(1)
->> +/* For timestamp fo all trace */
->> +#define TPDM_CMB_TIER_TS_ALL        BIT(2)
->>     /*Patten register number*/
->>   #define TPDM_CMB_MAX_PATT        2
->> @@ -217,6 +225,9 @@ struct dsb_dataset {
->>    * @patt_mask:        Save value for pattern mask
->>    * @trig_patt:        Save value for trigger pattern
->>    * @trig_patt_mask:   Save value for trigger pattern mask
->> + * @patt_ts:          Indicates if pattern match for timestamp is 
->> enabled.
->> + * @trig_ts:          Indicates if CTI trigger for timestamp is 
->> enabled.
->> + * @ts_all:           Indicates if timestamp is enabled for all 
->> packets.
->>    */
->>   struct cmb_dataset {
->>       u32            trace_mode;
->> @@ -224,6 +235,9 @@ struct cmb_dataset {
->>       u32            patt_mask[TPDM_CMB_MAX_PATT];
->>       u32            trig_patt[TPDM_CMB_MAX_PATT];
->>       u32            trig_patt_mask[TPDM_CMB_MAX_PATT];
->> +    bool            patt_ts;
->> +    bool            trig_ts;
->> +    bool            ts_all;
->>   };
->>     /**
->
+DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogRW1pbCBSZW5uZXIgQmVy
+dGhpbmcgPGVtaWwucmVubmVyLmJlcnRoaW5nQGNhbm9uaWNhbC5jb20+DQo+IFNlbnQ6IFdlZG5l
+c2RheSwgRGVjZW1iZXIgMTMsIDIwMjMgNzo1NyBQTQ0KPiBUbzogSmVlSGVuZyBTaWEgPGplZWhl
+bmcuc2lhQHN0YXJmaXZldGVjaC5jb20+OyBFbWlsIFJlbm5lciBCZXJ0aGluZyA8ZW1pbC5yZW5u
+ZXIuYmVydGhpbmdAY2Fub25pY2FsLmNvbT47IGtlcm5lbEBlc21pbC5kazsNCj4gY29ub3JAa2Vy
+bmVsLm9yZzsgcm9iaCtkdEBrZXJuZWwub3JnOyBrcnp5c3p0b2Yua296bG93c2tpK2R0QGxpbmFy
+by5vcmc7IHBhdWwud2FsbXNsZXlAc2lmaXZlLmNvbTsgcGFsbWVyQGRhYmJlbHQuY29tOw0KPiBh
+b3VAZWVjcy5iZXJrZWxleS5lZHU7IG10dXJxdWV0dGVAYmF5bGlicmUuY29tOyBzYm95ZEBrZXJu
+ZWwub3JnOyBwLnphYmVsQHBlbmd1dHJvbml4LmRlOyBIYWwgRmVuZw0KPiA8aGFsLmZlbmdAc3Rh
+cmZpdmV0ZWNoLmNvbT47IFhpbmd5dSBXdSA8eGluZ3l1Lnd1QHN0YXJmaXZldGVjaC5jb20+DQo+
+IENjOiBsaW51eC1yaXNjdkBsaXN0cy5pbmZyYWRlYWQub3JnOyBkZXZpY2V0cmVlQHZnZXIua2Vy
+bmVsLm9yZzsgbGludXgta2VybmVsQHZnZXIua2VybmVsLm9yZzsgbGludXgtY2xrQHZnZXIua2Vy
+bmVsLm9yZzsgTGV5Zm9vbiBUYW4NCj4gPGxleWZvb24udGFuQHN0YXJmaXZldGVjaC5jb20+DQo+
+IFN1YmplY3Q6IFJFOiBbUEFUQ0ggdjEgMDYvMTZdIGNsazogc3RhcmZpdmU6IEFkZCBKSDgxMDAg
+U3lzdGVtIGNsb2NrIGdlbmVyYXRvciBkcml2ZXINCj4gDQo+IEplZUhlbmcgU2lhIHdyb3RlOg0K
+PiA+ID4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gPiA+IEZyb206IEVtaWwgUmVubmVy
+IEJlcnRoaW5nIDxlbWlsLnJlbm5lci5iZXJ0aGluZ0BjYW5vbmljYWwuY29tPg0KPiA+ID4gU2Vu
+dDogU2F0dXJkYXksIERlY2VtYmVyIDksIDIwMjMgMTI6MjUgQU0NCj4gPiA+IFRvOiBKZWVIZW5n
+IFNpYSA8amVlaGVuZy5zaWFAc3RhcmZpdmV0ZWNoLmNvbT47IGtlcm5lbEBlc21pbC5kazsgY29u
+b3JAa2VybmVsLm9yZzsgcm9iaCtkdEBrZXJuZWwub3JnOw0KPiA+ID4ga3J6eXN6dG9mLmtvemxv
+d3NraStkdEBsaW5hcm8ub3JnOyBwYXVsLndhbG1zbGV5QHNpZml2ZS5jb207IHBhbG1lckBkYWJi
+ZWx0LmNvbTsgYW91QGVlY3MuYmVya2VsZXkuZWR1Ow0KPiA+ID4gbXR1cnF1ZXR0ZUBiYXlsaWJy
+ZS5jb207IHNib3lkQGtlcm5lbC5vcmc7IHAuemFiZWxAcGVuZ3V0cm9uaXguZGU7IGVtaWwucmVu
+bmVyLmJlcnRoaW5nQGNhbm9uaWNhbC5jb207IEhhbCBGZW5nDQo+ID4gPiA8aGFsLmZlbmdAc3Rh
+cmZpdmV0ZWNoLmNvbT47IFhpbmd5dSBXdSA8eGluZ3l1Lnd1QHN0YXJmaXZldGVjaC5jb20+DQo+
+ID4gPiBDYzogbGludXgtcmlzY3ZAbGlzdHMuaW5mcmFkZWFkLm9yZzsgZGV2aWNldHJlZUB2Z2Vy
+Lmtlcm5lbC5vcmc7IGxpbnV4LWtlcm5lbEB2Z2VyLmtlcm5lbC5vcmc7IGxpbnV4LWNsa0B2Z2Vy
+Lmtlcm5lbC5vcmc7IExleWZvb24NCj4gVGFuDQo+ID4gPiA8bGV5Zm9vbi50YW5Ac3RhcmZpdmV0
+ZWNoLmNvbT4NCj4gPiA+IFN1YmplY3Q6IFJlOiBbUEFUQ0ggdjEgMDYvMTZdIGNsazogc3RhcmZp
+dmU6IEFkZCBKSDgxMDAgU3lzdGVtIGNsb2NrIGdlbmVyYXRvciBkcml2ZXINCj4gPiA+DQo+ID4g
+PiBTaWEgSmVlIEhlbmcgd3JvdGU6DQo+ID4gPiA+IEFkZCBzdXBwb3J0IGZvciBKSDgxMDAgU3lz
+dGVtIGNsb2NrIGdlbmVyYXRvci4NCj4gPiA+ID4NCj4gPiA+ID4gU2lnbmVkLW9mZi1ieTogU2lh
+IEplZSBIZW5nIDxqZWVoZW5nLnNpYUBzdGFyZml2ZXRlY2guY29tPg0KPiA+ID4gPiBSZXZpZXdl
+ZC1ieTogTGV5IEZvb24gVGFuIDxsZXlmb29uLnRhbkBzdGFyZml2ZXRlY2guY29tPg0KPiA+ID4g
+PiAtLS0NCj4gPiA+ID4gIE1BSU5UQUlORVJTICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICB8ICAgOCArDQo+ID4gPiA+ICBkcml2ZXJzL2Nsay9zdGFyZml2ZS9LY29uZmlnICAgICAg
+ICAgICAgICAgICAgfCAgIDkgKw0KPiA+ID4gPiAgZHJpdmVycy9jbGsvc3RhcmZpdmUvTWFrZWZp
+bGUgICAgICAgICAgICAgICAgIHwgICAxICsNCj4gPiA+ID4gIGRyaXZlcnMvY2xrL3N0YXJmaXZl
+L2Nsay1zdGFyZml2ZS1jb21tb24uaCAgICB8ICAgOSArLQ0KPiA+ID4gPiAgZHJpdmVycy9jbGsv
+c3RhcmZpdmUvamg4MTAwL01ha2VmaWxlICAgICAgICAgIHwgICAzICsNCj4gPiA+ID4gIC4uLi9j
+bGsvc3RhcmZpdmUvamg4MTAwL2Nsay1zdGFyZml2ZS1qaDgxMDAuaCB8ICAxMSArDQo+ID4gPiA+
+ICBkcml2ZXJzL2Nsay9zdGFyZml2ZS9qaDgxMDAvY2xrLXN5cy5jICAgICAgICAgfCA0NTUgKysr
+KysrKysrKysrKysrKysrDQo+ID4gPiA+ICA3IGZpbGVzIGNoYW5nZWQsIDQ5NSBpbnNlcnRpb25z
+KCspLCAxIGRlbGV0aW9uKC0pDQo+ID4gPiA+ICBjcmVhdGUgbW9kZSAxMDA2NDQgZHJpdmVycy9j
+bGsvc3RhcmZpdmUvamg4MTAwL01ha2VmaWxlDQo+ID4gPiA+ICBjcmVhdGUgbW9kZSAxMDA2NDQg
+ZHJpdmVycy9jbGsvc3RhcmZpdmUvamg4MTAwL2Nsay1zdGFyZml2ZS1qaDgxMDAuaA0KPiA+ID4g
+PiAgY3JlYXRlIG1vZGUgMTAwNjQ0IGRyaXZlcnMvY2xrL3N0YXJmaXZlL2poODEwMC9jbGstc3lz
+LmMNCj4gLi4uDQo+ID4gPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2Nsay9zdGFyZml2ZS9NYWtl
+ZmlsZSBiL2RyaXZlcnMvY2xrL3N0YXJmaXZlL01ha2VmaWxlDQo+ID4gPiA+IGluZGV4IDAxMmY3
+ZWU4M2Y4ZS4uNmNiM2NlODIzMzMwIDEwMDY0NA0KPiA+ID4gPiAtLS0gYS9kcml2ZXJzL2Nsay9z
+dGFyZml2ZS9NYWtlZmlsZQ0KPiA+ID4gPiArKysgYi9kcml2ZXJzL2Nsay9zdGFyZml2ZS9NYWtl
+ZmlsZQ0KPiA+ID4gPiBAQCAtMTAsMyArMTAsNCBAQCBvYmotJChDT05GSUdfQ0xLX1NUQVJGSVZF
+X0pINzExMF9BT04pCSs9IGNsay1zdGFyZml2ZS1qaDcxMTAtYW9uLm8NCj4gPiA+ID4gIG9iai0k
+KENPTkZJR19DTEtfU1RBUkZJVkVfSkg3MTEwX1NURykJKz0gY2xrLXN0YXJmaXZlLWpoNzExMC1z
+dGcubw0KPiA+ID4gPiAgb2JqLSQoQ09ORklHX0NMS19TVEFSRklWRV9KSDcxMTBfSVNQKQkrPSBj
+bGstc3RhcmZpdmUtamg3MTEwLWlzcC5vDQo+ID4gPiA+ICBvYmotJChDT05GSUdfQ0xLX1NUQVJG
+SVZFX0pINzExMF9WT1VUKQkrPSBjbGstc3RhcmZpdmUtamg3MTEwLXZvdXQubw0KPiA+ID4gPiAr
+b2JqLSQoQ09ORklHX0NMS19TVEFSRklWRV9KSDgxMDBfU1lTKQkrPSBqaDgxMDAvDQo+ID4gPg0K
+PiA+ID4gSSBkb24ndCByZWFsbHkgc2VlIHdoeSBkbyB5b3UgbmVlZCBhIHNwZWNpYWwgc3ViZGly
+ZWN0b3J5IGZvciB0aGUgSkg4MTAwPyBUaGUNCj4gPiA+IEpINzExMCBkcml2ZXJzIGRvIGZpbmUg
+d2l0aG91dCBpdC4NCj4gPiBFYWNoIHN1YmZvbGRlciBjYW4gcmVwcmVzZW50IGEgZGlmZmVyZW50
+IHBsYXRmb3JtLCBtYWtpbmcgaXQgZWFzaWVyIHRvDQo+ID4gbG9jYXRlIGFuZCBtYWludGFpbiBw
+bGF0Zm9ybS1zcGVjaWZpYyBjb2RlLiBTaW5jZSB0aGUgY29kZSBpcyBleHBlY3RlZA0KPiA+IHRv
+IGdyb3cgaW4gdGhlIGZ1dHVyZSwgbGV0J3Mgc3RhcnQgb3JnYW5pemluZyBpdCBpbiBhIGZvbGRl
+ci1iYXNlZCBzdHJ1Y3R1cmUNCj4gPiBmb3IgZWFzaWVyIG1haW50ZW5hbmNlIGF0IGEgbGF0ZXIg
+c3RhZ2UuDQo+IA0KPiBZZXMsIGJ1dCB0aGF0J3Mgbm90IHdoYXQgeW91J3JlIGRvaW5nIGhlcmUu
+IFlvdSdyZSBtYWtpbmcganVzdCBvbmUgb2YgdGhlIDMNCj4gYWxtb3N0IGlkZW50aWNhbCBkcml2
+ZXJzIGJlIGRpZmZlcmVudCBmb3Igbm8gZ29vZCByZWFzb24uDQpJIHdpbGwgcmVzdHJ1Y3R1cmUg
+aXQgZm9yIHRoZSBvdGhlciAyIHBsYXRmb3Jtcy4NCj4gDQpbLi4uXQ0K
 
