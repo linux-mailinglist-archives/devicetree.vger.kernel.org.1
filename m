@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-26953-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26954-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72E3F818B57
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 16:38:36 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5FC29818B5B
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 16:39:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1D4FF286B07
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 15:38:35 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BD227B228CC
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 15:39:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E8F61CA92;
-	Tue, 19 Dec 2023 15:38:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 548961CA92;
+	Tue, 19 Dec 2023 15:39:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="a+pCeRi+"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pK/pzInh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
+Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E6341CA8D
-	for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 15:38:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2C791CA97
+	for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 15:39:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-5534abbc637so3252185a12.0
-        for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 07:38:30 -0800 (PST)
+Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-55359dc0290so4692264a12.1
+        for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 07:39:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1703000309; x=1703605109; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1703000378; x=1703605178; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=A0m/4pJwrLBZoS6pTxRM7bPI5fL3PwuzWkk1iDdkD4I=;
-        b=a+pCeRi+BtAz1E7yfdZYrAY8uiGwdhGbnbI7PNPkQUbUtCT3WDCdngggtI7g7+6X/J
-         bfMgsDwRGmzwaqnElrLJR0rK+KDPWir12X47ZOIfJ95TXbY4wIxi5vvz5e0qidpy34Lz
-         kVEoyZu5KWNRb2uu01Fm172WfFF1/xTR9RgIQsVt8uWWZOK1siYsuipSb5i8Lbsi+VXS
-         c4ln9391eeH8++s8mn4xViH4vs2wJZ9nK7qRAH1QsKpyLNB2Lhl01gQ6h1lPoJJGVoIV
-         Tk3WAZGiqGWxKIl2Rqu9KLlwGw8xA7w0wyVkSPkhRYghX9cUF6u+9ZHj2p5r8nDMrlAR
-         IXEA==
+        bh=esP4uiftdE0csnkmTVCbQ8X8amlWSskzkqGnrY09tY8=;
+        b=pK/pzInh0Wa7tcsJCkBFNT9kDb6oJgXlGCrfdMCmMzg2Cw2fRMMgr7pl+7vBEhsw2n
+         8QBdOFHBQS/+KejPDvv8QyG1XnsGWGNO0O4pvRPjkNsTxLBj/8ITmqurMh4AROi6y6A8
+         kTV3fKbdM0T9LUzbXFUJDJWu4GuTJSYHcA1cvLZ/m9sRC9WjB9Mb+2Jyp/RUnEfApnhz
+         PAhuMdx0MHcPMxJ3wlxA0B0QTo8170ivU1X1iYKu9XaMRYp7Xo/4pgcN4lfpIC7wlB1W
+         ofoU4eqxrPDEr2oymiTPzi5/mElM9eJInHhZYXGnaoQG/Ks3cJUrSNMONMT2GZkhP2gv
+         uIog==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703000309; x=1703605109;
+        d=1e100.net; s=20230601; t=1703000378; x=1703605178;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=A0m/4pJwrLBZoS6pTxRM7bPI5fL3PwuzWkk1iDdkD4I=;
-        b=Ce5Hp5S1cXCdbn4Hl0oBpyVWgIijWkFrzP8/wtiTyptNZ/2fZcsWtNAuIJTADaIKy8
-         LLtsSGMcyP3IRKVC4eVXXdgdnKH3Ak5BkEBxYn3qcABSRt2Xt0hsUVbcXd54A5fTXfNE
-         8X9/39WP3pdGohJIbAkBZzqlR2fO9H4cp7yxUIU4bfdlb3D7xv9ebJrapOSaXYwhxGWQ
-         dbrh+XyVkOtk+ovz4QtQ4UTHSN4fU8ijfewm72j0MPfQxZWqwH6jjauk3A5chsII15bh
-         M4qu8M5DvG15iHqmT7CGwtonnwkOecGeZfapWPkGH00kwpAhs03TPDNbHuLQhsD7PisH
-         hRZg==
-X-Gm-Message-State: AOJu0YyB79OnQ1t9ehOTYz0tH0U8dmM0UJZsOsBC6jdsc/0m0zHMhNGp
-	EEfXXKogxSsTPQlYoUICenzIbA==
-X-Google-Smtp-Source: AGHT+IGm1FMNwzajZqJSryfKTv9sFhkqcHoq0dLDBd+QPxi4p2Sjy4py87/YnSOcSR6ya+v1dQrC7g==
-X-Received: by 2002:a50:bb41:0:b0:552:f56d:eb81 with SMTP id y59-20020a50bb41000000b00552f56deb81mr3549940ede.66.1703000308809;
-        Tue, 19 Dec 2023 07:38:28 -0800 (PST)
+        bh=esP4uiftdE0csnkmTVCbQ8X8amlWSskzkqGnrY09tY8=;
+        b=FIZxeSx9tiaqIyMnkaWCbGcAXl2AV0qK/3erXhdbOUAeOHM3OjRdX+mU4UH0d5jb9L
+         a4QrNE0SkjItpM7vY/E7DhUulC5tCz1b41ydmvvxMBvDPr5f36ihreIDvEcBBpgC4DNY
+         dXo/3j3XOQmrpAWMuhYuL6vmBncbWYtFFD/Gl5tDauVY0hStvkzZTnHvis7AwGRa/o88
+         c8jdHNC8vJns3U0iGFWvOQeqJLyh3W23XVACTbC/xS7OCRhc0UVe3WDhGYwkTYOgvZYe
+         Yx8Z4CaeBtyeAOJOOQcZ8OWQvxuIvBYCyvQRD/gQMdY4uiq7H379kDelBU+fK+CwhyQ1
+         Nt0A==
+X-Gm-Message-State: AOJu0Yxnj5K2E4vbww8MBM/V1nGO/ljzYuelM9Gy8yZXzwU61n5q7c6W
+	dayCMCN+ghi7650gt+z8W0QGvA==
+X-Google-Smtp-Source: AGHT+IFRSqs3WrLcF6uUkEcATY0ilh4RKpIA1STPR+ujjhkHbDMIZYEriyYzG4GIwT7H6xwI50SuFg==
+X-Received: by 2002:a50:c35b:0:b0:553:9ad0:1ee5 with SMTP id q27-20020a50c35b000000b005539ad01ee5mr1116251edb.37.1703000377981;
+        Tue, 19 Dec 2023 07:39:37 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id q3-20020a5085c3000000b0054ccac03945sm11543717edh.12.2023.12.19.07.38.26
+        by smtp.gmail.com with ESMTPSA id q3-20020a5085c3000000b0054ccac03945sm11543717edh.12.2023.12.19.07.39.35
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 19 Dec 2023 07:38:28 -0800 (PST)
-Message-ID: <e32191ea-3756-4104-8610-4477c22aece2@linaro.org>
-Date: Tue, 19 Dec 2023 16:38:26 +0100
+        Tue, 19 Dec 2023 07:39:37 -0800 (PST)
+Message-ID: <f6241b58-202e-4624-ae83-ce52fc286edf@linaro.org>
+Date: Tue, 19 Dec 2023 16:39:35 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,18 +66,26 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 6/7] LoongArch: dts: DeviceTree for Loongson-2K2000
+Subject: Re: [PATCH 4/4] dts: iot2050: Support IOT2050-SM variant
 Content-Language: en-US
-To: Binbin Zhou <zhoubinbin@loongson.cn>, Binbin Zhou
- <zhoubb.aaron@gmail.com>, Huacai Chen <chenhuacai@loongson.cn>,
+To: Jan Kiszka <jan.kiszka@siemens.com>, Nishanth Menon <nm@ti.com>,
+ Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
  Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
-Cc: Huacai Chen <chenhuacai@kernel.org>, Xuerui Wang <kernel@xen0n.name>,
- loongarch@lists.linux.dev, Jiaxun Yang <jiaxun.yang@flygoat.com>,
- Hongliang Wang <wanghongliang@loongson.cn>
-References: <cover.1702862778.git.zhoubinbin@loongson.cn>
- <f62d0b6df04144404b0d657bce39a8f25b931c3a.1702862779.git.zhoubinbin@loongson.cn>
+ Conor Dooley <conor+dt@kernel.org>, Bao Cheng Su <baocheng.su@siemens.com>,
+ Chao Zeng <chao.zeng@siemens.com>
+Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, Li Hua Qian <huaqian.li@siemens.com>
+References: <cover.1702917360.git.jan.kiszka@siemens.com>
+ <11e0b0c8b828254567a8ff89820c067cacad2150.1702917360.git.jan.kiszka@siemens.com>
+ <8b3daa3c-dbf8-4286-b04e-011cd9b0efa5@linaro.org>
+ <4c31adc5-3fc5-47bc-9766-6d3d1eeddb65@siemens.com>
+ <fbb29d81-9ea0-4468-ad47-f6668c2be277@linaro.org>
+ <de3f4778-51d6-48ab-9d4d-451f2ba01a3c@siemens.com>
+ <3d2662be-3a55-4390-bd2a-cfa5cc53510f@linaro.org>
+ <ef5a6cf0-4350-483d-a1e9-ce8b0ef71280@siemens.com>
+ <ce6b002b-f2a6-4056-bf81-53a6c948b946@linaro.org>
+ <62be89bb-1ae1-4bf6-9f9e-b6eb68e6504d@siemens.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -123,65 +131,27 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <f62d0b6df04144404b0d657bce39a8f25b931c3a.1702862779.git.zhoubinbin@loongson.cn>
+In-Reply-To: <62be89bb-1ae1-4bf6-9f9e-b6eb68e6504d@siemens.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 18/12/2023 02:53, Binbin Zhou wrote:
-> Add DeviceTree file for Loongson-2K2000 processor, which integrates two
-> 64-bit triple emission superscalar LA364 processor cores.
+On 19/12/2023 16:37, Jan Kiszka wrote:
+>>>>
+>>>> You have label for that... Somehow all these nodes are half-baked,
+>>>> without all the expected properties and now you call node name as ABI.
+>>>> The node name is not the ABI.
+>>>
+>>> Well, existing userspace uses those names, and adding the properties
+>>> would break that interface. Now, does Linux do that?
+>>
+>> I don't think you understood the concept. There is no change for
+>> userspace. Same interface, same names. No ABI break.
 > 
-> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
-> ---
->  arch/loongarch/boot/dts/Makefile              |   3 +-
->  .../boot/dts/loongson-2k2000-ref.dts          |  73 ++++
->  arch/loongarch/boot/dts/loongson-2k2000.dtsi  | 311 ++++++++++++++++++
->  3 files changed, 386 insertions(+), 1 deletion(-)
->  create mode 100644 arch/loongarch/boot/dts/loongson-2k2000-ref.dts
->  create mode 100644 arch/loongarch/boot/dts/loongson-2k2000.dtsi
-> 
-> diff --git a/arch/loongarch/boot/dts/Makefile b/arch/loongarch/boot/dts/Makefile
-> index dc0782315bed..c019d6676f7e 100644
-> --- a/arch/loongarch/boot/dts/Makefile
-> +++ b/arch/loongarch/boot/dts/Makefile
-> @@ -1,6 +1,7 @@
->  # SPDX-License-Identifier: GPL-2.0-only
->  
->  dtb-$(CONFIG_MACH_LOONGSON64)	= loongson-2k0500-ref.dtb \
-> -				  loongson-2k1000-ref.dtb
-> +				  loongson-2k1000-ref.dtb \
-> +				  loongson-2k2000-ref.dtb
->  
->  obj-$(CONFIG_BUILTIN_DTB)	+= $(addsuffix .dtb.o, $(CONFIG_BUILTIN_DTB_NAME))
-> diff --git a/arch/loongarch/boot/dts/loongson-2k2000-ref.dts b/arch/loongarch/boot/dts/loongson-2k2000-ref.dts
-> new file mode 100644
-> index 000000000000..ac6b370800fa
-> --- /dev/null
-> +++ b/arch/loongarch/boot/dts/loongson-2k2000-ref.dts
-> @@ -0,0 +1,73 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (C) 2023 Loongson Technology Corporation Limited
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "loongson-2k2000.dtsi"
-> +
-> +/ {
-> +	compatible = "loongson,ls2k2000-ref", "loongson,ls2k2000";
-> +	model = "Loongson-2K2000 Reference Board";
-> +
-> +	aliases {
-> +		serial0 = &uart0;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = "serial0:115200n8";
-> +		bootargs = "console=ttyS0,115200";
+> I do understand the impact very well:
+> open("/sys/class/leds/user-led1-red") has to work for all the variants,
+> consistently and backward-compatible for userspace.
 
-Nope.
-
+And it will. The name is the same.
 
 Best regards,
 Krzysztof
