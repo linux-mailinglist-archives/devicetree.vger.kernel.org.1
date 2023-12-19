@@ -1,64 +1,54 @@
-Return-Path: <devicetree+bounces-26823-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26824-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F4328183DF
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 09:51:42 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB9D78183E4
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 09:53:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 522C81C21400
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 08:51:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2DD58289EE0
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 08:53:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 742B711C89;
-	Tue, 19 Dec 2023 08:51:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFEE111C9E;
+	Tue, 19 Dec 2023 08:53:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RUwQQivn"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="koAV2O/O"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E87E911C9D
-	for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 08:51:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-a233a60f8feso305952466b.0
-        for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 00:51:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702975894; x=1703580694; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=rGIe2EK7hNusSYJr/yUJ1iPMkVap71w4BkhPzGCj38s=;
-        b=RUwQQivnQXJA6ENCk8/aHLSrw3GV/1nj4Ripo0dALq2RyB+whWZR95HE0uPzrIkodu
-         EkaQzXAUrIkr7KPOEI8NDl7l8hJ1CWVPzNUx+JaI/CPoS72r7OLxRGVMvfKFhCvF3UH1
-         ChfXvPMhuWApTCnOu/eVoaKCSPRq/r89EFEfsa20J6nmHn7X4pEA/8XQhLIwkp85IkdX
-         CAqJFDdTq3mm2Czw9tsayNs+U2IeDzEF0s7CABsUc6QFIxO8xAeENU6lPBD0q2eDSkLA
-         T/YKhsPkSpEmcaZNAswpfwaEGRUvVhuPm0kNbGVttsbt6IGiD34bWY+eLHUCW90Ox0Ob
-         BdZg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702975894; x=1703580694;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=rGIe2EK7hNusSYJr/yUJ1iPMkVap71w4BkhPzGCj38s=;
-        b=AJqEDx1RYr1RxS0uwb/x62FyRot6Vggmdh8yc7Lb+O632n+roOuP4M+QrjRIX0hEXq
-         TFrpglDuRcARQUf/n0LXhjsLlWMQQX7eJVuIieI9OA4F3CK94pyZUTxumYuWKwJIrnOu
-         7VN48nXOU3LcsQCQpAkrWnwgWCuIJaSyhJ4ist4NrnYN8dCYcUvDN5Cex2EuXbntmMJN
-         Km+VIFtMQoiFtpP1Acr77T7t4mvjs9uBHyGRlzMiP7ETFj7JHmV6rl0hdQ7ML24OpOxq
-         RTq6t9FJzZo58kmALp5HwkB/svVWC/DgLQSPiTvjSpPbrI1ByLsQXsItaLosL3dx64S2
-         9WKg==
-X-Gm-Message-State: AOJu0YwJpi8Flp0tpTt5ft9OwNvwLvpj1RVvZZTc/4MwnSK5QgVdx5NU
-	Fvu9VNe5ufDPC3/v7AecDYQ+4Q==
-X-Google-Smtp-Source: AGHT+IE/uLtEN/FQI2tcw6havjOhmTS6nbfETIUblw3ZL/bE4vejZuPZaRPy5gLrnwq498fAk2CWpQ==
-X-Received: by 2002:a17:906:c29a:b0:a23:6c1a:d119 with SMTP id r26-20020a170906c29a00b00a236c1ad119mr833386ejz.124.1702975894309;
-        Tue, 19 Dec 2023 00:51:34 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id vc11-20020a170907d08b00b00a1ce58e9fc7sm15019716ejc.64.2023.12.19.00.51.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 19 Dec 2023 00:51:33 -0800 (PST)
-Message-ID: <1fa6128f-03c1-4f41-8dff-4191893f460c@linaro.org>
-Date: Tue, 19 Dec 2023 09:51:31 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E076612B60;
+	Tue, 19 Dec 2023 08:53:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 3BJ6Kjam014499;
+	Tue, 19 Dec 2023 08:52:57 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=2IjR9WTnZRSKRr83K1HzdaurKy9qc2TXBR1+H/1+Ylw=; b=ko
+	AV2O/OO8D/uxHVWkV/XDCxmax62VWzvwWU2ygVVS8SEN6SjOxMpX1zeuubdza3yH
+	svyHNZ+L5w4RulT3u+15W/vRIA1apVvrVJBZQQ0F+XWFl3sfux+n7foXQkKWGi7f
+	aV19Tcb99NYosJ7VV2Ii5eyakfHl8Vn4fX/vQ2pU/9r3P4ISnwS9ncg581p+VpXY
+	uSwYJG4qwlgNddRsv72NO5cwiKZk1lF6fGmQeYhlhFkrYlNWIIlaVLuFdTAj9WQH
+	1WwIZ+ZhBJvFE5gstw54Tecp2/wzsd8K0AGDRR2ZE3hIXXL0FnZdNRrT5Fg1g0Vf
+	Ojp8E/7CpvNF4SNgdxGQ==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3v35tm8dqg-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 19 Dec 2023 08:52:57 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3BJ8qtrg020141
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 19 Dec 2023 08:52:55 GMT
+Received: from [10.253.32.162] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Tue, 19 Dec
+ 2023 00:52:51 -0800
+Message-ID: <f01665a8-96cb-4ddc-94d8-7f1811a12a23@quicinc.com>
+Date: Tue, 19 Dec 2023 16:52:48 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,98 +56,272 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] dt-bindings: iio: dac: add MCP4821
+Subject: Re: [PATCH v8 14/14] dt-bindings: net: ar803x: add qca8084 PHY
+ properties
+To: Andrew Lunn <andrew@lunn.ch>
+CC: "Russell King (Oracle)" <linux@armlinux.org.uk>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski@linaro.org>,
+        <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
+        <pabeni@redhat.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <hkallweit1@gmail.com>, <corbet@lwn.net>, <p.zabel@pengutronix.de>,
+        <f.fainelli@gmail.com>, <netdev@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-doc@vger.kernel.org>
+References: <20231215074005.26976-1-quic_luoj@quicinc.com>
+ <20231215074005.26976-15-quic_luoj@quicinc.com>
+ <bdfba8a7-9197-4aae-a7f9-6075a375f60b@linaro.org>
+ <c3391e33-e770-4c61-855e-d90e82b95f75@quicinc.com>
+ <4cb2bd57-f3d3-49f9-9c02-a922fd270572@lunn.ch>
+ <ed0dd288-be8a-4161-a19f-2d4d2d17b3ec@quicinc.com>
+ <ZXxXzm8hP68KrXYs@shell.armlinux.org.uk>
+ <3a40570b-40bf-4609-b1f4-a0a6974accea@quicinc.com>
+ <b5ff9f69-e341-4846-bc5a-ebe636b7a71a@lunn.ch>
+ <27ee13e7-5073-413c-8481-52b92d7c3687@quicinc.com>
+ <b4fe4ac4-9b28-4dba-8287-1af4804eb0be@lunn.ch>
 Content-Language: en-US
-To: Anshul Dalal <anshulusr@gmail.com>, linux-kernel@vger.kernel.org,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org
-Cc: Conor Dooley <conor+dt@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- linux-kernel-mentees@lists.linuxfoundation.org,
- Shuah Khan <skhan@linuxfoundation.org>,
- Conor Dooley <conor.dooley@microchip.com>
-References: <20231218164735.787199-1-anshulusr@gmail.com>
- <f8aaf7b3-fa17-495f-9c1c-9ddf6fb41d8a@linaro.org>
- <6c1e13b3-28d2-42fc-b9c2-dcfc4793fc39@gmail.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <6c1e13b3-28d2-42fc-b9c2-dcfc4793fc39@gmail.com>
-Content-Type: text/plain; charset=UTF-8
+From: Jie Luo <quic_luoj@quicinc.com>
+In-Reply-To: <b4fe4ac4-9b28-4dba-8287-1af4804eb0be@lunn.ch>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: kTfYW9S0PLYnargAsECQcv-y7BrqhOMP
+X-Proofpoint-ORIG-GUID: kTfYW9S0PLYnargAsECQcv-y7BrqhOMP
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-12-09_02,2023-12-07_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ adultscore=0 spamscore=0 priorityscore=1501 malwarescore=0 mlxlogscore=665
+ impostorscore=0 phishscore=0 mlxscore=0 suspectscore=0 clxscore=1015
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2311290000 definitions=main-2312190065
 
-On 19/12/2023 09:42, Anshul Dalal wrote:
-> On 12/19/23 13:29, Krzysztof Kozlowski wrote:
->> On 18/12/2023 17:47, Anshul Dalal wrote:
->>> +
->>> +  reg:
->>> +    maxItems: 1
->>> +
->>> +  vdd-supply: true
->>> +
->>> +  ldac-gpios:
->>> +    description: |
->>> +      Active Low LDAC (Latch DAC Input) pin used to update the DAC output.
->>> +    maxItems: 1
->>> +
->>> +  shdn-gpios:
->>
->> Open gpio-consumer-common.yaml and look at entries there.
->>
+
+
+On 12/18/2023 5:34 PM, Andrew Lunn wrote:
+>> Thanks Andrew for the proposal.
+>> For the pure PHY chip qca8084, there is no driver to parse the package
+>> level device tree node for common clocks and resets.
 > 
-> Should I name the property `powerdown-gpios` instead of `shdn-gpios` as
-> specified in gpio-consumer-common.yaml?
+> So you still have not look at the work Christian is doing. You must
+> work together with Christian. This driver is not going to be accepted
+> unless you do.
+OK, Andrew, i am looking at Christian's patches on at803x.c, and i will
+update qca8084 patches based on Christian's patch set.
 
-Yes. You can provide the name of actual pin in description.
+> 
+>>>>           ethernet-phy@0 {
+>>>>               compatible = "ethernet-phy-id004d.d180";
+>>>>               reg = <0>;
+>>>>               clocks = <qca8k_nsscc NSS_CC_GEPHY0_SYS_CLK>,
+>>>>               clock-names = <"gephy_sys">;
+>>>>               resets = <&qca8k_nsscc NSS_CC_GEPHY0_SYS_ARES>,
+>>>>                        <&qca8k_nsscc NSS_CC_GEPHY0_ARES>;
+>>>>               reset-names = "gephy_sys", "gephy_soft";
+> 
+> Which of these properties exist for the Pure PHY device? Which exist
+> for the integrated switch? And by that, i mean which are actual pins
+> on the PHY device? We need the device tree binding to list which
+> properties are required for each use case.
+> 
+> 	   Andrew
 
-> Furthermore, do I need to add gpio-consumer-common.yaml as a ref?
+Hi Andrew,
+For the clocks and resets listed here, only the clock "mdio_master_ahb"
+is dedicated in qca8386, others are needed on the both chips qca8386
+and qca8084.
 
-No.
+Here is the DTS example for the clocks and resets working on the
+devices, from the example below, we can get the dedicated clocks
+and resets for each MDIO device and package level device.
+
+The DTS properties in the "qcom,phy-common" should be initialized by
+the first PHY probe function, and only being initialized one time.
+
+phy0: ethernet-phy@0 { 
+
+         compatible = "ethernet-phy-id004d.d180"; 
+
+         reg = <1>;
+
+         /* Package level configs, applicable on qca8386 and qca8081. */ 
+
+         phy-common-config { 
+
+                 qcom,phy-addr-fixup = <1 2 3 4 5 6 7>; 
+
+                 qcom,phy-work-mode = <2>; 
+
+                 clocks = <&qca8k_nsscc NSS_CC_APB_BRIDGE_CLK>, 
+
+                        <&qca8k_nsscc NSS_CC_AHB_CLK>, 
+
+                        <&qca8k_nsscc NSS_CC_SEC_CTRL_AHB_CLK>, 
+
+                        <&qca8k_nsscc NSS_CC_TLMM_CLK>, 
+
+                        <&qca8k_nsscc NSS_CC_TLMM_AHB_CLK>, 
+
+                        <&qca8k_nsscc NSS_CC_CNOC_AHB_CLK>, 
+
+                        <&qca8k_nsscc NSS_CC_MDIO_AHB_CLK>; 
+
+ 
+
+                 clock-names = "apb_bridge", 
+
+                         "ahb", 
+
+                         "sec_ctrl_ahb", 
+
+                         "tlmm", 
+
+                         "tlmm_ahb", 
+
+                         "cnoc_ahb", 
+
+                         "mdio_ahb"; 
+
+ 
+
+                 resets = <&qca8k_nsscc NSS_CC_DSP_ARES>; 
+
+                 reset-names = "gephy_dsp"; 
+
+ 
+
+                 ethernet-ports { 
+
+                         /* clocks and resets for pcs0. */ 
+
+                         pcs0 {
+                                 clocks = <&qca8k_nsscc 
+NSS_CC_SRDS0_SYS_CLK>;
+                                 clock-names = "srds0_sys"; 
+
+                                 resets = <&qca8k_nsscc 
+NSS_CC_SRDS0_SYS_ARES>;
+                                 reset-names = "srds0_sys"; 
+
+                         };
+
+                         /* clocks and resets for pcs1. */ 
+
+                         pcs1 {
+                                 clocks = <&qca8k_nsscc 
+NSS_CC_SRDS1_SYS_CLK>;
+                                 clock-names = "srds1_sys"; 
+
+                                 resets = <&qca8k_nsscc 
+NSS_CC_SRDS1_SYS_ARES>;
+                                 reset-names = "srds1_sys"; 
+
+                         };
+
+			/* clocks and resets for first phy */
+                         phy0 {
+                                 clocks = <&qca8k_nsscc 
+NSS_CC_GEPHY0_SYS_CLK>;
+                                 clock-names = "gephy0_sys"; 
+
+                                 resets = <&qca8k_nsscc 
+NSS_CC_GEPHY0_SYS_ARES>,
+                                        <&qca8k_nsscc 
+NSS_CC_GEPHY0_ARES>;
+                                 reset-names = "gephy0_sys", 
+
+                                         "gephy0_soft"; 
+
+                         }; 
 
 
-Best regards,
-Krzysztof
+			/* clocks and resets for second phy */ 
 
+                         phy1 {
+                                 clocks = <&qca8k_nsscc 
+NSS_CC_GEPHY1_SYS_CLK>;
+                                 clock-names = "gephy1_sys"; 
+
+                                 resets = <&qca8k_nsscc 
+NSS_CC_GEPHY1_SYS_ARES>,
+                                        <&qca8k_nsscc 
+NSS_CC_GEPHY1_ARES>;
+                                 reset-names = "gephy1_sys", 
+
+                                         "gephy1_soft"; 
+
+                         }; 
+
+
+			/* clocks and resets for third phy */ 
+
+                         phy2 {
+                                 clocks = <&qca8k_nsscc 
+NSS_CC_GEPHY2_SYS_CLK>;
+                                 clock-names = "gephy2_sys"; 
+
+                                 resets = <&qca8k_nsscc 
+NSS_CC_GEPHY2_SYS_ARES>,
+                                        <&qca8k_nsscc 
+NSS_CC_GEPHY2_ARES>;
+                                 reset-names = "gephy2_sys", 
+
+                                         "gephy2_soft"; 
+
+                         }; 
+
+
+			/* clocks and resets for fourth phy */ 
+
+                         phy3 {
+                                 clocks = <&qca8k_nsscc 
+NSS_CC_GEPHY3_SYS_CLK>;
+                                 clock-names = "gephy3_sys"; 
+
+                                 resets = <&qca8k_nsscc 
+NSS_CC_GEPHY3_SYS_ARES>,
+                                        <&qca8k_nsscc 
+NSS_CC_GEPHY3_ARES>;
+                                 reset-names = "gephy3_sys", 
+
+                                         "gephy3_soft"; 
+
+                         }; 
+
+ 
+
+                 }; 
+
+         };
+
+phy1: ethernet-phy@1 { 
+
+         compatible = "ethernet-phy-id004d.d180"; 
+
+         reg = <2>; 
+
+};
+ 
+
+phy2: ethernet-phy@2 { 
+
+         compatible = "ethernet-phy-id004d.d180"; 
+
+         reg = <3>; 
+
+}; 
+
+ 
+
+phy3: ethernet-phy@3 { 
+
+         compatible = "ethernet-phy-id004d.d180"; 
+
+         reg = <4>; 
+
+};
 
