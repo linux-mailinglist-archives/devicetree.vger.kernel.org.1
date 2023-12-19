@@ -1,65 +1,64 @@
-Return-Path: <devicetree+bounces-26877-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26878-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BF7C818701
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 13:06:46 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A3FE1818709
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 13:07:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 57141B24BDB
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 12:06:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2F2D81F245C3
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 12:07:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82B5516415;
-	Tue, 19 Dec 2023 12:06:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21536168C7;
+	Tue, 19 Dec 2023 12:07:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wTZJctSb"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="j1hk9dPd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD16918643
-	for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 12:06:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E42A91862E
+	for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 12:07:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-5534abbc637so2909611a12.0
-        for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 04:06:32 -0800 (PST)
+Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-a235500d0e1so280935266b.2
+        for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 04:07:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702987591; x=1703592391; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=/exb5wVX9siMDyUcgM5UGDFi2b5saHGKkBIlCfEkmUg=;
-        b=wTZJctSbPTCNee+qKneBxja3I1fmxXLC74rWXhSKhZRpJu99k7xKy7HA7cIbYwpG+o
-         bQ8bPtCGwno+C37JXT354F2XnFf8M3VjCWzc2c3YZIh1z4UYulkZ2ox/+K+ZgB2R5xb7
-         OURO0uXZXqS2y1dSoM3clb/ataos/wItTh3ZPx5SC9KqMmT4VbSCQ3mCb20/iZ1ScFcd
-         7oI6hGd1rmermNy4Qrbk9E9ZRndVIMNzsUk1wZvqsOlIwvshxnu+8fGEuqckFLdD2wYP
-         8Axfn38dK1vVuwSC0xE3D0T245rdUdMw3Fp/em8EV75DMEZmFBwCyl4+Z4jSokDRBm57
-         ya7g==
+        d=linaro.org; s=google; t=1702987631; x=1703592431; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=8jwW3o+MdMiQF8YAkLVAfAOBi6pavmtEQmsioxpTxDg=;
+        b=j1hk9dPdGy1mHuJt3pMxKk0kf91UnxLjUyAoDZANw/hyMqMDCqQxBRco8QGd2BbORZ
+         NIz9NVpeM3xKnbaCk9rB14RrdKg8aoRng5qgDJlVwjkEc2UbuxG4iAIkfIvGmmoen6pR
+         5H1Zl0Bt3W7HVLqVIO/Utu3+d0J/Ea7UJumYIUnuZSovY83te+nqcIBy7v+k3SZy2ji4
+         aMOEgKLwGKYgnf+KyYxnc4xfN7tgNUuzl2JLFcgcvafsJ01AvSk7sZkk/dnN3ox0eNqn
+         L+jM2Ka3H0q9FXFRAwmlrr1CLWuSQbEmQwrNtTo2zyR+mVjdVbZqCbUqzXtV0vAHgEO8
+         1tvA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702987591; x=1703592391;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/exb5wVX9siMDyUcgM5UGDFi2b5saHGKkBIlCfEkmUg=;
-        b=Cadgyzdt9g7rn/UcN5zj74odoYpGQcQUOVvf3CXELBEsCZbadRTx+tNT9u/soPO2Co
-         rruiRIbhWm4PFKJPky8qwq8YEvgcQuJC77RQSzfv/1khn+SEsMFtfhmlD8fVLrxlgBU0
-         qKO1xnLgy3xesI9nCiXm3koA2hfUWxY1Gw3rk8adQ8ETUyQtq9v1IitB/+G8QPSRsiJJ
-         wSBaDwe9hrdd3MALgFBP9tingVmvfvEANOehr0o/U+VT8rZl6z9usc9fhKBSHEfDkIu7
-         Pnifo4RPT6BNnU+Uno+6ujyqfKCVbL1yTJjtaGWp8ot/S93kUHF2Vn8pSueoGBnwEMvj
-         SO4g==
-X-Gm-Message-State: AOJu0Yz9HBI0sKceoUKk6WpPyF1IlmYidhPc3n3NdpxRwT1JMc/kqE4y
-	dPFTNEFJgsb1oewc+69xOMszhw==
-X-Google-Smtp-Source: AGHT+IF6CdAeGP0WSJV+oc6kbgx/fFcGs4VJZwum8AjL3WAlT6tNIgmXHK5cfvA71s5C7jrixbLcUQ==
-X-Received: by 2002:a17:906:518b:b0:a23:648b:34f5 with SMTP id y11-20020a170906518b00b00a23648b34f5mr1240276ejk.16.1702987590959;
-        Tue, 19 Dec 2023 04:06:30 -0800 (PST)
+        d=1e100.net; s=20230601; t=1702987631; x=1703592431;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=8jwW3o+MdMiQF8YAkLVAfAOBi6pavmtEQmsioxpTxDg=;
+        b=tcZz3PInsGRZek8mulOh9uWwjIXOHAuQj5ru68CFeWXzFS6avhSgVbLB0ZL5tn73BJ
+         8vppB6xnJUjxHta2ZFypIgkYN51nWjsh2/Z+B4vnBXulMIyFrYrBJYAgvEWws5iT/Dxp
+         T6hr7FLeto9adycplRPeMafetcvGa6HOoBocnUPFL+TiHTgCFxEvjAOXBvDQ84ww6+kb
+         l3VMCBBw+bU0O5zOxqwP7KlL0NEOhv7BQhkOb1tkTg0qb8paAMPokKm6yNGTmAk8hfsX
+         ggwWweOovwDPUnrCft1M4bPvqIWnRP0oEATEsgoJ/uXx0fC15+XwjUwzHAk5JIY0fKPH
+         K3Xw==
+X-Gm-Message-State: AOJu0YzcFyMVZDkrOdO09epryQcF/TCB7sxvWgK2q3DprbL8l9pd2WLE
+	HWG4kEWq2OshLUa5rnmmFl9GWw==
+X-Google-Smtp-Source: AGHT+IEpy/lAdACmhYOO10Q/WAV3RMxt3W8TaKoBhdF4G6kSC3eXzyUrrtuRujIMiU2UkqqeVysthw==
+X-Received: by 2002:a17:907:76ab:b0:a23:53e6:601c with SMTP id jw11-20020a17090776ab00b00a2353e6601cmr1634438ejc.71.1702987631222;
+        Tue, 19 Dec 2023 04:07:11 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id rg8-20020a1709076b8800b00a1f7cbf2896sm14306470ejc.176.2023.12.19.04.06.27
+        by smtp.gmail.com with ESMTPSA id rg8-20020a1709076b8800b00a1f7cbf2896sm14306470ejc.176.2023.12.19.04.07.06
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 19 Dec 2023 04:06:29 -0800 (PST)
-Message-ID: <58ded02d-a5d2-40e2-b575-dc520a7553cf@linaro.org>
-Date: Tue, 19 Dec 2023 13:06:25 +0100
+        Tue, 19 Dec 2023 04:07:09 -0800 (PST)
+Message-ID: <cb9a6bd4-6c99-4409-9cc7-73b600eb8fce@linaro.org>
+Date: Tue, 19 Dec 2023 13:07:06 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,17 +66,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] clk: samsung: Fix typo error and extra space
+Subject: Re: [PATCH 1/2] dt-bindings: clock: Fix spelling mistake in
+ 'tesla,fsd-clock.yaml'
+Content-Language: en-US
 To: Varada Pavani <v.pavani@samsung.com>, mturquette@baylibre.com,
  sboyd@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
  linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, s.nawrocki@samsung.com, tomasz.figa@gmail.com
 Cc: linux-samsung-soc@vger.kernel.org, alim.akhtar@samsung.com,
  aswani.reddy@samsung.com, pankaj.dubey@samsung.com
-References: <20231219115834.65720-1-v.pavani@samsung.com>
- <CGME20231219115858epcas5p469e925738bcb93ee88842fdea0f9d3f0@epcas5p4.samsung.com>
- <20231219115834.65720-2-v.pavani@samsung.com>
-Content-Language: en-US
+References: <CGME20231219115856epcas5p371abeb4264f60309e597b90954e6d58c@epcas5p3.samsung.com>
+ <20231219115834.65720-1-v.pavani@samsung.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -123,69 +122,20 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231219115834.65720-2-v.pavani@samsung.com>
+In-Reply-To: <20231219115834.65720-1-v.pavani@samsung.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 19/12/2023 12:58, Varada Pavani wrote:
-> Remove extra spaces and fix spelling mistakes in 'drivers/
-> clk/samsung/clk-cpu.c' and 'drivers/clk/samsung/clk-cpu.h'
+> Fix typo 'inteernal' to 'internal' in 'Documentation/devicetree/
+> bindings/clock/tesla,fsd-clock.yaml'.
 > 
 > Signed-off-by: Varada Pavani <v.pavani@samsung.com>
 > ---
->  drivers/clk/samsung/clk-cpu.c | 6 +++---
->  drivers/clk/samsung/clk-cpu.h | 2 +-
->  2 files changed, 4 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/clk/samsung/clk-cpu.c b/drivers/clk/samsung/clk-cpu.c
-> index 3e62ade120c5..18568b8b1b9b 100644
-> --- a/drivers/clk/samsung/clk-cpu.c
-> +++ b/drivers/clk/samsung/clk-cpu.c
-> @@ -19,7 +19,7 @@
->   * clock and the corresponding rate changes of the auxillary clocks of the CPU
->   * domain. The platform clock driver provides a clock register configuration
->   * for each configurable rate which is then used to program the clock hardware
-> - * registers to acheive a fast co-oridinated rate change for all the CPU domain
-> + * registers to achieve a fast co-oridinated rate change for all the CPU domain
->   * clocks.
->   *
->   * On a rate change request for the CPU clock, the rate change is propagated
-> @@ -181,7 +181,7 @@ static int exynos_cpuclk_pre_rate_change(struct clk_notifier_data *ndata,
->  	 * If the old parent clock speed is less than the clock speed of
->  	 * the alternate parent, then it should be ensured that at no point
->  	 * the armclk speed is more than the old_prate until the dividers are
-> -	 * set.  Also workaround the issue of the dividers being set to lower
-> +	 * set. Also workaround the issue of the dividers being set to lower
+>  Documentation/devicetree/bindings/clock/tesla,fsd-clock.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 
-Why? The double-space is correct.
-
->  	 * values before the parent clock speed is set to new lower speed
->  	 * (this can result in too high speed of armclk output clocks).
->  	 */
-> @@ -303,7 +303,7 @@ static int exynos5433_cpuclk_pre_rate_change(struct clk_notifier_data *ndata,
->  	 * If the old parent clock speed is less than the clock speed of
->  	 * the alternate parent, then it should be ensured that at no point
->  	 * the armclk speed is more than the old_prate until the dividers are
-> -	 * set.  Also workaround the issue of the dividers being set to lower
-> +	 * set. Also workaround the issue of the dividers being set to lower
-
-Why?
-
->  	 * values before the parent clock speed is set to new lower speed
->  	 * (this can result in too high speed of armclk output clocks).
->  	 */
-> diff --git a/drivers/clk/samsung/clk-cpu.h b/drivers/clk/samsung/clk-cpu.h
-> index fc9f67a3b22e..e0a1651174e6 100644
-> --- a/drivers/clk/samsung/clk-cpu.h
-> +++ b/drivers/clk/samsung/clk-cpu.h
-> @@ -33,7 +33,7 @@ struct exynos_cpuclk_cfg_data {
->   * @hw:	handle between CCF and CPU clock.
->   * @alt_parent: alternate parent clock to use when switching the speed
->   *	of the primary parent clock.
-> - * @ctrl_base:	base address of the clock controller.
-> + * @ctrl_base: base address of the clock controller.
-
-Why only here and not in other places?
+Are there any other typos in that file or in other Samsung clock bindings?
 
 Best regards,
 Krzysztof
