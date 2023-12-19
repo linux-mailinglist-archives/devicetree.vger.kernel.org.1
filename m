@@ -1,126 +1,98 @@
-Return-Path: <devicetree+bounces-26967-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26968-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 354F7818BC6
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 17:05:57 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B169A818BCF
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 17:06:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C9BD7B24941
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 16:05:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 61168287780
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 16:06:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF1E31D157;
-	Tue, 19 Dec 2023 16:05:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B3A71CFB9;
+	Tue, 19 Dec 2023 16:05:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Wlph3+yt"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Sl0irgBN"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D173B1D133;
-	Tue, 19 Dec 2023 16:05:42 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 95101C433C9;
-	Tue, 19 Dec 2023 16:05:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46AC020B34;
+	Tue, 19 Dec 2023 16:05:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7DB48C433C7;
+	Tue, 19 Dec 2023 16:05:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1703001942;
-	bh=1UNhhh2p2VaSEqxSYiVKpRP2qDM5jDso1KMzABjv/Z0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Wlph3+ytmPN//1jbPndMQ7HZReZAxLF7+8AvcwYU480jtYcneoqnDeqxCB3EUW3Yc
-	 97zfIA/RGushUnopNGpnJoHUQN9aqIKBooX8+IRpD/rl1pGd3IFwVuODYogh5UEPXS
-	 3HVzGwugHFUtE1dylVfLcBDATBvdoAFHue37Dfah63Y7I70ICBOcC4e65+X8n/+SUS
-	 ibfKwnV5NAYgIQxDWdiddUhICHojxW8BjtgQnkcVEUVAE6lC0rqCfUnHmloL9OlDF5
-	 PGbc1i/pPQ0wntRLCrip9KL2Djt+bhA1oyIMEyH/E7IEK55gn5OC7ljTKrN66fA5Kx
-	 Ky2N8JYF31E+w==
-Date: Tue, 19 Dec 2023 16:05:37 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Binbin Zhou <zhoubinbin@loongson.cn>
-Cc: Binbin Zhou <zhoubb.aaron@gmail.com>,
-	Huacai Chen <chenhuacai@loongson.cn>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	Huacai Chen <chenhuacai@kernel.org>,
-	Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev,
-	Jiaxun Yang <jiaxun.yang@flygoat.com>,
-	Hongliang Wang <wanghongliang@loongson.cn>
-Subject: Re: [PATCH v5 4/7] LoongArch: dts: DeviceTree for Loongson-2K0500
-Message-ID: <20231219-old-outnumber-22ae5dd35a5a@spud>
-References: <cover.1702862778.git.zhoubinbin@loongson.cn>
- <303e56cb6e5f82623babe18b095069b330cd37da.1702862778.git.zhoubinbin@loongson.cn>
+	s=k20201202; t=1703001951;
+	bh=wOOLPNOS6Wdenq2YMCXYX637AGsdeEONrDQ0EipOGM0=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=Sl0irgBN4Po4Qo20Sl0qGNtmJUhnIP3EOb9EMDDVocMhShoFeDVV0QQjBnuj0WRV1
+	 7CNzsJfUF5ko4jAlf4w8z1GQXPTszA/y6uiE1UNsmLdE1LTk//Sdde1y8ERaHcnDQc
+	 vtqmuhTKbMIajlLoXP2O2o2yeIkK80AvhMpvTTPWCYgYZBYJeg+TLx4+7l33mHP4j+
+	 O6X/WjNl/sLr8gyQcmohEyDEYQxUc+ReXcYzjTFB3hblT0iMKtyaxLQHEuOCl9je6F
+	 SHTqo/fkTnt9cUdKMroaun13XvBrVfQaqdJ2ONw14x0fV95e9UCJ/dwN+QZzgs5+hq
+	 pq9YE9EhtZQDA==
+From: Mark Brown <broonie@kernel.org>
+To: Johan Hovold <johan+linaro@kernel.org>
+Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, 
+ Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Wesley Cheng <quic_wcheng@quicinc.com>, 
+ linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org
+In-Reply-To: <20231219075749.25308-1-johan+linaro@kernel.org>
+References: <20231219075749.25308-1-johan+linaro@kernel.org>
+Subject: Re: [PATCH] dt-bindings: regulator: qcom,usb-vbus-regulator: clean
+ up example
+Message-Id: <170300194921.59203.15876137715050350812.b4-ty@kernel.org>
+Date: Tue, 19 Dec 2023 16:05:49 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="NZQCWDkC0v4tpW87"
-Content-Disposition: inline
-In-Reply-To: <303e56cb6e5f82623babe18b095069b330cd37da.1702862778.git.zhoubinbin@loongson.cn>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.13-dev-5c066
 
+On Tue, 19 Dec 2023 08:57:49 +0100, Johan Hovold wrote:
+> Devicetree node names should be generic; fix up the
+> qcom,usb-vbus-regulator binding example accordingly.
+> 
+> While at it, drop an unnecessary label and add a newline separator
+> before the child node to improve readability.
+> 
+> 
+> [...]
 
---NZQCWDkC0v4tpW87
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Applied to
 
-On Mon, Dec 18, 2023 at 09:52:58AM +0800, Binbin Zhou wrote:
-> diff --git a/arch/loongarch/boot/dts/loongson-2k0500.dtsi b/arch/loongarch/boot/dts/loongson-2k0500.dtsi
-> new file mode 100644
-> index 000000000000..1dcb6a20fc6c
-> --- /dev/null
-> +++ b/arch/loongarch/boot/dts/loongson-2k0500.dtsi
-> @@ -0,0 +1,274 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (C) 2023 Loongson Technology Corporation Limited
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +/ {
-> +	#address-cells = <2>;
-> +	#size-cells = <2>;
-> +
-> +	cpus {
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		cpu-map {
-> +			cluster0 {
-> +				core0 {
-> +					cpu = <&cpu0>;
-> +				};
-> +			};
-> +		};
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
 
-You have only one CPU, this should not be needed.
+Thanks!
 
-> +
-> +		cpu0: cpu@0 {
-> +			compatible = "loongson,la264";
-> +			device_type = "cpu";
-> +			reg = <0x0>;
-> +			clocks = <&cpu_clk>;
+[1/1] dt-bindings: regulator: qcom,usb-vbus-regulator: clean up example
+      commit: d939c02359a656a624d03c6f14ccadae4a1c66ac
 
-Is this actually a complete description of the cpu? Are there i/d caches
-etc?
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
-Cheers,
-Conor.
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
 
---NZQCWDkC0v4tpW87
-Content-Type: application/pgp-signature; name="signature.asc"
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
 
------BEGIN PGP SIGNATURE-----
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZYG/UQAKCRB4tDGHoIJi
-0qdCAQCddr3tYzSjfXbbdKOlHvzpa2X71EWXKPt7agWwTZiLMAD7Be76g/dRnzdJ
-OpcfaqY+tCw++BjM6fD8eT4P6PEw6Ag=
-=lDzh
------END PGP SIGNATURE-----
+Thanks,
+Mark
 
---NZQCWDkC0v4tpW87--
 
