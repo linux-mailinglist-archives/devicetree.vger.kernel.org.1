@@ -1,111 +1,164 @@
-Return-Path: <devicetree+bounces-27015-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27016-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DAD1818DB1
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 18:14:22 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 318FF818DB9
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 18:15:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A48B81F26E49
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 17:14:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C2F311F27304
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 17:15:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DFA820B14;
-	Tue, 19 Dec 2023 17:14:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A3EB20DE3;
+	Tue, 19 Dec 2023 17:15:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EM2r0lHn"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QMB1tAp3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
+Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02EE535896;
-	Tue, 19 Dec 2023 17:14:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E94DC35268;
+	Tue, 19 Dec 2023 17:15:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-a2340c803c6so356346266b.0;
-        Tue, 19 Dec 2023 09:14:05 -0800 (PST)
+Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-a22f59c6aeaso564838566b.2;
+        Tue, 19 Dec 2023 09:15:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1703006044; x=1703610844; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=f9vtfVLly14ekhlTunGy1vRxwLpd8U5NIsSj2AVK3Vk=;
-        b=EM2r0lHns+qVfCE/SnsFr51o7VCJHzTlBqDn7KOvQH3457NqbuwOtwcTNX/T6lsSZW
-         W1WBvZbfd/TO8ecEoxfQpXDw3HMAqOAWCplTskcNRtoj2XiY5xocXSVpzC9ZEhctrybW
-         PASKUAaGtLj5Ny9dbzrCam7dWejaah7AN1bYI8tnBb3vOZbTkx8gXK1gXUu8m2RnoZCE
-         l15GFBcJIHAPtoxQiJTon/4SfJeWDzWgMdDxjOXrd4F+SXOojn6AQc38Pgf7Xgd//8C7
-         MeI8+OXjhxGdWa8tvzOQHedqrtvMJDaFEKxEITS3j8v6Yoc1Bi+Lqr8yCCaq6eTh3rPY
-         Hxcw==
+        d=gmail.com; s=20230601; t=1703006128; x=1703610928; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=rP16a1SZyv7erlw5UIZnK6nQRzkpC0bkH1p5QX76mR8=;
+        b=QMB1tAp3T7K6z8yxfRj4y0ugSH75DsHcOOKpRAQ6F46sxzpOVkI6+8kV2AtUBjpSTg
+         zbHpYa30RfINXmqzgw/IxEfcTqej1UH7Dpv2vAPMsNB8/7nwiyhqFD4kRfYq2ESxO9X3
+         C6gHhxuMo3bkZqixSENf+cUG0ZLqKb8rcNVwmIe6v71ulgp6PDwplJVS9EMd6cfM+LTX
+         B0zyeETohFBRD2B7FoonBC1EBj16RLuRd0Lshy/+BnkjG1AXlMoYAKZSvNFJADOPJ6/X
+         bxIwV3BeDYy4wVHzabFaKahPfq3beiDyAfFxRclvlAkYoD7ftpOpMHVry279+P5rLc6g
+         ZYWQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703006044; x=1703610844;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=f9vtfVLly14ekhlTunGy1vRxwLpd8U5NIsSj2AVK3Vk=;
-        b=sDa2XuX+U6Z2a0fN318rhkanrCny6t3uBpui9Cy7BuHoJP1mCB9ow14oE8WGvpWODY
-         8yzyLkhjGbbiQ99SnWxHda0+RNeycVwOCdldTTUS4xcmjGuhTf4NeixYdObdN2fHYBjN
-         gE5cL5Crd6E1qX9lDtO/6miK0JC0P4TfwhbdVXpdj/DT2z6nvAGn0f8zkOVCoLBnqkfh
-         8UIrTRTmXGpSDFMtWowEBnqzAUcjmrme98N4v99X1j9/d/AmGvS1SeqsY3N/NF9rqBBP
-         uZZ8hHPi4Y/SU/yOcOionWjnIpBM/CGa5FSF8LjDxdwE1hgV0FVOUKGtxXvkgvN3NrWR
-         VJXA==
-X-Gm-Message-State: AOJu0YzCfTIrYIe6RfS+x6+4NwZQodeiomYv2ftAzxKfX8UPjubVmhU3
-	/Dn2QC5EaGFXJoKBM/EUpqE=
-X-Google-Smtp-Source: AGHT+IG4srAKNtlRLgacln5AazC7R1jIUPMIg1CJHj5l9uMv+Lm+7DWv6+igpI5lY+xNGDiLnRvPEw==
-X-Received: by 2002:a17:907:3d91:b0:9fe:57b3:bc08 with SMTP id he17-20020a1709073d9100b009fe57b3bc08mr11848783ejc.41.1703006044090;
-        Tue, 19 Dec 2023 09:14:04 -0800 (PST)
-Received: from jernej-laptop.localnet (82-149-12-148.dynamic.telemach.net. [82.149.12.148])
-        by smtp.gmail.com with ESMTPSA id cx7-20020a170907168700b009fc576e26e6sm15541544ejd.80.2023.12.19.09.14.01
+        d=1e100.net; s=20230601; t=1703006128; x=1703610928;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=rP16a1SZyv7erlw5UIZnK6nQRzkpC0bkH1p5QX76mR8=;
+        b=Da7i3mTo4Z4XknLAfVDnhn6xtrjSWNxslCXkir2F1axdQ1YNBLkc24Mr/RahImuEgC
+         91lmNpaR70OLp5wMjsrLfIV6O7vua8sD2dAVr+gU5r0W/j5ETl888WyyW/zIgAYibIR4
+         xnEdO5wIcYHLArYpQNFeelM7tgdnu7o6SFxqnAgtfMR1bTJICYVJNr3FS0bzNRSvI+oA
+         dHzbRb4FWzqSVCV5Yf/OeN8IlDo+bPlvnRbpr/vlJ0n43pGlGA+wxBO/SjoiQKFxnv/h
+         oV3cYbEezuVzbke0A+HbRAryKFGXJVNCfQof+n4ZoVjN7ii7Vm+PnFGMMPZZw305IBY7
+         FhZw==
+X-Gm-Message-State: AOJu0Yx6Ej3JWwy5cEDqJClf6YRx3l/O/IIpshAdibYR22gJWwsAH0xY
+	8ExdbYdWiGHvWxgpwIo+Hik=
+X-Google-Smtp-Source: AGHT+IGOI4m2B3qsa+ucqdHZOZTlDmC+VWvgv3I/P4TsBWG/RSOA+lHzcxOJsvRWnePEKdqTsuoYhg==
+X-Received: by 2002:a17:906:e24b:b0:a23:6fd9:b088 with SMTP id gq11-20020a170906e24b00b00a236fd9b088mr1116378ejb.102.1703006127839;
+        Tue, 19 Dec 2023 09:15:27 -0800 (PST)
+Received: from localhost (p200300e41f0fa600f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f0f:a600:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id ze11-20020a170906ef8b00b00a2684d2e684sm643464ejb.92.2023.12.19.09.15.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 Dec 2023 09:14:03 -0800 (PST)
-From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To: Maksim Kiselev <bigunclemax@gmail.com>
-Cc: Andre Przywara <andre.przywara@arm.com>,
- Maxim Kiselev <bigunclemax@gmail.com>,
- Vasily Khoruzhick <anarsoul@gmail.com>, Yangtao Li <tiny.windzz@gmail.com>,
- "Rafael J. Wysocki" <rafael@kernel.org>,
- Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>,
- Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
- Samuel Holland <samuel@sholland.org>,
- Paul Walmsley <paul.walmsley@sifive.com>,
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- John Watts <contact@jookia.org>,
- Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
- Marc Kleine-Budde <mkl@pengutronix.de>, linux-pm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
- linux-riscv@lists.infradead.org
-Subject:
- Re: [PATCH v6 2/3] thermal: sun8i: Add D1/T113s THS controller support
-Date: Tue, 19 Dec 2023 18:14:01 +0100
-Message-ID: <1950771.PYKUYFuaPT@jernej-laptop>
-In-Reply-To: <20231217210629.131486-3-bigunclemax@gmail.com>
-References:
- <20231217210629.131486-1-bigunclemax@gmail.com>
- <20231217210629.131486-3-bigunclemax@gmail.com>
+        Tue, 19 Dec 2023 09:15:27 -0800 (PST)
+From: Thierry Reding <thierry.reding@gmail.com>
+To: Thierry Reding <thierry.reding@gmail.com>
+Cc: Jon Hunter <jonathanh@nvidia.com>,
+	Russell Xiao <russellx@nvidia.com>,
+	Brad Griffis <bgriffis@nvidia.com>,
+	Jimmy Zhang <jimmzhang@nvidia.com>,
+	linux-tegra@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: [PATCH] arm64: tegra: Use consistent SD/MMC aliases on Tegra234
+Date: Tue, 19 Dec 2023 18:15:23 +0100
+Message-ID: <20231219171523.557928-1-thierry.reding@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 8bit
 
-Dne nedelja, 17. december 2023 ob 22:06:23 CET je Maksim Kiselev napisal(a):
-> From: Maxim Kiselev <bigunclemax@gmail.com>
-> 
-> This patch adds a thermal sensor controller support for the D1/T113s,
-> which is similar to the one on H6, but with only one sensor and
-> different scale and offset values.
-> 
-> Signed-off-by: Maxim Kiselev <bigunclemax@gmail.com>
+From: Thierry Reding <treding@nvidia.com>
 
-Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+Tegra234 boards use a mixture of aliases for the SD/MMC hardware blocks,
+which can lead to confusion. A common method was to use mmc3 as the
+alias for the eMMC because "SDMMC3" happens to be the name of the
+corresponding controller in the reference manual. This isn't a great
+choice because there is no hardware named SDMMC0, so the mmc0 alias
+would never get used with that nomenclature and in fact mmc1 and mmc2
+wouldn't either in many configurations, thereby creating weird
+discontiguous enumeration.
 
-Best regards,
-Jernej
+Instead of trying to match the aliases to the hardware block names, use
+mmc0 to denote the device's primary SD/MMC controller (typically eMMC)
+and mmc1 for the secondary SD/MMC controller (typically removable SD).
+In cases where eMMC is the only controller we can omit the mmc1 alias
+and if a device has no eMMC, the removable SD card can be aliased to
+mmc0 instead.
 
+Co-developed-by: Russell Xiao <russellx@nvidia.com>
+Signed-off-by: Thierry Reding <treding@nvidia.com>
+---
+ arch/arm64/boot/dts/nvidia/tegra234-p3701.dtsi               | 5 +++++
+ .../arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts | 1 -
+ arch/arm64/boot/dts/nvidia/tegra234-p3767.dtsi               | 4 ++++
+ arch/arm64/boot/dts/nvidia/tegra234-sim-vdk.dts              | 1 -
+ 4 files changed, 9 insertions(+), 2 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/nvidia/tegra234-p3701.dtsi b/arch/arm64/boot/dts/nvidia/tegra234-p3701.dtsi
+index db6ef711674a..90f5adeba0f5 100644
+--- a/arch/arm64/boot/dts/nvidia/tegra234-p3701.dtsi
++++ b/arch/arm64/boot/dts/nvidia/tegra234-p3701.dtsi
+@@ -3,6 +3,11 @@
+ / {
+ 	compatible = "nvidia,p3701", "nvidia,tegra234";
+ 
++	aliases {
++		mmc0 = "/bus@0/mmc@3460000";
++		mmc1 = "/bus@0/mmc@3400000";
++	};
++
+ 	bus@0 {
+ 		aconnect@2900000 {
+ 			status = "okay";
+diff --git a/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts b/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts
+index b4a6cee0b9e3..a132b3eb5697 100644
+--- a/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts
++++ b/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts
+@@ -24,7 +24,6 @@ fb: framebuffer@0 {
+ 	};
+ 
+ 	aliases {
+-		mmc3 = "/bus@0/mmc@3460000";
+ 		serial0 = &tcu;
+ 		serial1 = &uarta;
+ 	};
+diff --git a/arch/arm64/boot/dts/nvidia/tegra234-p3767.dtsi b/arch/arm64/boot/dts/nvidia/tegra234-p3767.dtsi
+index 59c14ded5e9f..bf93a32c343b 100644
+--- a/arch/arm64/boot/dts/nvidia/tegra234-p3767.dtsi
++++ b/arch/arm64/boot/dts/nvidia/tegra234-p3767.dtsi
+@@ -5,6 +5,10 @@
+ / {
+ 	compatible = "nvidia,p3767", "nvidia,tegra234";
+ 
++	aliases {
++		mmc0 = "/bus@0/mmc@3400000";
++	};
++
+ 	bus@0 {
+ 		i2c@3160000 {
+ 			status = "okay";
+diff --git a/arch/arm64/boot/dts/nvidia/tegra234-sim-vdk.dts b/arch/arm64/boot/dts/nvidia/tegra234-sim-vdk.dts
+index 9f3e9f30c3f7..292e28376eec 100644
+--- a/arch/arm64/boot/dts/nvidia/tegra234-sim-vdk.dts
++++ b/arch/arm64/boot/dts/nvidia/tegra234-sim-vdk.dts
+@@ -8,7 +8,6 @@ / {
+ 	compatible = "nvidia,tegra234-vdk", "nvidia,tegra234";
+ 
+ 	aliases {
+-		mmc3 = "/bus@0/mmc@3460000";
+ 		serial0 = &uarta;
+ 	};
+ 
+-- 
+2.43.0
 
 
