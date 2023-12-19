@@ -1,263 +1,375 @@
-Return-Path: <devicetree+bounces-27020-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27021-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FA04818E21
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 18:31:58 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C0025818E3B
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 18:34:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E179C1F22B49
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 17:31:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 74E17281B62
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 17:34:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8CEF23769;
-	Tue, 19 Dec 2023 17:31:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BCAA22EF2;
+	Tue, 19 Dec 2023 17:34:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DREywg/P"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ResSC+TM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f169.google.com (mail-pg1-f169.google.com [209.85.215.169])
+Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2121A24A03
-	for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 17:31:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pg1-f169.google.com with SMTP id 41be03b00d2f7-5cd8879ce18so1318416a12.1
-        for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 09:31:50 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB72C37D02
+	for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 17:34:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-54c5d041c23so5899905a12.2
+        for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 09:34:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1703007110; x=1703611910; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1703007282; x=1703612082; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=tNuSOIUI5x4sS7b6TcbJmnlVmXjTRkIFXpOBXzrlw3w=;
-        b=DREywg/PBO41JJuxCDs8Oz9LldHyDbpaW6ty4KK5CD/uNipQ7iEI51Xr58/SeiB/dP
-         cFyVue2MQBWH6hURHg9vlaFnaTXU9FtxEtgpvhW2Sx82iL5rEUF2J3LmpLxcudwrgadU
-         V/mv2aYpuO7goABDobJAYDGHXrPOG6PJVVHm+1ASvjqGVqLwlYeTTbQ/XCK9+3MwYSWP
-         vDtacNBkQaC93pIgLQZkAxwZCSclJxRJjQRSMSjQ1AZaPGYK7aIJyLe6BhJhwva8tJJ3
-         2LdhEVWAssQnCidB7e1sXGIoRzneh0wdRnBLDN1Hsgf22AJErdXNRzQflEwQJsg0kSlF
-         vu5g==
+        bh=N6WLhGSjx7bRA67CVF6P562rvuRWypoBbMTsAPenkX0=;
+        b=ResSC+TM2NgDiXXVaIKqvfKlTs0kXgvAxtbC+36RK+tiwZxmetWoGscPv1HLg4l8Bp
+         Fz4wsG10xCJPINatrBcblSeGI6fPn7SFoph/4AU5k3ZQF5zTZFq/rh6e7IV4Kh4Q7+S4
+         P293TDE1dVwvZyG5V2nq3m70YAG2rM7CDdZOGWU8Su1zS2uVSeJQmnXNvznIFIq3U+AW
+         wp2dfzFEXRD6YvghV506DGEmPepGYIIV0r3YUpkoJEUpwOIEj8R3iDnqCRhUow/cQiTt
+         TsWAQJBGlzdeWLOwfyxhylc10rLOsw93BSZ95qLfbALJiHEwaas3AqmWfLjkioUpwmAA
+         bh1Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703007110; x=1703611910;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1703007282; x=1703612082;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=tNuSOIUI5x4sS7b6TcbJmnlVmXjTRkIFXpOBXzrlw3w=;
-        b=Tgtt7oatch6eg2uCiVaP17LIa8q6gZPU5dE0nm1gWbiLxtkQNcSFv7Si6JY1vuXfge
-         eehyZK9kpicOxCaCMvP75u7yFp+S6yT0w+YR0s2OlGXBz9rairYzYVothyEdNGJxwIcV
-         ahBMf3hipn0VjGrs8+4gCQq02A6TNcRKRUqA8QCsm31IONLPEJyuq99564+EqTklGrf3
-         i0OudkEktT+44sZsYiL8Cyf1Izv80ncu5RpEL+eI18eMJTQyMFQsncJU+92AVUF/ZjGC
-         k0mVEAD2+ghrr+yFsMZKx0w4T04i59ihNlSJodS6qpzdL4mbz7NP/dZISQh31GTzmyZk
-         vLig==
-X-Gm-Message-State: AOJu0YzfoyEPcNeCZi2N6MvQzDvvX/qKR01DiQmWg/k3jvxOTfEiIhes
-	1kWC+YcVmyNTzmCTrUQDz60FOCQAzsXg3n3j1g5KEg==
-X-Google-Smtp-Source: AGHT+IF6toKI/birO7V7EAX+ee7fSWrikaqxnZJeZZ4HuIa56CWhnMOsykegcVbxI9Ouxzpo0asNalFIUiBgu+U81/g=
-X-Received: by 2002:a17:90b:24b:b0:28b:8fb6:45d1 with SMTP id
- fz11-20020a17090b024b00b0028b8fb645d1mr1794300pjb.41.1703007110402; Tue, 19
- Dec 2023 09:31:50 -0800 (PST)
+        bh=N6WLhGSjx7bRA67CVF6P562rvuRWypoBbMTsAPenkX0=;
+        b=BCbdcZhY7YtSXLD4Mz9i3den2sgbYLaNtCNetYK2ehGqsXyFJjZVPsmfeKEDryBJde
+         4K0bXsv3AsfCli6BdJsDTH3RGy0I3uPyELL/1urL5pYjRE6JB1eiYkt/sTQbxtM2mXOL
+         RooNI3CWZk3MJ8Efch0DwYCBq4Itk6seQFteq6bN0PVO82/iToY1k0hdOMS3g2cwT63u
+         hQMar3J7rekDv3cIwOYq7vw3ru1mQqJ/0SV9QpAxN1STe6eEVetlgMsMt6f+TFRLpKG0
+         x+s+Oo8WkpjLAOPDZEsEp+BxMDkRfU5sz50t0pj02FYF2E2LrLHFuRRrvMFNBJG401cG
+         Ubvg==
+X-Gm-Message-State: AOJu0Yw5PoK/chL5g0W/tC2Wj3dfPAvwGFcpHT9v2LtguIuixD/vJ5x/
+	P1auNf1Y1j3j+FBZD9vxxyyJ8D2SSFaruQ==
+X-Google-Smtp-Source: AGHT+IFE/mY2gg3CFfejfEPU3x+xUKnu2fVVFwm9QKxx/lJO9atPTbVArQcNZrMktQWv/eXcRLai2Q==
+X-Received: by 2002:a17:906:4bd6:b0:a23:65ae:1d4f with SMTP id x22-20020a1709064bd600b00a2365ae1d4fmr745601ejv.182.1703007281861;
+        Tue, 19 Dec 2023 09:34:41 -0800 (PST)
+Received: from jernej-laptop.localnet (82-149-12-148.dynamic.telemach.net. [82.149.12.148])
+        by smtp.gmail.com with ESMTPSA id oz39-20020a170906cd2700b00a235f3b8259sm2293445ejb.186.2023.12.19.09.34.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 19 Dec 2023 09:34:41 -0800 (PST)
+From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To: Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+ Samuel Holland <samuel@sholland.org>, Andre Przywara <andre.przywara@arm.com>
+Cc: Icenowy Zheng <uwu@icenowy.me>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev
+Subject:
+ Re: [PATCH 2/2] arm64: dts: allwinner: h618: add BananaPi M4 Berry board
+Date: Tue, 19 Dec 2023 18:34:40 +0100
+Message-ID: <3197387.5fSG56mABF@jernej-laptop>
+In-Reply-To: <20231217232405.302-3-andre.przywara@arm.com>
+References:
+ <20231217232405.302-1-andre.przywara@arm.com>
+ <20231217232405.302-3-andre.przywara@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231214105243.3707730-1-tudor.ambarus@linaro.org>
- <20231214105243.3707730-8-tudor.ambarus@linaro.org> <CAPLW+4mNjCbJ+VbKR66DFSkiXHyxdjgvwjN7azxjJQ6UxQikEw@mail.gmail.com>
- <f3d61c49-1a46-476c-b7a5-6cc6a06a33ed@linaro.org> <CAPLW+4=tyr8Pcoe6Wm0Wtmkk4udDpuAiOKy7+C+Fwa6mvt3VoQ@mail.gmail.com>
- <5de5cddd-2bab-4408-b31f-f48bef98f14c@linaro.org> <CAPLW+4n-S2jaVPUwKTFC_iabnDd_qDV=ZubMqhz-X9XiZzzJow@mail.gmail.com>
- <4ba80e1e-8fec-4fd2-9140-6da006c9d5f5@linaro.org>
-In-Reply-To: <4ba80e1e-8fec-4fd2-9140-6da006c9d5f5@linaro.org>
-From: Sam Protsenko <semen.protsenko@linaro.org>
-Date: Tue, 19 Dec 2023 11:31:39 -0600
-Message-ID: <CAPLW+4mm8LG=wtJHT5EYhGGiU72qVe70vJv6-JkEGepiXFjcvA@mail.gmail.com>
-Subject: Re: [PATCH 07/13] clk: samsung: gs101: mark PERIC0 IP TOP gate clock
- as critical
-To: Tudor Ambarus <tudor.ambarus@linaro.org>
-Cc: peter.griffin@linaro.org, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com, sboyd@kernel.org, 
-	conor+dt@kernel.org, andi.shyti@kernel.org, alim.akhtar@samsung.com, 
-	gregkh@linuxfoundation.org, jirislaby@kernel.org, catalin.marinas@arm.com, 
-	will@kernel.org, s.nawrocki@samsung.com, tomasz.figa@gmail.com, 
-	cw00.choi@samsung.com, arnd@arndb.de, andre.draszik@linaro.org, 
-	saravanak@google.com, willmcvicker@google.com, 
-	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org, 
-	linux-serial@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On Tue, Dec 19, 2023 at 10:47=E2=80=AFAM Tudor Ambarus <tudor.ambarus@linar=
-o.org> wrote:
->
-> Hi, Sam!
->
-> On 12/14/23 16:43, Sam Protsenko wrote:
-> > On Thu, Dec 14, 2023 at 10:15=E2=80=AFAM Tudor Ambarus <tudor.ambarus@l=
-inaro.org> wrote:
-> >>
-> >>
-> >>
-> >> On 12/14/23 16:09, Sam Protsenko wrote:
-> >>> On Thu, Dec 14, 2023 at 10:01=E2=80=AFAM Tudor Ambarus <tudor.ambarus=
-@linaro.org> wrote:
-> >>>>
-> >>>>
-> >>>>
-> >>>> On 12/14/23 15:37, Sam Protsenko wrote:
-> >>>>> On Thu, Dec 14, 2023 at 4:52=E2=80=AFAM Tudor Ambarus <tudor.ambaru=
-s@linaro.org> wrote:
-> >>>>>>
-> >>>>>> Testing USI8 I2C with an eeprom revealed that when the USI8 leaf c=
-lock
-> >>>>>> is disabled it leads to the CMU_TOP PERIC0 IP gate clock disableme=
-nt,
-> >>>>>> which then makes the system hang. To prevent this, mark
-> >>>>>> CLK_GOUT_CMU_PERIC0_IP as critical. Other clocks will be marked
-> >>>>>> accordingly when tested.
-> >>>>>>
-> >>>>>> Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
-> >>>>>> ---
-> >>>>>>  drivers/clk/samsung/clk-gs101.c | 2 +-
-> >>>>>>  1 file changed, 1 insertion(+), 1 deletion(-)
-> >>>>>>
-> >>>>>> diff --git a/drivers/clk/samsung/clk-gs101.c b/drivers/clk/samsung=
-/clk-gs101.c
-> >>>>>> index 3d194520b05e..08d80fca9cd6 100644
-> >>>>>> --- a/drivers/clk/samsung/clk-gs101.c
-> >>>>>> +++ b/drivers/clk/samsung/clk-gs101.c
-> >>>>>> @@ -1402,7 +1402,7 @@ static const struct samsung_gate_clock cmu_t=
-op_gate_clks[] __initconst =3D {
-> >>>>>>              "mout_cmu_peric0_bus", CLK_CON_GAT_GATE_CLKCMU_PERIC0=
-_BUS,
-> >>>>>>              21, 0, 0),
-> >>>>>>         GATE(CLK_GOUT_CMU_PERIC0_IP, "gout_cmu_peric0_ip", "mout_c=
-mu_peric0_ip",
-> >>>>>> -            CLK_CON_GAT_GATE_CLKCMU_PERIC0_IP, 21, 0, 0),
-> >>>>>> +            CLK_CON_GAT_GATE_CLKCMU_PERIC0_IP, 21, CLK_IS_CRITICA=
-L, 0),
-> >>>>>
-> >>>>> This clock doesn't seem like a leaf clock. It's also not a bus cloc=
-k.
-> >>>>> Leaving it always running makes the whole PERIC0 CMU clocked, which
-> >>>>> usually should be avoided. Is it possible that the system freezes
-> >>>>> because some other clock (which depends on peric0_ip) gets disabled=
- as
-> >>>>> a consequence of disabling peric0_ip? Maybe it's some leaf clock wh=
-ich
-> >>>>> is not implemented yet in the clock driver? Just looks weird to me
-> >>>>> that the system hangs because of CMU IP clock disablement. It's
-> >>>>> usually something much more specific.
-> >>>>
-> >>>> The system hang happened when I tested USI8 in I2C configuration wit=
-h an
-> >>>> eeprom. After the eeprom is read the leaf gate clock that gets disab=
-led
-> >>>> is the one on PERIC0 (CLK_GOUT_PERIC0_CLK_PERIC0_USI8_USI_CLK). I as=
-sume
-> >>>> this leads to the CMU_TOP gate (CLK_CON_GAT_GATE_CLKCMU_PERIC0_IP)
-> >>>> disablement which makes the system hang. Either marking the CMU_TOP =
-gate
-> >>>> clock as critical (as I did in this patch) or marking the leaf PERIC=
-0
-> >>>> gate clock as critical, gets rid of the system hang. Did I choose wr=
-ong?
-> >>>>
-> >>>
-> >>> Did you already implement 100% of clocks in CMU_PERIC0? If no, there
-> >>
-> >> yes.
->
-> I checked again all the clocks. I implemented all but one, the one
-> defined by the CLK_CON_BUF_CLKBUF_PERIC0_IP register. Unfortunately I
-> don't have any reference on how it should be defined so I won't touch it
-> yet. But I have some good news too, see below.
->
-> >
-> > Ok. Are there any other CMUs (perhaps not implemented yet) which
-> > consume clocks from CMU_PERIC0, specifically PERIC0_IP clock or some
-> > clocks derived from it? If so, is there a chance some particular leaf
-> > clock in those CMUs actually renders the system frozen when disabled
-> > as a consequence of disabling PERIC0_IP, and would explain better why
-> > the freeze happens?
-> >
-> > For now I think it's ok to have that CLK_IS_CRITICAL flag here,
-> > because as you said you implemented all clocks in this CMU and neither
-> > of those looks like a critical one. But I'd advice to add a TODO
-> > comment saying it's probably a temporary solution before actual leaf
-> > clock which leads to freeze is identified (which probably resides in
-> > some other not implemented yet CMU).
-> >
-> >>
-> >>> is a chance some other leaf clock (which is not implemented yet in
-> >>> your driver) gets disabled as a result of PERIC0_IP disablement, whic=
-h
-> >>> might actually lead to that hang you observe. Usually it's some
-> >>> meaningful leaf clock, e.g. GIC or interconnect clocks. Please check
-> >>> clk-exynos850.c driver for CLK_IS_CRITICAL and CLK_IGNORE_UNUSED flag=
-s
-> >>> and the corresponding comments I left there, maybe it'll give you mor=
-e
-> >>> particular idea about what to look for. Yes, making the whole CMU
-> >>> always running without understanding why (i.e. because of which
-> >>> particular leaf clock) might not be the best way of handling this
-> >>
-> >> because of CLK_GOUT_PERIC0_CLK_PERIC0_USI8_USI_CLK
-> >
-> > That's not a root cause here. And I think PERIC0_IP is neither.
-> >
->
-> you were right!
-> >>
-> >>> issue. I might be mistaken, but at least please check if you
-> >>> implemented all clocks for PERIC0 first and if making some meaningful
-> >>> leaf clock critical makes more sense.
-> >>>
->
-> I determined which leaf clocks shall be marked as critical. I enabled
-> the debugfs clock write access. Then I made sure that the parents of the
-> PERIC0 CMU have at least one user so that they don't get disabled after
-> an enable-disable sequence on a leaf clock. The I took all the PERIC0
-> gate clocks and enabled and disabled them one by one. Whichever hang the
-> system when the clock was disabled was marked as critical. The list of
-> critical leaf clocks is as following:
->
+Hi Andre!
 
-Nice! I used somehow similar procedure for clk-exynos850, doing
-basically the same thing, but in core clock driver code.
+Dne ponedeljek, 18. december 2023 ob 00:24:05 CET je Andre Przywara napisal(a):
+> The BananaPi M4 Berry is a development board using the Allwinner H618
+> SoC. It comes with the following specs:
+> 	- Allwinner H618 SoC (4 * Arm Cortex-A53 cores, 1MB L2 cache)
+> 	- 2 GiB LPDDR4 DRAM
+> 	- 8 GiB eMMC flash
+> 	- AXP313a PMIC
+> 	- Gigabit Ethernet, using RTL8211 PHY
+> 	- RTL8821CU USB WiFi chip
+> 	- HDMI port
+> 	- 4 * USB 2.0 ports, via an on-board hub chip
+> 	- microSD card slot
+> 	- 3.5mm A/V port
+> 	- power supply and USB-OTG via USB-C connector
+> 
+> Add a devicetree file describing the components that we already have
+> bindings for, that excludes audio and video at the moment.
+> 
+> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> ---
+>  arch/arm64/boot/dts/allwinner/Makefile        |   1 +
+>  .../sun50i-h618-bananapi-m4-berry.dts         | 229 ++++++++++++++++++
+>  2 files changed, 230 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h618-bananapi-m4-berry.dts
+> 
+> diff --git a/arch/arm64/boot/dts/allwinner/Makefile b/arch/arm64/boot/dts/allwinner/Makefile
+> index 91d505b385de5..ed016688bb56f 100644
+> --- a/arch/arm64/boot/dts/allwinner/Makefile
+> +++ b/arch/arm64/boot/dts/allwinner/Makefile
+> @@ -42,5 +42,6 @@ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-bigtreetech-cb1-manta.dtb
+>  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-bigtreetech-pi.dtb
+>  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-orangepi-zero2.dtb
+>  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-x96-mate.dtb
+> +dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h618-bananapi-m4-berry.dtb
+>  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h618-orangepi-zero3.dtb
+>  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h618-transpeed-8k618-t.dtb
+> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h618-bananapi-m4-berry.dts b/arch/arm64/boot/dts/allwinner/sun50i-h618-bananapi-m4-berry.dts
+> new file mode 100644
+> index 0000000000000..11d893a767d4e
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h618-bananapi-m4-berry.dts
+> @@ -0,0 +1,229 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright (C) 2023 Arm Ltd.
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include "sun50i-h616.dtsi"
+> +
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/input/linux-event-codes.h>
+> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+> +#include <dt-bindings/leds/common.h>
+> +
+> +/ {
+> +	model = "BananaPi M4 Berry";
+> +	compatible = "sinovoip,bananapi-m4-berry", "allwinner,sun50i-h618";
+> +
+> +	aliases {
+> +		ethernet0 = &emac0;
+> +		serial0 = &uart0;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = "serial0:115200n8";
+> +	};
+> +
+> +	leds {
+> +		compatible = "gpio-leds";
+> +
+> +		led-0 {
+> +			function = LED_FUNCTION_STATUS;
+> +			color = <LED_COLOR_ID_GREEN>;
+> +			gpios = <&pio 2 12 GPIO_ACTIVE_LOW>; /* PC12 */
+> +		};
+> +	};
+> +
+> +	gpio-keys {
+> +		compatible = "gpio-keys";
+> +
+> +		key-sw4 {
 
-> "gout_peric0_peric0_cmu_peric0_pclk",
-> "gout_peric0_lhm_axi_p_peric0_i_clk",
-> "gout_peric0_peric0_top1_ipclk_0",
-> "gout_peric0_peric0_top1_pclk_0".
->
-> I'll update v2 with this instead. Thanks for the help, Sam!
+"key-sw3"
 
-Glad you weren't discouraged by my meticulousness :) In clk-exynos850
-I usually used CLK_IGNORE_UNUSED for clocks like XXX_CMU_XXX (in your
-case it's PERIC0_CMU_PERIC0), with a corresponding comment. Those
-clocks usually can be used to disable the bus clock for corresponding
-CMU IP-core (in your case CMU_PERIC0), which makes it impossible to
-access the registers from that CMU block, as its register interface is
-not clocked anymore. Guess I saw something similar in Exynos5433 or
-Exynos7 clk drivers, or maybe Sylwester or Krzysztof told me to do so
--- don't really remember. For AXI clock it also seems logical to keep
-it running (AXI bus might be used for GIC and memory). But again,
-maybe CLK_IGNORE_UNUSED flag would be more appropriate that
-CLK_IS_CRITICAL? For the last two clocks -- it's hard to tell what
-exactly they do. Is TOP1 some other CMU or block name, and is there
-any further users for those clocks?
+> +			label = "sw3";
+> +			linux,code = <BTN_0>;
+> +			gpios = <&pio 2 7 GPIO_ACTIVE_LOW>;	/* PC7 */
+> +		};
+> +	};
+> +
+> +	reg_vcc5v: vcc5v {
+> +		/* board wide 5V supply directly from the USB-C socket */
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vcc-5v";
+> +		regulator-min-microvolt = <5000000>;
+> +		regulator-max-microvolt = <5000000>;
+> +		regulator-always-on;
+> +	};
+> +
+> +	reg_usb_vbus: regulator-usb-vbus {
+> +		/* separate discrete regulator for the USB ports */
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "usb-vbus";
+> +		regulator-min-microvolt = <5000000>;
+> +		regulator-max-microvolt = <5000000>;
+> +		vin-supply = <&reg_vcc5v>;
+> +	};
+> +
+> +	reg_3v3: regulator-3v3 {
+> +		/* separate discrete regulator for WiFi and Ethernet PHY */
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vcc-3v3";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		vin-supply = <&reg_vcc5v>;
+> +	};
+> +};
+> +
+> +&cpu0 {
+> +	cpu-supply = <&reg_dcdc2>;
+> +};
+> +
+> +/* Connected to an on-board RTL8821CU USB WiFi chip. */
+> +&ehci1 {
+> +	status = "okay";
+> +};
+> +
+> +/* on unpopulated pins */
+> +&ehci2 {
+> +	status = "disabled";
+> +};
 
-Anyways, if you are working on v2, please consider doing next two
-things while at it:
+Just drop above node. I get that it's for documenting purposes, but user need
+to use DT overlay in any case.
 
-  1. For each critical clock: add corresponding comment explaining why
-it's marked so
-  2. Consider using CLK_IGNORE_UNUSED instead of CLK_IS_CRITICAL when
-appropriate; both have their use in different cases
+> +
+> +/* Connected to an on-board FE1.1s USB hub chip, supplying 4 USB-A ports. */
+> +&ehci3 {
+> +	status = "okay";
+> +};
+> +
+> +&emac0 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&ext_rgmii_pins>;
+> +	phy-mode = "rgmii";
+> +	phy-handle = <&ext_rgmii_phy>;
+> +	phy-supply = <&reg_3v3>;
+> +	allwinner,rx-delay-ps = <3100>;
+> +	allwinner,tx-delay-ps = <700>;
+> +	status = "okay";
+> +};
+> +
+> +&ir {
+> +	status = "okay";
+> +};
+> +
+> +&mdio0 {
+> +	ext_rgmii_phy: ethernet-phy@1 {
+> +		compatible = "ethernet-phy-ieee802.3-c22";
+> +		reg = <1>;
+> +		reset-gpios = <&pio 8 16 GPIO_ACTIVE_LOW>;	/* PI16 */
+> +	};
+> +};
+> +
+> +&mmc0 {
+> +	cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>;	/* PF6 */
+> +	vmmc-supply = <&reg_dldo1>;
+> +	bus-width = <4>;
+> +	status = "okay";
+> +};
+> +
+> +&mmc2 {
+> +	vmmc-supply = <&reg_dldo1>;
+> +	vqmmc-supply = <&reg_aldo1>;
+> +	bus-width = <8>;
+> +	non-removable;
+> +	cap-mmc-hw-reset;
+> +	mmc-ddr-1_8v;
+> +	mmc-hs200-1_8v;
+> +	status = "okay";
+> +};
+> +
+> +/* USB ports 1 and 3 connect to onboard devices that are high-speed only. */
+> +
+> +/* on unpopulated pins */
+> +&ohci2 {
+> +	status = "disabled";
+> +};
 
-Btw, if you check other Exynos clk drivers, there is a lot of examples
-for flags like those.
+Ditto.
 
-> Cheers,
-> ta
+Best regards,
+Jernej
+
+> +
+> +&pio {
+> +	vcc-pc-supply = <&reg_aldo1>;
+> +	vcc-pf-supply = <&reg_dldo1>;
+> +	vcc-pg-supply = <&reg_dldo1>;
+> +	vcc-ph-supply = <&reg_dldo1>;
+> +	vcc-pi-supply = <&reg_dldo1>;
+> +};
+> +
+> +&r_i2c {
+> +	status = "okay";
+> +
+> +	axp313: pmic@36 {
+> +		compatible = "x-powers,axp313a";
+> +		reg = <0x36>;
+> +		#interrupt-cells = <1>;
+> +		interrupt-controller;
+> +		interrupt-parent = <&pio>;
+> +
+> +		vin1-supply = <&reg_vcc5v>;
+> +		vin2-supply = <&reg_vcc5v>;
+> +		vin3-supply = <&reg_vcc5v>;
+> +
+> +		regulators {
+> +			reg_aldo1: aldo1 {
+> +				regulator-always-on;
+> +				regulator-min-microvolt = <1800000>;
+> +				regulator-max-microvolt = <1800000>;
+> +				regulator-name = "vcc-1v8-pll";
+> +			};
+> +
+> +			reg_dldo1: dldo1 {
+> +				regulator-always-on;
+> +				regulator-min-microvolt = <3300000>;
+> +				regulator-max-microvolt = <3300000>;
+> +				regulator-name = "vcc-3v3-io";
+> +			};
+> +
+> +			reg_dcdc1: dcdc1 {
+> +				regulator-always-on;
+> +				regulator-min-microvolt = <810000>;
+> +				regulator-max-microvolt = <990000>;
+> +				regulator-name = "vdd-gpu-sys";
+> +			};
+> +
+> +			reg_dcdc2: dcdc2 {
+> +				regulator-always-on;
+> +				regulator-min-microvolt = <810000>;
+> +				regulator-max-microvolt = <1100000>;
+> +				regulator-name = "vdd-cpu";
+> +			};
+> +
+> +			reg_dcdc3: dcdc3 {
+> +				regulator-always-on;
+> +				regulator-min-microvolt = <1100000>;
+> +				regulator-max-microvolt = <1100000>;
+> +				regulator-name = "vdd-dram";
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +&uart0 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&uart0_ph_pins>;
+> +	status = "okay";
+> +};
+> +
+> +&usbotg {
+> +	/*
+> +	 * PHY0 pins are connected to a USB-C socket, but a role switch is not
+> +	 * implemented: both CC pins are pulled to GND via a 5.1K resistor.
+> +	 * The VBUS pins power the device, so a fixed peripheral mode
+> +	 * is the best choice.
+> +	 * The board can be powered via GPIOs, in this case port0 *can*
+> +	 * act as a host (with a cable/adapter ignoring CC), as VBUS is
+> +	 * then provided by the GPIOs. Any user of this setup would
+> +	 * need to adjust the DT accordingly: dr_mode set to "host",
+> +	 * enabling OHCI0 and EHCI0.
+> +	 */
+> +	dr_mode = "peripheral";
+> +	status = "okay";
+> +};
+> +
+> +&usbphy {
+> +	usb3_vbus-supply = <&reg_usb_vbus>;
+> +	status = "okay";
+> +};
+> 
+
+
+
+
 
