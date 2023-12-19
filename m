@@ -1,54 +1,52 @@
-Return-Path: <devicetree+bounces-27034-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27035-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43008818F3C
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 19:06:58 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 23153818F40
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 19:07:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 75AF81C24AE3
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 18:06:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D17CD283233
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 18:07:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAC4637D01;
-	Tue, 19 Dec 2023 18:06:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECD27381A1;
+	Tue, 19 Dec 2023 18:06:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n0x1jHOM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="R9CH5/2N"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4E1F37870;
-	Tue, 19 Dec 2023 18:06:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5FC1EC433C8;
-	Tue, 19 Dec 2023 18:06:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEA9038F87;
+	Tue, 19 Dec 2023 18:06:47 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 43950C433C7;
+	Tue, 19 Dec 2023 18:06:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1703009199;
-	bh=2AlFxLi7oJh7Wa2NVO96A7tL3W01cNMV+NcW1zh9qDM=;
+	s=k20201202; t=1703009207;
+	bh=IWT2Spi6n0YyBL0I+YwiyQRgCtOdqTF4PJPYvAzCjzY=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=n0x1jHOM5g1uy9hxI58NgHZwTsQEJjCGuV3K/cBxMRRFgUyHp/TndRdTCsbAlSNud
-	 F2fV1NFM8jwNWonTXby5r/bEyKmcc4qTFXE6RhHQRHe7k2Wfa9u4snAogXXEoU2sbQ
-	 jULiZXGkQ1uzOzqf7Nol9zwJ9O/8EFhmdGcgUFSqeAVv26irpJ62lzFHFo/wTJe/a9
-	 g59D7OcAyl+B+YvhpMbR+WqGwmRYWEnS1J/R56kDJuWceOcFJvomejes37rlEZxYYu
-	 i38C2M1kPKzrR6OG+/hbCSczVKLbDAOqgR89+V2tkvMzeJ4XDtIukGdjfBif5LmLQk
-	 o5V3yMKRvh5SA==
+	b=R9CH5/2NspkbtdqFagwiq5zBc5sVYhM42iB3WpampU9sH7ckPux2kVwx236hn98e1
+	 74Xx/Oem6yQi+an/Rx/rmNxigMcM73wA889coHTybKA7z28ovoJS6FiADhu5q+tLSc
+	 olJ8QRrOOHuHYohzLBQEXx42+Dtmij7U2GlVEvJrcxu0Ew4vSdJG38lpIxxi/XrOu6
+	 jLgtru4XMquwVV//KL8WNVxNWphIIUxKO1j1vW1P3Kkynx1Cxui9DNnTpMbistCujw
+	 yw1C8n7D59VUplKbTbv+jbyxDxXamF2GNszgVcJzudVL1Vv5eIfNHV3SJW7Holopbw
+	 fQ5s+Ftcd9L0w==
 From: Mark Brown <broonie@kernel.org>
-To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, 
- Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, 
- Banajit Goswami <bgoswami@quicinc.com>, Liam Girdwood <lgirdwood@gmail.com>, 
- Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>, 
- Takashi Iwai <tiwai@suse.com>, Neil Armstrong <neil.armstrong@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org, 
- linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org
-In-Reply-To: <20231212-topic-sm8650-upstream-snd-card-v1-0-fbfc38471204@linaro.org>
-References: <20231212-topic-sm8650-upstream-snd-card-v1-0-fbfc38471204@linaro.org>
-Subject: Re: [PATCH 0/2] ASoC: qcom: add sound card support for SM8650
-Message-Id: <170300919611.125466.12203726463843347252.b4-ty@kernel.org>
-Date: Tue, 19 Dec 2023 18:06:36 +0000
+To: lgirdwood@gmail.com, robh+dt@kernel.org, 
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+ matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com, 
+ perex@perex.cz, tiwai@suse.com, trevor.wu@mediatek.com, 
+ allen-kh.cheng@mediatek.com, kuninori.morimoto.gx@renesas.com, 
+ Rui Zhou <zhourui@huaqin.corp-partner.google.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
+In-Reply-To: <20231212123050.4080083-1-zhourui@huaqin.corp-partner.google.com>
+References: <20231212123050.4080083-1-zhourui@huaqin.corp-partner.google.com>
+Subject: Re: [v9 0/4] add es8326 dt-bindings, commonize headset codec API,
+ es8326 support and Enable dual amp for rt5682s
+Message-Id: <170300920399.125466.9978354781339951707.b4-ty@kernel.org>
+Date: Tue, 19 Dec 2023 18:06:43 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,12 +57,16 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.13-dev-5c066
 
-On Tue, 12 Dec 2023 09:08:18 +0100, Neil Armstrong wrote:
-> Document the SM8650 sound card using the SM8450 fallback
-> and add the SM8650 compatible to the sc8280xp sound card
-> driver to use the sm8650 card driver_name like SM8450 & SM8550.
+On Tue, 12 Dec 2023 20:30:46 +0800, Rui Zhou wrote:
+> Add dt-bindings for es8326 and codec es8326 support.
+> Remove duplicate code, commonize headset codec init/exit API.
+> At the same time, Enable dual amp max98390 for rt5682s.
 > 
+> Changes in v9:
+> - PATCH 3/4: Add comment for MAX98390_TWO_AMP.
+> - Link to v8: https://lore.kernel.org/all/20231208070933.720324-1-zhourui@huaqin.corp-partner.google.com/
 > 
+> [...]
 
 Applied to
 
@@ -72,10 +74,14 @@ Applied to
 
 Thanks!
 
-[1/2] ASoC: dt-bindings: qcom,sm8250: document SM8650 sound card
-      commit: 773df207fdd6e17d7a43abf83ea155ade9a95f79
-[2/2] ASoC: qcom: sc8280xp: Add support for SM8650
-      commit: 7211094dd065908747a143f9adeff41cfdcf37c0
+[1/4] ASoC: dt-bindings: mt8188-mt6359: add es8326 support
+      commit: ea244b35a4da60a92d0e3be528f82ebcbcf10753
+[2/4] ASoC: mediatek: mt8188-mt6359: commonize headset codec init/exit api
+      commit: 1a268000b03a162bd5feb7fce1c130f1b31602b5
+[3/4] ASoC: mediatek: mt8188-mt6359: add es8326 support
+      commit: e794a894427b1d64f2ebff24f003c60373d68c2c
+[4/4] ASoC: mediatek: mt8188-mt6359: Enable dual amp for mt8188-rt5682s
+      commit: 3423c3db22e9213acd279ff3800bb1e91aa2ac89
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
