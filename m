@@ -1,77 +1,75 @@
-Return-Path: <devicetree+bounces-26818-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26819-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 981BF818335
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 09:19:06 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id E298D81833E
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 09:22:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9E52A1C2392B
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 08:19:05 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5C8E3B222A2
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 08:22:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22D24101EB;
-	Tue, 19 Dec 2023 08:18:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 449B3107B7;
+	Tue, 19 Dec 2023 08:22:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=siemens.com header.i=@siemens.com header.b="xhOG91mJ"
+	dkim=pass (2048-bit key) header.d=siemens.com header.i=@siemens.com header.b="kgiIf6wQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR04-VI1-obe.outbound.protection.outlook.com (mail-vi1eur04on2040.outbound.protection.outlook.com [40.107.8.40])
+Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2072.outbound.protection.outlook.com [40.107.20.72])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EC33125BA;
-	Tue, 19 Dec 2023 08:18:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9A3411700;
+	Tue, 19 Dec 2023 08:22:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=siemens.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=HumKtbiKIfFHrBPVNrFTgLhx7trezpEQ8NbEqgG2bzvJAmv7KflWSRO/FieMxgpUjkLNQzX7ufcfcynAyHhHk/gF2JQKiZ/c0PViacYXxmKbo9TZ0b83AwXBJnMSsAwETPNwIwlxFT3Zk8rjntjleQtsZG461RIxcBYOvt21RwjwMW0J7oZFK+AcNZibnDRdEsqqfv49fed+LDL/J2ZSJtKiPd2lgaBd+VW0KejGQnz2Wjaqon1a8cmgufWBuMrketPtKwROBY1F58MKDgBQK84kSIke12Tk8JCyM2c7CBhLfheo6JzU8uX+FCQXjVuahnArSmL6JAAqCuLCeBYhKQ==
+ b=AdKZWkgDC0ieP+IvaJwwcx66yqa6iMoSvmVXmGeYgOArgLv5dIX3jkeRi6aSC4jR/P/os6TSS5/kb8xeP2hlTCn+Benx/a7pamlQXHREIA7EIFgFPCRB6fNPu8O4F+n5GBSvtxqAJLXEiVH2R4KkTw43M5O+JLVOmNuzvRZQns/dNTXnDiHIkOzbg5+6R+ih1lKE/AlrDpXBzMgKfYNIe/oREWsvu+jlB+NsZGUagjOqz9oMhSJ/1q1bbDeY+xdidpG9NsBfgdyGPHwVJu9cA1zvU8U5ifDAvutG9J0D/NxFviPFTZtV3/7qpACWZJQ2CqHyD2JE1gLBJyxcL2T2LQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Y2dogx6MfGUqmuhBsqSMEiFzJTjmdkAXc2v6CKmdJDc=;
- b=DtuWo7kAoqYiT1WT9yowwswU8BfAW2Vez57ZUgGAIvum8W2LNMDvwcNseysD4i4r+VZCzm1nMWL6ohJtSYBftlzO64qmAFoemcNXfbgX5RtJQB5FTcR1kHYxHpJqsV6XabRdETfb9LYrhFekfXeFNTOzjrfuDqy1jvmlsWYaLjdoW82rEwuXYh2Wcr6Jo5Zdm2eZbymPYflONxYAe/qsDws4qKftLYVIV/GLD/9EDNGZh3eBWwJdKy6SJNP05wGBtQesD1U5DjdNSikcmUbRqp79Ixl3Dvo5DspO4o+IX1e/9eyXmQPNVzm4vdl3U5FykY4M4c0mFrrJjvqHBS3AjA==
+ bh=ES028lRtVV21EyInrbjoFexYv1iVuEU2LMGnNFo69C8=;
+ b=GahLPE0+TTtXjhwg+REaB0NpE4mUMscUwGgLmr1FLtHs22x321dPec+0FH+aU8aT5YHvBh+1Hn5Zf2sL/t4jxJzkMc5vHrYJlcfHHQX2NMRpi7obdl/AwyQI01OYGH1vwr9b+nPlVf4G/jrke/Q9GdCnc57fmQYLXRRyN1GcKWCtB7LprRYOGBKlhppKQ+iMpt3i9+kLlhYsJPMc79UwCncA34pqZwOt1TLohN8FphbGGyZFFJG+J+f/NoCk9HPEuK13rKj/qtYT8QmkvgbhsSUqdU9ljHbXoalwae1E48snYjeGLVrLISfwd7KIIses4Koyz7bXhMcoA8wogy8ceg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=siemens.com; dmarc=pass action=none header.from=siemens.com;
  dkim=pass header.d=siemens.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=siemens.com;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Y2dogx6MfGUqmuhBsqSMEiFzJTjmdkAXc2v6CKmdJDc=;
- b=xhOG91mJxmsFYt8xBI90aZmwQ8Q0OmunCJeI2sm+ImOKgYXwmGp0BGYN+kZtqx2zNhHiZkEYf2IhexYqUlDRpJycqK//mtDLjymQVFTVIovpPWcwSupzHl7iXXcRzqyJ6RoCf6gxqbDzcejSiCN7TJGWI4aeh1Pi3ejdYS73e+xrZn6vqXk2R9qtmh3WxZmix0kI58r6bcE/YO/T6jMHIl20gyphM8EB7bZ5tuD5SOjxzU7dTPaj0+gNlvq8yCoPQdmwXlUgS7uAeSJ2ziFg8CVCCky+DRhDDxkuWC/MnFlWq5aycJV6wmNXfDZsnmg/BxBW6cTmdaC+MXI+oSKj9w==
+ bh=ES028lRtVV21EyInrbjoFexYv1iVuEU2LMGnNFo69C8=;
+ b=kgiIf6wQMpQLTUWqlX+bhBd1hESfmh7piPprRTpEFlKe9IDEAbk6bjZ63Nv6DoiWB7Bu2r+gfLplu2qSvPZkp9HQcTycdRWt1E/Q34OfwqMUW8kbhEgiwycy/xw35UzDbryaKQ1rnUYaMsd8knKt7Nhq2zdupda93s3z8S9SP19yw0UgPZmVPig7jRpgSWyhoyKWsus3H3qtFgu87KFLb8IyUUvLfJUXWjNU2udOpQG+Q941eTQFHXGGiLgeyo3HqFacOg52RTwVxKDKZjgsIeLPMUJGYECtfOZEIfFn0YGaYPTsOfPvGEniCcT7HyMWwanPdkFyS1n0YyS2Fv3aPw==
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=siemens.com;
 Received: from AS4PR10MB6181.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:588::19)
- by AS1PR10MB5144.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:4aa::9) with
+ by DB8PR10MB3529.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:10:13e::17) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7091.38; Tue, 19 Dec
- 2023 08:18:22 +0000
+ 2023 08:22:24 +0000
 Received: from AS4PR10MB6181.EURPRD10.PROD.OUTLOOK.COM
  ([fe80::96c7:d239:1723:8761]) by AS4PR10MB6181.EURPRD10.PROD.OUTLOOK.COM
  ([fe80::96c7:d239:1723:8761%5]) with mapi id 15.20.7091.034; Tue, 19 Dec 2023
- 08:18:22 +0000
-Message-ID: <6e891e6f-a673-4eba-97ee-736e302094dd@siemens.com>
-Date: Tue, 19 Dec 2023 09:18:20 +0100
+ 08:22:24 +0000
+Message-ID: <4c31adc5-3fc5-47bc-9766-6d3d1eeddb65@siemens.com>
+Date: Tue, 19 Dec 2023 09:22:21 +0100
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/4] arm64: dts: ti: iot2050: Factor out arduino connector
- bits
+Subject: Re: [PATCH 4/4] dts: iot2050: Support IOT2050-SM variant
 Content-Language: en-US
 To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
  Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
  Tero Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
+ Conor Dooley <conor+dt@kernel.org>, Bao Cheng Su <baocheng.su@siemens.com>,
+ Chao Zeng <chao.zeng@siemens.com>
 Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, Bao Cheng Su <baocheng.su@siemens.com>
+ devicetree@vger.kernel.org, Li Hua Qian <huaqian.li@siemens.com>
 References: <cover.1702917360.git.jan.kiszka@siemens.com>
- <202d324ab0aa3728c8f846d31bedcbaba14aebdd.1702917360.git.jan.kiszka@siemens.com>
- <10f300d6-8a1a-4363-a16e-8337da8525d1@linaro.org>
- <f4b16dc6-1063-40d4-b68e-1eef9db32829@siemens.com>
- <e8cdfbb4-920e-4d3c-94ea-be24a7e21d57@linaro.org>
+ <11e0b0c8b828254567a8ff89820c067cacad2150.1702917360.git.jan.kiszka@siemens.com>
+ <8b3daa3c-dbf8-4286-b04e-011cd9b0efa5@linaro.org>
 From: Jan Kiszka <jan.kiszka@siemens.com>
-In-Reply-To: <e8cdfbb4-920e-4d3c-94ea-be24a7e21d57@linaro.org>
+In-Reply-To: <8b3daa3c-dbf8-4286-b04e-011cd9b0efa5@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: FR4P281CA0082.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:cd::12) To AS4PR10MB6181.EURPRD10.PROD.OUTLOOK.COM
+X-ClientProxiedBy: FR3P281CA0042.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:4a::13) To AS4PR10MB6181.EURPRD10.PROD.OUTLOOK.COM
  (2603:10a6:20b:588::19)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -80,115 +78,221 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AS4PR10MB6181:EE_|AS1PR10MB5144:EE_
-X-MS-Office365-Filtering-Correlation-Id: f281e8c1-5344-41fa-be3b-08dc006b10ac
+X-MS-TrafficTypeDiagnostic: AS4PR10MB6181:EE_|DB8PR10MB3529:EE_
+X-MS-Office365-Filtering-Correlation-Id: cc43fce8-6082-46bd-d8cd-08dc006ba0c5
 X-LD-Processed: 38ae3bcd-9579-4fd4-adda-b42e1495d55a,ExtAddr
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
 X-Microsoft-Antispam-Message-Info:
-	TdhcALyY4zvq7VnZc5sTvDOGx6XEYHNEqn1zIrwtHawgewqqkWVNiDVvuushSfc/MCFTC0kmz6GuABuGF/mKHyEY+cPTuMR4NzaHvVLP2Tx3k5oNSAaDvNfeJhc+LhI1Y3M+Cuf639UFcPJB6rWTWBQHmDGBLVsJUX17qsiAuIJjQWdJi12HiEyMePDGocJTF7XFo7L8YGvo4i/8VwcopQ0lfG4hayaQfPFCg49BqlSTJ1onJhoq8NND1ywTsEKGDKtAK+2EowQG20DbVfVg9dGsTdiO4KX11qHz9fJIVt7vlGfMNak2+0LxRJMI52K9pSJP97OnDEybzAOBz0y3DXMHGrRi4gm9h6gW64njlVaLfASoTabtV+Dfnzr0GTtiVmsE1RJ2jV/0agzHr52MhK5hhaWTq+zqbrA0LbHble6j8wPP1ZOmqExczSt6NgIK/3K30EjXiFW1WqNxOKIUUr+J0uanf4kfTNx9PzuTI9ZGM0BxOky5i20gT60vx2rDfN2F5eRLRd7VfAqcxlaoE2BmJSQFTsSFT/n4OEn1x7Mc1C7Kjeahwvawha/VvtzbDLPnTDd0MLe1cLvBrT33whFQaI1Z2sRXc2BUBMVEJznW3oIhmMpaO4P0dQAw+tpgyVatXc8PreB/oi9v4Pc3sw==
+	vjlbWQwa0ecqwIKAnNWc8yhepFRE3Ge9Tu3EgeW8VgZW3+gZhzEHTQpEsJ0HbyDHw/ZPrR5LYPPazuyCyIfIBi4ClltMoMd4roxRcaP6pYQMy/0akN8AmflqGA6qk6SUNzlFFF7E5K7MKQr6hTpyBVEbnRzUJ5YKff/WfSNQ+mYYcmbPeQj7zkE5joxZLtCD2fGc+sfRFmLy+gl6g4ooYZj+zK9dlcE46Rn7DTOb8hYW3P+bFftY0m1LIXXLnaZ+v2dZb8YFMFfvFv7lqflu8X4qQZPeWf42EALoI0s1IuSeyAFivcPn1snH242pqsaHWKdJQP8FSEwp0AUzmEtuq5EQ7BnKHFOKiehzoqQ1ZBYZQOwR1V8KFboyboeckFzq78Drwz39l6PTP5Go8ClxHFitLuiwvWCDMolpLKfUvM8GHWhsWHg/eHhVg1QmDrZYgCQ97RKqOCDEPA6Kfl7rGmSNpcKuK3L9kDgtqzAqiqbwSI2V67Zh2QRB7xwRsYm+pM/fdKLozq65/xH2VmnP095hs21McaXRdlMy5SREJ81Y/kS5IbVTJPDAq8a9/t8H9WRn/BmMnfslLfGOymmEbMveHKeZL7G14s5eJ/v1zs74SBElzS60vhx1lw3Yht3KURCtCabaKKf34WOE2pfaUw==
 X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS4PR10MB6181.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230031)(346002)(366004)(396003)(376002)(39860400002)(136003)(230922051799003)(186009)(1800799012)(451199024)(64100799003)(66556008)(66946007)(83380400001)(2616005)(107886003)(110136005)(66476007)(316002)(38100700002)(478600001)(6486002)(966005)(26005)(53546011)(44832011)(8936002)(4326008)(8676002)(6506007)(31686004)(6512007)(7416002)(5660300002)(2906002)(86362001)(82960400001)(36756003)(31696002)(41300700001)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS4PR10MB6181.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230031)(376002)(39860400002)(136003)(346002)(396003)(366004)(230922051799003)(186009)(1800799012)(64100799003)(451199024)(6506007)(6666004)(6512007)(53546011)(966005)(6486002)(478600001)(83380400001)(2616005)(107886003)(26005)(7416002)(2906002)(6636002)(316002)(41300700001)(5660300002)(110136005)(66476007)(4326008)(66946007)(66556008)(8936002)(8676002)(44832011)(36756003)(38100700002)(86362001)(82960400001)(31696002)(31686004)(45980500001)(43740500002);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?WVhnLy9Ra3lJTmRPVi8xRUVXQW5QRHNxS2hTMkY2Z0FBYXRqTTkzdzhUeThi?=
- =?utf-8?B?UUVhU1ZRaHZKVW8vaXYzL2tMbWNKdzdUalNxSk1hT1pjQ2JIV1lBcHptcklr?=
- =?utf-8?B?OC9GUUVIeUEyam42Y3J6WlRuaWJ4cGx6MGh6aEtWUjBUTkJabTVTRGJsQVl1?=
- =?utf-8?B?eXVVTlFsQlZaMy9EaGJ0amxqUTBXOUVTdEg1cXZzazBQVFNMYWhnL24vUkZT?=
- =?utf-8?B?WWdQTWoyajBBcHU5MVpZUmJmT3YrUnVGTnhzWE5RZlV6UG5PYnNJS2hQdzNz?=
- =?utf-8?B?VXZKVWJySVlVTFBxVGYzTzZzL1JOQWw4bzNDalhrWWhyQ0xHSlZ2aEFjeHJq?=
- =?utf-8?B?M3l5NXIrTmRuZzBVaHhQSlFDOVhuZ1N5M0JKZ0xwL3RNRHMzK2lrL2hYNUhD?=
- =?utf-8?B?bVBlMnRkZlJaMUptaEVQZ1BZNEtFSHU3b1pQVWhMSGRjUHBTeUZ1NjFsemhK?=
- =?utf-8?B?cjFWVTVNQlA4SFFFTFVZNi9kb1NycUJrck9KL0JKVi9LazduQkt6Z2UvUzBj?=
- =?utf-8?B?ajBCUm5SWlgySjQ0SWgwY0FTUitmbHRLRjJKd1hHelAyamE2ejhRRFdyQW04?=
- =?utf-8?B?MGxTTzJJUThEd0tZS0tyTGpNVnJkQjZEK1diN1pxeUFBSW1DYkQrUGVqalhV?=
- =?utf-8?B?V0o2TGpUVXZmS2NHZENFdExCNEJGT0hjbk1neGd3ajFMaUh2emNqeFhjajB5?=
- =?utf-8?B?OHhGT05JRWZwNEtLMlRkMmN6b2haN3JmRDJ0YyszUmhlSHZFU3plZVVZRXVo?=
- =?utf-8?B?M0hqc09KWjNuVkJqUXhPWE5NbVRsYWdiRGpvZXM1d2xsSlMweG5MblpNcjBt?=
- =?utf-8?B?RVFVbjhnTUhYS1ArSHl2YnZpRGVnU1dnUTFZVU9keUE0emFmYzh2bHpLUHBU?=
- =?utf-8?B?SDVOQWxBc0FqRDlybjFHbDN4S0tHTHRBUitNRXQ1SGFoUFhGVTFyTXhWdHl0?=
- =?utf-8?B?MDhybkVySjNNZ1RUZC9KSi9RRGEzUVJTVGZIeTU2OTZaajdyeTJFckF2U2lj?=
- =?utf-8?B?RzhKSXBqcXhyS1RJRVMvZGF0L2JJa3U0aUVqZjl3R1dlV0g4RUgya2hLU1ZG?=
- =?utf-8?B?dDNIcFFKYTBQbzJVbnBSQXdYbVA1T3JMbzhOTlZjTk02MmFYUFR3TDI1L0FZ?=
- =?utf-8?B?dE84MzZvQm53czhLdnRyZ1lZSDRRMDRZVFdWelpMMTJ3RWFiRDMrYjRHc2gy?=
- =?utf-8?B?VE0zNDFBeXJCS3BGdnNQWVU0RXNYODlja1hMYkYzOXllakltK3k3ZUV1VUdi?=
- =?utf-8?B?Z1F2blFvQnJsZlVueVNjR1IzQnlHZ1ZmT3BoaTdTZFlJZ25TMEJobHcxRWRz?=
- =?utf-8?B?aWpJZmkzS1lRMEtpV0x5bjNURGVxSWs4WVRpb3hESVpCUUtuTU56QWJqS0tn?=
- =?utf-8?B?c0ZWbG5rMkNia1VpdUhXM3RBTnpPMDNjOUc3NW5HU2F0dWFvaU01cFBtcEVk?=
- =?utf-8?B?SjcrRVJ6Q25TNDFhS0wyd3dvWU9PTUxMaW1WRWJCRlJtNkloVm01ZGp3QTFt?=
- =?utf-8?B?cFNSN2FEVUNzMTZtRk5mY1ZGQ2JacHQ1SnZlNUtjckhBWDRQK0JHR0ZsSDU5?=
- =?utf-8?B?U1paaExrd3FUL0JLY1R6ajFIZGhuak40dWNlaVRuc1EvT2JOTUlhU1dVMWN4?=
- =?utf-8?B?WDVwNXNobldmSm9ZTVFzSm05SGJvWWJyTkpNbExpaHd0ZjRsNkRhbjFHMmxX?=
- =?utf-8?B?R1FuU2RsT0Vuc3M4UHRNdEltdWRGZ1pHb283bXBHOFl3RmhxTTdHd2ducnBB?=
- =?utf-8?B?aHdKQWgzcmkyVzREZHJ0RXNZWWxXNUNQVndCRkFPcFAxU3NoRk9yRFFFY012?=
- =?utf-8?B?MkJjL2JPdGJvQ01ON3JVRkZLbThmT0R4NkV3T3NobStCMlZGMlI4RWt0eUJH?=
- =?utf-8?B?TVhSSGZsTlQ4RFBXbTZNRGJFcVJldWNyT0JzYXcvMjRiaVdWWGxMd0dzTVp4?=
- =?utf-8?B?dnRMUnZRTW53azFIYzc4Zm4rSjB1dTRUUjU4VDdBcW9sUVlKTXpES0xmMkZB?=
- =?utf-8?B?ajFFN2VmT2FQWHJZbkVrUVYxZmJRRldqb1NCVXEyL1dhQ1Z1ckZ0OXI5b1VC?=
- =?utf-8?B?bGhDZTYyOTNpT20yMDBidG84NmJ6V013MnAyRXg0Zkg2b2tTVGhyZG8xdHVV?=
- =?utf-8?Q?7NIzzRr/nvTjHtzEgJFAGRNC0?=
+	=?utf-8?B?eDBpa1paZ3Iyc2ZLc2NtaTIxNmhVYVpobzROUDBIVDN5NU1Iejd3Nisyb0xH?=
+ =?utf-8?B?OWFlb092Lzh3QWJXQmRoMXp4WEduZ2F6VjFlTTNiQWcvRCtWbEJLWmtOQ1BG?=
+ =?utf-8?B?a0kxcFQ5aEp2WU5JRWN4YjNKbTh4QnpybUpLUTB2YlU3UE44RnpIczVaOGg1?=
+ =?utf-8?B?cXlXbE92RXZUWGRQTUtld0sxeXlkWXVjT2RPQ2VVMkNjS2RYbS9tZEFiSm1I?=
+ =?utf-8?B?M3JtdnFBL3JvaURhdGZLR3B1TE1ISEdxaHUrQUw5cDVmMVo1MGIwclFpY2Fp?=
+ =?utf-8?B?QmNCS2hnNFoxRy9LaHhMcXJoRU1mbFJPc3ExZWd1REhrbjA2NU9IU2tXeXRQ?=
+ =?utf-8?B?NEE2WXU3WnZNTy8zZFlGa2R5VDZyNWd1NUVxamFRdThTcjU2QmZvS0lnSXNO?=
+ =?utf-8?B?dUlVU29sVGtvcityTk9xejdlZXJoOVdZcHZEVE1XRFdxS3F5SGFiY3lpVEJL?=
+ =?utf-8?B?N1Byb1M4UHVxM3pLdjR3OFRXaGIyd2M0cTV3NUxxS0tHdlYwYTNBMVdhWmhN?=
+ =?utf-8?B?VG9UOGlHNEpHNFFlNTZjQmcxTm5lbHN4c3VOeisrVGcwTFQxb0dMSkpOdEg0?=
+ =?utf-8?B?L2E1Q2JNNzUxdzduaDZKUmZNTVkwV1d2MTVXYWwreEJnNVI5L052STVyWjVH?=
+ =?utf-8?B?Y0Nadlk4Tmo5SWJ4QlZ3UmxFTE1hcWh0eGhFaExOdTJvcC9rU1NEbjRHb0NJ?=
+ =?utf-8?B?NHFydnRVU2hUS0xiaGxtRnpkUjc4QnBlV0pPSFNCd2JnUDl2d3hLSXhFVy91?=
+ =?utf-8?B?dExMTmVzOXZVckVpY3RRcjB2UjBzUUt5ZkFnVzBZSW1TWXUrNWw4ekh5SUtD?=
+ =?utf-8?B?a2llTFNEN3RRbGUrZ21LakxRM0c3b1JIczNjdUhQaUtVV0FYbzY2d1Z4T01S?=
+ =?utf-8?B?UCtwUDJJR0QyNHorTjhkZTYvbEhjM3dsZHZkQWRzcWgySlMyRXNOSi92bVRt?=
+ =?utf-8?B?V0FnRmFwUWpFU0VYRXlVZkFQYUlWd3NCdHdXdXRPUjVmVVRGR2NkZTluMmda?=
+ =?utf-8?B?U1JsamtmMDhLa1p0VjZac3Q5ZWNHbCs1cEpKNjd4d0dlbDdqcG9Ed0p3dnpa?=
+ =?utf-8?B?ci8rcnBPSkZSWGVoVGtaWnRvVkIzUml2M2NsNkR3bFNYNUROY1dZSGVwTkxv?=
+ =?utf-8?B?c0VsY0paZlVnM2JoTGdDYzFCUHFxRmdBUmJnVlF4a09MYXlucndjZkJCcm04?=
+ =?utf-8?B?NlArcU9nQzdGRlNsUnUzS1ZmeUlHNko5dUZudisyck1Kd2pDWEdvSDFVUzFh?=
+ =?utf-8?B?VjdZcEVBNXpVUE1CYm5KTnkxenZreDlrVUZXck9aYlI5dXIwVm4xc3VmMG81?=
+ =?utf-8?B?WUZlR3hDU1RqN08zSCtVdUYzQjVpNFlLQkhkZ2QzWEtweE10T3RSaHZBQlhF?=
+ =?utf-8?B?WjNMZG8ralJCSDNjMGlPWFpsTlBPQWQyY0lWUFRFZGs4aUpISjZHcjBaOXdn?=
+ =?utf-8?B?WUpuc2JRZmltV1Y1RzhySjRKYmlzRTJpSzU4QWZwdU9WNWo2bzdOMlhFVmZm?=
+ =?utf-8?B?M0dldGttOW1zbHJjOFR4ZmhsdWtBRmVXMUM2YnZDUXJWeCt0RXZoVkoyR2Rx?=
+ =?utf-8?B?QlFsV2VlUWF1YlhjSWNmUDQ1VXM3OXIzd0dIdjZSNENVbnExQXZST3hMWTJa?=
+ =?utf-8?B?QURpR3IxRk5oc1lVcUtrTkpMYzFtSUxvb09JVms5cjJaaUwwOGxhS2RYL2Fq?=
+ =?utf-8?B?RDl5djZPS3JoS1dtK0Vkd3h4c3NvQXMva0hkME84WWxSazhNY2Vsb3NSZWhv?=
+ =?utf-8?B?cExZQkxjT0lmS2NJYnBVb2o3ZVZhWmJhNmVoVFFCZEdsMUNkSkg1eTdydEFt?=
+ =?utf-8?B?bERDRWtLcGlZL0JVb0xnc1d4NHNtbE44T0VDeTdkQitZUi8vZDB4RzliYlNw?=
+ =?utf-8?B?R3JzQjZiN1hYY1FuMlJIL2RoaEk2WjF4MkNhWmNYZ3RxYS9jNExobDJHWFda?=
+ =?utf-8?B?bFZ3dzNWQ3VsL0xvblk2M0MxQUw5cDdPUEIzd1l3ZU90cWVtRmJsUzdUTVRt?=
+ =?utf-8?B?N2d6bVYrcTBzWHJOb2J3am1DbytTZjFwS0dLVjVxcEZhSUlyTGp6aW0xSEt6?=
+ =?utf-8?B?dVVkSEkyVzJrbnFQSjl5Sis0SXFDWTNBcE9iR2ZzTUowWW01SFBzY04xQ3RC?=
+ =?utf-8?B?a3MxRnA5RlhZTVM2ejBMUnFveGpwTkx3cFdRME0rR25ReDhtbDJpZ2kzNWMw?=
+ =?utf-8?B?eEE9PQ==?=
 X-OriginatorOrg: siemens.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f281e8c1-5344-41fa-be3b-08dc006b10ac
+X-MS-Exchange-CrossTenant-Network-Message-Id: cc43fce8-6082-46bd-d8cd-08dc006ba0c5
 X-MS-Exchange-CrossTenant-AuthSource: AS4PR10MB6181.EURPRD10.PROD.OUTLOOK.COM
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Dec 2023 08:18:22.2145
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Dec 2023 08:22:24.0725
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 38ae3bcd-9579-4fd4-adda-b42e1495d55a
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 35pkqoIlAawHQ/zud9G6VWMXO9s4YKGuEt2XMllgBGj8bQiLbZ8P7c9y2JOWboyGxnGTw798ZRuTjaWWcXi2vA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS1PR10MB5144
+X-MS-Exchange-CrossTenant-UserPrincipalName: +jDpJu+K6+ToyvER4EncQUY6FBa0q6FQV559GDeFUXk6wR3PE24r3ysWX0wlM+xk99TazCxKfc+nyeIFHsYcrg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR10MB3529
 
-On 19.12.23 09:12, Krzysztof Kozlowski wrote:
-> On 19/12/2023 09:06, Jan Kiszka wrote:
->> On 19.12.23 08:51, Krzysztof Kozlowski wrote:
->>> On 18/12/2023 17:35, Jan Kiszka wrote:
->>>> From: Jan Kiszka <jan.kiszka@siemens.com>
->>>>
->>>> A new variant is to be added which will not have a arduino connector
->>>> like the existing ones. Factor out all bits that are specific to this
->>>> connector.
->>>>
->>>> The split is not perfect because wkup_gpio0 is defined based on what is
->>>> common to all variants having the connector, thus containing also
->>>> connector-unrelated information. But this is still cleaner than
->>>> replicating this node into all 4 variants.
->>>>
->>>> Signed-off-by: Jan Kiszka <jan.kiszka@siemens.com>
->>>> ---
->>>>  .../ti/k3-am65-iot2050-arduino-connector.dtsi | 768 ++++++++++++++++++
->>>>  .../boot/dts/ti/k3-am65-iot2050-common.dtsi   | 753 -----------------
->>>
->>> Please use proper -B/-M/-C arguments so code movements will be detected.
->>>
+On 19.12.23 08:54, Krzysztof Kozlowski wrote:
+> On 18/12/2023 17:36, Jan Kiszka wrote:
+>> From: Baocheng Su <baocheng.su@siemens.com>
 >>
->> Those are in place but have no impact, likely because the source file is
+>> Main differences between the new variant and Advanced PG2:
 > 
-> In place as what?
+> Please use subject prefixes matching the subsystem. You can get them for
+> example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+> your patch is touching.
 > 
->> still ~700 lines after the shuffling.
+>>
+>> 1. Arduino interface is removed. Instead, an new ASIC is added for
+>>    communicating with PLC 1200 signal modules.
+>> 2. USB 3.0 type A connector is removed, only USB 2.0 type A connector is
+>>    avaiable.
+>> 3. DP interface is tailored down. Instead, to communicate with the
+>>    PLC 1200 signal modules, a USB 3.0 type B connector is added but the
+>>    signal is not USB.
+>> 4. DDR size is increased to 4 GB.
+>> 5. Two sensors are added, one tilt sensor and one light sensor.
+>>
+>> The light sensor it not yet added to the DT at this stage as it depends
+>> on to-be-added bindings.
+>>
+>> Co-developed-by: Chao Zeng <chao.zeng@siemens.com>
+>> Signed-off-by: Chao Zeng <chao.zeng@siemens.com>
+>> Co-developed-by: Li Hua Qian <huaqian.li@siemens.com>
+>> Signed-off-by: Li Hua Qian <huaqian.li@siemens.com>
+>> Signed-off-by: Baocheng Su <baocheng.su@siemens.com>
+>> [Jan: rebase over arduino refactoring, split-out light sensor]
+>> Signed-off-by: Jan Kiszka <jan.kiszka@siemens.com>
+>> ---
+>>  arch/arm64/boot/dts/ti/Makefile               |   1 +
+>>  .../dts/ti/k3-am6548-iot2050-advanced-sm.dts  | 210 ++++++++++++++++++
+>>  2 files changed, 211 insertions(+)
+>>  create mode 100644 arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-sm.dts
+>>
+>> diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
+>> index 77a347f9f47d..9b15eaad284c 100644
+>> --- a/arch/arm64/boot/dts/ti/Makefile
+>> +++ b/arch/arm64/boot/dts/ti/Makefile
+>> @@ -53,6 +53,7 @@ dtb-$(CONFIG_ARCH_K3) += k3-am6528-iot2050-basic-pg2.dtb
+>>  dtb-$(CONFIG_ARCH_K3) += k3-am6548-iot2050-advanced.dtb
+>>  dtb-$(CONFIG_ARCH_K3) += k3-am6548-iot2050-advanced-m2.dtb
+>>  dtb-$(CONFIG_ARCH_K3) += k3-am6548-iot2050-advanced-pg2.dtb
+>> +dtb-$(CONFIG_ARCH_K3) += k3-am6548-iot2050-advanced-sm.dtb
+>>  dtb-$(CONFIG_ARCH_K3) += k3-am654-base-board.dtb
+>>  dtb-$(CONFIG_ARCH_K3) += k3-am654-gp-evm.dtb
+>>  dtb-$(CONFIG_ARCH_K3) += k3-am654-evm.dtb
+>> diff --git a/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-sm.dts b/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-sm.dts
+>> new file mode 100644
+>> index 000000000000..ab3eef683890
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-sm.dts
+>> @@ -0,0 +1,210 @@
+>> +// SPDX-License-Identifier: GPL-2.0
+>> +/*
+>> + * Copyright (c) Siemens AG, 2023
+>> + *
+>> + * Authors:
+>> + *   Baocheng Su <baocheng.su@siemens.com>
+>> + *   Chao Zeng <chao.zeng@siemens.com>
+>> + *   Huaqian Li <huaqian.li@siemens.com>
+>> + *
+>> + * AM6548-based (quad-core) IOT2050 SM variant, Product Generation 2
+>> + * 4 GB RAM, 16 GB eMMC, USB-serial converter on connector X30
+>> + *
+>> + * Product homepage:
+>> + * https://new.siemens.com/global/en/products/automation/pc-based/iot-gateways/simatic-iot2050.html
+>> + */
+>> +
+>> +/dts-v1/;
+>> +
+>> +#include "k3-am6548-iot2050-advanced-common.dtsi"
+>> +#include "k3-am65-iot2050-common-pg2.dtsi"
+>> +
+>> +/ {
+>> +	compatible = "siemens,iot2050-advanced-sm", "ti,am654";
+>> +	model = "SIMATIC IOT2050 Advanced SM";
+>> +
+>> +	memory@80000000 {
+>> +		device_type = "memory";
+>> +		/* 4G RAM */
+>> +		reg = <0x00000000 0x80000000 0x00000000 0x80000000>,
+>> +		      <0x00000008 0x80000000 0x00000000 0x80000000>;
+>> +	};
+>> +
+>> +	aliases {
+>> +		spi1 = &main_spi0;
+>> +	};
+>> +
+>> +	leds {
+>> +		compatible = "gpio-leds";
+>> +		pinctrl-names = "default";
+>> +		pinctrl-0 = <&leds_pins_default>, <&user1_led_pins>;
+>> +
+>> +		user-led1-red {
 > 
-> The original file has 720 lines, so if you move 750 (!) of them, I can
+> led-0
+> 
+>> +			gpios = <&wkup_gpio0 52 GPIO_ACTIVE_HIGH>;
+> 
+> Missing function, missing color. Color goes as property, not as node name.
+> 
+>> +		};
+>> +
+>> +		user-led1-green {
+> 
+> led-1
+> 
+>> +			gpios = <&wkup_gpio0 53 GPIO_ACTIVE_HIGH>;
+> 
+> Ditto
+> 
 
-The original file has 1446 lines - I should have noted that this goes on 
-top of [1] which is already pending for 6.8 in Nishanth's tree, sorry.
+This is adjusting the existing LED nodes in k3-am65-iot2050-common.dtsi,
+not introducing new ones. We can add the color properties in a separate
+patch, but the node names are now part of the kernel ABI. Changing them
+would break existing userland.
+
+> 
+>> +
+>> +&dwc3_0 {
+>> +	assigned-clock-parents = <&k3_clks 151 4>,  /* set REF_CLK to 20MHz i.e. PER0_PLL/48 */
+>> +				 <&k3_clks 151 9>;  /* set PIPE3_TXB_CLK to CLK_12M_RC/256 (for HS only) */
+>> +	/delete-property/ phys;
+>> +	/delete-property/ phy-names;
+> 
+> If your board need to remove phys from the SoC node, something is wrong.
+> Either your board or SoC.
+> 
+> Any removal of properties in DTS is weird and unexpected. It deserves
+> comments.
+
+This goes along disabling USB3 which is by default enabled via
+k3-am65-iot2050-common-pg2.dtsi
+
+> 
+>> +};
+>> +
+>> +&usb0 {
+>> +	maximum-speed = "high-speed";
+>> +	/delete-property/ snps,dis-u1-entry-quirk;
+>> +	/delete-property/ snps,dis-u2-entry-quirk;
+> 
+> Same questions. If SoC has quirks, how can your board be fixed? It's SoC
+> property... or you are using different SoC.
+> 
+
+Same story.
+
+Baocheng, Zeng Chao, correct me if there is more behind that.
 
 Jan
-
-[1] https://lore.kernel.org/lkml/cover.1699087938.git.jan.kiszka@siemens.com/
-
-> hardly believe the rename cannot be detected. You are basically moving
-> 90% or 95% of file, so this must be represented with proper diff.
-> 
-> Your patches do not apply on next, neither on master, so it is tricky to
-> check.
-> 
-> How do you expect us to review it? Compare line by line?
-> 
-> Best regards,
-> Krzysztof
-> 
 
 -- 
 Siemens AG, Technology
