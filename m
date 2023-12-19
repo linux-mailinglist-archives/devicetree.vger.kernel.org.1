@@ -1,165 +1,109 @@
-Return-Path: <devicetree+bounces-26779-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26780-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E848981812F
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 06:53:30 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CD94818150
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 07:06:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 29B1CB240BD
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 05:53:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4041E1C233CC
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 06:06:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C20B848A;
-	Tue, 19 Dec 2023 05:53:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC0686FAD;
+	Tue, 19 Dec 2023 06:05:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="FwNAXiee"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A8A6849C;
-	Tue, 19 Dec 2023 05:53:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-	by ex01.ufhost.com (Postfix) with ESMTP id B23E724DFED;
-	Tue, 19 Dec 2023 13:53:01 +0800 (CST)
-Received: from EXMBX066.cuchost.com (172.16.7.66) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 19 Dec
- 2023 13:53:01 +0800
-Received: from [192.168.151.176] (172.16.6.8) by EXMBX066.cuchost.com
- (172.16.6.66) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 19 Dec
- 2023 13:53:00 +0800
-Message-ID: <60d091af-95d0-6f26-d535-4c3d8f38b5c1@starfivetech.com>
-Date: Tue, 19 Dec 2023 13:52:53 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D0608820;
+	Tue, 19 Dec 2023 06:05:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 3BJ5DuqO006718;
+	Tue, 19 Dec 2023 06:05:53 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=wl4+K71V0VvxC1sZKY7Qp0NaqTVKYirLa7JNZAyeOW8=; b=Fw
+	NAXieeNdXvj4/75u9YahBVuFQIFM8OyvzE2+hGZ7tlECFSG0Yp4sZgCtYpRZZ/it
+	pfk2rTyuhjqvyoXTZigHnyfgPs7LIbcBi9tBNs6BApUsbA2rERb84wgO7OsEjOkn
+	H9jSYylQI8XjVQomZsveo18qmT3yW7o6MSgGifRzA9c5pX3Uwoc+LLoro7Qk8s4C
+	res8iZ6aL7rGUwseLVMJlClkpFEt1Ve/U277SpWDdiuBGC3NI+kPRbRcaVpycbKR
+	wHD9JsPEqjTBtrs6p6YDkUljePIXiG2jKjIBYhfMfbjNgoLkM0kMHC+TMQ7ipeQq
+	4/GpjmtDco1ybkRvCXoA==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3v2vhrgyxn-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 19 Dec 2023 06:05:52 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3BJ65pBW017745
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 19 Dec 2023 06:05:51 GMT
+Received: from [10.238.139.231] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Mon, 18 Dec
+ 2023 22:05:47 -0800
+Message-ID: <90ec4c21-cef3-481e-a848-6fa471d43927@quicinc.com>
+Date: Tue, 19 Dec 2023 14:05:04 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH 2/3] dt-bindings: mailbox: starfive: Add StarFive Meu
- Mailbox Driver
-To: Conor Dooley <conor@kernel.org>
-CC: <jeeheng.sia@starfivetech.com>, <leyfoon.tan@starfivetech.com>,
-	<jassisinghbrar@gmail.com>, <robh+dt@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20231218061201.98136-1-joshua.yeong@starfivetech.com>
- <20231218061201.98136-3-joshua.yeong@starfivetech.com>
- <20231218-pawing-unripe-e45ad62ff8c7@spud>
-Content-Language: en-US
-From: Joshua Yeong <joshua.yeong@starfivetech.com>
-In-Reply-To: <20231218-pawing-unripe-e45ad62ff8c7@spud>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] arm64: dts: qcom: Add definition for three LEDs.
+To: Konrad Dybcio <konrad.dybcio@linaro.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <quic_fenglinw@quicinc.com>,
+        <quic_uchheda@quicinc.com>, <kamalw@qti.qualcomm.com>
+References: <20231110-qcom_leds-v2-1-3cad1fbbc65a@quicinc.com>
+ <aaf2e314-e7e2-4338-833f-1d1412776390@linaro.org>
+From: hui liu <quic_huliu@quicinc.com>
+In-Reply-To: <aaf2e314-e7e2-4338-833f-1d1412776390@linaro.org>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: EXCAS081.cuchost.com (172.16.6.41) To EXMBX066.cuchost.com
- (172.16.6.66)
-X-YovoleRuleAgent: yovoleflag
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: 6OMNMu6jx6bInI-XpOLI6zKWBMfKa0Ng
+X-Proofpoint-GUID: 6OMNMu6jx6bInI-XpOLI6zKWBMfKa0Ng
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-12-09_02,2023-12-07_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 phishscore=0
+ adultscore=0 bulkscore=0 priorityscore=1501 impostorscore=0 spamscore=0
+ lowpriorityscore=0 suspectscore=0 clxscore=1011 mlxlogscore=559
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2311290000 definitions=main-2312190043
 
 
-On 18/12/2023 7:17 PM, Conor Dooley wrote:
-> On Mon, Dec 18, 2023 at 02:12:00PM +0800, Joshua Yeong wrote:
->> The StarFive Meu Mailbox allow communication between AP and SCP cores
->> through mailbox doorbell.
+
+On 11/13/2023 8:14 PM, Konrad Dybcio wrote:
+> On 10.11.2023 03:06, Hui Liu via B4 Relay wrote:
+>> From: Hui Liu <quic_huliu@quicinc.com>
 >>
->> Co-developed-by: Sia Jee Heng <jeeheng.sia@starfivetech.com>
->> Signed-off-by: Sia Jee Heng <jeeheng.sia@starfivetech.com>
->> Signed-off-by: Joshua Yeong <joshua.yeong@starfivetech.com>
->> Reviewed-by: Ley Foon Tan <leyfoon.tan@starfivetech.com>
+>> Add definition for three LEDs to make sure they can
+>> be enabled base on QCOM LPG LED driver.
+>>
+>> Signed-off-by: Hui Liu <quic_huliu@quicinc.com>
 >> ---
->>   .../bindings/mailbox/starfive-meu.yaml        | 66 +++++++++++++++++++
->>   1 file changed, 66 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/mailbox/starfive-meu.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/mailbox/starfive-meu.yaml b/Documentation/devicetree/bindings/mailbox/starfive-meu.yaml
->> new file mode 100644
->> index 000000000000..dbc5cfdb90ff
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/mailbox/starfive-meu.yaml
->> @@ -0,0 +1,66 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/mailbox/starfive-meu.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: StarFive MEU Mailbox Controller
->> +
->> +maintainers:
->> +  - Jee Heng Sia <jeeheng.sia@starfivetech.com>
->> +  - Joshua Yeong <joshua.yeong@starfivetech.com>
->> +
->> +description: |
->> +  StarFive's Message-Exchange-Unit (MEU) is a mailbox controller that has 62
->> +  independent doorbells. Each MEU channel consist of 31 doorbells and consist of
->> +  a pair of Tx/Rx links that shall communicates with remote processor. The
->> +  sender set the bit in the SET register to indicate data readiness for the
->> +  receiver. An interrupt will be raised whenever receiving notification doorbell
->> +  from remote processor. The receiver will clear the bit in the CLR register
->> +  upon handling the doorbell notification. The sender should poll the STAT
->> +  register before starting any transaction to ensure all on-going doorbells are
->> +  processed.
-> What is/are the consumer(s) of this mailbox?
-> Is part of your RPMI implementation?
->
-> Cheers,
-> Conor.
+>> Changes in v2:
+>> - Rephrased commit text and updated the nodes to board file.
+> The title should still include it, so:
+> 
+> arm64: dts: qcom: sc7280-idp: Add ...
+Added patch 3 to update the description.
 
-Yes, it would be part of StarFive RPMI implementation.
-
-Regards,
-Joshua
-
->
->> +
->> +properties:
->> +  compatible:
->> +    enum:
->> +      - starfive,jh8100-meu
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  interrupts:
->> +    items:
->> +      - description: mailbox0
->> +      - description: mailbox1
->> +
->> +  '#mbox-cells':
->> +    description: represents index of the mailbox/doorbell paired channel
->> +      channel  0 - 30 for mailbox0 doorbell
->> +      channel 31 - 61 for mailbox1 doorbell
->> +    const: 1
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - interrupts
->> +  - '#mbox-cells'
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    soc {
->> +        #address-cells = <2>;
->> +        #size-cells = <2>;
->> +
->> +        meu: mailbox@1f370000 {
->> +            compatible = "starfive,jh8100-meu";
->> +            reg = <0x0 0x1f370000 0 0x8000>;
->> +            interrupts = <170>, /* Mailbox0 */
->> +                         <171>; /* Mailbox1 */
->> +            #mbox-cells = <1>;
->> +        };
->> +    };
->> +
->> +...
->> -- 
->> 2.25.1
->>
+> Konrad
 
