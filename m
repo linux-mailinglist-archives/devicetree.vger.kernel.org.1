@@ -1,113 +1,148 @@
-Return-Path: <devicetree+bounces-27079-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27080-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA3948191B6
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 21:50:36 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 968F58191C0
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 21:55:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 07A5A1C232B4
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 20:50:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 52ECD285E96
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 20:55:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CCD439AE3;
-	Tue, 19 Dec 2023 20:50:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AFE739AF5;
+	Tue, 19 Dec 2023 20:55:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uInVRD/s"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lQElauBz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0074F39ADF;
-	Tue, 19 Dec 2023 20:50:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 07F4DC433C7;
-	Tue, 19 Dec 2023 20:50:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1703019029;
-	bh=xb8dk6p1RHhv4INmJ7zZ89M+91T1HlupPCg4fGHi3AU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=uInVRD/sdb+mv3EVpFUzOgm7aOKLUxR1fpXol3XYR+rF+3U+XLg+CVBt/ZPC2wlmD
-	 EVU4KFlJhMuc8JJLXOpS3R+mJh/MWFGV0Y43a/GFLhZhUj7HDfZvAIkXZKkelwOfkS
-	 jji7q3QkWxr5gcYhmiXcgjAJczWOcXzCYyIS6GyQ3SRaJdDbUYzTNa0b2F9woA7K39
-	 mCfMwZiKSB1sLWGOnOjc/tQrxvbJRt82m8dMdVos92NWbZYKfxcMl5iQQAO7QENQL0
-	 q2CGukfzFIYrYiCT6zdZ+0ULAz+GMeTEbwvIQSXYSw4uF3S4mv57aqgb4/E+Fds76m
-	 dvDUI4E0bmdBg==
-Date: Tue, 19 Dec 2023 21:50:25 +0100
-From: "wsa@kernel.org" <wsa@kernel.org>
-To: Chris Packham <Chris.Packham@alliedtelesis.co.nz>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	"andi.shyti@kernel.org" <andi.shyti@kernel.org>,
-	"robh+dt@kernel.org" <robh+dt@kernel.org>,
-	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"gregory.clement@bootlin.com" <gregory.clement@bootlin.com>,
-	"linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v6 1/2] dt-bindings: i2c: add bus-reset-gpios property
-Message-ID: <ZYICEczlao+pg8kd@shikoro>
-Mail-Followup-To: "wsa@kernel.org" <wsa@kernel.org>,
-	Chris Packham <Chris.Packham@alliedtelesis.co.nz>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	"andi.shyti@kernel.org" <andi.shyti@kernel.org>,
-	"robh+dt@kernel.org" <robh+dt@kernel.org>,
-	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"gregory.clement@bootlin.com" <gregory.clement@bootlin.com>,
-	"linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20231115035753.925534-1-chris.packham@alliedtelesis.co.nz>
- <20231115035753.925534-2-chris.packham@alliedtelesis.co.nz>
- <f24b9b2d-aeb1-47f7-bf21-4383fdcf94aa@linaro.org>
- <5a52b0c9-8858-4f55-8dd7-9269c29c10a7@alliedtelesis.co.nz>
- <ZYHMvZ3plIQ0zXWa@shikoro>
- <601d07b5-264d-4322-b92e-63d58b3d69fa@alliedtelesis.co.nz>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7776539AD2
+	for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 20:55:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-40c256ffdbcso59044605e9.2
+        for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 12:55:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1703019335; x=1703624135; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=80CU+yeod+Yt0peXksdOGK0+bUEHvW9EJ+C21wPANvY=;
+        b=lQElauBz522nDpUsXXZ1wByOmJkS3CqhNGcKfTiwPsdwcwHMEFfiDS8iE1JLiYZuRL
+         UzwNIh1jEWIDJSv8C/OBGG7p+/KatquGRoNv2Afk0BsQg0N2W2OxHBbvG/NiUTrxVYl7
+         Li9RuM8vL4fzUo5B+lchUu3B7d9iySSCOSGmR8a6tEh/RnneQdsIuLe5FgedkU2fnN/T
+         aKd+R0bkQhHm/FZmjS9+LUU2LpX4gvd4IQTty9+ZhEz8e7RJn1ghVV/0zJ04/2pMBMTG
+         afittzibSQxDVWkQWjoHwFwaYywmc9IrXctQ/H84Vq9yHZZcaqfPxVPd9SfZfAiDPhoq
+         OmCg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1703019335; x=1703624135;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=80CU+yeod+Yt0peXksdOGK0+bUEHvW9EJ+C21wPANvY=;
+        b=jvB6T+LrfIMKhI2WCsXMyBBqyo/egcBZ2b0I2+630Y9zkqtLAZB1yRzqeJswOa10IL
+         hVHoSMch1dTB5/N4TdfziVj1UYEPMaCm3J/CAsYre2ysLljhi2MC6AL025XzdNvnLlNv
+         2+morv19TliuBN6o223DZbZWBs+xk4rTo3QNVfkC8Cq18s5O9b11DzjeNySjrFYyKgnb
+         4YRVUI4uXkUVVwPPNhgV1HFFImBYyNDb2ryVjVvvewtCiq2m06hifJXi+JyN3VX0UESR
+         gUuYqsGf4MEB0G0xkGTLwbFtD+Gie0//BPTEObBwxO/Cez9ftpGxISSTbhJKU4fNC8Nj
+         6f3g==
+X-Gm-Message-State: AOJu0Yyyzp3raGi8XBrIynyjIKO24au2UibXhPHDy3pSGChc9+LKp2cv
+	90awgXOo6pnLnucA5OfPNYZGTw==
+X-Google-Smtp-Source: AGHT+IG2dugVLWFhvm2ao0v3lUBqXjvW4cAitD3xDK8EpHvuzvTUVzY5T1+Pd2cLf38ZID5QrW9HRw==
+X-Received: by 2002:a05:600c:4f8d:b0:40c:55c4:45f5 with SMTP id n13-20020a05600c4f8d00b0040c55c445f5mr6740557wmq.132.1703019334725;
+        Tue, 19 Dec 2023 12:55:34 -0800 (PST)
+Received: from [127.0.1.1] ([79.115.23.25])
+        by smtp.gmail.com with ESMTPSA id v16-20020a05600c471000b0040c4886f254sm4460701wmo.13.2023.12.19.12.55.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 19 Dec 2023 12:55:34 -0800 (PST)
+From: Abel Vesa <abel.vesa@linaro.org>
+Subject: [PATCH 0/3] phy: qcom: edp: Add support for DT phy mode
+ configuration
+Date: Tue, 19 Dec 2023 22:55:21 +0200
+Message-Id: <20231219-x1e80100-phy-edp-compatible-refactor-v1-0-f9e77752953d@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="KAQIevLhiSubidkk"
-Content-Disposition: inline
-In-Reply-To: <601d07b5-264d-4322-b92e-63d58b3d69fa@alliedtelesis.co.nz>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIADkDgmUC/x2NQQqDMBAAvyJ77kI2OWj7ldLDdrPWBTUhkWIR/
+ 97gcRiYOaBqMa3w6A4o+rVqaW1Atw5k4vWjaLExeOcDebrjTjo4cg7z9EONGSUtmTd7z4pFR5Y
+ tFRz6EFS4F4kMLZWbsf3aPF/n+Qcm8na2dgAAAA==
+To: Vinod Koul <vkoul@kernel.org>, 
+ Kishon Vijay Abraham I <kishon@kernel.org>, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
+ Johan Hovold <johan@kernel.org>
+Cc: linux-phy@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ Abel Vesa <abel.vesa@linaro.org>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1833; i=abel.vesa@linaro.org;
+ h=from:subject:message-id; bh=cxCsK5pPL1ouaTVUEaXGUdmvdaQ8uvQZc+vq2k9i0C8=;
+ b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBlggM7F52Lzw+szjnLXv9iiHPEH0//KIcZP3WF1
+ /Nqreh4KdyJAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCZYIDOwAKCRAbX0TJAJUV
+ VqOPEAClwnP4muEViar7Pb7gz1K11YvF4s3wy1cyTi7Vldm+EETsNmIs1GVulZ4Lhds7FQ8sdZw
+ 63s7myZ/N7rSOXn/wKN7cTsS3OVW+xwAtUFwKjQXk38va8EsjFSZZC6ZrmHl2YCWLFG1giptxFT
+ 13xKGLZc7Exc8d01N055F0h4IqPvXVdHfapdzMnLCiqkgmBOb0pUMSb26Fi2lZn+KnUnE8298Dz
+ LbJPUM1Gbq5+x3v4qfe+na5x2UWs8JkXzCrmXsnchxW9cMIa/hnnGtGwcqtfzgdybb8kToId8Xl
+ 6t3ty5zu7SW2ror7cJJCza7k7aulPQCBdm1KJU472XlJOwnoJ0jGmpbkztHLYPGPAMEgaqHXq7x
+ 0Dxs3F2XHqnk5LJock2fOIUgfrNP5za9MGveBr8SP5EFoOlr1Fc9mMkU5X9yuPi2WVkzvYfaKNj
+ JlV8Mq2fCZwmQ8FzFUM8AFaayfWKwNyCFDd5gqgi1PKqVD/vVoH2ZmIXXmg3tYLqTO3E2ShLunP
+ xDnjtPTSCQ7dPxo23OKY4sqFUVoQ+KIED4p8cO7pfO5yc+h9q5BVUZ8JjTGRiyLSu2rIpW9HkKx
+ y0yLvKbohlZBvOIrrQDShsbEtzLZ11u3HgPYSSA+Eypizo+UE33ZMG4Xo662ePBSlui/f2+2qQL
+ j7a6+1L4F2LdrwA==
+X-Developer-Key: i=abel.vesa@linaro.org; a=openpgp;
+ fpr=6AFF162D57F4223A8770EF5AF7BF214136F41FAE
 
+Until now, all platform that supported both eDP and DP had different
+compatibles for each mode. Using different compatibles for basically
+the same IP block but for a different configuration is bad way all
+around. There is a new compute platform from Qualcomm that supports
+both eDP and DP with the same PHY. So instead of following the old
+method, we should allow the mode to be configured from devicetree.
 
---KAQIevLhiSubidkk
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+There has been an off-list discussion on what would be the right way
+to pass on the PHY mode information to the driver and it has been
+concluded that phy-cells is the way to go. This means that basically
+the controller will pass another value (that is, the PHY type) to
+its 'phys' DT property.
 
+For this, we need both the bindings value and the PHY mode value to be
+added as well.
 
-> I personally would like to see it accepted but it seems there are=20
-> objections to this approach. I've yet to come up with anything better to=
-=20
-> offer as an alternative.
+The controller part will follow shortly. But for now, lets see where
+this is going.
 
-I see. Thanks for the heads up!
+There has been another attempt at this here:
+https://lore.kernel.org/all/20231122-phy-qualcomm-edp-x1e80100-v3-3-576fc4e9559d@linaro.org/
 
+Compared to that version, this one uses the phy-cells method and drops
+the X1E80100 support. The X1E80100 support will be a separate patchset.
 
---KAQIevLhiSubidkk
-Content-Type: application/pgp-signature; name="signature.asc"
+Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+---
+Abel Vesa (3):
+      dt-bindings: phy: Add PHY_TYPE_EDP definition
+      phy: Add PHY Embedded DisplayPort mode
+      phy: qcom: edp: Allow PHY mode configuration via devicetree
 
------BEGIN PGP SIGNATURE-----
+ drivers/phy/qualcomm/phy-qcom-edp.c | 89 ++++++++++++++++++++++++++++---------
+ include/dt-bindings/phy/phy.h       |  1 +
+ include/linux/phy/phy.h             |  3 +-
+ 3 files changed, 70 insertions(+), 23 deletions(-)
+---
+base-commit: 0e182d9523f6c0af49357fcd812eaa702bd4b403
+change-id: 20231219-x1e80100-phy-edp-compatible-refactor-8733eca7ccda
 
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmWCAg0ACgkQFA3kzBSg
-KbYzrw/9HTP8AzWQLqcM+C6TIAYaKJLjE4spZJpDJzE9JJNPDc1avUNCE/2SBn0D
-Y+NHTDDs4mTISseTNlJMAdTC5eRZaaTXYc2OOf6E5F9puJK2bwK7xRsTIHy9IodF
-80Gf3zGyiV6+Xw8XDVDrzL8aPyV+jb/Zwq+iju5RlnqSazNwCJZogyhfcmRbiqQU
-8fQ9arUMHkro0/4lgQmSG4q4cU+uYHuFdXWdiPDSAz1YKym1PHx1wGUu9gHzsFz0
-Q9eczVHvttrWDqa2NEpdAd81rftgsNvywuUwk3Gq7gb3snUne0fKNTrTbNqF7W5t
-+H1KV6CcBdAHlbm8Tkbt8ncOx6EpIb71d6KcW98o9Vrqomu3Yo28CaSopresBv9D
-/ZoWEkoSBNkrxYTdG8i/BE5NCH+r8c1WEdKrzCbuVBekJDDvw+oC4tU1rcmUW5Lc
-9rtvQ/q3CjqIaywMmLjqoNWeSYqCdTO/9BWfAZf5bocxwF3vzoJgIsamy1NgRAHB
-X9BlMCv8tvnxQN7siHVR6axNDcOpGmmWYgR4v3Twkh62vyyW4CLqAiAWSaYde3OH
-V3wO1kd1DjxCMtNZ+mUGNQPs6NiWx1KKj8ZoUSusdtZBp9n6yJlKaul5Hll0tx97
-cRAfSfUy6UfVKQLSloM2uloMeA8yR1WbmB8yF4q5RbnMNqPFf0g=
-=kggI
------END PGP SIGNATURE-----
+Best regards,
+-- 
+Abel Vesa <abel.vesa@linaro.org>
 
---KAQIevLhiSubidkk--
 
