@@ -1,277 +1,206 @@
-Return-Path: <devicetree+bounces-26844-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26845-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71C208184D9
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 10:55:13 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B7E98184DC
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 10:56:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8722D1C23B63
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 09:55:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A68AB1F2445F
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 09:56:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B58BC13FED;
-	Tue, 19 Dec 2023 09:55:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 723DB13FFD;
+	Tue, 19 Dec 2023 09:56:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="al+laFZc"
+	dkim=pass (2048-bit key) header.d=siemens.com header.i=@siemens.com header.b="v/WSKqry"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR03-AM7-obe.outbound.protection.outlook.com (mail-am7eur03on2050.outbound.protection.outlook.com [40.107.105.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E32B61426E;
-	Tue, 19 Dec 2023 09:55:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-552fba34d69so3758804a12.3;
-        Tue, 19 Dec 2023 01:55:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1702979708; x=1703584508; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=DG64c7dRFIL5Y3MImZBgQFQYMUNsfuD/yEeTvtHu888=;
-        b=al+laFZcvTp4nJe5P+bY8fTOzhH7OgSkPOR2KTiYAbdsvvEgOSRZWM0dANqwjnQh/5
-         KUmzXY3v/dWLoEjwKfGXjkL+dnb1pRLU9Olyv6NMR4SJJOYVbLtKEzw1315SRHR1fsbx
-         9SmLMQ17s3qOY+OgGMuwGEyZ8hx1cpE7UxHlFV74j95APLvoDNDrxuGkcD/5ZotYIoOI
-         zPtr/ISStsLvEDSA6mK61qwG9Ri6xkR91XYGKY9Ny1Y3MiE6N7N1AbkCZkcRQaHSy0j7
-         5BKc+gUMr02d6Cq18C5bwP6sGoey8rzM+uCU/VaPYm8QTuqW77o24rhOHY1Qr6EBgLbb
-         d+zQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702979708; x=1703584508;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=DG64c7dRFIL5Y3MImZBgQFQYMUNsfuD/yEeTvtHu888=;
-        b=a9myKiYCYnBkT9aXIvmYdhlkWtPLTzy6UgK4Xw9Cy6lT5XFxTaUtoKXWGuyGusaftg
-         INWv1G2s1T9Bhrt5/5k7RR6iwFlks0OKU1TJr3ZYfTxFfGmzOVDkvNMqlrK7zmFWLYBy
-         moHxteGfWyzrNMby/PyIsBa+q2yUFONsV4wl5NUZD2CNwJxCScSz7cfHoSjJfQAGtL4h
-         IiJ/QzuQInTeVZpa33o5/xsm942BuEWYydKESF6QyHFjrmSn+XciS4sYOZLqV4S7apTr
-         dEXT3pShbR+nHEW1ePVc5vFbPijCQWRzoqngO5IiTZIuU/N+WB/L+x9YYo6hjaEj67ou
-         U6jw==
-X-Gm-Message-State: AOJu0Yx+wHJW9IjfvPtxgA1opIesekk1NTvDimXEXBCabXBiWy8QzmxK
-	02dr+gviV0R8r9qk88o2J6o=
-X-Google-Smtp-Source: AGHT+IFgsycW3lLLHo/b1K3oXGZiIye8ulRB1V67R2Tb1+vQZV6/Q4Pq5c7JsjoIyZKsaS6e2nvObw==
-X-Received: by 2002:a17:907:7f8b:b0:a26:861f:c05c with SMTP id qk11-20020a1709077f8b00b00a26861fc05cmr58827ejc.114.1702979707884;
-        Tue, 19 Dec 2023 01:55:07 -0800 (PST)
-Received: from [192.168.26.149] (031011218106.poznan.vectranet.pl. [31.11.218.106])
-        by smtp.googlemail.com with ESMTPSA id s19-20020a170906c31300b00a236e9cfe74sm928058ejz.103.2023.12.19.01.55.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 19 Dec 2023 01:55:07 -0800 (PST)
-Message-ID: <ba8abaf6-6f16-4742-a3ea-ad00d4151698@gmail.com>
-Date: Tue, 19 Dec 2023 10:55:04 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 131F213FFC;
+	Tue, 19 Dec 2023 09:56:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=siemens.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=AFn9ZEV5LXuAEFGpdkrMYeJKUHIjXzDr5HjZqm5/bNR41boDV2hYqPkcGLqwL0qbpXUb8N7gfTfZwHbc1GYorNMhT52EeYiPCT8WkeQqcnIgUheRw9RAL380dp4QB14mXfdBI+Ou3t0DMJynhVzcSBc2B0dlWas0circSVRc9FZHr2ESqsughEfMmAgc3BJ52RYW9ihM2egz7Lxk6LG0VQ0SOoIKucFfJj+K9Wcr1uKUtUFaYH0ylGGOJAfMfWRzK7aPPK82BJYN6MBUwKxi05DmiXuyLCdPk62Z5VcsBbNnoWCX3uafgz6VOAfc+ZP2GU2ag7Hv8W932pTeIjJIOA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=TzFIxMmFqdxZRxqujFAor1tsFHwUKxhyP7RpezIOw6E=;
+ b=DMNUiwSsp1BMMIs7RURVrBLaaAN9wQ0GIOUUzfT1mZl2WCCZm+1KrgJRvWadb574L9x4QZCIOY4lm1S/Vr4a5STWESFgTqsBcAU/w2YhUk4y6Yz2orhgpMIww11mxIubiCBjAfkinX9DzlXBQ6XAQsucNiz8gnH53EFoAZj4f0IhRjDUB3Qjbp0bIo1IOp2YmJgR53ZzMcO19LWcFIYJ7lWzT8OvzrowISBv2MbIIakmNfXZSa/qB7nAEgwS4zO7ef4qj5ykjXCIl6YLVfsgmF7fsEo2ZsGEt5nr9R2smLUMrRkbLJy2emVmM2zXtleI0u7a0yqgvDf3i7LRpADdLQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=siemens.com; dmarc=pass action=none header.from=siemens.com;
+ dkim=pass header.d=siemens.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=siemens.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=TzFIxMmFqdxZRxqujFAor1tsFHwUKxhyP7RpezIOw6E=;
+ b=v/WSKqryhUmXHI/1TGw03ZHP3NahXanYwG54AbiI5r3pfMd1xmBIhdd7LTiHY7FfJfQr6bz8I35WoueMEBgVc4PKkAbwfLbcTtg34TXH2E5W8nFEfYW9EoJBnO5BeLtFB+iUKgGG4s3WZyYFLxUFRZfu/pmUu/s6K/25WHHVLbVlEujGF96C0/DLunvnt4tPP5haK7VMkJHGkhlKvmnJJYNMwBY8fbOLpldI5i7rs0yH7bBOUklQteoW6RTdM3xAF+lrX+wkVOPLmo3by1HN5f0OZGwF+Ivv4kdDNoGy9opZg7n5SFQtuPMfT1G94gG0Fa2UYePuwbvZibY2SDssDQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=siemens.com;
+Received: from AS4PR10MB6181.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:588::19)
+ by PAWPR10MB8090.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:102:391::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7091.38; Tue, 19 Dec
+ 2023 09:56:40 +0000
+Received: from AS4PR10MB6181.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::96c7:d239:1723:8761]) by AS4PR10MB6181.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::96c7:d239:1723:8761%5]) with mapi id 15.20.7091.034; Tue, 19 Dec 2023
+ 09:56:40 +0000
+Message-ID: <d25399e3-9054-44a1-9ff9-e27252436222@siemens.com>
+Date: Tue, 19 Dec 2023 10:56:37 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 4/4] dts: iot2050: Support IOT2050-SM variant
+Content-Language: en-US
+From: Jan Kiszka <jan.kiszka@siemens.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+ Tero Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Bao Cheng Su <baocheng.su@siemens.com>,
+ Chao Zeng <chao.zeng@siemens.com>
+Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, Li Hua Qian <huaqian.li@siemens.com>
+References: <cover.1702917360.git.jan.kiszka@siemens.com>
+ <11e0b0c8b828254567a8ff89820c067cacad2150.1702917360.git.jan.kiszka@siemens.com>
+ <8b3daa3c-dbf8-4286-b04e-011cd9b0efa5@linaro.org>
+ <4c31adc5-3fc5-47bc-9766-6d3d1eeddb65@siemens.com>
+ <fbb29d81-9ea0-4468-ad47-f6668c2be277@linaro.org>
+ <de3f4778-51d6-48ab-9d4d-451f2ba01a3c@siemens.com>
+ <3d2662be-3a55-4390-bd2a-cfa5cc53510f@linaro.org>
+ <ef5a6cf0-4350-483d-a1e9-ce8b0ef71280@siemens.com>
+In-Reply-To: <ef5a6cf0-4350-483d-a1e9-ce8b0ef71280@siemens.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: FR4P281CA0244.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:f5::13) To AS4PR10MB6181.EURPRD10.PROD.OUTLOOK.COM
+ (2603:10a6:20b:588::19)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/4] nvmem: layouts: add U-Boot env layout
-To: Miquel Raynal <miquel.raynal@bootlin.com>
-Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Michael Walle <michael@walle.cc>, linux-mtd@lists.infradead.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, u-boot@lists.denx.de,
- =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-References: <20231218133722.16150-1-zajec5@gmail.com>
- <20231218133722.16150-4-zajec5@gmail.com> <20231218152116.59d59bad@xps-13>
- <13bc621c-5fcb-4710-912c-06e3e80d7337@gmail.com>
- <20231219085517.4b6ec4fc@xps-13>
-Content-Language: en-US
-From: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-In-Reply-To: <20231219085517.4b6ec4fc@xps-13>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AS4PR10MB6181:EE_|PAWPR10MB8090:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8b24b5ca-d0a6-4616-eb22-08dc0078cbfd
+X-LD-Processed: 38ae3bcd-9579-4fd4-adda-b42e1495d55a,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	bOhfXxm0Nkg85iRELejsQoyWK2cdto/T7HVHX2t3wf/y7cGYOIHLawzBdR7rJhaU7O+/LCOD8k/ynb/0QPUgEaMQDfEb2UzBUUcBV4PZlm4QoG0bSMwbE3S0o/ZbMmnuKjgw5oTNYSLJ0PItbRJGpiAPWAuV4TTmeKKoU/U4D0TUH2uOgtds6nT6/yk9tV5EWY5r6V/SuW5CM/FD1tLhkTzz9djcqy+UCLtCn3OcDitrbuuDtJ8lKxpWDiLWPaI0OszGMx8Jhf+g3sA5ORfYBQ8cyBCbMIjOtzIjuTWWXRVspW5Kl3sR5Hl+g/YxoPZc7yo2Bnrqe0eXr+VgQLHMbfHxTFwB9u7RbB/508/B6oFM6LuTAMu2IKUTb0ugYpD7tyRx8s8vHPAjY42HZxPMYs4ZCGtRykzPTvvtgDYAZh5+Kvkw9S+iWFNlXDyWuqireefr03aIJmSHsowQxze259KpwPDvC6KsGAgf46N/DNJBzb8G2yP7coLKHx5qt8kaXJFVI0Ao5v0cm9h/tFTNxixuMzCa8JcpN2hFe0M11wv+WaHxFgY37K8sN68qE6z53zLavBU0UinhY7PX9NMt1JwsDzEVBGRAoXGkIxSEuVbUM0PsI7NluvRv6sRgFMUs4rCEat+tj5Y79MMR9VzjPw==
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS4PR10MB6181.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230031)(376002)(396003)(346002)(366004)(39860400002)(136003)(230922051799003)(1800799012)(64100799003)(186009)(451199024)(316002)(83380400001)(66556008)(110136005)(66946007)(66476007)(7416002)(5660300002)(6636002)(2906002)(44832011)(4326008)(8676002)(8936002)(53546011)(6506007)(6666004)(6512007)(26005)(478600001)(2616005)(6486002)(31686004)(107886003)(31696002)(86362001)(41300700001)(82960400001)(38100700002)(36756003)(45980500001)(43740500002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?dHFsM1lwMU12ZkxDSGwrM0lHenIxbDBsUjRzTnNvUW8xYm9PK1dOM0tnU3Zq?=
+ =?utf-8?B?T1IyRm1nSkh2R3pXUVVBUm1taWF0bm1hTXdXYXBUaVlySU55dytGeVZtQkpv?=
+ =?utf-8?B?cXZUMWFlSm9rUUx2RDRYN1E1RDJzMjZvbmUyYVJRU1FZK0dwTjBpTVFIUFh4?=
+ =?utf-8?B?d2NZRjBoeE9QaDlxcm11M2N0VVNkZ1FYblFrTzVTN3NwOTZUUHFSY0ZxNUo5?=
+ =?utf-8?B?VFIveFhSN2dnSktMdVUyRW1XSXJrT0ZpbDNDVWsraFM4T1IxNGFOazhQNFpx?=
+ =?utf-8?B?Q3ArUk5YK2x4c3RWSE5wTmlwc3lJV0dDSWxrVFNUcjN3SjJzbjJOampSTlhL?=
+ =?utf-8?B?dTg5T3kwRG4zdTgwZmx6L1VaRm1BdFl3Y3RLYXhld2lPSWg4UUJnZkswYXBm?=
+ =?utf-8?B?SzFBL1F5b2xJbkdxTVc0SFZVcU1OZlR1OEZqOU51WHRyZFEyZUJLY3JNWjhE?=
+ =?utf-8?B?VnM2MTduMkdPN3FhWnFMRE5xY2ZpWGJTbDRIL0I4Y21Ma2VrV1NlNi9BdHFW?=
+ =?utf-8?B?VkxQQlN3OG5DM0IxVWhxZHdGbEFLN2FjU1ZrS3VLYWJCSFNLUkFSaFR0MGlF?=
+ =?utf-8?B?ZEIyeDFKUnlhUkxwbU9ndld1dHY2MC9raGdjVTFXV3NOTldraHFBWXV2YWFz?=
+ =?utf-8?B?VE03WmlMbkpTYWdCVWRQS1cxRDYwM3BuQnNEYllLNUVDb2pEeFVXWEpaT3Ju?=
+ =?utf-8?B?aC81TjZUdG9iQWNSeCtqZkxWMWhBWFkwQ1F6allxK0lEVFBCck83ekpjKzk1?=
+ =?utf-8?B?RGtFbzErL1JxWkFqQkpmUkMxTkU1OWlLZFlMUWpBM0FlL3RNNUlWQkhZc2FK?=
+ =?utf-8?B?ZmJHWmh1NUZ6WlpRQlA0YlJaNTNERmxQM3ZtbCtiMUxaY3h5QTEzenl0RzRT?=
+ =?utf-8?B?UnJaVldQN2d1Kzg2c0syWlExRHFBekx3Zlc4eG4wNGFQTW82NjV5ZkV2d0F2?=
+ =?utf-8?B?dVlpUWM4d3FyMzQxb2ZKNFIvb1lFNGxUTlowSmNMUi9nY3lZSzZiblU3aDMw?=
+ =?utf-8?B?WFVqdCswd1U0VVlOdGFIUUU3UGlGNE1QMDk5c1Z2RUNzbnNpU0JicHlxZ3J4?=
+ =?utf-8?B?YjJjYTRabGIrQUhqdHR0dm9vd0NZZUcxZlg4ZU9BdEYvcU9YRCthN2RJeFJs?=
+ =?utf-8?B?OTE2aFNrK0FCZHFoYW1xdDYrMFhNcXVHNXJoRkJ0SzdQZEhIcWo1TldIRGow?=
+ =?utf-8?B?UTFiT2NFdTZMeW10ajZLNG4rdkMyVkwrRng2NTRzM3Y3TmFkNTlIelJ5bFZm?=
+ =?utf-8?B?NHEvNGM5akZoOTBPNllza2tBeldBbXNSNlEzKzJkMkxZN3laTzdKcTEvK3lk?=
+ =?utf-8?B?ckpoaWx6bmRKd3kvNzVmMFhTT2dGV1ZvRytYV2JFWWhUUzRaU3kyUE9yUWlm?=
+ =?utf-8?B?ZmFXQ0NCRlpOSmlQWGtad1d3bSsrNGRxa3ZqeGtFdzRQWUtaZ3AwVFlaUzdh?=
+ =?utf-8?B?VngzbnBtVXRuOVVOS0lzNG8rWUhXZWUrT0dDV1RHZjhEdjNQQ3M3U29OT1JC?=
+ =?utf-8?B?TWE3MzFPalNUdWJBa0tHWHBiME0rYjFwZVYvUm9qckxjampqRFBkVVgzaThI?=
+ =?utf-8?B?WWxzVGlyc2VzOENiOG8zOXRRMHVCb3JJaWxyZ2ZSNmczUzMrQ1pmZXBxMGlS?=
+ =?utf-8?B?SUVEWlpEWDZkdXcxUEU0TzhjTkVLNVJQVlluSkdXWmFiV3dVc0ZZL3NOTzFS?=
+ =?utf-8?B?dWtXelZkb1dHd21ObzdFeXZySWtnMVRSSW1TQjdQeENyTjhoL1gxVmlwOExM?=
+ =?utf-8?B?MzBpMlRjR0s1SkVMbngxV1BaSFNXdmU4bXBBcENoQ2gzTTl6SkpRN2kvWEdT?=
+ =?utf-8?B?Mzl2Q0w2K0srY0RKWXd6Zlc3YzRXZUt2a1FFSC90TEtRREc4YW9WVHVacDRy?=
+ =?utf-8?B?VXRwemU3c1lpQ0FhK3UvclZTbFFvUDNjTkwydk5lbElSREIvT2tQTncyTkpQ?=
+ =?utf-8?B?TnFqcW5KOTFvY3lkcVpDc2xoLzV0VllUY1ZXTEtWN0wvWG9YRThTY09GVnVO?=
+ =?utf-8?B?c3pLNWV4UDhVUEUrdW5JVUFxUm53bUdST0kyWDhPbmFBZCtUSUZBa3pvOWlk?=
+ =?utf-8?B?SU1UY1pRUGpWQndiTW44YUloSW1nazc3WTgzbnAzbnFaSnVRaGlSWm9OK2pB?=
+ =?utf-8?B?a1VjRnV3RkR0NWJybUwzYmc3aWxibnBSWHl3ak9NWWJkOXQ0U1RTdnVOd2VE?=
+ =?utf-8?B?TVE9PQ==?=
+X-OriginatorOrg: siemens.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8b24b5ca-d0a6-4616-eb22-08dc0078cbfd
+X-MS-Exchange-CrossTenant-AuthSource: AS4PR10MB6181.EURPRD10.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Dec 2023 09:56:39.9370
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 38ae3bcd-9579-4fd4-adda-b42e1495d55a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: +8YDmvZVbB5/vcFexKnueD3k3Ngbs+u1SGisFV9IylZs+UpxzIXEDzCAqdyC1ySsO1F1ZvYqmlrXfeoydqRJoA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAWPR10MB8090
 
-On 19.12.2023 08:55, Miquel Raynal wrote:
-> Hi Rafał,
-> 
-> zajec5@gmail.com wrote on Mon, 18 Dec 2023 23:10:20 +0100:
-> 
->> On 18.12.2023 15:21, Miquel Raynal wrote:
->>> Hi Rafał,
->>>
->>> zajec5@gmail.com wrote on Mon, 18 Dec 2023 14:37:22 +0100:
->>>    
->>>> From: Rafał Miłecki <rafal@milecki.pl>
+On 19.12.23 10:54, Jan Kiszka wrote:
+> On 19.12.23 10:50, Krzysztof Kozlowski wrote:
+>> On 19/12/2023 10:03, Jan Kiszka wrote:
+>>> On 19.12.23 09:48, Krzysztof Kozlowski wrote:
+>>>> On 19/12/2023 09:22, Jan Kiszka wrote:
+>>>>>>
+>>>>>>> +			gpios = <&wkup_gpio0 53 GPIO_ACTIVE_HIGH>;
+>>>>>>
+>>>>>> Ditto
+>>>>>>
+>>>>>
+>>>>> This is adjusting the existing LED nodes in k3-am65-iot2050-common.dtsi,
+>>>>> not introducing new ones. We can add the color properties in a separate
 >>>>
->>>> This patch moves all generic (NVMEM devices independent) code from NVMEM
->>>> device driver to NVMEM layout driver. Then it adds a simple NVMEM layout
->>>> code on top of it.
 >>>>
->>>> Thanks to proper layout it's possible to support U-Boot env data stored
->>>> on any kind of NVMEM device.
+>>>> Then why aren't you overriding by phandle/label?
 >>>>
->>>> For backward compatibility with old DT bindings we need to keep old
->>>> NVMEM device driver functional. To avoid code duplication a parsing
->>>> function is exported and reused in it.
+>>>
+>>> We could do that as well if we added labels first (they don't exist so 
+>>> far). Not seeing any difference, though.
+>>
+>> Confusion? Your code suggests new node, thus you got review like you got.
+>>
+>>>
+>>>>> patch, but the node names are now part of the kernel ABI. Changing them
+>>>>> would break existing userland.
 >>>>
->>>> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
->>>> ---
+>>>> You mean label. Why node names became the ABI? Which interface exposes them?
 >>>
->>> I have a couple of comments about the original driver which gets
->>> copy-pasted in the new layout driver, maybe you could clean these
->>> (the memory leak should be fixed before the migration so it can be
->>> backported easily, the others are just style so it can be done after, I
->>> don't mind).
->>>
->>> ...
->>>    
->>>> +int u_boot_env_parse(struct device *dev, struct nvmem_device *nvmem,
->>>> +		     enum u_boot_env_format format)
->>>> +{
->>>> +	size_t crc32_data_offset;
->>>> +	size_t crc32_data_len;
->>>> +	size_t crc32_offset;
->>>> +	size_t data_offset;
->>>> +	size_t data_len;
->>>> +	size_t dev_size;
->>>> +	uint32_t crc32;
->>>> +	uint32_t calc;
->>>> +	uint8_t *buf;
->>>> +	int bytes;
->>>> +	int err;
->>>> +
->>>> +	dev_size = nvmem_dev_size(nvmem);
->>>> +
->>>> +	buf = kcalloc(1, dev_size, GFP_KERNEL);
->>>
->>> Out of curiosity, why kcalloc(1,...) rather than kzalloc() ?
+>>> root@iot2050-debian:~# ls -l /sys/class/leds/
+>>> total 0
+>>> lrwxrwxrwx 1 root root 0 Dec 19 08:55 mmc0:: -> ../../devices/platform/bus@100000/4fa0000.mmc/leds/mmc0::
+>>> lrwxrwxrwx 1 root root 0 Dec 19 08:55 mmc1:: -> ../../devices/platform/bus@100000/4f80000.mmc/leds/mmc1::
+>>> lrwxrwxrwx 1 root root 0 Dec 14 21:12 status-led-green -> ../../devices/platform/leds/leds/status-led-green
+>>> lrwxrwxrwx 1 root root 0 Dec 19 08:55 status-led-red -> ../../devices/platform/leds/leds/status-led-red
+>>> lrwxrwxrwx 1 root root 0 Dec 19 08:55 user-led1-green -> ../../devices/platform/leds/leds/user-led1-green
+>>> lrwxrwxrwx 1 root root 0 Dec 19 08:55 user-led1-red -> ../../devices/platform/leds/leds/user-led1-red
+>>> lrwxrwxrwx 1 root root 0 Dec 19 08:55 user-led2-green -> ../../devices/platform/leds/leds/user-led2-green
+>>> lrwxrwxrwx 1 root root 0 Dec 19 08:55 user-led2-red -> ../../devices/platform/leds/leds/user-led2-red
 >>
->> I used kcalloc() initially as I didn't need buffer to be zeroed.
+>> I replied too fast previous and did not include answer here:
+>>
+>> You have label for that... Somehow all these nodes are half-baked,
+>> without all the expected properties and now you call node name as ABI.
+>> The node name is not the ABI.
 > 
-> I think kcalloc() initializes the memory to zero.
-> https://elixir.bootlin.com/linux/latest/source/include/linux/slab.h#L659
+> Well, existing userspace uses those names, and adding the properties
+> would break that interface. Now, does Linux do that?
 > 
-> If you don't need it you can switch to kmalloc() instead, I don't mind,
-> but kcalloc() is meant to be used with arrays, I don't see the point of
-> using kcalloc() in this case.
-> 
->>
->> I see that memory-allocation.rst however says:
->>   > And, to be on the safe side it's best to use routines that set memory to zero, like kzalloc().
->>
->> It's probably close to zero cost to zero that buffer so it could be kzalloc().
->>
->>
->>>> +	if (!buf) {
->>>> +		err = -ENOMEM;
->>>> +		goto err_out;
->>>
->>> We could directly return ENOMEM here I guess.
->>>    
->>>> +	}
->>>> +
->>>> +	bytes = nvmem_device_read(nvmem, 0, dev_size, buf);
->>>> +	if (bytes < 0)
->>>> +		return bytes;
->>>> +	else if (bytes != dev_size)
->>>> +		return -EIO;
->>>
->>> Don't we need to free buf in the above cases?
->>>    
->>>> +	switch (format) {
->>>> +	case U_BOOT_FORMAT_SINGLE:
->>>> +		crc32_offset = offsetof(struct u_boot_env_image_single, crc32);
->>>> +		crc32_data_offset = offsetof(struct u_boot_env_image_single, data);
->>>> +		data_offset = offsetof(struct u_boot_env_image_single, data);
->>>> +		break;
->>>> +	case U_BOOT_FORMAT_REDUNDANT:
->>>> +		crc32_offset = offsetof(struct u_boot_env_image_redundant, crc32);
->>>> +		crc32_data_offset = offsetof(struct u_boot_env_image_redundant, data);
->>>> +		data_offset = offsetof(struct u_boot_env_image_redundant, data);
->>>> +		break;
->>>> +	case U_BOOT_FORMAT_BROADCOM:
->>>> +		crc32_offset = offsetof(struct u_boot_env_image_broadcom, crc32);
->>>> +		crc32_data_offset = offsetof(struct u_boot_env_image_broadcom, data);
->>>> +		data_offset = offsetof(struct u_boot_env_image_broadcom, data);
->>>> +		break;
->>>> +	}
->>>> +	crc32 = le32_to_cpu(*(__le32 *)(buf + crc32_offset));
->>>
->>> Looks a bit convoluted, any chances we can use intermediate variables
->>> to help decipher this?
->>>    
->>>> +	crc32_data_len = dev_size - crc32_data_offset;
->>>> +	data_len = dev_size - data_offset;
->>>> +
->>>> +	calc = crc32(~0, buf + crc32_data_offset, crc32_data_len) ^ ~0L;
->>>> +	if (calc != crc32) {
->>>> +		dev_err(dev, "Invalid calculated CRC32: 0x%08x (expected: 0x%08x)\n", calc, crc32);
->>>> +		err = -EINVAL;
->>>> +		goto err_kfree;
->>>> +	}
->>>> +
->>>> +	buf[dev_size - 1] = '\0';
->>>> +	err = u_boot_env_parse_cells(dev, nvmem, buf, data_offset, data_len);
->>>> +	if (err)
->>>> +		dev_err(dev, "Failed to add cells: %d\n", err);
->>>
->>> Please drop this error message, the only reason for which the function
->>> call would fail is apparently an ENOMEM case.
->>>    
->>>> +
->>>> +err_kfree:
->>>> +	kfree(buf);
->>>> +err_out:
->>>> +	return err;
->>>> +}
->>>> +EXPORT_SYMBOL_GPL(u_boot_env_parse);
->>>> +
->>>> +static int u_boot_env_add_cells(struct device *dev, struct nvmem_device *nvmem)
->>>> +{
->>>> +	const struct of_device_id *match;
->>>> +	struct device_node *layout_np;
->>>> +	enum u_boot_env_format format;
->>>> +
->>>> +	layout_np = of_nvmem_layout_get_container(nvmem);
->>>> +	if (!layout_np)
->>>> +		return -ENOENT;
->>>> +
->>>> +	match = of_match_node(u_boot_env_of_match_table, layout_np);
->>>> +	if (!match)
->>>> +		return -ENOENT;
->>>> +
->>>> +	format = (uintptr_t)match->data;
->>>
->>> In the core there is currently an unused helper called
->>> nvmem_layout_get_match_data() which does that. I think the original
->>> intent of this function was to be used in this driver, so depending on
->>> your preference, can you please either use it or remove it?
->>
->> The problem is that nvmem_layout_get_match_data() uses:
->> layout->dev.driver
-> 
-> I'm surprised .driver is unset. Well anyway, please either fix the core
-> helper and use it or drop the core helper, because we have no user for
-> it otherwise?
 
-I believe it's because of a very minimalistic "nvmem_bus_type" bus
-implementation.
+Obviously, we could deviate from the existing naming scheme only for the
+new variant, keeping it for the other 5, but that will be "fun" to maintain.
 
- From a quick look it seems that default expected FORWARD-trace is:
-driver_register()
-bus_add_driver()
-driver_attach()
-__driver_attach()
-driver_probe_device()
-__driver_probe_device()
-really_probe()
+Jan
 
-It's really_probe() that seems to set dev->driver pointer.
-
-
->> It doesn't work with layouts driver (since refactoring?) as driver is
->> NULL. That results in NULL pointer dereference when trying to reach
->> of_match_table.
->>
->> That is why I used u_boot_env_of_match_table directly.
->>
->> If you know how to fix nvmem_layout_get_match_data() that would be
->> great. Do we need driver_register() somewhere in NVMEM core?
+-- 
+Siemens AG, Technology
+Linux Expert Center
 
 
