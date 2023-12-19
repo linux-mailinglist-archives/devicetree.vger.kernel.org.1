@@ -1,112 +1,97 @@
-Return-Path: <devicetree+bounces-27013-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27014-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86BD5818DA8
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 18:12:36 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB541818DAB
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 18:12:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D9BA8B254C2
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 17:12:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 95200286EE2
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 17:12:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40FDB20DE7;
-	Tue, 19 Dec 2023 17:06:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D39C21364;
+	Tue, 19 Dec 2023 17:11:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QG+RfNMD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dLbcc1MT"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 132FA37D21;
-	Tue, 19 Dec 2023 17:06:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C06B3C433CA;
-	Tue, 19 Dec 2023 17:06:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B9453174A;
+	Tue, 19 Dec 2023 17:11:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E3C68C433C7;
+	Tue, 19 Dec 2023 17:11:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1703005590;
-	bh=a7OnamfCwWf+orWN0KvpA25yoky33RSY7KSTSqDl/A8=;
+	s=k20201202; t=1703005891;
+	bh=bHyMqohUpG3TgYf+LaLoP+IOoy7SIqBFB/tROxy5Kps=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=QG+RfNMDFWyLdUnI3z9dEpRaS/CjlNjdf9whequWAeBC/cq2NpTpAAOaJE6WGNqMX
-	 aZwjfMcMV1oQ65I394Yc1ZK42hCLpm4YZMDDPj9iIRcKoy07BQhuREIcyGVOFpiYgg
-	 0xr3pSG/It9HDJhPl0ZNh1CS5kynJQD8QigPks1esTRsEU7/LxYmsh5Jr42BvUXSH+
-	 ENDM9zXsM5dWAcn+beWg5lXRuc5cTwyY8v4T64Yn5TsVrZmdz+YZXKhcoZ6nm6BQhN
-	 jU+mHkzc8PDvgvPO/3bDN5H8/15C7BUiWRl9WyJ1sw2dauEaSgWpysP1GzZr6jutH2
-	 Va2udn3TEkxMQ==
-Date: Tue, 19 Dec 2023 18:06:26 +0100
-From: Wolfram Sang <wsa@kernel.org>
-To: Tim Lunn <tim@feathertop.org>
-Cc: linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-	Jagan Teki <jagan@edgeble.ai>, Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org,
-	Rob Herring <robh+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Andi Shyti <andi.shyti@kernel.org>, linux-i2c@vger.kernel.org
-Subject: Re: [PATCH v3 3/8] i2c: rk3x: Adjust mask/value offset for i2c2 on
- rv1126
-Message-ID: <ZYHNkgxAauYp6ivX@shikoro>
-Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
-	Tim Lunn <tim@feathertop.org>, linux-rockchip@lists.infradead.org,
-	devicetree@vger.kernel.org, Jagan Teki <jagan@edgeble.ai>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org,
-	Rob Herring <robh+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Andi Shyti <andi.shyti@kernel.org>, linux-i2c@vger.kernel.org
-References: <20231203124004.2676174-1-tim@feathertop.org>
- <20231203124004.2676174-4-tim@feathertop.org>
+	b=dLbcc1MT8AkJroDXZHNVC4rIGmJ5mSwe4TcZTvDcLnGuJdXJlMnsMuA04rSDu7dvf
+	 YNj4lHpGIiPutWsfmhil1SWrhHiQJh1n+oxjdc3R3LMlWF2KIRZrwCpaQS4zvWZyrJ
+	 6F9eoKmpxdJG0/biI80m9+ZRCX6Z5wU1VMCLC58oB3yKmTM/X/ytcaBZDZK+pTB6nl
+	 4rzbPrVGpRwpsBtQc3SKpnwp/cannJpbvkfpXF+mw7cI3mMJ75RFA/URo6o9c7rDSj
+	 jMI+QbtdZQ32xr+m+gYn7m52lju/mjH0Y49L5lif1U7EFV8KntgnYEuJamTDDv6Nsv
+	 PsqflFqVEM40A==
+Date: Tue, 19 Dec 2023 11:11:29 -0600
+From: Bjorn Andersson <andersson@kernel.org>
+To: Yassine Oudjana <y.oudjana@protonmail.com>
+Cc: Andy Gross <agross@kernel.org>, 
+	Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Yassine Oudjana <yassine.oudjana@gmail.com>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: qcom: msm8996: Define UFS UniPro clock limits
+Message-ID: <qjz546574l3jp6w7gza7kj43slwotitsrt3rodtp7g5lnqgbhf@2htxa5m4bvtw>
+References: <20231218133917.78770-1-y.oudjana@protonmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="sByZ41cl6uk/xLbT"
-Content-Disposition: inline
-In-Reply-To: <20231203124004.2676174-4-tim@feathertop.org>
-
-
---sByZ41cl6uk/xLbT
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20231218133917.78770-1-y.oudjana@protonmail.com>
 
-On Sun, Dec 03, 2023 at 11:39:59PM +1100, Tim Lunn wrote:
-> Rockchip RV1126 is using old style i2c controller, the i2c2
-> bus uses a non-sequential offset in the grf register for the
-> mask/value bits for this bus.
->=20
-> This patch fixes i2c2 bus on rv1126 SoCs.
->=20
-> Signed-off-by: Tim Lunn <tim@feathertop.org>
-> Acked-by: Heiko Stuebner <heiko@sntech.de>
->=20
+On Mon, Dec 18, 2023 at 01:39:42PM +0000, Yassine Oudjana wrote:
+> These limits were always defined as 0, but that didn't cause any issue
+> since the driver had hardcoded limits. In commit b4e13e1ae95e ("scsi: ufs:
+> qcom: Add multiple frequency support for MAX_CORE_CLK_1US_CYCLES") the
+> hardcoded limits were removed and the driver started reading them from DT,
+> causing UFS to stop working on MSM8996. Add real UniPro clock limits to fix
+> UFS.
+> 
 
-Applied to for-next, thanks!
+Such driver changes are not acceptable, as they break backwards
+compatibility with existing DeviceTree.
 
-But, phew, the fact that this driver _needs_ i2c-aliases in DT should be
-fixed somewhen. I totally overlooked this so far :/
+Can you please try to fix the driver to handle this case?
 
+After that is done, I'd be happy to take this patch.
 
---sByZ41cl6uk/xLbT
-Content-Type: application/pgp-signature; name="signature.asc"
+Thanks,
+Bjorn
 
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmWBzZIACgkQFA3kzBSg
-KbbCTxAAhKVTE46KK8QieYwxX2cW+2NJfyL0OYbsB05G5G49MqoDkY9qO2m0+p+5
-WWkmnMZHQ90vsx5Rep5qcFUmAC+q+b4+tU9qVT2WEPmdgsiBteDB43HetxdBBbzO
-NwT8Z3uanQpcubf9hzW4v6UZAIrmmpvQWO7LKMa4ZqWtlFIYnyLYCLKl5MK8Rzbi
-n+z/8ppmMp98e/lj153aKh+F8IxLNW5jHy83elAudC2ovyc2veIXhpcxria5S7Ca
-U3KQdFvBdwLoGiAsMsLfRbIRYf9ItR7E4oKTyKnlEJzZF5C4gpjgeEa39w7g/Kl6
-pIS2rnuMKvWObEnyvZGUJBbyxzFkjCOXA1O1wANLgtV3HrTWFifkIdup5pudJtKg
-uhJqlqFfvDDGxpKrdSBFYT82tDL2WON+wiOg5bF7cjLx6r4QZ2MZBaiOmuMnsadE
-BqLwnHjSR9QyAa+2SliYrahWyae9rFxwAVBv+/DrZpuK0L7u1SeMonq/r+jh7Fpf
-yhpQTSW1levm6ltNXPyajNwpZiUKJCMB0yy/Sw/Tnpqw1e+PY0PxenPAgSOBIcPo
-oNtTjhSXfS+QeorHPM9zUDu9OoCGRW412FRXQU6L+NVQOCjFOaX2d6RMPedbOYql
-NZnS9kaFXtWL6roKEwFghdhym4sj6PO5ieJOpdsZh0xcXOUaf4E=
-=Ifc0
------END PGP SIGNATURE-----
-
---sByZ41cl6uk/xLbT--
+> Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
+> ---
+>  arch/arm64/boot/dts/qcom/msm8996.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+> index 13667886f50a..4f9939b13c3c 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+> @@ -2064,7 +2064,7 @@ ufshc: ufshc@624000 {
+>  				<0 0>,
+>  				<0 0>,
+>  				<150000000 300000000>,
+> -				<0 0>,
+> +				<75000000 150000000>,
+>  				<0 0>,
+>  				<0 0>,
+>  				<0 0>,
+> -- 
+> 2.43.0
+> 
+> 
 
