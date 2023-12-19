@@ -1,191 +1,326 @@
-Return-Path: <devicetree+bounces-26860-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26861-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BDBC81854E
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 11:27:41 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7891C81857B
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 11:46:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C8F56B2329F
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 10:27:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DF0361F23A6F
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 10:46:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE94B14A9F;
-	Tue, 19 Dec 2023 10:27:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7A6D14A98;
+	Tue, 19 Dec 2023 10:46:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="bGRsYl7V"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fZTUtm5v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B42C14A90;
-	Tue, 19 Dec 2023 10:27:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 3BJ9ebXD027922;
-	Tue, 19 Dec 2023 10:27:13 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:from:to:cc:references
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=Q4v6LurEHsaDJNFm/Ho2kSaMhrYc3+Ihms3w44t9EKE=; b=bG
-	RsYl7VBndb0mYnIlNbA65OIawWygxbX70H720heaxyz77UPo/RtbKn3yy6VO1SI7
-	dsqYkW0fSLdjXR4BorhwbQLvLGlueLk8Xujb21cSUFWcAD85KoN0UE1u5+s3Vl1c
-	vLHtuhJHkV0DdF4Tf0v3VN0Fbn5xYS2TFqN2nt2Ba+nBuQsl6uY0gUOut+akcijT
-	1xWUy0XnQJdCBGg5zBgQwBoeINQl3AROs6zgxNycWRTLzB/kwr2/Uu/+ommQd4Fi
-	guk/l6tkrMLpexyNjglZQA4IGB+PeYZ1NU3eFjqRoX9rBp+vwgqgwZwaWmcGfZ+Z
-	YGoLvvnkELRLUb5GIJpQ==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3v37tr8799-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 19 Dec 2023 10:27:12 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3BJARCLI021879
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 19 Dec 2023 10:27:12 GMT
-Received: from [10.239.133.49] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Tue, 19 Dec
- 2023 02:27:06 -0800
-Message-ID: <6ea79046-c091-4945-be62-fc1a36c8e50a@quicinc.com>
-Date: Tue, 19 Dec 2023 18:27:04 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECD1914F61;
+	Tue, 19 Dec 2023 10:46:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-40d13e4f7abso26011855e9.2;
+        Tue, 19 Dec 2023 02:46:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1702982795; x=1703587595; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=7Ejj+XmDiZPNI7Zwigx9aUrZADahAhBeoVbqDqfrS6w=;
+        b=fZTUtm5vE7L6DgoEhKCuqefygDxXofUjk+v2uEGaCpxES51UcY3d0GbZ3OKsKfq5Rf
+         52GURl3qzegeAyXK1v+Qc2Z5mB+p3c5Rqc5l3UwH7BGkdS7URt2kXwAHhKF+rXsHavEN
+         vKSIQ4gY2woiJA5MBlExIRqpvte69To/rCOVPjzjiXdAR5Pmgj+21xt0tBBmGMa0oDUP
+         OYHLXDeHG2f3XD95cD0n1fprkJ8SafcfqV43xbKU6h0bzVM/qKwThETSAN6rmsL0YN6B
+         D9cmSawx74bnVZBa3v8KgWKlynwl/yaZjPVtnklZoFPTCr3nXK/wcB4zf8x+YBZGhzUc
+         ir5A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702982795; x=1703587595;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=7Ejj+XmDiZPNI7Zwigx9aUrZADahAhBeoVbqDqfrS6w=;
+        b=Y1SzVbvMxx1Q91CyUB4GSo+qrh4MrxRKfiaMh7YqKl4MabRtH4783QMlug2wTjLIj8
+         5MgstQ8oo+6m49kVccr1cEWNey2hy64qdwjVaBz6lyEPiKfDG3DtYl46WwZ/JO4dOEc8
+         c9G8MJLE8t1FO6y73IutnTK1/MQpZmny1sgx8W2Hw3MP8CFKRwrcDI/NF16edvM9LC0Z
+         dEgdzP/oRxAF3fN6m7u91zo2x/yUIYCrV2xG5fF8klpy5DhsJjBXLep87MLYduVYhine
+         DL7MJv/JSnPZWEQ50xT9BHSYQ/CMAd4EqRv0IVQI/Et+kqdtvZCSiRqDBG7cZUJbe7cJ
+         d+Fg==
+X-Gm-Message-State: AOJu0Yxlqx+6r4/CXn3E6EBbA58tR7eHIjVPeY3XolXHZ0B+oSrAJ3rT
+	FfVsZKIINX3soVtHjFk0pHHT3J7x0Ro7LnkK710=
+X-Google-Smtp-Source: AGHT+IFQracZD3k/ijwNvenXuQq4FFqzBwonwm6n213AXpReHbpgZsFCc7/mwQQwQrQTeicbe/pniA==
+X-Received: by 2002:a05:600c:3093:b0:40c:2b93:6a08 with SMTP id g19-20020a05600c309300b0040c2b936a08mr9473060wmn.16.1702982794776;
+        Tue, 19 Dec 2023 02:46:34 -0800 (PST)
+Received: from HYB-hhAwRlzzMZb.ad.analog.com ([5.2.194.157])
+        by smtp.gmail.com with ESMTPSA id bh12-20020a05600c3d0c00b003fee6e170f9sm2277960wmb.45.2023.12.19.02.46.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 19 Dec 2023 02:46:34 -0800 (PST)
+From: Dumitru Ceclan <mitrutzceclan@gmail.com>
+To: 
+Cc: linus.walleij@linaro.org,
+	brgl@bgdev.pl,
+	andy@kernel.org,
+	linux-gpio@vger.kernel.org,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Michael Walle <michael@walle.cc>,
+	Andy Shevchenko <andy.shevchenko@gmail.com>,
+	Arnd Bergmann <arnd@arndb.de>,
+	ChiaEn Wu <chiaen_wu@richtek.com>,
+	Niklas Schnelle <schnelle@linux.ibm.com>,
+	=?UTF-8?q?Leonard=20G=C3=B6hrs?= <l.goehrs@pengutronix.de>,
+	Mike Looijmans <mike.looijmans@topic.nl>,
+	Haibo Chen <haibo.chen@nxp.com>,
+	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+	Ceclan Dumitru <dumitru.ceclan@analog.com>,
+	linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Dumitru Ceclan <mitrutzceclan@gmail.com>
+Subject: [PATCH v10 1/2] dt-bindings: adc: add AD7173
+Date: Tue, 19 Dec 2023 12:46:12 +0200
+Message-ID: <20231219104631.28256-1-mitrutzceclan@gmail.com>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 7/8] dt-bindings: arm: Add support for TPDM CMB MSR
- register
-Content-Language: en-US
-From: Jinlong Mao <quic_jinlmao@quicinc.com>
-To: Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Tingwei Zhang
-	<quic_tingweiz@quicinc.com>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski@linaro.org>,
-        Tao Zhang <quic_taozha@quicinc.com>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Alexander Shishkin
-	<alexander.shishkin@linux.intel.com>,
-        Konrad Dybcio <konradybcio@gmail.com>,
-        Mike Leach <mike.leach@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-CC: Leo Yan <leo.yan@linaro.org>,
-        Greg Kroah-Hartman
-	<gregkh@linuxfoundation.org>,
-        <coresight@lists.linaro.org>, <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Song Chai <quic_songchai@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <andersson@kernel.org>
-References: <1700533494-19276-1-git-send-email-quic_taozha@quicinc.com>
- <1700533494-19276-8-git-send-email-quic_taozha@quicinc.com>
- <e5fbbfab-02bf-4eda-8353-87c54c307af1@linaro.org>
- <1d57590d-2ecf-4bf6-9c8f-2a9d1ba08aaa@arm.com>
- <caa424d3-7af0-43e6-8e13-e87cde0c4f67@quicinc.com>
- <ca624e71-c487-4004-abc4-126442b92f33@arm.com>
- <8051b5ab-4f7f-4a8c-9c4f-fe1f46bb1951@quicinc.com>
-In-Reply-To: <8051b5ab-4f7f-4a8c-9c4f-fe1f46bb1951@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: W14gkfvNhzw-xZzlbcI4m4QvTa93FEFK
-X-Proofpoint-GUID: W14gkfvNhzw-xZzlbcI4m4QvTa93FEFK
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-12-09_01,2023-12-07_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=743 adultscore=0
- clxscore=1015 lowpriorityscore=0 priorityscore=1501 mlxscore=0 spamscore=0
- malwarescore=0 phishscore=0 impostorscore=0 bulkscore=0 suspectscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2311290000
- definitions=main-2312190077
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
+The AD7173 family offer a complete integrated Sigma-Delta ADC solution
+which can be used in high precision, low noise single channel applications
+or higher speed multiplexed applications. The Sigma-Delta ADC is intended
+primarily for measurement of signals close to DC but also delivers
+outstanding performance with input bandwidths out to ~10kHz.
 
+Signed-off-by: Dumitru Ceclan <mitrutzceclan@gmail.com>
+---
 
-On 12/18/2023 8:17 PM, Jinlong Mao wrote:
-> 
-> 
-> On 12/18/2023 7:56 PM, Suzuki K Poulose wrote:
->> Hi Tingwei Zhang
->>
->> On 18/12/2023 11:23, Tingwei Zhang wrote:
->>> On 12/18/2023 6:47 PM, Suzuki K Poulose wrote:
->>>> Tao Zhang,
->>>>
->>>> On 21/11/2023 07:24, Krzysztof Kozlowski wrote:
->>>>> On 21/11/2023 03:24, Tao Zhang wrote:
->>>>>> Add property "qcom,cmb_msr_num" to support CMB MSR(mux select 
->>>>>> register)
->>>>>> for TPDM. It specifies the number of CMB MSR registers supported by
->>>>>> the TDPM.
->>>>>>
->>>>>> Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
->>>>>> Signed-off-by: Mao Jinlong <quic_jinlmao@quicinc.com>
->>>>>> ---
->>>>>
->>>>> I prefer not to take any new Qualcomm Coresight bindings or 
->>>>> Qualcomm SoC
->>>>> DTS nodes with Coresight till we fix all existing warnings. I don't 
->>>>> know
->>>>> how to fix them, so I need help with them. No such fixing happened so
->>>>> far from Qcom, so pushback is my only way to get any attention.
->>>>>
->>>>> I already commented on this in other email thread.
->>>>
->>>> Are you addressing this ?
->>> The DT warning is fixed in 
->>> https://lore.kernel.org/linux-arm-msm/20231210072633.4243-1-quic_jinlmao@quicinc.com/.
->>> It's applied to linux-arm-msm yesterday.
->>
->> How are you supporting remote-etm ? We haven't merged the support for 
->> it in drivers ? We haven't even reviewed the remote-etm support 
->> patches ? Why weren't the coresight maintainers Cc ed on the "new" 
->> binding support ?
->>
->> Suzuki
->>
->>
-> Hi Suzuki,
-> 
-> Sorry for missing coresight maintainers in the remote-etm binding patch.
->  From the comments, we can add binding for the connected hardware first.
-> 
-> https://lkml.org/lkml/2023/11/30/539
-> 
-> Thanks
-> Jinlong Mao
-> 
-Hi Suzuki,
+V9->V10
+ - Fix dt_binding_check type warning from adi,reference-select
+V8->v9
+ - Add gpio-controller and "#gpio-cells" properties
+ - Add missing avdd2 and iovdd supplies
+ - Add string type to reference-select
+V7->V8
+ - include missing fix from V6
+V6->V7 <no changes>
+V5->V6
+ - Moved global required property to proper placement
+V4 -> V5
+ - Use string enum instead of integers for "adi,reference-select"
+ - Fix conditional checking in regards to compatible
+V3 -> V4
+ - include supply attributes
+ - add channel attribute for selecting conversion reference
+V2 -> V3
+ - remove redundant descriptions
+ - use referenced 'bipolar' property
+ - remove newlines from example
+V1 -> V2 <no changes>
 
-The dt-binding patch of remote-etm is not applied. I run dtbs_check 
-without dt-binding patch, there is no device tree warning. I will
-merge the dt-binding patch of remote-etm to the remote etm patches to
-make them review together.
+ .../bindings/iio/adc/adi,ad7173.yaml          | 184 ++++++++++++++++++
+ 1 file changed, 184 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad7173.yaml
 
-[2/4] arm64: dts: qcom: msm8996: Fix 'in-ports' is a required property
-       commit: 9a6fc510a6a3ec150cb7450aec1e5f257e6fc77b
-[3/4] arm64: dts: qcom: msm8998: Fix 'out-ports' is a required property
-       commit: ae5ee3562a2519214b12228545e88a203dd68bbd
-[4/4] arm64: dts: qcom: Fix coresight warnings in in-ports and out-ports
-       commit: bdb6339fd46b8702ea7411b0b414587b86a40562
+diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7173.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7173.yaml
+new file mode 100644
+index 000000000000..8353dcd4e8f6
+--- /dev/null
++++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7173.yaml
+@@ -0,0 +1,184 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++# Copyright 2023 Analog Devices Inc.
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/iio/adc/adi,ad7173.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Analog Devices AD7173 ADC
++
++maintainers:
++  - Ceclan Dumitru <dumitru.ceclan@analog.com>
++
++description: |
++  Bindings for the Analog Devices AD717X ADC's. Datasheets for supported chips:
++    https://www.analog.com/media/en/technical-documentation/data-sheets/AD7172-2.pdf
++    https://www.analog.com/media/en/technical-documentation/data-sheets/AD7173-8.pdf
++    https://www.analog.com/media/en/technical-documentation/data-sheets/AD7175-2.pdf
++    https://www.analog.com/media/en/technical-documentation/data-sheets/AD7176-2.pdf
++
++properties:
++  compatible:
++    enum:
++      - adi,ad7172-2
++      - adi,ad7173-8
++      - adi,ad7175-2
++      - adi,ad7176-2
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  '#address-cells':
++    const: 1
++
++  '#size-cells':
++    const: 0
++
++  spi-max-frequency:
++    maximum: 20000000
++
++  gpio-controller:
++    description: Marks the device node as a GPIO controller.
++
++  "#gpio-cells":
++    const: 1
++
++  refin-supply:
++    description: external reference supply, can be used as reference for conversion.
++
++  refin2-supply:
++    description: external reference supply, can be used as reference for conversion.
++
++  avdd-supply:
++    description: avdd supply, can be used as reference for conversion.
++
++  avdd2-supply:
++    description: avdd2 supply, used as the input to the internal voltage regulator.
++
++  iovdd-supply:
++    description: iovdd supply, used for the chip digital interface.
++
++patternProperties:
++  "^channel@[0-9a-f]$":
++    type: object
++    $ref: adc.yaml
++    unevaluatedProperties: false
++
++    properties:
++      reg:
++        minimum: 0
++        maximum: 15
++
++      diff-channels:
++        items:
++          minimum: 0
++          maximum: 31
++
++      adi,reference-select:
++        description: |
++          Select the reference source to use when converting on
++          the specific channel. Valid values are:
++          refin      : REFIN(+)/REFIN(−).
++          refin2     : REFIN2(+)/REFIN2(−)
++          refout-avss: REFOUT/AVSS (Internal reference)
++          avdd       : AVDD
++
++          External reference refin2 only available on ad7173-8.
++          If not specified, internal reference used.
++        $ref: /schemas/types.yaml#/definitions/string
++        enum:
++          - refin
++          - refin2
++          - refout-avss
++          - avdd
++        default: refout-avss
++
++    required:
++      - reg
++      - diff-channels
++
++required:
++  - compatible
++  - reg
++  - interrupts
++
++allOf:
++  - $ref: /schemas/spi/spi-peripheral-props.yaml#
++
++  - if:
++      properties:
++        compatible:
++          not:
++            contains:
++              const: adi,ad7173-8
++    then:
++      properties:
++        refin2-supply: false
++      patternProperties:
++        "^channel@[0-9a-f]$":
++          properties:
++            adi,reference-select:
++              enum:
++                - refin
++                - refout-avss
++                - avdd
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++
++    spi {
++      #address-cells = <1>;
++      #size-cells = <0>;
++
++      adc@0 {
++        compatible = "adi,ad7173-8";
++        reg = <0>;
++
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        interrupts = <25 IRQ_TYPE_EDGE_FALLING>;
++        interrupt-parent = <&gpio>;
++        spi-max-frequency = <5000000>;
++        gpio-controller;
++
++        refin-supply = <&dummy_regulator>;
++
++        channel@0 {
++          reg = <0>;
++          bipolar;
++          diff-channels = <0 1>;
++          adi,reference-select = "refin";
++        };
++
++        channel@1 {
++          reg = <1>;
++          diff-channels = <2 3>;
++        };
++
++        channel@2 {
++          reg = <2>;
++          bipolar;
++          diff-channels = <4 5>;
++        };
++
++        channel@3 {
++          reg = <3>;
++          bipolar;
++          diff-channels = <6 7>;
++        };
++
++        channel@4 {
++          reg = <4>;
++          diff-channels = <8 9>;
++          adi,reference-select = "avdd";
++        };
++      };
++    };
+-- 
+2.42.0
 
-Thanks
-Jinlong Mao
->>
->>>>
->>>> Suzuki
->>>>
->>>>>
->>>>> Best regards,
->>>>> Krzysztof
->>>>>
->>>>
->>>
->>
 
