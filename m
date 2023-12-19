@@ -1,133 +1,100 @@
-Return-Path: <devicetree+bounces-26888-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26889-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10FB481878D
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 13:34:52 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A68498187A2
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 13:39:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BA9A11F24A9B
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 12:34:51 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2AAD2B21FE6
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 12:39:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB2D9179AD;
-	Tue, 19 Dec 2023 12:34:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 963881802D;
+	Tue, 19 Dec 2023 12:39:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="eYjnk5Hs"
+	dkim=pass (2048-bit key) header.d=savoirfairelinux.com header.i=@savoirfairelinux.com header.b="OEadJyxW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+Received: from mail.savoirfairelinux.com (mail.savoirfairelinux.com [208.88.110.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60D1417758
-	for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 12:34:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE81918626;
+	Tue, 19 Dec 2023 12:39:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=savoirfairelinux.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=savoirfairelinux.com
+Received: from localhost (localhost [127.0.0.1])
+	by mail.savoirfairelinux.com (Postfix) with ESMTP id 408709C340D;
+	Tue, 19 Dec 2023 07:39:26 -0500 (EST)
+Received: from mail.savoirfairelinux.com ([127.0.0.1])
+ by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10032)
+ with ESMTP id 2DM_gmHPgfgS; Tue, 19 Dec 2023 07:39:25 -0500 (EST)
+Received: from localhost (localhost [127.0.0.1])
+	by mail.savoirfairelinux.com (Postfix) with ESMTP id A897B9C3761;
+	Tue, 19 Dec 2023 07:39:25 -0500 (EST)
+DKIM-Filter: OpenDKIM Filter v2.10.3 mail.savoirfairelinux.com A897B9C3761
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1702989286; x=1734525286;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=WWTF/q1urjBpYGjn2DODNi9niiH26mYw3FlZz7HcEDo=;
-  b=eYjnk5HsOPRc5Kjb8YgT4dg8FoVwQxQRMqDclzUikkjEATrT7kIV1szp
-   ajrXg5LbL9NoZse4vula5mLewntkXNZIE5Lz+VD5J716RsFk2re4xaGbH
-   G1pFHQlKImNTJniU+xgyilkUSghFvuEzQfbEV1ghkmYiv0fMmlOUaEf0q
-   VBQcK3Tlchnh9P90LWbVMfr24Oa/YTgEf7eQcMQp5cWLyktBvoaYXKldm
-   dexFGTIBKE2+tsLFze0ewQfZxvK6ZGUVKJVYkWJQy9eD80QzLKbxFU4II
-   FgswR6dsUgxn9AlI9U3+Dbee71pDlU1/S3RlXfHclYUTn1eCy1D+8fs67
-   Q==;
-X-IronPort-AV: E=Sophos;i="6.04,288,1695679200"; 
-   d="scan'208";a="34586424"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 19 Dec 2023 13:34:41 +0100
-Received: from steina-w.tq-net.de (steina-w.tq-net.de [10.123.53.18])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id D4037280084;
-	Tue, 19 Dec 2023 13:34:40 +0100 (CET)
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>
-Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 2/2] arm64: dts: imx8: Fix lpuart DMA channel order
-Date: Tue, 19 Dec 2023 13:34:39 +0100
-Message-Id: <20231219123439.3359318-2-alexander.stein@ew.tq-group.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231219123439.3359318-1-alexander.stein@ew.tq-group.com>
-References: <20231219123439.3359318-1-alexander.stein@ew.tq-group.com>
+	d=savoirfairelinux.com; s=DFC430D2-D198-11EC-948E-34200CB392D2;
+	t=1702989565; bh=g/cVYBJM0mTrIDAKscMV4//RJwixI+M9CO1ECLAAVBY=;
+	h=Date:From:To:Message-ID:MIME-Version;
+	b=OEadJyxWrvdK/4xa9av6EaA9Ad+dLk8TSbIH3LDxAbg4tb9ukdFRlhOSsNjrFLpqt
+	 TYGJfpKM1bwsGQA+ijXaVyEnNaeY7h9WdSB4wdrvOYSOv7dKdQy+0Sw8Pi2byHNaWW
+	 KzqrkSFqEeF7RwWll93BxMQOJUk+mLllzuDaXiMjiY/MiHPwq+J7iUa1JqihdFfLHQ
+	 5aHcaqc1ICWs7ATd9NiE4tht3P7l9nYkFr2zVnFJYxLG7vZwad1jaSOlzsqYFcPJBe
+	 7N4Jhksc1eQ0pNsWSmMEdka8YHblpN+Q96hYtiosT64LNnnbVXPnMyWtK5O2VjgVbm
+	 SpxeGERv5UUvA==
+X-Virus-Scanned: amavis at mail.savoirfairelinux.com
+Received: from mail.savoirfairelinux.com ([127.0.0.1])
+ by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10026)
+ with ESMTP id yzoH3CKJ3_Pi; Tue, 19 Dec 2023 07:39:25 -0500 (EST)
+Received: from mail.savoirfairelinux.com (mail.savoirfairelinux.com [192.168.48.237])
+	by mail.savoirfairelinux.com (Postfix) with ESMTP id 639659C340D;
+	Tue, 19 Dec 2023 07:39:25 -0500 (EST)
+Date: Tue, 19 Dec 2023 07:39:25 -0500 (EST)
+From: Elinor Montmasson <elinor.montmasson@savoirfairelinux.com>
+To: Daniel Baluta <daniel.baluta@gmail.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, 
+	shengjiu wang <shengjiu.wang@gmail.com>, 
+	Xiubo Lee <Xiubo.Lee@gmail.com>, Fabio Estevam <festevam@gmail.com>, 
+	Nicolin Chen <nicoleotsuka@gmail.com>, 
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
+	linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, 
+	alsa-devel <alsa-devel@alsa-project.org>, 
+	linuxppc-dev@lists.ozlabs.org, 
+	Philip-Dylan Gleonec <philip-dylan.gleonec@savoirfairelinux.com>
+Message-ID: <347346270.284192.1702989565367.JavaMail.zimbra@savoirfairelinux.com>
+In-Reply-To: <CAEnQRZAwk-USZqXwLOVuN3iTn7r-55BJH=Sqq5+2Od+DhrK0iw@mail.gmail.com>
+References: <20231218124058.2047167-1-elinor.montmasson@savoirfairelinux.com> <CAEnQRZAwk-USZqXwLOVuN3iTn7r-55BJH=Sqq5+2Od+DhrK0iw@mail.gmail.com>
+Subject: Re: [PATCHv3 RESEND 00/10] ASoC: fsl-asoc-card: compatibility
+ integration of a generic codec use case for use with S/PDIF controller
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+X-Mailer: Zimbra 8.8.15_GA_4562 (ZimbraWebClient - GC112 (Linux)/8.8.15_GA_4570)
+Thread-Topic: ASoC: fsl-asoc-card: compatibility integration of a generic codec use case for use with S/PDIF controller
+Thread-Index: lu32M+7WowvRn2WxYZZGeiz9hy0xKg==
 
-Bindings say DMA channels are in order Rx, Tx. Adjust the DT nodes
-accordingly.
+On Monday, 18 December, 2023 14:54:03, Daniel Baluta wrote
+>
+> > * fsl-asoc-card.txt currently follows the old dt-bindings format. 
+> > Should we update it to DT schema format in this patch series 
+> > before adding my new properties? 
+> 
+> I know this is extra-work but we would greatly appreciate if you first 
+> convert fsl-asoc-card.txt 
+> to yml format and then add your new properties. 
 
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
----
- arch/arm64/boot/dts/freescale/imx8-ss-dma.dtsi | 16 ++++++++--------
- 1 file changed, 8 insertions(+), 8 deletions(-)
+I will take some time next week to do the conversion, then I'll send
+it in a v4 patch series.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8-ss-dma.dtsi b/arch/arm64/boot/dts/freescale/imx8-ss-dma.dtsi
-index a180893ac81e..0f48796e32b2 100644
---- a/arch/arm64/boot/dts/freescale/imx8-ss-dma.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8-ss-dma.dtsi
-@@ -93,8 +93,8 @@ lpuart0: serial@5a060000 {
- 		assigned-clocks = <&clk IMX_SC_R_UART_0 IMX_SC_PM_CLK_PER>;
- 		assigned-clock-rates = <80000000>;
- 		power-domains = <&pd IMX_SC_R_UART_0>;
--		dma-names = "tx","rx";
--		dmas = <&edma2 9 0 0>, <&edma2 8 0 1>;
-+		dma-names = "rx", "tx";
-+		dmas = <&edma2 8 0 0>, <&edma2 9 0 1>;
- 		status = "disabled";
- 	};
- 
-@@ -107,8 +107,8 @@ lpuart1: serial@5a070000 {
- 		assigned-clocks = <&clk IMX_SC_R_UART_1 IMX_SC_PM_CLK_PER>;
- 		assigned-clock-rates = <80000000>;
- 		power-domains = <&pd IMX_SC_R_UART_1>;
--		dma-names = "tx","rx";
--		dmas = <&edma2 11 0 0>, <&edma2 10 0 1>;
-+		dma-names = "rx", "tx";
-+		dmas = <&edma2 10 0 0>, <&edma2 11 0 1>;
- 		status = "disabled";
- 	};
- 
-@@ -121,8 +121,8 @@ lpuart2: serial@5a080000 {
- 		assigned-clocks = <&clk IMX_SC_R_UART_2 IMX_SC_PM_CLK_PER>;
- 		assigned-clock-rates = <80000000>;
- 		power-domains = <&pd IMX_SC_R_UART_2>;
--		dma-names = "tx","rx";
--		dmas = <&edma2 13 0 0>, <&edma2 12 0 1>;
-+		dma-names = "rx", "tx";
-+		dmas = <&edma2 12 0 0>, <&edma2 13 0 1>;
- 		status = "disabled";
- 	};
- 
-@@ -135,8 +135,8 @@ lpuart3: serial@5a090000 {
- 		assigned-clocks = <&clk IMX_SC_R_UART_3 IMX_SC_PM_CLK_PER>;
- 		assigned-clock-rates = <80000000>;
- 		power-domains = <&pd IMX_SC_R_UART_3>;
--		dma-names = "tx","rx";
--		dmas = <&edma2 15 0 0>, <&edma2 14 0 1>;
-+		dma-names = "rx", "tx";
-+		dmas = <&edma2 14 0 0>, <&edma2 15 0 1>;
- 		status = "disabled";
- 	};
- 
--- 
-2.34.1
-
+Best regards,
+Elinor Montmasson
 
