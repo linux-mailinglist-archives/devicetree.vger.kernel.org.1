@@ -1,160 +1,243 @@
-Return-Path: <devicetree+bounces-26803-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26804-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2542D818273
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 08:43:07 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F14C818287
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 08:46:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B906D1F233B7
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 07:43:06 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 70CB3B23E7F
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 07:46:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C255D8838;
-	Tue, 19 Dec 2023 07:43:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LCtbv/Oz"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C9518838;
+	Tue, 19 Dec 2023 07:46:01 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from Atcsqr.andestech.com (60-248-80-70.hinet-ip.hinet.net [60.248.80.70])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 064951170E
-	for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 07:42:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-a2340c803c6so284501866b.0
-        for <devicetree@vger.kernel.org>; Mon, 18 Dec 2023 23:42:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702971777; x=1703576577; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=mJ49kIpAj/7cTmva1d1d/qasvpypHVWNHhlak+1keSU=;
-        b=LCtbv/Ozb4Vh4zXe58eDwbz3UjfTT/DVH5e3VGKksqBSyr5U6EyEo882eEycFhds4f
-         bd0VE+fBuCR7dYD9a5hak88RFL9wvs/HdeYpWacW1lXKQEINPJuDSpYyHZZFA+YAB07D
-         UTHl5FzeUamx4KDzSpxBeQ7CxBPpPK7odH4Ej2AUTXfr0PrKE0DwPZxJci3yz3Cd1dKj
-         3Rrzmr2unrz1YNTkXEUFLFVwMpYz+l3OiHq3jdh/oVmV72ovO2k0XxC8jjDenq35wSGb
-         gIEeuKsgurm+R+7yr9uQ4DkL2fAswpU6RXfXjzFUYDD7HgZVmOYTVJRqMkb6fcTWvhEW
-         cF0g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702971777; x=1703576577;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=mJ49kIpAj/7cTmva1d1d/qasvpypHVWNHhlak+1keSU=;
-        b=o7FEgSHViCslSAHszzr3NroaGIXECBOWWaUQRG1Br2X7AE8Tc+QF9tjDUrpcPHwZk7
-         yubvRzBVuKfI4M8oJeuWO2o6BNSsz382e0oaZ72grPOVwXA6XMivSRZ6mI7y46e0fBq2
-         L8+sV2YVXA5LLuHfHqhuOGgi7cx3pQAJpBIlnZRE1JPgm/nKP1oi7AQnt5VXDe5dKOhQ
-         Pr4C5SXnArYY3vUMlC7NXN/vcfrJ5iUlxOiIhkTUdz3ja+MV7PMMBHS//Q0clZkNur4p
-         e/WP5ugDukpPNVICukaeWqV+MgnlUchcI0F1ySqrc/6tYQuhewFRh0IXSvQbBuNoAT4k
-         i98Q==
-X-Gm-Message-State: AOJu0Yx9g909at/NCNUV6nT13u5mPT+L5D445l3LmWx+SBtsvKmSJETR
-	8FbgKCL+d9uOE6G4RBnZfe2BSg==
-X-Google-Smtp-Source: AGHT+IH4PuF3KE85F/cocTKSpKkVtkm+uqrcvPBQX/KDBI2uVnsrLuSEjwu0w723cKIugerQrD780A==
-X-Received: by 2002:a17:907:72d6:b0:a1b:68e6:9d4c with SMTP id du22-20020a17090772d600b00a1b68e69d4cmr9407914ejc.71.1702971777318;
-        Mon, 18 Dec 2023 23:42:57 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id vi7-20020a170907d40700b00a1dc7e789fbsm14935769ejc.21.2023.12.18.23.42.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 18 Dec 2023 23:42:56 -0800 (PST)
-Message-ID: <521e7e47-099c-4a95-8681-cb690f159ccb@linaro.org>
-Date: Tue, 19 Dec 2023 08:42:55 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED73A12B7D;
+	Tue, 19 Dec 2023 07:45:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=andestech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=andestech.com
+Received: from mail.andestech.com (ATCPCS16.andestech.com [10.0.1.222])
+	by Atcsqr.andestech.com with ESMTP id 3BJ7hYaZ012432;
+	Tue, 19 Dec 2023 15:43:34 +0800 (+08)
+	(envelope-from peterlin@andestech.com)
+Received: from APC323 (10.0.12.98) by ATCPCS16.andestech.com (10.0.1.222) with
+ Microsoft SMTP Server id 14.3.498.0; Tue, 19 Dec 2023 15:43:32 +0800
+Date: Tue, 19 Dec 2023 15:43:29 +0800
+From: Yu-Chien Peter Lin <peterlin@andestech.com>
+To: Anup Patel <apatel@ventanamicro.com>
+CC: <acme@kernel.org>, <adrian.hunter@intel.com>, <ajones@ventanamicro.com>,
+        <alexander.shishkin@linux.intel.com>, <andre.przywara@arm.com>,
+        <anup@brainfault.org>, <aou@eecs.berkeley.edu>,
+        <atishp@atishpatra.org>, <conor+dt@kernel.org>,
+        <conor.dooley@microchip.com>, <conor@kernel.org>,
+        <devicetree@vger.kernel.org>, <dminus@andestech.com>,
+        <evan@rivosinc.com>, <geert+renesas@glider.be>, <guoren@kernel.org>,
+        <heiko@sntech.de>, <irogers@google.com>, <jernej.skrabec@gmail.com>,
+        <jolsa@kernel.org>, <jszhang@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <linux-perf-users@vger.kernel.org>,
+        <linux-renesas-soc@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
+        <linux-sunxi@lists.linux.dev>, <locus84@andestech.com>,
+        <magnus.damm@gmail.com>, <mark.rutland@arm.com>, <mingo@redhat.com>,
+        <n.shubin@yadro.com>, <namhyung@kernel.org>, <palmer@dabbelt.com>,
+        <paul.walmsley@sifive.com>, <peterz@infradead.org>,
+        <prabhakar.mahadev-lad.rj@bp.renesas.com>, <rdunlap@infradead.org>,
+        <robh+dt@kernel.org>, <samuel@sholland.org>,
+        <sunilvl@ventanamicro.com>, <tglx@linutronix.de>,
+        <tim609@andestech.com>, <uwu@icenowy.me>, <wens@csie.org>,
+        <will@kernel.org>, <ycliang@andestech.com>, <inochiama@outlook.com>
+Subject: Re: [PATCH v5 02/16] irqchip/riscv-intc: Allow large non-standard
+ interrupt number
+Message-ID: <ZYFJjR1rD5Hn-HEH@APC323>
+References: <20231213070301.1684751-1-peterlin@andestech.com>
+ <20231213070301.1684751-3-peterlin@andestech.com>
+ <CAK9=C2WuuYQD8ydrHP16hUXVk6RuKLbfvUe_GpUGw9ppe3Rd8Q@mail.gmail.com>
+ <CAK9=C2U+rSP8YMahPmTHLYZ+ZBfwwY5y52JeU_=R+VL1frR1Uw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 4/5] dt-bindings: hwmon: Add Amphenol ChipCap 2
-Content-Language: en-US
-To: Javier Carrasco <javier.carrasco.cruz@gmail.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Jean Delvare <jdelvare@suse.com>,
- Guenter Roeck <linux@roeck-us.net>, Jonathan Corbet <corbet@lwn.net>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
- linux-doc@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>
-References: <20231020-topic-chipcap2-v4-0-7940cfa7613a@gmail.com>
- <20231020-topic-chipcap2-v4-4-7940cfa7613a@gmail.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231020-topic-chipcap2-v4-4-7940cfa7613a@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAK9=C2U+rSP8YMahPmTHLYZ+ZBfwwY5y52JeU_=R+VL1frR1Uw@mail.gmail.com>
+User-Agent: Mutt/2.2.12 (2023-09-09)
+X-DNSRBL: 
+X-SPAM-SOURCE-CHECK: pass
+X-MAIL:Atcsqr.andestech.com 3BJ7hYaZ012432
 
-On 18/12/2023 20:10, Javier Carrasco wrote:
-> Add device tree bindings and an example for the ChipCap 2 humidity
-> and temperature sensor.
+Hi Anup,
+
+On Wed, Dec 13, 2023 at 08:49:23PM +0530, Anup Patel wrote:
+> On Wed, Dec 13, 2023 at 7:58 PM Anup Patel <apatel@ventanamicro.com> wrote:
+> >
+> > On Wed, Dec 13, 2023 at 12:34 PM Yu Chien Peter Lin
+> > <peterlin@andestech.com> wrote:
+> > >
+> > > Currently, the implementation of the RISC-V INTC driver uses the
+> > > interrupt cause as hardware interrupt number and has a limitation of
+> > > supporting a maximum of 64 interrupts. However, according to the
+> > > privileged spec, interrupt causes >= 16 are defined for platform use.
+> >
+> > I disagree with this patch.
+> >
+> > Even though RISC-V priv sepc allows interrupt causes >= 16, we
+> > still need CSRs to manage arbitrary local interrupts
+> >
+> > Currently, we have following standard CSRs:
+> > 1) [m|s]ie and [m|s]ip which are XLEN wide
+> > 2) With AIA, we have [m|s]ieh and [m|s]iph for RV32
+> >
+> > Clearly, we can only have a XLEN number of standard local
+> > interrupts without AIA and 64 local interrupts with AIA.
+> >
+> > Now for implementations with custom CSRs (such as Andes),
+> > we still can't assume infinite local interrupts because HW will
+> > have a finite number of custom CSRs.
+> >
+> > >
+> > > This limitation prevents to fully utilize the available local interrupt
+> > > sources. Additionally, the interrupt number used on RISC-V are sparse,
+> > > with only interrupt numbers 1, 5 and 9 (plus Sscofpmf or T-Head's PMU
+> > > interrupt) being currently used for supervisor mode.
+> > >
+> > > Switch to using irq_domain_create_tree() to create the radix tree
+> > > map, so a larger number of hardware interrupts can be handled.
+> > >
+> > > Signed-off-by: Yu Chien Peter Lin <peterlin@andestech.com>
+> > > Reviewed-by: Charles Ci-Jyun Wu <dminus@andestech.com>
+> > > Reviewed-by: Leo Yu-Chi Liang <ycliang@andestech.com>
+> > > ---
+> > > Changes v1 -> v2:
+> > >   - Fixed irq mapping failure checking (suggested by Clément and Anup)
+> > > Changes v2 -> v3:
+> > >   - No change
+> > > Changes v3 -> v4: (Suggested by Thomas [1])
+> > >   - Use pr_warn_ratelimited instead
+> > >   - Fix coding style and commit message
+> > > Changes v4 -> v5: (Suggested by Thomas)
+> > >   - Fix commit message
+> > >
+> > > [1] https://patchwork.kernel.org/project/linux-riscv/patch/20231023004100.2663486-3-peterlin@andestech.com/#25573085
+> > > ---
+> > >  drivers/irqchip/irq-riscv-intc.c | 12 ++++--------
+> > >  1 file changed, 4 insertions(+), 8 deletions(-)
+> > >
+> > > diff --git a/drivers/irqchip/irq-riscv-intc.c b/drivers/irqchip/irq-riscv-intc.c
+> > > index e8d01b14ccdd..2fdd40f2a791 100644
+> > > --- a/drivers/irqchip/irq-riscv-intc.c
+> > > +++ b/drivers/irqchip/irq-riscv-intc.c
+> > > @@ -24,10 +24,9 @@ static asmlinkage void riscv_intc_irq(struct pt_regs *regs)
+> > >  {
+> > >         unsigned long cause = regs->cause & ~CAUSE_IRQ_FLAG;
+> > >
+> > > -       if (unlikely(cause >= BITS_PER_LONG))
+> > > -               panic("unexpected interrupt cause");
+> > > -
+> > > -       generic_handle_domain_irq(intc_domain, cause);
+> > > +       if (generic_handle_domain_irq(intc_domain, cause))
+> > > +               pr_warn_ratelimited("Failed to handle interrupt (cause: %ld)\n",
+> > > +                                   cause);
+> > >  }
+> > >
+> > >  /*
+> > > @@ -117,8 +116,7 @@ static int __init riscv_intc_init_common(struct fwnode_handle *fn)
+> > >  {
+> > >         int rc;
+> > >
+> > > -       intc_domain = irq_domain_create_linear(fn, BITS_PER_LONG,
+> > > -                                              &riscv_intc_domain_ops, NULL);
+> > > +       intc_domain = irq_domain_create_tree(fn, &riscv_intc_domain_ops, NULL);
+> >
+> > I disagree with this change based on the reasoning above.
+> >
+> > Instead of this, we should determine the number of local interrupts
+> > based on the type of RISC-V intc:
+> > 1) For standard INTC without AIA, we have XLEN (or BITS_PER_LONG)
+> >     local interrupts
+> > 2) For standart INTC with AIA, we have 64 local interrupts
+> > 3) For custom INTC (such as Andes), the number of local interrupt
+> >     should be custom (Andes specific) which can be determined based
+> >     on compatible string.
+> >
+> > Also, creating a linear domain with a fixed number of local interrupts
+> > ensures that drivers can't map a local interrupt beyond the availability
+> > of CSRs to manage it.
 > 
-> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-> Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
-> ---
->  .../bindings/hwmon/amphenol,chipcap2.yaml          | 77 ++++++++++++++++++++++
->  1 file changed, 77 insertions(+)
+> Thinking about this more. We do have a problem because Andes local
+> interrupts are really sparse which is not the case for standard local
+> interrupts
 > 
+> I have an alternate suggestion which goes as follows ...
+> 
+> We use irq_domain_create_tree() in-place of irq_domain_create_linear()
+> and enforce checks on hwirq in riscv_intc_domain_alloc() to ensure that
+> we only allow hwirq for which we have corresponding standard or custom
+> CSR.
+> 
+> To achieve this, riscv_intc_init_common() will have to save the following
+> as static global variables:
+> 1) riscv_intc_nr_irqs: Number of standard local interrupts
+> 2) riscv_intc_custom_base and riscv_intc_custom_nr_irqs: Base and
+>     number of custom local interrupts.
+> 
+> Using the above static global variables, the riscv_intc_domain_alloc()
+> can return error if one of the following conditions are met:
+> 1) riscv_intc_nr_irqs<= hwirq && hwirq < riscv_intc_custom_base
+> 2) (riscv_intc_custom_base + riscv_intc_custom_nr_irqs) <= hwirq
+> 
+> For standard INTC, we can set the static global variable as follows:
+> riscv_intc_nr_irqs = XLEN or BITS_PER_LONG
+> riscv_intc_custom_base = riscv_intc_nr_irqs
+> riscv_intc_custom_nr_irqs = 0
+> 
+> For Andes INTC, we can set the static global variables as follows:
+> riscv_intc_nr_irqs = XLEN or BITS_PER_LONG
+> riscv_intc_custom_base = 256
+> riscv_intc_custom_nr_irqs = XLEN or BITS_PER_LONG
+> 
+> Regards,
+> Anup
 
-
-> +
-> +description: |
-> +  Relative humidity and temperature sensor on I2C bus.
-> +
-> +  Datasheets:
-> +    https://www.amphenol-sensors.com/en/telaire/humidity/527-humidity-sensors/3095-chipcap-2
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - const: amphenol,cc2d23
-
-Please test your patches before sending.
+Thank you for offering your help on this.
+I will rework the patch accordingly.
 
 Best regards,
-Krzysztof
+Peter Lin
 
+> >
+> > >         if (!intc_domain) {
+> > >                 pr_err("unable to add IRQ domain\n");
+> > >                 return -ENXIO;
+> > > @@ -132,8 +130,6 @@ static int __init riscv_intc_init_common(struct fwnode_handle *fn)
+> > >
+> > >         riscv_set_intc_hwnode_fn(riscv_intc_hwnode);
+> > >
+> > > -       pr_info("%d local interrupts mapped\n", BITS_PER_LONG);
+> > > -
+> >
+> > Same as above, we should definitely advertise the type of INTC and
+> > number of local interrupts mapped.
+> >
+> > Regards,
+> > Anup
+> >
+> > >         return 0;
+> > >  }
+> > >
+> > > --
+> > > 2.34.1
+> > >
+> > >
+> > > _______________________________________________
+> > > linux-riscv mailing list
+> > > linux-riscv@lists.infradead.org
+> > > http://lists.infradead.org/mailman/listinfo/linux-riscv
 
