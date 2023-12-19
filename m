@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-26795-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26796-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7FB8818244
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 08:28:10 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 15A24818252
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 08:35:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3FE1F2867F9
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 07:28:09 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7A99BB22905
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 07:35:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B556C8BFE;
-	Tue, 19 Dec 2023 07:28:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B531E137C;
+	Tue, 19 Dec 2023 07:34:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="goKoy4dY"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="W5SWEtxd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
+Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9441A12B6D
-	for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 07:27:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F29AE8BFE
+	for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 07:34:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-50bce78f145so4808041e87.0
-        for <devicetree@vger.kernel.org>; Mon, 18 Dec 2023 23:27:59 -0800 (PST)
+Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-552d39ac3ccso7414418a12.0
+        for <devicetree@vger.kernel.org>; Mon, 18 Dec 2023 23:34:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702970878; x=1703575678; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1702971294; x=1703576094; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=lvWIf0CQ/cgMabzqPPlHJt1XhA+c+iZSGf9XR6mFGBE=;
-        b=goKoy4dYlzFNjRyBGZSsOdsy/U6biUUeJdj495KyEQoWcb6BHSJNYgUW+RxiSyTG4D
-         rVJmnd2HUEBLjyEE6gUJomoIsIG8/l4Fszp8CWoE8MzoTieRXNGplyoLJmbAr9kMODF5
-         JMRdwzUreV1xTq219/fe9uHakegYVy7e4umvQLGMZL0B3+DrSYXb7e35vh5qkOCVMjCa
-         HpfdKRfe6lrYCv7mb0PnA86vqlOZN1/f9UklajKDFE8Ty/uWm20fnF6e92sMw/NI944l
-         5YB0UiqRc1kEOXR4iJJpa3o40X3dGNNrHjgZ9K53CyMP4DUJRixq/cPcA7ssMuq4MaQ7
-         RhcQ==
+        bh=P3hlpIDBqsqrYWXFJYqKY1bnRljFNGMm8+LBasOqKbg=;
+        b=W5SWEtxdWMUQPe9OmS6myUTaOMPC2SWdp6lI7xRgiZPw2WxxeZCpz7A31e+10P0DmX
+         IEbp5VYLCxVEceRmxlxpORUM0O+9lav//Uc6cuxOm2OinBKQ1tTg/jItRwXI6Gnc07Ck
+         26YzwVgFlKjV0HIiHUPGAcLTeWFHHimBiD7ynKgavWupDt4KYBFpLM4fFFBebuNZJ+G8
+         Ewcumwoea298HFcjUtqL7locA7V53+s94cxGm5eQqypVWaIllKbU4Hrc6nLeDRDXVskV
+         +E9BrdDfZ5ZYIbIr5BnBG68NHwT/mdFHtFuHpLAmcJR8+BdqlGw+7NxS969yVKpPpB7R
+         /wIw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702970878; x=1703575678;
+        d=1e100.net; s=20230601; t=1702971294; x=1703576094;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=lvWIf0CQ/cgMabzqPPlHJt1XhA+c+iZSGf9XR6mFGBE=;
-        b=DSzD0EPAjfX/ORqZbbwbistARDmUGPXZYHRBIga1gCPEUEcsEjodyKDinHTRLK4TZ7
-         H97jOW9fxxCeaVGak0t7UrdRpolGqngKyrlOjgabiPYcZh7mj9LleuPmtSSWMXKpjmAI
-         jn0R8CovocnGPb87lE/hW9l9SPjjmbqGaq+2mUQFzsuYrTXqAgg1dZPH8abacCSNiSte
-         ItldzKut2tTAsDqdz89rU2EbxDqK8BsgIcdkU3Q34cibieTqLZos1k2jMnRKOv1DeYrA
-         7DJzF91Kki+Zd5SbJJZmETKb8kMcg1djCXgptrGjOS1hIGHkgvxV9cc2xCIRKSI2PJA8
-         RMLw==
-X-Gm-Message-State: AOJu0YyDFE507NhGSVX8wekrLT0eErfQDWDW6EoCNYnm5klA/jQc/RpY
-	+APS7wHHQlnUppUbiU0KNuDRtA==
-X-Google-Smtp-Source: AGHT+IHBPh2OnN6ES/+jvJyqwqKnqtFVybB5hAR7/WGC8WuHd0SdyVsM/YIIUCsnqn5VnvmiZa06qw==
-X-Received: by 2002:ac2:4313:0:b0:50e:37b6:79c with SMTP id l19-20020ac24313000000b0050e37b6079cmr784138lfh.17.1702970877580;
-        Mon, 18 Dec 2023 23:27:57 -0800 (PST)
+        bh=P3hlpIDBqsqrYWXFJYqKY1bnRljFNGMm8+LBasOqKbg=;
+        b=LBlXMqTvs/qmppXs4CoBpGrOMJe1e1/9mvWe1dIK6ZTll/WfcUPoco1lwQcWUShEcG
+         fdBR04/cZ6fBfZ+t5prEoHAoM913pn3tU5j0EhdEUnWMtM0O8DG4Quk35mjaSjwB/mMZ
+         54wiaB7/IONKrLKGyHPe84KHqwJt8QKBosNSOMlISugjTOIuruWJU3P5B6QpN+2urACI
+         nVtRPhntsPtIzrYMCOQdDRCtKcuohmISuv06k/wEkk4ZIiw5gGg7NXPNSviy6m2F9ps6
+         0V8NNwPmeFg5PXlSKCnQLvVO61MOha3hD3O5+vDIrdrrzZgk0LqQ192rIU15Q36cxWgz
+         2OZw==
+X-Gm-Message-State: AOJu0YwET/ojDbTBV+Se4BOhJeWtVcFCqh+fg8vP3rKDAGl757d8krNy
+	6vcyiZwys+Mdmhz29rXLy39bo2JPVZ/bYgmg3ZU=
+X-Google-Smtp-Source: AGHT+IH0jo8MfBwop9wF/BGlQ9DF/Zbd2J7Agm46C3ofKqT0qPmQf59oD0h+bxKSHrppRs3T9DxsBQ==
+X-Received: by 2002:a50:9f4f:0:b0:553:5abb:457 with SMTP id b73-20020a509f4f000000b005535abb0457mr635030edf.8.1702971294228;
+        Mon, 18 Dec 2023 23:34:54 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id tz4-20020a170907c78400b00a1aad4d92dbsm14894814ejc.123.2023.12.18.23.27.54
+        by smtp.gmail.com with ESMTPSA id x9-20020aa7cd89000000b0055289f60e3bsm4644445edv.79.2023.12.18.23.34.52
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 18 Dec 2023 23:27:56 -0800 (PST)
-Message-ID: <c9225053-78f8-40b7-9453-dc3dabe44500@linaro.org>
-Date: Tue, 19 Dec 2023 08:27:53 +0100
+        Mon, 18 Dec 2023 23:34:53 -0800 (PST)
+Message-ID: <0f0c0d16-f736-419e-9ffc-c3dc507b815c@linaro.org>
+Date: Tue, 19 Dec 2023 08:34:51 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,31 +66,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/9] dt-bindings: net: starfive,jh7110-dwmac: Add
- JH7100 SoC compatible
+Subject: Re: [PATCH 1/4] dt-bindings: pinctrl: mobileye,eyeq5-pinctrl: add
+ bindings
 Content-Language: en-US
-To: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh+dt@kernel.org>,
+To: =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>,
+ Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
+ Gregory CLEMENT <gregory.clement@bootlin.com>,
+ Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Emil Renner Berthing <kernel@esmil.dk>,
- Samin Guo <samin.guo@starfivetech.com>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Hal Feng <hal.feng@starfivetech.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Jose Abreu <joabreu@synopsys.com>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Richard Cochran <richardcochran@gmail.com>,
- Giuseppe Cavallaro <peppe.cavallaro@st.com>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
- linux-clk@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, kernel@collabora.com
-References: <20231218214451.2345691-1-cristian.ciocaltea@collabora.com>
- <20231218214451.2345691-3-cristian.ciocaltea@collabora.com>
+ Conor Dooley <conor+dt@kernel.org>,
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+Cc: linux-mips@vger.kernel.org, linux-gpio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ Tawfik Bayouk <tawfik.bayouk@mobileye.com>
+References: <20231218-mbly-pinctrl-v1-0-2f7d366c2051@bootlin.com>
+ <20231218-mbly-pinctrl-v1-1-2f7d366c2051@bootlin.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -136,87 +127,191 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231218214451.2345691-3-cristian.ciocaltea@collabora.com>
+In-Reply-To: <20231218-mbly-pinctrl-v1-1-2f7d366c2051@bootlin.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 18/12/2023 22:44, Cristian Ciocaltea wrote:
-> The Synopsys DesignWare MAC found on StarFive JH7100 SoC is mostly
-> similar to the newer JH7110, but it requires only two interrupts and a
-> single reset line, which is 'ahb' instead of the commonly used
-> 'stmmaceth'.
+On 18/12/2023 18:19, Théo Lebrun wrote:
+> Add dt-schema type bindings for the Mobileye EyeQ5 pin controller.
 > 
+> Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
+> ---
+>  .../bindings/pinctrl/mobileye,eyeq5-pinctrl.yaml   | 125 +++++++++++++++++++++
+>  MAINTAINERS                                        |   1 +
+>  2 files changed, 126 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/pinctrl/mobileye,eyeq5-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/mobileye,eyeq5-pinctrl.yaml
+> new file mode 100644
+> index 000000000000..5faddebe2413
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pinctrl/mobileye,eyeq5-pinctrl.yaml
+> @@ -0,0 +1,125 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pinctrl/mobileye,eyeq5-pinctrl.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Mobileye EyeQ5 pinctrl (pinmux & pinconf) controller
 
->    reg:
-> @@ -145,9 +146,13 @@ properties:
->  
->    reset-names:
->      minItems: 1
-> -    items:
-> -      - const: stmmaceth
-> -      - const: ahb
-> +    maxItems: 2
+pinctrl means pin controller, so you basically wrote:
+pin controller pinmux and pin configuration controller
 
-min and maxItems should not be needed here.
+Just "pin controller"
 
-> +    oneOf:
-> +      - items:
-> +          - enum: [stmmaceth, ahb]
-> +      - items:
-> +          - const: stmmaceth
-> +          - const: ahb
->  
->    power-domains:
->      maxItems: 1
-> diff --git a/Documentation/devicetree/bindings/net/starfive,jh7110-dwmac.yaml b/Documentation/devicetree/bindings/net/starfive,jh7110-dwmac.yaml
-> index d90cb82c1424..f5f0bff5be0f 100644
-> --- a/Documentation/devicetree/bindings/net/starfive,jh7110-dwmac.yaml
-> +++ b/Documentation/devicetree/bindings/net/starfive,jh7110-dwmac.yaml
-> @@ -16,16 +16,20 @@ select:
->      compatible:
->        contains:
->          enum:
-> +          - starfive,jh7100-dwmac
->            - starfive,jh7110-dwmac
->    required:
->      - compatible
->  
->  properties:
->    compatible:
-> -    items:
-> -      - enum:
-> -          - starfive,jh7110-dwmac
-> -      - const: snps,dwmac-5.20
-> +    oneOf:
-> +      - items:
-> +          - const: starfive,jh7100-dwmac
-> +          - const: snps,dwmac
-> +      - items:
-> +          - const: starfive,jh7110-dwmac
-> +          - const: snps,dwmac-5.20
->  
->    reg:
->      maxItems: 1
-> @@ -46,23 +50,6 @@ properties:
->        - const: tx
->        - const: gtx
->  
-> -  interrupts:
-> -    minItems: 3
-> -    maxItems: 3
-> -
-> -  interrupt-names:
-> -    minItems: 3
-> -    maxItems: 3
-> -
-> -  resets:
-> -    minItems: 2
-> -    maxItems: 2
 
-What is the point of your previous patch if you immediately remove it?
-It is a no-op. Just mention in this commit msg, that both resets and
-reset-names are coming from snps,dwmac so they can be removed from
-top-level entirely.
+> +
+> +description:
+> +  The EyeQ5 pin controller handles a pin bank. It is custom to this platform,
+
+Can part of SoC be not custom to given platform? I mean... describe the
+hardware, not write essay.
+
+> +  its registers live in a shared region called OLB.
+> +  There are two pin banks on the platform, each having a specific compatible.
+
+Instead of repeating something obvious - visible from the binding -
+explain why. Say something different than the binding is saying.
+
+
+> +  Pins and groups are bijective.
+> +
+> +maintainers:
+> +  - Grégory Clement <gregory.clement@bootlin.com>
+> +  - Théo Lebrun <theo.lebrun@bootlin.com>
+> +  - Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>
+> +
+> +properties:
+> +  $nodename:
+> +    pattern: "^pinctrl([0-9]+)?$"
+> +    description:
+> +      We have no unique address, we rely on OLB; we therefore can't keep the
+> +      standard pattern and cannot inherit from pinctrl.yaml.
+
+No, instead fix pinctrl.yaml
+
+> +
+> +  compatible:
+> +    enum:
+> +      - mobileye,eyeq5-a-pinctrl
+> +      - mobileye,eyeq5-b-pinctrl
+
+Why two compatibles? Description provided no rationale for this.
+
+> +
+> +  "#pinctrl-cells":
+> +    const: 1
+> +
+> +  mobileye,olb:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description:
+> +      A phandle to the OLB syscon. This is a fallback to using the parent as
+> +      syscon node.
+
+So here is the explanation for missing unit address. If all registers,
+as you claim in description, belong to OLB, then this should be part of
+OLB. Drop the phandle.
+
+> +
+> +required:
+> +  - compatible
+> +  - "#pinctrl-cells"
+
+So now please test your code without olb phandle...
+
+> +
+> +patternProperties:
+
+patternProperties go after properties
+
+> +  "-pins?$":
+> +    type: object
+> +    description: Pin muxing configuration.
+> +    $ref: pinmux-node.yaml#
+> +    additionalProperties: false
+
+Why not unevaluatedProperties?
+
+> +    properties:
+> +      pins: true
+> +      function: true
+> +      bias-disable: true
+> +      bias-pull-down: true
+> +      bias-pull-up: true
+> +      drive-strength: true
+> +    required:
+> +      - pins
+> +      - function
+> +
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: mobileye,eyeq5-a-pinctrl
+> +    then:
+> +      patternProperties:
+> +        "-pins?$":
+> +          properties:
+> +            function:
+> +              enum: [gpio, timer0, timer1, timer2, timer5, uart0, uart1, can0,
+> +                     can1, spi0, spi1, refclk0]
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: mobileye,eyeq5-b-pinctrl
+> +    then:
+> +      patternProperties:
+> +        "-pins?$":
+> +          properties:
+> +            function:
+> +              enum: [gpio, timer3, timer4, timer6, uart2, can2, spi2, spi3,
+> +                     mclk0]
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    olb@e00000 {
+> +      compatible = "mobileye,eyeq5-olb", "syscon", "simple-mfd";
+
+Drop, not erlated.
+
+> +      reg = <0xe00000 0x400>;
+> +      reg-io-width = <4>;
+> +
+> +      pinctrl0 {
+
+Suffixes are always after -
+
+> +        compatible = "mobileye,eyeq5-a-pinctrl";
+> +        #pinctrl-cells = <1>;
+
+Where is the phandle?
+
+> +      };
+> +
+> +      pinctrl1 {
+> +        compatible = "mobileye,eyeq5-b-pinctrl";
+> +        #pinctrl-cells = <1>;
+> +      };
+> +    };
+> +  - |
+> +    olb: olb@e00000 {
+> +      compatible = "mobileye,eyeq5-olb", "syscon", "simple-mfd";
+> +      reg = <0xe00000 0x400>;
+> +      reg-io-width = <4>;
+> +    };
+> +
+> +    pinctrl0 {
+> +      compatible = "mobileye,eyeq5-a-pinctrl";
+> +      #pinctrl-cells = <1>;
+> +      mobileye,olb = <&olb>;
+
+Really, why? This is just confusing. There is no explanation for
+supporting both. Hardware is either this or that, not both!
+
 
 Best regards,
 Krzysztof
