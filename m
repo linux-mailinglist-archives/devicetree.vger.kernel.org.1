@@ -1,173 +1,115 @@
-Return-Path: <devicetree+bounces-26870-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26884-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 857DF8185C7
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 11:58:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 53284818779
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 13:29:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 34CE9283907
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 10:58:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 010E7285FED
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 12:29:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16C6714A90;
-	Tue, 19 Dec 2023 10:58:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FE9E17988;
+	Tue, 19 Dec 2023 12:29:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VYwX/cU9"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="Vg1fVehV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail-m49238.qiye.163.com (mail-m49238.qiye.163.com [45.254.49.238])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBB1215AC9;
-	Tue, 19 Dec 2023 10:58:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 065C0C433C9;
-	Tue, 19 Dec 2023 10:58:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1702983492;
-	bh=uHLoReQ0rrb9TjeQA9A4ObaAjoz7p639g5gyuqEsBqM=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=VYwX/cU9kTglIX+sPh1HMvmGQlrv2BHO1S4nqxsg2f2NfWu1xRIyQI5lpgru8rZMS
-	 /tMARDxycW/nuKZzshAIqkEdLM7yXwRPIt7ah76LNWRXY6gV3xhXN4rlCxtHYSa1na
-	 IQ799yn7GzKjLObAOiu2jw2bnHgy3+TknMjtpS6dYa5JdSOjuIsGGWoiNd90+TR0U8
-	 xhDU43Wu9wk0s2t3h98jKy1yW4ep2s6a92vN5OaXhleCOVy0vm6ri1skcr1LdnY1Sh
-	 74pRSSMlF6j44GH23+sONqEpWrA267xNRaH4PQKklIeMgQOw40/kyChN4UnGWIuv7L
-	 ZelGb4xr+oZ0A==
-Date: Tue, 19 Dec 2023 11:58:07 +0100
-From: Marek =?UTF-8?B?QmVow7pu?= <kabel@kernel.org>
-To: Christian Marangi <ansuelsmth@gmail.com>,
- krzysztof.kozlowski+dt@linaro.org
-Cc: 20231214201442.660447-5-tobias@waldekranz.com, Andrew Lunn
- <andrew@lunn.ch>, Tobias Waldekranz <tobias@waldekranz.com>,
- davem@davemloft.net, kuba@kernel.org, linux@armlinux.org.uk,
- hkallweit1@gmail.com, robh+dt@kernel.org, conor+dt@kernel.org,
- netdev@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next 4/4] dt-bindings: net: marvell10g: Document LED
- polarity
-Message-ID: <20231219115807.22c22694@dellmb>
-In-Reply-To: <65816cda.050a0220.1b07b.59b5@mx.google.com>
-References: <657c8e53.050a0220.dd6f2.9aaf@mx.google.com>
-	<65816cda.050a0220.1b07b.59b5@mx.google.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0D7917999;
+	Tue, 19 Dec 2023 12:29:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+DKIM-Signature: a=rsa-sha256;
+	b=Vg1fVehVqgufqVZ0tVxwDfwc+NOpTp13wuBuQ3k4r9nofHqsGcOY/zRQxw00lc90WgNXOWNnHkKl16DXjSfwDu+rvsQ5hLqLmffoyXtDwjtKV0rsvEIWFQdJ5mzGPgTYihEqMl9o4bYRQY72eu1364+NpmeKQlKtFg38lK1F6vU=;
+	c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
+	bh=wxJCuegR00+qTeucqcxGWtpk2IAIp1Qkyb7anTpwc00=;
+	h=date:mime-version:subject:message-id:from;
+Received: from [172.16.12.69] (unknown [58.22.7.114])
+	by mail-m11877.qiye.163.com (Hmail) with ESMTPA id EE7D6400543;
+	Tue, 19 Dec 2023 18:01:23 +0800 (CST)
+Message-ID: <31198bf2-54c4-4483-ac31-449e5576cff8@rock-chips.com>
+Date: Tue, 19 Dec 2023 18:01:24 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla Thunderbird
+Cc: shawn.lin@rock-chips.com, krzysztof.kozlowski+dt@linaro.org,
+ robh+dt@kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, zhengxing@rock-chips.com,
+ Andy Yan <andy.yan@rock-chips.com>, heiko@sntech.de
+Subject: Re: [PATCH v2 3/3] ARM: dts: rockchip: Remove
+ rockchip,default-sample-phase from rk3036.dtsi
+Content-Language: en-GB
+To: Andy Yan <andyshrk@163.com>
+References: <20231218105523.2478315-1-andyshrk@163.com>
+ <20231218105523.2478315-4-andyshrk@163.com>
+From: Shawn Lin <shawn.lin@rock-chips.com>
+In-Reply-To: <20231218105523.2478315-4-andyshrk@163.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQkwdSFYdTxgfGhkZSRhJSB5VEwETFh
+	oSFyQUDg9ZV1kYEgtZQVlOQ1VJSVVMVUpKT1lXWRYaDxIVHRRZQVlPS0hVSk1PSU5JVUpLS1VKQl
+	kG
+X-HM-Tid: 0a8c8185e2342eb3kusnee7d6400543
+X-HM-MType: 1
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6MS46Ejo*TTw4Ny48CC9PCQMp
+	DEoKFDVVSlVKTEtJQkNLS0NPQ0lNVTMWGhIXVQgTGgwVVRcSFTsJFBgQVhgTEgsIVRgUFkVZV1kS
+	C1lBWU5DVUlJVUxVSkpPWVdZCAFZQUhNQko3Bg++
 
-On Tue, 19 Dec 2023 11:13:43 +0100
-Christian Marangi <ansuelsmth@gmail.com> wrote:
 
-> On Fri, Dec 15, 2023 at 03:22:11PM +0100, Christian Marangi wrote:
-> > > > +        properties:
-> > > > +          marvell,polarity:
-> > > > +            description: |
-> > > > +              Electrical polarity and drive type for this LED. In the
-> > > > +              active state, hardware may drive the pin either low or
-> > > > +              high. In the inactive state, the pin can either be
-> > > > +              driven to the opposite logic level, or be tristated.
-> > > > +            $ref: /schemas/types.yaml#/definitions/string
-> > > > +            enum:
-> > > > +              - active-low
-> > > > +              - active-high
-> > > > +              - active-low-tristate
-> > > > +              - active-high-tristate  
-> > > 
-> > > Christian is working on adding a generic active-low property, which
-> > > any PHY LED could use. The assumption being if the bool property is
-> > > not present, it defaults to active-high.
-> > >   
-> > 
-> > Hi, it was pointed out this series sorry for not noticing before.
-> >   
-> > > So we should consider, how popular are these two tristate values? Is
-> > > this a Marvell only thing, or do other PHYs also have them? Do we want
-> > > to make them part of the generic PHY led binding? Also, is an enum the
-> > > correct representation? Maybe tristate should be another bool
-> > > property? Hi/Low and tristate seem to be orthogonal, so maybe two
-> > > properties would make it cleaner with respect to generic properties?  
-> > 
-> > For parsing it would make it easier to have the thing split.
-> > 
-> > But on DT I feel an enum like it's done here might be more clear.
-> > 
-> > Assuming the property define the LED polarity, it would make sense
-> > to have a single one instead of a sum of boolean.
-> > 
-> > The boolean idea might be problematic in the future for device that
-> > devisates from what we expect.
-> > 
-> > Example: A device set the LED to active-high by default and we want a
-> > way in DT to define active-low. With the boolean idea of having
-> > "active-high" and assume active-low if not defined we would have to put
-> > active-high in every PHY node (to reflect the default settings)
-> > 
-> > Having a property instead permits us to support more case.
-> > 
-> > Ideally on code side we would have an enum that map the string to the
-> > different modes and we would pass to a .led_set_polarity the enum.
-> > (or if we really want a bitmask)
-> > 
-> > 
-> > If we feel tristate is special enough we can consider leaving that
-> > specific to marvell (something like marvell,led-tristate)
-> > 
-> > But if we notice it's more generic then we will have to keep
-> > compatibility for both.
-> >   
-> > > 
-> > > Please work with Christian on this.  
-> > 
-> > Think since the current idea is to support this in the LED api with set
-> > polarity either the 2 series needs to be merged or the polarity part
-> > needs to be detached and submitted later until we sort the generic way
-> > to set it?
-> >  
+On 2023/12/18 18:55, Andy Yan wrote:
+> From: Andy Yan <andy.yan@rock-chips.com>
 > 
-> Hi Andrew,
+> This should be a per board property, should not be put in
+> a soc core dtsi.
 > 
-> I asked some further info to Tobias. With a better look at the
-> Documentation, it was notice that tristate is only to drive the LED off.
+> And when this property convert from default-sample-phase
+> in linux-5.7 by commit 8a385eb57296 ("ARM: dts: rockchip: fix
+> rockchip,default-sample-phase property names"), the emmc
+> on rk3036 kylin board get a initialising error:
 > 
-> So to drive LED ON:
-> - active-low
-> - active-high
+> [    4.512797] Freeing unused kernel memory: 8192K
+> [    4.519500] mmc_host mmc1: Bus speed (slot 0) = 37125000Hz (slot req 37500000Hz, actual 37125000HZ div = 0)
+> [    4.530971] mmc1: error -84 whilst initialising MMC card
+> [    4.537277] Run /init as init process
+> [    4.550932] mmc_host mmc1: Bus speed (slot 0) = 300000Hz (slot req 300000Hz, actual 300000HZ div = 0)
+> [    4.664717] mmc_host mmc1: Bus speed (slot 0) = 37125000Hz (slot req 37500000Hz, actual 37125000HZ div = 0)
+> [    4.676156] mmc1: error -84 whilst initialising MMC card
 > 
-> And to drive LED OFF:
-> - low
-> - high
-> - tristate
+> I think the reason why the emmc on rk3036 kylin board was able
+> to work before linux-5.7 was that the illegal property was not
+> correctly identified by the rockchip dw_mmc driver.
 > 
-> I feel introducing description to how to drive the LED inactive might be
-> too much.
+> Fixes: faea098e1808 ("ARM: dts: rockchip: add core rk3036 dtsi")
+> Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
+> ---
 > 
-> Would it be ok to have something like
-> 
-> polarity:
-> - "active-low"
-> - "active-high"
-> 
-> And a bool with "marvel,led-inactive-tristate" specific to this PHY?
-* marvell
 
-The "tristate" in LED off state means high impendance (or
-alternatively: open, Z), see:
-  https://en.wikipedia.org/wiki/Three-state_logic
+Reviewed-by: Shawn Lin <shawn.lin@rock-chips.com>
 
-Marvell calling this high impedance state "tristate" is IMO confusing,
-since "tristate" means 3 state logic, the three states being:
-- connected to high voltage
-- connected to low voltage
-- not connected to any voltage
-
-I would propose something like
-  inactive-hi-z;
-or even better
-  inactive-high-impedance;
-
-Krzysztof, what do you think?
-
-Marek
+> (no changes since v1)
+> 
+>   arch/arm/boot/dts/rockchip/rk3036.dtsi | 1 -
+>   1 file changed, 1 deletion(-)
+> 
+> diff --git a/arch/arm/boot/dts/rockchip/rk3036.dtsi b/arch/arm/boot/dts/rockchip/rk3036.dtsi
+> index 5344803442a1..466952bf9db4 100644
+> --- a/arch/arm/boot/dts/rockchip/rk3036.dtsi
+> +++ b/arch/arm/boot/dts/rockchip/rk3036.dtsi
+> @@ -287,7 +287,6 @@ emmc: mmc@1021c000 {
+>   		clocks = <&cru HCLK_EMMC>, <&cru SCLK_EMMC>,
+>   			 <&cru SCLK_EMMC_DRV>, <&cru SCLK_EMMC_SAMPLE>;
+>   		clock-names = "biu", "ciu", "ciu-drive", "ciu-sample";
+> -		rockchip,default-sample-phase = <158>;
+>   		disable-wp;
+>   		dmas = <&pdma 12>;
+>   		dma-names = "rx-tx";
 
