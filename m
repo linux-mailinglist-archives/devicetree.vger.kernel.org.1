@@ -1,101 +1,209 @@
-Return-Path: <devicetree+bounces-26825-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26829-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 981598183F9
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 09:58:59 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 547A8818411
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 10:05:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2523B1F23DB4
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 08:58:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C26501F251C0
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 09:05:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDC60125D7;
-	Tue, 19 Dec 2023 08:58:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1345212B87;
+	Tue, 19 Dec 2023 09:05:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="kZwHzqjK"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NHtTC9nO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f45.google.com (mail-pj1-f45.google.com [209.85.216.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3DA7125B5;
-	Tue, 19 Dec 2023 08:58:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=mApDO3T9Xz1helbAZSFet16out2mW7MWySk8mjZ5wDE=; b=kZwHzqjKiWEgoZn1veK4cqHCKR
-	SerS327V6zs7qE4E6zPYWmsCCljxHbsbPRP8PnWbjTURrTEHbkjZ8o2iz5NzhD8JA+Ff7VkMuDU7y
-	IuyEa1zVHU6FlNhAMzyxTvwbEkuOczsw1MpSllM/sbokb9AG9DcNbi1v0/8T47H9dxsI=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1rFVvb-003JjA-OP; Tue, 19 Dec 2023 09:58:15 +0100
-Date: Tue, 19 Dec 2023 09:58:15 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-Cc: "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7F74134A5;
+	Tue, 19 Dec 2023 09:05:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f45.google.com with SMTP id 98e67ed59e1d1-28b4d7bf8bdso1092184a91.3;
+        Tue, 19 Dec 2023 01:05:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1702976722; x=1703581522; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=WNy5WamLV4+pReBU2afVcdS0VJmrLwZ/s8baVj2zs4o=;
+        b=NHtTC9nOmRLYTb0NWqTECNYydeGHq3LAOxgopRR7btCEiDjAvrlPWsu3ZzZgAmMALX
+         2fJk1VoAOQHn+jjT5xQnR82qalAasBfFbXv3vN1/K1VWBtPKGF/C4Kc9Oiw4YoUr3iX1
+         o9WmPK1JsY0x8tS5q+lq8ZodckHTN8vMcxMs3tN/LKaDFXtJ93JLkUotEG54GJuwy7A1
+         bB8TDjY711WUkUiaNxmw+73WBqUelQ40BLywf98HQKOXrkAFNX2QqNC/bVEzEjGzmtLI
+         /kqf1AQkAMEkt/RgoV389rDr6s9cWmO+07nKFGZw3EnEZpschhsMr7UUOSX7LRgg8HSK
+         wbcQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702976722; x=1703581522;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=WNy5WamLV4+pReBU2afVcdS0VJmrLwZ/s8baVj2zs4o=;
+        b=r8tAWWQzZSU4Xz7tgYz3WAquwpGAy0d/znbfCmnjbpYYx3pP3vq2+R0uldc2HkTwVA
+         RiuPj12KnnlVWrTgvKelVIhONMoEk2epm3Oubms86TxaAkKK2OF7VBmsDqDF9HR/Z+S3
+         THCZnQ+O6x1LZ2YOcxk61G3DnKE+MaQb1+no2EF2mlhzvdftUbrDWW+PisIrKl2xsnWw
+         g+CsunOulk9ApAa+NL8on5u7SeOi9UaM995Uv6n4LQ34f5PvzlmbacK8GXPDvYp5p2vt
+         mM7ccXIbQVmzD99MnLitaWnGoNC/AVBupCMcnW8+C+wInKKqjrF5PvTmkcJyjWcnTK1R
+         C+qw==
+X-Gm-Message-State: AOJu0YyfTRghfsd6tETf2A5G6nnVp1HOsgszmXWSMZ14kTwvg9iSGmDg
+	QAap+u8Fu/Ij1iO66Mt1uir0ZaBKtKKh5c5y
+X-Google-Smtp-Source: AGHT+IEMK6Hy9dqCjKeNExgiUXdY/93jSMI8a4xxZS/JTwjBR1rPlOkm8F3+WVrMx4LfRCM0M9eYLw==
+X-Received: by 2002:a17:90a:702:b0:286:db1e:f8fc with SMTP id l2-20020a17090a070200b00286db1ef8fcmr7960776pjl.92.1702976722577;
+        Tue, 19 Dec 2023 01:05:22 -0800 (PST)
+Received: from localhost.localdomain ([2401:4900:581e:798e:871c:98db:5638:a4])
+        by smtp.gmail.com with ESMTPSA id f4-20020a17090aec8400b0028bbd9872d5sm806776pjy.12.2023.12.19.01.05.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 19 Dec 2023 01:05:22 -0800 (PST)
+From: Anshul Dalal <anshulusr@gmail.com>
+To: linux-kernel@vger.kernel.org,
+	linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: Anshul Dalal <anshulusr@gmail.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Jonathan Cameron <jic23@kernel.org>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Emil Renner Berthing <kernel@esmil.dk>,
-	Samin Guo <samin.guo@starfivetech.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Hal Feng <hal.feng@starfivetech.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Jose Abreu <joabreu@synopsys.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Richard Cochran <richardcochran@gmail.com>,
-	Giuseppe Cavallaro <peppe.cavallaro@st.com>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org, linux-clk@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, kernel@collabora.com,
-	Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Subject: Re: [PATCH v4 6/9] riscv: dts: starfive: visionfive-v1: Setup
- ethernet phy
-Message-ID: <962691a4-993d-44c0-861f-d0fd5bbc2da9@lunn.ch>
-References: <20231218214451.2345691-1-cristian.ciocaltea@collabora.com>
- <20231218214451.2345691-7-cristian.ciocaltea@collabora.com>
+	linux-kernel-mentees@lists.linuxfoundation.org,
+	Shuah Khan <skhan@linuxfoundation.org>
+Subject: [PATCH v4 1/2] dt-bindings: iio: dac: add MCP4821
+Date: Tue, 19 Dec 2023 14:32:50 +0530
+Message-ID: <20231219090252.818754-1-anshulusr@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231218214451.2345691-7-cristian.ciocaltea@collabora.com>
+Content-Transfer-Encoding: 8bit
 
-On Mon, Dec 18, 2023 at 11:44:46PM +0200, Cristian Ciocaltea wrote:
-> The StarFive VisionFive V1 SBC uses a Motorcomm YT8521 PHY supporting
-> RGMII-ID, but requires manual adjustment of the RX internal delay to
-> work properly.
-> 
-> The default RX delay provided by the driver is 1.95 ns, which proves to
-> be too high. Applying a 50% reduction seems to mitigate the issue.
-> 
-> Also note this adjustment is not necessary on BeagleV Starlight SBC,
-> which uses a Microchip PHY.  Hence, there is no indication of a
-> misbehaviour on the GMAC side, but most likely the issue stems from
-> the Motorcomm PHY.
-> 
-> While at it, drop the redundant gpio include, which is already provided
-> by jh7100-common.dtsi.
-> 
-> Co-developed-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-> Signed-off-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+Adds support for MCP48xx series of DACs.
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+Datasheet: https://ww1.microchip.com/downloads/en/DeviceDoc/22244B.pdf #MCP48x1
+Datasheet: https://ww1.microchip.com/downloads/en/DeviceDoc/20002249B.pdf #MCP48x2
+Signed-off-by: Anshul Dalal <anshulusr@gmail.com>
 
-    Andrew
+---
+
+Changes for v4:
+- Removed 'Reviewed-by: Conor Dooley' due to changes
+- Renamed shdn-gpios to powerdown-gpios to conform to
+  gpio-consumer-common.yaml
+
+Changes for v3:
+- Added gpios for ldac and shutdown pins
+- Added spi-cpha and spi-cpol for the SPI mode 0 and 3
+
+Changes for v2:
+- Changed order in device table to numerical
+- Made vdd_supply required
+- Added 'Reviewed-by: Conor Dooley'
+
+Previous versions:
+v3: https://lore.kernel.org/lkml/20231218164735.787199-1-anshulusr@gmail.com/
+v2: https://lore.kernel.org/lkml/20231217180836.584828-1-anshulusr@gmail.com/
+v1: https://lore.kernel.org/lkml/20231117073040.685860-1-anshulusr@gmail.com/
+---
+ .../bindings/iio/dac/microchip,mcp4821.yaml   | 86 +++++++++++++++++++
+ 1 file changed, 86 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/dac/microchip,mcp4821.yaml
+
+diff --git a/Documentation/devicetree/bindings/iio/dac/microchip,mcp4821.yaml b/Documentation/devicetree/bindings/iio/dac/microchip,mcp4821.yaml
+new file mode 100644
+index 000000000000..0dc577c33918
+--- /dev/null
++++ b/Documentation/devicetree/bindings/iio/dac/microchip,mcp4821.yaml
+@@ -0,0 +1,86 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/iio/dac/microchip,mcp4821.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Microchip MCP4821 and similar DACs
++
++description: |
++  Supports MCP48x1 (single channel) and MCP48x2 (dual channel) series of DACs.
++  Device supports simplex communication over SPI in Mode 0 and Mode 3.
++
++  +---------+--------------+-------------+
++  | Device  |  Resolution  |   Channels  |
++  |---------|--------------|-------------|
++  | MCP4801 |     8-bit    |      1      |
++  | MCP4802 |     8-bit    |      2      |
++  | MCP4811 |    10-bit    |      1      |
++  | MCP4812 |    10-bit    |      2      |
++  | MCP4821 |    12-bit    |      1      |
++  | MCP4822 |    12-bit    |      2      |
++  +---------+--------------+-------------+
++
++  Datasheet:
++    MCP48x1: https://ww1.microchip.com/downloads/en/DeviceDoc/22244B.pdf
++    MCP48x2: https://ww1.microchip.com/downloads/en/DeviceDoc/20002249B.pdf
++
++maintainers:
++  - Anshul Dalal <anshulusr@gmail.com>
++
++allOf:
++  - $ref: /schemas/spi/spi-peripheral-props.yaml#
++
++properties:
++  compatible:
++    enum:
++      - microchip,mcp4801
++      - microchip,mcp4802
++      - microchip,mcp4811
++      - microchip,mcp4812
++      - microchip,mcp4821
++      - microchip,mcp4822
++
++  reg:
++    maxItems: 1
++
++  vdd-supply: true
++
++  ldac-gpios:
++    description: |
++      Active Low LDAC (Latch DAC Input) pin used to update the DAC output.
++    maxItems: 1
++
++  powerdown-gpios:
++    description: |
++      Active Low SHDN pin used to enter the shutdown mode.
++    maxItems: 1
++
++  spi-cpha: true
++  spi-cpol: true
++
++required:
++  - compatible
++  - reg
++  - vdd-supply
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++
++    spi {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        dac@0 {
++            compatible = "microchip,mcp4821";
++            reg = <0>;
++            vdd-supply = <&vdd_regulator>;
++            ldac-gpios = <&gpio0 1 GPIO_ACTIVE_HIGH>;
++            powerdown-gpios = <&gpio0 2 GPIO_ACTIVE_HIGH>;
++            spi-cpha;
++            spi-cpol;
++        };
++    };
+-- 
+2.43.0
+
 
