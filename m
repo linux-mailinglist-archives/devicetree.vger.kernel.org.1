@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-26841-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26842-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id ACB1F8184B4
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 10:45:44 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E650E8184D1
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 10:50:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 37A421F261CB
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 09:45:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8F549285322
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 09:50:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B29513AF9;
-	Tue, 19 Dec 2023 09:45:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C99713FFF;
+	Tue, 19 Dec 2023 09:50:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="puWFRBLb"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xloQG3Hz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC6B11427A
-	for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 09:45:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F39FF13FEF
+	for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 09:50:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-54c7744a93fso5229001a12.2
-        for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 01:45:26 -0800 (PST)
+Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-a2358a75b69so430922066b.1
+        for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 01:50:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702979125; x=1703583925; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1702979421; x=1703584221; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=PRlR9bbBvVyS6S4VmsMAEYTreNTHrgGpvzAcX5l7aOY=;
-        b=puWFRBLb0WHp7aVkmH9pI6NMtGwCFK5wdVk+KzSPDHfHjDV0J//SV1BcVzD5upsyuW
-         hEvsHJh8sBdwGcdcCRqH5Vk7DQGk4vBKWhtEhIo5DMbj6zEgqud4iICkWqIDxselQSaL
-         vgyt8oKbZ6u+i3D8CPB2DXyU4Z/hFAtQNZ6uGmSUaQOJKR9zqJeVZgyf9F3xORSqB0fJ
-         Z1baYSzP9qceB1khgTg88QiWhmAgLssbxyxC/VLbNGWcNZ+4oblrpcc6FfiS5KVOWsfM
-         07GZ6Uyc5c+71Q80ZNqCAlsAkL4ojFuh1R41AYc0cyvkXx8MbOhJiwFYcknEQiVZmwtC
-         Sb5A==
+        bh=CWCk6bOnxFbeeKOwmKk8IJzJndsJRxpZr20nDzn9e84=;
+        b=xloQG3Hzf6aSlY77QnCeAluP25oZ/mAzA4MCW8C3klgXvzVpPEPwjTXRSFG3re7QE6
+         TsKUO5kJSdRzonyxonD5+s2o+tkflQgchhf8GqYWlZFtHksIjs0DFu0qXH303lcWdLPz
+         AqZqE1kLFF8FvLXKC6EqdeDw7cEI1j77n3nTft3kkitjOmVPeP0ECXcbUZVTKta8GDe5
+         jx+bPNVS8NOO9n9kdQkyaVeVQi2hI+ZVESfX6Lv0ShNYn2whfPYEH7XhEYqLVzgUUZ4v
+         6dPsKf1ip8bMFI7bDYqoBPLAi6I65jMeZcVtkynE1Z57godOnrGl8ZVr24PebTgeSQvo
+         vJGg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702979125; x=1703583925;
+        d=1e100.net; s=20230601; t=1702979421; x=1703584221;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=PRlR9bbBvVyS6S4VmsMAEYTreNTHrgGpvzAcX5l7aOY=;
-        b=P8vNum9HyeByCs/7z14Isn06SHVuh1TUA0KPctHUTeEId2oJgwUTAUln0LnSXpe3rY
-         8ah8ykqO5D0AdfOe3v+4N8j32UF697ktEGgTjN2V5yPl9/hSDaGaHGCu6rFc1h/NBjxq
-         sfT33+oVMDGkGXR+EVP/9KTXLdsw27jEg1XFEGjWbE0fzgfSYkIGhDKHwaluMWUdY3Oa
-         t+ebn6LIkdGp6M+pwxnjL128VyO0yMQ/o/TzrvWDNypS4SHU8KHsGlu79wq3NF8AtkrD
-         LEPgVzHN52mskpEliEjsslclG8wfJ9vdfysfFJ2IW33NjCV6e8hPi+Iy9kSh1FXJVdmd
-         VhWg==
-X-Gm-Message-State: AOJu0Yygi6AVPbNqlujRIEY26j17qeeoB/7Fr0zOASmC9epD7Oaq2ghg
-	fxZVeETqRtFcLAdOrawISD/ZaA==
-X-Google-Smtp-Source: AGHT+IHf8gGuEoTDXOjkv3mJffP1TiyflDIBb8/woby5n1sbsurZ9BxF5yRg+Y2XEI8mLA7wCEt/tw==
-X-Received: by 2002:a50:c089:0:b0:553:51ba:7402 with SMTP id k9-20020a50c089000000b0055351ba7402mr1342619edf.36.1702979125113;
-        Tue, 19 Dec 2023 01:45:25 -0800 (PST)
+        bh=CWCk6bOnxFbeeKOwmKk8IJzJndsJRxpZr20nDzn9e84=;
+        b=enAqDICGtMy84ygKI0zIzSAdCq+VflyAog29juRkUfeVOE0lrwcXEZrie3O+Uv4SrG
+         +nI5SM7mywjM33/dQeQQSgl8/c47dkMpfFamtzhbuejKd60KK/YImhA+fnH8e0/If2Sd
+         O0O/s2J0xVJxQ5F5XF1FIws1g5q1bpe1Pu2p2MmXUK6HUw+Eu+QYYeZvAO2YUfquRzlu
+         UZgEugh4FVpeUdPA7x6iu2lLNUcoc2gVReEtZ70D8dJbQuDxwbT2brl7fkPUiTfa5HQ4
+         1xP9WFlVVKb2l84N1l+Nz/6aajVthHlVpGzWbdGpolYloRThH1V2rUUjfVJlRmsuOC1I
+         W7Pw==
+X-Gm-Message-State: AOJu0Yz8yko9AeUWyIuKOZOMZWumn8z4nvJlXCa3fmanaSJmMsMLRGLw
+	bH+99bAT0uNRuA0Q5pico/X8CQ==
+X-Google-Smtp-Source: AGHT+IHSqJkE99T/w3PZpkAx+1RKzEq2IeXKOVlSl/21x5rfKVO4aD6uTAozFN4yUbRxXjNONVBHsw==
+X-Received: by 2002:a17:906:f0c1:b0:a1f:5526:ead1 with SMTP id dk1-20020a170906f0c100b00a1f5526ead1mr750025ejb.58.1702979421163;
+        Tue, 19 Dec 2023 01:50:21 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id es21-20020a056402381500b0055267663784sm5407107edb.11.2023.12.19.01.45.23
+        by smtp.gmail.com with ESMTPSA id e21-20020a17090681d500b00a2370c073f1sm838318ejx.23.2023.12.19.01.50.19
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 19 Dec 2023 01:45:24 -0800 (PST)
-Message-ID: <4ab88316-6168-4cbf-85eb-abd4945b809a@linaro.org>
-Date: Tue, 19 Dec 2023 10:45:22 +0100
+        Tue, 19 Dec 2023 01:50:20 -0800 (PST)
+Message-ID: <3d2662be-3a55-4390-bd2a-cfa5cc53510f@linaro.org>
+Date: Tue, 19 Dec 2023 10:50:19 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -149,6 +149,9 @@ On 19/12/2023 10:03, Jan Kiszka wrote:
 > 
 > We could do that as well if we added labels first (they don't exist so 
 > far). Not seeing any difference, though.
+
+Confusion? Your code suggests new node, thus you got review like you got.
+
 > 
 >>> patch, but the node names are now part of the kernel ABI. Changing them
 >>> would break existing userland.
@@ -156,8 +159,6 @@ On 19/12/2023 10:03, Jan Kiszka wrote:
 >> You mean label. Why node names became the ABI? Which interface exposes them?
 > 
 > root@iot2050-debian:~# ls -l /sys/class/leds/
-
-
 > total 0
 > lrwxrwxrwx 1 root root 0 Dec 19 08:55 mmc0:: -> ../../devices/platform/bus@100000/4fa0000.mmc/leds/mmc0::
 > lrwxrwxrwx 1 root root 0 Dec 19 08:55 mmc1:: -> ../../devices/platform/bus@100000/4f80000.mmc/leds/mmc1::
@@ -167,39 +168,12 @@ On 19/12/2023 10:03, Jan Kiszka wrote:
 > lrwxrwxrwx 1 root root 0 Dec 19 08:55 user-led1-red -> ../../devices/platform/leds/leds/user-led1-red
 > lrwxrwxrwx 1 root root 0 Dec 19 08:55 user-led2-green -> ../../devices/platform/leds/leds/user-led2-green
 > lrwxrwxrwx 1 root root 0 Dec 19 08:55 user-led2-red -> ../../devices/platform/leds/leds/user-led2-red
-> 
->>>>> +
->>>>> +&dwc3_0 {
->>>>> +	assigned-clock-parents = <&k3_clks 151 4>,  /* set REF_CLK to 20MHz i.e. PER0_PLL/48 */
->>>>> +				 <&k3_clks 151 9>;  /* set PIPE3_TXB_CLK to CLK_12M_RC/256 (for HS only) */
->>>>> +	/delete-property/ phys;
->>>>> +	/delete-property/ phy-names;
->>>>
->>>> If your board need to remove phys from the SoC node, something is wrong.
->>>> Either your board or SoC.
->>>>
->>>> Any removal of properties in DTS is weird and unexpected. It deserves
->>>> comments.
->>>
->>> This goes along disabling USB3 which is by default enabled via
->>> k3-am65-iot2050-common-pg2.dtsi
->>
->> Isn't this mistake? Common part enables only these pieces which are
->> working in common hardware SoM. If your common part of hardware, which
->> DTSI should represent, has USB3 then why is it being disabled here? If
->> common hardware design does not have USB3, then why is it being enabled
->> in DTSI?
-> 
-> It's a trade-off between adding yet another dtsi for those widely 
-> common bits vs. adjusting the differences of only one variant from 
 
-You don't need to add one more DTSI to achieve proper architecture of
-DTS/DTSI split.
+I replied too fast previous and did not include answer here:
 
-> that. We do the same for the Display Port so far.
-
-DTSI represents common piece of hardware, like SoM or re-usable blocks,
-not trade-off.
+You have label for that... Somehow all these nodes are half-baked,
+without all the expected properties and now you call node name as ABI.
+The node name is not the ABI.
 
 Best regards,
 Krzysztof
