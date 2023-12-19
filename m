@@ -1,143 +1,186 @@
-Return-Path: <devicetree+bounces-26930-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26931-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47E628189C5
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 15:26:17 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA985818A02
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 15:33:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B3B561F26D42
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 14:26:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 59E73283818
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 14:33:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF15A1B27A;
-	Tue, 19 Dec 2023 14:25:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B10B11BDD4;
+	Tue, 19 Dec 2023 14:29:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="OnSp2IvH"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="WN3B01W6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM02-DM3-obe.outbound.protection.outlook.com (mail-dm3nam02on2052.outbound.protection.outlook.com [40.107.95.52])
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1ACB91CA95;
-	Tue, 19 Dec 2023 14:25:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=jubs98i4ja+WcfD/dHpRmLL0vWypfp0vSvimtEPrA8CAOcq9Yu98ALefUYs/sR7gwYkUxAYb+TNg5g3zLtJ0DG63PixtN98ZVXqlNi+bSb3aD9ERNF8aAXPEO39v6+PsFWuX67QPYXyDWnqkrKlwwmWgVs+3zpsitmzyYwxhTmdUjNEFn6+arImztks0v84V0cm0cXRBuGp/H7b1G9a7w2Pq6RPWLkpPL2JnuJUJ07l+ZyNC4cciWqG5fR/S4jtGShaTrCcFzrXPU0sr53SpckFwKWXaHmQ5a8/582QGj4BB4QwVBt7jx9Y1CS2pBSL12Lbqo6jyys0R88oN+YHDqg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=8T4YR1mNBkAXSSS0EIBP7Fh2AgCzUDF+gl4yGWBWIcw=;
- b=F6YrUMptzo1nN7Hqz3tifCQ8W6Oi0N9zTm0K8vlU71INEdKeVf+n0glTJtypFBfHmolyysbbkUBvdF5j3Cnfo5jHFVOuQj7G4vfl4RMKXp85b4wLzXOl1MZV/ZBAVRB9fq50Q/pSMt7h+N2KjtHVGGRTDSpIVX763UUwITDeIwWZlebvXGHIq1FGWxhv861pgRbQRCPFCIVR3xtusTgsJ06AE6G8I6T02/F52+WJgXz7yEsslQWFy4QVn0V4H/PJ50zH7H444yBa5HSUQ/g3klRsiVBmL7itU4BjvRVRq36G/JbBOiSo+nVSi/T+GPexSiWuvG9pUyykRBk41QJ1gg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8T4YR1mNBkAXSSS0EIBP7Fh2AgCzUDF+gl4yGWBWIcw=;
- b=OnSp2IvHgOS7PoAZx8EYxgTAz38X8VJ4HcAn2kTRtKXA4gmC6rqCywEEWl1J+shOusylYgwXAljpKfPUO/zlmbSObrxyipOSSccq47GLFdRPjqNa+q3dkPnqIhX1X76d2E+94oJLrj0fhDJplTMlc8PTh80zhPtOdPUvhAj2+d4=
-Received: from SA9PR03CA0020.namprd03.prod.outlook.com (2603:10b6:806:20::25)
- by BY5PR12MB4194.namprd12.prod.outlook.com (2603:10b6:a03:210::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7091.38; Tue, 19 Dec
- 2023 14:25:20 +0000
-Received: from SA2PEPF000015C7.namprd03.prod.outlook.com
- (2603:10b6:806:20:cafe::7c) by SA9PR03CA0020.outlook.office365.com
- (2603:10b6:806:20::25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7113.18 via Frontend
- Transport; Tue, 19 Dec 2023 14:25:20 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- SA2PEPF000015C7.mail.protection.outlook.com (10.167.241.197) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7113.14 via Frontend Transport; Tue, 19 Dec 2023 14:25:20 +0000
-Received: from localhost (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.34; Tue, 19 Dec
- 2023 08:25:19 -0600
-From: Michal Simek <michal.simek@amd.com>
-To: <linux-kernel@vger.kernel.org>, <monstr@monstr.eu>,
-	<michal.simek@xilinx.com>, <git@xilinx.com>
-CC: Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
-Subject: [PATCH] dt-bindings: soc: xilinx: Add support for K26 rev2 SOMs
-Date: Tue, 19 Dec 2023 15:25:16 +0100
-Message-ID: <6673abb84e542c2841cece9336571f97b19882fe.1702995908.git.michal.simek@amd.com>
-X-Mailer: git-send-email 2.36.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09F1A1BDED
+	for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 14:29:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1702996189;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=FJ0fIgJFxprsIyxEkHhdAMJUwfKqBB8ndzukjaekHFY=;
+	b=WN3B01W6SJUs4P4ksh8+wVW8jKU7ZRBw9WJ2uwK6ESfH5elwFAR3vAIn++9Rdc+9h0drqx
+	MzMkuN01ETjYdmjXslMuCFekNZx8lvc4HE+mn3FXKck0n/NCiIl4I+S2Bfe1YjzzGHwZhv
+	Wh7ivL4CQ6q+vTZ/LDKrRWzNJ676OVA=
+Received: from mail-wm1-f71.google.com (mail-wm1-f71.google.com
+ [209.85.128.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-595-EtrrwbBZNbS_1qNbt9hD7A-1; Tue, 19 Dec 2023 09:29:46 -0500
+X-MC-Unique: EtrrwbBZNbS_1qNbt9hD7A-1
+Received: by mail-wm1-f71.google.com with SMTP id 5b1f17b1804b1-40d2f6f2787so1344595e9.0
+        for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 06:29:45 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702996185; x=1703600985;
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=FJ0fIgJFxprsIyxEkHhdAMJUwfKqBB8ndzukjaekHFY=;
+        b=iU8e9TX/mTiKhvqW0Ir2/gs5Gy+5XqKrovf7mktfLuHyIb6WiSWO5Oo9IBosF6X0Jc
+         J6hiLYOep3WfgvbN3lPADB+enB4FdQisTE28AYvrJF0H7mkDlAUZRfeHm12LdDmpegAN
+         osKw9qfmzgD7vif8LVTawGAMJ4k0w9uam5M4VKVKvWcqEAN7GTUBW+S82t3mjXhJuV1G
+         BP56BvuCk2cC7OGjUgPe6vTT4kro499pfcCfzCL2M2/njE3oRls0a97g5z7MV1vsqLuN
+         fXBdNtPxW7tWluV4cfwtOAiEQeSoDrh1DXoV6E+zrtDLht6T12MY6RFCQBN6Zwrb4Ip3
+         HqHw==
+X-Gm-Message-State: AOJu0Yw9qCESHVGIr3d25NhFHnp1LWNZOHPaYMKdehEk9NkOACrM7oQs
+	cEXeyHUNqm5FWdRsw1EGD1xy4jpe4d2MVdzk9HySrfkmgr4kr46EOPRm28QrFG/VJVGTG0eA6J6
+	KIBa13JFluyH+iooNvCPaCg==
+X-Received: by 2002:a7b:c388:0:b0:40c:3469:96d1 with SMTP id s8-20020a7bc388000000b0040c346996d1mr9196311wmj.162.1702996184743;
+        Tue, 19 Dec 2023 06:29:44 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IEA8keZt2+RMeG+32PCDrITixe94PgFwfVoCxcAnFpxFM09R5EooqJSvimnMtjpUTQWIJr13g==
+X-Received: by 2002:a7b:c388:0:b0:40c:3469:96d1 with SMTP id s8-20020a7bc388000000b0040c346996d1mr9196303wmj.162.1702996184377;
+        Tue, 19 Dec 2023 06:29:44 -0800 (PST)
+Received: from localhost (205.pool92-176-231.dynamic.orange.es. [92.176.231.205])
+        by smtp.gmail.com with ESMTPSA id g3-20020a05600c310300b0040c6b2c8fa9sm3083353wmo.41.2023.12.19.06.29.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 19 Dec 2023 06:29:44 -0800 (PST)
+From: Javier Martinez Canillas <javierm@redhat.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Conor Dooley
+ <conor@kernel.org>
+Cc: linux-kernel@vger.kernel.org, Maxime Ripard <mripard@kernel.org>,
+ Jocelyn Falempe <jfalempe@redhat.com>, Geert Uytterhoeven
+ <geert@linux-m68k.org>, Thomas Zimmermann <tzimmermann@suse.de>, Peter
+ Robinson <pbrobinson@gmail.com>, Rob Herring <robh@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>, Daniel Vetter <daniel@ffwll.ch>, David
+ Airlie <airlied@gmail.com>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Rob Herring <robh+dt@kernel.org>,
+ devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: display: Add SSD133x OLED controllers
+In-Reply-To: <1fa5f658-fef1-49e0-b1ca-21359a74e409@linaro.org>
+References: <20231218132045.2066576-1-javierm@redhat.com>
+ <20231218132045.2066576-2-javierm@redhat.com>
+ <20231218-example-envision-b41ca8efa251@spud>
+ <87il4u5tgm.fsf@minerva.mail-host-address-is-not-set>
+ <1fa5f658-fef1-49e0-b1ca-21359a74e409@linaro.org>
+Date: Tue, 19 Dec 2023 15:29:43 +0100
+Message-ID: <87frzy5kq0.fsf@minerva.mail-host-address-is-not-set>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1314; i=michal.simek@amd.com; h=from:subject:message-id; bh=1BG1yY90XncfYzqpTB1Qy/aVMukcaDEBubg5eaawYmA=; b=owGbwMvMwCR4yjP1tKYXjyLjabUkhtTG5UfeNO5znJ5ddXWKzGWNIyw2a35qlRVuWr6OX175I zPHzDVhHbEsDIJMDLJiiizSNlfO7K2cMUX44mE5mDmsTCBDGLg4BWAi5+YyzLPwulqizH43N+eA 10l1sxUZSieUYxnm+86JXXn5uWBO44Jy0yNd7x/Ffe9KBgA=
-X-Developer-Key: i=michal.simek@amd.com; a=openpgp; fpr=67350C9BF5CCEE9B5364356A377C7F21FE3D1F91
-Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SA2PEPF000015C7:EE_|BY5PR12MB4194:EE_
-X-MS-Office365-Filtering-Correlation-Id: a4dff409-9a75-447a-4195-08dc009e54ce
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	6KXVp1/q3nupKbERdhJcJ9SnzNrf4+fyYdykFbTgxMgpUh2tSkOSt2TtLBdmyKxmajOmquRZE8Lkx12qJD3KEFsUjeu92w/UmXYziRUJ7SI0KuUeJLyL9+aRn1A3zE5fWxPRnolwYWUnTgptwvOGQxJ/nlj33ylIQ4xcqekrFUYmvk4L8vE6iMEO2uPhmj/Y9575NkBs1mAvzFLoPBhlrIiEruGvXStLofD8rh3DoLibSfWlgZLgb5HnO1a3PWlrxDSqbGmwSjRsp2T80MjPd0JkOPD+dc2mo3u/LgZQBc1qDHkrOs/wOHIHbVpBBi0DqD98iTvir+kW1p2eFA2Ufc4r25gdM5pAdGiurb3kd95UWJIh77Au3txErxB0CJ/xb0mTW0rujNjxaapWW07jrPdxYvXJVjOgMOyFdKJEawI4rLFPOcZr4TGFhCSLpLqGrDUqgpNb9Wgwkt97N8UFMkiEvXnMmwLl0zTyIWBuoE2o1eLyhJaZ6UygNGCMv7HVNp/B6QrU43kdnY1iOohXAy6h9NP3LUjfQfIFNYQHjzRL4A2q4ejchcYEU+G1QtyyR9/ATZ55ZH1w5LsjunOleICneTaCFTVxMgCOfmMPMDhKrkUnssMr0hEjLktNU6Og/OwyVUjWRwLt0rX1RIQuNmuMmSGLq4omGarP8J8DuOCuNmCxCHLjE/c5UBV2LoW6HhRMhGGwlJq2QHwztLi5RgJK1fKOiH8EcFdehdDv+9b9+i6iLqi3eJEJC6jvQNwTtPSGn1jvFC43vkuI3S9KM1RJbbVWUanmiEYhIr7lPi8=
-X-Forefront-Antispam-Report:
-	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230031)(4636009)(346002)(39860400002)(136003)(396003)(376002)(230922051799003)(64100799003)(82310400011)(1800799012)(451199024)(186009)(40470700004)(46966006)(36840700001)(40480700001)(2616005)(426003)(16526019)(26005)(336012)(40460700003)(81166007)(356005)(82740400003)(6666004)(36756003)(86362001)(47076005)(44832011)(5660300002)(36860700001)(8676002)(70206006)(4326008)(70586007)(316002)(110136005)(54906003)(8936002)(41300700001)(2906002)(478600001)(36900700001)(2101003);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Dec 2023 14:25:20.6622
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: a4dff409-9a75-447a-4195-08dc009e54ce
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	SA2PEPF000015C7.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB4194
 
-Revision 2 is SW compatible with revision 1 but it is necessary to reflect
-it in model and compatible properties which are parsed by user space.
-Rev 2 has improved a power on boot reset and MIO34 shutdown glich
-improvement done via an additional filter in the GreenPak chip.
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> writes:
 
-Signed-off-by: Michal Simek <michal.simek@amd.com>
----
+Hello Krzysztof,
 
- Documentation/devicetree/bindings/soc/xilinx/xilinx.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+> On 19/12/2023 12:20, Javier Martinez Canillas wrote:
 
-diff --git a/Documentation/devicetree/bindings/soc/xilinx/xilinx.yaml b/Documentation/devicetree/bindings/soc/xilinx/xilinx.yaml
-index d4c0fe1fe435..62617e1ea74f 100644
---- a/Documentation/devicetree/bindings/soc/xilinx/xilinx.yaml
-+++ b/Documentation/devicetree/bindings/soc/xilinx/xilinx.yaml
-@@ -118,6 +118,7 @@ properties:
- 
-       - description: Xilinx Kria SOMs
-         items:
-+          - const: xlnx,zynqmp-sm-k26-rev2
-           - const: xlnx,zynqmp-sm-k26-rev1
-           - const: xlnx,zynqmp-sm-k26-revB
-           - const: xlnx,zynqmp-sm-k26-revA
-@@ -126,6 +127,7 @@ properties:
- 
-       - description: Xilinx Kria SOMs (starter)
-         items:
-+          - const: xlnx,zynqmp-smk-k26-rev2
-           - const: xlnx,zynqmp-smk-k26-rev1
-           - const: xlnx,zynqmp-smk-k26-revB
-           - const: xlnx,zynqmp-smk-k26-revA
+[...]
+
+>>>> +allOf:
+>>>> +  - $ref: solomon,ssd-common.yaml#
+>>>> +
+
+[...]
+
+>>>  
+>>> +  width:
+>>> +    default: 96
+>>> +
+>>> +  height:
+>>> +    default: 64
+>
+> Which also looks wrong on its own. Where is the definition of these
+
+Yes, I already discussed this with Conor and mentioned to him that is a
+typo but already fixed it locally and I'm testing with the correct ones.
+
+> properties? IOW, where do they come from?
+>
+
+The "solomon,width" and "solomon,height" properties are defined in the
+solomon,ssd-common.yaml binding schema file that is referenced.
+
+>>> +
+>> 
+>> ...but when trying move the default for the "solomon,width" and
+>> "solomon,height" to the properties section, make dt_binding_check
+>> complains as follows:
+>
+> Worked for me.
+>
+
+Oh, that's good to know. I wonder what's the difference...
+
+> ...
+>
+>>   DTC_CHK Documentation/devicetree/bindings/display/solomon,ssd133x.example.dtb
+>> 
+>> The warning goes away if I follow the hints and add a type and description
+>> to the properties, i.e:
+>
+> Hm, I wonder what's different in your case. I assume you run the latest
+> dtschema.
+>
+
+Not the latest but had a recent one. I've updated it, so I do now :)
+
+$ pip list | grep dtschema
+dtschema                      2023.9
+
+$ pip install --upgrade dtschema
+
+$ pip list | grep dtschema
+dtschema                      2023.11
+
+[...]
+
+>> But that would duplicate information that is already present in the
+>> included solomon,ssd-common.yaml schema. Do you know what is the proper
+>> way to do this?
+>
+> Works for me, so please paste somewhere proper diff so we can compare.
+>
+
+With the latest dtschema version it works indeed. Thanks for the pointer!
+
+$ make W=1 dt_binding_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/display/solomon,ssd133x.yaml 
+  LINT    Documentation/devicetree/bindings
+  CHKDT   Documentation/devicetree/bindings/processed-schema.json
+  SCHEMA  Documentation/devicetree/bindings/processed-schema.json
+  DTEX    Documentation/devicetree/bindings/display/solomon,ssd133x.example.dts
+  DTC_CHK Documentation/devicetree/bindings/display/solomon,ssd133x.example.dtb
+
+> Best regards,
+> Krzysztof
+>
+
 -- 
-2.36.1
+Best regards,
+
+Javier Martinez Canillas
+Core Platforms
+Red Hat
 
 
