@@ -1,125 +1,119 @@
-Return-Path: <devicetree+bounces-26882-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26883-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41FC6818759
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 13:23:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F0C8818760
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 13:23:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E4A9C2851DF
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 12:23:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4CD212850BA
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 12:23:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1291179AD;
-	Tue, 19 Dec 2023 12:22:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7393417758;
+	Tue, 19 Dec 2023 12:23:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Ybon5DKf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZmR0JBNF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C4801864A
-	for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 12:22:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-1d3dc30ae01so5130325ad.0
-        for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 04:22:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702988554; x=1703593354; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=AKdUP1nh0OG3QlZNgtTdzYD4n/GWKZ63AtyvI5eXs98=;
-        b=Ybon5DKf2tjOE2+YEHXxVsb/KCFo5FqLbkxH7KrbX6IVMEyK7OCYwHL+20MOvrNXsK
-         WtTWELuwE3M5PofykpPJ4e728fJKiUXSD5kglfwg8+nfXfUTMC5fY9NNpefOm+zxIrd7
-         FZZw3Qq3MkAHlYzTxVj6aAx6XcIta/qMNG9jDLqB5nyIZskq2Oe5nyJ2tlbfLoXS/sqK
-         2GmVStpWTSZpD7DNRE1qn0Peo/6TnKlZqboR0y/+FSNuH7qTKrV6BdmZnNdrJx95pTLD
-         nD6bnCpIztNaBT7WnnN5m4yL5KYxBpxllMQV9+ynXKLiPsBpXoUTy5Y3/qlgIMXbRibO
-         iz2Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702988554; x=1703593354;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=AKdUP1nh0OG3QlZNgtTdzYD4n/GWKZ63AtyvI5eXs98=;
-        b=E8Z6uAmEMb3hjX29TYkeVzfKyIAwbzSk3rSBGDyS55g9GojdJLPkTzTdaMgXkeC9zY
-         oH+ANoY++gorJjVscWiSiJ5dSBctcGz8KVw0N4XiZ49Y5n48IbZeCanCMVzsXPlgy1MG
-         HGN8NXgezOk4o0waduTqcvEHjk5SJwkX3aXWhkp4zUNvZQj/bFEjR5LxPWVHbY5lqZoS
-         m+V7VBvaeJ1iYiBY/jIud1jQ2W6wh1lAmrBx/qgBTI07t2rBWKYk86IGNqwhpzmVHFqN
-         4lAL6RYM79+RS+UM7qRbBgLUf40ncodQmQKCQFR1dmwZJoqpetURIT9DRm76hS2LxIoB
-         LuaA==
-X-Gm-Message-State: AOJu0YxLqXgIJ1+RO3eJuQKwM6/JhfpR7X4h6XJYkB7XWqbizCwfd3VF
-	Ulz08vNPJ2BpbACy4oQaickqEw==
-X-Google-Smtp-Source: AGHT+IEnCSZ44/W5EooaigV0HsYtJpRFaKJolYB0qjNfaINpNNu4HwniOpI7lT1JCMpXlsTqDyH50g==
-X-Received: by 2002:a17:902:7ed0:b0:1d1:cc09:50ac with SMTP id p16-20020a1709027ed000b001d1cc0950acmr14787076plb.108.1702988553726;
-        Tue, 19 Dec 2023 04:22:33 -0800 (PST)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id s17-20020a170902b19100b001d366f8cfd7sm7719419plr.182.2023.12.19.04.22.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 Dec 2023 04:22:33 -0800 (PST)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Tue, 19 Dec 2023 13:22:13 +0100
-Subject: [PATCH v2 2/2] arm64: defconfig: enable WCD939x USBSS driver as
- module
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F9711B270;
+	Tue, 19 Dec 2023 12:23:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 64E20C433C8;
+	Tue, 19 Dec 2023 12:23:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1702988586;
+	bh=0ZPp7C6xPL+E7Gl2PQUcf+FzC1fInLNKOXnsyZEshH4=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=ZmR0JBNFAiBZb0p1MEKAxT1zSWlnme9VmUwU98gE5BqXfMiJcEHOIbHnMcovCvBGj
+	 rKYQda3cxg0fGzsxtly79HledAn2RilUONenAjv2Cuut4HI0v5+D7a6UEOjpEg7nDD
+	 9RLlCXmF5Hki3UqANsMRELjG68+v1E8H/c0Uh4wV+5ubBzA60X/QqPcBWSyVzMC6bQ
+	 XOHOt7ABZcNrTcFZG/0+IC5te7gUnNK9jLMytl96jOMB2cq0kA7CqcbYCEUA6fpzb3
+	 NH98ZI377USSjEZwvNrTLZ+nFEI4l6O6cOT8g05HG1vH5zRhs5C/RTA0NsNXyHzGB2
+	 BXLPNWBqoT6jA==
+Received: (nullmailer pid 1608322 invoked by uid 1000);
+	Tue, 19 Dec 2023 12:23:03 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20231219-topic-sm8650-upstream-altmode-v2-2-a608528864a3@linaro.org>
-References: <20231219-topic-sm8650-upstream-altmode-v2-0-a608528864a3@linaro.org>
-In-Reply-To: <20231219-topic-sm8650-upstream-altmode-v2-0-a608528864a3@linaro.org>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- Neil Armstrong <neil.armstrong@linaro.org>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=openpgp-sha256; l=684;
- i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=VmNuAmZkD7FpY6bewTnP4V/44GbGai75MKliuJO6u5w=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBlgYr4stUEQaxvnGqsruhjfr6H9gIUuIelp4I0zMKm
- /uEj1TWJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZYGK+AAKCRB33NvayMhJ0QBKD/
- 0UFG3za7aimsGehqx4bBq1wGwRLjf1eEV/ia2P6okPETNQGT1At3up5yADsL4FW/b0aC6mAdQCPUSD
- 2LwdgfpR6EhedKUDJuYOI6gDJ/vASz1Ry+vsbNWTpYyp8z01aWXxrw9Knp0xz7Rv2O+OksX4kO00cq
- uHtBuqQ5M16K7GSh8xkiSpgz8HOHAoLwQlQNB6bes9USdyo94jjrkNpAJ8TyvXoNXORkbhaA2+vmE7
- mEdQOQ+6RgHHLLFA4ukO8/pSeuH5mY6LAS9bRhxFUKb4A5E8Y73SqdKWw95+i6ZqYuulRhyfDsZjaE
- fhGF71TiNEGSszcPhghb+wswuMd933QF27x3UPqsCPC8ZVqi7C9dDDWCz2i0kmkAWR7X4B/UE+0JEc
- g7uL+w0XP6m+KqIJrOkVISONAgwhRdxQtSNsdWlenSihebgaf+ymVBJUuLSQLB2/gDzYsx9xkj+624
- 3tIgokT4ar/9T4gadRrsBc/7EiB1AK4F1Fs/nn1Zt0myBwTWCccVZtGSi2nYJYrxo/FJGg2sNzrRYH
- isXRm+EtUFcOIsgvwmkwd0ALDYwyvWdu6S+8r9W1s50dwEiHf4EeNtEps8fmjb7eJc/NSJKOPxwToM
- V7QgeTAtgSAXxFRc67PJ3c5K3dNtwKX9b8DeTOASl/OPKJwli1KXeXhtCB4Q==
-X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
- fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
+From: Rob Herring <robh@kernel.org>
+To: Dumitru Ceclan <mitrutzceclan@gmail.com>
+Cc: Michael Walle <michael@walle.cc>, linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, linux-gpio@vger.kernel.org, Mike Looijmans <mike.looijmans@topic.nl>, Jonathan Cameron <jic23@kernel.org>, ChiaEn Wu <chiaen_wu@richtek.com>, Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org, Hugo Villeneuve <hvilleneuve@dimonoff.com>, Arnd Bergmann <arnd@arndb.de>, andy@kernel.org, Lars-Peter Clausen <lars@metafoo.de>, linux-iio@vger.kernel.org, Niklas Schnelle <schnelle@linux.ibm.com>, brgl@bgdev.pl, Ceclan Dumitru <dumitru.ceclan@analog.com>, Andy Shevchenko <andy.shevchenko@gmail.com>, Haibo Chen <haibo.chen@nxp.com>, Conor Dooley <conor+dt@kernel.org>, linus.walleij@linaro.org, =?utf-8?q?Leonard_G=C3=B6hrs?= <l.goehrs@pengutronix.de>
+In-Reply-To: <20231219104631.28256-1-mitrutzceclan@gmail.com>
+References: <20231219104631.28256-1-mitrutzceclan@gmail.com>
+Message-Id: <170298858334.1608301.13113864256271673228.robh@kernel.org>
+Subject: Re: [PATCH v10 1/2] dt-bindings: adc: add AD7173
+Date: Tue, 19 Dec 2023 06:23:03 -0600
 
-Enable the Qualcomm WCD939x USBSS Type-C mux as module as
-is now used on the SM8650 QRD platform.
 
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
----
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+On Tue, 19 Dec 2023 12:46:12 +0200, Dumitru Ceclan wrote:
+> The AD7173 family offer a complete integrated Sigma-Delta ADC solution
+> which can be used in high precision, low noise single channel applications
+> or higher speed multiplexed applications. The Sigma-Delta ADC is intended
+> primarily for measurement of signals close to DC but also delivers
+> outstanding performance with input bandwidths out to ~10kHz.
+> 
+> Signed-off-by: Dumitru Ceclan <mitrutzceclan@gmail.com>
+> ---
+> 
+> V9->V10
+>  - Fix dt_binding_check type warning from adi,reference-select
+> V8->v9
+>  - Add gpio-controller and "#gpio-cells" properties
+>  - Add missing avdd2 and iovdd supplies
+>  - Add string type to reference-select
+> V7->V8
+>  - include missing fix from V6
+> V6->V7 <no changes>
+> V5->V6
+>  - Moved global required property to proper placement
+> V4 -> V5
+>  - Use string enum instead of integers for "adi,reference-select"
+>  - Fix conditional checking in regards to compatible
+> V3 -> V4
+>  - include supply attributes
+>  - add channel attribute for selecting conversion reference
+> V2 -> V3
+>  - remove redundant descriptions
+>  - use referenced 'bipolar' property
+>  - remove newlines from example
+> V1 -> V2 <no changes>
+> 
+>  .../bindings/iio/adc/adi,ad7173.yaml          | 184 ++++++++++++++++++
+>  1 file changed, 184 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad7173.yaml
+> 
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 0e67a4849b91..c9ba75f1b248 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -1067,6 +1067,7 @@ CONFIG_TYPEC_QCOM_PMIC=m
- CONFIG_TYPEC_UCSI=m
- CONFIG_TYPEC_MUX_FSA4480=m
- CONFIG_TYPEC_MUX_NB7VPQ904M=m
-+CONFIG_TYPEC_MUX_WCD939X_USBSS=m
- CONFIG_UCSI_CCG=m
- CONFIG_TYPEC_MUX_GPIO_SBU=m
- CONFIG_TYPEC_DP_ALTMODE=m
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
--- 
-2.34.1
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/adc/adi,ad7173.example.dtb: adc@0: '#gpio-cells' is a dependency of 'gpio-controller'
+	from schema $id: http://devicetree.org/schemas/gpio/gpio.yaml#
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20231219104631.28256-1-mitrutzceclan@gmail.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
