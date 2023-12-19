@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-26847-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26848-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3B718184E6
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 10:58:15 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 371BF8184F1
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 11:01:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E21851C239FF
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 09:58:14 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A1CBDB23664
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 10:01:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C85714004;
-	Tue, 19 Dec 2023 09:58:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F35314012;
+	Tue, 19 Dec 2023 10:01:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="I1Goqhkc"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OSKD7KMs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
+Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5B8214265
-	for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 09:58:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AADD14A84
+	for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 10:01:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-a1ca24776c3so1040072066b.0
-        for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 01:58:07 -0800 (PST)
+Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-50e2bd8c396so3365169e87.0
+        for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 02:01:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702979886; x=1703584686; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1702980065; x=1703584865; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=CwsWtsLOvWK+82mVjpkuXTM6g0jEIlPmXvx1Ed249No=;
-        b=I1Goqhkc8qdXXJBmFR+LXYh/paUf1J8Q8x03kL9c0hJr7Jo3BalkyFtYpP5xrVFF3I
-         c9w532E6+Mp8KSlSw+n9ABeuJVajKgjzJ6dVRpIqy9Gh15A6YT74i5ajaYCq30fzFbMh
-         YI49wH3DUeQ9mIC01Ii5oDvsJ8qNMPb8okfhMJFgrXU0HxlFK4G6tSYOHtl1n3WZn6X9
-         i6QQ5LIGtmo9U/PA4UhhFVB5yzj/p65HeGkhHbdvUkzTKJx2P9s2ZT2aMtUr6B6p2Ykg
-         rVNy8Zkww1xBdIDhbX/lbju0gJeubgO2CmRg/ofsATFDLIVyQfpS/Ts+0bbb6ac7SeU9
-         MI8Q==
+        bh=/ZicGYpuXUgdFYjfk2qcQ5RE2Pt34/QHv77l13q5D6w=;
+        b=OSKD7KMswphaJ7Ftjm/HITSJ8gAbZK8VwcjwTrIiMgJjVFGxkSjdACR7hqPFFtAkeJ
+         lLb41s9ZV7iyO4E4n27/r9oiEBscCXsp90+OCIAznEHQ56WK0AjHqAq5P+zPj+lNIlOB
+         BrjRkH2cj6IkEEAIskZnpy4bpw9kWTnvHyKNkQjqm8E9vMas/LR6Vbo9RsWMN23Apae7
+         6muvzxtXsZvHTjB2+psckwOgiV7X3I1ndX4/N8F7ErE80+3/hoagmbiywIO5P8Zoa+Ie
+         35CflqJt/zlQS0ngF3kd3TnyReM/ynn6183FGV2+IOuTAE7PmvXahuT79fykboGzkbTG
+         5eOA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702979886; x=1703584686;
+        d=1e100.net; s=20230601; t=1702980065; x=1703584865;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=CwsWtsLOvWK+82mVjpkuXTM6g0jEIlPmXvx1Ed249No=;
-        b=iNUftOPVnCSXwRe1Y8lx/NLasRweOVHGHPoe0A0eAnqbclrYBHzop6Cot98ZorrIr2
-         rMl5SdbOjbHWnaNgK0bVSWq1CX5tPPI0oQOzsQmQTt4n/BYA09f29Y/78GeXTfrXo4F9
-         kRtB/5jtUTNmY2WpXnRmUDOXl5LzX2PCLD0zf2dUzpNW9kDBJ3kpjH5Rjztvr1/Qaa5T
-         Hu06IyRHJjFo+MzFubUn1Ic80QsVlEXbGWaKCEsOyvn1QXh9a772nQlOSbN4EIMcn0Hq
-         CE/xt3uPuzLNQxOL5YkVxEv9N/UpjUIzYLDMyPCFfPg5QmzhSoRN9Mi0qG3dsBJCK3rf
-         86hA==
-X-Gm-Message-State: AOJu0YxPezjmxJcqiPiHbHFwoCoq1U0veD/659CWTFQSVmStOcBBGsDm
-	fj8bNHDPOpFAixn9CaISW1GgOVXpOMlKSg==
-X-Google-Smtp-Source: AGHT+IGGkBDH89HhG9Pb+xdjQGhocl7zpOM+JCK0M1KUP90SdmzVLmbQG2KdUXjsxQYhK+xDBj7XJA==
-X-Received: by 2002:a17:906:4b04:b0:a1f:6ec8:2f6f with SMTP id y4-20020a1709064b0400b00a1f6ec82f6fmr701308eju.28.1702979886034;
-        Tue, 19 Dec 2023 01:58:06 -0800 (PST)
+        bh=/ZicGYpuXUgdFYjfk2qcQ5RE2Pt34/QHv77l13q5D6w=;
+        b=LpyzWIC30m0TJce0O41CoTdACIpk/gVQjJyBBlofmTvl4/O6+sZRt8yUK8Ogukaj4q
+         EBIssWwLScIzXe2Aq07ONqzwrlncsL/rA+RHvxbhtY3wHuUkjIwzqc2BjDH8AY5fE9zk
+         J/7J8kvA7pHWOF2sVdomBioGk5zznKb99BdLx1mwoB+NzV8iD5M3/GSbbayf8gH38EP2
+         SCbCzwPuOU9Few2b/txI8y68Ov0J/ODdcArzkceGfK695ZBjk/y64WqJKu1a1gHzRJ4M
+         iq1SPoVdHT/NghTSzXHQkYbxyN3Zf6McWGYoZPvCN5DhxHUdoEhFebuomAiXieXRxry5
+         ZUyA==
+X-Gm-Message-State: AOJu0Yx2Q6rjXS2o5M6axBZDpO35MHeYj6PaeafuMAW4/G0wvPql5wa3
+	18K/h3wl9ykNctrGclcvKKwPvA==
+X-Google-Smtp-Source: AGHT+IF/VsgUE9ug4sr7x7yLIxCG4AGuuEm+1U41RiJjZxM3tfcC4ElDE7tvwfiyqVeVyFFxt7jsOw==
+X-Received: by 2002:ac2:428b:0:b0:50d:ae2:2a9f with SMTP id m11-20020ac2428b000000b0050d0ae22a9fmr7296632lfh.24.1702980065513;
+        Tue, 19 Dec 2023 02:01:05 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id vq6-20020a170907a4c600b00a19b7362dcfsm15230770ejc.139.2023.12.19.01.58.04
+        by smtp.gmail.com with ESMTPSA id z25-20020a1709067e5900b00a2685eca385sm80652ejr.195.2023.12.19.02.01.03
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 19 Dec 2023 01:58:05 -0800 (PST)
-Message-ID: <ce6b002b-f2a6-4056-bf81-53a6c948b946@linaro.org>
-Date: Tue, 19 Dec 2023 10:58:04 +0100
+        Tue, 19 Dec 2023 02:01:04 -0800 (PST)
+Message-ID: <f0f707c0-dd96-4409-bfc5-118d885933e8@linaro.org>
+Date: Tue, 19 Dec 2023 11:01:03 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,24 +66,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/4] dts: iot2050: Support IOT2050-SM variant
+Subject: Re: [PATCH v3 4/6] arm64: dts: qcom: qcs8550: introduce qcs8550 dtsi
 Content-Language: en-US
-To: Jan Kiszka <jan.kiszka@siemens.com>, Nishanth Menon <nm@ti.com>,
- Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Bao Cheng Su <baocheng.su@siemens.com>,
- Chao Zeng <chao.zeng@siemens.com>
-Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, Li Hua Qian <huaqian.li@siemens.com>
-References: <cover.1702917360.git.jan.kiszka@siemens.com>
- <11e0b0c8b828254567a8ff89820c067cacad2150.1702917360.git.jan.kiszka@siemens.com>
- <8b3daa3c-dbf8-4286-b04e-011cd9b0efa5@linaro.org>
- <4c31adc5-3fc5-47bc-9766-6d3d1eeddb65@siemens.com>
- <fbb29d81-9ea0-4468-ad47-f6668c2be277@linaro.org>
- <de3f4778-51d6-48ab-9d4d-451f2ba01a3c@siemens.com>
- <3d2662be-3a55-4390-bd2a-cfa5cc53510f@linaro.org>
- <ef5a6cf0-4350-483d-a1e9-ce8b0ef71280@siemens.com>
+To: "Aiqun Yu (Maria)" <quic_aiquny@quicinc.com>,
+ Tengfei Fan <quic_tengfan@quicinc.com>, andersson@kernel.org,
+ konrad.dybcio@linaro.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20231219005007.11644-1-quic_tengfan@quicinc.com>
+ <20231219005007.11644-5-quic_tengfan@quicinc.com>
+ <ec730ce7-2021-4cad-97e6-0a86c6063533@linaro.org>
+ <cd5a0140-295a-4f48-a378-3c2b8be0f499@quicinc.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -129,38 +123,76 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <ef5a6cf0-4350-483d-a1e9-ce8b0ef71280@siemens.com>
+In-Reply-To: <cd5a0140-295a-4f48-a378-3c2b8be0f499@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 19/12/2023 10:54, Jan Kiszka wrote:
->>>> You mean label. Why node names became the ABI? Which interface exposes them?
->>>
->>> root@iot2050-debian:~# ls -l /sys/class/leds/
->>> total 0
->>> lrwxrwxrwx 1 root root 0 Dec 19 08:55 mmc0:: -> ../../devices/platform/bus@100000/4fa0000.mmc/leds/mmc0::
->>> lrwxrwxrwx 1 root root 0 Dec 19 08:55 mmc1:: -> ../../devices/platform/bus@100000/4f80000.mmc/leds/mmc1::
->>> lrwxrwxrwx 1 root root 0 Dec 14 21:12 status-led-green -> ../../devices/platform/leds/leds/status-led-green
->>> lrwxrwxrwx 1 root root 0 Dec 19 08:55 status-led-red -> ../../devices/platform/leds/leds/status-led-red
->>> lrwxrwxrwx 1 root root 0 Dec 19 08:55 user-led1-green -> ../../devices/platform/leds/leds/user-led1-green
->>> lrwxrwxrwx 1 root root 0 Dec 19 08:55 user-led1-red -> ../../devices/platform/leds/leds/user-led1-red
->>> lrwxrwxrwx 1 root root 0 Dec 19 08:55 user-led2-green -> ../../devices/platform/leds/leds/user-led2-green
->>> lrwxrwxrwx 1 root root 0 Dec 19 08:55 user-led2-red -> ../../devices/platform/leds/leds/user-led2-red
->>
->> I replied too fast previous and did not include answer here:
->>
->> You have label for that... Somehow all these nodes are half-baked,
->> without all the expected properties and now you call node name as ABI.
->> The node name is not the ABI.
+On 19/12/2023 10:57, Aiqun Yu (Maria) wrote:
 > 
-> Well, existing userspace uses those names, and adding the properties
-> would break that interface. Now, does Linux do that?
+> 
+> On 12/19/2023 3:02 PM, Krzysztof Kozlowski wrote:
+>> On 19/12/2023 01:50, Tengfei Fan wrote:
+>>> QCS8550 is derived from SM8550, it is mainly used in IoT scenarios.
+>>
+>> What are the differences? You need to describe the hardware, you have
+>> entire commit msg for something useful which will avoid such comments
+>> from reviewers.
+>>
+>>>
+>>> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
+>>> ---
+>>>   arch/arm64/boot/dts/qcom/qcs8550.dtsi | 6 ++++++
+>>>   1 file changed, 6 insertions(+)
+>>>   create mode 100644 arch/arm64/boot/dts/qcom/qcs8550.dtsi
+>>>
+>>> diff --git a/arch/arm64/boot/dts/qcom/qcs8550.dtsi b/arch/arm64/boot/dts/qcom/qcs8550.dtsi
+>>> new file mode 100644
+>>> index 000000000000..254657f46c5e
+>>> --- /dev/null
+>>> +++ b/arch/arm64/boot/dts/qcom/qcs8550.dtsi
+>>> @@ -0,0 +1,6 @@
+>>> +// SPDX-License-Identifier: BSD-3-Clause
+>>> +/*
+>>> + * Copyright (c) 2023, Qualcomm Innovation Center, Inc. All rights reserved.
+>>> + */
+>>> +
+>>> +#include "sm8550.dtsi"
+>>
+>> This is a weird file. I thought qcs8550 has differences from sm8550,
+>> e.g. lack of modem, so why do you claim you have here MPSS?
+> MPSS here in qcs8550 is a GPS only MPSS.
 
-I don't think you understood the concept. There is no change for
-userspace. Same interface, same names. No ABI break.
+Is it different or the same? Is the interface the same? So many
+questions and so little information. You have entire commit msg to
+explain this.
 
-Anyway, changing them is not part of this patchset since these are not
-new nodes.
+> 
+> QCS8550 will have a different firmware release with sm8550, and it will 
+> have different memory reserved for the firmware to be used.
+> While firmware release along with memory map was not settled down yet.
+> That's why currently qcs8550.dtsi is an "empty file" and only include 
+> sm8550.dtsi. As long as the firmware release is settled down, we will 
+> have more detailed different node here.
+
+So the DTS is not really usable now?
+
+> 
+> By the way, RB5 gen2 will also relies on the current qcs8550.dtsi, since 
+> it is using the same qcs8550 soc, and will use the same firmware release.
+> 
+> We have patch version2 remove the qcs8550.dtsi, and have SOM dtsi 
+> qcs8550-aim300.dtsi include the sm8550.dtsi. While after discussion, our 
+> understanding is that we can have an qcs8550.dtsi like this. Feel free 
+> to let us know if it is not right understanding.
+> 
+>>
+>> It's really confusing now.
+> 
+> We can have a syncup to clear the confusing point if needed. :)
+>>
+
+The code and commit msg are confusing. I need to keep asking you to get
+any information.
 
 Best regards,
 Krzysztof
