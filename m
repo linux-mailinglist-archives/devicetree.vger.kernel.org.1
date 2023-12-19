@@ -1,208 +1,169 @@
-Return-Path: <devicetree+bounces-27023-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27024-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9CF46818E49
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 18:38:51 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 04C7F818E50
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 18:40:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 15AB21F25EDF
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 17:38:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B08AE2817BB
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 17:40:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A97E631755;
-	Tue, 19 Dec 2023 17:38:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF3862C841;
+	Tue, 19 Dec 2023 17:40:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b="1PQkSO/1";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="FYaEq0od"
+	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="Q/2bEyvg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from wout5-smtp.messagingengine.com (wout5-smtp.messagingengine.com [64.147.123.21])
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F3263174A;
-	Tue, 19 Dec 2023 17:38:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arndb.de
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-	by mailout.west.internal (Postfix) with ESMTP id D58053200A07;
-	Tue, 19 Dec 2023 12:38:42 -0500 (EST)
-Received: from imap51 ([10.202.2.101])
-  by compute5.internal (MEProxy); Tue, 19 Dec 2023 12:38:43 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-	:cc:content-type:content-type:date:date:from:from:in-reply-to
-	:in-reply-to:message-id:mime-version:references:reply-to:subject
-	:subject:to:to; s=fm1; t=1703007522; x=1703093922; bh=NZGyZihxFa
-	h0LL7yYJRdhv/PPbzAuX/RXJJmr8N6IHg=; b=1PQkSO/1PQdZRqyoCNcqArta9n
-	Ec305g4d+0BssKdPN8wGztEY33kNNdnhhBFmkvfaGLW7TaslN9Cv6i6bwtz+gSFl
-	SejRQ2neCctLguXSRp2qdqAmVJGNCqALR8qdIknw0lfrwqeqcC0z0QCoLAPlISUX
-	v63aJxujrVJ1I2bPt9IFwpxZYbo+zr4mXz7SBFYGkzC6bFVTCigOOSxopJsVrnya
-	57VglgS6xgJcIqwDd4zLNp4QWuCFSkm3Eb8KpaHvb2ERwp5uiVEJ65Bwnspy09O7
-	FnxQwSLq3q9mOf7jYSwMYy/u+hsRRX7qeuW5wmyYmglwihoz+p/2lr7ySVjw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-type:content-type:date:date
-	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-	:message-id:mime-version:references:reply-to:subject:subject:to
-	:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-	fm2; t=1703007522; x=1703093922; bh=NZGyZihxFah0LL7yYJRdhv/PPbzA
-	uX/RXJJmr8N6IHg=; b=FYaEq0odw552hYEyGxn66AqospWQNmq2tOXybUDjJTqL
-	AZWowKlaEbI30KaIFk77Zz5e6XKxD8Yw8bSqJx4/f3nwHV3h3xj1v/HMQzZO2wJW
-	r1AUFjH1dkjlc8Mw+ezNh0DyKQOZwI5HLSBg2wcnolpREJManunxzJXAMjlbEHKE
-	+fp1iMqG8GoI9of3BotOoNp61V4al81ppocF6gPU8ynL9fKWgru5RsKFuFXT/bMD
-	gplFcRqfNIs+54adFQ53zvBbDp0fB8FMbi7L+SIt+8amn9EM8E5YgsQ8cG0PAH/J
-	iFwbMbMqNgvP+ZRGEVdomn40De4vnq8IRbliG2ybsw==
-X-ME-Sender: <xms:IdWBZbK5tXBepbZsjjh6J30xz7PbZzzob0kOp89V7hXZ--KGZMUvXg>
-    <xme:IdWBZfIYRBZAmZzKjIVpCpRRzgXxw3gAGe_bQjsH7pk4idvwjg2JQ1MbVa-kBLPdC
-    6KMgLlqQXTpH4c4f_I>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvkedrvddutddguddtfecutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
-    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
-    enucfjughrpefofgggkfgjfhffhffvvefutgesthdtredtreertdenucfhrhhomhepfdet
-    rhhnugcuuegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrg
-    htthgvrhhnpeffheeugeetiefhgeethfejgfdtuefggeejleehjeeutefhfeeggefhkedt
-    keetffenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
-    grrhhnugesrghrnhgusgdruggv
-X-ME-Proxy: <xmx:IdWBZTtj4HtLvhrVXyvMx93jLyQaFSiLmwsrB9d_ECv2JpXffj0rnQ>
-    <xmx:IdWBZUau-EAEnzxeyixGrsspBAtKPp0HVS8N03vMwnp68xmEW16o0g>
-    <xmx:IdWBZSbcQK_WUf_PIckvV60woL_K7-85GuMxz9nNwQckV-SzxvxBnw>
-    <xmx:ItWBZXPvrJl1BdYOKERUaSECLFW36Aatgt016P0ZAL0n1dTgfqCQSQ>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-	id B655CB6008F; Tue, 19 Dec 2023 12:38:41 -0500 (EST)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.9.0-alpha0-1350-g1d0a93a8fb-fm-20231218.001-g1d0a93a8
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C486731A71
+	for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 17:40:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
+Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 3E8B63F2C9
+	for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 17:39:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+	s=20210705; t=1703007598;
+	bh=5lC8up460sffE6lEtHTKhMldznfJD/U8bnCN2AOssbw=;
+	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
+	 To:Cc:Content-Type;
+	b=Q/2bEyvgF5s94CKiZDa8SvGYclCMz/j2EuXkk4C6Z7l2OdvFVUNAUuGiNH8D+rlEz
+	 2xAg9ZS4kFFfYMIvnZ/NoV8VYK+ddmyONWjvkvAZoORR3fsCflka4T+el4uqvOnUxA
+	 5vU/Bip0Pu7zpIw9jBQWkFXtP5oOnwNso4N8nlagWVXj0OZQZz21G6FP4HjQW1M0wa
+	 v7zCC+xVZi6uHMb4m0SiIGsV4Uw8KVGQorSQGvjUMxVFVeqbQq35yyyW0b6NcUynUG
+	 TYMvumnuc6V0cbHC3WRRonV4BSvVH0kM4oc58RmyL0ocf+OkChadFnTguPLAkQ379K
+	 rpgRCw+0lCn5A==
+Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-77f72cf8330so729936385a.3
+        for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 09:39:58 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1703007595; x=1703612395;
+        h=cc:to:subject:message-id:date:mime-version:references:in-reply-to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=5lC8up460sffE6lEtHTKhMldznfJD/U8bnCN2AOssbw=;
+        b=UDFUl0Lo/Jln0VTTXWy2kb6g3+7+qeLsVinw6ePMDzOshkvP9QT90S8v9e/wyyoOaF
+         7qZNIAar8N40L/lf28ZuQpMJwNj7tkqCMru6yYAbHBrLvBxLZKvYKNSem5rkGgb3CCtc
+         Y6HczidQ3TtbvAZP17GhqVsIKoyRHFl2eaov2NpfZ/qS+lTKe0H6Bg3f+jNF66XWlanx
+         HVxIUpJ3NIPbiIFpuMmW/zV/g7/aEmlyVHz2cIHYibefH2HzvztHI/MrzHXS4ZJFjwKC
+         9FVrfYoWZ1CtI0wlqg3Gw6DESe3AGk8Y6EA4+e4GaIxo5/h1D2ZEr4rG1Mv+ODglTyxJ
+         WAWQ==
+X-Gm-Message-State: AOJu0Yzlq2AZ1nVTYsgETZ4ARggappiUqHzKnKfUJAL+JXmKGlbGuk74
+	7vzqusPbjsiX79RrQIw+1dQY/1xFUFUfFG+ij9YjwB8+NGl20i6aKjxQcj8FvMxDjhJv6Ze7VAA
+	Qf+LJtm9i+3LbVEN0pfpJpYDY6IIh0PxGZ2rH2MgTZyT8YROJ+8DChqc=
+X-Received: by 2002:a05:622a:19a9:b0:425:a117:90ec with SMTP id u41-20020a05622a19a900b00425a11790ecmr23114936qtc.66.1703007595444;
+        Tue, 19 Dec 2023 09:39:55 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHDTi89p4XgTEJbjNfwK+23dRywS9hQShScl1IpS3D4x4FXvIT3lk//qypTp5LCDwvH0SoDqu6Meoi8IDWfUkI=
+X-Received: by 2002:a05:622a:19a9:b0:425:a117:90ec with SMTP id
+ u41-20020a05622a19a900b00425a11790ecmr23114920qtc.66.1703007595184; Tue, 19
+ Dec 2023 09:39:55 -0800 (PST)
+Received: from 348282803490 named unknown by gmailapi.google.com with
+ HTTPREST; Tue, 19 Dec 2023 12:39:54 -0500
+From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+In-Reply-To: <d35d3cf480064c69b1125ba07d615446@EXMBX066.cuchost.com>
+References: <20231206115000.295825-1-jeeheng.sia@starfivetech.com>
+ <20231206115000.295825-7-jeeheng.sia@starfivetech.com> <CAJM55Z_VgBGvCPuvwmQahMcMfuWKnOKpZ9bBbbhei_Teu5Apeg@mail.gmail.com>
+ <9ae86c6786bc4ac7b93c971ba00084a6@EXMBX066.cuchost.com> <CAJM55Z9GVFGuwqe=zLXQvBwDfVSz4eA2EXDd4sqWVCKJF2J+fg@mail.gmail.com>
+ <d35d3cf480064c69b1125ba07d615446@EXMBX066.cuchost.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Message-Id: <fcb410dd-f042-4469-9319-040c26099b2b@app.fastmail.com>
-In-Reply-To: <20231218061201.98136-2-joshua.yeong@starfivetech.com>
-References: <20231218061201.98136-1-joshua.yeong@starfivetech.com>
- <20231218061201.98136-2-joshua.yeong@starfivetech.com>
-Date: Tue, 19 Dec 2023 17:38:23 +0000
-From: "Arnd Bergmann" <arnd@arndb.de>
-To: "Joshua Yeong" <joshua.yeong@starfivetech.com>,
- jeeheng.sia@starfivetech.com, leyfoon.tan@starfivetech.com,
- "Jassi Brar" <jassisinghbrar@gmail.com>, "Rob Herring" <robh+dt@kernel.org>,
- krzysztof.kozlowski+dt@linaro.org, "Conor Dooley" <conor+dt@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/3] mailbox: starfive: Add StarFive Meu Mailbox Driver
-Content-Type: text/plain
+Mime-Version: 1.0
+Date: Tue, 19 Dec 2023 12:39:54 -0500
+Message-ID: <CAJM55Z_XZVBKr05X4QeCeDO_iMZh-FbKsikcNsDPK7iKuVEodw@mail.gmail.com>
+Subject: RE: [PATCH v1 06/16] clk: starfive: Add JH8100 System clock generator driver
+To: JeeHeng Sia <jeeheng.sia@starfivetech.com>, 
+	Emil Renner Berthing <emil.renner.berthing@canonical.com>, "kernel@esmil.dk" <kernel@esmil.dk>, 
+	"conor@kernel.org" <conor@kernel.org>, "robh+dt@kernel.org" <robh+dt@kernel.org>, 
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>, 
+	"paul.walmsley@sifive.com" <paul.walmsley@sifive.com>, "palmer@dabbelt.com" <palmer@dabbelt.com>, 
+	"aou@eecs.berkeley.edu" <aou@eecs.berkeley.edu>, "mturquette@baylibre.com" <mturquette@baylibre.com>, 
+	"sboyd@kernel.org" <sboyd@kernel.org>, "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>, 
+	Hal Feng <hal.feng@starfivetech.com>, Xingyu Wu <xingyu.wu@starfivetech.com>
+Cc: "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
+	"linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>, Leyfoon Tan <leyfoon.tan@starfivetech.com>
+Content-Type: text/plain; charset="UTF-8"
 
-On Mon, Dec 18, 2023, at 06:11, Joshua Yeong wrote:
-> This patch adds support for the StarFive Meu Mailbox driver. This enables
-> communication using mailbox doorbell between AP and SCP cores.
+JeeHeng Sia wrote:
+>
+>
+> > -----Original Message-----
+> > From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+> > Sent: Wednesday, December 13, 2023 7:57 PM
+> > To: JeeHeng Sia <jeeheng.sia@starfivetech.com>; Emil Renner Berthing <emil.renner.berthing@canonical.com>; kernel@esmil.dk;
+> > conor@kernel.org; robh+dt@kernel.org; krzysztof.kozlowski+dt@linaro.org; paul.walmsley@sifive.com; palmer@dabbelt.com;
+> > aou@eecs.berkeley.edu; mturquette@baylibre.com; sboyd@kernel.org; p.zabel@pengutronix.de; Hal Feng
+> > <hal.feng@starfivetech.com>; Xingyu Wu <xingyu.wu@starfivetech.com>
+> > Cc: linux-riscv@lists.infradead.org; devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; linux-clk@vger.kernel.org; Leyfoon Tan
+> > <leyfoon.tan@starfivetech.com>
+> > Subject: RE: [PATCH v1 06/16] clk: starfive: Add JH8100 System clock generator driver
+> >
+> > JeeHeng Sia wrote:
+> > > > -----Original Message-----
+> > > > From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+> > > > Sent: Saturday, December 9, 2023 12:25 AM
+> > > > To: JeeHeng Sia <jeeheng.sia@starfivetech.com>; kernel@esmil.dk; conor@kernel.org; robh+dt@kernel.org;
+> > > > krzysztof.kozlowski+dt@linaro.org; paul.walmsley@sifive.com; palmer@dabbelt.com; aou@eecs.berkeley.edu;
+> > > > mturquette@baylibre.com; sboyd@kernel.org; p.zabel@pengutronix.de; emil.renner.berthing@canonical.com; Hal Feng
+> > > > <hal.feng@starfivetech.com>; Xingyu Wu <xingyu.wu@starfivetech.com>
+> > > > Cc: linux-riscv@lists.infradead.org; devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; linux-clk@vger.kernel.org; Leyfoon
+> > Tan
+> > > > <leyfoon.tan@starfivetech.com>
+> > > > Subject: Re: [PATCH v1 06/16] clk: starfive: Add JH8100 System clock generator driver
+> > > >
+> > > > Sia Jee Heng wrote:
+> > > > > Add support for JH8100 System clock generator.
+> > > > >
+> > > > > Signed-off-by: Sia Jee Heng <jeeheng.sia@starfivetech.com>
+> > > > > Reviewed-by: Ley Foon Tan <leyfoon.tan@starfivetech.com>
+> > > > > ---
+> > > > >  MAINTAINERS                                   |   8 +
+> > > > >  drivers/clk/starfive/Kconfig                  |   9 +
+> > > > >  drivers/clk/starfive/Makefile                 |   1 +
+> > > > >  drivers/clk/starfive/clk-starfive-common.h    |   9 +-
+> > > > >  drivers/clk/starfive/jh8100/Makefile          |   3 +
+> > > > >  .../clk/starfive/jh8100/clk-starfive-jh8100.h |  11 +
+> > > > >  drivers/clk/starfive/jh8100/clk-sys.c         | 455 ++++++++++++++++++
+> > > > >  7 files changed, 495 insertions(+), 1 deletion(-)
+> > > > >  create mode 100644 drivers/clk/starfive/jh8100/Makefile
+> > > > >  create mode 100644 drivers/clk/starfive/jh8100/clk-starfive-jh8100.h
+> > > > >  create mode 100644 drivers/clk/starfive/jh8100/clk-sys.c
+> > ...
+> > > > > diff --git a/drivers/clk/starfive/Makefile b/drivers/clk/starfive/Makefile
+> > > > > index 012f7ee83f8e..6cb3ce823330 100644
+> > > > > --- a/drivers/clk/starfive/Makefile
+> > > > > +++ b/drivers/clk/starfive/Makefile
+> > > > > @@ -10,3 +10,4 @@ obj-$(CONFIG_CLK_STARFIVE_JH7110_AON)	+= clk-starfive-jh7110-aon.o
+> > > > >  obj-$(CONFIG_CLK_STARFIVE_JH7110_STG)	+= clk-starfive-jh7110-stg.o
+> > > > >  obj-$(CONFIG_CLK_STARFIVE_JH7110_ISP)	+= clk-starfive-jh7110-isp.o
+> > > > >  obj-$(CONFIG_CLK_STARFIVE_JH7110_VOUT)	+= clk-starfive-jh7110-vout.o
+> > > > > +obj-$(CONFIG_CLK_STARFIVE_JH8100_SYS)	+= jh8100/
+> > > >
+> > > > I don't really see why do you need a special subdirectory for the JH8100? The
+> > > > JH7110 drivers do fine without it.
+> > > Each subfolder can represent a different platform, making it easier to
+> > > locate and maintain platform-specific code. Since the code is expected
+> > > to grow in the future, let's start organizing it in a folder-based structure
+> > > for easier maintenance at a later stage.
+> >
+> > Yes, but that's not what you're doing here. You're making just one of the 3
+> > almost identical drivers be different for no good reason.
+> I will restructure it for the other 2 platforms.
 
-I think the naming here is a bit confusing. As far as I can tell, this
-is not a mailbox at all but just a doorbell, so maybe clarify that in the
-wording.
+That would be less bad, but you still haven't explained why you need to move
+everything around like that:
+https://lore.kernel.org/linux-riscv/CAJM55Z_3Mty2LftPVkQC1wbwtGeznMMAk9mAjH_GoNuL7CKtaQ@mail.gmail.com/
 
-It could be turned into a mailbox if you add a shared memory segment of
-course, but neither the driver nor the binding specifies how to use that.
+I don't think just "too many files" is a very good argument here. Just look at
+drivers/clk/sunxi
 
-> +config STARFIVE_MEU_MBOX
-> +	tristate "Starfive MEU Mailbox"
-
-Please spell out MEU here, I don't think that is a well understood acronynm,
-at least I have never heard of it.
-
-> +	depends on OF
-> +	depends on SOC_STARFIVE || COMPILE_TEST
-> +	help
-> +	  Say Y here if you want to build the Starfive MEU mailbox controller
-> +	  driver.
-> +
-> +	  The StarFive mailbox controller has 2 channels. Each channel has a
-> +	  pair of Tx/Rx link and each link has 31 slots/doorbells.
-
-What is the significance of the "channels" as opposed to "slots"?
-
-The binding seems to indicate that there are just 62 fully equal
-doorbell channels as far as consumers are concerned. For efficiency
-one might want to of course only use one doorbell per channel here
-to avoid the interrupt sharing.
-
-> +static inline struct mbox_chan *
-> +meu_db_mbox_to_channel(struct mbox_controller *mbox, unsigned int 
-> pchan,
-> +		       unsigned int doorbell)
-> +{
-> +	struct meu_db_channel *chan_info;
-> +	int i;
-> +
-> +	for (i = 0; i < mbox->num_chans; i++) {
-> +		chan_info = mbox->chans[i].con_priv;
-> +		if (chan_info && chan_info->pchan == pchan &&
-> +		    chan_info->doorbell == doorbell)
-> +			return &mbox->chans[i];
-> +	}
-> +
-> +	return NULL;
-> +}
-
-If the number of doorbells is known in advance, maybe use
-use it as the array index here?
-
-> +static void meu_db_mbox_clear_irq(struct mbox_chan *chan)
-> +{
-> +	struct meu_db_channel *chan_info = chan->con_priv;
-> +	void __iomem *base = chan_info->meu->mlink[chan_info->pchan].rx_reg;
-> +
-> +	writel_relaxed(BIT(chan_info->doorbell), base + CHAN_CLR_OFFSET);
-> +}
-
-Any reason to use writel_relaxed() instead of writel() here? Please
-add a comment if this is necessary, otherwise this risks adding
-races if someone tries to use the doorbell in combination with
-shared memory.
-
-
-> +static struct mbox_chan *
-> +meu_db_mbox_irq_to_channel(struct starfive_meu *meu, unsigned int 
-> pchan)
-> +{
-> +	void __iomem *base = meu->mlink[pchan].rx_reg;
-> +	struct mbox_controller *mbox = &meu->mbox;
-> +	struct mbox_chan *chan = NULL;
-> +	unsigned int doorbell;
-> +	unsigned long bits;
-> +
-> +	bits = FIELD_GET(CHAN_RX_DOORBELL, readl_relaxed(base + 
-> CHAN_RX_STAT_OFFSET));
-> +	if (!bits)
-> +		/* No IRQs fired in specified physical channel */
-> +		return NULL;
-> +
-> +	/* An IRQ has fired, find the associated channel */
-> +	for (doorbell = 0; bits; doorbell++) {
-> +		if (!test_and_clear_bit(doorbell, &bits))
-> +			continue;
-
-There is no need to use atomic updates on stack variables. Just
-use for_each_set_bit() to do the loop here.
-
-> +		chan = meu_db_mbox_to_channel(mbox, pchan, doorbell);
-> +		if (chan)
-> +			break;
-> +
-> +		/* Clear IRQ for unregistered doorbell */
-> +		writel_relaxed(BIT(doorbell), base + CHAN_CLR_OFFSET);
-
-Again, add a comment about the use of _relaxed() here.
-
-
-> +static bool meu_db_last_tx_done(struct mbox_chan *chan)
-> +{
-> +	struct meu_db_channel *chan_info = chan->con_priv;
-> +	void __iomem *base = chan_info->meu->mlink[chan_info->pchan].tx_reg;
-> +
-> +	if (readl_relaxed(base + CHAN_TX_STAT_OFFSET) & 
-> BIT(chan_info->doorbell))
-
-The readl_relaxed() again prevents the use of shared memory, so
-change it to a normal readl() or add a comment about how ordering
-is maintained.
-
-     Arnd
+/Emil
 
