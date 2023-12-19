@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-26822-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26823-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id C13338183D7
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 09:49:59 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F4328183DF
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 09:51:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 266C1B23016
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 08:49:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 522C81C21400
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 08:51:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8462911729;
-	Tue, 19 Dec 2023 08:48:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 742B711C89;
+	Tue, 19 Dec 2023 08:51:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gtMjDmmK"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RUwQQivn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A52B134D3
-	for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 08:48:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E87E911C9D
+	for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 08:51:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-2cc3f5e7451so50159781fa.2
-        for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 00:48:12 -0800 (PST)
+Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-a233a60f8feso305952466b.0
+        for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 00:51:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702975690; x=1703580490; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1702975894; x=1703580694; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=J2mdxIH6SwaV5wLRowQyUYSmtGsRKst3D4PQbdAQRMU=;
-        b=gtMjDmmKu1GSGnwdnwRbP35m7tDSMLG631tYhyZtRsjHGSmjaKxE3vYYDipQGmX9oV
-         QbzfzsEVj7kUPGl0e3gK/NDqoKKDj58LYTfS/Wm8ayssNE/pi0KsMUxbNnIca/F9Eat4
-         85ohSnGFaoo4gVlbjHH2GEu0FCSHXaDKnEdnwLjbR7Z+xNDompLVziVRtetDz+mUkoD9
-         UBe1+jFk21mfnMnNMznInrUxk1UF0coftvWNqSEIsP4vlGfTt7w0TXgIgtuMCOvO28uj
-         2rdShvhxyeG5g00IzMsGUE8wzqz6DgJZ2kmM1tVoAlb9jXIYM/C8XyR3p84XnQBo9yey
-         g+/Q==
+        bh=rGIe2EK7hNusSYJr/yUJ1iPMkVap71w4BkhPzGCj38s=;
+        b=RUwQQivnQXJA6ENCk8/aHLSrw3GV/1nj4Ripo0dALq2RyB+whWZR95HE0uPzrIkodu
+         EkaQzXAUrIkr7KPOEI8NDl7l8hJ1CWVPzNUx+JaI/CPoS72r7OLxRGVMvfKFhCvF3UH1
+         ChfXvPMhuWApTCnOu/eVoaKCSPRq/r89EFEfsa20J6nmHn7X4pEA/8XQhLIwkp85IkdX
+         CAqJFDdTq3mm2Czw9tsayNs+U2IeDzEF0s7CABsUc6QFIxO8xAeENU6lPBD0q2eDSkLA
+         T/YKhsPkSpEmcaZNAswpfwaEGRUvVhuPm0kNbGVttsbt6IGiD34bWY+eLHUCW90Ox0Ob
+         BdZg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702975690; x=1703580490;
+        d=1e100.net; s=20230601; t=1702975894; x=1703580694;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=J2mdxIH6SwaV5wLRowQyUYSmtGsRKst3D4PQbdAQRMU=;
-        b=KTWgzgUfN2n/9qPgOHvKgfF8OsWtGAs0c7fnirlVviPGrQzkCOZ9P7tWZZ474YAwtW
-         EZO56+eJ23IJRrAyfp08XRd7NEVsOPGMUzStPAH5E6EmzxrHFbUA+refl5ZP05WJLWBl
-         oZFXafYiJm/YOeH8lneZk8ho8YqOjdJprXE/EJT795HPCL+s+Jgkk+VDc24QrZ24yrOD
-         05XCeOn0h8zCcLf42c4GKTYgPAYxsvPIk+9X6XchpQb75A+F6K1g6pFWMDCuUnh3W9p3
-         8gZsbr8ANHF1kEimUVqeVPtJUbjlP1lJdpWaGKXMOOX8Sb41J1xwNai2afbwOLk11ggW
-         B6Kw==
-X-Gm-Message-State: AOJu0YzPqzPqhUJCCpDTyu7XqD1rZiUt/yDCo9lb6oOP5/f1M+JfYOBB
-	TRV8OogcBIw1+dZBaNhHGNvqFQ==
-X-Google-Smtp-Source: AGHT+IGjRRMHapmH8gfgShQO1nVf+WcloM6VGWz3/o4tsIMaS47VADmRI2ZtV9Cauacsb/q1gZz6GA==
-X-Received: by 2002:ac2:5ed0:0:b0:50e:274e:b880 with SMTP id d16-20020ac25ed0000000b0050e274eb880mr2027683lfq.72.1702975690535;
-        Tue, 19 Dec 2023 00:48:10 -0800 (PST)
+        bh=rGIe2EK7hNusSYJr/yUJ1iPMkVap71w4BkhPzGCj38s=;
+        b=AJqEDx1RYr1RxS0uwb/x62FyRot6Vggmdh8yc7Lb+O632n+roOuP4M+QrjRIX0hEXq
+         TFrpglDuRcARQUf/n0LXhjsLlWMQQX7eJVuIieI9OA4F3CK94pyZUTxumYuWKwJIrnOu
+         7VN48nXOU3LcsQCQpAkrWnwgWCuIJaSyhJ4ist4NrnYN8dCYcUvDN5Cex2EuXbntmMJN
+         Km+VIFtMQoiFtpP1Acr77T7t4mvjs9uBHyGRlzMiP7ETFj7JHmV6rl0hdQ7ML24OpOxq
+         RTq6t9FJzZo58kmALp5HwkB/svVWC/DgLQSPiTvjSpPbrI1ByLsQXsItaLosL3dx64S2
+         9WKg==
+X-Gm-Message-State: AOJu0YwJpi8Flp0tpTt5ft9OwNvwLvpj1RVvZZTc/4MwnSK5QgVdx5NU
+	Fvu9VNe5ufDPC3/v7AecDYQ+4Q==
+X-Google-Smtp-Source: AGHT+IE/uLtEN/FQI2tcw6havjOhmTS6nbfETIUblw3ZL/bE4vejZuPZaRPy5gLrnwq498fAk2CWpQ==
+X-Received: by 2002:a17:906:c29a:b0:a23:6c1a:d119 with SMTP id r26-20020a170906c29a00b00a236c1ad119mr833386ejz.124.1702975894309;
+        Tue, 19 Dec 2023 00:51:34 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id ll9-20020a170907190900b00a1cbb289a7csm15014494ejc.183.2023.12.19.00.48.08
+        by smtp.gmail.com with ESMTPSA id vc11-20020a170907d08b00b00a1ce58e9fc7sm15019716ejc.64.2023.12.19.00.51.32
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 19 Dec 2023 00:48:09 -0800 (PST)
-Message-ID: <fbb29d81-9ea0-4468-ad47-f6668c2be277@linaro.org>
-Date: Tue, 19 Dec 2023 09:48:07 +0100
+        Tue, 19 Dec 2023 00:51:33 -0800 (PST)
+Message-ID: <1fa6128f-03c1-4f41-8dff-4191893f460c@linaro.org>
+Date: Tue, 19 Dec 2023 09:51:31 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,20 +66,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/4] dts: iot2050: Support IOT2050-SM variant
+Subject: Re: [PATCH v3 1/2] dt-bindings: iio: dac: add MCP4821
 Content-Language: en-US
-To: Jan Kiszka <jan.kiszka@siemens.com>, Nishanth Menon <nm@ti.com>,
- Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
+To: Anshul Dalal <anshulusr@gmail.com>, linux-kernel@vger.kernel.org,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org
+Cc: Conor Dooley <conor+dt@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
  Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Bao Cheng Su <baocheng.su@siemens.com>,
- Chao Zeng <chao.zeng@siemens.com>
-Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, Li Hua Qian <huaqian.li@siemens.com>
-References: <cover.1702917360.git.jan.kiszka@siemens.com>
- <11e0b0c8b828254567a8ff89820c067cacad2150.1702917360.git.jan.kiszka@siemens.com>
- <8b3daa3c-dbf8-4286-b04e-011cd9b0efa5@linaro.org>
- <4c31adc5-3fc5-47bc-9766-6d3d1eeddb65@siemens.com>
+ linux-kernel-mentees@lists.linuxfoundation.org,
+ Shuah Khan <skhan@linuxfoundation.org>,
+ Conor Dooley <conor.dooley@microchip.com>
+References: <20231218164735.787199-1-anshulusr@gmail.com>
+ <f8aaf7b3-fa17-495f-9c1c-9ddf6fb41d8a@linaro.org>
+ <6c1e13b3-28d2-42fc-b9c2-dcfc4793fc39@gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -125,52 +124,38 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <4c31adc5-3fc5-47bc-9766-6d3d1eeddb65@siemens.com>
+In-Reply-To: <6c1e13b3-28d2-42fc-b9c2-dcfc4793fc39@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 19/12/2023 09:22, Jan Kiszka wrote:
->>
->>> +			gpios = <&wkup_gpio0 53 GPIO_ACTIVE_HIGH>;
->>
->> Ditto
->>
-> 
-> This is adjusting the existing LED nodes in k3-am65-iot2050-common.dtsi,
-> not introducing new ones. We can add the color properties in a separate
-
-
-Then why aren't you overriding by phandle/label?
-
-> patch, but the node names are now part of the kernel ABI. Changing them
-> would break existing userland.
-
-You mean label. Why node names became the ABI? Which interface exposes them?
-
-> 
->>
+On 19/12/2023 09:42, Anshul Dalal wrote:
+> On 12/19/23 13:29, Krzysztof Kozlowski wrote:
+>> On 18/12/2023 17:47, Anshul Dalal wrote:
 >>> +
->>> +&dwc3_0 {
->>> +	assigned-clock-parents = <&k3_clks 151 4>,  /* set REF_CLK to 20MHz i.e. PER0_PLL/48 */
->>> +				 <&k3_clks 151 9>;  /* set PIPE3_TXB_CLK to CLK_12M_RC/256 (for HS only) */
->>> +	/delete-property/ phys;
->>> +	/delete-property/ phy-names;
+>>> +  reg:
+>>> +    maxItems: 1
+>>> +
+>>> +  vdd-supply: true
+>>> +
+>>> +  ldac-gpios:
+>>> +    description: |
+>>> +      Active Low LDAC (Latch DAC Input) pin used to update the DAC output.
+>>> +    maxItems: 1
+>>> +
+>>> +  shdn-gpios:
 >>
->> If your board need to remove phys from the SoC node, something is wrong.
->> Either your board or SoC.
+>> Open gpio-consumer-common.yaml and look at entries there.
 >>
->> Any removal of properties in DTS is weird and unexpected. It deserves
->> comments.
 > 
-> This goes along disabling USB3 which is by default enabled via
-> k3-am65-iot2050-common-pg2.dtsi
+> Should I name the property `powerdown-gpios` instead of `shdn-gpios` as
+> specified in gpio-consumer-common.yaml?
 
-Isn't this mistake? Common part enables only these pieces which are
-working in common hardware SoM. If your common part of hardware, which
-DTSI should represent, has USB3 then why is it being disabled here? If
-common hardware design does not have USB3, then why is it being enabled
-in DTSI?
-> 
+Yes. You can provide the name of actual pin in description.
+
+> Furthermore, do I need to add gpio-consumer-common.yaml as a ref?
+
+No.
+
 
 Best regards,
 Krzysztof
