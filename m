@@ -1,321 +1,291 @@
-Return-Path: <devicetree+bounces-26922-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26925-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7ABF818923
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 14:59:43 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B91E4818940
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 15:03:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4E7A61F25699
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 13:59:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 46ECD1F2216F
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 14:03:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD82A1A59A;
-	Tue, 19 Dec 2023 13:59:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA4F31A72F;
+	Tue, 19 Dec 2023 14:03:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="lelK8O7U"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCAEE1A58F;
-	Tue, 19 Dec 2023 13:59:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4B96E1FB;
-	Tue, 19 Dec 2023 06:00:18 -0800 (PST)
-Received: from [10.57.46.64] (unknown [10.57.46.64])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 75B113F5A1;
-	Tue, 19 Dec 2023 05:59:31 -0800 (PST)
-Message-ID: <987a101d-043e-4893-89c0-f9fcd46b5aeb@arm.com>
-Date: Tue, 19 Dec 2023 13:59:30 +0000
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17BF81C293;
+	Tue, 19 Dec 2023 14:03:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 3BJDDIeX021811;
+	Tue, 19 Dec 2023 14:02:58 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding:content-type; s=qcppdkim1; bh=BU3uM8A
+	63IB1WPc96Czhh7dV7ttEGA8DGJWsLmK/nok=; b=lelK8O7U8QjLC5gIGLcrfR/
+	I61jEvWoOPVETj9ZzSlSbzFjYi//UY0vWvu+e1QILWBnlavlfZM8AMZ3kVMcvQdC
+	10PtSrE5D8wbskew6z+aPpSMXBlqXcE67xfvTSAknR1K5mRm+YZxK2+ncIWdBsUK
+	3edF3WsaLnfCOKRW4+yV8HqZk+0Brf+26ZBk3QNyYGteZ4zxhRBsCburadCtaAea
+	VLyjhSVr+34H/wwxgTL5QFT9J15OJxqfgqtONBJh0NSh0QvYTm79euFT3STIeLH3
+	xN7lq3PuT1rVELl0N0ngFmvP6CxWpGgYHk64sd4dATgYmcEyhwbXd5FbKwGDHpQ=
+	=
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3v35tm941p-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 19 Dec 2023 14:02:57 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3BJE2kSc013865
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 19 Dec 2023 14:02:46 GMT
+Received: from akronite-sh-dev02.qualcomm.com (10.80.80.8) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Tue, 19 Dec 2023 06:02:43 -0800
+From: Luo Jie <quic_luoj@quicinc.com>
+To: <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
+        <mturquette@baylibre.com>, <sboyd@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <p.zabel@pengutronix.de>
+CC: <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <quic_srichara@quicinc.com>
+Subject: [PATCH v13 0/4] add clock controller of qca8386/qca8084
+Date: Tue, 19 Dec 2023 22:02:25 +0800
+Message-ID: <20231219140229.19062-1-quic_luoj@quicinc.com>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/8] coresight-tpda: Add support to configure CMB
- element
-Content-Language: en-GB
-From: Suzuki K Poulose <suzuki.poulose@arm.com>
-To: Tao Zhang <quic_taozha@quicinc.com>,
- Mathieu Poirier <mathieu.poirier@linaro.org>,
- Alexander Shishkin <alexander.shishkin@linux.intel.com>,
- Konrad Dybcio <konradybcio@gmail.com>, Mike Leach <mike.leach@linaro.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: Jinlong Mao <quic_jinlmao@quicinc.com>, Leo Yan <leo.yan@linaro.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, coresight@lists.linaro.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, Tingwei Zhang <quic_tingweiz@quicinc.com>,
- Yuanfang Zhang <quic_yuanfang@quicinc.com>,
- Trilok Soni <quic_tsoni@quicinc.com>, Song Chai <quic_songchai@quicinc.com>,
- linux-arm-msm@vger.kernel.org, andersson@kernel.org
-References: <1700533494-19276-1-git-send-email-quic_taozha@quicinc.com>
- <1700533494-19276-3-git-send-email-quic_taozha@quicinc.com>
- <88e51407-344e-4584-8711-29cc014c782b@arm.com>
-In-Reply-To: <88e51407-344e-4584-8711-29cc014c782b@arm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: ADfaI1dlGXf-e_aHMrCcWJTXVAKDpEQr
+X-Proofpoint-ORIG-GUID: ADfaI1dlGXf-e_aHMrCcWJTXVAKDpEQr
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-12-09_02,2023-12-07_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 mlxscore=0
+ lowpriorityscore=0 suspectscore=0 adultscore=0 spamscore=0 bulkscore=0
+ malwarescore=0 impostorscore=0 mlxlogscore=999 classifier=spam adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2311290000
+ definitions=main-2312190105
 
-On 18/12/2023 10:27, Suzuki K Poulose wrote:
-> On 21/11/2023 02:24, Tao Zhang wrote:
->> Read the CMB element size from the device tree. Set the register
->> bit that controls the CMB element size of the corresponding port.
->>
->> Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
->> Signed-off-by: Mao Jinlong <quic_jinlmao@quicinc.com>
->> ---
->>   drivers/hwtracing/coresight/coresight-tpda.c | 117 +++++++++++--------
->>   drivers/hwtracing/coresight/coresight-tpda.h |   6 +
->>   2 files changed, 74 insertions(+), 49 deletions(-)
->>
->> diff --git a/drivers/hwtracing/coresight/coresight-tpda.c 
->> b/drivers/hwtracing/coresight/coresight-tpda.c
->> index 5f82737c37bb..e3762f38abb3 100644
->> --- a/drivers/hwtracing/coresight/coresight-tpda.c
->> +++ b/drivers/hwtracing/coresight/coresight-tpda.c
->> @@ -28,24 +28,54 @@ static bool coresight_device_is_tpdm(struct 
->> coresight_device *csdev)
->>               CORESIGHT_DEV_SUBTYPE_SOURCE_TPDM);
->>   }
->> +static void tpdm_clear_element_size(struct coresight_device *csdev)
->> +{
->> +    struct tpda_drvdata *drvdata = dev_get_drvdata(csdev->dev.parent);
->> +
->> +    if (drvdata->dsb_esize)
->> +        drvdata->dsb_esize = 0;
->> +    if (drvdata->cmb_esize)
->> +        drvdata->cmb_esize = 0;
-> 
-> Why do we need the if (...) check here ?
-> 
->> +}
->> +
->> +static void tpda_set_element_size(struct tpda_drvdata *drvdata, u32 
->> *val)
->> +{
->> +
->> +    if (drvdata->dsb_esize == 64)
->> +        *val |= TPDA_Pn_CR_DSBSIZE;
->> +    else if (drvdata->dsb_esize == 32)
->> +        *val &= ~TPDA_Pn_CR_DSBSIZE;
->> +
->> +    if (drvdata->cmb_esize == 64)
->> +        *val |= FIELD_PREP(TPDA_Pn_CR_CMBSIZE, 0x2);
->> +    else if (drvdata->cmb_esize == 32)
->> +        *val |= FIELD_PREP(TPDA_Pn_CR_CMBSIZE, 0x1);
->> +    else if (drvdata->cmb_esize == 8)
->> +        *val &= ~TPDA_Pn_CR_CMBSIZE;
->> +}
->> +
-> 
-> 
->>   /*
->> - * Read the DSB element size from the TPDM device
->> + * Read the element size from the TPDM device
->>    * Returns
->> - *    The dsb element size read from the devicetree if available.
->> + *    The element size read from the devicetree if available.
->>    *    0 - Otherwise, with a warning once.
-> 
-> This doesn't match the function ? It return 0 on success and
-> error (-EINVAL) on failure ?
-> 
->>    */
->> -static int tpdm_read_dsb_element_size(struct coresight_device *csdev)
->> +static int tpdm_read_element_size(struct tpda_drvdata *drvdata,
->> +                  struct coresight_device *csdev)
->>   {
->> -    int rc = 0;
->> -    u8 size = 0;
->> -
->> -    rc = fwnode_property_read_u8(dev_fwnode(csdev->dev.parent),
->> -            "qcom,dsb-element-size", &size);
->> +    int rc = -EINVAL;
->> +
->> +    if (!fwnode_property_read_u8(dev_fwnode(csdev->dev.parent),
->> +            "qcom,dsb-element-size", &drvdata->dsb_esize))
->> +        rc = 0;
->> +    if (!fwnode_property_read_u8(dev_fwnode(csdev->dev.parent),
->> +            "qcom,cmb-element-size", &drvdata->cmb_esize))
+qca8xxx is 4 * 2.5GBaseT ports chip, working as switch mode
+named by qca8386, or working as PHY mode named by qca8084,
+clock hardware reigster is accessed by MDIO bus.
 
-At this point we have the csdev->dev.parent as the TPDM device and with:
+This patch series add the clock controller of qca8363/qca8084,
+and add the clock ops clk_branch2_prepare_ops to avoid spin lock
+used during the clock operation of qca8k clock controller where
+the sleep happens when accessing clock control register by MDIO
+bus.
 
-#include <coresight-tpdm.h>
+qca8xxx clock controller driver depends on the patch set below for the
+freq_multi_tbl used for the same frequency reached by multiple configs.
+https://lore.kernel.org/lkml/20231124151847.1915-3-ansuelsmth@gmail.com/
 
-	struct tpdm_drvdata *tpdm_data = get_drvdata(csdev->dev.parent);
+Changes in v2:
+	* remove clock flag CLK_ENABLE_MUTEX_LOCK.
+	* add clock ops clk_branch2_qca8k_ops.
+	* improve yaml file for fixing dtschema warnings.
+	* enable clock controller driver in defconfig.
 
-	if (tpdm_has_cmb(tpdm_data)) {
-		rc = fwnode_...(... "qcom,cmb-element-size"...)
-	}
+Changes in v3:
+	* rename clk_branch2_qca8k_ops to clk_branch2_mdio_ops.
+	* fix review comments on yaml file.
+	* use dev_err_probe on driver probe error.
+	* only use the compatible "qcom,qca8084-nsscc".
+	* remove enable clock controller driver patch.
 
-	if (tpdm_has_dsb(tpdm_data)) {
-		rc = fwnode_...(..., "qcom,dsb-element-size"..)
-	}
+Changes in v4:
+	* add _qcom_cc_really_probe function.
+	* commonizing the probe function.
+	* remove flag CLK_IS_CRITICAL from clocks only needed
+	to be enabled in switch device.
+	* update device tree property reg to 0x10. 
 
-Suzuki
+Changes in v5:
+	* commonize qcom_cc_really_probe.
+	* add halt_check for the branch clocks.
+	* fix the review comments on nsscc-qca8k.c. 
+
+Changes in v6:
+	* rename clk_branch2_mdio_ops to clk_branch2_prepare_ops.
+
+Changes in v7:
+	* remove the clock flag CLK_IS_CRITICAL.
+	* optimize the file nsscc-qca8k.c.
+	* identify & fix the comments from Stephen.
+
+Changes in v8:
+	* add dependency on ARM in Kconfig.
+
+Changes in v9:
+	* take the clk_ops clk_rcg2_mux_closest_ops to remove the
+	  redundant freq_tbls.
+
+Changes in v10:
+        * fix the patch CHECK and improve the comments.
+
+Changes in v11:
+	* update the clock names to reflect hardware connecton.
+	  NSS_CC_MAC4_SRDS1_CH2_XGMII_RX_DIV_CLK_SRC ->
+	  NSS_CC_MAC4_SRDS1_CH3_XGMII_RX_DIV_CLK_SRC
+
+	  NSS_CC_MAC4_SRDS1_CH2_XGMII_TX_DIV_CLK_SRC ->
+	  NSS_CC_MAC4_SRDS1_CH3_XGMII_TX_DIV_CLK_SRC
+        * resolve the qcom_cc_really_probe merge conflict based
+	  on the latest code.
+
+Changes in v12:
+	* fix the compile error caused by the parameter of
+	  qcom_cc_really_probe updated from pdev to &pdev->dev in the
+	  new merged clock driver gcc-sm4450.c and camcc-sm8550.c.
+
+Changes in v13:
+	* fix the compile error caused by the parameter of
+	  qcom_cc_really_probe from pdev to &pdev->dev in the new
+	  merged gcc drivers.
+	* use the freq_multi_tbl for the same frequency config, which
+	  is introduced by Christian's patch set below.
+	  <clk: qcom: clk-rcg2: introduce support for multiple conf
+	  for same freq>.
+	* add dependent patch set link.
+
+Luo Jie (4):
+  clk: qcom: branch: Add clk_branch2_prepare_ops
+  dt-bindings: clock: add qca8386/qca8084 clock and reset definitions
+  clk: qcom: common: commonize qcom_cc_really_probe
+  clk: qcom: add clock controller driver for qca8386/qca8084
+
+ .../bindings/clock/qcom,qca8k-nsscc.yaml      |   79 +
+ drivers/clk/qcom/Kconfig                      |    9 +
+ drivers/clk/qcom/Makefile                     |    1 +
+ drivers/clk/qcom/apss-ipq6018.c               |    2 +-
+ drivers/clk/qcom/camcc-sc7180.c               |    2 +-
+ drivers/clk/qcom/camcc-sc7280.c               |    2 +-
+ drivers/clk/qcom/camcc-sc8280xp.c             |    2 +-
+ drivers/clk/qcom/camcc-sdm845.c               |    2 +-
+ drivers/clk/qcom/camcc-sm6350.c               |    2 +-
+ drivers/clk/qcom/camcc-sm8250.c               |    2 +-
+ drivers/clk/qcom/camcc-sm8450.c               |    2 +-
+ drivers/clk/qcom/camcc-sm8550.c               |    2 +-
+ drivers/clk/qcom/clk-branch.c                 |    7 +
+ drivers/clk/qcom/clk-branch.h                 |    1 +
+ drivers/clk/qcom/common.c                     |    7 +-
+ drivers/clk/qcom/common.h                     |    2 +-
+ drivers/clk/qcom/dispcc-qcm2290.c             |    2 +-
+ drivers/clk/qcom/dispcc-sc7180.c              |    2 +-
+ drivers/clk/qcom/dispcc-sc7280.c              |    2 +-
+ drivers/clk/qcom/dispcc-sc8280xp.c            |    2 +-
+ drivers/clk/qcom/dispcc-sdm845.c              |    2 +-
+ drivers/clk/qcom/dispcc-sm6115.c              |    2 +-
+ drivers/clk/qcom/dispcc-sm6125.c              |    2 +-
+ drivers/clk/qcom/dispcc-sm6350.c              |    2 +-
+ drivers/clk/qcom/dispcc-sm6375.c              |    2 +-
+ drivers/clk/qcom/dispcc-sm8250.c              |    2 +-
+ drivers/clk/qcom/dispcc-sm8450.c              |    2 +-
+ drivers/clk/qcom/dispcc-sm8550.c              |    2 +-
+ drivers/clk/qcom/dispcc-sm8650.c              |    2 +-
+ drivers/clk/qcom/ecpricc-qdu1000.c            |    2 +-
+ drivers/clk/qcom/gcc-ipq5018.c                |    2 +-
+ drivers/clk/qcom/gcc-ipq6018.c                |    2 +-
+ drivers/clk/qcom/gcc-ipq8074.c                |    2 +-
+ drivers/clk/qcom/gcc-mdm9607.c                |    2 +-
+ drivers/clk/qcom/gcc-mdm9615.c                |    2 +-
+ drivers/clk/qcom/gcc-msm8917.c                |    2 +-
+ drivers/clk/qcom/gcc-msm8939.c                |    2 +-
+ drivers/clk/qcom/gcc-msm8953.c                |    2 +-
+ drivers/clk/qcom/gcc-msm8976.c                |    2 +-
+ drivers/clk/qcom/gcc-msm8996.c                |    2 +-
+ drivers/clk/qcom/gcc-msm8998.c                |    2 +-
+ drivers/clk/qcom/gcc-qcm2290.c                |    2 +-
+ drivers/clk/qcom/gcc-qcs404.c                 |    2 +-
+ drivers/clk/qcom/gcc-qdu1000.c                |    2 +-
+ drivers/clk/qcom/gcc-sa8775p.c                |    2 +-
+ drivers/clk/qcom/gcc-sc7180.c                 |    2 +-
+ drivers/clk/qcom/gcc-sc7280.c                 |    2 +-
+ drivers/clk/qcom/gcc-sc8180x.c                |    2 +-
+ drivers/clk/qcom/gcc-sc8280xp.c               |    2 +-
+ drivers/clk/qcom/gcc-sdm660.c                 |    2 +-
+ drivers/clk/qcom/gcc-sdm845.c                 |    2 +-
+ drivers/clk/qcom/gcc-sdx55.c                  |    2 +-
+ drivers/clk/qcom/gcc-sdx65.c                  |    2 +-
+ drivers/clk/qcom/gcc-sdx75.c                  |    2 +-
+ drivers/clk/qcom/gcc-sm4450.c                 |    2 +-
+ drivers/clk/qcom/gcc-sm6115.c                 |    2 +-
+ drivers/clk/qcom/gcc-sm6125.c                 |    2 +-
+ drivers/clk/qcom/gcc-sm6350.c                 |    2 +-
+ drivers/clk/qcom/gcc-sm6375.c                 |    2 +-
+ drivers/clk/qcom/gcc-sm7150.c                 |    2 +-
+ drivers/clk/qcom/gcc-sm8150.c                 |    2 +-
+ drivers/clk/qcom/gcc-sm8250.c                 |    2 +-
+ drivers/clk/qcom/gcc-sm8350.c                 |    2 +-
+ drivers/clk/qcom/gcc-sm8450.c                 |    2 +-
+ drivers/clk/qcom/gcc-sm8550.c                 |    2 +-
+ drivers/clk/qcom/gcc-sm8650.c                 |    2 +-
+ drivers/clk/qcom/gcc-x1e80100.c               |    2 +-
+ drivers/clk/qcom/gpucc-msm8998.c              |    2 +-
+ drivers/clk/qcom/gpucc-sa8775p.c              |    2 +-
+ drivers/clk/qcom/gpucc-sc7180.c               |    2 +-
+ drivers/clk/qcom/gpucc-sc7280.c               |    2 +-
+ drivers/clk/qcom/gpucc-sc8280xp.c             |    2 +-
+ drivers/clk/qcom/gpucc-sdm660.c               |    2 +-
+ drivers/clk/qcom/gpucc-sdm845.c               |    2 +-
+ drivers/clk/qcom/gpucc-sm6115.c               |    2 +-
+ drivers/clk/qcom/gpucc-sm6125.c               |    2 +-
+ drivers/clk/qcom/gpucc-sm6350.c               |    2 +-
+ drivers/clk/qcom/gpucc-sm6375.c               |    2 +-
+ drivers/clk/qcom/gpucc-sm8150.c               |    2 +-
+ drivers/clk/qcom/gpucc-sm8250.c               |    2 +-
+ drivers/clk/qcom/gpucc-sm8350.c               |    2 +-
+ drivers/clk/qcom/gpucc-sm8450.c               |    2 +-
+ drivers/clk/qcom/gpucc-sm8550.c               |    2 +-
+ drivers/clk/qcom/gpucc-sm8650.c               |    2 +-
+ drivers/clk/qcom/lcc-ipq806x.c                |    2 +-
+ drivers/clk/qcom/lcc-msm8960.c                |    2 +-
+ drivers/clk/qcom/lpassaudiocc-sc7280.c        |    4 +-
+ drivers/clk/qcom/lpasscorecc-sc7180.c         |    2 +-
+ drivers/clk/qcom/lpasscorecc-sc7280.c         |    2 +-
+ drivers/clk/qcom/mmcc-msm8960.c               |    2 +-
+ drivers/clk/qcom/mmcc-msm8974.c               |    2 +-
+ drivers/clk/qcom/mmcc-msm8994.c               |    2 +-
+ drivers/clk/qcom/mmcc-msm8996.c               |    2 +-
+ drivers/clk/qcom/mmcc-msm8998.c               |    2 +-
+ drivers/clk/qcom/mmcc-sdm660.c                |    2 +-
+ drivers/clk/qcom/nsscc-qca8k.c                | 2189 +++++++++++++++++
+ drivers/clk/qcom/tcsrcc-sm8550.c              |    2 +-
+ drivers/clk/qcom/videocc-sc7180.c             |    2 +-
+ drivers/clk/qcom/videocc-sc7280.c             |    2 +-
+ drivers/clk/qcom/videocc-sdm845.c             |    2 +-
+ drivers/clk/qcom/videocc-sm8150.c             |    2 +-
+ drivers/clk/qcom/videocc-sm8250.c             |    2 +-
+ drivers/clk/qcom/videocc-sm8350.c             |    2 +-
+ drivers/clk/qcom/videocc-sm8450.c             |    2 +-
+ drivers/clk/qcom/videocc-sm8550.c             |    2 +-
+ include/dt-bindings/clock/qcom,qca8k-nsscc.h  |  101 +
+ include/dt-bindings/reset/qcom,qca8k-nsscc.h  |   75 +
+ 107 files changed, 2564 insertions(+), 103 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,qca8k-nsscc.yaml
+ create mode 100644 drivers/clk/qcom/nsscc-qca8k.c
+ create mode 100644 include/dt-bindings/clock/qcom,qca8k-nsscc.h
+ create mode 100644 include/dt-bindings/reset/qcom,qca8k-nsscc.h
 
 
->> +        rc = 0;
-> 
-> Are we not silently resetting the error if the former failed ?
-> 
-> Could we not :
-> 
->      rc |= fwnode_...
-> 
->      rc |= fwnode_...
-> 
-> instead ?
-> 
-> Also what is the expectation here ? Are these properties a MUST for
-> TPDM ?
-> 
->>       if (rc)
->>           dev_warn_once(&csdev->dev,
->> -            "Failed to read TPDM DSB Element size: %d\n", rc);
->> +            "Failed to read TPDM Element size: %d\n", rc);
->> -    return size;
->> +    return rc;
->>   }
->>   /*
->> @@ -56,11 +86,12 @@ static int tpdm_read_dsb_element_size(struct 
->> coresight_device *csdev)
->>    * Parameter "inport" is used to pass in the input port number
->>    * of TPDA, and it is set to -1 in the recursize call.
->>    */
->> -static int tpda_get_element_size(struct coresight_device *csdev,
->> +static int tpda_get_element_size(struct tpda_drvdata *drvdata,
->> +                 struct coresight_device *csdev,
->>                    int inport)
->>   {
->> -    int dsb_size = -ENOENT;
->> -    int i, size;
->> +    int rc = 0;
->> +    int i;
->>       struct coresight_device *in;
->>       for (i = 0; i < csdev->pdata->nr_inconns; i++) {
->> @@ -74,25 +105,21 @@ static int tpda_get_element_size(struct 
->> coresight_device *csdev,
->>               continue;
->>           if (coresight_device_is_tpdm(in)) {
->> -            size = tpdm_read_dsb_element_size(in);
->> +            if ((drvdata->dsb_esize) || (drvdata->cmb_esize))
->> +                return -EEXIST;
->> +            rc = tpdm_read_element_size(drvdata, in);
->> +            if (rc)
->> +                return rc;
->>           } else {
->>               /* Recurse down the path */
->> -            size = tpda_get_element_size(in, -1);
->> -        }
->> -
->> -        if (size < 0)
->> -            return size;
->> -
->> -        if (dsb_size < 0) {
->> -            /* Found a size, save it. */
->> -            dsb_size = size;
->> -        } else {
->> -            /* Found duplicate TPDMs */
->> -            return -EEXIST;
->> +            rc = tpda_get_element_size(drvdata, in, -1);
->> +            if (rc)
->> +                return rc;
->>           }
->>       }
->> -    return dsb_size;
->> +
->> +    return rc;
->>   }
->>   /* Settings pre enabling port control register */
->> @@ -109,7 +136,7 @@ static void tpda_enable_pre_port(struct 
->> tpda_drvdata *drvdata)
->>   static int tpda_enable_port(struct tpda_drvdata *drvdata, int port)
->>   {
->>       u32 val;
->> -    int size;
->> +    int rc;
->>       val = readl_relaxed(drvdata->base + TPDA_Pn_CR(port));
->>       /*
->> @@ -117,29 +144,21 @@ static int tpda_enable_port(struct tpda_drvdata 
->> *drvdata, int port)
->>        * Set the bit to 0 if the size is 32
->>        * Set the bit to 1 if the size is 64
->>        */
->> -    size = tpda_get_element_size(drvdata->csdev, port);
->> -    switch (size) {
->> -    case 32:
->> -        val &= ~TPDA_Pn_CR_DSBSIZE;
->> -        break;
->> -    case 64:
->> -        val |= TPDA_Pn_CR_DSBSIZE;
->> -        break;
->> -    case 0:
->> -        return -EEXIST;
->> -    case -EEXIST:
->> +    tpdm_clear_element_size(drvdata->csdev);
->> +    rc = tpda_get_element_size(drvdata, drvdata->csdev, port);
->> +    if (!rc && ((drvdata->dsb_esize) || (drvdata->cmb_esize))) {
->> +        tpda_set_element_size(drvdata, &val);
->> +        /* Enable the port */
->> +        val |= TPDA_Pn_CR_ENA;
->> +        writel_relaxed(val, drvdata->base + TPDA_Pn_CR(port));
->> +    } else if (rc == -EEXIST)
->>           dev_warn_once(&drvdata->csdev->dev,
->> -            "Detected multiple TPDMs on port %d", -EEXIST);
->> -        return -EEXIST;
->> -    default:
->> -        return -EINVAL;
->> -    }
->> -
->> -    /* Enable the port */
->> -    val |= TPDA_Pn_CR_ENA;
->> -    writel_relaxed(val, drvdata->base + TPDA_Pn_CR(port));
->> +                  "Detected multiple TPDMs on port %d", -EEXIST);
->> +    else
->> +        dev_warn_once(&drvdata->csdev->dev,
->> +                  "Didn't find TPDM elem size");
-> 
-> "element size"
-> 
->> -    return 0;
->> +    return rc;
->>   }
->>   static int __tpda_enable(struct tpda_drvdata *drvdata, int port)
->> diff --git a/drivers/hwtracing/coresight/coresight-tpda.h 
->> b/drivers/hwtracing/coresight/coresight-tpda.h
->> index b3b38fd41b64..29164fd9711f 100644
->> --- a/drivers/hwtracing/coresight/coresight-tpda.h
->> +++ b/drivers/hwtracing/coresight/coresight-tpda.h
->> @@ -10,6 +10,8 @@
->>   #define TPDA_Pn_CR(n)        (0x004 + (n * 4))
->>   /* Aggregator port enable bit */
->>   #define TPDA_Pn_CR_ENA        BIT(0)
->> +/* Aggregator port CMB data set element size bit */
->> +#define TPDA_Pn_CR_CMBSIZE        GENMASK(7, 6)
->>   /* Aggregator port DSB data set element size bit */
->>   #define TPDA_Pn_CR_DSBSIZE        BIT(8)
->> @@ -25,6 +27,8 @@
->>    * @csdev:      component vitals needed by the framework.
->>    * @spinlock:   lock for the drvdata value.
->>    * @enable:     enable status of the component.
->> + * @dsb_esize   Record the DSB element size.
->> + * @cmb_esize   Record the CMB element size.
->>    */
->>   struct tpda_drvdata {
->>       void __iomem        *base;
->> @@ -32,6 +36,8 @@ struct tpda_drvdata {
->>       struct coresight_device    *csdev;
->>       spinlock_t        spinlock;
->>       u8            atid;
->> +    u8            dsb_esize;
->> +    u8            cmb_esize;
->>   };
->>   #endif  /* _CORESIGHT_CORESIGHT_TPDA_H */
-> 
-> Suzuki
-> 
-> 
+base-commit: aa4db8324c4d0e67aa4670356df4e9fae14b4d37
+-- 
+2.42.0
 
 
