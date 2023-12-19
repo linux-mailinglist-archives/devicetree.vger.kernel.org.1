@@ -1,100 +1,143 @@
-Return-Path: <devicetree+bounces-26929-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26930-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 442478189B9
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 15:24:59 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 47E628189C5
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 15:26:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EF71C1F2627D
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 14:24:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B3B561F26D42
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 14:26:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B12221B27D;
-	Tue, 19 Dec 2023 14:24:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF15A1B27A;
+	Tue, 19 Dec 2023 14:25:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="OnSp2IvH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A45B1C6AF
-	for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 14:24:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id BBC8A1FB;
-	Tue, 19 Dec 2023 06:25:15 -0800 (PST)
-Received: from [10.57.85.119] (unknown [10.57.85.119])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 8349C3F5A1;
-	Tue, 19 Dec 2023 06:24:29 -0800 (PST)
-Message-ID: <59dd1baa-ef5b-415a-a803-a2dbc3d405b2@arm.com>
-Date: Tue, 19 Dec 2023 14:24:28 +0000
+Received: from NAM02-DM3-obe.outbound.protection.outlook.com (mail-dm3nam02on2052.outbound.protection.outlook.com [40.107.95.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1ACB91CA95;
+	Tue, 19 Dec 2023 14:25:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=jubs98i4ja+WcfD/dHpRmLL0vWypfp0vSvimtEPrA8CAOcq9Yu98ALefUYs/sR7gwYkUxAYb+TNg5g3zLtJ0DG63PixtN98ZVXqlNi+bSb3aD9ERNF8aAXPEO39v6+PsFWuX67QPYXyDWnqkrKlwwmWgVs+3zpsitmzyYwxhTmdUjNEFn6+arImztks0v84V0cm0cXRBuGp/H7b1G9a7w2Pq6RPWLkpPL2JnuJUJ07l+ZyNC4cciWqG5fR/S4jtGShaTrCcFzrXPU0sr53SpckFwKWXaHmQ5a8/582QGj4BB4QwVBt7jx9Y1CS2pBSL12Lbqo6jyys0R88oN+YHDqg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=8T4YR1mNBkAXSSS0EIBP7Fh2AgCzUDF+gl4yGWBWIcw=;
+ b=F6YrUMptzo1nN7Hqz3tifCQ8W6Oi0N9zTm0K8vlU71INEdKeVf+n0glTJtypFBfHmolyysbbkUBvdF5j3Cnfo5jHFVOuQj7G4vfl4RMKXp85b4wLzXOl1MZV/ZBAVRB9fq50Q/pSMt7h+N2KjtHVGGRTDSpIVX763UUwITDeIwWZlebvXGHIq1FGWxhv861pgRbQRCPFCIVR3xtusTgsJ06AE6G8I6T02/F52+WJgXz7yEsslQWFy4QVn0V4H/PJ50zH7H444yBa5HSUQ/g3klRsiVBmL7itU4BjvRVRq36G/JbBOiSo+nVSi/T+GPexSiWuvG9pUyykRBk41QJ1gg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=8T4YR1mNBkAXSSS0EIBP7Fh2AgCzUDF+gl4yGWBWIcw=;
+ b=OnSp2IvHgOS7PoAZx8EYxgTAz38X8VJ4HcAn2kTRtKXA4gmC6rqCywEEWl1J+shOusylYgwXAljpKfPUO/zlmbSObrxyipOSSccq47GLFdRPjqNa+q3dkPnqIhX1X76d2E+94oJLrj0fhDJplTMlc8PTh80zhPtOdPUvhAj2+d4=
+Received: from SA9PR03CA0020.namprd03.prod.outlook.com (2603:10b6:806:20::25)
+ by BY5PR12MB4194.namprd12.prod.outlook.com (2603:10b6:a03:210::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7091.38; Tue, 19 Dec
+ 2023 14:25:20 +0000
+Received: from SA2PEPF000015C7.namprd03.prod.outlook.com
+ (2603:10b6:806:20:cafe::7c) by SA9PR03CA0020.outlook.office365.com
+ (2603:10b6:806:20::25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7113.18 via Frontend
+ Transport; Tue, 19 Dec 2023 14:25:20 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ SA2PEPF000015C7.mail.protection.outlook.com (10.167.241.197) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.7113.14 via Frontend Transport; Tue, 19 Dec 2023 14:25:20 +0000
+Received: from localhost (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.34; Tue, 19 Dec
+ 2023 08:25:19 -0600
+From: Michal Simek <michal.simek@amd.com>
+To: <linux-kernel@vger.kernel.org>, <monstr@monstr.eu>,
+	<michal.simek@xilinx.com>, <git@xilinx.com>
+CC: Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
+Subject: [PATCH] dt-bindings: soc: xilinx: Add support for K26 rev2 SOMs
+Date: Tue, 19 Dec 2023 15:25:16 +0100
+Message-ID: <6673abb84e542c2841cece9336571f97b19882fe.1702995908.git.michal.simek@amd.com>
+X-Mailer: git-send-email 2.36.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/5] dt-bindings/perf: Add Arm CoreSight PMU
-Content-Language: en-GB
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, will@kernel.org
-Cc: mark.rutland@arm.com, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org, suzuki.poulose@arm.com,
- ilkka@os.amperecomputing.com, bwicaksono@nvidia.com, YWan@nvidia.com,
- rwiley@nvidia.com, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-References: <cover.1702571292.git.robin.murphy@arm.com>
- <3c2dd41b585efe44d361f41fcea0181ff2a9c9c5.1702571292.git.robin.murphy@arm.com>
- <8f583a00-8e9c-4875-936c-ed196d1dae56@linaro.org>
- <2b8414e5-61d5-4c3e-9613-6d9487ae84a8@arm.com>
- <4c78e6f2-d6fb-4da7-9c54-ca6a686f2b58@linaro.org>
-From: Robin Murphy <robin.murphy@arm.com>
-In-Reply-To: <4c78e6f2-d6fb-4da7-9c54-ca6a686f2b58@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1314; i=michal.simek@amd.com; h=from:subject:message-id; bh=1BG1yY90XncfYzqpTB1Qy/aVMukcaDEBubg5eaawYmA=; b=owGbwMvMwCR4yjP1tKYXjyLjabUkhtTG5UfeNO5znJ5ddXWKzGWNIyw2a35qlRVuWr6OX175I zPHzDVhHbEsDIJMDLJiiizSNlfO7K2cMUX44mE5mDmsTCBDGLg4BWAi5+YyzLPwulqizH43N+eA 10l1sxUZSieUYxnm+86JXXn5uWBO44Jy0yNd7x/Ffe9KBgA=
+X-Developer-Key: i=michal.simek@amd.com; a=openpgp; fpr=67350C9BF5CCEE9B5364356A377C7F21FE3D1F91
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SA2PEPF000015C7:EE_|BY5PR12MB4194:EE_
+X-MS-Office365-Filtering-Correlation-Id: a4dff409-9a75-447a-4195-08dc009e54ce
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	6KXVp1/q3nupKbERdhJcJ9SnzNrf4+fyYdykFbTgxMgpUh2tSkOSt2TtLBdmyKxmajOmquRZE8Lkx12qJD3KEFsUjeu92w/UmXYziRUJ7SI0KuUeJLyL9+aRn1A3zE5fWxPRnolwYWUnTgptwvOGQxJ/nlj33ylIQ4xcqekrFUYmvk4L8vE6iMEO2uPhmj/Y9575NkBs1mAvzFLoPBhlrIiEruGvXStLofD8rh3DoLibSfWlgZLgb5HnO1a3PWlrxDSqbGmwSjRsp2T80MjPd0JkOPD+dc2mo3u/LgZQBc1qDHkrOs/wOHIHbVpBBi0DqD98iTvir+kW1p2eFA2Ufc4r25gdM5pAdGiurb3kd95UWJIh77Au3txErxB0CJ/xb0mTW0rujNjxaapWW07jrPdxYvXJVjOgMOyFdKJEawI4rLFPOcZr4TGFhCSLpLqGrDUqgpNb9Wgwkt97N8UFMkiEvXnMmwLl0zTyIWBuoE2o1eLyhJaZ6UygNGCMv7HVNp/B6QrU43kdnY1iOohXAy6h9NP3LUjfQfIFNYQHjzRL4A2q4ejchcYEU+G1QtyyR9/ATZ55ZH1w5LsjunOleICneTaCFTVxMgCOfmMPMDhKrkUnssMr0hEjLktNU6Og/OwyVUjWRwLt0rX1RIQuNmuMmSGLq4omGarP8J8DuOCuNmCxCHLjE/c5UBV2LoW6HhRMhGGwlJq2QHwztLi5RgJK1fKOiH8EcFdehdDv+9b9+i6iLqi3eJEJC6jvQNwTtPSGn1jvFC43vkuI3S9KM1RJbbVWUanmiEYhIr7lPi8=
+X-Forefront-Antispam-Report:
+	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230031)(4636009)(346002)(39860400002)(136003)(396003)(376002)(230922051799003)(64100799003)(82310400011)(1800799012)(451199024)(186009)(40470700004)(46966006)(36840700001)(40480700001)(2616005)(426003)(16526019)(26005)(336012)(40460700003)(81166007)(356005)(82740400003)(6666004)(36756003)(86362001)(47076005)(44832011)(5660300002)(36860700001)(8676002)(70206006)(4326008)(70586007)(316002)(110136005)(54906003)(8936002)(41300700001)(2906002)(478600001)(36900700001)(2101003);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Dec 2023 14:25:20.6622
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: a4dff409-9a75-447a-4195-08dc009e54ce
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	SA2PEPF000015C7.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB4194
 
-On 2023-12-18 7:03 am, Krzysztof Kozlowski wrote:
-> On 15/12/2023 19:39, Robin Murphy wrote:
->>>> +required:
->>>> +  - compatible
->>>> +  - reg
->>>> +
->>>> +additionalProperties: false
->>>
->>> Why no example to validate the binding?
->>
->> IMO for such a trivial binding built out of common properties, an
->> equally trivial example isn't going to add any value, since it won't do
->> anything more than re-state the individual property definitions above.
->> In bindings where we have conditional relationships between properties,
->> or complex encodings where a practical example can help explain a
->> definition (e.g. a map/mask pair for a set of input values), then
->> absolutely, an example can add something more to help the author and/or
->> users. But otherwise, the thing I've really grown to like about schema
->> is how thoroughly self-describing the definitions themselves can now be.
-> 
-> The example is used to validate the schema.
+Revision 2 is SW compatible with revision 1 but it is necessary to reflect
+it in model and compatible properties which are parsed by user space.
+Rev 2 has improved a power on boot reset and MIO34 shutdown glich
+improvement done via an additional filter in the GreenPak chip.
 
-Can you clarify what that *means*, though? As far as I can tell from a 
-bit of experimentation, "make dt_bindings_check" picks up errors in the 
-schema definition itself just the same whether an example is present or 
-not. Thus I still fail to understand what else would be validated by me 
-writing an example here, other than my personal ability to comprehend my 
-own binding.
+Signed-off-by: Michal Simek <michal.simek@amd.com>
+---
 
-Yes, I'm well aware that back when we were bootstrapping dtschema it was 
-useful to confirm that schemas were written to correctly describe 
-*existing* known-good DT fragments. However with new bindings like this 
-we've already reached the end goal, where we write an authoritative 
-schema first, then the users follow from there. As I alluded to above, 
-there are reasons why I would actually prefer *not* to provide a usage 
-example here - frankly if a user doesn't understand which parts of the 
-architecture their hardware implements, and/or can't figure out how to 
-copy a single compatible string and write a standard reg property, I 
-would much rather they come to me asking how to write a DT entry, than 
-blindly copy-paste a verbatim example into their DTS, then come to me 
-reporting a "bug" with the driver crashing or failing to probe. I'd love 
-to say I have no experience to base that judgement on, but...
+ Documentation/devicetree/bindings/soc/xilinx/xilinx.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Thanks,
-Robin.
+diff --git a/Documentation/devicetree/bindings/soc/xilinx/xilinx.yaml b/Documentation/devicetree/bindings/soc/xilinx/xilinx.yaml
+index d4c0fe1fe435..62617e1ea74f 100644
+--- a/Documentation/devicetree/bindings/soc/xilinx/xilinx.yaml
++++ b/Documentation/devicetree/bindings/soc/xilinx/xilinx.yaml
+@@ -118,6 +118,7 @@ properties:
+ 
+       - description: Xilinx Kria SOMs
+         items:
++          - const: xlnx,zynqmp-sm-k26-rev2
+           - const: xlnx,zynqmp-sm-k26-rev1
+           - const: xlnx,zynqmp-sm-k26-revB
+           - const: xlnx,zynqmp-sm-k26-revA
+@@ -126,6 +127,7 @@ properties:
+ 
+       - description: Xilinx Kria SOMs (starter)
+         items:
++          - const: xlnx,zynqmp-smk-k26-rev2
+           - const: xlnx,zynqmp-smk-k26-rev1
+           - const: xlnx,zynqmp-smk-k26-revB
+           - const: xlnx,zynqmp-smk-k26-revA
+-- 
+2.36.1
+
 
