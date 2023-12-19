@@ -1,166 +1,109 @@
-Return-Path: <devicetree+bounces-27011-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27012-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88AFD818D93
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 18:09:42 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C3F4A818D9C
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 18:11:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D9735B21BC7
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 17:09:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A94B11C24D85
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 17:11:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88C1E41C6D;
-	Tue, 19 Dec 2023 17:01:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F94A22EF2;
+	Tue, 19 Dec 2023 17:02:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="j8lZdZ0d"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VQOBKgeR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEF7A3D0CD;
-	Tue, 19 Dec 2023 17:01:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-40c580ba223so60191405e9.3;
-        Tue, 19 Dec 2023 09:01:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1703005294; x=1703610094; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=DcvRB7T9fUAwMybq5GgUQQU8bu+Y05ebI2TjIjKog/c=;
-        b=j8lZdZ0dWNbkJjNjWdpoR7Sq5N2+WsPqhjfDPTYNw0/osbeikjFrURkBs3T375koqJ
-         tL2vMmY3Io5SVPXnPvsZUkkDNjYSdp8OiQXOv0SOs02pEKhj9MWwvqRNz+PVfYnWsx1y
-         9a3qEcgQCr9vtcbZ30ubodk33XElhLxldhwOXSPb6uXfnQCR+61YbMerK+tN4TD+3Zok
-         Et+z9dplwGUy/WxbB+lDK+wiMnC1qhUlvDR5EliQbBhomWUbD90KevryJGKSXvb5HORW
-         Iiierd/i5ks57dO7Ng3LDebTD/fZYA0fsjPDMZmszgPnVkgMA0SMAl3HgLdE5j0LWGfl
-         nx+A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703005294; x=1703610094;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=DcvRB7T9fUAwMybq5GgUQQU8bu+Y05ebI2TjIjKog/c=;
-        b=vcR4IkPAADdwteu98XyiYq6w6p+fMTaXgklt2ZI/ZVWP/2I8wAAbpNg+TtLIVrLoRV
-         oeSY6ej2j9zFVuuyeY3cDnzlR+7W66MUkLK2jSqw4SQovMk012E+d4XdyDTzT5XkRhJa
-         syYeznYxsf+6akAW/asDqkIsQ2Nkp+eCK1EmewS0TPOmc4ELmBfMO4EUAw/+hgiBvHEv
-         1aYViLGO+fHe6X2hSX6UkeI/6oiFAaBQ5uldo+jpfp/hUyKxdojU1qKemYg6Tmw8H0wt
-         QhYWARRTHn0fimx+ChpBTurV55wkjNDSqNZxwZDxppAu/g8mjs7lI0nI1ZvXUnzTJFHd
-         zyNA==
-X-Gm-Message-State: AOJu0YxT059MkROAJt7v3pdPkIaMkk4Lja1yHipgbebkp1bEZqf81G3C
-	u8QMsSNI6M8/DVRFhxXFdw==
-X-Google-Smtp-Source: AGHT+IGrAcc7/m62H6UhRJS1mgnAg6bEsa9UDyoPGrhboqs/G4K/oMz4JwX4/2A9/ksnAk+nV2p4PQ==
-X-Received: by 2002:a05:600c:354e:b0:40b:5e21:dd49 with SMTP id i14-20020a05600c354e00b0040b5e21dd49mr10028636wmq.119.1703005293973;
-        Tue, 19 Dec 2023 09:01:33 -0800 (PST)
-Received: from U4.lan ([2a02:810b:f40:4300:7ae5:3e:d1c6:a138])
-        by smtp.gmail.com with ESMTPSA id i7-20020a05600c354700b0040d2805d158sm3225878wmq.48.2023.12.19.09.01.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 Dec 2023 09:01:33 -0800 (PST)
-From: Alex Bee <knaerzche@gmail.com>
-To: Sandy Huang <hjc@rock-chips.com>,
-	=?UTF-8?q?Heiko=20St=C3=BCbner?= <heiko@sntech.de>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: David Airlie <airlied@gmail.com>,
-	Daniel Vetter <daniel@ffwll.ch>,
-	dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Alex Bee <knaerzche@gmail.com>
-Subject: [PATCH v3 29/29] ARM: dts: rockchip: Enable HDMI output for XPI-3128
-Date: Tue, 19 Dec 2023 18:00:59 +0100
-Message-ID: <20231219170100.188800-30-knaerzche@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20231219170100.188800-1-knaerzche@gmail.com>
-References: <20231219170100.188800-1-knaerzche@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B77B37148;
+	Tue, 19 Dec 2023 17:02:56 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D9211C433CA;
+	Tue, 19 Dec 2023 17:02:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1703005376;
+	bh=+d3PWc22cneSKyoZwUJ946g1x4VmVLxHqaRDVN/mlWM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=VQOBKgeR+29pUnTzy/YBIN7/xcmXKfyH49vsfiHy68lvefCR2a43BtKdMrq5HmPra
+	 V0E9TcpqwgguxlylpIwlhsyA2hJGFFCU2StzpKXHQswLVHc3zes4gbcfLjEaKy9y+i
+	 gvX96wjp9hfAI3ystFkmfo5eBVjm2ISj2zXsvbSIpmI8Hr6QZzi7Z2B7O4cpnkOq8L
+	 4WD+n2m31HJfX4OBiZNvsGRze0i7sQFmYxriuxaq+Htgq4P0mdZL/ieJtUddCcxA8Y
+	 0/NHNxImDiKj/vjKLmUkTTfS5e/NZqXlUIFoo6Zq0m6EOD3eBnWO24uO/nZBvL93TU
+	 nILKMp0UPv3Jw==
+Date: Tue, 19 Dec 2023 18:02:53 +0100
+From: "wsa@kernel.org" <wsa@kernel.org>
+To: Chris Packham <Chris.Packham@alliedtelesis.co.nz>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	"andi.shyti@kernel.org" <andi.shyti@kernel.org>,
+	"robh+dt@kernel.org" <robh+dt@kernel.org>,
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"gregory.clement@bootlin.com" <gregory.clement@bootlin.com>,
+	"linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v6 1/2] dt-bindings: i2c: add bus-reset-gpios property
+Message-ID: <ZYHMvZ3plIQ0zXWa@shikoro>
+Mail-Followup-To: "wsa@kernel.org" <wsa@kernel.org>,
+	Chris Packham <Chris.Packham@alliedtelesis.co.nz>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	"andi.shyti@kernel.org" <andi.shyti@kernel.org>,
+	"robh+dt@kernel.org" <robh+dt@kernel.org>,
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"gregory.clement@bootlin.com" <gregory.clement@bootlin.com>,
+	"linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20231115035753.925534-1-chris.packham@alliedtelesis.co.nz>
+ <20231115035753.925534-2-chris.packham@alliedtelesis.co.nz>
+ <f24b9b2d-aeb1-47f7-bf21-4383fdcf94aa@linaro.org>
+ <5a52b0c9-8858-4f55-8dd7-9269c29c10a7@alliedtelesis.co.nz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="73ObVNrSXu8UU5Wl"
+Content-Disposition: inline
+In-Reply-To: <5a52b0c9-8858-4f55-8dd7-9269c29c10a7@alliedtelesis.co.nz>
 
-Add an hdmi-connector node and enable the hdmi, display-subsystem and vop
-nodes.
 
-Signed-off-by: Alex Bee <knaerzche@gmail.com>
----
-changes in v2:
- - no changes
+--73ObVNrSXu8UU5Wl
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-changes in v3:
- - no changes
 
- .../arm/boot/dts/rockchip/rk3128-xpi-3128.dts | 29 +++++++++++++++++++
- 1 file changed, 29 insertions(+)
+> > Putting it into the controller bindings looks like solving OS issue with
+> > incorrect hardware description.
+> Yes that's entirely whats happening here.
 
-diff --git a/arch/arm/boot/dts/rockchip/rk3128-xpi-3128.dts b/arch/arm/boot/dts/rockchip/rk3128-xpi-3128.dts
-index 03a97881519a..21c1678f4e91 100644
---- a/arch/arm/boot/dts/rockchip/rk3128-xpi-3128.dts
-+++ b/arch/arm/boot/dts/rockchip/rk3128-xpi-3128.dts
-@@ -47,6 +47,17 @@ dc_5v: dc-5v-regulator {
- 		regulator-boot-on;
- 	};
- 
-+	hdmi-connnector {
-+		compatible = "hdmi-connector";
-+		type = "a";
-+
-+		port {
-+			hdmi_connector_in: endpoint {
-+				remote-endpoint = <&hdmi_connector_out>;
-+			};
-+		};
-+	};
-+
- 	/*
- 	 * This is a vbus-supply, which also supplies the GL852G usb hub,
- 	 * thus has to be always-on
-@@ -239,6 +250,10 @@ &cpu0 {
- 	cpu-supply = <&vdd_arm>;
- };
- 
-+&display_subsystem {
-+	status = "okay";
-+};
-+
- &emmc {
- 	bus-width = <8>;
- 	vmmc-supply = <&vcc_io>;
-@@ -328,6 +343,16 @@ &gpu {
- 	status = "okay";
- };
- 
-+&hdmi {
-+	status = "okay";
-+};
-+
-+&hdmi_out {
-+	hdmi_connector_out: endpoint {
-+		remote-endpoint = <&hdmi_connector_in>;
-+	};
-+};
-+
- &mdio {
- 	phy0: ethernet-phy@1 {
- 		compatible = "ethernet-phy-ieee802.3-c22";
-@@ -423,3 +448,7 @@ &usb2phy_host {
- &usb2phy_otg {
- 	status = "okay";
- };
-+
-+&vop {
-+	status = "okay";
-+};
--- 
-2.43.0
+So, this series can be dropped?
 
+
+--73ObVNrSXu8UU5Wl
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmWBzLwACgkQFA3kzBSg
+Kbb77A/9FqgeYX0ZKvzZXeSfMb60AxxuxaGZWce6ogX+I1B0JckQ5t4QrN8TB+Rv
+cBSUnHViBg7CssvtC1WScKLDe0KzO+66xTw1eOUagTdftnE3p+rDAmtbMPUXWaoE
+rCVV540pcXXsfSr/BOdGJLDHeOnwublpF0Wf0R/UwvC4o8V6HJ2koUPZMnjZlHKf
+y62/VxlzRjHXs3ZxLh6D0uEFQR40Bj7Shd8U5wCTsxf0dwejSYmrq/QKSJAQb0Ej
+IkamiDQjDbgN0SyRDobfVk+KsY73Hcbz3/EcjiP3uyh2MjZ2DrjRpC8J1D8oeNbB
+szxwFHfsT1BCrEjWyU48D2dnnFZs9e7D0yfuArcrtGYvIsS98WejYFuPezhqVo5v
+Py6IyDU7vK/J1WaQ5tfwoB8OcSJUcN1yOhxeU+djgQ0gwNANYa7bA8HfcuBjdr4z
+onC/zJyimlAhd5lre1Q/mLAKjrDoYpHGyDvL/8QquJ1fBGDhdXNqsL0djXrwR6LN
+AZ5yet5thI74/X8ht3nFiuP+TxOGWYgOaAPIYR/6g0tDiIHpPPvTYbtPtR3KhrPp
+/r2G2OQkxtA6Q/lWSBwNSl8fHuXHZKWhS+7bvvrhu7boOTguFAlxa0WhNW0emXyJ
+jGVnxshVL45GFepN94yDhSZ1MsJdsgteMP07MGdTEM/e9gZBozw=
+=YJZ7
+-----END PGP SIGNATURE-----
+
+--73ObVNrSXu8UU5Wl--
 
