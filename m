@@ -1,180 +1,156 @@
-Return-Path: <devicetree+bounces-26875-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26872-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0E8F8186F4
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 13:04:46 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BDDF98186E0
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 13:02:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 564951F24919
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 12:04:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 62FE8286EC8
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 12:02:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB2A01643A;
-	Tue, 19 Dec 2023 12:04:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EBDB15E95;
+	Tue, 19 Dec 2023 12:01:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="MsSIktPl"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="TfiQgIiE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF6A3168C9
-	for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 12:04:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas5p1.samsung.com (unknown [182.195.41.39])
-	by mailout2.samsung.com (KnoxPortal) with ESMTP id 20231219120436epoutp02d3575b9f08c6f3d85d84256c150c50ee~iOhZZg8Wc0445904459epoutp02b
-	for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 12:04:36 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20231219120436epoutp02d3575b9f08c6f3d85d84256c150c50ee~iOhZZg8Wc0445904459epoutp02b
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1702987476;
-	bh=kbtLfXsExq1k5rYtU73cq9h6/Dgp8Np56tw3hmb9V6o=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=MsSIktPlipgcjebd1qxX+mRUFLzE3u9Oz6JofRTmAhocbFrAsITKwJ8EdajPbHqPT
-	 dJWXYHwNBvXXIxr9hdSPsl76EQkwNO83w0R0YEr146QcY5OpB0fpNLyw1RjOIhlJAu
-	 gAHjiLrkFiUUyo2tET+G7s1vIsNZ8I6ZDrnyLNo4=
-Received: from epsnrtp4.localdomain (unknown [182.195.42.165]) by
-	epcas5p4.samsung.com (KnoxPortal) with ESMTP id
-	20231219120436epcas5p47c35bce9213ac74893681d2fd5206aed~iOhY40kEd2781027810epcas5p4-;
-	Tue, 19 Dec 2023 12:04:36 +0000 (GMT)
-Received: from epsmges5p3new.samsung.com (unknown [182.195.38.176]) by
-	epsnrtp4.localdomain (Postfix) with ESMTP id 4Svb3708Vtz4x9Pq; Tue, 19 Dec
-	2023 12:04:35 +0000 (GMT)
-Received: from epcas5p3.samsung.com ( [182.195.41.41]) by
-	epsmges5p3new.samsung.com (Symantec Messaging Gateway) with SMTP id
-	35.C9.09672.2D681856; Tue, 19 Dec 2023 21:04:34 +0900 (KST)
-Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
-	epcas5p4.samsung.com (KnoxPortal) with ESMTPA id
-	20231219115858epcas5p469e925738bcb93ee88842fdea0f9d3f0~iOceah7X21311313113epcas5p4X;
-	Tue, 19 Dec 2023 11:58:58 +0000 (GMT)
-Received: from epsmgmc1p1new.samsung.com (unknown [182.195.42.40]) by
-	epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
-	20231219115858epsmtrp1fca3f53f13e8cc5e38f75c4d3e574a98~iOceY-HLe0150201502epsmtrp1h;
-	Tue, 19 Dec 2023 11:58:58 +0000 (GMT)
-X-AuditID: b6c32a4b-60bfd700000025c8-e2-658186d24c6e
-Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
-	epsmgmc1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-	2A.AB.07368.28581856; Tue, 19 Dec 2023 20:58:58 +0900 (KST)
-Received: from cheetah.sa.corp.samsungelectronics.net (unknown
-	[107.109.115.53]) by epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
-	20231219115856epsmtip1e2f14bde4a42468b3556abec4bcc0547~iOccdsqC20479904799epsmtip1n;
-	Tue, 19 Dec 2023 11:58:56 +0000 (GMT)
-From: Varada Pavani <v.pavani@samsung.com>
-To: mturquette@baylibre.com, sboyd@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, s.nawrocki@samsung.com, tomasz.figa@gmail.com
-Cc: linux-samsung-soc@vger.kernel.org, alim.akhtar@samsung.com,
-	aswani.reddy@samsung.com, pankaj.dubey@samsung.com, Varada Pavani
-	<v.pavani@samsung.com>
-Subject: [PATCH 2/2] clk: samsung: Fix typo error and extra space
-Date: Tue, 19 Dec 2023 17:28:34 +0530
-Message-Id: <20231219115834.65720-2-v.pavani@samsung.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20231219115834.65720-1-v.pavani@samsung.com>
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFmpjk+LIzCtJLcpLzFFi42LZdlhTU/dSW2OqwfebFhYP5m1jszi0eSu7
-	xZq955gs5h85x2rR9+Ihs8XHnnusFpd3zWGzmHF+H5PFxVOuFou2fmG3OPymndXi37WNLBar
-	dv1htNjQ+4rdgc/j/Y1Wdo+ds+6ye2xa1cnmcefaHjaPvi2rGD0+b5ILYIvKtslITUxJLVJI
-	zUvOT8nMS7dV8g6Od443NTMw1DW0tDBXUshLzE21VXLxCdB1y8wBulZJoSwxpxQoFJBYXKyk
-	b2dTlF9akqqQkV9cYquUWpCSU2BSoFecmFtcmpeul5daYmVoYGBkClSYkJ3x8vg5xoIzYhXP
-	1txmaWBcINTFyMkhIWAi0fFxLWMXIxeHkMBuRonPDetZIZxPjBL333+DynxjlNjRuI8doeU5
-	E4gtJLCXUWLp4kqIolYmiV03doIVsQloSayeuhxslIjAe0aJaZOXgDnMAnMYJW4dvcnSxcjB
-	ISzgKNHQD3YIi4CqxIsjJ1hAbF4BS4mDp49BbZOXWL3hADOIzSlgJXF24Q92kDkSAq0cEosu
-	7GaDKHKRWLz8AiuELSzx6vgWqGYpiZf9bewguyQEkiXaP3FDhHMkLu1exQRh20scuDIH7Bxm
-	AU2J9bv0IcKyElNPrQMrYRbgk+j9/QSqnFdixzwYW0li544JULaExNPVa9ggNnlIzDqmBQmT
-	XkaJ6VsnM05glJuFsGEBI+MqRsnUguLc9NRi0wLjvNRyeKQl5+duYgQnSC3vHYyPHnzQO8TI
-	xMF4iFGCg1lJhNdlUX2qEG9KYmVValF+fFFpTmrxIUZTYPBNZJYSTc4Hpui8knhDE0sDEzMz
-	MxNLYzNDJXHe161zU4QE0hNLUrNTUwtSi2D6mDg4pRqYuiq65qT9YDCRflt69Hnvlg2ZMdO4
-	pC++srZde0NIbJWQ4Zu3iRF93PtaXr5+JROdm1gas1nJXXzt+ZcWS3O+75p+PTzz1C+W60/m
-	qp3lippXeXeq5Bur6S6MsX2xJ+38Pkd0Hl7ZOf+NwpvTcXE99lNsNT9Fq3JufCW0+/7UHLH9
-	b7d/ZZYKOjr59fS4BRahDmtKXmStK2Dg1JpeOefT5MW/XeMOnEk6aXCVOUPqxaWSskuHS1hl
-	C9dNfFa0+mRN3qLGHRqK96xTfJ7LpLxcpyVwT2Tnvsrpm7jnm+bu+Pn7V/IehvOSH80PvOQW
-	CDh93nKp/5knM/VtPmxazWCzeXPzmYLzC16XaGavXGhhW6rEUpyRaKjFXFScCABqr3xuGQQA
-	AA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrHLMWRmVeSWpSXmKPExsWy7bCSnG5Ta2OqQVu3lMWDedvYLA5t3spu
-	sWbvOSaL+UfOsVr0vXjIbPGx5x6rxeVdc9gsZpzfx2Rx8ZSrxaKtX9gtDr9pZ7X4d20ji8Wq
-	XX8YLTb0vmJ34PN4f6OV3WPnrLvsHptWdbJ53Lm2h82jb8sqRo/Pm+QC2KK4bFJSczLLUov0
-	7RK4Ml4eP8dYcEas4tma2ywNjAuEuhg5OSQETCQ6Pj5nArGFBHYzSvR8r4SIS0js/NbKDGEL
-	S6z895y9i5ELqKaZSWLyrRuMIAk2AS2J1VOXs4IkRAR+Mkr0ffvIAuIwCyxglFjV2gDkcHAI
-	CzhKNPSDbWMRUJV4ceQEC4jNK2ApcfD0MXaIDfISqzccANvGKWAlcXbhD3aIiywlZk2axjiB
-	kW8BI8MqRsnUguLc9NxkwwLDvNRyveLE3OLSvHS95PzcTYzgINbS2MF4b/4/vUOMTByMhxgl
-	OJiVRHhdFtWnCvGmJFZWpRblxxeV5qQWH2KU5mBREuc1nDE7RUggPbEkNTs1tSC1CCbLxMEp
-	1cD0zPFy2+NSpYue8tPr2brLrrNtW54qrJ46Y5v1HDm+OC/n/yEnZqS4fFw1rXCxjNvhQ333
-	7+atr5srL71m8/7MpwIP77iKffbcqJRw8634hu9Wiqyi+2KE2MVVl2rNtw+3+awrecdv0/Wk
-	pbwlvLmBM/PKD/yYJpx3+fRP4877SzYHNsUulpVpWv2h00iz+so8/1072VbU8urNZbx63qnh
-	esECbVknq7+P8x5KvTDi5t7DdIZnf5eiz/3prbmvthmK3LSL5HxpJvs+VuKk3SH7LTbTm6aI
-	ymjJLot6zcFTl2EnOXX3v5cbpvrZXm/xsuC+a7fZ4HC6VL7D20cdCmd68yTv2TlKvcxMl/x1
-	uEyJpTgj0VCLuag4EQAwy+7B0QIAAA==
-X-CMS-MailID: 20231219115858epcas5p469e925738bcb93ee88842fdea0f9d3f0
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: REQ_APPROVE
-CMS-TYPE: 105P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20231219115858epcas5p469e925738bcb93ee88842fdea0f9d3f0
-References: <20231219115834.65720-1-v.pavani@samsung.com>
-	<CGME20231219115858epcas5p469e925738bcb93ee88842fdea0f9d3f0@epcas5p4.samsung.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B73DD1BDCF
+	for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 12:01:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-a1ca24776c3so1065512366b.0
+        for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 04:01:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1702987288; x=1703592088; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=xYTg9juDWxZcIBckJUEaGgG12ZfS5cBo/+tlYXpzWNI=;
+        b=TfiQgIiEroygCBHwAPWpgNdcW/lIaTjzR5Knx8Xis9uI5c3d+gCiv5aW/JavyYXHwH
+         6jwt6xrL9+LZWcaLoy7YPpkwLdCzkTzoEDmpawL2VWXpZsQge4HPJVpFaxsUwFSyj8nP
+         4ma1xtbiuw+aPb+WRkMRSDbeO3ZLdOBu0AntrPIrOSFtQnei9nOnw3zqWxd2hen2OfH4
+         fTsdkMd6sUGvxRe94GbFIp7k12TdvcdRlyo15hwKQrXbYJCat8vD4Wp44iKNYzLrGlgP
+         J0z8ywp0vs2UimNRp6KkUyuPRaf0vn73wJpTx9IdzzAGcSb7/2h8BxvzMKrIgu7NT+QC
+         DhuA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702987288; x=1703592088;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=xYTg9juDWxZcIBckJUEaGgG12ZfS5cBo/+tlYXpzWNI=;
+        b=CdO+H1tZ99HZqd5XHt0tslqpV6/KT/0y1XNu/rsdqaFVhGi+FB/SDMBJErEH/V4iqj
+         uKhGA6GMDolpydRPPalb1DZaINUFWGSDXuUDq9wn5Y51eMOtGkfLG6pxnCzdR4+3lnuG
+         dYiTh41gsDLDyKEfFQU+vnt8qTnzpja67vxLEBbxtAz1pksLhBywkcECd+DwuJx8/9pv
+         aVbYD0riUgIi4atX9Dn5Ae9/AwHF2q9tuZvZKGZW/2noRmNu5/PxdEuC+C2up0EVnuy9
+         phJdj/tCluxIu5v0H5YnZZe09juQNjDVj0LJNRKXQ8rPD8D1+WeLi2e6a3fu1z2Fox46
+         K1JQ==
+X-Gm-Message-State: AOJu0Yxm92c4XfOVtEtMFfYxViDsc8eH+nQE/lS4fo3CVGYhvyfb6gFK
+	Bi74X5i94Ps1B4z6IsWHtdz2yQ==
+X-Google-Smtp-Source: AGHT+IGZR13abm6xSkWVYuuhV9Qk7aYDgUNIM6tTPh2sieIdPWD79f7wwxOnWNLPqKuo2dnW88SnOA==
+X-Received: by 2002:a17:906:1194:b0:a1c:d8c6:c21 with SMTP id n20-20020a170906119400b00a1cd8c60c21mr947426eja.67.1702987288015;
+        Tue, 19 Dec 2023 04:01:28 -0800 (PST)
+Received: from [192.168.199.59] (178235179206.dynamic-4-waw-k-1-3-0.vectranet.pl. [178.235.179.206])
+        by smtp.gmail.com with ESMTPSA id lm11-20020a17090718cb00b00a1db76f99c8sm15508227ejc.93.2023.12.19.04.01.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 19 Dec 2023 04:01:27 -0800 (PST)
+Message-ID: <4b644ed4-358d-4caa-bed8-ca76e0baadb3@linaro.org>
+Date: Tue, 19 Dec 2023 13:01:24 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v10 18/41] ALSA: usb-audio: qcom: Add USB QMI definitions
+Content-Language: en-US
+To: Wesley Cheng <quic_wcheng@quicinc.com>, srinivas.kandagatla@linaro.org,
+ mathias.nyman@intel.com, perex@perex.cz, conor+dt@kernel.org,
+ corbet@lwn.net, gregkh@linuxfoundation.org, lgirdwood@gmail.com,
+ andersson@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ Thinh.Nguyen@synopsys.com, broonie@kernel.org, bgoswami@quicinc.com,
+ tiwai@suse.com, robh+dt@kernel.org, agross@kernel.org
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-sound@vger.kernel.org, linux-usb@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, linux-doc@vger.kernel.org,
+ alsa-devel@alsa-project.org
+References: <20231215214955.12110-1-quic_wcheng@quicinc.com>
+ <20231215214955.12110-19-quic_wcheng@quicinc.com>
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <20231215214955.12110-19-quic_wcheng@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Remove extra spaces and fix spelling mistakes in 'drivers/
-clk/samsung/clk-cpu.c' and 'drivers/clk/samsung/clk-cpu.h'
+On 15.12.2023 22:49, Wesley Cheng wrote:
+> The Qualcomm USB audio offload driver utilizes the QMI protocol to
+> communicate with the audio DSP.  Add the necessary QMI header and field
+> definitions, so the QMI interface driver is able to route the QMI packet
+> received to the USB audio offload driver.
+> 
+> Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
+> ---
+>  sound/usb/qcom/usb_audio_qmi_v01.c | 892 +++++++++++++++++++++++++++++
+>  sound/usb/qcom/usb_audio_qmi_v01.h | 162 ++++++
+>  2 files changed, 1054 insertions(+)
+>  create mode 100644 sound/usb/qcom/usb_audio_qmi_v01.c
+>  create mode 100644 sound/usb/qcom/usb_audio_qmi_v01.h
+> 
+> diff --git a/sound/usb/qcom/usb_audio_qmi_v01.c b/sound/usb/qcom/usb_audio_qmi_v01.c
+> new file mode 100644
+> index 000000000000..bdfd67d980eb
+> --- /dev/null
+> +++ b/sound/usb/qcom/usb_audio_qmi_v01.c
+> @@ -0,0 +1,892 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (c) 2022-2023 Qualcomm Innovation Center, Inc. All rights reserved.
+> + */
+> +
+> +#include <linux/soc/qcom/qmi.h>
+> +
+> +#include "usb_audio_qmi_v01.h"
+> +
+> +static struct qmi_elem_info mem_info_v01_ei[] = {
+can these be const?
 
-Signed-off-by: Varada Pavani <v.pavani@samsung.com>
----
- drivers/clk/samsung/clk-cpu.c | 6 +++---
- drivers/clk/samsung/clk-cpu.h | 2 +-
- 2 files changed, 4 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/clk/samsung/clk-cpu.c b/drivers/clk/samsung/clk-cpu.c
-index 3e62ade120c5..18568b8b1b9b 100644
---- a/drivers/clk/samsung/clk-cpu.c
-+++ b/drivers/clk/samsung/clk-cpu.c
-@@ -19,7 +19,7 @@
-  * clock and the corresponding rate changes of the auxillary clocks of the CPU
-  * domain. The platform clock driver provides a clock register configuration
-  * for each configurable rate which is then used to program the clock hardware
-- * registers to acheive a fast co-oridinated rate change for all the CPU domain
-+ * registers to achieve a fast co-oridinated rate change for all the CPU domain
-  * clocks.
-  *
-  * On a rate change request for the CPU clock, the rate change is propagated
-@@ -181,7 +181,7 @@ static int exynos_cpuclk_pre_rate_change(struct clk_notifier_data *ndata,
- 	 * If the old parent clock speed is less than the clock speed of
- 	 * the alternate parent, then it should be ensured that at no point
- 	 * the armclk speed is more than the old_prate until the dividers are
--	 * set.  Also workaround the issue of the dividers being set to lower
-+	 * set. Also workaround the issue of the dividers being set to lower
- 	 * values before the parent clock speed is set to new lower speed
- 	 * (this can result in too high speed of armclk output clocks).
- 	 */
-@@ -303,7 +303,7 @@ static int exynos5433_cpuclk_pre_rate_change(struct clk_notifier_data *ndata,
- 	 * If the old parent clock speed is less than the clock speed of
- 	 * the alternate parent, then it should be ensured that at no point
- 	 * the armclk speed is more than the old_prate until the dividers are
--	 * set.  Also workaround the issue of the dividers being set to lower
-+	 * set. Also workaround the issue of the dividers being set to lower
- 	 * values before the parent clock speed is set to new lower speed
- 	 * (this can result in too high speed of armclk output clocks).
- 	 */
-diff --git a/drivers/clk/samsung/clk-cpu.h b/drivers/clk/samsung/clk-cpu.h
-index fc9f67a3b22e..e0a1651174e6 100644
---- a/drivers/clk/samsung/clk-cpu.h
-+++ b/drivers/clk/samsung/clk-cpu.h
-@@ -33,7 +33,7 @@ struct exynos_cpuclk_cfg_data {
-  * @hw:	handle between CCF and CPU clock.
-  * @alt_parent: alternate parent clock to use when switching the speed
-  *	of the primary parent clock.
-- * @ctrl_base:	base address of the clock controller.
-+ * @ctrl_base: base address of the clock controller.
-  * @lock: cpu clock domain register access lock.
-  * @cfg: cpu clock rate configuration data.
-  * @num_cfgs: number of array elements in @cfg array.
--- 
-2.17.1
-
+Konrad
 
