@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-26792-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26793-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0041D818229
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 08:22:14 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E22B7818232
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 08:25:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8BB9C28671C
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 07:22:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 57DB51F25014
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 07:25:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47655883B;
-	Tue, 19 Dec 2023 07:22:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A700A8832;
+	Tue, 19 Dec 2023 07:24:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="hu5x89Lp"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Ngbu+k1q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
+Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF697111BC
-	for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 07:22:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 167668829
+	for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 07:24:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-550dd0e3304so5010224a12.1
-        for <devicetree@vger.kernel.org>; Mon, 18 Dec 2023 23:22:03 -0800 (PST)
+Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-54f4f7e88feso5543346a12.3
+        for <devicetree@vger.kernel.org>; Mon, 18 Dec 2023 23:24:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702970522; x=1703575322; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1702970695; x=1703575495; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=q2d956jQ4Jn2yMn5fgzPx6GZkZa19K3KM3F0UqXtKxk=;
-        b=hu5x89LpVzk4qUbC0OuQM3nU5BpSTnyLbWKXvXo70DtPnT49I0jMvxAUbWOGWU9xgK
-         INydVkyDV0DzO1hR4kl0PhJX1PxCHaEDF9OjGN/WTflfagvvs0q6UQlOI/xXClMY3rXb
-         Ho1qRS1/1stEQv0IHazBTNv3uUhXz7ThHdY8aKOvdZfUDUkZ9eg/BNhM3r19RG7OcyIY
-         SyHeYXCR44j204O7qmS6thrb8pZ+ohYUssJynWHgcEkhOryrd5bH1F1KrbZTe4E8B7yq
-         2tcki5gSuJKhFU3AP+3k7rNEv4w7AdO9exfljfud1KhgF5IjIxp61fBpZLr/9OgFpDjo
-         jduA==
+        bh=UlhGozfg7dmxL6emSh7I25mqheijAutqkIGD6E3t8e0=;
+        b=Ngbu+k1qT7SNnMNpVuElrCkHYXkgQd9G+puHuCBrNFasfjgqdVEj98VYksBdwEvdXb
+         yl4F9pe8a6Qqr0xhQMkAMTgvyIxziy7D/8xO3hMDXAPtr+bArgFYCblggMB3jUCY4khM
+         JWd7X0tmUU9uWlpq5h6TfgtG0H7o2lF7GNeXZ9t0VUbdCyvc+oyET1RyreTfljUzop/U
+         jjjl/qXMyonJMsp5MeKsS8JY8DuEHwOxCeUPyTOQJKI0sMW1y2E6/w2KYT5ZytwYnv5H
+         /+p+8vgULhay6pN15U9akhVj2eaXIGADzMaobGpey0KxMv+ZGmOtojy7wVPXQdpO7G7V
+         dt+g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702970522; x=1703575322;
+        d=1e100.net; s=20230601; t=1702970695; x=1703575495;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=q2d956jQ4Jn2yMn5fgzPx6GZkZa19K3KM3F0UqXtKxk=;
-        b=WcSI11W2FdGa7oyg3H+xQnsEh0DqV6A3dnfQA7Br6UCudJJSpt/8jSxCNsgmhTz6gW
-         SHSP7s2S6Kq3aTpIS03F4ygIwqBmjhQzTrIqvpw7fz9qEzFn6hyjh32jfKiW6bSieVhj
-         Ia29mUlqhlJD8tiygVPmBx5E835kVvyeLwSeaL1RJShnVfgeItHQ6RWUE8M/4N2wOmsO
-         wIRNQ7w8HvZkaauy/SjIoChTr4OWkKoL3obOOo1qWIm3gYqiRwFSKALR0Lm6NOQnEwkk
-         AZZoJxenNEr7zJwe2rt3wscsXx/nu8c8mLkHUjVOedlrdeztkeQ7htEX9xQb+7fvrQmL
-         /yOw==
-X-Gm-Message-State: AOJu0YzKND94MnOL9A9A6N/VCZyIsADkjCyBpmx3KUuRyPk7b4w/BVUj
-	7ZQIu2lLpNr/ZWv0ORCsLs1rNQ==
-X-Google-Smtp-Source: AGHT+IEnYt8wHMtxInCD5RB0KwUR61Z6V/xeJUjLsCEv5MbTD0exxywCKlNt5VMgmlthk7u+Wm40HA==
-X-Received: by 2002:a17:906:2259:b0:a23:5239:bcb3 with SMTP id 25-20020a170906225900b00a235239bcb3mr1774798ejr.147.1702970522052;
-        Mon, 18 Dec 2023 23:22:02 -0800 (PST)
+        bh=UlhGozfg7dmxL6emSh7I25mqheijAutqkIGD6E3t8e0=;
+        b=CASpgwai13eGZcLPoUJdKorjTchMHldXoUEkEQqRTZHYhkM41qUVT9FpRU9QSQTvJw
+         xzzmIl6FoI1rD0N3E1PJbA3u5BBabMTSlI5QqxH7Fj7p0bryKCD3FLsZwyPOmalyyhqI
+         1btmd/YlJbR71UVCPvkLxvAzJ6bVOuJVlo2L+EJNTr7o77qsbIttb0SCOtA5Vb0G6gMl
+         +2s21qHITJKWoOMH8ogYsQFHGkUAZTa/NHG60jMZmMvCP6WpYwrTL7+A/nMjMZvNp4AD
+         LTmr7lGvtmcVHf5wmdRPEwHkceulYhWnlciLBkvEDrBCZ7eEo7246/q6aFhp7fdzyfos
+         MJ5w==
+X-Gm-Message-State: AOJu0YwEiBxIlKJHNwLSCQxpM0WwH3HAIi3G3gujWQrWGUNYRm/cVZNq
+	zAaewJaY52tblhp+USySynlotA==
+X-Google-Smtp-Source: AGHT+IGJrB1GS5Ds3Q//fBV9ifKcGRVUKGPJGkcEg6RUjoC9qIuQy8apORhMr/6zGO/JfJuDOCXC8A==
+X-Received: by 2002:a50:c011:0:b0:551:9caa:fac6 with SMTP id r17-20020a50c011000000b005519caafac6mr7563009edb.45.1702970695406;
+        Mon, 18 Dec 2023 23:24:55 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id mj16-20020a170906af9000b00a2368de9471sm1132449ejb.202.2023.12.18.23.22.00
+        by smtp.gmail.com with ESMTPSA id x9-20020aa7cd89000000b0055289f60e3bsm4634626edv.79.2023.12.18.23.24.52
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 18 Dec 2023 23:22:01 -0800 (PST)
-Message-ID: <a630b011-4ad0-49d1-8076-647bc44f9d08@linaro.org>
-Date: Tue, 19 Dec 2023 08:22:00 +0100
+        Mon, 18 Dec 2023 23:24:54 -0800 (PST)
+Message-ID: <92eb5f85-1241-429c-aca9-7a6a17f19ae5@linaro.org>
+Date: Tue, 19 Dec 2023 08:24:51 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,18 +66,31 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/2] mmc: add new sdhci reset sequence for brcm 74165b0
+Subject: Re: [PATCH v4 1/9] dt-bindings: net: starfive,jh7110-dwmac: Drop
+ redundant reset description
 Content-Language: en-US
-To: Kamal Dasu <kamal.dasu@broadcom.com>, ulf.hansson@linaro.org,
- linux-kernel@vger.kernel.org, alcooperx@gmail.com,
- linux-arm-kernel@lists.infradead.org, adrian.hunter@intel.com,
- linux-mmc@vger.kernel.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- devicetree@vger.kernel.org
-Cc: f.fainelli@gmail.com, bcm-kernel-feedback-list@broadcom.com,
- Kamal Dasu <kdasu@broadcom.com>
-References: <20231218210705.38201-1-kamal.dasu@broadcom.com>
- <20231218210705.38201-3-kamal.dasu@broadcom.com>
+To: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Emil Renner Berthing <kernel@esmil.dk>,
+ Samin Guo <samin.guo@starfivetech.com>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Hal Feng <hal.feng@starfivetech.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Jose Abreu <joabreu@synopsys.com>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Richard Cochran <richardcochran@gmail.com>,
+ Giuseppe Cavallaro <peppe.cavallaro@st.com>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+ linux-clk@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, kernel@collabora.com
+References: <20231218214451.2345691-1-cristian.ciocaltea@collabora.com>
+ <20231218214451.2345691-2-cristian.ciocaltea@collabora.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -123,27 +136,35 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231218210705.38201-3-kamal.dasu@broadcom.com>
+In-Reply-To: <20231218214451.2345691-2-cristian.ciocaltea@collabora.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 18/12/2023 22:07, Kamal Dasu wrote:
-> From: Kamal Dasu <kdasu@broadcom.com>
+On 18/12/2023 22:44, Cristian Ciocaltea wrote:
+> The reset description items are already provided by the referenced
+> snps,dwmac.yaml schema, hence replace them with the necessary
+> {min,max}Items.
 > 
-> 74165b0 shall use a new sdio controller core version which
-> requires a different reset sequence. For core reset we use
-> sdhci_reset. For CMD and/or DATA reset added a new function
-> to also enable SDHCI clocks SDHCI_CLOCK_CARD_EN
-> SDHCI_CLOCK_INT_EN along with the SDHCI_RESET_CMD and/or
-> SDHCI_RESET_DATA fields.
+> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+> ---
+>  .../devicetree/bindings/net/starfive,jh7110-dwmac.yaml       | 5 ++---
+>  1 file changed, 2 insertions(+), 3 deletions(-)
 > 
-> Signed-off-by: Kamal Dasu <kdasu@broadcom.com>
-> Reported-by: kernel test robot <lkp@intel.com>
-> Closes: https://lore.kernel.org/oe-kbuild-all/202312091608.0VbkRxlh-lkp@intel.com/
-> Closes: https://lore.kernel.org/oe-kbuild-all/202312091905.UGzltx8A-lkp@intel.com/
+> diff --git a/Documentation/devicetree/bindings/net/starfive,jh7110-dwmac.yaml b/Documentation/devicetree/bindings/net/starfive,jh7110-dwmac.yaml
+> index 5e7cfbbebce6..d90cb82c1424 100644
+> --- a/Documentation/devicetree/bindings/net/starfive,jh7110-dwmac.yaml
+> +++ b/Documentation/devicetree/bindings/net/starfive,jh7110-dwmac.yaml
+> @@ -55,9 +55,8 @@ properties:
+>      maxItems: 3
+>  
+>    resets:
+> -    items:
+> -      - description: MAC Reset signal.
+> -      - description: AHB Reset signal.
+> +    minItems: 2
+> +    maxItems: 2
 
-So again: drop the tags. Please reach to your Broadcom folks to get some
-basic guidance on submission process.
+Why changing only resets, but not reset-names?
 
 Best regards,
 Krzysztof
