@@ -1,101 +1,110 @@
-Return-Path: <devicetree+bounces-27036-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27037-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CCE9E818F45
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 19:07:57 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 729D9818F89
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 19:17:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8A2E228461C
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 18:07:56 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 15937B22538
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 18:17:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C33F38FBC;
-	Tue, 19 Dec 2023 18:06:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0696C37D2F;
+	Tue, 19 Dec 2023 18:10:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bbamb6wM"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JG9x4PHg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38CD639AC5;
-	Tue, 19 Dec 2023 18:06:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2F8CCC433C7;
-	Tue, 19 Dec 2023 18:06:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1703009215;
-	bh=75Es5ASDNV/OKxp/HlaSmARaKwxlUSU1EzBIpJTahRw=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=bbamb6wMIQTNf2EwRtb8UiN2rGhkeT3P8P/X+6ptYEgRlQK5Da0Dsmh+XELFHeiBw
-	 pbkfnuMPYvQpHiCXo99GPo74qlJW/vBKogHtjMGgJkEge+lCEBy1l5k5YiLW08nSi2
-	 YzNBgl3Scxhv0zJOG/HH9nfVsGWB9sIZo/C9VEELwDkWrVWsM6eB7EgRwq8pX8c4fC
-	 Mlx/oEX/JenyAaKtZ2zHR7PEAipdYLRY6TpQmPqv/NhJb1fSZxRhOU+5js1HhcbSZ7
-	 BO/sVIwYoObutr8vagWBI8lvIHRIzkYCTff8tKgQusvFu4BNvGCt4E0l5sj44sJpl/
-	 LqbEy6WVyTmlw==
-From: Mark Brown <broonie@kernel.org>
-To: Liam Girdwood <lgirdwood@gmail.com>, Jaroslav Kysela <perex@perex.cz>, 
- Takashi Iwai <tiwai@suse.com>, 
- Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, 
- Banajit Goswami <bgoswami@quicinc.com>, Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Thierry Reding <thierry.reding@gmail.com>, 
- Jonathan Hunter <jonathanh@nvidia.com>, 
- Linus Walleij <linus.walleij@linaro.org>
-Cc: linux-sound@vger.kernel.org, alsa-devel@alsa-project.org, 
- devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
-In-Reply-To: <20231214-gpio-descriptors-sound-misc-v1-0-e3004176bd8b@linaro.org>
-References: <20231214-gpio-descriptors-sound-misc-v1-0-e3004176bd8b@linaro.org>
-Subject: Re: [PATCH 0/4] GPIO inclusion fixes to misc sound drivers
-Message-Id: <170300921190.125466.2748505947171245430.b4-ty@kernel.org>
-Date: Tue, 19 Dec 2023 18:06:51 +0000
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 555624CB37
+	for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 18:10:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-336755f1688so675552f8f.0
+        for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 10:10:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1703009447; x=1703614247; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=9KiAVS35DFTqHVIxiWdRmJ0LeSYZczhNengzj5Y5Mzs=;
+        b=JG9x4PHgoWJixH4voIEYtak+MINn4GkYGDvvNhZVJVR2SXvOL6aXc8w4Z4cKWYedfQ
+         lj5vO5uOslDfkRE79l8xLm6V1oSKPbKWK7MWegcBE/kmq5SNeVtBWQep7fgXquSL1xW+
+         dBVdjKRi4XfQZR6VDNe18Fc0UEelz9/OvLwF3AWc0+egooFVowGYgbEGqlaFImfbs9QF
+         cvRasUcC3UShfm5UCmQ7LSWYJJ8516ABLiOkpP5ryAawGA0m7Xd6vPc+JR6lv9qiISPW
+         oRVAVpjZsoOOs90RCDarrYlGlXKJ3PqRu055sJS7RsM9gs88LL4z/vV+QSWFGThS0pt3
+         F6jw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1703009447; x=1703614247;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=9KiAVS35DFTqHVIxiWdRmJ0LeSYZczhNengzj5Y5Mzs=;
+        b=KEwWyudja6G37vpiXCEiO/otYBQ5LqDSpuoHf/H5FOc4PWivdBqwk2wp5r/dp6DJJA
+         vbmsa3y1KnhTS8iYEJjPjDnQ6D/tp4ATlGfA/M3vWlTOfdx4U/ntdRVfSJEt9eEK2MMo
+         +G6zLBerJZ3iAWRNVUfDTZqC7IaQ1uuDBne7A0joQOJH8Unm6lxrCldjMcwgikHlhJ9P
+         CQ2hHcNbuOGS0nnsLalaPQoWW5U7uCYGl7RUbZV4sxbRQaYtoGBLUj83kqj77dopLLoI
+         NTX6bFIYFrzUHJoRWWfCipBAfeSBD1fQmZJ2FmGfsYlrcOhiGshi23vunKaYO5Z3cMWm
+         K2+g==
+X-Gm-Message-State: AOJu0YzegcPO30dvcEYhOOQB8Kp9rp1fLvZDzqDzxX5rRD9VNvCuROGh
+	BTbX7pxu9h0wz+ocl08gt7D0lA==
+X-Google-Smtp-Source: AGHT+IH/tqzAJhU3SKywn8y76WyVSpW01Wu4CScbRsk3MqKJim3UjQQTDZpfmb5oi04uimYKx72/KA==
+X-Received: by 2002:a5d:42c3:0:b0:336:6eba:b0ff with SMTP id t3-20020a5d42c3000000b003366ebab0ffmr1187132wrr.94.1703009447521;
+        Tue, 19 Dec 2023 10:10:47 -0800 (PST)
+Received: from [192.168.10.46] ([37.170.14.102])
+        by smtp.googlemail.com with ESMTPSA id q2-20020a05600000c200b0033668993237sm5845260wrx.49.2023.12.19.10.10.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 19 Dec 2023 10:10:47 -0800 (PST)
+Message-ID: <631fb066-08ba-495e-9311-a6cf24c1ccbc@linaro.org>
+Date: Tue, 19 Dec 2023 19:10:45 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.13-dev-5c066
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 6/8] dt-bindings: thermal: Convert da906{1,2} thermal
+ to json-schema
+Content-Language: en-US
+To: Biju Das <biju.das.jz@bp.renesas.com>, Lee Jones <lee@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Support Opensource <support.opensource@diasemi.com>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, Zhang Rui <rui.zhang@intel.com>,
+ Lukasz Luba <lukasz.luba@arm.com>, devicetree@vger.kernel.org,
+ linux-pm@vger.kernel.org, Geert Uytterhoeven <geert+renesas@glider.be>,
+ Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+ Biju Das <biju.das.au@gmail.com>, linux-renesas-soc@vger.kernel.org,
+ Rob Herring <robh@kernel.org>
+References: <20231210134717.94020-1-biju.das.jz@bp.renesas.com>
+ <20231210134717.94020-7-biju.das.jz@bp.renesas.com>
+From: Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <20231210134717.94020-7-biju.das.jz@bp.renesas.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Thu, 14 Dec 2023 14:15:41 +0100, Linus Walleij wrote:
-> Mostly dropping unused headers, and a single driver rewrite.
+On 10/12/2023 14:47, Biju Das wrote:
+> Convert the da906{1,2} thermal device tree binding documentation to
+> json-schema.
 > 
+> Update MAINTAINERS entries and description by referring to
+> dlg,da9062-thermal.yaml binding file.
 > 
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
-Applied to
+Acked-by: Daniel Lezcano <daniel.lezcano@linaro.org>
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-Thanks!
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
 
-[1/4] ASoC: hisilicon: Drop GPIO include
-      commit: 487b467206fb2f3a21c93759d3b0ffe7044ed197
-[2/4] ASoC: qcom: sc7180: Drop GPIO include
-      commit: 809fc84b371a0364160254037d2bc34a8f5ce372
-[3/4] ASoC: simple-card-utils: Drop GPIO include
-      commit: 4504f63321e1a581a3c0cbc8de91bd0175d94783
-[4/4] ASoC: tegra: tegra20_ac97: Convert to use GPIO descriptors
-      commit: 26e91f61d6b91ccfb0bbb15cbc81845dd1d223af
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
 
 
