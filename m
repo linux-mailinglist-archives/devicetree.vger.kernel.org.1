@@ -1,54 +1,68 @@
-Return-Path: <devicetree+bounces-27051-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27052-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 499608190E4
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 20:35:33 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BFA448190E9
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 20:36:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F1FBD1F262D2
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 19:35:32 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 490CEB24E19
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 19:36:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B7B539860;
-	Tue, 19 Dec 2023 19:33:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56182405DA;
+	Tue, 19 Dec 2023 19:33:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LKkNEKhA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mItHfAMq"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3633C3D38C;
-	Tue, 19 Dec 2023 19:33:49 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A0AD4C433CB;
-	Tue, 19 Dec 2023 19:33:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35F52405CB;
+	Tue, 19 Dec 2023 19:33:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BFF60C433C7;
+	Tue, 19 Dec 2023 19:33:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1703014429;
-	bh=fsDwJefKUaGeNrH37K4pO/qCC8GFtYcBJA1T/Fm8oYY=;
+	s=k20201202; t=1703014432;
+	bh=o0+CNZGXbjFl2WvoCYvRIoh66SFydQ+T30cjCNjNEZk=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=LKkNEKhAESrgPbrQhkfuqiJ+3dzP14N6D22IlofvNClPihwvJxeJ+Vn3vmXeY42hj
-	 LsjQ6MYv2ukhvKLfgRcvlxeZgiNJxyUNfBh2Ey5LZebpTqYJMZM5dIl45kAK75/yyR
-	 Da1xFcTKCLHmqIU8LKGeUGyYEOS9Nf6qg+Skv4HoOSCD3MHzaiSEChfRWv6jM1zESV
-	 EElMDKhb9lxyRZnoOrylhNGltoo1bzjGuLoXQ8uK0YmHWSBP8s3VLgpALLb43wbbCi
-	 0qsLyu/QBosA19o7/LSzD7dlBT/sAadwWqcK8seQaUH+1iuvkvZYK0squKgKuzM34W
-	 h0Jdlas1Sakug==
+	b=mItHfAMqBA1uuHkp3ctyIWJsAwUoawYhfvU41e+ecO4WlHylwk+FH2go2TTMcDRiD
+	 U3e/eshK59TqYEt/+kQLUXbOyxoAafjV9WYHwfn/UBNEXPc217UCYavZVaaDMDT6uY
+	 q8IaqhPvZqpo3YNg/FCgR41wyxQxivnhAGQeV1szZtUrn2iZnRWDARbtZM2PtBhuTl
+	 DkFtc7yQ4MQMQsHPaUPcvdsEasWNJBzcY+dAa5g7bIHm/Cy3TszFEVEx6SEI5OzK3Q
+	 Ai76LPADMdGQ1jMLa30sgVwjGjIEYfE2agjSueJiQPdSBgXP8VezmIu94IHm4fB5QC
+	 vxauz+nmkZKuA==
 From: Bjorn Andersson <andersson@kernel.org>
 To: konrad.dybcio@linaro.org,
 	robh+dt@kernel.org,
 	krzysztof.kozlowski+dt@linaro.org,
+	catalin.marinas@arm.com,
+	ulf.hansson@linaro.org,
+	Sibi Sankar <quic_sibis@quicinc.com>
+Cc: agross@kernel.org,
 	conor+dt@kernel.org,
-	Manivannan Sadhasivam <mani@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org,
+	ayan.kumar.halder@amd.com,
+	j@jannau.net,
+	dmitry.baryshkov@linaro.org,
+	nfraprado@collabora.com,
+	m.szyprowski@samsung.com,
+	u-kumar1@ti.com,
+	peng.fan@nxp.com,
+	lpieralisi@kernel.org,
+	quic_rjendra@quicinc.com,
+	abel.vesa@linaro.org,
+	linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	stable@vger.kernel.org
-Subject: Re: [PATCH] ARM: dts: qcom-sdx55: Fix the base address of PCIe PHY
-Date: Tue, 19 Dec 2023 13:33:34 -0600
-Message-ID: <170301441255.365364.14445701590452510370.b4-ty@kernel.org>
+	linux-arm-kernel@lists.infradead.org,
+	quic_tsoni@quicinc.com,
+	neil.armstrong@linaro.org
+Subject: Re: (subset) [PATCH V5 0/5] dts: qcom: Introduce X1E80100 platforms device tree
+Date: Tue, 19 Dec 2023 13:33:36 -0600
+Message-ID: <170301441253.365364.18205363221847147285.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20231211172411.141289-1-manivannan.sadhasivam@linaro.org>
-References: <20231211172411.141289-1-manivannan.sadhasivam@linaro.org>
+In-Reply-To: <20231205062403.14848-1-quic_sibis@quicinc.com>
+References: <20231205062403.14848-1-quic_sibis@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,18 +73,21 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Mon, 11 Dec 2023 22:54:11 +0530, Manivannan Sadhasivam wrote:
-> While convering the binding to new format, serdes address specified in the
-> old binding was used as the base address. This causes a boot hang as the
-> driver tries to access memory region outside of the specified address. Fix
-> it!
+On Tue, 05 Dec 2023 11:53:58 +0530, Sibi Sankar wrote:
+> This series adds the initial (clocks, pinctrl, rpmhpd, regulator, interconnect,
+> CPU, SoC and board compatibles) device tree support to boot to shell on the
+> Qualcomm X1E80100 platform, aka Snapdragon X Elite.
 > 
+> Our v1 post of the patchsets adding support for Snapdragon X Elite SoC had
+> the part number sc8380xp which is now updated to the new part number x1e80100
+> based on the new branding scheme and refers to the exact same SoC.
 > 
+> [...]
 
 Applied, thanks!
 
-[1/1] ARM: dts: qcom-sdx55: Fix the base address of PCIe PHY
-      commit: cc6fc55c7ae04ab19b3972f78d3a8b1be32bf533
+[5/5] arm64: defconfig: Enable X1E80100 SoC base configs
+      commit: 2e86e6300c4a98b1d0c93e03c491b0fd5d552eb5
 
 Best regards,
 -- 
