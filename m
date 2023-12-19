@@ -1,109 +1,116 @@
-Return-Path: <devicetree+bounces-26780-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26781-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2CD94818150
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 07:06:06 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 208DF818177
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 07:23:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4041E1C233CC
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 06:06:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B5F201F229DB
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 06:23:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC0686FAD;
-	Tue, 19 Dec 2023 06:05:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C59D746C;
+	Tue, 19 Dec 2023 06:23:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="FwNAXiee"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bBRqQrQU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D0608820;
-	Tue, 19 Dec 2023 06:05:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 3BJ5DuqO006718;
-	Tue, 19 Dec 2023 06:05:53 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=wl4+K71V0VvxC1sZKY7Qp0NaqTVKYirLa7JNZAyeOW8=; b=Fw
-	NAXieeNdXvj4/75u9YahBVuFQIFM8OyvzE2+hGZ7tlECFSG0Yp4sZgCtYpRZZ/it
-	pfk2rTyuhjqvyoXTZigHnyfgPs7LIbcBi9tBNs6BApUsbA2rERb84wgO7OsEjOkn
-	H9jSYylQI8XjVQomZsveo18qmT3yW7o6MSgGifRzA9c5pX3Uwoc+LLoro7Qk8s4C
-	res8iZ6aL7rGUwseLVMJlClkpFEt1Ve/U277SpWDdiuBGC3NI+kPRbRcaVpycbKR
-	wHD9JsPEqjTBtrs6p6YDkUljePIXiG2jKjIBYhfMfbjNgoLkM0kMHC+TMQ7ipeQq
-	4/GpjmtDco1ybkRvCXoA==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3v2vhrgyxn-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 19 Dec 2023 06:05:52 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3BJ65pBW017745
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 19 Dec 2023 06:05:51 GMT
-Received: from [10.238.139.231] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Mon, 18 Dec
- 2023 22:05:47 -0800
-Message-ID: <90ec4c21-cef3-481e-a848-6fa471d43927@quicinc.com>
-Date: Tue, 19 Dec 2023 14:05:04 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE97ED2E6;
+	Tue, 19 Dec 2023 06:23:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-3366ddd1eddso1472371f8f.0;
+        Mon, 18 Dec 2023 22:23:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1702967005; x=1703571805; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=MJpSfJ1dvmmE5RJ34NhOa72WgMVQr4CGokT5UCK3ZUM=;
+        b=bBRqQrQUePb5DeKH3WyahIg/JVknTbiII57R17rbgrVoB2+sthz9UsoXo//DL/NUZg
+         V2DKxgmef5TN1hfwm5kwOttdyMTggwBNCRgll+v3D3Nv5kREnU7C7oqZdo3i1Yf153PO
+         gTV0OCMl4Zy4L1v88H8zfSld2zoo7TjOnkUSA0K006px3AfoPwNincL2lr90lj0eiyEO
+         GjdgQKKW/sGwr01+a7hqwe9Er+O2DQC26cX7eKLsgiY1A13w4aJo65bLgmEJdT5wzD1r
+         /RQWNLhXf6oaWJcxjzoa+e0zQmMqCuPYD9sayCbdooLnz5LtBXZ3m5fZEtvnp3xLkJ2k
+         h4EA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702967005; x=1703571805;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=MJpSfJ1dvmmE5RJ34NhOa72WgMVQr4CGokT5UCK3ZUM=;
+        b=FMOLizMPMpvExs2Hjw7x/mxUnrWpt7+LW5GlUd5syU/5GgcysZXRNjCot5wGWpIwRe
+         9dOSYFcKh7gQJUUSEXpv1zuTM9MDgt8LGKvjXDtcvzkaehW+lfn7joQ/l5swUc5/5m25
+         clt5eMZA2iSLFwsnSXY6JnNnA524tM5iKJd6iN5mnAT+VXy8JPqf2fbKyeoRkPaUbuk+
+         eK+SkHOrYAa1aztaldWM6tgEewHwoRTCIpkJE7Ac3KdnRt3nGcNWTYZYe+67AmB7fxCy
+         19PsCLLtJLxGllF+M3ClfMrtvTbdzxa562eQ0jLHcYSKvxHikY6/4q1gIv0IEp1ztXYG
+         VzfA==
+X-Gm-Message-State: AOJu0YwMX350I7Mz68bTwEtE59sZAQS97MUrA30VRDeZi2Jtbrgi0t6G
+	OYN0P5M73tmpWZh/pbjj0cA=
+X-Google-Smtp-Source: AGHT+IEkzjyCXE/pVfUxl8tgx+nFnDzsHLi35TAeUuwcvNFMaqgPyhCy8pOADrz3Dwm0lPUZXebU9g==
+X-Received: by 2002:adf:fd45:0:b0:336:5499:c5f5 with SMTP id h5-20020adffd45000000b003365499c5f5mr2017669wrs.89.1702967004827;
+        Mon, 18 Dec 2023 22:23:24 -0800 (PST)
+Received: from dreambig.dreambig.corp ([58.27.187.115])
+        by smtp.gmail.com with ESMTPSA id b12-20020a5d45cc000000b003365422e8b9sm10710991wrs.17.2023.12.18.22.23.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 18 Dec 2023 22:23:24 -0800 (PST)
+From: Muhammad Muzammil <m.muzzammilashraf@gmail.com>
+X-Google-Original-From: Muhammad Muzammil <muzammil@dreambigsemi.com>
+To: robh+dt@kernel.org,
+	frowand.list@gmail.com
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Muzammil Ashraf <m.muzzammilashraf@gmail.com>
+Subject: [PATCH] drivers: of: Fixed kernel doc warning
+Date: Tue, 19 Dec 2023 11:23:17 +0500
+Message-Id: <20231219062317.17650-1-muzammil@dreambigsemi.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] arm64: dts: qcom: Add definition for three LEDs.
-To: Konrad Dybcio <konrad.dybcio@linaro.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <quic_fenglinw@quicinc.com>,
-        <quic_uchheda@quicinc.com>, <kamalw@qti.qualcomm.com>
-References: <20231110-qcom_leds-v2-1-3cad1fbbc65a@quicinc.com>
- <aaf2e314-e7e2-4338-833f-1d1412776390@linaro.org>
-From: hui liu <quic_huliu@quicinc.com>
-In-Reply-To: <aaf2e314-e7e2-4338-833f-1d1412776390@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 6OMNMu6jx6bInI-XpOLI6zKWBMfKa0Ng
-X-Proofpoint-GUID: 6OMNMu6jx6bInI-XpOLI6zKWBMfKa0Ng
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-12-09_02,2023-12-07_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 phishscore=0
- adultscore=0 bulkscore=0 priorityscore=1501 impostorscore=0 spamscore=0
- lowpriorityscore=0 suspectscore=0 clxscore=1011 mlxlogscore=559
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2311290000 definitions=main-2312190043
+Content-Transfer-Encoding: 8bit
 
+From: Muzammil Ashraf <m.muzzammilashraf@gmail.com>
 
+property.c:1220 : Fixed excess struct member definition warning
+property.c:444 	: Fixed missing a blank line after declarations
 
-On 11/13/2023 8:14 PM, Konrad Dybcio wrote:
-> On 10.11.2023 03:06, Hui Liu via B4 Relay wrote:
->> From: Hui Liu <quic_huliu@quicinc.com>
->>
->> Add definition for three LEDs to make sure they can
->> be enabled base on QCOM LPG LED driver.
->>
->> Signed-off-by: Hui Liu <quic_huliu@quicinc.com>
->> ---
->> Changes in v2:
->> - Rephrased commit text and updated the nodes to board file.
-> The title should still include it, so:
-> 
-> arm64: dts: qcom: sc7280-idp: Add ...
-Added patch 3 to update the description.
+Signed-off-by: Muzammil Ashraf <m.muzzammilashraf@gmail.com>
+---
+ drivers/of/property.c | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
 
-> Konrad
+diff --git a/drivers/of/property.c b/drivers/of/property.c
+index afdaefbd03f6..641a40cf5cf3 100644
+--- a/drivers/of/property.c
++++ b/drivers/of/property.c
+@@ -441,6 +441,7 @@ int of_property_read_string(const struct device_node *np, const char *propname,
+ 				const char **out_string)
+ {
+ 	const struct property *prop = of_find_property(np, propname, NULL);
++
+ 	if (!prop)
+ 		return -EINVAL;
+ 	if (!prop->length)
+@@ -1217,9 +1218,9 @@ static struct device_node *parse_##fname(struct device_node *np,	     \
+  *
+  * @parse_prop: function name
+  *	parse_prop() finds the node corresponding to a supplier phandle
+- * @parse_prop.np: Pointer to device node holding supplier phandle property
+- * @parse_prop.prop_name: Name of property holding a phandle value
+- * @parse_prop.index: For properties holding a list of phandles, this is the
++ *  parse_prop.np: Pointer to device node holding supplier phandle property
++ *  parse_prop.prop_name: Name of property holding a phandle value
++ *  parse_prop.index: For properties holding a list of phandles, this is the
+  *		      index into the list
+  * @optional: Describes whether a supplier is mandatory or not
+  * @node_not_dev: The consumer node containing the property is never converted
+-- 
+2.27.0
+
 
