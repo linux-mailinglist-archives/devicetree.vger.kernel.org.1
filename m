@@ -1,140 +1,170 @@
-Return-Path: <devicetree+bounces-27055-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27057-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16CF5819131
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 21:06:34 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C6BEB81914C
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 21:26:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C8734287821
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 20:06:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6BA911F25C16
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 20:26:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 492033985A;
-	Tue, 19 Dec 2023 20:06:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="rB7ITkf9"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65CE739AC4;
+	Tue, 19 Dec 2023 20:26:07 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B80939AD1
-	for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 20:06:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-a268dd99597so15335766b.3
-        for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 12:06:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1703016380; x=1703621180; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=bqF6m19XZO5RL0DPMl/uBcbgEwCy9vcznM+Gd4elcus=;
-        b=rB7ITkf9uZD3COxMcRb8KKv9yyV4DGPWDjQXuIJFdSflWUmk9Ph4ha4cS3hLE5WhCW
-         ifNMbqbZOYKYhO/MYKxXVDmiJqC0zU8ZcCGuF9f9Mg0ocqOoY0DIp3fKvpsLpDf00gKg
-         TeuiKRqQI3hHOXnrlTJ2Y5CWOabjSyTk99OyZ7ST7IjKB6PQpCCr7KbvSLdb/XLtWLer
-         X3RB3EVkiibi0bhIxzKgoTiTD0Wm9bGr7lZ2FrP8KEHyzeLz7s6PH1eJfTDj9ECi4Cb/
-         48NqAKTamuEIpjtG9KhCJLPFaRxh8fDx1TpsWzxp+cTfQADqQ8M3OxA+4V1+IBHFQ2qF
-         gf/g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703016380; x=1703621180;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=bqF6m19XZO5RL0DPMl/uBcbgEwCy9vcznM+Gd4elcus=;
-        b=LJ3GRRJFPb83qwStm+FlNQG6+ajc5gVeTssqUZbK9KFuGktj/hqa6nNNMzf8Lzp7fJ
-         84xTqF5WAo+tAHH2l2lpRu8AygLK3z6oxpoiKB60OYz17v46Kb4Ks0WKu0NZ0BIsWzrx
-         PrjvvuVGtNmfWV/J+58x8qwcY8TdFN/tjbjnv6R0PjXdmINJRN4cZXh7ALaPoEjZ+Lfa
-         acaW0GVR0UrRG8UwMs96vHMDMhxdEAR453NCiZrUSwivICToHEyMWjgFkl8b2/2unnrc
-         gefpssMdr8t0DfJihji5xyc/a1rlAnOmnqWGZc6XTc5tjDl5mY4JcyvoasecDUyY3Yu6
-         6swg==
-X-Gm-Message-State: AOJu0YyVtnppDDa5Fq99rXYCVp2CDFepdvyWxwMmiGdemRCC49/Lh/8z
-	p/UQzZ5JZAlwVHKdjwf6CEO4jw==
-X-Google-Smtp-Source: AGHT+IGrc9ErIzMU1vRl6zxfXqa0wGNvgzlcLREUARXZ0wU/2M/hvRhYw3Zsla3kuVR7dCKkMKBNpQ==
-X-Received: by 2002:a17:906:b58:b0:a26:8806:a5a8 with SMTP id v24-20020a1709060b5800b00a268806a5a8mr225380ejg.91.1703016380457;
-        Tue, 19 Dec 2023 12:06:20 -0800 (PST)
-Received: from [10.167.154.1] (178235179206.dynamic-4-waw-k-1-3-0.vectranet.pl. [178.235.179.206])
-        by smtp.gmail.com with ESMTPSA id lm11-20020a17090718cb00b00a1cf3fce937sm15772302ejc.162.2023.12.19.12.06.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 Dec 2023 12:06:20 -0800 (PST)
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-Date: Tue, 19 Dec 2023 21:06:15 +0100
-Subject: [PATCH] arm64: dts: qcom: sc8280xp: Describe the SMMUv3
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 050E839AC5;
+	Tue, 19 Dec 2023 20:26:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0375855.ppops.net [127.0.0.1])
+	by mx0b-00128a01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 3BJI4OGc024805;
+	Tue, 19 Dec 2023 15:25:28 -0500
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+	by mx0b-00128a01.pphosted.com (PPS) with ESMTPS id 3v3g4s8efk-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 19 Dec 2023 15:25:28 -0500 (EST)
+Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
+	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 3BJKPQsO034660
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 19 Dec 2023 15:25:26 -0500
+Received: from ASHBCASHYB4.ad.analog.com (10.64.17.132) by
+ ASHBMBX8.ad.analog.com (10.64.17.5) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Tue, 19 Dec 2023 15:25:25 -0500
+Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by
+ ASHBCASHYB4.ad.analog.com (10.64.17.132) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Tue, 19 Dec 2023 15:25:25 -0500
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Tue, 19 Dec 2023 15:25:25 -0500
+Received: from work.ad.analog.com (HYB-hERzalRezfV.ad.analog.com [10.65.205.129])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 3BJKP5B9029964;
+	Tue, 19 Dec 2023 15:25:07 -0500
+From: Marcelo Schmitt <marcelo.schmitt@analog.com>
+To: <apw@canonical.com>, <joe@perches.com>, <dwaipayanray1@gmail.com>,
+        <lukas.bulwahn@gmail.com>, <paul.cercueil@analog.com>,
+        <Michael.Hennerich@analog.com>, <lars@metafoo.de>, <jic23@kernel.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <dan.carpenter@linaro.org>,
+        <dlechner@baylibre.com>, <marcelo.schmitt1@gmail.com>
+CC: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH v5 00/11] Add support for AD7091R-2/-4/-8
+Date: Tue, 19 Dec 2023 17:25:04 -0300
+Message-ID: <cover.1703013352.git.marcelo.schmitt1@gmail.com>
+X-Mailer: git-send-email 2.30.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20231219-topic-8280_smmuv3-v1-1-efeb32b2655b@linaro.org>
-X-B4-Tracking: v=1; b=H4sIALb3gWUC/x2NQQqEMAwAvyI5G7AVsfoVkaXWuAa0SrOKIP7ds
- McZGOYGocQk0GY3JDpZeIsKJs8gzD5+CXlUBlvY0ljT4G/bOaCzrvjIuh5niZUZXd1UfqopgHa
- DF8Ih+RhmLeOxLCr3RBNf/1HXP88LwZ85e3gAAAA=
-To: Bjorn Andersson <andersson@kernel.org>, 
- Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: Marijn Suijten <marijn.suijten@somainline.org>, 
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Konrad Dybcio <konrad.dybcio@linaro.org>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1703016378; l=1584;
- i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=tbCr5cE54lb2i0xlMjLPkDs1oKBza31K8hbXR13Zg/s=;
- b=AXXSOLHDERsZeNBPsJxe64y+kBkHH6sCgNg8DlRp9avbu4tEtatNUpcwtIJlieBvmlOkwxD7L
- k9E7wuGFFCqC2vj4BoZUKD2MI1o4wsVn5KBFacZakk819AuzydUeLGL
-X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
- pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-ORIG-GUID: O66u9oDmtLDVDQzxRqI-DTKy0UwNU27a
+X-Proofpoint-GUID: O66u9oDmtLDVDQzxRqI-DTKy0UwNU27a
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-12-02_01,2023-11-30_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 suspectscore=0
+ impostorscore=0 mlxscore=0 malwarescore=0 adultscore=0 lowpriorityscore=0
+ clxscore=1015 mlxlogscore=999 priorityscore=1501 bulkscore=0 phishscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2311290000
+ definitions=main-2312190151
 
-SC8280XP actually has a third SMMU, which can be seen in e.g. the IORT
-ACPI table.
+From: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
 
-Unfortunately though, the secure firmware seems to be configured in a
-way such that Linux can't touch it, not even read back the ID registers.
+----------------- Updates -----------------
 
-Add it for hardware description completeness. Do note the reg space
-size is only an educated guess.
+Applied all suggestions. 
+Only submitting patches not applied on v4:
+Patches after ("Align arguments to function call parenthesis").
 
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
----
- arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+Change log v4 -> v5:
+- Patch 1: Event callbacks
+  * Moved to begin of the series to easy backport;
+  * Reverted to original event attributes;
+  * Reworked event configuration to do per direction per channel enable/disable;
+  * Improved commit message;
+  * Added fixes tag;
+  * Added Suggested-by tag.
+- Patch 2: Enable internal vref
+  * Added fixes tag and improved commit message;
+  * Now earlier in the series to easy backport;
+  * Used regmap_set_bits() to make code more neat.
+- Patch 3: Move generic AD7091R code
+  * event specs moved earlier in patch 1.
+- Patch 4: Move chip init data
+  * Renamed field to make initialization clearer: irq_info -> info_irq.
+  * Fixed ad7091r_init_info initialization by passing pointers to info structs;
+- Patch 10: Add ad7091r8 support
+  * Moved bitfield.h include to patch event callbacks patch;
+  * Dropped GPIO consumer include on ad7091r-base.h and added gpio_desc;
+  * Removed extra space before devm_gpiod_get_optional().
 
-diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-index febf28356ff8..391aa783251d 100644
---- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-@@ -4078,6 +4078,22 @@ tlmm: pinctrl@f100000 {
- 			wakeup-parent = <&pdc>;
- 		};
- 
-+		iommu@14f80000 {
-+			compatible = "arm,smmu-v3";
-+			reg = <0 0x14f80000 0 0x80000>;
-+			interrupts = <GIC_SPI 951 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 955 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 953 IRQ_TYPE_EDGE_RISING>;
-+			interrupt-names = "eventq",
-+					  "gerror",
-+					  "cmdq-sync";
-+			#iommu-cells = <1>;
-+			dma-coherent;
-+
-+			/* The secure firmware prevents register access from Linux */
-+			status = "reserved";
-+		};
-+
- 		apps_smmu: iommu@15000000 {
- 			compatible = "qcom,sc8280xp-smmu-500", "arm,mmu-500";
- 			reg = <0 0x15000000 0 0x100000>;
+So, since we are already fixing a few things here, maybe it's a good time to
+comment about the event ABI.
+I see the event config files under events directory appearing as
+in_voltage0_thresh_falling_value
+in_voltage0_thresh_rising_value
+in_voltage1_thresh_falling_value
+and so on.
+They don't have the `_raw` part of the name as documented in the IIO ABI [1].
+Not sure if that is how it's intended to be, the driver is still missing
+something, or maybe ABI is somehow outdated.
+Anyway, if that is also something to be fixed then let me know I'll have a look
+at it.
 
----
-base-commit: aa4db8324c4d0e67aa4670356df4e9fae14b4d37
-change-id: 20231219-topic-8280_smmuv3-51d8795af7ec
+[1]: https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git/tree/Documentation/ABI/testing/sysfs-bus-iio#n887
 
-Best regards,
+Thanks,
+Marcelo
+
+----------------- Context -----------------
+
+This series adds support for AD7091R-2/-4/-8 ADCs which can do single shot
+or sequenced readings. Threshold events are also supported.
+Overall, AD7091R-2/-4/-8 are very similar to AD7091R-5 except they use SPI interface.
+
+Changes have been tested with raspberrypi and eval board on raspberrypi kernel
+6.7-rc3 from raspberrypi fork.
+Link: https://wiki.analog.com/resources/tools-software/linux-drivers/iio-adc/ad7091r8
+
+
+Marcelo Schmitt (11):
+  iio: adc: ad7091r: Allow users to configure device events
+  iio: adc: ad7091r: Enable internal vref if external vref is not
+    supplied
+  iio: adc: ad7091r: Move generic AD7091R code to base driver and header
+    file
+  iio: adc: ad7091r: Move chip init data to container struct
+  iio: adc: ad7091r: Remove unneeded probe parameters
+  iio: adc: ad7091r: Set device mode through chip_info callback
+  iio: adc: ad7091r: Add chip_info callback to get conversion result
+    channel
+  iio: adc: Split AD7091R-5 config symbol
+  dt-bindings: iio: Add AD7091R-8
+  iio: adc: Add support for AD7091R-8
+  MAINTAINERS: Add MAINTAINERS entry for AD7091R
+
+ .../bindings/iio/adc/adi,ad7091r5.yaml        |  82 +++++-
+ MAINTAINERS                                   |   8 +
+ drivers/iio/adc/Kconfig                       |  16 ++
+ drivers/iio/adc/Makefile                      |   4 +-
+ drivers/iio/adc/ad7091r-base.c                | 269 +++++++++++------
+ drivers/iio/adc/ad7091r-base.h                |  83 +++++-
+ drivers/iio/adc/ad7091r5.c                    | 120 ++++----
+ drivers/iio/adc/ad7091r8.c                    | 272 ++++++++++++++++++
+ 8 files changed, 714 insertions(+), 140 deletions(-)
+ create mode 100644 drivers/iio/adc/ad7091r8.c
+
 -- 
-Konrad Dybcio <konrad.dybcio@linaro.org>
+2.42.0
 
 
