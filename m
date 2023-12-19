@@ -1,138 +1,111 @@
-Return-Path: <devicetree+bounces-26820-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26821-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39317818342
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 09:22:51 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D72058183A9
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 09:45:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4A4271C21FFC
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 08:22:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E87301C212BA
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 08:45:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AFEE11712;
-	Tue, 19 Dec 2023 08:22:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8971C1170E;
+	Tue, 19 Dec 2023 08:45:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pGQnJ+qS"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="glMEdn8Z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f52.google.com (mail-pj1-f52.google.com [209.85.216.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BCF811709;
-	Tue, 19 Dec 2023 08:22:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 771ADC433C7;
-	Tue, 19 Dec 2023 08:22:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1702974167;
-	bh=FmCM3a684//V/bIDrG9a5kI2+uNKkLhT98DUvSSewC0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=pGQnJ+qSxpGb5vN82otT1ZXIeafjXyBSyiq/ecFHosnYloJVBEDGjtJNZYWJO13GE
-	 Etg2tV/suN/uRNVHczTAKniHLU1h/lCZ8UGWvy9hdtRy163K/Bprhw6iSGz3pIQBWa
-	 IHydr394DHiTazdPjVPbPNiB+usyXCNmb4HSqapYUgTUliV2FqWb8FqyI51mBxqFnL
-	 Mw3qtzZNMgToE4GEyloFLBJmwH3Y6e9t5yVc+9PyXVKFtbYNKvSLYTJqps7UHrZ+kR
-	 HWYzZtgLm1Z2sxa3umZ8fdqGdBoDfDIO+hqrHm4polDAYwHgJgqlN3fFU4/JyR6MgT
-	 2IstHvDaKba5g==
-Received: from johan by xi.lan with local (Exim 4.96.2)
-	(envelope-from <johan@kernel.org>)
-	id 1rFVND-0006xa-1S;
-	Tue, 19 Dec 2023 09:22:44 +0100
-Date: Tue, 19 Dec 2023 09:22:43 +0100
-From: Johan Hovold <johan@kernel.org>
-To: Marijn Suijten <marijn.suijten@somainline.org>,
-	Lee Jones <lee@kernel.org>
-Cc: phone-devel@vger.kernel.org, Pavel Machek <pavel@ucw.cz>,
-	Bjorn Andersson <bjorn.andersson@linaro.org>,
-	~postmarketos/upstreaming@lists.sr.ht,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>,
-	Konrad Dybcio <konrad.dybcio@somainline.org>,
-	Martin Botka <martin.botka@somainline.org>,
-	Jami Kettunen <jami.kettunen@somainline.org>,
-	linux-arm-msm@vger.kernel.org, linux-leds@vger.kernel.org,
-	Rob Herring <robh@kernel.org>,
-	Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Stephen Boyd <swboyd@chromium.org>,
-	Satya Priya <quic_c_skakit@quicinc.com>
-Subject: Re: [PATCH v4 2/2] leds: qcom-lpg: Add PM660L configuration and
- compatible
-Message-ID: <ZYFS04cznE5bhOeV@hovoldconsulting.com>
-References: <20220719211848.1653920-1-marijn.suijten@somainline.org>
- <20220719211848.1653920-2-marijn.suijten@somainline.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50F2911C96;
+	Tue, 19 Dec 2023 08:45:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f52.google.com with SMTP id 98e67ed59e1d1-28b4d7bf8bdso1082425a91.3;
+        Tue, 19 Dec 2023 00:45:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1702975513; x=1703580313; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=OX75w/xyd5E4hq9OpOdbbEfwOMXrJ9s2JNpMiA5zZgk=;
+        b=glMEdn8ZduYHS7BX/2ip7xZfRWgOv4mZSUSXcNxQEC9suNEvv016YvXvjNGfKPzUbc
+         Xcxo4dl8To1nM/6tNNNG2DbtJjvgSU2KaYDeyp46Jpx0v6d+aJVdtGXt0p+Ee0xYFHw5
+         THFG9YxVXQrsRo3Voky6xIsouUSxHu/8U/3NZ0uZzSUqem7glkRJfXTWQ9/SRcllUxd8
+         vKYvurBn2ZTlLr7uI8ajZsahtgJs0pMDzpU3WOtykGGFvS8OLBHGF2m1g7mScofAJaaH
+         XYDQGsT/Dslev6pmmXhuy6ZEASSqnkZLpBQk3GvAIKfUD7ngxKPOUAWQAGSnVSyAN/Vo
+         4smA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702975513; x=1703580313;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=OX75w/xyd5E4hq9OpOdbbEfwOMXrJ9s2JNpMiA5zZgk=;
+        b=a9XzJSaSdMToeBrNj+BsUU0w98beEmF9agn0rt2qeAaJv4oy4G7F+lJ/mpmOIGiu+a
+         amQWmP1qOC+Gi+u7OJwyHBozKmGfFQ7Jr8yb2TwVH2+970etsaktpDeyPyJ+zMkqwhmr
+         xsrCEhh81cL2JxUU/czrS8QoR6UNzmKbMMnACqO8miiot7hzCaqOIv+sBNezsF1Q2iQG
+         Wcm5IOSSUCRYzUd5UHgpcR9a6mEe6nbYpH/j7rfES1l+YFnuSoWRAWKCZFiqg5xwqSuG
+         DTD89J/qSWN5VyfmEe4F9IMMCMuBiZoV7fRZqPWtRLi/JSrpa6do0mEQ+t7Oa7MrKWrQ
+         eqIA==
+X-Gm-Message-State: AOJu0YzHVw772hYgtvDbno7TEkOBAXWPEHDlQUzozJVm69+TNSL4XRm5
+	J6RXNVIPNSENEhNWniqBbAtw4VkEbxXzu0EU
+X-Google-Smtp-Source: AGHT+IFK/thGv+qIApRNL9M8QxfHBu53kxqrBPtkirj1+0RUsdv/qlvD/RCdQERCJtVFdrSe1i3yHw==
+X-Received: by 2002:a17:90a:f2d6:b0:28b:313b:7cba with SMTP id gt22-20020a17090af2d600b0028b313b7cbamr2379844pjb.20.1702975513360;
+        Tue, 19 Dec 2023 00:45:13 -0800 (PST)
+Received: from ?IPV6:2401:4900:581e:798e:871c:98db:5638:a4? ([2401:4900:581e:798e:871c:98db:5638:a4])
+        by smtp.gmail.com with ESMTPSA id 3-20020a17090a000300b00285cc7a867esm1057300pja.0.2023.12.19.00.45.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 19 Dec 2023 00:45:13 -0800 (PST)
+Message-ID: <6c1e13b3-28d2-42fc-b9c2-dcfc4793fc39@gmail.com>
+Date: Tue, 19 Dec 2023 14:12:54 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220719211848.1653920-2-marijn.suijten@somainline.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/2] dt-bindings: iio: dac: add MCP4821
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org
+Cc: Conor Dooley <conor+dt@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ linux-kernel-mentees@lists.linuxfoundation.org,
+ Shuah Khan <skhan@linuxfoundation.org>,
+ Conor Dooley <conor.dooley@microchip.com>
+References: <20231218164735.787199-1-anshulusr@gmail.com>
+ <f8aaf7b3-fa17-495f-9c1c-9ddf6fb41d8a@linaro.org>
+Content-Language: en-US
+From: Anshul Dalal <anshulusr@gmail.com>
+In-Reply-To: <f8aaf7b3-fa17-495f-9c1c-9ddf6fb41d8a@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Marijn and Lee,
-
-On Tue, Jul 19, 2022 at 11:18:48PM +0200, Marijn Suijten wrote:
-> Inherit PM660L PMIC LPG/triled block configuration from downstream
-> drivers and DT sources, consisting of a triled block with automatic
-> trickle charge control and source selection, three colored led channels
-> belonging to the synchronized triled block and one loose PWM channel.
+On 12/19/23 13:29, Krzysztof Kozlowski wrote:
+> On 18/12/2023 17:47, Anshul Dalal wrote:
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  vdd-supply: true
+>> +
+>> +  ldac-gpios:
+>> +    description: |
+>> +      Active Low LDAC (Latch DAC Input) pin used to update the DAC output.
+>> +    maxItems: 1
+>> +
+>> +  shdn-gpios:
 > 
-> Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
-> Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> ---
+> Open gpio-consumer-common.yaml and look at entries there.
 > 
-> Changes since v3:
-> - Rebased on -next;
-> - (series) dropped DTS patches that have been applied through the
->   Qualcomm DTS tree, leaving only leds changes (driver and
->   accompanying dt-bindings).
 
-> diff --git a/drivers/leds/rgb/leds-qcom-lpg.c b/drivers/leds/rgb/leds-qcom-lpg.c
-> index 02f51cc61837..102ab0c33887 100644
-> --- a/drivers/leds/rgb/leds-qcom-lpg.c
-> +++ b/drivers/leds/rgb/leds-qcom-lpg.c
-> @@ -1304,6 +1304,23 @@ static int lpg_remove(struct platform_device *pdev)
->  	return 0;
->  }
->  
-> +static const struct lpg_data pm660l_lpg_data = {
-> +	.lut_base = 0xb000,
-> +	.lut_size = 49,
-> +
-> +	.triled_base = 0xd000,
-> +	.triled_has_atc_ctl = true,
-> +	.triled_has_src_sel = true,
-> +
-> +	.num_channels = 4,
-> +	.channels = (const struct lpg_channel_data[]) {
-> +		{ .base = 0xb100, .triled_mask = BIT(5) },
-> +		{ .base = 0xb200, .triled_mask = BIT(6) },
-> +		{ .base = 0xb300, .triled_mask = BIT(7) },
-> +		{ .base = 0xb400 },
-> +	},
-> +};
-> +
->  static const struct lpg_data pm8916_pwm_data = {
->  	.num_channels = 1,
->  	.channels = (const struct lpg_channel_data[]) {
-> @@ -1424,6 +1441,7 @@ static const struct lpg_data pm8350c_pwm_data = {
->  };
->  
->  static const struct of_device_id lpg_of_table[] = {
-> +	{ .compatible = "qcom,pm660l-lpg", .data = &pm660l_lpg_data },
->  	{ .compatible = "qcom,pm8150b-lpg", .data = &pm8150b_lpg_data },
->  	{ .compatible = "qcom,pm8150l-lpg", .data = &pm8150l_lpg_data },
->  	{ .compatible = "qcom,pm8350c-pwm", .data = &pm8350c_pwm_data },
+Should I name the property `powerdown-gpios` instead of `shdn-gpios` as
+specified in gpio-consumer-common.yaml?
+Furthermore, do I need to add gpio-consumer-common.yaml as a ref?
 
-When reviewing the Qualcomm SPMI PMIC bindings I noticed that this patch
-was never picked up by the LEDs maintainer, while the binding and dtsi
-changes made it in:
-
-	https://lore.kernel.org/r/20220719211848.1653920-2-marijn.suijten@somainline.org
-
-Looks like it may still apply cleanly, but otherwise, would you mind
-rebasing and resending so that Lee can pick this one up?
-
-Johan
+Thanks for your time,
+Anshul
 
