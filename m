@@ -1,107 +1,149 @@
-Return-Path: <devicetree+bounces-27090-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27091-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E10C4819465
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 00:13:36 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 395DD819470
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 00:16:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D193FB234A0
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 23:13:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E6A3F2891C1
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 23:16:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 548973D0AC;
-	Tue, 19 Dec 2023 23:13:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56EA83D0C7;
+	Tue, 19 Dec 2023 23:16:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aHRhp2O4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FQWTkX72"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 316C13D0BD;
-	Tue, 19 Dec 2023 23:13:28 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3AAEEC433C7;
-	Tue, 19 Dec 2023 23:13:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EC6D3D0BD;
+	Tue, 19 Dec 2023 23:16:14 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 889BCC433C8;
+	Tue, 19 Dec 2023 23:16:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1703027608;
-	bh=yXicCXSWH5EUUBda6scEiKgMhU/r4oYSFT679x7VNPY=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=aHRhp2O4EdVLAoyV/ApY8QUYV5FPZkfNj2W4CU8A0ZKgSuP3F0xx+X6Gtd5fNm/Fc
-	 c27q85gkNqomuj+Szm2j9c2ih2je6nDr+xSn11zjz2FJYDin/T+silexxeUSeVBSJ1
-	 yRQdFs+rDg3KOC2UKjA25Rd6nutGVeUU1om/S7IvrSanpQBR8YqDcW4WIumQYCmf9W
-	 7V3zr8mHxnU0Ibm5h8VmZoXPpvgzWWZV2P2toDFyIcJT07lJmMsd4H5HfgSHc5ZfwI
-	 LcKzA++q14dUNHQVn0gJe1xPBghZv5yBd8fxIGewwvxjdznfOC4t5Jf7zw5ZZyCeji
-	 Zaj7ejGEyUbkQ==
-Received: (nullmailer pid 2025101 invoked by uid 1000);
-	Tue, 19 Dec 2023 23:13:26 -0000
+	s=k20201202; t=1703027774;
+	bh=4LTuUnlzAhnPPUW3BQv1N8PC27cgGsXXiht0pyrfmx4=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=FQWTkX72neD17DeH1TSu+fwsCICJIw/fB5ZNuNXjA/PdlrFj7AKxnWkyJbi9cvHvk
+	 IvF1LgZxgum4+Zdvfa0csutiDmgDByySRyOp11gyW8g0b9Gtt9o2wj7hUoeMDJWBhS
+	 IhYXqgyWfBPB0mKIPn8kGxGLmKGchotRltUOhKSPnzCOdEMgbO8LNy5dm96q9PKxpR
+	 LMZKAPdKktlwkmkM6BQ24Iaj2xrOM8r1jb6EzQk52A6jZLGLeYYxqcsctaC9v86NiL
+	 GEmzxf4878qQMA2R9/xuja/rh/L/vNzvHPkv4q4Bn+GO0rajaGw5v/GTno7WasuBMo
+	 N/m4y6xl8n8Bg==
+Message-ID: <897fe92cfe40a086832e0c85ef5358bc.sboyd@kernel.org>
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Rob Herring <robh@kernel.org>
-To: Luca Ceresoli <luca.ceresoli@bootlin.com>
-Cc: linux-rockchip@lists.infradead.org, Nicolas Frattaroli <frattaroli.nicolas@gmail.com>, Mark Brown <broonie@kernel.org>, linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org, Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, linux-sound@vger.kernel.org, Liam Girdwood <lgirdwood@gmail.com>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, linux-arm-kernel@lists.infradead.org, Heiko Stuebner <heiko@sntech.de>, Conor Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>
-In-Reply-To: <20231219-rk3308-audio-codec-v2-2-c70d06021946@bootlin.com>
-References: <20231219-rk3308-audio-codec-v2-0-c70d06021946@bootlin.com>
- <20231219-rk3308-audio-codec-v2-2-c70d06021946@bootlin.com>
-Message-Id: <170302760623.2025074.2958729782154314139.robh@kernel.org>
-Subject: Re: [PATCH v2 2/6] ASoC: dt-bindings: Add Rockchip RK3308 internal
- audio codec
-Date: Tue, 19 Dec 2023 17:13:26 -0600
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20231218-mbly-clk-v1-4-44ce54108f06@bootlin.com>
+References: <20231218-mbly-clk-v1-0-44ce54108f06@bootlin.com> <20231218-mbly-clk-v1-4-44ce54108f06@bootlin.com>
+Subject: Re: [PATCH 4/5] clk: eyeq5: add OSPI table-based divider clock
+From: Stephen Boyd <sboyd@kernel.org>
+Cc: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, linux-mips@vger.kernel.org, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Tawfik Bayouk <tawfik.bayouk@mobileye.com>, =?utf-8?q?Th=C3=A9o?= Lebrun <theo.lebrun@bootlin.com>
+To: Conor Dooley <conor+dt@kernel.org>, Gregory CLEMENT <gregory.clement@bootlin.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Michael Turquette <mturquette@baylibre.com>, Rob Herring <robh+dt@kernel.org>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>, =?utf-8?q?Th=C3=A9o?= Lebrun <theo.lebrun@bootlin.com>
+Date: Tue, 19 Dec 2023 15:16:12 -0800
+User-Agent: alot/0.10
 
-
-On Tue, 19 Dec 2023 15:54:17 +0100, Luca Ceresoli wrote:
-> Add device tree bindings document for the internal audio codec of the
-> Rockchip RK3308 SoC.
-> 
-> Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
-> 
+Quoting Th=C3=A9o Lebrun (2023-12-18 09:14:19)
+> The driver supports PLLs on the platform. Add the single divider clock
+> of the platform.
+>=20
+> Helpers from include/linux/clk-provider.h could have been used if it was
+> not for the use of regmap to access the register.
+>=20
+> Signed-off-by: Th=C3=A9o Lebrun <theo.lebrun@bootlin.com>
 > ---
-> 
-> Changed in v2:
->  - reword commit title
->  - add maxItems to resets
->  - remove quotes from reset-names
->  - use percent values for rockchip,micbias-avdd-multiplier
->  - use name compliant to the docs in the example
-> ---
->  .../bindings/sound/rockchip,rk3308-codec.yaml      | 98 ++++++++++++++++++++++
->  MAINTAINERS                                        |  5 ++
->  2 files changed, 103 insertions(+)
-> 
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+This patch should be squashed with the previous one.
 
-yamllint warnings/errors:
+> diff --git a/drivers/clk/clk-eyeq5.c b/drivers/clk/clk-eyeq5.c
+> index 74bcb8cec5c1..3382f4d870d7 100644
+> --- a/drivers/clk/clk-eyeq5.c
+> +++ b/drivers/clk/clk-eyeq5.c
+> @@ -77,6 +78,8 @@ static const struct eq5c_pll {
+[...]
+> +
+> +static int eq5c_ospi_div_set_rate(struct clk_hw *hw,
+> +                                 unsigned long rate, unsigned long paren=
+t_rate)
+> +{
+> +       struct eq5c_ospi_div *div =3D clk_hw_to_ospi_priv(hw);
+> +       unsigned int val;
+> +       int value, ret;
+> +
+> +       value =3D divider_get_val(rate, parent_rate, eq5c_ospi_div_table,
+> +                               OLB_OSPI_DIV_MASK_WIDTH, 0);
+> +       if (value < 0)
+> +               return value;
+> +
+> +       ret =3D regmap_read(div->olb, OLB_OSPI_REG, &val);
+> +       if (ret) {
+> +               pr_err("%s: regmap_read failed: %d\n", __func__, ret);
+> +               return -ret;
 
-dtschema/dtc warnings/errors:
-Error: Documentation/devicetree/bindings/sound/rockchip,rk3308-codec.example.dts:20.20-21 syntax error
-FATAL ERROR: Unable to parse input tree
-make[2]: *** [scripts/Makefile.lib:419: Documentation/devicetree/bindings/sound/rockchip,rk3308-codec.example.dtb] Error 1
-make[2]: *** Waiting for unfinished jobs....
-make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1424: dt_binding_check] Error 2
-make: *** [Makefile:234: __sub-make] Error 2
+Why negative ret?
 
-doc reference errors (make refcheckdocs):
+> +       }
+> +
+> +       val &=3D ~OLB_OSPI_DIV_MASK;
+> +       val |=3D FIELD_PREP(OLB_OSPI_DIV_MASK, value);
+> +
+> +       ret =3D regmap_write(div->olb, OLB_OSPI_REG, val);
+> +       if (ret) {
+> +               pr_err("%s: regmap_write failed: %d\n", __func__, ret);
+> +               return -ret;
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20231219-rk3308-audio-codec-v2-2-c70d06021946@bootlin.com
+Why negative ret?
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
+> +       }
+> +
+> +       return 0;
+> +}
+> +
+> +const struct clk_ops eq5c_ospi_div_ops =3D {
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+static?
 
-pip3 install dtschema --upgrade
+> +       .recalc_rate =3D eq5c_ospi_div_recalc_rate,
+> +       .round_rate =3D eq5c_ospi_div_round_rate,
+> +       .determine_rate =3D eq5c_ospi_div_determine_rate,
+> +       .set_rate =3D eq5c_ospi_div_set_rate,
+> +};
+> +
+> +static struct clk_hw *eq5c_init_ospi_div(const struct clk_hw *parent,
+> +                                        struct regmap *olb)
+> +{
+> +       struct eq5c_ospi_div *div;
+> +       int ret;
+> +
+> +       div =3D kzalloc(sizeof(*div), GFP_KERNEL);
+> +       if (!div)
+> +               return ERR_PTR(-ENOENT);
+> +
+> +       div->olb =3D olb;
+> +       div->hw.init =3D CLK_HW_INIT_HW(EQ5C_OSPI_DIV_CLK_NAME, parent,
+> +                                     &eq5c_ospi_div_ops, 0);
+> +
+> +       ret =3D clk_hw_register(NULL, &div->hw);
+> +       if (ret) {
+> +               pr_err("failed registering div_ospi: %d\n", ret);
+> +               kfree(div);
+> +               return ERR_PTR(-ENOENT);
 
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+return ERR_PTR(ret)
 
+> +       }
+> +
+> +       return &div->hw;
+> +}
+> +
+>  static void eq5c_init(struct device_node *np)
+>  {
+>         struct device_node *parent_np =3D of_get_parent(np);
 
