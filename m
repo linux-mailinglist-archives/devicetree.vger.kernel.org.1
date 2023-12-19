@@ -1,97 +1,111 @@
-Return-Path: <devicetree+bounces-27014-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27015-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB541818DAB
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 18:12:45 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DAD1818DB1
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 18:14:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 95200286EE2
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 17:12:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A48B81F26E49
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 17:14:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D39C21364;
-	Tue, 19 Dec 2023 17:11:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DFA820B14;
+	Tue, 19 Dec 2023 17:14:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dLbcc1MT"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EM2r0lHn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B9453174A;
-	Tue, 19 Dec 2023 17:11:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E3C68C433C7;
-	Tue, 19 Dec 2023 17:11:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1703005891;
-	bh=bHyMqohUpG3TgYf+LaLoP+IOoy7SIqBFB/tROxy5Kps=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=dLbcc1MT8AkJroDXZHNVC4rIGmJ5mSwe4TcZTvDcLnGuJdXJlMnsMuA04rSDu7dvf
-	 YNj4lHpGIiPutWsfmhil1SWrhHiQJh1n+oxjdc3R3LMlWF2KIRZrwCpaQS4zvWZyrJ
-	 6F9eoKmpxdJG0/biI80m9+ZRCX6Z5wU1VMCLC58oB3yKmTM/X/ytcaBZDZK+pTB6nl
-	 4rzbPrVGpRwpsBtQc3SKpnwp/cannJpbvkfpXF+mw7cI3mMJ75RFA/URo6o9c7rDSj
-	 jMI+QbtdZQ32xr+m+gYn7m52lju/mjH0Y49L5lif1U7EFV8KntgnYEuJamTDDv6Nsv
-	 PsqflFqVEM40A==
-Date: Tue, 19 Dec 2023 11:11:29 -0600
-From: Bjorn Andersson <andersson@kernel.org>
-To: Yassine Oudjana <y.oudjana@protonmail.com>
-Cc: Andy Gross <agross@kernel.org>, 
-	Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Yassine Oudjana <yassine.oudjana@gmail.com>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: msm8996: Define UFS UniPro clock limits
-Message-ID: <qjz546574l3jp6w7gza7kj43slwotitsrt3rodtp7g5lnqgbhf@2htxa5m4bvtw>
-References: <20231218133917.78770-1-y.oudjana@protonmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02EE535896;
+	Tue, 19 Dec 2023 17:14:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-a2340c803c6so356346266b.0;
+        Tue, 19 Dec 2023 09:14:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1703006044; x=1703610844; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=f9vtfVLly14ekhlTunGy1vRxwLpd8U5NIsSj2AVK3Vk=;
+        b=EM2r0lHns+qVfCE/SnsFr51o7VCJHzTlBqDn7KOvQH3457NqbuwOtwcTNX/T6lsSZW
+         W1WBvZbfd/TO8ecEoxfQpXDw3HMAqOAWCplTskcNRtoj2XiY5xocXSVpzC9ZEhctrybW
+         PASKUAaGtLj5Ny9dbzrCam7dWejaah7AN1bYI8tnBb3vOZbTkx8gXK1gXUu8m2RnoZCE
+         l15GFBcJIHAPtoxQiJTon/4SfJeWDzWgMdDxjOXrd4F+SXOojn6AQc38Pgf7Xgd//8C7
+         MeI8+OXjhxGdWa8tvzOQHedqrtvMJDaFEKxEITS3j8v6Yoc1Bi+Lqr8yCCaq6eTh3rPY
+         Hxcw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1703006044; x=1703610844;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=f9vtfVLly14ekhlTunGy1vRxwLpd8U5NIsSj2AVK3Vk=;
+        b=sDa2XuX+U6Z2a0fN318rhkanrCny6t3uBpui9Cy7BuHoJP1mCB9ow14oE8WGvpWODY
+         8yzyLkhjGbbiQ99SnWxHda0+RNeycVwOCdldTTUS4xcmjGuhTf4NeixYdObdN2fHYBjN
+         gE5cL5Crd6E1qX9lDtO/6miK0JC0P4TfwhbdVXpdj/DT2z6nvAGn0f8zkOVCoLBnqkfh
+         8UIrTRTmXGpSDFMtWowEBnqzAUcjmrme98N4v99X1j9/d/AmGvS1SeqsY3N/NF9rqBBP
+         uZZ8hHPi4Y/SU/yOcOionWjnIpBM/CGa5FSF8LjDxdwE1hgV0FVOUKGtxXvkgvN3NrWR
+         VJXA==
+X-Gm-Message-State: AOJu0YzCfTIrYIe6RfS+x6+4NwZQodeiomYv2ftAzxKfX8UPjubVmhU3
+	/Dn2QC5EaGFXJoKBM/EUpqE=
+X-Google-Smtp-Source: AGHT+IG4srAKNtlRLgacln5AazC7R1jIUPMIg1CJHj5l9uMv+Lm+7DWv6+igpI5lY+xNGDiLnRvPEw==
+X-Received: by 2002:a17:907:3d91:b0:9fe:57b3:bc08 with SMTP id he17-20020a1709073d9100b009fe57b3bc08mr11848783ejc.41.1703006044090;
+        Tue, 19 Dec 2023 09:14:04 -0800 (PST)
+Received: from jernej-laptop.localnet (82-149-12-148.dynamic.telemach.net. [82.149.12.148])
+        by smtp.gmail.com with ESMTPSA id cx7-20020a170907168700b009fc576e26e6sm15541544ejd.80.2023.12.19.09.14.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 19 Dec 2023 09:14:03 -0800 (PST)
+From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To: Maksim Kiselev <bigunclemax@gmail.com>
+Cc: Andre Przywara <andre.przywara@arm.com>,
+ Maxim Kiselev <bigunclemax@gmail.com>,
+ Vasily Khoruzhick <anarsoul@gmail.com>, Yangtao Li <tiny.windzz@gmail.com>,
+ "Rafael J. Wysocki" <rafael@kernel.org>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>,
+ Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+ Samuel Holland <samuel@sholland.org>,
+ Paul Walmsley <paul.walmsley@sifive.com>,
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ John Watts <contact@jookia.org>,
+ Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+ Marc Kleine-Budde <mkl@pengutronix.de>, linux-pm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+ linux-riscv@lists.infradead.org
+Subject:
+ Re: [PATCH v6 2/3] thermal: sun8i: Add D1/T113s THS controller support
+Date: Tue, 19 Dec 2023 18:14:01 +0100
+Message-ID: <1950771.PYKUYFuaPT@jernej-laptop>
+In-Reply-To: <20231217210629.131486-3-bigunclemax@gmail.com>
+References:
+ <20231217210629.131486-1-bigunclemax@gmail.com>
+ <20231217210629.131486-3-bigunclemax@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231218133917.78770-1-y.oudjana@protonmail.com>
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On Mon, Dec 18, 2023 at 01:39:42PM +0000, Yassine Oudjana wrote:
-> These limits were always defined as 0, but that didn't cause any issue
-> since the driver had hardcoded limits. In commit b4e13e1ae95e ("scsi: ufs:
-> qcom: Add multiple frequency support for MAX_CORE_CLK_1US_CYCLES") the
-> hardcoded limits were removed and the driver started reading them from DT,
-> causing UFS to stop working on MSM8996. Add real UniPro clock limits to fix
-> UFS.
+Dne nedelja, 17. december 2023 ob 22:06:23 CET je Maksim Kiselev napisal(a):
+> From: Maxim Kiselev <bigunclemax@gmail.com>
 > 
-
-Such driver changes are not acceptable, as they break backwards
-compatibility with existing DeviceTree.
-
-Can you please try to fix the driver to handle this case?
-
-After that is done, I'd be happy to take this patch.
-
-Thanks,
-Bjorn
-
-> Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
-> ---
->  arch/arm64/boot/dts/qcom/msm8996.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+> This patch adds a thermal sensor controller support for the D1/T113s,
+> which is similar to the one on H6, but with only one sensor and
+> different scale and offset values.
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-> index 13667886f50a..4f9939b13c3c 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-> @@ -2064,7 +2064,7 @@ ufshc: ufshc@624000 {
->  				<0 0>,
->  				<0 0>,
->  				<150000000 300000000>,
-> -				<0 0>,
-> +				<75000000 150000000>,
->  				<0 0>,
->  				<0 0>,
->  				<0 0>,
-> -- 
-> 2.43.0
-> 
-> 
+> Signed-off-by: Maxim Kiselev <bigunclemax@gmail.com>
+
+Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+
+Best regards,
+Jernej
+
+
 
