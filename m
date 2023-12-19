@@ -1,183 +1,165 @@
-Return-Path: <devicetree+bounces-27078-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27077-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2A4C8191A1
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 21:35:39 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 60A8381919E
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 21:35:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 303AA1C249F9
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 20:35:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 869A91C24526
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 20:35:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E44FE3A1AD;
-	Tue, 19 Dec 2023 20:34:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E74BC39AEE;
+	Tue, 19 Dec 2023 20:34:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="UWIKJsHv"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RhDSV1Z4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-il1-f171.google.com (mail-il1-f171.google.com [209.85.166.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7B6439AF8
-	for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 20:34:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1703018095;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=uBP5+4pQK3uFRN8UqYAB+LK0Vg09XZtHg8dKysI62eg=;
-	b=UWIKJsHveG5VIOoOcbVyD+ISqNIZ9Gm1airsZ8rQH2FzuNwXKDR3dHogwxycAMV5Qgq+5r
-	oJF4HwICa1/P8G79zbbJ9DG/MkVZqMAUlwuDSOyoow6tRK0WeULX42qTqbxxumuiKMYgi+
-	rKDFTvF+GkdNK0lGkxa6slApPXbQu98=
-Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com
- [209.85.128.72]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-160-Z550vsECMcehF98jJ4E8cw-1; Tue, 19 Dec 2023 15:34:52 -0500
-X-MC-Unique: Z550vsECMcehF98jJ4E8cw-1
-Received: by mail-wm1-f72.google.com with SMTP id 5b1f17b1804b1-40c514f9243so33023835e9.3
-        for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 12:34:51 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DDC03B786;
+	Tue, 19 Dec 2023 20:34:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-il1-f171.google.com with SMTP id e9e14a558f8ab-35f56f06142so37763305ab.1;
+        Tue, 19 Dec 2023 12:34:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1703018094; x=1703622894; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=zL69xIMbMycVeFoHKrHNreD8N+FPOGpJMjIQmWE4XFw=;
+        b=RhDSV1Z4cWhK4kMbFF2Wmc3l/JW4ife+aHe+kG2rZ8nGiKnq/nGa/uzK3WwpSLsiF3
+         lED5NYfxOTD/yrBlQu2DWteVsLgx6yEsQkYx3QyuLGwsL79byTVfLMh0du3cF0yGUDeJ
+         /edh7qzL1EDLnElGK6/0MRWJKwikdM7fiDxSNRyUUb1pMt8q1AvA5mgCy5KpwSZ9Hrrg
+         LKoIK063o9O4rpLTySznFKKWymiLwlUe6SX/1gmOwf91eBrubhTdF1SWk9X5IJJff2ji
+         TwMAEXKWQ89ZSwuD7BAa5H6zN43xqMv2QiQT0k7d7ygxr6m5ZiiQ4xzVjiC7h0YSz2ct
+         Yopg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703018091; x=1703622891;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=uBP5+4pQK3uFRN8UqYAB+LK0Vg09XZtHg8dKysI62eg=;
-        b=LRqF+ibLkeHKuG0k8YPT85ZfswQ8GlsXHNPwI3MmxKLptbLnsBhLaEysTrRuw9j+1W
-         FmBHxpBezsb7wgbXbCvhpofL49sruqx0/TPksO7GHkOXXL6O1M2v9uJZVfPgJhB4srxl
-         g/0cBobSrqx0mkhetuPJNUaQhbVsmJen5Sdc+RqYy6z5CaK02BOXLPK/PszyP2RskPI8
-         oCZ5K45jquaa+KoI9fZKJNGLIOK2O+xbulolTjADPS4vtZni6Mr2P4Lnj9Mb7kDZjKdO
-         fXL51PSBf0mppq8G5iMwLrTNUHlsVaXlqVsQECO5JZUVMvOXoxJrDK07k6kefTBaQxLz
-         Lc7g==
-X-Gm-Message-State: AOJu0Yw+FqcUzNdeKgJi9BcEAbNywO7uzgV4k7nBZSn2Mp4XsSKsdnha
-	2Xevw8CuMYfo+t8GJofr93xoX15W3UhJAgSAlBvC4pJvKD/NxuhrsXxlzcikiG3MvRLT0KZIXQ9
-	AhTT0GctVuvgkJ07AaP//Mg==
-X-Received: by 2002:a05:600c:458d:b0:40b:33c0:a22 with SMTP id r13-20020a05600c458d00b0040b33c00a22mr11268580wmo.28.1703018090944;
-        Tue, 19 Dec 2023 12:34:50 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFsXT5JFxqoigwef/u1QlfVGRPMXewmQtLqix/INqsVLkJ2tdFjoRjRtz0EBStx4PVCPvpwYg==
-X-Received: by 2002:a05:600c:458d:b0:40b:33c0:a22 with SMTP id r13-20020a05600c458d00b0040b33c00a22mr11268569wmo.28.1703018090722;
-        Tue, 19 Dec 2023 12:34:50 -0800 (PST)
-Received: from localhost (205.pool92-176-231.dynamic.orange.es. [92.176.231.205])
-        by smtp.gmail.com with ESMTPSA id c5-20020a05600c0a4500b0040c411da99csm4464496wmq.48.2023.12.19.12.34.49
+        d=1e100.net; s=20230601; t=1703018094; x=1703622894;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=zL69xIMbMycVeFoHKrHNreD8N+FPOGpJMjIQmWE4XFw=;
+        b=s1jyblqXQ2Mam3RrweEndAZJu7Utd3B5h1ar5aSqyUqexmuL2nnFthnUe2gXoEegWY
+         52U/faC+F8YUmK+mgKM/twiQc2W2j/RYf0dcgJP1oeyhqTDMS09C+RuBmLtlas/S+qF3
+         w+Z9tPdMXvefEGkvUft/ENo/i5sB4kgMjAyDWFBbrd98mR7bWW98AA0xn95679ny70or
+         BejI94KOUF4wJJBnlcIkHIYboBImSKu5W8ts3yH8FL9ScboqlVUPxp7YAUPvfcmrNlSF
+         XoPj58sd5t6LJMNCq6yX1GYWrGypK6jE13Z+tnCsC4q3/pVVCrWDBbejPZWtTCVtjRlZ
+         jWAg==
+X-Gm-Message-State: AOJu0YzUXBXAz2JFsVDwSQ0H4j/8khLHWWPeH+hgPh/JSmSHxUKJu+b7
+	KSw9GzxnC/MyKqSnnUuRefxhCiUfa5U=
+X-Google-Smtp-Source: AGHT+IGsNIAdXTXtGlZ7FfdyzH2rpl95PaE9B//OvdoCeuMh0msNei7NYAsMeTuzgn0/HKBFNfcj8w==
+X-Received: by 2002:a05:6e02:1a8b:b0:35f:a4b2:7018 with SMTP id k11-20020a056e021a8b00b0035fa4b27018mr8689212ilv.29.1703018094213;
+        Tue, 19 Dec 2023 12:34:54 -0800 (PST)
+Received: from google.com ([2620:15c:9d:2:b2ca:95aa:9761:8149])
+        by smtp.gmail.com with ESMTPSA id u3-20020a631403000000b005c6aa4d4a0dsm19757941pgl.45.2023.12.19.12.34.53
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 Dec 2023 12:34:50 -0800 (PST)
-From: Javier Martinez Canillas <javierm@redhat.com>
-To: linux-kernel@vger.kernel.org
-Cc: Geert Uytterhoeven <geert@linux-m68k.org>,
-	Maxime Ripard <mripard@kernel.org>,
-	Peter Robinson <pbrobinson@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Conor Dooley <conor@kernel.org>,
-	Jocelyn Falempe <jfalempe@redhat.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Javier Martinez Canillas <javierm@redhat.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Daniel Vetter <daniel@ffwll.ch>,
-	David Airlie <airlied@gmail.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	devicetree@vger.kernel.org,
-	dri-devel@lists.freedesktop.org
-Subject: [PATCH v3 3/4] dt-bindings: display: Add SSD133x OLED controllers
-Date: Tue, 19 Dec 2023 21:34:08 +0100
-Message-ID: <20231219203416.2299702-4-javierm@redhat.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20231219203416.2299702-1-javierm@redhat.com>
-References: <20231219203416.2299702-1-javierm@redhat.com>
+        Tue, 19 Dec 2023 12:34:53 -0800 (PST)
+Date: Tue, 19 Dec 2023 12:34:51 -0800
+From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To: Artur Rojek <contact@artur-rojek.eu>
+Cc: Chris Morgan <macroalpha82@gmail.com>, linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org, conor+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+	Chris Morgan <macromorgan@hotmail.com>,
+	Paul Cercueil <paul@crapouillou.net>,
+	Peter Hutterer <peter.hutterer@who-t.net>
+Subject: Re: [RFC] dt-bindings: input: Clarify that abs_min must be less than
+ abs_max
+Message-ID: <ZYH-a3TCBuJ00GvG@google.com>
+References: <20231215024022.122022-1-macroalpha82@gmail.com>
+ <03a9a56362b0559234d4a21a4de3e32e@artur-rojek.eu>
+ <ZYH97KVDO4lFsbmi@google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZYH97KVDO4lFsbmi@google.com>
 
-Add a Device Tree binding schema for the OLED panels based on the
-Solomon SSD133x family of controllers.
+Sorry, meant to add Peter Hutterer to the conversation, but forgot
+before hitting send...
 
-Signed-off-by: Javier Martinez Canillas <javierm@redhat.com>
----
+On Tue, Dec 19, 2023 at 12:32:44PM -0800, Dmitry Torokhov wrote:
+> On Fri, Dec 15, 2023 at 12:19:51PM +0100, Artur Rojek wrote:
+> > On 2023-12-15 03:40, Chris Morgan wrote:
+> > > From: Chris Morgan <macromorgan@hotmail.com>
+> > > 
+> > > uinput refuses to work with abs devices where the min value is greater
+> > > than the max value. uinput_validate_absinfo() returns -EINVAL if this
+> > > is the case and prevents using uinput on such a device. Since uinput
+> > > has worked this way since at least kernel 2.6 (or prior) I presume that
+> > > this is the correct way of doing things, and that this documentation
+> > > needs to be clarified that min must always be less than max.
+> > > 
+> > > uinput is used in my use case to bind together adc-joystick devices
+> > > with gpio-keys devices to create a single unified gamepad for
+> > > userspace.
+> > > 
+> > > Note that there are several boards that will need to be corrected,
+> > > all but a few of them I maintain. Submitting as an RFC for now to get
+> > > comments from the input team and the original author in case there is
+> > > something I am missing.
+> > > 
+> > > Fixes: 7956b0d4694f ("dt-bindings: input: Add docs for ADC driven
+> > > joystick")
+> > > 
+> > > Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+> > > ---
+> > >  Documentation/devicetree/bindings/input/adc-joystick.yaml | 5 +++--
+> > >  1 file changed, 3 insertions(+), 2 deletions(-)
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/input/adc-joystick.yaml
+> > > b/Documentation/devicetree/bindings/input/adc-joystick.yaml
+> > > index 6c244d66f8ce..8f5cdd5ef190 100644
+> > > --- a/Documentation/devicetree/bindings/input/adc-joystick.yaml
+> > > +++ b/Documentation/devicetree/bindings/input/adc-joystick.yaml
+> > > @@ -73,8 +73,9 @@ patternProperties:
+> > >          description: >
+> > >            Minimum and maximum values produced by the axis.
+> > >            For an ABS_X axis this will be the left-most and right-most
+> > > -          inclination of the joystick. If min > max, it is left to
+> > > userspace to
+> > > -          treat the axis as inverted.
+> > > +          inclination of the joystick. The axis must always be
+> > > expressed as
+> > > +          min < max, if the axis is inverted it is left to userspace to
+> > > handle
+> > > +          the inversion.
+> > 
+> > Hi Chris,
+> > 
+> > Device Tree is supposed to depict the actual state of the hardware.
+> > I worded the adc-joytick's adc-range property specifically, so that it
+> > covers a case of GCW Zero hardware [1], which has a joystick,  where the
+> > ABS_X axis reports increasing values for the left-wards inclination of
+> > the joystick, and decreasing values for the right-wards inclination. You
+> > are saying that there are even more boards that need to be corrected -
+> > those are all situations, where DT depicts the actual behavior of the
+> > hardware.
+> > What you are trying to do is change hardware description, because of how
+> > a driver in an OS works. You should instead fix behavior of said driver,
+> > even if nobody stumbled upon that issue since 2.6 :) We fixed libSDL [2]
+> > for the same reason.
+> 
+> We have several places in the kernel (such as mousedev and joydev) where
+> we expect that max is greater or equal to min if they are specified. I
+> am sure that at least some userspace components also have this
+> assumption. In general, we expect min to be a minimum value reported and
+> max being maximum value reported, and orientation expressed via
+> different properties (see [1]).
+> 
+> Since we codified min > max as inversion for adc-joystick devices in the
+> bindings, I think we need to handle this *in that driver* and leave the
+> rest alone.
+> 
+> [1] Documentation/devicetree/bindings/input/touchscreen/touchscreen.yaml
+> 
 
-Changes in v3:
-- Move solomon,ssd-common.yaml ref before the properties section and
-  width/height constraints after the other properties (Conor Dooley).
-
-Changes in v2:
-- Unconditionally set the width and height constraints (Conor Dooley).
-- Fix indentation in the DTS examples (Krzysztof Kozlowski).
-
- .../bindings/display/solomon,ssd133x.yaml     | 57 +++++++++++++++++++
- 1 file changed, 57 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/display/solomon,ssd133x.yaml
-
-diff --git a/Documentation/devicetree/bindings/display/solomon,ssd133x.yaml b/Documentation/devicetree/bindings/display/solomon,ssd133x.yaml
-new file mode 100644
-index 000000000000..e93879b3da5d
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/solomon,ssd133x.yaml
-@@ -0,0 +1,57 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/solomon,ssd133x.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Solomon SSD133x OLED Display Controllers
-+
-+maintainers:
-+  - Javier Martinez Canillas <javierm@redhat.com>
-+
-+allOf:
-+  - $ref: solomon,ssd-common.yaml#
-+
-+properties:
-+  compatible:
-+    enum:
-+      - solomon,ssd1331
-+
-+  solomon,width:
-+    default: 96
-+
-+  solomon,height:
-+    default: 64
-+
-+required:
-+  - compatible
-+  - reg
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        oled@3c {
-+            compatible = "solomon,ssd1331";
-+            reg = <0x3c>;
-+            reset-gpios = <&gpio2 7>;
-+        };
-+
-+    };
-+  - |
-+    spi {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        oled@0 {
-+            compatible = "solomon,ssd1331";
-+            reg = <0x0>;
-+            reset-gpios = <&gpio2 7>;
-+            dc-gpios = <&gpio2 8>;
-+            spi-max-frequency = <10000000>;
-+        };
-+    };
 -- 
-2.43.0
-
+Dmitry
 
