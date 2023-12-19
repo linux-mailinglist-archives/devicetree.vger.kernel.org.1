@@ -1,61 +1,90 @@
-Return-Path: <devicetree+bounces-27073-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27074-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB25B819190
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 21:33:58 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4771D819194
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 21:34:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7E1461F279BA
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 20:33:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7A47B1C24425
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 20:34:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FE681F933;
-	Tue, 19 Dec 2023 20:33:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E9A11DFC6;
+	Tue, 19 Dec 2023 20:34:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="XKzFCZ55"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CB393B18E;
-	Tue, 19 Dec 2023 20:33:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
-Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
-	by mx0a-00128a01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 3BJI4XNJ001624;
-	Tue, 19 Dec 2023 15:33:24 -0500
-Received: from nwd2mta4.analog.com ([137.71.173.58])
-	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3v3g4ugf7j-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 19 Dec 2023 15:33:23 -0500 (EST)
-Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
-	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 3BJKXMJ6035043
-	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 19 Dec 2023 15:33:22 -0500
-Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by ASHBMBX9.ad.analog.com
- (10.64.17.10) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.14; Tue, 19 Dec
- 2023 15:33:21 -0500
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
- (10.64.17.5) with Microsoft SMTP Server id 15.2.986.14 via Frontend
- Transport; Tue, 19 Dec 2023 15:33:21 -0500
-Received: from work.ad.analog.com (HYB-hERzalRezfV.ad.analog.com [10.65.205.129])
-	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 3BJKWxRo030335;
-	Tue, 19 Dec 2023 15:33:02 -0500
-From: Marcelo Schmitt <marcelo.schmitt@analog.com>
-To: <apw@canonical.com>, <joe@perches.com>, <dwaipayanray1@gmail.com>,
-        <lukas.bulwahn@gmail.com>, <paul.cercueil@analog.com>,
-        <Michael.Hennerich@analog.com>, <lars@metafoo.de>, <jic23@kernel.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <dan.carpenter@linaro.org>,
-        <dlechner@baylibre.com>, <marcelo.schmitt1@gmail.com>
-CC: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH v5 11/11] MAINTAINERS: Add MAINTAINERS entry for AD7091R
-Date: Tue, 19 Dec 2023 17:32:59 -0300
-Message-ID: <4247e653354f8eb362264189db24c612d5e4e131.1703013352.git.marcelo.schmitt1@gmail.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <cover.1703013352.git.marcelo.schmitt1@gmail.com>
-References: <cover.1703013352.git.marcelo.schmitt1@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AD8839AC4
+	for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 20:34:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1703018075;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=G3PrML/moN4j55SwG+/o34m/ejkpgfVZcKcfEFV4pS4=;
+	b=XKzFCZ55iq9OZ5Larnz62035GsxsYIZXYe9qkZEYMa+aelvzagg6e4ckdhnWIvooIzh+qT
+	t56TYNu1zvaTxeHEpJr4guSbntIJj/gAiXCh73asNBuMxF3v1HXs9hssE2yXsDt/O666MY
+	NV+uQCf43WCwJSOpVmQIRZdDdK9UTh0=
+Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com
+ [209.85.128.72]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-213--stWjhQROUOG5WyWrwo0dw-1; Tue, 19 Dec 2023 15:34:34 -0500
+X-MC-Unique: -stWjhQROUOG5WyWrwo0dw-1
+Received: by mail-wm1-f72.google.com with SMTP id 5b1f17b1804b1-40d2a2a5522so8170455e9.1
+        for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 12:34:33 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1703018073; x=1703622873;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=G3PrML/moN4j55SwG+/o34m/ejkpgfVZcKcfEFV4pS4=;
+        b=XuZfvSfOWwBjkf3rXDEgzooBz8N1NXX1Odsh6kwRDH2oDWbfZLA06CzTfXvk9eyVK7
+         8I3R+xtWuVVrcDUCo4Q/18Q2DZDI3M6+FFJTvrRwOdc/bReFflGqA7ED2HBK+tLKpZHw
+         671HwW+vDow1nlF8cSW+Kvyq7OzVRHHi/bkpFW3wPsqw+dWIxivUP7211uH45Ce7mYRy
+         LT3biq8+OVzmFr63gc5y5dAMoMvc+yKnnXtw3XqdxdeXLqQEz6sH59abffEDcTB25ykX
+         3fVccNG/U9TZy3+uelBlNgV7L4ftC1wVSmMj15TodzjItRFaXT1+kNDrE7dcBI9gIcqT
+         aT9A==
+X-Gm-Message-State: AOJu0Ywa95x6e+pIo5FfpiAFJpTSK5iQM30RxWDXeDsuasHvYGsRs99t
+	yY5t3wE4lF0M8/T+fBDGtwBVdf04p8gJNmNjQuKOSbTH1IrD1v6T8zyTYU10ClQ5jgbX0QaU088
+	YIN0eXgaEuNNpltbPc4mmJg==
+X-Received: by 2002:a05:600c:34d3:b0:40d:1744:6cd8 with SMTP id d19-20020a05600c34d300b0040d17446cd8mr1763000wmq.234.1703018072860;
+        Tue, 19 Dec 2023 12:34:32 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IE23XRYfTnL6CdjKlBDQ8esfC/c4AICDWtZHNoDhP5YZ2smTAkHdm4ruh5KSDtDSEL4FQBdew==
+X-Received: by 2002:a05:600c:34d3:b0:40d:1744:6cd8 with SMTP id d19-20020a05600c34d300b0040d17446cd8mr1762989wmq.234.1703018072538;
+        Tue, 19 Dec 2023 12:34:32 -0800 (PST)
+Received: from localhost (205.pool92-176-231.dynamic.orange.es. [92.176.231.205])
+        by smtp.gmail.com with ESMTPSA id i7-20020a05600c354700b0040d2805d158sm3965414wmq.48.2023.12.19.12.34.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 19 Dec 2023 12:34:31 -0800 (PST)
+From: Javier Martinez Canillas <javierm@redhat.com>
+To: linux-kernel@vger.kernel.org
+Cc: Geert Uytterhoeven <geert@linux-m68k.org>,
+	Maxime Ripard <mripard@kernel.org>,
+	Peter Robinson <pbrobinson@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Conor Dooley <conor@kernel.org>,
+	Jocelyn Falempe <jfalempe@redhat.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Javier Martinez Canillas <javierm@redhat.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Daniel Vetter <daniel@ffwll.ch>,
+	David Airlie <airlied@gmail.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	dri-devel@lists.freedesktop.org
+Subject: [PATCH v3 0/4] drm/solomon: Add support for the SSD133x controller family
+Date: Tue, 19 Dec 2023 21:34:05 +0100
+Message-ID: <20231219203416.2299702-1-javierm@redhat.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,49 +92,54 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-ORIG-GUID: B7CSUeK6Nu9lqzmp_-MmPmS9_pimrquv
-X-Proofpoint-GUID: B7CSUeK6Nu9lqzmp_-MmPmS9_pimrquv
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-12-02_01,2023-11-30_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 spamscore=0
- priorityscore=1501 phishscore=0 mlxscore=0 mlxlogscore=966 adultscore=0
- impostorscore=0 bulkscore=0 malwarescore=0 lowpriorityscore=0
- clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2311290000 definitions=main-2312190153
 
-The driver for AD7091R was added in
-ca693001: iio: adc: Add support for AD7091R5 ADC
-but no MAINTAINERS file entry was added for it since then.
-Add a proper MAINTAINERS file entry for the AD7091R driver.
+Hello,
 
-Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
----
- MAINTAINERS | 8 ++++++++
- 1 file changed, 8 insertions(+)
+This patch-set adds support for the family of SSD133x Solomon controllers,
+such as the SSD1331. These are used for RGB Dot Matrix OLED/PLED panels.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 4eddc4212f2b..3473cfbac826 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -1126,6 +1126,14 @@ F:	Documentation/ABI/testing/sysfs-bus-iio-adc-ad4130
- F:	Documentation/devicetree/bindings/iio/adc/adi,ad4130.yaml
- F:	drivers/iio/adc/ad4130.c
- 
-+ANALOG DEVICES INC AD7091R DRIVER
-+M:	Marcelo Schmitt <marcelo.schmitt@analog.com>
-+L:	linux-iio@vger.kernel.org
-+S:	Supported
-+W:	http://ez.analog.com/community/linux-device-drivers
-+F:	Documentation/devicetree/bindings/iio/adc/adi,ad7091r*
-+F:	drivers/iio/adc/drivers/iio/adc/ad7091r*
-+
- ANALOG DEVICES INC AD7192 DRIVER
- M:	Alexandru Tachici <alexandru.tachici@analog.com>
- L:	linux-iio@vger.kernel.org
+This is a v3 that addresses issues pointed out in v2:
+
+https://lore.kernel.org/dri-devel/20231218132045.2066576-1-javierm@redhat.com/
+
+The patches were tested on a Waveshare SSD1331 display using glmark2-drm,
+fbcon, fbtests and the retroarch emulator. The binding schema were tested
+using the `make W=1 dt_binding_check` target.
+
+Patch #1 and #2 are fixes for the DT binding schema of the existing SSD130x
+and SSD132x families.
+
+Patch #3 adds a DT binding schema for the SSD133x controllers and patch #4
+extends the ssd130x DRM driver to support the SSD133x controller family.
+
+Best regards,
+Javier
+
+Changes in v3:
+- Move solomon,ssd-common.yaml ref before the properties section and
+  width/height constraints after the other properties (Conor Dooley).
+
+Changes in v2:
+- Unconditionally set the width and height constraints (Conor Dooley).
+- Fix indentation in the DTS examples (Krzysztof Kozlowski).
+
+Javier Martinez Canillas (4):
+  dt-bindings: display: ssd1307fb: Add vendor prefix to width and height
+  dt-bindings: display: ssd132x: Add vendor prefix to width and height
+  dt-bindings: display: Add SSD133x OLED controllers
+  drm/ssd130x: Add support for the SSD133x OLED controller family
+
+ .../bindings/display/solomon,ssd1307fb.yaml   |  20 +-
+ .../bindings/display/solomon,ssd132x.yaml     |  12 +-
+ .../bindings/display/solomon,ssd133x.yaml     |  57 +++
+ drivers/gpu/drm/solomon/ssd130x-i2c.c         |   5 +
+ drivers/gpu/drm/solomon/ssd130x-spi.c         |   7 +
+ drivers/gpu/drm/solomon/ssd130x.c             | 370 ++++++++++++++++++
+ drivers/gpu/drm/solomon/ssd130x.h             |   5 +-
+ 7 files changed, 459 insertions(+), 17 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/solomon,ssd133x.yaml
+
 -- 
-2.42.0
+2.43.0
 
 
