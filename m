@@ -1,90 +1,130 @@
-Return-Path: <devicetree+bounces-26828-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26831-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF48A81840B
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 10:04:45 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E96E181841C
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 10:07:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7CE35281516
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 09:04:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9D80F1F21CB3
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 09:07:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13048125DE;
-	Tue, 19 Dec 2023 09:04:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66A1312B60;
+	Tue, 19 Dec 2023 09:06:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="Aib2dAWd"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="SP6XpKFB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92C34134A5;
-	Tue, 19 Dec 2023 09:04:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=NaVoyHBOPnWMz3U2dVERj24bGOi/9TpvB2fUFZ/7poc=; b=Aib2dAWdlQ30bEKJtn/M6iGV5w
-	QY+fVX6rQ8Fxsmk+bMdr8o8K8I1ehKD0+nqxC8JlGCBaVwPU7xT0Tx+Ms+GUwUT9ls9NHj98GPjTc
-	6uuYQxLmaJXMZ3QRXHIS/rd+WO/plt8D1lA7w1Z8FfMoNM3wM2BZ5o/fES9KphH8RVuw=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1rFW1T-003Jme-Fe; Tue, 19 Dec 2023 10:04:19 +0100
-Date: Tue, 19 Dec 2023 10:04:19 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-Cc: "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Emil Renner Berthing <kernel@esmil.dk>,
-	Samin Guo <samin.guo@starfivetech.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Hal Feng <hal.feng@starfivetech.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Jose Abreu <joabreu@synopsys.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Richard Cochran <richardcochran@gmail.com>,
-	Giuseppe Cavallaro <peppe.cavallaro@st.com>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org, linux-clk@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, kernel@collabora.com
-Subject: Re: [PATCH v4 3/9] net: stmmac: dwmac-starfive: Add support for
- JH7100 SoC
-Message-ID: <051463f6-3268-415e-bedc-6f35707a97f9@lunn.ch>
-References: <20231218214451.2345691-1-cristian.ciocaltea@collabora.com>
- <20231218214451.2345691-4-cristian.ciocaltea@collabora.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 032C2134A8
+	for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 09:06:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-3366e78d872so1462022f8f.3
+        for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 01:06:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1702976815; x=1703581615; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :references:cc:to:content-language:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=RDqC8mlmI0zifdWF6zhA4HVQDLdCJIzhq2G0yUNbN+U=;
+        b=SP6XpKFBf/Dam36RWOlQ4c3JCjLJxLbrpWDOz2NvMfZ+5zMn2NRB3y0c+4CRa5PAbc
+         iWLqMKt7xvm8nMWjOz/9wRdX+epnyUPnrxIBCJTraQvUnoVGr5JcL0XBCNOxTRfMhhcc
+         Lz5k/GwayVjcPV5q6z1Zy0zyVf540R36xTsGTCaXjsC7K3kc7FcTeXPM5XVMYh4iFcCV
+         YR3Ag87mg1uzn1bWApKs5SCpJuYub98dku9Xt9Sgyv1IPZaDIKAs+Lf1safiIeNrlsHy
+         X+IqRZhQy9Uu+ERj8JxeClDd2iiT7lgzsE21sSnJwob8OFiDQ5vCnquFp3KV1sWHxA2l
+         lyhA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702976815; x=1703581615;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :references:cc:to:content-language:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=RDqC8mlmI0zifdWF6zhA4HVQDLdCJIzhq2G0yUNbN+U=;
+        b=sc74ehwyUeUQ1IBA/UUctOcKxc6MEBiBcowJc/WKXcZoteiv/TXSYJJccZOqvdj3Af
+         VUsLpop70QLf7+snot3hsiZH6QBiOGYW1F5K2aaJVYif7fuX0dNV9GMbgWtAhn9KNN/a
+         uYEP9c9CBmEPQKPdOwx+jicgBnu/kLX/WvtfHv1zzZOyFGBcN8UU39CkvMSbNPXo6+Nm
+         XB2H9635BAtao7spnQN+erxfmAoo1pvumbqoyi8yctnUhzUBBzyrakALL4dvilULHoyY
+         JA1IcJIDrOs3Sw/5GJ1ugJ4llgyOApaCp3JRZr4YHjP99t++lefCdDX7xkj7z/6+oNk+
+         4ikg==
+X-Gm-Message-State: AOJu0YyuGCLhZZ5nc1BfLJndx51GSB06jpwqobA2Z3jhIvFbhUpoET4N
+	lY6+9PfsTkGKsaA9NVuouhaB6g==
+X-Google-Smtp-Source: AGHT+IFN8G5/Lgsr+ycIlj6IKKA3b++uKO1oEZgohuUof2lngQpHf+MVMOCmZrneYpdXMAHqLDK7kA==
+X-Received: by 2002:adf:e58b:0:b0:336:4c3d:91e6 with SMTP id l11-20020adfe58b000000b003364c3d91e6mr2194897wrm.271.1702976815185;
+        Tue, 19 Dec 2023 01:06:55 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:e99:1baf:483a:7533? ([2a01:e0a:982:cbb0:e99:1baf:483a:7533])
+        by smtp.gmail.com with ESMTPSA id l17-20020a5d4bd1000000b00336607f6630sm7841873wrt.47.2023.12.19.01.06.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 19 Dec 2023 01:06:54 -0800 (PST)
+Message-ID: <73b45f8b-f8a5-47cd-87f1-c522ae908769@linaro.org>
+Date: Tue, 19 Dec 2023 10:06:54 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231218214451.2345691-4-cristian.ciocaltea@collabora.com>
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org, linux-input@vger.kernel.org
+Subject: Re: [PATCH v13 0/4] Input: add initial support for Goodix Berlin
+ touchscreen IC
+Content-Language: en-US, fr
+To: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc: Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Bastien Nocera <hadess@hadess.net>,
+ Hans de Goede <hdegoede@redhat.com>, Henrik Rydberg <rydberg@bitmath.org>,
+ Jeff LaBundy <jeff@labundy.com>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-input@vger.kernel.org, Rob Herring <robh@kernel.org>
+References: <20231213-topic-goodix-berlin-upstream-initial-v13-0-5d7a26a5eaa2@linaro.org>
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro Developer Services
+In-Reply-To: <20231213-topic-goodix-berlin-upstream-initial-v13-0-5d7a26a5eaa2@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Mon, Dec 18, 2023 at 11:44:43PM +0200, Cristian Ciocaltea wrote:
-> Add a missing quirk to enable support for the StarFive JH7100 SoC.
+Hi Dmitry,
+
+On 13/12/2023 18:13, Neil Armstrong wrote:
+> These touchscreen ICs support SPI, I2C and I3C interface, up to
+> 10 finger touch, stylus and gestures events.
 > 
-> Additionally, for greater flexibility in operation, allow using the
-> rgmii-rxid and rgmii-txid phy modes.
-> 
-> Co-developed-by: Emil Renner Berthing <kernel@esmil.dk>
-> Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
-> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+<snip>
 
-    Andrew
+Gentle ping! Is there any chance this driver could land for v6.8-rc1 ?
+
+Thanks!
+Neil
+
+<snip>
+
 
