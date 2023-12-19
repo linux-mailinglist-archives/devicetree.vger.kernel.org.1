@@ -1,54 +1,66 @@
-Return-Path: <devicetree+bounces-26834-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26835-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A457381844F
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 10:23:01 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 052A6818479
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 10:32:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 02754B22F8D
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 09:22:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 852A51F26747
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 09:32:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A144134B3;
-	Tue, 19 Dec 2023 09:22:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7225613AC8;
+	Tue, 19 Dec 2023 09:32:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="dZRjat3o"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="QBGMglUh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F0F5134C7;
-	Tue, 19 Dec 2023 09:22:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 3BJ5gSjx014581;
-	Tue, 19 Dec 2023 09:22:39 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=9ksKVlT5USbgB/PsbLCyX3LO0cm8eSjeZUTZIwMqUGA=; b=dZ
-	Rjat3orYFcKnPOEVB5sfKBUvUVxkUCi2TL6cmcB19QTmFL2zh3NiF6CkHrMjTUmF
-	AXT9k9xvHgWzwK3wfCqTJjgtn44oZ/6WUcLnaOsqgXDKtdpt0xitP4YAfLHsyec1
-	oaQ3VV/3G+KvHr55bsL/yRuiXAhPYcgSlT2hWX5CG2pp6PRSrFv6BQ9NckqEABSE
-	KrdClm0ZMyqgUqbl7PBF6v5PmftIjwnhA8vCcmWrOMhOI7De1alUDVPe3KUVo9Oy
-	oFioGTEkg03j4LcjnyY9MlnCO/wBhif6jPsiyWlB7nFXbbcsXRA9p8ufBEGbLtgz
-	sALLOcjR1owShw1Ac50Q==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3v2mjftx41-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 19 Dec 2023 09:22:39 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3BJ9Mcq0028994
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 19 Dec 2023 09:22:38 GMT
-Received: from [10.239.133.211] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Tue, 19 Dec
- 2023 01:22:32 -0800
-Message-ID: <8dcafd9a-ff90-439a-9337-fb957d2fcad1@quicinc.com>
-Date: Tue, 19 Dec 2023 17:22:29 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 076A314293
+	for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 09:32:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-40c6ea99429so43035745e9.3
+        for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 01:32:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1702978320; x=1703583120; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :references:cc:to:from:content-language:subject:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=8d+QOU8zUm8QbxpYvbJ8bwCgdEIlJN4SLs1T/X2vfb8=;
+        b=QBGMglUhW9yYmAbNGozHilh1IS88fmFlHTYEUm4OYf23LwGppIsl1MCNtdzXZE05Bh
+         eGoDMIARQXPJntgRF+8j7jDgUMsGpe7BiwSyXKw0ktWdbJAqlJuzrAYOOoKg/EJWRfTh
+         od4Q0BUs8YusVLZJkeNK4194sgevH+/44iiDN7LgZnUb6EDXbNri8fBI+OIIh8hZ+g5H
+         A8L2yTRJVyX6aucn/d2SpmyMZ0dHW+ZwCsyrlWO+ou2LwzmXaaOw5yLgT7o1w8BTEKaJ
+         MKhHpvAHkSBuviegdGKbZD8AH7Qjo4mahOszWizkHS7c/G/jONTe5ZDPCNke7OTvL7yz
+         iQlw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702978320; x=1703583120;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :references:cc:to:from:content-language:subject:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=8d+QOU8zUm8QbxpYvbJ8bwCgdEIlJN4SLs1T/X2vfb8=;
+        b=SMUvwZs5fswMqQ3S1oBKj9k80IbBYc20bRNnieyW9iMR8Oj+Ibhxfw1hrhJx1yYmEH
+         MjsCMiruH8Qxk8SObFdg8KE2fjXDkWvt7Y5Tg26jcUayG5MXZoSuTD6T4BRJhGauRSBL
+         gTxpykCr9EzCadgoVmyAhCyvC3sli2YvH0VFt4NVoll6PMU3JZ0LT24qwPL0ifsJM7aN
+         SF8Bl25rRMipDa4k0cnHfCIV7TWg0ZXIq3POw412lIj0xU80WZ6TqReBEVY7dhrRTQN2
+         hQsiaVZVnekyZJ3etY27OAZEn4I3rRtgl1+EEBWnhyFcKM5GaEvxIld47Vv2cYci4XHR
+         qMcA==
+X-Gm-Message-State: AOJu0YzzQRtm8AI4haO5Tpz+bJN1Ksgpsq+VcHeuBxzGAYwp3KUdKEGW
+	eAzMSf1j/WDS/8QpJdHwp8xKwg==
+X-Google-Smtp-Source: AGHT+IEKcawHVs1XcASn4G7P5IkWKcPU6h8xJVicsfUFRxN21iKQMmP7Vd1QKc9Kng8c8H7O4tv9aw==
+X-Received: by 2002:a05:600c:b8c:b0:40c:6e0b:69d0 with SMTP id fl12-20020a05600c0b8c00b0040c6e0b69d0mr2567912wmb.12.1702978320152;
+        Tue, 19 Dec 2023 01:32:00 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:e99:1baf:483a:7533? ([2a01:e0a:982:cbb0:e99:1baf:483a:7533])
+        by smtp.gmail.com with ESMTPSA id e2-20020a05600c4e4200b00407b93d8085sm2034921wmq.27.2023.12.19.01.31.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 19 Dec 2023 01:31:59 -0800 (PST)
+Message-ID: <e0d29b32-2302-4a2f-ba78-e76dd7b5e570@linaro.org>
+Date: Tue, 19 Dec 2023 10:31:58 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -56,243 +68,99 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/8] coresight-tpdm: Add CMB dataset support
-Content-Language: en-US
-To: Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Mathieu Poirier
-	<mathieu.poirier@linaro.org>,
-        Alexander Shishkin
-	<alexander.shishkin@linux.intel.com>,
-        Konrad Dybcio <konradybcio@gmail.com>,
-        Mike Leach <mike.leach@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-CC: Jinlong Mao <quic_jinlmao@quicinc.com>, Leo Yan <leo.yan@linaro.org>,
-        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
-        <coresight@lists.linaro.org>, <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Tingwei Zhang
-	<quic_tingweiz@quicinc.com>,
-        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Song Chai <quic_songchai@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <andersson@kernel.org>
-References: <1700533494-19276-1-git-send-email-quic_taozha@quicinc.com>
- <1700533494-19276-4-git-send-email-quic_taozha@quicinc.com>
- <f4ed3577-f78b-4b78-b306-8284ccb96043@arm.com>
-From: Tao Zhang <quic_taozha@quicinc.com>
-In-Reply-To: <f4ed3577-f78b-4b78-b306-8284ccb96043@arm.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: Ebpc8F2zkF-C-xeAp2fE3ICRIz9ZEt6u
-X-Proofpoint-ORIG-GUID: Ebpc8F2zkF-C-xeAp2fE3ICRIz9ZEt6u
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-12-09_01,2023-12-07_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 suspectscore=0
- clxscore=1015 malwarescore=0 mlxscore=0 mlxlogscore=999 lowpriorityscore=0
- bulkscore=0 impostorscore=0 priorityscore=1501 phishscore=0 spamscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2311290000
- definitions=main-2312190069
+Subject: Re: (subset) [PATCH v4 0/3] reset: amlogic-c3: add reset driver
+Content-Language: en-US, fr
+From: Neil Armstrong <neil.armstrong@linaro.org>
+To: Philipp Zabel <p.zabel@pengutronix.de>,
+ Kevin Hilman <khilman@baylibre.com>, Rob Herring <robh+dt@kernel.org>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ zelong dong <zelong.dong@amlogic.com>
+Cc: linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ yonghui.yu@amlogic.com, kelvin.zhang@amlogic.com
+References: <20230914064018.18790-1-zelong.dong@amlogic.com>
+ <170126076055.2880660.13057388884278592366.b4-ty@linaro.org>
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro Developer Services
+In-Reply-To: <170126076055.2880660.13057388884278592366.b4-ty@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
+Hi,
 
-On 12/18/2023 6:34 PM, Suzuki K Poulose wrote:
-> On 21/11/2023 02:24, Tao Zhang wrote:
->> CMB (continuous multi-bit) is one of TPDM's dataset type. CMB subunit
->> can be enabled for data collection by writing 1 to the first bit of
->> CMB_CR register. This change is to add enable/disable function for
->> CMB dataset by writing CMB_CR register.
+On 29/11/2023 13:26, Neil Armstrong wrote:
+> Hi,
+> 
+> On Thu, 14 Sep 2023 14:40:15 +0800, zelong dong wrote:
+>> From: Zelong Dong <zelong.dong@amlogic.com>
 >>
->> Reviewed-by: James Clark <james.clark@arm.com>
->> Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
->> Signed-off-by: Jinlong Mao <quic_jinlmao@quicinc.com>
->> ---
->>   drivers/hwtracing/coresight/coresight-tpdm.c | 31 ++++++++++++++++++++
->>   drivers/hwtracing/coresight/coresight-tpdm.h |  8 +++++
->>   2 files changed, 39 insertions(+)
+>> This patchset adds Reset controller driver support for Amlogic C3 SoC.
+>> The RESET registers count and offset for C3 Soc are same as S4 Soc.
 >>
->> diff --git a/drivers/hwtracing/coresight/coresight-tpdm.c 
->> b/drivers/hwtracing/coresight/coresight-tpdm.c
->> index 97654aa4b772..c8bb38822e08 100644
->> --- a/drivers/hwtracing/coresight/coresight-tpdm.c
->> +++ b/drivers/hwtracing/coresight/coresight-tpdm.c
->> @@ -131,6 +131,11 @@ static bool tpdm_has_dsb_dataset(struct 
->> tpdm_drvdata *drvdata)
->>       return (drvdata->datasets & TPDM_PIDR0_DS_DSB);
->>   }
->>   +static bool tpdm_has_cmb_dataset(struct tpdm_drvdata *drvdata)
->> +{
->> +    return (drvdata->datasets & TPDM_PIDR0_DS_CMB);
->> +}
->> +
->>   static umode_t tpdm_dsb_is_visible(struct kobject *kobj,
->>                      struct attribute *attr, int n)
->>   {
->> @@ -267,6 +272,17 @@ static void tpdm_enable_dsb(struct tpdm_drvdata 
->> *drvdata)
->>       writel_relaxed(val, drvdata->base + TPDM_DSB_CR);
->>   }
->>   +static void tpdm_enable_cmb(struct tpdm_drvdata *drvdata)
->> +{
->> +    u32 val;
->> +
->> +    val = readl_relaxed(drvdata->base + TPDM_CMB_CR);
->> +    val |= TPDM_CMB_CR_ENA;
->> +
->> +    /* Set the enable bit of CMB control register to 1 */
->> +    writel_relaxed(val, drvdata->base + TPDM_CMB_CR);
->> +}
->> +
->>   /*
->>    * TPDM enable operations
->>    * The TPDM or Monitor serves as data collection component for various
->> @@ -281,6 +297,8 @@ static void __tpdm_enable(struct tpdm_drvdata 
->> *drvdata)
->>         if (tpdm_has_dsb_dataset(drvdata))
->>           tpdm_enable_dsb(drvdata);
->> +    if (tpdm_has_cmb_dataset(drvdata))
->> +        tpdm_enable_cmb(drvdata);
->
-> Don't we need to add this check in the "property read" section ?
-> Otherwise, we could generate warnings unnecessarily ?
->
-> i.e, if (tpdm_has_cmb_..())
->       rc |= fwnode_..read_property(cmb-elem-size...)
->
-> Similarly for DSB.
+>> Changes since v1:
+>> - remove Change-ID
+>> - run scripts/checkpatch.pl and fix reported warnings
+>> - sort dts node by base reg offset
+>>
+>> [...]
+> 
+> Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.8/arm64-dt)
+> 
+> [3/3] arm64: dts: amlogic: add reset controller for Amlogic C3 SoC
+>        https://git.kernel.org/amlogic/c/a5468f5ea9a01acf29d02745abae7b82482989d4
 
-TPDM and TPDA are two independent hardware. If you want to modify them 
-in this way, the
+I'll need to drop this patch from v6.8/arm64-dt since the amlogic,c3-reset.h is missing from
+my tree, I'll postpone it to v6.9.
 
-two independent drivers will be coupled to each other. At the same time, 
-this configuration
+Thanks,
+Neil
 
-is manually set in the devicetree by the users, and this check cannot 
-avoid manual setting errors.
+> 
+> These changes has been applied on the intermediate git tree [1].
+> 
+> The v6.8/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
+> for inclusion in their intermediate git branches in order to be sent to Linus during
+> the next merge window, or sooner if it's a set of fixes.
+> 
+> In the cases of fixes, those will be merged in the current release candidate
+> kernel and as soon they appear on the Linux master branch they will be
+> backported to the previous Stable and Long-Stable kernels [2].
+> 
+> The intermediate git branches are merged daily in the linux-next tree [3],
+> people are encouraged testing these pre-release kernels and report issues on the
+> relevant mailing-lists.
+> 
+> If problems are discovered on those changes, please submit a signed-off-by revert
+> patch followed by a corrective changeset.
+> 
+> [1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
+> [2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
+> [3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
+> 
 
-  Even if the configuration is wrong, it will not cause the driver to 
-stop working, it will only cause
-
-the data to be lost from the TPDM.
-
->
->>       CS_LOCK(drvdata->base);
->>   }
->> @@ -314,6 +332,17 @@ static void tpdm_disable_dsb(struct tpdm_drvdata 
->> *drvdata)
->>       writel_relaxed(val, drvdata->base + TPDM_DSB_CR);
->>   }
->>   +static void tpdm_disable_cmb(struct tpdm_drvdata *drvdata)
->> +{
->> +    u32 val;
->> +
->> +    val = readl_relaxed(drvdata->base + TPDM_CMB_CR);
->> +    val &= ~TPDM_CMB_CR_ENA;
->> +
->> +    /* Set the enable bit of CMB control register to 0 */
->> +    writel_relaxed(val, drvdata->base + TPDM_CMB_CR);
->> +}
->> +
->>   /* TPDM disable operations */
->>   static void __tpdm_disable(struct tpdm_drvdata *drvdata)
->>   {
->> @@ -321,6 +350,8 @@ static void __tpdm_disable(struct tpdm_drvdata 
->> *drvdata)
->>         if (tpdm_has_dsb_dataset(drvdata))
->>           tpdm_disable_dsb(drvdata);
->> +    if (tpdm_has_cmb_dataset(drvdata))
->> +        tpdm_disable_cmb(drvdata);
->
-> minor nit: Instead of having these :
->
->     if (tpdm_has_XY_()
->         tpdm_{enable/disable}_XY_()
-> I prefer :
->
->     tpdm_{enable/disable}_XY_
->
-> and the helper take care of returning early if the feature is
-> not present.
-Does the following sample modification meet your expectation?
-static void tpdm_disable_dsb(struct tpdm_drvdata *drvdata)
-{
-     u32 val;
-
-     if (tpdm_has_dsb_dataset(drvdata)) {
-         /* Set the enable bit of DSB control register to 0 */
-         val = readl_relaxed(drvdata->base + TPDM_DSB_CR);
-         val &= ~TPDM_DSB_CR_ENA;
-         writel_relaxed(val, drvdata->base + TPDM_DSB_CR);
-     }
-}
-
-static void tpdm_disable_cmb(struct tpdm_drvdata *drvdata)
-{
-     u32 val;
-
-     if (tpdm_has_cmb_dataset(drvdata)) {
-         val = readl_relaxed(drvdata->base + TPDM_CMB_CR);
-         val &= ~TPDM_CMB_CR_ENA;
-
-         /* Set the enable bit of CMB control register to 0 */
-         writel_relaxed(val, drvdata->base + TPDM_CMB_CR);
-     }
-}
-
-/* TPDM disable operations */
-static void __tpdm_disable(struct tpdm_drvdata *drvdata)
-{
-     CS_UNLOCK(drvdata->base);
-
-     tpdm_disable_dsb(drvdata);
-     tpdm_disable_cmb(drvdata);
-
-     CS_LOCK(drvdata->base);
-
-}
-
-
-Best,
-
-Tao
-
->
->
-> Suzuki
->
->
->>         CS_LOCK(drvdata->base);
->>   }
->> diff --git a/drivers/hwtracing/coresight/coresight-tpdm.h 
->> b/drivers/hwtracing/coresight/coresight-tpdm.h
->> index 4115b2a17b8d..0098c58dfdd6 100644
->> --- a/drivers/hwtracing/coresight/coresight-tpdm.h
->> +++ b/drivers/hwtracing/coresight/coresight-tpdm.h
->> @@ -9,6 +9,12 @@
->>   /* The max number of the datasets that TPDM supports */
->>   #define TPDM_DATASETS       7
->>   +/* CMB Subunit Registers */
->> +#define TPDM_CMB_CR        (0xA00)
->> +
->> +/* Enable bit for CMB subunit */
->> +#define TPDM_CMB_CR_ENA        BIT(0)
->> +
->>   /* DSB Subunit Registers */
->>   #define TPDM_DSB_CR        (0x780)
->>   #define TPDM_DSB_TIER        (0x784)
->> @@ -79,10 +85,12 @@
->>    *
->>    * PERIPHIDR0[0] : Fix to 1 if ImplDef subunit present, else 0
->>    * PERIPHIDR0[1] : Fix to 1 if DSB subunit present, else 0
->> + * PERIPHIDR0[2] : Fix to 1 if CMB subunit present, else 0
->>    */
->>     #define TPDM_PIDR0_DS_IMPDEF    BIT(0)
->>   #define TPDM_PIDR0_DS_DSB    BIT(1)
->> +#define TPDM_PIDR0_DS_CMB    BIT(2)
->>     #define TPDM_DSB_MAX_LINES    256
->>   /* MAX number of EDCR registers */
->
 
