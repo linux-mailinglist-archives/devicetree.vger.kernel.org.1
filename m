@@ -1,119 +1,95 @@
-Return-Path: <devicetree+bounces-26883-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26885-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F0C8818760
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 13:23:49 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0433C81877C
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 13:30:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4CD212850BA
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 12:23:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 20B251C23541
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 12:30:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7393417758;
-	Tue, 19 Dec 2023 12:23:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 887A418629;
+	Tue, 19 Dec 2023 12:30:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZmR0JBNF"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="aOu5hjZD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F9711B270;
-	Tue, 19 Dec 2023 12:23:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 64E20C433C8;
-	Tue, 19 Dec 2023 12:23:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1702988586;
-	bh=0ZPp7C6xPL+E7Gl2PQUcf+FzC1fInLNKOXnsyZEshH4=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=ZmR0JBNFAiBZb0p1MEKAxT1zSWlnme9VmUwU98gE5BqXfMiJcEHOIbHnMcovCvBGj
-	 rKYQda3cxg0fGzsxtly79HledAn2RilUONenAjv2Cuut4HI0v5+D7a6UEOjpEg7nDD
-	 9RLlCXmF5Hki3UqANsMRELjG68+v1E8H/c0Uh4wV+5ubBzA60X/QqPcBWSyVzMC6bQ
-	 XOHOt7ABZcNrTcFZG/0+IC5te7gUnNK9jLMytl96jOMB2cq0kA7CqcbYCEUA6fpzb3
-	 NH98ZI377USSjEZwvNrTLZ+nFEI4l6O6cOT8g05HG1vH5zRhs5C/RTA0NsNXyHzGB2
-	 BXLPNWBqoT6jA==
-Received: (nullmailer pid 1608322 invoked by uid 1000);
-	Tue, 19 Dec 2023 12:23:03 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDE4D182CF;
+	Tue, 19 Dec 2023 12:30:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1702989001; x=1734525001;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=646o6wc7uGHm95C0Ll94rSDrk+hRlXnq3SXee/PrxZY=;
+  b=aOu5hjZDja3PJBtshv1cwDMwmpbaRsqOnr9JkDjYTOdf+eZKD9om0FiX
+   rkKgCi0ktQlpsG51Q2oALX43qqP+Fl4kAyJ/C7VN35+P8gQM530dXfJ8o
+   zr60/Ca1WeEUqJFwtxQdyP9NSBcrpBg9uHcwdbBfxnsHsF4dqHjc+w4Vo
+   PJfnXmt0yAk9OIvMJoeLIIQDQXTYGcaQzzW6qqmTZbRlXuZA1Bal/GYaJ
+   GgyV7HEUcvS/+0aLfDkfMNctf6NXy+cuHDzP921LmXXFjlOpx7+/KDeba
+   Oc184L+kw7LHqAW1HBc04UBSfsmk8BzqlJYlVid9X8OUFuKDMEIT4LJTE
+   w==;
+X-IronPort-AV: E=Sophos;i="6.04,288,1695679200"; 
+   d="scan'208";a="34586282"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 19 Dec 2023 13:29:57 +0100
+Received: from steina-w.tq-net.de (steina-w.tq-net.de [10.123.53.18])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 277F0280075;
+	Tue, 19 Dec 2023 13:29:57 +0100 (CET)
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shengjiu Wang <shengjiu.wang@nxp.com>
+Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
+	linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: [PATCH 1/2] ASoC: dt-bindings: fsl-sai: Add power-domains
+Date: Tue, 19 Dec 2023 13:29:56 +0100
+Message-Id: <20231219122957.3358149-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Rob Herring <robh@kernel.org>
-To: Dumitru Ceclan <mitrutzceclan@gmail.com>
-Cc: Michael Walle <michael@walle.cc>, linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, linux-gpio@vger.kernel.org, Mike Looijmans <mike.looijmans@topic.nl>, Jonathan Cameron <jic23@kernel.org>, ChiaEn Wu <chiaen_wu@richtek.com>, Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org, Hugo Villeneuve <hvilleneuve@dimonoff.com>, Arnd Bergmann <arnd@arndb.de>, andy@kernel.org, Lars-Peter Clausen <lars@metafoo.de>, linux-iio@vger.kernel.org, Niklas Schnelle <schnelle@linux.ibm.com>, brgl@bgdev.pl, Ceclan Dumitru <dumitru.ceclan@analog.com>, Andy Shevchenko <andy.shevchenko@gmail.com>, Haibo Chen <haibo.chen@nxp.com>, Conor Dooley <conor+dt@kernel.org>, linus.walleij@linaro.org, =?utf-8?q?Leonard_G=C3=B6hrs?= <l.goehrs@pengutronix.de>
-In-Reply-To: <20231219104631.28256-1-mitrutzceclan@gmail.com>
-References: <20231219104631.28256-1-mitrutzceclan@gmail.com>
-Message-Id: <170298858334.1608301.13113864256271673228.robh@kernel.org>
-Subject: Re: [PATCH v10 1/2] dt-bindings: adc: add AD7173
-Date: Tue, 19 Dec 2023 06:23:03 -0600
+Content-Transfer-Encoding: 8bit
 
+Some SoC like i.MX8QXP use a power-domain for this IP, so add it to the
+supported properties.
 
-On Tue, 19 Dec 2023 12:46:12 +0200, Dumitru Ceclan wrote:
-> The AD7173 family offer a complete integrated Sigma-Delta ADC solution
-> which can be used in high precision, low noise single channel applications
-> or higher speed multiplexed applications. The Sigma-Delta ADC is intended
-> primarily for measurement of signals close to DC but also delivers
-> outstanding performance with input bandwidths out to ~10kHz.
-> 
-> Signed-off-by: Dumitru Ceclan <mitrutzceclan@gmail.com>
-> ---
-> 
-> V9->V10
->  - Fix dt_binding_check type warning from adi,reference-select
-> V8->v9
->  - Add gpio-controller and "#gpio-cells" properties
->  - Add missing avdd2 and iovdd supplies
->  - Add string type to reference-select
-> V7->V8
->  - include missing fix from V6
-> V6->V7 <no changes>
-> V5->V6
->  - Moved global required property to proper placement
-> V4 -> V5
->  - Use string enum instead of integers for "adi,reference-select"
->  - Fix conditional checking in regards to compatible
-> V3 -> V4
->  - include supply attributes
->  - add channel attribute for selecting conversion reference
-> V2 -> V3
->  - remove redundant descriptions
->  - use referenced 'bipolar' property
->  - remove newlines from example
-> V1 -> V2 <no changes>
-> 
->  .../bindings/iio/adc/adi,ad7173.yaml          | 184 ++++++++++++++++++
->  1 file changed, 184 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad7173.yaml
-> 
+Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+---
+ Documentation/devicetree/bindings/sound/fsl,sai.yaml | 3 +++
+ 1 file changed, 3 insertions(+)
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/adc/adi,ad7173.example.dtb: adc@0: '#gpio-cells' is a dependency of 'gpio-controller'
-	from schema $id: http://devicetree.org/schemas/gpio/gpio.yaml#
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20231219104631.28256-1-mitrutzceclan@gmail.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+diff --git a/Documentation/devicetree/bindings/sound/fsl,sai.yaml b/Documentation/devicetree/bindings/sound/fsl,sai.yaml
+index 088c26b001cc..e90286f9b5fd 100644
+--- a/Documentation/devicetree/bindings/sound/fsl,sai.yaml
++++ b/Documentation/devicetree/bindings/sound/fsl,sai.yaml
+@@ -75,6 +75,9 @@ properties:
+           - const: pll11k
+         minItems: 4
+ 
++  power-domains:
++    maxItems: 1
++
+   dmas:
+     items:
+       - description: DMA controller phandle and request line for RX
+-- 
+2.34.1
 
 
