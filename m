@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-26799-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26800-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40B42818262
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 08:38:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0530E818267
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 08:40:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C09301F223C9
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 07:38:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 88D2A1F21927
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 07:40:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB5088832;
-	Tue, 19 Dec 2023 07:38:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E46DD8838;
+	Tue, 19 Dec 2023 07:40:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zXhV8Awq"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="g8eaZDKi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com [209.85.208.172])
+Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26A92125C0
-	for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 07:38:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F696C13E
+	for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 07:40:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-2c9f413d6b2so43500081fa.1
-        for <devicetree@vger.kernel.org>; Mon, 18 Dec 2023 23:38:14 -0800 (PST)
+Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-a2358a75b69so406490366b.1
+        for <devicetree@vger.kernel.org>; Mon, 18 Dec 2023 23:40:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702971493; x=1703576293; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1702971626; x=1703576426; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=xminXgCBuj1Jpf20jWnFqmozJPH56EUn0oky68BU8xw=;
-        b=zXhV8AwqxI+Rjri54VoaRvBaFkoihmmNyx6NwiHwQBLaoNoE8NVynv0Qch100eq/UV
-         n+GkE6igXEzeAFqVy0qRRnIjQq4it0wv6RO3voiOB8eEJkEn9kjTw9eWv3Sro0sJj7KH
-         iUqX/r2qmly7Xqk/bEO8CD/ueRBWrABN9/h6w9V1AchZh+UHH4JN1T6WcDO2h5I+GUj3
-         JCvlquPmhhNpQ+z6JMyd+FkDg8Zx7HTKT1W1YnkxTfstuHwrpptQt9woZYQ0pVcUIAsh
-         7QHsIGpC1Nf8cVx/x03nyQkwYMEYxG8HNzk8c0DnYKEeG/B9rb0R5fQTkEfxvb/JPkHk
-         jC3g==
+        bh=UlFPWwZAspV5NaIaNj4ycQ59oICMhP/Gq68b8xEeGAc=;
+        b=g8eaZDKiTS43N0nXpRKcCpIdgqhvKo/kDPj7VUTUEfxYg2b2hYVv0wWEZ4xV9CTLjc
+         4r49JqzjAM+SFqWXi+7YOOhuNq+0oXhooZ1QmmnU9Gf4vocKma2ZwPRB+t4uF8xhVDjl
+         pe+5AjbmGCZ3HcWahEQ7HlrnKIaRE4Poeo7D0lMvucZ7RiPCYpJPI79st91lpDvH8o3M
+         iOCju4J/e6Wwu6kzItZwr8k2iXeLeMwVIj+WGmAZOQ0mY2DJzsBKDMs2HDZ/p83rN+yT
+         88bxbg2GHqMJgdac4dNiu23Ebd/eFIGr3d6Mjl7OGaC4jiIKDQQaYV6VhW3LiilRXXJx
+         nXXA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702971493; x=1703576293;
+        d=1e100.net; s=20230601; t=1702971626; x=1703576426;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=xminXgCBuj1Jpf20jWnFqmozJPH56EUn0oky68BU8xw=;
-        b=VmLxqAPtJ/1l6EfCdciLLU2ZfaRm4ZMinMb5ZADJKBiddpj90xT+DN3L8dheqbSshR
-         7wm/6zITNGhe/nsjR0IhGlvg/3LE2n+GMqkVOrpaR+KPnL/6VKDtHXLUJ7Fj8DokqvyK
-         egMpLvVTIvj8xpSuLhv4U3XmmYY3PfLiG/BfnjxnPekzsedgYUvJxdPSfmZB2stRucil
-         BJ4hVy0fqxI5tNSg3UssehjzyP9IguIp1mdgEWw+UuZdr+B7/5zo4AdAmuA8iLNJ2xdi
-         60eMcInKRvYge6HW0UG3i+8PbxGvKYOKXjB17gsqdqQW/sfmqSl8FfMNuEUVG7YgKqOx
-         txqw==
-X-Gm-Message-State: AOJu0YwD6jEOoT4+KTxhjbR0Cp6tChn520kCF+2bz+yIg6JX6SbYLOJi
-	7KME4mE1lodAmrb5vgX19yAi4Q==
-X-Google-Smtp-Source: AGHT+IEwCi6TuXgBXmQCr4t3MJg1QkQhNwWnewugfUeqrY5kscNstXB/rrHGtBazygdrQxPq5qsgbQ==
-X-Received: by 2002:a05:6512:220f:b0:50e:44a8:6628 with SMTP id h15-20020a056512220f00b0050e44a86628mr270964lfu.103.1702971493230;
-        Mon, 18 Dec 2023 23:38:13 -0800 (PST)
+        bh=UlFPWwZAspV5NaIaNj4ycQ59oICMhP/Gq68b8xEeGAc=;
+        b=rhdP7i+0DMvJNG/nJ1F2yxxtZDtVjSadNiPVkPdPwqZJfC9wEJqlQbdYosPGQ3kRqZ
+         Sk8BlsFMg7dR+AVRIMkVhGo5pduAOGviU5IFSzy1sVg1rxZjho2nRenw1yTD6/rkJp33
+         iFtTz5kTaH40QEi05zyBpr/WfK6E+WF62Qlzoj5as4KubhY4DeLcsISItKZvdn6DxwWL
+         jNkCPDwhBImvY4Rc64ULeip5d1avGEhodmMPzcSEMwZIk3R7F4VEtF2zHvIFOdpf8yMa
+         Qjxu0L1wSrFLB5rMQ4ewp6qnnM8cesD9dunz1uxRicRni3wIjxextCZ1/yCQotNwfaQ6
+         y8mA==
+X-Gm-Message-State: AOJu0Yw+UZC3Nsuu6K7No8lbKTC3eXlTkNUkS3DnFGhYQgo+PXaz/PVp
+	d1lU9WpzXI8247iOPfhP9s8MIw==
+X-Google-Smtp-Source: AGHT+IFIyD+UyRA9SVbO1zduytVwClyFAfhpLu92qtfBHcG+oa34xkqAPcspfTnVN2zwYMc1EIsC1g==
+X-Received: by 2002:a17:906:2087:b0:a23:6249:ee99 with SMTP id 7-20020a170906208700b00a236249ee99mr575088ejq.11.1702971626310;
+        Mon, 18 Dec 2023 23:40:26 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id x9-20020aa7cd89000000b0055289f60e3bsm4644445edv.79.2023.12.18.23.38.10
+        by smtp.gmail.com with ESMTPSA id vi7-20020a170907d40700b00a1dc7e789fbsm14935769ejc.21.2023.12.18.23.40.24
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 18 Dec 2023 23:38:12 -0800 (PST)
-Message-ID: <2fb31811-b277-4f19-aaac-dc5ce9e99c34@linaro.org>
-Date: Tue, 19 Dec 2023 08:38:10 +0100
+        Mon, 18 Dec 2023 23:40:25 -0800 (PST)
+Message-ID: <c6d8c1f2-082d-43c1-8768-c0004d3fe386@linaro.org>
+Date: Tue, 19 Dec 2023 08:40:23 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,22 +66,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/5] dt-bindings: clock: mobileye,eyeq5-clk: add bindings
+Subject: Re: [PATCH 1/4] dt-bindings: reset: mobileye,eyeq5-reset: add
+ bindings
 Content-Language: en-US
 To: =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>,
+ Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
  Gregory CLEMENT <gregory.clement@bootlin.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
  Conor Dooley <conor+dt@kernel.org>,
  Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-Cc: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
- linux-mips@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- Tawfik Bayouk <tawfik.bayouk@mobileye.com>
-References: <20231218-mbly-clk-v1-0-44ce54108f06@bootlin.com>
- <20231218-mbly-clk-v1-2-44ce54108f06@bootlin.com>
+Cc: linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>, Tawfik Bayouk <tawfik.bayouk@mobileye.com>
+References: <20231218-mbly-reset-v1-0-b4688b916213@bootlin.com>
+ <20231218-mbly-reset-v1-1-b4688b916213@bootlin.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -127,39 +126,37 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231218-mbly-clk-v1-2-44ce54108f06@bootlin.com>
+In-Reply-To: <20231218-mbly-reset-v1-1-b4688b916213@bootlin.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 18/12/2023 18:14, Théo Lebrun wrote:
-> Add DT schema bindings for the EyeQ5 clock controller driver.
+On 18/12/2023 18:16, Théo Lebrun wrote:
+> Add DT-Schema bindings for the EyeQ5 reset controller.
 > 
 > Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
 > ---
->  .../bindings/clock/mobileye,eyeq5-clk.yaml         | 83 ++++++++++++++++++++++
+>  .../bindings/reset/mobileye,eyeq5-reset.yaml       | 69 +++++++++++++++++++
 >  MAINTAINERS                                        |  2 +
->  include/dt-bindings/clock/mobileye,eyeq5-clk.h     | 22 ++++++
->  3 files changed, 107 insertions(+)
+>  include/dt-bindings/reset/mobileye,eyeq5-reset.h   | 80 ++++++++++++++++++++++
+>  3 files changed, 151 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/clock/mobileye,eyeq5-clk.yaml b/Documentation/devicetree/bindings/clock/mobileye,eyeq5-clk.yaml
+> diff --git a/Documentation/devicetree/bindings/reset/mobileye,eyeq5-reset.yaml b/Documentation/devicetree/bindings/reset/mobileye,eyeq5-reset.yaml
 > new file mode 100644
-> index 000000000000..d56482a06bf1
+> index 000000000000..cab6a75ba59d
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/mobileye,eyeq5-clk.yaml
-> @@ -0,0 +1,83 @@
+> +++ b/Documentation/devicetree/bindings/reset/mobileye,eyeq5-reset.yaml
+> @@ -0,0 +1,69 @@
 > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/clock/mobileye,eyeq5-clk.yaml#
+> +$id: http://devicetree.org/schemas/reset/mobileye,eyeq5-reset.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Mobileye EyeQ5 clock controller
+> +title: Mobileye EyeQ5 reset controller
 > +
 > +description:
-> +  The EyeQ5 clock controller handles 10 read-only PLLs derived from the main
-> +  crystal clock. It also exposes one divider clock, a child of one of the PLLs.
-> +  It is custom to this platform, its registers live in a shared region called
-> +  OLB.
+> +  The EyeQ5 reset driver handles three reset domains. It is custom to this
+> +  platform, its registers live in a shared region called OLB.
 > +
 > +maintainers:
 > +  - Grégory Clement <gregory.clement@bootlin.com>
@@ -168,37 +165,21 @@ On 18/12/2023 18:14, Théo Lebrun wrote:
 > +
 > +properties:
 > +  $nodename:
-> +    pattern: "^clocks$"
-
-No, that's not correct pattern.
-
-Node names should be generic. See also an explanation and list of
-examples (not exhaustive) in DT specification:
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-
-
+> +    pattern: "^reset-controller$"
 > +    description:
 > +      We have no unique address, we rely on OLB.
 
-No.
-
-I explained why in pinctrl patchset.
+NAK, third time.
 
 > +
 > +  compatible:
-> +    const: mobileye,eyeq5-clk
+> +    const: mobileye,eyeq5-reset
 > +
-> +  "#clock-cells":
-> +    const: 1
-> +
-> +  clocks:
-> +    maxItems: 1
+> +  "#reset-cells":
+> +    const: 2
 > +    description:
-> +      Input parent clock to all PLLs. Expected to be the main crystal.
-> +
-> +  clock-names:
-> +    items:
-> +      - const: ref
+> +      The first cell is the domain (0 to 2 inclusive) and the second one is the
+> +      reset index inside that domain.
 > +
 > +  mobileye,olb:
 > +    $ref: /schemas/types.yaml#/definitions/phandle
@@ -206,14 +187,12 @@ I explained why in pinctrl patchset.
 > +      A phandle to the OLB syscon. This is a fallback to using the parent as
 > +      syscon node.
 
-Drop.
+No, the same rationale as before.
 
 > +
 > +required:
 > +  - compatible
-> +  - "#clock-cells"
-> +  - clocks
-> +  - clock-names
+> +  - "#reset-cells"
 > +
 > +additionalProperties: false
 > +
@@ -222,16 +201,15 @@ Drop.
 > +    olb@e00000 {
 > +      compatible = "mobileye,eyeq5-olb", "syscon", "simple-mfd";
 
-Drop, not related.
+No, the same rationale as before.
+
 
 > +      reg = <0xe00000 0x400>;
 > +      reg-io-width = <4>;
 > +
-> +      clocks {
-> +        compatible = "mobileye,eyeq5-clk";
-> +        #clock-cells = <1>;
-> +        clocks = <&xtal>;
-> +        clock-names = "ref";
+> +      reset-controller {
+> +        compatible = "mobileye,eyeq5-reset";
+> +        #reset-cells = <2>;
 > +      };
 > +    };
 > +
@@ -239,9 +217,78 @@ Drop, not related.
 > +    olb: olb@e00000 {
 > +      compatible = "mobileye,eyeq5-olb", "syscon", "simple-mfd";
 
-Drop, even less related. Still no explanation why you represent the same
-hardware in two different ways.
+No, the same rationale as before. The hardware is either A or B, not both.
 
+
+> +      reg = <0xe00000 0x400>;
+> +      reg-io-width = <4>;
+> +    };
+> +
+> +    reset-controller {
+> +      compatible = "mobileye,eyeq5-reset";
+> +      #reset-cells = <2>;
+> +      mobileye,olb = <&olb>;
+> +    };
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 4a7bd6b40d74..9096a940b425 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -14553,9 +14553,11 @@ M:	Théo Lebrun <theo.lebrun@bootlin.com>
+>  L:	linux-mips@vger.kernel.org
+>  S:	Maintained
+>  F:	Documentation/devicetree/bindings/mips/mobileye.yaml
+> +F:	Documentation/devicetree/bindings/reset/mobileye,eyeq5-reset.yaml
+>  F:	arch/mips/boot/dts/mobileye/
+>  F:	arch/mips/configs/generic/board-eyeq5.config
+>  F:	arch/mips/generic/board-epm5.its.S
+> +F:	include/dt-bindings/reset/mobileye,eyeq5-reset.h
+>  F:	include/dt-bindings/soc/mobileye,eyeq5.h
+>  
+>  MODULE SUPPORT
+> diff --git a/include/dt-bindings/reset/mobileye,eyeq5-reset.h b/include/dt-bindings/reset/mobileye,eyeq5-reset.h
+> new file mode 100644
+> index 000000000000..ce59fe5409ac
+> --- /dev/null
+> +++ b/include/dt-bindings/reset/mobileye,eyeq5-reset.h
+> @@ -0,0 +1,80 @@
+> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
+> +/*
+> + * Copyright (C) 2023 Mobileye Vision Technologies Ltd.
+> + */
+> +
+> +#ifndef _DT_BINDINGS_RESET_MOBILEYE_EYEQ5_RESET_H
+> +#define _DT_BINDINGS_RESET_MOBILEYE_EYEQ5_RESET_H
+> +
+> +/* Domain 0 */
+> +
+> +/* 0..2 are reserved */
+
+No, they are not. IDs cannot be reserved. IDs start from 0 and are
+incremented by 1. Reserving an ID contradicts to entire point of that
+ID, so either drop entire file or make this proper IDs.
+
+> +#define EQ5R_D0_CAN0				3
+> +#define EQ5R_D0_CAN1				4
+> +#define EQ5R_D0_CAN2				5
+> +#define EQ5R_D0_SPI0				6
+> +#define EQ5R_D0_SPI1				7
+> +#define EQ5R_D0_SPI2				8
+> +#define EQ5R_D0_SPI3				9
+
+...
+
+> +
+> +#define EQ5R_D2_MULTIPHY_SWRST_DIS		12
+> +#define EQ5R_D2_MULTIPHY_APB_RST_DIS		13
+> +/* 14 is refclk select, ie not a reset */
+> +#define EQ5R_D2_PCIE0_LINK_MGMT_RST		15
+> +#define EQ5R_D2_PCIE1_LINK_MGMT_RST		16
+> +#define EQ5R_D2_PCIE0_LINK_PM_RST		17
+> +#define EQ5R_D2_PCIE1_LINK_PM_RST		18
+> +/* 19..31 are unknown */
+
+No, they are not unknown. They are explicitly implemented by driver or
+these are not IDs.
 
 Best regards,
 Krzysztof
