@@ -1,138 +1,78 @@
-Return-Path: <devicetree+bounces-27043-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27044-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F60E8190BB
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 20:29:37 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A5508190CA
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 20:33:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7A2251C24D3A
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 19:29:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E0BDF1F25F15
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 19:33:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B4A038F8B;
-	Tue, 19 Dec 2023 19:29:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C51138FBE;
+	Tue, 19 Dec 2023 19:33:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HClMowVp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9F3E39AC1
-	for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 19:29:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1rFfmE-0001q6-FL; Tue, 19 Dec 2023 20:29:14 +0100
-Received: from [2a0a:edc0:2:b01:1d::c0] (helo=ptx.whiteo.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1rFfmB-0005OK-NT; Tue, 19 Dec 2023 20:29:12 +0100
-Received: from mfe by ptx.whiteo.stw.pengutronix.de with local (Exim 4.92)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1rFfmC-007p57-NO; Tue, 19 Dec 2023 20:29:12 +0100
-Date: Tue, 19 Dec 2023 20:29:12 +0100
-From: Marco Felsch <m.felsch@pengutronix.de>
-To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc: Sudeep Holla <sudeep.holla@arm.com>,
-	Cristian Marussi <cristian.marussi@arm.com>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B26738FA7;
+	Tue, 19 Dec 2023 19:33:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7EA5AC433C8;
+	Tue, 19 Dec 2023 19:33:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1703014420;
+	bh=XCJvQlewT6Pf5hiFDnuA/dnAm1WfgOtda+sY8QJ7bvw=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=HClMowVprLd6wtXxHo1L9+xhCioewJ71M5v1MFJC+Qpslu3bN2xwMCJaMyzT8+WWT
+	 ViO+7XKDny6VquxGGFcp8E0MY2Z9KrUz+pbosjLTB1OFkveosvIk+4EtWaj6LhC7er
+	 pgioFP7QKz4h4ZlDe32F4Y9UKGMIyfr7atAjRcS/ct6d6CjdtLe8Hyq7T7EcAp4GcL
+	 SE3ucxhas1YLfLAC5iZYLi5qzl8ljY8IfepbbNueZjxY+OuSeyg66WUr3MHnofNZTf
+	 bDGK29p84talWksg5aKyJXEa9QhdjnC6mxSDfnE192VfZDjVFaTdtogYiItG7Y82Au
+	 d7H7WyQE9LpCA==
+From: Bjorn Andersson <andersson@kernel.org>
+To: Andy Gross <agross@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Oleksii Moisieiev <oleksii_moisieiev@epam.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	NXP Linux Team <linux-imx@nxp.com>, devicetree@vger.kernel.org,
-	Peng Fan <peng.fan@nxp.com>, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org
-Subject: Re: [PATCH 4/7] dt-bindings: firmware: arm,scmi: support pinctrl
- protocol
-Message-ID: <20231219192912.yulmczvqbuh4jizg@pengutronix.de>
-References: <20231215-pinctrl-scmi-v1-0-0fe35e4611f7@nxp.com>
- <20231215-pinctrl-scmi-v1-4-0fe35e4611f7@nxp.com>
+	Sibi Sankar <quic_sibis@quicinc.com>,
+	Rajendra Nayak <quic_rjendra@quicinc.com>,
+	Abel Vesa <abel.vesa@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: qcom: x1e80100-qcp: Fix supplies for some LDOs in PM8550
+Date: Tue, 19 Dec 2023 13:33:27 -0600
+Message-ID: <170301441258.365364.1012098448184748849.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.42.0
+In-Reply-To: <20231218-x1e80100-qcp-dts-fix-pm8550-regulators-supplies-v1-1-0a313ce87745@linaro.org>
+References: <20231218-x1e80100-qcp-dts-fix-pm8550-regulators-supplies-v1-1-0a313ce87745@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231215-pinctrl-scmi-v1-4-0fe35e4611f7@nxp.com>
-User-Agent: NeoMutt/20180716
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-Hi Peng,
 
-On 23-12-15, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
-> 
-> Add SCMI v3.2 pinctrl protocol bindings and example.
-> 
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> ---
->  .../devicetree/bindings/firmware/arm,scmi.yaml     | 99 ++++++++++++++++++++++
->  1 file changed, 99 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-> index 4591523b51a0..bfd2b6a89979 100644
-> --- a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-> +++ b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-> @@ -247,6 +247,85 @@ properties:
->        reg:
->          const: 0x18
->  
-> +  protocol@19:
-
-...
-
-> @@ -401,6 +480,26 @@ examples:
->              scmi_powercap: protocol@18 {
->                  reg = <0x18>;
->              };
-> +
-> +            scmi_pinctrl: protocol@19 {
-> +                reg = <0x19>;
-> +                #pinctrl-cells = <0>;
-> +
-> +                i2c2-pins {
-> +                    groups = "i2c2_a", "i2c2_b";
-> +                    function = "i2c2";
-> +                };
-> +
-> +                mdio-pins {
-> +                    groups = "avb_mdio";
-> +                    drive-strength = <24>;
-> +                };
-> +
-> +                keys_pins: keys-pins {
-> +                    pins = "GP_5_17", "GP_5_20", "GP_5_22", "GP_2_1";
-> +                    bias-pull-up;
-> +                };
-> +            };
-
-This example is different to the one you mentioned within the
-cover-letter. I didn't checked all patches just want to ask which API
-will be implemented by this patchset?
-
-Regards,
-  Marco
-
->          };
->      };
->  
-> 
-> -- 
-> 2.37.1
+On Mon, 18 Dec 2023 18:36:40 +0200, Abel Vesa wrote:
+> The LDOs 1, 4 and 10 from PM8550 share the same supply, the SMPS 4
+> from PM8550ve. This needs to be done through shared supply approach
+> otherwise the parsing will fail. Also fix a bindings check failure.
 > 
 > 
-> 
+
+Applied, thanks!
+
+[1/1] arm64: dts: qcom: x1e80100-qcp: Fix supplies for some LDOs in PM8550
+      commit: 49b0f4f141465b6446c0ade851ac11b13a888fa9
+
+Best regards,
+-- 
+Bjorn Andersson <andersson@kernel.org>
 
