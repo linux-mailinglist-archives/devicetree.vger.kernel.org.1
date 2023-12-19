@@ -1,96 +1,154 @@
-Return-Path: <devicetree+bounces-26750-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26751-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 463AB817DD6
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 00:05:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B576D817EA6
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 01:15:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E80BE28162D
-	for <lists+devicetree@lfdr.de>; Mon, 18 Dec 2023 23:05:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4FB03285060
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 00:15:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3843760A6;
-	Mon, 18 Dec 2023 23:05:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8B16188;
+	Tue, 19 Dec 2023 00:15:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="ywPnYzld"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="n4gcTTj5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5877F76094
-	for <devicetree@vger.kernel.org>; Mon, 18 Dec 2023 23:05:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-40c2db0ca48so8955e9.1
-        for <devicetree@vger.kernel.org>; Mon, 18 Dec 2023 15:05:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1702940740; x=1703545540; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+SN12il5ik6cWNDdw9fL8yyeZEss9E6x81jqC6dArM4=;
-        b=ywPnYzld0rBMoq2j4ctOl/jiTkZxPMQ3Jb814gZNpN861UR3rz0wG/jSXCu/wGRsMm
-         aOOI72wyDAXPUJKTOuh0cNZZLTU6DlWVTpaT73EhtisfnZVn9wxpUsjSIfWMsqGIc5ay
-         2RZcxcmLpELmRhJAmxf5rGCwpf/QdvJq2JCrzg3197FqyoRwODpE/4/66WljpcDlCIq9
-         svfGETYaQKA7eVz6WTB7pM8phewIYWZylTopEriEsSIrct51PTJ16Fzc2wicSpQopKl8
-         pGLXNzmvqk01uXSQTVkooXwrUqUIqUpb4WLw5XFqDKk1E/d4ytYtHNcJ6TBwNNNdBlU3
-         cOhg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702940740; x=1703545540;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=+SN12il5ik6cWNDdw9fL8yyeZEss9E6x81jqC6dArM4=;
-        b=kl+um7Ul7CVPHTmyrL7cv7s+gk+r8JesqkDkjqZTrDane7jKfpIgbrvo3ylvM0qwe7
-         SUE0k3Z6Q7aWQBAL0chCGMMBzW4S+ETbt93HAPxKXVeEqmP05JCUAZs6moUjdn12XF8C
-         bn1ApIDOEbAAkJbFWABfuxsN3di5V5LhO9bIrk7mahm/8wdb+FVQkHFskj4YZ3ECAu97
-         nBxeS6frzqw21NB3bgiIg/rKh+LTR5rauY1LMNF6z4Qsz8/oI1rh2YQ89eHTbGBQStGz
-         pZumT7UFUahbfgS9SjnXAcRn+CViueqbcFaIgHuu5HMJQziBgd4CKBKUNOlmtYj3ELxl
-         QcbA==
-X-Gm-Message-State: AOJu0YxfSOTTZ9/MONA8FLHvS4SeKF1pX0FzooqWG61IrP4UgvvdM4t5
-	BiVb2FoOm5LmkVHxrxQq7NcoI3++C0gdDYi4SJ52hMewqIxK
-X-Google-Smtp-Source: AGHT+IGMOM3LPYj6duqgFMQpU/sRxW2c92eaacVQ5j02hlMrJxsQiJ5p6r8R1iKWvqGXXa2WKsmd/d4YW/xB4awXn9U=
-X-Received: by 2002:a1c:7406:0:b0:40c:4ed3:8d1f with SMTP id
- p6-20020a1c7406000000b0040c4ed38d1fmr26310wmc.7.1702940740206; Mon, 18 Dec
- 2023 15:05:40 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3AD69387;
+	Tue, 19 Dec 2023 00:15:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 3BINlqaQ010864;
+	Tue, 19 Dec 2023 00:14:48 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=dGXSqUx9e0/zV1axVohzeeNVwd6d8r2agKMGrqkSKyM=; b=n4
+	gcTTj5Vlc6L39T6Ms9D8eSRtYV2x4fSlDpJQ8quPX2dspeekRmWCNy5X3QIoIH0n
+	pzUoabugakx/R1pBigJbCh5/JxSYEDUzDcEQcVfeY2DIoM8zV+k0qtY+jBdAOgqd
+	NzUnt3ILSz8vT8JmkXfTqwtz1v1jqJlMnBbcrHSVNz2OXrLScv/vH9/FqpqeYHI4
+	j6V4buStE3Srtg2w3LUDfPXukdBSZJvop/wMAekjlsPlP+L21mGpM8pmQkkRkW8f
+	R4JyyPO7c93n8XtWsqh6wZPvPo/aYlK1cXVU80rJ7IZAXkJDwOOH2+1WpxFrMRuR
+	ywvFYUqY7re+bBQ88QXA==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3v2vhrge8w-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 19 Dec 2023 00:14:47 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3BJ0EkeD019235
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 19 Dec 2023 00:14:46 GMT
+Received: from [10.239.133.211] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Mon, 18 Dec
+ 2023 16:14:41 -0800
+Message-ID: <cdde7597-2c1c-4570-a604-91b87eef9455@quicinc.com>
+Date: Tue, 19 Dec 2023 08:14:39 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231218095933.2487360-1-xuxinxiong@huaqin.corp-partner.google.com>
-In-Reply-To: <20231218095933.2487360-1-xuxinxiong@huaqin.corp-partner.google.com>
-From: Doug Anderson <dianders@google.com>
-Date: Mon, 18 Dec 2023 15:05:27 -0800
-Message-ID: <CAD=FV=XE+k3PTXMY7gU789HnGKVQdJMwJt8gqowxT6x0zj-A4w@mail.gmail.com>
-Subject: Re: [PATCH] drm/panel-edp: Add several generic edp panels
-To: Xuxin Xiong <xuxinxiong@huaqin.corp-partner.google.com>
-Cc: sam@ravnborg.org, neil.armstrong@linaro.org, daniel@ffwll.ch, 
-	hsinyi@google.com, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/8] dt-bindings: arm: Add support for CMB element size
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Mathieu Poirier
+	<mathieu.poirier@linaro.org>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+        Konrad Dybcio
+	<konradybcio@gmail.com>,
+        Mike Leach <mike.leach@linaro.org>, Rob Herring
+	<robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC: Jinlong Mao <quic_jinlmao@quicinc.com>, Leo Yan <leo.yan@linaro.org>,
+        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
+        <coresight@lists.linaro.org>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Tingwei Zhang
+	<quic_tingweiz@quicinc.com>,
+        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Song Chai <quic_songchai@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <andersson@kernel.org>
+References: <1700533494-19276-1-git-send-email-quic_taozha@quicinc.com>
+ <1700533494-19276-2-git-send-email-quic_taozha@quicinc.com>
+ <270d759f-74b3-42f0-96ec-f97bee7116b8@linaro.org>
+From: Tao Zhang <quic_taozha@quicinc.com>
+In-Reply-To: <270d759f-74b3-42f0-96ec-f97bee7116b8@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: ddVfqoYWTLaRBv0Pas59xQ8gSFcofQzn
+X-Proofpoint-GUID: ddVfqoYWTLaRBv0Pas59xQ8gSFcofQzn
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-12-09_02,2023-12-07_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 phishscore=0
+ adultscore=0 bulkscore=0 priorityscore=1501 impostorscore=0 spamscore=0
+ lowpriorityscore=0 suspectscore=0 clxscore=1011 mlxlogscore=724
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2311290000 definitions=main-2312190000
 
-Hi,
 
-On Mon, Dec 18, 2023 at 1:59=E2=80=AFAM Xuxin Xiong
-<xuxinxiong@huaqin.corp-partner.google.com> wrote:
+On 11/21/2023 3:24 PM, Krzysztof Kozlowski wrote:
+> On 21/11/2023 03:24, Tao Zhang wrote:
+>> Add property "qcom,cmb-elem-size" to support CMB(Continuous
+>> Multi-Bit) element for TPDM. The associated aggregator will read
+>> this size before it is enabled. CMB element size currently only
+>> supports 32-bit and 64-bit.
 >
-> Add support for the following 3 panels:
-> 1. BOE NV116WHM-N49 V8.0
-> 2. BOE NV122WUM-N41
-> 3. CSO MNC207QS1-1
+>>     qcom,dsb-msrs-num:
+>>       description:
+>>         Specifies the number of DSB(Discrete Single Bit) MSR(mux select register)
+>> @@ -110,4 +119,23 @@ examples:
+>>         };
+>>       };
+>>   
+>> +    tpdm@6c29000 {
+>> +      compatible = "qcom,coresight-tpdm", "arm,primecell";
+>> +      reg = <0x06c29000 0x1000>;
+>> +      reg-names = "tpdm-base";
+>> +
+>> +      qcom,cmb-element-size = /bits/ 8 <64>;
+> One new property usually does not justify new example. Why it cannot be
+> added to existing example?
+
+Because the existing example tpdm "tpdm@684c000" which only supports dsb 
+sub-unit.  Most
+
+TPDMs only support one type of sub-unit.
+
 >
-> Signed-off-by: Xuxin Xiong <xuxinxiong@huaqin.corp-partner.google.com>
-> ---
->  drivers/gpu/drm/panel/panel-edp.c | 4 ++++
->  1 file changed, 4 insertions(+)
+> Anyway, I prefer not to take any new Qualcomm Coresight bindings or
+> Qualcomm SoC DTS nodes with Coresight till we fix all existing warnings.
+> I don't know how to fix them, so I need help with them. No such fixing
+> happened so far from Qcom, so pushback is my only way to get any attention.
+>
+> I already commented on this in other email thread.
 
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
+Jinlong has fixed the warnings from coresight bindings. I will prepare 
+my next patch
 
-Pushed to drm-misc-next:
+series soon.
 
-0547692ac146 drm/panel-edp: Add several generic edp panels
+
+Best,
+
+Tao
+
+>
+> Best regards,
+> Krzysztof
+>
 
