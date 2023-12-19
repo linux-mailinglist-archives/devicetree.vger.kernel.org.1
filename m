@@ -1,52 +1,54 @@
-Return-Path: <devicetree+bounces-27035-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27036-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23153818F40
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 19:07:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CCE9E818F45
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 19:07:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D17CD283233
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 18:07:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8A2E228461C
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 18:07:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECD27381A1;
-	Tue, 19 Dec 2023 18:06:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C33F38FBC;
+	Tue, 19 Dec 2023 18:06:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="R9CH5/2N"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bbamb6wM"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEA9038F87;
-	Tue, 19 Dec 2023 18:06:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 43950C433C7;
-	Tue, 19 Dec 2023 18:06:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38CD639AC5;
+	Tue, 19 Dec 2023 18:06:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2F8CCC433C7;
+	Tue, 19 Dec 2023 18:06:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1703009207;
-	bh=IWT2Spi6n0YyBL0I+YwiyQRgCtOdqTF4PJPYvAzCjzY=;
+	s=k20201202; t=1703009215;
+	bh=75Es5ASDNV/OKxp/HlaSmARaKwxlUSU1EzBIpJTahRw=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=R9CH5/2NspkbtdqFagwiq5zBc5sVYhM42iB3WpampU9sH7ckPux2kVwx236hn98e1
-	 74Xx/Oem6yQi+an/Rx/rmNxigMcM73wA889coHTybKA7z28ovoJS6FiADhu5q+tLSc
-	 olJ8QRrOOHuHYohzLBQEXx42+Dtmij7U2GlVEvJrcxu0Ew4vSdJG38lpIxxi/XrOu6
-	 jLgtru4XMquwVV//KL8WNVxNWphIIUxKO1j1vW1P3Kkynx1Cxui9DNnTpMbistCujw
-	 yw1C8n7D59VUplKbTbv+jbyxDxXamF2GNszgVcJzudVL1Vv5eIfNHV3SJW7Holopbw
-	 fQ5s+Ftcd9L0w==
+	b=bbamb6wMIQTNf2EwRtb8UiN2rGhkeT3P8P/X+6ptYEgRlQK5Da0Dsmh+XELFHeiBw
+	 pbkfnuMPYvQpHiCXo99GPo74qlJW/vBKogHtjMGgJkEge+lCEBy1l5k5YiLW08nSi2
+	 YzNBgl3Scxhv0zJOG/HH9nfVsGWB9sIZo/C9VEELwDkWrVWsM6eB7EgRwq8pX8c4fC
+	 Mlx/oEX/JenyAaKtZ2zHR7PEAipdYLRY6TpQmPqv/NhJb1fSZxRhOU+5js1HhcbSZ7
+	 BO/sVIwYoObutr8vagWBI8lvIHRIzkYCTff8tKgQusvFu4BNvGCt4E0l5sj44sJpl/
+	 LqbEy6WVyTmlw==
 From: Mark Brown <broonie@kernel.org>
-To: lgirdwood@gmail.com, robh+dt@kernel.org, 
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
- matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com, 
- perex@perex.cz, tiwai@suse.com, trevor.wu@mediatek.com, 
- allen-kh.cheng@mediatek.com, kuninori.morimoto.gx@renesas.com, 
- Rui Zhou <zhourui@huaqin.corp-partner.google.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
-In-Reply-To: <20231212123050.4080083-1-zhourui@huaqin.corp-partner.google.com>
-References: <20231212123050.4080083-1-zhourui@huaqin.corp-partner.google.com>
-Subject: Re: [v9 0/4] add es8326 dt-bindings, commonize headset codec API,
- es8326 support and Enable dual amp for rt5682s
-Message-Id: <170300920399.125466.9978354781339951707.b4-ty@kernel.org>
-Date: Tue, 19 Dec 2023 18:06:43 +0000
+To: Liam Girdwood <lgirdwood@gmail.com>, Jaroslav Kysela <perex@perex.cz>, 
+ Takashi Iwai <tiwai@suse.com>, 
+ Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, 
+ Banajit Goswami <bgoswami@quicinc.com>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Thierry Reding <thierry.reding@gmail.com>, 
+ Jonathan Hunter <jonathanh@nvidia.com>, 
+ Linus Walleij <linus.walleij@linaro.org>
+Cc: linux-sound@vger.kernel.org, alsa-devel@alsa-project.org, 
+ devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
+In-Reply-To: <20231214-gpio-descriptors-sound-misc-v1-0-e3004176bd8b@linaro.org>
+References: <20231214-gpio-descriptors-sound-misc-v1-0-e3004176bd8b@linaro.org>
+Subject: Re: [PATCH 0/4] GPIO inclusion fixes to misc sound drivers
+Message-Id: <170300921190.125466.2748505947171245430.b4-ty@kernel.org>
+Date: Tue, 19 Dec 2023 18:06:51 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,16 +59,10 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.13-dev-5c066
 
-On Tue, 12 Dec 2023 20:30:46 +0800, Rui Zhou wrote:
-> Add dt-bindings for es8326 and codec es8326 support.
-> Remove duplicate code, commonize headset codec init/exit API.
-> At the same time, Enable dual amp max98390 for rt5682s.
+On Thu, 14 Dec 2023 14:15:41 +0100, Linus Walleij wrote:
+> Mostly dropping unused headers, and a single driver rewrite.
 > 
-> Changes in v9:
-> - PATCH 3/4: Add comment for MAX98390_TWO_AMP.
-> - Link to v8: https://lore.kernel.org/all/20231208070933.720324-1-zhourui@huaqin.corp-partner.google.com/
 > 
-> [...]
 
 Applied to
 
@@ -74,14 +70,14 @@ Applied to
 
 Thanks!
 
-[1/4] ASoC: dt-bindings: mt8188-mt6359: add es8326 support
-      commit: ea244b35a4da60a92d0e3be528f82ebcbcf10753
-[2/4] ASoC: mediatek: mt8188-mt6359: commonize headset codec init/exit api
-      commit: 1a268000b03a162bd5feb7fce1c130f1b31602b5
-[3/4] ASoC: mediatek: mt8188-mt6359: add es8326 support
-      commit: e794a894427b1d64f2ebff24f003c60373d68c2c
-[4/4] ASoC: mediatek: mt8188-mt6359: Enable dual amp for mt8188-rt5682s
-      commit: 3423c3db22e9213acd279ff3800bb1e91aa2ac89
+[1/4] ASoC: hisilicon: Drop GPIO include
+      commit: 487b467206fb2f3a21c93759d3b0ffe7044ed197
+[2/4] ASoC: qcom: sc7180: Drop GPIO include
+      commit: 809fc84b371a0364160254037d2bc34a8f5ce372
+[3/4] ASoC: simple-card-utils: Drop GPIO include
+      commit: 4504f63321e1a581a3c0cbc8de91bd0175d94783
+[4/4] ASoC: tegra: tegra20_ac97: Convert to use GPIO descriptors
+      commit: 26e91f61d6b91ccfb0bbb15cbc81845dd1d223af
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
