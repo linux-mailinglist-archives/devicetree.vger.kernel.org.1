@@ -1,102 +1,178 @@
-Return-Path: <devicetree+bounces-26855-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26856-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94D2E818527
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 11:15:53 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9BACF818531
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 11:20:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B78731C23A5F
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 10:15:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4C72D28186F
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 10:20:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC4171429A;
-	Tue, 19 Dec 2023 10:15:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 675581429C;
+	Tue, 19 Dec 2023 10:20:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=waldekranz-com.20230601.gappssmtp.com header.i=@waldekranz-com.20230601.gappssmtp.com header.b="R2udhyfb"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="BJi8VpRz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D33D14281
-	for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 10:15:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=waldekranz.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=waldekranz.com
-Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-50c04ebe1bbso5300886e87.1
-        for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 02:15:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=waldekranz-com.20230601.gappssmtp.com; s=20230601; t=1702980943; x=1703585743; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:references
-         :in-reply-to:subject:cc:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=fwvGGVZPaE+uJLGJ403p8rSB0od/oVTv84mQ6BO98BA=;
-        b=R2udhyfbl1c5x2bJFMM2V0/ehdH6PTiAsQYCWc3tmiTw2mY2HU2i7r5PgAPWFKBSaB
-         r0ilhBfHFmdHvUmqek5GrLOAlTNNJFFzZ3jcNp8dlR0hCBP5OPN/Nd0IgpQhrqiFhlEA
-         hYkoey7eK3vkTHespb0xoDhTJF+kt/m/J9ptbkHzqRuUOy1Ok0LBHSSZnBVF8xpied8Z
-         dR04rZdH7SF3y8lwbCM4QrEaDUfWiPiBeVhN0rCPN5cgiLoLkD7vAc6kX1SDi3UuTcFm
-         NqAQu1JTzS0pFBs+sjtdWvo2Dj/MFXUNKw80CeQiowN98R3xuiBfvBt+szVlE6ArVv4h
-         QdsQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702980943; x=1703585743;
-        h=content-transfer-encoding:mime-version:message-id:date:references
-         :in-reply-to:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=fwvGGVZPaE+uJLGJ403p8rSB0od/oVTv84mQ6BO98BA=;
-        b=Cyf7d4EVJSBL3S1YyItGRA7efjO5y9D0MI8el0ZsIiT1ZKCIWRuKwAFnxHBvaZX0sX
-         z+fuhk/7g+WxcMd1dUdiXw+b0Ouhcjy7sZ9rL5AIxYWBpLvUrp+JIVnJMtXe5w7KF5wv
-         sTXsOD4+cW7Xo2WSguK4+Ikrek1ud8WFE/pMhWhMcS8pKCddFztYYtRVtf4EQc5x/lqF
-         aCVeeJrMKVD1O8hvbQDel1mr/MOYtS+BoFJrhbfUlRipAOEpbb46B7RGU2cXErsh/2OY
-         eS5UVvoMGr1X4M38F1EPZTz0zXVYcztcMUwpTw4gp3n0TareSjgfSUalW4+hDc4v1Cms
-         JSYQ==
-X-Gm-Message-State: AOJu0YyHY1tXA4NDVEODH+R4WYd7uT4QeJ+iBMjH6SfhLJgnNqdXRcyd
-	AKOH+IdiQ8+IwNFsKnB6J7qQqjQWRwSyakMpK3WN8q4i61c=
-X-Google-Smtp-Source: AGHT+IGlkGyj7/BLEfJpdsmuMyRajlStQEzsKpsBAGWAxCwdhcTKA+tfKrmzlVop+CuGz99g5r5mCg==
-X-Received: by 2002:a19:3818:0:b0:50e:3989:1d91 with SMTP id f24-20020a193818000000b0050e39891d91mr448988lfa.10.1702980943393;
-        Tue, 19 Dec 2023 02:15:43 -0800 (PST)
-Received: from wkz-x13 (a124.broadband3.quicknet.se. [46.17.184.124])
-        by smtp.gmail.com with ESMTPSA id 14-20020ac25f4e000000b0050e2782e86dsm929894lfz.184.2023.12.19.02.15.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 Dec 2023 02:15:42 -0800 (PST)
-From: Tobias Waldekranz <tobias@waldekranz.com>
-To: Marek =?utf-8?Q?Beh=C3=BAn?= <kabel@kernel.org>
-Cc: davem@davemloft.net, kuba@kernel.org, linux@armlinux.org.uk,
- andrew@lunn.ch, hkallweit1@gmail.com, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- netdev@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next 1/4] net: phy: marvell10g: Support firmware
- loading on 88X3310
-In-Reply-To: <20231219102200.2d07ff2f@dellmb>
-References: <20231214201442.660447-1-tobias@waldekranz.com>
- <20231214201442.660447-2-tobias@waldekranz.com>
- <20231219102200.2d07ff2f@dellmb>
-Date: Tue, 19 Dec 2023 11:15:41 +0100
-Message-ID: <87sf3y7b1u.fsf@waldekranz.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4FC514A87;
+	Tue, 19 Dec 2023 10:20:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 3BJ7NKL2001808;
+	Tue, 19 Dec 2023 10:19:56 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=1SLkwKsxGvngtX8EoaTWVYJBcj1k3lIqDzT9XfxdYcU=; b=BJ
+	i8VpRzMP1wwhSYxxwj/nJA+e8Ikuecp4PSfR9kjIk9bDcZfYu71ZAJbK09nJ79QV
+	Sr+7spGr39t2Ft/xChVhxURJkH9ZLvo7PVwweh4HNyVskgz1Bz+GN+0RQFGH/06U
+	hJ7M3+48cAkBk1xfj2NOMT4AtspZyT9KYdFKixqbso6KTFSaTWUuAarOtXsgVTw/
+	dFXCxqOqsBjuYXfdVZPwrieuiVMafhAHThBmG6wQvZxBDR412nR6xUDSUFMS94rF
+	Q3rs8Cm+2AIFNTplVzEsjSWYljgemOTP63Z16dnYL093AzGKtpxW7z/hzQPdf1yD
+	cagrtIFBLJxZAE5ejD+Q==
+Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3v35tm8kqb-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 19 Dec 2023 10:19:56 +0000 (GMT)
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3BJAJtpX018865
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 19 Dec 2023 10:19:55 GMT
+Received: from [10.239.132.150] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Tue, 19 Dec
+ 2023 02:19:52 -0800
+Message-ID: <d955f3bb-c73e-4777-b268-a8abc70788ef@quicinc.com>
+Date: Tue, 19 Dec 2023 18:19:50 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 4/6] arm64: dts: qcom: qcs8550: introduce qcs8550 dtsi
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Tengfei Fan
+	<quic_tengfan@quicinc.com>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20231219005007.11644-1-quic_tengfan@quicinc.com>
+ <20231219005007.11644-5-quic_tengfan@quicinc.com>
+ <ec730ce7-2021-4cad-97e6-0a86c6063533@linaro.org>
+ <cd5a0140-295a-4f48-a378-3c2b8be0f499@quicinc.com>
+ <f0f707c0-dd96-4409-bfc5-118d885933e8@linaro.org>
+From: "Aiqun Yu (Maria)" <quic_aiquny@quicinc.com>
+In-Reply-To: <f0f707c0-dd96-4409-bfc5-118d885933e8@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: -ZtrUU6EXTV5XxUlWjMI9IWrvh2AzJ3Y
+X-Proofpoint-ORIG-GUID: -ZtrUU6EXTV5XxUlWjMI9IWrvh2AzJ3Y
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-12-09_02,2023-12-07_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ adultscore=0 spamscore=0 priorityscore=1501 malwarescore=0 mlxlogscore=244
+ impostorscore=0 phishscore=0 mlxscore=0 suspectscore=0 clxscore=1015
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2311290000 definitions=main-2312190076
 
-On tis, dec 19, 2023 at 10:22, Marek Beh=C3=BAn <kabel@kernel.org> wrote:
-> On Thu, 14 Dec 2023 21:14:39 +0100
-> Tobias Waldekranz <tobias@waldekranz.com> wrote:
->
->> +MODULE_FIRMWARE("mrvl/x3310fw.hdr");
->
-> And do you have permission to publish this firmware into linux-firmware?
 
-No, I do not.
 
-> Because when we tried this with Marvell, their lawyer guy said we can't
-> do that...
+On 12/19/2023 6:01 PM, Krzysztof Kozlowski wrote:
+> On 19/12/2023 10:57, Aiqun Yu (Maria) wrote:
+>>
+>>
+>> On 12/19/2023 3:02 PM, Krzysztof Kozlowski wrote:
+>>> On 19/12/2023 01:50, Tengfei Fan wrote:
+>>>> QCS8550 is derived from SM8550, it is mainly used in IoT scenarios.
+>>>
+>>> What are the differences? You need to describe the hardware, you have
+>>> entire commit msg for something useful which will avoid such comments
+>>> from reviewers.
+>>>
+>>>>
+>>>> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
+>>>> ---
+>>>>    arch/arm64/boot/dts/qcom/qcs8550.dtsi | 6 ++++++
+>>>>    1 file changed, 6 insertions(+)
+>>>>    create mode 100644 arch/arm64/boot/dts/qcom/qcs8550.dtsi
+>>>>
+>>>> diff --git a/arch/arm64/boot/dts/qcom/qcs8550.dtsi b/arch/arm64/boot/dts/qcom/qcs8550.dtsi
+>>>> new file mode 100644
+>>>> index 000000000000..254657f46c5e
+>>>> --- /dev/null
+>>>> +++ b/arch/arm64/boot/dts/qcom/qcs8550.dtsi
+>>>> @@ -0,0 +1,6 @@
+>>>> +// SPDX-License-Identifier: BSD-3-Clause
+>>>> +/*
+>>>> + * Copyright (c) 2023, Qualcomm Innovation Center, Inc. All rights reserved.
+>>>> + */
+>>>> +
+>>>> +#include "sm8550.dtsi"
+>>>
+>>> This is a weird file. I thought qcs8550 has differences from sm8550,
+>>> e.g. lack of modem, so why do you claim you have here MPSS?
+>> MPSS here in qcs8550 is a GPS only MPSS.
+> 
+> Is it different or the same? Is the interface the same? So many
+> questions and so little information. You have entire commit msg to
+> explain this.
+we can add all current email information into the commit message in next 
+patchset.
+> 
+>>
+>> QCS8550 will have a different firmware release with sm8550, and it will
+>> have different memory reserved for the firmware to be used.
+>> While firmware release along with memory map was not settled down yet.
+>> That's why currently qcs8550.dtsi is an "empty file" and only include
+>> sm8550.dtsi. As long as the firmware release is settled down, we will
+>> have more detailed different node here.
+> 
+> So the DTS is not really usable now?
+curent qcs8550.dtsi is an "empty file" which is identical to "sm8550.dtsi".
+While qcs8550-aim300-itot.dts is currently used with a "temporary 
+reserved memory" for those engineer qcs8550 firmware for boot up and 
+limited function verify.
 
-I don't even have good enough access to ask the question, much less get
-rejected by Marvell :) I just used that path so that it would line up
-with linux-firmware if Marvell was to publish it in the future.
+So the idea here is to postpone only the firmware related reserved 
+memory part. And open an "empty file" qcs8550.dtsi for common which can 
+be used for other board like qcs8550-rb5-gen2.
+>>
+>> By the way, RB5 gen2 will also relies on the current qcs8550.dtsi, since
+>> it is using the same qcs8550 soc, and will use the same firmware release.
+>>
+>> We have patch version2 remove the qcs8550.dtsi, and have SOM dtsi
+>> qcs8550-aim300.dtsi include the sm8550.dtsi. While after discussion, our
+>> understanding is that we can have an qcs8550.dtsi like this. Feel free
+>> to let us know if it is not right understanding.
+>>
+>>>
+>>> It's really confusing now.
+>>
+>> We can have a syncup to clear the confusing point if needed. :)
+>>>
+> 
+> The code and commit msg are confusing. I need to keep asking you to get
+> any information.
+> 
+> Best regards,
+> Krzysztof
+> 
 
-Should MODULE_FIRMWARE be avoided for things that are not in
-linux-firmware?
+-- 
+Thx and BRs,
+Aiqun(Maria) Yu
 
