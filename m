@@ -1,152 +1,174 @@
-Return-Path: <devicetree+bounces-26933-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26934-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3AB9818A46
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 15:41:46 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB299818A80
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 15:54:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4DAD928DC6F
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 14:41:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BE7B81C21856
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 14:54:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 090F91C2AC;
-	Tue, 19 Dec 2023 14:41:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="I5pFWUvp"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7EF71BDF4;
+	Tue, 19 Dec 2023 14:54:17 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM04-BN8-obe.outbound.protection.outlook.com (mail-bn8nam04on2077.outbound.protection.outlook.com [40.107.100.77])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E66691C2AE;
-	Tue, 19 Dec 2023 14:41:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=P5SrdF6skf7fnjDxIRDAqwrmFbn5eAi2vcUE/oNSxmmKYTKNchFupYhxpqQ8z4c0BSjqT+rgtaqV5zhpRGneR9K74q7LJo8uAgs4rX3U5jHEc7Vwe1zbqw0bVypToDAPdefbfY7OrgyoVCBX8z263Vnt5WYkaxwX/s4e54+SvKKg3+/KCvE86uqbq7Xvs8XyuMjPFTqrW6mFdW0eLIBQwVGYHkC91TFzJBuX0O4AfB+BVLQxjyoyUcqqcrbL1h9bPrR+0H+txNJKXd3NLhLNlQ7S2XdsZfMqlvOZL6dF6u/8QQW9InWgLCEPlYrrkGW5YxtMdVxvkZpxRgNekIdAdg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=FJaZ5jmWBXX9tuTCfqiQwZpSdqIc+9R+nKDlMQ+bYyw=;
- b=QiN6gJal1RYsfmW7TbD7zr2J7VlD1g/t/BwqbjcBcmNS9bRbzuEOq7iPC/NmO2tCmvWazY/uJ2QRpIxscbW+bNy7kvGy8/6X5KFDE2kaqpGDq4tZxSmxSDjGG71YjQaCPE3c7rbVB1H9FHOHvl8w4cEeu9Z+ReMv5+B26ra3WVTBdNRX83S+FdvwmS9Er7r2l3G5t1vbPyRa7FfDYHNwjvnZ73fb87P0BLQsxhnyFkTMLuHJzCX0mXopiCJR1oCtlbjZSXKmOUbWwhylTh/c7jt3TKiAGHr3MNfYpZ/xuhaSty7T/kgkTUMLNcCptRxVnqlZeVVG/VDdWv6no2ly6A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=FJaZ5jmWBXX9tuTCfqiQwZpSdqIc+9R+nKDlMQ+bYyw=;
- b=I5pFWUvp84KfQJ8ZMvOrzUl14qJ+kB1SGRnb34BLGCeh0WaKDtqUbeJLyUMiPXUCA+jJOm4+1vNYh6k6Y+3AwiZhhDKnPL3k0HX9wZlMjuL63nSuCDrNusBw+O9a9T8QxHkz0I5PQGExDQnnOIk1sQ7NVSDO6EXgMB5aMD+5qtU=
-Received: from CH2PR18CA0042.namprd18.prod.outlook.com (2603:10b6:610:55::22)
- by DM4PR12MB5937.namprd12.prod.outlook.com (2603:10b6:8:68::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7091.38; Tue, 19 Dec
- 2023 14:41:08 +0000
-Received: from SN1PEPF0002636D.namprd02.prod.outlook.com
- (2603:10b6:610:55:cafe::ca) by CH2PR18CA0042.outlook.office365.com
- (2603:10b6:610:55::22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7091.38 via Frontend
- Transport; Tue, 19 Dec 2023 14:41:08 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- SN1PEPF0002636D.mail.protection.outlook.com (10.167.241.138) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7113.14 via Frontend Transport; Tue, 19 Dec 2023 14:41:08 +0000
-Received: from localhost (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.34; Tue, 19 Dec
- 2023 08:41:06 -0600
-From: Michal Simek <michal.simek@amd.com>
-To: <linux-kernel@vger.kernel.org>, <monstr@monstr.eu>,
-	<michal.simek@xilinx.com>, <git@xilinx.com>
-CC: Conor Dooley <conor+dt@kernel.org>, Krishna Potthuri
-	<sai.krishna.potthuri@amd.com>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Linus Walleij
-	<linus.walleij@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-gpio@vger.kernel.org>
-Subject: [PATCH] dt-bindings: pinctrl: xilinx: Rename *gpio to *gpio-grp
-Date: Tue, 19 Dec 2023 15:41:02 +0100
-Message-ID: <2e3a1f1f57cf929bd05115bc081e6d01d5a53443.1702996859.git.michal.simek@amd.com>
-X-Mailer: git-send-email 2.36.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FE0A1C6B5;
+	Tue, 19 Dec 2023 14:54:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+	by fd01.gateway.ufhost.com (Postfix) with ESMTP id 950F78132;
+	Tue, 19 Dec 2023 22:54:03 +0800 (CST)
+Received: from EXMBX061.cuchost.com (172.16.6.61) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 19 Dec
+ 2023 22:54:03 +0800
+Received: from localhost.localdomain (113.72.145.47) by EXMBX061.cuchost.com
+ (172.16.6.61) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 19 Dec
+ 2023 22:54:02 +0800
+From: Xingyu Wu <xingyu.wu@starfivetech.com>
+To: Daniel Lezcano <daniel.lezcano@linaro.org>, Thomas Gleixner
+	<tglx@linutronix.de>, Emil Renner Berthing
+	<emil.renner.berthing@canonical.com>, Christophe JAILLET
+	<christophe.jaillet@wanadoo.fr>
+CC: <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>, "Rob
+ Herring" <robh+dt@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Paul Walmsley
+	<paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou
+	<aou@eecs.berkeley.edu>, Philipp Zabel <p.zabel@pengutronix.de>, Walker Chen
+	<walker.chen@starfivetech.com>, Xingyu Wu <xingyu.wu@starfivetech.com>,
+	<linux-kernel@vger.kernel.org>, Conor Dooley <conor@kernel.org>
+Subject: [PATCH v8 0/3] Add timer driver for StarFive JH7110 RISC-V SoC
+Date: Tue, 19 Dec 2023 22:53:59 +0800
+Message-ID: <20231219145402.7879-1-xingyu.wu@starfivetech.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1575; i=michal.simek@amd.com; h=from:subject:message-id; bh=Ul92XtjmUMbFtE4gmwkva9K4Y+so50w22oxs/Dx05Ik=; b=owGbwMvMwCR4yjP1tKYXjyLjabUkhtTG1TXBpe7xJ01jOb/+bmS9JF90cOXtZJVtB1d/TZfq9 AyXqNTpiGVhEGRikBVTZJG2uXJmb+WMKcIXD8vBzGFlAhnCwMUpABM5vZphNtv/Cg1D/otOy/2K 5XVq/mo8PBQuy7BgemTJ2/X/d7a4OqhFKXmmzN11pMUXAA==
-X-Developer-Key: i=michal.simek@amd.com; a=openpgp; fpr=67350C9BF5CCEE9B5364356A377C7F21FE3D1F91
-Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN1PEPF0002636D:EE_|DM4PR12MB5937:EE_
-X-MS-Office365-Filtering-Correlation-Id: b0f55c64-21b2-4956-c2e2-08dc00a08987
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	vh7dEciXUpBl9UAmJ4hYnq4u826YU3YxXZjQLWixwgN/nHpJXHwIuDkA96kf3LtrcW+aaJyO0M5zP4dUnz5KURb6+aAtWou2rR8DKwVvUxzUuP5lZDjoVd0zDaBqElObQPidVT22KHv3IJlLaUSUsfKX4SO+Ai7TP9ej2QU0KQxz1RS5gmj4ztXrTfjaN7zFDTbexMGSeaHU6/9a1tMGvAFmaTKk+xcaKBRugtsIQqAxdVqZOBwieB+xoQH/EshNnrCWeqdAt3Om5wG3J+HuvdvuKHj+HnIupwJ/DJVYVyPuZ5wGg9L1Jhle8H2TsiyBjLTPQA9SmZqusmquaoLGQI82i/pi8pr/ycZoWF58vIQIBj5WQyM0neoPsEJ6dNf6iR90jDQ/DZdHkd2IG4FaFNIx/Nos+Gnbrv26+nwtBrJs1izxbbUrBIcRUf1am9OGJLPfMHxhmAJR5NPE/2N7fXI7uaHaFXKETIVbMZ+ljVPACCgYdAmydVPhkNzbL893uD5EuQ3UPho0kPcOhPnCcoRmcUXBWIQ8YVfS66MZ+bmn5NiU18oeWmQ3O3JREDCRlUz0OF90BlZEvbgPRqRZrODagvlgbOc82GFZNZjXov2SAEDRzxB6V4k/3FDmpmSqPeKDcH3ZjWNKuZrRkOOm8iDbXNGdcnQIoH/4HibeYJvIt0YLifrM3ELDgzIHOCCyAv6HcrJhrIQTvwE299q3BsWfTmokDf++m8dXkGVwFRB8R0JRhf79eOoSadUm2kh1X601pr8OMq1AnnMVaMGS3Vrk6QxYDLLC3mfPblWPNG0=
-X-Forefront-Antispam-Report:
-	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230031)(4636009)(376002)(346002)(39860400002)(396003)(136003)(230922051799003)(451199024)(186009)(1800799012)(64100799003)(82310400011)(46966006)(40470700004)(36840700001)(40460700003)(40480700001)(426003)(16526019)(336012)(2616005)(6666004)(26005)(82740400003)(356005)(81166007)(36756003)(86362001)(8936002)(8676002)(4326008)(478600001)(110136005)(41300700001)(36860700001)(7416002)(5660300002)(2906002)(47076005)(83380400001)(70206006)(44832011)(70586007)(54906003)(316002)(36900700001)(2101003);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Dec 2023 14:41:08.1285
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: b0f55c64-21b2-4956-c2e2-08dc00a08987
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	SN1PEPF0002636D.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB5937
+X-ClientProxiedBy: EXCAS061.cuchost.com (172.16.6.21) To EXMBX061.cuchost.com
+ (172.16.6.61)
+X-YovoleRuleAgent: yovoleflag
+Content-Transfer-Encoding: quoted-printable
 
-Anything ending with gpio/gpios is taken as gpio phande/description which
-is reported as the issue coming from gpio-consumer.yaml schema.
-That's why rename the gpio suffix to gpio-grp to avoid name collision.
+This patch serises are to add timer driver for the StarFive JH7110
+RISC-V SoC. The first patch adds documentation to describe device
+tree bindings. The subsequent patch adds timer driver and support
+JH7110 SoC. The last patch adds device node about timer in JH7110
+dts.
 
-Signed-off-by: Michal Simek <michal.simek@amd.com>
----
+This timer has four free-running 32 bit counters and runs in 24MHz
+clock on StarFive JH7110 SoC. And each channel(counter) triggers
+an interrupt when timeout. They support one-shot mode and=20
+continuous-run mode.
 
- .../devicetree/bindings/pinctrl/xlnx,zynq-pinctrl.yaml          | 2 +-
- .../devicetree/bindings/pinctrl/xlnx,zynqmp-pinctrl.yaml        | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+This timer is used as global timer and register clockevent for each
+CPU core after riscv-timer registration on the StarFive JH7110 SoC.
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/xlnx,zynq-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/xlnx,zynq-pinctrl.yaml
-index b85f9e36ce4b..d2676f92ef5b 100644
---- a/Documentation/devicetree/bindings/pinctrl/xlnx,zynq-pinctrl.yaml
-+++ b/Documentation/devicetree/bindings/pinctrl/xlnx,zynq-pinctrl.yaml
-@@ -39,7 +39,7 @@ properties:
-       phandle to the SLCR.
- 
- patternProperties:
--  '^(.*-)?(default|gpio)$':
-+  '^(.*-)?(default|gpio-grp)$':
-     type: object
-     patternProperties:
-       '^mux':
-diff --git a/Documentation/devicetree/bindings/pinctrl/xlnx,zynqmp-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/xlnx,zynqmp-pinctrl.yaml
-index 01b6f2b57843..f13d315b5d5e 100644
---- a/Documentation/devicetree/bindings/pinctrl/xlnx,zynqmp-pinctrl.yaml
-+++ b/Documentation/devicetree/bindings/pinctrl/xlnx,zynqmp-pinctrl.yaml
-@@ -31,7 +31,7 @@ properties:
-     const: xlnx,zynqmp-pinctrl
- 
- patternProperties:
--  '^(.*-)?(default|gpio)$':
-+  '^(.*-)?(default|gpio-grp)$':
-     type: object
-     patternProperties:
-       '^mux':
--- 
-2.36.1
+Changes since v7:
+- Rebased on 6.7-rc6.
+- Modified the Kconfig file and added selection in SOC_STARFIVE.
+- Used the timer as a global timer and registered as clockevent
+  for each CPU core.
+- Dropped the timeout function in the interrupt handler callback.
+- Changed the way in the functions of jh7110_timer_tick_resume() and
+  jh7110_timer_resume().
+- Dropped the registration of clocksource in the probe.
+
+v7: https://lore.kernel.org/all/20231019053501.46899-1-xingyu.wu@starfive=
+tech.com/
+
+Changes since v6:=20
+- Rebased on 6.6-rc6.
+- Used sizeof() instead of the numbers of characters about names.
+- Added devm_add_action_or_reset() to release the resets and=20
+  clocksources in the case of remove or error in the probe.
+- Added flags to check each clocksource is suceessfully registered and=20
+  used in the release function.
+- Dropped the variable of irq in the jh7110_clkevt struct.
+- Dropped the wrappers and used enum definitions and writel() calls
+  directly.
+
+v6: https://lore.kernel.org/all/20231012081015.33121-1-xingyu.wu@starfive=
+tech.com/
+
+Changes since v5:=20
+- Rebased on 6.6-rc5.
+- Changed the number about characters of name.
+- Made the clkevt->periodic to a local variable.
+- Dropped the variables of device and base.
+- Used clkevt->evt.irq directly and dropped the extra copy of irq.
+
+V5: https://lore.kernel.org/all/20230907053742.250444-1-xingyu.wu@starfiv=
+etech.com/
+
+Changes since v4:=20
+- Rebased on 6.5.
+- Dropped the useless enum and used value directly when writing
+  registers.
+- Modified the description in Kconfig.
+- Add the reviewed tag in patch 3.
+
+v4: https://lore.kernel.org/all/20230814101603.166951-1-xingyu.wu@starfiv=
+etech.com/
+
+Changes since v3:=20
+- Rebased on 6.5-rc6
+- Dropped the useless enum names like 'JH7110_TIMER_CH_0'.
+- Dropped the platform data about JH7110 and used the register offsets
+  directly.
+- Drroped the useless functions of clk_disable_unprepare().
+
+v3: https://lore.kernel.org/all/20230627055313.252519-1-xingyu.wu@starfiv=
+etech.com/
+
+Changes since v2:=20
+- Rebased on 6.4-rc7.
+- Merged the header file into the c file.
+- Renamed the functions from 'starfive_' to 'jh7110_'
+- Used function 'clocksource_register_hz' instead of
+  'clocksource_mmio_init'.
+
+v2: https://lore.kernel.org/all/20230320135433.144832-1-xingyu.wu@starfiv=
+etech.com/
+
+Changes since v1:
+- Added description about timer and modified properties' description
+  in dt-bindings.
+- Dropped the 'interrupt-names' and 'clock-frequency' in dt-bindings.
+- Renamed the functions and added 'starfive_'
+- Modified that the driver probe by platform bus.
+
+v1: https://lore.kernel.org/all/20221223094801.181315-1-xingyu.wu@starfiv=
+etech.com/
+
+Xingyu Wu (3):
+  dt-bindings: timer: Add timer for StarFive JH7110 SoC
+  clocksource: Add JH7110 timer driver
+  riscv: dts: jh7110: starfive: Add timer node
+
+ .../bindings/timer/starfive,jh7110-timer.yaml |  96 +++++
+ MAINTAINERS                                   |   7 +
+ arch/riscv/Kconfig.socs                       |   1 +
+ arch/riscv/boot/dts/starfive/jh7110.dtsi      |  20 +
+ drivers/clocksource/Kconfig                   |   9 +
+ drivers/clocksource/Makefile                  |   1 +
+ drivers/clocksource/timer-jh7110.c            | 360 ++++++++++++++++++
+ include/linux/cpuhotplug.h                    |   1 +
+ 8 files changed, 495 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/timer/starfive,jh71=
+10-timer.yaml
+ create mode 100644 drivers/clocksource/timer-jh7110.c
+
+--=20
+2.25.1
 
 
