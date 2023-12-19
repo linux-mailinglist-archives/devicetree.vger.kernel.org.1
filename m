@@ -1,110 +1,99 @@
-Return-Path: <devicetree+bounces-27033-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27034-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF7CD818F09
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 18:59:28 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43008818F3C
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 19:06:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 970A6287DD8
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 17:59:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 75AF81C24AE3
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 18:06:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70AF9341AC;
-	Tue, 19 Dec 2023 17:54:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAC4637D01;
+	Tue, 19 Dec 2023 18:06:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="BLAM3rBf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n0x1jHOM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D489737D05
-	for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 17:54:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-40c3ceded81so48495505e9.1
-        for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 09:54:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1703008468; x=1703613268; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=QAZ0HvxFl1b1Uz1AqrWWlyqL8jpRTOfiKc+ri1uR42M=;
-        b=BLAM3rBfKRgKVk5jI3LwihubCf0v1G8tq9sXJ1W735Xx2BM/F5uAqetVjPL2MkyxyN
-         s3FpEDWGZdno04+oWbLD6ISaUo/iglwftlyCCK6W+a9lhcYUahuegHDAnAy08D45kVKh
-         Gf1yL1NqkZG3ygbcMhIrpf97gbm5dwEgui9Msc4G4ZBD+RprW9l9MbaMn4CQcUxVbPQv
-         SZVNE/ltFJkzsPaheXDV1rrknIV84vC0TT2WZ4snyAC2//999f93UvHvDxzEZs6tl52t
-         U1Yv/wmv9pZMD7lOZaGB/U9msbI9KrTnQgaSnJ8N+BJve+qqfAz2RuCHnPBpKdJp0x6w
-         IH8g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703008468; x=1703613268;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=QAZ0HvxFl1b1Uz1AqrWWlyqL8jpRTOfiKc+ri1uR42M=;
-        b=MCcfHKDRXFdQN9Y6RnWRPijhFsJ1gUobgZRUtWKrC7bTTSHWFM2TVEtb1gntxyif4N
-         7KjEmxI209gj06dtLoTNVJiOP0A+RL6jcSS6/UGjzvD91G7AbiHlSZOtAu3Rt9UeiGZc
-         RkA2/4US17eddaPnECDeeCXz1W1g+NRxie44iaVi5SsrzGhblq3+nh4XuuiKYWnvbpAV
-         K6hXabG3pe50TFoJaJF42l3okEROU43xP4CHmFvEuNy4jQ56FU7CgutXvwP5acgcS+B4
-         LvNluiljZXJ2opA70cZP82pWNOlXYcvIC9tY5kXGWHUPDj6xpvW8Rc/jCPN1JnBiTZSB
-         WDoA==
-X-Gm-Message-State: AOJu0YyuzZLHUmsOjMFD982khuZPjPjzEErB6Uft+9Dr/b70u0G0rUvo
-	YxhT4GIMuSWXBW23A0DjWnu+bQ==
-X-Google-Smtp-Source: AGHT+IFm2bDzn5vBqEgH35Z4tRcu8mym1MPP/kL1m9Ae2ihUX/Qz9NB9j7ySTDRSbPCTnxYwN6/F5w==
-X-Received: by 2002:a7b:ca5a:0:b0:40b:5e21:ec3f with SMTP id m26-20020a7bca5a000000b0040b5e21ec3fmr9745933wml.113.1703008468047;
-        Tue, 19 Dec 2023 09:54:28 -0800 (PST)
-Received: from [192.168.10.46] ([37.170.14.102])
-        by smtp.googlemail.com with ESMTPSA id p41-20020a05600c1da900b0040b360cc65csm4026585wms.0.2023.12.19.09.54.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 19 Dec 2023 09:54:27 -0800 (PST)
-Message-ID: <d1c97276-c538-4a6d-b7f4-e0e4b5e98c32@linaro.org>
-Date: Tue, 19 Dec 2023 18:54:24 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4E1F37870;
+	Tue, 19 Dec 2023 18:06:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5FC1EC433C8;
+	Tue, 19 Dec 2023 18:06:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1703009199;
+	bh=2AlFxLi7oJh7Wa2NVO96A7tL3W01cNMV+NcW1zh9qDM=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=n0x1jHOM5g1uy9hxI58NgHZwTsQEJjCGuV3K/cBxMRRFgUyHp/TndRdTCsbAlSNud
+	 F2fV1NFM8jwNWonTXby5r/bEyKmcc4qTFXE6RhHQRHe7k2Wfa9u4snAogXXEoU2sbQ
+	 jULiZXGkQ1uzOzqf7Nol9zwJ9O/8EFhmdGcgUFSqeAVv26irpJ62lzFHFo/wTJe/a9
+	 g59D7OcAyl+B+YvhpMbR+WqGwmRYWEnS1J/R56kDJuWceOcFJvomejes37rlEZxYYu
+	 i38C2M1kPKzrR6OG+/hbCSczVKLbDAOqgR89+V2tkvMzeJ4XDtIukGdjfBif5LmLQk
+	 o5V3yMKRvh5SA==
+From: Mark Brown <broonie@kernel.org>
+To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, 
+ Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, 
+ Banajit Goswami <bgoswami@quicinc.com>, Liam Girdwood <lgirdwood@gmail.com>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>, 
+ Takashi Iwai <tiwai@suse.com>, Neil Armstrong <neil.armstrong@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org, 
+ linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org
+In-Reply-To: <20231212-topic-sm8650-upstream-snd-card-v1-0-fbfc38471204@linaro.org>
+References: <20231212-topic-sm8650-upstream-snd-card-v1-0-fbfc38471204@linaro.org>
+Subject: Re: [PATCH 0/2] ASoC: qcom: add sound card support for SM8650
+Message-Id: <170300919611.125466.12203726463843347252.b4-ty@kernel.org>
+Date: Tue, 19 Dec 2023 18:06:36 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/2] dt-bindings: thermal: qcom-spmi-adc-tm5/hc: fix up
- examples
-Content-Language: en-US
-To: Johan Hovold <johan@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>
-Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Zhang Rui <rui.zhang@intel.com>,
- Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20231130174114.13122-1-johan+linaro@kernel.org>
- <ZYG9yqyoul-gaEGs@hovoldconsulting.com>
-From: Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <ZYG9yqyoul-gaEGs@hovoldconsulting.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.13-dev-5c066
 
-On 19/12/2023 16:59, Johan Hovold wrote:
-> Hi Daniel and Rafael,
+On Tue, 12 Dec 2023 09:08:18 +0100, Neil Armstrong wrote:
+> Document the SM8650 sound card using the SM8450 fallback
+> and add the SM8650 compatible to the sc8280xp sound card
+> driver to use the sm8650 card driver_name like SM8450 & SM8550.
 > 
-> On Thu, Nov 30, 2023 at 06:41:12PM +0100, Johan Hovold wrote:
->> When reviewing the various SPMI PMIC bindings, I noticed that several
->> examples were incorrect and misleading and could also use some cleanup.
->>
->> This series addresses the thermal ones.
 > 
->> Johan Hovold (2):
->>    dt-bindings: thermal: qcom-spmi-adc-tm5/hc: fix example node names
->>    dt-bindings: thermal: qcom-spmi-adc-tm5/hc: clean up examples
-> 
-> Can we get these merged for 6.8?
 
-Applied, thanks
+Applied to
 
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+Thanks!
+
+[1/2] ASoC: dt-bindings: qcom,sm8250: document SM8650 sound card
+      commit: 773df207fdd6e17d7a43abf83ea155ade9a95f79
+[2/2] ASoC: qcom: sc8280xp: Add support for SM8650
+      commit: 7211094dd065908747a143f9adeff41cfdcf37c0
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
 
 
