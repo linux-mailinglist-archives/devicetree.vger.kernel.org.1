@@ -1,165 +1,110 @@
-Return-Path: <devicetree+bounces-27032-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27033-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17AAB818E95
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 18:49:18 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF7CD818F09
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 18:59:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6A3BCB24BA6
-	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 17:49:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 970A6287DD8
+	for <lists+devicetree@lfdr.de>; Tue, 19 Dec 2023 17:59:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 865FB3B2AF;
-	Tue, 19 Dec 2023 17:46:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70AF9341AC;
+	Tue, 19 Dec 2023 17:54:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=siemens.com header.i=diogo.ivo@siemens.com header.b="mP2xFYS4"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="BLAM3rBf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mta-64-228.siemens.flowmailer.net (mta-64-228.siemens.flowmailer.net [185.136.64.228])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAD833B193
-	for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 17:46:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rts-flowmailer.siemens.com
-Received: by mta-64-228.siemens.flowmailer.net with ESMTPSA id 20231219174622d1a213a062ca99ff97
-        for <devicetree@vger.kernel.org>;
-        Tue, 19 Dec 2023 18:46:23 +0100
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; s=fm1;
- d=siemens.com; i=diogo.ivo@siemens.com;
- h=Date:From:Subject:To:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:Cc:References:In-Reply-To;
- bh=EgzouJIT0KIXhxDGv0tk0mkflLl02JFnyKbajnTvuVc=;
- b=mP2xFYS4fsAKBdLFHKzvJBeyDnzPKBSBoMiiei9+tfcV8raRTnMG5ZtGTMjT3xsMDx44s6
- Jc+aHgmkJLlffNaKsTBGshmXa6tt8AAhSFs7yodtiZ9Rk3dMRCLib6n1RU1cJHnUXq9aoLoX
- 46n3/02hk5Vh9aFlPBoGIUh5TwP8M=;
-From: Diogo Ivo <diogo.ivo@siemens.com>
-To: danishanwar@ti.com,
-	rogerq@kernel.org,
-	davem@davemloft.net,
-	edumazet@google.com,
-	kuba@kernel.org,
-	pabeni@redhat.com,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	netdev@vger.kernel.org,
-	devicetree@vger.kernel.org
-Cc: Diogo Ivo <diogo.ivo@siemens.com>,
-	Jan Kiszka <jan.kiszka@siemens.com>
-Subject: [RFC PATCH net-next 1/8] dt-bindings: net: Add support for AM65x SR1.0 in ICSSG
-Date: Tue, 19 Dec 2023 17:45:39 +0000
-Message-ID: <20231219174548.3481-2-diogo.ivo@siemens.com>
-In-Reply-To: <20231219174548.3481-1-diogo.ivo@siemens.com>
-References: <20231219174548.3481-1-diogo.ivo@siemens.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D489737D05
+	for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 17:54:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-40c3ceded81so48495505e9.1
+        for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 09:54:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1703008468; x=1703613268; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=QAZ0HvxFl1b1Uz1AqrWWlyqL8jpRTOfiKc+ri1uR42M=;
+        b=BLAM3rBfKRgKVk5jI3LwihubCf0v1G8tq9sXJ1W735Xx2BM/F5uAqetVjPL2MkyxyN
+         s3FpEDWGZdno04+oWbLD6ISaUo/iglwftlyCCK6W+a9lhcYUahuegHDAnAy08D45kVKh
+         Gf1yL1NqkZG3ygbcMhIrpf97gbm5dwEgui9Msc4G4ZBD+RprW9l9MbaMn4CQcUxVbPQv
+         SZVNE/ltFJkzsPaheXDV1rrknIV84vC0TT2WZ4snyAC2//999f93UvHvDxzEZs6tl52t
+         U1Yv/wmv9pZMD7lOZaGB/U9msbI9KrTnQgaSnJ8N+BJve+qqfAz2RuCHnPBpKdJp0x6w
+         IH8g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1703008468; x=1703613268;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=QAZ0HvxFl1b1Uz1AqrWWlyqL8jpRTOfiKc+ri1uR42M=;
+        b=MCcfHKDRXFdQN9Y6RnWRPijhFsJ1gUobgZRUtWKrC7bTTSHWFM2TVEtb1gntxyif4N
+         7KjEmxI209gj06dtLoTNVJiOP0A+RL6jcSS6/UGjzvD91G7AbiHlSZOtAu3Rt9UeiGZc
+         RkA2/4US17eddaPnECDeeCXz1W1g+NRxie44iaVi5SsrzGhblq3+nh4XuuiKYWnvbpAV
+         K6hXabG3pe50TFoJaJF42l3okEROU43xP4CHmFvEuNy4jQ56FU7CgutXvwP5acgcS+B4
+         LvNluiljZXJ2opA70cZP82pWNOlXYcvIC9tY5kXGWHUPDj6xpvW8Rc/jCPN1JnBiTZSB
+         WDoA==
+X-Gm-Message-State: AOJu0YyuzZLHUmsOjMFD982khuZPjPjzEErB6Uft+9Dr/b70u0G0rUvo
+	YxhT4GIMuSWXBW23A0DjWnu+bQ==
+X-Google-Smtp-Source: AGHT+IFm2bDzn5vBqEgH35Z4tRcu8mym1MPP/kL1m9Ae2ihUX/Qz9NB9j7ySTDRSbPCTnxYwN6/F5w==
+X-Received: by 2002:a7b:ca5a:0:b0:40b:5e21:ec3f with SMTP id m26-20020a7bca5a000000b0040b5e21ec3fmr9745933wml.113.1703008468047;
+        Tue, 19 Dec 2023 09:54:28 -0800 (PST)
+Received: from [192.168.10.46] ([37.170.14.102])
+        by smtp.googlemail.com with ESMTPSA id p41-20020a05600c1da900b0040b360cc65csm4026585wms.0.2023.12.19.09.54.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 19 Dec 2023 09:54:27 -0800 (PST)
+Message-ID: <d1c97276-c538-4a6d-b7f4-e0e4b5e98c32@linaro.org>
+Date: Tue, 19 Dec 2023 18:54:24 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/2] dt-bindings: thermal: qcom-spmi-adc-tm5/hc: fix up
+ examples
+Content-Language: en-US
+To: Johan Hovold <johan@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>
+Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Zhang Rui <rui.zhang@intel.com>,
+ Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20231130174114.13122-1-johan+linaro@kernel.org>
+ <ZYG9yqyoul-gaEGs@hovoldconsulting.com>
+From: Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <ZYG9yqyoul-gaEGs@hovoldconsulting.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Flowmailer-Platform: Siemens
-Feedback-ID: 519:519-1320519:519-21489:flowmailer
 
-Silicon Revision 1.0 of the AM65x came with a slightly different ICSSG
-support: Only 2 PRUs per slice are available and instead 2 additional
-DMA channels are used for management purposes. We have no restrictions
-on specified PRUs, but the DMA channels need to be adjusted.
+On 19/12/2023 16:59, Johan Hovold wrote:
+> Hi Daniel and Rafael,
+> 
+> On Thu, Nov 30, 2023 at 06:41:12PM +0100, Johan Hovold wrote:
+>> When reviewing the various SPMI PMIC bindings, I noticed that several
+>> examples were incorrect and misleading and could also use some cleanup.
+>>
+>> This series addresses the thermal ones.
+> 
+>> Johan Hovold (2):
+>>    dt-bindings: thermal: qcom-spmi-adc-tm5/hc: fix example node names
+>>    dt-bindings: thermal: qcom-spmi-adc-tm5/hc: clean up examples
+> 
+> Can we get these merged for 6.8?
 
-Signed-off-by: Jan Kiszka <jan.kiszka@siemens.com>
-Signed-off-by: Diogo Ivo <diogo.ivo@siemens.com>
----
- .../bindings/net/ti,icssg-prueth.yaml         | 62 +++++++++++++------
- 1 file changed, 44 insertions(+), 18 deletions(-)
+Applied, thanks
 
-diff --git a/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml b/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml
-index 229c8f32019f..fbe51731854a 100644
---- a/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml
-+++ b/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml
-@@ -19,30 +19,15 @@ allOf:
- properties:
-   compatible:
-     enum:
--      - ti,am642-icssg-prueth  # for AM64x SoC family
--      - ti,am654-icssg-prueth  # for AM65x SoC family
-+      - ti,am642-icssg-prueth      # for AM64x SoC family
-+      - ti,am654-icssg-prueth      # for AM65x SoC family, SR2.x
-+      - ti,am654-icssg-prueth-sr1  # for AM65x SoC family, SR1.0
- 
-   sram:
-     $ref: /schemas/types.yaml#/definitions/phandle
-     description:
-       phandle to MSMC SRAM node
- 
--  dmas:
--    maxItems: 10
--
--  dma-names:
--    items:
--      - const: tx0-0
--      - const: tx0-1
--      - const: tx0-2
--      - const: tx0-3
--      - const: tx1-0
--      - const: tx1-1
--      - const: tx1-2
--      - const: tx1-3
--      - const: rx0
--      - const: rx1
--
-   ti,mii-g-rt:
-     $ref: /schemas/types.yaml#/definitions/phandle
-     description:
-@@ -122,6 +107,47 @@ properties:
-       - required:
-           - port@1
- 
-+if:
-+  properties:
-+    compatible:
-+      contains:
-+        enum:
-+          - ti,am654-icssg-prueth-sr1
-+then:
-+  properties:
-+    dmas:
-+      maxItems: 12
-+    dma-names:
-+      items:
-+        - const: tx0-0
-+        - const: tx0-1
-+        - const: tx0-2
-+        - const: tx0-3
-+        - const: tx1-0
-+        - const: tx1-1
-+        - const: tx1-2
-+        - const: tx1-3
-+        - const: rx0
-+        - const: rx1
-+        - const: rxmgm0
-+        - const: rxmgm1
-+else:
-+  properties:
-+    dmas:
-+      maxItems: 10
-+    dma-names:
-+      items:
-+        - const: tx0-0
-+        - const: tx0-1
-+        - const: tx0-2
-+        - const: tx0-3
-+        - const: tx1-0
-+        - const: tx1-1
-+        - const: tx1-2
-+        - const: tx1-3
-+        - const: rx0
-+        - const: rx1
-+
- required:
-   - compatible
-   - sram
 -- 
-2.43.0
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
 
 
