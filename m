@@ -1,111 +1,117 @@
-Return-Path: <devicetree+bounces-27381-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27382-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B009481A1C7
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 16:04:14 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B60C181A1D3
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 16:07:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5ED571F2299C
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 15:04:14 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 34564B23DB1
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 15:07:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47E903D97C;
-	Wed, 20 Dec 2023 15:04:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17A863E474;
+	Wed, 20 Dec 2023 15:07:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DCw+5ell"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A26D3F8D6;
-	Wed, 20 Dec 2023 15:04:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 5900D1FB;
-	Wed, 20 Dec 2023 07:04:50 -0800 (PST)
-Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id AF96D3F64C;
-	Wed, 20 Dec 2023 07:04:03 -0800 (PST)
-Date: Wed, 20 Dec 2023 15:04:00 +0000
-From: Andre Przywara <andre.przywara@arm.com>
-To: fuyao <fuyao1697@cyg.com>
-Cc: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>, Alexandre TORGUE
- <alexandre.torgue@st.com>, Enric Balletbo i Serra <eballetbo@gmail.com>,
- Baruch Siach <baruch@tkos.co.il>, Paul Barker <paul.barker@sancloud.com>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH RESEND] ARM: dts: sun8i: r40: open the regulator aldo1
-Message-ID: <20231220150400.0f32e2a5@donnerap.manchester.arm.com>
-In-Reply-To: <ZYKjYypuAx7gNuam@debian.cyg>
-References: <ZYKjYypuAx7gNuam@debian.cyg>
-Organization: ARM
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8C303D97C;
+	Wed, 20 Dec 2023 15:07:29 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3EE9AC433C7;
+	Wed, 20 Dec 2023 15:07:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1703084849;
+	bh=kACt6JPwQ+PLYX1KQgu28kI8/nyjpMv45tRZJd9+l7w=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=DCw+5ellmPNzc61PMLmMU/3BjZEVNcOiISGxPqdr/ezcQta5cBV58BKxAlV+z+Lz7
+	 1bk+sikrY9MlZ6Pb4+8aUmAxtRZX8vLRVGt+Tj5DNTgk7XpfrjhnuneBJung+E3FZU
+	 gBnsmtyy4laJbKIm0ddIs5Gr8a9v7ku7zotbvLqnLeNCgqFzQYX8PKV58Ej0Ddu723
+	 K4mYGawJXeSX0tl8JzObh0EA4nsK6Y/G1gq6LlevUa+ycZMJrVS7nnR8HBuupZbFDZ
+	 UeITrTKePywo+Uf4UbN1GdZoeamSYZgshm0J5HMj9STcEYcvMBpGritQ47m9g54yF/
+	 kGCNorloXBAUA==
+Received: (nullmailer pid 226316 invoked by uid 1000);
+	Wed, 20 Dec 2023 15:07:26 -0000
+Date: Wed, 20 Dec 2023 09:07:26 -0600
+From: Rob Herring <robh@kernel.org>
+To: Tudor Ambarus <tudor.ambarus@linaro.org>
+Cc: peter.griffin@linaro.org, krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com, sboyd@kernel.org, conor+dt@kernel.org, andi.shyti@kernel.org, alim.akhtar@samsung.com, gregkh@linuxfoundation.org, jirislaby@kernel.org, catalin.marinas@arm.com, will@kernel.org, s.nawrocki@samsung.com, tomasz.figa@gmail.com, cw00.choi@samsung.com, arnd@arndb.de, semen.protsenko@linaro.org, andre.draszik@linaro.org, saravanak@google.com, willmcvicker@google.com, linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org, linux-serial@vger.kernel.org
+Subject: Re: [PATCH 02/13] dt-bindings: clock: google,gs101-clock: add PERIC0
+ clock management unit
+Message-ID: <20231220150726.GA223267-robh@kernel.org>
+References: <20231214105243.3707730-1-tudor.ambarus@linaro.org>
+ <20231214105243.3707730-3-tudor.ambarus@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231214105243.3707730-3-tudor.ambarus@linaro.org>
 
-On Wed, 20 Dec 2023 16:18:43 +0800
-fuyao <fuyao1697@cyg.com> wrote:
-
-Hi,
-
-> the aldo1 is connect regulator pin which power the TV.
-
-What do you mean with that? That ALDO1 is connected to VCC-TVOUT and/or
-VCC-TVIN on the R40 SoC?
-
-> The USB core use TV ref as reference Voltage.
-
-The USB core in the SoC? So pin VCC-USB, which requires 3.3V, the same
-voltage as the TV pins?
-Which means this doesn't really have much to do with TV, it's just that
-USB and also "TV" are supplied by ALDO1?
-
-> Signed-off-by: fuyao <fuyao1697@cyg.com>
-> ---
->  arch/arm/boot/dts/allwinner/sun8i-r40-feta40i.dtsi | 7 +++++++
->  1 file changed, 7 insertions(+)
+On Thu, Dec 14, 2023 at 10:52:32AM +0000, Tudor Ambarus wrote:
+> Add dt-schema documentation for the Connectivity Peripheral 0 (PERIC0)
+> clock management unit.
 > 
-> diff --git a/arch/arm/boot/dts/allwinner/sun8i-r40-feta40i.dtsi b/arch/arm/boot/dts/allwinner/sun8i-r40-feta40i.dtsi
-> index 9f39b5a2bb35..8906170461df 100644
-> --- a/arch/arm/boot/dts/allwinner/sun8i-r40-feta40i.dtsi
-> +++ b/arch/arm/boot/dts/allwinner/sun8i-r40-feta40i.dtsi
-> @@ -42,6 +42,13 @@ &pio {
->  	vcc-pg-supply = <&reg_dldo1>;
->  };
+> Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
+> ---
+>  .../bindings/clock/google,gs101-clock.yaml    | 25 +++++-
+>  include/dt-bindings/clock/google,gs101.h      | 86 +++++++++++++++++++
+>  2 files changed, 109 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/google,gs101-clock.yaml b/Documentation/devicetree/bindings/clock/google,gs101-clock.yaml
+> index 3eebc03a309b..ba54c13c55bc 100644
+> --- a/Documentation/devicetree/bindings/clock/google,gs101-clock.yaml
+> +++ b/Documentation/devicetree/bindings/clock/google,gs101-clock.yaml
+> @@ -30,14 +30,15 @@ properties:
+>        - google,gs101-cmu-top
+>        - google,gs101-cmu-apm
+>        - google,gs101-cmu-misc
+> +      - google,gs101-cmu-peric0
 >  
-> +&reg_aldo1 {
-> +	regulator-always-on;
-
-So did USB never work before, with the DT as in mainline?
-
-For always-on regulators it would be good to see some rationale why this
-cannot be referenced by its consumer. If it is really supplying the USB
-core, that would be a reason, because we don't have a good way of
-describing this.
-
-> +	regulator-min-microvolt = <3300000>;
-> +	regulator-max-microvolt = <3300000>;
-> +	regulator-name = "vcc-aldo1";
-
-Regulators should be named after their users, so use something like:
-	regulator-name = "vcc-3v3-tv-usb";
-
-That then also serves as documentation of why this is always on.
-
-Cheers,
-Andre
-
-> +};
+>    clocks:
+>      minItems: 1
+> -    maxItems: 2
+> +    maxItems: 3
+>  
+>    clock-names:
+>      minItems: 1
+> -    maxItems: 2
+> +    maxItems: 3
+>  
+>    "#clock-cells":
+>      const: 1
+> @@ -88,6 +89,26 @@ allOf:
+>              - const: dout_cmu_misc_bus
+>              - const: dout_cmu_misc_sss
+>  
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: google,gs101-cmu-peric0
 > +
->  &reg_aldo2 {
->  	regulator-always-on;
->  	regulator-min-microvolt = <1800000>;
+> +    then:
+> +      properties:
+> +        clocks:
+> +          items:
+> +            - description: External reference clock (24.576 MHz)
+> +            - description: Connectivity Peripheral 0 bus clock (from CMU_TOP)
+> +            - description: Connectivity Peripheral 0 IP clock (from CMU_TOP)
+> +
+> +        clock-names:
+> +          items:
+> +            - const: oscclk
+> +            - const: dout_cmu_peric0_bus
+> +            - const: dout_cmu_peric0_ip
 
+'bus' and 'ip' are sufficient because naming is local to the module. The 
+same is true on 'dout_cmu_misc_bus'. As that has not made a release, 
+please fix all of them.
+
+Rob
 
