@@ -1,206 +1,105 @@
-Return-Path: <devicetree+bounces-27181-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27182-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 184B3819967
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 08:25:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 54368819979
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 08:28:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2C7C51C211DA
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 07:25:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6BD141C25880
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 07:28:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E52214F98;
-	Wed, 20 Dec 2023 07:25:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2C8415AFF;
+	Wed, 20 Dec 2023 07:27:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="aAn9B/OX"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="hB0lZsR6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC954168C3
-	for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 07:25:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-40d31116dbeso6673005e9.3
-        for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 23:25:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1703057119; x=1703661919; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=xuEyF1nHEUHBigvUtzAj4vJ9027dwktNZDyXx5jvFzY=;
-        b=aAn9B/OX7QXZnhLsKnkORdCELU5tndhiqIYPGfdCcNAAEBsDqUl6hrqutA9N04pJrm
-         gQZKyHskEQdLmR4zExYFsUwSzKiQQpbyI/7MmmmEV9l3vXAUHiHipGoiH8CwzTWlx6fb
-         OGRZldRm1cUQqAyZ0WFyg/0jq9C1d1aOz4L3e3XmHqq05sVmRg6S3mNfpoMlAYTXYmnd
-         jkaQxtkyGqAuLhmUPLfXoY/KYrOf2YenRCH78SEJBlvi27oUmgQLm/Lj2RrvYHaeYUrX
-         WOXWFQiAuOrXaxLKtts2N6AurXYuNW9hcBZ8eDEsWZYVJs0oELnwNUz9F7yX0ipjRTQ8
-         /w0Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703057119; x=1703661919;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=xuEyF1nHEUHBigvUtzAj4vJ9027dwktNZDyXx5jvFzY=;
-        b=MZgLxQwYGokf9UPK7qU60dJWhmBiLNk43m36zPtTUHSZuEBuuLUyzXVRmbA/t5yeQV
-         EheYbySnEwtzLTfJC0oZz/DlzhPpzdBibzPF/VEdcT+mP6H5zPE3K8IYBamc6YMiB73d
-         OtP0WfvHyNm06Osv4KVwQtADwPny6caS0kUB7k/QDAN8S48Na5/esf8tGGDs4aMUea56
-         O6c/GpwwifKaYw8Q+IPFiRSpMeOMuOUw8sF14NFAYDtQrgzzYM1BUO8zGmSc2PDiSrqN
-         ZHdkCCK2n9ZeL4pgyVzl6+disyeZZjlpdYLTbP4inyakc3jps11Z65IHrAH77QTFpkp/
-         Vfjg==
-X-Gm-Message-State: AOJu0YwwROCgbWTj1js/VJsgaKbuhuoiGPnuYk3eFLAI4LJgGc8RSU+H
-	uHBHuIPvtT8gOi0ooA/AjUpe7Q==
-X-Google-Smtp-Source: AGHT+IEtfpzJCmNJux67Lj6mVECddYG6Pmv2DNH4elbWeODQo+S3bojlgpi0KB4JeKqmnIeVlwQRZQ==
-X-Received: by 2002:a05:600c:3d8b:b0:40c:272e:49ea with SMTP id bi11-20020a05600c3d8b00b0040c272e49eamr10282694wmb.123.1703057119121;
-        Tue, 19 Dec 2023 23:25:19 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id t3-20020a05600c450300b0040c4acaa4bfsm6126622wmo.19.2023.12.19.23.25.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 19 Dec 2023 23:25:17 -0800 (PST)
-Message-ID: <1050b195-9ac2-4c63-88b0-d8ba3299d334@linaro.org>
-Date: Wed, 20 Dec 2023 08:25:16 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAEA422306;
+	Wed, 20 Dec 2023 07:27:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id D75A2FF803;
+	Wed, 20 Dec 2023 07:27:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1703057258;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=jbbso/rgR9y8n9297RvIV+sw+BGrsloKuu4p5wYQO8U=;
+	b=hB0lZsR61TYKM10x74jyfOy+y5SCHQcGukvQOGQPgiuahRFZGd1suchlA+vbYiQ+Q2FpDt
+	VpSB961mr4K9f0Igroc2u1n5r46fVBNrUAhFHr0KgS1AV0noZwCdHBeFPTUA9pDlo3/LY4
+	Via/zwOJ3hxigJjAVaaS239v9SwiXEvOzQgqLe/umC4kZSEQn89hNUS5YoInC6b70QP2LT
+	wXwHjzXMfpi7BVMS+W/ur2yTzJHEc5ysWFWn2vpgVeL7fb31ByuVwTFE7Pal8RHMcAM0Tj
+	ctMslWbq5RoUnjar0AHqsMIALmMgH7rducCnhhjh7veXU2i2oHM9ngqko8rMQg==
+Date: Wed, 20 Dec 2023 08:27:36 +0100
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+To: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Michael Walle
+ <michael@walle.cc>, linux-mtd@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, u-boot@lists.denx.de, =?UTF-8?B?UmFmYcWC?=
+ =?UTF-8?B?IE1pxYJlY2tp?= <rafal@milecki.pl>
+Subject: Re: [PATCH V2 5/5] nvmem: layouts: add U-Boot env layout
+Message-ID: <20231220082736.246e947c@xps-13>
+In-Reply-To: <20231219174025.15228-5-zajec5@gmail.com>
+References: <20231219174025.15228-1-zajec5@gmail.com>
+	<20231219174025.15228-5-zajec5@gmail.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] dt-bindings: usb: mtk-xhci: add a property for
- Gen1 isoc-in transfer issue
-Content-Language: en-US
-To: =?UTF-8?B?Q2h1bmZlbmcgWXVuICjkupHmmKXls7Ap?= <Chunfeng.Yun@mediatek.com>,
- "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
- "robh+dt@kernel.org" <robh+dt@kernel.org>,
- "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
- "angelogioacchino.delregno@collabora.com"
- <angelogioacchino.delregno@collabora.com>
-Cc: "linux-mediatek@lists.infradead.org"
- <linux-mediatek@lists.infradead.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "mathias.nyman@intel.com" <mathias.nyman@intel.com>,
- =?UTF-8?B?RWRkaWUgSHVuZyAo5rSq5q2j6ZGrKQ==?= <Eddie.Hung@mediatek.com>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- =?UTF-8?B?TWFjcGF1bCBMaW4gKOael+aZuuaWjCk=?= <Macpaul.Lin@mediatek.com>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>
-References: <20231215073431.8512-1-chunfeng.yun@mediatek.com>
- <d50abf1a-1ee7-4f84-9f53-69dfe9aad103@linaro.org>
- <2f38caeb95fe9b2d01f158fd91ed0cedafa5d2fa.camel@mediatek.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <2f38caeb95fe9b2d01f158fd91ed0cedafa5d2fa.camel@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+X-GND-Sasl: miquel.raynal@bootlin.com
 
-On 20/12/2023 03:05, Chunfeng Yun (云春峰) wrote:
-> On Fri, 2023-12-15 at 08:36 +0100, Krzysztof Kozlowski wrote:
->>  	 
->> External email : Please do not click links or open attachments until
->> you have verified the sender or the content.
->>  On 15/12/2023 08:34, Chunfeng Yun wrote:
->>> For Gen1 isoc-in endpoint on controller before about SSUSB IPM
->> v1.6.0, it
->>> still send out unexpected ACK after receiving a short packet in
->> burst
->>> transfer, this will cause an exception on connected device,
->> specially for
->>> a 4k camera.
->>> Add a quirk property "rx-fifo-depth" to work around this hardware
->> issue,
->>> prefer to use 2;
->>> The side-effect is that may cause performance drop about 10%,
->> including
->>> bulk transfer.
->>>
->>> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
->>> ---
->>> v2: change 'mediatek,rxfifo-depth' to 'rx-fifo-depth'
->>> ---
->>>  .../devicetree/bindings/usb/mediatek,mtk-xhci.yaml   | 12
->> ++++++++++++
->>>  1 file changed, 12 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/usb/mediatek,mtk-
->> xhci.yaml b/Documentation/devicetree/bindings/usb/mediatek,mtk-
->> xhci.yaml
->>> index e9644e333d78..e44a71acb5c0 100644
->>> --- a/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml
->>> +++ b/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml
->>> @@ -124,6 +124,18 @@ properties:
->>>        defined in the xHCI spec on MTK's controller.
->>>      default: 5000
->>>  
->>> +  rx-fifo-depth:
->>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>> +    description:
->>> +      It is a quirk used to work around Gen1 isoc-in endpoint
->> transfer issue
->>> +      that still send out unexpected ACK after device finish the
->> burst transfer
->>> +      with a short packet and cause an exception, specially on a
->> 4K camera
->>> +      device, it happens on controller before about IPM v1.6.0;
->> the side-effect
->>> +      is that may cause performance drop about 10%, include bulk
->> transfer,
->>> +      prefer to use 2 here.
->>
->> What is the meaning of 0-3? bytes? words?
-> 0 - 1K bytes;
-> 3 - 4K bytes;
-> I will add this in description
+Hi Rafa=C5=82,
 
-No, don't add. Just use correct values. 0 means 0 words or bytes. Not
-1000 bytes.
+zajec5@gmail.com wrote on Tue, 19 Dec 2023 18:40:25 +0100:
 
-Best regards,
-Krzysztof
+> From: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
+>=20
+> This patch moves all generic (NVMEM devices independent) code from NVMEM
 
+Nit: In general we avoid starting with "This patch does..." and instead
+use the imperative form, like: "Move all generic code..."
+
+> device driver to NVMEM layout driver. Then it adds a simple NVMEM layout
+
+					Then add...
+
+> code on top of it.
+>=20
+> Thanks to proper layout it's possible to support U-Boot env data stored
+> on any kind of NVMEM device.
+>=20
+> For backward compatibility with old DT bindings we need to keep old
+> NVMEM device driver functional. To avoid code duplication a parsing
+> function is exported and reused in it.
+>=20
+> Signed-off-by: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
+> ---
+> V2: Support new compatibles & use device_get_match_data() helper
+>=20
+> IMPORTANT:
+> This is based on top of the:
+> [PATCH v6.8 1/2] nvmem: layouts: refactor .add_cells() callback arguments
+
+Thanks for the move. Looks good to me:
+
+Reviewed-by: Miquel Raynal <miquel.raynal@bootlin.com>
+
+Thanks,
+Miqu=C3=A8l
 
