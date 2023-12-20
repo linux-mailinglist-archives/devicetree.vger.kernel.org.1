@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-27187-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27188-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 915178199A9
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 08:38:15 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id E9C3D8199B3
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 08:39:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 477152879DE
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 07:38:14 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 50002B23858
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 07:39:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E03EA15AFF;
-	Wed, 20 Dec 2023 07:38:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C605168D5;
+	Wed, 20 Dec 2023 07:38:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="MHceU14J"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="PZn16j13"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
+Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FC631A59E
-	for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 07:38:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 577D3168B3
+	for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 07:38:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-3367601a301so1165537f8f.2
-        for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 23:38:10 -0800 (PST)
+Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-3333b46f26aso4511128f8f.1
+        for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 23:38:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1703057889; x=1703662689; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1703057905; x=1703662705; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=A978Jx+3VSg0AMdmNaimG6rYzex+t/4lm9ZuWKtTMP8=;
-        b=MHceU14JKA9tmcuaysRp/pzJw/TwydNrLfDmF/riSpS2HOLm93G4mpLjIRX41BmcQ3
-         3vBvEXYtfLaL8saJ2DMDWHs+FiT79hiUYgY9VTsnb1FWStL7GS4SUEhxuhxNRgPiy1ks
-         x9IsCp5KJT1D/GEVzHShw+jRvCGxgrDzCBcnvexaQijm7UNBEdGi/9troY6k1yjdE/Yo
-         81P9mMPuRQ9x/7MdSSKFDIG7x7UWLGv+VCfKEOhz952cVvl3fIB3Bwv97kg3NdS1+Tp4
-         hRUvIw5Ud6Q/2AMg8mBCnqWWlLGkVq/VJjtMa/aHizVo/zlrFluFrcjSaVO128BgBnzI
-         3N7g==
+        bh=z0x7fh3uDCb3Zp83uiLU7euur5+OidRZ51YbD8E0msU=;
+        b=PZn16j13mhwwk/z724/czEU2euXu15xDtxLtcPWswNa8Xmqv6GQYtJqZ8HSKhpWJv6
+         WGKkjxR9rMschuznOJ0sZpdcnpVP9xz6Q0iAjacRLMsSlTfOhnUfCspI0Mj40Ys1/UQi
+         wm4Kagf72i/zeylM1J9Ivfn0no/Cj0agpMhI91DjPMX0SI9vSsRwOrLTY4pIU72e/K12
+         Ed1R4X8eFSolXmWD8ksW+SPj4kSMQ9u7yKtyK2AKK+ACHDN9+aUIw2MEp8BbLNmaEQZQ
+         e46PFdd9F6sqiksEhtN2vZaL9vOlh+7CFKM6fvUyU9vKA835Q1FIA5EdovA6MYUWdV0T
+         mNzg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703057889; x=1703662689;
+        d=1e100.net; s=20230601; t=1703057905; x=1703662705;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=A978Jx+3VSg0AMdmNaimG6rYzex+t/4lm9ZuWKtTMP8=;
-        b=g0zBNIlzmAFvVBqgPvnGd9b315nInfiSJsJAYjHTMYwTTjvsT3kN2ziuH8U1aZdCRn
-         /PzjuoAXRXXETI4Zrhi5TBvpEfF/QYPolJpr0zV+ef0jCuYw3uVXN7aOaKDE9zerFhFF
-         b93+Klt7kxy+nJMG8qXcfZnj4TEPHptodGhpJtnVBazufprhFYzuhsydZRJFfjhgxYKO
-         5EZTcZ/OT9Ig/01eLpFOzcfhgGmWSzS7ZKOJxD6YV109h9VW9gShURJfY6dSnocc03tF
-         PbNy9kxNdz8q2WWS/brDa7Z8b5Cvg1dKhwxVUbp7+LuKmtjRy5F625M1xx0LsOwX+yDN
-         dISw==
-X-Gm-Message-State: AOJu0YzCR/R1kHn/YwvLU6VRQRijKIqs6XWkNj9/1MNYR4f6waKXxz3D
-	A4HHFp9dddH0eFvb5ALtmQB9Gg==
-X-Google-Smtp-Source: AGHT+IHVldZXvf8gh9Fjz5xND/R2oEBz0VfWJ1k1c+jgSnaSA9WrCM77EuVGC6nFlZxbXsD4/Op2mA==
-X-Received: by 2002:adf:f40a:0:b0:336:6116:2e15 with SMTP id g10-20020adff40a000000b0033661162e15mr2439640wro.160.1703057889425;
-        Tue, 19 Dec 2023 23:38:09 -0800 (PST)
+        bh=z0x7fh3uDCb3Zp83uiLU7euur5+OidRZ51YbD8E0msU=;
+        b=iaCl3ksZDFTZY9J0V3+pPSP1Xazi9iOO5B61FqQeGbR9u+rvlElQPradK0EX7UfQ9o
+         7pRCFSsV0Q851PlDawuM4CrT9CeRuA2Iq8x+MeY3aMCep7kqN14vG4Ty+1ZnKrhz3kzX
+         XuA7zKPk0F88qmZoxs+Bd/isAVl8qiefK9VTkE6Y81Wp38d4skURMmcW/MJUXYkK3L5O
+         bl24QkxkMlVTjOAKycP97iPONy/gM2UVghIq2DCacEkZNlgPCJwkAbOgbAoXnzpIQ1do
+         OCahWFUDxpTibxWl1YL2zNQmT68vZZO45qiXQvL3Cm7blnnqFOEp/hOvjjmizHo3x7co
+         eflA==
+X-Gm-Message-State: AOJu0YxvBXyDz9OHVu36Oz0h43ekJ/XHGQBatJDMSiZEgGTbjJaz80ii
+	MIJORn9BZ7C0fTm0FVj/qV06Sw==
+X-Google-Smtp-Source: AGHT+IHpF6kUsvEvle2HjwM8JyNE5U/+A74BSKqztM07Rulb/UvEQv19iOJMlznnUZioRQQQXBrAPQ==
+X-Received: by 2002:a5d:49d2:0:b0:336:76a5:5774 with SMTP id t18-20020a5d49d2000000b0033676a55774mr885713wrs.68.1703057905653;
+        Tue, 19 Dec 2023 23:38:25 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id t15-20020a0560001a4f00b003367d48520dsm397648wry.46.2023.12.19.23.38.07
+        by smtp.gmail.com with ESMTPSA id t15-20020a0560001a4f00b003367d48520dsm397648wry.46.2023.12.19.23.38.23
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 19 Dec 2023 23:38:08 -0800 (PST)
-Message-ID: <c3d372f0-3d21-4500-96cd-9c88aaf5ce89@linaro.org>
-Date: Wed, 20 Dec 2023 08:38:07 +0100
+        Tue, 19 Dec 2023 23:38:24 -0800 (PST)
+Message-ID: <4399a91e-d22d-44f7-ad83-9678b27a8cb7@linaro.org>
+Date: Wed, 20 Dec 2023 08:38:23 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,21 +66,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/3] dt-bindings: usb: mtk-xhci: add a property for
- Gen1 isoc-in transfer issue
+Subject: Re: [PATCH v2 03/16] dt-bindings: clock: qcom: Add missing UFS QREF
+ clocks
 Content-Language: en-US
-To: Chunfeng Yun <chunfeng.yun@mediatek.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Conor Dooley <conor+dt@kernel.org>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- Mathias Nyman <mathias.nyman@intel.com>, linux-usb@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Eddie Hung <eddie.hung@mediatek.com>, Macpaul Lin <macpaul.lin@mediatek.com>
-References: <20231220025842.7082-1-chunfeng.yun@mediatek.com>
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ andersson@kernel.org, konrad.dybcio@linaro.org, vkoul@kernel.org,
+ sboyd@kernel.org, mturquette@baylibre.com, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
+Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, quic_cang@quicinc.com
+References: <20231218120712.16438-1-manivannan.sadhasivam@linaro.org>
+ <20231218120712.16438-4-manivannan.sadhasivam@linaro.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -126,47 +123,20 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231220025842.7082-1-chunfeng.yun@mediatek.com>
+In-Reply-To: <20231218120712.16438-4-manivannan.sadhasivam@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 20/12/2023 03:58, Chunfeng Yun wrote:
-> For Gen1 isoc-in endpoint on controller before about SSUSB IPM v1.6.0, it
-> still send out unexpected ACK after receiving a short packet in burst
-> transfer, this will cause an exception on connected device, specially for
-> a 4k camera.
-> Add a quirk property "rx-fifo-depth" to work around this hardware issue,
-> prefer to use 3k bytes;
-> The side-effect is that may cause performance drop about 10%, including
-> bulk transfer.
+On 18/12/2023 13:06, Manivannan Sadhasivam wrote:
+> Add missing QREF clocks for UFS MEM and UFS CARD controllers.
 > 
-> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+> Fixes: 0fadcdfdcf57 ("dt-bindings: clock: Add SC8180x GCC binding")
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 > ---
-> v3: add fifo depth unit, change the value range from 0-3 to 1-4
-> v2: change 'mediatek,rxfifo-depth' to 'rx-fifo-depth'
-> ---
->  .../devicetree/bindings/usb/mediatek,mtk-xhci.yaml   | 12 ++++++++++++
->  1 file changed, 12 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml b/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml
-> index e9644e333d78..9478b7031796 100644
-> --- a/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml
-> +++ b/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml
-> @@ -124,6 +124,18 @@ properties:
->        defined in the xHCI spec on MTK's controller.
->      default: 5000
->  
-> +  rx-fifo-depth:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      It is a quirk used to work around Gen1 isoc-in endpoint transfer issue
-> +      that still send out unexpected ACK after device finish the burst transfer
-> +      with a short packet and cause an exception, specially on a 4K camera
-> +      device, it happens on controller before about IPM v1.6.0; the side-effect
-> +      is that may cause performance drop about 10%, include bulk transfer,
-> +      prefer to use 3 here. The unit is 1K bytes.
+>  include/dt-bindings/clock/qcom,gcc-sc8180x.h | 2 ++
+>  1 file changed, 2 insertions(+)
 
-NAK. Read comments on previous submission.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
