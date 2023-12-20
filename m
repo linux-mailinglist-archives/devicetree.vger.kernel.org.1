@@ -1,65 +1,64 @@
-Return-Path: <devicetree+bounces-27271-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27272-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C2D7819CB4
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 11:26:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 46B31819CC2
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 11:29:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E52B1282B34
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 10:26:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EDD6F2855F3
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 10:29:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 615B5200B9;
-	Wed, 20 Dec 2023 10:26:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88406200DC;
+	Wed, 20 Dec 2023 10:29:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="FgyhDWqM"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="aFIs2bso"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1A54208C3
-	for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 10:26:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE8E820B02
+	for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 10:29:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-40c39ef63d9so59843255e9.3
-        for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 02:26:25 -0800 (PST)
+Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-33677fb38a3so862294f8f.0
+        for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 02:29:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1703067984; x=1703672784; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=pX13GgiaquuyyTjBBvzGeBqVX5oA1abtoRS201+TY+I=;
-        b=FgyhDWqMh2A5tOoetgX8IwN3N4kNj8hbWkDn166Wn2nr3pHye+XND6FBRIDxDdwYbe
-         0B097nAo6NWu/L5u2MK1oHaBVG8BxasupuCVdsUbCo5uHI7E6MVQ0SZwAh5B6/q4YSu/
-         E210BnHtTs0wRJ9HiEytUFN2/GObwTrQQZBsQNfEPyMqVWtDOx8YGFjSqpY64Rwpp6eb
-         FiOiel+Y5+1wRZUHlU1RKagB8i8ayzYgWWbyQdxTWh2yEbTlgiCULEFGup8F0OsTDJM7
-         qoZ2E0e7sVgC1E5o26f9+mvW8CeyACW8raxdRRdwKOnKbWD+7J0+BS0NxeGHyqzgG1Di
-         Uu1w==
+        d=linaro.org; s=google; t=1703068174; x=1703672974; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=v4rwLB+kXN5q0CC/jT9rfMkl23cOP2H+44syY5vBs5A=;
+        b=aFIs2bsoFJyHESLugJ2P3/3xp6qFFqqstsQGGzH2xXBMNhfjykol0DRc4hoZNKCiyG
+         iS3EZ3ay3oOxbT9hEwBwhFqDAxNEhx7L3FxhNWWTAFbTJ+YFh4mGOZCEx6ERXjBDiY1E
+         J603bSp6Z6zB7TFfQrzBOLWYKiaDpg8TXgeoQeSlVkDvXk7Tm1kNOv21puTo2xk5KEFk
+         +gt8Z7eVqUVbvLgb5fKH880XngzxzYxA3ixIEsEvT/keWtuZoEcKYW49OLkHeW+p6gdY
+         NyIpkA9biSqGkarMWIKfk6AZzobUkCeJGlULB45J8rCO7HX/5/SlA2OiZLl677lFiewK
+         MzDQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703067984; x=1703672784;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=pX13GgiaquuyyTjBBvzGeBqVX5oA1abtoRS201+TY+I=;
-        b=v/FyEFSzPcQpYsWlC/U65MzNk3YzJD1Lz0KJspADVuZ/vo1EGXKHIgilux0kfkU8GC
-         NFAWXpsBrbAFZ9Mugs0RXZy8ePfz5WZkfh70mXBGlqxaQkHCJObwVLQGx1BRUCikqXyx
-         2ri6NdzQ8yNiXVWj9+BrLYdiLhB8D2wEkplIfBFr/diitvNQJMXQ8WDIFaSiVUKowXcS
-         kBUHgL89MiM07OAKUjj7++ciOyeGOcAsnXNnvkXx1IvT8vgXC9MZQOljY9xjfF3qXWkB
-         zE4LjdXoOPH0kNEHhBEtk/NzPjnlVkTgP2Z4AraFaGETye7e2QPoYEqtiaL8sC0Pk5a1
-         1fRQ==
-X-Gm-Message-State: AOJu0Yx0d8ovhJbMaYDtJGUvi4VgRBMOglXdFVsg7VW3PpCFDgLf3apj
-	Z0PVjA+4fhaQj37pQ07PZvOW2Zk9ivcZJuJinsQ=
-X-Google-Smtp-Source: AGHT+IGwzJptxKxqWiAXYwXjXS5wabIdldCCRy6C5+KcotZFMsF7zVkbDvihSsOAJNGR83Mr4ItmLg==
-X-Received: by 2002:a05:600c:4d0e:b0:40b:4476:cd31 with SMTP id u14-20020a05600c4d0e00b0040b4476cd31mr9706552wmp.13.1703067983796;
-        Wed, 20 Dec 2023 02:26:23 -0800 (PST)
+        d=1e100.net; s=20230601; t=1703068174; x=1703672974;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=v4rwLB+kXN5q0CC/jT9rfMkl23cOP2H+44syY5vBs5A=;
+        b=mOzla6sqcavuYwMsKTPPU1paAM3LKOTI9PPto7lEds/r0utOF9++PQiQXETU1g7NOV
+         TfyISIsBWWT5bvxCxkoa9uBdHbPY7I4xc0JmyF93osuNS6+JHThlzkOg89NU4ubkgVO+
+         aHpCyt0zcUp7glTZBnDizgJpmn+VF7cr63518vhZq7x4bgO+SnxtP4JrftIcaZ6AXmj3
+         TyCb11ZKUW0oPeMWgHGgLW7HDfUKa4SNirDB7GRMypkQx++2p7VJvqyKTkdB9gSFWtA+
+         MFmQq73BlIZhmHrq/frwlnr5tYPnTwHxfLPsxSLm2l+hm7EZ20oAC94OXgoxRWEOq+cH
+         Uhfw==
+X-Gm-Message-State: AOJu0YxcZWRjGar+WSUpsDkqPnvLd7TUNOkDi6AVyM17wB4ulLtvmN7t
+	BBz+8JgJLiF0+/5S7jStAL+ZxWh5pnI5UoKo+/A=
+X-Google-Smtp-Source: AGHT+IGCe/qLsEP05ubIPKkwycUpvxs7WinK3FMiAzA0PsKhXahfgf9qy0JppPim/gRxQemuKCzFlQ==
+X-Received: by 2002:a5d:63cc:0:b0:336:7357:acc5 with SMTP id c12-20020a5d63cc000000b003367357acc5mr1229235wrw.73.1703068173978;
+        Wed, 20 Dec 2023 02:29:33 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id w20-20020a05600c475400b0040b4fca8620sm6763964wmo.37.2023.12.20.02.26.22
+        by smtp.gmail.com with ESMTPSA id e7-20020a5d5307000000b0033667c94839sm8004797wrv.61.2023.12.20.02.29.32
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 20 Dec 2023 02:26:23 -0800 (PST)
-Message-ID: <a78c5ce7-bc89-44ad-8c8a-7c17ed8a7995@linaro.org>
-Date: Wed, 20 Dec 2023 11:26:21 +0100
+        Wed, 20 Dec 2023 02:29:33 -0800 (PST)
+Message-ID: <7309da41-93f5-4358-9630-a075da03f66b@linaro.org>
+Date: Wed, 20 Dec 2023 11:29:31 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,24 +66,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/4] dt-bindings: pinctrl: mobileye,eyeq5-pinctrl: add
- bindings
-To: =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>,
- Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
- Gregory CLEMENT <gregory.clement@bootlin.com>,
- Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-Cc: linux-mips@vger.kernel.org, linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- Tawfik Bayouk <tawfik.bayouk@mobileye.com>
-References: <20231218-mbly-pinctrl-v1-0-2f7d366c2051@bootlin.com>
- <20231218-mbly-pinctrl-v1-1-2f7d366c2051@bootlin.com>
- <0f0c0d16-f736-419e-9ffc-c3dc507b815c@linaro.org>
- <CXT1TYH16JPB.2RY1IKI8NAUNE@bootlin.com>
+Subject: Re: [PATCH v5 4/7] LoongArch: dts: DeviceTree for Loongson-2K0500
 Content-Language: en-US
+To: Binbin Zhou <zhoubb.aaron@gmail.com>
+Cc: Binbin Zhou <zhoubinbin@loongson.cn>, Huacai Chen
+ <chenhuacai@loongson.cn>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ Huacai Chen <chenhuacai@kernel.org>, Xuerui Wang <kernel@xen0n.name>,
+ loongarch@lists.linux.dev, Jiaxun Yang <jiaxun.yang@flygoat.com>,
+ Hongliang Wang <wanghongliang@loongson.cn>
+References: <cover.1702862778.git.zhoubinbin@loongson.cn>
+ <303e56cb6e5f82623babe18b095069b330cd37da.1702862778.git.zhoubinbin@loongson.cn>
+ <aa9cec3e-ee58-4d52-a8ec-d696e3ff70ca@linaro.org>
+ <CAMpQs4+2kjNZMHu1+7MvDNFdCgY8bpF2kQTru-ZHSf8RceiP_A@mail.gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -130,146 +125,112 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <CXT1TYH16JPB.2RY1IKI8NAUNE@bootlin.com>
+In-Reply-To: <CAMpQs4+2kjNZMHu1+7MvDNFdCgY8bpF2kQTru-ZHSf8RceiP_A@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 20/12/2023 10:21, Théo Lebrun wrote:
-> Hello,
-> 
-> I've seen all your comments, thanks for that. I'll answer to some.
-> 
-> On Tue Dec 19, 2023 at 8:34 AM CET, Krzysztof Kozlowski wrote:
->> On 18/12/2023 18:19, Théo Lebrun wrote:
->>> Add dt-schema type bindings for the Mobileye EyeQ5 pin controller.
+On 20/12/2023 10:17, Binbin Zhou wrote:
+> On Tue, Dec 19, 2023 at 9:37 PM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>>
+>> On 18/12/2023 02:52, Binbin Zhou wrote:
+>>> Add DeviceTree file for Loongson-2K0500 processor, which integrates one
+>>> 64-bit dual emission superscalar LA264 processor core.
 >>>
->>> Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
+>>> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
 >>> ---
->>>  .../bindings/pinctrl/mobileye,eyeq5-pinctrl.yaml   | 125 +++++++++++++++++++++
->>>  MAINTAINERS                                        |   1 +
->>>  2 files changed, 126 insertions(+)
+>>>  arch/loongarch/boot/dts/Makefile              |   2 +
+>>>  .../boot/dts/loongson-2k0500-ref.dts          |  89 ++++++
+>>>  arch/loongarch/boot/dts/loongson-2k0500.dtsi  | 274 ++++++++++++++++++
+>>>  3 files changed, 365 insertions(+)
+>>>  create mode 100644 arch/loongarch/boot/dts/loongson-2k0500-ref.dts
+>>>  create mode 100644 arch/loongarch/boot/dts/loongson-2k0500.dtsi
 >>>
->>> diff --git a/Documentation/devicetree/bindings/pinctrl/mobileye,eyeq5-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/mobileye,eyeq5-pinctrl.yaml
+>>> diff --git a/arch/loongarch/boot/dts/Makefile b/arch/loongarch/boot/dts/Makefile
+>>> index 1e24cdb5180a..aa0b21d73d4e 100644
+>>> --- a/arch/loongarch/boot/dts/Makefile
+>>> +++ b/arch/loongarch/boot/dts/Makefile
+>>> @@ -1,3 +1,5 @@
+>>>  # SPDX-License-Identifier: GPL-2.0-only
+>>>
+>>> +dtb-$(CONFIG_MACH_LOONGSON64)        = loongson-2k0500-ref.dtb
+>>> +
+>>>  obj-$(CONFIG_BUILTIN_DTB)    += $(addsuffix .dtb.o, $(CONFIG_BUILTIN_DTB_NAME))
+>>> diff --git a/arch/loongarch/boot/dts/loongson-2k0500-ref.dts b/arch/loongarch/boot/dts/loongson-2k0500-ref.dts
 >>> new file mode 100644
->>> index 000000000000..5faddebe2413
+>>> index 000000000000..52483127a419
 >>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/pinctrl/mobileye,eyeq5-pinctrl.yaml
->>> @@ -0,0 +1,125 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/pinctrl/mobileye,eyeq5-pinctrl.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +++ b/arch/loongarch/boot/dts/loongson-2k0500-ref.dts
+>>> @@ -0,0 +1,89 @@
+>>> +// SPDX-License-Identifier: GPL-2.0
+>>> +/*
+>>> + * Copyright (C) 2023 Loongson Technology Corporation Limited
+>>> + */
 >>> +
->>> +title: Mobileye EyeQ5 pinctrl (pinmux & pinconf) controller
->>
->> pinctrl means pin controller, so you basically wrote:
->> pin controller pinmux and pin configuration controller
->>
->> Just "pin controller"
->>
->>
+>>> +/dts-v1/;
 >>> +
->>> +description:
->>> +  The EyeQ5 pin controller handles a pin bank. It is custom to this platform,
->>
->> Can part of SoC be not custom to given platform? I mean... describe the
->> hardware, not write essay.
->>
->>> +  its registers live in a shared region called OLB.
->>> +  There are two pin banks on the platform, each having a specific compatible.
->>
->> Instead of repeating something obvious - visible from the binding -
->> explain why. Say something different than the binding is saying.
->>
->>
->>> +  Pins and groups are bijective.
+>>> +#include "loongson-2k0500.dtsi"
 >>> +
->>> +maintainers:
->>> +  - Grégory Clement <gregory.clement@bootlin.com>
->>> +  - Théo Lebrun <theo.lebrun@bootlin.com>
->>> +  - Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>
+>>> +/ {
+>>> +     compatible = "loongson,ls2k0500-ref", "loongson,ls2k0500";
+>>> +     model = "Loongson-2K0500 Reference Board";
 >>> +
->>> +properties:
->>> +  $nodename:
->>> +    pattern: "^pinctrl([0-9]+)?$"
->>> +    description:
->>> +      We have no unique address, we rely on OLB; we therefore can't keep the
->>> +      standard pattern and cannot inherit from pinctrl.yaml.
+>>> +     aliases {
+>>> +             ethernet0 = &gmac0;
+>>> +             ethernet1 = &gmac1;
+>>> +             serial0 = &uart0;
+>>> +     };
+>>> +
+>>> +     chosen {
+>>> +             stdout-path = "serial0:115200n8";
+>>> +             bootargs = "console=ttyS0,115200";
 >>
->> No, instead fix pinctrl.yaml
+>> You received here comments already:
+>> https://lore.kernel.org/all/3543cbf9-d259-8d0f-e78e-d8d5e3f501de@linaro.org/
+>>
+>> Don't waste our time to re-review the same mistakes over and over again.
+>>
+>>
+> Hi Krzysztof:
 > 
-> I've tried some things, but I'm unsure how to proceed. Options I see:
-> 
->  - Modify pinctrl.yaml so that if reg/ranges is required, $nodename must
->    be the current value ("^(pinctrl|pinmux)(@[0-9a-f]+)?$"). Else,
->    $nodename should be "^(pinctrl|pinmux)(-[0-9a-f]+)?$".
+> I am sorry for this, I misunderstood before that `earlycon` is not allowed.
+> BTW, is there a note about not using the `bootargs` attribute? I
+> didn't find it in the Documentation.
 
-Yes, but: "-[0-9]", these are not hex.
-
-I don't understand what is the problem here. It's just a regex and there
-are plenty of examples how this should look like.
-
-> 
->    I've tried some things but nothing conclusive for the moment.
-> 
->  - Leave pinctrl.yaml alone and override $nodename from our binding.
->    I've not found a way to do that though.
-> 
->  - Use the current $nodename, ie with a unit address. With that approach
->    I get the "node has a unit name, but no reg or ranges property"
->    warning which, reading the code, I don't see a way of avoiding.
-> 
-> Were you thinking about option 1? Any advice on how to proceed would be
-> helpful, I've not been able to get a working patch to use option 1.
-
-Why?
+This is a common sense, not a "note". If you think otherwise, please
+provide me the reasons why duplicated information is necessary in this
+particular case.
 
 > 
+>>
+>> ...
 >>
 >>> +
->>> +  compatible:
->>> +    enum:
->>> +      - mobileye,eyeq5-a-pinctrl
->>> +      - mobileye,eyeq5-b-pinctrl
->>
->> Why two compatibles? Description provided no rationale for this.
-> 
-> I'll add that info. The gist of it is to have one node per bank. Each
-> pin has two function: GPIO or pin-dependent. So we must know which bank
-> we are to know what each pin function can be.
-
-OK
-
-> 
-> Both nodes are child to the same OLB. The compatible also tells us which
-> registers to use.
-> 
->>
+>>> +             i2c@1ff4a800 {
+>>> +                     compatible = "loongson,ls2k-i2c";
+>>> +                     reg = <0x0 0x1ff4a800 0x0 0x0800>;
+>>> +                     interrupt-parent = <&eiointc>;
+>>> +                     interrupts = <19>;
+>>> +                     status = "disabled";
+>>> +             };
 >>> +
->>> +  "#pinctrl-cells":
->>> +    const: 1
->>> +
->>> +  mobileye,olb:
->>> +    $ref: /schemas/types.yaml#/definitions/phandle
->>> +    description:
->>> +      A phandle to the OLB syscon. This is a fallback to using the parent as
->>> +      syscon node.
+>>> +             pmc: power-management@1ff6c000 {
+>>> +                     compatible = "loongson,ls2k0500-pmc", "syscon";
 >>
->> So here is the explanation for missing unit address. If all registers,
->> as you claim in description, belong to OLB, then this should be part of
->> OLB. Drop the phandle.
+>> It does not look like you tested the DTS against bindings. Please run
+>> `make dtbs_check W=1` (see
+>> Documentation/devicetree/bindings/writing-schema.rst or
+>> https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
+>> for instructions).
 > 
-> The reason I provided both options was that I see four drivers that do
-> this kind of fallback. I guess it was for legacy reasons. I'm dropping
-> the phandle and keeping only the child option.
+> Emm...
+> Here is the compatible description from the latest kernel:
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/soc/loongson/loongson,ls2k-pmc.yaml#n13
 > 
-> 	drivers/gpio/gpio-syscon.c
-> 	drivers/phy/rockchip/phy-rockchip-usb.c
-> 	drivers/phy/samsung/phy-exynos-dp-video.c
-> 	drivers/soc/rockchip/io-domain.c
-> 
+> I think this compatible should be fine, also, I ensure that `make
+> dtbs_check W=1` is fine before committing.
 
+Hm, that's fine then.
 
 Best regards,
 Krzysztof
