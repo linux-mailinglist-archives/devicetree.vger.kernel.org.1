@@ -1,108 +1,124 @@
-Return-Path: <devicetree+bounces-27303-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27304-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F54A819DB0
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 12:11:26 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 017B5819DC5
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 12:16:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CF7172879E5
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 11:11:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B06B92828F8
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 11:16:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BBC920DFD;
-	Wed, 20 Dec 2023 11:11:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACFFD2110B;
+	Wed, 20 Dec 2023 11:16:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ztbIV5hF"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kW/MYHzA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com [209.85.128.172])
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25285210F8
-	for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 11:11:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-5cece20f006so47820257b3.3
-        for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 03:11:19 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F690210F3;
+	Wed, 20 Dec 2023 11:16:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-40d38f03712so1577295e9.2;
+        Wed, 20 Dec 2023 03:16:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1703070679; x=1703675479; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=OC0Fdua32eZv3DDdt+XA+tYrT9hZGxZ1eT3C0tS9/JQ=;
-        b=ztbIV5hFJdvNqU6KUC3VjUNelqUmNKttbzGBeAuGlbt4n9rNn7wxy5xgfJMRYEEPMf
-         qHWEiB8n0nd9Wn5P8KfE+o+K6FUnTOfIaBPhP3dKTGrOXKHJcn8KS+7Kdm+ELX4Uff8F
-         IpNDDDUUr0QmZqwCk2dLtbo1bwFVenh+uIh0C5uOstz4/GTNUMwR7oGIPxYi2iTFnc7l
-         aROvGDLNoKNKGok7s26eLNy4p27puthVVdgw1QHgB9m7c9JFJwpXg6Y/7HxGIDx66GAD
-         5s6p78q+AcVhMNZChXkqJGc8wV6z+6O081w+n/zRs367KCHtuSTIwmi6zNSVHWxyF8+2
-         QeCQ==
+        d=gmail.com; s=20230601; t=1703070976; x=1703675776; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=V1l9W12oVHW6Mudh64wfNHZpVn/IQivfs/Wow957VWA=;
+        b=kW/MYHzAOkw8dS3GGUcGXImYshzE2EkqAuQZrYxyo+f4qJuUVUHfXzjDa1NZ3dnVm0
+         LPfthXQg/IZ/C7wgb4w6C7lF49kzURBwPoTNk1zam/UjfaE0AslLKOPASktLa582AMUp
+         uVjvcStWEJwKb1scslB/5Am0FjXJF5tC8WZZPUyeEkw8VIQyB4EHAowmZzur39NIIKvr
+         yXSDmL0dPH7Z21NCDj1oFYZxJpPUmdfbQGDzcSnmifTkAafEp/wUeVBySfKk1fnG4JXx
+         8DvY0ez3ApcLOdVsNr460RGk/XEyQ8Vg4uH2EbU/W8lM0Ijc+PLB0Rg+iv3a4rA+huXy
+         6pVw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703070679; x=1703675479;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=OC0Fdua32eZv3DDdt+XA+tYrT9hZGxZ1eT3C0tS9/JQ=;
-        b=Rf68ZxHVkAU+kmLTtyKnwVG6jf0mQmldHhoOrOi/agM+ZOTgrmmUn1VUdpIbPu5zNP
-         J6d/FEyRCabRSu8IAqfSKFk7BbK6GDCSIB45aDc+1WOYxPyHazvZkNTtrfWdPmr5++Hf
-         pOK9RZlN/Jv2r6wPHRCgzRHhidgaNV+mncR3A5LNg2pS6Mrgpb6VzXSLRdSQlOktvviW
-         681KK85XqgnADMMBnFPTiRQRqK9xtSCtGWOA1+8PSjqK1g0Jg/LBx/WCAv4sbwGpphaP
-         Tx1lcmbJtcAkQn9YxgvyppbqeT7yfiulR1tQ/mcgTOuxyAU5LpqarPfMzYsAHulz0keX
-         OThQ==
-X-Gm-Message-State: AOJu0YzNOeSLtwX6duqFfX54vrRm5pe0fzJ5r9pX+VU15B1D1BAuoYTv
-	D1tPiQlp2XwCqn40Egjk4rBUS3VWpWwMgW/2wmfwFg==
-X-Google-Smtp-Source: AGHT+IFyHOS0SWDC341i54WvH4OGbBWxmT/t0jrZLPJP7QTSPED7GAI71vzjhOg7i9GQM5G2J2x9z6cJ07zZD19qOiQ=
-X-Received: by 2002:a81:6555:0:b0:5cb:6131:280a with SMTP id
- z82-20020a816555000000b005cb6131280amr15802049ywb.0.1703070678908; Wed, 20
- Dec 2023 03:11:18 -0800 (PST)
+        d=1e100.net; s=20230601; t=1703070976; x=1703675776;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=V1l9W12oVHW6Mudh64wfNHZpVn/IQivfs/Wow957VWA=;
+        b=NCGEBNDkToUHHUpQn0h8TmpAicQFxGoBE4OBII6SoeTnMhYTn3U0kEoTtGhOBbPBSb
+         LcHwhRP6yyX4U9vgHfUbG/urbyvk2POmBwXrA9mzj2+o4nfVsSxthY9UPZ0uWTLwrMqE
+         vTKiXNeo3k5pH5LdjWLYkahKBTpL3bsWbsTsxcdM2+8rUr/QCQotsgu8aASE+1/+6qQ8
+         vUXKjeNm3tzKWs6vTcH08lIlgP71pmhPrMNGFpMvC8yukq/shVf8/F53t8calmhH/c2K
+         pjMrjI2JCWfwTMHsi/38kGTFfrrZSThfCovHggWDG8/51X39ZBsc2Bpv5Yev62UU++9e
+         GPxQ==
+X-Gm-Message-State: AOJu0YwAZD9MLxXdT4aaWIKVHYMJWa6WH+ogJUY3Pnp4sB5mpJjR86xx
+	uVqh5peP6coiAuQjWfoV/A==
+X-Google-Smtp-Source: AGHT+IF5wvzfwQ+hjD/XU60WGWTBgHhchDr15sag5KKIqkbkYic8Aa8RlY878ZK2ZIERBVuyftN2RQ==
+X-Received: by 2002:a05:600c:3795:b0:40b:578d:2496 with SMTP id o21-20020a05600c379500b0040b578d2496mr9056448wmr.27.1703070976123;
+        Wed, 20 Dec 2023 03:16:16 -0800 (PST)
+Received: from ?IPV6:2a02:810b:f40:4300:7b59:686f:618b:4bd? ([2a02:810b:f40:4300:7b59:686f:618b:4bd])
+        by smtp.gmail.com with ESMTPSA id e7-20020a05600c4e4700b0040c41846919sm7051751wmq.41.2023.12.20.03.16.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 20 Dec 2023 03:16:15 -0800 (PST)
+Message-ID: <da10e2fc-3179-4bd5-88ed-b4d5f64a7191@gmail.com>
+Date: Wed, 20 Dec 2023 12:16:14 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231208215534.195854-1-krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20231208215534.195854-1-krzysztof.kozlowski@linaro.org>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Wed, 20 Dec 2023 12:11:07 +0100
-Message-ID: <CACRpkdamx51DeuoqZrbhqXZmu3r71xTdRawCL_X5PeB5N0Yx8w@mail.gmail.com>
-Subject: Re: [PATCH 01/10] dt-bindings: pinctrl: qcom: create common LPASS LPI schema
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, Andy Gross <agross@kernel.org>, 
-	Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, Stephan Gerhold <stephan@gerhold.net>, 
-	Shawn Guo <shawn.guo@linaro.org>, Melody Olvera <quic_molvera@quicinc.com>, 
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, Richard Acayan <mailingradian@gmail.com>, 
-	Vinod Koul <vkoul@kernel.org>, krishna Lanka <quic_vamslank@quicinc.com>, 
-	Rohit Agarwal <quic_rohiagar@quicinc.com>, Iskren Chernev <me@iskren.info>, 
-	Martin Botka <martin.botka@somainline.org>, Danila Tikhonov <danila@jiaxyga.com>, 
-	Abel Vesa <abel.vesa@linaro.org>, Rajendra Nayak <quic_rjendra@quicinc.com>, 
-	linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/3] ARM: dts: rockchip: Add psci for rk3036
+To: Andy Yan <andyshrk@163.com>, heiko@sntech.de
+Cc: krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ zhengxing@rock-chips.com, Andy Yan <andy.yan@rock-chips.com>
+References: <20231218105523.2478315-1-andyshrk@163.com>
+ <20231218105523.2478315-2-andyshrk@163.com>
+Content-Language: en-US, de-DE
+From: Alex Bee <knaerzche@gmail.com>
+In-Reply-To: <20231218105523.2478315-2-andyshrk@163.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Fri, Dec 8, 2023 at 10:55=E2=80=AFPM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
+Hi Andy,
+Am 18.12.23 um 11:55 schrieb Andy Yan:
+> From: Andy Yan <andy.yan@rock-chips.com>
+> 
+> The system will hang at bringup secondary CPUs
+> without psci node.
+> 
+> Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
+> 
+> ---
+> 
+> (no changes since v1)
+> 
+>   arch/arm/boot/dts/rockchip/rk3036.dtsi | 5 +++++
+>   1 file changed, 5 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/rockchip/rk3036.dtsi b/arch/arm/boot/dts/rockchip/rk3036.dtsi
+> index 78686fc72ce6..5344803442a1 100644
+> --- a/arch/arm/boot/dts/rockchip/rk3036.dtsi
+> +++ b/arch/arm/boot/dts/rockchip/rk3036.dtsi
+> @@ -67,6 +67,11 @@ display-subsystem {
+>   		ports = <&vop_out>;
+>   	};
+>   
+> +	psci {
+> +		compatible = "arm,psci-1.0";
+> +		method = "smc";
+> +	};
+> +
+I don't think that's an good idea. You most likely need that because you 
+have downstream bootloader installed on this board. PSCI implementation 
+takes place in TEE-OS for Rockchips ARM SoCs. There is no support for 
+RK3036 in upstream op-tee OS. It's pretty much the same for RK3128 and 
+RK3288.
+If you use upstream u-boot it should be good as-is.
 
-> Just like regular TLMM pin controllers in Qualcomm SoCs, the Low Power
-> Audio SubSystem (LPASS) Low Power Island (LPI) TLMM blocks share a lot
-> of properties, so common part can be moved to separate schema to reduce
-> code duplication and make reviewing easier.
->
-> Except the move of common part, this introduces effective changes:
-> 1. To all LPASS LPI bindings: Reference pinmux-node.yaml in each pin
->    muxing and configuration node, to bring definition of "function" and
->    "pins" properties.
->
-> 2. qcom,sc7280-lpass-lpi-pinctrl: Reference pinctrl.yaml in top leve.
->
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Alex
+>   	timer {
+>   		compatible = "arm,armv7-timer";
+>   		arm,cpu-registers-not-fw-configured;
 
-Patch 9/10 was missing from my inbox (and presumably Rob's too since
-he didn't ACK it) but there is absolutely nothing wrong with it so I just
-grabbed the whole series with b4 and applied it.
-
-Yours,
-Linus Walleij
 
