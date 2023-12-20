@@ -1,182 +1,197 @@
-Return-Path: <devicetree+bounces-27137-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27138-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA4C8819601
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 01:54:11 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C62D81962B
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 02:22:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2FFCFB24145
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 00:54:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B32D7287A2B
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 01:22:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41CA41FA8;
-	Wed, 20 Dec 2023 00:54:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2D525245;
+	Wed, 20 Dec 2023 01:22:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="QT/YOyEU"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="d82D+FAN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f171.google.com (mail-pg1-f171.google.com [209.85.215.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22AA41EA7E;
-	Wed, 20 Dec 2023 00:54:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 3BJMwo7F009275;
-	Wed, 20 Dec 2023 00:53:58 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=cHXBAm42TwGsErIeMkvw1BRTy0PFunf9wSVEzQtP94w=; b=QT
-	/YOyEUUNLRn2uOJNGKuiG807Yut1UchQV/1IfPMTdddyuG7HtLuX4IS8aXUHnk/X
-	dWaYB1sM4qNHOmO4LTpP8sAMCEuZoE9MXgebASsErAOH1wrjOoswXoOpTfLzi50+
-	KILm58UO7EVKfUwpchXHCscZ6NwVBtNLKmxZC3GPsmn5eHK+kBPhveHb/WIk7f3/
-	v9kYMqZspX4SXHGWRm7tE1/112z/v5xwoO9O7WyfrHpvZO1OJ7RNvM+BKOo0nODd
-	7nnvaGw6rhCpK04X2ieISHHgTJ1QRXotHM6z92I22a2JzOJMpnqXdbjuATW/ZVTb
-	TpemRBSR0tz16bGMY1GA==
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3v34dyapu9-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 20 Dec 2023 00:53:58 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3BK0rvvr016402
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 20 Dec 2023 00:53:57 GMT
-Received: from [10.239.132.150] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Tue, 19 Dec
- 2023 16:53:50 -0800
-Message-ID: <ad1547cf-0520-422d-a105-ec426f526d71@quicinc.com>
-Date: Wed, 20 Dec 2023 08:53:48 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 512D68F6D;
+	Wed, 20 Dec 2023 01:22:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f171.google.com with SMTP id 41be03b00d2f7-5cda24a77e0so1439778a12.2;
+        Tue, 19 Dec 2023 17:22:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1703035323; x=1703640123; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=BDQ0C/UuIbHfVYkNVyd9qPgnTDAn1mRbPqzgGn6yPFc=;
+        b=d82D+FANjtQfaC1l7XYESfxQ3Wldq/I8DcgrEltPj5Cq6UxIAXE4fPLQtBX3RjWpEW
+         kIvuZl+IJRcjdVAzwi3XqEXmAzTxlD3dk45BPq5nTXIedgIzts9LGCvq17i2p/0cXRgW
+         kDBMDzB24AnH6hl+Y9s1WfCFppuNDiT8vXOhtB22yuYkWLMrhA5cAd9qrpn+shwgi+02
+         DvyEjEjNVdkHpUQhfrv3eRgLRo17N4eQ5Z9F4g+H+MMzGp9uWFLzQinbWT1DVbDe7MIx
+         OMOiRidc8U8gtioTbCIFketAL9oeKVFvs2Rso9mQR+kXZlVwzaJ9F0rMml5LeRK5vAqQ
+         ThfQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1703035323; x=1703640123;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=BDQ0C/UuIbHfVYkNVyd9qPgnTDAn1mRbPqzgGn6yPFc=;
+        b=w/hK/p/smhTrxKk39n9GizHZsOPFWwIe812IiAcrECcx0QmUH/npnntYsiidm9MeyX
+         cWClyiZMdDCDLMs0+IwSSNgZzFKfZuQhLZT8e709r5FTsMsXdjJ9bdVnnILB21O9AtKk
+         MsPrG+wnkd+d7Ud2oxgwHeEZcxA0g58ByET4OEFJF7rDV5Yxqc1bHaveZANGt7c/ClNq
+         Vqe7mOvCI+8bvhrlMWU5epa9U4VbM/pBxufYX+O05lRmCOG+eESpIfe2os1Rp/Q5KeQb
+         NvOK2GZ7kDJcgcSXh04gG7DUTIz1+LzU/ng4l20R0S//If9DAyN4IaKslDbES4aZwRC6
+         L6Fg==
+X-Gm-Message-State: AOJu0YyN/Qe5gzq7/oEdvXGx0B65kLByQcIS27adU8esd5GOVS+Ixf2V
+	S62izwgKsd9/xNOeeJzMPG0=
+X-Google-Smtp-Source: AGHT+IE1kY61E75r6p1GEXmIRnbuWxCmoCr4bpdB5dzOyBkYFLcKxNOO+nao+NSulARD3z/pnbQ7Tw==
+X-Received: by 2002:a17:90a:fa0b:b0:28b:9c35:f2b9 with SMTP id cm11-20020a17090afa0b00b0028b9c35f2b9mr2245325pjb.64.1703035323196;
+        Tue, 19 Dec 2023 17:22:03 -0800 (PST)
+Received: from google.com ([2620:15c:9d:2:b2ca:95aa:9761:8149])
+        by smtp.gmail.com with ESMTPSA id pt10-20020a17090b3d0a00b0028afd8b1e0bsm2321389pjb.57.2023.12.19.17.22.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 19 Dec 2023 17:22:02 -0800 (PST)
+Date: Tue, 19 Dec 2023 17:22:00 -0800
+From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To: Paul Cercueil <paul@crapouillou.net>
+Cc: Artur Rojek <contact@artur-rojek.eu>,
+	Chris Morgan <macroalpha82@gmail.com>, linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org, conor+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+	Chris Morgan <macromorgan@hotmail.com>
+Subject: Re: [RFC] dt-bindings: input: Clarify that abs_min must be less than
+ abs_max
+Message-ID: <ZYJBuGMs4kKKDxmc@google.com>
+References: <20231215024022.122022-1-macroalpha82@gmail.com>
+ <03a9a56362b0559234d4a21a4de3e32e@artur-rojek.eu>
+ <ZYH97KVDO4lFsbmi@google.com>
+ <fb38504f15148c78c7a91850daf8c247d592b0a0.camel@crapouillou.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/1] arm64: dts: qcom: sm8550: remove
- address/size-cells from mdss_dsi1
-Content-Language: en-US
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Tengfei Fan
-	<quic_tengfan@quicinc.com>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <kernel@quicinc.com>
-References: <20231219003106.8663-1-quic_tengfan@quicinc.com>
- <20231219003106.8663-2-quic_tengfan@quicinc.com>
- <457e336e-004c-4721-b58d-e9ada16dc04b@linaro.org>
- <a8f168da-14f7-4377-8dea-f282a3eac0a4@quicinc.com>
- <13b61d41-6045-499e-864b-51c6cb6eacf9@linaro.org>
- <38604415-b410-4995-9c4f-525536435699@quicinc.com>
- <CAA8EJpo07gE7ZeNP6wSGTLtmF_3PKQAKFyMRZ8dk1K+f7PAxrg@mail.gmail.com>
-From: "Aiqun Yu (Maria)" <quic_aiquny@quicinc.com>
-In-Reply-To: <CAA8EJpo07gE7ZeNP6wSGTLtmF_3PKQAKFyMRZ8dk1K+f7PAxrg@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: BC-uqf524ImoRaDOit4enta9ECDma7hC
-X-Proofpoint-GUID: BC-uqf524ImoRaDOit4enta9ECDma7hC
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-12-09_01,2023-12-07_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 impostorscore=0
- lowpriorityscore=0 phishscore=0 malwarescore=0 suspectscore=0
- clxscore=1011 bulkscore=0 spamscore=0 adultscore=0 mlxlogscore=906
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2311290000 definitions=main-2312200004
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <fb38504f15148c78c7a91850daf8c247d592b0a0.camel@crapouillou.net>
 
-
-
-On 12/19/2023 6:21 PM, Dmitry Baryshkov wrote:
-> On Tue, 19 Dec 2023 at 12:09, Aiqun Yu (Maria) <quic_aiquny@quicinc.com> wrote:
->>
->>
->>
->> On 12/19/2023 5:41 PM, Krzysztof Kozlowski wrote:
->>> On 19/12/2023 10:36, Aiqun Yu (Maria) wrote:
->>>>
->>>>
->>>> On 12/19/2023 3:17 PM, Krzysztof Kozlowski wrote:
->>>>> On 19/12/2023 01:31, Tengfei Fan wrote:
->>>>>> The address/size-cells in mdss_dsi1 node have not ranges and child also
->>>>>> have not reg, then this leads to dtc W=1 warnings:
->>>>>
->>>> Comments can be more readable:
->>>> "mdss_dsi1" node don't have "ranges" or child "reg" property, while it
->>>> have address/size-cells properties. This caused
->>>> "avoid_unnecessary_addr_size" warning from dtb check.
->>>> Remove address/size-cells properties for "mdss_dsi1" node.
->>>>
->>>>> I cannot parse it. Address/size cells never have ranges or children.
->>>>> They cannot have. These are uint32 properties.
->>>> Pls help to comment on the revised commit message. Every time I write a
->>>> commit message, also takes a while for me to double confirm whether
->>>> others can understand me correctly as well. Feel free to let us know if
->>>> it is not readable to you. It will help us as non-English native developers.
->>>>>
->>>>>>
->>>>>>      sm8550.dtsi:2937.27-2992.6: Warning (avoid_unnecessary_addr_size): /soc@0/display-subsystem@ae00000/dsi@ae96000:
->>>>>>        unnecessary #address-cells/#size-cells without "ranges" or child "reg" property
->>>>>>
->>>>>>
->>>>>> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->>>>>> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
->>>>>> ---
->>>>>
->>>>> I disagreed with the patch before. You resubmit it without really
->>>>> addressing my concerns.
->>>>>
->>>>> I am not sure if this is correct fix and I want to fix all of such
->>>>> errors (there are multiple of them) in the same way. Feel free to
->>>>> propose common solution based on arguments.
->>>> Per my understanding, "qcom,mdss-dsi-ctrl" driver node like "mdss_dsi1"
->>>> don't need to have address/size-cells properties.
->>>
->>> Just because dtc says so? And what about bindings?
->> I don't find any reason why "qcom,mdss-dsi-ctrl" driver node need to
->> have address/size-cells properties. Document Bindings should also be fixed.
->>>
->>>> Feel free to let us know whether there is different idea of
->>>> "address/size-cells" needed for the "qcom,mdss-dsi-ctrl" driver node.
->>>
->>> The bindings expressed that idea. If the binding is incorrect, fix the
->>> binding and the DTS. If the binding is correct, provide rationale why it
->>> somehow does not apply here etc.
->> Our plan is to fix the bindings as well.
->>
->> In case you have missed the question, I just re-place it here:
->> While there are about 22 different soc dtsi and it's document binding
->> files needed to be fixed. Shall we fix it for all qcom related soc usage
->> in one patch, or we'd better to split into different patches according
->> to soc specifically?
+On Wed, Dec 20, 2023 at 01:23:31AM +0100, Paul Cercueil wrote:
+> Hi Dmitry,
 > 
-> Don't touch the bindings unless you understand what you are doing.
-> Your patch will be NAKed. There can be a DSI panel attached to the DSI
-> host, which means there is a need for #address-cells / #size-cells.
+> Le mardi 19 décembre 2023 à 12:32 -0800, Dmitry Torokhov a écrit :
+> > On Fri, Dec 15, 2023 at 12:19:51PM +0100, Artur Rojek wrote:
+> > > On 2023-12-15 03:40, Chris Morgan wrote:
+> > > > From: Chris Morgan <macromorgan@hotmail.com>
+> > > > 
+> > > > uinput refuses to work with abs devices where the min value is
+> > > > greater
+> > > > than the max value. uinput_validate_absinfo() returns -EINVAL if
+> > > > this
+> > > > is the case and prevents using uinput on such a device. Since
+> > > > uinput
+> > > > has worked this way since at least kernel 2.6 (or prior) I
+> > > > presume that
+> > > > this is the correct way of doing things, and that this
+> > > > documentation
+> > > > needs to be clarified that min must always be less than max.
+> > > > 
+> > > > uinput is used in my use case to bind together adc-joystick
+> > > > devices
+> > > > with gpio-keys devices to create a single unified gamepad for
+> > > > userspace.
+> > > > 
+> > > > Note that there are several boards that will need to be
+> > > > corrected,
+> > > > all but a few of them I maintain. Submitting as an RFC for now to
+> > > > get
+> > > > comments from the input team and the original author in case
+> > > > there is
+> > > > something I am missing.
+> > > > 
+> > > > Fixes: 7956b0d4694f ("dt-bindings: input: Add docs for ADC driven
+> > > > joystick")
+> > > > 
+> > > > Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+> > > > ---
+> > > >  Documentation/devicetree/bindings/input/adc-joystick.yaml | 5
+> > > > +++--
+> > > >  1 file changed, 3 insertions(+), 2 deletions(-)
+> > > > 
+> > > > diff --git a/Documentation/devicetree/bindings/input/adc-
+> > > > joystick.yaml
+> > > > b/Documentation/devicetree/bindings/input/adc-joystick.yaml
+> > > > index 6c244d66f8ce..8f5cdd5ef190 100644
+> > > > --- a/Documentation/devicetree/bindings/input/adc-joystick.yaml
+> > > > +++ b/Documentation/devicetree/bindings/input/adc-joystick.yaml
+> > > > @@ -73,8 +73,9 @@ patternProperties:
+> > > >          description: >
+> > > >            Minimum and maximum values produced by the axis.
+> > > >            For an ABS_X axis this will be the left-most and
+> > > > right-most
+> > > > -          inclination of the joystick. If min > max, it is left
+> > > > to
+> > > > userspace to
+> > > > -          treat the axis as inverted.
+> > > > +          inclination of the joystick. The axis must always be
+> > > > expressed as
+> > > > +          min < max, if the axis is inverted it is left to
+> > > > userspace to
+> > > > handle
+> > > > +          the inversion.
+> > > 
+> > > Hi Chris,
+> > > 
+> > > Device Tree is supposed to depict the actual state of the hardware.
+> > > I worded the adc-joytick's adc-range property specifically, so that
+> > > it
+> > > covers a case of GCW Zero hardware [1], which has a joystick, 
+> > > where the
+> > > ABS_X axis reports increasing values for the left-wards inclination
+> > > of
+> > > the joystick, and decreasing values for the right-wards
+> > > inclination. You
+> > > are saying that there are even more boards that need to be
+> > > corrected -
+> > > those are all situations, where DT depicts the actual behavior of
+> > > the
+> > > hardware.
+> > > What you are trying to do is change hardware description, because
+> > > of how
+> > > a driver in an OS works. You should instead fix behavior of said
+> > > driver,
+> > > even if nobody stumbled upon that issue since 2.6 :) We fixed
+> > > libSDL [2]
+> > > for the same reason.
+> > 
+> > We have several places in the kernel (such as mousedev and joydev)
+> > where
+> > we expect that max is greater or equal to min if they are specified.
+> > I
+> > am sure that at least some userspace components also have this
+> > assumption. In general, we expect min to be a minimum value reported
+> > and
+> > max being maximum value reported, and orientation expressed via
+> > different properties (see [1]).
 > 
-Could you please help to elaborate more on details? Like what's the 
-right example here for the "qcom,mdss-dsi-ctrl" driver node needed to 
-have "#address-cells"/"#size-cells".
+> You can express all you want in DT properties the orientation of the
+> axis, it does not carry to userspace. As far as I can see there is
+> absolutely no way to tell userspace that an axis is inverted.
 
-Thx to chime in that we have put a good amount of time here.
-> Please stop wasting the time on dtc warning. The bindings (and the
-> file) are correct.
-I don't agree here.
-Either it is a wrong usage of "#address-cells"/"#size-cells", or dtc 
-warning should be fixed with this usage take into account.
-"dtb check" will be a good guideline for developers to follow, I don't 
-think it is wasting time here.
-> 
+That is true, and I will argue that it is a feature. Kernel's task is to
+normalize the data stream and present it to userspace so that it does
+not have to deal with differences of hardware. This abstraction often
+breaks, but when we can keep it, we should.
+
+Thanks.
 
 -- 
-Thx and BRs,
-Aiqun(Maria) Yu
+Dmitry
 
