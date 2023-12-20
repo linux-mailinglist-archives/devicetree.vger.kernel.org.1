@@ -1,106 +1,158 @@
-Return-Path: <devicetree+bounces-27095-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27096-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A970E8194E8
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 01:04:16 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 94B5181950F
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 01:20:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D76621C23687
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 00:04:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 41DDA1F25C5C
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 00:20:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B807EEA7;
-	Wed, 20 Dec 2023 00:04:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4C5E1385;
+	Wed, 20 Dec 2023 00:19:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="OOChNBWn"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OQmCpYNm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+Received: from mail-qk1-f171.google.com (mail-qk1-f171.google.com [209.85.222.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F0CFEEAE
-	for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 00:04:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-	(No client certificate requested)
-	(Authenticated sender: marex@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id 179AD86E5E;
-	Wed, 20 Dec 2023 01:04:09 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1703030649;
-	bh=snWfkyID8+PR11Wf6qKJQp8+QcTOjr/YidafSNOm00M=;
-	h=From:To:Cc:Subject:Date:From;
-	b=OOChNBWnvRpJzq1V65Q0FfHQ1nU3FfidXv/5cMENh3bx8toYo3OLxfhGPUOlv6cTL
-	 m79IqdmjAQQxc1QWQWn9rmQYM6AWxLnrL2xr0/Mt1QySaRCiu27uSiToVgirpv7eTv
-	 6jrbwvNyQmPl1jsOukAXLBg7zyfiGISObieIDEZ9dJB/fCtNtxZ7YiZjXghqmLCa/o
-	 7EJ+g2r54s3LD2ESGIfbnyNBJp8j6BBlLVHm8DUurjfBts9a3U7Ki4YJ43Eb1IBglN
-	 nZ/ZqCwvaIPeDrdimFt+Ova9AxfGbygWyh5y8vHeDOyKLh3ur0M+jd6OeyplC3u/A8
-	 bIeyVy+Zgea8Q==
-From: Marek Vasut <marex@denx.de>
-To: linux-arm-kernel@lists.infradead.org
-Cc: Marek Vasut <marex@denx.de>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64DADB660;
+	Wed, 20 Dec 2023 00:19:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qk1-f171.google.com with SMTP id af79cd13be357-77fa980b50aso328010385a.3;
+        Tue, 19 Dec 2023 16:19:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1703031553; x=1703636353; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=meLKqm86U76iMcMmqxuxzpMVgH/WS4qTltle+XEqnQE=;
+        b=OQmCpYNmz0FfkOKwZcsZn5JXmQg3xso5xaV8JDgXGPPM2iOLTsHf0FcDRjH2I7Rzy2
+         lzhzE3/24Hb/QhJn6aiWIXUd98DHLRSQMZ4HY0fYGLphyGH9LA2V70vXZT2i+MGZyEkL
+         oL8ELXgvksLl38AOBfEfuoVtF34krhL6FJ9ujH8j/sjGsKXGUGPwDkTsBcZ+XIqO5nqa
+         8e3d6Ngijk9S4CqIE2OwymLpwDMPEwzK1J6CiytdUyZ77zS2N/lXvo/Oq2VPozt9QN5g
+         X/zfxBB/BQ75lXq0S0Hy6uEf7jhNmNXg2iDVHv0UkOl9/oNvyJVCWSs8vKAFGl+73m+W
+         4qJQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1703031553; x=1703636353;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=meLKqm86U76iMcMmqxuxzpMVgH/WS4qTltle+XEqnQE=;
+        b=J5IIebDkjMOc9rW9/C1swaH640XTA084xWXZvo2wsA0ouMstA2dzZcHF1GMACPVVgv
+         y30Qz32jIAl2niPN4kdB3r1FfFmxTh+A2ggX1Jq+Z6HBQeD0uE/PJdpJZVCw0tm+IlHc
+         UqUV7K3FOF7K+mV+2hpY5b5E+8KbuXvrQvtSTEJ3LCp6v6ChHxqCcPrALTRRLpivkBAb
+         WLbfiwoQ7CDM7G7tP8/pboi4rMv7epTLRTNi5Qlnc7QY+wPjaC88WzUsGQHdPwgk/Mvm
+         slQ6qsr2P81KkP3QpNA9f2tOTvI5M50INieZhqn2Gg5z3GKzeeUBdUdrphj3E2JBnYfu
+         bK4A==
+X-Gm-Message-State: AOJu0YyTjc5PUzK0yIxlhp1ZicD4kpbgNCOQMlvWY3mzNnq5LhmzsA0D
+	2BuO5sHuVT/QmpySfdwbNsA=
+X-Google-Smtp-Source: AGHT+IF03ORjQpot6OdjDBHZZ9wMEUcfKs6SFiHIM+pbsb3kmTs+e9FbE3Jj5SmCOl8ealfugR6mPw==
+X-Received: by 2002:ad4:594d:0:b0:67f:494b:c1f8 with SMTP id eo13-20020ad4594d000000b0067f494bc1f8mr4440459qvb.32.1703031553244;
+        Tue, 19 Dec 2023 16:19:13 -0800 (PST)
+Received: from localhost.localdomain ([174.95.13.129])
+        by smtp.gmail.com with ESMTPSA id da14-20020a05621408ce00b0067a276fd8d5sm3814094qvb.54.2023.12.19.16.19.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 19 Dec 2023 16:19:12 -0800 (PST)
+From: Abdel Alkuor <alkuor@gmail.com>
+To: Jean Delvare <jdelvare@suse.com>,
+	Guenter Roeck <linux@roeck-us.net>,
 	Rob Herring <robh+dt@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>,
-	devicetree@vger.kernel.org
-Subject: [PATCH] arm64: dts: imx8mp: Disable UART4 by default on Data Modul i.MX8M Plus eDM SBC
-Date: Wed, 20 Dec 2023 01:02:42 +0100
-Message-ID: <20231220000345.42593-1-marex@denx.de>
-X-Mailer: git-send-email 2.43.0
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>
+Cc: Abdel Alkuor <alkuor@gmail.com>,
+	linux-hwmon@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org
+Subject: [PATCH v3 1/2] dt-bindings: hwmon: (lm75) Add AMS AS6200 temperature sensor
+Date: Tue, 19 Dec 2023 19:17:47 -0500
+Message-Id: <af834e980f57dc11d3e821c074c433cdbc6accc3.1703030297.git.alkuor@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
 
-UART4 is used as CM7 coprocessor debug UART and may not be accessible from
-Linux in case it is protected by RDC. The RDC protection is set up by the
-platform firmware. UART4 is not used on this platform by Linux. Disable
-UART4 by default to prevent boot hangs, which occur when the RDC protection
-is in place.
+as6200 is a temperature sensor with a range between -40°C to
+125°C degrees and an accuracy of ±0.4°C degree between 0
+and 65°C and ±1°C for the other ranges.
 
-Fixes: 562d222f23f0 ("arm64: dts: imx8mp: Add support for Data Modul i.MX8M Plus eDM SBC")
-Signed-off-by: Marek Vasut <marex@denx.de>
+Signed-off-by: Abdel Alkuor <alkuor@gmail.com>
 ---
-Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: Fabio Estevam <festevam@gmail.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: NXP Linux Team <linux-imx@nxp.com>
-Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Sascha Hauer <s.hauer@pengutronix.de>
-Cc: Shawn Guo <shawnguo@kernel.org>
-Cc: devicetree@vger.kernel.org
-Cc: linux-arm-kernel@lists.infradead.org
----
- arch/arm64/boot/dts/freescale/imx8mp-data-modul-edm-sbc.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Changes in v3:
+  - Enable interrupt property conditionally based on the chips that
+    support it.
+  - Fix alignment for the added example
+Changes in v2:
+  - Incorporate as6200 into lm75 bindings
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-data-modul-edm-sbc.dts b/arch/arm64/boot/dts/freescale/imx8mp-data-modul-edm-sbc.dts
-index 34e9aecc403bd..88e1b76d7d75f 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-data-modul-edm-sbc.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-data-modul-edm-sbc.dts
-@@ -491,7 +491,7 @@ &uart3 {	/* A53 Debug */
- &uart4 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_uart4>;
--	status = "okay";
-+	status = "disabled";
- };
+ .../devicetree/bindings/hwmon/lm75.yaml       | 29 +++++++++++++++++++
+ 1 file changed, 29 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/hwmon/lm75.yaml b/Documentation/devicetree/bindings/hwmon/lm75.yaml
+index 0b69897f0c63..c5b2ec0b2c84 100644
+--- a/Documentation/devicetree/bindings/hwmon/lm75.yaml
++++ b/Documentation/devicetree/bindings/hwmon/lm75.yaml
+@@ -14,6 +14,7 @@ properties:
+   compatible:
+     enum:
+       - adi,adt75
++      - ams,as6200
+       - atmel,at30ts74
+       - dallas,ds1775
+       - dallas,ds75
+@@ -48,10 +49,24 @@ properties:
+   vs-supply:
+     description: phandle to the regulator that provides the +VS supply
  
- &usb3_phy0 {
++  interrupts:
++    maxItems: 1
++
+ required:
+   - compatible
+   - reg
+ 
++allOf:
++  - if:
++      not:
++        properties:
++          compatible:
++            contains:
++              const: ams,as6200
++    then:
++      properties:
++        interrupts: false
++
+ additionalProperties: false
+ 
+ examples:
+@@ -66,3 +81,17 @@ examples:
+         vs-supply = <&vs>;
+       };
+     };
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    i2c {
++      #address-cells = <1>;
++      #size-cells = <0>;
++
++      temperature-sensor@48 {
++        compatible = "ams,as6200";
++        reg = <0x48>;
++        vs-supply = <&vs>;
++        interrupt-parent = <&gpio1>;
++        interrupts = <17 IRQ_TYPE_EDGE_BOTH>;
++      };
++    };
 -- 
-2.43.0
+2.34.1
 
 
