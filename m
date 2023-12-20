@@ -1,145 +1,158 @@
-Return-Path: <devicetree+bounces-27389-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27393-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47C8781A25C
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 16:27:15 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 630D681A277
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 16:29:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7A3BC1C211E7
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 15:27:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1FF8A283394
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 15:29:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4978340BE8;
-	Wed, 20 Dec 2023 15:25:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4256D41875;
+	Wed, 20 Dec 2023 15:27:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZfIbUWkn"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="h9KTP9l8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69D7D40BEF;
-	Wed, 20 Dec 2023 15:25:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-40c3fe6c1b5so62921835e9.2;
-        Wed, 20 Dec 2023 07:25:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1703085953; x=1703690753; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=uS6w3rNmw0cdtYnw4LMSsxjjgZzl4QPxrmb81MWLsvk=;
-        b=ZfIbUWknOEot2+Xgy5pP2CIdtrldY5SLtigTqyJUjFcQhCKI6PHfP/Nk4YRTTqgu0A
-         6fvJ4qV3g8g9KkOJLbliw0mhekLwKaOftqKP+sp+U7bRC528AKzDb2QfH57rKSQha7FY
-         41YaAYEqRndgkaD0StqpSpiBGlF8U62wZay3rM4yVigcCocH3TWU5G1vFftJnXz385iB
-         Mcw6rJs1wLFxCvJV1sCM1x5VAXQXk9BfG0xUJp9JMh0qrcxP77DEXJliU67w0UJPXFpF
-         o+wIjCuKnB/tTryCJsfq2+ggef945gZRm/zDkmtj3bAKK+hQpzTKifEOIyrT/wrBUtlA
-         RP6g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703085953; x=1703690753;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=uS6w3rNmw0cdtYnw4LMSsxjjgZzl4QPxrmb81MWLsvk=;
-        b=gyC+3x24Mc+SiQgDtYYRzm4PcbgU9qQCHXE8fBUTTRkKwPpEAVWZQ1mwx92FkrOyB1
-         YtyKxE2nV7eaE/xCZQSsA6kyORDr4P9kFMZlzm0wddfB4xzgha1HcDKx3Tx5+iaJ6nlO
-         2FTN2v8pyi+ff/PHvwpLqXbMqYAypAdb1SNrmOC5sgVg8bw6Qo4maLZi7Q6wBWy8viyg
-         WdGJBwYTJ0uqcj953XiSvStK31dXWXN6sc5LXNwtFGaoHK5YlCJzzFIukm8/DR7x4wat
-         XKU69GDruKsScMiU9SjpWPhJlHYvCqf3cUBRZ2n0v5dngHIDYsc/iCbesuEuEEfIT2to
-         5WJw==
-X-Gm-Message-State: AOJu0YzL29/muuddjzvhTWhZr5+iPGHV0ZRDXpX4hKgWDluReukUQdDH
-	y8ILUql++4HWAXCib4dQ7aM=
-X-Google-Smtp-Source: AGHT+IGqN3fsaKks2Cw8XAX/rXbmEt1dkYX1uzdoef3zSrDXFU1J51FjOJPUUlBcU0nkMxM5sTgiRQ==
-X-Received: by 2002:a05:600c:5d5:b0:40c:34e1:72e5 with SMTP id p21-20020a05600c05d500b0040c34e172e5mr9978141wmd.69.1703085953376;
-        Wed, 20 Dec 2023 07:25:53 -0800 (PST)
-Received: from jernej-laptop.localnet (82-149-12-148.dynamic.telemach.net. [82.149.12.148])
-        by smtp.gmail.com with ESMTPSA id l2-20020a05600c4f0200b003feae747ff2sm7858073wmq.35.2023.12.20.07.25.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 20 Dec 2023 07:25:53 -0800 (PST)
-From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To: Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Chen-Yu Tsai <wens@csie.org>, Samuel Holland <samuel@sholland.org>,
- Yangtao Li <tiny.windzz@gmail.com>, "Rafael J . Wysocki" <rafael@kernel.org>,
- Viresh Kumar <viresh.kumar@linaro.org>,
- Brandon Cheo Fusi <fusibrandon13@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev, linux-riscv@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
- Brandon Cheo Fusi <fusibrandon13@gmail.com>
-Subject: Re: [RFC PATCH 2/2] riscv: dts: allwinner: Fill in OPPs
-Date: Wed, 20 Dec 2023 16:25:50 +0100
-Message-ID: <113541315.nniJfEyVGO@jernej-laptop>
-In-Reply-To: <20231220095141.27883-3-fusibrandon13@gmail.com>
-References:
- <20231220095141.27883-1-fusibrandon13@gmail.com>
- <20231220095141.27883-3-fusibrandon13@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 885E03E46E;
+	Wed, 20 Dec 2023 15:27:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 3BKAmY9i020525;
+	Wed, 20 Dec 2023 16:27:35 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding:content-type; s=selector1; bh=tEuXmaN
+	aHen/qbXE+5QeVHvI7f5gS6OM2PXMf9c90iY=; b=h9KTP9l85hp14tkMNtiJs6M
+	KSL37hMKUUp9sg1JGR6OiGPHF0OCLnR31DocKfOKk453z7U8kncgOrb4EaS4m5jy
+	M6i6ref4wh/SU4UqR9slsStIASRy99AGL8EMiMttJHazYvmbUj4FN0yK7sVw+9hR
+	k5OSJUmHeoVxpKemWu78g3AIZxHAl/0EevAD7ZZyEGLoxpWekjD7mYh731/P/Fyb
+	6YnXxPXi5OAciYeHa42HQ3ZwZbSfEGLT0LcNiTVDiAmke2Wcm7CstKdE8+iPHexR
+	c6Z2Jkwa5GzEvcS3JYWDNO54gUpuCeQVF72ZBHyHSmpDxvjqpYvoRgKWrGIDqDw=
+	=
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3v14422ac4-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 20 Dec 2023 16:27:35 +0100 (CET)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 67E32100057;
+	Wed, 20 Dec 2023 16:27:34 +0100 (CET)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 577A721ED29;
+	Wed, 20 Dec 2023 16:27:34 +0100 (CET)
+Received: from localhost (10.201.20.120) by SHFDAG1NODE1.st.com (10.75.129.69)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Wed, 20 Dec
+ 2023 16:27:34 +0100
+From: Hugues Fruchet <hugues.fruchet@foss.st.com>
+To: Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+        Philipp Zabel
+	<p.zabel@pengutronix.de>,
+        Andrzej Pietrasiewicz <andrzej.p@collabora.com>,
+        Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+        Sakari Ailus
+	<sakari.ailus@linux.intel.com>,
+        Benjamin Gaignard
+	<benjamin.gaignard@collabora.com>,
+        Laurent Pinchart
+	<laurent.pinchart+renesas@ideasonboard.com>,
+        Daniel Almeida
+	<daniel.almeida@collabora.com>,
+        Benjamin Mugnier
+	<benjamin.mugnier@foss.st.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Mauro
+ Carvalho Chehab <mchehab@kernel.org>,
+        Hans Verkuil <hverkuil@xs4all.nl>, <linux-media@vger.kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <linux-rockchip@lists.infradead.org>
+CC: Hugues Fruchet <hugues.fruchet@foss.st.com>,
+        Marco Felsch
+	<m.felsch@pengutronix.de>,
+        Adam Ford <aford173@gmail.com>
+Subject: [PATCH v4 0/5] Add support for video hardware codec of STMicroelectronics STM32 SoC series
+Date: Wed, 20 Dec 2023 16:27:27 +0100
+Message-ID: <20231220152732.2138260-1-hugues.fruchet@foss.st.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-12-20_09,2023-12-20_01,2023-05-22_02
 
-Dne sreda, 20. december 2023 ob 10:51:41 CET je Brandon Cheo Fusi napisal(a):
-> Specifies two voltage ranges, in order of increasing stability,
-> for each OPP. This is heavily inspired by
-> 
-> https://github.com/Tina-Linux/linux-5.4/blob/master/arch/riscv/boot/dts/sunxi/sun20iw1p1.dtsi#L118-L133
-> 
-> and
-> 
-> https://github.com/mangopi-sbc/tina-linux-5.4/blob/0d4903ebd9d2194ad914686d5b0fc1ddacf11a9d/arch/riscv/boot/dts/sunxi/sun20iw1p1.dtsi#L118-L182
+This patchset introduces support for VDEC video hardware decoder
+and VENC video hardware encoder of STMicroelectronics STM32MP25
+SoC series.
 
-Remove links from message. If you really want them, add Link tag for each.
+This initial support implements H264 decoding, VP8 decoding and
+JPEG encoding.
 
-> 
-> Signed-off-by: Brandon Cheo Fusi <fusibrandon13@gmail.com>
-> ---
->  arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi | 8 ++++++--
->  1 file changed, 6 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi b/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi
-> index 2f1771c19..8e7bc8bd0 100644
-> --- a/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi
-> +++ b/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi
-> @@ -48,13 +48,17 @@ opp_table_cpu: opp-table-cpu {
->  		opp-408000000 {
->  			clock-latency-ns = <244144>; /* 8 32k periods */
->  			opp-hz = /bits/ 64 <408000000>;
-> -			opp-microvolt-speed0 = <900000 900000 1100000>;
-> +
-> +			opp-microvolt-speed0 = <950000 900000 1100000>;
+This has been tested on STM32MP257F-EV1 evaluation board.
 
-Second value should be same as first, otherwise you'll experience stability issue.
+===========
+= history =
+===========
+version 4:
+   - Fix comments from Nicolas about dropping encoder raw steps
 
-> +			opp-microvolt-speed1 = <900000 900000 1100000>;
->  		};
->  
->  		opp-1080000000 {
->  			clock-latency-ns = <244144>; /* 8 32k periods */
->  			opp-hz = /bits/ 64 <1008000000>;
-> -			opp-microvolt-speed0 = <900000 900000 1100000>;
-> +
-> +			opp-microvolt-speed0 = <1100000 900000 1100000>;
+version 3:
+   - Fix remarks from Krzysztof Kozlowski:
+    - drop "items", we keep simple enum in such case
+    - drop second example - it is the same as the first
+   - Drop unused node labels as suggested by Conor Dooley
+   - Revisit min/max resolutions as suggested by Nicolas Dufresne
 
-Ditto.
+version 2:
+   - Fix remarks from Krzysztof Kozlowski on v1:
+    - single video-codec binding for both VDEC/VENC
+    - get rid of "-names"
+    - use of generic node name "video-codec"
 
-Best regards,
-Jernej
+version 1:
+  - Initial submission
 
-> +			opp-microvolt-speed1 = <950000 900000 1100000>;
->  		};
->  	};
->  
-> 
+Hugues Fruchet (5):
+  dt-bindings: media: Document STM32MP25 VDEC & VENC video codecs
+  media: hantro: add support for STM32MP25 VDEC
+  media: hantro: add support for STM32MP25 VENC
+  arm64: dts: st: add video decoder support to stm32mp255
+  arm64: dts: st: add video encoder support to stm32mp255
 
+ .../media/st,stm32mp25-video-codec.yaml       |  50 ++++++++
+ arch/arm64/boot/dts/st/stm32mp251.dtsi        |  12 ++
+ arch/arm64/boot/dts/st/stm32mp255.dtsi        |  17 +++
+ drivers/media/platform/verisilicon/Kconfig    |  14 ++-
+ drivers/media/platform/verisilicon/Makefile   |   4 +
+ .../media/platform/verisilicon/hantro_drv.c   |   4 +
+ .../media/platform/verisilicon/hantro_hw.h    |   2 +
+ .../platform/verisilicon/stm32mp25_vdec_hw.c  |  92 ++++++++++++++
+ .../platform/verisilicon/stm32mp25_venc_hw.c  | 115 ++++++++++++++++++
+ 9 files changed, 307 insertions(+), 3 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/media/st,stm32mp25-video-codec.yaml
+ create mode 100644 drivers/media/platform/verisilicon/stm32mp25_vdec_hw.c
+ create mode 100644 drivers/media/platform/verisilicon/stm32mp25_venc_hw.c
 
-
+-- 
+2.25.1
 
 
