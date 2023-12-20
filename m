@@ -1,165 +1,126 @@
-Return-Path: <devicetree+bounces-27209-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27210-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F6F0819A73
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 09:28:36 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A927B819A84
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 09:31:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 81BA71C216DD
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 08:28:35 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B2AC0B25BEC
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 08:30:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 858101C2A0;
-	Wed, 20 Dec 2023 08:28:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B676B1DA40;
+	Wed, 20 Dec 2023 08:30:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=9elements.com header.i=@9elements.com header.b="MZrQwlO3"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xpg6flGd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
+Received: from mail-qv1-f52.google.com (mail-qv1-f52.google.com [209.85.219.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8BCD1CFAD
-	for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 08:28:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=9elements.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=9elements.com
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-a1915034144so629940266b.0
-        for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 00:28:09 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 380051DA31
+	for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 08:30:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-qv1-f52.google.com with SMTP id 6a1803df08f44-67f6739d7acso3967406d6.1
+        for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 00:30:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=9elements.com; s=google; t=1703060888; x=1703665688; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Pnge+1KVjVw+sI86vmpy7qUzgDU254VIm7qUPhyPlKQ=;
-        b=MZrQwlO3xukNXXNfYYdSjx8yDcUF3KcGglmtgTF3x+FXcAsgBVFQ0Xd5mDVD8PPcNr
-         ZvDdjY+JgdhUZXxo20rXlqi8MWUK1fCDGjEoLw9yoZ90bqFwHBP6bBiekqvmNGCT17KS
-         umQtaN+tT+uZY9sR4XGVETWOf0xiuccHI+niiwQVnsmVxwD9hIUOtGaqGQxeMQ7RlArS
-         xZD7iIwBaDZoaZRJ/QbwdjkGd1ESJgaJ1LxtO3trdkYm5Bva3hjk1HeDXjUyxofyIOai
-         0kVhWk23qT5VHrDfBCU27+9RZcBJtWmZQ7qeAiysyuXY0ifB5knb7uCIuJS5EuJr54nd
-         4H6A==
+        d=linaro.org; s=google; t=1703061025; x=1703665825; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=1Hp6hDzkalXVHzwngj1E6hzkyPfyrhHPSKm/09FW//U=;
+        b=xpg6flGdC6L6KsRJO5OnDssAeTK3ZU4VlSq3/jHTELFuPXXQwo3d7PcJOWYeD4pgbV
+         eOwoTODwiCZj7d1e850z+3XBq12Mhnw2xd+zosfPzmlUq9jXgs602VDPvoeXmKdoBFBj
+         NbdJyxGl2bZJCbEUFL0lITcdXelj96bHftBs3uTJxCUByPgju7HezzVSORe6BvwQ9Njc
+         ApvMAEjSS44Iw3Ml/ypywmmyvi1lYSCppMFclKB3FdXpPJRVq7vHnXCD+bZnGQLzwSMC
+         BN3bBaPgEAfDQpYVe5vzKfV70qWUIMUpc7b5Ud2GvGAJfO9gO5m/EDiTuujMPws9+0pw
+         Bk9g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703060888; x=1703665688;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Pnge+1KVjVw+sI86vmpy7qUzgDU254VIm7qUPhyPlKQ=;
-        b=Sf7Vn1vt9FaY8YcD4sJUVRNbBqO6NP0ilc7LGLeu/606xMUoLob+b3Lbm11MJDt9No
-         9Olsgs7eugiBYxvl13haUiZI8xNL3O82r0ePew0Iryf3qM7+si/kBWO0+jL6fbspZnNt
-         qxhFpgPDrJCs21cz0/DskrnP88AokDWSzvFh8c4I6AG/5anU9rIyZYmrI5Ar/E35dZjF
-         eHlZeac5tKUFwqVKhMo21cmyOKlluo3rIcvqVSmsAPYIejDdoAMoXKQFOgzkdsgCqTsK
-         W8pMLoYTEeE+lxhtPbSMtskFPlAgW5vuD2XjxKMzOcSwYm+Bd3BAbhWrZVPPkhtUNVVh
-         LuLg==
-X-Gm-Message-State: AOJu0YyjG9GCoomhw62WB98J0qklb0Sqsc3NUAPLkK7OoTYGCE6uOw/o
-	sUsMMYSOBYOKF5TolRjq+bc3+A==
-X-Google-Smtp-Source: AGHT+IE36Cv9THHqW9iFTSNZBi0qnVFrcNILBTSuYuHbpyaKyFhPLiBh0wr2wnk+hxXBFGH2QuTEbg==
-X-Received: by 2002:a17:906:c784:b0:a23:3621:a542 with SMTP id cw4-20020a170906c78400b00a233621a542mr3111987ejb.108.1703060887793;
-        Wed, 20 Dec 2023 00:28:07 -0800 (PST)
-Received: from stroh80.sec.9e.network (ip-078-094-000-051.um19.pools.vodafone-ip.de. [78.94.0.51])
-        by smtp.gmail.com with ESMTPSA id s20-20020a170906bc5400b00a26965e4caesm334778ejv.43.2023.12.20.00.28.06
+        d=1e100.net; s=20230601; t=1703061025; x=1703665825;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=1Hp6hDzkalXVHzwngj1E6hzkyPfyrhHPSKm/09FW//U=;
+        b=vhL7dyBGYtsxQS6GkAFhN6K/8v/2ghCektnpIlrmueaOjFP9Y9T/wbHVZe6p/axNpY
+         NxvCUGn5U1IMQ+X2b3JOXE26pfFQKwPCS+NlCyU8G7z2Om3nnS5LMYPh6mIXoYLAdgeN
+         W2uP2TxsYsYRgetVfiE+bvLrmZhyPYe8wFlG9k3SRA0T/Dr7QTcPmehnRdFNp8creuim
+         mV9Y80B1DDP9Fxf9dRl7PmEIpL4n+lzeBBOC12kS+vSaOnt64L97n5GZWro7TtO0HRQ+
+         Lu18TsroTdtN7k9Hq+jm6JzMxMCkikGpXfIQr6euhkcRr53NwFaUVjvyNavPirGEqqhB
+         4m4w==
+X-Gm-Message-State: AOJu0YwMQEbg+G6HhJAuGAAGG01EoPVDfM/p+hyXJLgKSKQisX9pPSzq
+	Fm72zexUB3KKaDr7xOba9mrE
+X-Google-Smtp-Source: AGHT+IFNevoZVeM1/edc6wy5TXyKSe8NyJmPi6C99OU7tYcOeZmMpqFAymznJYajCZJ9JJkwWkRivA==
+X-Received: by 2002:ad4:5aac:0:b0:67f:1ba0:5be8 with SMTP id u12-20020ad45aac000000b0067f1ba05be8mr4253954qvg.55.1703061025183;
+        Wed, 20 Dec 2023 00:30:25 -0800 (PST)
+Received: from thinkpad ([117.217.177.154])
+        by smtp.gmail.com with ESMTPSA id p12-20020ad45f4c000000b0067f19dce377sm4759432qvg.30.2023.12.20.00.30.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 20 Dec 2023 00:28:07 -0800 (PST)
-From: Naresh Solanki <naresh.solanki@9elements.com>
-To: Peter Rosin <peda@axentia.se>,
-	Andi Shyti <andi.shyti@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: Patrick Rudolph <patrick.rudolph@9elements.com>,
-	Naresh Solanki <naresh.solanki@9elements.com>,
-	Rob Herring <robh@kernel.org>,
-	linux-i2c@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [RESEND PATCH v5 1/2] dt-bindings: i2c: pca954x: Add custom properties for MAX7357
-Date: Wed, 20 Dec 2023 13:58:01 +0530
-Message-ID: <20231220082803.345153-1-naresh.solanki@9elements.com>
-X-Mailer: git-send-email 2.41.0
+        Wed, 20 Dec 2023 00:30:24 -0800 (PST)
+Date: Wed, 20 Dec 2023 14:00:14 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc: andersson@kernel.org, vkoul@kernel.org, sboyd@kernel.org,
+	mturquette@baylibre.com, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, quic_cang@quicinc.com
+Subject: Re: [PATCH v2 14/16] arm64: dts: qcom: sc8280xp: Fix UFS PHY clocks
+Message-ID: <20231220083014.GB3544@thinkpad>
+References: <20231218120712.16438-1-manivannan.sadhasivam@linaro.org>
+ <20231218120712.16438-15-manivannan.sadhasivam@linaro.org>
+ <e905c463-6f89-4939-981a-7a360ed31669@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <e905c463-6f89-4939-981a-7a360ed31669@linaro.org>
 
-From: Patrick Rudolph <patrick.rudolph@9elements.com>
+On Wed, Dec 20, 2023 at 01:35:27AM +0100, Konrad Dybcio wrote:
+> On 18.12.2023 13:07, Manivannan Sadhasivam wrote:
+> > QMP PHY used in SC8280XP requires 3 clocks:
+> > 
+> > * ref - 19.2MHz reference clock from RPMh
+> > * ref_aux - Auxiliary reference clock from GCC
+> > * qref - QREF clock from GCC
+> > 
+> > Fixes: 152d1faf1e2f ("arm64: dts: qcom: add SC8280XP platform")
+> > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> > ---
+> >  arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 18 ++++++++++++------
+> >  1 file changed, 12 insertions(+), 6 deletions(-)
+> > 
+> > diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> > index cad59af7ccef..37344abbe8bf 100644
+> > --- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> > @@ -2256,9 +2256,12 @@ ufs_mem_phy: phy@1d87000 {
+> >  			compatible = "qcom,sc8280xp-qmp-ufs-phy";
+> >  			reg = <0 0x01d87000 0 0x1000>;
+> >  
+> > -			clocks = <&gcc GCC_UFS_CARD_CLKREF_CLK>,
+> > -				 <&gcc GCC_UFS_PHY_PHY_AUX_CLK>;
+> > -			clock-names = "ref", "ref_aux";
+> > +			clocks = <&rpmhcc RPMH_CXO_CLK>,
+> > +				 <&gcc GCC_UFS_PHY_PHY_AUX_CLK>,
+> > +				 <&gcc GCC_UFS_CARD_CLKREF_CLK>;
+> GCC_UFS_REF_CLKREF_CLK
 
-Maxim Max7357 has a configuration register to enable additional
-features. These features aren't enabled by default & its up to
-board designer to enable the same as it may have unexpected side effects.
+I'm not sure about this CLK. So I kept it as it is until I verify it.
 
-These should be validated for proper functioning & detection of devices
-in secondary bus as sometimes it can cause secondary bus being disabled.
+- Mani
 
-Add booleans for:
- - maxim,isolate-stuck-channel
- - maxim,send-flush-out-sequence
- - maxim,preconnection-wiggle-test-enable
+> 
+> ?
+> 
+> Konrad
 
-Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
-Signed-off-by: Naresh Solanki <naresh.solanki@9elements.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
-Changes in V4:
-- Drop max7358.
-Changes in V3:
-- Update commit message
-Changes in V2:
-- Update properties.
----
- .../bindings/i2c/i2c-mux-pca954x.yaml         | 30 +++++++++++++++++++
- 1 file changed, 30 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml b/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
-index 2d7bb998b0e9..9aa0585200c9 100644
---- a/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
-+++ b/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
-@@ -71,6 +71,23 @@ properties:
-     description: A voltage regulator supplying power to the chip. On PCA9846
-       the regulator supplies power to VDD2 (core logic) and optionally to VDD1.
- 
-+  maxim,isolate-stuck-channel:
-+    type: boolean
-+    description: Allows to use non faulty channels while a stuck channel is
-+      isolated from the upstream bus. If not set all channels are isolated from
-+      the upstream bus until the fault is cleared.
-+
-+  maxim,send-flush-out-sequence:
-+    type: boolean
-+    description: Send a flush-out sequence to stuck auxiliary buses
-+      automatically after a stuck channel is being detected.
-+
-+  maxim,preconnection-wiggle-test-enable:
-+    type: boolean
-+    description: Send a STOP condition to the auxiliary buses when the switch
-+      register activates a channel to detect a stuck high fault. On fault the
-+      channel is isolated from the upstream bus.
-+
- required:
-   - compatible
-   - reg
-@@ -95,6 +112,19 @@ allOf:
-         "#interrupt-cells": false
-         interrupt-controller: false
- 
-+  - if:
-+      not:
-+        properties:
-+          compatible:
-+            contains:
-+              enum:
-+                - maxim,max7357
-+    then:
-+      properties:
-+        maxim,isolate-stuck-channel: false
-+        maxim,send-flush-out-sequence: false
-+        maxim,preconnection-wiggle-test-enable: false
-+
- unevaluatedProperties: false
- 
- examples:
-
-base-commit: 76998e5bcdf155b36c7066808a0a65b2ee13cb2a
 -- 
-2.41.0
-
+மணிவண்ணன் சதாசிவம்
 
