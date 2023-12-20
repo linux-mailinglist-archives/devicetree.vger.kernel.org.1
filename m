@@ -1,118 +1,129 @@
-Return-Path: <devicetree+bounces-27298-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27299-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1C43819D84
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 12:03:03 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A1722819D97
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 12:04:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F40B11C22983
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 11:03:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D2CDD1C25C91
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 11:04:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 545D420DDE;
-	Wed, 20 Dec 2023 11:02:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DA2320DE6;
+	Wed, 20 Dec 2023 11:03:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="ODu4dDxB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nwvn1CBD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECBF820DCE;
-	Wed, 20 Dec 2023 11:02:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1703070155;
-	bh=EGB6IunSYKe5necECFgzR0TUvJSKdb7pFA99X6tZ+O8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ODu4dDxBiEpJ7o3medRtHagTfn2WjgaI9rYdqVP0Pc0DNtcC0d0UMlVxHWQaHYv4F
-	 quBhj4n9zoANOkcCBv3EaDZ2G5sEVqhr6jdKy1W0ztHSq7aJdd92N6kjzs5LWP9kjv
-	 F/Dioy2NMq9MfoipYpGFLyZLSZv+amtX9xDtQz3cr0rKW6Q39/ez5Ty5DdP9cYkXhM
-	 gBzs0C442XCm+RDiI7KK4t2Voph+1M5Bc5N0BhV/hif/W/aE7PNCqNbR8dTaks+1yd
-	 wdYR1FeostmeZd1D6KRDQmpX5qRl2bugim4nJbpdb0UmfxOoeUFL5Y+Gc4xEZZn/YQ
-	 EzFRrwuzLLaXQ==
-Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id A55A43781FC9;
-	Wed, 20 Dec 2023 11:02:34 +0000 (UTC)
-Message-ID: <81c4789d-e7b3-46c4-876c-954e8db9a7e2@collabora.com>
-Date: Wed, 20 Dec 2023 12:02:34 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16B69224E9;
+	Wed, 20 Dec 2023 11:03:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EE109C433CD;
+	Wed, 20 Dec 2023 11:03:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1703070186;
+	bh=GrMriv7ivnlP9h7Q18r2uy1Z2grWFasuxR26KwYb0Rs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=nwvn1CBDR+i3BPjmWN8LynrNe7VQW1YBIDFsOxKIBbznBF5Mpp+2lil0a2bNqfODM
+	 aLhiyR8JJne58blG9yQCdJaoB1JG0R1HEa5co6psefejF/iqfDqpQbugByrFd5Q3AW
+	 K39jhol9fvboYfpGEsIsunq5jeWz7r/7XLy17Rwn7iv3ncvtr5ZOJjVSLYLDqZyvfC
+	 p3d6IIKkdnaKAl8r7WQ6LITy9zKiHoolzTZZ8j7t2HZFhCn9npJXw3sghmqyCrouon
+	 7eU6yyDRYG+26QZicjNPSMQQUxyVS1fRCiiHsIcrlKMvH5j7pPKVfcBiGI5LceQlSq
+	 /Tn59zc0nukwg==
+Date: Wed, 20 Dec 2023 12:03:00 +0100
+From: "wsa@kernel.org" <wsa@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Andi Shyti <andi.shyti@kernel.org>,
+	Chris Packham <Chris.Packham@alliedtelesis.co.nz>,
+	"robh+dt@kernel.org" <robh+dt@kernel.org>,
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"gregory.clement@bootlin.com" <gregory.clement@bootlin.com>,
+	"linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v6 1/2] dt-bindings: i2c: add bus-reset-gpios property
+Message-ID: <ZYLJ5EMKK1jhSclQ@shikoro>
+Mail-Followup-To: "wsa@kernel.org" <wsa@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Andi Shyti <andi.shyti@kernel.org>,
+	Chris Packham <Chris.Packham@alliedtelesis.co.nz>,
+	"robh+dt@kernel.org" <robh+dt@kernel.org>,
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"gregory.clement@bootlin.com" <gregory.clement@bootlin.com>,
+	"linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20231115035753.925534-1-chris.packham@alliedtelesis.co.nz>
+ <20231115035753.925534-2-chris.packham@alliedtelesis.co.nz>
+ <f24b9b2d-aeb1-47f7-bf21-4383fdcf94aa@linaro.org>
+ <5a52b0c9-8858-4f55-8dd7-9269c29c10a7@alliedtelesis.co.nz>
+ <ZYHMvZ3plIQ0zXWa@shikoro>
+ <601d07b5-264d-4322-b92e-63d58b3d69fa@alliedtelesis.co.nz>
+ <ZYICEczlao+pg8kd@shikoro>
+ <20231219232545.ksrxgvl7epeewga2@zenone.zhora.eu>
+ <e80a06aa-bb44-4993-8e67-dbc910a409ab@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/3] arm64: dts: Add node for chip info driver
-Content-Language: en-US
-To: William-tw Lin <william-tw.lin@mediatek.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>,
- Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-References: <20231220103901.22180-1-william-tw.lin@mediatek.com>
- <20231220103901.22180-2-william-tw.lin@mediatek.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20231220103901.22180-2-william-tw.lin@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-
-Il 20/12/23 11:38, William-tw Lin ha scritto:
-> Add dts node for socinfo retrieval for the following projects:
-> MT8173, MT8183, MT8186, MT8192, MT8195
-> 
-
-arm64: dts: mediatek: Add socinfo efuses to MT8173/83/96/92/95 SoCs
-
-Add efuse nodes for socinfo retrieval for MT8173, MT8183, MT8186,
-MT8192 and MT8195.
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="WHFDagMOY8iIgeIJ"
+Content-Disposition: inline
+In-Reply-To: <e80a06aa-bb44-4993-8e67-dbc910a409ab@linaro.org>
 
 
+--WHFDagMOY8iIgeIJ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-...because you're not adding a chipinfo node, but efuse nodes :-)
+
+> >>> I personally would like to see it accepted but it seems there are=20
+> >>> objections to this approach. I've yet to come up with anything better=
+ to=20
+> >>> offer as an alternative.
+> >>
+> >> I see. Thanks for the heads up!
+> >=20
+> > I'm also inclined to have this merged. A real fix might take
+> > time.
+>=20
+> NAK
+>=20
+> If you intend to merge it, then please carry:
+
+No worries. If this is "abusing" DT, then it is not going to be merged
+by me. I am sorry for Chris, but sometimes simple problems create quite
+some fuzz because Linux hardware abstractions has not foreseen certain
+use cases. Or the APIs dealing with them didn't forsee that. We have
+been there a lot of times :/
 
 
-> Signed-off-by: William-tw Lin <william-tw.lin@mediatek.com>
-> ---
->   arch/arm64/boot/dts/mediatek/mt8173.dtsi | 9 +++++++++
->   arch/arm64/boot/dts/mediatek/mt8183.dtsi | 9 +++++++++
->   arch/arm64/boot/dts/mediatek/mt8186.dtsi | 4 ++++
->   arch/arm64/boot/dts/mediatek/mt8192.dtsi | 8 ++++++++
->   arch/arm64/boot/dts/mediatek/mt8195.dtsi | 3 +++
->   5 files changed, 33 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8173.dtsi b/arch/arm64/boot/dts/mediatek/mt8173.dtsi
-> index c47d7d900f28..06916e60679a 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8173.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8173.dtsi
-> @@ -590,6 +590,15 @@
->   			reg = <0 0x10206000 0 0x1000>;
->   			#address-cells = <1>;
->   			#size-cells = <1>;
-> +
-> +			socinfo_data1: socinfo-data1@40 {
+--WHFDagMOY8iIgeIJ
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Also, you don't need the phandles as those nodes will never be modified from
-board specific devicetree, nor assigned to any devicetree node.
+-----BEGIN PGP SIGNATURE-----
 
-This means that you can go with just
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmWCyeEACgkQFA3kzBSg
+KbYtUBAAhgwr4srMDqCAfVg3lItT80XUcPPuD1wSb+62T/SLusHGQAlIh+qwQ02e
+K4+9VWDpZGmlHh00Zsutfu9fcbuRlO3ICI61+7sVp0IoYGJgaCr/t9Zaf59cbIol
+tpLwrZnp1JOu3MYnZa6zmitBhYnqyAzyME4//J4Y8ol7jkWMPIZ4/JwYpQaz3dSL
+jrYcXGBIrZVUAtS9ZGJShExz3tnVmg69cc05noH18rkUUhPCKeqgQhpNbKlwu/Cq
+UqIzYa4MRlY/JXxJcCa0sWtvKOJWxhF1UI1kn53v60znM+Ku+n8uvciX787voveW
+zIq22dNIv1iiA4SX3O8/Ncnvyrk+K2JPFBcPMy/XKN5IWtaWQSZsViZ/Y8Zgtg09
+C4Z/shQwcjzSd2aJhVNdXnR3fiMdiLNivSkHiBji0PM9KWTcG4bXRSGRM35h95v+
+ii6+U13AOp5Thix8oSvmaYv1sH3ZTmkLIh8YHEC9uTVylgIpEoZksOoZn7F+JLrA
+LAF6w4e1mbowBwhM1sS8pQJvjOIQDsO80Ygl1feo/+fA//nZYcQCTCBNDO0mebVw
+CGoOTlAj4IBUzLi524C3ErLAawO+mrkpqOsc2mmtkkNcWOzaCJmtROLh8AL+ugVa
+ll43a7YU4ikQYjfZH3LDE+bzCiaxKrhwp1fRm57D2jn3ISZRslM=
+=Xirm
+-----END PGP SIGNATURE-----
 
-			socinfo-data1@40 {
-				reg ...
-			}
-
-same for data2 and for all SoCs.
-
-Apart from that, looks good to me.
-
-Cheers,
-Angelo
+--WHFDagMOY8iIgeIJ--
 
