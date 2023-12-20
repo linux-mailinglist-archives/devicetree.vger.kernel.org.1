@@ -1,124 +1,157 @@
-Return-Path: <devicetree+bounces-27309-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27313-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26F89819E4D
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 12:42:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 20CC4819E67
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 12:46:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D6859285374
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 11:42:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C4B31286120
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 11:46:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 761FB2137D;
-	Wed, 20 Dec 2023 11:42:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D75A92137C;
+	Wed, 20 Dec 2023 11:46:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="e6PfQ08l"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="I6+tC5/e"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com [209.85.128.180])
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BDD9219F0
-	for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 11:42:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3426B219EF
+	for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 11:45:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-5e734d6cbe4so24183637b3.3
-        for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 03:42:38 -0800 (PST)
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-40d13e4f7abso36190995e9.2
+        for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 03:45:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1703072558; x=1703677358; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9FLRBJiNc6al0xeoGFcYf16xBZK82GduG3jNIF84OAQ=;
-        b=e6PfQ08lwOZZ7MX7LkhGnQFyUDXjnsM2BvakPJ70/70UltcOnwAyD8DdtGuYwX+d3D
-         9g3fqIE9uH+Li5zkJw5D3VuJQn08FkDe+iyRk9LOnU/vFAnLEn+a6n4PDbD2e7vceFUS
-         87rqldDxqeeh22XAiWpEF8HKoZ/MWo09H1uh6pGIaXas2uPwvlCPe/M3PrE/XmJ1iC0h
-         fadTU49A5Dei1r6FjT6iv2mYsaM8hLna/mxuID24cJ1L9ue0pWRs3gSxfGgSVyIgYtzY
-         P6M2H4y9Qm0XeB4XrTykcN4Z6Mc8nH49W+ONO2OC1qj2MsVORprClaEFpIYH50jcqmJg
-         jQ8Q==
+        d=linaro.org; s=google; t=1703072757; x=1703677557; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=sPbl5BMED+7s8RC2uF4F9H7+j4irEF8Q+3UaXxc+mEs=;
+        b=I6+tC5/eaV8n2gL7y4EmQBJE8mdzu73I0ywcwVKbvzpf2QEy8ItWkFPPxpZE05U3ZQ
+         eLzlI8CCu7RLy5R8CnhhMfRFkQglNRxiLoVdp3QtktmvYL+O9yqO/uJuDxVsH/jFC+Pe
+         Tsct6c7s/VJjFSk97fz6mPacVBeAx1yIigMfKLTZ3lNB3zCLnhxjG5/lgVL3r0LsKoXH
+         51JhSLQJFtFeccYhgL3kWPXYCnEPHkrc0lhdFL9LRUPBMbjrgGd2edJICyQ73Gp/0PsV
+         6KuTKIYKXAjXWcBos7mXn1jlycGIZjKSQxIpeqML39rkGYotFG5yBSTLA6b4dRugLJ9J
+         wMpw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703072558; x=1703677358;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=9FLRBJiNc6al0xeoGFcYf16xBZK82GduG3jNIF84OAQ=;
-        b=RzVsCRvIn+LX8rOkUV5IJt7nelm2JLyBdKi19VQx1c41k1j+DAysItrKEeZu5FVaCV
-         mWDbqxBcIWFFORPX5sQjb84OZzFzWefuUEBjUXKBlesHPvPmdjniNcikXvpvuiXGw8Qn
-         YT3E3aaidj4xBE3qveJU4qK/8Tx2A6O91D+wFQsVfj89cQBRLp/amThRjw62JtnRPt99
-         CuNlB4P4qf1vz0KkYSvVcl275foKzY0c0JSj01cwY67keCPhGCLMokG4f1iiwBiz68CX
-         5dM3B/BzXaoSYwnlhqc99quzjVbLjCfUsXjoFPqIVJfbCs6YfOXQruxOZ58o1XEuxeJI
-         Blxw==
-X-Gm-Message-State: AOJu0Ywrc7JlZC7YVk9hgNCPHOpkws+tqNXGbSY81hgPkaugp9uT/5x/
-	DB+juMixKwA9pxc1Pq9SohtYrkTtQi5EPpdP93Bhkw==
-X-Google-Smtp-Source: AGHT+IH3m7OJl+wThf8u3VljPqCG95kkRpc/xctYLP3ucKD0Kbqc3CXmlXTyhUH1P63lrHUB2J1XyLYIBc+4z1ycFC8=
-X-Received: by 2002:a0d:c704:0:b0:5d7:1940:53c4 with SMTP id
- j4-20020a0dc704000000b005d7194053c4mr16842637ywd.60.1703072558142; Wed, 20
- Dec 2023 03:42:38 -0800 (PST)
+        d=1e100.net; s=20230601; t=1703072757; x=1703677557;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=sPbl5BMED+7s8RC2uF4F9H7+j4irEF8Q+3UaXxc+mEs=;
+        b=uf56d7rFTj/MLtZmGpEFcDOxilaAYJJygJGFWsFUo3hFPytdfuU2aPFv8b1GQbt5za
+         /drEXzlj/ztoTnzArrp/brPVX7Ah31G8J2Au6v4qZt/8JngRmd6lKj4Bi2XQq65rOSwa
+         F8tuYj7baA41lRlbiSwvB6GWspf95G4m2CvZUuiwqETeqYtuTPDRiCcsLPgyRU/FDn4F
+         xX3djWIdEtUuEZSLDm/PNV+Gxu22Pzt0+azSketmgEIZM7E9ol7wJCe2e6Fn3vi2VoFL
+         i+9ofEoBMhw196D0YgDg8wwVJ+QOuHnjyC2wGXD0c0fAPt1zr06paRwb4aV3BYqKyWYy
+         v7WA==
+X-Gm-Message-State: AOJu0YygMq91DZK/vJIHn+vSsJMsDmzTFbE5ti4NS3wGOsVHYduMohAE
+	/Y+1NLUlfyFVYO1AZmiHw69r2A==
+X-Google-Smtp-Source: AGHT+IHNQQCAum5eX/ocS3SPvd3tpfqlT/O+smyurz9q41AMKAHIjy7h6dz+L778n4AZWZYeJn2esA==
+X-Received: by 2002:a05:600c:1715:b0:40c:2822:958f with SMTP id c21-20020a05600c171500b0040c2822958fmr10878469wmn.73.1703072757442;
+        Wed, 20 Dec 2023 03:45:57 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.218.27])
+        by smtp.gmail.com with ESMTPSA id i15-20020a05600c354f00b0040d378510adsm1804164wmq.1.2023.12.20.03.45.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 20 Dec 2023 03:45:56 -0800 (PST)
+Message-ID: <d7ae374a-7269-4992-ad44-18b2516cad42@linaro.org>
+Date: Wed, 20 Dec 2023 12:45:55 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231215-pinctrl-scmi-v1-0-0fe35e4611f7@nxp.com> <20231215-pinctrl-scmi-v1-4-0fe35e4611f7@nxp.com>
-In-Reply-To: <20231215-pinctrl-scmi-v1-4-0fe35e4611f7@nxp.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Wed, 20 Dec 2023 12:42:27 +0100
-Message-ID: <CACRpkdbpcwADJnZz1Q0KQ-gJv8FvnvJS=4PpMF+Np4rNCN3x+w@mail.gmail.com>
-Subject: Re: [PATCH 4/7] dt-bindings: firmware: arm,scmi: support pinctrl protocol
-To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc: Sudeep Holla <sudeep.holla@arm.com>, Cristian Marussi <cristian.marussi@arm.com>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Oleksii Moisieiev <oleksii_moisieiev@epam.com>, Shawn Guo <shawnguo@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	Peng Fan <peng.fan@nxp.com>, Takahiro Akashi <takahiro.akashi@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] arm64: dts: qcom: qcm6490-idp: Enable various
+ remoteprocs
+Content-Language: en-US
+To: Komal Bajaj <quic_kbajaj@quicinc.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20231220114225.26567-1-quic_kbajaj@quicinc.com>
+ <20231220114225.26567-2-quic_kbajaj@quicinc.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20231220114225.26567-2-quic_kbajaj@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Peng,
+On 20/12/2023 12:42, Komal Bajaj wrote:
+> Enable the ADSP, CDSP, MPSS and WPSS that are found on the SoC.
+> 
+> Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
+> ---
+>  arch/arm64/boot/dts/qcom/qcm6490-idp.dts | 20 ++++++++++++++++++++
+>  1 file changed, 20 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
+> index 03e97e27d16d..ad78efa9197d 100644
+> --- a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
+> +++ b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
+> @@ -419,6 +419,26 @@ &qupv3_id_0 {
+>  	status = "okay";
+>  };
+> 
+> +&remoteproc_adsp {
+> +	firmware-name = "qcom/qcm6490/adsp.mdt";
 
-On Fri, Dec 15, 2023 at 12:52=E2=80=AFPM Peng Fan (OSS) <peng.fan@oss.nxp.c=
-om> wrote:
+Why MDT not MBN?
 
-In this example, as it is not intended to reflect any specific hardware,
-use the latest canonical naming:
+I don't see these files in linux-firmware and your cover letter did not
+explain anything around their submission. What's the status on that part?
 
-> +
-> +            scmi_pinctrl: protocol@19 {
-> +                reg =3D <0x19>;
-> +                #pinctrl-cells =3D <0>;
-> +
-> +                i2c2-pins {
-> +                    groups =3D "i2c2_a", "i2c2_b";
+Best regards,
+Krzysztof
 
-groups =3D "g_i2c2_a", "g_i2c2_b";
-
-> +                    function =3D "i2c2";
-
-function =3D "f_i2c2";
-
-> +                };
-> +
-> +                mdio-pins {
-> +                    groups =3D "avb_mdio";
-
-groups =3D "g_avb_mdio";
-
-> +                    drive-strength =3D <24>;
-> +                };
-> +
-> +                keys_pins: keys-pins {
-> +                    pins =3D "GP_5_17", "GP_5_20", "GP_5_22", "GP_2_1";
-
-pins =3D "gpio_5_17", "gpio_5_20", "gpio_5_22", "gpio_2_1";
-
-These names look odd to me, like these are actually groups
-with pins 5..17 etc. Should it be groups =3D "g_gpio_5_17" etc?
-
-Yours,
-Linus Walleij
 
