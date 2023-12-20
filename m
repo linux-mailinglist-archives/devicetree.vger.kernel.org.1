@@ -1,74 +1,83 @@
-Return-Path: <devicetree+bounces-27227-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27228-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6634E819B1F
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 10:09:25 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 678CA819B28
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 10:13:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 295C3282999
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 09:09:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 99BF61C25840
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 09:13:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 959E51D6BA;
-	Wed, 20 Dec 2023 09:09:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 737741D53D;
+	Wed, 20 Dec 2023 09:12:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="DOt9jI3s"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bmailout3.hostsharing.net (bmailout3.hostsharing.net [176.9.242.62])
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 011431D6B1;
-	Wed, 20 Dec 2023 09:09:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=wunner.de
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=h08.hostsharing.net
-Received: from h08.hostsharing.net (h08.hostsharing.net [83.223.95.28])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256
-	 client-signature RSA-PSS (4096 bits) client-digest SHA256)
-	(Client CN "*.hostsharing.net", Issuer "RapidSSL TLS RSA CA G1" (verified OK))
-	by bmailout3.hostsharing.net (Postfix) with ESMTPS id 2FFDF10029C09;
-	Wed, 20 Dec 2023 10:09:11 +0100 (CET)
-Received: by h08.hostsharing.net (Postfix, from userid 100393)
-	id F3DB527C92; Wed, 20 Dec 2023 10:09:10 +0100 (CET)
-Date: Wed, 20 Dec 2023 10:09:10 +0100
-From: Lukas Wunner <lukas@wunner.de>
-To: SZ Lin <sz.lin@moxa.com>
-Cc: Wes Huang <wes.huang@moxa.com>, Fero JD Zhou <FeroJD.Zhou@moxa.com>,
-	=?iso-8859-1?Q?Beno=EEt?= Cousson <bcousson@baylibre.com>,
-	Tony Lindgren <tony@atomide.com>, Rob Herring <robh+dt@kernel.org>,
-	Mark Rutland <mark.rutland@arm.com>, linux-omap@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/3] ARM: dts: am335x: add common file for UC-2100
- series
-Message-ID: <20231220090910.GA32182@wunner.de>
-References: <20180928104718.30661-1-sz.lin@moxa.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 853D01DA2A
+	for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 09:12:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id A918BFF80F;
+	Wed, 20 Dec 2023 09:12:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1703063565;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=r6z4KODvtzTr61IMxvmajoJCqwn7pJbqrJvZIcULTcQ=;
+	b=DOt9jI3sn+v5eF81qoZ4DhcxnCOr/z6YU0EDa8w4iUQXfhnqZy1GRZb1/Qv0ISOx4fyItx
+	nGwQeBB03czD4nxHeqsqEa2tDBsSnTHCF9Y04egpWc5t+nFdJsK9b43cCM0YQSA18IN7rN
+	z0hQWi8ofPmdmZyeE0nzy1X8Six84IRZTVsFFxTN1J1QE6PgPpLKaqmbKKt/V8cOg/NTSv
+	yOnmuebvYlzml+FZZ4n07LIcTx2pqDcU0QIoXeqiXwkoCpvGFvkINf9WM4GxJd7XDdrVvV
+	xKh7gmOukLLJ15BKj9AxTXJT2EsVvUGd/UOeX/zAuhA7TLvwHwwdRzKslb4FLw==
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+To: Stefan Wahren <wahrenst@gmx.net>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Richard Weinberger <richard@nod.at>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Han Xu <han.xu@nxp.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Marek Vasut <marex@denx.de>,
+	=?utf-8?q?S=C3=A9bastien_Szymanski?= <sebastien.szymanski@armadeus.com>
+Cc: Pengutronix Kernel Team <kernel@pengutronix.de>,
+	linux-imx@nxp.com,
+	linux-mtd@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 1/2] dt-bindings: mtd: partitions: u-boot: Fix typo
+Date: Wed, 20 Dec 2023 10:12:44 +0100
+Message-Id: <20231220091244.655381-1-miquel.raynal@bootlin.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20231218130656.9020-1-wahrenst@gmx.net>
+References: 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20180928104718.30661-1-sz.lin@moxa.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+X-linux-mtd-patch-notification: thanks
+X-linux-mtd-patch-commit: b'72da6edd3281650818ee9094cc40a7157b0ae6dc'
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: miquel.raynal@bootlin.com
 
-On Fri, Sep 28, 2018 at 06:47:16PM +0800, SZ Lin wrote:
-> The UC-2100 series consists many boards with different peripheral
-> devices and wireless modules, hence we fetch common items and
-> create a common dtsi file to increase reusability. All boards in
-> UC-2100 series will include this common dtsi file.
-[...]
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/am335x-moxa-uc-2100-common.dtsi
-[...]
-> +	tpm_spi_tis@0 {
-> +		compatible = "tcg,tpm_tis-spi";
+On Mon, 2023-12-18 at 13:06:55 UTC, Stefan Wahren wrote:
+> The initial description contained a typo.
+> 
+> Signed-off-by: Stefan Wahren <wahrenst@gmx.net>
 
-What's the chip used on this board?  Going forward, the DT schema for TPMs
-requires the exact chip name in addition to the generic "tcg,tpm_tis-spi".
+Applied to https://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git mtd/next, thanks.
 
-
-> +		reg = <0>;
-> +		spi-max-frequency = <500000>;
-> +	};
+Miquel
 
