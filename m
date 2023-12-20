@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-27194-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27195-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0152D8199E1
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 08:54:53 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9CD198199E3
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 08:55:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 837391F2483F
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 07:54:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B79281C2110E
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 07:55:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BD48168D1;
-	Wed, 20 Dec 2023 07:54:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86682168D1;
+	Wed, 20 Dec 2023 07:55:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JYt9cC1P"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="FfIc4sLS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5EA8168CF
-	for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 07:54:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E846D168C4
+	for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 07:55:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-40c3f68b69aso50342715e9.1
-        for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 23:54:37 -0800 (PST)
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-40c6ea99429so54883385e9.3
+        for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 23:55:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1703058876; x=1703663676; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1703058934; x=1703663734; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Y1Pc4PfllQQeY9OdiJjtHiW6epXY25VZjPdkXVpEClY=;
-        b=JYt9cC1PfYWX8pnQMgK1dRksYM9qb9sRFO2RnZhcGrNRfDRas4WPAIUXDuRvG6KIQ5
-         Y+Q4LSfPSiBkuq+st1HbF0yMeL3b82YOtJEPcoQdHDXczlDytiRzYiu2apJYHl1eyQnp
-         Lui6KwoG/QYu6n8Kkkr/m4h+OifIYsy0iCpYFprgLBaE0S82vYiU2nzDg6AiGwRMJKUm
-         BkxegUP2vh77dvXGo/CLA1d5TWWe1Q19q1Ouvtmhwtsd0K4/0fCYNBA3147PHcDMntV6
-         CIdMrWWzuXSPmJK0zqp02w0bOov5DuF2USQg+fkeu7/P6dHhpfaB04zB2sRHuJSOtoMn
-         l3Ig==
+        bh=ce2dpM1VRUHhl3xuhHKLBq3cpntYEywt+/rsMzSEmfc=;
+        b=FfIc4sLSKdDDuXBDm9E6yms0H/275a3exBKyKomFjkCEkaKtyUtntGFa4A9K7r0NMd
+         tEkGksibffqMQdIs8NI6AS1URXkihQeo6j366VOFtK0FiEPzZYqxgyOIWTT02KWGwUr0
+         FZJWCuIeR6aQThvwfeK5i9u35nfe3qWQo4Qmq62Qx5j52I5mL1GZugOWOOIbxVhmuPov
+         +ClQqfKrVPSkzc6ax1SU4rQ82qbETypexuOQWrbmrzR31pGhSD0cYOajhMs0gDAoSfq7
+         ol1hkNISnOwqa4J+nqJx+9DFxI3JiNWq1/LMG0HjiiGgcj6NqbdO+rVySJd/qI3bYe1/
+         vT/Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703058876; x=1703663676;
+        d=1e100.net; s=20230601; t=1703058934; x=1703663734;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Y1Pc4PfllQQeY9OdiJjtHiW6epXY25VZjPdkXVpEClY=;
-        b=QppYY72tymI1EnocrLqFFyHkKp8qZ7ADNtclxkSDZP5xieeUAllLwkzgMkQQ9aOIUZ
-         bR0fbwSUIM6GGAzcsfgTlK4Ei44ltH0LhE66BLqHvWLKWqh/k0gzFGQnMhGqP4/pGOHv
-         6R33RaThDUVp98rr12YRy7eObus1tn/ytNab03gFHOX6sQSASCPRZDWOZz/MW48PqNUw
-         3hq5T+gWkWPuvTQ1uO6GyeCs0gKLs43YQgQt/Ah4JR4vpVPzO+RmrB1NwmHFrpCj4h4b
-         +4kbiBw93NBCBxXkt80Mco49h1q5L5GPUgb5casacJPokz8DQ2cGqtU2DZ9xVFTf1TZ0
-         effg==
-X-Gm-Message-State: AOJu0YynQtmIiST6/UmtIEF5BSKGlaKMV/kygoDg/uuMevf4JbIH28SH
-	CkxN2XsAKSPN7Z68tIokY/pHrA==
-X-Google-Smtp-Source: AGHT+IEZZCJWGhBGdYXGuIZ2+tNUJ1O05fR8rXW5yb325sgsZeqsMB0rvRxiypSYL9eN5OYcZB6tyg==
-X-Received: by 2002:a05:600c:3ca2:b0:40c:50d5:f7a6 with SMTP id bg34-20020a05600c3ca200b0040c50d5f7a6mr9275108wmb.121.1703058876212;
-        Tue, 19 Dec 2023 23:54:36 -0800 (PST)
+        bh=ce2dpM1VRUHhl3xuhHKLBq3cpntYEywt+/rsMzSEmfc=;
+        b=BVGvUTTHvlgAB/sw2Mp2MwUWLfH9oe+ZxhTn3+y4r/jCgePQOcEC+FNCyxGEpiUMHd
+         c0AQgfEZunEJFF0tH17kgAno5VXoeicJumCWLyM7sZ7FZpSwx0YrQOPbVptve34NYq7X
+         8aF/+8sNGG7+TOqLmcEL47vtV4rkosgJlbysiIRgeB/AMLr/T4hcLtvRL6RI34kI9BJ5
+         yHQ84X7GTZMKk5uXg02SSvqBXGdm6QEdbMUgzTtxSd+jhjwf5xKFjfHi4+jncrens/Ai
+         ooLcvaqXAJnnYkaOYPvomQhZTLC3krHHaarrVA/GjPcfdYys0ToJnTlgiaLM4Xwbt8v1
+         0isA==
+X-Gm-Message-State: AOJu0YzQ+vsOCEiS+5xnYg4i671pGBimFq+pUFX6lbrQgdZmyUJxVPpg
+	Uuwcbq8YsV1pUsRvlU8rKibDYQ==
+X-Google-Smtp-Source: AGHT+IHKAzin55BX6A3IHi972HME4QzTQcZ1gKDRKdxrze1faxhnElWYthHEK1/tSatxG8u6lLPm9g==
+X-Received: by 2002:a05:600c:19ce:b0:40c:6cba:c13 with SMTP id u14-20020a05600c19ce00b0040c6cba0c13mr3240028wmq.32.1703058934233;
+        Tue, 19 Dec 2023 23:55:34 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id je17-20020a05600c1f9100b0040b4b2a15ebsm6239945wmb.28.2023.12.19.23.54.33
+        by smtp.gmail.com with ESMTPSA id je17-20020a05600c1f9100b0040b4b2a15ebsm6239945wmb.28.2023.12.19.23.55.32
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 19 Dec 2023 23:54:35 -0800 (PST)
-Message-ID: <7ac7db8e-f9b5-4394-af71-1a2b2548c485@linaro.org>
-Date: Wed, 20 Dec 2023 08:54:33 +0100
+        Tue, 19 Dec 2023 23:55:33 -0800 (PST)
+Message-ID: <1afdcd25-d001-4523-be0d-2bf2c9e1d7a6@linaro.org>
+Date: Wed, 20 Dec 2023 08:55:32 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,21 +66,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: firmware: xilinx: Fix versal-fpga node name
+Subject: Re: [PATCH] dt-bindings: soc: xilinx: Add support for K26 rev2 SOMs
 Content-Language: en-US
 To: Michal Simek <michal.simek@amd.com>, linux-kernel@vger.kernel.org,
  monstr@monstr.eu, michal.simek@xilinx.com, git@xilinx.com
-Cc: Conor Dooley <conor+dt@kernel.org>, Jassi Brar
- <jassisinghbrar@gmail.com>,
+Cc: Conor Dooley <conor+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Mark Brown <broonie@kernel.org>, Moritz Fischer <mdf@kernel.org>,
- Naman Trivedi Manojbhai <naman.trivedimanojbhai@amd.com>,
- Rob Herring <robh+dt@kernel.org>,
- Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>, Tom Rix <trix@redhat.com>,
- Wu Hao <hao.wu@intel.com>, Xu Yilun <yilun.xu@intel.com>,
- devicetree@vger.kernel.org, kishore Manne <nava.kishore.manne@amd.com>,
- linux-arm-kernel@lists.infradead.org, linux-fpga@vger.kernel.org
-References: <6779af2f9cc21c912f10cf310388d99b980800b2.1702996281.git.michal.simek@amd.com>
+ Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+References: <6673abb84e542c2841cece9336571f97b19882fe.1702995908.git.michal.simek@amd.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -126,32 +120,37 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <6779af2f9cc21c912f10cf310388d99b980800b2.1702996281.git.michal.simek@amd.com>
+In-Reply-To: <6673abb84e542c2841cece9336571f97b19882fe.1702995908.git.michal.simek@amd.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 19/12/2023 15:31, Michal Simek wrote:
-> Based on commit 83a368a3fc8a ("docs: dt-bindings: add DTS Coding Style
-> document") using underscore ('_') in node name is not recommended that's
-> why switch to dash ('-').
+On 19/12/2023 15:25, Michal Simek wrote:
+> Revision 2 is SW compatible with revision 1 but it is necessary to reflect
+> it in model and compatible properties which are parsed by user space.
+> Rev 2 has improved a power on boot reset and MIO34 shutdown glich
+> improvement done via an additional filter in the GreenPak chip.
 > 
 > Signed-off-by: Michal Simek <michal.simek@amd.com>
 > ---
 > 
->  .../bindings/firmware/xilinx/xlnx,zynqmp-firmware.yaml        | 4 ++--
->  Documentation/devicetree/bindings/fpga/xlnx,versal-fpga.yaml  | 2 +-
->  2 files changed, 3 insertions(+), 3 deletions(-)
+>  Documentation/devicetree/bindings/soc/xilinx/xilinx.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-firmware.yaml b/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-firmware.yaml
-> index 8e584857ddd4..3d578f98ae2c 100644
-> --- a/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-firmware.yaml
-> +++ b/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-firmware.yaml
-> @@ -41,7 +41,7 @@ properties:
->    "#power-domain-cells":
->      const: 1
+> diff --git a/Documentation/devicetree/bindings/soc/xilinx/xilinx.yaml b/Documentation/devicetree/bindings/soc/xilinx/xilinx.yaml
+> index d4c0fe1fe435..62617e1ea74f 100644
+> --- a/Documentation/devicetree/bindings/soc/xilinx/xilinx.yaml
+> +++ b/Documentation/devicetree/bindings/soc/xilinx/xilinx.yaml
+> @@ -118,6 +118,7 @@ properties:
 >  
+>        - description: Xilinx Kria SOMs
+>          items:
+> +          - const: xlnx,zynqmp-sm-k26-rev2
+>            - const: xlnx,zynqmp-sm-k26-rev1
+>            - const: xlnx,zynqmp-sm-k26-revB
+>            - const: xlnx,zynqmp-sm-k26-revA
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+You are changing existing list of compatibles, so all devices with
+"rev1" will fail the checks. Is it expected?
 
 Best regards,
 Krzysztof
