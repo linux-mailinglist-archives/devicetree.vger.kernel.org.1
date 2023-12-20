@@ -1,64 +1,46 @@
-Return-Path: <devicetree+bounces-27272-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27273-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46B31819CC2
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 11:29:43 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C543A819CC3
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 11:30:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EDD6F2855F3
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 10:29:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F3E8A1C21346
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 10:30:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88406200DC;
-	Wed, 20 Dec 2023 10:29:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7766F208D3;
+	Wed, 20 Dec 2023 10:30:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="aFIs2bso"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="RMqNigBv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE8E820B02
-	for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 10:29:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-33677fb38a3so862294f8f.0
-        for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 02:29:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1703068174; x=1703672974; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=v4rwLB+kXN5q0CC/jT9rfMkl23cOP2H+44syY5vBs5A=;
-        b=aFIs2bsoFJyHESLugJ2P3/3xp6qFFqqstsQGGzH2xXBMNhfjykol0DRc4hoZNKCiyG
-         iS3EZ3ay3oOxbT9hEwBwhFqDAxNEhx7L3FxhNWWTAFbTJ+YFh4mGOZCEx6ERXjBDiY1E
-         J603bSp6Z6zB7TFfQrzBOLWYKiaDpg8TXgeoQeSlVkDvXk7Tm1kNOv21puTo2xk5KEFk
-         +gt8Z7eVqUVbvLgb5fKH880XngzxzYxA3ixIEsEvT/keWtuZoEcKYW49OLkHeW+p6gdY
-         NyIpkA9biSqGkarMWIKfk6AZzobUkCeJGlULB45J8rCO7HX/5/SlA2OiZLl677lFiewK
-         MzDQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703068174; x=1703672974;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=v4rwLB+kXN5q0CC/jT9rfMkl23cOP2H+44syY5vBs5A=;
-        b=mOzla6sqcavuYwMsKTPPU1paAM3LKOTI9PPto7lEds/r0utOF9++PQiQXETU1g7NOV
-         TfyISIsBWWT5bvxCxkoa9uBdHbPY7I4xc0JmyF93osuNS6+JHThlzkOg89NU4ubkgVO+
-         aHpCyt0zcUp7glTZBnDizgJpmn+VF7cr63518vhZq7x4bgO+SnxtP4JrftIcaZ6AXmj3
-         TyCb11ZKUW0oPeMWgHGgLW7HDfUKa4SNirDB7GRMypkQx++2p7VJvqyKTkdB9gSFWtA+
-         MFmQq73BlIZhmHrq/frwlnr5tYPnTwHxfLPsxSLm2l+hm7EZ20oAC94OXgoxRWEOq+cH
-         Uhfw==
-X-Gm-Message-State: AOJu0YxcZWRjGar+WSUpsDkqPnvLd7TUNOkDi6AVyM17wB4ulLtvmN7t
-	BBz+8JgJLiF0+/5S7jStAL+ZxWh5pnI5UoKo+/A=
-X-Google-Smtp-Source: AGHT+IGCe/qLsEP05ubIPKkwycUpvxs7WinK3FMiAzA0PsKhXahfgf9qy0JppPim/gRxQemuKCzFlQ==
-X-Received: by 2002:a5d:63cc:0:b0:336:7357:acc5 with SMTP id c12-20020a5d63cc000000b003367357acc5mr1229235wrw.73.1703068173978;
-        Wed, 20 Dec 2023 02:29:33 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id e7-20020a5d5307000000b0033667c94839sm8004797wrv.61.2023.12.20.02.29.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 20 Dec 2023 02:29:33 -0800 (PST)
-Message-ID: <7309da41-93f5-4358-9630-a075da03f66b@linaro.org>
-Date: Wed, 20 Dec 2023 11:29:31 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0363208CC;
+	Wed, 20 Dec 2023 10:30:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1703068240;
+	bh=n/zmS7VaIkLVY/5N1cyUJFCFW5xVaPkF4+goSBWq9cM=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=RMqNigBv8VHDwSINqU0L6N899DFky+1/+lQq33I3OqX38HUalwuvuhDVXnwsqUQiI
+	 Q7skFkjLBCFruk/gyTDQrU1LufFQe8TgcFkhgTo+R5Y+rVyE5mTEJwxDxveZqJGEZw
+	 ravUH5zW4p220IFJ5QLx5mEV+3JAdfeMm4TsrEXfgP+gdjZjOnW1bOiDTiYXEgVzbC
+	 lgGNfdavd9YEMdhxRg+yYe0iB3o5xvq3gYcUkoFR9xXmOfGVllVzNCEfu2vrnyHaaI
+	 vL0Dxdn1QfK+tj0CtLoFxdeRwAPfKUClI7VHsPvklpEQ4lnG8PJAvAT2Y5fcb91itt
+	 sY6PK7uKV+DWA==
+Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 150E83781FC8;
+	Wed, 20 Dec 2023 10:30:39 +0000 (UTC)
+Message-ID: <d1767b1d-0b80-4ece-8a35-18eed52a3f6e@collabora.com>
+Date: Wed, 20 Dec 2023 11:30:38 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,173 +48,70 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 4/7] LoongArch: dts: DeviceTree for Loongson-2K0500
+Subject: Re: [PATCH v3 3/3] arm64: dts: mediatek: mt8195: Add 'rx-fifo-depth'
+ for cherry
 Content-Language: en-US
-To: Binbin Zhou <zhoubb.aaron@gmail.com>
-Cc: Binbin Zhou <zhoubinbin@loongson.cn>, Huacai Chen
- <chenhuacai@loongson.cn>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- Huacai Chen <chenhuacai@kernel.org>, Xuerui Wang <kernel@xen0n.name>,
- loongarch@lists.linux.dev, Jiaxun Yang <jiaxun.yang@flygoat.com>,
- Hongliang Wang <wanghongliang@loongson.cn>
-References: <cover.1702862778.git.zhoubinbin@loongson.cn>
- <303e56cb6e5f82623babe18b095069b330cd37da.1702862778.git.zhoubinbin@loongson.cn>
- <aa9cec3e-ee58-4d52-a8ec-d696e3ff70ca@linaro.org>
- <CAMpQs4+2kjNZMHu1+7MvDNFdCgY8bpF2kQTru-ZHSf8RceiP_A@mail.gmail.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <CAMpQs4+2kjNZMHu1+7MvDNFdCgY8bpF2kQTru-ZHSf8RceiP_A@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+To: Chunfeng Yun <chunfeng.yun@mediatek.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: Conor Dooley <conor+dt@kernel.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ Mathias Nyman <mathias.nyman@intel.com>, linux-usb@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Eddie Hung <eddie.hung@mediatek.com>, Macpaul Lin <macpaul.lin@mediatek.com>
+References: <20231220025842.7082-1-chunfeng.yun@mediatek.com>
+ <20231220025842.7082-3-chunfeng.yun@mediatek.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20231220025842.7082-3-chunfeng.yun@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On 20/12/2023 10:17, Binbin Zhou wrote:
-> On Tue, Dec 19, 2023 at 9:37 PM Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->>
->> On 18/12/2023 02:52, Binbin Zhou wrote:
->>> Add DeviceTree file for Loongson-2K0500 processor, which integrates one
->>> 64-bit dual emission superscalar LA264 processor core.
->>>
->>> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
->>> ---
->>>  arch/loongarch/boot/dts/Makefile              |   2 +
->>>  .../boot/dts/loongson-2k0500-ref.dts          |  89 ++++++
->>>  arch/loongarch/boot/dts/loongson-2k0500.dtsi  | 274 ++++++++++++++++++
->>>  3 files changed, 365 insertions(+)
->>>  create mode 100644 arch/loongarch/boot/dts/loongson-2k0500-ref.dts
->>>  create mode 100644 arch/loongarch/boot/dts/loongson-2k0500.dtsi
->>>
->>> diff --git a/arch/loongarch/boot/dts/Makefile b/arch/loongarch/boot/dts/Makefile
->>> index 1e24cdb5180a..aa0b21d73d4e 100644
->>> --- a/arch/loongarch/boot/dts/Makefile
->>> +++ b/arch/loongarch/boot/dts/Makefile
->>> @@ -1,3 +1,5 @@
->>>  # SPDX-License-Identifier: GPL-2.0-only
->>>
->>> +dtb-$(CONFIG_MACH_LOONGSON64)        = loongson-2k0500-ref.dtb
->>> +
->>>  obj-$(CONFIG_BUILTIN_DTB)    += $(addsuffix .dtb.o, $(CONFIG_BUILTIN_DTB_NAME))
->>> diff --git a/arch/loongarch/boot/dts/loongson-2k0500-ref.dts b/arch/loongarch/boot/dts/loongson-2k0500-ref.dts
->>> new file mode 100644
->>> index 000000000000..52483127a419
->>> --- /dev/null
->>> +++ b/arch/loongarch/boot/dts/loongson-2k0500-ref.dts
->>> @@ -0,0 +1,89 @@
->>> +// SPDX-License-Identifier: GPL-2.0
->>> +/*
->>> + * Copyright (C) 2023 Loongson Technology Corporation Limited
->>> + */
->>> +
->>> +/dts-v1/;
->>> +
->>> +#include "loongson-2k0500.dtsi"
->>> +
->>> +/ {
->>> +     compatible = "loongson,ls2k0500-ref", "loongson,ls2k0500";
->>> +     model = "Loongson-2K0500 Reference Board";
->>> +
->>> +     aliases {
->>> +             ethernet0 = &gmac0;
->>> +             ethernet1 = &gmac1;
->>> +             serial0 = &uart0;
->>> +     };
->>> +
->>> +     chosen {
->>> +             stdout-path = "serial0:115200n8";
->>> +             bootargs = "console=ttyS0,115200";
->>
->> You received here comments already:
->> https://lore.kernel.org/all/3543cbf9-d259-8d0f-e78e-d8d5e3f501de@linaro.org/
->>
->> Don't waste our time to re-review the same mistakes over and over again.
->>
->>
-> Hi Krzysztof:
+Il 20/12/23 03:58, Chunfeng Yun ha scritto:
+> Add the quirk property "rx-fifo-depth" to work around Gen1 isoc-in
+> transfer issue which send out unexpected ACK even after device
+> already finished the burst transfer with a short patcket, specially
+> for a 4K camera device.
 > 
-> I am sorry for this, I misunderstood before that `earlycon` is not allowed.
-> BTW, is there a note about not using the `bootargs` attribute? I
-> didn't find it in the Documentation.
-
-This is a common sense, not a "note". If you think otherwise, please
-provide me the reasons why duplicated information is necessary in this
-particular case.
-
+> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+> ---
+> v3: change value according to binding
+> v2: use 'rx-fifo-depth' property
+> ---
+>   arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi | 2 ++
+>   1 file changed, 2 insertions(+)
 > 
->>
->> ...
->>
->>> +
->>> +             i2c@1ff4a800 {
->>> +                     compatible = "loongson,ls2k-i2c";
->>> +                     reg = <0x0 0x1ff4a800 0x0 0x0800>;
->>> +                     interrupt-parent = <&eiointc>;
->>> +                     interrupts = <19>;
->>> +                     status = "disabled";
->>> +             };
->>> +
->>> +             pmc: power-management@1ff6c000 {
->>> +                     compatible = "loongson,ls2k0500-pmc", "syscon";
->>
->> It does not look like you tested the DTS against bindings. Please run
->> `make dtbs_check W=1` (see
->> Documentation/devicetree/bindings/writing-schema.rst or
->> https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
->> for instructions).
-> 
-> Emm...
-> Here is the compatible description from the latest kernel:
-> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/soc/loongson/loongson,ls2k-pmc.yaml#n13
-> 
-> I think this compatible should be fine, also, I ensure that `make
-> dtbs_check W=1` is fine before committing.
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi b/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
+> index dd5b89b73190..58593348b810 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
+> @@ -1185,6 +1185,7 @@
+>   
 
-Hm, that's fine then.
+Can you please place rx-fifo-depth before power supplies?
 
-Best regards,
-Krzysztof
+after which,
+
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+
+Thanks,
+Angelo
+
+>   	vusb33-supply = <&mt6359_vusb_ldo_reg>;
+>   	vbus-supply = <&usb_vbus>;
+> +	rx-fifo-depth = <3>;
+>   };
+>   
+>   &xhci1 {
+> @@ -1192,6 +1193,7 @@
+>   
+>   	vusb33-supply = <&mt6359_vusb_ldo_reg>;
+>   	vbus-supply = <&usb_vbus>;
+> +	rx-fifo-depth = <3>;
+>   };
+>   
+>   &xhci2 {
+
 
 
