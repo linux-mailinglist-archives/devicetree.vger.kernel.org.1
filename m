@@ -1,129 +1,191 @@
-Return-Path: <devicetree+bounces-27331-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27332-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8FFF819F1D
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 13:35:05 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id B9054819F25
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 13:37:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 58B781F27C3B
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 12:35:05 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 51AA6B20D87
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 12:37:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8ACB225A5;
-	Wed, 20 Dec 2023 12:35:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="iYfBydBf"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A31C225D7;
+	Wed, 20 Dec 2023 12:37:52 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f43.google.com (mail-oa1-f43.google.com [209.85.160.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 359CD24B24
-	for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 12:35:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-oa1-f43.google.com with SMTP id 586e51a60fabf-1efabc436e4so3575595fac.1
-        for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 04:35:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1703075700; x=1703680500; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=Za/srdZEvydkDd9GP57FYexKc8cVGgvI7UMEoZsAbSI=;
-        b=iYfBydBf6S5WgS/GLXJG/dG3YWdZUpq+oIkQrEoA+Lukg3QjYxsnP8mq7W9dSom7jI
-         bMJFznG/+CuDxv0jL77viKwKD4UFvAhQx7LZqZMfRrFpOGDmymP/EQ2ud3pUU0OTY90B
-         VlD8zhHQ1q8aS9UHZG4ZtxDdxvJbYBj6DHE+lKyOARaPgTrRk6nFeCf+ntyve3tQZhSz
-         sXqZdxvqIQsiKubDiPbfbbV53d9hoP4/gJmUsU2aW8yLS7drWc+PT0IroBsm5EFWiMih
-         neqpRLm6fLvQkHz5fXScs2yT4kizF1Mun7wuFOPnnJ7t692YfIAViS22nL0KhXjIYXP0
-         qZVg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703075700; x=1703680500;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Za/srdZEvydkDd9GP57FYexKc8cVGgvI7UMEoZsAbSI=;
-        b=vGXFOZdrfW13pvR9XCsnbpFsQShcjyyzhJvvCHV+iUr+F7Vh89V5NwBpqkZUXiDKWC
-         12/++TTA+RSWgzN+QOyY8SiPuwoSLXoPwMtj76CSzkVuilrUihom2gXRzI3TpazJdSDy
-         Hewtobn04/TJSsRITd0CIkVPOhLk2KmjV5JOVUjF9H86S1qxtzHjFJ0L/31qcCzxJz9I
-         sezCKEW9CnAv27ZWm7RGKU8P6yG+/rXGUMruRs7a3qgCKLtu4T6FqT5dZvXkzo2POy/b
-         cj6gKrjB2cfXUI9VtvVceG0sGxiD59853nepXZVXbT5FMr5Q6LHydpsQowIgC4CE4Cy9
-         1bZA==
-X-Gm-Message-State: AOJu0Ywi0Hw9HpvTZ0BWG1gzFoeqMf55iBRcx9rTjCP6paS1A6aSR4Hg
-	/RhHwj2UNdj/UBF9tw8t5Kc1KQeJM3TJDm2V7SOQSw==
-X-Google-Smtp-Source: AGHT+IGxXsV+UOWI6/zxUOXBRP2qxFCt2iJsyon10EsYM//jKSJ+bnMC3b7Q3+MN4DCHoPJu9jD4vWdbCP4Da9UIZHE=
-X-Received: by 2002:a05:6871:5211:b0:204:13cd:74d4 with SMTP id
- ht17-20020a056871521100b0020413cd74d4mr408167oac.18.1703075700321; Wed, 20
- Dec 2023 04:35:00 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4AD8C249EC
+	for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 12:37:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1rFvpb-0005KA-Ig; Wed, 20 Dec 2023 13:37:47 +0100
+Received: from [2a0a:edc0:2:b01:1d::c0] (helo=ptx.whiteo.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1rFvpY-000FU7-V8; Wed, 20 Dec 2023 13:37:46 +0100
+Received: from mfe by ptx.whiteo.stw.pengutronix.de with local (Exim 4.92)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1rFvpZ-007vo4-V2; Wed, 20 Dec 2023 13:37:45 +0100
+Date: Wed, 20 Dec 2023 13:37:45 +0100
+From: Marco Felsch <m.felsch@pengutronix.de>
+To: Peng Fan <peng.fan@nxp.com>
+Cc: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Cristian Marussi <cristian.marussi@arm.com>,
+	"Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Oleksii Moisieiev <oleksii_moisieiev@epam.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Sudeep Holla <sudeep.holla@arm.com>,
+	Fabio Estevam <festevam@gmail.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	dl-linux-imx <linux-imx@nxp.com>
+Subject: Re: [PATCH 4/7] dt-bindings: firmware: arm,scmi: support pinctrl
+ protocol
+Message-ID: <20231220123745.ksdumfymu4xruufa@pengutronix.de>
+References: <20231215-pinctrl-scmi-v1-0-0fe35e4611f7@nxp.com>
+ <20231215-pinctrl-scmi-v1-4-0fe35e4611f7@nxp.com>
+ <20231219192912.yulmczvqbuh4jizg@pengutronix.de>
+ <DU0PR04MB94170BCA413C2FD48A397B538896A@DU0PR04MB9417.eurprd04.prod.outlook.com>
+ <20231220123033.nrbperhbr4jifuvh@pengutronix.de>
+ <DU0PR04MB9417E926CBD95BD7298B64D28896A@DU0PR04MB9417.eurprd04.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231220114225.26567-1-quic_kbajaj@quicinc.com>
- <20231220114225.26567-2-quic_kbajaj@quicinc.com> <d7ae374a-7269-4992-ad44-18b2516cad42@linaro.org>
- <CAA8EJppYuXpqKpTcUda1LBFfBmm40-VpC+3heJqoL82kS=+erA@mail.gmail.com> <519138d9-2434-4357-abec-f400b87755c6@linaro.org>
-In-Reply-To: <519138d9-2434-4357-abec-f400b87755c6@linaro.org>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Wed, 20 Dec 2023 14:34:49 +0200
-Message-ID: <CAA8EJpoEwU_S05EdO+sXekE355d5vAQCO+Vt3iH9yibhqOhH_A@mail.gmail.com>
-Subject: Re: [PATCH 1/2] arm64: dts: qcom: qcm6490-idp: Enable various remoteprocs
-To: Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Komal Bajaj <quic_kbajaj@quicinc.com>, 
-	Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <DU0PR04MB9417E926CBD95BD7298B64D28896A@DU0PR04MB9417.eurprd04.prod.outlook.com>
+User-Agent: NeoMutt/20180716
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On Wed, 20 Dec 2023 at 14:29, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
->
-> On 20.12.2023 13:18, Dmitry Baryshkov wrote:
-> > On Wed, 20 Dec 2023 at 13:46, Krzysztof Kozlowski
-> > <krzysztof.kozlowski@linaro.org> wrote:
-> >>
-> >> On 20/12/2023 12:42, Komal Bajaj wrote:
-> >>> Enable the ADSP, CDSP, MPSS and WPSS that are found on the SoC.
-> >>>
-> >>> Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
-> >>> ---
-> >>>  arch/arm64/boot/dts/qcom/qcm6490-idp.dts | 20 ++++++++++++++++++++
-> >>>  1 file changed, 20 insertions(+)
-> >>>
-> >>> diff --git a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
-> >>> index 03e97e27d16d..ad78efa9197d 100644
-> >>> --- a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
-> >>> +++ b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
-> >>> @@ -419,6 +419,26 @@ &qupv3_id_0 {
-> >>>       status = "okay";
-> >>>  };
-> >>>
-> >>> +&remoteproc_adsp {
-> >>> +     firmware-name = "qcom/qcm6490/adsp.mdt";
-> >>
-> >> Why MDT not MBN?
-> >
-> > I agree here. NAK until this is .mbn. Please follow the example of
-> > other boards when you write patches.
-> >
-> >>
-> >> I don't see these files in linux-firmware and your cover letter did not
-> >> explain anything around their submission. What's the status on that part?
-> >
-> > This isn't usually required, is it? I mean, the firmware can come from
-> > linux-firmware, from the device partition or in any other way. With
-> > the FW_LOADER_USER_HELPER this becomes just the key string used to
-> > identify firmware to be loaded.
-> I think Krzysztof referenced the fact that the Qualcomm-made boards
-> usually came with redistributable firmware.
->
-> As far as my 5 cents go, not submitting the files to linux-firmware.git
-> only harms the user experience, so I'd always advocate for it, whenever
-> that is actually possible.
+On 23-12-20, Peng Fan wrote:
+> > Subject: Re: [PATCH 4/7] dt-bindings: firmware: arm,scmi: support pinctrl
+> > protocol
+> > 
+> > On 23-12-20, Peng Fan wrote:
+> > > > Subject: Re: [PATCH 4/7] dt-bindings: firmware: arm,scmi: support
+> > > > pinctrl protocol
+> > > >
+> > > > Hi Peng,
+> > > >
+> > > > On 23-12-15, Peng Fan (OSS) wrote:
+> > > > > From: Peng Fan <peng.fan@nxp.com>
+> > > > >
+> > > > > Add SCMI v3.2 pinctrl protocol bindings and example.
+> > > > >
+> > > > > Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> > > > > ---
+> > > > >  .../devicetree/bindings/firmware/arm,scmi.yaml     | 99
+> > > > ++++++++++++++++++++++
+> > > > >  1 file changed, 99 insertions(+)
+> > > > >
+> > > > > diff --git
+> > > > > a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+> > > > > b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+> > > > > index 4591523b51a0..bfd2b6a89979 100644
+> > > > > --- a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+> > > > > +++ b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+> > > > > @@ -247,6 +247,85 @@ properties:
+> > > > >        reg:
+> > > > >          const: 0x18
+> > > > >
+> > > > > +  protocol@19:
+> > > >
+> > > > ...
+> > > >
+> > > > > @@ -401,6 +480,26 @@ examples:
+> > > > >              scmi_powercap: protocol@18 {
+> > > > >                  reg = <0x18>;
+> > > > >              };
+> > > > > +
+> > > > > +            scmi_pinctrl: protocol@19 {
+> > > > > +                reg = <0x19>;
+> > > > > +                #pinctrl-cells = <0>;
+> > > > > +
+> > > > > +                i2c2-pins {
+> > > > > +                    groups = "i2c2_a", "i2c2_b";
+> > > > > +                    function = "i2c2";
+> > > > > +                };
+> > > > > +
+> > > > > +                mdio-pins {
+> > > > > +                    groups = "avb_mdio";
+> > > > > +                    drive-strength = <24>;
+> > > > > +                };
+> > > > > +
+> > > > > +                keys_pins: keys-pins {
+> > > > > +                    pins = "GP_5_17", "GP_5_20", "GP_5_22", "GP_2_1";
+> > > > > +                    bias-pull-up;
+> > > > > +                };
+> > > > > +            };
+> > > >
+> > > > This example is different to the one you mentioned within the
+> > > > cover-letter. I didn't checked all patches just want to ask which
+> > > > API will be implemented by this patchset?
+> > >
+> > > I kept this change since it was tested by Oleksii, but anyway i.MX not use
+> > these.
+> > >
+> > > The API, I suppose you are asking about this?
+> > > static const struct pinctrl_ops pinctrl_scmi_pinctrl_ops = {
+> > >         .get_groups_count = pinctrl_scmi_get_groups_count,
+> > >         .get_group_name = pinctrl_scmi_get_group_name,
+> > >         .get_group_pins = pinctrl_scmi_get_group_pins,
+> > > #ifdef CONFIG_OF
+> > >         .dt_node_to_map = pinconf_generic_dt_node_to_map_all,
+> > >         .dt_free_map = pinconf_generic_dt_free_map,
+> > > #endif
+> > > };
+> > >
+> > > static const struct pinctrl_ops pinctrl_scmi_imx_pinctrl_ops = {
+> > >         .get_groups_count = pinctrl_scmi_get_groups_count,
+> > >         .get_group_name = pinctrl_scmi_get_group_name,
+> > >         .get_group_pins = pinctrl_scmi_get_group_pins,
+> > > #ifdef CONFIG_OF
+> > >         .dt_node_to_map = pinctrl_scmi_imx_dt_node_to_map,
+> > >         .dt_free_map = pinconf_generic_dt_free_map,
+> > > #endif
+> > > };
+> > 
+> > I see, thanks for the clarification. In short: the i.MX SMCI pinctrl DT-API is the
+> > same as the non-SCMI pinctrl API since the dt_node_to_map will convert it.
+> 
+> Yes, the fsl,pins format is same whether SCMI or non-SCMI. But we need
+> to pack the data to a format that matches the i.MX OEM SCMI PINCTRL
+> protocol, so we need to dedicated dt_node_to_map here.
 
-Me too. I think this is work in progress on the Qualcomm side, see the
-discussion at https://github.com/Linaro/meta-qcom/pull/551 .
+Yes, I saw that you're using the enum values 192-255 for the OEM
+specific part and the packing. Does you have public access to the FW
+implementing the SCMI?
 
--- 
-With best wishes
-Dmitry
+Regards,
+  Marco
+
+> 
+> Thanks,
+> Peng.
+> 
+> > 
+> > Regards,
+> >   Marco
+> 
+> 
 
