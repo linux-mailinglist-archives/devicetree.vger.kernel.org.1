@@ -1,142 +1,120 @@
-Return-Path: <devicetree+bounces-27247-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27248-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DC8E819BF3
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 11:03:18 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE70A819BF7
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 11:03:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C0AB1B24A87
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 10:03:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9BC3228873F
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 10:03:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63DBC200AB;
-	Wed, 20 Dec 2023 10:01:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE0B8208B9;
+	Wed, 20 Dec 2023 10:03:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="kU6V5lhV"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="2ga6A6By"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11on2054.outbound.protection.outlook.com [40.107.223.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C461921374;
-	Wed, 20 Dec 2023 10:01:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=hVpfrLULRRbtdZEQnwKJjqyYiGHtgaR7Yd9YLfUN741YHqEPER6j1kyNlMFvmEJ1mld+5LL6TA1PPZ3aIBAWSpXG1vKE9J60f7DnEqvCcl8GtIKoW/I0SmBS4rgiboqIUdd1EvrUHBLdlHqhS2xOHtqEH279TYyNcteiVbtIl1XdzSo1lAxGCFHMJtM0H9eT+h5SqvWOlhzSIIaW8SE0gUn9hBv9uziKOEcB37RI9Z/O/KKwIKGhtl1G1f2EtzCcA66P7T+RKLp4OirnZUmTLsw2WPwOJQiXXy5ZVmkg0k2eoYrdAf4xuxIU20kNbLr8fOpmMaVc9wmFD8eX/I5vww==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=K2uYXvJJALBupuMJ/7KQRHzo19inxzhpvrXvqUNIsHw=;
- b=YOcWXjrTjdi1WHZ2LMZhYQHfPgqiy75CFjVCf1fp9w9Y3iCvAJmovRmTHf8ISmm1gR0JsAzp3St7qjDbOjdahXZO0jwXidWxlxQjf0Vn1kjF0jYe9RZnwx0YErqH50AAG/rq7aecTAotaqqVaV4C4cBOqKRuUciwYzPZkDCDR+/+IHXDV1aybb7u/inIdaR46Zx0mtZoELpQm255yq422W9X4i5Le+giO+1jdWZ9NcV+flcPF/gkRYyhCD6G9XJolPfE4TV06pJab4i+t06/EZNe8l1X0vXSIJbS7E2+Qhs1QUBG7S+1d9rlYT4Gozdw6wF5T67/6cQRNsgQ0hllNw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=K2uYXvJJALBupuMJ/7KQRHzo19inxzhpvrXvqUNIsHw=;
- b=kU6V5lhVEgGzzrODD3hiIiJtmW3VM2SyThamcjfjRg8B9nnFRhCLkmZNcDkYWj/Q/fWHpOJnhjCcCzvZC0NcT9Q6w+sRz+/FAsxxttDmzbL/l0u4eER23B/NKf3baxxMPqh21MN4Fmf0mq6rTHEsFdO6IwEpFz+51yLTnZZXSC4=
-Received: from DS7PR03CA0026.namprd03.prod.outlook.com (2603:10b6:5:3b8::31)
- by SA1PR12MB7270.namprd12.prod.outlook.com (2603:10b6:806:2b9::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7091.38; Wed, 20 Dec
- 2023 10:01:27 +0000
-Received: from DS1PEPF00017097.namprd05.prod.outlook.com
- (2603:10b6:5:3b8:cafe::90) by DS7PR03CA0026.outlook.office365.com
- (2603:10b6:5:3b8::31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7113.18 via Frontend
- Transport; Wed, 20 Dec 2023 10:01:27 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DS1PEPF00017097.mail.protection.outlook.com (10.167.18.101) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7113.14 via Frontend Transport; Wed, 20 Dec 2023 10:01:27 +0000
-Received: from localhost (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.34; Wed, 20 Dec
- 2023 04:00:56 -0600
-From: Michal Simek <michal.simek@amd.com>
-To: <linux-kernel@vger.kernel.org>, <monstr@monstr.eu>,
-	<michal.simek@xilinx.com>, <git@xilinx.com>
-CC: Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Laurent Pinchart
-	<laurent.pinchart@ideasonboard.com>, Parth Gajjar <parth.gajjar@amd.com>,
-	Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>, Rob Herring
-	<robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>
-Subject: [PATCH v2 4/4] arm64: zynqmp: Rename zynqmp-power node to power-controller
-Date: Wed, 20 Dec 2023 11:00:30 +0100
-Message-ID: <48590ed3fe1b834cdab111b023b6ce3777a5f96d.1703066422.git.michal.simek@amd.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <cover.1703066422.git.michal.simek@amd.com>
-References: <cover.1703066422.git.michal.simek@amd.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8C6C208BB
+	for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 10:03:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
+Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-54c77e0835bso6814929a12.2
+        for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 02:03:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=fairphone.com; s=fair; t=1703066579; x=1703671379; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=LhB2sxNkKBiagF0783M3sqDgGJEaCC2xOC1nqq1YmjY=;
+        b=2ga6A6ByhDbCY2zzftNgm6xE0y+Uwgt16L+0VgFjPjV4ycTP3uZOadOK46/3mNz9fb
+         +RV6/HQ8QvbzfkplF5pHNw81X7Qoonqb09dGOqYICQTegElLRM99FF5eMOafTelLROJK
+         Svsec8q+mmjGI3hS2JGiIWX43jfpt3ipiwbYoQAbyyLB/Ogp7YFulbVSTWWN6XDPHj9S
+         8Nr0AxZf6Vc7VK+rusc0j+45vpZUdddYFGykNvu6rm0QD9gN4DWSJtTsD3kJahtTZD4b
+         KYmFmF4zT7kOkQsbcwsYUREIdjLrvWIzq3XTIxPhG3E90dI/HSh9KN0jOv1hIKnY3A+W
+         nINQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1703066579; x=1703671379;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=LhB2sxNkKBiagF0783M3sqDgGJEaCC2xOC1nqq1YmjY=;
+        b=p3IATC7SPwcGn3Mx0WggzFJldmC9CyF8UAQf5oZh+BxAPG2PgyZj0zBLqQYJ4yNQOb
+         4EbF2LScHdf7AQpTStRXL9I5nShO2KojRO17BKJlYmSiSZR0niphB+D2XaE310K11RJv
+         cj1M5Bzutb2D9BpUwLe/KzjZiKkUAeDnTnQFavMq4bdMFry8M7aFrYghrpj6QPVwMoGm
+         2DTGVpVwzG5ckiPeyjwIybIMP5+dh6plnP8rWEip1Y6yOLRUYsxPmParxOEcblwX18gH
+         GPzoJO44n/RuLNygsAGXNeY8HlB4bpWjH//uHzgHU6eBgehWwKszQfejuBqmSXoy2Hxj
+         JBqQ==
+X-Gm-Message-State: AOJu0YwzYp2tMges0JEGMIdf2zLFl95gPnvWA4MdkRXKBTSnEeIT1TWK
+	IVzdxIY3W8EvCqsq6tGsIirvHA==
+X-Google-Smtp-Source: AGHT+IHokmA9+d5x8tM9eQ1Cy3LVFwwsHmIA3JK2l1zkwjRap7mv+9Js+V7gnKo+1ddD+28jHQXyPw==
+X-Received: by 2002:a17:906:26c6:b0:a1f:7298:aa25 with SMTP id u6-20020a17090626c600b00a1f7298aa25mr10590034ejc.45.1703066579067;
+        Wed, 20 Dec 2023 02:02:59 -0800 (PST)
+Received: from otso.luca.vpn.lucaweiss.eu (2a02-8388-6584-6400-d322-7350-96d2-429d.cable.dynamic.v6.surfer.at. [2a02:8388:6584:6400:d322:7350:96d2:429d])
+        by smtp.gmail.com with ESMTPSA id f18-20020a170906561200b00a2356a7eafasm3718681ejq.199.2023.12.20.02.02.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 20 Dec 2023 02:02:58 -0800 (PST)
+From: Luca Weiss <luca.weiss@fairphone.com>
+Subject: [PATCH 0/3] Fairphone 5 PMIC-GLINK support (USB-C, charger, fuel
+ gauge)
+Date: Wed, 20 Dec 2023 11:02:55 +0100
+Message-Id: <20231220-fp5-pmic-glink-v1-0-2a1f8e3c661c@fairphone.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=813; i=michal.simek@amd.com; h=from:subject:message-id; bh=m+K8LhO6PHTUz6bGixAgVOGrMYWZDR8wIayK4IfRigs=; b=owGbwMvMwCR4yjP1tKYXjyLjabUkhtSm3Ta3zXbnfZ6h29VcxdSSV7VhIvOvaY95xM3EPlRnx Qc+b+fviGVhEGRikBVTZJG2uXJmb+WMKcIXD8vBzGFlAhnCwMUpABOZFc+woLEv8urlY+/Xxki/ j2o8E9W3Wvz/Fob59fP0DgdMSHNtm9OUaSJ/Mmjnbq4dAA==
-X-Developer-Key: i=michal.simek@amd.com; a=openpgp; fpr=67350C9BF5CCEE9B5364356A377C7F21FE3D1F91
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS1PEPF00017097:EE_|SA1PR12MB7270:EE_
-X-MS-Office365-Filtering-Correlation-Id: 76a2ccb3-960a-45f9-57e5-08dc0142a1f8
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	NL98RAbZBoJ67bDMNTqb43tcIntV+MN8kaJbE+GFgx9SMwTvnj7cNYy2DoFvtGAKjkhuY/S6znCCHKDW5lOvjikGw73djEXumKHnEoPmeYTd0vm6p5xzIoiOfb8bqjpDazqs0eX/tGQoFAZWGQojJnQ7wj/A/DFcER+oJghzlYqNI9S0AvJQl2ZXPo7LwhFOwbnploFEHyjIjn/FKoFqMTTh5cbxWqqnlL7VWwd/dfYMJH7BFo06IbIItyICy31F9cL8xhxeMzbLfLbu58WpFVduC4gn2iaqhcgo03opINWJYycRwWQm/5JnM+AkP0yVyiU/lPwIIZLX0tRT/f8+maXGaMezWHJdV3sVLgdU/hwI8F9Cej6LNGmWmNHF6Yf+2NxxwEiakwWikme1FYVeWYzOM1ngLsL67I+rbupS84mcAUAicPMuzHTGsqFnZC3m3Zih8CYFVcZJTR/UMiHQUjccYjPzwQJmzGsOSGCyW6mNBArqLDDQlx364lq4to+vyF77J6lb9tVvLd5HyADi+Vwc8FxTGzqtHR5X6ajQmAkZJf3HIAJoqcTL4sgHo+qWzUyGGum5guUB4rDKIxtNQhCfP/fcyzB2+22eQJDFIwqvj1aIK1FGAX8h88eEW4GfiFCq/JHIuiGgl9DO78oLdMqErIkPQj/p7ZwKGPZM6ymCnE6BHZhVzXfRaZKvpNI5dlE0/enGLThaeT0MEGAYt55wrWq4i59ezycYBk/wPy5fkNxlvJ9waxgNgQEBp/yJDd7UscH+RrjZdJDukH3T/VArOOAG/SRMusZm12v1F5k=
-X-Forefront-Antispam-Report:
-	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230031)(4636009)(376002)(39860400002)(396003)(346002)(136003)(230922051799003)(1800799012)(451199024)(82310400011)(64100799003)(186009)(36840700001)(40470700004)(46966006)(40460700003)(83380400001)(426003)(2616005)(16526019)(26005)(336012)(47076005)(5660300002)(36860700001)(8676002)(8936002)(4326008)(316002)(2906002)(4744005)(44832011)(110136005)(41300700001)(478600001)(70586007)(54906003)(6666004)(70206006)(36756003)(40480700001)(82740400003)(356005)(81166007)(86362001)(36900700001)(2101003);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Dec 2023 10:01:27.5863
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 76a2ccb3-960a-45f9-57e5-08dc0142a1f8
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	DS1PEPF00017097.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB7270
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAM+7gmUC/x3MQQqAIBBA0avErBtQK4KuEi3MRhsqE4UIxLsnL
+ d/i/wyJIlOCqckQ6eHEt6+QbQNm194R8lYNSqhOKiXQhgHDxQbdyf7AVcitt1qakTTUKESy/P7
+ DeSnlAw9veBRgAAAA
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ cros-qcom-dts-watchers@chromium.org
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org, 
+ Luca Weiss <luca.weiss@fairphone.com>
+X-Mailer: b4 0.12.4
 
-Rename zynqmp-power node name to power-controller which is more aligned
-with generic node name recommendation.
+This series adds all the necessary bits to enable USB-C role switching,
+charger and fuel gauge (all via pmic-glink) on Fairphone 5.
 
-Signed-off-by: Michal Simek <michal.simek@amd.com>
+One thing that could be made different is the pmic-glink compatible.
+I've chosen to use qcm6490 compatible for it and not sc7280 since
+there's plenty of firmware variety on sc7280-based platforms and they
+might require different quirks in the future, so limit this PDOS quirk
+to just qcm6490 for now.
+
+If someone thinks it should be qcom,sc7280-pmic-glink, please let me
+know :)
+
+Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
 ---
+Luca Weiss (3):
+      dt-bindings: soc: qcom: qcom,pmic-glink: document QCM6490 compatible
+      usb: typec: ucsi: Add qcm6490-pmic-glink as needing PDOS quirk
+      arm64: dts: qcom: qcm6490-fairphone-fp5: Add PMIC GLINK
 
-Changes in v2:
-- New patch is series
+ .../bindings/soc/qcom/qcom,pmic-glink.yaml         |  1 +
+ arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts | 46 +++++++++++++++++++++-
+ arch/arm64/boot/dts/qcom/sc7280.dtsi               | 19 +++++++++
+ drivers/usb/typec/ucsi/ucsi_glink.c                |  1 +
+ 4 files changed, 66 insertions(+), 1 deletion(-)
+---
+base-commit: 76fbb7732259f4c970998d6978d72177658a783a
+change-id: 20231220-fp5-pmic-glink-b01d4fa1c7ea
 
- arch/arm64/boot/dts/xilinx/zynqmp.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-index eaba466804bc..b1bac486c3f7 100644
---- a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-+++ b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-@@ -186,7 +186,7 @@ zynqmp_firmware: zynqmp-firmware {
- 			method = "smc";
- 			bootph-all;
- 
--			zynqmp_power: zynqmp-power {
-+			zynqmp_power: power-controller {
- 				bootph-all;
- 				compatible = "xlnx,zynqmp-power";
- 				interrupt-parent = <&gic>;
+Best regards,
 -- 
-2.36.1
+Luca Weiss <luca.weiss@fairphone.com>
 
 
