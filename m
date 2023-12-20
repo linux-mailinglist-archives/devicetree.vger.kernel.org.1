@@ -1,59 +1,59 @@
-Return-Path: <devicetree+bounces-27531-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27532-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 201A781AB50
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 00:55:57 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9FD7081AB53
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 00:56:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D17FC2849E4
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 23:55:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9F0741C22702
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 23:56:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C08ED4C3C0;
-	Wed, 20 Dec 2023 23:55:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA4A44B5AD;
+	Wed, 20 Dec 2023 23:55:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="eXZNoUFY"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="lJNijnIQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-io1-f44.google.com (mail-io1-f44.google.com [209.85.166.44])
+Received: from mail-io1-f45.google.com (mail-io1-f45.google.com [209.85.166.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 586ED4BA98
-	for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 23:55:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D5104C3D2
+	for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 23:55:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-io1-f44.google.com with SMTP id ca18e2360f4ac-7b7fe0ae57bso9896739f.0
-        for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 15:55:12 -0800 (PST)
+Received: by mail-io1-f45.google.com with SMTP id ca18e2360f4ac-7ba84a3cc96so7622239f.3
+        for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 15:55:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1703116511; x=1703721311; darn=vger.kernel.org;
+        d=chromium.org; s=google; t=1703116512; x=1703721312; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=moVzHQYgk23qLvXFemqZkcgdvSUVJ85XUZMZayldchU=;
-        b=eXZNoUFY5kGrDYszgBwIu+A0GPgmLRnEfb7PwYqw4ReaovROvnrJhwCdzSnZ4dSh4f
-         MGempUz1PI4sZCdPzea8dLWFFpyM28LrhOX++nD3tzy03trbJDXFEcfbXMuTuaGC8EUL
-         1mA2QDFy0GojmZdaEB3V50Z0RIHfPhqscz0k8=
+        bh=uCBYuSyv1htu4Z4UMY79JiCUyFE6xNOmu0NfxL7CL1o=;
+        b=lJNijnIQqt6zUOSl4xal2gPN3JSGaAbShE86eaxXK1s+pzdkYO0ADji40tV9EEDyhB
+         cbggHELnV5v2dCBlhDHg59hxqkWBMYigXmnoBJ35sFb6X5zqS2ywNsOeRDarxXec7355
+         qBIoEaeYpAZ2TijzBss38xJOkYZWAmiR1NxME=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703116511; x=1703721311;
+        d=1e100.net; s=20230601; t=1703116512; x=1703721312;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=moVzHQYgk23qLvXFemqZkcgdvSUVJ85XUZMZayldchU=;
-        b=RMO5xGcepgoe73GrdhD/CQM3V5xOi9yyhvKop2esWGn2BCXAz+seHu7MTTnAGGw/KT
-         oUGxp+7ia5KzorevdTgShik7+OXtvh77r/s4GSb3SvkJ4Ln5Ez+SA2yRIUDxKSdBCqHA
-         nlWEmjIvjIeol1It9AMYfCq/oYuj3lFIA60kJL4i1XfahH8YuJNhMw5NPbfa7bMlbCTj
-         DwcqITzj/gu86pyv6LzKns0AdVQhH3Ib7AhJXMYR/F5BXPYwBV5DOW7TvhcGJdFhm45c
-         cXtc6uVZ1RSawVR5u1V6adv+oz0+9zB7q8ZM0/K4Kc8gir7AZlS09VhiUmuK1BBOCgkS
-         mzKw==
-X-Gm-Message-State: AOJu0YyxrzebW9igqeb8TfOkznM5sqn4o7+9RlgW5dj4vaYgzk33wm07
-	kI3+tY3Q3UiX19EukAqgSQK2ug==
-X-Google-Smtp-Source: AGHT+IHIYrjffUfU5PYl/Gof5mJUZa0K5TBE1VO+JQ9wu0i35S3zZy6iTiKsMWq0lfhMRfiZfNNpMQ==
-X-Received: by 2002:a6b:6e13:0:b0:7b7:f3f2:9a97 with SMTP id d19-20020a6b6e13000000b007b7f3f29a97mr3933437ioh.26.1703116511607;
-        Wed, 20 Dec 2023 15:55:11 -0800 (PST)
+        bh=uCBYuSyv1htu4Z4UMY79JiCUyFE6xNOmu0NfxL7CL1o=;
+        b=ACETTKteYdJjGRJQorhHflG72si+H1fZi9b22fpfehYRHMlFAT62j7A2v+h/sdmwj7
+         L1cg1G2hTNYjYFWhpsM8YLCBVomK+bLlVMNKp+7W7TywhGX7hxe/5ZK3/H3TxO52iWsk
+         cIT8V6a2giAsF/X+aXqENV0lnxcAC6yu0JStfMKMir2Nr/tvOtKgwuCD+PYxOErY4Hl7
+         PSfLxTQ4fKxfp46u0I3X3EvZRbDe59Hq35lT3fV0LeBaD/2BZLggv3dQm/P4lXpJjeqj
+         qQD7ktKZ606wC8oBZq5pb7Aau+NNAfesvlYnXD9s85rCXkTdp0lGsjBlWESUkaBJ3zPb
+         kbmA==
+X-Gm-Message-State: AOJu0Yxfw2a5p6KfyT3hXWN17Hb1U2go02QwHofMFco5F71GUD5KbO8m
+	5HmfPXYzWgvUgdX1yr/RAQa/BQ==
+X-Google-Smtp-Source: AGHT+IHSg3mJJWavfesm2hpmBZ0S+/Z6QyumQes9iV9E7AinPPpe4ysdoPMdMc1c/Ob/o7mRjGp4Kg==
+X-Received: by 2002:a6b:c8c8:0:b0:7b7:f971:8e75 with SMTP id y191-20020a6bc8c8000000b007b7f9718e75mr3226475iof.12.1703116512588;
+        Wed, 20 Dec 2023 15:55:12 -0800 (PST)
 Received: from markhas1.lan (71-218-50-136.hlrn.qwest.net. [71.218.50.136])
-        by smtp.gmail.com with ESMTPSA id bp22-20020a056638441600b0046b39a6f404sm177805jab.17.2023.12.20.15.55.10
+        by smtp.gmail.com with ESMTPSA id bp22-20020a056638441600b0046b39a6f404sm177805jab.17.2023.12.20.15.55.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 20 Dec 2023 15:55:11 -0800 (PST)
+        Wed, 20 Dec 2023 15:55:12 -0800 (PST)
 From: Mark Hasemeyer <markhas@chromium.org>
 To: LKML <linux-kernel@vger.kernel.org>
 Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
@@ -65,24 +65,16 @@ Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
 	Rob Herring <robh@kernel.org>,
 	Sudeep Holla <sudeep.holla@arm.com>,
 	Mark Hasemeyer <markhas@chromium.org>,
-	Andre Przywara <andre.przywara@arm.com>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Enric Balletbo i Serra <eballetbo@gmail.com>,
-	Jesper Nilsson <jesper.nilsson@axis.com>,
-	Jisheng Zhang <jszhang@kernel.org>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
+	Heiko Stuebner <heiko@sntech.de>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
-	Patrice Chotard <patrice.chotard@foss.st.com>,
 	Rob Herring <robh+dt@kernel.org>,
-	Romain Perier <romain.perier@gmail.com>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Wei Xu <xuwei5@hisilicon.com>,
 	devicetree@vger.kernel.org,
-	linux-tegra@vger.kernel.org
-Subject: [PATCH v2 04/22] ARM: dts: tegra: Enable cros-ec-spi as wake source
-Date: Wed, 20 Dec 2023 16:54:18 -0700
-Message-ID: <20231220165423.v2.4.Ia598792a1386cca61844068be03c3ccec9e81753@changeid>
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org
+Subject: [PATCH v2 05/22] ARM: dts: rockchip: rk3288: Enable cros-ec-spi as wake source
+Date: Wed, 20 Dec 2023 16:54:19 -0700
+Message-ID: <20231220165423.v2.5.I8249df4df0b7d12fb68ea1e69f84ca589c574bb1@changeid>
 X-Mailer: git-send-email 2.43.0.472.g3155946c3a-goog
 In-Reply-To: <20231220235459.2965548-1-markhas@chromium.org>
 References: <20231220235459.2965548-1-markhas@chromium.org>
@@ -107,34 +99,21 @@ Signed-off-by: Mark Hasemeyer <markhas@chromium.org>
 Changes in v2:
 -Split by arch/soc
 
- arch/arm/boot/dts/nvidia/tegra124-nyan.dtsi   | 1 +
- arch/arm/boot/dts/nvidia/tegra124-venice2.dts | 1 +
- 2 files changed, 2 insertions(+)
+ arch/arm/boot/dts/rockchip/rk3288-veyron-chromebook.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm/boot/dts/nvidia/tegra124-nyan.dtsi b/arch/arm/boot/dts/nvidia/tegra124-nyan.dtsi
-index a2ee371802004..8125c1b3e8d79 100644
---- a/arch/arm/boot/dts/nvidia/tegra124-nyan.dtsi
-+++ b/arch/arm/boot/dts/nvidia/tegra124-nyan.dtsi
-@@ -338,6 +338,7 @@ cros_ec: cros-ec@0 {
- 			interrupt-parent = <&gpio>;
- 			interrupts = <TEGRA_GPIO(C, 7) IRQ_TYPE_LEVEL_LOW>;
- 			reg = <0>;
-+			wakeup-source;
+diff --git a/arch/arm/boot/dts/rockchip/rk3288-veyron-chromebook.dtsi b/arch/arm/boot/dts/rockchip/rk3288-veyron-chromebook.dtsi
+index 092316be67f74..1554fe36e60fe 100644
+--- a/arch/arm/boot/dts/rockchip/rk3288-veyron-chromebook.dtsi
++++ b/arch/arm/boot/dts/rockchip/rk3288-veyron-chromebook.dtsi
+@@ -112,6 +112,7 @@ cros_ec: ec@0 {
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&ec_int>;
+ 		spi-max-frequency = <3000000>;
++		wakeup-source;
  
- 			google,cros-ec-spi-msg-delay = <2000>;
- 
-diff --git a/arch/arm/boot/dts/nvidia/tegra124-venice2.dts b/arch/arm/boot/dts/nvidia/tegra124-venice2.dts
-index 3924ee385dee0..df98dc2a67b85 100644
---- a/arch/arm/boot/dts/nvidia/tegra124-venice2.dts
-+++ b/arch/arm/boot/dts/nvidia/tegra124-venice2.dts
-@@ -857,6 +857,7 @@ cros_ec: cros-ec@0 {
- 			interrupt-parent = <&gpio>;
- 			interrupts = <TEGRA_GPIO(C, 7) IRQ_TYPE_LEVEL_LOW>;
- 			reg = <0>;
-+			wakeup-source;
- 
- 			google,cros-ec-spi-msg-delay = <2000>;
- 
+ 		i2c_tunnel: i2c-tunnel {
+ 			compatible = "google,cros-ec-i2c-tunnel";
 -- 
 2.43.0.472.g3155946c3a-goog
 
