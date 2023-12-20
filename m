@@ -1,330 +1,134 @@
-Return-Path: <devicetree+bounces-27316-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27317-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F4047819E8B
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 12:58:25 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E73AF819EC2
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 13:13:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AC579288F0B
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 11:58:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9D232287212
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 12:13:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C8D621A04;
-	Wed, 20 Dec 2023 11:58:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C645322093;
+	Wed, 20 Dec 2023 12:12:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CT4w/jkl"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="SrG5rg1G"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
+Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 291F721A01;
-	Wed, 20 Dec 2023 11:58:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-55322dbabf6so4443722a12.0;
-        Wed, 20 Dec 2023 03:58:16 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D0503B78D
+	for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 12:12:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-55372c1338bso3687601a12.2
+        for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 04:12:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1703073495; x=1703678295; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1703074360; x=1703679160; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=M4MQp2OF3aCJPYa6DyRdPYe2gbJFAe3IaKNMGusnjGg=;
-        b=CT4w/jklYLDUWalJQZrenuMYob86CKtX+QtoCkVITxKKrnl1/865KmfxBMiXZlDZbT
-         Ra04Nn65aEXLNh2ZVknVfDhNn+HZQVSPWQdYImcCJ5o03p1F2D/ffpFlu3JPpWp0zKUn
-         i42TTkVY8gY3R8r8q9STcjMAdcCfaBzip7304aCzC7wOdjv8+3f4dOErVDJHZ/hb0eHu
-         ZuO2+30gJrkStQ1JOvK5CwXOs4k0E1yNYDNbyKeiOolTq4wlew3B4ScIM7mjO5ApPyTa
-         DJp5e2zO7KkuO8ZAGNOukdqxfn4gS5J7Jy+5gy3WGpONLb+w/Y9oHhfeFbr2IHmWPEOv
-         vFLQ==
+        bh=Y7DKtBhMqO9gULXLjrp+moP7cf0MV4CuE8EgQpgJRlc=;
+        b=SrG5rg1GU9xFMAWBFxK7P98zFjLxi8zOY1aYRyBE0nbhIfX64Ckn6ve7Vj0aZl/S5+
+         UeDb5CCVYmYjfet1Mpn7+13BkvC+ViXVZ2CDBx3xVRORvLsAo1cl4pAVunxkQIDej5FQ
+         bRbBeARdO4OEBt8hUBmie6CyfWemcSP3WhJdA0SASXQJ3pfyxzzPEw8WLzv9prk5PlRk
+         pgJa7E5nmzan77u7JFjUUAluqnYK5gODXiKtq0rUU4WR/TyR8rC6FmsjhYPevZ8J/MRa
+         PxUE4eEadB9Z9NR4DOLNk1DKAGGLvrkJrs9LLV3ouOXc5OWFZoyRO58TH6bTSZ7xw9XP
+         7OEg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703073495; x=1703678295;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1703074360; x=1703679160;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=M4MQp2OF3aCJPYa6DyRdPYe2gbJFAe3IaKNMGusnjGg=;
-        b=uKDw6fWhiLz38IvOqgWUx0bIR01ED0sjhi8bi0M6uUY42TMkD+ZLq9ERxUZIgfszlB
-         /yxPL1nDV3hqHFV/u+88RIwfhnlUbEZGfFviz/rPqfnTVsqyLCylieEJAxg/zktl3nF6
-         v/XX51w21U4mOk5/HTDzPncjgBuuzjSa5oaQ+N6GErp6dYsETf+B+ImPeIvAgtpS0gFo
-         wUnseA4Q9tZA8VzswYwk9VVGifepFDZPbwnCxU9/AoZfEsf34Bb8ujDV8ejCuW4OJSvF
-         IshD399zoaM9/dHIlM6OwE+ag+Iu7O/JyLqG0+WUCqBhchamfqxaKhNlhQOWdnqn56gp
-         QWZg==
-X-Gm-Message-State: AOJu0YwPQIimdg8k1QDdxXGOSuiPUC78+Dzc6L6p3ZqzmCqyLZShsjXD
-	iWRSfgfkkNE+2MfIckTiwGg=
-X-Google-Smtp-Source: AGHT+IGhZLAxt4ECrXbJYifjVPpzAThqY1DSh5AXk6QBeSRsylGxXEgaYXLp8i+1DLNnhbTKRKMP6g==
-X-Received: by 2002:a50:99dd:0:b0:553:fc4f:fd99 with SMTP id n29-20020a5099dd000000b00553fc4ffd99mr132389edb.54.1703073495044;
-        Wed, 20 Dec 2023 03:58:15 -0800 (PST)
-Received: from [192.168.2.1] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id cs1-20020a0564020c4100b0055282cb1033sm6311917edb.3.2023.12.20.03.58.13
+        bh=Y7DKtBhMqO9gULXLjrp+moP7cf0MV4CuE8EgQpgJRlc=;
+        b=t8KyNKQ9BVuB0656j5KMweJrB6Po45C6GkNFAg6EoXyllcOA9imz+zXSQaSIE+B03m
+         sRPRbjK3kYBZolML2QfBhkZwdsAyd0NQXLvsJTv3MtZIPkjh/uta/Xv1vdSIA+fcVIkc
+         7KbMBURK9XyaQtuSN6dZOy7AU2kvqA2vDqypsgVrnAt/uUO1dR485QBv6cXhM5BX0FJo
+         Oa+SzD2g6bdVCJtRk2ssZLNPoTnWYMH0vCN6hAGQ4+Gw2WN8Vb7h4nDesD0ScgeKwWha
+         ooWNIrsSHOgaYt3Kzim0JXjCgI8ZdixFDaVgpPL9Sa5Sg+PtgGGmBIzLT1twaMV8POr2
+         sobQ==
+X-Gm-Message-State: AOJu0Yx4Ni+AOR9fMz3Au3B7wwIBcfgalC100mzzkRaLD2XKDgBvZND7
+	YXV48MYgfa0sENgl+A2nI6Ge9w==
+X-Google-Smtp-Source: AGHT+IEpiBf8zpqbPxu3AmHrEtyQuEhM65XJKg3tYXGHlQ4sniVLgBOBAg6hKoo0JZnlX2P+XOouaw==
+X-Received: by 2002:a50:9515:0:b0:553:6fff:d7d4 with SMTP id u21-20020a509515000000b005536fffd7d4mr2161532eda.51.1703074360351;
+        Wed, 20 Dec 2023 04:12:40 -0800 (PST)
+Received: from [192.168.199.59] (178235179206.dynamic-4-waw-k-1-3-0.vectranet.pl. [178.235.179.206])
+        by smtp.gmail.com with ESMTPSA id u30-20020a50951e000000b0054ca7afdf35sm13276303eda.86.2023.12.20.04.12.38
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 20 Dec 2023 03:58:14 -0800 (PST)
-Message-ID: <406ba492-8f6b-26aa-55cf-2efa8d52ebaf@gmail.com>
-Date: Wed, 20 Dec 2023 12:58:13 +0100
+        Wed, 20 Dec 2023 04:12:39 -0800 (PST)
+Message-ID: <ee3d7a22-dbd5-44a2-8b93-76ec583c91a8@linaro.org>
+Date: Wed, 20 Dec 2023 13:12:37 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH] Revert "ARM: dts: rockchip: restyle emac nodes"
-To: Andy Yan <andyshrk@163.com>, heiko@sntech.de
-Cc: krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
- david.wu@rock-chips.com, Andy Yan <andy.yan@rock-chips.com>
-References: <20231220103334.2665543-1-andyshrk@163.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] arm64: dts: qcom: qcm6490-idp: Correct the voltage
+ setting for vph_pwr
 Content-Language: en-US
-From: Johan Jonker <jbx6244@gmail.com>
-In-Reply-To: <20231220103334.2665543-1-andyshrk@163.com>
+To: Komal Bajaj <quic_kbajaj@quicinc.com>,
+ Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Caleb Connolly <caleb.connolly@linaro.org>,
+ Naina Mehta <quic_nainmeht@quicinc.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20231220110015.25378-1-quic_kbajaj@quicinc.com>
+ <20231220110015.25378-2-quic_kbajaj@quicinc.com>
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <20231220110015.25378-2-quic_kbajaj@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-
-
-On 12/20/23 11:33, Andy Yan wrote:
-> From: Andy Yan <andy.yan@rock-chips.com>
+On 20.12.2023 12:00, Komal Bajaj wrote:
+> Min and max voltages for vph_pwr should be same, otherwise rpmh
+> will not probe, so correcting the min and max voltages for vph_pwr.
 > 
-> When try to run rk3036 kylin board with mainline,
-> I found the emac ethernet probe failed:
-> 
-> [    2.324583] loop: module loaded
-> [    2.328435] SPI driver spidev has no spi_device_id for rockchip,spidev
-> [    2.338688] tun: Universal TUN/TAP device driver, 1.6
-> [    2.345397] rockchip_emac 10200000.ethernet: no regulator found
-> [    2.351892] rockchip_emac 10200000.ethernet: ARC EMAC detected with id: 0x7fd02
-> [    2.359331] rockchip_emac 10200000.ethernet: IRQ is 43
-> [    2.364719] rockchip_emac 10200000.ethernet: MAC address is now e6:58:d6:ec:d9:7c
-> [    2.396993] mdio_bus Synopsys MII Bus: mdio has invalid PHY address
-> [    2.403306] mdio_bus Synopsys MII Bus: scan phy mdio at address 0
-> [    2.508656] rockchip_emac 10200000.ethernet: of_phy_connect() failed
-> [    2.516334] rockchip_emac 10200000.ethernet: failed to probe arc emac (-19)
-> 
-> This reverts commit 1dabb74971b3 ("ARM: dts: rockchip: restyle emac nodes")
-> make emac on rk3036 kylin board probe right again:
-> [    1.920385] CAN device driver interface
-> [    1.925499] rockchip_emac 10200000.ethernet: no regulator found
-> [    1.932535] rockchip_emac 10200000.ethernet: ARC EMAC detected with id: 0x7fd02
-> [    1.940735] rockchip_emac 10200000.ethernet: IRQ is 42
-> [    1.946743] rockchip_emac 10200000.ethernet: MAC address is now 96:7d:4f:0a:69:b3
-> [    2.581340] rockchip_emac 10200000.ethernet: connected to Generic PHY phy with id 0xffffc816
-> [    2.592560] e1000e: Intel(R) PRO/1000 Network Driver
-> [    2.598136] e1000e: Copyright(c) 1999 - 2015 Intel Corporation.
-> 
-> Fixes: 1dabb74971b3 ("ARM: dts: rockchip: restyle emac nodes")
-> Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
+> Fixes: 9af6a9f32ad0 ("arm64: dts: qcom: Add base qcm6490 idp board dts")
+> Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
 > ---
-> 
->  arch/arm/boot/dts/rockchip/rk3036-evb.dts     | 16 ++++++----------
->  arch/arm/boot/dts/rockchip/rk3036-kylin.dts   | 16 ++++++----------
->  arch/arm/boot/dts/rockchip/rk3036.dtsi        |  2 ++
->  .../boot/dts/rockchip/rk3066a-marsboard.dts   | 17 +++++++----------
->  .../boot/dts/rockchip/rk3066a-rayeager.dts    | 15 +++++----------
->  .../boot/dts/rockchip/rk3188-radxarock.dts    | 19 ++++++++-----------
->  arch/arm/boot/dts/rockchip/rk3xxx.dtsi        |  2 ++
->  7 files changed, 36 insertions(+), 51 deletions(-)
-> 
-> diff --git a/arch/arm/boot/dts/rockchip/rk3036-evb.dts b/arch/arm/boot/dts/rockchip/rk3036-evb.dts
-> index becdc0b664bf..94216f870b57 100644
-> --- a/arch/arm/boot/dts/rockchip/rk3036-evb.dts
-> +++ b/arch/arm/boot/dts/rockchip/rk3036-evb.dts
-> @@ -15,20 +15,16 @@ memory@60000000 {
->  };
->  
->  &emac {
-> -	phy = <&phy0>;
-> -	phy-reset-duration = <10>; /* millisecond */
-> -	phy-reset-gpios = <&gpio2 RK_PC6 GPIO_ACTIVE_LOW>; /* PHY_RST */
->  	pinctrl-names = "default";
->  	pinctrl-0 = <&emac_xfer>, <&emac_mdio>;
-> -	status = "okay";
-> +	phy = <&phy0>;
-> +	phy-reset-gpios = <&gpio2 RK_PC6 GPIO_ACTIVE_LOW>; /* PHY_RST */
-> +	phy-reset-duration = <10>; /* millisecond */
+2.5V is just a bit low :D
 
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
->  
-> -	mdio {
-> -		#address-cells = <1>;
-> -		#size-cells = <0>;
-> +	status = "okay";
->  
-> -		phy0: ethernet-phy@0 {
-> -			reg = <0>;
-> -		};
-> +	phy0: ethernet-phy@0 {
-> +		reg = <0>;
->  	};
-
-Sorry, didn't have the hardware when changing that binding.
-A little bit background info:
-
-The rk3036 TRM states:
-Management Interface (MDIO) state machine for easy real-time communication with the
-PHY
-
-A revert of the DT must also match a binding. But...
-Bindings must describe the hardware as close as possible.
-So when the phy is called over the mdio we must add phy as part of a mdio node.(Is that correct? Ask a expert!)
-Somehow the old emac driver doesn't support this sub node setup.
-First request would be have a look to make the driver work as it should.
-
-Johan
-
->  };
->  
-> diff --git a/arch/arm/boot/dts/rockchip/rk3036-kylin.dts b/arch/arm/boot/dts/rockchip/rk3036-kylin.dts
-> index 67e1e04139e7..e817eba8c622 100644
-> --- a/arch/arm/boot/dts/rockchip/rk3036-kylin.dts
-> +++ b/arch/arm/boot/dts/rockchip/rk3036-kylin.dts
-> @@ -80,20 +80,16 @@ &acodec {
->  };
->  
->  &emac {
-> -	phy = <&phy0>;
-> -	phy-reset-duration = <10>; /* millisecond */
-> -	phy-reset-gpios = <&gpio2 RK_PC6 GPIO_ACTIVE_LOW>; /* PHY_RST */
->  	pinctrl-names = "default";
->  	pinctrl-0 = <&emac_xfer>, <&emac_mdio>;
-> -	status = "okay";
-> +	phy = <&phy0>;
-> +	phy-reset-gpios = <&gpio2 RK_PC6 GPIO_ACTIVE_LOW>; /* PHY_RST */
-> +	phy-reset-duration = <10>; /* millisecond */
->  
-> -	mdio {
-> -		#address-cells = <1>;
-> -		#size-cells = <0>;
-> +	status = "okay";
->  
-> -		phy0: ethernet-phy@0 {
-> -			reg = <0>;
-> -		};
-> +	phy0: ethernet-phy@0 {
-> +		reg = <0>;
->  	};
->  };
->  
-> diff --git a/arch/arm/boot/dts/rockchip/rk3036.dtsi b/arch/arm/boot/dts/rockchip/rk3036.dtsi
-> index 78686fc72ce6..e240b89b0b35 100644
-> --- a/arch/arm/boot/dts/rockchip/rk3036.dtsi
-> +++ b/arch/arm/boot/dts/rockchip/rk3036.dtsi
-> @@ -228,6 +228,8 @@ emac: ethernet@10200000 {
->  		compatible = "rockchip,rk3036-emac";
->  		reg = <0x10200000 0x4000>;
->  		interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>;
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
->  		rockchip,grf = <&grf>;
->  		clocks = <&cru HCLK_MAC>, <&cru SCLK_MACREF>, <&cru SCLK_MAC>;
->  		clock-names = "hclk", "macref", "macclk";
-> diff --git a/arch/arm/boot/dts/rockchip/rk3066a-marsboard.dts b/arch/arm/boot/dts/rockchip/rk3066a-marsboard.dts
-> index f6e8d49a02ef..e3d6f0e81330 100644
-> --- a/arch/arm/boot/dts/rockchip/rk3066a-marsboard.dts
-> +++ b/arch/arm/boot/dts/rockchip/rk3066a-marsboard.dts
-> @@ -150,21 +150,18 @@ vcc28_cif: regulator@12 {
->  #include "../tps65910.dtsi"
->  
->  &emac {
-> +	status = "okay";
-> +
->  	phy = <&phy0>;
->  	phy-supply = <&vcc_rmii>;
-> +
->  	pinctrl-names = "default";
->  	pinctrl-0 = <&emac_xfer>, <&emac_mdio>, <&phy_int>;
-> -	status = "okay";
-> -
-> -	mdio {
-> -		#address-cells = <1>;
-> -		#size-cells = <0>;
->  
-> -		phy0: ethernet-phy@0 {
-> -			reg = <0>;
-> -			interrupt-parent = <&gpio1>;
-> -			interrupts = <RK_PD2 IRQ_TYPE_LEVEL_LOW>;
-> -		};
-> +	phy0: ethernet-phy@0 {
-> +		reg = <0>;
-> +		interrupt-parent = <&gpio1>;
-> +		interrupts = <RK_PD2 IRQ_TYPE_LEVEL_LOW>;
->  	};
->  };
->  
-> diff --git a/arch/arm/boot/dts/rockchip/rk3066a-rayeager.dts b/arch/arm/boot/dts/rockchip/rk3066a-rayeager.dts
-> index 29d8e5bf88f5..096616324c2d 100644
-> --- a/arch/arm/boot/dts/rockchip/rk3066a-rayeager.dts
-> +++ b/arch/arm/boot/dts/rockchip/rk3066a-rayeager.dts
-> @@ -142,20 +142,15 @@ &cpu1 {
->  };
->  
->  &emac {
-> -	phy = <&phy0>;
-> -	phy-supply = <&vcc_rmii>;
->  	pinctrl-names = "default";
->  	pinctrl-0 = <&emac_xfer>, <&emac_mdio>, <&rmii_rst>;
-> +	phy = <&phy0>;
-> +	phy-supply = <&vcc_rmii>;
->  	status = "okay";
->  
-> -	mdio {
-> -		#address-cells = <1>;
-> -		#size-cells = <0>;
-> -
-> -		phy0: ethernet-phy@0 {
-> -			reg = <0>;
-> -			reset-gpios = <&gpio1 RK_PD6 GPIO_ACTIVE_LOW>;
-> -		};
-> +	phy0: ethernet-phy@0 {
-> +		reg = <0>;
-> +		reset-gpios = <&gpio1 RK_PD6 GPIO_ACTIVE_LOW>;
->  	};
->  };
->  
-> diff --git a/arch/arm/boot/dts/rockchip/rk3188-radxarock.dts b/arch/arm/boot/dts/rockchip/rk3188-radxarock.dts
-> index 118deacd38c4..239d2ec37fdc 100644
-> --- a/arch/arm/boot/dts/rockchip/rk3188-radxarock.dts
-> +++ b/arch/arm/boot/dts/rockchip/rk3188-radxarock.dts
-> @@ -126,21 +126,18 @@ vsys: vsys-regulator {
->  };
->  
->  &emac {
-> -	phy = <&phy0>;
-> -	phy-supply = <&vcc_rmii>;
-> +	status = "okay";
-> +
->  	pinctrl-names = "default";
->  	pinctrl-0 = <&emac_xfer>, <&emac_mdio>, <&phy_int>;
-> -	status = "okay";
->  
-> -	mdio {
-> -		#address-cells = <1>;
-> -		#size-cells = <0>;
-> +	phy = <&phy0>;
-> +	phy-supply = <&vcc_rmii>;
->  
-> -		phy0: ethernet-phy@0 {
-> -			reg = <0>;
-> -			interrupt-parent = <&gpio3>;
-> -			interrupts = <RK_PD2 IRQ_TYPE_LEVEL_LOW>;
-> -		};
-> +	phy0: ethernet-phy@0 {
-> +		reg = <0>;
-> +		interrupt-parent = <&gpio3>;
-> +		interrupts = <RK_PD2 IRQ_TYPE_LEVEL_LOW>;
->  	};
->  };
->  
-> diff --git a/arch/arm/boot/dts/rockchip/rk3xxx.dtsi b/arch/arm/boot/dts/rockchip/rk3xxx.dtsi
-> index cb4e42ede56a..17e89d30de78 100644
-> --- a/arch/arm/boot/dts/rockchip/rk3xxx.dtsi
-> +++ b/arch/arm/boot/dts/rockchip/rk3xxx.dtsi
-> @@ -193,6 +193,8 @@ emac: ethernet@10204000 {
->  		compatible = "snps,arc-emac";
->  		reg = <0x10204000 0x3c>;
->  		interrupts = <GIC_SPI 19 IRQ_TYPE_LEVEL_HIGH>;
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
->  
->  		rockchip,grf = <&grf>;
->  
+Konrad
 
