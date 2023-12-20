@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-27317-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27318-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E73AF819EC2
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 13:13:59 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43593819EC5
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 13:14:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9D232287212
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 12:13:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BB6501F233E2
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 12:14:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C645322093;
-	Wed, 20 Dec 2023 12:12:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2DF622304;
+	Wed, 20 Dec 2023 12:12:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="SrG5rg1G"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uyCVgjr9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
+Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D0503B78D
-	for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 12:12:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42304249EC
+	for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 12:12:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-55372c1338bso3687601a12.2
-        for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 04:12:41 -0800 (PST)
+Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-553a65b6ad4so2266388a12.0
+        for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 04:12:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1703074360; x=1703679160; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1703074370; x=1703679170; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Y7DKtBhMqO9gULXLjrp+moP7cf0MV4CuE8EgQpgJRlc=;
-        b=SrG5rg1GU9xFMAWBFxK7P98zFjLxi8zOY1aYRyBE0nbhIfX64Ckn6ve7Vj0aZl/S5+
-         UeDb5CCVYmYjfet1Mpn7+13BkvC+ViXVZ2CDBx3xVRORvLsAo1cl4pAVunxkQIDej5FQ
-         bRbBeARdO4OEBt8hUBmie6CyfWemcSP3WhJdA0SASXQJ3pfyxzzPEw8WLzv9prk5PlRk
-         pgJa7E5nmzan77u7JFjUUAluqnYK5gODXiKtq0rUU4WR/TyR8rC6FmsjhYPevZ8J/MRa
-         PxUE4eEadB9Z9NR4DOLNk1DKAGGLvrkJrs9LLV3ouOXc5OWFZoyRO58TH6bTSZ7xw9XP
-         7OEg==
+        bh=TkuVnycLAd3dPo8nxlfmOyyJIMjGardOAKjbz5Oomy4=;
+        b=uyCVgjr9wI5wY8Iq57Y89P6vlZN2wpwvQI0axNd+Qzw5ecLHoSpmvJQ0Dx/iG9R8Tu
+         wQcismW3G7qWR464wkpoplTtPuqVVzPNiJXTsXfBnQfRmzhm0TdcFJsVCeobC1M4CcCP
+         4Hv0uKm5iLaHPwP2y0vTDfTbrqtXF/D49Ml+y64v0J+3FpvrdpW1iSAOr9B5zR/0wGSH
+         oO7bxHpXHUS7rou71iFfCICM2X8SUKzvtBOKkDb3GwtaSFEt/u5Rc0eqXNx1tMkT3OAm
+         lvr8ZFXqembJ0bncdu+lM5ORFShw+JkUChYdy0ITDob5jFp/mNm8qmya3lOxzZP9baZx
+         egDg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703074360; x=1703679160;
+        d=1e100.net; s=20230601; t=1703074370; x=1703679170;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Y7DKtBhMqO9gULXLjrp+moP7cf0MV4CuE8EgQpgJRlc=;
-        b=t8KyNKQ9BVuB0656j5KMweJrB6Po45C6GkNFAg6EoXyllcOA9imz+zXSQaSIE+B03m
-         sRPRbjK3kYBZolML2QfBhkZwdsAyd0NQXLvsJTv3MtZIPkjh/uta/Xv1vdSIA+fcVIkc
-         7KbMBURK9XyaQtuSN6dZOy7AU2kvqA2vDqypsgVrnAt/uUO1dR485QBv6cXhM5BX0FJo
-         Oa+SzD2g6bdVCJtRk2ssZLNPoTnWYMH0vCN6hAGQ4+Gw2WN8Vb7h4nDesD0ScgeKwWha
-         ooWNIrsSHOgaYt3Kzim0JXjCgI8ZdixFDaVgpPL9Sa5Sg+PtgGGmBIzLT1twaMV8POr2
-         sobQ==
-X-Gm-Message-State: AOJu0Yx4Ni+AOR9fMz3Au3B7wwIBcfgalC100mzzkRaLD2XKDgBvZND7
-	YXV48MYgfa0sENgl+A2nI6Ge9w==
-X-Google-Smtp-Source: AGHT+IEpiBf8zpqbPxu3AmHrEtyQuEhM65XJKg3tYXGHlQ4sniVLgBOBAg6hKoo0JZnlX2P+XOouaw==
-X-Received: by 2002:a50:9515:0:b0:553:6fff:d7d4 with SMTP id u21-20020a509515000000b005536fffd7d4mr2161532eda.51.1703074360351;
-        Wed, 20 Dec 2023 04:12:40 -0800 (PST)
+        bh=TkuVnycLAd3dPo8nxlfmOyyJIMjGardOAKjbz5Oomy4=;
+        b=WLA3JgC7tSQ6I2dN5jfmI74PzMQ+AqDJR2zoDhRh5uJ8usGjnvsGdEa1HE0HEnmnLI
+         yxVEAJdY2lb8EnSCHrz6AvhtJmrp73f/pCoYEAaiVpDkSbO+1pFsLIRMVWK4bnu7a5to
+         oJ+BklXbrl4OifhedNOUXcQ+jsxzhq9hychZEhzdLsbPjI/FigrbtORqHWXJYG2IClx4
+         cBcgC2o95rSHKIymp7wvFP3sS7KpjmuZqYQSAzflgV9CUS0FJL/rQluqEbkd657Hroti
+         WqsFVz4eIuk7zsJRkJtpqc86K5JBxUSf97cP9nEDRwXU+euEqNtIzNKIZeFqW/e4UXst
+         +28g==
+X-Gm-Message-State: AOJu0YywyvuAVXdFNhhWHRPhcUcZyEgYpZqQLn4ug/GqbnYJ6jKLfLGY
+	KGkXLom1grnvphQLmLXzcL1lNg==
+X-Google-Smtp-Source: AGHT+IHcue1eZkGoCrMSvU3vrgdanlUZom0+Te4w5f7HnhBLMKnKKc8kwCXkcK7/+1LsdkuOjm/RrQ==
+X-Received: by 2002:a50:bb28:0:b0:552:e43d:cc7c with SMTP id y37-20020a50bb28000000b00552e43dcc7cmr4990888ede.16.1703074370619;
+        Wed, 20 Dec 2023 04:12:50 -0800 (PST)
 Received: from [192.168.199.59] (178235179206.dynamic-4-waw-k-1-3-0.vectranet.pl. [178.235.179.206])
-        by smtp.gmail.com with ESMTPSA id u30-20020a50951e000000b0054ca7afdf35sm13276303eda.86.2023.12.20.04.12.38
+        by smtp.gmail.com with ESMTPSA id u30-20020a50951e000000b0054ca7afdf35sm13276303eda.86.2023.12.20.04.12.49
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 20 Dec 2023 04:12:39 -0800 (PST)
-Message-ID: <ee3d7a22-dbd5-44a2-8b93-76ec583c91a8@linaro.org>
-Date: Wed, 20 Dec 2023 13:12:37 +0100
+        Wed, 20 Dec 2023 04:12:50 -0800 (PST)
+Message-ID: <8d467665-eba8-4c60-9536-fc1fe5760a6e@linaro.org>
+Date: Wed, 20 Dec 2023 13:12:49 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,8 +66,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] arm64: dts: qcom: qcm6490-idp: Correct the voltage
- setting for vph_pwr
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: qcs6490-rb3gen2: Correct the
+ voltage setting for vph_pwr
 Content-Language: en-US
 To: Komal Bajaj <quic_kbajaj@quicinc.com>,
  Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh+dt@kernel.org>,
@@ -78,7 +78,7 @@ To: Komal Bajaj <quic_kbajaj@quicinc.com>,
 Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org
 References: <20231220110015.25378-1-quic_kbajaj@quicinc.com>
- <20231220110015.25378-2-quic_kbajaj@quicinc.com>
+ <20231220110015.25378-3-quic_kbajaj@quicinc.com>
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
@@ -115,7 +115,7 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <20231220110015.25378-2-quic_kbajaj@quicinc.com>
+In-Reply-To: <20231220110015.25378-3-quic_kbajaj@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
@@ -123,11 +123,9 @@ On 20.12.2023 12:00, Komal Bajaj wrote:
 > Min and max voltages for vph_pwr should be same, otherwise rpmh
 > will not probe, so correcting the min and max voltages for vph_pwr.
 > 
-> Fixes: 9af6a9f32ad0 ("arm64: dts: qcom: Add base qcm6490 idp board dts")
+> Fixes: 04cf333afc75 ("arm64: dts: qcom: Add base qcs6490-rb3gen2 board dts")
 > Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
 > ---
-2.5V is just a bit low :D
-
 Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
