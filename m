@@ -1,189 +1,195 @@
-Return-Path: <devicetree+bounces-27102-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27103-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9133B819545
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 01:29:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 707F2819551
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 01:31:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0AC861F261B8
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 00:29:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D33261F25ED6
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 00:31:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B09761FC9;
-	Wed, 20 Dec 2023 00:28:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64E7D1FC6;
+	Wed, 20 Dec 2023 00:30:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="JEAjOBwh"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nhVvrj4O"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D845C187E;
-	Wed, 20 Dec 2023 00:28:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1703032116;
-	bh=WQe4wDwRNT0S65UeCvFunjCWa8R+Rf3G+Co3wYKG0EU=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=JEAjOBwhre7GBxk43PM3eaHR7M2NlD7/vSMlSu4yrsOxbCCsA71khRXFF7he8TgaD
-	 OwSKDv8It492YA4iyBVFBuKq5waFlMFYhE+ohxQis15HOv40c0yYUtNjlolzAzlysw
-	 RTbyizjKl8LPjg+PLX/6uRuWd+RejUE1ueBlI+HWY9xRP3Y+Y8yPRXCyyIijObDjTg
-	 u5AeD5py4tHSMb9gBxrX2C/c74ByoPtR38nCMg/VeOKP47Ot5xbjBBcytictKX4TmE
-	 gQbV6Kxcyh0HmKq/kZlg1Sze3q4C3r3EuOxMZYYD1IWDnL0Ibfo7F2DvLSa3H8O/63
-	 LrafI3Ta0yOhQ==
-Received: from localhost (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: cristicc)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id ECC783781F8C;
-	Wed, 20 Dec 2023 00:28:35 +0000 (UTC)
-From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-To: "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Emil Renner Berthing <kernel@esmil.dk>,
-	Samin Guo <samin.guo@starfivetech.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Jose Abreu <joabreu@synopsys.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-	Andrew Lunn <andrew@lunn.ch>,
-	Jacob Keller <jacob.e.keller@intel.com>
-Cc: netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org,
-	kernel@collabora.com
-Subject: [PATCH v2 2/2] net: stmmac: dwmac-starfive: Add support for JH7100 SoC
-Date: Wed, 20 Dec 2023 02:28:23 +0200
-Message-ID: <20231220002824.2462655-3-cristian.ciocaltea@collabora.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20231220002824.2462655-1-cristian.ciocaltea@collabora.com>
-References: <20231220002824.2462655-1-cristian.ciocaltea@collabora.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6579C20FC
+	for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 00:30:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-50e281b149aso4656953e87.1
+        for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 16:30:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1703032252; x=1703637052; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=mWZvCxitZuGixzKuEq3TIl4LD0lytvrrFKs/eeQVctM=;
+        b=nhVvrj4OBtbpKfJMlEyXCbmjR3jkqWIKomhxSBhtkWE2CQof7kJr97E2niBrP5AxUy
+         1d6af0oWrEJFYXnBZBj0utiNYQ6h2ZNSJ6kBI9R8XXyg7zYOPE+77AHFFJGrO1bj+76m
+         BoRJa0u5AyzBlHFacOB62PavCgioofhN4GrJuAkU+5tuZPdE/lFRKdbditFOPcrn/mMv
+         yTKA2Auktqqbay3yCgoM4ET0PSVtZS0k0CbOJ2vGlHQxAW/DvbqxtKLyRsol68ZLIe5Y
+         PlHqdkZ3tyte6B8NikP9F0f+KojtgfnsOLhPKVYZfyiOjT+QDvIxRfC5rYqg6P/+eeDc
+         LY6A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1703032252; x=1703637052;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=mWZvCxitZuGixzKuEq3TIl4LD0lytvrrFKs/eeQVctM=;
+        b=PgVLMqsvZqz7IH26gltQQaLmgL41PKx6SpMho5rVIMklipA9jmQQDzG9NKesSznlyN
+         /noPAmh9pAAAAJCELUMvsy/NhE1XYVpnTKldC3GJ22tw+Qe/m90FFfapVo7O0rl6usMG
+         g7FGhqC6u4nSREJWx+RdklZxHMtF/fDtspU/Avgo806Ka7lA5LWjRMKY+6SSpXMwEfsQ
+         0OPpGHdUWOqDlsbMuZhINo009uEPvTU5ttOSyUNeGNRVkTO/7vS2AW8zb7T27KoGBprn
+         hkVYYpinDLQjQJHuQscDGgvxPSzF1T+/qcoRmEU9JPFdJD01GCDtsfGTNpWg1Ts/NIOm
+         vpSQ==
+X-Gm-Message-State: AOJu0Yz8FxnP+WwqzYySiCcyfLjCmo6nYk0ZNn2is22RSLod9q4zs8Yx
+	MmNtHZN63LoLUM6B9G7kor3f4Q==
+X-Google-Smtp-Source: AGHT+IGvuuqQ6CZNter5M4MFcL7ofl2/ybStrzPNyOZhDeuRUxCyN2bNpEA+fgT8CcCcVxbW8V9itw==
+X-Received: by 2002:a05:6512:3d90:b0:50e:38ff:d9e2 with SMTP id k16-20020a0565123d9000b0050e38ffd9e2mr2473150lfv.32.1703032252285;
+        Tue, 19 Dec 2023 16:30:52 -0800 (PST)
+Received: from [10.167.154.1] (178235179206.dynamic-4-waw-k-1-3-0.vectranet.pl. [178.235.179.206])
+        by smtp.gmail.com with ESMTPSA id k16-20020a056402049000b00552d03a17acsm4824397edv.61.2023.12.19.16.30.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 19 Dec 2023 16:30:51 -0800 (PST)
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Subject: [PATCH v3 00/15] Unregister critical branch clocks + some RPM
+Date: Wed, 20 Dec 2023 01:30:41 +0100
+Message-Id: <20230717-topic-branch_aon_cleanup-v3-0-3e31bce9c626@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIALE1gmUC/42NzQ6DIBAGX6XhXBr+CranvkfTGMRFSQwYUNLG+
+ O5F00tvHufL7syCEkQHCd1PC4qQXXLBF+DnEzK99h1g1xZGjDBOFFV4CqMzuInam77WwddmAO3
+ nEcubkoZyC4oaVN4bneB3VwR+HoYyjhGse++956tw79IU4mfPZ7qtB0qZYoKZUpVomdLCisfgv
+ I7hEmKHNmtmR01sM+lrxYUkYJn8M63r+gVEK473IAEAAA==
+To: Bjorn Andersson <andersson@kernel.org>, Andy Gross <agross@kernel.org>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Marijn Suijten <marijn.suijten@somainline.org>, 
+ linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, 
+ Johan Hovold <johan+linaro@kernel.org>, 
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1703032249; l=4596;
+ i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
+ bh=TOhUcZQV9pL6H0IYh/H/hiMLY+tqB9v/ZY20JeDivt0=;
+ b=XreHTluc+J6PWRiZWAkckyzExqA5QYvxffRmYmTZr71esThReM+XO9BjyqYjw96eW6ueQNoSK
+ fyn35Aqry4wC7X5SHWqEXQoiUlen3BLA155GhzScg2AxeAM8tVJHn5i
+X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
+ pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 
-Add a missing quirk to enable support for the StarFive JH7100 SoC.
+On Qualcomm SoCs, certain branch clocks either need to be always-on, or
+should be if you're interested in touching some part of the hardware.
 
-Additionally, for greater flexibility in operation, allow using the
-rgmii-rxid and rgmii-txid phy modes.
+Using CLK_IS_CRITICAL for this purpose sounds like a genius idea,
+however that messes with the runtime pm handling - if a clock is
+marked as such, the clock controller device will never enter the
+"suspended" state, leaving the associated resources online, which in
+turn breaks SoC-wide suspend.
 
-Co-developed-by: Emil Renner Berthing <kernel@esmil.dk>
-Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
-Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-Reviewed-by: Jacob Keller <jacob.e.keller@intel.com>
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+This series aims to solve that on a couple SoCs that I could test the
+changes on and it sprinkles some runtime pm enablement atop these drivers.
+
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 ---
- drivers/net/ethernet/stmicro/stmmac/Kconfig   |  6 ++--
- .../ethernet/stmicro/stmmac/dwmac-starfive.c  | 32 ++++++++++++++++---
- 2 files changed, 31 insertions(+), 7 deletions(-)
+Changes in v3:
+- Rebase (next-20231219)
+- Fix up a copypaste mistake in "gcc-sm6375: Unregister critical clocks" (bod)
+- Pick up tags
+- Link to v2: https://lore.kernel.org/r/20230717-topic-branch_aon_cleanup-v2-0-2a583460ef26@linaro.org
 
-diff --git a/drivers/net/ethernet/stmicro/stmmac/Kconfig b/drivers/net/ethernet/stmicro/stmmac/Kconfig
-index 85dcda51df05..4ec61f1ee71a 100644
---- a/drivers/net/ethernet/stmicro/stmmac/Kconfig
-+++ b/drivers/net/ethernet/stmicro/stmmac/Kconfig
-@@ -165,9 +165,9 @@ config DWMAC_STARFIVE
- 	help
- 	  Support for ethernet controllers on StarFive RISC-V SoCs
- 
--	  This selects the StarFive platform specific glue layer support for
--	  the stmmac device driver. This driver is used for StarFive JH7110
--	  ethernet controller.
-+	  This selects the StarFive platform specific glue layer support
-+	  for the stmmac device driver. This driver is used for the
-+	  StarFive JH7100 and JH7110 ethernet controllers.
- 
- config DWMAC_STI
- 	tristate "STi GMAC support"
-diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-starfive.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-starfive.c
-index 5d630affb4d1..4e1076faee0c 100644
---- a/drivers/net/ethernet/stmicro/stmmac/dwmac-starfive.c
-+++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-starfive.c
-@@ -15,13 +15,20 @@
- 
- #include "stmmac_platform.h"
- 
--#define STARFIVE_DWMAC_PHY_INFT_RGMII	0x1
--#define STARFIVE_DWMAC_PHY_INFT_RMII	0x4
--#define STARFIVE_DWMAC_PHY_INFT_FIELD	0x7U
-+#define STARFIVE_DWMAC_PHY_INFT_RGMII		0x1
-+#define STARFIVE_DWMAC_PHY_INFT_RMII		0x4
-+#define STARFIVE_DWMAC_PHY_INFT_FIELD		0x7U
-+
-+#define JH7100_SYSMAIN_REGISTER49_DLYCHAIN	0xc8
-+
-+struct starfive_dwmac_data {
-+	unsigned int gtxclk_dlychain;
-+};
- 
- struct starfive_dwmac {
- 	struct device *dev;
- 	struct clk *clk_tx;
-+	const struct starfive_dwmac_data *data;
- };
- 
- static void starfive_dwmac_fix_mac_speed(void *priv, unsigned int speed, unsigned int mode)
-@@ -67,6 +74,8 @@ static int starfive_dwmac_set_mode(struct plat_stmmacenet_data *plat_dat)
- 
- 	case PHY_INTERFACE_MODE_RGMII:
- 	case PHY_INTERFACE_MODE_RGMII_ID:
-+	case PHY_INTERFACE_MODE_RGMII_RXID:
-+	case PHY_INTERFACE_MODE_RGMII_TXID:
- 		mode = STARFIVE_DWMAC_PHY_INFT_RGMII;
- 		break;
- 
-@@ -89,6 +98,14 @@ static int starfive_dwmac_set_mode(struct plat_stmmacenet_data *plat_dat)
- 	if (err)
- 		return dev_err_probe(dwmac->dev, err, "error setting phy mode\n");
- 
-+	if (dwmac->data) {
-+		err = regmap_write(regmap, JH7100_SYSMAIN_REGISTER49_DLYCHAIN,
-+				   dwmac->data->gtxclk_dlychain);
-+		if (err)
-+			return dev_err_probe(dwmac->dev, err,
-+					     "error selecting gtxclk delay chain\n");
-+	}
-+
- 	return 0;
- }
- 
-@@ -114,6 +131,8 @@ static int starfive_dwmac_probe(struct platform_device *pdev)
- 	if (!dwmac)
- 		return -ENOMEM;
- 
-+	dwmac->data = device_get_match_data(&pdev->dev);
-+
- 	dwmac->clk_tx = devm_clk_get_enabled(&pdev->dev, "tx");
- 	if (IS_ERR(dwmac->clk_tx))
- 		return dev_err_probe(&pdev->dev, PTR_ERR(dwmac->clk_tx),
-@@ -144,8 +163,13 @@ static int starfive_dwmac_probe(struct platform_device *pdev)
- 	return stmmac_dvr_probe(&pdev->dev, plat_dat, &stmmac_res);
- }
- 
-+static const struct starfive_dwmac_data jh7100_data = {
-+	.gtxclk_dlychain = 4,
-+};
-+
- static const struct of_device_id starfive_dwmac_match[] = {
--	{ .compatible = "starfive,jh7110-dwmac"	},
-+	{ .compatible = "starfive,jh7100-dwmac", .data = &jh7100_data },
-+	{ .compatible = "starfive,jh7110-dwmac" },
- 	{ /* sentinel */ }
- };
- MODULE_DEVICE_TABLE(of, starfive_dwmac_match);
+Changes in v2:
+- Rebase
+- Pick up tags
+- Fix up missing pm_runtime_put in SM6375 GCC (Johan)
+- Clarify the commit message of "Add runtime PM" commits (Johan)
+- "GPU_CCC" -> "GPU_CC" (oops)
+- Rebase atop next-20231129
+  - Also fix up camcc-sm8550 & gcc-sm4450
+  - Unify and clean up the comment style
+  - Fix missing comments in gcc-sc7180..
+  - Drop Johan's ack from "clk: qcom: Use qcom_branch_set_clk_en()"
+- Improve 6115 dt patch commit message (Bjorn)
+- Link to v1: https://lore.kernel.org/r/20230717-topic-branch_aon_cleanup-v1-0-27784d27a4f4@linaro.org
+
+---
+Konrad Dybcio (15):
+      clk: qcom: branch: Add a helper for setting the enable bit
+      clk: qcom: Use qcom_branch_set_clk_en()
+      clk: qcom: gcc-sm6375: Unregister critical clocks
+      clk: qcom: gcc-sm6375: Add runtime PM
+      clk: qcom: gpucc-sm6375: Unregister critical clocks
+      clk: qcom: gpucc-sm6115: Unregister critical clocks
+      clk: qcom: gpucc-sm6115: Add runtime PM
+      clk: qcom: gcc-sm6115: Unregister critical clocks
+      clk: qcom: gcc-sm6115: Add runtime PM
+      clk: qcom: gcc-qcm2290: Unregister critical clocks
+      clk: qcom: gcc-qcm2290: Add runtime PM
+      arm64: dts: qcom: sm6375: Add VDD_CX to GCC
+      arm64: dts: qcom: qcm2290: Add VDD_CX to GCC
+      arm64: dts: qcom: sm6115: Add VDD_CX to GCC
+      arm64: dts: qcom: sm6115: Add VDD_CX to GPU_CC
+
+ arch/arm64/boot/dts/qcom/qcm2290.dtsi |   1 +
+ arch/arm64/boot/dts/qcom/sm6115.dtsi  |   3 +
+ arch/arm64/boot/dts/qcom/sm6375.dtsi  |   1 +
+ drivers/clk/qcom/camcc-sm8550.c       |   9 +--
+ drivers/clk/qcom/clk-branch.h         |   7 ++
+ drivers/clk/qcom/dispcc-qcm2290.c     |   3 +-
+ drivers/clk/qcom/dispcc-sc7280.c      |   6 +-
+ drivers/clk/qcom/dispcc-sc8280xp.c    |   3 +-
+ drivers/clk/qcom/dispcc-sm6115.c      |   3 +-
+ drivers/clk/qcom/dispcc-sm8250.c      |   3 +-
+ drivers/clk/qcom/dispcc-sm8450.c      |   6 +-
+ drivers/clk/qcom/dispcc-sm8550.c      |   6 +-
+ drivers/clk/qcom/gcc-qcm2290.c        | 127 ++++++-----------------------
+ drivers/clk/qcom/gcc-sa8775p.c        |  24 +++---
+ drivers/clk/qcom/gcc-sc7180.c         |  21 ++---
+ drivers/clk/qcom/gcc-sc7280.c         |  19 ++---
+ drivers/clk/qcom/gcc-sc8180x.c        |  27 +++----
+ drivers/clk/qcom/gcc-sc8280xp.c       |  24 +++---
+ drivers/clk/qcom/gcc-sdx55.c          |  11 +--
+ drivers/clk/qcom/gcc-sdx65.c          |  12 +--
+ drivers/clk/qcom/gcc-sdx75.c          |   9 +--
+ drivers/clk/qcom/gcc-sm4450.c         |  27 ++-----
+ drivers/clk/qcom/gcc-sm6115.c         | 145 +++++++---------------------------
+ drivers/clk/qcom/gcc-sm6375.c         | 126 +++++++----------------------
+ drivers/clk/qcom/gcc-sm7150.c         |  22 ++----
+ drivers/clk/qcom/gcc-sm8250.c         |  18 ++---
+ drivers/clk/qcom/gcc-sm8350.c         |  19 ++---
+ drivers/clk/qcom/gcc-sm8450.c         |  20 ++---
+ drivers/clk/qcom/gcc-sm8550.c         |  20 ++---
+ drivers/clk/qcom/gpucc-sc7280.c       |   8 +-
+ drivers/clk/qcom/gpucc-sc8280xp.c     |   8 +-
+ drivers/clk/qcom/gpucc-sm6115.c       |  52 +++++-------
+ drivers/clk/qcom/gpucc-sm6375.c       |  33 +-------
+ drivers/clk/qcom/gpucc-sm8550.c       |   9 +--
+ drivers/clk/qcom/lpasscorecc-sc7180.c |   6 +-
+ drivers/clk/qcom/videocc-sm8250.c     |   5 +-
+ drivers/clk/qcom/videocc-sm8350.c     |   9 +--
+ drivers/clk/qcom/videocc-sm8450.c     |  12 +--
+ drivers/clk/qcom/videocc-sm8550.c     |  12 +--
+ 39 files changed, 236 insertions(+), 640 deletions(-)
+---
+base-commit: aa4db8324c4d0e67aa4670356df4e9fae14b4d37
+change-id: 20230717-topic-branch_aon_cleanup-6976c13fe71c
+
+Best regards,
 -- 
-2.43.0
+Konrad Dybcio <konrad.dybcio@linaro.org>
 
 
