@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-27306-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27307-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id F000A819E0B
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 12:29:58 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1707E819E2D
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 12:34:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7CE661F26E36
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 11:29:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C1A142887CE
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 11:34:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EAAF2136A;
-	Wed, 20 Dec 2023 11:29:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52A4E21357;
+	Wed, 20 Dec 2023 11:34:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GqQGN7LP"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tG9vL/KT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 953DF2137F
-	for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 11:29:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC7B322308
+	for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 11:34:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-40c236624edso60639835e9.1
-        for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 03:29:39 -0800 (PST)
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-40d190044c5so36352535e9.2
+        for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 03:34:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1703071778; x=1703676578; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1703072043; x=1703676843; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=AuUM7w3HMQHGayplIXRBZgEKAa98Y/VzXaJlZpMNpu0=;
-        b=GqQGN7LPTBYc8kFKSDwUEjTqhCYn5jDVabTNxo+mI7BMrli7vXxa4p9KAEJUc99KPY
-         MBk+KTdWe7l1orOxyU7JMMjWKQFJrLaR/4oH7CMkdAmy1u196+43KLkpo85fICS6Yw2H
-         hDulAiVfC+w/KW1cnTnZyCI9YIXp0i/SYzFO5O50h81+A0vw8EtpfssI7Y/EYj8C26wG
-         R49maqYlgZHo+8nu4LSJd9NIUjfrYrPNGwHqeos+CxLJEWXxw8eCNQBFim7H3g7h/B7v
-         c4o5pSpezzZqaogklMljqgs+yNqOTDu3lUwkJrnrd4frbYPXZPUIjBDNLs7akuRrOhNO
-         C9/Q==
+        bh=IFboNxAk82XtaVTWM02c+nDiWxbn4us0s/m/m5y9Mjs=;
+        b=tG9vL/KTgXEDvjl8w8TeKQveWrrWP1K6ZT3OLvRD+B5cNXCG55urepkzdgWkF11w3R
+         +tB8fJH2LIFK2DWXuy7cpqxU0loIcmNU9CUVSZWRK3D5+/zun457rN1Q+mHBz7OzB2z4
+         s8VFD++7XTW8+372WvLK5DmrUKoukQaN1MwQTaInyjwtxqHi760kwVWj3WrRHCjwWKrN
+         aavSvmufRIV+2DJ0NadpPX3RYR1ig7UX9H5aQTirRuJkRLLXYKmI9Q2Da/AnnPiAJkDk
+         Fu1ZwAzFF6nHCXzg/TLjUJNbmEcRHzl7r+05YeFrqgVhNVgV4jLcOabIFNQ8Bv9Pk05A
+         OwAw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703071778; x=1703676578;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1703072043; x=1703676843;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=AuUM7w3HMQHGayplIXRBZgEKAa98Y/VzXaJlZpMNpu0=;
-        b=e8vYJP7Kie7jF+OHDpyKgcfjRgzdwctulwzzGq/Og/bqZUtO5ajac0xWdl48QHnlvK
-         gP6sB3XOugS0aayX0nDbIxFcj676J4xCi1VsFHSynNn3iDeLhBBlZK5tlgBkMvnq5THQ
-         K27OFHYD2nd6QQHYa4Oem7redEUrKJ61dWhm91eIWo0rxNaA4xg9CsM4y0nh2tHf+WAr
-         ysVzllaoTdOdee47cpwtwPnyJevdJuaniZvwO/wWpLxg4TWyDqzgR1+frQ4TsFPS2I/s
-         ENx3Rug8MR+rhsweFODtnLa/UOZJepb6yU5/Cw+KBJTrkzBG5NF02zrmSfv46X0u4RJE
-         OMGQ==
-X-Gm-Message-State: AOJu0YzB+J84F0HQR3ABi8sCMOHuAMnJOIDB/T2SYcdylMmJfO0bxd3W
-	6/Y6mYmRlRFZbi5cqIE+35EtcQ==
-X-Google-Smtp-Source: AGHT+IFeLj4NvAfiLj67MtiAxR9mSLn3z3XCUwXcXckKsjdtbJKqHKFnhUE3TCiQ7tonsMbSqGT03w==
-X-Received: by 2002:a05:600c:4c1a:b0:40c:d4d:68ec with SMTP id d26-20020a05600c4c1a00b0040c0d4d68ecmr9941564wmp.183.1703071777637;
-        Wed, 20 Dec 2023 03:29:37 -0800 (PST)
+        bh=IFboNxAk82XtaVTWM02c+nDiWxbn4us0s/m/m5y9Mjs=;
+        b=sHdAj+MBbhQaMeXGmrqOcOgERs2ln7d3q5ZsknF54F6qzLGF8OXCIu7zcJ19ixQd9k
+         cYUIunTPflqciQzb7lSrtv+o7HP37UBi3aAL45kszwRyFDv9smiH7BOOnDBy3BsK/SWD
+         uY+c1ODcDxq+LyUJx+ErLKq9W4FbcDoaVTkUL4GkK3shpH3ruEfaqvtaTqOzW2+wpp/9
+         b3M6rX7d3OhuBYFAtbodkfOO25Y6wZr2ch9kql7gmNkMmGS3/xOYo+wg5CEqLE4Q0Wbp
+         bNNfchCF1RmUjLfTKfQ4HV8k8cvTi1PAger4bmiH1T59rePqhPyia36AVxScCqB9EcLZ
+         vkgw==
+X-Gm-Message-State: AOJu0YyQFm4QwTVoNBJRAmex/6aBXXF8AazNZJcMtsstn6xe0x4mUnjD
+	8NxLAF/4ylwgx3PY2bwzjPIuyA==
+X-Google-Smtp-Source: AGHT+IGVl68eT4N+5Q4z8yzPhMX3yvcsl33WwL5LMW/8Kjvff1d7DaJHftB+5n2GaDpY3excu8F5eA==
+X-Received: by 2002:a05:600c:3d18:b0:40d:35a5:b9dd with SMTP id bh24-20020a05600c3d1800b0040d35a5b9ddmr425625wmb.22.1703072043114;
+        Wed, 20 Dec 2023 03:34:03 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id c5-20020a05600c0a4500b0040c411da99csm7084228wmq.48.2023.12.20.03.29.36
+        by smtp.gmail.com with ESMTPSA id o30-20020a05600c511e00b0040b43da0bbasm6948988wms.30.2023.12.20.03.34.01
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 20 Dec 2023 03:29:37 -0800 (PST)
-Message-ID: <9c9ece43-75b8-43ca-a8e1-b338b47b5c15@linaro.org>
-Date: Wed, 20 Dec 2023 12:29:35 +0100
+        Wed, 20 Dec 2023 03:34:02 -0800 (PST)
+Message-ID: <97d54894-7c71-49d8-a456-869c398636ec@linaro.org>
+Date: Wed, 20 Dec 2023 12:34:00 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,25 +66,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 1/2] dt-bindings: i2c: add bus-reset-gpios property
+Subject: Re: [PATCH v3 2/3] soc: mediatek: mtk-socinfo: Add driver for getting
+ chip information
 Content-Language: en-US
-To: "wsa@kernel.org" <wsa@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
- Chris Packham <Chris.Packham@alliedtelesis.co.nz>,
- "robh+dt@kernel.org" <robh+dt@kernel.org>,
- "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "gregory.clement@bootlin.com" <gregory.clement@bootlin.com>,
- "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20231115035753.925534-1-chris.packham@alliedtelesis.co.nz>
- <20231115035753.925534-2-chris.packham@alliedtelesis.co.nz>
- <f24b9b2d-aeb1-47f7-bf21-4383fdcf94aa@linaro.org>
- <5a52b0c9-8858-4f55-8dd7-9269c29c10a7@alliedtelesis.co.nz>
- <ZYHMvZ3plIQ0zXWa@shikoro>
- <601d07b5-264d-4322-b92e-63d58b3d69fa@alliedtelesis.co.nz>
- <ZYICEczlao+pg8kd@shikoro> <20231219232545.ksrxgvl7epeewga2@zenone.zhora.eu>
- <e80a06aa-bb44-4993-8e67-dbc910a409ab@linaro.org> <ZYLJ5EMKK1jhSclQ@shikoro>
+To: William-tw Lin <william-tw.lin@mediatek.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
+References: <20231220103901.22180-1-william-tw.lin@mediatek.com>
+ <20231220103901.22180-3-william-tw.lin@mediatek.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -130,37 +125,30 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <ZYLJ5EMKK1jhSclQ@shikoro>
+In-Reply-To: <20231220103901.22180-3-william-tw.lin@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 20/12/2023 12:03, wsa@kernel.org wrote:
+On 20/12/2023 11:39, William-tw Lin wrote:
+> Add driver for socinfo retrieval. This patch includes the following:
+> 1. mtk-socinfo driver for chip info retrieval
+> 2. Related changes to Makefile and Kconfig
 > 
->>>>> I personally would like to see it accepted but it seems there are 
->>>>> objections to this approach. I've yet to come up with anything better to 
->>>>> offer as an alternative.
->>>>
->>>> I see. Thanks for the heads up!
->>>
->>> I'm also inclined to have this merged. A real fix might take
->>> time.
->>
->> NAK
->>
->> If you intend to merge it, then please carry:
-> 
-> No worries. If this is "abusing" DT, then it is not going to be merged
-> by me. I am sorry for Chris, but sometimes simple problems create quite
-> some fuzz because Linux hardware abstractions has not foreseen certain
-> use cases. Or the APIs dealing with them didn't forsee that. We have
-> been there a lot of times :/
+> Signed-off-by: William-tw Lin <william-tw.lin@mediatek.com>
 
-I need the same solution for WSA884x speaker, for which Mark rejected
-simple shared GPIO (even though it would work there), so I am trying to
-solve it. It's basically the same case. Now, I am waiting on answer from
-Sean Anderson whether he continued his work on reset-gpios controller
-from two years ago. Rob wanted handling reset-gpios by generic reset
-framework, which would solve these simple cases, here and mine, nicely.
+...
+
+> +static struct platform_driver mtk_socinfo = {
+> +	.probe = mtk_socinfo_probe,
+> +	.remove_new = mtk_socinfo_remove,
+> +	.driver = {
+> +		.name = "mtk-socinfo",
+> +	},
+> +};
+> +builtin_platform_driver(mtk_socinfo);
+
+module platform driver, because this is tristate and because this should
+be a module.
 
 Best regards,
 Krzysztof
