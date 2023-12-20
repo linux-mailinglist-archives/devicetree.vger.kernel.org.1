@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-27189-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27190-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B94618199C1
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 08:41:11 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 546AC8199C9
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 08:43:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 12103B21C20
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 07:41:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 78A361C221E5
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 07:43:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A4651641E;
-	Wed, 20 Dec 2023 07:41:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 248CF1642F;
+	Wed, 20 Dec 2023 07:42:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="rZ24ek84"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="o0hiJTM9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A524168C8
-	for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 07:41:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 313E5168C8
+	for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 07:42:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-40c3ca9472dso61306985e9.2
-        for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 23:41:03 -0800 (PST)
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-40c3ceded81so54005385e9.1
+        for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 23:42:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1703058062; x=1703662862; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1703058172; x=1703662972; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Dp4sA0uZcZp6BCNUcENQ3LeItLZo0RPCsLgcLzRyzNU=;
-        b=rZ24ek84b9bfVBA9Rze7WAukyHrPyCJG7oMUffmlsrPfoJhgEpz0xD8v2HNnMsMhEe
-         2MxrdhrSTM6k3TGTgANNgJ4PTHNQS4k9OEzrZKQ1Wf03ztax9/q2tP+fvGzU9s2t8Pi6
-         Iv9mwsdnxVBkgi6iZ96D3qbCz4v0KYPXIKVaDAEAbJLDMR2nTTG8I3zNxfSwnDn7iQ3e
-         CUj8YQ9K9kGic2tBjhjJ3TrjuZAtE31dZxiQ0f+xb74dMdesaQBXQcMT0pngw5su6g95
-         00IYTdFmoZsEEF5aPKcveKZMX66Zv1aeeJOvc70snEJitzBNw9ZB1JPfeSo3kA33nSNh
-         pxag==
+        bh=O6oeum58Pov922ALSaZk2Shzqt1Yn2X1JKKJTk+NQac=;
+        b=o0hiJTM9akc0WGIkEkKUnMg4WP49CvvwxQiJyeqfGj5Z5l/H1tEXWWKl2w0wdh8hZB
+         XSTd//AAaclt3Q0/GYibNNADqVB9XxNNzIyOqTGPFohacz+ZgtayT11IG3HfGnlc4KkA
+         wHkOwj3uPjTiA/vkEMFD3Nv+kX6iI35nA9YFgkDnCfyk2+8f8fmMTeI5Y5Ryc9lM6tlw
+         Mbry0iha19T+RUAL+wDzGJUi5kgfiYVKhE87HU1KQk2dj9Zp/iC/XN1YB2edqhQ/JUZo
+         u860lNbQEtYitNUu3Hrd3sOqdOdffBBAdXIuUo8Zpcikws/AjTjHY4BsCBSRqRx47Ard
+         81MA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703058062; x=1703662862;
+        d=1e100.net; s=20230601; t=1703058172; x=1703662972;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Dp4sA0uZcZp6BCNUcENQ3LeItLZo0RPCsLgcLzRyzNU=;
-        b=CHXiL1XOtGrfFYiHsN72B82RzaBqCbkeaZWFVI5MGvHXZ5LKmhZSd6p33K1hCmTc/F
-         eCIsjtpsrYrfbEjJf8lxJOVXXnd1VL4j/8Ywtcm2fKxkUYm9MSdKf4ErdccxRdGG2o4v
-         1Fv6bcFqe3WBJ5SkH83H3v1aXi56jyFrG0rhM807by9sw16/MwOU0/+c13V6iX/D8N83
-         X5K4hiWkyDjbTS41mOKV2r+hMHYWy0XfO1LUu8fEKlRbcirTH63prISbbkhxrD1fLQU3
-         zw2pthGmXBAxjD+MZXZRONvm6VRfRzC/3XuOStD8pxlAcFT3SbFVOys56u7vk3qOTcY+
-         r85w==
-X-Gm-Message-State: AOJu0YycHGNdHR38eZvGQdcECb0krQJQHg+7WOFyvDJEa3VhUMv2fXCG
-	DsybsZvbT9eG9ytGV1z0o9F7TA==
-X-Google-Smtp-Source: AGHT+IEGV+PC0j0zCzIGu1DPdFHgN1FAA9oXOAXJD1RuB9mvLX/09yCZpyzpr5/S4uiUKbcleHjjNA==
-X-Received: by 2002:a05:600c:714:b0:40c:3e5f:78e8 with SMTP id i20-20020a05600c071400b0040c3e5f78e8mr6759664wmn.228.1703058061916;
-        Tue, 19 Dec 2023 23:41:01 -0800 (PST)
+        bh=O6oeum58Pov922ALSaZk2Shzqt1Yn2X1JKKJTk+NQac=;
+        b=bsB3I5XMhUxZLpmJtrrv28eE4/Dg28FLEiL7VGY5Y0WgEiG3WkkwiMABgaykyh5O+Y
+         N9MoQdQEJiRe1sGHyQIMFAx88FnPGRCu5/a+GzloUSed4/M7Vi/G5mLCmCp2wVyuTWBh
+         LqwgcJ+LjrH/vu8CQpP3AwZ12hZ7b3u8rCJqkHXd9d1YhG2cuDOIOcxLGkt2vwUmPw7L
+         FjYojr+QBJWlD+dr9Y8FB3gykzk78iGzqA+u/+mmrM+cpoLPPAR7auqFPzsmG3fxVJgD
+         CyAndf8if3kpkqm1SQzj9eriOq2Lx5iROebPL+vPrF3/xTJiiOcCHv8OpMOeKSFctfT2
+         DdVw==
+X-Gm-Message-State: AOJu0YzNDtrq8PKWJHSGcGRZNKcy7gIUuRGy0StI1C3CWkavXuYXNv0q
+	lJ5OX2GC6IvAzivD+MQlWb4b3d+SsbaamlTQYNU=
+X-Google-Smtp-Source: AGHT+IEGCrTOWE2JTnCzJIZ7fxApcEkFocHqS2KaJwOZdCdUr75btfQ6KHv5FVGsbm/LR6Dk2T3Nwg==
+X-Received: by 2002:a05:600c:4981:b0:402:f55c:faee with SMTP id h1-20020a05600c498100b00402f55cfaeemr9923715wmp.26.1703058172508;
+        Tue, 19 Dec 2023 23:42:52 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id bd7-20020a05600c1f0700b0040c420eda48sm6501953wmb.22.2023.12.19.23.41.00
+        by smtp.gmail.com with ESMTPSA id o21-20020a05600c4fd500b0040c5cf930e6sm6120855wmq.19.2023.12.19.23.42.50
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 19 Dec 2023 23:41:01 -0800 (PST)
-Message-ID: <ece3cf19-0fc2-4e49-b56c-4f7c69c9b24e@linaro.org>
-Date: Wed, 20 Dec 2023 08:40:59 +0100
+        Tue, 19 Dec 2023 23:42:51 -0800 (PST)
+Message-ID: <dd3e3e6c-dd07-483a-9d56-1b5e22790f01@linaro.org>
+Date: Wed, 20 Dec 2023 08:42:49 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,16 +66,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] dt-bindings: hwmon: (lm75) Add AMS AS6200
- temperature sensor
+Subject: Re: [PATCH 1/3] dt-bindings: phy: Add PHY_TYPE_EDP definition
 Content-Language: en-US
-To: Abdel Alkuor <alkuor@gmail.com>, Jean Delvare <jdelvare@suse.com>,
- Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh+dt@kernel.org>,
+To: Abel Vesa <abel.vesa@linaro.org>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>
-Cc: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
-References: <af834e980f57dc11d3e821c074c433cdbc6accc3.1703030297.git.alkuor@gmail.com>
+ Conor Dooley <conor+dt@kernel.org>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Johan Hovold <johan@kernel.org>
+Cc: linux-phy@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+References: <20231219-x1e80100-phy-edp-compatible-refactor-v1-0-f9e77752953d@linaro.org>
+ <20231219-x1e80100-phy-edp-compatible-refactor-v1-1-f9e77752953d@linaro.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -121,19 +125,19 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <af834e980f57dc11d3e821c074c433cdbc6accc3.1703030297.git.alkuor@gmail.com>
+In-Reply-To: <20231219-x1e80100-phy-edp-compatible-refactor-v1-1-f9e77752953d@linaro.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 20/12/2023 01:17, Abdel Alkuor wrote:
-> as6200 is a temperature sensor with a range between -40°C to
-> 125°C degrees and an accuracy of ±0.4°C degree between 0
-> and 65°C and ±1°C for the other ranges.
+On 19/12/2023 21:55, Abel Vesa wrote:
+> Add definition for Embedded DisplayPort (eDP) phy type.
 > 
-> Signed-off-by: Abdel Alkuor <alkuor@gmail.com>
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
 > ---
+>  include/dt-bindings/phy/phy.h | 1 +
+>  1 file changed, 1 insertion(+)
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
