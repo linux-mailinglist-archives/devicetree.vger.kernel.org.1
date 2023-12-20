@@ -1,166 +1,145 @@
-Return-Path: <devicetree+bounces-27327-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27328-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96BBB819F09
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 13:30:46 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 568CA819F0E
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 13:32:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C80C61C2298F
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 12:30:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D7EF31F27BE2
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 12:32:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDB4422070;
-	Wed, 20 Dec 2023 12:30:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DFD722321;
+	Wed, 20 Dec 2023 12:32:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="IduhJkVI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 328AC1BDD8
-	for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 12:30:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1rFvic-0004Kn-Pd; Wed, 20 Dec 2023 13:30:34 +0100
-Received: from [2a0a:edc0:2:b01:1d::c0] (helo=ptx.whiteo.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1rFvia-000F3J-Bu; Wed, 20 Dec 2023 13:30:33 +0100
-Received: from mfe by ptx.whiteo.stw.pengutronix.de with local (Exim 4.92)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1rFvib-007vlc-Bq; Wed, 20 Dec 2023 13:30:33 +0100
-Date: Wed, 20 Dec 2023 13:30:33 +0100
-From: Marco Felsch <m.felsch@pengutronix.de>
-To: Peng Fan <peng.fan@nxp.com>
-Cc: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Oleksii Moisieiev <oleksii_moisieiev@epam.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Cristian Marussi <cristian.marussi@arm.com>,
-	dl-linux-imx <linux-imx@nxp.com>
-Subject: Re: [PATCH 4/7] dt-bindings: firmware: arm,scmi: support pinctrl
- protocol
-Message-ID: <20231220123033.nrbperhbr4jifuvh@pengutronix.de>
-References: <20231215-pinctrl-scmi-v1-0-0fe35e4611f7@nxp.com>
- <20231215-pinctrl-scmi-v1-4-0fe35e4611f7@nxp.com>
- <20231219192912.yulmczvqbuh4jizg@pengutronix.de>
- <DU0PR04MB94170BCA413C2FD48A397B538896A@DU0PR04MB9417.eurprd04.prod.outlook.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0B6B25545
+	for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 12:32:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-55359dc0290so1315364a12.1
+        for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 04:32:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1703075559; x=1703680359; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=tu7ffZ92sPLeyk+eGDbM7u37bu69MZYvieXsbHFoatg=;
+        b=IduhJkVI3t4Unf9ucRIQO1NTr7r8qOFJZ9yLrOSoEGbWhSl7jV0EQ1UHifFXRjj9i8
+         N3gtDKyZ7r2Yg2jeV06t/B9BmCQLazHF0SMwp6/dL/xy6cSGyM9rULs9O+cBimdOS2Pk
+         Yn96lNY4W1Zzr3DDJq0fw56s10+WraaAECSE/TeBIaWGilnellfHF1O4z8OFezOy/zst
+         L8640jJPa5vNHl67ca3wTOGKBWt2sybs6XyOLiXO4QOK53L9xHXbK2x6/aQSqT0p/TL3
+         /hzS1yMoY7vMpYs8Dh8uc3PHinzmGVGTez06++n6OvrvfF2wv3rvZQl00tjYJedkOwH9
+         CofA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1703075559; x=1703680359;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=tu7ffZ92sPLeyk+eGDbM7u37bu69MZYvieXsbHFoatg=;
+        b=td+UywHpDVKw1//0MKhAe/I2LwDOmEKMXAr3pMzfW5J3Mov9aNsRk9YlvDrMFitvqG
+         nbD84oiOaTFurmM+KRq+fa+AFIe0FhWBAkTqKWXg2D2ROWSUi7PhW+xqLAwhM+rsG7Lu
+         W+cW6tzjhmJiN+nHzAuL4Aadi6qeKg4mp9CFO9t/KkHqBByXK1xpVqSUpLjtUNaPlG8K
+         cduFckCo7jLzGESuxHly/KnHjZbhk4Wf2c1VVGHok5HUjszZwbul+KyXAadQhZNrn9+o
+         hr+sqNrdxOejmteV2DczLlflhdxMgxuF1cinNrhA/TdzgKboRkNqQgUQYsKttirDl5RD
+         eAuw==
+X-Gm-Message-State: AOJu0YxpKa5zbRVXLHy1KLY8ffhBuaIo5ImVHisY/016Z/JaZwH5XLRl
+	cs032NAZly4tZVg1cDYKz79jUw==
+X-Google-Smtp-Source: AGHT+IGNf6V78YDTanEUyebLe5accfD5uG11DUdZ7pFqQ0L6Uli+ibi8a1IcNx9BKhwpYZEUwHvpUQ==
+X-Received: by 2002:a50:d698:0:b0:54c:bb9c:4b88 with SMTP id r24-20020a50d698000000b0054cbb9c4b88mr2847545edi.5.1703075559111;
+        Wed, 20 Dec 2023 04:32:39 -0800 (PST)
+Received: from [192.168.199.59] (178235179206.dynamic-4-waw-k-1-3-0.vectranet.pl. [178.235.179.206])
+        by smtp.gmail.com with ESMTPSA id d12-20020a056402000c00b0055344b92fb6sm3393899edu.75.2023.12.20.04.32.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 20 Dec 2023 04:32:38 -0800 (PST)
+Message-ID: <8d042095-1e09-45cc-9762-909fe8d663a9@linaro.org>
+Date: Wed, 20 Dec 2023 13:32:36 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <DU0PR04MB94170BCA413C2FD48A397B538896A@DU0PR04MB9417.eurprd04.prod.outlook.com>
-User-Agent: NeoMutt/20180716
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/3] Fairphone 5 PMIC-GLINK support (USB-C, charger, fuel
+ gauge)
+Content-Language: en-US
+To: Luca Weiss <luca.weiss@fairphone.com>,
+ Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ cros-qcom-dts-watchers@chromium.org
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org
+References: <20231220-fp5-pmic-glink-v1-0-2a1f8e3c661c@fairphone.com>
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <20231220-fp5-pmic-glink-v1-0-2a1f8e3c661c@fairphone.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On 23-12-20, Peng Fan wrote:
-> > Subject: Re: [PATCH 4/7] dt-bindings: firmware: arm,scmi: support pinctrl
-> > protocol
-> > 
-> > Hi Peng,
-> > 
-> > On 23-12-15, Peng Fan (OSS) wrote:
-> > > From: Peng Fan <peng.fan@nxp.com>
-> > >
-> > > Add SCMI v3.2 pinctrl protocol bindings and example.
-> > >
-> > > Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> > > ---
-> > >  .../devicetree/bindings/firmware/arm,scmi.yaml     | 99
-> > ++++++++++++++++++++++
-> > >  1 file changed, 99 insertions(+)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-> > > b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-> > > index 4591523b51a0..bfd2b6a89979 100644
-> > > --- a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-> > > +++ b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-> > > @@ -247,6 +247,85 @@ properties:
-> > >        reg:
-> > >          const: 0x18
-> > >
-> > > +  protocol@19:
-> > 
-> > ...
-> > 
-> > > @@ -401,6 +480,26 @@ examples:
-> > >              scmi_powercap: protocol@18 {
-> > >                  reg = <0x18>;
-> > >              };
-> > > +
-> > > +            scmi_pinctrl: protocol@19 {
-> > > +                reg = <0x19>;
-> > > +                #pinctrl-cells = <0>;
-> > > +
-> > > +                i2c2-pins {
-> > > +                    groups = "i2c2_a", "i2c2_b";
-> > > +                    function = "i2c2";
-> > > +                };
-> > > +
-> > > +                mdio-pins {
-> > > +                    groups = "avb_mdio";
-> > > +                    drive-strength = <24>;
-> > > +                };
-> > > +
-> > > +                keys_pins: keys-pins {
-> > > +                    pins = "GP_5_17", "GP_5_20", "GP_5_22", "GP_2_1";
-> > > +                    bias-pull-up;
-> > > +                };
-> > > +            };
-> > 
-> > This example is different to the one you mentioned within the cover-letter. I
-> > didn't checked all patches just want to ask which API will be implemented by
-> > this patchset?
+On 20.12.2023 11:02, Luca Weiss wrote:
+> This series adds all the necessary bits to enable USB-C role switching,
+> charger and fuel gauge (all via pmic-glink) on Fairphone 5.
 > 
-> I kept this change since it was tested by Oleksii, but anyway i.MX not use these.
+> One thing that could be made different is the pmic-glink compatible.
+> I've chosen to use qcm6490 compatible for it and not sc7280 since
+> there's plenty of firmware variety on sc7280-based platforms and they
+> might require different quirks in the future, so limit this PDOS quirk
+> to just qcm6490 for now.
 > 
-> The API, I suppose you are asking about this?
-> static const struct pinctrl_ops pinctrl_scmi_pinctrl_ops = {                                        
->         .get_groups_count = pinctrl_scmi_get_groups_count,                                          
->         .get_group_name = pinctrl_scmi_get_group_name,                                              
->         .get_group_pins = pinctrl_scmi_get_group_pins,                                              
-> #ifdef CONFIG_OF                                                                                    
->         .dt_node_to_map = pinconf_generic_dt_node_to_map_all,                                       
->         .dt_free_map = pinconf_generic_dt_free_map,                                                 
-> #endif                                                                                              
-> };
-> 
-> static const struct pinctrl_ops pinctrl_scmi_imx_pinctrl_ops = {                                    
->         .get_groups_count = pinctrl_scmi_get_groups_count,                                          
->         .get_group_name = pinctrl_scmi_get_group_name,                                              
->         .get_group_pins = pinctrl_scmi_get_group_pins,                                              
-> #ifdef CONFIG_OF                                                                                    
->         .dt_node_to_map = pinctrl_scmi_imx_dt_node_to_map,                                          
->         .dt_free_map = pinconf_generic_dt_free_map,                                                 
-> #endif                                                                                              
-> };
+> If someone thinks it should be qcom,sc7280-pmic-glink, please let me
+> know :)
+IMO it's best to continue using the "base soc" (which just so happened
+to fall onto sc7280 this time around) for all compatibles, unless the
+derivatives actually had changes
 
-I see, thanks for the clarification. In short: the i.MX SMCI pinctrl
-DT-API is the same as the non-SCMI pinctrl API since the dt_node_to_map
-will convert it.
+as far as firmware goes, I *think* CrOS doesn't even have PMIC_GLINK?
+There are however WoA 7280 laptops which totally should have it.. Would
+be nice to hunt some down and see if they report different stuff to
+what's there on android firmware
 
-Regards,
-  Marco
+Konrad
 
