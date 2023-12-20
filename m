@@ -1,118 +1,194 @@
-Return-Path: <devicetree+bounces-27384-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27385-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4B6E81A216
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 16:19:52 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1754481A22B
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 16:23:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8F49E281E12
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 15:19:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BF9F81F24F0F
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 15:23:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 531A240BE1;
-	Wed, 20 Dec 2023 15:15:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92EE341209;
+	Wed, 20 Dec 2023 15:16:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dabbelt-com.20230601.gappssmtp.com header.i=@dabbelt-com.20230601.gappssmtp.com header.b="KOD4t4d1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YzUyk4tN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F07E48790
-	for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 15:15:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=dabbelt.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dabbelt.com
-Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-1d3f29fea66so3068915ad.3
-        for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 07:15:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=dabbelt-com.20230601.gappssmtp.com; s=20230601; t=1703085354; x=1703690154; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:to:from:cc
-         :in-reply-to:subject:date:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=DaicGxNdPLRmyws5JYo3khT+Ac6LA4uoPj/EyTp1vA8=;
-        b=KOD4t4d1cbKz6O/UHdgMMmcO5mzL3BIi4n4mymO5pLVeX2htVOlal20Ebv41F1CCLL
-         Jj75u7DHlmh4s79Xw7uOx1uCqX2h06p8wLAHKLSGtQ6ryIUAJHxOlBXpt7Xvr4gApVhh
-         +83vCXF6GOD60lyzqRaz4zchuVxz4SaaTT2Z8ou8/RTAH+6ixew57St1FXQrI3WUjSGq
-         IB2cqIvLC8GmtoWS0TogLyHAkAF1WAKFs370L2SLankSOeg8aysnZ/h/jxBQZaz/pSaT
-         /mTZ4FnpCpOhmKQCQL6XB7EMxDnY73/U002hAsjxONK6O4SkMVad+78H3EnjvTQ0w8z5
-         y80g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703085354; x=1703690154;
-        h=content-transfer-encoding:mime-version:message-id:to:from:cc
-         :in-reply-to:subject:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=DaicGxNdPLRmyws5JYo3khT+Ac6LA4uoPj/EyTp1vA8=;
-        b=o+wlURhFCTXLCyRBpNbiglF4OfZJivgAxPQRAfKs9wg66RRhnDCql5yTwroWmPftUa
-         zVp1lMGz96iw81uJ9qhapNB38Xqu4DbaU/ufsVx30BDzFuAcIMqYTIXF+NFIRrF/Jj/o
-         Q81FdTWv2Axwe986I+nbwwnePFwm8mW9IOulfVbcWSufdTZFudvUa4aBZEL5ogYpYN0X
-         xYlLqrGFfk8MzATGZrFqgcxcxKPk6kZ+cTY+8/cobWATNS2nGU9XDJ1tZaW4QBPZ34dS
-         57sy7b7OLijYis1M/n+UNtZ8Rc4JHddNLp8/lts/+9AJKw6bgSLguLOC0XUPFP7VsXhn
-         1ZnQ==
-X-Gm-Message-State: AOJu0YydGBNNKkwm2JfVWxVVAj2v8sjeZEcu6jWHDkTxhTmwQ3TCPv+h
-	Az1fUDfl7eVku8WdKF4GyOvE+Q==
-X-Google-Smtp-Source: AGHT+IFUwtHVhBFKjQ1VGCUu1CwOKjDbVqBIOeKOWo6tZ0yd4Xvgr+rrVAmzxW439nZFpL+S0CaWVg==
-X-Received: by 2002:a17:902:b108:b0:1d3:e7d3:d459 with SMTP id q8-20020a170902b10800b001d3e7d3d459mr1637507plr.29.1703085353873;
-        Wed, 20 Dec 2023 07:15:53 -0800 (PST)
-Received: from localhost ([12.44.203.122])
-        by smtp.gmail.com with ESMTPSA id bi1-20020a170902bf0100b001cf594f71f3sm23003373plb.157.2023.12.20.07.15.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 20 Dec 2023 07:15:53 -0800 (PST)
-Date: Wed, 20 Dec 2023 07:15:53 -0800 (PST)
-X-Google-Original-Date: Wed, 20 Dec 2023 07:15:51 PST (-0800)
-Subject:     Re: [PATCH] dt-bindings: riscv: cpus: Add AMD MicroBlaze V compatible
-In-Reply-To: <20231109-hardcore-empathic-dd95ccb2c878@spud>
-CC: michal.simek@amd.com, linux-kernel@vger.kernel.org, monstr@monstr.eu,
-  michal.simek@xilinx.com, git@xilinx.com, aou@eecs.berkeley.edu, krzysztof.kozlowski+dt@linaro.org,
-  Paul Walmsley <paul.walmsley@sifive.com>, robh+dt@kernel.org, devicetree@vger.kernel.org,
-  linux-riscv@lists.infradead.org
-From: Palmer Dabbelt <palmer@dabbelt.com>
-To: Conor Dooley <conor@kernel.org>
-Message-ID: <mhng-78b77d96-e318-45f5-9032-4a1bee73afcd@palmer-ri-x1c9a>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FD2D4C3BC;
+	Wed, 20 Dec 2023 15:16:59 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 14BCBC433CA;
+	Wed, 20 Dec 2023 15:16:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1703085418;
+	bh=kbZ8Z22LWHTtUccjSUa1Yoqq/QsxCB9CBO/jZv+JC8k=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=YzUyk4tNc1EhXC9S1JGsjUghj0ibkMs9QQsOwaK6bZpgHUUqpQ3DAuaKtxd2vNIEv
+	 nJbQrW3jwQ8sfcXhkueQl4LLVSmNmCyscYEQKP4cGpOY2taNAwYB9g/LGID4zL0a+8
+	 GyzmxZaX2pJER8NGIPTvyXo4i7HPmq2fgXGT5LI0goOkk62+zRi9E6f6mIaNu1448R
+	 1UUdn5exPf1ccKGyX34AZzITKnDN8qAPg6ZiBAOtJA4nSagEYXXeeMpHcod1DP+/VN
+	 qKXn8veGLyC06x4XTnhIaH1uuEyMU8Cq81oPtpCMv8Csy54ndeSc33rhJz0UJklBgZ
+	 b2mRO+L/fnApw==
+Date: Wed, 20 Dec 2023 15:16:45 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Petre Rodan <petre.rodan@subdimension.ro>
+Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, Lars-Peter
+ Clausen <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>,
+ linux-kernel-mentees@lists.linuxfoundation.org
+Subject: Re: [PATCH 1/2] dt-bindings: iio: pressure: honeywell,mprls0025pa
+Message-ID: <20231220151645.16ada807@jic23-huawei>
+In-Reply-To: <20231219130230.32584-2-petre.rodan@subdimension.ro>
+References: <20231219130230.32584-1-petre.rodan@subdimension.ro>
+	<20231219130230.32584-2-petre.rodan@subdimension.ro>
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0 (MHng)
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Thu, 09 Nov 2023 09:15:09 PST (-0800), Conor Dooley wrote:
-> On Mon, Nov 06, 2023 at 12:37:47PM +0100, Michal Simek wrote:
->> MicroBlaze V is new AMD/Xilinx soft-core 32bit RISC-V processor IP.
->> It is hardware compatible with classic MicroBlaze processor.
->> 
->> Signed-off-by: Michal Simek <michal.simek@amd.com>
->
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> I thought I had already done so, but must have forgot to actually send
-> the email.
+On Tue, 19 Dec 2023 15:02:20 +0200
+Petre Rodan <petre.rodan@subdimension.ro> wrote:
 
-Conor asked me to pick it up, it's over staged for testing.  Pretty much 
-no chance it fails anything, so should show up on for-next soon.
+> ChangeLog
 
->
-> Cheers,
-> Conor.
->
->> ---
->> 
->>  Documentation/devicetree/bindings/riscv/cpus.yaml | 1 +
->>  1 file changed, 1 insertion(+)
->> 
->> diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml b/Documentation/devicetree/bindings/riscv/cpus.yaml
->> index 97e8441eda1c..7b077af62b27 100644
->> --- a/Documentation/devicetree/bindings/riscv/cpus.yaml
->> +++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
->> @@ -32,6 +32,7 @@ properties:
->>      oneOf:
->>        - items:
->>            - enum:
->> +              - amd,mbv32
->>                - andestech,ax45mp
->>                - canaan,k210
->>                - sifive,bullet0
->> -- 
->> 2.36.1
->> 
+The whole patch description describes changes, so no need for a Changelog heading.
+
+>  - add honeywell,pressure-triplet property that autoconfigures pmin, pmax
+>     just like the hsc030pa sensor driver
+
+Why?  Needs an explanation of why this binding is better and easier to use
++ how backwards compatibility is maintained.
+
+>  - add support for spi-based sensors
+> 
+Two things, two patches.
+
+> Datasheet:
+
+It's a formal tag, so no line break (Even if checkpatch complains!)
+
+> https://prod-edam.honeywell.com/content/dam/honeywell-edam/sps/siot/en-us/products/sensors/pressure-sensors/board-mount-pressure-sensors/micropressure-mpr-series/documents/sps-siot-mpr-series-datasheet-32332628-ciid-172626.pdf
+> Signed-off-by: Petre Rodan <petre.rodan@subdimension.ro>
+> ---
+>  .../iio/pressure/honeywell,mprls0025pa.yaml   | 60 ++++++++++++++++---
+>  1 file changed, 52 insertions(+), 8 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/pressure/honeywell,mprls0025pa.yaml b/Documentation/devicetree/bindings/iio/pressure/honeywell,mprls0025pa.yaml
+> index d9e903fbfd99..7c4be2dec174 100644
+> --- a/Documentation/devicetree/bindings/iio/pressure/honeywell,mprls0025pa.yaml
+> +++ b/Documentation/devicetree/bindings/iio/pressure/honeywell,mprls0025pa.yaml
+> @@ -53,33 +53,59 @@ properties:
+>    honeywell,pmin-pascal:
+>      description:
+>        Minimum pressure value the sensor can measure in pascal.
+> +      To be specified only if honeywell,pressure-triplet is set to "NA".
+That just added a backwards compatibility break.  It would be fine
+if there was a default: NA for honeywell,pressure-triplet or a check that either
+one or the other was supplied (which I'd prefer).  Thus old bindings will work
+and new ones also supported.
+
+>  
+>    honeywell,pmax-pascal:
+>      description:
+>        Maximum pressure value the sensor can measure in pascal.
+> +      To be specified only if honeywell,pressure-triplet is set to "NA".
+>  
+>    honeywell,transfer-function:
+>      description: |
+> -      Transfer function which defines the range of valid values delivered by the
+> -      sensor.
+> +      Transfer function which defines the range of valid values delivered by
+> +      the sensor.
+>        1 - A, 10% to 90% of 2^24 (1677722 .. 15099494)
+>        2 - B, 2.5% to 22.5% of 2^24 (419430 .. 3774874)
+>        3 - C, 20% to 80% of 2^24 (3355443 .. 13421773)
+> +    enum: [1, 2, 3]
+>      $ref: /schemas/types.yaml#/definitions/uint32
+>  
+> +  honeywell,pressure-triplet:
+> +    description: |
+> +      Case-sensitive five character string that defines pressure range, unit
+> +      and type as part of the device nomenclature. In the unlikely case of a
+> +      custom chip, set to "NA" and provide pmin-pascal and pmax-pascal.
+
+Should not need to set to NA, just don't provide it.
+
+> +    enum: [0001BA, 01.6BA, 02.5BA, 0060MG, 0100MG, 0160MG, 0250MG, 0400MG,
+> +           0600MG, 0001BG, 01.6BG, 02.5BG, 0100KA, 0160KA, 0250KA, 0006KG,
+> +           0010KG, 0016KG, 0025KG, 0040KG, 0060KG, 0100KG, 0160KG, 0250KG,
+> +           0015PA, 0025PA, 0030PA, 0001PG, 0005PG, 0015PG, 0030PG, 0300YG,
+> +           NA]
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +
+> +  spi-max-frequency:
+> +    maximum: 800000
+> +
+>    vdd-supply:
+>      description: provide VDD power to the sensor.
+>  
+>  required:
+>    - compatible
+>    - reg
+> -  - honeywell,pmin-pascal
+> -  - honeywell,pmax-pascal
+> +  - honeywell,pressure-triplet
+>    - honeywell,transfer-function
+> -  - vdd-supply
+>  
+>  additionalProperties: false
+>  
+> +dependentSchemas:
+> +  honeywell,pmin-pascal:
+> +    properties:
+> +      honeywell,pressure-triplet:
+> +        const: NA
+> +  honeywell,pmax-pascal:
+> +    properties:
+> +      honeywell,pressure-triplet:
+> +        const: NA
+> +
+>  examples:
+>    - |
+>      #include <dt-bindings/gpio/gpio.h>
+> @@ -93,10 +119,28 @@ examples:
+>              reg = <0x18>;
+>              reset-gpios = <&gpio3 19 GPIO_ACTIVE_HIGH>;
+>              interrupt-parent = <&gpio3>;
+> -            interrupts = <21 IRQ_TYPE_EDGE_FALLING>;
+> -            honeywell,pmin-pascal = <0>;
+> -            honeywell,pmax-pascal = <172369>;
+> +            interrupts = <21 IRQ_TYPE_EDGE_RISING>;
+> +
+> +            honeywell,pressure-triplet = "0025PA";
+>              honeywell,transfer-function = <1>;
+>              vdd-supply = <&vcc_3v3>;
+>          };
+>      };
+> +  - |
+> +    spi {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        pressure@0 {
+> +            compatible = "honeywell,mprls0025pa";
+> +            reg = <0>;
+> +            spi-max-frequency = <800000>;
+> +            reset-gpios = <&gpio1 28 GPIO_ACTIVE_HIGH>;
+> +            interrupt-parent = <&gpio0>;
+> +            interrupts = <30 IRQ_TYPE_EDGE_RISING>;
+> +
+> +            honeywell,pressure-triplet = "0015PA";
+> +            honeywell,transfer-function = <1>;
+> +        };
+> +    };
+> +...
+
 
