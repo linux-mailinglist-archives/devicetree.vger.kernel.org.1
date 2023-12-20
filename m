@@ -1,167 +1,284 @@
-Return-Path: <devicetree+bounces-27348-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27349-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D3E881A014
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 14:44:35 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F8D981A02C
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 14:47:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BEC44B219B6
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 13:44:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 08A1D1F2662D
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 13:47:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 463E737D18;
-	Wed, 20 Dec 2023 13:43:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB25D34CD6;
+	Wed, 20 Dec 2023 13:47:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="lamu+NcT"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="z5dzxmq3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC04338DDC
-	for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 13:43:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F1C2358A4;
+	Wed, 20 Dec 2023 13:47:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1703080052;
+	bh=NQl0a41Gc1ldcX14E0vlnoPZ/1bs8DbZ9Gz925Y9mZg=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+	b=z5dzxmq34u8+LyyevT81zwdq3QcZrrjrC5G9TDceeRkK3/AHfQ0dwBQuK7LI0l2uq
+	 9gfcF5sRzo3ndyUDhm5l76mzad7tfZUdM6y7gNm/epfKsKc6x7wnPj64ktTocqUlBM
+	 C5VV4tM+FWiVJ5OmOLTBMbmsnQmuwbm4E2O4PsCrVzmCHgV/ycQB62eBKktWmGCOeO
+	 ornWKVbzM3xV2n1N/DU2y60qCgoUGwWIVX//Q7lVuZOESka1gl7EjxPUhRFZSKTy6a
+	 tnju79xDNgWZ7yu1m3SLIcIun6HT8817sPYZX5xM4nB8IuFAwZYJw/7dS/uBpf2VkP
+	 1z633xnGcnULw==
+Received: from nicolas-tpx395.localdomain (cola.collaboradmins.com [195.201.22.229])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
-	by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 123CF3F45F
-	for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 13:43:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-	s=20210705; t=1703079834;
-	bh=Y1f83Xk1FXiEYRkgnz968I1hevI4AFt+heHnZvXG1Zs=;
-	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
-	 To:Cc:Content-Type;
-	b=lamu+NcT/MItfkn7YcRjV3WJoE6lmlcPZ8S7f9/hTVBwx5pazcKhQElTxgDYmy7Gr
-	 eI0yxNKTIV/TnwpDkIsHkopayCz3fWvygQ/xtPTtS6a2PpRmeLuh3xYjm5acJ+Rj81
-	 a6YnNQOUk6sKQkminUo+iXW/lOS2m87JcpfMPiwOl7I7XF+O3L19nfsrP/P+yJ2IXL
-	 BCl7HXSWJpDpRgiGOqLgob+0EMIQnFUdzDoZNUbknRRb/AYap98I1zZWmpdjSXgACL
-	 4S++A+rF4L+WA1Ma+afv6uPasrJy1jWOB6qAKR1cNy+TNoEPyzcE9Af3q5TS33oUHY
-	 080k/08PMIDhQ==
-Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-42784a3e560so13579531cf.0
-        for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 05:43:53 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703079833; x=1703684633;
-        h=cc:to:subject:message-id:date:mime-version:references:in-reply-to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Y1f83Xk1FXiEYRkgnz968I1hevI4AFt+heHnZvXG1Zs=;
-        b=O8ijRlWfOuRjZTc+5uRerdxZljWERhMRW2SsLpsrDI5OYfjREXLc5z1AaWtJdDw4Pg
-         mENYWrvGtNsPxgkuphE3Nh9TPST+UIBVQKaL/Hy6jodR9SAVmHZIxoGetw97xlbVM0RH
-         J8svJ3NbIhcs91Nr1Z+u6jVW8fJhqnIvpqB7nTIsgrornE+1IkvRg+vBv8dlarwMMjJP
-         713ET04CR6jzZ4ybR/6ruauL6y6T8YI9UnI+6X+zXVM6G8K5a8Qq/bNIcV1ysv/2E+E0
-         sG5+1bF7M5QRWKi8p3SwI9lgZJw2eDSSZvdHZVjmr8UdK9gW1vrLKTAQ8Tv5you4vjn1
-         SChQ==
-X-Gm-Message-State: AOJu0Yy15iCoCRiTAslngSpbTePYr+PomqSw1/tIJ/oFzpsQBBd3KPTP
-	mxuyUfEfaczD9RpRhGOk6VlgfHyLs3e9du/KYlQaYGwVDWM3woodY5lt1+G3NdCjm2KSPqi6iFH
-	axQI4Kk8FVwqyr3+am8tOf3nAQB/vAsBaeBQypjIzhIt87+hzuidfz1o=
-X-Received: by 2002:a05:622a:1309:b0:423:98ba:1f74 with SMTP id v9-20020a05622a130900b0042398ba1f74mr24124831qtk.58.1703079832893;
-        Wed, 20 Dec 2023 05:43:52 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IErFMRLbKaj/fBOTAz8xHWWCImycUAmeJWguwHtKgu7CB99Ci5H8wT1jkWzCEL4aBoSuGhJ//HhYBVROra6w1I=
-X-Received: by 2002:a05:622a:1309:b0:423:98ba:1f74 with SMTP id
- v9-20020a05622a130900b0042398ba1f74mr24124813qtk.58.1703079832635; Wed, 20
- Dec 2023 05:43:52 -0800 (PST)
-Received: from 348282803490 named unknown by gmailapi.google.com with
- HTTPREST; Wed, 20 Dec 2023 05:43:52 -0800
-From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-In-Reply-To: <20231220004638.2463643-2-cristian.ciocaltea@collabora.com>
-References: <20231220004638.2463643-1-cristian.ciocaltea@collabora.com> <20231220004638.2463643-2-cristian.ciocaltea@collabora.com>
+	(Authenticated sender: nicolas)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 0B01A3781F8C;
+	Wed, 20 Dec 2023 13:47:28 +0000 (UTC)
+Message-ID: <174478b773ab2f5db8708c29b025332f75b24fe7.camel@collabora.com>
+Subject: Re: [PATCH v3 2/5] media: hantro: add support for STM32MP25 VDEC
+From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+To: Hugues Fruchet <hugues.fruchet@foss.st.com>, Ezequiel Garcia
+ <ezequiel@vanguardiasur.com.ar>, Philipp Zabel <p.zabel@pengutronix.de>, 
+ Andrzej Pietrasiewicz <andrzej.p@collabora.com>, Sakari Ailus
+ <sakari.ailus@linux.intel.com>, Benjamin Gaignard
+ <benjamin.gaignard@collabora.com>, Laurent Pinchart
+ <laurent.pinchart+renesas@ideasonboard.com>, Daniel Almeida
+ <daniel.almeida@collabora.com>, Benjamin Mugnier
+ <benjamin.mugnier@foss.st.com>,  Heiko Stuebner <heiko@sntech.de>, Mauro
+ Carvalho Chehab <mchehab@kernel.org>, Hans Verkuil <hverkuil@xs4all.nl>,
+ linux-media@vger.kernel.org, Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+ linux-stm32@st-md-mailman.stormreply.com, Rob Herring <robh+dt@kernel.org>,
+  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+ <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ linux-rockchip@lists.infradead.org
+Cc: Marco Felsch <m.felsch@pengutronix.de>, Adam Ford <aford173@gmail.com>
+Date: Wed, 20 Dec 2023 08:47:25 -0500
+In-Reply-To: <20231220084641.2076428-3-hugues.fruchet@foss.st.com>
+References: <20231220084641.2076428-1-hugues.fruchet@foss.st.com>
+	 <20231220084641.2076428-3-hugues.fruchet@foss.st.com>
+Autocrypt: addr=nicolas.dufresne@collabora.com; prefer-encrypt=mutual;
+ keydata=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
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.50.2 (3.50.2-1.fc39) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Date: Wed, 20 Dec 2023 05:43:52 -0800
-Message-ID: <CAJM55Z9DhojDTDPEqx3NO5g61=ezRg-U9odixbZugcXRRVmS7w@mail.gmail.com>
-Subject: Re: [PATCH v5 1/4] riscv: dts: starfive: jh7100: Add sysmain and gmac
- DT nodes
-To: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>, 
-	Emil Renner Berthing <kernel@esmil.dk>, Conor Dooley <conor@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Richard Cochran <richardcochran@gmail.com>, 
-	Andrew Lunn <andrew@lunn.ch>, Jacob Keller <jacob.e.keller@intel.com>
-Cc: linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, netdev@vger.kernel.org, kernel@collabora.com, 
-	Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Content-Type: text/plain; charset="UTF-8"
+MIME-Version: 1.0
 
-Cristian Ciocaltea wrote:
-> Provide the sysmain and gmac DT nodes supporting the DWMAC found on the
-> StarFive JH7100 SoC.
->
-> Co-developed-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-> Signed-off-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-> Reviewed-by: Jacob Keller <jacob.e.keller@intel.com>
+Le mercredi 20 d=C3=A9cembre 2023 =C3=A0 09:46 +0100, Hugues Fruchet a =C3=
+=A9crit=C2=A0:
+> Add support for STM32MP25 VDEC video hardware decoder.
+> H264/VP8 decoding up to 4080x4080.
+> No post-processor support.
+> VDEC has its own reset/clock/irq.
+>=20
+> Signed-off-by: Hugues Fruchet <hugues.fruchet@foss.st.com>
+
+Reviewed-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+
 > ---
->  arch/riscv/boot/dts/starfive/jh7100.dtsi | 36 ++++++++++++++++++++++++
->  1 file changed, 36 insertions(+)
->
-> diff --git a/arch/riscv/boot/dts/starfive/jh7100.dtsi b/arch/riscv/boot/dts/starfive/jh7100.dtsi
-> index c216aaecac53..2ebdebe6a81c 100644
-> --- a/arch/riscv/boot/dts/starfive/jh7100.dtsi
-> +++ b/arch/riscv/boot/dts/starfive/jh7100.dtsi
-> @@ -204,6 +204,37 @@ sdio1: mmc@10010000 {
->  			status = "disabled";
->  		};
->
-> +		gmac: ethernet@10020000 {
-> +			compatible = "starfive,jh7100-dwmac", "snps,dwmac";
-> +			reg = <0x0 0x10020000 0x0 0x10000>;
-> +			clocks = <&clkgen JH7100_CLK_GMAC_ROOT_DIV>,
-> +				 <&clkgen JH7100_CLK_GMAC_AHB>,
-> +				 <&clkgen JH7100_CLK_GMAC_PTP_REF>,
-> +				 <&clkgen JH7100_CLK_GMAC_TX_INV>,
-> +				 <&clkgen JH7100_CLK_GMAC_GTX>;
-> +			clock-names = "stmmaceth", "pclk", "ptp_ref", "tx", "gtx";
-> +			resets = <&rstgen JH7100_RSTN_GMAC_AHB>;
-> +			reset-names = "ahb";
-> +			interrupts = <6>, <7>;
-> +			interrupt-names = "macirq", "eth_wake_irq";
-> +			max-frame-size = <9000>;
-> +			snps,multicast-filter-bins = <32>;
-> +			snps,perfect-filter-entries = <128>;
-> +			starfive,syscon = <&sysmain 0x70 0>;
-> +			rx-fifo-depth = <32768>;
-> +			tx-fifo-depth = <16384>;
-> +			snps,axi-config = <&stmmac_axi_setup>;
-> +			snps,fixed-burst;
-> +			snps,force_thresh_dma_mode;
-
-Compared to v4 you're missing a
-
-  snps,no-pbl-x8;
-
-here. It might be the right thing to do, but then I would have expected
-it to me mentioned in the cover letter version history.
-
-> +			status = "disabled";
+>  drivers/media/platform/verisilicon/Kconfig    | 14 ++-
+>  drivers/media/platform/verisilicon/Makefile   |  3 +
+>  .../media/platform/verisilicon/hantro_drv.c   |  3 +
+>  .../media/platform/verisilicon/hantro_hw.h    |  1 +
+>  .../platform/verisilicon/stm32mp25_vdec_hw.c  | 92 +++++++++++++++++++
+>  5 files changed, 110 insertions(+), 3 deletions(-)
+>  create mode 100644 drivers/media/platform/verisilicon/stm32mp25_vdec_hw.=
+c
+>=20
+> diff --git a/drivers/media/platform/verisilicon/Kconfig b/drivers/media/p=
+latform/verisilicon/Kconfig
+> index e65b836b9d78..7642ff9cf96c 100644
+> --- a/drivers/media/platform/verisilicon/Kconfig
+> +++ b/drivers/media/platform/verisilicon/Kconfig
+> @@ -4,7 +4,7 @@ comment "Verisilicon media platform drivers"
+> =20
+>  config VIDEO_HANTRO
+>  	tristate "Hantro VPU driver"
+> -	depends on ARCH_MXC || ARCH_ROCKCHIP || ARCH_AT91 || ARCH_SUNXI || COMP=
+ILE_TEST
+> +	depends on ARCH_MXC || ARCH_ROCKCHIP || ARCH_AT91 || ARCH_SUNXI || ARCH=
+_STM32 || COMPILE_TEST
+>  	depends on V4L_MEM2MEM_DRIVERS
+>  	depends on VIDEO_DEV
+>  	select MEDIA_CONTROLLER
+> @@ -16,8 +16,8 @@ config VIDEO_HANTRO
+>  	select V4L2_VP9
+>  	help
+>  	  Support for the Hantro IP based Video Processing Units present on
+> -	  Rockchip and NXP i.MX8M SoCs, which accelerate video and image
+> -	  encoding and decoding.
+> +	  Rockchip, NXP i.MX8M and STM32MP25 SoCs, which accelerate video
+> +	  and image encoding and decoding.
+>  	  To compile this driver as a module, choose M here: the module
+>  	  will be called hantro-vpu.
+> =20
+> @@ -52,3 +52,11 @@ config VIDEO_HANTRO_SUNXI
+>  	default y
+>  	help
+>  	  Enable support for H6 SoC.
 > +
-> +			stmmac_axi_setup: stmmac-axi-config {
-> +				snps,wr_osr_lmt = <16>;
-> +				snps,rd_osr_lmt = <16>;
-> +				snps,blen = <256 128 64 32 0 0 0>;
-> +			};
-> +		};
+> +config VIDEO_HANTRO_STM32MP25
+> +	bool "Hantro STM32MP25 support"
+> +	depends on VIDEO_HANTRO
+> +	depends on ARCH_STM32 || COMPILE_TEST
+> +	default y
+> +	help
+> +	  Enable support for STM32MP25 SoCs.
+> diff --git a/drivers/media/platform/verisilicon/Makefile b/drivers/media/=
+platform/verisilicon/Makefile
+> index 6ad2ef885920..5854e0f0dd32 100644
+> --- a/drivers/media/platform/verisilicon/Makefile
+> +++ b/drivers/media/platform/verisilicon/Makefile
+> @@ -39,3 +39,6 @@ hantro-vpu-$(CONFIG_VIDEO_HANTRO_ROCKCHIP) +=3D \
+> =20
+>  hantro-vpu-$(CONFIG_VIDEO_HANTRO_SUNXI) +=3D \
+>  		sunxi_vpu_hw.o
 > +
->  		clkgen: clock-controller@11800000 {
->  			compatible = "starfive,jh7100-clkgen";
->  			reg = <0x0 0x11800000 0x0 0x10000>;
-> @@ -218,6 +249,11 @@ rstgen: reset-controller@11840000 {
->  			#reset-cells = <1>;
->  		};
->
-> +		sysmain: syscon@11850000 {
-> +			compatible = "starfive,jh7100-sysmain", "syscon";
-> +			reg = <0x0 0x11850000 0x0 0x10000>;
-> +		};
+> +hantro-vpu-$(CONFIG_VIDEO_HANTRO_STM32MP25) +=3D \
+> +		stm32mp25_vdec_hw.o
+> diff --git a/drivers/media/platform/verisilicon/hantro_drv.c b/drivers/me=
+dia/platform/verisilicon/hantro_drv.c
+> index a9fa05ac56a9..2db27c333924 100644
+> --- a/drivers/media/platform/verisilicon/hantro_drv.c
+> +++ b/drivers/media/platform/verisilicon/hantro_drv.c
+> @@ -733,6 +733,9 @@ static const struct of_device_id of_hantro_match[] =
+=3D {
+>  #endif
+>  #ifdef CONFIG_VIDEO_HANTRO_SUNXI
+>  	{ .compatible =3D "allwinner,sun50i-h6-vpu-g2", .data =3D &sunxi_vpu_va=
+riant, },
+> +#endif
+> +#ifdef CONFIG_VIDEO_HANTRO_STM32MP25
+> +	{ .compatible =3D "st,stm32mp25-vdec", .data =3D &stm32mp25_vdec_varian=
+t, },
+>  #endif
+>  	{ /* sentinel */ }
+>  };
+> diff --git a/drivers/media/platform/verisilicon/hantro_hw.h b/drivers/med=
+ia/platform/verisilicon/hantro_hw.h
+> index 7f33f7b07ce4..b7eccc1a96fc 100644
+> --- a/drivers/media/platform/verisilicon/hantro_hw.h
+> +++ b/drivers/media/platform/verisilicon/hantro_hw.h
+> @@ -406,6 +406,7 @@ extern const struct hantro_variant rk3568_vpu_variant=
+;
+>  extern const struct hantro_variant rk3588_vpu981_variant;
+>  extern const struct hantro_variant sama5d4_vdec_variant;
+>  extern const struct hantro_variant sunxi_vpu_variant;
+> +extern const struct hantro_variant stm32mp25_vdec_variant;
+> =20
+>  extern const struct hantro_postproc_ops hantro_g1_postproc_ops;
+>  extern const struct hantro_postproc_ops hantro_g2_postproc_ops;
+> diff --git a/drivers/media/platform/verisilicon/stm32mp25_vdec_hw.c b/dri=
+vers/media/platform/verisilicon/stm32mp25_vdec_hw.c
+> new file mode 100644
+> index 000000000000..aa8b0f751390
+> --- /dev/null
+> +++ b/drivers/media/platform/verisilicon/stm32mp25_vdec_hw.c
+> @@ -0,0 +1,92 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * STM32MP25 VDEC video decoder driver
+> + *
+> + * Copyright (C) STMicroelectronics SA 2022
+> + * Authors: Hugues Fruchet <hugues.fruchet@foss.st.com>
+> + *          for STMicroelectronics.
+> + *
+> + */
 > +
->  		i2c0: i2c@118b0000 {
->  			compatible = "snps,designware-i2c";
->  			reg = <0x0 0x118b0000 0x0 0x10000>;
-> --
-> 2.43.0
->
+> +#include "hantro.h"
+> +
+> +/*
+> + * Supported formats.
+> + */
+> +
+> +static const struct hantro_fmt stm32mp25_vdec_fmts[] =3D {
+> +	{
+> +		.fourcc =3D V4L2_PIX_FMT_NV12,
+> +		.codec_mode =3D HANTRO_MODE_NONE,
+> +		.frmsize =3D {
+> +			.min_width =3D FMT_MIN_WIDTH,
+> +			.max_width =3D FMT_FHD_WIDTH,
+> +			.step_width =3D MB_DIM,
+> +			.min_height =3D FMT_MIN_HEIGHT,
+> +			.max_height =3D FMT_FHD_HEIGHT,
+> +			.step_height =3D MB_DIM,
+> +		},
+> +	},
+> +	{
+> +		.fourcc =3D V4L2_PIX_FMT_VP8_FRAME,
+> +		.codec_mode =3D HANTRO_MODE_VP8_DEC,
+> +		.max_depth =3D 2,
+> +		.frmsize =3D {
+> +			.min_width =3D FMT_MIN_WIDTH,
+> +			.max_width =3D FMT_FHD_WIDTH,
+> +			.step_width =3D MB_DIM,
+> +			.min_height =3D FMT_MIN_HEIGHT,
+> +			.max_height =3D FMT_FHD_HEIGHT,
+> +			.step_height =3D MB_DIM,
+> +		},
+> +	},
+> +	{
+> +		.fourcc =3D V4L2_PIX_FMT_H264_SLICE,
+> +		.codec_mode =3D HANTRO_MODE_H264_DEC,
+> +		.max_depth =3D 2,
+> +		.frmsize =3D {
+> +			.min_width =3D FMT_MIN_WIDTH,
+> +			.max_width =3D FMT_FHD_WIDTH,
+> +			.step_width =3D MB_DIM,
+> +			.min_height =3D FMT_MIN_HEIGHT,
+> +			.max_height =3D FMT_FHD_HEIGHT,
+> +			.step_height =3D MB_DIM,
+> +		},
+> +	},
+> +};
+> +
+> +/*
+> + * Supported codec ops.
+> + */
+> +
+> +static const struct hantro_codec_ops stm32mp25_vdec_codec_ops[] =3D {
+> +	[HANTRO_MODE_VP8_DEC] =3D {
+> +		.run =3D hantro_g1_vp8_dec_run,
+> +		.reset =3D hantro_g1_reset,
+> +		.init =3D hantro_vp8_dec_init,
+> +		.exit =3D hantro_vp8_dec_exit,
+> +	},
+> +	[HANTRO_MODE_H264_DEC] =3D {
+> +		.run =3D hantro_g1_h264_dec_run,
+> +		.reset =3D hantro_g1_reset,
+> +		.init =3D hantro_h264_dec_init,
+> +		.exit =3D hantro_h264_dec_exit,
+> +	},
+> +};
+> +
+> +static const struct hantro_irq stm32mp25_irqs[] =3D {
+> +	{ "vdec", hantro_g1_irq },
+> +};
+> +
+> +static const char * const stm32mp25_clk_names[] =3D { "vdec-clk" };
+> +
+> +const struct hantro_variant stm32mp25_vdec_variant =3D {
+> +	.dec_fmts =3D stm32mp25_vdec_fmts,
+> +	.num_dec_fmts =3D ARRAY_SIZE(stm32mp25_vdec_fmts),
+> +	.codec =3D HANTRO_VP8_DECODER | HANTRO_H264_DECODER,
+> +	.codec_ops =3D stm32mp25_vdec_codec_ops,
+> +	.irqs =3D stm32mp25_irqs,
+> +	.num_irqs =3D ARRAY_SIZE(stm32mp25_irqs),
+> +	.clk_names =3D stm32mp25_clk_names,
+> +	.num_clocks =3D ARRAY_SIZE(stm32mp25_clk_names),
+> +};
+
 
