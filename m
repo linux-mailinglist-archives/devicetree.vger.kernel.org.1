@@ -1,213 +1,166 @@
-Return-Path: <devicetree+bounces-27441-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27442-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 039DD81A6B7
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 19:12:45 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3782981A737
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 20:21:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AD4991F233E0
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 18:12:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F1B862873C4
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 19:21:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 435DB482CA;
-	Wed, 20 Dec 2023 18:12:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05BA3482F6;
+	Wed, 20 Dec 2023 19:21:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="UGvSyWwd"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="hsJP9FXo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f182.google.com (mail-yb1-f182.google.com [209.85.219.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5972547A53;
-	Wed, 20 Dec 2023 18:12:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 520ECC0007;
-	Wed, 20 Dec 2023 18:12:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1703095954;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Sjy+8ecPU0FjeS9zuzm6XKl4DZ4A+icbDW10+elVCcU=;
-	b=UGvSyWwdCSFkT09GwwJjntaScciGzIttvnNWIoQAkBKSOibBBUfcFdwhPYHGlaCqLmzlen
-	jgeH7pq491urM5Ib2gJ46OPhEWT8sgY0cTaG0tK5YYcUwF/AQ+CIdLWnj8i50T3y+bx+Qg
-	rRIIc1KUaOiyt/6lcHOkik3qOlesTjSLIKR5lug/WHIhcCVh3BQgNz4xHA9Ym9SQ+gSmPX
-	R2HrTJ7bE8Pjo06v1CZd9NWgv/5tae4SO8LiUxJTPL4LuiyDD6nBET5uxcTtO1gEV0roxD
-	x7cX3M4tFb7JH5BYBtGzamOp8kZRRJrF8iq4OohwcUvJK1QtUk6Svi1xB7oy1Q==
-Date: Wed, 20 Dec 2023 19:12:32 +0100
-From: Herve Codina <herve.codina@bootlin.com>
-To: Luca Ceresoli <luca.ceresoli@bootlin.com>
-Cc: Saravana Kannan <saravanak@google.com>, Rob Herring <robh@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
- <rafael@kernel.org>, Frank Rowand <frowand.list@gmail.com>, Lizhi Hou
- <lizhi.hou@amd.com>, Max Zhen <max.zhen@amd.com>, Sonal Santan
- <sonal.santan@amd.com>, Stefano Stabellini <stefano.stabellini@xilinx.com>,
- Jonathan Cameron <Jonathan.Cameron@huawei.com>,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, Allan Nielsen
- <allan.nielsen@microchip.com>, Horatiu Vultur
- <horatiu.vultur@microchip.com>, Steen Hegelund
- <steen.hegelund@microchip.com>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>, Miquel Raynal <miquel.raynal@bootlin.com>
-Subject: Re: [PATCH 0/2] Synchronize DT overlay removal with devlink
- removals
-Message-ID: <20231220191232.0a9c495f@bootlin.com>
-In-Reply-To: <20231220181627.341e8789@booty>
-References: <20231130174126.688486-1-herve.codina@bootlin.com>
-	<20231206171540.GA2697853-robh@kernel.org>
-	<CAGETcx-F8G3dcN-VTMrbya_=19zXP=S2ORA_qZqy+yND7S41_Q@mail.gmail.com>
-	<20231220181627.341e8789@booty>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-redhat-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90929482F3
+	for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 19:21:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f182.google.com with SMTP id 3f1490d57ef6-dbdb01545f6so5036276.3
+        for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 11:21:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1703100062; x=1703704862; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ps3P/pvG74IGGnT8GqUmphrkn8oo7nKEcsYAKREB89c=;
+        b=hsJP9FXowB9Go9/CUlXoDwre8bu3Ej24ZqEXSduvqsC47KX5v3WTHf50QCkcc7SQfb
+         ajJiPHl/tNndtgdXZBVbzN7PDDBQrV0b3gXwoF7lypm0YWCZjiBjTmar/YpgL1Nga5gm
+         vjEGReyWvXEXkIk+r+egyjLaZ8vmW/VRkln5MC5A71NKYTYQpnOnvuU1c0HqpF/C1396
+         GFYJAV9GPf1+/UPMxx+BmLVP9SXPEOAUGM7G6j9x9KtZNMdbYAxDyxtWcvyr/Lqh3Icv
+         t90E88kJ5A+zJNZ5/bJksfXbyYizKUEDGXG35IkxVGHBUU/TLiLVyYMOPFIikPJRwEN5
+         I25w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1703100062; x=1703704862;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ps3P/pvG74IGGnT8GqUmphrkn8oo7nKEcsYAKREB89c=;
+        b=OZDmuOl0Bnq9V6NP0+vTNm+kEMDcgq3rkMKO5ZkjNoUToofFLF2kizRy+bm4UY4B7M
+         iLqnSl2A3+tZE/e8hkc83Pbkng1ZLEz3AOh28S1ndOfU4VUc6EiD1UQ3HRQ090eaW4JX
+         C3K3oJzpBS5mtUX6MAbz+3GKQc3FJWS94NXrDYQ31q/pjCbAOgiFrBTMXb0zD95eYf2O
+         CcHJnHlB+PwIsFVJes4gstxfnXLUWGUoWrYAsWrHqqOmSzM5M96KlMtnUJYfB7E9osiQ
+         VV4BX3PyUeNmbXVfBWjA+ya2Za4fEkveRFXHbRHtPimjPaS5myFF2YHW1BOdhetfH0np
+         y6DQ==
+X-Gm-Message-State: AOJu0YxGG7S1XXlhuOgTlAJiTyfNOLRMM8k/u1gBB+AQ6ptkLz+1ERLw
+	xtbpXHIUf7FJ1k/fkl50NxNRqowQh63zquxQ0a8R6w==
+X-Google-Smtp-Source: AGHT+IE0/lC2Cx520RUvUKQoxpsf0wmqJ8BQXaOwxQm86Cv5E07vosKnSijGbt5II7X94Q8Sms9uxQ9pRCNxE/GNr9k=
+X-Received: by 2002:a25:1c1:0:b0:dbd:b165:43d with SMTP id 184-20020a2501c1000000b00dbdb165043dmr247285ybb.18.1703100062573;
+ Wed, 20 Dec 2023 11:21:02 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: herve.codina@bootlin.com
+References: <20231215143906.3651122-1-emil.renner.berthing@canonical.com> <20231215143906.3651122-2-emil.renner.berthing@canonical.com>
+In-Reply-To: <20231215143906.3651122-2-emil.renner.berthing@canonical.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Wed, 20 Dec 2023 20:20:51 +0100
+Message-ID: <CACRpkdZf09uKr+ka0_rsw5kHMjjQbaGypn2fx2-QobLFBKYrtQ@mail.gmail.com>
+Subject: Re: [PATCH v1 1/8] dt-bindings: pinctrl: Add thead,th1520-pinctrl bindings
+To: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	Hoan Tran <hoan@os.amperecomputing.com>, Serge Semin <fancer.lancer@gmail.com>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>, Andy Shevchenko <andy@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jisheng Zhang <jszhang@kernel.org>, Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi,
+Hi Emil,
 
-On Wed, 20 Dec 2023 18:16:27 +0100
-Luca Ceresoli <luca.ceresoli@bootlin.com> wrote:
+thanks for your patch!
 
-> Hello Saravana, Rob, Hervé,
-> 
-> [+Miquèl, who contributed to the discussion with Hervé and me]
-> 
-> On Wed, 6 Dec 2023 19:09:06 -0800
-> Saravana Kannan <saravanak@google.com> wrote:
-> 
-> > On Wed, Dec 6, 2023 at 9:15 AM Rob Herring <robh@kernel.org> wrote:  
-> > >
-> > > On Thu, Nov 30, 2023 at 06:41:07PM +0100, Herve Codina wrote:    
-> > > > Hi,    
-> > >
-> > > +Saravana for comment    
-> > 
-> > I'll respond to this within a week -- very swamped at the moment. The
-> > main thing I want to make sure is that we don't cause an indirect
-> > deadlock with this wait(). I'll go back and look at why we added the
-> > work queue and then check for device/devlink locking issues.  
-> 
-> While working on a project unrelated to Hervé's work, I also ended up
-> in getting sporadic but frequent "ERROR: memory leak, expected refcount
-> 1 instead of..." messages, which persisted even after adding this patch
-> series on my tree.
-> 
-> My use case is the insertion and removal of a simple overlay describing
-> a regulator-fixed and an I2C GPIO expander using it. The messages appear
-> regardless of whether the insertion and removal is done from kernel code
-> or via the configfs interface (out-of-tree patches from [0]).
-> 
-> I reconstructed the sequence of operations, all of which stem from
-> of_overlay_remove():
-> 
-> int of_overlay_remove(int *ovcs_id)
-> {
->     ...
-> 
->     device_link_wait_removal(); // proposed by this patch series
-> 
->     mutex_lock(&of_mutex);
-> 
->     ...
-> 
->     ret = __of_changeset_revert_notify(&ovcs->cset);
->     // this ends up calling (excerpt from a long stack trace):
->     // -> of_i2c_notify
->     // -> device_remove
->     // -> devm_regulator_release
->     // -> device_link_remove
->     // -> devlink_dev_release, which queues work for
->     //      device_link_release_fn, which in turn calls:
->     //      -> device_put
->     //      -> device_release
->     //      -> {platform,regulator,...}_dev*_release
->     //      -> of_node_put() [**]
-> 
->     ...
-> 
->     free_overlay_changeset(ovcs);
->     // calls:
->     // -> of_changeset_destroy
->     // -> __of_changeset_entry_destroy
->     // -> pr_err("ERROR: memory leak, expected refcount 1 instead of %d...
->     // The error appears or not, based on when the workqueue runs
-> 
-> err_unlock:
->     mutex_unlock(&of_mutex);
-> 
->     ...
-> }
-> 
-> So this adds up to the question of whether devlink removal should actually
-> be run asynchronously or not.
-> 
-> A simple short-term solution is to move the call to
-> device_link_wait_removal() later, just before free_overlay_changeset():
+On Fri, Dec 15, 2023 at 3:39=E2=80=AFPM Emil Renner Berthing
+<emil.renner.berthing@canonical.com> wrote:
 
-Indeed, during of_overlay_remove() notifications can be done and in Luca's
-use-case, they lead to some device removals and so devlink removals.
+> +  The TH1520 has 3 groups of pads each controlled from different memory =
+ranges.
+> +  Confusingly the memory ranges are named
+> +    PADCTRL_AOSYS  -> PAD Group 1
+> +    PADCTRL1_APSYS -> PAD Group 2
+> +    PADCTRL0_APSYS -> PAD Group 3
 
-That's why we move the synchronization calling device_link_wait_removal()
-after notifications and so just before free_overlay_changeset().
+Really, even in the documentation? If you look at the layout on the actual
+chip, does a pattern emerge?
 
-> 
-> 
-> diff --git a/drivers/of/overlay.c b/drivers/of/overlay.c
-> index 1a8a6620748c..eccf08cf2160 100644
-> --- a/drivers/of/overlay.c
-> +++ b/drivers/of/overlay.c
-> @@ -1375,12 +1375,6 @@ int of_overlay_remove(int *ovcs_id)
->  		goto out;
->  	}
->  
-> -	/*
-> -	 * Wait for any ongoing device link removals before removing some of
-> -	 * nodes
-> -	 */
-> -	device_link_wait_removal();
-> -
->  	mutex_lock(&of_mutex);
->  
->  	ovcs = idr_find(&ovcs_idr, *ovcs_id);
-> @@ -1427,6 +1421,14 @@ int of_overlay_remove(int *ovcs_id)
->  		if (!ret)
->  			ret = ret_tmp;
->  
-> +	/*
-> +	 * Wait for any ongoing device link removals before removing some of
-> +	 * nodes
-> +	 */
-> +	mutex_unlock(&of_mutex);
-> +	device_link_wait_removal();
-> +	mutex_lock(&of_mutex);
+I think some use the north/south/east/west as group names with the BGA
+chip facing up with the package text correctly readable then it is a bit
+like a map.
+
+> +          function:
+> +            $ref: /schemas/types.yaml#/definitions/string
+> +            enum: [ "0", "1", "2", "3", "4", "5" ]
+> +            description: The mux function to select for the given pins.
+
+So why is the opaque names "0", "1" etc used, and they will be the same for
+all pins I bet. Most drivers use a string identifying the actual function h=
+ere.
+Such as "i2c", "gpio", etc.
+
+Names that are just figures are *impossible* to understand without access
+to a datasheet.
+
+The point of device trees sources are to be human readable, strings of
+magic numbers are not human readable at all.
+
+> +          bias-disable: true
 > +
->  	free_overlay_changeset(ovcs);
->  
->  err_unlock:
-> 
-> 
-> This obviously raises the question of whether unlocking and re-locking
-> the mutex is potentially dangerous. I have no answer to this right away,
-> but I tested this change with CONFIG_PROVE_LOCKING=y and no issue showed
-> up after several overlay load/unload sequences so I am not aware of any
-> actual issues with this change.
-> 
-> [0] https://git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-drivers.git/log/?h=topic/overlays
-> 
-> Luca
+> +          bias-pull-up:
+> +            type: boolean
+> +
+> +          bias-pull-down:
+> +            type: boolean
+> +
+> +          drive-strength:
+> +            enum: [ 1, 2, 3, 5, 7, 8, 10, 12, 13, 15, 16, 18, 20, 21, 23=
+, 25 ]
 
-Thanks Luca for this complementary use-case related to this issue.
+milliamperes? Then use drive-strength-microamp.
 
-Hervé
--- 
-Hervé Codina, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+If not, explain what each setting means, i.e. the number of max microamps.
+
+At which point using drive-strength-microamp and a translation table in the
+driver may be a better idea.
+
+The only reason to use opaque numbers is if 1, 2 (etc) mean something like
+"number of driver stages" with a current output that varies with technology=
+.
+
+> +          thead,strong-pull-up:
+> +            oneOf:
+> +              - type: boolean
+> +              - $ref: /schemas/types.yaml#/definitions/uint32
+> +                enum: [ 0, 2100 ]
+> +            description: Enable or disable strong 2.1kOhm pull-up.
+
+Just use bias-pull-up with an argument.
+
+bias-pull-up =3D <2100000>;
+
+No argument would be the default setting.
+
+No need for custom bindings.
+
+> +        uart0_pins: uart0-0 {
+> +            tx-pins {
+> +                pins =3D "UART0_TXD";
+
+Pins have reasonable names, but...
+
+> +                function =3D "0";
+
+What about function =3D "uart_0" hmmm?
+
+Yours,
+Linus Walleij
 
