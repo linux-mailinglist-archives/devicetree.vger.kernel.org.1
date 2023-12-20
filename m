@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-27172-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27173-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D17F0819917
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 08:08:43 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 779D6819921
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 08:10:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5CF391F24490
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 07:08:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9C0BB1C20CAC
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 07:10:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E53CD13ACD;
-	Wed, 20 Dec 2023 07:08:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02D32134C9;
+	Wed, 20 Dec 2023 07:10:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ucJ40BEj"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dwOcpL0f"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2335118AF6
-	for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 07:08:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 494EF1F5F3
+	for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 07:10:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-40d3748f345so1942515e9.0
-        for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 23:08:10 -0800 (PST)
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-40c31f18274so67799565e9.0
+        for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 23:10:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1703056089; x=1703660889; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1703056218; x=1703661018; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=siLk5U93JA3vEes4gtj6Up/ArB2QKxvJxO05srSDno8=;
-        b=ucJ40BEjWeu79fXTxY5qIThgNZMGA1VkOiq2hD6BgiZsa8q52DZm7sqr6AekITrNTV
-         xh2wPSn6QchCd8NhXylSs74zAb8XnebqJ+Y49rugGCMlaRztjT09r5atN9orBwqoZ6vZ
-         gJ+toszlCUr+MlR3hb0/HE0n6pwXDitZQeVD1IXUcSRNIBCBRumBxSzXsYLHdg0iYVef
-         dKbN1i1vg3sMUTVO5U4tGhjSzYB0LMYFBPuaSfwGdyCBs/AugiB8rCpux85hOx2fDyol
-         mcSPq41/0wn+YtC/j7UnsB/gpP5vxEOr5quW3W+B5XavUypojKtNMXvlFlsE6S3kEC/u
-         jHrA==
+        bh=okON4GLE4m7eiuy8+UmbhgqUVUUKuGj5zHFUalwl3UU=;
+        b=dwOcpL0fLttH/XN6bs6yQkd2hdG8no9MKctUf2wTGNmmkhVKWAd86t7pB79CfqNJb1
+         3qa6PfZCHx9o9AADrW69zvBegw+iW4c/R6eP1z9gQ6ijwMfetfVZvSo7RQgr/yeewYRo
+         V65nG+YGvYO9MylaJnTt7BX9ybhO9Un4Af2ul7UYa8Z/Thnid6Itss3zckFnPCKxC8cl
+         voF7UPCQqir06TX5BmbPP36/ptsErcwZdLzgD+zVlqLpGHJpPzBMpbH4eafnqBzpFzd/
+         2tfCe1Cna4T+WiG+sFplTtRNAQuoyO73ADcfsv0zgqgJwcm/NTqklJwyRGbhD3OdlOmN
+         p6pQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703056089; x=1703660889;
+        d=1e100.net; s=20230601; t=1703056218; x=1703661018;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=siLk5U93JA3vEes4gtj6Up/ArB2QKxvJxO05srSDno8=;
-        b=a2rU+x4wCjG67YKrxnlcYuN/agecIfMzJXnMqnDdEsquWJEyx7PVZD8U5Z2ojSW3SN
-         Ll5lgB6CmRAVd1VCoASMvwdCItApdnhWPxmA1VYeDmVmXkmq+mY3JAwxjytrxxuJ7FIm
-         5E2RZDYJ1OjG0X0DlosPNHeo6gJJawhbR7Cd7kXPhgGHyKlpFaNJl1tge1rU/SY5zPAg
-         yQHul+s7aHNz+3ermFEnzHOE3NKmwWS/nDWvQQcWGtvWwq/6Umphy7NrKr/JYZwL3SqW
-         GCvF1DTsNuEKqEBYzol9zchBlfgWsDCtT4VW+NNR9q9Ry6V7enUhcmNUpbN5qCrrVwJ+
-         UC/Q==
-X-Gm-Message-State: AOJu0Yxu3ehQu9omHuwnf2OqqsXJipqKCh6Ir8y6xT0MEZh4n8DanFRB
-	8SrYgulpfypEM59GtLlEauoaoQ==
-X-Google-Smtp-Source: AGHT+IHGcTof4yo4Z71thN7m7MF/WjuC5NVtp/aodfTIImlR933aWFor0qme70UkH0qMmPPP63+nBg==
-X-Received: by 2002:a05:600c:3485:b0:40d:343d:2e08 with SMTP id a5-20020a05600c348500b0040d343d2e08mr345402wmq.98.1703056089350;
-        Tue, 19 Dec 2023 23:08:09 -0800 (PST)
+        bh=okON4GLE4m7eiuy8+UmbhgqUVUUKuGj5zHFUalwl3UU=;
+        b=Va3gjd7Cb/7wEUHiSVFiDY6izMX5ehqOL3Cb0cDr4yRhg4Gy0T7TkyEJeCgY7KGMze
+         oy021nCIzpyqebqX+5Dltivna7guMCCl3tMDP9J/0Cjwx3W3Xb6EfhpxNGN+ck2HKsb+
+         0K9V2GKx8caDX4DZBBGHIWpZuSZ3OPT+LdxUaeHYvOnCbi+5CKaAj2RWx8AoP1ukaucm
+         mZB/DnwFNEzYLqUyzNr83cm6us/Pw7Idakq0CRCdeA57y3uLodGuS3qEo3qdoGMyxP1S
+         VfOjI4cmqOamAoCOVvCzNoiIeMAn+IoChe/HIheImudEKA91dnMFemTaEbs5IThL0D77
+         sQmg==
+X-Gm-Message-State: AOJu0Yz63gWUsWhzKYR+M1SQpSN+JN/JibXt6zofOONp76COK1VyaLws
+	0MPW8h3k+LS5sk1d5zZximoLgQ==
+X-Google-Smtp-Source: AGHT+IGPunQAyApSaIKE+PxD7CbrP/uD8PsgqvhsUXidXH/rWlukClfDqBMmd+lpEbteqlHtQ6Yrbg==
+X-Received: by 2002:a05:600c:3146:b0:40c:3e7c:9e45 with SMTP id h6-20020a05600c314600b0040c3e7c9e45mr8699714wmo.179.1703056218421;
+        Tue, 19 Dec 2023 23:10:18 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id v14-20020a05600c444e00b0040c58e410a3sm6154140wmn.14.2023.12.19.23.08.07
+        by smtp.gmail.com with ESMTPSA id bd7-20020a05600c1f0700b0040c420eda48sm6382647wmb.22.2023.12.19.23.10.16
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 19 Dec 2023 23:08:08 -0800 (PST)
-Message-ID: <d18350c3-5730-45df-aa5f-3aae7f8f7e10@linaro.org>
-Date: Wed, 20 Dec 2023 08:08:07 +0100
+        Tue, 19 Dec 2023 23:10:17 -0800 (PST)
+Message-ID: <6265dc95-57fe-4e02-b68c-03d60b1cdabc@linaro.org>
+Date: Wed, 20 Dec 2023 08:10:15 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,26 +66,24 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] dt-bindings: soc: mediatek: Change the description of
- gce-events
+Subject: Re: [PATCH v3 1/1] arm64: dts: qcom: sm8550: remove
+ address/size-cells from mdss_dsi1
 Content-Language: en-US
-To: "Jason-JH.Lin" <jason-jh.lin@mediatek.com>,
- Jassi Brar <jassisinghbrar@gmail.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Cc: Conor Dooley <conor+dt@kernel.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-media@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- Jason-ch Chen <jason-ch.chen@mediatek.com>,
- Johnson Wang <johnson.wang@mediatek.com>,
- Singo Chang <singo.chang@mediatek.com>, Nancy Lin <nancy.lin@mediatek.com>,
- Shawn Sung <shawn.sung@mediatek.com>,
- Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20231218083604.7327-1-jason-jh.lin@mediatek.com>
- <20231218083604.7327-4-jason-jh.lin@mediatek.com>
+To: "Aiqun Yu (Maria)" <quic_aiquny@quicinc.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Tengfei Fan <quic_tengfan@quicinc.com>, andersson@kernel.org,
+ konrad.dybcio@linaro.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, kernel@quicinc.com
+References: <20231219003106.8663-1-quic_tengfan@quicinc.com>
+ <20231219003106.8663-2-quic_tengfan@quicinc.com>
+ <457e336e-004c-4721-b58d-e9ada16dc04b@linaro.org>
+ <a8f168da-14f7-4377-8dea-f282a3eac0a4@quicinc.com>
+ <13b61d41-6045-499e-864b-51c6cb6eacf9@linaro.org>
+ <38604415-b410-4995-9c4f-525536435699@quicinc.com>
+ <CAA8EJpo07gE7ZeNP6wSGTLtmF_3PKQAKFyMRZ8dk1K+f7PAxrg@mail.gmail.com>
+ <ad1547cf-0520-422d-a105-ec426f526d71@quicinc.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -131,37 +129,97 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231218083604.7327-4-jason-jh.lin@mediatek.com>
+In-Reply-To: <ad1547cf-0520-422d-a105-ec426f526d71@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 18/12/2023 09:36, Jason-JH.Lin wrote:
-> Change the description of mediatek,gce-events property to reference
-> mediatek,gce-mailbox yaml.
+On 20/12/2023 01:53, Aiqun Yu (Maria) wrote:
 > 
-> Signed-off-by: Jason-JH.Lin <jason-jh.lin@mediatek.com>
-> ---
->  .../devicetree/bindings/soc/mediatek/mediatek,ccorr.yaml     | 5 +----
->  .../devicetree/bindings/soc/mediatek/mediatek,mutex.yaml     | 5 +----
->  .../devicetree/bindings/soc/mediatek/mediatek,wdma.yaml      | 5 +----
->  3 files changed, 3 insertions(+), 12 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/soc/mediatek/mediatek,ccorr.yaml b/Documentation/devicetree/bindings/soc/mediatek/mediatek,ccorr.yaml
-> index 4380b98b0dfe..64c0f99fcbce 100644
-> --- a/Documentation/devicetree/bindings/soc/mediatek/mediatek,ccorr.yaml
-> +++ b/Documentation/devicetree/bindings/soc/mediatek/mediatek,ccorr.yaml
-> @@ -36,10 +36,7 @@ properties:
->  
->    mediatek,gce-events:
->      description:
-> -      The event id which is mapping to the specific hardware event signal
-> -      to gce. The event id is defined in the gce header
-> -      include/dt-bindings/gce/<chip>-gce.h of each chips.
-> -    $ref: /schemas/types.yaml#/definitions/uint32-array
-> +      Reference to Documentation/devicetree/bindings/mailbox/mediatek,gce-mailbox.yaml.
+> On 12/19/2023 6:21 PM, Dmitry Baryshkov wrote:
+>> On Tue, 19 Dec 2023 at 12:09, Aiqun Yu (Maria) <quic_aiquny@quicinc.com> wrote:
+>>>
+>>>
+>>>
+>>> On 12/19/2023 5:41 PM, Krzysztof Kozlowski wrote:
+>>>> On 19/12/2023 10:36, Aiqun Yu (Maria) wrote:
+>>>>>
+>>>>>
+>>>>> On 12/19/2023 3:17 PM, Krzysztof Kozlowski wrote:
+>>>>>> On 19/12/2023 01:31, Tengfei Fan wrote:
+>>>>>>> The address/size-cells in mdss_dsi1 node have not ranges and child also
+>>>>>>> have not reg, then this leads to dtc W=1 warnings:
+>>>>>>
+>>>>> Comments can be more readable:
+>>>>> "mdss_dsi1" node don't have "ranges" or child "reg" property, while it
+>>>>> have address/size-cells properties. This caused
+>>>>> "avoid_unnecessary_addr_size" warning from dtb check.
+>>>>> Remove address/size-cells properties for "mdss_dsi1" node.
+>>>>>
+>>>>>> I cannot parse it. Address/size cells never have ranges or children.
+>>>>>> They cannot have. These are uint32 properties.
+>>>>> Pls help to comment on the revised commit message. Every time I write a
+>>>>> commit message, also takes a while for me to double confirm whether
+>>>>> others can understand me correctly as well. Feel free to let us know if
+>>>>> it is not readable to you. It will help us as non-English native developers.
+>>>>>>
+>>>>>>>
+>>>>>>>      sm8550.dtsi:2937.27-2992.6: Warning (avoid_unnecessary_addr_size): /soc@0/display-subsystem@ae00000/dsi@ae96000:
+>>>>>>>        unnecessary #address-cells/#size-cells without "ranges" or child "reg" property
+>>>>>>>
+>>>>>>>
+>>>>>>> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>>>>>>> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
+>>>>>>> ---
+>>>>>>
+>>>>>> I disagreed with the patch before. You resubmit it without really
+>>>>>> addressing my concerns.
+>>>>>>
+>>>>>> I am not sure if this is correct fix and I want to fix all of such
+>>>>>> errors (there are multiple of them) in the same way. Feel free to
+>>>>>> propose common solution based on arguments.
+>>>>> Per my understanding, "qcom,mdss-dsi-ctrl" driver node like "mdss_dsi1"
+>>>>> don't need to have address/size-cells properties.
+>>>>
+>>>> Just because dtc says so? And what about bindings?
+>>> I don't find any reason why "qcom,mdss-dsi-ctrl" driver node need to
+>>> have address/size-cells properties. Document Bindings should also be fixed.
+>>>>
+>>>>> Feel free to let us know whether there is different idea of
+>>>>> "address/size-cells" needed for the "qcom,mdss-dsi-ctrl" driver node.
+>>>>
+>>>> The bindings expressed that idea. If the binding is incorrect, fix the
+>>>> binding and the DTS. If the binding is correct, provide rationale why it
+>>>> somehow does not apply here etc.
+>>> Our plan is to fix the bindings as well.
+>>>
+>>> In case you have missed the question, I just re-place it here:
+>>> While there are about 22 different soc dtsi and it's document binding
+>>> files needed to be fixed. Shall we fix it for all qcom related soc usage
+>>> in one patch, or we'd better to split into different patches according
+>>> to soc specifically?
+>>
+>> Don't touch the bindings unless you understand what you are doing.
+>> Your patch will be NAKed. There can be a DSI panel attached to the DSI
+>> host, which means there is a need for #address-cells / #size-cells.
+>>
+> Could you please help to elaborate more on details? Like what's the 
+> right example here for the "qcom,mdss-dsi-ctrl" driver node needed to 
+> have "#address-cells"/"#size-cells".
 
-NAK, test your bindings. You allow now any type.
+Isn't the binding describing such example?
 
+> 
+> Thx to chime in that we have put a good amount of time here.
+>> Please stop wasting the time on dtc warning. The bindings (and the
+>> file) are correct.
+> I don't agree here.
+> Either it is a wrong usage of "#address-cells"/"#size-cells", or dtc 
+> warning should be fixed with this usage take into account.
+> "dtb check" will be a good guideline for developers to follow, I don't 
+> think it is wasting time here.
+
+You don't agree but you don't know how this binding works?
 
 Best regards,
 Krzysztof
