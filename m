@@ -1,73 +1,121 @@
-Return-Path: <devicetree+bounces-27420-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27421-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D3A181A339
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 16:55:19 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C54881A354
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 16:57:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D0BEC1F25E82
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 15:55:18 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B4B89B22733
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 15:57:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4626045C1A;
-	Wed, 20 Dec 2023 15:54:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1572E4175B;
+	Wed, 20 Dec 2023 15:57:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="B4tzYCzV"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="e/P1rVcY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DB1B41228;
-	Wed, 20 Dec 2023 15:54:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B6ECBC433CA;
-	Wed, 20 Dec 2023 15:54:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1703087675;
-	bh=AM5719R9/C4+1es2WOJRGzV9K/BOUfmgbJTp8XrC8WM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=B4tzYCzVwxLds0uOf+/b869Ml9KakXONq4jpLpWWZphICn0aibnLVPDcfij6TVhri
-	 z9dR6PFb+2s7WzGUWfclfpYam7t6B12omxpmLwSAICY5jWIhMa2kHKYokXXHl85+MB
-	 66NRxqsHRK9hyLJ4FacRtHvDsRdXLMRztpaQTjBBuidoxp7UuRjwBYGgcUksYelnjh
-	 nUXJY8pIUO1MH6WE0PrZ7nBWxT0aDKd/+qcWpsy4Oiz1jDESpZNa1WNWVL2X/LRb4v
-	 qmaEw5muVLjFprGiPrfVEmUEm/dlhaBC3cUlKEWqlpAH+tK005w+Gi00cTKaBgl1iu
-	 6yOFo1THa/Wiw==
-Received: (nullmailer pid 278038 invoked by uid 1000);
-	Wed, 20 Dec 2023 15:54:32 -0000
-Date: Wed, 20 Dec 2023 09:54:32 -0600
-From: Rob Herring <robh@kernel.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: linux-arm-kernel@lists.infradead.org, s.hauer@pengutronix.de, bhelgaas@google.com, kw@linux.com, linux-pci@vger.kernel.org, conor+dt@kernel.org, krzysztof.kozlowski@linaro.org, lpieralisi@kernel.org, devicetree@vger.kernel.org, festevam@gmail.com, imx@lists.linux.dev, manivannan.sadhasivam@linaro.org, krzysztof.kozlowski+dt@linaro.org, helgaas@kernel.org, l.stach@pengutronix.de, linux-kernel@vger.kernel.org, shawnguo@kernel.org, linux-imx@nxp.com, Frank.li@nxp.com, hongxing.zhu@nxp.com, kernel@pengutronix.de
-Subject: Re: [PATCH v4 09/15] dt-bindings: imx6q-pcie: remove reg and reg-name
-Message-ID: <170308767228.277985.15603263470608919081.robh@kernel.org>
-References: <20231217051210.754832-1-Frank.Li@nxp.com>
- <20231217051210.754832-10-Frank.Li@nxp.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5223640C1E
+	for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 15:57:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
+Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-50e40b43798so853531e87.0
+        for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 07:57:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1703087860; x=1703692660; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=lXGoVjd4u7kYD7llneKYEOWLFOV8IcsaMr6UiEiL8lA=;
+        b=e/P1rVcYmUsiM1fmhSSFiPrqRd8lPfUKcqkqZ7SZ/A7pKZ/tSf2GzBNbeRhjsMNFci
+         HTLWJPkkHL4UD5dA4mbWb85ohq/10Gm4FGl+nY8y92irooWsF7ix7hOuPImdgr69T64b
+         hlwedr0RAk4uNU9toPWZim8nhfalmtIugZGydZSKyCKbQUA9sAKTbREtpYnrdnx7j6MH
+         EXcUOCibfKZiVORp0gk+pVWMP00QBhzbUl/2ehHjSkGc3QU5NK3IZd8IUt7i6BwlMGB4
+         AvPf3XFancLBjd570dqHc0vehvTpPtQBD1IGID8TmU6F4GTFPUPvoxU8AsXDbJ1D1SOz
+         xmYQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1703087860; x=1703692660;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=lXGoVjd4u7kYD7llneKYEOWLFOV8IcsaMr6UiEiL8lA=;
+        b=LPXlAQNCh4hMCSZ53HtkcjT8xvkpC9gfOWFibrX6JBMNGbCd1PLRf6KR0OjN4QhIsD
+         v4JgrjB3JPsx++sEpj5qThSmo0pkPZzBNFHSqDAtOFXrf0tynizBJ/c3B7KH3kE++Vlb
+         i2BJn4nbBQ0JENK4r0iC0mFzKR+4c1dwKo+E+jSktUZFB607lcxX+uMe3WMJckDJ47et
+         WxiUam+bCutRgZBMC+4wOvRXrmUE2K+qY0HZkz+EHENckTWoWqjZNQhkqki4fImBVnzp
+         QHlE7S9raaFVZT2uybgafMZ4xKGU/kxKHOdZbf5h6UCgPZki26xRzr3XrGC5OUX20EDG
+         zOmA==
+X-Gm-Message-State: AOJu0YzOXfUIZh0Ga+3G7FjHebHHzJaoI1q/sq6iSALFOqSD7bZ6Oyd0
+	LU4H7vgHVpRbrvBnUM31chFD/A==
+X-Google-Smtp-Source: AGHT+IGvk4pAMVhFAQz7BALeRDKatbOjz/HnD6L+wq8WrKnoDOVFvFkoMQFUdTnt9ae82wR35gTXGg==
+X-Received: by 2002:a05:6512:3a95:b0:50e:4a7b:f506 with SMTP id q21-20020a0565123a9500b0050e4a7bf506mr2980459lfu.4.1703087860189;
+        Wed, 20 Dec 2023 07:57:40 -0800 (PST)
+Received: from carbon-x1.. ([2a01:e0a:999:a3a0:3eae:b70:f27f:7aa1])
+        by smtp.gmail.com with ESMTPSA id h18-20020adffd52000000b003366af9d611sm7279693wrs.22.2023.12.20.07.57.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 20 Dec 2023 07:57:39 -0800 (PST)
+From: =?UTF-8?q?Cl=C3=A9ment=20L=C3=A9ger?= <cleger@rivosinc.com>
+To: linux-doc@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: =?UTF-8?q?Cl=C3=A9ment=20L=C3=A9ger?= <cleger@rivosinc.com>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Conor Dooley <conor@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Robbin Ehn <rehn@rivosinc.com>,
+	Gianluca Guida <gianluca@rivosinc.com>
+Subject: [PATCH v2 0/6] riscv: hwprobe: add Zicond, Zacas and Ztso support
+Date: Wed, 20 Dec 2023 16:57:16 +0100
+Message-ID: <20231220155723.684081-1-cleger@rivosinc.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231217051210.754832-10-Frank.Li@nxp.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
+This series add support for a few more extensions that are present in
+the RVA22U64/RVA23U64 (either mandatory or optional) and that are useful
+for userspace:
+- Zicond
+- Zacas
+- Ztso
 
-On Sun, 17 Dec 2023 00:12:04 -0500, Frank Li wrote:
-> snps,dw-pcie.yaml already have reg and reg-name information. Needn't
-> duplciate here.
-> 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
-> 
-> Notes:
->     Change from v1 to v4:
->     - new patch at v4
-> 
->  .../devicetree/bindings/pci/fsl,imx6q-pcie.yaml        | 10 ----------
->  1 file changed, 10 deletions(-)
-> 
+Series currently based on riscv/for-next.
 
-Acked-by: Rob Herring <robh@kernel.org>
+---
+
+Changes in V2:
+ - Removed Zam which is not yet ratified
+ - Link to v1: https://lore.kernel.org/linux-riscv/20231213113308.133176-1-cleger@rivosinc.com/
+
+Clément Léger (6):
+  riscv: add ISA extension parsing for Ztso
+  riscv: hwprobe: export Ztso ISA extension
+  dt-bindings: riscv: add Zacas ISA extension description
+  riscv: add ISA extension parsing for Zacas
+  riscv: hwprobe: export Zacas ISA extension
+  riscv: hwprobe: export Zicond extension
+
+ Documentation/arch/riscv/hwprobe.rst                | 13 +++++++++++++
+ .../devicetree/bindings/riscv/extensions.yaml       |  6 ++++++
+ arch/riscv/include/asm/hwcap.h                      |  2 ++
+ arch/riscv/include/uapi/asm/hwprobe.h               |  3 +++
+ arch/riscv/kernel/cpufeature.c                      |  2 ++
+ arch/riscv/kernel/sys_riscv.c                       |  3 +++
+ 6 files changed, 29 insertions(+)
+
+-- 
+2.43.0
 
 
