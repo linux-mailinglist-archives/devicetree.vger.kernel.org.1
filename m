@@ -1,200 +1,135 @@
-Return-Path: <devicetree+bounces-27475-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27476-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0522A81A8CD
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 23:12:37 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0BD0B81A8D3
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 23:13:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0E26EB212E7
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 22:12:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3F29C1C221DF
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 22:13:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66AE4495F3;
-	Wed, 20 Dec 2023 22:12:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B662495FF;
+	Wed, 20 Dec 2023 22:13:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="E2sqRB83"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Hr4Onva/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AA6A482DB;
-	Wed, 20 Dec 2023 22:12:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1703110348; x=1734646348;
-  h=message-id:date:subject:to:cc:references:from:
-   in-reply-to:content-transfer-encoding:mime-version;
-  bh=9e+6wkkKW5Lx5bh9HH1JkxwQB65mB5SrlMZPDu0FCcE=;
-  b=E2sqRB83mefylDjiU70bdUuNa3JhxvQgxxn0KCgvD7twEaXSPLXQnxqv
-   CNJ/G4pqj0e6IOKxoQdvp0YBNGH0uwZZ70gF1RyDltvYabNdIm77OtFm4
-   JNesqb7yTpC4VxRmoqFgtGcCNdKd2Ur8MjK40tRMTtOdP3nA8MdES5qCg
-   tZm1woYZhiVoMSbCzZsjRgfME5h452sKedmWdx8KL3uJix8oRB7awJYYS
-   cWoH/1u7H9vHNOoDHavP9EcPAPdwlX3lC5R1T0q9Ous963mD++E1KXw4m
-   qAZPT5E98aYUM04V0XQUGzrhsn2OMiYv77t3zZTJ8QyLDAHupJwlcOFdI
-   w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10930"; a="462328277"
-X-IronPort-AV: E=Sophos;i="6.04,292,1695711600"; 
-   d="scan'208";a="462328277"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
-  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Dec 2023 14:12:19 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.04,292,1695711600"; 
-   d="scan'208";a="18106311"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
-  by orviesa002.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384; 20 Dec 2023 14:12:18 -0800
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Wed, 20 Dec 2023 14:12:18 -0800
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Wed, 20 Dec 2023 14:12:18 -0800
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.168)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Wed, 20 Dec 2023 14:12:15 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=cyr3Bpg6n0WdtzdTo2PiXFyVttxPUYEgPzLr49HXVUv2YV/r1mNJKZ663twMgR2H3nqBjCzLcsXO9cI4xP0kBo2tK4T3m20c6LxL+LSLvWXc4rKme6efP8bumnojtQd8wUjwU7EPwQm4HcmeIzOwqsoj36iHdD/H6+vhVWlruMaZjVjFrXLNv2LtfhMBL+K1u/kDBzJXwJ+1859lq9GljO4Xc4cIGzh07svl11QuYZ0d8oVu7F10c+jxfjQRgdACuLlBPoR+AsMFTeVNHqTLaAiArJ0XRpug8pGrG0DdPscbQOl/SaI3nYgf2BTQgdCQQ4Zw4riGXhK9bvqANU7vUw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=99btik5qUSJsSb5rfF+9fY+oc80mITcB++Dj+l8v0dg=;
- b=TdZGYf8yCq0RbXp2NOfKqetQFk4miyqCsmJPKcOa5xLoYDTt8NZNVlYHt1iBpTG6+6vHzcjmemwtUCx5Nxga4Rg0sgbdMKg3BeNirIdT0sL6YeT5YKBcZqxjkbme9BVEcBDvYKEtmx9Itqz/IMNs/x8m916mQ9GR36q4YvFl/gVI1I71A20JhLUi6Z6vqMvNW0z0Ez8FNWe4JlVfMRkNJgaEGnYX1+NjpsXogyJ9K8kq9ho3FofiJ2qgRvaVVWG18h6imHck+8W1/PcXqyWX4dK82KAsCZGCAnNiURVlQGpkdNY23czBkgOJxyE3vSdr3NXXp3OsYqX1kCjA/NXyog==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH0PR11MB5095.namprd11.prod.outlook.com (2603:10b6:510:3b::14)
- by DM6PR11MB4707.namprd11.prod.outlook.com (2603:10b6:5:2a6::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7113.18; Wed, 20 Dec
- 2023 22:12:13 +0000
-Received: from PH0PR11MB5095.namprd11.prod.outlook.com
- ([fe80::ea27:681d:ec93:3851]) by PH0PR11MB5095.namprd11.prod.outlook.com
- ([fe80::ea27:681d:ec93:3851%5]) with mapi id 15.20.7113.016; Wed, 20 Dec 2023
- 22:12:13 +0000
-Message-ID: <7249a8c0-b97f-4634-a08b-06be503f8c71@intel.com>
-Date: Wed, 20 Dec 2023 14:12:10 -0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: net: starfive,jh7110-dwmac: Add
- JH7100 SoC compatible
-To: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>, "David S. Miller"
-	<davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub Kicinski
-	<kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring
-	<robh+dt@kernel.org>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
-	"Emil Renner Berthing" <kernel@esmil.dk>, Samin Guo
-	<samin.guo@starfivetech.com>, Alexandre Torgue
-	<alexandre.torgue@foss.st.com>, Jose Abreu <joabreu@synopsys.com>, Maxime
- Coquelin <mcoquelin.stm32@gmail.com>, "Giuseppe Cavallaro"
-	<peppe.cavallaro@st.com>, Andrew Lunn <andrew@lunn.ch>
-CC: <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>,
-	<linux-arm-kernel@lists.infradead.org>, <kernel@collabora.com>
-References: <20231220002824.2462655-1-cristian.ciocaltea@collabora.com>
- <20231220002824.2462655-2-cristian.ciocaltea@collabora.com>
-Content-Language: en-US
-From: Jacob Keller <jacob.e.keller@intel.com>
-In-Reply-To: <20231220002824.2462655-2-cristian.ciocaltea@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MW4PR03CA0273.namprd03.prod.outlook.com
- (2603:10b6:303:b5::8) To PH0PR11MB5095.namprd11.prod.outlook.com
- (2603:10b6:510:3b::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91DAB4A991
+	for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 22:12:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a236d77dceeso14529966b.2
+        for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 14:12:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1703110377; x=1703715177; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=WbE+p+rcyyFP+eEtMwxqlwbKKm3YVPbvUnctIfiDxV4=;
+        b=Hr4Onva/aMYa64TV02v8sEKnKOa9dU62ufHv3yjaq1jplcVcisLWqPTnod6NLBmyFf
+         Oj2XWDERSnbqEhbSHqPfRL+xOo0q4I8ZxNh4PksJmQ7akJXXsFjZJ6H269HHJKBhRZ3/
+         rSqRYkF0PHYQLSfwsHb8O5J1vcFEyhzJHTAjthYue2WHfZQE93GV21d9G19rMnsWnre/
+         +8kIGjaiGETubllpaBv2Z1E2IVgOfhaTDJO3L/47jiNzxlF1z1ODi/WuTDshXNx8EsX8
+         1R36bcOCsw9trvSTscRUDP9VnL0o9rKC9fZyQmmm62IPKdmS/2bdlUba3ugcWnuf7D0R
+         LDTg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1703110377; x=1703715177;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=WbE+p+rcyyFP+eEtMwxqlwbKKm3YVPbvUnctIfiDxV4=;
+        b=Wjw4/txgGtRcrqn2hvMURefODITXz0CIWYhlioSsXgaf4Bpz2xXVldZwZJRVoayaqv
+         hV2QivJGUrW795Ukl1Fp3T9nAcpMfcNjbNl1s5TVcqz+CuApopRR9oY93ZTDry1iWfF4
+         EaxgJNo+kJQEA2QzkmPlcCVmvp5eBQa+BZQURoFKVHSLKIZlOFvZ3Gr9A6S7lGO6RAmU
+         yPRDyyMOcb6oKiCjTxw0s6DSm4s2NiJHbpbhX4q05V+Y+xoIIIxUtWnl/KllVVNMWGWS
+         JCp4RShZxCykHL5+FJWPPPTvANILzL8yBsbF+3zf1pPFgEisG58z9QebyOrA3H3cOwnK
+         v3fw==
+X-Gm-Message-State: AOJu0Yw5QYr2KoifdO09uUBuTN0nTIai4FX0l9f9LcDu7mLXxDeJP3aY
+	nqlvZ5T0L6oz/nIK9WjMK19zAQ==
+X-Google-Smtp-Source: AGHT+IHJw/FE2ewpobj61P+2P9GS8ZpVhAHis9tAoOMOkVKIcEuDOaRMsr1NH5TfHUZOtlI0W92iCQ==
+X-Received: by 2002:a17:906:65d8:b0:a19:a19b:4251 with SMTP id z24-20020a17090665d800b00a19a19b4251mr5876749ejn.188.1703110376744;
+        Wed, 20 Dec 2023 14:12:56 -0800 (PST)
+Received: from [10.167.154.1] (178235179206.dynamic-4-waw-k-1-3-0.vectranet.pl. [178.235.179.206])
+        by smtp.gmail.com with ESMTPSA id x22-20020a170906135600b00a235f3b8259sm254654ejb.186.2023.12.20.14.12.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 20 Dec 2023 14:12:56 -0800 (PST)
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Subject: [PATCH RFT v2 0/3] Fix up SC8280XP idle states
+Date: Wed, 20 Dec 2023 23:12:53 +0100
+Message-Id: <20230619-topic-sc8280xp-idle-v2-0-cde50bf02f3c@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH0PR11MB5095:EE_|DM6PR11MB4707:EE_
-X-MS-Office365-Filtering-Correlation-Id: 609097b9-0e28-42c9-9268-08dc01a8b7d8
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: fVZ/gC/koujLqPa2YGqmVbkA9VQ0ol1rPbaSGAO24fFAbexW9RdzYpHTerf0pNGlYjjxLlUTrx0YDWKQxnLK86A0oQGwNnXgO31bOBgZ6LCYbvh4mhTWOEV5bp2m8JcIgg0jegfS2OhHVvmg6U4IEEjDoZ4Nz0ONq0sWP3QwA4G6v3Nnfqg/3c7KIheXYQm32t+eMnfMMfqV0LxDMGWoguZ3ds/KTKyS63QYja/fXWGPkHxrWFYyB/r8yTwMh2t3vUcT5OCzutFIEVfvII5G6reh59y5h6iQn0d4Pmi1JRSimB39Hqij4amr3fHsEVHDz+SEQXF1kSRe1DfOntzulws6VKO6cW7vOqDwcAOIKcpD7yBoM8fBytuizAOjPsLtppQvjFWo7MwyZWozJOEr87rFu+IqtL8WFTaDg5lo1Rh882PM8dO64nkc+AsUdFNSoHN5HEt7ePXHxxCDxieSdJGkGLdKqfhBovIOxo2MmpMlaWFfztDb7q08/ETV0ehuyJN99tzhZOFlhdR8T/LY/60XHBo8QqFvn6/8Cmo+D1hlWb5UmvP48WoFjd7YkOcSNxgXNRsE+9jMxm4WFVnpOnXRLlWf243SOGQykQnQNXr2jBT/YPksoyVBpBZF9bClv+maBGOttJw48d5aRwB+F17ev2YSkIXZhJZV4xnXF1I=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH0PR11MB5095.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(136003)(366004)(376002)(396003)(39860400002)(346002)(230922051799003)(64100799003)(451199024)(1800799012)(186009)(478600001)(6486002)(38100700002)(31686004)(82960400001)(41300700001)(2616005)(6512007)(6506007)(53546011)(86362001)(8676002)(31696002)(7416002)(4326008)(5660300002)(2906002)(8936002)(36756003)(921008)(316002)(66946007)(66556008)(66476007)(110136005)(26005)(43740500002)(45980500001);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cUgzckRxVytYOEh3MU95SzdYTCtUOWZYU0xqUml5NjlLeXI3UW1mYXpJQjFt?=
- =?utf-8?B?LzVxT2NyTVFkbXRxVmxFNlRPclgvL2RSNDBkVTE0NHN4eU1aWTN6ZTBYSFdZ?=
- =?utf-8?B?VUFvZEdpdXkvVVozZU45MmR2OHU2d1ZkZXpTVE5OYnhrVDdHSGN1SU85UEs0?=
- =?utf-8?B?TzlMMFo0cE9NTW05THVXNnZ0WTlCUTc4TDJqRUFBREVxSks2NzM2WmhkaTBX?=
- =?utf-8?B?bUUrUkN6K1pRSWhLc2s0ME9TSXZZZFhiNXZLZW1IaG5RTkdHYXFYWjZQSlFv?=
- =?utf-8?B?V21vT2lJaXZtakhCNUwzZnNXdmttWnpZYmF5M2hmS1BhUkZPWHNFZVdkeG1z?=
- =?utf-8?B?OE02UEl4L3N4WjN2NWR0RlQxWVpoNlJIU3ZLUUN0RFM4MS9SSUlPREU5bk44?=
- =?utf-8?B?RE9QaXJGZmRsYldQMGd3TDJXZUJIWkNGcmpveUNEMis5ZTRaMlFlN1FVQ1hV?=
- =?utf-8?B?MnBFRHdFS095Z0xkNjBGY1A2UXU1bkJhNng1MDF2aVRvSDhJZ0FMVU5tdlhF?=
- =?utf-8?B?TTBBbUlxY0ErSmZwZDRYZjlPSS9tVnAvaVc1TWdKdGRTbVNzaWNRWlFPUHBh?=
- =?utf-8?B?SnRJTUxKYXRwTnN0dGNmY1oxUEdjVERWem10cTNpZVQ3ZUU5d3JkYU5jY1Jh?=
- =?utf-8?B?MEdwdk9OVnhHaUUvd09aZ1c2ejhDWGFKODc1dUtXVCtQZFRZOEVzcmNIa3ps?=
- =?utf-8?B?eHhiZ1krR2ZkcFZYYW5yUTluemU2bUZleDQ2R0kzWjBxdktLT3FiRlQ3eHhJ?=
- =?utf-8?B?K3pwK2RhYnpPbVBpd2U0TlR1ZTV6M2tSWFpmM0poazNTTTQxMXRVVWNENENT?=
- =?utf-8?B?Z2h1SEdtcjQ4SU81Ry93MGtST2hFSitiZkZYK0NqTVc0ZXJkK3hFbUxyOGw3?=
- =?utf-8?B?TVpRZE1CV2h0SytpVzZLNm1XMit6dHdzb1VZQytRb2xyT01ONTVKdHBCNVI2?=
- =?utf-8?B?TDdmRUVybWhZQi9EY0s0WVY1VVhwL2dHcnJha2JnTFhkNFVLeVczK2QvZk03?=
- =?utf-8?B?RDhEUkJWRmtTL3gvTk1aa1VGQndnRXU0bEgxaTZyb2MwZDlScTRMZFRreEJE?=
- =?utf-8?B?MmhGbUZFMEZUdXYxSVp3Z2dNVkJ2Zml5eEVTbWQ5WFNWZUZINmRFd2RVZkFa?=
- =?utf-8?B?ZFAzQVdqQnM2SitldnNzbnE1UlcyRXFOVTBzem53R2l5RWdWMDY3YWNRdW13?=
- =?utf-8?B?SVVrdGliRHF4RTRzS3JGMmptOVk5TVNXdHJOYnR2VitpekRMNi9qYVRENWZv?=
- =?utf-8?B?SXpQRFV1S2VXMlkvQm5yN2s0Z1dSMVh1SmxYVTJIVmpKcW1FK1I0Z0tXNXR2?=
- =?utf-8?B?eGdaY3llbTFkQ1lyc3hNVTllZUdBRTVlR2J1TGtPMXdjQjVUbEVOUW15ZkY2?=
- =?utf-8?B?NUVOY3VLNG4wcTdTeGJlRGo3WHA1QXhRRFFzdVY2aFZOaFgydWNJM2xpdEpo?=
- =?utf-8?B?aFdHU2lheG1yQjhocVNDUDMwS0JwUXJVQWRjT1czVDlGVy9kd1krUUk0WUhU?=
- =?utf-8?B?RklWY0pjd2ZUbVU3WjYyd243OEtkQ0xyUU9aYU1KeUVINmhkT1M4WEdxeHpo?=
- =?utf-8?B?WTVmRkd2djA2Y3l3UHJRY1pFQlc4NkJzWVFFRDEyVGQ2dkZ6WFdUcFJKVHFx?=
- =?utf-8?B?eGI4ZTNGc1lmTkcyTzJkY2xIalUxaU5pZHF4ZVVFUnJlblZFUE13cjQ2eHhk?=
- =?utf-8?B?Yk1LY2dlWFhZK0pkT2tUem9TNkpRQkUyTUxQejdPNi9jM3F5ckF6b2FDc1pF?=
- =?utf-8?B?M2orNDc1MGJhWk5FdCtiM2UwV1Vhei9BN1FsQStjTkR5dTFTMDFFRzN3dE1o?=
- =?utf-8?B?Y0xxamJRbWR5VTN6Yk5JTFNRME9PWVYvT3dtTnl4SkdNNVF2TW5DYTlUTTJG?=
- =?utf-8?B?K3I3dzVwLzR1K3YrRkFXSWNqTnVxcTBOVzBjeDY4Q0ptMUkrenc4TDNQZC9K?=
- =?utf-8?B?ZWRtZUZCelJQNC9xbENCTGpXNDd1aVhGcHlmWFhwZTE0d1F1QWdhWllya2Yy?=
- =?utf-8?B?d2xYNFpGdDB2SHVCdmtGMVFobFk4cFBQMHhzQnp5RjhxNTZVY1Fvb0dsOXNq?=
- =?utf-8?B?aWc1eEVzYjYzWmVJWHNVR3RhMlY3R0tsSWZkWERKMC8xRGRUWWtEeEFUK2dh?=
- =?utf-8?B?Y1FoRDY3d2RRQWNjeVdhWjYveWV3VE1CQ1lsVWY0c0l0SldyS2IzUTZxYUt3?=
- =?utf-8?B?R0E9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 609097b9-0e28-42c9-9268-08dc01a8b7d8
-X-MS-Exchange-CrossTenant-AuthSource: PH0PR11MB5095.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Dec 2023 22:12:13.6463
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Sc4JWT7ESdcDtKxLoD14huUyY8KDEbyYFAsvLYuvEqzl0zrLwT3Fqct5b/fGjpwNxIMwuqBPFSZC9ObDqVDBhVec0pKDa0KzdOR7SVznnYU=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB4707
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAOVmg2UC/32NQQ6CMBBFr0Jmbc20gBZXrjyAcWdYlFJgkqZtW
+ iQYwt1tOIDL919+3gbJRDIJbsUG0SyUyLsM4lSAnpQbDaM+MwgUJV54w2YfSLOkpZC4hmytYYi
+ DRryKstIS8rNTybAuKqen/HUfa/MYohloPVJveD5e0OZxojT7+D3yCz/U39LCGbKyVrJrZFXzH
+ u+WnIr+7OMI7b7vP1oDiMfRAAAA
+To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Johan Hovold <johan+linaro@kernel.org>
+Cc: Marijn Suijten <marijn.suijten@somainline.org>, 
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Konrad Dybcio <konrad.dybcio@somainline.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1703110375; l=1554;
+ i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
+ bh=ARUY1xHpXtNbYJC73kXlyu2iubFsquAhjet7Dqjyorw=;
+ b=jEr+FiShAw83HyJ/2AgXX7eCo9PSxs+fd6VLsvmwSxLTtAFYHteCzA7izJM+8hpXXahv2STz/
+ KP9ClVfkcC1BKCyOMLzdt6YpWdfFOmse7l+aVQMz3Ri4ySQHP+ZzN9u
+X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
+ pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 
+Comparing the data available in the downstream sources with what's there
+upstream, it was easy to spot some differences. This series aligns what
+we have upstream with what is there on the vendor kernel.
 
+The big asterisk there is that the downstream sources for SC8280XP can't
+always be trusted. A simple test shows that the lower idle states that
+were previously missing are implemented in the firmware (Linux reports no
+errors and enters them).
 
-On 12/19/2023 4:28 PM, Cristian Ciocaltea wrote:
-> The Synopsys DesignWare MAC found on StarFive JH7100 SoC is mostly
-> similar to the newer JH7110, but it requires only two interrupts and a
-> single reset line, which is 'ahb' instead of the commonly used
-> 'stmmaceth'.
-> 
-> Since the common binding 'snps,dwmac' allows selecting 'ahb' only in
-> conjunction with 'stmmaceth', extend the logic to also permit exclusive
-> usage of the 'ahb' reset name.  This ensures the following use cases are
-> supported:
-> 
->   JH7110: reset-names = "stmmaceth", "ahb";
->   JH7100: reset-names = "ahb";
->   other:  reset-names = "stmmaceth";
-> 
-> Also note the need to use a different dwmac fallback, as v5.20 applies
-> to JH7110 only, while JH7100 relies on v3.7x.
-> 
-> Additionally, drop the reset description items from top-level binding as
-> they are already provided by the included snps,dwmac schema.
-> 
-> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-> ---
+HOWEVER
 
-Reviewed-by: Jacob Keller <jacob.e.keller@intel.com>
+The only cluster idle state that's been present until now (the deepest
+one) is now barely used if at all, as the scheduler seems to deem it
+inefficient or so.
+
+Hence, a request for testing and comments, especially from those who
+use the X13s daily or have reliable setup to measure the power usage.
+
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+---
+Changes in v2:
+- Rename the idle states
+- Drop RFC, confirmed with Qualcomm
+- Rebase
+- Link to v1: https://lore.kernel.org/r/20230619-topic-sc8280xp-idle-v1-0-35a8b98451d0@linaro.org
+
+---
+Konrad Dybcio (3):
+      arm64: dts: qcom: sc8280xp: Add lower cluster idle states
+      arm64: dts: qcom: sc8280xp: Add missing CPU idle states
+      arm64: dts: qcom: sc8280xp: Fix up idle state periods
+
+ arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 72 +++++++++++++++++++++++++---------
+ 1 file changed, 54 insertions(+), 18 deletions(-)
+---
+base-commit: 20d857259d7d10cd0d5e8b60608455986167cfad
+change-id: 20230619-topic-sc8280xp-idle-00fc007234c8
+
+Best regards,
+-- 
+Konrad Dybcio <konrad.dybcio@linaro.org>
+
 
