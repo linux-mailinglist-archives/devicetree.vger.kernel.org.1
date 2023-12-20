@@ -1,122 +1,86 @@
-Return-Path: <devicetree+bounces-27234-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27235-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61451819B56
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 10:25:22 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 14004819B5F
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 10:26:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 174C41F25633
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 09:25:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 156771C24557
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 09:26:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F30B51DA40;
-	Wed, 20 Dec 2023 09:25:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD7141DA54;
+	Wed, 20 Dec 2023 09:26:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="NNf55OlG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="H0+sG3HK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD830200AA;
-	Wed, 20 Dec 2023 09:25:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 789211C0003;
-	Wed, 20 Dec 2023 09:25:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1703064312;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=sifAEnbUU3pMPnoP5SosHRqLSU4AUQ7u5NuQSR8RRrQ=;
-	b=NNf55OlGNijrFkKbooo+fj5AZdCjP0uppiK69f7E4/akc3jrgMhXpD7iuXHUVjxQyPOTlT
-	3MvLYvUi9kMm8ne/S0NP/KWGwlA1EWLknA8hLm7P4lKZTmZd80TGmkhlAe4VQHEMUc9Yk6
-	M7N8BSXYauAkU3X5SHGayVEXOhX230m/R3lu+IK3U8YwVe5uddDLXPR4b2kWU8J/Ufi27x
-	Zolq+Fj+p3rxkMWl4mlAE8tBZW/z2vCUd+HcS7RxlGVupzth0+4UEX1B+JRzYc4ZRmkvM7
-	gaNghWspi3cpWcgS/cbPdR0ulyl13bsVL1AxvS8WwH6+tf5MqKlAEVVbYnXFBw==
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A21091DA33;
+	Wed, 20 Dec 2023 09:26:46 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0A486C433C8;
+	Wed, 20 Dec 2023 09:26:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1703064406;
+	bh=j222JJR/D8hXfjZV0XkzJEjLU8itQUo0kwMu0IT0jyM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=H0+sG3HKttzfQQ6tBgwUGrqhtUgzp4AWDqD/SE022vHvySXzgL4lNOcklYpx5S3S0
+	 lMaP3YoqiJIdk6awQJOmLbKjbv65rNp+P3nwzF/FSlKxm/tyhsPYv/3P/nhzu5hlv3
+	 Papeuj9WTYboalFcurYUPC4bLm900nuZg+4yeuxcoNQIFnYILOaYk7X1gzeiQmAimK
+	 KBl6Zhl01iEHpO267Dm2yxL+IHUI2aJLhPRQNmalIs+bjNjjnHwUi8A7yIsz1iVYnv
+	 GoVYQWp+gjCx9eOU1YEz6tCtfyMOhpROsKbZBy1tNVWBlVkOcDBy63FWxD/OpNl5uN
+	 FWODUjDgdLJjg==
+Received: from johan by xi.lan with local (Exim 4.96.2)
+	(envelope-from <johan@kernel.org>)
+	id 1rFsqh-0001A0-0v;
+	Wed, 20 Dec 2023 10:26:44 +0100
+Date: Wed, 20 Dec 2023 10:26:43 +0100
+From: Johan Hovold <johan@kernel.org>
+To: Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc: Bjorn Andersson <andersson@kernel.org>, Andy Gross <agross@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Marijn Suijten <marijn.suijten@somainline.org>,
+	linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 04/15] clk: qcom: gcc-sm6375: Add runtime PM
+Message-ID: <ZYKzU4FFCc9lnE-p@hovoldconsulting.com>
+References: <20230717-topic-branch_aon_cleanup-v3-0-3e31bce9c626@linaro.org>
+ <20230717-topic-branch_aon_cleanup-v3-4-3e31bce9c626@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Wed, 20 Dec 2023 10:25:11 +0100
-Message-Id: <CXT1WVQ3YTND.ICHBOMMNR837@bootlin.com>
-To: "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>, "Vladimir
- Kondratiev" <vladimir.kondratiev@mobileye.com>, "Gregory CLEMENT"
- <gregory.clement@bootlin.com>, "Philipp Zabel" <p.zabel@pengutronix.de>,
- "Rob Herring" <robh+dt@kernel.org>, "Krzysztof Kozlowski"
- <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley" <conor+dt@kernel.org>,
- "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>
-From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-Subject: Re: [PATCH 1/4] dt-bindings: reset: mobileye,eyeq5-reset: add
- bindings
-Cc: <linux-mips@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, "Thomas Petazzoni"
- <thomas.petazzoni@bootlin.com>, "Tawfik Bayouk"
- <tawfik.bayouk@mobileye.com>
-X-Mailer: aerc 0.15.2
-References: <20231218-mbly-reset-v1-0-b4688b916213@bootlin.com>
- <20231218-mbly-reset-v1-1-b4688b916213@bootlin.com>
- <c6d8c1f2-082d-43c1-8768-c0004d3fe386@linaro.org>
-In-Reply-To: <c6d8c1f2-082d-43c1-8768-c0004d3fe386@linaro.org>
-X-GND-Sasl: theo.lebrun@bootlin.com
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230717-topic-branch_aon_cleanup-v3-4-3e31bce9c626@linaro.org>
 
-Hello,
+On Wed, Dec 20, 2023 at 01:30:45AM +0100, Konrad Dybcio wrote:
+> The GCC block on SM6375 is powered by the VDD_CX rail. We need to ensure
+> that CX is enabled to prevent unwanted power collapse 
 
-Thanks for your comments. I have a question for one:
+As I pointed out earlier, this bit of the commit message is incorrect
+and misleading as the power domain will never be disabled until you
+enable runtime PM as part of this very patch:
 
-On Tue Dec 19, 2023 at 8:40 AM CET, Krzysztof Kozlowski wrote:
-> On 18/12/2023 18:16, Th=C3=A9o Lebrun wrote:
-> > Add DT-Schema bindings for the EyeQ5 reset controller.
-> >=20
-> > Signed-off-by: Th=C3=A9o Lebrun <theo.lebrun@bootlin.com>
-> > ---
-> >  .../bindings/reset/mobileye,eyeq5-reset.yaml       | 69 ++++++++++++++=
-+++++
-> >  MAINTAINERS                                        |  2 +
-> >  include/dt-bindings/reset/mobileye,eyeq5-reset.h   | 80 ++++++++++++++=
-++++++++
-> >  3 files changed, 151 insertions(+)
-> >=20
+	https://lore.kernel.org/all/ZLaSpFFBzP_Yz5yY@hovoldconsulting.com/
 
-[...]
+Specifically, genpd will not power off CX (at runtime) while the driver
+is bound when runtime PM is left disabled.
 
-> > diff --git a/include/dt-bindings/reset/mobileye,eyeq5-reset.h b/include=
-/dt-bindings/reset/mobileye,eyeq5-reset.h
-> > new file mode 100644
-> > index 000000000000..ce59fe5409ac
-> > --- /dev/null
-> > +++ b/include/dt-bindings/reset/mobileye,eyeq5-reset.h
-> > @@ -0,0 +1,80 @@
-> > +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-> > +/*
-> > + * Copyright (C) 2023 Mobileye Vision Technologies Ltd.
-> > + */
-> > +
-> > +#ifndef _DT_BINDINGS_RESET_MOBILEYE_EYEQ5_RESET_H
-> > +#define _DT_BINDINGS_RESET_MOBILEYE_EYEQ5_RESET_H
-> > +
-> > +/* Domain 0 */
-> > +
-> > +/* 0..2 are reserved */
->
-> No, they are not. IDs cannot be reserved. IDs start from 0 and are
-> incremented by 1. Reserving an ID contradicts to entire point of that
-> ID, so either drop entire file or make this proper IDs.
+> and that the
+> reference is dropped when unused so that the system can enter a
+> firmware-managed lower power state.
+> 
+> Enable runtime PM to keep the power flowing only when necessary.
 
-Those are hardware IDs. I get what you mean is that they should not leak
-into bindings. That implies a mapping operation from bindings IDs to
-understood-by-hardware IDs. Can you confirm this is what you expect?
+The rest is correct.
 
-Thanks,
-
---
-Th=C3=A9o Lebrun, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Johan
 
