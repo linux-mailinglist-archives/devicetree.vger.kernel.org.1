@@ -1,91 +1,151 @@
-Return-Path: <devicetree+bounces-27157-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27162-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A807D819857
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 06:58:05 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BF2A819868
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 07:03:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 35AA8B230D7
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 05:58:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3801D28880D
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 06:03:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0807FC06;
-	Wed, 20 Dec 2023 05:57:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C41F16424;
+	Wed, 20 Dec 2023 06:03:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="bPdecnAx"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="JajfMDgm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9566EFBF9;
-	Wed, 20 Dec 2023 05:57:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 84096C433C7;
-	Wed, 20 Dec 2023 05:57:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1703051877;
-	bh=n0ckWVr2p5ZoAOLCgKU6Bdxii8DiBrVLcshx8Gs1Gv8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=bPdecnAxw7khdyUI/WPAvwDX+64JC81cBxPIJZKCTcx1rFPLt/MPfyi6gBs9UhpxT
-	 vuV6PuhPcLbQvgtBBSe3BMNSvM3/NvD5V86aQfgarfmfC7BuD8+eN4uxTzcsnYg92n
-	 f9hAvwW/2HahH0NUxgo5zde7eshHtu+qkEvKp8Xc=
-Date: Wed, 20 Dec 2023 06:57:54 +0100
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: Chunfeng Yun <chunfeng.yun@mediatek.com>
-Cc: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	Mathias Nyman <mathias.nyman@intel.com>, linux-usb@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Eddie Hung <eddie.hung@mediatek.com>,
-	Macpaul Lin <macpaul.lin@mediatek.com>, stable@vger.kernel.org
-Subject: Re: [PATCH v3 2/3] usb: xhci-mtk: fix a short packet issue of gen1
- isoc-in transfer
-Message-ID: <2023122033-footprint-impose-9989@gregkh>
-References: <20231220025842.7082-1-chunfeng.yun@mediatek.com>
- <20231220025842.7082-2-chunfeng.yun@mediatek.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8EE7113AF3;
+	Wed, 20 Dec 2023 06:03:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 3BK4oRei001889;
+	Wed, 20 Dec 2023 06:02:47 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	from:to:cc:subject:date:message-id:mime-version:content-type; s=
+	qcppdkim1; bh=OjjER9tIK+8NszfEYxyKNEhImaqZl0+oCS/0pEWKhuQ=; b=Ja
+	jfMDgm8Y0e4WTjx07lV9OrGvqvc/pS3loxZTynzAp3xS42ICPXqigOyJZ0/TgdZc
+	YH5VuJQwVITs5byMKffavDMKJ29GnfC9BWnHdyb/zR6wYYbSMkSpawg5uRgi8bRu
+	7WTZctAi8HOfVAaHnFfk3Y4Q4uzmZaHaqkcwgUPOXDCgHF1PsZ3JAV7XuaCz3dlP
+	MpUjVD1tbkT1h/GcxqWm3NrUeMEHNuFgs8/gp/9zm5zaS+eGz1I5/mFx7j2uRlVX
+	faL0d6duv2/z8hh6Pu8ai2mk+4i4xrWtWqODEZwKnVlSp+jZ6iCRyZVe2Fj+15mX
+	otLc6LJr1vMMpN4L+h/g==
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3v37vxtmqf-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 20 Dec 2023 06:02:46 +0000 (GMT)
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3BK62kIJ005126
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 20 Dec 2023 06:02:46 GMT
+Received: from hu-c-gdjako-lv.qualcomm.com (10.49.16.6) by
+ nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Tue, 19 Dec 2023 22:02:44 -0800
+From: Georgi Djakov <quic_c_gdjako@quicinc.com>
+To: <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <will@kernel.org>, <robin.murphy@arm.com>,
+        <joro@8bytes.org>
+CC: <devicetree@vger.kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <linux-arm-kernel@lists.infradead.org>,
+        <iommu@lists.linux.dev>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <quic_cgoldswo@quicinc.com>,
+        <quic_sukadev@quicinc.com>, <quic_pdaly@quicinc.com>,
+        <quic_sudaraja@quicinc.com>, <djakov@kernel.org>
+Subject: [PATCH v3 0/9] Add support for Translation Buffer Units
+Date: Tue, 19 Dec 2023 22:02:27 -0800
+Message-ID: <20231220060236.18600-1-quic_c_gdjako@quicinc.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231220025842.7082-2-chunfeng.yun@mediatek.com>
+Content-Type: text/plain
+X-ClientProxiedBy: nalasex01a.na.qualcomm.com (10.47.209.196) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: ckVum8-2-bd6I-fhiGrXHXgVXMk1-c1R
+X-Proofpoint-GUID: ckVum8-2-bd6I-fhiGrXHXgVXMk1-c1R
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-12-09_02,2023-12-07_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=717
+ suspectscore=0 impostorscore=0 lowpriorityscore=0 malwarescore=0
+ bulkscore=0 phishscore=0 spamscore=0 clxscore=1011 mlxscore=0 adultscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2311290000 definitions=main-2312200038
 
-On Wed, Dec 20, 2023 at 10:58:41AM +0800, Chunfeng Yun wrote:
-> For Gen1 isoc-in transfer, host still send out unexpected ACK after device
-> finish the burst with a short packet, this will cause an exception on the
-> connected device, such as, a usb 4k camera.
-> It can be fixed by setting rxfifo depth less than 4k bytes, prefer to use
-> 3k here, the side-effect is that may cause performance drop about 10%,
-> including bulk transfer.
-> 
-> Fixes: 926d60ae64a6 ("usb: xhci-mtk: modify the SOF/ITP interval for mt8195")
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
-> ---
-> v3:
-> add Cc stable
+The TCUs (Translation Control Units) and TBUs (Translation Buffer
+Units) are key components of the MMU-500. Multiple TBUs are connected
+to a single TCU over an interconnect. Each TBU contains a TLB that
+caches page tables. The MMU-500 implements a TBU for each connected
+master, and the TBU is designed, so that it is local to the master.
 
-Why is a patch that you are marking for stable inclusion (and I am
-guessing inclusion in 6.7-final) in the middle of other patches that are
-not marked as such?
+The Qualcomm SDM845 and SC7280 platforms have an implementation of the
+SMMU-500, that has multiple TBUs. A DT schema is added to describe the
+resources for each TBU (register space, power-domains, interconnects
+and clocks).
 
-Always split out bugfixes from other things so that they can go through
-the two different branches, one for this current release, and one for
-the next one.
+The TBU driver will manage the resources and allow the system to
+operate the TBUs during a context fault to obtain details by doing
+s1 inv, software + hardware page table walks etc. This is implemented
+with ATOS/eCATs as the ATS feature is not supported. Being able to
+query the TBUs is useful for debugging various hardware/software
+issues on these platforms.
 
-Otherwise you will have to wait until 6.8-rc1 for this bugfix to land,
-which I doubt you intend to have happen.
+v3:
+- Having a TBU is not Qualcomm specific, so allow having TBU child
+  nodes with no specific constraints on properties. For some of the
+  vendor compatibles however, add a schema to describe specific
+  properties and allow validation. (Rob)
+- Drop the useless reg-names DT property on TBUs. (Rob)
+- Make the stream-id-range DT property a common one. (Rob)
+- Fix the DT example. (Rob)
+- Minor fixes on the TBU driver.
+- Add support for SC7280 platforms.
 
-Please fix up and resend 2 different patch series.
+v2: https://lore.kernel.org/r/20231118042730.2799-1-quic_c_gdjako@quicinc.com
+- Improve DT binding description, add full example. (Konrad)
+- Drop Qcom specific stuff from the generic binding. (Rob)
+- Unconditionally try to populate subnodes. (Konrad)
+- Improve TBU driver commit text, remove memory barriers. (Bjorn)
+- Move TBU stuff into separate file. Make the driver builtin.
+- TODO: Evaluate whether to keep TBU support as a separate driver
+  or just instantiate things from qcom_smmu_impl_init()
 
-thanks,
+v1: https://lore.kernel.org/r/20231019021923.13939-1-quic_c_gdjako@quicinc.com
 
-greg k-h
+Georgi Djakov (9):
+  dt-bindings: iommu: Add Translation Buffer Unit bindings
+  iommu/arm-smmu-qcom: Add support for TBUs
+  iommu/arm-smmu-qcom-tbu: Add Qualcomm TBU driver
+  iommu/arm-smmu: Allow using a threaded handler for context interrupts
+  iommu/arm-smmu-qcom: Use a custom context fault handler for sdm845
+  arm64: dts: qcom: sdm845: Add DT nodes for the TBUs
+  dt-bindings: arm-smmu: Add TBU support for sc7280
+  iommu/arm-smmu-qcom: Use the custom fault handler on more platforms
+  arm64: dts: qcom: sc7280: Add DT nodes for the TBUs
+
+ .../devicetree/bindings/iommu/arm,smmu.yaml   |  33 ++
+ .../bindings/iommu/qcom,qsmmuv500-tbu.yaml    |  77 +++
+ arch/arm64/boot/dts/qcom/sc7280.dtsi          |  97 ++++
+ arch/arm64/boot/dts/qcom/sdm845.dtsi          |  74 +++
+ drivers/iommu/Kconfig                         |   8 +
+ drivers/iommu/arm/arm-smmu/Makefile           |   1 +
+ .../iommu/arm/arm-smmu/arm-smmu-qcom-tbu.c    | 504 ++++++++++++++++++
+ drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c    |  17 +
+ drivers/iommu/arm/arm-smmu/arm-smmu-qcom.h    |   6 +-
+ drivers/iommu/arm/arm-smmu/arm-smmu.c         |  12 +-
+ drivers/iommu/arm/arm-smmu/arm-smmu.h         |   3 +
+ 11 files changed, 829 insertions(+), 3 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/iommu/qcom,qsmmuv500-tbu.yaml
+ create mode 100644 drivers/iommu/arm/arm-smmu/arm-smmu-qcom-tbu.c
+
 
