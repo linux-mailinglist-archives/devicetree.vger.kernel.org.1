@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-27183-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27184-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF92481997D
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 08:29:14 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5EBAB819983
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 08:30:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F14F71C25873
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 07:29:13 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C9F71B24526
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 07:30:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0B53171D8;
-	Wed, 20 Dec 2023 07:28:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1151E15496;
+	Wed, 20 Dec 2023 07:30:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="NVgd7djn"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tIApo6Pd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A0161BDD5
-	for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 07:28:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67CC81BDD5
+	for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 07:30:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-40d2376db79so14181435e9.0
-        for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 23:28:21 -0800 (PST)
+Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-33674f60184so1335777f8f.1
+        for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 23:30:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1703057299; x=1703662099; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1703057433; x=1703662233; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=h9XMEB/2xv/BDVDA1sXxiUzVSkmuWNjw2GCamk97/Ng=;
-        b=NVgd7djnKoXxBqUnwqlaqcWORPBSl0+K2OHlY6dxrsfeuCEl5SM/F07CerVnf2NlKi
-         nasqfXw4TzmCyrKiQqcrJe0gwabAdI5eOMkPqc0lUmfSumTJ7QyTpkmzQlDHTF/ZHj7n
-         /m/VqbWsQ3R5Xhvg6krEBnkX6zbmtjpEXtcxUYMFFvwDsZ6sEL5JUwV2weHtnevZiHVo
-         nMByD1kbfj+GZR4O721fpUJCvrwYw0pHYneBh/TMxhVhls5arp90y+taUyBrlDSRudz/
-         yk9mLqh5ypZvL+UxGbNLhcob1QXMzzgbmQL3esevnTjNGuKbFcG8j54oveXOS1WFZOXh
-         tjbA==
+        bh=nvUYBcHgxMjW66OCVzficX6ZxWpOMwbRFAh2zbfijBQ=;
+        b=tIApo6PdUchfONZVkdPMtG6kENFYqk0Ep3mSSgeGGEiESkb9nw3UVEje1aYn89Qcuv
+         tc+MsTW8lKbXkeFAoVhBiUu36Xt4sUeb6zHmrJxmLYbeuEs1+RWiEPMXqjAyf+k4o2XJ
+         KTzkVy+rFQ3Pc49UavnowCq1PyryQ3/4oItaXTAFAXaj2IZT7YxAegBUVE7wD8un2j6z
+         JPFXD77ZW13enpvTAFlE/v6Ud7bKKqwK8Owk7O1b2NYlwwOKy7DbbnB2eAeywxvN7zsW
+         ILo4msmT5h7uKvfJQXW0f3hQVJiUxTmtVWmsX06FVkNkBoOcRWvCWlMFqfpo7YZcnHgG
+         d75A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703057299; x=1703662099;
+        d=1e100.net; s=20230601; t=1703057433; x=1703662233;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=h9XMEB/2xv/BDVDA1sXxiUzVSkmuWNjw2GCamk97/Ng=;
-        b=wA9ZPNgaLCTdD39z1frgcg1GA7DaykiRPjmpH2edfLfcLnGiuaHTLt+7EfhmvCisC4
-         Z4J6EkKVjaou5KRxcKEKBxaQLzV9jd2WvXwwIXfZqu+PluJaivDs7/J69zh3ThaulHYG
-         JiOoQOWabPW31m95TErOarcEcLZKlfzHBgs5F34doJa3XCF2YRb++HLBtYOxBDAl8Jhl
-         cU+fytLOmGcYeMU7XGQOM7kPXCrOfhXY93gKxbex1iMGbOi3sxqx/cwhwIJ31bTdYCoE
-         9LQGADpxjbu3xpNwyfitQPxpD9nT4+wPGrq3RiZdr3QGae4Gd5CsXzH78ou6P/ODyccN
-         V4gQ==
-X-Gm-Message-State: AOJu0Yy6iGJe7meumPibvVBi8mPlT0t4+2fN7SRc/rIdy70dQLY/vgB8
-	3H+a8gKjYxT8Zf3dx7lgaulAvVtm1AiZsPSNHE8=
-X-Google-Smtp-Source: AGHT+IERGtT6p69tpyh7rjkfM9UWcbqVcaYwyFjl+wfCPHl1MKBkBrfKxPG+2KYRIB+8/L9caHWcRQ==
-X-Received: by 2002:a7b:c40f:0:b0:40b:5e22:96a with SMTP id k15-20020a7bc40f000000b0040b5e22096amr11623894wmi.89.1703057299528;
-        Tue, 19 Dec 2023 23:28:19 -0800 (PST)
+        bh=nvUYBcHgxMjW66OCVzficX6ZxWpOMwbRFAh2zbfijBQ=;
+        b=FKrHr7+zc26R9kevQIa+JufkXd9BXI+D5m61mWwgz6BNp+OzdrawMnTdbr43CyTXyj
+         bH5XMGsWUuWkHnKE3x2Iw2CKKCgpw4xVfwD2p6O+MMBWUDdF9Fr8KoVWAXSorBqErn5a
+         nOJF8nmoUQvKq38iBEMh+gEAd/F3U3dze/Ma5z0HevE+o3gzsAaKU/3iLGQwv76NV74G
+         agCcWSFjXcIZ92rWQRuMqNjv6QUaw/wB3eluq5zBxZRlSfTFnsIUMU4AzXAsw6KZINBR
+         Qg1y5oNetYfuYWUsstqug8oln6tQmjYw51rfEyL8QbynEvpEQEXYVPekwzR+L4YCMX6f
+         nCOw==
+X-Gm-Message-State: AOJu0YzLHTrYQfmAQbnmXtG+51ZknJ9FGVeAqhhfnFbf3qulVrXNT3GN
+	W0VSzBKgRIWrgVmhfqosdsUk5Q==
+X-Google-Smtp-Source: AGHT+IEa47QtInL45aaYhKM8ixmrhWprbt+yoaXKthsqfg5Eti206DNJgr8CL4r1pFFSzHcu8/DESQ==
+X-Received: by 2002:a5d:4a0d:0:b0:336:6837:efd0 with SMTP id m13-20020a5d4a0d000000b003366837efd0mr2508521wrq.142.1703057433635;
+        Tue, 19 Dec 2023 23:30:33 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id p4-20020a5d4e04000000b0033671a467adsm3686447wrt.44.2023.12.19.23.28.17
+        by smtp.gmail.com with ESMTPSA id q18-20020adff952000000b0033609b71825sm30784819wrr.35.2023.12.19.23.30.30
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 19 Dec 2023 23:28:18 -0800 (PST)
-Message-ID: <4ad99501-01e2-47e7-b185-f7f96d872bf7@linaro.org>
-Date: Wed, 20 Dec 2023 08:28:15 +0100
+        Tue, 19 Dec 2023 23:30:32 -0800 (PST)
+Message-ID: <13753b13-9bb0-469b-8fff-38f42ce50d82@linaro.org>
+Date: Wed, 20 Dec 2023 08:30:30 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,30 +66,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 5/5] dt-bindings: net: ipq4019-mdio: Document ipq5332
- platform
+Subject: Re: [PATCH v2 4/5] dt-bindings/perf: Add Arm CoreSight PMU
 Content-Language: en-US
-To: Jie Luo <quic_luoj@quicinc.com>, Conor Dooley <conor@kernel.org>
-Cc: agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
- davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
- pabeni@redhat.com, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, andrew@lunn.ch, hkallweit1@gmail.com,
- linux@armlinux.org.uk, robert.marko@sartura.hr,
- linux-arm-msm@vger.kernel.org, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- quic_srichara@quicinc.com
-References: <26c8b0b1-5ea9-45cc-adf3-0d0b03a1284d@linaro.org>
- <4b9c56b8-3b29-4861-a3d5-2da26fbc14b4@quicinc.com>
- <2e77e3b1-00b6-46b9-bfed-7cae3ffa15e9@linaro.org>
- <7bae46fd-63fd-4b86-9a56-73052cf0ea95@quicinc.com>
- <5a8095e6-b6a6-4d11-b006-31519e8d8622@linaro.org>
- <7466b655-2b7e-44f2-a510-6e0cc1b95248@quicinc.com>
- <602759ce-c93d-4111-9272-1dce7e4a170a@linaro.org>
- <f656d1c7-ea86-405a-9165-9eb079ea6f2a@quicinc.com>
- <20231215-gauze-sprinkled-172729f22b6c@spud>
- <9eab958e-d91f-4f3c-aadd-6b34eaed2cef@quicinc.com>
- <20231216-unearned-lucid-4bd2ddcd4ac2@spud>
- <af1dff98-a63e-47b3-a709-6f4110a97529@quicinc.com>
+To: Robin Murphy <robin.murphy@arm.com>, will@kernel.org
+Cc: mark.rutland@arm.com, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, suzuki.poulose@arm.com,
+ ilkka@os.amperecomputing.com, bwicaksono@nvidia.com, YWan@nvidia.com,
+ rwiley@nvidia.com, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+References: <cover.1702571292.git.robin.murphy@arm.com>
+ <3c2dd41b585efe44d361f41fcea0181ff2a9c9c5.1702571292.git.robin.murphy@arm.com>
+ <8f583a00-8e9c-4875-936c-ed196d1dae56@linaro.org>
+ <2b8414e5-61d5-4c3e-9613-6d9487ae84a8@arm.com>
+ <4c78e6f2-d6fb-4da7-9c54-ca6a686f2b58@linaro.org>
+ <59dd1baa-ef5b-415a-a803-a2dbc3d405b2@arm.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -135,26 +126,61 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <af1dff98-a63e-47b3-a709-6f4110a97529@quicinc.com>
+In-Reply-To: <59dd1baa-ef5b-415a-a803-a2dbc3d405b2@arm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 16/12/2023 16:37, Jie Luo wrote:
+On 19/12/2023 15:24, Robin Murphy wrote:
+> On 2023-12-18 7:03 am, Krzysztof Kozlowski wrote:
+>> On 15/12/2023 19:39, Robin Murphy wrote:
+>>>>> +required:
+>>>>> +  - compatible
+>>>>> +  - reg
+>>>>> +
+>>>>> +additionalProperties: false
+>>>>
+>>>> Why no example to validate the binding?
+>>>
+>>> IMO for such a trivial binding built out of common properties, an
+>>> equally trivial example isn't going to add any value, since it won't do
+>>> anything more than re-state the individual property definitions above.
+>>> In bindings where we have conditional relationships between properties,
+>>> or complex encodings where a practical example can help explain a
+>>> definition (e.g. a map/mask pair for a set of input values), then
+>>> absolutely, an example can add something more to help the author and/or
+>>> users. But otherwise, the thing I've really grown to like about schema
+>>> is how thoroughly self-describing the definitions themselves can now be.
 >>
->> I'm surprised you didn't pick up on this, but there are actually _2_
->> internal references, which I have just noticed while double checking the
->> binding patch.
+>> The example is used to validate the schema.
 > 
-> i noticed this, the reference clock source can be supported by clocks as
-> you suggested here, it is really helpful.
->>
->> What is the impact of using the 48 MHz or 96 MHz internal reference?
-> They works on the different IPQ platform, 96MHZ internal reference is
-> used on IPQ5018, the internal 48MHZ is used on the IPQ5332, that is
+> Can you clarify what that *means*, though? As far as I can tell from a 
+> bit of experimentation, "make dt_bindings_check" picks up errors in the 
+> schema definition itself just the same whether an example is present or 
+> not. Thus I still fail to understand what else would be validated by me 
+> writing an example here, other than my personal ability to comprehend my 
+> own binding.
 
-So the binding is just incorrect. Why do you even consider configuring
-96 MHz internal reference on IPQ5332?
+You miss here the part that the actual binding is used to verify the
+example used. This is something entirely different than validating
+schema against meta-schema.
 
+> 
+> Yes, I'm well aware that back when we were bootstrapping dtschema it was 
+> useful to confirm that schemas were written to correctly describe 
+> *existing* known-good DT fragments. However with new bindings like this 
+> we've already reached the end goal, where we write an authoritative 
+> schema first, then the users follow from there. As I alluded to above, 
+> there are reasons why I would actually prefer *not* to provide a usage 
+> example here - frankly if a user doesn't understand which parts of the 
+> architecture their hardware implements, and/or can't figure out how to 
+> copy a single compatible string and write a standard reg property, I 
+> would much rather they come to me asking how to write a DT entry, than 
+> blindly copy-paste a verbatim example into their DTS, then come to me 
+> reporting a "bug" with the driver crashing or failing to probe. I'd love 
+> to say I have no experience to base that judgement on, but...
+
+Sure, considering the size of the binding the benefits of the example
+here are rather low.
 
 Best regards,
 Krzysztof
