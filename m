@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-27413-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27414-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DFB1081A30A
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 16:49:15 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5614181A30E
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 16:50:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 816AFB212CE
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 15:49:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D93621F24EDE
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 15:50:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 596F940BEC;
-	Wed, 20 Dec 2023 15:48:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15C523FB0C;
+	Wed, 20 Dec 2023 15:50:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ssUSOVn3"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DW8qqBvB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93CC446432
-	for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 15:48:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8053A40BE7
+	for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 15:50:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-50dfac6c0beso7363485e87.2
-        for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 07:48:38 -0800 (PST)
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-40c41b43e1eso73408565e9.1
+        for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 07:50:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1703087316; x=1703692116; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1703087407; x=1703692207; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=HrDN4knSY5/pNNlBl1UNEUTunvMaLDqI5I7tmtvHJhk=;
-        b=ssUSOVn3r3r7TZENUKnrTdZCWYnjrhpfdmDHo78u5FENnxkDeRQA9XJ8ptCLwc6bPh
-         rtDussvOpsFzUa2wfKOFEwPWMDhDIm21WHgqoROSGTeTevVvzqb9+c2fbRbB3L1fT0M7
-         jY1skQwnahshTAcMvTCzVExiSZxOoXnTNlNM+J24LWalH3lkr6nhVrJAzKQgY3v7qVWP
-         O2R5O1O0UBBHY5gILT6d6qNc9QddoI3RW7xYbi/drMRYuBMoPlXMANil7//U2E68FaCi
-         qYp+PKszlBRrcvG+a2C6hUEv2gmj4jUiVBVMcbsCu6J3y7pyzKxltb5of7LkFS7QZwsY
-         F6zA==
+        bh=WW1JG7tjDbMcqaXkDUX/m7k0skMs0TrgqA4/j39oQXs=;
+        b=DW8qqBvBXfkFgOZbQZ+Uk+hMewbgSEJyVC9xKrU3oEpt5sbQLJezDfrj1lWZQDW/nD
+         JZxjRro/N0jLeqTrJXRBaF5Sx5AIA0MSglHCmvyT2LXDXXf1WVOjfS9kd28xPWzPujuG
+         1rh7rifEp+p1xCltPRVd2gncxv7cNI2WVHbSp3aeFoYVNqmaLqX/Hy5By3B4g01f7L/N
+         M5eRhj7Nyied7aXAVQUR3DkGBXELX5VwZVUbpvkMGXxK9vkpdcIOKo8M7AbQVN+vqMUV
+         Sne84uxKKX4LbJUr/5f7AZlCNSr67uNP1NVi0PGHa35gmm9IOXB0L77Zh/jyYi6g5Mhz
+         mMjA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703087316; x=1703692116;
+        d=1e100.net; s=20230601; t=1703087407; x=1703692207;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=HrDN4knSY5/pNNlBl1UNEUTunvMaLDqI5I7tmtvHJhk=;
-        b=nnRDLniJ81wS+8EN7lsOF7ouJyJXjEruzs+UN8IYa2rd4t1Ayueio1GluH5WlLYPir
-         xUuDy3k5djYifHEkhNa0NjFPir74Xq/07F3AO7ag5k7knAC4lI9P6V2bZ4nrPW6YHgkU
-         SWCtrB0ie1pdOWHXeUNRbuXYYSvaQJ5vBcW43+P9/T7A+9UWgg+/Qn7tUxe0cEYesD2r
-         dVyB0gBkU7u9G3TZ/9CRDjyGziUGCmuGQrXK9T5gU+X7eYWvzFuNtRumn19x0toqT/lm
-         QfZJFAmwlfTRaWhx6sJcKASNFWp7VmLm/T8ARkvF+uIMOXoCAhz2coGKfETXTKhLCbqX
-         ihbw==
-X-Gm-Message-State: AOJu0Yx54o65lyhRT9E4O5koFayikjtK29rU8t7Y7GV463gVaDOnhPlT
-	F+0xr2U+qrYs56VoVqpIODDy6A==
-X-Google-Smtp-Source: AGHT+IG0ZmZLOzdQjjsqYmo1GcnT1cDyKxyGO9CoOvWTBmoB3iAsCk0mCdFnPCPdOhiZ1Xc3mVrPcA==
-X-Received: by 2002:a05:6512:a8b:b0:50b:fc44:3155 with SMTP id m11-20020a0565120a8b00b0050bfc443155mr13103540lfu.5.1703087316579;
-        Wed, 20 Dec 2023 07:48:36 -0800 (PST)
+        bh=WW1JG7tjDbMcqaXkDUX/m7k0skMs0TrgqA4/j39oQXs=;
+        b=nvh5gnAqr8S5UagsdmRatIF3hyIeuYwtuXJi4Fro9m7BnV0hMKYItpUlqycKC5ufIo
+         0cZF3pXLmp8fAc/D2alIDcBiymQQBPwX8TUgrv+mkSALNy5ZIqhRjadghjE9Q70OuYaa
+         rcX71x5/IksD5npVy+VRVKKfwN6n57xtRSaTzFIiArh7wOeV2rlGRVMpMI3ffnqbU/93
+         oK1cV3aPG5CfJrKMOn3i57a73K/6t4VSzOVKyayRFw6pB6oOo27CD2v916TRu/JRfNaJ
+         fKlUAF7XNW7HBMcbFx+vvoBPKPJjiWe4NqDXPBVompF8YqT3KZx/+fwdI7v5cgYRK8up
+         V3NQ==
+X-Gm-Message-State: AOJu0YylHEU3eHNXZ/5o4d+m1mu/84YlwA1jKuCp/PkwhEM2u1B8bqzU
+	K12dliHqzmwKs6AZ0PzJBBhfGA==
+X-Google-Smtp-Source: AGHT+IEcemHJ908fymklvuplr7/Vv8UOwfZFA/FigLaHFQnCHK9OcguzDYqHu/WP7NsJV52r3/xiSA==
+X-Received: by 2002:a05:600c:5493:b0:40c:7124:962b with SMTP id iv19-20020a05600c549300b0040c7124962bmr3571421wmb.124.1703087406742;
+        Wed, 20 Dec 2023 07:50:06 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id bi18-20020a05600c3d9200b0040d378623b1sm40439wmb.22.2023.12.20.07.48.35
+        by smtp.gmail.com with ESMTPSA id bi18-20020a05600c3d9200b0040d378623b1sm40439wmb.22.2023.12.20.07.50.05
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 20 Dec 2023 07:48:35 -0800 (PST)
-Message-ID: <e97d0273-0827-4510-ba23-3d09642a234f@linaro.org>
-Date: Wed, 20 Dec 2023 16:48:34 +0100
+        Wed, 20 Dec 2023 07:50:06 -0800 (PST)
+Message-ID: <440e2ad2-ecc5-4888-9923-a172d94c710d@linaro.org>
+Date: Wed, 20 Dec 2023 16:50:05 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,16 +66,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] ASoC: dt-bindings: fsl-sai: Support Rx-only SAI
+Subject: Re: [PATCH] arm64: dts: qcom: Add coresight nodes for sm8450
 Content-Language: en-US
-To: Alexander Stein <alexander.stein@ew.tq-group.com>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
+To: Jinlong Mao <quic_jinlmao@quicinc.com>, Andy Gross <agross@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Shengjiu Wang <shengjiu.wang@nxp.com>
-Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org
-References: <20231219122957.3358149-1-alexander.stein@ew.tq-group.com>
- <20231219122957.3358149-2-alexander.stein@ew.tq-group.com>
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Tingwei Zhang <quic_tingweiz@quicinc.com>,
+ Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+ Tao Zhang <quic_taozha@quicinc.com>, coresight@lists.linaro.org
+References: <20231220124009.16816-1-quic_jinlmao@quicinc.com>
+ <dfc7fe85-7418-410c-bd82-6e08799e6417@linaro.org>
+ <439916dc-8f71-4998-b145-1d183d9e68f5@quicinc.com>
+ <77ba0140-5b74-40d7-a923-4b270d661d3a@linaro.org>
+ <98407ed5-5e0c-4bee-be4c-70b3d8972823@quicinc.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -121,24 +127,60 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231219122957.3358149-2-alexander.stein@ew.tq-group.com>
+In-Reply-To: <98407ed5-5e0c-4bee-be4c-70b3d8972823@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 19/12/2023 13:29, Alexander Stein wrote:
-> On SoC like i.MX8QXP some SAI IP cores support only Rx path. Allow
-> specifying only an Rx DMA channel, while omitting the Tx one.
+On 20/12/2023 14:40, Jinlong Mao wrote:
 > 
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> ---
-> The feature list in reference manual IMX8DQXPRM Rev. 0 05/2020
-> section 1.1.2 "Features" explicitly state that SAI2 and SAI3 is
-> receive only.
 > 
+> On 12/20/2023 9:21 PM, Krzysztof Kozlowski wrote:
+>> On 20/12/2023 14:07, Jinlong Mao wrote:
+>>>
+>>>
+>>> On 12/20/2023 8:46 PM, Krzysztof Kozlowski wrote:
+>>>> On 20/12/2023 13:40, Mao Jinlong wrote:
+>>>>> Add coresight components on Qualcomm SM8450 Soc. The components include
+>>>>> TMC ETF/ETR, ETE, STM, TPDM, CTI.
+>>>>>
+>>>>> Signed-off-by: Mao Jinlong <quic_jinlmao@quicinc.com>
+>>>>> ---
+>>>>>    arch/arm64/boot/dts/qcom/sm8450.dtsi | 742 +++++++++++++++++++++++++++
+>>>>>    1 file changed, 742 insertions(+)
+>>>>>
+>>>>> diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+>>>>> index 1783fa78bdbc..112b5a069c94 100644
+>>>>> --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
+>>>>> +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+>>>>> @@ -285,6 +285,192 @@ CLUSTER_SLEEP_1: cluster-sleep-1 {
+>>>>>    		};
+>>>>>    	};
+>>>>>    
+>>>>> +	ete0 {
+>>>>
+>>>> ete-0
+>>> Thanks for the review.
+>>>
+>>> In arm,embedded-trace-extension.yaml, the node name pattern is
+>>> "^ete([0-9a-f]+)$".
+>>
+>> I don't understand why this binding requires ete name. It's not like it
+>> is a generic name worth preserving. Also, the recommended suffix for
+>> names is with '-'.
+>>
+> The number in the ete name should be the same as the number of the CPU.
 
-Why aren't you constraining it per variant/device? If only some have one
-DMA channel, then I would normally expect allOf:if:then narrowing it for
-each device.
+My question was why "ete" is needed.
+
+> So we can know which CPU this ete belongs to from the name.
+
+Wait, what? Why? Node names should not be for that.
+
+> 
+> I will update the binding in arm,embedded-trace-extension.yaml.
+
+No, wait, please finish this discussion first. You need to give people
+chance to respond...
 
 Best regards,
 Krzysztof
