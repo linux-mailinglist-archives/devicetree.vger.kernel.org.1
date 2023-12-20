@@ -1,142 +1,111 @@
-Return-Path: <devicetree+bounces-27376-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27377-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 190F481A15C
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 15:46:44 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2FB4481A16B
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 15:49:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CA956285732
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 14:46:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 613841C22603
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 14:49:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99B2E3D965;
-	Wed, 20 Dec 2023 14:46:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6AB333D3BF;
+	Wed, 20 Dec 2023 14:49:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="dYHIEosQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cxWsQQdj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1089238DF5;
-	Wed, 20 Dec 2023 14:46:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1703083590;
-	bh=/9ZkXTPBAbpS5HHi1uX2hV2E8187O/n+9qHuDOsquXs=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=dYHIEosQMzFCxEwKxk9ybMdZvjawnoTjbsUieYfYSEuoY+2U7pumu+hDFpU4bHWQM
-	 imn5P9bVsOmFMSu+kgW300Lz+++WwaqRQhapkgU1K8bojQcIOvAkUt9emxa7z1V/JB
-	 j63+cl1q3k42I9b3E/lVGF+fsrEkcmxCxVloKv6AfQAVuIHEXvHFULcHL6XUPQZsrc
-	 zBxJAQF1X0l/AWo93E50i9+WAsR5vjpm8+1jI5SaaOKbEMVkXDZm/+bV06yZnY2mvD
-	 /iZIeqb5IYnrEQaSRWS2pyV7UULp1YVXL4gzZgylTpcOUnoHL0gohPqG7unjADNSFc
-	 MgodlqrdUfaEg==
-Received: from [100.115.223.179] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: cristicc)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 2D9C93781478;
-	Wed, 20 Dec 2023 14:46:29 +0000 (UTC)
-Message-ID: <73dc7954-f005-4806-b7c0-a4d8a267de7b@collabora.com>
-Date: Wed, 20 Dec 2023 16:46:28 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4517B3D966;
+	Wed, 20 Dec 2023 14:49:04 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A7F5FC433C8;
+	Wed, 20 Dec 2023 14:49:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1703083744;
+	bh=Zpqr2IduaIi/eJ/LAgUU9AcGnT1pYkcj9gSp3Y9liBQ=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=cxWsQQdjxVAgGtLFajkjfRxEgGKU0IxwFKluuoVH+lIwLTGobBcQSdLuaxKRJQJYr
+	 tPXBZMkWos12ATD7kurnjiawElKvVNjngtlOkI9qF68mVExoym4AKyDstMSbaEJq9A
+	 sSQ1mcLeiaqJgJg801kSvb5adToVQtt9sAJMssLXzR+mYZ4aFXe5WQnSZt/vF6Y6/r
+	 PN0TI3kEZmmbJAk+L+K0sb8W6xvMV/9gPME+/YFkWLf3LzQZMxqTm4vnzPvEH2ZwwZ
+	 S/ASyHQS0LPmKoWE2K7jujnSJzEhsOYJIHmRqt9IGUMfFMDPPXRyiLZIYBlLMkhpwd
+	 VULPoB4hOcvlw==
+Date: Wed, 20 Dec 2023 14:48:49 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Anshul Dalal <anshulusr@gmail.com>
+Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, Lars-Peter
+ Clausen <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ linux-kernel-mentees@lists.linuxfoundation.org, Shuah Khan
+ <skhan@linuxfoundation.org>
+Subject: Re: [PATCH v4 2/2] iio: dac: driver for MCP4821
+Message-ID: <20231220144849.0189a16a@jic23-huawei>
+In-Reply-To: <20231219090252.818754-2-anshulusr@gmail.com>
+References: <20231219090252.818754-1-anshulusr@gmail.com>
+	<20231219090252.818754-2-anshulusr@gmail.com>
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 3/4] riscv: dts: starfive: visionfive-v1: Setup
- ethernet phy
-Content-Language: en-US
-To: Emil Renner Berthing <emil.renner.berthing@canonical.com>,
- Emil Renner Berthing <kernel@esmil.dk>, Conor Dooley <conor@kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Richard Cochran <richardcochran@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
- Jacob Keller <jacob.e.keller@intel.com>
-Cc: linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, netdev@vger.kernel.org, kernel@collabora.com
-References: <20231220004638.2463643-1-cristian.ciocaltea@collabora.com>
- <20231220004638.2463643-4-cristian.ciocaltea@collabora.com>
- <CAJM55Z-CWHs1XMOYLOYQmB8qjZ=a3fhyGv3hJAN7bbbDQdEy0g@mail.gmail.com>
-From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-In-Reply-To: <CAJM55Z-CWHs1XMOYLOYQmB8qjZ=a3fhyGv3hJAN7bbbDQdEy0g@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On 12/20/23 15:48, Emil Renner Berthing wrote:
-> Cristian Ciocaltea wrote:
->> The StarFive VisionFive V1 SBC uses a Motorcomm YT8521 PHY supporting
->> RGMII-ID, but requires manual adjustment of the RX internal delay to
->> work properly.
->>
->> The default RX delay provided by the driver is 1.95 ns, which proves to
->> be too high. Applying a 50% reduction seems to mitigate the issue.
->>
->> Also note this adjustment is not necessary on BeagleV Starlight SBC,
->> which uses a Microchip PHY.  Hence, there is no indication of a
->> misbehaviour on the GMAC side, but most likely the issue stems from
->> the Motorcomm PHY.
->>
->> While at it, drop the redundant gpio include, which is already provided
->> by jh7100-common.dtsi.
->>
->> Co-developed-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
->> Signed-off-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
->> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
->> Reviewed-by: Jacob Keller <jacob.e.keller@intel.com>
->> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
->> ---
->>  .../jh7100-starfive-visionfive-v1.dts         | 22 ++++++++++++++++++-
->>  1 file changed, 21 insertions(+), 1 deletion(-)
->>
->> diff --git a/arch/riscv/boot/dts/starfive/jh7100-starfive-visionfive-v1.dts b/arch/riscv/boot/dts/starfive/jh7100-starfive-visionfive-v1.dts
->> index e82af72f1aaf..4e396f820660 100644
->> --- a/arch/riscv/boot/dts/starfive/jh7100-starfive-visionfive-v1.dts
->> +++ b/arch/riscv/boot/dts/starfive/jh7100-starfive-visionfive-v1.dts
->> @@ -6,7 +6,6 @@
->>
->>  /dts-v1/;
->>  #include "jh7100-common.dtsi"
->> -#include <dt-bindings/gpio/gpio.h>
->>
->>  / {
->>  	model = "StarFive VisionFive V1";
->> @@ -18,3 +17,24 @@ gpio-restart {
->>  		priority = <224>;
->>  	};
->>  };
->> +
->> +/*
->> + * The board uses a Motorcomm YT8521 PHY supporting RGMII-ID, but requires
->> + * manual adjustment of the RX internal delay to work properly.  The default
->> + * RX delay provided by the driver (1.95ns) is too high, but applying a 50%
->> + * reduction seems to mitigate the issue.
->> + *
->> + * It is worth noting the adjustment is not necessary on BeagleV Starlight SBC,
->> + * which uses a Microchip PHY.  Hence, most likely the Motorcomm PHY is the one
->> + * responsible for the misbehaviour, not the GMAC.
->> + */
->> +&mdio {
->> +	phy: ethernet-phy@0 {
->> +		reg = <0>;
->> +		rx-internal-delay-ps = <900>;
->> +	};
->> +};
->> +
->> +&gmac {
->> +	phy-handle = <&phy>;
->> +};
+On Tue, 19 Dec 2023 14:32:51 +0530
+Anshul Dalal <anshulusr@gmail.com> wrote:
+
+> Adds driver for the MCP48xx series of DACs.
 > 
-> Alphabetical ordering here, please.
-
-Yeah, I wasn't sure if the ordering is more important than having the
-referenced nodes added before.  I suppose there's a need for v6. :-)
-
-> /Emil
+> Device uses a simplex SPI channel. To set the value of an output channel,
+> a 16-bit data of following format must be written:
+> 
+> Bit field | Description
+> 15 [MSB]  | Channel selection bit
+>             0 -> Channel A
+>             1 -> Channel B
+> 13        | Output Gain Selection bit
+>             0 -> 2x Gain (Vref = 4.096V)
+>             1 -> 1x Gain (Vref = 2.048V)
+> 12        | Output Shutdown Control bit
+>             0 -> Shutdown the selected channel
+>             1 -> Active mode operation
+> 11-0 [LSB]| DAC Input Data bits
+>             Value's big endian representation is taken as input for the
+>             selected DAC channel. For devices with a resolution of less
+>             than 12-bits, only the x most significant bits are considered
+>             where x is the resolution of the device.
+> Reference: Page#22 [MCP48x2 Datasheet]
+> 
+> Supported devices:
+>   +---------+--------------+-------------+
+>   | Device  |  Resolution  |   Channels  |
+>   |---------|--------------|-------------|
+>   | MCP4801 |     8-bit    |      1      |
+>   | MCP4802 |     8-bit    |      2      |
+>   | MCP4811 |    10-bit    |      1      |
+>   | MCP4812 |    10-bit    |      2      |
+>   | MCP4821 |    12-bit    |      1      |
+>   | MCP4822 |    12-bit    |      2      |
+>   +---------+--------------+-------------+
+> 
+> Devices tested:
+>   MCP4821 [12-bit single channel]
+>   MCP4802 [8-bit dual channel]
+> 
+> Tested on Raspberry Pi Zero 2W
+> 
+> Datasheet: https://ww1.microchip.com/downloads/en/DeviceDoc/22244B.pdf #MCP48x1
+> Datasheet: https://ww1.microchip.com/downloads/en/DeviceDoc/20002249B.pdf #MCP48x2
+> Signed-off-by: Anshul Dalal <anshulusr@gmail.com>
+> 
+> ---
+> 
+> Changes for v3,4:
+> - no updates
+Comments were on v2 from me.  
 
