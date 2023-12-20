@@ -1,48 +1,44 @@
-Return-Path: <devicetree+bounces-27455-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27473-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 895BA81A81B
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 22:36:38 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8BEAB81A8B4
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 23:05:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 25B1B1F22A1F
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 21:36:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BF1041C21FE0
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 22:05:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2302487AF;
-	Wed, 20 Dec 2023 21:36:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FPnDMo7p"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1870F495FF;
+	Wed, 20 Dec 2023 22:05:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCDC6495C1;
-	Wed, 20 Dec 2023 21:36:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D32AAC433C8;
-	Wed, 20 Dec 2023 21:36:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1703108192;
-	bh=8fD+g/UALuuFVC/2IctyRtQM4JlqRN9pptw2dt8R384=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=FPnDMo7pNAr/kSeAnISx6iuXuIfsSnkY1fKBKFrT3QgIbqPjQugd/OPucZIcKIpkR
-	 VgyhBRqne7a7T2qdpp79bzBdY7TdF+ZnOXIILHpvaHQEqwWRRamFOKNEc9GqZ2GM0G
-	 6k9rmb+DazFqGagtmG/7WXvigSPZfmi46GjfgghdlY3TMHQ+F1VqfMyDXTkSSs3WWY
-	 r4eLEgwSuVmi0g9kr0MEkRv3hSPPkqnxB7FaqDQ/BSoxSUJUoyZHwqYE9jlHRMZopE
-	 7NPikncxVjQCVqnkhU/wRWfnHZPYRcKSusq37pLNTsJK5Yk1JkYGa460DVfaGpDxxd
-	 UxyFN4JL30JQw==
-Received: (nullmailer pid 1179044 invoked by uid 1000);
-	Wed, 20 Dec 2023 21:36:29 -0000
-Date: Wed, 20 Dec 2023 15:36:29 -0600
-From: Rob Herring <robh@kernel.org>
-To: Inochi Amaoto <inochiama@outlook.com>
-Cc: Conor Dooley <conor@kernel.org>, jingbao qiu <qiujingbao.dlmu@gmail.com>, a.zummo@towertech.it, alexandre.belloni@bootlin.com, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, chao.wei@sophgo.com, unicorn_wang@outlook.com, paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu, linux-rtc@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, dlan@gentoo.org
-Subject: Re: [PATCH v2 1/3] dt-bindings: rtc: sophgo: add RTC support for
- Sophgo CV1800 series SoC
-Message-ID: <20231220213629.GA1177070-robh@kernel.org>
-References: <20231217-swept-uncorrupt-92ac058dba4b@spud>
- <IA1PR20MB4953BE30DC29820912321C07BB90A@IA1PR20MB4953.namprd20.prod.outlook.com>
+Received: from elvis.franken.de (elvis.franken.de [193.175.24.41])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E47B2495EA;
+	Wed, 20 Dec 2023 22:05:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=alpha.franken.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alpha.franken.de
+Received: from uucp by elvis.franken.de with local-rmail (Exim 3.36 #1)
+	id 1rG4Ro-0001hx-00; Wed, 20 Dec 2023 22:49:48 +0100
+Received: by alpha.franken.de (Postfix, from userid 1000)
+	id 0075DC028A; Wed, 20 Dec 2023 22:49:33 +0100 (CET)
+Date: Wed, 20 Dec 2023 22:49:33 +0100
+From: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+To: Gregory CLEMENT <gregory.clement@bootlin.com>
+Cc: Paul Burton <paulburton@kernel.org>, linux-mips@vger.kernel.org,
+	Jiaxun Yang <jiaxun.yang@flygoat.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
+	Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	=?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v5 00/22] Add support for the Mobileye EyeQ5 SoC
+Message-ID: <ZYNhbQjMbAH6I0kI@alpha.franken.de>
+References: <20231212163459.1923041-1-gregory.clement@bootlin.com>
+ <878r5vctdg.fsf@BL-laptop>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -51,56 +47,57 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <IA1PR20MB4953BE30DC29820912321C07BB90A@IA1PR20MB4953.namprd20.prod.outlook.com>
+In-Reply-To: <878r5vctdg.fsf@BL-laptop>
 
-On Mon, Dec 18, 2023 at 11:41:52AM +0800, Inochi Amaoto wrote:
-> >On Sun, Dec 17, 2023 at 09:16:39PM +0800, jingbao qiu wrote:
-> >> On Sun, Dec 17, 2023 at 8:26=E2=80=AFPM Conor Dooley <conor@kernel.org> w=
-> >rote:
-> >> >
-> >> > On Sun, Dec 17, 2023 at 07:09:50PM +0800, Jingbao Qiu wrote:
-> >> >
-> >> > > +  reg:
-> >> > > +    items:
-> >> > > +      - description: data register
-> >> > > +      - description: control register
-> >> >
-> >> > > +    rtc@5025000{
-> >> > > +      compatible =3D "sophgo,cv1800-rtc";
-> >> > > +      reg =3D <0x5025000 0x1000>, <0x5026000 0x1000>;
-> >> >
-> >> > Why are these two regions rather than just one, given they are located
-> >> > next to one another?
-> >> > Are they separate on one of the other devices in this family?
-> >> >
-> >> > Thanks,
-> >> > Conor.
-> >> >
-> >>=20
-> >> I think there are two reasons, the first one is to distinguish
-> >> different logical ,
-> >> REG_ CTRL (base on 0x5025000) controls clock calibration, sleep,and other
-> >> functions, RTC_ CORE (base on 0x5026000) has basic RTC functionality,
-> >> The second is the maximum address used by RTC_CTRL (base on 0x5025000)
-> >> is 0x0ac,which is much smaller than 0x1000. Therefore, the datasheet divi=
-> >des
-> >> it into two parts for introduction, and I also divide it into two
-> >> parts based on this
-> >> introduction.So do you suggest that I merge them together=EF=BC=9F
+On Fri, Dec 15, 2023 at 05:39:39PM +0100, Gregory CLEMENT wrote:
+> Hello Thomas,
+> 
+> > Hello,
 > >
-> >If all of the cv1800 series devices have them sequentially, I would just
-> >make them one region.
+> > The EyeQ5 SoC from Mobileye is based on the MIPS I6500 architecture
+> > and features multiple controllers such as the classic UART, I2C, SPI,
+> > as well as CAN-FD, PCIe, Octal/Quad SPI Flash interface, Gigabit
+> > Ethernet, MIPI CSI-2, and eMMC 5.1. It also includes a Hardware
+> > Security Module, Functional Safety Hardware, and MJPEG encoder.
+> >
+> > One peculiarity of this SoC is that the physical address of the DDDR
+> > exceeds 32 bits. Given that the architecture is 64 bits, this is not
+> > an issue, but it requires some changes in how the mips64 is currently
+> > managed during boot.
+> >
+> > In this fifth version, there aren't many changes, mostly just tweaking
+> > commit messages based on Sergey's feedback and fixing up the code
+> > style. But, the real reason for this series is a bit of a whoopsie on
+> > my end. It turns out, despite what I confidently claimed in the last
+> > round, some configuration tweaks were missing. All sorted now, though!
 > >
 > 
-> I agree with using one region. The ctrl and core region are highly
-> releated.
+> A few weeks ago, you were concerned about the introduction of the
+> specific kconfig CONFIG_USE_XKPHYS to support EyeQ5, and you wanted us
+> to set up a new platform instead. Since then, Jiaxun proposed a series
+> that was merged here to provide more generic support.
+
+well, there is more to improve and stuff I don't like in Jaixun series.
+For example misusing CONFIG_PHYSICAL_START to force a load address via config
+(IMHO it's already a hack for CRASH_DUMP).
+
+As there is your series and Jiaxun series, where should I comment more
+detailed ?
+
+> I had other issues in the initial series, and I think that now I've
+> fixed all of them. So, I would like to know what your opinion is now
+> about this series.
 > 
-> Moreover, I suggest using syscon to describe this region, the reboot
-> device is also in this region.
+> Will you accept it, or do you still think that a new platform has to be
+> set up?
 
-Then the description of the device is incomplete. Please describe the 
-whole block/device.
+things have improved, but I'm still in favor to use a new platform.
+And my main point stays. A "generic" kernel compiled for EyeQ5 will
+just run on that platform, which doesn't sound generic to me.
 
-Rob
+Thomas.
 
+-- 
+Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
+good idea.                                                [ RFC1925, 2.3 ]
 
