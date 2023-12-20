@@ -1,45 +1,64 @@
-Return-Path: <devicetree+bounces-27199-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27200-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4AC1D819A15
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 09:07:49 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C3B2819A1D
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 09:09:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 061B6285E7F
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 08:07:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D5A722886A4
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 08:09:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C973179B5;
-	Wed, 20 Dec 2023 08:07:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E0B417988;
+	Wed, 20 Dec 2023 08:09:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from bmailout3.hostsharing.net (bmailout3.hostsharing.net [176.9.242.62])
+Received: from out28-79.mail.aliyun.com (out28-79.mail.aliyun.com [115.124.28.79])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 847F81775F;
-	Wed, 20 Dec 2023 08:07:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=wunner.de
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=h08.hostsharing.net
-Received: from h08.hostsharing.net (h08.hostsharing.net [IPv6:2a01:37:1000::53df:5f1c:0])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256
-	 client-signature RSA-PSS (4096 bits) client-digest SHA256)
-	(Client CN "*.hostsharing.net", Issuer "RapidSSL TLS RSA CA G1" (verified OK))
-	by bmailout3.hostsharing.net (Postfix) with ESMTPS id D4F7B10096644;
-	Wed, 20 Dec 2023 09:07:33 +0100 (CET)
-Received: by h08.hostsharing.net (Postfix, from userid 100393)
-	id 81B894F3E; Wed, 20 Dec 2023 09:07:33 +0100 (CET)
-Date: Wed, 20 Dec 2023 09:07:33 +0100
-From: Lukas Wunner <lukas@wunner.de>
-To: Howard Chiu <howard10703049@gmail.com>
-Cc: robh+dt@kernel.org, joel@jms.id.au, andrew@aj.id.au,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68D561BDD5;
+	Wed, 20 Dec 2023 08:09:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=cyg.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sjterm.com
+X-Alimail-AntiSpam:AC=CONTINUE;BC=0.2314591|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_system_inform|0.458863-0.00232898-0.538808;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047205;MF=fuyao@sjterm.com;NM=1;PH=DS;RN=40;RT=40;SR=0;TI=SMTPD_---.Vol0DEB_1703059736;
+Received: from localhost(mailfrom:fuyao@sjterm.com fp:SMTPD_---.Vol0DEB_1703059736)
+          by smtp.aliyun-inc.com;
+          Wed, 20 Dec 2023 16:08:57 +0800
+Date: Wed, 20 Dec 2023 16:08:56 +0800
+From: fuyao <fuyao1697@cyg.com>
+To: Rob@debian.cyg, Herring@debian.cyg, robh+dt@kernel.org,
+	Krzysztof@debian.cyg, Kozlowski@debian.cyg,
+	krzysztof.kozlowski+dt@linaro.org, Conor@debian.cyg,
+	Dooley@debian.cyg, conor+dt@kernel.org, Chen-Yu@debian.cyg,
+	Tsai@debian.cyg, wens@csie.org, Jernej@debian.cyg,
+	Skrabec@debian.cyg, jernej.skrabec@gmail.com, Samuel@debian.cyg,
+	Holland@debian.cyg, samuel@sholland.org, Andre@debian.cyg,
+	Przywara@debian.cyg, andre.przywara@arm.com, Tony@debian.cyg,
+	Lindgren@debian.cyg, tony@atomide.com, Jisheng@debian.cyg,
+	Zhang@debian.cyg, jszhang@kernel.org, Neil@debian.cyg,
+	Armstrong@debian.cyg, neil.armstrong@linaro.org, Linus@debian.cyg,
+	Walleij@debian.cyg, linus.walleij@linaro.org,
+	fuyao <fuyao@debian.cyg>, fuyao1697@cyg.com,
 	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-	patrick@stwcx.xyz, Potin.Lai@quantatw.com,
-	Howard Chiu <howard.chiu@quantatw.com>
-Subject: Re: [PATCH v8] ARM: dts: aspeed: Adding Facebook Bletchley BMC
-Message-ID: <20231220080733.GA30641@wunner.de>
-References: <20211207094923.422422-1-howard.chiu@quantatw.com>
+	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+Cc: =?utf-8?B?6bqm5qif5qif?= <maijianzhang@allwinnertech.com>
+Subject: [PATCH] ARM: dts: sun8i: r40: open the regulator aldo1
+Message-ID: <ZYKhGL0gH6MvUK_H@debian.cyg>
+Mail-Followup-To: Rob@debian.cyg, Herring@debian.cyg, robh+dt@kernel.org,
+	Krzysztof@debian.cyg, Kozlowski@debian.cyg,
+	krzysztof.kozlowski+dt@linaro.org, Conor@debian.cyg,
+	Dooley@debian.cyg, conor+dt@kernel.org, Chen-Yu@debian.cyg,
+	Tsai@debian.cyg, wens@csie.org, Jernej@debian.cyg,
+	Skrabec@debian.cyg, jernej.skrabec@gmail.com, Samuel@debian.cyg,
+	Holland@debian.cyg, samuel@sholland.org, Andre@debian.cyg,
+	Przywara@debian.cyg, andre.przywara@arm.com, Tony@debian.cyg,
+	Lindgren@debian.cyg, tony@atomide.com, Jisheng@debian.cyg,
+	Zhang@debian.cyg, jszhang@kernel.org, Neil@debian.cyg,
+	Armstrong@debian.cyg, neil.armstrong@linaro.org, Linus@debian.cyg,
+	Walleij@debian.cyg, linus.walleij@linaro.org, fuyao1697@cyg.com,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+	=?utf-8?B?6bqm5qif5qif?= <maijianzhang@allwinnertech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,22 +67,38 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211207094923.422422-1-howard.chiu@quantatw.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Organization: work_work_work
 
-On Tue, Dec 07, 2021 at 05:49:24PM +0800, Howard Chiu wrote:
-> Initial introduction of Facebook Bletchley equipped with
-> Aspeed 2600 BMC SoC.
-[...]
-> +		tpmdev@0 {
-> +			compatible = "tcg,tpm_tis-spi";
+the aldo1 is connect regulator pin which power the TV.
+The USB core use TV ref as reference Voltage.
 
-What's the chip used on this board?  Going forward, the DT schema for TPMs
-requires the exact chip name in addition to the generic "tcg,tpm_tis-spi".
+Signed-off-by: fuyao <fuyao1697@cyg.com>
+---
+ arch/arm/boot/dts/allwinner/sun8i-r40-feta40i.dtsi | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+diff --git a/arch/arm/boot/dts/allwinner/sun8i-r40-feta40i.dtsi b/arch/arm/boot/dts/allwinner/sun8i-r40-feta40i.dtsi
+index 9f39b5a2bb35..8906170461df 100644
+--- a/arch/arm/boot/dts/allwinner/sun8i-r40-feta40i.dtsi
++++ b/arch/arm/boot/dts/allwinner/sun8i-r40-feta40i.dtsi
+@@ -42,6 +42,13 @@ &pio {
+ 	vcc-pg-supply = <&reg_dldo1>;
+ };
+ 
++&reg_aldo1 {
++	regulator-always-on;
++	regulator-min-microvolt = <3300000>;
++	regulator-max-microvolt = <3300000>;
++	regulator-name = "vcc-aldo1";
++};
++
+ &reg_aldo2 {
+ 	regulator-always-on;
+ 	regulator-min-microvolt = <1800000>;
+-- 
+2.39.2
 
 
-> +			spi-max-frequency = <33000000>;
-> +			reg = <0>;
-> +		};
-> +	};
+-- 
+CYG Technology.
 
