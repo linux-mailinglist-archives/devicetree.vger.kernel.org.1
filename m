@@ -1,115 +1,91 @@
-Return-Path: <devicetree+bounces-27156-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27157-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D6FE819832
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 06:34:47 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id A807D819857
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 06:58:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BCFB7288739
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 05:34:45 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 35AA8B230D7
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 05:58:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86B6DD312;
-	Wed, 20 Dec 2023 05:34:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0807FC06;
+	Wed, 20 Dec 2023 05:57:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="BEXDwgOy"
+	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="bPdecnAx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24E7915AC7;
-	Wed, 20 Dec 2023 05:34:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 3BK4oRe6001889;
-	Wed, 20 Dec 2023 05:34:37 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=K33oHyfwjCkr5btHRVdLguivGo60Y0wp3ZnNoXIm724=; b=BE
-	XDwgOyJBbwhnKGnOGjoH64xhSpD9Fta9Gu6FzaVPbOneMqVEYXAqzXQ0S/mQp4HM
-	XcuYIaGBp591lKRU893EkYLUoCrYySXQ8xj42bpT9bbWw6c1DgD008vViAD6PFHL
-	kbG1vvMI96Frzjp7cfTHdqs8kmRgls5dw9WjvRcAgQ1u4sDic7ieCQOSJmHRnQX3
-	6B1RxZjBMhKNrvB0WtL0tzfLDu+Lq1XLmHhekTU3mwXwcVhiu8IE0QrMhhirhMUC
-	2Xz/4lUIj3DSEMiA/BoiWtySu6ezEx0VqqySHK05MAP9NwOT0kQfH2/PDqc2ppVf
-	oo8893MFSCdlRHgnlmAg==
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3v37vxtk4h-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 20 Dec 2023 05:34:37 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3BK5YarL012961
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 20 Dec 2023 05:34:36 GMT
-Received: from [10.239.132.150] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Tue, 19 Dec
- 2023 21:34:30 -0800
-Message-ID: <f8719779-a3d4-49c5-9dc1-240ef982384e@quicinc.com>
-Date: Wed, 20 Dec 2023 13:34:28 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9566EFBF9;
+	Wed, 20 Dec 2023 05:57:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 84096C433C7;
+	Wed, 20 Dec 2023 05:57:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+	s=korg; t=1703051877;
+	bh=n0ckWVr2p5ZoAOLCgKU6Bdxii8DiBrVLcshx8Gs1Gv8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=bPdecnAxw7khdyUI/WPAvwDX+64JC81cBxPIJZKCTcx1rFPLt/MPfyi6gBs9UhpxT
+	 vuV6PuhPcLbQvgtBBSe3BMNSvM3/NvD5V86aQfgarfmfC7BuD8+eN4uxTzcsnYg92n
+	 f9hAvwW/2HahH0NUxgo5zde7eshHtu+qkEvKp8Xc=
+Date: Wed, 20 Dec 2023 06:57:54 +0100
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: Chunfeng Yun <chunfeng.yun@mediatek.com>
+Cc: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	Mathias Nyman <mathias.nyman@intel.com>, linux-usb@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Eddie Hung <eddie.hung@mediatek.com>,
+	Macpaul Lin <macpaul.lin@mediatek.com>, stable@vger.kernel.org
+Subject: Re: [PATCH v3 2/3] usb: xhci-mtk: fix a short packet issue of gen1
+ isoc-in transfer
+Message-ID: <2023122033-footprint-impose-9989@gregkh>
+References: <20231220025842.7082-1-chunfeng.yun@mediatek.com>
+ <20231220025842.7082-2-chunfeng.yun@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: (subset) [PATCH v3 0/1] arm64: dts: qcom: sm8550: remove
-Content-Language: en-US
-To: Bjorn Andersson <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, Tengfei Fan <quic_tengfan@quicinc.com>
-CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <kernel@quicinc.com>
-References: <20231219003106.8663-1-quic_tengfan@quicinc.com>
- <170301441259.365364.2180258670074890979.b4-ty@kernel.org>
-From: "Aiqun Yu (Maria)" <quic_aiquny@quicinc.com>
-In-Reply-To: <170301441259.365364.2180258670074890979.b4-ty@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: a2swOqmPy2OUHI4zHupBY4Pox0NBNmDP
-X-Proofpoint-GUID: a2swOqmPy2OUHI4zHupBY4Pox0NBNmDP
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-12-09_02,2023-12-07_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=785
- suspectscore=0 impostorscore=0 lowpriorityscore=0 malwarescore=0
- bulkscore=0 phishscore=0 spamscore=0 clxscore=1015 mlxscore=0 adultscore=0
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2311290000 definitions=main-2312200034
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231220025842.7082-2-chunfeng.yun@mediatek.com>
 
-
-
-On 12/20/2023 3:33 AM, Bjorn Andersson wrote:
+On Wed, Dec 20, 2023 at 10:58:41AM +0800, Chunfeng Yun wrote:
+> For Gen1 isoc-in transfer, host still send out unexpected ACK after device
+> finish the burst with a short packet, this will cause an exception on the
+> connected device, such as, a usb 4k camera.
+> It can be fixed by setting rxfifo depth less than 4k bytes, prefer to use
+> 3k here, the side-effect is that may cause performance drop about 10%,
+> including bulk transfer.
 > 
-> On Tue, 19 Dec 2023 08:31:05 +0800, Tengfei Fan wrote:
->> The address/size-cells in mdss_dsi1 node have not ranges and child also
->> have not reg, then this leads to dtc W=1 warnings:
->>
->>    sm8550.dtsi:2937.27-2992.6: Warning (avoid_unnecessary_addr_size): /soc@0/display-subsystem@ae00000/dsi@ae96000:
->>      unnecessary #address-cells/#size-cells without "ranges" or child "reg" property
->>
->>
->> [...]
-> 
-> Applied, thanks!
-Hi Bjorn,
+> Fixes: 926d60ae64a6 ("usb: xhci-mtk: modify the SOF/ITP interval for mt8195")
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+> ---
+> v3:
+> add Cc stable
 
-Discussion is still on going.
-Dmitry dropped the previous review-by.
-> 
-> [1/1] arm64: dts: qcom: sm8550: remove address/size-cells from mdss_dsi1
->        commit: 53081095936cdb1501d6bcf6cb703fdd3ac71b85
-> 
-> Best regards,
+Why is a patch that you are marking for stable inclusion (and I am
+guessing inclusion in 6.7-final) in the middle of other patches that are
+not marked as such?
 
--- 
-Thx and BRs,
-Aiqun(Maria) Yu
+Always split out bugfixes from other things so that they can go through
+the two different branches, one for this current release, and one for
+the next one.
+
+Otherwise you will have to wait until 6.8-rc1 for this bugfix to land,
+which I doubt you intend to have happen.
+
+Please fix up and resend 2 different patch series.
+
+thanks,
+
+greg k-h
 
