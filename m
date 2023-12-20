@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-27193-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27194-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82A758199DD
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 08:54:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0152D8199E1
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 08:54:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 05ABB1F25C80
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 07:54:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 837391F2483F
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 07:54:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CAC4168B3;
-	Wed, 20 Dec 2023 07:54:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BD48168D1;
+	Wed, 20 Dec 2023 07:54:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gV0dGRHK"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JYt9cC1P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AD7A179AD
-	for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 07:54:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5EA8168CF
+	for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 07:54:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-40c339d2b88so57717915e9.3
-        for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 23:54:22 -0800 (PST)
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-40c3f68b69aso50342715e9.1
+        for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 23:54:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1703058861; x=1703663661; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1703058876; x=1703663676; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=uAbpecWM2oysXKY7yCq9+Pi8LI3DIExRrkpDhc91QEo=;
-        b=gV0dGRHKAyNp4MEsvO23FMLHJsGc9AEZ2mnMszBXPPyYMqS5kDqINJrggSog9p+lU/
-         HCez7mPKai3/WSZPb4pzt8l15Pj4hAK+UK77OBwp45fEb117jvVr+gs1+6BZ6rQLwZI5
-         BnYxCaoqvInlP5GUoXR1KTjLOCoBFFSB5Zt15DDe0nbmqdvMIJPh08Td0NBwhOe2z7oF
-         eSvrHJe8Y3Rgvsz2HGQKRMGaumnTJVqAou2CLY36j0DUdqXRkUzIkCgGZTU998IkAQPP
-         oasLn3Z7mgq5E/cxfxjntK5iqrDD44P10qZ50WvB+0mio4A9gbqybW+LajI3q+iIErju
-         5Kng==
+        bh=Y1Pc4PfllQQeY9OdiJjtHiW6epXY25VZjPdkXVpEClY=;
+        b=JYt9cC1PfYWX8pnQMgK1dRksYM9qb9sRFO2RnZhcGrNRfDRas4WPAIUXDuRvG6KIQ5
+         Y+Q4LSfPSiBkuq+st1HbF0yMeL3b82YOtJEPcoQdHDXczlDytiRzYiu2apJYHl1eyQnp
+         Lui6KwoG/QYu6n8Kkkr/m4h+OifIYsy0iCpYFprgLBaE0S82vYiU2nzDg6AiGwRMJKUm
+         BkxegUP2vh77dvXGo/CLA1d5TWWe1Q19q1Ouvtmhwtsd0K4/0fCYNBA3147PHcDMntV6
+         CIdMrWWzuXSPmJK0zqp02w0bOov5DuF2USQg+fkeu7/P6dHhpfaB04zB2sRHuJSOtoMn
+         l3Ig==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703058861; x=1703663661;
+        d=1e100.net; s=20230601; t=1703058876; x=1703663676;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=uAbpecWM2oysXKY7yCq9+Pi8LI3DIExRrkpDhc91QEo=;
-        b=qY1hJ6ecgbRL9I+bLOvVVRuukKR8G7KxiLKvwQIOUgKC7uBDJENDYTVmlNLAPaM/F5
-         lwBFDutmxmVDNy6wvE2f6+0qsLQ++UGkr/1xaDic3ov68hcjI6nvz58kjb14waSdydCk
-         Gi84d+S4cHhtJiMW8S1fwRPK5noo0wNJtCorkVN1tSFrCcsjYoSbUde+RGhKChOCMkY3
-         tDKEg9pwDmOs4mLWUYGv/BYgPlv22oUNnV/Uu8jFwMA8F7v2l9yWLAG+2cVf00hLuuec
-         jKglbxrEzsaLPjf8hiK2WvE45upTn+Md6YOpq6f9YKMYC4pY2MpkGkFFTU7trNXXnEq7
-         2Img==
-X-Gm-Message-State: AOJu0YzUuAAnIywow5nzbKvmDOXVY9zA2ngpp2KwIuobEPZPMwvsTask
-	VsxErg41LHrNX+eHPfjIAlDaEP7vPPH2w+YkREc=
-X-Google-Smtp-Source: AGHT+IHPgvHopxdvsttyIE2E8d/PODi22t247zPu177RQ91XAwaAFTmJhvfFd5XfD7FPHwDaLEnRvA==
-X-Received: by 2002:a05:600c:34cb:b0:40d:381e:6354 with SMTP id d11-20020a05600c34cb00b0040d381e6354mr113796wmq.89.1703058860923;
-        Tue, 19 Dec 2023 23:54:20 -0800 (PST)
+        bh=Y1Pc4PfllQQeY9OdiJjtHiW6epXY25VZjPdkXVpEClY=;
+        b=QppYY72tymI1EnocrLqFFyHkKp8qZ7ADNtclxkSDZP5xieeUAllLwkzgMkQQ9aOIUZ
+         bR0fbwSUIM6GGAzcsfgTlK4Ei44ltH0LhE66BLqHvWLKWqh/k0gzFGQnMhGqP4/pGOHv
+         6R33RaThDUVp98rr12YRy7eObus1tn/ytNab03gFHOX6sQSASCPRZDWOZz/MW48PqNUw
+         3hq5T+gWkWPuvTQ1uO6GyeCs0gKLs43YQgQt/Ah4JR4vpVPzO+RmrB1NwmHFrpCj4h4b
+         +4kbiBw93NBCBxXkt80Mco49h1q5L5GPUgb5casacJPokz8DQ2cGqtU2DZ9xVFTf1TZ0
+         effg==
+X-Gm-Message-State: AOJu0YynQtmIiST6/UmtIEF5BSKGlaKMV/kygoDg/uuMevf4JbIH28SH
+	CkxN2XsAKSPN7Z68tIokY/pHrA==
+X-Google-Smtp-Source: AGHT+IEZZCJWGhBGdYXGuIZ2+tNUJ1O05fR8rXW5yb325sgsZeqsMB0rvRxiypSYL9eN5OYcZB6tyg==
+X-Received: by 2002:a05:600c:3ca2:b0:40c:50d5:f7a6 with SMTP id bg34-20020a05600c3ca200b0040c50d5f7a6mr9275108wmb.121.1703058876212;
+        Tue, 19 Dec 2023 23:54:36 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id je17-20020a05600c1f9100b0040b4b2a15ebsm6239945wmb.28.2023.12.19.23.54.18
+        by smtp.gmail.com with ESMTPSA id je17-20020a05600c1f9100b0040b4b2a15ebsm6239945wmb.28.2023.12.19.23.54.33
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 19 Dec 2023 23:54:20 -0800 (PST)
-Message-ID: <8d69d05e-f4cc-4c31-8c3e-4a155b469cdb@linaro.org>
-Date: Wed, 20 Dec 2023 08:54:18 +0100
+        Tue, 19 Dec 2023 23:54:35 -0800 (PST)
+Message-ID: <7ac7db8e-f9b5-4394-af71-1a2b2548c485@linaro.org>
+Date: Wed, 20 Dec 2023 08:54:33 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,17 +66,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: pinctrl: xilinx: Rename *gpio to *gpio-grp
+Subject: Re: [PATCH] dt-bindings: firmware: xilinx: Fix versal-fpga node name
 Content-Language: en-US
 To: Michal Simek <michal.simek@amd.com>, linux-kernel@vger.kernel.org,
  monstr@monstr.eu, michal.simek@xilinx.com, git@xilinx.com
-Cc: Conor Dooley <conor+dt@kernel.org>,
- Krishna Potthuri <sai.krishna.potthuri@amd.com>,
+Cc: Conor Dooley <conor+dt@kernel.org>, Jassi Brar
+ <jassisinghbrar@gmail.com>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh+dt@kernel.org>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-gpio@vger.kernel.org
-References: <2e3a1f1f57cf929bd05115bc081e6d01d5a53443.1702996859.git.michal.simek@amd.com>
+ Mark Brown <broonie@kernel.org>, Moritz Fischer <mdf@kernel.org>,
+ Naman Trivedi Manojbhai <naman.trivedimanojbhai@amd.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>, Tom Rix <trix@redhat.com>,
+ Wu Hao <hao.wu@intel.com>, Xu Yilun <yilun.xu@intel.com>,
+ devicetree@vger.kernel.org, kishore Manne <nava.kishore.manne@amd.com>,
+ linux-arm-kernel@lists.infradead.org, linux-fpga@vger.kernel.org
+References: <6779af2f9cc21c912f10cf310388d99b980800b2.1702996281.git.michal.simek@amd.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -122,19 +126,32 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <2e3a1f1f57cf929bd05115bc081e6d01d5a53443.1702996859.git.michal.simek@amd.com>
+In-Reply-To: <6779af2f9cc21c912f10cf310388d99b980800b2.1702996281.git.michal.simek@amd.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 19/12/2023 15:41, Michal Simek wrote:
-> Anything ending with gpio/gpios is taken as gpio phande/description which
-> is reported as the issue coming from gpio-consumer.yaml schema.
-> That's why rename the gpio suffix to gpio-grp to avoid name collision.
+On 19/12/2023 15:31, Michal Simek wrote:
+> Based on commit 83a368a3fc8a ("docs: dt-bindings: add DTS Coding Style
+> document") using underscore ('_') in node name is not recommended that's
+> why switch to dash ('-').
 > 
 > Signed-off-by: Michal Simek <michal.simek@amd.com>
 > ---
+> 
+>  .../bindings/firmware/xilinx/xlnx,zynqmp-firmware.yaml        | 4 ++--
+>  Documentation/devicetree/bindings/fpga/xlnx,versal-fpga.yaml  | 2 +-
+>  2 files changed, 3 insertions(+), 3 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-firmware.yaml b/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-firmware.yaml
+> index 8e584857ddd4..3d578f98ae2c 100644
+> --- a/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-firmware.yaml
+> +++ b/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-firmware.yaml
+> @@ -41,7 +41,7 @@ properties:
+>    "#power-domain-cells":
+>      const: 1
+>  
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
