@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-27305-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27306-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6658819DE5
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 12:20:30 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id F000A819E0B
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 12:29:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5D7E1287A04
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 11:20:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7CE661F26E36
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 11:29:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9C29219E4;
-	Wed, 20 Dec 2023 11:20:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EAAF2136A;
+	Wed, 20 Dec 2023 11:29:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="oKP0PgpJ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GqQGN7LP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 189732137D
-	for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 11:20:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 953DF2137F
+	for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 11:29:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-40d12b56a38so46991155e9.2
-        for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 03:20:05 -0800 (PST)
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-40c236624edso60639835e9.1
+        for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 03:29:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1703071204; x=1703676004; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1703071778; x=1703676578; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=IAmlDlInxuQrZ1cE1pP47ocBQk8ES4XUkRZRFq3xVa4=;
-        b=oKP0PgpJizdPjrHFvhWxiY0djhRZoc8PfWYJV6MBJDzig7X5s+YHpXVNy8fiVJvXjg
-         W/D7EG7+3wKhzfuAw+8JpKfKYlQnmKsTSail4+wFUxUw7lCogSo/mPOSdWxhNKa1JJmw
-         ZIw2yL49Gyyr18evnb/1os4y6HjQ1+4220OdYtJ8XExZ4OETz7aX4obwfai71BRPo99f
-         7Ju+31363wtA4bL7e9ek+iuH4CT7gbyq9TO9VkU39r6/NyblM64g7NmFZJUMZF7JckxW
-         9TU4BdccptMP07pIr7Urc/5dgbXhi8tAkkhTFZKk9hGwnjFQV5UPae0RtEOzKRMGFfly
-         bPMQ==
+        bh=AuUM7w3HMQHGayplIXRBZgEKAa98Y/VzXaJlZpMNpu0=;
+        b=GqQGN7LPTBYc8kFKSDwUEjTqhCYn5jDVabTNxo+mI7BMrli7vXxa4p9KAEJUc99KPY
+         MBk+KTdWe7l1orOxyU7JMMjWKQFJrLaR/4oH7CMkdAmy1u196+43KLkpo85fICS6Yw2H
+         hDulAiVfC+w/KW1cnTnZyCI9YIXp0i/SYzFO5O50h81+A0vw8EtpfssI7Y/EYj8C26wG
+         R49maqYlgZHo+8nu4LSJd9NIUjfrYrPNGwHqeos+CxLJEWXxw8eCNQBFim7H3g7h/B7v
+         c4o5pSpezzZqaogklMljqgs+yNqOTDu3lUwkJrnrd4frbYPXZPUIjBDNLs7akuRrOhNO
+         C9/Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703071204; x=1703676004;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1703071778; x=1703676578;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=IAmlDlInxuQrZ1cE1pP47ocBQk8ES4XUkRZRFq3xVa4=;
-        b=NfqkL0dc0ARaG8/A5FTmMiei16JFkTCiruqQVHrOEH1/IlOO4fNpsDAeTNKm2a0s4V
-         /b6EhDLL+5kaJ+HGoaGc+Z6+y/purdQk35vO8lOcxItfSSBA2wuSAxrO3rSt348ErrpJ
-         iGpIsw7pz2RxHuxRtANBVvPmnycO1MSkL13yIAsojnani+zKbSKKmjkgOnhK3Z9hZ2Uq
-         mk0VHvXgyMSdff8BXMbpRMXxomhwF5H41vwLLEdQnpWXvZbWcT+MIpYKBnBhbYLLKtWt
-         XKzC4mIRi7jMYmSUi5w2/qx3K9qslEt7uF/OsWXIWc/2aqxLitbcbtxli9jLoLBhcI+1
-         G/Iw==
-X-Gm-Message-State: AOJu0Yz8VK3wRK6njne0K/0ERsJDl2xoI74KA+Jv4U3BMZteKrensZ+H
-	YLdlYcoRoCxRnaCvPluseEUqIA==
-X-Google-Smtp-Source: AGHT+IE4OPqXHN9xe8HeBW+oIWLnaNLFDOWpgf+uMrHPDDKnKVZy22hD8yDPLE3qC2DGi8l9HPxUew==
-X-Received: by 2002:a05:600c:8512:b0:40d:38c6:7cec with SMTP id gw18-20020a05600c851200b0040d38c67cecmr114039wmb.299.1703071204012;
-        Wed, 20 Dec 2023 03:20:04 -0800 (PST)
+        bh=AuUM7w3HMQHGayplIXRBZgEKAa98Y/VzXaJlZpMNpu0=;
+        b=e8vYJP7Kie7jF+OHDpyKgcfjRgzdwctulwzzGq/Og/bqZUtO5ajac0xWdl48QHnlvK
+         gP6sB3XOugS0aayX0nDbIxFcj676J4xCi1VsFHSynNn3iDeLhBBlZK5tlgBkMvnq5THQ
+         K27OFHYD2nd6QQHYa4Oem7redEUrKJ61dWhm91eIWo0rxNaA4xg9CsM4y0nh2tHf+WAr
+         ysVzllaoTdOdee47cpwtwPnyJevdJuaniZvwO/wWpLxg4TWyDqzgR1+frQ4TsFPS2I/s
+         ENx3Rug8MR+rhsweFODtnLa/UOZJepb6yU5/Cw+KBJTrkzBG5NF02zrmSfv46X0u4RJE
+         OMGQ==
+X-Gm-Message-State: AOJu0YzB+J84F0HQR3ABi8sCMOHuAMnJOIDB/T2SYcdylMmJfO0bxd3W
+	6/Y6mYmRlRFZbi5cqIE+35EtcQ==
+X-Google-Smtp-Source: AGHT+IFeLj4NvAfiLj67MtiAxR9mSLn3z3XCUwXcXckKsjdtbJKqHKFnhUE3TCiQ7tonsMbSqGT03w==
+X-Received: by 2002:a05:600c:4c1a:b0:40c:d4d:68ec with SMTP id d26-20020a05600c4c1a00b0040c0d4d68ecmr9941564wmp.183.1703071777637;
+        Wed, 20 Dec 2023 03:29:37 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id q15-20020a05600c46cf00b0040b349c91acsm6912026wmo.16.2023.12.20.03.20.02
+        by smtp.gmail.com with ESMTPSA id c5-20020a05600c0a4500b0040c411da99csm7084228wmq.48.2023.12.20.03.29.36
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 20 Dec 2023 03:20:03 -0800 (PST)
-Message-ID: <596c4ed6-bf3d-4406-8b28-2b34548520d1@linaro.org>
-Date: Wed, 20 Dec 2023 12:20:01 +0100
+        Wed, 20 Dec 2023 03:29:37 -0800 (PST)
+Message-ID: <9c9ece43-75b8-43ca-a8e1-b338b47b5c15@linaro.org>
+Date: Wed, 20 Dec 2023 12:29:35 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,26 +66,25 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/1] arm64: dts: qcom: sm8550: remove
- address/size-cells from mdss_dsi1
+Subject: Re: [PATCH v6 1/2] dt-bindings: i2c: add bus-reset-gpios property
 Content-Language: en-US
-To: "Aiqun Yu (Maria)" <quic_aiquny@quicinc.com>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Tengfei Fan <quic_tengfan@quicinc.com>, andersson@kernel.org,
- konrad.dybcio@linaro.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, kernel@quicinc.com
-References: <20231219003106.8663-1-quic_tengfan@quicinc.com>
- <20231219003106.8663-2-quic_tengfan@quicinc.com>
- <457e336e-004c-4721-b58d-e9ada16dc04b@linaro.org>
- <a8f168da-14f7-4377-8dea-f282a3eac0a4@quicinc.com>
- <13b61d41-6045-499e-864b-51c6cb6eacf9@linaro.org>
- <38604415-b410-4995-9c4f-525536435699@quicinc.com>
- <CAA8EJpo07gE7ZeNP6wSGTLtmF_3PKQAKFyMRZ8dk1K+f7PAxrg@mail.gmail.com>
- <ad1547cf-0520-422d-a105-ec426f526d71@quicinc.com>
- <CAA8EJppwsezPV21Uw8xTn=ra8L2jfnkHoRghDPN96O5tJsOD7A@mail.gmail.com>
- <72305a35-02e6-4ff6-8251-01f986530c5d@quicinc.com>
+To: "wsa@kernel.org" <wsa@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
+ Chris Packham <Chris.Packham@alliedtelesis.co.nz>,
+ "robh+dt@kernel.org" <robh+dt@kernel.org>,
+ "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "gregory.clement@bootlin.com" <gregory.clement@bootlin.com>,
+ "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20231115035753.925534-1-chris.packham@alliedtelesis.co.nz>
+ <20231115035753.925534-2-chris.packham@alliedtelesis.co.nz>
+ <f24b9b2d-aeb1-47f7-bf21-4383fdcf94aa@linaro.org>
+ <5a52b0c9-8858-4f55-8dd7-9269c29c10a7@alliedtelesis.co.nz>
+ <ZYHMvZ3plIQ0zXWa@shikoro>
+ <601d07b5-264d-4322-b92e-63d58b3d69fa@alliedtelesis.co.nz>
+ <ZYICEczlao+pg8kd@shikoro> <20231219232545.ksrxgvl7epeewga2@zenone.zhora.eu>
+ <e80a06aa-bb44-4993-8e67-dbc910a409ab@linaro.org> <ZYLJ5EMKK1jhSclQ@shikoro>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -131,89 +130,37 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <72305a35-02e6-4ff6-8251-01f986530c5d@quicinc.com>
+In-Reply-To: <ZYLJ5EMKK1jhSclQ@shikoro>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 20/12/2023 11:33, Aiqun Yu (Maria) wrote:
->>>>
->>>> Don't touch the bindings unless you understand what you are doing.
->>>> Your patch will be NAKed. There can be a DSI panel attached to the DSI
->>>> host, which means there is a need for #address-cells / #size-cells.
->>>>
->>> Could you please help to elaborate more on details? Like what's the
->>> right example here for the "qcom,mdss-dsi-ctrl" driver node needed to
->>> have "#address-cells"/"#size-cells".
->>
->> As I wrote, the attached DSI panels make use of #address-cells / #size-cells.
->>
->> Please take a look at the sdm845-mtp.dts, which provides a complex
->> enough example (a panel which is attached to both DSI0 and DSI1
->> hosts).
-> I can see the panel example now.
-> While panel@0 likely node is not at in the binding that I've checked. 
-
-"Likely not" is not the same as "cannot".
-
-> There are quite a few of binding document about the same driver. I 
-
-You keep mixing drivers, bindings and devices which does not help this
-discussion. I really do not understand above sentence.
-
-> checked 5 of the bindings document and moste of them are alike, and 
-> don't have the panel example.:(
-
-Example like the example DTS in the binding? What does it have to do
-with anything here? What are we talking here about?
-
->>
->>> Thx to chime in that we have put a good amount of time here.
->>
->> Can't quite catch you here.
->>
->>>> Please stop wasting the time on dtc warning. The bindings (and the
->>>> file) are correct.
->>> I don't agree here.
->>> Either it is a wrong usage of "#address-cells"/"#size-cells", or dtc
->>> warning should be fixed with this usage take into account.
->>> "dtb check" will be a good guideline for developers to follow, I don't
->>> think it is wasting time here.
->>
->> It is a guideline, but not a rule. No warnings by default is more of
->> the rule. W=1 enables warnings that developers have to classify and
->> cope with.
->>
->> E.g. I don't think dtc correctly handles the case when there are both
->> with-address and no-address nodes (e.g. 'panel@0' and 'ports'). Note,
->> I might be mistaken there.
-> Now I understand the issue, here is some thinking from my end, and 
-> welcome others to chime in with more ideas:
-> 1. Only put "#address-cells" "#size-cells" right before node of panel@0.
-> 2. Align current binding document with "panel@0" examples.
-
-Examples? Again, about what examples are you talking? Mixing terminology
-does not help this discussion, so let's be specific:
-Touching examples just because you want, without valid reason: no
-
-> 3. Too many bindings files for driver "qcom,mdss-dsi-ctrl", shall we 
-> align them into 1 binding files.
-
-You are joking right? First of all, there is no driver
-"qcom,mdss-dsi-ctrl". Don't mix the terms, because it does not help the
-discussion. Second, please read previous discussions related to these
-bindings.
-
-> 4. enhance the dtc warning check if we still want to have 
-> "#address-cells" "#size-cells" even if there is no "panel@0" attached.
+On 20/12/2023 12:03, wsa@kernel.org wrote:
 > 
-> @krzy here I try to answer your comments here as well.
-> I am disagree on leave the warning as it is. And want to do something to 
-> improve this. Ideas above.
-> Let me know if any comments is not right addressed from your comments.
+>>>>> I personally would like to see it accepted but it seems there are 
+>>>>> objections to this approach. I've yet to come up with anything better to 
+>>>>> offer as an alternative.
+>>>>
+>>>> I see. Thanks for the heads up!
+>>>
+>>> I'm also inclined to have this merged. A real fix might take
+>>> time.
+>>
+>> NAK
+>>
+>> If you intend to merge it, then please carry:
+> 
+> No worries. If this is "abusing" DT, then it is not going to be merged
+> by me. I am sorry for Chris, but sometimes simple problems create quite
+> some fuzz because Linux hardware abstractions has not foreseen certain
+> use cases. Or the APIs dealing with them didn't forsee that. We have
+> been there a lot of times :/
 
-You want to do something without understanding the problem which results
-in random band-aids over some warning. Instead, please dig deeper to
-understand the problem and then propose solution.
+I need the same solution for WSA884x speaker, for which Mark rejected
+simple shared GPIO (even though it would work there), so I am trying to
+solve it. It's basically the same case. Now, I am waiting on answer from
+Sean Anderson whether he continued his work on reset-gpios controller
+from two years ago. Rob wanted handling reset-gpios by generic reset
+framework, which would solve these simple cases, here and mine, nicely.
 
 Best regards,
 Krzysztof
