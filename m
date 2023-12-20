@@ -1,166 +1,115 @@
-Return-Path: <devicetree+bounces-27155-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27156-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B9398197DE
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 05:46:25 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D6FE819832
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 06:34:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2726B1F24ABA
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 04:46:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BCFB7288739
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 05:34:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C35A8F41;
-	Wed, 20 Dec 2023 04:46:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86B6DD312;
+	Wed, 20 Dec 2023 05:34:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="XEObP6NA"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="BEXDwgOy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC871C2C3
-	for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 04:46:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-552ff8d681aso640830a12.1
-        for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 20:46:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1703047576; x=1703652376; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=ObOjGHxxzANzBA20+fRUpz/qy8ssxRN2M1oEwSnchMg=;
-        b=XEObP6NAyuPE33DE6Fp3QBXNAaZNZth6v2xSsGDHfV118mNirehzBug2ojRxg7Z3Kg
-         UqzXHMrmgnJBzatxZfE/5S0O0DFLGABlk/vO+UQKjMLV0/3rT+6ULQtYgV3ppqSmy2MC
-         erFWBrsajNh7TULP7URSJ/kkXeZixhXeNUCko=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703047576; x=1703652376;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ObOjGHxxzANzBA20+fRUpz/qy8ssxRN2M1oEwSnchMg=;
-        b=Fp4RtxntST5rxHPgzGeV8OUWKcijUXse2pAVlESTgpXcvNCtcC2XImLDcGc660pmue
-         c99FYkLlUy2tdVV9vKfBotYiXHOjGQQ/XgnFDyNP4qbkLuja3Hbd0TJhzIMOBonqL6aK
-         r8wYISxhw/UhOQod3liFHWHGuZFeomqxFmsqVEHCVCBv1WoH23eC1b6BlS/kAa2D9N11
-         44VUska0w8PXG2KyswafKVVLTkPNUl7g0LE3wCA9YRpJ3iiNWkpkyZeL7GgOVAE1imBI
-         QN1pOPP9XXQynb5/OKLzYK4Yzrp+tyuohmnV0h5liIOKykWScCcWKIGKBUhIcKDG25X7
-         ydPQ==
-X-Gm-Message-State: AOJu0Ywy71S1PA/PMYLUrY1XVeP33kU+BEx0I1s+ENJD4f4sRZnLfch2
-	GlYqaw0sAQ710RXiEEFlBN4OZ7TgHFKuxQvedZBTJG0eFylF
-X-Google-Smtp-Source: AGHT+IFiAtnYS6LXvMS3hEaXi1ylgrBmLLhNN+uioKFv9mVb/Ycop0Bj8klqTrKKv5ovgt1osw7sDYHdsp6TNkdiWcg=
-X-Received: by 2002:a17:906:c15:b0:a26:8f35:20e3 with SMTP id
- s21-20020a1709060c1500b00a268f3520e3mr484981ejf.4.1703047576066; Tue, 19 Dec
- 2023 20:46:16 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24E7915AC7;
+	Wed, 20 Dec 2023 05:34:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 3BK4oRe6001889;
+	Wed, 20 Dec 2023 05:34:37 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=K33oHyfwjCkr5btHRVdLguivGo60Y0wp3ZnNoXIm724=; b=BE
+	XDwgOyJBbwhnKGnOGjoH64xhSpD9Fta9Gu6FzaVPbOneMqVEYXAqzXQ0S/mQp4HM
+	XcuYIaGBp591lKRU893EkYLUoCrYySXQ8xj42bpT9bbWw6c1DgD008vViAD6PFHL
+	kbG1vvMI96Frzjp7cfTHdqs8kmRgls5dw9WjvRcAgQ1u4sDic7ieCQOSJmHRnQX3
+	6B1RxZjBMhKNrvB0WtL0tzfLDu+Lq1XLmHhekTU3mwXwcVhiu8IE0QrMhhirhMUC
+	2Xz/4lUIj3DSEMiA/BoiWtySu6ezEx0VqqySHK05MAP9NwOT0kQfH2/PDqc2ppVf
+	oo8893MFSCdlRHgnlmAg==
+Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3v37vxtk4h-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 20 Dec 2023 05:34:37 +0000 (GMT)
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3BK5YarL012961
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 20 Dec 2023 05:34:36 GMT
+Received: from [10.239.132.150] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Tue, 19 Dec
+ 2023 21:34:30 -0800
+Message-ID: <f8719779-a3d4-49c5-9dc1-240ef982384e@quicinc.com>
+Date: Wed, 20 Dec 2023 13:34:28 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230926194242.2732127-1-sjg@chromium.org> <20230926194242.2732127-2-sjg@chromium.org>
- <BN9PR11MB5483FF3039913334C7EA83E1E6AEA@BN9PR11MB5483.namprd11.prod.outlook.com>
- <CAMj1kXFG92NpL7T7YocOup0xLKyopt3MnSCp0RL8cLzozzJz7A@mail.gmail.com>
- <BN9PR11MB548303B09536EB1577472029E6B3A@BN9PR11MB5483.namprd11.prod.outlook.com>
- <CAPnjgZ36t8g7E=0MSJyaV8-QKv9RVYe47Jd5E=NU-mFM4LWBQA@mail.gmail.com>
- <CAMj1kXHAEeK7x2f13k_JV3Xcw61nNLasyvXQf+mKwKekQ48EpQ@mail.gmail.com>
- <BN9PR11MB548334E0DA6495C438FBFDE1E6BBA@BN9PR11MB5483.namprd11.prod.outlook.com>
- <BN9PR11MB548314DDE8D4C9503103D51CE6BBA@BN9PR11MB5483.namprd11.prod.outlook.com>
- <CAMj1kXHbM+ArLgNZgnmiok4gOfv6QLYxzyB9OCwfhEkJ2xGK_g@mail.gmail.com>
- <BN9PR11MB5483C2FBCD07DE61DCCDB523E6BCA@BN9PR11MB5483.namprd11.prod.outlook.com>
- <CAPnjgZ0ngqCyC36QVAFWu07p+7SHNQhsuo0MYstTawnbDEEmLw@mail.gmail.com>
-In-Reply-To: <CAPnjgZ0ngqCyC36QVAFWu07p+7SHNQhsuo0MYstTawnbDEEmLw@mail.gmail.com>
-From: Simon Glass <sjg@chromium.org>
-Date: Tue, 19 Dec 2023 21:46:04 -0700
-Message-ID: <CAPnjgZ1EDx=NtC9aPSVYUwoLRzA3M0rXnDeWxxsEnSUVs8N4FQ@mail.gmail.com>
-Subject: Re: [PATCH v7 2/2] schemas: Add some common reserved-memory usages
-To: "Chiu, Chasel" <chasel.chiu@intel.com>
-Cc: Ard Biesheuvel <ardb@kernel.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, Mark Rutland <mark.rutland@arm.com>, 
-	Rob Herring <robh@kernel.org>, "Tan, Lean Sheng" <sheng.tan@9elements.com>, 
-	lkml <linux-kernel@vger.kernel.org>, Dhaval Sharma <dhaval@rivosinc.com>, 
-	"Brune, Maximilian" <maximilian.brune@9elements.com>, Yunhui Cui <cuiyunhui@bytedance.com>, 
-	"Dong, Guo" <guo.dong@intel.com>, Tom Rini <trini@konsulko.com>, 
-	ron minnich <rminnich@gmail.com>, "Guo, Gua" <gua.guo@intel.com>, 
-	"linux-acpi@vger.kernel.org" <linux-acpi@vger.kernel.org>, U-Boot Mailing List <u-boot@lists.denx.de>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: (subset) [PATCH v3 0/1] arm64: dts: qcom: sm8550: remove
+Content-Language: en-US
+To: Bjorn Andersson <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, Tengfei Fan <quic_tengfan@quicinc.com>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <kernel@quicinc.com>
+References: <20231219003106.8663-1-quic_tengfan@quicinc.com>
+ <170301441259.365364.2180258670074890979.b4-ty@kernel.org>
+From: "Aiqun Yu (Maria)" <quic_aiquny@quicinc.com>
+In-Reply-To: <170301441259.365364.2180258670074890979.b4-ty@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: a2swOqmPy2OUHI4zHupBY4Pox0NBNmDP
+X-Proofpoint-GUID: a2swOqmPy2OUHI4zHupBY4Pox0NBNmDP
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-12-09_02,2023-12-07_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=785
+ suspectscore=0 impostorscore=0 lowpriorityscore=0 malwarescore=0
+ bulkscore=0 phishscore=0 spamscore=0 clxscore=1015 mlxscore=0 adultscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2311290000 definitions=main-2312200034
 
-Hi,
 
-On Mon, 11 Dec 2023 at 10:52, Simon Glass <sjg@chromium.org> wrote:
->
-> Hi,
->
-> On Tue, 28 Nov 2023 at 13:31, Chiu, Chasel <chasel.chiu@intel.com> wrote:
-> >
-> >
-> >
-> >
-> > > -----Original Message-----
-> > > From: Ard Biesheuvel <ardb@kernel.org>
-> > > Sent: Tuesday, November 28, 2023 10:08 AM
-> > > To: Chiu, Chasel <chasel.chiu@intel.com>
-> > > Cc: Simon Glass <sjg@chromium.org>; devicetree@vger.kernel.org; Mark Rutland
-> > > <mark.rutland@arm.com>; Rob Herring <robh@kernel.org>; Tan, Lean Sheng
-> > > <sheng.tan@9elements.com>; lkml <linux-kernel@vger.kernel.org>; Dhaval
-> > > Sharma <dhaval@rivosinc.com>; Brune, Maximilian
-> > > <maximilian.brune@9elements.com>; Yunhui Cui <cuiyunhui@bytedance.com>;
-> > > Dong, Guo <guo.dong@intel.com>; Tom Rini <trini@konsulko.com>; ron minnich
-> > > <rminnich@gmail.com>; Guo, Gua <gua.guo@intel.com>; linux-
-> > > acpi@vger.kernel.org; U-Boot Mailing List <u-boot@lists.denx.de>
-> > > Subject: Re: [PATCH v7 2/2] schemas: Add some common reserved-memory
-> > > usages
-> > >
-> > > You are referring to a 2000 line patch so it is not 100% clear where to look tbh.
-> > >
-> > >
-> > > On Tue, 21 Nov 2023 at 19:37, Chiu, Chasel <chasel.chiu@intel.com> wrote:
-> > > >
-> > > >
-> > > > In PR, UefiPayloadPkg/Library/FdtParserLib/FdtParserLib.c, line 268 is for
-> > > related example code.
-> > > >
-> > >
-> > > That refers to a 'memory-allocation' node, right? How does that relate to the
-> > > 'reserved-memory' node?
-> > >
-> > > And crucially, how does this clarify in which way "runtime-code" and "runtime-
-> > > data" reservations are being used?
-> > >
-> > > Since the very beginning of this discussion, I have been asking repeatedly for
-> > > examples that describe the wider context in which these reservations are used.
-> > > The "runtime" into runtime-code and runtime-data means that these regions have
-> > > a special significance to the operating system, not just to the next bootloader
-> > > stage. So I want to understand exactly why it is necessary to describe these
-> > > regions in a way where the operating system might be expected to interpret this
-> > > information and act upon it.
-> > >
-> >
-> >
-> > I think runtime code and data today are mainly for supporting UEFI runtime services - some BIOS functions for OS to utilize, OS may follow below ACPI spec to treat them as reserved range:
-> > https://uefi.org/specs/ACPI/6.5/15_System_Address_Map_Interfaces.html#uefi-memory-types-and-mapping-to-acpi-address-range-types
-> >
-> > Like I mentioned earlier, that PR is still in early phase and has not reflected all the required changes yet, but the idea is to build gEfiMemoryTypeInformationGuid HOB from FDT reserved-memory nodes.
-> > UEFI generic Payload has DxeMain integrated, however Memory Types are platform-specific, for example, some platforms may need bigger runtime memory for their implementation, that's why we want such FDT reserved-memory node to tell DxeMain.
-> >
-> > The Payload flow will be like this:
-> >   Payload creates built-in default MemoryTypes table ->
-> >     FDT reserved-memory node to override if required (this also ensures the same memory map cross boots so ACPI S4 works) ->
-> >       Build gEfiMemoryTypeInformationGuid HOB by "platfom specific" MemoryTypes Table ->
-> >         DxeMain/GCD to consume this MemoryTypes table and setup memory service ->
-> >           Install memory types table to UEFI system table.Configuration table...
-> >
-> > Note: if Payload built-in default MemoryTypes table works fine for the platform, then FDT reserved-memory node does not need to provide such 'usage' compatible strings. (optional)
-> > This FDT node could allow flexibility/compatibility without rebuilding Payload binary.
-> >
-> > Not sure if I answered all your questions, please highlight which area you need more information.
->
-> Any more thoughts on this? If not, I would like to see this patch
-> applied, please.
 
-I am really not sure who or what is holding this up, so far.
+On 12/20/2023 3:33 AM, Bjorn Andersson wrote:
+> 
+> On Tue, 19 Dec 2023 08:31:05 +0800, Tengfei Fan wrote:
+>> The address/size-cells in mdss_dsi1 node have not ranges and child also
+>> have not reg, then this leads to dtc W=1 warnings:
+>>
+>>    sm8550.dtsi:2937.27-2992.6: Warning (avoid_unnecessary_addr_size): /soc@0/display-subsystem@ae00000/dsi@ae96000:
+>>      unnecessary #address-cells/#size-cells without "ranges" or child "reg" property
+>>
+>>
+>> [...]
+> 
+> Applied, thanks!
+Hi Bjorn,
 
-Can we perhaps get this applied in time for Christmas? It would be a
-nice end to the year.
+Discussion is still on going.
+Dmitry dropped the previous review-by.
+> 
+> [1/1] arm64: dts: qcom: sm8550: remove address/size-cells from mdss_dsi1
+>        commit: 53081095936cdb1501d6bcf6cb703fdd3ac71b85
+> 
+> Best regards,
 
-Regards,
-Simon
+-- 
+Thx and BRs,
+Aiqun(Maria) Yu
 
