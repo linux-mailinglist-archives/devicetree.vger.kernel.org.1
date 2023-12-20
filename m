@@ -1,65 +1,64 @@
-Return-Path: <devicetree+bounces-27170-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27171-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FD828198F6
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 08:06:45 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF5C78198FA
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 08:07:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8B0AB1F26020
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 07:06:44 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F30F0B2300F
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 07:07:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8ACBE14AA6;
-	Wed, 20 Dec 2023 07:06:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CB7B134B7;
+	Wed, 20 Dec 2023 07:07:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="TTZjRHMo"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="y4rWO7oq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3D9F13FF5
-	for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 07:06:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5DF71CA91
+	for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 07:07:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-40d190044c5so34157625e9.2
-        for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 23:06:32 -0800 (PST)
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-40d13e4f7abso34387105e9.2
+        for <devicetree@vger.kernel.org>; Tue, 19 Dec 2023 23:07:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1703055991; x=1703660791; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=8jtbMpqWcvjM0WEoJWSA+vT2VBBs/PLDN42t1ecGK6E=;
-        b=TTZjRHMoB5+Lld3KVoLGu8k07veH767yHGspiLtY9HU/KbwloCnwtZ2VkunlQnAPB2
-         vS/6GYXaVgGRw/nh3AQcuoQ1Q9h/RKDyz0E1WEfB3TGwjLtbdNnskR0gZv1yPmzOHfrW
-         J2InG3xtVMxa6wfPEYp0Yw2PfY2upwjJo58ht8z8DQjCqa614E3UKDjKYmc5yLHYbaDi
-         WSN60YAzth/0VwQaSRR3/B9qz2/lAwlCMqb3U+/Ixh395iAXJz1hQJwS+1cFb6/iV/5r
-         CvsKn714MUpd1nygEcpuqW5t+2xisGDFqPGY16sNbL2H3EFjuUFGSHLuYsH4VnR7Rc8s
-         3MYA==
+        d=linaro.org; s=google; t=1703056056; x=1703660856; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=EJIGgifSxSlcaUoHGFVrvef1RXY+TUEYySMLo6Oh0rY=;
+        b=y4rWO7oquhcuQPzeevEG01mFvR2emZjjir2aAPJus0RNCqoDyJZNSILfncR2MHlyxr
+         TuSzC53UPQWQrySLN2/qqJ/Kpj/CNuDXHs+yyPQEDNCTuRR8/BXVZlRdVxZ0Vwzz8Fd0
+         mr/xvBZVMGpKo5m8f9/EZGBhh4jLk80vhH2X4/IptoSsyXxI05LdmIJfYbbbr/i0c9jO
+         C3lre8sOvps2sw6eNWxdysWHy9/Wa8wRklxecFX+gpVXddAhT7EizJ7j/woEoHQ213h7
+         SBHajStOeaEmhTEmGJogYzagnHG7AiBzGvU8xS8x0gUtDCEECutBo30jHjwQxHOjssly
+         GBBA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703055991; x=1703660791;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8jtbMpqWcvjM0WEoJWSA+vT2VBBs/PLDN42t1ecGK6E=;
-        b=dcUzuTBBS9tFMKZGr7rkXG29ylnSRPBLfIqsRKIEMoQS1FBvVGKBkqFLE32CCb3s+K
-         xF8y39mglcxNcJmYN9mV+hiVye9GLmrRqYNBYzENR6BwtrNa2isQlx+FGIPDEvspHPSP
-         JX8u9QF74G0rQeD4rzhWYe210N5txbbKR9lR4AgdQtVPr20O7iAFwxrLI5cNbRMqsaL5
-         X+3mJS2vkSuzzmAvCec2ClHDVfMO3+FsYZNYJb25MlblSOWxE4UiR0wqru1YT7RAmXWK
-         j1/8hLRKB7Gfj/c8BZOxxUJ/b//Pl9exmHa6KX06o+JgB2qRSxtkYKdbOqFMJMzXu1cG
-         VYuQ==
-X-Gm-Message-State: AOJu0YxEb1M17XWpYWJ4YtTLWVK42OCLne4AKP85cQsYobsTOG1V1l0i
-	aixOSh5yMRziqO/9Ooc7q1Wk+g==
-X-Google-Smtp-Source: AGHT+IE06OHEtsjWhMItf9MZkYvHY+wwNM7sFFBDZCLWNmaGt7zo/bUuynStgSXpe+5E7VnKnxeC1g==
-X-Received: by 2002:a05:600c:3093:b0:40c:3272:1fe2 with SMTP id g19-20020a05600c309300b0040c32721fe2mr11009166wmn.49.1703055991040;
-        Tue, 19 Dec 2023 23:06:31 -0800 (PST)
+        d=1e100.net; s=20230601; t=1703056056; x=1703660856;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=EJIGgifSxSlcaUoHGFVrvef1RXY+TUEYySMLo6Oh0rY=;
+        b=coVdVGxAtnA5ggiSSv13/IgNIcXY0kRrTRjErhcz/5o8WKxnX+6+K45ghopz992+YS
+         q0kImKRuc07hCfZOI6vQqTKK6VjOxnSNepW80Uqys5qdHCDY/9nxKuvo9DhY+Xio2676
+         TSX3VfRG8ihETG0cu/eyBpNJ6CFf/RCRUyJba1OFR8Rqep8gyY4IZQWHZw+K6LyYAVZD
+         BzHVHjDiFtYmtwvKY8tb11KD0xDJXi3kK2Hc9Z16bZ7BJ0zRl/YmihFhVFav1pvfxh2Q
+         iXOwVqO+h+5ulr3DJfepR1bXiD4xJ6Ti9+870BGSv3qRlQjD3858uiSNyfM41Zvf/6OM
+         x64A==
+X-Gm-Message-State: AOJu0YzQNQuHdqnCq38T3lOscZg8yH+UjUJigG5UA0otQQbGTDWM+IAM
+	UTvpDjPXTZMzIiaJ/P2pEPfY/A==
+X-Google-Smtp-Source: AGHT+IGucbj110UD10uuYHDQxowAnPX2QA4TGyb7nM2C9E0Bh2uLyLnKY675a8zJXQPl5AZQTqeWqw==
+X-Received: by 2002:a05:600c:246:b0:40b:5583:e44a with SMTP id 6-20020a05600c024600b0040b5583e44amr11795019wmj.0.1703056056051;
+        Tue, 19 Dec 2023 23:07:36 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id v14-20020a05600c444e00b0040c58e410a3sm6154140wmn.14.2023.12.19.23.06.28
+        by smtp.gmail.com with ESMTPSA id v14-20020a05600c444e00b0040c58e410a3sm6154140wmn.14.2023.12.19.23.07.33
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 19 Dec 2023 23:06:30 -0800 (PST)
-Message-ID: <e645a032-67d7-4669-9487-585635a1702e@linaro.org>
-Date: Wed, 20 Dec 2023 08:06:27 +0100
+        Tue, 19 Dec 2023 23:07:35 -0800 (PST)
+Message-ID: <cafae4ec-337a-4134-8545-d86c4c61c858@linaro.org>
+Date: Wed, 20 Dec 2023 08:07:33 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,8 +66,9 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] dt-bindings: media: mediatek-mdp: Change the
- description of gce-events
+Subject: Re: [PATCH 1/3] dt-bindings: mailbox: mediatek,gce-mailbox: Add
+ mediatek,gce-events definition
+Content-Language: en-US
 To: "Jason-JH.Lin" <jason-jh.lin@mediatek.com>,
  Jassi Brar <jassisinghbrar@gmail.com>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -85,8 +85,7 @@ Cc: Conor Dooley <conor+dt@kernel.org>,
  Shawn Sung <shawn.sung@mediatek.com>,
  Project_Global_Chrome_Upstream_Group@mediatek.com
 References: <20231218083604.7327-1-jason-jh.lin@mediatek.com>
- <20231218083604.7327-3-jason-jh.lin@mediatek.com>
-Content-Language: en-US
+ <20231218083604.7327-2-jason-jh.lin@mediatek.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -132,37 +131,41 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231218083604.7327-3-jason-jh.lin@mediatek.com>
+In-Reply-To: <20231218083604.7327-2-jason-jh.lin@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 18/12/2023 09:36, Jason-JH.Lin wrote:
-> Change the description of mediatek,gce-events property to reference
-> mediatek,gce-mailbox.yaml.
+> Since mediatek,gce-events property is a HW event signal from GCE,
+> it should be defined in mediatek,gce-mailbox.yaml and change the
+
+Why? None of the bindings reference it. Did you just move property from
+one device to completely different one?
+
+> description of mediatek,gce-events property in other bindings to
+> reference mediatek,gce-mailbox.yaml.
 > 
 > Signed-off-by: Jason-JH.Lin <jason-jh.lin@mediatek.com>
 > ---
->  .../devicetree/bindings/media/mediatek,mdp3-rdma.yaml        | 5 +----
->  .../devicetree/bindings/media/mediatek,mdp3-rsz.yaml         | 5 +----
->  .../devicetree/bindings/media/mediatek,mdp3-wrot.yaml        | 5 +----
->  3 files changed, 3 insertions(+), 12 deletions(-)
+>  .../devicetree/bindings/mailbox/mediatek,gce-mailbox.yaml  | 7 +++++++
+>  1 file changed, 7 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/media/mediatek,mdp3-rdma.yaml b/Documentation/devicetree/bindings/media/mediatek,mdp3-rdma.yaml
-> index 7032c7e15039..adb3df4731f6 100644
-> --- a/Documentation/devicetree/bindings/media/mediatek,mdp3-rdma.yaml
-> +++ b/Documentation/devicetree/bindings/media/mediatek,mdp3-rdma.yaml
-> @@ -40,10 +40,7 @@ properties:
+> diff --git a/Documentation/devicetree/bindings/mailbox/mediatek,gce-mailbox.yaml b/Documentation/devicetree/bindings/mailbox/mediatek,gce-mailbox.yaml
+> index cef9d7601398..e4da0a58c943 100644
+> --- a/Documentation/devicetree/bindings/mailbox/mediatek,gce-mailbox.yaml
+> +++ b/Documentation/devicetree/bindings/mailbox/mediatek,gce-mailbox.yaml
+> @@ -49,6 +49,13 @@ properties:
+>      items:
+>        - const: gce
 >  
->    mediatek,gce-events:
->      description:
-> -      The event id which is mapping to the specific hardware event signal
-> -      to gce. The event id is defined in the gce header
-> -      include/dt-bindings/gce/<chip>-gce.h of each chips.
-> -    $ref: /schemas/types.yaml#/definitions/uint32-array
-> +      Reference to Documentation/devicetree/bindings/mailbox/mediatek,gce-mailbox.yaml.
+> +  mediatek,gce-events:
+> +    description:
+> +      The event id which is mapping to the specific hardware event signal
+> +      to gce. The event id is defined in the gce header
+> +      include/dt-bindings/gce/<chip>-gce.h of each chips.
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
 
-There is no reference here. You allow now any type. This does not make
-any sense.
+Where are the constraints?
 
 Best regards,
 Krzysztof
