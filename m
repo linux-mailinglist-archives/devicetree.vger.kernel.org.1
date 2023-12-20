@@ -1,209 +1,307 @@
-Return-Path: <devicetree+bounces-27352-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27353-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36C1D81A044
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 14:50:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A866F81A04D
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 14:53:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 531731C22484
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 13:50:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9DEF81C22745
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 13:53:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A2C2358B2;
-	Wed, 20 Dec 2023 13:50:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C9F636AF0;
+	Wed, 20 Dec 2023 13:53:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="0Nx97b2E"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="QPIVrsS4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (mail-bn8nam11on2040.outbound.protection.outlook.com [40.107.236.40])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BCEF38DD6;
-	Wed, 20 Dec 2023 13:50:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Aa78YqT0N3l3B8Et0D88xyxnoDnBOdbbaL5zL2Wgwmr4TzKsCfi3OseMyDJj99Ic3y6Uzuy8MwKsqhewPtoO5bOczmXvPMHssZYLaZ5kX+kBGPI76t1x1aYb9Kl2Ep80Mqtu+5Ct5oB8xSoOVMR3bsop1sXweFjB6qfh7PQUNGB0o/NexpErQ079Xg7EB2a0wZOyTpv9GC3RYous/QgY3SqibojxfFKrhE9mJnsg+KqtgvKbVouTTAyJBYjffvqaS9aEKYFKHvf0DXBk1wyw7bIdMbWS0sS4ip1Qenw1lbq9yR/RlnqWGqScKC4s6rgKJMXDkyFEBlGIDenSNDhxVw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=RgU78en2tu6hHaWMx9N9++V/Dj3wGdpbUBbJwCu9+jk=;
- b=Zqo2gqjFqgMN0Up4g5B7ZEmSK0nPcOuDzhPBYUHsAIecm47Swey+ukH2gY9hpgEp2EZCemPeHrr1a7I5tVAi5eTA96LRakaPwQGVC39t14H109FUcYstvXm69Y3DZei4A1MniDXLuZaobJAjeNzFChWuRr7m906DbPNfDl13K8Hwx6X8MxUcMbSRt5Co2lYwb3pgEqDW6cpSWS60nE7lfWrAhkSNTenypn0YxQCxSCyxBOQVlpvkCOd+SWBciq2rsMicIOwriAvtItuUyCLv9ZktE3PwVeR1/qvxyDYlMvRA0WQGxIP+QF8+O+NXqXVK/BIXdGE+mm30oUKBorg6YQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=RgU78en2tu6hHaWMx9N9++V/Dj3wGdpbUBbJwCu9+jk=;
- b=0Nx97b2EXwio8J6avwDvsG8GKCoQGGtRG5TWaJRN4X+zhLk3Nf1sj9ajr5F+XUq7v/ID6GEP7jYKGXIZGtdMV93LBZUNrgNmEabH8HijcowNcHov9hQ7nS9ZA9dA1xaPK/neCO3+YzRYeoXoDMtz6dx6dgKcNw/xuX2corrr9To=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from BYAPR12MB4758.namprd12.prod.outlook.com (2603:10b6:a03:a5::28)
- by PH7PR12MB6857.namprd12.prod.outlook.com (2603:10b6:510:1af::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7091.38; Wed, 20 Dec
- 2023 13:50:40 +0000
-Received: from BYAPR12MB4758.namprd12.prod.outlook.com
- ([fe80::39a2:42da:ea20:3349]) by BYAPR12MB4758.namprd12.prod.outlook.com
- ([fe80::39a2:42da:ea20:3349%5]) with mapi id 15.20.7091.034; Wed, 20 Dec 2023
- 13:50:39 +0000
-Message-ID: <e9d531bf-a0f5-407d-9d73-97c966b89fd7@amd.com>
-Date: Wed, 20 Dec 2023 14:50:25 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: riscv: cpus: Add AMD MicroBlaze V compatible
-Content-Language: en-US
-To: linux-kernel@vger.kernel.org, monstr@monstr.eu, michal.simek@xilinx.com,
- git@xilinx.com, Conor Dooley <conor+dt@kernel.org>
-Cc: Albert Ou <aou@eecs.berkeley.edu>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley
- <paul.walmsley@sifive.com>, Rob Herring <robh+dt@kernel.org>,
- devicetree@vger.kernel.org, linux-riscv@lists.infradead.org
-References: <d442d916204d26f82c1c3a924a4cdfb117960e1b.1699270661.git.michal.simek@amd.com>
-From: Michal Simek <michal.simek@amd.com>
-Autocrypt: addr=michal.simek@amd.com; keydata=
- xsFNBFFuvDEBEAC9Amu3nk79+J+4xBOuM5XmDmljuukOc6mKB5bBYOa4SrWJZTjeGRf52VMc
- howHe8Y9nSbG92obZMqsdt+d/hmRu3fgwRYiiU97YJjUkCN5paHXyBb+3IdrLNGt8I7C9RMy
- svSoH4WcApYNqvB3rcMtJIna+HUhx8xOk+XCfyKJDnrSuKgx0Svj446qgM5fe7RyFOlGX/wF
- Ae63Hs0RkFo3I/+hLLJP6kwPnOEo3lkvzm3FMMy0D9VxT9e6Y3afe1UTQuhkg8PbABxhowzj
- SEnl0ICoqpBqqROV/w1fOlPrm4WSNlZJunYV4gTEustZf8j9FWncn3QzRhnQOSuzTPFbsbH5
- WVxwDvgHLRTmBuMw1sqvCc7CofjsD1XM9bP3HOBwCxKaTyOxbPJh3D4AdD1u+cF/lj9Fj255
- Es9aATHPvoDQmOzyyRNTQzupN8UtZ+/tB4mhgxWzorpbdItaSXWgdDPDtssJIC+d5+hskys8
- B3jbv86lyM+4jh2URpnL1gqOPwnaf1zm/7sqoN3r64cml94q68jfY4lNTwjA/SnaS1DE9XXa
- XQlkhHgjSLyRjjsMsz+2A4otRLrBbumEUtSMlPfhTi8xUsj9ZfPIUz3fji8vmxZG/Da6jx/c
- a0UQdFFCL4Ay/EMSoGbQouzhC69OQLWNH3rMQbBvrRbiMJbEZwARAQABzSlNaWNoYWwgU2lt
- ZWsgKEFNRCkgPG1pY2hhbC5zaW1la0BhbWQuY29tPsLBlAQTAQgAPgIbAwULCQgHAgYVCgkI
- CwIEFgIDAQIeAQIXgBYhBGc1DJv1zO6bU2Q1ajd8fyH+PR+RBQJkK9VOBQkWf4AXAAoJEDd8
- fyH+PR+ROzEP/1IFM7J4Y58SKuvdWDddIvc7JXcal5DpUtMdpuV+ZiHSOgBQRqvwH4CVBK7p
- ktDCWQAoWCg0KhdGyBjfyVVpm+Gw4DkZovcvMGUlvY5p5w8XxTE5Xx+cj/iDnj83+gy+0Oyz
- VFU9pew9rnT5YjSRFNOmL2dsorxoT1DWuasDUyitGy9iBegj7vtyAsvEObbGiFcKYSjvurkm
- MaJ/AwuJehZouKVfWPY/i4UNsDVbQP6iwO8jgPy3pwjt4ztZrl3qs1gV1F4Zrak1k6qoDP5h
- 19Q5XBVtq4VSS4uLKjofVxrw0J+sHHeTNa3Qgk9nXJEvH2s2JpX82an7U6ccJSdNLYbogQAS
- BW60bxq6hWEY/afbT+tepEsXepa0y04NjFccFsbECQ4DA3cdA34sFGupUy5h5la/eEf3/8Kd
- BYcDd+aoxWliMVmL3DudM0Fuj9Hqt7JJAaA0Kt3pwJYwzecl/noK7kFhWiKcJULXEbi3Yf/Y
- pwCf691kBfrbbP9uDmgm4ZbWIT5WUptt3ziYOWx9SSvaZP5MExlXF4z+/KfZAeJBpZ95Gwm+
- FD8WKYjJChMtTfd1VjC4oyFLDUMTvYq77ABkPeKB/WmiAoqMbGx+xQWxW113wZikDy+6WoCS
- MPXfgMPWpkIUnvTIpF+m1Nyerqf71fiA1W8l0oFmtCF5oTMkzsFNBFFuvDEBEACXqiX5h4IA
- 03fJOwh+82aQWeHVAEDpjDzK5hSSJZDE55KP8br1FZrgrjvQ9Ma7thSu1mbr+ydeIqoO1/iM
- fZA+DDPpvo6kscjep11bNhVa0JpHhwnMfHNTSHDMq9OXL9ZZpku/+OXtapISzIH336p4ZUUB
- 5asad8Ux70g4gmI92eLWBzFFdlyR4g1Vis511Nn481lsDO9LZhKyWelbif7FKKv4p3FRPSbB
- vEgh71V3NDCPlJJoiHiYaS8IN3uasV/S1+cxVbwz2WcUEZCpeHcY2qsQAEqp4GM7PF2G6gtz
- IOBUMk7fjku1mzlx4zP7uj87LGJTOAxQUJ1HHlx3Li+xu2oF9Vv101/fsCmptAAUMo7KiJgP
- Lu8TsP1migoOoSbGUMR0jQpUcKF2L2jaNVS6updvNjbRmFojK2y6A/Bc6WAKhtdv8/e0/Zby
- iVA7/EN5phZ1GugMJxOLHJ1eqw7DQ5CHcSQ5bOx0Yjmhg4PT6pbW3mB1w+ClAnxhAbyMsfBn
- XxvvcjWIPnBVlB2Z0YH/gizMDdM0Sa/HIz+q7JR7XkGL4MYeAM15m6O7hkCJcoFV7LMzkNKk
- OiCZ3E0JYDsMXvmh3S4EVWAG+buA+9beElCmXDcXPI4PinMPqpwmLNcEhPVMQfvAYRqQp2fg
- 1vTEyK58Ms+0a9L1k5MvvbFg9QARAQABwsF8BBgBCAAmAhsMFiEEZzUMm/XM7ptTZDVqN3x/
- If49H5EFAmQr1YsFCRZ/gFoACgkQN3x/If49H5H6BQ//TqDpfCh7Fa5v227mDISwU1VgOPFK
- eo/+4fF/KNtAtU/VYmBrwT/N6clBxjJYY1i60ekFfAEsCb+vAr1W9geYYpuA+lgR3/BOkHlJ
- eHf4Ez3D71GnqROIXsObFSFfZWGEgBtHBZ694hKwFmIVCg+lqeMV9nPQKlvfx2n+/lDkspGi
- epDwFUdfJLHOYxFZMQsFtKJX4fBiY85/U4X2xSp02DxQZj/N2lc9OFrKmFJHXJi9vQCkJdIj
- S6nuJlvWj/MZKud5QhlfZQsixT9wCeOa6Vgcd4vCzZuptx8gY9FDgb27RQxh/b1ZHalO1h3z
- kXyouA6Kf54Tv6ab7M/fhNqznnmSvWvQ4EWeh8gddpzHKk8ixw9INBWkGXzqSPOztlJbFiQ3
- YPi6o9Pw/IxdQJ9UZ8eCjvIMpXb4q9cZpRLT/BkD4ttpNxma1CUVljkF4DuGydxbQNvJFBK8
- ywyA0qgv+Mu+4r/Z2iQzoOgE1SymrNSDyC7u0RzmSnyqaQnZ3uj7OzRkq0fMmMbbrIvQYDS/
- y7RkYPOpmElF2pwWI/SXKOgMUgigedGCl1QRUio7iifBmXHkRrTgNT0PWQmeGsWTmfRit2+i
- l2dpB2lxha72cQ6MTEmL65HaoeANhtfO1se2R9dej57g+urO9V2v/UglZG1wsyaP/vOrgs+3
- 3i3l5DA=
-In-Reply-To: <d442d916204d26f82c1c3a924a4cdfb117960e1b.1699270661.git.michal.simek@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: VI1P195CA0036.EURP195.PROD.OUTLOOK.COM
- (2603:10a6:802:5a::25) To BYAPR12MB4758.namprd12.prod.outlook.com
- (2603:10b6:a03:a5::28)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF66338DD8;
+	Wed, 20 Dec 2023 13:53:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1703080413;
+	bh=LuRrYYA/vGa26zZjbOhorI8OoKLUcA2gUJ0VQdayYlc=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+	b=QPIVrsS4SZaKSM092IT+pgT0wPQc+AOJRliquHfLnldjyovtcgSf3aG4ew+6avyFT
+	 LtQIsnmRSsCJdlyOeXGF3cGfuWfLHF3WT+FEUYOsXMMrC006mftgqavjevdKftwtZ7
+	 rI9xyAwz2qp3ponlwzCmlC6zwxsOB6GbZU+Q8QPZqmtr4u8hwPEdPEGfYwehhqx7aN
+	 KEJDMJVnpv752GVA/LzfCe/3/WAaCgsE8ZRwo4LSfIL9E1dKjaToa5FfBGK/Z0GyiF
+	 lwsa6v4EJFCMJBvSSGQE/kRSGAD6q9roKosdb3VwASU456ZrCTiSUKahn0cR0eYod7
+	 H2OYk+GJMMSIg==
+Received: from nicolas-tpx395.localdomain (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: nicolas)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 44B413781FCE;
+	Wed, 20 Dec 2023 13:53:30 +0000 (UTC)
+Message-ID: <ca865271efc66cf51989d4d7d775ec4c59ce97d3.camel@collabora.com>
+Subject: Re: [PATCH v3 3/5] media: hantro: add support for STM32MP25 VENC
+From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+To: Hugues Fruchet <hugues.fruchet@foss.st.com>, Ezequiel Garcia
+ <ezequiel@vanguardiasur.com.ar>, Philipp Zabel <p.zabel@pengutronix.de>, 
+ Andrzej Pietrasiewicz <andrzej.p@collabora.com>, Sakari Ailus
+ <sakari.ailus@linux.intel.com>, Benjamin Gaignard
+ <benjamin.gaignard@collabora.com>, Laurent Pinchart
+ <laurent.pinchart+renesas@ideasonboard.com>, Daniel Almeida
+ <daniel.almeida@collabora.com>, Benjamin Mugnier
+ <benjamin.mugnier@foss.st.com>,  Heiko Stuebner <heiko@sntech.de>, Mauro
+ Carvalho Chehab <mchehab@kernel.org>, Hans Verkuil <hverkuil@xs4all.nl>,
+ linux-media@vger.kernel.org, Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+ linux-stm32@st-md-mailman.stormreply.com, Rob Herring <robh+dt@kernel.org>,
+  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+ <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ linux-rockchip@lists.infradead.org
+Cc: Marco Felsch <m.felsch@pengutronix.de>, Adam Ford <aford173@gmail.com>
+Date: Wed, 20 Dec 2023 08:53:26 -0500
+In-Reply-To: <20231220084641.2076428-4-hugues.fruchet@foss.st.com>
+References: <20231220084641.2076428-1-hugues.fruchet@foss.st.com>
+	 <20231220084641.2076428-4-hugues.fruchet@foss.st.com>
+Autocrypt: addr=nicolas.dufresne@collabora.com; prefer-encrypt=mutual;
+ keydata=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
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.50.2 (3.50.2-1.fc39) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BYAPR12MB4758:EE_|PH7PR12MB6857:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8143bdb7-e81a-413b-81ed-08dc0162a6b3
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	m2Kp6M5WAaKwrFBI69BYh5965eVi73jnjeZYH69nTsexk/q5DitMT8SQojlcf7DsvR8jccJNQTCR3vBTHP45J8UNwQcgY+5eA87s0ALpIf5xPUM/55sniu3naZTJRK5xv2jpisfZKTVzCc3qam41ge4xZ0wkOnbpSx5QQ4M3sodVCWfTTJhwaj1b+be7UFgkOomSCRF/zlSCEWE8onfoOjQFBhCy7C0a83/N15BCTvkD1bnGX9inQFg9bBgloZIxHJsKEQA6KZSQeGm89/Ia92VvinSMAXuEJSlhsGBocBUvvVWcPGQYtHJ9sknYw8Y6NqFjf658ZPy3HsfsNB4U47WpBUNBQxFdxrdIprys8O/nFbriSewdv/OOBWNvIrrmWY0xLVanGPYQqQyA/2f6DH+Zj4xwqpsjxyZLXSRyMeOUBSiXTcOzXib38R+2AGYaQFQQB7iXKmkPgFPhtWbsD1Y4gx065tqwy+ti76kewgCELts05NM+qgs1ako6x+mSoY8mUmemTQw5Pbj0qStYb4I8BF/fL/Fevof3jXIWiUU/LN4XxEPlK/3RLUimFU4pc6lhQhjVahcnnjSILjCgWYEOD2DuGDErV+VhnAEoEpacI36/YPqZUH2hMGYouoHMNvHDLHWF89k+KNAbuOTUfw==
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BYAPR12MB4758.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(396003)(346002)(39860400002)(366004)(376002)(136003)(230922051799003)(64100799003)(451199024)(186009)(1800799012)(6486002)(7416002)(478600001)(5660300002)(6506007)(2616005)(53546011)(36756003)(6512007)(26005)(4744005)(86362001)(31696002)(2906002)(6666004)(44832011)(66946007)(8676002)(4326008)(66556008)(41300700001)(66476007)(54906003)(8936002)(31686004)(316002)(38100700002)(43740500002)(45980500001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?WjVmTWh3RFQrWFhUalVuSnl6QUlndGQwanJLR0xDVC9TclA5TmQwR3JTMlcw?=
- =?utf-8?B?aXZqQWpLenMrZzZ3MFJxZi9NTXNwZXVCc2ZpT0hMeUxVclNCOEJUckxUWk41?=
- =?utf-8?B?OFlhSmNycnJ3M1dVd0U2YnNRRlk4b3JjblNrbmJ3WnhmSEEyb3JHVzN4N1ox?=
- =?utf-8?B?Y09RVWVVUmRLWUFlRVRnMWFtUzhyZ2d5b2hjZ1NFTXZKK0d0aDNzM1ZFd0l0?=
- =?utf-8?B?bzh5TDJ5NXNic0dWelEwR2dVTnE3QlFCVGxvV1ZzVlh5c3B1b0pMQjVlZWg3?=
- =?utf-8?B?WUJOcFRPSUNyd2lqT1ZhcTQwYTAva1RFcmx5cmFHcjRpbnpSVXdHa25lY3Bl?=
- =?utf-8?B?RE9pOWhzZ1RLV1c5T0ZyNGJxRjVUdnBOdm5YQ2w3cFJNUXZNS0FpN3UxTCtO?=
- =?utf-8?B?eDNlSEtHUFh4QkVLeUJ4NkFsckRwZmJBekhDWnBqd2hvTWNwL0xubTM1Z21L?=
- =?utf-8?B?Z3kzWjFWRmN1cmdJOXhNaGxKN1NNeFdpTVNGS0lKT1R0OHEyTzNKRG5UaVFz?=
- =?utf-8?B?VVVoemcrSzNwQ2E4NDZGbEFyOElpQUt0UVhEZDlCdmFZY3ExbFpOMkpKeWN3?=
- =?utf-8?B?Zkt5N2MvRUZUSVRtb2lZWmFZZkZBNmVNaVBDb2ZVVVZ5NVZ5dGNyeHNicXhD?=
- =?utf-8?B?OW9YQ29Kb1AxVE5GZGVsREE3VGFzUGE4SUZGMEVqU3dMeXpQcnVjcWk4cTZx?=
- =?utf-8?B?anQ2bzNhVTBKQUFkSkVJbXhYdEpOZkhDK0wwMm5KKzI0ZU4zZStYWG40SnUv?=
- =?utf-8?B?bk9DSW9FcFRIYmtMc2huN1Z6RjdlWmhpMGgxODNCNWtMRTdzMUxRMWlQT2k1?=
- =?utf-8?B?QXoxZmJQVXRhWWd6V3Q1ZU83RzlvY0tjdCtmMDgyWnViUGJNZTlQNzhLZy9F?=
- =?utf-8?B?T3p3cWhVcEFXamM0cXEvM0VSNnBkcSthbUNuTGhLOXZ5VFNSMndKMjNXQVBJ?=
- =?utf-8?B?K0tEYzhCcU40NHNNQ3p5TkRLM1VnR0kxekwzNGkvcXNZVExrNm80VjNKYXZC?=
- =?utf-8?B?aUZ3SlB2bGFscDd1bVJERjZsNUd4ZHJlU3pUSU04OG02aks0blZLSndWRHVB?=
- =?utf-8?B?MjkvUE5sWlJQT1hiVGEwM3ZkL3BUY0tNLytNTHNIbjc1bGhKbnBndVRCK1Vp?=
- =?utf-8?B?eXJ0eDAwVGNhNU9SR2RpSXJaV25QaWltOC9zaGZoaUtnNW5tS2R5Q1hiOE5i?=
- =?utf-8?B?ZU4yVlJRblAxbkxBVDNZWmIyWWd1eFR0NG9yS3lQNXFyUzhENUNqNWlYRHZw?=
- =?utf-8?B?V0JHRjJVZmpJQlJrSzdDY3FiYkFwZExQa1YxSDQwODEreDlLbDhEcWxJQWs1?=
- =?utf-8?B?Tmg5ZUNpeTVDc3MzZllxdGZWUzZ5V3lzOFkrSU5OVVhCQUk1UmZML3g1czJY?=
- =?utf-8?B?YnZDSlA2V2ZXMVlJaUtrd3lzbVQzekJOaW9NazZzKyszQkdPdkhLMUFEUnlo?=
- =?utf-8?B?dVIvSE9CM2ZVcFIwdC95RnNsRjZHZ1Q2S2xIVXM5RVVPRHRpdlU5ODZXcHJ0?=
- =?utf-8?B?cnh3UlZZKzkyOW5mV00xTHZLbVQ0amJiQ0ZwVGp5NzgwLzF1NnJCL29XMXJv?=
- =?utf-8?B?MTVNU1ZzTGc2dUhDYXpxa3Z5bGlHVHlReThOSUJxZ2ZmanV6ZHZzQ0xtNWpT?=
- =?utf-8?B?Zm5TaGNDN2xTbk9LdjRLMm9tT0JBSTVsdzBRRVowcjY2OGhCKzdETm1ITU5J?=
- =?utf-8?B?TDlNYnZVbXFyWWljL3UzY2ExbHV6MWxKckhWWXNwRHZnTXFwNFlHTTB4VFhs?=
- =?utf-8?B?bFJ5d2RPMCs2TkhrTFNBMDZCSzg4V1VLR2tmN3IxR2VSZlJpN2pNSW93RWhW?=
- =?utf-8?B?Q1N1VVdtajFrZmI4cTUvSDlMRVBZMGgzdkZnL3dtWnZJaWYyTXhONmFOK2Mr?=
- =?utf-8?B?Y0FmZlJmZmZVMGFJSWNOZUI5ZjdXNEIrN01sZkdGcm8yc0NhMC95QitJOElj?=
- =?utf-8?B?dDIyRStSZ1loL0ZIK1psbXpjdVFNa1ZqWTU5WCtOK3RCLzNXM2ZqNE9CZ0NX?=
- =?utf-8?B?STZXaU0wYS96WjdqN3Jra0ZoNG1QQTN0OVdtOWJYK0FHODRhNDhjdG9FOHBB?=
- =?utf-8?B?cTM3d1VQcXVtKy9CQ204QXAxbVZCTnd1M1VHOFBWUTVBcU9yNlpLbmFnRkJo?=
- =?utf-8?Q?9RPWYc5PiHoQN0LmDAqNxmspW?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8143bdb7-e81a-413b-81ed-08dc0162a6b3
-X-MS-Exchange-CrossTenant-AuthSource: BYAPR12MB4758.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Dec 2023 13:50:39.8383
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: nvj76ZHxgIElDTWSUk73KMdpqNKyJIB6clfifehMq0lHyEBGKd614Bowa4lJ6QsS
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB6857
 
-Hi Conor,
+Hi,
 
-On 11/6/23 12:37, Michal Simek wrote:
-> MicroBlaze V is new AMD/Xilinx soft-core 32bit RISC-V processor IP.
-> It is hardware compatible with classic MicroBlaze processor.
-> 
-> Signed-off-by: Michal Simek <michal.simek@amd.com>
+Le mercredi 20 d=C3=A9cembre 2023 =C3=A0 09:46 +0100, Hugues Fruchet a =C3=
+=A9crit=C2=A0:
+> Add support for STM32MP25 VENC video hardware encoder.
+> JPEG encoding up to 8176x8176.
+> VENC has its own reset/clock/irq.
+>=20
+> Signed-off-by: Hugues Fruchet <hugues.fruchet@foss.st.com>
 > ---
-> 
->   Documentation/devicetree/bindings/riscv/cpus.yaml | 1 +
->   1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml b/Documentation/devicetree/bindings/riscv/cpus.yaml
-> index 97e8441eda1c..7b077af62b27 100644
-> --- a/Documentation/devicetree/bindings/riscv/cpus.yaml
-> +++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
-> @@ -32,6 +32,7 @@ properties:
->       oneOf:
->         - items:
->             - enum:
-> +              - amd,mbv32
->                 - andestech,ax45mp
->                 - canaan,k210
->                 - sifive,bullet0
+>  drivers/media/platform/verisilicon/Makefile   |   3 +-
+>  .../media/platform/verisilicon/hantro_drv.c   |   1 +
+>  .../media/platform/verisilicon/hantro_hw.h    |   1 +
+>  .../platform/verisilicon/stm32mp25_venc_hw.c  | 147 ++++++++++++++++++
+>  4 files changed, 151 insertions(+), 1 deletion(-)
+>  create mode 100644 drivers/media/platform/verisilicon/stm32mp25_venc_hw.=
+c
+>=20
+> diff --git a/drivers/media/platform/verisilicon/Makefile b/drivers/media/=
+platform/verisilicon/Makefile
+> index 5854e0f0dd32..3bf43fdbedc1 100644
+> --- a/drivers/media/platform/verisilicon/Makefile
+> +++ b/drivers/media/platform/verisilicon/Makefile
+> @@ -41,4 +41,5 @@ hantro-vpu-$(CONFIG_VIDEO_HANTRO_SUNXI) +=3D \
+>  		sunxi_vpu_hw.o
+> =20
+>  hantro-vpu-$(CONFIG_VIDEO_HANTRO_STM32MP25) +=3D \
+> -		stm32mp25_vdec_hw.o
+> +		stm32mp25_vdec_hw.o \
+> +		stm32mp25_venc_hw.o
+> diff --git a/drivers/media/platform/verisilicon/hantro_drv.c b/drivers/me=
+dia/platform/verisilicon/hantro_drv.c
+> index 2db27c333924..4d97a8ac03de 100644
+> --- a/drivers/media/platform/verisilicon/hantro_drv.c
+> +++ b/drivers/media/platform/verisilicon/hantro_drv.c
+> @@ -736,6 +736,7 @@ static const struct of_device_id of_hantro_match[] =
+=3D {
+>  #endif
+>  #ifdef CONFIG_VIDEO_HANTRO_STM32MP25
+>  	{ .compatible =3D "st,stm32mp25-vdec", .data =3D &stm32mp25_vdec_varian=
+t, },
+> +	{ .compatible =3D "st,stm32mp25-venc", .data =3D &stm32mp25_venc_varian=
+t, },
+>  #endif
+>  	{ /* sentinel */ }
+>  };
+> diff --git a/drivers/media/platform/verisilicon/hantro_hw.h b/drivers/med=
+ia/platform/verisilicon/hantro_hw.h
+> index b7eccc1a96fc..70c72e9d11d5 100644
+> --- a/drivers/media/platform/verisilicon/hantro_hw.h
+> +++ b/drivers/media/platform/verisilicon/hantro_hw.h
+> @@ -407,6 +407,7 @@ extern const struct hantro_variant rk3588_vpu981_vari=
+ant;
+>  extern const struct hantro_variant sama5d4_vdec_variant;
+>  extern const struct hantro_variant sunxi_vpu_variant;
+>  extern const struct hantro_variant stm32mp25_vdec_variant;
+> +extern const struct hantro_variant stm32mp25_venc_variant;
+> =20
+>  extern const struct hantro_postproc_ops hantro_g1_postproc_ops;
+>  extern const struct hantro_postproc_ops hantro_g2_postproc_ops;
+> diff --git a/drivers/media/platform/verisilicon/stm32mp25_venc_hw.c b/dri=
+vers/media/platform/verisilicon/stm32mp25_venc_hw.c
+> new file mode 100644
+> index 000000000000..9d220ff5f1a9
+> --- /dev/null
+> +++ b/drivers/media/platform/verisilicon/stm32mp25_venc_hw.c
+> @@ -0,0 +1,147 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * STM32MP25 VENC video encoder driver
+> + *
+> + * Copyright (C) STMicroelectronics SA 2022
+> + * Authors: Hugues Fruchet <hugues.fruchet@foss.st.com>
+> + *          for STMicroelectronics.
+> + *
+> + */
+> +
+> +#include <linux/clk.h>
+> +#include <linux/delay.h>
+> +#include <linux/reset.h>
+> +
+> +#include "hantro.h"
+> +#include "hantro_jpeg.h"
+> +#include "hantro_h1_regs.h"
+> +
+> +/*
+> + * Supported formats.
+> + */
+> +
+> +static const struct hantro_fmt stm32mp25_venc_fmts[] =3D {
+> +	{
+> +		.fourcc =3D V4L2_PIX_FMT_YUV420M,
+> +		.codec_mode =3D HANTRO_MODE_NONE,
+> +		.enc_fmt =3D ROCKCHIP_VPU_ENC_FMT_YUV420P,
+> +		.frmsize =3D {
+> +			.min_width =3D 96,
+> +			.max_width =3D FMT_4K_WIDTH,
+> +			.step_width =3D MB_DIM,
+> +			.min_height =3D 96,
+> +			.max_height =3D FMT_4K_HEIGHT,
+> +			.step_height =3D MB_DIM,
+> +		},
+> +	},
+> +	{
+> +		.fourcc =3D V4L2_PIX_FMT_NV12M,
+> +		.codec_mode =3D HANTRO_MODE_NONE,
+> +		.enc_fmt =3D ROCKCHIP_VPU_ENC_FMT_YUV420SP,
+> +		.frmsize =3D {
+> +			.min_width =3D 96,
+> +			.max_width =3D FMT_4K_WIDTH,
+> +			.step_width =3D MB_DIM,
+> +			.min_height =3D 96,
+> +			.max_height =3D FMT_4K_HEIGHT,
+> +			.step_height =3D MB_DIM,
+> +		},
+> +	},
+> +	{
+> +		.fourcc =3D V4L2_PIX_FMT_YUYV,
+> +		.codec_mode =3D HANTRO_MODE_NONE,
+> +		.enc_fmt =3D ROCKCHIP_VPU_ENC_FMT_YUYV422,
+> +		.frmsize =3D {
+> +			.min_width =3D 96,
+> +			.max_width =3D FMT_4K_WIDTH,
+> +			.step_width =3D MB_DIM,
+> +			.min_height =3D 96,
+> +			.max_height =3D FMT_4K_HEIGHT,
+> +			.step_height =3D MB_DIM,
+> +		},
+> +	},
+> +	{
+> +		.fourcc =3D V4L2_PIX_FMT_UYVY,
+> +		.codec_mode =3D HANTRO_MODE_NONE,
+> +		.enc_fmt =3D ROCKCHIP_VPU_ENC_FMT_UYVY422,
+> +		.frmsize =3D {
+> +			.min_width =3D 96,
+> +			.max_width =3D FMT_4K_WIDTH,
+> +			.step_width =3D MB_DIM,
+> +			.min_height =3D 96,
+> +			.max_height =3D FMT_4K_HEIGHT,
+> +			.step_height =3D MB_DIM,
+> +		},
 
-Can you please queue this patch to your tree?
+For all the RAW formats, min/max/step isn't being used at the moment, so be=
+st to
+drop it.
 
-Thanks,
-Michal
+> +	},
+> +	{
+> +		.fourcc =3D V4L2_PIX_FMT_JPEG,
+> +		.codec_mode =3D HANTRO_MODE_JPEG_ENC,
+> +		.max_depth =3D 2,
+> +		.header_size =3D JPEG_HEADER_SIZE,
+> +		.frmsize =3D {
+> +			.min_width =3D 96,
+> +			.max_width =3D FMT_4K_WIDTH,
+
+This should be 8176 according to your commit message. Though, according to =
+the
+Rockchip integration, this is more likely 8192. I'd suggest to add a define=
+ and
+share it if that is correct.
+
+> +			.step_width =3D MB_DIM,
+> +			.min_height =3D 96,
+> +			.max_height =3D FMT_4K_HEIGHT,
+> +			.step_height =3D MB_DIM,
+> +		},
+> +	},
+> +};
+> +
+> +static irqreturn_t stm32mp25_venc_irq(int irq, void *dev_id)
+> +{
+> +	struct hantro_dev *vpu =3D dev_id;
+> +	enum vb2_buffer_state state;
+> +	u32 status;
+> +
+> +	status =3D vepu_read(vpu, H1_REG_INTERRUPT);
+> +	state =3D (status & H1_REG_INTERRUPT_FRAME_RDY) ?
+> +		VB2_BUF_STATE_DONE : VB2_BUF_STATE_ERROR;
+> +
+> +	vepu_write(vpu, H1_REG_INTERRUPT_BIT, H1_REG_INTERRUPT);
+> +
+> +	hantro_irq_done(vpu, state);
+> +
+> +	return IRQ_HANDLED;
+> +}
+> +
+> +static void stm32mp25_venc_reset(struct hantro_ctx *ctx)
+> +{
+> +}
+> +
+> +/*
+> + * Supported codec ops.
+> + */
+> +
+> +static const struct hantro_codec_ops stm32mp25_venc_codec_ops[] =3D {
+> +	[HANTRO_MODE_JPEG_ENC] =3D {
+> +		.run =3D hantro_h1_jpeg_enc_run,
+> +		.reset =3D stm32mp25_venc_reset,
+> +		.done =3D hantro_h1_jpeg_enc_done,
+> +	},
+> +};
+> +
+> +/*
+> + * Variants.
+> + */
+> +
+> +static const struct hantro_irq stm32mp25_venc_irqs[] =3D {
+> +	{ "venc", stm32mp25_venc_irq },
+> +};
+> +
+> +static const char * const stm32mp25_venc_clk_names[] =3D {
+> +	"venc-clk"
+> +};
+> +
+> +const struct hantro_variant stm32mp25_venc_variant =3D {
+> +	.enc_fmts =3D stm32mp25_venc_fmts,
+> +	.num_enc_fmts =3D ARRAY_SIZE(stm32mp25_venc_fmts),
+> +	.codec =3D HANTRO_JPEG_ENCODER,
+> +	.codec_ops =3D stm32mp25_venc_codec_ops,
+> +	.irqs =3D stm32mp25_venc_irqs,
+> +	.num_irqs =3D ARRAY_SIZE(stm32mp25_venc_irqs),
+> +	.clk_names =3D stm32mp25_venc_clk_names,
+> +	.num_clocks =3D ARRAY_SIZE(stm32mp25_venc_clk_names)
+> +};
+> +
+
 
