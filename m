@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-27412-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27413-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B2F5C81A300
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 16:47:54 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DFB1081A30A
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 16:49:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6FEC02848E2
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 15:47:53 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 816AFB212CE
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 15:49:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C88A3405ED;
-	Wed, 20 Dec 2023 15:47:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 596F940BEC;
+	Wed, 20 Dec 2023 15:48:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="MP+2tZGJ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ssUSOVn3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A94C40BE4
-	for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 15:47:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93CC446432
+	for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 15:48:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-40d12b56a38so49698655e9.2
-        for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 07:47:47 -0800 (PST)
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-50dfac6c0beso7363485e87.2
+        for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 07:48:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1703087265; x=1703692065; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1703087316; x=1703692116; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Gu9sJRQCjdtMHbOMOdx0upDqfMg1O7PB3vsX/aPyD14=;
-        b=MP+2tZGJuewb/BULsFBCZrTdFIZSZnE7OSgnx/gcgeHGydpXnhVFbULbvQynWzM7Lg
-         Sj5jdnkQdMHWn6o6DQX2cU8cWgaDK5K8W9yfVVScZlYX7NYBBoI0BDhTRin6ytmAynaC
-         y3FA/xibeaNOqX0a3YLGkLTmS/3tPozwfhvEi7JONYfg+j977Y68EJNGjrzNXrgIdzKo
-         guRa7AvpPaDj+9cYUCarYJaVYbZ9FCJiNsky8BHfkfPQeP3KuSsQ2IpjSg2tJ1RtCmGp
-         BUWZJrzXT4ybxJg0orfEZErn21o+7K1E5Ma7riFcqEbFtkEBbTiBgPE18sOu6hOlMdx2
-         hzbw==
+        bh=HrDN4knSY5/pNNlBl1UNEUTunvMaLDqI5I7tmtvHJhk=;
+        b=ssUSOVn3r3r7TZENUKnrTdZCWYnjrhpfdmDHo78u5FENnxkDeRQA9XJ8ptCLwc6bPh
+         rtDussvOpsFzUa2wfKOFEwPWMDhDIm21WHgqoROSGTeTevVvzqb9+c2fbRbB3L1fT0M7
+         jY1skQwnahshTAcMvTCzVExiSZxOoXnTNlNM+J24LWalH3lkr6nhVrJAzKQgY3v7qVWP
+         O2R5O1O0UBBHY5gILT6d6qNc9QddoI3RW7xYbi/drMRYuBMoPlXMANil7//U2E68FaCi
+         qYp+PKszlBRrcvG+a2C6hUEv2gmj4jUiVBVMcbsCu6J3y7pyzKxltb5of7LkFS7QZwsY
+         F6zA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703087265; x=1703692065;
+        d=1e100.net; s=20230601; t=1703087316; x=1703692116;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Gu9sJRQCjdtMHbOMOdx0upDqfMg1O7PB3vsX/aPyD14=;
-        b=s9ybWZiTPeO4kOEgYIf1fvgJHjM6uSZZ7zA25PPt5m001oxna9lwcHHQK8+r7xVguL
-         WXeKjDjjHoBt01XPLYz3Vh3MJiIHrq4qAhkB9EU6PNNrsc6LxcLOBaBHUnfJD4PSH41e
-         wXuuW3Kyp2M5NDFp/p6nRnviVNMSXi4HbqnL7Cm029w+t48y8AZVIDzsfKLY6sokx8gr
-         k8h3UGGwsnfUpburB4jOKXd6h9mKbzYdCelumnt9DSzXspcfDlUmHPVzTwJznyt2eA3P
-         UMDIlYBO5Z8kw5MyvXN+ddoQCv/gEWpMFaS+Dk1/xZDO6XeTB0EK4Q0EKI4Fv2GK1dfL
-         GOzg==
-X-Gm-Message-State: AOJu0YzJ4Ld9TLZ+WUSu+pAqE36DHeQtnZ8pkaIWleKoG26wFAt/qcOY
-	cdJchzR/qpjnrvoXZ/2vTOOnyw==
-X-Google-Smtp-Source: AGHT+IGQkRTBgajqrIJ6eW8UGvONM1mVejKrJSNCZCoRtCzxa6YWrkksRRPbRbJsccZ35SvZ0TNrFw==
-X-Received: by 2002:a05:600c:4f87:b0:40c:3ea4:b550 with SMTP id n7-20020a05600c4f8700b0040c3ea4b550mr4640497wmq.270.1703087265577;
-        Wed, 20 Dec 2023 07:47:45 -0800 (PST)
+        bh=HrDN4knSY5/pNNlBl1UNEUTunvMaLDqI5I7tmtvHJhk=;
+        b=nnRDLniJ81wS+8EN7lsOF7ouJyJXjEruzs+UN8IYa2rd4t1Ayueio1GluH5WlLYPir
+         xUuDy3k5djYifHEkhNa0NjFPir74Xq/07F3AO7ag5k7knAC4lI9P6V2bZ4nrPW6YHgkU
+         SWCtrB0ie1pdOWHXeUNRbuXYYSvaQJ5vBcW43+P9/T7A+9UWgg+/Qn7tUxe0cEYesD2r
+         dVyB0gBkU7u9G3TZ/9CRDjyGziUGCmuGQrXK9T5gU+X7eYWvzFuNtRumn19x0toqT/lm
+         QfZJFAmwlfTRaWhx6sJcKASNFWp7VmLm/T8ARkvF+uIMOXoCAhz2coGKfETXTKhLCbqX
+         ihbw==
+X-Gm-Message-State: AOJu0Yx54o65lyhRT9E4O5koFayikjtK29rU8t7Y7GV463gVaDOnhPlT
+	F+0xr2U+qrYs56VoVqpIODDy6A==
+X-Google-Smtp-Source: AGHT+IG0ZmZLOzdQjjsqYmo1GcnT1cDyKxyGO9CoOvWTBmoB3iAsCk0mCdFnPCPdOhiZ1Xc3mVrPcA==
+X-Received: by 2002:a05:6512:a8b:b0:50b:fc44:3155 with SMTP id m11-20020a0565120a8b00b0050bfc443155mr13103540lfu.5.1703087316579;
+        Wed, 20 Dec 2023 07:48:36 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id bi18-20020a05600c3d9200b0040d378623b1sm40439wmb.22.2023.12.20.07.47.44
+        by smtp.gmail.com with ESMTPSA id bi18-20020a05600c3d9200b0040d378623b1sm40439wmb.22.2023.12.20.07.48.35
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 20 Dec 2023 07:47:45 -0800 (PST)
-Message-ID: <8d1188b8-e51d-4521-94e4-14a59113bfd0@linaro.org>
-Date: Wed, 20 Dec 2023 16:47:43 +0100
+        Wed, 20 Dec 2023 07:48:35 -0800 (PST)
+Message-ID: <e97d0273-0827-4510-ba23-3d09642a234f@linaro.org>
+Date: Wed, 20 Dec 2023 16:48:34 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,7 +66,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] ASoC: dt-bindings: fsl-sai: Add power-domains
+Subject: Re: [PATCH 2/2] ASoC: dt-bindings: fsl-sai: Support Rx-only SAI
 Content-Language: en-US
 To: Alexander Stein <alexander.stein@ew.tq-group.com>,
  Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
@@ -75,6 +75,7 @@ To: Alexander Stein <alexander.stein@ew.tq-group.com>,
  Conor Dooley <conor+dt@kernel.org>, Shengjiu Wang <shengjiu.wang@nxp.com>
 Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org
 References: <20231219122957.3358149-1-alexander.stein@ew.tq-group.com>
+ <20231219122957.3358149-2-alexander.stein@ew.tq-group.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -120,22 +121,24 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231219122957.3358149-1-alexander.stein@ew.tq-group.com>
+In-Reply-To: <20231219122957.3358149-2-alexander.stein@ew.tq-group.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 19/12/2023 13:29, Alexander Stein wrote:
-> Some SoC like i.MX8QXP use a power-domain for this IP, so add it to the
-> supported properties.
+> On SoC like i.MX8QXP some SAI IP cores support only Rx path. Allow
+> specifying only an Rx DMA channel, while omitting the Tx one.
 > 
 > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 > ---
->  Documentation/devicetree/bindings/sound/fsl,sai.yaml | 3 +++
->  1 file changed, 3 insertions(+)
+> The feature list in reference manual IMX8DQXPRM Rev. 0 05/2020
+> section 1.1.2 "Features" explicitly state that SAI2 and SAI3 is
+> receive only.
 > 
 
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Why aren't you constraining it per variant/device? If only some have one
+DMA channel, then I would normally expect allOf:if:then narrowing it for
+each device.
 
 Best regards,
 Krzysztof
