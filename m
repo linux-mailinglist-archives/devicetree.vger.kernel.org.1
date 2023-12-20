@@ -1,46 +1,78 @@
-Return-Path: <devicetree+bounces-27434-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27435-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B10D381A5D4
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 18:00:21 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 83B5B81A5EF
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 18:05:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 51C471F22598
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 17:00:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B4F7F1C21182
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 17:05:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E74546559;
-	Wed, 20 Dec 2023 17:00:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C27F4776B;
+	Wed, 20 Dec 2023 17:05:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FBICEXf0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bmailout1.hostsharing.net (bmailout1.hostsharing.net [83.223.95.100])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qk1-f172.google.com (mail-qk1-f172.google.com [209.85.222.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E60C4653E;
-	Wed, 20 Dec 2023 17:00:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=wunner.de
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=h08.hostsharing.net
-Received: from h08.hostsharing.net (h08.hostsharing.net [83.223.95.28])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256
-	 client-signature RSA-PSS (4096 bits) client-digest SHA256)
-	(Client CN "*.hostsharing.net", Issuer "RapidSSL TLS RSA CA G1" (verified OK))
-	by bmailout1.hostsharing.net (Postfix) with ESMTPS id 4187730014241;
-	Wed, 20 Dec 2023 18:00:12 +0100 (CET)
-Received: by h08.hostsharing.net (Postfix, from userid 100393)
-	id 321F6324F8; Wed, 20 Dec 2023 18:00:12 +0100 (CET)
-Date: Wed, 20 Dec 2023 18:00:12 +0100
-From: Lukas Wunner <lukas@wunner.de>
-To: Patrick Williams <patrick@stwcx.xyz>
-Cc: Howard Chiu <howard10703049@gmail.com>, robh+dt@kernel.org,
-	joel@jms.id.au, andrew@aj.id.au, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
-	linux-kernel@vger.kernel.org, potin.lai@quantatw.com,
-	Howard Chiu <howard.chiu@quantatw.com>
-Subject: Re: [PATCH v8] ARM: dts: aspeed: Adding Facebook Bletchley BMC
-Message-ID: <20231220170012.GA10387@wunner.de>
-References: <20231220080733.GA30641@wunner.de>
- <F444BFCC-1D44-4AF6-A0E1-B153A217FFE3@stwcx.xyz>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CCDC46B86;
+	Wed, 20 Dec 2023 17:05:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qk1-f172.google.com with SMTP id af79cd13be357-781120575f5so58218985a.0;
+        Wed, 20 Dec 2023 09:05:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1703091929; x=1703696729; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=5puDNbS5h8yPDhnQyFTYthYdD3tPGlaiQXwUTgRM5zo=;
+        b=FBICEXf0MZJPi1HZUTYUTW+scpmErVd+rE9b+wQoQChlge1r9B/0MGYiirwyw/K+NE
+         Y9FBECXgqf4485SBQR+Nm0ww6Akb/r5O6gCIBrxhmxNtWlRwkCDAbQdVu5Z46Ife4WlH
+         ZgdjLRoaYjsf0Q/T3cd7cMVYnkZx39EwHLsiy5Wq3sW65RYcVB1B9fptGeVhFRoMHaRI
+         Usw8pmCDeWSMJa/BNV9cgwuY0OthKMWopvO9m52xzsN7HyFjdwEqVqDTHnMNNt/VSjWP
+         aWLp8Sdt5FTNAy2W7P29mK1RQpy9gtD0+U0I7RotJLjLqLn9ET3GIzxwlh9gslEzQtIc
+         5jgw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1703091929; x=1703696729;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=5puDNbS5h8yPDhnQyFTYthYdD3tPGlaiQXwUTgRM5zo=;
+        b=nMk0zztKJ5q69wtS701lSgLL9UrGtewa7as004teFJZgps6bNlLLPXUGCe9IaLSDQI
+         2UyEUBLmAs7FEULEvW+QZJTY6QJXBFpiHRhXYA9UnlKyBoEMcQsiUlJs39oRYvNJ7A2E
+         FgM2kpK9WLR2XX6MQlERawGAfNbaMN9tM3nC/ytezbR+2dF7dLyfJX3Bd8O5e5m+0tQa
+         fBu7dBgCk3ISuck44s2NzWiGDGfqp+I/b4cFrJUM6zF2K8Yaw1jdk/j/75Gm79zHV2Wt
+         BbJrJLEMWBxFuauzzRYxMjNUibKFYLPVPCEHphF+T0EGC2zVx/uEC9SHQnya2t8iP/GB
+         aM9A==
+X-Gm-Message-State: AOJu0YyFkHeEKAhv0UVjMY00A+FtTWXSzLClGkJggfC19s3wujbuNoY6
+	m/ti2Pw3FB5pADpckCy6xt8aJm+cZb3KNw==
+X-Google-Smtp-Source: AGHT+IEWuxQbO/1DD4MjAMOm0X5S4M1feBKz+j/m/1urHbHzHcCBBjyiyMItrLamQwxZ/1+jf7mNcw==
+X-Received: by 2002:a05:620a:439f:b0:780:e283:314e with SMTP id a31-20020a05620a439f00b00780e283314emr7460463qkp.105.1703091928540;
+        Wed, 20 Dec 2023 09:05:28 -0800 (PST)
+Received: from abdel ([174.95.13.129])
+        by smtp.gmail.com with ESMTPSA id x8-20020a05620a098800b0077efd1e3e52sm64199qkx.24.2023.12.20.09.05.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 20 Dec 2023 09:05:28 -0800 (PST)
+Date: Wed, 20 Dec 2023 12:05:17 -0500
+From: Abdel Alkuor <alkuor@gmail.com>
+To: Conor Dooley <conor@kernel.org>
+Cc: Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>, linux-hwmon@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: hwmon: (lm75) Add AMS AS6200
+ temperature sensor
+Message-ID: <ZYMezZbvgtsCW07j@abdel>
+References: <89fb5eec30df734ee8fc58427cf5d94929076514.1702874115.git.alkuor@gmail.com>
+ <20231219-mascot-semester-7d2c492b99bc@spud>
+ <ZYHEcfB7b+k2g9Ge@abdel>
+ <20231220-gristle-renovate-557b8c330e4e@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -49,60 +81,26 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <F444BFCC-1D44-4AF6-A0E1-B153A217FFE3@stwcx.xyz>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20231220-gristle-renovate-557b8c330e4e@spud>
 
-On Wed, Dec 20, 2023 at 06:38:59AM -0600, Patrick Williams wrote:
-> On Dec 20, 2023, at 2:07AM, Lukas Wunner <lukas@wunner.de> wrote:
-> > On Tue, Dec 07, 2021 at 05:49:24PM +0800, Howard Chiu wrote:
-> > > Initial introduction of Facebook Bletchley equipped with
-> > > Aspeed 2600 BMC SoC.
-> > [...]
-> > > +        tpmdev@0 {
-> > > +            compatible = "tcg,tpm_tis-spi";
-> > 
-> > What's the chip used on this board?  Going forward, the DT schema for TPMs
-> > requires the exact chip name in addition to the generic "tcg,tpm_tis-spi".
-> 
-> Why is this a requirement?  This assumes there is exactly one chip.
-> TPMs are often placed on a pluggable module in which multiple vendors
-> could be used. There is no way in the DTS to specify multiple compatible
-> chips.
+On Wed, Dec 20, 2023 at 04:25:15PM +0000, Conor Dooley wrote:
+> On Tue, Dec 19, 2023 at 11:27:29AM -0500, Abdel Alkuor wrote:
+> > On Tue, Dec 19, 2023 at 03:18:24PM +0000, Conor Dooley wrote:
+> > > On Sun, Dec 17, 2023 at 11:52:27PM -0500, Abdel Alkuor wrote:
+> > >  
+> > No, not all of them support the interrupt. Just tmp101, tmp102, tmp112, and as6200.
+> > For now, I'll add the check for ams,as6200.
+>
+Hi Conor,
+> If multiple devices have the interrupt you should document it for all of
+> them IMO.
 
-It seems to be a convention to provide the name of the chip that's
-actually used, in addition to the generic compatible.
-
-One advantage I see is that specific properties can be enforced per-chip.
-E.g. Infineon SLB9670 TPMs support an SPI clock of up to 43 MHz,
-whereas Atmel ATTPM20P support 36 MHz.  The devicetree schema may
-contain those maximum speeds and the validator can check whether
-devicetrees observe them.
-
-Similarly, a device driver may use chip-specific quirks based on the
-compatible string.
-
-Last not least, it is useful for documentation purposes to specify which
-chip is used.
-
-If chips are dual-sourced or triple-sourced, as you say, and they
-behave identically, then I think it is fine to specify all of their
-compatible strings plus the generic compatible.  If they do not
-behave identically, separate devicetrees should be used for each
-board version with a different chip.
-
-As for specifying the generic compatible last, this follows from
-section 2.3.1 of the devicetree specification:
-
-   "The compatible property value consists of one or more strings
-    that define the specific programming model for the device.
-    This list of strings should be used by a client program for
-    device driver selection. The property value consists of a
-    concatenated list of null terminated strings, from most specific
-    to most general."
-
-    https://buildmedia.readthedocs.org/media/pdf/devicetree-specification/latest/devicetree-specification.pdf
+The interrupt hasn't been implemented for tmp101, tmp102 and tmp112 yet.
+Should I still add them to the interrupt property? They might be two different
+things driver and bindings, but I just wanted to make sure.
 
 Thanks,
+Abdel
 
-Lukas
+
 
