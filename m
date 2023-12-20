@@ -1,119 +1,135 @@
-Return-Path: <devicetree+bounces-27444-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27445-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC23881A744
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 20:25:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D29A281A7A6
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 21:36:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 685CC287555
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 19:25:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3B46E283838
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 20:36:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F3A64879F;
-	Wed, 20 Dec 2023 19:25:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86F1C1DA3E;
+	Wed, 20 Dec 2023 20:36:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zFlspcyi"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Xny6pLVy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com [209.85.128.178])
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B35F448CEC
-	for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 19:25:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-5d33574f64eso494867b3.3
-        for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 11:25:10 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 027DB41A85;
+	Wed, 20 Dec 2023 20:36:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-40d12b56a38so1024085e9.2;
+        Wed, 20 Dec 2023 12:36:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1703100309; x=1703705109; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=QNmCP+oe3oSMVeft7bEuEgPHXSe736/+Mn6NnLSCe2I=;
-        b=zFlspcyihG7gzbLJJMkrNtjBdvCMt+fHWDNFvGaAQ1t3yUqL7425UfcBNu1+mYegI7
-         AdzHNZ8Mp6pgKv87k+JCS7KI/TWQTIkGJrYc5gMqmBla/x+cFxHZUOianeg8zG+S4TVw
-         qJ4E7UA9qQ4BADjLwjNValnWejobFeoifiZ2GzwfXtatdONsgytdGgUos+RZn4oOUkN1
-         TiGHK4KReFPN4ZTsyf09lV1NUVVcI3PotTvfbTwUzXf+LN9sB10/sOzo2JKDGUEm9Mhn
-         7J6HjmLTVxLgHzLchD89JlgAgTaaPZ/cSrDKYi9EEOs3R08zfdAUYGrGFA2MsHmAoc13
-         hZHQ==
+        d=gmail.com; s=20230601; t=1703104570; x=1703709370; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Gab6lAEWInYI2on8pVOUw7Ug3N1N4atZPO1lxaglfow=;
+        b=Xny6pLVyT/POOku9vpBsQnnMlPvsIvDNEXfrg+VkCIwcz/MeP8u3laZhnQQYF3PhcJ
+         cdHdJEbtA0fzgxW4viy9MQVzZ7rjxicTSD9g11laUkWS4lfN1oRLaO0Ing0HIxC2Ccf8
+         /Aso2spqRaOLtquyKSu1scY3xMHvKB4h99tfC+XKL3/sBeEX4K29qpRQ5XOEf+0hwFG/
+         sh1tZlsPn9ycOaYhhUAAm413ZMt82o/epLMz2pm0n+3xblXyoF33JUkomWHzEZY0Wpl1
+         UvKko7o6ynTWWPx6FgNNruqLM5UcicNy3rk//HyZH+T3u0dK1kkr0sUcHJ1Q9M1PMiN8
+         utLg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703100309; x=1703705109;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=QNmCP+oe3oSMVeft7bEuEgPHXSe736/+Mn6NnLSCe2I=;
-        b=sN8Yz5wYb+yOMRUDV9dcRPJq58tQTxtmQ/MUz+AWELaUZ+j4ziF/EqGLdohcNhxRsq
-         RAR91KQap93juL3/1vus+epfS1up5sgdromU9Bsp+W5Oauex/PR0tGTUA9rlvztz5CLb
-         nKPEApbEab6yNsUor8SNz95RtwGyjceLG5LpE1/+81ieTp6bFWF8NUXOoYXXbwqTCKdJ
-         Y+KSW2i8znbT42Mx7T7nalrJVSFwM97ugTKME3EhYABqqZjj3xRy8vG4riMC4PwrqeWZ
-         onh4/UWHwHZZyx+5sSnFycfdRca4YwLNYpoYyk/SO5meCmtG7nxZO3eyzJKbzT/XIVkt
-         nrlQ==
-X-Gm-Message-State: AOJu0YwYaMHUHAF8MG6D8Mx9INi87339T9RNY1NV2f2N4bwxkOfyXqF9
-	ZjF2k0w83q2RV8RGPSk8bihWirajBFSYi8Xs+KH+6A==
-X-Google-Smtp-Source: AGHT+IHKQoxOSx/75Yu3bPfICRilkmmatfOTZGCwh6ZIG0MIHwmi1SgmuqkGllO5XCdAmaUsxQDOtWdj3LD1JcBG/pk=
-X-Received: by 2002:a0d:d80a:0:b0:5e2:a469:71b6 with SMTP id
- a10-20020a0dd80a000000b005e2a46971b6mr258824ywe.4.1703100309747; Wed, 20 Dec
- 2023 11:25:09 -0800 (PST)
+        d=1e100.net; s=20230601; t=1703104570; x=1703709370;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Gab6lAEWInYI2on8pVOUw7Ug3N1N4atZPO1lxaglfow=;
+        b=VNU65rOgZIAebutIHTO5dtar9XypnDNpUxv0bLp6x5+hAeacNw7esbDrhRasfg7+mu
+         6cA1s0cj5inbt+2VfOCb4bOH9ijjjHo8z+pMKuisUmqb2fNqU60YKnO8FGW2rW8fIMR6
+         j++SgxyfhEn+GyHsn/AoPIe0tfn9r+4KjiBEJFRLHGBC4/aO6AE/7Pd/eAuugfo2uYiG
+         NVDxiDmTr7e9eg+loyi5VFodl82tqYZwMUP7lCBFMPBSto08n1XzcOT/5iampIsjn6Nk
+         NWaiSwPwsogE8RUX43u7BIndzUIXdSNRAQcMabLo7vtLtzOUH5A1T6CW7/baWHpCzElb
+         2oxA==
+X-Gm-Message-State: AOJu0Ywd/1wrBzUoMdvNAS6lMp2kfBDYisC5MEnKlDgN1vqLeV9zobx/
+	m89wCs3dwi4EA8QEBDyTjog=
+X-Google-Smtp-Source: AGHT+IG7/pATF5SbDyVvRmck3xB4G+FEKhoLKpI3NCY4qj24Tl8dGaUxllvbsMityLj5lXSpUtPePA==
+X-Received: by 2002:a05:600c:1387:b0:40d:1a5f:8abd with SMTP id u7-20020a05600c138700b0040d1a5f8abdmr64059wmf.291.1703104569941;
+        Wed, 20 Dec 2023 12:36:09 -0800 (PST)
+Received: from localhost.localdomain (82-149-12-148.dynamic.telemach.net. [82.149.12.148])
+        by smtp.gmail.com with ESMTPSA id v14-20020a05600c444e00b0040c58e410a3sm8703224wmn.14.2023.12.20.12.36.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 20 Dec 2023 12:36:09 -0800 (PST)
+From: Jernej Skrabec <jernej.skrabec@gmail.com>
+To: robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	wens@csie.org,
+	samuel@sholland.org,
+	andrew@lunn.ch,
+	hkallweit1@gmail.com,
+	linux@armlinux.org.uk,
+	davem@davemloft.net,
+	edumazet@google.com,
+	kuba@kernel.org,
+	pabeni@redhat.com
+Cc: devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-sunxi@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	netdev@vger.kernel.org,
+	Jernej Skrabec <jernej.skrabec@gmail.com>
+Subject: [PATCH v5 0/3] arm64: add ethernet to orange pi 3 & one plus
+Date: Wed, 20 Dec 2023 21:35:34 +0100
+Message-ID: <20231220203537.83479-1-jernej.skrabec@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231215143906.3651122-1-emil.renner.berthing@canonical.com>
- <20231215143906.3651122-2-emil.renner.berthing@canonical.com>
- <20231215202137.GA317624-robh@kernel.org> <CAJM55Z9pBpYfwpxPH7bUumuosVDn9DHLSBngW6CtG7aK_z+_bQ@mail.gmail.com>
-In-Reply-To: <CAJM55Z9pBpYfwpxPH7bUumuosVDn9DHLSBngW6CtG7aK_z+_bQ@mail.gmail.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Wed, 20 Dec 2023 20:24:58 +0100
-Message-ID: <CACRpkdYT+jf4=dk3Y9cwa_=aYCihVq93N-iT0RUbtT2-+PX69w@mail.gmail.com>
-Subject: Re: [PATCH v1 1/8] dt-bindings: pinctrl: Add thead,th1520-pinctrl bindings
-To: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Cc: Rob Herring <robh@kernel.org>, linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	Hoan Tran <hoan@os.amperecomputing.com>, Serge Semin <fancer.lancer@gmail.com>, 
-	Bartosz Golaszewski <brgl@bgdev.pl>, Andy Shevchenko <andy@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jisheng Zhang <jszhang@kernel.org>, Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Sat, Dec 16, 2023 at 2:57=E2=80=AFPM Emil Renner Berthing
-<emil.renner.berthing@canonical.com> wrote:
+This is continuation of the work done by Corentin:
+https://lore.kernel.org/linux-sunxi/20221115073603.3425396-1-clabbe@baylibre.com/
 
-> > > +          thead,strong-pull-up:
-> > > +            oneOf:
-> > > +              - type: boolean
-> > > +              - $ref: /schemas/types.yaml#/definitions/uint32
-> > > +                enum: [ 0, 2100 ]
-> > > +            description: Enable or disable strong 2.1kOhm pull-up.
-> >
-> > bias-pull-up can already specify the strength in Ohms.
->
-> The strong pull up is a separate bit that can be enabled independently fr=
-om the
-> regular pull-up/down, so in theory you could enable both the regular pull=
--up
-> and the strong pull-up at the same time, or even the regular poll-down an=
-d the
-> strong pull-up which is probably not advised.
+In short, Orange Pi 3 and Orange Pi One Plus boards have ethernet PHYs
+which are powered by two voltage regulators. They have to be powered on in
+correct order or otherwise they are not functional. Please see link above
+for previous discussion on how to achieve that.
 
-bias-pull-up; <- Just regular pulling up the ordinary
-bias-pull-up =3D <100>; <- Same thing if the ordinary is 100 Ohm (figure ou=
-t what
-  resistance it actually is....)
-bias-pull-up =3D <21000000>; <- strong pull up
-bias-pull-up =3D <21000100>; <- both at the same time
+Best regards,
+Jernej
 
-> So the idea here was just to make sure that you can do eg.
->
->         thead,strong-pull-up =3D <0>;
->
-> to make sure the bit is cleared.
+changes since v1:
+- Add regulator_bulk_get_all for ease handling of PHY regulators
+- Removed all conversion patches to keep DT compatibility.
 
-No use bias-disable; for this.
+Changes since v2:
+- removed use of regulator-names and regulators list.
 
-Yours,
-Linus Walleij
+Changes since v3:
+- fixes kbuild robot report
+
+Changes since v4:
+- dropped merged patches
+- reworked PHY powering on/off patch
+- added Orange Pi One Plus patch, since it has same issue
+
+Corentin Labbe (1):
+  phy: handle optional regulator for PHY
+
+Jernej Skrabec (1):
+  arm64: dts: allwinner: orange-pi-one-plus: Fix ethernet
+
+Ondrej Jirman (1):
+  arm64: dts: allwinner: orange-pi-3: Enable ethernet
+
+ .../dts/allwinner/sun50i-h6-orangepi-3.dts    | 40 ++++++++++++++
+ .../allwinner/sun50i-h6-orangepi-one-plus.dts | 29 +++++++---
+ drivers/net/mdio/fwnode_mdio.c                | 53 ++++++++++++++++++-
+ drivers/net/phy/phy_device.c                  |  6 +++
+ include/linux/phy.h                           |  3 ++
+ 5 files changed, 122 insertions(+), 9 deletions(-)
+
+-- 
+2.43.0
+
 
