@@ -1,187 +1,392 @@
-Return-Path: <devicetree+bounces-27098-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27099-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF7E8819530
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 01:26:02 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 17E5181953A
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 01:28:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C261BB25A72
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 00:25:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 383231C2537A
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 00:28:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD7CE1DFCD;
-	Wed, 20 Dec 2023 00:23:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDD768813;
+	Wed, 20 Dec 2023 00:28:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=crapouillou.net header.i=@crapouillou.net header.b="EYyLb4pB"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="jO9JJUKc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from aposti.net (aposti.net [89.234.176.197])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BECE1D543;
-	Wed, 20 Dec 2023 00:23:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=crapouillou.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=crapouillou.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=crapouillou.net;
-	s=mail; t=1703031813;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=ofG5Can+ZciJ6C/R5Us91iUFRiF2X0DgCmjFbEUpMxg=;
-	b=EYyLb4pB85gKl1EUPfxOhFKSpWKlFXWhpCta0HdrQlXtMi4XLTd9fb6bl66fxc4chLuv53
-	CXLVMfJwoW1wQXsDyzgaQFZeQpt678SZ2TFsu/nCP48Jp0/3ZEAgIDQCMekopW3VE7HiQj
-	qqLdS/CcIZf9gdGvCqak8ZclwkTtj/Q=
-Message-ID: <fb38504f15148c78c7a91850daf8c247d592b0a0.camel@crapouillou.net>
-Subject: Re: [RFC] dt-bindings: input: Clarify that abs_min must be less
- than abs_max
-From: Paul Cercueil <paul@crapouillou.net>
-To: Dmitry Torokhov <dmitry.torokhov@gmail.com>, Artur Rojek
-	 <contact@artur-rojek.eu>
-Cc: Chris Morgan <macroalpha82@gmail.com>, linux-input@vger.kernel.org, 
-	devicetree@vger.kernel.org, conor+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org, Chris Morgan
-	 <macromorgan@hotmail.com>
-Date: Wed, 20 Dec 2023 01:23:31 +0100
-In-Reply-To: <ZYH97KVDO4lFsbmi@google.com>
-References: <20231215024022.122022-1-macroalpha82@gmail.com>
-	 <03a9a56362b0559234d4a21a4de3e32e@artur-rojek.eu>
-	 <ZYH97KVDO4lFsbmi@google.com>
-Autocrypt: addr=paul@crapouillou.net; prefer-encrypt=mutual;
- keydata=mQENBF0KhcEBCADkfmrzdTOp/gFOMQX0QwKE2WgeCJiHPWkpEuPH81/HB2dpjPZNW03ZMLQfECbbaEkdbN4YnPfXgcc1uBe5mwOAPV1MBlaZcEt4M67iYQwSNrP7maPS3IaQJ18ES8JJ5Uf5UzFZaUawgH+oipYGW+v31cX6L3k+dGsPRM0Pyo0sQt52fsopNPZ9iag0iY7dGNuKenaEqkYNjwEgTtNz8dt6s3hMpHIKZFL3OhAGi88wF/21isv0zkF4J0wlf9gYUTEEY3Eulx80PTVqGIcHZzfavlWIdzhe+rxHTDGVwseR2Y1WjgFGQ2F+vXetAB8NEeygXee+i9nY5qt9c07m8mzjABEBAAG0JFBhdWwgQ2VyY3VlaWwgPHBhdWxAY3JhcG91aWxsb3UubmV0PokBTgQTAQoAOBYhBNdHYd8OeCBwpMuVxnPua9InSr1BBQJdCoXBAhsDBQsJCAcCBhUKCQgLAgQWAgMBAh4BAheAAAoJEHPua9InSr1BgvIH/0kLyrI3V0f33a6D3BJwc1grbygPVYGuC5l5eMnAI+rDmLR19E2yvibRpgUc87NmPEQPpbbtAZt8On/2WZoE5OIPdlId/AHNpdgAtGXo0ZX4LGeVPjxjdkbrKVHxbcdcnY+zzaFglpbVSvp76pxqgVg8PgxkAAeeJV+ET4t0823Gz2HzCL/6JZhvKAEtHVulOWoBh368SYdolp1TSfORWmHzvQiCCCA+j0cMkYVGzIQzEQhX7Urf9N/nhU5/SGLFEi9DcBfXoGzhyQyLXflhJtKm3XGB1K/pPulbKaPcKAl6rIDWPuFpHkSbmZ9r4KFlBwgAhlGy6nqP7O3u7q23hRW5AQ0EXQqFwQEIAMo+MgvYHsyjX3Ja4Oolg1Txzm8woj30ch2nACFCqaO0R/1kLj2VVeLrDyQUOlXx9PD6IQI4M8wy8m0sR4wV2p/g/paw7k65cjzYYLh+FdLNyO7IW
-	YXndJO+wDPi3aK/YKUYepqlP+QsmaHNYNdXEQDRKqNfJg8t0f5rfzp9ryxd1tCnbV+tG8VHQWiZXNqN7062DygSNXFUfQ0vZ3J2D4oAcIAEXTymRQ2+hr3Hf7I61KMHWeSkCvCG2decTYsHlw5Erix/jYWqVOtX0roOOLqWkqpQQJWtU+biWrAksmFmCp5fXIg1Nlg39v21xCXBGxJkxyTYuhdWyu1yDQ+LSIUAEQEAAYkBNgQYAQoAIBYhBNdHYd8OeCBwpMuVxnPua9InSr1BBQJdCoXBAhsMAAoJEHPua9InSr1B4wsH/Az767YCT0FSsMNt1jkkdLCBi7nY0GTW+PLP1a4zvVqFMo/vD6uz1ZflVTUAEvcTi3VHYZrlgjcxmcGu239oruqUS8Qy/xgZBp9KF0NTWQSl1iBfVbIU5VV1vHS6r77W5x0qXgfvAUWOH4gmN3MnF01SH2zMcLiaUGF+mcwl15rHbjnT3Nu2399aSE6cep86igfCAyFUOXjYEGlJy+c6UyT+DUylpjQg0nl8MlZ/7Whg2fAU9+FALIbQYQzGlT4c71SibR9T741jnegHhlmV4WXXUD6roFt54t0MSAFSVxzG8mLcSjR2cLUJ3NIPXixYUSEn3tQhfZj07xIIjWxAYZo=
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF8648825;
+	Wed, 20 Dec 2023 00:28:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 3BK0GT9X001769;
+	Wed, 20 Dec 2023 00:27:47 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=zoQh/8YNvCB3kEURhsJUKvtjpmLB03UJyNk6CVlBC/U=; b=jO
+	9JJUKcvSOVkBSJjc8Ftki/aFauKmTqHo2DDPzuYiXBw6q9nu9sBOb+t9s2NlZnwu
+	SVT1TOkpey8T/NALEZm0UC0bndmKbmUZF19h1c3zMAE9xutOAbo1sfHZsCrjiGLO
+	8wajyQrIBeLHAuKkFxOMKhAvU4p7Xmn/Qu7VK0bCEJ8pIdREjWaq8Ljrp1udL0O2
+	2ehoFZXyFqlIk55gligNYFPYkJlVrtoU9JcckKXhSLlPVVTywcrLnIQzlakT6u/k
+	lezES3w4b/QN9teFVORTVtUozD92SJKaTD0mHflT9rXqKJf621LFxpm5ZlixDdfl
+	8xvDkBfCtYvOjSb/hm8A==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3v34dyandd-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 20 Dec 2023 00:27:47 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3BK0Rk9C001206
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 20 Dec 2023 00:27:46 GMT
+Received: from [10.239.133.211] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Tue, 19 Dec
+ 2023 16:27:42 -0800
+Message-ID: <56f477d9-0b7b-4671-a09c-cc3fc24a8492@quicinc.com>
+Date: Wed, 20 Dec 2023 08:27:39 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/8] coresight-tpda: Add support to configure CMB
+ element
+Content-Language: en-US
+To: Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Mathieu Poirier
+	<mathieu.poirier@linaro.org>,
+        Alexander Shishkin
+	<alexander.shishkin@linux.intel.com>,
+        Konrad Dybcio <konradybcio@gmail.com>,
+        Mike Leach <mike.leach@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC: Jinlong Mao <quic_jinlmao@quicinc.com>, Leo Yan <leo.yan@linaro.org>,
+        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
+        <coresight@lists.linaro.org>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Tingwei Zhang
+	<quic_tingweiz@quicinc.com>,
+        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Song Chai <quic_songchai@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <andersson@kernel.org>
+References: <1700533494-19276-1-git-send-email-quic_taozha@quicinc.com>
+ <1700533494-19276-3-git-send-email-quic_taozha@quicinc.com>
+ <88e51407-344e-4584-8711-29cc014c782b@arm.com>
+ <b5965008-b51d-4bb7-8cf2-d21aa35d2205@quicinc.com>
+ <fa39e477-7faf-46e4-8ae2-9eb2321afc26@arm.com>
+From: Tao Zhang <quic_taozha@quicinc.com>
+In-Reply-To: <fa39e477-7faf-46e4-8ae2-9eb2321afc26@arm.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: r6rfnBgQh2OnWRI_BdAGmieklXfkTpl5
+X-Proofpoint-GUID: r6rfnBgQh2OnWRI_BdAGmieklXfkTpl5
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-12-09_01,2023-12-07_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 impostorscore=0
+ lowpriorityscore=0 phishscore=0 malwarescore=0 suspectscore=0
+ clxscore=1015 bulkscore=0 spamscore=0 adultscore=0 mlxlogscore=999
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2311290000 definitions=main-2312200001
 
-Hi Dmitry,
 
-Le mardi 19 d=C3=A9cembre 2023 =C3=A0 12:32 -0800, Dmitry Torokhov a =C3=A9=
-crit=C2=A0:
-> On Fri, Dec 15, 2023 at 12:19:51PM +0100, Artur Rojek wrote:
-> > On 2023-12-15 03:40, Chris Morgan wrote:
-> > > From: Chris Morgan <macromorgan@hotmail.com>
-> > >=20
-> > > uinput refuses to work with abs devices where the min value is
-> > > greater
-> > > than the max value. uinput_validate_absinfo() returns -EINVAL if
-> > > this
-> > > is the case and prevents using uinput on such a device. Since
-> > > uinput
-> > > has worked this way since at least kernel 2.6 (or prior) I
-> > > presume that
-> > > this is the correct way of doing things, and that this
-> > > documentation
-> > > needs to be clarified that min must always be less than max.
-> > >=20
-> > > uinput is used in my use case to bind together adc-joystick
-> > > devices
-> > > with gpio-keys devices to create a single unified gamepad for
-> > > userspace.
-> > >=20
-> > > Note that there are several boards that will need to be
-> > > corrected,
-> > > all but a few of them I maintain. Submitting as an RFC for now to
-> > > get
-> > > comments from the input team and the original author in case
-> > > there is
-> > > something I am missing.
-> > >=20
-> > > Fixes: 7956b0d4694f ("dt-bindings: input: Add docs for ADC driven
-> > > joystick")
-> > >=20
-> > > Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-> > > ---
-> > > =C2=A0Documentation/devicetree/bindings/input/adc-joystick.yaml | 5
-> > > +++--
-> > > =C2=A01 file changed, 3 insertions(+), 2 deletions(-)
-> > >=20
-> > > diff --git a/Documentation/devicetree/bindings/input/adc-
-> > > joystick.yaml
-> > > b/Documentation/devicetree/bindings/input/adc-joystick.yaml
-> > > index 6c244d66f8ce..8f5cdd5ef190 100644
-> > > --- a/Documentation/devicetree/bindings/input/adc-joystick.yaml
-> > > +++ b/Documentation/devicetree/bindings/input/adc-joystick.yaml
-> > > @@ -73,8 +73,9 @@ patternProperties:
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 description: >
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Minimum =
-and maximum values produced by the axis.
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 For an A=
-BS_X axis this will be the left-most and
-> > > right-most
-> > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 inclination o=
-f the joystick. If min > max, it is left
-> > > to
-> > > userspace to
-> > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 treat the axi=
-s as inverted.
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 inclination o=
-f the joystick. The axis must always be
-> > > expressed as
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 min < max, if=
- the axis is inverted it is left to
-> > > userspace to
-> > > handle
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 the inversion=
-.
-> >=20
-> > Hi Chris,
-> >=20
-> > Device Tree is supposed to depict the actual state of the hardware.
-> > I worded the adc-joytick's adc-range property specifically, so that
-> > it
-> > covers a case of GCW Zero hardware [1], which has a joystick,=C2=A0
-> > where the
-> > ABS_X axis reports increasing values for the left-wards inclination
-> > of
-> > the joystick, and decreasing values for the right-wards
-> > inclination. You
-> > are saying that there are even more boards that need to be
-> > corrected -
-> > those are all situations, where DT depicts the actual behavior of
-> > the
-> > hardware.
-> > What you are trying to do is change hardware description, because
-> > of how
-> > a driver in an OS works. You should instead fix behavior of said
-> > driver,
-> > even if nobody stumbled upon that issue since 2.6 :) We fixed
-> > libSDL [2]
-> > for the same reason.
->=20
-> We have several places in the kernel (such as mousedev and joydev)
-> where
-> we expect that max is greater or equal to min if they are specified.
-> I
-> am sure that at least some userspace components also have this
-> assumption. In general, we expect min to be a minimum value reported
-> and
-> max being maximum value reported, and orientation expressed via
-> different properties (see [1]).
+On 12/19/2023 9:54 PM, Suzuki K Poulose wrote:
+> On 19/12/2023 02:13, Tao Zhang wrote:
+>>
+>> On 12/18/2023 6:27 PM, Suzuki K Poulose wrote:
+>>> On 21/11/2023 02:24, Tao Zhang wrote:
+>>>> Read the CMB element size from the device tree. Set the register
+>>>> bit that controls the CMB element size of the corresponding port.
+>>>>
+>>>> Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
+>>>> Signed-off-by: Mao Jinlong <quic_jinlmao@quicinc.com>
+>>>> ---
+>>>>   drivers/hwtracing/coresight/coresight-tpda.c | 117 
+>>>> +++++++++++--------
+>>>>   drivers/hwtracing/coresight/coresight-tpda.h |   6 +
+>>>>   2 files changed, 74 insertions(+), 49 deletions(-)
+>>>>
+>>>> diff --git a/drivers/hwtracing/coresight/coresight-tpda.c 
+>>>> b/drivers/hwtracing/coresight/coresight-tpda.c
+>>>> index 5f82737c37bb..e3762f38abb3 100644
+>>>> --- a/drivers/hwtracing/coresight/coresight-tpda.c
+>>>> +++ b/drivers/hwtracing/coresight/coresight-tpda.c
+>>>> @@ -28,24 +28,54 @@ static bool coresight_device_is_tpdm(struct 
+>>>> coresight_device *csdev)
+>>>>               CORESIGHT_DEV_SUBTYPE_SOURCE_TPDM);
+>>>>   }
+>>>>   +static void tpdm_clear_element_size(struct coresight_device *csdev)
+>>>> +{
+>>>> +    struct tpda_drvdata *drvdata = 
+>>>> dev_get_drvdata(csdev->dev.parent);
+>>>> +
+>>>> +    if (drvdata->dsb_esize)
+>>>> +        drvdata->dsb_esize = 0;
+>>>> +    if (drvdata->cmb_esize)
+>>>> +        drvdata->cmb_esize = 0;
+>>>
+>>> Why do we need the if (...) check here ?
+>>
+>> The element size of all the TPDM sub-unit should be set to 0 here.
+>>
+>> I will update this in the next patch series.
+>>
+>>>
+>>>> +}
+>>>> +
+>>>> +static void tpda_set_element_size(struct tpda_drvdata *drvdata, 
+>>>> u32 *val)
+>>>> +{
+>>>> +
+>>>> +    if (drvdata->dsb_esize == 64)
+>>>> +        *val |= TPDA_Pn_CR_DSBSIZE;
+>>>> +    else if (drvdata->dsb_esize == 32)
+>>>> +        *val &= ~TPDA_Pn_CR_DSBSIZE;
+>>>> +
+>>>> +    if (drvdata->cmb_esize == 64)
+>>>> +        *val |= FIELD_PREP(TPDA_Pn_CR_CMBSIZE, 0x2);
+>>>> +    else if (drvdata->cmb_esize == 32)
+>>>> +        *val |= FIELD_PREP(TPDA_Pn_CR_CMBSIZE, 0x1);
+>>>> +    else if (drvdata->cmb_esize == 8)
+>>>> +        *val &= ~TPDA_Pn_CR_CMBSIZE;
+>>>> +}
+>>>> +
+>>>
+>>>
+>>>>   /*
+>>>> - * Read the DSB element size from the TPDM device
+>>>> + * Read the element size from the TPDM device
+>>>>    * Returns
+>>>> - *    The dsb element size read from the devicetree if available.
+>>>> + *    The element size read from the devicetree if available.
+>>>>    *    0 - Otherwise, with a warning once.
+>>>
+>>> This doesn't match the function ? It return 0 on success and
+>>> error (-EINVAL) on failure ?
+>>
+>> 0 means the element size property is found from the devicetree.
+>>
+>> Otherwise, it will return error(-EINVAL).
+>>
+>> I will update this in the next patch series.
+>>
+>>>
+>>>>    */
+>>>> -static int tpdm_read_dsb_element_size(struct coresight_device *csdev)
+>>>> +static int tpdm_read_element_size(struct tpda_drvdata *drvdata,
+>>>> +                  struct coresight_device *csdev)
+>>>>   {
+>>>> -    int rc = 0;
+>>>> -    u8 size = 0;
+>>>> -
+>>>> -    rc = fwnode_property_read_u8(dev_fwnode(csdev->dev.parent),
+>>>> -            "qcom,dsb-element-size", &size);
+>>>> +    int rc = -EINVAL;
+>>>> +
+>>>> +    if (!fwnode_property_read_u8(dev_fwnode(csdev->dev.parent),
+>>>> +            "qcom,dsb-element-size", &drvdata->dsb_esize))
+>>>> +        rc = 0;
+>>>> +    if (!fwnode_property_read_u8(dev_fwnode(csdev->dev.parent),
+>>>> +            "qcom,cmb-element-size", &drvdata->cmb_esize))
+>>>> +        rc = 0;
+>>>
+>>> Are we not silently resetting the error if the former failed ?
+>>>
+>>> Could we not :
+>>>
+>>>     rc |= fwnode_...
+>>>
+>>>     rc |= fwnode_...
+>>>
+>>> instead ?
+>>>
+>>> Also what is the expectation here ? Are these properties a MUST for
+>>> TPDM ?
+>>
+>> The TPDM must have one of the element size property. As long as one
+>
+> Please add a comment in the function. Someone else might try to "fix"
+> it otherwise.
 
-You can express all you want in DT properties the orientation of the
-axis, it does not carry to userspace. As far as I can see there is
-absolutely no way to tell userspace that an axis is inverted.
+Sure, I will update this in the next patch series.
 
-Cheers,
--Paul
 
->=20
-> Since we codified min > max as inversion for adc-joystick devices in
-> the
-> bindings, I think we need to handle this *in that driver* and leave
-> the
-> rest alone.
->=20
-> [1]
-> Documentation/devicetree/bindings/input/touchscreen/touchscreen.yaml
->=20
-> Thanks.
->=20
+Best,
 
+Tao
+
+>
+> Suzuki
+>>
+>> can be found, this TPDM configuration can be considered valid. So this
+>>
+>> function will return 0 if one of the element size property is found.
+>
+>
+>>
+>>
+>> Best,
+>>
+>> Tao
+>>
+>>>
+>>>>       if (rc)
+>>>>           dev_warn_once(&csdev->dev,
+>>>> -            "Failed to read TPDM DSB Element size: %d\n", rc);
+>>>> +            "Failed to read TPDM Element size: %d\n", rc);
+>>>>   -    return size;
+>>>> +    return rc;
+>>>>   }
+>>>>     /*
+>>>> @@ -56,11 +86,12 @@ static int tpdm_read_dsb_element_size(struct 
+>>>> coresight_device *csdev)
+>>>>    * Parameter "inport" is used to pass in the input port number
+>>>>    * of TPDA, and it is set to -1 in the recursize call.
+>>>>    */
+>>>> -static int tpda_get_element_size(struct coresight_device *csdev,
+>>>> +static int tpda_get_element_size(struct tpda_drvdata *drvdata,
+>>>> +                 struct coresight_device *csdev,
+>>>>                    int inport)
+>>>>   {
+>>>> -    int dsb_size = -ENOENT;
+>>>> -    int i, size;
+>>>> +    int rc = 0;
+>>>> +    int i;
+>>>>       struct coresight_device *in;
+>>>>         for (i = 0; i < csdev->pdata->nr_inconns; i++) {
+>>>> @@ -74,25 +105,21 @@ static int tpda_get_element_size(struct 
+>>>> coresight_device *csdev,
+>>>>               continue;
+>>>>             if (coresight_device_is_tpdm(in)) {
+>>>> -            size = tpdm_read_dsb_element_size(in);
+>>>> +            if ((drvdata->dsb_esize) || (drvdata->cmb_esize))
+>>>> +                return -EEXIST;
+>>>> +            rc = tpdm_read_element_size(drvdata, in);
+>>>> +            if (rc)
+>>>> +                return rc;
+>>>>           } else {
+>>>>               /* Recurse down the path */
+>>>> -            size = tpda_get_element_size(in, -1);
+>>>> -        }
+>>>> -
+>>>> -        if (size < 0)
+>>>> -            return size;
+>>>> -
+>>>> -        if (dsb_size < 0) {
+>>>> -            /* Found a size, save it. */
+>>>> -            dsb_size = size;
+>>>> -        } else {
+>>>> -            /* Found duplicate TPDMs */
+>>>> -            return -EEXIST;
+>>>> +            rc = tpda_get_element_size(drvdata, in, -1);
+>>>> +            if (rc)
+>>>> +                return rc;
+>>>>           }
+>>>>       }
+>>>>   -    return dsb_size;
+>>>> +
+>>>> +    return rc;
+>>>>   }
+>>>>     /* Settings pre enabling port control register */
+>>>> @@ -109,7 +136,7 @@ static void tpda_enable_pre_port(struct 
+>>>> tpda_drvdata *drvdata)
+>>>>   static int tpda_enable_port(struct tpda_drvdata *drvdata, int port)
+>>>>   {
+>>>>       u32 val;
+>>>> -    int size;
+>>>> +    int rc;
+>>>>         val = readl_relaxed(drvdata->base + TPDA_Pn_CR(port));
+>>>>       /*
+>>>> @@ -117,29 +144,21 @@ static int tpda_enable_port(struct 
+>>>> tpda_drvdata *drvdata, int port)
+>>>>        * Set the bit to 0 if the size is 32
+>>>>        * Set the bit to 1 if the size is 64
+>>>>        */
+>>>> -    size = tpda_get_element_size(drvdata->csdev, port);
+>>>> -    switch (size) {
+>>>> -    case 32:
+>>>> -        val &= ~TPDA_Pn_CR_DSBSIZE;
+>>>> -        break;
+>>>> -    case 64:
+>>>> -        val |= TPDA_Pn_CR_DSBSIZE;
+>>>> -        break;
+>>>> -    case 0:
+>>>> -        return -EEXIST;
+>>>> -    case -EEXIST:
+>>>> +    tpdm_clear_element_size(drvdata->csdev);
+>>>> +    rc = tpda_get_element_size(drvdata, drvdata->csdev, port);
+>>>> +    if (!rc && ((drvdata->dsb_esize) || (drvdata->cmb_esize))) {
+>>>> +        tpda_set_element_size(drvdata, &val);
+>>>> +        /* Enable the port */
+>>>> +        val |= TPDA_Pn_CR_ENA;
+>>>> +        writel_relaxed(val, drvdata->base + TPDA_Pn_CR(port));
+>>>> +    } else if (rc == -EEXIST)
+>>>>           dev_warn_once(&drvdata->csdev->dev,
+>>>> -            "Detected multiple TPDMs on port %d", -EEXIST);
+>>>> -        return -EEXIST;
+>>>> -    default:
+>>>> -        return -EINVAL;
+>>>> -    }
+>>>> -
+>>>> -    /* Enable the port */
+>>>> -    val |= TPDA_Pn_CR_ENA;
+>>>> -    writel_relaxed(val, drvdata->base + TPDA_Pn_CR(port));
+>>>> +                  "Detected multiple TPDMs on port %d", -EEXIST);
+>>>> +    else
+>>>> +        dev_warn_once(&drvdata->csdev->dev,
+>>>> +                  "Didn't find TPDM elem size");
+>>>
+>>> "element size"
+>>>
+>>>>   -    return 0;
+>>>> +    return rc;
+>>>>   }
+>>>>     static int __tpda_enable(struct tpda_drvdata *drvdata, int port)
+>>>> diff --git a/drivers/hwtracing/coresight/coresight-tpda.h 
+>>>> b/drivers/hwtracing/coresight/coresight-tpda.h
+>>>> index b3b38fd41b64..29164fd9711f 100644
+>>>> --- a/drivers/hwtracing/coresight/coresight-tpda.h
+>>>> +++ b/drivers/hwtracing/coresight/coresight-tpda.h
+>>>> @@ -10,6 +10,8 @@
+>>>>   #define TPDA_Pn_CR(n)        (0x004 + (n * 4))
+>>>>   /* Aggregator port enable bit */
+>>>>   #define TPDA_Pn_CR_ENA        BIT(0)
+>>>> +/* Aggregator port CMB data set element size bit */
+>>>> +#define TPDA_Pn_CR_CMBSIZE        GENMASK(7, 6)
+>>>>   /* Aggregator port DSB data set element size bit */
+>>>>   #define TPDA_Pn_CR_DSBSIZE        BIT(8)
+>>>>   @@ -25,6 +27,8 @@
+>>>>    * @csdev:      component vitals needed by the framework.
+>>>>    * @spinlock:   lock for the drvdata value.
+>>>>    * @enable:     enable status of the component.
+>>>> + * @dsb_esize   Record the DSB element size.
+>>>> + * @cmb_esize   Record the CMB element size.
+>>>>    */
+>>>>   struct tpda_drvdata {
+>>>>       void __iomem        *base;
+>>>> @@ -32,6 +36,8 @@ struct tpda_drvdata {
+>>>>       struct coresight_device    *csdev;
+>>>>       spinlock_t        spinlock;
+>>>>       u8            atid;
+>>>> +    u8            dsb_esize;
+>>>> +    u8            cmb_esize;
+>>>>   };
+>>>>     #endif  /* _CORESIGHT_CORESIGHT_TPDA_H */
+>>>
+>>> Suzuki
+>>>
+>>>
+>
 
