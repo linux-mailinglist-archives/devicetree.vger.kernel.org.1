@@ -1,44 +1,48 @@
-Return-Path: <devicetree+bounces-27473-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27474-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BEAB81A8B4
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 23:05:37 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9BED481A8C8
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 23:11:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BF1041C21FE0
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 22:05:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CEA891C221FC
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 22:11:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1870F495FF;
-	Wed, 20 Dec 2023 22:05:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74FE8495EA;
+	Wed, 20 Dec 2023 22:11:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="byCJAc1G"
 X-Original-To: devicetree@vger.kernel.org
-Received: from elvis.franken.de (elvis.franken.de [193.175.24.41])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E47B2495EA;
-	Wed, 20 Dec 2023 22:05:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=alpha.franken.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alpha.franken.de
-Received: from uucp by elvis.franken.de with local-rmail (Exim 3.36 #1)
-	id 1rG4Ro-0001hx-00; Wed, 20 Dec 2023 22:49:48 +0100
-Received: by alpha.franken.de (Postfix, from userid 1000)
-	id 0075DC028A; Wed, 20 Dec 2023 22:49:33 +0100 (CET)
-Date: Wed, 20 Dec 2023 22:49:33 +0100
-From: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-To: Gregory CLEMENT <gregory.clement@bootlin.com>
-Cc: Paul Burton <paulburton@kernel.org>, linux-mips@vger.kernel.org,
-	Jiaxun Yang <jiaxun.yang@flygoat.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
-	Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	=?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v5 00/22] Add support for the Mobileye EyeQ5 SoC
-Message-ID: <ZYNhbQjMbAH6I0kI@alpha.franken.de>
-References: <20231212163459.1923041-1-gregory.clement@bootlin.com>
- <878r5vctdg.fsf@BL-laptop>
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 582894A997;
+	Wed, 20 Dec 2023 22:11:46 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B0425C433C7;
+	Wed, 20 Dec 2023 22:11:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1703110306;
+	bh=/KFTV7+1magMZJ3bZ7dz1PxueAaInhV1KdHG6TbhODg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=byCJAc1G1uEVxwEhdVRitMd/SXNI1ewKNWxwKsvnhiqJEMr0wvcLUHef4x+pv0jnB
+	 F4uP1XNFzEpUSBAtO7EE2/NxoXGq8Y4E6b4TQGuNOp3ZhZJHYwPyqUkC101Gkj1dEr
+	 7F92li660Yer8wzLMei+JNVzy2gvM++vtIxdJk9O31fFVhrtLiuLwwCEMCCFmXXKM4
+	 O+WRM6egIQZFK5hlxVMNtjsEEwjeqJ3zSIDUC3Vrh0iilPdN+pSdGhSyFuTMvHKax7
+	 fKCwJ1PPB+bEMTxa30HgYnmIqz9LSZ129r5MbEBI3hJeTkzOwQm9wvTa2XyLyOCSw0
+	 HsbWAbCcYykJw==
+Received: (nullmailer pid 1219931 invoked by uid 1000);
+	Wed, 20 Dec 2023 22:11:44 -0000
+Date: Wed, 20 Dec 2023 16:11:44 -0600
+From: Rob Herring <robh@kernel.org>
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, Frank Rowand <frowand.list@gmail.com>, Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Subject: Re: [RFC PATCH 1/4] of: Add cleanup.h based autorelease via
+ __free(device_node) markings.
+Message-ID: <20231220221144.GA1188444-robh@kernel.org>
+References: <20231217184648.185236-1-jic23@kernel.org>
+ <20231217184648.185236-2-jic23@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -47,57 +51,65 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <878r5vctdg.fsf@BL-laptop>
+In-Reply-To: <20231217184648.185236-2-jic23@kernel.org>
 
-On Fri, Dec 15, 2023 at 05:39:39PM +0100, Gregory CLEMENT wrote:
-> Hello Thomas,
+On Sun, Dec 17, 2023 at 06:46:45PM +0000, Jonathan Cameron wrote:
+> From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
 > 
-> > Hello,
-> >
-> > The EyeQ5 SoC from Mobileye is based on the MIPS I6500 architecture
-> > and features multiple controllers such as the classic UART, I2C, SPI,
-> > as well as CAN-FD, PCIe, Octal/Quad SPI Flash interface, Gigabit
-> > Ethernet, MIPI CSI-2, and eMMC 5.1. It also includes a Hardware
-> > Security Module, Functional Safety Hardware, and MJPEG encoder.
-> >
-> > One peculiarity of this SoC is that the physical address of the DDDR
-> > exceeds 32 bits. Given that the architecture is 64 bits, this is not
-> > an issue, but it requires some changes in how the mips64 is currently
-> > managed during boot.
-> >
-> > In this fifth version, there aren't many changes, mostly just tweaking
-> > commit messages based on Sergey's feedback and fixing up the code
-> > style. But, the real reason for this series is a bit of a whoopsie on
-> > my end. It turns out, despite what I confidently claimed in the last
-> > round, some configuration tweaks were missing. All sorted now, though!
-> >
+> The recent addition of scope based cleanup support to the kernel
+> provides a convenient tool to reduce the chances of leaking reference
+> counts where of_node_put() should have been called in an error path.
 > 
-> A few weeks ago, you were concerned about the introduction of the
-> specific kconfig CONFIG_USE_XKPHYS to support EyeQ5, and you wanted us
-> to set up a new platform instead. Since then, Jiaxun proposed a series
-> that was merged here to provide more generic support.
-
-well, there is more to improve and stuff I don't like in Jaixun series.
-For example misusing CONFIG_PHYSICAL_START to force a load address via config
-(IMHO it's already a hack for CRASH_DUMP).
-
-As there is your series and Jiaxun series, where should I comment more
-detailed ?
-
-> I had other issues in the initial series, and I think that now I've
-> fixed all of them. So, I would like to know what your opinion is now
-> about this series.
+> This enables
+> 	struct device_node *child __free(device_node) = NULL;
 > 
-> Will you accept it, or do you still think that a new platform has to be
-> set up?
+> 	for_each_child_of_node(np, child) {
+> 		if (test)
+> 			return test;
+> 	}
+> 
+> with no need for a manual call of of_node_put()
+> 
+> In this simile example the gains are small but there are some very
 
-things have improved, but I'm still in favor to use a new platform.
-And my main point stays. A "generic" kernel compiled for EyeQ5 will
-just run on that platform, which doesn't sound generic to me.
+typo
 
-Thomas.
+> complex error handling cases burried in these loops that wil be
+> greatly simplified by enabling early returns with out the need
+> for this manual of_node_put() call.
 
--- 
-Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
-good idea.                                                [ RFC1925, 2.3 ]
+Neat!
+
+I guess that now that the coccinelle check has fixed many, we can update 
+it to the new way and start fixing them all again. We should update the 
+coccinelle script with the new way. See 
+scripts/coccinelle/iterators/for_each_child.cocci.
+
+> 
+> Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> ---
+>  include/linux/of.h | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/include/linux/of.h b/include/linux/of.h
+> index 6a9ddf20e79a..50e882ee91da 100644
+> --- a/include/linux/of.h
+> +++ b/include/linux/of.h
+> @@ -13,6 +13,7 @@
+>   */
+>  #include <linux/types.h>
+>  #include <linux/bitops.h>
+> +#include <linux/cleanup.h>
+>  #include <linux/errno.h>
+>  #include <linux/kobject.h>
+>  #include <linux/mod_devicetable.h>
+> @@ -134,6 +135,7 @@ static inline struct device_node *of_node_get(struct device_node *node)
+>  }
+>  static inline void of_node_put(struct device_node *node) { }
+>  #endif /* !CONFIG_OF_DYNAMIC */
+> +DEFINE_FREE(device_node, struct device_node *, if (_T) of_node_put(_T))
+
+of_node_put() can be called with NULL, so do we need the "if (_T)"?
+
+Rob
 
