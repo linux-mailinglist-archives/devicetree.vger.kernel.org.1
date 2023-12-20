@@ -1,120 +1,152 @@
-Return-Path: <devicetree+bounces-27296-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27297-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04086819D7C
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 12:01:21 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B3A7819D7F
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 12:02:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B4A75287722
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 11:01:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2B3CD1F218F6
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 11:02:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10FEB20DC9;
-	Wed, 20 Dec 2023 11:00:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9F5F20DD6;
+	Wed, 20 Dec 2023 11:02:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="gtxi7fkk"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="2hTYVkq2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CACD821379;
-	Wed, 20 Dec 2023 11:00:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 3BK5t379003742;
-	Wed, 20 Dec 2023 11:00:47 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	from:to:cc:subject:date:message-id:in-reply-to:references
-	:mime-version:content-transfer-encoding:content-type; s=
-	qcppdkim1; bh=Q/CEbcPMIM1A6R82mOJ2AH0ixXBB6lJFOsznquWuJeg=; b=gt
-	xi7fkkQotu2Vib6JhkT/8QF9XWpTl1L8zcRyGWCuJ+v46CFbTCRQTVba9SiQVYB1
-	dXJdtNdqCE9WOMgCJHOv/E6wG5OK3RQy3d3HR0X+AtzMliFDZ+YSKjKus4uqkqjY
-	tmEr821GUxHQqrZxFUM6GFUaRp8pge//TWMbpNTmQIPkHVtr0FYEcPKuFhpyx+VT
-	AKR/Kb6GELUM0hm2PlPDwm6B9anyiXGmqMPCM44XtMvMl+1VItZ8Dx49Eyq3/i+/
-	QuH3GrkZT7kFQm1R8K8A87aWdZZLAh51DVE7IMPVit2oD3QHB/11wwT5GVFBAADQ
-	OghxOgaPrIf69jXf2F2Q==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3v3th6rnrm-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 20 Dec 2023 11:00:47 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3BKB0kck000771
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 20 Dec 2023 11:00:46 GMT
-Received: from hu-kbajaj-hyd.qualcomm.com (10.80.80.8) by
- nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Wed, 20 Dec 2023 03:00:42 -0800
-From: Komal Bajaj <quic_kbajaj@quicinc.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Caleb Connolly <caleb.connolly@linaro.org>,
-        "Naina
- Mehta" <quic_nainmeht@quicinc.com>
-CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Komal Bajaj <quic_kbajaj@quicinc.com>
-Subject: [PATCH 2/2] arm64: dts: qcom: qcs6490-rb3gen2: Correct the voltage setting for vph_pwr
-Date: Wed, 20 Dec 2023 16:30:15 +0530
-Message-ID: <20231220110015.25378-3-quic_kbajaj@quicinc.com>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20231220110015.25378-1-quic_kbajaj@quicinc.com>
-References: <20231220110015.25378-1-quic_kbajaj@quicinc.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F4DA20DCD;
+	Wed, 20 Dec 2023 11:02:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1703070144;
+	bh=SislEKrbcBCyeF1cvA7sktZWbgCq5DooZegn8jxygCM=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=2hTYVkq2uP3CruHjaY/H/vSbxgKxgARWX/amioDU5W2RFfbRDpG9XU9BswCMc1PBc
+	 tM1Uz7hL0ZkjoKD540e4fh/aEdpdF4jvskIOAfMN11BDUKzApZFLXAuV7QYFvKvEqL
+	 Y8vDEfIdriVZiiCqCwWTnd2OKcC5FcNDCSnC3YQHvjPoejeSLRbSbLc9pgk8naiUB5
+	 ifehch5ldnba6WoqCVjVCMBgSHQmtGmdmG7AqwsjqkpjNqx3Cr/hs16i8Oz5KJNyw5
+	 7P6ASVqW1PdSogJuIGUF1v6R1fGqAkOvnKs8oKxS7G7+5ZnLrSc/0EdaifW8KoQ0mm
+	 jPtUyVV1bTfig==
+Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id B76663781FC9;
+	Wed, 20 Dec 2023 11:02:23 +0000 (UTC)
+Message-ID: <80b61d00-ac87-4880-a535-0a5fdd3bed83@collabora.com>
+Date: Wed, 20 Dec 2023 12:02:22 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: S9CEcI3dIN9t8lDQxsw1UF6sx28sMplA
-X-Proofpoint-ORIG-GUID: S9CEcI3dIN9t8lDQxsw1UF6sx28sMplA
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-12-09_01,2023-12-07_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
- impostorscore=0 bulkscore=0 mlxlogscore=608 lowpriorityscore=0
- phishscore=0 priorityscore=1501 clxscore=1015 spamscore=0 mlxscore=0
- adultscore=0 malwarescore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2311290000 definitions=main-2312200077
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 3/3] nvmem: mtk-efuse: Modify driver for getting chip
+ information
+Content-Language: en-US
+To: William-tw Lin <william-tw.lin@mediatek.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>,
+ Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
+References: <20231220103901.22180-1-william-tw.lin@mediatek.com>
+ <20231220103901.22180-4-william-tw.lin@mediatek.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20231220103901.22180-4-william-tw.lin@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Min and max voltages for vph_pwr should be same, otherwise rpmh
-will not probe, so correcting the min and max voltages for vph_pwr.
+Il 20/12/23 11:39, William-tw Lin ha scritto:
+> Retrieval of soc info is needed. This patch includes the following:
+> 1. Register socinfo device in mtk-efuse.c
+> 
 
-Fixes: 04cf333afc75 ("arm64: dts: qcom: Add base qcs6490-rb3gen2 board dts")
-Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
----
- arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+nvmem: mtk-efuse: Register MediaTek socinfo driver from efuse
 
-diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-index 8bb7d13d85f6..ae1632182d7c 100644
---- a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-+++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-@@ -124,8 +124,8 @@ debug_vm_mem: debug-vm@d0600000 {
- 	vph_pwr: vph-pwr-regulator {
- 		compatible = "regulator-fixed";
- 		regulator-name = "vph_pwr";
--		regulator-min-microvolt = <2500000>;
--		regulator-max-microvolt = <4350000>;
-+		regulator-min-microvolt = <3700000>;
-+		regulator-max-microvolt = <3700000>;
- 	};
- };
+The socinfo driver reads chip information from eFuses and does not need
+any devicetree node. Register it from mtk-efuse.
 
---
-2.42.0
+While at it, also add the name for this driver's nvmem_config.
 
+
+^^^ that's a proper commit title and description :-)
+
+> Signed-off-by: William-tw Lin <william-tw.lin@mediatek.com>
+> ---
+>   drivers/nvmem/mtk-efuse.c | 11 ++++++++++-
+>   1 file changed, 10 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/nvmem/mtk-efuse.c b/drivers/nvmem/mtk-efuse.c
+> index 84f05b40a411..3914e039e288 100644
+> --- a/drivers/nvmem/mtk-efuse.c
+> +++ b/drivers/nvmem/mtk-efuse.c
+> @@ -68,6 +68,7 @@ static int mtk_efuse_probe(struct platform_device *pdev)
+>   	struct nvmem_config econfig = {};
+>   	struct mtk_efuse_priv *priv;
+>   	const struct mtk_efuse_pdata *pdata;
+> +	struct platform_device *socinfo;
+>   
+>   	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
+>   	if (!priv)
+> @@ -85,11 +86,19 @@ static int mtk_efuse_probe(struct platform_device *pdev)
+>   	econfig.size = resource_size(res);
+>   	econfig.priv = priv;
+>   	econfig.dev = dev;
+> +	econfig.name = "mtk-efuse";
+>   	if (pdata->uses_post_processing)
+>   		econfig.fixup_dt_cell_info = &mtk_efuse_fixup_dt_cell_info;
+>   	nvmem = devm_nvmem_register(dev, &econfig);
+> +	if (IS_ERR(nvmem))
+> +		return PTR_ERR(nvmem);
+>   
+> -	return PTR_ERR_OR_ZERO(nvmem);
+> +	socinfo = platform_device_register_data(&pdev->dev, "mtk-socinfo",
+> +						PLATFORM_DEVID_AUTO, NULL, 0);
+> +	if (IS_ERR(socinfo))
+> +		dev_info(dev, "MediaTek SoC Information will be unavailable\n");
+> +
+
+	if (IS_ERR(socinfo))
+		dev_info(dev, "MediaTek SoC Information will be unavailable\n");
+
+	platform_set_drvdata(pdev, socinfo);
+	return 0;
+
+> +	return 0;
+>   }
+>   
+>   static const struct mtk_efuse_pdata mtk_mt8186_efuse_pdata = {
+
+
+static void mtk_efuse_remove(struct platform_device *pdev)
+{
+	struct platform_device *socinfo = platform_get_drvdata(pdev);
+
+	if (!IS_ERR_OR_NULL(socinfo))
+		platform_device_unregister(socinfo);
+}
+
+static struct platform_driver mtk_efuse_driver = {
+	.probe = mtk_efuse_probe,
+	.remove_new = mtk_efuse_remove, <---- add this
+	.driver = {
+		.name = "mediatek,efuse",
+		.of_match_table = mtk_efuse_of_match,
+	}
+};
+
+After those additions, it's good for me.
+
+Thanks,
+Angelo
 
