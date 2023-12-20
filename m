@@ -1,129 +1,277 @@
-Return-Path: <devicetree+bounces-27292-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27271-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7348819D6B
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 11:57:39 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C2D7819CB4
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 11:26:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9CA551F27082
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 10:57:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E52B1282B34
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 10:26:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83D6A20B2C;
-	Wed, 20 Dec 2023 10:57:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 615B5200B9;
+	Wed, 20 Dec 2023 10:26:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernkonzept.com header.i=@kernkonzept.com header.b="Pm6rYARo"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="FgyhDWqM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx.kernkonzept.com (serv1.kernkonzept.com [159.69.200.6])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88A80210E9;
-	Wed, 20 Dec 2023 10:57:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kernkonzept.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kernkonzept.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=kernkonzept.com; s=mx1; h=In-Reply-To:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-ID:Content-Description;
-	bh=CsVrMzlnClZBs8fIy1cwy38/3lc5X9yJ6wHcUOPH4WM=; b=Pm6rYARoAbayjWXgboBdqN3rYh
-	NIjefdVbMu0n9vThQoS94qSZ81IT2T4LImMgGMcrvzKTg0QRHQP3jcP78E8IDujY2habqr++Hn26V
-	YWzzF0WraOICVuN1+sYKITJi0rAfy3k0ydmaMiIyG3CgPft4yBR63ysDpBd85woAlFkKKLhTbadWT
-	CIhsH4Lh6PqjDsySHZnbWBTpcVZSJnOvhRkiVpmXqj/DdWLOwFP3TFIIwi7fkVAtRrPwagOLmjdQW
-	hojj4P2XTfUPE1GgYKPk2KGQzG5bgFCdsiSmpqgyemU9JQe6dXrgHBGlw4aYF8fAvZsNSCVtXBZ+G
-	87TvQWiQ==;
-Received: from [10.22.3.24] (helo=kernkonzept.com)
-	by mx.kernkonzept.com with esmtpsa (TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim 4.96)
-	id 1rFthn-00DKcd-2H;
-	Wed, 20 Dec 2023 11:21:35 +0100
-Date: Wed, 20 Dec 2023 11:21:30 +0100
-From: Stephan Gerhold <stephan.gerhold@kernkonzept.com>
-To: Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc: Georgi Djakov <djakov@kernel.org>, Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-	linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Adam Skladowski <a39.skl@gmail.com>
-Subject: Re: [PATCH 2/2] interconnect: qcom: Add MSM8909 interconnect
- provider driver
-Message-ID: <ZYLAKvXE156fPHJ1@kernkonzept.com>
-References: <20231206-icc-msm8909-v1-0-fe0dd632beff@kernkonzept.com>
- <20231206-icc-msm8909-v1-2-fe0dd632beff@kernkonzept.com>
- <3f921a53-8eac-48e6-be17-43c07a0313d0@linaro.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1A54208C3
+	for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 10:26:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-40c39ef63d9so59843255e9.3
+        for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 02:26:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1703067984; x=1703672784; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=pX13GgiaquuyyTjBBvzGeBqVX5oA1abtoRS201+TY+I=;
+        b=FgyhDWqMh2A5tOoetgX8IwN3N4kNj8hbWkDn166Wn2nr3pHye+XND6FBRIDxDdwYbe
+         0B097nAo6NWu/L5u2MK1oHaBVG8BxasupuCVdsUbCo5uHI7E6MVQ0SZwAh5B6/q4YSu/
+         E210BnHtTs0wRJ9HiEytUFN2/GObwTrQQZBsQNfEPyMqVWtDOx8YGFjSqpY64Rwpp6eb
+         FiOiel+Y5+1wRZUHlU1RKagB8i8ayzYgWWbyQdxTWh2yEbTlgiCULEFGup8F0OsTDJM7
+         qoZ2E0e7sVgC1E5o26f9+mvW8CeyACW8raxdRRdwKOnKbWD+7J0+BS0NxeGHyqzgG1Di
+         Uu1w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1703067984; x=1703672784;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=pX13GgiaquuyyTjBBvzGeBqVX5oA1abtoRS201+TY+I=;
+        b=v/FyEFSzPcQpYsWlC/U65MzNk3YzJD1Lz0KJspADVuZ/vo1EGXKHIgilux0kfkU8GC
+         NFAWXpsBrbAFZ9Mugs0RXZy8ePfz5WZkfh70mXBGlqxaQkHCJObwVLQGx1BRUCikqXyx
+         2ri6NdzQ8yNiXVWj9+BrLYdiLhB8D2wEkplIfBFr/diitvNQJMXQ8WDIFaSiVUKowXcS
+         kBUHgL89MiM07OAKUjj7++ciOyeGOcAsnXNnvkXx1IvT8vgXC9MZQOljY9xjfF3qXWkB
+         zE4LjdXoOPH0kNEHhBEtk/NzPjnlVkTgP2Z4AraFaGETye7e2QPoYEqtiaL8sC0Pk5a1
+         1fRQ==
+X-Gm-Message-State: AOJu0Yx0d8ovhJbMaYDtJGUvi4VgRBMOglXdFVsg7VW3PpCFDgLf3apj
+	Z0PVjA+4fhaQj37pQ07PZvOW2Zk9ivcZJuJinsQ=
+X-Google-Smtp-Source: AGHT+IGwzJptxKxqWiAXYwXjXS5wabIdldCCRy6C5+KcotZFMsF7zVkbDvihSsOAJNGR83Mr4ItmLg==
+X-Received: by 2002:a05:600c:4d0e:b0:40b:4476:cd31 with SMTP id u14-20020a05600c4d0e00b0040b4476cd31mr9706552wmp.13.1703067983796;
+        Wed, 20 Dec 2023 02:26:23 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.218.27])
+        by smtp.gmail.com with ESMTPSA id w20-20020a05600c475400b0040b4fca8620sm6763964wmo.37.2023.12.20.02.26.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 20 Dec 2023 02:26:23 -0800 (PST)
+Message-ID: <a78c5ce7-bc89-44ad-8c8a-7c17ed8a7995@linaro.org>
+Date: Wed, 20 Dec 2023 11:26:21 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/4] dt-bindings: pinctrl: mobileye,eyeq5-pinctrl: add
+ bindings
+To: =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>,
+ Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
+ Gregory CLEMENT <gregory.clement@bootlin.com>,
+ Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+Cc: linux-mips@vger.kernel.org, linux-gpio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ Tawfik Bayouk <tawfik.bayouk@mobileye.com>
+References: <20231218-mbly-pinctrl-v1-0-2f7d366c2051@bootlin.com>
+ <20231218-mbly-pinctrl-v1-1-2f7d366c2051@bootlin.com>
+ <0f0c0d16-f736-419e-9ffc-c3dc507b815c@linaro.org>
+ <CXT1TYH16JPB.2RY1IKI8NAUNE@bootlin.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <CXT1TYH16JPB.2RY1IKI8NAUNE@bootlin.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <3f921a53-8eac-48e6-be17-43c07a0313d0@linaro.org>
 
-On Sat, Dec 09, 2023 at 06:54:16PM +0100, Konrad Dybcio wrote:
-> On 6.12.2023 15:35, Stephan Gerhold wrote:
-> > From: Adam Skladowski <a39.skl@gmail.com>
-> > 
-> > Add driver for interconnect busses found in MSM8909 based platforms.
-> > The topology consists of three NoCs that are partially controlled by a
-> > RPM processor.
-> > 
-> > In the downstream/vendor kernel from Qualcomm there is an additional
-> > "mm-snoc". However, it doesn't have a separate RPM clock assigned. It
-> > looks like this is actually the same NoC in hardware and the "mm-snoc"
-> > was only defined to assign a different "qcom,util-fact". In mainline we
-> > can represent this by assigning the equivalent "ab_coeff" to all the
-> > nodes that are part of "mm-snoc" downstream.
-> Worth mentioning that snoc_mm used the same clock as snoc, which is not
-> obvious with some of these older designs:
+On 20/12/2023 10:21, Théo Lebrun wrote:
+> Hello,
 > 
-> static DEFINE_CLK_VOTER(snoc_msmbus_a_clk,  &snoc_a_clk.c,  LONG_MAX);
-> static DEFINE_CLK_VOTER(snoc_mm_msmbus_a_clk,  &snoc_a_clk.c,  LONG_MAX);
+> I've seen all your comments, thanks for that. I'll answer to some.
+> 
+> On Tue Dec 19, 2023 at 8:34 AM CET, Krzysztof Kozlowski wrote:
+>> On 18/12/2023 18:19, Théo Lebrun wrote:
+>>> Add dt-schema type bindings for the Mobileye EyeQ5 pin controller.
+>>>
+>>> Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
+>>> ---
+>>>  .../bindings/pinctrl/mobileye,eyeq5-pinctrl.yaml   | 125 +++++++++++++++++++++
+>>>  MAINTAINERS                                        |   1 +
+>>>  2 files changed, 126 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/pinctrl/mobileye,eyeq5-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/mobileye,eyeq5-pinctrl.yaml
+>>> new file mode 100644
+>>> index 000000000000..5faddebe2413
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/pinctrl/mobileye,eyeq5-pinctrl.yaml
+>>> @@ -0,0 +1,125 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/pinctrl/mobileye,eyeq5-pinctrl.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: Mobileye EyeQ5 pinctrl (pinmux & pinconf) controller
+>>
+>> pinctrl means pin controller, so you basically wrote:
+>> pin controller pinmux and pin configuration controller
+>>
+>> Just "pin controller"
+>>
+>>
+>>> +
+>>> +description:
+>>> +  The EyeQ5 pin controller handles a pin bank. It is custom to this platform,
+>>
+>> Can part of SoC be not custom to given platform? I mean... describe the
+>> hardware, not write essay.
+>>
+>>> +  its registers live in a shared region called OLB.
+>>> +  There are two pin banks on the platform, each having a specific compatible.
+>>
+>> Instead of repeating something obvious - visible from the binding -
+>> explain why. Say something different than the binding is saying.
+>>
+>>
+>>> +  Pins and groups are bijective.
+>>> +
+>>> +maintainers:
+>>> +  - Grégory Clement <gregory.clement@bootlin.com>
+>>> +  - Théo Lebrun <theo.lebrun@bootlin.com>
+>>> +  - Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>
+>>> +
+>>> +properties:
+>>> +  $nodename:
+>>> +    pattern: "^pinctrl([0-9]+)?$"
+>>> +    description:
+>>> +      We have no unique address, we rely on OLB; we therefore can't keep the
+>>> +      standard pattern and cannot inherit from pinctrl.yaml.
+>>
+>> No, instead fix pinctrl.yaml
+> 
+> I've tried some things, but I'm unsure how to proceed. Options I see:
+> 
+>  - Modify pinctrl.yaml so that if reg/ranges is required, $nodename must
+>    be the current value ("^(pinctrl|pinmux)(@[0-9a-f]+)?$"). Else,
+>    $nodename should be "^(pinctrl|pinmux)(-[0-9a-f]+)?$".
+
+Yes, but: "-[0-9]", these are not hex.
+
+I don't understand what is the problem here. It's just a regex and there
+are plenty of examples how this should look like.
+
+> 
+>    I've tried some things but nothing conclusive for the moment.
+> 
+>  - Leave pinctrl.yaml alone and override $nodename from our binding.
+>    I've not found a way to do that though.
+> 
+>  - Use the current $nodename, ie with a unit address. With that approach
+>    I get the "node has a unit name, but no reg or ranges property"
+>    warning which, reading the code, I don't see a way of avoiding.
+> 
+> Were you thinking about option 1? Any advice on how to proceed would be
+> helpful, I've not been able to get a working patch to use option 1.
+
+Why?
+
+> 
+>>
+>>> +
+>>> +  compatible:
+>>> +    enum:
+>>> +      - mobileye,eyeq5-a-pinctrl
+>>> +      - mobileye,eyeq5-b-pinctrl
+>>
+>> Why two compatibles? Description provided no rationale for this.
+> 
+> I'll add that info. The gist of it is to have one node per bank. Each
+> pin has two function: GPIO or pin-dependent. So we must know which bank
+> we are to know what each pin function can be.
+
+OK
+
+> 
+> Both nodes are child to the same OLB. The compatible also tells us which
+> registers to use.
+> 
+>>
+>>> +
+>>> +  "#pinctrl-cells":
+>>> +    const: 1
+>>> +
+>>> +  mobileye,olb:
+>>> +    $ref: /schemas/types.yaml#/definitions/phandle
+>>> +    description:
+>>> +      A phandle to the OLB syscon. This is a fallback to using the parent as
+>>> +      syscon node.
+>>
+>> So here is the explanation for missing unit address. If all registers,
+>> as you claim in description, belong to OLB, then this should be part of
+>> OLB. Drop the phandle.
+> 
+> The reason I provided both options was that I see four drivers that do
+> this kind of fallback. I guess it was for legacy reasons. I'm dropping
+> the phandle and keeping only the child option.
+> 
+> 	drivers/gpio/gpio-syscon.c
+> 	drivers/phy/rockchip/phy-rockchip-usb.c
+> 	drivers/phy/samsung/phy-exynos-dp-video.c
+> 	drivers/soc/rockchip/io-domain.c
 > 
 
-Thanks, will try to clarify this in v2!
 
-> [...]
-> 
-> > +
-> > +static struct platform_driver msm8909_noc_driver = {
-> > +	.probe = qnoc_probe,
-> > +	.remove = qnoc_remove,
-> > +	.driver = {
-> > +		.name = "qnoc-msm8909",
-> > +		.of_match_table = msm8909_noc_of_match,
-> > +		.sync_state = icc_sync_state,
-> > +	},
-> > +};
-> > +module_platform_driver(msm8909_noc_driver);
-> And you may want this to be a bit higher up in the food chain!
+Best regards,
+Krzysztof
 
-I would prefer to keep this as-is for now since this is what it has been
-intensively tested with. I do have a timing issue when interconnect is
-configured for the debug UART, but moving to core_initcall() does not
-help either. It seems like the ICC driver simply cannot be probed
-earlier due to other dependencies, or due to the time the RPM needs
-until it shows up.
-
-At some point we should do a thorough review of the initcall levels for
-all the Qualcomm-related core drivers and see if and in which cases
-diverting from the defaults actually helps. I would leave this up for
-future work right now, though.
-
-> 
-> Otherwise I don't see anything obviously wrong, I assume you tested
-> this without clk/pd_ignore_unused, with rpmcc cleanup and can confirm
-> the QoS programming went through without angry resets.
-> 
-
-Yes, all of that works in my tests. 🎉
-
-Thanks for the review!
-
--- 
-Stephan Gerhold <stephan.gerhold@kernkonzept.com>
-Kernkonzept GmbH at Dresden, Germany, HRB 31129, CEO Dr.-Ing. Michael Hohmuth
 
