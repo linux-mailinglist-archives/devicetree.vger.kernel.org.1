@@ -1,193 +1,164 @@
-Return-Path: <devicetree+bounces-27449-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27450-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id EDCCD81A7C1
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 21:50:12 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 25B1281A7ED
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 22:18:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7A1AD1F24C37
-	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 20:50:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4DDAF1C22DE2
+	for <lists+devicetree@lfdr.de>; Wed, 20 Dec 2023 21:18:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C59A11DA4E;
-	Wed, 20 Dec 2023 20:50:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 152DA482E5;
+	Wed, 20 Dec 2023 21:17:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WT8jKLpK"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="pc5FCFsO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FAA648CC9;
-	Wed, 20 Dec 2023 20:50:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6ED26C433C8;
-	Wed, 20 Dec 2023 20:50:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1703105410;
-	bh=SCTbrl+xMgjd0CYmPII6l8JIdLWbKGFFqcXQV4hU7Vk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=WT8jKLpKrZw9XXGQ4JrM71qX73Yf8H9Mzqc/5+oMasmITzQ4Fll4XHG6N4SJfTOgq
-	 ruYJZiAF217gcZxpKijTl+hR2t1hCX8YvP3K66eJLCXeZgctXtnscPd7BFN3oa+Hep
-	 tQErt7pscHlTnJwOORpt0UqFpWYmdFjvEI5kM4ZEGZMLNDy8LIQjO3NZ9Oei2N+Dz7
-	 hvHV1ZUz96OYk0BZ8UX3zz8X95n8sPuJCqPF9BZXXDxUoFgeOkxyIJjfKGaF/LmCe9
-	 +wX4lErRROth1flFcbXcSYa0W2cweQMTK9rIQngZDKFLQYJR72UBBToS6YtSV09YgD
-	 XNHDBThvJXi9Q==
-Date: Wed, 20 Dec 2023 21:50:04 +0100
-From: Wolfram Sang <wsa@kernel.org>
-To: Naresh Solanki <naresh.solanki@9elements.com>,
-	Rob Herring <robh+dt@kernel.org>
-Cc: Peter Rosin <peda@axentia.se>, Andi Shyti <andi.shyti@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 472F94B5A4;
+	Wed, 20 Dec 2023 21:17:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1703107072;
+	bh=LToB9O1kzplrx0ArQIKTk3jeG9kcJyhV6Az+MBs4+P4=;
+	h=From:To:Cc:Subject:Date:From;
+	b=pc5FCFsO5gyBiQjQHGODZnZxvmbSnGUeAvv/QPvQNafZpqWm4yw0w7Pzrce5jdlsz
+	 FzEvRVi8uYngZnkSuj6CDcQvVbQz42gh/tD1UT+TAtnwxqu78QqftFsGfn6HvAusVi
+	 h8D94spDbe8M1y+Fx9lkKsVmU0kNo6D8NNpi7qRZVPb18hsoM5e/Y4OB43gxqmnzfV
+	 83uvJPgpkGxomNALy3kLobv2JAG8i6mG+48zs18gRGHwOSvIYUlchAdCAYPiTCEBOX
+	 LDMvX7A+7Dqawpr7CNB/TsuMgYqxPZVI8kG7Wtkjn/Csc1ayMWvxjORIH3DVO4B7FO
+	 4npAppxo4v6HA==
+Received: from localhost (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: cristicc)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id D335F3781F8C;
+	Wed, 20 Dec 2023 21:17:51 +0000 (UTC)
+From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+To: Emil Renner Berthing <kernel@esmil.dk>,
+	Conor Dooley <conor@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Patrick Rudolph <patrick.rudolph@9elements.com>,
-	Rob Herring <robh@kernel.org>, linux-i2c@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [RESEND PATCH v5 1/2] dt-bindings: i2c: pca954x: Add custom
- properties for MAX7357
-Message-ID: <ZYNTfKLFGrLq8qGY@shikoro>
-Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
-	Naresh Solanki <naresh.solanki@9elements.com>,
-	Rob Herring <robh+dt@kernel.org>, Peter Rosin <peda@axentia.se>,
-	Andi Shyti <andi.shyti@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Patrick Rudolph <patrick.rudolph@9elements.com>,
-	Rob Herring <robh@kernel.org>, linux-i2c@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20231220082803.345153-1-naresh.solanki@9elements.com>
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Richard Cochran <richardcochran@gmail.com>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Jacob Keller <jacob.e.keller@intel.com>
+Cc: linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	netdev@vger.kernel.org,
+	kernel@collabora.com
+Subject: [PATCH v6 0/4] Enable networking support for StarFive JH7100 SoC
+Date: Wed, 20 Dec 2023 23:17:38 +0200
+Message-ID: <20231220211743.2490518-1-cristian.ciocaltea@collabora.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="9k72YHBHIjnGiFBv"
-Content-Disposition: inline
-In-Reply-To: <20231220082803.345153-1-naresh.solanki@9elements.com>
+Content-Transfer-Encoding: 8bit
 
+This patch series adds ethernet support for the StarFive JH7100 SoC and
+makes it available for the StarFive VisionFive V1 and BeagleV Starlight
+boards, although I could only validate on the former SBC.  Thank you Emil
+and Geert for helping with tests on BeagleV!
 
---9k72YHBHIjnGiFBv
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+The work is heavily based on the reference implementation [1] and depends
+on the SiFive Composable Cache controller and non-coherent DMA support
+provided by Emil via [2] and [3].
 
-On Wed, Dec 20, 2023 at 01:58:01PM +0530, Naresh Solanki wrote:
-> From: Patrick Rudolph <patrick.rudolph@9elements.com>
->=20
-> Maxim Max7357 has a configuration register to enable additional
-> features. These features aren't enabled by default & its up to
-> board designer to enable the same as it may have unexpected side effects.
->=20
-> These should be validated for proper functioning & detection of devices
-> in secondary bus as sometimes it can cause secondary bus being disabled.
->=20
-> Add booleans for:
->  - maxim,isolate-stuck-channel
->  - maxim,send-flush-out-sequence
->  - maxim,preconnection-wiggle-test-enable
->=20
-> Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
-> Signed-off-by: Naresh Solanki <naresh.solanki@9elements.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
+*Update 1*: As of next-20231214, dependencies [2] & [3] have been merged.
 
-Rob, are you really OK with these bindings? They look more like
-configuration instead of HW description to me.
+*Update 2*: Since v5, the dwmac patches will be handled via [4], while the
+            clock patches subset via [5].
 
-> ---
-> Changes in V4:
-> - Drop max7358.
-> Changes in V3:
-> - Update commit message
-> Changes in V2:
-> - Update properties.
-> ---
->  .../bindings/i2c/i2c-mux-pca954x.yaml         | 30 +++++++++++++++++++
->  1 file changed, 30 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml b=
-/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
-> index 2d7bb998b0e9..9aa0585200c9 100644
-> --- a/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
-> +++ b/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
-> @@ -71,6 +71,23 @@ properties:
->      description: A voltage regulator supplying power to the chip. On PCA=
-9846
->        the regulator supplies power to VDD2 (core logic) and optionally t=
-o VDD1.
-> =20
-> +  maxim,isolate-stuck-channel:
-> +    type: boolean
-> +    description: Allows to use non faulty channels while a stuck channel=
- is
-> +      isolated from the upstream bus. If not set all channels are isolat=
-ed from
-> +      the upstream bus until the fault is cleared.
-> +
-> +  maxim,send-flush-out-sequence:
-> +    type: boolean
-> +    description: Send a flush-out sequence to stuck auxiliary buses
-> +      automatically after a stuck channel is being detected.
-> +
-> +  maxim,preconnection-wiggle-test-enable:
-> +    type: boolean
-> +    description: Send a STOP condition to the auxiliary buses when the s=
-witch
-> +      register activates a channel to detect a stuck high fault. On faul=
-t the
-> +      channel is isolated from the upstream bus.
-> +
->  required:
->    - compatible
->    - reg
-> @@ -95,6 +112,19 @@ allOf:
->          "#interrupt-cells": false
->          interrupt-controller: false
-> =20
-> +  - if:
-> +      not:
-> +        properties:
-> +          compatible:
-> +            contains:
-> +              enum:
-> +                - maxim,max7357
-> +    then:
-> +      properties:
-> +        maxim,isolate-stuck-channel: false
-> +        maxim,send-flush-out-sequence: false
-> +        maxim,preconnection-wiggle-test-enable: false
-> +
->  unevaluatedProperties: false
-> =20
->  examples:
->=20
-> base-commit: 76998e5bcdf155b36c7066808a0a65b2ee13cb2a
-> --=20
-> 2.41.0
->=20
->=20
+[1] https://github.com/starfive-tech/linux/commits/visionfive
+[2] https://lore.kernel.org/all/CAJM55Z_pdoGxRXbmBgJ5GbVWyeM1N6+LHihbNdT26Oo_qA5VYA@mail.gmail.com/
+[3] https://lore.kernel.org/all/20231130151932.729708-1-emil.renner.berthing@canonical.com/
+[4] https://lore.kernel.org/lkml/20231220002824.2462655-1-cristian.ciocaltea@collabora.com/
+[5] https://lore.kernel.org/lkml/20231219232442.2460166-1-cristian.ciocaltea@collabora.com/
 
---9k72YHBHIjnGiFBv
-Content-Type: application/pgp-signature; name="signature.asc"
+Changes in v6:
+ - Applied alphabetical ordering in PATCH 3 and 4 (Emil)
 
------BEGIN PGP SIGNATURE-----
+Changes in v5:
+ - Collected R-b tags from Jacob and Andrew
+ - Squashed PATCH 2 into PATCH 1 per Krzysztof's review
+ - Drop unsupported snps,no-pbl-x8 property from gmac DT node
+ - Split series into patch sets per subsystem, as described in "Update 2"
+   section above (per Andrew's review)
+ - v4:
+   https://lore.kernel.org/lkml/20231218214451.2345691-1-cristian.ciocaltea@collabora.com/
 
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmWDU3wACgkQFA3kzBSg
-KbYCtg/+IHnU4Dlg5ZuJoczu05tDkIEorMC7QYYZauBkjd14V0PJuzdaQYYs6JBe
-Z3uEZyw6hNx5fZT87YEH/hXEzmTVAIRuOUzg2aEVmPPy7FCUD8HG0I0siUJGWzSX
-eASSmz9A5YaZS/AFAhPg982vespbLVtd0gubN1b2dabx+JCZvEyt2UN4ooiw7IXD
-MdXWye8/RruXLZUMP+LehEmUi7JRbRNP8sBJISEIi4xnel6VLHDvIHKo31JWXjMK
-6jyzMgIK82gHW1vOHAQsikKCQMFUSsXHBh2qDV9nMNDJc5LRXF7n2ujt+jgvnzSW
-EwP8lRYyHxPGwsYYSdxRJ7QnfNLDvAsM7VEN8StXXt8Hlt+NzpJO6bIO69oKtNHk
-21xEVsWlgS62W3p9Ro92h2HaircFk4iEYXHFW6mXhh8RVQfz+pNpAz3B1HfCp1e4
-nskkKJPVOB7rchZvhf/dStDC9pZNRlXSO4A3irteWU2YB8RI9oFWkfLjAUGoNuRq
-IGQwoEAJVA+ywcHp/dO4xYxzTlDK7CBns5TrGWxC5ke4mKVxOzvVjZXgdJ5rzUAB
-RFoQKQ/AD08vPHh6lQXweShhc/h8oJEvvWfBZTH5KW/oICFUDyRU7oTcbtHf68JN
-7JMP3aC6jApo69gofOmPhT/l5lj77PhuOh6Dpvrsdoro84pqf9Y=
-=982l
------END PGP SIGNATURE-----
+Changes in v4:
+ - Restricted double usage of 'ahb' reset name in PATCH 2 (Jessica, Samuel)
+ - Moved phy reference from PATCH 5 to both PATCH 6 & 7 where the node is
+   actually defined (Emil, Conor)
+ - Drop unnecessary gpio include in PATCH 6; also added a DTS comment
+   describing the rational behind RX internal delay adjustment (Andrew)
+ - v3:
+   https://lore.kernel.org/lkml/20231215204050.2296404-1-cristian.ciocaltea@collabora.com/
 
---9k72YHBHIjnGiFBv--
+Changes in v3:
+ - Rebased series onto next-20231214 and dropped the ccache & DMA coherency
+   related patches (v2 06-08/12) handled by Emil via [3]
+ - Squashed PATCH v2 01/12 into PATCH v3 2/9, per Krzysztof's review
+ - Dropped incorrect PATCH v2 02/12
+ - Incorporated Emil's feedback; also added his Co-developed-by on all dts
+   patches
+ - Documented the need of adjusting RX internal delay in PATCH v3 8/9, per
+   Andrew's request
+ - Added clock fixes from Emil (PATCH v3 8-9/9) required to support
+   10/100Mb link speeds
+ - v2:
+   https://lore.kernel.org/lkml/20231029042712.520010-1-cristian.ciocaltea@collabora.com/
+
+Changes in v2:
+ - Dropped ccache PATCH 01-05 reworked by Emil via [2]
+ - Dropped already applied PATCH 06/12
+ - Added PATCH v2 01 to prepare snps-dwmac binding for JH7100 support
+ - Added PATCH v2 02-03 to provide some jh7110-dwmac binding optimizations
+ - Handled JH7110 conflicting work in PATCH 07 via PATCH v2 04
+ - Reworked PATCH 8 via PATCH v2 05, adding JH7100 quirk and dropped
+   starfive,gtxclk-dlychain DT property; also fixed register naming
+ - Added PATCH v2 08 providing DMA coherency related DT changes
+ - Updated PATCH 9 commit msg:
+   s/OF_DMA_DEFAULT_COHERENT/ARCH_DMA_DEFAULT_COHERENT/
+ - Replaced 'uncached-offset' property with 'sifive,cache-ops' in PATCH
+   10/12 and dropped 'sideband' reg
+ - Add new patch providing coherent DMA memory pool (PATCH v2 10)
+ - Updated PATCH 11/12 according to the stmmac glue layer changes in
+   upstream
+ - Split PATCH 12/12 into PATCH v2 10-12 to handle individual gmac setup of
+   VisionFive v1 and BeagleV boards as they use different PHYs; also
+   switched phy-mode from "rgmii-tx" to "rgmii-id" (requires a reduction of
+   rx-internal-delay-ps by ~50%)
+ - Rebased series onto next-20231024
+ - v1:
+   https://lore.kernel.org/lkml/20230211031821.976408-1-cristian.ciocaltea@collabora.com/
+
+Cristian Ciocaltea (4):
+  riscv: dts: starfive: jh7100: Add sysmain and gmac DT nodes
+  riscv: dts: starfive: jh7100-common: Setup pinmux and enable gmac
+  riscv: dts: starfive: visionfive-v1: Setup ethernet phy
+  riscv: dts: starfive: beaglev-starlight: Setup phy reset gpio
+
+ .../dts/starfive/jh7100-beaglev-starlight.dts | 11 +++
+ .../boot/dts/starfive/jh7100-common.dtsi      | 84 +++++++++++++++++++
+ .../jh7100-starfive-visionfive-v1.dts         | 22 ++++-
+ arch/riscv/boot/dts/starfive/jh7100.dtsi      | 36 ++++++++
+ 4 files changed, 152 insertions(+), 1 deletion(-)
+
+-- 
+2.43.0
+
 
