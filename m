@@ -1,107 +1,110 @@
-Return-Path: <devicetree+bounces-27832-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27833-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90A4081BCFE
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 18:21:48 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2E1F81BD12
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 18:22:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4D9CC289E5C
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 17:21:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ADCEA28AA33
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 17:22:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0258F59930;
-	Thu, 21 Dec 2023 17:21:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31797627F2;
+	Thu, 21 Dec 2023 17:22:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NlACiFRo"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="syIxHXQa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA4F459928;
-	Thu, 21 Dec 2023 17:21:42 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 645D4C433CA;
-	Thu, 21 Dec 2023 17:21:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1703179302;
-	bh=qBXe5efCj0s4OpnQfdZfUHn2RcjIwJIWq2QgG1JXDXY=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=NlACiFRoVdwGb1IWTtl4s3PPfPAUVB24ny5xUjX/ZVnjgOKhOpef+l7g6AFr51xrt
-	 W/LXnLy5kNSwPBIonnupzu9QR50iSdR1an1Zr2H8v8b81OQdvtMHTx476KH028jB3F
-	 EfPEzpXJfFzuioPVatgY72RGFJHzQX8hst4aZN7UI6+HSRp27QE/ZNsC5D5yLaqsxQ
-	 vtltHgNg65wNYE8sEzCYo9pEY2DNAbSNKTUI/MhEx3WJ5qohfXJ6n83/DRKxQxuCWC
-	 42jXXeCWo1Vn4u0xoGuMRbBgTnbcUTx29UpK9b39OKqDQ5jynbjDOb+WAJQrtBeeOF
-	 uAHMOLZp+f/2w==
-Date: Thu, 21 Dec 2023 17:21:26 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Rob Herring <robh@kernel.org>
-Cc: Nuno Sa <nuno.sa@analog.com>, Greg Kroah-Hartman
- <gregkh@linuxfoundation.org>, Frank Rowand <frowand.list@gmail.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, "Rafael J.
- Wysocki" <rafael@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, Rob
- Herring <robh+dt@kernel.org>, Michael Hennerich
- <Michael.Hennerich@analog.com>, Olivier Moysan
- <olivier.moysan@foss.st.com>, linux-iio@vger.kernel.org, Conor Dooley
- <conor+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 1/8] dt-bindings: adc: ad9467: add new io-backend
- property
-Message-ID: <20231221172126.761e580d@jic23-huawei>
-In-Reply-To: <170309138435.683144.1812971328993385650.robh@kernel.org>
-References: <20231220-iio-backend-v4-0-998e9148b692@analog.com>
-	<20231220-iio-backend-v4-1-998e9148b692@analog.com>
-	<170309138435.683144.1812971328993385650.robh@kernel.org>
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.38; x86_64-pc-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 789EA627E8
+	for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 17:22:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-32f8441dfb5so925379f8f.0
+        for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 09:22:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1703179337; x=1703784137; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:in-reply-to:date
+         :cc:to:from:subject:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Js4hNAR6cMsgc+pWjfLy+VC1mhzmUfo3McJWjVqOMn8=;
+        b=syIxHXQauPq9XtVy+TbwqfECpuv1z+C6rHVow0Gq/U6OZMWss25zMA+TcN2Vfeogil
+         mRvQ5A097od2xpJpuWDVyZYKuXYxOKMK9SKnMwLfllqW/EE1bKShVDn9jGoNLLTgUE1F
+         xdiWjVUvxUIZD3PQKdPJoeVpUM3tmaPItSzPCVg1wUSpbhUPM2fVcZI7XT6vbNH1VB/y
+         DD2EpLeH5/OOLNl2cyjxJJ7PxziXXvffFHFfj4JUpQE1h197XCw9hIJHwRAkV03yHuRH
+         4h18kwgv48G8qW4vNXA/v1MxrJdcng9nGYGVfv8tvKjPQ5VJTG5k7t7WOPHn4gLurWH9
+         3aXA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1703179337; x=1703784137;
+        h=mime-version:user-agent:content-transfer-encoding:in-reply-to:date
+         :cc:to:from:subject:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=Js4hNAR6cMsgc+pWjfLy+VC1mhzmUfo3McJWjVqOMn8=;
+        b=bDnc48FMoWopjX3V6pssjcCjhRm2vDoSIi9+gDqaVY8TCf2TiGx6wCi8bRO+s35y2+
+         mLansBv+PMCtFgVLosTyknMVaPUMXegNIjKArXyj8OWL5dEtbqLHygsy0s+w9B3Ksn+Z
+         kkpIaNpw/lth9YvxWu2tY97k9HVaF3ttFGPZXnyorkjZdl55oVpY/efcTZEfAIRFRzwm
+         VmRK97cwuQ+pL0jAHwwmkqWwVImDvkjRZ329VOkbK7ozbJ+QKD4MWq8kN0TTKKS8dR/m
+         +Yb/akyF8rgdHs+z7Vbu98PcVKqUkhIskQMIrUL35p5A9mzgXDUYfkPGQUMEUFETDKCr
+         9cPw==
+X-Gm-Message-State: AOJu0Yyl1b7RgBRw7P0zLNsoXJf0f53SEryD4fqlGU3zUG30aGOoMRzn
+	l9eL7PSX78bHEBLZIPUjvXwKkRbYMK36Gw==
+X-Google-Smtp-Source: AGHT+IHcAJGfPeb0yQ0Y+EJs+D5vtPiabTLnkLz7qcj6pT5g6RrUmtCIamT/YwSJe3jpwXJvTq+1Dg==
+X-Received: by 2002:a5d:674a:0:b0:333:3c06:b431 with SMTP id l10-20020a5d674a000000b003333c06b431mr63490wrw.35.1703179336691;
+        Thu, 21 Dec 2023 09:22:16 -0800 (PST)
+Received: from [10.1.1.118] ([80.111.64.44])
+        by smtp.gmail.com with ESMTPSA id q17-20020adfcd91000000b003362d0eefd3sm2451227wrj.20.2023.12.21.09.22.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 21 Dec 2023 09:22:16 -0800 (PST)
+Message-ID: <aa2991470dfb8fb2e80892d62538d0c75444e6c9.camel@linaro.org>
+Subject: Re: [PATCH 2/2] arm64: dts: exynos: gs101: comply with the new
+ cmu_misc clock names
+From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
+To: tudor.ambarus@linaro.org
+Cc: alim.akhtar@samsung.com, conor+dt@kernel.org,
+ devicetree@vger.kernel.org,  kernel-team@android.com,
+ krzysztof.kozlowski+dt@linaro.org,  linux-arm-kernel@lists.infradead.org,
+ linux-clk@vger.kernel.org,  linux-kernel@vger.kernel.org,
+ linux-samsung-soc@vger.kernel.org,  mturquette@baylibre.com,
+ peter.griffin@linaro.org, robh+dt@kernel.org,  robh@kernel.org,
+ semen.protsenko@linaro.org
+Date: Thu, 21 Dec 2023 17:22:15 +0000
+In-Reply-To: <20231221090046.1486195-2-tudor.ambarus@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.49.2-3 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
 
-On Wed, 20 Dec 2023 10:56:24 -0600
-Rob Herring <robh@kernel.org> wrote:
+Hi Tudor,
 
-> On Wed, 20 Dec 2023 16:34:04 +0100, Nuno Sa wrote:
-> > The ad9467 will make use of the new IIO backend framework which is a
-> > provider - consumer interface where IIO backends provide services to
-> > consumers. As such, and being this device a consumer,  add the new
-> > generic io-backend property to the bindings.
-> > 
-> > Signed-off-by: Nuno Sa <nuno.sa@analog.com>
-> > ---
-> >  Documentation/devicetree/bindings/iio/adc/adi,ad9467.yaml | 4 ++++
-> >  1 file changed, 4 insertions(+)
-> >   
-> 
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> 
-> yamllint warnings/errors:
-> 
-> dtschema/dtc warnings/errors:
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/adc/adi,ad9467.yaml: io-backends: missing type definition
+> diff --git a/arch/arm64/boot/dts/exynos/google/gs101.dtsi b/arch/arm64/bo=
+ot/dts/exynos/google/gs101.dtsi
+> index 9747cb3fa03a..d838e3a7af6e 100644
+> --- a/arch/arm64/boot/dts/exynos/google/gs101.dtsi
+> +++ b/arch/arm64/boot/dts/exynos/google/gs101.dtsi
+> @@ -289,7 +289,7 @@ cmu_misc: clock-controller@10010000 {
+>  			#clock-cells =3D <1>;
+>  			clocks =3D <&cmu_top CLK_DOUT_CMU_MISC_BUS>,
+>  				 <&cmu_top CLK_DOUT_CMU_MISC_SSS>;
+> -			clock-names =3D "dout_cmu_misc_bus", "dout_cmu_misc_sss";
+> +			clock-names =3D "bus", "sss";
+>  		};
+>=20
 
-For reference this is expected as if this goes ahead that will be a dtschema addition.
+With this change, parent clock enablement fails, and we get:
+    exynos_arm64_register_cmu: could not enable bus clock dout_cmu_misc_bus=
+; err =3D -2
+during boot.
 
-> 
-> doc reference errors (make refcheckdocs):
-> 
-> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20231220-iio-backend-v4-1-998e9148b692@analog.com
-> 
-> The base for the series is generally the latest rc1. A different dependency
-> should be noted in *this* patch.
-> 
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
-> 
-> pip3 install dtschema --upgrade
-> 
-> Please check and re-submit after running the above command yourself. Note
-> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-> your schema. However, it must be unset to test all examples with your schema.
-> 
+
+Cheers,
+Andre'
+
 
 
