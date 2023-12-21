@@ -1,183 +1,100 @@
-Return-Path: <devicetree+bounces-27665-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27669-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id EEE3281B351
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 11:15:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 970BF81B35D
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 11:16:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1B7741C24C8E
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 10:15:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CA3071C2503D
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 10:16:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68DF24F20E;
-	Thu, 21 Dec 2023 10:15:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8980B4EB4F;
+	Thu, 21 Dec 2023 10:16:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="DYpu6YiF"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="lPXKAhSC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0A3E4EB31;
-	Thu, 21 Dec 2023 10:15:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3BLAENjV030741;
-	Thu, 21 Dec 2023 04:14:23 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1703153663;
-	bh=rbns9usRGQpZ2NWl1wj7gXW/38aT9PQoDkciQ1L7398=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=DYpu6YiFBfSv/Y1+aXFDci3Yq9Lq28NvcQp3Y6HN34sN5XxhoLYes6tcSe5o7lm8I
-	 ggsev08hY62sJb2BCXfgYHNaHO5lHHu7Najt3RLiLMWuMd8mYJ2OJv171GcEBDNpdq
-	 aixnk+sezNrbgyLG96FpgR4HuE2Yc79kgeaR0YZM=
-Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3BLAENuP017558
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 21 Dec 2023 04:14:23 -0600
-Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 21
- Dec 2023 04:14:23 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 21 Dec 2023 04:14:23 -0600
-Received: from LT5CG31242FY.dhcp.ti.com (lt5cg31242fy.dhcp.ti.com [10.85.14.210])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3BLADoQg069419;
-	Thu, 21 Dec 2023 04:14:17 -0600
-From: Shenghao Ding <shenghao-ding@ti.com>
-To: <broonie@kernel.org>, <conor+dt@kernel.org>,
-        <krzysztof.kozlowski@linaro.org>
-CC: <robh+dt@kernel.org>, <andriy.shevchenko@linux.intel.com>,
-        <kevin-lu@ti.com>, <baojun.xu@ti.com>, <devicetree@vger.kernel.org>,
-        <lgirdwood@gmail.com>, <perex@perex.cz>,
-        <pierre-louis.bossart@linux.intel.com>, <13916275206@139.com>,
-        <linux-sound@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <liam.r.girdwood@intel.com>, <soyer@irl.hu>, <tiwai@suse.de>,
-        <peeyush@ti.com>, <navada@ti.com>,
-        Shenghao Ding <shenghao-ding@ti.com>
-Subject: [PATCH v2 5/5] ASoC: dt-bindings: Add tas2563 into ti,ta2781.yaml to support dsp mode better
-Date: Thu, 21 Dec 2023 18:13:45 +0800
-Message-ID: <20231221101346.429-5-shenghao-ding@ti.com>
-X-Mailer: git-send-email 2.33.0.windows.2
-In-Reply-To: <20231221101346.429-1-shenghao-ding@ti.com>
-References: <20231221101346.429-1-shenghao-ding@ti.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23B3951C26
+	for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 10:16:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 00459E000D;
+	Thu, 21 Dec 2023 10:16:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1703153772;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=oV7RU7sxJyQudrpIogN+qOiclZR5xvUS2xA9S30Qmmc=;
+	b=lPXKAhSCpcE2HfRc4KNqd2KLKbAWSA5oQMcBtsg7JducPmYhCcOZRv2j6l4m3d9NQQArEb
+	Bug1/sB4DdItVEkTqvSqapJ2TYgIwNWGx2EBrVgFTI59lzV1cSmOmxFY5WVD3mU09ugqUW
+	byKdirWstZF3uBJy3iO4hSuBrRByC+rlAfqJFrJZCCvGBbcN4OqdCodjY1fgKlObMHlQXr
+	lbcU6B8x7V5NdBKt0Pt2NVrVa1LUT+kWovPNvkdIzMVTrFKscKR8ZekGmJ8tMTtbzfpncR
+	J0hqMMoByTrk2syUW71GhxXgg7hvarY6CdMsjuLiVQ1XBHLp822k5cG1X0niUw==
+Date: Thu, 21 Dec 2023 11:16:03 +0100
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+To: =?UTF-8?B?U8OpYmFzdGllbg==?= Szymanski
+ <sebastien.szymanski@armadeus.com>
+Cc: Stefan Wahren <wahrenst@gmx.net>, Richard Weinberger <richard@nod.at>,
+ Vignesh Raghavendra <vigneshr@ti.com>, Han Xu <han.xu@nxp.com>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Marek Vasut <marex@denx.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>, linux-imx@nxp.com,
+ linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH RFT 2/2] ARM: dts: mxs: imx28: Fix NAND hierarchy
+ description
+Message-ID: <20231221111603.25c28a05@xps-13>
+In-Reply-To: <bf76aa11-7005-4bf8-836b-fce616afcdf4@armadeus.com>
+References: <20231218130656.9020-1-wahrenst@gmx.net>
+	<20231218130656.9020-2-wahrenst@gmx.net>
+	<bf76aa11-7005-4bf8-836b-fce616afcdf4@armadeus.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-GND-Sasl: miquel.raynal@bootlin.com
 
-Add tas2563 to better support dsp mode.
+Hello,
 
-Signed-off-by: Shenghao Ding <shenghao-ding@ti.com>
+sebastien.szymanski@armadeus.com wrote on Thu, 21 Dec 2023 10:56:09
++0100:
 
----
-Change in v2:
- - Add devicetree list and other list of necessary people and lists to CC
- - Express Compatibility in the bindings
----
- .../devicetree/bindings/sound/ti,tas2781.yaml | 61 +++++++++++++------
- 1 file changed, 43 insertions(+), 18 deletions(-)
+> Hello Stefan,
+>=20
+> On 12/18/23 14:06, Stefan Wahren wrote:
+> > The size-cells for GPMI are wrong in imx28.dtsi, which causes the
+> > following warning:
+> >=20
+> >      nand-controller@8000c000: #size-cells:0:0: 0 was expected
+> >=20
+> > The reason for this is the definition of the partitions directly
+> > below the nand controller node. According to nand-controller.yaml
+> > the NAND chip must be defined as a child of the controller. Even
+> > the fixed partitions must be kept in a partitions container.
 
-diff --git a/Documentation/devicetree/bindings/sound/ti,tas2781.yaml b/Documentation/devicetree/bindings/sound/ti,tas2781.yaml
-index a69e6c223308..76d4357117d5 100644
---- a/Documentation/devicetree/bindings/sound/ti,tas2781.yaml
-+++ b/Documentation/devicetree/bindings/sound/ti,tas2781.yaml
-@@ -5,36 +5,33 @@
- $id: http://devicetree.org/schemas/sound/ti,tas2781.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
- 
--title: Texas Instruments TAS2781 SmartAMP
-+title: Texas Instruments TAS2781/TAS2563 SmartAMP
- 
- maintainers:
-   - Shenghao Ding <shenghao-ding@ti.com>
- 
- description:
--  The TAS2781 is a mono, digital input Class-D audio amplifier
--  optimized for efficiently driving high peak power into small
--  loudspeakers. An integrated on-chip DSP supports Texas Instruments
--  Smart Amp speaker protection algorithm. The integrated speaker
--  voltage and current sense provides for real time
-+  The TAS2781/TAS2563 is a mono, digital input Class-D audio
-+  amplifier optimized for efficiently driving high peak power into
-+  small loudspeakers. An integrated on-chip DSP supports Texas
-+  Instruments Smart Amp speaker protection algorithm. The
-+  integrated speaker voltage and current sense provides for real time
-   monitoring of loudspeaker behavior.
- 
--allOf:
--  - $ref: dai-common.yaml#
--
- properties:
-   compatible:
-+    description: |
-+      ti,tas2781: 24-V Class-D Amplifier with Real Time Integrated Speaker
-+      Protection and Audio Processing, 16/20/24/32bit stereo I2S or
-+      multichannel TDM.
-+
-+      ti,tas2563: 6.1-W Boosted Class-D Audio Amplifier With Integrated
-+      DSP and IV Sense, 16/20/24/32bit stereo I2S or multichannel TDM.
-     enum:
-       - ti,tas2781
-+      - ti,tas2563          # fallback compatible
- 
--  reg:
--    description:
--      I2C address, in multiple tas2781s case, all the i2c address
--      aggregate as one Audio Device to support multiple audio slots.
--    maxItems: 8
--    minItems: 1
--    items:
--      minimum: 0x38
--      maximum: 0x3f
-+  reg: true
- 
-   reset-gpios:
-     maxItems: 1
-@@ -49,6 +46,34 @@ required:
-   - compatible
-   - reg
- 
-+allOf:
-+  - $ref: dai-common.yaml#
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - ti,tas2781
-+    then:
-+      properties:
-+        reg:
-+          description:
-+            I2C address, in multiple AMP case, all the i2c address
-+            aggregate as one Audio Device to support multiple audio slots.
-+          maxItems: 8
-+          minItems: 1
-+          items:
-+            minimum: 0x38
-+            maximum: 0x3f
-+    else:
-+      properties:
-+        reg:
-+          maxItems: 4
-+          minItems: 1
-+          items:
-+            minimum: 0x4c
-+            maximum: 0x4f
-+
- additionalProperties: false
- 
- examples:
--- 
-2.34.1
+Bindings evolve over time, we sometimes deprecate them when they are
+problematic but:
+- the old representations are still accepted (but marked legacy)
+- if you want to support the new representation you probably need to
+  update the controller driver as well (to support both).
 
+In this case I would expect a deprecation notice rather than a pure
+error.
+
+Thanks,
+Miqu=C3=A8l
 
