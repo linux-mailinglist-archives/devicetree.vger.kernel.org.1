@@ -1,150 +1,198 @@
-Return-Path: <devicetree+bounces-27849-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27850-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E41981BD67
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 18:38:25 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8607481BD78
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 18:43:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A83431F21719
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 17:38:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A96711C232C1
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 17:43:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D71FC634F3;
-	Thu, 21 Dec 2023 17:38:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="CTeVqL2I"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D49AD634FF;
+	Thu, 21 Dec 2023 17:43:24 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41D9262804
-	for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 17:38:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-a22f59c6aeaso123659566b.2
-        for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 09:38:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1703180286; x=1703785086; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=fYV6Mgy0TcRWTlCyc11+Vk7sT6RhTqsahWi2Z8G0VL0=;
-        b=CTeVqL2IcUQ/fKRAQUifFGLFSAbrx1QvqXa+gj3WHbV7eL6LHMpYzG0TbCjtU5a3/A
-         qE77qghI7rOaXVIeN24c1gXdlK17aKLId6udXzfXMvp4DnGsBUATAu7LkpVyk65fpVQZ
-         n7GvLy6MYnzkZ7qFetiphzqleYuUtA2h5gd2cGp2brqo3sjDQ6kR/EhJ8GeejU7eNl96
-         COb7NJ9DmHPuZwyFylQdLnHK4ntC/Q8u1/CrSWEvj4krdeOstDmGHAya58DtBP/s7IoD
-         IfFNjz8MA7T0XLaTuUc03J8NWa6arnYrdpAj7Mf1SBrOmB6s22mVCOJNxP37++oPgtSN
-         74jw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703180286; x=1703785086;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=fYV6Mgy0TcRWTlCyc11+Vk7sT6RhTqsahWi2Z8G0VL0=;
-        b=oZA+hnj10+nhPGTyvoDCGzx9yYuGIWWUclqT2On+uDgQPSTrE15eefsE0Yw+yGgCYA
-         7d29fdQx/AQD64NJK86k9VNk4ZBsD8ZIiYazbfnz5MH8OTlIj0dp4yKFPspi640xb1g+
-         F/B8Xm2Yfo5ivBZD994bJ5miHDYpDtye4Gk3+JQS/1U3Z3VLZKeg+xyv8HUNU9CyeP7e
-         KEt/omT6xwhpNjMGOmig6ApXhJ9ZF9UF450h8Sf8hVfJ/WODA5cSVLoeXPJ4t/1tvQun
-         mSTHcUbN6+ZRSqS05X9LvXHTajuV4BvmvGnT/MnfcoBtwE2qtOqLgLBehvJzV3J1N7rY
-         NLCQ==
-X-Gm-Message-State: AOJu0YyB5Euz4LJamy9+oe12q+3GnqHK6Gf+yXq9x6LR602r75geDmUC
-	kbwT+1rheiQ0lBFY4YOBGOTnF/g1Lr/vNU3Ef9C2V3fAO3tg6g==
-X-Google-Smtp-Source: AGHT+IEdqFiUIfBBbwZGgA63S7UPMnB1PCiHJNgwpO7VLugKfjxoPp1n1pET+PXhvir5KVNbcDTVbQ==
-X-Received: by 2002:a17:906:4716:b0:a23:619f:9e68 with SMTP id y22-20020a170906471600b00a23619f9e68mr58293ejq.150.1703180286520;
-        Thu, 21 Dec 2023 09:38:06 -0800 (PST)
-Received: from [192.168.0.22] ([78.10.206.178])
-        by smtp.gmail.com with ESMTPSA id mf8-20020a1709071a4800b00a26a4b935b0sm928176ejc.166.2023.12.21.09.38.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 Dec 2023 09:38:06 -0800 (PST)
-Message-ID: <56f277f5-3f2a-492a-a84c-0e0a3e3dd475@linaro.org>
-Date: Thu, 21 Dec 2023 18:38:04 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66B4E6350A
+	for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 17:43:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ore@pengutronix.de>)
+	id 1rGN4L-0005G0-4R; Thu, 21 Dec 2023 18:42:49 +0100
+Received: from [2a0a:edc0:2:b01:1d::c0] (helo=ptx.whiteo.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <ore@pengutronix.de>)
+	id 1rGN4H-000ZrS-DK; Thu, 21 Dec 2023 18:42:46 +0100
+Received: from ore by ptx.whiteo.stw.pengutronix.de with local (Exim 4.92)
+	(envelope-from <ore@pengutronix.de>)
+	id 1rGN4I-008Aa1-DK; Thu, 21 Dec 2023 18:42:46 +0100
+Date: Thu, 21 Dec 2023 18:42:46 +0100
+From: Oleksij Rempel <o.rempel@pengutronix.de>
+To: Mark Brown <broonie@kernel.org>
+Cc: =?utf-8?B?S8O2cnk=?= Maincent <kory.maincent@bootlin.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Luis Chamberlain <mcgrof@kernel.org>,
+	Russ Weight <russ.weight@linux.dev>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org, devicetree@vger.kernel.org,
+	Dent Project <dentproject@linuxfoundation.org>,
+	Liam Girdwood <lgirdwood@gmail.com>
+Subject: Re: [PATCH net-next v2 8/8] net: pse-pd: Add PD692x0 PSE controller
+ driver
+Message-ID: <20231221174246.GI1697233@pengutronix.de>
+References: <20231201-feature_poe-v2-8-56d8cac607fa@bootlin.com>
+ <20231204225956.GG981228@pengutronix.de>
+ <20231205064527.GJ981228@pengutronix.de>
+ <4b96b8c8-7def-46e5-9c85-d9e925fb9251@sirena.org.uk>
+ <20231205140203.GK981228@pengutronix.de>
+ <88ed0c94-d052-4564-be0c-79a0f502eda8@sirena.org.uk>
+ <20231221163610.47038996@kmaincent-XPS-13-7390>
+ <ffda1003-b752-402e-8e51-e2e24a840cff@sirena.org.uk>
+ <20231221171000.45310167@kmaincent-XPS-13-7390>
+ <501f671d-4e03-490b-a9d6-e1f39bb99115@sirena.org.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: iio: hmc425a: add entry for LTC6373
-Content-Language: en-US
-To: Dumitru Ceclan <mitrutzceclan@gmail.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Jonathan Cameron
- <jic23@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Ceclan Dumitru <dumitru.ceclan@analog.com>
-References: <20231221113842.25957-1-mitrutzceclan@gmail.com>
- <20231221113842.25957-2-mitrutzceclan@gmail.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231221113842.25957-2-mitrutzceclan@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <501f671d-4e03-490b-a9d6-e1f39bb99115@sirena.org.uk>
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On 21/12/2023 12:38, Dumitru Ceclan wrote:
->  
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: adi,ltc6373
-> +
-> +    then:
-> +      properties:
-> +        ctrl-gpios:
-> +          minItems: 3
-> +          maxItems: 3
+On Thu, Dec 21, 2023 at 04:20:10PM +0000, Mark Brown wrote:
+> On Thu, Dec 21, 2023 at 05:10:00PM +0100, Köry Maincent wrote:
+> > Mark Brown <broonie@kernel.org> wrote:
+> > > On Thu, Dec 21, 2023 at 04:36:10PM +0100, Köry Maincent wrote:
+> > > > Mark Brown <broonie@kernel.org> wrote:  
+> 
+> > > > > OK...  I mean, if they're not using the regulator framework I'm not sure
+> > > > > it has much impact - there are plenty of internal regulators in devices
+> > > > > already so it wouldn't be *too* unusual other than the fact that AFAICT
+> > > > > this is somewhat split between devices within the subsystem?  Neither of
+> > > > > the messages was super clear.  
+> 
+> > > > PSE Power Interface (which is kind of the RJ45 in PSE world) have similar
+> > > > functionalities as regulators. We wondered if registering a regulator for
+> > > > each PSE PI (RJ45 ports) is a good idea. The point is that the PSE
+> > > > controller driver will be its own regulator consumer.
+> > > > I can't find any example in Linux with such a case of a driver being a
+> > > > provider and a consumer of its own regulator. This idea of a regulator
+> > > > biting its own tail seems weird to me. Maybe it is better to implement the
+> > > > PSE functionalities even if they are like the regulator functionalities.  
+> 
+> > > Is it at all plausible that a system (perhaps an embedded one) might use
+> > > something other than PSE?
+> 
+> > Do you mean to supply power to a RJ45 port?
+> 
+> Whatever it is that PSE does.
+> 
+> > This can be done with a simple regulator. In that case we use the pse_regulator
+> > driver which is a regulator consumer.
+> > I don't know about other cases. Oleksij do you?
+> 
+> In that case it sounds like you need the split to allow people to
+> substitute in a non-PSE supply, and everything ought to be doing the
+> consumer thing?
 
-Test your DTS first. This leads to errors. :(
-You miss minItems top-level and here else:.
+I decided and suggested to use regulator framework for following
+reasons:
+- The PSE is never a standalone controller. It is part of the system
+  which includes Power Supply, which is providing power to the SoC and
+  PSE.
+- One system may contain multiple PSEs, we need to use some framework
+  outside of PSE to regulate consumer priorities based on available
+  power budget.
+- a complex design may contain multiple hot swappable power supplies, we need
+  to manage them and regulate power budget between multiple PSEs.
+- in many cases PSE is kind of PMIC with multiple channels and some
+  extras: prioritization, classification of attached devices. I suggest
+  to represent every channel as a regulator, since it allow us to reuse
+  existing diagnostic interfaces.
 
-Best regards,
-Krzysztof
+Since everything power related on a embedded system we already handle
+with regulator framework, so why not use it within PSE too?
 
+Here is an example of more or less complex system:
+
+  +----------------------------------------------------------------+
+  |                        Ethernet Switch                         |
+  |                                                                |
+  |  +-----------------+  +-----------------+  +-----------------+ |
+  |  | Power Supply 1  |  | Power Supply 2  |  | removed Supply 3| |
+  |  +--------+--------+  +--------+--------+  +--------+--------+ |
+  |           |                    |-------------------.           |
+  |  +--------v--------+  +--------v--------+  +--------v--------+ |
+  |  | PSE Controller  |  | PSE Controller  |  | PSE Controller  | |
+  |  |       #1        |  |       #2        |  |       #3        | |
+  |  +----+++++--------+  +--------+--------+  +--------+--------+ |
+  |       |||||                    |                    |          |
+  +-------|||||--------------------|--------------------|----------+
+          |||||                    |                    |            
+          |||||                    |                    |            
+  +-------....v--------------------v--------------------v---------+
+  |                         Powered Devices                       |
+  |                                                               |
+  |  +--------+  +--------+  +--------+         +--------+  +-----+
+  |  | Sensor |  | Sensor |  | Sensor |  ...    | Motor  |  | ... |
+  |  +--------+  +--------+  +--------+         +--------+  +-----+
+  |                                                               |
+  +---------------------------------------------------------------+
+
+How a PD reserves/communicates power budget on PSE PI (Power Interfaces)?
+
+There are 3 ways to reserve power budget for PD:
+- Level 1 classification. Done by PSE in cooperation with PD by firmware or
+  can be done by Linux. Linux variant is currently not implemented.
+- Done over Link Layer Discovery Protocol (LLDP). In this case some user
+  space application (lldp daemon) will tell kernel to reserve power on some
+  specific port (PSE PI).
+- Set by user if all other ways fail or not implemented
+
+PD side may have similar kind of challenges. For example, if PSE
+notifies PD about reducing power budge for PD, PD may decide to reduce
+consumption by keeping system alive - turn of the motor, but keep
+sensors enabled. 
+
+The main question is - how to represent a remote consumer (Powered
+Device)? It looks for me like having a dummy regulator consumer for each
+(PSE PI) withing the PSE framework is the simplest thing to do. User
+should enable this dummy consumer from user space by using already
+existing interface in case of PoDL - ETHTOOL_A_PODL_PSE_ADMIN_CONTROL
+or new interface for Clause 33 PSE.
+
+Regards,
+Oleksij
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
