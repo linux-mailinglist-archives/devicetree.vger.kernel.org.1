@@ -1,49 +1,48 @@
-Return-Path: <devicetree+bounces-27903-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27904-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 758C081C112
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 23:29:40 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1B8581C129
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 23:46:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 30FAC287E5A
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 22:29:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 556B51F24A44
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 22:46:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EC1378E6C;
-	Thu, 21 Dec 2023 22:29:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0F5C76DAA;
+	Thu, 21 Dec 2023 22:46:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WQmpAzbQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k7yOcu5z"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 007217691C;
-	Thu, 21 Dec 2023 22:29:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 227AAC433C8;
-	Thu, 21 Dec 2023 22:29:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D00A0539E0;
+	Thu, 21 Dec 2023 22:46:47 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 60B65C433C8;
+	Thu, 21 Dec 2023 22:46:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1703197774;
-	bh=3olSdqCH1RJ2MPrPxBn2yqWGIxPoGVfij5wrm0E4WBw=;
+	s=k20201202; t=1703198807;
+	bh=KXvjFUiHX70HF64T8ILtJMgH6TV3lQn64cwiBFZ9nrA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=WQmpAzbQVhum7pt8MnB5a/VRcUcuMzWWOygOildljSPEjspTWsN83Xs3do5JEyt4B
-	 wOCQgDpqhdFiW0WB/4sfRaIcd+qt5e7eTZSHRVCWTIFXFmZWl3uUc4gJ5glMTBM9pC
-	 8opfAwrvBB5vm3T4T6bfmRyk3L3xtHbGRrKQgs+ztgCeb9W7qwzwX0LS/nQOPDFmk/
-	 1J9++p45KKmNAvXL4jeQgaDDYSYHdw4nnmacHwrGB/e20j87aqa572TAD0p2q4cdB8
-	 Q8cHuXjlwkKXyyGPSr03UR34eKjWumho6+z1zy94B2cm6b2v72lysJKg8LDsDKrji0
-	 zqwj9JXTs/AeA==
-Received: (nullmailer pid 205437 invoked by uid 1000);
-	Thu, 21 Dec 2023 22:29:32 -0000
-Date: Thu, 21 Dec 2023 16:29:32 -0600
+	b=k7yOcu5zSkSTSDfP4+8GgK8Db54OwRIF52yUr5HF9Cxb6BFEK7TSNRLG6oMY4gFzk
+	 WR/0wJvRdPpOMOQw2palzwQyZrZGO4ScT8eNpyqUfZvMnUBkN2LoGwU+4PQpPwUSJQ
+	 KRQBWN4zTQfGu67kXkhbgh1Oq9tn3a9iwK6gJxYUzwACHsfpXCFjlrJ2ILp8Pt/ux7
+	 uvuMyo9AGz1n7d3iwcZueL48K9ISAKF5/EjX3/H6leISfhIQTx+mHtx3reqvZV5Wpu
+	 vPFX751AZ8aCqX3Ib3USlQVZHFazFoGZ2cqhl1D2NqjkDLAStBsUHPx/xEG5KYJ1t9
+	 OSspJMbtcHP0g==
+Received: (nullmailer pid 227326 invoked by uid 1000);
+	Thu, 21 Dec 2023 22:46:45 -0000
+Date: Thu, 21 Dec 2023 16:46:45 -0600
 From: Rob Herring <robh@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Moudy Ho <moudy.ho@mediatek.com>, Chun-Kuang Hu <chunkuang.hu@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Mauro Carvalho Chehab <mchehab@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Hans Verkuil <hverkuil-cisco@xs4all.nl>, dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v10 02/16] dt-bindings: media: mediatek: mdp3: merge the
- indentical RDMA under display
-Message-ID: <20231221222932.GA196757-robh@kernel.org>
-References: <20231220100853.20616-1-moudy.ho@mediatek.com>
- <20231220100853.20616-3-moudy.ho@mediatek.com>
- <250fead9-868b-4063-a054-4cb966dc4ba3@linaro.org>
+To: Nuno Sa <nuno.sa@analog.com>
+Cc: Jonathan Cameron <jic23@kernel.org>, Olivier Moysan <olivier.moysan@foss.st.com>, Frank Rowand <frowand.list@gmail.com>, linux-iio@vger.kernel.org, Michael Hennerich <Michael.Hennerich@analog.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 1/8] dt-bindings: adc: ad9467: add new io-backend
+ property
+Message-ID: <170319880465.227267.11932534810200819301.robh@kernel.org>
+References: <20231220-iio-backend-v4-0-998e9148b692@analog.com>
+ <20231220-iio-backend-v4-1-998e9148b692@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -52,20 +51,21 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <250fead9-868b-4063-a054-4cb966dc4ba3@linaro.org>
+In-Reply-To: <20231220-iio-backend-v4-1-998e9148b692@analog.com>
 
-On Thu, Dec 21, 2023 at 10:28:52AM +0100, Krzysztof Kozlowski wrote:
-> On 20/12/2023 11:08, Moudy Ho wrote:
-> > To simplify maintenance and avoid branches, the identical component
-> > should be merged and placed in the path belonging to the MDP
-> > (from display/* to media/*).
+
+On Wed, 20 Dec 2023 16:34:04 +0100, Nuno Sa wrote:
+> The ad9467 will make use of the new IIO backend framework which is a
+> provider - consumer interface where IIO backends provide services to
+> consumers. As such, and being this device a consumer,  add the new
+> generic io-backend property to the bindings.
 > 
-> Combining bindings into one bigger meta-binding makes it usually more
-> difficult to maintain and review.
+> Signed-off-by: Nuno Sa <nuno.sa@analog.com>
+> ---
+>  Documentation/devicetree/bindings/iio/adc/adi,ad9467.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
 
-Yeah, but these mediatek blocks appear to be used for both display and 
-video codec pipelines. So having different bindings was probably wrong 
-to start with.
+Reviewed-by: Rob Herring <robh@kernel.org>
 
-Rob
 
