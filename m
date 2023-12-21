@@ -1,198 +1,379 @@
-Return-Path: <devicetree+bounces-27850-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27851-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8607481BD78
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 18:43:46 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7869E81BD81
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 18:44:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A96711C232C1
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 17:43:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E23061F24C79
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 17:44:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D49AD634FF;
-	Thu, 21 Dec 2023 17:43:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 274356280D;
+	Thu, 21 Dec 2023 17:44:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZhLH7F06"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66B4E6350A
-	for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 17:43:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ore@pengutronix.de>)
-	id 1rGN4L-0005G0-4R; Thu, 21 Dec 2023 18:42:49 +0100
-Received: from [2a0a:edc0:2:b01:1d::c0] (helo=ptx.whiteo.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <ore@pengutronix.de>)
-	id 1rGN4H-000ZrS-DK; Thu, 21 Dec 2023 18:42:46 +0100
-Received: from ore by ptx.whiteo.stw.pengutronix.de with local (Exim 4.92)
-	(envelope-from <ore@pengutronix.de>)
-	id 1rGN4I-008Aa1-DK; Thu, 21 Dec 2023 18:42:46 +0100
-Date: Thu, 21 Dec 2023 18:42:46 +0100
-From: Oleksij Rempel <o.rempel@pengutronix.de>
-To: Mark Brown <broonie@kernel.org>
-Cc: =?utf-8?B?S8O2cnk=?= Maincent <kory.maincent@bootlin.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Luis Chamberlain <mcgrof@kernel.org>,
-	Russ Weight <russ.weight@linux.dev>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org, devicetree@vger.kernel.org,
-	Dent Project <dentproject@linuxfoundation.org>,
-	Liam Girdwood <lgirdwood@gmail.com>
-Subject: Re: [PATCH net-next v2 8/8] net: pse-pd: Add PD692x0 PSE controller
- driver
-Message-ID: <20231221174246.GI1697233@pengutronix.de>
-References: <20231201-feature_poe-v2-8-56d8cac607fa@bootlin.com>
- <20231204225956.GG981228@pengutronix.de>
- <20231205064527.GJ981228@pengutronix.de>
- <4b96b8c8-7def-46e5-9c85-d9e925fb9251@sirena.org.uk>
- <20231205140203.GK981228@pengutronix.de>
- <88ed0c94-d052-4564-be0c-79a0f502eda8@sirena.org.uk>
- <20231221163610.47038996@kmaincent-XPS-13-7390>
- <ffda1003-b752-402e-8e51-e2e24a840cff@sirena.org.uk>
- <20231221171000.45310167@kmaincent-XPS-13-7390>
- <501f671d-4e03-490b-a9d6-e1f39bb99115@sirena.org.uk>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BBAFBA2F;
+	Thu, 21 Dec 2023 17:44:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0DA4CC433C8;
+	Thu, 21 Dec 2023 17:44:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1703180693;
+	bh=BMIHeLuCeYwSHNOqRNr2btusBnP1gL+BuDzUPQ2zqJs=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=ZhLH7F06LBAkWbWZHgFrICFKjJJS1sJPoYKS7/NxxANich6F24fsHeYj+6eEr/w+0
+	 8/ewzzR7yaBOFof0zyxQx6e7QMtrse4Er5d99kGFNmIffmpxuBkefedhF2ME/0dIgb
+	 eP0d/EEpZTvo8vspPc5nPkYwS2b32OBaVHJygB90eadWAZylpfgBEJxabncYnwkNmJ
+	 7WYZ3Ti+YVC6MqKHafpERZF98ftYR/8ziQZl9C399B/6lmGYa0dToujGpmXVNUs3Ou
+	 1FLAL0Qh1GNzS7SkOA6RRNDysZT2hTHU6yrrpDkqNSJ+Y54hlN+6oXMOOURagXkV+T
+	 yorMF3x7gaVQw==
+Date: Thu, 21 Dec 2023 17:44:37 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Nuno Sa <nuno.sa@analog.com>
+Cc: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>, Lars-Peter
+ Clausen <lars@metafoo.de>, Michael Hennerich
+ <Michael.Hennerich@analog.com>, Rob Herring <robh+dt@kernel.org>, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+ <conor+dt@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, Frank Rowand
+ <frowand.list@gmail.com>, Olivier Moysan <olivier.moysan@foss.st.com>
+Subject: Re: [PATCH v4 6/8] iio: add the IIO backend framework
+Message-ID: <20231221174437.5935a5c3@jic23-huawei>
+In-Reply-To: <20231220-iio-backend-v4-6-998e9148b692@analog.com>
+References: <20231220-iio-backend-v4-0-998e9148b692@analog.com>
+	<20231220-iio-backend-v4-6-998e9148b692@analog.com>
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <501f671d-4e03-490b-a9d6-e1f39bb99115@sirena.org.uk>
-X-Sent-From: Pengutronix Hildesheim
-X-URL: http://www.pengutronix.de/
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Thu, Dec 21, 2023 at 04:20:10PM +0000, Mark Brown wrote:
-> On Thu, Dec 21, 2023 at 05:10:00PM +0100, Köry Maincent wrote:
-> > Mark Brown <broonie@kernel.org> wrote:
-> > > On Thu, Dec 21, 2023 at 04:36:10PM +0100, Köry Maincent wrote:
-> > > > Mark Brown <broonie@kernel.org> wrote:  
+On Wed, 20 Dec 2023 16:34:09 +0100
+Nuno Sa <nuno.sa@analog.com> wrote:
+
+> This is a Framework to handle complex IIO aggregate devices.
 > 
-> > > > > OK...  I mean, if they're not using the regulator framework I'm not sure
-> > > > > it has much impact - there are plenty of internal regulators in devices
-> > > > > already so it wouldn't be *too* unusual other than the fact that AFAICT
-> > > > > this is somewhat split between devices within the subsystem?  Neither of
-> > > > > the messages was super clear.  
+> The typical architecture is to have one device as the frontend device which
+> can be "linked" against one or multiple backend devices. All the IIO and
+> userspace interface is expected to be registers/managed by the frontend
+> device which will callback into the backends when needed (to get/set
+> some configuration that it does not directly control).
 > 
-> > > > PSE Power Interface (which is kind of the RJ45 in PSE world) have similar
-> > > > functionalities as regulators. We wondered if registering a regulator for
-> > > > each PSE PI (RJ45 ports) is a good idea. The point is that the PSE
-> > > > controller driver will be its own regulator consumer.
-> > > > I can't find any example in Linux with such a case of a driver being a
-> > > > provider and a consumer of its own regulator. This idea of a regulator
-> > > > biting its own tail seems weird to me. Maybe it is better to implement the
-> > > > PSE functionalities even if they are like the regulator functionalities.  
+> The basic framework interface is pretty simple:
+>  - Backends should register themselves with @devm_iio_backend_register()
+>  - Frontend devices should get backends with @devm_iio_backend_get()
 > 
-> > > Is it at all plausible that a system (perhaps an embedded one) might use
-> > > something other than PSE?
+> Signed-off-by: Nuno Sa <nuno.sa@analog.com>
+
+A few minor comments, but seems good to me otherwise.
+
+Jonathan
+
+> ---
+>  MAINTAINERS                        |   8 +
+>  drivers/iio/Kconfig                |   5 +
+>  drivers/iio/Makefile               |   1 +
+>  drivers/iio/industrialio-backend.c | 456 +++++++++++++++++++++++++++++++++++++
+>  include/linux/iio/backend.h        |  75 ++++++
+>  5 files changed, 545 insertions(+)
 > 
-> > Do you mean to supply power to a RJ45 port?
-> 
-> Whatever it is that PSE does.
-> 
-> > This can be done with a simple regulator. In that case we use the pse_regulator
-> > driver which is a regulator consumer.
-> > I don't know about other cases. Oleksij do you?
-> 
-> In that case it sounds like you need the split to allow people to
-> substitute in a non-PSE supply, and everything ought to be doing the
-> consumer thing?
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 3029841e92a8..df5f5b988926 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -10334,6 +10334,14 @@ L:	linux-media@vger.kernel.org
+>  S:	Maintained
+>  F:	drivers/media/rc/iguanair.c
+>  
+> +IIO BACKEND FRAMEWORK
+> +M:	Nuno Sa <nuno.sa@analog.com>
+> +R:	Olivier Moysan <olivier.moysan@foss.st.com>
+> +L:	linux-iio@vger.kernel.org
+> +S:	Maintained
+> +F:	drivers/iio/industrialio-backend.c
+> +F:	include/linux/iio/backend.h
+> +
+>  IIO DIGITAL POTENTIOMETER DAC
+>  M:	Peter Rosin <peda@axentia.se>
+>  L:	linux-iio@vger.kernel.org
+> diff --git a/drivers/iio/Kconfig b/drivers/iio/Kconfig
+> index 52eb46ef84c1..451671112f73 100644
+> --- a/drivers/iio/Kconfig
+> +++ b/drivers/iio/Kconfig
+> @@ -71,6 +71,11 @@ config IIO_TRIGGERED_EVENT
+>  	help
+>  	  Provides helper functions for setting up triggered events.
+>  
+> +config IIO_BACKEND
+> +	tristate
+> +	help
+> +	  Framework to handle complex IIO aggregate devices.
 
-I decided and suggested to use regulator framework for following
-reasons:
-- The PSE is never a standalone controller. It is part of the system
-  which includes Power Supply, which is providing power to the SoC and
-  PSE.
-- One system may contain multiple PSEs, we need to use some framework
-  outside of PSE to regulate consumer priorities based on available
-  power budget.
-- a complex design may contain multiple hot swappable power supplies, we need
-  to manage them and regulate power budget between multiple PSEs.
-- in many cases PSE is kind of PMIC with multiple channels and some
-  extras: prioritization, classification of attached devices. I suggest
-  to represent every channel as a regulator, since it allow us to reuse
-  existing diagnostic interfaces.
+Add some more description here. Not sure the current text will help
+anyone understand it :)
 
-Since everything power related on a embedded system we already handle
-with regulator framework, so why not use it within PSE too?
+> +
+>  source "drivers/iio/accel/Kconfig"
+>  source "drivers/iio/adc/Kconfig"
+>  source "drivers/iio/addac/Kconfig"
+> diff --git a/drivers/iio/Makefile b/drivers/iio/Makefile
+> index 9622347a1c1b..0ba0e1521ba4 100644
+> --- a/drivers/iio/Makefile
+> +++ b/drivers/iio/Makefile
+> @@ -13,6 +13,7 @@ obj-$(CONFIG_IIO_GTS_HELPER) += industrialio-gts-helper.o
+>  obj-$(CONFIG_IIO_SW_DEVICE) += industrialio-sw-device.o
+>  obj-$(CONFIG_IIO_SW_TRIGGER) += industrialio-sw-trigger.o
+>  obj-$(CONFIG_IIO_TRIGGERED_EVENT) += industrialio-triggered-event.o
+> +obj-$(CONFIG_IIO_BACKEND) += industrialio-backend.o
+>  
+>  obj-y += accel/
+>  obj-y += adc/
+> diff --git a/drivers/iio/industrialio-backend.c b/drivers/iio/industrialio-backend.c
+> new file mode 100644
+> index 000000000000..75a0a66003e1
+> --- /dev/null
+> +++ b/drivers/iio/industrialio-backend.c
+> @@ -0,0 +1,456 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Framework to handle complex IIO aggregate devices.
+> + *
+> + * The typical architecture is to have one device as the frontend device which
+> + * can be "linked" against one or multiple backend devices. All the IIO and
+> + * userspace interface is expected to be registers/managed by the frontend
+> + * device which will callback into the backends when needed (to get/set some
+> + * configuration that it does not directly control).
+> + *
+> + * The framework interface is pretty simple:
+> + *   - Backends should register themselves with @devm_iio_backend_register()
+> + *   - Frontend devices should get backends with @devm_iio_backend_get()
+> + *
+> + * Also to note that the primary target for this framework are converters like
+> + * ADC/DACs so @iio_backend_ops will have some operations typical of converter
+> + * devices. On top of that, this is "generic" for all IIO which means any kind
+> + * of device can make use of the framework. That said, If the @iio_backend_ops
+> + * struct begins to grow out of control, we can always refactor things so that
+> + * the industrialio-backend.c is only left with the really generic stuff. Then,
+> + * we can build on top of it depending on the needs.
+> + *
+> + * Copyright (C) 2023 Analog Devices Inc.
+> + */
+> +#define pr_fmt(fmt) "iio-backend: " fmt
+> +
+> +#include <linux/cleanup.h>
+> +#include <linux/device.h>
+> +#include <linux/err.h>
+> +#include <linux/list.h>
+> +#include <linux/lockdep.h>
+> +#include <linux/kref.h>
+> +#include <linux/module.h>
+> +#include <linux/mutex.h>
+> +#include <linux/property.h>
+> +#include <linux/slab.h>
+> +
+> +#include <linux/iio/backend.h>
+> +
+> +struct iio_backend {
+> +	struct list_head entry;
+> +	const struct iio_backend_ops *ops;
+> +	struct device *dev;
+> +	struct module *owner;
+> +	void *priv;
+> +	/*
+> +	 * mutex used to synchronize backend callback access with concurrent
+> +	 * calls to @iio_backend_unregister. The lock makes sure a device is
+> +	 * not unregistered while a callback is being run.
+> +	 */
+> +	struct mutex lock;
+> +	struct kref ref;
+> +};
+> +
 
-Here is an example of more or less complex system:
+...
 
-  +----------------------------------------------------------------+
-  |                        Ethernet Switch                         |
-  |                                                                |
-  |  +-----------------+  +-----------------+  +-----------------+ |
-  |  | Power Supply 1  |  | Power Supply 2  |  | removed Supply 3| |
-  |  +--------+--------+  +--------+--------+  +--------+--------+ |
-  |           |                    |-------------------.           |
-  |  +--------v--------+  +--------v--------+  +--------v--------+ |
-  |  | PSE Controller  |  | PSE Controller  |  | PSE Controller  | |
-  |  |       #1        |  |       #2        |  |       #3        | |
-  |  +----+++++--------+  +--------+--------+  +--------+--------+ |
-  |       |||||                    |                    |          |
-  +-------|||||--------------------|--------------------|----------+
-          |||||                    |                    |            
-          |||||                    |                    |            
-  +-------....v--------------------v--------------------v---------+
-  |                         Powered Devices                       |
-  |                                                               |
-  |  +--------+  +--------+  +--------+         +--------+  +-----+
-  |  | Sensor |  | Sensor |  | Sensor |  ...    | Motor  |  | ... |
-  |  +--------+  +--------+  +--------+         +--------+  +-----+
-  |                                                               |
-  +---------------------------------------------------------------+
+> +
+> +static void iio_backend_release(void *arg)
+> +{
+> +	struct iio_backend *back = arg;
+> +
+> +	module_put(back->owner);
+> +	kref_put(&back->ref, iio_backend_free);
+> +}
+> +
+> +static int __devm_iio_backend_get(struct device *dev, struct iio_backend *back)
+> +{
+> +	struct device_link *link;
+> +	int ret;
+> +
+> +	kref_get(&back->ref);
+> +	if (!try_module_get(back->owner)) {
+> +		pr_err("%s: Cannot get module reference\n", dev_name(dev));
 
-How a PD reserves/communicates power budget on PSE PI (Power Interfaces)?
+Why do you need the reference?  Good to add a comment on that here.
 
-There are 3 ways to reserve power budget for PD:
-- Level 1 classification. Done by PSE in cooperation with PD by firmware or
-  can be done by Linux. Linux variant is currently not implemented.
-- Done over Link Layer Discovery Protocol (LLDP). In this case some user
-  space application (lldp daemon) will tell kernel to reserve power on some
-  specific port (PSE PI).
-- Set by user if all other ways fail or not implemented
+> +		return -ENODEV;
+> +	}
+> +
+> +	ret = devm_add_action_or_reset(dev, iio_backend_release, back);
+> +	if (ret)
+> +		return ret;
+> +
+> +	link = device_link_add(dev, back->dev, DL_FLAG_AUTOREMOVE_CONSUMER);
+> +	if (!link)
+> +		pr_warn("%s: Could not link to supplier(%s)\n", dev_name(dev),
+> +			dev_name(back->dev));
 
-PD side may have similar kind of challenges. For example, if PSE
-notifies PD about reducing power budge for PD, PD may decide to reduce
-consumption by keeping system alive - turn of the motor, but keep
-sensors enabled. 
+Why is that not an error and we try to carry on?
 
-The main question is - how to represent a remote consumer (Powered
-Device)? It looks for me like having a dummy regulator consumer for each
-(PSE PI) withing the PSE framework is the simplest thing to do. User
-should enable this dummy consumer from user space by using already
-existing interface in case of PoDL - ETHTOOL_A_PODL_PSE_ADMIN_CONTROL
-or new interface for Clause 33 PSE.
+> +
+> +	pr_debug("%s: Found backend(%s) device\n", dev_name(dev),
+> +		 dev_name(back->dev));
+> +	return 0;
+> +}
+> +
+> +/**
+> + * devm_iio_backend_get - Get a backend device
+> + * @dev:	Device where to look for the backend.
+> + * @name:	Backend name.
+> + *
+> + * Get's the backend associated with @dev.
+> + *
+> + * RETURNS:
+> + * A backend pointer, negative error pointer otherwise.
+> + */
+> +struct iio_backend *devm_iio_backend_get(struct device *dev, const char *name)
+> +{
+> +	struct fwnode_handle *fwnode;
+> +	struct iio_backend *back;
+> +	int index = 0, ret;
+> +
+> +	if (name) {
+> +		index = device_property_match_string(dev, "io-backends-names",
+> +						     name);
+> +		if (index < 0)
+> +			return ERR_PTR(index);
+> +	}
+> +
+> +	fwnode = fwnode_find_reference(dev_fwnode(dev), "io-backends", index);
+> +	if (IS_ERR(fwnode)) {
+> +		/* not an error if optional */
+> +		pr_debug("%s: Cannot get Firmware reference\n", dev_name(dev));
+> +		return ERR_CAST(fwnode);
+> +	}
+> +
+> +	guard(mutex)(&iio_back_lock);
+> +	list_for_each_entry(back, &iio_back_list, entry) {
+> +		if (!device_match_fwnode(back->dev, fwnode))
+> +			continue;
+> +
+> +		fwnode_handle_put(fwnode);
+> +		ret = __devm_iio_backend_get(dev, back);
+> +		if (ret)
+> +			return ERR_PTR(ret);
+> +
+> +		return back;
+> +	}
+> +
+> +	fwnode_handle_put(fwnode);
 
-Regards,
-Oleksij
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+FYI. I have a series doing auto cleanup of fwnode_handles in progress.
+Should get some time over the weekend to snd that out.  Aim is to avoid need
+to dance around manually freeing them (similar to the DT __free(device_node)
+series I posted the other day).
+
+> +	return ERR_PTR(-EPROBE_DEFER);
+> +}
+> +EXPORT_SYMBOL_NS_GPL(devm_iio_backend_get, IIO_BACKEND);
+> +
+> +/**
+> + * devm_iio_backend_get_optional - Get optional backend device
+> + * @dev:	Device where to look for the backend.
+> + * @name:	Backend name.
+> + *
+> + * Same as @devm_iio_backend_get() but return NULL if backend not found.
+> + *
+> + * RETURNS:
+> + * A backend pointer, negative error pointer otherwise or NULL if not found.
+> + */
+> +struct iio_backend *devm_iio_backend_get_optional(struct device *dev,
+> +						  const char *name)
+> +{
+> +	struct iio_backend *back;
+> +
+> +	back = devm_iio_backend_get(dev, name);
+> +	if (IS_ERR(back) && PTR_ERR(back) == -ENOENT)
+> +		return NULL;
+> +
+> +	return back;
+> +}
+> +EXPORT_SYMBOL_NS_GPL(devm_iio_backend_get_optional, IIO_BACKEND);
+
+I'm not convinced the optional variant is worth while.  Could just choose
+a particular return value to mean that e.g. ERR_PTR(-ENOENT) and document
+it for the normal get.  Then have special handling in the drivers where
+you need backwards compatibility with a previous approach.
+
+I'd rather pay the complexity price in a couple of drivers than have
+to explain backends aren't typically optional for years to come.
+
+
+> +
+> +/**
+> + * devm_iio_backend_get_from_fwnode_lookup
+> + * @dev:	Device where to bind the backend lifetime.
+> + * @fwnode:	Firmware node of the backend device.
+> + *
+> + * It directly looks the backend device list for a device matching @fwnode.
+
+I would word this:
+Search the backend list for a device matchign &fwnode.
+
+> + * This API should not be used and it's only present for preventing the first
+> + * user of this framework to break it's DT ABI.
+
+You could stick a __ in front of the name to hopefully scare people away :)
++ highlight something odd is going on to reviewers seeing this called in
+some future driver.
+Also I can we might convert other drivers that are doing similar things
+(dfsdm for example) and maybe this will be useful
+so __devm_iio_backend_get_from_fwnode_lookup() and
+"preventing breakage of old DT bindings".
+
+> + *
+> + * RETURNS:
+> + * A backend pointer, negative error pointer otherwise.
+> + */
+> +struct iio_backend *
+> +devm_iio_backend_get_from_fwnode_lookup(struct device *dev,
+> +					struct fwnode_handle *fwnode)
+> +{
+> +	struct iio_backend *back;
+> +	int ret;
+> +
+> +	guard(mutex)(&iio_back_lock);
+> +	list_for_each_entry(back, &iio_back_list, entry) {
+> +		if (!device_match_fwnode(back->dev, fwnode))
+> +			continue;
+> +
+> +		ret = __devm_iio_backend_get(dev, back);
+> +		if (ret)
+> +			return ERR_PTR(ret);
+> +
+> +		return back;
+> +	}
+> +
+> +	return ERR_PTR(-EPROBE_DEFER);
+> +}
+> +EXPORT_SYMBOL_NS_GPL(devm_iio_backend_get_from_fwnode_lookup, IIO_BACKEND);
+
+
 
