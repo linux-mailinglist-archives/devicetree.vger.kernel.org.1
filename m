@@ -1,125 +1,238 @@
-Return-Path: <devicetree+bounces-27835-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27836-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8F8A81BD2B
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 18:25:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 488EC81BD2D
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 18:26:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 86A171F23321
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 17:25:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B3FEB1F2630D
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 17:26:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F1F5627E4;
-	Thu, 21 Dec 2023 17:25:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OztrvJuO"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB067627EF;
+	Thu, 21 Dec 2023 17:26:52 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3F62627EF;
-	Thu, 21 Dec 2023 17:25:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 54C57C433C7;
-	Thu, 21 Dec 2023 17:25:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1703179554;
-	bh=cu1KI7LxIe3SAdnTvkuGj2NNJW5ryZHm+ypva87tuTQ=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=OztrvJuOuwDtWFcW/GrZanb2N+X6hGIjw8t7c8kxqN57xEFXffexCiZ1VTwsb6CPK
-	 WJpr/fOsIObiIvW8A0uB8qO3u8kHdshfhgAYknP1p1AsqfW4Jk3UlzNfxeBXWBtbKW
-	 jJRfAJmk7JzvGY+T/cofGMD6/cc2B6yAfL/a8OmRhNuRiKWB3j3YpQCZsVSsANmJLL
-	 7R2Gtk+iP8cSZmyZa/2nTct7MxkcDv+JhZBCR9r2IzfQx1Pnn/0a1N3bmnMJD8ojFD
-	 EQVeU5kiBAN5xFT/H4fhXWI3c6DfSLYxHj1J26K7gfaWZIdScV7hSsx9BVIUSFRRSl
-	 HGPZxz58xaE3Q==
-Date: Thu, 21 Dec 2023 17:25:38 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Nuno Sa <nuno.sa@analog.com>
-Cc: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>, Lars-Peter
- Clausen <lars@metafoo.de>, Michael Hennerich
- <Michael.Hennerich@analog.com>, Rob Herring <robh+dt@kernel.org>, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- "Rafael J. Wysocki" <rafael@kernel.org>, Frank Rowand
- <frowand.list@gmail.com>, Olivier Moysan <olivier.moysan@foss.st.com>
-Subject: Re: [PATCH v4 2/8] dt-bindings: adc: axi-adc: deprecate
- 'adi,adc-dev'
-Message-ID: <20231221172538.6477b843@jic23-huawei>
-In-Reply-To: <20231220-iio-backend-v4-2-998e9148b692@analog.com>
-References: <20231220-iio-backend-v4-0-998e9148b692@analog.com>
-	<20231220-iio-backend-v4-2-998e9148b692@analog.com>
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.38; x86_64-pc-linux-gnu)
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62C7759910;
+	Thu, 21 Dec 2023 17:26:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id B423A2F4;
+	Thu, 21 Dec 2023 09:27:34 -0800 (PST)
+Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 3ED1B3F5A1;
+	Thu, 21 Dec 2023 09:26:47 -0800 (PST)
+Date: Thu, 21 Dec 2023 17:26:44 +0000
+From: Andre Przywara <andre.przywara@arm.com>
+To: Brandon Cheo Fusi <fusibrandon13@gmail.com>
+Cc: aou@eecs.berkeley.edu, conor+dt@kernel.org, devicetree@vger.kernel.org,
+ jernej.skrabec@gmail.com, krzysztof.kozlowski+dt@linaro.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-pm@vger.kernel.org, linux-riscv@lists.infradead.org,
+ linux-sunxi@lists.linux.dev, palmer@dabbelt.com, paul.walmsley@sifive.com,
+ rafael@kernel.org, robh+dt@kernel.org, samuel@sholland.org,
+ sfr@canb.auug.org.au, tiny.windzz@gmail.com, viresh.kumar@linaro.org,
+ wens@csie.org
+Subject: Re: [RFC PATCH v2 2/3] cpufreq: sun50i: Add support for D1's speed
+ bin decoding
+Message-ID: <20231221172644.21cf3817@donnerap.manchester.arm.com>
+In-Reply-To: <20231221171107.85991-1-fusibrandon13@gmail.com>
+References: <20231221124957.27fa9922@donnerap.manchester.arm.com>
+	<20231221171107.85991-1-fusibrandon13@gmail.com>
+Organization: ARM
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, 20 Dec 2023 16:34:05 +0100
-Nuno Sa <nuno.sa@analog.com> wrote:
+On Thu, 21 Dec 2023 18:11:07 +0100
+Brandon Cheo Fusi <fusibrandon13@gmail.com> wrote:
 
-> 'adi,adc-dev' is now deprecated and must not be used anymore. Hence,
-> also remove it from being required.
+Hi Brandon,
 
-With my 'specifications language' brain engaged (also know as pedantic)
-I think this is a 'should' not a 'must' case. You aren't breaking
-backwards compatibility just advising moving to the newer / better interface.
+> On Thu, Dec 21, 2023 at 1:50=E2=80=AFPM Andre Przywara <andre.przywara@ar=
+m.com> wrote:
+> >
+> > On Thu, 21 Dec 2023 11:10:12 +0100
+> > Brandon Cheo Fusi <fusibrandon13@gmail.com> wrote:
+> >
+> > Hi Brandon,
+> >
+> > thanks for the quick turnaround, and for splitting this code up, that
+> > makes reasoning about this much easier!
+> > =20
+> > > Adds support for decoding the efuse value read from D1 efuse speed
+> > > bins, and factors out equivalent code for sun50i.
+> > >
+> > > The algorithm is gotten from
+> > >
+> > > https://github.com/Tina-Linux/linux-5.4/blob/master/drivers/cpufreq/s=
+un50i-cpufreq-nvmem.c#L293-L338
+> > >
+> > > and maps an efuse value to either 0 or 1, with 1 meaning stable at
+> > > a lower supply voltage for the same clock frequency.
+> > >
+> > > Signed-off-by: Brandon Cheo Fusi <fusibrandon13@gmail.com>
+> > > ---
+> > >  drivers/cpufreq/sun50i-cpufreq-nvmem.c | 34 ++++++++++++++++++++++++=
+++
+> > >  1 file changed, 34 insertions(+)
+> > >
+> > > diff --git a/drivers/cpufreq/sun50i-cpufreq-nvmem.c b/drivers/cpufreq=
+/sun50i-cpufreq-nvmem.c
+> > > index fc509fc49..b1cb95308 100644
+> > > --- a/drivers/cpufreq/sun50i-cpufreq-nvmem.c
+> > > +++ b/drivers/cpufreq/sun50i-cpufreq-nvmem.c
+> > > @@ -29,6 +29,33 @@ struct sunxi_cpufreq_data {
+> > >       u32 (*efuse_xlate)(u32 *speedbin, size_t len);
+> > >  };
+> > >
+> > > +static u32 sun20i_efuse_xlate(u32 *speedbin, size_t len) =20
+> >
+> > I feel like this prototype can be shortened to:
+> >
+> > static u32 sun20i_efuse_xlate(u32 speedbin)
+> >
+> > See below.
+> > =20
+> > > +{
+> > > +     u32 ret, efuse_value =3D 0;
+> > > +     int i;
+> > > +
+> > > +     for (i =3D 0; i < len; i++)
+> > > +             efuse_value |=3D ((u32)speedbin[i] << (i * 8)); =20
+> >
+> > The cast is not needed. Looking deeper into the original code you linked
+> > to, cell_value[] there is an array of u8, so they assemble a little end=
+ian
+> > 32-bit integer from *up to* four 8-bit values read from the nvmem.
+> >
+> > So I think this code here is wrong, len is the size of the nvmem cells
+> > holding the bin identifier, in *bytes*, so the idea here is to just read
+> > the (lowest) 16 bits (in the D1 case, cf. "reg =3D <0x00 0x2>;" in the =
+next
+> > patch) from this nvmem cell. Here you are combining two 32-bit words in=
+to =20
+>=20
+> This is true. Not sure though what the 'in the D1 case...' bit means.
 
+In the next patch you introduce the nvmem DT property, and set the length
+part to "0x2". So for the D1 we will always read two bytes.
 
-> 
-> The reason why it's being deprecated is because the axi-adc CORE is now
-> an IIO service provider hardware (IIO backends) for consumers to make use
-> of. Before, the logic with 'adi,adc-dev' was the opposite (it was kind
-> of consumer referencing other nodes/devices) and that proved to be wrong
-> and to not scale.
-> 
-> Now, IIO consumers of this hardware are expected to reference it using the
-> io-backends property.
-> 
-> Signed-off-by: Nuno Sa <nuno.sa@analog.com>
-> ---
->  Documentation/devicetree/bindings/iio/adc/adi,axi-adc.yaml | 4 +---
->  1 file changed, 1 insertion(+), 3 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,axi-adc.yaml b/Documentation/devicetree/bindings/iio/adc/adi,axi-adc.yaml
-> index 9996dd93f84b..835b40063343 100644
-> --- a/Documentation/devicetree/bindings/iio/adc/adi,axi-adc.yaml
-> +++ b/Documentation/devicetree/bindings/iio/adc/adi,axi-adc.yaml
-> @@ -39,12 +39,12 @@ properties:
->      $ref: /schemas/types.yaml#/definitions/phandle
->      description:
->        A reference to a the actual ADC to which this FPGA ADC interfaces to.
-> +    deprecated: true
->  
->  required:
->    - compatible
->    - dmas
->    - reg
-> -  - adi,adc-dev
+> > efuse_value.
+> >
+> > So I think this whole part above is actually not necessary: we are
+> > expecting maximum 32 bits, and nvmem_cell_read() should take care of
+> > masking off unrequested bits, so we get the correct value back already.=
+ So
+> > can you try to remove the loop above, and use ...
+> > =20
+> > > +
+> > > +     switch (efuse_value) { =20
+> >
+> >         switch (*speedbin & 0xffff) {
+> > =20
+>=20
+> Shouldn't the bytes in *speedbin be reversed?=20
 
-Dropping it from required is fine, but do we have a new condition where one or the other
-should be required?  If so good to add the dt-binding magic to enforce that. Look
-for a oneOf combined with required. There are a few IIO examples of this either or
-type required. You may want to then enforce that both are not provided though I
-guess we perhaps don't care - the driver will just prioritise one approach over the other.
+I believe they are stored as a little endian 16-bit integer in the fuses.
+I haven't tried a BE kernel, but I think the NVMEM framework takes care of
+that.
+If you dump the values as returned by nvmem_cell_read(), we would know for
+sure.
 
-Jonathan
+> > here instead? Or drop the pointer at all, and just use one u32 value, s=
+ee
+> > the above prototype.
+> > =20
+>=20
+> I was uncomfortable dropping the len parameter, because then each
+> platform's efuse_xlate would ignore the number of valid bytes actually
+> read.
 
+Well, I am not sure either, but neither the H6, nor the H616 or the D1
+apparently really need that: they all use either 4 or 2 bytes to encode
+the speed bin. And since the routines are SoC specific anyway, and the
+first 32-bit word of the buffer filled by nvmem_cell_read() should always
+be valid (and be it 0), I think there is little need to check that.
+I ported the H616 code over, and it looks somewhat similar to the D1 (with
+different numbers, though): it's (ab)using some die revision code (the
+first two bytes in the SID) to derive the speed bin. The H6 had a
+dedicated bin fuse.
 
->  
->  additionalProperties: false
->  
-> @@ -55,7 +55,5 @@ examples:
->          reg = <0x44a00000 0x10000>;
->          dmas = <&rx_dma 0>;
->          dma-names = "rx";
-> -
-> -        adi,adc-dev = <&spi_adc>;
->      };
->  ...
-> 
+So iff we are going to see a SoC needing to check the length, we can always
+introduce that later: it's just an internal function.
+But for now I'd like to keep it simple.
+
+Cheers,
+Andre
+
+>=20
+> > Cheers,
+> > Andre
+> >
+> > P.S. This is just a "peephole review" of this patch, I haven't got arou=
+nd
+> > to look at this whole scheme in whole yet, to see if we actually need t=
+his
+> > or can simplify this or clean it up.
+> >
+> > =20
+> > > +     case 0x5e00:
+> > > +             /* QFN package */
+> > > +             ret =3D 0;
+> > > +             break;
+> > > +     case 0x5c00:
+> > > +     case 0x7400:
+> > > +             /* QFN package */
+> > > +             ret =3D 1;
+> > > +             break;
+> > > +     case 0x5000:
+> > > +     default:
+> > > +             /* BGA package */
+> > > +             ret =3D 0;
+> > > +     }
+> > > +
+> > > +     return ret;
+> > > +}
+> > > +
+> > >  static u32 sun50i_efuse_xlate(u32 *speedbin, size_t len)
+> > >  {
+> > >       u32 efuse_value =3D 0;
+> > > @@ -46,6 +73,10 @@ static u32 sun50i_efuse_xlate(u32 *speedbin, size_=
+t len)
+> > >               return 0;
+> > >  }
+> > >
+> > > +struct sunxi_cpufreq_data sun20i_cpufreq_data =3D {
+> > > +     .efuse_xlate =3D sun20i_efuse_xlate,
+> > > +};
+> > > +
+> > >  struct sunxi_cpufreq_data sun50i_cpufreq_data =3D {
+> > >       .efuse_xlate =3D sun50i_efuse_xlate,
+> > >  };
+> > > @@ -54,6 +85,9 @@ static const struct of_device_id cpu_opp_match_list=
+[] =3D {
+> > >       { .compatible =3D "allwinner,sun50i-h6-operating-points",
+> > >         .data =3D &sun50i_cpufreq_data,
+> > >       },
+> > > +     { .compatible =3D "allwinner,sun20i-d1-operating-points",
+> > > +       .data =3D &sun20i_cpufreq_data,
+> > > +     },
+> > >       {}
+> > >  };
+> > > =20
+> > =20
+>=20
+> Thank you for reviewing.
+> Brandon.
+>=20
 
 
