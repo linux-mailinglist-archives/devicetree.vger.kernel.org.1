@@ -1,403 +1,155 @@
-Return-Path: <devicetree+bounces-27752-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27753-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FFD081B94A
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 15:07:58 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A799C81B94E
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 15:08:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B4BBF1C25E21
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 14:07:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 473E91F28F40
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 14:08:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 087D255E4A;
-	Thu, 21 Dec 2023 14:06:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAB656D6D0;
+	Thu, 21 Dec 2023 14:07:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="VwVRVV2U"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 244B353A0F
-	for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 14:06:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 374AD2F4;
-	Thu, 21 Dec 2023 06:07:09 -0800 (PST)
-Received: from donnerap.arm.com (donnerap.manchester.arm.com [10.32.101.43])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id CD8713F64C;
-	Thu, 21 Dec 2023 06:06:22 -0800 (PST)
-From: Andre Przywara <andre.przywara@arm.com>
-To: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>
-Cc: linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-sunxi@lists.linux.dev
-Subject: [PATCH] dt-bindings: arm: sunxi: sort alphabetically
-Date: Thu, 21 Dec 2023 14:06:14 +0000
-Message-Id: <20231221140614.639697-1-andre.przywara@arm.com>
-X-Mailer: git-send-email 2.25.1
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DF546D6C4
+	for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 14:07:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
+Received: from mail-lf1-f71.google.com (mail-lf1-f71.google.com [209.85.167.71])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id D6DB73F73A
+	for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 14:07:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+	s=20210705; t=1703167658;
+	bh=YSFGFVOxlECeWrb1201TBHQMqNul2EH+RYRBpW3Owdk=;
+	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
+	 To:Cc:Content-Type;
+	b=VwVRVV2UVwXjf8JlJDzV3fN24W/UzOytMCEbJrXi7MlRdL8UvxWG8XKQCNiRX2IEu
+	 LXuDXj4OhJql4WQkiytPmQ+ZYvYYBIxnB7cYN6aB13g9cHm5yHZL0bNiU9vobyeWlD
+	 RXtbFcpaEEbrt9gJOvYAaTGiYpFwyn+m1wyagzV/vQy5usCyIa2S3QLLJ+pifiAlDw
+	 yQeyPdjUDeoJvFWrSHFWC9FOHgZ11pPWDUVKyXkwMp9H+A5+Hgu2JAqB/KVPbZn2+d
+	 qxlm8NiaSF/J+KKi6/nG8cZ8m9WPjY3/KNZnxG/F2jF2Iw84lp8pnZ090oI9pCzo5+
+	 w5hAHPGJJA/Ug==
+Received: by mail-lf1-f71.google.com with SMTP id 2adb3069b0e04-50e40d1a6fbso707783e87.3
+        for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 06:07:38 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1703167658; x=1703772458;
+        h=content-transfer-encoding:cc:to:subject:message-id:date
+         :mime-version:references:in-reply-to:from:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=YSFGFVOxlECeWrb1201TBHQMqNul2EH+RYRBpW3Owdk=;
+        b=anluzK+Pthfgvd4/T/H0dDt0ZFO51OhexnOjl8urOFk5kdDyKvHO+5DmGTGPP5BY4H
+         gMzPctI27OLv3oyen+Gz+g5Gjmxi33KxbWbjVQ4ZQDORE6YP6qNoY7htGjPOlBgKI/VF
+         rJUTSWp42Lgqc3dxGmJzRXsizi1TTNyc0IqBbWwhmxIFmfjzjXh819BAmGAsP2xCxhvz
+         cPFc4YBBvU/21q3LbcUkNVr0l7Wi7zcHJ1XFL5UpH4gswZPTv6k0H1w9y7nujOJtAXBT
+         GvExRekIRcr4QE4HTl3oH+X2szoXO5K0U5Urkt2LXj7ItsN2O+xin0pcMC4g4O/8x06j
+         IxTg==
+X-Gm-Message-State: AOJu0YymRbHv1UHGGE/B8STmQdtMPzdsIYtZbLoVzmlCIAHofLY8BxOs
+	Ge+dBLleFm2gS18LgJKosVCBb5ej1BKElRF7Ejukd/n8RlQFsTYmZg8hHi2uMmEEUypvG57My0Z
+	tDj84ljGAVgphkMsM8tIYXHkAfb8otXrA58nm8zpwfBpBEP3fpMnPyoc=
+X-Received: by 2002:ac2:5617:0:b0:50e:29c1:f829 with SMTP id v23-20020ac25617000000b0050e29c1f829mr3635672lfd.74.1703167658228;
+        Thu, 21 Dec 2023 06:07:38 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGplfpPbW0FT9ATmbiZqm1++et4V4L718raZzPodJBABIbwHrAdrNT6mNWONQxZ+jsDmjLpy/oSnYqjsp61ks4=
+X-Received: by 2002:ac2:5617:0:b0:50e:29c1:f829 with SMTP id
+ v23-20020ac25617000000b0050e29c1f829mr3635656lfd.74.1703167657892; Thu, 21
+ Dec 2023 06:07:37 -0800 (PST)
+Received: from 348282803490 named unknown by gmailapi.google.com with
+ HTTPREST; Thu, 21 Dec 2023 09:07:36 -0500
+From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+In-Reply-To: <CACRpkdbx7BOoHzbGd6n5p=Ho3GhMcujwUzQam0jLe6Ysg+xsNg@mail.gmail.com>
+References: <20231215143906.3651122-1-emil.renner.berthing@canonical.com>
+ <20231215143906.3651122-2-emil.renner.berthing@canonical.com>
+ <20231215202137.GA317624-robh@kernel.org> <CAJM55Z9pBpYfwpxPH7bUumuosVDn9DHLSBngW6CtG7aK_z+_bQ@mail.gmail.com>
+ <CACRpkdYT+jf4=dk3Y9cwa_=aYCihVq93N-iT0RUbtT2-+PX69w@mail.gmail.com>
+ <CAJM55Z8osSFxKi_7=aRkEr+U3vAq0TS93OggnRzyPpssNuuJ3Q@mail.gmail.com> <CACRpkdbx7BOoHzbGd6n5p=Ho3GhMcujwUzQam0jLe6Ysg+xsNg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Mime-Version: 1.0
+Date: Thu, 21 Dec 2023 09:07:36 -0500
+Message-ID: <CAJM55Z8SwyNEqw4HWRd7G8Y9rdtOGtKy-KbzDorqohdK3nZg0A@mail.gmail.com>
+Subject: Re: [PATCH v1 1/8] dt-bindings: pinctrl: Add thead,th1520-pinctrl bindings
+To: Linus Walleij <linus.walleij@linaro.org>, 
+	Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Cc: Rob Herring <robh@kernel.org>, linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	Hoan Tran <hoan@os.amperecomputing.com>, Serge Semin <fancer.lancer@gmail.com>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>, Andy Shevchenko <andy@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jisheng Zhang <jszhang@kernel.org>, Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-The sunxi.yaml file, holding all known board compatible names for
-devices with Allwinner SoCs, is apparently sorted alphabetically, by the
-"description" entry. However there are a few outliers.
+Linus Walleij wrote:
+> On Thu, Dec 21, 2023 at 1:28=E2=80=AFPM Emil Renner Berthing
+> <emil.renner.berthing@canonical.com> wrote:
+> > Linus Walleij wrote:
+> > > On Sat, Dec 16, 2023 at 2:57=E2=80=AFPM Emil Renner Berthing
+> > > <emil.renner.berthing@canonical.com> wrote:
+> > >
+> > > > > > +          thead,strong-pull-up:
+> > > > > > +            oneOf:
+> > > > > > +              - type: boolean
+> > > > > > +              - $ref: /schemas/types.yaml#/definitions/uint32
+> > > > > > +                enum: [ 0, 2100 ]
+> > > > > > +            description: Enable or disable strong 2.1kOhm pull=
+-up.
+> > > > >
+> > > > > bias-pull-up can already specify the strength in Ohms.
+> > > >
+> > > > The strong pull up is a separate bit that can be enabled independen=
+tly from the
+> > > > regular pull-up/down, so in theory you could enable both the regula=
+r pull-up
+> > > > and the strong pull-up at the same time, or even the regular poll-d=
+own and the
+> > > > strong pull-up which is probably not advised.
+> > >
+> > > bias-pull-up; <- Just regular pulling up the ordinary
+> > > bias-pull-up =3D <100>; <- Same thing if the ordinary is 100 Ohm (fig=
+ure out what
+> > >   resistance it actually is....)
+> > > bias-pull-up =3D <21000000>; <- strong pull up
+> > > bias-pull-up =3D <21000100>; <- both at the same time
+> >
+> > Hmm.. the two pull-ups combined would be a stronger pull-up, eg. lower
+> > resistance, right? So you'd need to calculate it using
+> > https://en.wikipedia.org/wiki/Series_and_parallel_circuits#Resistance_u=
+nits_2
+>
+> Yeah hehe elementary electronics beats me, of course it is in parallel.
+>
+> > The problem is that the documentation doesn't actually mention what wil=
+l happen
+> > if you combine the strong pull-up with the regular bias.
+>
+> So why even allow it then?
+>
+> Do the people designing boards using this have better documentation than =
+what
+> you have? Then either get that documentation or just don't give them
+> too much rope.
 
-Re-order the entries to get a strict alphabetical ordering, so that:
-$ grep description: sunxi.yaml | sort -fc
-returns empty-handed. There is no change otherwise.
+We can certainly prevent Linux from ever combining the strong pull-up with =
+the
+regular bias, but that doesn't mean that the vendor u-boot can't find a use=
+ for
+it and might hand over pins in such states Linux then wouldn't know how to
+handle.
 
-Signed-off-by: Andre Przywara <andre.przywara@arm.com>
----
-Based on sunxi/dt-for-6.8
-
- .../devicetree/bindings/arm/sunxi.yaml        | 172 +++++++++---------
- 1 file changed, 86 insertions(+), 86 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/arm/sunxi.yaml b/Documentation/devicetree/bindings/arm/sunxi.yaml
-index a9d8e85565b89..0bf24f4882240 100644
---- a/Documentation/devicetree/bindings/arm/sunxi.yaml
-+++ b/Documentation/devicetree/bindings/arm/sunxi.yaml
-@@ -51,16 +51,16 @@ properties:
-           - const: allwinner,parrot
-           - const: allwinner,sun8i-a33
- 
--      - description: Anbernic RG-Nano
--        items:
--          - const: anbernic,rg-nano
--          - const: allwinner,sun8i-v3s
--
-       - description: Amarula A64 Relic
-         items:
-           - const: amarula,a64-relic
-           - const: allwinner,sun50i-a64
- 
-+      - description: Anbernic RG-Nano
-+        items:
-+          - const: anbernic,rg-nano
-+          - const: allwinner,sun8i-v3s
-+
-       - description: Auxtek T003 A10s HDMI TV Stick
-         items:
-           - const: allwinner,auxtek-t003
-@@ -96,6 +96,11 @@ properties:
-           - const: sinovoip,bpi-m2-berry
-           - const: allwinner,sun8i-r40
- 
-+      - description: BananaPi M2 Magic
-+        items:
-+          - const: sinovoip,bananapi-m2m
-+          - const: allwinner,sun8i-a33
-+
-       - description: BananaPi M2 Plus
-         items:
-           - const: sinovoip,bpi-m2-plus
-@@ -116,11 +121,6 @@ properties:
-           - const: bananapi,bpi-m2-plus-v1.2
-           - const: allwinner,sun50i-h5
- 
--      - description: BananaPi M2 Magic
--        items:
--          - const: sinovoip,bananapi-m2m
--          - const: allwinner,sun8i-a33
--
-       - description: BananaPi M2 Ultra
-         items:
-           - const: sinovoip,bpi-m2-ultra
-@@ -230,6 +230,18 @@ properties:
-           - const: sochip,s3
-           - const: allwinner,sun8i-v3
- 
-+      - description: Emlid Neutis N5 Developer Board
-+        items:
-+          - const: emlid,neutis-n5-devboard
-+          - const: emlid,neutis-n5
-+          - const: allwinner,sun50i-h5
-+
-+      - description: Emlid Neutis N5H3 Developer Board
-+        items:
-+          - const: emlid,neutis-n5h3-devboard
-+          - const: emlid,neutis-n5h3
-+          - const: allwinner,sun8i-h3
-+
-       - description: Empire Electronix D709 Tablet
-         items:
-           - const: empire-electronix,d709
-@@ -306,16 +318,26 @@ properties:
-           - const: gemei,g9
-           - const: allwinner,sun4i-a10
- 
--      - description: Hyundai A7HD
-+      - description: HAOYU Electronics Marsboard A10
-         items:
--          - const: hyundai,a7hd
-+          - const: haoyu,a10-marsboard
-           - const: allwinner,sun4i-a10
- 
-+      - description: HAOYU Electronics Marsboard A20
-+        items:
-+          - const: haoyu,a20-marsboard
-+          - const: allwinner,sun7i-a20
-+
-       - description: HSG H702
-         items:
-           - const: hsg,h702
-           - const: allwinner,sun5i-a13
- 
-+      - description: Hyundai A7HD
-+        items:
-+          - const: hyundai,a7hd
-+          - const: allwinner,sun4i-a10
-+
-       - description: I12 TV Box
-         items:
-           - const: allwinner,i12-tvbox
-@@ -343,11 +365,6 @@ properties:
-           - const: primux,inet86dz
-           - const: allwinner,sun8i-a23
- 
--      - description: iNet-9F Rev 03
--        items:
--          - const: inet-tek,inet9f-rev03
--          - const: allwinner,sun4i-a10
--
-       - description: iNet-97F Rev 02
-         items:
-           - const: primux,inet97fv2
-@@ -358,6 +375,11 @@ properties:
-           - const: primux,inet98v-rev2
-           - const: allwinner,sun5i-a13
- 
-+      - description: iNet-9F Rev 03
-+        items:
-+          - const: inet-tek,inet9f-rev03
-+          - const: allwinner,sun4i-a10
-+
-       - description: iNet D978 Rev 02 Tablet
-         items:
-           - const: primux,inet-d978-rev2
-@@ -472,15 +494,10 @@ properties:
-           - const: lamobo,lamobo-r1
-           - const: allwinner,sun7i-a20
- 
--      - description: HAOYU Electronics Marsboard A10
--        items:
--          - const: haoyu,a10-marsboard
--          - const: allwinner,sun4i-a10
--
--      - description: HAOYU Electronics Marsboard A20
-+      - description: MangoPi MQ-R board
-         items:
--          - const: haoyu,a20-marsboard
--          - const: allwinner,sun7i-a20
-+          - const: widora,mangopi-mq-r-t113
-+          - const: allwinner,sun8i-t113s
- 
-       - description: MapleBoard MP130
-         items:
-@@ -557,18 +574,6 @@ properties:
-           - const: msi,primo81
-           - const: allwinner,sun6i-a31s
- 
--      - description: Emlid Neutis N5 Developer Board
--        items:
--          - const: emlid,neutis-n5-devboard
--          - const: emlid,neutis-n5
--          - const: allwinner,sun50i-h5
--
--      - description: Emlid Neutis N5H3 Developer Board
--        items:
--          - const: emlid,neutis-n5h3-devboard
--          - const: emlid,neutis-n5h3
--          - const: allwinner,sun8i-h3
--
-       - description: NextThing Co. CHIP
-         items:
-           - const: nextthing,chip
-@@ -638,11 +643,6 @@ properties:
-           - const: olimex,a20-olinuxino-lime
-           - const: allwinner,sun7i-a20
- 
--      - description: Olimex A20-OlinuXino LIME (with eMMC)
--        items:
--          - const: olimex,a20-olinuxino-lime-emmc
--          - const: allwinner,sun7i-a20
--
-       - description: Olimex A20-OlinuXino LIME2
-         items:
-           - const: olimex,a20-olinuxino-lime2
-@@ -653,6 +653,11 @@ properties:
-           - const: olimex,a20-olinuxino-lime2-emmc
-           - const: allwinner,sun7i-a20
- 
-+      - description: Olimex A20-OlinuXino LIME (with eMMC)
-+        items:
-+          - const: olimex,a20-olinuxino-lime-emmc
-+          - const: allwinner,sun7i-a20
-+
-       - description: Olimex A20-OlinuXino Micro
-         items:
-           - const: olimex,a20-olinuxino-micro
-@@ -703,6 +708,17 @@ properties:
-           - const: pine64,pine64-plus
-           - const: allwinner,sun50i-a64
- 
-+      - description: Pine64 LTS
-+        items:
-+          - const: pine64,pine64-lts
-+          - const: allwinner,sun50i-r18
-+          - const: allwinner,sun50i-a64
-+
-+      - description: Pine64 Pinebook
-+        items:
-+          - const: pine64,pinebook
-+          - const: allwinner,sun50i-a64
-+
-       - description: Pine64 PineCube
-         items:
-           - const: pine64,pinecube
-@@ -719,20 +735,9 @@ properties:
-           - const: pine64,pine-h64-model-b
-           - const: allwinner,sun50i-h6
- 
--      - description: Pine64 LTS
--        items:
--          - const: pine64,pine64-lts
--          - const: allwinner,sun50i-r18
--          - const: allwinner,sun50i-a64
--
--      - description: Pine64 Pinebook
--        items:
--          - const: pine64,pinebook
--          - const: allwinner,sun50i-a64
--
--      - description: Pine64 PinePhone Developer Batch (1.0)
-+      - description: Pine64 PinePhone (1.2)
-         items:
--          - const: pine64,pinephone-1.0
-+          - const: pine64,pinephone-1.2
-           - const: pine64,pinephone
-           - const: allwinner,sun50i-a64
- 
-@@ -742,9 +747,9 @@ properties:
-           - const: pine64,pinephone
-           - const: allwinner,sun50i-a64
- 
--      - description: Pine64 PinePhone (1.2)
-+      - description: Pine64 PinePhone Developer Batch (1.0)
-         items:
--          - const: pine64,pinephone-1.2
-+          - const: pine64,pinephone-1.0
-           - const: pine64,pinephone
-           - const: allwinner,sun50i-a64
- 
-@@ -835,6 +840,12 @@ properties:
-           - const: sinlinx,sina33
-           - const: allwinner,sun8i-a33
- 
-+      - description: SL631 Action Camera with IMX179
-+        items:
-+          - const: allwinner,sl631-imx179
-+          - const: allwinner,sl631
-+          - const: allwinner,sun8i-v3
-+
-       - description: SourceParts PopStick v1.1
-         items:
-           - const: sourceparts,popstick-v1.1
-@@ -842,12 +853,6 @@ properties:
-           - const: allwinner,suniv-f1c200s
-           - const: allwinner,suniv-f1c100s
- 
--      - description: SL631 Action Camera with IMX179
--        items:
--          - const: allwinner,sl631-imx179
--          - const: allwinner,sl631
--          - const: allwinner,sun8i-v3
--
-       - description: Tanix TX6
-         items:
-           - const: oranth,tanix-tx6
-@@ -883,11 +888,6 @@ properties:
-           - const: wexler,tab7200
-           - const: allwinner,sun7i-a20
- 
--      - description: MangoPi MQ-R board
--        items:
--          - const: widora,mangopi-mq-r-t113
--          - const: allwinner,sun8i-t113s
--
-       - description: WITS A31 Colombus Evaluation Board
-         items:
-           - const: wits,colombus
-@@ -903,11 +903,6 @@ properties:
-           - const: wobo,a10s-wobo-i5
-           - const: allwinner,sun5i-a10s
- 
--      - description: Yones TopTech BS1078 v2 Tablet
--        items:
--          - const: yones-toptech,bs1078-v2
--          - const: allwinner,sun6i-a31s
--
-       - description: X96 Mate TV box
-         items:
-           - const: hechuang,x96-mate
-@@ -998,6 +993,21 @@ properties:
-           - const: xunlong,orangepi-zero
-           - const: allwinner,sun8i-h2-plus
- 
-+      - description: Xunlong OrangePi Zero 2
-+        items:
-+          - const: xunlong,orangepi-zero2
-+          - const: allwinner,sun50i-h616
-+
-+      - description: Xunlong OrangePi Zero 2W
-+        items:
-+          - const: xunlong,orangepi-zero2w
-+          - const: allwinner,sun50i-h618
-+
-+      - description: Xunlong OrangePi Zero 3
-+        items:
-+          - const: xunlong,orangepi-zero3
-+          - const: allwinner,sun50i-h618
-+
-       - description: Xunlong OrangePi Zero Plus
-         items:
-           - const: xunlong,orangepi-zero-plus
-@@ -1013,19 +1023,9 @@ properties:
-           - const: xunlong,orangepi-zero-plus2-h3
-           - const: allwinner,sun8i-h3
- 
--      - description: Xunlong OrangePi Zero 2
--        items:
--          - const: xunlong,orangepi-zero2
--          - const: allwinner,sun50i-h616
--
--      - description: Xunlong OrangePi Zero 2W
--        items:
--          - const: xunlong,orangepi-zero2w
--          - const: allwinner,sun50i-h618
--
--      - description: Xunlong OrangePi Zero 3
-+      - description: Yones TopTech BS1078 v2 Tablet
-         items:
--          - const: xunlong,orangepi-zero3
--          - const: allwinner,sun50i-h618
-+          - const: yones-toptech,bs1078-v2
-+          - const: allwinner,sun6i-a31s
- 
- additionalProperties: true
-
-base-commit: a4aebe936554dac6a91e5d091179c934f8325708
-prerequisite-patch-id: b72637774a9de3328cc561ae4bb3137bba25fafd
-prerequisite-patch-id: 1a3327044ae61af705ffd79028687f3f6629edf4
--- 
-2.25.1
-
+If you think its better we could just postpone that problem to when/if it e=
+ver
+happens.
 
