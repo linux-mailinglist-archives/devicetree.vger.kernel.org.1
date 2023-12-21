@@ -1,133 +1,117 @@
-Return-Path: <devicetree+bounces-27777-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27778-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E833E81BAB8
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 16:28:07 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7752D81BAD5
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 16:33:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9BC7F1F2282F
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 15:28:07 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B25BDB21A1D
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 15:33:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FC3959920;
-	Thu, 21 Dec 2023 15:26:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46DF9539E6;
+	Thu, 21 Dec 2023 15:33:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="PVVrDZW8"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="bbwj+m+N"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDFF662812;
-	Thu, 21 Dec 2023 15:26:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 5DF4A1C0008;
-	Thu, 21 Dec 2023 15:26:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1703172364;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=XnimU0svkWDNRKLCz0ZHPlRmfQ2Z7rDvpCfZmcxrsRA=;
-	b=PVVrDZW8xJ8POwGPVj8PmC3/ImUj1UkPGA2n10kyjrVPwnsbr49JHOiasX5HibWVMGoPVD
-	Dp8D1cj2DYgjaGFsv3bUuEsUjLpT5yskbduq7VJ+NeiKYiVxKZJmoAhhkeulSd0729r2Dg
-	/nPjzT+NiDc9HznVjwzGGrNng9opes3zrTD3f972m0kq+dTQcD0qq43P+WtShk0eBKZB5x
-	lZzwS7JwMHBSNEMg3jMVoOpnOKjF4sxmUlnwSt3HK4L4IZipz0V4QBy/GmHEg4ShUTnwdV
-	xAT7a3nzHojAC1XjgJgY+Lg5zxdso+Il1ydaz0DrQG+x7eLxWBd2EpwO9C3V4A==
-From: Gregory CLEMENT <gregory.clement@bootlin.com>
-To: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-Cc: Paul Burton <paulburton@kernel.org>, linux-mips@vger.kernel.org, Jiaxun
- Yang <jiaxun.yang@flygoat.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Vladimir
- Kondratiev <vladimir.kondratiev@mobileye.com>, Tawfik Bayouk
- <tawfik.bayouk@mobileye.com>, Alexandre Belloni
- <alexandre.belloni@bootlin.com>, =?utf-8?Q?Th=C3=A9o?= Lebrun
- <theo.lebrun@bootlin.com>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v5 00/22] Add support for the Mobileye EyeQ5 SoC
-In-Reply-To: <ZYRR7zIZax7yUgsZ@alpha.franken.de>
-References: <20231212163459.1923041-1-gregory.clement@bootlin.com>
- <878r5vctdg.fsf@BL-laptop> <ZYNhbQjMbAH6I0kI@alpha.franken.de>
- <87frzwasxo.fsf@BL-laptop> <ZYRR7zIZax7yUgsZ@alpha.franken.de>
-Date: Thu, 21 Dec 2023 16:26:02 +0100
-Message-ID: <87a5q3bmr9.fsf@BL-laptop>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04CAD41C7A;
+	Thu, 21 Dec 2023 15:33:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 3BLElqE6031580;
+	Thu, 21 Dec 2023 15:32:58 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=9iEMGlU1FMnePwTtzvMYgnI459Oo0Zb3ITg7hL/BVxQ=; b=bb
+	wj+m+NZsrM2HB0tfbV5EBkIhzWXCTpSNiBSmYl1BOx6HBz4gMNphrdRL3212u2pn
+	mUhi1/I7M6gcd5jkg//qjwRi2XOfwP5jxVrgtNuTQjGDLUhAayejmdZ8DhJaYt/9
+	AwLzxZhYvNXdd3LfXojplZmvVIo1P2FCJ7T+FORLY6xF39uq782NgcpfA5WQhtK8
+	u1Tu9uUAEeD2rdy/v52GFlHkaiTfN+P4vU26yD4DC1CUQepNZMXkItjrSTZz6N3V
+	5QUcz+coESVQqNfiHOYYLk0w9nM6UxNJ44Azrs8qzOblnR1g9R42Hrc8JiREzTnH
+	9omJO0RdgUezMwc/w9gw==
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3v4qe2r3jg-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 21 Dec 2023 15:32:58 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3BLFWvVs031096
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 21 Dec 2023 15:32:57 GMT
+Received: from [10.216.6.230] (10.80.80.8) by nasanex01c.na.qualcomm.com
+ (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Thu, 21 Dec
+ 2023 07:32:53 -0800
+Message-ID: <79bb4fa3-4227-48bd-bebe-fe66ea8c0144@quicinc.com>
+Date: Thu, 21 Dec 2023 21:02:49 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-GND-Sasl: gregory.clement@bootlin.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V2 2/2] arm64: dts: qcom: qcm6490: Add UFS nodes
+Content-Language: en-US
+To: Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <quic_cang@quicinc.com>,
+        <quic_nguyenb@quicinc.com>, <quic_nitirawa@quicinc.com>,
+        <quic_bhaskarv@quicinc.com>, <quic_narepall@quicinc.com>,
+        <quic_rampraka@quicinc.com>, <quic_ahari@quicinc.com>
+References: <20231221104529.13513-1-quic_mapa@quicinc.com>
+ <5760478d-ca64-499c-939b-6e5b065afc2f@linaro.org>
+From: MANISH PANDEY <quic_mapa@quicinc.com>
+In-Reply-To: <5760478d-ca64-499c-939b-6e5b065afc2f@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: fPbxQfmHzrKaZclhorX1gtaIk7eTR7lJ
+X-Proofpoint-ORIG-GUID: fPbxQfmHzrKaZclhorX1gtaIk7eTR7lJ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-12-09_01,2023-12-07_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501 mlxscore=0
+ suspectscore=0 mlxlogscore=444 clxscore=1015 malwarescore=0 phishscore=0
+ spamscore=0 adultscore=0 lowpriorityscore=0 bulkscore=0 impostorscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2311290000
+ definitions=main-2312210117
 
-Thomas Bogendoerfer <tsbogend@alpha.franken.de> writes:
 
-> On Thu, Dec 21, 2023 at 08:57:55AM +0100, Gregory CLEMENT wrote:
->> I do not oppose the addition of a new platform, even though, like
->> Jiaxun, I would prefer to avoid duplicating code. The only thing
->> preventing the use of the same kernel for EyeQ5 and other platforms is
->> the starting address.
->
-> there shouldn't be code duplication.
->
-> My rough idea would be something like
 
-Thanks for the feedback, I am going to test it.
+On 12/21/2023 8:47 PM, Konrad Dybcio wrote:
+> On 21.12.2023 11:45, Manish Pandey wrote:
+>> Add UFS host controller and Phy nodes for
+>> Qualcomm qcm6490 Board.
+>>
+>> Signed-off-by: Manish Pandey <quic_mapa@quicinc.com>
+>> ---
+> This still doesn't compile and only v2 made it to my inbox.
+> 
+> Please fix this.
+> 
+> Konrad
 
->
-> diff --git a/arch/mips/Kbuild b/arch/mips/Kbuild
-> index af2967bffb73..d683993ed331 100644
-> --- a/arch/mips/Kbuild
-> +++ b/arch/mips/Kbuild
-> @@ -17,6 +17,7 @@ obj- := $(platform-y)
->  # mips object files
->  # The object files are linked as core-y files would be linked
->  
-> +obj-y += generic/
->  obj-y += kernel/
->  obj-y += mm/
->  obj-y += net/
-> diff --git a/arch/mips/generic/Makefile b/arch/mips/generic/Makefile
-> index e37a59bae0a6..56011d738441 100644
-> --- a/arch/mips/generic/Makefile
-> +++ b/arch/mips/generic/Makefile
-> @@ -4,9 +4,9 @@
->  # Author: Paul Burton <paul.burton@mips.com>
->  #
->  
-> -obj-y += init.o
-> -obj-y += irq.o
-> -obj-y += proc.o
-> +obj-$(CONFIG_MACH_GENERIC_CORE) += init.o
-> +obj-$(CONFIG_MACH_GENERIC_CORE) += irq.o
-> +obj-$(CONFIG_MACH_GENERIC_CORE) += proc.o
->  
->  obj-$(CONFIG_YAMON_DT_SHIM)            += yamon-dt.o
->  obj-$(CONFIG_LEGACY_BOARD_SEAD3)       += board-sead3.o
->
-> so everyboady needing these parts of a generic kernel is able
-> to take it.
->
->> Therefore, if it were possible to have a relocatable kernel, this
->> issue would disappear.
->
-> yes. There is support for relocatable kernel, so what are we missing
-> there ?
+Hi Konrad,
+Thanks for the quick review, We would wait for qcom regulator patches to 
+be merged first with regulator-allow-set-load added in required nodes. 
+Post that we would address the comments and share next patch-set.
+Sorry for inconvenience.
 
-But in arch/mips/generic/Platform we have:
-
-load-$(CONFIG_MIPS_GENERIC)    += 0xffffffff80100000
-
-So, the load address is defined during compilation; for example, I don't
-think there is such a mechanism currently for ARM. hat's what I mean by
-'relocatable,' but perhaps it's not exactly what you have in mind.
-
-Gregory
-
--- 
-Gregory Clement, Bootlin
-Embedded Linux and Kernel engineering
-http://bootlin.com
+Regards
+Manish
 
