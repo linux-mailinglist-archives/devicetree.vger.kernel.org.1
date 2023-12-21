@@ -1,129 +1,210 @@
-Return-Path: <devicetree+bounces-27893-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27894-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7DCB281C093
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 22:55:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 13E4C81C09D
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 23:01:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3A3FE283F99
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 21:55:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C3C6528791A
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 22:01:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96A0F7764C;
-	Thu, 21 Dec 2023 21:55:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41C7C77F04;
+	Thu, 21 Dec 2023 22:00:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wAnkpuZA"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OmqWHv6N"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24F5577644
-	for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 21:55:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-50e44c1b35fso1615082e87.3
-        for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 13:55:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1703195737; x=1703800537; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=fNwys1gdRbu+kHjl3wAeCUgqwHfNmMvdPBvih70h1as=;
-        b=wAnkpuZAX9VGH9T77ci7sH7ihWMCllsgOsA6SZq3E2li6+YZqRU9aP/POzHPpvyjqT
-         OuDRDpUMmvnHuwrguEZ6J7SOtNCLhQ9ZlEk4gy0WY1R+/MxYoHCdE/Frq6COvyb82GRV
-         QGQG1oHrHeiYJL6k+qPSHktI/40gdLvvIhc29FBlje2GcmHL8QeYEJ5h0MBuuAOKdkw2
-         kqdadquYJXpxFHAVHZ02+2OsnIbw2AcQG6TKA2oESnAjPy9hSep4EjXsohHnY/vPScU/
-         x9JcQyLfTURiFUcCHoULmWLAj2egI7blNMeKUKSWATLg8wwSzZsMvWFTZFSr3gf7RcKj
-         NJVA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703195737; x=1703800537;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=fNwys1gdRbu+kHjl3wAeCUgqwHfNmMvdPBvih70h1as=;
-        b=KfTTOVqttIii9YzL9L4MACQ1mNPWmFFXQ6criU+y49BIFVb73PxI33a3FmpqvFNaXz
-         /SZ44ExQq5abdDe742dHcaYJaA/aBRexipMj+4e/RRuHTh2Fe8uY7p/B7wNw8QBi5C4r
-         IvratkmfKWsWgufCRUADXnGTpWRw7GlJpjq/QILwxQe7Fh156d+AGyQUEEW6WfnVBVRY
-         Yy99Wg1Oieuh/of07XSQyVEosgps4Kfng14EoP+kUUQFVpi9OUP/0w0OLbE6mMvF8PsG
-         MH237/g4xx0HW7MtpqaVO3tSMZ5jbm0oIjsgg8rDettiS7HlmRgoFBi+u28W8pP32w5V
-         7H+Q==
-X-Gm-Message-State: AOJu0YxX5FKaks7z/wUxIn7TA3qX44qZGEXGDd54TKls0xrmiSacgGEH
-	osWyrfWAKzlVO1QBaIzWJdd101nWNYGkVA==
-X-Google-Smtp-Source: AGHT+IFQfWoVFZ4R+WJlhLwhZtMwB4JOXMba1zKs6hiEmRxV3DKxlpmIADnWHBlvWe7Dtqk59ZJi9A==
-X-Received: by 2002:a19:6519:0:b0:50e:3a64:f8e2 with SMTP id z25-20020a196519000000b0050e3a64f8e2mr111133lfb.115.1703195736942;
-        Thu, 21 Dec 2023 13:55:36 -0800 (PST)
-Received: from [192.168.199.125] (178235179206.dynamic-4-waw-k-1-3-0.vectranet.pl. [178.235.179.206])
-        by smtp.gmail.com with ESMTPSA id ex17-20020a170907955100b00a269fa0d305sm1346407ejc.8.2023.12.21.13.55.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 Dec 2023 13:55:36 -0800 (PST)
-Message-ID: <c5b28a49-cc0f-41b1-8dfb-76af93636fb0@linaro.org>
-Date: Thu, 21 Dec 2023 22:55:34 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAE3277657;
+	Thu, 21 Dec 2023 22:00:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 27D74C433C7;
+	Thu, 21 Dec 2023 22:00:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1703196053;
+	bh=BMceOrXlyCYOCEEShEWT7LKLuoQaU2WjKCUjRN8knws=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=OmqWHv6NHL5RK0Is2qEQ23JPVyjHnIwLpMnZVsM1GInSiGtW6Okr3vpqv1DO56haE
+	 GLrLRJaZje8Qnhy+c/mSS9glUUI43LQsmj7JEpP7qGUf9a2bTvRNa6qFOe4oQEPMbh
+	 nkzcuilXWobWBK1WD7QU4nYf9I4CC1eRtRmYZrcEwCEMEzaeSagbY+QV0pr5tiW6VZ
+	 Hp+hwJA+wUwHdLW1d6YoHWalrif1QMXjtr5LG4SmXhIL4qJsQNZrBeKuWpMNWNmEyT
+	 I6LGGm5RJXW1AYMP0zYlxaLnI5hW8+tnbSkAMW/cqeGm3JWND7/XQwVrjkyED8Z8Wq
+	 05WJuXnmDeb4Q==
+Received: (nullmailer pid 165405 invoked by uid 1000);
+	Thu, 21 Dec 2023 22:00:49 -0000
+Date: Thu, 21 Dec 2023 16:00:49 -0600
+From: Rob Herring <robh@kernel.org>
+To: Gatien Chevallier <gatien.chevallier@foss.st.com>
+Cc: Oleksii_Moisieiev@epam.com, gregkh@linuxfoundation.org,
+	herbert@gondor.apana.org.au, davem@davemloft.net,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	alexandre.torgue@foss.st.com, vkoul@kernel.org, jic23@kernel.org,
+	olivier.moysan@foss.st.com, arnaud.pouliquen@foss.st.com,
+	mchehab@kernel.org, fabrice.gasnier@foss.st.com,
+	andi.shyti@kernel.org, ulf.hansson@linaro.org, edumazet@google.com,
+	kuba@kernel.org, pabeni@redhat.com, hugues.fruchet@foss.st.com,
+	lee@kernel.org, will@kernel.org, catalin.marinas@arm.com,
+	arnd@kernel.org, richardcochran@gmail.com,
+	Frank Rowand <frowand.list@gmail.com>, peng.fan@oss.nxp.com,
+	lars@metafoo.de, rcsekar@samsung.com, wg@grandegger.com,
+	mkl@pengutronix.de, linux-crypto@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	dmaengine@vger.kernel.org, linux-i2c@vger.kernel.org,
+	linux-iio@vger.kernel.org, alsa-devel@alsa-project.org,
+	linux-medi@web.codeaurora.org, a@vger.kernel.org,
+	linux-mmc@vger.kernel.org, netdev@vger.kernel.org,
+	linux-phy@lists.infradead.org, linux-serial@vger.kernel.org,
+	linux-spi@vger.kernel.org, linux-usb@vger.kernel.org
+Subject: Re: [PATCH v8 04/13] dt-bindings: bus: document ETZPC
+Message-ID: <20231221220049.GA156363-robh@kernel.org>
+References: <20231212152356.345703-1-gatien.chevallier@foss.st.com>
+ <20231212152356.345703-5-gatien.chevallier@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: qcom: sc7280: revert back to PSCI PC mode
-Content-Language: en-US
-To: Chia-I Wu <olvaffe@gmail.com>, cros-qcom-dts-watchers@chromium.org,
- Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>,
- Maulik Shah <quic_mkshah@quicinc.com>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20231221214822.3063219-1-olvaffe@gmail.com>
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <20231221214822.3063219-1-olvaffe@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231212152356.345703-5-gatien.chevallier@foss.st.com>
 
-On 21.12.2023 22:48, Chia-I Wu wrote:
-> This effectively reverts 7925ca85e9561 ("arm64: dts: qcom: sc7280: Add
-> power-domains for cpuidle states") for sc7280-herobrine.
+On Tue, Dec 12, 2023 at 04:23:47PM +0100, Gatien Chevallier wrote:
+> Document ETZPC (Extended TrustZone protection controller). ETZPC is a
+> firewall controller.
 > 
-> Fixes: 7925ca85e9561 ("arm64: dts: qcom: sc7280: Add power-domains for cpuidle states")
-> Signed-off-by: Chia-I Wu <olvaffe@gmail.com>
+> Signed-off-by: Gatien Chevallier <gatien.chevallier@foss.st.com>
 > ---
-0 explanations?
+> 
+> Changes in V6:
+>     	- Renamed access-controller to access-controllers
+>     	- Removal of access-control-provider property
+>     	- Removal of access-controller and access-controller-names
+>     	  declaration in the patternProperties field. Add
+>     	  additionalProperties: true in this field.
+> 
+> Changes in V5:
+> 	- Renamed feature-domain* to access-control*
+> 
+> Changes in V2:
+> 	- Corrected errors highlighted by Rob's robot
+> 	- No longer define the maxItems for the "feature-domains"
+> 	  property
+> 	- Fix example (node name, status)
+> 	- Declare "feature-domain-names" as an optional
+> 	  property for child nodes
+> 	- Fix description of "feature-domains" property
+> 	- Reordered the properties so it matches ETZPC
+> 	- Add missing "feature-domain-controller" property
+> 
+>  .../bindings/bus/st,stm32-etzpc.yaml          | 87 +++++++++++++++++++
+>  1 file changed, 87 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/bus/st,stm32-etzpc.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/bus/st,stm32-etzpc.yaml b/Documentation/devicetree/bindings/bus/st,stm32-etzpc.yaml
+> new file mode 100644
+> index 000000000000..9ca0ad39bc19
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/bus/st,stm32-etzpc.yaml
+> @@ -0,0 +1,87 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/bus/st,stm32-etzpc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: STM32 Extended TrustZone protection controller
+> +
+> +description: |
+> +  The ETZPC configures TrustZone security in a SoC having bus masters and
+> +  devices with programmable-security attributes (securable resources).
+> +
+> +maintainers:
+> +  - Gatien Chevallier <gatien.chevallier@foss.st.com>
+> +
+> +properties:
+> +  compatible:
+> +    contains:
+> +      const: st,stm32-etzpc
 
-Konrad
+Same here, needs 'simple-bus'.
+
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  "#address-cells":
+> +    const: 1
+> +
+> +  "#size-cells":
+> +    const: 1
+> +
+> +  ranges: true
+> +
+> +  "#access-controller-cells":
+> +    const: 1
+> +    description:
+> +      Contains the firewall ID associated to the peripheral.
+> +
+> +patternProperties:
+> +  "^.*@[0-9a-f]+$":
+> +    description: Peripherals
+> +    type: object
+> +
+> +    additionalProperties: true
+> +
+> +    required:
+> +      - access-controllers
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - "#address-cells"
+> +  - "#size-cells"
+> +  - "#access-controller-cells"
+> +  - ranges
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    // In this example, the usart2 device refers to rifsc as its access
+> +    // controller.
+
+Looks like the comment is wrong.
+
+
+> +    // Access rights are verified before creating devices.
+> +
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/clock/stm32mp13-clks.h>
+> +    #include <dt-bindings/reset/stm32mp13-resets.h>
+> +
+> +    etzpc: bus@5c007000 {
+> +        compatible = "st,stm32-etzpc";
+> +        reg = <0x5c007000 0x400>;
+> +        #address-cells = <1>;
+> +        #size-cells = <1>;
+> +        #access-controller-cells = <1>;
+> +        ranges;
+> +
+> +        usart2: serial@4c001000 {
+> +            compatible = "st,stm32h7-uart";
+> +            reg = <0x4c001000 0x400>;
+> +            interrupts-extended = <&exti 27 IRQ_TYPE_LEVEL_HIGH>;
+> +            clocks = <&rcc USART2_K>;
+> +            resets = <&rcc USART2_R>;
+> +            wakeup-source;
+> +            dmas = <&dmamux1 43 0x400 0x5>,
+> +                    <&dmamux1 44 0x400 0x1>;
+> +            dma-names = "rx", "tx";
+> +            access-controllers = <&etzpc 17>;
+> +        };
+> +    };
+> -- 
+> 2.25.1
+> 
 
