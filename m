@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-27607-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27608-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0350781B00F
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 09:12:47 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD59C81B013
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 09:14:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 26A121C22BF7
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 08:12:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3D22D1F21220
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 08:14:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A11F2156EF;
-	Thu, 21 Dec 2023 08:12:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF86B15AD5;
+	Thu, 21 Dec 2023 08:13:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="koSiH874"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vnPbTShv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
+Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 208A5168A6
-	for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 08:12:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 350BE15AC3
+	for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 08:13:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-a234dc0984fso51170166b.0
-        for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 00:12:41 -0800 (PST)
+Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-a233bf14cafso54482266b.2
+        for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 00:13:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1703146360; x=1703751160; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1703146433; x=1703751233; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=PMwwJtmC2mecPsqY9i7UuR/4xKJj2rkigXKOfKmkhDY=;
-        b=koSiH8747tX5PUypwEPgArBl2Z2pz6KatD1wpy5h7x472kbf2A89CgNAoA+chJnuMA
-         PegZgAjnrDuu31KstMNejzv4Qoccri6qxIK473oJb6CIxPzRzbhyvLwyGWjACgEr9Rup
-         Qwa7/fkHUHPRAr9O5JKvlQbP6yNNpuCyAeB4v30ggAEDEc1AgTsNfnxpcvwmbbJREpko
-         w3EXc+NES6OKnF6qja/YRxPsXiJZ9lP+hphFIGVBZLDTm3KGqFaY24wDjiUqPD0itfEf
-         hegcsMgXczBwG9KDedLYQ2NvmoR11/qDKWZqLgIRedekQfVOxgifYOvbzxRn7jQIzhRg
-         Iv3Q==
+        bh=GDY8x7O4NvLF3mHLvKVyiF7jBNNYo0lUVO4kH9ZMRxc=;
+        b=vnPbTShvitCUpLYGrnqZAYyq2G6MelgekZKN2C0EELL0qrfDHsOjmHz4lC9Dd0ZsNm
+         KeCjddluft9y8H2eohM5PEWYArIVb+88p5a4hMw1aiBezMSUT+ALsdXd1IXS87lOKoHK
+         kK+gsdMoK1QgEFKOitBw/7pwjLePGAIa0YtB5zJHy/733zULyEe19nNcOMq6eFplyRPi
+         inwscetYaKq81CVP/RkByKLG+A56qP1GtZaDxHy7qtIw837Nl+veq2qnsfcAAN9iWHl6
+         1yZi3tth2oCRDD8qnwMWtqXMz9oLMOQ4MGFIdZUzvwZWFoZAcrBi0WmznhiI+MCNv2qv
+         Ki6A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703146360; x=1703751160;
+        d=1e100.net; s=20230601; t=1703146433; x=1703751233;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=PMwwJtmC2mecPsqY9i7UuR/4xKJj2rkigXKOfKmkhDY=;
-        b=e9dZfvulr+qD5mAfqA41wW6jndPDNetv1BLlcwMbGtl7fekMBVIBCVaLlVUp5y1JTz
-         2/kRrE2BEIkHt8NEoxa8Ckw6Q50dBheR59XbSTaSDmM3Mb/LNBtl7H+rrtxHxoL7VfLU
-         uujstRrNSDE0w214DQfnw1t7xcsrWfxwbGYVQXPXxLCeqvvm3Cw2HRgNHaMBXu6szXHa
-         MGR2ooR0G8zkk3b4j9p7U06xPjgBNLHR2qoki1Q5LnBk/MEV+UPqyBZjJSk9++u0e6PR
-         79t/9EqX/ZwGbxn1lKBmNK0sBXRzFgZgxXRSN0+Biqbo2FJrtXrIFSOWdEcro54P+jDa
-         5jOg==
-X-Gm-Message-State: AOJu0YzL7VjvDWRbazhAAODTpzugdUct1vl1cEUBUyqJb/OLdizM1m97
-	G87kzwyd34E0dbgDV4R7rVHZ9w==
-X-Google-Smtp-Source: AGHT+IHFYhPFdo8vZ0DhaBItCxX2miOh16U1wNUaV6t500AYW83wFk1Y4oggyAZpEF0nlTYRo1QfBA==
-X-Received: by 2002:a17:906:2a86:b0:a02:609a:5c6c with SMTP id l6-20020a1709062a8600b00a02609a5c6cmr8716244eje.44.1703146360295;
-        Thu, 21 Dec 2023 00:12:40 -0800 (PST)
+        bh=GDY8x7O4NvLF3mHLvKVyiF7jBNNYo0lUVO4kH9ZMRxc=;
+        b=MHjTXcNRLhKIAgBcDxYNMqssiFn3yC2OYWM2MzxZneAo+mOH4D1hFQJ+rlS1YCjj09
+         wOBbKvackmodbcj4SsvSoa/dkQWWWSRhaahpM+SN/dYtoc1kAVpWsow+ktomouLM9cD2
+         d4ZhEceI3gEW0siVnywaaBNGAKva1XEVOhJkKCyFPxPvlNFXq+7aFTy02RzXmDWJ24Oq
+         HK2ijb5u44HMQYQ8MF7LWS9dW1+LwuLCcCINF/cJauH7ThP31Ua5BrT4GltHzDnXYXuo
+         oBkw5AjoQ+Dw3CmKXDKaoQqbJJGWEifESuAfDPUlbFK3mgpPZSP6etpbO/9widNB6lq4
+         FLPw==
+X-Gm-Message-State: AOJu0YwNQfhkB1IFLOyRu5P6/w9JHJuPLpPY/8I2LLOW7V/hStS8VGxC
+	1WLInJGhQabuzOzhbif0/TE3rA==
+X-Google-Smtp-Source: AGHT+IEEoI80XxRuz8xOBx+WhI9LWy61dDl/w3BAF7+2+B2aynw0N+urmNFO14yH3JWWyDxWtQk3qQ==
+X-Received: by 2002:a17:906:457:b0:a23:68ed:e2ad with SMTP id e23-20020a170906045700b00a2368ede2admr2962160eja.125.1703146433323;
+        Thu, 21 Dec 2023 00:13:53 -0800 (PST)
 Received: from [192.168.0.22] ([78.10.206.178])
-        by smtp.gmail.com with ESMTPSA id dt6-20020a170906b78600b00a2699f9d5b1sm677712ejb.177.2023.12.21.00.12.38
+        by smtp.gmail.com with ESMTPSA id dt6-20020a170906b78600b00a2699f9d5b1sm677712ejb.177.2023.12.21.00.13.52
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 Dec 2023 00:12:39 -0800 (PST)
-Message-ID: <c41ff7c8-48d6-4f4f-a9df-aafe953a2e98@linaro.org>
-Date: Thu, 21 Dec 2023 09:12:38 +0100
+        Thu, 21 Dec 2023 00:13:52 -0800 (PST)
+Message-ID: <bc1731e0-0770-4bc9-abd7-239733a03d95@linaro.org>
+Date: Thu, 21 Dec 2023 09:13:52 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,26 +66,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/2] dt-bindings: arm: coresight: Update the pattern of
- ete node name
+Subject: Re: [PATCH v2 03/22] Documentation: devicetree: Clarify wording for
+ wakeup-source property
 Content-Language: en-US
-To: Jinlong Mao <quic_jinlmao@quicinc.com>,
- Mathieu Poirier <mathieu.poirier@linaro.org>,
- Suzuki K Poulose <suzuki.poulose@arm.com>, Mike Leach
- <mike.leach@linaro.org>, James Clark <james.clark@arm.com>,
- Leo Yan <leo.yan@linaro.org>, Andy Gross <agross@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+To: Mark Hasemeyer <markhas@chromium.org>, LKML <linux-kernel@vger.kernel.org>
+Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Tzung-Bi Shih <tzungbi@kernel.org>, Raul Rangel <rrangel@chromium.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Andy Shevchenko <andriy.shevchenko@intel.com>, Rob Herring
+ <robh@kernel.org>, Sudeep Holla <sudeep.holla@arm.com>,
+ Conor Dooley <conor+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Tingwei Zhang <quic_tingweiz@quicinc.com>,
- Yuanfang Zhang <quic_yuanfang@quicinc.com>,
- Tao Zhang <quic_taozha@quicinc.com>, coresight@lists.linaro.org
-References: <20231220140538.13136-1-quic_jinlmao@quicinc.com>
- <20231220140538.13136-2-quic_jinlmao@quicinc.com>
- <79f88d35-17cc-43b0-bb22-3c854f89d961@linaro.org>
- <8e5e9603-456b-4956-be03-b866feeeafb4@quicinc.com>
+ Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+References: <20231220235459.2965548-1-markhas@chromium.org>
+ <20231220165423.v2.3.I1016a45ac9e8daf8a9ebc9854ab90ec3542e7c30@changeid>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -131,30 +125,30 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <8e5e9603-456b-4956-be03-b866feeeafb4@quicinc.com>
+In-Reply-To: <20231220165423.v2.3.I1016a45ac9e8daf8a9ebc9854ab90ec3542e7c30@changeid>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 21/12/2023 04:28, Jinlong Mao wrote:
->>> diff --git a/Documentation/devicetree/bindings/arm/arm,embedded-trace-extension.yaml b/Documentation/devicetree/bindings/arm/arm,embedded-trace-extension.yaml
->>> index f725e6940993..cbf583d34029 100644
->>> --- a/Documentation/devicetree/bindings/arm/arm,embedded-trace-extension.yaml
->>> +++ b/Documentation/devicetree/bindings/arm/arm,embedded-trace-extension.yaml
->>> @@ -23,7 +23,7 @@ description: |
->>>   
->>>   properties:
->>>     $nodename:
->>> -    pattern: "^ete([0-9a-f]+)$"
->>> +    pattern: "^ete-([0-9a-f]+)$"
->>
->> My concerns are not resolved. Why is it here in the first place?
+On 21/12/2023 00:54, Mark Hasemeyer wrote:
+> The wording in the current documentation is a little strong. The
+> intention was not to fix any particular interrupt as wakeup capable but
+> leave those details to the device. It wasn't intended to enforce any
+> rules as what can be or can't be a wakeup interrupt.
 > 
-> Hi Krzysztof,
+> Soften the wording to not mandate that the 'wakeup-source' property be
+> used, and clarify what it means when an interrupt is marked (or not
+> marked) for wakeup.
 > 
-> ETE is acronym of embedded trace extension. The number of the name is 
-> the same as the number of the CPU it belongs to.
+> Link: https://lore.kernel.org/all/ZYAjxxHcCOgDVMTQ@bogus/
+> Link: https://lore.kernel.org/all/CAL_Jsq+MYwOG40X26cYmO9EkZ9xqWrXDi03MaRfxnV-+VGkXWQ@mail.gmail.com/
+> Signed-off-by: Mark Hasemeyer <markhas@chromium.org>
 
-This is obvious and was not my question.
+Please use subject prefixes matching the subsystem. You can get them for
+example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+your patch is touching.
+
+You nicely skipped all my filters... No need to resend to fix this, but
+fix it if sending a new version.
 
 Best regards,
 Krzysztof
