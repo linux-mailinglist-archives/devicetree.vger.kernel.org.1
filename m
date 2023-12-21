@@ -1,51 +1,50 @@
-Return-Path: <devicetree+bounces-27813-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27814-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBECA81BC04
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 17:30:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C5DD581BC09
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 17:30:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7CA1B1F26AED
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 16:30:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6CF191F26A5F
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 16:30:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A105659922;
-	Thu, 21 Dec 2023 16:30:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34130627F1;
+	Thu, 21 Dec 2023 16:30:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="trLOMg5F"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="m5UzFxa/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F43D59902;
-	Thu, 21 Dec 2023 16:30:05 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D01D7C433CA;
-	Thu, 21 Dec 2023 16:30:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E1BE627E8;
+	Thu, 21 Dec 2023 16:30:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 504DCC433C8;
+	Thu, 21 Dec 2023 16:30:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1703176205;
-	bh=QSIN5PEuBM/SnRlW0ctc6105LdnUDAdtLamta4IHtME=;
+	s=k20201202; t=1703176212;
+	bh=gtLAiPWmTcmBpZUErU+NQrKyPiLwkxWEzUE6UTKHEsQ=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=trLOMg5FdnHbBv0cX8A+FTotzKPj05/I4Gm/yIlIMMK/LFlrkcKdRMzbGvF00jac1
-	 4irUDB8fehWHaM6hSnQAyTzTjom3P83lqnWBetgDXcos5vBOnJzd4U0TIhVFnKEIUE
-	 3S+EstEyNUJG+UdyF/IjZzHi4IvHPQ63MND3jSDvLFH5ZwfiI4uW6PpeS7cJQgV+8s
-	 SS9mMQtG6+RXXONYmbghM1YpZZz8lG2Ge/1qhxBbekItjYYk8IhYs8i6TBpWIA0tcP
-	 LY/QxwedALWNyFc6zqKUbU8jlIXs07Cb0l1NtC1dUg1TW4vbS94T4tgCCUB+p8vyIO
-	 M/blg/0w8XQ8Q==
+	b=m5UzFxa/cFVYk8a0gwpGJQwQ38VGYJGhiCwe/+JjKcJ8TK1TE47zLspSyAjE8dtcL
+	 0ghvBqV8ABiYuY9nMPz90fxgwB6nU7Uw9c+IBR1Nkd3cE9+2VE8+gQxZpssnJuCbCz
+	 qIXmGQSiiJ7zVuPNDvHHYCxSbYtvuWPbTwN1hMOhyArpvX8piqpDVPCR7Mz/lH7boL
+	 YrrJ2VCtlwRwXkmAxhFHtbB8t9Syrf+MevmUu/Lg7Js15WLoX/6BFOTWd6ohs3I+pg
+	 fRTOdblUFyj9HbdUfSG1+doqmngBdCL/i5oMDC7uW9iR/3pGk1FkJjsWNyKXrK9eDe
+	 aUeWKOwvd6evA==
 From: Vinod Koul <vkoul@kernel.org>
-To: Binbin Zhou <zhoubb.aaron@gmail.com>, dmaengine@vger.kernel.org, 
- Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
- Huacai Chen <chenhuacai@kernel.org>, Binbin Zhou <zhoubinbin@loongson.cn>
-Cc: Huacai Chen <chenhuacai@kernel.org>, Xuerui Wang <kernel@xen0n.name>, 
- loongarch@lists.linux.dev, Yingkun Meng <mengyingkun@loongson.cn>
-In-Reply-To: <cover.1702365725.git.zhoubinbin@loongson.cn>
-References: <cover.1702365725.git.zhoubinbin@loongson.cn>
-Subject: Re: [PATCH v6 0/2] New driver for the Loongson LS2X APB DMA
- Controller
-Message-Id: <170317620141.683420.14004711706035537472.b4-ty@kernel.org>
-Date: Thu, 21 Dec 2023 22:00:01 +0530
+To: krzysztof.kozlowski@linaro.org, shawnguo@kernel.org, festevam@denx.de, 
+ Frank Li <Frank.Li@nxp.com>
+Cc: Frank.li@nxp.com, devicetree@vger.kernel.org, dmaengine@vger.kernel.org, 
+ imx@lists.linux.dev, joy.zou@nxp.com, krzysztof.kozlowski+dt@linaro.org, 
+ linux-kernel@vger.kernel.org, peng.fan@nxp.com, robh+dt@kernel.org, 
+ shenwei.wang@nxp.com
+In-Reply-To: <20231114154824.3617255-1-Frank.Li@nxp.com>
+References: <20231114154824.3617255-1-Frank.Li@nxp.com>
+Subject: Re: (subset) [PATCH 0/4] dmaengine: fsl-edma: fix eDMAv4 uart dma
+ loop test failure
+Message-Id: <170317620790.683420.15838999632725867289.b4-ty@kernel.org>
+Date: Thu, 21 Dec 2023 22:00:07 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,23 +56,28 @@ Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.12.3
 
 
-On Mon, 18 Dec 2023 09:56:37 +0800, Binbin Zhou wrote:
-> This patchset introduces you to the LS2X apbdma controller.
+On Tue, 14 Nov 2023 10:48:20 -0500, Frank Li wrote:
+> The commit a725990557e7d ("arm64: dts: imx93: Fix the dmas entries order")
+> trigger a hidden eDMAv4 hardware limitation.
 > 
-> The Loongson LS2X APB DMA controller is available on Loongson-2K chips.
-> It is a single-channel, configurable DMA controller IP core based on the
-> AXI bus, whose main function is to integrate DMA functionality on a chip
-> dedicated to carrying data between memory and peripherals in APB bus
-> (e.g. nand).
+> Some channel require stick to odd number, some require stick to even
+> number.
+> 
+> This fixes include 3 part.
+> 1. add limitation at eDMA driver.
+> 2. create dt-binding header file to share define between driver and dts
+> 3. add ODD and EVEN requirement for uart driver at dts file.
 > 
 > [...]
 
 Applied, thanks!
 
-[1/2] dt-bindings: dmaengine: Add Loongson LS2X APB DMA controller
-      commit: 3b3b5339cdc67e98817d08431f8443b08880084f
-[2/2] dmaengine: ls2x-apb: New driver for the Loongson LS2X APB DMA controller
-      commit: 71e7d3cb6e55ae2eadcdb178f9243dc18499d369
+[1/4] dmaengine: fsl-edma: fix eDMAv4 channel allocation issue
+      commit: dc51b4442dd94ab12c146c1897bbdb40e16d5636
+[2/4] dt-bindings: dma: fsl-edma: Add fsl-edma.h to prevent hardcoding in dts
+      commit: 1e9b05258271b76ccc04a4b535009d2cb596506a
+[3/4] dmaengine: fsl-edma: utilize common dt-binding header file
+      commit: d0e217b72f9f5c5ef35e3423d393ea8093ce98ec
 
 Best regards,
 -- 
