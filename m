@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-27838-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27839-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A1CA81BD37
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 18:29:38 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A30B981BD42
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 18:31:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B6A10B217E3
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 17:29:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D10D21C20C9C
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 17:31:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B476F62800;
-	Thu, 21 Dec 2023 17:29:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 486055991D;
+	Thu, 21 Dec 2023 17:31:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VssPLwX0"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="KdL9VqTn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
+Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B5B9627E2
-	for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 17:29:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 863726280F
+	for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 17:31:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-5534abbc637so1269777a12.0
-        for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 09:29:27 -0800 (PST)
+Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-54c70c70952so1300231a12.3
+        for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 09:31:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1703179766; x=1703784566; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1703179868; x=1703784668; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=1xsSRw5an+DdkMAjpyEAY4wOM2WTUgfCJWFOCdWDXuk=;
-        b=VssPLwX0IH/vmih/ua1LxK7xZFHLPtG6+iixEW3ScdPlnHYhfvhe6PHAGMibUkbIkf
-         8hXtaWu/1El+zkTEeNA9fOqEXvA4jGED+Y4tP5uWttVdmxBT5NHNUtvkivyFVYRum08v
-         4aqSBdg6MgVqOQN7oZTBM4nZ6ZNI1LxXp+Co+Mgj7/h6YOBeqX5R0NsLY7K668jyf41P
-         N/2UrjCWWMTj+e4oRz0e2xVQ6bEPCwXXEogNNWimeL7HTfikqKzKu6k/FwdWz2JrZb/e
-         pug5nbViD7wi1yLMPU6BY4AKI5NaVZllJPvvZdF2dgtsLkY2psi/ty8fNVX4zp9c3UNa
-         KjKw==
+        bh=e9WnMkyFiRCA7baddQfArIuBh2ZYMqaCVVALijh4oFI=;
+        b=KdL9VqTndiiU+qUbf35yicfUPr31IimPQAyXaQSu2ehHQAOKPmzK5TCCGzGMFzFkIc
+         oI1rDnAS+mY2IELWMxsRN1SwK2xvQQXgF7vL+X0OKayzjjfGm7164+Fg6vvdQ95TRnNd
+         +NbedhpOuWzIQHezqNgH95IaoK+qrU2Rg3CzQtKObR4lBp88D7tkjVc4dowZeXOKfaTL
+         X+hQScqDpjocG/EDWjV5BJuS+cDM2HV6ORj7Rj/DRVZZk1tyBM1arum398Y1Hp/xUNmz
+         2GwG7A1RhkzW4Obm78rKS1MV60MYqsXdnVPas4Jb2Oq0MMjrMmXMM4xJJaOcbfVQzDhF
+         dOZw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703179766; x=1703784566;
+        d=1e100.net; s=20230601; t=1703179868; x=1703784668;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=1xsSRw5an+DdkMAjpyEAY4wOM2WTUgfCJWFOCdWDXuk=;
-        b=pSEcrmFYWaSgTpZDfQsTqMufXVvLESNFWE5P1VjQ98wL2L0C3qiFUqRTUFTZqMZ+eg
-         NrTnRv/ysC9Ss0SjyRNUwf/l08Vj6C2NOPkAWvqSHFlGvoD6OIaFK0K00S35Hx/sEUbP
-         8T8l9rfr0wJb/SYIJIEO216prMI75cpoR2ecUn1Rz3Va/kmAKEYDWkgiXIO0qBc9vb1/
-         E5FWmdDdNCVQaRx596pPX0aqE8C07dcFZWlmeOJ6No2YW4aMCRa2j/4pDRlX9mePTV3o
-         so/+vtxEZLxJnTMzn0oCbANgKlQooxRxYBXKyGEaeUhbqCHWCRJU6OlTl3fChlnaZrXY
-         aWSQ==
-X-Gm-Message-State: AOJu0YxpqsNfDV9K01oPE7yTwk54Y3F/nDUfdrL0r76OzZhSQBNAFru7
-	8J4qa33f8XwbDSMbMFnqCHdX2g==
-X-Google-Smtp-Source: AGHT+IFy/pmFzHH9RNeBpLNUfZlghhNI7MnK89Wi0df0D+t+5qS1hRh1Dv354svHVBJl9esnRSs15w==
-X-Received: by 2002:a50:b404:0:b0:554:1193:35ad with SMTP id b4-20020a50b404000000b00554119335admr827552edh.49.1703179766358;
-        Thu, 21 Dec 2023 09:29:26 -0800 (PST)
+        bh=e9WnMkyFiRCA7baddQfArIuBh2ZYMqaCVVALijh4oFI=;
+        b=CnTIb8kF8KYnDfwD0xCYHuWGJvCJHwA5vs62VQi00bnozPgq6IK0qMkIYjVAUTFBTg
+         KPDFhGPuKflaQynNWpaBTBGksn1QHHvyT1f4EEaOriycTN/fD0Pq4wTyUf9En8BrWrsW
+         v8Z9IaOWjgH5Tryd1VMNG42Hg/t0hD9wS19efXbShNk6pj1f7xPqOvoZf3EauRBMSOHi
+         itOGIeRZgV3Q+N5BQDGinjCTpmbPj5NImYg9xzds/nHuk6H7e3AhqHnPn48e/e4P9vBY
+         9btNJTwUyahc2biH0THTL3pNc1SubI25e4hUODMkb5SfjtFw5g1wwYHNRfJ4I0C3H55B
+         zTeA==
+X-Gm-Message-State: AOJu0YyWH2hsiWRGOedoVmZzzVmYfYw9jorIyFXLM2UVHFIdcOSg79e8
+	2b8/ohlRkV92VJ3c40LBkFu97Q==
+X-Google-Smtp-Source: AGHT+IE3wKoY+z5MK8YtmPRdSeahFzQWG09y+WxB89lV7LGTC/CxDSqV/zzqyN/meP8TPfCo1AGF3Q==
+X-Received: by 2002:a50:8d01:0:b0:554:3b83:d11b with SMTP id s1-20020a508d01000000b005543b83d11bmr222023eds.117.1703179867847;
+        Thu, 21 Dec 2023 09:31:07 -0800 (PST)
 Received: from [192.168.0.22] ([78.10.206.178])
-        by smtp.gmail.com with ESMTPSA id n4-20020a056402434400b005528265bc41sm1436066edc.0.2023.12.21.09.29.24
+        by smtp.gmail.com with ESMTPSA id n4-20020a056402434400b005528265bc41sm1436066edc.0.2023.12.21.09.31.06
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 Dec 2023 09:29:25 -0800 (PST)
-Message-ID: <40d09489-8242-4be7-bbe1-4e80a729c218@linaro.org>
-Date: Thu, 21 Dec 2023 18:29:23 +0100
+        Thu, 21 Dec 2023 09:31:07 -0800 (PST)
+Message-ID: <7362295b-4a01-4574-8d96-d10f405eaea0@linaro.org>
+Date: Thu, 21 Dec 2023 18:31:05 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,8 +66,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 5/5] ASoC: dt-bindings: Add tas2563 into ti,ta2781.yaml
- to support dsp mode better
+Subject: Re: [PATCH v2 1/5] ASoC: dt-bindings: remove tas2563 from yaml
 Content-Language: en-US
 To: Shenghao Ding <shenghao-ding@ti.com>, broonie@kernel.org,
  conor+dt@kernel.org
@@ -78,7 +77,6 @@ Cc: robh+dt@kernel.org, andriy.shevchenko@linux.intel.com, kevin-lu@ti.com,
  liam.r.girdwood@intel.com, soyer@irl.hu, tiwai@suse.de, peeyush@ti.com,
  navada@ti.com
 References: <20231221101346.429-1-shenghao-ding@ti.com>
- <20231221101346.429-5-shenghao-ding@ti.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -124,81 +122,18 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231221101346.429-5-shenghao-ding@ti.com>
+In-Reply-To: <20231221101346.429-1-shenghao-ding@ti.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 21/12/2023 11:13, Shenghao Ding wrote:
-> Add tas2563 to better support dsp mode.
-> 
-> Signed-off-by: Shenghao Ding <shenghao-ding@ti.com>
-> 
-> ---
-> Change in v2:
->  - Add devicetree list and other list of necessary people and lists to CC
->  - Express Compatibility in the bindings
+> Remove tas2563 from tas2562, it will be supported in tas2781 to better
+> support dsp mode.
 
-Nothing changed in that matter - no compatibility was expressed.
-
-...
-
->  
-> -allOf:
-> -  - $ref: dai-common.yaml#
-> -
->  properties:
->    compatible:
-> +    description: |
-> +      ti,tas2781: 24-V Class-D Amplifier with Real Time Integrated Speaker
-> +      Protection and Audio Processing, 16/20/24/32bit stereo I2S or
-> +      multichannel TDM.
-> +
-> +      ti,tas2563: 6.1-W Boosted Class-D Audio Amplifier With Integrated
-> +      DSP and IV Sense, 16/20/24/32bit stereo I2S or multichannel TDM.
->      enum:
->        - ti,tas2781
-> +      - ti,tas2563          # fallback compatible
-
-I don't see any use of fallback. The comment is meaningless. Open
-example-schema and see how it is done there.
-
->  
-> -  reg:
-> -    description:
-> -      I2C address, in multiple tas2781s case, all the i2c address
-> -      aggregate as one Audio Device to support multiple audio slots.
-> -    maxItems: 8
-> -    minItems: 1
-> -    items:
-> -      minimum: 0x38
-> -      maximum: 0x3f
-> +  reg: true
-
-No, why? Keep min/maxItems.
-
->  
->    reset-gpios:
->      maxItems: 1
-> @@ -49,6 +46,34 @@ required:
->    - compatible
->    - reg
->  
-> +allOf:
-> +  - $ref: dai-common.yaml#
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - ti,tas2781
-> +    then:
-> +      properties:
-> +        reg:
-> +          description:
-> +            I2C address, in multiple AMP case, all the i2c address
-> +            aggregate as one Audio Device to support multiple audio slots.
-
-Description applies to second case as well, so keep it in top-level.
+Please provide rationale in terms of bindings and hardware, not in terms
+of driver. Or at least not only. For example "supported in tas2781" does
+not fit hardware part, so you sure must be talking about drivers thus
+why driver change would affect bindings?
 
 
 
