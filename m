@@ -1,131 +1,133 @@
-Return-Path: <devicetree+bounces-27678-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27679-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98D1781B424
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 11:46:09 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED22281B477
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 11:54:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CBF0E1C23D09
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 10:46:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 29E091C2105D
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 10:54:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A96B6720B;
-	Thu, 21 Dec 2023 10:46:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA7D26A01F;
+	Thu, 21 Dec 2023 10:54:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="nsUCvOI+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kYsx0Zcs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD64A68EA0;
-	Thu, 21 Dec 2023 10:46:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 3BL7JosN021271;
-	Thu, 21 Dec 2023 10:46:00 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	from:to:cc:subject:date:message-id:mime-version:content-type; s=
-	qcppdkim1; bh=HkwbleRBu76qyIDVeqh/7K2yIPwFZuLkPDckpsjyCJ4=; b=ns
-	UCvOI+KvaAMb7HipkujG2+LMqvCG1nGi7qXgv3OOEOyjNJPxLNZoPQ/rja7zLkh/
-	l0nQ8pdH7pBm4bKoRxHle0ImTQQalPrVOflUFFUoPo23TOyTYD2PLR6lpiQnTqG5
-	eveCD2CwL0ii8ep1bTkmsRSuafrKrioiRqLhBBu8tmQCNm6Xly5p6M2zZeEIWMMC
-	7V1tUulB4kB1EzBl3IHTq1uRa1xCKVYNN0+UxpdXhe7Jpg514n1l286B/7oTfiQ4
-	OpiaSy7m99Q8SzfxZu8X2ETrH1508+GOmDf7hdn6kbb+S3lAng6r42lsCxXHSZVV
-	Shrd14BPuHXw5RhhKwSw==
-Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3v4gvh0rjc-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 21 Dec 2023 10:46:00 +0000 (GMT)
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-	by NASANPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3BLAjxk5019002
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 21 Dec 2023 10:45:59 GMT
-Received: from hu-mapa-hyd.qualcomm.com (10.80.80.8) by
- nasanex01c.na.qualcomm.com (10.45.79.139) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Thu, 21 Dec 2023 02:45:54 -0800
-From: Manish Pandey <quic_mapa@quicinc.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <quic_cang@quicinc.com>,
-        <quic_nguyenb@quicinc.com>, <quic_mapa@quicinc.com>,
-        <quic_nitirawa@quicinc.com>, <quic_bhaskarv@quicinc.com>,
-        <quic_narepall@quicinc.com>, <quic_rampraka@quicinc.com>,
-        <quic_ahari@quicinc.com>
-Subject: [PATCH V2 2/2] arm64: dts: qcom: qcm6490: Add UFS nodes
-Date: Thu, 21 Dec 2023 16:15:29 +0530
-Message-ID: <20231221104529.13513-1-quic_mapa@quicinc.com>
-X-Mailer: git-send-email 2.17.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD82F69799;
+	Thu, 21 Dec 2023 10:54:48 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 440B8C433C7;
+	Thu, 21 Dec 2023 10:54:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1703156088;
+	bh=7wbXaePSW/44tnWXqKYDczbwgLzPWA8vIbnztprKJVI=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=kYsx0Zcsdi/1Zy7bVVMDd7jKnpuL1iuXiAJ+Zx4z78WwYKtzB+LmUHXo/w2AOWmhe
+	 G6B4HfCLkoWYnzZBT6NzEh8fi18qMuewYIB3MdqKwrZmS0rhMfvHbCYjbHIKRPZmMS
+	 ZVm+0f3EKa8SiSEz9A3MGXEdCNwDWDttHikMqLY2ztaDlVTTsp/3+2qJcDPBmIKNPK
+	 VPF6NYn/Akw10Q8xQ1O4yGIHAS3BOlf6AkGWtWh1pOfwG4Shxu8ng/BzaMCNKyn8rQ
+	 /Ymd2HhpnLreiYdyNHyyL748eGqlO+hxaJNotg9gHRzCaXSC+JOqHAMogj08Fl7zu1
+	 uGGl/fP3axycA==
+Date: Thu, 21 Dec 2023 10:54:34 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Rob Herring <robh@kernel.org>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, Frank Rowand
+ <frowand.list@gmail.com>, Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Subject: Re: [RFC PATCH 1/4] of: Add cleanup.h based autorelease via
+ __free(device_node) markings.
+Message-ID: <20231221105434.5842ff3a@jic23-huawei>
+In-Reply-To: <20231220221144.GA1188444-robh@kernel.org>
+References: <20231217184648.185236-1-jic23@kernel.org>
+	<20231217184648.185236-2-jic23@kernel.org>
+	<20231220221144.GA1188444-robh@kernel.org>
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: g043uD9Ug1bvgO9npE7I6Cykeb7d8Wty
-X-Proofpoint-GUID: g043uD9Ug1bvgO9npE7I6Cykeb7d8Wty
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-12-09_01,2023-12-07_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- spamscore=0 priorityscore=1501 clxscore=1011 adultscore=0 suspectscore=0
- mlxlogscore=508 bulkscore=0 phishscore=0 malwarescore=0 impostorscore=0
- mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2311290000 definitions=main-2312210079
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-Add UFS host controller and Phy nodes for
-Qualcomm qcm6490 Board.
+On Wed, 20 Dec 2023 16:11:44 -0600
+Rob Herring <robh@kernel.org> wrote:
 
-Signed-off-by: Manish Pandey <quic_mapa@quicinc.com>
----
- arch/arm64/boot/dts/qcom/qcm6490-idp.dts | 19 +++++++++++++++++++
- 1 file changed, 19 insertions(+)
+> On Sun, Dec 17, 2023 at 06:46:45PM +0000, Jonathan Cameron wrote:
+> > From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> > 
+> > The recent addition of scope based cleanup support to the kernel
+> > provides a convenient tool to reduce the chances of leaking reference
+> > counts where of_node_put() should have been called in an error path.
+> > 
+> > This enables
+> > 	struct device_node *child __free(device_node) = NULL;
+> > 
+> > 	for_each_child_of_node(np, child) {
+> > 		if (test)
+> > 			return test;
+> > 	}
+> > 
+> > with no need for a manual call of of_node_put()
+> > 
+> > In this simile example the gains are small but there are some very  
+> 
+> typo
+> 
+> > complex error handling cases burried in these loops that wil be
+> > greatly simplified by enabling early returns with out the need
+> > for this manual of_node_put() call.  
+> 
+> Neat!
+> 
+> I guess that now that the coccinelle check has fixed many, we can update 
+> it to the new way and start fixing them all again. We should update the 
+> coccinelle script with the new way. See 
+> scripts/coccinelle/iterators/for_each_child.cocci.
 
-diff --git a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
-index 03e97e27d16d..51efd46b576c 100644
---- a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
-+++ b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
-@@ -440,6 +440,25 @@
- 	status = "okay";
- };
- 
-+&ufs_mem_hc {
-+	reset-gpios = <&tlmm 175 GPIO_ACTIVE_LOW>;
-+	vcc-supply = <&vreg_l7b_2p9>;
-+	vcc-max-microamp = <800000>;
-+	vccq-supply = <&vreg_l9b_1p2>;
-+	vccq-max-microamp = <900000>;
-+	vccq2-supply = <&vreg_l9b_1p2>;
-+	vccq2-max-microamp = <900000>;
-+
-+	status = "okay";
-+};
-+
-+&ufs_mem_phy {
-+	vdda-phy-supply = <&vreg_l10c_0p8>;
-+	vdda-pll-supply = <&vreg_l6b_1p2>;
-+
-+	status = "okay";
-+};
-+
- &usb_1 {
- 	status = "okay";
- };
--- 
-2.17.1
+If the holiday season gets dull enough I'll take a look at updating that
+as well. Been a long time since I last messed with coccinelle.
+
+Given this is just a simplification rather than a fix, there would be no rush
+to convert things over but we definitely don't want the coccinelle script
+to generate lots of false positives.  + we should perhaps add a
+script to try and catch the opposite (double free) as a result of
+using this automated cleanup.
+
+> 
+> > 
+> > Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> > ---
+> >  include/linux/of.h | 2 ++
+> >  1 file changed, 2 insertions(+)
+> > 
+> > diff --git a/include/linux/of.h b/include/linux/of.h
+> > index 6a9ddf20e79a..50e882ee91da 100644
+> > --- a/include/linux/of.h
+> > +++ b/include/linux/of.h
+> > @@ -13,6 +13,7 @@
+> >   */
+> >  #include <linux/types.h>
+> >  #include <linux/bitops.h>
+> > +#include <linux/cleanup.h>
+> >  #include <linux/errno.h>
+> >  #include <linux/kobject.h>
+> >  #include <linux/mod_devicetable.h>
+> > @@ -134,6 +135,7 @@ static inline struct device_node *of_node_get(struct device_node *node)
+> >  }
+> >  static inline void of_node_put(struct device_node *node) { }
+> >  #endif /* !CONFIG_OF_DYNAMIC */
+> > +DEFINE_FREE(device_node, struct device_node *, if (_T) of_node_put(_T))  
+> 
+> of_node_put() can be called with NULL, so do we need the "if (_T)"?
+
+Nope - should be fine to call it without. I was being lazy and didn't check :)
+
+> 
+> Rob
 
 
