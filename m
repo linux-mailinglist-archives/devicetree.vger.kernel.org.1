@@ -1,612 +1,150 @@
-Return-Path: <devicetree+bounces-27847-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27849-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D613C81BD5A
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 18:35:51 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E41981BD67
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 18:38:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 611341F23B00
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 17:35:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A83431F21719
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 17:38:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0ED3D64AB2;
-	Thu, 21 Dec 2023 17:34:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D71FC634F3;
+	Thu, 21 Dec 2023 17:38:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PCiPq8Sc"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="CTeVqL2I"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
+Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F22F563501;
-	Thu, 21 Dec 2023 17:34:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-a2330a92ae6so135981666b.0;
-        Thu, 21 Dec 2023 09:34:43 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41D9262804
+	for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 17:38:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-a22f59c6aeaso123659566b.2
+        for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 09:38:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1703180082; x=1703784882; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/LigAkCB/la+Qs61J5kBSDMBJAI+pTq+O+P9MmiWApU=;
-        b=PCiPq8Sc7RjRSG56RptfwEctyShu05UTBxsTMGLEcvc2xW3jC7GAW+JbtxAsuNMX0x
-         ZvT4xHebe4dxWJcIhbPCAjqtRXfbbHW0uAWjBwLeVTXF+X3wd5jG10SXEfPfF5DOVIuy
-         svGFZfR3L/TIJ4SywgcEg1gn+fY4wL9AWuuYX7YWFdr73UVPy9mq8yh4yJtiv5DpCoWM
-         Qtk5F2XDW0mu+H75hyfSoPXw/6I+RB4PKQ7Y/hw2cazRYlHJ4NO9YBcd5D2mcMm8TQKK
-         DWIPUTuaCApRriPNkvZoWmR2BYZb9+8IurSewK3g77Yci6FAmSn2Gdx30dYg+hs1kK19
-         3HxQ==
+        d=linaro.org; s=google; t=1703180286; x=1703785086; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=fYV6Mgy0TcRWTlCyc11+Vk7sT6RhTqsahWi2Z8G0VL0=;
+        b=CTeVqL2IcUQ/fKRAQUifFGLFSAbrx1QvqXa+gj3WHbV7eL6LHMpYzG0TbCjtU5a3/A
+         qE77qghI7rOaXVIeN24c1gXdlK17aKLId6udXzfXMvp4DnGsBUATAu7LkpVyk65fpVQZ
+         n7GvLy6MYnzkZ7qFetiphzqleYuUtA2h5gd2cGp2brqo3sjDQ6kR/EhJ8GeejU7eNl96
+         COb7NJ9DmHPuZwyFylQdLnHK4ntC/Q8u1/CrSWEvj4krdeOstDmGHAya58DtBP/s7IoD
+         IfFNjz8MA7T0XLaTuUc03J8NWa6arnYrdpAj7Mf1SBrOmB6s22mVCOJNxP37++oPgtSN
+         74jw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703180082; x=1703784882;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=/LigAkCB/la+Qs61J5kBSDMBJAI+pTq+O+P9MmiWApU=;
-        b=An8C4BtZVn8vL0z4TYK3Lv8FbMGo9isTui7r+ztd9DWl9X1ZUZ92YfbYDuWSEElzn6
-         ZEDG1Y2JJ44tYQE5rcp5KcOyJnsdn+ar2jnrIoDnkkfYNaFcPnawpylO+kAIM83NJvcQ
-         EFJ5uluanU4P8LXl1IICmF/kvvl9ABW5x3pKULEjc4ZE649kXM4hBu1dCMRI+PFj7q/0
-         NwzSEu9HeLtWtukJF0adN2BsepD/vRvP6aA7h8CHjVgVDI013l9lG1CYD7uGSGEV0N/s
-         ksaeR1IBXcy2g4dY9mqalhmL4r3yYbgWznK3bhFRHxKBuNFmmnQIStP+0FhKF8GBZv1C
-         kQCw==
-X-Gm-Message-State: AOJu0YwTfONGh6CUAItxfst0hoknymvk2QeWpiU0xiwGVzowfb3+O0Yo
-	YRIZlLMNnBWjeeAwSsAQBUc=
-X-Google-Smtp-Source: AGHT+IE8R8ORMKM/1BouX+eoS51FuVeVD5c8Np+++ilHS1c7JQfD5vhcEA+35MjsdhyyIhqurFCkFg==
-X-Received: by 2002:a17:907:2d8b:b0:a26:a5fe:d67d with SMTP id gt11-20020a1709072d8b00b00a26a5fed67dmr104021ejc.136.1703180082089;
-        Thu, 21 Dec 2023 09:34:42 -0800 (PST)
-Received: from localhost.lan (031011218106.poznan.vectranet.pl. [31.11.218.106])
-        by smtp.gmail.com with ESMTPSA id z25-20020a1709060ad900b00a23499f1d7dsm1176118ejf.209.2023.12.21.09.34.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 21 Dec 2023 09:34:41 -0800 (PST)
-From: =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Michael Walle <michael@walle.cc>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	linux-mtd@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	u-boot@lists.denx.de,
-	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH V3 6/6] nvmem: layouts: add U-Boot env layout
-Date: Thu, 21 Dec 2023 18:34:21 +0100
-Message-Id: <20231221173421.13737-6-zajec5@gmail.com>
-X-Mailer: git-send-email 2.35.3
-In-Reply-To: <20231221173421.13737-1-zajec5@gmail.com>
-References: <20231221173421.13737-1-zajec5@gmail.com>
+        d=1e100.net; s=20230601; t=1703180286; x=1703785086;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=fYV6Mgy0TcRWTlCyc11+Vk7sT6RhTqsahWi2Z8G0VL0=;
+        b=oZA+hnj10+nhPGTyvoDCGzx9yYuGIWWUclqT2On+uDgQPSTrE15eefsE0Yw+yGgCYA
+         7d29fdQx/AQD64NJK86k9VNk4ZBsD8ZIiYazbfnz5MH8OTlIj0dp4yKFPspi640xb1g+
+         F/B8Xm2Yfo5ivBZD994bJ5miHDYpDtye4Gk3+JQS/1U3Z3VLZKeg+xyv8HUNU9CyeP7e
+         KEt/omT6xwhpNjMGOmig6ApXhJ9ZF9UF450h8Sf8hVfJ/WODA5cSVLoeXPJ4t/1tvQun
+         mSTHcUbN6+ZRSqS05X9LvXHTajuV4BvmvGnT/MnfcoBtwE2qtOqLgLBehvJzV3J1N7rY
+         NLCQ==
+X-Gm-Message-State: AOJu0YyB5Euz4LJamy9+oe12q+3GnqHK6Gf+yXq9x6LR602r75geDmUC
+	kbwT+1rheiQ0lBFY4YOBGOTnF/g1Lr/vNU3Ef9C2V3fAO3tg6g==
+X-Google-Smtp-Source: AGHT+IEdqFiUIfBBbwZGgA63S7UPMnB1PCiHJNgwpO7VLugKfjxoPp1n1pET+PXhvir5KVNbcDTVbQ==
+X-Received: by 2002:a17:906:4716:b0:a23:619f:9e68 with SMTP id y22-20020a170906471600b00a23619f9e68mr58293ejq.150.1703180286520;
+        Thu, 21 Dec 2023 09:38:06 -0800 (PST)
+Received: from [192.168.0.22] ([78.10.206.178])
+        by smtp.gmail.com with ESMTPSA id mf8-20020a1709071a4800b00a26a4b935b0sm928176ejc.166.2023.12.21.09.38.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 21 Dec 2023 09:38:06 -0800 (PST)
+Message-ID: <56f277f5-3f2a-492a-a84c-0e0a3e3dd475@linaro.org>
+Date: Thu, 21 Dec 2023 18:38:04 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] dt-bindings: iio: hmc425a: add entry for LTC6373
+Content-Language: en-US
+To: Dumitru Ceclan <mitrutzceclan@gmail.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>, Jonathan Cameron
+ <jic23@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Ceclan Dumitru <dumitru.ceclan@analog.com>
+References: <20231221113842.25957-1-mitrutzceclan@gmail.com>
+ <20231221113842.25957-2-mitrutzceclan@gmail.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20231221113842.25957-2-mitrutzceclan@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-From: Rafał Miłecki <rafal@milecki.pl>
+On 21/12/2023 12:38, Dumitru Ceclan wrote:
+>  
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: adi,ltc6373
+> +
+> +    then:
+> +      properties:
+> +        ctrl-gpios:
+> +          minItems: 3
+> +          maxItems: 3
 
-Move all generic (NVMEM devices independent) code from NVMEM device
-driver to NVMEM layout driver. Then add a simple NVMEM layout code on
-top of it.
+Test your DTS first. This leads to errors. :(
+You miss minItems top-level and here else:.
 
-Thanks to proper layout it's possible to support U-Boot env data stored
-on any kind of NVMEM device.
-
-For backward compatibility with old DT bindings we need to keep old
-NVMEM device driver functional. To avoid code duplication export and
-reuse a parsing function.
-
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
-Reviewed-by: Miquel Raynal <miquel.raynal@bootlin.com>
----
-V2: Support new compatibles & use device_get_match_data() helper
-V3: Use imperative in commit body
-
-IMPORTANT:
-This is based on top of the:
-[PATCH v6.8 1/2] nvmem: layouts: refactor .add_cells() callback arguments
-
- MAINTAINERS                        |   1 +
- drivers/nvmem/Kconfig              |   3 +-
- drivers/nvmem/layouts/Kconfig      |  11 ++
- drivers/nvmem/layouts/Makefile     |   1 +
- drivers/nvmem/layouts/u-boot-env.c | 204 +++++++++++++++++++++++++++++
- drivers/nvmem/layouts/u-boot-env.h |  15 +++
- drivers/nvmem/u-boot-env.c         | 158 +---------------------
- 7 files changed, 235 insertions(+), 158 deletions(-)
- create mode 100644 drivers/nvmem/layouts/u-boot-env.c
- create mode 100644 drivers/nvmem/layouts/u-boot-env.h
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index b589218605b4..1f7e6d74cd51 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -22282,6 +22282,7 @@ U-BOOT ENVIRONMENT VARIABLES
- M:	Rafał Miłecki <rafal@milecki.pl>
- S:	Maintained
- F:	Documentation/devicetree/bindings/nvmem/u-boot,env.yaml
-+F:	drivers/nvmem/layouts/u-boot-env.c
- F:	drivers/nvmem/u-boot-env.c
- 
- UACCE ACCELERATOR FRAMEWORK
-diff --git a/drivers/nvmem/Kconfig b/drivers/nvmem/Kconfig
-index 283134498fbc..d2c384f58028 100644
---- a/drivers/nvmem/Kconfig
-+++ b/drivers/nvmem/Kconfig
-@@ -363,8 +363,7 @@ config NVMEM_SUNXI_SID
- config NVMEM_U_BOOT_ENV
- 	tristate "U-Boot environment variables support"
- 	depends on OF && MTD
--	select CRC32
--	select GENERIC_NET_UTILS
-+	select NVMEM_LAYOUT_U_BOOT_ENV
- 	help
- 	  U-Boot stores its setup as environment variables. This driver adds
- 	  support for verifying & exporting such data. It also exposes variables
-diff --git a/drivers/nvmem/layouts/Kconfig b/drivers/nvmem/layouts/Kconfig
-index 9c6e672fc350..5e586dfebe47 100644
---- a/drivers/nvmem/layouts/Kconfig
-+++ b/drivers/nvmem/layouts/Kconfig
-@@ -26,6 +26,17 @@ config NVMEM_LAYOUT_ONIE_TLV
- 
- 	  If unsure, say N.
- 
-+config NVMEM_LAYOUT_U_BOOT_ENV
-+	tristate "U-Boot environment variables layout"
-+	select CRC32
-+	select GENERIC_NET_UTILS
-+	help
-+	  U-Boot stores its setup as environment variables. This driver adds
-+	  support for verifying & exporting such data. It also exposes variables
-+	  as NVMEM cells so they can be referenced by other drivers.
-+
-+	  If unsure, say N.
-+
- endmenu
- 
- endif
-diff --git a/drivers/nvmem/layouts/Makefile b/drivers/nvmem/layouts/Makefile
-index 2974bd7d33ed..4940c9db0665 100644
---- a/drivers/nvmem/layouts/Makefile
-+++ b/drivers/nvmem/layouts/Makefile
-@@ -5,3 +5,4 @@
- 
- obj-$(CONFIG_NVMEM_LAYOUT_SL28_VPD) += sl28vpd.o
- obj-$(CONFIG_NVMEM_LAYOUT_ONIE_TLV) += onie-tlv.o
-+obj-$(CONFIG_NVMEM_LAYOUT_U_BOOT_ENV) += u-boot-env.o
-diff --git a/drivers/nvmem/layouts/u-boot-env.c b/drivers/nvmem/layouts/u-boot-env.c
-new file mode 100644
-index 000000000000..dcd2ffed503c
---- /dev/null
-+++ b/drivers/nvmem/layouts/u-boot-env.c
-@@ -0,0 +1,204 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (C) 2022 - 2023 Rafał Miłecki <rafal@milecki.pl>
-+ */
-+
-+#include <linux/crc32.h>
-+#include <linux/etherdevice.h>
-+#include <linux/export.h>
-+#include <linux/if_ether.h>
-+#include <linux/nvmem-consumer.h>
-+#include <linux/nvmem-provider.h>
-+#include <linux/of.h>
-+#include <linux/slab.h>
-+
-+#include "u-boot-env.h"
-+
-+struct u_boot_env_image_single {
-+	__le32 crc32;
-+	uint8_t data[];
-+} __packed;
-+
-+struct u_boot_env_image_redundant {
-+	__le32 crc32;
-+	u8 mark;
-+	uint8_t data[];
-+} __packed;
-+
-+struct u_boot_env_image_broadcom {
-+	__le32 magic;
-+	__le32 len;
-+	__le32 crc32;
-+	DECLARE_FLEX_ARRAY(uint8_t, data);
-+} __packed;
-+
-+static int u_boot_env_read_post_process_ethaddr(void *context, const char *id, int index,
-+						unsigned int offset, void *buf, size_t bytes)
-+{
-+	u8 mac[ETH_ALEN];
-+
-+	if (bytes != 3 * ETH_ALEN - 1)
-+		return -EINVAL;
-+
-+	if (!mac_pton(buf, mac))
-+		return -EINVAL;
-+
-+	if (index)
-+		eth_addr_add(mac, index);
-+
-+	ether_addr_copy(buf, mac);
-+
-+	return 0;
-+}
-+
-+static int u_boot_env_parse_cells(struct device *dev, struct nvmem_device *nvmem, uint8_t *buf,
-+				  size_t data_offset, size_t data_len)
-+{
-+	char *data = buf + data_offset;
-+	char *var, *value, *eq;
-+
-+	for (var = data;
-+	     var < data + data_len && *var;
-+	     var = value + strlen(value) + 1) {
-+		struct nvmem_cell_info info = {};
-+
-+		eq = strchr(var, '=');
-+		if (!eq)
-+			break;
-+		*eq = '\0';
-+		value = eq + 1;
-+
-+		info.name = devm_kstrdup(dev, var, GFP_KERNEL);
-+		if (!info.name)
-+			return -ENOMEM;
-+		info.offset = data_offset + value - data;
-+		info.bytes = strlen(value);
-+		info.np = of_get_child_by_name(dev->of_node, info.name);
-+		if (!strcmp(var, "ethaddr")) {
-+			info.raw_len = strlen(value);
-+			info.bytes = ETH_ALEN;
-+			info.read_post_process = u_boot_env_read_post_process_ethaddr;
-+		}
-+
-+		nvmem_add_one_cell(nvmem, &info);
-+	}
-+
-+	return 0;
-+}
-+
-+int u_boot_env_parse(struct device *dev, struct nvmem_device *nvmem,
-+		     enum u_boot_env_format format)
-+{
-+	size_t crc32_data_offset;
-+	size_t crc32_data_len;
-+	size_t crc32_offset;
-+	__le32 *crc32_addr;
-+	size_t data_offset;
-+	size_t data_len;
-+	size_t dev_size;
-+	uint32_t crc32;
-+	uint32_t calc;
-+	uint8_t *buf;
-+	int bytes;
-+	int err;
-+
-+	dev_size = nvmem_dev_size(nvmem);
-+
-+	buf = kzalloc(dev_size, GFP_KERNEL);
-+	if (!buf) {
-+		err = -ENOMEM;
-+		goto err_out;
-+	}
-+
-+	bytes = nvmem_device_read(nvmem, 0, dev_size, buf);
-+	if (bytes < 0) {
-+		err = bytes;
-+		goto err_kfree;
-+	} else if (bytes != dev_size) {
-+		err = -EIO;
-+		goto err_kfree;
-+	}
-+
-+	switch (format) {
-+	case U_BOOT_FORMAT_SINGLE:
-+		crc32_offset = offsetof(struct u_boot_env_image_single, crc32);
-+		crc32_data_offset = offsetof(struct u_boot_env_image_single, data);
-+		data_offset = offsetof(struct u_boot_env_image_single, data);
-+		break;
-+	case U_BOOT_FORMAT_REDUNDANT:
-+		crc32_offset = offsetof(struct u_boot_env_image_redundant, crc32);
-+		crc32_data_offset = offsetof(struct u_boot_env_image_redundant, data);
-+		data_offset = offsetof(struct u_boot_env_image_redundant, data);
-+		break;
-+	case U_BOOT_FORMAT_BROADCOM:
-+		crc32_offset = offsetof(struct u_boot_env_image_broadcom, crc32);
-+		crc32_data_offset = offsetof(struct u_boot_env_image_broadcom, data);
-+		data_offset = offsetof(struct u_boot_env_image_broadcom, data);
-+		break;
-+	}
-+	crc32_addr = (__le32 *)(buf + crc32_offset);
-+	crc32 = le32_to_cpu(*crc32_addr);
-+	crc32_data_len = dev_size - crc32_data_offset;
-+	data_len = dev_size - data_offset;
-+
-+	calc = crc32(~0, buf + crc32_data_offset, crc32_data_len) ^ ~0L;
-+	if (calc != crc32) {
-+		dev_err(dev, "Invalid calculated CRC32: 0x%08x (expected: 0x%08x)\n", calc, crc32);
-+		err = -EINVAL;
-+		goto err_kfree;
-+	}
-+
-+	buf[dev_size - 1] = '\0';
-+	err = u_boot_env_parse_cells(dev, nvmem, buf, data_offset, data_len);
-+
-+err_kfree:
-+	kfree(buf);
-+err_out:
-+	return err;
-+}
-+EXPORT_SYMBOL_GPL(u_boot_env_parse);
-+
-+static int u_boot_env_add_cells(struct nvmem_layout *layout)
-+{
-+	struct device *dev = &layout->dev;
-+	enum u_boot_env_format format;
-+
-+	format = (uintptr_t)device_get_match_data(dev);
-+
-+	return u_boot_env_parse(dev, layout->nvmem, format);
-+}
-+
-+static int u_boot_env_probe(struct nvmem_layout *layout)
-+{
-+	layout->add_cells = u_boot_env_add_cells;
-+
-+	return nvmem_layout_register(layout);
-+}
-+
-+static void u_boot_env_remove(struct nvmem_layout *layout)
-+{
-+	nvmem_layout_unregister(layout);
-+}
-+
-+static const struct of_device_id u_boot_env_of_match_table[] = {
-+	{ .compatible = "u-boot,env-layout", .data = (void *)U_BOOT_FORMAT_SINGLE, },
-+	{ .compatible = "u-boot,env-redundant-bool-layout", .data = (void *)U_BOOT_FORMAT_REDUNDANT, },
-+	{ .compatible = "u-boot,env-redundant-count-layout", .data = (void *)U_BOOT_FORMAT_REDUNDANT, },
-+	{ .compatible = "brcm,env-layout", .data = (void *)U_BOOT_FORMAT_BROADCOM, },
-+	{},
-+};
-+
-+static struct nvmem_layout_driver u_boot_env_layout = {
-+	.driver = {
-+		.owner = THIS_MODULE,
-+		.name = "u-boot-env-layout",
-+		.of_match_table = u_boot_env_of_match_table,
-+	},
-+	.probe = u_boot_env_probe,
-+	.remove = u_boot_env_remove,
-+};
-+module_nvmem_layout_driver(u_boot_env_layout);
-+
-+MODULE_AUTHOR("Rafał Miłecki");
-+MODULE_LICENSE("GPL");
-+MODULE_DEVICE_TABLE(of, u_boot_env_of_match_table);
-diff --git a/drivers/nvmem/layouts/u-boot-env.h b/drivers/nvmem/layouts/u-boot-env.h
-new file mode 100644
-index 000000000000..dd5f280ac047
---- /dev/null
-+++ b/drivers/nvmem/layouts/u-boot-env.h
-@@ -0,0 +1,15 @@
-+/* SPDX-License-Identifier: GPL-2.0-only */
-+
-+#ifndef _LINUX_NVMEM_LAYOUTS_U_BOOT_ENV_H
-+#define _LINUX_NVMEM_LAYOUTS_U_BOOT_ENV_H
-+
-+enum u_boot_env_format {
-+	U_BOOT_FORMAT_SINGLE,
-+	U_BOOT_FORMAT_REDUNDANT,
-+	U_BOOT_FORMAT_BROADCOM,
-+};
-+
-+int u_boot_env_parse(struct device *dev, struct nvmem_device *nvmem,
-+		     enum u_boot_env_format format);
-+
-+#endif  /* ifndef _LINUX_NVMEM_LAYOUTS_U_BOOT_ENV_H */
-diff --git a/drivers/nvmem/u-boot-env.c b/drivers/nvmem/u-boot-env.c
-index befbab156cda..386b2b255c30 100644
---- a/drivers/nvmem/u-boot-env.c
-+++ b/drivers/nvmem/u-boot-env.c
-@@ -3,23 +3,15 @@
-  * Copyright (C) 2022 Rafał Miłecki <rafal@milecki.pl>
-  */
- 
--#include <linux/crc32.h>
--#include <linux/etherdevice.h>
--#include <linux/if_ether.h>
- #include <linux/mod_devicetable.h>
- #include <linux/module.h>
- #include <linux/mtd/mtd.h>
--#include <linux/nvmem-consumer.h>
- #include <linux/nvmem-provider.h>
- #include <linux/of.h>
- #include <linux/platform_device.h>
- #include <linux/slab.h>
- 
--enum u_boot_env_format {
--	U_BOOT_FORMAT_SINGLE,
--	U_BOOT_FORMAT_REDUNDANT,
--	U_BOOT_FORMAT_BROADCOM,
--};
-+#include "layouts/u-boot-env.h"
- 
- struct u_boot_env {
- 	struct device *dev;
-@@ -29,24 +21,6 @@ struct u_boot_env {
- 	struct mtd_info *mtd;
- };
- 
--struct u_boot_env_image_single {
--	__le32 crc32;
--	uint8_t data[];
--} __packed;
--
--struct u_boot_env_image_redundant {
--	__le32 crc32;
--	u8 mark;
--	uint8_t data[];
--} __packed;
--
--struct u_boot_env_image_broadcom {
--	__le32 magic;
--	__le32 len;
--	__le32 crc32;
--	DECLARE_FLEX_ARRAY(uint8_t, data);
--} __packed;
--
- static int u_boot_env_read(void *context, unsigned int offset, void *val,
- 			   size_t bytes)
- {
-@@ -69,134 +43,6 @@ static int u_boot_env_read(void *context, unsigned int offset, void *val,
- 	return 0;
- }
- 
--static int u_boot_env_read_post_process_ethaddr(void *context, const char *id, int index,
--						unsigned int offset, void *buf, size_t bytes)
--{
--	u8 mac[ETH_ALEN];
--
--	if (bytes != 3 * ETH_ALEN - 1)
--		return -EINVAL;
--
--	if (!mac_pton(buf, mac))
--		return -EINVAL;
--
--	if (index)
--		eth_addr_add(mac, index);
--
--	ether_addr_copy(buf, mac);
--
--	return 0;
--}
--
--static int u_boot_env_add_cells(struct u_boot_env *priv, uint8_t *buf,
--				size_t data_offset, size_t data_len)
--{
--	struct nvmem_device *nvmem = priv->nvmem;
--	struct device *dev = priv->dev;
--	char *data = buf + data_offset;
--	char *var, *value, *eq;
--
--	for (var = data;
--	     var < data + data_len && *var;
--	     var = value + strlen(value) + 1) {
--		struct nvmem_cell_info info = {};
--
--		eq = strchr(var, '=');
--		if (!eq)
--			break;
--		*eq = '\0';
--		value = eq + 1;
--
--		info.name = devm_kstrdup(dev, var, GFP_KERNEL);
--		if (!info.name)
--			return -ENOMEM;
--		info.offset = data_offset + value - data;
--		info.bytes = strlen(value);
--		info.np = of_get_child_by_name(dev->of_node, info.name);
--		if (!strcmp(var, "ethaddr")) {
--			info.raw_len = strlen(value);
--			info.bytes = ETH_ALEN;
--			info.read_post_process = u_boot_env_read_post_process_ethaddr;
--		}
--
--		nvmem_add_one_cell(nvmem, &info);
--	}
--
--	return 0;
--}
--
--static int u_boot_env_parse(struct u_boot_env *priv)
--{
--	struct nvmem_device *nvmem = priv->nvmem;
--	struct device *dev = priv->dev;
--	size_t crc32_data_offset;
--	size_t crc32_data_len;
--	size_t crc32_offset;
--	__le32 *crc32_addr;
--	size_t data_offset;
--	size_t data_len;
--	size_t dev_size;
--	uint32_t crc32;
--	uint32_t calc;
--	uint8_t *buf;
--	int bytes;
--	int err;
--
--	dev_size = nvmem_dev_size(nvmem);
--
--	buf = kzalloc(dev_size, GFP_KERNEL);
--	if (!buf) {
--		err = -ENOMEM;
--		goto err_out;
--	}
--
--	bytes = nvmem_device_read(nvmem, 0, dev_size, buf);
--	if (bytes < 0) {
--		err = bytes;
--		goto err_kfree;
--	} else if (bytes != dev_size) {
--		err = -EIO;
--		goto err_kfree;
--	}
--
--	switch (priv->format) {
--	case U_BOOT_FORMAT_SINGLE:
--		crc32_offset = offsetof(struct u_boot_env_image_single, crc32);
--		crc32_data_offset = offsetof(struct u_boot_env_image_single, data);
--		data_offset = offsetof(struct u_boot_env_image_single, data);
--		break;
--	case U_BOOT_FORMAT_REDUNDANT:
--		crc32_offset = offsetof(struct u_boot_env_image_redundant, crc32);
--		crc32_data_offset = offsetof(struct u_boot_env_image_redundant, data);
--		data_offset = offsetof(struct u_boot_env_image_redundant, data);
--		break;
--	case U_BOOT_FORMAT_BROADCOM:
--		crc32_offset = offsetof(struct u_boot_env_image_broadcom, crc32);
--		crc32_data_offset = offsetof(struct u_boot_env_image_broadcom, data);
--		data_offset = offsetof(struct u_boot_env_image_broadcom, data);
--		break;
--	}
--	crc32_addr = (__le32 *)(buf + crc32_offset);
--	crc32 = le32_to_cpu(*crc32_addr);
--	crc32_data_len = dev_size - crc32_data_offset;
--	data_len = dev_size - data_offset;
--
--	calc = crc32(~0, buf + crc32_data_offset, crc32_data_len) ^ ~0L;
--	if (calc != crc32) {
--		dev_err(dev, "Invalid calculated CRC32: 0x%08x (expected: 0x%08x)\n", calc, crc32);
--		err = -EINVAL;
--		goto err_kfree;
--	}
--
--	buf[dev_size - 1] = '\0';
--	err = u_boot_env_add_cells(priv, buf, data_offset, data_len);
--
--err_kfree:
--	kfree(buf);
--err_out:
--	return err;
--}
--
- static int u_boot_env_probe(struct platform_device *pdev)
- {
- 	struct nvmem_config config = {
-@@ -228,7 +74,7 @@ static int u_boot_env_probe(struct platform_device *pdev)
- 	if (IS_ERR(priv->nvmem))
- 		return PTR_ERR(priv->nvmem);
- 
--	return u_boot_env_parse(priv);
-+	return u_boot_env_parse(dev, priv->nvmem, priv->format);
- }
- 
- static const struct of_device_id u_boot_env_of_match_table[] = {
--- 
-2.35.3
+Best regards,
+Krzysztof
 
 
