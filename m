@@ -1,260 +1,229 @@
-Return-Path: <devicetree+bounces-27755-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27756-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBB6181B96E
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 15:19:06 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5530D81B97B
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 15:25:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0B6531C25B65
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 14:19:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BB6491F2271C
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 14:25:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDCDC6D6EE;
-	Thu, 21 Dec 2023 14:19:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54C466D6F6;
+	Thu, 21 Dec 2023 14:25:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="F7e3XXOp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pc+AlV7s"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F6E26D6E4;
-	Thu, 21 Dec 2023 14:18:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-5542a7f1f3cso578243a12.2;
-        Thu, 21 Dec 2023 06:18:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1703168338; x=1703773138; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ZgRxVc3b/cXQXk1FRUsZmIntq3x5skTt1E+0eRMTOto=;
-        b=F7e3XXOpj8ZahLLsO50OebukbsJhKU3jK+2ff31ea1AnV7FUHEOBwyelJk4CFVRPmM
-         zqzvLC6VG9qKysX+DVIzmmxfb04zCAGPQz7AvbhzJeRwSqJVNXkPHzkpPsgOZSEyBCG5
-         5bWRKAYeEhGaR2D95KnQy1ebxytOSLaCxx9hnptKfqBsgvd3DpoR+Bu+HjgyBogalYTe
-         2Phq27gCnUfZzgaZZQcVvSLDuqv1x6O9Kk0dykXz1g6Ef+xpKymniQq2Z/sfPo7AJsiF
-         CLdoaV3CK0/iJmBe6Fp8Kk4QrOd6BIeFOpdI7hrLU956muUhjnobbd82xdMIvqSoMCO1
-         2V5w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703168338; x=1703773138;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZgRxVc3b/cXQXk1FRUsZmIntq3x5skTt1E+0eRMTOto=;
-        b=X1GBZS+RYdIlexLXtm3i2gI1rSioSP5temvy3eyGdBQiFLeNO09JlHcN0pqIIKsfK/
-         Lr3buMAtCHuLD5nHEKprtt2vlnY28/2Bqn5G+YMJhNqDnNK8zMcqdluBXzg01vwWkv5e
-         MJvtZoSCcvwD4WZbXL68DGmCnCrXGBdVQWi6IjLxxDU1DzqtRqHARM3ZUNWBns3CU741
-         ULpnfy+s08YNaWqY05ZgN7CjsMJKCQIvnCAhedfeTRnitwCNdyM1pTbuvFHccdzhVAje
-         mFqdE/LcV2q1d8r3NoWD9Zv1EWCdIhKWZTWAgD6lcJ18tTJzuM7tCptTiaSiG02qIekc
-         NBsg==
-X-Gm-Message-State: AOJu0YzuhA2Cw03Ft51oaBSKq3KM8OgY6M687vZGvUqDrEx/5QW12Ohf
-	U7vAxCSNy8ytDS0B2W9cqw==
-X-Google-Smtp-Source: AGHT+IGEcbQ20zL8VfJo7vaJHeSnFBDczuJI73eIk9D6ghdxribg8KJUIIU6DKKNnhyLuCnYwDPQYg==
-X-Received: by 2002:a50:a45e:0:b0:553:354a:9a81 with SMTP id v30-20020a50a45e000000b00553354a9a81mr4529475edb.26.1703168338069;
-        Thu, 21 Dec 2023 06:18:58 -0800 (PST)
-Received: from ?IPV6:2a02:810b:f40:4300:1c49:5d1e:f6f3:77a0? ([2a02:810b:f40:4300:1c49:5d1e:f6f3:77a0])
-        by smtp.gmail.com with ESMTPSA id dj25-20020a05640231b900b00552743342c8sm1232410edb.59.2023.12.21.06.18.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 Dec 2023 06:18:57 -0800 (PST)
-Message-ID: <5095f695-6dad-45e2-9cff-1b79003355c9@gmail.com>
-Date: Thu, 21 Dec 2023 15:18:56 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30F676D6E7;
+	Thu, 21 Dec 2023 14:25:33 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2A357C433C7;
+	Thu, 21 Dec 2023 14:25:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1703168733;
+	bh=ocQ9EjUsxyh5+RDobb40P0qaPVGGj9nzip9H6VJRjIw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=pc+AlV7s1dtCyqu4IrWCCGACCZu9yLIdhMIzQRLpBXdoKWGiXBJxvM2Ds9jMZWG0k
+	 NUQt/C/vK8TGMgTuTBK5C3c5lmYkqfDw7TRsjzwPFwjLgWZkNodisFNfZTzS77Reiu
+	 yzt38yfyi6c2woJl0Ki98nG3tqtaWxmQ/PkWo9Col6uoxU8uc89d8JsY/AbaPZXAix
+	 f8STa19wkKXWWTI4qENq2qqU0REDMp+XRrQ8oxq7qyOZf4ISgdCWlinhYhiFT2a+7G
+	 S/Uk//E2GOQ3AnVgldnXvquQ3MiY9sDKHa4nFG/5CsIsfRk+6cTuzhppajYOL5MX4p
+	 xpKmbmqvyvSSg==
+Received: (nullmailer pid 3842774 invoked by uid 1000);
+	Thu, 21 Dec 2023 14:25:31 -0000
+Date: Thu, 21 Dec 2023 08:25:31 -0600
+From: Rob Herring <robh@kernel.org>
+To: Georgi Djakov <quic_c_gdjako@quicinc.com>
+Cc: krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, will@kernel.org, robin.murphy@arm.com, joro@8bytes.org, devicetree@vger.kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org, linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev, linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, quic_cgoldswo@quicinc.com, quic_sukadev@quicinc.com, quic_pdaly@quicinc.com, quic_sudaraja@quicinc.com, djakov@kernel.org
+Subject: Re: [PATCH v3 1/9] dt-bindings: iommu: Add Translation Buffer Unit
+ bindings
+Message-ID: <20231221142531.GA3730284-robh@kernel.org>
+References: <20231220060236.18600-1-quic_c_gdjako@quicinc.com>
+ <20231220060236.18600-2-quic_c_gdjako@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 0/5] Add support for video hardware codec of
- STMicroelectronics STM32 SoC series
-Content-Language: en-US, de-DE
-To: Hugues FRUCHET <hugues.fruchet@foss.st.com>
-Cc: Nicolas Dufresne <nicolas.dufresne@collabora.com>,
- Marco Felsch <m.felsch@pengutronix.de>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Andrzej Pietrasiewicz <andrzej.p@collabora.com>,
- Sakari Ailus <sakari.ailus@linux.intel.com>,
- Benjamin Gaignard <benjamin.gaignard@collabora.com>,
- Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
- Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, linux-kernel@vger.kernel.org,
- Daniel Almeida <daniel.almeida@collabora.com>,
- Heiko Stuebner <heiko@sntech.de>, Hans Verkuil <hverkuil@xs4all.nl>,
- Rob Herring <robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- linux-stm32@st-md-mailman.stormreply.com,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- devicetree@vger.kernel.org, Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- linux-media@vger.kernel.org, Alexandre Torgue
- <alexandre.torgue@foss.st.com>,
- Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
- Adam Ford <aford173@gmail.com>
-References: <20231221084723.2152034-1-hugues.fruchet@foss.st.com>
- <769a1510-f8d2-4095-9879-42f413141dee@gmail.com>
- <a240d2ac-db0e-481b-8d13-3ae76cfd2fe7@foss.st.com>
- <e5ba1e14-4bbf-43e3-933a-fee6d4b90641@gmail.com>
- <CAHCN7xJ3Ktn+TnoOYdnNvKTddGCfLp4OQ+gM0WonWj-aqnsGuA@mail.gmail.com>
- <b03a7ddc-65c5-44c3-a563-d52ee938148a@gmail.com>
- <6d26d307-eb7a-43ad-b4f3-57f8ac7ce8f0@foss.st.com>
-From: Alex Bee <knaerzche@gmail.com>
-In-Reply-To: <6d26d307-eb7a-43ad-b4f3-57f8ac7ce8f0@foss.st.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231220060236.18600-2-quic_c_gdjako@quicinc.com>
 
-Hi Hugues,
+On Tue, Dec 19, 2023 at 10:02:28PM -0800, Georgi Djakov wrote:
+> The "apps_smmu" on the Qualcomm sdm845 platform is an implementation
+> of the SMMU-500, that consists of a single TCU (Translation Control
+> Unit) and multiple TBUs (Translation Buffer Units). The TCU is already
+> being described in the generic SMMU DT schema. Add bindings for the
+> TBUs to describe their properties and resources that needs to be
+> managed in order to operate them.
+> 
+> In this DT schema, the TBUs are modelled as child devices of the TCU
+> and each of them is described with it's register space, clocks, power
+> domains, interconnects etc.
+> 
+> Signed-off-by: Georgi Djakov <quic_c_gdjako@quicinc.com>
+> ---
+>  .../devicetree/bindings/iommu/arm,smmu.yaml   | 31 ++++++++
+>  .../bindings/iommu/qcom,qsmmuv500-tbu.yaml    | 77 +++++++++++++++++++
+>  2 files changed, 108 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iommu/qcom,qsmmuv500-tbu.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
+> index a4042ae24770..a610af2c7e5e 100644
+> --- a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
+> +++ b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
+> @@ -235,6 +235,27 @@ properties:
+>        enabled for any given device.
+>      $ref: /schemas/types.yaml#/definitions/phandle
+>  
+> +  '#address-cells':
+> +    enum: [ 1, 2 ]
+> +
+> +  '#size-cells':
+> +    enum: [ 1, 2 ]
+> +
+> +  ranges: true
+> +
+> +patternProperties:
+> +  "^tbu@[0-9a-f]+":
 
-Am 21.12.23 um 14:55 schrieb Hugues FRUCHET:
-> Hi Alex,
->
-> On 12/21/23 14:46, Alex Bee wrote:
->>
->> Am 21.12.23 um 14:38 schrieb Adam Ford:
->>> On Thu, Dec 21, 2023 at 7:31 AM Alex Bee <knaerzche@gmail.com> wrote:
->>>> Hi Hugues,
->>>>
->>>> Am 21.12.23 um 14:08 schrieb Hugues FRUCHET:
->>>>> Hi Alex,
->>>>>
->>>>> This is because VDEC and VENC are two separated IPs with their own
->>>>> hardware resources and no links between both.
->>>>> On future SoCs, VDEC can ship on its own, same for VENC.
->>>>>
->>>> I think that's what the driver is/was designed for :)
->>>>
->>>> I don't  think there _has_ to be a link between variants in the 
->>>> same file.
->>>> For Rockchip we only had the issue that there _is_ a link (shared
->>>> resources) between encoder and decoder and they had (for that 
->>>> reason) to be
->>>> defined has a _single_ variant. And there is no reason you can ship 
->>>> decoder
->>>> and encoder seperated when you have two variants (with different
->>>> compatibles).
->>>> For Rockchip and iMX those files are even containing variants for 
->>>> completly
->>>> different generations / different SoCs. I had to cleanup this mess for
->>> The i.MX8M Mini and Plus have different power domains for encoder and
->>> decoders as well as different clocks.  Keeping them separate would
->>> almost be necessary.
->> I guess there is missunderstanding: I didn't say the two STM variants
->> should be merged in one variant, but the two variants should be 
->> within the
->> same _file_, like the other platforms are doing :)
->
-> I have two separated hardware: VDEC and VENC, not a single block like 
-> "VPU" for example. So what name should have this file ?
-> Other platforms had a common file because there was a common block 
-> embedding both decoder and encoder, sometimes with links/dependencies 
-> between both.
-> SAMA5D4 has only a decoder, only a single file called "_vdec_hw.c"...
-> so it is quite logical for me to have one file per independent IP.
->
-Maybe - but that's not way the driver is currently organzied.
-rockchip_vpu_hw.c also holds variants which have only have a decoder and
-also some which only have a encoder. So "vpu" is quite neutral, I guess. It
-doesn't say anything if it belongs to encoder or decoder.
-When I was adding the RK3066 variant a I was even asked to add a explicit
-comment, why this integration can't be splitted in encoder and decoder
-variant.
+Missing '$' on the end.
 
-We were having a a lot of these split-ups in the early days of hantro
-driver and it was no fun to clean them up.
+> +    description: The TBU child node(s)
+> +    type: object
+> +
+> +    properties:
+> +      stream-id-range:
+> +        $ref: /schemas/types.yaml#/definitions/uint32-array
+> +        description: Stream ID range (address and size) that is assigned by the TBU
+> +        items:
+> +          minItems: 2
+> +          maxItems: 2
 
-Alex
+This is allowing any property in the TBU nodes. This all needs to move 
+to a separate TBU schema.
 
->>> adam
->>>
->>>> Rockchip once - and it was no fun :) Anyways: It's up to the 
->>>> maintainers I
->>>> guess - I just wanted to ask if I missunderstand something here.
->>>>
->>>> Greetings,
->>>>
->>>> Alex
->>>>
->>>>> Hoping that this clarify.
->>>>>
->>>>> Best regards,
->>>>> Hugues.
->>>>>
->>>>> On 12/21/23 13:40, Alex Bee wrote:
->>>>>> Hi Hugues, Hi Nicolas,
->>>>>>
->>>>>> is there any specific reason I'm not understanding / seeing why this
->>>>>> is added in two seperate vdec* / venc* files and not a single vpu*
->>>>>> file? Is it only for the seperate clocks (-names) / irqs (-names) /
->>>>>> callbacks? Those are defined per variant and perfectly fit in a
->>>>>> single file holding one vdec and one venc variant.
->>>>>>
->>>>>> Alex
->>>>>>
->>>>>> Am 21.12.23 um 09:47 schrieb Hugues Fruchet:
->>>>>>> This patchset introduces support for VDEC video hardware decoder
->>>>>>> and VENC video hardware encoder of STMicroelectronics STM32MP25
->>>>>>> SoC series.
->>>>>>>
->>>>>>> This initial support implements H264 decoding, VP8 decoding and
->>>>>>> JPEG encoding.
->>>>>>>
->>>>>>> This has been tested on STM32MP257F-EV1 evaluation board.
->>>>>>>
->>>>>>> ===========
->>>>>>> = history =
->>>>>>> ===========
->>>>>>> version 5:
->>>>>>>      - Precise that video decoding as been successfully tested 
->>>>>>> up to
->>>>>>> full HD
->>>>>>>      - Add Nicolas Dufresne reviewed-by
->>>>>>>
->>>>>>> version 4:
->>>>>>>      - Fix comments from Nicolas about dropping encoder raw steps
->>>>>>>
->>>>>>> version 3:
->>>>>>>      - Fix remarks from Krzysztof Kozlowski:
->>>>>>>       - drop "items", we keep simple enum in such case
->>>>>>>       - drop second example - it is the same as the first
->>>>>>>      - Drop unused node labels as suggested by Conor Dooley
->>>>>>>      - Revisit min/max resolutions as suggested by Nicolas Dufresne
->>>>>>>
->>>>>>> version 2:
->>>>>>>      - Fix remarks from Krzysztof Kozlowski on v1:
->>>>>>>       - single video-codec binding for both VDEC/VENC
->>>>>>>       - get rid of "-names"
->>>>>>>       - use of generic node name "video-codec"
->>>>>>>
->>>>>>> version 1:
->>>>>>>     - Initial submission
->>>>>>>
->>>>>>> Hugues Fruchet (5):
->>>>>>>     dt-bindings: media: Document STM32MP25 VDEC & VENC video codecs
->>>>>>>     media: hantro: add support for STM32MP25 VDEC
->>>>>>>     media: hantro: add support for STM32MP25 VENC
->>>>>>>     arm64: dts: st: add video decoder support to stm32mp255
->>>>>>>     arm64: dts: st: add video encoder support to stm32mp255
->>>>>>>
->>>>>>>    .../media/st,stm32mp25-video-codec.yaml       |  50 ++++++++
->>>>>>>    arch/arm64/boot/dts/st/stm32mp251.dtsi        |  12 ++
->>>>>>>    arch/arm64/boot/dts/st/stm32mp255.dtsi        |  17 +++
->>>>>>>    drivers/media/platform/verisilicon/Kconfig    |  14 ++-
->>>>>>>    drivers/media/platform/verisilicon/Makefile   |   4 +
->>>>>>>    .../media/platform/verisilicon/hantro_drv.c   |   4 +
->>>>>>>    .../media/platform/verisilicon/hantro_hw.h    |   2 +
->>>>>>>    .../platform/verisilicon/stm32mp25_vdec_hw.c  |  92 
->>>>>>> ++++++++++++++
->>>>>>>    .../platform/verisilicon/stm32mp25_venc_hw.c  | 115
->>>>>>> ++++++++++++++++++
->>>>>>>    9 files changed, 307 insertions(+), 3 deletions(-)
->>>>>>>    create mode 100644
->>>>>>> Documentation/devicetree/bindings/media/st,stm32mp25-video-codec.yaml 
->>>>>>>
->>>>>>>    create mode 100644
->>>>>>> drivers/media/platform/verisilicon/stm32mp25_vdec_hw.c
->>>>>>>    create mode 100644
->>>>>>> drivers/media/platform/verisilicon/stm32mp25_venc_hw.c
->>>>>>>
->
-> Best regards,
-> Hugues.
+> +
+>  required:
+>    - compatible
+>    - reg
+> @@ -312,6 +333,16 @@ allOf:
+>                      through the TCU's programming interface.
+>                  - description: bus clock required for the smmu ptw
+>  
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: qcom,sdm845-smmu-500
+> +    then:
+> +      patternProperties:
+> +        "^tbu@[0-9a-f]+":
+> +          $ref: qcom,qsmmuv500-tbu.yaml
+
+TBU nodes are allowed for all other SMMUs. Is that your intent? If not, 
+then the node definition up above should be removed and you would just 
+have this if/then schema.
+
+> +
+>    - if:
+>        properties:
+>          compatible:
+> diff --git a/Documentation/devicetree/bindings/iommu/qcom,qsmmuv500-tbu.yaml b/Documentation/devicetree/bindings/iommu/qcom,qsmmuv500-tbu.yaml
+> new file mode 100644
+> index 000000000000..c4f148ae5f38
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iommu/qcom,qsmmuv500-tbu.yaml
+> @@ -0,0 +1,77 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iommu/qcom,qsmmuv500-tbu.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm TBU (Translation Buffer Unit)
+> +
+> +maintainers:
+> +  - Georgi Djakov <quic_c_gdjako@quicinc.com>
+> +
+> +description:
+> +  The Qualcomm SMMU500 implementation consists of TCU and TBU. The TBU contains
+> +  a Translation Lookaside Buffer (TLB) that caches page tables. TBUs provides
+> +  debug features to trace and trigger debug transactions. There are multiple TBU
+> +  instances distributes with each client core.
+> +
+> +properties:
+> +
+> +  compatible:
+> +    const: qcom,qsmmuv500-tbu
+> +
+> +  reg:
+> +    items:
+> +      - description: Address and size of the TBU's register space.
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  interconnects:
+> +    maxItems: 1
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  stream-id-range:
+> +    $ref: "arm,smmu.yaml#/patternProperties/^tbu@[0-9a-f]+/properties/stream-id-range"
+
+No. We generally don't reference properties this way. Partly because not 
+all regex's work as a path.
+
+You need a base TBU schema of the common properties that is referenced 
+at the top level here. That should also solve the above problem.
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - stream-id-range
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/qcom,gcc-sdm845.h>
+> +    #include <dt-bindings/interconnect/qcom,icc.h>
+> +    #include <dt-bindings/interconnect/qcom,sdm845.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/power/qcom-rpmpd.h>
+> +
+> +    apps_smmu: iommu@15000000 {
+
+Drop unused labels.
+
+> +        compatible = "qcom,sdm845-smmu-500", "arm,mmu-500";
+> +        reg = <0x15000000 0x80000>;
+> +        ranges = <0 0 0 0 0xffffffff>;
+> +        #iommu-cells = <2>;
+> +        #global-interrupts = <1>;
+> +        interrupts = <GIC_SPI 65 IRQ_TYPE_LEVEL_HIGH>,
+> +                     <GIC_SPI 343 IRQ_TYPE_LEVEL_HIGH>;
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +
+> +        anoc_1_pcie_tbu: tbu@150e1000 {
+> +            compatible = "qcom,qsmmuv500-tbu";
+> +            reg = <0x0 0x150e1000 0x0 0x1000>;
+> +            clocks = <&gcc GCC_AGGRE_NOC_PCIE_TBU_CLK>;
+> +            interconnects = <&system_noc MASTER_GNOC_SNOC QCOM_ICC_TAG_ACTIVE_ONLY
+> +                             &config_noc SLAVE_IMEM_CFG QCOM_ICC_TAG_ACTIVE_ONLY>;
+> +            power-domains = <&gcc HLOS1_VOTE_AGGRE_NOC_MMU_PCIE_TBU_GDSC>;
+> +            stream-id-range = <0x1c00 0x400>;
+> +        };
+> +    };
+> +
+> +...
 
