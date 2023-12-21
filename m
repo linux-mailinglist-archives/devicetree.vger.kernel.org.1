@@ -1,122 +1,165 @@
-Return-Path: <devicetree+bounces-27797-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27798-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99E4081BB60
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 16:54:50 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D5A5D81BB67
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 16:58:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4EC971F21A9E
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 15:54:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 061AA1C24467
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 15:58:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B468253A1F;
-	Thu, 21 Dec 2023 15:54:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9D5655E43;
+	Thu, 21 Dec 2023 15:58:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="ksB7Kv4O"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aHCs1OiF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B431653A0C;
-	Thu, 21 Dec 2023 15:54:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1703174083; x=1734710083;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=E8sUmaLWEzhxtfb969BEgIIWnnBvvR5mB/bVW9ecI7o=;
-  b=ksB7Kv4OXf+WEWUDMxcoyDYJZ3D4ONa+cFw4NJi5IIhF3Sn2x4NWSET0
-   n7uixeyYyibkA+v7sowHDdyomfWLWWRBSbPgikkbyeFC4UELBMSoP+EHD
-   /ycMSVPXyDqpXM4qtSBzyamkp3T66y9g15s1ZqutiobNuEDslQiu3dkxE
-   l2F9njrT6d1BQr1PQAAB+Df+1mb4Gt5+7QJk3e6woUBCbsJfy41cJengo
-   AKsYk6kYdY36YCxFE+J0ImK5/R3APUIVb/a6Z1Xonej335VUXDjCm0iZK
-   0weW8ZkWgZXkUechY0wd4BJBlU4WF+Dwl2+e3KUGsd6pUzn+EuGLOhkNK
-   w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10931"; a="393157746"
-X-IronPort-AV: E=Sophos;i="6.04,293,1695711600"; 
-   d="scan'208";a="393157746"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Dec 2023 07:54:43 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10931"; a="867349971"
-X-IronPort-AV: E=Sophos;i="6.04,293,1695711600"; 
-   d="scan'208";a="867349971"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by FMSMGA003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Dec 2023 07:54:38 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.97)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1rGLNb-00000007t63-1g7A;
-	Thu, 21 Dec 2023 17:54:35 +0200
-Date: Thu, 21 Dec 2023 17:54:35 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Shenghao Ding <shenghao-ding@ti.com>
-Cc: broonie@kernel.org, conor+dt@kernel.org, krzysztof.kozlowski@linaro.org,
-	robh+dt@kernel.org, kevin-lu@ti.com, baojun.xu@ti.com,
-	devicetree@vger.kernel.org, lgirdwood@gmail.com, perex@perex.cz,
-	pierre-louis.bossart@linux.intel.com, 13916275206@139.com,
-	linux-sound@vger.kernel.org, linux-kernel@vger.kernel.org,
-	liam.r.girdwood@intel.com, soyer@irl.hu, tiwai@suse.de,
-	peeyush@ti.com, navada@ti.com
-Subject: Re: [PATCH v2 4/5] ASoC: tas2781: Add tas2563 into driver
-Message-ID: <ZYRfu7RjUNpLZCSB@smile.fi.intel.com>
-References: <20231221101346.429-1-shenghao-ding@ti.com>
- <20231221101346.429-4-shenghao-ding@ti.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83FBA55E41;
+	Thu, 21 Dec 2023 15:58:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-55359dc0290so1715128a12.1;
+        Thu, 21 Dec 2023 07:58:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1703174295; x=1703779095; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=2ge32C67y6VL/tOuymk4ghO3Zqyctvc0EUYmoNeC+rk=;
+        b=aHCs1OiFPLNLSAOkspRFOdr903JQa+a2GQDuFWjxMFFjuhguulavIeqXjTZaNwMWwd
+         XJcE6PArQvbo/4L2oJhGeJe8d9o1bcExmBYEoNWFRqgUDPrqbPaRh2AXn3BKWASbw07f
+         +Y9eqwmkqc67Xgch31+aH+felDj9r0INAjkzXcj25+Kk8OKHfQwh/oegfaH/bftv1nBd
+         SPC8sEyjE95SLV9was+j0LSIS3S0QLd2NQcqqBVGF9Ook7cHruKxy1du5EAVcTdNdaHW
+         FytqQ0mg9EZAvG4ncUbssIDwVR9fEvxqA69rHnfVCjhlFvMENhPm0vpX+1HzCq37LhSE
+         1Oqg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1703174295; x=1703779095;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=2ge32C67y6VL/tOuymk4ghO3Zqyctvc0EUYmoNeC+rk=;
+        b=cifNwpEV2b4VW09W80mpJ0okvm2FGyOwcoTJE3ahEa+/4dlcwfrmKmOq6qdQBEPWGd
+         +Uk/9AdhS8cNkjETun0uozYWD+n/MHLiftf+W3e5Www3awd7AHjyN3NQel615Nx8SvlA
+         wKqA2N7l1vKFMgS87QjqX5ICDNV8wqE8CKmzPwwYkEpVW0UAKlNsyDR83aWGawa4BIcO
+         x27V2WQb30xa/dao+lNaOJ13WHvA7+rh1IGpnZpUo/uaSFK1Rj3X+HyUP1nuEb8sGnJD
+         K3w65X3xfsadeRNIAnFr35wG08jZh6E/is05ivQNOfyCx8+71qx313ekR+3c8a9xLmA0
+         YGkw==
+X-Gm-Message-State: AOJu0YwsO2ROyhz7yC6yKYPuea94XQvS8ovqTorAlWmvMtOP1OsXvK/0
+	JvIYNu2JONdXje4Eyr9jrg==
+X-Google-Smtp-Source: AGHT+IFQKXVMkj4zyFWzLvwTphebmbg25nOOyfIZuy7V6OS9xs9j1VkjX2huLDnGvHVVWCzK9/wYCQ==
+X-Received: by 2002:a50:8d1b:0:b0:554:1100:99e9 with SMTP id s27-20020a508d1b000000b00554110099e9mr1032558eds.9.1703174294607;
+        Thu, 21 Dec 2023 07:58:14 -0800 (PST)
+Received: from ?IPV6:2a02:810b:f40:4300:b601:5984:d94a:3021? ([2a02:810b:f40:4300:b601:5984:d94a:3021])
+        by smtp.gmail.com with ESMTPSA id g14-20020aa7d1ce000000b0055122551f98sm1334250edp.6.2023.12.21.07.58.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 21 Dec 2023 07:58:14 -0800 (PST)
+Message-ID: <a82481ca-b578-49a4-b0d0-974b6ee65c98@gmail.com>
+Date: Thu, 21 Dec 2023 16:58:13 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231221101346.429-4-shenghao-ding@ti.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/3] ARM: dts: rockchip: Add psci for rk3036
+To: Andy Yan <andy.yan@rock-chips.com>, Andy Yan <andyshrk@163.com>,
+ heiko@sntech.de
+Cc: krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ zhengxing@rock-chips.com
+References: <20231218105523.2478315-1-andyshrk@163.com>
+ <20231218105523.2478315-2-andyshrk@163.com>
+ <da10e2fc-3179-4bd5-88ed-b4d5f64a7191@gmail.com>
+ <28216be5-810f-40d6-850b-a0fc590ffa3c@rock-chips.com>
+Content-Language: en-US, de-DE
+From: Alex Bee <knaerzche@gmail.com>
+In-Reply-To: <28216be5-810f-40d6-850b-a0fc590ffa3c@rock-chips.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Thu, Dec 21, 2023 at 06:13:44PM +0800, Shenghao Ding wrote:
-> Add tas2563 to better support dsp mode.
+Hi Andy,
 
-DSP
+Am 21.12.23 um 02:07 schrieb Andy Yan:
+> Hi Alex:
+>
+> On 12/20/23 19:16, Alex Bee wrote:
+>> Hi Andy,
+>> Am 18.12.23 um 11:55 schrieb Andy Yan:
+>>> From: Andy Yan <andy.yan@rock-chips.com>
+>>>
+>>> The system will hang at bringup secondary CPUs
+>>> without psci node.
+>>>
+>>> Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
+>>>
+>>> ---
+>>>
+>>> (no changes since v1)
+>>>
+>>>   arch/arm/boot/dts/rockchip/rk3036.dtsi | 5 +++++
+>>>   1 file changed, 5 insertions(+)
+>>>
+>>> diff --git a/arch/arm/boot/dts/rockchip/rk3036.dtsi 
+>>> b/arch/arm/boot/dts/rockchip/rk3036.dtsi
+>>> index 78686fc72ce6..5344803442a1 100644
+>>> --- a/arch/arm/boot/dts/rockchip/rk3036.dtsi
+>>> +++ b/arch/arm/boot/dts/rockchip/rk3036.dtsi
+>>> @@ -67,6 +67,11 @@ display-subsystem {
+>>>           ports = <&vop_out>;
+>>>       };
+>>> +    psci {
+>>> +        compatible = "arm,psci-1.0";
+>>> +        method = "smc";
+>>> +    };
+>>> +
+>> I don't think that's an good idea. 
+>
+> Why?
+It's only what I've been told before: We shoudn't add properties which
+depend on non-upstream software (if an upstream alternative exists). Also
+I'm not sure what happens if somebody doesn't use downstream bootloader
+and PSCI can't be found: Would the board still be able to boot?
+>
+>> You most likely need that because you have downstream bootloader 
+>> installed on this board. PSCI implementation takes place in TEE-OS 
+>> for Rockchips ARM SoCs. There is no support for RK3036 in upstream 
+>> op-tee OS. It's pretty much the same for RK3128 and RK3288.
+>> If you use upstream u-boot it should be good as-is.
+>
+> Unfortunately, upstream u-boot also cannot boot up on this board.
+> At present, I haven't had time to debug what is going on.
+>
+> Another reason I want to use downstream u-boot it is: I try run
+> this board with mainline just because i want to test some community
+> patches about inno-hdmi driver, as you said "the inno-hdmi driver 
+> currently gets a lot of attention"[0]
+>
+Thanks for helping testing this.
 
-...
+Alex
 
-> +// The TAS2781/TAS2563 driver implements a flexible and configurable
-
-Ordered?
-
-...
-
-> +// TAS2781/TAS2563 chips.
-
-Ditto.
-
-...
-
->  static const struct i2c_device_id tasdevice_id[] = {
->  	{ "tas2781", TAS2781 },
-> +	{ "tas2563", TAS2563 },
-
-Ditto
-
->  	{}
->  };
-
-...
-
->  static const struct of_device_id tasdevice_of_match[] = {
->  	{ .compatible = "ti,tas2781" },
-> +	{ .compatible = "ti,tas2563" },
-
-Ditto.
-
->  	{},
->  };
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+> With a downstream u-boot I can easy switch between upstream kernel and 
+> downstream kernel(no need to replace other components)
+> if I found some function is not work as expected.
+>
+>
+> [0]https://patchwork.kernel.org/project/linux-rockchip/cover/20231219170100.188800-1-knaerzche@gmail.com/ 
+>
+>>
+>> Alex
+>>>       timer {
+>>>           compatible = "arm,armv7-timer";
+>>>           arm,cpu-registers-not-fw-configured;
+>>
+>>
+>> _______________________________________________
+>> Linux-rockchip mailing list
+>> Linux-rockchip@lists.infradead.org
+>> http://lists.infradead.org/mailman/listinfo/linux-rockchip
 
