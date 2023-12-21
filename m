@@ -1,65 +1,64 @@
-Return-Path: <devicetree+bounces-27837-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27838-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8151681BD34
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 18:27:23 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A1CA81BD37
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 18:29:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A689E1C23642
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 17:27:22 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B6A10B217E3
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 17:29:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C471662800;
-	Thu, 21 Dec 2023 17:27:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B476F62800;
+	Thu, 21 Dec 2023 17:29:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="aCjqJnmx"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VssPLwX0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
+Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DBE3627EF
-	for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 17:27:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B5B9627E2
+	for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 17:29:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-552ff8d681aso3925127a12.1
-        for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 09:27:17 -0800 (PST)
+Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-5534abbc637so1269777a12.0
+        for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 09:29:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1703179635; x=1703784435; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=E9fZnvcr17iWEnEDx/jO4bNozX7Sbo2SKEDCBqZmguQ=;
-        b=aCjqJnmx198yitgpWmgyz+ISbzltomzyIfFvoOVgHLZp7tXXOF3nQSAwR9fP5JXhug
-         UPjKGslqpVvWT+S7NgCnFkqaTqPiUZzP82xh57vIG7aCGgHXR/kEuNjnJDECKjsktPVR
-         TDvuhy6gIjoYQxU3/VlNuTcqbxW8h0P7gj0exJwBVK5WoqQ720vdC2ZQVGppTIaHAch5
-         Ai7jP7fsJCGVx7fsCb3c2K+1hCAKuA5akGx2nbC3JLG15QuTDqqW2uoEGfldoYeiF6NZ
-         AeJfHV71mDgfCN2dvTf42c5eq0qE6QG/gz9il1m7jxTEChiV626RaHHtoMDXR98zv/UA
-         1LTQ==
+        d=linaro.org; s=google; t=1703179766; x=1703784566; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=1xsSRw5an+DdkMAjpyEAY4wOM2WTUgfCJWFOCdWDXuk=;
+        b=VssPLwX0IH/vmih/ua1LxK7xZFHLPtG6+iixEW3ScdPlnHYhfvhe6PHAGMibUkbIkf
+         8hXtaWu/1El+zkTEeNA9fOqEXvA4jGED+Y4tP5uWttVdmxBT5NHNUtvkivyFVYRum08v
+         4aqSBdg6MgVqOQN7oZTBM4nZ6ZNI1LxXp+Co+Mgj7/h6YOBeqX5R0NsLY7K668jyf41P
+         N/2UrjCWWMTj+e4oRz0e2xVQ6bEPCwXXEogNNWimeL7HTfikqKzKu6k/FwdWz2JrZb/e
+         pug5nbViD7wi1yLMPU6BY4AKI5NaVZllJPvvZdF2dgtsLkY2psi/ty8fNVX4zp9c3UNa
+         KjKw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703179635; x=1703784435;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=E9fZnvcr17iWEnEDx/jO4bNozX7Sbo2SKEDCBqZmguQ=;
-        b=mgIACcQAxSwBdq+rVqyolPR6c9Wg1pLzQufp2Mnydr+AC7SWN8NFcRLt5hSzp40ez6
-         ShM6kHoZIyEsbKqRsXSQl5hPrvdLsc/3aGSFnmuaIGyCYaTksn4n4xD70WadyZjVbKBV
-         l8NrEQa0too0/LwmI9T+wHBYQxyCDFyTd6FPBLe1Ri0mW20UYYO9g8o9Lw06P46BK4Qy
-         aQOWvNzti4mFN076PuXFgqRNRaweDy6Wa2Oc5Q5k3llmcRyg4714/3YVpZ4F3QsM7eSe
-         fp3j716XzRHWrvWkHiM2W0kTOWKLXBlmi+d1E8XLxB5+C+yZRBq1OgIeDRp3qc/yv5c3
-         ud9A==
-X-Gm-Message-State: AOJu0YxiLJySWDKdk/Eu339S2tUWeW1OsnP+5OisyH4vlB9sVdfqRQ6z
-	mxffoVdpo2Rh8D4njL7bTlZsuCqAT7Ohgw==
-X-Google-Smtp-Source: AGHT+IH2vTxRhlOEolIghnp/12hUc4XPl/V+sTUI3T7RdIIuDCcBJV7zVip8AxYZZVVY/HQzwWMGrA==
-X-Received: by 2002:a17:906:df52:b0:a19:a409:37dc with SMTP id if18-20020a170906df5200b00a19a40937dcmr23369ejc.53.1703179635603;
-        Thu, 21 Dec 2023 09:27:15 -0800 (PST)
+        d=1e100.net; s=20230601; t=1703179766; x=1703784566;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=1xsSRw5an+DdkMAjpyEAY4wOM2WTUgfCJWFOCdWDXuk=;
+        b=pSEcrmFYWaSgTpZDfQsTqMufXVvLESNFWE5P1VjQ98wL2L0C3qiFUqRTUFTZqMZ+eg
+         NrTnRv/ysC9Ss0SjyRNUwf/l08Vj6C2NOPkAWvqSHFlGvoD6OIaFK0K00S35Hx/sEUbP
+         8T8l9rfr0wJb/SYIJIEO216prMI75cpoR2ecUn1Rz3Va/kmAKEYDWkgiXIO0qBc9vb1/
+         E5FWmdDdNCVQaRx596pPX0aqE8C07dcFZWlmeOJ6No2YW4aMCRa2j/4pDRlX9mePTV3o
+         so/+vtxEZLxJnTMzn0oCbANgKlQooxRxYBXKyGEaeUhbqCHWCRJU6OlTl3fChlnaZrXY
+         aWSQ==
+X-Gm-Message-State: AOJu0YxpqsNfDV9K01oPE7yTwk54Y3F/nDUfdrL0r76OzZhSQBNAFru7
+	8J4qa33f8XwbDSMbMFnqCHdX2g==
+X-Google-Smtp-Source: AGHT+IFy/pmFzHH9RNeBpLNUfZlghhNI7MnK89Wi0df0D+t+5qS1hRh1Dv354svHVBJl9esnRSs15w==
+X-Received: by 2002:a50:b404:0:b0:554:1193:35ad with SMTP id b4-20020a50b404000000b00554119335admr827552edh.49.1703179766358;
+        Thu, 21 Dec 2023 09:29:26 -0800 (PST)
 Received: from [192.168.0.22] ([78.10.206.178])
-        by smtp.gmail.com with ESMTPSA id mf8-20020a1709071a4800b00a26a4b935b0sm919298ejc.166.2023.12.21.09.27.13
+        by smtp.gmail.com with ESMTPSA id n4-20020a056402434400b005528265bc41sm1436066edc.0.2023.12.21.09.29.24
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 Dec 2023 09:27:15 -0800 (PST)
-Message-ID: <fcd68fbe-c543-4b6d-9b7f-bcea09918fb9@linaro.org>
-Date: Thu, 21 Dec 2023 18:27:12 +0100
+        Thu, 21 Dec 2023 09:29:25 -0800 (PST)
+Message-ID: <40d09489-8242-4be7-bbe1-4e80a729c218@linaro.org>
+Date: Thu, 21 Dec 2023 18:29:23 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,31 +66,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 2/8] dt-bindings: display: add dt-bindings for STM32
- LVDS device
-To: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Yannick Fertre <yannick.fertre@foss.st.com>,
- Philippe Cornu <philippe.cornu@foss.st.com>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
- Thierry Reding <thierry.reding@gmail.com>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org
-References: <20231221122843.418650-1-raphael.gallais-pou@foss.st.com>
- <20231221122843.418650-3-raphael.gallais-pou@foss.st.com>
+Subject: Re: [PATCH v2 5/5] ASoC: dt-bindings: Add tas2563 into ti,ta2781.yaml
+ to support dsp mode better
 Content-Language: en-US
+To: Shenghao Ding <shenghao-ding@ti.com>, broonie@kernel.org,
+ conor+dt@kernel.org
+Cc: robh+dt@kernel.org, andriy.shevchenko@linux.intel.com, kevin-lu@ti.com,
+ baojun.xu@ti.com, devicetree@vger.kernel.org, lgirdwood@gmail.com,
+ perex@perex.cz, pierre-louis.bossart@linux.intel.com, 13916275206@139.com,
+ linux-sound@vger.kernel.org, linux-kernel@vger.kernel.org,
+ liam.r.girdwood@intel.com, soyer@irl.hu, tiwai@suse.de, peeyush@ti.com,
+ navada@ti.com
+References: <20231221101346.429-1-shenghao-ding@ti.com>
+ <20231221101346.429-5-shenghao-ding@ti.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -137,103 +124,83 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231221122843.418650-3-raphael.gallais-pou@foss.st.com>
+In-Reply-To: <20231221101346.429-5-shenghao-ding@ti.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 21/12/2023 13:28, Raphael Gallais-Pou wrote:
-> Add dt-binding file for "st,stm32-lvds" compatible.
+On 21/12/2023 11:13, Shenghao Ding wrote:
+> Add tas2563 to better support dsp mode.
 > 
-
-A nit, subject: drop second/last, redundant "dt-bindings for". The
-"dt-bindings" prefix is already stating that these are bindings.
-
-> Signed-off-by: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
+> Signed-off-by: Shenghao Ding <shenghao-ding@ti.com>
+> 
 > ---
->  .../bindings/display/st,stm32-lvds.yaml       | 114 ++++++++++++++++++
->  1 file changed, 114 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/st,stm32-lvds.yaml
-> 
+> Change in v2:
+>  - Add devicetree list and other list of necessary people and lists to CC
+>  - Express Compatibility in the bindings
+
+Nothing changed in that matter - no compatibility was expressed.
 
 ...
 
-> +properties:
-> +  "#clock-cells":
-> +    const: 0
+>  
+> -allOf:
+> -  - $ref: dai-common.yaml#
+> -
+>  properties:
+>    compatible:
+> +    description: |
+> +      ti,tas2781: 24-V Class-D Amplifier with Real Time Integrated Speaker
+> +      Protection and Audio Processing, 16/20/24/32bit stereo I2S or
+> +      multichannel TDM.
 > +
-> +  compatible:
-> +    const: st,stm32-lvds
+> +      ti,tas2563: 6.1-W Boosted Class-D Audio Amplifier With Integrated
+> +      DSP and IV Sense, 16/20/24/32bit stereo I2S or multichannel TDM.
+>      enum:
+>        - ti,tas2781
+> +      - ti,tas2563          # fallback compatible
 
-Please put compatible as first.
+I don't see any use of fallback. The comment is meaningless. Open
+example-schema and see how it is done there.
 
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: APB peripheral clock
-> +      - description: Reference clock for the internal PLL
-> +
-> +  clock-names:
-> +    items:
-> +      - const: pclk
-> +      - const: ref
-> +
-> +  resets:
-> +    maxItems: 1
-> +
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +
-> +    properties:
-> +      port@0:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description: |
-> +          LVDS input port node, connected to the LTDC RGB output port.
-> +
-> +      port@1:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description: |
-> +          LVDS output port node, connected to a panel or bridge input port.
+>  
+> -  reg:
+> -    description:
+> -      I2C address, in multiple tas2781s case, all the i2c address
+> -      aggregate as one Audio Device to support multiple audio slots.
+> -    maxItems: 8
+> -    minItems: 1
+> -    items:
+> -      minimum: 0x38
+> -      maximum: 0x3f
+> +  reg: true
 
-Ports are not required? I would assume it won't work without input and
-output.
+No, why? Keep min/maxItems.
 
-> +
-> +required:
-> +  - "#clock-cells"
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - resets
-> +  - ports
-> +
-> +unevaluatedProperties: false
+>  
+>    reset-gpios:
+>      maxItems: 1
+> @@ -49,6 +46,34 @@ required:
+>    - compatible
+>    - reg
+>  
+> +allOf:
+> +  - $ref: dai-common.yaml#
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - ti,tas2781
+> +    then:
+> +      properties:
+> +        reg:
+> +          description:
+> +            I2C address, in multiple AMP case, all the i2c address
+> +            aggregate as one Audio Device to support multiple audio slots.
 
-additionalProperties instead... or did I miss some $ref anywhere?
+Description applies to second case as well, so keep it in top-level.
 
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/bus/stm32mp25_sys_bus.h>
-> +    #include <dt-bindings/clock/stm32mp25-clks.h>
-> +    #include <dt-bindings/reset/stm32mp25-resets.h>
-> +
-> +    lvds: lvds@48060000 {
-> +        #clock-cells = <0>;
-> +        compatible = "st,stm32-lvds";
 
-compatible is always the first property.
-
-> +        reg = <0x48060000 0x2000>;
-
-put clock-cells here
-
-> +        clocks = <&rcc CK_BUS_LVDS>, <&rcc CK_KER_LVDSPHY>;
-> +        clock-names = "pclk", "ref";
-> +        resets = <&rcc LVDS_R>;
 
 Best regards,
 Krzysztof
