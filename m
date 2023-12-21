@@ -1,166 +1,403 @@
-Return-Path: <devicetree+bounces-27751-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27752-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A351E81B941
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 15:06:44 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FFD081B94A
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 15:07:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5A40F284E51
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 14:06:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B4BBF1C25E21
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 14:07:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2525136092;
-	Thu, 21 Dec 2023 14:05:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="jr3dRwFc"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 087D255E4A;
+	Thu, 21 Dec 2023 14:06:27 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com (mail-mw2nam04on2050.outbound.protection.outlook.com [40.107.101.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 996FB6D6DB;
-	Thu, 21 Dec 2023 14:05:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Wf/2tTm/MvXys4Jm78PyBJ/Xv/x6VKdMhvglIQMCVRQ9Sy/2Hff+XcnQYD8esU9hHYoWL5vGwSQoKrbbtFSLz8uaJW0INpA2Fth3N5lhKSPQHOBr4XBzxKhJm29BSxqR+wt0CqNPGlmY/JOWC5MFKt9TwYWRMPqP/PngqgTgKJgthwbFR20N5YTyus7ZUP5VEtwkzQnD7Q0tkfYJJoTyo5eyvz4N6EcVQr/wKb+emvKrJ4J/DPmmHjbtVPuhg+EWXYqXsSfm/N60BW6Pebsduf+JLlXGkStNi+Rpy9R3ScVBpXgeKNUUZW2VFi9E8VL5xRGrB/FxdoEJ/qBSCJJNWA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7yhqRe2zRgBJlGOxuFr7YGgmZ53X9RWo+OMauCo2ZxY=;
- b=ofQbWegXMWAKEic4ZaNcPLBA4QKuJ59H4/XYeKlhb7oLBPyBlqXk6xu0aY5Zw7xsIP7gSOD5K+rwMhvEMqD/+o8yc6m14hvo2ObPNK10JpGgbY7A+XrnGchN1aVhhVlawS8XZkDyTzViVtRaNUQssIMzewZYmFjA3VBzREIlNnbhPEcUnF5hHjckSf+9FxE6i0E517caq0/xJYaKfFlkhpZhv/+A9VDAwcfl5Co9huw26YC4efEW4hzwHRZSZqVN+9J6SRCPf5fup91bND6QWZN8ignF56oaf8EAIU740I35IiowIIAQibw14BNb3oH1f+NB6f24kG2UXsr4lSH2UA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7yhqRe2zRgBJlGOxuFr7YGgmZ53X9RWo+OMauCo2ZxY=;
- b=jr3dRwFcj3HzcdusjSgc8eNxy9p03lu37ZKrsObwcVeSzLmT6I+5r55vIYgJGKPXjeMz9+EUvhhhlgootS04uOCdPjDXPf5zsg6s7+HGfHEC8nnu6+dwdHIeLMkxItYW2e0fEWjRacIfwdPvIsmkUf1HbAOD3P5O2awJBHpItdY=
-Received: from PH7PR17CA0017.namprd17.prod.outlook.com (2603:10b6:510:324::13)
- by SA0PR12MB4384.namprd12.prod.outlook.com (2603:10b6:806:9f::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7113.21; Thu, 21 Dec
- 2023 14:05:13 +0000
-Received: from SA2PEPF000015CA.namprd03.prod.outlook.com
- (2603:10b6:510:324:cafe::12) by PH7PR17CA0017.outlook.office365.com
- (2603:10b6:510:324::13) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7113.20 via Frontend
- Transport; Thu, 21 Dec 2023 14:05:13 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- SA2PEPF000015CA.mail.protection.outlook.com (10.167.241.200) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7113.14 via Frontend Transport; Thu, 21 Dec 2023 14:05:13 +0000
-Received: from localhost (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.34; Thu, 21 Dec
- 2023 08:05:11 -0600
-From: Michal Simek <michal.simek@amd.com>
-To: <linux-kernel@vger.kernel.org>, <monstr@monstr.eu>,
-	<michal.simek@xilinx.com>, <git@xilinx.com>
-CC: Conor Dooley <conor+dt@kernel.org>, Greg Kroah-Hartman
-	<gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Rob Herring
-	<robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-serial@vger.kernel.org>
-Subject: [PATCH] dt-bindings: serial: Describe ARM dcc interface
-Date: Thu, 21 Dec 2023 15:05:09 +0100
-Message-ID: <9d7e85914eb1cdb313b28cb019093a84dd9b4773.1703167505.git.michal.simek@amd.com>
-X-Mailer: git-send-email 2.36.1
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 244B353A0F
+	for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 14:06:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 374AD2F4;
+	Thu, 21 Dec 2023 06:07:09 -0800 (PST)
+Received: from donnerap.arm.com (donnerap.manchester.arm.com [10.32.101.43])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id CD8713F64C;
+	Thu, 21 Dec 2023 06:06:22 -0800 (PST)
+From: Andre Przywara <andre.przywara@arm.com>
+To: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>
+Cc: linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-sunxi@lists.linux.dev
+Subject: [PATCH] dt-bindings: arm: sunxi: sort alphabetically
+Date: Thu, 21 Dec 2023 14:06:14 +0000
+Message-Id: <20231221140614.639697-1-andre.przywara@arm.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1647; i=michal.simek@amd.com; h=from:subject:message-id; bh=171JCoMC0LOBZ0zeSM3fyFJhdUksav2JPFhBrG1mMO0=; b=owGbwMvMwCR4yjP1tKYXjyLjabUkhtQWNyFmiVqTvUwyr1T8zwfUhWpnaxbeW8vy6XRU+hzDl PKdEsUdsSwMgkwMsmKKLNI2V87srZwxRfjiYTmYOaxMIEMYuDgFYCJHhBgWdPB/zJmywnWW/enQ xdP13K06PTNWM8xTUT/xYH5WuHZEsAd/0IMHW7mPP5MEAA==
-X-Developer-Key: i=michal.simek@amd.com; a=openpgp; fpr=67350C9BF5CCEE9B5364356A377C7F21FE3D1F91
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SA2PEPF000015CA:EE_|SA0PR12MB4384:EE_
-X-MS-Office365-Filtering-Correlation-Id: 470a9715-b9a5-4bda-c76b-08dc022dda19
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	Xf872Q4y4t/6/9WBhMsXlx5VrBDlQWjcEG99z3RSMrrWXAjZxdwII8SBxMcRgp4x9SSM6joK72YSE/8cerwweBrgd4ccrfCUi6cy5+yvwvvEwKXuag4jkjPlJQpnMttzxnfuB5YwsUrT0g9sQ10EygvhwaGN+uM0MjvaqYfU6qsZCZLutCl+RYxtmL6IE6X2HDubn9rVi7B1uQ2LW5LnRoOJRRsagrkBNPIWYHBJr6NJYCuUoixr/1i/qFExFJmX/X7gx8Am2miXsiGqLpay1cHBz6vOGxpurMokdqEAyANHCdbBaOcynpWghnSwzbeR3DOSGnnOF3bxqqLuEwHTsjA15eIYjIP1FwwciFI+iFUR/hGlWQ63/vEB6bWdWCia3kHd3BnmxLoL5PWFzpisfd1JAkt3psYO3paWDqe9n8ohR7G6hTFIE7UOWIEUq/dWoMxPI5E3iyvAWgJNbDCCg/augKIuYIWZ3GoNzlBBChGzAbl0uhdDv+O4e980P8Z+RA/I2RcMGMe21SMSFDBvgeqMtuO4ITqrdv///csJ1fb7db7WmBhm/mMZP+wnx7ffwje+dN0hQjXvwmW0Mj8zI6Bc2QWwFApoJ5bGw2ghSKr43YQ0q4v/sukljjjWX/fRbregVdtK6CXzplnMTziDHl0WUrlGxOUxmcNxnmtkCxBbHWscdZMZAEv7bMBarhECa7bStuqZo2HjEN3x66hjBaw4sbVxlJmBRR+KoM8IcwMruz5Hg4rdLDRbEzn3J+D9HJajQqI4kBPg9AE93De+OA==
-X-Forefront-Antispam-Report:
-	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230031)(4636009)(136003)(39860400002)(396003)(346002)(376002)(230922051799003)(186009)(1800799012)(451199024)(64100799003)(82310400011)(36840700001)(40470700004)(46966006)(110136005)(70586007)(70206006)(40480700001)(966005)(54906003)(316002)(8936002)(8676002)(40460700003)(4326008)(44832011)(81166007)(336012)(426003)(82740400003)(47076005)(2616005)(26005)(16526019)(5660300002)(41300700001)(36756003)(86362001)(356005)(2906002)(36860700001)(478600001)(7416002)(36900700001)(2101003);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Dec 2023 14:05:13.5049
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 470a9715-b9a5-4bda-c76b-08dc022dda19
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	SA2PEPF000015CA.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR12MB4384
 
-Debug Communication Channel (DCC) provides the way how to pass data between
-target CPU and host via JTAG interface. Every CPU has own interface for
-communication via dbgdtrtx_el0 and dbgdtrrx_el0 registers.
+The sunxi.yaml file, holding all known board compatible names for
+devices with Allwinner SoCs, is apparently sorted alphabetically, by the
+"description" entry. However there are a few outliers.
 
-Signed-off-by: Michal Simek <michal.simek@amd.com>
+Re-order the entries to get a strict alphabetical ordering, so that:
+$ grep description: sunxi.yaml | sort -fc
+returns empty-handed. There is no change otherwise.
+
+Signed-off-by: Andre Przywara <andre.przywara@arm.com>
 ---
+Based on sunxi/dt-for-6.8
 
-This communication interface is used for flash programming on Xilinx
-SOCs from U-Boot.
-https://source.denx.de/u-boot/u-boot/-/blob/master/drivers/serial/arm_dcc.c
+ .../devicetree/bindings/arm/sunxi.yaml        | 172 +++++++++---------
+ 1 file changed, 86 insertions(+), 86 deletions(-)
 
----
- .../devicetree/bindings/serial/arm,dcc.yaml   | 30 +++++++++++++++++++
- 1 file changed, 30 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/serial/arm,dcc.yaml
+diff --git a/Documentation/devicetree/bindings/arm/sunxi.yaml b/Documentation/devicetree/bindings/arm/sunxi.yaml
+index a9d8e85565b89..0bf24f4882240 100644
+--- a/Documentation/devicetree/bindings/arm/sunxi.yaml
++++ b/Documentation/devicetree/bindings/arm/sunxi.yaml
+@@ -51,16 +51,16 @@ properties:
+           - const: allwinner,parrot
+           - const: allwinner,sun8i-a33
+ 
+-      - description: Anbernic RG-Nano
+-        items:
+-          - const: anbernic,rg-nano
+-          - const: allwinner,sun8i-v3s
+-
+       - description: Amarula A64 Relic
+         items:
+           - const: amarula,a64-relic
+           - const: allwinner,sun50i-a64
+ 
++      - description: Anbernic RG-Nano
++        items:
++          - const: anbernic,rg-nano
++          - const: allwinner,sun8i-v3s
++
+       - description: Auxtek T003 A10s HDMI TV Stick
+         items:
+           - const: allwinner,auxtek-t003
+@@ -96,6 +96,11 @@ properties:
+           - const: sinovoip,bpi-m2-berry
+           - const: allwinner,sun8i-r40
+ 
++      - description: BananaPi M2 Magic
++        items:
++          - const: sinovoip,bananapi-m2m
++          - const: allwinner,sun8i-a33
++
+       - description: BananaPi M2 Plus
+         items:
+           - const: sinovoip,bpi-m2-plus
+@@ -116,11 +121,6 @@ properties:
+           - const: bananapi,bpi-m2-plus-v1.2
+           - const: allwinner,sun50i-h5
+ 
+-      - description: BananaPi M2 Magic
+-        items:
+-          - const: sinovoip,bananapi-m2m
+-          - const: allwinner,sun8i-a33
+-
+       - description: BananaPi M2 Ultra
+         items:
+           - const: sinovoip,bpi-m2-ultra
+@@ -230,6 +230,18 @@ properties:
+           - const: sochip,s3
+           - const: allwinner,sun8i-v3
+ 
++      - description: Emlid Neutis N5 Developer Board
++        items:
++          - const: emlid,neutis-n5-devboard
++          - const: emlid,neutis-n5
++          - const: allwinner,sun50i-h5
++
++      - description: Emlid Neutis N5H3 Developer Board
++        items:
++          - const: emlid,neutis-n5h3-devboard
++          - const: emlid,neutis-n5h3
++          - const: allwinner,sun8i-h3
++
+       - description: Empire Electronix D709 Tablet
+         items:
+           - const: empire-electronix,d709
+@@ -306,16 +318,26 @@ properties:
+           - const: gemei,g9
+           - const: allwinner,sun4i-a10
+ 
+-      - description: Hyundai A7HD
++      - description: HAOYU Electronics Marsboard A10
+         items:
+-          - const: hyundai,a7hd
++          - const: haoyu,a10-marsboard
+           - const: allwinner,sun4i-a10
+ 
++      - description: HAOYU Electronics Marsboard A20
++        items:
++          - const: haoyu,a20-marsboard
++          - const: allwinner,sun7i-a20
++
+       - description: HSG H702
+         items:
+           - const: hsg,h702
+           - const: allwinner,sun5i-a13
+ 
++      - description: Hyundai A7HD
++        items:
++          - const: hyundai,a7hd
++          - const: allwinner,sun4i-a10
++
+       - description: I12 TV Box
+         items:
+           - const: allwinner,i12-tvbox
+@@ -343,11 +365,6 @@ properties:
+           - const: primux,inet86dz
+           - const: allwinner,sun8i-a23
+ 
+-      - description: iNet-9F Rev 03
+-        items:
+-          - const: inet-tek,inet9f-rev03
+-          - const: allwinner,sun4i-a10
+-
+       - description: iNet-97F Rev 02
+         items:
+           - const: primux,inet97fv2
+@@ -358,6 +375,11 @@ properties:
+           - const: primux,inet98v-rev2
+           - const: allwinner,sun5i-a13
+ 
++      - description: iNet-9F Rev 03
++        items:
++          - const: inet-tek,inet9f-rev03
++          - const: allwinner,sun4i-a10
++
+       - description: iNet D978 Rev 02 Tablet
+         items:
+           - const: primux,inet-d978-rev2
+@@ -472,15 +494,10 @@ properties:
+           - const: lamobo,lamobo-r1
+           - const: allwinner,sun7i-a20
+ 
+-      - description: HAOYU Electronics Marsboard A10
+-        items:
+-          - const: haoyu,a10-marsboard
+-          - const: allwinner,sun4i-a10
+-
+-      - description: HAOYU Electronics Marsboard A20
++      - description: MangoPi MQ-R board
+         items:
+-          - const: haoyu,a20-marsboard
+-          - const: allwinner,sun7i-a20
++          - const: widora,mangopi-mq-r-t113
++          - const: allwinner,sun8i-t113s
+ 
+       - description: MapleBoard MP130
+         items:
+@@ -557,18 +574,6 @@ properties:
+           - const: msi,primo81
+           - const: allwinner,sun6i-a31s
+ 
+-      - description: Emlid Neutis N5 Developer Board
+-        items:
+-          - const: emlid,neutis-n5-devboard
+-          - const: emlid,neutis-n5
+-          - const: allwinner,sun50i-h5
+-
+-      - description: Emlid Neutis N5H3 Developer Board
+-        items:
+-          - const: emlid,neutis-n5h3-devboard
+-          - const: emlid,neutis-n5h3
+-          - const: allwinner,sun8i-h3
+-
+       - description: NextThing Co. CHIP
+         items:
+           - const: nextthing,chip
+@@ -638,11 +643,6 @@ properties:
+           - const: olimex,a20-olinuxino-lime
+           - const: allwinner,sun7i-a20
+ 
+-      - description: Olimex A20-OlinuXino LIME (with eMMC)
+-        items:
+-          - const: olimex,a20-olinuxino-lime-emmc
+-          - const: allwinner,sun7i-a20
+-
+       - description: Olimex A20-OlinuXino LIME2
+         items:
+           - const: olimex,a20-olinuxino-lime2
+@@ -653,6 +653,11 @@ properties:
+           - const: olimex,a20-olinuxino-lime2-emmc
+           - const: allwinner,sun7i-a20
+ 
++      - description: Olimex A20-OlinuXino LIME (with eMMC)
++        items:
++          - const: olimex,a20-olinuxino-lime-emmc
++          - const: allwinner,sun7i-a20
++
+       - description: Olimex A20-OlinuXino Micro
+         items:
+           - const: olimex,a20-olinuxino-micro
+@@ -703,6 +708,17 @@ properties:
+           - const: pine64,pine64-plus
+           - const: allwinner,sun50i-a64
+ 
++      - description: Pine64 LTS
++        items:
++          - const: pine64,pine64-lts
++          - const: allwinner,sun50i-r18
++          - const: allwinner,sun50i-a64
++
++      - description: Pine64 Pinebook
++        items:
++          - const: pine64,pinebook
++          - const: allwinner,sun50i-a64
++
+       - description: Pine64 PineCube
+         items:
+           - const: pine64,pinecube
+@@ -719,20 +735,9 @@ properties:
+           - const: pine64,pine-h64-model-b
+           - const: allwinner,sun50i-h6
+ 
+-      - description: Pine64 LTS
+-        items:
+-          - const: pine64,pine64-lts
+-          - const: allwinner,sun50i-r18
+-          - const: allwinner,sun50i-a64
+-
+-      - description: Pine64 Pinebook
+-        items:
+-          - const: pine64,pinebook
+-          - const: allwinner,sun50i-a64
+-
+-      - description: Pine64 PinePhone Developer Batch (1.0)
++      - description: Pine64 PinePhone (1.2)
+         items:
+-          - const: pine64,pinephone-1.0
++          - const: pine64,pinephone-1.2
+           - const: pine64,pinephone
+           - const: allwinner,sun50i-a64
+ 
+@@ -742,9 +747,9 @@ properties:
+           - const: pine64,pinephone
+           - const: allwinner,sun50i-a64
+ 
+-      - description: Pine64 PinePhone (1.2)
++      - description: Pine64 PinePhone Developer Batch (1.0)
+         items:
+-          - const: pine64,pinephone-1.2
++          - const: pine64,pinephone-1.0
+           - const: pine64,pinephone
+           - const: allwinner,sun50i-a64
+ 
+@@ -835,6 +840,12 @@ properties:
+           - const: sinlinx,sina33
+           - const: allwinner,sun8i-a33
+ 
++      - description: SL631 Action Camera with IMX179
++        items:
++          - const: allwinner,sl631-imx179
++          - const: allwinner,sl631
++          - const: allwinner,sun8i-v3
++
+       - description: SourceParts PopStick v1.1
+         items:
+           - const: sourceparts,popstick-v1.1
+@@ -842,12 +853,6 @@ properties:
+           - const: allwinner,suniv-f1c200s
+           - const: allwinner,suniv-f1c100s
+ 
+-      - description: SL631 Action Camera with IMX179
+-        items:
+-          - const: allwinner,sl631-imx179
+-          - const: allwinner,sl631
+-          - const: allwinner,sun8i-v3
+-
+       - description: Tanix TX6
+         items:
+           - const: oranth,tanix-tx6
+@@ -883,11 +888,6 @@ properties:
+           - const: wexler,tab7200
+           - const: allwinner,sun7i-a20
+ 
+-      - description: MangoPi MQ-R board
+-        items:
+-          - const: widora,mangopi-mq-r-t113
+-          - const: allwinner,sun8i-t113s
+-
+       - description: WITS A31 Colombus Evaluation Board
+         items:
+           - const: wits,colombus
+@@ -903,11 +903,6 @@ properties:
+           - const: wobo,a10s-wobo-i5
+           - const: allwinner,sun5i-a10s
+ 
+-      - description: Yones TopTech BS1078 v2 Tablet
+-        items:
+-          - const: yones-toptech,bs1078-v2
+-          - const: allwinner,sun6i-a31s
+-
+       - description: X96 Mate TV box
+         items:
+           - const: hechuang,x96-mate
+@@ -998,6 +993,21 @@ properties:
+           - const: xunlong,orangepi-zero
+           - const: allwinner,sun8i-h2-plus
+ 
++      - description: Xunlong OrangePi Zero 2
++        items:
++          - const: xunlong,orangepi-zero2
++          - const: allwinner,sun50i-h616
++
++      - description: Xunlong OrangePi Zero 2W
++        items:
++          - const: xunlong,orangepi-zero2w
++          - const: allwinner,sun50i-h618
++
++      - description: Xunlong OrangePi Zero 3
++        items:
++          - const: xunlong,orangepi-zero3
++          - const: allwinner,sun50i-h618
++
+       - description: Xunlong OrangePi Zero Plus
+         items:
+           - const: xunlong,orangepi-zero-plus
+@@ -1013,19 +1023,9 @@ properties:
+           - const: xunlong,orangepi-zero-plus2-h3
+           - const: allwinner,sun8i-h3
+ 
+-      - description: Xunlong OrangePi Zero 2
+-        items:
+-          - const: xunlong,orangepi-zero2
+-          - const: allwinner,sun50i-h616
+-
+-      - description: Xunlong OrangePi Zero 2W
+-        items:
+-          - const: xunlong,orangepi-zero2w
+-          - const: allwinner,sun50i-h618
+-
+-      - description: Xunlong OrangePi Zero 3
++      - description: Yones TopTech BS1078 v2 Tablet
+         items:
+-          - const: xunlong,orangepi-zero3
+-          - const: allwinner,sun50i-h618
++          - const: yones-toptech,bs1078-v2
++          - const: allwinner,sun6i-a31s
+ 
+ additionalProperties: true
 
-diff --git a/Documentation/devicetree/bindings/serial/arm,dcc.yaml b/Documentation/devicetree/bindings/serial/arm,dcc.yaml
-new file mode 100644
-index 000000000000..fd0589356617
---- /dev/null
-+++ b/Documentation/devicetree/bindings/serial/arm,dcc.yaml
-@@ -0,0 +1,30 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/serial/arm,dcc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: ARM DCC (Data communication channel) serial emulation
-+
-+maintainers:
-+  - Michal Simek <michal.simek@amd.com>
-+
-+description: |
-+  ARM DCC (Data communication channel) serial emulation interface available
-+  via JTAG can be also used as one of serial line tightly coupled with every
-+  ARM CPU available in the system.
-+
-+properties:
-+  compatible:
-+    const: arm,dcc
-+
-+required:
-+  - compatible
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    serial {
-+      compatible = "arm,dcc";
-+    };
+base-commit: a4aebe936554dac6a91e5d091179c934f8325708
+prerequisite-patch-id: b72637774a9de3328cc561ae4bb3137bba25fafd
+prerequisite-patch-id: 1a3327044ae61af705ffd79028687f3f6629edf4
 -- 
-2.36.1
+2.25.1
 
 
