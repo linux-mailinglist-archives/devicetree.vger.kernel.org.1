@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-27879-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27880-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0CD8781BFBA
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 21:44:50 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1439A81BFBF
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 21:48:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9A35D1F225B8
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 20:44:49 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8B160B2146B
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 20:48:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81AE6768F4;
-	Thu, 21 Dec 2023 20:44:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 913B9760BF;
+	Thu, 21 Dec 2023 20:48:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ThAR0Zp2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hXYl5uNC"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61F3A760B8;
-	Thu, 21 Dec 2023 20:44:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D1B51C433C8;
-	Thu, 21 Dec 2023 20:44:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7454E6280F;
+	Thu, 21 Dec 2023 20:48:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1C5DFC433C8;
+	Thu, 21 Dec 2023 20:48:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1703191483;
-	bh=C4ND45O9VtPdCGNJbKtbMUJR3Ewk4KrDe0AszFJgI1g=;
+	s=k20201202; t=1703191710;
+	bh=TlkTsPIMI1ft1vRpFi2DNH080tBp/+IR49hOttKsZMc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ThAR0Zp2s0BlXasxoqe33EdMx7uI1VwY7bMLPoQWjvgdLlZLx6FC7vKTSQ36Oweg7
-	 FwHF1Egu0a+Sbchnw8lN6yK1zN3YTNdreVvWzLygo8ZSP9iJL4T1E0Kz1xi+mlXgxq
-	 3ydHgZM6fQhaWXwO4leH2bLvTcjbv1s1F1mRFqNWP/mceguB7ZPUvrNiCDfuHI8uR0
-	 IVbjUjlXGqG0GtvJfQwMn04i+djj0nxNNpfyzG1mOYa7y05GCjOfjplLrKrelHqF8j
-	 amA3kEgvreefhUeG/sEBnHg0sUqp2cufG8hZZBBY5Jrn6iM56koQtUpr+k/O9McPfZ
-	 Yjqx5JudQPJ/A==
-Received: (nullmailer pid 62496 invoked by uid 1000);
-	Thu, 21 Dec 2023 20:44:41 -0000
-Date: Thu, 21 Dec 2023 14:44:41 -0600
+	b=hXYl5uNC0jKVk5cOAt0/NukPy+vElCg9OuTHtg3izC0HrWP+hFI/tXP2Al7tzXURM
+	 KFftJKEa8EEQrOEI5W1AKjO3asbioma+/zdjETzpfZ6MEWQnd3CesdopjVIMDR8c7u
+	 Q3AXJp42prmlkxW2FgKNhnlVnLxEJsDoaA4agcsQGF0MGw/Fd0xC7WUyMp0fCQmfvv
+	 hV1qBEXzTep70PSWyGTD8cps4v8NMMg2LgkDFGNRrwVzJPMfo78TYPYyU592CokkDc
+	 j68hFB4a/9KUWRY9RDfV6tGw/HenNGFoKZJ3yD7dHZFHzvGbKXldzxmfJHdHYrq8zC
+	 lbzQnPkA8ScOg==
+Received: (nullmailer pid 67223 invoked by uid 1000);
+	Thu, 21 Dec 2023 20:48:28 -0000
+Date: Thu, 21 Dec 2023 14:48:28 -0600
 From: Rob Herring <robh@kernel.org>
 To: Mark Hasemeyer <markhas@chromium.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Raul Rangel <rrangel@chromium.org>, Frank Rowand <frowand.list@gmail.com>, devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>, AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Andy Shevchenko <andriy.shevchenko@intel.com>, Tzung-Bi Shih <tzungbi@kernel.org>, Sudeep Holla <sudeep.holla@arm.com>, Konrad Dybcio <konrad.dybcio@linaro.org>, LKML <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 17/22] of: irq: add wake capable bit to
- of_irq_resource()
-Message-ID: <170319148087.62439.16254774276035197827.robh@kernel.org>
+Cc: Sudeep Holla <sudeep.holla@arm.com>, Konrad Dybcio <konrad.dybcio@linaro.org>, devicetree@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>, Andy Shevchenko <andriy.shevchenko@intel.com>, Frank Rowand <frowand.list@gmail.com>, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Raul Rangel <rrangel@chromium.org>, AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Rob Herring <robh+dt@kernel.org>, Tzung-Bi Shih <tzungbi@kernel.org>
+Subject: Re: [PATCH v2 18/22] of: irq: Add default implementation for
+ of_irq_to_resource()
+Message-ID: <170319170746.67177.2978168318056998611.robh@kernel.org>
 References: <20231220235459.2965548-1-markhas@chromium.org>
- <20231220165423.v2.17.I29b26a7f3b80fac0a618707446a10b6cc974fdaf@changeid>
+ <20231220165423.v2.18.I31d4dd6a7e5a3e5eee05c87b358e63cd1aa0e467@changeid>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -51,40 +51,23 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231220165423.v2.17.I29b26a7f3b80fac0a618707446a10b6cc974fdaf@changeid>
+In-Reply-To: <20231220165423.v2.18.I31d4dd6a7e5a3e5eee05c87b358e63cd1aa0e467@changeid>
 
 
-On Wed, 20 Dec 2023 16:54:31 -0700, Mark Hasemeyer wrote:
-> Add wake capability information to the IRQ resource. Wake capability is
-> assumed based on conventions provided in the devicetree wakeup-source
-> binding documentation. An interrupt is considered wake capable if the
-> following are true:
-> 1. A wakeup-source property exits in the same device node as the
->    interrupt.
-> 2. The IRQ is marked as dedicated by setting its interrupt-name to
->    "wakeup".
-> 
-> The wakeup-source documentation states that dedicated interrupts can use
-> device specific interrupt names and device drivers are still welcome to
-> use their own naming schemes. This API is provided as a helper if one is
-> willing to conform to the above conventions.
-> 
-> The ACPI subsystems already provides similar APIs that allow one to
-> query the wake capability of an IRQ. This brings closer feature parity
-> to the devicetree.
+On Wed, 20 Dec 2023 16:54:32 -0700, Mark Hasemeyer wrote:
+> Similar to of_irq_to_resource_table(), add a default implementation of
+> of_irq_to_resource() for systems that don't have CONFIG_OF_IRQ defined.
 > 
 > Signed-off-by: Mark Hasemeyer <markhas@chromium.org>
 > ---
 > 
 > Changes in v2:
-> -Update logic to return true only if wakeup-source property and
->  "wakeup" interrupt-name are defined
-> -irq->IRQ, api->API
+> -None
 > 
->  drivers/of/irq.c | 32 +++++++++++++++++++++++++++++++-
->  1 file changed, 31 insertions(+), 1 deletion(-)
+>  include/linux/of_irq.h | 8 ++++++--
+>  1 file changed, 6 insertions(+), 2 deletions(-)
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Rob Herring <robh@kernel.org>
 
 
