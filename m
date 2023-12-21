@@ -1,125 +1,148 @@
-Return-Path: <devicetree+bounces-27789-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27790-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id DAD4B81BB36
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 16:45:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DD1F781BB3C
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 16:46:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7E950B258CF
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 15:45:41 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 47CFEB26042
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 15:46:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C549453A17;
-	Thu, 21 Dec 2023 15:43:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 620AC58203;
+	Thu, 21 Dec 2023 15:45:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BvPuYSYB"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ZAMD1InP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B58162813;
-	Thu, 21 Dec 2023 15:43:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 00995C433C8;
-	Thu, 21 Dec 2023 15:43:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1703173409;
-	bh=p268v/Z0J/H5DA9xBR1KA840CSsR1hZCKg5Z9xk2s3c=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=BvPuYSYBl2X/2ntuQY8d5QQk0Ku6zFRvgcG2d7Z79O9T5f1wQKO9o7+gGxgJ6a/a2
-	 mfCYdGFw7CHXl4NAVZpAz3J2YrB8h0NS4C7U2/mjQESTrS4dK37riC8323lwWg1nOb
-	 z5etc72DN2g2y8VehSmx21Yd9vc+VbBL20ljCYhb1sHuD6qnBr8qfx33YoVTH91thr
-	 wuaGC4M4c3Pgst7X9bupkaLDGvaVG4eZLc3/1+bCDoMe32XubgGgptffMXe3dmMAay
-	 N2CgV3x3cyOxo9pnEzoD5Wmv/QIBuUEGZBGlvFNy3EBi8ZWhInb0GC6hbWb0EGLH3p
-	 UT/ivN+mvANFw==
-Date: Thu, 21 Dec 2023 15:43:21 +0000
-From: Mark Brown <broonie@kernel.org>
-To: =?iso-8859-1?Q?K=F6ry?= Maincent <kory.maincent@bootlin.com>
-Cc: Oleksij Rempel <o.rempel@pengutronix.de>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Luis Chamberlain <mcgrof@kernel.org>,
-	Russ Weight <russ.weight@linux.dev>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org, devicetree@vger.kernel.org,
-	Dent Project <dentproject@linuxfoundation.org>,
-	Liam Girdwood <lgirdwood@gmail.com>
-Subject: Re: [PATCH net-next v2 8/8] net: pse-pd: Add PD692x0 PSE controller
- driver
-Message-ID: <ffda1003-b752-402e-8e51-e2e24a840cff@sirena.org.uk>
-References: <20231201-feature_poe-v2-0-56d8cac607fa@bootlin.com>
- <20231201-feature_poe-v2-8-56d8cac607fa@bootlin.com>
- <20231204225956.GG981228@pengutronix.de>
- <20231205064527.GJ981228@pengutronix.de>
- <4b96b8c8-7def-46e5-9c85-d9e925fb9251@sirena.org.uk>
- <20231205140203.GK981228@pengutronix.de>
- <88ed0c94-d052-4564-be0c-79a0f502eda8@sirena.org.uk>
- <20231221163610.47038996@kmaincent-XPS-13-7390>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C670A53A10
+	for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 15:45:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-55114c073b8so1163401a12.1
+        for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 07:45:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1703173517; x=1703778317; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=m/b5iQHKDfLfxEbu4CjDI+2uhu+76N6kWKG4/IT+Dpo=;
+        b=ZAMD1InPV2YU9DZMMvwJDIGJW7s1xl7a1Dmtvlsmgay2yRG8XyYUA6OrQu6cYHOyxr
+         ESQHYkqLNafS5+hqNJ1u8y/HlRAkWEGvTTo76EbgW8TQfwHvKQbwRy6pqlkk/Q7r1/K6
+         XQJjQ6JKySEaamQrSzbJgxi+Fb8MLRx3AyJFMINSn+2JG2FNsm/HHbvmm2WRj50cbgvi
+         nDYs/ZDiBn09kcgMr/Tzzp0bBMqu7SBzzr2Th3b+4x3Ddw0CXl/X6bi9jvN3PLOkvQrM
+         giSPGAvhjKZXOnbJFM/4QeuIIuSTuV3Ja0dK57jk2NfVlozHBB+NkY2RhAqSat5+4PCL
+         sNSw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1703173517; x=1703778317;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=m/b5iQHKDfLfxEbu4CjDI+2uhu+76N6kWKG4/IT+Dpo=;
+        b=dMPuqYsKKxMjNy+CFwtV+3iid+1mK+/JvjlGj0nw78RCQo1ZRcgaspkK9WJ6u8WEW7
+         cxa/j5M4Q3u1L6U6SrwTW3E3aJXB3fMhHN7UQmtPAqJG2tjwqPgswOQktPydnwHjvxd0
+         Xr9g6+R7MRbYF58wsZuln1FF4iCT7hcMq6LeyNJCqRF7gHLYN0fSUBkjYmhHNopMN0jB
+         zyg/qacrg/xyr4fAcGU7mCfAuYO9HEsU/0sW+Xe9r/f94R1lP6x4NyOnhJzvH1K567bv
+         Mu3Ua0MzXNXlqnjtgxCU7xMmTXaY5Qf756KHfCk5q0cvf/hvW/+hZvxtN1KZTjHlXmPZ
+         mO8A==
+X-Gm-Message-State: AOJu0Yx1DU+kvU+oDUtoqMFh9gYOJly3Dib+z8QQJ09cxi6nrO9TZtKm
+	lnuLEFqi9XdPdy/Qz7yeQago7w==
+X-Google-Smtp-Source: AGHT+IFxWImuWoVhgpNQ0bgA9fR+Kp9O3SFQ+RWL48EjB1AbVsDmlMmdWt/6ISbjHs4w1QJPyNsHRA==
+X-Received: by 2002:a50:8d1b:0:b0:553:a78c:ff27 with SMTP id s27-20020a508d1b000000b00553a78cff27mr1757222eds.33.1703173516962;
+        Thu, 21 Dec 2023 07:45:16 -0800 (PST)
+Received: from [192.168.0.22] ([78.10.206.178])
+        by smtp.gmail.com with ESMTPSA id d5-20020a50fe85000000b0054cb88a353dsm1306724edt.14.2023.12.21.07.45.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 21 Dec 2023 07:45:16 -0800 (PST)
+Message-ID: <6c861db8-f6cd-4e12-856a-ef45efc654a2@linaro.org>
+Date: Thu, 21 Dec 2023 16:45:15 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="ayY3hi9uzG0eQYAg"
-Content-Disposition: inline
-In-Reply-To: <20231221163610.47038996@kmaincent-XPS-13-7390>
-X-Cookie: Results are not typical.
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH 1/6] dt-bindings: pinctrl: starfive: add JH8100
+ pinctrl bindings
+Content-Language: en-US
+To: Linus Walleij <linus.walleij@linaro.org>,
+ Alex Soo <yuklin.soo@starfivetech.com>
+Cc: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+ Hal Feng <hal.feng@starfivetech.com>,
+ Ley Foon Tan <leyfoon.tan@starfivetech.com>,
+ Jianlong Huang <jianlong.huang@starfivetech.com>,
+ Emil Renner Berthing <kernel@esmil.dk>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Drew Fustini <drew@beagleboard.org>,
+ linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>
+References: <20231221083622.3445726-1-yuklin.soo@starfivetech.com>
+ <20231221083622.3445726-2-yuklin.soo@starfivetech.com>
+ <CACRpkdYL8wK2vX7P7p4QvU9VV2CPjRv_aXiLqO+07MMCCKKk4Q@mail.gmail.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <CACRpkdYL8wK2vX7P7p4QvU9VV2CPjRv_aXiLqO+07MMCCKKk4Q@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
+On 21/12/2023 14:57, Linus Walleij wrote:
+>> +          drive-strength:
+>> +            enum: [ 2, 4, 8, 12 ]
+> 
+> Milliamperes? Then spell that out in a description:
 
---ayY3hi9uzG0eQYAg
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Or just use drive-strength-microamp
 
-On Thu, Dec 21, 2023 at 04:36:10PM +0100, K=F6ry Maincent wrote:
-> Mark Brown <broonie@kernel.org> wrote:
+Best regards,
+Krzysztof
 
-> > OK...  I mean, if they're not using the regulator framework I'm not sure
-> > it has much impact - there are plenty of internal regulators in devices
-> > already so it wouldn't be *too* unusual other than the fact that AFAICT
-> > this is somewhat split between devices within the subsystem?  Neither of
-> > the messages was super clear.
-
-> PSE Power Interface (which is kind of the RJ45 in PSE world) have similar
-> functionalities as regulators. We wondered if registering a regulator for
-> each PSE PI (RJ45 ports) is a good idea. The point is that the PSE contro=
-ller
-> driver will be its own regulator consumer.
-> I can't find any example in Linux with such a case of a driver being a pr=
-ovider
-> and a consumer of its own regulator. This idea of a regulator biting its =
-own
-> tail seems weird to me. Maybe it is better to implement the PSE functiona=
-lities
-> even if they are like the regulator functionalities.
-
-Is it at all plausible that a system (perhaps an embedded one) might use
-something other than PSE?
-
---ayY3hi9uzG0eQYAg
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmWEXRkACgkQJNaLcl1U
-h9AWAwf+OP5Q11gZjq9GXb7vPW2rJm2BAFFBY2+mv5PDmeN23hAQZJ3hk7m0AYwr
-5KBzgRuvGPeJ+pPbYmiwxNi8kXh9i8osTopdSP5p+OAzEIdT5DMqaaKJ0uWJlpYX
-zS0gp3FM1eH7Td+BrOAvJFlt0OgQLXr8SADS/SwEB16iIg6mHwEdSrDw8ZI66sA/
-A7ANAodvCQ0WBYAU5OvDHoNwmzuKyNTHu+Z2Wqq/PLP5qsojZTi6QrbL1hNPqiLE
-lCvrWI58JCdfRjyM5f3BoQ05HDPdHTrVs1eTPScpZgHjFrwBk/89TJL87tRsBMi5
-d/MFhEW24jlwrBiUU12PL9nk41zkqw==
-=r7wZ
------END PGP SIGNATURE-----
-
---ayY3hi9uzG0eQYAg--
 
