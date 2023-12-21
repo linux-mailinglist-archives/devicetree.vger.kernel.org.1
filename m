@@ -1,142 +1,155 @@
-Return-Path: <devicetree+bounces-27559-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27560-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02B2081AC92
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 03:21:02 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D039981AD76
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 04:27:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8C4A71F23A45
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 02:21:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0E2BB1C21D34
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 03:27:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BAB4184C;
-	Thu, 21 Dec 2023 02:20:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5578522D;
+	Thu, 21 Dec 2023 03:26:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="F5RWXqHP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out28-38.mail.aliyun.com (out28-38.mail.aliyun.com [115.124.28.38])
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B30B1843;
-	Thu, 21 Dec 2023 02:20:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sjterm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sjterm.com
-X-Alimail-AntiSpam:AC=CONTINUE;BC=0.08253946|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_regular_dialog|0.759945-0.00196268-0.238092;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047199;MF=fuyao@sjterm.com;NM=1;PH=DS;RN=16;RT=16;SR=0;TI=SMTPD_---.VpJwiCT_1703125249;
-Received: from localhost(mailfrom:fuyao@sjterm.com fp:SMTPD_---.VpJwiCT_1703125249)
-          by smtp.aliyun-inc.com;
-          Thu, 21 Dec 2023 10:20:50 +0800
-Date: Thu, 21 Dec 2023 10:20:49 +0800
-From: fuyao <fuyao@sjterm.com>
-To: Andre Przywara <andre.przywara@arm.com>
-Cc: fuyao <fuyao1697@cyg.com>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Alexandre TORGUE <alexandre.torgue@st.com>,
-	Enric Balletbo i Serra <eballetbo@gmail.com>,
-	Baruch Siach <baruch@tkos.co.il>,
-	Paul Barker <paul.barker@sancloud.com>, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH RESEND] ARM: dts: sun8i: r40: open the regulator aldo1
-Message-ID: <ZYOhAQi7XeLUuAC9@debian.cyg>
-Mail-Followup-To: Andre Przywara <andre.przywara@arm.com>,
-	fuyao <fuyao1697@cyg.com>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Alexandre TORGUE <alexandre.torgue@st.com>,
-	Enric Balletbo i Serra <eballetbo@gmail.com>,
-	Baruch Siach <baruch@tkos.co.il>,
-	Paul Barker <paul.barker@sancloud.com>, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-	linux-kernel@vger.kernel.org
-References: <ZYKjYypuAx7gNuam@debian.cyg>
- <20231220150400.0f32e2a5@donnerap.manchester.arm.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDA604C64;
+	Thu, 21 Dec 2023 03:26:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: c7d0b8c89fb011eeba30773df0976c77-20231221
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=qlh/VbDYXlXEU1JaXc715148R0jpddLs+ZhwUrdEA90=;
+	b=F5RWXqHPPTCwYDeM+Zckon9CTQAHP5hBqWehQOEoNSgOYogk8NQyQmBOGY8G2n6A9J67oAMM5+fW04FcKAjjXzHsIH/XNv85ENYea1vWUkO6gHze/aXIjYOc0qQbb/VQUpH9JXiNScjFx+4ohb/TRvw6ni6hLkfCos4TE4Rk0zY=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.35,REQID:0cb7be99-254d-456c-9198-ace6eb0f5d96,IP:0,U
+	RL:0,TC:0,Content:-25,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
+	N:release,TS:-25
+X-CID-META: VersionHash:5d391d7,CLOUDID:3b18688d-e2c0-40b0-a8fe-7c7e47299109,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+	RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,
+	DKR:0,DKP:0,BRR:0,BRE:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-UUID: c7d0b8c89fb011eeba30773df0976c77-20231221
+Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw02.mediatek.com
+	(envelope-from <chui-hao.chiu@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 1023971889; Thu, 21 Dec 2023 11:26:51 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
+ mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Thu, 21 Dec 2023 11:26:49 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
+ mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Thu, 21 Dec 2023 11:26:49 +0800
+From: Peter Chiu <chui-hao.chiu@mediatek.com>
+To: Felix Fietkau <nbd@nbd.name>, Rob Herring <robh+dt@kernel.org>, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC: Conor Dooley <conor+dt@kernel.org>, Lorenzo Bianconi <lorenzo@kernel.org>,
+	Ryder Lee <ryder.lee@mediatek.com>, Shayne Chen <shayne.chen@mediatek.com>,
+	Sean Wang <sean.wang@mediatek.com>, Kalle Valo <kvalo@kernel.org>, Matthias
+ Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>, <linux-wireless@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>,
+	Peter Chiu <chui-hao.chiu@mediatek.com>
+Subject: [PATCH v4] dt-bindings: net: wireless: mt76: add interrupts description for MT7986
+Date: Thu, 21 Dec 2023 11:26:48 +0800
+Message-ID: <20231221032648.641-1-chui-hao.chiu@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231220150400.0f32e2a5@donnerap.manchester.arm.com>
-Organization: work_work_work
+Content-Type: text/plain
+X-MTK: N
 
-On Wed, Dec 20, 2023 at 03:04:00PM +0000, Andre Przywara wrote:
-> On Wed, 20 Dec 2023 16:18:43 +0800
-> fuyao <fuyao1697@cyg.com> wrote:
-> 
-> Hi,
-> 
-> > the aldo1 is connect regulator pin which power the TV.
-> 
-> What do you mean with that? That ALDO1 is connected to VCC-TVOUT and/or
-> VCC-TVIN on the R40 SoC?
+The mt7986 can support four interrupts to distribute the interrupts
+to different CPUs.
 
-The ALDO1 is connected to VCC-TVOUT on the R40 Soc.
+Signed-off-by: Peter Chiu <chui-hao.chiu@mediatek.com>
+---
+v2: Change to use description instead of using items.
+v3: Change to use items and set different minItems for mediatek,mt7986-wmac
+v4: Move allOf after required and remove duplicated blank line.
+---
+ .../bindings/net/wireless/mediatek,mt76.yaml  | 32 ++++++++++++++++---
+ 1 file changed, 27 insertions(+), 5 deletions(-)
 
-> 
-> > The USB core use TV ref as reference Voltage.
-> 
-> The USB core in the SoC? So pin VCC-USB, which requires 3.3V, the same
-> voltage as the TV pins?
-> Which means this doesn't really have much to do with TV, it's just that
-> USB and also "TV" are supplied by ALDO1?
-
-The internal USB PHY requires a reference voltage. It seems that in
-order to save costs, the reference voltage of the TVOUT module is used.
-
-> 
-> > Signed-off-by: fuyao <fuyao1697@cyg.com>
-> > ---
-> >  arch/arm/boot/dts/allwinner/sun8i-r40-feta40i.dtsi | 7 +++++++
-> >  1 file changed, 7 insertions(+)
-> > 
-> > diff --git a/arch/arm/boot/dts/allwinner/sun8i-r40-feta40i.dtsi b/arch/arm/boot/dts/allwinner/sun8i-r40-feta40i.dtsi
-> > index 9f39b5a2bb35..8906170461df 100644
-> > --- a/arch/arm/boot/dts/allwinner/sun8i-r40-feta40i.dtsi
-> > +++ b/arch/arm/boot/dts/allwinner/sun8i-r40-feta40i.dtsi
-> > @@ -42,6 +42,13 @@ &pio {
-> >  	vcc-pg-supply = <&reg_dldo1>;
-> >  };
-> >  
-> > +&reg_aldo1 {
-> > +	regulator-always-on;
-> 
-> So did USB never work before, with the DT as in mainline?
-> 
-
-The USB can work, but is unstable. Occasionally disconnected because of
-the D+/D- electrical characteristics.
-
-> For always-on regulators it would be good to see some rationale why this
-> cannot be referenced by its consumer. If it is really supplying the USB
-> core, that would be a reason, because we don't have a good way of
-> describing this.
-> 
-> > +	regulator-min-microvolt = <3300000>;
-> > +	regulator-max-microvolt = <3300000>;
-> > +	regulator-name = "vcc-aldo1";
-> 
-> Regulators should be named after their users, so use something like:
-> 	regulator-name = "vcc-3v3-tv-usb";
-> 
-
-thanks.
-
-> That then also serves as documentation of why this is always on.
-> 
-> Cheers,
-> Andre
-> 
-> > +};
-> > +
-> >  &reg_aldo2 {
-> >  	regulator-always-on;
-> >  	regulator-min-microvolt = <1800000>;
-> 
+diff --git a/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml b/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml
+index 252207adbc54..0c6835db397f 100644
+--- a/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml
++++ b/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml
+@@ -19,9 +19,6 @@ description: |
+   Alternatively, it can specify the wireless part of the MT7628/MT7688
+   or MT7622/MT7986 SoC.
+ 
+-allOf:
+-  - $ref: ieee80211.yaml#
+-
+ properties:
+   compatible:
+     enum:
+@@ -38,7 +35,12 @@ properties:
+       MT7986 should contain 3 regions consys, dcm, and sku, in this order.
+ 
+   interrupts:
+-    maxItems: 1
++    minItems: 1
++    items:
++      - description: major interrupt for rings
++      - description: additional interrupt for ring 19
++      - description: additional interrupt for ring 4
++      - description: additional interrupt for ring 5
+ 
+   power-domains:
+     maxItems: 1
+@@ -217,6 +219,23 @@ required:
+   - compatible
+   - reg
+ 
++allOf:
++  - $ref: ieee80211.yaml#
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - mediatek,mt7986-wmac
++    then:
++      properties:
++        interrupts:
++          minItems: 4
++    else:
++      properties:
++        interrupts:
++          maxItems: 1
++
+ unevaluatedProperties: false
+ 
+ examples:
+@@ -293,7 +312,10 @@ examples:
+         reg = <0x18000000 0x1000000>,
+               <0x10003000 0x1000>,
+               <0x11d10000 0x1000>;
+-        interrupts = <GIC_SPI 213 IRQ_TYPE_LEVEL_HIGH>;
++        interrupts = <GIC_SPI 213 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 214 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 215 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 216 IRQ_TYPE_LEVEL_HIGH>;
+         clocks = <&topckgen 50>,
+                  <&topckgen 62>;
+         clock-names = "mcu", "ap2conn";
+-- 
+2.18.0
 
 
