@@ -1,209 +1,155 @@
-Return-Path: <devicetree+bounces-27694-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27697-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34FBC81B5B1
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 13:22:00 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B19D581B5C3
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 13:28:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E0B18285E2A
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 12:21:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4796A1F21EF5
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 12:28:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00E9D73167;
-	Thu, 21 Dec 2023 12:21:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F155F6EB7B;
+	Thu, 21 Dec 2023 12:28:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="UrlAekeh"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="uyS6qk20"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (mail-mw2nam12on2051.outbound.protection.outlook.com [40.107.244.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED4176E59A
-	for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 12:21:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id B390E3F45F
-	for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 12:21:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-	s=20210705; t=1703161296;
-	bh=5yOM88UnN2btzDcnsPnqzcK3v085hMK5F/zsjhGZgro=;
-	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
-	 To:Cc:Content-Type;
-	b=UrlAekehBWXVm8o5Ck3NhS03DpNn88aMDuLo2aMDgzztwJFKEk15971ozrYbO4Fjm
-	 jLaZ+tS79HsdwdxrqNcjsPT+9wiGz+eprDKRRKGCDb+iTwZWXVrnqEGuWWT3Hsd9Yh
-	 bir8dynXQjtmcI1Hl6LxksYlsEP87k0DjBVVl2vApODtuN+AMUOfYgqyH4YTQRXtCe
-	 t5+bN4ps6JXj6znmOg4NTd2HPvZx4P4g9GXs2eZpv2VRofGLiREIwDMAw1Jv4oAYxe
-	 IpbDuO9I+eSpS5LFH8Lkktvzb+dYEyWCjQJh34hl9lXKdgDj8pofjqDSZ9iBY6ujFV
-	 8KxGk1/1Yjjug==
-Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-42784a4762dso9966371cf.1
-        for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 04:21:36 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703161295; x=1703766095;
-        h=content-transfer-encoding:cc:to:subject:message-id:date
-         :mime-version:references:in-reply-to:from:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=5yOM88UnN2btzDcnsPnqzcK3v085hMK5F/zsjhGZgro=;
-        b=mJWN5+OeaPnjwHH75ux48rDGibV083SpSLBkH33AN96VYPza1LS8Thmtp5ifCPegpB
-         RfCWV2TiTa6wyG+CFGOXdOMoozTA1xahAOqEILNuOIrI5BKwatilLOA84Grs3eAinPAw
-         pkyedF5vem/o93nATdbHcPlhRf+dxsNwiDjOIaLf5D9zwanzqyWdEZQ3TYAoUJLY4zDD
-         qr77/KMLf0gRx0JK1JR0Yl7Nj5v4XlSZonr28Hw+NLzVRnWGntyz6q+9xotY4c4IRWg7
-         FrypnozN4WdJL3Td8KpE3T5GFYfzOAEYy1EDHKKdrU28BmsfJsxx9n9fAM/FHfTxfPbM
-         /+sQ==
-X-Gm-Message-State: AOJu0Yw4hGXLLoF7YhNBEwn2LYOuIXst3kKqh9fVHQNfMDkqQQC5zg6E
-	hGrN1pq8tT752LwabZfB56ZX/OoGHZsiyi4DqB2bL6sumDsmmhuReuTvNQo6u1UfcgxElapjX+q
-	yOn1PvAYl9pga9pKQ/qchuhYH/3jvYdouS/hA/ZKcMJ8HYSkTbPoYly/LSwvScJo=
-X-Received: by 2002:a05:622a:14c6:b0:425:917c:7536 with SMTP id u6-20020a05622a14c600b00425917c7536mr6534457qtx.119.1703161295571;
-        Thu, 21 Dec 2023 04:21:35 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IEpMGKr/Zb4NKcCnJdLXeBdkeSOCI9GetmOSTchFTZuRlYVVuqcu2glq8Xby4HmQ5C3aTmS9z58/3PgkaRgvH0=
-X-Received: by 2002:a05:622a:14c6:b0:425:917c:7536 with SMTP id
- u6-20020a05622a14c600b00425917c7536mr6534438qtx.119.1703161295305; Thu, 21
- Dec 2023 04:21:35 -0800 (PST)
-Received: from 348282803490 named unknown by gmailapi.google.com with
- HTTPREST; Thu, 21 Dec 2023 04:21:34 -0800
-From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-In-Reply-To: <CACRpkdZf09uKr+ka0_rsw5kHMjjQbaGypn2fx2-QobLFBKYrtQ@mail.gmail.com>
-References: <20231215143906.3651122-1-emil.renner.berthing@canonical.com>
- <20231215143906.3651122-2-emil.renner.berthing@canonical.com> <CACRpkdZf09uKr+ka0_rsw5kHMjjQbaGypn2fx2-QobLFBKYrtQ@mail.gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 657FC6EB4D;
+	Thu, 21 Dec 2023 12:28:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Jk9+4oTDP+jtnX0qOA+jAmywjkydnuF7JxBTw4+S0X0aY4b8qp5Yr+99PyASnuKr+ZbDgSIb581WbAp1OsUSpH9s5ze1lBw9+rJiasWo1wi30F2PHpJQ9LpIqikR/s0SGWXU3yBGTy5h0DZMbSh7yAP5alw4IQufdSybr/Ld74jvvalwyxp4yuXy1E3R7PE+G1Q7SU6OC0HZ3Wfh9yTlGo7cqgL9K04POKbE03KW+LI5HO1flbA4jVf30F39Kx4QU4cbhypM6mnOkOJuOd4MZKsPL96TjaCB5CEaY6qvoLgMH3R+hDoSvo1pwlMyYEkw8rnVUzjg0EMPZpKbMc3Dfg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=A8EW+A2ylUPQXWMXlQnsQpve+NUOMeP0l+OfB2frPP0=;
+ b=h1/8Jm2gOVngWTasBz4jNx1nlCwuziqsADYcowpi1l/dfDcTpU9pmFa/wvMnMtfScro6AamVhQbvq3/nbbfOvWJanEuQwJOf4Gv6r2yaeSVDiH7JMEilWSUozfbnFRifttbSO1WMc3m3ZvPT9162azV8RF10b2SKAqjB6xdMbY/rGVIQj9N38qYbFYv8qImVHlhGwzDJGj1i/EJGK0sOcOkiyuVp1h8FOfzdB2qrnzJnElpPYqz+oFI9TfFeaR5z7Tqmvq1DikevisdcCK3jkquSdg76/9BTUqAjnIXlYci1S0zp5b64Cbgz5n99nezQo7HpIH8NUhPycM7x2OJzWQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=A8EW+A2ylUPQXWMXlQnsQpve+NUOMeP0l+OfB2frPP0=;
+ b=uyS6qk20fV/2L/Q2AcysWK/kAAg3RhRnT1AeFOE/zuEZggwEGrZy4s4FJGdrK21OOmIK+1E8qVWBbImKTXdhMZP/eX8AVvyTo32999YNMfsYStcLcVUZlVLFqAKhPlQwqX0eBFE7EbWKCK/bnD8J/WJKSRrJiZ1Bd5Amjjh0yCs=
+Received: from BYAPR04CA0015.namprd04.prod.outlook.com (2603:10b6:a03:40::28)
+ by SN7PR12MB7227.namprd12.prod.outlook.com (2603:10b6:806:2aa::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7113.18; Thu, 21 Dec
+ 2023 12:28:03 +0000
+Received: from MWH0EPF000971E3.namprd02.prod.outlook.com
+ (2603:10b6:a03:40:cafe::4d) by BYAPR04CA0015.outlook.office365.com
+ (2603:10b6:a03:40::28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7113.20 via Frontend
+ Transport; Thu, 21 Dec 2023 12:28:03 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ MWH0EPF000971E3.mail.protection.outlook.com (10.167.243.70) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.7113.14 via Frontend Transport; Thu, 21 Dec 2023 12:28:03 +0000
+Received: from localhost (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.34; Thu, 21 Dec
+ 2023 06:28:00 -0600
+From: Michal Simek <michal.simek@amd.com>
+To: <linux-kernel@vger.kernel.org>, <monstr@monstr.eu>,
+	<michal.simek@xilinx.com>, <git@xilinx.com>
+CC: Conor Dooley <conor+dt@kernel.org>, Damien Le Moal <dlemoal@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Laurent Pinchart
+	<laurent.pinchart@ideasonboard.com>, Mark Brown <broonie@kernel.org>, "Naman
+ Trivedi Manojbhai" <naman.trivedimanojbhai@amd.com>, Parth Gajjar
+	<parth.gajjar@amd.com>, Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>,
+	Rob Herring <robh+dt@kernel.org>, Sebastian Reichel <sre@kernel.org>,
+	"Wolfram Sang" <wsa@kernel.org>, <devicetree@vger.kernel.org>, kishore Manne
+	<nava.kishore.manne@amd.com>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-pm@vger.kernel.org>
+Subject: [PATCH v3 0/4] dt-bindings: xilinx: Add missing firmware child nodes
+Date: Thu, 21 Dec 2023 13:27:53 +0100
+Message-ID: <cover.1703161663.git.michal.simek@amd.com>
+X-Mailer: git-send-email 2.36.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Date: Thu, 21 Dec 2023 04:21:34 -0800
-Message-ID: <CAJM55Z8hT_fUAjzNR=7aoWJPU8MMumjdFy74MDD85Yic2Gjg-A@mail.gmail.com>
-Subject: Re: [PATCH v1 1/8] dt-bindings: pinctrl: Add thead,th1520-pinctrl bindings
-To: Linus Walleij <linus.walleij@linaro.org>, Jisheng Zhang <jszhang@kernel.org>, 
-	Guo Ren <guoren@kernel.org>, Drew Fustini <dfustini@baylibre.com>, 
-	Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	Hoan Tran <hoan@os.amperecomputing.com>, Serge Semin <fancer.lancer@gmail.com>, 
-	Bartosz Golaszewski <brgl@bgdev.pl>, Andy Shevchenko <andy@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Fu Wei <wefu@redhat.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1256; i=michal.simek@amd.com; h=from:subject:message-id; bh=yNGsKt64bh0rhJILDw7kTRzHHB6RuZoh1RZtL9CJ75o=; b=owGbwMvMwCR4yjP1tKYXjyLjabUkhtQWfcfc6YrTV/7cxalyI+Tyj6wDH1vaSh8Y/JNYsvWm0 ewFjY47O2JZGASZGGTFFFmkba6c2Vs5Y4rwxcNyMHNYmUCGMHBxCsBEbH0Y5uf0599TPFfVsLYy 30xmXae66dXdyxnml6VwNuuHTFQ0fL8zcvd1Drlzv2axAAA=
+X-Developer-Key: i=michal.simek@amd.com; a=openpgp; fpr=67350C9BF5CCEE9B5364356A377C7F21FE3D1F91
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MWH0EPF000971E3:EE_|SN7PR12MB7227:EE_
+X-MS-Office365-Filtering-Correlation-Id: c4809390-e83d-4fd2-1044-08dc022046ff
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	UgQ05RJCNsDZ3PVQ1wh6Z6UwuTbYXWhRD/D++LxqmALk45zPtMDo7aR9eTpz1zfn/mwbo4RnEibBq4+2EiEc7nhiwU4yvXQJ9fKi45bRjqIxgmxpqSEjnbjb8ZBTuL0beY9l2HPJ4W2mDRbI+3vfPFHBDgWZlRerZilhNXKX+eOa6aq3k+uvi//NydXa2XGx5CjPjg2f7qcHfWEhuJJSxNXzg2rvHbeY+yuSR79eOTQtiZ+nAvU/A/c8G+gHm+S6Sd+2MBgHz7In9B/IsO5bA+QbU5xyrLYXbvooDRc0REm/mOne7yw4PYzGMGXTdxgQhHg1KPC19QmMlFOtDItMc9b9IHiPfGA09jktkRADyyNs3XBEY6tnD02jiW5LQz9zj95mYNESirpWKiRGRZNp6xTGHMLA1Jq2dvBx4t91Dcial2MDY8gpsqFisNjgVmAW3KE8yI7E1kn8aHoA0O+KGO/KuJRLR98h38SJFngIpMdREoG9RdhuFE3WSDwOGQklRAC9aABJOVLdIJ9r1ROS3C20QF831xXo2r0QT4hMz0uDOVkOCB/mB9nEeCNkq+x2V7EVmGJ2QVgsneJdiKdxrU82psnvLUKOJ69jFqsz7F6ALjwOcx9ZFr4Jda3wxtpIG/uSembuV6UH9DuHKDCOsAIEIixmCDtHwfF4CM9ZRhHj9EOcOtOs4nOGBIVjGX2XsKK9qpiVKT0UWibaf3G7Wl1g2lHbvhxUKCMbK/ogikwu0xSjXZQLWqRcqacxMI5hqlPy/okrXphiWk5f81P53w==
+X-Forefront-Antispam-Report:
+	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230031)(4636009)(346002)(136003)(39860400002)(396003)(376002)(230922051799003)(1800799012)(451199024)(82310400011)(64100799003)(186009)(40470700004)(36840700001)(46966006)(47076005)(356005)(81166007)(82740400003)(41300700001)(86362001)(26005)(16526019)(36860700001)(36756003)(336012)(83380400001)(426003)(2616005)(7416002)(5660300002)(2906002)(8676002)(8936002)(4326008)(316002)(70206006)(70586007)(54906003)(478600001)(40480700001)(110136005)(966005)(6666004)(40460700003)(44832011)(36900700001)(2101003);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Dec 2023 12:28:03.1691
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c4809390-e83d-4fd2-1044-08dc022046ff
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	MWH0EPF000971E3.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB7227
 
-Linus Walleij wrote:
-> Hi Emil,
->
-> thanks for your patch!
->
-> On Fri, Dec 15, 2023 at 3:39=E2=80=AFPM Emil Renner Berthing
-> <emil.renner.berthing@canonical.com> wrote:
->
-> > +  The TH1520 has 3 groups of pads each controlled from different memor=
-y ranges.
-> > +  Confusingly the memory ranges are named
-> > +    PADCTRL_AOSYS  -> PAD Group 1
-> > +    PADCTRL1_APSYS -> PAD Group 2
-> > +    PADCTRL0_APSYS -> PAD Group 3
->
-> Really, even in the documentation? If you look at the layout on the actua=
-l
-> chip, does a pattern emerge?
+Hi,
 
-Yes, the documentation is where I got this from:
-https://git.beagleboard.org/beaglev-ahead/beaglev-ahead/-/blob/main/docs/TH=
-1520%20System%20User%20Manual.pdf
+series is converting missing descriptions for child nodes and also
+synchronizing name for power-management discussed with Krzysztof in v1
+version available here.
+https://lore.kernel.org/r/fc7863a2-d3c5-47c8-9484-ef9cd6d7dd5d@linaro.org
 
-The pinmux chapter starting on page 31 only talks about the 3 pad groups, b=
-ut
-if you match the base addresses, table 3-8 page 46, with the memory map, ta=
-ble
-1-2 page 1, they same base addresses have the PADCTRL names above.
+Thanks,
+Michal
 
-> I think some use the north/south/east/west as group names with the BGA
-> chip facing up with the package text correctly readable then it is a bit
-> like a map.
+Changes in v3:
+- s/power-controller/power-management/g
+- extend example
+- s/power-controller/power-management/g
+- align commit message
+- s/power-controller/power-management/g
+- update subject and commit message to match sed above
 
-I don't know if or where such documentation is available.
-Jisheng, Guo or Drew, do you know?
+Changes in v2:
+- Sort nodes by name
+- Rename zynqmp-power to power-controller
+- Keep only single patch for easier handling as done in v1
+- New patch in series
+- New patch is series
+- New patch is series
 
-> > +          function:
-> > +            $ref: /schemas/types.yaml#/definitions/string
-> > +            enum: [ "0", "1", "2", "3", "4", "5" ]
-> > +            description: The mux function to select for the given pins=
-.
->
-> So why is the opaque names "0", "1" etc used, and they will be the same f=
-or
-> all pins I bet. Most drivers use a string identifying the actual function=
- here.
-> Such as "i2c", "gpio", etc.
->
-> Names that are just figures are *impossible* to understand without access
-> to a datasheet.
->
-> The point of device trees sources are to be human readable, strings of
-> magic numbers are not human readable at all.
->
-> > +          bias-disable: true
-> > +
-> > +          bias-pull-up:
-> > +            type: boolean
-> > +
-> > +          bias-pull-down:
-> > +            type: boolean
-> > +
-> > +          drive-strength:
-> > +            enum: [ 1, 2, 3, 5, 7, 8, 10, 12, 13, 15, 16, 18, 20, 21, =
-23, 25 ]
->
-> milliamperes? Then use drive-strength-microamp.
->
-> If not, explain what each setting means, i.e. the number of max microamps=
-.
+Michal Simek (4):
+  dt-bindings: firmware: xilinx: Describe missing child nodes
+  dt-bindings: firmware: xilinx: Sort node names (clock-controller)
+  dt-bindings: power: reset: xilinx: Rename node names in examples
+  arm64: zynqmp: Rename zynqmp-power node to power-management
 
-It *is* the number of mA. I can change it uA if that's better.
+ .../firmware/xilinx/xlnx,zynqmp-firmware.yaml | 68 ++++++++++++++++---
+ .../power/reset/xlnx,zynqmp-power.yaml        |  4 +-
+ arch/arm64/boot/dts/xilinx/zynqmp.dtsi        |  2 +-
+ 3 files changed, 62 insertions(+), 12 deletions(-)
 
-> At which point using drive-strength-microamp and a translation table in t=
-he
-> driver may be a better idea.
+-- 
+2.36.1
 
-That's what it does, just with mA.
-
-> The only reason to use opaque numbers is if 1, 2 (etc) mean something lik=
-e
-> "number of driver stages" with a current output that varies with technolo=
-gy.
->
-> > +          thead,strong-pull-up:
-> > +            oneOf:
-> > +              - type: boolean
-> > +              - $ref: /schemas/types.yaml#/definitions/uint32
-> > +                enum: [ 0, 2100 ]
-> > +            description: Enable or disable strong 2.1kOhm pull-up.
->
-> Just use bias-pull-up with an argument.
->
-> bias-pull-up =3D <2100000>;
->
-> No argument would be the default setting.
->
-> No need for custom bindings.
->
-> > +        uart0_pins: uart0-0 {
-> > +            tx-pins {
-> > +                pins =3D "UART0_TXD";
->
-> Pins have reasonable names, but...
->
-> > +                function =3D "0";
->
-> What about function =3D "uart_0" hmmm?
->
-> Yours,
-> Linus Walleij
->
-> _______________________________________________
-> linux-riscv mailing list
-> linux-riscv@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-riscv
 
