@@ -1,61 +1,62 @@
-Return-Path: <devicetree+bounces-27670-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27671-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A179681B378
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 11:25:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 877FD81B37D
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 11:25:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 420801F24D1C
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 10:25:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EF4E21F255D4
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 10:25:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3A1E4EB54;
-	Thu, 21 Dec 2023 10:25:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08CD75102E;
+	Thu, 21 Dec 2023 10:25:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="sxk9lvqH"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tsi8h5Yi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
+Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 395C351C26
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 269F251C28
 	for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 10:25:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-50c0f13ea11so783287e87.3
-        for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 02:25:08 -0800 (PST)
+Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-50e23c620e8so788064e87.1
+        for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 02:25:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1703154307; x=1703759107; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=pYNLBDFWO3LrdFkIMvJ8nxiptH8Derg0mKqbJmtxv8s=;
-        b=sxk9lvqHDgX4jMJVz+bxjFQx+PLVIYfq5ZvUxmcLKzJQGJ8qvLEoCBBw96rNIhg3c7
-         UPrs2pBcDhGP4hWXmjKIm2SSR0BlkBduUI+Q+8msA2Ze5Fj6p96AlZAmCoCugGjBqRSP
-         fwWdA4Qb+AlQq45tpLa6NRgj+OtjSUmUH6Q0hnizLV+AaCjsUQBlfiGgxghBBoPvkB/r
-         Nvzg7xpSQh+1KJHMpBDYfTcAjDYo2Sv8m0+JTJVdsCdaen4Bo/suxbKL7Cudjzt2P0y/
-         OS5WYWOZRfCP000iuQCUzhtznFVtQO+IlMITqsLe/V1bHaUBTdQmQUhGlW52mAOAJH+D
-         nVww==
+        d=linaro.org; s=google; t=1703154308; x=1703759108; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Zl+unRu+Z3Li1VZc4Qd2ksf/Y02Bj/Ncp2AcgdIJpNI=;
+        b=tsi8h5YimJkL+anEm9KMRn9MYAgWKtm7Y9nIKm+cRWhx40WgRjAFCp4TFYlQsNPEZq
+         vgFVFlWIqIeMl3UpBde5NBM3JOjXdDLoMH3LeEHjg70P/vHIqWNwQSvEcW5KnYcfKhiO
+         e+u5Sd9s/hkuuwGNocMNlBbCUK2vGWO+YaLrjGVr7LG4lChesMEY6aZwOaMaW3aaT5bP
+         XF5x920ugFtzX2ZvMAZxq4WxWIxcvyqIrYi87cejUVkIX4XbJLMCm85ODoqpawSv2vsP
+         ycXDfoq3WskC7Q9nhVg2x/WuylNmAgR4TO7km0FcMDC7YiURv+3Mi2/WnEYf+amCN+UG
+         ipcw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703154307; x=1703759107;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=pYNLBDFWO3LrdFkIMvJ8nxiptH8Derg0mKqbJmtxv8s=;
-        b=tuaIjd6rfEZNGhtO//X/9+LufbPi+JpHjHvG3OscWQVxv3cu7xX+O2nGe6FraPCgg0
-         qEuCOHyr576cSWZKhIPWSaYeEcyBRgCI0+w+Fiv/2ABPwxZgrL1jl3V9j8+YqILIvKCp
-         gpLzIVZn6luNKMoEJUwqnoecZj0egA+VfJNaYBNV8+Rt3jC0ZLgO8VhHQ0W7gOPp6Cx0
-         CGYxeKZRS1l5lsdplTkPLDuJldObNdRdCgetLAYfdht6R1d2mkN3/TCwKOo+x2jq3Mwy
-         EytkjOIHECr1EsyFGQHz80NS0UBXfBUPqQbmbZmQefC8JCIpTi3/JjEww0vanF1z2CTB
-         o68g==
-X-Gm-Message-State: AOJu0YyTVBqmcvRXrSKlqlJkG32REUPii9TrjeL7Rv9KiZUIUoJ2LGJe
-	2XsBsClgQeFMQxkTHpV2zMp7gg==
-X-Google-Smtp-Source: AGHT+IH6pMrLYwHqjlp1850CLT8V4kczgmX00VnjUzgg0aKA4yDbM+awaOvHnZsumP3WdOAsyEN9Dg==
-X-Received: by 2002:a05:6512:238e:b0:50e:4c33:1266 with SMTP id c14-20020a056512238e00b0050e4c331266mr2146675lfv.72.1703154307282;
-        Thu, 21 Dec 2023 02:25:07 -0800 (PST)
+        d=1e100.net; s=20230601; t=1703154308; x=1703759108;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Zl+unRu+Z3Li1VZc4Qd2ksf/Y02Bj/Ncp2AcgdIJpNI=;
+        b=Vp5kVPGpt7vO5InH8Ep4gpx+6VBfF5XMrS23QJeXEDPx9dwsmbtLSSsYb6N0STe/Eg
+         Ok18QtbxS4vZ0iyjSwoq67SznmvXrjg6mi2u+XqxtNU7e6uFMO+RbR0X2nDdkq2oB/vX
+         mIzoL1Wbe6GvQdGVpe3uX095dNzW5wzOYiCjNjcOPCyhCs58k/DVu9+OUZBgeBpuujrw
+         /6zEJMQD/EMcvEMc3hCzGV2UeeL9ZeWwzpJVHKIVSI1PSVIJ5hr4tqPxpgS7AFY9e5c5
+         APpTWWB9Bh/RFgfz0WsXy88VvHhJsrnY3NTUnsTLJV16y5WAB/PAWeX9ObsFZtzQ4D7k
+         es+g==
+X-Gm-Message-State: AOJu0YytCrmVFag+mKfJieflYZP+7vGs3Dg3lx+6wCPmpFwD0pwYg04Z
+	g9WcfvnHHdIHBz13XHpx2CFmPQ==
+X-Google-Smtp-Source: AGHT+IErFsX1C+i5hoTMPx7U4b5LtQifR1S+KwjgLmAZYmXWJKsKdb6GqMAJPx0m4XRQ74za46cjAQ==
+X-Received: by 2002:a05:6512:b26:b0:50c:180:2156 with SMTP id w38-20020a0565120b2600b0050c01802156mr11739569lfu.7.1703154308200;
+        Thu, 21 Dec 2023 02:25:08 -0800 (PST)
 Received: from umbar.unikie.fi ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id m26-20020a056512359a00b0050aaae62dbdsm231671lfr.62.2023.12.21.02.25.06
+        by smtp.gmail.com with ESMTPSA id m26-20020a056512359a00b0050aaae62dbdsm231671lfr.62.2023.12.21.02.25.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 21 Dec 2023 02:25:06 -0800 (PST)
+        Thu, 21 Dec 2023 02:25:07 -0800 (PST)
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To: Andy Gross <agross@kernel.org>,
 	Bjorn Andersson <andersson@kernel.org>,
@@ -78,10 +79,12 @@ Cc: Stephen Boyd <swboyd@chromium.org>,
 	Krishna Manikandan <quic_mkrishn@quicinc.com>,
 	Jonathan Marek <jonathan@marek.ca>,
 	linux-phy@lists.infradead.org
-Subject: [RFC PATCH 0/2] dt-bindings: display: msm: correct schema filenames
-Date: Thu, 21 Dec 2023 12:25:04 +0200
-Message-Id: <20231221102506.18320-1-dmitry.baryshkov@linaro.org>
+Subject: [RFC PATCH 1/2] dt-bindings: display: msm: move DSI PHY schema to bindings/phy
+Date: Thu, 21 Dec 2023 12:25:05 +0200
+Message-Id: <20231221102506.18320-2-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20231221102506.18320-1-dmitry.baryshkov@linaro.org>
+References: <20231221102506.18320-1-dmitry.baryshkov@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,41 +93,19 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-During the email discussion Aiqun Yu (Maria) pointed out that the file
-names for some of the MSM display schema files might not be obvious.
-Indeed they do not fully follow the established practice of matching the
-file name and one of compat strings.
+While the DSI PHY schema files describe the display-related hardware,
+they still describe a PHY. Move all DSI PHY schema files to the phy/
+subdir.
 
-Move DSI PHY schemas to the PHY subdir (renaming them meanwhile) and
-rename remaining schema files.
-
-Note, I have intentinally left dpu-common.yaml and mdss-common.yaml
-untouched, they describe common properties for a family of devices.
-
-Also I have left dp-controller.yaml intact. I could not come up with a
-good enough file name. Suggestions for this file are appreciated.
-
-Dmitry Baryshkov (2):
-  dt-bindings: display: msm: move DSI PHY schema to bindings/phy
-  dt-bindings: display: msm: mass-rename files
-
- .../bindings/display/msm/{gmu.yaml => qcom,adreno-gmu.yaml}   | 2 +-
- .../bindings/display/msm/{gpu.yaml => qcom,adreno.yaml}       | 2 +-
- .../bindings/display/msm/{hdmi.yaml => qcom,hdmi-tx.yaml}     | 2 +-
- .../bindings/display/msm/{mdp4.yaml => qcom,mdp4.yaml}        | 2 +-
- .../msm/{dsi-controller-main.yaml => qcom,mdss-dsi-ctrl.yaml} | 2 +-
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+---
  .../msm/dsi-phy-10nm.yaml => phy/qcom,dsi-phy-10nm.yaml}      | 4 ++--
  .../msm/dsi-phy-14nm.yaml => phy/qcom,dsi-phy-14nm.yaml}      | 4 ++--
  .../msm/dsi-phy-20nm.yaml => phy/qcom,dsi-phy-20nm.yaml}      | 4 ++--
  .../msm/dsi-phy-28nm.yaml => phy/qcom,dsi-phy-28nm.yaml}      | 4 ++--
  .../msm/dsi-phy-7nm.yaml => phy/qcom,dsi-phy-7nm.yaml}        | 4 ++--
  .../msm/dsi-phy-common.yaml => phy/qcom,dsi-phy-common.yaml}  | 2 +-
- 11 files changed, 16 insertions(+), 16 deletions(-)
- rename Documentation/devicetree/bindings/display/msm/{gmu.yaml => qcom,adreno-gmu.yaml} (99%)
- rename Documentation/devicetree/bindings/display/msm/{gpu.yaml => qcom,adreno.yaml} (99%)
- rename Documentation/devicetree/bindings/display/msm/{hdmi.yaml => qcom,hdmi-tx.yaml} (98%)
- rename Documentation/devicetree/bindings/display/msm/{mdp4.yaml => qcom,mdp4.yaml} (97%)
- rename Documentation/devicetree/bindings/display/msm/{dsi-controller-main.yaml => qcom,mdss-dsi-ctrl.yaml} (99%)
+ 6 files changed, 11 insertions(+), 11 deletions(-)
  rename Documentation/devicetree/bindings/{display/msm/dsi-phy-10nm.yaml => phy/qcom,dsi-phy-10nm.yaml} (96%)
  rename Documentation/devicetree/bindings/{display/msm/dsi-phy-14nm.yaml => phy/qcom,dsi-phy-14nm.yaml} (94%)
  rename Documentation/devicetree/bindings/{display/msm/dsi-phy-20nm.yaml => phy/qcom,dsi-phy-20nm.yaml} (93%)
@@ -132,6 +113,147 @@ Dmitry Baryshkov (2):
  rename Documentation/devicetree/bindings/{display/msm/dsi-phy-7nm.yaml => phy/qcom,dsi-phy-7nm.yaml} (94%)
  rename Documentation/devicetree/bindings/{display/msm/dsi-phy-common.yaml => phy/qcom,dsi-phy-common.yaml} (90%)
 
+diff --git a/Documentation/devicetree/bindings/display/msm/dsi-phy-10nm.yaml b/Documentation/devicetree/bindings/phy/qcom,dsi-phy-10nm.yaml
+similarity index 96%
+rename from Documentation/devicetree/bindings/display/msm/dsi-phy-10nm.yaml
+rename to Documentation/devicetree/bindings/phy/qcom,dsi-phy-10nm.yaml
+index 69d13867b7cf..094fbd60093a 100644
+--- a/Documentation/devicetree/bindings/display/msm/dsi-phy-10nm.yaml
++++ b/Documentation/devicetree/bindings/phy/qcom,dsi-phy-10nm.yaml
+@@ -1,7 +1,7 @@
+ # SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+ %YAML 1.2
+ ---
+-$id: http://devicetree.org/schemas/display/msm/dsi-phy-10nm.yaml#
++$id: http://devicetree.org/schemas/phy/qcom,dsi-phy-10nm.yaml#
+ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: Qualcomm Display DSI 10nm PHY
+@@ -10,7 +10,7 @@ maintainers:
+   - Krishna Manikandan <quic_mkrishn@quicinc.com>
+ 
+ allOf:
+-  - $ref: dsi-phy-common.yaml#
++  - $ref: qcom,dsi-phy-common.yaml#
+ 
+ properties:
+   compatible:
+diff --git a/Documentation/devicetree/bindings/display/msm/dsi-phy-14nm.yaml b/Documentation/devicetree/bindings/phy/qcom,dsi-phy-14nm.yaml
+similarity index 94%
+rename from Documentation/devicetree/bindings/display/msm/dsi-phy-14nm.yaml
+rename to Documentation/devicetree/bindings/phy/qcom,dsi-phy-14nm.yaml
+index 52bbe132e6da..308706d37944 100644
+--- a/Documentation/devicetree/bindings/display/msm/dsi-phy-14nm.yaml
++++ b/Documentation/devicetree/bindings/phy/qcom,dsi-phy-14nm.yaml
+@@ -1,7 +1,7 @@
+ # SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+ %YAML 1.2
+ ---
+-$id: http://devicetree.org/schemas/display/msm/dsi-phy-14nm.yaml#
++$id: http://devicetree.org/schemas/phy/qcom,dsi-phy-14nm.yaml#
+ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: Qualcomm Display DSI 14nm PHY
+@@ -10,7 +10,7 @@ maintainers:
+   - Krishna Manikandan <quic_mkrishn@quicinc.com>
+ 
+ allOf:
+-  - $ref: dsi-phy-common.yaml#
++  - $ref: qcom,dsi-phy-common.yaml#
+ 
+ properties:
+   compatible:
+diff --git a/Documentation/devicetree/bindings/display/msm/dsi-phy-20nm.yaml b/Documentation/devicetree/bindings/phy/qcom,dsi-phy-20nm.yaml
+similarity index 93%
+rename from Documentation/devicetree/bindings/display/msm/dsi-phy-20nm.yaml
+rename to Documentation/devicetree/bindings/phy/qcom,dsi-phy-20nm.yaml
+index 7e6687cb002b..cf6f96d04150 100644
+--- a/Documentation/devicetree/bindings/display/msm/dsi-phy-20nm.yaml
++++ b/Documentation/devicetree/bindings/phy/qcom,dsi-phy-20nm.yaml
+@@ -1,7 +1,7 @@
+ # SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+ %YAML 1.2
+ ---
+-$id: http://devicetree.org/schemas/display/msm/dsi-phy-20nm.yaml#
++$id: http://devicetree.org/schemas/phy/qcom,dsi-phy-20nm.yaml#
+ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: Qualcomm Display DSI 20nm PHY
+@@ -10,7 +10,7 @@ maintainers:
+   - Krishna Manikandan <quic_mkrishn@quicinc.com>
+ 
+ allOf:
+-  - $ref: dsi-phy-common.yaml#
++  - $ref: qcom,dsi-phy-common.yaml#
+ 
+ properties:
+   compatible:
+diff --git a/Documentation/devicetree/bindings/display/msm/dsi-phy-28nm.yaml b/Documentation/devicetree/bindings/phy/qcom,dsi-phy-28nm.yaml
+similarity index 94%
+rename from Documentation/devicetree/bindings/display/msm/dsi-phy-28nm.yaml
+rename to Documentation/devicetree/bindings/phy/qcom,dsi-phy-28nm.yaml
+index 288d8babb76a..4fe30ca2d5f5 100644
+--- a/Documentation/devicetree/bindings/display/msm/dsi-phy-28nm.yaml
++++ b/Documentation/devicetree/bindings/phy/qcom,dsi-phy-28nm.yaml
+@@ -1,7 +1,7 @@
+ # SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+ %YAML 1.2
+ ---
+-$id: http://devicetree.org/schemas/display/msm/dsi-phy-28nm.yaml#
++$id: http://devicetree.org/schemas/phy/qcom,dsi-phy-28nm.yaml#
+ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: Qualcomm Display DSI 28nm PHY
+@@ -10,7 +10,7 @@ maintainers:
+   - Krishna Manikandan <quic_mkrishn@quicinc.com>
+ 
+ allOf:
+-  - $ref: dsi-phy-common.yaml#
++  - $ref: qcom,dsi-phy-common.yaml#
+ 
+ properties:
+   compatible:
+diff --git a/Documentation/devicetree/bindings/display/msm/dsi-phy-7nm.yaml b/Documentation/devicetree/bindings/phy/qcom,dsi-phy-7nm.yaml
+similarity index 94%
+rename from Documentation/devicetree/bindings/display/msm/dsi-phy-7nm.yaml
+rename to Documentation/devicetree/bindings/phy/qcom,dsi-phy-7nm.yaml
+index 7e764eac3ef3..1208aa59ca84 100644
+--- a/Documentation/devicetree/bindings/display/msm/dsi-phy-7nm.yaml
++++ b/Documentation/devicetree/bindings/phy/qcom,dsi-phy-7nm.yaml
+@@ -1,7 +1,7 @@
+ # SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+ %YAML 1.2
+ ---
+-$id: http://devicetree.org/schemas/display/msm/dsi-phy-7nm.yaml#
++$id: http://devicetree.org/schemas/phy/qcom,dsi-phy-7nm.yaml#
+ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: Qualcomm Display DSI 7nm PHY
+@@ -10,7 +10,7 @@ maintainers:
+   - Jonathan Marek <jonathan@marek.ca>
+ 
+ allOf:
+-  - $ref: dsi-phy-common.yaml#
++  - $ref: qcom,dsi-phy-common.yaml#
+ 
+ properties:
+   compatible:
+diff --git a/Documentation/devicetree/bindings/display/msm/dsi-phy-common.yaml b/Documentation/devicetree/bindings/phy/qcom,dsi-phy-common.yaml
+similarity index 90%
+rename from Documentation/devicetree/bindings/display/msm/dsi-phy-common.yaml
+rename to Documentation/devicetree/bindings/phy/qcom,dsi-phy-common.yaml
+index 6b57ce41c95f..b871a36cb210 100644
+--- a/Documentation/devicetree/bindings/display/msm/dsi-phy-common.yaml
++++ b/Documentation/devicetree/bindings/phy/qcom,dsi-phy-common.yaml
+@@ -1,7 +1,7 @@
+ # SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+ %YAML 1.2
+ ---
+-$id: http://devicetree.org/schemas/display/msm/dsi-phy-common.yaml#
++$id: http://devicetree.org/schemas/phy/qcom,dsi-phy-common.yaml#
+ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: Qualcomm Display DSI PHY Common Properties
 -- 
 2.39.2
 
