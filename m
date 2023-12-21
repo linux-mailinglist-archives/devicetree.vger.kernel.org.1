@@ -1,520 +1,330 @@
-Return-Path: <devicetree+bounces-27584-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27585-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B40EF81AEF0
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 07:51:43 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CEFC581AEFF
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 07:59:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D88051C22C57
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 06:51:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F332F1C2327F
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 06:59:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 072D7D2E8;
-	Thu, 21 Dec 2023 06:51:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F289FD2FF;
+	Thu, 21 Dec 2023 06:59:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RewUFUNU"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="P2CGQMti"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
+Received: from mail-yw1-f173.google.com (mail-yw1-f173.google.com [209.85.128.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0435CBE6B;
-	Thu, 21 Dec 2023 06:51:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-a22f59c6aeaso44368166b.2;
-        Wed, 20 Dec 2023 22:51:08 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D9A7C140
+	for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 06:59:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yw1-f173.google.com with SMTP id 00721157ae682-5e7d306ee27so4913937b3.3
+        for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 22:59:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1703141467; x=1703746267; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=linaro.org; s=google; t=1703141977; x=1703746777; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=9XAXmVR+c/XGm5FTf9OhtjlxpDEOCYR9y4DEvrtgRZ0=;
-        b=RewUFUNUk/0nKlgiYvL9aNILSB5yOLsDqTiNwjPwGPWVoaqiiqH0sNxuVSBTMHWHAY
-         XuGiShHzJxxfqcK+vuhn2bbxD/w3IAEO/eUzwrGg7LEJStqTKGpg6s5Ic4hcUWBcy9ge
-         lhdkpzjQceYwks3A7jyhTX7Q2ilMVaxeypsgqLCiZfrK/EGexwaf5PnoEoS95Pv5cQiK
-         bGOJr6oPMfhjHyvo22uk2oZ8rQHnMlIPpZz744B744SRcIryYtB9Kw8+8udiGgNoRhY+
-         DljVStFsW1fAAZcEqx3nSlDa9c23Vk2fmoAUYt4I6oNYE6zP9P1UZ9Pm43tahtKsTUKK
-         NzRQ==
+        bh=V5qjfhA6k6Ypy5X9ehKiyPOQQXjASHEE/ZIK1E7N2ew=;
+        b=P2CGQMti4MKDnyuvyP3VOw6ryj8I+bTfyxxz8qCgu/C2aWMccGTmHsMRjcDetOUA1f
+         tlo3pgqPwH4AOTDP3aW2VoZZ3gUuARh8nl1DLVIQ2rpsKU5AKfhWM5Js7SeyHIVWG6cc
+         S+IRGu3HxScjkNH63IN4lG0h6A//tBBbweNNHeG8VFVtI7sEGVf3ZWpVyW/S3Rs0bTfk
+         ieqwdOcs8ja4rD85Chsco2xqWvCx3nQoeU6At7+W55OZuXbMRVlk22XmJ4Wd0kR+nqfT
+         +zQG1OY1QbPYIm9CgbZDOu9cHXFbukqHAjn5KtFuLW5Rtjvfis8NacxIUyhtPYRn+bWJ
+         c5ug==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703141467; x=1703746267;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1703141977; x=1703746777;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=9XAXmVR+c/XGm5FTf9OhtjlxpDEOCYR9y4DEvrtgRZ0=;
-        b=hpE8bSVCjehPZpxzuP58EPGPGUEMEJHF+dB3DXDJ9McaYAsHEpeMRalCp1JDIEHqhK
-         cpl/rbVzUTYQcQqXHY/mKnbv9BbHfltTV+nk1fk7IahN9pnI2QJ/bFypjr+vuyxkzLX4
-         CENE5hZ8pt81EqX29T/bIkylSrceB1Ww0/lh6wBczDUNXHD6WgCgU5Uv5fyVkGIzhdk8
-         sb+AUq+mk9Qy8Krha23sOKE+cJ6GAD21xo1PmZ7NzRqPDw0zndknEdP9ced6ZFpYTX2J
-         bi0cw0X4Fa3pUjNy5YziqqAdkhz61BKSQ2STgEPrCQmHHwBd5lL7O7JAL5abQ9zVJUsL
-         fUnA==
-X-Gm-Message-State: AOJu0Yyzj7Ibip/D9K9knI6kKKU3zrm0H49W0yxeD9qnFAqf4TPJQDGo
-	/lIiERSBW8IprW4zTVMWlFk=
-X-Google-Smtp-Source: AGHT+IFwVEl3SZFKf7K9zQJqaL00vC2Xq+BHJE2lIV88+pM1GJZsCdUazABSjmX+E58fJqiSqCbp1Q==
-X-Received: by 2002:a17:907:7f94:b0:a26:892f:b0d9 with SMTP id qk20-20020a1709077f9400b00a26892fb0d9mr2115503ejc.56.1703141466743;
-        Wed, 20 Dec 2023 22:51:06 -0800 (PST)
-Received: from localhost.localdomain (2a02-8388-0502-f480-6c32-186a-368b-d6a9.cable.dynamic.v6.surfer.at. [2a02:8388:502:f480:6c32:186a:368b:d6a9])
-        by smtp.gmail.com with ESMTPSA id jo23-20020a170906f6d700b00a268e4757b2sm617082ejb.143.2023.12.20.22.51.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 20 Dec 2023 22:51:06 -0800 (PST)
-From: Christoph Winklhofer <cj.winklhofer@gmail.com>
-To: krzysztof.kozlowski@linaro.org,
-	robh+dt@kernel.org,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Christoph Winklhofer <cj.winklhofer@gmail.com>
-Subject: [PATCH v1 2/2] w1: add UART w1 bus driver
-Date: Thu, 21 Dec 2023 07:50:48 +0100
-Message-ID: <20231221065049.30703-3-cj.winklhofer@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20231221065049.30703-1-cj.winklhofer@gmail.com>
-References: <20231221065049.30703-1-cj.winklhofer@gmail.com>
+        bh=V5qjfhA6k6Ypy5X9ehKiyPOQQXjASHEE/ZIK1E7N2ew=;
+        b=FYEOld2LNt43g0ZbHjBOpARq0Aw45xAYeNvO5Dhwd4VNNLiGknwMJq54nMnJUFsQxI
+         H6VDh+b4cylCgEqWQREOzzMJhWdFRmzTX5U/pulGMWyFmaVdWKYPGab2ErYfYFEUH7bU
+         3uSgnOfwDjqvzYFBiADrBk9HmVXgQj0inzV9Ig/wcTWG/gtE76aORYUugkszuOHyHqUT
+         sacnthplE4J+YYhmVrQxRZHkdibMMnKdNKtb2MoshE+V6xkFpMbf8rhsjusdOb3dKCVw
+         N2n7TAeS7QPbZdg3Z5W+/OKRfBhM21kEOkzPvgAjnUspdCRxutKOLgPu0fhLPO8wE11j
+         6x+Q==
+X-Gm-Message-State: AOJu0YxFCczmW6AiiRKzYEhLKZeOmnCoEYlibvqVoxChz+swcFZ7SRZZ
+	RkBajq12HB9TAcyoplDjGD5Aj66ntIxRQQj2EFYAhg==
+X-Google-Smtp-Source: AGHT+IFqFiB3IB7LrK51HWjhrRIYQJgjOnrJYmn8pNi0p8qjjT6T3gvmXs3CRS7GmIAp4IPo1O/4VsuGKfWlPqXV92M=
+X-Received: by 2002:a0d:ff47:0:b0:5d7:1940:7d63 with SMTP id
+ p68-20020a0dff47000000b005d719407d63mr928434ywf.58.1703141976999; Wed, 20 Dec
+ 2023 22:59:36 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20231219003106.8663-1-quic_tengfan@quicinc.com>
+ <20231219003106.8663-2-quic_tengfan@quicinc.com> <457e336e-004c-4721-b58d-e9ada16dc04b@linaro.org>
+ <a8f168da-14f7-4377-8dea-f282a3eac0a4@quicinc.com> <13b61d41-6045-499e-864b-51c6cb6eacf9@linaro.org>
+ <38604415-b410-4995-9c4f-525536435699@quicinc.com> <CAA8EJpo07gE7ZeNP6wSGTLtmF_3PKQAKFyMRZ8dk1K+f7PAxrg@mail.gmail.com>
+ <ad1547cf-0520-422d-a105-ec426f526d71@quicinc.com> <CAA8EJppwsezPV21Uw8xTn=ra8L2jfnkHoRghDPN96O5tJsOD7A@mail.gmail.com>
+ <72305a35-02e6-4ff6-8251-01f986530c5d@quicinc.com> <A45746C4-54C9-48D2-9DB7-52B4B56854E6@linaro.org>
+ <4e328cd8-9ef7-42ce-b592-7f2216c00c0b@quicinc.com>
+In-Reply-To: <4e328cd8-9ef7-42ce-b592-7f2216c00c0b@quicinc.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Thu, 21 Dec 2023 08:59:25 +0200
+Message-ID: <CAA8EJprE8v3bhHfyZJM9SJT=ShJ-LQvk5mR=gpdAWXF2yANWbQ@mail.gmail.com>
+Subject: Re: [PATCH v3 1/1] arm64: dts: qcom: sm8550: remove
+ address/size-cells from mdss_dsi1
+To: "Aiqun Yu (Maria)" <quic_aiquny@quicinc.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Tengfei Fan <quic_tengfan@quicinc.com>, 
+	andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, kernel@quicinc.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Add a UART 1-wire bus driver. The driver utilizes the UART interface via
-the Serial Device Bus to create the 1-wire timing patterns. The driver
-was tested on a "Raspberry Pi 3B" with a DS18B20 and on a "Variscite
-DART-6UL" with a DS18S20 temperature sensor.
+On Thu, 21 Dec 2023 at 03:57, Aiqun Yu (Maria) <quic_aiquny@quicinc.com> wr=
+ote:
+>
+>
+>
+> On 12/20/2023 7:10 PM, Dmitry Baryshkov wrote:
+> > On 20 December 2023 12:33:07 EET, "Aiqun Yu (Maria)" <quic_aiquny@quici=
+nc.com> wrote:
+> >>
+> >>
+> >> On 12/20/2023 3:06 PM, Dmitry Baryshkov wrote:
+> >>> On Wed, 20 Dec 2023 at 02:54, Aiqun Yu (Maria) <quic_aiquny@quicinc.c=
+om> wrote:
+> >>>>
+> >>>>
+> >>>>
+> >>>> On 12/19/2023 6:21 PM, Dmitry Baryshkov wrote:
+> >>>>> On Tue, 19 Dec 2023 at 12:09, Aiqun Yu (Maria) <quic_aiquny@quicinc=
+.com> wrote:
+> >>>>>>
+> >>>>>>
+> >>>>>>
+> >>>>>> On 12/19/2023 5:41 PM, Krzysztof Kozlowski wrote:
+> >>>>>>> On 19/12/2023 10:36, Aiqun Yu (Maria) wrote:
+> >>>>>>>>
+> >>>>>>>>
+> >>>>>>>> On 12/19/2023 3:17 PM, Krzysztof Kozlowski wrote:
+> >>>>>>>>> On 19/12/2023 01:31, Tengfei Fan wrote:
+> >>>>>>>>>> The address/size-cells in mdss_dsi1 node have not ranges and c=
+hild also
+> >>>>>>>>>> have not reg, then this leads to dtc W=3D1 warnings:
+> >>>>>>>>>
+> >>>>>>>> Comments can be more readable:
+> >>>>>>>> "mdss_dsi1" node don't have "ranges" or child "reg" property, wh=
+ile it
+> >>>>>>>> have address/size-cells properties. This caused
+> >>>>>>>> "avoid_unnecessary_addr_size" warning from dtb check.
+> >>>>>>>> Remove address/size-cells properties for "mdss_dsi1" node.
+> >>>>>>>>
+> >>>>>>>>> I cannot parse it. Address/size cells never have ranges or chil=
+dren.
+> >>>>>>>>> They cannot have. These are uint32 properties.
+> >>>>>>>> Pls help to comment on the revised commit message. Every time I =
+write a
+> >>>>>>>> commit message, also takes a while for me to double confirm whet=
+her
+> >>>>>>>> others can understand me correctly as well. Feel free to let us =
+know if
+> >>>>>>>> it is not readable to you. It will help us as non-English native=
+ developers.
+> >>>>>>>>>
+> >>>>>>>>>>
+> >>>>>>>>>>        sm8550.dtsi:2937.27-2992.6: Warning (avoid_unnecessary_=
+addr_size): /soc@0/display-subsystem@ae00000/dsi@ae96000:
+> >>>>>>>>>>          unnecessary #address-cells/#size-cells without "range=
+s" or child "reg" property
+> >>>>>>>>>>
+> >>>>>>>>>>
+> >>>>>>>>>> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> >>>>>>>>>> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
+> >>>>>>>>>> ---
+> >>>>>>>>>
+> >>>>>>>>> I disagreed with the patch before. You resubmit it without real=
+ly
+> >>>>>>>>> addressing my concerns.
+> >>>>>>>>>
+> >>>>>>>>> I am not sure if this is correct fix and I want to fix all of s=
+uch
+> >>>>>>>>> errors (there are multiple of them) in the same way. Feel free =
+to
+> >>>>>>>>> propose common solution based on arguments.
+> >>>>>>>> Per my understanding, "qcom,mdss-dsi-ctrl" driver node like "mds=
+s_dsi1"
+> >>>>>>>> don't need to have address/size-cells properties.
+> >>>>>>>
+> >>>>>>> Just because dtc says so? And what about bindings?
+> >>>>>> I don't find any reason why "qcom,mdss-dsi-ctrl" driver node need =
+to
+> >>>>>> have address/size-cells properties. Document Bindings should also =
+be fixed.
+> >>>>>>>
+> >>>>>>>> Feel free to let us know whether there is different idea of
+> >>>>>>>> "address/size-cells" needed for the "qcom,mdss-dsi-ctrl" driver =
+node.
+> >>>>>>>
+> >>>>>>> The bindings expressed that idea. If the binding is incorrect, fi=
+x the
+> >>>>>>> binding and the DTS. If the binding is correct, provide rationale=
+ why it
+> >>>>>>> somehow does not apply here etc.
+> >>>>>> Our plan is to fix the bindings as well.
+> >>>>>>
+> >>>>>> In case you have missed the question, I just re-place it here:
+> >>>>>> While there are about 22 different soc dtsi and it's document bind=
+ing
+> >>>>>> files needed to be fixed. Shall we fix it for all qcom related soc=
+ usage
+> >>>>>> in one patch, or we'd better to split into different patches accor=
+ding
+> >>>>>> to soc specifically?
+> >>>>>
+> >>>>> Don't touch the bindings unless you understand what you are doing.
+> >>>>> Your patch will be NAKed. There can be a DSI panel attached to the =
+DSI
+> >>>>> host, which means there is a need for #address-cells / #size-cells.
+> >>>>>
+> >>>> Could you please help to elaborate more on details? Like what's the
+> >>>> right example here for the "qcom,mdss-dsi-ctrl" driver node needed t=
+o
+> >>>> have "#address-cells"/"#size-cells".
+> >>>
+> >>> As I wrote, the attached DSI panels make use of #address-cells / #siz=
+e-cells.
+> >>>
+> >>> Please take a look at the sdm845-mtp.dts, which provides a complex
+> >>> enough example (a panel which is attached to both DSI0 and DSI1
+> >>> hosts).
+> >> I can see the panel example now.
+> >> While panel@0 likely node is not at in the binding that I've checked. =
+There are quite a few of binding document about the same driver. I checked =
+5 of the bindings document and moste of them are alike, and don't have the =
+panel example.:(
+> >
+> > There is a single bindings documents describing MSM DSI controller, dis=
+play/MSM/dsi-controller-main.yaml . It explicitly includes ../dsi-controlle=
+r.yaml, which describes generic DSI host controller. The latter one include=
+s an example of the DSI panel. MSM DSI bindings do not have to include one,=
+ there is nothing platform specific there.
+> >
+> >
+> >>>
+> >>>> Thx to chime in that we have put a good amount of time here.
+> >>>
+> >>> Can't quite catch you here.
+> >>>
+> >>>>> Please stop wasting the time on dtc warning. The bindings (and the
+> >>>>> file) are correct.
+> >>>> I don't agree here.
+> >>>> Either it is a wrong usage of "#address-cells"/"#size-cells", or dtc
+> >>>> warning should be fixed with this usage take into account.
+> >>>> "dtb check" will be a good guideline for developers to follow, I don=
+'t
+> >>>> think it is wasting time here.
+> >>>
+> >>> It is a guideline, but not a rule. No warnings by default is more of
+> >>> the rule. W=3D1 enables warnings that developers have to classify and
+> >>> cope with.
+> >>>
+> >>> E.g. I don't think dtc correctly handles the case when there are both
+> >>> with-address and no-address nodes (e.g. 'panel@0' and 'ports'). Note,
+> >>> I might be mistaken there.
+> >> Now I understand the issue, here is some thinking from my end, and wel=
+come others to chime in with more ideas:
+> >> 1. Only put "#address-cells" "#size-cells" right before node of panel@=
+0
+> >
+> > No. Cells specification is a property of the host/bus. As such they do =
+not belong to the board DT file.
+> As "#address-cells" "#size-cells" is not marked as required properties
+> in the Document dsi-controller.yaml. Did it really needed even
+> "panel@[0-3]" is not present at current dsi node?
+> That's good that comes to the initial discussion of current patch here. :=
+)
 
-The 1-wire timing pattern and the corresponding UART baud-rate with the
-interpretation of the transferred bytes are described in the document:
+The #address-cells / #size-cells describe the addressing of the bus.
+The bus still continues to exist even with no panel being attached.
 
-Link: https://www.analog.com/en/technical-articles/using-a-uart-to-implement-a-1wire-bus-master.html
+>
+> I can understand that "#address-cells" "#size-cells" cannot be device
+> tree overlayed by dtbo. While when there is no "panel@[0-3]" nodes shall
+> we also remove "#address-cells" "#size-cells" properties for dsi node?
 
-In short, the UART peripheral must support full-duplex and operate in
-open-drain mode. The timing patterns are generated by a specific
-combination of baud-rate and transmitted byte, which corresponds to a
-1-Wire read bit, write bit or reset.
+But why?
 
-Signed-off-by: Christoph Winklhofer <cj.winklhofer@gmail.com>
----
- Documentation/w1/masters/index.rst   |   1 +
- Documentation/w1/masters/w1-uart.rst |  53 +++++
- drivers/w1/masters/Kconfig           |  10 +
- drivers/w1/masters/Makefile          |   1 +
- drivers/w1/masters/w1-uart.c         | 307 +++++++++++++++++++++++++++
- 5 files changed, 372 insertions(+)
- create mode 100644 Documentation/w1/masters/w1-uart.rst
- create mode 100644 drivers/w1/masters/w1-uart.c
+> >
+> >> 2. Align current binding document with "panel@0" examples.
+> >
+> > There is already a panel in dsi-controller.yaml. Adding another example=
+ is optional. Do you also need an example with the external DSI bridge?
+> Current binding I am talking about is current patch binding file:
+> qcom,sm8550-mdss.yaml
 
-diff --git a/Documentation/w1/masters/index.rst b/Documentation/w1/masters/index.rst
-index 4442a98850ad..cc40189909fd 100644
---- a/Documentation/w1/masters/index.rst
-+++ b/Documentation/w1/masters/index.rst
-@@ -12,3 +12,4 @@
-    mxc-w1
-    omap-hdq
-    w1-gpio
-+   w1-uart
-diff --git a/Documentation/w1/masters/w1-uart.rst b/Documentation/w1/masters/w1-uart.rst
-new file mode 100644
-index 000000000000..a5a097886f8a
---- /dev/null
-+++ b/Documentation/w1/masters/w1-uart.rst
-@@ -0,0 +1,53 @@
-+.. SPDX-License-Identifier: GPL-2.0-or-later
-+
-+=====================
-+Kernel driver w1-uart
-+=====================
-+
-+Author: Christoph Winklhofer <cj.winklhofer@gmail.com>
-+
-+
-+Description
-+-----------
-+
-+UART 1-wire bus driver. The driver utilizes the UART interface via the
-+Serial Device Bus to create the 1-Wire timing patterns as described in
-+the document `"Using a UART to Implement a 1-Wire Bus Master"`_.
-+
-+.. _"Using a UART to Implement a 1-Wire Bus Master": https://www.analog.com/en/technical-articles/using-a-uart-to-implement-a-1wire-bus-master.html
-+
-+In short, the UART peripheral must support full-duplex and operate in
-+open-drain mode. The timing patterns are generated by a specific
-+combination of baud-rate and transmitted byte, which corresponds to a
-+1-Wire read bit, write bit or reset pulse.
-+
-+For instance the timing pattern for a 1-Wire reset and presence detect uses
-+the baud-rate 9600, i.e. 104.2 us per bit. The transmitted byte 0xf0 over
-+UART (least significant bit first, start-bit low) sets the reset low time
-+for 1-Wire to 521 us. A present 1-Wire device changes the received byte by
-+pulling the line low, which is used by the driver to evaluate the result of
-+the 1-Wire operation.
-+
-+Similar for a 1-Wire read bit or write bit, which uses the baud-rate
-+115200, i.e. 8.7 us per bit. The transmitted byte 0x00 is used for a
-+Write-0 operation and the byte 0xff for Read-0, Read-1 and Write-1.
-+
-+The default baud-rate for reset and presence detection is 9600 and for
-+a 1-Wire read or write operation 115200. In case the actual baud-rate
-+is different from the requested one, the transmitted byte is adapted
-+to generate the 1-Wire timing patterns.
-+
-+
-+Usage
-+-----
-+
-+Specify the UART 1-wire bus in the device tree by adding the single child
-+onewire to the serial node (e.g. uart0). For example:
-+::
-+
-+  @uart0 {
-+    ...
-+    onewire {
-+      compatible = "w1-uart";
-+    };
-+  };
-diff --git a/drivers/w1/masters/Kconfig b/drivers/w1/masters/Kconfig
-index 513c0b114337..e6049a75b35b 100644
---- a/drivers/w1/masters/Kconfig
-+++ b/drivers/w1/masters/Kconfig
-@@ -78,5 +78,15 @@ config W1_MASTER_SGI
- 	  This support is also available as a module.  If so, the module
- 	  will be called sgi_w1.
- 
-+config W1_MASTER_UART
-+	tristate "UART 1-wire driver"
-+	depends on SERIAL_DEV_BUS
-+	help
-+	  Say Y here if you want to communicate with your 1-wire devices using
-+	  UART interface.
-+
-+	  This support is also available as a module.  If so, the module
-+	  will be called w1-uart.
-+
- endmenu
- 
-diff --git a/drivers/w1/masters/Makefile b/drivers/w1/masters/Makefile
-index 6c5a21f9b88c..227f80987e69 100644
---- a/drivers/w1/masters/Makefile
-+++ b/drivers/w1/masters/Makefile
-@@ -12,3 +12,4 @@ obj-$(CONFIG_W1_MASTER_MXC)		+= mxc_w1.o
- obj-$(CONFIG_W1_MASTER_GPIO)		+= w1-gpio.o
- obj-$(CONFIG_HDQ_MASTER_OMAP)		+= omap_hdq.o
- obj-$(CONFIG_W1_MASTER_SGI)		+= sgi_w1.o
-+obj-$(CONFIG_W1_MASTER_UART)		+= w1-uart.o
-diff --git a/drivers/w1/masters/w1-uart.c b/drivers/w1/masters/w1-uart.c
-new file mode 100644
-index 000000000000..e195db3e9d9a
---- /dev/null
-+++ b/drivers/w1/masters/w1-uart.c
-@@ -0,0 +1,307 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/*
-+ * w1-uart - UART 1-Wire bus driver
-+ *
-+ * Uses the UART interface (via Serial Device Bus) to create the 1-Wire
-+ * timing patterns. Implements the following 1-Wire master interface:
-+ *
-+ * - reset_bus: requests baud-rate 9600
-+ *
-+ * - touch_bit: requests baud-rate 115200
-+ *
-+ * Author: Christoph Winklhofer <cj.winklhofer@gmail.com>
-+ */
-+
-+#include <linux/atomic.h>
-+#include <linux/completion.h>
-+#include <linux/jiffies.h>
-+#include <linux/module.h>
-+#include <linux/mutex.h>
-+#include <linux/of.h>
-+#include <linux/serdev.h>
-+#include <linux/w1.h>
-+
-+#define W1_UART_TIMEOUT msecs_to_jiffies(500)
-+
-+#define baud_to_bit_us(baud) (1000000 / baud)
-+
-+struct w1_uart_device {
-+	struct serdev_device *serdev;
-+	struct w1_bus_master bus;
-+
-+	unsigned int baud_reset;
-+	unsigned char tx_reset;
-+
-+	unsigned int baud_touch;
-+	unsigned char tx_touch;
-+
-+	struct completion rx_byte_received;
-+	unsigned char rx_byte;
-+	int rx_err;
-+
-+	struct mutex mutex;
-+};
-+
-+/*
-+ * Set baud-rate and tx-byte for 1-wire reset and presence detect and
-+ * adapt the tx-byte according to the actual baud-rate.
-+ *
-+ * Minimum reset low time is 480us and the response from a 1-Wire
-+ * device is at around 570us. Reject when a bit takes longer than
-+ * 500us or is to short to detect a manipulated byte.
-+ *
-+ */
-+static int w1_uart_set_baud_reset(struct w1_uart_device *w1dev)
-+{
-+	struct serdev_device *serdev = w1dev->serdev;
-+	unsigned int bit_us;
-+	unsigned int bits_low;
-+
-+	w1dev->baud_reset = serdev_device_set_baudrate(serdev, 9600);
-+	if (w1dev->baud_reset == 0)
-+		return -EINVAL;
-+
-+	bit_us = baud_to_bit_us(w1dev->baud_reset);
-+
-+	/* reset low time is 480us */
-+	if (bit_us > 500)
-+		return -EINVAL;
-+
-+	/* At least Bit-8 should be manipulated by a present device,
-+	 * which is at 570us. Bit-8 and start-bit: 9 * 65us
-+	 */
-+	if (bit_us < 65)
-+		return -EINVAL;
-+
-+	/* byte to create reset pulse (start-bit is low) */
-+	bits_low = 500 / bit_us;
-+	w1dev->tx_reset = 0xff << bits_low;
-+
-+	return 0;
-+}
-+
-+/*
-+ * Set baud-rate and tx-byte for 1-Wire read and write cycle and
-+ * adapt the tx-byte according to the actual baud-rate.
-+ *
-+ * Recommended low-time to initiate a Write-1 or Read is 6us. Time-slot
-+ * for 1-Wire bit operation is 70us. Reject when a bit takes longer
-+ * than 10us (recommended 6us) or the entire time-slot is to short.
-+ */
-+static int w1_uart_set_baud_touch(struct w1_uart_device *w1dev)
-+{
-+	struct serdev_device *serdev = w1dev->serdev;
-+	unsigned int bits_low;
-+	unsigned int bit_us;
-+
-+	w1dev->baud_touch = serdev_device_set_baudrate(serdev, 115200);
-+	if (w1dev->baud_touch == 0)
-+		return -EINVAL;
-+
-+	bit_us = baud_to_bit_us(w1dev->baud_touch);
-+	/* low-time to start write-1 and read cycle */
-+	if (bit_us > 10)
-+		return -EINVAL;
-+	/* 1-Wire time slot is 70 us */
-+	if (bit_us < 7)
-+		return -EINVAL;
-+
-+	/* max low time 10us */
-+	bits_low = 5 / bit_us;
-+	w1dev->tx_touch = 0xff << bits_low;
-+
-+	return 0;
-+}
-+
-+static int w1_uart_serdev_open(struct w1_uart_device *w1dev)
-+{
-+	struct serdev_device *serdev = w1dev->serdev;
-+	struct device *dev = &serdev->dev;
-+	int ret;
-+
-+	ret = devm_serdev_device_open(dev, serdev);
-+	if (ret < 0)
-+		return ret;
-+
-+	ret = serdev_device_set_parity(serdev, SERDEV_PARITY_NONE);
-+	if (ret < 0) {
-+		dev_err(dev, "set parity failed\n");
-+		return ret;
-+	}
-+
-+	ret = w1_uart_set_baud_reset(w1dev);
-+	if (ret < 0) {
-+		dev_err(dev, "set baud-rate for reset failed\n");
-+		return ret;
-+	}
-+
-+	ret = w1_uart_set_baud_touch(w1dev);
-+	if (ret < 0) {
-+		dev_err(dev, "set baud-rate for touch failed\n");
-+		return ret;
-+	}
-+
-+	serdev_device_set_flow_control(serdev, false);
-+
-+	return 0;
-+}
-+
-+/*
-+ * Send one byte (tx_byte) and read one byte (rx_byte) via serdev.
-+ */
-+static int w1_uart_serdev_tx_rx(struct w1_uart_device *w1dev,
-+				unsigned int baudrate, unsigned char tx_byte,
-+				unsigned char *rx_byte)
-+{
-+	struct serdev_device *serdev = w1dev->serdev;
-+	int ret;
-+
-+	serdev_device_write_flush(serdev);
-+	serdev_device_set_baudrate(serdev, baudrate);
-+
-+	/* write and immediately read one byte */
-+	reinit_completion(&w1dev->rx_byte_received);
-+	ret = serdev_device_write_buf(serdev, &tx_byte, 1);
-+	if (ret != 1)
-+		return -EIO;
-+	ret = wait_for_completion_interruptible_timeout(
-+		&w1dev->rx_byte_received, W1_UART_TIMEOUT);
-+	if (ret <= 0)
-+		return -EIO;
-+
-+	/* locking could fail during driver remove or when serdev
-+	 * is unexpectedly in the receive callback.
-+	 */
-+	if (!mutex_trylock(&w1dev->mutex))
-+		return -EIO;
-+
-+	ret = w1dev->rx_err;
-+	if (ret == 0)
-+		*rx_byte = w1dev->rx_byte;
-+
-+	mutex_unlock(&w1dev->mutex);
-+
-+	return ret;
-+}
-+
-+static int w1_uart_serdev_receive_buf(struct serdev_device *serdev,
-+				      const unsigned char *buf, size_t count)
-+{
-+	struct w1_uart_device *w1dev = serdev_device_get_drvdata(serdev);
-+
-+	mutex_lock(&w1dev->mutex);
-+
-+	/* sent a single byte and receive one single byte */
-+	if (count == 1) {
-+		w1dev->rx_byte = buf[0];
-+		w1dev->rx_err = 0;
-+	} else {
-+		w1dev->rx_err = -EIO;
-+	}
-+
-+	mutex_unlock(&w1dev->mutex);
-+	complete(&w1dev->rx_byte_received);
-+
-+	return count;
-+}
-+
-+static const struct serdev_device_ops w1_uart_serdev_ops = {
-+	.receive_buf = w1_uart_serdev_receive_buf,
-+	.write_wakeup = serdev_device_write_wakeup,
-+};
-+
-+/*
-+ * 1-wire reset and presence detect: A present slave will manipulate
-+ * the received byte by pulling the 1-wire low.
-+ */
-+static u8 w1_uart_reset_bus(void *data)
-+{
-+	struct w1_uart_device *w1dev = data;
-+	unsigned char val;
-+	int ret;
-+
-+	ret = w1_uart_serdev_tx_rx(w1dev, w1dev->baud_reset, w1dev->tx_reset,
-+				   &val);
-+	if (ret < 0)
-+		return -1;
-+
-+	/* Device present (0) or no device (1) */
-+	return val != w1dev->tx_reset ? 0 : 1;
-+}
-+
-+/*
-+ * 1-Wire read and write cycle: Only the Read-0 manipulates the
-+ * received byte, all others left the line untouched.
-+ */
-+static u8 w1_uart_touch_bit(void *data, u8 bit)
-+{
-+	struct w1_uart_device *w1dev = data;
-+	unsigned char val;
-+	int ret;
-+
-+	ret = w1_uart_serdev_tx_rx(w1dev, w1dev->baud_touch,
-+				   bit ? w1dev->tx_touch : 0x00, &val);
-+	/* return inactive bus state on error */
-+	if (ret < 0)
-+		return 1;
-+
-+	return val == w1dev->tx_touch ? 1 : 0;
-+}
-+
-+static int w1_uart_probe(struct serdev_device *serdev)
-+{
-+	struct device *dev = &serdev->dev;
-+	struct w1_uart_device *w1dev;
-+	int ret;
-+
-+	w1dev = devm_kzalloc(dev, sizeof(*w1dev), GFP_KERNEL);
-+	if (!w1dev)
-+		return -ENOMEM;
-+	w1dev->bus.data = w1dev;
-+	w1dev->bus.reset_bus = w1_uart_reset_bus;
-+	w1dev->bus.touch_bit = w1_uart_touch_bit;
-+	w1dev->serdev = serdev;
-+
-+	init_completion(&w1dev->rx_byte_received);
-+	mutex_init(&w1dev->mutex);
-+
-+	ret = w1_uart_serdev_open(w1dev);
-+	if (ret < 0)
-+		return ret;
-+	serdev_device_set_drvdata(serdev, w1dev);
-+	serdev_device_set_client_ops(serdev, &w1_uart_serdev_ops);
-+
-+	return w1_add_master_device(&w1dev->bus);
-+}
-+
-+static void w1_uart_remove(struct serdev_device *serdev)
-+{
-+	struct w1_uart_device *w1dev = serdev_device_get_drvdata(serdev);
-+
-+	mutex_lock(&w1dev->mutex);
-+
-+	w1_remove_master_device(&w1dev->bus);
-+
-+	mutex_unlock(&w1dev->mutex);
-+}
-+
-+static const struct of_device_id w1_uart_of_match[] = {
-+	{ .compatible = "w1-uart" },
-+	{},
-+};
-+MODULE_DEVICE_TABLE(of, w1_uart_of_match);
-+
-+static struct serdev_device_driver w1_uart_driver = {
-+	.driver	= {
-+		.name		= "w1-uart",
-+		.of_match_table = w1_uart_of_match,
-+	},
-+	.probe	= w1_uart_probe,
-+	.remove	= w1_uart_remove,
-+};
-+
-+module_serdev_device_driver(w1_uart_driver);
-+
-+MODULE_DESCRIPTION("UART w1 bus driver");
-+MODULE_AUTHOR("Christoph Winklhofer <cj.winklhofer@gmail.com>");
-+MODULE_LICENSE("GPL");
--- 
-2.43.0
+Why do you call it a patch? Also if you have read the description, you
+would have known that the bindings describe the Mobile Display
+Subsystem (MDSS) itself. And then it explicitly tells that the MDSS on
+that platform has (among others) DSI blocks with proper compatibles.
 
+> It have a ref to mdss-common.yaml,  but I cannot find the ref direct me
+> to dsi-controller.yaml.
+
+Because qcom,sm8550-mdss.yaml doesn't describe the DSI controller. I
+think I have already mentioned a file that describes the DSI
+controller, it is called display/msm/dsi-controller-main.yaml. Not the
+best name, but it is quickly revealed by grepping for either of the
+DSI compatible strings. And the dsi-controller-main.yaml has `  -
+$ref: ../dsi-controller.yaml#` string inside.
+
+> In my opinion if the example have "#address-cells" "#size-cells", then
+> it's better to also include "panel@0" with "reg =3D <0>" to not confuse.
+
+It is already there, see dsi-controller.yaml.
+
+> >> 3. Too many bindings files for driver "qcom,mdss-dsi-ctrl", shall we a=
+lign them into 1 binding files.
+> >
+> > There is just one.
+> Currently I mentioned bindings files was searched the compatible
+> "qcom,mdss-dsi-ctrl", and find binding docs like "qcom,sm8550-mdss.yaml"
+> "qcom,sm8450-mdss.yaml" etc.
+> There is duplicate information on "qcom,sm8550-mdss.yaml" etc, while
+> "qcom,mdss-common.yaml" is not common enough for my understanding.
+
+If you had compared the qcom,SOC-mdss.yaml, you would have seen that
+they provide tight binding between compatible strings used for all the
+subblocks. The `mdss-common.yaml` describes MDSS common properties. It
+describes everything except the platform specifics. It can not be made
+more common. And there is no duplication.
+
+If you think you can improve the bindings, please send the patches.
+They must pass the `make dt_binding_check` check.
+
+> >> 4. enhance the dtc warning check if we still want to have "#address-ce=
+lls" "#size-cells" even if there is no "panel@0" attached.
+> >
+> > In my opinion this is a way to go, if any. Did you include devicetree@ =
+ML and the corresponding maintainers into the discussion?
+> Already included devicetree@ ML at the very beginning.
+
+Good, thanks for the confirmation.
+
+> If the required properties part in each yaml is marked good enough, I
+> think it can be an input for avoid unnecessary dtc warnings.
+
+Patches are welcome.
+
+> >
+> >>
+> >> @krzy here I try to answer your comments here as well.
+> >> I am disagree on leave the warning as it is. And want to do something =
+to improve this. Ideas above.
+> >> Let me know if any comments is not right addressed from your comments.
+
+--=20
+With best wishes
+Dmitry
 
