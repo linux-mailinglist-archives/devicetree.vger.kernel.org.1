@@ -1,144 +1,115 @@
-Return-Path: <devicetree+bounces-27840-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27841-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B5A481BD44
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 18:31:45 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C0AB81BD4B
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 18:34:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9DCCE1F22B3F
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 17:31:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DF7052843D8
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 17:34:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AA516280F;
-	Thu, 21 Dec 2023 17:31:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2C5962818;
+	Thu, 21 Dec 2023 17:34:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="oRpHoyB1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FiLC3W/b"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com [209.85.208.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A783627FE
-	for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 17:31:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-2cc63b3ed71so13640581fa.3
-        for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 09:31:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1703179894; x=1703784694; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=bJEVjLD+6uczd4icO0P1JWsIXEAiz4/5EjrOw/SNWOg=;
-        b=oRpHoyB1luA8MxS570+wVa4kX6Yg9IU4oERrYdjHjMnlLeveTbntLrslMQ7M5rNwcJ
-         1LbisawhAzs62pjMQ/aMtXjc6mjUsJufY7cOeMwAXS6RB8FQU2ywgKIQCRmAVEiEMH80
-         RGSXswB79bLMUOl3+CKtEg6Dush6nIkRFvdLcye1jtuy2MuCqNoOrgkl7u6ypMfYAFKC
-         VNkWh1CrZA7Wj/AZEf4z0uMV+V4sx3303Uck0htY52kjjWUJBuM/Agafy9Rz6uh3m2P6
-         5PczAd04Haa9qWPGjuou9YiZ2zvzFN49Kd5u8Omfyt5if3bBkvAohS9Ev+LaWQ4pWjpW
-         tu2Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703179894; x=1703784694;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=bJEVjLD+6uczd4icO0P1JWsIXEAiz4/5EjrOw/SNWOg=;
-        b=Y0sdAMn4radYJpDHkxAHqWfqnmk97G+HepnexDBqaxDfkuFVbrKqrkyevc8EdlMNF6
-         Tkh4caYW8Ks630+k25z8Hg1svPsUTDt0NcF8n/vBrav4G8G/QOzIEwZGJ5SWMybPhx6t
-         PkQr5GlP4Ntzi4T3HfRIYWkiQ4ATJyiq+YBHvg3aiC4xU4LJOHfhFowh9zG192/ywGEa
-         zcPA2ESjsn31mzkiR9ZUpPBR8E1m5V7f6E/AfMUpardd88yi3g0+o8VXnCeDXlXKeG6R
-         KO41RSQvhkEHfPQ5hyI+/ihFVHIgWGalPp3dfOoLaPCNvRnbdKtUzurl+0nAcXyCmLW8
-         kkUg==
-X-Gm-Message-State: AOJu0YxaxIhV8pisu401WGiOtN5E2qoZ8IsuFZugIYrFukZiSutlQc6x
-	A3qCl2iNPglV/iGp0DENYuwt1Q==
-X-Google-Smtp-Source: AGHT+IH/gMv3N+gBtQF1MO5sCoFCrSSSnS4rfUBiPwIUwhGSV8nckoU5K97oYciHfBb9b+cm1rN9wg==
-X-Received: by 2002:a2e:8698:0:b0:2cc:8678:1bc with SMTP id l24-20020a2e8698000000b002cc867801bcmr2687340lji.32.1703179894553;
-        Thu, 21 Dec 2023 09:31:34 -0800 (PST)
-Received: from [192.168.0.22] ([78.10.206.178])
-        by smtp.gmail.com with ESMTPSA id n4-20020a056402434400b005528265bc41sm1436066edc.0.2023.12.21.09.31.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 Dec 2023 09:31:34 -0800 (PST)
-Message-ID: <2eeb19a0-5851-4684-836c-36ec53db6900@linaro.org>
-Date: Thu, 21 Dec 2023 18:31:32 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CAC7C62813;
+	Thu, 21 Dec 2023 17:34:09 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 339C3C433C7;
+	Thu, 21 Dec 2023 17:34:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1703180049;
+	bh=tZpLiDPgbcp1+gCDmMjOIB9hnwodSBsk4RRE8sDpJcA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=FiLC3W/bBfhAafv1SxSf2paV6MA+73GTSjIQPNTVbA3a/z5CbQ+uegwTThhTO2ell
+	 Ly0HSOa6lw8Gt+vasc30GJ6UNe7o4ukCOPF3gmVncl5YUsKFBudcN3BrWYSXE+JJ5J
+	 83jUoXjp58UcFNmJMU9Mru0z0sVo/Yqg9E4Cae9tChCV31ZdQ/GYxhMdDLOXMPkW4A
+	 v9hiboc7vpYqeAFE42xg7JLDXtSAjldYSFCMqVONES7nfnnW/6HNgSaTdfV6Yvd3BJ
+	 +//arj+dNTqLygKmB0+69WmoVf19UiPi9cq7DYpGPc0NKhsGgMI1EbOeE1ukcuDyz4
+	 qwy+vxFz8M9hg==
+Date: Thu, 21 Dec 2023 17:34:02 +0000
+From: Mark Brown <broonie@kernel.org>
+To: =?iso-8859-1?Q?K=F6ry?= Maincent <kory.maincent@bootlin.com>
+Cc: Oleksij Rempel <o.rempel@pengutronix.de>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Luis Chamberlain <mcgrof@kernel.org>,
+	Russ Weight <russ.weight@linux.dev>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org, devicetree@vger.kernel.org,
+	Dent Project <dentproject@linuxfoundation.org>,
+	Liam Girdwood <lgirdwood@gmail.com>
+Subject: Re: [PATCH net-next v2 8/8] net: pse-pd: Add PD692x0 PSE controller
+ driver
+Message-ID: <8a8b0735-f1fa-401d-9f92-bb9ce8bd1e7d@sirena.org.uk>
+References: <20231204225956.GG981228@pengutronix.de>
+ <20231205064527.GJ981228@pengutronix.de>
+ <4b96b8c8-7def-46e5-9c85-d9e925fb9251@sirena.org.uk>
+ <20231205140203.GK981228@pengutronix.de>
+ <88ed0c94-d052-4564-be0c-79a0f502eda8@sirena.org.uk>
+ <20231221163610.47038996@kmaincent-XPS-13-7390>
+ <ffda1003-b752-402e-8e51-e2e24a840cff@sirena.org.uk>
+ <20231221171000.45310167@kmaincent-XPS-13-7390>
+ <501f671d-4e03-490b-a9d6-e1f39bb99115@sirena.org.uk>
+ <20231221181955.422e676e@kmaincent-XPS-13-7390>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/5] ASoC: dt-bindings: remove tas2563 from yaml
-Content-Language: en-US
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Shenghao Ding <shenghao-ding@ti.com>
-Cc: broonie@kernel.org, conor+dt@kernel.org, robh+dt@kernel.org,
- kevin-lu@ti.com, baojun.xu@ti.com, devicetree@vger.kernel.org,
- lgirdwood@gmail.com, perex@perex.cz, pierre-louis.bossart@linux.intel.com,
- 13916275206@139.com, linux-sound@vger.kernel.org,
- linux-kernel@vger.kernel.org, liam.r.girdwood@intel.com, soyer@irl.hu,
- tiwai@suse.de, peeyush@ti.com, navada@ti.com
-References: <20231221101346.429-1-shenghao-ding@ti.com>
- <ZYReyHQxMAe-DKq4@smile.fi.intel.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <ZYReyHQxMAe-DKq4@smile.fi.intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="SyGCkrmxiABQ1d98"
+Content-Disposition: inline
+In-Reply-To: <20231221181955.422e676e@kmaincent-XPS-13-7390>
+X-Cookie: Results are not typical.
 
-On 21/12/2023 16:50, Andy Shevchenko wrote:
-> On Thu, Dec 21, 2023 at 06:13:41PM +0800, Shenghao Ding wrote:
->> Remove tas2563 from tas2562, it will be supported in tas2781 to better
->> support dsp mode.
-> 
-> DSP
-> 
-> Shouldn't this patch go after the actual change happen?
 
-I would squash both, so device documentation does not disappear.
+--SyGCkrmxiABQ1d98
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Best regards,
-Krzysztof
+On Thu, Dec 21, 2023 at 06:19:55PM +0100, K=F6ry Maincent wrote:
 
+> So we will have PSE drivers which are regulators consumer for the chip,
+> regulator providers for all its ports and regulator consumers also for al=
+l its
+> ports. Is it clearer? Would that sound ok for you?
+
+That does sound fine, and like there's a use case for substituting in a
+non-PSE regulator in embedded systems so we get something for the effort.
+You might want to take a look at the arizona MFD for an example of a
+driver for a device which includes a regulator that may optionally be
+unused - it's not ideal but it does work.
+
+--SyGCkrmxiABQ1d98
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmWEdwkACgkQJNaLcl1U
+h9D2YwgAhrLCcIl4Dri+vJaS3qntIoQNnzudbw464z0YawWeutbUGmUF1yTPrL3r
+310g2eca0UDhGXTI0jksOmy1IQHZNleh2psZ5n7qAHqzLPRKj5h3IbQZ7DtogYbd
+eWSdibMpOp8cqtYnMCNRjIznmGYfZPepV4TawWqarPC5qbO7pN3fjjawYc9YD1Hp
+94vhC35OOxe28vLxszoFVHpioVq3qYSFTfDMlaiAL+7sFNTlP+hbZeY09NP9jLU6
+gBlqjJSnrE81CEBI/M+TdmFlfhGn71d1BlH7E+CRHCv96ExNBiXQKrBJSB7ItHnq
+g89pBtKDvcVWHTk/9AI6B1JWV/FoqA==
+=tjbD
+-----END PGP SIGNATURE-----
+
+--SyGCkrmxiABQ1d98--
 
