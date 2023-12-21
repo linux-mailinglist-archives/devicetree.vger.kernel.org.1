@@ -1,93 +1,144 @@
-Return-Path: <devicetree+bounces-27870-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27871-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4933381BECD
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 20:08:33 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DC9E81BEFE
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 20:16:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0727C1F23B85
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 19:08:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 49039281ECF
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 19:16:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D641A65194;
-	Thu, 21 Dec 2023 19:08:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BAA8651AC;
+	Thu, 21 Dec 2023 19:16:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UM5fgkst"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="PKdBIb1C"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f179.google.com (mail-pg1-f179.google.com [209.85.215.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A265C65198;
-	Thu, 21 Dec 2023 19:08:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f179.google.com with SMTP id 41be03b00d2f7-53fbf2c42bfso826009a12.3;
-        Thu, 21 Dec 2023 11:08:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1703185705; x=1703790505; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=76+oyG2G1x0gT7TSaAnna8obnYpV1SthTcTntxCagtY=;
-        b=UM5fgkstvtcsonikn3MmV855Z6DkKkqgnExhSeG+34DQv9oI3ZduIEbAwOlr8ptXQa
-         vVdYDUhsRqk2optCunr3OXLiH/ONdwEvRc6T5+/g9RCR0OBKX+Qb7GEYG2IUEHedJ5CJ
-         mx5PgThZqK1qwYQPUhCwSoikOkZcfMQN42f+arVEHl2haquMwevqhSy3H++iIipw5EXw
-         cZNxfNfLPNdUY88BnvcU/8rgROLHIWdWmnytcn09d+GPoj9JKjwLyoVmjiuw0CJbeMsW
-         XwC8Ne6AlbTdZ7qdWuHAV698jHgYc7KN/+P0nTbK2z+jBuQKOvGH3Dg48BALw9UovuID
-         /qdA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703185705; x=1703790505;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=76+oyG2G1x0gT7TSaAnna8obnYpV1SthTcTntxCagtY=;
-        b=r5bt5gB0c9uLIWM0Z4MexnbnPKjjHQ34IVPZBxYl8wCc1gLUtHfv8bA5+Huf41OTVX
-         6U84qvGixEMc4pMzumk0pVnYI79aJ5erSMPmsSUzW/Q/rfr6iWIPS5ZViu5eraml+Iyp
-         DtjK5FRpQB1SBS0oIuqi+Ngr0yRLq34kJdBGRN7GciqlB1FqWe/3U8zO1Et3KUnjk2r2
-         gkXzouTGS3CAde3fPTxeIjOyR/4vuiRR8GnhpjQZXhjSmbtaKXmYYw66DvrOmc4HHS6p
-         0obMP39HQ680BQzfgwnDfhlUI1nQmSuBf7fH47Zb3i4t9O8EMqg+VhQ4TRtoWrHONkiX
-         FInA==
-X-Gm-Message-State: AOJu0Ywo1gDeQyKgKSErkpAY6fV/fG28EXjrQrprszvbH2RIeCGPmnar
-	wZaMJolJDhjaZegXsg2JfG/mHbGrSl1tlQ==
-X-Google-Smtp-Source: AGHT+IF4zGZPazNZTfZ5miRc6/PEO7loJCDDGRSV2wmSChdY5PEy1bwjCkDj2S68lM164f2lBqSy0g==
-X-Received: by 2002:a17:902:e843:b0:1d3:eddf:6769 with SMTP id t3-20020a170902e84300b001d3eddf6769mr128289plg.92.1703185705576;
-        Thu, 21 Dec 2023 11:08:25 -0800 (PST)
-Received: from ?IPV6:2401:4900:5f1b:292f:dc7e:1579:ed7c:8f49? ([2401:4900:5f1b:292f:dc7e:1579:ed7c:8f49])
-        by smtp.gmail.com with ESMTPSA id u11-20020a17090282cb00b001d398889d4dsm1975467plz.127.2023.12.21.11.08.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 Dec 2023 11:08:25 -0800 (PST)
-Message-ID: <1f84c8f4-0b21-4e6e-942c-1f987dd5f63e@gmail.com>
-Date: Fri, 22 Dec 2023 00:36:08 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18407651A4;
+	Thu, 21 Dec 2023 19:16:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 3BLDMiN7031672;
+	Thu, 21 Dec 2023 19:16:37 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	date:from:to:cc:subject:message-id:references:mime-version
+	:content-type:in-reply-to; s=qcppdkim1; bh=M4ofItWEa2ZMEZHfAhfrl
+	hv/rg3HOV3fP0U/2gxcGck=; b=PKdBIb1CfcNOW97RL8HOl87615EbrPMxnp+Ne
+	PvEW4c4XXleqzMpI4vC8L5NeyZYPtlbvWu+PSwE31ibC9bg6SaALCkCpvwEMzvMS
+	Z7VlLslOlTRrKQl3MVbTh1hR5mVay5g/oRjeU6rSPk4iMzpp+zU5x55nfiEO3zaQ
+	IL+hfRWb5JSgcznKak74AvsVNYsYsZ33JfsjcXnWCtKSC8d1HB3JRE4B/XA4qFls
+	/e4v8VTK4Em+GZetTkBYAAS91IoXWTVkN1rxPGYpcCOb/kASLR67QU8/uvDoBOlb
+	Dos+LpEphOOte/6awbJ3J9EyXy7FEtradpfqFWmEylXRN6/6g==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3v4gvh25pn-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 21 Dec 2023 19:16:36 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3BLJGara031058
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 21 Dec 2023 19:16:36 GMT
+Received: from hu-bjorande-lv.qualcomm.com (10.49.16.6) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Thu, 21 Dec 2023 11:16:35 -0800
+Date: Thu, 21 Dec 2023 11:16:34 -0800
+From: Bjorn Andersson <quic_bjorande@quicinc.com>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konrad.dybcio@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Taniya Das <quic_tdas@quicinc.com>,
+        Ulf Hansson
+	<ulf.hansson@linaro.org>,
+        Johan Hovold <johan+linaro@kernel.org>,
+        "Catalin
+ Marinas" <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH 1/8] dt-bindings: clock: qcom: Allow VDD_GFX supply to GX
+Message-ID: <20231221191634.GS1766637@hu-bjorande-lv.qualcomm.com>
+References: <20231220-sa8295p-gpu-v1-0-d8cdf2257f97@quicinc.com>
+ <20231220-sa8295p-gpu-v1-1-d8cdf2257f97@quicinc.com>
+ <CAA8EJprRjRJsV5hPR6mzjgucKa8UEthJd-y573aYJH0P8QRWqw@mail.gmail.com>
+ <CAA8EJpqgcOJHUFHtrTEE0T+jtQqdv3RGm-eTuVVa0ama_eFssQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1] dt-bindings: input: convert drv266x to json-schema
-Content-Language: en-US
-To: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org
-Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- linux-kernel-mentees@lists.linuxfoundation.org
-References: <20231221181423.671432-1-anshulusr@gmail.com>
-From: Anshul Dalal <anshulusr@gmail.com>
-In-Reply-To: <20231221181423.671432-1-anshulusr@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <CAA8EJpqgcOJHUFHtrTEE0T+jtQqdv3RGm-eTuVVa0ama_eFssQ@mail.gmail.com>
+X-ClientProxiedBy: nalasex01b.na.qualcomm.com (10.47.209.197) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: sdqrhYe5YehdA1OTvNJ99Jnj2rDKz_Bz
+X-Proofpoint-GUID: sdqrhYe5YehdA1OTvNJ99Jnj2rDKz_Bz
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-12-09_01,2023-12-07_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ spamscore=0 priorityscore=1501 clxscore=1015 adultscore=0 suspectscore=0
+ mlxlogscore=999 bulkscore=0 phishscore=0 malwarescore=0 impostorscore=0
+ mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2311290000 definitions=main-2312210146
 
-I mistakenly submitted this patch to the iio subsystem and CC'd the no
-longer valid e-mail of Dan Murphy.
+On Thu, Dec 21, 2023 at 09:10:28AM +0200, Dmitry Baryshkov wrote:
+> On Thu, 21 Dec 2023 at 09:03, Dmitry Baryshkov
+> <dmitry.baryshkov@linaro.org> wrote:
+> >
+> > On Thu, 21 Dec 2023 at 05:51, Bjorn Andersson <quic_bjorande@quicinc.com> wrote:
+> > >
+> > > In some designs the SoC's VDD_GFX pads are supplied by an external
+> > > regulator, rather than a power-domain. Allow this to be described in the
+> > > GPU clock controller binding.
+> > >
+> > > Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
+> > > ---
+> > >  Documentation/devicetree/bindings/clock/qcom,gpucc.yaml | 3 +++
+> > >  1 file changed, 3 insertions(+)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/clock/qcom,gpucc.yaml b/Documentation/devicetree/bindings/clock/qcom,gpucc.yaml
+> > > index f369fa34e00c..013ef78d2b31 100644
+> > > --- a/Documentation/devicetree/bindings/clock/qcom,gpucc.yaml
+> > > +++ b/Documentation/devicetree/bindings/clock/qcom,gpucc.yaml
+> > > @@ -53,6 +53,9 @@ properties:
+> > >    power-domains:
+> > >      maxItems: 1
+> > >
+> > > +  vdd-gfx-supply:
+> > > +    description: Regulator supply for the VDD_GFX pads
+> > > +
+> > >    '#clock-cells':
+> > >      const: 1
+> >
+> > I think it might be good to restrict this property to a particular
+> > platform (via if:not:properties:compatible:contains
+> > then:properties:vdd-gfx-supply:false).
+> 
+> After reading the last patches in the series, there is another
+> suggestion. Maybe we should explicitly say that there should be either
+> power-domains or vdd-gfx-supply, but not both.
+> 
 
-Kindly refer to the patch below for further discussions:
+Even on this platform it's not a property of the SoC, but surrounding
+design. So I like this proposal.
 
-https://lore.kernel.org/lkml/20231221183109.684325-1-anshulusr@gmail.com/
-
-Apologies for any inconvenience,
-Anshul
+Thanks,
+Bjorn
 
