@@ -1,34 +1,34 @@
-Return-Path: <devicetree+bounces-27578-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27579-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1559681AEA2
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 307B681AEA3
 	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 07:09:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 74786B22FF1
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 06:09:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BD40A1F245D9
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 06:09:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C882B647;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C860B664;
 	Thu, 21 Dec 2023 06:09:51 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from inva020.nxp.com (inva020.nxp.com [92.121.34.13])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7CE8AD58;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7D1DAD5E;
 	Thu, 21 Dec 2023 06:09:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
 Received: from inva020.nxp.com (localhost [127.0.0.1])
-	by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 33DD31A0230;
-	Thu, 21 Dec 2023 07:04:28 +0100 (CET)
+	by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 3D8441A06C0;
+	Thu, 21 Dec 2023 07:04:29 +0100 (CET)
 Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
-	by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id EDD721A014A;
-	Thu, 21 Dec 2023 07:04:27 +0100 (CET)
+	by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 079A31A0280;
+	Thu, 21 Dec 2023 07:04:29 +0100 (CET)
 Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
-	by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id 70AC21802201;
-	Thu, 21 Dec 2023 14:04:26 +0800 (+08)
+	by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id 7EB8B180226C;
+	Thu, 21 Dec 2023 14:04:27 +0800 (+08)
 From: Shengjiu Wang <shengjiu.wang@nxp.com>
 To: robh+dt@kernel.org,
 	krzysztof.kozlowski+dt@linaro.org,
@@ -41,10 +41,12 @@ To: robh+dt@kernel.org,
 	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH 1/2] arm64: dts: imx8mm-evk: Add PDM micphone sound card support
-Date: Thu, 21 Dec 2023 13:23:07 +0800
-Message-Id: <1703136188-7222-1-git-send-email-shengjiu.wang@nxp.com>
+Subject: [PATCH 2/2] arm64: dts: imx8mn-evk: Add PDM micphone sound card support
+Date: Thu, 21 Dec 2023 13:23:08 +0800
+Message-Id: <1703136188-7222-2-git-send-email-shengjiu.wang@nxp.com>
 X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1703136188-7222-1-git-send-email-shengjiu.wang@nxp.com>
+References: <1703136188-7222-1-git-send-email-shengjiu.wang@nxp.com>
 X-Virus-Scanned: ClamAV using ClamSMTP
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -59,16 +61,16 @@ and convert the PDM format data to PCM data.
 
 Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
 ---
- arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi | 34 +++++++++++++++++++
+ arch/arm64/boot/dts/freescale/imx8mn-evk.dtsi | 34 +++++++++++++++++++
  1 file changed, 34 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi
-index b53104ed8919..9679786dac51 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi
-@@ -151,6 +151,18 @@ simple-audio-card,codec {
- 			clocks = <&clk IMX8MM_CLK_SAI3_ROOT>;
- 		};
+diff --git a/arch/arm64/boot/dts/freescale/imx8mn-evk.dtsi b/arch/arm64/boot/dts/freescale/imx8mn-evk.dtsi
+index a0e13d3324ed..7d055b63535a 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mn-evk.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mn-evk.dtsi
+@@ -110,6 +110,18 @@ sound-spdif {
+ 		spdif-out;
+ 		spdif-in;
  	};
 +
 +	sound-micfil {
@@ -84,8 +86,8 @@ index b53104ed8919..9679786dac51 100644
 +	};
  };
  
- &A53_0 {
-@@ -434,6 +446,16 @@ &lcdif {
+ &easrc {
+@@ -285,6 +297,16 @@ &isi {
  	status = "okay";
  };
  
@@ -93,8 +95,8 @@ index b53104ed8919..9679786dac51 100644
 +	#sound-dai-cells = <0>;
 +	pinctrl-names = "default";
 +	pinctrl-0 = <&pinctrl_pdm>;
-+	assigned-clocks = <&clk IMX8MM_CLK_PDM>;
-+	assigned-clock-parents = <&clk IMX8MM_AUDIO_PLL1_OUT>;
++	assigned-clocks = <&clk IMX8MN_CLK_PDM>;
++	assigned-clock-parents = <&clk IMX8MN_AUDIO_PLL1_OUT>;
 +	assigned-clock-rates = <196608000>;
 +	status = "okay";
 +};
@@ -102,25 +104,25 @@ index b53104ed8919..9679786dac51 100644
  &mipi_csi {
  	status = "okay";
  
-@@ -636,6 +658,18 @@ MX8MM_IOMUXC_GPIO1_IO05_GPIO1_IO5       0x41
+@@ -522,6 +544,18 @@ MX8MN_IOMUXC_I2C3_SDA_GPIO5_IO19	0x1c3
  		>;
  	};
  
 +	pinctrl_pdm: pdmgrp {
 +		fsl,pins = <
-+			MX8MM_IOMUXC_SAI5_MCLK_SAI5_MCLK        0xd6
-+			MX8MM_IOMUXC_SAI5_RXC_PDM_CLK           0xd6
-+			MX8MM_IOMUXC_SAI5_RXFS_SAI5_RX_SYNC     0xd6
-+			MX8MM_IOMUXC_SAI5_RXD0_PDM_DATA0        0xd6
-+			MX8MM_IOMUXC_SAI5_RXD1_PDM_DATA1        0xd6
-+			MX8MM_IOMUXC_SAI5_RXD2_PDM_DATA2        0xd6
-+			MX8MM_IOMUXC_SAI5_RXD3_PDM_DATA3        0xd6
++			MX8MN_IOMUXC_SAI5_MCLK_SAI5_MCLK	0xd6
++			MX8MN_IOMUXC_SAI5_RXC_PDM_CLK		0xd6
++			MX8MN_IOMUXC_SAI5_RXFS_SAI5_RX_SYNC	0xd6
++			MX8MN_IOMUXC_SAI5_RXD0_PDM_BIT_STREAM0	0xd6
++			MX8MN_IOMUXC_SAI5_RXD1_PDM_BIT_STREAM1	0xd6
++			MX8MN_IOMUXC_SAI5_RXD2_PDM_BIT_STREAM2	0xd6
++			MX8MN_IOMUXC_SAI5_RXD3_PDM_BIT_STREAM3	0xd6
 +		>;
 +	};
 +
  	pinctrl_pmic: pmicirqgrp {
  		fsl,pins = <
- 			MX8MM_IOMUXC_GPIO1_IO03_GPIO1_IO3		0x141
+ 			MX8MN_IOMUXC_GPIO1_IO03_GPIO1_IO3	0x141
 -- 
 2.34.1
 
