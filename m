@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-27839-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27840-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A30B981BD42
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 18:31:18 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B5A481BD44
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 18:31:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D10D21C20C9C
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 17:31:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9DCCE1F22B3F
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 17:31:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 486055991D;
-	Thu, 21 Dec 2023 17:31:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AA516280F;
+	Thu, 21 Dec 2023 17:31:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="KdL9VqTn"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="oRpHoyB1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
+Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com [209.85.208.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 863726280F
-	for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 17:31:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A783627FE
+	for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 17:31:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-54c70c70952so1300231a12.3
-        for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 09:31:09 -0800 (PST)
+Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-2cc63b3ed71so13640581fa.3
+        for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 09:31:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1703179868; x=1703784668; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1703179894; x=1703784694; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=e9WnMkyFiRCA7baddQfArIuBh2ZYMqaCVVALijh4oFI=;
-        b=KdL9VqTndiiU+qUbf35yicfUPr31IimPQAyXaQSu2ehHQAOKPmzK5TCCGzGMFzFkIc
-         oI1rDnAS+mY2IELWMxsRN1SwK2xvQQXgF7vL+X0OKayzjjfGm7164+Fg6vvdQ95TRnNd
-         +NbedhpOuWzIQHezqNgH95IaoK+qrU2Rg3CzQtKObR4lBp88D7tkjVc4dowZeXOKfaTL
-         X+hQScqDpjocG/EDWjV5BJuS+cDM2HV6ORj7Rj/DRVZZk1tyBM1arum398Y1Hp/xUNmz
-         2GwG7A1RhkzW4Obm78rKS1MV60MYqsXdnVPas4Jb2Oq0MMjrMmXMM4xJJaOcbfVQzDhF
-         dOZw==
+        bh=bJEVjLD+6uczd4icO0P1JWsIXEAiz4/5EjrOw/SNWOg=;
+        b=oRpHoyB1luA8MxS570+wVa4kX6Yg9IU4oERrYdjHjMnlLeveTbntLrslMQ7M5rNwcJ
+         1LbisawhAzs62pjMQ/aMtXjc6mjUsJufY7cOeMwAXS6RB8FQU2ywgKIQCRmAVEiEMH80
+         RGSXswB79bLMUOl3+CKtEg6Dush6nIkRFvdLcye1jtuy2MuCqNoOrgkl7u6ypMfYAFKC
+         VNkWh1CrZA7Wj/AZEf4z0uMV+V4sx3303Uck0htY52kjjWUJBuM/Agafy9Rz6uh3m2P6
+         5PczAd04Haa9qWPGjuou9YiZ2zvzFN49Kd5u8Omfyt5if3bBkvAohS9Ev+LaWQ4pWjpW
+         tu2Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703179868; x=1703784668;
+        d=1e100.net; s=20230601; t=1703179894; x=1703784694;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=e9WnMkyFiRCA7baddQfArIuBh2ZYMqaCVVALijh4oFI=;
-        b=CnTIb8kF8KYnDfwD0xCYHuWGJvCJHwA5vs62VQi00bnozPgq6IK0qMkIYjVAUTFBTg
-         KPDFhGPuKflaQynNWpaBTBGksn1QHHvyT1f4EEaOriycTN/fD0Pq4wTyUf9En8BrWrsW
-         v8Z9IaOWjgH5Tryd1VMNG42Hg/t0hD9wS19efXbShNk6pj1f7xPqOvoZf3EauRBMSOHi
-         itOGIeRZgV3Q+N5BQDGinjCTpmbPj5NImYg9xzds/nHuk6H7e3AhqHnPn48e/e4P9vBY
-         9btNJTwUyahc2biH0THTL3pNc1SubI25e4hUODMkb5SfjtFw5g1wwYHNRfJ4I0C3H55B
-         zTeA==
-X-Gm-Message-State: AOJu0YyWH2hsiWRGOedoVmZzzVmYfYw9jorIyFXLM2UVHFIdcOSg79e8
-	2b8/ohlRkV92VJ3c40LBkFu97Q==
-X-Google-Smtp-Source: AGHT+IE3wKoY+z5MK8YtmPRdSeahFzQWG09y+WxB89lV7LGTC/CxDSqV/zzqyN/meP8TPfCo1AGF3Q==
-X-Received: by 2002:a50:8d01:0:b0:554:3b83:d11b with SMTP id s1-20020a508d01000000b005543b83d11bmr222023eds.117.1703179867847;
-        Thu, 21 Dec 2023 09:31:07 -0800 (PST)
+        bh=bJEVjLD+6uczd4icO0P1JWsIXEAiz4/5EjrOw/SNWOg=;
+        b=Y0sdAMn4radYJpDHkxAHqWfqnmk97G+HepnexDBqaxDfkuFVbrKqrkyevc8EdlMNF6
+         Tkh4caYW8Ks630+k25z8Hg1svPsUTDt0NcF8n/vBrav4G8G/QOzIEwZGJ5SWMybPhx6t
+         PkQr5GlP4Ntzi4T3HfRIYWkiQ4ATJyiq+YBHvg3aiC4xU4LJOHfhFowh9zG192/ywGEa
+         zcPA2ESjsn31mzkiR9ZUpPBR8E1m5V7f6E/AfMUpardd88yi3g0+o8VXnCeDXlXKeG6R
+         KO41RSQvhkEHfPQ5hyI+/ihFVHIgWGalPp3dfOoLaPCNvRnbdKtUzurl+0nAcXyCmLW8
+         kkUg==
+X-Gm-Message-State: AOJu0YxaxIhV8pisu401WGiOtN5E2qoZ8IsuFZugIYrFukZiSutlQc6x
+	A3qCl2iNPglV/iGp0DENYuwt1Q==
+X-Google-Smtp-Source: AGHT+IH/gMv3N+gBtQF1MO5sCoFCrSSSnS4rfUBiPwIUwhGSV8nckoU5K97oYciHfBb9b+cm1rN9wg==
+X-Received: by 2002:a2e:8698:0:b0:2cc:8678:1bc with SMTP id l24-20020a2e8698000000b002cc867801bcmr2687340lji.32.1703179894553;
+        Thu, 21 Dec 2023 09:31:34 -0800 (PST)
 Received: from [192.168.0.22] ([78.10.206.178])
-        by smtp.gmail.com with ESMTPSA id n4-20020a056402434400b005528265bc41sm1436066edc.0.2023.12.21.09.31.06
+        by smtp.gmail.com with ESMTPSA id n4-20020a056402434400b005528265bc41sm1436066edc.0.2023.12.21.09.31.33
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 Dec 2023 09:31:07 -0800 (PST)
-Message-ID: <7362295b-4a01-4574-8d96-d10f405eaea0@linaro.org>
-Date: Thu, 21 Dec 2023 18:31:05 +0100
+        Thu, 21 Dec 2023 09:31:34 -0800 (PST)
+Message-ID: <2eeb19a0-5851-4684-836c-36ec53db6900@linaro.org>
+Date: Thu, 21 Dec 2023 18:31:32 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,15 +68,16 @@ MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH v2 1/5] ASoC: dt-bindings: remove tas2563 from yaml
 Content-Language: en-US
-To: Shenghao Ding <shenghao-ding@ti.com>, broonie@kernel.org,
- conor+dt@kernel.org
-Cc: robh+dt@kernel.org, andriy.shevchenko@linux.intel.com, kevin-lu@ti.com,
- baojun.xu@ti.com, devicetree@vger.kernel.org, lgirdwood@gmail.com,
- perex@perex.cz, pierre-louis.bossart@linux.intel.com, 13916275206@139.com,
- linux-sound@vger.kernel.org, linux-kernel@vger.kernel.org,
- liam.r.girdwood@intel.com, soyer@irl.hu, tiwai@suse.de, peeyush@ti.com,
- navada@ti.com
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Shenghao Ding <shenghao-ding@ti.com>
+Cc: broonie@kernel.org, conor+dt@kernel.org, robh+dt@kernel.org,
+ kevin-lu@ti.com, baojun.xu@ti.com, devicetree@vger.kernel.org,
+ lgirdwood@gmail.com, perex@perex.cz, pierre-louis.bossart@linux.intel.com,
+ 13916275206@139.com, linux-sound@vger.kernel.org,
+ linux-kernel@vger.kernel.org, liam.r.girdwood@intel.com, soyer@irl.hu,
+ tiwai@suse.de, peeyush@ti.com, navada@ti.com
 References: <20231221101346.429-1-shenghao-ding@ti.com>
+ <ZYReyHQxMAe-DKq4@smile.fi.intel.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -122,20 +123,20 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231221101346.429-1-shenghao-ding@ti.com>
+In-Reply-To: <ZYReyHQxMAe-DKq4@smile.fi.intel.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 21/12/2023 11:13, Shenghao Ding wrote:
-> Remove tas2563 from tas2562, it will be supported in tas2781 to better
-> support dsp mode.
+On 21/12/2023 16:50, Andy Shevchenko wrote:
+> On Thu, Dec 21, 2023 at 06:13:41PM +0800, Shenghao Ding wrote:
+>> Remove tas2563 from tas2562, it will be supported in tas2781 to better
+>> support dsp mode.
+> 
+> DSP
+> 
+> Shouldn't this patch go after the actual change happen?
 
-Please provide rationale in terms of bindings and hardware, not in terms
-of driver. Or at least not only. For example "supported in tas2781" does
-not fit hardware part, so you sure must be talking about drivers thus
-why driver change would affect bindings?
-
-
+I would squash both, so device documentation does not disappear.
 
 Best regards,
 Krzysztof
