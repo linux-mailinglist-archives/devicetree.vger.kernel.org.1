@@ -1,108 +1,128 @@
-Return-Path: <devicetree+bounces-27553-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27558-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A656681ABDE
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 01:46:04 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C71C81AC79
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 03:02:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 50D831F21F24
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 00:46:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3C8BA1F235EC
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 02:02:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22BF264A;
-	Thu, 21 Dec 2023 00:45:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D61C1843;
+	Thu, 21 Dec 2023 02:01:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="VhNvvwdb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+Received: from mail-m121157.qiye.163.com (mail-m121157.qiye.163.com [115.236.121.157])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F420920EA;
-	Thu, 21 Dec 2023 00:45:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-	by fd01.gateway.ufhost.com (Postfix) with ESMTP id 1B8027FDC;
-	Thu, 21 Dec 2023 08:45:41 +0800 (CST)
-Received: from EXMBX168.cuchost.com (172.16.6.78) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 21 Dec
- 2023 08:45:41 +0800
-Received: from EXMBX066.cuchost.com (172.16.7.66) by EXMBX168.cuchost.com
- (172.16.6.78) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 21 Dec
- 2023 08:45:40 +0800
-Received: from EXMBX066.cuchost.com ([fe80::5947:9245:907e:339f]) by
- EXMBX066.cuchost.com ([fe80::5947:9245:907e:339f%17]) with mapi id
- 15.00.1497.044; Thu, 21 Dec 2023 08:45:40 +0800
-From: JeeHeng Sia <jeeheng.sia@starfivetech.com>
-To: Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-	"kernel@esmil.dk" <kernel@esmil.dk>, "conor@kernel.org" <conor@kernel.org>,
-	"robh+dt@kernel.org" <robh+dt@kernel.org>,
-	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
-	"paul.walmsley@sifive.com" <paul.walmsley@sifive.com>, "palmer@dabbelt.com"
-	<palmer@dabbelt.com>, "aou@eecs.berkeley.edu" <aou@eecs.berkeley.edu>,
-	"mturquette@baylibre.com" <mturquette@baylibre.com>, "sboyd@kernel.org"
-	<sboyd@kernel.org>, "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>, "Hal
- Feng" <hal.feng@starfivetech.com>, Xingyu Wu <xingyu.wu@starfivetech.com>
-CC: "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>, Leyfoon Tan
-	<leyfoon.tan@starfivetech.com>
-Subject: RE: [PATCH v1 06/16] clk: starfive: Add JH8100 System clock generator
- driver
-Thread-Topic: [PATCH v1 06/16] clk: starfive: Add JH8100 System clock
- generator driver
-Thread-Index: AQHaKDp8qa+gHWDJHkGDh0MGWRuwVrCfD58AgAXCtdCAAc4FgIAK2SJwgAA69gCAAUjdgA==
-Date: Thu, 21 Dec 2023 00:45:40 +0000
-Message-ID: <442fd023a8bf43dfbb4991ac3eafbc05@EXMBX066.cuchost.com>
-References: <20231206115000.295825-1-jeeheng.sia@starfivetech.com>
- <20231206115000.295825-7-jeeheng.sia@starfivetech.com>
- <CAJM55Z_VgBGvCPuvwmQahMcMfuWKnOKpZ9bBbbhei_Teu5Apeg@mail.gmail.com>
- <9ae86c6786bc4ac7b93c971ba00084a6@EXMBX066.cuchost.com>
- <CAJM55Z9GVFGuwqe=zLXQvBwDfVSz4eA2EXDd4sqWVCKJF2J+fg@mail.gmail.com>
- <07a8ac42184f440fae1b0d13db4e43cc@EXMBX066.cuchost.com>
- <CAJM55Z9w3PdZMFNhTviBvu-2HE7CXdTVpLvgyecArvs=qa_J=A@mail.gmail.com>
-In-Reply-To: <CAJM55Z9w3PdZMFNhTviBvu-2HE7CXdTVpLvgyecArvs=qa_J=A@mail.gmail.com>
-Accept-Language: en-US, zh-CN
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-x-ms-exchange-transport-fromentityheader: Hosted
-x-yovoleruleagent: yovoleflag
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E7AD15CC;
+	Thu, 21 Dec 2023 02:01:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+DKIM-Signature: a=rsa-sha256;
+	b=VhNvvwdbjPo7R61TzOR7Aoq7UhGk90latFKZasp/5FxmK2Zjgf2YfDe0ZBFJecM7NR1DXcqoUsW3nK8cXmZgzOuYE/TAa3QnMX32jVmW/gxqfreP9IFqU4cYuEpns3ENMq+AZ+R+yAYnR2JwuFqd61hBXnyypD0j6XJNr0ult9o=;
+	s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=sgNbKKH79HHBf3IgFv/B9H2If9G4Vjiqig3E0NMzJhk=;
+	h=date:mime-version:subject:message-id:from;
+Received: from [172.16.12.141] (unknown [58.22.7.114])
+	by mail-m12779.qiye.163.com (Hmail) with ESMTPA id 3FEEA780171;
+	Thu, 21 Dec 2023 09:07:14 +0800 (CST)
+Message-ID: <28216be5-810f-40d6-850b-a0fc590ffa3c@rock-chips.com>
+Date: Thu, 21 Dec 2023 09:07:13 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/3] ARM: dts: rockchip: Add psci for rk3036
+Content-Language: en-US
+To: Alex Bee <knaerzche@gmail.com>, Andy Yan <andyshrk@163.com>,
+ heiko@sntech.de
+Cc: krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ zhengxing@rock-chips.com
+References: <20231218105523.2478315-1-andyshrk@163.com>
+ <20231218105523.2478315-2-andyshrk@163.com>
+ <da10e2fc-3179-4bd5-88ed-b4d5f64a7191@gmail.com>
+From: Andy Yan <andy.yan@rock-chips.com>
+In-Reply-To: <da10e2fc-3179-4bd5-88ed-b4d5f64a7191@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGUhOSFYeQ0NIS0NMQkoZGUJVEwETFh
+	oSFyQUDg9ZV1kYEgtZQVlOQ1VJSVVMVUpKT1lXWRYaDxIVHRRZQVlPS0hVSk1PSU5IVUpLS1VKQk
+	tLWQY+
+X-HM-Tid: 0a8c89e98fafb24fkuuu3feea780171
+X-HM-MType: 1
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6ME06Sio6EDw0LyFLHC1WFUxK
+	TTwKCRFVSlVKTEtISklLQ0hOS05JVTMWGhIXVRoVHwJVAhoVOwkUGBBWGBMSCwhVGBQWRVlXWRIL
+	WUFZTkNVSUlVTFVKSk9ZV1kIAVlBSENDQzcG
 
-DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogRW1pbCBSZW5uZXIgQmVy
-dGhpbmcgPGVtaWwucmVubmVyLmJlcnRoaW5nQGNhbm9uaWNhbC5jb20+DQo+IFNlbnQ6IFdlZG5l
-c2RheSwgRGVjZW1iZXIgMjAsIDIwMjMgOTowOCBQTQ0KPiBUbzogSmVlSGVuZyBTaWEgPGplZWhl
-bmcuc2lhQHN0YXJmaXZldGVjaC5jb20+OyBFbWlsIFJlbm5lciBCZXJ0aGluZyA8ZW1pbC5yZW5u
-ZXIuYmVydGhpbmdAY2Fub25pY2FsLmNvbT47IGtlcm5lbEBlc21pbC5kazsNCj4gY29ub3JAa2Vy
-bmVsLm9yZzsgcm9iaCtkdEBrZXJuZWwub3JnOyBrcnp5c3p0b2Yua296bG93c2tpK2R0QGxpbmFy
-by5vcmc7IHBhdWwud2FsbXNsZXlAc2lmaXZlLmNvbTsgcGFsbWVyQGRhYmJlbHQuY29tOw0KPiBh
-b3VAZWVjcy5iZXJrZWxleS5lZHU7IG10dXJxdWV0dGVAYmF5bGlicmUuY29tOyBzYm95ZEBrZXJu
-ZWwub3JnOyBwLnphYmVsQHBlbmd1dHJvbml4LmRlOyBIYWwgRmVuZw0KPiA8aGFsLmZlbmdAc3Rh
-cmZpdmV0ZWNoLmNvbT47IFhpbmd5dSBXdSA8eGluZ3l1Lnd1QHN0YXJmaXZldGVjaC5jb20+DQo+
-IENjOiBsaW51eC1yaXNjdkBsaXN0cy5pbmZyYWRlYWQub3JnOyBkZXZpY2V0cmVlQHZnZXIua2Vy
-bmVsLm9yZzsgbGludXgta2VybmVsQHZnZXIua2VybmVsLm9yZzsgbGludXgtY2xrQHZnZXIua2Vy
-bmVsLm9yZzsgTGV5Zm9vbiBUYW4NCj4gPGxleWZvb24udGFuQHN0YXJmaXZldGVjaC5jb20+DQo+
-IFN1YmplY3Q6IFJFOiBbUEFUQ0ggdjEgMDYvMTZdIGNsazogc3RhcmZpdmU6IEFkZCBKSDgxMDAg
-U3lzdGVtIGNsb2NrIGdlbmVyYXRvciBkcml2ZXINCj4gDQo+IEplZUhlbmcgU2lhIHdyb3RlOg0K
-Wy4uLl0NCj4gPiA+DQo+ID4gPiBJZiB5b3UncmUganVzdCB1c2luZyB0aGlzIGZvciB0ZXN0aW5n
-IG9uIEZQR0FzIHlvdSBjYW4gY3JlYXRlIGR1bW15IGZpeGVkDQo+ID4gPiBjbG9ja3MgaW4gdGhl
-IGRldmljZSB0cmVlIGZvciB0aGUgUExMcyB0aGF0IHRoaXMgZHJpdmVyIGNhbiBjb25zdW1lLiAg
-VGhlbg0KPiA+ID4gbGF0ZXIgd2hlbiB5b3UgaGF2ZSBhIFBMTCBkcml2ZXIgeW91IGNhbiByZXBs
-YWNlIHRob3NlIGZpeGVkIGNsb2NrcyB3aXRoIHRoZQ0KPiA+ID4gb3V0cHV0IG9mIHRoYXQgZHJp
-dmVyLg0KPiA+IFRoZSBQTEwgZml4ZWQgY2xvY2tzIHdlcmUgY3JlYXRlZCBpbiB0aGUgQyBjb2Rl
-LiBJIGludGVycHJldCB0aGlzIG1lc3NhZ2UNCj4gPiBhcyBhIHN1Z2dlc3Rpb24gdG8gY3JlYXRl
-IGEgUExMIGZpeGVkIGNsb2NrIGluIHRoZSBEVD8NCj4gDQo+IFllcywgdGhlbiB5b3UgZG9uJ3Qg
-bmVlZCB0byBjaGFuZ2UgdGhlIGNsb2NrIGRyaXZlciBhbmQgaXRzIGJpbmRpbmdzIGJ1dCBqdXN0
-DQo+IG5lZWQgdG8gdXBkYXRlIHRoZSBjbG9jayByZWZlcmVuY2VzIHRvIHRoZSBQTEwgZHJpdmVy
-IG9uY2UgeW91IGhhdmUgdGhhdC4NCk9rLg0KPiANCj4gL0VtaWwNCg==
+Hi Alex:
+
+On 12/20/23 19:16, Alex Bee wrote:
+> Hi Andy,
+> Am 18.12.23 um 11:55 schrieb Andy Yan:
+>> From: Andy Yan <andy.yan@rock-chips.com>
+>>
+>> The system will hang at bringup secondary CPUs
+>> without psci node.
+>>
+>> Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
+>>
+>> ---
+>>
+>> (no changes since v1)
+>>
+>>   arch/arm/boot/dts/rockchip/rk3036.dtsi | 5 +++++
+>>   1 file changed, 5 insertions(+)
+>>
+>> diff --git a/arch/arm/boot/dts/rockchip/rk3036.dtsi b/arch/arm/boot/dts/rockchip/rk3036.dtsi
+>> index 78686fc72ce6..5344803442a1 100644
+>> --- a/arch/arm/boot/dts/rockchip/rk3036.dtsi
+>> +++ b/arch/arm/boot/dts/rockchip/rk3036.dtsi
+>> @@ -67,6 +67,11 @@ display-subsystem {
+>>           ports = <&vop_out>;
+>>       };
+>> +    psci {
+>> +        compatible = "arm,psci-1.0";
+>> +        method = "smc";
+>> +    };
+>> +
+> I don't think that's an good idea. 
+
+Why?
+
+>You most likely need that because you have downstream bootloader installed on this board. PSCI implementation takes place in TEE-OS for Rockchips ARM SoCs. There is no support for RK3036 in upstream op-tee OS. It's pretty much the same for RK3128 and RK3288.
+> If you use upstream u-boot it should be good as-is.
+
+Unfortunately, upstream u-boot also cannot boot up on this board.
+At present, I haven't had time to debug what is going on.
+
+Another reason I want to use downstream u-boot it is: I try run
+this board with mainline just because i want to test some community
+patches about inno-hdmi driver, as you said "the inno-hdmi driver currently gets a lot of attention"[0]
+
+With a downstream u-boot I can easy switch between upstream kernel and downstream kernel(no need to replace other components)
+if I found some function is not work as expected.
+
+
+[0]https://patchwork.kernel.org/project/linux-rockchip/cover/20231219170100.188800-1-knaerzche@gmail.com/
+> 
+> Alex
+>>       timer {
+>>           compatible = "arm,armv7-timer";
+>>           arm,cpu-registers-not-fw-configured;
+> 
+> 
+> _______________________________________________
+> Linux-rockchip mailing list
+> Linux-rockchip@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-rockchip
 
