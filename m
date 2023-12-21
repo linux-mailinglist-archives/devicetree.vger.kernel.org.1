@@ -1,195 +1,142 @@
-Return-Path: <devicetree+bounces-27556-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27559-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4B0681AC6F
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 02:58:13 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 02B2081AC92
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 03:21:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2B921B22292
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 01:58:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8C4A71F23A45
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 02:21:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7DCB3C0F;
-	Thu, 21 Dec 2023 01:58:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=flygoat.com header.i=@flygoat.com header.b="rywXbeVg";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="SGdXB5Qv"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BAB4184C;
+	Thu, 21 Dec 2023 02:20:58 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from out3-smtp.messagingengine.com (out3-smtp.messagingengine.com [66.111.4.27])
+Received: from out28-38.mail.aliyun.com (out28-38.mail.aliyun.com [115.124.28.38])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF7E03C02;
-	Thu, 21 Dec 2023 01:58:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=flygoat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flygoat.com
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-	by mailout.nyi.internal (Postfix) with ESMTP id D55045C02CD;
-	Wed, 20 Dec 2023 20:58:02 -0500 (EST)
-Received: from imap44 ([10.202.2.94])
-  by compute3.internal (MEProxy); Wed, 20 Dec 2023 20:58:02 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=flygoat.com; h=
-	cc:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm3; t=1703123882;
-	 x=1703210282; bh=5u7cmTEb3k7I+rXqFdXZKIeekD/goMRvCSAHF2YUEFY=; b=
-	rywXbeVgH/6+nU+ZRSW11MClxtxfH7K6HG+Smddk5xtVKl8CzSr/khQ6dGfWENPG
-	BAsjk5VByijrJHs7IWogFitDAj5HwPMWfz7BVpWg1neO6/TIQdZBN17zzYk83Uou
-	LIy/kHZk4qX17IxDQkXIjgr7puvZKA4CZbRzsNSbQYt6eAbp3MChOwWFSw0JYhGH
-	VbsEAew6ecfWPRMLGzSlGSS0YuZe/imJW/yZWh0BWpcI3p3NPKZmeZJBkTG0usv1
-	L92DvAvYIbnblqKZByImDo+SSkdVKwP6M1fncgDH+3qyDW3mU7lvrjrKHJ6NBCNx
-	6B/aIGvvcvgH4BWr/Uafjw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1703123882; x=
-	1703210282; bh=5u7cmTEb3k7I+rXqFdXZKIeekD/goMRvCSAHF2YUEFY=; b=S
-	GdXB5Qvwwm3fLo99MKH9Wp9JfHG3qFzhOtzmqm0a8rgSbzLVlLdtgTg1L1YbjrsD
-	E4f1qs3W1odLy1SoG8fpkhBD2pUK8vV50zkHeLqHwCF7lVKdSOYO5Qfq78WO0Q2M
-	dbZ3Q8d4phHWGpOBtg+cUQ9tv0jVDOAs7tmeewfvG2fLBc6LhZibKS7l9KN6t0/W
-	dEZv2/RbOYJT7B+DkL1McpS1wZGRnZpFLBuyk7W3JEoNbieAZs0IwKmmMqJ5oWwQ
-	ji60ZipzRxkdfJFDTuKaGeF7Rsglf6YY4TaSeECwGKYMTN/xjLXDuR97T4b2ya6X
-	tjZXUGXd2B7xQwg0wooyA==
-X-ME-Sender: <xms:qpuDZRAfgz312h5agU1NLmAx1J5XgHhUJtdevJqkXd8wEPkKG8bbuA>
-    <xme:qpuDZfi1csmvxsRQBYl8PmW8mMxALX7-lyk8aQd9pz2bz0Ccdj3VBIcghnsiG6Orn
-    8YkEGa4cet-YThrfGQ>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvkedrvddufedggeduucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvfevufgtgfesthhqredtreerjeenucfhrhhomhepfdfl
-    ihgrgihunhcujggrnhhgfdcuoehjihgrgihunhdrhigrnhhgsehflhihghhorghtrdgtoh
-    hmqeenucggtffrrghtthgvrhhnpedufeegfeetudeghefftdehfefgveffleefgfehhfej
-    ueegveethfduuddvieehgfenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmh
-    grihhlfhhrohhmpehjihgrgihunhdrhigrnhhgsehflhihghhorghtrdgtohhm
-X-ME-Proxy: <xmx:qpuDZcmiVJ0WHtnrjBfO6Dwqp5BG62EEh0v2WMecaNO43d75CTYfyg>
-    <xmx:qpuDZbxReaveKF1guUPgJGyqhueJOLrEJtSMoBOoHEfPtw_2rDCE-g>
-    <xmx:qpuDZWR5qp9rzaqEK7AkAirW7Vn_dlUjz6eJVphG2Iy0MiycUqjt0Q>
-    <xmx:qpuDZbIs8vD5OFs9KsAJNapnmre0enEmlYlbjx_ktXS7NBoui4pEiA>
-Feedback-ID: ifd894703:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-	id 7EAD136A0076; Wed, 20 Dec 2023 20:58:02 -0500 (EST)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.9.0-alpha0-1364-ga51d5fd3b7-fm-20231219.001-ga51d5fd3
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B30B1843;
+	Thu, 21 Dec 2023 02:20:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sjterm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sjterm.com
+X-Alimail-AntiSpam:AC=CONTINUE;BC=0.08253946|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_regular_dialog|0.759945-0.00196268-0.238092;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047199;MF=fuyao@sjterm.com;NM=1;PH=DS;RN=16;RT=16;SR=0;TI=SMTPD_---.VpJwiCT_1703125249;
+Received: from localhost(mailfrom:fuyao@sjterm.com fp:SMTPD_---.VpJwiCT_1703125249)
+          by smtp.aliyun-inc.com;
+          Thu, 21 Dec 2023 10:20:50 +0800
+Date: Thu, 21 Dec 2023 10:20:49 +0800
+From: fuyao <fuyao@sjterm.com>
+To: Andre Przywara <andre.przywara@arm.com>
+Cc: fuyao <fuyao1697@cyg.com>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Alexandre TORGUE <alexandre.torgue@st.com>,
+	Enric Balletbo i Serra <eballetbo@gmail.com>,
+	Baruch Siach <baruch@tkos.co.il>,
+	Paul Barker <paul.barker@sancloud.com>, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH RESEND] ARM: dts: sun8i: r40: open the regulator aldo1
+Message-ID: <ZYOhAQi7XeLUuAC9@debian.cyg>
+Mail-Followup-To: Andre Przywara <andre.przywara@arm.com>,
+	fuyao <fuyao1697@cyg.com>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Alexandre TORGUE <alexandre.torgue@st.com>,
+	Enric Balletbo i Serra <eballetbo@gmail.com>,
+	Baruch Siach <baruch@tkos.co.il>,
+	Paul Barker <paul.barker@sancloud.com>, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+References: <ZYKjYypuAx7gNuam@debian.cyg>
+ <20231220150400.0f32e2a5@donnerap.manchester.arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-Id: <b20873d4-1627-4e68-8646-c3837c0d135c@app.fastmail.com>
-In-Reply-To: <ZYNhbQjMbAH6I0kI@alpha.franken.de>
-References: <20231212163459.1923041-1-gregory.clement@bootlin.com>
- <878r5vctdg.fsf@BL-laptop> <ZYNhbQjMbAH6I0kI@alpha.franken.de>
-Date: Thu, 21 Dec 2023 01:57:42 +0000
-From: "Jiaxun Yang" <jiaxun.yang@flygoat.com>
-To: "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>,
- "Gregory CLEMENT" <gregory.clement@bootlin.com>
-Cc: "paulburton@kernel.org" <paulburton@kernel.org>,
- "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>,
- "Rob Herring" <robh+dt@kernel.org>,
- "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- "Vladimir Kondratiev" <vladimir.kondratiev@mobileye.com>,
- "Tawfik Bayouk" <tawfik.bayouk@mobileye.com>,
- "Alexandre Belloni" <alexandre.belloni@bootlin.com>,
- =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>,
- "Thomas Petazzoni" <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v5 00/22] Add support for the Mobileye EyeQ5 SoC
-Content-Type: text/plain;charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231220150400.0f32e2a5@donnerap.manchester.arm.com>
+Organization: work_work_work
 
+On Wed, Dec 20, 2023 at 03:04:00PM +0000, Andre Przywara wrote:
+> On Wed, 20 Dec 2023 16:18:43 +0800
+> fuyao <fuyao1697@cyg.com> wrote:
+> 
+> Hi,
+> 
+> > the aldo1 is connect regulator pin which power the TV.
+> 
+> What do you mean with that? That ALDO1 is connected to VCC-TVOUT and/or
+> VCC-TVIN on the R40 SoC?
 
+The ALDO1 is connected to VCC-TVOUT on the R40 Soc.
 
-=E5=9C=A82023=E5=B9=B412=E6=9C=8820=E6=97=A5=E5=8D=81=E4=BA=8C=E6=9C=88 =
-=E4=B8=8B=E5=8D=889:49=EF=BC=8CThomas Bogendoerfer=E5=86=99=E9=81=93=EF=BC=9A
-> On Fri, Dec 15, 2023 at 05:39:39PM +0100, Gregory CLEMENT wrote:
->> Hello Thomas,
->>=20
->> > Hello,
->> >
->> > The EyeQ5 SoC from Mobileye is based on the MIPS I6500 architecture
->> > and features multiple controllers such as the classic UART, I2C, SP=
-I,
->> > as well as CAN-FD, PCIe, Octal/Quad SPI Flash interface, Gigabit
->> > Ethernet, MIPI CSI-2, and eMMC 5.1. It also includes a Hardware
->> > Security Module, Functional Safety Hardware, and MJPEG encoder.
->> >
->> > One peculiarity of this SoC is that the physical address of the DDDR
->> > exceeds 32 bits. Given that the architecture is 64 bits, this is not
->> > an issue, but it requires some changes in how the mips64 is current=
-ly
->> > managed during boot.
->> >
->> > In this fifth version, there aren't many changes, mostly just tweak=
-ing
->> > commit messages based on Sergey's feedback and fixing up the code
->> > style. But, the real reason for this series is a bit of a whoopsie =
-on
->> > my end. It turns out, despite what I confidently claimed in the last
->> > round, some configuration tweaks were missing. All sorted now, thou=
-gh!
->> >
->>=20
->> A few weeks ago, you were concerned about the introduction of the
->> specific kconfig CONFIG_USE_XKPHYS to support EyeQ5, and you wanted us
->> to set up a new platform instead. Since then, Jiaxun proposed a series
->> that was merged here to provide more generic support.
->
-> well, there is more to improve and stuff I don't like in Jaixun series.
-> For example misusing CONFIG_PHYSICAL_START to force a load address via=
- config
-> (IMHO it's already a hack for CRASH_DUMP).
->
-> As there is your series and Jiaxun series, where should I comment more
-> detailed ?
+> 
+> > The USB core use TV ref as reference Voltage.
+> 
+> The USB core in the SoC? So pin VCC-USB, which requires 3.3V, the same
+> voltage as the TV pins?
+> Which means this doesn't really have much to do with TV, it's just that
+> USB and also "TV" are supplied by ALDO1?
 
-You can comment on my patches in this series, I'm listening.
+The internal USB PHY requires a reference voltage. It seems that in
+order to save costs, the reference voltage of the TVOUT module is used.
 
->> I had other issues in the initial series, and I think that now I've
->> fixed all of them. So, I would like to know what your opinion is now
->> about this series.
->>=20
->> Will you accept it, or do you still think that a new platform has to =
-be
->> set up?
->
-> things have improved, but I'm still in favor to use a new platform.
-> And my main point stays. A "generic" kernel compiled for EyeQ5 will
-> just run on that platform, which doesn't sound generic to me.
+> 
+> > Signed-off-by: fuyao <fuyao1697@cyg.com>
+> > ---
+> >  arch/arm/boot/dts/allwinner/sun8i-r40-feta40i.dtsi | 7 +++++++
+> >  1 file changed, 7 insertions(+)
+> > 
+> > diff --git a/arch/arm/boot/dts/allwinner/sun8i-r40-feta40i.dtsi b/arch/arm/boot/dts/allwinner/sun8i-r40-feta40i.dtsi
+> > index 9f39b5a2bb35..8906170461df 100644
+> > --- a/arch/arm/boot/dts/allwinner/sun8i-r40-feta40i.dtsi
+> > +++ b/arch/arm/boot/dts/allwinner/sun8i-r40-feta40i.dtsi
+> > @@ -42,6 +42,13 @@ &pio {
+> >  	vcc-pg-supply = <&reg_dldo1>;
+> >  };
+> >  
+> > +&reg_aldo1 {
+> > +	regulator-always-on;
+> 
+> So did USB never work before, with the DT as in mainline?
+> 
 
-There are many case generic-ish kernel won't boot on other system, FIT
-file built for one platform certainly won't boot on another, not to ment=
-ion
-that we already have systems not following UHI boot protocol in generic =
-platform,
-such as MSCC Ocelot.
+The USB can work, but is unstable. Occasionally disconnected because of
+the D+/D- electrical characteristics.
 
-If only one extra Kconfig option (CONFIG_PHYSICAL_START) can make kernel
-support a new type of platform, duplicating the code for a new platform
-does not make much sense here.
+> For always-on regulators it would be good to see some rationale why this
+> cannot be referenced by its consumer. If it is really supplying the USB
+> core, that would be a reason, because we don't have a good way of
+> describing this.
+> 
+> > +	regulator-min-microvolt = <3300000>;
+> > +	regulator-max-microvolt = <3300000>;
+> > +	regulator-name = "vcc-aldo1";
+> 
+> Regulators should be named after their users, so use something like:
+> 	regulator-name = "vcc-3v3-tv-usb";
+> 
 
-In multi-cluster boston system we are having the same problem that low R=
-AM
-space is not sufficient for kernel image due to GCRs eating up low addre=
-ss
-space, that's why I devote my time to get XKPHYS booting work.
+thanks.
 
-Also if we fix up relocatable kernel support, we can indeed share one si=
-ngle
-kernel image between all those systems.
+> That then also serves as documentation of why this is always on.
+> 
+> Cheers,
+> Andre
+> 
+> > +};
+> > +
+> >  &reg_aldo2 {
+> >  	regulator-always-on;
+> >  	regulator-min-microvolt = <1800000>;
+> 
 
-Thanks
->
-> Thomas.
->
-> --=20
-> Crap can work. Given enough thrust pigs will fly, but it's not necessa=
-rily a
-> good idea.                                                [ RFC1925, 2=
-.3 ]
-
---=20
-- Jiaxun
 
