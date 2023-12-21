@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-27798-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27799-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5A5D81BB67
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 16:58:26 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id DC1B881BB7D
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 17:07:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 061AA1C24467
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 15:58:26 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 42658B22ACD
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 16:07:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9D5655E43;
-	Thu, 21 Dec 2023 15:58:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B11C539F8;
+	Thu, 21 Dec 2023 16:07:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aHCs1OiF"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="bHfuF/Xq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
+Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83FBA55E41;
-	Thu, 21 Dec 2023 15:58:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-55359dc0290so1715128a12.1;
-        Thu, 21 Dec 2023 07:58:16 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3ADC53A1F
+	for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 16:07:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2cc6b56eadaso11435751fa.1
+        for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 08:07:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1703174295; x=1703779095; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1703174830; x=1703779630; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=2ge32C67y6VL/tOuymk4ghO3Zqyctvc0EUYmoNeC+rk=;
-        b=aHCs1OiFPLNLSAOkspRFOdr903JQa+a2GQDuFWjxMFFjuhguulavIeqXjTZaNwMWwd
-         XJcE6PArQvbo/4L2oJhGeJe8d9o1bcExmBYEoNWFRqgUDPrqbPaRh2AXn3BKWASbw07f
-         +Y9eqwmkqc67Xgch31+aH+felDj9r0INAjkzXcj25+Kk8OKHfQwh/oegfaH/bftv1nBd
-         SPC8sEyjE95SLV9was+j0LSIS3S0QLd2NQcqqBVGF9Ook7cHruKxy1du5EAVcTdNdaHW
-         FytqQ0mg9EZAvG4ncUbssIDwVR9fEvxqA69rHnfVCjhlFvMENhPm0vpX+1HzCq37LhSE
-         1Oqg==
+        bh=RW+aituytgnCG5vsvH8iyQf8oNlLjNY2vCWaBlZ39k8=;
+        b=bHfuF/Xq/3RI0bAPRcGF7t0hLzt5Kt5G/J5QV41Jiz9jKlMy5mquPnIpfcjeF4qC7G
+         DveI2e5tNcxHUP8PHQuTYqRxcOxyjfnsE7WgU3h2xe63gDHVcEY5YKWjSCWF7ETT54Cm
+         loi4ZFkBrJbi0cORv6B7JFubpvpsVl43gP/xE8dSd+mHD6RMfwpfGwjXm069s+Vd4iMp
+         7VpAk5sEMXeM3mOSA/2DQ3oMvRAgDTQYqIuTpVkOL0w4ZEhE+jalmmnk6m8xeVEHOc5M
+         7ftQ3e2Qm/JnFYEe9Le8k1vJ7iy+cKfYHyNnKiT45fZx4z5SV5002efkRJdg+rJFFSCv
+         uWlw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703174295; x=1703779095;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1703174830; x=1703779630;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2ge32C67y6VL/tOuymk4ghO3Zqyctvc0EUYmoNeC+rk=;
-        b=cifNwpEV2b4VW09W80mpJ0okvm2FGyOwcoTJE3ahEa+/4dlcwfrmKmOq6qdQBEPWGd
-         +Uk/9AdhS8cNkjETun0uozYWD+n/MHLiftf+W3e5Www3awd7AHjyN3NQel615Nx8SvlA
-         wKqA2N7l1vKFMgS87QjqX5ICDNV8wqE8CKmzPwwYkEpVW0UAKlNsyDR83aWGawa4BIcO
-         x27V2WQb30xa/dao+lNaOJ13WHvA7+rh1IGpnZpUo/uaSFK1Rj3X+HyUP1nuEb8sGnJD
-         K3w65X3xfsadeRNIAnFr35wG08jZh6E/is05ivQNOfyCx8+71qx313ekR+3c8a9xLmA0
-         YGkw==
-X-Gm-Message-State: AOJu0YwsO2ROyhz7yC6yKYPuea94XQvS8ovqTorAlWmvMtOP1OsXvK/0
-	JvIYNu2JONdXje4Eyr9jrg==
-X-Google-Smtp-Source: AGHT+IFQKXVMkj4zyFWzLvwTphebmbg25nOOyfIZuy7V6OS9xs9j1VkjX2huLDnGvHVVWCzK9/wYCQ==
-X-Received: by 2002:a50:8d1b:0:b0:554:1100:99e9 with SMTP id s27-20020a508d1b000000b00554110099e9mr1032558eds.9.1703174294607;
-        Thu, 21 Dec 2023 07:58:14 -0800 (PST)
-Received: from ?IPV6:2a02:810b:f40:4300:b601:5984:d94a:3021? ([2a02:810b:f40:4300:b601:5984:d94a:3021])
-        by smtp.gmail.com with ESMTPSA id g14-20020aa7d1ce000000b0055122551f98sm1334250edp.6.2023.12.21.07.58.14
+        bh=RW+aituytgnCG5vsvH8iyQf8oNlLjNY2vCWaBlZ39k8=;
+        b=Sw7zuY/37tJfp0VCsypN6IJUUUHTbzdCE2lpDFCMWUVY3Oll6eBn5z3t9NOzTmBEch
+         1I/b+Y56ykgkFXXBHYFQYyyFZsfJb5H1qqZM9tl/XThxROaNDUeud9s8my4MvolLu2qt
+         RDWtarQUG6cxxV+9k5iWifPPYooUXWWtvUpqFBstZxLmNCN88EAwwSuCd8AfphdaVIdX
+         0m4ZvQOc9g0auNXv+qdY26z+JMcopghP9aa3Lf9DE1CmypK2B6SRTaIF/zZ+n7ctAFtz
+         Ut8JLML+aEmENgbUCOiXfgxSO6wMZfgkg1sH9eyXv7k0c1XgcMtUqQaUEs0p+4EYhDTr
+         i35Q==
+X-Gm-Message-State: AOJu0YyXSb/0ch97/WDT+tBkoyBBponFg7I6d+pBCAUGJWoXlAez5GzA
+	UxNRVrRU+/KgSi0hbNx+8p04jg==
+X-Google-Smtp-Source: AGHT+IHKmCPoniIfJQAEwBYu+Q0MShTpFmHr1QAWtiFczqTjDr7zWlQp7IR2ZRNBph6KKMuDSCCSKg==
+X-Received: by 2002:a05:6512:1329:b0:50d:f93b:97a9 with SMTP id x41-20020a056512132900b0050df93b97a9mr2923505lfu.1.1703174829787;
+        Thu, 21 Dec 2023 08:07:09 -0800 (PST)
+Received: from [192.168.0.22] ([78.10.206.178])
+        by smtp.gmail.com with ESMTPSA id wl1-20020a170907310100b00a233515c39esm1096071ejb.67.2023.12.21.08.07.08
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 Dec 2023 07:58:14 -0800 (PST)
-Message-ID: <a82481ca-b578-49a4-b0d0-974b6ee65c98@gmail.com>
-Date: Thu, 21 Dec 2023 16:58:13 +0100
+        Thu, 21 Dec 2023 08:07:09 -0800 (PST)
+Message-ID: <2e74c513-40de-41b7-ba86-c5b345344ce4@linaro.org>
+Date: Thu, 21 Dec 2023 17:07:07 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,100 +66,113 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] ARM: dts: rockchip: Add psci for rk3036
-To: Andy Yan <andy.yan@rock-chips.com>, Andy Yan <andyshrk@163.com>,
- heiko@sntech.de
-Cc: krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
- zhengxing@rock-chips.com
-References: <20231218105523.2478315-1-andyshrk@163.com>
- <20231218105523.2478315-2-andyshrk@163.com>
- <da10e2fc-3179-4bd5-88ed-b4d5f64a7191@gmail.com>
- <28216be5-810f-40d6-850b-a0fc590ffa3c@rock-chips.com>
-Content-Language: en-US, de-DE
-From: Alex Bee <knaerzche@gmail.com>
-In-Reply-To: <28216be5-810f-40d6-850b-a0fc590ffa3c@rock-chips.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH v1 1/2] dt-bindings: ASoC: Add Cadence I2S controller for
+ StarFive JH8100 SoC
+Content-Language: en-US
+To: Xingyu Wu <xingyu.wu@starfivetech.com>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Claudiu Beznea <Claudiu.Beznea@microchip.com>,
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor.dooley@microchip.com>
+Cc: Walker Chen <walker.chen@starfivetech.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
+ linux-sound@vger.kernel.org
+References: <20231221033223.73201-1-xingyu.wu@starfivetech.com>
+ <20231221033223.73201-2-xingyu.wu@starfivetech.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20231221033223.73201-2-xingyu.wu@starfivetech.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Andy,
+On 21/12/2023 04:32, Xingyu Wu wrote:
+> +  dma-names:
+> +    items:
+> +      - const: tx
+> +      - const: rx
+> +    minItems: 1
+> +
+> +  cdns,i2s-max-channels:
 
-Am 21.12.23 um 02:07 schrieb Andy Yan:
-> Hi Alex:
->
-> On 12/20/23 19:16, Alex Bee wrote:
->> Hi Andy,
->> Am 18.12.23 um 11:55 schrieb Andy Yan:
->>> From: Andy Yan <andy.yan@rock-chips.com>
->>>
->>> The system will hang at bringup secondary CPUs
->>> without psci node.
->>>
->>> Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
->>>
->>> ---
->>>
->>> (no changes since v1)
->>>
->>>   arch/arm/boot/dts/rockchip/rk3036.dtsi | 5 +++++
->>>   1 file changed, 5 insertions(+)
->>>
->>> diff --git a/arch/arm/boot/dts/rockchip/rk3036.dtsi 
->>> b/arch/arm/boot/dts/rockchip/rk3036.dtsi
->>> index 78686fc72ce6..5344803442a1 100644
->>> --- a/arch/arm/boot/dts/rockchip/rk3036.dtsi
->>> +++ b/arch/arm/boot/dts/rockchip/rk3036.dtsi
->>> @@ -67,6 +67,11 @@ display-subsystem {
->>>           ports = <&vop_out>;
->>>       };
->>> +    psci {
->>> +        compatible = "arm,psci-1.0";
->>> +        method = "smc";
->>> +    };
->>> +
->> I don't think that's an good idea. 
->
-> Why?
-It's only what I've been told before: We shoudn't add properties which
-depend on non-upstream software (if an upstream alternative exists). Also
-I'm not sure what happens if somebody doesn't use downstream bootloader
-and PSCI can't be found: Would the board still be able to boot?
->
->> You most likely need that because you have downstream bootloader 
->> installed on this board. PSCI implementation takes place in TEE-OS 
->> for Rockchips ARM SoCs. There is no support for RK3036 in upstream 
->> op-tee OS. It's pretty much the same for RK3128 and RK3288.
->> If you use upstream u-boot it should be good as-is.
->
-> Unfortunately, upstream u-boot also cannot boot up on this board.
-> At present, I haven't had time to debug what is going on.
->
-> Another reason I want to use downstream u-boot it is: I try run
-> this board with mainline just because i want to test some community
-> patches about inno-hdmi driver, as you said "the inno-hdmi driver 
-> currently gets a lot of attention"[0]
->
-Thanks for helping testing this.
+Custom properties after generic, so after sound-dai-cells. The coding
+style now mentions this.
 
-Alex
 
-> With a downstream u-boot I can easy switch between upstream kernel and 
-> downstream kernel(no need to replace other components)
-> if I found some function is not work as expected.
->
->
-> [0]https://patchwork.kernel.org/project/linux-rockchip/cover/20231219170100.188800-1-knaerzche@gmail.com/ 
->
->>
->> Alex
->>>       timer {
->>>           compatible = "arm,armv7-timer";
->>>           arm,cpu-registers-not-fw-configured;
->>
->>
->> _______________________________________________
->> Linux-rockchip mailing list
->> Linux-rockchip@lists.infradead.org
->> http://lists.infradead.org/mailman/listinfo/linux-rockchip
+> +    description: |
+> +      Number of I2S max stereo channels supported by the hardware.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    minimum: 1
+> +    maximum: 8
+> +
+> +  "#sound-dai-cells":
+> +    const: 0
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +  - resets
+> +
+> +oneOf:
+> +  - required:
+> +      - dmas
+> +      - dma-names
+> +  - required:
+> +      - interrupts
+> +
+> +unevaluatedProperties: false
+
+This is not correct without allOf: which should point you to missing
+$ref to dai-common.
+
+
+Best regards,
+Krzysztof
+
 
