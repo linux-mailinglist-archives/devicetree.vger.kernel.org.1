@@ -1,250 +1,126 @@
-Return-Path: <devicetree+bounces-27747-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27766-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE22E81B924
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 15:03:32 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66B7581BA0D
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 16:00:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D30481C25CF5
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 14:03:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2D9CF2824A8
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 15:00:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DD4C360B1;
-	Thu, 21 Dec 2023 13:56:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04B26360AF;
+	Thu, 21 Dec 2023 14:59:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="KE9e65in"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="CVERI9Cz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx08-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD13036081;
-	Thu, 21 Dec 2023 13:56:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0369457.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 3BLB0OGY023358;
-	Thu, 21 Dec 2023 14:55:58 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	selector1; bh=eKzjm6QU0a00qgRB4u+dhzVmhDqaXByxEhCymCUwNY0=; b=KE
-	9e65inuRwUDjJqFiRYo+q2aLdwLdrxXe+0VbAvgpRTVyhFeZW9Wu6LKrSbIRK6fQ
-	V4P7DhZ6sBtYDENSVm1SrtbOYn37emf0wN9QsBAf4aj+c6ASso0I5s0cRcl3pecw
-	f3yAIB8vAPqg+1/bBVORpSWluK4v7hV0WBkISpv6hI4HA5ruYyUX77GHO3F/1JcD
-	SMOb5Nu8LYjSmdH/WSu/4l/Pt01neAiKzo/C5d+uJwCFe3r/8n9FDa8htvG2Hz3L
-	+3gBVfLLvZX/IVmTYYvMuWFliTrTzCTUlohc7W/Ow4kk5TfOqrASf17n0oGxTrCd
-	gAbyCbh9vNDF7NoB9GoA==
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3v3q8110ru-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 21 Dec 2023 14:55:58 +0100 (CET)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 83C23100053;
-	Thu, 21 Dec 2023 14:55:56 +0100 (CET)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 744532B568E;
-	Thu, 21 Dec 2023 14:55:56 +0100 (CET)
-Received: from [10.201.20.120] (10.201.20.120) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Thu, 21 Dec
- 2023 14:55:55 +0100
-Message-ID: <6d26d307-eb7a-43ad-b4f3-57f8ac7ce8f0@foss.st.com>
-Date: Thu, 21 Dec 2023 14:55:54 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 684B4539E4;
+	Thu, 21 Dec 2023 14:59:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1703170797; x=1734706797;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=OoapTPukjShzEohQxJsr9nMKqKZQxWObxkyyNaa2x2o=;
+  b=CVERI9Cz7w/UOXBmVypCObeprp4Dik3z4YE2uu/CDu25zSo+ajYIN6CQ
+   nytYl/+NNNFY5R9GjXge6OnWy9k7EBa2kuDNGz6vVyrPcdG8ByMNa00je
+   gp2CI8lAJLAdwkervr/4/hUCt9yEftljlJYR8+Bc+pCQ6oANjCa3KyEn7
+   yjtsSni0xMtzF+uGGlTeQCTF7PpIQAJhhBgUhJKteswSNGFuXzylD4Cv2
+   2ik3aUbpYdcibEUzhbJ35OlCQpQtD1c1ctMUQYGDcKcl1Jw+gMZg3aJYa
+   XpYztKL3w2spkJOyYmyfdCizXgAvG65INdT8hnPFqMExcPS/1qUnUsHwD
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10930"; a="2811584"
+X-IronPort-AV: E=Sophos;i="6.04,293,1695711600"; 
+   d="scan'208";a="2811584"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Dec 2023 06:59:55 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10930"; a="900120139"
+X-IronPort-AV: E=Sophos;i="6.04,293,1695711600"; 
+   d="scan'208";a="900120139"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by orsmga004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Dec 2023 06:59:49 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.97)
+	(envelope-from <andriy.shevchenko@intel.com>)
+	id 1rGJWv-00000007rjT-2rCh;
+	Thu, 21 Dec 2023 15:56:05 +0200
+Date: Thu, 21 Dec 2023 15:56:05 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Mark Hasemeyer <markhas@chromium.org>
+Cc: LKML <linux-kernel@vger.kernel.org>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Tzung-Bi Shih <tzungbi@kernel.org>,
+	Raul Rangel <rrangel@chromium.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh@kernel.org>, Sudeep Holla <sudeep.holla@arm.com>,
+	Daniel Scally <djrscally@gmail.com>,
+	Frank Rowand <frowand.list@gmail.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+	Len Brown <lenb@kernel.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	devicetree@vger.kernel.org, linux-acpi@vger.kernel.org
+Subject: Re: [PATCH v2 20/22] device property: Modify fwnode irq_get() to use
+ resource
+Message-ID: <ZYRD9Y3Y_jd1NBs8@smile.fi.intel.com>
+References: <20231220235459.2965548-1-markhas@chromium.org>
+ <20231220165423.v2.20.I38ac58ab04985a404ed6551eb5813fa7841ef410@changeid>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 0/5] Add support for video hardware codec of
- STMicroelectronics STM32 SoC series
-Content-Language: en-US
-To: Alex Bee <knaerzche@gmail.com>
-CC: Nicolas Dufresne <nicolas.dufresne@collabora.com>,
-        Marco Felsch
-	<m.felsch@pengutronix.de>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Andrzej
- Pietrasiewicz <andrzej.p@collabora.com>,
-        Sakari Ailus
-	<sakari.ailus@linux.intel.com>,
-        Benjamin Gaignard
-	<benjamin.gaignard@collabora.com>,
-        Laurent Pinchart
-	<laurent.pinchart+renesas@ideasonboard.com>,
-        Benjamin Mugnier
-	<benjamin.mugnier@foss.st.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Daniel Almeida
-	<daniel.almeida@collabora.com>,
-        Heiko Stuebner <heiko@sntech.de>, Hans
- Verkuil <hverkuil@xs4all.nl>,
-        Rob Herring <robh+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-rockchip@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        <linux-media@vger.kernel.org>,
-        Alexandre Torgue
-	<alexandre.torgue@foss.st.com>,
-        Ezequiel Garcia
-	<ezequiel@vanguardiasur.com.ar>,
-        Adam Ford <aford173@gmail.com>
-References: <20231221084723.2152034-1-hugues.fruchet@foss.st.com>
- <769a1510-f8d2-4095-9879-42f413141dee@gmail.com>
- <a240d2ac-db0e-481b-8d13-3ae76cfd2fe7@foss.st.com>
- <e5ba1e14-4bbf-43e3-933a-fee6d4b90641@gmail.com>
- <CAHCN7xJ3Ktn+TnoOYdnNvKTddGCfLp4OQ+gM0WonWj-aqnsGuA@mail.gmail.com>
- <b03a7ddc-65c5-44c3-a563-d52ee938148a@gmail.com>
-From: Hugues FRUCHET <hugues.fruchet@foss.st.com>
-In-Reply-To: <b03a7ddc-65c5-44c3-a563-d52ee938148a@gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-12-21_07,2023-12-20_01,2023-05-22_02
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231220165423.v2.20.I38ac58ab04985a404ed6551eb5813fa7841ef410@changeid>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-Hi Alex,
+On Wed, Dec 20, 2023 at 04:54:34PM -0700, Mark Hasemeyer wrote:
+> The underlying ACPI and OF subsystems provide their own APIs which
+> provide IRQ information as a struct resource. This allows callers to get
+> more information about the IRQ by looking at the resource flags.  For
 
-On 12/21/23 14:46, Alex Bee wrote:
-> 
-> Am 21.12.23 um 14:38 schrieb Adam Ford:
->> On Thu, Dec 21, 2023 at 7:31 AM Alex Bee <knaerzche@gmail.com> wrote:
->>> Hi Hugues,
->>>
->>> Am 21.12.23 um 14:08 schrieb Hugues FRUCHET:
->>>> Hi Alex,
->>>>
->>>> This is because VDEC and VENC are two separated IPs with their own
->>>> hardware resources and no links between both.
->>>> On future SoCs, VDEC can ship on its own, same for VENC.
->>>>
->>> I think that's what the driver is/was designed for :)
->>>
->>> I don't  think there _has_ to be a link between variants in the same 
->>> file.
->>> For Rockchip we only had the issue that there _is_ a link (shared
->>> resources) between encoder and decoder and they had (for that reason) 
->>> to be
->>> defined has a _single_ variant. And there is no reason you can ship 
->>> decoder
->>> and encoder seperated when you have two variants (with different
->>> compatibles).
->>> For Rockchip and iMX those files are even containing variants for 
->>> completly
->>> different generations / different SoCs. I had to cleanup this mess for
->> The i.MX8M Mini and Plus have different power domains for encoder and
->> decoders as well as different clocks.  Keeping them separate would
->> almost be necessary.
-> I guess there is missunderstanding: I didn't say the two STM variants
-> should be merged in one variant, but the two variants should be within the
-> same _file_, like the other platforms are doing :)
+Double space when other lines have a single space.
 
-I have two separated hardware: VDEC and VENC, not a single block like 
-"VPU" for example. So what name should have this file ?
-Other platforms had a common file because there was a common block 
-embedding both decoder and encoder, sometimes with links/dependencies 
-between both.
-SAMA5D4 has only a decoder, only a single file called "_vdec_hw.c"...
-so it is quite logical for me to have one file per independent IP.
+> example, whether or not an IRQ is wake capable.
 
->> adam
->>
->>> Rockchip once - and it was no fun :) Anyways: It's up to the 
->>> maintainers I
->>> guess - I just wanted to ask if I missunderstand something here.
->>>
->>> Greetings,
->>>
->>> Alex
->>>
->>>> Hoping that this clarify.
->>>>
->>>> Best regards,
->>>> Hugues.
->>>>
->>>> On 12/21/23 13:40, Alex Bee wrote:
->>>>> Hi Hugues, Hi Nicolas,
->>>>>
->>>>> is there any specific reason I'm not understanding / seeing why this
->>>>> is added in two seperate vdec* / venc* files and not a single vpu*
->>>>> file? Is it only for the seperate clocks (-names) / irqs (-names) /
->>>>> callbacks? Those are defined per variant and perfectly fit in a
->>>>> single file holding one vdec and one venc variant.
->>>>>
->>>>> Alex
->>>>>
->>>>> Am 21.12.23 um 09:47 schrieb Hugues Fruchet:
->>>>>> This patchset introduces support for VDEC video hardware decoder
->>>>>> and VENC video hardware encoder of STMicroelectronics STM32MP25
->>>>>> SoC series.
->>>>>>
->>>>>> This initial support implements H264 decoding, VP8 decoding and
->>>>>> JPEG encoding.
->>>>>>
->>>>>> This has been tested on STM32MP257F-EV1 evaluation board.
->>>>>>
->>>>>> ===========
->>>>>> = history =
->>>>>> ===========
->>>>>> version 5:
->>>>>>      - Precise that video decoding as been successfully tested up to
->>>>>> full HD
->>>>>>      - Add Nicolas Dufresne reviewed-by
->>>>>>
->>>>>> version 4:
->>>>>>      - Fix comments from Nicolas about dropping encoder raw steps
->>>>>>
->>>>>> version 3:
->>>>>>      - Fix remarks from Krzysztof Kozlowski:
->>>>>>       - drop "items", we keep simple enum in such case
->>>>>>       - drop second example - it is the same as the first
->>>>>>      - Drop unused node labels as suggested by Conor Dooley
->>>>>>      - Revisit min/max resolutions as suggested by Nicolas Dufresne
->>>>>>
->>>>>> version 2:
->>>>>>      - Fix remarks from Krzysztof Kozlowski on v1:
->>>>>>       - single video-codec binding for both VDEC/VENC
->>>>>>       - get rid of "-names"
->>>>>>       - use of generic node name "video-codec"
->>>>>>
->>>>>> version 1:
->>>>>>     - Initial submission
->>>>>>
->>>>>> Hugues Fruchet (5):
->>>>>>     dt-bindings: media: Document STM32MP25 VDEC & VENC video codecs
->>>>>>     media: hantro: add support for STM32MP25 VDEC
->>>>>>     media: hantro: add support for STM32MP25 VENC
->>>>>>     arm64: dts: st: add video decoder support to stm32mp255
->>>>>>     arm64: dts: st: add video encoder support to stm32mp255
->>>>>>
->>>>>>    .../media/st,stm32mp25-video-codec.yaml       |  50 ++++++++
->>>>>>    arch/arm64/boot/dts/st/stm32mp251.dtsi        |  12 ++
->>>>>>    arch/arm64/boot/dts/st/stm32mp255.dtsi        |  17 +++
->>>>>>    drivers/media/platform/verisilicon/Kconfig    |  14 ++-
->>>>>>    drivers/media/platform/verisilicon/Makefile   |   4 +
->>>>>>    .../media/platform/verisilicon/hantro_drv.c   |   4 +
->>>>>>    .../media/platform/verisilicon/hantro_hw.h    |   2 +
->>>>>>    .../platform/verisilicon/stm32mp25_vdec_hw.c  |  92 ++++++++++++++
->>>>>>    .../platform/verisilicon/stm32mp25_venc_hw.c  | 115
->>>>>> ++++++++++++++++++
->>>>>>    9 files changed, 307 insertions(+), 3 deletions(-)
->>>>>>    create mode 100644
->>>>>> Documentation/devicetree/bindings/media/st,stm32mp25-video-codec.yaml
->>>>>>    create mode 100644
->>>>>> drivers/media/platform/verisilicon/stm32mp25_vdec_hw.c
->>>>>>    create mode 100644
->>>>>> drivers/media/platform/verisilicon/stm32mp25_venc_hw.c
->>>>>>
+Suggested-by?
 
-Best regards,
-Hugues.
+...
+
+> -int fwnode_irq_get(const struct fwnode_handle *fwnode, unsigned int index)
+> +int fwnode_irq_get_resource(const struct fwnode_handle *fwnode,
+> +			    unsigned int index, struct resource *r)
+
+It's perfectly fine to replace ) by , on the previous line, no need
+to make it shorter.
+
+...
+
+> +int fwnode_irq_get(const struct fwnode_handle *fwnode, unsigned int index)
+> +{
+> +	struct resource r;
+
+	struct resource r = {};
+
+?
+
+> +	return fwnode_irq_get_resource(fwnode, index, &r);
+> +}
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
