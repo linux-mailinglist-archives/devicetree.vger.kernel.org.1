@@ -1,96 +1,107 @@
-Return-Path: <devicetree+bounces-27810-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27811-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C16D81BBF5
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 17:28:58 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B85581BBF8
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 17:29:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3E5D11C258EF
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 16:28:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 418751F26610
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 16:29:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 707A458208;
-	Thu, 21 Dec 2023 16:28:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4A4455E79;
+	Thu, 21 Dec 2023 16:29:13 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 163DC55E63;
-	Thu, 21 Dec 2023 16:28:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=kernel.org
-X-IronPort-AV: E=McAfee;i="6600,9927,10931"; a="394889620"
-X-IronPort-AV: E=Sophos;i="6.04,293,1695711600"; 
-   d="scan'208";a="394889620"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Dec 2023 08:28:50 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10931"; a="920377335"
-X-IronPort-AV: E=Sophos;i="6.04,293,1695711600"; 
-   d="scan'208";a="920377335"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Dec 2023 08:28:47 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.97)
-	(envelope-from <andy@kernel.org>)
-	id 1rGLue-00000007tW2-1EUm;
-	Thu, 21 Dec 2023 18:28:44 +0200
-Date: Thu, 21 Dec 2023 18:28:43 +0200
-From: Andy Shevchenko <andy@kernel.org>
-To: Jim Liu <jim.t90615@gmail.com>
-Cc: JJLIU0@nuvoton.com, KWLIU@nuvoton.com, linus.walleij@linaro.org,
-	brgl@bgdev.pl, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org
-Subject: Re: [PATCH v9 3/3] gpio: nuvoton: Add Nuvoton NPCM sgpio driver
-Message-ID: <ZYRnu8Jl56cgbWJX@smile.fi.intel.com>
-References: <20231212065147.3475413-1-jim.t90615@gmail.com>
- <20231212065147.3475413-4-jim.t90615@gmail.com>
- <ZXnNRoGmeibdRAwq@smile.fi.intel.com>
- <CAKUZ0+EDdBnPdY828L3DUTHKyXX209cJEuFWBs7xff_6bbDWPg@mail.gmail.com>
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11D3055E68
+	for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 16:29:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 6CEF22F4;
+	Thu, 21 Dec 2023 08:29:56 -0800 (PST)
+Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 1C9393F64C;
+	Thu, 21 Dec 2023 08:29:10 -0800 (PST)
+Date: Thu, 21 Dec 2023 16:29:07 +0000
+From: Andre Przywara <andre.przywara@arm.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-sunxi@lists.linux.dev, Maxime Ripard
+ <mripard@kernel.org>
+Subject: Re: [PATCH] dt-bindings: arm: sunxi: sort alphabetically
+Message-ID: <20231221162907.1b609235@donnerap.manchester.arm.com>
+In-Reply-To: <6721cb2f-4498-4d20-9059-257846005905@linaro.org>
+References: <20231221140614.639697-1-andre.przywara@arm.com>
+	<ab8e7d68-c09c-47ff-9f31-08b073387403@linaro.org>
+	<20231221150714.53d40ea3@donnerap.manchester.arm.com>
+	<6721cb2f-4498-4d20-9059-257846005905@linaro.org>
+Organization: ARM
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAKUZ0+EDdBnPdY828L3DUTHKyXX209cJEuFWBs7xff_6bbDWPg@mail.gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Thu, Dec 21, 2023 at 02:27:13PM +0800, Jim Liu wrote:
+On Thu, 21 Dec 2023 16:38:41 +0100
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
 
-...
+Hi,
 
-> > > +     in_port = GPIO_BANK(gpio->nin_sgpio);
-> > > +     if (GPIO_BIT(gpio->nin_sgpio) > 0)
-> > > +             in_port += 1;
-> >
-> > This is strange... So, you are telling that offsets start from 1 and not 0?
-> >
-> > > +     out_port = GPIO_BANK(gpio->nout_sgpio);
-> > > +     if (GPIO_BIT(gpio->nout_sgpio) > 0)
-> > > +             out_port += 1;
-> >
-> > Ditto.
-> >
-> Yes,  if the customer has defined the in/out pins the offsets start from 1.
+(CC:ing Maxime for potential historic context)
 
-Why?
+> On 21/12/2023 16:07, Andre Przywara wrote:
+> > On Thu, 21 Dec 2023 15:45:17 +0100
+> > Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+> > 
+> > Hi,
+> >   
+> >> On 21/12/2023 15:06, Andre Przywara wrote:  
+> >>> The sunxi.yaml file, holding all known board compatible names for
+> >>> devices with Allwinner SoCs, is apparently sorted alphabetically, by the
+> >>> "description" entry. However there are a few outliers.
+> >>>
+> >>> Re-order the entries to get a strict alphabetical ordering, so that:
+> >>> $ grep description: sunxi.yaml | sort -fc
+> >>> returns empty-handed. There is no change otherwise.
+> >>>
+> >>> Signed-off-by: Andre Przywara <andre.przywara@arm.com>    
+> >>
+> >> What was the existing order? Aren't this just shuffling again things?  
+> > 
+> > It assume the intention was to order "alphabetically by description", but
+> > there were some out-of-place entries which apparently slipped through
+> > review.
+> > 
+> > Shall I add a comment at the top to note the order?  
+> 
+> Some files like this are ordered by compatible, some by class or family
+> of devices, so first you need to be sure there is no existing order.
 
-> The NPCM_IOXCFG2_PORT register is the set number of in/out ports.
-> NPCM_IOXCFG2_PORT register define as below:
-> 0~3 bit is the number of input ports
-> 4~7 bit is the number of output ports
-> Each module can support 8 input ports and 8 output ports.
+That's what I did, of course:
+- there is no order in the compatible strings, not in the most specific
+name, nor in the fallback names
+- new boards have always been added somewhere in the middle, never at the
+end, so it's not "oldest boards first"
+- the SoCs used in the boards are all over the place, so it's not sorted
+by SoC
+- I see no rhyme or reason in the board types: we have tablets, devboards,
+TV boxes all mixed up happily.
 
-Right, this doesn't answer why.
+But: from the 197 listed boards, a movement of 13 boards, often by just one
+position, makes the list ordered by description.
 
--- 
-With Best Regards,
-Andy Shevchenko
+So I assumed this was the intention, and fixed the list accordingly. Happy
+to stand corrected if the maintainers have a better idea.
 
-
+Cheers,
+Andre
 
