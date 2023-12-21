@@ -1,65 +1,64 @@
-Return-Path: <devicetree+bounces-27692-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27693-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95DB581B587
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 13:11:56 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6460B81B58B
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 13:12:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4BA5B28469F
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 12:11:55 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 062E9B210F6
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 12:12:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87A006E58F;
-	Thu, 21 Dec 2023 12:11:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0330D6D1BF;
+	Thu, 21 Dec 2023 12:11:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="YWuMrl8u"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LyF65s28"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C10A6A327
-	for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 12:11:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F36C6EB77
+	for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 12:11:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-50e49a0b5caso938601e87.0
-        for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 04:11:46 -0800 (PST)
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-40c6ea99429so7837415e9.3
+        for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 04:11:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1703160705; x=1703765505; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=q0goCKNN2/xMbNfwbEQGabGIKcLQR0Mj2Ch5X7CXC94=;
-        b=YWuMrl8uZSrPrtQ9TvStZ0GJ0MtKithAJdGZdub6M5meJPDyBmyS8uo1S0ZWmOFfDb
-         WKUZj6sMW/E2LJkbNk4RTQc+KU6Km3ykNFSf3lgdrkze2v33hhY+C3XZG4I8jXHnM4gD
-         stjCYP81uGgdwe2L8+E1eCNd0RoiSqse4UnHQsaelMwed2JudT0N5f7QBSoq5dsr6snu
-         NOwVabMTYbQHnsFtvH+Fsb/JcNw6BLZSogvTMqldeU6Rd6VnSxhsPp0XUV8A/oPEwiDK
-         PBePAzcqiUzgnl8FwpytEQvlbOjzOB9KgUYnw+SgE2FN/VzG3itgeAdxG7kS8x4BT5P8
-         hnsw==
+        d=linaro.org; s=google; t=1703160712; x=1703765512; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=z+uuMxsM7UtYesWjErVKFcif0zMpS8DQvy2c0DXdtA0=;
+        b=LyF65s288EbmtzeMaXRmsg/QS4jN4pHUYxD6HTJamoj5wXS02FGflwXlPq10aOMBqL
+         gaR2mgw1RGnY/RxY7/kkaMq8oajdVy98GhLJOKKwDqiygr28gR48a8p/6BNtcndeQfjJ
+         xIOJs2lanjHOmc/cQmTgi1PE4Cu0jkRgX+Ey6S0pyUxHKy7IrFdL1UyGqRs5LYl4FVh0
+         lI17x6tq0keDQpZBntvc8hc2ZxGoLWaxwzru1xd0T0CqChC890ORGkQSIm0QyKGXvChc
+         xu/SE17WLLSJnGcpxd64UKbMkfj0vZXumL2Q1pzhrO3ssuA2AdrYjMKCznPygmhbxTzc
+         4EEQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703160705; x=1703765505;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=q0goCKNN2/xMbNfwbEQGabGIKcLQR0Mj2Ch5X7CXC94=;
-        b=MhdRX8i7YtBLc5qMUieMjz9ZWSktO4IeeWXGY4KxH8cpYYcgO+/9/QCAKkTI/h5oCw
-         sV6epVcI7BkvT9DVkt6e07DXKbXZdCZPovg7BOFHCOIjNX3/y7Bfa2WNQsLuWqMkhcd+
-         d9bMPtTBhmFPtHVUdYYhczzkTYBOn6/jPpwGUy6wF1JK4w1a7+094dybCJ4p+20aFuqy
-         ysVwXHWTlZnWNYvMmhbr9sQ5mfOjkM2MDrJpVz+m5f1GQIxwwl/qhymrmC3TMXXpF7/C
-         hkMoFak50E0r21Cz3xqbcDiAX3DbhdLa47ne2+Clts3BGaTvdjeFPwBSv+I7KEJSOBjz
-         kbkA==
-X-Gm-Message-State: AOJu0YxEjx7W5qel10uxG2siXFx2f1P8TERXxR2XuN0ULhWAqpA3zRcG
-	FCOrhxEve0/kKEmqp2oGxiZ1yQ==
-X-Google-Smtp-Source: AGHT+IHHqli3Et4I/nxgjxmClSknYLg9NovY2mG1z4vZn6kLo9urJnLIhYk4oh1pT2YXQNW1RBZaMw==
-X-Received: by 2002:ac2:424d:0:b0:50e:6482:be34 with SMTP id m13-20020ac2424d000000b0050e6482be34mr30816lfl.124.1703160704826;
-        Thu, 21 Dec 2023 04:11:44 -0800 (PST)
+        d=1e100.net; s=20230601; t=1703160712; x=1703765512;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=z+uuMxsM7UtYesWjErVKFcif0zMpS8DQvy2c0DXdtA0=;
+        b=MBR300nJa8Xeo3i6pEoVOsIcd589Rv1/E+/HAzqMkjsYtIPq1FINo5hQVL4ww15e67
+         E5xAa29mt+EYhK5RtRxSTKlmijtfzu8n3xdQ4AVE5AUFcmVM7C7jEgA4WsDGXDEERnUn
+         PKpm5c08PwSb3w7DdkgdHZcMkg0IFa75RmqRNLbUvyJ3CZNDgirFhZc7N7pnw9XDWaTy
+         SRvDnTU08OiOrzlvV3W0ujQ37U0sG0YBAcEEAe4sbQtinv8L2A4CTUNAXmMn0tryVdht
+         9W+SjZfgIqUZ4CtWrGhFXHLnlrWBJqAsDGZeDtQmJKqzS9r/fp3ahLkybEY5Zlo2kB7W
+         U92w==
+X-Gm-Message-State: AOJu0YzYTu9Td2Mn4IEmN/kLl5+DZjFG8Ncar7osUW8ycxt5er8aqYCo
+	Cfd1m4x5/ANARYWJlTDBiwkZFw==
+X-Google-Smtp-Source: AGHT+IHSkqVnr1hPklLwCoqwrQkOqtvtI+FIrzELtkQCowL3AsS74oj1nldbCP9TVbZkX7z1JcgERg==
+X-Received: by 2002:a05:600c:3d0e:b0:40b:5e59:99c7 with SMTP id bh14-20020a05600c3d0e00b0040b5e5999c7mr532941wmb.231.1703160712567;
+        Thu, 21 Dec 2023 04:11:52 -0800 (PST)
 Received: from [192.168.0.22] ([78.10.206.178])
-        by smtp.gmail.com with ESMTPSA id zr16-20020a170907711000b00a26af4d96c6sm18198ejb.4.2023.12.21.04.11.42
+        by smtp.gmail.com with ESMTPSA id zr16-20020a170907711000b00a26af4d96c6sm18198ejb.4.2023.12.21.04.11.50
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 Dec 2023 04:11:44 -0800 (PST)
-Message-ID: <3268b95b-dc1d-4711-a81b-42f39ca40f9c@linaro.org>
-Date: Thu, 21 Dec 2023 13:11:40 +0100
+        Thu, 21 Dec 2023 04:11:52 -0800 (PST)
+Message-ID: <7536c8c5-bcf3-41fe-ab39-924af87d9700@linaro.org>
+Date: Thu, 21 Dec 2023 13:11:50 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,6 +67,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH 1/2] dt-bindings: hwmon: ina2xx: Add label property
+Content-Language: en-US
 To: Michal Simek <michal.simek@amd.com>, linux-kernel@vger.kernel.org,
  monstr@monstr.eu, michal.simek@xilinx.com, git@xilinx.com
 Cc: Conor Dooley <conor+dt@kernel.org>, Guenter Roeck <linux@roeck-us.net>,
@@ -76,9 +76,6 @@ Cc: Conor Dooley <conor+dt@kernel.org>, Guenter Roeck <linux@roeck-us.net>,
  Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
  linux-hwmon@vger.kernel.org
 References: <6f3c57d08984c1978569d3918cb38eb295c0c67d.1703077926.git.michal.simek@amd.com>
- <e5373897-b868-4b6a-a140-19f80a6cdbb3@linaro.org>
- <9bfb12c8-2a38-407c-b9fb-22888c5bb8b9@amd.com>
-Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -124,36 +121,20 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <9bfb12c8-2a38-407c-b9fb-22888c5bb8b9@amd.com>
+In-Reply-To: <6f3c57d08984c1978569d3918cb38eb295c0c67d.1703077926.git.michal.simek@amd.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 21/12/2023 12:24, Michal Simek wrote:
+On 20/12/2023 14:12, Michal Simek wrote:
+> Add a label property to allow a custom name to be used for identifying
+> a device on the board. This is useful when multiple devices are present on
+> the same board. Similar change was done by commit ffae65fb1ae4
+> ("dt-bindings: spi: spi-cadence: Add label property").
 > 
-> 
-> On 12/21/23 10:06, Krzysztof Kozlowski wrote:
->> On 20/12/2023 14:12, Michal Simek wrote:
->>> Add a label property to allow a custom name to be used for identifying
->>> a device on the board. This is useful when multiple devices are present on
->>> the same board. Similar change was done by commit ffae65fb1ae4
->>> ("dt-bindings: spi: spi-cadence: Add label property").
->>>
->>> Signed-off-by: Michal Simek <michal.simek@amd.com>
->>> ---
->>>
->>> zcu102 is using this feature
->>
->> Is the driver or driver core parsing it?
-> 
-> I see that functions to be in hwmon and iio cores.
-> 
-> drivers/hwmon/hwmon.c:820:   err = device_property_read_string(dev, "label", 
-> &label);
-> 
-> drivers/iio/industrialio-core.c:1914:	fwnode_property_read_string(fwnode, 
-> "label", &indio_dev->label);
+> Signed-off-by: Michal Simek <michal.simek@amd.com>
+> ---
 
-I wonder why it is not in bindings/iio/common.yaml...
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
