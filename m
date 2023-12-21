@@ -1,234 +1,144 @@
-Return-Path: <devicetree+bounces-27639-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27640-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BFF681B1B5
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 10:10:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 923B881B209
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 10:21:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B131A1C2098B
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 09:10:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B68971C2357B
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 09:21:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC46A1CFBF;
-	Thu, 21 Dec 2023 09:02:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35D9E2CCD5;
+	Thu, 21 Dec 2023 09:06:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="e1Q8ENqa"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GmiA1a0Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B00F64A995;
-	Thu, 21 Dec 2023 09:02:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9E7F4C433C8;
-	Thu, 21 Dec 2023 09:02:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1703149377;
-	bh=p5dHoof6CpVRm8H51oSiaRXPqfim6y17RnxB7xY56tk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=e1Q8ENqaz4vYwDVkG3agH8Y4nWY+t+vf+dRK4CWAox6pMkmw0lE5CiewwHUcSFbp4
-	 RkWIsVyItgSe8hLDbVe7XR+8+z2jsXtz39K9l++LNfCrEsMCoGDX4J/MON0Esni2Wq
-	 iqrEvVOXEmgR6BzB7qFtyB6TBQUBqZsN45F0aj+iNwKZJOMYPXJ+ALJKqxfvUPDBQl
-	 rhlhXxneBAsPHxzhYuLmXAXUstbegLTSelvwcYG7NV5MOIsYEKj9nW+wOHWTOrkTWg
-	 ptmFIbWZj+VriBf6p9Woko7ugLT2AK5cwSkli+QHtfdeHxaYVqcZc5AQiBUtk0h6/e
-	 /8F23EhrD4POQ==
-Date: Thu, 21 Dec 2023 10:02:54 +0100
-From: Maxime Ripard <mripard@kernel.org>
-To: Andrew Davis <afd@ti.com>
-Cc: "H. Nikolaus Schaller" <hns@goldelico.com>, 
-	Frank Binns <frank.binns@imgtec.com>, Donald Robson <donald.robson@imgtec.com>, 
-	Matt Coster <matt.coster@imgtec.com>, Adam Ford <aford173@gmail.com>, 
-	Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
-	=?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>, Tony Lindgren <tony@atomide.com>, Nishanth Menon <nm@ti.com>, 
-	Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>, 
-	Paul Cercueil <paul@crapouillou.net>, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-sunxi@lists.linux.dev, linux-omap@vger.kernel.org, linux-mips@vger.kernel.org
-Subject: Re: [PATCH RFC 01/10] dt-bindings: gpu: Add PowerVR Series5 SGX GPUs
-Message-ID: <3dggaesvunebogkqvclz4imruhynrftkhsvmndm75vfccqwpa6@3zp3dgzpzta6>
-References: <B3A1B8A7-0363-4ECB-AFBF-576FECA569FA@goldelico.com>
- <vawv2mwhonuyvgmp7uox4rfgdcjwg5fa7hmbcfgl3wiase6e4p@tyavpclppfvu>
- <6BC60156-89E2-4734-BD00-B49A9A6C1D7A@goldelico.com>
- <6gpehpoz54f5lxhmvirqbfwmq7dpgiroy27cljpvu66wtn7aqy@lgrh7wysyxnp>
- <D8AB6CC4-DCA5-40DD-A311-94A16FF59254@goldelico.com>
- <oobcl2kfsuph27er7rflfqvt3lu6athufomxv5chf3uctx4emh@x6rzjtlskhbf>
- <F58855EC-D87D-4747-A363-0E7AA5DB1AEC@goldelico.com>
- <22cny5aumc5wafsrjd3j55zcjbjf2viip64kfbjiqis2grtd6t@wg5dxeuzil6l>
- <3E03E913-48E1-49EC-A6C9-EAC1612E65E7@goldelico.com>
- <a3feaf42-17fb-46e5-bbb0-3ffc4ad40bfd@ti.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9469D38DE5
+	for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 09:06:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-a234dc0984fso57275766b.0
+        for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 01:06:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1703149573; x=1703754373; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=lI766jzUYUWJ3P/E5rSlAvRcPNQkWVEH2r/Nzkx4/F8=;
+        b=GmiA1a0QtmgguBNgbUex+ltA5M3DZSvCyv8fPSb6KOG4PwDphIh8f6eJ/PM5AbvscB
+         tenRSVKFrArYW5gKb0KKuPmIgIycNNAUCLn1kH3iVcQQij4R3Do1cEsM874adaOYn8yp
+         1dmpcgILqaWYMsNPkesELTwn85kRWMI3lTLsfErxAnsumvIrdXPRUA+be1JTMqofN0/R
+         DhmOUw1zEwCqCqgxQPqLvmqRJqq8nK8Aiwm2MXfHZ3uFMDdplUkbzuGyys7iE3ZJWfnJ
+         LBjO7cvf6EXMpPj15ULX4ff8nllRhAePgvoAVXkf1tNtA6RSvjcPGaM38znvDwz68ZbI
+         yCNQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1703149573; x=1703754373;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=lI766jzUYUWJ3P/E5rSlAvRcPNQkWVEH2r/Nzkx4/F8=;
+        b=m0gF0z+zkZJqk7vwXRXwJuoGxJlxRZZLYNvk8HXrzfVK3m6JfadzUJpMtXSZdK5/T1
+         jmA/BvRrzesQQYNovK+xMjhRpE7VOXxJrMOyEjqaIKnq6heidB+Ka79tf/dtXm0huO7g
+         MGTYIV3pCbfX2l/6xHHvOHpHJa4TW9xY3KYfEe5r+samgUOJsFaP/qPKl8/1ZkAdMnQF
+         LS+fuUiavk7gjdOV4u/doMgeTH7epYaktGB5bU4QNZzIV93kScChSaD+ZnNMOHbOBGr1
+         Civ7mbP8fBUb1yNXcnicuwYBd2rYjnMoOk5FwD6BX4AHB4Pzh9xJhFbYcU6fdhbdK8ZV
+         6jdw==
+X-Gm-Message-State: AOJu0YxwvG2vblx/ZrAX0ozxXls4ucq25I+FcV9HLkg/NIE3VdBKU0Mg
+	F2o6ie0SgdnBAXCSPcCW9z2vKQ==
+X-Google-Smtp-Source: AGHT+IGxx6jNlVOIn0bybhJ5v14ynu0QE7zYmiCtUwNN+dfm93hxFMGyPP23QX5YQi6JsfrY8q0oIg==
+X-Received: by 2002:a17:906:d84:b0:a1c:85bc:e9ca with SMTP id m4-20020a1709060d8400b00a1c85bce9camr11190221eji.13.1703149572749;
+        Thu, 21 Dec 2023 01:06:12 -0800 (PST)
+Received: from [192.168.0.22] ([78.10.206.178])
+        by smtp.gmail.com with ESMTPSA id lo27-20020a170906fa1b00b00a23365f1290sm715492ejb.218.2023.12.21.01.06.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 21 Dec 2023 01:06:12 -0800 (PST)
+Message-ID: <e5373897-b868-4b6a-a140-19f80a6cdbb3@linaro.org>
+Date: Thu, 21 Dec 2023 10:06:10 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="xdjqplvcfzg6bqbd"
-Content-Disposition: inline
-In-Reply-To: <a3feaf42-17fb-46e5-bbb0-3ffc4ad40bfd@ti.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: hwmon: ina2xx: Add label property
+Content-Language: en-US
+To: Michal Simek <michal.simek@amd.com>, linux-kernel@vger.kernel.org,
+ monstr@monstr.eu, michal.simek@xilinx.com, git@xilinx.com
+Cc: Conor Dooley <conor+dt@kernel.org>, Guenter Roeck <linux@roeck-us.net>,
+ Jean Delvare <jdelvare@suse.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+ linux-hwmon@vger.kernel.org
+References: <6f3c57d08984c1978569d3918cb38eb295c0c67d.1703077926.git.michal.simek@amd.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <6f3c57d08984c1978569d3918cb38eb295c0c67d.1703077926.git.michal.simek@amd.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
+On 20/12/2023 14:12, Michal Simek wrote:
+> Add a label property to allow a custom name to be used for identifying
+> a device on the board. This is useful when multiple devices are present on
+> the same board. Similar change was done by commit ffae65fb1ae4
+> ("dt-bindings: spi: spi-cadence: Add label property").
+> 
+> Signed-off-by: Michal Simek <michal.simek@amd.com>
+> ---
+> 
+> zcu102 is using this feature
 
---xdjqplvcfzg6bqbd
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Is the driver or driver core parsing it?
 
-On Tue, Dec 19, 2023 at 11:19:49AM -0600, Andrew Davis wrote:
-> On 12/18/23 4:54 AM, H. Nikolaus Schaller wrote:
-> >=20
-> >=20
-> > > Am 18.12.2023 um 11:14 schrieb Maxime Ripard <mripard@kernel.org>:
-> > >=20
-> > > On Mon, Dec 18, 2023 at 10:28:09AM +0100, H. Nikolaus Schaller wrote:
-> > > > Hi Maxime,
-> > > >=20
-> > > > > Am 15.12.2023 um 14:33 schrieb Maxime Ripard <mripard@kernel.org>:
-> > > > >=20
-> > > > > > >=20
-> > > > > > > It's for a separate architecture, with a separate driver, mai=
-ntained out
-> > > > > > > of tree by a separate community, with a separate set of requi=
-rements as
-> > > > > > > evidenced by the other thread. And that's all fine in itself,=
- but
-> > > > > > > there's very little reason to put these two bindings in the s=
-ame file.
-> > > > > > >=20
-> > > > > > > We could also turn this around, why is it important that it's=
- in the
-> > > > > > > same file?
-> > > > > >=20
-> > > > > > Same vendor. And enough similarity in architectures, even a log=
-ical sequence
-> > > > > > of development of versions (SGX =3D Version 5, Rogue =3D Versio=
-n 6+) behind.
-> > > > > > (SGX and Rogue seem to be just trade names for their architectu=
-re development).
-> > > > >=20
-> > > > > Again, none of that matters for *where* the binding is stored.
-> > > >=20
-> > > > So what then speaks against extending the existing bindings file as=
- proposed
-> > > > here?
-> > >=20
-> > > I mean, apart from everything you quoted, then sure, nothing speaks
-> > > against it.
-> > >=20
-> > > > > > AFAIK bindings should describe hardware and not communities or =
-drivers
-> > > > > > or who is currently maintaining it. The latter can change, the =
-first not.
-> > > > >=20
-> > > > > Bindings are supposed to describe hardware indeed. Nothing was ev=
-er said
-> > > > > about where those bindings are supposed to be located.
-> > > > >=20
-> > > > > There's hundreds of other YAML bindings describing devices of the=
- same
-> > > > > vendors and different devices from the same generation.
-> > > >=20
-> > > > Usually SoC seem to be split over multiple files by subsystem. Not =
-by versions
-> > > > or generations. If the subsystems are similar enough they share the=
- same bindings
-> > > > doc instead of having one for each generation duplicating a lot of =
-code.
-> > > >=20
-> > > > Here is a comparable example that combines multiple vendors and gen=
-erations:
-> > > >=20
-> > > > Documentation/devicetree/bindings/usb/generic-ehci.yaml
-> > >=20
-> > > EHCI is a single interface for USB2.0 controllers. It's a standard AP=
-I,
-> > > and is made of a single driver that requires minor modifications to d=
-eal
-> > > with multiple devices.
-> > >=20
-> > > We're very far from the same situation here.
-> >=20
-> > How far are we really? And, it is the purpose of the driver to handle d=
-ifferent cases.
-> >=20
-> > That there are currently two drivers is just a matter of history and no=
-t a necessity.
-> >=20
-> > >=20
-> > > > > If anything it'll make it easier for you. I'm really not sure why=
- it is
-> > > > > controversial and you're fighting this so hard.
-> > > >=20
-> > > > Well, you made it controversial by proposing to split what IMHO bel=
-ongs together.
-> > >=20
-> > > No, reviews aren't controversial.
-> > > The controversy started when you chose
-> > > to oppose it while you could have just rolled with it.
-> >=20
-> > Well, you asked
-> >=20
-> > "I think it would be best to have a separate file for this, img,sgx.yaml
-> > maybe?"
-> >=20
-> > and
-> >=20
-> > "Because it's more convenient?"
-> >=20
-> > I understood that as an invitation for discussing the pros and cons and=
- working out the
-> > most convenient solution. And that involves playing the devil's advocat=
-e which of course
-> > is controversial by principle.
-> >=20
-> > Now, IMHO all the pros and cons are on the table and the question is wh=
-o makes a decision
-> > how to go.
-> >=20
->=20
-> As much as I would land on the side of same file for both, the answer to =
-this question
-> is simple: the maintainer makes the decision :) So I'll respin with separ=
-ate binding files.
->
-> The hidden unaddressed issue here is that by making these bindings separa=
-te it implies
-> they are not on equal footing (i.e. pre-series6 GPUs are not true "powerv=
-r" and so do not
-> belong in img,powervr.yaml).
+Best regards,
+Krzysztof
 
-No, not really. As far as I'm concerned, the only unequal footing here
-is that one driver is in-tree and the other isn't, but this situation
-was handled nicely for Mali GPUs and lima that used to be in the same
-situation for example.
-
-The situation is simple, really: bindings are supposed to be backward
-compatible, period. If we ever make a change to that binding that isn't,
-you will be well within your right to complain because your driver is
-now broken.
-
-> So if no one objects I'd also like to do the rename of that
-> file as suggested before and have:
->=20
-> img,powervr-sgx.yaml
-> img,powervr-rogue.yaml
-
-Sounds good to me.
-
-Maxime
-
---xdjqplvcfzg6bqbd
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZYP/PgAKCRDj7w1vZxhR
-xecAAQCmVXhaAl7fZ7g76z9w82Bf0j4pTMmQspV3lIhk356FHgEA/xGS5jxCtd+G
-824sqakZ7+v2m4QT6HsRgxUigbfQcQ8=
-=eukR
------END PGP SIGNATURE-----
-
---xdjqplvcfzg6bqbd--
 
