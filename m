@@ -1,191 +1,431 @@
-Return-Path: <devicetree+bounces-27848-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27822-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6EF281BD5D
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 18:36:24 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2496181BC95
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 18:07:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 26388B263B0
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 17:36:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 471BA1C24875
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 17:07:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C732963501;
-	Thu, 21 Dec 2023 17:35:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB05359908;
+	Thu, 21 Dec 2023 17:07:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cadence.com header.i=@cadence.com header.b="KdGjekLI";
-	dkim=pass (1024-bit key) header.d=cadence.com header.i=@cadence.com header.b="NvJVA9QD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ca18baTt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0014ca01.pphosted.com (mx0a-0014ca01.pphosted.com [208.84.65.235])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BE3862811;
-	Thu, 21 Dec 2023 17:35:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=cadence.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cadence.com
-Received: from pps.filterd (m0042385.ppops.net [127.0.0.1])
-	by mx0a-0014ca01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 3BLArhOg016198;
-	Thu, 21 Dec 2023 08:21:01 -0800
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cadence.com; h=
-	from:to:cc:subject:date:message-id:mime-version:content-type; s=
-	proofpoint; bh=t2WAHcTojol5LyadNmKttj8dpuigd+Kgg8tMs4vs2Fg=; b=K
-	dGjekLI214bNLJMDWBaTabHhrxcOsOerML15OeMquNI4XrXjgc/5knvJsN4BJfcf
-	CugindziFhKkRXgRWho0R3zAspsB93ha3Y0jtLJOdUKUbdAg0Rx5uG+iQgiisxZN
-	cSjezA5K+Vyr2c+Xys9YIgGJb/DUVE8f7rJPSOJBXc3NIjXMkWiM+n/Ux/sZmhzA
-	xPbIz0PdNs8CwUeN2+sEi+/7w8hiCOTkN3hbLj9agCFtvEid0kKrYxkYvvX9x84j
-	+cARgtuJvswGTjkLYaSMmi9Ez6kq7T9PyL8RvTOxJAEB2jHF4hcReWTPEHs6onAu
-	2EWu6oRIFlMvMv0NTTRnA==
-Received: from nam10-mw2-obe.outbound.protection.outlook.com (mail-mw2nam10lp2101.outbound.protection.outlook.com [104.47.55.101])
-	by mx0a-0014ca01.pphosted.com (PPS) with ESMTPS id 3v3rj5gsv7-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 21 Dec 2023 08:21:01 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=HOJq7e+zEd6j0sKVnDGTDALgemQf00DgJuHqoD3llmtXopxdn5FKLThW7NwyrKzL2K6A2afur73UT2YapS7zyDYklNH4r4eV1yOE3fhLOA+QtU3vbyZgIewMXd0rpB0zsRii7tXoyzbj2D34makQuhbf6dAHWIlfHA/CiTgZ1/F0vLNLw7s1OxkmhF08Cv0tadazXnEA9XNgaYHyZU1SNTuY51DgSqYN8+sDudBmgwSMuZ3RCLMiwPaot6MFWrXz30A8bW3CEvv+wfjFNhA9UqC5IhVtVnD6G6Ea+MNntd5Bts134+n3GZPdArDiKr/GcTZw5OU+dSKMHBPS4AKQeg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=t2WAHcTojol5LyadNmKttj8dpuigd+Kgg8tMs4vs2Fg=;
- b=ZBHDEbgH0/CVwA75690vDmy55bTEy/8WG5RXj1u7lwq9rGuygWV46OUch4VcAgfb+ouPB5KDJitlyIaP3iDp1g4jMl4dmchD/qpzpbaV1sjGwYM+y2Mhj6QroerJVjgakG+k4sUMcN/xHbfeeGk04leLvJjOIbYXtC0AYOgAxPk+7hymU6mC6uML3thuJJHSjiwcFUBBzbCuhdlZcXPSOlywSRDsFRwbzriPEG2puZajBbXjB/1OW5BpSgbEmnrkJW57R0ZjYEU5HiLPmUbmvMVNoyTDEnD3e+7bfxTYxPyvnI266eAlFRlC/N1jTTuNNNEq2k3CIKxxoyg/bPFqBw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 158.140.1.147) smtp.rcpttodomain=ti.com smtp.mailfrom=cadence.com; dmarc=pass
- (p=none sp=none pct=100) action=none header.from=cadence.com; dkim=none
- (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cadence.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=t2WAHcTojol5LyadNmKttj8dpuigd+Kgg8tMs4vs2Fg=;
- b=NvJVA9QDgM3y5uQFbud2n/9Xe7cWB8w2/hmtCtssl/jVCGXuVnrfjQtBuRqRHBTKUOibG608bKWZUe6JzF4V+jNN8Gp6OYCbzPxvHn+z9IDy+HTBzYBhucLWJ3b9h6GpoKSqHZkIOVA0g9QJUMvAQqlYINzLbq5nw2Y3pl9N2v8=
-Received: from BN9PR03CA0894.namprd03.prod.outlook.com (2603:10b6:408:13c::29)
- by BN8PR07MB7074.namprd07.prod.outlook.com (2603:10b6:408:da::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7113.19; Thu, 21 Dec
- 2023 16:20:59 +0000
-Received: from BN8NAM12FT026.eop-nam12.prod.protection.outlook.com
- (2603:10b6:408:13c:cafe::65) by BN9PR03CA0894.outlook.office365.com
- (2603:10b6:408:13c::29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7113.20 via Frontend
- Transport; Thu, 21 Dec 2023 16:20:59 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 158.140.1.147)
- smtp.mailfrom=cadence.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=cadence.com;
-Received-SPF: Pass (protection.outlook.com: domain of cadence.com designates
- 158.140.1.147 as permitted sender) receiver=protection.outlook.com;
- client-ip=158.140.1.147; helo=sjmaillnx1.cadence.com; pr=C
-Received: from sjmaillnx1.cadence.com (158.140.1.147) by
- BN8NAM12FT026.mail.protection.outlook.com (10.13.182.202) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7135.10 via Frontend Transport; Thu, 21 Dec 2023 16:20:59 +0000
-Received: from maileu5.global.cadence.com (eudvw-maileu5.cadence.com [10.160.110.202])
-	by sjmaillnx1.cadence.com (8.14.4/8.14.4) with ESMTP id 3BLGKtLe005149
-	(version=TLSv1/SSLv3 cipher=AES256-GCM-SHA384 bits=256 verify=OK);
-	Thu, 21 Dec 2023 08:20:57 -0800
-Received: from maileu4.global.cadence.com (10.160.110.201) by
- maileu5.global.cadence.com (10.160.110.202) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.24; Thu, 21 Dec 2023 17:20:53 +0100
-Received: from cadence.com (10.160.88.83) by maileu4.global.cadence.com
- (10.160.110.201) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.7 via Frontend
- Transport; Thu, 21 Dec 2023 17:20:53 +0100
-Received: from vleu-orange.cadence.com (localhost [127.0.0.1])
-	by cadence.com (8.15.2/8.15.2) with ESMTP id 3BLGKsPG2131247;
-	Thu, 21 Dec 2023 17:20:54 +0100
-Received: (from sjakhade@localhost)
-	by vleu-orange.cadence.com (8.15.2/8.15.2/Submit) id 3BLGKp7r2131244;
-	Thu, 21 Dec 2023 17:20:51 +0100
-From: Swapnil Jakhade <sjakhade@cadence.com>
-To: <vkoul@kernel.org>, <kishon@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <linux-phy@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-CC: <mparab@cadence.com>, <sjakhade@cadence.com>, <rogerq@kernel.org>,
-        <s-vadapalli@ti.com>
-Subject: [PATCH v3 0/5] PHY: Add support for dual refclk configurations in Cadence Torrent PHY driver
-Date: Thu, 21 Dec 2023 17:20:46 +0100
-Message-ID: <20231221162051.2131202-1-sjakhade@cadence.com>
-X-Mailer: git-send-email 2.15.0
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 987345822F;
+	Thu, 21 Dec 2023 17:07:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D1FD1C433C8;
+	Thu, 21 Dec 2023 17:07:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1703178441;
+	bh=k/8l5DHSfbM3vfaM1rwiWHs/+L3KkjdbSkrP2E7Jf+s=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=Ca18baTteU2VMteMCkZWdhQX/ahKca1npKQW+egXWHA2vAkl6/J5jdVUfa7cn6yxh
+	 t9NNhzDD1XWKzoMVrfw6HhW8bTeaFvwUs4wMqUil9rBGzWsCpPXySMmNPBpuwQt0Ha
+	 H+S3kC77E9R2pYDZby/YhnSU5SyiHIRzxIh+OWaZixEVXTD5F4RvLbPxgEzrdvV9WE
+	 /eyJhK/paZaSJcDYwX8fwgw77yij92tlrnYiWByEtrTJrzRHMPXmr5IhBqTRTTbj0/
+	 GFo90cDvsxuaCkHKGCyYcWPBRlhZeS9aMM867kP3VN/4twapsCfgn9BN50orzGX5p4
+	 zcrqHfvdVX1AQ==
+Date: Thu, 21 Dec 2023 17:07:06 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Anshul Dalal <anshulusr@gmail.com>
+Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, Lars-Peter
+ Clausen <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ linux-kernel-mentees@lists.linuxfoundation.org, Shuah Khan
+ <skhan@linuxfoundation.org>
+Subject: Re: [PATCH v5 2/2] iio: dac: driver for MCP4821
+Message-ID: <20231221170706.27f5b76f@jic23-huawei>
+In-Reply-To: <20231220151954.154595-2-anshulusr@gmail.com>
+References: <20231220151954.154595-1-anshulusr@gmail.com>
+	<20231220151954.154595-2-anshulusr@gmail.com>
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-CrossPremisesHeadersFilteredBySendConnector: maileu5.global.cadence.com
-X-OrganizationHeadersPreserved: maileu5.global.cadence.com
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN8NAM12FT026:EE_|BN8PR07MB7074:EE_
-X-MS-Office365-Filtering-Correlation-Id: c4c3334f-66b9-40aa-185a-08dc0240d15e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 
-	24HT5z9bQZNRL4pBbpU66yl5eIsIRcIVf8LJ9oK0x92J84GHC0uDhXGdkKkmAYqeUfc+FWQTYT82P3X5mJ+SFRuohCE2sx91jnrzSsKoZYIdFkH8TTvTeu1X2imv9xV1u/S0hCfW+GGWGZ1xhxIVCIaYegnN59JJeiVJDsSzrttHTKIxJ9OnfJ54XY3ccvvoTSyX0Ia7d+OwFX594XtDJ2g6e3XRNMS0UoRefIznBhStXY9dGFLpSKAapzzhC5i2opDqdQSVytdNM89odBHCKxPMPaUQYXCRyQE8uy1cro4ZcSv2qxO3MSj/CkW6lNAZUaVCMNUIiLjo+M6/0Im5nK7+RVcGP64c/cOS5ymVs7F9Z3osNOEobY+n1SRzk8q6yR5gm6aHKVbuk+61h/QT+/VJolPX9vrICsydrvFQmtMV2z2MgRA60EVSB3qQz38fCxY8E5MNanjj+D7fVeOXoAe3l8zdml/YZZfizIiNpqojvwEAHUZ9xdquIRT9y1ntIDM6s9lGyol2LD52HOAKni2V+czjgWjQ9I1OlV1rCudqxG6fhkUABEXFvpy69TkYQ+vSBMPXhzR3ZRCgrBm+qi/3YsCR6YZ4vD02K+dzeIFk0f+zR2yUwqfPOzajJtEoTBLq5Io1TQD+3Z0BUId6Jounx/pi21qhr3058V347eIlkz6kEZP0eTKygpnBZynQ9tklJTAsO4nDDl5AFpchriKxCDWjCjH+bCMb/R8UteHofvQP9/QZdKsjMiwXqInR
-X-Forefront-Antispam-Report: 
-	CIP:158.140.1.147;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:sjmaillnx1.cadence.com;PTR:unknown.Cadence.COM;CAT:NONE;SFS:(13230031)(4636009)(346002)(396003)(39860400002)(136003)(376002)(230922051799003)(1800799012)(186009)(451199024)(64100799003)(82310400011)(40470700004)(36840700001)(46966006)(41300700001)(2616005)(82740400003)(36756003)(86362001)(356005)(6666004)(966005)(478600001)(7636003)(1076003)(2906002)(40480700001)(336012)(426003)(83380400001)(26005)(40460700003)(70586007)(70206006)(110136005)(316002)(54906003)(47076005)(8936002)(42186006)(8676002)(4326008)(5660300002)(7416002)(36860700001)(2101003);DIR:OUT;SFP:1101;
-X-OriginatorOrg: cadence.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Dec 2023 16:20:59.1972
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: c4c3334f-66b9-40aa-185a-08dc0240d15e
-X-MS-Exchange-CrossTenant-Id: d36035c5-6ce6-4662-a3dc-e762e61ae4c9
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=d36035c5-6ce6-4662-a3dc-e762e61ae4c9;Ip=[158.140.1.147];Helo=[sjmaillnx1.cadence.com]
-X-MS-Exchange-CrossTenant-AuthSource: 
-	BN8NAM12FT026.eop-nam12.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN8PR07MB7074
-X-Proofpoint-ORIG-GUID: MlJAifdHj32hK6ZusfFqENv4z7ibnJHT
-X-Proofpoint-GUID: MlJAifdHj32hK6ZusfFqENv4z7ibnJHT
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-12-02_01,2023-11-30_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_check_notspam policy=outbound_check score=0 phishscore=0
- priorityscore=1501 bulkscore=0 malwarescore=0 lowpriorityscore=0
- mlxscore=0 clxscore=1015 impostorscore=0 spamscore=0 mlxlogscore=999
- suspectscore=0 adultscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2311290000 definitions=main-2312210124
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-This patch series extends Torrent PHY driver functionality to support
-dual input reference clocks.
+On Wed, 20 Dec 2023 20:49:53 +0530
+Anshul Dalal <anshulusr@gmail.com> wrote:
 
-It also adds support for following multilink configurations:
-- PCIe(100MHz) + USXGMII(156.25MHz)
-- USXGMII(156.25MHz) + SGMII/QSGMII(100MHz)
+> Adds driver for the MCP48xx series of DACs.
+> 
+> Device uses a simplex SPI channel. To set the value of an output channel,
+> a 16-bit data of following format must be written:
+> 
+> Bit field | Description
+> 15 [MSB]  | Channel selection bit
+>             0 -> Channel A
+>             1 -> Channel B
+> 13        | Output Gain Selection bit
+>             0 -> 2x Gain (Vref = 4.096V)
+>             1 -> 1x Gain (Vref = 2.048V)
+> 12        | Output Shutdown Control bit
+>             0 -> Shutdown the selected channel
+>             1 -> Active mode operation
+> 11-0 [LSB]| DAC Input Data bits
+>             Value's big endian representation is taken as input for the
+>             selected DAC channel. For devices with a resolution of less
+>             than 12-bits, only the x most significant bits are considered
+>             where x is the resolution of the device.
+> Reference: Page#22 [MCP48x2 Datasheet]
+> 
+> Supported devices:
+>   +---------+--------------+-------------+
+>   | Device  |  Resolution  |   Channels  |
+>   |---------|--------------|-------------|
+>   | MCP4801 |     8-bit    |      1      |
+>   | MCP4802 |     8-bit    |      2      |
+>   | MCP4811 |    10-bit    |      1      |
+>   | MCP4812 |    10-bit    |      2      |
+>   | MCP4821 |    12-bit    |      1      |
+>   | MCP4822 |    12-bit    |      2      |
+>   +---------+--------------+-------------+
+> 
+> Devices tested:
+>   MCP4821 [12-bit single channel]
+>   MCP4802 [8-bit dual channel]
+> 
+> Tested on Raspberry Pi Zero 2W
+> 
+> Datasheet: https://ww1.microchip.com/downloads/en/DeviceDoc/22244B.pdf #MCP48x1
+> Datasheet: https://ww1.microchip.com/downloads/en/DeviceDoc/20002249B.pdf #MCP48x2
+> Signed-off-by: Anshul Dalal <anshulusr@gmail.com>
 
-The changes have been validated on TI J721E and J7200 platforms.
+I've applied this to my tree with a few formatting tweaks. However, timing is such
+that, unless 6.7 release is delayed, the merge window will open too soon for me
+to get another pull request in.  A such this is now almost certainly queued up
+for the 6.9 cycle in a few months time.  That's probably a good thing anyway as
+some people will already be on vacation and may want to take another look at this
+when then get back.
 
-v1 of the patch series can be found at [1].
+Applied to the togreg branch of iio.git and pushed out as testing for 0-day
+to take a look at it.
 
-Version History:
+Thanks,
 
-v3:
-   - Updated clock description in DT documentation
-   - Added Acked-by from Conor
+Jonathan
 
-v2:
-   - Rename refclk1 to pll1_refclk in bindings and in driver
-   - Simplify clock-names as suggested by Rob
-
-[1] https://lore.kernel.org/linux-phy/20230724150002.5645-1-sjakhade@cadence.com/
-
-Swapnil Jakhade (5):
-  dt-bindings: phy: cadence-torrent: Add optional input reference clock
-    for PLL1
-  phy: cadence-torrent: Add PCIe(100MHz) + USXGMII(156.25MHz) multilink
-    configuration
-  phy: cadence-torrent: Add USXGMII(156.25MHz) + SGMII/QSGMII(100MHz)
-    multilink configuration
-  dt-bindings: phy: cadence-torrent: Add a separate compatible for TI
-    J7200
-  phy: cadence-torrent: Add USXGMII(156.25MHz) + SGMII/QSGMII(100MHz)
-    multilink config for TI J7200
-
- .../bindings/phy/phy-cadence-torrent.yaml     |  11 +-
- drivers/phy/cadence/phy-cadence-torrent.c     | 705 +++++++++++++++++-
- 2 files changed, 710 insertions(+), 6 deletions(-)
-
--- 
-2.25.1
+> 
+> ---
+> 
+> Changes for v5:
+> - Removed unnecessary mutex
+> - Removed unused channel fields initializations
+> - Use saperate checks for validity of val and val2 in write_raw
+> - Use cpu_to_be16 instead of put_unaligned_be16
+> 
+> Changes for v3,4:
+> - no updates
+> 
+> Changes for v2:
+> - Changed device ordering to numerical
+> - Fixed ordering of headers
+> - Added struct mcp4821_chip_info instead of relying on driver_data from
+>   spi device ids
+> - Use scoped_guards for all mutex locks
+> - Changed write_val from __be16 to u16 in mcp4821_write_raw
+>   Fixes sparse warning: incorrect type in assignment
+> 
+> Previous versions:
+> v4: https://lore.kernel.org/lkml/20231219090252.818754-2-anshulusr@gmail.com/
+> v3: https://lore.kernel.org/lkml/20231218164735.787199-2-anshulusr@gmail.com/
+> v2: https://lore.kernel.org/lkml/20231217180836.584828-2-anshulusr@gmail.com/
+> v1: https://lore.kernel.org/lkml/20231117073040.685860-2-anshulusr@gmail.com/
+> ---
+>  MAINTAINERS               |   7 ++
+>  drivers/iio/dac/Kconfig   |  10 ++
+>  drivers/iio/dac/Makefile  |   1 +
+>  drivers/iio/dac/mcp4821.c | 219 ++++++++++++++++++++++++++++++++++++++
+>  4 files changed, 237 insertions(+)
+>  create mode 100644 drivers/iio/dac/mcp4821.c
+> 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 81d5fc0bba68..8d9274c33c6e 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -13029,6 +13029,13 @@ F:	Documentation/ABI/testing/sysfs-bus-iio-potentiometer-mcp4531
+>  F:	drivers/iio/potentiometer/mcp4018.c
+>  F:	drivers/iio/potentiometer/mcp4531.c
+>  
+> +MCP4821 DAC DRIVER
+> +M:	Anshul Dalal <anshulusr@gmail.com>
+> +L:	linux-iio@vger.kernel.org
+> +S:	Maintained
+> +F:	Documentation/devicetree/bindings/iio/dac/microchip,mcp4821.yaml
+> +F:	drivers/iio/dac/mcp4821.c
+> +
+>  MCR20A IEEE-802.15.4 RADIO DRIVER
+>  M:	Stefan Schmidt <stefan@datenfreihafen.org>
+>  L:	linux-wpan@vger.kernel.org
+> diff --git a/drivers/iio/dac/Kconfig b/drivers/iio/dac/Kconfig
+> index 93b8be183de6..34eb40bb9529 100644
+> --- a/drivers/iio/dac/Kconfig
+> +++ b/drivers/iio/dac/Kconfig
+> @@ -400,6 +400,16 @@ config MCP4728
+>  	  To compile this driver as a module, choose M here: the module
+>  	  will be called mcp4728.
+>  
+> +config MCP4821
+> +	tristate "MCP4801/02/11/12/21/22 DAC driver"
+> +	depends on SPI
+> +	help
+> +	  Say yes here to build the driver for the Microchip MCP4801
+> +	  MCP4802, MCP4811, MCP4812, MCP4821 and MCP4822 DAC devices.
+> +
+> +	  To compile this driver as a module, choose M here: the module
+> +	  will be called mcp4821.
+> +
+>  config MCP4922
+>  	tristate "MCP4902, MCP4912, MCP4922 DAC driver"
+>  	depends on SPI
+> diff --git a/drivers/iio/dac/Makefile b/drivers/iio/dac/Makefile
+> index 5b2bac900d5a..55bf89739d14 100644
+> --- a/drivers/iio/dac/Makefile
+> +++ b/drivers/iio/dac/Makefile
+> @@ -42,6 +42,7 @@ obj-$(CONFIG_MAX5522) += max5522.o
+>  obj-$(CONFIG_MAX5821) += max5821.o
+>  obj-$(CONFIG_MCP4725) += mcp4725.o
+>  obj-$(CONFIG_MCP4728) += mcp4728.o
+> +obj-$(CONFIG_MCP4821) += mcp4821.o
+>  obj-$(CONFIG_MCP4922) += mcp4922.o
+>  obj-$(CONFIG_STM32_DAC_CORE) += stm32-dac-core.o
+>  obj-$(CONFIG_STM32_DAC) += stm32-dac.o
+> diff --git a/drivers/iio/dac/mcp4821.c b/drivers/iio/dac/mcp4821.c
+> new file mode 100644
+> index 000000000000..028983f59cda
+> --- /dev/null
+> +++ b/drivers/iio/dac/mcp4821.c
+> @@ -0,0 +1,219 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later
+> +/*
+> + * Copyright (C) 2023 Anshul Dalal <anshulusr@gmail.com>
+> + *
+> + * Driver for Microchip MCP4801, MCP4802, MCP4811, MCP4812, MCP4821 and MCP4822
+> + *
+> + * Based on the work of:
+> + *	Michael Welling (MCP4922 Driver)
+> + *
+> + * Datasheet:
+> + *	MCP48x1: https://ww1.microchip.com/downloads/en/DeviceDoc/22244B.pdf
+> + *	MCP48x2: https://ww1.microchip.com/downloads/en/DeviceDoc/20002249B.pdf
+> + *
+> + * TODO:
+> + *	- Configurable gain
+> + *	- Regulator control
+> + */
+> +
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/spi/spi.h>
+> +
+> +#include <linux/iio/iio.h>
+> +#include <linux/iio/types.h>
+> +
+> +#include <asm/unaligned.h>
+> +
+> +#define MCP4821_ACTIVE_MODE BIT(12)
+> +#define MCP4802_SECOND_CHAN BIT(15)
+> +
+> +/* DAC uses an internal Voltage reference of 4.096V at a gain of 2x */
+> +#define MCP4821_2X_GAIN_VREF_MV 4096
+> +
+> +enum mcp4821_supported_drvice_ids {
+> +	ID_MCP4801,
+> +	ID_MCP4802,
+> +	ID_MCP4811,
+> +	ID_MCP4812,
+> +	ID_MCP4821,
+> +	ID_MCP4822,
+> +};
+> +
+> +struct mcp4821_state {
+> +	struct spi_device *spi;
+> +	u16 dac_value[2];
+> +};
+> +
+> +struct mcp4821_chip_info {
+> +	const char *name;
+> +	int num_channels;
+> +	const struct iio_chan_spec channels[2];
+> +};
+> +
+> +#define MCP4821_CHAN(channel_id, resolution)                          \
+> +	{                                                             \
+> +		.type = IIO_VOLTAGE, .output = 1, .indexed = 1,       \
+> +		.channel = (channel_id),                              \
+> +		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),         \
+> +		.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE), \
+> +		.scan_type = {                                        \
+> +			.realbits = (resolution),                     \
+> +			.shift = 12 - (resolution),                   \
+> +		},                                                    \
+> +	}
+> +
+> +static const struct mcp4821_chip_info mcp4821_chip_info_table[6] = {
+> +	[ID_MCP4801] = {
+> +			.name = "mcp4801",
+> +			.num_channels = 1,
+> +			.channels = { MCP4821_CHAN(0, 8) }
+> +			},
+> +	[ID_MCP4802] = {
+> +			.name = "mcp4802",
+> +			.num_channels = 2,
+> +			.channels = { MCP4821_CHAN(0, 8),
+> +				       MCP4821_CHAN(1, 8) }
+> +			},
+> +	[ID_MCP4811] = {
+> +			.name = "mcp4811",
+> +			.num_channels = 1,
+> +			.channels = { MCP4821_CHAN(0, 10) }
+> +			},
+> +	[ID_MCP4812] = {
+> +			.name = "mcp4812",
+> +			.num_channels = 2,
+> +			.channels = { MCP4821_CHAN(0, 10),
+> +				       MCP4821_CHAN(1, 10) }
+> +			},
+> +	[ID_MCP4821] = {
+> +			.name = "mcp4821",
+> +			.num_channels = 1,
+> +			.channels = { MCP4821_CHAN(0, 12) }
+> +			},
+> +	[ID_MCP4822] = {
+> +			.name = "mcp4822",
+> +			.num_channels = 2,
+> +			.channels = { MCP4821_CHAN(0, 12),
+> +				       MCP4821_CHAN(1, 12) }
+> +			},
+> +};
+> +
+> +static int mcp4821_read_raw(struct iio_dev *indio_dev,
+> +			    struct iio_chan_spec const *chan, int *val,
+> +			    int *val2, long mask)
+> +{
+> +	struct mcp4821_state *state;
+> +
+> +	switch (mask) {
+> +	case IIO_CHAN_INFO_RAW:
+> +		state = iio_priv(indio_dev);
+> +		*val = state->dac_value[chan->channel];
+> +		return IIO_VAL_INT;
+> +	case IIO_CHAN_INFO_SCALE:
+> +		*val = MCP4821_2X_GAIN_VREF_MV;
+> +		*val2 = chan->scan_type.realbits;
+> +		return IIO_VAL_FRACTIONAL_LOG2;
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +}
+> +
+> +static int mcp4821_write_raw(struct iio_dev *indio_dev,
+> +			     struct iio_chan_spec const *chan, int val,
+> +			     int val2, long mask)
+> +{
+> +	struct mcp4821_state *state = iio_priv(indio_dev);
+> +	u16 write_val;
+> +	__be16 write_buffer;
+> +	int ret;
+> +
+> +	if (val2 != 0)
+> +		return -EINVAL;
+> +	if (val < 0 || val >= BIT(chan->scan_type.realbits))
+> +		return -EINVAL;
+> +	if (mask != IIO_CHAN_INFO_RAW)
+> +		return -EINVAL;
+> +
+> +	write_val = MCP4821_ACTIVE_MODE | val << chan->scan_type.shift;
+> +	if (chan->channel)
+> +		write_val |= MCP4802_SECOND_CHAN;
+> +	write_buffer = cpu_to_be16(write_val);
+> +	ret = spi_write(state->spi, &write_buffer, sizeof(write_buffer));
+> +	if (ret) {
+> +		dev_err(&state->spi->dev, "Failed to write to device: %d", ret);
+> +		return ret;
+> +	}
+> +
+> +	state->dac_value[chan->channel] = val;
+> +	return 0;
+> +}
+> +
+> +static const struct iio_info mcp4821_info = {
+> +	.read_raw = &mcp4821_read_raw,
+> +	.write_raw = &mcp4821_write_raw,
+> +};
+> +
+> +static int mcp4821_probe(struct spi_device *spi)
+> +{
+> +	struct iio_dev *indio_dev;
+> +	struct mcp4821_state *state;
+> +	const struct mcp4821_chip_info *info;
+> +
+> +	indio_dev = devm_iio_device_alloc(&spi->dev, sizeof(*state));
+> +	if (indio_dev == NULL)
+> +		return -ENOMEM;
+> +
+> +	state = iio_priv(indio_dev);
+> +	state->spi = spi;
+> +
+> +	info = spi_get_device_match_data(spi);
+> +	indio_dev->name = info->name;
+> +	indio_dev->info = &mcp4821_info;
+> +	indio_dev->modes = INDIO_DIRECT_MODE;
+> +	indio_dev->channels = info->channels;
+> +	indio_dev->num_channels = info->num_channels;
+> +	return devm_iio_device_register(&spi->dev, indio_dev);
+> +}
+> +
+> +#define MCP4821_COMPATIBLE(of_compatible, id)        \
+> +	{                                            \
+> +		.compatible = of_compatible,         \
+> +		.data = &mcp4821_chip_info_table[id] \
+> +	}
+> +
+> +static const struct of_device_id mcp4821_of_table[] = {
+> +	MCP4821_COMPATIBLE("microchip,mcp4801", ID_MCP4801),
+> +	MCP4821_COMPATIBLE("microchip,mcp4802", ID_MCP4802),
+> +	MCP4821_COMPATIBLE("microchip,mcp4811", ID_MCP4811),
+> +	MCP4821_COMPATIBLE("microchip,mcp4812", ID_MCP4812),
+> +	MCP4821_COMPATIBLE("microchip,mcp4821", ID_MCP4821),
+> +	MCP4821_COMPATIBLE("microchip,mcp4822", ID_MCP4822),
+> +	{ /* Sentinel */ }
+> +};
+> +MODULE_DEVICE_TABLE(of, mcp4821_of_table);
+> +
+> +static const struct spi_device_id mcp4821_id_table[] = {
+> +	{ "mcp4801", (kernel_ulong_t)&mcp4821_chip_info_table[ID_MCP4801]},
+> +	{ "mcp4802", (kernel_ulong_t)&mcp4821_chip_info_table[ID_MCP4802]},
+> +	{ "mcp4811", (kernel_ulong_t)&mcp4821_chip_info_table[ID_MCP4811]},
+> +	{ "mcp4812", (kernel_ulong_t)&mcp4821_chip_info_table[ID_MCP4812]},
+> +	{ "mcp4821", (kernel_ulong_t)&mcp4821_chip_info_table[ID_MCP4821]},
+> +	{ "mcp4822", (kernel_ulong_t)&mcp4821_chip_info_table[ID_MCP4822]},
+> +	{ /* Sentinel */ }
+> +};
+> +MODULE_DEVICE_TABLE(spi, mcp4821_id_table);
+> +
+> +static struct spi_driver mcp4821_driver = {
+> +	.driver = {
+> +		.name = "mcp4821",
+> +		.of_match_table = mcp4821_of_table,
+> +	},
+> +	.probe = mcp4821_probe,
+> +	.id_table = mcp4821_id_table,
+> +};
+> +module_spi_driver(mcp4821_driver);
+> +
+> +MODULE_AUTHOR("Anshul Dalal <anshulusr@gmail.com>");
+> +MODULE_DESCRIPTION("Microchip MCP4821 DAC Driver");
+> +MODULE_LICENSE("GPL");
 
 
