@@ -1,64 +1,37 @@
-Return-Path: <devicetree+bounces-27613-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27614-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46EE381B033
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 09:20:58 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A75D681B04A
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 09:29:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 72EAF1C221EE
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 08:20:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 53E6C2844BB
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 08:29:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03EC816401;
-	Thu, 21 Dec 2023 08:20:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAF8E16431;
+	Thu, 21 Dec 2023 08:29:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="MhDPG6GN"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="HCi0BcX+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail-m127221.xmail.ntesmail.com (mail-m127221.xmail.ntesmail.com [115.236.127.221])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B9E315AFD
-	for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 08:20:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-50e2168ab09so792994e87.0
-        for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 00:20:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1703146848; x=1703751648; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=r4o29WQBzTF84xFF7dpFsFiRQpl9hdgHiI7WEKT6wg8=;
-        b=MhDPG6GNbDyJnLNDq/Ke6mPPIztQBXU95wcCMWexpQxjJG+BKZxlE+w5pltQQH9oRC
-         htlkViSW8q+Mo+abzUhRpCPhmW5EJydPB3pPozyNvD5Je8wviED2l/7yGg24L73QQQRv
-         c4U3LDs5gH0MNJG7tb98XGluca1yjH5IiPvNQHfMg8Q+xCLwW3DvqSp9E+Dqq6Gpf1iL
-         HPgQ+oeQZxe8CH99T1iCUoUchk6u1fX3PKamhu8Q/BLhsHcTQlVwg3wSybKzf/iZBR9r
-         qGEYNF4I6eZwFTrRqk1oXMlkE9ERrMyQvAyq0Oz5v9Ja2bTQzfb/OrV4/HNZpaW+I3Je
-         8duA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703146848; x=1703751648;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=r4o29WQBzTF84xFF7dpFsFiRQpl9hdgHiI7WEKT6wg8=;
-        b=tUf+A9eBH9wnw2nNg8efkBd4QSDBjnawWv4IBLEpSk1oCLRy4pDEdvkKvKDYejftE/
-         kB84FrJu0SUi2HWbQHT418Q+JcBiqRjIjv0GsaR5pqt7IlxpHvFOuKKR4db7DL5qsiTo
-         zWmY6G3/vhWnEgb1sZktqTZ9cfZilzkZTzMBY8TtguStsL4Nnp23W4bke4Ufssz83L78
-         JK6PaBrTbpCe5XGRBEQFNfRJl8mfYhLDKvCGKzom2HvHeUi7DmgDHbQdVE4Ir0oT9Fsl
-         x82BC7vNHI9quvbB2h1CBRoDPeiRdurTXt8vTARIAVQoKyYP1uw5P1WEYPOxbjSrvCJ2
-         tSmA==
-X-Gm-Message-State: AOJu0Yya0pUta9VfAXKaaJ5j1NuXLluslyNrASRi/apuiSoemZ+FaYiU
-	5ElCZexgi1kRXyICFNTrvV9oew==
-X-Google-Smtp-Source: AGHT+IF6j/xEo+V+emagAgbodcosd6j6iP+7qeDzepO7VvQ7VzZtmrS4tKh4dw+s39fElkjhleZRjA==
-X-Received: by 2002:a05:6512:510:b0:50e:3221:e559 with SMTP id o16-20020a056512051000b0050e3221e559mr3614864lfb.31.1703146848408;
-        Thu, 21 Dec 2023 00:20:48 -0800 (PST)
-Received: from [192.168.0.22] ([78.10.206.178])
-        by smtp.gmail.com with ESMTPSA id n19-20020a170906689300b00a269597d17bsm686650ejr.147.2023.12.21.00.20.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 Dec 2023 00:20:48 -0800 (PST)
-Message-ID: <9035aff7-49e6-49cf-a8f8-619d3b53c4a5@linaro.org>
-Date: Thu, 21 Dec 2023 09:20:47 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1E9A16413;
+	Thu, 21 Dec 2023 08:29:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+DKIM-Signature: a=rsa-sha256;
+	b=HCi0BcX+AC7B4AgoDl/J5TK0Skglexk44ccX7VksVs/iWo5fj+HWu23ot6bNCxkUhKh2kUp6/Xcyo7UbiIjgAp/vMu6vyhUp7tYonRtGsdktuUIUG0muA25DSNii4tPMWf9TGHap8P/XGdt9c0lfkSyaRwmbu5IvCDXLNABJmnE=;
+	s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=CCZtHSraIcQI4h16aoe3thSXX0dYZCleQkv8NS73xEQ=;
+	h=date:mime-version:subject:message-id:from;
+Received: from [172.16.12.141] (unknown [58.22.7.114])
+	by mail-m12779.qiye.163.com (Hmail) with ESMTPA id 6921C7801AE;
+	Thu, 21 Dec 2023 16:28:29 +0800 (CST)
+Message-ID: <de5080a3-c4a7-492f-92c1-cbcfc80d471d@rock-chips.com>
+Date: Thu, 21 Dec 2023 16:28:29 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,95 +39,289 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: hwmon: Add NCT7363Y documentation
+Subject: Re: [PATCH] Revert "ARM: dts: rockchip: restyle emac nodes"
 Content-Language: en-US
-To: Ban Feng <baneric926@gmail.com>, Rob Herring <robh@kernel.org>
-Cc: devicetree@vger.kernel.org, corbet@lwn.net, kwliu@nuvoton.com,
- linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org, jdelvare@suse.com,
- kcfeng0@nuvoton.com, krzysztof.kozlowski+dt@linaro.org,
- linux-hwmon@vger.kernel.org, openbmc@lists.ozlabs.org, robh+dt@kernel.org,
- Bonnie_Lo@wiwynn.com, conor+dt@kernel.org, DELPHINE_CHIU@wiwynn.com,
- linux@roeck-us.net
-References: <20231219080021.2048889-1-kcfeng0@nuvoton.com>
- <20231219080021.2048889-2-kcfeng0@nuvoton.com>
- <170297774900.1297817.5593278746406765111.robh@kernel.org>
- <CALz278aJ08fOU2XZMZJJ2Ocp+XwovJ0+nHK-=0dWqbXf+522OA@mail.gmail.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <CALz278aJ08fOU2XZMZJJ2Ocp+XwovJ0+nHK-=0dWqbXf+522OA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+To: Johan Jonker <jbx6244@gmail.com>, Andy Yan <andyshrk@163.com>,
+ heiko@sntech.de
+Cc: krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ david.wu@rock-chips.com, romain.perier@gmail.com
+References: <20231220103334.2665543-1-andyshrk@163.com>
+ <406ba492-8f6b-26aa-55cf-2efa8d52ebaf@gmail.com>
+From: Andy Yan <andy.yan@rock-chips.com>
+In-Reply-To: <406ba492-8f6b-26aa-55cf-2efa8d52ebaf@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGkkYSlZOS0waQxoeQx5IH0NVEwETFh
+	oSFyQUDg9ZV1kYEgtZQVlOQ1VJSVVMVUpKT1lXWRYaDxIVHRRZQVlPS0hVSk1PSU5IVUpLS1VKQk
+	tLWQY+
+X-HM-Tid: 0a8c8b7d8a95b24fkuuu6921c7801ae
+X-HM-MType: 1
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6Ojo6Aww6Tzw9IxooGDIXNzJR
+	NUoKCxRVSlVKTEtISk9MSEpLSEtIVTMWGhIXVRoVHwJVAhoVOwkUGBBWGBMSCwhVGBQWRVlXWRIL
+	WUFZTkNVSUlVTFVKSk9ZV1kIAVlBSkpLSUs3Bg++
 
-On 21/12/2023 01:44, Ban Feng wrote:
-> Hi Rob,
+Hi Johan,
+
+On 12/20/23 19:58, Johan Jonker wrote:
 > 
-> On Tue, Dec 19, 2023 at 5:22 PM Rob Herring <robh@kernel.org> wrote:
->>
->>
->> On Tue, 19 Dec 2023 16:00:20 +0800, baneric926@gmail.com wrote:
->>> From: Ban Feng <kcfeng0@nuvoton.com>
->>>
->>> Adding bindings for the Nuvoton NCT7363Y Fan Controller
->>>
->>> Signed-off-by: Ban Feng <kcfeng0@nuvoton.com>
->>> ---
->>>  .../bindings/hwmon/nuvoton,nct7363.yaml       | 62 +++++++++++++++++++
->>>  MAINTAINERS                                   |  6 ++
->>>  2 files changed, 68 insertions(+)
->>>  create mode 100644 Documentation/devicetree/bindings/hwmon/nuvoton,nct7363.yaml
->>>
->>
->> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
->> on your patch (DT_CHECKER_FLAGS is new in v5.13):
 > 
-> Our design is based on [1], and adds fan-common.yaml to
+> On 12/20/23 11:33, Andy Yan wrote:
+>> From: Andy Yan <andy.yan@rock-chips.com>
+>>
+>> When try to run rk3036 kylin board with mainline,
+>> I found the emac ethernet probe failed:
+>>
+>> [    2.324583] loop: module loaded
+>> [    2.328435] SPI driver spidev has no spi_device_id for rockchip,spidev
+>> [    2.338688] tun: Universal TUN/TAP device driver, 1.6
+>> [    2.345397] rockchip_emac 10200000.ethernet: no regulator found
+>> [    2.351892] rockchip_emac 10200000.ethernet: ARC EMAC detected with id: 0x7fd02
+>> [    2.359331] rockchip_emac 10200000.ethernet: IRQ is 43
+>> [    2.364719] rockchip_emac 10200000.ethernet: MAC address is now e6:58:d6:ec:d9:7c
+>> [    2.396993] mdio_bus Synopsys MII Bus: mdio has invalid PHY address
+>> [    2.403306] mdio_bus Synopsys MII Bus: scan phy mdio at address 0
+>> [    2.508656] rockchip_emac 10200000.ethernet: of_phy_connect() failed
+>> [    2.516334] rockchip_emac 10200000.ethernet: failed to probe arc emac (-19)
+>>
+>> This reverts commit 1dabb74971b3 ("ARM: dts: rockchip: restyle emac nodes")
+>> make emac on rk3036 kylin board probe right again:
+>> [    1.920385] CAN device driver interface
+>> [    1.925499] rockchip_emac 10200000.ethernet: no regulator found
+>> [    1.932535] rockchip_emac 10200000.ethernet: ARC EMAC detected with id: 0x7fd02
+>> [    1.940735] rockchip_emac 10200000.ethernet: IRQ is 42
+>> [    1.946743] rockchip_emac 10200000.ethernet: MAC address is now 96:7d:4f:0a:69:b3
+>> [    2.581340] rockchip_emac 10200000.ethernet: connected to Generic PHY phy with id 0xffffc816
+>> [    2.592560] e1000e: Intel(R) PRO/1000 Network Driver
+>> [    2.598136] e1000e: Copyright(c) 1999 - 2015 Intel Corporation.
+>>
+>> Fixes: 1dabb74971b3 ("ARM: dts: rockchip: restyle emac nodes")
+>> Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
+>> ---
+>>
+>>   arch/arm/boot/dts/rockchip/rk3036-evb.dts     | 16 ++++++----------
+>>   arch/arm/boot/dts/rockchip/rk3036-kylin.dts   | 16 ++++++----------
+>>   arch/arm/boot/dts/rockchip/rk3036.dtsi        |  2 ++
+>>   .../boot/dts/rockchip/rk3066a-marsboard.dts   | 17 +++++++----------
+>>   .../boot/dts/rockchip/rk3066a-rayeager.dts    | 15 +++++----------
+>>   .../boot/dts/rockchip/rk3188-radxarock.dts    | 19 ++++++++-----------
+>>   arch/arm/boot/dts/rockchip/rk3xxx.dtsi        |  2 ++
+>>   7 files changed, 36 insertions(+), 51 deletions(-)
+>>
+>> diff --git a/arch/arm/boot/dts/rockchip/rk3036-evb.dts b/arch/arm/boot/dts/rockchip/rk3036-evb.dts
+>> index becdc0b664bf..94216f870b57 100644
+>> --- a/arch/arm/boot/dts/rockchip/rk3036-evb.dts
+>> +++ b/arch/arm/boot/dts/rockchip/rk3036-evb.dts
+>> @@ -15,20 +15,16 @@ memory@60000000 {
+>>   };
+>>   
+>>   &emac {
+>> -	phy = <&phy0>;
+>> -	phy-reset-duration = <10>; /* millisecond */
+>> -	phy-reset-gpios = <&gpio2 RK_PC6 GPIO_ACTIVE_LOW>; /* PHY_RST */
+>>   	pinctrl-names = "default";
+>>   	pinctrl-0 = <&emac_xfer>, <&emac_mdio>;
+>> -	status = "okay";
+>> +	phy = <&phy0>;
+>> +	phy-reset-gpios = <&gpio2 RK_PC6 GPIO_ACTIVE_LOW>; /* PHY_RST */
+>> +	phy-reset-duration = <10>; /* millisecond */
+> 
+> 
+>>   
+>> -	mdio {
+>> -		#address-cells = <1>;
+>> -		#size-cells = <0>;
+>> +	status = "okay";
+>>   
+>> -		phy0: ethernet-phy@0 {
+>> -			reg = <0>;
+>> -		};
+>> +	phy0: ethernet-phy@0 {
+>> +		reg = <0>;
+>>   	};
+> 
+> Sorry, didn't have the hardware when changing that binding.
+> A little bit background info:
+> 
+> The rk3036 TRM states:
+> Management Interface (MDIO) state machine for easy real-time communication with the
+> PHY
+> 
+> A revert of the DT must also match a binding. But...
+> Bindings must describe the hardware as close as possible.
+> So when the phy is called over the mdio we must add phy as part of a mdio node.(Is that correct? Ask a expert!)
+> Somehow the old emac driver doesn't support this sub node setup.
+> First request would be have a look to make the driver work as it should.
 
-Nothing in the patch or cover letter described the dependency.
+Because I lack of knowledge about net driver, I am not sure if the mdio is mandatory.
+I post this revert also want to have some suggestion from the net expert.
+ From some grep:
+emac_rockchip is based on arc-emac, but the example of arc_emac does not have a mdio node[0]
+thera are also other platforms use the same way[1]
 
-Best regards,
-Krzysztof
+[0] Documentation/devicetree/bindings/net/arc_emac.txt
+[1]arch/arm/boot/dts/hisilicon/hisi-x5hd2-dkb.dts
 
+
+> 
+> Johan
+> 
+>>   };
+>>   
+>> diff --git a/arch/arm/boot/dts/rockchip/rk3036-kylin.dts b/arch/arm/boot/dts/rockchip/rk3036-kylin.dts
+>> index 67e1e04139e7..e817eba8c622 100644
+>> --- a/arch/arm/boot/dts/rockchip/rk3036-kylin.dts
+>> +++ b/arch/arm/boot/dts/rockchip/rk3036-kylin.dts
+>> @@ -80,20 +80,16 @@ &acodec {
+>>   };
+>>   
+>>   &emac {
+>> -	phy = <&phy0>;
+>> -	phy-reset-duration = <10>; /* millisecond */
+>> -	phy-reset-gpios = <&gpio2 RK_PC6 GPIO_ACTIVE_LOW>; /* PHY_RST */
+>>   	pinctrl-names = "default";
+>>   	pinctrl-0 = <&emac_xfer>, <&emac_mdio>;
+>> -	status = "okay";
+>> +	phy = <&phy0>;
+>> +	phy-reset-gpios = <&gpio2 RK_PC6 GPIO_ACTIVE_LOW>; /* PHY_RST */
+>> +	phy-reset-duration = <10>; /* millisecond */
+>>   
+>> -	mdio {
+>> -		#address-cells = <1>;
+>> -		#size-cells = <0>;
+>> +	status = "okay";
+>>   
+>> -		phy0: ethernet-phy@0 {
+>> -			reg = <0>;
+>> -		};
+>> +	phy0: ethernet-phy@0 {
+>> +		reg = <0>;
+>>   	};
+>>   };
+>>   
+>> diff --git a/arch/arm/boot/dts/rockchip/rk3036.dtsi b/arch/arm/boot/dts/rockchip/rk3036.dtsi
+>> index 78686fc72ce6..e240b89b0b35 100644
+>> --- a/arch/arm/boot/dts/rockchip/rk3036.dtsi
+>> +++ b/arch/arm/boot/dts/rockchip/rk3036.dtsi
+>> @@ -228,6 +228,8 @@ emac: ethernet@10200000 {
+>>   		compatible = "rockchip,rk3036-emac";
+>>   		reg = <0x10200000 0x4000>;
+>>   		interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>;
+>> +		#address-cells = <1>;
+>> +		#size-cells = <0>;
+>>   		rockchip,grf = <&grf>;
+>>   		clocks = <&cru HCLK_MAC>, <&cru SCLK_MACREF>, <&cru SCLK_MAC>;
+>>   		clock-names = "hclk", "macref", "macclk";
+>> diff --git a/arch/arm/boot/dts/rockchip/rk3066a-marsboard.dts b/arch/arm/boot/dts/rockchip/rk3066a-marsboard.dts
+>> index f6e8d49a02ef..e3d6f0e81330 100644
+>> --- a/arch/arm/boot/dts/rockchip/rk3066a-marsboard.dts
+>> +++ b/arch/arm/boot/dts/rockchip/rk3066a-marsboard.dts
+>> @@ -150,21 +150,18 @@ vcc28_cif: regulator@12 {
+>>   #include "../tps65910.dtsi"
+>>   
+>>   &emac {
+>> +	status = "okay";
+>> +
+>>   	phy = <&phy0>;
+>>   	phy-supply = <&vcc_rmii>;
+>> +
+>>   	pinctrl-names = "default";
+>>   	pinctrl-0 = <&emac_xfer>, <&emac_mdio>, <&phy_int>;
+>> -	status = "okay";
+>> -
+>> -	mdio {
+>> -		#address-cells = <1>;
+>> -		#size-cells = <0>;
+>>   
+>> -		phy0: ethernet-phy@0 {
+>> -			reg = <0>;
+>> -			interrupt-parent = <&gpio1>;
+>> -			interrupts = <RK_PD2 IRQ_TYPE_LEVEL_LOW>;
+>> -		};
+>> +	phy0: ethernet-phy@0 {
+>> +		reg = <0>;
+>> +		interrupt-parent = <&gpio1>;
+>> +		interrupts = <RK_PD2 IRQ_TYPE_LEVEL_LOW>;
+>>   	};
+>>   };
+>>   
+>> diff --git a/arch/arm/boot/dts/rockchip/rk3066a-rayeager.dts b/arch/arm/boot/dts/rockchip/rk3066a-rayeager.dts
+>> index 29d8e5bf88f5..096616324c2d 100644
+>> --- a/arch/arm/boot/dts/rockchip/rk3066a-rayeager.dts
+>> +++ b/arch/arm/boot/dts/rockchip/rk3066a-rayeager.dts
+>> @@ -142,20 +142,15 @@ &cpu1 {
+>>   };
+>>   
+>>   &emac {
+>> -	phy = <&phy0>;
+>> -	phy-supply = <&vcc_rmii>;
+>>   	pinctrl-names = "default";
+>>   	pinctrl-0 = <&emac_xfer>, <&emac_mdio>, <&rmii_rst>;
+>> +	phy = <&phy0>;
+>> +	phy-supply = <&vcc_rmii>;
+>>   	status = "okay";
+>>   
+>> -	mdio {
+>> -		#address-cells = <1>;
+>> -		#size-cells = <0>;
+>> -
+>> -		phy0: ethernet-phy@0 {
+>> -			reg = <0>;
+>> -			reset-gpios = <&gpio1 RK_PD6 GPIO_ACTIVE_LOW>;
+>> -		};
+>> +	phy0: ethernet-phy@0 {
+>> +		reg = <0>;
+>> +		reset-gpios = <&gpio1 RK_PD6 GPIO_ACTIVE_LOW>;
+>>   	};
+>>   };
+>>   
+>> diff --git a/arch/arm/boot/dts/rockchip/rk3188-radxarock.dts b/arch/arm/boot/dts/rockchip/rk3188-radxarock.dts
+>> index 118deacd38c4..239d2ec37fdc 100644
+>> --- a/arch/arm/boot/dts/rockchip/rk3188-radxarock.dts
+>> +++ b/arch/arm/boot/dts/rockchip/rk3188-radxarock.dts
+>> @@ -126,21 +126,18 @@ vsys: vsys-regulator {
+>>   };
+>>   
+>>   &emac {
+>> -	phy = <&phy0>;
+>> -	phy-supply = <&vcc_rmii>;
+>> +	status = "okay";
+>> +
+>>   	pinctrl-names = "default";
+>>   	pinctrl-0 = <&emac_xfer>, <&emac_mdio>, <&phy_int>;
+>> -	status = "okay";
+>>   
+>> -	mdio {
+>> -		#address-cells = <1>;
+>> -		#size-cells = <0>;
+>> +	phy = <&phy0>;
+>> +	phy-supply = <&vcc_rmii>;
+>>   
+>> -		phy0: ethernet-phy@0 {
+>> -			reg = <0>;
+>> -			interrupt-parent = <&gpio3>;
+>> -			interrupts = <RK_PD2 IRQ_TYPE_LEVEL_LOW>;
+>> -		};
+>> +	phy0: ethernet-phy@0 {
+>> +		reg = <0>;
+>> +		interrupt-parent = <&gpio3>;
+>> +		interrupts = <RK_PD2 IRQ_TYPE_LEVEL_LOW>;
+>>   	};
+>>   };
+>>   
+>> diff --git a/arch/arm/boot/dts/rockchip/rk3xxx.dtsi b/arch/arm/boot/dts/rockchip/rk3xxx.dtsi
+>> index cb4e42ede56a..17e89d30de78 100644
+>> --- a/arch/arm/boot/dts/rockchip/rk3xxx.dtsi
+>> +++ b/arch/arm/boot/dts/rockchip/rk3xxx.dtsi
+>> @@ -193,6 +193,8 @@ emac: ethernet@10204000 {
+>>   		compatible = "snps,arc-emac";
+>>   		reg = <0x10204000 0x3c>;
+>>   		interrupts = <GIC_SPI 19 IRQ_TYPE_LEVEL_HIGH>;
+>> +		#address-cells = <1>;
+>> +		#size-cells = <0>;
+>>   
+>>   		rockchip,grf = <&grf>;
+>>   
 
