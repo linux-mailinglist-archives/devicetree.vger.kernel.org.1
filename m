@@ -1,59 +1,151 @@
-Return-Path: <devicetree+bounces-27677-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27676-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14AFB81B3FD
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 11:42:56 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D34D81B3DF
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 11:40:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 46FF51C23FA2
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 10:42:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4ECE21C202EB
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 10:40:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82B336A029;
-	Thu, 21 Dec 2023 10:41:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2028069299;
+	Thu, 21 Dec 2023 10:39:14 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from gandalf.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC798745C8;
-	Thu, 21 Dec 2023 10:40:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ellerman.id.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ellerman.id.au
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mail.ozlabs.org (Postfix) with ESMTPSA id 4Swn5Z3GcXz4xGT;
-	Thu, 21 Dec 2023 21:40:50 +1100 (AEDT)
-From: Michael Ellerman <patch-notifications@ellerman.id.au>
-To: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Nicholas Piggin <npiggin@gmail.com>, Christophe Leroy <christophe.leroy@csgroup.eu>, Jakub Kicinski <kuba@kernel.org>, Vladimir Oltean <vladimir.oltean@nxp.com>, David Heidelberg <david@ixit.cz>
-Cc: devicetree@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20231212184515.82886-2-david@ixit.cz>
-References: <20231212184515.82886-2-david@ixit.cz>
-Subject: Re: [RESEND PATCH] powerpc/fsl: fix the schema check errors for fsl,tmu-calibration
-Message-Id: <170315510024.2192823.6759883781736803779.b4-ty@ellerman.id.au>
-Date: Thu, 21 Dec 2023 21:38:20 +1100
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98819760BA;
+	Thu, 21 Dec 2023 10:39:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id CC9392F4;
+	Thu, 21 Dec 2023 02:39:55 -0800 (PST)
+Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id DFC133F5A1;
+	Thu, 21 Dec 2023 02:39:08 -0800 (PST)
+Date: Thu, 21 Dec 2023 10:39:06 +0000
+From: Andre Przywara <andre.przywara@arm.com>
+To: fuyao <fuyao@sjterm.com>
+Cc: fuyao <fuyao1697@cyg.com>, Rob Herring <robh+dt@kernel.org>, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+ <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec
+ <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, Alexandre
+ TORGUE <alexandre.torgue@st.com>, Enric Balletbo i Serra
+ <eballetbo@gmail.com>, Baruch Siach <baruch@tkos.co.il>, Paul Barker
+ <paul.barker@sancloud.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH RESEND] ARM: dts: sun8i: r40: open the regulator aldo1
+Message-ID: <20231221103906.1830ef94@donnerap.manchester.arm.com>
+In-Reply-To: <ZYOhAQi7XeLUuAC9@debian.cyg>
+References: <ZYKjYypuAx7gNuam@debian.cyg>
+	<20231220150400.0f32e2a5@donnerap.manchester.arm.com>
+	<ZYOhAQi7XeLUuAC9@debian.cyg>
+Organization: ARM
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On Tue, 12 Dec 2023 19:44:58 +0100, David Heidelberg wrote:
-> fsl,tmu-calibration is in u32-matrix. Use matching property syntax.
-> No functional changes. Fixes warnings as:
-> ...
+On Thu, 21 Dec 2023 10:20:49 +0800
+fuyao <fuyao@sjterm.com> wrote:
+
+Hi,
+
+thanks for the reply!
+
+> On Wed, Dec 20, 2023 at 03:04:00PM +0000, Andre Przywara wrote:
+> > On Wed, 20 Dec 2023 16:18:43 +0800
+> > fuyao <fuyao1697@cyg.com> wrote:
+> > 
+> > Hi,
+> >   
+> > > the aldo1 is connect regulator pin which power the TV.  
+> > 
+> > What do you mean with that? That ALDO1 is connected to VCC-TVOUT and/or
+> > VCC-TVIN on the R40 SoC?  
 > 
-> [...]
+> The ALDO1 is connected to VCC-TVOUT on the R40 Soc.
 
-Applied to powerpc/next.
+Ah, thanks for the confirmation.
 
-[1/1] powerpc/fsl: fix the schema check errors for fsl,tmu-calibration
-      https://git.kernel.org/powerpc/c/9ec1d7486e2520b4898d7f8e1ec3acc7c13c8dc8
+> > > The USB core use TV ref as reference Voltage.  
+> > 
+> > The USB core in the SoC? So pin VCC-USB, which requires 3.3V, the same
+> > voltage as the TV pins?
+> > Which means this doesn't really have much to do with TV, it's just that
+> > USB and also "TV" are supplied by ALDO1?  
+> 
+> The internal USB PHY requires a reference voltage. It seems that in
+> order to save costs, the reference voltage of the TVOUT module is used.
 
-cheers
+Do you mean a USB *reference* voltage that is separate from the USB PHY
+power supply voltage, so pin VCC-USB on the SoC? And that it is internally
+connected to some TV-OUT related circuits? So that would apply to all
+devices using the R40 SoC then?
+
+Or is it simply that the SoC pins VCC-TVOUT and VCC-USB are connected
+together, on this SoM?
+Do you have access to some schematic? I couldn't find one online easily,
+so cannot check this myself.
+
+Thanks,
+Andre
+
+> > > Signed-off-by: fuyao <fuyao1697@cyg.com>
+> > > ---
+> > >  arch/arm/boot/dts/allwinner/sun8i-r40-feta40i.dtsi | 7 +++++++
+> > >  1 file changed, 7 insertions(+)
+> > > 
+> > > diff --git a/arch/arm/boot/dts/allwinner/sun8i-r40-feta40i.dtsi b/arch/arm/boot/dts/allwinner/sun8i-r40-feta40i.dtsi
+> > > index 9f39b5a2bb35..8906170461df 100644
+> > > --- a/arch/arm/boot/dts/allwinner/sun8i-r40-feta40i.dtsi
+> > > +++ b/arch/arm/boot/dts/allwinner/sun8i-r40-feta40i.dtsi
+> > > @@ -42,6 +42,13 @@ &pio {
+> > >  	vcc-pg-supply = <&reg_dldo1>;
+> > >  };
+> > >  
+> > > +&reg_aldo1 {
+> > > +	regulator-always-on;  
+> > 
+> > So did USB never work before, with the DT as in mainline?
+> >   
+> 
+> The USB can work, but is unstable. Occasionally disconnected because of
+> the D+/D- electrical characteristics.
+> 
+> > For always-on regulators it would be good to see some rationale why this
+> > cannot be referenced by its consumer. If it is really supplying the USB
+> > core, that would be a reason, because we don't have a good way of
+> > describing this.
+> >   
+> > > +	regulator-min-microvolt = <3300000>;
+> > > +	regulator-max-microvolt = <3300000>;
+> > > +	regulator-name = "vcc-aldo1";  
+> > 
+> > Regulators should be named after their users, so use something like:
+> > 	regulator-name = "vcc-3v3-tv-usb";
+> >   
+> 
+> thanks.
+> 
+> > That then also serves as documentation of why this is always on.
+> > 
+> > Cheers,
+> > Andre
+> >   
+> > > +};
+> > > +
+> > >  &reg_aldo2 {
+> > >  	regulator-always-on;
+> > >  	regulator-min-microvolt = <1800000>;  
+> >   
+> 
+
 
