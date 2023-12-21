@@ -1,137 +1,118 @@
-Return-Path: <devicetree+bounces-27580-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27581-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 137FC81AEB9
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 07:23:02 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2813981AEC2
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 07:27:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7EA25B237E2
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 06:22:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5CA811C2288B
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 06:27:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B447AB647;
-	Thu, 21 Dec 2023 06:22:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD036B664;
+	Thu, 21 Dec 2023 06:27:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eYrgUvGK"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EsSFWHsP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f180.google.com (mail-qt1-f180.google.com [209.85.160.180])
+Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com [209.85.208.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5617CD29B;
-	Thu, 21 Dec 2023 06:22:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EAFBB64A;
+	Thu, 21 Dec 2023 06:27:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qt1-f180.google.com with SMTP id d75a77b69052e-4258e0a0dc1so2722621cf.2;
-        Wed, 20 Dec 2023 22:22:53 -0800 (PST)
+Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-2cc5ee69960so3710621fa.0;
+        Wed, 20 Dec 2023 22:27:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1703139772; x=1703744572; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=0oicQw30BJ+q561uERyycEbFIITiqVpsdX1mLBXefP0=;
-        b=eYrgUvGKD6Uj6I6wwX1D6YZ/YnY7lLr7ygMiXZgW/oZflQBUZ2Ajt4IAxnB6+qq8KE
-         tGy/U5vNFJv+6Ulyj33yAeZs5SU95sq2hqFhiKfGLE/C22Zi0xuK4utXW9XxXqHbdUCM
-         mscvH+oHMXWdRiGgElXyyXRZStCFtyzBrNB5aleeNTJMU72kb4WL2D4Fl24Y4lyLyFuC
-         Cio5H6ZejtNzaCYVJ5uZoQFhv9jZBlrUZcgusNNDaUebanBB7Wahdvaxrtv/J9gSzLwF
-         tukaYlhn6VLg056JzGTfwI3uLCnsVxnAIGeejcqUsE7e8b2nc+9P3JI150SF6ffhEqWJ
-         xYcw==
+        d=gmail.com; s=20230601; t=1703140045; x=1703744845; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=bUYlaraZvgnaRvFqkhplZceJUCJIoSDu2V8+PBmaGqw=;
+        b=EsSFWHsPnf+kXl/Hy67PcxREhy+BXSRmaiiyK5+3XezWyLjU9ElUkSdVBwONlbPrCz
+         r5kwZnMMdp2aw6iS4HE3ojc8NK+j169S1hzj3PzXnGfAuN22BzRVjlu3dffyA0MwrQF7
+         YnHAmVnLANfOVe8cqRJBjTtevPTUzfJMyIOpZ/dapyq4dJQBWu5X/m1DO8c2cmn5jhoy
+         9qGZsC2sV9xBm0KReS+z6hLNPYse9IH3yUltG2CsItNgc6APJjT45SIaOkJTH9IqWAv/
+         6v6nWBJlbOBUlYw00UwNlrsrddqzDbgjLuwGNMuV5L1vPenvHe1E6soXmcTg0puf7gSD
+         f5iw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703139772; x=1703744572;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1703140045; x=1703744845;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=0oicQw30BJ+q561uERyycEbFIITiqVpsdX1mLBXefP0=;
-        b=qvuAvFx8iatPjE9HiZoX97WI6SzymVVIBZSYHecO85OOslwgimPj3/Qx882O1PnQTt
-         n/dV/xMz1/gwfQ0RNOYtHjXcVdDQ46xv/LfU9MrKoEVEM7+iBj1JOURR4sATqrnlDFj0
-         6O6ZAeC8MYFk3+LBQTBIaLOt+Z7fVkSLz5+3Bx1L0Ob5F4ZiZpEjN49pyxLENs1jE5/A
-         p2mp7Du7nrP4JPyCBcsr08HuRL6y5r92U1ExkNiJvQvt9v1jTqtPQoo7MPUmQOKyRBtS
-         fvgXg7KtH9voRQl1PzCPtJDIxJBwuIx444XZaF3N9oyDo4fOpNaIUxlWoDRKGz/cvXI2
-         tarA==
-X-Gm-Message-State: AOJu0YyEt0aWerpW09sfeyQsQ9gRRLs1H2KNwa1bLjjEW2omqWQO21Ae
-	3SBAGDz14Ha+ESmJlw3/i1gaX1d1XPY=
-X-Google-Smtp-Source: AGHT+IGGrXr6od3Xnzv0hQ58M53pYl57Os9KxVGrAWT80bNwlHb5oG8VG8zNQqoXIT8baQRc+vwU6g==
-X-Received: by 2002:a05:622a:1485:b0:427:7319:69f0 with SMTP id t5-20020a05622a148500b00427731969f0mr5578789qtx.77.1703139771551;
-        Wed, 20 Dec 2023 22:22:51 -0800 (PST)
-Received: from localhost.localdomain (pppoe-209-91-167-254.vianet.ca. [209.91.167.254])
-        by smtp.gmail.com with ESMTPSA id t10-20020ac86a0a000000b0042596cbb8f0sm556928qtr.36.2023.12.20.22.22.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 20 Dec 2023 22:22:50 -0800 (PST)
-From: Trevor Woerner <twoerner@gmail.com>
-To: linux-kernel@vger.kernel.org,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>
-Cc: devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org
-Subject: [PATCH] arm64: rockchip: dts: rk3328-rock-pi-e: enable GbE eth
-Date: Thu, 21 Dec 2023 01:22:43 -0500
-Message-ID: <20231221062244.11871-1-twoerner@gmail.com>
-X-Mailer: git-send-email 2.43.0.76.g1a87c842ece3
+        bh=bUYlaraZvgnaRvFqkhplZceJUCJIoSDu2V8+PBmaGqw=;
+        b=WTHuZt1x5Fsab+tB20vS8LI06aM27tmpeG3Av4U4l6KDwvY4KRazuSJlZflgFieGr9
+         R+IzT/LS4QJp+eB6WL2Xp/3QNgT/GAo8y1OFpzPcgVDrNevAaR8QF1leaxE/yJF2CX5d
+         T1AC7FuHE+7kdTYrXE0CasCE+5QEq9EfPw0Z/9mUY8nWp5JCRN0wphY/4qVkgJOw1wI1
+         RgTFmpUxwT+p77MiopHgqf/VodUbCfKD8hm1G+2k4kqzaE1poAkK4ZPsj4BxpTPuI7WY
+         nX3pgBiXBFYiU94YlJEjTyMcwuu3JcKao+5Q52xc3oMMjAiUpOeTq4fr6pJ/Ff/RaB4e
+         SeWA==
+X-Gm-Message-State: AOJu0YywH/X3nUe/7CnoWLFsl73VpRkjfybm7KpELlVNTI6VbgjRs3gu
+	mA2bBmM2lD4ITrgk3gVFPQsX1YdhBjeJ6VaKzejkH3KZjQ5BNg==
+X-Google-Smtp-Source: AGHT+IGr8ds7tM65bV+bO56xsNx4q7k1kqiJPSfw32j4yZhvpd7vwHajRGCzWtcY0f4421/kv2STDbiUZ0+mBiaj/5o=
+X-Received: by 2002:a2e:9106:0:b0:2cc:778a:f67e with SMTP id
+ m6-20020a2e9106000000b002cc778af67emr1769164ljg.46.1703140045023; Wed, 20 Dec
+ 2023 22:27:25 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20231212065147.3475413-1-jim.t90615@gmail.com>
+ <20231212065147.3475413-4-jim.t90615@gmail.com> <ZXnNRoGmeibdRAwq@smile.fi.intel.com>
+In-Reply-To: <ZXnNRoGmeibdRAwq@smile.fi.intel.com>
+From: Jim Liu <jim.t90615@gmail.com>
+Date: Thu, 21 Dec 2023 14:27:13 +0800
+Message-ID: <CAKUZ0+EDdBnPdY828L3DUTHKyXX209cJEuFWBs7xff_6bbDWPg@mail.gmail.com>
+Subject: Re: [PATCH v9 3/3] gpio: nuvoton: Add Nuvoton NPCM sgpio driver
+To: Andy Shevchenko <andy@kernel.org>
+Cc: JJLIU0@nuvoton.com, KWLIU@nuvoton.com, linus.walleij@linaro.org, 
+	brgl@bgdev.pl, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
+	conor+dt@kernel.org, linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org
+Content-Type: text/plain; charset="UTF-8"
 
-Adjust the device-tree to get the GbE interface working using a patch found
-on the Radxa forum.
+Hi Andy
 
-Link: https://forum.radxa.com/t/rock-pi-e-board-version-1-21-ethhernet-not-working-in-armbian/15061/3
-Signed-off-by: Trevor Woerner <twoerner@gmail.com>
----
- arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts | 14 ++++++++------
- 1 file changed, 8 insertions(+), 6 deletions(-)
+Thanks for your comments.
+I will modify it in the next version.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts b/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts
-index 3cda6c627b68..41224a222048 100644
---- a/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts
-@@ -148,7 +148,7 @@ &gmac2io {
- 	assigned-clocks = <&cru SCLK_MAC2IO>, <&cru SCLK_MAC2IO_EXT>;
- 	assigned-clock-parents = <&gmac_clkin>, <&gmac_clkin>;
- 	clock_in_out = "input";
--	phy-handle = <&rtl8211e>;
-+	phy-handle = <&rtl8211f>;
- 	phy-mode = "rgmii";
- 	phy-supply = <&vcc_io>;
- 	pinctrl-names = "default";
-@@ -156,8 +156,8 @@ &gmac2io {
- 	snps,aal;
- 	snps,rxpbl = <0x4>;
- 	snps,txpbl = <0x4>;
--	tx_delay = <0x26>;
--	rx_delay = <0x11>;
-+	tx_delay = <0x1a>;
-+	rx_delay = <0x14>;
- 	status = "okay";
- 
- 	mdio {
-@@ -165,15 +165,17 @@ mdio {
- 		#address-cells = <1>;
- 		#size-cells = <0>;
- 
--		rtl8211e: ethernet-phy@1 {
-+		rtl8211f: ethernet-phy@1 {
-+			compatible = "ethernet-phy-id001c.c916", "ethernet-phy-ieee802.3-c22";
- 			reg = <1>;
- 			pinctrl-0 = <&eth_phy_int_pin>, <&eth_phy_reset_pin>;
- 			pinctrl-names = "default";
- 			interrupt-parent = <&gpio1>;
- 			interrupts = <24 IRQ_TYPE_LEVEL_LOW>;
--			reset-assert-us = <10000>;
--			reset-deassert-us = <50000>;
-+			reset-assert-us = <20000>;
-+			reset-deassert-us = <100000>;
- 			reset-gpios = <&gpio1 RK_PC2 GPIO_ACTIVE_LOW>;
-+			max-speed = <1000>;
- 		};
- 	};
- };
--- 
-2.43.0.76.g1a87c842ece3
+But some description as below
 
+
+
+> > +static int npcm_sgpio_init_port(struct npcm_sgpio *gpio)
+> > +{
+> > +     u8 in_port, out_port, set_port, reg;
+> > +
+> > +     in_port = GPIO_BANK(gpio->nin_sgpio);
+> > +     if (GPIO_BIT(gpio->nin_sgpio) > 0)
+> > +             in_port += 1;
+>
+> This is strange... So, you are telling that offsets start from 1 and not 0?
+>
+> > +     out_port = GPIO_BANK(gpio->nout_sgpio);
+> > +     if (GPIO_BIT(gpio->nout_sgpio) > 0)
+> > +             out_port += 1;
+>
+> Ditto.
+>
+Yes,  if the customer has defined the in/out pins the offsets start from 1.
+The NPCM_IOXCFG2_PORT register is the set number of in/out ports.
+NPCM_IOXCFG2_PORT register define as below:
+0~3 bit is the number of input ports
+4~7 bit is the number of output ports
+Each module can support 8 input ports and 8 output ports.
+> ...
+>
+> > +     set_port = ((out_port & NPCM_IOXCFG2_PORT) << 4) | (in_port & NPCM_IOXCFG2_PORT);
+>
+> Outer parentheses are redundant.
+>
+> ...
+>
+
+Best regards,
+Jim
 
