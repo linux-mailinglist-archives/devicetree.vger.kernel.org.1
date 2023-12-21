@@ -1,116 +1,201 @@
-Return-Path: <devicetree+bounces-27854-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27856-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A75981BDE6
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 19:06:18 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9414E81BDFB
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 19:17:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EA26828C501
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 18:06:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CD5851C20E7D
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 18:17:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D8EF63517;
-	Thu, 21 Dec 2023 18:05:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CB7D63509;
+	Thu, 21 Dec 2023 18:17:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ljigpITK"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gi6ls69n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCD41627E2;
-	Thu, 21 Dec 2023 18:05:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E661C433C7;
-	Thu, 21 Dec 2023 18:05:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1703181935;
-	bh=D5T8wHGhxAKHwrI/lC8X+GMnYbXpN7+mZX5GeytoQ04=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ljigpITKWRoXryXYXE7TF2C2rWPXY88P26mNPS/9U7CNNAjF5Zgv7xB2KPUv4brT3
-	 PXS8SzBv56B91NY5jhDj5FMdLD1e2lW8gEtAJh0GRa3CzOWW29o1BubDuLqBcPnKF1
-	 p+rUcxAizfn9zOMvUHawaFn6lITidua0/D9rs6oepNSEDamK1ClDAXQnS1s/fG3n7b
-	 65MR+q0DuQxdlKBgnwGld9sXNpSb6nquEs7dgOjIzxgB1MwHx4Zt+eynFiDDvsfjYB
-	 MTuXW+ZX0eFdIOjOx/6Ork84bt15YpWCDAKWnm7nPvbHDsKeey4pUs6hK+p/uNmzP5
-	 rNzVDH9I/ZriA==
-Date: Thu, 21 Dec 2023 18:05:28 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Oleksij Rempel <o.rempel@pengutronix.de>
-Cc: =?iso-8859-1?Q?K=F6ry?= Maincent <kory.maincent@bootlin.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Luis Chamberlain <mcgrof@kernel.org>,
-	Russ Weight <russ.weight@linux.dev>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09C77634F7;
+	Thu, 21 Dec 2023 18:17:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-1d045097b4cso7842235ad.0;
+        Thu, 21 Dec 2023 10:17:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1703182621; x=1703787421; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=YkM0jC9/yHAO382d+ILawqQDBhBWk0KZJUHJnBoAQj8=;
+        b=gi6ls69nO9y16qL7Wl1OfZCf741VlbWSd5F0v/rUvh3/SaJ/r6JXrJDUbnKgIxB6t5
+         A4NRF6v+Ybg4282Q/f74XleVSwraG5JXi0z+3rWldD59myBIaP2YNJtMRNH6mp8kxRUB
+         KWRFGns+A4p8i8rg2VjLKQW2O/Y8uDLtMB0y89XfkHQO9pUdLEWs1gF58H9nRVh+/HQ9
+         CNIJBNlgpM8/PtARErKoI6QzDIIF/B7WZV2sYrGxf1cnBmDfgmuzXx1SNGE+aFSSEstz
+         Nh/RG2fQFcAH/+UvvfdCcd1y+FRvy5XajqRvKNWAo+4CZl36i1ekmhDvl+e5SatDygNU
+         171Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1703182621; x=1703787421;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=YkM0jC9/yHAO382d+ILawqQDBhBWk0KZJUHJnBoAQj8=;
+        b=mlp/UBT0Ztk24R7wyX/tIdC0yVNEn0LkAfQTbqICOpNar+NXtUmHAv5wDDz7HXkVxd
+         yTrRshAI1Dh5geup6SZeG1XK9FtVvMh2Q74FdIgou5cBn2equrlL8heo3dE2CkGFIFjb
+         xoNrn2O75DCkYWP0FhdyOfD/F2xNhLnsWushWWGOCJgfgs6XjnMpWvevfTHTmkTLL33R
+         HpkZEUqp/7Rs8QCnxAEAdZnJDC5Ar7tteA2raFyY2GJTnhYJoFCNuMs4GklfaENy+DTb
+         PLLk4UDLYuoDGZqGxmnrOaN4elbwX/6rbH8chQUpenAKs/x8vfGMQR9PQYgBnFl4RZHk
+         dsGQ==
+X-Gm-Message-State: AOJu0YyGud140mrctMn4c/7f8xSoLlrhEUsui+tRjQu/kdk5OpyH7ZsN
+	LTU/3Xz6UrYyd8aaTlnO3olSwjAKcRPmnQ==
+X-Google-Smtp-Source: AGHT+IGDgd2VOVIdT8TOMu96tItwZra5gdbxf1n9VZmBNR7FQBm3hI+DsGtXZ54F1fGp1RRi9U/DPw==
+X-Received: by 2002:a17:90a:f188:b0:28a:c3e2:3967 with SMTP id bv8-20020a17090af18800b0028ac3e23967mr134583pjb.30.1703182620849;
+        Thu, 21 Dec 2023 10:17:00 -0800 (PST)
+Received: from localhost.localdomain ([2401:4900:5f28:c37d:9ad0:e7ae:52c2:c31a])
+        by smtp.gmail.com with ESMTPSA id lt17-20020a17090b355100b0028b338470a0sm2121454pjb.3.2023.12.21.10.16.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 21 Dec 2023 10:17:00 -0800 (PST)
+From: Anshul Dalal <anshulusr@gmail.com>
+To: linux-kernel@vger.kernel.org,
+	linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: Anshul Dalal <anshulusr@gmail.com>,
+	Dan Murphy <dmurphy@ti.com>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org, devicetree@vger.kernel.org,
-	Dent Project <dentproject@linuxfoundation.org>,
-	Liam Girdwood <lgirdwood@gmail.com>
-Subject: Re: [PATCH net-next v2 8/8] net: pse-pd: Add PD692x0 PSE controller
- driver
-Message-ID: <81f0ddba-5008-43a4-a41c-c7b6ba8e2e3b@sirena.org.uk>
-References: <20231204225956.GG981228@pengutronix.de>
- <20231205064527.GJ981228@pengutronix.de>
- <4b96b8c8-7def-46e5-9c85-d9e925fb9251@sirena.org.uk>
- <20231205140203.GK981228@pengutronix.de>
- <88ed0c94-d052-4564-be0c-79a0f502eda8@sirena.org.uk>
- <20231221163610.47038996@kmaincent-XPS-13-7390>
- <ffda1003-b752-402e-8e51-e2e24a840cff@sirena.org.uk>
- <20231221171000.45310167@kmaincent-XPS-13-7390>
- <501f671d-4e03-490b-a9d6-e1f39bb99115@sirena.org.uk>
- <20231221174246.GI1697233@pengutronix.de>
+	linux-kernel-mentees@lists.linuxfoundation.org
+Subject: [PATCH v1] dt-bindings: input: convert drv266x to json-schema
+Date: Thu, 21 Dec 2023 23:44:22 +0530
+Message-ID: <20231221181423.671432-1-anshulusr@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="9BoYyAUBuFErv7HY"
-Content-Disposition: inline
-In-Reply-To: <20231221174246.GI1697233@pengutronix.de>
-X-Cookie: Results are not typical.
+Content-Transfer-Encoding: 8bit
 
+Convert devicetree binding documentation for ti drv2665 and drv2667
+haptics driver to json-schema. The previously two separate bindings have
+been merged into a single drv266x.yaml.
 
---9BoYyAUBuFErv7HY
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Signed-off-by: Anshul Dalal <anshulusr@gmail.com>
+---
+ .../devicetree/bindings/input/ti,drv2665.txt  | 17 -------
+ .../devicetree/bindings/input/ti,drv2667.txt  | 17 -------
+ .../devicetree/bindings/input/ti,drv266x.yaml | 50 +++++++++++++++++++
+ 3 files changed, 50 insertions(+), 34 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/input/ti,drv2665.txt
+ delete mode 100644 Documentation/devicetree/bindings/input/ti,drv2667.txt
+ create mode 100644 Documentation/devicetree/bindings/input/ti,drv266x.yaml
 
-On Thu, Dec 21, 2023 at 06:42:46PM +0100, Oleksij Rempel wrote:
+diff --git a/Documentation/devicetree/bindings/input/ti,drv2665.txt b/Documentation/devicetree/bindings/input/ti,drv2665.txt
+deleted file mode 100644
+index 1ba97ac04305..000000000000
+--- a/Documentation/devicetree/bindings/input/ti,drv2665.txt
++++ /dev/null
+@@ -1,17 +0,0 @@
+-* Texas Instruments - drv2665 Haptics driver
+-
+-Required properties:
+-	- compatible - "ti,drv2665" - DRV2665
+-	- reg -  I2C slave address
+-	- vbat-supply - Required supply regulator
+-
+-Example:
+-
+-haptics: haptics@59 {
+-	compatible = "ti,drv2665";
+-	reg = <0x59>;
+-	vbat-supply = <&vbat>;
+-};
+-
+-For more product information please see the link below:
+-http://www.ti.com/product/drv2665
+diff --git a/Documentation/devicetree/bindings/input/ti,drv2667.txt b/Documentation/devicetree/bindings/input/ti,drv2667.txt
+deleted file mode 100644
+index 996382cf994a..000000000000
+--- a/Documentation/devicetree/bindings/input/ti,drv2667.txt
++++ /dev/null
+@@ -1,17 +0,0 @@
+-* Texas Instruments - drv2667 Haptics driver
+-
+-Required properties:
+-	- compatible - "ti,drv2667" - DRV2667
+-	- reg -  I2C slave address
+-	- vbat-supply - Required supply regulator
+-
+-Example:
+-
+-haptics: haptics@59 {
+-	compatible = "ti,drv2667";
+-	reg = <0x59>;
+-	vbat-supply = <&vbat>;
+-};
+-
+-For more product information please see the link below:
+-http://www.ti.com/product/drv2667
+diff --git a/Documentation/devicetree/bindings/input/ti,drv266x.yaml b/Documentation/devicetree/bindings/input/ti,drv266x.yaml
+new file mode 100644
+index 000000000000..da1818824373
+--- /dev/null
++++ b/Documentation/devicetree/bindings/input/ti,drv266x.yaml
+@@ -0,0 +1,50 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/input/ti,drv266x.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Texas Instruments - drv266x Haptics driver
++
++description: |
++  Product Page:
++    http://www.ti.com/product/drv2665
++    http://www.ti.com/product/drv2667
++
++maintainers:
++  - Anshul Dalal <anshulusr@gmail.com>
++
++properties:
++  compatible:
++    enum:
++      - ti,drv2665
++      - ti,drv2667
++
++  reg:
++    maxItems: 1
++
++  vbat-supply:
++    description: Required supply regulator
++
++required:
++  - compatible
++  - reg
++  - vbat-supply
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++
++
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        haptics@59 {
++            compatible = "ti,drv2667";
++            reg = <0x59>;
++            vbat-supply = <&vbat>;
++        };
++    };
+-- 
+2.43.0
 
-> The main question is - how to represent a remote consumer (Powered
-> Device)? It looks for me like having a dummy regulator consumer for each
-> (PSE PI) withing the PSE framework is the simplest thing to do. User
-> should enable this dummy consumer from user space by using already
-> existing interface in case of PoDL - ETHTOOL_A_PODL_PSE_ADMIN_CONTROL
-> or new interface for Clause 33 PSE.
-
-That's not even a dummy consumer - the physical power output from the
-system is a real, physical thing that we can point at just as much as
-any other physical device.  Some kind of library/helper thing that
-connects up with other interfaces for controlling network ports like you
-suggest above does seem like a good fit here.
-
---9BoYyAUBuFErv7HY
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmWEfmcACgkQJNaLcl1U
-h9Acggf+NDcjJKIBfD5BoXWMfSIkaHsYiitSj17XijQ9AOb+V8MrpL1QbuK2lHzS
-yZv4O/Ed2yk2oLnxJ029R54HnKgXQ25hZKFjdGkLxCHSZS+GhzRPHw7QLIG8KeGO
-Aw4qjs/Lkd5Nv6sNBs4es4wUiOY5+unwiqOEBZn+doFs6amX0i9Sedk8HqTxpA1l
-BjrYbDuacb+WEe2vLU1mTrz1+VF67nSO8R+iyShD7sss5AiiLtxxMwiBlPsZn+ec
-rjFGC5L2bxo71F1HTKDyn108V5E/u0kpfhbRab7jSGr3Z+48TjBczb+QaNfkzegY
-GswtRELPkEY6dOfiXM/49YnnGd+6mw==
-=A5qx
------END PGP SIGNATURE-----
-
---9BoYyAUBuFErv7HY--
 
