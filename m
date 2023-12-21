@@ -1,140 +1,175 @@
-Return-Path: <devicetree+bounces-27907-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27908-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55C3C81C13A
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 23:52:36 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5AA7D81C195
+	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 00:03:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DBD3EB250D4
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 22:52:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 178A1286348
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 23:03:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A612678E84;
-	Thu, 21 Dec 2023 22:52:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E012578E90;
+	Thu, 21 Dec 2023 23:03:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XNLxSN+7"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FvGVIvhY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78BAC78E64;
-	Thu, 21 Dec 2023 22:52:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C8F25C433C8;
-	Thu, 21 Dec 2023 22:52:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1703199141;
-	bh=2Fl8vOhQ64Y7+GgI7caXKohE+Cft0TcjWAivLqeuiFQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=XNLxSN+70e8qMK73Id71VXLGuAaG3NTghRPhaZpVfAD2rF/O45r/AQ3iqsrWqacAE
-	 U4eipX3qpFy7P8RiHpK8b9sL+ue0nyzfspB9FI1EA+iR0szp/pHUzZagySvSzQ5qLF
-	 EyHNw/jWoYr6RCBT2PWpHfj68Vyts84fRPDcdCGnL3u/1SErtA5td8dmoalY9/qjHL
-	 XEnxuVi5SZBgpyXT4cpbEeqgJ+qvDbAYZVOGdOypLMfZUME8fXP9deNNZLT4vY3VIO
-	 NGVNEr3+aYhQ+ScrV5rhEIyI/G549Zx1GnmhyCH6Q+tdLNMIgrYdIc9xkshr7Yy9rG
-	 Rwpzdwx520EZQ==
-Received: (nullmailer pid 234434 invoked by uid 1000);
-	Thu, 21 Dec 2023 22:52:18 -0000
-Date: Thu, 21 Dec 2023 16:52:18 -0600
-From: Rob Herring <robh@kernel.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: manivannan.sadhasivam@linaro.org, bhelgaas@google.com, conor+dt@kernel.org, devicetree@vger.kernel.org, festevam@gmail.com, helgaas@kernel.org, hongxing.zhu@nxp.com, imx@lists.linux.dev, kernel@pengutronix.de, krzysztof.kozlowski+dt@linaro.org, krzysztof.kozlowski@linaro.org, kw@linux.com, l.stach@pengutronix.de, linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com, linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, lpieralisi@kernel.org, s.hauer@pengutronix.de, shawnguo@kernel.org
-Subject: Re: [PATCH v5 11/16] dt-bindings: imx6q-pcie: Add imx95 pcie
- compatible string
-Message-ID: <20231221225218.GA232422-robh@kernel.org>
-References: <20231220213615.1561528-1-Frank.Li@nxp.com>
- <20231220213615.1561528-12-Frank.Li@nxp.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4072064A96;
+	Thu, 21 Dec 2023 23:03:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-40c6ea99429so14196435e9.3;
+        Thu, 21 Dec 2023 15:03:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1703199783; x=1703804583; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=hxAYtGGvpSNlN9I0Jtq9IFgVDPHMyNzoqUOzXLWoYh4=;
+        b=FvGVIvhYh4+P8kUwkRN8k9LINMiYTi+isVVlXv8lwhoIcIW+hDhvMVcE1sFQ6C44aE
+         R3bIV/9Wm1FPOiZ+9ZhGWTCvZp8C7+nRb0wWAzTnGgpUurjdhh2vWmC5Qa1/tYlWqxUy
+         k2QrHBe2LGF/ebwVFy7gLyw9jRMCw9VFakAXhOo+fwaiK3aKzlrzEMi83IA1DLxmiyzl
+         BeWIYQgr2PINxyHozoiX3Z9xMafyHEyXu+mWC7pIlvJCLP/A+GXBNJgSw2QRWQJfCA7K
+         ojbyolkcAeikAFst/WVyFbCp9eOKzcr1mhCTDXNjaSKuXszah6mXg3729KvW4T9XtO+7
+         5UWA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1703199783; x=1703804583;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=hxAYtGGvpSNlN9I0Jtq9IFgVDPHMyNzoqUOzXLWoYh4=;
+        b=HNLBEzNHZvI+HbVIRk5lsVBss5n7blSijEEzFo1cOWk0lfPEKLisuoySSODSRaiO4L
+         wfX97baBp7ormAJNqVx6vAC0Dcu4/QeAF1yeEdZ4H1FgLzl5t1tEJ4fEZed7lJJ3DW0v
+         X/WikLdtgWHVBsfZtxWmtAuwxnQr620qzYxYgvOMOnaPAaY7U/jPQuAGEtV0tjUoiqWt
+         ICZkQAQZWWoMgRxxm9Mhfthc7Zw9a5nrihB2jbYTpW8zv/J1bQUr//HbuJhsi/WELIGQ
+         aBDMgS6YEzY6SN9/UiaOxRrqWEuXY6aQi+Ujbb6Eo7GFElk0aAR9er62rM+/1U1gc+hk
+         tteA==
+X-Gm-Message-State: AOJu0Yy0O2OjkjfBUawU3TwLF3Qtrjo6KJi/CPEYT2yqasCbA9dWkEJg
+	RcbCGvyrByzqoAu1BGDNnt4=
+X-Google-Smtp-Source: AGHT+IEOP+HDohFwrMXh60IH1fdkrPq33q53jmpjczjz+BTaITBx8sVji+NKynW/nHWrsJZy3bGjHA==
+X-Received: by 2002:a05:600c:a45:b0:40d:37d0:e66 with SMTP id c5-20020a05600c0a4500b0040d37d00e66mr169606wmq.258.1703199783028;
+        Thu, 21 Dec 2023 15:03:03 -0800 (PST)
+Received: from adroid ([2a02:2c60:f18b:5f60:b2a3:31e6:bf5b:266a])
+        by smtp.gmail.com with ESMTPSA id o20-20020a05600c4fd400b004094d4292aesm4835221wmq.18.2023.12.21.15.03.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 21 Dec 2023 15:03:02 -0800 (PST)
+From: =?UTF-8?q?Martin=20J=C3=BCcker?= <martin.juecker@gmail.com>
+To: devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: robh+dt@kernel.org,
+	conor+dt@kernel.org,
+	alim.akhtar@samsung.com,
+	martin.juecker@gmail.com,
+	linux@armlinux.org.uk,
+	krzysztof.kozlowski@linaro.org
+Subject: [PATCH 1/2] ARM: dts: exynos: add accelerometer and gyro to p4note
+Date: Fri, 22 Dec 2023 00:02:57 +0100
+Message-Id: <20231221230258.56272-1-martin.juecker@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231220213615.1561528-12-Frank.Li@nxp.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Wed, Dec 20, 2023 at 04:36:10PM -0500, Frank Li wrote:
-> From: Richard Zhu <hongxing.zhu@nxp.com>
-> 
-> Add i.MX95 PCIe "fsl,imx95-pcie" compatible string.
-> Add "atu" and "app" to reg-names.
-> 
-> Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
-> ---
-> 
-> Notes:
->     Change from v2 to v3
->     - Remove krzy's ACK tag
->     - Add condition check for imx95, which required more reg-names then old
->     platform, so need Krzy review again,
->     
->     Change from v1 to v2
->     - add Krzy's ACK tag
-> 
->  .../bindings/pci/fsl,imx6q-pcie-common.yaml    |  1 +
->  .../bindings/pci/fsl,imx6q-pcie.yaml           | 18 ++++++++++++++++++
->  2 files changed, 19 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie-common.yaml b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie-common.yaml
-> index a284a27c5e873..1b63089ff0aee 100644
-> --- a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie-common.yaml
-> +++ b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie-common.yaml
-> @@ -207,6 +207,7 @@ allOf:
->                  - fsl,imx6sx-pcie
->                  - fsl,imx6q-pcie
->                  - fsl,imx6qp-pcie
-> +                - fsl,imx95-pcie
->                  - fsl,imx6sx-pcie-ep
->                  - fsl,imx6q-pcie-ep
->                  - fsl,imx6qp-pcie-ep
-> diff --git a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
-> index f20d4f0e3cb6c..8633c622bd178 100644
-> --- a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
-> +++ b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
-> @@ -29,6 +29,7 @@ properties:
->        - fsl,imx8mq-pcie
->        - fsl,imx8mm-pcie
->        - fsl,imx8mp-pcie
-> +      - fsl,imx95-pcie
->  
->    clocks:
->      minItems: 3
-> @@ -80,6 +81,22 @@ required:
->  allOf:
->    - $ref: /schemas/pci/snps,dw-pcie.yaml#
->    - $ref: /schemas/pci/fsl,imx6q-pcie-common.yaml#
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          enum:
-> +            - fsl,imx95-pcie
-> +    then:
-> +      properties:
-> +        reg:
-> +          minItems: 4
-> +        reg-names:
-> +          items:
-> +            - const: dbi
-> +            - const: atu
-> +            - const: app
-> +            - const: config
+Add entries for LSM330DLC accelerometer and gyro to the p4note.
 
-Add new entries to the end. Originally, you had dbi and config. Add ata 
-and app on the end.
+Signed-off-by: Martin Jücker <martin.juecker@gmail.com>
+---
+ .../boot/dts/samsung/exynos4412-p4note.dtsi   | 51 +++++++++++++++++++
+ 1 file changed, 51 insertions(+)
 
-> +
->    - if:
->        properties:
->          compatible:
-> @@ -101,6 +118,7 @@ allOf:
->          compatible:
->            enum:
->              - fsl,imx8mq-pcie
-> +            - fsl,imx95-pcie
->      then:
->        properties:
->          clocks:
-> -- 
-> 2.34.1
-> 
+diff --git a/arch/arm/boot/dts/samsung/exynos4412-p4note.dtsi b/arch/arm/boot/dts/samsung/exynos4412-p4note.dtsi
+index 0b89d5682f857..39a3d1cbe4c3b 100644
+--- a/arch/arm/boot/dts/samsung/exynos4412-p4note.dtsi
++++ b/arch/arm/boot/dts/samsung/exynos4412-p4note.dtsi
+@@ -362,6 +362,39 @@ &hsotg {
+ 	status = "okay";
+ };
+ 
++&i2c_1 {
++	samsung,i2c-sda-delay = <100>;
++	samsung,i2c-slave-addr = <0x10>;
++	samsung,i2c-max-bus-freq = <400000>;
++	pinctrl-0 = <&i2c1_bus>;
++	pinctrl-names = "default";
++	status = "okay";
++
++	accelerometer@19 {
++		compatible = "st,lsm330dlc-accel";
++		reg = <0x19>;
++		interrupt-parent = <&gpx0>;
++		interrupts = <0 IRQ_TYPE_EDGE_RISING>;
++		pinctrl-0 = <&accelerometer_irq>;
++		pinctrl-names = "default";
++		mount-matrix =	"1",  "0",  "0",
++				"0", "-1",  "0",
++				"0",  "0", "-1";
++	};
++
++	gyro@6b {
++		compatible = "st,lsm330dlc-gyro";
++		reg = <0x6b>;
++		interrupt-parent = <&gpx0>;
++		interrupts = <6 IRQ_TYPE_EDGE_RISING>;
++		pinctrl-0 = <&gyro_data_enable &gyro_irq>;
++		pinctrl-names = "default";
++		mount-matrix =	"1",  "0",  "0",
++				"0", "-1",  "0",
++				"0",  "0", "-1";
++	};
++};
++
+ &i2c_3 {
+ 	samsung,i2c-sda-delay = <100>;
+ 	samsung,i2c-slave-addr = <0x10>;
+@@ -844,6 +877,12 @@ bt_shutdown: bt-shutdown-pins {
+ 		samsung,pin-pud = <EXYNOS_PIN_PULL_NONE>;
+ 	};
+ 
++	gyro_data_enable: gyro-data-enable-pins {
++		samsung,pins = "gpl2-0";
++		samsung,pin-function = <EXYNOS_PIN_FUNC_OUTPUT>;
++		samsung,pin-pud = <EXYNOS_PIN_PULL_DOWN>;
++	};
++
+ 	uart_sel: uart-sel-pins {
+ 		samsung,pins = "gpl2-7";
+ 		samsung,pin-function = <EXYNOS_PIN_FUNC_OUTPUT>;
+@@ -894,12 +933,24 @@ ak8975_irq: ak8975-irq-pins {
+ 		samsung,pin-pud = <EXYNOS_PIN_PULL_DOWN>;
+ 	};
+ 
++	accelerometer_irq: accelerometer-irq-pins {
++		samsung,pins = "gpx0-0";
++		samsung,pin-function = <EXYNOS_PIN_FUNC_INPUT>;
++		samsung,pin-pud = <EXYNOS_PIN_PULL_NONE>;
++	};
++
+ 	stmpe_adc_irq: stmpe-adc-irq-pins {
+ 		samsung,pins = "gpx0-1";
+ 		samsung,pin-function = <EXYNOS_PIN_FUNC_INPUT>;
+ 		samsung,pin-pud = <EXYNOS_PIN_PULL_NONE>;
+ 	};
+ 
++	gyro_irq: gyro-irq-pins {
++		samsung,pins = "gpx0-6";
++		samsung,pin-function = <EXYNOS_PIN_FUNC_INPUT>;
++		samsung,pin-pud = <EXYNOS_PIN_PULL_NONE>;
++	};
++
+ 	max77686_irq: max77686-irq-pins {
+ 		samsung,pins = "gpx0-7";
+ 		samsung,pin-pud = <EXYNOS_PIN_PULL_NONE>;
+-- 
+2.34.1
+
 
