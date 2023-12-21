@@ -1,38 +1,40 @@
-Return-Path: <devicetree+bounces-27680-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27695-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5EF581B480
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 11:56:41 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D990781B5BA
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 13:24:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 251CEB203F9
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 10:56:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 09B331C22727
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 12:24:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A57C76A01F;
-	Thu, 21 Dec 2023 10:56:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B13CE29D08;
+	Thu, 21 Dec 2023 12:24:19 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+Received: from 7.mo560.mail-out.ovh.net (7.mo560.mail-out.ovh.net [188.165.48.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31BCA6BB33;
-	Thu, 21 Dec 2023 10:56:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-	by fd01.gateway.ufhost.com (Postfix) with ESMTP id 6ECBA7FC9;
-	Thu, 21 Dec 2023 18:56:24 +0800 (CST)
-Received: from EXMBX171.cuchost.com (172.16.6.91) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 21 Dec
- 2023 18:56:24 +0800
-Received: from [192.168.125.85] (113.72.145.47) by EXMBX171.cuchost.com
- (172.16.6.91) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 21 Dec
- 2023 18:56:23 +0800
-Message-ID: <8c417157-8884-4e91-8912-0344e71f82c2@starfivetech.com>
-Date: Thu, 21 Dec 2023 18:56:22 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB07A6E59D
+	for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 12:24:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=armadeus.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=armadeus.com
+Received: from director3.ghost.mail-out.ovh.net (unknown [10.108.25.166])
+	by mo560.mail-out.ovh.net (Postfix) with ESMTP id 05A8A2CABB
+	for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 09:57:01 +0000 (UTC)
+Received: from ghost-submission-6684bf9d7b-kb6cz (unknown [10.110.96.141])
+	by director3.ghost.mail-out.ovh.net (Postfix) with ESMTPS id 76DA11FEC5;
+	Thu, 21 Dec 2023 09:57:00 +0000 (UTC)
+Received: from armadeus.com ([37.59.142.96])
+	by ghost-submission-6684bf9d7b-kb6cz with ESMTPSA
+	id HM+7GuwLhGVrVgAAYbTcKg
+	(envelope-from <sebastien.szymanski@armadeus.com>); Thu, 21 Dec 2023 09:57:00 +0000
+Authentication-Results:garm.ovh; auth=pass (GARM-96R001fb6aeb4d-ccf5-442c-9a46-86cfb192a75b,
+                    D7AFBC180D16AB5EE42D7186CB84D8D3741D0479) smtp.auth=sebastien.szymanski@armadeus.com
+X-OVh-ClientIp:90.11.246.213
+Message-ID: <bf76aa11-7005-4bf8-836b-fce616afcdf4@armadeus.com>
+Date: Thu, 21 Dec 2023 10:56:09 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -40,187 +42,287 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v13 15/21] PCI: microchip: Add event irqchip field to host
- port and add PLDA irqchip
+Subject: Re: [PATCH RFT 2/2] ARM: dts: mxs: imx28: Fix NAND hierarchy
+ description
 Content-Language: en-US
-To: Conor Dooley <conor@kernel.org>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?=
-	<kw@linux.com>, Rob Herring <robh+dt@kernel.org>, Bjorn Helgaas
-	<bhelgaas@google.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>, "Daire
- McNamara" <daire.mcnamara@microchip.com>, Emil Renner Berthing
-	<emil.renner.berthing@canonical.com>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>
-CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-riscv@lists.infradead.org>, <linux-pci@vger.kernel.org>, Paul Walmsley
-	<paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou
-	<aou@eecs.berkeley.edu>, Philipp Zabel <p.zabel@pengutronix.de>, Mason Huo
-	<mason.huo@starfivetech.com>, Leyfoon Tan <leyfoon.tan@starfivetech.com>,
-	Kevin Xie <kevin.xie@starfivetech.com>
-References: <20231214072839.2367-1-minda.chen@starfivetech.com>
- <20231214072839.2367-16-minda.chen@starfivetech.com>
-From: Minda Chen <minda.chen@starfivetech.com>
-In-Reply-To: <20231214072839.2367-16-minda.chen@starfivetech.com>
-Content-Type: text/plain; charset="UTF-8"
-X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX171.cuchost.com
- (172.16.6.91)
-X-YovoleRuleAgent: yovoleflag
-Content-Transfer-Encoding: quoted-printable
+To: Stefan Wahren <wahrenst@gmx.net>,
+ Miquel Raynal <miquel.raynal@bootlin.com>,
+ Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
+ Han Xu <han.xu@nxp.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>, Fabio Estevam <festevam@gmail.com>,
+ Marek Vasut <marex@denx.de>
+Cc: Pengutronix Kernel Team <kernel@pengutronix.de>, linux-imx@nxp.com,
+ linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20231218130656.9020-1-wahrenst@gmx.net>
+ <20231218130656.9020-2-wahrenst@gmx.net>
+From: =?UTF-8?Q?S=C3=A9bastien_Szymanski?= <sebastien.szymanski@armadeus.com>
+Autocrypt: addr=sebastien.szymanski@armadeus.com; keydata=
+ xsBNBFNfZLEBCACv1lqSePHJNpRgcnER+3emy+Arjz84zFax3XkogjY/e3ZneihIgWrVKe5M
+ ql16pX4KTkzNgMUKz4bG/XwT3kjcrXshxFLlg7KrHMl287C+W+QOUjnjVeRi/su+SPmjz8VD
+ yr11h+ZkVLAWhS+uQJ93jy1NwG8M4t1kBLAVHHD5Vw4FJ+3ouaVYIp1X1Cr8bVKQw33Q1aTd
+ ro0kMBb96B9vNu7ciJZ3gvlaBzUEKOgNnq9KaywuLnqrqr4HUIn5JuxZjCjJzt9kTAKcTfp2
+ cJM8qpp+2FF5qtbkse9fZ6M64qozgOPr9Tk4Amf9fZEUQ6UNw14mmBZuXSzoHe75gI7TABEB
+ AAHNN1PDqWJhc3RpZW4gU1pZTUFOU0tJIDxzZWJhc3RpZW4uc3p5bWFuc2tpQGFybWFkZXVz
+ LmNvbT7CwJAEEwEIADoCGyMHCwkIBwMCAQYVCAIJCgsEFgIDAQIeAQIXgBYhBJwGygpYm/1C
+ /GCmwbCaKeiBMmTiBQJdhIHLAAoJELCaKeiBMmTixXIH/2W3kbzRG0UF81jtRRnp0H83rjDT
+ v0H+8fgFMRL/7HCJ1QPArkfRJlM2wlJkN+ChP09CCarYfUEHfRCHlTb7At6Yyrz1jziD7ZwX
+ 8IWHYRXnZkY5eZc5DsiUgq6JH49kt+GPzK8UVP9MTa6zkBpPCUf7LzZ4pD3FihdkT52BU3gI
+ d9P49fSI0TYySlb/VKn815aOhvwEr7+Dh3mZUjSh7saofbRmVUOr7p+R3MvvGI19/IJZjeOE
+ ZWliODDOt6HnBOtoGSXMcNIFF6snH52D5N5gY88njZjTwhgGGUBix1bsgf/EY0v4R5itZBXB
+ B/Ze4Tm++YHaB75hZK6PQu/YRv7OwE0EU19ksQEIALo7jhXddrXBTRu5SAjelV53jyHBJTX/
+ vN4nL/VbbW/saca+NJjDSxx5DBmotZbQdWIyZiSIjU/xnTREvtDrl6ZeSsKWd7ZqiuiY4fSR
+ zwuQp9rd0yqRuxesrWeyJB1zCSdEvLyKASERt+nxkOA+IzJ4y1qLtvnWr+SL1AXgTMw+Tkyw
+ KIDCRWHTIYas11ldGj82gOIpYeXnapeNLHfT4EQwg0NeWYHynJxAQWiX5aPlw0uSpAQSsBXQ
+ FIe3fpoveMSnXK+PG2BBOzexYv7r4S70a6sF9sgTTPpfKqUaqqC+u1+bUX6alTAKhGKJywaF
+ 6ViqLlgY8PfwohSyAlqlTRMAEQEAAcLAdgQYAQgAIAIbDBYhBJwGygpYm/1C/GCmwbCaKeiB
+ MmTiBQJdhIHSAAoJELCaKeiBMmTitU8IAK7NQM3fEwaF5XaKtepYWsVka44CD8A9e4r7NVK9
+ ugirKvXirIxBSDmN/Db862NmVpITsZ6ERNSNZLm/7k55N+TexKYiFZeU7G92TEfAM6qPElvx
+ DLEcrkNMq9r08YZeUloacsq31AL5fK4LW+xdvXudkdiKRMJsdTpmff3x5kIziGOHjwFP9wve
+ ZgEH52gpbRsP8Whx/Z2lNX/BBRmFM8OnEXFsjjqDzYThdxTq85wGPpkgvvUGyPNRD7TpbB1C
+ pajOUUkPxgj5LKt77HD1afeZNudWhgcdkbtT5PMQTT0WY6wvMEj9S1+bGPeXRGWLYB7gHQ+L
+ JNoSD7Kz6Y9qnKo=
+In-Reply-To: <20231218130656.9020-2-wahrenst@gmx.net>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Ovh-Tracer-Id: 859343106113334040
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvkedrvddugedguddtucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepkfffgggfuffvvehfhfgjtgfgsehtkeertddtvdejnecuhfhrohhmpefurogsrghsthhivghnucfuiiihmhgrnhhskhhiuceoshgvsggrshhtihgvnhdrshiihihmrghnshhkihesrghrmhgruggvuhhsrdgtohhmqeenucggtffrrghtthgvrhhnpedtgeehtdduledtudevveekveevveefffdthedtieekgeeukeevtdffieegteekhfenucfkphepuddvjedrtddrtddruddpledtrdduuddrvdegiedrvddufedpfeejrdehledrudegvddrleeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepuddvjedrtddrtddruddpmhgrihhlfhhrohhmpeeoshgvsggrshhtihgvnhdrshiihihmrghnshhkihesrghrmhgruggvuhhsrdgtohhmqedpnhgspghrtghpthhtohepuddprhgtphhtthhopeguvghvihgtvghtrhgvvgesvhhgvghrrdhkvghrnhgvlhdrohhrghdpoffvtefjohhsthepmhhoheeitddpmhhouggvpehsmhhtphhouhht
 
+Hello Stefan,
 
-
-On 2023/12/14 15:28, Minda Chen wrote:
-> PolarFire PCIE event IRQs includes PLDA local interrupts and PolarFire
-> their own IRQs. PolarFire PCIe event irq_chip ops using an event_desc t=
-o
-> unify different IRQ register addresses. On PLDA sides, PLDA irqchip cod=
-es
-> only require to set PLDA local interrupt register. So the PLDA irqchip =
-ops
-> codes can not be extracted from PolarFire codes.
->=20
-> To support PLDA its own event IRQ process, implements PLDA irqchip ops =
-and
-> add event irqchip field to struct pcie_plda_rp.
->=20
-> Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
+On 12/18/23 14:06, Stefan Wahren wrote:
+> The size-cells for GPMI are wrong in imx28.dtsi, which causes the
+> following warning:
+> 
+>      nand-controller@8000c000: #size-cells:0:0: 0 was expected
+> 
+> The reason for this is the definition of the partitions directly
+> below the nand controller node. According to nand-controller.yaml
+> the NAND chip must be defined as a child of the controller. Even
+> the fixed partitions must be kept in a partitions container.
+> 
+> Signed-off-by: Stefan Wahren <wahrenst@gmx.net>
 > ---
->  .../pci/controller/plda/pcie-microchip-host.c | 65 ++++++++++++++++++-
->  drivers/pci/controller/plda/pcie-plda.h       |  3 +
->  2 files changed, 67 insertions(+), 1 deletion(-)
->=20
-Hi Conor
-   Could you take time to review this patch?  For I using event irq chip =
-instead of event ops and the whole patch have been changed.  I think it's=
- better=20
-   And I added the implementation of PLDA event irqchip  and make it easi=
-er to claim the necessity of the modification.
-   If you approve this, I will add back the review tag. Thanks
+> 
+> Hi,
+> unfortunately i don't have access to MSR M28CU3 or an Armadeus Systems APF28
+> so it would be nice if someone can give a try.
 
-Hi Lorenzo
-   Have you reviewed this patch=EF=BC=9F Does the commit message and the =
-codes are can be approved =EF=BC=9FThanks
+I have tried this patch on an APF28. Unfortunately it doesn't work:
 
-> diff --git a/drivers/pci/controller/plda/pcie-microchip-host.c b/driver=
-s/pci/controller/plda/pcie-microchip-host.c
-> index fd0d92c3d03f..ff40c1622173 100644
-> --- a/drivers/pci/controller/plda/pcie-microchip-host.c
-> +++ b/drivers/pci/controller/plda/pcie-microchip-host.c
-> @@ -771,6 +771,63 @@ static struct irq_chip mc_event_irq_chip =3D {
->  	.irq_unmask =3D mc_unmask_event_irq,
->  };
-> > +static u32 plda_hwirq_to_mask(int hwirq)
-> +{
-> +	u32 mask;
+[    0.000000] Booting Linux on physical CPU 0x0
+[    0.000000] Linux version 6.7.0-rc6 (sszy@gentoo) 
+(arm-buildroot-linux-gnueabi-gcc.br_real (Buildroot 
+armadeus-7.0-387-g06d2e893315e-dirty) 12.3.0, GNU ld (GNU Binutils) 
+2.40) #1 Thu Dec 21 10:24:41 CET 2023
+
+...
+
+[    4.224482] nand: device found, Manufacturer ID: 0x2c, Chip ID: 0xda
+[    4.231238] nand: Micron MT29F2G08ABAEAWP
+[    4.235399] nand: 256 MiB, SLC, erase size: 128 KiB, page size: 2048, 
+OOB size: 64
+[    4.245851] Scanning device for bad blocks
+[    4.252904] Bad eraseblock 0 at 0x000000000000
+[    4.257842] Bad eraseblock 1 at 0x000000020000
+[    4.262972] Bad eraseblock 2 at 0x000000040000
+[    4.267886] Bad eraseblock 3 at 0x000000060000
+[    4.272994] Bad eraseblock 4 at 0x000000080000
+[    4.277900] Bad eraseblock 5 at 0x0000000a0000
+[    4.283007] Bad eraseblock 6 at 0x0000000c0000
+[    4.287916] Bad eraseblock 7 at 0x0000000e0000
+[    5.443712] gpmi-nand: ofpart partition 
+/apb@80000000/apbh@80000000/nand-controller@8000c000/nand@0 
+(/apb@80000000/apbh@80000000/nand-controller@8000c000) #size-cells is 
+wrongly set to <0>, assuming <1> for parsing partitions.
+[    5.464436] gpmi-nand: error parsing ofpart partition 
+/apb@80000000/apbh@80000000/nand-controller@8000c000/nand@0 
+(/apb@80000000/apbh@80000000/nand-controller@8000c000)
+[    5.523845] gpmi-nand 8000c000.nand-controller: driver registered.
+
+Without this patch:
+
+[    5.443988] 7 fixed-partitions partitions found on MTD device gpmi-nand
+[    5.450992] Creating 7 MTD partitions on "gpmi-nand":
+[    5.456234] 0x000000000000-0x000000300000 : "u-boot"
+[    5.506409] 0x000000300000-0x000000380000 : "env"
+[    5.537298] 0x000000380000-0x000000400000 : "env2"
+[    5.568253] 0x000000400000-0x000000480000 : "dtb"
+[    5.598940] 0x000000480000-0x000000500000 : "splash"
+[    5.629766] 0x000000500000-0x000000d00000 : "kernel"
+[    5.661523] 0x000000d00000-0x000010000000 : "rootfs"
+[    5.710012] gpmi-nand 8000c000.nand-controller: driver registered.
+
+Regards,
+
+> 
+>   arch/arm/boot/dts/nxp/mxs/imx28-apf28.dts  | 64 +++++++++++++---------
+>   arch/arm/boot/dts/nxp/mxs/imx28-m28.dtsi   |  2 -
+>   arch/arm/boot/dts/nxp/mxs/imx28-m28cu3.dts | 28 ++++++----
+>   arch/arm/boot/dts/nxp/mxs/imx28.dtsi       |  2 +-
+>   4 files changed, 56 insertions(+), 40 deletions(-)
+> 
+> diff --git a/arch/arm/boot/dts/nxp/mxs/imx28-apf28.dts b/arch/arm/boot/dts/nxp/mxs/imx28-apf28.dts
+> index 98672932e41b..10bfac31f672 100644
+> --- a/arch/arm/boot/dts/nxp/mxs/imx28-apf28.dts
+> +++ b/arch/arm/boot/dts/nxp/mxs/imx28-apf28.dts
+> @@ -27,39 +27,49 @@ &gpmi {
+>   	pinctrl-0 = <&gpmi_pins_a &gpmi_status_cfg>;
+>   	status = "okay";
+> 
+> -	partition@0 {
+> -		label = "u-boot";
+> -		reg = <0x0 0x300000>;
+> -	};
+> +	nand@0 {
+> +		reg = <0>;
+> 
+> -	partition@300000 {
+> -		label = "env";
+> -		reg = <0x300000 0x80000>;
+> -	};
+> +		partitions {
+> +			compatible = "fixed-partitions";
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> 
+> -	partition@380000 {
+> -		label = "env2";
+> -		reg = <0x380000 0x80000>;
+> -	};
+> +			partition@0 {
+> +				label = "u-boot";
+> +				reg = <0x0 0x300000>;
+> +			};
+> 
+> -	partition@400000 {
+> -		label = "dtb";
+> -		reg = <0x400000 0x80000>;
+> -	};
+> +			partition@300000 {
+> +				label = "env";
+> +				reg = <0x300000 0x80000>;
+> +			};
+> 
+> -	partition@480000 {
+> -		label = "splash";
+> -		reg = <0x480000 0x80000>;
+> -	};
+> +			partition@380000 {
+> +				label = "env2";
+> +				reg = <0x380000 0x80000>;
+> +			};
+> 
+> -	partition@500000 {
+> -		label = "kernel";
+> -		reg = <0x500000 0x800000>;
+> -	};
+> +			partition@400000 {
+> +				label = "dtb";
+> +				reg = <0x400000 0x80000>;
+> +			};
 > +
-> +	if (hwirq < EVENT_PM_MSI_INT_INTX)
-> +		mask =3D BIT(hwirq + A_ATR_EVT_POST_ERR_SHIFT);
-> +	else if (hwirq =3D=3D EVENT_PM_MSI_INT_INTX)
-> +		mask =3D PM_MSI_INT_INTX_MASK;
-> +	else
-> +		mask =3D BIT(hwirq + PM_MSI_TO_MASK_OFFSET);
+> +			partition@480000 {
+> +				label = "splash";
+> +				reg = <0x480000 0x80000>;
+> +			};
 > +
-> +	return mask;
-> +}
+> +			partition@500000 {
+> +				label = "kernel";
+> +				reg = <0x500000 0x800000>;
+> +			};
+> 
+> -	partition@d00000 {
+> -		label = "rootfs";
+> -		reg = <0xd00000 0xf300000>;
+> +			partition@d00000 {
+> +				label = "rootfs";
+> +				reg = <0xd00000 0xf300000>;
+> +			};
+> +		};
+>   	};
+>   };
+> 
+> diff --git a/arch/arm/boot/dts/nxp/mxs/imx28-m28.dtsi b/arch/arm/boot/dts/nxp/mxs/imx28-m28.dtsi
+> index 66facef10ba9..54b0f715f091 100644
+> --- a/arch/arm/boot/dts/nxp/mxs/imx28-m28.dtsi
+> +++ b/arch/arm/boot/dts/nxp/mxs/imx28-m28.dtsi
+> @@ -24,8 +24,6 @@ reg_3p3v: regulator-0 {
+>   };
+> 
+>   &gpmi {
+> -	#address-cells = <1>;
+> -	#size-cells = <1>;
+>   	pinctrl-names = "default";
+>   	pinctrl-0 = <&gpmi_pins_a &gpmi_status_cfg>;
+>   	status = "okay";
+> diff --git a/arch/arm/boot/dts/nxp/mxs/imx28-m28cu3.dts b/arch/arm/boot/dts/nxp/mxs/imx28-m28cu3.dts
+> index 34b4d3246db1..d069ac907490 100644
+> --- a/arch/arm/boot/dts/nxp/mxs/imx28-m28cu3.dts
+> +++ b/arch/arm/boot/dts/nxp/mxs/imx28-m28cu3.dts
+> @@ -93,21 +93,29 @@ &duart {
+>   };
+> 
+>   &gpmi {
+> -	#address-cells = <1>;
+> -	#size-cells = <1>;
+>   	pinctrl-names = "default";
+>   	pinctrl-0 = <&gpmi_pins_a &gpmi_status_cfg>;
+>   	status = "okay";
+> 
+> -	partition@0 {
+> -		label = "gpmi-nfc-0-boot";
+> -		reg = <0x00000000 0x01400000>;
+> -		read-only;
+> -	};
+> +	nand@0 {
+> +		reg = <0>;
+> 
+> -	partition@1 {
+> -		label = "gpmi-nfc-general-use";
+> -		reg = <0x01400000 0x0ec00000>;
+> +		partitions {
+> +			compatible = "fixed-partitions";
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
 > +
-> +static void plda_ack_event_irq(struct irq_data *data)
-> +{
-> +	struct plda_pcie_rp *port =3D irq_data_get_irq_chip_data(data);
+> +			partition@0 {
+> +				label = "gpmi-nfc-0-boot";
+> +				reg = <0x00000000 0x01400000>;
+> +				read-only;
+> +			};
 > +
-> +	writel_relaxed(plda_hwirq_to_mask(data->hwirq),
-> +		       port->bridge_addr + ISTATUS_LOCAL);
-> +}
-> +
-> +static void plda_mask_event_irq(struct irq_data *data)
-> +{
-> +	struct plda_pcie_rp *port =3D irq_data_get_irq_chip_data(data);
-> +	u32 mask, val;
-> +
-> +	mask =3D plda_hwirq_to_mask(data->hwirq);
-> +
-> +	raw_spin_lock(&port->lock);
-> +	val =3D readl_relaxed(port->bridge_addr + IMASK_LOCAL);
-> +	val &=3D ~mask;
-> +	writel_relaxed(val, port->bridge_addr + IMASK_LOCAL);
-> +	raw_spin_unlock(&port->lock);
-> +}
-> +
-> +static void plda_unmask_event_irq(struct irq_data *data)
-> +{
-> +	struct plda_pcie_rp *port =3D irq_data_get_irq_chip_data(data);
-> +	u32 mask, val;
-> +
-> +	mask =3D plda_hwirq_to_mask(data->hwirq);
-> +
-> +	raw_spin_lock(&port->lock);
-> +	val =3D readl_relaxed(port->bridge_addr + IMASK_LOCAL);
-> +	val |=3D mask;
-> +	writel_relaxed(val, port->bridge_addr + IMASK_LOCAL);
-> +	raw_spin_unlock(&port->lock);
-> +}
-> +
-> +static struct irq_chip plda_event_irq_chip =3D {
-> +	.name =3D "PLDA PCIe EVENT",
-> +	.irq_ack =3D plda_ack_event_irq,
-> +	.irq_mask =3D plda_mask_event_irq,
-> +	.irq_unmask =3D plda_unmask_event_irq,
-> +};
-> +
->  static const struct plda_event_ops plda_event_ops =3D {
->  	.get_events =3D plda_get_events,
->  };
-> @@ -778,7 +835,9 @@ static const struct plda_event_ops plda_event_ops =3D=
- {
->  static int plda_pcie_event_map(struct irq_domain *domain, unsigned int=
- irq,
->  			       irq_hw_number_t hwirq)
->  {
-> -	irq_set_chip_and_handler(irq, &mc_event_irq_chip, handle_level_irq);
-> +	struct plda_pcie_rp *port =3D (void *)domain->host_data;
-> +
-> +	irq_set_chip_and_handler(irq, port->event_irq_chip, handle_level_irq)=
-;
->  	irq_set_chip_data(irq, domain->host_data);
-> =20
->  	return 0;
-> @@ -963,6 +1022,9 @@ static int plda_init_interrupts(struct platform_de=
-vice *pdev,
->  	if (!port->event_ops)
->  		port->event_ops =3D &plda_event_ops;
-> =20
-> +	if (!port->event_irq_chip)
-> +		port->event_irq_chip =3D &plda_event_irq_chip;
-> +
->  	ret =3D plda_pcie_init_irq_domains(port);
->  	if (ret) {
->  		dev_err(dev, "failed creating IRQ domains\n");
-> @@ -1040,6 +1102,7 @@ static int mc_platform_init(struct pci_config_win=
-dow *cfg)
->  		return ret;
-> =20
->  	port->plda.event_ops =3D &mc_event_ops;
-> +	port->plda.event_irq_chip =3D &mc_event_irq_chip;
-> =20
->  	/* Address translation is up; safe to enable interrupts */
->  	ret =3D plda_init_interrupts(pdev, &port->plda, &mc_event);
-> diff --git a/drivers/pci/controller/plda/pcie-plda.h b/drivers/pci/cont=
-roller/plda/pcie-plda.h
-> index dd8bc2750bfc..24ac50c458dc 100644
-> --- a/drivers/pci/controller/plda/pcie-plda.h
-> +++ b/drivers/pci/controller/plda/pcie-plda.h
-> @@ -128,6 +128,8 @@
->   * DMA end : reserved for vendor implement
->   */
-> =20
-> +#define PM_MSI_TO_MASK_OFFSET			19
-> +
->  struct plda_pcie_rp;
-> =20
->  struct plda_event_ops {
-> @@ -150,6 +152,7 @@ struct plda_pcie_rp {
->  	raw_spinlock_t lock;
->  	struct plda_msi msi;
->  	const struct plda_event_ops *event_ops;
-> +	const struct irq_chip *event_irq_chip;
->  	void __iomem *bridge_addr;
->  	int num_events;
->  };
+> +			partition@1 {
+> +				label = "gpmi-nfc-general-use";
+> +				reg = <0x01400000 0x0ec00000>;
+> +			};
+> +		};
+>   	};
+>   };
+> 
+> diff --git a/arch/arm/boot/dts/nxp/mxs/imx28.dtsi b/arch/arm/boot/dts/nxp/mxs/imx28.dtsi
+> index 4817fba2d938..9655403b7f90 100644
+> --- a/arch/arm/boot/dts/nxp/mxs/imx28.dtsi
+> +++ b/arch/arm/boot/dts/nxp/mxs/imx28.dtsi
+> @@ -99,7 +99,7 @@ perfmon: perfmon@80006000 {
+>   			gpmi: nand-controller@8000c000 {
+>   				compatible = "fsl,imx28-gpmi-nand";
+>   				#address-cells = <1>;
+> -				#size-cells = <1>;
+> +				#size-cells = <0>;
+>   				reg = <0x8000c000 0x2000>, <0x8000a000 0x2000>;
+>   				reg-names = "gpmi-nand", "bch";
+>   				interrupts = <41>;
+> --
+> 2.34.1
+> 
+
+-- 
+Sébastien Szymanski, Armadeus Systems
+Software engineer
+
 
