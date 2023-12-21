@@ -1,160 +1,155 @@
-Return-Path: <devicetree+bounces-27707-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27703-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E60281B5F0
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 13:31:44 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BCB981B5D6
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 13:30:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EE0A52896C1
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 12:31:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9EDD41C25909
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 12:30:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69F136EB52;
-	Thu, 21 Dec 2023 12:30:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 939486EB5D;
+	Thu, 21 Dec 2023 12:28:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="KHCJ1Bvs"
+	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="E3Ji0/i/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9FDE768F4;
-	Thu, 21 Dec 2023 12:30:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 3BL91QIS020448;
-	Thu, 21 Dec 2023 13:29:54 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	from:to:cc:subject:date:message-id:in-reply-to:references
-	:mime-version:content-transfer-encoding:content-type; s=
-	selector1; bh=B5wcMGFh4CoqzFZs1z1bofbkFA+Gq4yfIFxfUXbmg0w=; b=KH
-	CJ1BvsOmo2hZjg+eTlF3NZro65o0DPAYmJ5s58NnctVMokk0T8PRCSxgEMqwgkhG
-	R7yNGbfX/VloQPcCJ476IWIE08TljR7r59d57DXGuySsjwKJdD/TETA92H2RXS8c
-	bRC6AUCQmcP4KVHyReDGvRPfDaK02vworhxiUuaqV2euAA5gWKouYBcoAGTblxkG
-	klkVD7PHfwDZVF+sk8Jy/UDy/NFqqITqPZIYZhiLZTDM9tZVzYYuaucIxuoEJ1yk
-	FDtjq8xafthmTAJL598MwiUch4qPpidB25bX7JkmX1iMxyj06cJtvMKuRPQskhfw
-	1hb7lJLIbMo8x2FifqyQ==
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3v14427gm1-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 21 Dec 2023 13:29:53 +0100 (CET)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 28B7A10005F;
-	Thu, 21 Dec 2023 13:29:51 +0100 (CET)
-Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 1D6A923C699;
-	Thu, 21 Dec 2023 13:29:51 +0100 (CET)
-Received: from localhost (10.252.25.159) by SHFDAG1NODE2.st.com (10.75.129.70)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Thu, 21 Dec
- 2023 13:29:50 +0100
-From: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Neil Armstrong
-	<neil.armstrong@linaro.org>,
-        Jessica Zhang <quic_jesszhan@quicinc.com>,
-        Sam
- Ravnborg <sam@ravnborg.org>,
-        Maarten Lankhorst
-	<maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre
- Torgue <alexandre.torgue@foss.st.com>,
-        Yannick Fertre
-	<yannick.fertre@foss.st.com>,
-        Raphael Gallais-Pou
-	<raphael.gallais-pou@foss.st.com>,
-        Philippe Cornu
-	<philippe.cornu@foss.st.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Lad
- Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Thierry Reding
-	<thierry.reding@gmail.com>
-CC: <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>
-Subject: [PATCH v1 4/8] drm/stm: ltdc: implement bus clock
-Date: Thu, 21 Dec 2023 13:28:39 +0100
-Message-ID: <20231221122843.418650-5-raphael.gallais-pou@foss.st.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20231221122843.418650-1-raphael.gallais-pou@foss.st.com>
-References: <20231221122843.418650-1-raphael.gallais-pou@foss.st.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 386866E5B6
+	for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 12:28:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
+Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 5DC733F15B
+	for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 12:28:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+	s=20210705; t=1703161728;
+	bh=utwwjd3w/GTj0TOYQ7r9hzEA4xysvpOk2/pKVIn6Dd8=;
+	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
+	 To:Cc:Content-Type;
+	b=E3Ji0/i/TEWCDbQQlH63k0HzGF58gvjZy5+I0G/5MVx1YPCJyhk0T2RORnmf0qCHz
+	 jK3hRMNYbgx4KRT7b8vS1o3sMtvfom9zDv9QZVGqtpyuUigpbIafn17VBtWaywWdKM
+	 wP8/LK03uecBlI1EKTlQhg6upsN7LDBgGJlvhfMjg0ttT3C6x4pgaobBVhYFjDSFgE
+	 B+Pdlj6cF+99gPUfpWk8PoZkdasIgKW5YHtn5TBGHb3xxYKzo67/zjPK6RpxX4dGiQ
+	 bufpKivEyT6gNED6Rnst0FZAbUwxjb/obcR4+BnKH/EXiAvFPo0f/yD3mgNt67M6Mf
+	 CQJAINaHsXbGQ==
+Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-781029a475bso122172985a.0
+        for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 04:28:48 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1703161727; x=1703766527;
+        h=content-transfer-encoding:cc:to:subject:message-id:date
+         :mime-version:references:in-reply-to:from:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=utwwjd3w/GTj0TOYQ7r9hzEA4xysvpOk2/pKVIn6Dd8=;
+        b=dKkbdh5JNHMB2Mlpj173b+oGZMWawLIZ8VDTeSYVuziKAIizbFriupqni8Pbv94Ran
+         kKMePkXZYSt62g1L3bQPqly85zwyjILGL56deoIF8V8ZSzU7XDmkOcuSeoBGdqTj/ds+
+         idDhxR7kLiLi3ofQWuicLcm0yRj8CFHnYxm4MfoRG6aXJB8iQr5XoZR7EhI5dYD/dMrV
+         aIgdSGjAuM6h/8zRZ0Aa0HOlgINuU9Q54xBVhvy7gEBxMMhGXrJdTsJ1kwfIYhGtGhD2
+         67efuGlXsnbNyecR6m+WhRB8od6wX6RrwANgcjWrptR97CxDPXsSmhNrmR1EyB2XTK4o
+         4scw==
+X-Gm-Message-State: AOJu0Yw0H5fhghixhCDN3Yp2+0niXYLz8aUp7C9AdvMNKrZa1lCpWaRs
+	hd4GFCaEiJP6zosVCxDvLSUL4dUKk+Zo7e9ALGjqRQSflNOE37DyhCLKasGeU6k6Xn1nzZcAaEv
+	+q82uaBenuJZd1/1RZB6St+j+nGS3U4d2ILM6Nv6HmqgkCIVk7VdQtuWTMtWu+g==
+X-Received: by 2002:a05:620a:3dc:b0:77e:ffcd:2728 with SMTP id r28-20020a05620a03dc00b0077effcd2728mr897512qkm.53.1703161727418;
+        Thu, 21 Dec 2023 04:28:47 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHB2Dun85XQ6cgWOoZpoJaB/RapIEzw1KjVwm/JtqPitqqKxcRJWcJjtxi1b+wBY8zYrCiPA/YZeVrH74MD5jI=
+X-Received: by 2002:a05:620a:3dc:b0:77e:ffcd:2728 with SMTP id
+ r28-20020a05620a03dc00b0077effcd2728mr897496qkm.53.1703161727167; Thu, 21 Dec
+ 2023 04:28:47 -0800 (PST)
+Received: from 348282803490 named unknown by gmailapi.google.com with
+ HTTPREST; Thu, 21 Dec 2023 04:28:46 -0800
+From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+In-Reply-To: <CACRpkdYT+jf4=dk3Y9cwa_=aYCihVq93N-iT0RUbtT2-+PX69w@mail.gmail.com>
+References: <20231215143906.3651122-1-emil.renner.berthing@canonical.com>
+ <20231215143906.3651122-2-emil.renner.berthing@canonical.com>
+ <20231215202137.GA317624-robh@kernel.org> <CAJM55Z9pBpYfwpxPH7bUumuosVDn9DHLSBngW6CtG7aK_z+_bQ@mail.gmail.com>
+ <CACRpkdYT+jf4=dk3Y9cwa_=aYCihVq93N-iT0RUbtT2-+PX69w@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE2.st.com
- (10.75.129.70)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-12-21_05,2023-12-20_01,2023-05-22_02
+Mime-Version: 1.0
+Date: Thu, 21 Dec 2023 04:28:46 -0800
+Message-ID: <CAJM55Z8osSFxKi_7=aRkEr+U3vAq0TS93OggnRzyPpssNuuJ3Q@mail.gmail.com>
+Subject: Re: [PATCH v1 1/8] dt-bindings: pinctrl: Add thead,th1520-pinctrl bindings
+To: Linus Walleij <linus.walleij@linaro.org>, 
+	Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Cc: Rob Herring <robh@kernel.org>, linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	Hoan Tran <hoan@os.amperecomputing.com>, Serge Semin <fancer.lancer@gmail.com>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>, Andy Shevchenko <andy@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jisheng Zhang <jszhang@kernel.org>, Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Yannick Fertre <yannick.fertre@foss.st.com>
+Linus Walleij wrote:
+> On Sat, Dec 16, 2023 at 2:57=E2=80=AFPM Emil Renner Berthing
+> <emil.renner.berthing@canonical.com> wrote:
+>
+> > > > +          thead,strong-pull-up:
+> > > > +            oneOf:
+> > > > +              - type: boolean
+> > > > +              - $ref: /schemas/types.yaml#/definitions/uint32
+> > > > +                enum: [ 0, 2100 ]
+> > > > +            description: Enable or disable strong 2.1kOhm pull-up.
+> > >
+> > > bias-pull-up can already specify the strength in Ohms.
+> >
+> > The strong pull up is a separate bit that can be enabled independently =
+from the
+> > regular pull-up/down, so in theory you could enable both the regular pu=
+ll-up
+> > and the strong pull-up at the same time, or even the regular poll-down =
+and the
+> > strong pull-up which is probably not advised.
+>
+> bias-pull-up; <- Just regular pulling up the ordinary
+> bias-pull-up =3D <100>; <- Same thing if the ordinary is 100 Ohm (figure =
+out what
+>   resistance it actually is....)
+> bias-pull-up =3D <21000000>; <- strong pull up
+> bias-pull-up =3D <21000100>; <- both at the same time
 
-The latest hardware version of the LTDC presents the addition of a bus
-clock, which contains the global configuration registers and the interrupt
-register.
+Hmm.. the two pull-ups combined would be a stronger pull-up, eg. lower
+resistance, right? So you'd need to calculate it using
+https://en.wikipedia.org/wiki/Series_and_parallel_circuits#Resistance_units=
+_2
 
-Signed-off-by: Yannick Fertre <yannick.fertre@foss.st.com>
----
- drivers/gpu/drm/stm/ltdc.c | 8 ++++++++
- drivers/gpu/drm/stm/ltdc.h | 1 +
- 2 files changed, 9 insertions(+)
+The problem is that the documentation doesn't actually mention what will ha=
+ppen
+if you combine the strong pull-up with the regular bias. My best guess for =
+what
+happens if you enable the strong pull-up and the regular pull-down is that =
+you
+create a sort of voltage divider. But how do you represent that as an Ohm v=
+alue?
 
-diff --git a/drivers/gpu/drm/stm/ltdc.c b/drivers/gpu/drm/stm/ltdc.c
-index 5576fdae4962..67064f47a4cb 100644
---- a/drivers/gpu/drm/stm/ltdc.c
-+++ b/drivers/gpu/drm/stm/ltdc.c
-@@ -1896,6 +1896,8 @@ void ltdc_suspend(struct drm_device *ddev)
- 
- 	DRM_DEBUG_DRIVER("\n");
- 	clk_disable_unprepare(ldev->pixel_clk);
-+	if (ldev->bus_clk)
-+		clk_disable_unprepare(ldev->bus_clk);
- }
- 
- int ltdc_resume(struct drm_device *ddev)
-@@ -1910,6 +1912,12 @@ int ltdc_resume(struct drm_device *ddev)
- 		DRM_ERROR("failed to enable pixel clock (%d)\n", ret);
- 		return ret;
- 	}
-+	if (ldev->bus_clk) {
-+		if (clk_prepare_enable(ldev->bus_clk)) {
-+			DRM_ERROR("Unable to prepare bus clock\n");
-+			return -ENODEV;
-+		}
-+	}
- 
- 	return 0;
- }
-diff --git a/drivers/gpu/drm/stm/ltdc.h b/drivers/gpu/drm/stm/ltdc.h
-index 9d488043ffdb..155d8e4a7c6b 100644
---- a/drivers/gpu/drm/stm/ltdc.h
-+++ b/drivers/gpu/drm/stm/ltdc.h
-@@ -44,6 +44,7 @@ struct ltdc_device {
- 	void __iomem *regs;
- 	struct regmap *regmap;
- 	struct clk *pixel_clk;	/* lcd pixel clock */
-+	struct clk *bus_clk;	/* bus clock */
- 	struct mutex err_lock;	/* protecting error_status */
- 	struct ltdc_caps caps;
- 	u32 irq_status;
--- 
-2.25.1
+We would kind of have to, otherwise the pinconf_get callbacks have states t=
+hat
+it can't represent.
 
+> > So the idea here was just to make sure that you can do eg.
+> >
+> >         thead,strong-pull-up =3D <0>;
+> >
+> > to make sure the bit is cleared.
+>
+> No use bias-disable; for this.
+>
+> Yours,
+> Linus Walleij
+>
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
 
