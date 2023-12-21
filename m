@@ -1,105 +1,97 @@
-Return-Path: <devicetree+bounces-27758-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27764-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0BF0B81B997
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 15:33:30 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A90881B9F5
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 15:56:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BA59C286422
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 14:33:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CAE9F288ABB
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 14:56:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CB1C801;
-	Thu, 21 Dec 2023 14:33:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="inMr4kvO"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A47248CCC;
+	Thu, 21 Dec 2023 14:56:02 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02CE61DFD1;
-	Thu, 21 Dec 2023 14:33:25 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7E524C433C8;
-	Thu, 21 Dec 2023 14:33:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1703169205;
-	bh=1gBzheN4S/wQ0NJRWGAPZm1B8jW93y3bbdZ6s3dg2MA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=inMr4kvOzDU80kjBEt1gVj7l3xcguO/scSWCZjpb6SlIZnoe1bDUh7lYy3hRk3dqW
-	 VrczdADhPwXgGkBdKylLYtzQOBJ8pyD3t0rDR2jt6OPzFjoQoc8898njAmYgwFvZgd
-	 vr3E9ttnAcEgRn83qg488LqA3CVRcO+xBZKHxjYqkwQjYYo3SOTXffWKVDH0WNw6tb
-	 RGhC1CC7zO4ADcmFhE5KIOKLanv6fFdLpfZ9hCiqGE3uhnpItpIKLZcOW0ldr+XDIp
-	 33mlFuohOu52O8psohKt+FhoPSWQyKAn+LCHb3DGOj75ZVFjVkzuAMznwvivhiGzxF
-	 a7PR0fuGRDTEw==
-Date: Thu, 21 Dec 2023 14:33:18 +0000
-From: Lee Jones <lee@kernel.org>
-To: Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+Received: from elvis.franken.de (elvis.franken.de [193.175.24.41])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFD17360B4;
+	Thu, 21 Dec 2023 14:55:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=alpha.franken.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alpha.franken.de
+Received: from uucp by elvis.franken.de with local-rmail (Exim 3.36 #1)
+	id 1rGKSr-0002PV-00; Thu, 21 Dec 2023 15:55:57 +0100
+Received: by alpha.franken.de (Postfix, from userid 1000)
+	id AD3D4C0A2B; Thu, 21 Dec 2023 15:38:20 +0100 (CET)
+Date: Thu, 21 Dec 2023 15:38:20 +0100
+From: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+To: Gregory CLEMENT <gregory.clement@bootlin.com>
+Cc: Paul Burton <paulburton@kernel.org>, linux-mips@vger.kernel.org,
+	Jiaxun Yang <jiaxun.yang@flygoat.com>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Biju Das <biju.das.jz@bp.renesas.com>
-Cc: Support Opensource <support.opensource@diasemi.com>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
-	Steve Twiss <stwiss.opensource@diasemi.com>,
-	linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-pm@vger.kernel.org, linux-watchdog@vger.kernel.org,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Biju Das <biju.das.au@gmail.com>, linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v6 0/8] Convert DA906{1,2} bindings to json-schema
-Message-ID: <20231221143318.GH10102@google.com>
-References: <20231214080911.23359-1-biju.das.jz@bp.renesas.com>
- <170316812973.586675.6248412029985031979.b4-ty@kernel.org>
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
+	Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	=?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Philippe =?iso-8859-1?Q?Mathieu-Daud=E9?= <philmd@linaro.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>
+Subject: Re: [PATCH v5 01/22] MIPS: compressed: Use correct instruction for
+ 64 bit code
+Message-ID: <ZYRN3FMH4od3QX+i@alpha.franken.de>
+References: <20231212163459.1923041-1-gregory.clement@bootlin.com>
+ <20231212163459.1923041-2-gregory.clement@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <170316812973.586675.6248412029985031979.b4-ty@kernel.org>
+In-Reply-To: <20231212163459.1923041-2-gregory.clement@bootlin.com>
 
-On Thu, 21 Dec 2023, Lee Jones wrote:
-
-> On Thu, 14 Dec 2023 08:09:03 +0000, Biju Das wrote:
-> > Convert the below bindings to json-schema
-> > 1) DA906{1,2} mfd bindings
-> > 2) DA906{1,2,3} onkey bindings
-> > 3) DA906{1,2,3} thermal bindings
-> > 
-> > Also add fallback for DA9061 watchdog device and document
-> > DA9063 watchdog device.
-> > 
-> > [...]
+On Tue, Dec 12, 2023 at 05:34:33PM +0100, Gregory CLEMENT wrote:
+> The code clearing BSS already use macro or use correct instruction
+> depending if the CPU is 32 bits or 64 bits. However, a few
+> instructions remained 32 bits only.
 > 
-> Applied, thanks!
+> By using the accurate MACRO, it is now possible to deal with memory
+> address beyond 32 bits. As a side effect, when using 64bits processor,
+> it also divides the loop number needed to clear the BSS by 2.
 > 
-> [1/8] dt-bindings: mfd: da9062: Update watchdog description
->       commit: 9e7b13b805bcbe5335c2936d4c7ea0323ac69a81
-> [2/8] dt-bindings: watchdog: dlg,da9062-watchdog: Add fallback for DA9061 watchdog
->       commit: 28d34db7772f18490b52328f04a3bf69ed5390d2
-> [3/8] dt-bindings: watchdog: dlg,da9062-watchdog: Document DA9063 watchdog
->       commit: d2a7dbb808870c17cffa2749ea877f61f298d098
-> [4/8] dt-bindings: mfd: dlg,da9063: Update watchdog child node
->       commit: d4018547a15a94c7e865b2cef82bff1cd43a32b3
-> [5/8] dt-bindings: input: Convert da906{1,2,3} onkey to json-schema
->       commit: db459d3da7bb9c37cb86897c7b321a49f8e40968
-> [6/8] dt-bindings: thermal: Convert da906{1,2} thermal to json-schema
->       commit: 998f499c843e360bcd9ee1fe9addc3b5d32f1234
-> [7/8] dt-bindings: mfd: dlg,da9063: Sort child devices
->       commit: 2bbf9d2a8e3bc933703dfda87cac953bed458496
-> [8/8] dt-bindings: mfd: dlg,da9063: Convert da9062 to json-schema
->       commit: 522225161830f6a93f2aaabda99226c1ffddc8c4
+> Reviewed-by: Philippe Mathieu-Daud� <philmd@linaro.org>
+> Reviewed-by: Florian Fainelli <florian.fainelli@broadcom.com>
+> Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
+> ---
+>  arch/mips/boot/compressed/head.S | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/mips/boot/compressed/head.S b/arch/mips/boot/compressed/head.S
+> index 5795d0af1e1b2..d237a834b85ee 100644
+> --- a/arch/mips/boot/compressed/head.S
+> +++ b/arch/mips/boot/compressed/head.S
+> @@ -25,8 +25,8 @@
+>  	/* Clear BSS */
+>  	PTR_LA	a0, _edata
+>  	PTR_LA	a2, _end
+> -1:	sw	zero, 0(a0)
+> -	addiu	a0, a0, 4
+> +1:	PTR_S	zero, 0(a0)
+> +	PTR_ADDIU a0, a0, PTRSIZE
+>  	bne	a2, a0, 1b
+>  
+>  	PTR_LA	a0, (.heap)	     /* heap address */
+> -- 
+> 2.42.0
 
-Submitted for testing.  Pull-request to follow.
+applied to mips-next.
+
+Thomas.
 
 -- 
-Lee Jones [李琼斯]
+Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
+good idea.                                                [ RFC1925, 2.3 ]
 
