@@ -1,233 +1,78 @@
-Return-Path: <devicetree+bounces-27823-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27824-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B21381BCAE
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 18:12:22 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2800781BCBF
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 18:15:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5F81D1C21C5E
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 17:12:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D92072860A1
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 17:15:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5152E59913;
-	Thu, 21 Dec 2023 17:11:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04CD15990D;
+	Thu, 21 Dec 2023 17:15:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mUFviwBD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QdSCBCOb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA76562805;
-	Thu, 21 Dec 2023 17:11:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-553eb74df60so1228638a12.0;
-        Thu, 21 Dec 2023 09:11:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1703178713; x=1703783513; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8c7qdOK44Erw1rd2N9Dkc3C/rkBrTjfjshoie/DwZvs=;
-        b=mUFviwBDk+rBD0Cigr7Ej1YqAFjUeW9dpF+t6QeI6n6ppzg3OrDoWqq4wOiWKrDMgU
-         QI0bXw9Y70sxTTp12n/v86SeMKdw6qTyARCSit+yHJlNyopV2GkLcW7IwVpEDTV6mvAw
-         y1BUTSs1GCulkEENA7QX7AVSPjFNt+s9Kgf5EeNJ3L+ttgt9Zck9qSCY6ieMdRrenA0P
-         iYFFYRTyT0dgSxyYck4huvBZTts5Xk/PJ5Af1Ya6KByOa7xSa048a9sAp5HlFrOuqlpM
-         5gMJGtArxsmU9+fodaU4Mga4JwvSl55VVyNtlUDcNYC7p1MPx2lPGJfTQZ+fbZ5u9KIT
-         4zbA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703178713; x=1703783513;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=8c7qdOK44Erw1rd2N9Dkc3C/rkBrTjfjshoie/DwZvs=;
-        b=n7VlwyqyTCc5jBAk7Xvsevj70aCd08ecfYc/ULRg0Wl9D30m/3uuVs6f8vV6HOiOMl
-         QfmlGmgJ3katSmXKkSeG2L/bKz9qSUY+Yml3oiZX0lqmLAC/Pw61EwVOdGBO4E0VqJ1z
-         mEaLe+NLblFaKiR6v0MYEqy/lyNOoHJqIlvqNZ1N5fKa9MFqzbc4zxScgWfWez2q3q+x
-         f8WUaP2PM1YzKK24ujs5WFLMlhJDFasWo7tn3ALDNSDu5BSuIvZxKO7bfVMKaPge85Ri
-         DB4Ke5UK6Mn4gsoQtV40zf0XOpQmvQvvauKcHczQyxx6U2uC/OuqsSDZuz5q69lqRyJW
-         d0aw==
-X-Gm-Message-State: AOJu0Yytc6zepfRDLk7Trg02x9XRskgmt8uA9z184vGJthckM/ddhU+v
-	e+v4wFarTJ1nzvNZxldUVs4=
-X-Google-Smtp-Source: AGHT+IHNiAZdFnzAEiUdKfNoeSk+geKiEkWgT/aPnMVG9zgCLJmSuW1YXNdZkHxCVKCqsDhOaSRiwg==
-X-Received: by 2002:a50:c057:0:b0:54b:27e7:f965 with SMTP id u23-20020a50c057000000b0054b27e7f965mr12048802edd.19.1703178712653;
-        Thu, 21 Dec 2023 09:11:52 -0800 (PST)
-Received: from localhost.localdomain ([154.72.163.204])
-        by smtp.gmail.com with ESMTPSA id b24-20020a056402139800b0054cb316499dsm1400760edv.10.2023.12.21.09.11.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 21 Dec 2023 09:11:52 -0800 (PST)
-From: Brandon Cheo Fusi <fusibrandon13@gmail.com>
-To: andre.przywara@arm.com
-Cc: aou@eecs.berkeley.edu,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	fusibrandon13@gmail.com,
-	jernej.skrabec@gmail.com,
-	krzysztof.kozlowski+dt@linaro.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-pm@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	linux-sunxi@lists.linux.dev,
-	palmer@dabbelt.com,
-	paul.walmsley@sifive.com,
-	rafael@kernel.org,
-	robh+dt@kernel.org,
-	samuel@sholland.org,
-	sfr@canb.auug.org.au,
-	tiny.windzz@gmail.com,
-	viresh.kumar@linaro.org,
-	wens@csie.org
-Subject: Re: [RFC PATCH v2 2/3] cpufreq: sun50i: Add support for D1's speed bin decoding
-Date: Thu, 21 Dec 2023 18:11:07 +0100
-Message-Id: <20231221171107.85991-1-fusibrandon13@gmail.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20231221124957.27fa9922@donnerap.manchester.arm.com>
-References: <20231221124957.27fa9922@donnerap.manchester.arm.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D273858213;
+	Thu, 21 Dec 2023 17:15:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EA09AC433C8;
+	Thu, 21 Dec 2023 17:15:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1703178950;
+	bh=kvAImrMB2BLFEbE4tN+YXRJKctb+m1F/aV1dMuU9wzs=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=QdSCBCOb88u04vdEqFMyZzTa4QCQxPnjRPxuXFZARaGszL6Gi6Vg/x2zrEbL0i5iz
+	 4/6yTdiVUG+9T1snRTak9PfErpumLjVhEUoaotUbQhi/jWC3B9ziSs1LpdTNt5PXjD
+	 WzOGd/wVJk59C068xNmoSn+PHdlnF+WYgTR2ydbO17BelMyXIhbuwkM2PkpFDq/ZSm
+	 ZmCxNwE8jh/wk0b3wdciYnRdcNBScsoF2zuOAoVRkap4YDlAqvWwhKeiXxLxX4AnPx
+	 OSYFSA4c8J84anDOvN9twhA4XhvVQ1wDuo+/H8kDckKTApi8Kz5Czx/7jJkR6bliy8
+	 CmoC6R2a+fmdA==
+From: Vinod Koul <vkoul@kernel.org>
+To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, 
+ Kishon Vijay Abraham I <kishon@kernel.org>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Johan Hovold <johan+linaro@kernel.org>, 
+ linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: stable@vger.kernel.org
+In-Reply-To: <20231218130553.45893-1-krzysztof.kozlowski@linaro.org>
+References: <20231218130553.45893-1-krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH] dt-bindings: phy: qcom,sc8280xp-qmp-usb43dp-phy: fix
+ path to header
+Message-Id: <170317894553.712473.7175140339294979943.b4-ty@kernel.org>
+Date: Thu, 21 Dec 2023 22:45:45 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.12.3
 
-On Thu, Dec 21, 2023 at 1:50 PM Andre Przywara <andre.przywara@arm.com> wrote:
->
-> On Thu, 21 Dec 2023 11:10:12 +0100
-> Brandon Cheo Fusi <fusibrandon13@gmail.com> wrote:
->
-> Hi Brandon,
->
-> thanks for the quick turnaround, and for splitting this code up, that
-> makes reasoning about this much easier!
->
-> > Adds support for decoding the efuse value read from D1 efuse speed
-> > bins, and factors out equivalent code for sun50i.
-> >
-> > The algorithm is gotten from
-> >
-> > https://github.com/Tina-Linux/linux-5.4/blob/master/drivers/cpufreq/sun50i-cpufreq-nvmem.c#L293-L338
-> >
-> > and maps an efuse value to either 0 or 1, with 1 meaning stable at
-> > a lower supply voltage for the same clock frequency.
-> >
-> > Signed-off-by: Brandon Cheo Fusi <fusibrandon13@gmail.com>
-> > ---
-> >  drivers/cpufreq/sun50i-cpufreq-nvmem.c | 34 ++++++++++++++++++++++++++
-> >  1 file changed, 34 insertions(+)
-> >
-> > diff --git a/drivers/cpufreq/sun50i-cpufreq-nvmem.c b/drivers/cpufreq/sun50i-cpufreq-nvmem.c
-> > index fc509fc49..b1cb95308 100644
-> > --- a/drivers/cpufreq/sun50i-cpufreq-nvmem.c
-> > +++ b/drivers/cpufreq/sun50i-cpufreq-nvmem.c
-> > @@ -29,6 +29,33 @@ struct sunxi_cpufreq_data {
-> >       u32 (*efuse_xlate)(u32 *speedbin, size_t len);
-> >  };
-> >
-> > +static u32 sun20i_efuse_xlate(u32 *speedbin, size_t len)
->
-> I feel like this prototype can be shortened to:
->
-> static u32 sun20i_efuse_xlate(u32 speedbin)
->
-> See below.
->
-> > +{
-> > +     u32 ret, efuse_value = 0;
-> > +     int i;
-> > +
-> > +     for (i = 0; i < len; i++)
-> > +             efuse_value |= ((u32)speedbin[i] << (i * 8));
->
-> The cast is not needed. Looking deeper into the original code you linked
-> to, cell_value[] there is an array of u8, so they assemble a little endian
-> 32-bit integer from *up to* four 8-bit values read from the nvmem.
->
-> So I think this code here is wrong, len is the size of the nvmem cells
-> holding the bin identifier, in *bytes*, so the idea here is to just read
-> the (lowest) 16 bits (in the D1 case, cf. "reg = <0x00 0x2>;" in the next
-> patch) from this nvmem cell. Here you are combining two 32-bit words into
 
-This is true. Not sure though what the 'in the D1 case...' bit means.
+On Mon, 18 Dec 2023 14:05:53 +0100, Krzysztof Kozlowski wrote:
+> Fix the path to bindings header in description.
+> 
+> 
 
-> efuse_value.
->
-> So I think this whole part above is actually not necessary: we are
-> expecting maximum 32 bits, and nvmem_cell_read() should take care of
-> masking off unrequested bits, so we get the correct value back already. So
-> can you try to remove the loop above, and use ...
->
-> > +
-> > +     switch (efuse_value) {
->
->         switch (*speedbin & 0xffff) {
->
+Applied, thanks!
 
-Shouldn't the bytes in *speedbin be reversed? 
+[1/1] dt-bindings: phy: qcom,sc8280xp-qmp-usb43dp-phy: fix path to header
+      commit: 21a1d02579ae75fd45555b84d20ba55632a14a19
 
-> here instead? Or drop the pointer at all, and just use one u32 value, see
-> the above prototype.
->
+Best regards,
+-- 
+~Vinod
 
-I was uncomfortable dropping the len parameter, because then each
-platform's efuse_xlate would ignore the number of valid bytes actually
-read.
 
-> Cheers,
-> Andre
->
-> P.S. This is just a "peephole review" of this patch, I haven't got around
-> to look at this whole scheme in whole yet, to see if we actually need this
-> or can simplify this or clean it up.
->
->
-> > +     case 0x5e00:
-> > +             /* QFN package */
-> > +             ret = 0;
-> > +             break;
-> > +     case 0x5c00:
-> > +     case 0x7400:
-> > +             /* QFN package */
-> > +             ret = 1;
-> > +             break;
-> > +     case 0x5000:
-> > +     default:
-> > +             /* BGA package */
-> > +             ret = 0;
-> > +     }
-> > +
-> > +     return ret;
-> > +}
-> > +
-> >  static u32 sun50i_efuse_xlate(u32 *speedbin, size_t len)
-> >  {
-> >       u32 efuse_value = 0;
-> > @@ -46,6 +73,10 @@ static u32 sun50i_efuse_xlate(u32 *speedbin, size_t len)
-> >               return 0;
-> >  }
-> >
-> > +struct sunxi_cpufreq_data sun20i_cpufreq_data = {
-> > +     .efuse_xlate = sun20i_efuse_xlate,
-> > +};
-> > +
-> >  struct sunxi_cpufreq_data sun50i_cpufreq_data = {
-> >       .efuse_xlate = sun50i_efuse_xlate,
-> >  };
-> > @@ -54,6 +85,9 @@ static const struct of_device_id cpu_opp_match_list[] = {
-> >       { .compatible = "allwinner,sun50i-h6-operating-points",
-> >         .data = &sun50i_cpufreq_data,
-> >       },
-> > +     { .compatible = "allwinner,sun20i-d1-operating-points",
-> > +       .data = &sun20i_cpufreq_data,
-> > +     },
-> >       {}
-> >  };
-> >
->
-
-Thank you for reviewing.
-Brandon.
 
