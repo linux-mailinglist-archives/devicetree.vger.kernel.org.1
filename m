@@ -1,117 +1,234 @@
-Return-Path: <devicetree+bounces-27638-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27639-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42A6C81B189
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 10:07:13 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8BFF681B1B5
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 10:10:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 73D071C21BAF
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 09:07:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B131A1C2098B
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 09:10:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52F965026F;
-	Thu, 21 Dec 2023 09:00:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC46A1CFBF;
+	Thu, 21 Dec 2023 09:02:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vNWEGEMx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="e1Q8ENqa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A3035026A
-	for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 09:00:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-40d13e4f7abso4072725e9.2
-        for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 01:00:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1703149252; x=1703754052; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=d5nr7Rmvu09+Hcflla+PbyH0bXs0avlsmc8OnLSB4Wc=;
-        b=vNWEGEMxpzO82eedsGV6G/idadYCJ5dCuvzGGoNrtihjqw4llKO3aHSaDqNwDhrUF5
-         Q89WqaBxkIJsEmIbMmSF8M0QIg7+rUT0o+qcUXh5zWDkKXw2okCSDDgjpG5jeRqtssft
-         rzh9mNVNuxOnMxjNiEISlDYGnJ56BAuAijuNqyrdAqpPgz1zzZJb+6CqEXrOhBqkDekW
-         0c74lUV/010LYGPLnwqY4ipF9CZeGNHyi6LMePYyRAjE2xUp4qm1r2egoEjJVS1MTevA
-         SByLCXv/iOqicl8svaJRghIi0sCG6OFcHw6hxCr8mZk3KYGNX2+7yw9Rz1xNYkDCbQlU
-         SVzw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703149252; x=1703754052;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=d5nr7Rmvu09+Hcflla+PbyH0bXs0avlsmc8OnLSB4Wc=;
-        b=gSY+TieV7zoQLmvHF3AdiR5AnwNXC8S3VP9O5bsOdXE3ZTZ7Q/S9n9RERD1UzBSVq0
-         WGx0TZ21Bhya2eCCL8LCkkEhsIQfVKDIaVxuicf3r7WKK7YB6W8E4ISKs/uguktmtymk
-         i+9MDTyi1Vk2zHLGnMJ9hJyLslMHfyQQLskjqqUhjuzrhRPnfbJUQWFMCmjnR9SqHJDO
-         A2HkfxQ9UyYdyKDFlvm5UCVQHVrIGCfdAbR7Bly2DmEDjgRsSeOgJBYKwg4FEKtG01AK
-         BShlVonQuWI6OpDuQzgKJ6VrPcve3u5oAj57V0NR2iJEoi61TbbNOwE2DZTe3lkRGHhD
-         va3w==
-X-Gm-Message-State: AOJu0YyAdEvi2XogTDmbjPYEf9xJY0+mQZUVxaSZ3oG9MkZSxfVfr/UE
-	pWMYSrOIMfEC3Y18SXA4qIAw+w==
-X-Google-Smtp-Source: AGHT+IHywzh7DivXZneCaq8VgYrlLxr2g0sHamkEZ9qmg8KKcEOnIX+t64+M6+wHLY+TrxYv9pKMMQ==
-X-Received: by 2002:adf:ce11:0:b0:336:85e3:717d with SMTP id p17-20020adfce11000000b0033685e3717dmr426090wrn.122.1703149251898;
-        Thu, 21 Dec 2023 01:00:51 -0800 (PST)
-Received: from ta2.c.googlers.com.com (216.131.76.34.bc.googleusercontent.com. [34.76.131.216])
-        by smtp.gmail.com with ESMTPSA id o10-20020adfeaca000000b0033677a4e0d6sm1523900wrn.13.2023.12.21.01.00.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 21 Dec 2023 01:00:51 -0800 (PST)
-From: Tudor Ambarus <tudor.ambarus@linaro.org>
-To: peter.griffin@linaro.org,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org
-Cc: conor+dt@kernel.org,
-	mturquette@baylibre.com,
-	alim.akhtar@samsung.com,
-	semen.protsenko@linaro.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	kernel-team@android.com,
-	Tudor Ambarus <tudor.ambarus@linaro.org>,
-	Rob Herring <robh@kernel.org>
-Subject: [PATCH 2/2] arm64: dts: exynos: gs101: comply with the new cmu_misc clock names
-Date: Thu, 21 Dec 2023 09:00:46 +0000
-Message-ID: <20231221090046.1486195-2-tudor.ambarus@linaro.org>
-X-Mailer: git-send-email 2.43.0.472.g3155946c3a-goog
-In-Reply-To: <20231221090046.1486195-1-tudor.ambarus@linaro.org>
-References: <20231221090046.1486195-1-tudor.ambarus@linaro.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B00F64A995;
+	Thu, 21 Dec 2023 09:02:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9E7F4C433C8;
+	Thu, 21 Dec 2023 09:02:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1703149377;
+	bh=p5dHoof6CpVRm8H51oSiaRXPqfim6y17RnxB7xY56tk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=e1Q8ENqaz4vYwDVkG3agH8Y4nWY+t+vf+dRK4CWAox6pMkmw0lE5CiewwHUcSFbp4
+	 RkWIsVyItgSe8hLDbVe7XR+8+z2jsXtz39K9l++LNfCrEsMCoGDX4J/MON0Esni2Wq
+	 iqrEvVOXEmgR6BzB7qFtyB6TBQUBqZsN45F0aj+iNwKZJOMYPXJ+ALJKqxfvUPDBQl
+	 rhlhXxneBAsPHxzhYuLmXAXUstbegLTSelvwcYG7NV5MOIsYEKj9nW+wOHWTOrkTWg
+	 ptmFIbWZj+VriBf6p9Woko7ugLT2AK5cwSkli+QHtfdeHxaYVqcZc5AQiBUtk0h6/e
+	 /8F23EhrD4POQ==
+Date: Thu, 21 Dec 2023 10:02:54 +0100
+From: Maxime Ripard <mripard@kernel.org>
+To: Andrew Davis <afd@ti.com>
+Cc: "H. Nikolaus Schaller" <hns@goldelico.com>, 
+	Frank Binns <frank.binns@imgtec.com>, Donald Robson <donald.robson@imgtec.com>, 
+	Matt Coster <matt.coster@imgtec.com>, Adam Ford <aford173@gmail.com>, 
+	Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
+	=?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>, Tony Lindgren <tony@atomide.com>, Nishanth Menon <nm@ti.com>, 
+	Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>, 
+	Paul Cercueil <paul@crapouillou.net>, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-sunxi@lists.linux.dev, linux-omap@vger.kernel.org, linux-mips@vger.kernel.org
+Subject: Re: [PATCH RFC 01/10] dt-bindings: gpu: Add PowerVR Series5 SGX GPUs
+Message-ID: <3dggaesvunebogkqvclz4imruhynrftkhsvmndm75vfccqwpa6@3zp3dgzpzta6>
+References: <B3A1B8A7-0363-4ECB-AFBF-576FECA569FA@goldelico.com>
+ <vawv2mwhonuyvgmp7uox4rfgdcjwg5fa7hmbcfgl3wiase6e4p@tyavpclppfvu>
+ <6BC60156-89E2-4734-BD00-B49A9A6C1D7A@goldelico.com>
+ <6gpehpoz54f5lxhmvirqbfwmq7dpgiroy27cljpvu66wtn7aqy@lgrh7wysyxnp>
+ <D8AB6CC4-DCA5-40DD-A311-94A16FF59254@goldelico.com>
+ <oobcl2kfsuph27er7rflfqvt3lu6athufomxv5chf3uctx4emh@x6rzjtlskhbf>
+ <F58855EC-D87D-4747-A363-0E7AA5DB1AEC@goldelico.com>
+ <22cny5aumc5wafsrjd3j55zcjbjf2viip64kfbjiqis2grtd6t@wg5dxeuzil6l>
+ <3E03E913-48E1-49EC-A6C9-EAC1612E65E7@goldelico.com>
+ <a3feaf42-17fb-46e5-bbb0-3ffc4ad40bfd@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="xdjqplvcfzg6bqbd"
+Content-Disposition: inline
+In-Reply-To: <a3feaf42-17fb-46e5-bbb0-3ffc4ad40bfd@ti.com>
 
-The cmu_misc clock-names were renamed to just "bus" and "sss" because
-naming is local to the module, so cmu_misc is implied. As the bindings
-and the device tree have not made a release yet, comply with the
-renamed clocks.
 
-Suggested-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
----
- arch/arm64/boot/dts/exynos/google/gs101.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+--xdjqplvcfzg6bqbd
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/arch/arm64/boot/dts/exynos/google/gs101.dtsi b/arch/arm64/boot/dts/exynos/google/gs101.dtsi
-index 9747cb3fa03a..d838e3a7af6e 100644
---- a/arch/arm64/boot/dts/exynos/google/gs101.dtsi
-+++ b/arch/arm64/boot/dts/exynos/google/gs101.dtsi
-@@ -289,7 +289,7 @@ cmu_misc: clock-controller@10010000 {
- 			#clock-cells = <1>;
- 			clocks = <&cmu_top CLK_DOUT_CMU_MISC_BUS>,
- 				 <&cmu_top CLK_DOUT_CMU_MISC_SSS>;
--			clock-names = "dout_cmu_misc_bus", "dout_cmu_misc_sss";
-+			clock-names = "bus", "sss";
- 		};
- 
- 		watchdog_cl0: watchdog@10060000 {
--- 
-2.43.0.472.g3155946c3a-goog
+On Tue, Dec 19, 2023 at 11:19:49AM -0600, Andrew Davis wrote:
+> On 12/18/23 4:54 AM, H. Nikolaus Schaller wrote:
+> >=20
+> >=20
+> > > Am 18.12.2023 um 11:14 schrieb Maxime Ripard <mripard@kernel.org>:
+> > >=20
+> > > On Mon, Dec 18, 2023 at 10:28:09AM +0100, H. Nikolaus Schaller wrote:
+> > > > Hi Maxime,
+> > > >=20
+> > > > > Am 15.12.2023 um 14:33 schrieb Maxime Ripard <mripard@kernel.org>:
+> > > > >=20
+> > > > > > >=20
+> > > > > > > It's for a separate architecture, with a separate driver, mai=
+ntained out
+> > > > > > > of tree by a separate community, with a separate set of requi=
+rements as
+> > > > > > > evidenced by the other thread. And that's all fine in itself,=
+ but
+> > > > > > > there's very little reason to put these two bindings in the s=
+ame file.
+> > > > > > >=20
+> > > > > > > We could also turn this around, why is it important that it's=
+ in the
+> > > > > > > same file?
+> > > > > >=20
+> > > > > > Same vendor. And enough similarity in architectures, even a log=
+ical sequence
+> > > > > > of development of versions (SGX =3D Version 5, Rogue =3D Versio=
+n 6+) behind.
+> > > > > > (SGX and Rogue seem to be just trade names for their architectu=
+re development).
+> > > > >=20
+> > > > > Again, none of that matters for *where* the binding is stored.
+> > > >=20
+> > > > So what then speaks against extending the existing bindings file as=
+ proposed
+> > > > here?
+> > >=20
+> > > I mean, apart from everything you quoted, then sure, nothing speaks
+> > > against it.
+> > >=20
+> > > > > > AFAIK bindings should describe hardware and not communities or =
+drivers
+> > > > > > or who is currently maintaining it. The latter can change, the =
+first not.
+> > > > >=20
+> > > > > Bindings are supposed to describe hardware indeed. Nothing was ev=
+er said
+> > > > > about where those bindings are supposed to be located.
+> > > > >=20
+> > > > > There's hundreds of other YAML bindings describing devices of the=
+ same
+> > > > > vendors and different devices from the same generation.
+> > > >=20
+> > > > Usually SoC seem to be split over multiple files by subsystem. Not =
+by versions
+> > > > or generations. If the subsystems are similar enough they share the=
+ same bindings
+> > > > doc instead of having one for each generation duplicating a lot of =
+code.
+> > > >=20
+> > > > Here is a comparable example that combines multiple vendors and gen=
+erations:
+> > > >=20
+> > > > Documentation/devicetree/bindings/usb/generic-ehci.yaml
+> > >=20
+> > > EHCI is a single interface for USB2.0 controllers. It's a standard AP=
+I,
+> > > and is made of a single driver that requires minor modifications to d=
+eal
+> > > with multiple devices.
+> > >=20
+> > > We're very far from the same situation here.
+> >=20
+> > How far are we really? And, it is the purpose of the driver to handle d=
+ifferent cases.
+> >=20
+> > That there are currently two drivers is just a matter of history and no=
+t a necessity.
+> >=20
+> > >=20
+> > > > > If anything it'll make it easier for you. I'm really not sure why=
+ it is
+> > > > > controversial and you're fighting this so hard.
+> > > >=20
+> > > > Well, you made it controversial by proposing to split what IMHO bel=
+ongs together.
+> > >=20
+> > > No, reviews aren't controversial.
+> > > The controversy started when you chose
+> > > to oppose it while you could have just rolled with it.
+> >=20
+> > Well, you asked
+> >=20
+> > "I think it would be best to have a separate file for this, img,sgx.yaml
+> > maybe?"
+> >=20
+> > and
+> >=20
+> > "Because it's more convenient?"
+> >=20
+> > I understood that as an invitation for discussing the pros and cons and=
+ working out the
+> > most convenient solution. And that involves playing the devil's advocat=
+e which of course
+> > is controversial by principle.
+> >=20
+> > Now, IMHO all the pros and cons are on the table and the question is wh=
+o makes a decision
+> > how to go.
+> >=20
+>=20
+> As much as I would land on the side of same file for both, the answer to =
+this question
+> is simple: the maintainer makes the decision :) So I'll respin with separ=
+ate binding files.
+>
+> The hidden unaddressed issue here is that by making these bindings separa=
+te it implies
+> they are not on equal footing (i.e. pre-series6 GPUs are not true "powerv=
+r" and so do not
+> belong in img,powervr.yaml).
 
+No, not really. As far as I'm concerned, the only unequal footing here
+is that one driver is in-tree and the other isn't, but this situation
+was handled nicely for Mali GPUs and lima that used to be in the same
+situation for example.
+
+The situation is simple, really: bindings are supposed to be backward
+compatible, period. If we ever make a change to that binding that isn't,
+you will be well within your right to complain because your driver is
+now broken.
+
+> So if no one objects I'd also like to do the rename of that
+> file as suggested before and have:
+>=20
+> img,powervr-sgx.yaml
+> img,powervr-rogue.yaml
+
+Sounds good to me.
+
+Maxime
+
+--xdjqplvcfzg6bqbd
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZYP/PgAKCRDj7w1vZxhR
+xecAAQCmVXhaAl7fZ7g76z9w82Bf0j4pTMmQspV3lIhk356FHgEA/xGS5jxCtd+G
+824sqakZ7+v2m4QT6HsRgxUigbfQcQ8=
+=eukR
+-----END PGP SIGNATURE-----
+
+--xdjqplvcfzg6bqbd--
 
