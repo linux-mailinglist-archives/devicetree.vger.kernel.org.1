@@ -1,168 +1,122 @@
-Return-Path: <devicetree+bounces-27696-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27699-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F96A81B5C2
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 13:28:09 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A444681B5C8
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 13:28:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 941B81C2302F
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 12:28:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5BCBF285FC7
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 12:28:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8221C6E5AA;
-	Thu, 21 Dec 2023 12:28:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 229496EB76;
+	Thu, 21 Dec 2023 12:28:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vGCmU/UP"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="MWZwkPPr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 647F06EB4D;
-	Thu, 21 Dec 2023 12:28:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CCA82C433C8;
-	Thu, 21 Dec 2023 12:28:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1703161683;
-	bh=J2GyZ8aGWp7U98Pt2mOw9MgQsZYwZuIkfyz563PoLJE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=vGCmU/UP6emTfpnku2LK8WhzlJtNBm0gInWGLiJwT1pK5dlFdWmmvu/IQCbLKRvMn
-	 onWiX0ramxB7xXhsRoA2X2yK0Tu1AvdJJH5ZcLAwQHQfw5rsltGUwdoDEHb/Twwv5P
-	 JqL05R8B1tPbBfQQICKplp6BXQm/5XkZ5hdjXE2cVHcuYvR8yMWRpbR2D4pk1KJX93
-	 3Rgx3m1GK1UsieoQer5CGjr6n+vl4/IWn5LLRfJh+i6uePjCmEPRmd4EyKUdqwbTRe
-	 G6yOu8ky5T6eL6Jp81XbeWf5UBUxgpshG/Ox/mU0Jnk6PKmg1QJ9AJChTH+9BfvL6R
-	 4N3RKrCii2X1A==
-Message-ID: <37f1df31-82c7-49ae-8f21-0939b04115e6@kernel.org>
-Date: Thu, 21 Dec 2023 14:27:58 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 538C46EB63;
+	Thu, 21 Dec 2023 12:28:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3BLCS68v015162;
+	Thu, 21 Dec 2023 06:28:06 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1703161686;
+	bh=5AimOjX8mVtl/H74cpa+H08a66kuDuPQZ9w/xBNEu9w=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=MWZwkPPr7eTZA4xXasV4hbZ43I5+TV/CtuF/ezXGIVUxv0/hwrXHdhfMv4pbWLhH+
+	 zlDbHv7+MAcn45N4Z2JxuPbaXf0iem/7TMUHthDKUJJBTDQE/Tc2dXoJdZQihF/NCq
+	 DuSn6Wr6AjdTKsJUuiwE7TOpa/+uAmy+1A394O50=
+Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3BLCS5Ch117361
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 21 Dec 2023 06:28:05 -0600
+Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 21
+ Dec 2023 06:28:05 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 21 Dec 2023 06:28:05 -0600
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3BLCS5gA090270;
+	Thu, 21 Dec 2023 06:28:05 -0600
+Date: Thu, 21 Dec 2023 06:28:05 -0600
+From: Nishanth Menon <nm@ti.com>
+To: Jayesh Choudhary <j-choudhary@ti.com>
+CC: <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <a-bhatia1@ti.com>, <rogerq@kernel.org>, <sabiya.d@ti.com>,
+        <u-kumar1@ti.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH] arm64: dts: ti: k3-am69-sk: remove
+ assigned-clock-parents for unused VP
+Message-ID: <20231221122805.3kl5mujtk2npvrmf@skiing>
+References: <20231221113042.48492-1-j-choudhary@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH net-next 1/8] dt-bindings: net: Add support for AM65x
- SR1.0 in ICSSG
-Content-Language: en-US
-To: Diogo Ivo <diogo.ivo@siemens.com>, danishanwar@ti.com,
- davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
- pabeni@redhat.com, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
- netdev@vger.kernel.org, devicetree@vger.kernel.org
-Cc: Jan Kiszka <jan.kiszka@siemens.com>
-References: <20231219174548.3481-1-diogo.ivo@siemens.com>
- <20231219174548.3481-2-diogo.ivo@siemens.com>
-From: Roger Quadros <rogerq@kernel.org>
-In-Reply-To: <20231219174548.3481-2-diogo.ivo@siemens.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20231221113042.48492-1-j-choudhary@ti.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Hi,
-
-On 19/12/2023 19:45, Diogo Ivo wrote:
-> Silicon Revision 1.0 of the AM65x came with a slightly different ICSSG
-> support: Only 2 PRUs per slice are available and instead 2 additional
-> DMA channels are used for management purposes. We have no restrictions
-> on specified PRUs, but the DMA channels need to be adjusted.
+On 17:00-20231221, Jayesh Choudhary wrote:
+> VP2 and VP3 are unused video ports and VP3 share the same parent
+> clock as VP1 causing issue with pixel clock setting for HDMI (VP1).
+> So remove the parent clocks for unused VPs.
 > 
-> Signed-off-by: Jan Kiszka <jan.kiszka@siemens.com>
-> Signed-off-by: Diogo Ivo <diogo.ivo@siemens.com>
+> Fixes: 6f8605fd7d11 ("arm64: dts: ti: k3-am69-sk: Add DP and HDMI support")
+> Reported-by: Nishanth Menon <nm@ti.com>
+> Closes: https://storage.kernelci.org/mainline/master/v6.7-rc6/arm64/defconfig/gcc-10/lab-ti/baseline-nfs-am69_sk-fs.txt
+> Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
 > ---
->  .../bindings/net/ti,icssg-prueth.yaml         | 62 +++++++++++++------
->  1 file changed, 44 insertions(+), 18 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml b/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml
-> index 229c8f32019f..fbe51731854a 100644
-> --- a/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml
-> +++ b/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml
-> @@ -19,30 +19,15 @@ allOf:
->  properties:
->    compatible:
->      enum:
-> -      - ti,am642-icssg-prueth  # for AM64x SoC family
-> -      - ti,am654-icssg-prueth  # for AM65x SoC family
-> +      - ti,am642-icssg-prueth      # for AM64x SoC family
-> +      - ti,am654-icssg-prueth      # for AM65x SoC family, SR2.x
+> Local testing log for HDMI on AM69-SK:
+> <https://gist.github.com/Jayesh2000/517395cd85eb28d65b8ee4568cefb809>
 
-You don't need to explicitly mention SR2.x here and in the rest of the patches.
-That way there are fewer changes.
+Has this been always failing or just something introduced in rc6? I know
+I noticed this in rc6.. so wondering..
 
-> +      - ti,am654-icssg-prueth-sr1  # for AM65x SoC family, SR1.0
+> 
+>  arch/arm64/boot/dts/ti/k3-am69-sk.dts | 8 ++------
+>  1 file changed, 2 insertions(+), 6 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am69-sk.dts b/arch/arm64/boot/dts/ti/k3-am69-sk.dts
+> index 8da591579868..370980eb59b0 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am69-sk.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-am69-sk.dts
+> @@ -918,13 +918,9 @@ &dss {
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&dss_vout0_pins_default>;
+>  	assigned-clocks = <&k3_clks 218 2>,
+> -			  <&k3_clks 218 5>,
+> -			  <&k3_clks 218 14>,
+> -			  <&k3_clks 218 18>;
+> +			  <&k3_clks 218 5>;
+>  	assigned-clock-parents = <&k3_clks 218 3>,
+> -				 <&k3_clks 218 7>,
+> -				 <&k3_clks 218 16>,
+> -				 <&k3_clks 218 22>;
+> +				 <&k3_clks 218 7>;
+>  };
 >  
->    sram:
->      $ref: /schemas/types.yaml#/definitions/phandle
->      description:
->        phandle to MSMC SRAM node
->  
-> -  dmas:
-> -    maxItems: 10
-> -
-> -  dma-names:
-> -    items:
-> -      - const: tx0-0
-> -      - const: tx0-1
-> -      - const: tx0-2
-> -      - const: tx0-3
-> -      - const: tx1-0
-> -      - const: tx1-1
-> -      - const: tx1-2
-> -      - const: tx1-3
-> -      - const: rx0
-> -      - const: rx1
-> -
->    ti,mii-g-rt:
->      $ref: /schemas/types.yaml#/definitions/phandle
->      description:
-> @@ -122,6 +107,47 @@ properties:
->        - required:
->            - port@1
->  
-> +if:
-> +  properties:
-> +    compatible:
-> +      contains:
-> +        enum:
-> +          - ti,am654-icssg-prueth-sr1
-> +then:
-> +  properties:
-> +    dmas:
-> +      maxItems: 12
-> +    dma-names:
-> +      items:
-> +        - const: tx0-0
-> +        - const: tx0-1
-> +        - const: tx0-2
-> +        - const: tx0-3
-> +        - const: tx1-0
-> +        - const: tx1-1
-> +        - const: tx1-2
-> +        - const: tx1-3
-> +        - const: rx0
-> +        - const: rx1
-> +        - const: rxmgm0
-> +        - const: rxmgm1
-> +else:
-> +  properties:
-> +    dmas:
-> +      maxItems: 10
-> +    dma-names:
-> +      items:
-> +        - const: tx0-0
-> +        - const: tx0-1
-> +        - const: tx0-2
-> +        - const: tx0-3
-> +        - const: tx1-0
-> +        - const: tx1-1
-> +        - const: tx1-2
-> +        - const: tx1-3
-> +        - const: rx0
-> +        - const: rx1
-> +
->  required:
->    - compatible
->    - sram
+>  &serdes_wiz4 {
+> -- 
+> 2.25.1
+> 
 
 -- 
-cheers,
--roger
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
