@@ -1,107 +1,106 @@
-Return-Path: <devicetree+bounces-27811-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27812-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B85581BBF8
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 17:29:18 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5705A81BBFB
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 17:29:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 418751F26610
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 16:29:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E32D21F24C02
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 16:29:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4A4455E79;
-	Thu, 21 Dec 2023 16:29:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6512758207;
+	Thu, 21 Dec 2023 16:29:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="eO0GFRMF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11D3055E68
-	for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 16:29:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 6CEF22F4;
-	Thu, 21 Dec 2023 08:29:56 -0800 (PST)
-Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 1C9393F64C;
-	Thu, 21 Dec 2023 08:29:10 -0800 (PST)
-Date: Thu, 21 Dec 2023 16:29:07 +0000
-From: Andre Przywara <andre.przywara@arm.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org, linux-sunxi@lists.linux.dev, Maxime Ripard
- <mripard@kernel.org>
-Subject: Re: [PATCH] dt-bindings: arm: sunxi: sort alphabetically
-Message-ID: <20231221162907.1b609235@donnerap.manchester.arm.com>
-In-Reply-To: <6721cb2f-4498-4d20-9059-257846005905@linaro.org>
-References: <20231221140614.639697-1-andre.przywara@arm.com>
-	<ab8e7d68-c09c-47ff-9f31-08b073387403@linaro.org>
-	<20231221150714.53d40ea3@donnerap.manchester.arm.com>
-	<6721cb2f-4498-4d20-9059-257846005905@linaro.org>
-Organization: ARM
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+Received: from mail-yb1-f181.google.com (mail-yb1-f181.google.com [209.85.219.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04B0B55E74
+	for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 16:29:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f181.google.com with SMTP id 3f1490d57ef6-db3fa47c2f7so942807276.0
+        for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 08:29:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1703176160; x=1703780960; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=BjPHcp5yMT17ibGa6gTs1FBCraAtjJ1c24ScrpYmDdA=;
+        b=eO0GFRMFe6ao+9/qkBhgYj63SjgdmvwMtwHOn13KnmR3fyi000e4phV0i1GSM3Je4T
+         THH/YW2Uxjdn9BVnvy2DYfa7LyIbVcLTLbmGbXSSB2d60gfXCKprBbbbkQAJ7JewsuUM
+         ZMgB9sdwI7BDWpgB8K3Q7AlQv2KbUxIstjZYDNHfWLqCjb3CaUMH49FG6eEBVxZcPhhR
+         1BWjvrp0KH73bo0VHRjgCL4Dlf0Y5X3tRe8FMhpI59mXo7COmtBjHWlHHhN8HWqFEkw7
+         8vE6RTzL4UIR2yFH5YN8F42/LIJDaCHNDnkfu7t4e0GwFZ43+SvYNCMQBkmroHroVBDh
+         hv8Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1703176160; x=1703780960;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=BjPHcp5yMT17ibGa6gTs1FBCraAtjJ1c24ScrpYmDdA=;
+        b=lsaHfyW1hNqcrUJguDoL0U49tPdnoWIiLLuOxBjGIIowS9NZ0x7WGDax3xl5LB/EJF
+         FdV7ugXpcx2+ZHGrdPdUWeOIhkE/ooHj7mEyLfruYjIfkLBaKXFA1c8nMRq0VSorbbS2
+         W0DjIyI5H8wl24FXfIb+NSS/V1VtfyQC65PLuYU1RvF811nQqVYUjDW+ukAcA2pNGJAo
+         /ptzqRG967g0cdK/n7b9JU8fPjfhGdT8qMvHnkKBkjZRvPBbAb2SL51nDz0iZzH3Wuzt
+         kwg1yTYGgEu5mgl1k8HQvPUDT4pvsdxwg5qJV4Vzqum1bwxCNJDWKYg/Huia/3VDfoHl
+         RrmA==
+X-Gm-Message-State: AOJu0Yw+3AvyaMm+VGjIf1jmvS8xdPYqsgx5GAL/oakfxZEpVvuutyUE
+	6L/bBShcM/lh+KdcAS3h6Q64wLAIM6IhNkjM115t8Q==
+X-Google-Smtp-Source: AGHT+IGVLs+CQ+PdC7bTznaHnCI5bDzf2xPzHfAm2xC8pi3ssBDcAhHP2dXDVr6YIcp4bw0t0xdhtZqdeJkJ4bW6TGY=
+X-Received: by 2002:a5b:4b:0:b0:dbd:4c39:30bf with SMTP id e11-20020a5b004b000000b00dbd4c3930bfmr1286372ybp.98.1703176159919;
+ Thu, 21 Dec 2023 08:29:19 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+References: <20231219-x1e80100-phy-edp-compatible-refactor-v1-0-f9e77752953d@linaro.org>
+ <20231219-x1e80100-phy-edp-compatible-refactor-v1-2-f9e77752953d@linaro.org>
+In-Reply-To: <20231219-x1e80100-phy-edp-compatible-refactor-v1-2-f9e77752953d@linaro.org>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Thu, 21 Dec 2023 18:29:09 +0200
+Message-ID: <CAA8EJpoZDJqJnCvPp2YJcCJd5a3Z3droe=F3oXkiAR-O8KDqGA@mail.gmail.com>
+Subject: Re: [PATCH 2/3] phy: Add PHY Embedded DisplayPort mode
+To: Abel Vesa <abel.vesa@linaro.org>
+Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Johan Hovold <johan@kernel.org>, linux-phy@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On Thu, 21 Dec 2023 16:38:41 +0100
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+On Tue, 19 Dec 2023 at 22:55, Abel Vesa <abel.vesa@linaro.org> wrote:
+>
+> Add definition for Embedded DisplayPort (eDP) phy mode.
 
-Hi,
+If we leave the DT property aside, is eDP a separate PHY mode, or a
+submode? (in terms of phy_set_mode_ext).
 
-(CC:ing Maxime for potential historic context)
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> ---
+>  include/linux/phy/phy.h | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+>
+> diff --git a/include/linux/phy/phy.h b/include/linux/phy/phy.h
+> index f6d607ef0e80..bea532711906 100644
+> --- a/include/linux/phy/phy.h
+> +++ b/include/linux/phy/phy.h
+> @@ -42,7 +42,8 @@ enum phy_mode {
+>         PHY_MODE_MIPI_DPHY,
+>         PHY_MODE_SATA,
+>         PHY_MODE_LVDS,
+> -       PHY_MODE_DP
+> +       PHY_MODE_DP,
+> +       PHY_MODE_EDP
+>  };
 
-> On 21/12/2023 16:07, Andre Przywara wrote:
-> > On Thu, 21 Dec 2023 15:45:17 +0100
-> > Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
-> > 
-> > Hi,
-> >   
-> >> On 21/12/2023 15:06, Andre Przywara wrote:  
-> >>> The sunxi.yaml file, holding all known board compatible names for
-> >>> devices with Allwinner SoCs, is apparently sorted alphabetically, by the
-> >>> "description" entry. However there are a few outliers.
-> >>>
-> >>> Re-order the entries to get a strict alphabetical ordering, so that:
-> >>> $ grep description: sunxi.yaml | sort -fc
-> >>> returns empty-handed. There is no change otherwise.
-> >>>
-> >>> Signed-off-by: Andre Przywara <andre.przywara@arm.com>    
-> >>
-> >> What was the existing order? Aren't this just shuffling again things?  
-> > 
-> > It assume the intention was to order "alphabetically by description", but
-> > there were some out-of-place entries which apparently slipped through
-> > review.
-> > 
-> > Shall I add a comment at the top to note the order?  
-> 
-> Some files like this are ordered by compatible, some by class or family
-> of devices, so first you need to be sure there is no existing order.
-
-That's what I did, of course:
-- there is no order in the compatible strings, not in the most specific
-name, nor in the fallback names
-- new boards have always been added somewhere in the middle, never at the
-end, so it's not "oldest boards first"
-- the SoCs used in the boards are all over the place, so it's not sorted
-by SoC
-- I see no rhyme or reason in the board types: we have tablets, devboards,
-TV boxes all mixed up happily.
-
-But: from the 197 listed boards, a movement of 13 boards, often by just one
-position, makes the list ordered by description.
-
-So I assumed this was the intention, and fixed the list accordingly. Happy
-to stand corrected if the maintainers have a better idea.
-
-Cheers,
-Andre
+-- 
+With best wishes
+Dmitry
 
