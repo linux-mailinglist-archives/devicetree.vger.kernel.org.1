@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-27611-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27612-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82AE481B022
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 09:17:30 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D36481B028
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 09:20:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D5B4DB21E62
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 08:17:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C92CB1F2282C
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 08:20:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4DEC15AFB;
-	Thu, 21 Dec 2023 08:17:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D54A15AE7;
+	Thu, 21 Dec 2023 08:20:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="iVgMlaYb"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="KQsfNdBT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
+Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E32715AC3
-	for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 08:17:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DD4816427
+	for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 08:19:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-54c77e0835bso624807a12.2
-        for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 00:17:21 -0800 (PST)
+Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-5532b348d30so540592a12.1
+        for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 00:19:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1703146640; x=1703751440; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1703146798; x=1703751598; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=uLYwiILJNrPOJYFa4MFmqZhds1DmcYKaUvDcrn7HxWs=;
-        b=iVgMlaYbKb9M2Wvpo0ToLdx7bd3WGM2wIqRUUwPi6GNVjG0m1acr6gjDdNhih4fw5t
-         ZlhaA9IRLwWoEQ+LTvKpTZBPfshDuAMLHjYuD9WNYhOUi3kb7DogYfU4sN40+aFQ+oje
-         ffWQjmBvvFHaFas9Cglc91j2n8169mCWBFU86TlbJqcrNR5JaPbw9g61pLQq9pRpA/Gm
-         yMIJMMOlvQw0RCAscYI4YZ8E40vkZ6bX/tyB4DLgx/cXcHoZFDAbX5uAcazAdTyMY9R6
-         zfbOgZppmJOp8/gbWT3PxmSEjj6VuXnOgd50JhZJPYUWUN/zHrWP5TWRUfAP/gLnslZW
-         b8pg==
+        bh=l/Oi4HtAn4tEeOeSBvZ5kOQ4IEe6nPEOYrXOm9jL8kI=;
+        b=KQsfNdBTF39sgjfB6w+hrgJxIbaUjy8z6hyzBo9KwLx5m/Ny3AvWm4x53wcT7jx/Db
+         aCcBfBIYwrN+5jXoIB0vcJxrzdoV2nQOmfx7e14N4aCMdFGeYybM7O3OFZspVFzVBKHz
+         PSAzLOSeSy3EqWPvORtKVcWvaNcFDbyHTCSdK5UC1WnwWRPL768JH68MhtqK7cnoCBlh
+         LueXdwZ+ViulSoVwrSgVUFPQnEKzMNoO/+YBeU3qW+1hLROCAr9LRGy9jr4DzVEEQmKV
+         qWoG4uGEN9FVwh0D1CCMD9rfVYa0+sc0o7rjRZJJuH2ZZuxtUa/AAcBYhYLCoPk6DoZg
+         QH3A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703146640; x=1703751440;
+        d=1e100.net; s=20230601; t=1703146798; x=1703751598;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=uLYwiILJNrPOJYFa4MFmqZhds1DmcYKaUvDcrn7HxWs=;
-        b=QTVV5QylvfCjaMHPzWLy1ZQwa0ATDCtmTsQlxIz+UwIrulT4X9sEB7E9Fr6mMAWdkp
-         tnLbLeOVNFrgo1WFjA7/sQcmtbDZnaMn1qL9FqMUzT+BM/4Bl7UjqfNJAezG/VR/7R82
-         ECj17ig+fsN+PRNjNINwNyfDrOH5aN4kBGDHQigW1C6lrKy57l4BOMXBzEXyx5w2ZAV4
-         cP+R67kcg59YeDPU9oan6l9bWR1XzkVOAc4pz2/V5iXwlfpk7K2Us5zDv2DpmUDsVCUk
-         E8KJAadKPDNnriFh/PjAyYWg9Q5M+Jyeti8wjACqC+MuZPgV+APxJ8774qv7M5iV9V+j
-         dUbg==
-X-Gm-Message-State: AOJu0YyWgD9JKA9tDx5fYp69EVqHyee55UNxiInZ7RZJMGQl6YueKYSA
-	GWbdnmQ4xda1yZeGfX7FYXsOfw==
-X-Google-Smtp-Source: AGHT+IEsUFE3b6ZmMvtVbWhFZG/84+iqBYKb+wDG9qKlpVyyj88WDeMkrGeIi6gVvMIDIeQdW4tF1w==
-X-Received: by 2002:a50:c21a:0:b0:553:816f:cf2e with SMTP id n26-20020a50c21a000000b00553816fcf2emr2363423edf.22.1703146640485;
-        Thu, 21 Dec 2023 00:17:20 -0800 (PST)
+        bh=l/Oi4HtAn4tEeOeSBvZ5kOQ4IEe6nPEOYrXOm9jL8kI=;
+        b=ORZ8uQWRl4bacBqe9lyQThT1UU9Zdav86FzpFQh3IE0Ho3ZT6jno3nqDeXr0BtZG9z
+         7Siy1196ajZpPExognpEH802rSNQFLJKD6Vmsk1SslwmC1P094NvL7o790dtnt0T6wWC
+         Kesi7fF4pZUnb8+Qnvat7cqbmJPdw6kthOcdGBJFE5H1hhphmEE1Qr55NWrpLsrq82gm
+         9ZCFbbpTIbcS/5eFdNwtw6oJydNIGjeAVaBaK4RlJlJ2I5dvn56s/+ftG/1ytxVbYTS/
+         HJ4aABiFPwKyuTxZO/VAiggLUpggZrJeUG67NCQGcJsnkw8CaogfUsP5RETLPXDPW1/3
+         Yerg==
+X-Gm-Message-State: AOJu0YxsFGjCjxTwL3gtYYOQAcvrMvAcCR15mbj0XDC5pWea1c1N3Ah8
+	R6Vi5VgqGYBv5i5ZvVNvWwql2Q==
+X-Google-Smtp-Source: AGHT+IGsEVQpMwL+xrqsluaAnI7MapypACMt13CiLut4ihC5EDf1irwhlBT7Zrk9+BEv34QNR2Acvw==
+X-Received: by 2002:a17:906:7386:b0:a14:b151:72e6 with SMTP id f6-20020a170906738600b00a14b15172e6mr9189560ejl.21.1703146797800;
+        Thu, 21 Dec 2023 00:19:57 -0800 (PST)
 Received: from [192.168.0.22] ([78.10.206.178])
-        by smtp.gmail.com with ESMTPSA id m9-20020aa7c2c9000000b00552666f4745sm840485edp.22.2023.12.21.00.17.19
+        by smtp.gmail.com with ESMTPSA id n19-20020a170906689300b00a269597d17bsm686650ejr.147.2023.12.21.00.19.56
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 Dec 2023 00:17:19 -0800 (PST)
-Message-ID: <c64a41af-ff62-43c5-89f7-0558f8456010@linaro.org>
-Date: Thu, 21 Dec 2023 09:17:18 +0100
+        Thu, 21 Dec 2023 00:19:57 -0800 (PST)
+Message-ID: <5abb125e-eca8-41d8-813b-7573daaa23a0@linaro.org>
+Date: Thu, 21 Dec 2023 09:19:55 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,28 +66,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/2] dt-bindings: arm: coresight: Update the pattern of
- ete node name
+Subject: Re: [PATCH v4] dt-bindings: net: wireless: mt76: add interrupts
+ description for MT7986
 Content-Language: en-US
-To: Jinlong Mao <quic_jinlmao@quicinc.com>,
- Mathieu Poirier <mathieu.poirier@linaro.org>,
- Suzuki K Poulose <suzuki.poulose@arm.com>, Mike Leach
- <mike.leach@linaro.org>, James Clark <james.clark@arm.com>,
- Leo Yan <leo.yan@linaro.org>, Andy Gross <agross@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Tingwei Zhang <quic_tingweiz@quicinc.com>,
- Yuanfang Zhang <quic_yuanfang@quicinc.com>,
- Tao Zhang <quic_taozha@quicinc.com>, coresight@lists.linaro.org
-References: <20231220140538.13136-1-quic_jinlmao@quicinc.com>
- <20231220140538.13136-2-quic_jinlmao@quicinc.com>
- <79f88d35-17cc-43b0-bb22-3c854f89d961@linaro.org>
- <8e5e9603-456b-4956-be03-b866feeeafb4@quicinc.com>
- <c41ff7c8-48d6-4f4f-a9df-aafe953a2e98@linaro.org>
- <f2f983b7-4c57-4b1b-925d-ffb18f6350a0@quicinc.com>
+To: Peter Chiu <chui-hao.chiu@mediatek.com>, Felix Fietkau <nbd@nbd.name>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: Conor Dooley <conor+dt@kernel.org>, Lorenzo Bianconi
+ <lorenzo@kernel.org>, Ryder Lee <ryder.lee@mediatek.com>,
+ Shayne Chen <shayne.chen@mediatek.com>, Sean Wang <sean.wang@mediatek.com>,
+ Kalle Valo <kvalo@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ linux-wireless@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org
+References: <20231221032648.641-1-chui-hao.chiu@mediatek.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -133,43 +126,21 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <f2f983b7-4c57-4b1b-925d-ffb18f6350a0@quicinc.com>
+In-Reply-To: <20231221032648.641-1-chui-hao.chiu@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 21/12/2023 09:15, Jinlong Mao wrote:
+On 21/12/2023 04:26, Peter Chiu wrote:
+> The mt7986 can support four interrupts to distribute the interrupts
+> to different CPUs.
 > 
-> 
-> On 12/21/2023 4:12 PM, Krzysztof Kozlowski wrote:
->> On 21/12/2023 04:28, Jinlong Mao wrote:
->>>>> diff --git a/Documentation/devicetree/bindings/arm/arm,embedded-trace-extension.yaml b/Documentation/devicetree/bindings/arm/arm,embedded-trace-extension.yaml
->>>>> index f725e6940993..cbf583d34029 100644
->>>>> --- a/Documentation/devicetree/bindings/arm/arm,embedded-trace-extension.yaml
->>>>> +++ b/Documentation/devicetree/bindings/arm/arm,embedded-trace-extension.yaml
->>>>> @@ -23,7 +23,7 @@ description: |
->>>>>    
->>>>>    properties:
->>>>>      $nodename:
->>>>> -    pattern: "^ete([0-9a-f]+)$"
->>>>> +    pattern: "^ete-([0-9a-f]+)$"
->>>>
->>>> My concerns are not resolved. Why is it here in the first place?
->>>
->>> Hi Krzysztof,
->>>
->>> ETE is acronym of embedded trace extension. The number of the name is
->>> the same as the number of the CPU it belongs to.
->>
->> This is obvious and was not my question.
-> 
-> Do you mean why the pattern match of the node name is added here ?
+> Signed-off-by: Peter Chiu <chui-hao.chiu@mediatek.com>
+> ---
+> v2: Change to use description instead of using items.
+> v3: Change to use items and set different minItems for mediatek,mt7986-wmac
+> v4: Move allOf after required and remove duplicated blank line.
 
-Yes, especially that it is requiring a non-generic name.
-
-> 
-> This node should not have the node name match, right ?
-
-Usually. For sure shouldn't be for non-generic names.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
