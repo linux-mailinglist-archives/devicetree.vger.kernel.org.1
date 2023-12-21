@@ -1,121 +1,125 @@
-Return-Path: <devicetree+bounces-27834-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27835-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 721E381BD1C
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 18:23:19 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E8F8A81BD2B
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 18:25:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E9D72B22989
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 17:23:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 86A171F23321
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 17:25:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDC36627E8;
-	Thu, 21 Dec 2023 17:23:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F1F5627E4;
+	Thu, 21 Dec 2023 17:25:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mGEwm/RV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OztrvJuO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E9E859935
-	for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 17:23:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-40d4103aed7so6887995e9.3
-        for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 09:23:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1703179388; x=1703784188; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=i22B3No0hKDRA2thnA354sXFfxYXFz/BCzzibXQZGP0=;
-        b=mGEwm/RVwyGSZ+VKJw7bYLi0ossOtil9D99f+twe43hejpV3a2GF+lNiQdWqjSRuhO
-         iLAnXXuAEODpBBVb42AsiAkcVcjRkSRhZhPGtiJT2AV9jWO3J34erJvcpUnf36MP6gHG
-         YbG1wN6NimLGTL3YOd/WnTu+z77xS9GK/gR5zT+1CVG+oZgnZjaME+5FjcBfnMhdkb9Y
-         rNTBMxtBrgGWZTsW3PtodBWh2to0y/ft3FB6U0vshxD+GnZzxBalAE+Pino7M1SAwDJO
-         nbGh1rRmhK63SUgdplnOEW18ZGkzVG0bEeQ0SNMssuI9p6/vLJZRXAn86nAN4YDlQjqY
-         bg3g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703179388; x=1703784188;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=i22B3No0hKDRA2thnA354sXFfxYXFz/BCzzibXQZGP0=;
-        b=KDIaYMc0jtnReNOWEPD6E2n9XX2AQNM4I6XPTcwUG2ZjbDIJlBYj1qkXyx9gTlRVuH
-         vAkJPmZGwq3vqN1urPHk0sB0ZS3WQ4f4Giw8Tj6Qzb9IblD6MUkM1KhuUmB4HlPcpXLe
-         5BJhW+WjpUezkKwWicA//YUvLc6Eo4483+lzdmK3mmBwI3TRDOWyCXjdHP3VvN55Ra5k
-         ycjOKcuPww3FaS3K9W4vyOT10KcUVJo4ulpp52Y2RuW7GsKx+YSAXO2ZQ4g10x2gUjR+
-         iz2gNhwV1XQAKmBS7tIGljPqNJ5QXoy8XCFRvza8mEVZD3XQ7YYP/Jp4YzlrF9Snx2Ra
-         KM/Q==
-X-Gm-Message-State: AOJu0Yyqxqzb5CaUeoSDHgoksGpSYwhmbtPHqFJzyPy4Z7rDUwTdQoMs
-	wg29uAYHNyBqvtgTKDdJr4GHWg5QW3BrTg==
-X-Google-Smtp-Source: AGHT+IEyA/eutUuLn/2fpEnt5+MBO2+vSa7TMv0Yb6eb/xpmHBxKuneGty6Us6DZGh9oY/b17V9gog==
-X-Received: by 2002:a05:600c:44c:b0:40c:6e37:3869 with SMTP id s12-20020a05600c044c00b0040c6e373869mr47559wmb.30.1703179388487;
-        Thu, 21 Dec 2023 09:23:08 -0800 (PST)
-Received: from [192.168.2.107] ([79.115.63.202])
-        by smtp.gmail.com with ESMTPSA id fj8-20020a05600c0c8800b004094e565e71sm4046723wmb.23.2023.12.21.09.23.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 Dec 2023 09:23:08 -0800 (PST)
-Message-ID: <c6cc6e74-6c3d-439b-8dc1-bc50a88a3d8f@linaro.org>
-Date: Thu, 21 Dec 2023 17:23:06 +0000
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3F62627EF;
+	Thu, 21 Dec 2023 17:25:54 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 54C57C433C7;
+	Thu, 21 Dec 2023 17:25:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1703179554;
+	bh=cu1KI7LxIe3SAdnTvkuGj2NNJW5ryZHm+ypva87tuTQ=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=OztrvJuOuwDtWFcW/GrZanb2N+X6hGIjw8t7c8kxqN57xEFXffexCiZ1VTwsb6CPK
+	 WJpr/fOsIObiIvW8A0uB8qO3u8kHdshfhgAYknP1p1AsqfW4Jk3UlzNfxeBXWBtbKW
+	 jJRfAJmk7JzvGY+T/cofGMD6/cc2B6yAfL/a8OmRhNuRiKWB3j3YpQCZsVSsANmJLL
+	 7R2Gtk+iP8cSZmyZa/2nTct7MxkcDv+JhZBCR9r2IzfQx1Pnn/0a1N3bmnMJD8ojFD
+	 EQVeU5kiBAN5xFT/H4fhXWI3c6DfSLYxHj1J26K7gfaWZIdScV7hSsx9BVIUSFRRSl
+	 HGPZxz58xaE3Q==
+Date: Thu, 21 Dec 2023 17:25:38 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Nuno Sa <nuno.sa@analog.com>
+Cc: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>, Lars-Peter
+ Clausen <lars@metafoo.de>, Michael Hennerich
+ <Michael.Hennerich@analog.com>, Rob Herring <robh+dt@kernel.org>, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+ <conor+dt@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, Frank Rowand
+ <frowand.list@gmail.com>, Olivier Moysan <olivier.moysan@foss.st.com>
+Subject: Re: [PATCH v4 2/8] dt-bindings: adc: axi-adc: deprecate
+ 'adi,adc-dev'
+Message-ID: <20231221172538.6477b843@jic23-huawei>
+In-Reply-To: <20231220-iio-backend-v4-2-998e9148b692@analog.com>
+References: <20231220-iio-backend-v4-0-998e9148b692@analog.com>
+	<20231220-iio-backend-v4-2-998e9148b692@analog.com>
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: exynos: gs101: comply with the new
- cmu_misc clock names
-Content-Language: en-US
-To: peter.griffin@linaro.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org
-Cc: conor+dt@kernel.org, mturquette@baylibre.com, alim.akhtar@samsung.com,
- semen.protsenko@linaro.org, linux-arm-kernel@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- kernel-team@android.com, Rob Herring <robh@kernel.org>
-References: <20231221090046.1486195-1-tudor.ambarus@linaro.org>
- <20231221090046.1486195-2-tudor.ambarus@linaro.org>
-From: Tudor Ambarus <tudor.ambarus@linaro.org>
-In-Reply-To: <20231221090046.1486195-2-tudor.ambarus@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
+On Wed, 20 Dec 2023 16:34:05 +0100
+Nuno Sa <nuno.sa@analog.com> wrote:
+
+> 'adi,adc-dev' is now deprecated and must not be used anymore. Hence,
+> also remove it from being required.
+
+With my 'specifications language' brain engaged (also know as pedantic)
+I think this is a 'should' not a 'must' case. You aren't breaking
+backwards compatibility just advising moving to the newer / better interface.
 
 
-On 12/21/23 09:00, Tudor Ambarus wrote:
-> The cmu_misc clock-names were renamed to just "bus" and "sss" because
-> naming is local to the module, so cmu_misc is implied. As the bindings
-> and the device tree have not made a release yet, comply with the
-> renamed clocks.
 > 
-> Suggested-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
+> The reason why it's being deprecated is because the axi-adc CORE is now
+> an IIO service provider hardware (IIO backends) for consumers to make use
+> of. Before, the logic with 'adi,adc-dev' was the opposite (it was kind
+> of consumer referencing other nodes/devices) and that proved to be wrong
+> and to not scale.
+> 
+> Now, IIO consumers of this hardware are expected to reference it using the
+> io-backends property.
+> 
+> Signed-off-by: Nuno Sa <nuno.sa@analog.com>
 > ---
->  arch/arm64/boot/dts/exynos/google/gs101.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  Documentation/devicetree/bindings/iio/adc/adi,axi-adc.yaml | 4 +---
+>  1 file changed, 1 insertion(+), 3 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/exynos/google/gs101.dtsi b/arch/arm64/boot/dts/exynos/google/gs101.dtsi
-> index 9747cb3fa03a..d838e3a7af6e 100644
-> --- a/arch/arm64/boot/dts/exynos/google/gs101.dtsi
-> +++ b/arch/arm64/boot/dts/exynos/google/gs101.dtsi
-> @@ -289,7 +289,7 @@ cmu_misc: clock-controller@10010000 {
->  			#clock-cells = <1>;
->  			clocks = <&cmu_top CLK_DOUT_CMU_MISC_BUS>,
->  				 <&cmu_top CLK_DOUT_CMU_MISC_SSS>;
-> -			clock-names = "dout_cmu_misc_bus", "dout_cmu_misc_sss";
-> +			clock-names = "bus", "sss";
->  		};
+> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,axi-adc.yaml b/Documentation/devicetree/bindings/iio/adc/adi,axi-adc.yaml
+> index 9996dd93f84b..835b40063343 100644
+> --- a/Documentation/devicetree/bindings/iio/adc/adi,axi-adc.yaml
+> +++ b/Documentation/devicetree/bindings/iio/adc/adi,axi-adc.yaml
+> @@ -39,12 +39,12 @@ properties:
+>      $ref: /schemas/types.yaml#/definitions/phandle
+>      description:
+>        A reference to a the actual ADC to which this FPGA ADC interfaces to.
+> +    deprecated: true
 >  
->  		watchdog_cl0: watchdog@10060000 {
+>  required:
+>    - compatible
+>    - dmas
+>    - reg
+> -  - adi,adc-dev
 
-argh, please ignore the patch set. It seems that the clock driver has to
-be updated as well:
+Dropping it from required is fine, but do we have a new condition where one or the other
+should be required?  If so good to add the dt-binding magic to enforce that. Look
+for a oneOf combined with required. There are a few IIO examples of this either or
+type required. You may want to then enforce that both are not provided though I
+guess we perhaps don't care - the driver will just prioritise one approach over the other.
 
-[    0.050947] exynos_arm64_register_cmu: could not enable bus clock
-dout_cmu_misc_bus; err = -2
-[    0.052385] exynos_arm64_register_cmu: could not enable bus clock
-dout_cmu_peric0_bus; err = -2
+Jonathan
+
+
+>  
+>  additionalProperties: false
+>  
+> @@ -55,7 +55,5 @@ examples:
+>          reg = <0x44a00000 0x10000>;
+>          dmas = <&rx_dma 0>;
+>          dma-names = "rx";
+> -
+> -        adi,adc-dev = <&spi_adc>;
+>      };
+>  ...
+> 
+
 
