@@ -1,199 +1,310 @@
-Return-Path: <devicetree+bounces-27672-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27673-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E64481B37E
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 11:25:19 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD7FD81B3A8
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 11:33:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D6BF62871BE
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 10:25:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0D3081C249EF
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 10:33:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E28D51039;
-	Thu, 21 Dec 2023 10:25:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62C556E2B2;
+	Thu, 21 Dec 2023 10:32:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HkVrYHTF"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="Z1imS8EF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx08-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4DAB4F884
-	for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 10:25:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-50e62c1245eso231663e87.1
-        for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 02:25:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1703154309; x=1703759109; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=7t0InnVEdoaDLd0slt0Nn4Ib7Hih+u/LAlcmfNafhqE=;
-        b=HkVrYHTFqJmrqs/qywzPjkqUqbhgu/iLdzYBxqPPubCm8FxCviqlxZg4XWa9onUeQB
-         qJaeZYO3eR1bjorqlNUGZEgnb6pHPFQtd/6tL3arMRZxMUDMiXHHeLBf6Y8Ofz75nm5r
-         GLBINJZLjZNKs8cj483HUH4UM9FhG8b9SmkJQWg//EbU1Ugl4HHALulYJG+kHkEm/8EB
-         W6g2MqemQdy419XrcZeE/lk2Xt2JtJZT/UsLeonD+mR7OUqxj+Pg5cUBc2D9Izo4rSq+
-         CT9bFuaLQNZ0HXtfIordqnvz/DYlzzl6SLgDzKmJAABn4hqfynhvtK1rGm7vVB07xegC
-         fNqg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703154309; x=1703759109;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=7t0InnVEdoaDLd0slt0Nn4Ib7Hih+u/LAlcmfNafhqE=;
-        b=HZE2M5DlXejJaiteUjChMBHLmdkrgjdcImTvss51Qjs+DnCXTEtpNO4xGXytD7KISm
-         eDQ5wDKkWQTM8i3Z2PV4dcvN6Rr9O0+rOtZgRqCzitoRq6QHBT9OEUuijHQf8UrUzwDV
-         t/l0swz52EfuBLY7rU9p0V+lLW9LHrmyAgnafbZ88xH5RNX3tj4L0SHu+eXcJ9Yytu1+
-         A3QVmmcd9y8I6LlRtnqVOBg6RIByuYoJu1zLr7iZ20I8p01D1Vi0pDZ/ula23QqZh1/y
-         HaidwgmKaV4NAt9aDoRWBWfb0KlLcCGcopqZrQh/8pZr8IHEOkhYyUs5wAUAJGdxNcs6
-         /jwQ==
-X-Gm-Message-State: AOJu0YzOW8MGHdUp9jwL5hBAFoXXhzQaxOpiQ5QrZpJjmKxY8g/Fq9py
-	PLvErOIADIgZP58OVAbJJXLcrQ==
-X-Google-Smtp-Source: AGHT+IHsypJK5zmnFF8uxikLuOs/DapVoexa1CtYrg0iXQF5DIPiyEwsd93WTa+aqhMeVusC0+eOQA==
-X-Received: by 2002:a05:6512:285:b0:50e:60eb:255e with SMTP id j5-20020a056512028500b0050e60eb255emr275172lfp.23.1703154309104;
-        Thu, 21 Dec 2023 02:25:09 -0800 (PST)
-Received: from umbar.unikie.fi ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id m26-20020a056512359a00b0050aaae62dbdsm231671lfr.62.2023.12.21.02.25.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 21 Dec 2023 02:25:08 -0800 (PST)
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Rob Clark <robdclark@gmail.com>,
-	Sean Paul <sean@poorly.run>,
-	Abhinav Kumar <quic_abhinavk@quicinc.com>,
-	Marijn Suijten <marijn.suijten@somainline.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>
-Cc: Stephen Boyd <swboyd@chromium.org>,
-	David Airlie <airlied@gmail.com>,
-	Daniel Vetter <daniel@ffwll.ch>,
-	linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	dri-devel@lists.freedesktop.org,
-	freedreno@lists.freedesktop.org,
-	Krishna Manikandan <quic_mkrishn@quicinc.com>,
-	Jonathan Marek <jonathan@marek.ca>,
-	linux-phy@lists.infradead.org,
-	Aiqun Yu <quic_aiquny@quicinc.com>
-Subject: [RFC PATCH 2/2] dt-bindings: display: msm: mass-rename files
-Date: Thu, 21 Dec 2023 12:25:06 +0200
-Message-Id: <20231221102506.18320-3-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20231221102506.18320-1-dmitry.baryshkov@linaro.org>
-References: <20231221102506.18320-1-dmitry.baryshkov@linaro.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D3116DD0C;
+	Thu, 21 Dec 2023 10:32:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0369457.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 3BLAIA5j023361;
+	Thu, 21 Dec 2023 11:31:56 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	selector1; bh=99YJf+8k0EOTgNd7hulokQbW66/Zhks58YSOFbxIzr4=; b=Z1
+	imS8EF3InYuxiSY/kECbMDOBUaFdAj9OnLX08a45a+Davt7scl4IJKmjKDxnESQK
+	kRuRGydvWcZEnY5rIIOqdRhkJEZUAQJrHAOakmLO/dXGHApOtasrpse71OlUG70a
+	GriChM/6p+fL4svvq/cvDCssFRKUxBQWwAy4a2mUXyrV0qu7N8pdaEo4M2MtEsZb
+	1B2XZutX4AyWnmTItSFp/dVyJZ7nbM7iySTJxEcQiwZBsYSbpuWnQ1JMcoC1eNR4
+	Q2xLPgj5Edq8ZbJ1kJLAAp/RxYEi066K57jPTQf2tJIbRflC4kLt2aY0MrSEJGhX
+	hl6lOeknqyk2/LU5k0UQ==
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3v3q8104mr-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 21 Dec 2023 11:31:56 +0100 (CET)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 0FEFD100053;
+	Thu, 21 Dec 2023 11:31:55 +0100 (CET)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id EDF9524551B;
+	Thu, 21 Dec 2023 11:31:54 +0100 (CET)
+Received: from [10.201.21.240] (10.201.21.240) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Thu, 21 Dec
+ 2023 11:31:54 +0100
+Message-ID: <21f758cb-ae25-4d74-905c-0d4820f00070@foss.st.com>
+Date: Thu, 21 Dec 2023 11:31:53 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 1/2] clk: stm32: introduce clocks for STM32MP257
+ platform
+Content-Language: en-US
+To: Stephen Boyd <sboyd@kernel.org>,
+        Alexandre Torgue
+	<alexandre.torgue@foss.st.com>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Maxime Coquelin
+	<mcoquelin.stm32@gmail.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>
+CC: <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+References: <20231219130909.265091-1-gabriel.fernandez@foss.st.com>
+ <20231219130909.265091-2-gabriel.fernandez@foss.st.com>
+ <c98539f99030f174583d7ee36802b4b9.sboyd@kernel.org>
+From: Gabriel FERNANDEZ <gabriel.fernandez@foss.st.com>
+In-Reply-To: <c98539f99030f174583d7ee36802b4b9.sboyd@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-12-21_04,2023-12-20_01,2023-05-22_02
 
-Rename the Qualcomm MSM Display schemas to follow the main compatible
-string instead of just using the block type. This follows the
-established practice for YAML file names.
 
-Cc: Aiqun Yu (Maria) <quic_aiquny@quicinc.com>
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- .../bindings/display/msm/{gmu.yaml => qcom,adreno-gmu.yaml}     | 2 +-
- .../bindings/display/msm/{gpu.yaml => qcom,adreno.yaml}         | 2 +-
- .../bindings/display/msm/{hdmi.yaml => qcom,hdmi-tx.yaml}       | 2 +-
- .../bindings/display/msm/{mdp4.yaml => qcom,mdp4.yaml}          | 2 +-
- .../msm/{dsi-controller-main.yaml => qcom,mdss-dsi-ctrl.yaml}   | 2 +-
- 5 files changed, 5 insertions(+), 5 deletions(-)
- rename Documentation/devicetree/bindings/display/msm/{gmu.yaml => qcom,adreno-gmu.yaml} (99%)
- rename Documentation/devicetree/bindings/display/msm/{gpu.yaml => qcom,adreno.yaml} (99%)
- rename Documentation/devicetree/bindings/display/msm/{hdmi.yaml => qcom,hdmi-tx.yaml} (98%)
- rename Documentation/devicetree/bindings/display/msm/{mdp4.yaml => qcom,mdp4.yaml} (97%)
- rename Documentation/devicetree/bindings/display/msm/{dsi-controller-main.yaml => qcom,mdss-dsi-ctrl.yaml} (99%)
+On 12/20/23 23:16, Stephen Boyd wrote:
+> Quoting gabriel.fernandez@foss.st.com (2023-12-19 05:09:08)
+>> diff --git a/drivers/clk/stm32/clk-stm32mp25.c b/drivers/clk/stm32/clk-stm32mp25.c
+>> new file mode 100644
+>> index 000000000000..313e022c6142
+>> --- /dev/null
+>> +++ b/drivers/clk/stm32/clk-stm32mp25.c
+>> @@ -0,0 +1,1826 @@
+>> +// SPDX-License-Identifier: GPL-2.0-only
+>> +/*
+>> + * Copyright (C) STMicroelectronics 2023 - All Rights Reserved
+>> + * Author: Gabriel Fernandez <gabriel.fernandez@foss.st.com> for STMicroelectronics.
+>> + */
+>> +
+>> +#include <linux/clk.h>
+>> +#include <linux/of_address.h>
+>> +#include <linux/platform_device.h>
+>> +
+>> +#include "clk-stm32-core.h"
+>> +#include "reset-stm32.h"
+>> +#include "stm32mp25_rcc.h"
+>> +
+>> +#include <dt-bindings/clock/st,stm32mp25-rcc.h>
+>> +#include <dt-bindings/reset/st,stm32mp25-rcc.h>
+>> +
+>> +static const struct clk_parent_data adc12_src[] = {
+>> +       { .name = "ck_flexgen_46" },
+> This is a new driver. Don't use .name here. Instead use .index or .hw
+> and if that can't work then use .fw_name.
 
-diff --git a/Documentation/devicetree/bindings/display/msm/gmu.yaml b/Documentation/devicetree/bindings/display/msm/qcom,adreno-gmu.yaml
-similarity index 99%
-rename from Documentation/devicetree/bindings/display/msm/gmu.yaml
-rename to Documentation/devicetree/bindings/display/msm/qcom,adreno-gmu.yaml
-index 4e1c25b42908..0678cead56bf 100644
---- a/Documentation/devicetree/bindings/display/msm/gmu.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/qcom,adreno-gmu.yaml
-@@ -3,7 +3,7 @@
- %YAML 1.2
- ---
- 
--$id: http://devicetree.org/schemas/display/msm/gmu.yaml#
-+$id: http://devicetree.org/schemas/display/msm/qcom,adreno-gmu.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
- 
- title: GMU attached to certain Adreno GPUs
-diff --git a/Documentation/devicetree/bindings/display/msm/gpu.yaml b/Documentation/devicetree/bindings/display/msm/qcom,adreno.yaml
-similarity index 99%
-rename from Documentation/devicetree/bindings/display/msm/gpu.yaml
-rename to Documentation/devicetree/bindings/display/msm/qcom,adreno.yaml
-index b019db954793..ad15f0a6ead7 100644
---- a/Documentation/devicetree/bindings/display/msm/gpu.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/qcom,adreno.yaml
-@@ -2,7 +2,7 @@
- %YAML 1.2
- ---
- 
--$id: http://devicetree.org/schemas/display/msm/gpu.yaml#
-+$id: http://devicetree.org/schemas/display/msm/qcom,adreno.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
- 
- title: Adreno or Snapdragon GPUs
-diff --git a/Documentation/devicetree/bindings/display/msm/hdmi.yaml b/Documentation/devicetree/bindings/display/msm/qcom,hdmi-tx.yaml
-similarity index 98%
-rename from Documentation/devicetree/bindings/display/msm/hdmi.yaml
-rename to Documentation/devicetree/bindings/display/msm/qcom,hdmi-tx.yaml
-index 47e97669821c..a137ca0b734c 100644
---- a/Documentation/devicetree/bindings/display/msm/hdmi.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/qcom,hdmi-tx.yaml
-@@ -2,7 +2,7 @@
- %YAML 1.2
- ---
- 
--$id: http://devicetree.org/schemas/display/msm/hdmi.yaml#
-+$id: http://devicetree.org/schemas/display/msm/qcom,hdmi-tx.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
- 
- title: Qualcomm Adreno/Snapdragon HDMI output
-diff --git a/Documentation/devicetree/bindings/display/msm/mdp4.yaml b/Documentation/devicetree/bindings/display/msm/qcom,mdp4.yaml
-similarity index 97%
-rename from Documentation/devicetree/bindings/display/msm/mdp4.yaml
-rename to Documentation/devicetree/bindings/display/msm/qcom,mdp4.yaml
-index 35204a287579..40c31602affd 100644
---- a/Documentation/devicetree/bindings/display/msm/mdp4.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/qcom,mdp4.yaml
-@@ -1,7 +1,7 @@
- # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
- %YAML 1.2
- ---
--$id: http://devicetree.org/schemas/display/msm/mdp4.yaml#
-+$id: http://devicetree.org/schemas/display/msm/qcom,mdp4.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
- 
- title: Qualcomm Adreno/Snapdragon MDP4 display controller
-diff --git a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml b/Documentation/devicetree/bindings/display/msm/qcom,mdss-dsi-ctrl.yaml
-similarity index 99%
-rename from Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
-rename to Documentation/devicetree/bindings/display/msm/qcom,mdss-dsi-ctrl.yaml
-index 4219936eda5a..35f4facc2fdd 100644
---- a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/qcom,mdss-dsi-ctrl.yaml
-@@ -1,7 +1,7 @@
- # SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
- %YAML 1.2
- ---
--$id: http://devicetree.org/schemas/display/msm/dsi-controller-main.yaml#
-+$id: http://devicetree.org/schemas/display/msm/qcom,mdss-dsi-ctrl.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
- 
- title: Qualcomm Display DSI controller
--- 
-2.39.2
+These parent clocks are managed by a secure world and exposed through SCMI.
 
+If I use .index or .fw_name, do I have to expose 122 clocks in my DT node ?
+
+This will significantly increase the size of the DT file
+
+             clock-names = "hse", "hsi", ..., "ck_scmi_stm500";
+             clocks = <&scmi_clk CK_SCMI_HSE>, <&scmi_clk CK_SCMI_HSI>,  
+... ,   <&scmi_clk CK_SCMI_STM500>;
+
+>
+>> +       { .name = "ck_icn_ls_mcu" },
+>> +};
+>> +
+>> +static const struct clk_parent_data adc3_src[] = {
+>> +       { .name = "ck_flexgen_47" },
+>> +       { .name = "ck_icn_ls_mcu" },
+>> +       { .name = "ck_flexgen_46" },
+>> +};
+> [...]
+>> +static struct clk_stm32_composite ck_ker_usb3pciephy = {
+>> +       .gate_id = GATE_USB3PCIEPHY,
+>> +       .mux_id = MUX_USB3PCIEPHY,
+>> +       .div_id = NO_STM32_DIV,
+>> +       .hw.init = CLK_HW_INIT_PARENTS_DATA("ck_ker_usb3pciephy", usb3pciphy_src,
+>> +                                           &clk_stm32_composite_ops, 0),
+>> +};
+>> +
+>> +/* USB3 DRD */
+>> +static struct clk_stm32_gate ck_icn_m_usb3dr = {
+>> +       .gate_id = GATE_USB3DR,
+>> +       .hw.init = CLK_HW_INIT("ck_icn_m_usb3dr", "ck_icn_hsl", &clk_stm32_gate_ops, 0),
+>> +};
+>> +
+>> +static struct clk_stm32_gate ck_ker_usb2phy2 = {
+>> +       .gate_id = GATE_USB3DR,
+>> +       .hw.init = CLK_HW_INIT("ck_ker_usb2phy2", "ck_flexgen_58", &clk_stm32_gate_ops, 0),
+>> +};
+>> +
+>> +/* USBTC */
+>> +static struct clk_stm32_gate ck_icn_p_usbtc = {
+>> +       .gate_id = GATE_USBTC,
+>> +       .hw.init = CLK_HW_INIT("ck_icn_p_usbtc", "ck_icn_apb4", &clk_stm32_gate_ops, 0),
+> Please stop using strings to match parents, i.e. don't use CLK_HW_INIT.
+>
+>> +};
+>> +
+>> +static struct clk_stm32_gate ck_ker_usbtc = {
+>> +       .gate_id = GATE_USBTC,
+>> +       .hw.init = CLK_HW_INIT("ck_ker_usbtc", "ck_flexgen_35", &clk_stm32_gate_ops, 0),
+>> +};
+>> +
+>> +/* VDEC / VENC */
+>> +static struct clk_stm32_gate ck_icn_p_vdec = {
+>> +       .gate_id = GATE_VDEC,
+>> +       .hw.init = CLK_HW_INIT("ck_icn_p_vdec", "ck_icn_apb4", &clk_stm32_gate_ops, 0),
+>> +};
+>> +
+>> +static struct clk_stm32_gate ck_icn_p_venc = {
+>> +       .gate_id = GATE_VENC,
+>> +       .hw.init = CLK_HW_INIT("ck_icn_p_venc", "ck_icn_apb4", &clk_stm32_gate_ops, 0),
+>> +};
+>> +
+>> +/* VREF */
+>> +static struct clk_stm32_gate ck_icn_p_vref = {
+>> +       .gate_id = GATE_VREF,
+>> +       .hw.init = CLK_HW_INIT("ck_icn_p_vref", "ck_icn_apb3", &clk_stm32_gate_ops, 0),
+>> +};
+>> +
+>> +/* WWDG */
+>> +static struct clk_stm32_gate ck_icn_p_wwdg1 = {
+>> +       .gate_id = GATE_WWDG1,
+>> +       .hw.init = CLK_HW_INIT("ck_icn_p_wwdg1", "ck_icn_apb3", &clk_stm32_gate_ops, 0),
+>> +};
+>> +
+>> +static struct clk_stm32_gate ck_icn_p_wwdg2 = {
+>> +       .gate_id = GATE_WWDG2,
+>> +       .hw.init = CLK_HW_INIT("ck_icn_p_wwdg2", "ck_icn_ls_mcu", &clk_stm32_gate_ops, 0),
+>> +};
+>> +
+>> +enum security_clk {
+>> +       SECF_NONE,
+> What is the use of this single value enum?
+
+Yes, just a define is enough for the moment. I will have more 
+definitions in my next series to introduce
+
+security (clocks could be managed by a secure world or not).
+
+>> +};
+>> +
+>> +static const struct clock_config stm32mp25_clock_cfg[] = {
+>> +       STM32_GATE_CFG(CK_BUS_ETH1,             ck_icn_p_eth1,          SECF_NONE),
+>> +       STM32_GATE_CFG(CK_BUS_ETH2,             ck_icn_p_eth2,          SECF_NONE),
+> [....]
+>> +
+>> +static const struct of_device_id stm32mp25_match_data[] = {
+>> +       {
+>> +               .compatible = "st,stm32mp25-rcc",
+>> +               .data = &stm32mp25_data,
+>> +       },
+> One line please:
+>
+>   	{ .compatible = "st,stm32mp25-rcc", .data = &stm32mp25_data, },
+
+ok
+
+>
+>> +       { }
+>> +};
+>> +MODULE_DEVICE_TABLE(of, stm32mp25_match_data);
+>> +
+>> +static int get_clock_deps(struct device *dev)
+> What is the explanation for this function?
+
+It 's to manage the dependency with the SCMI clock driver.
+
+
+>> +{
+>> +       static const char * const clock_deps_name[] = {
+>> +               "hsi", "hse", "msi", "lsi", "lse",
+>> +       };
+>> +       int i;
+>> +
+>> +       for (i = 0; i < ARRAY_SIZE(clock_deps_name); i++) {
+>> +               struct clk *clk;
+>> +
+>> +               clk = of_clk_get_by_name(dev_of_node(dev), clock_deps_name[i]);
+>> +               if (IS_ERR(clk))
+>> +                       return PTR_ERR(clk);
+>> +
+>> +               clk_put(clk);
+>> +       }
+>> +
+>> +       return 0;
+>> +}
+>> +
+>> +static int stm32mp25_rcc_clocks_probe(struct platform_device *pdev)
+>> +{
+>> +       struct device *dev = &pdev->dev;
+>> +       void __iomem *base;
+>> +       int ret;
+>> +
+>> +       ret = get_clock_deps(dev);
+>> +       if (ret)
+>> +               return ret;
+>> +
+>> +       base = devm_of_iomap(dev, dev->of_node, 0, NULL);
+> Use platform device APIs.
+>
+>> +       if (WARN_ON(IS_ERR(base)))
+>> +               return PTR_ERR(base);
+>> +
+>> +       return stm32_rcc_init(dev, stm32mp25_match_data, base);
+>> +}
+>> +
+>> +static int stm32mp25_rcc_clocks_remove(struct platform_device *pdev)
+>> +{
+>> +       struct device *dev = &pdev->dev;
+>> +       struct device_node *child, *np = dev_of_node(dev);
+>> +
+>> +       for_each_available_child_of_node(np, child)
+>> +               of_clk_del_provider(child);
+> Add the providers with devm?
+
+ok
+
+
+>
+>> +
+>> +       return 0;
+>> +}
+>> +
+>> +static struct platform_driver stm32mp25_rcc_clocks_driver = {
+>> +       .driver = {
+>> +               .name = "stm32mp25_rcc",
+>> +               .of_match_table = stm32mp25_match_data,
+>> +       },
+>> +       .probe = stm32mp25_rcc_clocks_probe,
+>> +       .remove = stm32mp25_rcc_clocks_remove,
+>> +};
+>> +
+>> +static int __init stm32mp25_clocks_init(void)
+>> +{
+>> +       return platform_driver_register(&stm32mp25_rcc_clocks_driver);
+>> +}
+>> +
+>> +core_initcall(stm32mp25_clocks_init);
 
