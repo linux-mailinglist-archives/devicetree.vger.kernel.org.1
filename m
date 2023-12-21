@@ -1,184 +1,245 @@
-Return-Path: <devicetree+bounces-27889-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27890-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DAEE581BFEE
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 22:13:11 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 542E581C072
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 22:48:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0B37D1C22C4B
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 21:13:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0B9CD2888BC
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 21:48:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2B3A76DA0;
-	Thu, 21 Dec 2023 21:13:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB4317763A;
+	Thu, 21 Dec 2023 21:48:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="q28p3H6T"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fDxOhkzO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+Received: from mail-pg1-f169.google.com (mail-pg1-f169.google.com [209.85.215.169])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4486976DAF
-	for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 21:13:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-40b5155e154so15154695e9.3
-        for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 13:13:05 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5545676DB6;
+	Thu, 21 Dec 2023 21:48:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f169.google.com with SMTP id 41be03b00d2f7-58962bf3f89so183781a12.0;
+        Thu, 21 Dec 2023 13:48:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1703193184; x=1703797984; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=GdMlmaV9AC7XvOLSkLsEav9XnreEWiVniTZV6CZEpk4=;
-        b=q28p3H6TBjI5NmTShE0CsG4Nov/c5hTdRCcx5Vc+gjoZpqV1HLn4EuncBEf6o0TT/m
-         VnTtneGUaUGjrq5A0gKk31Q+x6cwirQP1/vJqAvIm3zftSZHLugnB3IszlDuGLNvHKpp
-         lQDdDZlYgMwev1HdVwSzMx8aK/6RzSfEA3AIEIBYwHJ+xaOtQTMbm4m9/5ZX3T1bGNOz
-         RtyX1ZeKfay5KBt1yn0d+lvg65IYztqZdFCI0dO0GLlReaJVfES4JouIguxz5tIW0T/l
-         XInqh5vSryGwd34N7mDckN/2karryvM0Ll6FPgmZgv9l+jQs346wtcmlSHmJuDdPHa0C
-         Nr7w==
+        d=gmail.com; s=20230601; t=1703195306; x=1703800106; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=1aacouOcWfy0uLQPDK6KV+FB6xgizIHygVWnh4T+IL0=;
+        b=fDxOhkzOOZ87oWmHU3j8lbW9/oCJcYk2RFiSwtNyeGr2b2tBfQniIE7fdP6AKZRqOi
+         Ld0ACzkOOtKf5hcLtCLZslL5R/rSQvaGJkxJMgsJ6Fuc4+bdzZGRUaIQLipsLVc1Bked
+         dAwEWDp9nobcEmwhnV++VS2HCxQ0Jb+loBmXRXYq3K4uVPfzp/4gdHeNeBZqHl3s1NaK
+         chOI5iVf2jtQLcWF1xzZ87jw12waYadt4kcgGgy7tZvt/H8g2QSYYguJ/PhlnQcEMDDm
+         hfNdmTxdIJQIDZHwldSPbEhLQmoWEJfuTatlx5fE7qHfVLVsN1XXCEiaJ062zu6Bf5S7
+         caGQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703193184; x=1703797984;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=GdMlmaV9AC7XvOLSkLsEav9XnreEWiVniTZV6CZEpk4=;
-        b=MC9Zmc5OHiuv5UHsYLQ4F36Wi+f3TswCUXA9tv8Ama5d138CdM3wWMQa3z847Uf/Q2
-         a4Ce8CNf8KIc/bKI5WCx+fpqTNRIYQTIvgCFcR+F/HyTqmDbw0EWwBLgQZ2eaQyo3ZEy
-         XrnMQ4v2UJtvUDaq5O2TyCKgHvn6EB1NxwCKdfRxHpo6q9Zq56hDq8opvEnZgj2zDHUx
-         CPfI0njqGXdDYw1JZth+EBFdTk+7mpCmRVFFWNZnw/eI7qGZb3Z/6YuChVCrXgYq3TR3
-         9Kc1PrhIKxxF6OVeGxVyr5vI8ZxmKbAwwYjVxwAyl6vQ+r1zAYkm5PNkNU3RJEo0TliL
-         3mlQ==
-X-Gm-Message-State: AOJu0YzFlNHeKEhr6Ih9h8xcMP6fP7ngvnzDvoCjrTF52tLhhOivFfAA
-	ff4VAfQBJjKGm8WyKM9O8vIIUPLjl5WcTw==
-X-Google-Smtp-Source: AGHT+IEaptAlsGu2FAQRl6GgDxH92kk3R15a9/9ALjxi45/P5iqrlZBjTJFycViFTuu/3edjunSGWw==
-X-Received: by 2002:a05:600c:1908:b0:40d:3452:e791 with SMTP id j8-20020a05600c190800b0040d3452e791mr179835wmq.127.1703193184340;
-        Thu, 21 Dec 2023 13:13:04 -0800 (PST)
-Received: from [192.168.0.22] ([78.10.206.178])
-        by smtp.gmail.com with ESMTPSA id d17-20020a170906345100b00a26af0a6845sm520953ejb.9.2023.12.21.13.13.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 Dec 2023 13:13:03 -0800 (PST)
-Message-ID: <b2b9d95e-dcc7-4a3e-b4b4-14d5af964b96@linaro.org>
-Date: Thu, 21 Dec 2023 22:13:01 +0100
+        d=1e100.net; s=20230601; t=1703195306; x=1703800106;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=1aacouOcWfy0uLQPDK6KV+FB6xgizIHygVWnh4T+IL0=;
+        b=v1rOTgQLd3AsBbrtTPUvYBXB2R8U4ac15pVDf5bAtod76UWWlbgh3fqowIAsD2ZbQ6
+         K9X445opxFlsCXbyyOtdg0vhXD09cTo1SndoAhOrbeevtYULgZgrxp11CotgzGBADH3P
+         Ed5qvPU5EgtMRRJYblNlBFGCmeWv4lQy2o88tlBFtMA5bfdZFtHZkQ8O46XZ10tY1IAL
+         +RmXea/JvIc7yadKhXb8gR8Cs68ouAh6lfJVbgp6IRF5bC0fs7fx8MbuFYV0XOy9vEjK
+         u6cBbLUadAHUhxkEcZprlhXCfr7Wks7sd/GJAxjsmSdQlz0pgcs8FwHMkJm4LKYxTww4
+         9tug==
+X-Gm-Message-State: AOJu0YwWEyhQLNQFZyUadwBzhvAV/xg2i4PkGLSOOgwYRs9uBhGR9cjB
+	c2ehKUK/eXmIyZnwI1wiGRY=
+X-Google-Smtp-Source: AGHT+IHdgJo2QpFvb27GHdPapdFDZTihUk7M68E1vt7ojkgQggytWYtbRV0KomYGJgOYc02kZ2OTPQ==
+X-Received: by 2002:a17:90a:8b11:b0:28b:a5ea:732e with SMTP id y17-20020a17090a8b1100b0028ba5ea732emr757329pjn.2.1703195306212;
+        Thu, 21 Dec 2023 13:48:26 -0800 (PST)
+Received: from olv-ct-22.c.googlers.com.com (255.176.125.34.bc.googleusercontent.com. [34.125.176.255])
+        by smtp.gmail.com with ESMTPSA id d7-20020a17090a2a4700b0028bcbee2badsm2480659pjg.10.2023.12.21.13.48.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 21 Dec 2023 13:48:25 -0800 (PST)
+From: Chia-I Wu <olvaffe@gmail.com>
+To: cros-qcom-dts-watchers@chromium.org,
+	Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Ulf Hansson <ulf.hansson@linaro.org>,
+	Maulik Shah <quic_mkshah@quicinc.com>,
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: qcom: sc7280: revert back to PSCI PC mode
+Date: Thu, 21 Dec 2023 13:48:13 -0800
+Message-ID: <20231221214822.3063219-1-olvaffe@gmail.com>
+X-Mailer: git-send-email 2.43.0.195.gebba966016-goog
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 0/2] w1: add UART w1 bus driver
-To: Christoph Winklhofer <cj.winklhofer@gmail.com>, robh+dt@kernel.org,
- conor+dt@kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20231221065049.30703-1-cj.winklhofer@gmail.com>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231221065049.30703-1-cj.winklhofer@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 21/12/2023 07:50, Christoph Winklhofer wrote:
-> Hello!
-> 
-> Krzysztof, thank your very much for your feedback!
-> 
-> This patch contains a driver for a 1-Wire bus over UART. The driver
-> utilizes the UART interface via the Serial Device Bus to create the
-> 1-Wire timing patterns.
-> 
-> Version 1
-> 
+This effectively reverts 7925ca85e9561 ("arm64: dts: qcom: sc7280: Add
+power-domains for cpuidle states") for sc7280-herobrine.
 
-You already sent v1, so this is v2:
-
-b4 diff '<20231221065049.30703-1-cj.winklhofer@gmail.com>'
-Grabbing thread from
-lore.kernel.org/all/20231221065049.30703-1-cj.winklhofer@gmail.com/t.mbox.gz
+Fixes: 7925ca85e9561 ("arm64: dts: qcom: sc7280: Add power-domains for cpuidle states")
+Signed-off-by: Chia-I Wu <olvaffe@gmail.com>
 ---
-Analyzing 4 messages in the thread
-ERROR: Could not auto-find previous revision
-       Run "b4 am -T" manually, then "b4 diff -m mbx1 mbx2"
+ .../boot/dts/qcom/sc7280-firmware-tfa.dtsi    | 107 ++++++++++++++++++
+ .../arm64/boot/dts/qcom/sc7280-herobrine.dtsi |   1 +
+ arch/arm64/boot/dts/qcom/sc7280.dtsi          |   4 +-
+ 3 files changed, 110 insertions(+), 2 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7280-firmware-tfa.dtsi
 
-I still cannot find the changelog. Does it mean nothing improved?
-
-
-> - In v1, the driver requests a baud-rate (9600 for reset and 115200 for
-> write/read) and tries to adapt the transmitted byte according to the
-> actual baud-rate returned from serdev. Is this the correct direction or
-> should the baud-rate be specified in the device-tree? Alternatively,
-> it could make sense to specify the minimum and maximum times for the
-> 1-Wire operations in the device-tree, instead of using hard-coded ones
-> similar as in "Figure 11. Configuration tab" of the linked document
-> "Using UART to Implement a 1-Wire Bus Master".
-
-Depends, are these hardware properties? Are these runtime? What do they
-depend on?
-
-> 
-> - In addition, the received byte is now protected with a mutex - instead
-> of the atomic, which I used before due to the concurrent store and load.
-> 
-> - Receiving more than one byte results in an error, since the w1-uart
-> driver is the only writer, it writes a single-byte and should receive
-> a single byte.
-> 
-> Changes:
-> - support different baud-rates
-> - fix variable names, errno-returns, wrong define CONFIG_OF
-> - fix log flooding
-> - fix locking problem for serdev-receive and w1-master reset/touch
-> - fix driver remove (error-path for rxtx-function)
-> - add documentation for dt-binding
-
-So this looks like changelog. Please make it explicit - move it to the
-beginning of cover letter and say "changes in v2".
-
-
-Best regards,
-Krzysztof
+diff --git a/arch/arm64/boot/dts/qcom/sc7280-firmware-tfa.dtsi b/arch/arm64/boot/dts/qcom/sc7280-firmware-tfa.dtsi
+new file mode 100644
+index 0000000000000..b3fc03da244d6
+--- /dev/null
++++ b/arch/arm64/boot/dts/qcom/sc7280-firmware-tfa.dtsi
+@@ -0,0 +1,107 @@
++// SPDX-License-Identifier: BSD-3-Clause
++
++/*
++ * Devices that use SC7280 with TrustedFirmware-A
++ * need PSCI PC mode instead of the OSI mode provided
++ * by Qualcomm firmware.
++ */
++
++&CPU0 {
++	/delete-property/ power-domains;
++	/delete-property/ power-domain-names;
++
++	cpu-idle-states = <&LITTLE_CPU_SLEEP_0
++			   &LITTLE_CPU_SLEEP_1
++			   &CLUSTER_SLEEP_0>;
++};
++
++&CPU1 {
++	/delete-property/ power-domains;
++	/delete-property/ power-domain-names;
++
++	cpu-idle-states = <&LITTLE_CPU_SLEEP_0
++			   &LITTLE_CPU_SLEEP_1
++			   &CLUSTER_SLEEP_0>;
++};
++
++&CPU2 {
++	/delete-property/ power-domains;
++	/delete-property/ power-domain-names;
++
++	cpu-idle-states = <&LITTLE_CPU_SLEEP_0
++			   &LITTLE_CPU_SLEEP_1
++			   &CLUSTER_SLEEP_0>;
++};
++
++&CPU3 {
++	/delete-property/ power-domains;
++	/delete-property/ power-domain-names;
++
++	cpu-idle-states = <&LITTLE_CPU_SLEEP_0
++			   &LITTLE_CPU_SLEEP_1
++			   &CLUSTER_SLEEP_0>;
++};
++
++&CPU4 {
++	/delete-property/ power-domains;
++	/delete-property/ power-domain-names;
++
++	cpu-idle-states = <&BIG_CPU_SLEEP_0
++			   &BIG_CPU_SLEEP_1
++			   &CLUSTER_SLEEP_0>;
++};
++
++&CPU5 {
++	/delete-property/ power-domains;
++	/delete-property/ power-domain-names;
++
++	cpu-idle-states = <&BIG_CPU_SLEEP_0
++			   &BIG_CPU_SLEEP_1
++			   &CLUSTER_SLEEP_0>;
++};
++
++&CPU6 {
++	/delete-property/ power-domains;
++	/delete-property/ power-domain-names;
++
++	cpu-idle-states = <&BIG_CPU_SLEEP_0
++			   &BIG_CPU_SLEEP_1
++			   &CLUSTER_SLEEP_0>;
++};
++
++&CPU7 {
++	/delete-property/ power-domains;
++	/delete-property/ power-domain-names;
++
++	cpu-idle-states = <&BIG_CPU_SLEEP_0
++			   &BIG_CPU_SLEEP_1
++			   &CLUSTER_SLEEP_0>;
++};
++
++/delete-node/ &domain_idle_states;
++
++&idle_states {
++	CLUSTER_SLEEP_0: cluster-sleep-0 {
++		compatible = "arm,idle-state";
++		idle-state-name = "cluster-power-down";
++		arm,psci-suspend-param = <0x40003444>;
++		entry-latency-us = <3263>;
++		exit-latency-us = <6562>;
++		min-residency-us = <9926>;
++		local-timer-stop;
++	};
++};
++
++/delete-node/ &CPU_PD0;
++/delete-node/ &CPU_PD1;
++/delete-node/ &CPU_PD2;
++/delete-node/ &CPU_PD3;
++/delete-node/ &CPU_PD4;
++/delete-node/ &CPU_PD5;
++/delete-node/ &CPU_PD6;
++/delete-node/ &CPU_PD7;
++/delete-node/ &CLUSTER_PD;
++
++&apps_rsc {
++	/delete-property/ power-domains;
++};
+diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
+index 9ea6636125ad9..09b2d370bf7e0 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
+@@ -19,6 +19,7 @@
+ 
+ #include "sc7280-qcard.dtsi"
+ #include "sc7280-chrome-common.dtsi"
++#include "sc7280-firmware-tfa.dtsi"
+ 
+ / {
+ 	chosen {
+diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+index 66f1eb83cca7e..354bf2868eba6 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+@@ -383,7 +383,7 @@ core7 {
+ 			};
+ 		};
+ 
+-		idle-states {
++		idle_states: idle-states {
+ 			entry-method = "psci";
+ 
+ 			LITTLE_CPU_SLEEP_0: cpu-sleep-0-0 {
+@@ -427,7 +427,7 @@ BIG_CPU_SLEEP_1: cpu-sleep-1-1 {
+ 			};
+ 		};
+ 
+-		domain-idle-states {
++		domain_idle_states: domain-idle-states {
+ 			CLUSTER_SLEEP_0: cluster-sleep-0 {
+ 				compatible = "domain-idle-state";
+ 				idle-state-name = "cluster-power-down";
+-- 
+2.43.0.195.gebba966016-goog
 
 
