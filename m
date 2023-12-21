@@ -1,37 +1,54 @@
-Return-Path: <devicetree+bounces-27614-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27615-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A75D681B04A
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 09:29:20 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C13A81B05F
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 09:36:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 53E6C2844BB
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 08:29:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AE13F1F22FE5
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 08:36:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAF8E16431;
-	Thu, 21 Dec 2023 08:29:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7742C16432;
+	Thu, 21 Dec 2023 08:36:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="HCi0BcX+"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Y0zDclnx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m127221.xmail.ntesmail.com (mail-m127221.xmail.ntesmail.com [115.236.127.221])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1E9A16413;
-	Thu, 21 Dec 2023 08:29:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-DKIM-Signature: a=rsa-sha256;
-	b=HCi0BcX+AC7B4AgoDl/J5TK0Skglexk44ccX7VksVs/iWo5fj+HWu23ot6bNCxkUhKh2kUp6/Xcyo7UbiIjgAp/vMu6vyhUp7tYonRtGsdktuUIUG0muA25DSNii4tPMWf9TGHap8P/XGdt9c0lfkSyaRwmbu5IvCDXLNABJmnE=;
-	s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
-	bh=CCZtHSraIcQI4h16aoe3thSXX0dYZCleQkv8NS73xEQ=;
-	h=date:mime-version:subject:message-id:from;
-Received: from [172.16.12.141] (unknown [58.22.7.114])
-	by mail-m12779.qiye.163.com (Hmail) with ESMTPA id 6921C7801AE;
-	Thu, 21 Dec 2023 16:28:29 +0800 (CST)
-Message-ID: <de5080a3-c4a7-492f-92c1-cbcfc80d471d@rock-chips.com>
-Date: Thu, 21 Dec 2023 16:28:29 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B53817985;
+	Thu, 21 Dec 2023 08:36:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 3BL644PI007998;
+	Thu, 21 Dec 2023 08:36:13 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=3Aag4otRGxrW6+eAW+xzpp1aKCmszeeh7FaLhYvUitg=; b=Y0
+	zDclnx0AC6xfuGCSiSwrnr8FqsW79U0yVTRIdIVpiP9GCZvN5Vfbxeks8YhSrIK0
+	NkHXVUXdy9J3jmAzZJtpBBkkmuvHWPvVEFIf0NGaoY9WL0o7m+gfKWHtMCBdeyei
+	DCHtqze/y7ok1htspCE5UBmYG/HVsyFd8wrgcxF0rwYaHsYOpwAOPH/o65wh6hBb
+	GvoTezNY8x109gVWhePfsX+e8hqiLWOHShlY8JnGcArVm8RkfYrFl4HhI50ZYf2u
+	T2JpsT1i5G11NCH+WH29KnfFHaewTonEwnt2ptRt0I1H/G2/C72VVJztzY2Y2aM7
+	otDH85dGe/qUwmO7G09w==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3v4d89h7k2-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 21 Dec 2023 08:36:13 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3BL8aC3Z026509
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 21 Dec 2023 08:36:12 GMT
+Received: from [10.239.133.49] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Thu, 21 Dec
+ 2023 00:36:07 -0800
+Message-ID: <16932826-fcc2-49d3-95ab-201eff729360@quicinc.com>
+Date: Thu, 21 Dec 2023 16:36:05 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -39,289 +56,103 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] Revert "ARM: dts: rockchip: restyle emac nodes"
+Subject: Re: [PATCH v1 1/2] dt-bindings: arm: coresight: Update the pattern of
+ ete node name
 Content-Language: en-US
-To: Johan Jonker <jbx6244@gmail.com>, Andy Yan <andyshrk@163.com>,
- heiko@sntech.de
-Cc: krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
- david.wu@rock-chips.com, romain.perier@gmail.com
-References: <20231220103334.2665543-1-andyshrk@163.com>
- <406ba492-8f6b-26aa-55cf-2efa8d52ebaf@gmail.com>
-From: Andy Yan <andy.yan@rock-chips.com>
-In-Reply-To: <406ba492-8f6b-26aa-55cf-2efa8d52ebaf@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Mathieu Poirier
+	<mathieu.poirier@linaro.org>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        "Mike Leach" <mike.leach@linaro.org>,
+        James Clark <james.clark@arm.com>, Leo
+ Yan <leo.yan@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring
+	<robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Tingwei Zhang <quic_tingweiz@quicinc.com>,
+        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+        Tao Zhang
+	<quic_taozha@quicinc.com>, <coresight@lists.linaro.org>
+References: <20231220140538.13136-1-quic_jinlmao@quicinc.com>
+ <20231220140538.13136-2-quic_jinlmao@quicinc.com>
+ <79f88d35-17cc-43b0-bb22-3c854f89d961@linaro.org>
+ <8e5e9603-456b-4956-be03-b866feeeafb4@quicinc.com>
+ <c41ff7c8-48d6-4f4f-a9df-aafe953a2e98@linaro.org>
+ <f2f983b7-4c57-4b1b-925d-ffb18f6350a0@quicinc.com>
+ <c64a41af-ff62-43c5-89f7-0558f8456010@linaro.org>
+From: Jinlong Mao <quic_jinlmao@quicinc.com>
+In-Reply-To: <c64a41af-ff62-43c5-89f7-0558f8456010@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGkkYSlZOS0waQxoeQx5IH0NVEwETFh
-	oSFyQUDg9ZV1kYEgtZQVlOQ1VJSVVMVUpKT1lXWRYaDxIVHRRZQVlPS0hVSk1PSU5IVUpLS1VKQk
-	tLWQY+
-X-HM-Tid: 0a8c8b7d8a95b24fkuuu6921c7801ae
-X-HM-MType: 1
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6Ojo6Aww6Tzw9IxooGDIXNzJR
-	NUoKCxRVSlVKTEtISk9MSEpLSEtIVTMWGhIXVRoVHwJVAhoVOwkUGBBWGBMSCwhVGBQWRVlXWRIL
-	WUFZTkNVSUlVTFVKSk9ZV1kIAVlBSkpLSUs3Bg++
-
-Hi Johan,
-
-On 12/20/23 19:58, Johan Jonker wrote:
-> 
-> 
-> On 12/20/23 11:33, Andy Yan wrote:
->> From: Andy Yan <andy.yan@rock-chips.com>
->>
->> When try to run rk3036 kylin board with mainline,
->> I found the emac ethernet probe failed:
->>
->> [    2.324583] loop: module loaded
->> [    2.328435] SPI driver spidev has no spi_device_id for rockchip,spidev
->> [    2.338688] tun: Universal TUN/TAP device driver, 1.6
->> [    2.345397] rockchip_emac 10200000.ethernet: no regulator found
->> [    2.351892] rockchip_emac 10200000.ethernet: ARC EMAC detected with id: 0x7fd02
->> [    2.359331] rockchip_emac 10200000.ethernet: IRQ is 43
->> [    2.364719] rockchip_emac 10200000.ethernet: MAC address is now e6:58:d6:ec:d9:7c
->> [    2.396993] mdio_bus Synopsys MII Bus: mdio has invalid PHY address
->> [    2.403306] mdio_bus Synopsys MII Bus: scan phy mdio at address 0
->> [    2.508656] rockchip_emac 10200000.ethernet: of_phy_connect() failed
->> [    2.516334] rockchip_emac 10200000.ethernet: failed to probe arc emac (-19)
->>
->> This reverts commit 1dabb74971b3 ("ARM: dts: rockchip: restyle emac nodes")
->> make emac on rk3036 kylin board probe right again:
->> [    1.920385] CAN device driver interface
->> [    1.925499] rockchip_emac 10200000.ethernet: no regulator found
->> [    1.932535] rockchip_emac 10200000.ethernet: ARC EMAC detected with id: 0x7fd02
->> [    1.940735] rockchip_emac 10200000.ethernet: IRQ is 42
->> [    1.946743] rockchip_emac 10200000.ethernet: MAC address is now 96:7d:4f:0a:69:b3
->> [    2.581340] rockchip_emac 10200000.ethernet: connected to Generic PHY phy with id 0xffffc816
->> [    2.592560] e1000e: Intel(R) PRO/1000 Network Driver
->> [    2.598136] e1000e: Copyright(c) 1999 - 2015 Intel Corporation.
->>
->> Fixes: 1dabb74971b3 ("ARM: dts: rockchip: restyle emac nodes")
->> Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
->> ---
->>
->>   arch/arm/boot/dts/rockchip/rk3036-evb.dts     | 16 ++++++----------
->>   arch/arm/boot/dts/rockchip/rk3036-kylin.dts   | 16 ++++++----------
->>   arch/arm/boot/dts/rockchip/rk3036.dtsi        |  2 ++
->>   .../boot/dts/rockchip/rk3066a-marsboard.dts   | 17 +++++++----------
->>   .../boot/dts/rockchip/rk3066a-rayeager.dts    | 15 +++++----------
->>   .../boot/dts/rockchip/rk3188-radxarock.dts    | 19 ++++++++-----------
->>   arch/arm/boot/dts/rockchip/rk3xxx.dtsi        |  2 ++
->>   7 files changed, 36 insertions(+), 51 deletions(-)
->>
->> diff --git a/arch/arm/boot/dts/rockchip/rk3036-evb.dts b/arch/arm/boot/dts/rockchip/rk3036-evb.dts
->> index becdc0b664bf..94216f870b57 100644
->> --- a/arch/arm/boot/dts/rockchip/rk3036-evb.dts
->> +++ b/arch/arm/boot/dts/rockchip/rk3036-evb.dts
->> @@ -15,20 +15,16 @@ memory@60000000 {
->>   };
->>   
->>   &emac {
->> -	phy = <&phy0>;
->> -	phy-reset-duration = <10>; /* millisecond */
->> -	phy-reset-gpios = <&gpio2 RK_PC6 GPIO_ACTIVE_LOW>; /* PHY_RST */
->>   	pinctrl-names = "default";
->>   	pinctrl-0 = <&emac_xfer>, <&emac_mdio>;
->> -	status = "okay";
->> +	phy = <&phy0>;
->> +	phy-reset-gpios = <&gpio2 RK_PC6 GPIO_ACTIVE_LOW>; /* PHY_RST */
->> +	phy-reset-duration = <10>; /* millisecond */
-> 
-> 
->>   
->> -	mdio {
->> -		#address-cells = <1>;
->> -		#size-cells = <0>;
->> +	status = "okay";
->>   
->> -		phy0: ethernet-phy@0 {
->> -			reg = <0>;
->> -		};
->> +	phy0: ethernet-phy@0 {
->> +		reg = <0>;
->>   	};
-> 
-> Sorry, didn't have the hardware when changing that binding.
-> A little bit background info:
-> 
-> The rk3036 TRM states:
-> Management Interface (MDIO) state machine for easy real-time communication with the
-> PHY
-> 
-> A revert of the DT must also match a binding. But...
-> Bindings must describe the hardware as close as possible.
-> So when the phy is called over the mdio we must add phy as part of a mdio node.(Is that correct? Ask a expert!)
-> Somehow the old emac driver doesn't support this sub node setup.
-> First request would be have a look to make the driver work as it should.
-
-Because I lack of knowledge about net driver, I am not sure if the mdio is mandatory.
-I post this revert also want to have some suggestion from the net expert.
- From some grep:
-emac_rockchip is based on arc-emac, but the example of arc_emac does not have a mdio node[0]
-thera are also other platforms use the same way[1]
-
-[0] Documentation/devicetree/bindings/net/arc_emac.txt
-[1]arch/arm/boot/dts/hisilicon/hisi-x5hd2-dkb.dts
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: Rjg4dITOhNiZrEWdtuYo574jqeJHPPqh
+X-Proofpoint-ORIG-GUID: Rjg4dITOhNiZrEWdtuYo574jqeJHPPqh
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-12-09_02,2023-12-07_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999 clxscore=1015
+ suspectscore=0 lowpriorityscore=0 spamscore=0 priorityscore=1501
+ adultscore=0 impostorscore=0 mlxscore=0 bulkscore=0 malwarescore=0
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2311290000 definitions=main-2312210062
 
 
+
+On 12/21/2023 4:17 PM, Krzysztof Kozlowski wrote:
+> On 21/12/2023 09:15, Jinlong Mao wrote:
+>>
+>>
+>> On 12/21/2023 4:12 PM, Krzysztof Kozlowski wrote:
+>>> On 21/12/2023 04:28, Jinlong Mao wrote:
+>>>>>> diff --git a/Documentation/devicetree/bindings/arm/arm,embedded-trace-extension.yaml b/Documentation/devicetree/bindings/arm/arm,embedded-trace-extension.yaml
+>>>>>> index f725e6940993..cbf583d34029 100644
+>>>>>> --- a/Documentation/devicetree/bindings/arm/arm,embedded-trace-extension.yaml
+>>>>>> +++ b/Documentation/devicetree/bindings/arm/arm,embedded-trace-extension.yaml
+>>>>>> @@ -23,7 +23,7 @@ description: |
+>>>>>>     
+>>>>>>     properties:
+>>>>>>       $nodename:
+>>>>>> -    pattern: "^ete([0-9a-f]+)$"
+>>>>>> +    pattern: "^ete-([0-9a-f]+)$"
+>>>>>
+>>>>> My concerns are not resolved. Why is it here in the first place?
+>>>>
+>>>> Hi Krzysztof,
+>>>>
+>>>> ETE is acronym of embedded trace extension. The number of the name is
+>>>> the same as the number of the CPU it belongs to.
+>>>
+>>> This is obvious and was not my question.
+>>
+>> Do you mean why the pattern match of the node name is added here ?
 > 
-> Johan
+> Yes, especially that it is requiring a non-generic name.
 > 
->>   };
->>   
->> diff --git a/arch/arm/boot/dts/rockchip/rk3036-kylin.dts b/arch/arm/boot/dts/rockchip/rk3036-kylin.dts
->> index 67e1e04139e7..e817eba8c622 100644
->> --- a/arch/arm/boot/dts/rockchip/rk3036-kylin.dts
->> +++ b/arch/arm/boot/dts/rockchip/rk3036-kylin.dts
->> @@ -80,20 +80,16 @@ &acodec {
->>   };
->>   
->>   &emac {
->> -	phy = <&phy0>;
->> -	phy-reset-duration = <10>; /* millisecond */
->> -	phy-reset-gpios = <&gpio2 RK_PC6 GPIO_ACTIVE_LOW>; /* PHY_RST */
->>   	pinctrl-names = "default";
->>   	pinctrl-0 = <&emac_xfer>, <&emac_mdio>;
->> -	status = "okay";
->> +	phy = <&phy0>;
->> +	phy-reset-gpios = <&gpio2 RK_PC6 GPIO_ACTIVE_LOW>; /* PHY_RST */
->> +	phy-reset-duration = <10>; /* millisecond */
->>   
->> -	mdio {
->> -		#address-cells = <1>;
->> -		#size-cells = <0>;
->> +	status = "okay";
->>   
->> -		phy0: ethernet-phy@0 {
->> -			reg = <0>;
->> -		};
->> +	phy0: ethernet-phy@0 {
->> +		reg = <0>;
->>   	};
->>   };
->>   
->> diff --git a/arch/arm/boot/dts/rockchip/rk3036.dtsi b/arch/arm/boot/dts/rockchip/rk3036.dtsi
->> index 78686fc72ce6..e240b89b0b35 100644
->> --- a/arch/arm/boot/dts/rockchip/rk3036.dtsi
->> +++ b/arch/arm/boot/dts/rockchip/rk3036.dtsi
->> @@ -228,6 +228,8 @@ emac: ethernet@10200000 {
->>   		compatible = "rockchip,rk3036-emac";
->>   		reg = <0x10200000 0x4000>;
->>   		interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>;
->> +		#address-cells = <1>;
->> +		#size-cells = <0>;
->>   		rockchip,grf = <&grf>;
->>   		clocks = <&cru HCLK_MAC>, <&cru SCLK_MACREF>, <&cru SCLK_MAC>;
->>   		clock-names = "hclk", "macref", "macclk";
->> diff --git a/arch/arm/boot/dts/rockchip/rk3066a-marsboard.dts b/arch/arm/boot/dts/rockchip/rk3066a-marsboard.dts
->> index f6e8d49a02ef..e3d6f0e81330 100644
->> --- a/arch/arm/boot/dts/rockchip/rk3066a-marsboard.dts
->> +++ b/arch/arm/boot/dts/rockchip/rk3066a-marsboard.dts
->> @@ -150,21 +150,18 @@ vcc28_cif: regulator@12 {
->>   #include "../tps65910.dtsi"
->>   
->>   &emac {
->> +	status = "okay";
->> +
->>   	phy = <&phy0>;
->>   	phy-supply = <&vcc_rmii>;
->> +
->>   	pinctrl-names = "default";
->>   	pinctrl-0 = <&emac_xfer>, <&emac_mdio>, <&phy_int>;
->> -	status = "okay";
->> -
->> -	mdio {
->> -		#address-cells = <1>;
->> -		#size-cells = <0>;
->>   
->> -		phy0: ethernet-phy@0 {
->> -			reg = <0>;
->> -			interrupt-parent = <&gpio1>;
->> -			interrupts = <RK_PD2 IRQ_TYPE_LEVEL_LOW>;
->> -		};
->> +	phy0: ethernet-phy@0 {
->> +		reg = <0>;
->> +		interrupt-parent = <&gpio1>;
->> +		interrupts = <RK_PD2 IRQ_TYPE_LEVEL_LOW>;
->>   	};
->>   };
->>   
->> diff --git a/arch/arm/boot/dts/rockchip/rk3066a-rayeager.dts b/arch/arm/boot/dts/rockchip/rk3066a-rayeager.dts
->> index 29d8e5bf88f5..096616324c2d 100644
->> --- a/arch/arm/boot/dts/rockchip/rk3066a-rayeager.dts
->> +++ b/arch/arm/boot/dts/rockchip/rk3066a-rayeager.dts
->> @@ -142,20 +142,15 @@ &cpu1 {
->>   };
->>   
->>   &emac {
->> -	phy = <&phy0>;
->> -	phy-supply = <&vcc_rmii>;
->>   	pinctrl-names = "default";
->>   	pinctrl-0 = <&emac_xfer>, <&emac_mdio>, <&rmii_rst>;
->> +	phy = <&phy0>;
->> +	phy-supply = <&vcc_rmii>;
->>   	status = "okay";
->>   
->> -	mdio {
->> -		#address-cells = <1>;
->> -		#size-cells = <0>;
->> -
->> -		phy0: ethernet-phy@0 {
->> -			reg = <0>;
->> -			reset-gpios = <&gpio1 RK_PD6 GPIO_ACTIVE_LOW>;
->> -		};
->> +	phy0: ethernet-phy@0 {
->> +		reg = <0>;
->> +		reset-gpios = <&gpio1 RK_PD6 GPIO_ACTIVE_LOW>;
->>   	};
->>   };
->>   
->> diff --git a/arch/arm/boot/dts/rockchip/rk3188-radxarock.dts b/arch/arm/boot/dts/rockchip/rk3188-radxarock.dts
->> index 118deacd38c4..239d2ec37fdc 100644
->> --- a/arch/arm/boot/dts/rockchip/rk3188-radxarock.dts
->> +++ b/arch/arm/boot/dts/rockchip/rk3188-radxarock.dts
->> @@ -126,21 +126,18 @@ vsys: vsys-regulator {
->>   };
->>   
->>   &emac {
->> -	phy = <&phy0>;
->> -	phy-supply = <&vcc_rmii>;
->> +	status = "okay";
->> +
->>   	pinctrl-names = "default";
->>   	pinctrl-0 = <&emac_xfer>, <&emac_mdio>, <&phy_int>;
->> -	status = "okay";
->>   
->> -	mdio {
->> -		#address-cells = <1>;
->> -		#size-cells = <0>;
->> +	phy = <&phy0>;
->> +	phy-supply = <&vcc_rmii>;
->>   
->> -		phy0: ethernet-phy@0 {
->> -			reg = <0>;
->> -			interrupt-parent = <&gpio3>;
->> -			interrupts = <RK_PD2 IRQ_TYPE_LEVEL_LOW>;
->> -		};
->> +	phy0: ethernet-phy@0 {
->> +		reg = <0>;
->> +		interrupt-parent = <&gpio3>;
->> +		interrupts = <RK_PD2 IRQ_TYPE_LEVEL_LOW>;
->>   	};
->>   };
->>   
->> diff --git a/arch/arm/boot/dts/rockchip/rk3xxx.dtsi b/arch/arm/boot/dts/rockchip/rk3xxx.dtsi
->> index cb4e42ede56a..17e89d30de78 100644
->> --- a/arch/arm/boot/dts/rockchip/rk3xxx.dtsi
->> +++ b/arch/arm/boot/dts/rockchip/rk3xxx.dtsi
->> @@ -193,6 +193,8 @@ emac: ethernet@10204000 {
->>   		compatible = "snps,arc-emac";
->>   		reg = <0x10204000 0x3c>;
->>   		interrupts = <GIC_SPI 19 IRQ_TYPE_LEVEL_HIGH>;
->> +		#address-cells = <1>;
->> +		#size-cells = <0>;
->>   
->>   		rockchip,grf = <&grf>;
->>   
+>>
+>> This node should not have the node name match, right ?
+> 
+> Usually. For sure shouldn't be for non-generic names.
+> 
+Hi Suzuki,
+
+Can we remove the pattern match of the node name and use a generic name 
+"ete" for the ete DT nodes ?
+
+Thanks
+Jinlong Mao
+
+> Best regards,
+> Krzysztof
+> 
 
