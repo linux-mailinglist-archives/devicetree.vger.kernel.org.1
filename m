@@ -1,134 +1,141 @@
-Return-Path: <devicetree+bounces-27742-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27743-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1ABF881B8DF
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 14:55:28 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id DBE6181B8E3
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 14:55:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C67A028AA31
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 13:55:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7BD691F26D1E
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 13:55:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D20D2360AF;
-	Thu, 21 Dec 2023 13:45:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05B7A53A1B;
+	Thu, 21 Dec 2023 13:45:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="rOE35V6E"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="I6x0h0NA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com [209.85.219.173])
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EE2C539E5
-	for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 13:45:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f173.google.com with SMTP id 3f1490d57ef6-db4364ecd6aso557623276.2
-        for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 05:45:02 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 030BB53A07
+	for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 13:45:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
+Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-a235e394758so87156166b.1
+        for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 05:45:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1703166301; x=1703771101; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
+        d=fairphone.com; s=fair; t=1703166328; x=1703771128; darn=vger.kernel.org;
+        h=in-reply-to:references:subject:cc:to:from:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=CeP4kNdvACJ5LqYxE4fXGpJZwNtLXE/FAa7f+Vu66/c=;
-        b=rOE35V6EaOz5mzWgBHGl5KLBBHZrW6/r0NDLDqZOqP7oaUvsNNo/CSKTDZv+lgZRPo
-         3MVDaguJgpASY+5aGJtBnwV66jT+Db6VgYZGwypmP6e2CceZTufOzisgd2KbQubImAx8
-         bn/rzU1z6Udm4LfnxXR3Wh666xhYBAT/GCd8J6tw887FpoZwsSC8SQvl9Lp2bB7YDS7O
-         bdSMZbUv3SoIuB0GybrtX5fikBpom46pBf2KHg++yKHDoelUrJYq0L4rtj5F8r3hKuXV
-         rEAJFKoWzW+/QtM32t71K8o3WJfOr9+VN9+siD+ofV8Cd3fK9zMWWgxtvJIS0VZO5mG9
-         XRJA==
+        bh=+G4IpIXZDkNfAYijfdIEK2DiPVk5MoCvUYEoHZOpo58=;
+        b=I6x0h0NA4VQ7j/UCkYIZLUEn2Duij5YT6h0yMS9xnMoqNIeM01XvH1vNuhD52A2AeF
+         9XXHpqHQIbLqh9myfDmaCdU2gyzDQonXswnDBMWR59w4gIosmhfvn2rdnS5mbE+CyBdG
+         KHo/LE99RzxcGPxbn1rzP4lK23uvEo713ErsjztVVg5CPbzmd/cQb2vF+SDNZiiiLKhi
+         +ZWJ5qpNEgJlaqNt/+gjbMCE0erazwV8CCV7AbiIC3wHb5tDIkYUo0XMA/WnNSscXVOY
+         XSkVLrEUTKRO3K9bqlpvZFQvkNAJ2fujUGb9Ond49g+R+NBEJ8Q0WW6YSXVjps1BiDXb
+         EwEA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703166301; x=1703771101;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=CeP4kNdvACJ5LqYxE4fXGpJZwNtLXE/FAa7f+Vu66/c=;
-        b=A3iCvsXf02DkMscS1yJU3sSu4I4yYoysR3PtXU7o0TMGJBgBr9HSkeporsArItZ7c5
-         UCDgnA0XupRzxzo0Do86KTzo5sMiMkVjudzFXG8RsiamaJX4/12iDx2wKfD7pafoif1e
-         fSPjzJaSS2EFNh4Hm8yfEwbotGZ62k1ARvsjNHSzPXGyOY9a/NXsIxuOcHl1KWRjel2W
-         40VWDuou+nd14CHAO9nuhdY6hrXiDc6Yzliql5kAw3qAVIv35HEyKHf7O0QyUCRLpN0s
-         VrWKk5YikM7+DwEpBjcF24AvhXOMSEoQlQMdQ9GqUAy0GUoGIA1ulN6B8J5lH9hxxU7n
-         NMRg==
-X-Gm-Message-State: AOJu0YyAAr0r7HoUIXtAjZq5fPU8/LLWR10mS/d0rfXY4rLZBKLCVCOA
-	2o5yNwl2YCLKHRwckf+QxTddRlB9XiQKjA7L1Kc09w==
-X-Google-Smtp-Source: AGHT+IFxNXE+jS35HnUO8ZrCIK4+Br5wJL3Ray/yXu7HV4UVOSnWmkmQQIZtfNhSkhxjGhC4KfG1Asd4QPb2AdIfEKs=
-X-Received: by 2002:a25:b08f:0:b0:dbd:5253:c3af with SMTP id
- f15-20020a25b08f000000b00dbd5253c3afmr812295ybj.1.1703166296433; Thu, 21 Dec
- 2023 05:44:56 -0800 (PST)
+        d=1e100.net; s=20230601; t=1703166328; x=1703771128;
+        h=in-reply-to:references:subject:cc:to:from:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=+G4IpIXZDkNfAYijfdIEK2DiPVk5MoCvUYEoHZOpo58=;
+        b=rN1Kle31nllTYikXMTgGB0FopgRLDkEbx/7TDlpoP4f5Ra1oGaCVP0DmSWiCwwHMl4
+         3fFjPRO0tQm3KO5JIsOAl5Kk7XJGY9UTLrlZWUH0rpM/dEsYLrX4yeUbwvDhGnmXFYb3
+         0eyiUa1BFHCFuK/kZ6I1vDRldS3GJ23kR43EOfHlbrnWYU2j3EguKaG77/kAOXwj45HR
+         tFZTdHQBKd/XWmLrPvKxzkJPyVlqZW+5buq62p2IeIotZHOz+uFSL+UmmPEfH2NiFtUV
+         Vi2HHH20DWUVc0PJzOMA26NHSGNOot0GttljFSPN6JW9asBSTmFpDSbHScsZqGepCCF2
+         ErBw==
+X-Gm-Message-State: AOJu0Yx32HJN1nmgDcbv6LbwwJNO0faHaF7RrfrCaHSKJh8syPc/OljV
+	AhqoZQoS22+SCtaHe3CBRQTvHaW8NfEZ59Yc6GUbGw==
+X-Google-Smtp-Source: AGHT+IF1TcSpVDLsYPf8/142epHuA4cop9nrJVeB7PlkoBnM74MGiYYVSrMXXjB9nFz1R9UGMaRlmg==
+X-Received: by 2002:a17:906:4116:b0:a26:8aeb:c363 with SMTP id j22-20020a170906411600b00a268aebc363mr1742055ejk.60.1703166328044;
+        Thu, 21 Dec 2023 05:45:28 -0800 (PST)
+Received: from localhost (2a02-8388-6584-6400-d322-7350-96d2-429d.cable.dynamic.v6.surfer.at. [2a02:8388:6584:6400:d322:7350:96d2:429d])
+        by smtp.gmail.com with ESMTPSA id kx26-20020a170907775a00b00a1f65433d08sm982553ejc.172.2023.12.21.05.45.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 21 Dec 2023 05:45:27 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-References: <20231215143906.3651122-1-emil.renner.berthing@canonical.com>
- <20231215143906.3651122-2-emil.renner.berthing@canonical.com>
- <20231215202137.GA317624-robh@kernel.org> <CAJM55Z9pBpYfwpxPH7bUumuosVDn9DHLSBngW6CtG7aK_z+_bQ@mail.gmail.com>
- <CACRpkdYT+jf4=dk3Y9cwa_=aYCihVq93N-iT0RUbtT2-+PX69w@mail.gmail.com> <CAJM55Z8osSFxKi_7=aRkEr+U3vAq0TS93OggnRzyPpssNuuJ3Q@mail.gmail.com>
-In-Reply-To: <CAJM55Z8osSFxKi_7=aRkEr+U3vAq0TS93OggnRzyPpssNuuJ3Q@mail.gmail.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Thu, 21 Dec 2023 14:44:44 +0100
-Message-ID: <CACRpkdbx7BOoHzbGd6n5p=Ho3GhMcujwUzQam0jLe6Ysg+xsNg@mail.gmail.com>
-Subject: Re: [PATCH v1 1/8] dt-bindings: pinctrl: Add thead,th1520-pinctrl bindings
-To: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Cc: Rob Herring <robh@kernel.org>, linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	Hoan Tran <hoan@os.amperecomputing.com>, Serge Semin <fancer.lancer@gmail.com>, 
-	Bartosz Golaszewski <brgl@bgdev.pl>, Andy Shevchenko <andy@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jisheng Zhang <jszhang@kernel.org>, Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>
-Content-Type: text/plain; charset="UTF-8"
+Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Thu, 21 Dec 2023 14:45:26 +0100
+Message-Id: <CXU22OZNAH2H.24YIQWBA4KE3C@fairphone.com>
+From: "Luca Weiss" <luca.weiss@fairphone.com>
+To: "Konrad Dybcio" <konrad.dybcio@linaro.org>, "Dmitry Baryshkov"
+ <dmitry.baryshkov@linaro.org>
+Cc: "Bjorn Andersson" <andersson@kernel.org>, "Rob Herring"
+ <robh+dt@kernel.org>, "Krzysztof Kozlowski"
+ <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley" <conor+dt@kernel.org>,
+ "Heikki Krogerus" <heikki.krogerus@linux.intel.com>, "Greg Kroah-Hartman"
+ <gregkh@linuxfoundation.org>, <cros-qcom-dts-watchers@chromium.org>,
+ <~postmarketos/upstreaming@lists.sr.ht>, <phone-devel@vger.kernel.org>,
+ <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <linux-usb@vger.kernel.org>
+Subject: Re: [PATCH 0/3] Fairphone 5 PMIC-GLINK support (USB-C, charger,
+ fuel gauge)
+X-Mailer: aerc 0.15.2
+References: <20231220-fp5-pmic-glink-v1-0-2a1f8e3c661c@fairphone.com>
+ <8d042095-1e09-45cc-9762-909fe8d663a9@linaro.org>
+ <CXTU5MLN0YDS.29PPV8KZF8G9R@fairphone.com>
+ <CAA8EJpoD3x=kVLu4x2yLtAqCp=wmGSU4ssq5Oj_SD5VQ=GyAYQ@mail.gmail.com>
+ <d2007240-2779-4881-8e9d-1c4f5daa55e5@linaro.org>
+In-Reply-To: <d2007240-2779-4881-8e9d-1c4f5daa55e5@linaro.org>
 
-On Thu, Dec 21, 2023 at 1:28=E2=80=AFPM Emil Renner Berthing
-<emil.renner.berthing@canonical.com> wrote:
-> Linus Walleij wrote:
-> > On Sat, Dec 16, 2023 at 2:57=E2=80=AFPM Emil Renner Berthing
-> > <emil.renner.berthing@canonical.com> wrote:
-> >
-> > > > > +          thead,strong-pull-up:
-> > > > > +            oneOf:
-> > > > > +              - type: boolean
-> > > > > +              - $ref: /schemas/types.yaml#/definitions/uint32
-> > > > > +                enum: [ 0, 2100 ]
-> > > > > +            description: Enable or disable strong 2.1kOhm pull-u=
-p.
-> > > >
-> > > > bias-pull-up can already specify the strength in Ohms.
-> > >
-> > > The strong pull up is a separate bit that can be enabled independentl=
-y from the
-> > > regular pull-up/down, so in theory you could enable both the regular =
-pull-up
-> > > and the strong pull-up at the same time, or even the regular poll-dow=
-n and the
-> > > strong pull-up which is probably not advised.
-> >
-> > bias-pull-up; <- Just regular pulling up the ordinary
-> > bias-pull-up =3D <100>; <- Same thing if the ordinary is 100 Ohm (figur=
-e out what
-> >   resistance it actually is....)
-> > bias-pull-up =3D <21000000>; <- strong pull up
-> > bias-pull-up =3D <21000100>; <- both at the same time
+On Thu Dec 21, 2023 at 1:53 PM CET, Konrad Dybcio wrote:
+> On 21.12.2023 11:34, Dmitry Baryshkov wrote:
+> > On Thu, 21 Dec 2023 at 09:33, Luca Weiss <luca.weiss@fairphone.com> wro=
+te:
+> >>
+> >> On Wed Dec 20, 2023 at 1:32 PM CET, Konrad Dybcio wrote:
+> >>> On 20.12.2023 11:02, Luca Weiss wrote:
+> >>>> This series adds all the necessary bits to enable USB-C role switchi=
+ng,
+> >>>> charger and fuel gauge (all via pmic-glink) on Fairphone 5.
+> >>>>
+> >>>> One thing that could be made different is the pmic-glink compatible.
+> >>>> I've chosen to use qcm6490 compatible for it and not sc7280 since
+> >>>> there's plenty of firmware variety on sc7280-based platforms and the=
+y
+> >>>> might require different quirks in the future, so limit this PDOS qui=
+rk
+> >>>> to just qcm6490 for now.
+> >>>>
+> >>>> If someone thinks it should be qcom,sc7280-pmic-glink, please let me
+> >>>> know :)
+> >>> IMO it's best to continue using the "base soc" (which just so happene=
+d
+> >>> to fall onto sc7280 this time around) for all compatibles, unless the
+> >>> derivatives actually had changes
+> >>
+> >> Hi Konrad,
+> >>
+> >> I think at some point I asked Dmitry what he thought and he mentioned
+> >> qcm6490. Even found the message again:
+> >>
+> >>> well, since it is a firmware thing, you might want to emphasise that.
+> >>> So from my POV qcm6490 makes more sense
+> >>
+> >> But yeah since it's likely that sc7280 firmware behaves the same as
+> >> qcm6490 firmware it's probably okay to use sc7280 compatible, worst ca=
+se
+> >> we change it later :) I'll send a v2 with those changes.
+> >=20
+> > Worst case we end up with sc7280 which has yet another slightly
+> > different UCSI / PMIC GLINK implementation, but the compatible string
+> > is already taken.
+> > I still suppose that this should be a qcm6490-related string.
+> Right, let's keep qcm then
+
+Ack from my side also. Thanks for the feedback!
+
 >
-> Hmm.. the two pull-ups combined would be a stronger pull-up, eg. lower
-> resistance, right? So you'd need to calculate it using
-> https://en.wikipedia.org/wiki/Series_and_parallel_circuits#Resistance_uni=
-ts_2
+> Konrad
 
-Yeah hehe elementary electronics beats me, of course it is in parallel.
-
-> The problem is that the documentation doesn't actually mention what will =
-happen
-> if you combine the strong pull-up with the regular bias.
-
-So why even allow it then?
-
-Do the people designing boards using this have better documentation than wh=
-at
-you have? Then either get that documentation or just don't give them
-too much rope.
-
-Yours,
-Linus Walleij
 
