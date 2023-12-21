@@ -1,110 +1,233 @@
-Return-Path: <devicetree+bounces-27745-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27746-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C8BE81B912
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 15:01:37 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B443A81B918
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 15:02:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 95E041C25A35
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 14:01:36 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 750DFB252A0
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 14:02:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DCF47608B;
-	Thu, 21 Dec 2023 13:50:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C780476901;
+	Thu, 21 Dec 2023 13:53:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="iUtSiWXq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="On2uCpC+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 113306EB7D;
-	Thu, 21 Dec 2023 13:50:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1703166614; x=1734702614;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=UfxBOC7Ak9ofvXRWHBi0awUJZ/U0OS1qvUlw59nEa2Y=;
-  b=iUtSiWXqX7kKPB0Y2FxI7UqMZjyb/4ughSZ1cEJ2yDffs5agP6dBrZmY
-   HDyRXr2GvuAyR/cE3x48yCIFXlG8Ti0+n/7tAM0sIbdAREKNNRtVe603q
-   R2O/W8adDPZC5gUFKXvjou9Y46/hqiPSYD3qZ2OD7qtNAOkamQfZ+HxGr
-   J7joj1miX7PBwzJRmdrKURXVHLmxHAmkZPmVHfbmfbcqOChp6CAFpdsKe
-   JevvAvLPEHJnGMwuRlk08KkcCHJP/EJ5psfy4meuzRjg5fjLtqtLpZfbU
-   lMaVnT8WknOa0CeptJqPDtGflntY3ByRvi8Euc5hBBYMjaJsJi0p4AF6Y
-   A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10930"; a="460311202"
-X-IronPort-AV: E=Sophos;i="6.04,293,1695711600"; 
-   d="scan'208";a="460311202"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
-  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Dec 2023 05:50:13 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10930"; a="1108106685"
-X-IronPort-AV: E=Sophos;i="6.04,293,1695711600"; 
-   d="scan'208";a="1108106685"
-Received: from yilunxu-optiplex-7050.sh.intel.com (HELO localhost) ([10.239.159.165])
-  by fmsmga005.fm.intel.com with ESMTP; 21 Dec 2023 05:50:08 -0800
-Date: Thu, 21 Dec 2023 21:47:36 +0800
-From: Xu Yilun <yilun.xu@linux.intel.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Michal Simek <michal.simek@amd.com>, linux-kernel@vger.kernel.org,
-	monstr@monstr.eu, michal.simek@xilinx.com, git@xilinx.com,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jassi Brar <jassisinghbrar@gmail.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Mark Brown <broonie@kernel.org>, Moritz Fischer <mdf@kernel.org>,
-	Naman Trivedi Manojbhai <naman.trivedimanojbhai@amd.com>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A251E745D4;
+	Thu, 21 Dec 2023 13:53:05 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6D0DFC433C7;
+	Thu, 21 Dec 2023 13:53:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1703166785;
+	bh=pPMVyevmpbWPJgmQU7BRAWm3WCy0zRv/2Uz1rFGHuiA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=On2uCpC+rib2wTj1bZI3ww/V0sidzj/s0K5wmmMPAAnNCLNx6htQnrayG+HX++JYh
+	 o0+9/Vp7DUrOpd8I3RgEAIsJF92NvYeGozwQXThXZ/jBdFaU3atiXCcclMRGHD1wWL
+	 cJU8hhLWaEDD6DtFgV58bF5rdRyBReRuaQhJhTcTUer2JKDO7VGP/gIwZzavH0+I9v
+	 VzuLybXJXvZYNUUEuHB756R0pCbSQZcBIRCB2PyvNoUGXxU8vTvDge3M7x9E0wsNKJ
+	 nLDs0p49gueULOZ85BE5XoR1gih9DdZ75LEvGe83j6tk3n+nQgOzORpyhNjWLnsIiI
+	 wHBXi0wF2wSHg==
+Date: Thu, 21 Dec 2023 13:53:00 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Xingyu Wu <xingyu.wu@starfivetech.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+	Claudiu Beznea <Claudiu.Beznea@microchip.com>,
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
 	Rob Herring <robh+dt@kernel.org>,
-	Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>,
-	Tom Rix <trix@redhat.com>, Wu Hao <hao.wu@intel.com>,
-	Xu Yilun <yilun.xu@intel.com>, devicetree@vger.kernel.org,
-	kishore Manne <nava.kishore.manne@amd.com>,
-	linux-arm-kernel@lists.infradead.org, linux-fpga@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: firmware: xilinx: Fix versal-fpga node name
-Message-ID: <ZYRB+Jkj0IMTphDo@yilunxu-OptiPlex-7050>
-References: <6779af2f9cc21c912f10cf310388d99b980800b2.1702996281.git.michal.simek@amd.com>
- <7ac7db8e-f9b5-4394-af71-1a2b2548c485@linaro.org>
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Walker Chen <walker.chen@starfivetech.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	alsa-devel@alsa-project.org, linux-sound@vger.kernel.org
+Subject: Re: [PATCH v1 1/2] dt-bindings: ASoC: Add Cadence I2S controller for
+ StarFive JH8100 SoC
+Message-ID: <20231221-saddlebag-tricolor-d02a17d66795@spud>
+References: <20231221033223.73201-1-xingyu.wu@starfivetech.com>
+ <20231221033223.73201-2-xingyu.wu@starfivetech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="KOGwlaDIWVEFGDEl"
+Content-Disposition: inline
+In-Reply-To: <20231221033223.73201-2-xingyu.wu@starfivetech.com>
+
+
+--KOGwlaDIWVEFGDEl
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <7ac7db8e-f9b5-4394-af71-1a2b2548c485@linaro.org>
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Dec 20, 2023 at 08:54:33AM +0100, Krzysztof Kozlowski wrote:
-> On 19/12/2023 15:31, Michal Simek wrote:
-> > Based on commit 83a368a3fc8a ("docs: dt-bindings: add DTS Coding Style
-> > document") using underscore ('_') in node name is not recommended that's
-> > why switch to dash ('-').
-> > 
-> > Signed-off-by: Michal Simek <michal.simek@amd.com>
-> > ---
-> > 
-> >  .../bindings/firmware/xilinx/xlnx,zynqmp-firmware.yaml        | 4 ++--
-> >  Documentation/devicetree/bindings/fpga/xlnx,versal-fpga.yaml  | 2 +-
-> >  2 files changed, 3 insertions(+), 3 deletions(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-firmware.yaml b/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-firmware.yaml
-> > index 8e584857ddd4..3d578f98ae2c 100644
-> > --- a/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-firmware.yaml
-> > +++ b/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-firmware.yaml
-> > @@ -41,7 +41,7 @@ properties:
-> >    "#power-domain-cells":
-> >      const: 1
-> >  
-> 
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Xingyu, Mark,
 
-Acked-by: Xu Yilun <yilun.xu@intel.com>
+On Thu, Dec 21, 2023 at 11:32:22AM +0800, Xingyu Wu wrote:
+> Add bindings for the Multi-Channel I2S controller of Cadence
+> on the StarFive JH8100 SoC.
+>=20
+> Signed-off-by: Xingyu Wu <xingyu.wu@starfivetech.com>
+> ---
+>  .../bindings/sound/cdns,jh8100-i2s.yaml       | 100 ++++++++++++++++++
+>  1 file changed, 100 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/sound/cdns,jh8100-i=
+2s.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/sound/cdns,jh8100-i2s.yaml=
+ b/Documentation/devicetree/bindings/sound/cdns,jh8100-i2s.yaml
+> new file mode 100644
+> index 000000000000..5d95d9ab3e45
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/cdns,jh8100-i2s.yaml
+> @@ -0,0 +1,100 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/cdns,jh8100-i2s.yaml#
 
-> 
-> Best regards,
-> Krzysztof
-> 
-> 
+Filename matching the compatible please.
+
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Cadence multi-channel I2S controller for StarFive JH8100 SoC
+> +
+> +description: |
+
+You only need the | if there is formatting to preserve.
+
+> +  The Cadence I2S Controller implements a function of the multi-channel
+> +  (up to 8-channel) bus. It combines functions of a transmitter and a re=
+ceiver.
+> +  It is used in the StarFive JH8100 SoC.
+> +
+> +maintainers:
+> +  - Xingyu Wu <xingyu.wu@starfivetech.com>
+> +  - Walker Chen <walker.chen@starfivetech.com>
+> +
+> +properties:
+> +  compatible:
+> +    const: starfive,jh8100-i2s
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    description: |
+> +      The interrupt line number for the I2S controller. Add this
+> +      parameter if the I2S controller that you are using does not
+> +      support DMA.
+
+You've got one i2s controller here, you should know if it supports DMA
+or not.
+
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: Bit clock
+> +      - description: Main ICG clock
+> +      - description: Inner master clock
+> +
+> +  clock-names:
+> +    items:
+> +      - const: bclk
+> +      - const: icg
+> +      - const: mclk_inner
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +  dmas:
+> +    items:
+> +      - description: TX DMA Channel
+> +      - description: RX DMA Channel
+> +    minItems: 1
+> +
+> +  dma-names:
+> +    items:
+> +      - const: tx
+> +      - const: rx
+> +    minItems: 1
+> +
+> +  cdns,i2s-max-channels:
+> +    description: |
+> +      Number of I2S max stereo channels supported by the hardware.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    minimum: 1
+> +    maximum: 8
+
+Mark, is there no common property for this kind of thing? That said,
+there's one device here so the number is known at present.
+Another note, this property is not required, so it should have a
+default.
+
+It's kinda hard to know with this binding - it is touted as being for a
+particular Cadence IP, and some aspects are pretty generic, but at the
+same time there's only one device here so it's hard to tell what is
+variable between implementations and what is not.
+Are there no other implementations of this controller? Unless it is
+brand new, I find that hard to believe.
+
+Cheers,
+Conor.
+
+> +
+> +  "#sound-dai-cells":
+> +    const: 0
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +  - resets
+> +
+> +oneOf:
+> +  - required:
+> +      - dmas
+> +      - dma-names
+> +  - required:
+> +      - interrupts
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2s@122b0000 {
+> +      compatible =3D "starfive,jh8100-i2s";
+> +      reg =3D <0x122b0000 0x1000>;
+> +      clocks =3D <&syscrg_ne 133>,
+> +               <&syscrg_ne 170>,
+> +               <&syscrg 50>;
+> +      clock-names =3D "bclk", "icg",
+> +                    "mclk_inner";
+> +      resets =3D <&syscrg_ne 43>;
+> +      dmas =3D <&dma 7>, <&dma 6>;
+> +      dma-names =3D "tx", "rx";
+> +      cdns,i2s-max-channels =3D <2>;
+> +      #sound-dai-cells =3D <0>;
+> +    };
+> --=20
+> 2.25.1
+>=20
+>=20
+
+--KOGwlaDIWVEFGDEl
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZYRDPAAKCRB4tDGHoIJi
+0s94AP9geB4PYcZr4+jWv+afH31tjZK9Ipg74/OInCTDenjFWgD+Lkrt4YCJ5jzp
+6mcV3fL0qrb+B7BF6qed1c7Naq7xzQs=
+=gqs+
+-----END PGP SIGNATURE-----
+
+--KOGwlaDIWVEFGDEl--
 
