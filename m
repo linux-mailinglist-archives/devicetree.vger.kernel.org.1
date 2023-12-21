@@ -1,48 +1,47 @@
-Return-Path: <devicetree+bounces-27881-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27882-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C664181BFC1
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 21:49:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E9FE81BFCC
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 22:00:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DE0001C2205A
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 20:49:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4A6E41C2158B
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 21:00:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9482768F4;
-	Thu, 21 Dec 2023 20:49:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C60276917;
+	Thu, 21 Dec 2023 21:00:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QQHlCCxK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ODAjMawt"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA828768EF;
-	Thu, 21 Dec 2023 20:49:02 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 99591C433C8;
-	Thu, 21 Dec 2023 20:49:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1E42768FC;
+	Thu, 21 Dec 2023 20:59:59 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F2C7FC433C8;
+	Thu, 21 Dec 2023 20:59:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1703191742;
-	bh=776Bl4yQjHxeNqCrabr1mp5Wr+2TT5xJKRcbJImOcbc=;
+	s=k20201202; t=1703192399;
+	bh=M+RgHeXr3acAWpXB/Z7oGyBX8646M4biQdV6RYlPSGU=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=QQHlCCxK9e4VGAeGf9Page52lFos2eoFpmVnXFJv2uYN3rpMLVYvnPce7tirl1DZl
-	 IPsZJnskAw8V+ERcC1d+RlNyZW6FedQn3/s3tGI+5N+O3cI9BWrmVCjqBNvp4noJ1B
-	 649BtkuzzgnrhaIgPBFgZ2pdfN2Kmp38TLj16KryS7l4deRoLaEnWRhzLNmou9Hzy/
-	 rxmvtN5IynO43IT/1QbKp7BCHy4go+gntg+0G8M9vXYZ18h5GU4kU9egJml8ZnDCXq
-	 S/maUCgVeKYLwcWbOFtOPjCZpBkiCwKgNHvZMwEgFkZIcMdiCaele2ETG/bkd5JFwO
-	 5apGSkPFupP9g==
-Received: (nullmailer pid 67984 invoked by uid 1000);
-	Thu, 21 Dec 2023 20:49:00 -0000
-Date: Thu, 21 Dec 2023 14:49:00 -0600
+	b=ODAjMawtAcLPRa6U4932mGjc8JQ72iM9SZvC/x7JWopB77qQgbcmhxCDCpPvJ7MCh
+	 KrtvOw21Nc2hldrMA01qbn1xOPzqjxM3exs3ZH5QphQIUPtPInSDVKOsEJFhN59T04
+	 aY2qTUfr2cWmCf6NmATJthVLcgD0RuhadhH9TQTE1pwCoM0CnY4ORJwnejygjOXiZY
+	 GFE2KlWbbiWRqio4375L9QFjnCoLD0WQ7OK3FeUO5TqtMK+sx6a9k8UUw2jZkTxP/D
+	 SjyMjWaFVWOgHy2oqKb6ZWyd5SUEctmtrKvC2r0nZzP9axWDNqzLjyiATSr152FYei
+	 N5xI3ik81GTTg==
+Received: (nullmailer pid 82152 invoked by uid 1000);
+	Thu, 21 Dec 2023 20:59:58 -0000
+Date: Thu, 21 Dec 2023 14:59:58 -0600
 From: Rob Herring <robh@kernel.org>
-To: Mark Hasemeyer <markhas@chromium.org>
-Cc: Raul Rangel <rrangel@chromium.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, devicetree@vger.kernel.org, Frank Rowand <frowand.list@gmail.com>, Sudeep Holla <sudeep.holla@arm.com>, Tzung-Bi Shih <tzungbi@kernel.org>, AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Rob Herring <robh+dt@kernel.org>, Andy Shevchenko <andriy.shevchenko@intel.com>, LKML <linux-kernel@vger.kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v2 19/22] of: irq: Remove extern from function
- declarations
-Message-ID: <170319174018.67933.17367182938646030721.robh@kernel.org>
-References: <20231220235459.2965548-1-markhas@chromium.org>
- <20231220165423.v2.19.I319e781c11e6352eb5b6c408dc20bd54a720edbf@changeid>
+To: Christoph Winklhofer <cj.winklhofer@gmail.com>
+Cc: krzysztof.kozlowski@linaro.org, conor+dt@kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 1/2] dt-bindings: w1: UART 1-wire bus
+Message-ID: <20231221205958.GA73493-robh@kernel.org>
+References: <20231221065049.30703-1-cj.winklhofer@gmail.com>
+ <20231221065049.30703-2-cj.winklhofer@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -51,23 +50,75 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231220165423.v2.19.I319e781c11e6352eb5b6c408dc20bd54a720edbf@changeid>
+In-Reply-To: <20231221065049.30703-2-cj.winklhofer@gmail.com>
 
-
-On Wed, 20 Dec 2023 16:54:33 -0700, Mark Hasemeyer wrote:
-> The extern keyword is implicit for function declarations.
-> Remove it where possible and adjust the line wrapping accordingly.
+On Thu, Dec 21, 2023 at 07:50:47AM +0100, Christoph Winklhofer wrote:
+> Add device tree binding for UART 1-wire bus.
 > 
-> Signed-off-by: Mark Hasemeyer <markhas@chromium.org>
+> Signed-off-by: Christoph Winklhofer <cj.winklhofer@gmail.com>
 > ---
+>  .../devicetree/bindings/w1/w1-uart.yaml       | 44 +++++++++++++++++++
+>  1 file changed, 44 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/w1/w1-uart.yaml
 > 
-> Changes in v2:
-> -New patch
-> 
->  include/linux/of_irq.h | 35 +++++++++++++++++------------------
->  1 file changed, 17 insertions(+), 18 deletions(-)
-> 
+> diff --git a/Documentation/devicetree/bindings/w1/w1-uart.yaml b/Documentation/devicetree/bindings/w1/w1-uart.yaml
+> new file mode 100644
+> index 000000000000..93d83c42c407
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/w1/w1-uart.yaml
+> @@ -0,0 +1,44 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/w1/w1-uart.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: UART 1-Wire Bus
+> +
+> +maintainers:
+> +  - Christoph Winklhofer <cj.winklhofer@gmail.com>
+> +
+> +description: |
+> +  UART 1-wire bus. Utilizes the UART interface via the Serial Device Bus
+> +  to create the 1-Wire timing patterns.
+> +
+> +  The UART peripheral must support full-duplex and operate in open-drain
+> +  mode. The timing patterns are generated by a specific combination of
+> +  baud-rate and transmitted byte, which corresponds to a 1-Wire read bit,
+> +  write bit or reset pulse.
+> +
+> +  The default baud-rate for reset and presence detection is 9600 and for
+> +  a 1-Wire read or write operation 115200. In case the actual baud-rate
+> +  is different from the requested one, the transmitted byte is adapted
+> +  to generate the 1-Wire timing patterns.
+> +
+> +  https://www.analog.com/en/technical-articles/using-a-uart-to-implement-a-1wire-bus-master.html
+> +
+> +
+> +properties:
+> +  compatible:
+> +    const: w1-uart
+> +
+> +required:
+> +  - compatible
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    serial {
+> +      onewire {
 
-Acked-by: Rob Herring <robh@kernel.org>
+Have you tried this in an actual DT? Assuming the UART node has a 
+schema, it should be a warning because child node names are explicit in 
+serial.yaml unfortunately. IOW, you need to add "onewire" to 
+serial.yaml.
 
+
+> +        compatible = "w1-uart";
+> +      };
+> +    };
+> -- 
+> 2.43.0
+> 
 
