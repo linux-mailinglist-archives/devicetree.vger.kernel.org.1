@@ -1,216 +1,135 @@
-Return-Path: <devicetree+bounces-27775-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27776-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9D3481BAA7
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 16:26:11 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B9C9081BAB3
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 16:27:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 576111F22B3E
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 15:26:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EC8381C217A8
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 15:27:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63E13539E8;
-	Thu, 21 Dec 2023 15:24:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2586D5820C;
+	Thu, 21 Dec 2023 15:25:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=goldelico.com header.i=@goldelico.com header.b="UA7Q0CO0";
-	dkim=permerror (0-bit key) header.d=goldelico.com header.i=@goldelico.com header.b="SZJRLTbw"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="ZBnVtgt9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mo4-p02-ob.smtp.rzone.de (mo4-p02-ob.smtp.rzone.de [81.169.146.170])
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C78C14F1E9;
-	Thu, 21 Dec 2023 15:24:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=goldelico.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=goldelico.com
-ARC-Seal: i=1; a=rsa-sha256; t=1703172232; cv=none;
-    d=strato.com; s=strato-dkim-0002;
-    b=UwUq/YQX2zRCRkfeyBlXslp0UWcH60extncrAjK6TFBnwi3nkGDhK7z7n4fs/T+/S2
-    A9hP3ZMOlc3HyO43nWI4FkajiLPRoVqdu3Bgv+Tq/2v0oqNYh3D7xhVqJs2Gwt9jXTLS
-    uLYEJeL1Mxgnhf+KDAzWJaZB+hZq03wsgE0/ZB+qKnC44dZLziJANpDQIfHm8OXLr5cv
-    5sDVOFwmSO/tzMtzwJq1ATYGsYVocIV5FIPunxob5oKfBA6O/pRA956O070QgybZESL4
-    2xgJfnImKuLUm5n+liNHrbhrydrnlCIVKut35ON2oCGgm7i2CIibdxLLj4msQj9c02GB
-    R0lw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1703172232;
-    s=strato-dkim-0002; d=strato.com;
-    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
-    From:Subject:Sender;
-    bh=IlLQWtO5L6QKmPmiq2x6VX4CBIJlI6GOZ++GNJegOGk=;
-    b=pxpT2VbelrAIZDkXj9IZhQXR9SfF3KLzBbr6KVGO6OCrcKuByoIek76R7a9HocWSRY
-    4jU7M2owiVka7Db3TV1j8YGA55CIydyCi9g3ZbIiaivJmAcmG6uzXdy0ea6KAA124um+
-    aeJBNpe8KGJ0JilGgs332uGi6bFOQn2CYD6KI0k162NCKyICkskKKfvglcqduswjI+U+
-    7qRI36HuUoiUspzYHqdZKuPz2IcXNhQgT1vUWkCabCnE1uKkKAhbRDblwQsR9cdzabjh
-    PO5uZOLxdRWtK9qqRquggg8UKmwjCFJY+3iAH9dPSQ0lygp9gVfQrGTTBhj6Iv5qP5iM
-    7szg==
-ARC-Authentication-Results: i=1; strato.com;
-    arc=none;
-    dkim=none
-X-RZG-CLASS-ID: mo02
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1703172232;
-    s=strato-dkim-0002; d=goldelico.com;
-    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
-    From:Subject:Sender;
-    bh=IlLQWtO5L6QKmPmiq2x6VX4CBIJlI6GOZ++GNJegOGk=;
-    b=UA7Q0CO0/L9rhAgeD5fPYyWE1i6CylAFokMLXBp/QAHRWSlzucUgdV0Js+Kj9kHU1j
-    KEHc7Vow77+V4YZQAqaNDN1oaMXGS4Bcu8WaSQK98VHeR/pNELscmY1tQG5jW0DOEXdU
-    9cbFsDGfhg/JHMr/5C7I6lBjLK8Lh/gdZXAWPbukVgsd9c56f7CXW4Z7DIKORqELfXkC
-    83x+KzwuBM+bC6Y9rMhrXSYqaVJDqLrro0PCf1gUlRy48qJvDH4YXy0lg+KPdyIJdDCU
-    aq2LH9NLj26sB6QJrYzXuN89rrGBsL9D2gWkDXqyjN5lJt2d61gK9eJ15LpdGZXNk6yn
-    toBA==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1703172232;
-    s=strato-dkim-0003; d=goldelico.com;
-    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
-    From:Subject:Sender;
-    bh=IlLQWtO5L6QKmPmiq2x6VX4CBIJlI6GOZ++GNJegOGk=;
-    b=SZJRLTbwvTIaw2c1/vOtdG1/jR1e72SIo6ZjDY5ScOp5xW1MMGbn1zATNGB9p9WqS8
-    oNccSextnPwLlTzlxTAw==
-X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMgPgp8VKxflSZ1P34KBp5hRw/qviAxtjc3yiuvr5qbMskH1rzDt9Ntflha3riRgdpClD1qY="
-Received: from smtpclient.apple
-    by smtp.strato.de (RZmta 49.10.0 AUTH)
-    with ESMTPSA id wfeb35zBLFNoFFz
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
-	(Client did not present a certificate);
-    Thu, 21 Dec 2023 16:23:50 +0100 (CET)
-Content-Type: text/plain;
-	charset=us-ascii
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A395C55E66;
+	Thu, 21 Dec 2023 15:25:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1703172346; x=1734708346;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=xJ0AVvheUL6wZxgkx3XQPaIwMWIH/srjmc/pD4WUabA=;
+  b=ZBnVtgt9tGGttSOUjb4hfFd12qERjlsnmo2ekGgq/8Fppm5nNlx+1led
+   FICbPdYGfYo0lCyfdKiGLrtaotx0y3vMEKAKrX811efN81u30iuyvgnRm
+   u9wKksjn2NZfqFmMfYuIrLeqdLXB8Q/5e2ok6G5vTGLoyg3ILHI3jIBE9
+   JPa8aUODKkmMJdN9fjv4Tgd+1WvSKaBXo9yI8NuTqUwRw9N5jGhdVk+uK
+   fsNGuYRS+AUWCWCUUs1nIxwegc9n/xMJH7QGOsnwQh2VZfHhZz4OlmYMz
+   Sq79vNB26WqdKOAYuo9pwUFiz3Nimk4BqDUMHRCRZQPh0iSTn3sY97sBm
+   g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10931"; a="380975911"
+X-IronPort-AV: E=Sophos;i="6.04,293,1695711600"; 
+   d="scan'208";a="380975911"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Dec 2023 07:25:46 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10931"; a="949955002"
+X-IronPort-AV: E=Sophos;i="6.04,293,1695711600"; 
+   d="scan'208";a="949955002"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by orsmga005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Dec 2023 07:25:42 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.97)
+	(envelope-from <andriy.shevchenko@intel.com>)
+	id 1rGKvb-00000007skq-2VII;
+	Thu, 21 Dec 2023 17:25:39 +0200
+Date: Thu, 21 Dec 2023 17:25:39 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Mark Hasemeyer <markhas@chromium.org>
+Cc: LKML <linux-kernel@vger.kernel.org>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Tzung-Bi Shih <tzungbi@kernel.org>,
+	Raul Rangel <rrangel@chromium.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh@kernel.org>, Sudeep Holla <sudeep.holla@arm.com>,
+	Frank Rowand <frowand.list@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 17/22] of: irq: add wake capable bit to
+ of_irq_resource()
+Message-ID: <ZYRY8ypZ1cYNRMcP@smile.fi.intel.com>
+References: <20231220235459.2965548-1-markhas@chromium.org>
+ <20231220165423.v2.17.I29b26a7f3b80fac0a618707446a10b6cc974fdaf@changeid>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3774.300.61.1.2\))
-Subject: Re: [PATCH RFC 01/10] dt-bindings: gpu: Add PowerVR Series5 SGX GPUs
-From: "H. Nikolaus Schaller" <hns@goldelico.com>
-In-Reply-To: <nzqeqwof44e3nxjz6lsxmxcfh235unbu343br45esxh6vinskp@xvjydpxhvsuk>
-Date: Thu, 21 Dec 2023 16:23:39 +0100
-Cc: Andrew Davis <afd@ti.com>,
- Frank Binns <frank.binns@imgtec.com>,
- Donald Robson <donald.robson@imgtec.com>,
- Matt Coster <matt.coster@imgtec.com>,
- Adam Ford <aford173@gmail.com>,
- Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Chen-Yu Tsai <wens@csie.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>,
- =?utf-8?Q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>,
- Tony Lindgren <tony@atomide.com>,
- Nishanth Menon <nm@ti.com>,
- Vignesh Raghavendra <vigneshr@ti.com>,
- Tero Kristo <kristo@kernel.org>,
- Paul Cercueil <paul@crapouillou.net>,
- dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev,
- linux-omap@vger.kernel.org,
- linux-mips@vger.kernel.org
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <F2D7693E-7769-463A-97A8-BA952EB5320B@goldelico.com>
-References: <23livt5mcc64bb6lkeec2uxp5cyn4wfekwaj6wzrjnrkndvwgj@6tveqglqpr4v>
- <B3A1B8A7-0363-4ECB-AFBF-576FECA569FA@goldelico.com>
- <vawv2mwhonuyvgmp7uox4rfgdcjwg5fa7hmbcfgl3wiase6e4p@tyavpclppfvu>
- <6BC60156-89E2-4734-BD00-B49A9A6C1D7A@goldelico.com>
- <6gpehpoz54f5lxhmvirqbfwmq7dpgiroy27cljpvu66wtn7aqy@lgrh7wysyxnp>
- <D8AB6CC4-DCA5-40DD-A311-94A16FF59254@goldelico.com>
- <oobcl2kfsuph27er7rflfqvt3lu6athufomxv5chf3uctx4emh@x6rzjtlskhbf>
- <F58855EC-D87D-4747-A363-0E7AA5DB1AEC@goldelico.com>
- <22cny5aumc5wafsrjd3j55zcjbjf2viip64kfbjiqis2grtd6t@wg5dxeuzil6l>
- <3E03E913-48E1-49EC-A6C9-EAC1612E65E7@goldelico.com>
- <nzqeqwof44e3nxjz6lsxmxcfh235unbu343br45esxh6vinskp@xvjydpxhvsuk>
-To: Maxime Ripard <mripard@kernel.org>
-X-Mailer: Apple Mail (2.3774.300.61.1.2)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231220165423.v2.17.I29b26a7f3b80fac0a618707446a10b6cc974fdaf@changeid>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
+On Wed, Dec 20, 2023 at 04:54:31PM -0700, Mark Hasemeyer wrote:
+> Add wake capability information to the IRQ resource. Wake capability is
+> assumed based on conventions provided in the devicetree wakeup-source
+> binding documentation. An interrupt is considered wake capable if the
+> following are true:
+> 1. A wakeup-source property exits in the same device node as the
+>    interrupt.
+> 2. The IRQ is marked as dedicated by setting its interrupt-name to
+>    "wakeup".
+> 
+> The wakeup-source documentation states that dedicated interrupts can use
+> device specific interrupt names and device drivers are still welcome to
+> use their own naming schemes. This API is provided as a helper if one is
+> willing to conform to the above conventions.
+> 
+> The ACPI subsystems already provides similar APIs that allow one to
+> query the wake capability of an IRQ. This brings closer feature parity
+> to the devicetree.
 
-> Am 21.12.2023 um 09:58 schrieb Maxime Ripard <mripard@kernel.org>:
->=20
-> Cool, so what you're saying is that your plan is to support those GPUs
-> upstream in the imagination driver?
+...
 
-Yes, I would like to see PowerVR Series 5 SGX supported upstream since =
-there
-are still so many devices in the wild which could use it. The most =
-advanced
-being the Pyra handheld gaming computer but there are omap4 based phones
-or other omap3/amm335x based devices.
+>  		r->start = r->end = irq;
+>  		r->flags = IORESOURCE_IRQ | irqd_get_trigger_type(irq_get_irq_data(irq));
+> +		if (__of_irq_wake_capable(dev, index))
+> +			r->flags |= IORESOURCE_IRQ_WAKECAPABLE;
+>  		r->name = name ? name : of_node_full_name(dev);
 
-And the only reason the OpenPVRSGX group was founded (BTW not by me, I =
-am just
-maintaining the code and running a mailing list because it was rejected =
-to host
-it on vger.kernel.org), was to make that happen.
+		irq_flags = irqd_get_trigger_type(irq_get_irq_data(irq));
+		if (__of_irq_wake_capable(dev, index))
+			irq_flags |= IORESOURCE_IRQ_WAKECAPABLE;
 
-=46rom the GitHub description:
-	This is about shaping existing GPL Linux kernel drivers for the =
-PVR/SGX5
-	architecture so that they can become accepted into =
-drivers/staging
+		*r = DEFINE_RES_NAMED(irq, 1, name ?: of_node_full_name(dev), irq_flags);
 
-But nobody can currently tell if it can be integrated with the recently =
-upstreamed
-Rogue driver (I wouldn't call that *the* imagination driver) or if it =
-better stays
-a separate driver because the first would need touching closed =
-user-space code
-and GPU firmware.
+?
 
-And nobody knows who is capable and willing to work on it. It depends on =
-access to
-(confidential) documentation and available time to make such a big task =
-a rewarding
-project. And discussions like this one are not at all encouraging to =
-even try.
+...
 
->> Now, IMHO all the pros and cons are on the table and the question is
->> who makes a decision how to go.
->=20
-> You haven't listed any pro so far, you're claiming that the one I =
-raise
-> are irrelevant.
+Or even refactor ioport.h (in a separate patch) as we seems already have
+two users (and might be more in the existing code):
 
-I have listed some "pros" for "single file" but you apparently don't see
-them as such. I can't change that. The main argument is that a single =
-file is
-simpler than two files duplicating parts, which are apparently the same
-(integration of PVR architectures into SoC doesn't differ very much: =
-shared
-register block, DMA memory, clocks, resets etc.).
-Yours is that two files duplicating such common things is "more =
-convenient".
-I just wonder for whom.
+#define DEFINE_RES_IRQ_NAMED_FLAGS(_irq, _name, _flags)			\
+	DEFINE_RES_NAMED((_irq), 1, (_name), (_flags) | IORESOURCE_IRQ)
+#define DEFINE_RES_IRQ_NAMED(_irq, _name)				\
+	DEFINE_RES_IRQ_NAMED_FLAGS((_irq), (_name), 0)
+#define DEFINE_RES_IRQ(_irq)						\
+	DEFINE_RES_IRQ_NAMED((_irq), NULL)
 
-But it seems as if the IMHO second best solution has already been =
-chosen.
-So let it be.
+(Note, I will Ack such a patch once it appears.)
 
->> Then the currently-out-of-tree driver for the sgx5 can be reworked in
->> less than half an hour without loosing functionality.
->=20
-> Again, you're making it harder than it needs to be for no particular
-> reason other than the potential file name clash that can be addressed.
-
-What I want to avoid is a situation that upstream activities do not take =
-the
-existing and working out-of-tree SGX driver into account and make =
-porting
-(not even speaking of upstreaming) that driver more difficult than =
-necessary
-and force device tree files to contain redundant information nobody will =
-need
-and use. You can of course ignore experience and suggestions of people
-who have worked on an SGX driver for a while. But that is the reason why =
-I
-participate in this discussion and raise my voice.
-
-Now, I am looking forward to a v2 of this patch.
-
-BR,
-Nikolaus
+-- 
+With Best Regards,
+Andy Shevchenko
 
 
 
