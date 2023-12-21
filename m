@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-27651-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27653-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9880F81B261
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 10:31:54 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D330C81B28D
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 10:37:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BCA0C1C24980
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 09:31:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8B51A2883D2
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 09:37:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6514D21376;
-	Thu, 21 Dec 2023 09:28:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 346A42CCCA;
+	Thu, 21 Dec 2023 09:32:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GpC3T1ln"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="j7dB0s22"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
+Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89585219F8
-	for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 09:28:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C82B44C8F
+	for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 09:32:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-552ff8d681aso3047419a12.1
-        for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 01:28:56 -0800 (PST)
+Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-5537dd673e5so464607a12.0
+        for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 01:32:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1703150935; x=1703755735; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1703151159; x=1703755959; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=A/j28HQDSe+//7LuwIWL47ztJLL4UHEPLfDCuDFQ2rg=;
-        b=GpC3T1lnCLjovvJ3LNYG16682RkoVVLP02qNhni0tecoNG3lHDnTDQIHXr1HOAw2Lc
-         2Z8o4G6/jeGNKkjxy4dwSAUgI2pn2lNO8nTZNjq6KfQCGMAQ3B2ci6KBiEi2lczsxKvR
-         +2MCdFMNkjDreE5PRVmGPeJxMsnIWzpACSBFI5DIPav7rabcy+MKu0Uzs93k8/pWdhlJ
-         gL5sNVgTkUafpXSCCdYnOKejzQe+tCwe70BTjxX9NJPFWK98PpiI7Pdh77eg+A8N4Vh0
-         Rc2nJLhTz2T8nYJc0PhNZ5+g2ICw2kae4HCSCsouplwLUSH9cIutj+a8PzHSgri2dkS7
-         qnVA==
+        bh=uaYa2w2pSOVe6lb4BNDz1rydETHk7KIaZDOTHQOcie0=;
+        b=j7dB0s22fZ1hwL28zXg34uNVqbZPFvWQxreCP5W3UYoq9l3ongd6jen46SmErZI/0c
+         21chT62qsJEXO08ESvhy1J3inN/Iz3Cy9T6SL6mqrhgtLf9p5Z8DuxXI9YXi7DcKtIco
+         3pOCuCzEsAw84X1h2my4Ti8Kzlcgy7XTXq/uDGugUBk9p/7KhjvZBZWFur7jBI6AOOpV
+         OHhbFoqGo/iXhcCalSwD8n7Sso+EG0FKdkuzjRoDlbV3IWUSte59jycnrjz0ScVx7EGY
+         IW3Pspx9UNbpeWl2ubQtPDSi5DzZYmHNoOoR+IVwuM6mlvASaz9/AgXS04T7cYTMFw/R
+         WVOQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703150935; x=1703755735;
+        d=1e100.net; s=20230601; t=1703151159; x=1703755959;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=A/j28HQDSe+//7LuwIWL47ztJLL4UHEPLfDCuDFQ2rg=;
-        b=XgSkC5vEW5NbphaNGmYMAl0IUYuoPmXxNp3HgJ7t7pqc/cE/z8nA7oqFrJxllIKyF7
-         bdmBuPhlUx2r1SOZnBmzw4j5AIDbOYL1qG6tUg8ef2ns5FqJWUsF3oyVEN7Qa9/a+8li
-         MVLFJMK6ldCPotKWBvuTvY/qhdpPpbGequHwFkE1xqr1N40saP9Qj1ZEoZzJv9qMqB26
-         c+nZNKPKm4U7vF8tp0MHK4R/GWPMLlfG6Mi+ibhAcR80NlZk6tmypfAQpj57PHJe1XYX
-         RuFYwbP0qumReTWzLHtk+aP6JnNSAGRYPePq6dvwIT7F9KxGSY0s0iGBQ/+3isWPkW3u
-         DFgw==
-X-Gm-Message-State: AOJu0Ywu/hkoaHSEGI1qqb9yxaBamOiRFJWo9d35Vr4X622x1GIFhHxP
-	rRW6M7/pbXM/rDW1ExVGxo/O4Q==
-X-Google-Smtp-Source: AGHT+IGeox3eubroGOB/okZOFCcSuvOS3/zT0hYyxtmjfYLb+a1GAQT7SRwdptMgAOe5z/Zt/eH4TQ==
-X-Received: by 2002:a17:906:6a14:b0:a23:62ed:105b with SMTP id qw20-20020a1709066a1400b00a2362ed105bmr545323ejc.69.1703150934819;
-        Thu, 21 Dec 2023 01:28:54 -0800 (PST)
+        bh=uaYa2w2pSOVe6lb4BNDz1rydETHk7KIaZDOTHQOcie0=;
+        b=BVBhNLSexwVuQrb8BwB2tGNHRpVUQob3+T+A2oxz+GsYDU16oPjrC2Qh1u2cK/nuL1
+         3WmgnvjAOBtf1nKQuOF9nuTV2fbA1CBlY5cX85RgG+Jh84/D6RM0etz45BgKISU3MVwO
+         TdtjHEKOpBUhQpazIzEMfmWVBrYxAt00JnwUQ8vsX1WrjDZaOxr6s3OkHFV85ctxy6ti
+         sprowVHfDDfXBYyyP6MYFjD1KKZdhTi18Fj3QhRiFo1mZc59B+9N0D7wpi8Hb41sL0X5
+         BnYiP4DIbHrRbikM+uXWdbpSuXODBppVYxoMywDSaOP3/RVYN2D4uxv3ByP+rQymFGG/
+         47HQ==
+X-Gm-Message-State: AOJu0YxPEX2FUAFH6Q7Qo5jHnoZhs+tUIKJSBKcFZwvb9x6sirvsNQgI
+	7Z/O5lun+oaSU9GaCm+/ARA3Kw==
+X-Google-Smtp-Source: AGHT+IHxVTZR9gDftaNBr4LYicUXdNjOloyvm2jffpZAO5LXGrzKGyb+WnUK75cm7S5fbTuvK1v+wQ==
+X-Received: by 2002:a50:c089:0:b0:553:452d:5070 with SMTP id k9-20020a50c089000000b00553452d5070mr3823131edf.38.1703151159672;
+        Thu, 21 Dec 2023 01:32:39 -0800 (PST)
 Received: from [192.168.0.22] ([78.10.206.178])
-        by smtp.gmail.com with ESMTPSA id el1-20020a170907284100b00a1c96e987c4sm740897ejc.101.2023.12.21.01.28.53
+        by smtp.gmail.com with ESMTPSA id i21-20020a0564020f1500b0055344b92fb6sm915795eda.75.2023.12.21.01.32.38
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 Dec 2023 01:28:54 -0800 (PST)
-Message-ID: <250fead9-868b-4063-a054-4cb966dc4ba3@linaro.org>
-Date: Thu, 21 Dec 2023 10:28:52 +0100
+        Thu, 21 Dec 2023 01:32:39 -0800 (PST)
+Message-ID: <5f64cd0d-3a64-41bf-ac12-3a73f7cc2dbf@linaro.org>
+Date: Thu, 21 Dec 2023 10:32:37 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,26 +66,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v10 02/16] dt-bindings: media: mediatek: mdp3: merge the
- indentical RDMA under display
+Subject: Re: [RFC PATCH net-next 1/8] dt-bindings: net: Add support for AM65x
+ SR1.0 in ICSSG
 Content-Language: en-US
-To: Moudy Ho <moudy.ho@mediatek.com>, Chun-Kuang Hu
- <chunkuang.hu@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Hans Verkuil <hverkuil-cisco@xs4all.nl>
-Cc: dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-media@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20231220100853.20616-1-moudy.ho@mediatek.com>
- <20231220100853.20616-3-moudy.ho@mediatek.com>
+To: Diogo Ivo <diogo.ivo@siemens.com>, danishanwar@ti.com, rogerq@kernel.org,
+ davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+ pabeni@redhat.com, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org
+Cc: Jan Kiszka <jan.kiszka@siemens.com>
+References: <20231219174548.3481-1-diogo.ivo@siemens.com>
+ <20231219174548.3481-2-diogo.ivo@siemens.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -131,182 +122,118 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231220100853.20616-3-moudy.ho@mediatek.com>
+In-Reply-To: <20231219174548.3481-2-diogo.ivo@siemens.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 20/12/2023 11:08, Moudy Ho wrote:
-> To simplify maintenance and avoid branches, the identical component
-> should be merged and placed in the path belonging to the MDP
-> (from display/* to media/*).
-
-Combining bindings into one bigger meta-binding makes it usually more
-difficult to maintain and review.
-
+On 19/12/2023 18:45, Diogo Ivo wrote:
+> Silicon Revision 1.0 of the AM65x came with a slightly different ICSSG
+> support: Only 2 PRUs per slice are available and instead 2 additional
+> DMA channels are used for management purposes. We have no restrictions
+> on specified PRUs, but the DMA channels need to be adjusted.
 > 
-> In addition, currently only MDP utilizes RDMA through CMDQ, and the
-> necessary properties for "mediatek,gce-events", and "mboxes" have been
-> set up for this purpose.
-> Within DISP, it directly receives component interrupt signals.
-> 
-> Signed-off-by: Moudy Ho <moudy.ho@mediatek.com>
+> Signed-off-by: Jan Kiszka <jan.kiszka@siemens.com>
+> Signed-off-by: Diogo Ivo <diogo.ivo@siemens.com>
 > ---
->  .../display/mediatek/mediatek,mdp-rdma.yaml   | 92 -------------------
->  .../bindings/media/mediatek,mdp3-rdma.yaml    | 43 ++++++++-
->  2 files changed, 40 insertions(+), 95 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,mdp-rdma.yaml
+>  .../bindings/net/ti,icssg-prueth.yaml         | 62 +++++++++++++------
+>  1 file changed, 44 insertions(+), 18 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,mdp-rdma.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,mdp-rdma.yaml
-> deleted file mode 100644
-> index 7570a0684967..000000000000
-> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,mdp-rdma.yaml
-> +++ /dev/null
-> @@ -1,92 +0,0 @@
-> -# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> -%YAML 1.2
-> ----
-> -$id: http://devicetree.org/schemas/display/mediatek/mediatek,mdp-rdma.yaml#
-> -$schema: http://devicetree.org/meta-schemas/core.yaml#
-> -
-> -title: MediaTek MDP RDMA
-> -
-> -maintainers:
-> -  - Chun-Kuang Hu <chunkuang.hu@kernel.org>
-> -  - Philipp Zabel <p.zabel@pengutronix.de>
-> -
-> -description:
-> -  The MediaTek MDP RDMA stands for Read Direct Memory Access.
-> -  It provides real time data to the back-end panel driver, such as DSI,
-> -  DPI and DP_INTF.
-> -  It contains one line buffer to store the sufficient pixel data.
-> -  RDMA device node must be siblings to the central MMSYS_CONFIG node.
-> -  For a description of the MMSYS_CONFIG binding, see
-> -  Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml for details.
-> -
-> -properties:
-> -  compatible:
-> -    oneOf:
-> -      - const: mediatek,mt8195-vdo1-rdma
-> -      - items:
-> -          - const: mediatek,mt8188-vdo1-rdma
-> -          - const: mediatek,mt8195-vdo1-rdma
-> -
-> -  reg:
-> -    maxItems: 1
-> -
-> -  interrupts:
-> -    maxItems: 1
-> -
-> -  power-domains:
-> -    maxItems: 1
-> -
-> -  clocks:
-> -    items:
-> -      - description: RDMA Clock
-> -
-> -  iommus:
-> -    maxItems: 1
-> -
-> -  mediatek,gce-client-reg:
-> -    description:
-> -      The register of display function block to be set by gce. There are 4 arguments,
-> -      such as gce node, subsys id, offset and register size. The subsys id that is
-> -      mapping to the register of display function blocks is defined in the gce header
-> -      include/dt-bindings/gce/<chip>-gce.h of each chips.
-> -    $ref: /schemas/types.yaml#/definitions/phandle-array
-> -    items:
-> -      items:
-> -        - description: phandle of GCE
-> -        - description: GCE subsys id
-> -        - description: register offset
-> -        - description: register size
-> -    maxItems: 1
-> -
-> -required:
-> -  - compatible
-> -  - reg
-> -  - power-domains
-> -  - clocks
-> -  - iommus
-> -  - mediatek,gce-client-reg
-> -
-> -additionalProperties: false
-> -
-> -examples:
-> -  - |
-> -    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> -    #include <dt-bindings/clock/mt8195-clk.h>
-> -    #include <dt-bindings/power/mt8195-power.h>
-> -    #include <dt-bindings/gce/mt8195-gce.h>
-> -    #include <dt-bindings/memory/mt8195-memory-port.h>
-> -
-> -    soc {
-> -        #address-cells = <2>;
-> -        #size-cells = <2>;
-> -
-> -        rdma@1c104000 {
-> -            compatible = "mediatek,mt8195-vdo1-rdma";
-> -            reg = <0 0x1c104000 0 0x1000>;
-> -            interrupts = <GIC_SPI 495 IRQ_TYPE_LEVEL_HIGH 0>;
-> -            clocks = <&vdosys1 CLK_VDO1_MDP_RDMA0>;
-> -            power-domains = <&spm MT8195_POWER_DOMAIN_VDOSYS1>;
-> -            iommus = <&iommu_vdo M4U_PORT_L2_MDP_RDMA0>;
-> -            mediatek,gce-client-reg = <&gce0 SUBSYS_1c10XXXX 0x4000 0x1000>;
-> -        };
-> -    };
-> diff --git a/Documentation/devicetree/bindings/media/mediatek,mdp3-rdma.yaml b/Documentation/devicetree/bindings/media/mediatek,mdp3-rdma.yaml
-> index e1ffe7eb2cdf..e9955639ce19 100644
-> --- a/Documentation/devicetree/bindings/media/mediatek,mdp3-rdma.yaml
-> +++ b/Documentation/devicetree/bindings/media/mediatek,mdp3-rdma.yaml
-> @@ -20,8 +20,12 @@ description: |
->  
+> diff --git a/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml b/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml
+> index 229c8f32019f..fbe51731854a 100644
+> --- a/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml
+> +++ b/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml
+> @@ -19,30 +19,15 @@ allOf:
 >  properties:
 >    compatible:
+>      enum:
+> -      - ti,am642-icssg-prueth  # for AM64x SoC family
+> -      - ti,am654-icssg-prueth  # for AM65x SoC family
+> +      - ti,am642-icssg-prueth      # for AM64x SoC family
+> +      - ti,am654-icssg-prueth      # for AM65x SoC family, SR2.x
+> +      - ti,am654-icssg-prueth-sr1  # for AM65x SoC family, SR1.0
+
+sr1 is revision of am654, so it should be added to SoC name, not at the
+end of binding.
+
+>  
+>    sram:
+>      $ref: /schemas/types.yaml#/definitions/phandle
+>      description:
+>        phandle to MSMC SRAM node
+>  
+> -  dmas:
+> -    maxItems: 10
+
+Why are you removing top-level properties? They must stay here in widest
+constrains.
+
+> -
+> -  dma-names:
 > -    items:
-> +    oneOf:
->        - const: mediatek,mt8183-mdp3-rdma
-> +      - const: mediatek,mt8195-vdo1-rdma
-> +      - items:
-> +          - const: mediatek,mt8188-vdo1-rdma
-> +          - const: mediatek,mt8195-vdo1-rdma
->  
->    reg:
->      maxItems: 1
-> @@ -60,6 +64,7 @@ properties:
->      items:
->        - description: RDMA clock
->        - description: RSZ clock
-> +    minItems: 1
->  
->    iommus:
->      maxItems: 1
-> @@ -68,6 +73,10 @@ properties:
->      items:
->        - description: used for 1st data pipe from RDMA
->        - description: used for 2nd data pipe from RDMA
-> +    minItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
+> -      - const: tx0-0
+> -      - const: tx0-1
+> -      - const: tx0-2
+> -      - const: tx0-3
+> -      - const: tx1-0
+> -      - const: tx1-1
+> -      - const: tx1-2
+> -      - const: tx1-3
+> -      - const: rx0
+> -      - const: rx1
 
-Why existing devices now support interrupts?
+Grow it and use minItems.
 
+> -
+>    ti,mii-g-rt:
+>      $ref: /schemas/types.yaml#/definitions/phandle
+>      description:
+> @@ -122,6 +107,47 @@ properties:
+>        - required:
+>            - port@1
 >  
->    '#dma-cells':
->      const: 1
-> @@ -76,13 +85,41 @@ required:
->    - compatible
->    - reg
->    - mediatek,gce-client-reg
-> -  - mediatek,gce-events
->    - power-domains
->    - clocks
->    - iommus
-> -  - mboxes
->    - '#dma-cells'
 
-I see little value in this commit, considering that next month you will
-want to split it because it will grow unmaintainable.
+Missing allOf and then it goes after required block.
+
+> +if:
+> +  properties:
+> +    compatible:
+> +      contains:
+> +        enum:
+> +          - ti,am654-icssg-prueth-sr1
+> +then:
+> +  properties:
+> +    dmas:
+
+minItems
+
+> +      maxItems: 12
+> +    dma-names:
+> +      items:
+
+minItems instead
+
+> +        - const: tx0-0
+> +        - const: tx0-1
+> +        - const: tx0-2
+> +        - const: tx0-3
+> +        - const: tx1-0
+> +        - const: tx1-1
+> +        - const: tx1-2
+> +        - const: tx1-3
+> +        - const: rx0
+> +        - const: rx1
+> +        - const: rxmgm0
+> +        - const: rxmgm1
+> +else:
+> +  properties:
+> +    dmas:
+> +      maxItems: 10
+> +    dma-names:
+> +      items:
+
+maxItems instead
+
+
 
 Best regards,
 Krzysztof
