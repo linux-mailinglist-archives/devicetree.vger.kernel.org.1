@@ -1,100 +1,138 @@
-Return-Path: <devicetree+bounces-27669-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27670-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 970BF81B35D
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 11:16:33 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A179681B378
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 11:25:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CA3071C2503D
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 10:16:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 420801F24D1C
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 10:25:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8980B4EB4F;
-	Thu, 21 Dec 2023 10:16:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3A1E4EB54;
+	Thu, 21 Dec 2023 10:25:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="lPXKAhSC"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="sxk9lvqH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23B3951C26
-	for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 10:16:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 00459E000D;
-	Thu, 21 Dec 2023 10:16:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1703153772;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=oV7RU7sxJyQudrpIogN+qOiclZR5xvUS2xA9S30Qmmc=;
-	b=lPXKAhSCpcE2HfRc4KNqd2KLKbAWSA5oQMcBtsg7JducPmYhCcOZRv2j6l4m3d9NQQArEb
-	Bug1/sB4DdItVEkTqvSqapJ2TYgIwNWGx2EBrVgFTI59lzV1cSmOmxFY5WVD3mU09ugqUW
-	byKdirWstZF3uBJy3iO4hSuBrRByC+rlAfqJFrJZCCvGBbcN4OqdCodjY1fgKlObMHlQXr
-	lbcU6B8x7V5NdBKt0Pt2NVrVa1LUT+kWovPNvkdIzMVTrFKscKR8ZekGmJ8tMTtbzfpncR
-	J0hqMMoByTrk2syUW71GhxXgg7hvarY6CdMsjuLiVQ1XBHLp822k5cG1X0niUw==
-Date: Thu, 21 Dec 2023 11:16:03 +0100
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: =?UTF-8?B?U8OpYmFzdGllbg==?= Szymanski
- <sebastien.szymanski@armadeus.com>
-Cc: Stefan Wahren <wahrenst@gmx.net>, Richard Weinberger <richard@nod.at>,
- Vignesh Raghavendra <vigneshr@ti.com>, Han Xu <han.xu@nxp.com>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Marek Vasut <marex@denx.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>, linux-imx@nxp.com,
- linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH RFT 2/2] ARM: dts: mxs: imx28: Fix NAND hierarchy
- description
-Message-ID: <20231221111603.25c28a05@xps-13>
-In-Reply-To: <bf76aa11-7005-4bf8-836b-fce616afcdf4@armadeus.com>
-References: <20231218130656.9020-1-wahrenst@gmx.net>
-	<20231218130656.9020-2-wahrenst@gmx.net>
-	<bf76aa11-7005-4bf8-836b-fce616afcdf4@armadeus.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 395C351C26
+	for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 10:25:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-50c0f13ea11so783287e87.3
+        for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 02:25:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1703154307; x=1703759107; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=pYNLBDFWO3LrdFkIMvJ8nxiptH8Derg0mKqbJmtxv8s=;
+        b=sxk9lvqHDgX4jMJVz+bxjFQx+PLVIYfq5ZvUxmcLKzJQGJ8qvLEoCBBw96rNIhg3c7
+         UPrs2pBcDhGP4hWXmjKIm2SSR0BlkBduUI+Q+8msA2Ze5Fj6p96AlZAmCoCugGjBqRSP
+         fwWdA4Qb+AlQq45tpLa6NRgj+OtjSUmUH6Q0hnizLV+AaCjsUQBlfiGgxghBBoPvkB/r
+         Nvzg7xpSQh+1KJHMpBDYfTcAjDYo2Sv8m0+JTJVdsCdaen4Bo/suxbKL7Cudjzt2P0y/
+         OS5WYWOZRfCP000iuQCUzhtznFVtQO+IlMITqsLe/V1bHaUBTdQmQUhGlW52mAOAJH+D
+         nVww==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1703154307; x=1703759107;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=pYNLBDFWO3LrdFkIMvJ8nxiptH8Derg0mKqbJmtxv8s=;
+        b=tuaIjd6rfEZNGhtO//X/9+LufbPi+JpHjHvG3OscWQVxv3cu7xX+O2nGe6FraPCgg0
+         qEuCOHyr576cSWZKhIPWSaYeEcyBRgCI0+w+Fiv/2ABPwxZgrL1jl3V9j8+YqILIvKCp
+         gpLzIVZn6luNKMoEJUwqnoecZj0egA+VfJNaYBNV8+Rt3jC0ZLgO8VhHQ0W7gOPp6Cx0
+         CGYxeKZRS1l5lsdplTkPLDuJldObNdRdCgetLAYfdht6R1d2mkN3/TCwKOo+x2jq3Mwy
+         EytkjOIHECr1EsyFGQHz80NS0UBXfBUPqQbmbZmQefC8JCIpTi3/JjEww0vanF1z2CTB
+         o68g==
+X-Gm-Message-State: AOJu0YyTVBqmcvRXrSKlqlJkG32REUPii9TrjeL7Rv9KiZUIUoJ2LGJe
+	2XsBsClgQeFMQxkTHpV2zMp7gg==
+X-Google-Smtp-Source: AGHT+IH6pMrLYwHqjlp1850CLT8V4kczgmX00VnjUzgg0aKA4yDbM+awaOvHnZsumP3WdOAsyEN9Dg==
+X-Received: by 2002:a05:6512:238e:b0:50e:4c33:1266 with SMTP id c14-20020a056512238e00b0050e4c331266mr2146675lfv.72.1703154307282;
+        Thu, 21 Dec 2023 02:25:07 -0800 (PST)
+Received: from umbar.unikie.fi ([192.130.178.91])
+        by smtp.gmail.com with ESMTPSA id m26-20020a056512359a00b0050aaae62dbdsm231671lfr.62.2023.12.21.02.25.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 21 Dec 2023 02:25:06 -0800 (PST)
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Clark <robdclark@gmail.com>,
+	Sean Paul <sean@poorly.run>,
+	Abhinav Kumar <quic_abhinavk@quicinc.com>,
+	Marijn Suijten <marijn.suijten@somainline.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>
+Cc: Stephen Boyd <swboyd@chromium.org>,
+	David Airlie <airlied@gmail.com>,
+	Daniel Vetter <daniel@ffwll.ch>,
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	dri-devel@lists.freedesktop.org,
+	freedreno@lists.freedesktop.org,
+	Krishna Manikandan <quic_mkrishn@quicinc.com>,
+	Jonathan Marek <jonathan@marek.ca>,
+	linux-phy@lists.infradead.org
+Subject: [RFC PATCH 0/2] dt-bindings: display: msm: correct schema filenames
+Date: Thu, 21 Dec 2023 12:25:04 +0200
+Message-Id: <20231221102506.18320-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-Sasl: miquel.raynal@bootlin.com
+Content-Transfer-Encoding: 8bit
 
-Hello,
+During the email discussion Aiqun Yu (Maria) pointed out that the file
+names for some of the MSM display schema files might not be obvious.
+Indeed they do not fully follow the established practice of matching the
+file name and one of compat strings.
 
-sebastien.szymanski@armadeus.com wrote on Thu, 21 Dec 2023 10:56:09
-+0100:
+Move DSI PHY schemas to the PHY subdir (renaming them meanwhile) and
+rename remaining schema files.
 
-> Hello Stefan,
->=20
-> On 12/18/23 14:06, Stefan Wahren wrote:
-> > The size-cells for GPMI are wrong in imx28.dtsi, which causes the
-> > following warning:
-> >=20
-> >      nand-controller@8000c000: #size-cells:0:0: 0 was expected
-> >=20
-> > The reason for this is the definition of the partitions directly
-> > below the nand controller node. According to nand-controller.yaml
-> > the NAND chip must be defined as a child of the controller. Even
-> > the fixed partitions must be kept in a partitions container.
+Note, I have intentinally left dpu-common.yaml and mdss-common.yaml
+untouched, they describe common properties for a family of devices.
 
-Bindings evolve over time, we sometimes deprecate them when they are
-problematic but:
-- the old representations are still accepted (but marked legacy)
-- if you want to support the new representation you probably need to
-  update the controller driver as well (to support both).
+Also I have left dp-controller.yaml intact. I could not come up with a
+good enough file name. Suggestions for this file are appreciated.
 
-In this case I would expect a deprecation notice rather than a pure
-error.
+Dmitry Baryshkov (2):
+  dt-bindings: display: msm: move DSI PHY schema to bindings/phy
+  dt-bindings: display: msm: mass-rename files
 
-Thanks,
-Miqu=C3=A8l
+ .../bindings/display/msm/{gmu.yaml => qcom,adreno-gmu.yaml}   | 2 +-
+ .../bindings/display/msm/{gpu.yaml => qcom,adreno.yaml}       | 2 +-
+ .../bindings/display/msm/{hdmi.yaml => qcom,hdmi-tx.yaml}     | 2 +-
+ .../bindings/display/msm/{mdp4.yaml => qcom,mdp4.yaml}        | 2 +-
+ .../msm/{dsi-controller-main.yaml => qcom,mdss-dsi-ctrl.yaml} | 2 +-
+ .../msm/dsi-phy-10nm.yaml => phy/qcom,dsi-phy-10nm.yaml}      | 4 ++--
+ .../msm/dsi-phy-14nm.yaml => phy/qcom,dsi-phy-14nm.yaml}      | 4 ++--
+ .../msm/dsi-phy-20nm.yaml => phy/qcom,dsi-phy-20nm.yaml}      | 4 ++--
+ .../msm/dsi-phy-28nm.yaml => phy/qcom,dsi-phy-28nm.yaml}      | 4 ++--
+ .../msm/dsi-phy-7nm.yaml => phy/qcom,dsi-phy-7nm.yaml}        | 4 ++--
+ .../msm/dsi-phy-common.yaml => phy/qcom,dsi-phy-common.yaml}  | 2 +-
+ 11 files changed, 16 insertions(+), 16 deletions(-)
+ rename Documentation/devicetree/bindings/display/msm/{gmu.yaml => qcom,adreno-gmu.yaml} (99%)
+ rename Documentation/devicetree/bindings/display/msm/{gpu.yaml => qcom,adreno.yaml} (99%)
+ rename Documentation/devicetree/bindings/display/msm/{hdmi.yaml => qcom,hdmi-tx.yaml} (98%)
+ rename Documentation/devicetree/bindings/display/msm/{mdp4.yaml => qcom,mdp4.yaml} (97%)
+ rename Documentation/devicetree/bindings/display/msm/{dsi-controller-main.yaml => qcom,mdss-dsi-ctrl.yaml} (99%)
+ rename Documentation/devicetree/bindings/{display/msm/dsi-phy-10nm.yaml => phy/qcom,dsi-phy-10nm.yaml} (96%)
+ rename Documentation/devicetree/bindings/{display/msm/dsi-phy-14nm.yaml => phy/qcom,dsi-phy-14nm.yaml} (94%)
+ rename Documentation/devicetree/bindings/{display/msm/dsi-phy-20nm.yaml => phy/qcom,dsi-phy-20nm.yaml} (93%)
+ rename Documentation/devicetree/bindings/{display/msm/dsi-phy-28nm.yaml => phy/qcom,dsi-phy-28nm.yaml} (94%)
+ rename Documentation/devicetree/bindings/{display/msm/dsi-phy-7nm.yaml => phy/qcom,dsi-phy-7nm.yaml} (94%)
+ rename Documentation/devicetree/bindings/{display/msm/dsi-phy-common.yaml => phy/qcom,dsi-phy-common.yaml} (90%)
+
+-- 
+2.39.2
+
 
