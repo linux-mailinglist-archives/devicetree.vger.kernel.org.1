@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-27640-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27641-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 923B881B209
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 10:21:54 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B2ABA81B20E
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 10:22:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B68971C2357B
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 09:21:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D13F11C23F71
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 09:22:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35D9E2CCD5;
-	Thu, 21 Dec 2023 09:06:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA9144E623;
+	Thu, 21 Dec 2023 09:06:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GmiA1a0Q"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="CMm/Rz/2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
+Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9469D38DE5
-	for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 09:06:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B62273D972
+	for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 09:06:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-a234dc0984fso57275766b.0
-        for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 01:06:14 -0800 (PST)
+Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-a268dd99597so60946966b.3
+        for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 01:06:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1703149573; x=1703754373; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1703149577; x=1703754377; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=lI766jzUYUWJ3P/E5rSlAvRcPNQkWVEH2r/Nzkx4/F8=;
-        b=GmiA1a0QtmgguBNgbUex+ltA5M3DZSvCyv8fPSb6KOG4PwDphIh8f6eJ/PM5AbvscB
-         tenRSVKFrArYW5gKb0KKuPmIgIycNNAUCLn1kH3iVcQQij4R3Do1cEsM874adaOYn8yp
-         1dmpcgILqaWYMsNPkesELTwn85kRWMI3lTLsfErxAnsumvIrdXPRUA+be1JTMqofN0/R
-         DhmOUw1zEwCqCqgxQPqLvmqRJqq8nK8Aiwm2MXfHZ3uFMDdplUkbzuGyys7iE3ZJWfnJ
-         LBjO7cvf6EXMpPj15ULX4ff8nllRhAePgvoAVXkf1tNtA6RSvjcPGaM38znvDwz68ZbI
-         yCNQ==
+        bh=BJKWL/RLIYC2dGYF1fLVc/aszWdNVo8voUMzbTBDZ58=;
+        b=CMm/Rz/2puNkh+0915iRj/slkmGrqS+fYKWn4+FQ+V/jY7WW9ET+Nd8TtqV7UVvguU
+         pGtQDR03S9tlN068iUzW8FqIDn2WkVP2UBijQojjlXcfMtv7i4kUvDz1hl2NJwnIokLi
+         xuYduDPoe+Upy+QQqDc9KSU51wXV++FSpNnoHMgHC2MHmK0UUZImGqDvz00DaeoeDLXP
+         SYrpfBnoNaXDiZ3foOBHZ/kFtimr1vFg/Td2g0BuwoI4kjdQirxWQOUcl3pCHxeoFx2r
+         L0+55/Ge5n2Y4IOt9imfTCU4ZpCALDYzf6NzhiwqDOWxFO6VZyxMQO9CJFtmgMngMaRz
+         BA/w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703149573; x=1703754373;
+        d=1e100.net; s=20230601; t=1703149577; x=1703754377;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=lI766jzUYUWJ3P/E5rSlAvRcPNQkWVEH2r/Nzkx4/F8=;
-        b=m0gF0z+zkZJqk7vwXRXwJuoGxJlxRZZLYNvk8HXrzfVK3m6JfadzUJpMtXSZdK5/T1
-         jmA/BvRrzesQQYNovK+xMjhRpE7VOXxJrMOyEjqaIKnq6heidB+Ka79tf/dtXm0huO7g
-         MGTYIV3pCbfX2l/6xHHvOHpHJa4TW9xY3KYfEe5r+samgUOJsFaP/qPKl8/1ZkAdMnQF
-         LS+fuUiavk7gjdOV4u/doMgeTH7epYaktGB5bU4QNZzIV93kScChSaD+ZnNMOHbOBGr1
-         Civ7mbP8fBUb1yNXcnicuwYBd2rYjnMoOk5FwD6BX4AHB4Pzh9xJhFbYcU6fdhbdK8ZV
-         6jdw==
-X-Gm-Message-State: AOJu0YxwvG2vblx/ZrAX0ozxXls4ucq25I+FcV9HLkg/NIE3VdBKU0Mg
-	F2o6ie0SgdnBAXCSPcCW9z2vKQ==
-X-Google-Smtp-Source: AGHT+IGxx6jNlVOIn0bybhJ5v14ynu0QE7zYmiCtUwNN+dfm93hxFMGyPP23QX5YQi6JsfrY8q0oIg==
-X-Received: by 2002:a17:906:d84:b0:a1c:85bc:e9ca with SMTP id m4-20020a1709060d8400b00a1c85bce9camr11190221eji.13.1703149572749;
-        Thu, 21 Dec 2023 01:06:12 -0800 (PST)
+        bh=BJKWL/RLIYC2dGYF1fLVc/aszWdNVo8voUMzbTBDZ58=;
+        b=OCsVgXOoz+gPGab3u+LUS+rLM4FAPokjz/2nbctOZTMXEW9SLj4wd2hLBRf7iZ7hN1
+         3Pc7/SDsAxO3cjMcnPuAwCCtslkS2wzyBv71jWRYWCJCHXaRq4xwjsPs82I8zEwkFsia
+         yxlIeCigcK03iem5pioV6ENIg/f4/hwH1vD2M69nkkV27AOIFlPC5dbZFaGwkxQT8zYt
+         B1Wx5IHKdBKVo6jf2UjSMV8ENtdOcZqkMZKYl/zWz60GLnsjBWWgqc3/zZmg6/d0L249
+         bfZgdWvm0Gg7rC3vC5JWfACDk3yGfEvkJE+bdHvz06ZdOhX7ojxsdW3YsVog1Wgp8qvm
+         lxFA==
+X-Gm-Message-State: AOJu0YxlLZa3cFQ7jsMYdeC5UnrWDH1lQe150/PYKjNNLJAO4ARKB5S2
+	Zcbsv4iYwIFtvLGtqmmXBisPTg==
+X-Google-Smtp-Source: AGHT+IEjzXAI9l8ThmSng/1YC2ArzsN5shZYFH3NNwUQsxizgtOfC4kqZ+E4j92s7lZXeaZhQnp6Jg==
+X-Received: by 2002:a17:906:1d:b0:a23:6ea2:167b with SMTP id 29-20020a170906001d00b00a236ea2167bmr1179519eja.204.1703149576985;
+        Thu, 21 Dec 2023 01:06:16 -0800 (PST)
 Received: from [192.168.0.22] ([78.10.206.178])
-        by smtp.gmail.com with ESMTPSA id lo27-20020a170906fa1b00b00a23365f1290sm715492ejb.218.2023.12.21.01.06.11
+        by smtp.gmail.com with ESMTPSA id lo27-20020a170906fa1b00b00a23365f1290sm715492ejb.218.2023.12.21.01.06.15
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 Dec 2023 01:06:12 -0800 (PST)
-Message-ID: <e5373897-b868-4b6a-a140-19f80a6cdbb3@linaro.org>
-Date: Thu, 21 Dec 2023 10:06:10 +0100
+        Thu, 21 Dec 2023 01:06:16 -0800 (PST)
+Message-ID: <05636f63-398c-4225-b638-1f87628e155d@linaro.org>
+Date: Thu, 21 Dec 2023 10:06:15 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,7 +66,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: hwmon: ina2xx: Add label property
+Subject: Re: [PATCH 2/2] dt-bindings: hwmon: ina2xx: Describe
+ #io-channel-cells property
 Content-Language: en-US
 To: Michal Simek <michal.simek@amd.com>, linux-kernel@vger.kernel.org,
  monstr@monstr.eu, michal.simek@xilinx.com, git@xilinx.com
@@ -76,6 +77,7 @@ Cc: Conor Dooley <conor+dt@kernel.org>, Guenter Roeck <linux@roeck-us.net>,
  Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
  linux-hwmon@vger.kernel.org
 References: <6f3c57d08984c1978569d3918cb38eb295c0c67d.1703077926.git.michal.simek@amd.com>
+ <aa303b9fe3116e7f98d6b72822f7f57694366db3.1703077926.git.michal.simek@amd.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -121,22 +123,18 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <6f3c57d08984c1978569d3918cb38eb295c0c67d.1703077926.git.michal.simek@amd.com>
+In-Reply-To: <aa303b9fe3116e7f98d6b72822f7f57694366db3.1703077926.git.michal.simek@amd.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 20/12/2023 14:12, Michal Simek wrote:
-> Add a label property to allow a custom name to be used for identifying
-> a device on the board. This is useful when multiple devices are present on
-> the same board. Similar change was done by commit ffae65fb1ae4
-> ("dt-bindings: spi: spi-cadence: Add label property").
+> There are two drivers in the Linux kernel. One is hwmon based and second
+> IIO. IIO version requires to define #io-channel-cells to operate.
 > 
 > Signed-off-by: Michal Simek <michal.simek@amd.com>
 > ---
-> 
-> zcu102 is using this feature
 
-Is the driver or driver core parsing it?
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
