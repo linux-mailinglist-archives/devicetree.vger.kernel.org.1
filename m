@@ -1,266 +1,131 @@
-Return-Path: <devicetree+bounces-27547-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27550-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3B4C81AB7B
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 01:00:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 21AD081AB93
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 01:16:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 210811F24A85
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 00:00:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BF40B1F238FE
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 00:16:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98D315102E;
-	Wed, 20 Dec 2023 23:55:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20BA339E;
+	Thu, 21 Dec 2023 00:16:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="DBrtxpTc"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="TemH2zDY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-io1-f54.google.com (mail-io1-f54.google.com [209.85.166.54])
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F04950266
-	for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 23:55:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73183395
+	for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 00:16:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-io1-f54.google.com with SMTP id ca18e2360f4ac-7b913830d8eso8565939f.1
-        for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 15:55:26 -0800 (PST)
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a2698eae0a9so23822566b.3
+        for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 16:16:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1703116526; x=1703721326; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=chromium.org; s=google; t=1703117811; x=1703722611; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=AD3TjuZ8z4szpVAtqglArcudpEVksAT0HzSeLd2B1Dk=;
-        b=DBrtxpTcnWV8jJoVK8EtiBjFz+EPD3xtKcLBwoTfNlBPWsK1A4Fzq9E18e5j7elPzU
-         Zd6UA/5o/0m78Y/o+pP3RWuO8hJbT56ii+w98WnFABSYqxBP9/QaXc6P+GsTGSdlC+tm
-         RnxxyvOCbJOwrrsH00wHPTj5aGMsYVYYvJIZ0=
+        bh=nx51Lf1EjqWvC8rwAJ0h4wGEFzTa9kT6CKikSA5ehKQ=;
+        b=TemH2zDYRqL8UTxxr3Oxjvl2eDhWY5TxOVKdDbtNxnf33EsA+GSjbyVqy4vrtC9qhS
+         Ck9ohip55sAlJM9mOU2xGiA1LgX1N0qGm0okMw97eeP0hTjkbXazAI08cmmcU/U8000Y
+         vNivxHOqXhxwMj7y7tmr1ilidaiOwl4AF7mB8=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703116526; x=1703721326;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1703117811; x=1703722611;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=AD3TjuZ8z4szpVAtqglArcudpEVksAT0HzSeLd2B1Dk=;
-        b=PNOVbGaYCcdOmQt3Jldrlm/TU0eqN1WP+5yKksi4+hjfcKwgPx5uOX0V5Y+uBuG4X+
-         8axRIcAA9rrj6qybyV6xyusJ+cjorSpTtIMyEk467l2UWrGIWkusJktsqyQzt/sqqA4P
-         +ToNb6jsqyiMhdif/Tnw5y/87oSdfGOkXN7G3B7GXr7rrxDdPAIo7j6543rM7llR9LAK
-         PGG+kthvB19ISjewD7r6j8URBhiGYVXKdtEqpqffsB8eiiXgT9AiDYxH1MmTUyBYuc8J
-         S1odl8UsVIjpeZ9WqB7HICbSX81YgTGstQtu7Jy9ZAWko0FzApDz7/fkwvKknsZDBh8B
-         we5g==
-X-Gm-Message-State: AOJu0YzgeXs+/gaLEAa25Lm/1czZfDoy9Gn/ipyKOGycoRSYmeyb0Lyf
-	7XCXuhiZFM7tm72Ngdty3klUZQ==
-X-Google-Smtp-Source: AGHT+IH9IT/zBs5lX+0g5tONOHtbi6Aq3OWE6gxs1xgyqopxLZmR5hvRwzgJx1wf6Aqp8B2g+WHCgQ==
-X-Received: by 2002:a5d:8c83:0:b0:7b7:fe6c:e6d3 with SMTP id g3-20020a5d8c83000000b007b7fe6ce6d3mr2659307ion.2.1703116526320;
-        Wed, 20 Dec 2023 15:55:26 -0800 (PST)
-Received: from markhas1.lan (71-218-50-136.hlrn.qwest.net. [71.218.50.136])
-        by smtp.gmail.com with ESMTPSA id bp22-20020a056638441600b0046b39a6f404sm177805jab.17.2023.12.20.15.55.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 20 Dec 2023 15:55:26 -0800 (PST)
-From: Mark Hasemeyer <markhas@chromium.org>
-To: LKML <linux-kernel@vger.kernel.org>
-Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Tzung-Bi Shih <tzungbi@kernel.org>,
-	Raul Rangel <rrangel@chromium.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Andy Shevchenko <andriy.shevchenko@intel.com>,
-	Rob Herring <robh@kernel.org>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	Mark Hasemeyer <markhas@chromium.org>,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	Daniel Scally <djrscally@gmail.com>,
-	Frank Rowand <frowand.list@gmail.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-	Len Brown <lenb@kernel.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	devicetree@vger.kernel.org,
-	linux-acpi@vger.kernel.org
-Subject: [PATCH v2 20/22] device property: Modify fwnode irq_get() to use resource
-Date: Wed, 20 Dec 2023 16:54:34 -0700
-Message-ID: <20231220165423.v2.20.I38ac58ab04985a404ed6551eb5813fa7841ef410@changeid>
-X-Mailer: git-send-email 2.43.0.472.g3155946c3a-goog
-In-Reply-To: <20231220235459.2965548-1-markhas@chromium.org>
-References: <20231220235459.2965548-1-markhas@chromium.org>
+        bh=nx51Lf1EjqWvC8rwAJ0h4wGEFzTa9kT6CKikSA5ehKQ=;
+        b=Q3ShifzSOnYmRAvx2UxyXN4yCc9uYpLrM2ElTTcBbFnyUGZ9ViZmq1Jm744IrSMZ98
+         +8mIb0cQPTH34lEjajGY7Ga6DRpmOGxsVV712iMFAwFDddjxOYxkLnl0vwBCB+UquUDh
+         IPtlzSPZkvJdtTOSWXJ72UxlrjCR6YGUxJPIB8t12uHnuya/pZiQbpE9FJmUogWK7hON
+         xE6seVVMCeKE2iNEhySiZ5Bb2z477kTp0x3bj1S7agzj/xlwr9HigyAibYxac8h9sev3
+         z57Qhko7Y/30x6cpbxCVNeN91R7OF7tGtxrMsPMH0sLGY+KN4pX0jFKv8DxOon5e2zQ4
+         kFZg==
+X-Gm-Message-State: AOJu0Yz91Zw22tXM/GghmV5wFwOd8wrb3XlPuSZi0XzWcupEo8KTrO3l
+	EWcNl+iZWl2NOoxSKdLs4bu9QCfBb3zDHFr5ybS9ay+P
+X-Google-Smtp-Source: AGHT+IGeVkwq7UPX1V3AZMdLuiG7lobNaOiKGRGp3NPvwl3lwbakHLUCtQLtHlO2BxDuzU8lir13wA==
+X-Received: by 2002:a17:906:74c5:b0:a26:99a5:91a6 with SMTP id z5-20020a17090674c500b00a2699a591a6mr824154ejl.134.1703117811548;
+        Wed, 20 Dec 2023 16:16:51 -0800 (PST)
+Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com. [209.85.208.51])
+        by smtp.gmail.com with ESMTPSA id f23-20020a17090624d700b00a2371908713sm341877ejb.181.2023.12.20.16.16.51
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 20 Dec 2023 16:16:51 -0800 (PST)
+Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-54744e66d27so4824a12.0
+        for <devicetree@vger.kernel.org>; Wed, 20 Dec 2023 16:16:51 -0800 (PST)
+X-Received: by 2002:a50:d69c:0:b0:553:d734:3f5a with SMTP id
+ r28-20020a50d69c000000b00553d7343f5amr2325edi.4.1703117439793; Wed, 20 Dec
+ 2023 16:10:39 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20231220235459.2965548-1-markhas@chromium.org> <20231220165423.v2.13.I2ee94aede9e25932f656c2bdb832be3199fa1291@changeid>
+In-Reply-To: <20231220165423.v2.13.I2ee94aede9e25932f656c2bdb832be3199fa1291@changeid>
+From: Doug Anderson <dianders@chromium.org>
+Date: Wed, 20 Dec 2023 16:10:27 -0800
+X-Gmail-Original-Message-ID: <CAD=FV=Vv450bQ+GrUh9Gr1nRcg5K0t-J_eoPpxJ=GmqOQavGYw@mail.gmail.com>
+Message-ID: <CAD=FV=Vv450bQ+GrUh9Gr1nRcg5K0t-J_eoPpxJ=GmqOQavGYw@mail.gmail.com>
+Subject: Re: [PATCH v2 13/22] arm64: dts: qcom: sc7180: Enable cros-ec-spi as
+ wake source
+To: Mark Hasemeyer <markhas@chromium.org>
+Cc: LKML <linux-kernel@vger.kernel.org>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Tzung-Bi Shih <tzungbi@kernel.org>, 
+	Raul Rangel <rrangel@chromium.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Andy Shevchenko <andriy.shevchenko@intel.com>, Rob Herring <robh@kernel.org>, 
+	Sudeep Holla <sudeep.holla@arm.com>, Bjorn Andersson <andersson@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
+	cros-qcom-dts-watchers@chromium.org, devicetree@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-The underlying ACPI and OF subsystems provide their own APIs which
-provide IRQ information as a struct resource. This allows callers to get
-more information about the IRQ by looking at the resource flags.  For
-example, whether or not an IRQ is wake capable.
+Hi,
 
-Signed-off-by: Mark Hasemeyer <markhas@chromium.org>
----
+On Wed, Dec 20, 2023 at 3:55=E2=80=AFPM Mark Hasemeyer <markhas@chromium.or=
+g> wrote:
+>
+> The cros_ec driver currently assumes that cros-ec-spi compatible device
+> nodes are a wakeup-source even though the wakeup-source property is not
+> defined.
+>
+> Add the wakeup-source property to all cros-ec-spi compatible device
+> nodes to match expected behavior.
+>
+> Signed-off-by: Mark Hasemeyer <markhas@chromium.org>
+> ---
+>
+> Changes in v2:
+> -Split by arch/soc
+>
+>  arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi | 1 +
+>  1 file changed, 1 insertion(+)
 
-Changes in v2:
--New patch
+It's hard to get context with just the dts patches, but digging up the
+cover letter and other patches from lore I see you point at
+`Documentation/devicetree/bindings/power/wakeup-source.txt` which says
+that devices that can wakeup should have this property. ...and our EC
+can wake us up, so this looks right from that point of view.
 
- drivers/acpi/property.c  | 11 +++++------
- drivers/base/property.c  | 24 +++++++++++++++++++++---
- drivers/of/property.c    |  8 ++++----
- include/linux/fwnode.h   |  8 +++++---
- include/linux/property.h |  2 ++
- 5 files changed, 37 insertions(+), 16 deletions(-)
+Also the yaml file for cros-ec says it's fine to have this property. I
+think it was used when things were connected via i2c since the i2c
+subsystem needed it. ...so from a bindings perspective it also seems
+fine to me.
 
-diff --git a/drivers/acpi/property.c b/drivers/acpi/property.c
-index a6ead5204046b..259869987ffff 100644
---- a/drivers/acpi/property.c
-+++ b/drivers/acpi/property.c
-@@ -1627,17 +1627,16 @@ static int acpi_fwnode_graph_parse_endpoint(const struct fwnode_handle *fwnode,
- 	return 0;
- }
- 
--static int acpi_fwnode_irq_get(const struct fwnode_handle *fwnode,
--			       unsigned int index)
-+static int acpi_fwnode_irq_get_resource(const struct fwnode_handle *fwnode,
-+					unsigned int index, struct resource *r)
- {
--	struct resource res;
- 	int ret;
- 
--	ret = acpi_irq_get(ACPI_HANDLE_FWNODE(fwnode), index, &res);
-+	ret = acpi_irq_get(ACPI_HANDLE_FWNODE(fwnode), index, r);
- 	if (ret)
- 		return ret;
- 
--	return res.start;
-+	return r->start;
- }
- 
- #define DECLARE_ACPI_FWNODE_OPS(ops) \
-@@ -1664,7 +1663,7 @@ static int acpi_fwnode_irq_get(const struct fwnode_handle *fwnode,
- 			acpi_graph_get_remote_endpoint,			\
- 		.graph_get_port_parent = acpi_fwnode_get_parent,	\
- 		.graph_parse_endpoint = acpi_fwnode_graph_parse_endpoint, \
--		.irq_get = acpi_fwnode_irq_get,				\
-+		.irq_get_resource = acpi_fwnode_irq_get_resource,	\
- 	};								\
- 	EXPORT_SYMBOL_GPL(ops)
- 
-diff --git a/drivers/base/property.c b/drivers/base/property.c
-index a1b01ab420528..4f5d5ab5ab8cf 100644
---- a/drivers/base/property.c
-+++ b/drivers/base/property.c
-@@ -1047,23 +1047,41 @@ void __iomem *fwnode_iomap(struct fwnode_handle *fwnode, int index)
- EXPORT_SYMBOL(fwnode_iomap);
- 
- /**
-- * fwnode_irq_get - Get IRQ directly from a fwnode
-+ * fwnode_irq_get_resource - Get IRQ directly from a fwnode and populate
-+ *			     the resource struct
-  * @fwnode:	Pointer to the firmware node
-  * @index:	Zero-based index of the IRQ
-+ * @r:		Pointer to resource to populate with IRQ information.
-  *
-  * Return: Linux IRQ number on success. Negative errno on failure.
-  */
--int fwnode_irq_get(const struct fwnode_handle *fwnode, unsigned int index)
-+int fwnode_irq_get_resource(const struct fwnode_handle *fwnode,
-+			    unsigned int index, struct resource *r)
- {
- 	int ret;
- 
--	ret = fwnode_call_int_op(fwnode, irq_get, index);
-+	ret = fwnode_call_int_op(fwnode, irq_get_resource, index, r);
- 	/* We treat mapping errors as invalid case */
- 	if (ret == 0)
- 		return -EINVAL;
- 
- 	return ret;
- }
-+EXPORT_SYMBOL(fwnode_irq_get_resource);
-+
-+/**
-+ * fwnode_irq_get - Get IRQ directly from a fwnode
-+ * @fwnode:	Pointer to the firmware node
-+ * @index:	Zero-based index of the IRQ
-+ *
-+ * Return: Linux IRQ number on success. Negative errno on failure.
-+ */
-+int fwnode_irq_get(const struct fwnode_handle *fwnode, unsigned int index)
-+{
-+	struct resource r;
-+
-+	return fwnode_irq_get_resource(fwnode, index, &r);
-+}
- EXPORT_SYMBOL(fwnode_irq_get);
- 
- /**
-diff --git a/drivers/of/property.c b/drivers/of/property.c
-index afdaefbd03f61..864ea5fa5702b 100644
---- a/drivers/of/property.c
-+++ b/drivers/of/property.c
-@@ -1425,10 +1425,10 @@ static void __iomem *of_fwnode_iomap(struct fwnode_handle *fwnode, int index)
- #endif
- }
- 
--static int of_fwnode_irq_get(const struct fwnode_handle *fwnode,
--			     unsigned int index)
-+static int of_fwnode_irq_get_resource(const struct fwnode_handle *fwnode,
-+				      unsigned int index, struct resource *r)
- {
--	return of_irq_get(to_of_node(fwnode), index);
-+	return of_irq_to_resource(to_of_node(fwnode), index, r);
- }
- 
- static int of_fwnode_add_links(struct fwnode_handle *fwnode)
-@@ -1469,7 +1469,7 @@ const struct fwnode_operations of_fwnode_ops = {
- 	.graph_get_port_parent = of_fwnode_graph_get_port_parent,
- 	.graph_parse_endpoint = of_fwnode_graph_parse_endpoint,
- 	.iomap = of_fwnode_iomap,
--	.irq_get = of_fwnode_irq_get,
-+	.irq_get_resource = of_fwnode_irq_get_resource,
- 	.add_links = of_fwnode_add_links,
- };
- EXPORT_SYMBOL_GPL(of_fwnode_ops);
-diff --git a/include/linux/fwnode.h b/include/linux/fwnode.h
-index 2a72f55d26eb8..716ed863acde0 100644
---- a/include/linux/fwnode.h
-+++ b/include/linux/fwnode.h
-@@ -9,10 +9,11 @@
- #ifndef _LINUX_FWNODE_H_
- #define _LINUX_FWNODE_H_
- 
--#include <linux/types.h>
--#include <linux/list.h>
- #include <linux/bits.h>
- #include <linux/err.h>
-+#include <linux/ioport.h>
-+#include <linux/list.h>
-+#include <linux/types.h>
- 
- struct fwnode_operations;
- struct device;
-@@ -164,7 +165,8 @@ struct fwnode_operations {
- 	int (*graph_parse_endpoint)(const struct fwnode_handle *fwnode,
- 				    struct fwnode_endpoint *endpoint);
- 	void __iomem *(*iomap)(struct fwnode_handle *fwnode, int index);
--	int (*irq_get)(const struct fwnode_handle *fwnode, unsigned int index);
-+	int (*irq_get_resource)(const struct fwnode_handle *fwnode,
-+				unsigned int index, struct resource *r);
- 	int (*add_links)(struct fwnode_handle *fwnode);
- };
- 
-diff --git a/include/linux/property.h b/include/linux/property.h
-index e6516d0b7d52a..685ba72a8ce9e 100644
---- a/include/linux/property.h
-+++ b/include/linux/property.h
-@@ -190,6 +190,8 @@ struct fwnode_handle *fwnode_handle_get(struct fwnode_handle *fwnode);
- void fwnode_handle_put(struct fwnode_handle *fwnode);
- 
- int fwnode_irq_get(const struct fwnode_handle *fwnode, unsigned int index);
-+int fwnode_irq_get_resource(const struct fwnode_handle *fwnode,
-+			    unsigned int index, struct resource *r);
- int fwnode_irq_get_byname(const struct fwnode_handle *fwnode, const char *name);
- 
- unsigned int device_get_child_node_count(const struct device *dev);
--- 
-2.43.0.472.g3155946c3a-goog
+...and looking at the code in Linux, I guess things work today because
+cros_ec_spi_probe() unconditionally calls device_init_wakeup(). ...but
+even with the code today I believe it should be fine to add this
+property.
 
+So with all that, this patch looks fine to me.
+
+Reviewed-by: Douglas Anderson <dianders@chromium.org>
 
