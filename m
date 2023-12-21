@@ -1,65 +1,64 @@
-Return-Path: <devicetree+bounces-27859-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27860-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95B2481BE58
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 19:38:51 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C6A381BE5E
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 19:42:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C81CE1C242CC
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 18:38:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7175F1C24720
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 18:42:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7A9C5B1ED;
-	Thu, 21 Dec 2023 18:38:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 162A81E48C;
+	Thu, 21 Dec 2023 18:42:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="aJdx07Mp"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="scm7NDqV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
+Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BE5216420
-	for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 18:38:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 782286518C
+	for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 18:42:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-5532b45c286so1276104a12.0
-        for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 10:38:43 -0800 (PST)
+Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-a26988a86f0so130811866b.3
+        for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 10:42:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1703183922; x=1703788722; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=kI54ctZ1zxG+ccdO4E1v3hg0oukkXhIS/AujWXv6nbk=;
-        b=aJdx07MpdCCDbnrFsvGqYAGgJnQWwMKFx0Z6sFbiD2Oj9VZHn4+9daaYxDvi2OYBmy
-         BMqsy///Bbk+1eFfN9GEWgOnBdUO8eeJi4EOV9hXMiqJjdtKSuSSRdNJSK/d/kOXS0q+
-         BV4zhRfBQ/f/rvepoJJXIUaL63rUjmA6sTyTspJ4ch4Bz86DRbfY5MFa4EFzYb4j+gOg
-         FjNnF0Vpa9/EfVxrCc/Lc/9I5gkBlcsBrnjjmyjuwyHCUJ7BbAYBjeZFavuLPJgbqujS
-         VeJCr7HoYJiNgpHW4mh2Xwsk7yum2Eys4X46DPhRieD/48IdkfkbrMF2PtlCpTINPAyA
-         GKrg==
+        d=linaro.org; s=google; t=1703184124; x=1703788924; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=EmV9CjKEZH0ZUQnAuyLHqm26B8eF0xAe8MTCOG3Xkok=;
+        b=scm7NDqVOCtFrMPLd+XVvZKqb4nCbAjybKk1d+VkD2SVURHbK9BGalbnzsS2RQaote
+         Z/AAuTsZ38QYnt4eqakbWoy9v63TyuFfCGaGd6MUAk5v0vAzvnOC4oH0uptH95ZhxiPz
+         08KUgBNvcw1trStZZJWhwswWzoOFb1GXlfR6BGD2gdvz6gX1E5aIenrsRbmYVilnZEW8
+         4iTBIeJyWl2evXgsjGeKZAuAs+niN/lTFz6bE2H287K++ojJXS8n1GefHBTyW7r0TsHQ
+         xyMoVajK2EXli89cUTQ/5fki0XU2ksJJzlF5YHvzOBZ2Jg428Bw3bJOBAE2V4x5n3Eb6
+         AXHg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703183922; x=1703788722;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=kI54ctZ1zxG+ccdO4E1v3hg0oukkXhIS/AujWXv6nbk=;
-        b=ndjhEo7OX+3FaqtjYNdQz97hblWF0kV4UUjxS/xtIksU+NQy48rBlenFfOk1bL6R0z
-         FNZXUwtuB2KBqc+QiTZTxsA9AkAgJzHqj73O27scm9Fp2UG3x3eU/lwQw3EawhPD65S5
-         MicsmwKTypOcfQhDFxCaG2LUaLz6B3GVYyRzpX3YB8sWfdiC5epJQlya0QKQZPicCT+q
-         ypZzze/hoMfdHVz9dszKhZq292vrE0+EM9dKPe3Tkwnp8mit1PA/kd1fvBrO2x6l5Rwa
-         +OO0fOth0HIlIexJ15pUsgimq22xGw0WKoVEXvWqISzwsrJTm2h2CLYRtqeptSpjhdEf
-         j7Sw==
-X-Gm-Message-State: AOJu0YzSExfEWfQJkypBH077D2dSsHddjhZCMmiT1IdjpKxkzQpOM4AM
-	jle3H5noWLPKM7HPWYv5RiBeh3EAvzMt8w==
-X-Google-Smtp-Source: AGHT+IHyZfJMfImeN75ulfr22BZwFPBycinBR2C+7RRdUe+0tz/AbkB5F2RdVRHbzhRyMH0NKKyshg==
-X-Received: by 2002:aa7:d44b:0:b0:554:42fd:aa8a with SMTP id q11-20020aa7d44b000000b0055442fdaa8amr5121edr.149.1703183922561;
-        Thu, 21 Dec 2023 10:38:42 -0800 (PST)
+        d=1e100.net; s=20230601; t=1703184124; x=1703788924;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=EmV9CjKEZH0ZUQnAuyLHqm26B8eF0xAe8MTCOG3Xkok=;
+        b=LeEhfLsWNqYEgdM1LmDjXNyq4Qt/YWyUnDK1kMN2Yd9Rd9bE1GbD9sl+BHOzwfCvmW
+         ZEU5eEzb6ZQj/1OHwB5ULgL7qi7eE8XmDUI4f67lV3ahOr/mIAI2arhUOXd/+9pEbZax
+         WTwv9GjHoXSy3cpg6cI50oyYgj85nzH5a1hO3Gzrx7vL3Cbj5X/nEUwzzldqeLSJ6TGZ
+         HqpTkd8MfF7VB6e2l60YAXVtGRvbFb8lGDCb+UBrAgo1UJ4Hfh2QzY/jJvK13KvitR4v
+         BxrV5lZ2fbf+miPwgng1fZvijMqkE6Fo6k6w+E9k2aZJncXGN1wyhOnSxjamL59oCHu+
+         F3Gw==
+X-Gm-Message-State: AOJu0Yyr02I5RAgseJ977eo6beAgG6mVNXRIvfCnazJfrwHDqFaVvRPw
+	NmS3DA9bbQYa0SCmZJY2/+jzYwLtPVuBgw==
+X-Google-Smtp-Source: AGHT+IHHXmLTxoNUUVw/m7uRBhiWfVIHInGu1Nc2W2UY4wrT0W05eQFVNzbvu/zvVyc/pD8Y+gOmcA==
+X-Received: by 2002:a17:906:f2ca:b0:a26:7f81:b86a with SMTP id gz10-20020a170906f2ca00b00a267f81b86amr149088ejb.124.1703184123633;
+        Thu, 21 Dec 2023 10:42:03 -0800 (PST)
 Received: from [192.168.0.22] ([78.10.206.178])
-        by smtp.gmail.com with ESMTPSA id b10-20020a0564021f0a00b00552d45bd8e7sm1498888edb.77.2023.12.21.10.38.41
+        by smtp.gmail.com with ESMTPSA id ew18-20020a170907951200b00a1dd58874b8sm1212525ejc.119.2023.12.21.10.42.02
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 Dec 2023 10:38:42 -0800 (PST)
-Message-ID: <50dceec0-3a43-4363-8404-d701f726acc0@linaro.org>
-Date: Thu, 21 Dec 2023 19:38:40 +0100
+        Thu, 21 Dec 2023 10:42:03 -0800 (PST)
+Message-ID: <82c92632-9c06-472a-bc0c-3764c9fada18@linaro.org>
+Date: Thu, 21 Dec 2023 19:42:01 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,8 +66,9 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 06/22] ARM: dts: samsung: exynos5420: Enable
- cros-ec-spi as wake source
+Subject: Re: [PATCH v2 03/22] Documentation: devicetree: Clarify wording for
+ wakeup-source property
+Content-Language: en-US
 To: Mark Hasemeyer <markhas@chromium.org>
 Cc: LKML <linux-kernel@vger.kernel.org>,
  AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
@@ -76,15 +76,13 @@ Cc: LKML <linux-kernel@vger.kernel.org>,
  Konrad Dybcio <konrad.dybcio@linaro.org>,
  Andy Shevchenko <andriy.shevchenko@intel.com>, Rob Herring
  <robh@kernel.org>, Sudeep Holla <sudeep.holla@arm.com>,
- Alim Akhtar <alim.akhtar@samsung.com>, Conor Dooley <conor+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org
+ Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
 References: <20231220235459.2965548-1-markhas@chromium.org>
- <20231220165423.v2.6.I06b059021de1bf6103e60a73211f078f2af75d17@changeid>
- <7199b7b7-238e-45de-96f1-0f04d0fa718d@linaro.org>
- <CANg-bXD+TVHO3o6f66fJXQ7AtXxPY00TQqjvX2vwk9PyTd1ZaA@mail.gmail.com>
-Content-Language: en-US
+ <20231220165423.v2.3.I1016a45ac9e8daf8a9ebc9854ab90ec3542e7c30@changeid>
+ <bc1731e0-0770-4bc9-abd7-239733a03d95@linaro.org>
+ <CANg-bXBfEb1jBBsBJse7jmV1V8v=6Qe_NhTLNyYhjqmad+yv9g@mail.gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -130,32 +128,26 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <CANg-bXD+TVHO3o6f66fJXQ7AtXxPY00TQqjvX2vwk9PyTd1ZaA@mail.gmail.com>
+In-Reply-To: <CANg-bXBfEb1jBBsBJse7jmV1V8v=6Qe_NhTLNyYhjqmad+yv9g@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 21/12/2023 19:29, Mark Hasemeyer wrote:
->> You do not need this property, if driver assumes that. Just enable it
->> unconditionally.
+On 21/12/2023 19:16, Mark Hasemeyer wrote:
+>> Please use subject prefixes matching the subsystem. You can get them for
+>> example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+>> your patch is touching.
+>>
+>> You nicely skipped all my filters... No need to resend to fix this, but
+>> fix it if sending a new version.
 > 
-> The goal of this patch series is to change exactly that: to prevent
-> the driver from unconditionally enabling the irq for wake.
+> I picked up the tags by using that exact command against "wakeup-source.txt".
+> "Documentation: devicetree:" was used in the originating commit and is
+> why I used it. There isn't really a consistent history wrt to tags on
+> this file. Looking at the containing directory, "dt-bindings: power"
 
-But why? What is the problem being solved? Is unconditional wakeup in
-the driver incorrect? If so, mention it shortly in the commit msg, what
-is rationale because existing one does not justify this change.
-
-> The driver works across numerous buses (spi, uart, i2c, lpc) and
-> supports DT and ACPI.
-> SPI+DT systems all happen to need irq wake enabled.
-> 
->> I don't think anything from previous discussion was
->> resolved.
-> 
-> Which previous discussion do you mean? In v1 it was suggested to split
-
-https://lore.kernel.org/all/20231213221124.GB2115075-robh@kernel.org/
-
+All bindings use dt-bindings: prefix. Either first or second. It's the
+only correct, even though you will find way too many wrong ones... yet
+still my command gives you the answer.
 
 Best regards,
 Krzysztof
