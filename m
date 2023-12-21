@@ -1,226 +1,264 @@
-Return-Path: <devicetree+bounces-27722-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27723-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9F5981B649
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 13:47:04 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 19BE881B69A
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 13:56:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D48911C23C20
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 12:47:03 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4F9B6B2602B
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 12:56:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BA876EB64;
-	Thu, 21 Dec 2023 12:47:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16B6B745E3;
+	Thu, 21 Dec 2023 12:49:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="yMbGXGTb"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fnLq2VqO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84B6F6F602;
-	Thu, 21 Dec 2023 12:46:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 3BL8o3BO011875;
-	Thu, 21 Dec 2023 13:46:32 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	from:to:cc:subject:date:message-id:in-reply-to:references
-	:mime-version:content-transfer-encoding:content-type; s=
-	selector1; bh=f+RuX/Eia9uR2MHJdZssTap6bVCpuc5frqUe4l82QhE=; b=yM
-	bGXGTbRhCoPDtMjIarTTcmjFrL7lidjkKbrr1iUAEOGF+Z32SFEmzT2VnvYAQomy
-	F7vjYPDQi5JS8x1Etz6qc/wkHeNYnB/nUmJ15X3voaCAL9KslDlMgkERKsBN7YPy
-	6Khru6YrLUPcBZ3AoorbrZem1hY9ouN0/ZvyNv4fZIsDIjLTVMHTqRZE0DH0Dym8
-	EB4AMWT+VHsIQ2yMhPFf6QqO0omesZZSzminBoVMRbU7xtV5ByzxTjYqVYUYdtHp
-	ZQiGhEY1mYQOo+/iN1KxvKRBPbcaTp5MV3kwRIiNdLxnlIm14Wd4Nwn/h7HEXtrT
-	N2Sa8MXbl2BPPHIijlJw==
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3v13nhq73w-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 21 Dec 2023 13:46:32 +0100 (CET)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 80E5C100053;
-	Thu, 21 Dec 2023 13:46:30 +0100 (CET)
-Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 7655329D7E8;
-	Thu, 21 Dec 2023 13:46:30 +0100 (CET)
-Received: from localhost (10.252.25.159) by SHFDAG1NODE2.st.com (10.75.129.70)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Thu, 21 Dec
- 2023 13:46:29 +0100
-From: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Neil Armstrong
-	<neil.armstrong@linaro.org>,
-        Jessica Zhang <quic_jesszhan@quicinc.com>,
-        Sam
- Ravnborg <sam@ravnborg.org>,
-        Maarten Lankhorst
-	<maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre
- Torgue <alexandre.torgue@foss.st.com>,
-        Yannick Fertre
-	<yannick.fertre@foss.st.com>,
-        Raphael Gallais-Pou
-	<raphael.gallais-pou@foss.st.com>,
-        Philippe Cornu
-	<philippe.cornu@foss.st.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Lad
- Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Thierry Reding
-	<thierry.reding@gmail.com>
-CC: <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>
-Subject: [PATCH RESEND v1 8/8] arm64: dts: st: add display support on stm32mp257f-ev
-Date: Thu, 21 Dec 2023 13:43:39 +0100
-Message-ID: <20231221124339.420119-9-raphael.gallais-pou@foss.st.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20231221124339.420119-1-raphael.gallais-pou@foss.st.com>
-References: <20231221124339.420119-1-raphael.gallais-pou@foss.st.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EBF9745D9;
+	Thu, 21 Dec 2023 12:49:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-50e239c49d0so974511e87.2;
+        Thu, 21 Dec 2023 04:49:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1703162968; x=1703767768; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=g/mzU2hT9PSnrGwqsNWl+y1l0fBpKuzZ5AOH7TNPFbk=;
+        b=fnLq2VqOvubnI8OOe7cTti8MNmir99Kh7WN5EiRLxEUiuqXej2pmYOYI3CQjYKl31L
+         kcSVzHzIi7d6mAvvCZ9XWX/HGV9Zk5Ubnul/g6EPGQvVWPxKh0VDHCmckSJOUWxpITRz
+         YjKXmkKBs48lSP7CRkIMSmYXt4hHZthXyfhJE04aWHwmAc4YkfLm9jPEGzql08N6eFbG
+         GCblC+yfyQjTT+/WEGTCGaqHyiO3/amrWgQi1+pg74jQ8FLlBWLOyn8qMjlolqXMMQCD
+         uBP1S/ljkVIX08nALp+zMXPRqe4aHzhiPYdiF1WaNZNbiqud+e8NKas+YSrrh7vZe+k1
+         6POg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1703162968; x=1703767768;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=g/mzU2hT9PSnrGwqsNWl+y1l0fBpKuzZ5AOH7TNPFbk=;
+        b=Sp7n2jRdjaw5gABaYWKH2Y0qmAmNyJG/r+NMY0Cb6kzwMUztp1VD3NYSzN/yAdVqau
+         o5EJrWLF0f2NA94mFQ0Oj69dQM4jsF7vKuBjpXLoQIpT0OOcWvMpySCFYvlqOQiFbeCU
+         Vw8+benvlZcsZh0C2lZj8Rmd91XBgXDpuJZP/+3UTPJ+u8hL8KTVSXceJ+z84y1AH1tg
+         8OwAELO4CYbWlqCFD1ZbA7WiwyGTwxqHd5v4VYAQH3XyDjOEeUV6kf/p0Z+6y25QkvEr
+         eFRzuD6unVsu8j5u5FF/olz9wpjszMgvl21RPmJ9uzkBUK2oDV+/oiWhoErviF+r4TMt
+         LESw==
+X-Gm-Message-State: AOJu0YxNU7A7SMrLOmi5Vongf7kq7DBtn+rY6x6bma6UItSeo5u9UIhR
+	J23wM/v6OjwNdoakVV9lKqA=
+X-Google-Smtp-Source: AGHT+IGyV6f8UBheAjNEECK8PtWI9VmNULPlJgekTe+vJCU+PbbS1a1JmkG5ZHVdEmvAloCVKJ4sGA==
+X-Received: by 2002:ac2:596d:0:b0:50d:179b:b38d with SMTP id h13-20020ac2596d000000b0050d179bb38dmr8710227lfp.45.1703162967896;
+        Thu, 21 Dec 2023 04:49:27 -0800 (PST)
+Received: from mobilestation ([178.176.56.174])
+        by smtp.gmail.com with ESMTPSA id d19-20020a193853000000b0050bf16efc9csm266216lfj.308.2023.12.21.04.49.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 21 Dec 2023 04:49:27 -0800 (PST)
+Date: Thu, 21 Dec 2023 15:49:23 +0300
+From: Serge Semin <fancer.lancer@gmail.com>
+To: Suraj Jaiswal <quic_jsuraj@quicinc.com>, 
+	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>
+Cc: Vinod Koul <vkoul@kernel.org>, 
+	Bhupesh Sharma <bhupesh.sharma@linaro.org>, Andy Gross <agross@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+	Jose Abreu <joabreu@synopsys.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+	netdev@vger.kernel.org, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
+	Prasad Sodagudi <psodagud@quicinc.com>, Andrew Halaney <ahalaney@redhat.com>, 
+	Rob Herring <robh@kernel.org>, kernel@quicinc.com
+Subject: Re: [PATCH net-next v8 3/3] net: stmmac: Add driver support for
+ DWMAC5 common safety IRQ
+Message-ID: <yromhtr73rwsr6hizr4tq37vfvyzfue7wzpmufqyscwspzffza@uhfcrn573acd>
+References: <20231221073620.232619-1-quic_jsuraj@quicinc.com>
+ <20231221073620.232619-4-quic_jsuraj@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE2.st.com
- (10.75.129.70)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-12-21_06,2023-12-20_01,2023-05-22_02
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231221073620.232619-4-quic_jsuraj@quicinc.com>
 
-This patch enables the following IPs on stm32mp257f-ev :
-  * LTDC
-  * LVDS
-  * WSVGA LVDS panel (1024x600)
-  * Panel backlight
-  * Ilitek touchescreen
+Hi Suraj
 
-Signed-off-by: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
----
- arch/arm64/boot/dts/st/stm32mp257f-ev1.dts | 79 ++++++++++++++++++++++
- 1 file changed, 79 insertions(+)
+On Thu, Dec 21, 2023 at 01:06:20PM +0530, Suraj Jaiswal wrote:
+> Add support to listen HW safety IRQ like ECC(error
+> correction code), DPP(data path parity), FSM(finite state
+> machine) fault in common IRQ line.
+> 
+> Signed-off-by: Suraj Jaiswal <quic_jsuraj@quicinc.com>
 
-diff --git a/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts b/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts
-index 0ea8e69bfb3d..ca2da988d91c 100644
---- a/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts
-+++ b/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts
-@@ -29,6 +29,43 @@ memory@80000000 {
- 		reg = <0x0 0x80000000 0x1 0x0>;
- 	};
- 
-+	panel_lvds: panel-lvds {
-+		compatible = "edt,etml0700z9ndha", "panel-lvds";
-+		enable-gpios = <&gpiog 15 GPIO_ACTIVE_HIGH>;
-+		backlight = <&panel_lvds_backlight>;
-+		status = "okay";
-+
-+		width-mm = <156>;
-+		height-mm = <92>;
-+		data-mapping = "vesa-24";
-+
-+		panel-timing {
-+			clock-frequency = <54000000>;
-+			hactive = <1024>;
-+			vactive = <600>;
-+			hfront-porch = <150>;
-+			hback-porch = <150>;
-+			hsync-len = <21>;
-+			vfront-porch = <24>;
-+			vback-porch = <24>;
-+			vsync-len = <21>;
-+		};
-+
-+		port {
-+			lvds_panel_in: endpoint {
-+				remote-endpoint = <&lvds_out0>;
-+			};
-+		};
-+	};
-+
-+	panel_lvds_backlight: panel-lvds-backlight {
-+		compatible = "gpio-backlight";
-+		gpios = <&gpioi 5 GPIO_ACTIVE_HIGH>;
-+		default-on;
-+		default-brightness-level = <0>;
-+		status = "okay";
-+	};
-+
- 	reserved-memory {
- 		#address-cells = <2>;
- 		#size-cells = <2>;
-@@ -63,6 +100,15 @@ &i2c2 {
- 	i2c-scl-falling-time-ns = <13>;
- 	clock-frequency = <400000>;
- 	status = "okay";
-+
-+	ili2511: ili2511@41 {
-+		compatible = "ilitek,ili251x";
-+		reg = <0x41>;
-+		interrupt-parent = <&gpioi>;
-+		interrupts = <13 IRQ_TYPE_EDGE_FALLING>;
-+		reset-gpios = <&gpiog 14 GPIO_ACTIVE_LOW>;
-+		status = "okay";
-+	};
- };
- 
- &i2c8 {
-@@ -75,6 +121,39 @@ &i2c8 {
- 	status = "disabled";
- };
- 
-+&ltdc {
-+	status = "okay";
-+
-+	port {
-+		ltdc_ep0_out: endpoint {
-+			remote-endpoint = <&lvds_in>;
-+		};
-+	};
-+};
-+
-+&lvds {
-+	status = "okay";
-+
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		port@0 {
-+			reg = <0>;
-+			lvds_in: endpoint {
-+				remote-endpoint = <&ltdc_ep0_out>;
-+			};
-+		};
-+
-+		port@1 {
-+			reg = <1>;
-+			lvds_out0: endpoint {
-+				remote-endpoint = <&lvds_panel_in>;
-+			};
-+		};
-+	};
-+};
-+
- &sdmmc1 {
- 	pinctrl-names = "default", "opendrain", "sleep";
- 	pinctrl-0 = <&sdmmc1_b4_pins_a>;
--- 
-2.25.1
+Thanks for taking my notes into account. One more comment is further
+below.
 
+> ---
+>  drivers/net/ethernet/stmicro/stmmac/common.h  |  1 +
+>  drivers/net/ethernet/stmicro/stmmac/stmmac.h  |  3 ++
+>  .../net/ethernet/stmicro/stmmac/stmmac_main.c | 37 +++++++++++++++++++
+>  .../ethernet/stmicro/stmmac/stmmac_platform.c |  8 ++++
+>  4 files changed, 49 insertions(+)
+> 
+> diff --git a/drivers/net/ethernet/stmicro/stmmac/common.h b/drivers/net/ethernet/stmicro/stmmac/common.h
+> index 721c1f8e892f..b9233b09b80f 100644
+> --- a/drivers/net/ethernet/stmicro/stmmac/common.h
+> +++ b/drivers/net/ethernet/stmicro/stmmac/common.h
+> @@ -344,6 +344,7 @@ enum request_irq_err {
+>  	REQ_IRQ_ERR_ALL,
+>  	REQ_IRQ_ERR_TX,
+>  	REQ_IRQ_ERR_RX,
+> +	REQ_IRQ_ERR_SFTY,
+>  	REQ_IRQ_ERR_SFTY_UE,
+>  	REQ_IRQ_ERR_SFTY_CE,
+>  	REQ_IRQ_ERR_LPI,
+> diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac.h b/drivers/net/ethernet/stmicro/stmmac/stmmac.h
+> index 9f89acf31050..ca3d93851bed 100644
+> --- a/drivers/net/ethernet/stmicro/stmmac/stmmac.h
+> +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac.h
+> @@ -31,6 +31,7 @@ struct stmmac_resources {
+>  	int wol_irq;
+>  	int lpi_irq;
+>  	int irq;
+> +	int sfty_irq;
+>  	int sfty_ce_irq;
+>  	int sfty_ue_irq;
+>  	int rx_irq[MTL_MAX_RX_QUEUES];
+> @@ -297,6 +298,7 @@ struct stmmac_priv {
+>  	void __iomem *ptpaddr;
+>  	void __iomem *estaddr;
+>  	unsigned long active_vlans[BITS_TO_LONGS(VLAN_N_VID)];
+> +	int sfty_irq;
+>  	int sfty_ce_irq;
+>  	int sfty_ue_irq;
+>  	int rx_irq[MTL_MAX_RX_QUEUES];
+> @@ -305,6 +307,7 @@ struct stmmac_priv {
+>  	char int_name_mac[IFNAMSIZ + 9];
+>  	char int_name_wol[IFNAMSIZ + 9];
+>  	char int_name_lpi[IFNAMSIZ + 9];
+> +	char int_name_sfty[IFNAMSIZ + 10];
+>  	char int_name_sfty_ce[IFNAMSIZ + 10];
+>  	char int_name_sfty_ue[IFNAMSIZ + 10];
+>  	char int_name_rx_irq[MTL_MAX_TX_QUEUES][IFNAMSIZ + 14];
+> diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+> index 47de466e432c..7d4e827dfeab 100644
+> --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+> +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+> @@ -3592,6 +3592,10 @@ static void stmmac_free_irq(struct net_device *dev,
+>  		if (priv->wol_irq > 0 && priv->wol_irq != dev->irq)
+>  			free_irq(priv->wol_irq, dev);
+>  		fallthrough;
+> +	case REQ_IRQ_ERR_SFTY:
+> +		if (priv->sfty_irq > 0 && priv->sfty_irq != dev->irq)
+> +			free_irq(priv->sfty_irq, dev);
+> +		fallthrough;
+>  	case REQ_IRQ_ERR_WOL:
+>  		free_irq(dev->irq, dev);
+>  		fallthrough;
+> @@ -3661,6 +3665,23 @@ static int stmmac_request_irq_multi_msi(struct net_device *dev)
+>  		}
+>  	}
+>  
+> +	/* Request the common Safety Feature Correctible/Uncorrectible
+> +	 * Error line in case of another line is used
+> +	 */
+> +	if (priv->sfty_irq > 0 && priv->sfty_irq != dev->irq) {
+> +		int_name = priv->int_name_sfty;
+> +		sprintf(int_name, "%s:%s", dev->name, "safety");
+> +		ret = request_irq(priv->sfty_irq, stmmac_safety_interrupt,
+> +				  0, int_name, dev);
+> +		if (unlikely(ret < 0)) {
+> +			netdev_err(priv->dev,
+> +				   "%s: alloc sfty MSI %d (error: %d)\n",
+> +				   __func__, priv->sfty_irq, ret);
+> +			irq_err = REQ_IRQ_ERR_SFTY;
+> +			goto irq_error;
+> +		}
+> +	}
+> +
+>  	/* Request the Safety Feature Correctible Error line in
+>  	 * case of another line is used
+>  	 */
+> @@ -3798,6 +3819,21 @@ static int stmmac_request_irq_single(struct net_device *dev)
+>  		}
+>  	}
+>  
+> +	/* Request the common Safety Feature Correctible/Uncorrectible
+> +	 * Error line in case of another line is used
+> +	 */
+> +	if (priv->sfty_irq > 0 && priv->sfty_irq != dev->irq) {
+
+> +		ret = request_irq(priv->sfty_irq, stmmac_safety_interrupt,
+> +				  IRQF_SHARED, dev->name, dev);
+
+Just noticed yesterday that stmmac_safety_interrupt() is also called
+from the stmmac_interrupt() handler which is supposed to be registered
+on the generic "mac" IRQ. Won't it cause races around the CSRs
+(doubtfully but still worth to note) and the errors handling
+(stmmac_global_err()) in case if both IRQs are raised simultaneously?
+At the very least it looks suspicious and worth double-checking.
+
+I also found out that nobody seemed to care that the same handler is
+registered on MAC, WoL and LPI IRQ lines. Hmm, no race-related
+problems have been reported so far for the platforms with separate
+WoL/LPI IRQs. It's either a lucky coincident or the IRQs are always
+assigned to the same CPU or the IRQs handle is indeed free of races.
+In anyway it looks suspicious too. At the very least AFAICS the DMA
+IRQ-handler is indeed racy on the status CSR access. It isn't
+cleared-on-read, but write-one-to-clear. So the statistics might be
+calculated more than once for the same CSR state. There might be some
+other problems I failed to spot on the first glance.
+
+David, Eric, Jacub, Paolo, your opinion about the note above?
+
+-Serge(y)
+
+> +		if (unlikely(ret < 0)) {
+> +			netdev_err(priv->dev,
+> +				   "%s: ERROR: allocating the sfty IRQ %d (%d)\n",
+> +				   __func__, priv->sfty_irq, ret);
+> +			irq_err = REQ_IRQ_ERR_SFTY;
+> +			goto irq_error;
+> +		}
+> +	}
+> +
+>  	return 0;
+>  
+>  irq_error:
+> @@ -7462,6 +7498,7 @@ int stmmac_dvr_probe(struct device *device,
+>  	priv->dev->irq = res->irq;
+>  	priv->wol_irq = res->wol_irq;
+>  	priv->lpi_irq = res->lpi_irq;
+> +	priv->sfty_irq = res->sfty_irq;
+>  	priv->sfty_ce_irq = res->sfty_ce_irq;
+>  	priv->sfty_ue_irq = res->sfty_ue_irq;
+>  	for (i = 0; i < MTL_MAX_RX_QUEUES; i++)
+> diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
+> index 70eadc83ca68..ab250161fd79 100644
+> --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
+> +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
+> @@ -743,6 +743,14 @@ int stmmac_get_platform_resources(struct platform_device *pdev,
+>  		dev_info(&pdev->dev, "IRQ eth_lpi not found\n");
+>  	}
+>  
+> +	stmmac_res->sfty_irq =
+> +		platform_get_irq_byname_optional(pdev, "sfty");
+> +	if (stmmac_res->sfty_irq < 0) {
+> +		if (stmmac_res->sfty_irq == -EPROBE_DEFER)
+> +			return -EPROBE_DEFER;
+> +		dev_info(&pdev->dev, "IRQ safety IRQ not found\n");
+> +	}
+> +
+>  	stmmac_res->addr = devm_platform_ioremap_resource(pdev, 0);
+>  
+>  	return PTR_ERR_OR_ZERO(stmmac_res->addr);
+> -- 
+> 2.25.1
+> 
+> 
 
