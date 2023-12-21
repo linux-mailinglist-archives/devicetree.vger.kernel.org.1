@@ -1,87 +1,110 @@
-Return-Path: <devicetree+bounces-27814-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27817-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5DD581BC09
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 17:30:52 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3DC8081BC54
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 17:49:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6CF191F26A5F
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 16:30:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 98D0F283856
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 16:49:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34130627F1;
-	Thu, 21 Dec 2023 16:30:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E48E65820B;
+	Thu, 21 Dec 2023 16:48:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="m5UzFxa/"
+	dkim=pass (2048-bit key) header.d=dh-electronics.com header.i=@dh-electronics.com header.b="uWToZ210"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E1BE627E8;
-	Thu, 21 Dec 2023 16:30:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 504DCC433C8;
-	Thu, 21 Dec 2023 16:30:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1703176212;
-	bh=gtLAiPWmTcmBpZUErU+NQrKyPiLwkxWEzUE6UTKHEsQ=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=m5UzFxa/cFVYk8a0gwpGJQwQ38VGYJGhiCwe/+JjKcJ8TK1TE47zLspSyAjE8dtcL
-	 0ghvBqV8ABiYuY9nMPz90fxgwB6nU7Uw9c+IBR1Nkd3cE9+2VE8+gQxZpssnJuCbCz
-	 qIXmGQSiiJ7zVuPNDvHHYCxSbYtvuWPbTwN1hMOhyArpvX8piqpDVPCR7Mz/lH7boL
-	 YrrJ2VCtlwRwXkmAxhFHtbB8t9Syrf+MevmUu/Lg7Js15WLoX/6BFOTWd6ohs3I+pg
-	 fRTOdblUFyj9HbdUfSG1+doqmngBdCL/i5oMDC7uW9iR/3pGk1FkJjsWNyKXrK9eDe
-	 aUeWKOwvd6evA==
-From: Vinod Koul <vkoul@kernel.org>
-To: krzysztof.kozlowski@linaro.org, shawnguo@kernel.org, festevam@denx.de, 
- Frank Li <Frank.Li@nxp.com>
-Cc: Frank.li@nxp.com, devicetree@vger.kernel.org, dmaengine@vger.kernel.org, 
- imx@lists.linux.dev, joy.zou@nxp.com, krzysztof.kozlowski+dt@linaro.org, 
- linux-kernel@vger.kernel.org, peng.fan@nxp.com, robh+dt@kernel.org, 
- shenwei.wang@nxp.com
-In-Reply-To: <20231114154824.3617255-1-Frank.Li@nxp.com>
-References: <20231114154824.3617255-1-Frank.Li@nxp.com>
-Subject: Re: (subset) [PATCH 0/4] dmaengine: fsl-edma: fix eDMAv4 uart dma
- loop test failure
-Message-Id: <170317620790.683420.15838999632725867289.b4-ty@kernel.org>
-Date: Thu, 21 Dec 2023 22:00:07 +0530
+Received: from mx4.securetransport.de (mx4.securetransport.de [178.254.6.145])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61B6D59913;
+	Thu, 21 Dec 2023 16:48:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=dh-electronics.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dh-electronics.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dh-electronics.com;
+	s=dhelectronicscom; t=1703177282;
+	bh=OUBsafXMgbKKwKeKHW98AeHHiie/LjHIzcQ1dOpPqmk=;
+	h=From:To:CC:Subject:Date:From;
+	b=uWToZ210+ervwTOs4Ip2PpJgyPW1ATQ/lckRtuORI2LreWnWqz5y8blQhBQjyhJYo
+	 ru+ycX+P+48pwDQKGknznVNcHTnAV/74kYhXciLhaRZH/9ooD8P4T9I7JQ81fTKslo
+	 Rc5EbEAwZCKd6tVjyGYHoWF3RkLeWt7wm/+I34ew0aP5HUy57++xj1C996/na0PnUg
+	 6z+3DGjD3DkxJPsmxYTJNU8K8fonIBu4Z1vt2qtrOjqXNMnGsApzqXG781h09afQvm
+	 hpDF9m3z4LN9CNTh7+TnxiTwCIgyO2vUFpH3c1gZHodttpgb5TjvfLn9kjCxcIcfb9
+	 EoZU6V7q1o4qg==
+From: Christoph Niedermaier <cniedermaier@dh-electronics.com>
+To: <linux-arm-kernel@lists.infradead.org>
+CC: Christoph Niedermaier <cniedermaier@dh-electronics.com>, Rob Herring
+	<robh+dt@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>, Marek Vasut <marex@denx.de>, Fabio Estevam
+	<festevam@denx.de>, NXP Linux Team <linux-imx@nxp.com>,
+	<kernel@dh-electronics.com>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>
+Subject: [PATCH] ARM: dts: imx6ull-dhcor: Remove 900MHz operating point
+Date: Thu, 21 Dec 2023 17:46:33 +0100
+Message-ID: <20231221164633.2029-1-cniedermaier@dh-electronics.com>
+X-klartext: yes
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.12.3
+Content-Type: text/plain
 
+Due to CPU lifetime consideration of the SoC manufacturer [1] and
+the preferred area of operation in the industrial related
+environment, set the maximum frequency for each DHCOM i.MX6ULL to
+792MHz, as with the industrial type. This is done by removing the
+operating point at 900MHz and set the clock-frequency to 792000000.
 
-On Tue, 14 Nov 2023 10:48:20 -0500, Frank Li wrote:
-> The commit a725990557e7d ("arm64: dts: imx93: Fix the dmas entries order")
-> trigger a hidden eDMAv4 hardware limitation.
-> 
-> Some channel require stick to odd number, some require stick to even
-> number.
-> 
-> This fixes include 3 part.
-> 1. add limitation at eDMA driver.
-> 2. create dt-binding header file to share define between driver and dts
-> 3. add ODD and EVEN requirement for uart driver at dts file.
-> 
-> [...]
+[1] https://www.nxp.com/docs/en/application-note/AN5337.pdf
 
-Applied, thanks!
+Signed-off-by: Christoph Niedermaier <cniedermaier@dh-electronics.com>
+---
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: Shawn Guo <shawnguo@kernel.org>
+Cc: Marek Vasut <marex@denx.de>
+Cc: Fabio Estevam <festevam@denx.de>
+Cc: NXP Linux Team <linux-imx@nxp.com>
+Cc: kernel@dh-electronics.com
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+To: linux-arm-kernel@lists.infradead.org
+---
+ arch/arm/boot/dts/nxp/imx/imx6ull-dhcor-som.dtsi | 7 +++++--
+ 1 file changed, 5 insertions(+), 2 deletions(-)
 
-[1/4] dmaengine: fsl-edma: fix eDMAv4 channel allocation issue
-      commit: dc51b4442dd94ab12c146c1897bbdb40e16d5636
-[2/4] dt-bindings: dma: fsl-edma: Add fsl-edma.h to prevent hardcoding in dts
-      commit: 1e9b05258271b76ccc04a4b535009d2cb596506a
-[3/4] dmaengine: fsl-edma: utilize common dt-binding header file
-      commit: d0e217b72f9f5c5ef35e3423d393ea8093ce98ec
-
-Best regards,
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6ull-dhcor-som.dtsi b/arch/arm/boot/dts/nxp/imx/imx6ull-dhcor-som.dtsi
+index 45315adfaa86..75486e1b0c15 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6ull-dhcor-som.dtsi
++++ b/arch/arm/boot/dts/nxp/imx/imx6ull-dhcor-som.dtsi
+@@ -28,10 +28,14 @@
+ 	/*
+ 	 * Due to the design as a solderable SOM, there are no capacitors
+ 	 * below the SoC, therefore higher voltages are required.
++	 * Due to CPU lifetime consideration of the SoC manufacturer and
++	 * the preferred area of operation in the industrial related
++	 * environment, set the maximum frequency for each DHCOM i.MX6ULL
++	 * to 792MHz, as with the industrial type.
+ 	 */
++	clock-frequency = <792000000>;
+ 	operating-points = <
+ 		/* kHz	uV */
+-		900000	1275000
+ 		792000	1250000 /* Voltage increased */
+ 		528000	1175000
+ 		396000	1025000
+@@ -39,7 +43,6 @@
+ 	>;
+ 	fsl,soc-operating-points = <
+ 		/* KHz	uV */
+-		900000	1250000
+ 		792000	1250000 /* Voltage increased */
+ 		528000	1175000
+ 		396000	1175000
 -- 
-~Vinod
-
+2.11.0
 
 
