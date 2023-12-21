@@ -1,151 +1,131 @@
-Return-Path: <devicetree+bounces-27676-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27678-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D34D81B3DF
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 11:40:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 98D1781B424
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 11:46:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4ECE21C202EB
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 10:40:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CBF0E1C23D09
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 10:46:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2028069299;
-	Thu, 21 Dec 2023 10:39:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A96B6720B;
+	Thu, 21 Dec 2023 10:46:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="nsUCvOI+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98819760BA;
-	Thu, 21 Dec 2023 10:39:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id CC9392F4;
-	Thu, 21 Dec 2023 02:39:55 -0800 (PST)
-Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id DFC133F5A1;
-	Thu, 21 Dec 2023 02:39:08 -0800 (PST)
-Date: Thu, 21 Dec 2023 10:39:06 +0000
-From: Andre Przywara <andre.przywara@arm.com>
-To: fuyao <fuyao@sjterm.com>
-Cc: fuyao <fuyao1697@cyg.com>, Rob Herring <robh+dt@kernel.org>, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec
- <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, Alexandre
- TORGUE <alexandre.torgue@st.com>, Enric Balletbo i Serra
- <eballetbo@gmail.com>, Baruch Siach <baruch@tkos.co.il>, Paul Barker
- <paul.barker@sancloud.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH RESEND] ARM: dts: sun8i: r40: open the regulator aldo1
-Message-ID: <20231221103906.1830ef94@donnerap.manchester.arm.com>
-In-Reply-To: <ZYOhAQi7XeLUuAC9@debian.cyg>
-References: <ZYKjYypuAx7gNuam@debian.cyg>
-	<20231220150400.0f32e2a5@donnerap.manchester.arm.com>
-	<ZYOhAQi7XeLUuAC9@debian.cyg>
-Organization: ARM
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD64A68EA0;
+	Thu, 21 Dec 2023 10:46:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 3BL7JosN021271;
+	Thu, 21 Dec 2023 10:46:00 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	from:to:cc:subject:date:message-id:mime-version:content-type; s=
+	qcppdkim1; bh=HkwbleRBu76qyIDVeqh/7K2yIPwFZuLkPDckpsjyCJ4=; b=ns
+	UCvOI+KvaAMb7HipkujG2+LMqvCG1nGi7qXgv3OOEOyjNJPxLNZoPQ/rja7zLkh/
+	l0nQ8pdH7pBm4bKoRxHle0ImTQQalPrVOflUFFUoPo23TOyTYD2PLR6lpiQnTqG5
+	eveCD2CwL0ii8ep1bTkmsRSuafrKrioiRqLhBBu8tmQCNm6Xly5p6M2zZeEIWMMC
+	7V1tUulB4kB1EzBl3IHTq1uRa1xCKVYNN0+UxpdXhe7Jpg514n1l286B/7oTfiQ4
+	OpiaSy7m99Q8SzfxZu8X2ETrH1508+GOmDf7hdn6kbb+S3lAng6r42lsCxXHSZVV
+	Shrd14BPuHXw5RhhKwSw==
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3v4gvh0rjc-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 21 Dec 2023 10:46:00 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3BLAjxk5019002
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 21 Dec 2023 10:45:59 GMT
+Received: from hu-mapa-hyd.qualcomm.com (10.80.80.8) by
+ nasanex01c.na.qualcomm.com (10.45.79.139) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Thu, 21 Dec 2023 02:45:54 -0800
+From: Manish Pandey <quic_mapa@quicinc.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <quic_cang@quicinc.com>,
+        <quic_nguyenb@quicinc.com>, <quic_mapa@quicinc.com>,
+        <quic_nitirawa@quicinc.com>, <quic_bhaskarv@quicinc.com>,
+        <quic_narepall@quicinc.com>, <quic_rampraka@quicinc.com>,
+        <quic_ahari@quicinc.com>
+Subject: [PATCH V2 2/2] arm64: dts: qcom: qcm6490: Add UFS nodes
+Date: Thu, 21 Dec 2023 16:15:29 +0530
+Message-ID: <20231221104529.13513-1-quic_mapa@quicinc.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: g043uD9Ug1bvgO9npE7I6Cykeb7d8Wty
+X-Proofpoint-GUID: g043uD9Ug1bvgO9npE7I6Cykeb7d8Wty
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-12-09_01,2023-12-07_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ spamscore=0 priorityscore=1501 clxscore=1011 adultscore=0 suspectscore=0
+ mlxlogscore=508 bulkscore=0 phishscore=0 malwarescore=0 impostorscore=0
+ mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2311290000 definitions=main-2312210079
 
-On Thu, 21 Dec 2023 10:20:49 +0800
-fuyao <fuyao@sjterm.com> wrote:
+Add UFS host controller and Phy nodes for
+Qualcomm qcm6490 Board.
 
-Hi,
+Signed-off-by: Manish Pandey <quic_mapa@quicinc.com>
+---
+ arch/arm64/boot/dts/qcom/qcm6490-idp.dts | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
 
-thanks for the reply!
-
-> On Wed, Dec 20, 2023 at 03:04:00PM +0000, Andre Przywara wrote:
-> > On Wed, 20 Dec 2023 16:18:43 +0800
-> > fuyao <fuyao1697@cyg.com> wrote:
-> > 
-> > Hi,
-> >   
-> > > the aldo1 is connect regulator pin which power the TV.  
-> > 
-> > What do you mean with that? That ALDO1 is connected to VCC-TVOUT and/or
-> > VCC-TVIN on the R40 SoC?  
-> 
-> The ALDO1 is connected to VCC-TVOUT on the R40 Soc.
-
-Ah, thanks for the confirmation.
-
-> > > The USB core use TV ref as reference Voltage.  
-> > 
-> > The USB core in the SoC? So pin VCC-USB, which requires 3.3V, the same
-> > voltage as the TV pins?
-> > Which means this doesn't really have much to do with TV, it's just that
-> > USB and also "TV" are supplied by ALDO1?  
-> 
-> The internal USB PHY requires a reference voltage. It seems that in
-> order to save costs, the reference voltage of the TVOUT module is used.
-
-Do you mean a USB *reference* voltage that is separate from the USB PHY
-power supply voltage, so pin VCC-USB on the SoC? And that it is internally
-connected to some TV-OUT related circuits? So that would apply to all
-devices using the R40 SoC then?
-
-Or is it simply that the SoC pins VCC-TVOUT and VCC-USB are connected
-together, on this SoM?
-Do you have access to some schematic? I couldn't find one online easily,
-so cannot check this myself.
-
-Thanks,
-Andre
-
-> > > Signed-off-by: fuyao <fuyao1697@cyg.com>
-> > > ---
-> > >  arch/arm/boot/dts/allwinner/sun8i-r40-feta40i.dtsi | 7 +++++++
-> > >  1 file changed, 7 insertions(+)
-> > > 
-> > > diff --git a/arch/arm/boot/dts/allwinner/sun8i-r40-feta40i.dtsi b/arch/arm/boot/dts/allwinner/sun8i-r40-feta40i.dtsi
-> > > index 9f39b5a2bb35..8906170461df 100644
-> > > --- a/arch/arm/boot/dts/allwinner/sun8i-r40-feta40i.dtsi
-> > > +++ b/arch/arm/boot/dts/allwinner/sun8i-r40-feta40i.dtsi
-> > > @@ -42,6 +42,13 @@ &pio {
-> > >  	vcc-pg-supply = <&reg_dldo1>;
-> > >  };
-> > >  
-> > > +&reg_aldo1 {
-> > > +	regulator-always-on;  
-> > 
-> > So did USB never work before, with the DT as in mainline?
-> >   
-> 
-> The USB can work, but is unstable. Occasionally disconnected because of
-> the D+/D- electrical characteristics.
-> 
-> > For always-on regulators it would be good to see some rationale why this
-> > cannot be referenced by its consumer. If it is really supplying the USB
-> > core, that would be a reason, because we don't have a good way of
-> > describing this.
-> >   
-> > > +	regulator-min-microvolt = <3300000>;
-> > > +	regulator-max-microvolt = <3300000>;
-> > > +	regulator-name = "vcc-aldo1";  
-> > 
-> > Regulators should be named after their users, so use something like:
-> > 	regulator-name = "vcc-3v3-tv-usb";
-> >   
-> 
-> thanks.
-> 
-> > That then also serves as documentation of why this is always on.
-> > 
-> > Cheers,
-> > Andre
-> >   
-> > > +};
-> > > +
-> > >  &reg_aldo2 {
-> > >  	regulator-always-on;
-> > >  	regulator-min-microvolt = <1800000>;  
-> >   
-> 
+diff --git a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
+index 03e97e27d16d..51efd46b576c 100644
+--- a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
++++ b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
+@@ -440,6 +440,25 @@
+ 	status = "okay";
+ };
+ 
++&ufs_mem_hc {
++	reset-gpios = <&tlmm 175 GPIO_ACTIVE_LOW>;
++	vcc-supply = <&vreg_l7b_2p9>;
++	vcc-max-microamp = <800000>;
++	vccq-supply = <&vreg_l9b_1p2>;
++	vccq-max-microamp = <900000>;
++	vccq2-supply = <&vreg_l9b_1p2>;
++	vccq2-max-microamp = <900000>;
++
++	status = "okay";
++};
++
++&ufs_mem_phy {
++	vdda-phy-supply = <&vreg_l10c_0p8>;
++	vdda-pll-supply = <&vreg_l6b_1p2>;
++
++	status = "okay";
++};
++
+ &usb_1 {
+ 	status = "okay";
+ };
+-- 
+2.17.1
 
 
