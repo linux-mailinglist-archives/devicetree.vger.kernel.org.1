@@ -1,265 +1,213 @@
-Return-Path: <devicetree+bounces-27690-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27691-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id F045381B50D
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 12:39:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 54EE381B51A
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 12:41:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 28FC61C238DC
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 11:39:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6F51C1C24DDC
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 11:41:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74F3D7318B;
-	Thu, 21 Dec 2023 11:39:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57A6E6E2D4;
+	Thu, 21 Dec 2023 11:40:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fQT4GPr9"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TA6f6/mT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com [209.85.219.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8A0D697B4;
-	Thu, 21 Dec 2023 11:39:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D22B56BB54
+	for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 11:40:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-40c256ffdbcso7700565e9.2;
-        Thu, 21 Dec 2023 03:39:03 -0800 (PST)
+Received: by mail-yb1-f172.google.com with SMTP id 3f1490d57ef6-dbdc7ff087fso373370276.2
+        for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 03:40:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1703158742; x=1703763542; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1703158844; x=1703763644; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=LqSYpHf1/FbLuBZDQt+DqkeQkv3UvQKwqCA0rndeeF4=;
-        b=fQT4GPr9wLSx2P0fqOn404yk/LHkRPPK3vjTLmJngYLWa5a/faoCjekYdgXbgmY3/s
-         QQegiVEO57FcMuH2PYsWj8zIanLTrbtXFD02oV24cKhtv2bmrdMExaVGEXku9QtGyOkK
-         mKSi0RH1Q44udAYTw3vdCoflQLX3himhU75l7uEf+AMwA1YQkXBcE5cEDjDzY7GB3F14
-         Tqndbg3QpGCCmvZbKv8eumVBsdn6gYaIGEFLFAplt7Rkw8WOT8LYaK0I5nhuHXiJoFjL
-         zJZC/QxhtzM8iJI7m8/TgFDEOvN4mZR7lEHc6OgauO4aKuc+Zzv74CTWsdy5RXSNv3jF
-         UlLw==
+        bh=YR7UL54FPVX91KNpVkxiT4vpTqvJTwUjNnSvdSEsGJ8=;
+        b=TA6f6/mTSc8UUr+Omg5aRwoi/bTjJkREsbwNWa9GCiQENTKmQR6DFi/7Fc4Ni9341w
+         DBvD4P4/yYnZdye5Vikg+PdmShCc7apdv/uvaRgOQyqF8av8uTxfc5ac1h7xP2RM8L2Q
+         8dKH5p3hZUeuXa43qrwG/AtF1B2lu/0oGgyl8/NITijA1GTESZSeyr73dk9ldzqBRgqR
+         qYIT12bHe/iZRQv6RQ+dsJMhswFCKKbemYXi/7wv/6RXMLKq+Y8HmwA9ukdzSOUMfyXb
+         Z81/IkRUdTgR1oqUHEAp/yn8wCpfyBxjtgkSbW9OSsCKaigGLDCncJvq3QO7jdQSP/ur
+         lfOw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703158742; x=1703763542;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1703158844; x=1703763644;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=LqSYpHf1/FbLuBZDQt+DqkeQkv3UvQKwqCA0rndeeF4=;
-        b=ogDULhXD/FQ/Bu0XceYshpDKLN2pxRzUHxb2Zr5xaCe5a0Uscflk/4OWg0IYIhcLoj
-         rC172ykisT9ILlVHPYvSsSj9mlLxhOsPSa3+wRMrJ+P2bVnSteFD2nfJs5FskeK40HWZ
-         xWDpFQzspvir8+03TjGn390YkPjHDZhA4MtHJzjcvh92Q0hi7/poQM0Muaanj7JUULtw
-         9ufjtCO2oY5H9dZbc0Q57xqBBpF5l4RZyv6bOs0q+nfTdQmAcL41npnQh64IrH4Lha5v
-         KWBrYxvxP9zg/S/lbx3yWaLwfK4TC21jz6ecByuvbanVA2+5y0snwxlJfpiF9JLkAWcA
-         AGvA==
-X-Gm-Message-State: AOJu0Ywk27hO1Bq1I14Dn0CgaN2uUZXLZYmnKtct2a6J0u+XZlkRIuc/
-	lQJLthH3ZAI8riuWH3ci2XM=
-X-Google-Smtp-Source: AGHT+IHqmtlPObdCHfV3z7QJW2WeL5kq4RokaiCmAhU3UYEhZcm3ufXs0xWkSt8lJn8YhSZsTaqHSw==
-X-Received: by 2002:a05:600c:4592:b0:40b:5e21:d360 with SMTP id r18-20020a05600c459200b0040b5e21d360mr682155wmo.105.1703158741723;
-        Thu, 21 Dec 2023 03:39:01 -0800 (PST)
-Received: from HYB-hhAwRlzzMZb.ad.analog.com ([213.157.161.11])
-        by smtp.gmail.com with ESMTPSA id fl25-20020a05600c0b9900b0040b3e26872dsm10940404wmb.8.2023.12.21.03.39.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 21 Dec 2023 03:39:01 -0800 (PST)
-From: Dumitru Ceclan <mitrutzceclan@gmail.com>
-To: 
-Cc: Lars-Peter Clausen <lars@metafoo.de>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Ceclan Dumitru <dumitru.ceclan@analog.com>,
-	Dumitru Ceclan <mitrutzceclan@gmail.com>
-Subject: [PATCH 3/3] iio: amplifiers: hmc425a: add support for LTC6373 Instrumentation Amplifier
-Date: Thu, 21 Dec 2023 13:38:40 +0200
-Message-ID: <20231221113842.25957-4-mitrutzceclan@gmail.com>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20231221113842.25957-1-mitrutzceclan@gmail.com>
-References: <20231221113842.25957-1-mitrutzceclan@gmail.com>
+        bh=YR7UL54FPVX91KNpVkxiT4vpTqvJTwUjNnSvdSEsGJ8=;
+        b=cpRItE9vuLJSUlZfBn2PVORx8aAfkc+PXGRoCqndQKvjAS59rWcecLRPqY4mjzhqo2
+         SPnSZO+yylrfyrjD2VnzH6P+ivM3O+Ghu4vxH3tKI3nlgWVEhY638lkrR2FE9mxV4jK5
+         zg2Rww3pkOfqfeZqg9XGpOlRXPVEhf8xkaawPEyxINHyP6w99nUB6YAeT2E3uPadbXfE
+         Xz6z0HkVWvKKGH9BfdGzqiJuridV7WiS740I3PklcCMKtBWho3jreV2/vk7CioFuMrsv
+         IHzArFRQxOCjEtx3gJmSYPgZQAMrTXd+senjVCtZFJDIRWKbyfRammpxFPAHZYK6Feyy
+         3FKg==
+X-Gm-Message-State: AOJu0YxAHvU19A9G5B/kiTO/14WdF/+HuR/pslPA90byhL+TD12x18Id
+	BAjkVqvbY9eRmQE65UezClTJ+2RUtMW79d/ihG4=
+X-Google-Smtp-Source: AGHT+IFaFjnCY8QmPJiOTToHfveFxatvud3WHgGs2fKirdlREEDLq11Wly73gaiXPpVHcxab9qcmFbgC0LWU+PphjME=
+X-Received: by 2002:a25:83:0:b0:dbd:bd9d:553a with SMTP id 125-20020a250083000000b00dbdbd9d553amr987132yba.50.1703158843619;
+ Thu, 21 Dec 2023 03:40:43 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <cover.1702862778.git.zhoubinbin@loongson.cn> <303e56cb6e5f82623babe18b095069b330cd37da.1702862778.git.zhoubinbin@loongson.cn>
+ <aa9cec3e-ee58-4d52-a8ec-d696e3ff70ca@linaro.org> <CAMpQs4+2kjNZMHu1+7MvDNFdCgY8bpF2kQTru-ZHSf8RceiP_A@mail.gmail.com>
+ <7309da41-93f5-4358-9630-a075da03f66b@linaro.org>
+In-Reply-To: <7309da41-93f5-4358-9630-a075da03f66b@linaro.org>
+From: Binbin Zhou <zhoubb.aaron@gmail.com>
+Date: Thu, 21 Dec 2023 17:40:30 +0600
+Message-ID: <CAMpQs4KpMRuh_qQrAU2FAmb9y8eJYHaJz-9M64MinLJurT6ttw@mail.gmail.com>
+Subject: Re: [PATCH v5 4/7] LoongArch: dts: DeviceTree for Loongson-2K0500
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Binbin Zhou <zhoubinbin@loongson.cn>, Huacai Chen <chenhuacai@loongson.cn>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	devicetree@vger.kernel.org, Huacai Chen <chenhuacai@kernel.org>, 
+	Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev, 
+	Jiaxun Yang <jiaxun.yang@flygoat.com>, Hongliang Wang <wanghongliang@loongson.cn>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-This adds support for LTC6373 36 V Fully-Differential Programmable-Gain
-Instrumentation Amplifier with 25 pA Input Bias Current.
-The user can program the gain to one of seven available settings through
-a 3-bit parallel interface (A2 to A0).
+On Wed, Dec 20, 2023 at 4:29=E2=80=AFPM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 20/12/2023 10:17, Binbin Zhou wrote:
+> > On Tue, Dec 19, 2023 at 9:37=E2=80=AFPM Krzysztof Kozlowski
+> > <krzysztof.kozlowski@linaro.org> wrote:
+> >>
+> >> On 18/12/2023 02:52, Binbin Zhou wrote:
+> >>> Add DeviceTree file for Loongson-2K0500 processor, which integrates o=
+ne
+> >>> 64-bit dual emission superscalar LA264 processor core.
+> >>>
+> >>> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
+> >>> ---
+> >>>  arch/loongarch/boot/dts/Makefile              |   2 +
+> >>>  .../boot/dts/loongson-2k0500-ref.dts          |  89 ++++++
+> >>>  arch/loongarch/boot/dts/loongson-2k0500.dtsi  | 274 ++++++++++++++++=
+++
+> >>>  3 files changed, 365 insertions(+)
+> >>>  create mode 100644 arch/loongarch/boot/dts/loongson-2k0500-ref.dts
+> >>>  create mode 100644 arch/loongarch/boot/dts/loongson-2k0500.dtsi
+> >>>
+> >>> diff --git a/arch/loongarch/boot/dts/Makefile b/arch/loongarch/boot/d=
+ts/Makefile
+> >>> index 1e24cdb5180a..aa0b21d73d4e 100644
+> >>> --- a/arch/loongarch/boot/dts/Makefile
+> >>> +++ b/arch/loongarch/boot/dts/Makefile
+> >>> @@ -1,3 +1,5 @@
+> >>>  # SPDX-License-Identifier: GPL-2.0-only
+> >>>
+> >>> +dtb-$(CONFIG_MACH_LOONGSON64)        =3D loongson-2k0500-ref.dtb
+> >>> +
+> >>>  obj-$(CONFIG_BUILTIN_DTB)    +=3D $(addsuffix .dtb.o, $(CONFIG_BUILT=
+IN_DTB_NAME))
+> >>> diff --git a/arch/loongarch/boot/dts/loongson-2k0500-ref.dts b/arch/l=
+oongarch/boot/dts/loongson-2k0500-ref.dts
+> >>> new file mode 100644
+> >>> index 000000000000..52483127a419
+> >>> --- /dev/null
+> >>> +++ b/arch/loongarch/boot/dts/loongson-2k0500-ref.dts
+> >>> @@ -0,0 +1,89 @@
+> >>> +// SPDX-License-Identifier: GPL-2.0
+> >>> +/*
+> >>> + * Copyright (C) 2023 Loongson Technology Corporation Limited
+> >>> + */
+> >>> +
+> >>> +/dts-v1/;
+> >>> +
+> >>> +#include "loongson-2k0500.dtsi"
+> >>> +
+> >>> +/ {
+> >>> +     compatible =3D "loongson,ls2k0500-ref", "loongson,ls2k0500";
+> >>> +     model =3D "Loongson-2K0500 Reference Board";
+> >>> +
+> >>> +     aliases {
+> >>> +             ethernet0 =3D &gmac0;
+> >>> +             ethernet1 =3D &gmac1;
+> >>> +             serial0 =3D &uart0;
+> >>> +     };
+> >>> +
+> >>> +     chosen {
+> >>> +             stdout-path =3D "serial0:115200n8";
+> >>> +             bootargs =3D "console=3DttyS0,115200";
+> >>
+> >> You received here comments already:
+> >> https://lore.kernel.org/all/3543cbf9-d259-8d0f-e78e-d8d5e3f501de@linar=
+o.org/
+> >>
+> >> Don't waste our time to re-review the same mistakes over and over agai=
+n.
+> >>
+> >>
+> > Hi Krzysztof:
+> >
+> > I am sorry for this, I misunderstood before that `earlycon` is not allo=
+wed.
+> > BTW, is there a note about not using the `bootargs` attribute? I
+> > didn't find it in the Documentation.
+>
+> This is a common sense, not a "note". If you think otherwise, please
+> provide me the reasons why duplicated information is necessary in this
+> particular case.
+>
 
-Signed-off-by: Dumitru Ceclan <mitrutzceclan@gmail.com>
----
- drivers/iio/amplifiers/hmc425a.c | 78 +++++++++++++++++++++++++++++++-
- 1 file changed, 76 insertions(+), 2 deletions(-)
+Hi Krzysztof:
 
-diff --git a/drivers/iio/amplifiers/hmc425a.c b/drivers/iio/amplifiers/hmc425a.c
-index b5fd19403d15..27fdc32a0457 100644
---- a/drivers/iio/amplifiers/hmc425a.c
-+++ b/drivers/iio/amplifiers/hmc425a.c
-@@ -2,9 +2,10 @@
- /*
-  * HMC425A and similar Gain Amplifiers
-  *
-- * Copyright 2020 Analog Devices Inc.
-+ * Copyright 2020, 2023 Analog Devices Inc.
-  */
- 
-+#include <linux/bits.h>
- #include <linux/bitops.h>
- #include <linux/device.h>
- #include <linux/err.h>
-@@ -20,10 +21,23 @@
- #include <linux/regulator/consumer.h>
- #include <linux/sysfs.h>
- 
-+/*
-+ * The LTC6373 amplifier supports configuring gain using GPIO's with the following
-+ *  values (OUTPUT_V / INPUT_V): 0(shutdown), 0.25, 0.5, 1, 2, 4, 8, 16
-+ *
-+ * Except for the shutdown value, all can be converted to dB using 20 * log10(x)
-+ * From here, it is observed that all values are multiples of the '2' gain setting,
-+ *  with the correspondent of 6.020dB.
-+ */
-+#define LTC6373_CONVERSION_CONSTANT	6020
-+#define LTC6373_CONVERSION_MASK		GENMASK(2, 0)
-+#define LTC6373_SHUTDOWN		GENMASK(2, 0)
-+
- enum hmc425a_type {
- 	ID_HMC425A,
- 	ID_HMC540S,
--	ID_ADRF5740
-+	ID_ADRF5740,
-+	ID_LTC6373,
- };
- 
- struct hmc425a_chip_info {
-@@ -42,6 +56,8 @@ struct hmc425a_state {
- 	struct	gpio_descs *gpios;
- 	enum	hmc425a_type type;
- 	u32	gain;
-+	bool	enabled;
-+
- };
- 
- static int hmc425a_write(struct iio_dev *indio_dev, u32 value)
-@@ -80,6 +96,17 @@ static int hmc425a_gain_dB_to_code(struct hmc425a_state *st, int val, int val2,
- 		temp = (abs(gain) / 2000) & 0xF;
- 		*code = temp & BIT(3) ? temp | BIT(2) : temp;
- 		break;
-+	case ID_LTC6373:
-+		if (!st->enabled)
-+			return -EPERM;
-+
-+		/* add half of the value for rounding */
-+		temp = LTC6373_CONVERSION_CONSTANT / 2;
-+		if (val < 0)
-+			temp *= -1;
-+		*code = ~((gain + temp) / LTC6373_CONVERSION_CONSTANT + 3)
-+			& LTC6373_CONVERSION_MASK;
-+		break;
- 	}
- 	return 0;
- }
-@@ -100,6 +127,12 @@ static int hmc425a_code_to_gain_dB(struct hmc425a_state *st, int *val, int *val2
- 		code = code & BIT(3) ? code & ~BIT(2) : code;
- 		gain = code * -2000;
- 		break;
-+	case ID_LTC6373:
-+		if (!st->enabled)
-+			return -EPERM;
-+		gain = ((~code & LTC6373_CONVERSION_MASK) - 3) *
-+		       LTC6373_CONVERSION_CONSTANT;
-+		break;
- 	}
- 
- 	*val = gain / 1000;
-@@ -122,6 +155,10 @@ static int hmc425a_read_raw(struct iio_dev *indio_dev,
- 			break;
- 		ret = IIO_VAL_INT_PLUS_MICRO_DB;
- 		break;
-+	case IIO_CHAN_INFO_ENABLE:
-+		*val = st->enabled;
-+		ret = IIO_VAL_INT;
-+		break;
- 	default:
- 		ret = -EINVAL;
- 	}
-@@ -146,6 +183,17 @@ static int hmc425a_write_raw(struct iio_dev *indio_dev,
- 		st->gain = code;
- 		ret = hmc425a_write(indio_dev, st->gain);
- 		break;
-+	case IIO_CHAN_INFO_ENABLE:
-+		switch (st->type) {
-+		case ID_LTC6373:
-+			code = (val) ? st->gain : LTC6373_SHUTDOWN;
-+			st->enabled = val;
-+			ret = hmc425a_write(indio_dev, code);
-+			break;
-+		default:
-+			ret = -EINVAL;
-+		}
-+		break;
- 	default:
- 		ret = -EINVAL;
- 	}
-@@ -161,6 +209,8 @@ static int hmc425a_write_raw_get_fmt(struct iio_dev *indio_dev,
- 	switch (mask) {
- 	case IIO_CHAN_INFO_HARDWAREGAIN:
- 		return IIO_VAL_INT_PLUS_MICRO_DB;
-+	case IIO_CHAN_INFO_ENABLE:
-+		return IIO_VAL_INT;
- 	default:
- 		return -EINVAL;
- 	}
-@@ -181,15 +231,30 @@ static const struct iio_info hmc425a_info = {
- 	.info_mask_separate = BIT(IIO_CHAN_INFO_HARDWAREGAIN),		\
- }
- 
-+#define LTC6373_CHAN(_channel)						\
-+{									\
-+	.type = IIO_VOLTAGE,						\
-+	.output = 1,							\
-+	.indexed = 1,							\
-+	.channel = _channel,						\
-+	.info_mask_separate = BIT(IIO_CHAN_INFO_HARDWAREGAIN) |		\
-+			      BIT(IIO_CHAN_INFO_ENABLE),		\
-+}
-+
- static const struct iio_chan_spec hmc425a_channels[] = {
- 	HMC425A_CHAN(0),
- };
- 
-+static const struct iio_chan_spec ltc6373_channels[] = {
-+	LTC6373_CHAN(0),
-+};
-+
- /* Match table for of_platform binding */
- static const struct of_device_id hmc425a_of_match[] = {
- 	{ .compatible = "adi,hmc425a", .data = (void *)ID_HMC425A },
- 	{ .compatible = "adi,hmc540s", .data = (void *)ID_HMC540S },
- 	{ .compatible = "adi,adrf5740", .data = (void *)ID_ADRF5740 },
-+	{ .compatible = "adi,ltc6373", .data = (void *)ID_LTC6373 },
- 	{},
- };
- MODULE_DEVICE_TABLE(of, hmc425a_of_match);
-@@ -222,6 +287,15 @@ static struct hmc425a_chip_info hmc425a_chip_info_tbl[] = {
- 		.gain_max = 0,
- 		.default_gain = 0xF, /* set default gain -22.0db*/
- 	},
-+		[ID_LTC6373] = {
-+		.name = "ltc6373",
-+		.channels = ltc6373_channels,
-+		.num_channels = ARRAY_SIZE(ltc6373_channels),
-+		.num_gpios = 3,
-+		.gain_min = -12041, /* gain setting x0.25*/
-+		.gain_max = 24082,  /* gain setting x16  */
-+		.default_gain = LTC6373_SHUTDOWN,
-+	},
- };
- 
- static int hmc425a_probe(struct platform_device *pdev)
--- 
-2.42.0
+I checked the relevant code and the console parameter is already in
+the stdout-path property. Sorry I didn't get the logic here before,
+thanks for pointing it out.
+The previous attempt to leave it because it would affect the boot
+cmdline proved not to be the right way to do it, so we fixed it some
+other way.
+Anyway, I'll fix it in the next patch set.
 
+Thanks.
+Binbin
+> >
+> >>
+> >> ...
+> >>
+> >>> +
+> >>> +             i2c@1ff4a800 {
+> >>> +                     compatible =3D "loongson,ls2k-i2c";
+> >>> +                     reg =3D <0x0 0x1ff4a800 0x0 0x0800>;
+> >>> +                     interrupt-parent =3D <&eiointc>;
+> >>> +                     interrupts =3D <19>;
+> >>> +                     status =3D "disabled";
+> >>> +             };
+> >>> +
+> >>> +             pmc: power-management@1ff6c000 {
+> >>> +                     compatible =3D "loongson,ls2k0500-pmc", "syscon=
+";
+> >>
+> >> It does not look like you tested the DTS against bindings. Please run
+> >> `make dtbs_check W=3D1` (see
+> >> Documentation/devicetree/bindings/writing-schema.rst or
+> >> https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-=
+sources-with-the-devicetree-schema/
+> >> for instructions).
+> >
+> > Emm...
+> > Here is the compatible description from the latest kernel:
+> > https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree=
+/Documentation/devicetree/bindings/soc/loongson/loongson,ls2k-pmc.yaml#n13
+> >
+> > I think this compatible should be fine, also, I ensure that `make
+> > dtbs_check W=3D1` is fine before committing.
+>
+> Hm, that's fine then.
+>
+> Best regards,
+> Krzysztof
+>
 
