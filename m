@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-27874-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27875-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D58E281BF99
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 21:34:26 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B14481BF9C
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 21:35:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 05FF11C23375
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 20:34:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1598E1F257E1
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 20:35:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F3F4760BC;
-	Thu, 21 Dec 2023 20:34:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD5B3768E2;
+	Thu, 21 Dec 2023 20:35:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="r5LCBAZt"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ozG1/mMN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
+Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D017874E0D
-	for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 20:34:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32336760BC
+	for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 20:35:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-5534d8fcf7bso1445540a12.3
-        for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 12:34:19 -0800 (PST)
+Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-553729ee917so1427459a12.1
+        for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 12:35:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1703190858; x=1703795658; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1703190909; x=1703795709; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=weIpIdWwjVmiz/xcLJ6YWeltfk+PtaKRQRUN8dbLvcE=;
-        b=r5LCBAZteDp1OjfLPPjmTAUdh1FfB8BbDAqwS67/gSXY5ZudLOw0NA5uaKBIE8HKDw
-         0VsFfglXwMOtWXoXFCvmW0bJQ7Z0suaLYp0qsrwZO0hxG2zOTcRDEJtehf907Ypkn7XE
-         aig8pnkXCqLutX4VOV6dTY0saOckY44dQRCH78qtwWMXh7NZyo79tFHEVpDElb5928WJ
-         vXHvNpROrLwL4o9q6boeho4F83+oK5VhqGOOW7W1lhDxNOkpDhkwsL2uzH1ls0M/8+AP
-         AIVHKfKNGqvgWWkHj+a89hWIwu7kTx5dQwkYDplzU5bHZ9wzBy3/9ftjZRFucf5zyt6X
-         RF5Q==
+        bh=3+bnCfuqypwFonnfISUOS9qyfCdx/0Td8/OjPLUaArk=;
+        b=ozG1/mMNBsMDdfWEBgma51BGGzxUUTQAuSWnIFXDCdcueVxHjgbqBd0+BOdEsQvBrG
+         baUR4HwasBTYFuFiChnUh1F6qJEMaLl6ZJYyVOJykRJnPVTGXfj2H930nv4p/gEu2v5D
+         crLVo8y+I7eNw5sCfEqZLOI6t7XRDMf1kN4DYgYn1CdxyCCWjmipl3L3tNEdOKNrkDFq
+         6yTcauf25XsvUH0u/GU2Wb8k7Mn7zBeKbX6PxT4lKFQjhE/YCyLdgxx6IOsvVddXZ5Kj
+         ebjj2rSBOYk7S0CEyqN+30dc0BezvcwCcXSYPn6YeSR9qR8W3lYpMly/kFlyr6JdfYyV
+         0oBg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703190858; x=1703795658;
+        d=1e100.net; s=20230601; t=1703190909; x=1703795709;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=weIpIdWwjVmiz/xcLJ6YWeltfk+PtaKRQRUN8dbLvcE=;
-        b=u8PagT2MlVhYkEOziTA21nxnBBhjIh+GoDbXSf48ul1MtDn97Y0iEurvrm4y1knrlC
-         o6xO3NUOqr/WL3fGPJkbJmRqb1U91qQFYXt5U/zLoKA66C2HkAdeiy7pHkQlb9uNcIZI
-         1zBA9WUpD3F7tOklA0UpjFNv3oXp+55v53J/1Ceodli2h3gauRzdWIO9yh+JcxUTWqX5
-         zUXH7SuD6o8OMkepviYySC0Y85hCPx05IrHA7/2KMD/Wp69uvNupHX24crbz7ZFDcmvM
-         lmtGONvHRIQjJkbGEu9BUXm7krIirEbfFW+lTOlqONBmGPvls6yYP74VAIptqTMkkYVN
-         8KpA==
-X-Gm-Message-State: AOJu0YxKmeWRWDUXyU5vDnk557BEo9H/P7eiCTQBz0zw9J1fKOybWSdA
-	hmVv8ULCWKT3y5nWV74exk6wE6hCld6lXg==
-X-Google-Smtp-Source: AGHT+IEAPP5msLU/SnZSHq+csfDEzzQC6cRhk8gRFRGfTQ81D8iwcMYyqMJpjlUL6dTJuKZx42bkZg==
-X-Received: by 2002:a05:6402:b10:b0:553:76c9:f4fa with SMTP id bm16-20020a0564020b1000b0055376c9f4famr117053edb.12.1703190858013;
-        Thu, 21 Dec 2023 12:34:18 -0800 (PST)
+        bh=3+bnCfuqypwFonnfISUOS9qyfCdx/0Td8/OjPLUaArk=;
+        b=nT8D9Uw3YYBrkYruzjx+3+X1xUwep9EelFrkeoNgTSMzYvCbiiAlAAAm6SG7FFT97J
+         5qIUrgNY/tNHebH7FOkoh4ck0bLpfd4i20YShSUOaL37/MbDuDT6hsxT+raL4D1efThi
+         n7Xckp29V1GIjWW6UJKbCR906MI1XtDeGJ+1+Ik8tiS+fQNKT0K2XBlz5zO1atxU+Yij
+         mAlWWP3QpfcOsG4lba/4P5RgYx+1h4cSEKfzMK7jss6T+xKkLqaibroBrtZIu7VrutNC
+         swRli/YpHF6//kRIG/yopdKZ68VhJAxUwtMaiUztiqlqZQfxd6DEwifiwIy1bhJELXKq
+         NB1g==
+X-Gm-Message-State: AOJu0YzKszFfXS/KvpJedE+FgtofxYTIV6TG/bgB70/z8xfUQms3lf08
+	chZA1p7+D0DoQcFF7bBf9EMThZvNG+mguw==
+X-Google-Smtp-Source: AGHT+IF1+XIgEDWCs8rjHGs0cOBiCtU2/PeEl/J3hSteSXmbdj6lcwTXI9Ap0rtNHUCLh7nuL5X1Ug==
+X-Received: by 2002:a05:6402:b0f:b0:553:886e:9896 with SMTP id bm15-20020a0564020b0f00b00553886e9896mr87365edb.70.1703190909607;
+        Thu, 21 Dec 2023 12:35:09 -0800 (PST)
 Received: from [192.168.0.22] ([78.10.206.178])
-        by smtp.gmail.com with ESMTPSA id bf25-20020a0564021a5900b0055286b1bfc2sm1620741edb.25.2023.12.21.12.34.16
+        by smtp.gmail.com with ESMTPSA id bf25-20020a0564021a5900b0055286b1bfc2sm1620741edb.25.2023.12.21.12.35.08
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 Dec 2023 12:34:17 -0800 (PST)
-Message-ID: <b9f146ee-ac25-425e-bd56-3339fee53223@linaro.org>
-Date: Thu, 21 Dec 2023 21:34:16 +0100
+        Thu, 21 Dec 2023 12:35:09 -0800 (PST)
+Message-ID: <e2a4b1dd-1975-4b7a-a432-2b5b06ecf653@linaro.org>
+Date: Thu, 21 Dec 2023 21:35:08 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,26 +66,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 06/22] ARM: dts: samsung: exynos5420: Enable
- cros-ec-spi as wake source
+Subject: Re: [PATCH v3 1/5] dt-bindings: phy: cadence-torrent: Add optional
+ input reference clock for PLL1
 Content-Language: en-US
-To: Mark Hasemeyer <markhas@chromium.org>
-Cc: LKML <linux-kernel@vger.kernel.org>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Tzung-Bi Shih <tzungbi@kernel.org>, Raul Rangel <rrangel@chromium.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Andy Shevchenko <andriy.shevchenko@intel.com>, Rob Herring
- <robh@kernel.org>, Sudeep Holla <sudeep.holla@arm.com>,
- Alim Akhtar <alim.akhtar@samsung.com>, Conor Dooley <conor+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org
-References: <20231220235459.2965548-1-markhas@chromium.org>
- <20231220165423.v2.6.I06b059021de1bf6103e60a73211f078f2af75d17@changeid>
- <7199b7b7-238e-45de-96f1-0f04d0fa718d@linaro.org>
- <CANg-bXD+TVHO3o6f66fJXQ7AtXxPY00TQqjvX2vwk9PyTd1ZaA@mail.gmail.com>
- <50dceec0-3a43-4363-8404-d701f726acc0@linaro.org>
- <CANg-bXAY5AGTu_jwtO8syCi8XVh5ti1V6ZFMzyCSBjzCUKUn1Q@mail.gmail.com>
+To: Swapnil Jakhade <sjakhade@cadence.com>, vkoul@kernel.org,
+ kishon@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, linux-phy@lists.infradead.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc: mparab@cadence.com, rogerq@kernel.org, s-vadapalli@ti.com
+References: <20231221162051.2131202-1-sjakhade@cadence.com>
+ <20231221162051.2131202-2-sjakhade@cadence.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -131,57 +121,18 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <CANg-bXAY5AGTu_jwtO8syCi8XVh5ti1V6ZFMzyCSBjzCUKUn1Q@mail.gmail.com>
+In-Reply-To: <20231221162051.2131202-2-sjakhade@cadence.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 21/12/2023 20:24, Mark Hasemeyer wrote:
->>>> You do not need this property, if driver assumes that. Just enable it
->>>> unconditionally.
->>>
->>> The goal of this patch series is to change exactly that: to prevent
->>> the driver from unconditionally enabling the irq for wake.
->>
->> But why? What is the problem being solved? Is unconditional wakeup in
->> the driver incorrect? If so, mention it shortly in the commit msg, what
->> is rationale because existing one does not justify this change.
+On 21/12/2023 17:20, Swapnil Jakhade wrote:
+> Add a new optional input reference clock (pll1_refclk) for PLL1.
+> Update bindings to support dual reference clock multilink configurations.
 > 
-> The cover letter talks about it:
-> "Currently the cros_ec driver assumes that its associated interrupt is
-> wake capable. This is an incorrect assumption as some Chromebooks use
-> a separate wake pin, while others overload the interrupt for wake and
-> IO."
-> With the current assumption, spurious wakes can occur on systems that
-> use a separate wake pin.
+> Signed-off-by: Swapnil Jakhade <sjakhade@cadence.com>
 
-This sentence would be enough.
 
-> I can add wording to the dts patches to help clarify.
-> 
->>> The driver works across numerous buses (spi, uart, i2c, lpc) and
->>> supports DT and ACPI.
->>> SPI+DT systems all happen to need irq wake enabled.
->>>
->>>> I don't think anything from previous discussion was
->>>> resolved.
->>>
->>> Which previous discussion do you mean? In v1 it was suggested to split
->>
->> https://lore.kernel.org/all/20231213221124.GB2115075-robh@kernel.org/
-> 
-> Hmm, I thought that was addressed [2]. I was referencing the existing
-> binding documentation. From there, there was discussion about updating
-> the docs to clarify what was actually intended (patch 3 in this
-> series). I also addressed the ABI break concern in the thread and
-> mentioned it in patch 22.
-> "For device tree base systems, it is not an issue as the relevant
-> device tree entries have been updated and DTS is built from source for
-> each ChromeOS update."
-> 
-> Is there a specific concern you feel is not resolved? Or can I make
-> something more clear?
-> 
-Seems fine, thanks.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
