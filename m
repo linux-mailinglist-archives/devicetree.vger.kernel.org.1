@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-27876-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27877-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5237081BFA0
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 21:36:46 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0CE2581BFA5
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 21:38:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 777311C21EE3
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 20:36:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B83EF285A31
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 20:38:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 735D8768EC;
-	Thu, 21 Dec 2023 20:36:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31C6D7690B;
+	Thu, 21 Dec 2023 20:38:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zgvzMIh5"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RQM8+av7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
+Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D04A4BA2F
-	for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 20:36:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E994768F0
+	for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 20:38:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-2cca5d81826so7141271fa.2
-        for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 12:36:40 -0800 (PST)
+Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-50e2168ab09so1885144e87.0
+        for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 12:38:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1703190999; x=1703795799; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1703191114; x=1703795914; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=QNpfDCJAonGBMBz8546mnqWdYnvp44SklWS+RUeJXKo=;
-        b=zgvzMIh5fg0tazryQsmkRpMAEMefT9bGW489mG9x+QHrndSZoS9PXEGGBiHY7PVq9g
-         OOeUbi59HHWUZuRFhtULA3u7+MOyxKoLPdHuLJi3r9iCBUE8u11nvKcTRONO6EfLwuNn
-         D0Yb5+vbaofGUt9ttfwNGFvGn02JbRrEHE4XZ+C+1+pAGUaGIIU99b7rivxJh6m8VE16
-         3qVlLwI6jNwmdAvb12xqlH8BM4B5R6I6/GwUYCUSVYoe/eq2td80dceDfjcntoYOJOLo
-         4fkzl74wlvJquR9l4AB5XzNs9JJ8Q5AeDudtwnjEjPL3r2nneb4RZuICmtWn/TsST3Xr
-         nQZA==
+        bh=2tKuO1rdUOt0u+cRJkxxV7tXLUBJCJsqHO8/xbe8nC4=;
+        b=RQM8+av75l/SZE22hth8ePN73jLKG5l8YfD0a8JD/90/2EtcKuZ2QTpwvawTuCiU5F
+         dKylRc0Q0g4+hGss9RN14g4PgbVpZICBz50XZnSOtEGNWRryhLVgMBRwb8rZTganhYe/
+         iI9QdL3c7c3Njzl8bKDTUSh1squjWcZ2OsuQrsLVtov8oIeQk3RN02UdnKY4JggmODiO
+         NEGgq37Xnp18wC1yu7OzN3YbBrWrT8+/yCbTZfC5YLdc4rugvhFqKiM8GXTYTLYEmN7K
+         jAGL0dcyWbbzzslL2B0VSMcYMr9Qxo14gTrPm2CMIeykXw31lamD8L9FqsPdimNZex9j
+         16jA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703190999; x=1703795799;
+        d=1e100.net; s=20230601; t=1703191114; x=1703795914;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=QNpfDCJAonGBMBz8546mnqWdYnvp44SklWS+RUeJXKo=;
-        b=VcZKnj3zabAeb6FjHXE5ao3xyBSn1cBCaLyUz3wM5B+arLG292H7do+lUkq6kDPF7I
-         h4RccxQTpGxFJcGA73tQtQQ7cXVY8QxY2wvUxL52EToEahP2fVRyXxLxKNtql4d6JL+5
-         PuetiEq3rcVQzrw02e/TslfH+4VXa3qSC7nQsTlw9b94utfr0B7XG4EE2rWmEclJ/siH
-         0ste2JafxF6/U5mgeKGBKB6u9thlXViJq0YHfa0Ta10QFdR6FStPiNmaM/bWIzJtF7fc
-         VDIKWafEC+aRQRmzUgtl6mI5hpiZyRVgZxECcLY0jyZMeFPz1kEiO2G6sKmdNAkkSDm9
-         momQ==
-X-Gm-Message-State: AOJu0Yyg5JPTPy0Q6UTRdvjSzMDR+Rv+NqmzDyhR5SHtT6xPw0E/ONDc
-	7VXEsuhdGVxIyio7QA+yRdKJi+MadzIlyw==
-X-Google-Smtp-Source: AGHT+IFdKq0z8t9OmsOH9m9Fc1RpF9FK++78Vnv7chqqUzLDHlCJ9asogU5EEARo69ApJqYNOI5LKw==
-X-Received: by 2002:a05:651c:10:b0:2cc:9f68:e552 with SMTP id n16-20020a05651c001000b002cc9f68e552mr82026lja.10.1703190998877;
-        Thu, 21 Dec 2023 12:36:38 -0800 (PST)
+        bh=2tKuO1rdUOt0u+cRJkxxV7tXLUBJCJsqHO8/xbe8nC4=;
+        b=aVJx+o8XqKHMo+Ru7nGoIRCEQ4rbWqxGPt+zwj00T4XpTwhJJfJzv0O/TCir3n1EbQ
+         kX74ub06GNfkR6TaXxcd/PBWXNy+ONc4RBh8ZbShs4h4xkbBIR8MTvvpo+r46/C6Gw52
+         SIDgER2Gxm1MBKJbyhLzVcnMR/xDwyVFE+yu1bp6th5ZTvIZEOVHbfgdSEwGx08tVZzx
+         ZF++mF9FrKh18rmVx3QJ6tlAARdZW30s196V51mFdvYyblGF7wO8TjL/tcMWAFuz6SEt
+         50Vgh+iUfAi/tC3DHsE/piGlal9yNouQmjZ23CYcCd2Mhm5FC7xhrFwDza0XX3/LxEeN
+         AbPg==
+X-Gm-Message-State: AOJu0YyhuLgUmI+M11bDfeQ4CjrJfUre/pqOTnl5x2AkZkuLHVFiI3AT
+	ULe2EI9lNT3loMNuPkTv/lAwxjGlb2Sj+A==
+X-Google-Smtp-Source: AGHT+IHNJwrvA87ip4T5l0CyayM74kfq3fhWYI9xnRXrOYz4oA2p8fxlyVf63Qicvi7flrpxCU8juw==
+X-Received: by 2002:a19:6549:0:b0:50e:44a5:57b0 with SMTP id c9-20020a196549000000b0050e44a557b0mr119469lfj.121.1703191114395;
+        Thu, 21 Dec 2023 12:38:34 -0800 (PST)
 Received: from [192.168.0.22] ([78.10.206.178])
-        by smtp.gmail.com with ESMTPSA id bf25-20020a0564021a5900b0055286b1bfc2sm1620741edb.25.2023.12.21.12.36.37
+        by smtp.gmail.com with ESMTPSA id wh15-20020a170906fd0f00b00a26b37e0e7fsm162858ejb.60.2023.12.21.12.38.33
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 Dec 2023 12:36:38 -0800 (PST)
-Message-ID: <88834783-5aea-46d2-82cc-dd22cb4473f5@linaro.org>
-Date: Thu, 21 Dec 2023 21:36:37 +0100
+        Thu, 21 Dec 2023 12:38:33 -0800 (PST)
+Message-ID: <3bc9f0a4-1336-4398-a654-13bd276df5bf@linaro.org>
+Date: Thu, 21 Dec 2023 21:38:32 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,31 +66,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RESEND v1 2/8] dt-bindings: display: add dt-bindings for
- STM32 LVDS device
+Subject: Re: [PATCH v3 1/4] dt-bindings: firmware: xilinx: Describe missing
+ child nodes
 Content-Language: en-US
-To: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Rob Herring <robh+dt@kernel.org>,
+To: Michal Simek <michal.simek@amd.com>, linux-kernel@vger.kernel.org,
+ monstr@monstr.eu, michal.simek@xilinx.com, git@xilinx.com
+Cc: Conor Dooley <conor+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Yannick Fertre <yannick.fertre@foss.st.com>,
- Philippe Cornu <philippe.cornu@foss.st.com>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
- Thierry Reding <thierry.reding@gmail.com>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+ Naman Trivedi Manojbhai <naman.trivedimanojbhai@amd.com>,
+ Rob Herring <robh+dt@kernel.org>, Wolfram Sang <wsa@kernel.org>,
+ devicetree@vger.kernel.org, kishore Manne <nava.kishore.manne@amd.com>,
  linux-arm-kernel@lists.infradead.org
-References: <20231221124339.420119-1-raphael.gallais-pou@foss.st.com>
- <20231221124339.420119-3-raphael.gallais-pou@foss.st.com>
+References: <cover.1703161663.git.michal.simek@amd.com>
+ <1d7988cfadf3554d11f0779f96a670b4fd86ce5a.1703161663.git.michal.simek@amd.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -136,23 +124,20 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231221124339.420119-3-raphael.gallais-pou@foss.st.com>
+In-Reply-To: <1d7988cfadf3554d11f0779f96a670b4fd86ce5a.1703161663.git.michal.simek@amd.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 21/12/2023 13:43, Raphael Gallais-Pou wrote:
-> Add dt-binding file for "st,stm32-lvds" compatible.
+On 21/12/2023 13:27, Michal Simek wrote:
+> Firmware node has more than fpga, aes and clock child nodes but also power,
+> reset, gpio, pinctrl and pcap which are not described yet.
+> All of them have binding in separate files but there is missing connection
+> to firmware node that's why describe it.
 > 
-> Signed-off-by: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
-> ---
+> Signed-off-by: Michal Simek <michal.simek@amd.com>
 
-I don't know why this was resend, nothing explains it, but I already
-commented on other version.
 
-Please respond to comments there.
-
-In the future, unless it is obvious resend over 2 weeks, say why you are
-doing it and what changed.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
