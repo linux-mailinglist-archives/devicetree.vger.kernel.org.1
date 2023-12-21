@@ -1,152 +1,116 @@
-Return-Path: <devicetree+bounces-27853-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27854-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 294F081BD9A
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 18:52:31 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A75981BDE6
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 19:06:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BEB6E1F254DF
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 17:52:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EA26828C501
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 18:06:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07111634E2;
-	Thu, 21 Dec 2023 17:52:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D8EF63517;
+	Thu, 21 Dec 2023 18:05:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PNYLadlx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ljigpITK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC3D9BA2F;
-	Thu, 21 Dec 2023 17:52:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A227FC433C8;
-	Thu, 21 Dec 2023 17:52:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCD41627E2;
+	Thu, 21 Dec 2023 18:05:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E661C433C7;
+	Thu, 21 Dec 2023 18:05:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1703181146;
-	bh=lyzByyIGtJtbvQNXSj6a4JRBMqzOy5OV7zShwLWFESA=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=PNYLadlx3HDnL6+8gp9DHHqBZbtRXTVtlvGpzBic8ktqW5eRZowkQnD9eOvRot157
-	 9b3h3pRmzx156HM1tEYsjIRKa6ERu1Z3mxijp8sT9N4CTxaSZdzwkjJe2F7B06agR2
-	 GGmqmnI8EcL0a8uzpcG2MEqxuBz2axr2fjWFMzYL+RCeYgTjt6bL2t9WWseQAlbMj9
-	 jQ7LywkTSOulEeIcPPw5c0KfH8/BwtqPC6UlOsmtKaib4FJOfFt3S2V9b38Iuh5i3I
-	 F4TVMKlfJgFON55737HPEF7xaFzFiUGn64B+ldkZeo5Jghe33Mt8w0J4CQkaEFe1RQ
-	 Eq24f93LV7/Kw==
-Date: Thu, 21 Dec 2023 17:52:09 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Nuno Sa <nuno.sa@analog.com>
-Cc: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>, Lars-Peter
- Clausen <lars@metafoo.de>, Michael Hennerich
- <Michael.Hennerich@analog.com>, Rob Herring <robh+dt@kernel.org>, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- "Rafael J. Wysocki" <rafael@kernel.org>, Frank Rowand
- <frowand.list@gmail.com>, Olivier Moysan <olivier.moysan@foss.st.com>
-Subject: Re: [PATCH v4 7/8] iio: adc: ad9467: convert to backend framework
-Message-ID: <20231221175209.457664b5@jic23-huawei>
-In-Reply-To: <20231220-iio-backend-v4-7-998e9148b692@analog.com>
-References: <20231220-iio-backend-v4-0-998e9148b692@analog.com>
-	<20231220-iio-backend-v4-7-998e9148b692@analog.com>
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.38; x86_64-pc-linux-gnu)
+	s=k20201202; t=1703181935;
+	bh=D5T8wHGhxAKHwrI/lC8X+GMnYbXpN7+mZX5GeytoQ04=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ljigpITKWRoXryXYXE7TF2C2rWPXY88P26mNPS/9U7CNNAjF5Zgv7xB2KPUv4brT3
+	 PXS8SzBv56B91NY5jhDj5FMdLD1e2lW8gEtAJh0GRa3CzOWW29o1BubDuLqBcPnKF1
+	 p+rUcxAizfn9zOMvUHawaFn6lITidua0/D9rs6oepNSEDamK1ClDAXQnS1s/fG3n7b
+	 65MR+q0DuQxdlKBgnwGld9sXNpSb6nquEs7dgOjIzxgB1MwHx4Zt+eynFiDDvsfjYB
+	 MTuXW+ZX0eFdIOjOx/6Ork84bt15YpWCDAKWnm7nPvbHDsKeey4pUs6hK+p/uNmzP5
+	 rNzVDH9I/ZriA==
+Date: Thu, 21 Dec 2023 18:05:28 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Oleksij Rempel <o.rempel@pengutronix.de>
+Cc: =?iso-8859-1?Q?K=F6ry?= Maincent <kory.maincent@bootlin.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Luis Chamberlain <mcgrof@kernel.org>,
+	Russ Weight <russ.weight@linux.dev>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org, devicetree@vger.kernel.org,
+	Dent Project <dentproject@linuxfoundation.org>,
+	Liam Girdwood <lgirdwood@gmail.com>
+Subject: Re: [PATCH net-next v2 8/8] net: pse-pd: Add PD692x0 PSE controller
+ driver
+Message-ID: <81f0ddba-5008-43a4-a41c-c7b6ba8e2e3b@sirena.org.uk>
+References: <20231204225956.GG981228@pengutronix.de>
+ <20231205064527.GJ981228@pengutronix.de>
+ <4b96b8c8-7def-46e5-9c85-d9e925fb9251@sirena.org.uk>
+ <20231205140203.GK981228@pengutronix.de>
+ <88ed0c94-d052-4564-be0c-79a0f502eda8@sirena.org.uk>
+ <20231221163610.47038996@kmaincent-XPS-13-7390>
+ <ffda1003-b752-402e-8e51-e2e24a840cff@sirena.org.uk>
+ <20231221171000.45310167@kmaincent-XPS-13-7390>
+ <501f671d-4e03-490b-a9d6-e1f39bb99115@sirena.org.uk>
+ <20231221174246.GI1697233@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="9BoYyAUBuFErv7HY"
+Content-Disposition: inline
+In-Reply-To: <20231221174246.GI1697233@pengutronix.de>
+X-Cookie: Results are not typical.
 
-On Wed, 20 Dec 2023 16:34:10 +0100
-Nuno Sa <nuno.sa@analog.com> wrote:
 
-> Convert the driver to use the new IIO backend framework. The device
-> functionality is expected to be the same (meaning no added or removed
-> features).
-> 
-> Also note this patch effectively breaks ABI and that's needed so we can
-> properly support this device and add needed features making use of the
-> new IIO framework.
-> 
-> Signed-off-by: Nuno Sa <nuno.sa@analog.com>
+--9BoYyAUBuFErv7HY
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-A few minor comments. Looks good to me.
+On Thu, Dec 21, 2023 at 06:42:46PM +0100, Oleksij Rempel wrote:
 
-Jonathan
+> The main question is - how to represent a remote consumer (Powered
+> Device)? It looks for me like having a dummy regulator consumer for each
+> (PSE PI) withing the PSE framework is the simplest thing to do. User
+> should enable this dummy consumer from user space by using already
+> existing interface in case of PoDL - ETHTOOL_A_PODL_PSE_ADMIN_CONTROL
+> or new interface for Clause 33 PSE.
 
-> +static int ad9467_update_scan_mode(struct iio_dev *indio_dev,
-> +				   const unsigned long *scan_mask)
-> +{
-> +	struct ad9467_state *st = iio_priv(indio_dev);
-> +	unsigned int c;
-> +	int ret;
-> +
-> +	for (c = 0; c < st->info->num_channels; c++) {
-> +		if (test_bit(c, scan_mask))
-> +			ret = iio_backend_chan_enable(st->back, c);
-> +		else
-> +			ret = iio_backend_chan_disable(st->back, c);
-> +
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	return 0;
-> +}
+That's not even a dummy consumer - the physical power output from the
+system is a real, physical thing that we can point at just as much as
+any other physical device.  Some kind of library/helper thing that
+connects up with other interfaces for controlling network ports like you
+suggest above does seem like a good fit here.
 
->  static int ad9467_reset(struct device *dev)
-> @@ -443,25 +475,63 @@ static int ad9467_reset(struct device *dev)
->  	return 0;
->  }
->  
-> +static int ad9467_iio_backend_get(struct ad9467_state *st)
-> +{
-> +	struct device *dev = &st->spi->dev;
-> +	struct device_node *__back;
-> +
-> +	st->back = devm_iio_backend_get_optional(&st->spi->dev, NULL);
-> +	if (IS_ERR(st->back))
-> +		return PTR_ERR(st->back);
+--9BoYyAUBuFErv7HY
+Content-Type: application/pgp-signature; name="signature.asc"
 
-As per the comment on previous patch I'd just get it using the normal
-function and handle PTR_ERR(-ENOENT) here as meaning we need to
-try the old way.
+-----BEGIN PGP SIGNATURE-----
 
-> +	if (st->back)
-> +		return 0;
-> +	/*
-> +	 * if we don't get the backend using the normal API's, use the legacy
-> +	 * 'adi,adc-dev' property. So we get all nodes with that property, and
-> +	 * look for the one pointing at us. Then we directly lookup that fwnode
-> +	 * on the backend list of registered devices. This is done so we don't
-> +	 * make io-backends mandatory which would break DT ABI.
-> +	 */
-> +	for_each_node_with_property(__back, "adi,adc-dev") {
-> +		struct device_node *__me;
-> +
-> +		__me = of_parse_phandle(__back, "adi,adc-dev", 0);
-> +		if (!__me)
-> +			continue;
-> +
-> +		if (!device_match_of_node(dev, __me)) {
-> +			of_node_put(__me);
-> +			continue;
-> +		}
-> +
-> +		of_node_put(__me);
-> +		st->back = devm_iio_backend_get_from_fwnode_lookup(dev,
-> +								   of_fwnode_handle(__back));
-> +		of_node_put(__back);
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmWEfmcACgkQJNaLcl1U
+h9Acggf+NDcjJKIBfD5BoXWMfSIkaHsYiitSj17XijQ9AOb+V8MrpL1QbuK2lHzS
+yZv4O/Ed2yk2oLnxJ029R54HnKgXQ25hZKFjdGkLxCHSZS+GhzRPHw7QLIG8KeGO
+Aw4qjs/Lkd5Nv6sNBs4es4wUiOY5+unwiqOEBZn+doFs6amX0i9Sedk8HqTxpA1l
+BjrYbDuacb+WEe2vLU1mTrz1+VF67nSO8R+iyShD7sss5AiiLtxxMwiBlPsZn+ec
+rjFGC5L2bxo71F1HTKDyn108V5E/u0kpfhbRab7jSGr3Z+48TjBczb+QaNfkzegY
+GswtRELPkEY6dOfiXM/49YnnGd+6mw==
+=A5qx
+-----END PGP SIGNATURE-----
 
-If it lands first the patch
-RFC PATCH 1/4] of: Add cleanup.h based autorelease via __free(device_node) markings.
-will get rid of this manual handling for you for both the continue and return.
-This will make a very nice example for that :)
-
-> +		return PTR_ERR_OR_ZERO(st->back);
-> +	}
-> +
-> +	return -ENODEV;
-> +}
-
+--9BoYyAUBuFErv7HY--
 
