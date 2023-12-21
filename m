@@ -1,142 +1,209 @@
-Return-Path: <devicetree+bounces-27693-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27694-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6460B81B58B
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 13:12:13 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 34FBC81B5B1
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 13:22:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 062E9B210F6
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 12:12:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E0B18285E2A
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 12:21:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0330D6D1BF;
-	Thu, 21 Dec 2023 12:11:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00E9D73167;
+	Thu, 21 Dec 2023 12:21:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LyF65s28"
+	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="UrlAekeh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F36C6EB77
-	for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 12:11:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-40c6ea99429so7837415e9.3
-        for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 04:11:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1703160712; x=1703765512; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=z+uuMxsM7UtYesWjErVKFcif0zMpS8DQvy2c0DXdtA0=;
-        b=LyF65s288EbmtzeMaXRmsg/QS4jN4pHUYxD6HTJamoj5wXS02FGflwXlPq10aOMBqL
-         gaR2mgw1RGnY/RxY7/kkaMq8oajdVy98GhLJOKKwDqiygr28gR48a8p/6BNtcndeQfjJ
-         xIOJs2lanjHOmc/cQmTgi1PE4Cu0jkRgX+Ey6S0pyUxHKy7IrFdL1UyGqRs5LYl4FVh0
-         lI17x6tq0keDQpZBntvc8hc2ZxGoLWaxwzru1xd0T0CqChC890ORGkQSIm0QyKGXvChc
-         xu/SE17WLLSJnGcpxd64UKbMkfj0vZXumL2Q1pzhrO3ssuA2AdrYjMKCznPygmhbxTzc
-         4EEQ==
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED4176E59A
+	for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 12:21:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
+Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id B390E3F45F
+	for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 12:21:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+	s=20210705; t=1703161296;
+	bh=5yOM88UnN2btzDcnsPnqzcK3v085hMK5F/zsjhGZgro=;
+	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
+	 To:Cc:Content-Type;
+	b=UrlAekehBWXVm8o5Ck3NhS03DpNn88aMDuLo2aMDgzztwJFKEk15971ozrYbO4Fjm
+	 jLaZ+tS79HsdwdxrqNcjsPT+9wiGz+eprDKRRKGCDb+iTwZWXVrnqEGuWWT3Hsd9Yh
+	 bir8dynXQjtmcI1Hl6LxksYlsEP87k0DjBVVl2vApODtuN+AMUOfYgqyH4YTQRXtCe
+	 t5+bN4ps6JXj6znmOg4NTd2HPvZx4P4g9GXs2eZpv2VRofGLiREIwDMAw1Jv4oAYxe
+	 IpbDuO9I+eSpS5LFH8Lkktvzb+dYEyWCjQJh34hl9lXKdgDj8pofjqDSZ9iBY6ujFV
+	 8KxGk1/1Yjjug==
+Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-42784a4762dso9966371cf.1
+        for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 04:21:36 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703160712; x=1703765512;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=z+uuMxsM7UtYesWjErVKFcif0zMpS8DQvy2c0DXdtA0=;
-        b=MBR300nJa8Xeo3i6pEoVOsIcd589Rv1/E+/HAzqMkjsYtIPq1FINo5hQVL4ww15e67
-         E5xAa29mt+EYhK5RtRxSTKlmijtfzu8n3xdQ4AVE5AUFcmVM7C7jEgA4WsDGXDEERnUn
-         PKpm5c08PwSb3w7DdkgdHZcMkg0IFa75RmqRNLbUvyJ3CZNDgirFhZc7N7pnw9XDWaTy
-         SRvDnTU08OiOrzlvV3W0ujQ37U0sG0YBAcEEAe4sbQtinv8L2A4CTUNAXmMn0tryVdht
-         9W+SjZfgIqUZ4CtWrGhFXHLnlrWBJqAsDGZeDtQmJKqzS9r/fp3ahLkybEY5Zlo2kB7W
-         U92w==
-X-Gm-Message-State: AOJu0YzYTu9Td2Mn4IEmN/kLl5+DZjFG8Ncar7osUW8ycxt5er8aqYCo
-	Cfd1m4x5/ANARYWJlTDBiwkZFw==
-X-Google-Smtp-Source: AGHT+IHSkqVnr1hPklLwCoqwrQkOqtvtI+FIrzELtkQCowL3AsS74oj1nldbCP9TVbZkX7z1JcgERg==
-X-Received: by 2002:a05:600c:3d0e:b0:40b:5e59:99c7 with SMTP id bh14-20020a05600c3d0e00b0040b5e5999c7mr532941wmb.231.1703160712567;
-        Thu, 21 Dec 2023 04:11:52 -0800 (PST)
-Received: from [192.168.0.22] ([78.10.206.178])
-        by smtp.gmail.com with ESMTPSA id zr16-20020a170907711000b00a26af4d96c6sm18198ejb.4.2023.12.21.04.11.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 Dec 2023 04:11:52 -0800 (PST)
-Message-ID: <7536c8c5-bcf3-41fe-ab39-924af87d9700@linaro.org>
-Date: Thu, 21 Dec 2023 13:11:50 +0100
+        d=1e100.net; s=20230601; t=1703161295; x=1703766095;
+        h=content-transfer-encoding:cc:to:subject:message-id:date
+         :mime-version:references:in-reply-to:from:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=5yOM88UnN2btzDcnsPnqzcK3v085hMK5F/zsjhGZgro=;
+        b=mJWN5+OeaPnjwHH75ux48rDGibV083SpSLBkH33AN96VYPza1LS8Thmtp5ifCPegpB
+         RfCWV2TiTa6wyG+CFGOXdOMoozTA1xahAOqEILNuOIrI5BKwatilLOA84Grs3eAinPAw
+         pkyedF5vem/o93nATdbHcPlhRf+dxsNwiDjOIaLf5D9zwanzqyWdEZQ3TYAoUJLY4zDD
+         qr77/KMLf0gRx0JK1JR0Yl7Nj5v4XlSZonr28Hw+NLzVRnWGntyz6q+9xotY4c4IRWg7
+         FrypnozN4WdJL3Td8KpE3T5GFYfzOAEYy1EDHKKdrU28BmsfJsxx9n9fAM/FHfTxfPbM
+         /+sQ==
+X-Gm-Message-State: AOJu0Yw4hGXLLoF7YhNBEwn2LYOuIXst3kKqh9fVHQNfMDkqQQC5zg6E
+	hGrN1pq8tT752LwabZfB56ZX/OoGHZsiyi4DqB2bL6sumDsmmhuReuTvNQo6u1UfcgxElapjX+q
+	yOn1PvAYl9pga9pKQ/qchuhYH/3jvYdouS/hA/ZKcMJ8HYSkTbPoYly/LSwvScJo=
+X-Received: by 2002:a05:622a:14c6:b0:425:917c:7536 with SMTP id u6-20020a05622a14c600b00425917c7536mr6534457qtx.119.1703161295571;
+        Thu, 21 Dec 2023 04:21:35 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IEpMGKr/Zb4NKcCnJdLXeBdkeSOCI9GetmOSTchFTZuRlYVVuqcu2glq8Xby4HmQ5C3aTmS9z58/3PgkaRgvH0=
+X-Received: by 2002:a05:622a:14c6:b0:425:917c:7536 with SMTP id
+ u6-20020a05622a14c600b00425917c7536mr6534438qtx.119.1703161295305; Thu, 21
+ Dec 2023 04:21:35 -0800 (PST)
+Received: from 348282803490 named unknown by gmailapi.google.com with
+ HTTPREST; Thu, 21 Dec 2023 04:21:34 -0800
+From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+In-Reply-To: <CACRpkdZf09uKr+ka0_rsw5kHMjjQbaGypn2fx2-QobLFBKYrtQ@mail.gmail.com>
+References: <20231215143906.3651122-1-emil.renner.berthing@canonical.com>
+ <20231215143906.3651122-2-emil.renner.berthing@canonical.com> <CACRpkdZf09uKr+ka0_rsw5kHMjjQbaGypn2fx2-QobLFBKYrtQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: hwmon: ina2xx: Add label property
-Content-Language: en-US
-To: Michal Simek <michal.simek@amd.com>, linux-kernel@vger.kernel.org,
- monstr@monstr.eu, michal.simek@xilinx.com, git@xilinx.com
-Cc: Conor Dooley <conor+dt@kernel.org>, Guenter Roeck <linux@roeck-us.net>,
- Jean Delvare <jdelvare@suse.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-hwmon@vger.kernel.org
-References: <6f3c57d08984c1978569d3918cb38eb295c0c67d.1703077926.git.michal.simek@amd.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <6f3c57d08984c1978569d3918cb38eb295c0c67d.1703077926.git.michal.simek@amd.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Mime-Version: 1.0
+Date: Thu, 21 Dec 2023 04:21:34 -0800
+Message-ID: <CAJM55Z8hT_fUAjzNR=7aoWJPU8MMumjdFy74MDD85Yic2Gjg-A@mail.gmail.com>
+Subject: Re: [PATCH v1 1/8] dt-bindings: pinctrl: Add thead,th1520-pinctrl bindings
+To: Linus Walleij <linus.walleij@linaro.org>, Jisheng Zhang <jszhang@kernel.org>, 
+	Guo Ren <guoren@kernel.org>, Drew Fustini <dfustini@baylibre.com>, 
+	Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	Hoan Tran <hoan@os.amperecomputing.com>, Serge Semin <fancer.lancer@gmail.com>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>, Andy Shevchenko <andy@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Fu Wei <wefu@redhat.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 20/12/2023 14:12, Michal Simek wrote:
-> Add a label property to allow a custom name to be used for identifying
-> a device on the board. This is useful when multiple devices are present on
-> the same board. Similar change was done by commit ffae65fb1ae4
-> ("dt-bindings: spi: spi-cadence: Add label property").
-> 
-> Signed-off-by: Michal Simek <michal.simek@amd.com>
-> ---
+Linus Walleij wrote:
+> Hi Emil,
+>
+> thanks for your patch!
+>
+> On Fri, Dec 15, 2023 at 3:39=E2=80=AFPM Emil Renner Berthing
+> <emil.renner.berthing@canonical.com> wrote:
+>
+> > +  The TH1520 has 3 groups of pads each controlled from different memor=
+y ranges.
+> > +  Confusingly the memory ranges are named
+> > +    PADCTRL_AOSYS  -> PAD Group 1
+> > +    PADCTRL1_APSYS -> PAD Group 2
+> > +    PADCTRL0_APSYS -> PAD Group 3
+>
+> Really, even in the documentation? If you look at the layout on the actua=
+l
+> chip, does a pattern emerge?
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Yes, the documentation is where I got this from:
+https://git.beagleboard.org/beaglev-ahead/beaglev-ahead/-/blob/main/docs/TH=
+1520%20System%20User%20Manual.pdf
 
-Best regards,
-Krzysztof
+The pinmux chapter starting on page 31 only talks about the 3 pad groups, b=
+ut
+if you match the base addresses, table 3-8 page 46, with the memory map, ta=
+ble
+1-2 page 1, they same base addresses have the PADCTRL names above.
 
+> I think some use the north/south/east/west as group names with the BGA
+> chip facing up with the package text correctly readable then it is a bit
+> like a map.
+
+I don't know if or where such documentation is available.
+Jisheng, Guo or Drew, do you know?
+
+> > +          function:
+> > +            $ref: /schemas/types.yaml#/definitions/string
+> > +            enum: [ "0", "1", "2", "3", "4", "5" ]
+> > +            description: The mux function to select for the given pins=
+.
+>
+> So why is the opaque names "0", "1" etc used, and they will be the same f=
+or
+> all pins I bet. Most drivers use a string identifying the actual function=
+ here.
+> Such as "i2c", "gpio", etc.
+>
+> Names that are just figures are *impossible* to understand without access
+> to a datasheet.
+>
+> The point of device trees sources are to be human readable, strings of
+> magic numbers are not human readable at all.
+>
+> > +          bias-disable: true
+> > +
+> > +          bias-pull-up:
+> > +            type: boolean
+> > +
+> > +          bias-pull-down:
+> > +            type: boolean
+> > +
+> > +          drive-strength:
+> > +            enum: [ 1, 2, 3, 5, 7, 8, 10, 12, 13, 15, 16, 18, 20, 21, =
+23, 25 ]
+>
+> milliamperes? Then use drive-strength-microamp.
+>
+> If not, explain what each setting means, i.e. the number of max microamps=
+.
+
+It *is* the number of mA. I can change it uA if that's better.
+
+> At which point using drive-strength-microamp and a translation table in t=
+he
+> driver may be a better idea.
+
+That's what it does, just with mA.
+
+> The only reason to use opaque numbers is if 1, 2 (etc) mean something lik=
+e
+> "number of driver stages" with a current output that varies with technolo=
+gy.
+>
+> > +          thead,strong-pull-up:
+> > +            oneOf:
+> > +              - type: boolean
+> > +              - $ref: /schemas/types.yaml#/definitions/uint32
+> > +                enum: [ 0, 2100 ]
+> > +            description: Enable or disable strong 2.1kOhm pull-up.
+>
+> Just use bias-pull-up with an argument.
+>
+> bias-pull-up =3D <2100000>;
+>
+> No argument would be the default setting.
+>
+> No need for custom bindings.
+>
+> > +        uart0_pins: uart0-0 {
+> > +            tx-pins {
+> > +                pins =3D "UART0_TXD";
+>
+> Pins have reasonable names, but...
+>
+> > +                function =3D "0";
+>
+> What about function =3D "uart_0" hmmm?
+>
+> Yours,
+> Linus Walleij
+>
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
 
