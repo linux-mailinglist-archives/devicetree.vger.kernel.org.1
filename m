@@ -1,218 +1,110 @@
-Return-Path: <devicetree+bounces-27744-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27745-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F78581B8F9
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 14:57:33 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C8BE81B912
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 15:01:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CAE8428AE35
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 13:57:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 95E041C25A35
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 14:01:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57C1B627E2;
-	Thu, 21 Dec 2023 13:47:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DCF47608B;
+	Thu, 21 Dec 2023 13:50:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="i3kZuJfC"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="iUtSiWXq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92E2058227;
-	Thu, 21 Dec 2023 13:46:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-54c77e0835bso1036086a12.2;
-        Thu, 21 Dec 2023 05:46:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1703166418; x=1703771218; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=d1tAZ8GdByb8q0+1M5iM8QIUCHX6alVx7yOZ8zoIeaQ=;
-        b=i3kZuJfCn3yhFaazQkbPcbHhrgHajoXjf2+yNM4z9ldlmVZ5QV4tVZ01IsJl+D0TCr
-         NtTuth/AvRz/6rzUhH5RILWlkz2HKCeV9Nyp+hBqd9NmBUZ2fq0klg1ZmntWtc+QOU9u
-         JyLwv4SdzadD/X1e+nYNFNfgU5ws1hvYaSuWsSXRdTvIZx/fd9PFtUlBwxiCXpZdoHcv
-         MX070QgUA2PRpjW6CNLVGWEwCWw6o4eeKvEbo5jpqoS93GnMa0yibmW0yVZhzw+XfxE0
-         bNVgAECy4mp5NfbyEYsRyKDfJO+8ovUvpKKD73fd5/Tb/9aWFsqXgG/CkuRLsgmU55ia
-         ksBg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703166418; x=1703771218;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=d1tAZ8GdByb8q0+1M5iM8QIUCHX6alVx7yOZ8zoIeaQ=;
-        b=GaBERB5x5obPL7XALxxRDK5uILBQmADjYMON4h9ipoGEaAcYU2W5nYIRvvVWpi+pAn
-         QYq2xi/aRsX4NQ795u7Kh7sBTIBjcWfSoY/s5R2TD3m04oLUOxqKzRPAwCkzh3LcLhvn
-         xl63fzocqRzGDxB8pypDtBQj9cdyqQ6Yf52z3Tb9HM8mWSDBiXuxrozCfDf65NjtTZ4m
-         0+hVauWFkWv0khwPqX5SUwFo2AyPPfiMdayKk/xiouLKmO3LXh7namd8vwjVpTtJbQlV
-         czSNx2tNyWmRkL6ILdWuSa8ZAsfll+MKyy0oWoBx9Bu+QXC4JvGyxG+S1dHYZU6EWf+N
-         A/lQ==
-X-Gm-Message-State: AOJu0YyhiVHzL/5NauobS+bZ2zHyOwRY6VtcidYLel3+UkTGUStVKbr+
-	cdIYO4M7AKChk9MCqvo0Hg==
-X-Google-Smtp-Source: AGHT+IHXd7MayCVwis6kd4X/xob72svSWV/OODq5cZ/Go8Rd7wNoGd/LEEF1HL3PA7jhTNXGBqQP7A==
-X-Received: by 2002:a50:8e17:0:b0:553:68b2:31e3 with SMTP id 23-20020a508e17000000b0055368b231e3mr3672745edw.30.1703166417679;
-        Thu, 21 Dec 2023 05:46:57 -0800 (PST)
-Received: from ?IPV6:2a02:810b:f40:4300:1c49:5d1e:f6f3:77a0? ([2a02:810b:f40:4300:1c49:5d1e:f6f3:77a0])
-        by smtp.gmail.com with ESMTPSA id i21-20020a0564020f1500b0055344b92fb6sm1185290eda.75.2023.12.21.05.46.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 Dec 2023 05:46:57 -0800 (PST)
-Message-ID: <b03a7ddc-65c5-44c3-a563-d52ee938148a@gmail.com>
-Date: Thu, 21 Dec 2023 14:46:56 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 113306EB7D;
+	Thu, 21 Dec 2023 13:50:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1703166614; x=1734702614;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=UfxBOC7Ak9ofvXRWHBi0awUJZ/U0OS1qvUlw59nEa2Y=;
+  b=iUtSiWXqX7kKPB0Y2FxI7UqMZjyb/4ughSZ1cEJ2yDffs5agP6dBrZmY
+   HDyRXr2GvuAyR/cE3x48yCIFXlG8Ti0+n/7tAM0sIbdAREKNNRtVe603q
+   R2O/W8adDPZC5gUFKXvjou9Y46/hqiPSYD3qZ2OD7qtNAOkamQfZ+HxGr
+   J7joj1miX7PBwzJRmdrKURXVHLmxHAmkZPmVHfbmfbcqOChp6CAFpdsKe
+   JevvAvLPEHJnGMwuRlk08KkcCHJP/EJ5psfy4meuzRjg5fjLtqtLpZfbU
+   lMaVnT8WknOa0CeptJqPDtGflntY3ByRvi8Euc5hBBYMjaJsJi0p4AF6Y
+   A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10930"; a="460311202"
+X-IronPort-AV: E=Sophos;i="6.04,293,1695711600"; 
+   d="scan'208";a="460311202"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Dec 2023 05:50:13 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10930"; a="1108106685"
+X-IronPort-AV: E=Sophos;i="6.04,293,1695711600"; 
+   d="scan'208";a="1108106685"
+Received: from yilunxu-optiplex-7050.sh.intel.com (HELO localhost) ([10.239.159.165])
+  by fmsmga005.fm.intel.com with ESMTP; 21 Dec 2023 05:50:08 -0800
+Date: Thu, 21 Dec 2023 21:47:36 +0800
+From: Xu Yilun <yilun.xu@linux.intel.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Michal Simek <michal.simek@amd.com>, linux-kernel@vger.kernel.org,
+	monstr@monstr.eu, michal.simek@xilinx.com, git@xilinx.com,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jassi Brar <jassisinghbrar@gmail.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Mark Brown <broonie@kernel.org>, Moritz Fischer <mdf@kernel.org>,
+	Naman Trivedi Manojbhai <naman.trivedimanojbhai@amd.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>,
+	Tom Rix <trix@redhat.com>, Wu Hao <hao.wu@intel.com>,
+	Xu Yilun <yilun.xu@intel.com>, devicetree@vger.kernel.org,
+	kishore Manne <nava.kishore.manne@amd.com>,
+	linux-arm-kernel@lists.infradead.org, linux-fpga@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: firmware: xilinx: Fix versal-fpga node name
+Message-ID: <ZYRB+Jkj0IMTphDo@yilunxu-OptiPlex-7050>
+References: <6779af2f9cc21c912f10cf310388d99b980800b2.1702996281.git.michal.simek@amd.com>
+ <7ac7db8e-f9b5-4394-af71-1a2b2548c485@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 0/5] Add support for video hardware codec of
- STMicroelectronics STM32 SoC series
-Content-Language: en-US, de-DE
-To: Adam Ford <aford173@gmail.com>
-Cc: Hugues FRUCHET <hugues.fruchet@foss.st.com>,
- Nicolas Dufresne <nicolas.dufresne@collabora.com>,
- Marco Felsch <m.felsch@pengutronix.de>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Andrzej Pietrasiewicz <andrzej.p@collabora.com>,
- Sakari Ailus <sakari.ailus@linux.intel.com>,
- Benjamin Gaignard <benjamin.gaignard@collabora.com>,
- Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
- Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, linux-kernel@vger.kernel.org,
- Daniel Almeida <daniel.almeida@collabora.com>,
- Heiko Stuebner <heiko@sntech.de>, Hans Verkuil <hverkuil@xs4all.nl>,
- Rob Herring <robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- linux-stm32@st-md-mailman.stormreply.com,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- devicetree@vger.kernel.org, Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- linux-media@vger.kernel.org, Alexandre Torgue
- <alexandre.torgue@foss.st.com>,
- Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
-References: <20231221084723.2152034-1-hugues.fruchet@foss.st.com>
- <769a1510-f8d2-4095-9879-42f413141dee@gmail.com>
- <a240d2ac-db0e-481b-8d13-3ae76cfd2fe7@foss.st.com>
- <e5ba1e14-4bbf-43e3-933a-fee6d4b90641@gmail.com>
- <CAHCN7xJ3Ktn+TnoOYdnNvKTddGCfLp4OQ+gM0WonWj-aqnsGuA@mail.gmail.com>
-From: Alex Bee <knaerzche@gmail.com>
-In-Reply-To: <CAHCN7xJ3Ktn+TnoOYdnNvKTddGCfLp4OQ+gM0WonWj-aqnsGuA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7ac7db8e-f9b5-4394-af71-1a2b2548c485@linaro.org>
 
+On Wed, Dec 20, 2023 at 08:54:33AM +0100, Krzysztof Kozlowski wrote:
+> On 19/12/2023 15:31, Michal Simek wrote:
+> > Based on commit 83a368a3fc8a ("docs: dt-bindings: add DTS Coding Style
+> > document") using underscore ('_') in node name is not recommended that's
+> > why switch to dash ('-').
+> > 
+> > Signed-off-by: Michal Simek <michal.simek@amd.com>
+> > ---
+> > 
+> >  .../bindings/firmware/xilinx/xlnx,zynqmp-firmware.yaml        | 4 ++--
+> >  Documentation/devicetree/bindings/fpga/xlnx,versal-fpga.yaml  | 2 +-
+> >  2 files changed, 3 insertions(+), 3 deletions(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-firmware.yaml b/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-firmware.yaml
+> > index 8e584857ddd4..3d578f98ae2c 100644
+> > --- a/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-firmware.yaml
+> > +++ b/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-firmware.yaml
+> > @@ -41,7 +41,7 @@ properties:
+> >    "#power-domain-cells":
+> >      const: 1
+> >  
+> 
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Am 21.12.23 um 14:38 schrieb Adam Ford:
-> On Thu, Dec 21, 2023 at 7:31 AM Alex Bee <knaerzche@gmail.com> wrote:
->> Hi Hugues,
->>
->> Am 21.12.23 um 14:08 schrieb Hugues FRUCHET:
->>> Hi Alex,
->>>
->>> This is because VDEC and VENC are two separated IPs with their own
->>> hardware resources and no links between both.
->>> On future SoCs, VDEC can ship on its own, same for VENC.
->>>
->> I think that's what the driver is/was designed for :)
->>
->> I don't  think there _has_ to be a link between variants in the same file.
->> For Rockchip we only had the issue that there _is_ a link (shared
->> resources) between encoder and decoder and they had (for that reason) to be
->> defined has a _single_ variant. And there is no reason you can ship decoder
->> and encoder seperated when you have two variants (with different
->> compatibles).
->> For Rockchip and iMX those files are even containing variants for completly
->> different generations / different SoCs. I had to cleanup this mess for
-> The i.MX8M Mini and Plus have different power domains for encoder and
-> decoders as well as different clocks.  Keeping them separate would
-> almost be necessary.
-I guess there is missunderstanding: I didn't say the two STM variants
-should be merged in one variant, but the two variants should be within the
-same _file_, like the other platforms are doing :)
-> adam
->
->> Rockchip once - and it was no fun :) Anyways: It's up to the maintainers I
->> guess - I just wanted to ask if I missunderstand something here.
->>
->> Greetings,
->>
->> Alex
->>
->>> Hoping that this clarify.
->>>
->>> Best regards,
->>> Hugues.
->>>
->>> On 12/21/23 13:40, Alex Bee wrote:
->>>> Hi Hugues, Hi Nicolas,
->>>>
->>>> is there any specific reason I'm not understanding / seeing why this
->>>> is added in two seperate vdec* / venc* files and not a single vpu*
->>>> file? Is it only for the seperate clocks (-names) / irqs (-names) /
->>>> callbacks? Those are defined per variant and perfectly fit in a
->>>> single file holding one vdec and one venc variant.
->>>>
->>>> Alex
->>>>
->>>> Am 21.12.23 um 09:47 schrieb Hugues Fruchet:
->>>>> This patchset introduces support for VDEC video hardware decoder
->>>>> and VENC video hardware encoder of STMicroelectronics STM32MP25
->>>>> SoC series.
->>>>>
->>>>> This initial support implements H264 decoding, VP8 decoding and
->>>>> JPEG encoding.
->>>>>
->>>>> This has been tested on STM32MP257F-EV1 evaluation board.
->>>>>
->>>>> ===========
->>>>> = history =
->>>>> ===========
->>>>> version 5:
->>>>>      - Precise that video decoding as been successfully tested up to
->>>>> full HD
->>>>>      - Add Nicolas Dufresne reviewed-by
->>>>>
->>>>> version 4:
->>>>>      - Fix comments from Nicolas about dropping encoder raw steps
->>>>>
->>>>> version 3:
->>>>>      - Fix remarks from Krzysztof Kozlowski:
->>>>>       - drop "items", we keep simple enum in such case
->>>>>       - drop second example - it is the same as the first
->>>>>      - Drop unused node labels as suggested by Conor Dooley
->>>>>      - Revisit min/max resolutions as suggested by Nicolas Dufresne
->>>>>
->>>>> version 2:
->>>>>      - Fix remarks from Krzysztof Kozlowski on v1:
->>>>>       - single video-codec binding for both VDEC/VENC
->>>>>       - get rid of "-names"
->>>>>       - use of generic node name "video-codec"
->>>>>
->>>>> version 1:
->>>>>     - Initial submission
->>>>>
->>>>> Hugues Fruchet (5):
->>>>>     dt-bindings: media: Document STM32MP25 VDEC & VENC video codecs
->>>>>     media: hantro: add support for STM32MP25 VDEC
->>>>>     media: hantro: add support for STM32MP25 VENC
->>>>>     arm64: dts: st: add video decoder support to stm32mp255
->>>>>     arm64: dts: st: add video encoder support to stm32mp255
->>>>>
->>>>>    .../media/st,stm32mp25-video-codec.yaml       |  50 ++++++++
->>>>>    arch/arm64/boot/dts/st/stm32mp251.dtsi        |  12 ++
->>>>>    arch/arm64/boot/dts/st/stm32mp255.dtsi        |  17 +++
->>>>>    drivers/media/platform/verisilicon/Kconfig    |  14 ++-
->>>>>    drivers/media/platform/verisilicon/Makefile   |   4 +
->>>>>    .../media/platform/verisilicon/hantro_drv.c   |   4 +
->>>>>    .../media/platform/verisilicon/hantro_hw.h    |   2 +
->>>>>    .../platform/verisilicon/stm32mp25_vdec_hw.c  |  92 ++++++++++++++
->>>>>    .../platform/verisilicon/stm32mp25_venc_hw.c  | 115
->>>>> ++++++++++++++++++
->>>>>    9 files changed, 307 insertions(+), 3 deletions(-)
->>>>>    create mode 100644
->>>>> Documentation/devicetree/bindings/media/st,stm32mp25-video-codec.yaml
->>>>>    create mode 100644
->>>>> drivers/media/platform/verisilicon/stm32mp25_vdec_hw.c
->>>>>    create mode 100644
->>>>> drivers/media/platform/verisilicon/stm32mp25_venc_hw.c
->>>>>
+Acked-by: Xu Yilun <yilun.xu@intel.com>
+
+> 
+> Best regards,
+> Krzysztof
+> 
+> 
 
