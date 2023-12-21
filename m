@@ -1,48 +1,47 @@
-Return-Path: <devicetree+bounces-27898-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27899-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3274381C0D2
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 23:11:35 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 16D7981C0D8
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 23:14:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3248C1C22B85
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 22:11:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 498831C21EE3
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 22:14:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 921AB77F03;
-	Thu, 21 Dec 2023 22:11:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED33B77635;
+	Thu, 21 Dec 2023 22:14:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RlWXWltM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="r3PgqdPP"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71DEB7762A;
-	Thu, 21 Dec 2023 22:11:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B11FFC433C8;
-	Thu, 21 Dec 2023 22:11:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD81977F09;
+	Thu, 21 Dec 2023 22:14:27 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0F47EC433C7;
+	Thu, 21 Dec 2023 22:14:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1703196689;
-	bh=Z9hXMKVZ8tlGaA+HpSUiTzTbIZxbbxkEYRG/kNA4kKg=;
+	s=k20201202; t=1703196867;
+	bh=cYS3cTDbw5ZEO4RjMQJxm2bzTbH7s3/S3JHSmNe9LI4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=RlWXWltMmb5ueSr4sMV/rvCCcMB0vsaqeVLlqksmKzu29W2b2D9e4Mkafq87tEL0n
-	 cDkazvxzSAMTiK3BJx+VPLtx8sdv50XkDTwCfE+UZzopyuHTaKkypLu5tg2y7icrEz
-	 4J8zyW0h8/28JdxFMyX3khoOXa4hLu0w+JzIcZ7b4E1v7eck23ou1TIxBaNPm8a9lU
-	 eor1kZyUvKjTVAr+BP51zL7vSdQ7UT9bgnVZSOsNsCdAPKUoH4dNX+WCfJTmPS0FAp
-	 qtpnS6y2Xk7/ZRELmhLuEq7Tp2pyM2cg4T4L9IdeV3bPHV7nkdHBT/xCU39Ya0AiY5
-	 LC0Uzua1Ua1Cw==
-Received: (nullmailer pid 182706 invoked by uid 1000);
-	Thu, 21 Dec 2023 22:11:27 -0000
-Date: Thu, 21 Dec 2023 16:11:27 -0600
+	b=r3PgqdPPNA0G2/m4c2P6d/DNk03EOFgdBDVbb9yFwFSiYav/aVFEgskn5ffIJmlaL
+	 9MF0hK8gDjJY23vJZP0s3MHRqyN8RzoA/MjxHLCJnNCQx3SFKmMLB6uaJf7tMktxdG
+	 U0qy7IRnkA47Z0Vl5mvT6vL4d7KQYB95RDWgm+upcaMfDb4Eb8FegPhwwyz21Gzp4f
+	 mm70kstEkaMyEcSP2agMqZEB0+iYKB6bEgZq2KiaIUXFfCH1AmwkAENsV0Cucqtiez
+	 A3S5y+HfOFoLOv0E//1GYTl5ybtBOt3hz4i3D76jhAdlD8vTr3V8IHZqeOEPmEy8Up
+	 hUygrIuwakyaA==
+Received: (nullmailer pid 186572 invoked by uid 1000);
+	Thu, 21 Dec 2023 22:14:25 -0000
+Date: Thu, 21 Dec 2023 16:14:25 -0600
 From: Rob Herring <robh@kernel.org>
 To: Javier Martinez Canillas <javierm@redhat.com>
-Cc: Jocelyn Falempe <jfalempe@redhat.com>, Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org, Geert Uytterhoeven <geert@linux-m68k.org>, Peter Robinson <pbrobinson@gmail.com>, Thomas Zimmermann <tzimmermann@suse.de>, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Daniel Vetter <daniel@ffwll.ch>, Maxime Ripard <mripard@kernel.org>, Conor Dooley <conor+dt@kernel.org>, David Airlie <airlied@gmail.com>, linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, dri-devel@lists.freedesktop.org, Conor Dooley <conor@kernel.org>
-Subject: Re: [PATCH v3 2/4] dt-bindings: display: ssd132x: Add vendor prefix
- to width and height
-Message-ID: <170319668738.182673.3159926797028333161.robh@kernel.org>
+Cc: Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Geert Uytterhoeven <geert@linux-m68k.org>, Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh+dt@kernel.org>, Conor Dooley <conor@kernel.org>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Jocelyn Falempe <jfalempe@redhat.com>, dri-devel@lists.freedesktop.org, David Airlie <airlied@gmail.com>, Maxime Ripard <mripard@kernel.org>, Peter Robinson <pbrobinson@gmail.com>, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>
+Subject: Re: [PATCH v3 3/4] dt-bindings: display: Add SSD133x OLED controllers
+Message-ID: <170319686456.186513.13956120421237374815.robh@kernel.org>
 References: <20231219203416.2299702-1-javierm@redhat.com>
- <20231219203416.2299702-3-javierm@redhat.com>
+ <20231219203416.2299702-4-javierm@redhat.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -51,28 +50,29 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231219203416.2299702-3-javierm@redhat.com>
+In-Reply-To: <20231219203416.2299702-4-javierm@redhat.com>
 
 
-On Tue, 19 Dec 2023 21:34:07 +0100, Javier Martinez Canillas wrote:
-> Commit 2d23e7d6bacb ("dt-bindings: display: Add SSD132x OLED controllers")
-> used the wrong properties for width and height, instead of the correct
-> "solomon,width" and "solomon,height" properties.
+On Tue, 19 Dec 2023 21:34:08 +0100, Javier Martinez Canillas wrote:
+> Add a Device Tree binding schema for the OLED panels based on the
+> Solomon SSD133x family of controllers.
 > 
-> Fix this by adding the vendor prefix to the width and height properties.
-> 
-> Fixes: 2d23e7d6bacb ("dt-bindings: display: Add SSD132x OLED controllers")
-> Reported-by: Conor Dooley <conor@kernel.org>
-> Closes: https://lore.kernel.org/dri-devel/20231218-example-envision-b41ca8efa251@spud/
 > Signed-off-by: Javier Martinez Canillas <javierm@redhat.com>
 > ---
 > 
-> (no changes since v1)
+> Changes in v3:
+> - Move solomon,ssd-common.yaml ref before the properties section and
+>   width/height constraints after the other properties (Conor Dooley).
 > 
->  .../devicetree/bindings/display/solomon,ssd132x.yaml | 12 ++++++------
->  1 file changed, 6 insertions(+), 6 deletions(-)
+> Changes in v2:
+> - Unconditionally set the width and height constraints (Conor Dooley).
+> - Fix indentation in the DTS examples (Krzysztof Kozlowski).
+> 
+>  .../bindings/display/solomon,ssd133x.yaml     | 57 +++++++++++++++++++
+>  1 file changed, 57 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/solomon,ssd133x.yaml
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
 
 
