@@ -1,122 +1,140 @@
-Return-Path: <devicetree+bounces-27699-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27705-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A444681B5C8
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 13:28:48 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BEBF281B5E9
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 13:31:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5BCBF285FC7
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 12:28:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 73C001F24E4A
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 12:31:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 229496EB76;
-	Thu, 21 Dec 2023 12:28:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 439B773197;
+	Thu, 21 Dec 2023 12:30:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="MWZwkPPr"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="IxtmiNBZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 538C46EB63;
-	Thu, 21 Dec 2023 12:28:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3BLCS68v015162;
-	Thu, 21 Dec 2023 06:28:06 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1703161686;
-	bh=5AimOjX8mVtl/H74cpa+H08a66kuDuPQZ9w/xBNEu9w=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=MWZwkPPr7eTZA4xXasV4hbZ43I5+TV/CtuF/ezXGIVUxv0/hwrXHdhfMv4pbWLhH+
-	 zlDbHv7+MAcn45N4Z2JxuPbaXf0iem/7TMUHthDKUJJBTDQE/Tc2dXoJdZQihF/NCq
-	 DuSn6Wr6AjdTKsJUuiwE7TOpa/+uAmy+1A394O50=
-Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3BLCS5Ch117361
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 21 Dec 2023 06:28:05 -0600
-Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 21
- Dec 2023 06:28:05 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 21 Dec 2023 06:28:05 -0600
-Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3BLCS5gA090270;
-	Thu, 21 Dec 2023 06:28:05 -0600
-Date: Thu, 21 Dec 2023 06:28:05 -0600
-From: Nishanth Menon <nm@ti.com>
-To: Jayesh Choudhary <j-choudhary@ti.com>
-CC: <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <a-bhatia1@ti.com>, <rogerq@kernel.org>, <sabiya.d@ti.com>,
-        <u-kumar1@ti.com>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH] arm64: dts: ti: k3-am69-sk: remove
- assigned-clock-parents for unused VP
-Message-ID: <20231221122805.3kl5mujtk2npvrmf@skiing>
-References: <20231221113042.48492-1-j-choudhary@ti.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6509C26AD7;
+	Thu, 21 Dec 2023 12:30:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 3BL8jmp8012041;
+	Thu, 21 Dec 2023 13:29:41 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding:content-type; s=selector1; bh=uRYfWrQ
+	hXzw+M+0seKB6CQA/JwDHEIQuybIPuZL1Ego=; b=IxtmiNBZvyI+0vjIfaXpEWv
+	NiKFuUNm8Sy2Pd/YUC+2QD0olf6MyA1SFF49i183CFOoIA086srUC/4WxS60GZGR
+	Hoc1/WaX8elLo/h9sMTFmEjetk3dbihIfFlizI6vbGvhGxWfdcR1jlPqYf6qLZKb
+	htqeCzDzs/AFr+2D/VZsW/d+c0tI9njDFTl7NLAiVWElYy4MB7zIjzT16gfR32xF
+	BeFWG/G9NRZB/LGBeTjvb5crhWO9+nRyBKvotKOSmydevygTQwpF7sQN8J//VRNB
+	vTPmnVGoLeIqAnhGG6loks11ovaoaTynKBmLuT5c3bzrf5LB9EOzqNfziofONPg=
+	=
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3v13nhq559-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 21 Dec 2023 13:29:41 +0100 (CET)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 88FBA100053;
+	Thu, 21 Dec 2023 13:29:38 +0100 (CET)
+Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 36BBB2747B8;
+	Thu, 21 Dec 2023 13:29:38 +0100 (CET)
+Received: from localhost (10.252.25.159) by SHFDAG1NODE2.st.com (10.75.129.70)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Thu, 21 Dec
+ 2023 13:29:37 +0100
+From: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Neil Armstrong
+	<neil.armstrong@linaro.org>,
+        Jessica Zhang <quic_jesszhan@quicinc.com>,
+        Sam
+ Ravnborg <sam@ravnborg.org>,
+        Maarten Lankhorst
+	<maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre
+ Torgue <alexandre.torgue@foss.st.com>,
+        Yannick Fertre
+	<yannick.fertre@foss.st.com>,
+        Raphael Gallais-Pou
+	<raphael.gallais-pou@foss.st.com>,
+        Philippe Cornu
+	<philippe.cornu@foss.st.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Lad
+ Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Thierry Reding
+	<thierry.reding@gmail.com>
+CC: <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: [PATCH v1 0/8] Introduce STM32 LVDS driver
+Date: Thu, 21 Dec 2023 13:28:35 +0100
+Message-ID: <20231221122843.418650-1-raphael.gallais-pou@foss.st.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20231221113042.48492-1-j-choudhary@ti.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE2.st.com
+ (10.75.129.70)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-12-21_05,2023-12-20_01,2023-05-22_02
 
-On 17:00-20231221, Jayesh Choudhary wrote:
-> VP2 and VP3 are unused video ports and VP3 share the same parent
-> clock as VP1 causing issue with pixel clock setting for HDMI (VP1).
-> So remove the parent clocks for unused VPs.
-> 
-> Fixes: 6f8605fd7d11 ("arm64: dts: ti: k3-am69-sk: Add DP and HDMI support")
-> Reported-by: Nishanth Menon <nm@ti.com>
-> Closes: https://storage.kernelci.org/mainline/master/v6.7-rc6/arm64/defconfig/gcc-10/lab-ti/baseline-nfs-am69_sk-fs.txt
-> Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
-> ---
-> 
-> Local testing log for HDMI on AM69-SK:
-> <https://gist.github.com/Jayesh2000/517395cd85eb28d65b8ee4568cefb809>
+This serie introduces a new DRM bridge driver for STM32MP257 platforms
+based on Arm Cortex-35. It also adds an instance in the device-tree and
+handle the inclusion of the driver within the DRM framework. First patch
+adds a new panel compatible in the panel-lvds driver, which is used by
+default on the STM32MP257.
 
-Has this been always failing or just something introduced in rc6? I know
-I noticed this in rc6.. so wondering..
+Raphael Gallais-Pou (7):
+  dt-bindings: panel: lvds: Append edt,etml0700z9ndha in panel-lvds
+  dt-bindings: display: add dt-bindings for STM32 LVDS device
+  drm/stm: lvds: add new STM32 LVDS Display Interface Transmitter driver
+  drm/stm: ltdc: add lvds pixel clock
+  arm64: dts: st: add ltdc support on stm32mp251
+  arm64: dts: st: add lvds support on stm32mp253
+  arm64: dts: st: add display support on stm32mp257f-ev
 
-> 
->  arch/arm64/boot/dts/ti/k3-am69-sk.dts | 8 ++------
->  1 file changed, 2 insertions(+), 6 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am69-sk.dts b/arch/arm64/boot/dts/ti/k3-am69-sk.dts
-> index 8da591579868..370980eb59b0 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am69-sk.dts
-> +++ b/arch/arm64/boot/dts/ti/k3-am69-sk.dts
-> @@ -918,13 +918,9 @@ &dss {
->  	pinctrl-names = "default";
->  	pinctrl-0 = <&dss_vout0_pins_default>;
->  	assigned-clocks = <&k3_clks 218 2>,
-> -			  <&k3_clks 218 5>,
-> -			  <&k3_clks 218 14>,
-> -			  <&k3_clks 218 18>;
-> +			  <&k3_clks 218 5>;
->  	assigned-clock-parents = <&k3_clks 218 3>,
-> -				 <&k3_clks 218 7>,
-> -				 <&k3_clks 218 16>,
-> -				 <&k3_clks 218 22>;
-> +				 <&k3_clks 218 7>;
->  };
->  
->  &serdes_wiz4 {
-> -- 
-> 2.25.1
-> 
+Yannick Fertre (1):
+  drm/stm: ltdc: implement bus clock
+
+ .../bindings/display/panel/panel-lvds.yaml    |    2 +
+ .../bindings/display/st,stm32-lvds.yaml       |  114 ++
+ arch/arm64/boot/dts/st/stm32mp251.dtsi        |   12 +
+ arch/arm64/boot/dts/st/stm32mp253.dtsi        |   17 +
+ arch/arm64/boot/dts/st/stm32mp257f-ev1.dts    |   79 ++
+ drivers/gpu/drm/stm/Kconfig                   |   11 +
+ drivers/gpu/drm/stm/Makefile                  |    2 +
+ drivers/gpu/drm/stm/ltdc.c                    |   26 +
+ drivers/gpu/drm/stm/ltdc.h                    |    2 +
+ drivers/gpu/drm/stm/lvds.c                    | 1226 +++++++++++++++++
+ 10 files changed, 1491 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/st,stm32-lvds.yaml
+ create mode 100644 drivers/gpu/drm/stm/lvds.c
 
 -- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+2.25.1
+
 
