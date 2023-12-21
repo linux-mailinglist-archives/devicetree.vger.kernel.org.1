@@ -1,166 +1,140 @@
-Return-Path: <devicetree+bounces-27713-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27716-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5559A81B612
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 13:40:54 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A9E181B62F
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 13:45:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 10DAA288543
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 12:40:53 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6AA02B2275B
+	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 12:44:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7673C6EB52;
-	Thu, 21 Dec 2023 12:40:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 239C36F602;
+	Thu, 21 Dec 2023 12:44:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="U3wT1nIz"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="Xg7EL0qT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D04671DDE3;
-	Thu, 21 Dec 2023 12:40:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-40d13e4f7abso5696995e9.2;
-        Thu, 21 Dec 2023 04:40:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1703162445; x=1703767245; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=JWmqolZ/s9uaTTG3HahXfBKZE7l3nyr/50HE3h+LaaE=;
-        b=U3wT1nIz5vl2m9aERtqReSZiASzHJRBRaeQzRukJ35aLDRRRCOHP8u7jrq+alk/GLx
-         PDFQXeUMdLQZQuTzetzriyXnu1DptOe2ILVPQrDw2viCakIG+sA1Dy3EelscKDNWErDg
-         stOs7b/lXw+1D7D896Ga93AN+NGReKIF2LHSVIbLDKfZjcSfzLdlmbdb+gfTqiHyS1f9
-         gDeOCoLofRuZyiSoHogq+K+82IrGY49a6/hIPwAgdWYk6k1ctrcA8WHlgujxd/9hzxV+
-         k/DTaF+UNwpS+9TlZvcDhmewpdHjWzEpGcINlps2VFNAmKGzXv82FojfmCVDA1kh87PX
-         FnGQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703162445; x=1703767245;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=JWmqolZ/s9uaTTG3HahXfBKZE7l3nyr/50HE3h+LaaE=;
-        b=ojxA775DxfDvgbhqwLH6cj23ZsL4UVhQ/vj2MZPxQ+6OFoY4YZTA514izEsnLrLy2d
-         bDyqHXiPmkBi8gynOyoQ44P1MGNy1iayP3dP3Uk9e+XXGh6aTP7JqbRoc3iKo0b77UyZ
-         0jhdwfwUHrwAMXCHNAUrbJjbF0zl3AEpP1JuLskfgSyGFRhYx7pqvbmAcdRl/oMbNfOV
-         XP2MmAuKtKk0lpm2HIzo4qTcqjzx/AhfkgAcO9u9dSw7jfhf7vblApq7xC2NDgwrlx/D
-         qirMfwn0vStaymZaAe7gZo8gHcUBSuy2jqlRzTkE8/t9YO3/cOo4ouSfzrWh7Q5kAJ66
-         nZzQ==
-X-Gm-Message-State: AOJu0Yyy6wTnIST6tW7Zh+eJ8T7vALAhAUSMvzCVnYxiTyRGNk8Q177v
-	n58/iyhHtdNvUq0B8fxdLw==
-X-Google-Smtp-Source: AGHT+IGkuybcFimpIs0LvZEOZjwVVUVzLxK10DvFGWw0XP9p/eXP37eHJM8+GsP1AmV508zKWNQi3w==
-X-Received: by 2002:a05:600c:4583:b0:40d:177b:c3ac with SMTP id r3-20020a05600c458300b0040d177bc3acmr818914wmo.85.1703162444642;
-        Thu, 21 Dec 2023 04:40:44 -0800 (PST)
-Received: from ?IPV6:2a02:810b:f40:4300:1c49:5d1e:f6f3:77a0? ([2a02:810b:f40:4300:1c49:5d1e:f6f3:77a0])
-        by smtp.gmail.com with ESMTPSA id k13-20020a05600c1c8d00b0040d3dc52665sm2204319wms.21.2023.12.21.04.40.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 Dec 2023 04:40:44 -0800 (PST)
-Message-ID: <769a1510-f8d2-4095-9879-42f413141dee@gmail.com>
-Date: Thu, 21 Dec 2023 13:40:42 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C9B36F601;
+	Thu, 21 Dec 2023 12:44:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 3BL8Cp0r025683;
+	Thu, 21 Dec 2023 13:43:59 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding:content-type; s=selector1; bh=uRYfWrQ
+	hXzw+M+0seKB6CQA/JwDHEIQuybIPuZL1Ego=; b=Xg7EL0qTsCMMNn6KSjBYbmA
+	wBc/efXFbK3aUMb1Qc7563F32wFW3M83zUz/sgU4ZtSEYMRtdVUPuW/CYuNi9QTR
+	0ebgInLt4qBXzh4tY3Tt9ZLV6+BpiQ6bsof0i47V4kuemHk8/oYpIl8TYvdaYKQa
+	3wcQyuQDlzC+zYjmBsIuPn2Dgi8ljQfvPk5BpEFN8aJttDrFJm/ZCEAu7qJYaYCR
+	GNte6GptueV3kITNcA/SXjBZZzC/AYsf0nVz8gqUE+9d98eH1y1YlHzNbkzWA4B+
+	zAI18UC7txH7+EAn8WS3fCvXBUN4ePS8WZFrQA5udaPOvELbfEQusIP+2tssrWA=
+	=
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3v14427j52-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 21 Dec 2023 13:43:59 +0100 (CET)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 95369100053;
+	Thu, 21 Dec 2023 13:43:50 +0100 (CET)
+Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 44F8C280A11;
+	Thu, 21 Dec 2023 13:43:50 +0100 (CET)
+Received: from localhost (10.252.25.159) by SHFDAG1NODE2.st.com (10.75.129.70)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Thu, 21 Dec
+ 2023 13:43:50 +0100
+From: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Neil Armstrong
+	<neil.armstrong@linaro.org>,
+        Jessica Zhang <quic_jesszhan@quicinc.com>,
+        Sam
+ Ravnborg <sam@ravnborg.org>,
+        Maarten Lankhorst
+	<maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre
+ Torgue <alexandre.torgue@foss.st.com>,
+        Yannick Fertre
+	<yannick.fertre@foss.st.com>,
+        Raphael Gallais-Pou
+	<raphael.gallais-pou@foss.st.com>,
+        Philippe Cornu
+	<philippe.cornu@foss.st.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Lad
+ Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Thierry Reding
+	<thierry.reding@gmail.com>
+CC: <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: [PATCH RESEND v1 0/8] Introduce STM32 LVDS driver
+Date: Thu, 21 Dec 2023 13:43:31 +0100
+Message-ID: <20231221124339.420119-1-raphael.gallais-pou@foss.st.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 0/5] Add support for video hardware codec of
- STMicroelectronics STM32 SoC series
-To: Hugues Fruchet <hugues.fruchet@foss.st.com>,
- Nicolas Dufresne <nicolas.dufresne@collabora.com>
-Cc: Marco Felsch <m.felsch@pengutronix.de>, Adam Ford <aford173@gmail.com>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Andrzej Pietrasiewicz <andrzej.p@collabora.com>,
- Sakari Ailus <sakari.ailus@linux.intel.com>,
- Benjamin Gaignard <benjamin.gaignard@collabora.com>,
- Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
- Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, linux-kernel@vger.kernel.org,
- Daniel Almeida <daniel.almeida@collabora.com>,
- Heiko Stuebner <heiko@sntech.de>, Hans Verkuil <hverkuil@xs4all.nl>,
- Rob Herring <robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- linux-stm32@st-md-mailman.stormreply.com,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- devicetree@vger.kernel.org, Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- linux-media@vger.kernel.org, Alexandre Torgue
- <alexandre.torgue@foss.st.com>,
- Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
-References: <20231221084723.2152034-1-hugues.fruchet@foss.st.com>
-Content-Language: en-US, de-DE
-From: Alex Bee <knaerzche@gmail.com>
-In-Reply-To: <20231221084723.2152034-1-hugues.fruchet@foss.st.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE2.st.com
+ (10.75.129.70)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-12-21_06,2023-12-20_01,2023-05-22_02
 
-Hi Hugues, Hi Nicolas,
+This serie introduces a new DRM bridge driver for STM32MP257 platforms
+based on Arm Cortex-35. It also adds an instance in the device-tree and
+handle the inclusion of the driver within the DRM framework. First patch
+adds a new panel compatible in the panel-lvds driver, which is used by
+default on the STM32MP257.
 
-is there any specific reason I'm not understanding / seeing why this is 
-added in two seperate vdec* / venc* files and not a single vpu* file? Is 
-it only for the seperate clocks (-names) / irqs (-names) / callbacks? 
-Those are defined per variant and perfectly fit in a single file holding 
-one vdec and one venc variant.
+Raphael Gallais-Pou (7):
+  dt-bindings: panel: lvds: Append edt,etml0700z9ndha in panel-lvds
+  dt-bindings: display: add dt-bindings for STM32 LVDS device
+  drm/stm: lvds: add new STM32 LVDS Display Interface Transmitter driver
+  drm/stm: ltdc: add lvds pixel clock
+  arm64: dts: st: add ltdc support on stm32mp251
+  arm64: dts: st: add lvds support on stm32mp253
+  arm64: dts: st: add display support on stm32mp257f-ev
 
-Alex
+Yannick Fertre (1):
+  drm/stm: ltdc: implement bus clock
 
-Am 21.12.23 um 09:47 schrieb Hugues Fruchet:
-> This patchset introduces support for VDEC video hardware decoder
-> and VENC video hardware encoder of STMicroelectronics STM32MP25
-> SoC series.
-> 
-> This initial support implements H264 decoding, VP8 decoding and
-> JPEG encoding.
-> 
-> This has been tested on STM32MP257F-EV1 evaluation board.
-> 
-> ===========
-> = history =
-> ===========
-> version 5:
->     - Precise that video decoding as been successfully tested up to full HD
->     - Add Nicolas Dufresne reviewed-by
-> 
-> version 4:
->     - Fix comments from Nicolas about dropping encoder raw steps
-> 
-> version 3:
->     - Fix remarks from Krzysztof Kozlowski:
->      - drop "items", we keep simple enum in such case
->      - drop second example - it is the same as the first
->     - Drop unused node labels as suggested by Conor Dooley
->     - Revisit min/max resolutions as suggested by Nicolas Dufresne
-> 
-> version 2:
->     - Fix remarks from Krzysztof Kozlowski on v1:
->      - single video-codec binding for both VDEC/VENC
->      - get rid of "-names"
->      - use of generic node name "video-codec"
-> 
-> version 1:
->    - Initial submission
-> 
-> Hugues Fruchet (5):
->    dt-bindings: media: Document STM32MP25 VDEC & VENC video codecs
->    media: hantro: add support for STM32MP25 VDEC
->    media: hantro: add support for STM32MP25 VENC
->    arm64: dts: st: add video decoder support to stm32mp255
->    arm64: dts: st: add video encoder support to stm32mp255
-> 
->   .../media/st,stm32mp25-video-codec.yaml       |  50 ++++++++
->   arch/arm64/boot/dts/st/stm32mp251.dtsi        |  12 ++
->   arch/arm64/boot/dts/st/stm32mp255.dtsi        |  17 +++
->   drivers/media/platform/verisilicon/Kconfig    |  14 ++-
->   drivers/media/platform/verisilicon/Makefile   |   4 +
->   .../media/platform/verisilicon/hantro_drv.c   |   4 +
->   .../media/platform/verisilicon/hantro_hw.h    |   2 +
->   .../platform/verisilicon/stm32mp25_vdec_hw.c  |  92 ++++++++++++++
->   .../platform/verisilicon/stm32mp25_venc_hw.c  | 115 ++++++++++++++++++
->   9 files changed, 307 insertions(+), 3 deletions(-)
->   create mode 100644 Documentation/devicetree/bindings/media/st,stm32mp25-video-codec.yaml
->   create mode 100644 drivers/media/platform/verisilicon/stm32mp25_vdec_hw.c
->   create mode 100644 drivers/media/platform/verisilicon/stm32mp25_venc_hw.c
-> 
+ .../bindings/display/panel/panel-lvds.yaml    |    2 +
+ .../bindings/display/st,stm32-lvds.yaml       |  114 ++
+ arch/arm64/boot/dts/st/stm32mp251.dtsi        |   12 +
+ arch/arm64/boot/dts/st/stm32mp253.dtsi        |   17 +
+ arch/arm64/boot/dts/st/stm32mp257f-ev1.dts    |   79 ++
+ drivers/gpu/drm/stm/Kconfig                   |   11 +
+ drivers/gpu/drm/stm/Makefile                  |    2 +
+ drivers/gpu/drm/stm/ltdc.c                    |   26 +
+ drivers/gpu/drm/stm/ltdc.h                    |    2 +
+ drivers/gpu/drm/stm/lvds.c                    | 1226 +++++++++++++++++
+ 10 files changed, 1491 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/st,stm32-lvds.yaml
+ create mode 100644 drivers/gpu/drm/stm/lvds.c
+
+-- 
+2.25.1
 
 
