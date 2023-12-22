@@ -1,105 +1,149 @@
-Return-Path: <devicetree+bounces-28110-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28111-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B3C681CD1A
-	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 17:31:47 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B47DB81CD29
+	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 17:35:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 34379285B9A
-	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 16:31:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 648FA1F2279D
+	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 16:35:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3FC7241FF;
-	Fri, 22 Dec 2023 16:31:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="Ibm0y4rV"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDA1C24A09;
+	Fri, 22 Dec 2023 16:35:20 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-177.mta1.migadu.com (out-177.mta1.migadu.com [95.215.58.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49FA024A05
-	for <devicetree@vger.kernel.org>; Fri, 22 Dec 2023 16:31:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
-	t=1703262659;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=YFHH50hCCyLNIdU/YT5+WZzO0ybiRxLRVhJ6sMUejcE=;
-	b=Ibm0y4rVXPlNtN8Sr0N3hgBvaIUKOeikwqIn2f6Z0qNc6GnBl4PMOViFTGk55d3AG60s7G
-	fjpjUQ9SvH3F1was7QAUuxnO2RBndQTpE0pNKVS/5kGz2KGSi9XGuizRQJtWtKJMdA469d
-	HpX0nlfNdd1mPH7lpEpfMiytS/nblr4ogIneVrlblWWmfUDEmk6B1qThobBrnoH3H6+tJT
-	8BT00+Og8/uFhcMCexYA42tQm5fZXoxkq8JJAc5KPJdimQz2lPGy9xsGOzOs2n+06ENqgA
-	aMQ41nmU6vdeJkm9ilXoGQ9V5PbsmGRamL+Cu0SuXN02GILeUZYk+b19XmzCqQ==
-From: Diederik de Haas <didi.debian@cknow.org>
-To: Neil Armstrong <neil.armstrong@linaro.org>,
- Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Sandy Huang <hjc@rock-chips.com>, Mark Yao <markyao0591@gmail.com>,
- Segfault <awarnecke002@hotmail.com>, Arnaud Ferraris <aferraris@debian.org>,
- Manuel Traut <manut@mecka.net>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, Manuel Traut <manut@mecka.net>
-Subject:
- Re: [PATCH 1/6] dt-bindings: display: panel: Add BOE TH101MB31IG002-28A panel
-Date: Fri, 22 Dec 2023 17:30:45 +0100
-Message-ID: <2093114.Y6Bb1VsB30@bagend>
-Organization: Connecting Knowledge
-In-Reply-To: <20231222-pinetab2-v1-1-e148a7f61bd1@mecka.net>
-References:
- <20231222-pinetab2-v1-0-e148a7f61bd1@mecka.net>
- <20231222-pinetab2-v1-1-e148a7f61bd1@mecka.net>
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52F5D249FD;
+	Fri, 22 Dec 2023 16:35:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 12901139F;
+	Fri, 22 Dec 2023 08:36:03 -0800 (PST)
+Received: from pluto (unknown [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 17FAB3F7F5;
+	Fri, 22 Dec 2023 08:35:13 -0800 (PST)
+Date: Fri, 22 Dec 2023 16:35:11 +0000
+From: Cristian Marussi <cristian.marussi@arm.com>
+To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc: Sudeep Holla <sudeep.holla@arm.com>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Oleksii Moisieiev <oleksii_moisieiev@epam.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	NXP Linux Team <linux-imx@nxp.com>,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
+	Peng Fan <peng.fan@nxp.com>,
+	AKASHI Takahiro <takahiro.akashi@linaro.org>
+Subject: Re: [PATCH 6/7] pinctrl: Implementation of the generic scmi-pinctrl
+ driver
+Message-ID: <ZYW6v724Ags5JtY9@pluto>
+References: <20231215-pinctrl-scmi-v1-0-0fe35e4611f7@nxp.com>
+ <20231215-pinctrl-scmi-v1-6-0fe35e4611f7@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart2385407.UgvIaav1Zi";
- micalg="pgp-sha256"; protocol="application/pgp-signature"
-X-Migadu-Flow: FLOW_OUT
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231215-pinctrl-scmi-v1-6-0fe35e4611f7@nxp.com>
 
---nextPart2385407.UgvIaav1Zi
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"; protected-headers="v1"
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Diederik de Haas <didi.debian@cknow.org>
-Date: Fri, 22 Dec 2023 17:30:45 +0100
-Message-ID: <2093114.Y6Bb1VsB30@bagend>
-Organization: Connecting Knowledge
-In-Reply-To: <20231222-pinetab2-v1-1-e148a7f61bd1@mecka.net>
-MIME-Version: 1.0
+On Fri, Dec 15, 2023 at 07:56:34PM +0800, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
+> 
+> scmi-pinctrl driver implements pinctrl driver interface and using
+> SCMI protocol to redirect messages from pinctrl subsystem SDK to
+> SCMI platform firmware, which does the changes in HW.
+> 
 
-On Friday, 22 December 2023 12:05:41 CET Manuel Traut wrote:
-> +title: BOE TH101MB31IG002-28A Pine64 Pinetab2 DSI Display Panel
+[CC: Akashi which was interested in this series]
 
-s/Pine64 Pinetab2 // ?
+This generic driver still works fine for me as of now in my emulated
+setup using the generic SCMI bindings as in the initial Oleksii example
+and a dummy driver consumer for this pins, BUT there is still an open
+issue as reported by Akashi previously ..see below.
 
-It is used by the PT2 but I assume it's a 'standalone' panel?
---nextPart2385407.UgvIaav1Zi
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
+> Co-developed-by: Oleksii Moisieiev <oleksii_moisieiev@epam.com>
+> Signed-off-by: Oleksii Moisieiev <oleksii_moisieiev@epam.com>
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> ---
+>  MAINTAINERS                    |   1 +
+>  drivers/pinctrl/Kconfig        |  11 ++
+>  drivers/pinctrl/Makefile       |   1 +
+>  drivers/pinctrl/pinctrl-scmi.c | 403 +++++++++++++++++++++++++++++++++++++++++
+>  4 files changed, 416 insertions(+)
+ 
+ [snip]
 
------BEGIN PGP SIGNATURE-----
+> +static const struct pinmux_ops pinctrl_scmi_pinmux_ops = {
+> +	.request = pinctrl_scmi_request,
+> +	.free = pinctrl_scmi_free,
+> +	.get_functions_count = pinctrl_scmi_get_functions_count,
+> +	.get_function_name = pinctrl_scmi_get_function_name,
+> +	.get_function_groups = pinctrl_scmi_get_function_groups,
+> +	.set_mux = pinctrl_scmi_func_set_mux,
+> +};
+> +
+> +static int pinctrl_scmi_pinconf_get(struct pinctrl_dev *pctldev, unsigned int _pin,
+> +				    unsigned long *config)
+> +{
+> +	int ret;
+> +	struct scmi_pinctrl *pmx = pinctrl_dev_get_drvdata(pctldev);
+> +	enum pin_config_param config_type;
+> +	unsigned long config_value;
+> +
+> +	if (!config)
+> +		return -EINVAL;
+> +
+> +	config_type = pinconf_to_config_param(*config);
 
-iHUEABYIAB0WIQT1sUPBYsyGmi4usy/XblvOeH7bbgUCZYW5tQAKCRDXblvOeH7b
-bpSBAP9kwBO9FNQcfUOEoOnOmZkf72v8PYZgnmH11XJJpo3BMwD8CYhreYnW4Qbx
-cjIf48g7u1jSU1RBntQ2ZLGWwocsLAk=
-=0mEu
------END PGP SIGNATURE-----
+This config types that are packed/unpacked from the generic Pinctrl
+subsystem have also to be mapped/umapped, here and below, to the SCMI
+ones since they are slightly different/.
 
---nextPart2385407.UgvIaav1Zi--
+IOW SCMI V3.2 Table_24 in the spec, which defines Pins Config Types as
+understood by an SCMI platform FW is NOT exactly mapping to the enum
+pin_config_param used by Pinctrl in its pinconf_to_config so you risk
+passing a config_type to the SCMI fw that does NOT mean at all what
+intended...if the FW is compliant with SCMI.
 
+> +
+> +	ret = pinctrl_ops->config_get(pmx->ph, _pin, PIN_TYPE, config_type, &config_value);
+> +	if (ret)
+> +		return ret;
+> +
+> +	*config = pinconf_to_config_packed(config_type, config_value);
+> +
+> +	return 0;
+> +}
+> +
+> +static int pinctrl_scmi_pinconf_set(struct pinctrl_dev *pctldev,
+> +				    unsigned int _pin,
+> +				    unsigned long *configs,
+> +				    unsigned int num_configs)
+> +{
+> +	int ret;
+> +	struct scmi_pinctrl *pmx = pinctrl_dev_get_drvdata(pctldev);
+> +
+> +	if (!configs || !num_configs)
+> +		return -EINVAL;
+> +
 
+Same here, as said in the previous patch about pinctrl protocol, you
+should pack/unpack and map/unmap from Pinctrl packed configs and types
+to SCMI types and unpacked config/values, to fix the mismatch between
+Pinctrl and SCMI types and also to avoid the usage of Pinctrl helpers to
+extract the types from the SCMI protocol layer so that we can keep it
+agnostic in these regards.
 
+Thanks,
+Cristian
 
