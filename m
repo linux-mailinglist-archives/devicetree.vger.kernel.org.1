@@ -1,174 +1,525 @@
-Return-Path: <devicetree+bounces-27994-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27995-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EAC2081C74E
-	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 10:31:13 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C111681C763
+	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 10:39:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 61931B23DAC
-	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 09:31:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7890128767B
+	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 09:39:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A92B9DDA3;
-	Fri, 22 Dec 2023 09:31:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9128FF9C3;
+	Fri, 22 Dec 2023 09:39:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GyuqrCAD"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Cz0ZATp5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7295F9ED
-	for <devicetree@vger.kernel.org>; Fri, 22 Dec 2023 09:31:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-50e6984db43so428577e87.3
-        for <devicetree@vger.kernel.org>; Fri, 22 Dec 2023 01:31:03 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 852C01171B;
+	Fri, 22 Dec 2023 09:39:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-40d2376db79so13127605e9.0;
+        Fri, 22 Dec 2023 01:39:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1703237462; x=1703842262; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=+UyVQwVNpvAIqqgs7TD1fFxaownq/g7+OlqRMc6qqLI=;
-        b=GyuqrCADcYjqv2KiOl3galE+qN1/t8YGuHDf72E29YhJ+ciQyGdIr9exrOB9R5I58C
-         TlygsND197aKcfR5qFOrM4SCJ96oBlPOTzIElj9MnFAGhivoa/wYsEDSrE5KmYBpm5Aw
-         Mo9XXTf5cx7gKbj7Kg1qa5cUEpbe0tEMgps63GiP0Pk2pLLAt/jkhmsfcw1hDqq5K3xR
-         CpKKiK4G39RmLbjzVDIMPzvCzDymdWol0EGliVLl7/ozeyPyo5NFt2pE6JIPGA7eQwx6
-         DXVxUgk6cW4VGUG0t+m5V5kpmk8MTsYImNM7WpyBoVJVx5cerpalHlNgHRJ/uvP0Ek7v
-         gL9w==
+        d=gmail.com; s=20230601; t=1703237956; x=1703842756; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=jVrrNiEWnQMTSmSzK5+KsRbkx0B73QRT1bSxOYJV62s=;
+        b=Cz0ZATp5S17Q6v53c8pVodQb7MAl8D6IiJGs3WkGhHLevTBfVD9vdlrsHXztr5EMyI
+         Wz5Y/zW3BUQ9YALCwWvyT0BmiqGDrcpJ2jg4YOaq8OvuzGPyE+q5w4E9/7eZoXY6fUBx
+         nuL8EcjZmmUMlhk3D1H8kYttbesc+XPl+0Z/hZ7WuU+/4l0DCbOTQW0LhwgqmcCUBXcL
+         HngtHaJ49/ZUpUNfxgvU27zQR4Z/pkTa8xnKdvUjfWynVdr2ENd5Uhi2Ze/Vjsf4ClSZ
+         dIhCmfLLAzFPGwOzFZJM4gtxiD9v8TQ/AwpBV/LRecn4WCtgo/gCNJe1SLppp/MvGgBV
+         qBTw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703237462; x=1703842262;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+UyVQwVNpvAIqqgs7TD1fFxaownq/g7+OlqRMc6qqLI=;
-        b=M0CbS3MyqTbxIwm+fkT/Nx83ZplPIA/lQ0U7oIkpjmF7H2YH+kmMMM88BFVJYKvazd
-         HtecA5BOMLtIm333S02cfgwLVVPiwArvKFUXHuGkkzupEBBtPgEkOWkA9zkZT3Ut4XgM
-         NynAZs/NnWMNgbSJjCqgcRcS1ekIQpaGYSmSJqGHXzbg6Pyi4kWJLAJIsK+vmh9FwY5+
-         OgSjYCQI4IHSXqsXMQSmnFs0b8kwPnJZ22X1k/CTeLKbevNIQiEZpcqA9THFRnQEKKoX
-         +gY5szG7+1fkLBjGhIg6mG8GN273VdWiMBmewSQXwIJf6eQhLFKcSvowYe9I7pTavsk5
-         eYcw==
-X-Gm-Message-State: AOJu0Ywd1fcCccBn2Anf3yP7JdAcGa3Cd+3McYdahPtStVDzcw0lLl7d
-	KEhW0InJMp4gZ+3Iy7QXx1iiheiLKeK6LQ==
-X-Google-Smtp-Source: AGHT+IH/sfkdR7FDF3DcfNua5q0NiEtBd7g4Eq7d1xEUG+U2WA8p/s0x4nv+MGYGxgsbecBF9Y4UOw==
-X-Received: by 2002:a05:6512:39c3:b0:50e:685e:7e4d with SMTP id k3-20020a05651239c300b0050e685e7e4dmr568534lfu.55.1703237461902;
-        Fri, 22 Dec 2023 01:31:01 -0800 (PST)
-Received: from [192.168.0.22] ([78.10.206.178])
-        by smtp.gmail.com with ESMTPSA id ge24-20020a170907909800b00a1d5c52d628sm1886825ejb.3.2023.12.22.01.31.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 22 Dec 2023 01:31:01 -0800 (PST)
-Message-ID: <17fa2b28-2564-488e-86f6-979a69242999@linaro.org>
-Date: Fri, 22 Dec 2023 10:30:59 +0100
+        d=1e100.net; s=20230601; t=1703237956; x=1703842756;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=jVrrNiEWnQMTSmSzK5+KsRbkx0B73QRT1bSxOYJV62s=;
+        b=jm1rUHv+Wjd7WbTCegvHOXTRLtJcggLAYVkEs5Ja9P+lh6CfYLCRuMkDI3G0CFWzUS
+         ibJPtrUTarpI9xppeePa5IYuPm18LREs1Q1gZzpZgYMXw/aL9rw2/y/MZG/CsUeDqeFK
+         SQmiClSNz8nb1Olf5mIgggM2Qx84rDh58+uuTtjSHIyRI1yhMUmG2rduhX+5aw8WwYTL
+         MhdtC9R6KQf1Hoivk5YVdXu3bCH+YeKD8F8uV5hPRa+3AJUs2YgcLQtQ3eKdxQ8x8Yoo
+         k6FeSaHdQcNvV+HEN/WaU0xfYgS14HFeVO9NnYG1Vy85LnD4GHjvqhnyY+Vw8RqCr+4j
+         23pg==
+X-Gm-Message-State: AOJu0Yzy9hW3nzjM75rPEChfDGCkJ26R4NqeCvp3ooKmH33WfmidhVxa
+	Yu56T8yrhpbWZXfWUyhZN27/YQiuPVXTmspjyF8=
+X-Google-Smtp-Source: AGHT+IFuiBwjVVx7cCxgI2HocddyVXUeJKlWOqfertUHy8H5k70tVZRf0ueFWX8TLg6AGDjIGTC1JA==
+X-Received: by 2002:a05:600c:6003:b0:40d:4956:9b66 with SMTP id az3-20020a05600c600300b0040d49569b66mr177938wmb.66.1703237955532;
+        Fri, 22 Dec 2023 01:39:15 -0800 (PST)
+Received: from ?IPv6:2001:818:ea8e:7f00:5877:261e:1d6d:8696? ([2001:818:ea8e:7f00:5877:261e:1d6d:8696])
+        by smtp.gmail.com with ESMTPSA id l4-20020a05600c1d0400b0040d3276ba19sm6274724wms.25.2023.12.22.01.39.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 22 Dec 2023 01:39:14 -0800 (PST)
+Message-ID: <f7df488b33c89ce7078c39a87ba1108fac5a10bd.camel@gmail.com>
+Subject: Re: [PATCH v4 6/8] iio: add the IIO backend framework
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: Jonathan Cameron <jic23@kernel.org>, Nuno Sa <nuno.sa@analog.com>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, Lars-Peter
+ Clausen <lars@metafoo.de>, Michael Hennerich
+ <Michael.Hennerich@analog.com>, Rob Herring <robh+dt@kernel.org>, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+ <conor+dt@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, Frank Rowand
+ <frowand.list@gmail.com>, Olivier Moysan <olivier.moysan@foss.st.com>
+Date: Fri, 22 Dec 2023 10:39:15 +0100
+In-Reply-To: <20231221174437.5935a5c3@jic23-huawei>
+References: <20231220-iio-backend-v4-0-998e9148b692@analog.com>
+	 <20231220-iio-backend-v4-6-998e9148b692@analog.com>
+	 <20231221174437.5935a5c3@jic23-huawei>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.48.4 (3.48.4-1.fc38) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/1] arm64: dts: qcom: sm8550: remove
- address/size-cells from mdss_dsi1
-To: "Aiqun Yu (Maria)" <quic_aiquny@quicinc.com>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Tengfei Fan <quic_tengfan@quicinc.com>, andersson@kernel.org,
- konrad.dybcio@linaro.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, kernel@quicinc.com
-References: <20231219003106.8663-1-quic_tengfan@quicinc.com>
- <20231219003106.8663-2-quic_tengfan@quicinc.com>
- <457e336e-004c-4721-b58d-e9ada16dc04b@linaro.org>
- <a8f168da-14f7-4377-8dea-f282a3eac0a4@quicinc.com>
- <13b61d41-6045-499e-864b-51c6cb6eacf9@linaro.org>
- <38604415-b410-4995-9c4f-525536435699@quicinc.com>
- <CAA8EJpo07gE7ZeNP6wSGTLtmF_3PKQAKFyMRZ8dk1K+f7PAxrg@mail.gmail.com>
- <ad1547cf-0520-422d-a105-ec426f526d71@quicinc.com>
- <CAA8EJppwsezPV21Uw8xTn=ra8L2jfnkHoRghDPN96O5tJsOD7A@mail.gmail.com>
- <72305a35-02e6-4ff6-8251-01f986530c5d@quicinc.com>
- <A45746C4-54C9-48D2-9DB7-52B4B56854E6@linaro.org>
- <4e328cd8-9ef7-42ce-b592-7f2216c00c0b@quicinc.com>
- <CAA8EJprE8v3bhHfyZJM9SJT=ShJ-LQvk5mR=gpdAWXF2yANWbQ@mail.gmail.com>
- <e88787dc-ed03-42d2-a6e7-fb88bbc89357@quicinc.com>
- <6a4356e2-e201-4b87-bac0-056b29a07fc8@linaro.org>
- <459ef8e4-bbbc-4a7d-969c-43f269ef6793@quicinc.com>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <459ef8e4-bbbc-4a7d-969c-43f269ef6793@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
 
-On 22/12/2023 10:10, Aiqun Yu (Maria) wrote:
->>>>>> There is just one.
->>>>> Currently I mentioned bindings files was searched the compatible
->>>>> "qcom,mdss-dsi-ctrl", and find binding docs like "qcom,sm8550-mdss.yaml"
->>>>> "qcom,sm8450-mdss.yaml" etc.
->>>>> There is duplicate information on "qcom,sm8550-mdss.yaml" etc, while
->>>>> "qcom,mdss-common.yaml" is not common enough for my understanding.
->>>>
->>>> If you had compared the qcom,SOC-mdss.yaml, you would have seen that
->>>> they provide tight binding between compatible strings used for all the
->>>> subblocks. The `mdss-common.yaml` describes MDSS common properties. It
->>>> describes everything except the platform specifics. It can not be made
->>>> more common. And there is no duplication.
->>>>
->>>> If you think you can improve the bindings, please send the patches.
->>> I am thinking of a unified qcom,mdss.yaml instead of "qcom,*each
->>> SOC*-mdss.yaml". I will try to have a patch.
->>
->> I asked first of you to read previous discussions. If you still insist
->> on sending patch for this, it means you did not read them.
-> Do you have the previous discussion title/link that you are refereed 
-> here pls?
+On Thu, 2023-12-21 at 17:44 +0000, Jonathan Cameron wrote:
+> On Wed, 20 Dec 2023 16:34:09 +0100
+> Nuno Sa <nuno.sa@analog.com> wrote:
+>=20
+> > This is a Framework to handle complex IIO aggregate devices.
+> >=20
+> > The typical architecture is to have one device as the frontend device w=
+hich
+> > can be "linked" against one or multiple backend devices. All the IIO an=
+d
+> > userspace interface is expected to be registers/managed by the frontend
+> > device which will callback into the backends when needed (to get/set
+> > some configuration that it does not directly control).
+> >=20
+> > The basic framework interface is pretty simple:
+> > =C2=A0- Backends should register themselves with @devm_iio_backend_regi=
+ster()
+> > =C2=A0- Frontend devices should get backends with @devm_iio_backend_get=
+()
+> >=20
+> > Signed-off-by: Nuno Sa <nuno.sa@analog.com>
+>=20
+> A few minor comments, but seems good to me otherwise.
+>=20
+> Jonathan
+>=20
+> > ---
+> > =C2=A0MAINTAINERS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 |=C2=A0=C2=A0 8 +
+> > =C2=A0drivers/iio/Kconfig=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 5 +
+> > =C2=A0drivers/iio/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 1 +
+> > =C2=A0drivers/iio/industrialio-backend.c | 456 ++++++++++++++++++++++++=
++++++++++++++
+> > =C2=A0include/linux/iio/backend.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 |=C2=A0 75 ++++++
+> > =C2=A05 files changed, 545 insertions(+)
+> >=20
+> > diff --git a/MAINTAINERS b/MAINTAINERS
+> > index 3029841e92a8..df5f5b988926 100644
+> > --- a/MAINTAINERS
+> > +++ b/MAINTAINERS
+> > @@ -10334,6 +10334,14 @@ L:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0linux-media@vg=
+er.kernel.org
+> > =C2=A0S:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0Maintained
+> > =C2=A0F:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0drivers/media/rc/iguanair.c
+> > =C2=A0
+> > +IIO BACKEND FRAMEWORK
+> > +M:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0Nuno Sa <nuno.sa@analog.com>
+> > +R:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0Olivier Moysan <olivier.moysan@foss.st=
+.com>
+> > +L:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0linux-iio@vger.kernel.org
+> > +S:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0Maintained
+> > +F:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0drivers/iio/industrialio-backend.c
+> > +F:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0include/linux/iio/backend.h
+> > +
+> > =C2=A0IIO DIGITAL POTENTIOMETER DAC
+> > =C2=A0M:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0Peter Rosin <peda@axentia.se>
+> > =C2=A0L:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0linux-iio@vger.kernel.org
+> > diff --git a/drivers/iio/Kconfig b/drivers/iio/Kconfig
+> > index 52eb46ef84c1..451671112f73 100644
+> > --- a/drivers/iio/Kconfig
+> > +++ b/drivers/iio/Kconfig
+> > @@ -71,6 +71,11 @@ config IIO_TRIGGERED_EVENT
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0help
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Provides helper =
+functions for setting up triggered events.
+> > =C2=A0
+> > +config IIO_BACKEND
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0tristate
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0help
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Framework to handle c=
+omplex IIO aggregate devices.
+>=20
+> Add some more description here. Not sure the current text will help
+> anyone understand it :)
+>=20
 
-No, I don't have it. You can find it the same as me and it is not the
-job of reviewer to find them for you.
+Alright...
 
-Best regards,
-Krzysztof
+> > +
+> > =C2=A0source "drivers/iio/accel/Kconfig"
+> > =C2=A0source "drivers/iio/adc/Kconfig"
+> > =C2=A0source "drivers/iio/addac/Kconfig"
+> > diff --git a/drivers/iio/Makefile b/drivers/iio/Makefile
+> > index 9622347a1c1b..0ba0e1521ba4 100644
+> > --- a/drivers/iio/Makefile
+> > +++ b/drivers/iio/Makefile
+> > @@ -13,6 +13,7 @@ obj-$(CONFIG_IIO_GTS_HELPER) +=3D industrialio-gts-he=
+lper.o
+> > =C2=A0obj-$(CONFIG_IIO_SW_DEVICE) +=3D industrialio-sw-device.o
+> > =C2=A0obj-$(CONFIG_IIO_SW_TRIGGER) +=3D industrialio-sw-trigger.o
+> > =C2=A0obj-$(CONFIG_IIO_TRIGGERED_EVENT) +=3D industrialio-triggered-eve=
+nt.o
+> > +obj-$(CONFIG_IIO_BACKEND) +=3D industrialio-backend.o
+> > =C2=A0
+> > =C2=A0obj-y +=3D accel/
+> > =C2=A0obj-y +=3D adc/
+> > diff --git a/drivers/iio/industrialio-backend.c b/drivers/iio/industria=
+lio-
+> > backend.c
+> > new file mode 100644
+> > index 000000000000..75a0a66003e1
+> > --- /dev/null
+> > +++ b/drivers/iio/industrialio-backend.c
+> > @@ -0,0 +1,456 @@
+> > +// SPDX-License-Identifier: GPL-2.0-only
+> > +/*
+> > + * Framework to handle complex IIO aggregate devices.
+> > + *
+> > + * The typical architecture is to have one device as the frontend devi=
+ce which
+> > + * can be "linked" against one or multiple backend devices. All the II=
+O and
+> > + * userspace interface is expected to be registers/managed by the fron=
+tend
+> > + * device which will callback into the backends when needed (to get/se=
+t some
+> > + * configuration that it does not directly control).
+> > + *
+> > + * The framework interface is pretty simple:
+> > + *=C2=A0=C2=A0 - Backends should register themselves with @devm_iio_ba=
+ckend_register()
+> > + *=C2=A0=C2=A0 - Frontend devices should get backends with @devm_iio_b=
+ackend_get()
+> > + *
+> > + * Also to note that the primary target for this framework are convert=
+ers like
+> > + * ADC/DACs so @iio_backend_ops will have some operations typical of c=
+onverter
+> > + * devices. On top of that, this is "generic" for all IIO which means =
+any kind
+> > + * of device can make use of the framework. That said, If the @iio_bac=
+kend_ops
+> > + * struct begins to grow out of control, we can always refactor things=
+ so that
+> > + * the industrialio-backend.c is only left with the really generic stu=
+ff. Then,
+> > + * we can build on top of it depending on the needs.
+> > + *
+> > + * Copyright (C) 2023 Analog Devices Inc.
+> > + */
+> > +#define pr_fmt(fmt) "iio-backend: " fmt
+> > +
+> > +#include <linux/cleanup.h>
+> > +#include <linux/device.h>
+> > +#include <linux/err.h>
+> > +#include <linux/list.h>
+> > +#include <linux/lockdep.h>
+> > +#include <linux/kref.h>
+> > +#include <linux/module.h>
+> > +#include <linux/mutex.h>
+> > +#include <linux/property.h>
+> > +#include <linux/slab.h>
+> > +
+> > +#include <linux/iio/backend.h>
+> > +
+> > +struct iio_backend {
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct list_head entry;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0const struct iio_backend_ops=
+ *ops;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct device *dev;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct module *owner;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0void *priv;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0/*
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * mutex used to synchronize=
+ backend callback access with concurrent
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * calls to @iio_backend_unr=
+egister. The lock makes sure a device is
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * not unregistered while a =
+callback is being run.
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 */
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct mutex lock;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct kref ref;
+> > +};
+> > +
+>=20
+> ...
+>=20
+> > +
+> > +static void iio_backend_release(void *arg)
+> > +{
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct iio_backend *back =3D=
+ arg;
+> > +
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0module_put(back->owner);
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0kref_put(&back->ref, iio_bac=
+kend_free);
+> > +}
+> > +
+> > +static int __devm_iio_backend_get(struct device *dev, struct iio_backe=
+nd *back)
+> > +{
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct device_link *link;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0int ret;
+> > +
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0kref_get(&back->ref);
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (!try_module_get(back->ow=
+ner)) {
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0pr_err("%s: Cannot get module reference\n", dev_name(d=
+ev));
+>=20
+> Why do you need the reference?=C2=A0 Good to add a comment on that here.
+
+Yeah, typical stuff when it's a module and we don't want for it to go away.=
+ Even
+though we handle that case with pointer stuff. I'll comment it.
+
+>=20
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0return -ENODEV;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0}
+> > +
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0ret =3D devm_add_action_or_r=
+eset(dev, iio_backend_release, back);
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (ret)
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0return ret;
+> > +
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0link =3D device_link_add(dev=
+, back->dev, DL_FLAG_AUTOREMOVE_CONSUMER);
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (!link)
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0pr_warn("%s: Could not link to supplier(%s)\n", dev_na=
+me(dev),
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0dev_na=
+me(back->dev));
+>=20
+> Why is that not an error and we try to carry on?
+
+I guess having the links are not really mandatory for the whole thing to wo=
+rk (more
+like a nice to have). That's also how this is handled in another subsystems=
+ so I
+figured it would be fine.
+
+But since you are speaking about this... After you pointing me to Bartosz's=
+ talk and
+sawing it (as stuff like this is mentioned), I started to question this. Th=
+e goal
+with the above comment is that if you remove the backend, all the consumers=
+ are
+automatically removed (unbound). Just not sure if that's what we always wan=
+t (and we
+are already handling the situation where a backend goes away with -ENODEV) =
+as some
+frontends could still be useful without the backend (I guess that could be
+plausible). I think for now we don't really have such usecases so the links=
+ can make
+sense (and we can figure something like optionally creating these links if =
+we ever
+need too) but having your inputs on this will definitely be valuable.
+
+> > +
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0pr_debug("%s: Found backend(=
+%s) device\n", dev_name(dev),
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 dev_name(back->dev));
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0return 0;
+> > +}
+> > +
+> > +/**
+> > + * devm_iio_backend_get - Get a backend device
+> > + * @dev:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0Device where to look=
+ for the backend.
+> > + * @name:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0Backend name.
+> > + *
+> > + * Get's the backend associated with @dev.
+> > + *
+> > + * RETURNS:
+> > + * A backend pointer, negative error pointer otherwise.
+> > + */
+> > +struct iio_backend *devm_iio_backend_get(struct device *dev, const cha=
+r *name)
+> > +{
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct fwnode_handle *fwnode=
+;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct iio_backend *back;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0int index =3D 0, ret;
+> > +
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (name) {
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0index =3D device_property_match_string(dev, "io-backen=
+ds-names",
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 name);
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0if (index < 0)
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0return=
+ ERR_PTR(index);
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0}
+> > +
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0fwnode =3D fwnode_find_refer=
+ence(dev_fwnode(dev), "io-backends", index);
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (IS_ERR(fwnode)) {
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0/* not an error if optional */
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0pr_debug("%s: Cannot get Firmware reference\n", dev_na=
+me(dev));
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0return ERR_CAST(fwnode);
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0}
+> > +
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0guard(mutex)(&iio_back_lock)=
+;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0list_for_each_entry(back, &i=
+io_back_list, entry) {
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0if (!device_match_fwnode(back->dev, fwnode))
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0contin=
+ue;
+> > +
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0fwnode_handle_put(fwnode);
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0ret =3D __devm_iio_backend_get(dev, back);
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0if (ret)
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0return=
+ ERR_PTR(ret);
+> > +
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0return back;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0}
+> > +
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0fwnode_handle_put(fwnode);
+>=20
+> FYI. I have a series doing auto cleanup of fwnode_handles in progress.
+> Should get some time over the weekend to snd that out.=C2=A0 Aim is to av=
+oid need
+> to dance around manually freeing them (similar to the DT __free(device_no=
+de)
+> series I posted the other day).
+
+Cool! This will surely be an user of that.
+
+>=20
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0return ERR_PTR(-EPROBE_DEFER=
+);
+> > +}
+> > +EXPORT_SYMBOL_NS_GPL(devm_iio_backend_get, IIO_BACKEND);
+> > +
+> > +/**
+> > + * devm_iio_backend_get_optional - Get optional backend device
+> > + * @dev:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0Device where to look=
+ for the backend.
+> > + * @name:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0Backend name.
+> > + *
+> > + * Same as @devm_iio_backend_get() but return NULL if backend not foun=
+d.
+> > + *
+> > + * RETURNS:
+> > + * A backend pointer, negative error pointer otherwise or NULL if not =
+found.
+> > + */
+> > +struct iio_backend *devm_iio_backend_get_optional(struct device *dev,
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 const=
+ char *name)
+> > +{
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct iio_backend *back;
+> > +
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0back =3D devm_iio_backend_ge=
+t(dev, name);
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (IS_ERR(back) && PTR_ERR(=
+back) =3D=3D -ENOENT)
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0return NULL;
+> > +
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0return back;
+> > +}
+> > +EXPORT_SYMBOL_NS_GPL(devm_iio_backend_get_optional, IIO_BACKEND);
+>=20
+> I'm not convinced the optional variant is worth while.=C2=A0 Could just c=
+hoose
+> a particular return value to mean that e.g. ERR_PTR(-ENOENT) and document
+> it for the normal get.=C2=A0 Then have special handling in the drivers wh=
+ere
+> you need backwards compatibility with a previous approach.
+>=20
+> I'd rather pay the complexity price in a couple of drivers than have
+> to explain backends aren't typically optional for years to come.
+
+Alright. For now I'm not seeing any usecase where backends are optional. Fo=
+r the case
+we need the backward compatibility I'll do as you suggest. If we ever have =
+a real
+'optional' usecase we can easily add this one again.
+
+>=20
+>=20
+> > +
+> > +/**
+> > + * devm_iio_backend_get_from_fwnode_lookup
+> > + * @dev:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0Device where to bind=
+ the backend lifetime.
+> > + * @fwnode:=C2=A0=C2=A0=C2=A0=C2=A0Firmware node of the backend device=
+.
+> > + *
+> > + * It directly looks the backend device list for a device matching @fw=
+node.
+>=20
+> I would word this:
+> Search the backend list for a device matchign &fwnode.
+
+ack
+
+>=20
+> > + * This API should not be used and it's only present for preventing th=
+e first
+> > + * user of this framework to break it's DT ABI.
+>=20
+> You could stick a __ in front of the name to hopefully scare people away =
+:)
+> + highlight something odd is going on to reviewers seeing this called in
+> some future driver.
+> Also I can we might convert other drivers that are doing similar things
+> (dfsdm for example) and maybe this will be useful
+> so __devm_iio_backend_get_from_fwnode_lookup() and
+> "preventing breakage of old DT bindings".
+
+Will do!
+
+Thanks for the inputs!
+- Nuno S=C3=A1
 
 
