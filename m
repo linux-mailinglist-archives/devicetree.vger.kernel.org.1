@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-28098-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28099-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BAA581CC4E
-	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 16:35:05 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9CB0C81CC51
+	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 16:37:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D028A1F2227A
-	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 15:35:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C8F241C21A9E
+	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 15:37:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E73B523772;
-	Fri, 22 Dec 2023 15:34:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A54CE2377E;
+	Fri, 22 Dec 2023 15:37:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lP4Uis0L"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BCdfZ3In"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
+Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57F6823765
-	for <devicetree@vger.kernel.org>; Fri, 22 Dec 2023 15:34:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-50e2d00f99cso2299621e87.0
-        for <devicetree@vger.kernel.org>; Fri, 22 Dec 2023 07:34:56 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1FE123768;
+	Fri, 22 Dec 2023 15:37:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-3333b46f26aso1710782f8f.1;
+        Fri, 22 Dec 2023 07:37:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1703259294; x=1703864094; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
+        d=gmail.com; s=20230601; t=1703259459; x=1703864259; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=mvy0l+mnUMzQT0sw/oz2Zb688LyIcrZR0yebYIVgabY=;
-        b=lP4Uis0LYBDaZqiz4vKXxqX19vk9S2lYt1cXEDzz5V6wXMA85mXQaTPxQsTMtHI3cl
-         b4He5vr0Wd2Fs5NhSJvhtgDfe0f7S+YdW092rkLP35Ps8YuQcVXCktJeTMm9WjxljI2n
-         L/4XO6gTgm3yx5DeebNgwfnq31DiJLsiwJZqY6OW6l/1ql4pmBcDX3NA+rMPbR5hXbpz
-         leVmsxo2PSstq1A28Jsn5Gl5259m++i8AI/4we+5ZwgEv/XUorRHgxYiv9GIZnxhXmR+
-         0AkdOCzwvHu1yBnRz/8VbJjFcvn3A8QYVCARLq72Md3ayLaoTefSaE2am1V3hJjtgCLk
-         PoDg==
+        bh=jO+Yn/pm/7QZ79FVkxxMV1L8t+Nw+iioD1El4NSSjm8=;
+        b=BCdfZ3In/bXxAZtNI1pmR/ZNTsbZkGc2AmJyJ5MWhrrB57N8GFExOx9V3CJJAc0qV8
+         iqGNBZ6ZWQE3S/3Nt0l/Tl9Scoufa6Y/RSas74TTfBdqthHoyGBDZpW4MgZTm+T8rhHl
+         ELqMVAgcZSZHUVjldiMGHXqgILwlUEoMUmE8xhZJKp+KZAM4mHMg1yIfkC1kyFU/eRKA
+         IRuGkHPnQanWBx0p6JTyFjgTgDgmTgo7TlnLOzu4O87NZFRjMYyx3C6ra+3zVYS2Agyd
+         ScwYbF0JYSggTztC3dVTOpG5BAFaUdt/MhSZDP3zEeyY9FhLyu+uhhNkWx2giOtyuDva
+         g+Ug==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703259294; x=1703864094;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1703259459; x=1703864259;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=mvy0l+mnUMzQT0sw/oz2Zb688LyIcrZR0yebYIVgabY=;
-        b=Y/jP8d0pFNx3i3Uln041xz3cEwwMcdDFnf3mW4IhibJ5lpiOUJUHhlKAxblQTVdFkt
-         4wPuPsf/ofHBTFKy2S+q0RWXaBQ+V3L64C8Mt24xWd5/qICvvu4mnrOPpE8Du550ZAus
-         MyWxtVILGNC20IZgBoJU+u4RuHWrnVjLBlSZf8ifA5unqsUNTWX0A8jCvJgeUIKSYDYT
-         6XorfTs22s0suHL3elyxC4PPjBw9Zxq5oBw6nhU0lZzxo3scZ+H8e4zamxcy9UHfAoRC
-         xKXG2wlfuUhPKHAezgBqW+3BY61XUDeM3u/enZAbf8lJMuJv1y//msXSNrN7FCnFIN70
-         8Ecw==
-X-Gm-Message-State: AOJu0Yw/RscyN2SKJCccq3FEGGDxd6lRk96Qbo9Dt8UUnZwIHicy1NmT
-	we3p6bXfbYewQL297e4FQF/zcgX0wjQJ9A==
-X-Google-Smtp-Source: AGHT+IGHcStp5sBNVQbyPoJVoUA4wlUiKdXUUxRTWgh9Uhj4w+ErorhdQxx7S5EIciTm+1TwUNlyjA==
-X-Received: by 2002:a05:6512:4c3:b0:50e:57dd:7394 with SMTP id w3-20020a05651204c300b0050e57dd7394mr743417lfq.79.1703259294269;
-        Fri, 22 Dec 2023 07:34:54 -0800 (PST)
-Received: from [192.168.0.22] ([78.10.206.178])
-        by smtp.gmail.com with ESMTPSA id z17-20020a170906715100b00a26966683e3sm2188014ejj.144.2023.12.22.07.34.52
+        bh=jO+Yn/pm/7QZ79FVkxxMV1L8t+Nw+iioD1El4NSSjm8=;
+        b=N1fJIfWilfNz0LjeFcjxFZMcRw5SUkYnEJB7jIA4ChZPq3Y3YpHqUMcs9FhqlA/8GJ
+         OH/7u3nWWoEr5Ect0XG9kA4SaRQXXPfEbWsm63ZqOvKkThmbnCMiziGA4v9RRHACH1jd
+         w1+QvPf1BQMMkxcMUIdxC/XGJauJGDAemgmX8eGNGcJRK/4SJ9skePie8rgJquPFvOi8
+         pwJ/V6Ttb+7kOTjwsYTh+Kft7o/7Ao6fYmT4DHBBL4jEBNsrX0U3YXFcaCy9k5RaOSj8
+         5AF7oG3sipVuwbWKKh3AIizZ7HgAEOirpGA1OugEwzdQdDM5/faey1OUnTNBp8j+uqZl
+         wXWw==
+X-Gm-Message-State: AOJu0YxWqdi2fDneKqXCPc0UZNyPb+6t/0RWf5VZtmqBS1lY+Tkz8cAd
+	Das/BtiDvNyik7aoFgI26Q==
+X-Google-Smtp-Source: AGHT+IF/S1bUccm049yDqtraSZeXSvw0RtqJJi5b7sN4cROAVAAsyvDsoozy5bwdK3uoqUyPC7Ff7g==
+X-Received: by 2002:a5d:5487:0:b0:336:60e9:483 with SMTP id h7-20020a5d5487000000b0033660e90483mr910801wrv.125.1703259458799;
+        Fri, 22 Dec 2023 07:37:38 -0800 (PST)
+Received: from ?IPV6:2a02:810b:f40:4300:f3ae:2788:7e03:f44? ([2a02:810b:f40:4300:f3ae:2788:7e03:f44])
+        by smtp.gmail.com with ESMTPSA id a7-20020a5d4d47000000b00333404e9935sm4595304wru.54.2023.12.22.07.37.38
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 22 Dec 2023 07:34:53 -0800 (PST)
-Message-ID: <b2472f53-2e60-46ba-9ae7-aeca1b323f37@linaro.org>
-Date: Fri, 22 Dec 2023 16:34:52 +0100
+        Fri, 22 Dec 2023 07:37:38 -0800 (PST)
+Message-ID: <18c16355-9140-45be-bd16-96fad8b184a4@gmail.com>
+Date: Fri, 22 Dec 2023 16:37:37 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,73 +66,147 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [v1 0/2] Add support for Truly NT36672E LCD DSI panel
-Content-Language: en-US
-To: Ritesh Kumar <quic_riteshk@quicinc.com>, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: neil.armstrong@linaro.org, quic_jesszhan@quicinc.com, sam@ravnborg.org,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
- airlied@gmail.com, daniel@ffwll.ch, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- quic_abhinavk@quicinc.com, quic_rajeevny@quicinc.com,
- quic_vproddut@quicinc.com
-References: <20231222110710.19397-1-quic_riteshk@quicinc.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231222110710.19397-1-quic_riteshk@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Subject: Re: [PATCH v2 1/3] ARM: dts: rockchip: Add psci for rk3036
+Content-Language: en-US, de-DE
+To: Andy Yan <andy.yan@rock-chips.com>, Andy Yan <andyshrk@163.com>,
+ heiko@sntech.de
+Cc: krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ zhengxing@rock-chips.com
+References: <20231218105523.2478315-1-andyshrk@163.com>
+ <20231218105523.2478315-2-andyshrk@163.com>
+ <da10e2fc-3179-4bd5-88ed-b4d5f64a7191@gmail.com>
+ <28216be5-810f-40d6-850b-a0fc590ffa3c@rock-chips.com>
+ <a82481ca-b578-49a4-b0d0-974b6ee65c98@gmail.com>
+ <74e497f5-0361-47f7-a410-4b20d3526d52@rock-chips.com>
+From: Alex Bee <knaerzche@gmail.com>
+In-Reply-To: <74e497f5-0361-47f7-a410-4b20d3526d52@rock-chips.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On 22/12/2023 12:07, Ritesh Kumar wrote:
-> Add support for the 1080x2408 Truly NT36672E LCD DSI mode panel
+Hi Andy,
 
-Google does not find anything for "Truly NT36672E", so I have some
-doubts whether you used correct vendor name or product ID.
+Am 22.12.23 um 11:37 schrieb Andy Yan:
+> Hi Alex,
+>
+> On 12/21/23 23:58, Alex Bee wrote:
+>> Hi Andy,
+>>
+>> Am 21.12.23 um 02:07 schrieb Andy Yan:
+>>> Hi Alex:
+>>>
+>>> On 12/20/23 19:16, Alex Bee wrote:
+>>>> Hi Andy,
+>>>> Am 18.12.23 um 11:55 schrieb Andy Yan:
+>>>>> From: Andy Yan <andy.yan@rock-chips.com>
+>>>>>
+>>>>> The system will hang at bringup secondary CPUs
+>>>>> without psci node.
+>>>>>
+>>>>> Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
+>>>>>
+>>>>> ---
+>>>>>
+>>>>> (no changes since v1)
+>>>>>
+>>>>>   arch/arm/boot/dts/rockchip/rk3036.dtsi | 5 +++++
+>>>>>   1 file changed, 5 insertions(+)
+>>>>>
+>>>>> diff --git a/arch/arm/boot/dts/rockchip/rk3036.dtsi 
+>>>>> b/arch/arm/boot/dts/rockchip/rk3036.dtsi
+>>>>> index 78686fc72ce6..5344803442a1 100644
+>>>>> --- a/arch/arm/boot/dts/rockchip/rk3036.dtsi
+>>>>> +++ b/arch/arm/boot/dts/rockchip/rk3036.dtsi
+>>>>> @@ -67,6 +67,11 @@ display-subsystem {
+>>>>>           ports = <&vop_out>;
+>>>>>       };
+>>>>> +    psci {
+>>>>> +        compatible = "arm,psci-1.0";
+>>>>> +        method = "smc";
+>>>>> +    };
+>>>>> +
+>>>> I don't think that's an good idea. 
+>>>
+>>> Why?
+>> It's only what I've been told before: We shoudn't add properties which
+>> depend on non-upstream software (if an upstream alternative exists). 
+>> Also
+>
+>> I'm not sure what happens if somebody doesn't use downstream bootloader
+>> and PSCI can't be found: Would the board still be able to boot?
+>
+> The psci is released herel[0].
+> And also, there are only two rk3036 based boards in mainline:
+> rk3036-evb,rk3036-keylin, both of them from rockchip.
+> And the mainline support of these boards broken from linux 5.7(2020, 
+> see PATCH 3),
+> no one report this broken until I try to run this board now.
+> So maybe there is no such somebody will run into this situation.
+>
+>
+> [0]https://github.com/rockchip-linux/rkbin/tree/master/bin/rk30
+>
+Yeah sure, there are binary release for downstream optee implementations,
+but the won't work with upstream u-boot, since they are using a calling
+convention different from upstream optee os. I tried to add support for
+those, but it was rejected [0].
 
-Best regards,
-Krzysztof
+Upstream bootflow doesn't implement/need PSCI as it uses a SMP bringup
+method which is done in kernel only (see enable-method in cpu section). I
+guess that it doesn't work for you is most likely because the downstream
+tee os makes the cpu registers the upstream enable-method uses only
+accessible in a higher exception level.
 
+I can undust my RK3036 evb board during christmas holidays and check whats
+broken for RK3036 in u-boot. Everything was working fine (including SMP
+bringup w/o PSCI and upstream u-boot) when I was adding VPU support in 5.14
+[1]. I likely booted from TF-card rather than eMMC.
+
+[0] 
+https://patchwork.ozlabs.org/project/uboot/patch/20230718145715.1280201-6-knaerzche@gmail.com/
+[1] 
+https://patchwork.kernel.org/project/linux-rockchip/patch/20210527154455.358869-11-knaerzche@gmail.com/
+
+Nice holidays!
+
+Alex
+
+>>>
+>>>> You most likely need that because you have downstream bootloader 
+>>>> installed on this board. PSCI implementation takes place in TEE-OS 
+>>>> for Rockchips ARM SoCs. There is no support for RK3036 in upstream 
+>>>> op-tee OS. It's pretty much the same for RK3128 and RK3288.
+>>>> If you use upstream u-boot it should be good as-is.
+>>>
+>>> Unfortunately, upstream u-boot also cannot boot up on this board.
+>>> At present, I haven't had time to debug what is going on.
+>>>
+>>> Another reason I want to use downstream u-boot it is: I try run
+>>> this board with mainline just because i want to test some community
+>>> patches about inno-hdmi driver, as you said "the inno-hdmi driver 
+>>> currently gets a lot of attention"[0]
+>>>
+>> Thanks for helping testing this.
+>>
+>> Alex
+>>
+>>> With a downstream u-boot I can easy switch between upstream kernel 
+>>> and downstream kernel(no need to replace other components)
+>>> if I found some function is not work as expected.
+>>>
+>>>
+>>> [0]https://patchwork.kernel.org/project/linux-rockchip/cover/20231219170100.188800-1-knaerzche@gmail.com/ 
+>>>
+>>>>
+>>>> Alex
+>>>>>       timer {
+>>>>>           compatible = "arm,armv7-timer";
+>>>>>           arm,cpu-registers-not-fw-configured;
+>>>>
+>>>>
+>>>> _______________________________________________
+>>>> Linux-rockchip mailing list
+>>>> Linux-rockchip@lists.infradead.org
+>>>> http://lists.infradead.org/mailman/listinfo/linux-rockchip
 
