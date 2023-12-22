@@ -1,202 +1,159 @@
-Return-Path: <devicetree+bounces-27991-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27992-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F28381C725
-	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 10:10:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D59BD81C728
+	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 10:10:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E7589285D9C
-	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 09:10:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8B4F12860AE
+	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 09:10:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6816AD30A;
-	Fri, 22 Dec 2023 09:10:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D16CCD512;
+	Fri, 22 Dec 2023 09:10:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="hVOjVLwW"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Xgv+fwIK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0904D512;
-	Fri, 22 Dec 2023 09:10:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 3BM0oWRi016607;
-	Fri, 22 Dec 2023 09:10:27 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=Lkv5cExqbgBfEYwPN2LzjTfOWK6VQMomkTuKOAgayGQ=; b=hV
-	OjVLwWU0KI77djXTtp2Unxzt++fe6xahYC0CEtfHHMTeVd2niC7uon1qemQtweWX
-	zS7kLHw5bH3QVVXFNrnD3YRdC7fog6QdKKtZQMNdcMS+pcgO+xX9FMeFNfvvYEFu
-	z8FyFZuR4LSyRlrOeslb/Y3NARbpGRjWA3siFpGRI80xBXmNAUEajCW4rluMb6p/
-	DnCORbgGg8z5B0FZEOAPPqivizc7hL03NasLErbkkGdmlxypIKa+5sn6CW+v14Ef
-	kdGt0KQupcZR24hMtNwiGKTJG6F4wUqs/Q8PE2gyGdmmVvzguHE5M3Ji7lzU/7vj
-	d3jDdmgP/V3lfGPFuPsA==
-Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3v4tue9qe6-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 22 Dec 2023 09:10:27 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3BM9AQW4007949
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 22 Dec 2023 09:10:26 GMT
-Received: from [10.239.132.150] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Fri, 22 Dec
- 2023 01:10:19 -0800
-Message-ID: <459ef8e4-bbbc-4a7d-969c-43f269ef6793@quicinc.com>
-Date: Fri, 22 Dec 2023 17:10:16 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27AAFFBE2;
+	Fri, 22 Dec 2023 09:10:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-40d31116dbeso17803935e9.3;
+        Fri, 22 Dec 2023 01:10:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1703236236; x=1703841036; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=3qa2I1UxNPe2V/ozbISaHM/D95eJhVfAiUESj4A1epk=;
+        b=Xgv+fwIKLsie3I8tU7JGEhzLcdWw6WBoD1+TOK85MZ9ZEkYBj14bL/UIVMkuc7SK/c
+         J+40+lTsUnJRdnWew4pjZnW1ddjW9Y7C7GKWdXcRUuz/NQnSP2MXpw9G2oN41+H2RxkL
+         nM3CjEqMEgmDM58i9V+tVSeljJm00DGbUxGgtyIUy7wlyvhp2VwDU+/F4WFGjpjCbxja
+         PlxLWjrJ/RNxnqfjqKUytmY5X4oLhZ3ngGehtmtn0Ep3Xj2eKYHgLrAx2WDxfWORNR9q
+         gPbnc5eKrwdBEXFAmA27MknTR6wv/ul54SDmBgz/SJWa7iBmB0Ph/FBvW7W/4EkNiBVW
+         o2ig==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1703236236; x=1703841036;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=3qa2I1UxNPe2V/ozbISaHM/D95eJhVfAiUESj4A1epk=;
+        b=gu2pS9CXa7GKXZbgNiVaAvc7g0joRYWEPAvZnHcvvXoV/Gs7EXUy5ttSkZSGw7wLCK
+         jfN78OX/GJaNnl4YFGM+TsjlpvTQ0lQDbhrUBx1o4yoVjKQdf/Aijd5D6Yco9/cpkona
+         a/dHi9iT0xLHneX5Z1o7jGyZddcMesIZYGdbRJWWrMG+AVJ7KAvPFbkybcPW0TRFainP
+         FWa5oISe4xfkItxvuKLJcWxj9g1aoQc3zlHDXnSz46H4864uGUIKg8x4ZHHJXPh9zyt/
+         POv+mwnWZknvP/JHXFNly6rewpLs6KFzXKGKYG+4LgiVLgtHJRrP1pcnWX1sL6fti009
+         oGnA==
+X-Gm-Message-State: AOJu0Ywp+Xc+kOYUUObz8W8WVE6P17+SCew2yKJYu2OfslyjCo694iPW
+	gZCEfwbBgCjZWDeLqL77oyo=
+X-Google-Smtp-Source: AGHT+IFjMc0QAdRTGNyPSyCsuA5h5Jmx1Mynycf5tH9gooGSWWXmEMjr6hJ7zbqmbj47uxVUJZ9nPw==
+X-Received: by 2002:a7b:c3c8:0:b0:40c:2cab:3573 with SMTP id t8-20020a7bc3c8000000b0040c2cab3573mr488393wmj.135.1703236236119;
+        Fri, 22 Dec 2023 01:10:36 -0800 (PST)
+Received: from ?IPv6:2001:818:ea8e:7f00:5877:261e:1d6d:8696? ([2001:818:ea8e:7f00:5877:261e:1d6d:8696])
+        by smtp.gmail.com with ESMTPSA id f17-20020a05600c4e9100b0040c310abc4bsm13955103wmq.43.2023.12.22.01.10.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 22 Dec 2023 01:10:35 -0800 (PST)
+Message-ID: <df4146ef96af56356c77d2971bdf1c6445e13564.camel@gmail.com>
+Subject: Re: [PATCH v4 7/8] iio: adc: ad9467: convert to backend framework
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: Jonathan Cameron <jic23@kernel.org>, Nuno Sa <nuno.sa@analog.com>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, Lars-Peter
+ Clausen <lars@metafoo.de>, Michael Hennerich
+ <Michael.Hennerich@analog.com>, Rob Herring <robh+dt@kernel.org>, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+ <conor+dt@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, Frank Rowand
+ <frowand.list@gmail.com>, Olivier Moysan <olivier.moysan@foss.st.com>
+Date: Fri, 22 Dec 2023 10:10:36 +0100
+In-Reply-To: <20231221175209.457664b5@jic23-huawei>
+References: <20231220-iio-backend-v4-0-998e9148b692@analog.com>
+	 <20231220-iio-backend-v4-7-998e9148b692@analog.com>
+	 <20231221175209.457664b5@jic23-huawei>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: base64
+User-Agent: Evolution 3.48.4 (3.48.4-1.fc38) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/1] arm64: dts: qcom: sm8550: remove
- address/size-cells from mdss_dsi1
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Dmitry Baryshkov
-	<dmitry.baryshkov@linaro.org>
-CC: Tengfei Fan <quic_tengfan@quicinc.com>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <kernel@quicinc.com>
-References: <20231219003106.8663-1-quic_tengfan@quicinc.com>
- <20231219003106.8663-2-quic_tengfan@quicinc.com>
- <457e336e-004c-4721-b58d-e9ada16dc04b@linaro.org>
- <a8f168da-14f7-4377-8dea-f282a3eac0a4@quicinc.com>
- <13b61d41-6045-499e-864b-51c6cb6eacf9@linaro.org>
- <38604415-b410-4995-9c4f-525536435699@quicinc.com>
- <CAA8EJpo07gE7ZeNP6wSGTLtmF_3PKQAKFyMRZ8dk1K+f7PAxrg@mail.gmail.com>
- <ad1547cf-0520-422d-a105-ec426f526d71@quicinc.com>
- <CAA8EJppwsezPV21Uw8xTn=ra8L2jfnkHoRghDPN96O5tJsOD7A@mail.gmail.com>
- <72305a35-02e6-4ff6-8251-01f986530c5d@quicinc.com>
- <A45746C4-54C9-48D2-9DB7-52B4B56854E6@linaro.org>
- <4e328cd8-9ef7-42ce-b592-7f2216c00c0b@quicinc.com>
- <CAA8EJprE8v3bhHfyZJM9SJT=ShJ-LQvk5mR=gpdAWXF2yANWbQ@mail.gmail.com>
- <e88787dc-ed03-42d2-a6e7-fb88bbc89357@quicinc.com>
- <6a4356e2-e201-4b87-bac0-056b29a07fc8@linaro.org>
-From: "Aiqun Yu (Maria)" <quic_aiquny@quicinc.com>
-In-Reply-To: <6a4356e2-e201-4b87-bac0-056b29a07fc8@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: RH3ULBYQU0Wd-WIavAZYZ4eMUWlWP0BD
-X-Proofpoint-ORIG-GUID: RH3ULBYQU0Wd-WIavAZYZ4eMUWlWP0BD
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-12-09_02,2023-12-07_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0
- lowpriorityscore=0 malwarescore=0 clxscore=1015 impostorscore=0
- phishscore=0 mlxlogscore=999 priorityscore=1501 mlxscore=0 spamscore=0
- adultscore=0 suspectscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2311290000 definitions=main-2312220064
 
+T24gVGh1LCAyMDIzLTEyLTIxIGF0IDE3OjUyICswMDAwLCBKb25hdGhhbiBDYW1lcm9uIHdyb3Rl
+Ogo+IE9uIFdlZCwgMjAgRGVjIDIwMjMgMTY6MzQ6MTAgKzAxMDAKPiBOdW5vIFNhIDxudW5vLnNh
+QGFuYWxvZy5jb20+IHdyb3RlOgo+IAo+ID4gQ29udmVydCB0aGUgZHJpdmVyIHRvIHVzZSB0aGUg
+bmV3IElJTyBiYWNrZW5kIGZyYW1ld29yay4gVGhlIGRldmljZQo+ID4gZnVuY3Rpb25hbGl0eSBp
+cyBleHBlY3RlZCB0byBiZSB0aGUgc2FtZSAobWVhbmluZyBubyBhZGRlZCBvciByZW1vdmVkCj4g
+PiBmZWF0dXJlcykuCj4gPiAKPiA+IEFsc28gbm90ZSB0aGlzIHBhdGNoIGVmZmVjdGl2ZWx5IGJy
+ZWFrcyBBQkkgYW5kIHRoYXQncyBuZWVkZWQgc28gd2UgY2FuCj4gPiBwcm9wZXJseSBzdXBwb3J0
+IHRoaXMgZGV2aWNlIGFuZCBhZGQgbmVlZGVkIGZlYXR1cmVzIG1ha2luZyB1c2Ugb2YgdGhlCj4g
+PiBuZXcgSUlPIGZyYW1ld29yay4KPiA+IAo+ID4gU2lnbmVkLW9mZi1ieTogTnVubyBTYSA8bnVu
+by5zYUBhbmFsb2cuY29tPgo+IAo+IEEgZmV3IG1pbm9yIGNvbW1lbnRzLiBMb29rcyBnb29kIHRv
+IG1lLgo+IAo+IEpvbmF0aGFuCj4gCj4gPiArc3RhdGljIGludCBhZDk0NjdfdXBkYXRlX3NjYW5f
+bW9kZShzdHJ1Y3QgaWlvX2RldiAqaW5kaW9fZGV2LAo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBjb25zdCB1bnNp
+Z25lZCBsb25nICpzY2FuX21hc2spCj4gPiArewo+ID4gK8KgwqDCoMKgwqDCoMKgc3RydWN0IGFk
+OTQ2N19zdGF0ZSAqc3QgPSBpaW9fcHJpdihpbmRpb19kZXYpOwo+ID4gK8KgwqDCoMKgwqDCoMKg
+dW5zaWduZWQgaW50IGM7Cj4gPiArwqDCoMKgwqDCoMKgwqBpbnQgcmV0Owo+ID4gKwo+ID4gK8Kg
+wqDCoMKgwqDCoMKgZm9yIChjID0gMDsgYyA8IHN0LT5pbmZvLT5udW1fY2hhbm5lbHM7IGMrKykg
+ewo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGlmICh0ZXN0X2JpdChjLCBzY2Fu
+X21hc2spKQo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqByZXQgPSBpaW9fYmFja2VuZF9jaGFuX2VuYWJsZShzdC0+YmFjaywgYyk7Cj4gPiArwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgZWxzZQo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqByZXQgPSBpaW9fYmFja2VuZF9jaGFuX2Rpc2FibGUoc3Qt
+PmJhY2ssIGMpOwo+ID4gKwo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGlmIChy
+ZXQpCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHJl
+dHVybiByZXQ7Cj4gPiArwqDCoMKgwqDCoMKgwqB9Cj4gPiArCj4gPiArwqDCoMKgwqDCoMKgwqBy
+ZXR1cm4gMDsKPiA+ICt9Cj4gCj4gPiDCoHN0YXRpYyBpbnQgYWQ5NDY3X3Jlc2V0KHN0cnVjdCBk
+ZXZpY2UgKmRldikKPiA+IEBAIC00NDMsMjUgKzQ3NSw2MyBAQCBzdGF0aWMgaW50IGFkOTQ2N19y
+ZXNldChzdHJ1Y3QgZGV2aWNlICpkZXYpCj4gPiDCoMKgwqDCoMKgwqDCoMKgcmV0dXJuIDA7Cj4g
+PiDCoH0KPiA+IMKgCj4gPiArc3RhdGljIGludCBhZDk0NjdfaWlvX2JhY2tlbmRfZ2V0KHN0cnVj
+dCBhZDk0Njdfc3RhdGUgKnN0KQo+ID4gK3sKPiA+ICvCoMKgwqDCoMKgwqDCoHN0cnVjdCBkZXZp
+Y2UgKmRldiA9ICZzdC0+c3BpLT5kZXY7Cj4gPiArwqDCoMKgwqDCoMKgwqBzdHJ1Y3QgZGV2aWNl
+X25vZGUgKl9fYmFjazsKPiA+ICsKPiA+ICvCoMKgwqDCoMKgwqDCoHN0LT5iYWNrID0gZGV2bV9p
+aW9fYmFja2VuZF9nZXRfb3B0aW9uYWwoJnN0LT5zcGktPmRldiwgTlVMTCk7Cj4gPiArwqDCoMKg
+wqDCoMKgwqBpZiAoSVNfRVJSKHN0LT5iYWNrKSkKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqByZXR1cm4gUFRSX0VSUihzdC0+YmFjayk7Cj4gCj4gQXMgcGVyIHRoZSBjb21tZW50
+IG9uIHByZXZpb3VzIHBhdGNoIEknZCBqdXN0IGdldCBpdCB1c2luZyB0aGUgbm9ybWFsCj4gZnVu
+Y3Rpb24gYW5kIGhhbmRsZSBQVFJfRVJSKC1FTk9FTlQpIGhlcmUgYXMgbWVhbmluZyB3ZSBuZWVk
+IHRvCj4gdHJ5IHRoZSBvbGQgd2F5LgoKVGhhdCBtYWtlcyBzZW5zZS4gU28gd2UgY2FuIGFkZCBh
+IGRldm1faWlvX2JhY2tlbmRfZ2V0X29wdGlvbmFsKCkgQVBJIHdoZW4vaWYgd2UKcmVhbGx5IG5l
+ZWQgb25lIGFuZCBub3QganVzdCBmb3IgaGFuZGxpbmcgbGVnYWN5IGNvZGUuCgo+IAo+ID4gK8Kg
+wqDCoMKgwqDCoMKgaWYgKHN0LT5iYWNrKQo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoHJldHVybiAwOwo+ID4gK8KgwqDCoMKgwqDCoMKgLyoKPiA+ICvCoMKgwqDCoMKgwqDCoCAq
+IGlmIHdlIGRvbid0IGdldCB0aGUgYmFja2VuZCB1c2luZyB0aGUgbm9ybWFsIEFQSSdzLCB1c2Ug
+dGhlIGxlZ2FjeQo+ID4gK8KgwqDCoMKgwqDCoMKgICogJ2FkaSxhZGMtZGV2JyBwcm9wZXJ0eS4g
+U28gd2UgZ2V0IGFsbCBub2RlcyB3aXRoIHRoYXQgcHJvcGVydHksIGFuZAo+ID4gK8KgwqDCoMKg
+wqDCoMKgICogbG9vayBmb3IgdGhlIG9uZSBwb2ludGluZyBhdCB1cy4gVGhlbiB3ZSBkaXJlY3Rs
+eSBsb29rdXAgdGhhdCBmd25vZGUKPiA+ICvCoMKgwqDCoMKgwqDCoCAqIG9uIHRoZSBiYWNrZW5k
+IGxpc3Qgb2YgcmVnaXN0ZXJlZCBkZXZpY2VzLiBUaGlzIGlzIGRvbmUgc28gd2UgZG9uJ3QKPiA+
+ICvCoMKgwqDCoMKgwqDCoCAqIG1ha2UgaW8tYmFja2VuZHMgbWFuZGF0b3J5IHdoaWNoIHdvdWxk
+IGJyZWFrIERUIEFCSS4KPiA+ICvCoMKgwqDCoMKgwqDCoCAqLwo+ID4gK8KgwqDCoMKgwqDCoMKg
+Zm9yX2VhY2hfbm9kZV93aXRoX3Byb3BlcnR5KF9fYmFjaywgImFkaSxhZGMtZGV2Iikgewo+ID4g
+K8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHN0cnVjdCBkZXZpY2Vfbm9kZSAqX19tZTsK
+PiA+ICsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBfX21lID0gb2ZfcGFyc2Vf
+cGhhbmRsZShfX2JhY2ssICJhZGksYWRjLWRldiIsIDApOwo+ID4gK8KgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoGlmICghX19tZSkKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgY29udGludWU7Cj4gPiArCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgaWYgKCFkZXZpY2VfbWF0Y2hfb2Zfbm9kZShkZXYsIF9fbWUpKSB7Cj4gPiAr
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoG9mX25vZGVfcHV0
+KF9fbWUpOwo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqBjb250aW51ZTsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqB9Cj4gPiArCj4g
+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgb2Zfbm9kZV9wdXQoX19tZSk7Cj4gPiAr
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgc3QtPmJhY2sgPSBkZXZtX2lpb19iYWNrZW5k
+X2dldF9mcm9tX2Z3bm9kZV9sb29rdXAoZGV2LAo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAKPiA+IG9m
+X2Z3bm9kZV9oYW5kbGUoX19iYWNrKSk7Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgb2Zfbm9kZV9wdXQoX19iYWNrKTsKPiAKPiBJZiBpdCBsYW5kcyBmaXJzdCB0aGUgcGF0Y2gK
+PiBSRkMgUEFUQ0ggMS80XSBvZjogQWRkIGNsZWFudXAuaCBiYXNlZCBhdXRvcmVsZWFzZSB2aWEg
+X19mcmVlKGRldmljZV9ub2RlKQo+IG1hcmtpbmdzLgo+IHdpbGwgZ2V0IHJpZCBvZiB0aGlzIG1h
+bnVhbCBoYW5kbGluZyBmb3IgeW91IGZvciBib3RoIHRoZSBjb250aW51ZSBhbmQgcmV0dXJuLgo+
+IFRoaXMgd2lsbCBtYWtlIGEgdmVyeSBuaWNlIGV4YW1wbGUgZm9yIHRoYXQgOikKClllYWgsIGFu
+ZCBJJ2xsIGhhcHBpbHkgcmViYXNlIG9uIHRoYXQuLi4KCi0gTnVubyBTw6EKPiAK
 
-
-On 12/21/2023 4:57 PM, Krzysztof Kozlowski wrote:
-> On 21/12/2023 09:49, Aiqun Yu (Maria) wrote:
->> For example:
->>
->> --- a/Documentation/devicetree/bindings/display/msm/qcom,sm8550-mdss.yaml
->> +++ b/Documentation/devicetree/bindings/display/msm/qcom,sm8550-mdss.yaml
->>
->> @@ -55,14 +50,7 @@ patternProperties:
->>              - const: qcom,sm8350-dp
->>
->>      "^dsi@[0-9a-f]+$":
->> -    type: object
->> -    additionalProperties: true
->> -
->> -    properties:
->> -      compatible:
->> -        items:
->> -          - const: qcom,sm8550-dsi-ctrl
->> -          - const: qcom,mdss-dsi-ctrl
->> +    $ref: ../dsi-controller-main.yaml#
->>
->> With above unified reference change, it will be easier for other
->> developers to reference bindings files next time.
->> Also dsi@[0-9a-f] node in mdss node will be correctly fully described.
-> 
-> No, this does not make sense and allows anything as dsi. It is opposite
-> of what we want in bindings, so NAK.
-> 
->>>
->>>> In my opinion if the example have "#address-cells" "#size-cells", then
->>>> it's better to also include "panel@0" with "reg = <0>" to not confuse.
->>>
->>> It is already there, see dsi-controller.yaml.
->>>
->>>>>> 3. Too many bindings files for driver "qcom,mdss-dsi-ctrl", shall we align them into 1 binding files.
->>>>>
->>>>> There is just one.
->>>> Currently I mentioned bindings files was searched the compatible
->>>> "qcom,mdss-dsi-ctrl", and find binding docs like "qcom,sm8550-mdss.yaml"
->>>> "qcom,sm8450-mdss.yaml" etc.
->>>> There is duplicate information on "qcom,sm8550-mdss.yaml" etc, while
->>>> "qcom,mdss-common.yaml" is not common enough for my understanding.
->>>
->>> If you had compared the qcom,SOC-mdss.yaml, you would have seen that
->>> they provide tight binding between compatible strings used for all the
->>> subblocks. The `mdss-common.yaml` describes MDSS common properties. It
->>> describes everything except the platform specifics. It can not be made
->>> more common. And there is no duplication.
->>>
->>> If you think you can improve the bindings, please send the patches.
->> I am thinking of a unified qcom,mdss.yaml instead of "qcom,*each
->> SOC*-mdss.yaml". I will try to have a patch.
-> 
-> I asked first of you to read previous discussions. If you still insist
-> on sending patch for this, it means you did not read them.
-Do you have the previous discussion title/link that you are refereed 
-here pls?
-> 
-> How you wrote this idea, sounds like exactly opposite of what we were
-> doing and what I was recommending few times on the list, so it is very
-> likely I will NAK it.
-> 
->>> They must pass the `make dt_binding_check` check.
->> Thx for the remind.
-> 
-> And follow bindings guidelines.
-> 
->>>
->>>>>> 4. enhance the dtc warning check if we still want to have "#address-cells" "#size-cells" even if there is no "panel@0" attached.
->>>>>
->>>>> In my opinion this is a way to go, if any. Did you include devicetree@ ML and the corresponding maintainers into the discussion?
->>>> Already included devicetree@ ML at the very beginning.
->>>
->>> Good, thanks for the confirmation.
->>>
->>>> If the required properties part in each yaml is marked good enough, I
->>>> think it can be an input for avoid unnecessary dtc warnings.
->>>
->>> Patches are welcome.
->> Improving developer efficiency with unnecessary warnings is one of my
->> interest as well.
->> First of all, I'd better to make sure "Required properties" attribute in
->> current bindings are good enough. Let me try to get back on this in a
-> 
-> I don't understand why do you keep mentioning the "required properties".
-> They have nothing to do with any of this here.
-> 
-> 
-> 
-> Best regards,
-> Krzysztof
-> 
-
--- 
-Thx and BRs,
-Aiqun(Maria) Yu
 
