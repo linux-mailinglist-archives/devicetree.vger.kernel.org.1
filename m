@@ -1,106 +1,110 @@
-Return-Path: <devicetree+bounces-28056-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28063-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D0B781CA13
-	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 13:39:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 108B381CA62
+	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 14:00:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1949028413A
-	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 12:39:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 91641284991
+	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 13:00:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE888179AE;
-	Fri, 22 Dec 2023 12:39:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E7B2199A4;
+	Fri, 22 Dec 2023 13:00:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n7EACPxm"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="IXZrRXGJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.136])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCC4218038;
-	Fri, 22 Dec 2023 12:39:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 717BDC433C7;
-	Fri, 22 Dec 2023 12:39:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1703248764;
-	bh=hFpzxk40jH07vGKrSWCqaia7hpuI2qY6e5LSmvyVvOI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=n7EACPxmrhepNnSpfUi/hpy99QHH46fkH104/LL0i/e0xDl6pmzSOyXZqJGaddhO5
-	 X0rcGrRR8vwmhv5hQ7EyC4Sl31McB+4U0a1GFTRKk/uQqgvDTvLiByHtLhUiONmEiN
-	 3CnYA17jsiTlkt887S2xZ3TnhMbDe8YfMLwymyvJOMXjNBwgkiFBQ1ZuGv2eU3W4Nc
-	 xS0i0nK0W9ER42wPLBv+d2haszXYzknS7yb6Wj+bzc/LYWv/HN2iGvkYKXRygYqQDO
-	 PfItA4SHCY6MrY6UcVkHXPIzybmKFMKy2JWmwbeWXRUeatozcvl/iETpm29WLVI7On
-	 8NP4URUVPKl5Q==
-Date: Fri, 22 Dec 2023 12:39:18 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Xingyu Wu <xingyu.wu@starfivetech.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>,
-	Claudiu Beznea <Claudiu.Beznea@microchip.com>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 287531A5AC;
+	Fri, 22 Dec 2023 13:00:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1703250003; x=1734786003;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=fv31BzKXjf3VSQsvu13miz4XDE3frIaa7KSOGe2arrg=;
+  b=IXZrRXGJMI1CcYlSE5Bkg3jCZcphEAwjdo4LM37pLYc/aXTu7ROGn6Gh
+   MxDa1KIaD0aW1CqvI+Z7nCJcNnDsEvi/Ks6QYyJkdGdrKAau9O9agDD4l
+   xT485Eo0L0XBe7fsTvfV3lZRG+yTgOIRsAYOpYOjdV4cpZJ/KLeISdJTq
+   i2i6eKrdw5toI+qfrwPvMnXSvj2sTe53kPUYatIhTjGfM3hZLdorcokI5
+   +isIWtGhyJpFKKwEpNsVJJ7ILwWzYs1hWWcH7MyxBJKv7O6m3mo0YDwPK
+   eBnczlYlZ1EuIwHDbzd7sJRTWZPMVwSLveiIkWHKkQoLzey9BpRMqO/WA
+   A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10931"; a="375600610"
+X-IronPort-AV: E=Sophos;i="6.04,296,1695711600"; 
+   d="scan'208";a="375600610"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Dec 2023 05:00:02 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10931"; a="811306267"
+X-IronPort-AV: E=Sophos;i="6.04,296,1695711600"; 
+   d="scan'208";a="811306267"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by orsmga001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Dec 2023 04:59:57 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.97)
+	(envelope-from <andriy.shevchenko@intel.com>)
+	id 1rGetW-0000000894Y-0bLf;
+	Fri, 22 Dec 2023 14:44:50 +0200
+Date: Fri, 22 Dec 2023 14:44:49 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Mark Hasemeyer <markhas@chromium.org>
+Cc: LKML <linux-kernel@vger.kernel.org>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Tzung-Bi Shih <tzungbi@kernel.org>,
+	Raul Rangel <rrangel@chromium.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh@kernel.org>, Sudeep Holla <sudeep.holla@arm.com>,
+	Daniel Scally <djrscally@gmail.com>,
+	Frank Rowand <frowand.list@gmail.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+	Len Brown <lenb@kernel.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
 	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Walker Chen <walker.chen@starfivetech.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	alsa-devel@alsa-project.org, linux-sound@vger.kernel.org
-Subject: Re: [PATCH v1 2/2] ASoC: starfive: Add drivers of Cadence
- Multi-Channel I2S Controller
-Message-ID: <27155281-573c-493d-96fe-1f28ebb0ce5e@sirena.org.uk>
-References: <20231221033223.73201-1-xingyu.wu@starfivetech.com>
- <20231221033223.73201-3-xingyu.wu@starfivetech.com>
- <861f9b28-863d-48b0-8491-add4a286597e@sirena.org.uk>
- <c94b377a-1e21-4361-ae82-ca84d1dce60a@starfivetech.com>
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	devicetree@vger.kernel.org, linux-acpi@vger.kernel.org
+Subject: Re: [PATCH v2 20/22] device property: Modify fwnode irq_get() to use
+ resource
+Message-ID: <ZYWEwfcsTHksYkn4@smile.fi.intel.com>
+References: <20231220235459.2965548-1-markhas@chromium.org>
+ <20231220165423.v2.20.I38ac58ab04985a404ed6551eb5813fa7841ef410@changeid>
+ <ZYRD9Y3Y_jd1NBs8@smile.fi.intel.com>
+ <CANg-bXDLC_+mxFU+dHyCx1K=HKTwwGw+r__6_++Co2-viTbsgQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="GXw0TGVqm50qN3Wu"
-Content-Disposition: inline
-In-Reply-To: <c94b377a-1e21-4361-ae82-ca84d1dce60a@starfivetech.com>
-X-Cookie: Familiarity breeds attempt.
-
-
---GXw0TGVqm50qN3Wu
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+In-Reply-To: <CANg-bXDLC_+mxFU+dHyCx1K=HKTwwGw+r__6_++Co2-viTbsgQ@mail.gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-On Fri, Dec 22, 2023 at 05:11:17PM +0800, Xingyu Wu wrote:
-> On 2023/12/21 20:55, Mark Brown wrote:
-> > On Thu, Dec 21, 2023 at 11:32:23AM +0800, Xingyu Wu wrote:
+On Thu, Dec 21, 2023 at 04:46:11PM -0700, Mark Hasemeyer wrote:
+> > > -int fwnode_irq_get(const struct fwnode_handle *fwnode, unsigned int index)
+> > > +int fwnode_irq_get_resource(const struct fwnode_handle *fwnode,
+> > > +                         unsigned int index, struct resource *r)
+> >
+> > It's perfectly fine to replace ) by , on the previous line, no need
+> > to make it shorter.
+> 
+> That puts the line at 115 chars? checkpatch.pl allows a maximum line
+> length of 100. I can bump the 'index' argument up a line and keep it
+> to a length of 95?
 
-> >>  sound/soc/starfive/cdns-jh8100-i2s-pcm.c | 262 ++++++++
-> >>  sound/soc/starfive/cdns-jh8100-i2s.c     | 727 +++++++++++++++++++++++
-> >>  sound/soc/starfive/cdns-jh8100-i2s.h     | 171 ++++++
+Yes, the point is to leave index on the previous line and add a new one with
+the r.
 
-> > If this is a Cadence IP why is the entire driver SoC specific?
+-- 
+With Best Regards,
+Andy Shevchenko
 
-> This a new driver about this Cadence I2S controller. Should I create a new folder and file like this:
 
-> sound/soc/cdns/cdns-i2s*
-
-> and I use different compatible to support other SoC like JH8100?
-
-Yes, that seems more what I'd expect - with a fallback compatible for
-things that don't need any special quirks.
-
---GXw0TGVqm50qN3Wu
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmWFg3UACgkQJNaLcl1U
-h9DNPQf/Rl6ymRLUqxntVfRZKh7LXfMrl/p7IFbdJ3TL1Va26hUGWaxLaDYFOn0l
-eRZ3lJIhJzHDrMG5JHhKlHZtW8MkIc4rjiwMgnbeyuKAVYdXLmmKLEEj2vPCeM7P
-SqVOUSUEWTRl3WU7t1sOZF97OLaG/MXZY7toq0a3Rgbs83HLbBHfPFIbHEvVw4+P
-HQ0ZQBDfXGTVhwcihfQnDutiMNAjcwYJ4SvgEkLxaEovAEvbbUcJQG45Z8UWHz/r
-vh3cAf9wUAbywvC2PA6o9TzinDnijr/gqLDZ8ZES41LK9ixmYTWFER21atmgFT3O
-K/OhReCSQA/+/qK0INKuAIgDYp0Mxw==
-=J5Oy
------END PGP SIGNATURE-----
-
---GXw0TGVqm50qN3Wu--
 
