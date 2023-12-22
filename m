@@ -1,194 +1,187 @@
-Return-Path: <devicetree+bounces-28095-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28096-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FAF981CC3C
-	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 16:31:10 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 65CE181CC42
+	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 16:32:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B1DF91F2249E
-	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 15:31:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8A07A1C21667
+	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 15:32:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7613623763;
-	Fri, 22 Dec 2023 15:31:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1251823759;
+	Fri, 22 Dec 2023 15:32:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fiu2c4+D"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fxUEKCON"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 557682374E;
-	Fri, 22 Dec 2023 15:31:02 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DDFC0C433C9;
-	Fri, 22 Dec 2023 15:30:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1703259061;
-	bh=23ZSgydLBjVaFt3Yh6iH3wKTYlOFVd0dReO3P9a3WPI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=fiu2c4+DyXf9b4Jvi8L/cb8nKSCRMRBJMm/YgnQxeu47HYF15yOKuH3i5ohYQva3D
-	 3jAcIppjekZ7hTzmyUlB05Y7iNry4mn13lE3Z104W0YhKVBgN6QjvlTJrwSh/gEYnn
-	 2SnfbD2v6nystt5+rl2VKxIcDAUj1ztMm97mMi+PCi55crmseZPPXwwxTFMobob4SS
-	 k4hUhJ+sHeADAZW9PTPltqZd0FWa22IYUgAYGv/x1MD3SWtN90KoL6oBNCF5qFlTZH
-	 m5Jk6mwczAunaSanA2wOnLc7kkKl8bvB2Eex4rxSYmRI7uQDB0yOXiebj69/aNjAtE
-	 N3Zmczbr6MXNg==
-Date: Fri, 22 Dec 2023 15:30:55 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: "Manne, Nava kishore" <nava.kishore.manne@amd.com>,
-	"mdf@kernel.org" <mdf@kernel.org>,
-	"hao.wu@intel.com" <hao.wu@intel.com>,
-	"yilun.xu@intel.com" <yilun.xu@intel.com>,
-	"trix@redhat.com" <trix@redhat.com>,
-	"robh+dt@kernel.org" <robh+dt@kernel.org>,
-	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"Simek, Michal" <michal.simek@amd.com>,
-	"mathieu.poirier@linaro.org" <mathieu.poirier@linaro.org>,
-	"Levinsky, Ben" <ben.levinsky@amd.com>,
-	"Potthuri, Sai Krishna" <sai.krishna.potthuri@amd.com>,
-	"Shah, Tanmay" <tanmay.shah@amd.com>,
-	"dhaval.r.shah@amd.com" <dhaval.r.shah@amd.com>,
-	"arnd@arndb.de" <arnd@arndb.de>,
-	"Datta, Shubhrajyoti" <shubhrajyoti.datta@amd.com>,
-	"linux-fpga@vger.kernel.org" <linux-fpga@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [RFC PATCH 1/3] dt-bindings: fpga: Add support for user-key
- encrypted bitstream loading
-Message-ID: <20231222-unisexual-construct-573e79a488c9@spud>
-References: <20231122054404.3764288-1-nava.kishore.manne@amd.com>
- <20231122054404.3764288-2-nava.kishore.manne@amd.com>
- <20231122-exert-gleeful-e4476851c489@spud>
- <DM6PR12MB3993F0EC4930E68C54299B36CDB8A@DM6PR12MB3993.namprd12.prod.outlook.com>
- <20231124-tweezers-slug-0349a2188802@spud>
- <a90d980e-71a1-4b90-b1cb-66ac45d79031@linaro.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CF3A241EB
+	for <devicetree@vger.kernel.org>; Fri, 22 Dec 2023 15:32:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-552d39ac3ccso5541438a12.0
+        for <devicetree@vger.kernel.org>; Fri, 22 Dec 2023 07:32:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1703259140; x=1703863940; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=zMRkAeKfHrZuYkVxxN26vAqPNImWhPuXB0Myojylx8E=;
+        b=fxUEKCONEo622FHNsZTZpV0uiEV6xSTvxFIpc5u/xlkOZUItxkSmqyYjsSiQInNbcM
+         URsOnz6rTU2Z0ZaYIBuYaSiuE4uuPZxKLvvFXJftzKTnN0gdrlNbeX3Gri5dQ1bY1sbI
+         n8F48Xba2S4l7QgGh0y2nelpPUXSyUKUnRwnNDXtRgkiCc0DxGbY1Lr1vCcaM45UNBX7
+         WlSybjyFp/B3B4poOZAIap0pFR3qCWhDty2EE2dj18TC6zcrVrPB1StOtrYiCO/seLDP
+         VrQV8KKzia9qYNxRS8xgAuJdU1XP1zlIUOniLDi31I9Ijp2S+mP1MOQqsoVDzQvT/UUI
+         GJIw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1703259140; x=1703863940;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=zMRkAeKfHrZuYkVxxN26vAqPNImWhPuXB0Myojylx8E=;
+        b=Vt3LYY95VLjrj48yzyYrsEclIru7PRi8uzXFYOZx2XYEIVAEi7bPVphZMjrL4wYiKq
+         VdvUCeyVhmAWQ0gOfz/T74P5IlhwWM8JbI5jVGs82SPrs6FrTlH/VG6M8w+k2Q8I0V4g
+         eKtsZEEgknUzLj6oc77MGsrC17ZNtt4JUPU2yrpyowRFuCK5vAZT86pRnxNjGXkwWzss
+         RQhiqUZo+5x9pUfG+NZbdqBq/aoNBb4h1NAsdcPLwjNiOiC6q6JHBa/9fCOEdc/Kcwo6
+         LNYwsz841DagppEB4J1pRL9zF6MvFkkAvqszMd6LZ0aPg7EtYWVibt+nKe6vRPtBE8CL
+         pVBg==
+X-Gm-Message-State: AOJu0Yz3G2HEh/bCdN7LOmRgp2+uwN6CJSEjmzQZVj/WogPVighR5dh1
+	2w8pjwiGJG9Cg3ZT9qG0yPTn9uAPrNAcaw==
+X-Google-Smtp-Source: AGHT+IEE3ixLwgoDRzlpSJNNryzeZB7PRZZq5OQYRU60Mnjl3tdxnbdeR+7YUZurYuvoakpWEmQMmg==
+X-Received: by 2002:a17:906:1d6:b0:a26:968c:b4a8 with SMTP id 22-20020a17090601d600b00a26968cb4a8mr1358465ejj.2.1703259140277;
+        Fri, 22 Dec 2023 07:32:20 -0800 (PST)
+Received: from [192.168.0.22] ([78.10.206.178])
+        by smtp.gmail.com with ESMTPSA id lx26-20020a170906af1a00b00a235b087526sm2131137ejb.217.2023.12.22.07.32.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 22 Dec 2023 07:32:19 -0800 (PST)
+Message-ID: <34254cf6-346c-4b2b-a429-d9df153a58a5@linaro.org>
+Date: Fri, 22 Dec 2023 16:32:17 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="XAy0YcFeJXVfbE74"
-Content-Disposition: inline
-In-Reply-To: <a90d980e-71a1-4b90-b1cb-66ac45d79031@linaro.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [v1 1/2] dt-bindings: display: panel: Add Truly NT36672E LCD DSI
+ panel
+Content-Language: en-US
+To: Ritesh Kumar <quic_riteshk@quicinc.com>, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: neil.armstrong@linaro.org, quic_jesszhan@quicinc.com, sam@ravnborg.org,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
+ airlied@gmail.com, daniel@ffwll.ch, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ quic_abhinavk@quicinc.com, quic_rajeevny@quicinc.com,
+ quic_vproddut@quicinc.com
+References: <20231222110710.19397-1-quic_riteshk@quicinc.com>
+ <20231222110710.19397-2-quic_riteshk@quicinc.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20231222110710.19397-2-quic_riteshk@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+On 22/12/2023 12:07, Ritesh Kumar wrote:
+> Document Truly NT36672E FHD+ LCD DSI panel.
+> 
+> Signed-off-by: Ritesh Kumar <quic_riteshk@quicinc.com>
+> ---
+>  .../display/panel/truly,nt36672e.yaml         | 66 +++++++++++++++++++
+>  1 file changed, 66 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/panel/truly,nt36672e.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/display/panel/truly,nt36672e.yaml b/Documentation/devicetree/bindings/display/panel/truly,nt36672e.yaml
+> new file mode 100644
+> index 000000000000..39ab05c5b103
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/panel/truly,nt36672e.yaml
+> @@ -0,0 +1,66 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/panel/truly,nt36672e.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Truly NT36672E LCD DSI Panel
+> +
+> +maintainers:
+> +  - Ritesh Kumar <quic_riteshk@quicinc.com>
+> +
+> +allOf:
+> +  - $ref: panel-common.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: truly,nt36672e
+
+Eee? This is existing Novatek, isn't it?
+
+> +
+> +  reg:
+> +    maxItems: 1
+> +    description: DSI virtual channel
+> +
+> +  vddi-supply: true
+> +  avdd-supply: true
+> +  avee-supply: true
+> +  port: true
+> +  reset-gpios: true
+> +  backlight: true
+> +
+> +additionalProperties: false
 
 
---XAy0YcFeJXVfbE74
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This goes after required:.
 
-On Fri, Nov 24, 2023 at 04:46:06PM +0100, Krzysztof Kozlowski wrote:
-> On 24/11/2023 13:48, Conor Dooley wrote:
-> > On Fri, Nov 24, 2023 at 06:35:19AM +0000, Manne, Nava kishore wrote:
-> >> Hi Conor,
-> >>
-> >> 	Thanks for providing the review comments.
-> >> Please find my response inline.
-> >>
-> >>> -----Original Message-----
-> >>> From: Conor Dooley <conor@kernel.org>
-> >>> Sent: Wednesday, November 22, 2023 10:21 PM
-> >>> To: Manne, Nava kishore <nava.kishore.manne@amd.com>
-> >>> Cc: mdf@kernel.org; hao.wu@intel.com; yilun.xu@intel.com;
-> >>> trix@redhat.com; robh+dt@kernel.org; krzysztof.kozlowski+dt@linaro.or=
-g;
-> >>> conor+dt@kernel.org; Simek, Michal <michal.simek@amd.com>;
-> >>> mathieu.poirier@linaro.org; Levinsky, Ben <ben.levinsky@amd.com>;
-> >>> Potthuri, Sai Krishna <sai.krishna.potthuri@amd.com>; Shah, Tanmay
-> >>> <tanmay.shah@amd.com>; dhaval.r.shah@amd.com; arnd@arndb.de;
-> >>> Datta, Shubhrajyoti <shubhrajyoti.datta@amd.com>; linux-
-> >>> fpga@vger.kernel.org; devicetree@vger.kernel.org; linux-
-> >>> kernel@vger.kernel.org; linux-arm-kernel@lists.infradead.org
-> >>> Subject: Re: [RFC PATCH 1/3] dt-bindings: fpga: Add support for user-=
-key
-> >>> encrypted bitstream loading
-> >>>
-> >>> On Wed, Nov 22, 2023 at 11:14:02AM +0530, Nava kishore Manne wrote:
-> >>>> Adds =E2=80=98encrypted-key-name=E2=80=99 property to support user-k=
-ey encrypted
-> >>>> bitstream loading use case.
-> >>>>
-> >>>> Signed-off-by: Nava kishore Manne <nava.kishore.manne@amd.com>
-> >>>> ---
-> >>>>  .../devicetree/bindings/fpga/fpga-region.txt  | 32
-> >>>> +++++++++++++++++++
-> >>>
-> >>> Is there a reason that this has not yet been converted to yaml?
-> >>>
-> >> I am not sure about the complication involved here why it's not conver=
-ted to yaml format.
-> >> Due to time constraints, I couldn=E2=80=99t spend much time so I have =
-used this existing legacy format
-> >> to add my changes.
-> >>
-> >>>>  1 file changed, 32 insertions(+)
-> >>>>
-> >>>> diff --git a/Documentation/devicetree/bindings/fpga/fpga-region.txt
-> >>>> b/Documentation/devicetree/bindings/fpga/fpga-region.txt
-> >>>> index 528df8a0e6d8..309334558b3f 100644
-> >>>> --- a/Documentation/devicetree/bindings/fpga/fpga-region.txt
-> >>>> +++ b/Documentation/devicetree/bindings/fpga/fpga-region.txt
-> >>>> @@ -177,6 +177,9 @@ Optional properties:
-> >>>>  	it indicates that the FPGA has already been programmed with this
-> >>> image.
-> >>>>  	If this property is in an overlay targeting an FPGA region, it is a
-> >>>>  	request to program the FPGA with that image.
-> >>>> +- encrypted-key-name : should contain the name of an encrypted key =
-file
-> >>> located
-> >>>> +	on the firmware search path. It will be used to decrypt the FPGA
-> >>> image
-> >>>> +	file with user-key.
-> >>>
-> >>> I might be misreading things, but your driver code seems to assume th=
-at this
-> >>> is an aes key. Nothing here seems to document that this is supposed t=
-o be a
-> >>> key of a particular type.
-> >>>
-> >>
-> >> Yes, these changes are intended to add the support for Aes user-key en=
-crypted bitstream loading use case.
-> >> Will fix it in v2, something like below.
-> >> aes-key-file-name : Should contain the AES key file name on the firmwa=
-re search path.
-> >> 		      The key file contains the AES key and it will be used to decry=
-pt the FPGA image.
-> >=20
-> > Then when someone comes along looking for a different type of encryption
-> > we will end up with national-pride-foo-file-name etc. I think I'd rather
-> > have a second property that notes what type of cipher is being used and
-> > if that property is not present default to AES.
->=20
-> I wonder why does it need to be in DT in the first place? Why it cannot
-> be appended to the FPGA binary image itself? Which also points to
-> dubious security aspect of this approach... Shipping FPGA encrypted
-> image with its decryption key sounds like marvelous idea.
->=20
-> Even if this is suitable, why not using more arguments of firmware-name?
-> This would scale even for multiple FPGA firmwares with different keys
-> (although such need seems unlikely).
 
-In case it is not clear (given the month's delay here), this question is
-for the submitter of the series to answer, not me.
+Best regards,
+Krzysztof
 
-Cheers,
-Conor.
-
---XAy0YcFeJXVfbE74
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZYWrrwAKCRB4tDGHoIJi
-0iV4AQCOA/sumQaZWvBIwXh31tq8aPk1uVs5Vun98uUmt3fpDQD/SdpxFirYLQdV
-vk6FO14J53pFjO9lA0nJNFRM6Pju1Qo=
-=7XH3
------END PGP SIGNATURE-----
-
---XAy0YcFeJXVfbE74--
 
