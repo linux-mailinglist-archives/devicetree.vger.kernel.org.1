@@ -1,149 +1,229 @@
-Return-Path: <devicetree+bounces-28111-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28112-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B47DB81CD29
-	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 17:35:24 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD24481CD3E
+	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 17:49:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 648FA1F2279D
-	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 16:35:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EE4FD1C21A01
+	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 16:49:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDA1C24A09;
-	Fri, 22 Dec 2023 16:35:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7856624B38;
+	Fri, 22 Dec 2023 16:49:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="Ua+1kP0o"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52F5D249FD;
-	Fri, 22 Dec 2023 16:35:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 12901139F;
-	Fri, 22 Dec 2023 08:36:03 -0800 (PST)
-Received: from pluto (unknown [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 17FAB3F7F5;
-	Fri, 22 Dec 2023 08:35:13 -0800 (PST)
-Date: Fri, 22 Dec 2023 16:35:11 +0000
-From: Cristian Marussi <cristian.marussi@arm.com>
-To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc: Sudeep Holla <sudeep.holla@arm.com>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Oleksii Moisieiev <oleksii_moisieiev@epam.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
-	Peng Fan <peng.fan@nxp.com>,
-	AKASHI Takahiro <takahiro.akashi@linaro.org>
-Subject: Re: [PATCH 6/7] pinctrl: Implementation of the generic scmi-pinctrl
- driver
-Message-ID: <ZYW6v724Ags5JtY9@pluto>
-References: <20231215-pinctrl-scmi-v1-0-0fe35e4611f7@nxp.com>
- <20231215-pinctrl-scmi-v1-6-0fe35e4611f7@nxp.com>
+Received: from out-172.mta0.migadu.com (out-172.mta0.migadu.com [91.218.175.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 454CC2510C
+	for <devicetree@vger.kernel.org>; Fri, 22 Dec 2023 16:49:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
+	t=1703263785;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=ErvDQcJbtNazTvA7ofzMhh10seib29pmsETLyke7Hfw=;
+	b=Ua+1kP0ovBMWSseoDN2nCgNB6Xg5KSPml2pLS0rxSOZ+TzRhKdlhDS0DT6ABauzZsa8wyL
+	klV9HRZbQlts2+LWIVIMmy/HfXY1IO+qfINb/FzpjFlEP1BIDPJVvNprzyBRy30CGXVzlM
+	n9piVAn0te1I5QfLciGL84utA9Qc3uwfHyGysCASnI7BAe5kBllMdJiowqHImjDHZ4Ozzr
+	t6nnazNjF8TvexAI8PRTvsrrcJEpjOLLJ9l5th8Rsv6neNM4gEm7eX77cKr/3kMyrHtgr+
+	bC+d/yNutAxY9TzkF6xvVqDBKe0EW5W2hm0GaT8vFM8+waAPObIEDLTFQzwNLA==
+From: Diederik de Haas <didi.debian@cknow.org>
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+ Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Sandy Huang <hjc@rock-chips.com>, Mark Yao <markyao0591@gmail.com>,
+ Segfault <awarnecke002@hotmail.com>, Arnaud Ferraris <aferraris@debian.org>,
+ Manuel Traut <manut@mecka.net>, Danct12 <danct12@disroot.org>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, Manuel Traut <manut@mecka.net>
+Subject:
+ Re: [PATCH 4/6] arm64: dts: rockchip: Add devicetree for Pine64 Pinetab2
+Date: Fri, 22 Dec 2023 17:49:35 +0100
+Message-ID: <2250271.fI8GBZLEnK@bagend>
+Organization: Connecting Knowledge
+In-Reply-To: <20231222-pinetab2-v1-4-e148a7f61bd1@mecka.net>
+References:
+ <20231222-pinetab2-v1-0-e148a7f61bd1@mecka.net>
+ <20231222-pinetab2-v1-4-e148a7f61bd1@mecka.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231215-pinctrl-scmi-v1-6-0fe35e4611f7@nxp.com>
+Content-Type: multipart/signed; boundary="nextPart1735942.3G8mRxy5iN";
+ micalg="pgp-sha256"; protocol="application/pgp-signature"
+X-Migadu-Flow: FLOW_OUT
 
-On Fri, Dec 15, 2023 at 07:56:34PM +0800, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
-> 
-> scmi-pinctrl driver implements pinctrl driver interface and using
-> SCMI protocol to redirect messages from pinctrl subsystem SDK to
-> SCMI platform firmware, which does the changes in HW.
-> 
+--nextPart1735942.3G8mRxy5iN
+Content-Type: multipart/mixed; boundary="nextPart2189696.cEvZYOimPK";
+ protected-headers="v1"
+Content-Transfer-Encoding: 7Bit
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Diederik de Haas <didi.debian@cknow.org>
+Date: Fri, 22 Dec 2023 17:49:35 +0100
+Message-ID: <2250271.fI8GBZLEnK@bagend>
+Organization: Connecting Knowledge
+In-Reply-To: <20231222-pinetab2-v1-4-e148a7f61bd1@mecka.net>
+MIME-Version: 1.0
 
-[CC: Akashi which was interested in this series]
+This is a multi-part message in MIME format.
 
-This generic driver still works fine for me as of now in my emulated
-setup using the generic SCMI bindings as in the initial Oleksii example
-and a dummy driver consumer for this pins, BUT there is still an open
-issue as reported by Akashi previously ..see below.
+--nextPart2189696.cEvZYOimPK
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-> Co-developed-by: Oleksii Moisieiev <oleksii_moisieiev@epam.com>
-> Signed-off-by: Oleksii Moisieiev <oleksii_moisieiev@epam.com>
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> ---
->  MAINTAINERS                    |   1 +
->  drivers/pinctrl/Kconfig        |  11 ++
->  drivers/pinctrl/Makefile       |   1 +
->  drivers/pinctrl/pinctrl-scmi.c | 403 +++++++++++++++++++++++++++++++++++++++++
->  4 files changed, 416 insertions(+)
+On Friday, 22 December 2023 12:05:44 CET Manuel Traut wrote:
+> +       rk817-sound {
+> +               compatible = "simple-audio-card";
+> +               pinctrl-names = "default";
+> +               pinctrl-0 = <&hp_det_l>;
+> +               simple-audio-card,format = "i2s";
+> +               simple-audio-card,name = "PineTab2";
+> +               simple-audio-card,mclk-fs = <256>;
+> +
+> +               simple-audio-card,widgets =
+> +                       "Microphone", "Mic Jack",
+> +                       "Headphone", "Headphones",
+> +                       "Microphone", "Microphone",
+> +                       "Speaker", "Speakers";
+> +
+> +               simple-audio-card,routing =
+> +                       "MICL", "Microphone",
+> +                       "MICR", "Mic Jack",
+> +                       "Headphones", "HPOL",
+> +                       "Headphones", "HPOR",
+> +                       "Speaker Amplifier INL", "HPOL",
+> +                       "Speaker Amplifier INR", "HPOR",
+> +                       "Speakers", "Speaker Amplifier OUTL",
+> +                       "Speakers", "Speaker Amplifier OUTR";
+> +
+> +               simple-audio-card,hp-det-gpio = <&gpio4 RK_PC6
+> GPIO_ACTIVE_HIGH>; +               simple-audio-card,aux-devs =
+> <&speaker_amp>;
+> +               simple-audio-card,pin-switches = "Speakers", "Microphone";
+> +
+> +               simple-audio-card,cpu {
+> +                       sound-dai = <&i2s1_8ch>;
+> +               };
+> +
+> +               simple-audio-card,codec {
+> +                       sound-dai = <&rk817>;
+> +               };
+> +       };
+
+Not sure if it's right (or allowed) to post a different patch as attachment, 
+but I have been using a different audio configuration (see attachment).
+I haven't yet tried if/how it works via HDMI yet, but the speakers and 
+headphones work fine.
+This patch is based on the following commit:
+https://github.com/TuxThePenguin0/linux/commit/
+872b829a3511cfa853bd3af3bd4f30be1cb3d1ab
+
+I've added 'Danct12' to the To list as they are the maintainer of the primary 
+PT2 image and we worked together to get to this audio config.
+I don't if they still use it.
+(I've been using my own kernel/image for a while now).
+
+Cheers,
+  Diederik
+--nextPart2189696.cEvZYOimPK
+Content-Disposition: attachment;
+ filename="0003-arm64-dts-rk3566-pinetab2-Fix-audio-configuration.patch"
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/x-patch; charset="x-UTF_8J";
+ name="0003-arm64-dts-rk3566-pinetab2-Fix-audio-configuration.patch"
+
+From 17efeb0ae766886345ff0574c534079742539b56 Mon Sep 17 00:00:00 2001
+From: Scott Santucci <ScottFreeCode@users.noreply.github.com>
+Date: Mon, 17 Jul 2023 13:06:20 +0200
+Subject: [PATCH 3/8] arm64: dts: rk3566-pinetab2: Fix audio configuration
+
+The audio configuration of the PineTab2 matches the `rk817_ext` alsa
+ucm2 profile, so switch the configuration to that. Use `rk817_ext` and
+not `rk817_int` as the PineTab2 uses an external amplifier.
+
+Also the headphones plugged/unplugged detection is backwards, so apply
+the fix provided by Danct12 <danct12@disroot.org>.
+
+Signed-off-by: Diederik de Haas <didi.debian@cknow.org>
+Link: https://github.com/dreemurrs-embedded/Pine64-Arch/pull/555
+---
+ arch/arm64/boot/dts/rockchip/rk3566-pinetab2.dtsi | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3566-pinetab2.dtsi b/arch/arm64/boot/dts/rockchip/rk3566-pinetab2.dtsi
+index a766f21bd6f8..59e4bf2f77c7 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3566-pinetab2.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3566-pinetab2.dtsi
+@@ -116,14 +116,14 @@ rk817-sound {
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&hp_det_l>;
+ 		simple-audio-card,format = "i2s";
+-		simple-audio-card,name = "PineTab2";
++		simple-audio-card,name = "rk817_ext";
+ 		simple-audio-card,mclk-fs = <256>;
  
- [snip]
+ 		simple-audio-card,widgets =
+ 			"Microphone", "Mic Jack",
+ 			"Headphone", "Headphones",
+ 			"Microphone", "Microphone",
+-			"Speaker", "Speakers";
++			"Speaker", "Internal Speakers";
+ 
+ 		simple-audio-card,routing =
+ 			"MICL", "Microphone",
+@@ -132,12 +132,12 @@ rk817-sound {
+ 			"Headphones", "HPOR",
+ 			"Speaker Amplifier INL", "HPOL",
+ 			"Speaker Amplifier INR", "HPOR",
+-			"Speakers", "Speaker Amplifier OUTL",
+-			"Speakers", "Speaker Amplifier OUTR";
++			"Internal Speakers", "Speaker Amplifier OUTL",
++			"Internal Speakers", "Speaker Amplifier OUTR";
+ 
+-		simple-audio-card,hp-det-gpio = <&gpio4 RK_PC6 GPIO_ACTIVE_HIGH>;
++		simple-audio-card,hp-det-gpio = <&gpio4 RK_PC6 GPIO_ACTIVE_LOW>;
+ 		simple-audio-card,aux-devs = <&speaker_amp>;
+-		simple-audio-card,pin-switches = "Speakers", "Microphone";
++		simple-audio-card,pin-switches = "Internal Speakers", "Microphone";
+ 
+ 		simple-audio-card,cpu {
+ 			sound-dai = <&i2s1_8ch>;
+-- 
+2.42.0
 
-> +static const struct pinmux_ops pinctrl_scmi_pinmux_ops = {
-> +	.request = pinctrl_scmi_request,
-> +	.free = pinctrl_scmi_free,
-> +	.get_functions_count = pinctrl_scmi_get_functions_count,
-> +	.get_function_name = pinctrl_scmi_get_function_name,
-> +	.get_function_groups = pinctrl_scmi_get_function_groups,
-> +	.set_mux = pinctrl_scmi_func_set_mux,
-> +};
-> +
-> +static int pinctrl_scmi_pinconf_get(struct pinctrl_dev *pctldev, unsigned int _pin,
-> +				    unsigned long *config)
-> +{
-> +	int ret;
-> +	struct scmi_pinctrl *pmx = pinctrl_dev_get_drvdata(pctldev);
-> +	enum pin_config_param config_type;
-> +	unsigned long config_value;
-> +
-> +	if (!config)
-> +		return -EINVAL;
-> +
-> +	config_type = pinconf_to_config_param(*config);
 
-This config types that are packed/unpacked from the generic Pinctrl
-subsystem have also to be mapped/umapped, here and below, to the SCMI
-ones since they are slightly different/.
+--nextPart2189696.cEvZYOimPK--
 
-IOW SCMI V3.2 Table_24 in the spec, which defines Pins Config Types as
-understood by an SCMI platform FW is NOT exactly mapping to the enum
-pin_config_param used by Pinctrl in its pinconf_to_config so you risk
-passing a config_type to the SCMI fw that does NOT mean at all what
-intended...if the FW is compliant with SCMI.
+--nextPart1735942.3G8mRxy5iN
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
 
-> +
-> +	ret = pinctrl_ops->config_get(pmx->ph, _pin, PIN_TYPE, config_type, &config_value);
-> +	if (ret)
-> +		return ret;
-> +
-> +	*config = pinconf_to_config_packed(config_type, config_value);
-> +
-> +	return 0;
-> +}
-> +
-> +static int pinctrl_scmi_pinconf_set(struct pinctrl_dev *pctldev,
-> +				    unsigned int _pin,
-> +				    unsigned long *configs,
-> +				    unsigned int num_configs)
-> +{
-> +	int ret;
-> +	struct scmi_pinctrl *pmx = pinctrl_dev_get_drvdata(pctldev);
-> +
-> +	if (!configs || !num_configs)
-> +		return -EINVAL;
-> +
+-----BEGIN PGP SIGNATURE-----
 
-Same here, as said in the previous patch about pinctrl protocol, you
-should pack/unpack and map/unmap from Pinctrl packed configs and types
-to SCMI types and unpacked config/values, to fix the mismatch between
-Pinctrl and SCMI types and also to avoid the usage of Pinctrl helpers to
-extract the types from the SCMI protocol layer so that we can keep it
-agnostic in these regards.
+iHUEABYIAB0WIQT1sUPBYsyGmi4usy/XblvOeH7bbgUCZYW+HwAKCRDXblvOeH7b
+bk8YAP9l/Ynyc1NgUzHaJH+8pqpPvbqfRat1qp4Tm/CX1vZjiQEAi+d8vAIDfJs2
+ytBGxf56fdtLqnUcH11NRRCnHeSFMA0=
+=znXm
+-----END PGP SIGNATURE-----
 
-Thanks,
-Cristian
+--nextPart1735942.3G8mRxy5iN--
+
+
+
 
