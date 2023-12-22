@@ -1,362 +1,312 @@
-Return-Path: <devicetree+bounces-28167-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28168-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0372E81CEB7
-	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 20:23:25 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6BD381CEC0
+	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 20:36:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A89DF28678A
-	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 19:23:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3D40A2835C7
+	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 19:36:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 002D12CCA6;
-	Fri, 22 Dec 2023 19:23:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB6462C84E;
+	Fri, 22 Dec 2023 19:36:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="k7LoyPgq"
+	dkim=pass (1024-bit key) header.d=amazon.com header.i=@amazon.com header.b="ddPgy0ss"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com [209.85.128.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp-fw-80009.amazon.com (smtp-fw-80009.amazon.com [99.78.197.220])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 349EC2C849
-	for <devicetree@vger.kernel.org>; Fri, 22 Dec 2023 19:23:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-5e74b4d5445so19979667b3.1
-        for <devicetree@vger.kernel.org>; Fri, 22 Dec 2023 11:23:18 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0CD32C1A1;
+	Fri, 22 Dec 2023 19:36:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amazon.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amazon.de
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1703272998; x=1703877798; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=aCc/LLMRxi1q5TvJqmyhp5VDX3W9U3KObkywO/tjcKM=;
-        b=k7LoyPgq5neoVlRKeXXj8FlRpJmXH5hs8obpu20c8eJ9LDijHWnyaQeaZxbZWWt7LJ
-         s8Ptac/eS69L+DZpZ83uOBSmj+FoUclldHvl+3DZJCA4AxrShBiYKTwcOJ/8i4fP6GqG
-         JZFIHGGBxpGWRBIe7OyobZ+u2BRr29F0bkO9OQe9VlT//IoAtfa4CyJBqR4FnHM2UidP
-         4JnGH5sVKspPOYhAYoxTo2FytSVyWaekV0iKM+Rls23CM6RiRnHA5dWVeFzHPuPSlnKH
-         QMaGAlv6WPbrlGgW+MKwN065rvS9TqdJQhzuOjAomoccFtLvDos2Z967rUmJv+SfsNwU
-         oPkQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703272998; x=1703877798;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=aCc/LLMRxi1q5TvJqmyhp5VDX3W9U3KObkywO/tjcKM=;
-        b=dozRuGIYGjsXKAiliro0PkLOXsM1VHK7bZyC8qosi38eV1HWSa0YZSzjka7/F6Vmhq
-         qnNxEKxxC8162nrBqpRPmUVqNkAIjV8dhk9+uF/L1/uxNpbKe3EFso7zOAdwVfRKo+FA
-         h8nvGBchpyM8F8/vIqkqghhxHPeO+UHhRhQJ8xNNNwo9XyNlEtfyq5+BEfyfDS9AJcix
-         +VK/Rx5XmKnxnFMvbDn7dKU02Mwql9rZ8z/24MNqEpjIW2Nx2IuXn7/pLNZdhncRyd74
-         sLRG9UkraTbiwMV8K02ktgKxqHOpOI5mDmURyrPB+HAE84KsmIi1SbcYspPQOI6mVKcu
-         xV1A==
-X-Gm-Message-State: AOJu0YyWbTsofHGtaX8mShKoZgkIb4lgpQoyHLqw4QQ8OnUmRUzk7Z62
-	RMz5bczeKvzXv0ZHZnA1ObezbfWgHrz0tBOe+MX0AO59JKSS6yBAt3NEqTW9XGU=
-X-Google-Smtp-Source: AGHT+IEIIIPIGJRkjud1LWC0TZi2Z8QqGT5EruAhlpsUg3za9MlKqgW+6+75k4yvAf1Dv1KG/IENGuWxY8yRzzI1vwc=
-X-Received: by 2002:a81:6f04:0:b0:5d7:1940:53d0 with SMTP id
- k4-20020a816f04000000b005d7194053d0mr1607191ywc.72.1703272997970; Fri, 22 Dec
- 2023 11:23:17 -0800 (PST)
+  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
+  t=1703273781; x=1734809781;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=KAtck4BGqYVK3fz23UMMSkja7TsmFfA8lc0yhEsq2NQ=;
+  b=ddPgy0ss+PLOyXAPrDtgPJAByu4qFDqAgALQ/ncsmiyeWIqboPKDjXO1
+   R6vsed91nZVYGTHeOqqS2pD0zM7OeDDT2P3N9jW7Ypqb4/8ZwAQHMiLUz
+   wRwrdtu3qReqms07B6WYLaBzDslea48QumrKB2wqZYtp38hrGO9Hvehx5
+   A=;
+X-IronPort-AV: E=Sophos;i="6.04,297,1695686400"; 
+   d="scan'208";a="53377554"
+Received: from pdx4-co-svc-p1-lb2-vlan2.amazon.com (HELO email-inbound-relay-pdx-2c-m6i4x-f7c754c9.us-west-2.amazon.com) ([10.25.36.210])
+  by smtp-border-fw-80009.pdx80.corp.amazon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Dec 2023 19:36:19 +0000
+Received: from smtpout.prod.us-west-2.prod.farcaster.email.amazon.dev (pdx2-ws-svc-p26-lb5-vlan3.pdx.amazon.com [10.39.38.70])
+	by email-inbound-relay-pdx-2c-m6i4x-f7c754c9.us-west-2.amazon.com (Postfix) with ESMTPS id 5786E410A7;
+	Fri, 22 Dec 2023 19:36:14 +0000 (UTC)
+Received: from EX19MTAUWA001.ant.amazon.com [10.0.38.20:57298]
+ by smtpin.naws.us-west-2.prod.farcaster.email.amazon.dev [10.0.6.144:2525] with esmtp (Farcaster)
+ id ffe0a76c-e2dd-4e3b-86dd-cff8ede9d562; Fri, 22 Dec 2023 19:36:13 +0000 (UTC)
+X-Farcaster-Flow-ID: ffe0a76c-e2dd-4e3b-86dd-cff8ede9d562
+Received: from EX19D020UWC004.ant.amazon.com (10.13.138.149) by
+ EX19MTAUWA001.ant.amazon.com (10.250.64.204) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Fri, 22 Dec 2023 19:36:13 +0000
+Received: from dev-dsk-graf-1a-5ce218e4.eu-west-1.amazon.com (10.253.83.51) by
+ EX19D020UWC004.ant.amazon.com (10.13.138.149) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Fri, 22 Dec 2023 19:36:09 +0000
+From: Alexander Graf <graf@amazon.com>
+To: <linux-kernel@vger.kernel.org>
+CC: <linux-trace-kernel@vger.kernel.org>, <linux-mm@kvack.org>,
+	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<kexec@lists.infradead.org>, <linux-doc@vger.kernel.org>, <x86@kernel.org>,
+	Eric Biederman <ebiederm@xmission.com>, "H. Peter Anvin" <hpa@zytor.com>,
+	Andy Lutomirski <luto@kernel.org>, Peter Zijlstra <peterz@infradead.org>,
+	"Rob Herring" <robh+dt@kernel.org>, Steven Rostedt <rostedt@goodmis.org>,
+	"Andrew Morton" <akpm@linux-foundation.org>, Mark Rutland
+	<mark.rutland@arm.com>, "Tom Lendacky" <thomas.lendacky@amd.com>, Ashish
+ Kalra <ashish.kalra@amd.com>, James Gowans <jgowans@amazon.com>, Stanislav
+ Kinsburskii <skinsburskii@linux.microsoft.com>, <arnd@arndb.de>,
+	<pbonzini@redhat.com>, <madvenka@linux.microsoft.com>, Anthony Yznaga
+	<anthony.yznaga@oracle.com>, Usama Arif <usama.arif@bytedance.com>, David
+ Woodhouse <dwmw@amazon.co.uk>, Benjamin Herrenschmidt
+	<benh@kernel.crashing.org>
+Subject: [PATCH v2 00/17] kexec: Allow preservation of ftrace buffers
+Date: Fri, 22 Dec 2023 19:35:50 +0000
+Message-ID: <20231222193607.15474-1-graf@amazon.com>
+X-Mailer: git-send-email 2.40.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231222-x1e80100-phy-edp-compatible-refactor-v2-0-ab5786c2359f@linaro.org>
- <20231222-x1e80100-phy-edp-compatible-refactor-v2-2-ab5786c2359f@linaro.org>
- <CAA8EJpqPNzvA0yTqqSuXGHKxXoofJUQpAiHazoULru8A85YXHA@mail.gmail.com> <ZYXamK7y2qbM/GaJ@linaro.org>
-In-Reply-To: <ZYXamK7y2qbM/GaJ@linaro.org>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Fri, 22 Dec 2023 21:23:06 +0200
-Message-ID: <CAA8EJprZmhb+1xBcMRoyvEGuT-ys5O1nMiGzTu0qfBLNZVrmTw@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] phy: qcom: edp: Add set_mode op for configuring
- eDP/DP submode
-To: Abel Vesa <abel.vesa@linaro.org>
-Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Johan Hovold <johan@kernel.org>, linux-phy@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+X-ClientProxiedBy: EX19D035UWA004.ant.amazon.com (10.13.139.109) To
+ EX19D020UWC004.ant.amazon.com (10.13.138.149)
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 
-On Fri, 22 Dec 2023 at 20:51, Abel Vesa <abel.vesa@linaro.org> wrote:
->
-> On 23-12-22 16:45:47, Dmitry Baryshkov wrote:
-> > On Fri, 22 Dec 2023 at 15:01, Abel Vesa <abel.vesa@linaro.org> wrote:
-> > >
-> > > Future platforms should not use different compatibles to differentiate
-> > > between eDP and DP mode. Instead, they should use a single compatible as the
-> > > IP block is the same. It will be the job of the controller to set the submode
-> > > of the PHY accordingly. Rework the device match config data so that it only
-> > > keeps the different knobs rather than swing and pre-emphasis tables.
-> > >
-> > > The existing platforms will remain with separate compatibles for each mode.
-> > >
-> > > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> > > ---
-> > >  drivers/phy/qualcomm/phy-qcom-edp.c | 90 ++++++++++++++++++++++++++++---------
-> > >  1 file changed, 69 insertions(+), 21 deletions(-)
-> > >
-> > > diff --git a/drivers/phy/qualcomm/phy-qcom-edp.c b/drivers/phy/qualcomm/phy-qcom-edp.c
-> > > index 8e5078304646..efd7015c73ec 100644
-> > > --- a/drivers/phy/qualcomm/phy-qcom-edp.c
-> > > +++ b/drivers/phy/qualcomm/phy-qcom-edp.c
-> > > @@ -14,6 +14,7 @@
-> > >  #include <linux/module.h>
-> > >  #include <linux/of.h>
-> > >  #include <linux/phy/phy.h>
-> > > +#include <linux/phy/phy-dp.h>
-> > >  #include <linux/platform_device.h>
-> > >  #include <linux/regulator/consumer.h>
-> > >  #include <linux/reset.h>
-> > > @@ -68,19 +69,21 @@
-> > >
-> > >  #define TXn_TRAN_DRVR_EMP_EN                    0x0078
-> > >
-> > > -struct qcom_edp_cfg {
-> > > -       bool is_dp;
-> > > -
-> > > -       /* DP PHY swing and pre_emphasis tables */
-> > > +struct qcom_edp_swing_pre_emph_cfg {
-> > >         const u8 (*swing_hbr_rbr)[4][4];
-> > >         const u8 (*swing_hbr3_hbr2)[4][4];
-> > >         const u8 (*pre_emphasis_hbr_rbr)[4][4];
-> > >         const u8 (*pre_emphasis_hbr3_hbr2)[4][4];
-> > >  };
-> > >
-> > > +struct qcom_edp_phy_cfg {
-> > > +       bool is_edp;
-> > > +       bool needs_swing_pre_emph_cfg;
-> >
-> > I think something like needs_voltage_config sounds simpler and prettier.
->
-> Sure. Will do that in the next version.
->
-> >
-> > > +};
-> > > +
-> > >  struct qcom_edp {
-> > >         struct device *dev;
-> > > -       const struct qcom_edp_cfg *cfg;
-> > > +       const struct qcom_edp_swing_pre_emph_cfg *swing_pre_emph_cfg;
-> > >
-> > >         struct phy *phy;
-> > >
-> > > @@ -96,6 +99,8 @@ struct qcom_edp {
-> > >
-> > >         struct clk_bulk_data clks[2];
-> > >         struct regulator_bulk_data supplies[2];
-> > > +
-> > > +       bool is_edp;
-> > >  };
-> > >
-> > >  static const u8 dp_swing_hbr_rbr[4][4] = {
-> > > @@ -126,8 +131,7 @@ static const u8 dp_pre_emp_hbr2_hbr3[4][4] = {
-> > >         { 0x04, 0xff, 0xff, 0xff }
-> > >  };
-> > >
-> > > -static const struct qcom_edp_cfg dp_phy_cfg = {
-> > > -       .is_dp = true,
-> > > +static const struct qcom_edp_swing_pre_emph_cfg dp_phy_swing_pre_emph_cfg = {
-> > >         .swing_hbr_rbr = &dp_swing_hbr_rbr,
-> > >         .swing_hbr3_hbr2 = &dp_swing_hbr2_hbr3,
-> > >         .pre_emphasis_hbr_rbr = &dp_pre_emp_hbr_rbr,
-> > > @@ -162,18 +166,29 @@ static const u8 edp_pre_emp_hbr2_hbr3[4][4] = {
-> > >         { 0x00, 0xff, 0xff, 0xff }
-> > >  };
-> > >
-> > > -static const struct qcom_edp_cfg edp_phy_cfg = {
-> > > -       .is_dp = false,
-> > > +static const struct qcom_edp_swing_pre_emph_cfg edp_phy_swing_pre_emph_cfg = {
-> > >         .swing_hbr_rbr = &edp_swing_hbr_rbr,
-> > >         .swing_hbr3_hbr2 = &edp_swing_hbr2_hbr3,
-> > >         .pre_emphasis_hbr_rbr = &edp_pre_emp_hbr_rbr,
-> > >         .pre_emphasis_hbr3_hbr2 = &edp_pre_emp_hbr2_hbr3,
-> > >  };
-> > >
-> > > +static struct qcom_edp_phy_cfg sc7280_dp_phy_cfg = {
-> > > +};
-> > > +
-> > > +static struct qcom_edp_phy_cfg sc8280xp_dp_phy_cfg = {
-> > > +       .needs_swing_pre_emph_cfg = true,
-> > > +};
-> > > +
-> > > +static struct qcom_edp_phy_cfg sc8280xp_edp_phy_cfg = {
-> > > +       .is_edp = true,
-> > > +       .needs_swing_pre_emph_cfg = true,
-> > > +};
-> > > +
-> > >  static int qcom_edp_phy_init(struct phy *phy)
-> > >  {
-> > >         struct qcom_edp *edp = phy_get_drvdata(phy);
-> > > -       const struct qcom_edp_cfg *cfg = edp->cfg;
-> > > +       const struct qcom_edp_swing_pre_emph_cfg *cfg = edp->swing_pre_emph_cfg;
-> > >         int ret;
-> > >         u8 cfg8;
-> > >
-> > > @@ -200,7 +215,7 @@ static int qcom_edp_phy_init(struct phy *phy)
-> > >                DP_PHY_PD_CTL_PLL_PWRDN | DP_PHY_PD_CTL_DP_CLAMP_EN,
-> > >                edp->edp + DP_PHY_PD_CTL);
-> > >
-> > > -       if (cfg && cfg->is_dp)
-> > > +       if (cfg && !edp->is_edp)
-> > >                 cfg8 = 0xb7;
-> > >         else
-> > >                 cfg8 = 0x37;
-> > > @@ -234,7 +249,7 @@ static int qcom_edp_phy_init(struct phy *phy)
-> > >
-> > >  static int qcom_edp_set_voltages(struct qcom_edp *edp, const struct phy_configure_opts_dp *dp_opts)
-> > >  {
-> > > -       const struct qcom_edp_cfg *cfg = edp->cfg;
-> > > +       const struct qcom_edp_swing_pre_emph_cfg *cfg = edp->swing_pre_emph_cfg;
-> > >         unsigned int v_level = 0;
-> > >         unsigned int p_level = 0;
-> > >         u8 ldo_config;
-> > > @@ -261,7 +276,7 @@ static int qcom_edp_set_voltages(struct qcom_edp *edp, const struct phy_configur
-> > >         if (swing == 0xff || emph == 0xff)
-> > >                 return -EINVAL;
-> > >
-> > > -       ldo_config = (cfg && cfg->is_dp) ? 0x1 : 0x0;
-> > > +       ldo_config = edp->is_edp ? 0x0 : 0x1;
-> > >
-> > >         writel(ldo_config, edp->tx0 + TXn_LDO_CONFIG);
-> > >         writel(swing, edp->tx0 + TXn_TX_DRV_LVL);
-> > > @@ -447,10 +462,10 @@ static int qcom_edp_set_vco_div(const struct qcom_edp *edp, unsigned long *pixel
-> > >  static int qcom_edp_phy_power_on(struct phy *phy)
-> > >  {
-> > >         const struct qcom_edp *edp = phy_get_drvdata(phy);
-> > > -       const struct qcom_edp_cfg *cfg = edp->cfg;
-> > > +       const struct qcom_edp_swing_pre_emph_cfg *cfg = edp->swing_pre_emph_cfg;
-> > >         u32 bias0_en, drvr0_en, bias1_en, drvr1_en;
-> > >         unsigned long pixel_freq;
-> > > -       u8 ldo_config;
-> > > +       u8 ldo_config = 0x0;
-> > >         int timeout;
-> > >         int ret;
-> > >         u32 val;
-> > > @@ -468,7 +483,8 @@ static int qcom_edp_phy_power_on(struct phy *phy)
-> > >                 return timeout;
-> > >
-> > >
-> > > -       ldo_config = (cfg && cfg->is_dp) ? 0x1 : 0x0;
-> > > +       if (cfg && !edp->is_edp)
-> > > +               ldo_config = 0x1;
-> > >
-> > >         writel(ldo_config, edp->tx0 + TXn_LDO_CONFIG);
-> > >         writel(ldo_config, edp->tx1 + TXn_LDO_CONFIG);
-> > > @@ -589,6 +605,31 @@ static int qcom_edp_phy_power_off(struct phy *phy)
-> > >         return 0;
-> > >  }
-> > >
-> > > +static int qcom_edp_phy_set_mode(struct phy *phy, enum phy_mode mode, int submode)
-> > > +{
-> > > +       struct qcom_edp *edp = phy_get_drvdata(phy);
-> > > +
-> > > +       if (mode != PHY_MODE_DP)
-> > > +               return -EINVAL;
-> > > +
-> > > +       switch (submode) {
-> > > +       case PHY_SUBMODE_DP:
-> > > +               edp->swing_pre_emph_cfg = &dp_phy_swing_pre_emph_cfg;
-> > > +               edp->is_edp = false;
-> > > +               break;
-> > > +
-> > > +       case PHY_SUBMODE_EDP:
-> > > +               edp->swing_pre_emph_cfg = &edp_phy_swing_pre_emph_cfg;
-> >
-> > Won't this override the sc7280 config which doesn't set the
-> > .needs_swing_pre_emph_cfg?
-> > So even
->
-> Yeah, the way I thought about this would be that the controller won't
-> call phy_set_mode_ext if the node doesn't have is-edp property.
->
-> But I can see now that is sloppy. Will change this so if the legacy
-> platforms have the is_edp set in their device match data, it will just
-> check that the requested mode matches it.
+Kexec today considers itself purely a boot loader: When we enter the new
+kernel, any state the previous kernel left behind is irrelevant and the
+new kernel reinitializes the system.
 
-Let's separate two issues here. One is the is_edp flag. I think it's
-fine to set the default based on the compat string, then allow the
-controller to override it.
+However, there are use cases where this mode of operation is not what we
+actually want. In virtualization hosts for example, we want to use kexec
+to update the host kernel while virtual machine memory stays untouched.
+When we add device assignment to the mix, we also need to ensure that
+IOMMU and VFIO states are untouched. If we add PCIe peer to peer DMA, we
+need to do the same for the PCI subsystem. If we want to kexec while an
+SEV-SNP enabled virtual machine is running, we need to preserve the VM
+context pages and physical memory. See James' and my Linux Plumbers
+Conference 2023 presentation for details:
 
-For the swing / pre_emph tables it might be easier to store pointers
-to both DP and eDP tables in the config data (based on the match data)
-and later select one basing on the is_edp flag.
-This way you don't have to override the pre-set tables during
-phy_set_mode_ext().
+  https://lpc.events/event/17/contributions/1485/
 
->
-> >
-> > > +               edp->is_edp = true;
-> > > +               break;
-> > > +
-> > > +       default:
-> > > +               return -EINVAL;
-> > > +       }
-> > > +
-> > > +       return 0;
-> > > +}
-> > > +
-> > >  static int qcom_edp_phy_exit(struct phy *phy)
-> > >  {
-> > >         struct qcom_edp *edp = phy_get_drvdata(phy);
-> > > @@ -604,6 +645,7 @@ static const struct phy_ops qcom_edp_ops = {
-> > >         .configure      = qcom_edp_phy_configure,
-> > >         .power_on       = qcom_edp_phy_power_on,
-> > >         .power_off      = qcom_edp_phy_power_off,
-> > > +       .set_mode       = qcom_edp_phy_set_mode,
-> > >         .exit           = qcom_edp_phy_exit,
-> > >         .owner          = THIS_MODULE,
-> > >  };
-> > > @@ -770,6 +812,7 @@ static int qcom_edp_clks_register(struct qcom_edp *edp, struct device_node *np)
-> > >
-> > >  static int qcom_edp_phy_probe(struct platform_device *pdev)
-> > >  {
-> > > +       const struct qcom_edp_phy_cfg *cfg = of_device_get_match_data(&pdev->dev);
-> > >         struct phy_provider *phy_provider;
-> > >         struct device *dev = &pdev->dev;
-> > >         struct qcom_edp *edp;
-> > > @@ -780,7 +823,12 @@ static int qcom_edp_phy_probe(struct platform_device *pdev)
-> > >                 return -ENOMEM;
-> > >
-> > >         edp->dev = dev;
-> > > -       edp->cfg = of_device_get_match_data(&pdev->dev);
-> > > +       edp->is_edp = cfg->is_edp;
-> > > +
-> > > +       if (cfg->needs_swing_pre_emph_cfg)
-> > > +               edp->swing_pre_emph_cfg = edp->is_edp ?
-> > > +                                               &edp_phy_swing_pre_emph_cfg :
-> > > +                                               &dp_phy_swing_pre_emph_cfg;
-> > >
-> > >         edp->edp = devm_platform_ioremap_resource(pdev, 0);
-> > >         if (IS_ERR(edp->edp))
-> > > @@ -839,10 +887,10 @@ static int qcom_edp_phy_probe(struct platform_device *pdev)
-> > >  }
-> > >
-> > >  static const struct of_device_id qcom_edp_phy_match_table[] = {
-> > > -       { .compatible = "qcom,sc7280-edp-phy" },
-> > > -       { .compatible = "qcom,sc8180x-edp-phy" },
-> > > -       { .compatible = "qcom,sc8280xp-dp-phy", .data = &dp_phy_cfg },
-> > > -       { .compatible = "qcom,sc8280xp-edp-phy", .data = &edp_phy_cfg },
-> > > +       { .compatible = "qcom,sc7280-edp-phy" , .data = &sc7280_dp_phy_cfg, },
-> > > +       { .compatible = "qcom,sc8180x-edp-phy", .data = &sc7280_dp_phy_cfg, },
-> > > +       { .compatible = "qcom,sc8280xp-dp-phy", .data = &sc8280xp_dp_phy_cfg, },
-> > > +       { .compatible = "qcom,sc8280xp-edp-phy", .data = &sc8280xp_edp_phy_cfg, },
-> > >         { }
-> > >  };
-> > >  MODULE_DEVICE_TABLE(of, qcom_edp_phy_match_table);
-> > >
-> > > --
-> > > 2.34.1
-> > >
-> >
-> >
-> > --
-> > With best wishes
-> > Dmitry
+To start us on the journey to support all the use cases above, this
+patch implements basic infrastructure to allow hand over of kernel state
+across kexec (Kexec HandOver, aka KHO). As example target, we use ftrace:
+With this patch set applied, you can read ftrace records from the
+pre-kexec environment in your post-kexec one. This creates a very powerful
+debugging and performance analysis tool for kexec. It's also slightly
+easier to reason about than full blown VFIO state preservation.
+
+== Alternatives ==
+
+There are alternative approaches to (parts of) the problems above:
+
+  * Memory Pools [1] - preallocated persistent memory region + allocator
+  * PRMEM [2] - resizable persistent memory regions with fixed metadata
+                pointer on the kernel command line + allocator
+  * Pkernfs [3] - preallocated file system for in-kernel data with fixed
+                  address location on the kernel command line
+  * PKRAM [4] - handover of user space pages using a fixed metadata page
+                specified via command line
+
+All of the approaches above fundamentally have the same problem: They
+require the administrator to explicitly carve out a physical memory
+location because they have no mechanism outside of the kernel command
+line to pass data (including memory reservations) between kexec'ing
+kernels.
+
+KHO provides that base foundation. We will determine later whether we
+still need any of the approaches above for fast bulk memory handover of for
+example IOMMU page tables. But IMHO they would all be users of KHO, with
+KHO providing the foundational primitive to pass metadata and bulk memory
+reservations as well as provide easy versioning for data.
+
+== Documentation ==
+
+If people are happy with the approach in this patch set, I will write up
+conclusive documentation including schemas for the metadata as part of its
+next iteration. For now, here's a rudimentary overview:
+
+We introduce a metadata file that the kernels pass between each other. How
+they pass it is architecture specific. The file's format is a Flattened
+Device Tree (fdt) which has a generator and parser already included in
+Linux. When the root user enables KHO through /sys/kernel/kho/active, the
+kernel invokes callbacks to every driver that supports KHO to serialize
+its state. When the actual kexec happens, the fdt is part of the image
+set that we boot into. In addition, we keep a "scratch region" available
+for kexec: A physically contiguous memory region that is guaranteed to
+not have any memory that KHO would preserve.  The new kernel bootstraps
+itself using the scratch region and sets all handed over memory as in use.
+When drivers initialize that support KHO, they introspect the fdt and
+recover their state from it. This includes memory reservations, where the
+driver can either discard or claim reservations.
+
+== Limitations ==
+
+I currently only implemented file based kexec. The kernel interfaces
+in the patch set are already in place to support user space kexec as well,
+but I have not implemented it yet.
+
+== How to Use ==
+
+To use the code, please boot the kernel with the "kho_scratch=" command
+line parameter set: "kho_scratch=512M". KHO requires a scratch region.
+
+Make sure to fill ftrace with contents that you want to observe after
+kexec.  Then, before you invoke file based "kexec -l", activate KHO:
+
+  # echo 1 > /sys/kernel/kho/active
+  # kexec -l Image --initrd=initrd -s
+  # kexec -e
+
+The new kernel will boot up and contain the previous kernel's trace
+buffers in /sys/kernel/debug/tracing/trace.
+
+== Changelog ==
+
+v1 -> v2:
+  - Removed: tracing: Introduce names for ring buffers
+  - Removed: tracing: Introduce names for events
+  - New: kexec: Add config option for KHO
+  - New: kexec: Add documentation for KHO
+  - New: tracing: Initialize fields before registering
+  - New: devicetree: Add bindings for ftrace KHO
+  - test bot warning fixes
+  - Change kconfig option to ARCH_SUPPORTS_KEXEC_KHO
+  - s/kho_reserve_mem/kho_reserve_previous_mem/g
+  - s/kho_reserve/kho_reserve_scratch/g
+  - Remove / reduce ifdefs
+  - Select crc32
+  - Leave anything that requires a name in trace.c to keep buffers
+    unnamed entities
+  - Put events as array into a property, use fingerprint instead of
+    names to identify them
+  - Reduce footprint without CONFIG_FTRACE_KHO
+  - s/kho_reserve_mem/kho_reserve_previous_mem/g
+  - make kho_get_fdt() const
+  - Add stubs for return_mem and claim_mem
+  - make kho_get_fdt() const
+  - Get events as array from a property, use fingerprint instead of
+    names to identify events
+  - Change kconfig option to ARCH_SUPPORTS_KEXEC_KHO
+  - s/kho_reserve_mem/kho_reserve_previous_mem/g
+  - s/kho_reserve/kho_reserve_scratch/g
+  - Leave the node generation code that needs to know the name in
+    trace.c so that ring buffers can stay anonymous
+  - s/kho_reserve/kho_reserve_scratch/g
+  - Move kho enums out of ifdef
+  - Move from names to fdt offsets. That way, trace.c can find the trace
+    array offset and then the ring buffer code only needs to read out
+    its per-CPU data. That way it can stay oblivient to its name.
+  - Make kho_get_fdt() const
 
 
+Alex
+
+[1] https://lore.kernel.org/all/169645773092.11424.7258549771090599226.stgit@skinsburskii./
+[2] https://lore.kernel.org/all/20231016233215.13090-1-madvenka@linux.microsoft.com/
+[3] https://lpc.events/event/17/contributions/1485/attachments/1296/2650/jgowans-preserving-across-kexec.pdf
+[4] https://lore.kernel.org/kexec/1682554137-13938-1-git-send-email-anthony.yznaga@oracle.com/
+
+Alexander Graf (17):
+  mm,memblock: Add support for scratch memory
+  memblock: Declare scratch memory as CMA
+  kexec: Add Kexec HandOver (KHO) generation helpers
+  kexec: Add KHO parsing support
+  kexec: Add KHO support to kexec file loads
+  kexec: Add config option for KHO
+  kexec: Add documentation for KHO
+  arm64: Add KHO support
+  x86: Add KHO support
+  tracing: Initialize fields before registering
+  tracing: Introduce kho serialization
+  tracing: Add kho serialization of trace buffers
+  tracing: Recover trace buffers from kexec handover
+  tracing: Add kho serialization of trace events
+  tracing: Recover trace events from kexec handover
+  tracing: Add config option for kexec handover
+  devicetree: Add bindings for ftrace KHO
+
+ Documentation/ABI/testing/sysfs-firmware-kho  |   9 +
+ Documentation/ABI/testing/sysfs-kernel-kho    |  53 ++
+ .../admin-guide/kernel-parameters.txt         |  10 +
+ .../bindings/kho/ftrace/ftrace-array.yaml     |  46 ++
+ .../bindings/kho/ftrace/ftrace-cpu.yaml       |  56 ++
+ .../bindings/kho/ftrace/ftrace.yaml           |  48 ++
+ Documentation/kho/concepts.rst                |  88 +++
+ Documentation/kho/index.rst                   |  19 +
+ Documentation/kho/usage.rst                   |  57 ++
+ Documentation/subsystem-apis.rst              |   1 +
+ MAINTAINERS                                   |   2 +
+ arch/arm64/Kconfig                            |   3 +
+ arch/arm64/kernel/setup.c                     |   2 +
+ arch/arm64/mm/init.c                          |   8 +
+ arch/x86/Kconfig                              |   3 +
+ arch/x86/boot/compressed/kaslr.c              |  55 ++
+ arch/x86/include/uapi/asm/bootparam.h         |  15 +-
+ arch/x86/kernel/e820.c                        |   9 +
+ arch/x86/kernel/kexec-bzimage64.c             |  39 ++
+ arch/x86/kernel/setup.c                       |  46 ++
+ arch/x86/mm/init_32.c                         |   7 +
+ arch/x86/mm/init_64.c                         |   7 +
+ drivers/of/fdt.c                              |  39 ++
+ drivers/of/kexec.c                            |  54 ++
+ include/linux/kexec.h                         |  58 ++
+ include/linux/memblock.h                      |  19 +
+ include/linux/ring_buffer.h                   |  17 +-
+ include/linux/trace_events.h                  |   1 +
+ include/uapi/linux/kexec.h                    |   6 +
+ kernel/Kconfig.kexec                          |  13 +
+ kernel/Makefile                               |   2 +
+ kernel/kexec_file.c                           |  41 ++
+ kernel/kexec_kho_in.c                         | 298 ++++++++++
+ kernel/kexec_kho_out.c                        | 526 ++++++++++++++++++
+ kernel/trace/Kconfig                          |  14 +
+ kernel/trace/ring_buffer.c                    | 243 +++++++-
+ kernel/trace/trace.c                          |  96 +++-
+ kernel/trace/trace_events.c                   |  14 +-
+ kernel/trace/trace_events_synth.c             |  14 +-
+ kernel/trace/trace_events_user.c              |   4 +
+ kernel/trace/trace_output.c                   | 246 +++++++-
+ kernel/trace/trace_output.h                   |   5 +
+ kernel/trace/trace_probe.c                    |   4 +
+ mm/Kconfig                                    |   4 +
+ mm/memblock.c                                 |  83 ++-
+ 45 files changed, 2360 insertions(+), 24 deletions(-)
+ create mode 100644 Documentation/ABI/testing/sysfs-firmware-kho
+ create mode 100644 Documentation/ABI/testing/sysfs-kernel-kho
+ create mode 100644 Documentation/devicetree/bindings/kho/ftrace/ftrace-array.yaml
+ create mode 100644 Documentation/devicetree/bindings/kho/ftrace/ftrace-cpu.yaml
+ create mode 100644 Documentation/devicetree/bindings/kho/ftrace/ftrace.yaml
+ create mode 100644 Documentation/kho/concepts.rst
+ create mode 100644 Documentation/kho/index.rst
+ create mode 100644 Documentation/kho/usage.rst
+ create mode 100644 kernel/kexec_kho_in.c
+ create mode 100644 kernel/kexec_kho_out.c
 
 -- 
-With best wishes
-Dmitry
+2.40.1
+
+
+
+
+Amazon Development Center Germany GmbH
+Krausenstr. 38
+10117 Berlin
+Geschaeftsfuehrung: Christian Schlaeger, Jonathan Weiss
+Eingetragen am Amtsgericht Charlottenburg unter HRB 149173 B
+Sitz: Berlin
+Ust-ID: DE 289 237 879
+
+
+
 
