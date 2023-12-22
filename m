@@ -1,79 +1,78 @@
-Return-Path: <devicetree+bounces-28164-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28165-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7846181CE94
-	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 19:51:14 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A853C81CEA1
+	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 20:03:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2C138285D6F
-	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 18:51:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 350C71F234DD
+	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 19:03:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 006142C1AD;
-	Fri, 22 Dec 2023 18:51:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4ED4D2C1B6;
+	Fri, 22 Dec 2023 19:02:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="P2kcoZ6l"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MUTOe3So"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
+Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BED42C1AF
-	for <devicetree@vger.kernel.org>; Fri, 22 Dec 2023 18:51:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-3367903b4dcso2045858f8f.1
-        for <devicetree@vger.kernel.org>; Fri, 22 Dec 2023 10:51:07 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C5FA2C1AE;
+	Fri, 22 Dec 2023 19:02:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-50e558e16e7so2064076e87.1;
+        Fri, 22 Dec 2023 11:02:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1703271066; x=1703875866; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1703271772; x=1703876572; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=zmNYptmiNFgpxBzvYnxrc0XU+bc0BJsRiSAZc0SdXgA=;
-        b=P2kcoZ6lOBEHYlYaz1JpfMp81zlNzwaQ0ullYSfXzFdJCfJBkMUyzwqlbCiucg5IJ4
-         xW3t6yWwqRNr+5G97mnCaEPEXRrPtfkr3nuSuEU8CdTIem3PviDqUQTFw4vluZSfFgyc
-         Aj1Y+RAtjgCmnCGGoNd0lIc76EiRKLR7veAa2QO856VFtaSKrzs4PJOdArL/nmi5p9zS
-         AWB51+/cVal2ea6ZvufE247dEV17NUxlGZyndYgeROTRDf28lKDezPkU8COSaPSjSb/c
-         qrSkde/tWs32BfhrzxKBmGOEyQpZgkwvcmdQysCpZ5HnYKLguAqCqcvMrwNlq+VJFn7G
-         n8Ng==
+        bh=/WNkEye7dFIS+EDfctJcq2mxRq3d7CRsgYJhjbfmoKo=;
+        b=MUTOe3SouwXWEGAtnMDavX8jq7hGtd1/fVdid09sv8UZHaN8nu80Vrmu0xupSoW04j
+         6KT7biNLvK1EUGnVzmB3BNcLI8SabzNAOBlDcH/K7tGVMjSizHUMEN6q3cOt/5vsxcZH
+         b2Dnu7FrmnDY1VANk3qXfUdqgZyCgtdq90RvSeHnQL/Mo0dp7I1Q6qXd9yV/85kt6a5L
+         aPgmcy6M2UrQ3WpCgZmStQnDnjyRQK/dqrp0EcOLxy6GBZBO+6+cfMGxnputGV4fm4Gq
+         dSH1LrPCZabsqw6mDu5cKLtdExbqW8S6znFekkAE0S6YhlYx4H2EdiSDJGyhjUuTdmyF
+         xJQg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703271066; x=1703875866;
+        d=1e100.net; s=20230601; t=1703271772; x=1703876572;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=zmNYptmiNFgpxBzvYnxrc0XU+bc0BJsRiSAZc0SdXgA=;
-        b=R6DmYKJOtFQ7iWVZxsialcIte8b8y+c1vFeBTfhBjOfcMLa/kmQBwI070bJqx1t+k2
-         5RJIweZccuN9HatPIKKk4thff7qEoI2cveo8D4OjuuixtBqaMweF4f1R+Buts8BYfcXO
-         aFzZh+T8MA7pxWtQU+qhVIU8L1cG0beruSG0pKd9OWQCp3jTKCxWlSxATGwxHC87zlmM
-         BCDpWeLKOS+yVqzU+8gSC91kGitQTNoivnkWaLQnrFfQ+hhiWjhEXoGIMyilXn8CQbYL
-         yAeGyUpM/jTxYQPsHr+1thAIXHIbLKDBgc4glJ9mqA4HHY62OPKUFa58i7UhAy+hqx+Q
-         tlLw==
-X-Gm-Message-State: AOJu0YxK8mn0JpSQ8glqtVfCUQ0xkiZoiCAtf93TJe60ZDCHb2EL0o6q
-	xAm8PZ34bYpdaNg5ZDLNiayN84Ls7UKt7Q==
-X-Google-Smtp-Source: AGHT+IHkNIBMMIMzqvss7oqLTUXip7ODOxwR9MYmqioot+d0syCBrOa1uMGNGbBltB//9RjuwP7x8g==
-X-Received: by 2002:a5d:654d:0:b0:336:5dfe:9f26 with SMTP id z13-20020a5d654d000000b003365dfe9f26mr1244060wrv.49.1703271066240;
-        Fri, 22 Dec 2023 10:51:06 -0800 (PST)
-Received: from linaro.org ([79.115.23.25])
-        by smtp.gmail.com with ESMTPSA id f18-20020a5d50d2000000b003366827c9c6sm4930611wrt.2.2023.12.22.10.51.04
+        bh=/WNkEye7dFIS+EDfctJcq2mxRq3d7CRsgYJhjbfmoKo=;
+        b=GRmZ4o2TIV7M1NjUudAAMzh7h87ZsRklgUoKXwydoSRWWA/y+MougtmKB+lxbdZ/Lz
+         +tzqpy52bWAfwFFFf/as5MN8z7rYirXcdPHJcNVsB8VkH2n64toZU25+tBT+kavpFyGR
+         7WTBOsgVavcFCZ4Q6Crm9BwttH9EbqAxrMn7WGp3rPmJbYAVPL6bH8hAh+18otqrW3yG
+         J8pJAxSIp6J4O9ANEHwvJ8fr8KdgLBfriMfqNmrVLJN1LH+s15xl3F9mfVk4ReqY2ya7
+         KkwEK4pW99fsEUQtui/T7fMa/1deRpNuwiXt4GdT6zRkQBoypSNhtnVAzPQAwykCFLN5
+         Lr4Q==
+X-Gm-Message-State: AOJu0YwfrXR0Cxu4+TqfnVqVhFQXgQJVbMmvIJGOyoylBp3zfYhBrIag
+	V49fFe21o7F11ntlGNiBfB4=
+X-Google-Smtp-Source: AGHT+IGz/FqM2N1Z4rL+rLpRsvL9Un5LXgILvgOSlHba9sLT12TSLmn3JXu/fLGcWUryA565wKYB2g==
+X-Received: by 2002:a19:2d42:0:b0:50e:4b79:b825 with SMTP id t2-20020a192d42000000b0050e4b79b825mr982189lft.20.1703271771959;
+        Fri, 22 Dec 2023 11:02:51 -0800 (PST)
+Received: from mobilestation ([178.176.56.174])
+        by smtp.gmail.com with ESMTPSA id q17-20020ac25fd1000000b0050e3719148fsm608211lfg.235.2023.12.22.11.02.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 22 Dec 2023 10:51:05 -0800 (PST)
-Date: Fri, 22 Dec 2023 20:51:04 +0200
-From: Abel Vesa <abel.vesa@linaro.org>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Johan Hovold <johan@kernel.org>,
-	linux-phy@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] phy: qcom: edp: Add set_mode op for configuring
- eDP/DP submode
-Message-ID: <ZYXamK7y2qbM/GaJ@linaro.org>
-References: <20231222-x1e80100-phy-edp-compatible-refactor-v2-0-ab5786c2359f@linaro.org>
- <20231222-x1e80100-phy-edp-compatible-refactor-v2-2-ab5786c2359f@linaro.org>
- <CAA8EJpqPNzvA0yTqqSuXGHKxXoofJUQpAiHazoULru8A85YXHA@mail.gmail.com>
+        Fri, 22 Dec 2023 11:02:51 -0800 (PST)
+Date: Fri, 22 Dec 2023 22:02:47 +0300
+From: Serge Semin <fancer.lancer@gmail.com>
+To: Leong Ching Swee <leong.ching.swee@intel.com>
+Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+	Alexandre Torgue <alexandre.torgue@foss.st.com>, Jose Abreu <joabreu@synopsys.com>, 
+	"David S . Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Giuseppe Cavallaro <peppe.cavallaro@st.com>, 
+	linux-stm32@st-md-mailman.stormreply.com, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, netdev@vger.kernel.org, devicetree@vger.kernel.org, 
+	Teoh Ji Sheng <ji.sheng.teoh@intel.com>
+Subject: Re: [PATCH net-next v1 2/4] net: stmmac: Make MSI interrupt routine
+ generic
+Message-ID: <zwlnzllanmd6wtmn6ts7pd6y2sxgbauy4ffgqlf3yaq4uo65tw@ybigwcjpk7uf>
+References: <20231222054451.2683242-1-leong.ching.swee@intel.com>
+ <20231222054451.2683242-3-leong.ching.swee@intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,268 +81,220 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAA8EJpqPNzvA0yTqqSuXGHKxXoofJUQpAiHazoULru8A85YXHA@mail.gmail.com>
+In-Reply-To: <20231222054451.2683242-3-leong.ching.swee@intel.com>
 
-On 23-12-22 16:45:47, Dmitry Baryshkov wrote:
-> On Fri, 22 Dec 2023 at 15:01, Abel Vesa <abel.vesa@linaro.org> wrote:
-> >
-> > Future platforms should not use different compatibles to differentiate
-> > between eDP and DP mode. Instead, they should use a single compatible as the
-> > IP block is the same. It will be the job of the controller to set the submode
-> > of the PHY accordingly. Rework the device match config data so that it only
-> > keeps the different knobs rather than swing and pre-emphasis tables.
-> >
-> > The existing platforms will remain with separate compatibles for each mode.
-> >
-> > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> > ---
-> >  drivers/phy/qualcomm/phy-qcom-edp.c | 90 ++++++++++++++++++++++++++++---------
-> >  1 file changed, 69 insertions(+), 21 deletions(-)
-> >
-> > diff --git a/drivers/phy/qualcomm/phy-qcom-edp.c b/drivers/phy/qualcomm/phy-qcom-edp.c
-> > index 8e5078304646..efd7015c73ec 100644
-> > --- a/drivers/phy/qualcomm/phy-qcom-edp.c
-> > +++ b/drivers/phy/qualcomm/phy-qcom-edp.c
-> > @@ -14,6 +14,7 @@
-> >  #include <linux/module.h>
-> >  #include <linux/of.h>
-> >  #include <linux/phy/phy.h>
-> > +#include <linux/phy/phy-dp.h>
-> >  #include <linux/platform_device.h>
-> >  #include <linux/regulator/consumer.h>
-> >  #include <linux/reset.h>
-> > @@ -68,19 +69,21 @@
-> >
-> >  #define TXn_TRAN_DRVR_EMP_EN                    0x0078
-> >
-> > -struct qcom_edp_cfg {
-> > -       bool is_dp;
-> > -
-> > -       /* DP PHY swing and pre_emphasis tables */
-> > +struct qcom_edp_swing_pre_emph_cfg {
-> >         const u8 (*swing_hbr_rbr)[4][4];
-> >         const u8 (*swing_hbr3_hbr2)[4][4];
-> >         const u8 (*pre_emphasis_hbr_rbr)[4][4];
-> >         const u8 (*pre_emphasis_hbr3_hbr2)[4][4];
-> >  };
-> >
-> > +struct qcom_edp_phy_cfg {
-> > +       bool is_edp;
-> > +       bool needs_swing_pre_emph_cfg;
+On Fri, Dec 22, 2023 at 01:44:49PM +0800, Leong Ching Swee wrote:
+> From: Swee Leong Ching <leong.ching.swee@intel.com>
 > 
-> I think something like needs_voltage_config sounds simpler and prettier.
+> There is no support for per DMA channel interrupt for non-MSI platform,
+> where the MAC's per channel interrupt hooks up to interrupt controller(GIC)
+> through shared peripheral interrupt(SPI) to handle interrupt from TX/RX
+> transmit channel.
+> 
+> This patch generalize the existing MSI ISR to also support non-MSI
+> platform.
+> 
+> Signed-off-by: Teoh Ji Sheng <ji.sheng.teoh@intel.com>
+> Signed-off-by: Swee Leong Ching <leong.ching.swee@intel.com>
+> ---
+>  .../net/ethernet/stmicro/stmmac/dwmac-intel.c |  4 +--
+>  .../net/ethernet/stmicro/stmmac/dwmac4_dma.c  |  2 +-
+>  .../net/ethernet/stmicro/stmmac/stmmac_main.c | 29 ++++++++++---------
+>  include/linux/stmmac.h                        |  4 +--
+>  4 files changed, 21 insertions(+), 18 deletions(-)
+> 
+> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-intel.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-intel.c
+> index 60283543ffc8..f0ec69af96c9 100644
+> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-intel.c
+> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-intel.c
+> @@ -952,7 +952,7 @@ static int stmmac_config_single_msi(struct pci_dev *pdev,
+>  
+>  	res->irq = pci_irq_vector(pdev, 0);
+>  	res->wol_irq = res->irq;
+> -	plat->flags &= ~STMMAC_FLAG_MULTI_MSI_EN;
+> +	plat->flags &= ~STMMAC_FLAG_MULTI_IRQ_EN;
+>  	dev_info(&pdev->dev, "%s: Single IRQ enablement successful\n",
+>  		 __func__);
+>  
+> @@ -1004,7 +1004,7 @@ static int stmmac_config_multi_msi(struct pci_dev *pdev,
+>  	if (plat->msi_sfty_ue_vec < STMMAC_MSI_VEC_MAX)
+>  		res->sfty_ue_irq = pci_irq_vector(pdev, plat->msi_sfty_ue_vec);
+>  
+> -	plat->flags |= STMMAC_FLAG_MULTI_MSI_EN;
+> +	plat->flags |= STMMAC_FLAG_MULTI_IRQ_EN;
+>  	dev_info(&pdev->dev, "%s: multi MSI enablement successful\n", __func__);
+>  
+>  	return 0;
+> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac4_dma.c b/drivers/net/ethernet/stmicro/stmmac/dwmac4_dma.c
+> index 84d3a8551b03..5f649106ffcd 100644
+> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac4_dma.c
+> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac4_dma.c
+> @@ -175,7 +175,7 @@ static void dwmac4_dma_init(void __iomem *ioaddr,
+>  
+>  	value = readl(ioaddr + DMA_BUS_MODE);
+>  
+> -	if (dma_cfg->multi_msi_en) {
+> +	if (dma_cfg->multi_irq_en) {
+>  		value &= ~DMA_BUS_MODE_INTM_MASK;
+>  		value |= (DMA_BUS_MODE_INTM_MODE1 << DMA_BUS_MODE_INTM_SHIFT);
+>  	}
+> diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+> index 47de466e432c..30cc9edb4198 100644
+> --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+> +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+> @@ -129,8 +129,8 @@ static irqreturn_t stmmac_interrupt(int irq, void *dev_id);
+>  /* For MSI interrupts handling */
+>  static irqreturn_t stmmac_mac_interrupt(int irq, void *dev_id);
+>  static irqreturn_t stmmac_safety_interrupt(int irq, void *dev_id);
 
-Sure. Will do that in the next version.
+> -static irqreturn_t stmmac_msi_intr_tx(int irq, void *data);
+> -static irqreturn_t stmmac_msi_intr_rx(int irq, void *data);
+> +static irqreturn_t stmmac_tx_queue_interrupt(int irq, void *data);
+> +static irqreturn_t stmmac_rx_queue_interrupt(int irq, void *data);
 
-> 
-> > +};
-> > +
-> >  struct qcom_edp {
-> >         struct device *dev;
-> > -       const struct qcom_edp_cfg *cfg;
-> > +       const struct qcom_edp_swing_pre_emph_cfg *swing_pre_emph_cfg;
-> >
-> >         struct phy *phy;
-> >
-> > @@ -96,6 +99,8 @@ struct qcom_edp {
-> >
-> >         struct clk_bulk_data clks[2];
-> >         struct regulator_bulk_data supplies[2];
-> > +
-> > +       bool is_edp;
-> >  };
-> >
-> >  static const u8 dp_swing_hbr_rbr[4][4] = {
-> > @@ -126,8 +131,7 @@ static const u8 dp_pre_emp_hbr2_hbr3[4][4] = {
-> >         { 0x04, 0xff, 0xff, 0xff }
-> >  };
-> >
-> > -static const struct qcom_edp_cfg dp_phy_cfg = {
-> > -       .is_dp = true,
-> > +static const struct qcom_edp_swing_pre_emph_cfg dp_phy_swing_pre_emph_cfg = {
-> >         .swing_hbr_rbr = &dp_swing_hbr_rbr,
-> >         .swing_hbr3_hbr2 = &dp_swing_hbr2_hbr3,
-> >         .pre_emphasis_hbr_rbr = &dp_pre_emp_hbr_rbr,
-> > @@ -162,18 +166,29 @@ static const u8 edp_pre_emp_hbr2_hbr3[4][4] = {
-> >         { 0x00, 0xff, 0xff, 0xff }
-> >  };
-> >
-> > -static const struct qcom_edp_cfg edp_phy_cfg = {
-> > -       .is_dp = false,
-> > +static const struct qcom_edp_swing_pre_emph_cfg edp_phy_swing_pre_emph_cfg = {
-> >         .swing_hbr_rbr = &edp_swing_hbr_rbr,
-> >         .swing_hbr3_hbr2 = &edp_swing_hbr2_hbr3,
-> >         .pre_emphasis_hbr_rbr = &edp_pre_emp_hbr_rbr,
-> >         .pre_emphasis_hbr3_hbr2 = &edp_pre_emp_hbr2_hbr3,
-> >  };
-> >
-> > +static struct qcom_edp_phy_cfg sc7280_dp_phy_cfg = {
-> > +};
-> > +
-> > +static struct qcom_edp_phy_cfg sc8280xp_dp_phy_cfg = {
-> > +       .needs_swing_pre_emph_cfg = true,
-> > +};
-> > +
-> > +static struct qcom_edp_phy_cfg sc8280xp_edp_phy_cfg = {
-> > +       .is_edp = true,
-> > +       .needs_swing_pre_emph_cfg = true,
-> > +};
-> > +
-> >  static int qcom_edp_phy_init(struct phy *phy)
-> >  {
-> >         struct qcom_edp *edp = phy_get_drvdata(phy);
-> > -       const struct qcom_edp_cfg *cfg = edp->cfg;
-> > +       const struct qcom_edp_swing_pre_emph_cfg *cfg = edp->swing_pre_emph_cfg;
-> >         int ret;
-> >         u8 cfg8;
-> >
-> > @@ -200,7 +215,7 @@ static int qcom_edp_phy_init(struct phy *phy)
-> >                DP_PHY_PD_CTL_PLL_PWRDN | DP_PHY_PD_CTL_DP_CLAMP_EN,
-> >                edp->edp + DP_PHY_PD_CTL);
-> >
-> > -       if (cfg && cfg->is_dp)
-> > +       if (cfg && !edp->is_edp)
-> >                 cfg8 = 0xb7;
-> >         else
-> >                 cfg8 = 0x37;
-> > @@ -234,7 +249,7 @@ static int qcom_edp_phy_init(struct phy *phy)
-> >
-> >  static int qcom_edp_set_voltages(struct qcom_edp *edp, const struct phy_configure_opts_dp *dp_opts)
-> >  {
-> > -       const struct qcom_edp_cfg *cfg = edp->cfg;
-> > +       const struct qcom_edp_swing_pre_emph_cfg *cfg = edp->swing_pre_emph_cfg;
-> >         unsigned int v_level = 0;
-> >         unsigned int p_level = 0;
-> >         u8 ldo_config;
-> > @@ -261,7 +276,7 @@ static int qcom_edp_set_voltages(struct qcom_edp *edp, const struct phy_configur
-> >         if (swing == 0xff || emph == 0xff)
-> >                 return -EINVAL;
-> >
-> > -       ldo_config = (cfg && cfg->is_dp) ? 0x1 : 0x0;
-> > +       ldo_config = edp->is_edp ? 0x0 : 0x1;
-> >
-> >         writel(ldo_config, edp->tx0 + TXn_LDO_CONFIG);
-> >         writel(swing, edp->tx0 + TXn_TX_DRV_LVL);
-> > @@ -447,10 +462,10 @@ static int qcom_edp_set_vco_div(const struct qcom_edp *edp, unsigned long *pixel
-> >  static int qcom_edp_phy_power_on(struct phy *phy)
-> >  {
-> >         const struct qcom_edp *edp = phy_get_drvdata(phy);
-> > -       const struct qcom_edp_cfg *cfg = edp->cfg;
-> > +       const struct qcom_edp_swing_pre_emph_cfg *cfg = edp->swing_pre_emph_cfg;
-> >         u32 bias0_en, drvr0_en, bias1_en, drvr1_en;
-> >         unsigned long pixel_freq;
-> > -       u8 ldo_config;
-> > +       u8 ldo_config = 0x0;
-> >         int timeout;
-> >         int ret;
-> >         u32 val;
-> > @@ -468,7 +483,8 @@ static int qcom_edp_phy_power_on(struct phy *phy)
-> >                 return timeout;
-> >
-> >
-> > -       ldo_config = (cfg && cfg->is_dp) ? 0x1 : 0x0;
-> > +       if (cfg && !edp->is_edp)
-> > +               ldo_config = 0x1;
-> >
-> >         writel(ldo_config, edp->tx0 + TXn_LDO_CONFIG);
-> >         writel(ldo_config, edp->tx1 + TXn_LDO_CONFIG);
-> > @@ -589,6 +605,31 @@ static int qcom_edp_phy_power_off(struct phy *phy)
-> >         return 0;
-> >  }
-> >
-> > +static int qcom_edp_phy_set_mode(struct phy *phy, enum phy_mode mode, int submode)
-> > +{
-> > +       struct qcom_edp *edp = phy_get_drvdata(phy);
-> > +
-> > +       if (mode != PHY_MODE_DP)
-> > +               return -EINVAL;
-> > +
-> > +       switch (submode) {
-> > +       case PHY_SUBMODE_DP:
-> > +               edp->swing_pre_emph_cfg = &dp_phy_swing_pre_emph_cfg;
-> > +               edp->is_edp = false;
-> > +               break;
-> > +
-> > +       case PHY_SUBMODE_EDP:
-> > +               edp->swing_pre_emph_cfg = &edp_phy_swing_pre_emph_cfg;
-> 
-> Won't this override the sc7280 config which doesn't set the
-> .needs_swing_pre_emph_cfg?
-> So even
+Let's use the next names instead:
 
-Yeah, the way I thought about this would be that the controller won't
-call phy_set_mode_ext if the node doesn't have is-edp property.
++static irqreturn_t stmmac_dma_tx_interrupt(int irq, void *data);
++static irqreturn_t stmmac_dma_rx_interrupt(int irq, void *data);
 
-But I can see now that is sloppy. Will change this so if the legacy
-platforms have the is_edp set in their device match data, it will just
-check that the requested mode matches it.
+It would be semantically more correct and would refer to the
+stmmac_dma_interrupt() handler.
 
-> 
-> > +               edp->is_edp = true;
-> > +               break;
-> > +
-> > +       default:
-> > +               return -EINVAL;
-> > +       }
-> > +
-> > +       return 0;
-> > +}
-> > +
-> >  static int qcom_edp_phy_exit(struct phy *phy)
-> >  {
-> >         struct qcom_edp *edp = phy_get_drvdata(phy);
-> > @@ -604,6 +645,7 @@ static const struct phy_ops qcom_edp_ops = {
-> >         .configure      = qcom_edp_phy_configure,
-> >         .power_on       = qcom_edp_phy_power_on,
-> >         .power_off      = qcom_edp_phy_power_off,
-> > +       .set_mode       = qcom_edp_phy_set_mode,
-> >         .exit           = qcom_edp_phy_exit,
-> >         .owner          = THIS_MODULE,
-> >  };
-> > @@ -770,6 +812,7 @@ static int qcom_edp_clks_register(struct qcom_edp *edp, struct device_node *np)
-> >
-> >  static int qcom_edp_phy_probe(struct platform_device *pdev)
-> >  {
-> > +       const struct qcom_edp_phy_cfg *cfg = of_device_get_match_data(&pdev->dev);
-> >         struct phy_provider *phy_provider;
-> >         struct device *dev = &pdev->dev;
-> >         struct qcom_edp *edp;
-> > @@ -780,7 +823,12 @@ static int qcom_edp_phy_probe(struct platform_device *pdev)
-> >                 return -ENOMEM;
-> >
-> >         edp->dev = dev;
-> > -       edp->cfg = of_device_get_match_data(&pdev->dev);
-> > +       edp->is_edp = cfg->is_edp;
-> > +
-> > +       if (cfg->needs_swing_pre_emph_cfg)
-> > +               edp->swing_pre_emph_cfg = edp->is_edp ?
-> > +                                               &edp_phy_swing_pre_emph_cfg :
-> > +                                               &dp_phy_swing_pre_emph_cfg;
-> >
-> >         edp->edp = devm_platform_ioremap_resource(pdev, 0);
-> >         if (IS_ERR(edp->edp))
-> > @@ -839,10 +887,10 @@ static int qcom_edp_phy_probe(struct platform_device *pdev)
-> >  }
-> >
-> >  static const struct of_device_id qcom_edp_phy_match_table[] = {
-> > -       { .compatible = "qcom,sc7280-edp-phy" },
-> > -       { .compatible = "qcom,sc8180x-edp-phy" },
-> > -       { .compatible = "qcom,sc8280xp-dp-phy", .data = &dp_phy_cfg },
-> > -       { .compatible = "qcom,sc8280xp-edp-phy", .data = &edp_phy_cfg },
-> > +       { .compatible = "qcom,sc7280-edp-phy" , .data = &sc7280_dp_phy_cfg, },
-> > +       { .compatible = "qcom,sc8180x-edp-phy", .data = &sc7280_dp_phy_cfg, },
-> > +       { .compatible = "qcom,sc8280xp-dp-phy", .data = &sc8280xp_dp_phy_cfg, },
-> > +       { .compatible = "qcom,sc8280xp-edp-phy", .data = &sc8280xp_edp_phy_cfg, },
-> >         { }
-> >  };
-> >  MODULE_DEVICE_TABLE(of, qcom_edp_phy_match_table);
-> >
-> > --
-> > 2.34.1
-> >
-> 
-> 
+>  static void stmmac_reset_rx_queue(struct stmmac_priv *priv, u32 queue);
+>  static void stmmac_reset_tx_queue(struct stmmac_priv *priv, u32 queue);
+>  static void stmmac_reset_queues_param(struct stmmac_priv *priv);
+> @@ -3602,7 +3602,7 @@ static void stmmac_free_irq(struct net_device *dev,
+>  	}
+>  }
+>  
+> -static int stmmac_request_irq_multi_msi(struct net_device *dev)
+> +static int stmmac_request_irq_multi(struct net_device *dev)
+>  {
+>  	struct stmmac_priv *priv = netdev_priv(dev);
+>  	enum request_irq_err irq_err;
+> @@ -3701,13 +3701,13 @@ static int stmmac_request_irq_multi_msi(struct net_device *dev)
+>  	for (i = 0; i < priv->plat->rx_queues_to_use; i++) {
+>  		if (i >= MTL_MAX_RX_QUEUES)
+>  			break;
+
+> -		if (priv->rx_irq[i] == 0)
+> +		if (priv->rx_irq[i] <= 0)
+
+Why? What about just using a temporary variable in
+stmmac_get_platform_resources() to get the Per-channel DMA IRQs and
+not saving error number in priv->rx_irq[]?
+
+>  			continue;
+>  
+>  		int_name = priv->int_name_rx_irq[i];
+>  		sprintf(int_name, "%s:%s-%d", dev->name, "rx", i);
+>  		ret = request_irq(priv->rx_irq[i],
+> -				  stmmac_msi_intr_rx,
+> +				  stmmac_rx_queue_interrupt,
+>  				  0, int_name, &priv->dma_conf.rx_queue[i]);
+>  		if (unlikely(ret < 0)) {
+>  			netdev_err(priv->dev,
+> @@ -3726,13 +3726,13 @@ static int stmmac_request_irq_multi_msi(struct net_device *dev)
+>  	for (i = 0; i < priv->plat->tx_queues_to_use; i++) {
+>  		if (i >= MTL_MAX_TX_QUEUES)
+>  			break;
+
+> -		if (priv->tx_irq[i] == 0)
+> +		if (priv->tx_irq[i] <= 0)
+
+ditto.
+
+>  			continue;
+>  
+>  		int_name = priv->int_name_tx_irq[i];
+>  		sprintf(int_name, "%s:%s-%d", dev->name, "tx", i);
+>  		ret = request_irq(priv->tx_irq[i],
+> -				  stmmac_msi_intr_tx,
+> +				  stmmac_tx_queue_interrupt,
+>  				  0, int_name, &priv->dma_conf.tx_queue[i]);
+>  		if (unlikely(ret < 0)) {
+>  			netdev_err(priv->dev,
+
+Please fix the error message strings in stmmac_request_irq_multi_msi()
+too.
+
+> @@ -3811,8 +3811,8 @@ static int stmmac_request_irq(struct net_device *dev)
+>  	int ret;
+>  
+>  	/* Request the IRQ lines */
+> -	if (priv->plat->flags & STMMAC_FLAG_MULTI_MSI_EN)
+> -		ret = stmmac_request_irq_multi_msi(dev);
+> +	if (priv->plat->flags & STMMAC_FLAG_MULTI_IRQ_EN)
+> +		ret = stmmac_request_irq_multi(dev);
+>  	else
+>  		ret = stmmac_request_irq_single(dev);
+>  
+> @@ -6075,7 +6075,7 @@ static irqreturn_t stmmac_safety_interrupt(int irq, void *dev_id)
+>  	return IRQ_HANDLED;
+>  }
+>  
+> -static irqreturn_t stmmac_msi_intr_tx(int irq, void *data)
+> +static irqreturn_t stmmac_tx_queue_interrupt(int irq, void *data)
+>  {
+>  	struct stmmac_tx_queue *tx_q = (struct stmmac_tx_queue *)data;
+>  	struct stmmac_dma_conf *dma_conf;
+> @@ -6107,7 +6107,7 @@ static irqreturn_t stmmac_msi_intr_tx(int irq, void *data)
+>  	return IRQ_HANDLED;
+>  }
+>  
+> -static irqreturn_t stmmac_msi_intr_rx(int irq, void *data)
+> +static irqreturn_t stmmac_rx_queue_interrupt(int irq, void *data)
+>  {
+>  	struct stmmac_rx_queue *rx_q = (struct stmmac_rx_queue *)data;
+>  	struct stmmac_dma_conf *dma_conf;
+> @@ -7456,8 +7456,11 @@ int stmmac_dvr_probe(struct device *device,
+>  	priv->plat = plat_dat;
+>  	priv->ioaddr = res->addr;
+>  	priv->dev->base_addr = (unsigned long)res->addr;
+> -	priv->plat->dma_cfg->multi_msi_en =
+> -		(priv->plat->flags & STMMAC_FLAG_MULTI_MSI_EN);
+> +
+
+> +	if (res->rx_irq[0] > 0 && res->tx_irq[0] > 0) {
+> +		priv->plat->flags |= STMMAC_FLAG_MULTI_IRQ_EN;
+> +		priv->plat->dma_cfg->multi_irq_en = true;
+> +	}
+
+This is wrong. It activates the stmmac_request_irq_multi_msi() method
+to assign all the IRQ handlers to the individual IRQs. Even if DMA
+IRQs line are available it doesn't mean that for instance Safety
+Feature IRQs too. So it's better to rely on the glue drivers to set
+that flag as before and leave the code as is.
+
+-Serge(y) 
+
+>  
+>  	priv->dev->irq = res->irq;
+>  	priv->wol_irq = res->wol_irq;
+> diff --git a/include/linux/stmmac.h b/include/linux/stmmac.h
+> index dee5ad6e48c5..b950e6f9761d 100644
+> --- a/include/linux/stmmac.h
+> +++ b/include/linux/stmmac.h
+> @@ -98,7 +98,7 @@ struct stmmac_dma_cfg {
+>  	int mixed_burst;
+>  	bool aal;
+>  	bool eame;
+> -	bool multi_msi_en;
+> +	bool multi_irq_en;
+>  	bool dche;
+>  };
+>  
+> @@ -215,7 +215,7 @@ struct dwmac4_addrs {
+>  #define STMMAC_FLAG_TSO_EN			BIT(4)
+>  #define STMMAC_FLAG_SERDES_UP_AFTER_PHY_LINKUP	BIT(5)
+>  #define STMMAC_FLAG_VLAN_FAIL_Q_EN		BIT(6)
+> -#define STMMAC_FLAG_MULTI_MSI_EN		BIT(7)
+> +#define STMMAC_FLAG_MULTI_IRQ_EN		BIT(7)
+>  #define STMMAC_FLAG_EXT_SNAPSHOT_EN		BIT(8)
+>  #define STMMAC_FLAG_INT_SNAPSHOT_EN		BIT(9)
+>  #define STMMAC_FLAG_RX_CLK_RUNS_IN_LPI		BIT(10)
 > -- 
-> With best wishes
-> Dmitry
+> 2.34.1
+> 
+> 
 
