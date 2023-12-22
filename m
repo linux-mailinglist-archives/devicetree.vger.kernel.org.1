@@ -1,100 +1,158 @@
-Return-Path: <devicetree+bounces-28158-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28159-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C17EF81CE29
-	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 18:53:06 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A774781CE2D
+	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 18:56:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7C39E28AAA0
-	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 17:53:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 62B9028ACDD
+	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 17:56:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C508728DDA;
-	Fri, 22 Dec 2023 17:52:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9973A28E39;
+	Fri, 22 Dec 2023 17:56:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="h7iDilPN"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jXuMzfBa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f182.google.com (mail-yb1-f182.google.com [209.85.219.182])
+Received: from mail-qv1-f41.google.com (mail-qv1-f41.google.com [209.85.219.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59BCB28DD3
-	for <devicetree@vger.kernel.org>; Fri, 22 Dec 2023 17:52:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9796F28E01
+	for <devicetree@vger.kernel.org>; Fri, 22 Dec 2023 17:56:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f182.google.com with SMTP id 3f1490d57ef6-dbdc52f2359so1924517276.3
-        for <devicetree@vger.kernel.org>; Fri, 22 Dec 2023 09:52:53 -0800 (PST)
+Received: by mail-qv1-f41.google.com with SMTP id 6a1803df08f44-67f147c04b7so11745836d6.2
+        for <devicetree@vger.kernel.org>; Fri, 22 Dec 2023 09:56:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1703267572; x=1703872372; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=HMCbd/diw1/PZRPtQ076d98pKtkN7WoHEgmPA7lfsto=;
-        b=h7iDilPNXwKqlmQBzl9RCtwYM99oZppwAQNoigfy8F6gB0Mnci3OMvD8XOWSe3qtda
-         E4tpGF7fxulgFfdjuWt83EtZc7sDndV7GImknZkTiYZrnnAtxsSJdt0/12aRVvNV4xxe
-         MMLdgj5hVAylSPZZSAqctyyvxY4urqsJF7j9XmV+yZGM9Glu0nPU+D0t4HVQi0f4+3l8
-         k2xz3rc66t2Hclt6cJaO/ox3wfXsvRMF8qF3ZoFvOJ4V+oQQ7J/gGtoOy/6kELKUFmlj
-         db7c3AEKvhXsvr83KGCyh1GEJtZnBvbwzQfctN/XyP1vrJ9SsCxOVIsRbpMCSoafL679
-         3esw==
+        d=linaro.org; s=google; t=1703267797; x=1703872597; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=/HhLTRm08Y43dtSXWxfZ5KzfsdQRFgDHvFFek/ks+PY=;
+        b=jXuMzfBaTId7RAsCp4Ev56iOS2JNp5+JKj6ZQaE638gKfYpCCcaFxg5qFk4LlRWafe
+         bHvZTulOcsjjYWAJhIdYY+2VQTGx0lMDVka08BndKYZUxlSuVW/wR+MW2+SvFid6rnph
+         igMWh+bHsGJTOYUwTgVq2YcmYFB4PnkRzg5wN+OLn9IVRYKnF7RtX8RYffyo2o6my7O9
+         Nc9Lsil7JtrNdIMl6HAINnFw/F+ZKxDrJu4yvkUOSduVUikPkFrXo0XM1Wlh02Kbeuy7
+         KXNePdQriKjoAsXk4qSvENUvAvO4bumZnByfzl7J6GtPgPgw4G/4Jjorsfai79aZjIQ/
+         0+IQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703267572; x=1703872372;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=HMCbd/diw1/PZRPtQ076d98pKtkN7WoHEgmPA7lfsto=;
-        b=Y5HYJfxMvAaGzkSYy/UDQ53Xoo9YVdFrPivU+JyV220t4AUZlgOBCkXMkhXviTh/uC
-         wt1+4PZ+JMB2KlKqadDc40l0ds3huBQjO5zeC2DfogpW8jWX2nx3h52qF23t+2k8PSsc
-         7CJ6x1dd6Fs+m9Vs/xSUuXpw8XaObspQINRIJ1peDPI6BESpIAzcZ4RGr/BEqMkKcF94
-         eBPGCswv7W1cDeokQ2erKQbZyFrLdOu7QLsTmG5hiJhm9BGnlkwkQlwDh/oQ4cWB0ygQ
-         5/6Sh3iF48JtcMJz68wdc9m87y1baQ9ZxVE9Ir3DZlrlbahNnSebxsiFp+rdZWamk98X
-         AMZQ==
-X-Gm-Message-State: AOJu0YyF7JbDOG9jS7enNCznBP0urW2q4G5WzrQyxFqalzRUlZM5pppZ
-	N9DwRQbvCYuf31zwDQb5yH0B6ZY9EkWdQ0O0wdme0NyjTGAKcw==
-X-Google-Smtp-Source: AGHT+IFn3hVwv10mifvBnkB0e8lClyIXHpLdBggu6vKgEMkcL1Pe4gtnuC8RSU6VC0aIt5quwrzNgOtAZu7lo6WOISo=
-X-Received: by 2002:a0d:d812:0:b0:5e9:4c7a:5036 with SMTP id
- a18-20020a0dd812000000b005e94c7a5036mr1610808ywe.85.1703267572347; Fri, 22
- Dec 2023 09:52:52 -0800 (PST)
+        d=1e100.net; s=20230601; t=1703267797; x=1703872597;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=/HhLTRm08Y43dtSXWxfZ5KzfsdQRFgDHvFFek/ks+PY=;
+        b=hSJT8k4uItRsenvmuDTlloocGDwlHKYNECmOIabSDguOD3so7G3ASkzmON1mm/Q+l2
+         N0Xc81AgN+Ek3szwcNXLrcEjbEWbPFIY0RouA1xOL17UHQ5VV6fm8/K970w8dgm7SpFP
+         BzO7emTGU7jzwKMq2GfYyHrW5yrNhx611lKbuJBB3HA/3v35N+67hHDkHZFgN+NR1stR
+         VmNAS0MW7za41+qaS/p6nSQ1A7sKkRpsUaHbKkXuHoqPIFLyDcvX/xXcHZEIWI/3o+iR
+         ITyfEAqWdvp47oNkBaDHJtZj/rGzyg5Q6roOg64I95t9Ea0EY2y6WV9s8dfAfB4ymGeZ
+         iuYw==
+X-Gm-Message-State: AOJu0YydA/aoasYSbw3e/EDArKGcw7qHaz8cKwxj2lBqSM2FRHhvNtBn
+	VzJsVO1MouBx52744cAv0yYQ5gihOO5NGX6RuhSqv7SHwmqnmg==
+X-Google-Smtp-Source: AGHT+IG9Aiis1ajE6B2jjYD+C15ieRSm6oqpOi9lEtvJS7UBbdBf4Zjd9BXZZQoWAgS4DtHb8E2xzJl/+Kil1Evx0XA=
+X-Received: by 2002:a05:6214:1301:b0:67f:f64:8dce with SMTP id
+ pn1-20020a056214130100b0067f0f648dcemr1955342qvb.108.1703267797556; Fri, 22
+ Dec 2023 09:56:37 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231222095258.33369-1-eichest@gmail.com> <20231222095258.33369-2-eichest@gmail.com>
-In-Reply-To: <20231222095258.33369-2-eichest@gmail.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Fri, 22 Dec 2023 18:52:41 +0100
-Message-ID: <CACRpkdbPjA+atjWt101f_o8hFkeUsUXL_raGdd802g_+n4FYOw@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: input: atmel,maxtouch: add
- poweroff-sleep property
-To: Stefan Eichenberger <eichest@gmail.com>
-Cc: nick@shmanahar.org, dmitry.torokhov@gmail.com, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com, 
-	claudiu.beznea@tuxon.dev, francesco.dolcini@toradex.com, 
-	linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	Stefan Eichenberger <stefan.eichenberger@toradex.com>
+References: <20231214105243.3707730-1-tudor.ambarus@linaro.org>
+ <20231214105243.3707730-3-tudor.ambarus@linaro.org> <20231220150726.GA223267-robh@kernel.org>
+ <173b06ab-2518-49ee-a67f-85256bc5b6a7@linaro.org>
+In-Reply-To: <173b06ab-2518-49ee-a67f-85256bc5b6a7@linaro.org>
+From: Peter Griffin <peter.griffin@linaro.org>
+Date: Fri, 22 Dec 2023 17:56:26 +0000
+Message-ID: <CADrjBPpGWxidBYvEcQjv1k6QRcoJSdnJ7SK1koJpeb60V3FhKA@mail.gmail.com>
+Subject: Re: [PATCH 02/13] dt-bindings: clock: google,gs101-clock: add PERIC0
+ clock management unit
+To: Tudor Ambarus <tudor.ambarus@linaro.org>
+Cc: Rob Herring <robh@kernel.org>, krzysztof.kozlowski+dt@linaro.org, 
+	mturquette@baylibre.com, sboyd@kernel.org, conor+dt@kernel.org, 
+	andi.shyti@kernel.org, alim.akhtar@samsung.com, gregkh@linuxfoundation.org, 
+	jirislaby@kernel.org, catalin.marinas@arm.com, will@kernel.org, 
+	s.nawrocki@samsung.com, tomasz.figa@gmail.com, cw00.choi@samsung.com, 
+	arnd@arndb.de, semen.protsenko@linaro.org, andre.draszik@linaro.org, 
+	saravanak@google.com, willmcvicker@google.com, 
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org, 
+	linux-serial@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-On Fri, Dec 22, 2023 at 10:53=E2=80=AFAM Stefan Eichenberger <eichest@gmail=
-.com> wrote:
+Hi Tudor,
 
-> From: Stefan Eichenberger <stefan.eichenberger@toradex.com>
+On Thu, 21 Dec 2023 at 07:20, Tudor Ambarus <tudor.ambarus@linaro.org> wrote:
 >
-> Add a new property to indicate that the device should power off rather
-> than use deep sleep. Deep sleep is a feature of the controller that
-> expects the controller to remain powered in suspend. However, if a
-> display shares its regulator with the touch controller, we may want to
-> do a power off so that the display and touch controller do not use any
-> power.
 >
-> Signed-off-by: Stefan Eichenberger <stefan.eichenberger@toradex.com>
+>
+> On 12/20/23 15:07, Rob Herring wrote:
+> > On Thu, Dec 14, 2023 at 10:52:32AM +0000, Tudor Ambarus wrote:
+> >> Add dt-schema documentation for the Connectivity Peripheral 0 (PERIC0)
+> >> clock management unit.
+> >>
+> >> Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
+> >> ---
+> >>  .../bindings/clock/google,gs101-clock.yaml    | 25 +++++-
+> >>  include/dt-bindings/clock/google,gs101.h      | 86 +++++++++++++++++++
+> >>  2 files changed, 109 insertions(+), 2 deletions(-)
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/clock/google,gs101-clock.yaml b/Documentation/devicetree/bindings/clock/google,gs101-clock.yaml
+> >> index 3eebc03a309b..ba54c13c55bc 100644
+> >> --- a/Documentation/devicetree/bindings/clock/google,gs101-clock.yaml
+> >> +++ b/Documentation/devicetree/bindings/clock/google,gs101-clock.yaml
+> >> @@ -30,14 +30,15 @@ properties:
+> >>        - google,gs101-cmu-top
+> >>        - google,gs101-cmu-apm
+> >>        - google,gs101-cmu-misc
+> >> +      - google,gs101-cmu-peric0
+> >>
+> >>    clocks:
+> >>      minItems: 1
+> >> -    maxItems: 2
+> >> +    maxItems: 3
+> >>
+> >>    clock-names:
+> >>      minItems: 1
+> >> -    maxItems: 2
+> >> +    maxItems: 3
+> >>
+> >>    "#clock-cells":
+> >>      const: 1
+> >> @@ -88,6 +89,26 @@ allOf:
+> >>              - const: dout_cmu_misc_bus
+> >>              - const: dout_cmu_misc_sss
+> >>
+> >> +  - if:
+> >> +      properties:
+> >> +        compatible:
+> >> +          contains:
+> >> +            const: google,gs101-cmu-peric0
+> >> +
+> >> +    then:
+> >> +      properties:
+> >> +        clocks:
+> >> +          items:
+> >> +            - description: External reference clock (24.576 MHz)
+> >> +            - description: Connectivity Peripheral 0 bus clock (from CMU_TOP)
+> >> +            - description: Connectivity Peripheral 0 IP clock (from CMU_TOP)
+> >> +
+> >> +        clock-names:
+> >> +          items:
+> >> +            - const: oscclk
+> >> +            - const: dout_cmu_peric0_bus
+> >> +            - const: dout_cmu_peric0_ip
+> >
+> > 'bus' and 'ip' are sufficient because naming is local to the module. The
+> > same is true on 'dout_cmu_misc_bus'. As that has not made a release,
+> > please fix all of them.
+> >
+>
+> Ok, will fix them shortly. Thanks, Rob!
 
-This LGTM:
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+With Robs review comments addressed feel free to add my:
 
-Yours,
-Linus Walleij
+Reviewed-by: Peter Griffin <peter.griffin@linaro.org>
 
