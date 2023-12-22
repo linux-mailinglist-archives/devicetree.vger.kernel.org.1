@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-28105-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28106-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81A5581CC81
-	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 17:02:46 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 93CAB81CC88
+	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 17:05:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0318BB2244B
-	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 16:02:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F3CE8B233C3
+	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 16:05:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A21F32377E;
-	Fri, 22 Dec 2023 16:02:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A7322377E;
+	Fri, 22 Dec 2023 16:05:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lNoRWjk3"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nmqJc1Il"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
+Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 225D6241E6
-	for <devicetree@vger.kernel.org>; Fri, 22 Dec 2023 16:02:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1607241E3
+	for <devicetree@vger.kernel.org>; Fri, 22 Dec 2023 16:05:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-9fa45e75ed9so221871666b.1
-        for <devicetree@vger.kernel.org>; Fri, 22 Dec 2023 08:02:35 -0800 (PST)
+Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-5545aa3532aso698492a12.1
+        for <devicetree@vger.kernel.org>; Fri, 22 Dec 2023 08:05:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1703260954; x=1703865754; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1703261129; x=1703865929; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=mu/L0OAfiVeOdaqFqlc5Uzg8G2ECrhHl0T7TsiF/PeY=;
-        b=lNoRWjk3Go/sPsgw+5iReUOsZmgkQxuZQzfbXby9LS6jIrkfxxCq3XpwJBPWH+wOsc
-         BG3bpmp+pRaPoHcW5+HMYcK3G0CvqSVv5FixhWub2A0mg/94BfTg7hPtsX5e/ctQW0c0
-         xhlfPQLf3r/5bHV7qjNO9sKOk/q/SWxKPckUl9sE0UIlpuX+U+S4yOxqBFQMG9SBGTCh
-         HLyXmRNXrbFZP6n4GIb5R/aHn4hOWBGe62AdajavVbtkvAS1HfOX5w6P6Go2BFbaE98d
-         VmZB4iXIYnWrpgNMca40ryCmHCLzQBzdfiRi8QYwDpJqRGPwEv5lNlyrFXLfwckPKinf
-         bWjw==
+        bh=HHl6sZyQddXXojGQMUKkQSvhz58BwxXZqlywNu0im7g=;
+        b=nmqJc1Ils5zqoHjZUqMosvzWlOUZxwQrxiBWopxxbwK/mCB856k2lK9Obc4a+MsM4e
+         hVhW7jEzYIcwj/8bEx4vkeT3DfODCAUyUAYhWP1+T7KvDNE8Kj1y0DEW8VAUxptnXnW+
+         4f/RtbVXu3z0nSbJtZj++3hSat5zCkUh3T926Xh4vWc9ojJLtJiMtf+tcsZ6ucZjKmLS
+         E/eozR0BHIgbtX2MOPNQrxHulVNGTQNW5Wrlp3c5vXAl09UaauZ6rnKBg2a6m/kPDrRo
+         wMS7+aQxbDJG0dW8SIH2+h9nGQtr/c5bQjYIoI9SoPglEAeHVg9yKXBt2IgjSBf57APt
+         J25A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703260954; x=1703865754;
+        d=1e100.net; s=20230601; t=1703261129; x=1703865929;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=mu/L0OAfiVeOdaqFqlc5Uzg8G2ECrhHl0T7TsiF/PeY=;
-        b=liWrDibs1tYeb04CRaAhPQWUubVUcA1aeiJoT5D9RLSV9gyti5Wtz4okrUwrMAsAM0
-         mQRJsmEQOQEGc7Mtg/cV2Qm6ld5D/JO6cx17h1qNfXa2gvuoDvj5+ftfBLnGMIz17Uc6
-         P61Ipx4f2+eTFKzn9gbJAHa/lG1eCqG72NvvMJl9RKZzxFK+e72Iqp2fHEfbnTy2265Z
-         J0JMdYcN94HnAqM4RZmXzx+RKVqlZwn1fKLAGeZedQSdc5OT9l+Ul3pbli3PucTp8Uk1
-         wZkopLHWceGU3Dsn5nn+eDrypdIcS2WhDkVDprxxSQYo7YSIg5ffSU/NCjXDij0TnCo4
-         LdlQ==
-X-Gm-Message-State: AOJu0Yz6Dd+Jpb51OW939VxSHrVTbVEOJh8fYn81HjyAnNxxMyhmroTL
-	BzWXLZ6DlZu9LtZHENwVngNIAlIqvsbRrg==
-X-Google-Smtp-Source: AGHT+IGvjzwEMBNFBojcj/9stMIsuJ813FGZwNTfJJ20Lk8ywKvLKiwVzmcYJnLSG1XqONmfeXty0Q==
-X-Received: by 2002:a17:906:7c54:b0:a26:ad13:e9d9 with SMTP id g20-20020a1709067c5400b00a26ad13e9d9mr866297ejp.85.1703260954280;
-        Fri, 22 Dec 2023 08:02:34 -0800 (PST)
+        bh=HHl6sZyQddXXojGQMUKkQSvhz58BwxXZqlywNu0im7g=;
+        b=IHy7nvCX8s/DaMS3LoDb6bEUy+xXgNnco9c/yMeUOrpkf9Q44o6jDfiHv852wGhzCN
+         BojfKxVJkXX2Cwd2YjDWJHrYJ6bX6RR8GKyFl5Ydxiliqk4zaCs61YJAyPD+iypKdwlO
+         Jc6gX2qh2RFFoRkPCkw0y1eNc2ktnDLwAdKCZ+ruv6uJvlKVmblh2clUBDd9asgBE16k
+         UPHR2AWmfHiIwKuN4QHIEqJC3sZmTwmhTjrrb0Vrv81Wk7tdctpKI29em6tg4YpiFnt7
+         DO27vtAie1wbpfQstz70tJN5Sl6dkRn7FbTksfr4s/NWXZPveP1jrrt6VJPgOg7ZZsrU
+         89Qw==
+X-Gm-Message-State: AOJu0Yw7a08l61CRjEGzDs+e2YmaPRZQCtufxio6N6n0f8ZbMPExF3ZQ
+	cUl4lX/uyJU36JprjvIkB/t8JkV3TDBqEw==
+X-Google-Smtp-Source: AGHT+IFthi5KYqzM16tLDzvvyF2OPyTdgAnrOHasqfjooSFhESvvXaRIjQImsur2ONhFSfaMTMhxPw==
+X-Received: by 2002:a17:906:5d0:b0:a23:6c9c:d4ce with SMTP id t16-20020a17090605d000b00a236c9cd4cemr852719ejt.116.1703261129013;
+        Fri, 22 Dec 2023 08:05:29 -0800 (PST)
 Received: from [192.168.0.22] ([78.10.206.178])
-        by smtp.gmail.com with ESMTPSA id dx15-20020a170906a84f00b00a2363247829sm2155753ejb.216.2023.12.22.08.02.32
+        by smtp.gmail.com with ESMTPSA id fh24-20020a1709073a9800b00a26a5f83cecsm1846592ejc.79.2023.12.22.08.05.27
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 22 Dec 2023 08:02:33 -0800 (PST)
-Message-ID: <5b4692c8-e9f7-46dc-a060-6b309da97d27@linaro.org>
-Date: Fri, 22 Dec 2023 17:02:32 +0100
+        Fri, 22 Dec 2023 08:05:28 -0800 (PST)
+Message-ID: <da0ba7fd-4704-42d5-8d7b-f033cb68d259@linaro.org>
+Date: Fri, 22 Dec 2023 17:05:26 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,7 +66,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/6] dt-bindings: arm64: rockchip: Add Pine64 Pinetab2
+Subject: Re: [PATCH 6/6] dt-bindings: display: rockchip: dw-hdmi: Add missing
+ sound-dai-cells property
 Content-Language: en-US
 To: Manuel Traut <manut@mecka.net>, Neil Armstrong
  <neil.armstrong@linaro.org>, Jessica Zhang <quic_jesszhan@quicinc.com>,
@@ -84,7 +85,7 @@ Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-rockchip@lists.infradead.org
 References: <20231222-pinetab2-v1-0-e148a7f61bd1@mecka.net>
- <20231222-pinetab2-v1-3-e148a7f61bd1@mecka.net>
+ <20231222-pinetab2-v1-6-e148a7f61bd1@mecka.net>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -130,18 +131,37 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231222-pinetab2-v1-3-e148a7f61bd1@mecka.net>
+In-Reply-To: <20231222-pinetab2-v1-6-e148a7f61bd1@mecka.net>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 22/12/2023 12:05, Manuel Traut wrote:
-> Add devicvetree binding documentation for Pine64 Pinetab2
-> which uses the Rockchip RK3566 SoC.
+> The sound-dai-cells property is used, e.g. in rk356x.dtsi
+
+Better to see here rather explanation why dai cells are needed, unless
+you aren't sure and just want to fix warning.
+
 > 
 > Signed-off-by: Manuel Traut <manut@mecka.net>
 > ---
+>  .../devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml        | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
+> index 7e59dee15a5f..43250255fb6f 100644
+> --- a/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
+> +++ b/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
+> @@ -94,6 +94,9 @@ properties:
+>        - const: default
+>        - const: unwedge
+>  
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Please add $ref to dai-common.yaml in allOf.
+
+	
+> +  '#sound-dai-cells':
+> +    const: 0
+> +
 
 Best regards,
 Krzysztof
