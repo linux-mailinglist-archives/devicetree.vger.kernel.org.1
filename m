@@ -1,97 +1,260 @@
-Return-Path: <devicetree+bounces-27914-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27915-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4448B81C229
-	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 01:00:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C582281C24B
+	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 01:26:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F2BC0287CFF
-	for <lists+devicetree@lfdr.de>; Thu, 21 Dec 2023 23:59:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7FAEF287B09
+	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 00:26:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 229647949F;
-	Thu, 21 Dec 2023 23:59:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6820B19C;
+	Fri, 22 Dec 2023 00:26:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="VkNDNnEa"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="LBWItAQ7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com [209.85.128.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C261E79491
-	for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 23:59:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-5e734d6cbe4so12959147b3.3
-        for <devicetree@vger.kernel.org>; Thu, 21 Dec 2023 15:59:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1703203193; x=1703807993; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=GoyFDQmGnb660Pi6Gq/ALTiVqe1qLyDsC2KvlSw7HRs=;
-        b=VkNDNnEan0OQeqq+cfm6uMoJkMnja4i4kw+bo7ryirOo3pETW8YjYR/mvLjy1HBd+V
-         WBlvtGS/xgXd+UWkpdDjp4iMtiBM/YT2bkv/yUyjNQErHRhJe8tzHeHWXQrPYjLI3gRT
-         w7n2qlxlUM2dOqi8g99IRBOqgVdtSVBPTY/F8=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703203193; x=1703807993;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=GoyFDQmGnb660Pi6Gq/ALTiVqe1qLyDsC2KvlSw7HRs=;
-        b=JP0AH6UspgF/r0q8h60/82sgMOnE82uaZNh8cCDHhl99nigbJ7GNiupXheNcZ9aLBJ
-         bFfqRi6gcp79ma6XFuP7Z+hMGgU7O27dgHMB/Va9XCcGVDsY0W9/kHeL4LmsfZCofAbH
-         8UZJD3YpMvx0o9dZytq060lvcMbB9/6L7q2/CO4BNcNzzADnRuFxwbvZvg0CH15kbtKh
-         KCRbHC9utJeN7wcvxDYdRb5QYlETZdiqBNPLvQNPISDqyPZBR2oiVrAoWDUFtAWpsyS/
-         dXIqi6bAqYJhSdFGCR+xc7lrtR42xgQ3gLYKVb5ynsT7/F42ckMJr/+NY4+BYCR8lkCL
-         3nsw==
-X-Gm-Message-State: AOJu0YwbAYhyGueM/SwhjrIuFJJCMCfg5S8vtu+8mlZ5RE+BUGE+2vym
-	5oOKvLII+ltxslEd9p+AVGzGKuDhWLmAJ7tzSWNxMDkCA4fb
-X-Google-Smtp-Source: AGHT+IGZlm6IlAcpDV1G32nrwa9YDyKRwIHutZS5zfJEIfXED6DzpnHlyipw3nrMS/3fI32Qtww67sHWh1Z/b7K0//I=
-X-Received: by 2002:a0d:ff47:0:b0:5e0:765f:1e2b with SMTP id
- p68-20020a0dff47000000b005e0765f1e2bmr645819ywf.78.1703203192838; Thu, 21 Dec
- 2023 15:59:52 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A8D6210B;
+	Fri, 22 Dec 2023 00:25:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1703204756;
+	bh=VUnpMbuOMO8JI4qNXceOrt2Ifh7Qyb+5BOjlwnWMXo8=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=LBWItAQ7fU3iqsteOCrgY6yBa9eT+m0awZ7GYiVkU+VRS7MYx9UGBXJWZ1ZrmY4Yq
+	 v76czvR14gVfBcL7CCWOptIuBV2zkLuPNs0JgqQAcDiIC3n5tdeCVwAnwZPBngwEU/
+	 r7LH9xPNG+ujyud+llDahAivvQdT+Xpy93dKtW9LB9tpZP/qN/ymF/krWtzwxeBvKs
+	 YHKv+tWOiqiYPrhmXLxv1RMDJIXOUxPjibPvJVQkxrEHzKusj1KTXDfwNNkLpIp8sr
+	 B7aeazlbUflLNxfPG+DQWrol1X/UBdBcW/M3HT4oAZyiKFiucbr5Ol6v+f45agqh9E
+	 EtdhdySzH6IhA==
+Received: from [100.115.223.179] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: cristicc)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 19FE83781FD5;
+	Fri, 22 Dec 2023 00:25:55 +0000 (UTC)
+Message-ID: <459d320f-07bd-45f9-b7c6-1cf7969f0df7@collabora.com>
+Date: Fri, 22 Dec 2023 02:25:54 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231220235459.2965548-1-markhas@chromium.org>
- <20231220165423.v2.20.I38ac58ab04985a404ed6551eb5813fa7841ef410@changeid>
- <ZYRD9Y3Y_jd1NBs8@smile.fi.intel.com> <CANg-bXDLC_+mxFU+dHyCx1K=HKTwwGw+r__6_++Co2-viTbsgQ@mail.gmail.com>
- <CAHQZ30BOA7zuRrN-kK5Qw+NYSVydfhJ0gDPr9q-U+7VKXHzG8g@mail.gmail.com>
-In-Reply-To: <CAHQZ30BOA7zuRrN-kK5Qw+NYSVydfhJ0gDPr9q-U+7VKXHzG8g@mail.gmail.com>
-From: Mark Hasemeyer <markhas@chromium.org>
-Date: Thu, 21 Dec 2023 16:59:42 -0700
-Message-ID: <CANg-bXAsaKJxQ8xON59BAH1_SdVqvCQfDTco-osehjLW2T0Vmg@mail.gmail.com>
-Subject: Re: [PATCH v2 20/22] device property: Modify fwnode irq_get() to use resource
-To: Raul Rangel <rrangel@chromium.org>
-Cc: Andy Shevchenko <andriy.shevchenko@intel.com>, LKML <linux-kernel@vger.kernel.org>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Tzung-Bi Shih <tzungbi@kernel.org>, 
-	Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Sudeep Holla <sudeep.holla@arm.com>, Daniel Scally <djrscally@gmail.com>, 
-	Frank Rowand <frowand.list@gmail.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>, Len Brown <lenb@kernel.org>, 
-	"Rafael J. Wysocki" <rafael@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
-	Sakari Ailus <sakari.ailus@linux.intel.com>, devicetree@vger.kernel.org, 
-	linux-acpi@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/2] dt-bindings: net: starfive,jh7110-dwmac: Add
+ JH7100 SoC compatible
+Content-Language: en-US
+To: Rob Herring <robh@kernel.org>
+Cc: "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Emil Renner Berthing <kernel@esmil.dk>,
+ Samin Guo <samin.guo@starfivetech.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Jose Abreu <joabreu@synopsys.com>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Giuseppe Cavallaro <peppe.cavallaro@st.com>, Andrew Lunn <andrew@lunn.ch>,
+ Jacob Keller <jacob.e.keller@intel.com>, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, kernel@collabora.com
+References: <20231220002824.2462655-1-cristian.ciocaltea@collabora.com>
+ <20231220002824.2462655-2-cristian.ciocaltea@collabora.com>
+ <20231221222109.GA186673-robh@kernel.org>
+From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+In-Reply-To: <20231221222109.GA186673-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
->> > > -int fwnode_irq_get(const struct fwnode_handle *fwnode, unsigned int index)
->> > > +int fwnode_irq_get_resource(const struct fwnode_handle *fwnode,
->> > > +                         unsigned int index, struct resource *r)
->> >
->> > It's perfectly fine to replace ) by , on the previous line, no need
->> > to make it shorter.
+On 12/22/23 00:21, Rob Herring wrote:
+> On Wed, Dec 20, 2023 at 02:28:22AM +0200, Cristian Ciocaltea wrote:
+>> The Synopsys DesignWare MAC found on StarFive JH7100 SoC is mostly
+>> similar to the newer JH7110, but it requires only two interrupts and a
+>> single reset line, which is 'ahb' instead of the commonly used
+>> 'stmmaceth'.
 >>
->> That puts the line at 115 chars? checkpatch.pl allows a maximum line
->> length of 100. I can bump the 'index' argument up a line and keep it
->> to a length of 95?
->
->
-> clang-format should do the right thing.
+>> Since the common binding 'snps,dwmac' allows selecting 'ahb' only in
+>> conjunction with 'stmmaceth', extend the logic to also permit exclusive
+>> usage of the 'ahb' reset name.  This ensures the following use cases are
+>> supported:
+>>
+>>   JH7110: reset-names = "stmmaceth", "ahb";
+>>   JH7100: reset-names = "ahb";
+>>   other:  reset-names = "stmmaceth";
+>>
+>> Also note the need to use a different dwmac fallback, as v5.20 applies
+>> to JH7110 only, while JH7100 relies on v3.7x.
+>>
+>> Additionally, drop the reset description items from top-level binding as
+>> they are already provided by the included snps,dwmac schema.
+>>
+>> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+>> ---
+>>  .../devicetree/bindings/net/snps,dwmac.yaml   | 11 ++-
+>>  .../bindings/net/starfive,jh7110-dwmac.yaml   | 75 +++++++++++++------
+>>  2 files changed, 60 insertions(+), 26 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+>> index 5c2769dc689a..90c4db178c67 100644
+>> --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+>> +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+>> @@ -95,6 +95,7 @@ properties:
+>>          - snps,dwmac-5.20
+>>          - snps,dwxgmac
+>>          - snps,dwxgmac-2.10
+>> +        - starfive,jh7100-dwmac
+>>          - starfive,jh7110-dwmac
+>>  
+>>    reg:
+>> @@ -144,10 +145,12 @@ properties:
+>>        - description: AHB reset
+>>  
+>>    reset-names:
+>> -    minItems: 1
+>> -    items:
+>> -      - const: stmmaceth
+>> -      - const: ahb
+>> +    oneOf:
+>> +      - items:
+>> +          - enum: [stmmaceth, ahb]
+>> +      - items:
+>> +          - const: stmmaceth
+>> +          - const: ahb
+>>  
+>>    power-domains:
+>>      maxItems: 1
+>> diff --git a/Documentation/devicetree/bindings/net/starfive,jh7110-dwmac.yaml b/Documentation/devicetree/bindings/net/starfive,jh7110-dwmac.yaml
+>> index 5e7cfbbebce6..f5f0bff5be0f 100644
+>> --- a/Documentation/devicetree/bindings/net/starfive,jh7110-dwmac.yaml
+>> +++ b/Documentation/devicetree/bindings/net/starfive,jh7110-dwmac.yaml
+>> @@ -16,16 +16,20 @@ select:
+>>      compatible:
+>>        contains:
+>>          enum:
+>> +          - starfive,jh7100-dwmac
+>>            - starfive,jh7110-dwmac
+>>    required:
+>>      - compatible
+>>  
+>>  properties:
+>>    compatible:
+>> -    items:
+>> -      - enum:
+>> -          - starfive,jh7110-dwmac
+>> -      - const: snps,dwmac-5.20
+>> +    oneOf:
+>> +      - items:
+>> +          - const: starfive,jh7100-dwmac
+>> +          - const: snps,dwmac
+>> +      - items:
+>> +          - const: starfive,jh7110-dwmac
+>> +          - const: snps,dwmac-5.20
+>>  
+>>    reg:
+>>      maxItems: 1
+>> @@ -46,24 +50,6 @@ properties:
+>>        - const: tx
+>>        - const: gtx
+>>  
+>> -  interrupts:
+>> -    minItems: 3
+>> -    maxItems: 3
+>> -
+>> -  interrupt-names:
+>> -    minItems: 3
+>> -    maxItems: 3
+>> -
+>> -  resets:
+>> -    items:
+>> -      - description: MAC Reset signal.
+>> -      - description: AHB Reset signal.
+>> -
+>> -  reset-names:
+>> -    items:
+>> -      - const: stmmaceth
+>> -      - const: ahb
+>> -
+>>    starfive,tx-use-rgmii-clk:
+>>      description:
+>>        Tx clock is provided by external rgmii clock.
+>> @@ -94,6 +80,51 @@ required:
+>>  allOf:
+>>    - $ref: snps,dwmac.yaml#
+>>  
+>> +  - if:
+>> +      properties:
+>> +        compatible:
+>> +          contains:
+>> +            const: starfive,jh7100-dwmac
+>> +    then:
+>> +      properties:
+>> +        interrupts:
+>> +          minItems: 2
+>> +          maxItems: 2
+>> +
+>> +        interrupt-names:
+>> +          minItems: 2
+>> +          maxItems: 2
+>> +
+>> +        resets:
+>> +          maxItems: 1
+>> +
+>> +        reset-names:
+>> +          const: ahb
+> 
+> Just 'maxItems: 1'
 
-It formats the line as-is in the patch: with 'unsigned int index' on
-the next line.
+This would allow using either 'ahb' or 'stmmaceth', while only the
+former should be permitted.
+
+No issues with the other two optimizations, will be handled in v3.
+
+Thank you for reviewing,
+Cristian
+
+>> +
+>> +  - if:
+>> +      properties:
+>> +        compatible:
+>> +          contains:
+>> +            const: starfive,jh7110-dwmac
+>> +    then:
+>> +      properties:
+>> +        interrupts:
+>> +          minItems: 3
+>> +          maxItems: 3
+>> +
+>> +        interrupt-names:
+>> +          minItems: 3
+>> +          maxItems: 3
+>> +
+>> +        resets:
+>> +          minItems: 2
+>> +          maxItems: 2
+> 
+> max is already 2. Drop.
+> 
+>> +
+>> +        reset-names:
+>> +          items:
+>> +            - const: stmmaceth
+>> +            - const: ahb
+> 
+> Already defined the names. Just 'minItems: 2'.
+> 
+>> +
+>>  unevaluatedProperties: false
+>>  
+>>  examples:
+>> -- 
+>> 2.43.0
+>>
 
