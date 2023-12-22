@@ -1,94 +1,145 @@
-Return-Path: <devicetree+bounces-28061-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28064-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4802F81CA4D
-	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 13:52:47 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD4DD81CA67
+	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 14:01:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 054EA282ADB
-	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 12:52:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EF4031C21584
+	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 13:01:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A4CB18624;
-	Fri, 22 Dec 2023 12:52:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65F0018C2E;
+	Fri, 22 Dec 2023 13:01:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ctcXJKZ2"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="QHv53Ru7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 360A719BD3;
-	Fri, 22 Dec 2023 12:52:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D0EDEC433CA;
-	Fri, 22 Dec 2023 12:52:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1703249564;
-	bh=7XWGcOrq/RDTo8zQVqjxLsAsAQ6YQ8CXxz6OTo3M7HY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ctcXJKZ2iRVYnCCHSwbYGMB5ikB+PqhrA0xKcspRtJDDZbd/qi1dzFzTjWOttRgcD
-	 wG1szO5tDBRemQjNyvv0MwwLnKQ3ORAaYgWSxgwwsO/Kpt+aYL8Xk/8ga5vOctKptw
-	 HgE8LiK8KKfzNaLCXO18k/CuO5QOYbTBJwj7VqGIu2c7hc7WUKOFkBAbZQQlIibMvM
-	 RqDCLLDUVfSAx3icsOsDBca5eC7OkvTSgq+qvPZhHVVFzxuk4fURkTUVShiV9FKGEN
-	 Q9Sch8Eh7sjrcOSQeXyAbJfamJ8bbE3a6HWXppJtoi7fdJL83qgwNV2hGe8+iCsIcW
-	 fSsycsr3KYTBw==
-Date: Fri, 22 Dec 2023 13:52:34 +0100
-From: Simon Horman <horms@kernel.org>
-To: Jernej Skrabec <jernej.skrabec@gmail.com>
-Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, wens@csie.org, samuel@sholland.org,
-	andrew@lunn.ch, hkallweit1@gmail.com, linux@armlinux.org.uk,
-	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-	pabeni@redhat.com, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-	linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
-	Corentin Labbe <clabbe.montjoie@gmail.com>
-Subject: Re: [PATCH v5 1/3] phy: handle optional regulator for PHY
-Message-ID: <20231222125234.GF1202958@kernel.org>
-References: <20231220203537.83479-1-jernej.skrabec@gmail.com>
- <20231220203537.83479-2-jernej.skrabec@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A99AF18B0C
+	for <devicetree@vger.kernel.org>; Fri, 22 Dec 2023 13:01:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-40d3dfcc1a4so16043595e9.2
+        for <devicetree@vger.kernel.org>; Fri, 22 Dec 2023 05:01:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1703250107; x=1703854907; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=JWmdonR8NpARXjfe3qqartT0mhGrBDRLU87EB6urV1M=;
+        b=QHv53Ru7dD3dDJjPkOw+rVTu0U5yTeMUUqQXtxdTiwdxv5FLT3n3YowTLF7wCJkPzo
+         mEsnvZkVJsgWsmBNXqUE10nYyd5z9WkSmwzx8oim9CQymRptJ3/PfrgLJyD/4OW8eCqT
+         LWdHllIxMAHP4rlYmVvdC3w/ZIKrw+swYraaYJVzeTfxVANjvaVcsyDxNia1dtPt922d
+         OKSckHAP2oM0RJH9YC0t77/r/K48YwZBDqXylWFtfTm+8OvX96BG5SKAotk+P5eqLA5q
+         /Q9Nkz2xXb+T6V9UxJ9he5x2RXam3qOQkFYKO0CGVdSfWGE3cQrYMOFq33AbXmHmO1Od
+         cO7g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1703250107; x=1703854907;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=JWmdonR8NpARXjfe3qqartT0mhGrBDRLU87EB6urV1M=;
+        b=DAyvQPjXmNhXZSwq682AGZd0i1EWQzrKVpnmbCCznqDBby9rDThxkhiVINi2N7SBC+
+         TIjGr5wGuKpDVEFajlK+4sjBd4IIYbbfi9GK8cnMYTjSSggF5OqlSrysaCsuh6u0+RT0
+         PloBOhFixM3II9038Qq8H1ErdZxJoABvRD+5hc0J0HmLCQ0uM9ZFVvnuwFKxeQbZyi30
+         6Zhl4a9DNca1T54g+iKPmOuVbuQw6nyD8w8o8zl+U+yFflFoJcZiFJfYbNN2JqvVywds
+         J3sJAhSfr7f24vngZBi3628yLjRW2Rg3dFg4wDcIqM9hw5DUX9NpLHOsMZ4OwYYjHKTs
+         C+UQ==
+X-Gm-Message-State: AOJu0YylR5OVZOCgiG2Vb5tzU9aQ32OTAeLAN2CaglX1W7/TXDNGWpzD
+	fqAwYyzyLv0Uf22nZ6vQVx2XeptjmvdfpA==
+X-Google-Smtp-Source: AGHT+IEoyA67rBN4hpcEFYo6S+igZ3ct0M4Huc2ATJHcWr0tSVPEJyqU9rE5tmgTRM8HN9IfSSXvXg==
+X-Received: by 2002:a05:600c:1c9d:b0:40d:38c6:7cfd with SMTP id k29-20020a05600c1c9d00b0040d38c67cfdmr774026wms.35.1703250106701;
+        Fri, 22 Dec 2023 05:01:46 -0800 (PST)
+Received: from [127.0.1.1] ([79.115.23.25])
+        by smtp.gmail.com with ESMTPSA id h1-20020a05600c350100b0040d3f4b1c8esm5375631wmq.36.2023.12.22.05.01.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 22 Dec 2023 05:01:46 -0800 (PST)
+From: Abel Vesa <abel.vesa@linaro.org>
+Subject: [PATCH v2 0/2] phy: qcom: edp: Allow eDP/DP configuring via
+ set_mode op
+Date: Fri, 22 Dec 2023 15:01:30 +0200
+Message-Id: <20231222-x1e80100-phy-edp-compatible-refactor-v2-0-ab5786c2359f@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231220203537.83479-2-jernej.skrabec@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAKqIhWUC/5WNTQqDMBCFryKz7pT8INGueo/iIk1GHbAmJCKKe
+ Pem3qDL773H+w7IlJgyPKoDEq2cOcwF1K0CN9p5IGRfGJRQWirZ4iapEVIIjOOO5CO68Il24fd
+ EmKi3bgkJG6M1OWuc8xbKVSwNb5fm1RUeOZfZfllX+Uv/FKwSBfYtGWNq1dbaPyeebQr3kAboz
+ vP8AgKA0MrZAAAA
+To: Vinod Koul <vkoul@kernel.org>, 
+ Kishon Vijay Abraham I <kishon@kernel.org>, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
+ Johan Hovold <johan@kernel.org>
+Cc: linux-phy@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ Abel Vesa <abel.vesa@linaro.org>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1717; i=abel.vesa@linaro.org;
+ h=from:subject:message-id; bh=cDX+OTRf4Doi1u/l+84vE/tm+BZU4P6g8JGruDSER80=;
+ b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBlhYixD+yv7XbZuCNQkxvgIpsKAib9ot+pgK9dZ
+ ftlCviPpdKJAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCZYWIsQAKCRAbX0TJAJUV
+ VqK3EACPWP40VmX3w6tO2nMIW+Yhud4GatWzn2ZY79z2bMwGc3M3DCL36ntk9c3LUEqGAEH84e/
+ Bcb6Ftjeyqg0qOXTmrXIxpg2NAo8K5M4JQe72PH581cZNCTa4SJlaSnlzaHLr5EJaa9xp/SJrT+
+ ddP5UrbWhyaPHMAPxo8QewHyYRYBnBED0GZ/Uf62g34M0MRg3VXEtmPwKLLOnbR8fO19Ag7oxEf
+ Zi2cxEHQkEbdQLlMBaMcxIvUJWPqe/gppHbKVXnlKb/a0sYoaZdYhYBg0TRYYyzuqYCePcJQ77u
+ AnxxJEa/81oJClfHA2MndDvPLkg0qEciRm+ICpPIIfCrPj5DyglyqL/yeFEW4y8kEeX6+6gTz7d
+ CoPpiatJmQPrB1q7K7vAoamc/dxMk6gjbbdHqj0FI8CnBqBw04FGkCc1z39YkD5orNqfVJb1VK+
+ 88t1tkXvdS0hSW19xcUSCmD9CV8l0esR0JtKtXS0tkyj2YdevYzyoPnXyQ/W5MSithZmqKZqYpK
+ zrcpw2/42vRFFejm1+O14OMKzulceLQJG2xcI9CjdhAnoM1EJKFl4Gl58GY/jZrVhgzOmLr9lCe
+ +pl7qrFpfWVwM/w+i4PAq0vt8gEjC8n9b4ZtwYFWlxp5ywwOHQWUjFGEI0vFOe+lYg688PFmM32
+ +paxeYaKrLfKmTQ==
+X-Developer-Key: i=abel.vesa@linaro.org; a=openpgp;
+ fpr=6AFF162D57F4223A8770EF5AF7BF214136F41FAE
 
-On Wed, Dec 20, 2023 at 09:35:35PM +0100, Jernej Skrabec wrote:
-> From: Corentin Labbe <clabbe.montjoie@gmail.com>
-> 
-> Add handling of optional regulators for PHY.
-> 
-> Regulators need to be enabled before PHY scanning, so MDIO bus
-> initiate this task.
-> 
-> Signed-off-by: Corentin Labbe <clabbe.montjoie@gmail.com>
-> Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+Until now, all platform that supported both eDP and DP had different
+compatibles for each mode. Using different compatibles for basically
+the same IP block but for a different configuration is bad way all
+around. There is a new compute platform from Qualcomm that supports
+both eDP and DP with the same PHY. So instead of following the old
+method, we should allow the mode to be configured via set_mode from
+the controller driver.
 
-Hi Jernej,
+The controller part will follow after we conclude the PHY part first.
 
-> diff --git a/include/linux/phy.h b/include/linux/phy.h
-> index 3cc52826f18e..832cb2d4f76a 100644
-> --- a/include/linux/phy.h
-> +++ b/include/linux/phy.h
-> @@ -757,6 +757,9 @@ struct phy_device {
->  	void (*phy_link_change)(struct phy_device *phydev, bool up);
->  	void (*adjust_link)(struct net_device *dev);
->  
-> +	int regulator_cnt;
-> +	struct regulator_bulk_data *consumers;
+Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+---
+Changes in v2:
+- Dropped the dedicated xlate function and added set_mode op instead
+- Dropped the eDP PHY type and mode addition
+- Added the DP PHY submodes (eDP and DP)
+- Removed the device match data storing from the container struct
+- Link to v1: https://lore.kernel.org/r/20231219-x1e80100-phy-edp-compatible-refactor-v1-0-f9e77752953d@linaro.org
 
-Please add these two new fields to the kernel doc
-for struct phy_device which appears a above this hunk in phy.h.
+Initial attepmpt was here:
+https://lore.kernel.org/all/20231122-phy-qualcomm-edp-x1e80100-v3-3-576fc4e9559d@linaro.org/
+Compared to that version, this one uses the phy-cells method and drops
+the X1E80100 support. The X1E80100 support will be a separate patchset.
 
-> +
->  #if IS_ENABLED(CONFIG_MACSEC)
->  	/* MACsec management functions */
->  	const struct macsec_ops *macsec_ops;
+---
+Abel Vesa (2):
+      phy: Add Embedded DisplayPort and DisplayPort submodes
+      phy: qcom: edp: Add set_mode op for configuring eDP/DP submode
 
+ drivers/phy/qualcomm/phy-qcom-edp.c | 90 ++++++++++++++++++++++++++++---------
+ include/linux/phy/phy-dp.h          |  3 ++
+ 2 files changed, 72 insertions(+), 21 deletions(-)
+---
+base-commit: 8a9be2a3cb673dba9d22311beb74be261f0b3f15
+change-id: 20231219-x1e80100-phy-edp-compatible-refactor-8733eca7ccda
+
+Best regards,
 -- 
-pw-bot: changes-requested
+Abel Vesa <abel.vesa@linaro.org>
+
 
