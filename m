@@ -1,78 +1,114 @@
-Return-Path: <devicetree+bounces-28019-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28020-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5384F81C7E8
-	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 11:11:51 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7843B81C835
+	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 11:35:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0FB17287DBD
-	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 10:11:50 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 018B2B22840
+	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 10:35:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AB98111BB;
-	Fri, 22 Dec 2023 10:11:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39FB41173C;
+	Fri, 22 Dec 2023 10:35:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n9RzoUvV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="p0sJpVtR"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D5BC11189;
-	Fri, 22 Dec 2023 10:11:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DBB61C433C8;
-	Fri, 22 Dec 2023 10:11:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12298FBFA;
+	Fri, 22 Dec 2023 10:35:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 034B0C433C8;
+	Fri, 22 Dec 2023 10:35:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1703239900;
-	bh=DJZ4k1+5+NhXW5nZgyHjVM9hVDuYw0xK75a9tiO1atE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=n9RzoUvVcZrjnxzjCQSal+Zs9I4wNPrs+z4VIADy7FtrYOggK9pgfqq9ndUrcD2wA
-	 mKfWWbgm6ZAL4Ock8aTbBS8MYnQpf6bNhVKZIgiDtIlcw1cbxRiW9ef7soSYIIjDIX
-	 QXwq8NsPJPRH+KRRS4NNLDClEtB36lxZBiYmLTSiVG622rSksk7brBFW/Hu3E1LRD8
-	 5Fk29k8lKM9FgNh3zdqw6WUEabQx3OvRMFCNuRZEbeW8Hiz3hevNhheDlQzWhO4ZzC
-	 WgQAMezwFCbett1dOT0iCOYIpFdxRRpuiwBQwrXSKWfghrKg67J6caJXdkJLarEkY5
-	 R15Z6VPxBxL5g==
-Message-ID: <9d8abd54-b497-467e-b473-13df39c13a76@kernel.org>
-Date: Fri, 22 Dec 2023 12:11:37 +0200
+	s=k20201202; t=1703241320;
+	bh=l/sQfHQcuqnqBACJzeTrf6+jAOQAfvHbk4jdeRnVtzM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=p0sJpVtRR29GpIBHcJqwMwuOAlukV/ZNIbULXHej4SixOGmTlZQc4nZNr4ZeJbkPb
+	 NgXdiZqyzOcBOXpEyzmrrbFTV/7WigIMtL4gbsRaj0x50CnaEnKxkQegOMEykUgS19
+	 /j9rHdnBTiyLJq3aMfKhZFMKAAuLF6Wd0oWAWLDsiTc1XApyDZfVyiRLwnafs01eco
+	 5y3iLc4lcRO3pFtIzPGwbC7JL0NHHkjqZgZG6f6oNPUtUn9EFMv2MSaHM2qRdfzEoT
+	 hdg0hBDN5LsGz3x8ht0oqn5syPaGvHKrrvlKsKMUnO+II6g/8fa5uDzUxw5IHvKg5b
+	 fAW4QYRC7UTDw==
+Date: Fri, 22 Dec 2023 11:35:17 +0100
+From: Wolfram Sang <wsa@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Naresh Solanki <naresh.solanki@9elements.com>,
+	Rob Herring <robh+dt@kernel.org>, Peter Rosin <peda@axentia.se>,
+	Andi Shyti <andi.shyti@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Patrick Rudolph <patrick.rudolph@9elements.com>,
+	Rob Herring <robh@kernel.org>, linux-i2c@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [RESEND PATCH v5 1/2] dt-bindings: i2c: pca954x: Add custom
+ properties for MAX7357
+Message-ID: <ZYVmZXpwgHJhS8Nf@shikoro>
+Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Naresh Solanki <naresh.solanki@9elements.com>,
+	Rob Herring <robh+dt@kernel.org>, Peter Rosin <peda@axentia.se>,
+	Andi Shyti <andi.shyti@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Patrick Rudolph <patrick.rudolph@9elements.com>,
+	Rob Herring <robh@kernel.org>, linux-i2c@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20231220082803.345153-1-naresh.solanki@9elements.com>
+ <ZYNTfKLFGrLq8qGY@shikoro>
+ <497e6eda-a416-415a-b468-fe764c14a8aa@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 5/5] phy: cadence-torrent: Add USXGMII(156.25MHz) +
- SGMII/QSGMII(100MHz) multilink config for TI J7200
-Content-Language: en-US
-To: Swapnil Jakhade <sjakhade@cadence.com>, vkoul@kernel.org,
- kishon@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, linux-phy@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Cc: mparab@cadence.com, s-vadapalli@ti.com
-References: <20231221162051.2131202-1-sjakhade@cadence.com>
- <20231221162051.2131202-6-sjakhade@cadence.com>
-From: Roger Quadros <rogerq@kernel.org>
-In-Reply-To: <20231221162051.2131202-6-sjakhade@cadence.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="C/jQ9StvqT7gLVfz"
+Content-Disposition: inline
+In-Reply-To: <497e6eda-a416-415a-b468-fe764c14a8aa@linaro.org>
 
 
+--C/jQ9StvqT7gLVfz
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 21/12/2023 18:20, Swapnil Jakhade wrote:
-> Add a separate compatible and registers map table for TI J7200.
-> TI J7200 uses Torrent SD0805 version which is a special version
-> derived from Torrent SD0801 with some differences in register
-> configurations.
-> 
-> Add register sequences for USXGMII(156.25MHz) + SGMII/QSGMII(100MHz)
-> multilink config for TI J7200. USXGMII uses PLL0 and SGMII/QSGMII
-> uses PLL1.
-> 
-> Signed-off-by: Swapnil Jakhade <sjakhade@cadence.com>
 
-Reviewed-by: Roger Quadros <rogerq@kernel.org>
+> Some explanation was provided here:
+> https://lore.kernel.org/all/CABqG17g8QOgU7cObe=3D4EMLbEC1PeZWxdPXt7zzFs35=
+JGqpRbfg@mail.gmail.com/
+>=20
+> AFAIU, these properties are board-design choice.
 
--- 
-cheers,
--roger
+Hey, thanks for the heads up. I agree that these options should not be
+"on" by default. I am still not fully convinced they serve as hardware
+description, though. Need to think about it some more...
+
+
+--C/jQ9StvqT7gLVfz
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmWFZmUACgkQFA3kzBSg
+KbZaqhAApHb6SPANoyxqls3zUBrxOTp7yb0HZiX68d5384zXqtxpp6F5vVe/CiJx
+WLKOMCMG/UkvPGDdkkZHTRgVXcgTvnFYb0xMKy1utDw5JGOXW+CmSV8BJhLRqMBV
+8JxhSFsPXCkhNVga6ClqF7jdgaSwwryNa8j20LBQglvzDMSNyWgJFmzbLJEUR/8U
+nkJUBjaGfprL/dN8KB/ZX8IveMjh1qzrL1gipJGkPF95ppK5JDi58ENx5fiotgIX
+zDVIaq1q74i3Ocf49lvQakMJ5gSf8Hr6Cl7kpfPoVWRDzZMzt3qlNia8Xkc5ZOc7
+0oi8pgr/ndmpzdr9ssMwDaikiBPtKb8D/xYWSOsMJCMpE45M1nZ/VThWYBqmcQrx
+GJjxerfIvnIuvX86q6xT7DhzsgxeTeTQR6bB5qcEigJ0k2kaxyZkpfjORpfz8T/Z
+Zn7GsA47knbYvLkE4T+8DAqJP6XJze8RB8wVXaDOQryBQtRCoXJqr16NspFlm+aK
+Ot5UK+Ak+ibfDdfs/wWPySEuYaU8Gc9KlM/BlLlzOIMCB8iZ7jgLk6OVnz0mMf9h
+SzNDT4abP/daUktwdj8X2I33aLYUZPKSG/LztXk2FmIoK+ZoXd/4UdDoKkGswE/m
+k50U4fFw4nBA6WoNXkU9oq6pKfIpxG6uKvgTJgrwgbI9oZJaNpo=
+=DO47
+-----END PGP SIGNATURE-----
+
+--C/jQ9StvqT7gLVfz--
 
