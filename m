@@ -1,62 +1,62 @@
-Return-Path: <devicetree+bounces-28046-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28049-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81A9381C8ED
-	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 12:17:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 04B2681C8F5
+	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 12:18:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3927E286BFB
-	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 11:17:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ADBC42878D6
+	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 11:18:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 921A817989;
-	Fri, 22 Dec 2023 11:17:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8CED199B3;
+	Fri, 22 Dec 2023 11:17:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="vJjotAoy"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="QUtPrCTh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
+Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C70E917742
-	for <devicetree@vger.kernel.org>; Fri, 22 Dec 2023 11:17:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4A7F179AE
+	for <devicetree@vger.kernel.org>; Fri, 22 Dec 2023 11:17:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-336897b6bd6so1444183f8f.2
-        for <devicetree@vger.kernel.org>; Fri, 22 Dec 2023 03:17:25 -0800 (PST)
+Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-2ccadec4b79so3185831fa.1
+        for <devicetree@vger.kernel.org>; Fri, 22 Dec 2023 03:17:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1703243844; x=1703848644; darn=vger.kernel.org;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1703243846; x=1703848646; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=vZCJsoLyOmkKAX7ht3HFrFwteoJzV+g0RP8tYskDzk0=;
-        b=vJjotAoyDQ3F/5BJUpAJdwYUiyMC2iXRtAB1GeadokLFCRyX5kXc2z3zOC8eGvP/xZ
-         WHtmeCETuL+3sWxbY4afqSuJxc+nFlb23tF4j+r0lxl59ByAHpQi1fL2kTme5FG77x+s
-         TkTVxY6DZGmQf89TQepvVJv1FfRMv+Becrg6n55CMD4wsJ3lznlWxTXporSn+r78greH
-         l+0kX+VYUEnBVnDSWkUMBMPxpfZccfzotYjcgBeWSBsg0CQRCK3kHpGOzno9ykMiFyuM
-         fCtHvMLEBaMfVFygKBxw4Os2Iuy2DhgjY55UQnicf3DV8LSjcaWQfc35r2cfgpnxP+VG
-         r9Tw==
+        bh=MJqa3kVWWYiQcg8Win00bhuGpmvRZlPGwxPFmgF93ro=;
+        b=QUtPrCThDWE2tB/JiHmwddGMIycm2skmsOb/CY3wMiHAOsJDQrkMvlG/5aHXi7z7/m
+         xfERMGl5AShV+k2MHtAoo7N1jbkilJk0Lu/LZ8Pz3p5WXpMi+UTQyvvt/smPxOMThYiL
+         2QCWkzkIUiScG2vVEo6t0hGyhRDz9OMn3X4jnEGP+HAUMa7DfAViujJSG/s/FZShAF1o
+         5StZqjyNiWbBIlGgH816iy1oVC19UVv4Qv0mheCh80OubuWGXv1VmulBozM0xbPAWbAe
+         nDOCQRTnymRMN5hT+y6YEaiy+48TsIxT8XQoD2V5Zd549XA/0HdLs2dR1r2g/7YDrork
+         eWLw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703243844; x=1703848644;
+        d=1e100.net; s=20230601; t=1703243846; x=1703848646;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=vZCJsoLyOmkKAX7ht3HFrFwteoJzV+g0RP8tYskDzk0=;
-        b=TkuDp6wYIj/h6uQtNCmVHxfPAhFvA9UVTCsYdgtcP5TrJ4KHvKbYUuh0cX6BFdC4qJ
-         abSG4jVGuDWHfLCjR+ApKf+MtnNkClJKhnDd5c3PbODlvEt+AIcBbwKSZryEUOLkj6pp
-         6QK26I+9EheaHacDvO1KK5NaQQ+AO24EuboGd8iAwjHc/URxw1p+QAcEiJNXFg5iYR49
-         pWdVoCeLv1tOeE+CfJ0l57m0Jo5OjlF45S3GdwrgR4IUCyzdMU12KhN4irzh5Wl/irpJ
-         r3jjYyxBTWywFsDcrUoFXhbxu8SLMPMxo9MndO9csye0lmp/brRbq2kxTD/NBi2m1U/w
-         JoLg==
-X-Gm-Message-State: AOJu0YxXZLCBU6EHXYFnMEw7MGrq0IXOypjABigP5+ke/mgFH2Crm9+C
-	4AO6qWE265Z8SviWCYr7h3uR44y6jrdatQ==
-X-Google-Smtp-Source: AGHT+IFBwoFjDZf5fns9Sf1GHZi6C2BjjIZEfE1cXFlQtPWX5Mn0XqjoNSMIEs9vr+cUQbzVBD/2/w==
-X-Received: by 2002:a05:6000:1b07:b0:336:5d2f:3503 with SMTP id f7-20020a0560001b0700b003365d2f3503mr667803wrz.62.1703243844210;
-        Fri, 22 Dec 2023 03:17:24 -0800 (PST)
+        bh=MJqa3kVWWYiQcg8Win00bhuGpmvRZlPGwxPFmgF93ro=;
+        b=Ebd04RxsY6lWzAMyKb73GqeDMXLfBdt0sLaC6HKn4X/IOGj7lNgYpPqQB2fITrxY+M
+         XK+8A3zqutqvUeNm8V9IzsFvJrG5SflHE+P3HRfhyq09d4OF7JFGGpAAbZKf35SrToIV
+         AF3uCTo7M9GdDdR9Hqj8Jz+Z98ZZYqGnIrJjn3hnMgkNA2aydHsnyrN2kVouiiavEKJz
+         /N8gYe6waiL5AcqeLIHprCvuLQxcEai/P+0tiq0ZOuPSEqRnmptkq+hCuvBxdEYbsXee
+         kZJnCaHxUEVhcE24AaJnfKigtj66r/Ok4lHLO7b7xr5nvE1p2FP/kGVHQO525IBHxWUT
+         Y65A==
+X-Gm-Message-State: AOJu0Yz6MNbQ4JX2Kv9qSuCq9+m47f6EOVWCyv9brYKgB9krIDsbsTib
+	fVAF3LpS83BXwrnN5VKl4O8gLT6tu3FtJQ==
+X-Google-Smtp-Source: AGHT+IE8MY2ShungujTaWAHUKjrfZf/vr4bgoomQQiP61LoKa4gO0MC/5GYmz//gJ3hg6/9jWtMVMA==
+X-Received: by 2002:a2e:86d7:0:b0:2cc:769e:723d with SMTP id n23-20020a2e86d7000000b002cc769e723dmr528564ljj.87.1703243845072;
+        Fri, 22 Dec 2023 03:17:25 -0800 (PST)
 Received: from toaster.lan ([2a01:e0a:3c5:5fb1:c099:e596:3179:b0fa])
-        by smtp.googlemail.com with ESMTPSA id f8-20020adffcc8000000b003366b500047sm4054069wrs.50.2023.12.22.03.17.23
+        by smtp.googlemail.com with ESMTPSA id f8-20020adffcc8000000b003366b500047sm4054069wrs.50.2023.12.22.03.17.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 22 Dec 2023 03:17:23 -0800 (PST)
+        Fri, 22 Dec 2023 03:17:24 -0800 (PST)
 From: Jerome Brunet <jbrunet@baylibre.com>
 To: Thierry Reding <thierry.reding@gmail.com>,
 	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
@@ -71,9 +71,9 @@ Cc: Jerome Brunet <jbrunet@baylibre.com>,
 	linux-amlogic@lists.infradead.org,
 	linux-pwm@vger.kernel.org,
 	JunYi Zhao <junyi.zhao@amlogic.com>
-Subject: [PATCH v4 3/6] pwm: meson: generalize 4 inputs clock on meson8 pwm type
-Date: Fri, 22 Dec 2023 12:16:51 +0100
-Message-ID: <20231222111658.832167-4-jbrunet@baylibre.com>
+Subject: [PATCH v4 4/6] pwm: meson: use device data to carry information around
+Date: Fri, 22 Dec 2023 12:16:52 +0100
+Message-ID: <20231222111658.832167-5-jbrunet@baylibre.com>
 X-Mailer: git-send-email 2.42.0
 In-Reply-To: <20231222111658.832167-1-jbrunet@baylibre.com>
 References: <20231222111658.832167-1-jbrunet@baylibre.com>
@@ -86,119 +86,151 @@ MIME-Version: 1.0
 X-Patchwork-Bot: notify
 Content-Transfer-Encoding: 8bit
 
-Meson8 pwm type always has 4 input clocks. Some inputs may be grounded,
-like in the AO domain of some SoCs.
+Use struct device data to carry the information data around, instead
+of embedded the pwm structure in it and using container_of()
 
-Drop the parent number parameter and make this is constant.
-This is also done to make addition of generic meson8 compatible easier.
+Doing so works just as well and makes it a little easier to add setup
+callback depending on the DT compatible.
 
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- drivers/pwm/pwm-meson.c | 19 ++++++-------------
- 1 file changed, 6 insertions(+), 13 deletions(-)
+ drivers/pwm/pwm-meson.c | 39 +++++++++++++++++++++++----------------
+ 1 file changed, 23 insertions(+), 16 deletions(-)
 
 diff --git a/drivers/pwm/pwm-meson.c b/drivers/pwm/pwm-meson.c
-index 2971bbf3b5e7..ef50c337f444 100644
+index ef50c337f444..15c44185d784 100644
 --- a/drivers/pwm/pwm-meson.c
 +++ b/drivers/pwm/pwm-meson.c
-@@ -60,7 +60,7 @@
- #define MISC_A_EN		BIT(0)
- 
- #define MESON_NUM_PWMS		2
--#define MESON_MAX_MUX_PARENTS	4
-+#define MESON_NUM_MUX_PARENTS	4
- 
- static struct meson_pwm_channel_data {
- 	u8		reg_offset;
-@@ -98,7 +98,6 @@ struct meson_pwm_channel {
- 
- struct meson_pwm_data {
- 	const char * const *parent_names;
--	unsigned int num_parents;
+@@ -101,7 +101,6 @@ struct meson_pwm_data {
  };
  
  struct meson_pwm {
-@@ -343,7 +342,6 @@ static const char * const pwm_meson8b_parent_names[] = {
+-	struct pwm_chip chip;
+ 	const struct meson_pwm_data *data;
+ 	struct meson_pwm_channel channels[MESON_NUM_PWMS];
+ 	void __iomem *base;
+@@ -114,7 +113,7 @@ struct meson_pwm {
  
- static const struct meson_pwm_data pwm_meson8b_data = {
- 	.parent_names = pwm_meson8b_parent_names,
--	.num_parents = ARRAY_SIZE(pwm_meson8b_parent_names),
- };
- 
- /*
-@@ -351,12 +349,11 @@ static const struct meson_pwm_data pwm_meson8b_data = {
-  * The last 2 are grounded
-  */
- static const char * const pwm_gxbb_ao_parent_names[] = {
--	"xtal", "clk81"
-+	"xtal", "clk81", NULL, NULL,
- };
- 
- static const struct meson_pwm_data pwm_gxbb_ao_data = {
- 	.parent_names = pwm_gxbb_ao_parent_names,
--	.num_parents = ARRAY_SIZE(pwm_gxbb_ao_parent_names),
- };
- 
- static const char * const pwm_axg_ee_parent_names[] = {
-@@ -365,7 +362,6 @@ static const char * const pwm_axg_ee_parent_names[] = {
- 
- static const struct meson_pwm_data pwm_axg_ee_data = {
- 	.parent_names = pwm_axg_ee_parent_names,
--	.num_parents = ARRAY_SIZE(pwm_axg_ee_parent_names),
- };
- 
- static const char * const pwm_axg_ao_parent_names[] = {
-@@ -374,7 +370,6 @@ static const char * const pwm_axg_ao_parent_names[] = {
- 
- static const struct meson_pwm_data pwm_axg_ao_data = {
- 	.parent_names = pwm_axg_ao_parent_names,
--	.num_parents = ARRAY_SIZE(pwm_axg_ao_parent_names),
- };
- 
- static const char * const pwm_g12a_ao_ab_parent_names[] = {
-@@ -383,16 +378,14 @@ static const char * const pwm_g12a_ao_ab_parent_names[] = {
- 
- static const struct meson_pwm_data pwm_g12a_ao_ab_data = {
- 	.parent_names = pwm_g12a_ao_ab_parent_names,
--	.num_parents = ARRAY_SIZE(pwm_g12a_ao_ab_parent_names),
- };
- 
- static const char * const pwm_g12a_ao_cd_parent_names[] = {
--	"xtal", "g12a_ao_clk81",
-+	"xtal", "g12a_ao_clk81", NULL, NULL,
- };
- 
- static const struct meson_pwm_data pwm_g12a_ao_cd_data = {
- 	.parent_names = pwm_g12a_ao_cd_parent_names,
--	.num_parents = ARRAY_SIZE(pwm_g12a_ao_cd_parent_names),
- };
- 
- static const struct of_device_id meson_pwm_matches[] = {
-@@ -434,13 +427,13 @@ MODULE_DEVICE_TABLE(of, meson_pwm_matches);
- 
- static int meson_pwm_init_channels(struct meson_pwm *meson)
+ static inline struct meson_pwm *to_meson_pwm(struct pwm_chip *chip)
  {
--	struct clk_parent_data mux_parent_data[MESON_MAX_MUX_PARENTS] = {};
-+	struct clk_parent_data mux_parent_data[MESON_NUM_MUX_PARENTS] = {};
- 	struct device *dev = meson->chip.dev;
+-	return container_of(chip, struct meson_pwm, chip);
++	return dev_get_drvdata(chip->dev);
+ }
+ 
+ static int meson_pwm_request(struct pwm_chip *chip, struct pwm_device *pwm)
+@@ -146,6 +145,7 @@ static int meson_pwm_calc(struct meson_pwm *meson, struct pwm_device *pwm,
+ 			  const struct pwm_state *state)
+ {
+ 	struct meson_pwm_channel *channel = &meson->channels[pwm->hwpwm];
++	struct device *dev = pwm->chip->dev;
+ 	unsigned int cnt, duty_cnt;
+ 	unsigned long fin_freq;
+ 	u64 duty, period, freq;
+@@ -168,19 +168,19 @@ static int meson_pwm_calc(struct meson_pwm *meson, struct pwm_device *pwm,
+ 
+ 	fin_freq = clk_round_rate(channel->clk, freq);
+ 	if (fin_freq == 0) {
+-		dev_err(meson->chip.dev, "invalid source clock frequency\n");
++		dev_err(dev, "invalid source clock frequency\n");
+ 		return -EINVAL;
+ 	}
+ 
+-	dev_dbg(meson->chip.dev, "fin_freq: %lu Hz\n", fin_freq);
++	dev_dbg(dev, "fin_freq: %lu Hz\n", fin_freq);
+ 
+ 	cnt = div_u64(fin_freq * period, NSEC_PER_SEC);
+ 	if (cnt > 0xffff) {
+-		dev_err(meson->chip.dev, "unable to get period cnt\n");
++		dev_err(dev, "unable to get period cnt\n");
+ 		return -EINVAL;
+ 	}
+ 
+-	dev_dbg(meson->chip.dev, "period=%llu cnt=%u\n", period, cnt);
++	dev_dbg(dev, "period=%llu cnt=%u\n", period, cnt);
+ 
+ 	if (duty == period) {
+ 		channel->hi = cnt;
+@@ -191,7 +191,7 @@ static int meson_pwm_calc(struct meson_pwm *meson, struct pwm_device *pwm,
+ 	} else {
+ 		duty_cnt = div_u64(fin_freq * duty, NSEC_PER_SEC);
+ 
+-		dev_dbg(meson->chip.dev, "duty=%llu duty_cnt=%u\n", duty, duty_cnt);
++		dev_dbg(dev, "duty=%llu duty_cnt=%u\n", duty, duty_cnt);
+ 
+ 		channel->hi = duty_cnt;
+ 		channel->lo = cnt - duty_cnt;
+@@ -214,7 +214,7 @@ static void meson_pwm_enable(struct meson_pwm *meson, struct pwm_device *pwm)
+ 
+ 	err = clk_set_rate(channel->clk, channel->rate);
+ 	if (err)
+-		dev_err(meson->chip.dev, "setting clock rate failed\n");
++		dev_err(pwm->chip->dev, "setting clock rate failed\n");
+ 
+ 	spin_lock_irqsave(&meson->lock, flags);
+ 
+@@ -425,10 +425,10 @@ static const struct of_device_id meson_pwm_matches[] = {
+ };
+ MODULE_DEVICE_TABLE(of, meson_pwm_matches);
+ 
+-static int meson_pwm_init_channels(struct meson_pwm *meson)
++static int meson_pwm_init_channels(struct device *dev)
+ {
+ 	struct clk_parent_data mux_parent_data[MESON_NUM_MUX_PARENTS] = {};
+-	struct device *dev = meson->chip.dev;
++	struct meson_pwm *meson = dev_get_drvdata(dev);
  	unsigned int i;
  	char name[255];
  	int err;
- 
--	for (i = 0; i < meson->data->num_parents; i++) {
-+	for (i = 0; i < MESON_NUM_MUX_PARENTS; i++) {
- 		mux_parent_data[i].index = -1;
+@@ -438,7 +438,7 @@ static int meson_pwm_init_channels(struct meson_pwm *meson)
  		mux_parent_data[i].name = meson->data->parent_names[i];
  	}
-@@ -456,7 +449,7 @@ static int meson_pwm_init_channels(struct meson_pwm *meson)
- 		init.ops = &clk_mux_ops;
- 		init.flags = 0;
- 		init.parent_data = mux_parent_data;
--		init.num_parents = meson->data->num_parents;
-+		init.num_parents = MESON_NUM_MUX_PARENTS;
  
- 		channel->mux.reg = meson->base + REG_MISC_AB;
- 		channel->mux.shift =
+-	for (i = 0; i < meson->chip.npwm; i++) {
++	for (i = 0; i < MESON_NUM_PWMS; i++) {
+ 		struct meson_pwm_channel *channel = &meson->channels[i];
+ 		struct clk_parent_data div_parent = {}, gate_parent = {};
+ 		struct clk_init_data init = {};
+@@ -519,28 +519,35 @@ static int meson_pwm_init_channels(struct meson_pwm *meson)
+ static int meson_pwm_probe(struct platform_device *pdev)
+ {
+ 	struct meson_pwm *meson;
++	struct pwm_chip *chip;
+ 	int err;
+ 
++	chip = devm_kzalloc(&pdev->dev, sizeof(*chip), GFP_KERNEL);
++	if (!chip)
++		return -ENOMEM;
++
+ 	meson = devm_kzalloc(&pdev->dev, sizeof(*meson), GFP_KERNEL);
+ 	if (!meson)
+ 		return -ENOMEM;
+ 
++	platform_set_drvdata(pdev, meson);
++
+ 	meson->base = devm_platform_ioremap_resource(pdev, 0);
+ 	if (IS_ERR(meson->base))
+ 		return PTR_ERR(meson->base);
+ 
+ 	spin_lock_init(&meson->lock);
+-	meson->chip.dev = &pdev->dev;
+-	meson->chip.ops = &meson_pwm_ops;
+-	meson->chip.npwm = MESON_NUM_PWMS;
++	chip->dev = &pdev->dev;
++	chip->ops = &meson_pwm_ops;
++	chip->npwm = MESON_NUM_PWMS;
+ 
+ 	meson->data = of_device_get_match_data(&pdev->dev);
+ 
+-	err = meson_pwm_init_channels(meson);
++	err = meson_pwm_init_channels(&pdev->dev);
+ 	if (err < 0)
+ 		return err;
+ 
+-	err = devm_pwmchip_add(&pdev->dev, &meson->chip);
++	err = devm_pwmchip_add(&pdev->dev, chip);
+ 	if (err < 0)
+ 		return dev_err_probe(&pdev->dev, err,
+ 				     "failed to register PWM chip\n");
 -- 
 2.42.0
 
