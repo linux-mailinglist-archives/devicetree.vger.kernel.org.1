@@ -1,89 +1,232 @@
-Return-Path: <devicetree+bounces-27996-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28005-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62B1A81C76D
-	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 10:40:46 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C04B681C7A7
+	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 10:54:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 18C081F24980
-	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 09:40:46 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4D7C5B23C67
+	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 09:54:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19C6EF9D6;
-	Fri, 22 Dec 2023 09:40:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=emersion.fr header.i=@emersion.fr header.b="KUeJEFF8"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0003BFBE4;
+	Fri, 22 Dec 2023 09:53:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-40136.proton.ch (mail-40136.proton.ch [185.70.40.136])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3B2FF9EF;
-	Fri, 22 Dec 2023 09:40:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=emersion.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=emersion.fr
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=emersion.fr;
-	s=protonmail2; t=1703238029; x=1703497229;
-	bh=RvFPmQYSXCW++H17F3FBSpFjPOkodCCqULNpYKx/X4M=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
-	 Message-ID:BIMI-Selector;
-	b=KUeJEFF8cS8NbUYEe1YI7C9RCUnb22uQFIsHpP6jjSohQf0y1mWvISCZss2RSG0cE
-	 FpFbc+rRNMpRZSb13C1ahONUfnCzGKxUsUUXSsR5C+1R9ci2C5g3By5Mb251Zs9fVi
-	 YFv/UAC1f8dJ2Vd22XeC0cShQ3exgbgm9qAvG5p0ggzE7Kr1Y++nvPWpA9zuiSt7oR
-	 JeJvwrdg3px1mpjFK/Pb0+sldHag3128mqywcYp+5f8irYQA4y3n4J7ElJxPnbAZiR
-	 03F5CEcznFJEOCNtxpJk+MYxgpv1yuAr1WVgq6nUByVZdezLQspZZ6YpOL8YNsVtZb
-	 E9NXLgPNEemwQ==
-Date: Fri, 22 Dec 2023 09:40:18 +0000
-To: Pekka Paalanen <ppaalanen@gmail.com>
-From: Simon Ser <contact@emersion.fr>
-Cc: Joakim Bech <joakim.bech@linaro.org>, Yong Wu <yong.wu@mediatek.com>, Rob Herring <robh+dt@kernel.org>, Sumit Semwal <sumit.semwal@linaro.org>, christian.koenig@amd.com, Matthias Brugger <matthias.bgg@gmail.com>, dri-devel@lists.freedesktop.org, John Stultz <jstultz@google.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Jeffrey Kardatzke <jkardatzke@google.com>, Benjamin Gaignard <benjamin.gaignard@collabora.com>, Vijayanand Jitta <quic_vjitta@quicinc.com>, Nicolas Dufresne <nicolas@ndufresne.ca>, jianjiao.zeng@mediatek.com, linux-media@vger.kernel.org, devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, ckoenig.leichtzumerken@gmail.com, linaro-mm-sig@lists.linaro.org, linux-mediatek@lists.infradead.org, tjmercier@google.com, linux-arm-kernel@lists.infradead.org, AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, kuohong.wang@mediatek.com, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 0/7] dma-buf: heaps: Add secure heap
-Message-ID: <9m8eC1j8YSwxu9Mr8vCXyzF0nfyCSHpFbfc__FtUjjKppew65jElBbUqa-nkzFTN-N_ME893w0YQRcb3r3UbIajQUP-Y5LxnHKKFoiBepSI=@emersion.fr>
-In-Reply-To: <20231213161614.43e5bca8@eldfell>
-References: <20231212024607.3681-1-yong.wu@mediatek.com> <DPBmATfmfvSP8Cwjz99kj_JvCEiAqRfuMFJZEBF2aIgl8NZqWFR66eyPTX1E8bHyOlimBihEE3E80p9bfOJ-0SNu8pwoIzL9gD2Xae6r97g=@emersion.fr> <20231213110517.6ce36aca@eldfell> <20231213101549.lioqfzjxcvmqxqu3@pop-os.localdomain> <20231213133825.0a329864@eldfell> <20231213132229.q3uxdhtdsxuzw3w6@pop-os.localdomain> <20231213161614.43e5bca8@eldfell>
-Feedback-ID: 1358184:user:proton
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A377D17735;
+	Fri, 22 Dec 2023 09:53:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+	by fd01.gateway.ufhost.com (Postfix) with ESMTP id 1A6627FDC;
+	Fri, 22 Dec 2023 17:53:12 +0800 (CST)
+Received: from EXMBX061.cuchost.com (172.16.6.61) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 22 Dec
+ 2023 17:53:11 +0800
+Received: from [192.168.125.131] (113.72.145.47) by EXMBX061.cuchost.com
+ (172.16.6.61) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 22 Dec
+ 2023 17:53:11 +0800
+Message-ID: <ed66f0bb-69c7-4b00-9688-05a5102212e9@starfivetech.com>
+Date: Fri, 22 Dec 2023 17:44:48 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 1/2] dt-bindings: ASoC: Add Cadence I2S controller for
+ StarFive JH8100 SoC
+Content-Language: en-US
+To: Conor Dooley <conor@kernel.org>
+CC: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+	Claudiu Beznea <Claudiu.Beznea@microchip.com>, Jaroslav Kysela
+	<perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, Rob Herring
+	<robh+dt@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+	<conor.dooley@microchip.com>, Walker Chen <walker.chen@starfivetech.com>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<alsa-devel@alsa-project.org>, <linux-sound@vger.kernel.org>
+References: <20231221033223.73201-1-xingyu.wu@starfivetech.com>
+ <20231221033223.73201-2-xingyu.wu@starfivetech.com>
+ <20231221-saddlebag-tricolor-d02a17d66795@spud>
+From: Xingyu Wu <xingyu.wu@starfivetech.com>
+In-Reply-To: <20231221-saddlebag-tricolor-d02a17d66795@spud>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX061.cuchost.com
+ (172.16.6.61)
+X-YovoleRuleAgent: yovoleflag
 
-On Wednesday, December 13th, 2023 at 15:16, Pekka Paalanen <ppaalanen@gmail=
-.com> wrote:
+On 2023/12/21 21:53, Conor Dooley wrote:
+> Xingyu, Mark,
+> 
+> On Thu, Dec 21, 2023 at 11:32:22AM +0800, Xingyu Wu wrote:
+>> Add bindings for the Multi-Channel I2S controller of Cadence
+>> on the StarFive JH8100 SoC.
+>> 
+>> Signed-off-by: Xingyu Wu <xingyu.wu@starfivetech.com>
+>> ---
+>>  .../bindings/sound/cdns,jh8100-i2s.yaml       | 100 ++++++++++++++++++
+>>  1 file changed, 100 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/sound/cdns,jh8100-i2s.yaml
+>> 
+>> diff --git a/Documentation/devicetree/bindings/sound/cdns,jh8100-i2s.yaml b/Documentation/devicetree/bindings/sound/cdns,jh8100-i2s.yaml
+>> new file mode 100644
+>> index 000000000000..5d95d9ab3e45
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/sound/cdns,jh8100-i2s.yaml
+>> @@ -0,0 +1,100 @@
+>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/sound/cdns,jh8100-i2s.yaml#
+> 
+> Filename matching the compatible please.
 
-> > > It is protected/shielded/fortified from all the kernel and userspace,
-> > > but a more familiar word to describe that is inaccessible.
-> > > "Inaccessible buffer" per se OTOH sounds like a useless concept.
-> > >=20
-> > > It is not secure, because it does not involve security in any way. In
-> > > fact, given it's so fragile, I'd classify it as mildly opposite of
-> > > secure, as e.g. clients of a Wayland compositor can potentially DoS t=
-he
-> > > compositor with it by simply sending such a dmabuf. Or DoS the whole
-> > > system.
-> >=20
-> > I hear what you are saying and DoS is a known problem and attack vector=
-,
-> > but regardless, we have use cases where we don't want to expose
-> > information in the clear and where we also would like to have some
-> > guarantees about correctness. That is where various secure elements and
-> > more generally security is needed.
-> >=20
-> > So, it sounds like we have two things here, the first is the naming and
-> > the meaning behind it. I'm pretty sure the people following and
-> > contributing to this thread can agree on a name that makes sense. Would
-> > you personally be OK with "restricted" as the name? It sounds like that=
-.
->=20
-> I would. I'm also just a by-stander, not a maintainer of kernel
-> anything. I have no power to accept nor reject anything here.
+Noted.
 
-I'd also personally be OK with "restricted", I think it's a lot better
-than "secure".
+> 
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Cadence multi-channel I2S controller for StarFive JH8100 SoC
+>> +
+>> +description: |
+> 
+> You only need the | if there is formatting to preserve.
 
-In general I agree with everything Pekka said.
+Will drop.
+
+> 
+>> +  The Cadence I2S Controller implements a function of the multi-channel
+>> +  (up to 8-channel) bus. It combines functions of a transmitter and a receiver.
+>> +  It is used in the StarFive JH8100 SoC.
+>> +
+>> +maintainers:
+>> +  - Xingyu Wu <xingyu.wu@starfivetech.com>
+>> +  - Walker Chen <walker.chen@starfivetech.com>
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: starfive,jh8100-i2s
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  interrupts:
+>> +    description: |
+>> +      The interrupt line number for the I2S controller. Add this
+>> +      parameter if the I2S controller that you are using does not
+>> +      support DMA.
+> 
+> You've got one i2s controller here, you should know if it supports DMA
+> or not.
+
+The I2S already supports interrupt handler, but if the SoC supports DMA controller to be use, it can optionally use DMA.
+
+> 
+>> +    maxItems: 1
+>> +
+>> +  clocks:
+>> +    items:
+>> +      - description: Bit clock
+>> +      - description: Main ICG clock
+>> +      - description: Inner master clock
+>> +
+>> +  clock-names:
+>> +    items:
+>> +      - const: bclk
+>> +      - const: icg
+>> +      - const: mclk_inner
+>> +
+>> +  resets:
+>> +    maxItems: 1
+>> +
+>> +  dmas:
+>> +    items:
+>> +      - description: TX DMA Channel
+>> +      - description: RX DMA Channel
+>> +    minItems: 1
+>> +
+>> +  dma-names:
+>> +    items:
+>> +      - const: tx
+>> +      - const: rx
+>> +    minItems: 1
+>> +
+>> +  cdns,i2s-max-channels:
+>> +    description: |
+>> +      Number of I2S max stereo channels supported by the hardware.
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>> +    minimum: 1
+>> +    maximum: 8
+> 
+> Mark, is there no common property for this kind of thing? That said,
+> there's one device here so the number is known at present.
+> Another note, this property is not required, so it should have a
+> default.
+> 
+> It's kinda hard to know with this binding - it is touted as being for a
+> particular Cadence IP, and some aspects are pretty generic, but at the
+> same time there's only one device here so it's hard to tell what is
+> variable between implementations and what is not.
+> Are there no other implementations of this controller? Unless it is
+> brand new, I find that hard to believe.
+> 
+> Cheers,
+> Conor.
+> 
+ 
+Sorry, It does not seem to be common property. The Cadence I2S supports 8 channels. There are four I2S controllers on the JH8100 SoC, and two of them just provide 4 channels to use, one of them just provide 2 channels.
+It seems to depend on the SoC.
+
+Thanks,
+Xingyu Wu
+
+>> +
+>> +  "#sound-dai-cells":
+>> +    const: 0
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - clocks
+>> +  - clock-names
+>> +  - resets
+>> +
+>> +oneOf:
+>> +  - required:
+>> +      - dmas
+>> +      - dma-names
+>> +  - required:
+>> +      - interrupts
+>> +
+>> +unevaluatedProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    i2s@122b0000 {
+>> +      compatible = "starfive,jh8100-i2s";
+>> +      reg = <0x122b0000 0x1000>;
+>> +      clocks = <&syscrg_ne 133>,
+>> +               <&syscrg_ne 170>,
+>> +               <&syscrg 50>;
+>> +      clock-names = "bclk", "icg",
+>> +                    "mclk_inner";
+>> +      resets = <&syscrg_ne 43>;
+>> +      dmas = <&dma 7>, <&dma 6>;
+>> +      dma-names = "tx", "rx";
+>> +      cdns,i2s-max-channels = <2>;
+>> +      #sound-dai-cells = <0>;
+>> +    };
+>> -- 
+>> 2.25.1
+>> 
+>> 
+
 
