@@ -1,29 +1,29 @@
-Return-Path: <devicetree+bounces-27973-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27974-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 240B581C61C
-	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 09:01:33 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5412481C61E
+	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 09:01:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4906B1C2497D
-	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 08:01:32 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E5933B22B75
+	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 08:01:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD2FDBE48;
-	Fri, 22 Dec 2023 08:01:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59DCEBE4A;
+	Fri, 22 Dec 2023 08:01:28 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02F6ABE4A
-	for <devicetree@vger.kernel.org>; Fri, 22 Dec 2023 08:01:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A72A0BE6D
+	for <devicetree@vger.kernel.org>; Fri, 22 Dec 2023 08:01:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=loongson.cn
 Received: from loongson.cn (unknown [112.20.110.252])
-	by gateway (Coremail) with SMTP id _____8BxNPBUQoVlwMoDAA--.19277S3;
-	Fri, 22 Dec 2023 16:01:24 +0800 (CST)
+	by gateway (Coremail) with SMTP id _____8DxVPBVQoVlx8oDAA--.19383S3;
+	Fri, 22 Dec 2023 16:01:25 +0800 (CST)
 Received: from localhost.localdomain (unknown [112.20.110.252])
-	by localhost.localdomain (Coremail) with SMTP id AQAAf8Bx3uRPQoVlA1IFAA--.26691S4;
-	Fri, 22 Dec 2023 16:01:23 +0800 (CST)
+	by localhost.localdomain (Coremail) with SMTP id AQAAf8Bx3uRPQoVlA1IFAA--.26691S5;
+	Fri, 22 Dec 2023 16:01:24 +0800 (CST)
 From: Binbin Zhou <zhoubinbin@loongson.cn>
 To: Binbin Zhou <zhoubb.aaron@gmail.com>,
 	Huacai Chen <chenhuacai@loongson.cn>,
@@ -37,9 +37,9 @@ Cc: Huacai Chen <chenhuacai@kernel.org>,
 	Jiaxun Yang <jiaxun.yang@flygoat.com>,
 	Hongliang Wang <wanghongliang@loongson.cn>,
 	Binbin Zhou <zhoubinbin@loongson.cn>
-Subject: [PATCH v6 6/7] LoongArch: dts: DeviceTree for Loongson-2K2000
-Date: Fri, 22 Dec 2023 16:01:12 +0800
-Message-Id: <a92e6e7a7e6cefc78cfb5a5e54928a4b356c5fdd.1703229766.git.zhoubinbin@loongson.cn>
+Subject: [PATCH v6 7/7] LoongArch: Parsing CPU-related information from DTS
+Date: Fri, 22 Dec 2023 16:01:13 +0800
+Message-Id: <a3d96779003f8a5a5b26f3f243bf27350846d148.1703229766.git.zhoubinbin@loongson.cn>
 X-Mailer: git-send-email 2.39.3
 In-Reply-To: <cover.1703229766.git.zhoubinbin@loongson.cn>
 References: <cover.1703229766.git.zhoubinbin@loongson.cn>
@@ -50,433 +50,120 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:AQAAf8Bx3uRPQoVlA1IFAA--.26691S4
+X-CM-TRANSID:AQAAf8Bx3uRPQoVlA1IFAA--.26691S5
 X-CM-SenderInfo: p2kr3uplqex0o6or00hjvr0hdfq/
-X-Coremail-Antispam: 1Uk129KBj93XoW3XFyrtw4xur1kKryDWw15Awc_yoWDJF1DpF
-	y7Cw4DWr40qr1UK3y5AFWUtF1DJ39YkF95Ww1kAFWrGrZ7tryjv3yxKFyfKF1fGrWDX34j
-	qrn5Z34UKFnrJwcCm3ZEXasCq-sJn29KB7ZKAUJUUUU7529EdanIXcx71UUUUU7KY7ZEXa
+X-Coremail-Antispam: 1Uk129KBj93XoWxZF13Ar1fAr15trWxZr4UZFc_yoW5AFyrpF
+	ZrCr4rGrs5GFn3J3s3JrWvvry5twn7Ga17Xa12kay8CFnrAr1DXr4v9FnrJF1Iya1Fga4F
+	qFWrWFZxKF48J3gCm3ZEXasCq-sJn29KB7ZKAUJUUUU7529EdanIXcx71UUUUU7KY7ZEXa
 	sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
-	0xBIdaVrnRJUUUBSb4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
+	0xBIdaVrnRJUUUBvb4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
 	IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
 	e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Ar0_tr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
 	0_Cr0_Gr1UM28EF7xvwVC2z280aVAFwI0_Gr1j6F4UJwA2z4x0Y4vEx4A2jsIEc7CjxVAF
 	wI0_Gr1j6F4UJwAaw2AFwI0_Jrv_JF1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqjxCEc2
 	xF0cIa020Ex4CE44I27wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_
-	Wrv_ZF1lYx0Ex4A2jsIE14v26r4j6F4UMcvjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvY0x
-	0EwIxGrwCY1x0262kKe7AKxVWUAVWUtwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkE
-	bVWUJVW8JwCFI7km07C267AKxVWUXVWUAwC20s026c02F40E14v26r1j6r18MI8I3I0E74
-	80Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcVC0
-	I7IYx2IY67AKxVW7JVWDJwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Cr0_Gr1UMIIF0xvE42
-	xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVW8JVWxJwCI42IY6I8E87Iv6xkF
-	7I0E14v26r4j6r4UJbIYCTnIWIevJa73UjIFyTuYvjxU36RRDUUUU
+	Wrv_ZF1lYx0Ex4A2jsIE14v26F4j6r4UJwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IYc2
+	Ij64vIr41lc7CjxVAaw2AFwI0_JF0_Jw1l42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Y
+	z7v_Jr0_Gr1l4IxYO2xFxVAFwI0_Jrv_JF1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x
+	8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r1q6r43MIIYrxkI7VAKI48JMIIF0xvE
+	2Ix0cI8IcVAFwI0_Ar0_tr1lIxAIcVC0I7IYx2IY6xkF7I0E14v26F4j6r4UJwCI42IY6x
+	AIw20EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Cr0_Gr1UMIIF0xvEx4A2jsIE
+	c7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x07jVeHDUUUUU=
 
-Add DeviceTree file for Loongson-2K2000 processor, which integrates two
-64-bit 3-issue superscalar LA364 processor cores.
+Generally, we can get cpu-related information, such as model name, from
+/proc/cpuinfo. For FDT-based systems, we need to parse the relevant
+information from DTS.
+
+BTW, set loongson_sysconf.cores_per_package to num_processors if SMBIOS
+doesn't provide a valid number (usually FDT-based systems).
 
 Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
+Signed-off-by: Hongliang Wang <wanghongliang@loongson.cn>
 ---
- arch/loongarch/boot/dts/Makefile              |   2 +-
- .../boot/dts/loongson-2k2000-ref.dts          |  72 +++++
- arch/loongarch/boot/dts/loongson-2k2000.dtsi  | 300 ++++++++++++++++++
- 3 files changed, 373 insertions(+), 1 deletion(-)
- create mode 100644 arch/loongarch/boot/dts/loongson-2k2000-ref.dts
- create mode 100644 arch/loongarch/boot/dts/loongson-2k2000.dtsi
+ arch/loongarch/kernel/env.c | 34 +++++++++++++++++++++++++++++++++-
+ arch/loongarch/kernel/smp.c |  3 +++
+ 2 files changed, 36 insertions(+), 1 deletion(-)
 
-diff --git a/arch/loongarch/boot/dts/Makefile b/arch/loongarch/boot/dts/Makefile
-index cfb0a122d91c..747d0c3f6389 100644
---- a/arch/loongarch/boot/dts/Makefile
-+++ b/arch/loongarch/boot/dts/Makefile
-@@ -1,5 +1,5 @@
- # SPDX-License-Identifier: GPL-2.0-only
+diff --git a/arch/loongarch/kernel/env.c b/arch/loongarch/kernel/env.c
+index 6b3bfb0092e6..2f1f5b08638f 100644
+--- a/arch/loongarch/kernel/env.c
++++ b/arch/loongarch/kernel/env.c
+@@ -5,13 +5,16 @@
+  * Copyright (C) 2020-2022 Loongson Technology Corporation Limited
+  */
+ #include <linux/acpi.h>
++#include <linux/clk.h>
+ #include <linux/efi.h>
+ #include <linux/export.h>
+ #include <linux/memblock.h>
++#include <linux/of_clk.h>
+ #include <asm/early_ioremap.h>
+ #include <asm/bootinfo.h>
+ #include <asm/loongson.h>
+ #include <asm/setup.h>
++#include <asm/time.h>
  
--dtb-y = loongson-2k0500-ref.dtb loongson-2k1000-ref.dtb
-+dtb-y = loongson-2k0500-ref.dtb loongson-2k1000-ref.dtb loongson-2k2000-ref.dtb
+ u64 efi_system_table;
+ struct loongson_system_configuration loongson_sysconf;
+@@ -36,7 +39,16 @@ void __init init_environ(void)
  
- obj-$(CONFIG_BUILTIN_DTB)	+= $(addsuffix .dtb.o, $(CONFIG_BUILTIN_DTB_NAME))
-diff --git a/arch/loongarch/boot/dts/loongson-2k2000-ref.dts b/arch/loongarch/boot/dts/loongson-2k2000-ref.dts
-new file mode 100644
-index 000000000000..dca91caf895e
---- /dev/null
-+++ b/arch/loongarch/boot/dts/loongson-2k2000-ref.dts
-@@ -0,0 +1,72 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (C) 2023 Loongson Technology Corporation Limited
-+ */
+ static int __init init_cpu_fullname(void)
+ {
+-	int cpu;
++	struct device_node *root;
++	int cpu, ret;
++	char *model;
 +
-+/dts-v1/;
++	/* Parsing cpuname from DTS model property */
++	root = of_find_node_by_path("/");
++	ret = of_property_read_string(root, "model", (const char **)&model);
++	of_node_put(root);
++	if (ret == 0)
++		loongson_sysconf.cpuname = strsep(&model, " ");
+ 
+ 	if (loongson_sysconf.cpuname && !strncmp(loongson_sysconf.cpuname, "Loongson", 8)) {
+ 		for (cpu = 0; cpu < NR_CPUS; cpu++)
+@@ -46,6 +58,26 @@ static int __init init_cpu_fullname(void)
+ }
+ arch_initcall(init_cpu_fullname);
+ 
++static int __init fdt_cpu_clk_init(void)
++{
++	struct clk *clk;
++	struct device_node *np;
 +
-+#include "loongson-2k2000.dtsi"
++	np = of_get_cpu_node(0, NULL);
++	if (!np)
++		return -ENODEV;
 +
-+/ {
-+	compatible = "loongson,ls2k2000-ref", "loongson,ls2k2000";
-+	model = "Loongson-2K2000 Reference Board";
++	clk = of_clk_get(np, 0);
++	if (IS_ERR(clk))
++		return -ENODEV;
 +
-+	aliases {
-+		serial0 = &uart0;
-+	};
++	cpu_clock_freq = clk_get_rate(clk);
++	clk_put(clk);
 +
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
++	return 0;
++}
++late_initcall(fdt_cpu_clk_init);
 +
-+	memory@200000 {
-+		device_type = "memory";
-+		reg = <0x0 0x00200000 0x0 0x0ee00000>,
-+		      <0x0 0x90000000 0x0 0x70000000>;
-+	};
+ static ssize_t boardinfo_show(struct kobject *kobj,
+ 			      struct kobj_attribute *attr, char *buf)
+ {
+diff --git a/arch/loongarch/kernel/smp.c b/arch/loongarch/kernel/smp.c
+index 5bca12d16e06..9e33b5e36122 100644
+--- a/arch/loongarch/kernel/smp.c
++++ b/arch/loongarch/kernel/smp.c
+@@ -216,6 +216,9 @@ void __init loongson_smp_setup(void)
+ {
+ 	fdt_smp_setup();
+ 
++	if (loongson_sysconf.cores_per_package == 0)
++		loongson_sysconf.cores_per_package = num_processors;
 +
-+	reserved-memory {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		linux,cma {
-+			compatible = "shared-dma-pool";
-+			reusable;
-+			size = <0x0 0x2000000>;
-+			linux,cma-default;
-+		};
-+	};
-+};
-+
-+&sata {
-+	status = "okay";
-+};
-+
-+&uart0 {
-+	status = "okay";
-+};
-+
-+&rtc0 {
-+	status = "okay";
-+};
-+
-+&xhci0 {
-+	status = "okay";
-+};
-+
-+&xhci1 {
-+	status = "okay";
-+};
-+
-+&gmac0 {
-+	status = "okay";
-+};
-+
-+&gmac1 {
-+	status = "okay";
-+};
-+
-+&gmac2 {
-+	status = "okay";
-+};
-diff --git a/arch/loongarch/boot/dts/loongson-2k2000.dtsi b/arch/loongarch/boot/dts/loongson-2k2000.dtsi
-new file mode 100644
-index 000000000000..a231949b5f55
---- /dev/null
-+++ b/arch/loongarch/boot/dts/loongson-2k2000.dtsi
-@@ -0,0 +1,300 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (C) 2023 Loongson Technology Corporation Limited
-+ */
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/interrupt-controller/irq.h>
-+
-+/ {
-+	#address-cells = <2>;
-+	#size-cells = <2>;
-+
-+	cpus {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		cpu0: cpu@1 {
-+			compatible = "loongson,la364";
-+			device_type = "cpu";
-+			reg = <0x0>;
-+			clocks = <&cpu_clk>;
-+		};
-+
-+		cpu1: cpu@2 {
-+			compatible = "loongson,la364";
-+			device_type = "cpu";
-+			reg = <0x1>;
-+			clocks = <&cpu_clk>;
-+		};
-+	};
-+
-+	cpu_clk: cpu-clk {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <1400000000>;
-+	};
-+
-+	cpuintc: interrupt-controller {
-+		compatible = "loongson,cpu-interrupt-controller";
-+		#interrupt-cells = <1>;
-+		interrupt-controller;
-+	};
-+
-+	bus@10000000 {
-+		compatible = "simple-bus";
-+		ranges = <0x0 0x10000000 0x0 0x10000000 0x0 0x10000000>,
-+			 <0x0 0x02000000 0x0 0x02000000 0x0 0x02000000>,
-+			 <0x0 0x40000000 0x0 0x40000000 0x0 0x40000000>,
-+			 <0xfe 0x0 0xfe 0x0 0x0 0x40000000>;
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+
-+		pmc: power-management@100d0000 {
-+			compatible = "loongson,ls2k2000-pmc", "loongson,ls2k0500-pmc", "syscon";
-+			reg = <0x0 0x100d0000 0x0 0x58>;
-+			interrupt-parent = <&eiointc>;
-+			interrupts = <47>;
-+			loongson,suspend-address = <0x0 0x1c000500>;
-+
-+			syscon-reboot {
-+				compatible = "syscon-reboot";
-+				offset = <0x30>;
-+				mask = <0x1>;
-+			};
-+
-+			syscon-poweroff {
-+				compatible = "syscon-poweroff";
-+				regmap = <&pmc>;
-+				offset = <0x14>;
-+				mask = <0x3c00>;
-+				value = <0x3c00>;
-+			};
-+		};
-+
-+		liointc: interrupt-controller@1fe01400 {
-+			compatible = "loongson,liointc-1.0";
-+			reg = <0x0 0x1fe01400 0x0 0x64>;
-+
-+			interrupt-controller;
-+			#interrupt-cells = <2>;
-+			interrupt-parent = <&cpuintc>;
-+			interrupts = <2>;
-+			interrupt-names = "int0";
-+			loongson,parent_int_map = <0xffffffff>, /* int0 */
-+						  <0x00000000>, /* int1 */
-+						  <0x00000000>, /* int2 */
-+						  <0x00000000>; /* int3 */
-+		};
-+
-+		eiointc: interrupt-controller@1fe01600 {
-+			compatible = "loongson,ls2k2000-eiointc";
-+			reg = <0x0 0x1fe01600 0x0 0xea00>;
-+			interrupt-controller;
-+			#interrupt-cells = <1>;
-+			interrupt-parent = <&cpuintc>;
-+			interrupts = <3>;
-+		};
-+
-+		pic: interrupt-controller@10000000 {
-+			compatible = "loongson,pch-pic-1.0";
-+			reg = <0x0 0x10000000 0x0 0x400>;
-+			interrupt-controller;
-+			#interrupt-cells = <2>;
-+			loongson,pic-base-vec = <0>;
-+			interrupt-parent = <&eiointc>;
-+		};
-+
-+		msi: msi-controller@1fe01140 {
-+			compatible = "loongson,pch-msi-1.0";
-+			reg = <0x0 0x1fe01140 0x0 0x8>;
-+			msi-controller;
-+			loongson,msi-base-vec = <64>;
-+			loongson,msi-num-vecs = <192>;
-+			interrupt-parent = <&eiointc>;
-+		};
-+
-+		rtc0: rtc@100d0100 {
-+			compatible = "loongson,ls2k2000-rtc", "loongson,ls7a-rtc";
-+			reg = <0x0 0x100d0100 0x0 0x100>;
-+			interrupt-parent = <&pic>;
-+			interrupts = <52 IRQ_TYPE_LEVEL_HIGH>;
-+			status = "disabled";
-+		};
-+
-+		uart0: serial@1fe001e0 {
-+			compatible = "ns16550a";
-+			reg = <0x0 0x1fe001e0 0x0 0x10>;
-+			clock-frequency = <100000000>;
-+			interrupt-parent = <&liointc>;
-+			interrupts = <10 IRQ_TYPE_LEVEL_HIGH>;
-+			no-loopback-test;
-+			status = "disabled";
-+		};
-+
-+		pcie@1a000000 {
-+			compatible = "loongson,ls2k-pci";
-+			reg = <0x0 0x1a000000 0x0 0x02000000>,
-+			      <0xfe 0x0 0x0 0x20000000>;
-+			#address-cells = <3>;
-+			#size-cells = <2>;
-+			device_type = "pci";
-+			bus-range = <0x0 0xff>;
-+			ranges = <0x01000000 0x0 0x00008000 0x0 0x18400000 0x0 0x00008000>,
-+				 <0x02000000 0x0 0x60000000 0x0 0x60000000 0x0 0x20000000>;
-+
-+			gmac0: ethernet@3,0 {
-+				reg = <0x1800 0x0 0x0 0x0 0x0>;
-+				interrupts = <12 IRQ_TYPE_LEVEL_HIGH>;
-+				interrupt-parent = <&pic>;
-+				status = "disabled";
-+			};
-+
-+			gmac1: ethernet@3,1 {
-+				reg = <0x1900 0x0 0x0 0x0 0x0>;
-+				interrupts = <14 IRQ_TYPE_LEVEL_HIGH>;
-+				interrupt-parent = <&pic>;
-+				status = "disabled";
-+			};
-+
-+			gmac2: ethernet@3,2 {
-+				reg = <0x1a00 0x0 0x0 0x0 0x0>;
-+				interrupts = <17 IRQ_TYPE_LEVEL_HIGH>;
-+				interrupt-parent = <&pic>;
-+				status = "disabled";
-+			};
-+
-+			xhci0: usb@4,0 {
-+				reg = <0x2000 0x0 0x0 0x0 0x0>;
-+				interrupts = <48 IRQ_TYPE_LEVEL_HIGH>;
-+				interrupt-parent = <&pic>;
-+				status = "disabled";
-+			};
-+
-+			xhci1: usb@19,0 {
-+				reg = <0xc800 0x0 0x0 0x0 0x0>;
-+				interrupts = <22 IRQ_TYPE_LEVEL_HIGH>;
-+				interrupt-parent = <&pic>;
-+				status = "disabled";
-+			};
-+
-+			display@6,1 {
-+				reg = <0x3100 0x0 0x0 0x0 0x0>;
-+				interrupts = <28 IRQ_TYPE_LEVEL_HIGH>;
-+				interrupt-parent = <&pic>;
-+				status = "disabled";
-+			};
-+
-+			hda@7,0 {
-+				reg = <0x3800 0x0 0x0 0x0 0x0>;
-+				interrupts = <58 IRQ_TYPE_LEVEL_HIGH>;
-+				interrupt-parent = <&pic>;
-+				status = "disabled";
-+			};
-+
-+			sata: sata@8,0 {
-+				reg = <0x4000 0x0 0x0 0x0 0x0>;
-+				interrupts = <16 IRQ_TYPE_LEVEL_HIGH>;
-+				interrupt-parent = <&pic>;
-+				status = "disabled";
-+			};
-+
-+			pcie@9,0 {
-+				reg = <0x4800 0x0 0x0 0x0 0x0>;
-+				#address-cells = <3>;
-+				#size-cells = <2>;
-+				device_type = "pci";
-+				interrupt-parent = <&pic>;
-+				#interrupt-cells = <1>;
-+				interrupt-map-mask = <0x0 0x0 0x0 0x0>;
-+				interrupt-map = <0x0 0x0 0x0 0x0 &pic 32 IRQ_TYPE_LEVEL_HIGH>;
-+				ranges;
-+			};
-+
-+			pcie@a,0 {
-+				reg = <0x5000 0x0 0x0 0x0 0x0>;
-+				#address-cells = <3>;
-+				#size-cells = <2>;
-+				device_type = "pci";
-+				interrupt-parent = <&pic>;
-+				#interrupt-cells = <1>;
-+				interrupt-map-mask = <0x0 0x0 0x0 0x0>;
-+				interrupt-map = <0x0 0x0 0x0 0x0 &pic 33 IRQ_TYPE_LEVEL_HIGH>;
-+				ranges;
-+			};
-+
-+			pcie@b,0 {
-+				reg = <0x5800 0x0 0x0 0x0 0x0>;
-+				#address-cells = <3>;
-+				#size-cells = <2>;
-+				device_type = "pci";
-+				interrupt-parent = <&pic>;
-+				#interrupt-cells = <1>;
-+				interrupt-map-mask = <0x0 0x0 0x0 0x0>;
-+				interrupt-map = <0x0 0x0 0x0 0x0 &pic 34 IRQ_TYPE_LEVEL_HIGH>;
-+				ranges;
-+			};
-+
-+			pcie@c,0 {
-+				reg = <0x6000 0x0 0x0 0x0 0x0>;
-+				#address-cells = <3>;
-+				#size-cells = <2>;
-+				device_type = "pci";
-+				interrupt-parent = <&pic>;
-+				#interrupt-cells = <1>;
-+				interrupt-map-mask = <0x0 0x0 0x0 0x0>;
-+				interrupt-map = <0x0 0x0 0x0 0x0 &pic 35 IRQ_TYPE_LEVEL_HIGH>;
-+				ranges;
-+			};
-+
-+			pcie@d,0 {
-+				reg = <0x6800 0x0 0x0 0x0 0x0>;
-+				#address-cells = <3>;
-+				#size-cells = <2>;
-+				device_type = "pci";
-+				interrupt-parent = <&pic>;
-+				#interrupt-cells = <1>;
-+				interrupt-map-mask = <0x0 0x0 0x0 0x0>;
-+				interrupt-map = <0x0 0x0 0x0 0x0 &pic 36 IRQ_TYPE_LEVEL_HIGH>;
-+				ranges;
-+			};
-+
-+			pcie@e,0 {
-+				reg = <0x7000 0x0 0x0 0x0 0x0>;
-+				#address-cells = <3>;
-+				#size-cells = <2>;
-+				device_type = "pci";
-+				interrupt-parent = <&pic>;
-+				#interrupt-cells = <1>;
-+				interrupt-map-mask = <0x0 0x0 0x0 0x0>;
-+				interrupt-map = <0x0 0x0 0x0 0x0 &pic 37 IRQ_TYPE_LEVEL_HIGH>;
-+				ranges;
-+			};
-+
-+			pcie@f,0 {
-+				reg = <0x7800 0x0 0x0 0x0 0x0>;
-+				#address-cells = <3>;
-+				#size-cells = <2>;
-+				device_type = "pci";
-+				interrupt-parent = <&pic>;
-+				#interrupt-cells = <1>;
-+				interrupt-map-mask = <0x0 0x0 0x0 0x0>;
-+				interrupt-map = <0x0 0x0 0x0 0x0 &pic 40 IRQ_TYPE_LEVEL_HIGH>;
-+				ranges;
-+			};
-+
-+			pcie@10,0 {
-+				reg = <0x8000 0x0 0x0 0x0 0x0>;
-+				#address-cells = <3>;
-+				#size-cells = <2>;
-+				device_type = "pci";
-+				interrupt-parent = <&pic>;
-+				#interrupt-cells = <1>;
-+				interrupt-map-mask = <0x0 0x0 0x0 0x0>;
-+				interrupt-map = <0x0 0x0 0x0 0x0 &pic 30 IRQ_TYPE_LEVEL_HIGH>;
-+				ranges;
-+			};
-+		};
-+	};
-+};
+ 	cpu_data[0].core = cpu_logical_map(0) % loongson_sysconf.cores_per_package;
+ 	cpu_data[0].package = cpu_logical_map(0) / loongson_sysconf.cores_per_package;
+ 
 -- 
 2.39.3
 
