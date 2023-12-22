@@ -1,284 +1,180 @@
-Return-Path: <devicetree+bounces-28123-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28124-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F61981CD92
-	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 18:31:26 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A86EF81CDB4
+	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 18:42:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5610E285B81
-	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 17:31:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 341CC1F234F2
+	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 17:42:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7520328DC9;
-	Fri, 22 Dec 2023 17:31:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16F2E28DBC;
+	Fri, 22 Dec 2023 17:42:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="EyUOgtLV"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eJlcUFZU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f41.google.com (mail-ua1-f41.google.com [209.85.222.41])
+Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC00128DB9
-	for <devicetree@vger.kernel.org>; Fri, 22 Dec 2023 17:31:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-ua1-f41.google.com with SMTP id a1e0cc1a2514c-7cc662fc2e6so92555241.0
-        for <devicetree@vger.kernel.org>; Fri, 22 Dec 2023 09:31:16 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66B8C2C183;
+	Fri, 22 Dec 2023 17:42:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-336746a545fso1256567f8f.0;
+        Fri, 22 Dec 2023 09:42:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1703266276; x=1703871076; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=nNBg0y+Bd68VL0xW77WB7jMSRPSja3ZQujiu0gSBfM4=;
-        b=EyUOgtLVQisnCM5EAaMnDjLwyWrE7bAGR9sgsQy/yvKJVSHibwXDdRfUGmLDgDqeuD
-         qIqs8DdwPGiza/x/qTb4iLU+nRARbnKfbm8vowXdhkQxDo1rjQCYjFQCroUt2UYB3vJW
-         CRkTjHMWGfn1HxOlFB6XvXwNlrZWyH3NZ8i76Is/kJP4cd2rAvd8Xc6xtGpmHgPElF3u
-         l1ibA7aayUrPPCC0O0q6e0nxyNBr0s8G3arEPYHIUxoOSSOfSW25yk9AoseXwtBwbQVO
-         uQkrwAJcelIrhokcDc9fW0RFiVmP8+FsMSqgEacY0kAXW5+IGTFH/bhAV1V6XZtGfAsX
-         iv+g==
+        d=gmail.com; s=20230601; t=1703266941; x=1703871741; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=hHFkedPmax7f2jMznqg0TqRbSWkPKtd98J+qp1ddTP0=;
+        b=eJlcUFZU6JBEX87MKg0HtKBkTmNXERGRsGuvW+FC/dFsC0rV/a9/5nqhcGvMObNcMt
+         khNdirsnc4SJOFeQvvvtnRwH6P6Z33l8foHaWKanrvFi3v5UoiCKIrDYbJ/FLzOAzVXx
+         arbX+irwcH9q2EFooTvqBeas+bVAXTdiTdVTUY0fHynDy34D27NdYOK/XpRtfbJPdbia
+         gtSfqzN9oJScdilWgGksvGGDKHcOfEMHr29kraFKromrVSaIgPYV8FI41YK5PP0K1C5x
+         uD+Oxyxv28WqEQVVnIQ3gYWGllaHAzvUpOYyq+6Mwc4SXxnDj9lVmshr5rlZHn25F/Sf
+         jRjg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703266276; x=1703871076;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=nNBg0y+Bd68VL0xW77WB7jMSRPSja3ZQujiu0gSBfM4=;
-        b=Ck8waJq6ENxAZH4EFdZEonHAXgx6TbKfN6i1qXDyYx/n7FdMGryiQQt63MerPOlqzb
-         WPqhqGP+8/UhUINV4fjfiYVcT/TdDcE7+1eNIW/HsMNJhXyz/rAexALcvG9WKuZjIsq2
-         1tjeyiTwS2h+zx6JsCZUaPwZiio4qMZZmyvtVZcyAU3NUXgatuP5/iHcWNr5TkqjOQAt
-         3+MNoFm3rM7SyanuEkVsuF+LUF88oifA83Uapi+ZiDwJ/BkvrITk4EQGXlG5V8ofoMyC
-         JGrPfph0b9lJCNA2Y5/4CpCjTA7dkSbxMcQdzv3Rp+UIbW4YrzlvSQzUCGrtFklkz5qj
-         6HMw==
-X-Gm-Message-State: AOJu0Yy8kYOosCQqBwPG0yX99tS+zgq9kEuw4/SqK5nV29OTzn0SsvPB
-	292S7y/qVYtiVGtO8MlAwqBAmEx3ALLUo6+c9ThzG/0R2DT/mA==
-X-Google-Smtp-Source: AGHT+IGqLB66JX2gzTB1urxa7lDtLfALa1+ydylvLoLSgnxVdq2TDvAEO7RX0xIhIqnPbSyiHZDZBoecmHefDqpDxl0=
-X-Received: by 2002:a05:6122:3bc3:b0:4b6:c5ae:26cc with SMTP id
- ft3-20020a0561223bc300b004b6c5ae26ccmr719754vkb.14.1703266275645; Fri, 22 Dec
- 2023 09:31:15 -0800 (PST)
+        d=1e100.net; s=20230601; t=1703266941; x=1703871741;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=hHFkedPmax7f2jMznqg0TqRbSWkPKtd98J+qp1ddTP0=;
+        b=PkU05mCbkl/RyUB5icMaPma1nHkV8ledBIYepyIp4u3q3rg5ytFSySgHzn+mQCKpkf
+         w0bphemlYHEI6hsvUeV4wFJwJ5kwNjCxiY/kCeFcSVuWtTugVDycYjeoanwJjvaX2Bz8
+         tKq3y0L5bu+eXowlIJWg3ywbQTx79G9A1vL5YAXztWgYw0BCmTCFmDEkoDxVpQ5Bieek
+         pwCTMj1vaDNzfhfxdHbv3CvXPPKsS4/QIXocc+5C4EJ1v7hlmVwrPi74r1nLOUBX0xlB
+         6MpSxfX62ASSgEWvjzgMjfRZmtH0eHEXa5HOndpfdxf0KYvCt76W8PhY5F7HJ/ui6x4n
+         k8Pg==
+X-Gm-Message-State: AOJu0YyFASZVqQ73k5l1mN+gySnGoqk4Pix2tiilaGLMW1JaHPObFmZq
+	c9Iqd2JOiuOp0y88wpiLYg==
+X-Google-Smtp-Source: AGHT+IHwJ7vKkIduWkKIJWTuwfloN+HwqKIaLADdUtYCaF29vwkh72hGBlvXCgEZafcU5IlivtWLFw==
+X-Received: by 2002:a5d:6102:0:b0:336:5bc1:f53 with SMTP id v2-20020a5d6102000000b003365bc10f53mr1693282wrt.10.1703266941511;
+        Fri, 22 Dec 2023 09:42:21 -0800 (PST)
+Received: from U4.lan ([2a02:810b:f40:4300:f3ae:2788:7e03:f44])
+        by smtp.gmail.com with ESMTPSA id w10-20020adfec4a000000b00336670abdcasm4777116wrn.40.2023.12.22.09.42.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 22 Dec 2023 09:42:21 -0800 (PST)
+From: Alex Bee <knaerzche@gmail.com>
+To: Sandy Huang <hjc@rock-chips.com>,
+	=?UTF-8?q?Heiko=20St=C3=BCbner?= <heiko@sntech.de>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: David Airlie <airlied@gmail.com>,
+	Daniel Vetter <daniel@ffwll.ch>,
+	dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Alex Bee <knaerzche@gmail.com>
+Subject: [PATCH v4 00/29]  Add HDMI support for RK3128
+Date: Fri, 22 Dec 2023 18:41:51 +0100
+Message-ID: <20231222174220.55249-1-knaerzche@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231222150133.732662-1-krzysztof.kozlowski@linaro.org> <20231222150133.732662-2-krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20231222150133.732662-2-krzysztof.kozlowski@linaro.org>
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Fri, 22 Dec 2023 18:31:04 +0100
-Message-ID: <CAMRc=MdYPuW8C_+EAY4UTCjqNggx6RAkp9OmLU-hRxjZNRQRHw@mail.gmail.com>
-Subject: Re: [PATCH 1/4] reset: instantiate reset GPIO controller for shared reset-gpios
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, Banajit Goswami <bgoswami@quicinc.com>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
-	linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org, 
-	linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Sean Anderson <sean.anderson@seco.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Fri, Dec 22, 2023 at 4:01=E2=80=AFPM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> Devices sharing a reset GPIO could use the reset framework for
-> coordinated handling of that shared GPIO line.  We have several cases of
-> such needs, at least for Devicetree-based platforms.
->
-> If Devicetree-based device requests a reset line which is missing but
-> there is a reset-gpios property, instantiate a new "reset-gpio" platform
-> device which will handle such reset line.  This allows seamless handling
-> of such shared reset-gpios without need of changing Devicetree binding [1=
-].
->
-> The "reset-gpio" driver follows shortly.
->
-> Link: https://lore.kernel.org/all/YXi5CUCEi7YmNxXM@robh.at.kernel.org/
-> Cc: Bartosz Golaszewski <brgl@bgdev.pl>
-> Cc: Sean Anderson <sean.anderson@seco.com>
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->  drivers/reset/core.c             | 70 +++++++++++++++++++++++++++-----
->  include/linux/reset-controller.h |  2 +
->  2 files changed, 61 insertions(+), 11 deletions(-)
->
-> diff --git a/drivers/reset/core.c b/drivers/reset/core.c
-> index 4d5a78d3c085..a1f0f515a7e0 100644
-> --- a/drivers/reset/core.c
-> +++ b/drivers/reset/core.c
-> @@ -10,9 +10,12 @@
->  #include <linux/export.h>
->  #include <linux/kernel.h>
->  #include <linux/kref.h>
-> +#include <linux/gpio/consumer.h>
->  #include <linux/module.h>
->  #include <linux/of.h>
-> +#include <linux/of_gpio.h>
->  #include <linux/acpi.h>
-> +#include <linux/platform_device.h>
->  #include <linux/reset.h>
->  #include <linux/reset-controller.h>
->  #include <linux/slab.h>
-> @@ -813,13 +816,59 @@ static void __reset_control_put_internal(struct res=
-et_control *rstc)
->         kref_put(&rstc->refcnt, __reset_control_release);
->  }
->
-> +static int __reset_add_reset_gpio_device(struct device_node *node,
-> +                                        const struct gpio_desc **out)
-> +{
-> +       struct platform_device *pdev;
-> +       int gpio;
-> +
-> +       /* Don't care about deprecated '-gpio' suffix. */
-> +       gpio =3D of_get_named_gpio(node, "reset-gpios", 0);
+This is version 4 of my series that aims to add support for the display
+controller (VOP) and the HDMI controller block of RK3128 (which is very
+similar to the one found in RK3036). The original intention of this series
+was to add support for this slightly different integration but is by now,
+driven by maintainer's feedback, exploded to be a rework of inno-hdmi
+driver in large parts. It is, however, a change for the better.
 
-Sorry but NAK. This is a legacy API, we've managed to remove all of_
-GPIO interfaces but this one. Please don't use it. Any function that
-deals with the global GPIO numberspace is deprecated. See below how I
-would approach it.
+The VOP part is very simple -  everything we need for HDMI support is
+already there. I only needed to split the output selection registers from
+RK3036. The VOP has an IOMMU attached, but it has a serious silicon bug:
+Registers can only be written, but not be read. As it's not possible to use
+it with the IOMMU driver in it's current state I'm not adding it here and
+we have to live with CMA for now - which works fine also. I got response
+from the vendor, that there is no possibility to read the registers and an
+workaround must be implemented in software in order to use it.
 
-Side note: do we have any formal way of deprecating interfaces in the kerne=
-l?
+The inno-hdmi driver currently gets a lot of attention [0-2] and I'm
+hooking in now also. As requested I incorporated some of Maxime's series
+[0] (and tested them).
+I have intentionally not removed any code dealing with output format
+conversion in this series. In contrast to the input format, which is always
+RGB on this platform and certainly can be dropped, that can be implemented
+later. And secondly I need the conversion for RGB full range to RGB limited
+range for this series.
 
-> +       if (!gpio_is_valid(gpio))
-> +               return gpio;
-> +
-> +       pdev =3D platform_device_register_data(NULL, "reset-gpio",
-> +                                            PLATFORM_DEVID_AUTO, &node,
-> +                                            sizeof(node));
+I did also some smaller driver cleanups from my side and implemented a
+custom connector state which now holds the data that belongs there and it
+is not longer in the device structure and, of course, addressed the
+feedback from v1 [3] and v2 [4].
+There hasn't been any feedback to v3[5] so far, but I fixed an issue with
+the new custom connector reset hook: If there is a connector state already
+it needs to be destroyed in there as well.
 
-You seem to make an assumption (in __reset_find_rcdev()) that this
-device will get bound to its driver before this function returns.
-There is no such guarantee. There are many situations where this may
-not happen immediately (think loading the reset-gpio driver as a
-module from the filesystem). You should set up a notifier callback on
-the platform bus that will get invoked on bus events and wait for this
-device's BUS_NOTIFY_BOUND_DRIVER event.
+Please see individual patches for detailed changelog.
 
-> +       if (!IS_ERR(pdev))
-> +               *out =3D gpio_to_desc(gpio);
-> +
-> +       return PTR_ERR_OR_ZERO(pdev);
-> +}
-> +
-> +static struct reset_controller_dev *__reset_find_rcdev(const struct of_p=
-handle_args *args,
-> +                                                      const void *cookie=
-)
-> +{
-> +       struct reset_controller_dev *r, *rcdev;
-> +
-> +       lockdep_assert_held(&reset_list_mutex);
-> +
-> +       rcdev =3D NULL;
-> +       list_for_each_entry(r, &reset_controller_list, list) {
-> +               if (args && args->np) {
-> +                       if (args->np =3D=3D r->of_node) {
-> +                               rcdev =3D r;
-> +                               break;
-> +                       }
-> +               } else if (cookie) {
-> +                       if (cookie =3D=3D r->cookie) {
+Note: Patches are based and tested on next-20231213.
 
-As I said in private: there's no guarantee that the same GPIO
-descriptor will always reference the same GPIO line. It happens to be
-the case currently but it's an implementation detail.
+[0] https://lore.kernel.org/all/20231207-kms-hdmi-connector-state-v5-0-6538e19d634d@kernel.org
+[1] https://lore.kernel.org/all/20231204123315.28456-1-keith.zhao@starfivetech.com
+[2] https://lore.kernel.org/all/2601b669-c570-f39d-8cf9-bff56c939912@gmail.com
+[3] https://lore.kernel.org/all/20231213195125.212923-1-knaerzche@gmail.com/
+[4] https://lore.kernel.org/all/20231216162639.125215-1-knaerzche@gmail.com/
+[5] https://lore.kernel.org/all/20231219170100.188800-1-knaerzche@gmail.com/
 
-> +                               rcdev =3D r;
-> +                               break;
-> +                       }
-> +               }
-> +       }
-> +
-> +       return rcdev;
-> +}
-> +
->  struct reset_control *
->  __of_reset_control_get(struct device_node *node, const char *id, int ind=
-ex,
->                        bool shared, bool optional, bool acquired)
->  {
-> +       const struct gpio_desc *gpio =3D NULL;
-> +       struct of_phandle_args args =3D {0};
->         struct reset_control *rstc;
-> -       struct reset_controller_dev *r, *rcdev;
-> -       struct of_phandle_args args;
-> +       struct reset_controller_dev *rcdev;
->         int rstc_id;
->         int ret;
->
-> @@ -839,17 +888,16 @@ __of_reset_control_get(struct device_node *node, co=
-nst char *id, int index,
->                                          index, &args);
->         if (ret =3D=3D -EINVAL)
->                 return ERR_PTR(ret);
-> -       if (ret)
-> -               return optional ? NULL : ERR_PTR(ret);
-> +       if (ret) {
-> +               ret =3D __reset_add_reset_gpio_device(node, &gpio);
-> +               if (ret)
-> +                       return optional ? NULL : ERR_PTR(ret);
-> +
-> +               args.args_count =3D 1; /* reset-gpio has only one reset l=
-ine */
-> +       }
->
->         mutex_lock(&reset_list_mutex);
-> -       rcdev =3D NULL;
-> -       list_for_each_entry(r, &reset_controller_list, list) {
-> -               if (args.np =3D=3D r->of_node) {
-> -                       rcdev =3D r;
-> -                       break;
-> -               }
-> -       }
-> +       rcdev =3D __reset_find_rcdev(&args, gpio);
->
->         if (!rcdev) {
->                 rstc =3D ERR_PTR(-EPROBE_DEFER);
-> diff --git a/include/linux/reset-controller.h b/include/linux/reset-contr=
-oller.h
-> index 0fa4f60e1186..c0a99a8ea29e 100644
-> --- a/include/linux/reset-controller.h
-> +++ b/include/linux/reset-controller.h
-> @@ -61,6 +61,7 @@ struct reset_control_lookup {
->   * @dev: corresponding driver model device struct
->   * @of_node: corresponding device tree node as phandle target
->   * @of_reset_n_cells: number of cells in reset line specifiers
-> + * @cookie: for reset-gpios controllers: corresponding GPIO instead of o=
-f_node
->   * @of_xlate: translation function to translate from specifier as found =
-in the
->   *            device tree to id as given to the reset control ops, defau=
-lts
->   *            to :c:func:`of_reset_simple_xlate`.
-> @@ -74,6 +75,7 @@ struct reset_controller_dev {
->         struct device *dev;
->         struct device_node *of_node;
->         int of_reset_n_cells;
-> +       const void *cookie;
->         int (*of_xlate)(struct reset_controller_dev *rcdev,
->                         const struct of_phandle_args *reset_spec);
->         unsigned int nr_resets;
-> --
-> 2.34.1
->
+Alex Bee (17):
+  dt-bindings: display: rockchip,inno-hdmi: Document RK3128 compatible
+  drm/rockchip: vop: Add output selection registers for RK312x
+  drm/rockchip: inno_hdmi: Fix video timing
+  drm/rockchip: inno_hdmi: Remove YUV-based csc coefficents
+  drm/rockchip: inno_hdmi: Drop irq struct member
+  drm/rockchip: inno_hdmi: Remove useless include
+  drm/rockchip: inno_hdmi: Subclass connector state
+  drm/rockchip: inno_hdmi: Correctly setup HDMI quantization range
+  drm/rockchip: inno_hdmi: Don't power up the phy after resetting
+  drm/rockchip: inno_hdmi: Split power mode setting
+  drm/rockchip: inno_hdmi: Add variant support
+  drm/rockchip: inno_hdmi: Add RK3128 support
+  drm/rockchip: inno_hdmi: Add basic mode validation
+  drm/rockchip: inno_hdmi: Drop custom fill_modes hook
+  ARM: dts: rockchip: Add display subsystem for RK3128
+  ARM: dts: rockchip: Add HDMI node for RK3128
+  ARM: dts: rockchip: Enable HDMI output for XPI-3128
 
-I dislike this approach entirely. Here's what I would do:
+Maxime Ripard (12):
+  drm/rockchip: inno_hdmi: Remove useless mode_fixup
+  drm/rockchip: inno_hdmi: Remove useless copy of drm_display_mode
+  drm/rockchip: inno_hdmi: Switch encoder hooks to atomic
+  drm/rockchip: inno_hdmi: Get rid of mode_set
+  drm/rockchip: inno_hdmi: no need to store vic
+  drm/rockchip: inno_hdmi: Remove unneeded has audio flag
+  drm/rockchip: inno_hdmi: Remove useless input format
+  drm/rockchip: inno_hdmi: Remove tmds rate from structure
+  drm/rockchip: inno_hdmi: Drop HDMI Vendor Infoframe support
+  drm/rockchip: inno_hdmi: Move infoframe disable to separate function
+  drm/rockchip: inno_hdmi: Switch to infoframe type
+  drm/rockchip: inno_hdmi: Remove unused drm device pointer
 
-In the reset core: parse the phandle of the reset-gpios property. Use
-the resulting node with gpio_device_find_by_fwnode(). If the device is
-not up yet, defer probe. You'll now have the GPIO device object.
-Retrieve its label using gpio_device_get_label(). Now you should have
-everything you need (the offset and flags of the GPIO you'll get from
-__of_parse_phandle_with_args()) to set up the lookup tables. See
-include/linux/gpio/machine.h. An example of that would be in:
-bcm2835_spi_setup() in drivers/spi/spi-bcm2835.c.
+ .../display/rockchip/rockchip,inno-hdmi.yaml  |  40 +-
+ .../arm/boot/dts/rockchip/rk3128-xpi-3128.dts |  29 +
+ arch/arm/boot/dts/rockchip/rk3128.dtsi        |  60 ++
+ drivers/gpu/drm/rockchip/inno_hdmi.c          | 549 +++++++++++-------
+ drivers/gpu/drm/rockchip/inno_hdmi.h          |   5 -
+ drivers/gpu/drm/rockchip/rockchip_vop_reg.c   |  13 +-
+ drivers/gpu/drm/rockchip/rockchip_vop_reg.h   |   3 +
+ 7 files changed, 484 insertions(+), 215 deletions(-)
 
-Then with a lookup table in place, you instantiate your device and
-it'll get its GPIO as it should. This is not ideal but much better
-than the above.
 
-Bartosz
+base-commit: 48e8992e33abf054bcc0bb2e77b2d43bb899212e
+-- 
+2.43.0
+
 
