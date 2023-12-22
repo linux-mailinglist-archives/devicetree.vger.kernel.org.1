@@ -1,154 +1,137 @@
-Return-Path: <devicetree+bounces-28079-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28080-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4DD5881CB87
-	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 15:51:33 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6406A81CB97
+	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 16:02:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4E08C1C21BA4
-	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 14:51:32 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 07B7EB23211
+	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 15:02:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0AA4623772;
-	Fri, 22 Dec 2023 14:51:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB9F523763;
+	Fri, 22 Dec 2023 15:01:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LLDxFUjZ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="akuMt4yN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68C6023740;
-	Fri, 22 Dec 2023 14:51:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-50e39ac39bcso2406059e87.3;
-        Fri, 22 Dec 2023 06:51:10 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E53C2374A
+	for <devicetree@vger.kernel.org>; Fri, 22 Dec 2023 15:01:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a234dc0984fso218265166b.0
+        for <devicetree@vger.kernel.org>; Fri, 22 Dec 2023 07:01:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1703256668; x=1703861468; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=jtUnE4xxhx15CW5JpLi7TOoE2wmO68jA2bGdTJ/24bk=;
-        b=LLDxFUjZkrkpNZ/4nteSQlIob1g1VT6ZnYKWpW7UHKVoaD1zMuTqcg4T3WZ52dJw5A
-         vu5Xk/BcEdstcAAP3R1vj2ZXuUI6azF84vXoRErjR3KBvBjKitE/Cv93QmJWo537k0YJ
-         dU8rSW4kYfpmL3L7iu+VvUpN2sh/SmNOF6IyEckcOXwG799ch4hevZT1yNCyrc69nlaN
-         GZ0IFzSx2E0q4vGgorW19JXG7kV0mC7V2LkWeYPj4eDhJonWCg+9G9ST5MVLoGqfvYnr
-         h59gVs91TI/A/UuN1Y/pG2Z8mqFddzM4jCtv7Z7W+1QrTbgZdWBpnmK5Ht3ngK6P6xYx
-         qyYg==
+        d=linaro.org; s=google; t=1703257306; x=1703862106; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=W4lx9wwE1i9du74XL1yxBGJ3vsI1REncsFrgYBE3k74=;
+        b=akuMt4yNrURVgCFIVlS78iqQ9gwyeZGvyF7K3H7EHj34sDTVz7XvAm32jQB7R/xh8A
+         WhTsQTtDjiCo4mdrCmmDvGEq4coy/rfV9WofPupp4svk7nJjmkcFt+/Q0yRZ01NH81RW
+         EIU5Bt8e6OwhtdxYcdLfDW8o96XT1M0v/EFXNFfoipaivxkS5SRK4jrPPh6cdNFevCcE
+         1BoBEK9fbRwhbZvkSaQASxZeU3oayXYKf3xcI+MLVlJeqUqlCHJaWuFZM91Zl5Yjt3tn
+         N1xHdPieTFC80xYy9vsseF0LMcM6CQ454jsyK9MbaBzpPEjy27ngPrGoZ7bsfew9tZBc
+         S93g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703256668; x=1703861468;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=jtUnE4xxhx15CW5JpLi7TOoE2wmO68jA2bGdTJ/24bk=;
-        b=AC9569AXhnB8lM301uYA9fmZFS34rMKnz+w6Ol0CVXY8+af4F187YMnrBnh/ywK71G
-         mPgb89xv45RR7N8n5Q6JlxZWbibMXbEmpjKO4mF8SpHQcL/BqyC4jlsg2llToZ12D+kk
-         ajyXyj/5Qg0WNcaT4jfJNBwDEnqyR5/4GV2W9YLmVGqmWWjkRWgO0xw1RyTNez7gAal3
-         1csk8lV5sXqAS9StZls0feraJTIypOnTVqh/yazlh7ZUe1hV1mYOTr8JhaptVVBQZcUn
-         fcYYFIGj0XJwQ/XThdgdLOZeoTxmbIfjb2hQ8gkd5+0s6nxgJ/ALPiH2FnxNZF4GfPGn
-         mVVw==
-X-Gm-Message-State: AOJu0YyGkuxmsguXYxAZmiqa21K/KU01PKLy7ysDgo3aXy26EG7wA5AV
-	PBkT2Y+Bq6gE+AOSEQDpLu0=
-X-Google-Smtp-Source: AGHT+IHL1Qfai+8qWEquMbFEUPJRFgvR0ti3liSz/epY51csYe8OPA6HRw50x/Gp8NzXQAMmvk8UaQ==
-X-Received: by 2002:a19:700e:0:b0:50e:5a39:bbeb with SMTP id h14-20020a19700e000000b0050e5a39bbebmr393705lfc.173.1703256668116;
-        Fri, 22 Dec 2023 06:51:08 -0800 (PST)
-Received: from mobilestation ([178.176.56.174])
-        by smtp.gmail.com with ESMTPSA id m13-20020ac2424d000000b0050e697f2d0esm192153lfl.61.2023.12.22.06.51.06
+        d=1e100.net; s=20230601; t=1703257306; x=1703862106;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=W4lx9wwE1i9du74XL1yxBGJ3vsI1REncsFrgYBE3k74=;
+        b=HUx7+ZqUPVIhzqGQKH635zyHnzK1Vl65zt0KbEMOpOZP+LqQXDOdi8O4smJtCt/dS0
+         uwB2r+Ujv6tYgfrJqWbnYON5DaG+pITBFYnAtAvThGWDrSRjfHiwSEM+MomU090zluGk
+         3l9UQ1U/b2fE0VeWcxf8u55AMqESluZxM1x2MfykS7lVT6/ZsA0CTrYMvp64atWlOzdF
+         mkD1sGODVzJoobDYgWxswT9nwkFGrVe7MtRpTwtTN2jixcVCy0PlnLa4qha5B0MFxSxL
+         azqt26llTnn+u79paFbDx2KlhbQ2kD+jvAqiRV6/Uthg6b0eJPIS7lYejp7lo+mwy5V8
+         aBLw==
+X-Gm-Message-State: AOJu0YxaDm2ZZu9cEeGcI3hkNLNBjCGSvvywQHiIQj6rsfNBmwJtw6D7
+	jpMhA+03WMm7k7hoq0VJVdZtKd1iYI/yJQ==
+X-Google-Smtp-Source: AGHT+IHRKrti1VwxIc09jY0oOuJy9YPs+JgtifApCY/xsD7vtw0cq160pet+7Cxzey11G3sc5FPgzg==
+X-Received: by 2002:a17:906:278e:b0:a23:577f:5fbc with SMTP id j14-20020a170906278e00b00a23577f5fbcmr849058ejc.79.1703257303016;
+        Fri, 22 Dec 2023 07:01:43 -0800 (PST)
+Received: from krzk-bin.. ([78.10.206.178])
+        by smtp.gmail.com with ESMTPSA id h1-20020a17090791c100b00a26af35c171sm1275671ejz.0.2023.12.22.07.01.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 22 Dec 2023 06:51:07 -0800 (PST)
-Date: Fri, 22 Dec 2023 17:51:04 +0300
-From: Serge Semin <fancer.lancer@gmail.com>
-To: Leong Ching Swee <leong.ching.swee@intel.com>
-Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
-	Alexandre Torgue <alexandre.torgue@foss.st.com>, Jose Abreu <joabreu@synopsys.com>, 
-	"David S . Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Giuseppe Cavallaro <peppe.cavallaro@st.com>, 
-	linux-stm32@st-md-mailman.stormreply.com, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, netdev@vger.kernel.org, devicetree@vger.kernel.org, 
-	Rohan G Thomas <rohan.g.thomas@intel.com>
-Subject: Re: [PATCH net-next v1 1/4] dt-bindings: net: snps,dwmac: per
- channel irq
-Message-ID: <tly7rej6uz7r36j3nm2yk6mhrbdxkvwyphj3oosar5xd3ucpey@hv4dro7emw3h>
-References: <20231222054451.2683242-1-leong.ching.swee@intel.com>
- <20231222054451.2683242-2-leong.ching.swee@intel.com>
+        Fri, 22 Dec 2023 07:01:42 -0800 (PST)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	Banajit Goswami <bgoswami@quicinc.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Jaroslav Kysela <perex@perex.cz>,
+	Takashi Iwai <tiwai@suse.com>,
+	linux-arm-msm@vger.kernel.org,
+	alsa-devel@alsa-project.org,
+	linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Chris Packham <chris.packham@alliedtelesis.co.nz>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Sean Anderson <sean.anderson@seco.com>
+Subject: [PATCH 0/4] reset: gpio: ASoC: shared GPIO resets
+Date: Fri, 22 Dec 2023 16:01:29 +0100
+Message-Id: <20231222150133.732662-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231222054451.2683242-2-leong.ching.swee@intel.com>
+Content-Transfer-Encoding: 8bit
 
-On Fri, Dec 22, 2023 at 01:44:48PM +0800, Leong Ching Swee wrote:
-> From: Swee Leong Ching <leong.ching.swee@intel.com>
-> 
-> Add dt-bindings for per channel irq.
-> 
-> Signed-off-by: Rohan G Thomas <rohan.g.thomas@intel.com>
-> Signed-off-by: Swee Leong Ching <leong.ching.swee@intel.com>
-> ---
->  .../devicetree/bindings/net/snps,dwmac.yaml   | 24 +++++++++++++------
->  1 file changed, 17 insertions(+), 7 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> index 5c2769dc689a..e72dded824f4 100644
-> --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> @@ -103,17 +103,27 @@ properties:
->  
->    interrupts:
->      minItems: 1
-> -    items:
-> -      - description: Combined signal for various interrupt events
-> -      - description: The interrupt to manage the remote wake-up packet detection
-> -      - description: The interrupt that occurs when Rx exits the LPI state
-> +    maxItems: 19
->  
->    interrupt-names:
->      minItems: 1
-> +    maxItems: 19
->      items:
-> -      - const: macirq
-> -      - enum: [eth_wake_irq, eth_lpi]
-> -      - const: eth_lpi
-> +      oneOf:
-> +        - description: Combined signal for various interrupt events
-> +          const: macirq
-> +        - description: The interrupt to manage the remote wake-up packet detection
-> +          const: eth_wake_irq
-> +        - description: The interrupt that occurs when Rx exits the LPI state
-> +          const: eth_lpi
-> +        - description: DMA Tx per-channel interrupt
-> +          pattern: '^dma_tx[0-7]?$'
-> +        - description: DMA Rx per-channel interrupt
-> +          pattern: '^dma_rx[0-7]?$'
-> +
+Hi,
 
-> +    allOf:
-> +      - contains:
-> +          const: macirq
+We have at least few cases where hardware engineers decided to use one
+powerdown/shutdown/reset GPIO line for multiple devices:
 
-As Rob correctly noted it's also better to make sure that 'macirq' is
-placed first in the array. So instead of the constraint above I guess
-the next one would make sure both the array has 'macirq' name and it's
-the first item:
+1. WSA884x (this and previous patch):
+https://lore.kernel.org/all/b7aeda24-d638-45b7-8e30-80d287f498f8@sirena.org.uk/
+2. https://lore.kernel.org/all/20231027033104.1348921-1-chris.packham@alliedtelesis.co.nz/
+3. https://lore.kernel.org/lkml/20191030120440.3699-1-peter.ujfalusi@ti.com/
+4. https://lore.kernel.org/all/20211018234923.1769028-1-sean.anderson@seco.com/
+5. https://social.treehouse.systems/@marcan/111268780311634160
 
-allOf:
-  - maxItems: 34
-    items:
-      - const: macirq
+I try to solve my case, hopefuly Chris' (2), partially Sean's (4) and maybe
+Hectors (5), using Rob's suggestion:
 
--Serge(y)
+https://lore.kernel.org/all/YXi5CUCEi7YmNxXM@robh.at.kernel.org/
 
->  
->    clocks:
->      minItems: 1
-> -- 
-> 2.34.1
-> 
-> 
+Best regards,
+Krzysztof
+
+Cc: Chris Packham <chris.packham@alliedtelesis.co.nz>
+Cc: Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: Sean Anderson <sean.anderson@seco.com>
+
+Krzysztof Kozlowski (4):
+  reset: instantiate reset GPIO controller for shared reset-gpios
+  reset: add GPIO-based reset controller
+  ASoC: dt-bindings: qcom,wsa8840: Add reset-gpios for shared line
+  ASoC: codecs: wsa884x: Allow sharing reset GPIO
+
+ .../bindings/sound/qcom,wsa8840.yaml          |   9 +-
+ MAINTAINERS                                   |   5 +
+ drivers/reset/Kconfig                         |   9 ++
+ drivers/reset/Makefile                        |   1 +
+ drivers/reset/core.c                          |  70 ++++++++++--
+ drivers/reset/reset-gpio.c                    | 105 ++++++++++++++++++
+ include/linux/reset-controller.h              |   2 +
+ sound/soc/codecs/wsa884x.c                    |  52 +++++++--
+ 8 files changed, 231 insertions(+), 22 deletions(-)
+ create mode 100644 drivers/reset/reset-gpio.c
+
+-- 
+2.34.1
+
 
