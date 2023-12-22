@@ -1,165 +1,99 @@
-Return-Path: <devicetree+bounces-28121-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28122-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5986A81CD6F
-	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 18:02:26 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE42D81CD88
+	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 18:25:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C47A21F22AA7
-	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 17:02:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 83B2F28545D
+	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 17:25:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BF3F2510C;
-	Fri, 22 Dec 2023 17:02:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5E6428DB9;
+	Fri, 22 Dec 2023 17:25:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="hMDkNbAo"
+	dkim=pass (1024-bit key) header.d=gimli.ms.mff.cuni.cz header.i=@gimli.ms.mff.cuni.cz header.b="ZNZmAtXS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-171.mta0.migadu.com (out-171.mta0.migadu.com [91.218.175.171])
+Received: from nikam.ms.mff.cuni.cz (nikam.ms.mff.cuni.cz [195.113.20.16])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 047452554C
-	for <devicetree@vger.kernel.org>; Fri, 22 Dec 2023 17:02:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
-	t=1703264536;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23EF525763;
+	Fri, 22 Dec 2023 17:25:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gimli.ms.mff.cuni.cz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gimli.ms.mff.cuni.cz
+Received: from gimli.ms.mff.cuni.cz (gimli.ms.mff.cuni.cz [195.113.20.176])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
+	(No client certificate requested)
+	by nikam.ms.mff.cuni.cz (Postfix) with ESMTPS id D8F7B28C52C;
+	Fri, 22 Dec 2023 18:25:17 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gimli.ms.mff.cuni.cz;
+	s=gen1; t=1703265917;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=px3/C2GAp78mWv3p8bN07M1WSx6501Th3bqcTa2ov/U=;
-	b=hMDkNbAovGIvQXqMv9oaj7Q5hNQDVlxWc60o9k1oRnAISXnsGbddJaVrt1ZFF3BWojKP0L
-	oP/Y05IxzcYG8Hn0HqT+hcDNx3EUNt52DH1dfnZnWQFiV6MIgpceY2GWeQKgWR5nCAUIDQ
-	DLCiy18i12XBzdvl5f+dsE1pDVKJRhXF56EwoT4Wj+9eSmDgqN5bV4HuTgVZFWChSV/J1T
-	5rwKqRBiA6oQZG8yg2GbSnwMl0SYwb8s76KlpZRssfnP/OrmMGAgB2L75cGKp7xUrhtw/L
-	+wI3rNCNotFvEwOhQZuHF5ECOx/4IycDLXd+gaxRoZxxa1gGp6hE4BfkVNlqyg==
-From: Diederik de Haas <didi.debian@cknow.org>
-To: Neil Armstrong <neil.armstrong@linaro.org>,
- Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Sandy Huang <hjc@rock-chips.com>, Mark Yao <markyao0591@gmail.com>,
- Segfault <awarnecke002@hotmail.com>, Arnaud Ferraris <aferraris@debian.org>,
- Manuel Traut <manut@mecka.net>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, Manuel Traut <manut@mecka.net>
-Subject:
- Re: [PATCH 4/6] arm64: dts: rockchip: Add devicetree for Pine64 Pinetab2
-Date: Fri, 22 Dec 2023 18:01:54 +0100
-Message-ID: <2121710.IWpXjAX0fk@bagend>
-Organization: Connecting Knowledge
-In-Reply-To: <20231222-pinetab2-v1-4-e148a7f61bd1@mecka.net>
-References:
- <20231222-pinetab2-v1-0-e148a7f61bd1@mecka.net>
- <20231222-pinetab2-v1-4-e148a7f61bd1@mecka.net>
+	bh=o11YE5j79FN8PAmtNGUeQ/O6aLa108mHrEVJebvZVkA=;
+	b=ZNZmAtXS6ynEkqeZFfs1vx18Bm+f+bAqFuYywlmaEqdrOSPLxrCeoVuj8TxtJxkkHQyPwA
+	9uHFWxRcqi0HnHV7gVTvGDEV1UogKoEk5TvY1qgbgptZJNcmYvYvCbNC8FOHKLSN/FIP/t
+	Q1yR253z3c8GzhRICrHMIyFmNaceLE8=
+Received: from localhost (internet5.mraknet.com [185.200.108.250])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	(Authenticated sender: karelb)
+	by gimli.ms.mff.cuni.cz (Postfix) with ESMTPSA id A9B2D447BF5;
+	Fri, 22 Dec 2023 18:25:17 +0100 (CET)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart1748370.CxT9PIvavd";
- micalg="pgp-sha256"; protocol="application/pgp-signature"
-X-Migadu-Flow: FLOW_OUT
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Fri, 22 Dec 2023 18:25:17 +0100
+Message-Id: <CXV1DK9TRFFE.2XFOC3C4K4N52@gimli.ms.mff.cuni.cz>
+Cc: "Karel Balej" <balejk@matfyz.cz>, "Dmitry Torokhov"
+ <dmitry.torokhov@gmail.com>, "Krzysztof Kozlowski"
+ <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley" <conor+dt@kernel.org>,
+ "Lee Jones" <lee@kernel.org>, <linux-input@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ =?utf-8?q?Duje_Mihanovi=C4=87?= <duje.mihanovic@skole.hr>,
+ <~postmarketos/upstreaming@lists.sr.ht>, <phone-devel@vger.kernel.org>
+Subject: Re: [RFC PATCH 1/5] dt-bindings: mfd: add entry for the Marvell
+ 88PM88X PMICs
+To: "Rob Herring" <robh@kernel.org>
+From: "Karel Balej" <karelb@gimli.ms.mff.cuni.cz>
+References: <20231217131838.7569-1-karelb@gimli.ms.mff.cuni.cz>
+ <20231217131838.7569-2-karelb@gimli.ms.mff.cuni.cz>
+ <20231218151718.GA3827526-robh@kernel.org>
+In-Reply-To: <20231218151718.GA3827526-robh@kernel.org>
 
---nextPart1748370.CxT9PIvavd
-Content-Type: multipart/mixed; boundary="nextPart3145776.fJ4KNo4xjy";
- protected-headers="v1"
-Content-Transfer-Encoding: 7Bit
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Diederik de Haas <didi.debian@cknow.org>
-Date: Fri, 22 Dec 2023 18:01:54 +0100
-Message-ID: <2121710.IWpXjAX0fk@bagend>
-Organization: Connecting Knowledge
-In-Reply-To: <20231222-pinetab2-v1-4-e148a7f61bd1@mecka.net>
-MIME-Version: 1.0
+Rob,
 
-This is a multi-part message in MIME format.
+thank you very much for your feedback.
 
---nextPart3145776.fJ4KNo4xjy
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+On Mon Dec 18, 2023 at 4:17 PM CET, Rob Herring wrote:
+> > +  Marvell 88PM880 and 88PM886 are two similar PMICs providing
+> > +  several functions such as onkey, regulators or battery and
+> > +  charger. Both seem to come in two revisions -- A0 and A1.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: marvell,88pm886-a1
+>
+> The description talks about 4 different devices, but only 1 here.=20
+>
+> Do you expect to need A0 support? Devices with these PMICs should be=20
+> known and few, right?=20
 
-On Friday, 22 December 2023 12:05:44 CET Manuel Traut wrote:
-> +
-> +&cru {
-> +       assigned-clocks = <&cru PLL_GPLL>, <&pmucru PLL_PPLL>, <&cru
-> PLL_VPLL>; +       assigned-clock-rates = <1200000000>, <200000000>,
-> <500000000>; +};
+I know of three smartphones which have 88PM886 and all of them (at least
+the revisions that have been tested) seem to use A1. So no, I don't know
+of any device that would need A0, but I wanted have the driver ready in
+case somebody needed to add it later. What change do you then suggest?
 
-Attachment seem to work and for this I also have the attached patch in my 
-patch set.
-IIRC without it you get an error in dmesg immediately at boot up which is 
-visible on the PT2 *if* you have immediate visual output (which is not (yet?) 
-the case in my image/kernel).
-
-Cheers,
-  Diederik
---nextPart3145776.fJ4KNo4xjy
-Content-Disposition: attachment;
- filename="0006-arm64-dts-rk3566-pinetab2-Fix-cru-assigned-clocks.patch"
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/x-patch; charset="x-UTF_8J";
- name="0006-arm64-dts-rk3566-pinetab2-Fix-cru-assigned-clocks.patch"
-
-From d782a64f3b51ffb2f33d3ba3e11e2ebc416542e3 Mon Sep 17 00:00:00 2001
-From: Jonas Karlman <jonas@kwiboo.se>
-Date: Thu, 17 Aug 2023 17:52:47 +0200
-Subject: [PATCH 6/8] arm64: dts: rk3566-pinetab2: Fix cru assigned clocks
-
-Jonas Karlman provided/linked to the patch on IRC.
-Seems related to upstream commit 64b69474edf3b885c19a89bb165f978ba1b4be00.
-
-Signed-off-by: Diederik de Haas <didi.debian@cknow.org>
-Link: https://github.com/Kwiboo/u-boot-rockchip/blob/rk3568-2023.10/arch/arm/dts/rk3566-pinetab2-u-boot.dtsi#L11-L15
-Link: https://lore.kernel.org/all/20230110225547.1563119-2-jonas@kwiboo.se/
----
- arch/arm64/boot/dts/rockchip/rk3566-pinetab2.dtsi | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk3566-pinetab2.dtsi b/arch/arm64/boot/dts/rockchip/rk3566-pinetab2.dtsi
-index bbd7ed53602a..4a5bee5a28a7 100644
---- a/arch/arm64/boot/dts/rockchip/rk3566-pinetab2.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3566-pinetab2.dtsi
-@@ -288,8 +288,9 @@ &cpu3 {
- };
- 
- &cru {
--	assigned-clocks = <&cru PLL_GPLL>, <&pmucru PLL_PPLL>, <&cru PLL_VPLL>;
--	assigned-clock-rates = <1200000000>, <200000000>, <500000000>;
-+	assigned-clocks = <&pmucru CLK_RTC_32K>, <&cru PLL_GPLL>, <&pmucru PLL_PPLL>, <&cru PLL_VPLL>;
-+	assigned-clock-rates = <32768>, <1200000000>, <200000000>, <500000000>;
-+	assigned-clock-parents = <&pmucru CLK_RTC32K_FRAC>;
- };
- 
- &csi_dphy {
--- 
-2.42.0
-
-
---nextPart3145776.fJ4KNo4xjy--
-
---nextPart1748370.CxT9PIvavd
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQT1sUPBYsyGmi4usy/XblvOeH7bbgUCZYXBAgAKCRDXblvOeH7b
-bhcpAQCGga/E5eb2w/0+X/AHwmyoGxkSCdFMHH5O+JASROW0NAD/cer+0/CX3l23
-ubyIofrQa3gkr+ini5cyFgQy37IsKAY=
-=fTG/
------END PGP SIGNATURE-----
-
---nextPart1748370.CxT9PIvavd--
-
-
-
+Thank you and kind regards,
+K. B.
 
