@@ -1,159 +1,122 @@
-Return-Path: <devicetree+bounces-27917-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27918-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 834C281C276
-	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 01:54:40 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1BD6181C2B3
+	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 02:27:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 397F51F24439
-	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 00:54:40 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B2509B21F9C
+	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 01:27:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E75C631;
-	Fri, 22 Dec 2023 00:54:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8B582115;
+	Fri, 22 Dec 2023 01:27:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="qan48CME"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="J3ysisfb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-io1-f44.google.com (mail-io1-f44.google.com [209.85.166.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B6B9323B
-	for <devicetree@vger.kernel.org>; Fri, 22 Dec 2023 00:54:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 711651C06;
+	Fri, 22 Dec 2023 01:27:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-io1-f44.google.com with SMTP id ca18e2360f4ac-7ba8e33dd0cso43224939f.0;
+        Thu, 21 Dec 2023 17:27:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1703208448; x=1703813248; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=zy8g0lzs7eaKHdXsmVjSrLQ8rBtR4re0URoEliy+E2c=;
+        b=J3ysisfbARrGvLP5hd8lrZevjnmGNJwuFUmWWzxyMaT0RSs3ZZRlygfhLiwbUdJawd
+         Mjkly+AU0ksHDRLeV4psUpMJLSonLGA/cA/Z0loshvcnIfGeYrjwS++a5X9h90ZL9Hwe
+         Y2IEoYr23zPqi4d4wDEq947cFcgdsNscKtFZvuOcszlfHCXZ4hRxvuMCAdSSdgcHaQdM
+         SxaExlhGGG8xNwg+VBZBmqUSP/7Xj86jifAlOCvsRS0a3dW0NFzp6GRJF252YNSKFP4f
+         NU8JeBBPRu1v6/C3VYSIYFz8DdmohCyCJps/qNLXfGgNvRJgOxCeojx2KmncmNKr3sBv
+         36Ig==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1703208448; x=1703813248;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=zy8g0lzs7eaKHdXsmVjSrLQ8rBtR4re0URoEliy+E2c=;
+        b=VJPGfbMyHxPa5seI+v7n2vUKbRYM+usoJmwTykamTd1LeboZMT2ZzfQkaRl4d/ejbt
+         tMYyrgWOxk2SV0HCAGH5Jb49DZW+ljObd/N49cueoKDoxp1ZG4pHE3tdlXle/Yp9FsBG
+         aX9AktAW/eg2dX7+/UHNLc7QzZyg5uigZZeXMRfgmPqI1x6M+zuW9X86T1NzrwiCEjGi
+         a15HU6shArzd7TW0ZRxI7NzyfmacNa5QvRtjZEw+dYNHyn+gTRqniEXcfCZHlRZfIIDx
+         glCE8xcO2ANsSQshXRjOX18tPuQhzAIceFLG/Ew50MTCysk080raelsxe1T2fc6zZn2j
+         f8Tg==
+X-Gm-Message-State: AOJu0YxU671PYNq81iAY8AJz1H+I0uC4N6Hqm0mKfhyfkNJ49UFH/tkP
+	Bq80QM6uHLl0ebqnGTKu3ESyHrw/kVwopxgG1wKUEUx3aek=
+X-Google-Smtp-Source: AGHT+IENIdhp+wVXGkDYH0RYIkfdROfEfqzYbfyIxwYeq1Y0iQANbD+H6pXUx/iczB5ACQ1EdYKX3pHgiXMN2c3RPe0=
+X-Received: by 2002:a5e:da4d:0:b0:7b7:f9fb:8766 with SMTP id
+ o13-20020a5eda4d000000b007b7f9fb8766mr607985iop.14.1703208448542; Thu, 21 Dec
+ 2023 17:27:28 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1703206461;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=NuBTa6nyail/zrqKK8lmrh3dQC8JpRI3oXn+zqmkFdA=;
-	b=qan48CMEEPn+FcDuKOFbnK++xGU8vvV6cGonQdO52v4BGeWCgDYpLAhJ3cfF8BUJ4MSTFj
-	YNpLu1GoEydg6cwy+h/q2Jn9+uiYo38rOOGlN1/gZiVbalhYz5MyWSicJAxpvbzF/yTsWv
-	8g61d9Rm23q8gLotqH3Pn/Va5EzY12DovZ+Nx9qVhlIHiK2MiWZR4CYo5q/ovoO/lk7xPT
-	7fmYNswdzdOM6pO3vP0keypNq3LxaWhfIwrA1I0FYMVzQM4XD/5wC9zj3cYhz5Py4CRWLB
-	v39UtLWkDX39qnoOEuhDPLHT67L3cJM8AQshh+5SwxDIB/uXSWNekZTCug9M3w==
-Date: Fri, 22 Dec 2023 01:54:21 +0100
-From: Dragan Simic <dsimic@manjaro.org>
-To: Shantur Rathore <i@shantur.com>
-Cc: heiko@sntech.de, linux-rockchip@lists.infradead.org,
- devicetree@vger.kernel.org
-Subject: Re: [PATCH v1] dts: rockpro64: Remove usb regulator-always-on
-In-Reply-To: <CABEcMwXdD06KoODi4Sx7Q6oaNZ7CEUcNLiysVyqQSQq-7zYoqA@mail.gmail.com>
-References: <20231209232109.348999-1-i@shantur.com>
- <20231209233536.350876-1-i@shantur.com>
- <43339adb6f98a0b4e59db78f932df0d4@manjaro.org>
- <CABEcMwU8bOxUZV8i-Wig14GG-+NEEw+sbDBznTLNvgRg6Co3Jg@mail.gmail.com>
- <acbadb7f1d2c14b7003103c10d663d38@manjaro.org>
- <CABEcMwV8XhShnbJ_Z+2YW0EUCYt460pEyE-FPHW9jN16SR_Lpg@mail.gmail.com>
- <c6761d07ab7fb0eb38b94f4602f58e42@manjaro.org>
- <CABEcMwXdD06KoODi4Sx7Q6oaNZ7CEUcNLiysVyqQSQq-7zYoqA@mail.gmail.com>
-Message-ID: <01d17a353a1fd8e8f9d19abce3f89393@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 8bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+References: <20231219080021.2048889-1-kcfeng0@nuvoton.com> <20231219080021.2048889-2-kcfeng0@nuvoton.com>
+ <170297774900.1297817.5593278746406765111.robh@kernel.org>
+ <CALz278aJ08fOU2XZMZJJ2Ocp+XwovJ0+nHK-=0dWqbXf+522OA@mail.gmail.com> <9035aff7-49e6-49cf-a8f8-619d3b53c4a5@linaro.org>
+In-Reply-To: <9035aff7-49e6-49cf-a8f8-619d3b53c4a5@linaro.org>
+From: Ban Feng <baneric926@gmail.com>
+Date: Fri, 22 Dec 2023 09:27:17 +0800
+Message-ID: <CALz278Z-KF+NurdXhOQjoP-RMhQfrshEyU=KkumN8Peus7Wdew@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: hwmon: Add NCT7363Y documentation
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, corbet@lwn.net, 
+	kwliu@nuvoton.com, linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	jdelvare@suse.com, kcfeng0@nuvoton.com, krzysztof.kozlowski+dt@linaro.org, 
+	linux-hwmon@vger.kernel.org, openbmc@lists.ozlabs.org, robh+dt@kernel.org, 
+	Bonnie_Lo@wiwynn.com, conor+dt@kernel.org, DELPHINE_CHIU@wiwynn.com, 
+	linux@roeck-us.net
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 2023-12-21 11:11, Shantur Rathore wrote:
-> On Thu, Dec 14, 2023 at 2:35 PM Dragan Simic <dsimic@manjaro.org> 
-> wrote:
->> On 2023-12-14 15:24, Shantur Rathore wrote:
->> > On Sun, Dec 10, 2023 at 12:08 AM Dragan Simic <dsimic@manjaro.org>
->> > wrote:
->> >> On 2023-12-10 01:03, Shantur Rathore wrote:
->> >> > On Sat, Dec 9, 2023 at 11:43 PM Dragan Simic <dsimic@manjaro.org>
->> >> > wrote:
->> >> >> On 2023-12-10 00:35, Shantur Rathore wrote:
->> >> >> > USB port regulators should be controlled by PHYs
->> >> >> > so we remove always-on property and let PHYs manage the
->> >> >> > regulator.
->> >> >> >
->> >> >> > Typec port has misconfugred phy-supply and now that we are
->> >> >> > removing regulator-always-on, we need to fix the phy-supply
->> >> >> > so the PHYs are able to turn power to type-c port.
->> >> >> >
->> >> >> > Signed-off-by: Shantur Rathore <i@shantur.com>
->> >> >> > ---
->> >> >> > + devicetree
->> >> >> >
->> >> >> > After this patch the ports were confirmed to power up and down
->> >> >> > in u-boot when doing usb start and usb stop.
->> >> >> > At boot the regulators were off, the devices connected weren't
->> >> >> > powered up, on usb start the PHYs are able to power on the ports
->> >> >> > and on usb stop they were powered down.
->> >> >> >
->> >> >> > At the boot, the ports were powered down which was again powered
->> >> >> > up by Linux kernel when booting up.
->> >> >> >
->> >> >> >
->> >> >> >  arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi | 4 +---
->> >> >> >  1 file changed, 1 insertion(+), 3 deletions(-)
->> >> >> >
->> >> >> > diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi
->> >> >> > b/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi
->> >> >> > index bca2b50e0a..bd2824aa48 100644
->> >> >> > --- a/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi
->> >> >> > +++ b/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi
->> >> >> > @@ -192,7 +192,6 @@ vcc5v0_host: vcc5v0-host-regulator {
->> >> >> >               pinctrl-names = "default";
->> >> >> >               pinctrl-0 = <&vcc5v0_host_en>;
->> >> >> >               regulator-name = "vcc5v0_host";
->> >> >> > -             regulator-always-on;
->> >> >> >               vin-supply = <&vcc5v0_usb>;
->> >> >> >       };
->> >> >> >
->> >> >> > @@ -203,7 +202,6 @@ vcc5v0_typec: vcc5v0-typec-regulator {
->> >> >> >               pinctrl-names = "default";
->> >> >> >               pinctrl-0 = <&vcc5v0_typec_en>;
->> >> >> >               regulator-name = "vcc5v0_typec";
->> >> >> > -             regulator-always-on;
->> >> >> >               vin-supply = <&vcc5v0_usb>;
->> >> >> >       };
->> >> >> >
->> >> >> > @@ -863,7 +861,7 @@ u2phy0_otg: otg-port {
->> >> >> >       };
->> >> >> >
->> >> >> >       u2phy0_host: host-port {
->> >> >> > -             phy-supply = <&vcc5v0_host>;
->> >> >> > +             phy-supply = <&vcc5v0_typec>;
->> >> >> >               status = "okay";
->> >> >> >       };
->> >> >> >  };
->> >> >>
->> >> >> Quite frankly, something doesn't feel right there.  Would you mind,
->> >> >> please, to place this patch on hold until next week or so, at which
->> >> >> point I should have enough time to go through the RockPro64 schematic
->> >> >> thoroughly once again, and test the patch in detail?
->> >> >
->> >> > Sure, no worries.
->> >>
->> >> Great, thanks.
->> >>
->> >> > Would you mind letting me know which part doesn't feel right to you?
->> >>
->> >> Sure, it was about the last change in the patch.
->> >
->> > The TypeC port VBUS is VBUS_TYPEC on Page 20 of 33 marked for
->> > VBUS_[1-4] in schematic here - [0]
->> >
->> > [0] - https://files.pine64.org/doc/rockpro64/rockpro64_v21-SCH.pdf
->> 
->> I see, thanks, and I already went once again through the RockPro64
->> schematic, but only briefly.  I need to do that again, but in detail,
->> and compare it thoroughly with the dts(i).
-> 
-> Ping.
+Hi Krzysztof,
 
-Pong. :)  I haven't fogotten about this, but I simply haven't had enough 
-time yet, and I really want to have this checked and cleaned up.  I'm 
-sorry for the delay.
+On Thu, Dec 21, 2023 at 4:20=E2=80=AFPM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 21/12/2023 01:44, Ban Feng wrote:
+> > Hi Rob,
+> >
+> > On Tue, Dec 19, 2023 at 5:22=E2=80=AFPM Rob Herring <robh@kernel.org> w=
+rote:
+> >>
+> >>
+> >> On Tue, 19 Dec 2023 16:00:20 +0800, baneric926@gmail.com wrote:
+> >>> From: Ban Feng <kcfeng0@nuvoton.com>
+> >>>
+> >>> Adding bindings for the Nuvoton NCT7363Y Fan Controller
+> >>>
+> >>> Signed-off-by: Ban Feng <kcfeng0@nuvoton.com>
+> >>> ---
+> >>>  .../bindings/hwmon/nuvoton,nct7363.yaml       | 62 +++++++++++++++++=
+++
+> >>>  MAINTAINERS                                   |  6 ++
+> >>>  2 files changed, 68 insertions(+)
+> >>>  create mode 100644 Documentation/devicetree/bindings/hwmon/nuvoton,n=
+ct7363.yaml
+> >>>
+> >>
+> >> My bot found errors running 'make DT_CHECKER_FLAGS=3D-m dt_binding_che=
+ck'
+> >> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> >
+> > Our design is based on [1], and adds fan-common.yaml to
+>
+> Nothing in the patch or cover letter described the dependency.
+>
+
+ok, in v3, I'll attach a relevant patch and describe it in the cover letter=
+.
+
+Thanks,
+Ban
 
