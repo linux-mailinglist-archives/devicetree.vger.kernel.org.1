@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-28104-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28105-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6A2E81CC7D
-	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 17:01:48 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 81A5581CC81
+	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 17:02:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8BE36284934
-	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 16:01:47 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0318BB2244B
+	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 16:02:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD0E1241E2;
-	Fri, 22 Dec 2023 16:01:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A21F32377E;
+	Fri, 22 Dec 2023 16:02:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wcKp7okh"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lNoRWjk3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
+Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A26F2377A
-	for <devicetree@vger.kernel.org>; Fri, 22 Dec 2023 16:01:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 225D6241E6
+	for <devicetree@vger.kernel.org>; Fri, 22 Dec 2023 16:02:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-a236456fee1so252649066b.1
-        for <devicetree@vger.kernel.org>; Fri, 22 Dec 2023 08:01:41 -0800 (PST)
+Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-9fa45e75ed9so221871666b.1
+        for <devicetree@vger.kernel.org>; Fri, 22 Dec 2023 08:02:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1703260900; x=1703865700; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1703260954; x=1703865754; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=RbGsdzKTA1YOv8U+Moo23lWNJuGxRgXBP6UPTooKUgM=;
-        b=wcKp7okhswusm41r4k+NeXEScsvLgvObzEde1QsmvmWLCF/n6BQYnxkVsrQweXQ+ya
-         wp4QIXdtYrcXDMwQ+8L/8egyW0V5Fu7qHl8bi35brHP9Mc5a4YXkWmkUhBOqeWNskjMh
-         eW+Z71CuOjei+aQsjXn+1Zaji2dTtE7t4+VF4PPxuUXM/Vn0y7vM4ASVrQxh0/i3yRSV
-         MG9TcnMKOhBrpHDMVSXYhdJkfmmMNt6rrwzBhaWiqjMPYTio5KBaImnt1U0VrMMxdOBt
-         sIMf3g297rEWcTCDCl6FYfDvPsw08U6ZAxOa1CrrjpbK1WVoTF7RG+E2gvDAVIAjXnmb
-         wxjA==
+        bh=mu/L0OAfiVeOdaqFqlc5Uzg8G2ECrhHl0T7TsiF/PeY=;
+        b=lNoRWjk3Go/sPsgw+5iReUOsZmgkQxuZQzfbXby9LS6jIrkfxxCq3XpwJBPWH+wOsc
+         BG3bpmp+pRaPoHcW5+HMYcK3G0CvqSVv5FixhWub2A0mg/94BfTg7hPtsX5e/ctQW0c0
+         xhlfPQLf3r/5bHV7qjNO9sKOk/q/SWxKPckUl9sE0UIlpuX+U+S4yOxqBFQMG9SBGTCh
+         HLyXmRNXrbFZP6n4GIb5R/aHn4hOWBGe62AdajavVbtkvAS1HfOX5w6P6Go2BFbaE98d
+         VmZB4iXIYnWrpgNMca40ryCmHCLzQBzdfiRi8QYwDpJqRGPwEv5lNlyrFXLfwckPKinf
+         bWjw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703260900; x=1703865700;
+        d=1e100.net; s=20230601; t=1703260954; x=1703865754;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=RbGsdzKTA1YOv8U+Moo23lWNJuGxRgXBP6UPTooKUgM=;
-        b=oagdH4LiqnS+a4p5OQYAqUvqkxLoMTnU1f2J9XyW3sh5RrHArVoR2yjA0gCm0evdBj
-         zsEBXcQQmd05+iEDEhqWA03RgtRTohLycin8Zw186jxymQj6nJKLRMfstngosmnJ9JqN
-         s2E3vyXY5Z5zI5O5AkZFzFHsecs2FeYVXw1wLxBeblXj5bwwC9fqi3NK1bRmEyVmLmht
-         C3z7BY7G49BI9f5xCjXaeWeFFjUynLxKdXss6OK6Y9m/2DQ3MS8pzlJ6AvbQgCeARgPD
-         6XTw5mEV/2/YokDLIxRVANefPCKcy88Jg2PHjmXCpIkKLx3FknO5ngJkg8DaX0ecdNVU
-         ESWg==
-X-Gm-Message-State: AOJu0YxtfZwtcVa/x73TmxJ8b3aIpPesjJY+x2CZzreYq0AyuOzeu4co
-	+ofEWdvJ1VJUyGqLRqaeUd7neqxUNtl/4Q==
-X-Google-Smtp-Source: AGHT+IHp1X9wjZ8Dyx64BDczrPkxSRvF6ZrfA2b/hGVgbbq60pOvwCcEThyr010X98IeVaIRq8Ih4g==
-X-Received: by 2002:a17:906:3748:b0:a23:11a7:3d7e with SMTP id e8-20020a170906374800b00a2311a73d7emr751562ejc.139.1703260899703;
-        Fri, 22 Dec 2023 08:01:39 -0800 (PST)
+        bh=mu/L0OAfiVeOdaqFqlc5Uzg8G2ECrhHl0T7TsiF/PeY=;
+        b=liWrDibs1tYeb04CRaAhPQWUubVUcA1aeiJoT5D9RLSV9gyti5Wtz4okrUwrMAsAM0
+         mQRJsmEQOQEGc7Mtg/cV2Qm6ld5D/JO6cx17h1qNfXa2gvuoDvj5+ftfBLnGMIz17Uc6
+         P61Ipx4f2+eTFKzn9gbJAHa/lG1eCqG72NvvMJl9RKZzxFK+e72Iqp2fHEfbnTy2265Z
+         J0JMdYcN94HnAqM4RZmXzx+RKVqlZwn1fKLAGeZedQSdc5OT9l+Ul3pbli3PucTp8Uk1
+         wZkopLHWceGU3Dsn5nn+eDrypdIcS2WhDkVDprxxSQYo7YSIg5ffSU/NCjXDij0TnCo4
+         LdlQ==
+X-Gm-Message-State: AOJu0Yz6Dd+Jpb51OW939VxSHrVTbVEOJh8fYn81HjyAnNxxMyhmroTL
+	BzWXLZ6DlZu9LtZHENwVngNIAlIqvsbRrg==
+X-Google-Smtp-Source: AGHT+IGvjzwEMBNFBojcj/9stMIsuJ813FGZwNTfJJ20Lk8ywKvLKiwVzmcYJnLSG1XqONmfeXty0Q==
+X-Received: by 2002:a17:906:7c54:b0:a26:ad13:e9d9 with SMTP id g20-20020a1709067c5400b00a26ad13e9d9mr866297ejp.85.1703260954280;
+        Fri, 22 Dec 2023 08:02:34 -0800 (PST)
 Received: from [192.168.0.22] ([78.10.206.178])
-        by smtp.gmail.com with ESMTPSA id dx15-20020a170906a84f00b00a2363247829sm2155753ejb.216.2023.12.22.08.01.38
+        by smtp.gmail.com with ESMTPSA id dx15-20020a170906a84f00b00a2363247829sm2155753ejb.216.2023.12.22.08.02.32
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 22 Dec 2023 08:01:39 -0800 (PST)
-Message-ID: <282596bd-3987-4322-b8f1-fabfe2c91628@linaro.org>
-Date: Fri, 22 Dec 2023 17:01:37 +0100
+        Fri, 22 Dec 2023 08:02:33 -0800 (PST)
+Message-ID: <5b4692c8-e9f7-46dc-a060-6b309da97d27@linaro.org>
+Date: Fri, 22 Dec 2023 17:02:32 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,8 +66,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/6] dt-bindings: display: panel: Add BOE
- TH101MB31IG002-28A panel
+Subject: Re: [PATCH 3/6] dt-bindings: arm64: rockchip: Add Pine64 Pinetab2
 Content-Language: en-US
 To: Manuel Traut <manut@mecka.net>, Neil Armstrong
  <neil.armstrong@linaro.org>, Jessica Zhang <quic_jesszhan@quicinc.com>,
@@ -85,7 +84,7 @@ Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-rockchip@lists.infradead.org
 References: <20231222-pinetab2-v1-0-e148a7f61bd1@mecka.net>
- <20231222-pinetab2-v1-1-e148a7f61bd1@mecka.net>
+ <20231222-pinetab2-v1-3-e148a7f61bd1@mecka.net>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -131,89 +130,18 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231222-pinetab2-v1-1-e148a7f61bd1@mecka.net>
+In-Reply-To: <20231222-pinetab2-v1-3-e148a7f61bd1@mecka.net>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 22/12/2023 12:05, Manuel Traut wrote:
-> Add bindings for the BOE TH101MB31IG002-28A LCD panel. It is
-> used e.g. in the Pine64 Pinetab2 and PinetabV.
+> Add devicvetree binding documentation for Pine64 Pinetab2
+> which uses the Rockchip RK3566 SoC.
 > 
 > Signed-off-by: Manuel Traut <manut@mecka.net>
 > ---
 
-> +
-> +maintainers:
-> +  - Manuel Traut <manut@mecka.net>
-> +
-> +allOf:
-> +  - $ref: panel-common.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +        # BOE TH101MB31IG002-28A 10.1" WXGA TFT LCD panel
-> +      - boe,th101mb31ig002-28a
-> +
-> +  reg:
-
-reg: true
-
-> +    description: the virtual channel number of a DSI peripheral
-> +
-> +  backlight:
-
-: true
-
-> +    description: phandle of the backlight device attached to the panel
-
-Because there is really no need to repeat obvious.
-
-> +
-> +  enable-gpios:
-> +    description: a GPIO spec for the enable pin
-
-Ditto
-
-> +
-> +  power-supply:
-> +    description: core voltage supply
-
-Ditto
-
-> +
-> +
-
-And drop redundant blank lines.
-
-> +  ports: true
-
-Hm, why ports? From where did you copy it?
-
-> +  rotation: true
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - enable-gpios
-> +  - power-supply
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    dsi {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +        panel@0 {
-> +            compatible = "boe,th101mb31ig002-28a";
-> +            reg = <0>;
-> +            backlight = <&backlight_lcd0>;
-> +            enable-gpios = <&pio 45 0>;
-
-Use define for GPIO flag.
-
-
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
