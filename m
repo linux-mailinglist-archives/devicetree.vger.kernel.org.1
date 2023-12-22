@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-27983-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27984-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5959C81C64A
-	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 09:12:16 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8FE581C664
+	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 09:20:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A3B6EB22AEC
-	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 08:12:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 589BB1F23C95
+	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 08:20:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92801C129;
-	Fri, 22 Dec 2023 08:12:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E308C2F0;
+	Fri, 22 Dec 2023 08:20:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Jj/egOss"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="SMoJz8TV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
+Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2E69FBE4
-	for <devicetree@vger.kernel.org>; Fri, 22 Dec 2023 08:12:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDE71C15D
+	for <devicetree@vger.kernel.org>; Fri, 22 Dec 2023 08:20:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-a2331e7058aso188270966b.2
-        for <devicetree@vger.kernel.org>; Fri, 22 Dec 2023 00:12:07 -0800 (PST)
+Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-55436c4a65eso860898a12.2
+        for <devicetree@vger.kernel.org>; Fri, 22 Dec 2023 00:20:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1703232726; x=1703837526; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1703233211; x=1703838011; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=l3ulPGHKv/ZPZ4PrF7+MKhogClUDyW/rffu8i5zrlFY=;
-        b=Jj/egOssPeZDNyTAF5XOnd2c38wymmYDBRjZpcUIzTuvLMh5VVnfA+/u1vDiHb3jpu
-         WmT7D3d9yalCa4kKRF6Uwfd0kD14VBIk71kks9n8z6aliWNlShVYKxlOIc/Hj/EvRcEo
-         4Bg0pQUyYtbiO1rx+61iCYxfeyPLJ7HqPwetmy7ItAo1VO434soxqZuaY+mj/Pznb32t
-         ZX8GlOB+Sby/SiCWhp8HQ2M1KWGZ2n2PXAR9U8jTN1bxrXC97jiLx4qU9jtlCvj9d04V
-         blTUJpIe9YJQz3t3GuqYmXsE02Ub87PpR5+fGxg5cmEwT1O202CnYEjkGgvy0ZvMTbeH
-         E11g==
+        bh=Na4ldMwcMf4G0H1sVToYBX0bSozG0MAxiCTxrCH8TFU=;
+        b=SMoJz8TVaBlDFLXTjTqVd9h3akl0dwZn+GjjfflBQ2dmSlbAaEvlCy5HIxavb3B/Rn
+         ka4SPbQmd6nfqW1TVL3LfyS6+uP3x1/gEQFiRLJ4xeQIfbGzntEocoiXMR3unG0jiSfh
+         EfFyTWQmWGN75EjpxD+ii0JJM4OOz6aAtCF34wHNdtpESObo+/Q0vhkjnMC/VpykzHRG
+         Ef+Sy+SAqpf4N/FuqGBxRkIovyMvAzH8o5b45wG3ykWh/hcqn3VEviR2/hfr2akfVXeR
+         DQFJRdxe5hO0wkz8K8TdAJHUUrCB1iSxjDCRXUYKRMSdSQuKrTY1FTSfWqqtoQQanCKI
+         yVpg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703232726; x=1703837526;
+        d=1e100.net; s=20230601; t=1703233211; x=1703838011;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=l3ulPGHKv/ZPZ4PrF7+MKhogClUDyW/rffu8i5zrlFY=;
-        b=TGvAAwBeXZktFwVHD2uSfdGn0CUjHAks7FRfuNVto5JAc+BXlfTNllz7qHBHLDNn2T
-         nLlx8J8nXhRqsoAHsiJFWnP3/ymGoL7iiZZq6knSkyfiVBGlbgXWNlGL3elO84xr0sKO
-         /MTmNqPbHIEFfXss5bg4BvbL/YsFJn9rUsgBIn5nBg63J/QisBM3MvxOvk6fyoqxu5qQ
-         erU658M0C33bLNjWHOnVi5wdE7e8n8h7fKqc53HSFeeBP1r0QEI8OcwWEWjX4EwWGFIr
-         71Dcgn6pFN1svoyblxKUvkEdvqGP1cTJK7sCYaG1nfsGrEfDx7FoH9dBuTMwZcaUrYLK
-         J93A==
-X-Gm-Message-State: AOJu0YxX0AhhfpUYZPhdJMmNltbOOrTAlgbwcutcosRIXi8BVhUeVvrE
-	7wS5MPjks9wuwbTIfgGFWJAu5c2FmQVRCQ==
-X-Google-Smtp-Source: AGHT+IFQ8yqAiGLpByY3+iJbad7ReYXbgOANRLDNM0da2/guhsGcIZctGqkBR7xXfeBxJLsHdfqtSQ==
-X-Received: by 2002:a17:906:4a15:b0:a23:5780:6305 with SMTP id w21-20020a1709064a1500b00a2357806305mr270074eju.216.1703232726357;
-        Fri, 22 Dec 2023 00:12:06 -0800 (PST)
+        bh=Na4ldMwcMf4G0H1sVToYBX0bSozG0MAxiCTxrCH8TFU=;
+        b=ohCi/IsMgTxv2hFgHu0e2I0PMpuirxwOom1O0kSrAo5Ze/ZP4JmBdis+uK65cgu1H9
+         zdFHitEgoN26IHjwYxcHg7zzc2/lM3WDiAO22ZWZm4l4MeCP14xd4X6oBgJDIjDM+7vw
+         Nl54YeBp7jU2OsvCDwekUNSzLUDy9hUinC2ypJJXXcG0SwF813RjKvvgZ24AyiPWo6/o
+         9/md+SMVVUdsE15fsieAcWpvue1zSuN/5nMDxR3B+CDAPgE0qwv3k5iRcsQKmwVTiShk
+         EmJ0axAajcwK+06HQ9Se+yBglM9R+wAqc/iMWf6TmFuuoDxLyAecW4qdCokmrzUewMr3
+         /Cyg==
+X-Gm-Message-State: AOJu0YzjnBA8VJ4OT0samuur0PLkxWbX5QJIYjBD+XAuiAzCQKTiGlaO
+	Nlni5DR/3semIP2PSa85CwhGKGmezbssQg==
+X-Google-Smtp-Source: AGHT+IG7EsdNVDBR6G+RIqivZpBPBtZ8o/wWfck/f9+50bZDEp5w9fxjzGCx/myM/bvfhRlyhjYXQQ==
+X-Received: by 2002:a50:8e5a:0:b0:553:ad79:b7cb with SMTP id 26-20020a508e5a000000b00553ad79b7cbmr469609edx.3.1703233211202;
+        Fri, 22 Dec 2023 00:20:11 -0800 (PST)
 Received: from [192.168.0.22] ([78.10.206.178])
-        by smtp.gmail.com with ESMTPSA id u23-20020a170906109700b00a26af5717e9sm930059eju.42.2023.12.22.00.12.04
+        by smtp.gmail.com with ESMTPSA id 8-20020a0564021f4800b005545dffa0bdsm310156edz.13.2023.12.22.00.20.09
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 22 Dec 2023 00:12:05 -0800 (PST)
-Message-ID: <26617c83-31b3-4ad9-8a61-0b8271fad41f@linaro.org>
-Date: Fri, 22 Dec 2023 09:12:04 +0100
+        Fri, 22 Dec 2023 00:20:10 -0800 (PST)
+Message-ID: <de6370c5-5cd1-409a-8716-99dd7738d30d@linaro.org>
+Date: Fri, 22 Dec 2023 09:20:09 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,24 +66,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/8] dt-bindings: clock: qcom: Allow VDD_GFX supply to
- GX
+Subject: Re: [PATCH] dt-bindings: serial: Describe ARM dcc interface
 Content-Language: en-US
-To: Bjorn Andersson <quic_bjorande@quicinc.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+To: Michal Simek <michal.simek@amd.com>, linux-kernel@vger.kernel.org,
+ monstr@monstr.eu, michal.simek@xilinx.com, git@xilinx.com
+Cc: Conor Dooley <conor+dt@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jiri Slaby <jirislaby@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Taniya Das <quic_tdas@quicinc.com>,
- Ulf Hansson <ulf.hansson@linaro.org>, Johan Hovold
- <johan+linaro@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>,
- Will Deacon <will@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20231220-sa8295p-gpu-v2-0-4763246b72c0@quicinc.com>
- <20231220-sa8295p-gpu-v2-1-4763246b72c0@quicinc.com>
+ Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+ linux-serial@vger.kernel.org
+References: <9d7e85914eb1cdb313b28cb019093a84dd9b4773.1703167505.git.michal.simek@amd.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -129,48 +122,57 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231220-sa8295p-gpu-v2-1-4763246b72c0@quicinc.com>
+In-Reply-To: <9d7e85914eb1cdb313b28cb019093a84dd9b4773.1703167505.git.michal.simek@amd.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 22/12/2023 05:39, Bjorn Andersson wrote:
-> In some designs the SoC's VDD_GFX pads are supplied by an external
-> regulator, rather than a power-domain. Allow this to be described in the
-> GPU clock controller binding.
+On 21/12/2023 15:05, Michal Simek wrote:
+> Debug Communication Channel (DCC) provides the way how to pass data between
+> target CPU and host via JTAG interface. Every CPU has own interface for
+> communication via dbgdtrtx_el0 and dbgdtrrx_el0 registers.
 > 
-> Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
+> Signed-off-by: Michal Simek <michal.simek@amd.com>
 > ---
->  Documentation/devicetree/bindings/clock/qcom,gpucc.yaml | 16 ++++++++++++++++
->  1 file changed, 16 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/clock/qcom,gpucc.yaml b/Documentation/devicetree/bindings/clock/qcom,gpucc.yaml
-> index f369fa34e00c..c0dd24c9dcb3 100644
-> --- a/Documentation/devicetree/bindings/clock/qcom,gpucc.yaml
-> +++ b/Documentation/devicetree/bindings/clock/qcom,gpucc.yaml
-> @@ -53,6 +53,9 @@ properties:
->    power-domains:
->      maxItems: 1
->  
-> +  vdd-gfx-supply:
-> +    description: Regulator supply for the VDD_GFX pads
+> This communication interface is used for flash programming on Xilinx
+> SOCs from U-Boot.
+> https://source.denx.de/u-boot/u-boot/-/blob/master/drivers/serial/arm_dcc.c
+> 
+> ---
+>  .../devicetree/bindings/serial/arm,dcc.yaml   | 30 +++++++++++++++++++
+>  1 file changed, 30 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/serial/arm,dcc.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/serial/arm,dcc.yaml b/Documentation/devicetree/bindings/serial/arm,dcc.yaml
+> new file mode 100644
+> index 000000000000..fd0589356617
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/serial/arm,dcc.yaml
+> @@ -0,0 +1,30 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/serial/arm,dcc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
->    '#clock-cells':
->      const: 1
->  
-> @@ -74,6 +77,19 @@ required:
->    - '#reset-cells'
->    - '#power-domain-cells'
->  
-> +# Allow either power-domains or vdd-gfx-supply, not both
-> +oneOf:
-> +  - required:
-> +      - power-domains
-> +  - required:
-> +      - vdd-gfx-supply
+> +title: ARM DCC (Data communication channel) serial emulation
+> +
+> +maintainers:
+> +  - Michal Simek <michal.simek@amd.com>
+> +
+> +description: |
+> +  ARM DCC (Data communication channel) serial emulation interface available
+> +  via JTAG can be also used as one of serial line tightly coupled with every
+> +  ARM CPU available in the system.
+> +
+> +properties:
+> +  compatible:
+> +    const: arm,dcc
+> +
+> +required:
+> +  - compatible
 
-This should be enough, assuming one of them is actually required. The
-code. See also:
-https://elixir.bootlin.com/linux/v5.17-rc2/source/Documentation/devicetree/bindings/reserved-memory/reserved-memory.yaml#L91
+no allOf: with $ref to serial.yaml? Does it differ somehow?
 
 Best regards,
 Krzysztof
