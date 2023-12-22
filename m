@@ -1,188 +1,111 @@
-Return-Path: <devicetree+bounces-27937-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27946-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4DD0381C457
-	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 05:52:57 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1540681C4B8
+	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 06:45:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CF46E1F25110
-	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 04:52:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 50EE31C24C46
+	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 05:45:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E57C63A4;
-	Fri, 22 Dec 2023 04:52:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79901539F;
+	Fri, 22 Dec 2023 05:45:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="Q5lzbOdF"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="MOif9ryk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3010567E;
-	Fri, 22 Dec 2023 04:52:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: eb78f0eea08511eea5db2bebc7c28f94-20231222
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=CatTnUcyQaxUQXvEYlhz6Q+RAY41Ln/Nz5HDx2i0d5c=;
-	b=Q5lzbOdFIlOz2ezRpMWO91CRcWiNl+C4rLfsJOqq1G6yP37W+OtlxZOcx3H1D+3ScXq8VefqeodenyMgGl5W91txaJuthwAOujpbQyb/cctoGKFEMjEE8CtVzO8/DiORX6bzZeeBikQ6sp+tPI/ClCZBxl2rPDprrsjUs8jrHWE=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.35,REQID:2d948a9f-ee9e-4141-bf67-71a3d600433f,IP:0,U
-	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:0
-X-CID-META: VersionHash:5d391d7,CLOUDID:b0b8738d-e2c0-40b0-a8fe-7c7e47299109,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-	RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,
-	DKR:0,DKP:0,BRR:0,BRE:0
-X-CID-BVR: 0,NGT
-X-CID-BAS: 0,NGT,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: eb78f0eea08511eea5db2bebc7c28f94-20231222
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw01.mediatek.com
-	(envelope-from <jason-jh.lin@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 1204300333; Fri, 22 Dec 2023 12:52:33 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs13n2.mediatek.inc (172.21.101.108) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Fri, 22 Dec 2023 12:52:32 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
- mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Fri, 22 Dec 2023 12:52:32 +0800
-From: Jason-JH.Lin <jason-jh.lin@mediatek.com>
-To: Jassi Brar <jassisinghbrar@gmail.com>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Matthias Brugger
-	<matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>, Chun-Kuang Hu
-	<chunkuang.hu@kernel.org>
-CC: Conor Dooley <conor+dt@kernel.org>, Mauro Carvalho Chehab
-	<mchehab@kernel.org>, <linux-kernel@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-media@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>,
-	Jason-ch Chen <jason-ch.chen@mediatek.com>, Johnson Wang
-	<johnson.wang@mediatek.com>, "Jason-JH . Lin" <jason-jh.lin@mediatek.com>,
-	Singo Chang <singo.chang@mediatek.com>, Nancy Lin <nancy.lin@mediatek.com>,
-	Shawn Sung <shawn.sung@mediatek.com>,
-	<Project_Global_Chrome_Upstream_Group@mediatek.com>
-Subject: [PATCH v3 9/9] mailbox: mediatek: Add secure CMDQ driver support for CMDQ driver
-Date: Fri, 22 Dec 2023 12:52:28 +0800
-Message-ID: <20231222045228.27826-10-jason-jh.lin@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20231222045228.27826-1-jason-jh.lin@mediatek.com>
-References: <20231222045228.27826-1-jason-jh.lin@mediatek.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C54B46A8;
+	Fri, 22 Dec 2023 05:45:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1703223945; x=1734759945;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=CjRK6L+3YHfQxLdgqWH6wzL66WcY3RprmAfaaHBD6ss=;
+  b=MOif9rykfTPTPmFSirrH7KqOH4T+y952TsfZVmguJt6TAzAvQinYM8UM
+   c9OOK99gj/vPWDTaJJdDMXU9CXv3p7lJZdDhx90vhVmbIUZPrMzrSwE8X
+   GGyEz8NGlXTkemqpytzP/P4P5LFoQoOumZJaudlgY6f5N4E77nAb7EcAT
+   Mc0oe3gUmqupncAp9HMQqoWdmZAGBNYZ7Ma86P3r0Nc+UjrpTawsYXvZk
+   Z8pqeZkZqtYlLw1zYkgGrQyj8KY3RD5zn7k4UZ3Zbi4P4wc/N2lIHqTKc
+   QMhXtxZoWmFvm5d6NLxPzjEF8qydjyAZBWnsGM3NpybeHBMAKwipWspl+
+   A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10931"; a="9470499"
+X-IronPort-AV: E=Sophos;i="6.04,294,1695711600"; 
+   d="scan'208";a="9470499"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Dec 2023 21:45:44 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10931"; a="900324167"
+X-IronPort-AV: E=Sophos;i="6.04,294,1695711600"; 
+   d="scan'208";a="900324167"
+Received: from pg-esw-build.png.intel.com ([10.226.214.57])
+  by orsmga004.jf.intel.com with ESMTP; 21 Dec 2023 21:45:39 -0800
+From: Leong Ching Swee <leong.ching.swee@intel.com>
+To: Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Jose Abreu <joabreu@synopsys.com>,
+	"David S . Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Giuseppe Cavallaro <peppe.cavallaro@st.com>
+Cc: linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Swee Leong Ching <leong.ching.swee@intel.com>
+Subject: [PATCH net-next v1 0/4] net: stmmac: Enable Per DMA Channel interrupt
+Date: Fri, 22 Dec 2023 13:44:47 +0800
+Message-Id: <20231222054451.2683242-1-leong.ching.swee@intel.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK: N
+Content-Transfer-Encoding: 8bit
 
-CMDQ driver will probe a secure CMDQ driver when has_sec flag
-in platform data is true and its device node in dts has defined a
-event id of CMDQ_SYNC_TOKEN_SEC_EOF.
+From: Swee Leong Ching <leong.ching.swee@intel.com>
 
-Secure CMDQ driver support on mt8188 and mt8195 currently.
-So add a has_secure flag to their driver data to probe it.
+Hi,
+Add Per DMA Channel interrupt feature for DWXGMAC IP.
+ 
+Patchset (link below) contains per DMA channel interrupt, But it was 
+achieved.
+https://lore.kernel.org/lkml/20230821203328.GA2197059-
+robh@kernel.org/t/#m849b529a642e1bff89c05a07efc25d6a94c8bfb4
+ 
+Some of the changes in this patchset are based on reviewer comment on 
+patchset mentioned beforehand.
 
-Signed-off-by: Jason-JH.Lin <jason-jh.lin@mediatek.com>
----
- drivers/mailbox/mtk-cmdq-mailbox.c | 38 ++++++++++++++++++++++++++++++
- 1 file changed, 38 insertions(+)
+Swee Leong Ching (4):
+  dt-bindings: net: snps,dwmac: per channel irq
+  net: stmmac: Make MSI interrupt routine generic
+  net: stmmac: Add support for TX/RX channel interrupt
+  net: stmmac: Use interrupt mode INTM=1 for per channel irq
 
-diff --git a/drivers/mailbox/mtk-cmdq-mailbox.c b/drivers/mailbox/mtk-cmdq-mailbox.c
-index 04321f7e10c3..79167696c1eb 100644
---- a/drivers/mailbox/mtk-cmdq-mailbox.c
-+++ b/drivers/mailbox/mtk-cmdq-mailbox.c
-@@ -15,6 +15,7 @@
- #include <linux/pm_runtime.h>
- #include <linux/mailbox_controller.h>
- #include <linux/mailbox/mtk-cmdq-mailbox.h>
-+#include <linux/mailbox/mtk-cmdq-sec-mailbox.h>
- #include <linux/of.h>
- 
- #define CMDQ_MBOX_AUTOSUSPEND_DELAY_MS	100
-@@ -60,6 +61,9 @@ struct gce_plat {
- 	u8 shift;
- 	bool control_by_sw;
- 	bool sw_ddr_en;
-+	bool has_secure;
-+	u32 secure_thread_nr;
-+	u32 secure_thread_min;
- 	u32 gce_num;
- };
- 
-@@ -570,6 +574,7 @@ static int cmdq_probe(struct platform_device *pdev)
- 	int alias_id = 0;
- 	static const char * const clk_name = "gce";
- 	static const char * const clk_names[] = { "gce0", "gce1" };
-+	u32 hwid = 0;
- 
- 	cmdq = devm_kzalloc(dev, sizeof(*cmdq), GFP_KERNEL);
- 	if (!cmdq)
-@@ -595,6 +600,8 @@ static int cmdq_probe(struct platform_device *pdev)
- 		dev, cmdq->base, cmdq->irq);
- 
- 	if (cmdq->pdata->gce_num > 1) {
-+		hwid = of_alias_get_id(dev->of_node, clk_name);
-+
- 		for_each_child_of_node(phandle->parent, node) {
- 			alias_id = of_alias_get_id(node, clk_name);
- 			if (alias_id >= 0 && alias_id < cmdq->pdata->gce_num) {
-@@ -677,6 +684,31 @@ static int cmdq_probe(struct platform_device *pdev)
- 	pm_runtime_set_autosuspend_delay(dev, CMDQ_MBOX_AUTOSUSPEND_DELAY_MS);
- 	pm_runtime_use_autosuspend(dev);
- 
-+	if (cmdq->pdata->has_secure) {
-+		struct platform_device *mtk_cmdq_sec;
-+		static struct gce_sec_plat sec_plat = {0};
-+
-+		if (of_property_read_u32_index(dev->of_node, "mediatek,gce-events", 0,
-+					       &sec_plat.cmdq_event) == 0) {
-+			sec_plat.gce_dev = dev;
-+			sec_plat.hwid = hwid;
-+			sec_plat.gce_num = cmdq->pdata->gce_num;
-+			sec_plat.clocks = cmdq->clocks;
-+			sec_plat.thread_nr = cmdq->pdata->thread_nr;
-+			sec_plat.secure_thread_nr = cmdq->pdata->secure_thread_nr;
-+			sec_plat.secure_thread_min = cmdq->pdata->secure_thread_min;
-+
-+			mtk_cmdq_sec = platform_device_register_data(dev, "mtk-cmdq-sec",
-+								     PLATFORM_DEVID_AUTO,
-+								     &sec_plat,
-+								     sizeof(sec_plat));
-+			if (IS_ERR(mtk_cmdq_sec)) {
-+				dev_err(dev, "failed to register platform_device mtk-cmdq-sec\n");
-+				return PTR_ERR(mtk_cmdq_sec);
-+			}
-+		}
-+	}
-+
- 	return 0;
- }
- 
-@@ -720,6 +752,9 @@ static const struct gce_plat gce_plat_mt8188 = {
- 	.thread_nr = 32,
- 	.shift = 3,
- 	.control_by_sw = true,
-+	.has_secure = true,
-+	.secure_thread_nr = 2,
-+	.secure_thread_min = 8,
- 	.gce_num = 2
- };
- 
-@@ -734,6 +769,9 @@ static const struct gce_plat gce_plat_mt8195 = {
- 	.thread_nr = 24,
- 	.shift = 3,
- 	.control_by_sw = true,
-+	.has_secure = true,
-+	.secure_thread_nr = 2,
-+	.secure_thread_min = 8,
- 	.gce_num = 2
- };
- 
+ .../devicetree/bindings/net/snps,dwmac.yaml   | 24 ++++++++++----
+ .../net/ethernet/stmicro/stmmac/dwmac-intel.c |  4 +--
+ .../net/ethernet/stmicro/stmmac/dwmac4_dma.c  |  2 +-
+ .../net/ethernet/stmicro/stmmac/dwxgmac2.h    |  3 ++
+ .../ethernet/stmicro/stmmac/dwxgmac2_dma.c    | 32 +++++++++++--------
+ .../net/ethernet/stmicro/stmmac/stmmac_main.c | 29 +++++++++--------
+ .../ethernet/stmicro/stmmac/stmmac_platform.c | 24 ++++++++++++++
+ include/linux/stmmac.h                        |  4 +--
+ 8 files changed, 84 insertions(+), 38 deletions(-)
+
 -- 
-2.18.0
+2.34.1
 
 
