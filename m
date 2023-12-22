@@ -1,125 +1,116 @@
-Return-Path: <devicetree+bounces-28030-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28038-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E164381C87E
-	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 11:46:17 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 159EF81C8CD
+	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 12:11:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E1F191C22260
-	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 10:46:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BF59F282144
+	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 11:11:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7A40156D0;
-	Fri, 22 Dec 2023 10:45:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2BA915AD7;
+	Fri, 22 Dec 2023 11:11:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="plZeel0C"
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=mecka.net header.i=@mecka.net header.b="E7ei35fE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94FDB168AD;
-	Fri, 22 Dec 2023 10:45:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 91B0FC433C9;
-	Fri, 22 Dec 2023 10:45:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1703241940;
-	bh=QjenKszVnxW19P9qm+vCaf2vsR+u42Hmz70A3f7Ircw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=plZeel0CDn+GDpO7sYmPmXPFRcCxjWtyRlYZ3Pf/LXJxiv/ZpZRg4UnGIFMoByY8L
-	 m3N6NUI5rR3RxA/s6wygvE3Nb93NlCsuSLaX7g8JPWVhFvTWH0jDFWP5KfxXes3W7b
-	 nUBQP881GyHXJWCbN5xK9r5Ray/EqPIrsyJkyp9mlZS/5/5SecSCORlbuPw+ExIoWq
-	 Wy+pgZoXCEze7vvn04k5vhV2Wh32RXis9o+Jftyc+QNuXmgSFOX9wnuWwU43q8kBpd
-	 7h+MY88ZhTKPejo8SKVSbniJjky42mbfQTQynN4fuGseJioFxwtechsHx8AcIZhCmV
-	 Pce3IOsmyUv1g==
-Date: Fri, 22 Dec 2023 11:45:37 +0100
-From: Wolfram Sang <wsa@kernel.org>
-To: Alain Volmat <alain.volmat@foss.st.com>
-Cc: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Pierre-Yves MORDRET <pierre-yves.mordret@foss.st.com>,
-	Conor Dooley <conor@kernel.org>,
-	Valentin Caron <valentin.caron@foss.st.com>,
-	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 6/9] i2c: stm32f7: add support for stm32mp25 soc
-Message-ID: <ZYVo0X1q9w19qTwg@shikoro>
-Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
-	Alain Volmat <alain.volmat@foss.st.com>,
-	Andi Shyti <andi.shyti@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Pierre-Yves MORDRET <pierre-yves.mordret@foss.st.com>,
-	Conor Dooley <conor@kernel.org>,
-	Valentin Caron <valentin.caron@foss.st.com>,
-	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20231215170617.95868-1-alain.volmat@foss.st.com>
- <20231215170617.95868-7-alain.volmat@foss.st.com>
+Received: from mecka.net (mecka.net [159.69.159.214])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D82B17743;
+	Fri, 22 Dec 2023 11:11:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mecka.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mecka.net
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mecka.net; s=2016.11;
+	t=1703243143; bh=0fR2LDFcxwDpap7qMyCNCyANGL/FAUTkYz5H7M+mUm8=;
+	h=From:Subject:Date:To:Cc:From;
+	b=E7ei35fEyNQLV6kQpHiNwkAdt2o4MDhvff5xMX2p+pxe6p+w8dI04tejBk5yVnzzh
+	 veVgo0e1+YojtbRNvZQx+YdqQ8PowrU1BUtbRUs7WakAfmdSFqS1qvJy/X2/vV43Fz
+	 NAzHgQ6mGnGi9cqPc0s5OgMXM+aVKCYO7tHyoxEsfZoJeFNupw9i/xbPCXx09BT8Vp
+	 SZ+7IfqRkROge97dRETC0k42t6vLUkWRf8XGS+2gzxIP/0P6OoB2Ga8uih050pDNcr
+	 j6FLVuQvOcrmsNY8DXCNMgva0zWv2R9gwd2G6PnoM/i2vMj1qGYkFNtlSKt1wKK1K3
+	 gvUh4643vzCew==
+Received: from arthur.fritz.box (unknown [185.147.11.134])
+	by mecka.net (Postfix) with ESMTPSA id 8BFC3370D3B;
+	Fri, 22 Dec 2023 12:05:42 +0100 (CET)
+From: Manuel Traut <manut@mecka.net>
+Subject: [PATCH 0/6] arm64: rockchip: Pine64 pinetab2 support
+Date: Fri, 22 Dec 2023 12:05:40 +0100
+Message-Id: <20231222-pinetab2-v1-0-e148a7f61bd1@mecka.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="gW2s4LrwYHnx5p2E"
-Content-Disposition: inline
-In-Reply-To: <20231215170617.95868-7-alain.volmat@foss.st.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAIRthWUC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI2NDIyMj3YLMvNSSxCQj3bTERHPzVAPDlCSzNCWg8oKi1LTMCrBR0bG1tQA
+ RoX8xWgAAAA==
+To: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+ Sandy Huang <hjc@rock-chips.com>, Mark Yao <markyao0591@gmail.com>, 
+ Diederik de Haas <didi.debian@cknow.org>, 
+ Segfault <awarnecke002@hotmail.com>, Arnaud Ferraris <aferraris@debian.org>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-rockchip@lists.infradead.org, Manuel Traut <manut@mecka.net>
+X-Mailer: b4 0.12.4
 
+This adds support for the BOE TH101MB31IG002 LCD Panel used in Pinetab2 [1] and
+Pinetab-V [2] as well as the devictrees for the Pinetab2 v0.1 and v2.0.
 
---gW2s4LrwYHnx5p2E
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+The BOE LCD Panel patch was retrieved from [3]. The function-name prefix has
+been adapted and the LCD init section was simplified.
 
-On Fri, Dec 15, 2023 at 06:06:10PM +0100, Alain Volmat wrote:
-> The stm32mp25 has only a single interrupt line used for both
-> events and errors. In order to cope with that, reorganise the
-> error handling code so that it can be called either from the
-> common handler (used in case of SoC having only a single IT line)
-> and the error handler for others.
-> The CR1 register also embeds a new FMP bit, necessary when running
-> at Fast Mode Plus frequency. This bit should be used instead of
-> the SYSCFG bit used on other platforms.
-> Add a new compatible to distinguish between the SoCs and two
-> boolean within the setup structure in order to know if the
-> platform has a single/multiple IT lines and if the FMP bit
-> within CR1 is available or not.
->=20
-> Signed-off-by: Valentin Caron <valentin.caron@foss.st.com>
-> Signed-off-by: Alain Volmat <alain.volmat@foss.st.com>
+The Pinetab2 devicetree patch was retrieved from [4]. Some renaming was needed
+to pass the dtb-checks, the brightness-levels are specified as range and steps
+instead of a list of values.
 
-Applied to for-next, thanks!
+The last to patches fix some dtb-checker warnings that showed up with the new
+device-trees.
 
+[1] https://wiki.pine64.org/wiki/PineTab2
+[2] https://wiki.pine64.org/wiki/PineTab-V
+[3] https://salsa.debian.org/Mobian-team/devices/kernels/rockchip-linux/-/blob/mobian-6.6/debian/patches/display/0018-drm-panel-add-BOE-TH101MB31IG002-28A-driver.patch?ref_type=heads
+[4] https://salsa.debian.org/Mobian-team/devices/kernels/rockchip-linux/-/blob/mobian-6.6/debian/patches/device-tree/0134-arch-arm64-add-Pine64-PineTab2-device-trees.patch?ref_type=heads
 
---gW2s4LrwYHnx5p2E
-Content-Type: application/pgp-signature; name="signature.asc"
+Signed-off-by: Manuel Traut <manut@mecka.net>
+---
+Manuel Traut (4):
+      dt-bindings: display: panel: Add BOE TH101MB31IG002-28A panel
+      dt-bindings: arm64: rockchip: Add Pine64 Pinetab2
+      arm64: dts: rockchip: Fix some dtb-check warnings
+      dt-bindings: display: rockchip: dw-hdmi: Add missing sound-dai-cells property
 
------BEGIN PGP SIGNATURE-----
+Segfault (2):
+      drm/panel: Add driver for BOE TH101MB31IG002-28A panel
+      arm64: dts: rockchip: Add devicetree for Pine64 Pinetab2
 
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmWFaNEACgkQFA3kzBSg
-KbaoKg//cIf0sRmkSwiPwi3Vba09BJKXqrH9/uMfduP0Rr0B4WnUp6EnVNsKCrji
-2ZWMtbXr5PobpUeKSIg7J0J46gCwYujIGu8uhpw4EaO9JcNZoYWjtdrdeJTXM8fN
-c9zdIHe2FzMWVFqQKK8EymudivlSoKWJQq3zkrzjKkUKFU7f0fG1PQx6DS+isXVD
-Zmnf0sUrKq2xCT5c/B06EuXawzkulolf2iymqFaU/WSGHY0vK6lj+JDlZrrm4ta3
-r/chFdDGNdRQvoqdv+IBjGDhPnxrRlsBXdBOHUJbZCz8Gf9ROx8HZ5yOMc9AjVO4
-kvJrmXiUEnwnCzd94hU3geEutPsQLdGBwMsywHXwBXuzMOYEg9yLBHJJJSbsI3kK
-n1OF55sI26F4nReHHVCT03AiHrpyyLZvmCJu2Xa6V1gYWKUxNOncWFFFkee40Qcg
-il4HUkRpCTjl+wFHvATVjj6/M8qvNaQQfiDY68Mk2t694CR7eDEvbiRKskukPitM
-wHJgMP8o7jCSPxGgjdaR1ZUuGCcKf9tXtX/3WCV3FRg45aAKveZJ9BH6uOBuWJfN
-JrnJzft9qzvUs6rmIBwrXcmcRFlEZxp173oQHJjnnkDN5ULUpJKJw9+zZFEofqdm
-i1JySSKElQsjzSKPPR6dejvhn1nMayRlC8f0gOrvRprRLM4wAAo=
-=vmW5
------END PGP SIGNATURE-----
+ .../devicetree/bindings/arm/rockchip.yaml          |    8 +
+ .../display/panel/boe,th101mb31ig002-28a.yaml      |   73 ++
+ .../display/rockchip/rockchip,dw-hdmi.yaml         |    4 +
+ arch/arm64/boot/dts/rockchip/Makefile              |    2 +
+ .../boot/dts/rockchip/rk3566-pinetab2-v0.1.dts     |   26 +
+ .../boot/dts/rockchip/rk3566-pinetab2-v2.0.dts     |   46 +
+ arch/arm64/boot/dts/rockchip/rk3566-pinetab2.dtsi  | 1032 ++++++++++++++++++++
+ arch/arm64/boot/dts/rockchip/rk356x.dtsi           |    5 +-
+ drivers/gpu/drm/panel/Kconfig                      |   11 +
+ drivers/gpu/drm/panel/Makefile                     |    1 +
+ .../gpu/drm/panel/panel-boe-th101mb31ig002-28a.c   |  307 ++++++
+ 11 files changed, 1513 insertions(+), 2 deletions(-)
+---
+base-commit: 24e0d2e527a39f64caeb2e6be39ad5396fb2da5e
+change-id: 20231222-pinetab2-faa77e01db6f
 
---gW2s4LrwYHnx5p2E--
+Best regards,
+-- 
+Manuel Traut <manut@mecka.net>
+
 
