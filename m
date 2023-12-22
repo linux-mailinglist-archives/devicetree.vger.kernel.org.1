@@ -1,56 +1,54 @@
-Return-Path: <devicetree+bounces-27988-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27989-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2717281C6EF
-	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 09:56:36 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AED7A81C705
+	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 09:59:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D81672820CF
-	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 08:56:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E03941C220B6
+	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 08:59:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19E0ACA5D;
-	Fri, 22 Dec 2023 08:56:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FAE4CA75;
+	Fri, 22 Dec 2023 08:59:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="6G1tEDCP"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Dj5wJ+5u"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82E00FBE2;
-	Fri, 22 Dec 2023 08:56:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3BM2PZdm029359;
-	Fri, 22 Dec 2023 09:55:39 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADA54FBE5;
+	Fri, 22 Dec 2023 08:59:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 3BM6MlFc028055;
+	Fri, 22 Dec 2023 08:58:57 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
 	message-id:date:mime-version:subject:to:cc:references:from
 	:in-reply-to:content-type:content-transfer-encoding; s=
-	selector1; bh=6K7EDgRoPeNIU6pGeEY5sDhAR+XpZ5VVTKmSc5bq+Rc=; b=6G
-	1tEDCPhk8pbY2YBJT2Uv+BV0qhciaE1wl9Fy44m8TqHk3Em7lZLefgoDSHSrZyXS
-	wZMfRrSNPvuxNlG08DKfBAFhk3Rzg/NO+/Kh0PmBqiYaptt6q3cO19qx4fMvAg5y
-	vS9E4Gc9zSQO26dNpb9lBWKHpQyRJou5vknC12ZocDDD9mPM5CNSf2u7MILgpmfL
-	pTcWGwKJ8QaqIxjh/bVZK1rZAyY2h12bHWKKPgEApOdDEVJ5U2H0FqJB3mn1qQDp
-	uaICui3Fqp3th65GACnQi1jtIZepj2uRxqXPnXY2isywfMoFmCr9YD6KOKATqQWU
-	UBBVBHXsvLz9LSCD6IlQ==
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3v11w9bbx6-1
+	qcppdkim1; bh=OL2XzN7EDGy5bMY0OFne4LQrBx0wrnoKoEQ7MaxQsXQ=; b=Dj
+	5wJ+5uD6XqCemRRD726eiD+AjrvVMPe78wH2oRHtccab1hfsymipxD0S7olIP/G6
+	rCtqNzwnmsFXGSeRgeWDTx3XP9p50EHFqkYyv/6DEjV/Ac3EvQPI12+5uThjhrYD
+	2VFyxZwou2coHvvtJ2uTDmr7sbDr+Bb6pDvwbKNjunrz/i1wA22RDpnolGKR+vh+
+	1LxJfHFL1Kv7/MovZQqLd3ifqhvJrSRYQYjVsNE2pWoisCEnWP82b4oRVCNCjC67
+	LhcS/atzN9MsWLeR6bUZvN9bvwebCsye1pIm4IyW2NyK9Jl+nkLiSOfmFx1p2KAb
+	KL6UlE8sAXNdZZ1YuUVA==
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3v4xpq944q-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 22 Dec 2023 09:55:39 +0100 (CET)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 13F57100069;
-	Fri, 22 Dec 2023 09:55:37 +0100 (CET)
-Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id B562120B63A;
-	Fri, 22 Dec 2023 09:55:37 +0100 (CET)
-Received: from [10.252.15.82] (10.252.15.82) by SHFDAG1NODE2.st.com
- (10.75.129.70) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Fri, 22 Dec
- 2023 09:55:37 +0100
-Message-ID: <024f56fd-6fe2-4a6f-a5a0-2ef06faa653a@foss.st.com>
-Date: Fri, 22 Dec 2023 09:55:36 +0100
+	Fri, 22 Dec 2023 08:58:57 +0000 (GMT)
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3BM8wuAh021049
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 22 Dec 2023 08:58:56 GMT
+Received: from [10.239.132.150] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Fri, 22 Dec
+ 2023 00:58:50 -0800
+Message-ID: <27f8bc0a-0262-48dc-a879-552c3c5ec9e2@quicinc.com>
+Date: Fri, 22 Dec 2023 16:58:45 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,83 +56,88 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RESEND v1 2/8] dt-bindings: display: add dt-bindings for
- STM32 LVDS device
+Subject: Re: [RFC PATCH 2/2] dt-bindings: display: msm: mass-rename files
 Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Laurent Pinchart
-	<laurent.pinchart@ideasonboard.com>,
-        Neil Armstrong
-	<neil.armstrong@linaro.org>,
-        Jessica Zhang <quic_jesszhan@quicinc.com>,
-        Sam
- Ravnborg <sam@ravnborg.org>,
-        Maarten Lankhorst
-	<maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre
- Torgue <alexandre.torgue@foss.st.com>,
-        Yannick Fertre
-	<yannick.fertre@foss.st.com>,
-        Philippe Cornu <philippe.cornu@foss.st.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Lad Prabhakar
-	<prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Thierry Reding
-	<thierry.reding@gmail.com>
-CC: <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20231221124339.420119-1-raphael.gallais-pou@foss.st.com>
- <20231221124339.420119-3-raphael.gallais-pou@foss.st.com>
- <88834783-5aea-46d2-82cc-dd22cb4473f5@linaro.org>
-From: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
-In-Reply-To: <88834783-5aea-46d2-82cc-dd22cb4473f5@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE2.st.com
- (10.75.129.70)
+To: Rob Herring <robh@kernel.org>,
+        Dmitry Baryshkov
+	<dmitry.baryshkov@linaro.org>
+CC: <freedreno@lists.freedesktop.org>,
+        Marijn Suijten
+	<marijn.suijten@somainline.org>,
+        Daniel Vetter <daniel@ffwll.ch>, Rob Clark
+	<robdclark@gmail.com>,
+        Jonathan Marek <jonathan@marek.ca>, Vinod Koul
+	<vkoul@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Stephen Boyd
+	<swboyd@chromium.org>, Sean Paul <sean@poorly.run>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        <linux-phy@lists.infradead.org>, <dri-devel@lists.freedesktop.org>,
+        Andy Gross <agross@kernel.org>,
+        "Krishna
+ Manikandan" <quic_mkrishn@quicinc.com>,
+        Kishon Vijay Abraham I
+	<kishon@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        David Airlie <airlied@gmail.com>, Rob Herring
+	<robh+dt@kernel.org>,
+        <devicetree@vger.kernel.org>,
+        Abhinav Kumar
+	<quic_abhinavk@quicinc.com>
+References: <20231221102506.18320-1-dmitry.baryshkov@linaro.org>
+ <20231221102506.18320-3-dmitry.baryshkov@linaro.org>
+ <170319289437.96441.9965499072649831420.robh@kernel.org>
+From: "Aiqun Yu (Maria)" <quic_aiquny@quicinc.com>
+In-Reply-To: <170319289437.96441.9965499072649831420.robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: Ck5j7imLKK1HMHeZYYRirQhcvywRSUYs
+X-Proofpoint-ORIG-GUID: Ck5j7imLKK1HMHeZYYRirQhcvywRSUYs
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-12-22_04,2023-12-21_02,2023-05-22_02
+ definitions=2023-12-09_02,2023-12-07_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ suspectscore=0 impostorscore=0 malwarescore=0 adultscore=0 mlxscore=0
+ spamscore=0 clxscore=1011 bulkscore=0 lowpriorityscore=0 mlxlogscore=999
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2311290000 definitions=main-2312220063
 
 
-On 12/21/23 21:36, Krzysztof Kozlowski wrote:
-> On 21/12/2023 13:43, Raphael Gallais-Pou wrote:
->> Add dt-binding file for "st,stm32-lvds" compatible.
+
+On 12/22/2023 5:08 AM, Rob Herring wrote:
+> 
+> On Thu, 21 Dec 2023 12:25:06 +0200, Dmitry Baryshkov wrote:
+>> Rename the Qualcomm MSM Display schemas to follow the main compatible
+>> string instead of just using the block type. This follows the
+>> established practice for YAML file names.
 >>
->> Signed-off-by: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
+>> Cc: Aiqun Yu (Maria) <quic_aiquny@quicinc.com>
+>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 >> ---
-> I don't know why this was resend, nothing explains it, but I already
-> commented on other version.
->
-> Please respond to comments there.
->
-> In the future, unless it is obvious resend over 2 weeks, say why you are
-> doing it and what changed.
+>>   .../bindings/display/msm/{gmu.yaml => qcom,adreno-gmu.yaml}     | 2 +-
+>>   .../bindings/display/msm/{gpu.yaml => qcom,adreno.yaml}         | 2 +-
+>>   .../bindings/display/msm/{hdmi.yaml => qcom,hdmi-tx.yaml}       | 2 +-
+>>   .../bindings/display/msm/{mdp4.yaml => qcom,mdp4.yaml}          | 2 +-
+>>   .../msm/{dsi-controller-main.yaml => qcom,mdss-dsi-ctrl.yaml}   | 2 +-
+>>   5 files changed, 5 insertions(+), 5 deletions(-)
+>>   rename Documentation/devicetree/bindings/display/msm/{gmu.yaml => qcom,adreno-gmu.yaml} (99%)
+>>   rename Documentation/devicetree/bindings/display/msm/{gpu.yaml => qcom,adreno.yaml} (99%)
+>>   rename Documentation/devicetree/bindings/display/msm/{hdmi.yaml => qcom,hdmi-tx.yaml} (98%)
+>>   rename Documentation/devicetree/bindings/display/msm/{mdp4.yaml => qcom,mdp4.yaml} (97%)
+>>   rename Documentation/devicetree/bindings/display/msm/{dsi-controller-main.yaml => qcom,mdss-dsi-ctrl.yaml} (99%)
+>>
+> 
+> Acked-by: Rob Herring <robh@kernel.org>
+> Nice to see names get more unified!
 
-My proxy tends to block every patch after a batch of 4 or 5 patches. Since it
-splitted the serie in half I resent it so that the serie could be entirely read
-without problems. This explains the resend. I was not sure about putting a short
-explanation in the cover letter since it was not related any change in the
-serie, but next time I will do so.
-
-Best Regards,
-
-Raphaël
-
-
->
-> Best regards,
-> Krzysztof
->
+-- 
+Thx and BRs,
+Aiqun(Maria) Yu
 
