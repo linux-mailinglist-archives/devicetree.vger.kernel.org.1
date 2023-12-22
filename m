@@ -1,162 +1,100 @@
-Return-Path: <devicetree+bounces-27950-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27951-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5BCD81C4C5
-	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 06:47:14 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A7F9681C502
+	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 07:21:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6AF7AB24576
-	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 05:47:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 47ECF1F25222
+	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 06:21:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC11363A4;
-	Fri, 22 Dec 2023 05:46:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="dY98KLm9"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C8046FD2;
+	Fri, 22 Dec 2023 06:21:14 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D40BD530;
-	Fri, 22 Dec 2023 05:46:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1703223986; x=1734759986;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=jKRp9iRvAm9GuBLgpwNJYxVqDu1ubCTAkbYv82hvvk0=;
-  b=dY98KLm9GcJddDdUEzvEZ6nxPLnhxeJK88g56ZM5qFJuwB2fmfdSM9Wp
-   JTU+ph/CNMCA1MC+hdOz866tnWcOe/UVzJy3JBgc6IzTSBY0r62lnjErX
-   NabGus/LaLVAuEOONaB/9+4S51xUJgu4whyMBfWO9a3SC//zrIbwSniH3
-   GM6RxAseGCNVkPH4RbAc0geIsRXgP2u4Y9WqH99Gc6IlgRL6+NiqzHMBf
-   0554amnJO4UiBBo8Gw86cpG812+epFU5ySW+VvVFZhbPzkyWQvKgCTh+T
-   82puphggOLGKbz3xxCZ02kJPikPjMkyUTbzVywOHpy3y8KPkFvckumwPq
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10931"; a="9470609"
-X-IronPort-AV: E=Sophos;i="6.04,294,1695711600"; 
-   d="scan'208";a="9470609"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Dec 2023 21:46:26 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10931"; a="900324247"
-X-IronPort-AV: E=Sophos;i="6.04,294,1695711600"; 
-   d="scan'208";a="900324247"
-Received: from pg-esw-build.png.intel.com ([10.226.214.57])
-  by orsmga004.jf.intel.com with ESMTP; 21 Dec 2023 21:46:21 -0800
-From: Leong Ching Swee <leong.ching.swee@intel.com>
-To: Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Jose Abreu <joabreu@synopsys.com>,
-	"David S . Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Giuseppe Cavallaro <peppe.cavallaro@st.com>
-Cc: linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Swee Leong Ching <leong.ching.swee@intel.com>,
-	Teoh Ji Sheng <ji.sheng.teoh@intel.com>
-Subject: [PATCH net-next v1 4/4] net: stmmac: Use interrupt mode INTM=1 for per channel irq
-Date: Fri, 22 Dec 2023 13:44:51 +0800
-Message-Id: <20231222054451.2683242-5-leong.ching.swee@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231222054451.2683242-1-leong.ching.swee@intel.com>
-References: <20231222054451.2683242-1-leong.ching.swee@intel.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFFA279C4;
+	Fri, 22 Dec 2023 06:21:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=realtek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=realtek.com
+X-SpamFilter-By: ArmorX SpamTrap 5.78 with qID 3BM6KXLd81950065, This message is accepted by code: ctloc85258
+Received: from mail.realtek.com (rtexh36506.realtek.com.tw[172.21.6.27])
+	by rtits2.realtek.com.tw (8.15.2/2.95/5.92) with ESMTPS id 3BM6KXLd81950065
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Fri, 22 Dec 2023 14:20:34 +0800
+Received: from RTEXDAG02.realtek.com.tw (172.21.6.101) by
+ RTEXH36506.realtek.com.tw (172.21.6.27) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.17; Fri, 22 Dec 2023 14:20:34 +0800
+Received: from RTEXMBS03.realtek.com.tw (172.21.6.96) by
+ RTEXDAG02.realtek.com.tw (172.21.6.101) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.7; Fri, 22 Dec 2023 14:20:34 +0800
+Received: from RTEXMBS03.realtek.com.tw ([fe80::99d6:b187:8b72:6226]) by
+ RTEXMBS03.realtek.com.tw ([fe80::99d6:b187:8b72:6226%2]) with mapi id
+ 15.01.2507.035; Fri, 22 Dec 2023 14:20:34 +0800
+From: =?utf-8?B?SmFtZXMgVGFpIFvmiLTlv5fls7Bd?= <james.tai@realtek.com>
+To: Thomas Gleixner <tglx@linutronix.de>, Marc Zyngier <maz@kernel.org>,
+        "Rob
+ Herring" <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        kernel test robot
+	<lkp@intel.com>, Dan Carpenter <error27@gmail.com>
+Subject: RE: [PATCH v3 2/6] irqchip: Add interrupt controller support for Realtek DHC SoCs
+Thread-Topic: [PATCH v3 2/6] irqchip: Add interrupt controller support for
+ Realtek DHC SoCs
+Thread-Index: AQHaIocg6atZJ97H502y6uXXYTUFxrCfC+8AgASpsgCADjI3AIAC1ELQ
+Date: Fri, 22 Dec 2023 06:20:33 +0000
+Message-ID: <e96f77598aec446c9a68c01afe61cfd9@realtek.com>
+References: <20231129054339.3054202-1-james.tai@realtek.com>
+ <20231129054339.3054202-3-james.tai@realtek.com> <87cyvgsocp.ffs@tglx>
+ <d9556a14e8d64f83b89a2d1d231003f4@realtek.com> <87sf3wlwlz.ffs@tglx>
+In-Reply-To: <87sf3wlwlz.ffs@tglx>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+x-kse-serverinfo: RTEXDAG02.realtek.com.tw, 9
+x-kse-antispam-interceptor-info: fallback
+x-kse-antivirus-interceptor-info: fallback
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-KSE-AntiSpam-Interceptor-Info: fallback
 
-From: Swee Leong Ching <leong.ching.swee@intel.com>
-
-Enable per DMA channel interrupt that uses shared peripheral
-interrupt (SPI), so only per channel TX and RX intr (TI/RI)
-are handled by TX/RX ISR without calling common interrupt ISR.
-
-Signed-off-by: Teoh Ji Sheng <ji.sheng.teoh@intel.com>
-Signed-off-by: Swee Leong Ching <leong.ching.swee@intel.com>
----
- .../net/ethernet/stmicro/stmmac/dwxgmac2.h    |  3 ++
- .../ethernet/stmicro/stmmac/dwxgmac2_dma.c    | 32 +++++++++++--------
- 2 files changed, 22 insertions(+), 13 deletions(-)
-
-diff --git a/drivers/net/ethernet/stmicro/stmmac/dwxgmac2.h b/drivers/net/ethernet/stmicro/stmmac/dwxgmac2.h
-index 207ff1799f2c..04bf731cb7ea 100644
---- a/drivers/net/ethernet/stmicro/stmmac/dwxgmac2.h
-+++ b/drivers/net/ethernet/stmicro/stmmac/dwxgmac2.h
-@@ -346,6 +346,9 @@
- /* DMA Registers */
- #define XGMAC_DMA_MODE			0x00003000
- #define XGMAC_SWR			BIT(0)
-+#define XGMAC_DMA_MODE_INTM_MASK	GENMASK(13, 12)
-+#define XGMAC_DMA_MODE_INTM_SHIFT	12
-+#define XGMAC_DMA_MODE_INTM_MODE1	0x1
- #define XGMAC_DMA_SYSBUS_MODE		0x00003004
- #define XGMAC_WR_OSR_LMT		GENMASK(29, 24)
- #define XGMAC_WR_OSR_LMT_SHIFT		24
-diff --git a/drivers/net/ethernet/stmicro/stmmac/dwxgmac2_dma.c b/drivers/net/ethernet/stmicro/stmmac/dwxgmac2_dma.c
-index 3cde695fec91..dcb9f094415d 100644
---- a/drivers/net/ethernet/stmicro/stmmac/dwxgmac2_dma.c
-+++ b/drivers/net/ethernet/stmicro/stmmac/dwxgmac2_dma.c
-@@ -31,6 +31,13 @@ static void dwxgmac2_dma_init(void __iomem *ioaddr,
- 		value |= XGMAC_EAME;
- 
- 	writel(value, ioaddr + XGMAC_DMA_SYSBUS_MODE);
-+
-+	if (dma_cfg->multi_irq_en) {
-+		value = readl(ioaddr + XGMAC_DMA_MODE);
-+		value &= ~XGMAC_DMA_MODE_INTM_MASK;
-+		value |= (XGMAC_DMA_MODE_INTM_MODE1 << XGMAC_DMA_MODE_INTM_SHIFT);
-+		writel(value, ioaddr + XGMAC_DMA_MODE);
-+	}
- }
- 
- static void dwxgmac2_dma_init_chan(struct stmmac_priv *priv,
-@@ -365,19 +372,18 @@ static int dwxgmac2_dma_interrupt(struct stmmac_priv *priv,
- 	}
- 
- 	/* TX/RX NORMAL interrupts */
--	if (likely(intr_status & XGMAC_NIS)) {
--		if (likely(intr_status & XGMAC_RI)) {
--			u64_stats_update_begin(&rxq_stats->syncp);
--			rxq_stats->rx_normal_irq_n++;
--			u64_stats_update_end(&rxq_stats->syncp);
--			ret |= handle_rx;
--		}
--		if (likely(intr_status & (XGMAC_TI | XGMAC_TBU))) {
--			u64_stats_update_begin(&txq_stats->syncp);
--			txq_stats->tx_normal_irq_n++;
--			u64_stats_update_end(&txq_stats->syncp);
--			ret |= handle_tx;
--		}
-+	if (likely(intr_status & XGMAC_RI)) {
-+		u64_stats_update_begin(&rxq_stats->syncp);
-+		rxq_stats->rx_normal_irq_n++;
-+		u64_stats_update_end(&rxq_stats->syncp);
-+		ret |= handle_rx;
-+	}
-+
-+	if (likely(intr_status & (XGMAC_TI | XGMAC_TBU))) {
-+		u64_stats_update_begin(&txq_stats->syncp);
-+		txq_stats->tx_normal_irq_n++;
-+		u64_stats_update_end(&txq_stats->syncp);
-+		ret |= handle_tx;
- 	}
- 
- 	/* Clear interrupts */
--- 
-2.34.1
-
+SGkgVGhvbWFzLA0KDQo+Pj5PbiBXZWQsIE5vdiAyOSAyMDIzIGF0IDEzOjQzLCBKYW1lcyBUYWkg
+d3JvdGU6DQo+Pj4+ICtzdGF0aWMgaW5saW5lIHZvaWQgcmVhbHRla19pbnRjX2NsZWFyX2ludHNf
+Yml0KHN0cnVjdA0KPj4+PiArcmVhbHRla19pbnRjX2RhdGEgKmRhdGEsIGludCBiaXQpIHsNCj4+
+Pj4gKyAgICAgd3JpdGVsKEJJVChiaXQpICYgfjEsIGRhdGEtPmJhc2UgKyBkYXRhLT5pbmZvLT5p
+c3Jfb2Zmc2V0KTsNCj4+Pg0KPj4+VGhhdCAnJiB+MScgc29sdmVzIHdoYXQgYXNpZGUgb2YgcHJl
+dmVudGluZyBiaXQgMCBmcm9tIGJlaW5nIHdyaXR0ZW4/DQo+Pj4NCj4+IFRoZSBJU1IgcmVnaXN0
+ZXIgdXNlcyBiaXQgMCB0byBjbGVhciBvciBzZXQgSVNSIHN0YXR1cy4NCj4+IFdyaXRlIDAgdG8g
+Y2xlYXIgYml0cyBhbmQgd3JpdGUgMSB0byBzZXQgYml0cy4NCj4+IFRoZXJlZm9yZSwgdG8gY2xl
+YXIgdGhlIGludGVycnVwdCBzdGF0dXMsIGJpdCAwIHNob3VsZCBjb25zaXN0ZW50bHkgYmUNCj4+
+IHNldCB0byAnMCcuDQo+DQo+QW5kIGhvdyBkb2VzIEJJVChiaXQpIHdpdGggMSA8PSBiaXQgPD0g
+MzEgZW5kIHVwIGhhdmluZyBiaXQgMCBzZXQ/DQo+DQo+QWxzbyBhIGNvbW1lbnQgZXhwbGFpbmlu
+ZyB0aGUgcmVhc29uaW5nIGhlcmUgd291bGQgYmUgaGVscGZ1bC4NCg0KVG8gcGVyZm9ybSB0aGUg
+Y2xlYXJpbmcgYWN0aW9uIGluIHRoZSBJU1IgcmVnaXN0ZXIsIGl0J3MgZXNzZW50aWFsIHRoYXQg
+Yml0IDAgcmVtYWlucyBzZXQgdG8gMC4NClRoaXMgaXMgYmVjYXVzZSBiaXQgMCBpbiB0aGUgSVNS
+IHJlZ2lzdGVyIGhhcyBhIHNwZWNpZmljIGZ1bmN0aW9uIGZvciBjb250cm9sbGluZyB0aGUgaW50
+ZXJydXB0IHN0YXR1cy4NCldoZW4gQklUKGJpdCkgaXMgdXNlZCB3aXRoIDEgPD0gYml0IDw9IDMx
+LCBpdCBnZW5lcmF0ZXMgYSBiaXRtYXNrIHdpdGggb25seSB0aGF0IHBhcnRpY3VsYXIgYml0IHNl
+dCB0byAxLCBhbmQgYWxsIG90aGVyIGJpdHMsIGluY2x1ZGluZyBiaXQgMCwgc2V0IHRvIDAuDQpU
+aGUgJyYgfjEnIG9wZXJhdGlvbiBpcyB0aGVuIGFwcGxpZWQgdG8gZW5zdXJlIHRoYXQgZXZlbiBp
+ZiBiaXQgMCB3YXMgc29tZWhvdyBzZXQsIGl0IHdpbGwgYmUgY2xlYXJlZCwgbWFpbnRhaW5pbmcg
+dGhlIHJlZ2lzdGVyJ3MgZnVuY3Rpb25hbGl0eS4gDQoNCkZvciBleGFtcGxlLCBzdXBwb3NlIHRo
+ZSBjdXJyZW50IHZhbHVlIG9mIHRoZSBJU1IgcmVnaXN0ZXIgaXMgMHg0LCBhbmQgd2Ugd2FudCB0
+byBjbGVhciBiaXQgMy4NCkluIHRoYXQgY2FzZSwgd3JpdGluZyAweDQgKHdoaWNoIHJlcHJlc2Vu
+dHMgYml0IDMgc2V0IHRvIDEpIHRvIHRoZSBJU1IgcmVnaXN0ZXIgd2lsbCBjbGVhciBiaXQgMy4N
+Cg0KVGhhbmtzIGZvciB5b3VyIGZlZWRiYWNrLg0KDQpSZWdhcmRzLA0KSmFtZXMNCg0KDQo=
 
