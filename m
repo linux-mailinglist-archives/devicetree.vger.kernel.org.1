@@ -1,119 +1,159 @@
-Return-Path: <devicetree+bounces-27916-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-27917-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3E7A81C26D
-	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 01:49:05 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 834C281C276
+	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 01:54:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B0850283654
-	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 00:49:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 397F51F24439
+	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 00:54:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85ED539B;
-	Fri, 22 Dec 2023 00:49:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E75C631;
+	Fri, 22 Dec 2023 00:54:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gxBcCIzz"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="qan48CME"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6047D818;
-	Fri, 22 Dec 2023 00:49:02 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C8C3EC433C8;
-	Fri, 22 Dec 2023 00:49:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1703206141;
-	bh=1DA8bmTOYGPA5GbuB9k2g469eTAv0F3olwtXeYlHwR0=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=gxBcCIzz0cbD3ugkonPp9VYh2HSxnLxa44GHnYR4IW6PW3J4Rgn6Pi+WryMmWt1u+
-	 5wnyPnVzVHb6DgT2GO27/QCOg4t+BvjuTcwizCAit096W6X13xq+4fB/fkm9xMJ+mV
-	 XzzXiN6P8tqW/3UKazKRBC1dyh6uQYainN29c7Cz5EVUloedh5VnVDqEwg5ox/ZTPE
-	 WAnKi/wnq12bdu9JOoLCsG2Hs1BtJrFNhXZ6TLM0u4y2mx2j+ug/sbSq8E3XmcfDh4
-	 /mURGarpcdtNGvskvrtl4VatuZlGrDntmlitK3JCfTA5uqUMlr1JBBqsp/hc9VSEVz
-	 hmabHJBfCHumw==
-Message-ID: <a2d96b8259eed101c649fd71f7c1e453.sboyd@kernel.org>
-Content-Type: text/plain; charset="utf-8"
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B6B9323B
+	for <devicetree@vger.kernel.org>; Fri, 22 Dec 2023 00:54:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <21f758cb-ae25-4d74-905c-0d4820f00070@foss.st.com>
-References: <20231219130909.265091-1-gabriel.fernandez@foss.st.com> <20231219130909.265091-2-gabriel.fernandez@foss.st.com> <c98539f99030f174583d7ee36802b4b9.sboyd@kernel.org> <21f758cb-ae25-4d74-905c-0d4820f00070@foss.st.com>
-Subject: Re: [PATCH v7 1/2] clk: stm32: introduce clocks for STM32MP257 platform
-From: Stephen Boyd <sboyd@kernel.org>
-Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-To: Alexandre Torgue <alexandre.torgue@foss.st.com>, Conor Dooley <conor+dt@kernel.org>, Gabriel FERNANDEZ <gabriel.fernandez@foss.st.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, Michael Turquette <mturquette@baylibre.com>, Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh+dt@kernel.org>
-Date: Thu, 21 Dec 2023 16:48:59 -0800
-User-Agent: alot/0.10
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1703206461;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=NuBTa6nyail/zrqKK8lmrh3dQC8JpRI3oXn+zqmkFdA=;
+	b=qan48CMEEPn+FcDuKOFbnK++xGU8vvV6cGonQdO52v4BGeWCgDYpLAhJ3cfF8BUJ4MSTFj
+	YNpLu1GoEydg6cwy+h/q2Jn9+uiYo38rOOGlN1/gZiVbalhYz5MyWSicJAxpvbzF/yTsWv
+	8g61d9Rm23q8gLotqH3Pn/Va5EzY12DovZ+Nx9qVhlIHiK2MiWZR4CYo5q/ovoO/lk7xPT
+	7fmYNswdzdOM6pO3vP0keypNq3LxaWhfIwrA1I0FYMVzQM4XD/5wC9zj3cYhz5Py4CRWLB
+	v39UtLWkDX39qnoOEuhDPLHT67L3cJM8AQshh+5SwxDIB/uXSWNekZTCug9M3w==
+Date: Fri, 22 Dec 2023 01:54:21 +0100
+From: Dragan Simic <dsimic@manjaro.org>
+To: Shantur Rathore <i@shantur.com>
+Cc: heiko@sntech.de, linux-rockchip@lists.infradead.org,
+ devicetree@vger.kernel.org
+Subject: Re: [PATCH v1] dts: rockpro64: Remove usb regulator-always-on
+In-Reply-To: <CABEcMwXdD06KoODi4Sx7Q6oaNZ7CEUcNLiysVyqQSQq-7zYoqA@mail.gmail.com>
+References: <20231209232109.348999-1-i@shantur.com>
+ <20231209233536.350876-1-i@shantur.com>
+ <43339adb6f98a0b4e59db78f932df0d4@manjaro.org>
+ <CABEcMwU8bOxUZV8i-Wig14GG-+NEEw+sbDBznTLNvgRg6Co3Jg@mail.gmail.com>
+ <acbadb7f1d2c14b7003103c10d663d38@manjaro.org>
+ <CABEcMwV8XhShnbJ_Z+2YW0EUCYt460pEyE-FPHW9jN16SR_Lpg@mail.gmail.com>
+ <c6761d07ab7fb0eb38b94f4602f58e42@manjaro.org>
+ <CABEcMwXdD06KoODi4Sx7Q6oaNZ7CEUcNLiysVyqQSQq-7zYoqA@mail.gmail.com>
+Message-ID: <01d17a353a1fd8e8f9d19abce3f89393@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-Quoting Gabriel FERNANDEZ (2023-12-21 02:31:53)
->=20
-> On 12/20/23 23:16, Stephen Boyd wrote:
-> > Quoting gabriel.fernandez@foss.st.com (2023-12-19 05:09:08)
-> >> diff --git a/drivers/clk/stm32/clk-stm32mp25.c b/drivers/clk/stm32/clk=
--stm32mp25.c
-> >> new file mode 100644
-> >> index 000000000000..313e022c6142
-> >> --- /dev/null
-> >> +++ b/drivers/clk/stm32/clk-stm32mp25.c
-> >> @@ -0,0 +1,1826 @@
-> >> +// SPDX-License-Identifier: GPL-2.0-only
-> >> +/*
-> >> + * Copyright (C) STMicroelectronics 2023 - All Rights Reserved
-> >> + * Author: Gabriel Fernandez <gabriel.fernandez@foss.st.com> for STMi=
-croelectronics.
-> >> + */
-> >> +
-> >> +#include <linux/clk.h>
-> >> +#include <linux/of_address.h>
-> >> +#include <linux/platform_device.h>
-> >> +
-> >> +#include "clk-stm32-core.h"
-> >> +#include "reset-stm32.h"
-> >> +#include "stm32mp25_rcc.h"
-> >> +
-> >> +#include <dt-bindings/clock/st,stm32mp25-rcc.h>
-> >> +#include <dt-bindings/reset/st,stm32mp25-rcc.h>
-> >> +
-> >> +static const struct clk_parent_data adc12_src[] =3D {
-> >> +       { .name =3D "ck_flexgen_46" },
-> > This is a new driver. Don't use .name here. Instead use .index or .hw
-> > and if that can't work then use .fw_name.
->=20
-> These parent clocks are managed by a secure world and exposed through SCM=
-I.
->=20
-> If I use .index or .fw_name, do I have to expose 122 clocks in my DT node=
- ?
->=20
-> This will significantly increase the size of the DT file
->=20
->  =C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 clock-names =3D=
- "hse", "hsi", ..., "ck_scmi_stm500";
->  =C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 clocks =3D <&sc=
-mi_clk CK_SCMI_HSE>, <&scmi_clk CK_SCMI_HSI>,=C2=A0=20
-> ... , =C2=A0 <&scmi_clk CK_SCMI_STM500>;
->=20
+On 2023-12-21 11:11, Shantur Rathore wrote:
+> On Thu, Dec 14, 2023 at 2:35 PM Dragan Simic <dsimic@manjaro.org> 
+> wrote:
+>> On 2023-12-14 15:24, Shantur Rathore wrote:
+>> > On Sun, Dec 10, 2023 at 12:08 AM Dragan Simic <dsimic@manjaro.org>
+>> > wrote:
+>> >> On 2023-12-10 01:03, Shantur Rathore wrote:
+>> >> > On Sat, Dec 9, 2023 at 11:43 PM Dragan Simic <dsimic@manjaro.org>
+>> >> > wrote:
+>> >> >> On 2023-12-10 00:35, Shantur Rathore wrote:
+>> >> >> > USB port regulators should be controlled by PHYs
+>> >> >> > so we remove always-on property and let PHYs manage the
+>> >> >> > regulator.
+>> >> >> >
+>> >> >> > Typec port has misconfugred phy-supply and now that we are
+>> >> >> > removing regulator-always-on, we need to fix the phy-supply
+>> >> >> > so the PHYs are able to turn power to type-c port.
+>> >> >> >
+>> >> >> > Signed-off-by: Shantur Rathore <i@shantur.com>
+>> >> >> > ---
+>> >> >> > + devicetree
+>> >> >> >
+>> >> >> > After this patch the ports were confirmed to power up and down
+>> >> >> > in u-boot when doing usb start and usb stop.
+>> >> >> > At boot the regulators were off, the devices connected weren't
+>> >> >> > powered up, on usb start the PHYs are able to power on the ports
+>> >> >> > and on usb stop they were powered down.
+>> >> >> >
+>> >> >> > At the boot, the ports were powered down which was again powered
+>> >> >> > up by Linux kernel when booting up.
+>> >> >> >
+>> >> >> >
+>> >> >> >  arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi | 4 +---
+>> >> >> >  1 file changed, 1 insertion(+), 3 deletions(-)
+>> >> >> >
+>> >> >> > diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi
+>> >> >> > b/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi
+>> >> >> > index bca2b50e0a..bd2824aa48 100644
+>> >> >> > --- a/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi
+>> >> >> > +++ b/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi
+>> >> >> > @@ -192,7 +192,6 @@ vcc5v0_host: vcc5v0-host-regulator {
+>> >> >> >               pinctrl-names = "default";
+>> >> >> >               pinctrl-0 = <&vcc5v0_host_en>;
+>> >> >> >               regulator-name = "vcc5v0_host";
+>> >> >> > -             regulator-always-on;
+>> >> >> >               vin-supply = <&vcc5v0_usb>;
+>> >> >> >       };
+>> >> >> >
+>> >> >> > @@ -203,7 +202,6 @@ vcc5v0_typec: vcc5v0-typec-regulator {
+>> >> >> >               pinctrl-names = "default";
+>> >> >> >               pinctrl-0 = <&vcc5v0_typec_en>;
+>> >> >> >               regulator-name = "vcc5v0_typec";
+>> >> >> > -             regulator-always-on;
+>> >> >> >               vin-supply = <&vcc5v0_usb>;
+>> >> >> >       };
+>> >> >> >
+>> >> >> > @@ -863,7 +861,7 @@ u2phy0_otg: otg-port {
+>> >> >> >       };
+>> >> >> >
+>> >> >> >       u2phy0_host: host-port {
+>> >> >> > -             phy-supply = <&vcc5v0_host>;
+>> >> >> > +             phy-supply = <&vcc5v0_typec>;
+>> >> >> >               status = "okay";
+>> >> >> >       };
+>> >> >> >  };
+>> >> >>
+>> >> >> Quite frankly, something doesn't feel right there.  Would you mind,
+>> >> >> please, to place this patch on hold until next week or so, at which
+>> >> >> point I should have enough time to go through the RockPro64 schematic
+>> >> >> thoroughly once again, and test the patch in detail?
+>> >> >
+>> >> > Sure, no worries.
+>> >>
+>> >> Great, thanks.
+>> >>
+>> >> > Would you mind letting me know which part doesn't feel right to you?
+>> >>
+>> >> Sure, it was about the last change in the patch.
+>> >
+>> > The TypeC port VBUS is VBUS_TYPEC on Page 20 of 33 marked for
+>> > VBUS_[1-4] in schematic here - [0]
+>> >
+>> > [0] - https://files.pine64.org/doc/rockpro64/rockpro64_v21-SCH.pdf
+>> 
+>> I see, thanks, and I already went once again through the RockPro64
+>> schematic, but only briefly.  I need to do that again, but in detail,
+>> and compare it thoroughly with the dts(i).
+> 
+> Ping.
 
-Yes? We want DT to express the connections between device nodes, and if
-the clks managed by SCMI are consumed here then they need to be
-specified via the clocks property.
-
->=20
-> >
-> >> +       { }
-> >> +};
-> >> +MODULE_DEVICE_TABLE(of, stm32mp25_match_data);
-> >> +
-> >> +static int get_clock_deps(struct device *dev)
-> > What is the explanation for this function?
->=20
-> It 's to manage the dependency with the SCMI clock driver.
-
-Please elaborate. Are you making sure the SCMI clk driver has probed
-before this driver? Why? What's wrong with probing this driver first?
+Pong. :)  I haven't fogotten about this, but I simply haven't had enough 
+time yet, and I really want to have this checked and cleaned up.  I'm 
+sorry for the delay.
 
