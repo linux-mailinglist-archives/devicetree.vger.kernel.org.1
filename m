@@ -1,137 +1,113 @@
-Return-Path: <devicetree+bounces-27998-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28002-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB9D481C784
-	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 10:46:17 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB74481C79F
+	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 10:53:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 39179287C52
-	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 09:46:16 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1D049B21A0D
+	for <lists+devicetree@lfdr.de>; Fri, 22 Dec 2023 09:53:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5172FFBE5;
-	Fri, 22 Dec 2023 09:46:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17C73F9FE;
+	Fri, 22 Dec 2023 09:53:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hHvi5Wy8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B383F9D6;
-	Fri, 22 Dec 2023 09:45:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-	by ex01.ufhost.com (Postfix) with ESMTP id 73A5324E2E4;
-	Fri, 22 Dec 2023 17:45:53 +0800 (CST)
-Received: from EXMBX068.cuchost.com (172.16.6.68) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 22 Dec
- 2023 17:45:53 +0800
-Received: from williamqiu-virtual-machine.starfivetech.com (171.223.208.138)
- by EXMBX068.cuchost.com (172.16.6.68) with Microsoft SMTP Server (TLS) id
- 15.0.1497.42; Fri, 22 Dec 2023 17:45:52 +0800
-From: William Qiu <william.qiu@starfivetech.com>
-To: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-riscv@lists.infradead.org>, <linux-pwm@vger.kernel.org>
-CC: Emil Renner Berthing <kernel@esmil.dk>, Rob Herring <robh+dt@kernel.org>,
-	Thierry Reding <thierry.reding@gmail.com>, Philipp Zabel
-	<p.zabel@pengutronix.de>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
-	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, "Hal
- Feng" <hal.feng@starfivetech.com>, Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
-	William Qiu <william.qiu@starfivetech.com>
-Subject: [PATCH v10 4/4] riscv: dts: starfive: jh7110: Add PWM node and pins configuration
-Date: Fri, 22 Dec 2023 17:45:48 +0800
-Message-ID: <20231222094548.54103-5-william.qiu@starfivetech.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231222094548.54103-1-william.qiu@starfivetech.com>
-References: <20231222094548.54103-1-william.qiu@starfivetech.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92AB7FBE5;
+	Fri, 22 Dec 2023 09:53:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-a22deb95d21so203445266b.3;
+        Fri, 22 Dec 2023 01:53:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1703238787; x=1703843587; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=0XSn0qtrctsj5NofJhols7aiVK9MkKubyEzCV4SaRbE=;
+        b=hHvi5Wy8kXHz5OwyaSAVTVQBFIyIN74Y/xQLA1vdt0O7nnW/RRhoHioAqPwza/LTSJ
+         7ZqXmTFmmAb2tgBop4RwuN0GCNzjaXs8cceips6S2f0rrEKmhLYh4u1aTg4uOA1PGwLL
+         wFa6zwqC/tadVHRV5tLh5plL9a4GpGdoqgjBS6zBwD3WqVWFEuYUOHKXZ5PAIVHac7oX
+         +qS/OQYd+teXSkA4ygiGEp9pkp9C7dbITTcObkqgJ0mRuA1oXbyOoShaJQqpGknstdDL
+         FY2Km2ku7vMrVoiAPqMqOsVgr/Lp3qlODXlVxwZLeE/XUP5WU271sEwaGIASa/Ay2Gf7
+         4Z4g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1703238787; x=1703843587;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=0XSn0qtrctsj5NofJhols7aiVK9MkKubyEzCV4SaRbE=;
+        b=cwA+4atnj2nnlw5y9LW9SRu41FyNnpETBK0boJWp9yUIK99qi/IYJP2sqzviSb/6Pi
+         BjBGsboenx+/Qhu068JQcxrFo4Aqg6jXvnlURilM6AlXVEobBmyEHSOQqe22uEoF+09E
+         nJssaT8cKA1V1BU1UeIs9T7hAA4ST8J7IPPSOZJmtxLOtraNZkROxC22wL8lkfEcpHVw
+         kw02Wr0XpB7xMY6phnhhZrOswjyX5D83QVwUr3PUpFuUt3UqxqF8gprbx5Cl7myG3Xdr
+         q6seP6MGL66tUPaCjTDB3qFivCusBokdoArmgqGS9sbPPmo69pM9sK3c3OJUGbRfyEIx
+         WlFw==
+X-Gm-Message-State: AOJu0YwA6GSHqfyd3/SJVPXOgQA/1TPSY1md496X/GYY15VlrwoqPwJn
+	R4vctjKEMn3sYvDCJB4ZfsE=
+X-Google-Smtp-Source: AGHT+IH1WtUh4lLDLXG5IiblI45G3p6EXiy1nYiInTnkW1SJPSDVOYTwlRUoP94KmI9gaBCJDsAvhg==
+X-Received: by 2002:a17:906:198d:b0:a26:975b:a18d with SMTP id g13-20020a170906198d00b00a26975ba18dmr521736ejd.148.1703238786352;
+        Fri, 22 Dec 2023 01:53:06 -0800 (PST)
+Received: from eichest-laptop.lan ([2a02:168:af72:0:f05b:3f84:67d1:580])
+        by smtp.gmail.com with ESMTPSA id su24-20020a17090703d800b00a26ab41d0f7sm1311838ejb.26.2023.12.22.01.53.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 22 Dec 2023 01:53:06 -0800 (PST)
+From: Stefan Eichenberger <eichest@gmail.com>
+To: nick@shmanahar.org,
+	dmitry.torokhov@gmail.com,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	nicolas.ferre@microchip.com,
+	alexandre.belloni@bootlin.com,
+	claudiu.beznea@tuxon.dev,
+	linus.walleij@linaro.org,
+	francesco.dolcini@toradex.com
+Cc: linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Stefan Eichenberger <stefan.eichenberger@toradex.com>
+Subject: [PATCH v2 0/2] Add a property to turn off the max touch controller in suspend mode
+Date: Fri, 22 Dec 2023 10:52:56 +0100
+Message-Id: <20231222095258.33369-1-eichest@gmail.com>
+X-Mailer: git-send-email 2.40.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX068.cuchost.com
- (172.16.6.68)
-X-YovoleRuleAgent: yovoleflag
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-Add OpenCores PWM controller node and add PWM pins configuration
-on VisionFive 2 board.
+From: Stefan Eichenberger <stefan.eichenberger@toradex.com>
 
-Signed-off-by: William Qiu <william.qiu@starfivetech.com>
----
- .../jh7110-starfive-visionfive-2.dtsi         | 22 +++++++++++++++++++
- arch/riscv/boot/dts/starfive/jh7110.dtsi      |  9 ++++++++
- 2 files changed, 31 insertions(+)
+Our hardware has a shared regulator that powers various peripherals such
+as the display, touch, USB hub, etc. Since the Maxtouch controller
+doesn't currently allow it to be turned off, this regulator has to stay
+on in suspend mode. This increases the overall power consumption. In
+order to turn off the controller when the system goes into suspend mode,
+this series adds a device tree property to the maxtouch driver that
+allows the controller to be turned off completely and ensurs that it can
+resume from the power off state.
 
-diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dt=
-si b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-index b89e9791efa7..e08af8a830ab 100644
---- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-+++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-@@ -323,6 +323,12 @@ reserved-data@600000 {
- 	};
- };
-=20
-+&pwm {
-+	pinctrl-names =3D "default";
-+	pinctrl-0 =3D <&pwm_pins>;
-+	status =3D "okay";
-+};
-+
- &spi0 {
- 	pinctrl-names =3D "default";
- 	pinctrl-0 =3D <&spi0_pins>;
-@@ -513,6 +519,22 @@ GPOEN_ENABLE,
- 		};
- 	};
-=20
-+	pwm_pins: pwm-0 {
-+		pwm-pins {
-+			pinmux =3D <GPIOMUX(46, GPOUT_SYS_PWM_CHANNEL0,
-+					      GPOEN_SYS_PWM0_CHANNEL0,
-+					      GPI_NONE)>,
-+				 <GPIOMUX(59, GPOUT_SYS_PWM_CHANNEL1,
-+					      GPOEN_SYS_PWM0_CHANNEL1,
-+					      GPI_NONE)>;
-+			bias-disable;
-+			drive-strength =3D <12>;
-+			input-disable;
-+			input-schmitt-disable;
-+			slew-rate =3D <0>;
-+		};
-+	};
-+
- 	spi0_pins: spi0-0 {
- 		mosi-pins {
- 			pinmux =3D <GPIOMUX(52, GPOUT_SYS_SPI0_TXD,
-diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/d=
-ts/starfive/jh7110.dtsi
-index 45213cdf50dc..1b782f2c1395 100644
---- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
-+++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-@@ -829,6 +829,15 @@ i2stx1: i2s@120c0000 {
- 			status =3D "disabled";
- 		};
-=20
-+		pwm: pwm@120d0000 {
-+			compatible =3D "starfive,jh7110-pwm", "opencores,pwm-v1";
-+			reg =3D <0x0 0x120d0000 0x0 0x10000>;
-+			clocks =3D <&syscrg JH7110_SYSCLK_PWM_APB>;
-+			resets =3D <&syscrg JH7110_SYSRST_PWM_APB>;
-+			#pwm-cells =3D <3>;
-+			status =3D "disabled";
-+		};
-+
- 		sfctemp: temperature-sensor@120e0000 {
- 			compatible =3D "starfive,jh7110-temp";
- 			reg =3D <0x0 0x120e0000 0x0 0x10000>;
---=20
-2.34.1
+Changes since v1:
+- Rename the property and change the description (Krzysztof, Linus,
+  Dmitry, Conor)
+
+Stefan Eichenberger (2):
+  dt-bindings: input: atmel,maxtouch: add poweroff-sleep property
+  Input: atmel_mxt_ts - support poweroff in suspend
+
+ .../bindings/input/atmel,maxtouch.yaml        |  6 ++
+ drivers/input/touchscreen/atmel_mxt_ts.c      | 72 ++++++++++++++-----
+ 2 files changed, 61 insertions(+), 17 deletions(-)
+
+-- 
+2.40.1
 
 
