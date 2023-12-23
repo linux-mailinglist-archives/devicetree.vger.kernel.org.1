@@ -1,54 +1,49 @@
-Return-Path: <devicetree+bounces-28208-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28209-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4562A81D312
-	for <lists+devicetree@lfdr.de>; Sat, 23 Dec 2023 09:06:30 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A78C981D32D
+	for <lists+devicetree@lfdr.de>; Sat, 23 Dec 2023 09:36:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 68FA61C22220
-	for <lists+devicetree@lfdr.de>; Sat, 23 Dec 2023 08:06:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 656222842CE
+	for <lists+devicetree@lfdr.de>; Sat, 23 Dec 2023 08:36:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5584A7484;
-	Sat, 23 Dec 2023 08:06:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=trvn.ru header.i=@trvn.ru header.b="iNm7uSiv"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D41F63C28;
+	Sat, 23 Dec 2023 08:36:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from box.trvn.ru (box.trvn.ru [194.87.146.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from bmailout3.hostsharing.net (bmailout3.hostsharing.net [176.9.242.62])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 750B58BE0;
-	Sat, 23 Dec 2023 08:06:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=trvn.ru
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=trvn.ru
-Received: from authenticated-user (box.trvn.ru [194.87.146.52])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-	(No client certificate requested)
-	by box.trvn.ru (Postfix) with ESMTPSA id B252441BD2;
-	Sat, 23 Dec 2023 13:05:33 +0500 (+05)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=trvn.ru; s=mail;
-	t=1703318736; bh=e08FoWdtPSBF5xVKc91iPWDm+2CtVdPEztlQEzzLCXQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=iNm7uSivuY3lLD2FvO/siVeJpH5oY+zOTe++KykAHZBgFklLQbxJ0VeWGVKonQMk7
-	 2Q4EgDbFs5VxzLt5Gm6KpfnWJsaHLIuuMvEauc6xfHA/e3WZdnnyG1iIQ2GrqwTOHm
-	 5cpFnfqpunmLiQB0VDGSEeR8xbO/i/k10nfuctLmmOVwGDCbNVw9BJwEyDfMIHMdcW
-	 nHRZ34p64tLw0udA1b7jAiEsoqyflT/18ivYQNRz0DxA8zZm5V3fbOW2JVVnZ2M4Ia
-	 rVw4DYiPZ1VC+nqjKUiacDYyclQTyJYgajJ6eblr1E4D7pY1NwUNy6EiI1pbv1MDG9
-	 xKzhDWvl5pxkw==
-Date: Sat, 23 Dec 2023 13:05:29 +0500
-From: Nikita Travkin <nikita@trvn.ru>
-To: Chia-I Wu <olvaffe@gmail.com>
-Cc: cros-qcom-dts-watchers@chromium.org, Andy Gross <agross@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Maulik Shah <quic_mkshah@quicinc.com>, 
-	Ulf Hansson <ulf.hansson@linaro.org>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3] arm64: dts: qcom: sc7280: revert back to PSCI PC mode
- for herobrine
-Message-ID: <bwfqomkub25wr5nsqvbp3dkpeda5halx4rsd2jgfct3rk5qxux@gqrdks7oyavk>
-References: <20231222190311.3344572-1-olvaffe@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1647F8BEA;
+	Sat, 23 Dec 2023 08:36:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=wunner.de
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=h08.hostsharing.net
+Received: from h08.hostsharing.net (h08.hostsharing.net [IPv6:2a01:37:1000::53df:5f1c:0])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256
+	 client-signature RSA-PSS (4096 bits) client-digest SHA256)
+	(Client CN "*.hostsharing.net", Issuer "RapidSSL TLS RSA CA G1" (verified OK))
+	by bmailout3.hostsharing.net (Postfix) with ESMTPS id 19E69100D9414;
+	Sat, 23 Dec 2023 09:36:24 +0100 (CET)
+Received: by h08.hostsharing.net (Postfix, from userid 100393)
+	id DBDE35119; Sat, 23 Dec 2023 09:36:23 +0100 (CET)
+Date: Sat, 23 Dec 2023 09:36:23 +0100
+From: Lukas Wunner <lukas@wunner.de>
+To: Patrick Williams <patrick@stwcx.xyz>
+Cc: Howard Chiu <howard10703049@gmail.com>, robh+dt@kernel.org,
+	joel@jms.id.au, andrew@aj.id.au, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
+	linux-kernel@vger.kernel.org, potin.lai@quantatw.com,
+	Howard Chiu <howard.chiu@quantatw.com>,
+	linux-integrity@vger.kernel.org
+Subject: Re: [PATCH v8] ARM: dts: aspeed: Adding Facebook Bletchley BMC
+Message-ID: <20231223083623.GA17734@wunner.de>
+References: <20231220080733.GA30641@wunner.de>
+ <F444BFCC-1D44-4AF6-A0E1-B153A217FFE3@stwcx.xyz>
+ <20231220170012.GA10387@wunner.de>
+ <ZYYP1C0h4ms9kEjA@heinlein.vulture-banana.ts.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,190 +52,75 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231222190311.3344572-1-olvaffe@gmail.com>
+In-Reply-To: <ZYYP1C0h4ms9kEjA@heinlein.vulture-banana.ts.net>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 
-On Fri, Dec 22, 2023 at 11:03:03AM -0800, Chia-I Wu wrote:
-> Commit 7925ca85e9561 ("arm64: dts: qcom: sc7280: Add power-domains for
-> cpuidle states") transitioned all SC7280 devices to PSCI OS initiated
-> mode, which doesn't work on TFA-based SC7280 devices.  This effectively
-> revert the commit for sc7280-herobrine.
->
-
-Hi!
-
-I believe modern TF-A includes OSI mode, and it was added pretty much
-specifically for sc7280, as described in [1]. More to that, I think
-the original commit that introduced OSI mode for sc7280 did it using
-the TF-A specific suspend params (I believe they are different from
-qcom firmware) so the leftover state of the base soc dtsi would be
-weird...
-
-I can't understand why this change is needed...
-
-Nikita
-
-[1] https://trustedfirmware-a.readthedocs.io/en/latest/design_documents/psci_osi_mode.html
-
-> Fixes: 7925ca85e9561 ("arm64: dts: qcom: sc7280: Add power-domains for cpuidle states")
-> Signed-off-by: Chia-I Wu <olvaffe@gmail.com>
-> ---
+On Fri, Dec 22, 2023 at 04:38:12PM -0600, Patrick Williams wrote:
+> On Wed, Dec 20, 2023 at 06:00:12PM +0100, Lukas Wunner wrote:
+> > If chips are dual-sourced or triple-sourced, as you say, and they
+> > behave identically, then I think it is fine to specify all of their
+> > compatible strings plus the generic compatible.  
 > 
-> v2: improved commit message
-> v3: improved commit message.  I hope it's better now!
+> This has explicitly been rejected before; having multiple incompatible
+> chips listed in the same compatible.  I've tried to search lore but I
+> can't find a reference unfortunately.
+
+I'll let devicetree maintainers comment on that.
+
+
+> Furthermore, what you're suggesting does not jive with what is in the
+> devicetree binding documentation for tpm_tis-spi [2]:
 > 
->  .../boot/dts/qcom/sc7280-firmware-tfa.dtsi    | 107 ++++++++++++++++++
->  .../arm64/boot/dts/qcom/sc7280-herobrine.dtsi |   1 +
->  arch/arm64/boot/dts/qcom/sc7280.dtsi          |   4 +-
->  3 files changed, 110 insertions(+), 2 deletions(-)
->  create mode 100644 arch/arm64/boot/dts/qcom/sc7280-firmware-tfa.dtsi
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280-firmware-tfa.dtsi b/arch/arm64/boot/dts/qcom/sc7280-firmware-tfa.dtsi
-> new file mode 100644
-> index 0000000000000..b3fc03da244d6
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/sc7280-firmware-tfa.dtsi
-> @@ -0,0 +1,107 @@
-> +// SPDX-License-Identifier: BSD-3-Clause
-> +
-> +/*
-> + * Devices that use SC7280 with TrustedFirmware-A
-> + * need PSCI PC mode instead of the OSI mode provided
-> + * by Qualcomm firmware.
-> + */
-> +
-> +&CPU0 {
-> +	/delete-property/ power-domains;
-> +	/delete-property/ power-domain-names;
-> +
-> +	cpu-idle-states = <&LITTLE_CPU_SLEEP_0
-> +			   &LITTLE_CPU_SLEEP_1
-> +			   &CLUSTER_SLEEP_0>;
-> +};
-> +
-> +&CPU1 {
-> +	/delete-property/ power-domains;
-> +	/delete-property/ power-domain-names;
-> +
-> +	cpu-idle-states = <&LITTLE_CPU_SLEEP_0
-> +			   &LITTLE_CPU_SLEEP_1
-> +			   &CLUSTER_SLEEP_0>;
-> +};
-> +
-> +&CPU2 {
-> +	/delete-property/ power-domains;
-> +	/delete-property/ power-domain-names;
-> +
-> +	cpu-idle-states = <&LITTLE_CPU_SLEEP_0
-> +			   &LITTLE_CPU_SLEEP_1
-> +			   &CLUSTER_SLEEP_0>;
-> +};
-> +
-> +&CPU3 {
-> +	/delete-property/ power-domains;
-> +	/delete-property/ power-domain-names;
-> +
-> +	cpu-idle-states = <&LITTLE_CPU_SLEEP_0
-> +			   &LITTLE_CPU_SLEEP_1
-> +			   &CLUSTER_SLEEP_0>;
-> +};
-> +
-> +&CPU4 {
-> +	/delete-property/ power-domains;
-> +	/delete-property/ power-domain-names;
-> +
-> +	cpu-idle-states = <&BIG_CPU_SLEEP_0
-> +			   &BIG_CPU_SLEEP_1
-> +			   &CLUSTER_SLEEP_0>;
-> +};
-> +
-> +&CPU5 {
-> +	/delete-property/ power-domains;
-> +	/delete-property/ power-domain-names;
-> +
-> +	cpu-idle-states = <&BIG_CPU_SLEEP_0
-> +			   &BIG_CPU_SLEEP_1
-> +			   &CLUSTER_SLEEP_0>;
-> +};
-> +
-> +&CPU6 {
-> +	/delete-property/ power-domains;
-> +	/delete-property/ power-domain-names;
-> +
-> +	cpu-idle-states = <&BIG_CPU_SLEEP_0
-> +			   &BIG_CPU_SLEEP_1
-> +			   &CLUSTER_SLEEP_0>;
-> +};
-> +
-> +&CPU7 {
-> +	/delete-property/ power-domains;
-> +	/delete-property/ power-domain-names;
-> +
-> +	cpu-idle-states = <&BIG_CPU_SLEEP_0
-> +			   &BIG_CPU_SLEEP_1
-> +			   &CLUSTER_SLEEP_0>;
-> +};
-> +
-> +/delete-node/ &domain_idle_states;
-> +
-> +&idle_states {
-> +	CLUSTER_SLEEP_0: cluster-sleep-0 {
-> +		compatible = "arm,idle-state";
-> +		idle-state-name = "cluster-power-down";
-> +		arm,psci-suspend-param = <0x40003444>;
-> +		entry-latency-us = <3263>;
-> +		exit-latency-us = <6562>;
-> +		min-residency-us = <9926>;
-> +		local-timer-stop;
-> +	};
-> +};
-> +
-> +/delete-node/ &CPU_PD0;
-> +/delete-node/ &CPU_PD1;
-> +/delete-node/ &CPU_PD2;
-> +/delete-node/ &CPU_PD3;
-> +/delete-node/ &CPU_PD4;
-> +/delete-node/ &CPU_PD5;
-> +/delete-node/ &CPU_PD6;
-> +/delete-node/ &CPU_PD7;
-> +/delete-node/ &CLUSTER_PD;
-> +
-> +&apps_rsc {
-> +	/delete-property/ power-domains;
-> +};
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
-> index 9ea6636125ad9..09b2d370bf7e0 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
-> @@ -19,6 +19,7 @@
->  
->  #include "sc7280-qcard.dtsi"
->  #include "sc7280-chrome-common.dtsi"
-> +#include "sc7280-firmware-tfa.dtsi"
->  
->  / {
->  	chosen {
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> index 66f1eb83cca7e..354bf2868eba6 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> @@ -383,7 +383,7 @@ core7 {
->  			};
->  		};
->  
-> -		idle-states {
-> +		idle_states: idle-states {
->  			entry-method = "psci";
->  
->  			LITTLE_CPU_SLEEP_0: cpu-sleep-0-0 {
-> @@ -427,7 +427,7 @@ BIG_CPU_SLEEP_1: cpu-sleep-1-1 {
->  			};
->  		};
->  
-> -		domain-idle-states {
-> +		domain_idle_states: domain-idle-states {
->  			CLUSTER_SLEEP_0: cluster-sleep-0 {
->  				compatible = "domain-idle-state";
->  				idle-state-name = "cluster-power-down";
-> -- 
-> 2.43.0.195.gebba966016-goog
+> - compatible: should be **one** of the following (emphasis mine)
+
+That's superseded by:
+
+https://lore.kernel.org/all/cover.1702806810.git.lukas@wunner.de/
+
+I don't really have a dog in this fight, I merely stepped up to
+convert TPM DT bindings to YAML.  There have been multiple attempts
+to convert them in the past but none of them have been pursued into
+mainline.
+
+I looked at compatible string usage in arch/arm{,64}/boot/dts
+and was under the impression that the majority of devicetrees
+use a combo matching this pattern:
+"vendor,chip", "tcg,tpm[_-]tis-{spi,i2c,mmio}"
+
+So that's what I went for in the conversion.  It would be inconsistent
+to enforce a generic compatible for i2c and mmio, but not for spi.
+
+I ran the validator against all arm/arm64 devicetrees and there are
+four devicetrees which only use a generic compatible and not a
+"vendor,chip" compatible:
+arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-bletchley.dts
+arch/arm/boot/dts/ast2600-facebook-netbmc-common.dtsi
+arch/arm/boot/dts/aspeed-bmc-facebook-wedge400.dts
+arch/arm/boot/dts/am335x-moxa-uc-2100-common.dtsi
+
+So, three Aspeed Facebook and one Moxa.  There's a fifth case (phyTEC)
+but the devicetree author clarified it's an Infineon SLB9670.
+The authors of the other four devicetrees listed above did not respond.
+
+Patches to fix up schema violations are here:
+https://github.com/l1k/linux/commit/7813a455ed15393df7d9d353173635b98ae23387
+https://github.com/l1k/linux/commit/a958be44952b1de170100be1007780a72ce7d861
+
+
+> As I said,
+> these are pluggable modules and not simply second-source builds.  There
+> are a collection of modules that can all be plugged into the same header.
+> They might not even be shipped with the device...
+
+If those TPM modules might not even be plugged in or are interchangeable,
+I think they ought to be represented as DT overlays.
+
+Honestly I'm wondering how common the scenario you're describing is.
+If it's an edge case, it might not be worth holding up the YAML
+conversion because of it.  The missing YAML conversion is a constant
+cause of pain for a lot of people.
+
+Thanks,
+
+Lukas
 
