@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-28239-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28240-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A287A81D478
-	for <lists+devicetree@lfdr.de>; Sat, 23 Dec 2023 15:14:49 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3847181D47E
+	for <lists+devicetree@lfdr.de>; Sat, 23 Dec 2023 15:17:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C705C1C21895
-	for <lists+devicetree@lfdr.de>; Sat, 23 Dec 2023 14:14:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E358028173F
+	for <lists+devicetree@lfdr.de>; Sat, 23 Dec 2023 14:17:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8B24DDD8;
-	Sat, 23 Dec 2023 14:14:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D08D8DDD1;
+	Sat, 23 Dec 2023 14:17:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lxUTmRjR"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ftDyf+Zx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
+Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51E94DDD1
-	for <devicetree@vger.kernel.org>; Sat, 23 Dec 2023 14:14:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4105DDDA0
+	for <devicetree@vger.kernel.org>; Sat, 23 Dec 2023 14:17:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-5542ac8b982so2517349a12.3
-        for <devicetree@vger.kernel.org>; Sat, 23 Dec 2023 06:14:34 -0800 (PST)
+Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-54c79968ffbso2819214a12.3
+        for <devicetree@vger.kernel.org>; Sat, 23 Dec 2023 06:17:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1703340872; x=1703945672; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1703341046; x=1703945846; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=LiCllqZwAhPxUYtWI0EYQGLdVW2HkCQI0VvpkWyblTo=;
-        b=lxUTmRjRVE7rG5o4CGZocT1KwJIZRJCxC6zSPMD8rpCDJsSVU4fJY441MPvlDNgSGh
-         EXwOAwY65XcsJnqnlyMITLDdLEt81YumuJNnuyZrzqa0Pq3KOV44yNpypS2CKOvy/9Rh
-         XpOKLuqP2tX6Xm7+7eHpsOXvCi0gJVXyhWcEpXLgsQVG5m/OtSsvzwCliCa4mUrQw8++
-         x9Gg7PDCXSS+LqlnRM66V78+S8Qf3YKQ7tw1tqCOaz13MHwg9oQbxKaRZOLI7Wgxq18V
-         swZUgRAzxhfZvds1gMxWOrovE9juclIsJn4WxkVYxQ55/NI3PL4ay5ENdbRUE2Jlzacv
-         HCiw==
+        bh=yxS4YAdMN5goxWOvjAG3QNJdl3D9INpvcTS+TWD84LU=;
+        b=ftDyf+ZxLRl9+Q0WBpMKrmhZa7Piu4AVwCp6n0DW9opPB4plo7cH+lFguUPkli5ZDw
+         hojE5HqH4kyddjS5AMQQIE7qvYgPw8GUC3ddg9wc+FUGK7YWbwVptSvKJSQNrpg08vhE
+         xzdRYIdIL7FtzKBZHJ6eDIxOumATnRSVb6M9HA+PjYdz1rhOPfd2T6o5QQBFiSlDdszH
+         irokrZRtI7zFwhxj8x/mUCe7HrB0q0U3kTk9ya5Z2oNnyy/9dWFaJs8L5OBdY1pYSoJ/
+         Glh1PSjBzqS6Nos27qMonZMaP5VM//c/+DYIwbMvBWfzDnoLlt2+noqmYMeXG1hpdQTs
+         xFPA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703340872; x=1703945672;
+        d=1e100.net; s=20230601; t=1703341046; x=1703945846;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=LiCllqZwAhPxUYtWI0EYQGLdVW2HkCQI0VvpkWyblTo=;
-        b=YeB89VpmVraZRPIP4+giQXcVmCW3NiXh80OSxoFK9wsDTOm0dBAPI9clY7duefYeHb
-         a+KDm0dq4frFxeptBscRXX/CP+nQnlCcOs1PaHBoPsZ9ke/n21OZI1hHJbjoHe8PUfuU
-         icEWU/FVQUUJ3YtNnxO7twzXYi3ZOvwbB7z3esg/wH5HtujPQq5SNVDj2Qy9re/E+Lf4
-         8ZCI0om5V5G/KR/iZhyCzWZY10bEaNx57ivBKiTGM9JxFxE4MSm+NtWLeTg1s5cReLlC
-         poiW++xOOjJnQXvu92mXqfl0oh5KTpecFpiDzXJNA17E1zhhGNCpzlYTVVATHmBG02UO
-         2VPA==
-X-Gm-Message-State: AOJu0Ywf1LNjZMg95TZDo/lafZ6cmFtwJcmvQMaLzj64OoyM6ebG/vmo
-	hRmlqZLWCRe94YVOom6GG/nwTaonUnCNBQ==
-X-Google-Smtp-Source: AGHT+IGfQvO0Yox6cNUgCZ4CoPDeH1lHeogBTwVCR6CTadUXHg7WKcuPnXHnJD2dhg5WwLH/gb3FFQ==
-X-Received: by 2002:a50:b403:0:b0:554:746f:e598 with SMTP id b3-20020a50b403000000b00554746fe598mr939890edh.82.1703340872446;
-        Sat, 23 Dec 2023 06:14:32 -0800 (PST)
+        bh=yxS4YAdMN5goxWOvjAG3QNJdl3D9INpvcTS+TWD84LU=;
+        b=ox9MYp2zLhGWtSs+fWvRrYewUCc6J32ZTGMDyrwVM2DAmnIMmVJ/9NpK96tBryrmUJ
+         uU9GnBRrRtxM9B+a4TI8PK5qhVWy9WaiItBM4aiD7o0m3pI/MV64Dj44/KG7t/lobHhH
+         HQvP/aFDUx5wneZ2o6ALuxMbTaPs7AWdrHAzcS7NQqKR9Lx53/7zCdA9jU4hKZQTdtQm
+         QAMHE2mNqm3LCf+Gbwy4AsbobEa7RBqsI4z2g0ZrmT5A0d5kik0CiSnupeMMA+ES5d8h
+         pJheg4dPekWGbvZYH2cVWK3qWxmmTgnEAzDEPwpRUwyagiYoVoQ/OS45rKOJrHsXA4Qw
+         YnGQ==
+X-Gm-Message-State: AOJu0YybNPqSzvG8hMTEl8EU9EsUjCm7umelfzDDK06YgzTr3HATmQgW
+	dX+1/QuNzMXckppt2oj75EafoP522yrvtw==
+X-Google-Smtp-Source: AGHT+IEWtpfDXYGsfGjVykzE4s2kT08nlXX7oErV7FIaPBuKHaM5JQyEJ4f/VjRiaPlC1R8iV9wZ2g==
+X-Received: by 2002:a50:bb02:0:b0:54c:4837:7583 with SMTP id y2-20020a50bb02000000b0054c48377583mr1578310ede.47.1703341046402;
+        Sat, 23 Dec 2023 06:17:26 -0800 (PST)
 Received: from [192.168.0.22] ([78.10.206.178])
-        by smtp.gmail.com with ESMTPSA id k3-20020a1709065fc300b00a26aad1f920sm2551471ejv.90.2023.12.23.06.14.30
+        by smtp.gmail.com with ESMTPSA id u15-20020aa7db8f000000b005549006dadfsm711109edt.58.2023.12.23.06.17.25
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 23 Dec 2023 06:14:31 -0800 (PST)
-Message-ID: <a4f4cf5a-ba51-4c5b-b9ce-3eddd1ec6bd7@linaro.org>
-Date: Sat, 23 Dec 2023 15:14:30 +0100
+        Sat, 23 Dec 2023 06:17:25 -0800 (PST)
+Message-ID: <401f400a-e267-4131-82ee-a5759edaa3cb@linaro.org>
+Date: Sat, 23 Dec 2023 15:17:24 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,21 +66,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: timer: exynos4210-mct: Add
- google,gs101-mct compatible
+Subject: Re: [PATCH] dt-bindings: regulator: Convert ti,tps65133 to YAML
 Content-Language: en-US
-To: Peter Griffin <peter.griffin@linaro.org>, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, daniel.lezcano@linaro.org,
- tglx@linutronix.de, conor+dt@kernel.org, alim.akhtar@samsung.com,
- s.nawrocki@samsung.com, tomasz.figa@gmail.com, cw00.choi@samsung.com,
- mturquette@baylibre.com, sboyd@kernel.org
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
- linux-kernel@vger.kernel.org, kernel-team@android.com,
- tudor.ambarus@linaro.org, andre.draszik@linaro.org,
- semen.protsenko@linaro.org, saravanak@google.com, willmcvicker@google.com
-References: <20231222165355.1462740-1-peter.griffin@linaro.org>
- <20231222165355.1462740-2-peter.griffin@linaro.org>
+To: Mark Brown <broonie@kernel.org>, =?UTF-8?Q?Andr=C3=A9_Apitzsch?=
+ <git@apitzsch.eu>, Rob Herring <robh@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Rob Herring <robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Liam Girdwood <lgirdwood@gmail.com>
+References: <20231217-tps65132-v1-1-73c69a960d28@apitzsch.eu>
+ <170282308261.876422.2237767392476986368.robh@kernel.org>
+ <951a01b5da3061e1ac1d396ba7f6629e3a0e9a1e.camel@apitzsch.eu>
+ <b67eba2a-b07a-4076-92bb-07bd0faf338e@sirena.org.uk>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -126,21 +123,36 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231222165355.1462740-2-peter.griffin@linaro.org>
+In-Reply-To: <b67eba2a-b07a-4076-92bb-07bd0faf338e@sirena.org.uk>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 22/12/2023 17:53, Peter Griffin wrote:
-> Add dedicated google,gs101-mct compatible to the dt-schema for
-> representing mct timer of the Google Tensor gs101 SoC.
+On 22/12/2023 15:49, Mark Brown wrote:
+> On Fri, Dec 22, 2023 at 08:50:14AM +0100, André Apitzsch wrote:
+>> Am Sonntag, dem 17.12.2023 um 08:24 -0600 schrieb Rob Herring:
+>>> On Sun, 17 Dec 2023 14:21:39 +0100, André Apitzsch wrote:
 > 
-> Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
+>>> dtschema/dtc warnings/errors:
+>>> /builds/robherring/dt-review-
+>>> ci/linux/Documentation/devicetree/bindings/regulator/ti,tps65132.yaml
+>>> : 'maintainers' is a required property
+>>> 	hint: Metaschema for devicetree binding documentation
+>>> 	from schema $id:
+>>> http://devicetree.org/meta-schemas/base.yaml#
+> 
+>> I haven't add a maintainer, yet, as the driver for tps65132 doesn't
+>> list one.
+> 
+>> Who is willing to be listed as maintainer for this device or who can be
+>> asked to become a maintainer for tps65132?
+> 
+> You could just put the list in as a fallback I guess?
+> 
+> The requirement for DT maintainer does seem to in conflict with the push
+> to convert things when people are doing incidental work on the driver...
 
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-I assume this will go via clocksource/timer. But I am also fine taking
-it via Samsung SoC tree if needed.
+I agree. How about relaxing the check and not marking missing maintainer
+as a failure?
 
 Best regards,
 Krzysztof
