@@ -1,72 +1,54 @@
-Return-Path: <devicetree+bounces-28207-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28208-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27F3F81D2E2
-	for <lists+devicetree@lfdr.de>; Sat, 23 Dec 2023 08:24:51 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4562A81D312
+	for <lists+devicetree@lfdr.de>; Sat, 23 Dec 2023 09:06:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 87AFBB2189C
-	for <lists+devicetree@lfdr.de>; Sat, 23 Dec 2023 07:24:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 68FA61C22220
+	for <lists+devicetree@lfdr.de>; Sat, 23 Dec 2023 08:06:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D0496AA0;
-	Sat, 23 Dec 2023 07:24:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5584A7484;
+	Sat, 23 Dec 2023 08:06:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fOtDNDJy"
+	dkim=pass (2048-bit key) header.d=trvn.ru header.i=@trvn.ru header.b="iNm7uSiv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
+Received: from box.trvn.ru (box.trvn.ru [194.87.146.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC9C59441;
-	Sat, 23 Dec 2023 07:24:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-1d3ed1ca402so20323785ad.2;
-        Fri, 22 Dec 2023 23:24:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1703316282; x=1703921082; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=jORh9fw7nr/hSfxeUA6D1R76ciFhMQw7mZ7t5scr0gE=;
-        b=fOtDNDJyIFNKf2xxoraZpruZfSW4uRonpaDTpIM+uv5PNPf63r51gKX5ummrua0g5m
-         fmqDk036TC37USb/RawOdGl3CgZeu+yyy5IectZYbvDw+n6wF+50gCTG1W8rnD2EtR1c
-         w5NCYp7635xnNQFOboaufIPGcSNtby/nCwytUPAwF+Xr2VAcevicEQf/+3aJcg2GtQAM
-         rQhi+PVh7lAmQcC78wd2W3XOQUYakBg1pO1i8swXh2d5gxcF47ojedp4RVXGKdPhZe5Q
-         0pcI+vI5J3WjJGGhDq+vvTEGwh77GDQO6OQR/N4Hzzj4F5qvbH6CzXQcJJmuNzr73mDH
-         UMDA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703316282; x=1703921082;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=jORh9fw7nr/hSfxeUA6D1R76ciFhMQw7mZ7t5scr0gE=;
-        b=f+wNrH3xHORW9700supCYvS3wmyo6PbyKW3TKguxL2cayYgOZEEHRvrCF30NeukkfE
-         WDaIJ/fVs5yPZ2YcXBs/m6RoD3IgsV1OlMz1wuuAZn/mb/3vBc5bTaLqlJQMK4GdACc/
-         8/pHvnXoEZftxWGdZaaxbDvgXAPmqD4vngwBrPx1p2XoYuuo9AseA6iZ3zAHZ0HH+OWh
-         CrQ/rcJ9cqSAyADXazsXIPPD+oo7GLzpkkLBr00kHQDFr691jLBGe4YNg6eQ1RAAvYCZ
-         Z8Y8d6de8Fb4pl0i0cuTnMlCbbJVTaTE0Ecqk/Yj0TxO7gf8fgSPBVZLO0NTW3AZSTjL
-         6KFA==
-X-Gm-Message-State: AOJu0YxrJmJXV1duNa1aNJL2v+whakeOpKswvTx7UZA61oqoduYseuHk
-	OVJUKo/nRpUKLrK9idTIo6o=
-X-Google-Smtp-Source: AGHT+IHDROTw+qUqQ5s2W41ci3hSL+ozkJgbTmX4v4D4Q+t8ankXeHjijUG90Hp1ejTPeq/3YR7fqg==
-X-Received: by 2002:a17:902:e88f:b0:1c9:c6f4:e0c3 with SMTP id w15-20020a170902e88f00b001c9c6f4e0c3mr3346030plg.62.1703316281854;
-        Fri, 22 Dec 2023 23:24:41 -0800 (PST)
-Received: from google.com ([2620:15c:9d:2:6810:f806:ab04:8efd])
-        by smtp.gmail.com with ESMTPSA id q17-20020a170902dad100b001d3f42edb4dsm4483746plx.294.2023.12.22.23.24.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 22 Dec 2023 23:24:41 -0800 (PST)
-Date: Fri, 22 Dec 2023 23:24:38 -0800
-From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To: Anshul Dalal <anshulusr@gmail.com>
-Cc: linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-kernel-mentees@lists.linuxfoundation.org
-Subject: Re: [PATCH v1] dt-bindings: input: convert drv266x to json-schema
-Message-ID: <ZYaLNkYRt_WHzvCD@google.com>
-References: <20231221183109.684325-1-anshulusr@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 750B58BE0;
+	Sat, 23 Dec 2023 08:06:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=trvn.ru
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=trvn.ru
+Received: from authenticated-user (box.trvn.ru [194.87.146.52])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+	(No client certificate requested)
+	by box.trvn.ru (Postfix) with ESMTPSA id B252441BD2;
+	Sat, 23 Dec 2023 13:05:33 +0500 (+05)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=trvn.ru; s=mail;
+	t=1703318736; bh=e08FoWdtPSBF5xVKc91iPWDm+2CtVdPEztlQEzzLCXQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=iNm7uSivuY3lLD2FvO/siVeJpH5oY+zOTe++KykAHZBgFklLQbxJ0VeWGVKonQMk7
+	 2Q4EgDbFs5VxzLt5Gm6KpfnWJsaHLIuuMvEauc6xfHA/e3WZdnnyG1iIQ2GrqwTOHm
+	 5cpFnfqpunmLiQB0VDGSEeR8xbO/i/k10nfuctLmmOVwGDCbNVw9BJwEyDfMIHMdcW
+	 nHRZ34p64tLw0udA1b7jAiEsoqyflT/18ivYQNRz0DxA8zZm5V3fbOW2JVVnZ2M4Ia
+	 rVw4DYiPZ1VC+nqjKUiacDYyclQTyJYgajJ6eblr1E4D7pY1NwUNy6EiI1pbv1MDG9
+	 xKzhDWvl5pxkw==
+Date: Sat, 23 Dec 2023 13:05:29 +0500
+From: Nikita Travkin <nikita@trvn.ru>
+To: Chia-I Wu <olvaffe@gmail.com>
+Cc: cros-qcom-dts-watchers@chromium.org, Andy Gross <agross@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Maulik Shah <quic_mkshah@quicinc.com>, 
+	Ulf Hansson <ulf.hansson@linaro.org>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3] arm64: dts: qcom: sc7280: revert back to PSCI PC mode
+ for herobrine
+Message-ID: <bwfqomkub25wr5nsqvbp3dkpeda5halx4rsd2jgfct3rk5qxux@gqrdks7oyavk>
+References: <20231222190311.3344572-1-olvaffe@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,17 +57,190 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231221183109.684325-1-anshulusr@gmail.com>
+In-Reply-To: <20231222190311.3344572-1-olvaffe@gmail.com>
 
-On Fri, Dec 22, 2023 at 12:01:08AM +0530, Anshul Dalal wrote:
-> Convert devicetree binding documentation for ti drv2665 and drv2667
-> haptics driver to json-schema. The previously two separate bindings have
-> been merged into a single drv266x.yaml.
+On Fri, Dec 22, 2023 at 11:03:03AM -0800, Chia-I Wu wrote:
+> Commit 7925ca85e9561 ("arm64: dts: qcom: sc7280: Add power-domains for
+> cpuidle states") transitioned all SC7280 devices to PSCI OS initiated
+> mode, which doesn't work on TFA-based SC7280 devices.  This effectively
+> revert the commit for sc7280-herobrine.
+>
+
+Hi!
+
+I believe modern TF-A includes OSI mode, and it was added pretty much
+specifically for sc7280, as described in [1]. More to that, I think
+the original commit that introduced OSI mode for sc7280 did it using
+the TF-A specific suspend params (I believe they are different from
+qcom firmware) so the leftover state of the base soc dtsi would be
+weird...
+
+I can't understand why this change is needed...
+
+Nikita
+
+[1] https://trustedfirmware-a.readthedocs.io/en/latest/design_documents/psci_osi_mode.html
+
+> Fixes: 7925ca85e9561 ("arm64: dts: qcom: sc7280: Add power-domains for cpuidle states")
+> Signed-off-by: Chia-I Wu <olvaffe@gmail.com>
+> ---
 > 
-> Signed-off-by: Anshul Dalal <anshulusr@gmail.com>
-
-Applied, thank you.
-
--- 
-Dmitry
+> v2: improved commit message
+> v3: improved commit message.  I hope it's better now!
+> 
+>  .../boot/dts/qcom/sc7280-firmware-tfa.dtsi    | 107 ++++++++++++++++++
+>  .../arm64/boot/dts/qcom/sc7280-herobrine.dtsi |   1 +
+>  arch/arm64/boot/dts/qcom/sc7280.dtsi          |   4 +-
+>  3 files changed, 110 insertions(+), 2 deletions(-)
+>  create mode 100644 arch/arm64/boot/dts/qcom/sc7280-firmware-tfa.dtsi
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280-firmware-tfa.dtsi b/arch/arm64/boot/dts/qcom/sc7280-firmware-tfa.dtsi
+> new file mode 100644
+> index 0000000000000..b3fc03da244d6
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/sc7280-firmware-tfa.dtsi
+> @@ -0,0 +1,107 @@
+> +// SPDX-License-Identifier: BSD-3-Clause
+> +
+> +/*
+> + * Devices that use SC7280 with TrustedFirmware-A
+> + * need PSCI PC mode instead of the OSI mode provided
+> + * by Qualcomm firmware.
+> + */
+> +
+> +&CPU0 {
+> +	/delete-property/ power-domains;
+> +	/delete-property/ power-domain-names;
+> +
+> +	cpu-idle-states = <&LITTLE_CPU_SLEEP_0
+> +			   &LITTLE_CPU_SLEEP_1
+> +			   &CLUSTER_SLEEP_0>;
+> +};
+> +
+> +&CPU1 {
+> +	/delete-property/ power-domains;
+> +	/delete-property/ power-domain-names;
+> +
+> +	cpu-idle-states = <&LITTLE_CPU_SLEEP_0
+> +			   &LITTLE_CPU_SLEEP_1
+> +			   &CLUSTER_SLEEP_0>;
+> +};
+> +
+> +&CPU2 {
+> +	/delete-property/ power-domains;
+> +	/delete-property/ power-domain-names;
+> +
+> +	cpu-idle-states = <&LITTLE_CPU_SLEEP_0
+> +			   &LITTLE_CPU_SLEEP_1
+> +			   &CLUSTER_SLEEP_0>;
+> +};
+> +
+> +&CPU3 {
+> +	/delete-property/ power-domains;
+> +	/delete-property/ power-domain-names;
+> +
+> +	cpu-idle-states = <&LITTLE_CPU_SLEEP_0
+> +			   &LITTLE_CPU_SLEEP_1
+> +			   &CLUSTER_SLEEP_0>;
+> +};
+> +
+> +&CPU4 {
+> +	/delete-property/ power-domains;
+> +	/delete-property/ power-domain-names;
+> +
+> +	cpu-idle-states = <&BIG_CPU_SLEEP_0
+> +			   &BIG_CPU_SLEEP_1
+> +			   &CLUSTER_SLEEP_0>;
+> +};
+> +
+> +&CPU5 {
+> +	/delete-property/ power-domains;
+> +	/delete-property/ power-domain-names;
+> +
+> +	cpu-idle-states = <&BIG_CPU_SLEEP_0
+> +			   &BIG_CPU_SLEEP_1
+> +			   &CLUSTER_SLEEP_0>;
+> +};
+> +
+> +&CPU6 {
+> +	/delete-property/ power-domains;
+> +	/delete-property/ power-domain-names;
+> +
+> +	cpu-idle-states = <&BIG_CPU_SLEEP_0
+> +			   &BIG_CPU_SLEEP_1
+> +			   &CLUSTER_SLEEP_0>;
+> +};
+> +
+> +&CPU7 {
+> +	/delete-property/ power-domains;
+> +	/delete-property/ power-domain-names;
+> +
+> +	cpu-idle-states = <&BIG_CPU_SLEEP_0
+> +			   &BIG_CPU_SLEEP_1
+> +			   &CLUSTER_SLEEP_0>;
+> +};
+> +
+> +/delete-node/ &domain_idle_states;
+> +
+> +&idle_states {
+> +	CLUSTER_SLEEP_0: cluster-sleep-0 {
+> +		compatible = "arm,idle-state";
+> +		idle-state-name = "cluster-power-down";
+> +		arm,psci-suspend-param = <0x40003444>;
+> +		entry-latency-us = <3263>;
+> +		exit-latency-us = <6562>;
+> +		min-residency-us = <9926>;
+> +		local-timer-stop;
+> +	};
+> +};
+> +
+> +/delete-node/ &CPU_PD0;
+> +/delete-node/ &CPU_PD1;
+> +/delete-node/ &CPU_PD2;
+> +/delete-node/ &CPU_PD3;
+> +/delete-node/ &CPU_PD4;
+> +/delete-node/ &CPU_PD5;
+> +/delete-node/ &CPU_PD6;
+> +/delete-node/ &CPU_PD7;
+> +/delete-node/ &CLUSTER_PD;
+> +
+> +&apps_rsc {
+> +	/delete-property/ power-domains;
+> +};
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
+> index 9ea6636125ad9..09b2d370bf7e0 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
+> @@ -19,6 +19,7 @@
+>  
+>  #include "sc7280-qcard.dtsi"
+>  #include "sc7280-chrome-common.dtsi"
+> +#include "sc7280-firmware-tfa.dtsi"
+>  
+>  / {
+>  	chosen {
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> index 66f1eb83cca7e..354bf2868eba6 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> @@ -383,7 +383,7 @@ core7 {
+>  			};
+>  		};
+>  
+> -		idle-states {
+> +		idle_states: idle-states {
+>  			entry-method = "psci";
+>  
+>  			LITTLE_CPU_SLEEP_0: cpu-sleep-0-0 {
+> @@ -427,7 +427,7 @@ BIG_CPU_SLEEP_1: cpu-sleep-1-1 {
+>  			};
+>  		};
+>  
+> -		domain-idle-states {
+> +		domain_idle_states: domain-idle-states {
+>  			CLUSTER_SLEEP_0: cluster-sleep-0 {
+>  				compatible = "domain-idle-state";
+>  				idle-state-name = "cluster-power-down";
+> -- 
+> 2.43.0.195.gebba966016-goog
 
