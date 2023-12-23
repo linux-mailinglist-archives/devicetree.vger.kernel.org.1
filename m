@@ -1,138 +1,136 @@
-Return-Path: <devicetree+bounces-28231-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28226-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2BAD381D3FE
-	for <lists+devicetree@lfdr.de>; Sat, 23 Dec 2023 13:22:18 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 58B8A81D3DB
+	for <lists+devicetree@lfdr.de>; Sat, 23 Dec 2023 12:55:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5D89A1C21522
-	for <lists+devicetree@lfdr.de>; Sat, 23 Dec 2023 12:22:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 89E7A1C20F5E
+	for <lists+devicetree@lfdr.de>; Sat, 23 Dec 2023 11:55:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C4D6D278;
-	Sat, 23 Dec 2023 12:22:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34DF9CA7E;
+	Sat, 23 Dec 2023 11:55:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="PHE0hCGx"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tpSTe79z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF321D264;
-	Sat, 23 Dec 2023 12:22:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1703334133; x=1734870133;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=JdTJVddce5nTGKgEYfvCn0hUfu9G4o5BGyVJH1RDGFU=;
-  b=PHE0hCGxzGaaBqp5+5I5uogX59KEcbkktQdhAUr+dWQQaa3Klu8ZtBTU
-   XD12zHIGCe6LAQ4LVUJnlkNa7o958Yxl4AkoEkHfTvGxRqJnEgLKyLK/7
-   dWkJyfciDoBZYcU/tmob7eFPfGuMgxPui/x+8phc8TVjsphbU3xUIdgrd
-   mJEkJmgwY6xx6O9lVMR/SWgV0l+lErEjGbcZrrfGN1sgreuTCHyo0XpK2
-   PrUteOFAO4r6HuRoRnj/yrPvxPdlX8j1lEO+38L8guNCc9tneuIA6csJp
-   kMc9s7nh8NyJ5ip+/+qk2i/Y1Wh9BTlRBMvACpR22uKfmmO1N1w+Y6dZH
-   A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10932"; a="376335437"
-X-IronPort-AV: E=Sophos;i="6.04,299,1695711600"; 
-   d="scan'208";a="376335437"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
-  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Dec 2023 04:22:11 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.04,299,1695711600"; 
-   d="scan'208";a="19013064"
-Received: from lkp-server02.sh.intel.com (HELO b07ab15da5fe) ([10.239.97.151])
-  by orviesa002.jf.intel.com with ESMTP; 23 Dec 2023 04:22:08 -0800
-Received: from kbuild by b07ab15da5fe with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1rH113-000AxU-18;
-	Sat, 23 Dec 2023 12:22:05 +0000
-Date: Sat, 23 Dec 2023 19:54:50 +0800
-From: kernel test robot <lkp@intel.com>
-To: Xingyu Wu <xingyu.wu@starfivetech.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Claudiu Beznea <Claudiu.Beznea@microchip.com>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor.dooley@microchip.com>
-Cc: oe-kbuild-all@lists.linux.dev,
-	Walker Chen <walker.chen@starfivetech.com>,
-	Xingyu Wu <xingyu.wu@starfivetech.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
-	linux-sound@vger.kernel.org
-Subject: Re: [PATCH v1 2/2] ASoC: starfive: Add drivers of Cadence
- Multi-Channel I2S Controller
-Message-ID: <202312231911.DFYqQ9Gl-lkp@intel.com>
-References: <20231221033223.73201-3-xingyu.wu@starfivetech.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9325ACA62
+	for <devicetree@vger.kernel.org>; Sat, 23 Dec 2023 11:55:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-33621d443a7so2547031f8f.3
+        for <devicetree@vger.kernel.org>; Sat, 23 Dec 2023 03:55:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1703332541; x=1703937341; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=vPGk0HjLiKQ+CxO6emi2O17JwxG8APTMJGWVOcTcvfQ=;
+        b=tpSTe79z/ylvB4kRUa0CzkaP883KVii01D+38IeF43N6OqRd5Y711S0rakhcKRqW3p
+         YjiD3lOKbaJ8MHj/i5QQNG/QThsSV73E7u62nvmP93qUfmNiw5IugruzAGTd1tsvUIxJ
+         2a2L77Tfa6jL3900SEswn4gfxSeNGtSJnfQz/wCqLRNYOXAeSM5Iop8uxzxjCcs+Zb8B
+         XuzcjAAxOxrS7n7YhUPWIHXh1qcdE0zIEfHrtrRY17o7OeCDTJSgcIwKDJlGsM1Jy8bx
+         8uzR4siQoswfJmGJIUBzQyyd9OJVtZdRRqe8KfdP0NPFnFTq7Aj2xN3XzG1vXdjDCa6l
+         kvKg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1703332541; x=1703937341;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=vPGk0HjLiKQ+CxO6emi2O17JwxG8APTMJGWVOcTcvfQ=;
+        b=igYVkz4aV4ZNgY30P8eWzA3Yj6mH+sH7Folw9I4BbLu2v0UGr9Z0+/Vy5ROj/f4UtF
+         hXIfALHiQgU24S3L7H51HFZxWP9qLLKZ5gJewC7um4Zc+4vRfCZz9Cx1Vjv0to9XNeD2
+         uNr7/vE2GQMad0JAnxx2+8EeDzZvuYqXeyt7JNPoJMiMlwfx0deJkIV6Eg6GtJP4yRvG
+         nj3LyIQu7vhLpg5pWEchrTHT66qGu7S7gHLAnPStg3yAJScByGih9wxfSMtkbc/CpVia
+         fOB2tM3VEMIYA1chw9xNFcOwVeTCWAId1hOdeH05UFEUk3iqoA9ICTRQFT0XurPPoRAS
+         zpvg==
+X-Gm-Message-State: AOJu0YyEzNiX7zBOtnBlnGHY4ofW4GzVs28bLZ/1QN/bbhCyg7EPsu2F
+	BgyoM08n1Sr/7W8GiGboPF5co33QJWY9KMGIWaSRdlAyKcM=
+X-Google-Smtp-Source: AGHT+IEY+TL616yws8qTBZ6IKKDIvFw0yhgoQ1kz8rSNxIo80Asg/yeKA23VhJS3VGagBrqFhKR4uw==
+X-Received: by 2002:a05:6000:100f:b0:336:a0e2:1117 with SMTP id a15-20020a056000100f00b00336a0e21117mr671182wrx.140.1703332540494;
+        Sat, 23 Dec 2023 03:55:40 -0800 (PST)
+Received: from [127.0.1.1] ([79.115.23.25])
+        by smtp.gmail.com with ESMTPSA id r10-20020adfce8a000000b00336781490dcsm6351525wrn.69.2023.12.23.03.55.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 23 Dec 2023 03:55:39 -0800 (PST)
+From: Abel Vesa <abel.vesa@linaro.org>
+Subject: [PATCH v2 0/3] phy: qcom: qmp-pcie: Add support for G3/G4 PCIe PHY
+ for X1E80100
+Date: Sat, 23 Dec 2023 13:55:20 +0200
+Message-Id: <20231223-x1e80100-phy-pcie-v2-0-223c0556908a@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231221033223.73201-3-xingyu.wu@starfivetech.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAKjKhmUC/23NQQrCMBCF4auUrB2ZJILWlfeQLpJ00gyUpCRaW
+ krvbiwuXf4PHt8mCmWmIu7NJjLNXDjFGurUCBdMHAi4ry0UKi0VSlgk3VAiwhRWmBwTkL9eTG9
+ b4zWK+rOmENhsogv1Gd/jWMcpk+flgJ5d7cDllfJ6uLP8rj9CqT/ELAHBVsZJrVu0/jFyNDmdU
+ x5Et+/7B3VCtr/IAAAA
+To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Vinod Koul <vkoul@kernel.org>, 
+ Kishon Vijay Abraham I <kishon@kernel.org>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Abel Vesa <abel.vesa@linaro.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1235; i=abel.vesa@linaro.org;
+ h=from:subject:message-id; bh=Hk/a9Ag7u1CiPccqFteOJa8czWyyeAF22NOW7Iqw3qw=;
+ b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBlhsqrzQaD++ommUEpEZ5dUZVxjtSvLm9zc0r0C
+ DsnFYzt2waJAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCZYbKqwAKCRAbX0TJAJUV
+ Vq5WEACCOItGsuunfzlThSOrDl7CA89Keed1vy28p/oxWkC3c6Sjp204+Ld0LP9d6PBZCBXOd1o
+ /lSem+tUVoBhQG119cd25oxEPXJQQ0l/pRTvevEZH3QVayUOM7YvgVQRBXmc8BIUEYJ3nt0TCLd
+ RNjx4mHd08q3x5f5/yxvrE3VUpWWY6Ug9mBQ1+cFcbmBGySKOLNTIqaujJOH1GBCSIE8bHpKXRT
+ eo9bA7hBuPymVUjTmENow7VO88QAR1npiUAWuIrtmkTb7xq1rygd/Jch1JNsYHfF1mNnHGN9tvp
+ Iszcgr0HWHsIpAX1+FY1PVfFHPTn0bMuigZ37+kE7PZ2Fgrnrqz4DGqsmBQoD2pCyWxvTS9+nn2
+ jHXCHwC3sWmykaw2+4oxrN8bV3OT7dxOnJy/9I2PdbKo7qCbGxFgG4tSCAqDHAN909mL1E7U4FA
+ 0PeZoNMHf/zl/3elRUtClKRj79dgFy7ieUIlsPj/JxInoqUF1FxZ/1oh8zfVe9xgLCFPMY/xOxB
+ l5JSv+6xWFdSy1/qd9SJqVhJHBqP6V8Glfn6FDv+8K9jkk6HpQr9hQ9c7LeamRl8DKq91c/hiZC
+ MtAt1N2XOsNi0F7zyr/kNVg438Byd/NhQa6lyd5KbIZDOcnVkS5igH91mVY2d4JkXHrUa9pfzRb
+ 0t5/+gdmFezbxCA==
+X-Developer-Key: i=abel.vesa@linaro.org; a=openpgp;
+ fpr=6AFF162D57F4223A8770EF5AF7BF214136F41FAE
 
-Hi Xingyu,
+This patchset adds the G4 tables and G4/G3 compatibles for X1E80100
+platforms. Also adds the pciphy_v6_regs_layout to be used by the G4x2
+phy and switches all the old QMP v6 PHYs to use the new regs layout.
 
-kernel test robot noticed the following build warnings:
+Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+---
+Changes in v2:
+- Added Krzysztof's R-b tag to first patch
+- Added new patch which brings the pciephy_v6_regs_layout and made sure
+  all older (existing) QMP v6 are using that.
+- Switched the regs layout of the x1e80100 gen4x2 to the new
+  pciephy_v6_regs_layout
+- Link to v1: https://lore.kernel.org/r/20231222-x1e80100-phy-pcie-v1-0-b74ac13390bf@linaro.org
 
-[auto build test WARNING on broonie-sound/for-next]
-[also build test WARNING on robh/for-next linus/master v6.7-rc6 next-20231222]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+---
+Abel Vesa (3):
+      dt-bindings: phy: qcom,sc8280xp-qmp-pcie-phy: Document the X1E80100 QMP PCIe PHYs
+      phy: qcom: qmp-pcie: Add QMP v6 registers layout
+      phy: qcom-qmp-pcie: Add support for X1E80100 g3x2 and g4x2 PCIE
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Xingyu-Wu/dt-bindings-ASoC-Add-Cadence-I2S-controller-for-StarFive-JH8100-SoC/20231222-172628
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
-patch link:    https://lore.kernel.org/r/20231221033223.73201-3-xingyu.wu%40starfivetech.com
-patch subject: [PATCH v1 2/2] ASoC: starfive: Add drivers of Cadence Multi-Channel I2S Controller
-config: sparc64-randconfig-r071-20231223 (https://download.01.org/0day-ci/archive/20231223/202312231911.DFYqQ9Gl-lkp@intel.com/config)
-compiler: sparc64-linux-gcc (GCC) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231223/202312231911.DFYqQ9Gl-lkp@intel.com/reproduce)
+ .../bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml   |   6 +
+ drivers/phy/qualcomm/phy-qcom-qmp-pcie.c           | 186 ++++++++++++++++++++-
+ 2 files changed, 189 insertions(+), 3 deletions(-)
+---
+base-commit: 8a9be2a3cb673dba9d22311beb74be261f0b3f15
+change-id: 20231201-x1e80100-phy-pcie-ef74adb9af30
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202312231911.DFYqQ9Gl-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
-   In file included from sound/soc/starfive/cdns-jh8100-i2s.c:18:
->> sound/soc/starfive/cdns-jh8100-i2s.h:163:6: warning: no previous prototype for 'cdns_jh8100_i2s_pcm_push_tx' [-Wmissing-prototypes]
-     163 | void cdns_jh8100_i2s_pcm_push_tx(struct cdns_jh8100_i2s_dev *dev) { }
-         |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~
->> sound/soc/starfive/cdns-jh8100-i2s.h:164:6: warning: no previous prototype for 'cdns_jh8100_i2s_pcm_pop_rx' [-Wmissing-prototypes]
-     164 | void cdns_jh8100_i2s_pcm_pop_rx(struct cdns_jh8100_i2s_dev *dev) { }
-         |      ^~~~~~~~~~~~~~~~~~~~~~~~~~
->> sound/soc/starfive/cdns-jh8100-i2s.h:165:5: warning: no previous prototype for 'cdns_jh8100_i2s_pcm_register' [-Wmissing-prototypes]
-     165 | int cdns_jh8100_i2s_pcm_register(struct platform_device *pdev)
-         |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-vim +/cdns_jh8100_i2s_pcm_push_tx +163 sound/soc/starfive/cdns-jh8100-i2s.h
-
-   157	
-   158	#if IS_ENABLED(CONFIG_SND_SOC_JH8100_CADENCE_I2S_PCM)
-   159	void cdns_jh8100_i2s_pcm_push_tx(struct cdns_jh8100_i2s_dev *dev);
-   160	void cdns_jh8100_i2s_pcm_pop_rx(struct cdns_jh8100_i2s_dev *dev);
-   161	int cdns_jh8100_i2s_pcm_register(struct platform_device *pdev);
-   162	#else
- > 163	void cdns_jh8100_i2s_pcm_push_tx(struct cdns_jh8100_i2s_dev *dev) { }
- > 164	void cdns_jh8100_i2s_pcm_pop_rx(struct cdns_jh8100_i2s_dev *dev) { }
- > 165	int cdns_jh8100_i2s_pcm_register(struct platform_device *pdev)
-   166	{
-   167		return -EINVAL;
-   168	}
-   169	#endif
-   170	
-
+Best regards,
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Abel Vesa <abel.vesa@linaro.org>
+
 
