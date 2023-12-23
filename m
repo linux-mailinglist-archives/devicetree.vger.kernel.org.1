@@ -1,391 +1,193 @@
-Return-Path: <devicetree+bounces-28254-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28264-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29BEA81D50F
-	for <lists+devicetree@lfdr.de>; Sat, 23 Dec 2023 17:23:42 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3AD1B81D5F4
+	for <lists+devicetree@lfdr.de>; Sat, 23 Dec 2023 19:32:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D45C5283EA0
-	for <lists+devicetree@lfdr.de>; Sat, 23 Dec 2023 16:23:40 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A65E9B228BA
+	for <lists+devicetree@lfdr.de>; Sat, 23 Dec 2023 18:32:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53E8612E53;
-	Sat, 23 Dec 2023 16:23:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3F802420E;
+	Sat, 23 Dec 2023 18:29:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ttq+lyQM"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="DIh3bXCt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f45.google.com (mail-qv1-f45.google.com [209.85.219.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96B6512E4C;
-	Sat, 23 Dec 2023 16:23:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qv1-f45.google.com with SMTP id 6a1803df08f44-67f147c04b7so19674476d6.2;
-        Sat, 23 Dec 2023 08:23:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1703348603; x=1703953403; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=htqTUEOEPkV3LCGMz3Lnv62HKewmhrDVgNGTGqIFZjA=;
-        b=Ttq+lyQMoFUaWWn2/Hdpi083JV8EIupC7uNROdwd8oGi1r86bqDuFLXxPBN5wnI1Oe
-         6dJ+dHeIlOeYAucSK2mJrNIYItB+rIhtphXM2kRv8V841jmEOAnIxMdOCjfPvfCG6++Z
-         vaGjQ9R3C5elUC0gHKivXGZ8LzX5Y23mzn8Fc8ZMGzhad7YX/L7uKVKeJO6yfaPqEBv4
-         J4YYEWIq0bbWhzvIT99nU07+ViyHb3F4xWXs626E6YKgU3Vc+twNvsjBsZqVz7Dujiah
-         0nr0ZLdJBs+EoZm0Q5+L5YgS8tFLQgysfw56nSdqUqEdnpisBLSjfuz8L1p7kxk8ZwpR
-         fINg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703348603; x=1703953403;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=htqTUEOEPkV3LCGMz3Lnv62HKewmhrDVgNGTGqIFZjA=;
-        b=vTSlfo9nZROKyJCiLC/PNT6t4WLe5+BY/UXK+I8idkUv44TmWBtwXBUUPQQ2qZ/UxS
-         XHLUSHvK4hzW9+rvUXxIfZO6cXx1KbZMAgLeRsKonrevzNUuan8REQNLje5hB7fdYgCo
-         L353cq90rXKoUxyrQ6Apt8BxYHzV3lGsHITXHhD3VEBz0iaYAKKhxNb/2SiiSbOtkvqd
-         HuZyKev/0JQOoTURMGH1sJbeJe5EaoStK43Cmzfii2mC4LRFIoOWG+8/QSfF7Cy8ZfYB
-         h7ZdUIqZHLVk6LhH7B0jElJCqo7cz5M8Rei8bCGcBIhgkRZS3qy6zey9moRUhKdDNLAc
-         9ekg==
-X-Gm-Message-State: AOJu0Yx04UIUKUObBEUMf5iFupOc4nSekORALAQpifnZlKZDSEQPVgYm
-	e3QQj9ZvOPfVddk0d4KFh/w=
-X-Google-Smtp-Source: AGHT+IGANE798fYCbIlIXpMxH8IWTjlhpg6cCbM+3ooQi70FtZr6IiGAGUUTYhsJvvJmcb5LU0yYQA==
-X-Received: by 2002:ad4:5aad:0:b0:67f:61ca:2e46 with SMTP id u13-20020ad45aad000000b0067f61ca2e46mr5316078qvg.21.1703348603473;
-        Sat, 23 Dec 2023 08:23:23 -0800 (PST)
-Received: from localhost.localdomain ([174.95.13.129])
-        by smtp.gmail.com with ESMTPSA id pz11-20020ad4550b000000b0067f969a59c2sm1247116qvb.61.2023.12.23.08.23.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 23 Dec 2023 08:23:23 -0800 (PST)
-From: Abdel Alkuor <alkuor@gmail.com>
-To: Jean Delvare <jdelvare@suse.com>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>
-Cc: Abdel Alkuor <alkuor@gmail.com>,
-	linux-hwmon@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org
-Subject: [PATCH v4 2/2] hwmon: (lm75) Add AMS AS6200 temperature sensor
-Date: Sat, 23 Dec 2023 11:21:59 -0500
-Message-Id: <d1686678991bf8ee0d00cb08ca046798f37ca4b3.1703127334.git.alkuor@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <17ba2dfdb3d25bf1b5b4ed9f858b6e28902bedbe.1703127334.git.alkuor@gmail.com>
-References: <17ba2dfdb3d25bf1b5b4ed9f858b6e28902bedbe.1703127334.git.alkuor@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 732DA2208A;
+	Sat, 23 Dec 2023 18:29:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: 38ff171ca1c111eea5db2bebc7c28f94-20231224
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=3gOWOBV0rgKU+/PmGI3xj46A8m8R3ijvR09XFgFjDzI=;
+	b=DIh3bXCtN/fYiNVanoR0oH/u095iil8OqB/bV4Ft11zdeqJ12vybbNzJidSozVn3CCkudYBJgiujZct5pog0dsIYcYxeUk9MW/azE3v4dg9N9yzYKPcmSofJJUpYyb5VE7BroAW9Mfmq2QGMqUayH05wxOaRld/LAncd4v8lU8U=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.35,REQID:9436a27a-c04f-4c20-8cee-848bfa2f11fc,IP:0,U
+	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:0
+X-CID-META: VersionHash:5d391d7,CLOUDID:a65d7f8d-e2c0-40b0-a8fe-7c7e47299109,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+	RL:1,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,
+	DKR:0,DKP:0,BRR:0,BRE:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULS
+X-UUID: 38ff171ca1c111eea5db2bebc7c28f94-20231224
+Received: from mtkmbs13n1.mediatek.inc [(172.21.101.193)] by mailgw01.mediatek.com
+	(envelope-from <jason-jh.lin@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 1914793848; Sun, 24 Dec 2023 02:29:35 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
+ mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Sun, 24 Dec 2023 02:29:33 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
+ mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Sun, 24 Dec 2023 02:29:33 +0800
+From: Jason-JH.Lin <jason-jh.lin@mediatek.com>
+To: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>, Chun-Kuang Hu
+	<chunkuang.hu@kernel.org>
+CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>,
+	<dri-devel@lists.freedesktop.org>, <linux-media@vger.kernel.org>,
+	<linaro-mm-sig@lists.linaro.org>, Jason-ch Chen <jason-ch.chen@mediatek.com>,
+	Johnson Wang <johnson.wang@mediatek.com>, "Jason-JH . Lin"
+	<jason-jh.lin@mediatek.com>, Singo Chang <singo.chang@mediatek.com>, Nancy
+ Lin <nancy.lin@mediatek.com>, Shawn Sung <shawn.sung@mediatek.com>,
+	<Project_Global_Chrome_Upstream_Group@mediatek.com>, Jeffrey Kardatzke
+	<jkardatzke@google.com>, Jason-jh Lin
+	<jason-jh.lin@mediatek.corp-partner.google.com>
+Subject: [PATCH v3 00/11] Add mediate-drm secure flow for SVP
+Date: Sun, 24 Dec 2023 02:29:21 +0800
+Message-ID: <20231223182932.27683-1-jason-jh.lin@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK: N
 
-as6200 is a temperature sensor with 0.0625°C resolution and a
-range between -40°C to 125°C.
+From: Jason-jh Lin <jason-jh.lin@mediatek.corp-partner.google.com>
 
-By default, the driver configures as6200 as following:
-- Converstion rate: 8 Hz
-- Conversion mode: continuous
-- Consecutive fault counts: 4 samples
-- Alert state: high polarity
-- Alert mode: comparator mode
+Memory Definitions:
+secure memory - Memory allocated in the TEE (Trusted Execution
+Environment) which is inaccessible in the REE (Rich Execution
+Environment, i.e. linux kernel/userspace).
+secure handle - Integer value which acts as reference to 'secure
+memory'. Used in communication between TEE and REE to reference
+'secure memory'.
+secure buffer - 'secure memory' that is used to store decrypted,
+compressed video or for other general purposes in the TEE.
+secure surface - 'secure memory' that is used to store graphic buffers.
 
-Interrupt is supported for the alert pin.
+Memory Usage in SVP:
+The overall flow of SVP starts with encrypted video coming in from an
+outside source into the REE. The REE will then allocate a 'secure
+buffer' and send the corresponding 'secure handle' along with the
+encrypted, compressed video data to the TEE. The TEE will then decrypt
+the video and store the result in the 'secure buffer'. The REE will
+then allocate a 'secure surface'. The REE will pass the 'secure
+handles' for both the 'secure buffer' and 'secure surface' into the
+TEE for video decoding. The video decoder HW will then decode the
+contents of the 'secure buffer' and place the result in the 'secure
+surface'. The REE will then attach the 'secure surface' to the overlay
+plane for rendering of the video.
 
-Datasheet: https://ams.com/documents/20143/36005/AS6200_DS000449_4-00.pdf
-Signed-off-by: Abdel Alkuor <alkuor@gmail.com>
+Everything relating to ensuring security of the actual contents of the
+'secure buffer' and 'secure surface' is out of scope for the REE and
+is the responsibility of the TEE.
+
+DRM driver handles allocation of gem objects that are backed by a 'secure
+surface' and for displaying a 'secure surface' on the overlay plane.
+This introduces a new flag for object creation called
+DRM_MTK_GEM_CREATE_ENCRYPTED which indicates it should be a 'secure
+surface'. All changes here are in MediaTek specific code.
 ---
-Changes in v4:
-  - No changes
-Changes in v3:
-  - Fix format for new added lm75 params
-  - Add missing break for hwmon_temp_alarm case in lm75_is_visible
-  - Return combined error code and status from lm75_read_config 
-  - Revert back to the previous configure setting semantics in lm75_probe
-  - When an interrupt is tried to be requested and alarm bit is not supported
-    then log an error instead of a warning. Also, remove the unnecessery
-    suggestion about chips with no alarm bit.
-  - Fix as6200 order in lm75_ids
-Changes in v2:
-  - Incorporate as6200 into lm75 driver
+TODO:
+1) Remove get sec larb port interface in ddp_comp, ovl and ovl_adaptor.
+2) Verify instruction for enabling/disabling dapc and larb port in TEE
+   drop the sec_engine flags in normal world and.
+3) Move DISP_REG_OVL_SECURE setting to secure world for mtk_disp_ovl.c.
+4) Change the parameter register address in mtk_ddp_sec_write()
+   from "u32 addr" to "struct cmdq_client_reg *cmdq_reg".
+5) Implement setting mmsys routing table in the secure world series.
+---
+Based on 5 series and 1 patch:
+[1] v3 dma-buf: heaps: Add MediaTek secure heap
+- https://patchwork.kernel.org/project/linux-mediatek/list/?series=809023
+[2] v3 add driver to support secure video decoder
+- https://patchwork.kernel.org/project/linux-mediatek/list/?series=807308
+[3] v4 soc: mediatek: Add register definitions for GCE
+- https://patchwork.kernel.org/project/linux-mediatek/patch/20231212121957.19231-2-shawn.sung@mediatek.com/
+[4] v2 Add CMDQ driver support for mt8188
+- https://patchwork.kernel.org/project/linux-mediatek/list/?series=810302
+[5] Add mediatek,gce-events definition to mediatek,gce-mailbox bindings
+- https://patchwork.kernel.org/project/linux-mediatek/list/?series=810938
+[6] v3 Add CMDQ secure driver for SVP
+- https://patchwork.kernel.org/project/linux-mediatek/list/?series=812379
+---
+Change in v3:
+1. fix kerneldoc problems
+2. fix typo in title and commit message
+3. adjust naming for secure variable
+4. add the missing part for is_suecure plane implementation
+5. use BIT_ULL macro to replace bit shifting
+6. move modification of ovl_adaptor part to the correct patch
+7. add TODO list in commit message
+8. add commit message for using share memory to store execute count
 
- Documentation/hwmon/lm75.rst |  10 ++++
- drivers/hwmon/lm75.c         | 108 ++++++++++++++++++++++++++++++-----
- 2 files changed, 104 insertions(+), 14 deletions(-)
+Change in v2:
 
-diff --git a/Documentation/hwmon/lm75.rst b/Documentation/hwmon/lm75.rst
-index 8d0ab4ad5fb5..6adab608dd05 100644
---- a/Documentation/hwmon/lm75.rst
-+++ b/Documentation/hwmon/lm75.rst
-@@ -133,6 +133,16 @@ Supported chips:
- 
-                https://www.nxp.com/docs/en/data-sheet/PCT2075.pdf
- 
-+  * AMS OSRAM AS6200
-+
-+    Prefix: 'as6200'
-+
-+    Addresses scanned: none
-+
-+    Datasheet: Publicly available at the AMS website
-+
-+               https://ams.com/documents/20143/36005/AS6200_DS000449_4-00.pdf
-+
- Author: Frodo Looijaard <frodol@dds.nl>
- 
- Description
-diff --git a/drivers/hwmon/lm75.c b/drivers/hwmon/lm75.c
-index 5b2ea05c951e..049abe50e837 100644
---- a/drivers/hwmon/lm75.c
-+++ b/drivers/hwmon/lm75.c
-@@ -7,6 +7,7 @@
- 
- #include <linux/module.h>
- #include <linux/init.h>
-+#include <linux/interrupt.h>
- #include <linux/slab.h>
- #include <linux/jiffies.h>
- #include <linux/i2c.h>
-@@ -25,6 +26,7 @@
- 
- enum lm75_type {		/* keep sorted in alphabetical order */
- 	adt75,
-+	as6200,
- 	at30ts74,
- 	ds1775,
- 	ds75,
-@@ -55,6 +57,7 @@ enum lm75_type {		/* keep sorted in alphabetical order */
- 
- /**
-  * struct lm75_params - lm75 configuration parameters.
-+ * @config_reg_16bits:	Configure register size is 2 bytes.
-  * @set_mask:		Bits to set in configuration register when configuring
-  *			the chip.
-  * @clr_mask:		Bits to clear in configuration register when configuring
-@@ -75,17 +78,20 @@ enum lm75_type {		/* keep sorted in alphabetical order */
-  * @sample_times:	All the possible sample times to be set. Mandatory if
-  *			num_sample_times is larger than 1. If set, number of
-  *			entries must match num_sample_times.
-+ * @alarm:		Alarm bit is supported.
-  */
- 
- struct lm75_params {
--	u8			set_mask;
--	u8			clr_mask;
-+	bool			config_reg_16bits;
-+	u16			set_mask;
-+	u16			clr_mask;
- 	u8			default_resolution;
- 	u8			resolution_limits;
- 	const u8		*resolutions;
- 	unsigned int		default_sample_time;
- 	u8			num_sample_times;
- 	const unsigned int	*sample_times;
-+	bool			alarm;
- };
- 
- /* Addresses scanned */
-@@ -104,8 +110,8 @@ struct lm75_data {
- 	struct i2c_client		*client;
- 	struct regmap			*regmap;
- 	struct regulator		*vs;
--	u8				orig_conf;
--	u8				current_conf;
-+	u16				orig_conf;
-+	u16				current_conf;
- 	u8				resolution;	/* In bits, 9 to 16 */
- 	unsigned int			sample_time;	/* In ms */
- 	enum lm75_type			kind;
-@@ -128,6 +134,15 @@ static const struct lm75_params device_params[] = {
- 		.default_resolution = 12,
- 		.default_sample_time = MSEC_PER_SEC / 10,
- 	},
-+	[as6200] = {
-+		.config_reg_16bits = true,
-+		.set_mask = 0x94C0,	/* 8 sample/s, 4 CF, positive polarity */
-+		.default_resolution = 12,
-+		.default_sample_time = 125,
-+		.num_sample_times = 4,
-+		.sample_times = (unsigned int []){ 125, 250, 1000, 4000 },
-+		.alarm = true,
-+	},
- 	[at30ts74] = {
- 		.set_mask = 3 << 5,	/* 12-bit mode*/
- 		.default_resolution = 12,
-@@ -317,20 +332,23 @@ static inline long lm75_reg_to_mc(s16 temp, u8 resolution)
- 	return ((temp >> (16 - resolution)) * 1000) >> (resolution - 8);
- }
- 
--static int lm75_write_config(struct lm75_data *data, u8 set_mask,
--			     u8 clr_mask)
-+static int lm75_write_config(struct lm75_data *data, u16 set_mask,
-+			     u16 clr_mask)
- {
--	u8 value;
-+	unsigned int value;
- 
--	clr_mask |= LM75_SHUTDOWN;
-+	clr_mask |= LM75_SHUTDOWN << (8 * data->params->config_reg_16bits);
- 	value = data->current_conf & ~clr_mask;
- 	value |= set_mask;
- 
- 	if (data->current_conf != value) {
- 		s32 err;
--
--		err = i2c_smbus_write_byte_data(data->client, LM75_REG_CONF,
--						value);
-+		if (data->params->config_reg_16bits)
-+			err = regmap_write(data->regmap, LM75_REG_CONF, value);
-+		else
-+			err = i2c_smbus_write_byte_data(data->client,
-+							LM75_REG_CONF,
-+							value);
- 		if (err)
- 			return err;
- 		data->current_conf = value;
-@@ -338,6 +356,27 @@ static int lm75_write_config(struct lm75_data *data, u8 set_mask,
- 	return 0;
- }
- 
-+static int lm75_read_config(struct lm75_data *data)
-+{
-+	int ret;
-+	unsigned int status;
-+
-+	if (data->params->config_reg_16bits) {
-+		ret = regmap_read(data->regmap, LM75_REG_CONF, &status);
-+		return ret ? ret : status;
-+	}
-+
-+	return i2c_smbus_read_byte_data(data->client, LM75_REG_CONF);
-+}
-+
-+static irqreturn_t lm75_alarm_handler(int irq, void *private)
-+{
-+	struct device *hwmon_dev = private;
-+
-+	hwmon_notify_event(hwmon_dev, hwmon_temp, hwmon_temp_alarm, 0);
-+	return IRQ_HANDLED;
-+}
-+
- static int lm75_read(struct device *dev, enum hwmon_sensor_types type,
- 		     u32 attr, int channel, long *val)
- {
-@@ -366,6 +405,9 @@ static int lm75_read(struct device *dev, enum hwmon_sensor_types type,
- 		case hwmon_temp_max_hyst:
- 			reg = LM75_REG_HYST;
- 			break;
-+		case hwmon_temp_alarm:
-+			reg = LM75_REG_CONF;
-+			break;
- 		default:
- 			return -EINVAL;
- 		}
-@@ -373,7 +415,17 @@ static int lm75_read(struct device *dev, enum hwmon_sensor_types type,
- 		if (err < 0)
- 			return err;
- 
--		*val = lm75_reg_to_mc(regval, data->resolution);
-+		if (attr == hwmon_temp_alarm) {
-+			switch (data->kind) {
-+			case as6200:
-+				*val = (regval >> 5) & 0x1;
-+				break;
-+			default:
-+				return -EINVAL;
-+			}
-+		} else {
-+			*val = lm75_reg_to_mc(regval, data->resolution);
-+		}
- 		break;
- 	default:
- 		return -EINVAL;
-@@ -436,6 +488,7 @@ static int lm75_update_interval(struct device *dev, long val)
- 			data->resolution = data->params->resolutions[index];
- 		break;
- 	case tmp112:
-+	case as6200:
- 		err = regmap_read(data->regmap, LM75_REG_CONF, &reg);
- 		if (err < 0)
- 			return err;
-@@ -503,6 +556,10 @@ static umode_t lm75_is_visible(const void *data, enum hwmon_sensor_types type,
- 		case hwmon_temp_max:
- 		case hwmon_temp_max_hyst:
- 			return 0644;
-+		case hwmon_temp_alarm:
-+			if (config_data->params->alarm)
-+				return 0444;
-+			break;
- 		}
- 		break;
- 	default:
-@@ -515,7 +572,8 @@ static const struct hwmon_channel_info * const lm75_info[] = {
- 	HWMON_CHANNEL_INFO(chip,
- 			   HWMON_C_REGISTER_TZ | HWMON_C_UPDATE_INTERVAL),
- 	HWMON_CHANNEL_INFO(temp,
--			   HWMON_T_INPUT | HWMON_T_MAX | HWMON_T_MAX_HYST),
-+			   HWMON_T_INPUT | HWMON_T_MAX | HWMON_T_MAX_HYST |
-+			   HWMON_T_ALARM),
- 	NULL
- };
- 
-@@ -623,7 +681,7 @@ static int lm75_probe(struct i2c_client *client)
- 		return err;
- 
- 	/* Cache original configuration */
--	status = i2c_smbus_read_byte_data(client, LM75_REG_CONF);
-+	status = lm75_read_config(data);
- 	if (status < 0) {
- 		dev_dbg(dev, "Can't read config? %d\n", status);
- 		return status;
-@@ -646,6 +704,23 @@ static int lm75_probe(struct i2c_client *client)
- 	if (IS_ERR(hwmon_dev))
- 		return PTR_ERR(hwmon_dev);
- 
-+	if (client->irq) {
-+		if (data->params->alarm) {
-+			err = devm_request_threaded_irq(dev,
-+							client->irq,
-+							NULL,
-+							&lm75_alarm_handler,
-+							IRQF_ONESHOT,
-+							client->name,
-+							hwmon_dev);
-+			if (err)
-+				return err;
-+		} else {
-+			 /* alarm is only supported for chips with alarm bit */
-+			dev_err(dev, "alarm interrupt is not supported\n");
-+		}
-+	}
-+
- 	dev_info(dev, "%s: sensor '%s'\n", dev_name(hwmon_dev), client->name);
- 
- 	return 0;
-@@ -653,6 +728,7 @@ static int lm75_probe(struct i2c_client *client)
- 
- static const struct i2c_device_id lm75_ids[] = {
- 	{ "adt75", adt75, },
-+	{ "as6200", as6200, },
- 	{ "at30ts74", at30ts74, },
- 	{ "ds1775", ds1775, },
- 	{ "ds75", ds75, },
-@@ -689,6 +765,10 @@ static const struct of_device_id __maybe_unused lm75_of_match[] = {
- 		.compatible = "adi,adt75",
- 		.data = (void *)adt75
- 	},
-+	{
-+		.compatible = "ams,as6200",
-+		.data = (void *)as6200
-+	},
- 	{
- 		.compatible = "atmel,at30ts74",
- 		.data = (void *)at30ts74
+1. remove the DRIVER_RDNDER flag for mtk_drm_ioctl
+2. move cmdq_insert_backup_cookie into client driver
+3. move secure gce node define from mt8195-cherry.dtsi to mt8195.dtsi
+---
+CK Hu (1):
+  drm/mediatek: Add interface to allocate MediaTek GEM buffer.
+
+Jason-JH.Lin (10):
+  drm/mediatek/uapi: Add DRM_MTK_GEM_CREATE_ENCRYPTED flag
+  drm/mediatek: Add secure buffer control flow to mtk_drm_gem
+  drm/mediatek: Add secure identify flag and funcution to mtk_drm_plane
+  drm/mediatek: Add mtk_ddp_sec_write to config secure buffer info
+  drm/mediatek: Add get_sec_port interface to mtk_ddp_comp
+  drm/mediatek: Add secure layer config support for ovl
+  drm/mediatek: Add secure layer config support for ovl_adaptor
+  drm/mediatek: Add secure flow support to mediatek-drm
+  drm/mediatek: Add cmdq_insert_backup_cookie before secure pkt finalize
+  arm64: dts: mt8195: Add secure mbox settings for vdosys
+
+ arch/arm64/boot/dts/mediatek/mt8195.dtsi      |   6 +-
+ drivers/gpu/drm/mediatek/mtk_disp_drv.h       |   3 +
+ drivers/gpu/drm/mediatek/mtk_disp_ovl.c       |  31 +-
+ .../gpu/drm/mediatek/mtk_disp_ovl_adaptor.c   |  15 +
+ drivers/gpu/drm/mediatek/mtk_drm_crtc.c       | 274 +++++++++++++++++-
+ drivers/gpu/drm/mediatek/mtk_drm_crtc.h       |   1 +
+ drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c   |  30 ++
+ drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.h   |  14 +
+ drivers/gpu/drm/mediatek/mtk_drm_drv.c        |  13 +
+ drivers/gpu/drm/mediatek/mtk_drm_gem.c        | 122 ++++++++
+ drivers/gpu/drm/mediatek/mtk_drm_gem.h        |  16 +
+ drivers/gpu/drm/mediatek/mtk_drm_plane.c      |  26 ++
+ drivers/gpu/drm/mediatek/mtk_drm_plane.h      |   2 +
+ drivers/gpu/drm/mediatek/mtk_mdp_rdma.c       |  11 +-
+ drivers/gpu/drm/mediatek/mtk_mdp_rdma.h       |   2 +
+ include/uapi/drm/mediatek_drm.h               |  59 ++++
+ 16 files changed, 607 insertions(+), 18 deletions(-)
+ create mode 100644 include/uapi/drm/mediatek_drm.h
+
 -- 
-2.34.1
+2.18.0
 
 
