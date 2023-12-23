@@ -1,44 +1,65 @@
-Return-Path: <devicetree+bounces-28234-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28235-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1572F81D43C
-	for <lists+devicetree@lfdr.de>; Sat, 23 Dec 2023 14:41:36 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 47E2881D451
+	for <lists+devicetree@lfdr.de>; Sat, 23 Dec 2023 14:54:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A868F1F21A24
-	for <lists+devicetree@lfdr.de>; Sat, 23 Dec 2023 13:41:35 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B317DB21CEE
+	for <lists+devicetree@lfdr.de>; Sat, 23 Dec 2023 13:54:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 620D6D313;
-	Sat, 23 Dec 2023 13:41:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7854AD50C;
+	Sat, 23 Dec 2023 13:54:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmx.de header.i=linosanfilippo@gmx.de header.b="ObBGU/k0"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pEpX88ii"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.21])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB910D2F8;
-	Sat, 23 Dec 2023 13:41:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.de; s=s31663417;
-	t=1703338861; x=1703943661; i=linosanfilippo@gmx.de;
-	bh=Nx79P5r9ZG4XWH364YUty3qUZDD0HnQKSxhIi0fdzVw=;
-	h=X-UI-Sender-Class:Date:Subject:To:Cc:References:From:
-	 In-Reply-To;
-	b=ObBGU/k0yLfyAmsvhGxGA6b6Z6FZad/JaBqfmGqD7e9cMCG3T3havj6uOd2KGhBa
-	 9FsFtcdjG19AuqBzK9Bhu45DTjcsF2jHvbYjcd5HyfkMDVQqPEKvSQeKRhOmuaDHX
-	 B9izGzWPCnSZ8tcux+fJttbOSsklHkogyiz2QZCeV1oEDjh2Dd6AbzYcMqYa/SeRn
-	 VhUtBDbbGSXoLJzTMntVFzNzOrkhUB4vDOPHadJd90BpCsbEIfFshuMSBRimDWE2g
-	 USo9rMSaZW5MwP+1xCZ1PVvVRmsAP9fH8TxYaGW8FdSlw55zU6fxERMfgJxrmohWt
-	 GR5IC43bHcsbGDOfCw==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [192.168.2.42] ([84.162.31.30]) by mail.gmx.net (mrgmx105
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1M6Daq-1rNf1Q34XY-006dXe; Sat, 23
- Dec 2023 14:41:00 +0100
-Message-ID: <0ec4c423-3d18-4a29-b78e-938366ece117@gmx.de>
-Date: Sat, 23 Dec 2023 14:40:58 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8689DF4D
+	for <devicetree@vger.kernel.org>; Sat, 23 Dec 2023 13:54:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-5534dcfdd61so4692790a12.0
+        for <devicetree@vger.kernel.org>; Sat, 23 Dec 2023 05:54:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1703339687; x=1703944487; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=1e4Wz15Tj4facATy0A5KlXdx1yqz1aZcvD9m33IYsTI=;
+        b=pEpX88iiqfPBCWnPvmkZ6kkvr6iDTGFB+0yPwQz2AK2SRyS2qyjGijQWA55gm2mw03
+         YTqP0bKZWRCQKocBRCmTIYG4QjIRid2sKqx8CO82MJTRbcFEyxUUKSkNvpaLxkkx7UX4
+         KbM7Hez0pXGU0n+WDHLtN1LWySMe2t0AertBdxDNxrlwa7eRbKkWhMidjwfZtd1wOrQB
+         LtALPuRkp8izUMZZt2bcTQZU+J6vkOxEqPABkec58lyV6yK8C4Lv4Q+iIzhB+8BMHbw5
+         UXaVjaw1eeH/DMNyndjwqgGiBzTR5mWHdEPythKMgClQmdeSQTLxXHfb8owUHzOZMad4
+         4MRg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1703339687; x=1703944487;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=1e4Wz15Tj4facATy0A5KlXdx1yqz1aZcvD9m33IYsTI=;
+        b=i7P3CbOXFVnxB4akZJ6mElhw2eRwh5JF8h+MWjpy2DeO67xhJb232bIxRKSk58rodH
+         NyJ0QwK1kf2iUNoXpcybQCAy7NCo34aC7XZUgTmUdGTxeqsapTQhGNBnZd7V7q+72FWR
+         ldgIrQg4ANLXOq/EJZ0c7o4Bc16R6nn2awGOk44HaUR3t1f53ISFu3ju5Q7IQmXx8pWX
+         auEnG7yzTSQce3ARO/2P7hYRpJu9rVLbHtgL+MR2xzrfPDhPiknk5zieERISdM7goqv7
+         4LhPGpsLXQdMGIZdl7gQ/7FQ0/vDCE/MKTr9E0acUU0MxYSeO42nkX3UrMF1GUPUKA1O
+         AV/g==
+X-Gm-Message-State: AOJu0YzwN67nlzULnHr5YEMmMyL+gkPhDIiE9vJqbMqqT1PTBpq5aNOQ
+	/Ig83e2ZCRlBgS+sB+PvQvxx6U0JP17Hgw==
+X-Google-Smtp-Source: AGHT+IFkCvyvNPz+8PJM0nIxy51IEW1WYuN3yiRlEbkB48FWvEhVtCZH7zGtsejQ69rj94+6Gov/3g==
+X-Received: by 2002:a50:d5c3:0:b0:553:2f15:6245 with SMTP id g3-20020a50d5c3000000b005532f156245mr2915887edj.26.1703339687085;
+        Sat, 23 Dec 2023 05:54:47 -0800 (PST)
+Received: from [192.168.0.22] ([78.10.206.178])
+        by smtp.gmail.com with ESMTPSA id m9-20020aa7c2c9000000b00552666f4745sm3915546edp.22.2023.12.23.05.54.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 23 Dec 2023 05:54:46 -0800 (PST)
+Message-ID: <91dd66ac-8a2b-4b1f-9d88-56e48152c1fe@linaro.org>
+Date: Sat, 23 Dec 2023 14:54:44 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -46,136 +67,83 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: serial: rs485: add rs485-mux-gpios
- binding
+Subject: Re: [PATCH v2 1/2] dt-bindings: input: atmel,maxtouch: add
+ poweroff-sleep property
+To: Stefan Eichenberger <eichest@gmail.com>, nick@shmanahar.org,
+ dmitry.torokhov@gmail.com, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
+ claudiu.beznea@tuxon.dev, linus.walleij@linaro.org,
+ francesco.dolcini@toradex.com
+Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Stefan Eichenberger <stefan.eichenberger@toradex.com>
+References: <20231222095258.33369-1-eichest@gmail.com>
+ <20231222095258.33369-2-eichest@gmail.com>
 Content-Language: en-US
-To: Christoph Niedermaier <cniedermaier@dh-electronics.com>,
- Lukas Wunner <lukas@wunner.de>
-Cc: Crescent CY Hsieh <crescentcy.hsieh@moxa.com>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Rasmus Villemoes <linux@rasmusvillemoes.dk>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>,
- =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
- "brenda.streiff@ni.com" <brenda.streiff@ni.com>,
- Tomas Paukrt <tomaspaukrt@email.cz>
-References: <20231120151056.148450-1-linux@rasmusvillemoes.dk>
- <20231120151056.148450-2-linux@rasmusvillemoes.dk>
- <20231122145344.GA18949@wunner.de>
- <3b8548b1-b8a9-0c9e-4040-5cfda06a85c6@gmx.de>
- <ec66d25162de4cbc92720df1e7008fe8@dh-electronics.com>
- <5c140498-69e3-4187-8703-db0c41e7ca89@gmx.de>
- <fe28eb93-daa1-41af-a005-f21aa87e1984@gmx.de>
- <ZXcJr4VS_uGr_6TV@smile.fi.intel.com>
- <ZXrX4mQXPLum0jL3@moxa-ThinkCentre-M90t>
- <b35730df8288469fbaf67b5ceae4eece@dh-electronics.com>
- <20231221155305.GA13673@wunner.de>
- <f41f5ddcb52140b6a579043a5abce751@dh-electronics.com>
-From: Lino Sanfilippo <LinoSanfilippo@gmx.de>
-In-Reply-To: <f41f5ddcb52140b6a579043a5abce751@dh-electronics.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20231222095258.33369-2-eichest@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:pDuxbI2WkztYdDHTvdtbHa9gMg0Ipu6a+RUE+KnN0eUnEFwvrZz
- tmCBZhBatoxG2hFNFv63J2fl9h1CGuqKcr5Fz4EpVV3f5JAeGjod4y+A6QPXiOTvpSYbI8H
- jsJkSEIEIaSoPy8rrkpuIuWfVH+vQCMZ82jVhWCwlYs5nNW1/byjjSKoUOEv+YfvXR1/WOM
- 907n0Fv35z6j0Xj4f6OUg==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:CQfeTTCeB3M=;7DSS5miEAD5mnX//uy0ojZCR59n
- zZ5cq5Zy2SEPcDK8m7g8nSs8nC/6sfz/YAd4WKPORlryUE+mgIkaW/3vpmz+n4Jh72WAdHA6s
- ge/D0R4QTt30vEQ4hjt2yULSMdZAul4Z4T8LOgBV5Cdvlfz1zQ8uY5LSWjFF4jMIcaTh5UCvt
- 7RXhGm2VaWYYCyWwGOJmV32H2O+bSKMk7aAi/+Qc+hfu6utbRxUUeeIhrdsRIflbWZJw6baQu
- uyttVQbgtOCMrOYeeAktPrssiKADZBkErmBXQzMHenbpuqMfUnENV6FpNDgqdPcMVOwWEap6k
- AP/0CHnpJ3clcpuR7e3Sia4qq46FbnE8IfDc0O4t5nNyWNOfp14fXjDhXvdLVJC3/aRU8ARwe
- 8zoKFMq8WfsoZfSDbGVlie1SanabLVgPlGjdjVO9xFW/naVbA6JBWlBJ/8fKZ32VP3/BsTSJH
- E5er+RcEwVP66PHgJRClJrB4rMbp4WDRRq7MEiW8QROLBR4l+giU5VWL0Zse/n2Mb9qGhOBwO
- bVi3HNU5JAcoW660SXneTSjTIK88IV4GR5Z0CEkpW+pqeHQyVaPemFyrtgMX7Xq9Mc5Mn9zQD
- 083j2edxz135yvf+Alsgr8V03rHCDtSpmdgRBsQLs2hSVIvi9/uREN2KzaTYPlr7n7sJevGIo
- dfXAL1BrQUG4WqokO3KgoUkw5xp6bEClhCI5RKP/FeCJp7shRx3rMX6ADMFFSox1MPBX+bHKd
- rHX17jDwvmtmmSPZnkFQjEeJuirq95sz/4YE8gtSKAYEm1uJe61lw0f1w3OV7LNEC9sPRY6TM
- pl2Ojufbo45lcndQ0SC6rpnOxuvmMYB2my/S6a3DIfjRVnRR+wGipIpNfG/dEtSrnlW1LnSSm
- z6BRaVfdUY6fwpZlOTWANGmV9bR3/1aKs17sTjySd4OB2YpRxaVGAscxtihmxW2XmspGNwtEp
- ejNZNg==
+Content-Transfer-Encoding: 7bit
 
+On 22/12/2023 10:52, Stefan Eichenberger wrote:
+> From: Stefan Eichenberger <stefan.eichenberger@toradex.com>
+> 
+> Add a new property to indicate that the device should power off rather
+> than use deep sleep. Deep sleep is a feature of the controller that
+> expects the controller to remain powered in suspend. However, if a
+> display shares its regulator with the touch controller, we may want to
+> do a power off so that the display and touch controller do not use any
+> power.
+> 
 
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-On 23.12.23 13:49, Christoph Niedermaier wrote:
-> From: Lukas Wunner [mailto:lukas@wunner.de]
-> Sent: Thursday, December 21, 2023 4:53 PM
->>
->> On Thu, Dec 14, 2023 at 01:41:47PM +0000, Christoph Niedermaier wrote:
->>> I will summarize the current situation from my point of view, maybe it=
- helps:
->>>
->>> RS-232:
->>>   - Full Duplex Point-to-Point connection
->>>   - No transceiver control with RTS
->>>   - No termination
->>>   - No extra struct in use
->>>
->>> RS-422:
->>>   - Full Duplex Point-to-Point connection
->>>   - No transceiver control with RTS needed
->>>   - Termination possible
->>>   - Extra struct serial_rs485 needed if termination is used
->>>  =3D> RS-422 can be used in RS-232 operation, but if a termination sho=
-uld be
->>>     switchable the RS485 flag has to be enabled. But then also transce=
-iver
->>>     control will be enabled. Not a very satisfying situation.
->>
->> Well why don't we just allow enabling or disabling RS-485 termination
->> independently from the SER_RS485_ENABLED bit in struct serial_rs485?
->>
->> Just let the user issue a TIOCSRS485 ioctl to toggle termination even
->> if in RS-232 mode and use that mode for RS-422.
->>
->> Looks like the simplest solution to me.
->
-> Sounds not bad. The termination should only depend on whether the GPIO i=
-s
-> given or not.
->
-> Irrespective of this, I think the Linos idea of an RS-422 mode is not ba=
-d.
-> This allows you to take care of special features that were previously
-> overlooked. For example, hardware flow control can be switched off so th=
-at
-> this does not cause any problems.
->
-
-Also note, that RS232 and RS422 may NOT always be the same from driver per=
-spective.
-Take a look at 8250_excar.c for example. That driver has to configure the =
-hardware
-accordingly when switching from RS232 to RS422 (see iot2040_rs485_config()=
-).
-
-While a SER_RS485_MODE_RS422 flag set by userspace could work to switch to=
- RS422, I
-still think that the cleanest solution would be another ioctl TIOCSRS422 w=
-ith a
-parameter like
-
-struct serial_rs422 {
-       __u32   flags;
-#define SER_RS422_ENABLED              (1 << 0)
-#define SER_RS422_TERMINATE_BUS        (1 << 1)
-	__u32 	padding[7]
-};
-
-The SER_RS485_MODE_RS422 flag could still be used internally as a hint to =
-the driver.
-That solution would also be expandable if needed. I planned to send a patc=
-h that implements this
-as a RFC to the mailing list (maybe in the next few days).
-
-Regards,
-Lino
-
+Best regards,
+Krzysztof
 
 
