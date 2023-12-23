@@ -1,218 +1,218 @@
-Return-Path: <devicetree+bounces-28245-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28246-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6471481D497
-	for <lists+devicetree@lfdr.de>; Sat, 23 Dec 2023 15:31:25 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A22FD81D4A1
+	for <lists+devicetree@lfdr.de>; Sat, 23 Dec 2023 15:34:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CFF191F221C5
-	for <lists+devicetree@lfdr.de>; Sat, 23 Dec 2023 14:31:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5839B28298F
+	for <lists+devicetree@lfdr.de>; Sat, 23 Dec 2023 14:34:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3C6DF4FC;
-	Sat, 23 Dec 2023 14:31:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDE4E81F;
+	Sat, 23 Dec 2023 14:34:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iYsg7m+9"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="IS1BFi1i"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAA64F4E2;
-	Sat, 23 Dec 2023 14:31:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4BBC6C433C8;
-	Sat, 23 Dec 2023 14:30:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1703341864;
-	bh=5Yw2Br05+dFmIyBnAI8QmbQqjZjSr2mzpPb7WPvWLlI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=iYsg7m+95Q9TKQgUDW5gyCPibD+P4xxAtCcjZtk2OalbP+O8DDTIKjynI2Nf+xvZ4
-	 R3xEVzVCGTDIpAFsyCEdHSLsldPna0cChecvFaboOiKSIUiVL+g7mEJhNXEatSnm+K
-	 5MebrMXEfo88EwHdeiqzSSwHsSAE1Ui02HxNitxyC4vHX5VgkXSQPWS2TmmB7lgpP6
-	 +F8Sjbo7PW1aXJYMitmq+1r/jjRsF8N2T57wzoUuHvmdglygSvz4Iyh/i26j9TTV+f
-	 0ILzKwcATSdBAmm17mwsPPY+6HihbsBElDyU4Ppg/AYdNnYxfgJLhmdt/3RSCLC4OA
-	 U/AeFfiKjK3qQ==
-Message-ID: <39a33f9b-0290-428d-ab1f-f90856cdb31d@kernel.org>
-Date: Sat, 23 Dec 2023 15:30:55 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AA51F4E2
+	for <devicetree@vger.kernel.org>; Sat, 23 Dec 2023 14:34:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-3369339f646so1444127f8f.0
+        for <devicetree@vger.kernel.org>; Sat, 23 Dec 2023 06:34:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1703342055; x=1703946855; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=BV1PEntNocE2IBL12A6TgxaD4fskw5gPnZjQ1f85ecE=;
+        b=IS1BFi1iiqE7r4gJUnpKdFbmjm5hbXaER8eZhUSYPvlc1rBluum0a0F6gMNSduPudE
+         4I8ayQikoLjuXPjk4ewStXdkU0oVgco9EARyukz/tWuOzu6QEkK4B6Z9Dcj8FVbgc0N+
+         /WoGZV6bRWbXXWNDqh5c/5uVB/OMJ8gPqFKn1sBLIeGnewGdhI5e/uCXLa/PIR/DRAxo
+         42KvbBxsJye9K/2WVVfGx5/8dDwGn1Pi0PPP8PC/oP+rMrlnSg/jwwAKcRghH2ZaP0/n
+         EujInoZ60UIqfE4Mwwt7Ctlcuy9IUU+kAw0hvfp0m2N10koJjN0YZtupq8dhSwr27dVy
+         5Iug==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1703342055; x=1703946855;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=BV1PEntNocE2IBL12A6TgxaD4fskw5gPnZjQ1f85ecE=;
+        b=a3xSZcAzkhJNgNIRE+diBlbL7Eu/onVEHk3FV8rMGxK6MpfqjHlDMjARd5XqONeKn1
+         SFe18Yb8g8IOTRQr7KriiJuyC2ydqqpD8VpHm2fSVLwvc+ZkZj3qXD2tDAFv22m1dvPa
+         niqtsWTPgqfkeFNP6haJ8SUyZz7ztkzBbaNlvLnm4Nn8uMQpjBHydE2uYuv2YBsUpfJc
+         0gdaryI6ez8EgZ+9pJIsOHXNEPkm1Gi6XC5s7H14WPeM2HHwMlCjw3ca65rW6faASBPA
+         uv8MUwcCHkrYDjcyiRe8l5RgqXnOqPoXZVPXwMOym7dQbw1DevaUiZ9vWXjzPbzZxbyK
+         tdDg==
+X-Gm-Message-State: AOJu0YwAD+Mtj3nJugw7TnNkRN2IEszSVgkbyYaTq6XpM9cWd4cfeCJN
+	C5mrH20/2HkAwb4wxxJhduGm4yQVBC0Rid0335GFA79P9FaK5w==
+X-Google-Smtp-Source: AGHT+IESkPfLkYu8vLlwXSJLB7jisOcm59ju+sR9oNFmAVyPfuKc/7s7JLff8bMg5ecCjqFhSGQviWOCuhXT2JCdi84=
+X-Received: by 2002:a5d:4609:0:b0:336:6d62:7647 with SMTP id
+ t9-20020a5d4609000000b003366d627647mr1642900wrq.5.1703342055201; Sat, 23 Dec
+ 2023 06:34:15 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 17/17] devicetree: Add bindings for ftrace KHO
-Content-Language: en-US
-To: Alexander Graf <graf@amazon.com>, linux-kernel@vger.kernel.org
-Cc: linux-trace-kernel@vger.kernel.org, linux-mm@kvack.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- kexec@lists.infradead.org, linux-doc@vger.kernel.org, x86@kernel.org,
- Eric Biederman <ebiederm@xmission.com>, "H. Peter Anvin" <hpa@zytor.com>,
- Andy Lutomirski <luto@kernel.org>, Peter Zijlstra <peterz@infradead.org>,
- Rob Herring <robh+dt@kernel.org>, Steven Rostedt <rostedt@goodmis.org>,
- Andrew Morton <akpm@linux-foundation.org>,
- Mark Rutland <mark.rutland@arm.com>, Tom Lendacky <thomas.lendacky@amd.com>,
- Ashish Kalra <ashish.kalra@amd.com>, James Gowans <jgowans@amazon.com>,
- Stanislav Kinsburskii <skinsburskii@linux.microsoft.com>, arnd@arndb.de,
- pbonzini@redhat.com, madvenka@linux.microsoft.com,
- Anthony Yznaga <anthony.yznaga@oracle.com>,
- Usama Arif <usama.arif@bytedance.com>, David Woodhouse <dwmw@amazon.co.uk>,
- Benjamin Herrenschmidt <benh@kernel.crashing.org>
-References: <20231222193607.15474-1-graf@amazon.com>
- <20231222195144.24532-1-graf@amazon.com>
- <20231222195144.24532-12-graf@amazon.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20231222195144.24532-12-graf@amazon.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20231215235725.1247350-1-tanmay.shah@amd.com> <20231215235725.1247350-3-tanmay.shah@amd.com>
+ <6ab19ceb-38ed-4e4c-aabc-a959bc123cf2@amd.com> <e9e9777d-f8c1-48cd-b433-0292c77f6d57@amd.com>
+In-Reply-To: <e9e9777d-f8c1-48cd-b433-0292c77f6d57@amd.com>
+From: Mathieu Poirier <mathieu.poirier@linaro.org>
+Date: Sat, 23 Dec 2023 07:34:02 -0700
+Message-ID: <CANLsYkxJyKFm4LR_JJx-kQMs=xa1C=SnD1Ha=jGqXM5nfy5dxw@mail.gmail.com>
+Subject: Re: [PATCH v8 2/3] dts: zynqmp: add properties for TCM in remoteproc
+To: Tanmay Shah <tanmay.shah@amd.com>
+Cc: Michal Simek <michal.simek@amd.com>, andersson@kernel.org, robh+dt@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, ben.levinsky@amd.com, 
+	linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On 22/12/2023 20:51, Alexander Graf wrote:
-> With ftrace in KHO, we are creating an ABI between old kernel and new
-> kernel about the state that they transfer. To ensure that we document
-> that state and catch any breaking change, let's add its schema to the
-> common devicetree bindings. This way, we can quickly reason about the
-> state that gets passed.
+On Wed, 20 Dec 2023 at 07:45, Tanmay Shah <tanmay.shah@amd.com> wrote:
+>
+>
+> On 12/20/23 7:14 AM, Michal Simek wrote:
+> >
+> > On 12/16/23 00:57, Tanmay Shah wrote:
+> > > Add properties as per new bindings in zynqmp remoteproc node
+> > > to represent TCM address and size.
+> > >
+> > > This patch also adds alternative remoteproc node to represent
+> > > remoteproc cluster in split mode. By default lockstep mode is
+> > > enabled and users should disable it before using split mode
+> > > dts. Both device-tree nodes can't be used simultaneously one
+> > > of them must be disabled. For zcu102-1.0 and zcu102-1.1 board
+> > > remoteproc split mode dts node is enabled and lockstep mode
+> > > dts is disabled.
+> > >
+> > > Signed-off-by: Tanmay Shah <tanmay.shah@amd.com>
+> > > ---
+> > >   .../boot/dts/xilinx/zynqmp-zcu102-rev1.0.dts  |  8 +++
+> > >   arch/arm64/boot/dts/xilinx/zynqmp.dtsi        | 60 +++++++++++++++++--
+> > >   2 files changed, 63 insertions(+), 5 deletions(-)
+> > >
+> > > diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-rev1.0.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-rev1.0.dts
+> > > index c8f71a1aec89..495ca94b45db 100644
+> > > --- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-rev1.0.dts
+> > > +++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-rev1.0.dts
+> > > @@ -14,6 +14,14 @@ / {
+> > >     compatible = "xlnx,zynqmp-zcu102-rev1.0", "xlnx,zynqmp-zcu102", "xlnx,zynqmp";
+> > >   };
+> > >
+> > > +&rproc_split {
+> > > +   status = "okay";
+> > > +};
+> > > +
+> > > +&rproc_lockstep {
+> > > +   status = "disabled";
+> > > +};
+> > > +
+> > >   &eeprom {
+> > >     #address-cells = <1>;
+> > >     #size-cells = <1>;
+> > > diff --git a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+> > > index b61fc99cd911..602e6aba7ac5 100644
+> > > --- a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+> > > +++ b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+> > > @@ -247,19 +247,69 @@ fpga_full: fpga-full {
+> > >             ranges;
+> > >     };
+> > >
+> > > -   remoteproc {
+> > > +   rproc_lockstep: remoteproc@ffe00000 {
+> > >             compatible = "xlnx,zynqmp-r5fss";
+> > >             xlnx,cluster-mode = <1>;
+> > >
+> > > -           r5f-0 {
+> > > +           #address-cells = <2>;
+> > > +           #size-cells = <2>;
+> > > +
+> > > +           ranges = <0x0 0x0 0x0 0xffe00000 0x0 0x20000>,
+> > > +                    <0x0 0x20000 0x0 0xffe20000 0x0 0x20000>,
+> > > +                    <0x1 0x0 0x0 0xffe90000 0x0 0x10000>,
+> > > +                    <0x1 0x20000 0x0 0xffeb0000 0x0 0x10000>;
+> > > +
+> > > +           r5f@0 {
+> > > +                   compatible = "xlnx,zynqmp-r5f";
+> > > +                   reg = <0x0 0x0 0x0 0x20000>, <0x0 0x20000 0x0 0x20000>;
+> > > +                   reg-names = "atcm", "btcm";
+> > > +                   power-domains = <&zynqmp_firmware PD_RPU_0>,
+> > > +                                   <&zynqmp_firmware PD_R5_0_ATCM>,
+> > > +                                   <&zynqmp_firmware PD_R5_0_BTCM>;
+> > > +                   memory-region = <&rproc_0_fw_image>;
+> > > +           };
+> > > +
+> > > +           r5f@1 {
+> > > +                   compatible = "xlnx,zynqmp-r5f";
+> > > +                   reg = <0x1 0x0 0x0 0x10000>, <0x1 0x20000 0x0 0x10000>;
+> > > +                   reg-names = "atcm", "btcm";
+> > > +                   power-domains = <&zynqmp_firmware PD_RPU_1>,
+> > > +                                   <&zynqmp_firmware PD_R5_1_ATCM>,
+> > > +                                   <&zynqmp_firmware PD_R5_1_BTCM>;
+> > > +                   memory-region = <&rproc_1_fw_image>;
+> > > +           };
+> > > +   };
+> > > +
+> > > +   rproc_split: remoteproc-split@ffe00000 {
+> > > +           status = "disabled";
+> > > +           compatible = "xlnx,zynqmp-r5fss";
+> > > +           xlnx,cluster-mode = <0>;
+> > > +
+> > > +           #address-cells = <2>;
+> > > +           #size-cells = <2>;
+> > > +
+> > > +           ranges = <0x0 0x0 0x0 0xffe00000 0x0 0x10000>,
+> > > +                    <0x0 0x20000 0x0 0xffe20000 0x0 0x10000>,
+> > > +                    <0x1 0x0 0x0 0xffe90000 0x0 0x10000>,
+> > > +                    <0x1 0x20000 0x0 0xffeb0000 0x0 0x10000>;
+> > > +
+> > > +           r5f@0 {
+> > >                     compatible = "xlnx,zynqmp-r5f";
+> > > -                   power-domains = <&zynqmp_firmware PD_RPU_0>;
+> > > +                   reg = <0x0 0x0 0x0 0x10000>, <0x0 0x20000 0x0 0x10000>;
+> > > +                   reg-names = "atcm", "btcm";
+> > > +                   power-domains = <&zynqmp_firmware PD_RPU_0>,
+> > > +                                   <&zynqmp_firmware PD_R5_0_ATCM>,
+> > > +                                   <&zynqmp_firmware PD_R5_0_BTCM>;
+> > >                     memory-region = <&rproc_0_fw_image>;
+> > >             };
+> > >
+> > > -           r5f-1 {
+> > > +           r5f@1 {
+> > >                     compatible = "xlnx,zynqmp-r5f";
+> > > -                   power-domains = <&zynqmp_firmware PD_RPU_1>;
+> > > +                   reg = <0x1 0x0 0x0 0x10000>, <0x1 0x20000 0x0 0x10000>;
+> > > +                   reg-names = "atcm", "btcm";
+> > > +                   power-domains = <&zynqmp_firmware PD_RPU_1>,
+> > > +                                   <&zynqmp_firmware PD_R5_1_ATCM>,
+> > > +                                   <&zynqmp_firmware PD_R5_1_BTCM>;
+> > >                     memory-region = <&rproc_1_fw_image>;
+> > >             };
+> > >     };
+> >
+> > Acked-by: Michal Simek <michal.simek@amd.com>
+> >
+> > Let me know if you want me to take this via my tree.
+>
+> Hi Michal,
+>
+> Thanks for reviews. I will ping you once driver changes are approved.
 
-Please use scripts/get_maintainers.pl to get a list of necessary people
-and lists to CC (and consider --no-git-fallback argument). It might
-happen, that command when run on an older kernel, gives you outdated
-entries. Therefore please be sure you base your patches on recent Linux
-kernel.
+I'll pick this up with the rest of the driver.  It will be easier that way.
 
-Please use subject prefixes matching the subsystem. You can get them for
-example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-your patch is touching.
-
-A nit, subject: drop second/last, redundant "bindings". The
-"dt-bindings" prefix is already stating that these are bindings.
-
-> 
-> Signed-off-by: Alexander Graf <graf@amazon.com>
-> ---
->  .../bindings/kho/ftrace/ftrace-array.yaml     | 46 +++++++++++++++
->  .../bindings/kho/ftrace/ftrace-cpu.yaml       | 56 +++++++++++++++++++
->  .../bindings/kho/ftrace/ftrace.yaml           | 48 ++++++++++++++++
->  3 files changed, 150 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/kho/ftrace/ftrace-array.yaml
->  create mode 100644 Documentation/devicetree/bindings/kho/ftrace/ftrace-cpu.yaml
->  create mode 100644 Documentation/devicetree/bindings/kho/ftrace/ftrace.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/kho/ftrace/ftrace-array.yaml b/Documentation/devicetree/bindings/kho/ftrace/ftrace-array.yaml
-> new file mode 100644
-> index 000000000000..9960fefc292d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/kho/ftrace/ftrace-array.yaml
-> @@ -0,0 +1,46 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/kho/ftrace/ftrace-array.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Ftrace trace array
-> +
-
-Missing description. Commit msg also does not tell me much. This must
-stand on its own and must describe the hardware. Whatever you have in
-cover letter, does not matter, especially that you did not Cc us on it.
-
-> +maintainers:
-> +  - Alexander Graf <graf@amazon.com>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - ftrace,array-v1
-> +
-> +  trace_flags:
-
-Underscores are not allowed. Does not look like generic property.
-
-
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      Bitmap of all the trace flags that were enabled in the trace array at the
-> +      point of serialization.
-> +
-> +# Subnodes will be of type "ftrace,cpu-v1", one each per CPU
-
-> +additionalProperties: true
-
-No, this must be false. And it goes after required:
-
-
-> +
-> +required:
-> +  - compatible
-> +  - trace_flags
-> +
-> +examples:
-> +  - |
-> +    ftrace {
-> +        compatible = "ftrace-v1";
-> +        events = <1 1 2 2 3 3>;
-> +
-> +        global_trace {
-
-Again, no underscores.
-
-> +          compatible = "ftrace,array-v1";
-> +          trace_flags = < 0x3354601 >;
-> +
-> +          cpu0 {
-> +            compatible = "ftrace,cpu-v1";
-> +            cpu = < 0x00 >;
-
-Drop redundant spaces.
-
-> +            mem = < 0x101000000ULL 0x38ULL 0x101000100ULL 0x1000ULL 0x101000038ULL 0x38ULL 0x101002000ULL 0x1000ULL>;
-
-? Do you see any of such syntax in DTS?
-
-Best regards,
-Krzysztof
-
+>
+> Or Mathieu can take this in remoteproc tree, either way is fine.
+>
+> But I would like to wait till driver changes are approved.
+>
+> Tanmay
+>
+> >
+> > Thanks,
+> > Michal
 
