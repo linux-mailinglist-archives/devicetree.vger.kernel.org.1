@@ -1,218 +1,427 @@
-Return-Path: <devicetree+bounces-28246-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28247-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A22FD81D4A1
-	for <lists+devicetree@lfdr.de>; Sat, 23 Dec 2023 15:34:31 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7879A81D4A7
+	for <lists+devicetree@lfdr.de>; Sat, 23 Dec 2023 15:39:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5839B28298F
-	for <lists+devicetree@lfdr.de>; Sat, 23 Dec 2023 14:34:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 337C72834CB
+	for <lists+devicetree@lfdr.de>; Sat, 23 Dec 2023 14:39:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDE4E81F;
-	Sat, 23 Dec 2023 14:34:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 823BC19C;
+	Sat, 23 Dec 2023 14:39:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="IS1BFi1i"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="K7NYeIhb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AA51F4E2
-	for <devicetree@vger.kernel.org>; Sat, 23 Dec 2023 14:34:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A78ADF4E
+	for <devicetree@vger.kernel.org>; Sat, 23 Dec 2023 14:39:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-3369339f646so1444127f8f.0
-        for <devicetree@vger.kernel.org>; Sat, 23 Dec 2023 06:34:16 -0800 (PST)
+Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-a2358a75b69so473057766b.1
+        for <devicetree@vger.kernel.org>; Sat, 23 Dec 2023 06:39:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1703342055; x=1703946855; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=BV1PEntNocE2IBL12A6TgxaD4fskw5gPnZjQ1f85ecE=;
-        b=IS1BFi1iiqE7r4gJUnpKdFbmjm5hbXaER8eZhUSYPvlc1rBluum0a0F6gMNSduPudE
-         4I8ayQikoLjuXPjk4ewStXdkU0oVgco9EARyukz/tWuOzu6QEkK4B6Z9Dcj8FVbgc0N+
-         /WoGZV6bRWbXXWNDqh5c/5uVB/OMJ8gPqFKn1sBLIeGnewGdhI5e/uCXLa/PIR/DRAxo
-         42KvbBxsJye9K/2WVVfGx5/8dDwGn1Pi0PPP8PC/oP+rMrlnSg/jwwAKcRghH2ZaP0/n
-         EujInoZ60UIqfE4Mwwt7Ctlcuy9IUU+kAw0hvfp0m2N10koJjN0YZtupq8dhSwr27dVy
-         5Iug==
+        d=linaro.org; s=google; t=1703342348; x=1703947148; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=zCFoTy8y9ZvynGpG2Rm82yYymV07j6rSfFwhnk7b108=;
+        b=K7NYeIhbS/kMAj0XH9nk3TlJsoX3iDWf4Hqd2RRsT8MO8zPLzPUms1pQXBuizga7I0
+         PW+o90QVdbbD+8kFwOe99OWjOfGQklBxMKmQ1iQHH4cDOtbjQ53YpKA80d727vf/6Ve+
+         znvJSEfcTIbNAIagxLilpLsZPyOXWrlKNCIDS0pwBw5kxDqOKUb1lLQzKzZ34kVIrA5Z
+         ejRhSgwXBpgikEwHoM3zIR6Te1Lq0Dblo2dtE2HuneoDSqdv37Jt4MJP4mE6M1lzrWAR
+         /jKqy/cTJdvbHFi5CwCAL9E2LmMXcNKtntwKUX5ME32Bmu5Wl5e52SvNl8PfTscFDt7Z
+         l8DQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703342055; x=1703946855;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=BV1PEntNocE2IBL12A6TgxaD4fskw5gPnZjQ1f85ecE=;
-        b=a3xSZcAzkhJNgNIRE+diBlbL7Eu/onVEHk3FV8rMGxK6MpfqjHlDMjARd5XqONeKn1
-         SFe18Yb8g8IOTRQr7KriiJuyC2ydqqpD8VpHm2fSVLwvc+ZkZj3qXD2tDAFv22m1dvPa
-         niqtsWTPgqfkeFNP6haJ8SUyZz7ztkzBbaNlvLnm4Nn8uMQpjBHydE2uYuv2YBsUpfJc
-         0gdaryI6ez8EgZ+9pJIsOHXNEPkm1Gi6XC5s7H14WPeM2HHwMlCjw3ca65rW6faASBPA
-         uv8MUwcCHkrYDjcyiRe8l5RgqXnOqPoXZVPXwMOym7dQbw1DevaUiZ9vWXjzPbzZxbyK
-         tdDg==
-X-Gm-Message-State: AOJu0YwAD+Mtj3nJugw7TnNkRN2IEszSVgkbyYaTq6XpM9cWd4cfeCJN
-	C5mrH20/2HkAwb4wxxJhduGm4yQVBC0Rid0335GFA79P9FaK5w==
-X-Google-Smtp-Source: AGHT+IESkPfLkYu8vLlwXSJLB7jisOcm59ju+sR9oNFmAVyPfuKc/7s7JLff8bMg5ecCjqFhSGQviWOCuhXT2JCdi84=
-X-Received: by 2002:a5d:4609:0:b0:336:6d62:7647 with SMTP id
- t9-20020a5d4609000000b003366d627647mr1642900wrq.5.1703342055201; Sat, 23 Dec
- 2023 06:34:15 -0800 (PST)
+        d=1e100.net; s=20230601; t=1703342348; x=1703947148;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=zCFoTy8y9ZvynGpG2Rm82yYymV07j6rSfFwhnk7b108=;
+        b=nir/lqVjOdr1EQhABSKx0Wep6i/ItXVpa1TbvKarTFQ/XpsIfewPMzkfOJkR9k8ND9
+         WOaCFMIStWjYDg5LbxLTOv/aQ/BDm099jEgzmWtGGFcomt2J7PASixJNUEsA4sqR3vWN
+         L5sQfI/zLwSvUg8NnkridWiz0eiXHRjl6XXJVrb9aaXtI8T/PYQA1MYZtyN6imcEJiXA
+         3xaxZvB2iSATt11SU7cTM1JrulFH5UISWhbpjGw5QHCG9H97EFpkI3ttYqr3cZC7nIdb
+         HkuZwyaDukZg7USRS93hJzSUvLYKXJQmRBzeXJuq+so6sEZ/rO30THMgyrhu0wAx8F3V
+         Wyhw==
+X-Gm-Message-State: AOJu0Yw0MjwzH/SDJ6ajipNzcwBUBeaWM+JRmtx056t8iXmzPPSVe3+l
+	Vgk3h8+NnZiw+2m3b2T5i70ImoN7Y58jfQ==
+X-Google-Smtp-Source: AGHT+IHCOJVGXwGzw8ftpJlaNeBCBVPMx+yETQcRsrpdo1Nh8jmbEo1joQpcHbN3VM3nUMG0AuuKUQ==
+X-Received: by 2002:a17:906:d5:b0:a26:bdae:c594 with SMTP id 21-20020a17090600d500b00a26bdaec594mr2221091eji.37.1703342347704;
+        Sat, 23 Dec 2023 06:39:07 -0800 (PST)
+Received: from [192.168.0.22] ([78.10.206.178])
+        by smtp.gmail.com with ESMTPSA id ex19-20020a170907955300b00a268002274csm3127217ejc.52.2023.12.23.06.39.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 23 Dec 2023 06:39:07 -0800 (PST)
+Message-ID: <3ad14d62-df64-45b1-9be4-008d30d2b52f@linaro.org>
+Date: Sat, 23 Dec 2023 15:39:05 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231215235725.1247350-1-tanmay.shah@amd.com> <20231215235725.1247350-3-tanmay.shah@amd.com>
- <6ab19ceb-38ed-4e4c-aabc-a959bc123cf2@amd.com> <e9e9777d-f8c1-48cd-b433-0292c77f6d57@amd.com>
-In-Reply-To: <e9e9777d-f8c1-48cd-b433-0292c77f6d57@amd.com>
-From: Mathieu Poirier <mathieu.poirier@linaro.org>
-Date: Sat, 23 Dec 2023 07:34:02 -0700
-Message-ID: <CANLsYkxJyKFm4LR_JJx-kQMs=xa1C=SnD1Ha=jGqXM5nfy5dxw@mail.gmail.com>
-Subject: Re: [PATCH v8 2/3] dts: zynqmp: add properties for TCM in remoteproc
-To: Tanmay Shah <tanmay.shah@amd.com>
-Cc: Michal Simek <michal.simek@amd.com>, andersson@kernel.org, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, ben.levinsky@amd.com, 
-	linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: imx93-var-som: Add Variscite VAR-SOM-MX93
+Content-Language: en-US
+To: Mathieu Othacehe <othacehe@gnu.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20231223142939.23735-1-othacehe@gnu.org>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20231223142939.23735-1-othacehe@gnu.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Wed, 20 Dec 2023 at 07:45, Tanmay Shah <tanmay.shah@amd.com> wrote:
->
->
-> On 12/20/23 7:14 AM, Michal Simek wrote:
-> >
-> > On 12/16/23 00:57, Tanmay Shah wrote:
-> > > Add properties as per new bindings in zynqmp remoteproc node
-> > > to represent TCM address and size.
-> > >
-> > > This patch also adds alternative remoteproc node to represent
-> > > remoteproc cluster in split mode. By default lockstep mode is
-> > > enabled and users should disable it before using split mode
-> > > dts. Both device-tree nodes can't be used simultaneously one
-> > > of them must be disabled. For zcu102-1.0 and zcu102-1.1 board
-> > > remoteproc split mode dts node is enabled and lockstep mode
-> > > dts is disabled.
-> > >
-> > > Signed-off-by: Tanmay Shah <tanmay.shah@amd.com>
-> > > ---
-> > >   .../boot/dts/xilinx/zynqmp-zcu102-rev1.0.dts  |  8 +++
-> > >   arch/arm64/boot/dts/xilinx/zynqmp.dtsi        | 60 +++++++++++++++++--
-> > >   2 files changed, 63 insertions(+), 5 deletions(-)
-> > >
-> > > diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-rev1.0.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-rev1.0.dts
-> > > index c8f71a1aec89..495ca94b45db 100644
-> > > --- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-rev1.0.dts
-> > > +++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-rev1.0.dts
-> > > @@ -14,6 +14,14 @@ / {
-> > >     compatible = "xlnx,zynqmp-zcu102-rev1.0", "xlnx,zynqmp-zcu102", "xlnx,zynqmp";
-> > >   };
-> > >
-> > > +&rproc_split {
-> > > +   status = "okay";
-> > > +};
-> > > +
-> > > +&rproc_lockstep {
-> > > +   status = "disabled";
-> > > +};
-> > > +
-> > >   &eeprom {
-> > >     #address-cells = <1>;
-> > >     #size-cells = <1>;
-> > > diff --git a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-> > > index b61fc99cd911..602e6aba7ac5 100644
-> > > --- a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-> > > +++ b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-> > > @@ -247,19 +247,69 @@ fpga_full: fpga-full {
-> > >             ranges;
-> > >     };
-> > >
-> > > -   remoteproc {
-> > > +   rproc_lockstep: remoteproc@ffe00000 {
-> > >             compatible = "xlnx,zynqmp-r5fss";
-> > >             xlnx,cluster-mode = <1>;
-> > >
-> > > -           r5f-0 {
-> > > +           #address-cells = <2>;
-> > > +           #size-cells = <2>;
-> > > +
-> > > +           ranges = <0x0 0x0 0x0 0xffe00000 0x0 0x20000>,
-> > > +                    <0x0 0x20000 0x0 0xffe20000 0x0 0x20000>,
-> > > +                    <0x1 0x0 0x0 0xffe90000 0x0 0x10000>,
-> > > +                    <0x1 0x20000 0x0 0xffeb0000 0x0 0x10000>;
-> > > +
-> > > +           r5f@0 {
-> > > +                   compatible = "xlnx,zynqmp-r5f";
-> > > +                   reg = <0x0 0x0 0x0 0x20000>, <0x0 0x20000 0x0 0x20000>;
-> > > +                   reg-names = "atcm", "btcm";
-> > > +                   power-domains = <&zynqmp_firmware PD_RPU_0>,
-> > > +                                   <&zynqmp_firmware PD_R5_0_ATCM>,
-> > > +                                   <&zynqmp_firmware PD_R5_0_BTCM>;
-> > > +                   memory-region = <&rproc_0_fw_image>;
-> > > +           };
-> > > +
-> > > +           r5f@1 {
-> > > +                   compatible = "xlnx,zynqmp-r5f";
-> > > +                   reg = <0x1 0x0 0x0 0x10000>, <0x1 0x20000 0x0 0x10000>;
-> > > +                   reg-names = "atcm", "btcm";
-> > > +                   power-domains = <&zynqmp_firmware PD_RPU_1>,
-> > > +                                   <&zynqmp_firmware PD_R5_1_ATCM>,
-> > > +                                   <&zynqmp_firmware PD_R5_1_BTCM>;
-> > > +                   memory-region = <&rproc_1_fw_image>;
-> > > +           };
-> > > +   };
-> > > +
-> > > +   rproc_split: remoteproc-split@ffe00000 {
-> > > +           status = "disabled";
-> > > +           compatible = "xlnx,zynqmp-r5fss";
-> > > +           xlnx,cluster-mode = <0>;
-> > > +
-> > > +           #address-cells = <2>;
-> > > +           #size-cells = <2>;
-> > > +
-> > > +           ranges = <0x0 0x0 0x0 0xffe00000 0x0 0x10000>,
-> > > +                    <0x0 0x20000 0x0 0xffe20000 0x0 0x10000>,
-> > > +                    <0x1 0x0 0x0 0xffe90000 0x0 0x10000>,
-> > > +                    <0x1 0x20000 0x0 0xffeb0000 0x0 0x10000>;
-> > > +
-> > > +           r5f@0 {
-> > >                     compatible = "xlnx,zynqmp-r5f";
-> > > -                   power-domains = <&zynqmp_firmware PD_RPU_0>;
-> > > +                   reg = <0x0 0x0 0x0 0x10000>, <0x0 0x20000 0x0 0x10000>;
-> > > +                   reg-names = "atcm", "btcm";
-> > > +                   power-domains = <&zynqmp_firmware PD_RPU_0>,
-> > > +                                   <&zynqmp_firmware PD_R5_0_ATCM>,
-> > > +                                   <&zynqmp_firmware PD_R5_0_BTCM>;
-> > >                     memory-region = <&rproc_0_fw_image>;
-> > >             };
-> > >
-> > > -           r5f-1 {
-> > > +           r5f@1 {
-> > >                     compatible = "xlnx,zynqmp-r5f";
-> > > -                   power-domains = <&zynqmp_firmware PD_RPU_1>;
-> > > +                   reg = <0x1 0x0 0x0 0x10000>, <0x1 0x20000 0x0 0x10000>;
-> > > +                   reg-names = "atcm", "btcm";
-> > > +                   power-domains = <&zynqmp_firmware PD_RPU_1>,
-> > > +                                   <&zynqmp_firmware PD_R5_1_ATCM>,
-> > > +                                   <&zynqmp_firmware PD_R5_1_BTCM>;
-> > >                     memory-region = <&rproc_1_fw_image>;
-> > >             };
-> > >     };
-> >
-> > Acked-by: Michal Simek <michal.simek@amd.com>
-> >
-> > Let me know if you want me to take this via my tree.
->
-> Hi Michal,
->
-> Thanks for reviews. I will ping you once driver changes are approved.
+On 23/12/2023 15:29, Mathieu Othacehe wrote:
+> Add DTSI for Variscite VAR-SOM-MX93 System on Module and DTS for Variscite
+> VAR-SOM-MX93 on Symphony evaluation board.
+> 
+> This version comes with:
+> - NXP i.MX 93 Dual, 1.7GHz, Cortex-A55 + Cortex-M33
+> - 2 GB of RAM
+> - 16GB eMMC
+> - 802.11ax/ac/a/b/g/n WiFi with 5.3 Bluetooth
+> - CAN bus
+> - Audio codec
+> 
+> Signed-off-by: Mathieu Othacehe <othacehe@gnu.org>
+> ---
+>  arch/arm64/boot/dts/freescale/Makefile        |   1 +
+>  .../dts/freescale/imx93-var-som-symphony.dts  | 307 +++++++++++++++++
+>  .../boot/dts/freescale/imx93-var-som.dtsi     | 312 ++++++++++++++++++
+>  3 files changed, 620 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/freescale/imx93-var-som-symphony.dts
+>  create mode 100644 arch/arm64/boot/dts/freescale/imx93-var-som.dtsi
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
+> index 2e027675d7bb..a6f1700961e3 100644
+> --- a/arch/arm64/boot/dts/freescale/Makefile
+> +++ b/arch/arm64/boot/dts/freescale/Makefile
+> @@ -203,6 +203,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx8ulp-evk.dtb
+>  dtb-$(CONFIG_ARCH_MXC) += imx93-11x11-evk.dtb
+>  dtb-$(CONFIG_ARCH_MXC) += imx93-tqma9352-mba93xxca.dtb
+>  dtb-$(CONFIG_ARCH_MXC) += imx93-tqma9352-mba93xxla.dtb
+> +dtb-$(CONFIG_ARCH_MXC) += imx93-var-som-symphony.dtb
+>  
+>  imx8mm-venice-gw72xx-0x-imx219-dtbs	:= imx8mm-venice-gw72xx-0x.dtb imx8mm-venice-gw72xx-0x-imx219.dtbo
+>  imx8mm-venice-gw72xx-0x-rpidsi-dtbs	:= imx8mm-venice-gw72xx-0x.dtb imx8mm-venice-gw72xx-0x-rpidsi.dtbo
+> diff --git a/arch/arm64/boot/dts/freescale/imx93-var-som-symphony.dts b/arch/arm64/boot/dts/freescale/imx93-var-som-symphony.dts
+> new file mode 100644
+> index 000000000000..85b1355cf805
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/freescale/imx93-var-som-symphony.dts
+> @@ -0,0 +1,307 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright 2021 NXP
+> + * Copyright 2023 Variscite Ltd.
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include "imx93-var-som.dtsi"
+> +
+> +/{
+> +	model = "Variscite VAR-SOM-MX93 on Symphony evaluation board";
+> +	compatible = "variscite,var-som-imx93-symphony", "variscite,var-som-mx93", "fsl,imx93";
 
-I'll pick this up with the rest of the driver.  It will be easier that way.
+Please run scripts/checkpatch.pl and fix reported warnings. Some
+warnings can be ignored, but the code here looks like it needs a fix.
+Feel free to get in touch if the warning is not clear.
 
->
-> Or Mathieu can take this in remoteproc tree, either way is fine.
->
-> But I would like to wait till driver changes are approved.
->
-> Tanmay
->
-> >
-> > Thanks,
-> > Michal
+Also, wrap it at 80.
+
+> +
+> +	aliases {
+> +		ethernet1 = &fec;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = &lpuart1;
+> +	};
+> +
+> +	/*
+> +	 * Needed only for Symphony <= v1.5
+> +	 */
+> +	reg_fec_phy: regulator-fec-phy {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "fec-phy";
+> +		regulator-min-microvolt = <1800000>;
+> +		regulator-max-microvolt = <1800000>;
+> +		regulator-enable-ramp-delay = <20000>;
+> +		gpio = <&pca9534 7 GPIO_ACTIVE_HIGH>;
+> +		enable-active-high;
+> +		regulator-always-on;
+> +	};
+> +
+> +	reg_usdhc2_vmmc: regulator-usdhc2 {
+> +		compatible = "regulator-fixed";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_reg_usdhc2_vmmc>;
+> +		regulator-name = "VSD_3V3";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		gpio = <&gpio2 18 GPIO_ACTIVE_HIGH>;
+> +		off-on-delay-us = <20000>;
+> +		enable-active-high;
+> +	};
+> +
+> +	reg_vref_1v8: regulator-adc-vref {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vref_1v8";
+> +		regulator-min-microvolt = <1800000>;
+> +		regulator-max-microvolt = <1800000>;
+> +	};
+> +
+> +	reserved-memory {
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		ranges;
+> +
+> +		ethosu_mem: ethosu_region@88000000 {
+
+No underscores in node names.
+
+Please do not upstream downstream DTS, but fix it to match proper Linux
+coding style.
+
+...
+
+
+> +	pinctrl_lpi2c1: lpi2c1grp {
+> +		fsl,pins = <
+> +			MX93_PAD_I2C1_SCL__LPI2C1_SCL			0x40000b9e
+> +			MX93_PAD_I2C1_SDA__LPI2C1_SDA			0x40000b9e
+> +		>;
+> +	};
+> +
+> +	pinctrl_lpi2c1_gpio: lpi2c1grp-gpio {
+
+It does not look like you tested the DTS against bindings. Please run
+`make dtbs_check W=1` (see
+Documentation/devicetree/bindings/writing-schema.rst or
+https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
+for instructions).
+
+
+...
+
+> +
+> +&lpi2c1 {
+> +	#address-cells = <1>;
+> +	#size-cells = <0>;
+> +	clock-frequency = <400000>;
+> +	pinctrl-names = "default", "sleep", "gpio";
+> +	pinctrl-0 = <&pinctrl_lpi2c1>;
+> +	pinctrl-1 = <&pinctrl_lpi2c1_gpio>;
+> +	pinctrl-2 = <&pinctrl_lpi2c1_gpio>;
+> +	scl-gpios = <&gpio1 0 GPIO_ACTIVE_HIGH>;
+> +	sda-gpios = <&gpio1 1 GPIO_ACTIVE_HIGH>;
+> +	status = "okay";
+> +
+> +	/* DS1337 RTC module */
+> +	rtc@68 {
+> +		status = "okay";
+
+Drop. It is never the first property, BTW.
+
+> +		compatible = "dallas,ds1337";
+> +		reg = <0x68>;
+> +	};
+> +};
+> +
+> +&lpi2c5 {
+> +	#address-cells = <1>;
+> +	#size-cells = <0>;
+> +	clock-frequency = <400000>;
+> +	pinctrl-names = "default", "sleep", "gpio";
+> +	pinctrl-0 = <&pinctrl_lpi2c5>;
+> +	pinctrl-1 = <&pinctrl_lpi2c5_gpio>;
+> +	pinctrl-2 = <&pinctrl_lpi2c5_gpio>;
+> +	scl-gpios = <&gpio2 23 GPIO_ACTIVE_HIGH>;
+> +	sda-gpios = <&gpio2 22 GPIO_ACTIVE_HIGH>;
+> +	status = "okay";
+> +
+> +	pca9534: gpio@20 {
+> +		status = "okay";
+
+Drop.
+
+> +		compatible = "nxp,pca9534";
+> +		reg = <0x20>;
+> +		gpio-controller;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_pca9534>;
+> +		interrupt-parent = <&gpio3>;
+> +		interrupts = <26 IRQ_TYPE_EDGE_FALLING>;
+> +		#gpio-cells = <2>;
+> +		wakeup-source;
+> +	};
+> +};
+
+...
+
+> diff --git a/arch/arm64/boot/dts/freescale/imx93-var-som.dtsi b/arch/arm64/boot/dts/freescale/imx93-var-som.dtsi
+> new file mode 100644
+> index 000000000000..30b969d0134d
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/freescale/imx93-var-som.dtsi
+> @@ -0,0 +1,312 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright 2022 NXP
+> + * Copyright 2023 Variscite Ltd.
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include <dt-bindings/usb/pd.h>
+> +#include "imx93.dtsi"
+> +
+> +/{
+> +	model = "Variscite VAR-SOM-MX93 module";
+> +	compatible = "variscite,var-som-imx93", "fsl,imx93";
+
+Please run scripts/checkpatch.pl and fix reported warnings. Some
+warnings can be ignored, but the code here looks like it needs a fix.
+Feel free to get in touch if the warning is not clear.
+
+> +
+> +	iw612_pwrseq: iw612_pwrseq {
+
+Node names should be generic. See also an explanation and list of
+examples (not exhaustive) in DT specification:
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+
+> +		compatible = "mmc-pwrseq-simple";
+> +		post-power-on-delay-ms = <100>;
+> +		power-off-delay-us = <10000>;
+> +		reset-gpios = <&gpio4 14 GPIO_ACTIVE_LOW>,	/* WIFI_RESET */
+> +			      <&gpio3 7 GPIO_ACTIVE_LOW>;	/* WIFI_PWR_EN */
+> +		status = "okay";
+
+Drop
+
+....
+
+> +	pinctrl_lpi2c3: lpi2c3grp {
+> +		fsl,pins = <
+> +			MX93_PAD_GPIO_IO28__LPI2C3_SDA			0x40000b9e
+> +			MX93_PAD_GPIO_IO29__LPI2C3_SCL			0x40000b9e
+> +		>;
+> +	};
+> +
+> +	pinctrl_lpi2c3_gpio: lpi2c3grp-gpio {
+
+It does not look like you tested the DTS against bindings. Please run
+`make dtbs_check W=1` (see
+Documentation/devicetree/bindings/writing-schema.rst or
+https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
+for instructions).
+
+...
+
+> +
+> +&lpi2c3 {
+> +	#address-cells = <1>;
+> +	#size-cells = <0>;
+> +	clock-frequency = <400000>;
+> +	pinctrl-names = "default", "sleep", "gpio";
+> +	pinctrl-0 = <&pinctrl_lpi2c3>;
+> +	pinctrl-1 = <&pinctrl_lpi2c3_gpio>;
+> +	pinctrl-2 = <&pinctrl_lpi2c3_gpio>;
+> +	scl-gpios = <&gpio2 29 GPIO_ACTIVE_HIGH>;
+> +	sda-gpios = <&gpio2 28 GPIO_ACTIVE_HIGH>;
+> +	status = "okay";
+> +
+> +	pmic@25 {
+> +		compatible = "nxp,pca9451a";
+
+Please run scripts/checkpatch.pl and fix reported warnings. Some
+warnings can be ignored, but the code here looks like it needs a fix.
+Feel free to get in touch if the warning is not clear.
+
+I don't see this compatible documented and cover letter or changelog
+does not mention neither dependencies nor other series bringing it.
+
+> +		reg = <0x25>;
+> +
+> +		regulators {
+> +			buck1: BUCK1 {
+
+Lowercase
+
+> +				regulator-name = "BUCK1";
+> +				regulator-min-microvolt = <650000>;
+> +				regulator-max-microvolt = <2237500>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +				regulator-ramp-delay = <3125>;
+> +			};
+> +
+> +			buck2: BUCK2 {
+
+Lowercase, further as well
+
+...
+
+Best regards,
+Krzysztof
+
 
