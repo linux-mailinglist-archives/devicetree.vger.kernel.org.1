@@ -1,140 +1,139 @@
-Return-Path: <devicetree+bounces-28304-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28305-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F9C181D89B
-	for <lists+devicetree@lfdr.de>; Sun, 24 Dec 2023 10:32:55 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 79E7481D8AA
+	for <lists+devicetree@lfdr.de>; Sun, 24 Dec 2023 11:12:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1310FB2137D
-	for <lists+devicetree@lfdr.de>; Sun, 24 Dec 2023 09:32:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 178991F21834
+	for <lists+devicetree@lfdr.de>; Sun, 24 Dec 2023 10:12:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13B6B17E3;
-	Sun, 24 Dec 2023 09:32:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABB3D1858;
+	Sun, 24 Dec 2023 10:12:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Llz5VlZT"
+	dkim=pass (2048-bit key) header.d=dh-electronics.com header.i=@dh-electronics.com header.b="DMyfAzFh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx2.securetransport.de (mx2.securetransport.de [188.68.39.254])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC86F15D5
-	for <devicetree@vger.kernel.org>; Sun, 24 Dec 2023 09:32:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-554c9901c9fso210619a12.0
-        for <devicetree@vger.kernel.org>; Sun, 24 Dec 2023 01:32:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1703410363; x=1704015163; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=BMIpsDLl4bsf9Qsq+G/qHH3bUOCsAuH6huxFShvBQrM=;
-        b=Llz5VlZTGCwsNbrdtpf1XwLiYrZxWRyuajbeFhGF08N4ucNeooW8LKyuAoWmg6HHO7
-         8IllyUPrV8S7WFbzbFxlX5/fACeODCdGC2xBtGWTkJhzgHdUy/msYG6LOcRQEzN6xIsE
-         /x6QckJpyw+Fu/v3NwMaM0EIlco3R/rGMNqMA/Jk085D6biruuPZSA0o+QZEvOBQp8hJ
-         yIH9Hul7sob1Bd4RG6tPNebbq190A58iZ5qJsa6Q3/RIzS03fo4yMGmYEPDEwT7o65CQ
-         9bzQyB8HVvp+sV8DvzAvUsUj6jTtwpfTnFcXluZ7hcz+J9rf1ILohhww1BEG/lCih1Tu
-         3Hkg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703410363; x=1704015163;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=BMIpsDLl4bsf9Qsq+G/qHH3bUOCsAuH6huxFShvBQrM=;
-        b=DtfJ7qEP+8GUtDa9tDZ03I7P3TtdQCSYs8Vt/9CkeU+9cMV7WtjpsRYxyXSnEJa3ub
-         ZxEIbLsg9mhkbfHuIwFdx+kFwdsn8XHRnVG9B38ZymsTCjqUOQDHT92K6vSwycPGMpJw
-         utIamljx5Vg+5RcPxB+22wkg13gsZ5me7pEgO9g/+BH0QspnAbKIlplohWyg32bWeefx
-         z032AzeXb3ZruzW+009G/DMrzf0U61GwHUjm3HhZKzl/J32f17g+zEDxH//ZtL0mfGMt
-         6Mov0jxu6Kp/p6u+g/y/wQf+k7A3RsieyWt24afNPRuHqKeneipTkiKCU38tl980/Y19
-         VHWw==
-X-Gm-Message-State: AOJu0YzD2ED4DeDkblMlUvK9z3AuCMfXbEhttvPiiubg1JkUrffB/3f0
-	XaTaSklUjht68qwlaTcnV6jIC0QDdzRHPQ==
-X-Google-Smtp-Source: AGHT+IHdfyLYu8IyZ8hzdhN0iJw1JZy/ugudkMFRkOin1/4nWJJSq0yJUiwiKnnTLrZEJgOnJZnVRw==
-X-Received: by 2002:a50:ee09:0:b0:554:b760:ade4 with SMTP id g9-20020a50ee09000000b00554b760ade4mr738864eds.76.1703410363099;
-        Sun, 24 Dec 2023 01:32:43 -0800 (PST)
-Received: from [192.168.0.22] ([78.10.206.178])
-        by smtp.gmail.com with ESMTPSA id h2-20020a0564020e8200b005532a337d51sm4854602eda.44.2023.12.24.01.32.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 24 Dec 2023 01:32:42 -0800 (PST)
-Message-ID: <ec6893d8-d913-4a95-abaf-18f93e94369b@linaro.org>
-Date: Sun, 24 Dec 2023 10:32:41 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C26CB20F8;
+	Sun, 24 Dec 2023 10:12:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=dh-electronics.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dh-electronics.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dh-electronics.com;
+	s=dhelectronicscom; t=1703412689;
+	bh=OXQ4ZJxgDAB/RrJMWy4ykGxBqvaHXcoG155uXiLRLJQ=;
+	h=From:To:CC:Subject:Date:References:In-Reply-To:From;
+	b=DMyfAzFhc8tWIWlGDX2MJl1yjY3xSiww5icOzG6e3srbBlMb/00yu5DVEw72FlgX4
+	 +GZRowvqGAeLx20Uwxc0KO2eQ+eKgkj0aqtJ3IuwkU3ZF2NEie5+OmuGbbVqiXo/uv
+	 xt27QwgZSj25uTMhYXr5kXPRyYZcqWkxotDYLIDJ0nZv32FIJhlv0XrMRWHrymT8jP
+	 M+alEQyg18Ndh5eaLeGwebbPfRVs4kOYfax8fp2/ycd3PWU8Tf2u4WT18PVA7j0nYm
+	 S+sEHWPJU+fcbr+zUcGY7FLGOl83BRnpGum2iYRtGFIdMp677qxHILxcE/cwjkUVIy
+	 JoV3ETqW/bJOg==
+X-secureTransport-forwarded: yes
+From: Christoph Niedermaier <cniedermaier@dh-electronics.com>
+Complaints-To: abuse@cubewerk.de
+To: Lino Sanfilippo <LinoSanfilippo@gmx.de>, Lukas Wunner <lukas@wunner.de>
+CC: Crescent CY Hsieh <crescentcy.hsieh@moxa.com>, Andy Shevchenko
+	<andriy.shevchenko@linux.intel.com>, Rasmus Villemoes
+	<linux@rasmusvillemoes.dk>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+	<conor+dt@kernel.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "linux-serial@vger.kernel.org"
+	<linux-serial@vger.kernel.org>, =?utf-8?B?SWxwbyBKw6RydmluZW4=?=
+	<ilpo.jarvinen@linux.intel.com>, "brenda.streiff@ni.com"
+	<brenda.streiff@ni.com>, Tomas Paukrt <tomaspaukrt@email.cz>
+Subject: RE: [PATCH 1/2] dt-bindings: serial: rs485: add rs485-mux-gpios
+ binding
+Thread-Topic: [PATCH 1/2] dt-bindings: serial: rs485: add rs485-mux-gpios
+ binding
+Thread-Index: AQHaH/jBESSZN4JU2UOxi81YCMKNnLCN1MYggA6QRICABHVPgIADOxKAgASJVgCAABWukIALRm2AgAAjTdCAAtxzAIABYp/A
+Date: Sun, 24 Dec 2023 10:11:17 +0000
+Message-ID: <766f5d0d08c14666a3291073e1a43b23@dh-electronics.com>
+References: <20231120151056.148450-1-linux@rasmusvillemoes.dk>
+ <20231120151056.148450-2-linux@rasmusvillemoes.dk>
+ <20231122145344.GA18949@wunner.de>
+ <3b8548b1-b8a9-0c9e-4040-5cfda06a85c6@gmx.de>
+ <ec66d25162de4cbc92720df1e7008fe8@dh-electronics.com>
+ <5c140498-69e3-4187-8703-db0c41e7ca89@gmx.de>
+ <fe28eb93-daa1-41af-a005-f21aa87e1984@gmx.de>
+ <ZXcJr4VS_uGr_6TV@smile.fi.intel.com>
+ <ZXrX4mQXPLum0jL3@moxa-ThinkCentre-M90t>
+ <b35730df8288469fbaf67b5ceae4eece@dh-electronics.com>
+ <20231221155305.GA13673@wunner.de>
+ <f41f5ddcb52140b6a579043a5abce751@dh-electronics.com>
+ <0ec4c423-3d18-4a29-b78e-938366ece117@gmx.de>
+In-Reply-To: <0ec4c423-3d18-4a29-b78e-938366ece117@gmx.de>
+Accept-Language: de-DE, en-US
+Content-Language: de-DE
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/2] dt-bindings: hwmon: (lm75) Add AMS AS6200
- temperature sensor
-Content-Language: en-US
-To: Abdel Alkuor <alkuor@gmail.com>, Jean Delvare <jdelvare@suse.com>,
- Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>
-Cc: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
-References: <17ba2dfdb3d25bf1b5b4ed9f858b6e28902bedbe.1703127334.git.alkuor@gmail.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <17ba2dfdb3d25bf1b5b4ed9f858b6e28902bedbe.1703127334.git.alkuor@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
 
-On 23/12/2023 17:21, Abdel Alkuor wrote:
-> as6200 is a temperature sensor with a range between -40°C to
-> 125°C degrees and an accuracy of ±0.4°C degree between 0
-> and 65°C and ±1°C for the other ranges.
-> 
-> Signed-off-by: Abdel Alkuor <alkuor@gmail.com>
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
-
+RnJvbTogTGlubyBTYW5maWxpcHBvIFttYWlsdG86TGlub1NhbmZpbGlwcG9AZ214LmRlXQ0KU2Vu
+dDogU2F0dXJkYXksIERlY2VtYmVyIDIzLCAyMDIzIDI6NDEgUE0NCj4gT24gMjMuMTIuMjMgMTM6
+NDksIENocmlzdG9waCBOaWVkZXJtYWllciB3cm90ZToNCj4+IEZyb206IEx1a2FzIFd1bm5lciBb
+bWFpbHRvOmx1a2FzQHd1bm5lci5kZV0NCj4+IFNlbnQ6IFRodXJzZGF5LCBEZWNlbWJlciAyMSwg
+MjAyMyA0OjUzIFBNDQo+Pj4NCj4+PiBPbiBUaHUsIERlYyAxNCwgMjAyMyBhdCAwMTo0MTo0N1BN
+ICswMDAwLCBDaHJpc3RvcGggTmllZGVybWFpZXIgd3JvdGU6DQo+Pj4+IEkgd2lsbCBzdW1tYXJp
+emUgdGhlIGN1cnJlbnQgc2l0dWF0aW9uIGZyb20gbXkgcG9pbnQgb2YgdmlldywgbWF5YmUgaXQg
+aGVscHM6DQo+Pj4+DQo+Pj4+IFJTLTIzMjoNCj4+Pj4gICAtIEZ1bGwgRHVwbGV4IFBvaW50LXRv
+LVBvaW50IGNvbm5lY3Rpb24NCj4+Pj4gICAtIE5vIHRyYW5zY2VpdmVyIGNvbnRyb2wgd2l0aCBS
+VFMNCj4+Pj4gICAtIE5vIHRlcm1pbmF0aW9uDQo+Pj4+ICAgLSBObyBleHRyYSBzdHJ1Y3QgaW4g
+dXNlDQo+Pj4+DQo+Pj4+IFJTLTQyMjoNCj4+Pj4gICAtIEZ1bGwgRHVwbGV4IFBvaW50LXRvLVBv
+aW50IGNvbm5lY3Rpb24NCj4+Pj4gICAtIE5vIHRyYW5zY2VpdmVyIGNvbnRyb2wgd2l0aCBSVFMg
+bmVlZGVkDQo+Pj4+ICAgLSBUZXJtaW5hdGlvbiBwb3NzaWJsZQ0KPj4+PiAgIC0gRXh0cmEgc3Ry
+dWN0IHNlcmlhbF9yczQ4NSBuZWVkZWQgaWYgdGVybWluYXRpb24gaXMgdXNlZA0KPj4+PiAgPT4g
+UlMtNDIyIGNhbiBiZSB1c2VkIGluIFJTLTIzMiBvcGVyYXRpb24sIGJ1dCBpZiBhIHRlcm1pbmF0
+aW9uIHNob3VsZCBiZQ0KPj4+PiAgICAgc3dpdGNoYWJsZSB0aGUgUlM0ODUgZmxhZyBoYXMgdG8g
+YmUgZW5hYmxlZC4gQnV0IHRoZW4gYWxzbyB0cmFuc2NlaXZlcg0KPj4+PiAgICAgY29udHJvbCB3
+aWxsIGJlIGVuYWJsZWQuIE5vdCBhIHZlcnkgc2F0aXNmeWluZyBzaXR1YXRpb24uDQo+Pj4NCj4+
+PiBXZWxsIHdoeSBkb24ndCB3ZSBqdXN0IGFsbG93IGVuYWJsaW5nIG9yIGRpc2FibGluZyBSUy00
+ODUgdGVybWluYXRpb24NCj4+PiBpbmRlcGVuZGVudGx5IGZyb20gdGhlIFNFUl9SUzQ4NV9FTkFC
+TEVEIGJpdCBpbiBzdHJ1Y3Qgc2VyaWFsX3JzNDg1Pw0KPj4+DQo+Pj4gSnVzdCBsZXQgdGhlIHVz
+ZXIgaXNzdWUgYSBUSU9DU1JTNDg1IGlvY3RsIHRvIHRvZ2dsZSB0ZXJtaW5hdGlvbiBldmVuDQo+
+Pj4gaWYgaW4gUlMtMjMyIG1vZGUgYW5kIHVzZSB0aGF0IG1vZGUgZm9yIFJTLTQyMi4NCj4+Pg0K
+Pj4+IExvb2tzIGxpa2UgdGhlIHNpbXBsZXN0IHNvbHV0aW9uIHRvIG1lLg0KPj4NCj4+IFNvdW5k
+cyBub3QgYmFkLiBUaGUgdGVybWluYXRpb24gc2hvdWxkIG9ubHkgZGVwZW5kIG9uIHdoZXRoZXIg
+dGhlIEdQSU8gaXMNCj4+IGdpdmVuIG9yIG5vdC4NCj4+DQo+PiBJcnJlc3BlY3RpdmUgb2YgdGhp
+cywgSSB0aGluayB0aGUgTGlub3MgaWRlYSBvZiBhbiBSUy00MjIgbW9kZSBpcyBub3QgYmFkLg0K
+Pj4gVGhpcyBhbGxvd3MgeW91IHRvIHRha2UgY2FyZSBvZiBzcGVjaWFsIGZlYXR1cmVzIHRoYXQg
+d2VyZSBwcmV2aW91c2x5DQo+PiBvdmVybG9va2VkLiBGb3IgZXhhbXBsZSwgaGFyZHdhcmUgZmxv
+dyBjb250cm9sIGNhbiBiZSBzd2l0Y2hlZCBvZmYgc28gdGhhdA0KPj4gdGhpcyBkb2VzIG5vdCBj
+YXVzZSBhbnkgcHJvYmxlbXMuDQo+Pg0KPiANCj4gQWxzbyBub3RlLCB0aGF0IFJTMjMyIGFuZCBS
+UzQyMiBtYXkgTk9UIGFsd2F5cyBiZSB0aGUgc2FtZSBmcm9tIGRyaXZlciBwZXJzcGVjdGl2ZS4N
+Cj4gVGFrZSBhIGxvb2sgYXQgODI1MF9leGNhci5jIGZvciBleGFtcGxlLiBUaGF0IGRyaXZlciBo
+YXMgdG8gY29uZmlndXJlIHRoZSBoYXJkd2FyZQ0KPiBhY2NvcmRpbmdseSB3aGVuIHN3aXRjaGlu
+ZyBmcm9tIFJTMjMyIHRvIFJTNDIyIChzZWUgaW90MjA0MF9yczQ4NV9jb25maWcoKSkuDQo+IA0K
+PiBXaGlsZSBhIFNFUl9SUzQ4NV9NT0RFX1JTNDIyIGZsYWcgc2V0IGJ5IHVzZXJzcGFjZSBjb3Vs
+ZCB3b3JrIHRvIHN3aXRjaCB0byBSUzQyMiwgSQ0KPiBzdGlsbCB0aGluayB0aGF0IHRoZSBjbGVh
+bmVzdCBzb2x1dGlvbiB3b3VsZCBiZSBhbm90aGVyIGlvY3RsIFRJT0NTUlM0MjIgd2l0aCBhDQo+
+IHBhcmFtZXRlciBsaWtlDQo+IA0KPiBzdHJ1Y3Qgc2VyaWFsX3JzNDIyIHsNCj4gICAgICAgIF9f
+dTMyICAgZmxhZ3M7DQo+ICNkZWZpbmUgU0VSX1JTNDIyX0VOQUJMRUQgICAgICAgICAgICAgICgx
+IDw8IDApDQo+ICNkZWZpbmUgU0VSX1JTNDIyX1RFUk1JTkFURV9CVVMgICAgICAgICgxIDw8IDEp
+DQo+ICAgICAgICAgX191MzIgICBwYWRkaW5nWzddDQo+IH07DQo+IA0KPiBUaGUgU0VSX1JTNDg1
+X01PREVfUlM0MjIgZmxhZyBjb3VsZCBzdGlsbCBiZSB1c2VkIGludGVybmFsbHkgYXMgYSBoaW50
+IHRvIHRoZSBkcml2ZXIuDQo+IFRoYXQgc29sdXRpb24gd291bGQgYWxzbyBiZSBleHBhbmRhYmxl
+IGlmIG5lZWRlZC4gSSBwbGFubmVkIHRvIHNlbmQgYSBwYXRjaCB0aGF0DQo+IGltcGxlbWVudHMg
+dGhpcw0KPiBhcyBhIFJGQyB0byB0aGUgbWFpbGluZyBsaXN0IChtYXliZSBpbiB0aGUgbmV4dCBm
+ZXcgZGF5cykuDQoNCkhhdmluZyB5b3VyIG93biBpb2N0bCBpcyBhIG5pY2UgZGlzdGluY3Rpb24s
+IGJ1dCB3aGVuIEkgdGhpbmsgYWJvdXQgaXQgZm9yIGEgbW9tZW50LA0KcXVlc3Rpb25zIGNvbWUg
+dG8gbWluZDoNCg0KRnJvbSB1c2Vyc3BhY2UgcGVyc3BlY3RpdmUgdGhlbiB0aGVyZSBhcmUgdHdv
+IHRlcm1pbmF0aW9uIGZsYWdzDQpTRVJfUlM0ODVfVEVSTUlOQVRFX0JVUyBhbmQgU0VSX1JTNDIy
+X1RFUk1JTkFURV9CVVM/DQpIb3cgd2lsbCB0aGV5IGludGVyYWN0IGludGVybmFsbHk/DQoNCldo
+YXQgYWJvdXQgdGhlIGRldmljZXRyZWUgcHJvcGVydHk/DQpXaWxsIHRoZXJlIGJlIHJzNDIyLXRl
+cm0tZ3Bpb3MgYXMgd2VsbD8NCg0KQ291bGQgdGhlIHVzZXIgZW5hYmxlIFJTNDIyIGFuZCBSUzQ4
+NSBhdCB0aGUgc2FtZSB0aW1lPw0KDQoNClJlZ2FyZHMgYW5kIE1lcnJ5IENocmlzdG1hcw0KQ2hy
+aXN0b3BoDQo=
 
