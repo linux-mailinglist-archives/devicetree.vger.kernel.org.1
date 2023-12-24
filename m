@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-28303-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28304-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA43081D891
-	for <lists+devicetree@lfdr.de>; Sun, 24 Dec 2023 10:13:02 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F9C181D89B
+	for <lists+devicetree@lfdr.de>; Sun, 24 Dec 2023 10:32:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CF1491C20B84
-	for <lists+devicetree@lfdr.de>; Sun, 24 Dec 2023 09:13:01 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1310FB2137D
+	for <lists+devicetree@lfdr.de>; Sun, 24 Dec 2023 09:32:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84AA81383;
-	Sun, 24 Dec 2023 09:12:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13B6B17E3;
+	Sun, 24 Dec 2023 09:32:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="EffrnMTq"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Llz5VlZT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
+Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFFE815D0
-	for <devicetree@vger.kernel.org>; Sun, 24 Dec 2023 09:12:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC86F15D5
+	for <devicetree@vger.kernel.org>; Sun, 24 Dec 2023 09:32:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-550dd0e3304so3751725a12.1
-        for <devicetree@vger.kernel.org>; Sun, 24 Dec 2023 01:12:56 -0800 (PST)
+Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-554c9901c9fso210619a12.0
+        for <devicetree@vger.kernel.org>; Sun, 24 Dec 2023 01:32:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1703409175; x=1704013975; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1703410363; x=1704015163; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=pz2xgyhEL9namqEUSstaDQDEI6UAn2yjZf970JLSBGE=;
-        b=EffrnMTqlFn6o0cJAgEi084IC1wUTuIt39jI9wZScGT5uE1iqBGofsGU2PyOvBHFVl
-         KPSg0QfMaH9adFE60Us0f5WNkdVTFFDCIEEl1vrVa165/mv89ppZSXIxUAHNCDj1xzed
-         CtT9PRT6NUYw6HgtLznIfgHeLpgtYuNCJyrUTnBksSd/bpS7LyPTPc0FIYUXZExMCDPj
-         gqgDtvfEH6kT5E6CIXvVZgzwWU/aToAS6unl2cplGDtVNOXIBPwwWtRb6drdFIrQqsRp
-         vlugZvhe875rnj2/VMA4vn2EzDmUXLNyKim+Bs12UyhuMyZ7LMtIZE2F93gBfTOTfr9Q
-         ZANA==
+        bh=BMIpsDLl4bsf9Qsq+G/qHH3bUOCsAuH6huxFShvBQrM=;
+        b=Llz5VlZTGCwsNbrdtpf1XwLiYrZxWRyuajbeFhGF08N4ucNeooW8LKyuAoWmg6HHO7
+         8IllyUPrV8S7WFbzbFxlX5/fACeODCdGC2xBtGWTkJhzgHdUy/msYG6LOcRQEzN6xIsE
+         /x6QckJpyw+Fu/v3NwMaM0EIlco3R/rGMNqMA/Jk085D6biruuPZSA0o+QZEvOBQp8hJ
+         yIH9Hul7sob1Bd4RG6tPNebbq190A58iZ5qJsa6Q3/RIzS03fo4yMGmYEPDEwT7o65CQ
+         9bzQyB8HVvp+sV8DvzAvUsUj6jTtwpfTnFcXluZ7hcz+J9rf1ILohhww1BEG/lCih1Tu
+         3Hkg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703409175; x=1704013975;
+        d=1e100.net; s=20230601; t=1703410363; x=1704015163;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=pz2xgyhEL9namqEUSstaDQDEI6UAn2yjZf970JLSBGE=;
-        b=Oh/j34uy7OAbTSkKRT/4UF2VY/pELu0OeYUL59nrtC7YwYmZZYcp5m7twCkOzEB69+
-         lOVC5znj8ziupa66ycxT73zqCOBfoqJLNs/xsJaoskCZ6Ns+eR9iQ5Ij5TwRCHhsU9hR
-         N7Xd1YgOJ7vNoVRGMEGZikwpnqQTcst6mnshboBc7uLhJ27LdoR7YJYHTYRfuZm/Wrg0
-         xyaKcFAk7RtZ8E04pLpHKmaWwbExHVGgsc/sNCzXu8gNv+tcvZdX59GJ7pVhL/CqcnWp
-         BQXMzus+Ja71VN9kM6DDFLpk9JMZi5mjpmWrU+fU7a3N9hyFfiSNQvTx5+5bowlZC1tj
-         Q6Tw==
-X-Gm-Message-State: AOJu0Yyj7oa59hNdgtPBD6r8b59VVuCkZbLI+VnR5KqnX0H/QAR8wwc3
-	kiiPcZIBWh1Eujkg6lHGma4HnjXiBvr+9Q==
-X-Google-Smtp-Source: AGHT+IHAvRpBG0IYsinRP9flj/SrVhOfdDemxXJkkZI5ubyDS+F6oNS9JF0anBNo7/pHNvd012dFSQ==
-X-Received: by 2002:a17:906:c0d2:b0:a23:f50:60f7 with SMTP id bn18-20020a170906c0d200b00a230f5060f7mr2027457ejb.102.1703409175208;
-        Sun, 24 Dec 2023 01:12:55 -0800 (PST)
+        bh=BMIpsDLl4bsf9Qsq+G/qHH3bUOCsAuH6huxFShvBQrM=;
+        b=DtfJ7qEP+8GUtDa9tDZ03I7P3TtdQCSYs8Vt/9CkeU+9cMV7WtjpsRYxyXSnEJa3ub
+         ZxEIbLsg9mhkbfHuIwFdx+kFwdsn8XHRnVG9B38ZymsTCjqUOQDHT92K6vSwycPGMpJw
+         utIamljx5Vg+5RcPxB+22wkg13gsZ5me7pEgO9g/+BH0QspnAbKIlplohWyg32bWeefx
+         z032AzeXb3ZruzW+009G/DMrzf0U61GwHUjm3HhZKzl/J32f17g+zEDxH//ZtL0mfGMt
+         6Mov0jxu6Kp/p6u+g/y/wQf+k7A3RsieyWt24afNPRuHqKeneipTkiKCU38tl980/Y19
+         VHWw==
+X-Gm-Message-State: AOJu0YzD2ED4DeDkblMlUvK9z3AuCMfXbEhttvPiiubg1JkUrffB/3f0
+	XaTaSklUjht68qwlaTcnV6jIC0QDdzRHPQ==
+X-Google-Smtp-Source: AGHT+IHdfyLYu8IyZ8hzdhN0iJw1JZy/ugudkMFRkOin1/4nWJJSq0yJUiwiKnnTLrZEJgOnJZnVRw==
+X-Received: by 2002:a50:ee09:0:b0:554:b760:ade4 with SMTP id g9-20020a50ee09000000b00554b760ade4mr738864eds.76.1703410363099;
+        Sun, 24 Dec 2023 01:32:43 -0800 (PST)
 Received: from [192.168.0.22] ([78.10.206.178])
-        by smtp.gmail.com with ESMTPSA id kx26-20020a170907775a00b00a1f65433d08sm3858248ejc.172.2023.12.24.01.12.53
+        by smtp.gmail.com with ESMTPSA id h2-20020a0564020e8200b005532a337d51sm4854602eda.44.2023.12.24.01.32.41
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 24 Dec 2023 01:12:54 -0800 (PST)
-Message-ID: <834a786c-c14e-4db5-a2a1-5223c7bb922b@linaro.org>
-Date: Sun, 24 Dec 2023 10:12:53 +0100
+        Sun, 24 Dec 2023 01:32:42 -0800 (PST)
+Message-ID: <ec6893d8-d913-4a95-abaf-18f93e94369b@linaro.org>
+Date: Sun, 24 Dec 2023 10:32:41 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,20 +66,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] arm64: dts: imx93-var-som: Add Variscite
- VAR-SOM-MX93
+Subject: Re: [PATCH v4 1/2] dt-bindings: hwmon: (lm75) Add AMS AS6200
+ temperature sensor
 Content-Language: en-US
-To: Mathieu Othacehe <othacehe@gnu.org>, Rob Herring <robh+dt@kernel.org>,
+To: Abdel Alkuor <alkuor@gmail.com>, Jean Delvare <jdelvare@suse.com>,
+ Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>,
- Li Yang <leoyang.li@nxp.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-References: <20231223205230.10534-1-othacehe@gnu.org>
- <20231223205230.10534-3-othacehe@gnu.org>
+ Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>
+Cc: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
+References: <17ba2dfdb3d25bf1b5b4ed9f858b6e28902bedbe.1703127334.git.alkuor@gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -125,39 +121,18 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231223205230.10534-3-othacehe@gnu.org>
+In-Reply-To: <17ba2dfdb3d25bf1b5b4ed9f858b6e28902bedbe.1703127334.git.alkuor@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 23/12/2023 21:52, Mathieu Othacehe wrote:
-> Add DTSI for Variscite VAR-SOM-MX93 System on Module and DTS for Variscite
-> VAR-SOM-MX93 on Symphony evaluation board.
+On 23/12/2023 17:21, Abdel Alkuor wrote:
+> as6200 is a temperature sensor with a range between -40°C to
+> 125°C degrees and an accuracy of ±0.4°C degree between 0
+> and 65°C and ±1°C for the other ranges.
 > 
+> Signed-off-by: Abdel Alkuor <alkuor@gmail.com>
 
-Thank you for your patch. There is something to discuss/improve.
-
-
-> index 000000000000..ab675739e3ba
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/freescale/imx93-var-som-symphony.dts
-> @@ -0,0 +1,306 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright 2021 NXP
-> + * Copyright 2023 Variscite Ltd.
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "imx93-var-som.dtsi"
-> +
-> +/{
-> +	model = "Variscite VAR-SOM-MX93 on Symphony evaluation board";
-> +	compatible = "variscite,var-som-mx93-symphony",
-> +	"variscite,var-som-mx93", "fsl,imx93";
-
-Missing indentation. Continued entries must be aligned with previous ".
-
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
