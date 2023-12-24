@@ -1,106 +1,74 @@
-Return-Path: <devicetree+bounces-28335-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28340-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F5E781DC04
-	for <lists+devicetree@lfdr.de>; Sun, 24 Dec 2023 19:59:54 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 881C481DC38
+	for <lists+devicetree@lfdr.de>; Sun, 24 Dec 2023 20:55:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 19BCB1F2101B
-	for <lists+devicetree@lfdr.de>; Sun, 24 Dec 2023 18:59:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3CF9D1F2174A
+	for <lists+devicetree@lfdr.de>; Sun, 24 Dec 2023 19:55:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32010D28F;
-	Sun, 24 Dec 2023 18:59:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FAADDDB3;
+	Sun, 24 Dec 2023 19:54:59 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 908C1D285;
-	Sun, 24 Dec 2023 18:59:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4110CEAE8;
+	Sun, 24 Dec 2023 19:54:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-Received: from i5e86193c.versanet.de ([94.134.25.60] helo=diego.localnet)
+Received: from i5e86193c.versanet.de ([94.134.25.60] helo=phil.lan)
 	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.94.2)
 	(envelope-from <heiko@sntech.de>)
-	id 1rHThJ-0005pM-Gb; Sun, 24 Dec 2023 19:59:37 +0100
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Trevor Woerner <twoerner@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH] arm64: rockchip: dts: rk3328-rock-pi-e: enable GbE eth
-Date: Sun, 24 Dec 2023 19:59:36 +0100
-Message-ID: <2404910.8hb0ThOEGa@diego>
-In-Reply-To: <20231221062244.11871-1-twoerner@gmail.com>
-References: <20231221062244.11871-1-twoerner@gmail.com>
+	id 1rHUYj-0006HY-Hb; Sun, 24 Dec 2023 20:54:49 +0100
+From: Heiko Stuebner <heiko@sntech.de>
+To: Andy Yan <andyshrk@163.com>
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	Andy Yan <andy.yan@rock-chips.com>,
+	linux-rockchip@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	robh+dt@kernel.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	zhengxing@rock-chips.com
+Subject: Re: (subset) [PATCH v2 0/3] Fix mainline support for rk3036 kylin board
+Date: Sun, 24 Dec 2023 20:54:44 +0100
+Message-Id: <170344745821.2405994.10562040784600617888.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20231218105523.2478315-1-andyshrk@163.com>
+References: <20231218105523.2478315-1-andyshrk@163.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-Hi Trevor,
-
-Am Donnerstag, 21. Dezember 2023, 07:22:43 CET schrieb Trevor Woerner:
-> Adjust the device-tree to get the GbE interface working using a patch found
-> on the Radxa forum.
+On Mon, 18 Dec 2023 18:55:20 +0800, Andy Yan wrote:
+> From: Andy Yan <andy.yan@rock-chips.com>
 > 
-> Link: https://forum.radxa.com/t/rock-pi-e-board-version-1-21-ethhernet-not-working-in-armbian/15061/3
-> Signed-off-by: Trevor Woerner <twoerner@gmail.com>
-> ---
-
-> @@ -165,15 +165,17 @@ mdio {
->  		#address-cells = <1>;
->  		#size-cells = <0>;
->  
-> -		rtl8211e: ethernet-phy@1 {
-> +		rtl8211f: ethernet-phy@1 {
-> +			compatible = "ethernet-phy-id001c.c916", "ethernet-phy-ieee802.3-c22";
-
-skipping through that thread, it looks like there are variants of the
-board with one of the rtl8211e _or_ rtl8211f phys.
-
-So while the "ethernet-phy-ieee802.3-c22" compatible would work for both,
-the "ethernet-phy-id001c.c916" compat effectively disables phy- probing.
-So applying this patch would effectively disable ethernet support on those
-older rock-pi-e boards?
-
-In a similar context concerning boards using different phys, it was
-suggested [0] that the bootloader should modify the dt it passes to the
-kernel to provide the correct phy id.
-
-
->  			reg = <1>;
->  			pinctrl-0 = <&eth_phy_int_pin>, <&eth_phy_reset_pin>;
->  			pinctrl-names = "default";
->  			interrupt-parent = <&gpio1>;
->  			interrupts = <24 IRQ_TYPE_LEVEL_LOW>;
-> -			reset-assert-us = <10000>;
-> -			reset-deassert-us = <50000>;
-> +			reset-assert-us = <20000>;
-> +			reset-deassert-us = <100000>;
-
-I guess for those we can consolidate onto the "slower" ones in the kernel though.
-
-
->  			reset-gpios = <&gpio1 RK_PC2 GPIO_ACTIVE_LOW>;
-> +			max-speed = <1000>;
->  		};
->  	};
->  };
 > 
+> When I want to test some patch of inno hdmi driver on
+> mainline, I found the support of rk3036 kylin board
+> was broken by somehow:
+> 
+> [...]
 
+Applied, thanks!
 
-Heiko
+[2/3] ARM: dts: rockchip: Add stdout-path for rk3036 kylin
+      commit: 1df4bc6908b2739f7ff28a1775729730d1addf16
+[3/3] ARM: dts: rockchip: Remove rockchip,default-sample-phase from rk3036.dtsi
+      commit: bb0b255fb6f14b1620566d7d32c43adaca09c5e5
 
-[0] https://lore.kernel.org/all/ecbdcfb7-32ab-45cc-991a-982c52bf4b14@gmail.com/
-
-
-
+Best regards,
+-- 
+Heiko Stuebner <heiko@sntech.de>
 
