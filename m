@@ -1,89 +1,96 @@
-Return-Path: <devicetree+bounces-28290-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28291-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C83EA81D81F
-	for <lists+devicetree@lfdr.de>; Sun, 24 Dec 2023 08:51:00 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 82A3B81D854
+	for <lists+devicetree@lfdr.de>; Sun, 24 Dec 2023 09:31:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7490A1F212A8
-	for <lists+devicetree@lfdr.de>; Sun, 24 Dec 2023 07:51:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 48D6A28268C
+	for <lists+devicetree@lfdr.de>; Sun, 24 Dec 2023 08:31:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EECB1111E;
-	Sun, 24 Dec 2023 07:50:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFD1538F;
+	Sun, 24 Dec 2023 08:31:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="EIjE2mLz"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Whq0B/BM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from m12.mail.163.com (m12.mail.163.com [220.181.12.198])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 476C7111C;
-	Sun, 24 Dec 2023 07:50:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=From:Subject:Date:Message-Id:MIME-Version; bh=TqfJ3
-	7v1hcf1qB5MLxc/7ON3/Qaooss1EFg7ByuJihQ=; b=EIjE2mLzUHL7Nts/G0VhM
-	Bn7P5V+Abugoq5Wpm/s+Fxr8OsNtsCirS1w7QVuaZmUKTriPrU8nM2G+WnP3dCfc
-	MO2Za91hxCMQxSAptiPi6TNEKmXya1iKZjVe3ehDurXK/K6lRQdbdjBHxdNk9Ne3
-	ktStE3ZBb4XrOCUrvrIlfg=
-Received: from ProDesk.. (unknown [58.22.7.114])
-	by zwqz-smtp-mta-g5-4 (Coremail) with SMTP id _____wD3Xwyr4odl89+HEA--.46538S2;
-	Sun, 24 Dec 2023 15:50:08 +0800 (CST)
-From: Andy Yan <andyshrk@163.com>
-To: heiko@sntech.de
-Cc: krzysztof.kozlowski+dt@linaro.org,
-	robh+dt@kernel.org,
-	lasstp5011@gmail.com,
-	devicetree@vger.kernel.org,
+Received: from mail-ot1-f54.google.com (mail-ot1-f54.google.com [209.85.210.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98451ED2;
+	Sun, 24 Dec 2023 08:31:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ot1-f54.google.com with SMTP id 46e09a7af769-6dbaf12c866so2451390a34.3;
+        Sun, 24 Dec 2023 00:31:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1703406674; x=1704011474; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=P7vRR4si7E//0jIMoSyRPsJ7pOTnjAoMpD8DGfwijuw=;
+        b=Whq0B/BMZw5xcM8oE31+WvLfF9UwA7Ap3dKY9JbLsJanzrvHzGGqmmxCDMC1kJz3vE
+         A1XdPpvKRrxzCMkoo/q8XTampCaCVZO87UGpWrBz7FYXth/IEgymePxFZ7V3cvGceYsl
+         2xbGSRmp2KcWMeJRbrfvHL1Ucm1sJYKl7OSbh5STP4+Ty08pwE8grJBhZcwEeQAX6o1l
+         bk7cgEyddW9MaFp7tJi2PmVsLgGmpOLUv3UlNwTvomwEUdUc+5zU37awCH22ONUC8Vxv
+         7yMRtV2GxgZyDvEbvDz0yXN64Nx+y8fiwicELRWFBCZPZuavKa7urVnK7W53e+FlGLnR
+         eBXQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1703406674; x=1704011474;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=P7vRR4si7E//0jIMoSyRPsJ7pOTnjAoMpD8DGfwijuw=;
+        b=fywswENLhDEMxeTdWnYpVzOmcibHUbMdaZ2X+0QAOlGsYt33FP9eRR4Ii7oSAMsJmd
+         Xi+LZfJJUbtyhpNzvPi+XgFn0AtDSj6HcocSl/jn8aPbh54025yZfspfq/IG76gyzcyF
+         NfOcPJqzRCITfjJvYc9E6DdWKqWngBJIFBORqIB1Cl+F3uGPn6PBm/gbPO2r83d58gki
+         QXtwMK1ONteTgphDgbXJvJVu4UBNMqQwT7HXR8NVyaNYQldZw9XwRrbe6Nqez+5tQiyc
+         bgbQWKs7j1W888Vm/O/id9/RfXqKxXyzASIXIQ+VT4XUP/qQ9OU4GfjBIU3pqKXHcfvg
+         7ELg==
+X-Gm-Message-State: AOJu0Yz9Mrzc2v8tGj+yWngy7kZ0ASHNHwBSFC+FUbTYOLUiKxdjKqOG
+	9gwla6iwbIx2B0QjO+mSSv8=
+X-Google-Smtp-Source: AGHT+IEiSfA6ELIfKEa0uToqVD5htaRTLuaCHPE1CPxbweKeTZHHAHxT6z18t+NqYE/7fjZpcAxt7A==
+X-Received: by 2002:a05:6808:2383:b0:3b9:defc:a171 with SMTP id bp3-20020a056808238300b003b9defca171mr5724565oib.5.1703406674458;
+        Sun, 24 Dec 2023 00:31:14 -0800 (PST)
+Received: from google.com ([2620:15c:9d:2:765c:936e:ea43:6046])
+        by smtp.gmail.com with ESMTPSA id b16-20020aa78710000000b006d9b2694b0csm708865pfo.200.2023.12.24.00.31.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 24 Dec 2023 00:31:13 -0800 (PST)
+Date: Sun, 24 Dec 2023 00:31:10 -0800
+From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To: Andreas Kemnade <andreas@kemnade.info>
+Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+	kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+	rydberg@bitmath.org, linus.walleij@linaro.org,
+	Jonathan.Cameron@huawei.com, u.kleine-koenig@pengutronix.de,
+	heiko@sntech.de, linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	zhangn1985@outlook.com,
-	Andy Yan <andyshrk@163.com>
-Subject: [PATCH] arm64: boot: dts: rockchip: Fix led pinctrl of lubancat 1
-Date: Sun, 24 Dec 2023 15:50:01 +0800
-Message-Id: <20231224075001.3032214-1-andyshrk@163.com>
-X-Mailer: git-send-email 2.34.1
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v3 1/4] dt-bindings: touchscreen: convert neonode,zforce
+ to json-schema
+Message-ID: <ZYfsTsS8G8SdhFTn@google.com>
+References: <20231223221213.774868-1-andreas@kemnade.info>
+ <20231223221213.774868-2-andreas@kemnade.info>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:_____wD3Xwyr4odl89+HEA--.46538S2
-X-Coremail-Antispam: 1Uf129KBjvdXoW7WryrXFyfuw1UJF4DKr1DGFg_yoWDCFcEga
-	4xWF1kJFs7JryFv3sIya95Wwn3K3sak34rGa1UAF1DGa4aqr48ZFyrJa48Cw1UG34IkrZ7
-	J3yDXF1kCa1YgjkaLaAFLSUrUUUUUb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
-	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7xRMFApUUUUUU==
-X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/xtbBEBNQXmVOBJGtlAAAsK
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231223221213.774868-2-andreas@kemnade.info>
 
-According to the sch, the gpio control sys_led
-is GPIO0_C5.
+On Sat, Dec 23, 2023 at 11:12:10PM +0100, Andreas Kemnade wrote:
+> Convert Neonode infrared touchscreen controller binding to DT schema.
+> 
+> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Fixes: 8d94da58de53 ("arm64: dts: rockchip: Add EmbedFire LubanCat 1")
-Reported-by: zhangn1985@outlook.com
-Closes: https://lore.kernel.org/linux-rockchip/OS0P286MB06412D049D8BF7B063D41350CD95A@OS0P286MB0641.JPNP286.PROD.OUTLOOK.COM/T/#u
-Signed-off-by: Andy Yan <andyshrk@163.com>
----
+Applied, thank you.
 
- arch/arm64/boot/dts/rockchip/rk3566-lubancat-1.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk3566-lubancat-1.dts b/arch/arm64/boot/dts/rockchip/rk3566-lubancat-1.dts
-index 1c6d83b47cd2..6ecdf5d28339 100644
---- a/arch/arm64/boot/dts/rockchip/rk3566-lubancat-1.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3566-lubancat-1.dts
-@@ -455,7 +455,7 @@ &pcie2x1 {
- &pinctrl {
- 	leds {
- 		sys_led_pin: sys-status-led-pin {
--			rockchip,pins = <0 RK_PC7 RK_FUNC_GPIO &pcfg_pull_none>;
-+			rockchip,pins = <0 RK_PC5 RK_FUNC_GPIO &pcfg_pull_none>;
- 		};
- 	};
- 
 -- 
-2.34.1
-
+Dmitry
 
