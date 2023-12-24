@@ -1,130 +1,104 @@
-Return-Path: <devicetree+bounces-28315-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28316-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 075BE81DAEC
-	for <lists+devicetree@lfdr.de>; Sun, 24 Dec 2023 15:36:09 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 980C381DB1A
+	for <lists+devicetree@lfdr.de>; Sun, 24 Dec 2023 16:41:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8268EB215A5
-	for <lists+devicetree@lfdr.de>; Sun, 24 Dec 2023 14:36:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C98231C20AD5
+	for <lists+devicetree@lfdr.de>; Sun, 24 Dec 2023 15:41:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D5C3D515;
-	Sun, 24 Dec 2023 14:35:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A118263B8;
+	Sun, 24 Dec 2023 15:41:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=subdimension.ro header.i=@subdimension.ro header.b="AADHLrC3"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hiFc9mCy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.subdimension.ro (skycaves.subdimension.ro [172.104.132.142])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D63C568C;
-	Sun, 24 Dec 2023 14:35:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=subdimension.ro
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=subdimension.ro
-Received: from localhost.localdomain (unknown [188.24.94.216])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	by mail.subdimension.ro (Postfix) with ESMTPSA id B437E28B53A;
-	Sun, 24 Dec 2023 14:35:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=subdimension.ro;
-	s=skycaves; t=1703428511;
-	bh=FYSVyc6a7gii4XVzcpbGbqQQ/0VcN0hGzmBnFOnWCwg=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=AADHLrC3QN1GkN+tXoceO2jYNkiS/M17KCoF4UyPfPmanJkoyLdPrYmVX/951q+Ob
-	 z7b7T4Ujxa1UglFABi+t4y0Ht4SRzyFrIBTPzoBiyDZ4TpAZQPLpTKzr+GL+HQoSSK
-	 Rf0y94yYuKLMKlSnKiQT8v1uGsFCy6YwNAwrwxQk=
-From: Petre Rodan <petre.rodan@subdimension.ro>
-To: linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Petre Rodan <petre.rodan@subdimension.ro>,
-	Andreas Klinger <ak@it-klinger.de>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Subject: [PATCH v2 03/10] dt-bindings: iio: pressure: honeywell,mprls0025pa.yaml add spi bus
-Date: Sun, 24 Dec 2023 16:34:48 +0200
-Message-ID: <20231224143500.10940-4-petre.rodan@subdimension.ro>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20231224143500.10940-1-petre.rodan@subdimension.ro>
-References: <20231224143500.10940-1-petre.rodan@subdimension.ro>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2002F7470;
+	Sun, 24 Dec 2023 15:41:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-40d5473882aso6079165e9.1;
+        Sun, 24 Dec 2023 07:41:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1703432492; x=1704037292; darn=vger.kernel.org;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=Hsscid1EgQq4Pv9D8Tyu9t5D/wA4c25NkZV8ylTpgOw=;
+        b=hiFc9mCy1deG7Uf8uXeIaaP6xclu95QqGESBUvVMBPKSj+zAIN4tix6dHnYeJ9xK50
+         MUZr/X2S3MIIwHafwblris+K6U1Ff9z9qyJn7chczZqgDTk8rBLKkLfp8JI8m8EJ+Mg1
+         JT4SmypU74NahgpMM4bFKdFzoH5SaZ/mrQzyAfpaQFS7+ElzpBnuowvxKrAs8BHoUlv1
+         NZjcY970h2iUDC+evtPclV2itmRI3UZo28A/9GcgDIcuSlWCE1IxDytoE87B4kMIoVEJ
+         d7ggJGXfdNlvfMpvijEAi7xtsjaGdsjIJASmLe8I9xu+yrPIhAwnW8qx6tNoH308nbtL
+         0tkg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1703432492; x=1704037292;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Hsscid1EgQq4Pv9D8Tyu9t5D/wA4c25NkZV8ylTpgOw=;
+        b=dDvHoRil9LGQsq3Ay33B4w8CI3B3F8VXQxnyEaMM0nXSAsNgqCBuirNE4cSXwOnjN5
+         r3QLMIk9BkzkGq2e3ad9wzcwxCFBuaiXoIk3+EkBR88UBCqdLVB2WGWUBJCJEZKi0Rob
+         7ImiLFUgVNeFCtyefu8rzIpq1fQEjQEPT2C0NbS1oyJ1PJodLGk4meqvhSTqBZYfcNt+
+         8J2xx5kPK5xheCIxv9M+vyY2n3TKMcgQXQjj6e5STz213SF9isptOMHliAUV7hAbRu7Z
+         Gb86iXohXB6EBhScxOayKIsebHbpL8K/GGuzWVAI3+yHgVjA6as4DDtgfjPbQHe3LOVj
+         Xmxg==
+X-Gm-Message-State: AOJu0Yz1PbDbhGkigjAankMtBrB1Hs/ipb+d+PRzTsrBeyi8tU7JLLMu
+	8q81IWeRcXebT5wBm4sQCHkhxDp+4lsHkFn/MJCUVt8gmrbYf/EY
+X-Google-Smtp-Source: AGHT+IFKDO7deVyJSR33qayFwyYReUf9hq+e9IyZjKGrd4K0+xPzCuVi83eieGs2ty6Arow9+moR9N/0qRksB9FUKiY=
+X-Received: by 2002:a05:600c:3b11:b0:40d:3f1c:c701 with SMTP id
+ m17-20020a05600c3b1100b0040d3f1cc701mr3054046wms.22.1703432491669; Sun, 24
+ Dec 2023 07:41:31 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+From: Mario Marietto <marietto2008@gmail.com>
+Date: Sun, 24 Dec 2023 16:40:55 +0100
+Message-ID: <CA+1FSig3FqyymCY6prFnX9Bx24WSiec-CxgriKgG5iJvuEPB=A@mail.gmail.com>
+Subject: vidioc_try_fmt:379: Unsupported format for destination.
+To: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
 
-Add spi based example.
+Hello.
 
-Add spi-max-frequency property required by chip specifications.
+Have you ever seen the errors below inside the log of the ARM
+Chromebook model XE303C12 ?
 
-Add additional maintainer.
 
-Signed-off-by: Petre Rodan <petre.rodan@subdimension.ro>
-Signed-off-by: Andreas Klinger <ak@it-klinger.de>
----
- .../iio/pressure/honeywell,mprls0025pa.yaml   | 26 +++++++++++++++++--
- 1 file changed, 24 insertions(+), 2 deletions(-)
+[ 2416.631903] vidioc_try_fmt:379: Unsupported format for destination.
+[ 2416.631937] vidioc_try_fmt:379: Unsupported format for destination.
+[ 2437.287065] vidioc_g_selection:764: Can not get compose information
+[ 2437.294194] vidioc_g_fmt:347: Format could not be read
+[ 2437.300364] vidioc_g_selection:764: Can not get compose information
+[ 2437.301979] vidioc_g_fmt:347: Format could not be read
+[ 2441.711496] vidioc_g_selection:764: Can not get compose information
+[ 2441.713115] vidioc_g_fmt:347: Format could not be read
+[ 2455.174443] vidioc_g_selection:764: Can not get compose information
+[ 2455.175663] vidioc_g_fmt:347: Format could not be read
 
-diff --git a/Documentation/devicetree/bindings/iio/pressure/honeywell,mprls0025pa.yaml b/Documentation/devicetree/bindings/iio/pressure/honeywell,mprls0025pa.yaml
-index e4021306d187..430496b047c7 100644
---- a/Documentation/devicetree/bindings/iio/pressure/honeywell,mprls0025pa.yaml
-+++ b/Documentation/devicetree/bindings/iio/pressure/honeywell,mprls0025pa.yaml
-@@ -8,12 +8,12 @@ title: Honeywell mprls0025pa pressure sensor
 
- maintainers:
-   - Andreas Klinger <ak@it-klinger.de>
-+  - Petre Rodan <petre.rodan@subdimension.ro>
+I'm not sure but they could be correlated with the warnings I get when
+I try to watch an mp4 file using SMPlayer :
 
- description: |
-   Honeywell pressure sensor of model mprls0025pa.
 
--  This sensor has an I2C and SPI interface. Only the I2C interface is
--  implemented.
-+  This sensor has an I2C and SPI interface. Both are supported.
+libEGL warning : egl failed to create dri2 screen
+libEGL warning : failed to get driver name for fd -1
+libEGL warning : MESA-LOADER : failed to retrieve device informations
 
-   There are many models with different pressure ranges available. The vendor
-   calls them "mpr series". All of them have the identical programming model and
-@@ -88,6 +88,9 @@ properties:
-       Maximum pressure value the sensor can measure in pascal.
-       To be specified only if honeywell,pressure-triplet is not set.
 
-+  spi-max-frequency:
-+    maximum: 800000
-+
-   vdd-supply:
-     description: provide VDD power to the sensor.
+I'm looking for the technical reason why,when I play an mp4 video with
+VLC or SMplayer (and for sure other multimedia players),the video
+proceeds in spurts.
 
-@@ -135,3 +138,22 @@ examples:
-             vdd-supply = <&vcc_3v3>;
-         };
-     };
-+  - |
-+    spi {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        pressure@0 {
-+            compatible = "honeywell,mprls0025pa";
-+            reg = <0>;
-+            spi-max-frequency = <800000>;
-+            reset-gpios = <&gpio1 28 GPIO_ACTIVE_HIGH>;
-+            interrupt-parent = <&gpio0>;
-+            interrupts = <30 IRQ_TYPE_EDGE_RISING>;
-+
-+            honeywell,pressure-triplet = "0015PA";
-+            honeywell,transfer-function = <1>;
-+            vdd-supply = <&vcc_3v3>;
-+        };
-+    };
-+...
---
-2.41.0
+Thanks.
 
+-- 
+Mario.
 
