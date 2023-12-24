@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-28296-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28297-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CCBC081D873
-	for <lists+devicetree@lfdr.de>; Sun, 24 Dec 2023 10:01:36 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE5F381D876
+	for <lists+devicetree@lfdr.de>; Sun, 24 Dec 2023 10:02:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 15EF2281FEE
-	for <lists+devicetree@lfdr.de>; Sun, 24 Dec 2023 09:01:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D0B651C20D40
+	for <lists+devicetree@lfdr.de>; Sun, 24 Dec 2023 09:02:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8664115CA;
-	Sun, 24 Dec 2023 09:01:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8F2115D5;
+	Sun, 24 Dec 2023 09:02:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mcxe/F3o"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="d+QbtlGZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02BCB15CF
-	for <devicetree@vger.kernel.org>; Sun, 24 Dec 2023 09:01:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32C6B15CA
+	for <devicetree@vger.kernel.org>; Sun, 24 Dec 2023 09:02:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-5542106d393so3300063a12.1
-        for <devicetree@vger.kernel.org>; Sun, 24 Dec 2023 01:01:28 -0800 (PST)
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-40c31f18274so40859185e9.0
+        for <devicetree@vger.kernel.org>; Sun, 24 Dec 2023 01:02:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1703408487; x=1704013287; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1703408550; x=1704013350; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=EQT3q/4jg2VqzgH3A3Ix2oDC950Qep6p9aAgKjF7ZLs=;
-        b=mcxe/F3o+uO7VztP9gJFtzN/9tv2wz1ySlJ4hSyJRJy3U3jOBrHji1Y+EyvaFvPv86
-         PeNAVZ6Ut0MEP3kEtwlqh0pJUYoMr4T82gq8ip4SkiC5eUYnYc6Y2CxrkiFQpJDRF6oU
-         mnnjNTMcXCz53wejJAJSrt8jCw9/jXdt0A7zRvD2a5Gwrs4QryZJwAq4eHfx2q+f/Wfe
-         SylCqsbEsRnluE47NZ1rgZ7gFCOCZaa0+orTV+nipkU66PkqyIuc0DRFzRJtDBc5Msgn
-         Z50wjrNAjsLT8dvbwAw3V0/CxDoyj90C4aibnm8RkZgm9zNcIUnQipRlVSfQao35ws9l
-         sUqQ==
+        bh=mikORaWigqoz+zexEhJ5QPZXv6VeQouYf6VKAdwFvI8=;
+        b=d+QbtlGZ+1WB7zhS27xeNvziiqJtdweVit7aC7p8pqhRDM00ZnOi7Rxfh9cZTSqwjw
+         PhyhIEzY8NaCFOC7jcU4KFoqiYsCSWQplBzvYpxyxPQLazw3yfVSZgUXy0V8dP/8l0Ef
+         7Vv6dN0hdSTWfXmi91XkyoSPSMJPpGqq0wUaYUSEyP3Z+UZmhS1zd/pk8wb2z/6sbXgf
+         uCA3CsWGzuQFg0CPwCxeC+oGEQFtko3sBnszRBX3pigpmObyHhaGekK/3kjIAQIXKg9l
+         m9B9XMWoh1OsSZQkWlUjn8oy0wkIHwAsO5afl6HXbaAvpSc2t5bwGr2oITDgjFEXebsz
+         aWZA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703408487; x=1704013287;
+        d=1e100.net; s=20230601; t=1703408550; x=1704013350;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=EQT3q/4jg2VqzgH3A3Ix2oDC950Qep6p9aAgKjF7ZLs=;
-        b=Tldjr66ZknO9s4ej93G7pebgvsmaPKzdjF4XwMMO76LB3oit16OvXMRZHW6fvOhFYe
-         H1icg6kdIwFmKTnftchcxKdtrYxlNDgZNVBX5c1ckATyvFxYBERS13hBl0ar18o57iqW
-         K2oslDZct4AGzz8gKG7vfHPp4ApIpPkCOCoHSq4O3GocCnB9FJTXcK2adTKOmNTjXk+M
-         e79zkFK7I4K7/+vUtHrlbpvscdfYq5CqpG+3hrhlGk/jcowz3arTYbr3+N4NKN+VfNSd
-         OIS48XfI9kqzv7j7lA2T1y792ObbZuDcH2ADU1vYTxYQwAkhja5LZCJVhz9RlUaW1XCL
-         k+fA==
-X-Gm-Message-State: AOJu0Yx9QKbgO9KtnYfhAIOMzK+zlrehKYkMKMdpN/rmhlDj/PbrIdo7
-	hhr4jAPjLjZckDRpUCFt3Jit9uuYn6Y9Sw==
-X-Google-Smtp-Source: AGHT+IFVTPMBZyPE202w7qBQPN3enE+31vMwh8sLgYbam21bUntjlVCq6URabx246U4HSC38J0tJ9w==
-X-Received: by 2002:a50:c354:0:b0:54b:9891:16ae with SMTP id q20-20020a50c354000000b0054b989116aemr3203711edb.4.1703408487077;
-        Sun, 24 Dec 2023 01:01:27 -0800 (PST)
+        bh=mikORaWigqoz+zexEhJ5QPZXv6VeQouYf6VKAdwFvI8=;
+        b=KHr7B90nX8w+MO8z9o+OiEgtJiOfF6D1bXDhF7DqYh4ubbAQBR43ThYvgU1AuBGjrT
+         Hx6SMqkrx2Oa/6v6yJuYeyiBeKExlB4B+YZzW+wie0VNdkFh/ylDrP7tRK2OTGhZPik1
+         L5LirexcC/aMk+GernQwZHuzVyBVg22SeGtL6GYe3yss2WkDw/f1ubkWlT8nJferuoWa
+         BGpVR0Cks7RGEADWCRgODVaOst1LSYVVXgSEpmaeRAjZM5GE9ck807efssAVGJtA7WOm
+         5hHgzwjN+6wm4Xa+bQLd45htL/kEJZRtD+q/EbXZuGcZJZCyAeLk6dYsFAV2Xca7Poa/
+         fDzA==
+X-Gm-Message-State: AOJu0YyQ/9LjXi71C65jZ/M/qhBrr1vTvzJR8l4WTD8P/bEIPRFBJahh
+	58D/OA9U1EovNlY6UfPp3vRit5lPznIlbw==
+X-Google-Smtp-Source: AGHT+IF8LMi5Ib/9H9NjAqLPPMqJEdmNFzOXKkAG/sCeozv8KCFi5PmNPV2+MomKOW0BqlIXYPA9cA==
+X-Received: by 2002:a05:600c:4f94:b0:40c:3e0a:692e with SMTP id n20-20020a05600c4f9400b0040c3e0a692emr2113243wmq.232.1703408550391;
+        Sun, 24 Dec 2023 01:02:30 -0800 (PST)
 Received: from [192.168.0.22] ([78.10.206.178])
-        by smtp.gmail.com with ESMTPSA id el1-20020a170907284100b00a1c96e987c4sm3784963ejc.101.2023.12.24.01.01.25
+        by smtp.gmail.com with ESMTPSA id el1-20020a170907284100b00a1c96e987c4sm3784963ejc.101.2023.12.24.01.02.28
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 24 Dec 2023 01:01:26 -0800 (PST)
-Message-ID: <38c959a4-4f08-4111-9c7b-36e47ab3790a@linaro.org>
-Date: Sun, 24 Dec 2023 10:01:25 +0100
+        Sun, 24 Dec 2023 01:02:29 -0800 (PST)
+Message-ID: <cf231452-e1e6-44bd-bff4-c699d5f2a53a@linaro.org>
+Date: Sun, 24 Dec 2023 10:02:28 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,14 +66,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: boot: dts: rockchip: Fix led pinctrl of lubancat 1
+Subject: Re: [PATCH v5 04/16] dt-bindings: imx6q-pcie: Add linux,pci-domain as
+ required for iMX8MQ
 Content-Language: en-US
-To: Andy Yan <andyshrk@163.com>, heiko@sntech.de
-Cc: krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
- lasstp5011@gmail.com, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-rockchip@lists.infradead.org, zhangn1985@outlook.com
-References: <20231224075001.3032214-1-andyshrk@163.com>
+To: Frank Li <Frank.li@nxp.com>
+Cc: manivannan.sadhasivam@linaro.org, bhelgaas@google.com,
+ conor+dt@kernel.org, devicetree@vger.kernel.org, festevam@gmail.com,
+ helgaas@kernel.org, hongxing.zhu@nxp.com, imx@lists.linux.dev,
+ kernel@pengutronix.de, krzysztof.kozlowski+dt@linaro.org, kw@linux.com,
+ l.stach@pengutronix.de, linux-arm-kernel@lists.infradead.org,
+ linux-imx@nxp.com, linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+ lpieralisi@kernel.org, robh@kernel.org, s.hauer@pengutronix.de,
+ shawnguo@kernel.org
+References: <20231220213615.1561528-1-Frank.Li@nxp.com>
+ <20231220213615.1561528-5-Frank.Li@nxp.com>
+ <f6d9a333-3259-4dc6-bdc7-23ffa26e590b@linaro.org>
+ <ZYeznY7gXM+zoQeB@lizhi-Precision-Tower-5810>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -119,21 +127,36 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231224075001.3032214-1-andyshrk@163.com>
+In-Reply-To: <ZYeznY7gXM+zoQeB@lizhi-Precision-Tower-5810>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 24/12/2023 08:50, Andy Yan wrote:
-> According to the sch, the gpio control sys_led
-> is GPIO0_C5.
+On 24/12/2023 05:29, Frank Li wrote:
+> On Sat, Dec 23, 2023 at 07:40:28PM +0100, Krzysztof Kozlowski wrote:
+>> On 20/12/2023 22:36, Frank Li wrote:
+>>> iMX8MQ have two pci controllers. Adds "linux,pci-domain" as required
+>>> proptery for iMX8MQ to indicate pci controller index.
+>>
+>>
+>> Why it has to be required? Everything will work fine if skipped.
+>> Otherwise please provide reason why it must be *required*.
+> 
+> Next patch will use "linux,pci-domain" as PCI slot ID, instead compared
+> with hard code register address.
+> 
+> The below code will be removed.
+> 
+> -		if (dbi_base->start == IMX8MQ_PCIE2_BASE_ADDR)
+> -			imx6_pcie->controller_id = 1;
+> 
+> 
+> when there are more than 2 controller, this compare logic will become
+> complex. 
+> 
+> So after next patch, "linux,pci-domain" will be required.
 
-For the future:
-
-Please use subject prefixes matching the subsystem. You can get them for
-example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-your patch is touching.
-
-There is no "boot".
+Nothing in commit msg explains this. Why you cannot use some
+auto-incremented values when this is missing?
 
 Best regards,
 Krzysztof
