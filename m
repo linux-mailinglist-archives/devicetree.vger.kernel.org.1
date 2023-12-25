@@ -1,62 +1,61 @@
-Return-Path: <devicetree+bounces-28416-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28417-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C95E181E292
-	for <lists+devicetree@lfdr.de>; Mon, 25 Dec 2023 23:29:24 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5FB4481E297
+	for <lists+devicetree@lfdr.de>; Mon, 25 Dec 2023 23:32:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0FEAD1C20EAD
-	for <lists+devicetree@lfdr.de>; Mon, 25 Dec 2023 22:29:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0BB521F224A3
+	for <lists+devicetree@lfdr.de>; Mon, 25 Dec 2023 22:32:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6278453E34;
-	Mon, 25 Dec 2023 22:29:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3DE41DFF7;
+	Mon, 25 Dec 2023 22:32:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QjX6NS9Y"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mYcuzIjY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f170.google.com (mail-qk1-f170.google.com [209.85.222.170])
+Received: from mail-qv1-f41.google.com (mail-qv1-f41.google.com [209.85.219.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05D2A53E1F;
-	Mon, 25 Dec 2023 22:29:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98D111D68D;
+	Mon, 25 Dec 2023 22:32:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f170.google.com with SMTP id af79cd13be357-7811b05d23bso323565985a.0;
-        Mon, 25 Dec 2023 14:29:12 -0800 (PST)
+Received: by mail-qv1-f41.google.com with SMTP id 6a1803df08f44-67fb9df3699so21491886d6.2;
+        Mon, 25 Dec 2023 14:32:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1703543352; x=1704148152; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=UBjIIiV/w0rycQ7ypCmDgdwnPkjj+juDPZk9jbDH0Jc=;
-        b=QjX6NS9YfXJfUQT0eOf5SliWIJsrPEJg5EP7INqMXtT1m7ORufij/ASR4z1uHmhNwe
-         zYoZaxo3BY82QQHyjZUO5j8VeytCpuRomWA7nfdUgcnwcOpmQ99TA/+WHU6MabukGFoj
-         h+bbsFWpVWwYlOkWdHSaT630+2kyzNfAgt6KtW0lBkFzS4Wl+4KnSVN6a8b5YR+YrTYF
-         fWG6un+nSxVkKiZ8lHT4jQYIJWmfDvjT4swFaL+nrGCqRAIQ1wywP5JWUcjB6YGoygP9
-         bJqie6ZS7azCFfIuU+RgALSNJZM4He8qTMuT2irrc7eS5OyYvEw8amPcvwPm6sWtYzk/
-         KdEg==
+        d=gmail.com; s=20230601; t=1703543554; x=1704148354; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=9AXVgWVsZaXTaZ2MYrLDbeRzFgb65vHx3yvBMYSyN7I=;
+        b=mYcuzIjY7U1Yq0FYAej9TdHfSwMrRKFTXh0339yt9qTkQw3sV/DIgmT4k4fZ5eJJAd
+         Hr1HoqCJ0+NGYe3inBZynkEYaUt7fAtEdLUeSrfmm6EfjnamPODVIDwYqWGpUGFZcqJI
+         88xKM5Zr2PYPMTa0nZUwhrRurhpmcndw4MF931hmZPYcBi0+dbG8Dcybape+xWo724I0
+         nz1PEd5BadRy7BgdWBwJuk5aq0e3kNDsiK1xabnkz3pfZC6AAjzQ+heBUfx1BAU4TkFY
+         gg/aV+dSIbkLLGN6sYKHypdSURCEjdExJ+GLdxZG1ytS5DLQTuA7YLwFxUtJvE8qh0wl
+         vrGg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703543352; x=1704148152;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=UBjIIiV/w0rycQ7ypCmDgdwnPkjj+juDPZk9jbDH0Jc=;
-        b=J4ct/Nghz48TOyKoO4YYDzR6gUbgPrtQoqA8NgGy9hsEImBtUI1qCkkw08o+MhsZM+
-         74QZ+nanCZs6JNhRa97WluOVYCMNWIzAiwZB0izBlmej+1ayh1pWfhKpkrtAmteVB/93
-         zXxhKi+AG1rtD45BNo4oB4V0G1jwEyEnemb/kIce7s32HmHXQiMZWTAeBY8AHup7ydNQ
-         pmu5Yy9E+a1eqpy9Kc10WYeYqAR8cZ2Q5+dEooYku2na8eweVmLJWxMQ8b/fbFd1lBrI
-         KtdcTE9/jnv07PQ/sJWfgrr8jtlIa9pYrBPG0SmV0uGutF7dxvPpGCMSOc4XypTkWmqc
-         jclA==
-X-Gm-Message-State: AOJu0YxLTV/sQfW9oL4T/7lW4aL0EQkOKVKZxMvF/bC1/O7/ydqD7axJ
-	PGKdqPO/UALJetUMekU/JwQ=
-X-Google-Smtp-Source: AGHT+IEq/qS6oCN+yyKq7dAPzoMeuKQ19G2WCt94dfb77pkr9X+bBLthS8GxgqrMi5vIWeihhcrsVA==
-X-Received: by 2002:a05:620a:51cd:b0:77f:ad35:dc33 with SMTP id cx13-20020a05620a51cd00b0077fad35dc33mr7182979qkb.65.1703543351862;
-        Mon, 25 Dec 2023 14:29:11 -0800 (PST)
+        d=1e100.net; s=20230601; t=1703543554; x=1704148354;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=9AXVgWVsZaXTaZ2MYrLDbeRzFgb65vHx3yvBMYSyN7I=;
+        b=ATXBc/DtHdLuOxFmiWQ68F0gG6LIuaKusCUanaxpGzTVbpkaNBcKR74R0hIbaPYGAx
+         sRYFnG/EGC5ifacg/Cn+fLeBt4RQwAGMQOG6ddKO1xdpBVWgaICfxm0cttbzx9Qmac1X
+         fDmL9RTBqjlJ4hTx603lguTy04DHXpGr79ny6dX+ztSpdtmY4wEmkkxeXMSplDWR5Ez4
+         jCCdJZk82YTXC03Ay+3cw/d0/ntTB7U1bzR+8s8vu/43Bin26N+dQSRGZ+GeOINDirjS
+         2nYiVENwMrPO/TLuFqETAh67BdyMhh2mAKZBIdYwArEAJCB7UINdF+iTCO1n8XftOucY
+         OFBQ==
+X-Gm-Message-State: AOJu0YzWBj2U7dsG6oI2brP84cFTT/iI1NVtChF/qJa2lA4384cN5xpy
+	Z3Udw7qcDulhZwwma3uQBWM=
+X-Google-Smtp-Source: AGHT+IF525M1SC2MBZdNWTYLYvaOFmLvhK/WeGaLidoL7771wvZqYFubfDK0gB87y3l2paGzoVQTMw==
+X-Received: by 2002:a37:e112:0:b0:781:c38:8e60 with SMTP id c18-20020a37e112000000b007810c388e60mr7727978qkm.102.1703543554520;
+        Mon, 25 Dec 2023 14:32:34 -0800 (PST)
 Received: from localhost.localdomain (107-015-241-140.res.spectrum.com. [107.15.241.140])
-        by smtp.gmail.com with ESMTPSA id ay8-20020a05620a178800b0077f15eb3528sm3881457qkb.70.2023.12.25.14.29.10
+        by smtp.gmail.com with ESMTPSA id br37-20020a05620a462500b0077edde498d3sm3856151qkb.89.2023.12.25.14.32.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 25 Dec 2023 14:29:11 -0800 (PST)
+        Mon, 25 Dec 2023 14:32:34 -0800 (PST)
 From: John Clark <inindev@gmail.com>
 To: "Rob Herring" <robh+dt@kernel.org>,
 	"Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
@@ -68,12 +67,10 @@ Cc: "Thomas McKahan" <tmckahan@singleboardsolutions.com>,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
 	John Clark <inindev@gmail.com>
-Subject: [PATCH v2 2/2] arm64: dts: rockchip: correct gpio_pwrctrl1 typo
-Date: Mon, 25 Dec 2023 22:28:20 +0000
-Message-ID: <20231225222859.17153-2-inindev@gmail.com>
+Subject: [PATCH v2] arm64: dts: rockchip: correct gpio_pwrctrl1 typo
+Date: Mon, 25 Dec 2023 22:32:16 +0000
+Message-ID: <20231225223226.17690-1-inindev@gmail.com>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20231225222859.17153-1-inindev@gmail.com>
-References: <20231225222859.17153-1-inindev@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -91,14 +88,14 @@ Changes since v1:
  - added commit message with additional patch detail
 
 ---
- arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts | 2 +-
+ arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dts | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-index dc7b88f29172..a0e303c3a1dc 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-@@ -448,7 +448,7 @@ pmic@0 {
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dts b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dts
+index 0fc48fb0d34d..e83b71510a47 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dts
+@@ -591,7 +591,7 @@ pmic@0 {
  		#gpio-cells = <2>;
  
  		rk806_dvs1_null: dvs1-null-pins {
