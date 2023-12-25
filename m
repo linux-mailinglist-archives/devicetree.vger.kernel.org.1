@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-28394-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28395-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A01181E0CD
-	for <lists+devicetree@lfdr.de>; Mon, 25 Dec 2023 14:11:13 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id DFB9681E0CF
+	for <lists+devicetree@lfdr.de>; Mon, 25 Dec 2023 14:12:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0E0D1281BAF
-	for <lists+devicetree@lfdr.de>; Mon, 25 Dec 2023 13:11:12 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4AE88B21073
+	for <lists+devicetree@lfdr.de>; Mon, 25 Dec 2023 13:12:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7590351C49;
-	Mon, 25 Dec 2023 13:11:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FC4D51C4F;
+	Mon, 25 Dec 2023 13:12:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="BUTMY89l"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="sCb5aHhJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
+Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA5F251C46
-	for <devicetree@vger.kernel.org>; Mon, 25 Dec 2023 13:11:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C6B851C47
+	for <devicetree@vger.kernel.org>; Mon, 25 Dec 2023 13:12:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-a26f73732c5so37390566b.3
-        for <devicetree@vger.kernel.org>; Mon, 25 Dec 2023 05:11:06 -0800 (PST)
+Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-554e4f8610aso532976a12.1
+        for <devicetree@vger.kernel.org>; Mon, 25 Dec 2023 05:12:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1703509865; x=1704114665; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1703509942; x=1704114742; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=YQ5rgkTHAk2Vr08CVnngse/JyY3GvcfBzWebdC668C0=;
-        b=BUTMY89lzSTevEJkv//NpMyrQ/8jETAF1ltV4yvH0GVNVL95zcaM+eF7/gsie9tJlO
-         /igRaJT5OwNe18J5Wfh03Z8F+kZo0Oo01pOQxsIKavLN6Da/6/kJBst8Fpu9gVjc9kw9
-         cioN8V1gv3ePkaVbPhYPcvh87n3pWAul3B91yq+6JVjMHTTmd777Ok7NfBBM538QrMxb
-         Gxpk0rNNRL1sm+YNuAz5csNzPeCPhLfpw0l32DYGZjNT9pXKM5RnnEQS4zOP4ctZqsE8
-         FQoyMQ/h/ffr2xnegfhjad1dZjoUKBIduu323lrAIXNVMJIE6hzkGRATD9N2cAUHyige
-         rA8g==
+        bh=i+K2pdjExcB5W62sjk3ptIA5akO9+GQ6cCv1kcMP6pw=;
+        b=sCb5aHhJvY94j5aVa4QZilKfr4QeDq/daDSPDXWXJLx7Vmfu0CYcBCRKQAaExjqJu1
+         Tu6b15FwKd+k9lj/yxZ8JlQeObLCl8f5Li+RHoiix54fvgP0q5DueYn8/Tnf+sbjUrwh
+         OawgbEn2CEs/NcnjKyk2YBQRfCEmWibPgZOrVtPlVf8RqCYFpyD6eUyoo5IdFFSK0N+7
+         yZ3V8arcmjMC9s7EGSBzGokbuV9k3zmcWFl97wWpLdAVWScz+nNbOT+9mRhQ1GrEkZIT
+         HBYAboNzuF5wHzUiz/dmFrJPegjbG1/WYj6ffQByWmtYujCFoPTgkjoEZIrSu0GEXGD4
+         Fjbg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703509865; x=1704114665;
+        d=1e100.net; s=20230601; t=1703509942; x=1704114742;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=YQ5rgkTHAk2Vr08CVnngse/JyY3GvcfBzWebdC668C0=;
-        b=XwU6c4jSHoeWd/7CFQ/EQ+XdQY4UwYkXDRUtmER7/Nw13N5Dy4Md51aU5TkRXfCd0U
-         5qgcSd4qP3yfg+lVAabdhOGTisGsp20sluPafQoTm207iIyn8z6rRvSyCaB9ERSqSReU
-         YDD3vkusPTLieB+LKDX3WIN4U5dlFeUHTB58Xh4y81+t63QyA63fF7A3qB6wJidXmRMq
-         ZokA0M5MdyWxzCiRooTo0+BOEgzDhVGAheHXCXHBo9s/L7feSy77Dr7IyvBqleEv0DO1
-         euovLYnx6i4HXA/gr0LbmFD01VuZw6TIyAidD25haqpD6q6xqfRGM3ogjQuVq4WlRxgn
-         yLgQ==
-X-Gm-Message-State: AOJu0YyJTE0DxEas2JlHWTwyk2qpDvvcVvE1TjGJmluQKfnFExkBGCrr
-	/zvU+yZ7A+ouRThvlzZjWXCtp4M9A6RP7A==
-X-Google-Smtp-Source: AGHT+IFlU6xAPMSLoVJLV2HE4RMVRyCgArIlB2P03XDeZwT/+LGRvcowrnEWg0K7gvJYIuCY7pxmSg==
-X-Received: by 2002:a17:906:95:b0:a26:cdb4:d308 with SMTP id 21-20020a170906009500b00a26cdb4d308mr1027088ejc.68.1703509864998;
-        Mon, 25 Dec 2023 05:11:04 -0800 (PST)
+        bh=i+K2pdjExcB5W62sjk3ptIA5akO9+GQ6cCv1kcMP6pw=;
+        b=u+GxBDah4PDA8a4c1NtQpwr0AmoNQYgwC0uXMXTrBo+Z4uDHZjF+ZgNGRU6hTl27Tv
+         tMbtN5Qqy8r4XNpq9UabtfGUk/SznxZsszWEV4pPtwYXAKd+heR3y2WckDtUVj9+8XLg
+         nS0Livt7PtCRqlO+c7s7q5lNbyhaVt0clZhAFtvN1yI2Tr2lUJRYpqk8R7+rZRTQLKs8
+         SEfWt8noe7Ww9TavQW9StUIpiV9z5Mb0D51OQ/W4yGp3W0wuFSNvjIdrZCkCpsz2Jvvk
+         DqlyWdgtinlPyYL6K6pl6/uNjuWYGHn6TEClsxlryImnrH72hSsh8TLKqZTkm/R7SOss
+         bcJw==
+X-Gm-Message-State: AOJu0YxngTkeb0I35jl8LSkHyEsEUpheG4jDMODoB0+Dc7/nWWn0OGO0
+	DG6zRHoEdbXGBjyigZAaJSWFtNAIIIXLUA==
+X-Google-Smtp-Source: AGHT+IEtQDPAjK6J5sVC7oFV9gcktSQnq0vtb/eIP/S02M3aUif+IJWZgrxaBLYZ1u/m9ktxJZuiVA==
+X-Received: by 2002:a17:906:4892:b0:a19:f69e:1d3f with SMTP id v18-20020a170906489200b00a19f69e1d3fmr2378782ejq.71.1703509941899;
+        Mon, 25 Dec 2023 05:12:21 -0800 (PST)
 Received: from [192.168.0.22] ([78.10.206.178])
-        by smtp.gmail.com with ESMTPSA id jt4-20020a170906dfc400b00a2369d8ca07sm4829683ejc.203.2023.12.25.05.11.03
+        by smtp.gmail.com with ESMTPSA id jt4-20020a170906dfc400b00a2369d8ca07sm4829683ejc.203.2023.12.25.05.12.20
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 25 Dec 2023 05:11:04 -0800 (PST)
-Message-ID: <7e2f36fa-c201-4c8b-a485-077f65a9a0e1@linaro.org>
-Date: Mon, 25 Dec 2023 14:11:03 +0100
+        Mon, 25 Dec 2023 05:12:21 -0800 (PST)
+Message-ID: <74711d84-4c43-431e-8e7c-95753f4c8815@linaro.org>
+Date: Mon, 25 Dec 2023 14:12:20 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,21 +66,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC] dt-bindings: nvmem: u-boot, env: add any-name MAC
- cells compatible
+Subject: Re: [PATCH v3 1/5] ASoC: dt-bindings: move tas2563 from tas2562.yaml
+ to tas2781.yaml
 Content-Language: en-US
-To: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
- Simon Glass <sjg@chromium.org>
-Cc: Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
- devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- u-boot@lists.denx.de, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-References: <20231214153620.23998-1-zajec5@gmail.com>
- <CAPnjgZ31AAauR876W1RmU4JPzKUD8XAMCZrJDumE+Dr4miqABQ@mail.gmail.com>
- <1b4feb5d-f03c-44b3-9474-901534db5eb7@gmail.com>
+To: Shenghao Ding <shenghao-ding@ti.com>, broonie@kernel.org,
+ conor+dt@kernel.org
+Cc: robh+dt@kernel.org, andriy.shevchenko@linux.intel.com, kevin-lu@ti.com,
+ baojun.xu@ti.com, devicetree@vger.kernel.org, lgirdwood@gmail.com,
+ perex@perex.cz, pierre-louis.bossart@linux.intel.com, 13916275206@139.com,
+ linux-sound@vger.kernel.org, linux-kernel@vger.kernel.org,
+ liam.r.girdwood@intel.com, soyer@irl.hu, tiwai@suse.de, peeyush@ti.com,
+ navada@ti.com
+References: <20231225053932.1138-1-shenghao-ding@ti.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -126,109 +123,32 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <1b4feb5d-f03c-44b3-9474-901534db5eb7@gmail.com>
+In-Reply-To: <20231225053932.1138-1-shenghao-ding@ti.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 18/12/2023 23:02, Rafał Miłecki wrote:
-> On 14.12.2023 22:27, Simon Glass wrote:
->> On Thu, 14 Dec 2023 at 08:36, Rafał Miłecki <zajec5@gmail.com> wrote:
->>>
->>> From: Rafał Miłecki <rafal@milecki.pl>
->>>
->>> So far we had a property for "ethaddr" NVMEM cell containing base
->>> Ethernet MAC address. The problem is vendors often pick non-standard
->>> names for storing MAC(s) (other than "ethaddr"). A few names were
->>> noticed over years:
->>> 1. "wanaddr" (Edimax, ELECOM, EnGenius, I-O DATA, Sitecom)
->>> 2. "et1macaddr" (ASUS)
->>> 3. "eth1addr" (Buffalo)
->>> 4. "athaddr" (EnGenius)
->>> 5. "baseMAC" (Netgear)
->>> 6. "mac" (Netgear)
->>> 7. "mac_addr" (Moxa)
->>> and more ("HW_LAN_MAC", "HW_WAN_MAC", "INIC_MAC_ADDR", "LAN_MAC_ADDR",
->>> "RADIOADDR0", "RADIOADDR1", "WAN_MAC_ADDR", "lan1_mac_addr", "wanmac",
->>> "wmac1", "wmac2").
->>>
->>> It doesn't make sense to add property for every possible MAC cell name.
->>> Instead allow specifying cells with "mac" compatible.
->>>
->>> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
->>> ---
->>> List of devices and their U-Boot MAC variables:
->>> alphanetworks,asl56026) wanmac
->>> asus,rt-ac65p) et1macaddr
->>> asus,rt-ac85p) et1macaddr
->>> belkin,f9k1109v1) HW_WAN_MAC + HW_LAN_MAC
->>> buffalo,ls220de) eth1addr
->>> buffalo,ls421de) eth1addr
->>> checkpoint,l-50) lan1_mac_addr
->>> dovado,tiny-ac) INIC_MAC_ADDR
->>> dovado,tiny-ac) LAN_MAC_ADDR + WAN_MAC_ADDR
->>> edimax,ra21s) wanaddr
->>> edimax,rg21s) wanaddr
->>> elecom,wrc-2533ghbk-i) wanaddr
->>> elecom,wrc-2533ghbk2-t) wanaddr
->>> engenius,ecb1200) athaddr
->>> engenius,ecb1750) athaddr
->>> engenius,epg5000) wanaddr
->>> engenius,epg600) wanaddr
->>> engenius,esr1200) wanaddr
->>> engenius,esr1750) wanaddr
->>> engenius,esr600) wanaddr
->>> engenius,esr600h) wanaddr
->>> engenius,esr900) wanaddr
->>> enterasys,ws-ap3705i) RADIOADDR0 + RADIOADDR1
->>> iodata,wn-ac1167dgr) wanaddr
->>> iodata,wn-ac1167gr) wanaddr
->>> iodata,wn-ac1600dgr) wanaddr
->>> iodata,wn-ac1600dgr2) wanaddr
->>> iodata,wn-ac733gr3) wanaddr
->>> iodata,wn-ag300dgr) wanaddr
->>> iodata,wnpr2600g) wanaddr
->>> moxa,awk-1137c) mac_addr
->>> netgear,wax220) mac
->>> netgear,wndap620) baseMAC
->>> netgear,wndap660) baseMAC
->>> ocedo,panda) wmac1 + wmac2
->>> sitecom,wlr-7100) wanaddr
->>> sitecom,wlr-8100) wanaddr
->>>
->>>   .../devicetree/bindings/nvmem/u-boot,env.yaml | 33 +++++++++++++++++++
->>>   1 file changed, 33 insertions(+)
->>>
->>
->> Are these upstream U-Boots, or just vendor forks?
+On 25/12/2023 06:39, Shenghao Ding wrote:
+> Move tas2563 from tas2562.yaml to tas2781.yaml, because tas2563 only work
+> in bypass-DSP mode with tas2562 driver. In oder to enable DSP mode for
+> tas2563, it has been moved to tas2781 driver. As to the hardware part,
+> such as register setting and DSP firmware, all these are stored in the
+> binary firmware. What tas2781 drivder dooes is to parse the firmware and
+> download them to the tas2781 or tas2563, then power on tas2781 or tas2563.
+> So, tas2781 driver can be resued as tas2563 driver。 Only attention will
+> be paid to downloading corresponding firmware.
 > 
-> I guess most of those devices don't have upstream U-Boot support. Please
+> Signed-off-by: Shenghao Ding <shenghao-ding@ti.com>
+> 
+> ---
+> Change in v3:
+>  - remove tas2563, which will be move to tas2781 driver
+>  - Add more comments on why move tas2563 to tas2781 driver
+>  - provide rationale in terms of bindings and hardware, not in terms of driver.
+>    Or at least not only.
 
-We do not document properties used in all possible projects, like vendor
-forks. Only upstream U-Boot matters.
+How did you implement my comment about squashing?
 
-> note that while upstreaming vendors changes would be great in most cases
-> it doesn't happen. Most vendors sadly don't care and most end users
-> don't have enough time for that. In practice we often stick with vendor
-> provided bootloader to flash and boot self build Linux system (like
-> OpenWrt).
-> 
-> I'm not sure if/how does it help with this PATCH but please note that
-> upstream U-Boot code also supports few extra variables.
-> 
-> There is generic eth_env_get_enetaddr_by_index() that supports variables
-> like "<%s><%d>addr" and "<%s>addr". Right now it's used only for
-> "eth<%d>addr" and "ethaddr" so that mostly limits us to "ethaddr",
-> "eth1addr", "eth2addr" and "eth3addr".
-> 
->  From some rare cases: there are also "usbnet_devaddr" and "wolpassword".
-> 
-> So given that U-Boot oficially supports at least 6 env variables for
-> MAC and there are many used with custom U-Boots and firmwares this
-> binding would help a lot.
-
-Please limit this to upstream U-Boot. Drop all custom and firmware ones.
-
-Then, just fix upstream U-Boot to have only one property...
+If you decided not to implement it, why not dropping a note?
 
 Best regards,
 Krzysztof
