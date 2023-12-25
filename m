@@ -1,69 +1,94 @@
-Return-Path: <devicetree+bounces-28339-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28341-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA70881DC35
-	for <lists+devicetree@lfdr.de>; Sun, 24 Dec 2023 20:55:27 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9653281DD5C
+	for <lists+devicetree@lfdr.de>; Mon, 25 Dec 2023 01:51:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7E36EB21069
-	for <lists+devicetree@lfdr.de>; Sun, 24 Dec 2023 19:55:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C0D881C20AC0
+	for <lists+devicetree@lfdr.de>; Mon, 25 Dec 2023 00:51:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B30DEFBEF;
-	Sun, 24 Dec 2023 19:54:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5956F62A;
+	Mon, 25 Dec 2023 00:51:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="Q7qT8tVX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5ADCDDB6;
-	Sun, 24 Dec 2023 19:54:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-Received: from i5e86193c.versanet.de ([94.134.25.60] helo=phil.lan)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1rHUYl-0006HY-95; Sun, 24 Dec 2023 20:54:51 +0100
-From: Heiko Stuebner <heiko@sntech.de>
-To: Rob Herring <robh+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Trevor Woerner <twoerner@gmail.com>,
-	linux-kernel@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: Heiko Stuebner <heiko@sntech.de>,
+Received: from m15.mail.163.com (m15.mail.163.com [45.254.50.220])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BECEA62D;
+	Mon, 25 Dec 2023 00:51:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=From:Subject:Date:Message-Id:MIME-Version; bh=PCPH+
+	8SVMJT5ORmwxUBbY5agPi3Em+ScLQ2lM/Hrli8=; b=Q7qT8tVXXsNOXNYVvnOtl
+	zigxPV+UiiPRrNL8wOWQ878n8ij0NIuG7s1Wyu/2gr2arDMO2JfCZ5bZ7LHUXEFE
+	opSawQ3jvAbLHrSYfBbyECFXkCu9BeicNbNoaGFRBMBThZcHOuoUYwxqqA2ZSHsV
+	R9LWJ3h4frT3fzwI8/Gdac=
+Received: from ProDesk.. (unknown [58.22.7.114])
+	by zwqz-smtp-mta-g2-1 (Coremail) with SMTP id _____wDXf_bx0YhlDExdGg--.45426S2;
+	Mon, 25 Dec 2023 08:51:01 +0800 (CST)
+From: Andy Yan <andyshrk@163.com>
+To: heiko@sntech.de
+Cc: krzysztof.kozlowski+dt@linaro.org,
+	robh+dt@kernel.org,
+	lasstp5011@gmail.com,
+	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
 	linux-rockchip@lists.infradead.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: rockchip: rk3308-rock-pi-s cleanup
-Date: Sun, 24 Dec 2023 20:54:48 +0100
-Message-Id: <170344745822.2405994.1040172386629808336.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20231219173814.1569-1-twoerner@gmail.com>
-References: <20231219173814.1569-1-twoerner@gmail.com>
+	zhangn1985@outlook.com,
+	Andy Yan <andyshrk@163.com>
+Subject: [PATCH v2] arm64: dts: rockchip: Fix led pinctrl of lubancat 1
+Date: Mon, 25 Dec 2023 08:50:55 +0800
+Message-Id: <20231225005055.3102743-1-andyshrk@163.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:_____wDXf_bx0YhlDExdGg--.45426S2
+X-Coremail-Antispam: 1Uf129KBjvdXoW7WryrXFyfKF4DKr1UCF4kWFg_yoWkArbEga
+	4Ig3W8AF4kJryFv34aya95W3sIk3sIk34rGa47AF1DKay3XrWUAFyrJay8Cw15G34Ikrs7
+	X3yDXF1kCa1Y9jkaLaAFLSUrUUUUUb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7xRMFApUUUUUU==
+X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/xtbBEBdRXmVOBJ60+AAAs1
 
-On Tue, 19 Dec 2023 12:38:13 -0500, Trevor Woerner wrote:
-> Perform the following cleanups on a previous patch:
-> - indent lines after "gpio-line-names"
-> - fix D0-D8 -> D0-D7
-> - sort phandle references
-> 
-> 
+According to the sch, the gpio control sys_led
+is GPIO0_C5.
 
-Applied, thanks!
+Fixes: 8d94da58de53 ("arm64: dts: rockchip: Add EmbedFire LubanCat 1")
+Reported-by: Zhang Ning <zhangn1985@outlook.com>
+Closes: https://lore.kernel.org/linux-rockchip/OS0P286MB06412D049D8BF7B063D41350CD95A@OS0P286MB0641.JPNP286.PROD.OUTLOOK.COM/T/#u
+Signed-off-by: Andy Yan <andyshrk@163.com>
 
-[1/1] arm64: dts: rockchip: rk3308-rock-pi-s cleanup
-      commit: 085021cc825ed90a6ddc4406f608fb8a85745f81
+---
 
-Best regards,
+Changes in v2:
+- remove "boot" in subject prefix
+- Add Zhang Ning full name in Reported-by
+
+ arch/arm64/boot/dts/rockchip/rk3566-lubancat-1.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3566-lubancat-1.dts b/arch/arm64/boot/dts/rockchip/rk3566-lubancat-1.dts
+index 1c6d83b47cd2..6ecdf5d28339 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3566-lubancat-1.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3566-lubancat-1.dts
+@@ -455,7 +455,7 @@ &pcie2x1 {
+ &pinctrl {
+ 	leds {
+ 		sys_led_pin: sys-status-led-pin {
+-			rockchip,pins = <0 RK_PC7 RK_FUNC_GPIO &pcfg_pull_none>;
++			rockchip,pins = <0 RK_PC5 RK_FUNC_GPIO &pcfg_pull_none>;
+ 		};
+ 	};
+ 
 -- 
-Heiko Stuebner <heiko@sntech.de>
+2.34.1
+
 
