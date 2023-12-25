@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-28392-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28393-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1B0581E0A1
-	for <lists+devicetree@lfdr.de>; Mon, 25 Dec 2023 14:02:23 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 70BAC81E0B9
+	for <lists+devicetree@lfdr.de>; Mon, 25 Dec 2023 14:06:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 568672823E5
-	for <lists+devicetree@lfdr.de>; Mon, 25 Dec 2023 13:02:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F08402824C2
+	for <lists+devicetree@lfdr.de>; Mon, 25 Dec 2023 13:06:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F373524D2;
-	Mon, 25 Dec 2023 12:59:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DAC8524A7;
+	Mon, 25 Dec 2023 13:05:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="E3T0kla1"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="NFW+HR8G"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98C9E54BF6
-	for <devicetree@vger.kernel.org>; Mon, 25 Dec 2023 12:59:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D3B45102F
+	for <devicetree@vger.kernel.org>; Mon, 25 Dec 2023 13:05:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a2356bb40e3so314239766b.1
-        for <devicetree@vger.kernel.org>; Mon, 25 Dec 2023 04:59:46 -0800 (PST)
+Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-554473c653aso3194057a12.0
+        for <devicetree@vger.kernel.org>; Mon, 25 Dec 2023 05:05:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1703509185; x=1704113985; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1703509542; x=1704114342; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=ZeUEoBjZhkWglQxeiv+2JgdHv+3Vm0351/gVSMlaOzI=;
-        b=E3T0kla1B+iYMOBPzZ1DzD3TyC0B+FueKiIMZaFBoE8luHTNKNd5toebS1HjuREmg9
-         tdo7mo8LPQ4AtHnVKbaf7aL8artwO4Qz2//Nf34m10mYUpVcNcKS63XErMCw/TkavQa8
-         ULYW5/jLOl4yQHoAjz1bUU8Nbp0lp+EsEGifZW08KtEqRbN3Rwq31Aq149VyvYCQHZL6
-         XSOou+TrjprR2NE9uUqs0peqhV+DtLZid4JG70MBaBUI4F8cPLpo8WbEUxHPysqReEZ9
-         GeBGue4paKAK6Kg8I0dTXz1UHwgrOjaF1u6GJPozGnsEhwCd2neIVBy2SGWY7L/RXDyi
-         g6ew==
+        bh=sDk7ERblMSZzmxPuU2OCO6B0rTP+vS6gs+aSEfXyP2s=;
+        b=NFW+HR8GcFaDUaBu86szFzDIZTomiAika9oA01c56ry8/xv/Va+4s2T6IHHJe5V6ti
+         HowuC+4dx8motk2lHIYnV49OuwbfbXslMA4h+/mmapOZPYq+ma/XY+G8FKWEnV1ncRTg
+         Af+L2tl6wOHOJ9Sdqbt0ILh5jh850OTh0Vyvdlwo4htd4/mSX19xmP6iT2t8k4C6ViPB
+         fCLRONDJ9qp71MIGvFYJLnKDGZ6SOac2NqcvG+eM+Ddf0NEsteCXoC3m+J8UXxeRUUmh
+         7i3cwpFG2WfCz99kUu19GvopICxfuCvRPKlU/AAECcGcXg0GFcdxSScbFyxuaCFknxDm
+         1gyw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703509185; x=1704113985;
+        d=1e100.net; s=20230601; t=1703509542; x=1704114342;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZeUEoBjZhkWglQxeiv+2JgdHv+3Vm0351/gVSMlaOzI=;
-        b=ow1GbAlScQzvZO6b9LRZGMwP8wa6FC5R9uK3J6Q0fy+wLnE5h3blpQqxFtjV49e7Ir
-         jWqdiQd8apRUc4ebhxYQTmgsL8y6RJ5/Om21qRpEialTQ0NKMPAlknXwisosUNsRkIo0
-         Z6gzzcQtCWPWmuhYRgM56vK/lhl5D1SVRUhuybMP3m/ojjWolFFGCYkfcxd+f1jc6pD4
-         EkXJiDCY2k8CNRBzxCRZrc61GmHImNIUT4rmSbizcWrCLBISyZEZW1dT3NyeBXY4eEMc
-         KBOv6+R7oR5DrZn7ryMmeUnp4popyFrLRR1md/huUo4fR2RtAOupJwNKniXPRdo2yc7T
-         6ADA==
-X-Gm-Message-State: AOJu0YxlBjklEhDAT4TKAGl2rtZM4nwHZzhVWQioEvPs0TQVfQg+djd/
-	i8gx/kVQOtq4V1eR0yPyEBy7M8GuPHzILQ==
-X-Google-Smtp-Source: AGHT+IH7VUB2PaYudISie6wl3QAKSHGxDXNG48RtsG2k+lVPmt0XkUD9mySP6AVKS8+YjLYdtzJMWQ==
-X-Received: by 2002:a17:906:1009:b0:a23:5a00:326 with SMTP id 9-20020a170906100900b00a235a000326mr3019449ejm.0.1703509184905;
-        Mon, 25 Dec 2023 04:59:44 -0800 (PST)
+        bh=sDk7ERblMSZzmxPuU2OCO6B0rTP+vS6gs+aSEfXyP2s=;
+        b=kY0tdDmMgWDM+VeGZs10O6lwANnXaSNUEHAJHeHbapuhbjpqeun4FVTDx0DZ8Df1EE
+         5xLoeDIaLWVksXRviQowRk/TH+nj4afPevcqLJQ8cg9meDZUcppTpbZVtxpRpRCQzVi2
+         aYNOONAE3rJx0Y0II0aAeV4Xn0xPwLY86rZkzv/2MIhcn63YOeZfuUWe/sh/Zv+QuglA
+         /aB+iiOjRd2IPtF75j/70A3AemV40gOfSTuGTrxbMpwQyUUs6ych4a+fxjZaESR4sWdM
+         pauIn4+RE9MaKpz7VmkLfi/SOzNV4JMlKazkTBvwWbbhDfIwuc2gNviyidxbQppsOvE4
+         AUCw==
+X-Gm-Message-State: AOJu0YyvM3tE9Cv0WWnwprnbBdG349ho9EpXxBPZSnAYf8o+dpg+18nJ
+	pTjyXIam4PFu4ygSCs7a9fgwQbJUMIjyYw==
+X-Google-Smtp-Source: AGHT+IFhJ4P90RyO4Idzt9nu7cpUEDy7mhDywJQMQXFCpXr2lx5qVV2Bpo30mJkA4wRh4rF+o3MYEw==
+X-Received: by 2002:a17:906:1456:b0:a23:32bd:d166 with SMTP id q22-20020a170906145600b00a2332bdd166mr2511388ejc.48.1703509541798;
+        Mon, 25 Dec 2023 05:05:41 -0800 (PST)
 Received: from [192.168.0.22] ([78.10.206.178])
-        by smtp.gmail.com with ESMTPSA id d21-20020a170906305500b00a2699b0fd49sm4803610ejd.86.2023.12.25.04.59.43
+        by smtp.gmail.com with ESMTPSA id pj25-20020a170906d79900b00a26b036affcsm3837174ejb.53.2023.12.25.05.05.40
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 25 Dec 2023 04:59:44 -0800 (PST)
-Message-ID: <b23a6b74-a568-4e11-8429-6344e10a9937@linaro.org>
-Date: Mon, 25 Dec 2023 13:59:43 +0100
+        Mon, 25 Dec 2023 05:05:41 -0800 (PST)
+Message-ID: <e6419898-0d77-4286-a04b-7240eb90d8df@linaro.org>
+Date: Mon, 25 Dec 2023 14:05:39 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,17 +66,23 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 03/10] dt-bindings: iio: pressure:
- honeywell,mprls0025pa.yaml add spi bus
+Subject: Re: [PATCH v5 1/2] dt-bindings: usb: dwc3: Clean up hs_phy_irq in
+ binding
 Content-Language: en-US
-To: Petre Rodan <petre.rodan@subdimension.ro>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: Andreas Klinger <ak@it-klinger.de>, Jonathan Cameron <jic23@kernel.org>,
- Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>,
+To: Krishna Kurapati <quic_kriskura@quicinc.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-References: <20231224143500.10940-1-petre.rodan@subdimension.ro>
- <20231224143500.10940-4-petre.rodan@subdimension.ro>
+ Rob Herring <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
+ Bjorn Andersson <bjorn.andersson@linaro.org>,
+ Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Wesley Cheng <quic_wcheng@quicinc.com>, Conor Dooley <conor+dt@kernel.org>,
+ Johan Hovold <johan@kernel.org>
+Cc: linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ quic_ppratap@quicinc.com, quic_jackp@quicinc.com
+References: <20231222063648.11193-1-quic_kriskura@quicinc.com>
+ <20231222063648.11193-2-quic_kriskura@quicinc.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -122,54 +128,159 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231224143500.10940-4-petre.rodan@subdimension.ro>
+In-Reply-To: <20231222063648.11193-2-quic_kriskura@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 24/12/2023 15:34, Petre Rodan wrote:
-> Add spi based example.
+On 22/12/2023 07:36, Krishna Kurapati wrote:
+> The high speed related interrupts present on QC targets are as follows:
 > 
-> Add spi-max-frequency property required by chip specifications.
-> 
-> Add additional maintainer.
-> 
-> Signed-off-by: Petre Rodan <petre.rodan@subdimension.ro>
-> Signed-off-by: Andreas Klinger <ak@it-klinger.de>
-> ---
->  .../iio/pressure/honeywell,mprls0025pa.yaml   | 26 +++++++++++++++++--
->  1 file changed, 24 insertions(+), 2 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/pressure/honeywell,mprls0025pa.yaml b/Documentation/devicetree/bindings/iio/pressure/honeywell,mprls0025pa.yaml
-> index e4021306d187..430496b047c7 100644
-> --- a/Documentation/devicetree/bindings/iio/pressure/honeywell,mprls0025pa.yaml
-> +++ b/Documentation/devicetree/bindings/iio/pressure/honeywell,mprls0025pa.yaml
-> @@ -8,12 +8,12 @@ title: Honeywell mprls0025pa pressure sensor
-> 
->  maintainers:
->    - Andreas Klinger <ak@it-klinger.de>
-> +  - Petre Rodan <petre.rodan@subdimension.ro>
-> 
->  description: |
->    Honeywell pressure sensor of model mprls0025pa.
-> 
-> -  This sensor has an I2C and SPI interface. Only the I2C interface is
-> -  implemented.
-> +  This sensor has an I2C and SPI interface. Both are supported.
 
-Instead drop that sentence. Current driver support should not matter for
-the bindings.
 
-> 
->    There are many models with different pressure ranges available. The vendor
->    calls them "mpr series". All of them have the identical programming model and
-> @@ -88,6 +88,9 @@ properties:
->        Maximum pressure value the sensor can measure in pascal.
->        To be specified only if honeywell,pressure-triplet is not set.
-> 
-> +  spi-max-frequency:
-> +    maximum: 800000
+>  
+>    interrupt-names:
+> -    minItems: 1
+> -    maxItems: 4
+> +    minItems: 2
+> +    maxItems: 5
+>  
+>    qcom,select-utmi-as-pipe-clk:
+>      description:
+> @@ -361,60 +378,21 @@ allOf:
+>          compatible:
+>            contains:
+>              enum:
+> -              - qcom,ipq4019-dwc3
 
-So you miss allOf: with $ref to spi props.
+Why do you remove it, without adding it somewhere else. Nothing in the
+commit msg explains it.
+
+> +              - qcom,ipq5018-dwc3
+>                - qcom,ipq6018-dwc3
+> -              - qcom,ipq8064-dwc3
+>                - qcom,ipq8074-dwc3
+> -              - qcom,msm8994-dwc3
+> -              - qcom,qcs404-dwc3
+> -              - qcom,sc7180-dwc3
+> -              - qcom,sdm670-dwc3
+> -              - qcom,sdm845-dwc3
+> -              - qcom,sdx55-dwc3
+> -              - qcom,sdx65-dwc3
+> -              - qcom,sdx75-dwc3
+> -              - qcom,sm4250-dwc3
+> -              - qcom,sm6350-dwc3
+> -              - qcom,sm8150-dwc3
+> -              - qcom,sm8250-dwc3
+> -              - qcom,sm8350-dwc3
+> -              - qcom,sm8450-dwc3
+> -              - qcom,sm8550-dwc3
+> -              - qcom,sm8650-dwc3
+> -    then:
+> -      properties:
+> -        interrupts:
+> -          items:
+> -            - description: The interrupt that is asserted
+> -                when a wakeup event is received on USB2 bus.
+> -            - description: The interrupt that is asserted
+> -                when a wakeup event is received on USB3 bus.
+> -            - description: Wakeup event on DM line.
+> -            - description: Wakeup event on DP line.
+> -        interrupt-names:
+> -          items:
+> -            - const: hs_phy_irq
+> -            - const: ss_phy_irq
+> -            - const: dm_hs_phy_irq
+> -            - const: dp_hs_phy_irq
+> -
+> -  - if:
+> -      properties:
+> -        compatible:
+> -          contains:
+> -            enum:
+>                - qcom,msm8953-dwc3
+> -              - qcom,msm8996-dwc3
+>                - qcom,msm8998-dwc3
+> -              - qcom,sm6115-dwc3
+> -              - qcom,sm6125-dwc3
+> +              - qcom,qcm2290-dwc3
+>      then:
+>        properties:
+>          interrupts:
+> -          maxItems: 2
+> +          minItems: 2
+> +          maxItems: 3
+>          interrupt-names:
+>            items:
+> -            - const: hs_phy_irq
+> +            - const: pwr_event
+> +            - const: qusb2_phy
+>              - const: ss_phy_irq
+>  
+>    - if:
+> @@ -422,37 +400,21 @@ allOf:
+>          compatible:
+>            contains:
+>              enum:
+> -              - qcom,ipq5018-dwc3
+> -              - qcom,ipq5332-dwc3
+> +              - qcom,msm8996-dwc3
+> +              - qcom,qcs404-dwc3
+>                - qcom,sdm660-dwc3
+> -    then:
+> -      properties:
+> -        interrupts:
+> -          minItems: 1
+> -          maxItems: 2
+> -        interrupt-names:
+> -          minItems: 1
+> -          items:
+> -            - const: hs_phy_irq
+> -            - const: ss_phy_irq
+> -
+> -  - if:
+> -      properties:
+> -        compatible:
+> -          contains:
+> -            enum:
+> -              - qcom,sc7280-dwc3
+> +              - qcom,sm6115-dwc3
+> +              - qcom,sm6125-dwc3
+>      then:
+>        properties:
+>          interrupts:
+>            minItems: 3
+>            maxItems: 4
+>          interrupt-names:
+> -          minItems: 3
+>            items:
+> +            - const: pwr_event
+>              - const: hs_phy_irq
+> -            - const: dp_hs_phy_irq
+> -            - const: dm_hs_phy_irq
+> +            - const: qusb2_phy
+
+Why qusb2_phy is after hs_phy_irq? In the earlier if:then: it is the
+second one.
+
+
+>              - const: ss_phy_irq
+>  
+>    - if:
+> @@ -460,11 +422,13 @@ allOf:
+>          compatible:
+>            contains:
+>              enum:
+> +              - qcom,ipq5332-dwc3
+>                - qcom,sc8280xp-dwc3
+>                - qcom,x1e80100-dwc3
+>      then:
+>        properties:
+>          interrupts:
+> +          minItems: 3
+
+Hm, why? This commit is unmanageable. Your commit msg is already huge
+but still does not explain this. Are you sure you are fixing only one
+logical thing per patch? Does not look like.
 
 Best regards,
 Krzysztof
