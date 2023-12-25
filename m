@@ -1,116 +1,146 @@
-Return-Path: <devicetree+bounces-28412-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28413-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 892F681E22A
-	for <lists+devicetree@lfdr.de>; Mon, 25 Dec 2023 20:56:06 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B075281E253
+	for <lists+devicetree@lfdr.de>; Mon, 25 Dec 2023 21:29:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4428E282072
-	for <lists+devicetree@lfdr.de>; Mon, 25 Dec 2023 19:56:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E21D91C209BA
+	for <lists+devicetree@lfdr.de>; Mon, 25 Dec 2023 20:29:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1600537FA;
-	Mon, 25 Dec 2023 19:55:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9175653809;
+	Mon, 25 Dec 2023 20:29:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NxYtli9Z"
+	dkim=pass (1024-bit key) header.d=subdimension.ro header.i=@subdimension.ro header.b="XhBW5Cx8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f53.google.com (mail-qv1-f53.google.com [209.85.219.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.subdimension.ro (skycaves.subdimension.ro [172.104.132.142])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55A9D537F1;
-	Mon, 25 Dec 2023 19:55:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qv1-f53.google.com with SMTP id 6a1803df08f44-67f9fac086bso25831486d6.3;
-        Mon, 25 Dec 2023 11:55:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1703534157; x=1704138957; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=v+5mdzcIi0J0U/jyti3PngFAcX/L3/DjChGGJD4WjO0=;
-        b=NxYtli9ZFO+nMhFI9jJM7AmM0UEQP1AYBBIsOQxfutncfFzrXXCl15MO/db7qTycZK
-         E+BH/bT9aSglTtOFm3KR2+eZigo1JECteRjB+Lf6D4H+VUekocZzQOW9kNtiT6vNAEdu
-         eyULYF4OpMBf9aO1e3D6n6vle9kAczFQsb+PP3Gpcj0oNr7p6TzgdohHThbsm/UKZGkI
-         b7vElq1p6YB//aONShEDs/fdGYpRWY/CXq75zdr+SSC1pzI1Yeu71uwlTIlo01Fasmfd
-         zmN59m49OnC7ZyKAwFOtXPoIG+DlBtpEIU1qiuOKJ3GnObSqiIA8sdeJ/CFmjuNqHnfP
-         vTTQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703534157; x=1704138957;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=v+5mdzcIi0J0U/jyti3PngFAcX/L3/DjChGGJD4WjO0=;
-        b=MfRAV5ecmWVJGgpiky0hi3GmiB0RSj+818pzkavsUq3u4xlw+Whbpcbc4NR5ck1qNu
-         mzcma0jmC70uzLWUrPKdfEreDwKq/4KUHcuv50N6x93Ea0w6D5niLKf+VqYbmmktx+dR
-         p/wzOi9BfKKdLdt4VCrQiHo7gACGfG9umiT0lEHhZ5QJd1G1H52wPrcp25SfIZSe3LJu
-         qsrKc7seUPyYM3N5xNz4c1jHqGLQbBsDPt3yFtFm9t9Evr+B6lr0lA9cg6lXJbFBJxGZ
-         N7io5fHfSC5x1GBHnVGrxyrUjEKl7ebN4OVw9EPlUrU//1Fuw8ySkFOPhyunRP3aN9l5
-         Q0KQ==
-X-Gm-Message-State: AOJu0YzROFql4ZIsbY1+HX9/cPP1tbA3e8CECrK5NuBBHPpoHCInyVBG
-	ikQqfEgCpEjx2AuIkPwvZPFRqML9CAnc1JlNO8I=
-X-Google-Smtp-Source: AGHT+IGXQ1DzDW/z7mbnW1aKOma9kP1mZ08AqBa7wFFHcRRfcWmagU8jQFFGhrorFhUOmpGd2hGTlBhrmy9h8xA7nx4=
-X-Received: by 2002:ad4:5c49:0:b0:67f:6982:edb4 with SMTP id
- a9-20020ad45c49000000b0067f6982edb4mr13149244qva.14.1703534157222; Mon, 25
- Dec 2023 11:55:57 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8560B53E00;
+	Mon, 25 Dec 2023 20:29:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=subdimension.ro
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=subdimension.ro
+Received: from sunspire (unknown [188.24.94.216])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	by mail.subdimension.ro (Postfix) with ESMTPSA id 5941128B50B;
+	Mon, 25 Dec 2023 20:29:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=subdimension.ro;
+	s=skycaves; t=1703536167;
+	bh=jhNrBsepGZrvs9ep/J+w+YrOSPNVglsMUP/CPJQFzT4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=XhBW5Cx8t8QwnJgFzN0Cj1mNC928Aeg0dPj0pakisf46UoOlShwEEt7MtL8zrtI3j
+	 iBGiFPTph8FoVG+IYhlNpIpLuvRSrB4Hh69HlMN0wqxtBoIX19upviF772vaAsuUv3
+	 eziyGLsetxGJk5SnFECa3m5xUcxJKRSvPycCfdr8=
+Date: Mon, 25 Dec 2023 22:29:26 +0200
+From: Petre Rodan <petre.rodan@subdimension.ro>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Andreas Klinger <ak@it-klinger.de>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH v2 03/10] dt-bindings: iio: pressure:
+ honeywell,mprls0025pa.yaml add spi bus
+Message-ID: <ZYnmJjUJjYZHxfUM@sunspire>
+References: <20231224143500.10940-1-petre.rodan@subdimension.ro>
+ <20231224143500.10940-4-petre.rodan@subdimension.ro>
+ <b23a6b74-a568-4e11-8429-6344e10a9937@linaro.org>
+ <ZYmcNySur-ZQryWc@sunspire>
+ <1b54a167-1c90-46b8-8a7b-a21f5d4655e7@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231212-ep93xx-v6-0-c307b8ac9aa8@maquefel.me>
- <ZXnxBtqbneUMbvwq@smile.fi.intel.com> <d6e898200b96e816ea8c8c9a847307088ec5821c.camel@maquefel.me>
-In-Reply-To: <d6e898200b96e816ea8c8c9a847307088ec5821c.camel@maquefel.me>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Mon, 25 Dec 2023 21:55:20 +0200
-Message-ID: <CAHp75Vcx8oviLiCu=cnzKcdXjEq9wG=PCiBuPTBYe6FFfUcz7Q@mail.gmail.com>
-Subject: Re: [PATCH v6 00/40] ep93xx device tree conversion
-To: Nikita Shubin <nikita.shubin@maquefel.me>
-Cc: Andy Shevchenko <andy@kernel.org>, Hartley Sweeten <hsweeten@visionengravers.com>, 
-	Alexander Sverdlin <alexander.sverdlin@gmail.com>, Russell King <linux@armlinux.org.uk>, 
-	Lukasz Majewski <lukma@denx.de>, Linus Walleij <linus.walleij@linaro.org>, 
-	Bartosz Golaszewski <brgl@bgdev.pl>, Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Sebastian Reichel <sre@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Vinod Koul <vkoul@kernel.org>, Wim Van Sebroeck <wim@linux-watchdog.org>, 
-	Guenter Roeck <linux@roeck-us.net>, Thierry Reding <thierry.reding@gmail.com>, 
-	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, 
-	Mark Brown <broonie@kernel.org>, "David S. Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	Miquel Raynal <miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>, 
-	Vignesh Raghavendra <vigneshr@ti.com>, Damien Le Moal <dlemoal@kernel.org>, 
-	Sergey Shtylyov <s.shtylyov@omp.ru>, Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, linux-clk@vger.kernel.org, 
-	linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
-	dmaengine@vger.kernel.org, linux-watchdog@vger.kernel.org, 
-	linux-pwm@vger.kernel.org, linux-spi@vger.kernel.org, netdev@vger.kernel.org, 
-	linux-mtd@lists.infradead.org, linux-ide@vger.kernel.org, 
-	linux-input@vger.kernel.org, linux-sound@vger.kernel.org, 
-	Arnd Bergmann <arnd@arndb.de>, Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Andrew Lunn <andrew@lunn.ch>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="2af24PaiwPbcA0FS"
+Content-Disposition: inline
+In-Reply-To: <1b54a167-1c90-46b8-8a7b-a21f5d4655e7@linaro.org>
+
+
+--2af24PaiwPbcA0FS
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Sat, Dec 23, 2023 at 11:13=E2=80=AFAM Nikita Shubin
-<nikita.shubin@maquefel.me> wrote:
-> On Wed, 2023-12-13 at 19:59 +0200, Andy Shevchenko wrote:
+On Mon, Dec 25, 2023 at 07:56:24PM +0100, Krzysztof Kozlowski wrote:
+> On 25/12/2023 16:13, Petre Rodan wrote:
+> >>> @@ -88,6 +88,9 @@ properties:
+> >>>        Maximum pressure value the sensor can measure in pascal.
+> >>>        To be specified only if honeywell,pressure-triplet is not set.
+> >>>
+> >>> +  spi-max-frequency:
+> >>> +    maximum: 800000
+> >>
+> >> So you miss allOf: with $ref to spi props.
+> >=20
+> > for simplicity's sake and for compatibility with the i2c devices alread=
+y in use,
+> > this driver does not have distinct 'compatible' properties for the i2c =
+and spi
+> > implementation.
+> > this is why I just defined spi-max-frequency, used it in the spi exampl=
+e, but
+> > not required it. just like in hsc030pa.yaml .
+> >=20
+> > without a differentiation in the 'compatible' string I don't see how yo=
+ur request
+> > can be implemented.
+>=20
+> You cannot have different compatibles. I did not propose it. I wrote
+> nothing about compatible. I wrote about missing $ref in top-level for
+> spi-peripheral-props. Where do you see anything about compatible?
 
-...
+sorry, for one hot second I thought you want that property to be conditiona=
+lly
+defined, like
 
-> I haven't found any missing tags, that b4 didn't apply, the ones above
-> refer to a very old iteration and were given to cover letter and i
-> don't feel like they need to be included.
+allOf:
+  - $ref: /schemas/spi/spi-peripheral-props.yaml
 
-When somebody gives you a tag against a cover letter, it means the
-entire series (if not spelled differently). `b4` even has a parameter
--t for that IIRC.
+  - if:
+      properties:
+        compatible:
+          contains:
+            const: honeywell,foo-spi
+    then:
+      properties:
+        spi-max-frequency:
+          maximum: 800000
+      required:
+        - spi-max-frequency
 
+but I guess you only want the first two lines from here.
 
---=20
-With Best Regards,
-Andy Shevchenko
+happy holidays,
+peter
+
+--2af24PaiwPbcA0FS
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEE2Ap/wXYVGTXsPl+pzyaZmYROfzAFAmWJ5iEACgkQzyaZmYRO
+fzDdARAA2M3MPZmM2mQ2vxbYaO7I4LWYIAZXE8AR8WBD5W95ulhz9smCSG4OOBeq
+Y6QQmzOBz6UiotQa9gSwSXIUt/bU625TQ4aFIB+o0Cr5oAHJEQFxR3h8ZlGR9Dl5
+eD7W29Pryq1Ila5Bp+AZV2va1cVqo4AnfE4nl3z5kw8G0tKzISK2W4k+J0JE4Goy
+ak4/kH7OsKhzYeC4OZ8Tn5IMz9Qvg+frXvf8Zl+Q6XrRV0uJzJ+q/EyO57qz5775
+eUijBCxZpldg2WRWMYkDqfIUM/X60397c78NNKj29Fb35ZtQw9+hoLRi6f+Zxzdr
+bWRHUc1CmqhP6qS+scVEB39yanclLp1c6FPsIC/wQgyVI0t/ZkYaZ6W4UebqKFL4
+vxY0zXmo1dyPd/40mICn9KG6dqNAwk73/wF/JUv/TtxEb8W1Bj8VcbmuPR9n+Shx
+43tw22qgu54O5qukS7dGALJdSOivUAg4XlvuQsV7kPXwrya9QSjxEyvW8v8QmFPj
+AGRwpyJ17mfrwoGVJphi/9Q+ZEoEAkjjmqG8TVzUiFMWeuMDTZUd7atvFjoLX6l9
+nWBmko2CVBTleSvQgEiNjcDZM8sWsTcfLBaaO3tkjnLXSnZmKyxYdhGQIpdUK3lI
+tnZhycHQYm7nns+xTp/+C/ikvywTf8tmA8hQrWJ3QbEqqB6LYuo=
+=9FKe
+-----END PGP SIGNATURE-----
+
+--2af24PaiwPbcA0FS--
 
