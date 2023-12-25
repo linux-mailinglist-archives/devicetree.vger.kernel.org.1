@@ -1,39 +1,64 @@
-Return-Path: <devicetree+bounces-28398-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28399-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30F6881E0DF
-	for <lists+devicetree@lfdr.de>; Mon, 25 Dec 2023 14:27:59 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6334181E0E7
+	for <lists+devicetree@lfdr.de>; Mon, 25 Dec 2023 14:34:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E1F4D282261
-	for <lists+devicetree@lfdr.de>; Mon, 25 Dec 2023 13:27:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7B9E01C219D0
+	for <lists+devicetree@lfdr.de>; Mon, 25 Dec 2023 13:34:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D60951C52;
-	Mon, 25 Dec 2023 13:27:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9151524AB;
+	Mon, 25 Dec 2023 13:34:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PLin5zpk"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DdP6NzjU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 789F1524A0;
-	Mon, 25 Dec 2023 13:27:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D29D8C433C7;
-	Mon, 25 Dec 2023 13:27:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1703510872;
-	bh=I0avDanTaUcR08tw3tBSpCj9xrZXL7ZwJyBg52C2sbg=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=PLin5zpkqRP0i3uFEouLCaLLVfwSTqazTAXObB6/EFR4ztssYa2DVSxC/+4r11uUs
-	 7ra1nHZ+p293CQnKIuXpCSCMnRXDGV5LBTR8wexsCY2YQRxCn9rF9rTXlf6HrtX1mz
-	 jhyLaweCqRYJMnifsRQdNCvTtdkPK9ySuKkTx5T5gsEaCo5xgMHa8eiy20KsriYF5K
-	 mmgEBPGsMPuJYr/0Nu0PpFoO/UOEKLEhM2a7wNjEV84CsYfu3Fa3dBtb5DvKrzFhfe
-	 eDZrktrt6yCAeWVDsErBiL39kiEpV42KQw3eC8gLL6kRFeFPVar3Ot4n+6efz/nx/6
-	 R10/vUnfZ5ObQ==
-Message-ID: <f924d22a-56e7-4560-bea2-f00484de93bd@kernel.org>
-Date: Mon, 25 Dec 2023 14:27:46 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20D0951C4F
+	for <devicetree@vger.kernel.org>; Mon, 25 Dec 2023 13:34:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-54c70c70952so4318300a12.3
+        for <devicetree@vger.kernel.org>; Mon, 25 Dec 2023 05:34:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1703511245; x=1704116045; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=p4o+SIPtv+npV17Pzay9SK/koHZbp3RfZeUHqh9OZTU=;
+        b=DdP6NzjUST8X9/NEzhCWV1fK+qUHQ3rxPtsSYYJV/CbQcU2uBK2ZQOxtwqJr9NTjqh
+         eYrhoJySlZmDJzyFfIqv82obOxL/u2wYPoA1QRFUvKzavE8lqG6H1sUebaOEJqt5/Izi
+         kks8umYmF6JjaTH2Q75GjTNLrecmBPBEK1LddlKusRgQZH6MP6SfCLHUFRSJh6DKzsRj
+         XEQh01QBUfVoZIYP3rBtXWM5jvQknO8oi68hR43eX0vmbBA0GlDTZXwKMYRktmaIcqq+
+         /7bnyBUpOv5okZiSwLWt+/WVqtCXM558tVath2nZBGt9hWfDYn3TONpf1XwxXUYlITNa
+         E2Cg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1703511245; x=1704116045;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=p4o+SIPtv+npV17Pzay9SK/koHZbp3RfZeUHqh9OZTU=;
+        b=jM5djqRwrEFEfiS2pU/Ti/xoRXZktmSLbMwuVlawmC50MbwBvnGhqFNZqa/cFAhfvy
+         KSjN964qHk4vPcyMACviHm+CxMX9/5mzNgGUe3drmz+5+9i40lpDuEK5RH80R3VGj4Ve
+         Y5iSOpEx0KTL3L6JQaHiO3JRzYfYS+kSZgOt/+kc0LysSENI9FxHWqDub9Zj4u/MMv/T
+         Yw7JoBdPQC7tzJBdCWl27dvuuhq99zFPp+v66vYB6sxKj5VRaIFHVvW0Khh8UwnEjcBY
+         z3okGsDg2UaD3v5uSldPjSaL1Rp/bwjWm2ZEsdRrNDmx/TqM3deDRV7ySaVJm8IjLm1w
+         PQZw==
+X-Gm-Message-State: AOJu0Yy6G1oMDn1U2dkh9gIy0B6xdjlKQVotpfvaBn9smBrUzbZ9wfBM
+	aCzKKbxwoHB20Hd/XtYs3iuQjZzeINx3a65x8wVWS89SaTY=
+X-Google-Smtp-Source: AGHT+IFDGGIxW1fwuPVpBx1JXx4XqM9Okg4nVldObZOLTNFVBfgoGvIR0pErEjihDwzUpJwqoOv/zQ==
+X-Received: by 2002:a50:935a:0:b0:54c:b889:9c11 with SMTP id n26-20020a50935a000000b0054cb8899c11mr2380971eda.98.1703511245435;
+        Mon, 25 Dec 2023 05:34:05 -0800 (PST)
+Received: from [192.168.0.22] ([78.10.206.178])
+        by smtp.gmail.com with ESMTPSA id en2-20020a17090728c200b00a2609ff4119sm773235ejc.213.2023.12.25.05.34.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 25 Dec 2023 05:34:05 -0800 (PST)
+Message-ID: <503bc876-59d1-4fcb-b0b5-2dd88c62987c@linaro.org>
+Date: Mon, 25 Dec 2023 14:34:04 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -41,18 +66,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [v1 1/2] dt-bindings: HID: i2c-hid: elan: Introduce bindings for
- Ilitek ili2901
+Subject: Re: [PATCH v2 02/10] dt-bindings: iio: pressure:
+ honeywell,mprls0025pa.yaml add pressure-triplet
 Content-Language: en-US
-To: xiazhengqiao <xiazhengqiao@huaqin.corp-partner.google.com>,
- linux-input@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Cc: dmitry.torokhov@gmail.com, robh+dt@kernel.org, jikos@kernel.org,
- benjamin.tissoires@redhat.com, dianders@chromium.org
-References: <20231225092843.5993-1-xiazhengqiao@huaqin.corp-partner.google.com>
- <20231225092843.5993-2-xiazhengqiao@huaqin.corp-partner.google.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Autocrypt: addr=krzk@kernel.org; keydata=
+To: Petre Rodan <petre.rodan@subdimension.ro>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Andreas Klinger <ak@it-klinger.de>,
+ Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+References: <20231224143500.10940-1-petre.rodan@subdimension.ro>
+ <20231224143500.10940-3-petre.rodan@subdimension.ro>
+ <49525adf-1540-4801-8cdf-be1c0fe640f6@linaro.org> <ZYmCOVvgcElnxRuH@sunspire>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
  JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
@@ -62,68 +90,149 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
  vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
  Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- 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 fv0=
-In-Reply-To: <20231225092843.5993-2-xiazhengqiao@huaqin.corp-partner.google.com>
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <ZYmCOVvgcElnxRuH@sunspire>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 25/12/2023 10:28, xiazhengqiao wrote:
-> Because ilitek, ili2901 needs to use reset to pull down the time for 10ms,
-> so we need to control the reset, use this drive control.
+On 25/12/2023 14:23, Petre Rodan wrote:
 > 
-> Signed-off-by: xiazhengqiao <xiazhengqiao@huaqin.corp-partner.google.com>
-> ---
->  Documentation/devicetree/bindings/input/elan,ekth6915.yaml | 1 +
->  1 file changed, 1 insertion(+)
+> hello Krzysztof,
 > 
-> diff --git a/Documentation/devicetree/bindings/input/elan,ekth6915.yaml b/Documentation/devicetree/bindings/input/elan,ekth6915.yaml
-> index 3e2d216c6432..b9e51432b9e8 100644
-> --- a/Documentation/devicetree/bindings/input/elan,ekth6915.yaml
-> +++ b/Documentation/devicetree/bindings/input/elan,ekth6915.yaml
-> @@ -20,6 +20,7 @@ properties:
->    compatible:
->      items:
->        - const: elan,ekth6915
-> +      - const: ilitek,ili2901
+> On Mon, Dec 25, 2023 at 01:57:39PM +0100, Krzysztof Kozlowski wrote:
+>> On 24/12/2023 15:34, Petre Rodan wrote:
+>>> @@ -54,14 +57,6 @@ properties:
+>>>        If not present the device is not reset during the probe.
+>>>      maxItems: 1
+>>>
+>>> -  honeywell,pmin-pascal:
+>>> -    description:
+>>> -      Minimum pressure value the sensor can measure in pascal.
+>>> -
+>>> -  honeywell,pmax-pascal:
+>>> -    description:
+>>> -      Maximum pressure value the sensor can measure in pascal.
+>>> -
+>>>    honeywell,transfer-function:
+>>>      description: |
+>>>        Transfer function which defines the range of valid values delivered by the
+>>> @@ -72,17 +67,52 @@ properties:
+>>>      enum: [1, 2, 3]
+>>>      $ref: /schemas/types.yaml#/definitions/uint32
+>>>
+>>> +  honeywell,pressure-triplet:
+>>
+>> Why not putting it just before existing properties?
+> 
+> I'd like to have pmin-pascal, pmax-pascal as the last two honeywell specific
+> properties, since they are not to be used unless someone has custom silicon.
+> so we will still have a block moved just like above.
+> the most logic order is the one I proposed above:
+> 
+> honeywell,transfer-function:
+> [..]
+> honeywell,pressure-triplet:
+> [..]
+> honeywell,pmin-pascal:
+> [..]
+> honeywell,pmax-pascal:
+> [..]
+> 
+> since the last 3 are tied together as we will see below.
+> is there any reason you want this order to change?
 
-1. You are adding fallback which was not explained in commit msg.
+I just don't get why moving the code instead of adding new property next
+to them.
 
-2. What's more, this was not tested. Please test your code before sending...
+The order is often alphabetical.
 
-3. Plus you did not Cc maintainers, so I suspect you work on some
-ancient tree...
+> 
+>>> +  honeywell,pmin-pascal:
+>>> +    description:
+>>> +      Minimum pressure value the sensor can measure in pascal.
+>>> +      To be specified only if honeywell,pressure-triplet is not set.
+>>
+>> The last sentence is redundant - schema should enforce that.
+> 
+> when someone generates the dtbo files via
+> 
+> cpp -nostdinc -I include -I ${LINUX_SRC}/include/ -I arch -undef -x assembler-with-cpp ${file}.dts "${BUILD_DIR}/${file}.dts.preprocessed"
+> dtc -@ -I dts -O dtb -o "${BUILD_DIR}/${file}.dtbo" "${BUILD_DIR}/${file}.dts.preprocessed"
+
+And how this command matters? DT overlays are checked, so error is printed.
+
+> 
+> the schema is not checked in any way.
+
+When I run `make` the schema is also not checked, so is it an argument
+to add anything to the binding? No. Drop redundant text.
+
+> so unless people can be bothered to understand the yaml intricacies in the
+> bindings file, I feel they need to see that redundant information there, see below.
+
+
+
+> 
+>>> +oneOf:
+>>> +  - required:
+>>> +      - honeywell,pmin-pascal
+>>> +      - honeywell,pmax-pascal
+>>> +  - required:
+>>> +      - honeywell,pressure-triplet
+>>> +
+>>> +allOf:
+>>> +  - if:
+>>> +      required:
+>>> +        - honeywell,pressure-triplet
+>>> +    then:
+>>> +      properties:
+>>> +        honeywell,pmin-pascal: false
+>>> +        honeywell,pmax-pascal: false
+>>
+>> This allOf is not needed.
+> 
+> speaking for intricacies, if the allOf is removed, then a binding containing
+> 
+> honeywell,pmax-pascal = <840000>;
+> honeywell,pressure-triplet = "0015PA";
+> 
+> would be considered to be correct by the schema, but that would be the incorrect
+> result. so afaict allOf needs to stay, and so does the redundant text.
+
+Really? Did you test it?
 
 Best regards,
 Krzysztof
