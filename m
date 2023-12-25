@@ -1,168 +1,172 @@
-Return-Path: <devicetree+bounces-28359-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28360-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B737981DF85
-	for <lists+devicetree@lfdr.de>; Mon, 25 Dec 2023 10:37:32 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C06F681DF9C
+	for <lists+devicetree@lfdr.de>; Mon, 25 Dec 2023 11:11:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DB7E71C20AD0
-	for <lists+devicetree@lfdr.de>; Mon, 25 Dec 2023 09:37:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 455841F21F14
+	for <lists+devicetree@lfdr.de>; Mon, 25 Dec 2023 10:11:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 201F5125A9;
-	Mon, 25 Dec 2023 09:37:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xDTJVGjp"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BD0E1EB34;
+	Mon, 25 Dec 2023 10:11:39 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from out28-66.mail.aliyun.com (out28-66.mail.aliyun.com [115.124.28.66])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B4BB14268
-	for <devicetree@vger.kernel.org>; Mon, 25 Dec 2023 09:37:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-a26f5e937b5so30412666b.0
-        for <devicetree@vger.kernel.org>; Mon, 25 Dec 2023 01:37:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1703497045; x=1704101845; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=4axmPByVxOKuzdSXU1yz8CpPedh2630SAvkz4+h6BPs=;
-        b=xDTJVGjpVeJy43VWoFjVEWvvCjYAuMkxI3MYBYoPuvKBnckM9HgeWfd1hCi3Cz0HOw
-         h+jWOjSMjizHfLfSGnifDNzZ4hqi8EqpIqEGTTtciFwPWcVFsv2hua99eJOhqSUFghS+
-         zzwmugblxtZtMh1nVHsaWqADx3UpYrslJ3+vK+zZ8Dcqg7j0X8zhWUY81aK3auyYBG3q
-         7ZD259iAGLETGZl8Ae9Eki55W15tmV3k5kh/oP0COVouNvCFBen0/LPLktHU0hXBh5/S
-         EJKDoTUOoE+/hCopisqcLkCuPdl3x5UUX9hxUJ/u3ckP7aZoidfx74YNI/HfqO54GIiD
-         V6rw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703497045; x=1704101845;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=4axmPByVxOKuzdSXU1yz8CpPedh2630SAvkz4+h6BPs=;
-        b=iif+BGqpF208jY3bUNF9knBkA3hmaTi9ObH/m8YOxGLz1hbxEfgiBxVIOP2GrcY6wB
-         RdH2zSTmC4w5UGXIE7JTPPtiKGWKrUwcJ68NSwMcJlRSBA/7nCaUedDbYxLFdWxSik9x
-         Bo2yJtw7vb0R72svUWquDMcXrvfiPGNDeyNUQmwnHfyxZ+ceBQc14x+JlAH4ynNCFFVL
-         jvAKPcjncbKM/dN64oxjp8L8j+c3qTi8Q3ve8Jf2yLTQNYQ7bON2ZSQrNzS2v65SjQdx
-         42tkWMW5a0ap/9eFk7+ONnUd4PYuJBf9C0b83WLwrVa/7s5lF3qwWi73p11InYvCDkZq
-         r3YA==
-X-Gm-Message-State: AOJu0YwrH2fJCwOIfvMz4lV9ZU48ae4mpvueAPflhROwLsx8XuiK1Eq+
-	IQObxaIA9EpJfpn6U+2NtyltluYs5KXX6A==
-X-Google-Smtp-Source: AGHT+IFg3FrwA80fx6td2rtwy5VWZLa1RWbvQ7fsCB1RJS2O50/dHiJQ0FVn4pzziKPZxNCwRUJuUQ==
-X-Received: by 2002:a17:906:288:b0:a26:89fc:1904 with SMTP id 8-20020a170906028800b00a2689fc1904mr2394788ejf.5.1703497044929;
-        Mon, 25 Dec 2023 01:37:24 -0800 (PST)
-Received: from [192.168.0.22] ([78.10.206.178])
-        by smtp.gmail.com with ESMTPSA id wh14-20020a170906fd0e00b00a234907311asm4626097ejb.55.2023.12.25.01.37.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 25 Dec 2023 01:37:24 -0800 (PST)
-Message-ID: <a2ad8b5c-9745-4401-9ab5-41616a5bdf44@linaro.org>
-Date: Mon, 25 Dec 2023 10:37:23 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22BE510A32;
+	Mon, 25 Dec 2023 10:11:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sjterm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sjterm.com
+X-Alimail-AntiSpam:AC=CONTINUE;BC=0.07467577|-1;BR=01201311R751ec;CH=green;DM=|CONTINUE|false|;DS=SPAM|spam_ad|0.839325-0.000325292-0.160349;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047213;MF=fuyao@sjterm.com;NM=1;PH=DS;RN=16;RT=16;SR=0;TI=SMTPD_---.VsSYimv_1703499085;
+Received: from localhost(mailfrom:fuyao@sjterm.com fp:SMTPD_---.VsSYimv_1703499085)
+          by smtp.aliyun-inc.com;
+          Mon, 25 Dec 2023 18:11:25 +0800
+Date: Mon, 25 Dec 2023 18:11:24 +0800
+From: fuyao <fuyao@sjterm.com>
+To: Andre Przywara <andre.przywara@arm.com>
+Cc: fuyao <fuyao1697@cyg.com>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Alexandre TORGUE <alexandre.torgue@st.com>,
+	Enric Balletbo i Serra <eballetbo@gmail.com>,
+	Baruch Siach <baruch@tkos.co.il>,
+	Paul Barker <paul.barker@sancloud.com>, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH RESEND] ARM: dts: sun8i: r40: open the regulator aldo1
+Message-ID: <ZYlVTFrWkPaci92K@debian.cyg>
+Mail-Followup-To: Andre Przywara <andre.przywara@arm.com>,
+	fuyao <fuyao1697@cyg.com>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Alexandre TORGUE <alexandre.torgue@st.com>,
+	Enric Balletbo i Serra <eballetbo@gmail.com>,
+	Baruch Siach <baruch@tkos.co.il>,
+	Paul Barker <paul.barker@sancloud.com>, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+References: <ZYKjYypuAx7gNuam@debian.cyg>
+ <20231220150400.0f32e2a5@donnerap.manchester.arm.com>
+ <ZYOhAQi7XeLUuAC9@debian.cyg>
+ <20231221103906.1830ef94@donnerap.manchester.arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 1/2] dt-bindings: pinctrl: qcom: Add SM4450 pinctrl
-Content-Language: en-US
-To: Tengfei Fan <quic_tengfan@quicinc.com>,
- Bjorn Andersson <andersson@kernel.org>
-Cc: agross@kernel.org, konrad.dybcio@linaro.org, linus.walleij@linaro.org,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- linux-gpio@vger.kernel.org, devicetree@vger.kernel.org
-References: <20231206020840.33228-1-quic_tengfan@quicinc.com>
- <20231206020840.33228-2-quic_tengfan@quicinc.com>
- <suy4rrpplvhsg2pfblg5amkvy7mrrkzsd3vzizhhpfj5xlog3q@i2n5wvsxb5wa>
- <8ea2e841-eb9d-47a8-b1ca-3597403a1bc6@quicinc.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <8ea2e841-eb9d-47a8-b1ca-3597403a1bc6@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20231221103906.1830ef94@donnerap.manchester.arm.com>
+Organization: work_work_work
 
-On 25/12/2023 07:50, Tengfei Fan wrote:
->>> +
->>> +        required:
->>> +          - pins
->>> +
->>> +required:
->>> +  - compatible
->>> +  - reg
->>> +
->>> +additionalProperties: false
->>> +
->>> +examples:
->>> +  - |
->>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
->>> +    tlmm: pinctrl@f100000 {
->>> +        compatible = "qcom,sm4450-tlmm";
->>
->> Please feel free to ping me if you're having issues running
->> dt_binding_check and dtb_check. I believe the prior should complain
->> about this compatible being unknown.
+On Thu, Dec 21, 2023 at 10:39:06AM +0000, Andre Przywara wrote:
+> On Thu, 21 Dec 2023 10:20:49 +0800
+> fuyao <fuyao@sjterm.com> wrote:
 > 
-> There isn't any complain about this compatible when I run 
-> dt_binding_check and dtb_check.
+> Hi,
 > 
-> Here is the commands which I used:
+> thanks for the reply!
 > 
-> 1. make ARCH=arm64  dtbs_check W=1
+> > On Wed, Dec 20, 2023 at 03:04:00PM +0000, Andre Przywara wrote:
+> > > On Wed, 20 Dec 2023 16:18:43 +0800
+> > > fuyao <fuyao1697@cyg.com> wrote:
+> > > 
+> > > Hi,
+> > >   
+> > > > the aldo1 is connect regulator pin which power the TV.  
+> > > 
+> > > What do you mean with that? That ALDO1 is connected to VCC-TVOUT and/or
+> > > VCC-TVIN on the R40 SoC?  
+> > 
+> > The ALDO1 is connected to VCC-TVOUT on the R40 Soc.
 > 
-> 2. make ARCH=arm64  CROSS_COMPILE=aarch64-linux-gnu- DT_CHECKER_FLAGS=-m 
-> dt_binding_check 
-> DT_SCHEMA_FILES=Documentation/devicetree/bindings/pinctrl/qcom,sm4450-tlmm.yaml 
+> Ah, thanks for the confirmation.
+> 
+> > > > The USB core use TV ref as reference Voltage.  
+> > > 
+> > > The USB core in the SoC? So pin VCC-USB, which requires 3.3V, the same
+> > > voltage as the TV pins?
+> > > Which means this doesn't really have much to do with TV, it's just that
+> > > USB and also "TV" are supplied by ALDO1?  
+> > 
+> > The internal USB PHY requires a reference voltage. It seems that in
+> > order to save costs, the reference voltage of the TVOUT module is used.
+> 
+> Do you mean a USB *reference* voltage that is separate from the USB PHY
+> power supply voltage, so pin VCC-USB on the SoC? And that it is internally
+> connected to some TV-OUT related circuits? So that would apply to all
+> devices using the R40 SoC then?
+yes, The usb need a power from TV module insides.
+> 
+> Or is it simply that the SoC pins VCC-TVOUT and VCC-USB are connected
+> together, on this SoM?
+no
+> Do you have access to some schematic? I couldn't find one online easily,
+> so cannot check this myself.
+> 
+It has up to https://file.io/VSUL4FDrapDY
+> Thanks,
+> Andre
+> 
+> > > > Signed-off-by: fuyao <fuyao1697@cyg.com>
+> > > > ---
+> > > >  arch/arm/boot/dts/allwinner/sun8i-r40-feta40i.dtsi | 7 +++++++
+> > > >  1 file changed, 7 insertions(+)
+> > > > 
+> > > > diff --git a/arch/arm/boot/dts/allwinner/sun8i-r40-feta40i.dtsi b/arch/arm/boot/dts/allwinner/sun8i-r40-feta40i.dtsi
+> > > > index 9f39b5a2bb35..8906170461df 100644
+> > > > --- a/arch/arm/boot/dts/allwinner/sun8i-r40-feta40i.dtsi
+> > > > +++ b/arch/arm/boot/dts/allwinner/sun8i-r40-feta40i.dtsi
+> > > > @@ -42,6 +42,13 @@ &pio {
+> > > >  	vcc-pg-supply = <&reg_dldo1>;
+> > > >  };
+> > > >  
+> > > > +&reg_aldo1 {
+> > > > +	regulator-always-on;  
+> > > 
+> > > So did USB never work before, with the DT as in mainline?
+> > >   
+> > 
+> > The USB can work, but is unstable. Occasionally disconnected because of
+> > the D+/D- electrical characteristics.
+> > 
+> > > For always-on regulators it would be good to see some rationale why this
+> > > cannot be referenced by its consumer. If it is really supplying the USB
+> > > core, that would be a reason, because we don't have a good way of
+> > > describing this.
+> > >   
+> > > > +	regulator-min-microvolt = <3300000>;
+> > > > +	regulator-max-microvolt = <3300000>;
+> > > > +	regulator-name = "vcc-aldo1";  
+> > > 
+> > > Regulators should be named after their users, so use something like:
+> > > 	regulator-name = "vcc-3v3-tv-usb";
+> > >   
+> > 
+> > thanks.
+> > 
+> > > That then also serves as documentation of why this is always on.
+> > > 
+> > > Cheers,
+> > > Andre
+> > >   
+> > > > +};
+> > > > +
+> > > >  &reg_aldo2 {
+> > > >  	regulator-always-on;
+> > > >  	regulator-min-microvolt = <1800000>;  
+> > >   
+> > 
 
-Something got broken around -m flags for dtschema, so indeed no reports
-are printed for unmatched compatibles.
-
-Best regards,
-Krzysztof
-
+-- 
+fuyao [付尧]
 
