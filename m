@@ -1,195 +1,115 @@
-Return-Path: <devicetree+bounces-28414-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28415-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D82C781E261
-	for <lists+devicetree@lfdr.de>; Mon, 25 Dec 2023 22:06:56 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A59BE81E290
+	for <lists+devicetree@lfdr.de>; Mon, 25 Dec 2023 23:29:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 048A91C20BF3
-	for <lists+devicetree@lfdr.de>; Mon, 25 Dec 2023 21:06:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 283981F216DE
+	for <lists+devicetree@lfdr.de>; Mon, 25 Dec 2023 22:29:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 906015381E;
-	Mon, 25 Dec 2023 21:06:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6059D53E25;
+	Mon, 25 Dec 2023 22:29:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gN7wWk/4"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XHvkKei0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f173.google.com (mail-qk1-f173.google.com [209.85.222.173])
+Received: from mail-qk1-f178.google.com (mail-qk1-f178.google.com [209.85.222.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D3885380C;
-	Mon, 25 Dec 2023 21:06:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0007F53E22;
+	Mon, 25 Dec 2023 22:29:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f173.google.com with SMTP id af79cd13be357-7810c332a2cso345713585a.1;
-        Mon, 25 Dec 2023 13:06:50 -0800 (PST)
+Received: by mail-qk1-f178.google.com with SMTP id af79cd13be357-7811c16ce6cso356297285a.1;
+        Mon, 25 Dec 2023 14:29:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1703538410; x=1704143210; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=rGDVYoNIIWyiCkgdSSFbUJbJwyQv1O09fglEbTWCQV4=;
-        b=gN7wWk/4RUXrGdt/U5Fbk00GIf5sNVzWWlyXeqE1jRUaS0bKxszuTFEn+VDuAKAQLb
-         y/z5glY2jk2QZN0okLSdarHigqJWWY0IHVOc/O/wCqnyYjPJiwev8PI/0khIWuQqvrMJ
-         EgXRoa2zXHWOeD/AJ8HlGUhltTpmLYkM8mwnc21BPrONgix9GbHNibgqAMu5TyghBm4S
-         TQJgRNmWmdTWe5gd3DMFJpMvQHyhSNDT9R/EynpdqDT7osG1drfK0QZl/gv3yZ16pTJ1
-         JcAwPZWANEWuoc/NrGcFXtvis2FSmjHrfzWPR8WqJU0e/UYKk83EesK/knEh68wD3Twu
-         hMeg==
+        d=gmail.com; s=20230601; t=1703543351; x=1704148151; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=itzMXVoCv9j1w1f/Q7ZRq3fNWiDaf3bJqeVynZuN8k0=;
+        b=XHvkKei0PREzhbq7DpXouhhyAtC+s3Q7MxK4Wf+jcraPKwwCBqivFs/uMaUlcU9KjS
+         XEt7osoaOan8uLFE3m8LBa8PMDGzmXZjdLE13Fe5OpVFRQJcvh4ncEaI7duLEtxzIVnt
+         uNLNmwwBBVeigAwc3a2/AQ/Uc0nnMKT0fv9Kmlmv+SuEtgcdR2EHJd2LvHGgloiJ3PuM
+         MJgPo/pSxsa+zE65Jd2/z6jexU+EKQq5ZRVOA1TevUlKJ4GddS8j6vUYP3ku8UaKlksE
+         NyHvv3O8EMOO8WsXwDPAoBGBsIzDXpsL5+RGcUVAlQ73S2krmxMIFHNv02FiEf6ZDfBZ
+         EmNA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703538410; x=1704143210;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=rGDVYoNIIWyiCkgdSSFbUJbJwyQv1O09fglEbTWCQV4=;
-        b=aGNhLUS7wor02lZfcxgkY2PS0N/MlTq7o5qqpN5xy2w1y8n4ppeTYBGdoDImUInxeI
-         7xtoEbriVUVzbaqbV5fZooHB4NPojJu24VziMyrSe2MDZA2kicycbRf4KKvJaR1hHDcx
-         epTwvxdsbykBXjpWJP1na3vtyiv3ybKEn4EI50ble7XKiCGUpjalAjuEwxB2BeqhiQ7d
-         uQ9X8c7dhD3pCT9QovmmMtK17TmGVNN5qAnKbnZdOOvhp3NnzA7J0v9NqMWSv9O2e5cc
-         YPjJNcJJkoSS+XmI1OPa61YGSz+F0lQpEpF/dYCe6DAtMXvoBARREVX5iSNir4fwnkSv
-         FLxA==
-X-Gm-Message-State: AOJu0YzkNuKwk1QxaR398WFeATQ0RaVQQ2SpEb/2oqJ9SyH9F/GjVONg
-	ke3Sjvk7S2ur60GD16RLd5W8WVcOOp1ysUbD4gQ=
-X-Google-Smtp-Source: AGHT+IHTfC4IvI32xoqINCBSsocRoTKNzkLjTfpAEtn6LgG4kDC6m58rQ0mR6tMnU/vPvukNQS74BZgTSh6h+p/YqWY=
-X-Received: by 2002:a05:620a:14a9:b0:77f:8c54:da15 with SMTP id
- x9-20020a05620a14a900b0077f8c54da15mr7742403qkj.40.1703538409803; Mon, 25 Dec
- 2023 13:06:49 -0800 (PST)
+        d=1e100.net; s=20230601; t=1703543351; x=1704148151;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=itzMXVoCv9j1w1f/Q7ZRq3fNWiDaf3bJqeVynZuN8k0=;
+        b=qXnY83isXsHsewjg1RTKwCZtXSZAdzy8F/D4YPv0cFBO8f05zK0xrmVCaJrkduXOrB
+         WvGznV6y1qzz49GCF98XGIih26hFBTPH6g5pR99V4IRFg+S0LV4jkcOpRK7pVt/DVIXa
+         qaHbnfVu6ve5LodRuk52+qGz6pNwM0KWEmlyfv7bUsQm4KNZrBWuS0uKXycls9lH/qg7
+         ui1Jt3l/OzQNDo2Dk4lOxz7e7ReQUZY1CpDlc1WNd/+qB3gcelX2UCkMv2BjiyHSXzbM
+         x+kvFyc20j6p8l4jvC3chbyEp+EzLw6yWwvIJu63wZtLGzy19omlfDFMriIZ+gDd2SDH
+         VyGQ==
+X-Gm-Message-State: AOJu0YwVL6GQ9FyIxBAyDjwIKKWFX+O3/5V7HDR2sX7aNZkyhXAMGP6z
+	V3hFpsCpTkEZwxUnvL3Z1Ss=
+X-Google-Smtp-Source: AGHT+IGvKTDnv4qt19H/Be8Gp8HiEl1PFhupgr9g58mx26sTM4Yh8MT9jWUTm9h4TJYyCuwevjjuCg==
+X-Received: by 2002:a05:620a:2942:b0:780:dde2:deff with SMTP id n2-20020a05620a294200b00780dde2deffmr9946891qkp.98.1703543350774;
+        Mon, 25 Dec 2023 14:29:10 -0800 (PST)
+Received: from localhost.localdomain (107-015-241-140.res.spectrum.com. [107.15.241.140])
+        by smtp.gmail.com with ESMTPSA id ay8-20020a05620a178800b0077f15eb3528sm3881457qkb.70.2023.12.25.14.29.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 25 Dec 2023 14:29:10 -0800 (PST)
+From: John Clark <inindev@gmail.com>
+To: "Rob Herring" <robh+dt@kernel.org>,
+	"Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+	"Conor Dooley" <conor+dt@kernel.org>,
+	"Heiko Stuebner" <heiko@sntech.de>,
+	linux-rockchip@lists.infradead.org
+Cc: "Thomas McKahan" <tmckahan@singleboardsolutions.com>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	John Clark <inindev@gmail.com>
+Subject: [PATCH v2 1/2] arm64: dts: rockchip: support poweroff on the rock-5b
+Date: Mon, 25 Dec 2023 22:28:19 +0000
+Message-ID: <20231225222859.17153-1-inindev@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231225103308.1557548-1-peterlin@andestech.com>
-In-Reply-To: <20231225103308.1557548-1-peterlin@andestech.com>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Mon, 25 Dec 2023 21:06:04 +0000
-Message-ID: <CA+V-a8t7g8ctPQrwdB9tgtmgtGfqQ-k2N-1sSwnjB-b1F71-AQ@mail.gmail.com>
-Subject: Re: [PATCH v6 00/16] Support Andes PMU extension
-To: Yu Chien Peter Lin <peterlin@andestech.com>
-Cc: acme@kernel.org, adrian.hunter@intel.com, ajones@ventanamicro.com, 
-	alexander.shishkin@linux.intel.com, andre.przywara@arm.com, 
-	anup@brainfault.org, aou@eecs.berkeley.edu, atishp@atishpatra.org, 
-	conor+dt@kernel.org, conor.dooley@microchip.com, conor@kernel.org, 
-	devicetree@vger.kernel.org, dminus@andestech.com, evan@rivosinc.com, 
-	geert+renesas@glider.be, guoren@kernel.org, heiko@sntech.de, 
-	irogers@google.com, jernej.skrabec@gmail.com, jolsa@kernel.org, 
-	jszhang@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	linux-perf-users@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, linux-sunxi@lists.linux.dev, 
-	locus84@andestech.com, magnus.damm@gmail.com, mark.rutland@arm.com, 
-	mingo@redhat.com, n.shubin@yadro.com, namhyung@kernel.org, palmer@dabbelt.com, 
-	paul.walmsley@sifive.com, peterz@infradead.org, 
-	prabhakar.mahadev-lad.rj@bp.renesas.com, rdunlap@infradead.org, 
-	robh+dt@kernel.org, samuel@sholland.org, sunilvl@ventanamicro.com, 
-	tglx@linutronix.de, tim609@andestech.com, uwu@icenowy.me, wens@csie.org, 
-	will@kernel.org, ycliang@andestech.com, inochiama@outlook.com, 
-	chao.wei@sophgo.com, unicorn_wang@outlook.com, wefu@redhat.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-Hi Lin-san,
+Allow the rock-5b to poweroff its pmic. When issuing a "shutdown -h now"
+on the rock-5b it reboots instead. Defining 'system-power-controller'
+allows the rk806 to power down.
 
-On Mon, Dec 25, 2023 at 10:37=E2=80=AFAM Yu Chien Peter Lin
-<peterlin@andestech.com> wrote:
->
-> Hi All,
->
-> This patch series introduces the Andes PMU extension, which serves
-> the same purpose as Sscofpmf. To use FDT-based probing for hardware
-> support of the PMU extensions, we first convert T-Head's PMU to CPU
-> feature alternative, then add Andes PMU alternatives.
->
-> Its non-standard local interrupt is assigned to bit 18 in the
-> custom S-mode local interrupt enable/pending registers (slie/slip),
-> while the interrupt cause is (256 + 18).
->
-> Mainline OpenSBI has supported Andes PMU extension:
-> - https://github.com/riscv-software-src/opensbi/tree/master
-> Linux patches (based on v6.7-rc7) can be found on Andes Technology GitHub
-> - https://github.com/andestech/linux/commits/andes-pmu-support-v6
->
-> The PMU device tree node used on AX45MP:
-> - https://github.com/riscv-software-src/opensbi/blob/master/docs/pmu_supp=
-ort.md#example-3
->
-> Locus Wei-Han Chen (1):
->   riscv: andes: Support specifying symbolic firmware and hardware raw
->     events
->
-> Yu Chien Peter Lin (15):
->   riscv: errata: Rename defines for Andes
->   irqchip/riscv-intc: Allow large non-standard interrupt number
->   irqchip/riscv-intc: Introduce Andes hart-level interrupt controller
->   dt-bindings: riscv: Add Andes interrupt controller compatible string
->   riscv: dts: renesas: r9a07g043f: Update compatible string to use Andes
->     INTC
->   perf: RISC-V: Eliminate redundant interrupt enable/disable operations
->   RISC-V: Move T-Head PMU to CPU feature alternative framework
->   perf: RISC-V: Introduce Andes PMU for perf event sampling
->   dt-bindings: riscv: Add T-Head PMU extension description
->   dt-bindings: riscv: Add Andes PMU extension description
->   riscv: dts: allwinner: Add T-Head PMU extension for sun20i-d1s
->   riscv: dts: sophgo: Add T-Head PMU extension for cv1800b
->   riscv: dts: sophgo: Add T-Head PMU extension for sg2042
->   riscv: dts: thead: Add T-Head PMU extension for th1520
->   riscv: dts: renesas: Add Andes PMU extension for r9a07g043f
->
-The above patches dont apply cleanly on top of below branches. Can you
-please rebase and re-send.
+Commit c699fbfdfd54 ("arm64: dts: rockchip: Support poweroff on
+NanoPC-T6") similarly resolves this issue for the nanopc-t6.
 
-https://git.kernel.org/pub/scm/linux/kernel/git/palmer/linux.git/log/?h=3Df=
-ixes
-https://git.kernel.org/pub/scm/linux/kernel/git/palmer/linux.git/log/?h=3Df=
-or-next
-https://git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-devel.git/log=
-/?h=3Drenesas-dts-for-v6.8
+Signed-off-by: John Clark <inindev@gmail.com>
+---
+Changes since v1:
+ - added commit message with additional patch detail
+ - expressed the related commit using checkpatch
 
-Cheers,
-Prabhakar
+---
+ arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts | 2 ++
+ 1 file changed, 2 insertions(+)
 
->  .../devicetree/bindings/riscv/cpus.yaml       |   6 +-
->  .../devicetree/bindings/riscv/extensions.yaml |  13 ++
->  arch/riscv/Kconfig.errata                     |  13 --
->  arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi |   2 +-
->  arch/riscv/boot/dts/renesas/r9a07g043f.dtsi   |   4 +-
->  arch/riscv/boot/dts/sophgo/cv1800b.dtsi       |   2 +-
->  arch/riscv/boot/dts/sophgo/sg2042-cpus.dtsi   | 128 +++++++++---------
->  arch/riscv/boot/dts/thead/th1520.dtsi         |   8 +-
->  arch/riscv/errata/andes/errata.c              |  10 +-
->  arch/riscv/errata/thead/errata.c              |  19 ---
->  arch/riscv/include/asm/errata_list.h          |  19 +--
->  arch/riscv/include/asm/hwcap.h                |   2 +
->  arch/riscv/include/asm/vendorid_list.h        |   2 +-
->  arch/riscv/kernel/alternative.c               |   2 +-
->  arch/riscv/kernel/cpufeature.c                |   2 +
->  drivers/irqchip/irq-riscv-intc.c              |  89 ++++++++++--
->  drivers/perf/Kconfig                          |  27 ++++
->  drivers/perf/riscv_pmu_sbi.c                  |  47 +++++--
->  include/linux/soc/andes/irq.h                 |  18 +++
->  .../arch/riscv/andes/ax45/firmware.json       |  68 ++++++++++
->  .../arch/riscv/andes/ax45/instructions.json   | 127 +++++++++++++++++
->  .../arch/riscv/andes/ax45/memory.json         |  57 ++++++++
->  .../arch/riscv/andes/ax45/microarch.json      |  77 +++++++++++
->  tools/perf/pmu-events/arch/riscv/mapfile.csv  |   1 +
->  24 files changed, 592 insertions(+), 151 deletions(-)
->  create mode 100644 include/linux/soc/andes/irq.h
->  create mode 100644 tools/perf/pmu-events/arch/riscv/andes/ax45/firmware.=
-json
->  create mode 100644 tools/perf/pmu-events/arch/riscv/andes/ax45/instructi=
-ons.json
->  create mode 100644 tools/perf/pmu-events/arch/riscv/andes/ax45/memory.js=
-on
->  create mode 100644 tools/perf/pmu-events/arch/riscv/andes/ax45/microarch=
-.json
->
-> --
-> 2.34.1
->
->
-> _______________________________________________
-> linux-riscv mailing list
-> linux-riscv@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-riscv
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+index 74719aaf697c..dc7b88f29172 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+@@ -426,6 +426,8 @@ pmic@0 {
+ 		pinctrl-0 = <&pmic_pins>, <&rk806_dvs1_null>,
+ 			    <&rk806_dvs2_null>, <&rk806_dvs3_null>;
+ 
++		system-power-controller;
++
+ 		vcc1-supply = <&vcc5v0_sys>;
+ 		vcc2-supply = <&vcc5v0_sys>;
+ 		vcc3-supply = <&vcc5v0_sys>;
+-- 
+2.43.0
+
 
