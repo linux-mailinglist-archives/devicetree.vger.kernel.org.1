@@ -1,64 +1,54 @@
-Return-Path: <devicetree+bounces-28495-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28496-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E7E381E7BA
-	for <lists+devicetree@lfdr.de>; Tue, 26 Dec 2023 14:38:58 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F41F81E7E6
+	for <lists+devicetree@lfdr.de>; Tue, 26 Dec 2023 16:04:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B1BABB21708
-	for <lists+devicetree@lfdr.de>; Tue, 26 Dec 2023 13:38:55 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 275D6B21EC0
+	for <lists+devicetree@lfdr.de>; Tue, 26 Dec 2023 15:04:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A5884EB59;
-	Tue, 26 Dec 2023 13:38:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E812F4C3A8;
+	Tue, 26 Dec 2023 15:04:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WaQn8t1Y"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="MnnfRdyU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f180.google.com (mail-qt1-f180.google.com [209.85.160.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E71F4EB42
-	for <devicetree@vger.kernel.org>; Tue, 26 Dec 2023 13:38:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-qt1-f180.google.com with SMTP id d75a77b69052e-427826013fcso41527041cf.3
-        for <devicetree@vger.kernel.org>; Tue, 26 Dec 2023 05:38:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1703597929; x=1704202729; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=vuMqR9Rwybi6ENHNRAU+EjQWuJolmn+LEd8yiJfS37U=;
-        b=WaQn8t1YVGsC79PlZ7Y13tMopMvVIpMgokHA1KH69gwof5Ye+GWcXXKDNwYyx97nBi
-         BCzfDl6pSuqnq+enJ37jXUWyWi1UYDKLvyIixrH398MrJQcQR+Dcqsns4HddqzKWs6w9
-         KaCLR9lq8TEadhh8dF47aDR7rGHOdTZ98HAM0Lc2r865dOWBtyL2NKFKre8+ZQgCABiB
-         9vylbnah2xuq0MnRxFfTvcU2o58c0Id8jT+YnWonOTIk84sjuNQEOO2cXt9DPxAfodUt
-         D0YqaHVF6KYUb83PDJueJ73mZ7s49/IHWHUASjbQ6LM2/mDRnGVFvvQwq3Qhen9mdG6H
-         exGg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703597929; x=1704202729;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=vuMqR9Rwybi6ENHNRAU+EjQWuJolmn+LEd8yiJfS37U=;
-        b=n8WEVhQ8DQm8kVW2FsTM0ZEyTL98gSo4u9Z6oXv14atoj90ZfQ2/X6tyPB6UVQjxvM
-         b5sUfjILBOpZzP6/IcwFEsSYvSa3+DsE3e56QxQfHugK5PjScPIGMF0G5D2BGtoqPnwW
-         MznRYXh69NPb/A0zKpP9ZTaDVxjBtVuJV28d1XPStrR4D5sW1zWHKW/0F5JcvbnTTGoe
-         Zbqp5GhfnV+sKn0tfn87iszUu8Z8PKYeYhzC8yHMY13Hv4AF0W72DRjFW/SZFa9whgGr
-         IE9LQpvcs9Dkh2szEYXBEFPIyhQ6KDlrlubmSx+rz9uOMlgbrsCh75/6TQ1z7S3w6WVi
-         Ok6A==
-X-Gm-Message-State: AOJu0YznPqB4Wz366xRZetYKkHckhQYd6aGmWKqxeu2+vxmPNKCpjNFK
-	ZNTPpnDsekia7J0hE9D9vRUY5u/jvNmTTw==
-X-Google-Smtp-Source: AGHT+IF/z9T/ozVBM07PXqtUZCL3vgUYzDGhf0tHXbGOqHTv7Y4u3pb9TshIJzdJwVzN9eBeHRoDRg==
-X-Received: by 2002:ac8:5986:0:b0:425:9224:3990 with SMTP id e6-20020ac85986000000b0042592243990mr9878534qte.4.1703597929626;
-        Tue, 26 Dec 2023 05:38:49 -0800 (PST)
-Received: from [192.168.0.22] ([78.10.206.178])
-        by smtp.gmail.com with ESMTPSA id b17-20020ac86791000000b0042545901450sm6030030qtp.72.2023.12.26.05.38.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 26 Dec 2023 05:38:49 -0800 (PST)
-Message-ID: <bc6b5c5e-9396-4740-af99-1eda4275526b@linaro.org>
-Date: Tue, 26 Dec 2023 14:38:44 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40C454CB4D;
+	Tue, 26 Dec 2023 15:04:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 3BQEunsf009063;
+	Tue, 26 Dec 2023 15:04:00 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=TOu5l67OHZpaaNzV5lQq5MTBuTMA/WAQA8Frk7a1TQU=; b=Mn
+	nfRdyUx0N9m6Y7Ciitz0CwNMJe+eddanL61N7Fnr803KjIhLYlZFElkQjjqKHR6E
+	VZvLA0zxZ9UCCm2I6JKZSpVc1MyM90I3xmlFMz3ocNVkkl2aajG9cLJ0WD6WYiZE
+	uGtyzoD1J5/P2u26o+Db1fNnTUc5BWc49Rv1I/X2JktzhrgSneDY5wickc+fWGOY
+	yqEoenqVfvrAqkClFJ3fpeaEfj6yTdVhIHvaSZ4XYHirbUZjcQRDyERqOz8Wxh/S
+	kWqmL1kSimTnmG2mv7y67RJ3Y8OHtPmqaaPBVrNiMyPCUQ8lShsQLAjz8eJQDUuO
+	kx0OGPJNg+OYNx8GIr/Q==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3v80kfr2rj-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 26 Dec 2023 15:04:00 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3BQF3xBO030523
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 26 Dec 2023 15:03:59 GMT
+Received: from [10.216.22.80] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Tue, 26 Dec
+ 2023 07:03:53 -0800
+Message-ID: <a284c13d-b55a-467d-8756-c41b0f913df3@quicinc.com>
+Date: Tue, 26 Dec 2023 20:33:49 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,97 +56,107 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC 16/16] riscv: dts: starfive: jh8100: Add clocks and resets
- nodes
+Subject: Re: [PATCH v5 1/2] dt-bindings: usb: dwc3: Clean up hs_phy_irq in
+ binding
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Konrad Dybcio" <konrad.dybcio@linaro.org>,
+        Wesley Cheng
+	<quic_wcheng@quicinc.com>,
+        Johan Hovold <johan@kernel.org>,
+        Bjorn Andersson
+	<quic_bjorande@quicinc.com>
+CC: <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Thinh Nguyen
+	<Thinh.Nguyen@synopsys.com>, <quic_ppratap@quicinc.com>,
+        <quic_jackp@quicinc.com>, Andy Gross <agross@kernel.org>
+References: <20231222063648.11193-1-quic_kriskura@quicinc.com>
+ <20231222063648.11193-2-quic_kriskura@quicinc.com>
+ <e6419898-0d77-4286-a04b-7240eb90d8df@linaro.org>
+ <268f9f54-8b2a-42bb-9a5d-10bd930cb282@quicinc.com>
+ <55c478c7-abcc-4487-b81c-479df47d5666@linaro.org>
+ <67c7c84c-c631-468e-ae67-1c31d41a605b@quicinc.com>
+ <efdf2923-4669-409f-b5c4-d5b95009309f@linaro.org>
 Content-Language: en-US
-To: Sia Jee Heng <jeeheng.sia@starfivetech.com>, kernel@esmil.dk,
- conor@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
- mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de,
- emil.renner.berthing@canonical.com, hal.feng@starfivetech.com,
- xingyu.wu@starfivetech.com
-Cc: linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
- leyfoon.tan@starfivetech.com
-References: <20231226053848.25089-1-jeeheng.sia@starfivetech.com>
- <20231226053848.25089-17-jeeheng.sia@starfivetech.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231226053848.25089-17-jeeheng.sia@starfivetech.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+From: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
+In-Reply-To: <efdf2923-4669-409f-b5c4-d5b95009309f@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: kymk9fiVJgoZRPm7WR5bS12xF5mUxhap
+X-Proofpoint-GUID: kymk9fiVJgoZRPm7WR5bS12xF5mUxhap
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-12-09_01,2023-12-07_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 impostorscore=0
+ mlxlogscore=573 malwarescore=0 clxscore=1015 priorityscore=1501 mlxscore=0
+ spamscore=0 lowpriorityscore=0 adultscore=0 bulkscore=0 suspectscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2311290000
+ definitions=main-2312260114
 
-On 26/12/2023 06:38, Sia Jee Heng wrote:
-> Add SYSCRG/SYSCRG-NE/SYSCRG-NW/SYSCRG-SW/AONCRG clock and reset
-> nodes for JH8100 RISC-V SoC.
+
+
+On 12/26/2023 5:52 PM, Krzysztof Kozlowski wrote:
+
+>>>
+>>> This does not answer why, you sc8280xp and x1e80100 not get one optional
+>>> interrupt. I asked "why" you are doing this change. Why do you need it?
+>>> What is the rationale?
+>>>
+>>> Then I grunted about unmanageable commit, because all my troubles to
+>>> review it are the effect of it: it is very difficult to read. It is also
+>>> difficult for you, because you keep making here mistakes. So if you
+>>> cannot write this commit properly and I cannot review it, then it is way
+>>> over-complicated, don't you think? But this is still second problem
+>>> here, don't ignore the fist - "why?"
+>>
+>> HI Krzysztof,
+>>
+>>    Thanks for the review.
+>>    To answer the question,
+>>
+>> "why ?" : The interrupts have been mis-interpreted on many platforms or
+>> many interrupts are missing.
 > 
-> Signed-off-by: Sia Jee Heng <jeeheng.sia@starfivetech.com>
-> Reviewed-by: Ley Foon Tan <leyfoon.tan@starfivetech.com>
-> ---
+> I asked about these two specific platforms. Please explain these
+> changes. Above is so generic that tells me nothing.
+> 
 
-...
+Is the question, "Why do x1e80100 and sc8280 don't have hs_phy_irq ?"
+If so, I checked the SC8280 HW specifics and I see one small error. The 
+name was printed wrong. I got it from another source. Will move sc8280 
+to list having 5 interrupts. As per x1e80100, I wasn't able to get my 
+hands on the hw specifics and I followed the following link by Abel Vesa:
 
->  		compatible = "simple-bus";
->  		interrupt-parent = <&plic>;
-> @@ -357,6 +563,99 @@ uart4: serial@121a0000  {
->  			status = "disabled";
->  		};
->  
-> +		necrg: necrg@12320000 {
+https://lore.kernel.org/r/20231214-x1e80100-usb-v1-1-c22be5c0109e@linaro.org
 
-This is a friendly reminder during the review process.
+As per the above patch, x1e80100 had only 4 interrupts.
+For ipq5332, it has no hs_phy_irq and so I kept it under this section.
 
-It seems my or other reviewer's previous comments were not fully
-addressed. Maybe the feedback got lost between the quotes, maybe you
-just forgot to apply it. Please go back to the previous discussion and
-either implement all requested changes or keep discussing them.
+>>
+>> Now, if I am adding the missing interrupts, I need to segregate targets
+>> also into respective buckets in the same patch and that is what making
+>> this patch a little complicated. Is it possible / acceptable to split
+>> this into two patches if this is the case. Can you help with suggestions
+>> from your end ? Or may be I am understanding your question wrong ? 😅
+> 
+> Split the patch into manageable chunks.
+> 
 
-Thank you.
+I will try to split it up, but not sure if it is a good idea. I say so 
+because all permutations should be added in single patch and I can't 
+split that.
 
-Best regards,
-Krzysztof
+Regards,
+Krishna,
 
 
