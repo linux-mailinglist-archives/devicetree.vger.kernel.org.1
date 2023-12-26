@@ -1,53 +1,55 @@
-Return-Path: <devicetree+bounces-28497-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28498-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 576D281E822
-	for <lists+devicetree@lfdr.de>; Tue, 26 Dec 2023 16:45:25 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6532581E834
+	for <lists+devicetree@lfdr.de>; Tue, 26 Dec 2023 16:57:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7FBE41C21164
-	for <lists+devicetree@lfdr.de>; Tue, 26 Dec 2023 15:45:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2236A283075
+	for <lists+devicetree@lfdr.de>; Tue, 26 Dec 2023 15:57:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E59574F20B;
-	Tue, 26 Dec 2023 15:45:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A7004F5E1;
+	Tue, 26 Dec 2023 15:55:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HcbwyvX0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aOxcgEBO"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C04BC4F207;
-	Tue, 26 Dec 2023 15:45:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 19656C433C8;
-	Tue, 26 Dec 2023 15:45:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 714794F217;
+	Tue, 26 Dec 2023 15:55:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 419B4C433C7;
+	Tue, 26 Dec 2023 15:55:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1703605519;
-	bh=NhmamG9+fHayVcbk79Rh5B4IaSWcmsGnW4aUZA8zJyU=;
+	s=k20201202; t=1703606119;
+	bh=8JGzOcRQ7km+o0csOcujVKk27CfJNmOQwuEWroC2gDE=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=HcbwyvX0vsblx50SKZKV3SZKdVVYSi+MKE8TeMyF8gCLIzzcIjW1FkEqYr1G6X9NI
-	 DcmgAISjZGRszhQY9EXn+Hr74NNhV8eeLLdJkMIulAycK7btcah2yzVKqGKDEojqYv
-	 qGLE0wbhXY/NGDyiOsQh/Kk14pjYKlK4auEZRU6LeLE+1r3isiApFStPNwChYZpgLD
-	 D/Jxhcp15msfSE17epvZadmpJkFCNL/g9r4FfUBlCG0YLx67YQsxy/hFRnMxoXsrMM
-	 4vrfi444ZPgXJEZ3skv+e/flB2t7Az0SKjgqmUGtmMtayKj6w6EQnvuMKMDajkIuGI
-	 LFETtXEXjyzkw==
-Date: Tue, 26 Dec 2023 15:45:09 +0000
+	b=aOxcgEBOXJGr4LDyhvYfPoVeSQFKanrzD1xXIpTd9pSWy3d+19S3ZsbVECc6GKHbi
+	 u55KkVdmoc+z51dPmUMmM47Iy6wD/5vfrddwJ8BRXQrqiHAWMTqV08RML98T2AxuGi
+	 XF3iX/RrrMAgKNrEkKFsbmDo4kwcxyYV6MznPixOtijfM2qrurWCkpxSSBAjXSOFdd
+	 ynNq4U+mSSPirE+Dxh1e+YtafIIiCBG/TB1CD+mPHfEMbdeBACKHpe3ABDcp24OuNt
+	 w8Xfnl653q7VyXfeNdcRaOG2kOZa3lZe28sX+a3yddpX0QYnvufehDQCRvN2UiHg31
+	 1nh3r6cdJ3eXQ==
+Date: Tue, 26 Dec 2023 15:55:08 +0000
 From: Jonathan Cameron <jic23@kernel.org>
-To: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
-Cc: Marcelo Schmitt <marcelo.schmitt@analog.com>, apw@canonical.com,
- joe@perches.com, dwaipayanray1@gmail.com, lukas.bulwahn@gmail.com,
- paul.cercueil@analog.com, Michael.Hennerich@analog.com, lars@metafoo.de,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- dan.carpenter@linaro.org, dlechner@baylibre.com, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 11/11] MAINTAINERS: Add MAINTAINERS entry for AD7091R
-Message-ID: <20231226154509.450c5e40@jic23-huawei>
-In-Reply-To: <ZYWFwVzQN4vU7FdG@debian-BULLSEYE-live-builder-AMD64>
-References: <cover.1703013352.git.marcelo.schmitt1@gmail.com>
-	<4247e653354f8eb362264189db24c612d5e4e131.1703013352.git.marcelo.schmitt1@gmail.com>
-	<20231221165947.6c64b2c5@jic23-huawei>
-	<ZYWFwVzQN4vU7FdG@debian-BULLSEYE-live-builder-AMD64>
+To: Nuno =?UTF-8?B?U8Oh?= <noname.nuno@gmail.com>
+Cc: Nuno Sa <nuno.sa@analog.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>, Michael
+ Hennerich <Michael.Hennerich@analog.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+ <conor+dt@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, Frank Rowand
+ <frowand.list@gmail.com>, Olivier Moysan <olivier.moysan@foss.st.com>
+Subject: Re: [PATCH v4 2/8] dt-bindings: adc: axi-adc: deprecate
+ 'adi,adc-dev'
+Message-ID: <20231226155508.388ae670@jic23-huawei>
+In-Reply-To: <0412e07926d67490a66d0aac19ecca734ce54426.camel@gmail.com>
+References: <20231220-iio-backend-v4-0-998e9148b692@analog.com>
+	<20231220-iio-backend-v4-2-998e9148b692@analog.com>
+	<20231221172538.6477b843@jic23-huawei>
+	<0412e07926d67490a66d0aac19ecca734ce54426.camel@gmail.com>
 X-Mailer: Claws Mail 4.2.0 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -55,77 +57,110 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, 22 Dec 2023 09:49:05 -0300
-Marcelo Schmitt <marcelo.schmitt1@gmail.com> wrote:
+On Fri, 22 Dec 2023 10:07:34 +0100
+Nuno S=C3=A1 <noname.nuno@gmail.com> wrote:
 
-> On 12/21, Jonathan Cameron wrote:
-> > On Tue, 19 Dec 2023 17:32:59 -0300
-> > Marcelo Schmitt <marcelo.schmitt@analog.com> wrote:
-> >   
-> > > The driver for AD7091R was added in
-> > > ca693001: iio: adc: Add support for AD7091R5 ADC
-> > > but no MAINTAINERS file entry was added for it since then.
-> > > Add a proper MAINTAINERS file entry for the AD7091R driver.
-> > > 
-> > > Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>  
-> > Hi Marcelo
-> > 
-> > The series looks good to me now. However timing is a bit against
-> > us because I won't squeeze in another pull request (unless the
-> > kernel release is delayed for some and Linus strong hints at that
-> > this weekend).
-> > 
-> > What I'll probably do with this series is pull out the first 2 patches
-> > as fixes to go in either at the back end of the merge window or just
-> > after, then pick the rest of the patches up for 6.9.
-> > 
-> > If I seem to have lost track of them in about the 2nd week of January,
-> > feel free to poke me. 
-> >   
-> okay, sounds good.
-Seems that Linus has confirmed he'll do an rc8. So I might get a final
-pull request in.  So with that in mind I've picked this whole series up.
+> On Thu, 2023-12-21 at 17:25 +0000, Jonathan Cameron wrote:
+> > On Wed, 20 Dec 2023 16:34:05 +0100
+> > Nuno Sa <nuno.sa@analog.com> wrote:
+> >  =20
+> > > 'adi,adc-dev' is now deprecated and must not be used anymore. Hence,
+> > > also remove it from being required. =20
+> >=20
+> > With my 'specifications language' brain engaged (also know as pedantic)
+> > I think this is a 'should' not a 'must' case. You aren't breaking
+> > backwards compatibility just advising moving to the newer / better inte=
+rface.
+> >  =20
+>=20
+> Well, you surely know better than me as a native speaker :)
+>=20
+> >  =20
+> > >=20
+> > > The reason why it's being deprecated is because the axi-adc CORE is n=
+ow
+> > > an IIO service provider hardware (IIO backends) for consumers to make=
+ use
+> > > of. Before, the logic with 'adi,adc-dev' was the opposite (it was kind
+> > > of consumer referencing other nodes/devices) and that proved to be wr=
+ong
+> > > and to not scale.
+> > >=20
+> > > Now, IIO consumers of this hardware are expected to reference it usin=
+g the
+> > > io-backends property.
+> > >=20
+> > > Signed-off-by: Nuno Sa <nuno.sa@analog.com>
+> > > ---
+> > > =C2=A0Documentation/devicetree/bindings/iio/adc/adi,axi-adc.yaml | 4 =
++---
+> > > =C2=A01 file changed, 1 insertion(+), 3 deletions(-)
+> > >=20
+> > > diff --git a/Documentation/devicetree/bindings/iio/adc/adi,axi-adc.ya=
+ml
+> > > b/Documentation/devicetree/bindings/iio/adc/adi,axi-adc.yaml
+> > > index 9996dd93f84b..835b40063343 100644
+> > > --- a/Documentation/devicetree/bindings/iio/adc/adi,axi-adc.yaml
+> > > +++ b/Documentation/devicetree/bindings/iio/adc/adi,axi-adc.yaml
+> > > @@ -39,12 +39,12 @@ properties:
+> > > =C2=A0=C2=A0=C2=A0=C2=A0 $ref: /schemas/types.yaml#/definitions/phand=
+le
+> > > =C2=A0=C2=A0=C2=A0=C2=A0 description:
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 A reference to a the actual ADC =
+to which this FPGA ADC interfaces to.
+> > > +=C2=A0=C2=A0=C2=A0 deprecated: true
+> > > =C2=A0
+> > > =C2=A0required:
+> > > =C2=A0=C2=A0 - compatible
+> > > =C2=A0=C2=A0 - dmas
+> > > =C2=A0=C2=A0 - reg
+> > > -=C2=A0 - adi,adc-dev =20
+> >=20
+> > Dropping it from required is fine, but do we have a new condition where=
+ one or the
+> > other
+> > should be required?=C2=A0 If so good to add the dt-binding magic to enf=
+orce that. Look
+> > for a oneOf combined with required. There are a few IIO examples of thi=
+s either or
+> > type required. You may want to then enforce that both are not provided =
+though I
+> > guess we perhaps don't care - the driver will just prioritise one appro=
+ach over the
+> > other.
+> >  =20
+>=20
+> Hmm, the thing is that io-backends is applied in the frontend device (so =
+other
+> binding) and in here we should only have the adi,adc-dev which is now dep=
+recated so
+> I'm not sure how that would look like?
 
-Applied to the togreg branch of iio.git and pushed out as testing for
-0-day to take a quick look at it.
+Ah. I'd somehow failed to register the property is now in the other device.=
+=20
+Not much we can do then :(
 
-Thanks,
+>=20
+> I think new users of the deprecated property are very unlikely unless the=
+y choose to
+> ignore the deprecated warning. As for old users (if they add the new one =
+and don't
+> remove this one, the new one will have priority). But I'm still confident=
+ there are
+> no users of this out there :(
+
+Sometimes it's easier to cater for non existent users than get into too much
+debate on whether they exist :)
 
 Jonathan
 
-> Also, will do the change to ABI doc in a separate patch so this set doesn't get
-> blocked by the mistakes I will make on the ABI patch. :)
-> 
-> Thanks,
-> Marcelo
-> 
-> > Jonathan  
-> > > ---
-> > >  MAINTAINERS | 8 ++++++++
-> > >  1 file changed, 8 insertions(+)
-> > > 
-> > > diff --git a/MAINTAINERS b/MAINTAINERS
-> > > index 4eddc4212f2b..3473cfbac826 100644
-> > > --- a/MAINTAINERS
-> > > +++ b/MAINTAINERS
-> > > @@ -1126,6 +1126,14 @@ F:	Documentation/ABI/testing/sysfs-bus-iio-adc-ad4130
-> > >  F:	Documentation/devicetree/bindings/iio/adc/adi,ad4130.yaml
-> > >  F:	drivers/iio/adc/ad4130.c
-> > >  
-> > > +ANALOG DEVICES INC AD7091R DRIVER
-> > > +M:	Marcelo Schmitt <marcelo.schmitt@analog.com>
-> > > +L:	linux-iio@vger.kernel.org
-> > > +S:	Supported
-> > > +W:	http://ez.analog.com/community/linux-device-drivers
-> > > +F:	Documentation/devicetree/bindings/iio/adc/adi,ad7091r*
-> > > +F:	drivers/iio/adc/drivers/iio/adc/ad7091r*
-> > > +
-> > >  ANALOG DEVICES INC AD7192 DRIVER
-> > >  M:	Alexandru Tachici <alexandru.tachici@analog.com>
-> > >  L:	linux-iio@vger.kernel.org  
-> >   
+>=20
+>=20
+> - Nuno S=C3=A1
+>=20
+>=20
 
 
