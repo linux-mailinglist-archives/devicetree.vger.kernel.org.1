@@ -1,162 +1,131 @@
-Return-Path: <devicetree+bounces-28496-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28497-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F41F81E7E6
-	for <lists+devicetree@lfdr.de>; Tue, 26 Dec 2023 16:04:18 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 576D281E822
+	for <lists+devicetree@lfdr.de>; Tue, 26 Dec 2023 16:45:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 275D6B21EC0
-	for <lists+devicetree@lfdr.de>; Tue, 26 Dec 2023 15:04:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7FBE41C21164
+	for <lists+devicetree@lfdr.de>; Tue, 26 Dec 2023 15:45:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E812F4C3A8;
-	Tue, 26 Dec 2023 15:04:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E59574F20B;
+	Tue, 26 Dec 2023 15:45:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="MnnfRdyU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HcbwyvX0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40C454CB4D;
-	Tue, 26 Dec 2023 15:04:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 3BQEunsf009063;
-	Tue, 26 Dec 2023 15:04:00 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=TOu5l67OHZpaaNzV5lQq5MTBuTMA/WAQA8Frk7a1TQU=; b=Mn
-	nfRdyUx0N9m6Y7Ciitz0CwNMJe+eddanL61N7Fnr803KjIhLYlZFElkQjjqKHR6E
-	VZvLA0zxZ9UCCm2I6JKZSpVc1MyM90I3xmlFMz3ocNVkkl2aajG9cLJ0WD6WYiZE
-	uGtyzoD1J5/P2u26o+Db1fNnTUc5BWc49Rv1I/X2JktzhrgSneDY5wickc+fWGOY
-	yqEoenqVfvrAqkClFJ3fpeaEfj6yTdVhIHvaSZ4XYHirbUZjcQRDyERqOz8Wxh/S
-	kWqmL1kSimTnmG2mv7y67RJ3Y8OHtPmqaaPBVrNiMyPCUQ8lShsQLAjz8eJQDUuO
-	kx0OGPJNg+OYNx8GIr/Q==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3v80kfr2rj-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 26 Dec 2023 15:04:00 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3BQF3xBO030523
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 26 Dec 2023 15:03:59 GMT
-Received: from [10.216.22.80] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Tue, 26 Dec
- 2023 07:03:53 -0800
-Message-ID: <a284c13d-b55a-467d-8756-c41b0f913df3@quicinc.com>
-Date: Tue, 26 Dec 2023 20:33:49 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C04BC4F207;
+	Tue, 26 Dec 2023 15:45:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 19656C433C8;
+	Tue, 26 Dec 2023 15:45:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1703605519;
+	bh=NhmamG9+fHayVcbk79Rh5B4IaSWcmsGnW4aUZA8zJyU=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=HcbwyvX0vsblx50SKZKV3SZKdVVYSi+MKE8TeMyF8gCLIzzcIjW1FkEqYr1G6X9NI
+	 DcmgAISjZGRszhQY9EXn+Hr74NNhV8eeLLdJkMIulAycK7btcah2yzVKqGKDEojqYv
+	 qGLE0wbhXY/NGDyiOsQh/Kk14pjYKlK4auEZRU6LeLE+1r3isiApFStPNwChYZpgLD
+	 D/Jxhcp15msfSE17epvZadmpJkFCNL/g9r4FfUBlCG0YLx67YQsxy/hFRnMxoXsrMM
+	 4vrfi444ZPgXJEZ3skv+e/flB2t7Az0SKjgqmUGtmMtayKj6w6EQnvuMKMDajkIuGI
+	 LFETtXEXjyzkw==
+Date: Tue, 26 Dec 2023 15:45:09 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
+Cc: Marcelo Schmitt <marcelo.schmitt@analog.com>, apw@canonical.com,
+ joe@perches.com, dwaipayanray1@gmail.com, lukas.bulwahn@gmail.com,
+ paul.cercueil@analog.com, Michael.Hennerich@analog.com, lars@metafoo.de,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ dan.carpenter@linaro.org, dlechner@baylibre.com, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 11/11] MAINTAINERS: Add MAINTAINERS entry for AD7091R
+Message-ID: <20231226154509.450c5e40@jic23-huawei>
+In-Reply-To: <ZYWFwVzQN4vU7FdG@debian-BULLSEYE-live-builder-AMD64>
+References: <cover.1703013352.git.marcelo.schmitt1@gmail.com>
+	<4247e653354f8eb362264189db24c612d5e4e131.1703013352.git.marcelo.schmitt1@gmail.com>
+	<20231221165947.6c64b2c5@jic23-huawei>
+	<ZYWFwVzQN4vU7FdG@debian-BULLSEYE-live-builder-AMD64>
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/2] dt-bindings: usb: dwc3: Clean up hs_phy_irq in
- binding
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Konrad Dybcio" <konrad.dybcio@linaro.org>,
-        Wesley Cheng
-	<quic_wcheng@quicinc.com>,
-        Johan Hovold <johan@kernel.org>,
-        Bjorn Andersson
-	<quic_bjorande@quicinc.com>
-CC: <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Thinh Nguyen
-	<Thinh.Nguyen@synopsys.com>, <quic_ppratap@quicinc.com>,
-        <quic_jackp@quicinc.com>, Andy Gross <agross@kernel.org>
-References: <20231222063648.11193-1-quic_kriskura@quicinc.com>
- <20231222063648.11193-2-quic_kriskura@quicinc.com>
- <e6419898-0d77-4286-a04b-7240eb90d8df@linaro.org>
- <268f9f54-8b2a-42bb-9a5d-10bd930cb282@quicinc.com>
- <55c478c7-abcc-4487-b81c-479df47d5666@linaro.org>
- <67c7c84c-c631-468e-ae67-1c31d41a605b@quicinc.com>
- <efdf2923-4669-409f-b5c4-d5b95009309f@linaro.org>
-Content-Language: en-US
-From: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
-In-Reply-To: <efdf2923-4669-409f-b5c4-d5b95009309f@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: kymk9fiVJgoZRPm7WR5bS12xF5mUxhap
-X-Proofpoint-GUID: kymk9fiVJgoZRPm7WR5bS12xF5mUxhap
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-12-09_01,2023-12-07_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 impostorscore=0
- mlxlogscore=573 malwarescore=0 clxscore=1015 priorityscore=1501 mlxscore=0
- spamscore=0 lowpriorityscore=0 adultscore=0 bulkscore=0 suspectscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2311290000
- definitions=main-2312260114
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
+On Fri, 22 Dec 2023 09:49:05 -0300
+Marcelo Schmitt <marcelo.schmitt1@gmail.com> wrote:
 
+> On 12/21, Jonathan Cameron wrote:
+> > On Tue, 19 Dec 2023 17:32:59 -0300
+> > Marcelo Schmitt <marcelo.schmitt@analog.com> wrote:
+> >   
+> > > The driver for AD7091R was added in
+> > > ca693001: iio: adc: Add support for AD7091R5 ADC
+> > > but no MAINTAINERS file entry was added for it since then.
+> > > Add a proper MAINTAINERS file entry for the AD7091R driver.
+> > > 
+> > > Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>  
+> > Hi Marcelo
+> > 
+> > The series looks good to me now. However timing is a bit against
+> > us because I won't squeeze in another pull request (unless the
+> > kernel release is delayed for some and Linus strong hints at that
+> > this weekend).
+> > 
+> > What I'll probably do with this series is pull out the first 2 patches
+> > as fixes to go in either at the back end of the merge window or just
+> > after, then pick the rest of the patches up for 6.9.
+> > 
+> > If I seem to have lost track of them in about the 2nd week of January,
+> > feel free to poke me. 
+> >   
+> okay, sounds good.
+Seems that Linus has confirmed he'll do an rc8. So I might get a final
+pull request in.  So with that in mind I've picked this whole series up.
 
-On 12/26/2023 5:52 PM, Krzysztof Kozlowski wrote:
+Applied to the togreg branch of iio.git and pushed out as testing for
+0-day to take a quick look at it.
 
->>>
->>> This does not answer why, you sc8280xp and x1e80100 not get one optional
->>> interrupt. I asked "why" you are doing this change. Why do you need it?
->>> What is the rationale?
->>>
->>> Then I grunted about unmanageable commit, because all my troubles to
->>> review it are the effect of it: it is very difficult to read. It is also
->>> difficult for you, because you keep making here mistakes. So if you
->>> cannot write this commit properly and I cannot review it, then it is way
->>> over-complicated, don't you think? But this is still second problem
->>> here, don't ignore the fist - "why?"
->>
->> HI Krzysztof,
->>
->>    Thanks for the review.
->>    To answer the question,
->>
->> "why ?" : The interrupts have been mis-interpreted on many platforms or
->> many interrupts are missing.
+Thanks,
+
+Jonathan
+
+> Also, will do the change to ABI doc in a separate patch so this set doesn't get
+> blocked by the mistakes I will make on the ABI patch. :)
 > 
-> I asked about these two specific platforms. Please explain these
-> changes. Above is so generic that tells me nothing.
+> Thanks,
+> Marcelo
 > 
-
-Is the question, "Why do x1e80100 and sc8280 don't have hs_phy_irq ?"
-If so, I checked the SC8280 HW specifics and I see one small error. The 
-name was printed wrong. I got it from another source. Will move sc8280 
-to list having 5 interrupts. As per x1e80100, I wasn't able to get my 
-hands on the hw specifics and I followed the following link by Abel Vesa:
-
-https://lore.kernel.org/r/20231214-x1e80100-usb-v1-1-c22be5c0109e@linaro.org
-
-As per the above patch, x1e80100 had only 4 interrupts.
-For ipq5332, it has no hs_phy_irq and so I kept it under this section.
-
->>
->> Now, if I am adding the missing interrupts, I need to segregate targets
->> also into respective buckets in the same patch and that is what making
->> this patch a little complicated. Is it possible / acceptable to split
->> this into two patches if this is the case. Can you help with suggestions
->> from your end ? Or may be I am understanding your question wrong ? 😅
-> 
-> Split the patch into manageable chunks.
-> 
-
-I will try to split it up, but not sure if it is a good idea. I say so 
-because all permutations should be added in single patch and I can't 
-split that.
-
-Regards,
-Krishna,
+> > Jonathan  
+> > > ---
+> > >  MAINTAINERS | 8 ++++++++
+> > >  1 file changed, 8 insertions(+)
+> > > 
+> > > diff --git a/MAINTAINERS b/MAINTAINERS
+> > > index 4eddc4212f2b..3473cfbac826 100644
+> > > --- a/MAINTAINERS
+> > > +++ b/MAINTAINERS
+> > > @@ -1126,6 +1126,14 @@ F:	Documentation/ABI/testing/sysfs-bus-iio-adc-ad4130
+> > >  F:	Documentation/devicetree/bindings/iio/adc/adi,ad4130.yaml
+> > >  F:	drivers/iio/adc/ad4130.c
+> > >  
+> > > +ANALOG DEVICES INC AD7091R DRIVER
+> > > +M:	Marcelo Schmitt <marcelo.schmitt@analog.com>
+> > > +L:	linux-iio@vger.kernel.org
+> > > +S:	Supported
+> > > +W:	http://ez.analog.com/community/linux-device-drivers
+> > > +F:	Documentation/devicetree/bindings/iio/adc/adi,ad7091r*
+> > > +F:	drivers/iio/adc/drivers/iio/adc/ad7091r*
+> > > +
+> > >  ANALOG DEVICES INC AD7192 DRIVER
+> > >  M:	Alexandru Tachici <alexandru.tachici@analog.com>
+> > >  L:	linux-iio@vger.kernel.org  
+> >   
 
 
