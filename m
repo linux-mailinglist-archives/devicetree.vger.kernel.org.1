@@ -1,141 +1,172 @@
-Return-Path: <devicetree+bounces-28476-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28477-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9729881E729
-	for <lists+devicetree@lfdr.de>; Tue, 26 Dec 2023 12:45:00 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 09FB281E745
+	for <lists+devicetree@lfdr.de>; Tue, 26 Dec 2023 13:13:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3570A282D2F
-	for <lists+devicetree@lfdr.de>; Tue, 26 Dec 2023 11:44:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 746EF1F224F8
+	for <lists+devicetree@lfdr.de>; Tue, 26 Dec 2023 12:13:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EF6C4E1D3;
-	Tue, 26 Dec 2023 11:44:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EF4B4E612;
+	Tue, 26 Dec 2023 12:12:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="L/O5eTGc"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ra0guoUs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f42.google.com (mail-ot1-f42.google.com [209.85.210.42])
+Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C436D4E1CE
-	for <devicetree@vger.kernel.org>; Tue, 26 Dec 2023 11:44:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=huaqin.corp-partner.google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huaqin.corp-partner.google.com
-Received: by mail-ot1-f42.google.com with SMTP id 46e09a7af769-6dbb8698312so1672718a34.3
-        for <devicetree@vger.kernel.org>; Tue, 26 Dec 2023 03:44:53 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9B514E60D
+	for <devicetree@vger.kernel.org>; Tue, 26 Dec 2023 12:12:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-5537114380bso3466639a12.3
+        for <devicetree@vger.kernel.org>; Tue, 26 Dec 2023 04:12:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1703591092; x=1704195892; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=KPcUV+tt+3NONa1U+XeUunPSpE35CKRRbX0A29CO2cg=;
-        b=L/O5eTGcms+ZfmnFDP+RIg3EtW6sOQ5wHsEmiHqYFD0xzNEDmkpkS9eYCB6181ZUTx
-         5YGEvu3iz+ccAZPYcaJQCOVXoopwuvW9rrgcBjhfMGLugSOGl5gtEDWzAn3IQ+OXYa9I
-         zBCqHFLi/pwB3fPvFYzQU7XwjceQyYyyw0lQaOR6whsvHyGqwiy/BJP+Zn9ZXLwB1o8o
-         kL2fYHoDCJlwuN9SceMrgVA2Cy14egjuUV8RugwBE0g40OKFNxK+LVZ6i3KKO6hN2Aa1
-         zO3DRwmL5ZyqhhxgyGRni1yng/cRJQKtpyLxmVQoXmcYGCAslrWuGZdZZXW0xD+O+cf7
-         uDGg==
+        d=linaro.org; s=google; t=1703592773; x=1704197573; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=jtaM2b6oovv3VEFVs42AfAV1uVRd9vO3ycvBmWCiu84=;
+        b=ra0guoUs9ksspI4cmT0Xdw39lEr2kYSWFp5wYIv1OpZGZECW9KKNNJzA8g68SgcvYW
+         QBNHpJdt91v2V7y4GziWi13hbfNyqDDQzUgCfV82YiOeF6SJAAVnIXsz9C4suC0nyvGz
+         pRmF0PGINCynxXbyDlq0hdGyNeb0JxAMA5rzTnTm+dRWBkV19eaYyjW5S7Kr1sgblUod
+         7kY4Kb6JFuIYYW+y/eLP3XFKjcmiB3C6ATjrbIfl5Hk939WAJzSErwAx9z+PW3winQNQ
+         ucdozg+Tdf38PfbrCrEsYIkOyPLV1GLXKc6y2JoYVHyJhyRX8fSExo4fJADD66K3K6sA
+         1saw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703591093; x=1704195893;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=KPcUV+tt+3NONa1U+XeUunPSpE35CKRRbX0A29CO2cg=;
-        b=inmVSH3rQdomh0k+SiMnaVRhk4nK3C1tEOdGbKF7cztq9eGC0sTp/HZ3Iaxy65XDSH
-         s5NZPfSy07dhf4NP0825E3HQC3eAPgsZnheBAPmxNiJylpVrvLlTpMtDA/PedevPtxMv
-         Ol3iZwFbeuwgSWQS00Hi7+rhxHocDe9zipl8KFzk+iDRstQ/tqpD6KHVJD0TicGx6ucU
-         EjNBnUDaZFlF7Rg/gsyI5m95Txy3cwlqNcEvpaR3PJsA35z/n2lCXfxmCMRnSRw9/pEH
-         clU5mO1OfGc6FJLATY0XK/sqJICW0ehIt8kl37ymQfVYjxPHvGtJjkiSFHhN75UJsEc1
-         JFgw==
-X-Gm-Message-State: AOJu0YwYtNCHVCVbDneGQoWfMhlYS8qY1GrZSCZcc3G1A89/Z61Pj4j/
-	AeljZdGWXfsQx2vQ/GpumFEbhfIL2PtgLtgh5wV7V6xN7uuRyg==
-X-Google-Smtp-Source: AGHT+IGi4FFxW1nJv9aEdgOjeYJIKhNTegQWlpjdTUBCzIKNejzwhSHMfoh3PxReq2D/ulBJI+0xxaVpJ7YGSsYBy58=
-X-Received: by 2002:a05:6830:3486:b0:6d9:a19e:9ae3 with SMTP id
- c6-20020a056830348600b006d9a19e9ae3mr2467542otu.62.1703591092676; Tue, 26 Dec
- 2023 03:44:52 -0800 (PST)
+        d=1e100.net; s=20230601; t=1703592773; x=1704197573;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=jtaM2b6oovv3VEFVs42AfAV1uVRd9vO3ycvBmWCiu84=;
+        b=lD+35gCddnLCi8jXiHWkUkalz7HTV4oRpB81cxuymVeBWh++oCALRyWJv6wT3K16TP
+         YJUYqf3vlsk+0UacaSHdQkBTMEuZKHGHGnU4/sakD8BjvcWNMle2bAaDJTEKr/hLhQpH
+         mWvMj4vcyyJXKFFo0yfj4uwwJef5q5GQNttV2M73bBDKtpp/gus2+xO6HnA4Dw1hca+Z
+         Y6sy9lHofn8Hhrwn7M5ZWMZejHvXiZWMxZjKfVZ7F9IhRlJm8sgKcWaWNBAWJHvNDvhu
+         FCI8TzCIevLj1sGD9aGTcR8xzrUR2QTj2iOYnCjShJl+FGJCFrzweXgiVMpYU6aleXDR
+         7iVw==
+X-Gm-Message-State: AOJu0YyZOjdjBjK8XYhej3+ASkS4k2kFgGdz6RsgDI6yjga1e34wvjlK
+	wiyJl66XoyJe9y1Y6HvIUjaNEk1HC7GMXw==
+X-Google-Smtp-Source: AGHT+IGcuTRkPdUjqK/2XW9d9E54O3M/PJdMINhKx2QyTqfPzAgtuPfFO0iDS9hxY+DwoZcd3aMXKw==
+X-Received: by 2002:a05:6402:888:b0:554:ca00:287c with SMTP id e8-20020a056402088800b00554ca00287cmr2664280edy.61.1703592772905;
+        Tue, 26 Dec 2023 04:12:52 -0800 (PST)
+Received: from [192.168.0.22] ([78.10.206.178])
+        by smtp.gmail.com with ESMTPSA id p2-20020a056402044200b005553a8bb61dsm193434edw.87.2023.12.26.04.12.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 26 Dec 2023 04:12:52 -0800 (PST)
+Message-ID: <0f1f0991-9ad9-4216-afc8-8340eddb1ad9@linaro.org>
+Date: Tue, 26 Dec 2023 13:12:50 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231226023737.25618-1-xiazhengqiao@huaqin.corp-partner.google.com>
- <20231226023737.25618-2-xiazhengqiao@huaqin.corp-partner.google.com> <b415e6d7-d69f-4fc8-8b4f-13e942859ead@linaro.org>
-In-Reply-To: <b415e6d7-d69f-4fc8-8b4f-13e942859ead@linaro.org>
-From: Zhengqiao Xia <xiazhengqiao@huaqin.corp-partner.google.com>
-Date: Tue, 26 Dec 2023 19:44:40 +0800
-Message-ID: <CADYyEwR9knAAjdZA3fN_dLbW2LkK0Eny7Nn14n4LCLGZLx6xNA@mail.gmail.com>
-Subject: Re: [v2 1/2] dt-bindings: HID: i2c-hid: elan: Introduce bindings for
- Ilitek ili2901
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, dmitry.torokhov@gmail.com, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, jikos@kernel.org, 
-	benjamin.tissoires@redhat.com, dianders@chromium.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: iio: adc: rtq6056: add support for the
+ whole RTQ6056 family
+To: ChiYuan Huang <cy_huang@richtek.com>
+Cc: Jonathan Cameron <jic23@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
+ Rob Herring <robh+dt@kernel.org>,
+ =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <1703562468-29052-1-git-send-email-cy_huang@richtek.com>
+ <1703562468-29052-2-git-send-email-cy_huang@richtek.com>
+ <9715ed9d-7edf-430c-808c-00e7748bc59a@linaro.org>
+ <20231226111921.GA22684@linuxcarl2.richtek.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzTRLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+wsGUBBMBCgA+FiEE
+ m9B+DgxR+NWWd7dUG5NDfTtBYpsFAmI+BxMCGwMFCRRfreEFCwkIBwIGFQoJCAsCBBYCAwEC
+ HgECF4AACgkQG5NDfTtBYptgbhAAjAGunRoOTduBeC7V6GGOQMYIT5n3OuDSzG1oZyM4kyvO
+ XeodvvYv49/ng473E8ZFhXfrre+c1olbr1A8pnz9vKVQs9JGVa6wwr/6ddH7/yvcaCQnHRPK
+ mnXyP2BViBlyDWQ71UC3N12YCoHE2cVmfrn4JeyK/gHCvcW3hUW4i5rMd5M5WZAeiJj3rvYh
+ v8WMKDJOtZFXxwaYGbvFJNDdvdTHc2x2fGaWwmXMJn2xs1ZyFAeHQvrp49mS6PBQZzcx0XL5
+ cU9ZjhzOZDn6Apv45/C/lUJvPc3lo/pr5cmlOvPq1AsP6/xRXsEFX/SdvdxJ8w9KtGaxdJuf
+ rpzLQ8Ht+H0lY2On1duYhmro8WglOypHy+TusYrDEry2qDNlc/bApQKtd9uqyDZ+rx8bGxyY
+ qBP6bvsQx5YACI4p8R0J43tSqWwJTP/R5oPRQW2O1Ye1DEcdeyzZfifrQz58aoZrVQq+innR
+ aDwu8qDB5UgmMQ7cjDSeAQABdghq7pqrA4P8lkA7qTG+aw8Z21OoAyZdUNm8NWJoQy8m4nUP
+ gmeeQPRc0vjp5JkYPgTqwf08cluqO6vQuYL2YmwVBIbO7cE7LNGkPDA3RYMu+zPY9UUi/ln5
+ dcKuEStFZ5eqVyqVoZ9eu3RTCGIXAHe1NcfcMT9HT0DPp3+ieTxFx6RjY3kYTGLOwU0EVUNc
+ NAEQAM2StBhJERQvgPcbCzjokShn0cRA4q2SvCOvOXD+0KapXMRFE+/PZeDyfv4dEKuCqeh0
+ hihSHlaxTzg3TcqUu54w2xYskG8Fq5tg3gm4kh1Gvh1LijIXX99ABA8eHxOGmLPRIBkXHqJY
+ oHtCvPc6sYKNM9xbp6I4yF56xVLmHGJ61KaWKf5KKWYgA9kfHufbja7qR0c6H79LIsiYqf92
+ H1HNq1WlQpu/fh4/XAAaV1axHFt/dY/2kU05tLMj8GjeQDz1fHas7augL4argt4e+jum3Nwt
+ yupodQBxncKAUbzwKcDrPqUFmfRbJ7ARw8491xQHZDsP82JRj4cOJX32sBg8nO2N5OsFJOcd
+ 5IE9v6qfllkZDAh1Rb1h6DFYq9dcdPAHl4zOj9EHq99/CpyccOh7SrtWDNFFknCmLpowhct9
+ 5ZnlavBrDbOV0W47gO33WkXMFI4il4y1+Bv89979rVYn8aBohEgET41SpyQz7fMkcaZU+ok/
+ +HYjC/qfDxT7tjKXqBQEscVODaFicsUkjheOD4BfWEcVUqa+XdUEciwG/SgNyxBZepj41oVq
+ FPSVE+Ni2tNrW/e16b8mgXNngHSnbsr6pAIXZH3qFW+4TKPMGZ2rZ6zITrMip+12jgw4mGjy
+ 5y06JZvA02rZT2k9aa7i9dUUFggaanI09jNGbRA/ABEBAAHCwXwEGAEKACYCGwwWIQSb0H4O
+ DFH41ZZ3t1Qbk0N9O0FimwUCYDzvagUJFF+UtgAKCRAbk0N9O0Fim9JzD/0auoGtUu4mgnna
+ oEEpQEOjgT7l9TVuO3Qa/SeH+E0m55y5Fjpp6ZToc481za3xAcxK/BtIX5Wn1mQ6+szfrJQ6
+ 59y2io437BeuWIRjQniSxHz1kgtFECiV30yHRgOoQlzUea7FgsnuWdstgfWi6LxstswEzxLZ
+ Sj1EqpXYZE4uLjh6dW292sO+j4LEqPYr53hyV4I2LPmptPE9Rb9yCTAbSUlzgjiyyjuXhcwM
+ qf3lzsm02y7Ooq+ERVKiJzlvLd9tSe4jRx6Z6LMXhB21fa5DGs/tHAcUF35hSJrvMJzPT/+u
+ /oVmYDFZkbLlqs2XpWaVCo2jv8+iHxZZ9FL7F6AHFzqEFdqGnJQqmEApiRqH6b4jRBOgJ+cY
+ qc+rJggwMQcJL9F+oDm3wX47nr6jIsEB5ZftdybIzpMZ5V9v45lUwmdnMrSzZVgC4jRGXzsU
+ EViBQt2CopXtHtYfPAO5nAkIvKSNp3jmGxZw4aTc5xoAZBLo0OV+Ezo71pg3AYvq0a3/oGRG
+ KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
+ fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20231226111921.GA22684@linuxcarl2.richtek.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Krzysztof=EF=BC=8C
+On 26/12/2023 12:19, ChiYuan Huang wrote:
+> On Tue, Dec 26, 2023 at 10:18:47AM +0100, Krzysztof Kozlowski wrote:
+>> On 26/12/2023 04:47, cy_huang@richtek.com wrote:
+>>> From: ChiYuan Huang <cy_huang@richtek.com>
+>>>
+>>> Add compatible support for RTQ6053 and RTQ6059.
+>>>
+>>> Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
+>>> ---
+>>>  .../devicetree/bindings/iio/adc/richtek,rtq6056.yaml         | 5 ++++-
+>>>  1 file changed, 4 insertions(+), 1 deletion(-)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/iio/adc/richtek,rtq6056.yaml b/Documentation/devicetree/bindings/iio/adc/richtek,rtq6056.yaml
+>>> index 88e008629ea8..d1e1f36d1972 100644
+>>> --- a/Documentation/devicetree/bindings/iio/adc/richtek,rtq6056.yaml
+>>> +++ b/Documentation/devicetree/bindings/iio/adc/richtek,rtq6056.yaml
+>>> @@ -25,7 +25,10 @@ description: |
+>>>  
+>>>  properties:
+>>>    compatible:
+>>> -    const: richtek,rtq6056
+>>> +    enum:
+>>> +      - richtek,rtq6053
+>>> +      - richtek,rtq6056
+>>
+>> Aren't these devices compatible? Your driver change says they are, so
+>> express compatibility with list here (and oneOf).
+>>
+> Thanks, I try to take other binding as the reference. One more question.
+> If rtq6053 is compatible with rtq6056, there's only chip package type difference.
+> Do I need to seperate it into a dedicated enum element?
+> Or just put it into one item and said this part number is compatible with rtq6056? 
 
-Thanks for your patient reply.
-
-On Tue, Dec 26, 2023 at 5:09=E2=80=AFPM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 26/12/2023 03:37, xiazhengqiao wrote:
-> > Because ilitek, ili2901 needs to use reset to pull down the time for 10=
-ms,
-> > so we need to control the reset, use this drive control.
->
-> I don't see relation between commit msg and the patch itself. Perhaps
-> you wanted to say you document new device which is different than elan on=
-e?
->
-
-Yes, I added a new touch, its timing is a little different from "elan,
-ekth6915", and other control logic is similar.
-I will re-commit my message.
-
->
-> Please use standard email subjects, so with the PATCH keyword in the
-> title. `git format-patch` helps here to create proper versioned patches.
-> Another useful tool is b4. Skipping the PATCH keyword makes filtering of
-> emails more difficult thus making the review process less convenient.
->
-> A nit, subject: drop second/last, redundant "bindings for". The
-> "dt-bindings" prefix is already stating that these are bindings.
->
-
-Thanks for your guidance, I will modify it.
-
-> >
-> > Signed-off-by: xiazhengqiao <xiazhengqiao@huaqin.corp-partner.google.co=
-m>
->
-> Your name still does not look like in other reply.
-
-Do you mean there is something wrong with my name? How about changing
-it to the following:
-Signed-off-by: Zhengqiao Xia  <xiazhengqiao@huaqin.corp-partner.google.com>
-
->
-> > ---
-> >  Documentation/devicetree/bindings/input/elan,ekth6915.yaml | 5 +++--
-> >  1 file changed, 3 insertions(+), 2 deletions(-)
-> >
->
->
-> What supplies does the device have? Not the driver, the device as
-> written in datasheet?
-
-This device only has a 3.3V power supply, I call it "vcc33".
-
->
-> Best regards,
-> Krzysztof
->
+See example-schema. You need enum and items, both in oneOf:.
 
 Best regards,
-Zhengqiao
+Krzysztof
+
 
