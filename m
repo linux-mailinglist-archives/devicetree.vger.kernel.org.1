@@ -1,124 +1,113 @@
-Return-Path: <devicetree+bounces-28470-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28471-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B07881E6D4
-	for <lists+devicetree@lfdr.de>; Tue, 26 Dec 2023 11:05:57 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9006081E6EB
+	for <lists+devicetree@lfdr.de>; Tue, 26 Dec 2023 11:40:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C52771F2117B
-	for <lists+devicetree@lfdr.de>; Tue, 26 Dec 2023 10:05:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 524E22828D6
+	for <lists+devicetree@lfdr.de>; Tue, 26 Dec 2023 10:40:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D919A4D5AD;
-	Tue, 26 Dec 2023 10:04:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="e8QONvcx"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 466E94CDEC;
+	Tue, 26 Dec 2023 10:40:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com [209.85.210.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 971564E611;
-	Tue, 26 Dec 2023 10:04:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f173.google.com with SMTP id d2e1a72fcca58-6d9aa51571fso1452985b3a.3;
-        Tue, 26 Dec 2023 02:04:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1703585096; x=1704189896; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=3IEhPd/dkELLSWHx9/UI11WCb/nRm3sD9uo5W9HMdhI=;
-        b=e8QONvcxxxBLJkEOa8axvE4dTup+gYAYy5gNuDKmxxMwEsBBF7pgu+p7RyVuM2YLSG
-         R7vtqwt5hCI3uhIZFbKjEP+QD7u2wNky8ewDCKo6zimUr+4Kn4yF4pSiaL4pEESWstfy
-         SoTBtU/MHv9zU7rZeR7TkEipt2O5ebEttpQte77dKlACuDYJ2m8UKdRJgnn0SFCzkuSs
-         mUBqBxUEvl8AQWS6Gkp+T6P3ahy4w/ztYvqRjiWFeIwPn3lLx8JTS8a5W7RtFRMGGKop
-         fUUaos7J+cFgo1BwlfjjKQJLN0P5UMbu2rZFlV4UUIo1Kt+XdFIc/k/hjFFbMjdtywKP
-         Ab3g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703585096; x=1704189896;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=3IEhPd/dkELLSWHx9/UI11WCb/nRm3sD9uo5W9HMdhI=;
-        b=ZltWDvpStTql2AvXQroDg+dBVY4VkUv/UHpmFu5I/B+3LIrDpYlhS8kLFSTFyoB9ib
-         Zy4h1/eI19IHqHpZmHyii9UN955vnweDlZAXHtMqbDPV+o4yw62BAqdk6UTcRDOQ/qFV
-         TlVjKndFD5ah/mzY79ta87fbs0NCOJ8oX1TOw6LcHcprvpJI/zJN971H0+wK3kIEq9Sf
-         i5uaCM/fAahgzSdbECW3o0gILEaiDEgutpbdvSs0lhH8Q2emQQGU3aaX0Zw+QrI1GFoP
-         m9HVt9FPx+i+qJm+tpjSFO0aMlmFyrbr3TPlW8e7hDREWRmpPNe88EX+Rw7B6Kq+2k+7
-         qmKw==
-X-Gm-Message-State: AOJu0Yz2haspqUdoZ+LdGUrbm+l7DQBLsG73FnY1QbxI7pg3zdbNmdH2
-	VYpDU+x7wB+dpcaIFHSGies=
-X-Google-Smtp-Source: AGHT+IFtcHmMvkIWZm0XAGMd4iDHhcps9Xe+KIP0yPpek9VntKwqgfRD9kl0KXQ5yHAgI0IB24JL8w==
-X-Received: by 2002:aa7:9828:0:b0:6d9:9793:37c6 with SMTP id q8-20020aa79828000000b006d9979337c6mr7300174pfl.8.1703585095520;
-        Tue, 26 Dec 2023 02:04:55 -0800 (PST)
-Received: from localhost ([46.3.240.105])
-        by smtp.gmail.com with ESMTPSA id z65-20020a636544000000b005b856fab5e9sm9040962pgb.18.2023.12.26.02.04.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Dec 2023 02:04:55 -0800 (PST)
-From: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
-To: a.zummo@towertech.it,
-	alexandre.belloni@bootlin.com,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor@kernel.org,
-	conor+dt@kernel.org,
-	chao.wei@sophgo.com,
-	unicorn_wang@outlook.com,
-	paul.walmsley@sifive.com,
-	palmer@dabbelt.com,
-	aou@eecs.berkeley.edu
-Cc: linux-rtc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	dlan@gentoo.org,
-	inochiama@outlook.com,
-	Jingbao Qiu <qiujingbao.dlmu@gmail.com>
-Subject: [PATCH v3 4/4] riscv: dts: sophgo: add rtc dt node for CV1800
-Date: Tue, 26 Dec 2023 18:04:31 +0800
-Message-Id: <20231226100431.331616-5-qiujingbao.dlmu@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20231226100431.331616-1-qiujingbao.dlmu@gmail.com>
-References: <20231226100431.331616-1-qiujingbao.dlmu@gmail.com>
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5B5B282F9;
+	Tue, 26 Dec 2023 10:40:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 301652F4;
+	Tue, 26 Dec 2023 02:41:10 -0800 (PST)
+Received: from minigeek.lan (unknown [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id D2C5E3F5A1;
+	Tue, 26 Dec 2023 02:40:22 -0800 (PST)
+Date: Tue, 26 Dec 2023 10:40:04 +0000
+From: Andre Przywara <andre.przywara@arm.com>
+To: Fuyao Kashizuku <fuyao@sjterm.com>
+Cc: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>, Florian Fainelli
+ <f.fainelli@gmail.com>, Wei Xu <xuwei5@hisilicon.com>, Gregory CLEMENT
+ <gregory.clement@bootlin.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+ linux-kernel@vger.kernel.org, =?UTF-8?B?6bqm5YGl5bu6?=
+ <maijianzhang@allwinnertech.com>
+Subject: Re: [PATCH v2] ARM: dts: sun8i: Open FETA40i-C regulator aldo1
+Message-ID: <20231226104004.0cec26a9@minigeek.lan>
+In-Reply-To: <ZYqRZev1g_mztff2@debian.cyg>
+References: <ZYqRZev1g_mztff2@debian.cyg>
+Organization: Arm Ltd.
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.31; x86_64-slackware-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-Add the rtc device tree node to cv1800 SoC.
+On Tue, 26 Dec 2023 16:40:05 +0800
+Fuyao Kashizuku <fuyao@sjterm.com> wrote:
 
-Signed-off-by: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
----
- arch/riscv/boot/dts/sophgo/cv1800b.dtsi | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+Hi,
 
-diff --git a/arch/riscv/boot/dts/sophgo/cv1800b.dtsi b/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
-index df40e87ee063..da9c42ef6fd4 100644
---- a/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
-+++ b/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
-@@ -114,6 +114,17 @@ plic: interrupt-controller@70000000 {
- 			riscv,ndev = <101>;
- 		};
- 
-+		syscon@5025000 {
-+			compatible = "sophgo,cv1800b-subsys", "syscon", "simple-mfd";
-+			reg = <0x05025000 0x2000>;
-+
-+			rtc {
-+				compatible = "sophgo,cv1800b-rtc";
-+				interrupts = <17 IRQ_TYPE_LEVEL_HIGH>;
-+				clocks = <&clk CLK_RTC_25M>;
-+			};
-+		};
-+
- 		clint: timer@74000000 {
- 			compatible = "sophgo,cv1800b-clint", "thead,c900-clint";
- 			reg = <0x74000000 0x10000>;
--- 
-2.25.1
+many thanks for the quick turnaround!
+
+> The USB PHY in the Allwinner R40 SoC seems to rely on voltage on the
+> VCC-TVIN/OUT supply pins for proper operation, on top of its own supply
+> voltage on VCC-USB. Without a 3.3V voltage supplied to VCC-TV*, USB
+> operation becomes unstable and can result in disconnects.
+> 
+> The Forlinx FETA40i-C SoM connects both the VCC-TVOUT and VCC-TVIN pins
+> to the ALDO1 rail of the PMIC, so we need to enable that rail for USB
+> operation. Since there is no supply property in the DT bindings for
+> the USB core, we need to always enable the regulator.
+> 
+> This fixes unstable USB operation on boards using the Forlinx FETA40i-C
+> module.
+> 
+> Signed-off-by: Fuyao Kashizuku <fuyao@sjterm.com>
+
+Perfect, looks good to me now!
+
+Reviewed-by: Andre Przywara <andre.przywara@arm.com>
+
+Thanks!
+Andre
+
+> ---
+> Changes in v2:
+>  - Subject include board name.
+>  - regulator name changed to vcc-3v3-tv-usb.
+>  - explain why we need to enable the regulator.
+>  - use full name of the commiter
+>  - Link to v1: https://lore.kernel.org/lkml/ZYKjYypuAx7gNuam@debian.cyg/
+> 
+>  arch/arm/boot/dts/allwinner/sun8i-r40-feta40i.dtsi | 7 +++++++
+>  1 file changed, 7 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/allwinner/sun8i-r40-feta40i.dtsi b/arch/arm/boot/dts/allwinner/sun8i-r40-feta40i.dtsi
+> index 9f39b5a2bb35..c12361d0317f 100644
+> --- a/arch/arm/boot/dts/allwinner/sun8i-r40-feta40i.dtsi
+> +++ b/arch/arm/boot/dts/allwinner/sun8i-r40-feta40i.dtsi
+> @@ -42,6 +42,13 @@ &pio {
+>  	vcc-pg-supply = <&reg_dldo1>;
+>  };
+>  
+> +&reg_aldo1 {
+> +	regulator-always-on;
+> +	regulator-min-microvolt = <3300000>;
+> +	regulator-max-microvolt = <3300000>;
+> +	regulator-name = "vcc-3v3-tv-usb";
+> +};
+> +
+>  &reg_aldo2 {
+>  	regulator-always-on;
+>  	regulator-min-microvolt = <1800000>;
 
 
