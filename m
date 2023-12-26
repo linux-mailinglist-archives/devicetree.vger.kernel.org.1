@@ -1,59 +1,59 @@
-Return-Path: <devicetree+bounces-28530-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28531-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8CFA581E950
-	for <lists+devicetree@lfdr.de>; Tue, 26 Dec 2023 20:24:37 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 57FDC81E952
+	for <lists+devicetree@lfdr.de>; Tue, 26 Dec 2023 20:24:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BFDAE1C210BB
-	for <lists+devicetree@lfdr.de>; Tue, 26 Dec 2023 19:24:36 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4C126B20AB4
+	for <lists+devicetree@lfdr.de>; Tue, 26 Dec 2023 19:24:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E39D3111A6;
-	Tue, 26 Dec 2023 19:22:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA77712E65;
+	Tue, 26 Dec 2023 19:22:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="HkdKktzt"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="KNBDXOTR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-io1-f52.google.com (mail-io1-f52.google.com [209.85.166.52])
+Received: from mail-il1-f182.google.com (mail-il1-f182.google.com [209.85.166.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7799512E65
-	for <devicetree@vger.kernel.org>; Tue, 26 Dec 2023 19:22:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 537F3134CA
+	for <devicetree@vger.kernel.org>; Tue, 26 Dec 2023 19:22:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-io1-f52.google.com with SMTP id ca18e2360f4ac-7b7d55d7717so215336639f.2
-        for <devicetree@vger.kernel.org>; Tue, 26 Dec 2023 11:22:12 -0800 (PST)
+Received: by mail-il1-f182.google.com with SMTP id e9e14a558f8ab-35fd8662acaso10286845ab.0
+        for <devicetree@vger.kernel.org>; Tue, 26 Dec 2023 11:22:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1703618531; x=1704223331; darn=vger.kernel.org;
+        d=chromium.org; s=google; t=1703618532; x=1704223332; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=ESf+HP/4Pbj+l15SV7DO/QREg1e8QVEjr0ahdi8QujY=;
-        b=HkdKktzt7nt59KOZ+FkuhhdJMdW/AYVTpAwHDp+g0xR53xj3f/gQ4CAHnwzEIMkwa5
-         u/N5xdQ3l4GBqemrSSn8+/ziF/c30zF7bKzttsUjPs+bWCp7znmxolHrfHVUFbwKB+on
-         71vjXxguhACFN+7kSGw+VEDxDEpEIyvjYJ/00=
+        bh=0O8RtIP4pYk/I1CB5YssfqNJgeBGU8rziw+9z/3E58g=;
+        b=KNBDXOTRa9TRuzLfjN0nENjKHo7jOEfo9jyUYKuYwTjmWVxgkSlM7d96c1C1xHhZjE
+         40ufDV2ONTWZialao6qgAmqbe4NQvnoynfLafu7HmIrRV8HUrvuNlJCh9uugL/Ls+gC+
+         tjRr8CtqrpJkg6K6pzxilcH/4NNZA3OpfvZUM=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703618531; x=1704223331;
+        d=1e100.net; s=20230601; t=1703618532; x=1704223332;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=ESf+HP/4Pbj+l15SV7DO/QREg1e8QVEjr0ahdi8QujY=;
-        b=iQyXNyJGvQJlXeB9FPbOet6TZVG6ZoRpWsjnq/GcdUPhw8oXSk+jcxcgFrdeBRLge+
-         K7uDBBxuaAKHPnz2niy1t5PbWbgQtTIB4yi70rDI1HU2/ffrZek8yICpQ1SKORL2lJJN
-         CIA5jSYnIzvSyCejcIs1UFrETFJWkJIHBJmVAxg0LnOVRRvjP7SMerwGg2o51iPqf9lT
-         EirzKChC5p6SGKoBzx96+JgRDtFKMjqHHzPbPFHcu4a5NKegEm1/VRHo0EkmXILjXZ2T
-         CPOHMVRP6YaAWirXdajP9sT6WrrybmC2Q1x09IXcQZE+yHZCBikH/cS8U8g2xROhFRW0
-         VP/A==
-X-Gm-Message-State: AOJu0YwJvo/6BHCKfFh4kW5zzvHFzgtnUXuzxQlDhOOAjV1/IJsaRKxy
-	m/Am677hud+XD90bEmPS0C6EgQKBnacH
-X-Google-Smtp-Source: AGHT+IHL8LG5CIj6VbEuHzPAo+E1eayG3+anqUkueUhwD4N1X/1qk2RhdEsAN0sRAt9MtvhT5qjugA==
-X-Received: by 2002:a6b:e714:0:b0:7ba:94cb:aa23 with SMTP id b20-20020a6be714000000b007ba94cbaa23mr8299937ioh.21.1703618531662;
-        Tue, 26 Dec 2023 11:22:11 -0800 (PST)
+        bh=0O8RtIP4pYk/I1CB5YssfqNJgeBGU8rziw+9z/3E58g=;
+        b=Umznc+oTwPQjtne0D8orsnDe2sV3MZyMSNX1RpK8BTfS5C0AZ2azlhVSL5CfGzen7T
+         kgjhQmGqkSjOk6ucn+oIsQgPGoHHUKwbN8x/3IO4RgytvtCUvwis3ob9C1BkpLg0DlMw
+         FbSUf4ZT4avROEgHz/qJwRSTtD1k69YIJK/dL1hFLLj2UCgiDzcTNJk0maLmaLs8Nf1L
+         AbBkOuj/fEm+mfeeAUXCp7GOAf23GbuUA7Md5Bkb2k3NYGAmNt90sIYNpEeONPl02Y+W
+         w7FJ06NKjFahMKkjjxRAeMuqFUQZ6B4DO4a4TIK8pHlWIo73MQzBIRDE+Fh4XmUAQ7ro
+         v0sg==
+X-Gm-Message-State: AOJu0YyNyu257zHcskG51vI1BOWlcRGCQsPDISNLR8AZDd5bJQFqshUM
+	vED8uiJcPxsnkSmY/9wWIxcwT6M1Whbe
+X-Google-Smtp-Source: AGHT+IEPvjdPgLWnim9CRScF1zgDLSQesNC/8qGs5BHhtwyK/zW05fi43O35+h7z9keU2BUHrJr/5Q==
+X-Received: by 2002:a05:6e02:1a08:b0:35f:eceb:f845 with SMTP id s8-20020a056e021a0800b0035fecebf845mr4107785ild.8.1703618532594;
+        Tue, 26 Dec 2023 11:22:12 -0800 (PST)
 Received: from markhas1.lan (71-218-50-136.hlrn.qwest.net. [71.218.50.136])
-        by smtp.gmail.com with ESMTPSA id gw3-20020a0566381ee300b0046b692e719esm3207609jab.150.2023.12.26.11.22.10
+        by smtp.gmail.com with ESMTPSA id gw3-20020a0566381ee300b0046b692e719esm3207609jab.150.2023.12.26.11.22.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Dec 2023 11:22:11 -0800 (PST)
+        Tue, 26 Dec 2023 11:22:12 -0800 (PST)
 From: Mark Hasemeyer <markhas@chromium.org>
 To: LKML <linux-kernel@vger.kernel.org>
 Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
@@ -72,9 +72,9 @@ Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
 	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-mediatek@lists.infradead.org
-Subject: [PATCH v3 11/24] arm64: dts: mediatek: mt8192: Enable cros-ec-spi as wake source
-Date: Tue, 26 Dec 2023 12:21:15 -0700
-Message-ID: <20231226122113.v3.11.Ibd330d26a00f5e219a7e448452769124833a9762@changeid>
+Subject: [PATCH v3 12/24] arm64: dts: mediatek: mt8195: Enable cros-ec-spi as wake source
+Date: Tue, 26 Dec 2023 12:21:16 -0700
+Message-ID: <20231226122113.v3.12.Iee33a7f1f991408cef372744199026f936bf54e2@changeid>
 X-Mailer: git-send-email 2.43.0.472.g3155946c3a-goog
 In-Reply-To: <20231226192149.1830592-1-markhas@chromium.org>
 References: <20231226192149.1830592-1-markhas@chromium.org>
@@ -112,21 +112,21 @@ Signed-off-by: Mark Hasemeyer <markhas@chromium.org>
 Changes in v2:
 -Split by arch/soc
 
- arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi | 1 +
+ arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi | 1 +
  1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi b/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi
-index f2281250ac35d..ab44d382f757e 100644
---- a/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi
-@@ -1332,6 +1332,7 @@ cros_ec: ec@0 {
- 		spi-max-frequency = <3000000>;
+diff --git a/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi b/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
+index bbdcd441c049d..2edb270d0bc2f 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
+@@ -1149,6 +1149,7 @@ cros_ec: ec@0 {
  		pinctrl-names = "default";
  		pinctrl-0 = <&cros_ec_int>;
+ 		spi-max-frequency = <3000000>;
 +		wakeup-source;
  
- 		#address-cells = <1>;
- 		#size-cells = <0>;
+ 		keyboard-backlight {
+ 			compatible = "google,cros-kbd-led-backlight";
 -- 
 2.43.0.472.g3155946c3a-goog
 
