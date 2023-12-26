@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-28459-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28461-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF1EB81E63F
-	for <lists+devicetree@lfdr.de>; Tue, 26 Dec 2023 10:18:57 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B0F6581E664
+	for <lists+devicetree@lfdr.de>; Tue, 26 Dec 2023 10:28:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 30E271F227CF
-	for <lists+devicetree@lfdr.de>; Tue, 26 Dec 2023 09:18:57 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 101EDB21D3F
+	for <lists+devicetree@lfdr.de>; Tue, 26 Dec 2023 09:28:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42A644CE1F;
-	Tue, 26 Dec 2023 09:18:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4DA94D110;
+	Tue, 26 Dec 2023 09:28:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wyNTCM4K"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ki8jdkjH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
+Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9EA994CE10
-	for <devicetree@vger.kernel.org>; Tue, 26 Dec 2023 09:18:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D16D74D102
+	for <devicetree@vger.kernel.org>; Tue, 26 Dec 2023 09:28:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-555144cd330so549051a12.2
-        for <devicetree@vger.kernel.org>; Tue, 26 Dec 2023 01:18:50 -0800 (PST)
+Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-a265d4f78bfso359744166b.0
+        for <devicetree@vger.kernel.org>; Tue, 26 Dec 2023 01:28:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1703582329; x=1704187129; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1703582892; x=1704187692; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=N7CJGDVpwk2q4Bu189RvHi0uzgfTc1G3i6UZd7KlCTw=;
-        b=wyNTCM4KqZlhFmbNFTKgFfwkdrneEfTFsTFDuZqj8XvhvsUpaEZ3HNz3BQnki94VXQ
-         xm9gaapA0axeCdDMSbR1tNJ4iB5Pt5cZ20EZGWO8WV9MbDBKF0WQVqXPHwSEC9foNMY5
-         FcnVf3UQ+DAEodDz5Td4hKt+amaqXteASHHnL5WtXzD1EZ/O8JqII42YeiqCX/7Uk0/+
-         3W0lAlJKy3gJsx/42Bb3SEqHfX7rpBRfxQT8/zPCTl6WJbZZC2p5muCl4D+RqLZVkV1t
-         OLJh7FMKeuc+30bJ8yyAonpkdExxB8LgDP8ZHIRMBfisfhJ+/RoXTFPepSySA3rWJdph
-         YeaA==
+        bh=guAVeD3Hak4vfCKKwioe7579n4+j6Wz5Tsd/laBd5QY=;
+        b=ki8jdkjHYxGPDu7g07I7mlMKbV9zVpGlowdEveZRxMqMH26sE+mGQdFivpt2o3+OJv
+         g7owFFnqCDWWp9B4XNRb0nIEBoQJDxwfRYIGSGbugIwq7jTv+zzxllnx0sYg0MvA6UyA
+         cFAe/D1F8/Idfbrww5L3oIJnx3HVJUvOAni9frtCpqN7Ql5dlUGl5xnddWkCQ0rR2JkN
+         4uZwn7t9M27cqTiwS5QFNVqX3j0gSyxeuFHq4zZBsEhgHTS2tkCf9vxwzwt2VK/rfWtV
+         7NSw+i2aEP0+xoE9NWinGtRW04SSaAmO/6ns0XxNcxzgt3hBGdlSSEYGdDHBlh39aIn1
+         UHPQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703582329; x=1704187129;
+        d=1e100.net; s=20230601; t=1703582892; x=1704187692;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=N7CJGDVpwk2q4Bu189RvHi0uzgfTc1G3i6UZd7KlCTw=;
-        b=K5+z4lCXxOurwFowOCq3eGz8JHDBoNve+eXdPWwe/kjPtpzirYvI3vmCDDTmfWD+G7
-         Q8GS6SoTSAI9MS7h3lwgf/rB0TVr5f2HkCfyR7kxEuoFb+gfTtE4BoXZ6rqqwzc3sJYq
-         smCqv+q6eEvStF0BC73YfrmVe48FA5G1ats1WH5TRe8zuEehQVJuLiMkOXIgZOsK1qgP
-         D+DE1EuZbCYE/8qx2hVzR8GX1O/7sCLMzxXYFMLuWjHo8yZj5SvYmZn5jAwjFJfe5+K0
-         4wKqnawnpDbS2M5ecelyPywtrgzZj69EqVtZ95ju1KOavfg5ntJTKpZCmlnZs+/KQqLG
-         vOfQ==
-X-Gm-Message-State: AOJu0YzTu5Ao5wJs+sGFX6KDaPmXdwZRFobzq6ZHhd37CNzRfbN/1Xje
-	3+lloAjVFCcBuEo2nrRqgqbvHcYROsnZ6w==
-X-Google-Smtp-Source: AGHT+IEX6ADtvaCu+2814O+QX4Sbk1wJd75iUaMo/9P8sQGS7RACdukmwlSR2wWlCXTfU9T4IdRGOQ==
-X-Received: by 2002:a50:8d1e:0:b0:554:49e2:c7a with SMTP id s30-20020a508d1e000000b0055449e20c7amr3856599eds.27.1703582328804;
-        Tue, 26 Dec 2023 01:18:48 -0800 (PST)
+        bh=guAVeD3Hak4vfCKKwioe7579n4+j6Wz5Tsd/laBd5QY=;
+        b=bcc/YgSJlzBQ+SYdF8FR8sCOsTH3v3nvES9UvL6SN9dVN4cTh89qCAi1wrmRtb6NzL
+         rEPWNQFMBdnNWUyDDkP/nMRCHd6XJq1agJgU2Vr8y0AD5dsKadaAExtNUJd+qoQDhiVH
+         FujdZexd0CDX1HAfyT5Q4NHwGCtjOJczfCUP92Iyibx5FArjrj97OyPkky0pftDciLDd
+         gp7+b8ZQdterG+pQrbslTFfRO4YCFA5KAbu/qrpIg8Sm6yX/xIWJsh+Q/IYEReYGfKUm
+         eQm2kE2bwwsuqkcBYKPcsJ59REzpKJCkUG34C+a3P3zJf/zD6iKjJOLs3wOsrOpRaNPJ
+         Qqmw==
+X-Gm-Message-State: AOJu0Yxj8ocTvV1bVsaPRX06T3ywKdYtGZwFXGkJJEFPLnwI+xpP1aAN
+	xNrNLFosafT6xWW0bwOrMbydRg3YSO8BJg==
+X-Google-Smtp-Source: AGHT+IETyCo7bY8dXFHo68ivE9hByYhBb8a99Pa2mkt2ICjxwpdCJ4CJZvXY273teIFxQu6m5CV3/g==
+X-Received: by 2002:a17:906:7fc6:b0:a23:5bfc:edf6 with SMTP id r6-20020a1709067fc600b00a235bfcedf6mr3235465ejs.73.1703582892028;
+        Tue, 26 Dec 2023 01:28:12 -0800 (PST)
 Received: from [192.168.0.22] ([78.10.206.178])
-        by smtp.gmail.com with ESMTPSA id 8-20020a0564021f4800b005545dffa0bdsm5127869edz.13.2023.12.26.01.18.47
+        by smtp.gmail.com with ESMTPSA id zr16-20020a170907711000b00a26af4d96c6sm4636929ejb.4.2023.12.26.01.28.10
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 26 Dec 2023 01:18:48 -0800 (PST)
-Message-ID: <9715ed9d-7edf-430c-808c-00e7748bc59a@linaro.org>
-Date: Tue, 26 Dec 2023 10:18:47 +0100
+        Tue, 26 Dec 2023 01:28:11 -0800 (PST)
+Message-ID: <58dde1a7-ed4a-442c-bb5c-c3f6d926fb7e@linaro.org>
+Date: Tue, 26 Dec 2023 10:28:09 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,18 +66,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: iio: adc: rtq6056: add support for the
- whole RTQ6056 family
+Subject: Re: [PATCH v4 5/5] dt-bindings: net: ipq4019-mdio: Document ipq5332
+ platform
 Content-Language: en-US
-To: cy_huang@richtek.com, Jonathan Cameron <jic23@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>,
- =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <1703562468-29052-1-git-send-email-cy_huang@richtek.com>
- <1703562468-29052-2-git-send-email-cy_huang@richtek.com>
+To: Jie Luo <quic_luoj@quicinc.com>, agross@kernel.org, andersson@kernel.org,
+ konrad.dybcio@linaro.org, davem@davemloft.net, edumazet@google.com,
+ kuba@kernel.org, pabeni@redhat.com, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, andrew@lunn.ch,
+ hkallweit1@gmail.com, linux@armlinux.org.uk, robert.marko@sartura.hr
+Cc: linux-arm-msm@vger.kernel.org, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ quic_srichara@quicinc.com
+References: <20231225084424.30986-1-quic_luoj@quicinc.com>
+ <20231225084424.30986-6-quic_luoj@quicinc.com>
+ <dee72ce8-b24e-467a-b265-1b965588807f@linaro.org>
+ <aeb364a3-6c05-4a1b-ba32-e687a89f20f8@quicinc.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -123,35 +126,163 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <1703562468-29052-2-git-send-email-cy_huang@richtek.com>
+In-Reply-To: <aeb364a3-6c05-4a1b-ba32-e687a89f20f8@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 26/12/2023 04:47, cy_huang@richtek.com wrote:
-> From: ChiYuan Huang <cy_huang@richtek.com>
+On 26/12/2023 08:25, Jie Luo wrote:
+>>> -    description:
+>>> -      the first Address and length of the register set for the MDIO controller.
+>>> -      the second Address and length of the register for ethernet LDO, this second
+>>> -      address range is only required by the platform IPQ50xx.
+>>> +    maxItems: 5
+>>> +    description: |
+>>> +      The first address and length of the register set for the MDIO controller,
+>>> +      the optional second address and length of the register is for CMN block,
+>>> +      the optional third, fourth and fifth address and length of the register
+>>> +      for Ethernet LDO, the optional Ethernet LDO address range is required by
+>>
+>> Wait, required? You said in in response to Rob these are not required!
 > 
-> Add compatible support for RTQ6053 and RTQ6059.
-> 
-> Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
-> ---
->  .../devicetree/bindings/iio/adc/richtek,rtq6056.yaml         | 5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/adc/richtek,rtq6056.yaml b/Documentation/devicetree/bindings/iio/adc/richtek,rtq6056.yaml
-> index 88e008629ea8..d1e1f36d1972 100644
-> --- a/Documentation/devicetree/bindings/iio/adc/richtek,rtq6056.yaml
-> +++ b/Documentation/devicetree/bindings/iio/adc/richtek,rtq6056.yaml
-> @@ -25,7 +25,10 @@ description: |
->  
->  properties:
->    compatible:
-> -    const: richtek,rtq6056
-> +    enum:
-> +      - richtek,rtq6053
-> +      - richtek,rtq6056
+> As for the response to Rob, i was saying the uniphy ahb and sys clocks
+> are not needed on ipq9574.
+> The LDO are needed on ipq5332 and ipq5018 currently.
 
-Aren't these devices compatible? Your driver change says they are, so
-express compatibility with list here (and oneOf).
+Clocks as well but:
+
+"A driver can function without knowing about all these new registers and
+..."
+
+Anyway, this should be list ("items:") with descriptions, instead of one
+big description listing things.
+
+
+> 
+>>
+>>> +      the platform IPQ50xx/IPQ5332.
+>>
+>> So these are valid for all platforms or not? Looks not, but nothing
+>> narrows the list for other boards.
+> 
+> i add the limitation on the reg usage for the ipq5332 platform on the
+> following part "if condition" of this patch, i will update the patch
+> to narrow down for the other compatibles.
+> 
+>>
+>> Anyway, why do you add entries in the middle? LDO was the second, so it
+>> cannot be now fifth.
+> 
+> As Rob's suggestion, i move the cmn_blk to second location for
+> simplifying the limitation description, i checked the upstream dts code,
+> the LDO is not used currently, so we can move cmn_blk to the second
+> location here.
+
+I cannot find his suggestion in the previous thread. Where did he
+propose it?
+
+...
+
+>>> +  qcom,cmn-ref-clock-frequency:
+>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>> +    enum:
+>>> +      - 25000000
+>>> +      - 31250000
+>>> +      - 40000000
+>>> +      - 48000000
+>>> +      - 50000000
+>>> +      - 96000000
+>>> +    default: 48000000
+>>> +    description: |
+>>> +      The reference clock source of CMN PLL block is selectable, the
+>>> +      reference clock source can be from wifi module or the external
+>>> +      xtal, the reference clock frequency 48MHZ can be from internal
+>>> +      wifi or the external xtal, if absent, the internal 48MHZ is used,
+>>> +      if the 48MHZ is specified, which means the external 48Mhz is used.
+>>
+>> This does not resolve mine and Conor's concerns from previous version.
+>> External clocks are defined as clock inputs.
+> 
+> No matter the external or internal reference clock, they are the clock
+> source selection for CMN, there are only 48MHZ can be external or 
+> internal, other clocks have the different clock rate, so the internal
+> 48MHZ reference clock can be implied when the 
+> "qcom,cmn-ref-clock-frequency" is not defined, which is suggested by 
+> Conor in the previous
+> comments.
+
+I don't think he proposed it, but maybe I missed some message (care to
+point me to his message where he agreed on usage of
+qcom,cmn-ref-clock-frequency?). I am pretty sure we both stayed on the
+same page, that the presence of clocks defines choice of internal clock.
+This property should go away.
+
+It is tiring to keep discussing this.
+
+> 
+>>
+>>> +
+>>> +  clock-frequency:
+>>> +    enum:
+>>> +      - 390625
+>>> +      - 781250
+>>> +      - 1562500
+>>> +      - 3125000
+>>> +      - 6250000
+>>> +      - 12500000
+>>> +    default: 390625
+>>> +    description: |
+>>> +      The MDIO bus clock that must be output by the MDIO bus hardware,
+>>> +      only the listed frequencies above can be supported, other frequency
+>>> +      will cause malfunction. If absent, the default hardware value 0xff
+>>> +      is used, which means the default MDIO clock frequency 390625HZ, The
+>>> +      MDIO clock frequency is MDIO_SYS_CLK/(MDIO_CLK_DIV + 1), the SoC
+>>> +      MDIO_SYS_CLK is fixed to 100MHZ, the MDIO_CLK_DIV is from MDIO control
+>>> +      register, there is higher clock frequency requirement on the normal
+>>> +      working case where the MDIO slave devices support high clock frequency.
+>>>   
+>>>   required:
+>>>     - compatible
+>>> @@ -59,8 +118,10 @@ allOf:
+>>>             contains:
+>>>               enum:
+>>>                 - qcom,ipq5018-mdio
+>>> +              - qcom,ipq5332-mdio
+>>>                 - qcom,ipq6018-mdio
+>>>                 - qcom,ipq8074-mdio
+>>> +              - qcom,ipq9574-mdio
+>>>       then:
+>>>         required:
+>>>           - clocks
+>>> @@ -70,6 +131,20 @@ allOf:
+>>>           clocks: false
+>>>           clock-names: false
+>>>   
+>>> +  - if:
+>>> +      properties:
+>>> +        compatible:
+>>> +          contains:
+>>> +            enum:
+>>> +              - qcom,ipq5332-mdio
+>>> +    then:
+>>> +      properties:
+>>> +        clocks:
+>>> +          minItems: 5
+>>> +          maxItems: 5
+>>> +        reg-names:
+>>> +          minItems: 4
+>>
+>> Why all other variants now have 5 clocks and 5 reg entries? Nothing of
+>> it is explained in the commit msg.
+> 
+>  From the condition above, only "qcom,ipq5332-mdio" has 5 clocks (mdio +
+> 4 uniphy clocks) and 4 regs (mdio + cmn_blk + 2 LDOs) as the cmn_blk is
+> moved to the second location.
+> 
+> how it can gives the 5 clocks and 5 regs for other variants here?
+
+How? Just read the beginning of your patch. It clearly says everyone has
+up to 5 reg entries and up to 5 clocks.
+
 
 
 Best regards,
