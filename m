@@ -1,50 +1,53 @@
-Return-Path: <devicetree+bounces-28501-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28502-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id DFF4D81E850
-	for <lists+devicetree@lfdr.de>; Tue, 26 Dec 2023 17:14:32 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C984181E858
+	for <lists+devicetree@lfdr.de>; Tue, 26 Dec 2023 17:25:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 23F88B2150C
-	for <lists+devicetree@lfdr.de>; Tue, 26 Dec 2023 16:14:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 746981F21D50
+	for <lists+devicetree@lfdr.de>; Tue, 26 Dec 2023 16:25:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74B494F5F2;
-	Tue, 26 Dec 2023 16:14:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2B414F5F7;
+	Tue, 26 Dec 2023 16:24:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="epxO4hWz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Nh0tXZa9"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51B784F5E3;
-	Tue, 26 Dec 2023 16:14:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A8F3C433C8;
-	Tue, 26 Dec 2023 16:14:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B81B44F5EF;
+	Tue, 26 Dec 2023 16:24:58 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D974FC433C7;
+	Tue, 26 Dec 2023 16:24:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1703607263;
-	bh=X17uhTrvUB4QI3u0hbcYr4MU2xf6/bp+rJzgV0J90LI=;
+	s=k20201202; t=1703607898;
+	bh=hhRnMsLC6POZSHAl85RZB1z8ggwSk2IZQuSs9Nv91wo=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=epxO4hWzji58L5LQDUuSA9/qCgSbnWFNEqV2gMT8eeVzg9uzDWdv3oEg+YmGzbLgA
-	 UY3oNsiwNGXk8nsFKxr8v3Z07+bYs+sSBRhZKqazF9yHn/3vQpOyyS7b3990zZ1AhE
-	 Rn5l0EW3BZ7BU1UQc8Qesyl0+2KTNAJJ3YbSIaXqi34anwYZ5CHNfht7n2EGlY0VYd
-	 lKfa3DB9L9DDF2sNap4XDL26UlzMZhYKzZMAPTZ3DeNGl0Zrl009jyn7sfTaUKv4js
-	 6aNilQdolre7XMUHHNoiDel+jVtkWBpwtPDsbQ2wA1bRS+p+4d/vtXuvZH0VSVl/wO
-	 xPPis0p6qFkAQ==
-Date: Tue, 26 Dec 2023 16:14:14 +0000
+	b=Nh0tXZa9pRyyE0rrGnldxUdlb5vATvUO7jMHbwBujWEaNKdKZNikUVC0dZlsr+pPY
+	 mPywS9y79fHNRl6m4YYI1O7y7mkDCRTcJZ/+WIil1KLmTQyqDxTWErmEbaRkA45wUf
+	 7sLvgC/RlQ/QvZWEzoknzObUQ7ex+i1riCoB5gpQ/Yi9lZfx8MMXPTL1L9EPVaShVq
+	 Hq9uCCWomru5wzJH66LOwx+xu8Y0v90qJ8zE6EmiDqVEaOq6jXh42IABWnUL1W4fdx
+	 M9gnt/SBmsKYpFD4mSbFlo2GaXtbC2MOiVuSJunJ/Qa/lFTh2QUC9jZgSGWXx5YvMs
+	 1dChYEy4+FU3A==
+Date: Tue, 26 Dec 2023 16:24:50 +0000
 From: Jonathan Cameron <jic23@kernel.org>
-To: Javier Carrasco <javier.carrasco.cruz@gmail.com>
-Cc: Christian Eggers <ceggers@arri.de>, Lars-Peter Clausen
- <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: cy_huang@richtek.com, Krzysztof Kozlowski
  <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>, Uwe
+ =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?= <u.kleine-koenig@pengutronix.de>,
  linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] io: light: as73211: add support for as7331
-Message-ID: <20231226161414.47d5171e@jic23-huawei>
-In-Reply-To: <20231220-as7331-v1-2-745b73c27703@gmail.com>
-References: <20231220-as7331-v1-0-745b73c27703@gmail.com>
-	<20231220-as7331-v1-2-745b73c27703@gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: iio: adc: rtq6056: add support for the
+ whole RTQ6056 family
+Message-ID: <20231226162450.5437810a@jic23-huawei>
+In-Reply-To: <9715ed9d-7edf-430c-808c-00e7748bc59a@linaro.org>
+References: <1703562468-29052-1-git-send-email-cy_huang@richtek.com>
+	<1703562468-29052-2-git-send-email-cy_huang@richtek.com>
+	<9715ed9d-7edf-430c-808c-00e7748bc59a@linaro.org>
 X-Mailer: Claws Mail 4.2.0 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -55,212 +58,45 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On Sat, 23 Dec 2023 11:46:14 +0100
-Javier Carrasco <javier.carrasco.cruz@gmail.com> wrote:
+On Tue, 26 Dec 2023 10:18:47 +0100
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
 
-> The AMS AS7331 is a UV light sensor with three channels: UVA, UVB and
-> UVC (also known as deep UV and referenced as DUV in the iio core).
-> Its internal structure and forming blocks are practically identical to
-> the ones the AS73211 contains: API, internal DAC, I2C interface and
-> registers, measurement modes, number of channels and pinout.
+> On 26/12/2023 04:47, cy_huang@richtek.com wrote:
+> > From: ChiYuan Huang <cy_huang@richtek.com>
+> > 
+> > Add compatible support for RTQ6053 and RTQ6059.
+> > 
+> > Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
+> > ---
+> >  .../devicetree/bindings/iio/adc/richtek,rtq6056.yaml         | 5 ++++-
+> >  1 file changed, 4 insertions(+), 1 deletion(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/iio/adc/richtek,rtq6056.yaml b/Documentation/devicetree/bindings/iio/adc/richtek,rtq6056.yaml
+> > index 88e008629ea8..d1e1f36d1972 100644
+> > --- a/Documentation/devicetree/bindings/iio/adc/richtek,rtq6056.yaml
+> > +++ b/Documentation/devicetree/bindings/iio/adc/richtek,rtq6056.yaml
+> > @@ -25,7 +25,10 @@ description: |
+> >  
+> >  properties:
+> >    compatible:
+> > -    const: richtek,rtq6056
+> > +    enum:
+> > +      - richtek,rtq6053
+> > +      - richtek,rtq6056  
 > 
-> The only difference between them is the photodiodes used to acquire
-> light, which means that only some modifications are required to add
-> support for the AS7331 in the existing driver.
-> 
-> The temperature channel is identical for both devices and only the
-> channel modifiers of the IIO_INTENSITY channels need to account for the
-> device type.
-> 
-> The scale values have been obtained from the chapter "7.5 Transfer
-> Function" of the official datasheet[1] for the configuration chosen as
-> basis (Nclk = 1024 and GAIN = 1). Those values keep the units from the
-> datasheet (nW/cm^2) because no additional upscaling is required to work
-> with integers as opposed to the scale values for the AS73211. Actually
-> if the same upscaling is used, their values will not fit in 4-byte
-> integers without affecting its sign.
-> 
-> Instead, the AS7331-specific function to retrieve the intensity scales
-> returns decimal values as listed in the datasheet for every
-> combination of GAIN and Nclk, keeping the unit as nW/cm^2.
-> To achieve that, a fractional value is returned.
-> The AS73211 scales use nW/m^2 units to work with integers that fit in
-> a 4-byte integer, and in that case there is no need to modify the value
-> type.
+> Aren't these devices compatible? Your driver change says they are, so
+> express compatibility with list here (and oneOf).
 
-No need, but in general it's a nice to have if it works well with
-IIO_VAL_FRACTIONAL because in kernel users (there aren't really any
-for light sensors) can handle the maths better if they need to apply
-other scalings etc.
+I'm not seeing this thread on lore.kernel.org or in my local email. 
+Perhaps something went wrong?
 
-> 
-> Add a new device-specific data structure to account for the device
-> differences: channel types and scale of LSB per channel.
-A may not be worth doing it in this case, but usual approach to refactoring
-a driver to allow support of additional devices is to do it in two steps.
-1) Refactor with no new support - so should be no operational changes.
-2) Add the new device support.
+Jonathan
 
 
 > 
-> [1] https://ams.com/documents/20143/9106314/AS7331_DS001047_4-00.pdf
 > 
-> Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
-...
-
-> diff --git a/drivers/iio/light/as73211.c b/drivers/iio/light/as73211.c
-> index ec97a3a46839..d53a0ae5255a 100644
-> --- a/drivers/iio/light/as73211.c
-> +++ b/drivers/iio/light/as73211.c
-...
-
->  
-> +static const struct iio_chan_spec as7331_channels[] = {
-> +	{
-> +		.type = IIO_TEMP,
-> +		.info_mask_separate =
-> +			BIT(IIO_CHAN_INFO_RAW) |
-> +			BIT(IIO_CHAN_INFO_OFFSET) |
-> +			BIT(IIO_CHAN_INFO_SCALE),
-> +		.address = AS73211_OUT_TEMP,
-> +		.scan_index = AS73211_SCAN_INDEX_TEMP,
-> +		.scan_type = {
-> +			.sign = 'u',
-> +			.realbits = 16,
-> +			.storagebits = 16,
-> +			.endianness = IIO_LE,
-> +		}
-> +	},
-> +	AS73211_COLOR_CHANNEL(LIGHT_UVA, AS73211_SCAN_INDEX_X, AS73211_OUT_MRES1),
-> +	AS73211_COLOR_CHANNEL(LIGHT_UVB, AS73211_SCAN_INDEX_Y, AS73211_OUT_MRES2),
-> +	AS73211_COLOR_CHANNEL(LIGHT_DUV, AS73211_SCAN_INDEX_Z, AS73211_OUT_MRES3),
-> +	IIO_CHAN_SOFT_TIMESTAMP(AS73211_SCAN_INDEX_TS),
-> +};
-> +
->  static unsigned int as73211_integration_time_1024cyc(struct as73211_data *data)
->  {
->  	/*
-> @@ -316,6 +361,50 @@ static int as73211_req_data(struct as73211_data *data)
->  	return 0;
->  }
->  
-> +static int as73211_intensity_scale(struct as73211_data *data, int chan, int *val, int *val2)
-> +{
-> +	unsigned int scale;
-> +
-> +	switch (chan) {
-> +	case IIO_MOD_X:
-> +		scale = AS73211_SCALE_X;
-> +		break;
-> +	case IIO_MOD_Y:
-> +		scale = AS73211_SCALE_Y;
-> +		break;
-> +	case IIO_MOD_Z:
-> +		scale = AS73211_SCALE_Z;
-> +		break;
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +	scale /= as73211_gain(data);
-> +	scale /= as73211_integration_time_1024cyc(data);
-> +	*val = scale;
-> +
-> +	return IIO_VAL_INT;
-
-Obviously it's really a question about the original code but why not
-use IIO_VAL_FRACTIONAL here as well as below? Superficially looks
-like it should work in a similar fashion.
-
-If not, perhaps a comment here somewhere?
-
-> +}
-> +
-> +static int as7331_intensity_scale(struct as73211_data *data, int chan, int *val, int *val2)
-> +{
-> +	switch (chan) {
-> +	case IIO_MOD_LIGHT_UVA:
-> +		*val = AS7331_SCALE_UVA;
-> +		break;
-> +	case IIO_MOD_LIGHT_UVB:
-> +		*val = AS7331_SCALE_UVB;
-> +		break;
-> +	case IIO_MOD_LIGHT_DUV:
-> +		*val = AS7331_SCALE_UVC;
-> +		break;
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +	*val2 = as73211_gain(data) * as73211_integration_time_1024cyc(data);
-> +
-> +	return IIO_VAL_FRACTIONAL;
-> +}
-> +
->  static int as73211_read_raw(struct iio_dev *indio_dev, struct iio_chan_spec const *chan,
->  			     int *val, int *val2, long mask)
->  {
-> @@ -355,30 +444,12 @@ static int as73211_read_raw(struct iio_dev *indio_dev, struct iio_chan_spec cons
->  			*val2 = AS73211_SCALE_TEMP_MICRO;
->  			return IIO_VAL_INT_PLUS_MICRO;
->  
-> -		case IIO_INTENSITY: {
-> -			unsigned int scale;
-> -
-> -			switch (chan->channel2) {
-> -			case IIO_MOD_X:
-> -				scale = AS73211_SCALE_X;
-> -				break;
-> -			case IIO_MOD_Y:
-> -				scale = AS73211_SCALE_Y;
-> -				break;
-> -			case IIO_MOD_Z:
-> -				scale = AS73211_SCALE_Z;
-> -				break;
-> -			default:
-> -				return -EINVAL;
-> -			}
-> -			scale /= as73211_gain(data);
-> -			scale /= as73211_integration_time_1024cyc(data);
-> -			*val = scale;
-> -			return IIO_VAL_INT;
-> +		case IIO_INTENSITY:
-> +			return data->spec_dev->intensity_scale(data, chan->channel2, val, val2);
-Where it doesn't hurt readability, I'd prefer we stayed as close to 80 chars or below
-as reasonably possible.  So here wrap so val, val2); is on the next line.
-
->  
->  		default:
->  			return -EINVAL;
-> -		}}
-> +		}
->  
->  	case IIO_CHAN_INFO_SAMP_FREQ:
->  		/* f_samp is configured in CREG3 in powers of 2 (x 1.024 MHz) */
-> @@ -676,13 +747,20 @@ static int as73211_probe(struct i2c_client *client)
->  	i2c_set_clientdata(client, indio_dev);
->  	data->client = client;
->  
-> +	if (dev_fwnode(dev))
-> +		data->spec_dev = device_get_match_data(dev);
-> +	else
-> +		data->spec_dev = i2c_get_match_data(client);
-
-Take a look at how i2c_get_match_data() is defined...
-https://elixir.bootlin.com/linux/latest/source/drivers/i2c/i2c-core-base.c#L117
-and in particular what it calls first..
-
-> +	if (!data->spec_dev)
-> +		return -EINVAL;
-> +
->  	mutex_init(&data->mutex);
->  	init_completion(&data->completion);
->  
->  	indio_dev->info = &as73211_info;
->  	indio_dev->name = AS73211_DRV_NAME;
-> -	indio_dev->channels = as73211_channels;
-> -	indio_dev->num_channels = ARRAY_SIZE(as73211_channels);
-> +	indio_dev->channels = data->spec_dev->channel;
-> +	indio_dev->num_channels = data->spec_dev->num_channels;
->  	indio_dev->modes = INDIO_DIRECT_MODE;
->  
+> Best regards,
+> Krzysztof
+> 
 
 
