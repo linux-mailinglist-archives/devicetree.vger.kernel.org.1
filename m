@@ -1,94 +1,93 @@
-Return-Path: <devicetree+bounces-28473-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28475-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 637FC81E712
-	for <lists+devicetree@lfdr.de>; Tue, 26 Dec 2023 12:19:58 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D3B9281E724
+	for <lists+devicetree@lfdr.de>; Tue, 26 Dec 2023 12:39:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 194232828F5
-	for <lists+devicetree@lfdr.de>; Tue, 26 Dec 2023 11:19:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1202A1C20FC3
+	for <lists+devicetree@lfdr.de>; Tue, 26 Dec 2023 11:39:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D33534E1C6;
-	Tue, 26 Dec 2023 11:19:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADB964E611;
+	Tue, 26 Dec 2023 11:39:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="b2pdf+/g"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mg.richtek.com (mg.richtek.com [220.130.44.152])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16B9B4E1BF;
-	Tue, 26 Dec 2023 11:19:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=richtek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=richtek.com
-X-MailGates: (SIP:2,PASS,NONE)(compute_score:DELIVER,40,3)
-Received: from 192.168.10.46
-	by mg.richtek.com with MailGates ESMTPS Server V6.0(636817:0:AUTH_RELAY)
-	(envelope-from <cy_huang@richtek.com>)
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256/256); Tue, 26 Dec 2023 19:19:21 +0800 (CST)
-Received: from ex3.rt.l (192.168.10.46) by ex3.rt.l (192.168.10.46) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1258.27; Tue, 26 Dec
- 2023 19:19:21 +0800
-Received: from linuxcarl2.richtek.com (192.168.10.154) by ex3.rt.l
- (192.168.10.45) with Microsoft SMTP Server id 15.2.1258.27 via Frontend
- Transport; Tue, 26 Dec 2023 19:19:21 +0800
-Date: Tue, 26 Dec 2023 19:19:21 +0800
-From: ChiYuan Huang <cy_huang@richtek.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC: Jonathan Cameron <jic23@kernel.org>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>, Uwe
- =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
-	<linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: iio: adc: rtq6056: add support for the
- whole RTQ6056 family
-Message-ID: <20231226111921.GA22684@linuxcarl2.richtek.com>
-References: <1703562468-29052-1-git-send-email-cy_huang@richtek.com>
- <1703562468-29052-2-git-send-email-cy_huang@richtek.com>
- <9715ed9d-7edf-430c-808c-00e7748bc59a@linaro.org>
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83C124E60B;
+	Tue, 26 Dec 2023 11:39:04 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 91884C43397;
+	Tue, 26 Dec 2023 11:39:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1703590744;
+	bh=6hDfQYVG9Fe9ilOi+BrWGx19yefCb1Lq90IdKaxzrd4=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=b2pdf+/gADlOuxQQgnTdm3ECWvF9/g/hhjcTg/Bm82tUIdXyWJOgVdt3+ORhlOo4H
+	 MLlLLBEBBfsMhC+ZRo0bf3yOlmlF5l8qpJQMrSFOXMr0wJbC4uT4jsUnrFJWQD0MVL
+	 xr78raYZfyJNwgTNj78P6cUAWDBJPDZAzV5cbb+eCK3+ouUcVMod/5SLnd6yW3vrMy
+	 i005Hkj7zc1xnZKiWLeFWAuTzPgYENk88VtnTeEMiigsIUBKuLHOUu1LCiyXlIZwe5
+	 lAd+MSYSOFBrbmvmZnZaiNju/3aPPTY3zI9W3jfxs1SlA5r/XhJXR2QmYK0wx/N3WW
+	 Vg/zt1JY/GtCg==
+Received: (nullmailer pid 2315540 invoked by uid 1000);
+	Tue, 26 Dec 2023 11:38:58 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <9715ed9d-7edf-430c-808c-00e7748bc59a@linaro.org>
-User-Agent: Mutt/1.5.21 (2010-09-15)
+From: Rob Herring <robh@kernel.org>
+To: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
+Cc: conor+dt@kernel.org, linux-rtc@vger.kernel.org, devicetree@vger.kernel.org, dlan@gentoo.org, conor@kernel.org, paul.walmsley@sifive.com, alexandre.belloni@bootlin.com, palmer@dabbelt.com, unicorn_wang@outlook.com, aou@eecs.berkeley.edu, krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org, linux-kernel@vger.kernel.org, a.zummo@towertech.it, inochiama@outlook.com, chao.wei@sophgo.com
+In-Reply-To: <20231226100431.331616-3-qiujingbao.dlmu@gmail.com>
+References: <20231226100431.331616-1-qiujingbao.dlmu@gmail.com>
+ <20231226100431.331616-3-qiujingbao.dlmu@gmail.com>
+Message-Id: <170359073886.2315521.12463957955592185332.robh@kernel.org>
+Subject: Re: [PATCH v3 2/4] dt-bindings: rtc: sophgo: add RTC support for
+ Sophgo CV1800 series SoC
+Date: Tue, 26 Dec 2023 05:38:58 -0600
 
-On Tue, Dec 26, 2023 at 10:18:47AM +0100, Krzysztof Kozlowski wrote:
-> On 26/12/2023 04:47, cy_huang@richtek.com wrote:
-> > From: ChiYuan Huang <cy_huang@richtek.com>
-> > 
-> > Add compatible support for RTQ6053 and RTQ6059.
-> > 
-> > Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
-> > ---
-> >  .../devicetree/bindings/iio/adc/richtek,rtq6056.yaml         | 5 ++++-
-> >  1 file changed, 4 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/iio/adc/richtek,rtq6056.yaml b/Documentation/devicetree/bindings/iio/adc/richtek,rtq6056.yaml
-> > index 88e008629ea8..d1e1f36d1972 100644
-> > --- a/Documentation/devicetree/bindings/iio/adc/richtek,rtq6056.yaml
-> > +++ b/Documentation/devicetree/bindings/iio/adc/richtek,rtq6056.yaml
-> > @@ -25,7 +25,10 @@ description: |
-> >  
-> >  properties:
-> >    compatible:
-> > -    const: richtek,rtq6056
-> > +    enum:
-> > +      - richtek,rtq6053
-> > +      - richtek,rtq6056
+
+On Tue, 26 Dec 2023 18:04:29 +0800, Jingbao Qiu wrote:
+> Add devicetree binding for Sophgo CV1800 SoC.
 > 
-> Aren't these devices compatible? Your driver change says they are, so
-> express compatibility with list here (and oneOf).
->
-Thanks, I try to take other binding as the reference. One more question.
-If rtq6053 is compatible with rtq6056, there's only chip package type difference.
-Do I need to seperate it into a dedicated enum element?
-Or just put it into one item and said this part number is compatible with rtq6056? 
+> Signed-off-by: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
+> ---
+>  .../bindings/rtc/sophgo,cv1800-rtc.yaml       | 45 +++++++++++++++++++
+>  1 file changed, 45 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/rtc/sophgo,cv1800-rtc.yaml
 > 
-> Best regards,
-> Krzysztof
-> 
+
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/rtc/sophgo,cv1800-rtc.example.dts:25:18: fatal error: dt-bindings/clock/sophgo,cv1800.h: No such file or directory
+make[2]: *** [scripts/Makefile.lib:419: Documentation/devicetree/bindings/rtc/sophgo,cv1800-rtc.example.dtb] Error 1
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20231226100431.331616-3-qiujingbao.dlmu@gmail.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
