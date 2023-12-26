@@ -1,215 +1,145 @@
-Return-Path: <devicetree+bounces-28517-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28518-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3AF1381E8ED
-	for <lists+devicetree@lfdr.de>; Tue, 26 Dec 2023 19:13:48 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B222881E914
+	for <lists+devicetree@lfdr.de>; Tue, 26 Dec 2023 19:58:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5B4561C213A1
-	for <lists+devicetree@lfdr.de>; Tue, 26 Dec 2023 18:13:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 662F7282946
+	for <lists+devicetree@lfdr.de>; Tue, 26 Dec 2023 18:58:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C2D554F85;
-	Tue, 26 Dec 2023 18:12:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0AEDA47;
+	Tue, 26 Dec 2023 18:57:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=solidrn.onmicrosoft.com header.i=@solidrn.onmicrosoft.com header.b="l4sF4QSG"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="NLu8+aD+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2068.outbound.protection.outlook.com [40.107.20.68])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1F6754BD1;
-	Tue, 26 Dec 2023 18:12:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=solid-run.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=solid-run.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=lutlJPeyDOkaFMwK2kzT/hDxVDEmP0OHBiWz64tmAn71j2SMAg2XVwq+7yEarCSGY6mTSxx5423Hrc6JGrnO7LGm+M3F0MgNRh2JlR0sinNk7zW4tuiZ/WE5nUweuY9OibCmj7JjUmvJUxbshZWpMByGUih70IYtade6IqP7z5VpGs51ti3YbkKI304jTfpGzXKrQLxv4AyMSZfDgiQIVnjgCD4D7LgiYHwyOtmzLtfxII6XYqiLHp5rKUwE4b7yY08ZHQGreVJpxpRRS2WN3P6+R+HNAKdzY88aKR8iTL4pu57lb67by0KRJWcQnlM6rsGtMg6T5+pAG9slANvCHg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=dgcl289EmJRwpJtbpRe4wL18fqPn5M9ka+q6zrHa0xg=;
- b=gSkfKA+3dK19rhmPLXYiVaYt0zTBjGCDg6QIOJKEZelBT6D/Yj9ktdzYtIklx4dPRZtCKy2IHf4xCFiWEhYw+fvklBradLOYxBnfa0NTUJG6eZSDGbyzC2zs3TORXKKg9j0WT4MMtiakcjC7MExq0Q6kjJEL3H7Qrq35YQf74IsjCVJ76yDuEtfdMgzfAY7LcDqeUjsBVPzf0L/HIDOlXyPLzLUnmMNiC0cntzRovdsjK4Y2MqQYPvUWElwIVgyYlJVX2NpG6wjiZHfN8ZWw4D3VdsCDklrPcYPrke00EqmmPJMpS+zAAvOCLNqNSzCenRcvary+aRw9kLq40ADjXA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=solid-run.com; dmarc=pass action=none
- header.from=solid-run.com; dkim=pass header.d=solid-run.com; arc=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60A6B643
+	for <devicetree@vger.kernel.org>; Tue, 26 Dec 2023 18:57:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a269a271b5bso516553466b.1
+        for <devicetree@vger.kernel.org>; Tue, 26 Dec 2023 10:57:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=solidrn.onmicrosoft.com; s=selector1-solidrn-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dgcl289EmJRwpJtbpRe4wL18fqPn5M9ka+q6zrHa0xg=;
- b=l4sF4QSGYP2+jtTC3kcS9LaBYc4zk8kvGsqwV7OuuNdkJldrqikwiFGAJ0KdTTIVLq/kKVfYuSRLnzk+xqO1bq7w2jdULsKI2FNlOWqwYDNh77K1T4a7PczV09hGx1FR3octnEAdV3o//LKpmb/Ps7fPg0IlkSqwiUA7rCscZyY=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=solid-run.com;
-Received: from AS8PR04MB8963.eurprd04.prod.outlook.com (2603:10a6:20b:42e::18)
- by DB9PR04MB9868.eurprd04.prod.outlook.com (2603:10a6:10:4c3::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7113.27; Tue, 26 Dec
- 2023 18:11:55 +0000
-Received: from AS8PR04MB8963.eurprd04.prod.outlook.com
- ([fe80::4db1:aae8:c643:2e73]) by AS8PR04MB8963.eurprd04.prod.outlook.com
- ([fe80::4db1:aae8:c643:2e73%6]) with mapi id 15.20.7113.027; Tue, 26 Dec 2023
- 18:11:54 +0000
-From: Josua Mayer <josua@solid-run.com>
-Date: Tue, 26 Dec 2023 19:11:39 +0100
-Subject: [PATCH v3 8/8] arm: dts: marvell: clearfog-gtr-l8: align port
- numbers with enclosure
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20231226-support-clearfog-gtr-l8-sfp-v3-8-fd1ac2d6bf2e@solid-run.com>
-References: <20231226-support-clearfog-gtr-l8-sfp-v3-0-fd1ac2d6bf2e@solid-run.com>
-In-Reply-To: <20231226-support-clearfog-gtr-l8-sfp-v3-0-fd1ac2d6bf2e@solid-run.com>
-To: Andrew Lunn <andrew@lunn.ch>, 
- Gregory Clement <gregory.clement@bootlin.com>, 
- Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, 
- Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Josua Mayer <josua@solid-run.com>
-X-Mailer: b4 0.12.4
-X-ClientProxiedBy: FR0P281CA0038.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:48::21) To AS8PR04MB8963.eurprd04.prod.outlook.com
- (2603:10a6:20b:42e::18)
+        d=linaro.org; s=google; t=1703617074; x=1704221874; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=s+/xKpbe3rzbFxxV0m/bQ08D9ul9ygtDd5aVd+JFc3o=;
+        b=NLu8+aD+F1zeeFv3MUMyiB1jtogN8mTs3syjSSKmjgHtIfrnpEB0sy8jhnEqvO2aT8
+         6tif6JOTiEHC02JaeYu91k0uClxIpo/c2UHUawGXF/3YRT/SE8hIIUq4bC/npWm7ZUnd
+         uhHx6byzy7eEL1rJtKBChlT5GoxXO17mJ4keT7jwJXPIIVdXkLGV/rR7cLBTSQQxTjdc
+         DpqSofghuIiXND8Wp+5FYwzCOyTnCsOgLKYEwnr41hHkvcL3uLCJHxi7r6trfJK2mpis
+         JNjOCcZYv9dp0Y55GqZB3dpJQ6gDXyo9A0VH2bAnaeSB26xA49819U5pE0X1wKIzfM6k
+         xiiQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1703617074; x=1704221874;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=s+/xKpbe3rzbFxxV0m/bQ08D9ul9ygtDd5aVd+JFc3o=;
+        b=U1sOQMedqaZshyXYenYRoJFJv9TMe9MYGmbSaVG+XWSaUuKy9a+dBIcj1gtVJyRSg6
+         MqxCW4aJ5fVcuODODWvObhkncIMk78vzO8Ii68GOMp6URLabHHVyzkbhcpgWqe+YrqJj
+         1kgdLF8EBTQAIXrrNktJJWjk+ZpJE8b4RyGD1IbG/NwplkDVo/hZpz9J4TB5Z2/zCRm9
+         J8s08HXNmKsE6SG6KnC6GGePkKhLVuOI3dHKBrbAOXpCT4vmVo+tjzZfTGUoXlILGjTI
+         b+voYxVKKQhLT5JNJl6SLlT2GbbHf0AKvZtfcjKqjt9o4SggwBwtrpEI+fWRuLJxyBjK
+         dkLQ==
+X-Gm-Message-State: AOJu0YzSrqPb/AA8RadZLmROzbBDUVZK4ZKlNiPa//S+JeedxhSfq6LA
+	vpQgnXy4BaujjayX+D3fdUU/8Fic67ifUA==
+X-Google-Smtp-Source: AGHT+IGNJYb0T708InJ4PjZrixWklUHXmGWgfTn7jVAtSplE9YTtZ2LY0ArrLZ59TkOcdp6LfEEE7A==
+X-Received: by 2002:a17:906:10c4:b0:a23:2d6c:249d with SMTP id v4-20020a17090610c400b00a232d6c249dmr3113788ejv.90.1703617074413;
+        Tue, 26 Dec 2023 10:57:54 -0800 (PST)
+Received: from [192.168.0.22] ([78.10.206.178])
+        by smtp.gmail.com with ESMTPSA id gh33-20020a1709073c2100b00a26b3f29f3dsm4747759ejc.43.2023.12.26.10.57.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 26 Dec 2023 10:57:53 -0800 (PST)
+Message-ID: <d22b9050-647a-4551-8a4d-b45e9b7700b2@linaro.org>
+Date: Tue, 26 Dec 2023 19:57:52 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AS8PR04MB8963:EE_|DB9PR04MB9868:EE_
-X-MS-Office365-Filtering-Correlation-Id: f1b6be5a-24e1-4ff7-db26-08dc063e2466
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	ds971dRPbGVO691FI1SLdN2a9zQgsGQUxt5hd/e84iz38qpGHIEv2AnexV0yZE7TBt+g2uhacPDVeXTRugrvY2PT0AR4AXSCYQ947emmV1jJX7mHQtJ+6nvpsKJX1EhVsLQqataX4RtwQpqt0sYY3IuV/pDQJ7UozKIB24qfZs3/2LCNKOLyei00+SxGTOTH+0PtVvGYsLQ84ofjz6Uzib5g5nOHnp/QMlbEWZvHshdm096rxQwZxAKqOYmUVnr/UmQtQAQFPY52QhJnU96dDMG2/9jXSKpPfAIJ8XJiYfkzYqdwXiLRUGgR1E1CtDwiTDo7GddVfzc8YEb9fiaI3bUyGqXpO4X54HzyToVVUbWZrx3hpl+59h7pE7jTTrKIpjUPex9nhJHcQcWrKQqqaKO7mVu7QS0Rm1TZYwt2TgBiZY3h+hT0hTPwLi4Gi4+yqOVOVcYYqPgLMZw//CLb3wuRWp6oFM4q+msIkCaqdrnwlQBtOsgEWEQo78NJ4CdSUPKPJ3w5NHeMfH5xWYYoIsw57v57ztrR/msf/6/YzPlW+IRikOECoCmK4uuUX5iOO54STDQuFbAnz5RZa2TqhpSUlJYIRdpr8HySszaI+RaaLLnUKO4dDeTpk5Tzc35P
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB8963.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(136003)(366004)(376002)(346002)(39840400004)(396003)(230922051799003)(186009)(1800799012)(451199024)(64100799003)(26005)(6512007)(2616005)(4326008)(8676002)(110136005)(66946007)(66476007)(66556008)(316002)(83380400001)(52116002)(6506007)(107886003)(6666004)(38100700002)(86362001)(8936002)(478600001)(6486002)(5660300002)(2906002)(36756003)(41300700001)(38350700005);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?VnlaSVN4OTkzQUw3MzVmd3VRVWloUDU3WGE2SlVFTVdsY1FDT014dTVZNnI1?=
- =?utf-8?B?emR4ZHk0OUh5aEhOSHhEVFgxSFNlekoxcDVkdm9GQm9MTUZjVkNWMmN1Q09j?=
- =?utf-8?B?aTVDSVFvVVY2YzNSSmxMQ3ZPZDBGTGV5dDcrbEJjMCtxaDFkVnd5cVlacFBJ?=
- =?utf-8?B?aDdiVnhWcW5pUUM2UXNJa093b0szcVZiM1R1cEVJR0JPWXJGTUVSM3JDQldG?=
- =?utf-8?B?aDJBVW9YZUljVEdXeStpaGNtc3lYZXhrQ0I1ZXI3SGZ5UHpDc0hIUUZmWXVx?=
- =?utf-8?B?WkJNMzhVVXhwT0tBSmZZZE1vc3hFQnM4YWc3ZFUwenV0eXIyNlQzS2V0Szl4?=
- =?utf-8?B?SHRYSUp6WFU1TFZqV3RFcmovbENBVmVxZ3V4RjkwRy96R21KM0c2QW9SSzRH?=
- =?utf-8?B?QmVGUldWL3ErQzBEU0NOK0p4UDMwdUdpNzFYZGRIWlVsa292cVJMV08zQkQ4?=
- =?utf-8?B?M1ZhSFBjWTNoZTR2U0Rudm1CdmVDQ2dWNDNzSHY3U1F5VmpaWDN1bHV4c1RK?=
- =?utf-8?B?WDR3eENGL1ptNjZKbUdaa01yQ1cwTnk0TUYyZE5oZDVoNWFIRFIvb3NIOVRG?=
- =?utf-8?B?dHNUS3hUWGE4RkZmUk5Id04weDdwWnJaQU9UMVcvNmVnOVZJS0I4MVdmcjJQ?=
- =?utf-8?B?V09hZ1ZWZVYzaHlQM3VGRmdPYktsQVVZT2RnS0VrRytEQWdHSzE2VHRBWjR5?=
- =?utf-8?B?bDljMEIwQnlkcGRGZEFtSmFmUVpGZFB4dDVaQUQ4QTRrODBrL2VaQzk0aVJ2?=
- =?utf-8?B?S2FyUWhIb0MyTEQvS29FLysrU0hwWDRadXc3RmhsQ3pCTWlXb0FXcEVPQVY1?=
- =?utf-8?B?ZEVkTXhHaDJzeDB6dWpBeFpLSGZmYlg5VnMyK3M4QzVwU0wrUnFUSVJ1RjFZ?=
- =?utf-8?B?aHZXelcyWU5Yci9Mb0F5NmhDc1RzNzlVcmVtekpXaEtaNDVDd2lDT0FLaUJC?=
- =?utf-8?B?enlSTVZJaUVGRjVJTUxUM0dhaFEzU1RoZkE3NzdhZW00T010bG9FekZEeHRK?=
- =?utf-8?B?MWFMM0pLaDNOSkVLenJsSzF6SExoZWV4YWxTKzUxVUpsV2RVSmo3dHVQYkJa?=
- =?utf-8?B?MzM2cXMwUUJZWVpnTWppbnFDYVZZeWpNajhIeFdpN0VTcGVLZEExM092bkFm?=
- =?utf-8?B?TmQxMXJ1R0NvZkQ2Zks5UFdMMVgzVkxDV1kxUnJSMHVCeWRnQXlhMC9NSGd4?=
- =?utf-8?B?eml2YnVkWWg4bWErc01NTzNINUtVWk1CWk1rNHlLcmZCTW5Ua0N4OS9CaTcv?=
- =?utf-8?B?RXExMU5LdW5EcVZ2aEQyYzRpay9mNVF5ZEgzQzgvckF6TWVsMzRRc2htK243?=
- =?utf-8?B?ZERzeHR4OTlsN21nTUcwcXF2Q1UweTVqRWR1cHRWRGsxWWVSOG1wOFFnT2xR?=
- =?utf-8?B?Kzl1QThVZjVKWkx1cGt0S1cyMEJDSnFDbmNZNEhTdmNrNTBtKzJueHdXQVVK?=
- =?utf-8?B?dnM4cXpiZGxRdTdBZEN1a3U2L2UzTUN0SVp5MW5yamE2dXRjSDllNE8yL0Ji?=
- =?utf-8?B?TjlWR3VQbHY0UG0xQVBSelZRdmxGQnZSMWRtNnJsamwvcTBuQ3NSZmVYZlA2?=
- =?utf-8?B?cW9mczNROHBLc1R1UkhZa0c5MkovQ2xwUTIzNlQ3Zm5OTXNaQ0ZDZlUzeXZB?=
- =?utf-8?B?WWpKKzRhbjFyWko2RWwrN2FickdDMjVERy84N0w0bG8rd1lEUlZ3VEZkWU11?=
- =?utf-8?B?eUszamlpY2pScFZNZGF3bjdlQi9ETUViV0czdng4dEZBeDUxU2pQMEFRbEp0?=
- =?utf-8?B?dmJ6bzROSjAzdkQyYjI0K3FUcDM4ZzByUzUwMnZyZXNKZkFpdTlFUDVTQy9a?=
- =?utf-8?B?dDdpamljLzJRZTdycHVUdVUvSHRKVncyMXc3V1NjMEN4Q0E1MSsvbWJFNHlM?=
- =?utf-8?B?UWtsbXFPMTdvWWptNnpZL2wyZW9hcnJEdlNEclhrYkp2ZXNpM3dCSHNMR3kz?=
- =?utf-8?B?ZmtUeFNMS0JqanJrekR5ckNkREU3OWJ6cEk5MjBzUkhOM0JPZkVSMXVkL2lW?=
- =?utf-8?B?a1hrL2x4MCtucktHakdzVlpnNXI0M0ErbERpMTE2T0hyTWYyOTdBSEpQVERY?=
- =?utf-8?B?bEp5MEpwamVoRHkxZ0dOMHFKOHhoaGVZVzJ0d3BibDVXZmVmb1lVWkkyUThY?=
- =?utf-8?Q?LPBbPwXmbkn+sMO4j8kroKrUU?=
-X-OriginatorOrg: solid-run.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f1b6be5a-24e1-4ff7-db26-08dc063e2466
-X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB8963.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Dec 2023 18:11:54.9206
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: a4a8aaf3-fd27-4e27-add2-604707ce5b82
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: oRP+RTTCUJglpgOC0CD4Wa0cUdjgwvXdXF26e3sA2xkXyzOkUsJDvUnoDZnjyUm4W5/octi9JYFPgyNepCvNng==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB9868
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: clock: Fix spelling mistake in
+ 'tesla,fsd-clock.yaml'
+To: Varada Pavani <v.pavani@samsung.com>, mturquette@baylibre.com,
+ sboyd@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, s.nawrocki@samsung.com, tomasz.figa@gmail.com
+Cc: linux-samsung-soc@vger.kernel.org, alim.akhtar@samsung.com,
+ aswani.reddy@samsung.com, pankaj.dubey@samsung.com
+References: <CGME20231219115856epcas5p371abeb4264f60309e597b90954e6d58c@epcas5p3.samsung.com>
+ <20231219115834.65720-1-v.pavani@samsung.com>
+ <cb9a6bd4-6c99-4409-9cc7-73b600eb8fce@linaro.org>
+ <003d01da381c$908906f0$b19b14d0$@samsung.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <003d01da381c$908906f0$b19b14d0$@samsung.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Clearfog GTR has an official enclosure with labels for all interfaces.
-The "lan" ports on the 8-port switch in device-tree were numbered  in
-reverse wrt. enclosure.
+On 26/12/2023 17:57, Varada Pavani wrote:
+> 
+> Are there any other typos in that file or in other Samsung clock bindings?
+> 
+> I couldn’t find any other typos in current file and also in other Samsung clock bindings.
 
-Update all device-tree labels to match.
+OK, that's fine. I will take it after the merge window.
 
-Signed-off-by: Josua Mayer <josua@solid-run.com>
----
- arch/arm/boot/dts/marvell/armada-385-clearfog-gtr-l8.dts | 16 ++++++++--------
- 1 file changed, 8 insertions(+), 8 deletions(-)
+You need to fix your email program, so it will properly mark quotes.
 
-diff --git a/arch/arm/boot/dts/marvell/armada-385-clearfog-gtr-l8.dts b/arch/arm/boot/dts/marvell/armada-385-clearfog-gtr-l8.dts
-index 2df388f222ec..da6981677b03 100644
---- a/arch/arm/boot/dts/marvell/armada-385-clearfog-gtr-l8.dts
-+++ b/arch/arm/boot/dts/marvell/armada-385-clearfog-gtr-l8.dts
-@@ -32,49 +32,49 @@ ports {
- 
- 			port@1 {
- 				reg = <1>;
--				label = "lan8";
-+				label = "lan1";
- 				phy-handle = <&switch0phy0>;
- 			};
- 
- 			port@2 {
- 				reg = <2>;
--				label = "lan7";
-+				label = "lan2";
- 				phy-handle = <&switch0phy1>;
- 			};
- 
- 			port@3 {
- 				reg = <3>;
--				label = "lan6";
-+				label = "lan3";
- 				phy-handle = <&switch0phy2>;
- 			};
- 
- 			port@4 {
- 				reg = <4>;
--				label = "lan5";
-+				label = "lan4";
- 				phy-handle = <&switch0phy3>;
- 			};
- 
- 			port@5 {
- 				reg = <5>;
--				label = "lan4";
-+				label = "lan5";
- 				phy-handle = <&switch0phy4>;
- 			};
- 
- 			port@6 {
- 				reg = <6>;
--				label = "lan3";
-+				label = "lan6";
- 				phy-handle = <&switch0phy5>;
- 			};
- 
- 			port@7 {
- 				reg = <7>;
--				label = "lan2";
-+				label = "lan7";
- 				phy-handle = <&switch0phy6>;
- 			};
- 
- 			port@8 {
- 				reg = <8>;
--				label = "lan1";
-+				label = "lan8";
- 				phy-handle = <&switch0phy7>;
- 			};
- 
-
--- 
-2.35.3
+Best regards,
+Krzysztof
 
 
