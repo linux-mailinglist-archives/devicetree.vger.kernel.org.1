@@ -1,169 +1,101 @@
-Return-Path: <devicetree+bounces-28420-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28421-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D15381E474
-	for <lists+devicetree@lfdr.de>; Tue, 26 Dec 2023 02:50:45 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1BA1E81E495
+	for <lists+devicetree@lfdr.de>; Tue, 26 Dec 2023 03:38:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5614F1C21AA3
-	for <lists+devicetree@lfdr.de>; Tue, 26 Dec 2023 01:50:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 085CB282AD9
+	for <lists+devicetree@lfdr.de>; Tue, 26 Dec 2023 02:37:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0EDBA2A;
-	Tue, 26 Dec 2023 01:50:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F81F367;
+	Tue, 26 Dec 2023 02:37:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="bSa6KlQb"
+	dkim=pass (2048-bit key) header.d=huaqin-corp-partner-google-com.20230601.gappssmtp.com header.i=@huaqin-corp-partner-google-com.20230601.gappssmtp.com header.b="o8Ol0Rmc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com [209.85.167.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01F04A29;
-	Tue, 26 Dec 2023 01:50:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 3BQ19ZpF026744;
-	Tue, 26 Dec 2023 01:50:28 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=4jV4XqenFpnoF+jeihd+UEga3oCdhiA51ZiI1NhfUx4=; b=bS
-	a6KlQbtgrH8Du5VseanWtVZx+dqVkQCZn24+sYYmP4ZSaQiaJhlntbz0mpX6VmJU
-	CBkmfR186/aGwNoWGqIaKoC7OC3qHzXePtGP+H0dqv81Y5suQM+BtxFu2X9QsivC
-	nWqdu2225VrhZcBTn4J3moNuMi9Xb+bt4T6PRJKCtXzFmtU0cKZyzkZmOSEuQdYt
-	LtTO2rg2k7T8P8nvQHT3MEB6L0c+lyzyeDUgJtlY4TkXwB5/2sRqTStTAh2/kKo3
-	PWbqAwz54zI1xw8KTA/ns/CfTG0WNLXjibORGyi1rRKUWERA4RRVvIKcUMOzbeTP
-	afsVh25eZJhn6TAOBnFQ==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3v5n8p4r5f-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 26 Dec 2023 01:50:27 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3BQ1oQpp026894
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 26 Dec 2023 01:50:26 GMT
-Received: from [10.239.133.49] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Mon, 25 Dec
- 2023 17:50:22 -0800
-Message-ID: <9d13e1ce-38b1-4cdd-83ba-eca0c3091ce1@quicinc.com>
-Date: Tue, 26 Dec 2023 09:50:20 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06908ED0
+	for <devicetree@vger.kernel.org>; Tue, 26 Dec 2023 02:37:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=huaqin.corp-partner.google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huaqin.corp-partner.google.com
+Received: by mail-oi1-f176.google.com with SMTP id 5614622812f47-3b9d8bfe845so3129571b6e.0
+        for <devicetree@vger.kernel.org>; Mon, 25 Dec 2023 18:37:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=huaqin-corp-partner-google-com.20230601.gappssmtp.com; s=20230601; t=1703558271; x=1704163071; darn=vger.kernel.org;
+        h=message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=7688HJ/rcUi3p00pdT4WrWHdJeyn0WG00Iltm/DVmAw=;
+        b=o8Ol0RmcMNsjfIySNP35q3kiYJVN3MWlnfe7Op6NCGsUqFoRMbwRPMJ6oyRRXkIpmM
+         6bfiMuHFgVIUr8vfcSd/NfwXYmokflWvscbS0x8jPB7eMv/xKFe+0RcXRsaXxRTWRvcf
+         tu3bPBF6+IiSWy8w0TRQAG4ir1K3+ky2quiutWyNROXh+zp1zpzI3hA57FyQpsaZ/4NO
+         lj2+FTJbrTaev5OMwI8jESRhNCqaFY1QWh/2Aku46urt0RpXIcrkR13Uv/7pnCSAUjJc
+         WU0yDiKzhm1PrHhW1El7VPteAMVf3iA6yEAODwr40/ad38Jfhb55e64oJkn66LKHlveX
+         nLcA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1703558271; x=1704163071;
+        h=message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=7688HJ/rcUi3p00pdT4WrWHdJeyn0WG00Iltm/DVmAw=;
+        b=QbxW7Lk6fNon43z7zqcG+S2EUy2uG+Nho3nXRtkcUanaXglnGoXif8vYd65dyOMWEk
+         07SEw25d4OxZAEdV+MsM7BAxRqjfOb6qxtG2G8qHRRT7kTQ4ePF4ziNk596Bdkme48mT
+         EzCZIvmjpBpEV2K5DH79E99TxaeFgmtpaEcMpQqyRCzBwpQY1f8G2/yiZxaSuvU8z9Ym
+         LT/9iQ+2R3UzdIIiZqgQukcc10+aT+M+skHcstpHxcne1bcNtL1d+LXRjIWi0KukE/tg
+         6duAx9hh82p8Wx5JEIvieRHDNfgm6TAwtyjSJqDltXSfOdWPDLsNbDr5FhmkhjsrogRP
+         /Qxw==
+X-Gm-Message-State: AOJu0Yyf0slSXQstCc8etQSi01LMQo/Wp3ObunOp1hzgeNzzf/ZanEOt
+	IOOHv2hx3D2TAYyI5TkESKLL0m4ubBPgVQ==
+X-Google-Smtp-Source: AGHT+IFLfchui9buIYuRgIzZ5I2RBFLDU6NLV2WfH5+BDv5h7cOk/TH7yU/SdXaP1bLR+zOV/ac//w==
+X-Received: by 2002:a05:6808:1a06:b0:3b8:b063:6ba8 with SMTP id bk6-20020a0568081a0600b003b8b0636ba8mr8926977oib.87.1703558271056;
+        Mon, 25 Dec 2023 18:37:51 -0800 (PST)
+Received: from ubuntu.huaqin.com ([116.66.212.162])
+        by smtp.gmail.com with ESMTPSA id b11-20020a17090a8c8b00b0028c2de909e4sm5083190pjo.50.2023.12.25.18.37.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 25 Dec 2023 18:37:50 -0800 (PST)
+From: xiazhengqiao <xiazhengqiao@huaqin.corp-partner.google.com>
+To: linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: dmitry.torokhov@gmail.com,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	jikos@kernel.org,
+	benjamin.tissoires@redhat.com,
+	dianders@chromium.org,
+	xiazhengqiao <xiazhengqiao@huaqin.corp-partner.google.com>
+Subject: [v2 0/2] HID: i2c-hid: elan: Add ili2901 timing
+Date: Tue, 26 Dec 2023 10:37:35 +0800
+Message-Id: <20231226023737.25618-1-xiazhengqiao@huaqin.corp-partner.google.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/2] dt-bindings: arm: coresight: Update the pattern of
- ete node name
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Mathieu Poirier
-	<mathieu.poirier@linaro.org>,
-        Suzuki K Poulose <suzuki.poulose@arm.com>,
-        "Mike Leach" <mike.leach@linaro.org>,
-        James Clark <james.clark@arm.com>, Leo
- Yan <leo.yan@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring
-	<robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Tingwei Zhang <quic_tingweiz@quicinc.com>,
-        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
-        Tao Zhang
-	<quic_taozha@quicinc.com>, <coresight@lists.linaro.org>
-References: <20231220140538.13136-1-quic_jinlmao@quicinc.com>
- <20231220140538.13136-2-quic_jinlmao@quicinc.com>
- <79f88d35-17cc-43b0-bb22-3c854f89d961@linaro.org>
- <8e5e9603-456b-4956-be03-b866feeeafb4@quicinc.com>
- <c41ff7c8-48d6-4f4f-a9df-aafe953a2e98@linaro.org>
- <f2f983b7-4c57-4b1b-925d-ffb18f6350a0@quicinc.com>
- <c64a41af-ff62-43c5-89f7-0558f8456010@linaro.org>
- <16932826-fcc2-49d3-95ab-201eff729360@quicinc.com>
- <d4c6c32f-b1cf-4cf2-9c52-85fa8c1ed73f@linaro.org>
-From: Jinlong Mao <quic_jinlmao@quicinc.com>
-In-Reply-To: <d4c6c32f-b1cf-4cf2-9c52-85fa8c1ed73f@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: lilvSBMxAeyXiXmjnDh5R2-JWqi-TM3x
-X-Proofpoint-ORIG-GUID: lilvSBMxAeyXiXmjnDh5R2-JWqi-TM3x
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-12-09_02,2023-12-07_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999
- impostorscore=0 clxscore=1015 malwarescore=0 priorityscore=1501
- spamscore=0 mlxscore=0 suspectscore=0 adultscore=0 phishscore=0
- bulkscore=0 lowpriorityscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2311290000 definitions=main-2312260012
 
+ILI2901 requires reset to pull down time greater than 10ms,
+so the configuration post_power_delay_ms is 10, and the chipset
+initial time is required to be greater than 100ms,
+so the post_gpio_reset_on_delay_ms is set to 100.
 
+Change in v2:
+- PATCH 1/2: Modify compatible properties values
+- PATCH 2/2: No change
+- Link to v1: https://lore.kernel.org/all/20231225092843.5993-3-xiazhengqiao@huaqin.corp-partner.google.com/
 
-On 12/21/2023 4:44 PM, Krzysztof Kozlowski wrote:
-> On 21/12/2023 09:36, Jinlong Mao wrote:
->>
->>
->> On 12/21/2023 4:17 PM, Krzysztof Kozlowski wrote:
->>> On 21/12/2023 09:15, Jinlong Mao wrote:
->>>>
->>>>
->>>> On 12/21/2023 4:12 PM, Krzysztof Kozlowski wrote:
->>>>> On 21/12/2023 04:28, Jinlong Mao wrote:
->>>>>>>> diff --git a/Documentation/devicetree/bindings/arm/arm,embedded-trace-extension.yaml b/Documentation/devicetree/bindings/arm/arm,embedded-trace-extension.yaml
->>>>>>>> index f725e6940993..cbf583d34029 100644
->>>>>>>> --- a/Documentation/devicetree/bindings/arm/arm,embedded-trace-extension.yaml
->>>>>>>> +++ b/Documentation/devicetree/bindings/arm/arm,embedded-trace-extension.yaml
->>>>>>>> @@ -23,7 +23,7 @@ description: |
->>>>>>>>      
->>>>>>>>      properties:
->>>>>>>>        $nodename:
->>>>>>>> -    pattern: "^ete([0-9a-f]+)$"
->>>>>>>> +    pattern: "^ete-([0-9a-f]+)$"
->>>>>>>
->>>>>>> My concerns are not resolved. Why is it here in the first place?
->>>>>>
->>>>>> Hi Krzysztof,
->>>>>>
->>>>>> ETE is acronym of embedded trace extension. The number of the name is
->>>>>> the same as the number of the CPU it belongs to.
->>>>>
->>>>> This is obvious and was not my question.
->>>>
->>>> Do you mean why the pattern match of the node name is added here ?
->>>
->>> Yes, especially that it is requiring a non-generic name.
->>>
->>>>
->>>> This node should not have the node name match, right ?
->>>
->>> Usually. For sure shouldn't be for non-generic names.
->>>
->> Hi Suzuki,
->>
->> Can we remove the pattern match of the node name and use a generic name
->> "ete" for the ete DT nodes ?
-> 
-> "ete" is not a generic name. What is generic here? It's an acronym of
-> some specific device name.
-> 
+xiazhengqiao (2):
+  dt-bindings: HID: i2c-hid: elan: Introduce bindings for Ilitek ili2901
+  HID: i2c-hid: elan: Add ili2901 timing
 
-The device full name is embedded trace extension. So use ETE as the name 
-here.
+ .../devicetree/bindings/input/elan,ekth6915.yaml          | 5 +++--
+ drivers/hid/i2c-hid/i2c-hid-of-elan.c                     | 8 ++++++++
+ 2 files changed, 11 insertions(+), 2 deletions(-)
 
-Thanks
-Jinlong Mao
+-- 
+2.17.1
 
-> 
 
