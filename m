@@ -1,190 +1,486 @@
-Return-Path: <devicetree+bounces-28545-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28546-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 318E781EA34
-	for <lists+devicetree@lfdr.de>; Tue, 26 Dec 2023 22:53:21 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 27D2E81EA66
+	for <lists+devicetree@lfdr.de>; Tue, 26 Dec 2023 23:52:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 879331F21D95
-	for <lists+devicetree@lfdr.de>; Tue, 26 Dec 2023 21:53:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D26A528216C
+	for <lists+devicetree@lfdr.de>; Tue, 26 Dec 2023 22:52:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA58B5223;
-	Tue, 26 Dec 2023 21:53:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C99F5257;
+	Tue, 26 Dec 2023 22:52:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="AOxQ1PhW"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="liz/p8Ff"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR02-DB5-obe.outbound.protection.outlook.com (mail-db5eur02on2065.outbound.protection.outlook.com [40.107.249.65])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B695B4C97;
-	Tue, 26 Dec 2023 21:53:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=knY7eByV+qE/JpxGJGI+DBeSi+gjbcdt0anba29qEt3bPB/eUmY6+xfjmwgmcncRbLj/Up9Ha5bn/hP4cjVFjfY8pUjo2PWBoE/2Pu/KVUAoOcgtJE3+Pc4cKagUGVRJgXPXD2lfnROwDTAmZbH4HXNEzYEHMELde1AnGWEaLbe+Cn9KrAI69vFGnnKaY04MP4PYUuuiGHF9pTZN+53ax5ZjpSB5rTs8UdRYc2wBtr+aezBefQeDI1ucgM02TaOeIW+pP1ZhDVzVuZr9277/wvVPiD7QFFrY5TVYfx7lYRWtiN38be7/R+OQ/waqx+yaBRPflq+RXTHnaUrj10thIQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=nRkjpilHyBczuICe00pATbVL+Nk5uadbcaNkU+p7M/w=;
- b=VAGVic5mXJexl6Fp9yU5QScC+4WHD7wpTES56rBb9e/6IQ6qv13koBLeVPu7rxTIY2fHBkHLp4sy0Li1K4CPUq85K3W1mDiVE4Z26rCOA7UtNXriGgZMIFy3WZcsFV2TK+CHtEMe2pht698T9YCnPucfYB0XCsQSPix0dWKTp3z7AaONFmVAwV7jkNFQ8Pa0iAAX+V9XvIWN9U44F7SMx49C5UpLRpcTlPPU0ZSnAfhTtLxcgzs6Ur/48v/kgg8jephRlfsmwcjoFUl3LWB+BYLkehxAPZePjxWdmg5IhtLiCRzoJwyq5MyolNQ0LB8ZAETXIISDu5s8EnYMn4ia9A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=nRkjpilHyBczuICe00pATbVL+Nk5uadbcaNkU+p7M/w=;
- b=AOxQ1PhWK3QHBu1Ak63xI3/1Y7/Aum3P3hiShOAHBi65Co1+/6ExLunTMQX4/SJJ0UQ1sl1M3a2E+CMQ+JGwzAAJXeAvYbP4jWG8fYw5e3RpqJl99WoL0ylPM0WsXrS/f4Nzjv8Cu7TLvmW9mjbfO+RCdBkmBMsm2zB1kxa/arU=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AM6PR04MB4838.eurprd04.prod.outlook.com (2603:10a6:20b:4::16)
- by AM9PR04MB8970.eurprd04.prod.outlook.com (2603:10a6:20b:409::23) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7135.18; Tue, 26 Dec
- 2023 21:53:12 +0000
-Received: from AM6PR04MB4838.eurprd04.prod.outlook.com
- ([fe80::95f5:5118:258f:ee40]) by AM6PR04MB4838.eurprd04.prod.outlook.com
- ([fe80::95f5:5118:258f:ee40%7]) with mapi id 15.20.7113.027; Tue, 26 Dec 2023
- 21:53:11 +0000
-Date: Tue, 26 Dec 2023 16:53:01 -0500
-From: Frank Li <Frank.li@nxp.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: bhelgaas@google.com, conor+dt@kernel.org, devicetree@vger.kernel.org,
-	festevam@gmail.com, helgaas@kernel.org, hongxing.zhu@nxp.com,
-	imx@lists.linux.dev, kernel@pengutronix.de,
-	krzysztof.kozlowski+dt@linaro.org, kw@linux.com,
-	l.stach@pengutronix.de, linux-arm-kernel@lists.infradead.org,
-	linux-imx@nxp.com, linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org, lpieralisi@kernel.org,
-	manivannan.sadhasivam@linaro.org, robh@kernel.org,
-	s.hauer@pengutronix.de, shawnguo@kernel.org
-Subject: Re: [PATCH v6 15/16] dt-bindings: imx6q-pcie: Add iMX95 pcie
- endpoint compatible string
-Message-ID: <ZYtLPQgMVUSNduLG@lizhi-Precision-Tower-5810>
-References: <20231224183242.1675372-1-Frank.Li@nxp.com>
- <20231224183242.1675372-16-Frank.Li@nxp.com>
- <6a61f325-a58b-4aa6-9a0a-7a3086f63829@linaro.org>
- <ZYr7Y+mJea6fChjS@lizhi-Precision-Tower-5810>
- <0233cf48-93cb-4f19-ad1d-e3e1835c1fef@linaro.org>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <0233cf48-93cb-4f19-ad1d-e3e1835c1fef@linaro.org>
-X-ClientProxiedBy: BY5PR17CA0054.namprd17.prod.outlook.com
- (2603:10b6:a03:167::31) To AM6PR04MB4838.eurprd04.prod.outlook.com
- (2603:10a6:20b:4::16)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C89A1078A;
+	Tue, 26 Dec 2023 22:52:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 3BQMpCJr012323;
+	Tue, 26 Dec 2023 22:51:33 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=SYGUVY+UmaauR562PbcqjdKMb0wR6VSm6vagIVeqRGo=; b=li
+	z/p8FfzzRfplh/ewxt8MvcLOel1zueV87QuyR/WrgaucgKbFeS4hjP2qzT8YU+V0
+	LYdPFI9yXqDNWFvLJyQfku4MKxsjdUGDbCUGhLBG64Hkik1kx6cgd2EM2vYsJ96o
+	nGSwEWbu3QQdvzbzzkZ4ovzcjomIwOCCW08HbV0eiPjLHb782NcesnLbkthIsfTJ
+	1wnThGjH/Dcx0OoO+sRh74NLXGjBVleXKWTsDWvaMygPIHzq7J/dlm7RLHyuZfcA
+	1Uh4ZX1KOdPj1rb65yhlBE0IoZBVfAB7AVoL3x0OSpp5St/1uVhGyX754bzy3jCn
+	rn9WKJlmG+gXvsWSxYlw==
+Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3v80kfrt6e-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 26 Dec 2023 22:51:32 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3BQMpVep026218
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 26 Dec 2023 22:51:31 GMT
+Received: from [10.110.123.205] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Tue, 26 Dec
+ 2023 14:51:29 -0800
+Message-ID: <1eab96e0-fad1-437b-b8bc-77013e32f724@quicinc.com>
+Date: Tue, 26 Dec 2023 14:51:28 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM6PR04MB4838:EE_|AM9PR04MB8970:EE_
-X-MS-Office365-Filtering-Correlation-Id: d5fb11d4-910b-4c72-0ed8-08dc065d0dce
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	9/cG/8Vjx7u6vOkkPFdZtrZEZQG1es3whgOtYob+jHUxd+xM+Ysj5y8QUKo8vgs1kV/oYkmQN9tkrvOSV0jvqvq71Ckvna925czDctJCVl9sd2VV5P7pvpydirv1XjgLidLZ79TQwXkdldGR3t0xMN8oD0Uebf/wAja3gD4+qeru/0Ly4nDmUfQHw0lsobFqXJpCKAElYQGc5tUSj3UIezKpocmpEfOmG3Gzv+cHTjvLePm0FpFdGItMwmBGRgYeShIvpyMRFKf3r3Ix2krhbm6zJOY9RGuh6JcllIed1s0Q1LVo0OdwaRNgqLzcgljO+taIp111F239Ijw2B9XT9gugokPhtl29cZ/uWeYN+gEkngVQfwzjT2+fD/pvCyYJs21dY5Hl26KzjjgD5ud97UFj7PPx54U/oEGxsy/iB4Y9b5spBdscXyZyLRV5apUm/AgUBJkWDhq36/MKaT4bzk2+FgQaLgcAOaJ9brlLiuRsO/O9g85+pYutIshHoDLI9ZkCyFN8s/tqqrMfOC/Rmu/DDFWBASbQ9faBifKh2OXeBZGVZO29Q7T8XC+K4vmTGzFkoCzppxVLDTVSkdcHyJbgnrZTc1JIyAaJS3f0cPNgohVxLitk00O0DdzMWIxZ6Hkwi1Qv4jTJvZc/1FOCTg==
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB4838.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(7916004)(39860400002)(136003)(366004)(396003)(376002)(346002)(230922051799003)(451199024)(64100799003)(186009)(1800799012)(6506007)(26005)(52116002)(53546011)(6666004)(6512007)(9686003)(5660300002)(7416002)(4326008)(8676002)(6486002)(33716001)(41300700001)(2906002)(8936002)(478600001)(316002)(6916009)(66476007)(66556008)(66946007)(86362001)(38100700002)(38350700005)(32563001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?woc8O5jnPg4uYGR90CExiUVNd4tBBXpGayxZ2qZ6OVhrUifC2PutXJMq7AY9?=
- =?us-ascii?Q?evHsd0ziC+UQ7uzzYJb51DOq7FdfAvU0FlS2PSyJFofGp+DgGUs2027fhVP4?=
- =?us-ascii?Q?WJpwWEAH3XTIK/aGPoyhXHIqk9e6WGb903nHDKg5f3O/Ppo5gq8ybWxo0vDD?=
- =?us-ascii?Q?sPtnYuV5W7KpuzCNLYoSTVuLXldaoztPKNbYNlYs41ettBTh7057GEofiTwc?=
- =?us-ascii?Q?vD7KQLKcgSSA0SbAYZLGs82Mr+nFc00jES29PS4AlsAJ143Bma9jyzIsgS6+?=
- =?us-ascii?Q?m1SLUktEh4Jwpx1Nxt7n8KANEN133MWxDzNF4Ejbrr9hjFiYOcFwpjzIE0z6?=
- =?us-ascii?Q?lBt+HmiJ5vkC3uK5j9utYzUfCUhm5Bn5lwrEmTd3RR8p4Zd51s5C7CsfRTYD?=
- =?us-ascii?Q?8PmsBeEG8X1pgJtipuaLzm7s+atClxOSY2J00l+mvPDMWeLwUJO8t9yEiEz2?=
- =?us-ascii?Q?fpvaLJFCH+uq1MO4uumc/F+lQo+GD3xOKIk2eQYPW50KZyEnn++8/JecBWK8?=
- =?us-ascii?Q?5Y98JwwxRgjL0EfwMgWO4uYJGOdVbBawv8EzmnePlZq/riHKFiDys5sg835x?=
- =?us-ascii?Q?dKzkh3LKmEkxbulC3N2jzyhqNOMkirXVQ5abltkj0r6nxzy5Xw7ydma3gxtA?=
- =?us-ascii?Q?46iTsTCWWrcaEg7huiFZKr/EiyBoFNaw5Ei6nQgFYfqUH6EAL3p2T3n2CwwI?=
- =?us-ascii?Q?CYwjN2YtAMLYWmuJyc+dZUSVJmlptInAxp36DiyhTYc2vgc9vXpDUnpqNnm2?=
- =?us-ascii?Q?TQixmkRXa1NkYC3J8SpDKkfj3l0Haaqc/+AxfBDAQ1uINRDLk81P+KAryACw?=
- =?us-ascii?Q?jWb05sxyEJT9s/ZzZnywNwko6NjJgMTR+IoQ+hIirocsURD+f+CiA6ODequM?=
- =?us-ascii?Q?jVJ1XqTPogd0CBIOvIDggWptcoXdPkmWuRFuvok3B3V4Khzhcdq7H/S1OefU?=
- =?us-ascii?Q?3dJlVbiWiFzdp5K/DmffGiwLuU+ROzBUrakJYj3aKRr6DzBbfhIUA7LmbDke?=
- =?us-ascii?Q?nC3LXeswVDYmU9S80tqOBLtyfW7HwZYBcSj5CCbbDgsj+C58Xqg9pTTNlRog?=
- =?us-ascii?Q?p+CxHLjwhfMyR4s19LAJmPhUmlXGYqVF7kmyqrxL/QBa15JxOwUf2/jKTgUu?=
- =?us-ascii?Q?GZ3XiNV4PLCEpb/VjTiC7yshmlhM69Rxjz7mmM+uRh7x7VMrflfojSlN5HeE?=
- =?us-ascii?Q?8RjFnCMBuoYajM1pU9mQPBaFDkR4v/jQhakYi2qFBFh5DRw2kJ2oBHwQOWmn?=
- =?us-ascii?Q?jDdhLW2SkfE7HBoD+5yp7MhZqJG0OFsWQsutklrFbp+eabR5tjSNhp0zK55T?=
- =?us-ascii?Q?WeBzhfYusptKotI7TFDiLc2uNF825eT0UQ8bleId8F8+fmhXIbzmpyoWhFMC?=
- =?us-ascii?Q?EnZeWs1Rbz3dy3fFSvjEfhdsgYtFiEUy1S/+5k4t9agIQx3UrqH9szASpUQm?=
- =?us-ascii?Q?JU+iGOf1U7jV+l4XxmplS4T7E20xJFUyhlzqw16tABJYmAMzA/0v5T4fBVpv?=
- =?us-ascii?Q?jxonVmV4PQRL4Qv3kegbKDqXe2I8lWRPYYgWQ741P1dRab+u2tFp3gYti9r+?=
- =?us-ascii?Q?INyxwuzb54hjlexKcqbI2lhLWAReNT+2F2JpmhbN?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d5fb11d4-910b-4c72-0ed8-08dc065d0dce
-X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB4838.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Dec 2023 21:53:11.6453
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: KQ26DvlDpsAhBAc+qiclxQR1wWteRzIyg/sP2ojK3gCurprFEItF5va+wWzKbvDzkAarPZjk3ek/RVtVhJXB9g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB8970
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/6] drm/panel: Add driver for BOE TH101MB31IG002-28A
+ panel
+Content-Language: en-US
+To: Manuel Traut <manut@mecka.net>,
+        Neil Armstrong
+	<neil.armstrong@linaro.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Maarten
+ Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard
+	<mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie
+	<airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring
+	<robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+        Sandy Huang <hjc@rock-chips.com>, Mark Yao
+	<markyao0591@gmail.com>,
+        Diederik de Haas <didi.debian@cknow.org>,
+        Segfault
+	<awarnecke002@hotmail.com>,
+        Arnaud Ferraris <aferraris@debian.org>
+CC: <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-rockchip@lists.infradead.org>
+References: <20231222-pinetab2-v1-0-e148a7f61bd1@mecka.net>
+ <20231222-pinetab2-v1-2-e148a7f61bd1@mecka.net>
+From: Jessica Zhang <quic_jesszhan@quicinc.com>
+In-Reply-To: <20231222-pinetab2-v1-2-e148a7f61bd1@mecka.net>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: q5RlT8qdRJyWlDqxxTvLd5FKV_pP9hhc
+X-Proofpoint-GUID: q5RlT8qdRJyWlDqxxTvLd5FKV_pP9hhc
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-12-09_01,2023-12-07_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 impostorscore=0
+ mlxlogscore=999 malwarescore=0 clxscore=1011 priorityscore=1501 mlxscore=0
+ spamscore=0 lowpriorityscore=0 adultscore=0 bulkscore=0 suspectscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2311290000
+ definitions=main-2312260174
 
-On Tue, Dec 26, 2023 at 08:01:53PM +0100, Krzysztof Kozlowski wrote:
-> On 26/12/2023 17:12, Frank Li wrote:
-> > On Mon, Dec 25, 2023 at 08:16:17PM +0100, Krzysztof Kozlowski wrote:
-> >> On 24/12/2023 19:32, Frank Li wrote:
-> >>> Add i.MX95 PCIe "fsl,imx95-pcie-ep" compatible string.
-> >>> Add reg-name: "atu", "dbi2", "dma" and "app".
-> >>> Reuse PCI linux,pci-domain as controller id at endpoint.
-> >>>
-> >>> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> >>> ---
-> >>>
-> >>
-> >> ...
-> >>
-> >>> +# reuse PCI linux,pci-domain as controller id at Endpoint
-> >>> +  - if:
-> >>> +      properties:
-> >>> +        compatible:
-> >>> +          enum:
-> >>> +            - fsl,imx95-pcie-ep
-> >>> +    then:
-> >>> +      properties:
-> >>> +        linux,pci-domain: true
-> >>
-> >> Same comment: why do you need? Don't ignore my feedback. You responded
-> >> you will fix it, but it is still here...
-> > 
-> > DTB_CHECK report error after I remove it. linux,pci-domain is only define
-> > in pci, not pci-ep.
+
+
+On 12/22/2023 3:05 AM, Manuel Traut wrote:
+> From: Segfault <awarnecke002@hotmail.com>
 > 
-> Ah, thank you, indeed.
+> The BOE TH101MB31IG002-28A panel is a WXGA panel.
+> It is used in Pine64 Pinetab2 and PinetabV.
 > 
-> > 
-> > So I add comments about this. linux,pci-domain was resued ad controller id.
+> Signed-off-by: Segfault <awarnecke002@hotmail.com>
+> Signed-off-by: Manuel Traut <manut@mecka.net>
+> ---
+>   drivers/gpu/drm/panel/Kconfig                      |  11 +
+>   drivers/gpu/drm/panel/Makefile                     |   1 +
+>   .../gpu/drm/panel/panel-boe-th101mb31ig002-28a.c   | 307 +++++++++++++++++++++
+>   3 files changed, 319 insertions(+)
 > 
-> However maybe there is reason why it is not for endpoints. The
-> description is saying it is valid only for host bridge, so maybe it
-> should not be used for endpoint case?
+> diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
+> index 99e14dc212ec..927ddd10e688 100644
+> --- a/drivers/gpu/drm/panel/Kconfig
+> +++ b/drivers/gpu/drm/panel/Kconfig
+> @@ -67,6 +67,17 @@ config DRM_PANEL_BOE_HIMAX8279D
+>   	  24 bit RGB per pixel. It provides a MIPI DSI interface to
+>   	  the host and has a built-in LED backlight.
+>   
+> +config DRM_PANEL_BOE_TH101MB31UIG002_28A
+> +	tristate "Boe TH101MB31UIG002-28A panel"
+> +	depends on OF
+> +	depends on DRM_MIPI_DSI
+> +	depends on BACKLIGHT_CLASS_DEVICE
+> +	help
+> +	  Say Y here if you want to enable support for Boe
+> +	  TH101MB31UIG002-28A TFT-LCD modules. The panel has a 800x1280
+> +	  resolution and uses 24 bit RGB per pixel. It provides a MIPI DSI
+> +	  interface to the host and has a built-in LED backlight.
+> +
+>   config DRM_PANEL_BOE_TV101WUM_NL6
+>   	tristate "BOE TV101WUM and AUO KD101N80 45NA 1200x1920 panel"
+>   	depends on OF
+> diff --git a/drivers/gpu/drm/panel/Makefile b/drivers/gpu/drm/panel/Makefile
+> index d10c3de51c6d..dd6e1ac9d0a2 100644
+> --- a/drivers/gpu/drm/panel/Makefile
+> +++ b/drivers/gpu/drm/panel/Makefile
+> @@ -5,6 +5,7 @@ obj-$(CONFIG_DRM_PANEL_ASUS_Z00T_TM5P5_NT35596) += panel-asus-z00t-tm5p5-n35596.
+>   obj-$(CONFIG_DRM_PANEL_AUO_A030JTN01) += panel-auo-a030jtn01.o
+>   obj-$(CONFIG_DRM_PANEL_BOE_BF060Y8M_AJ0) += panel-boe-bf060y8m-aj0.o
+>   obj-$(CONFIG_DRM_PANEL_BOE_HIMAX8279D) += panel-boe-himax8279d.o
+> +obj-$(CONFIG_DRM_PANEL_BOE_TH101MB31UIG002_28A) += panel-boe-th101mb31ig002-28a.o
+>   obj-$(CONFIG_DRM_PANEL_BOE_TV101WUM_NL6) += panel-boe-tv101wum-nl6.o
+>   obj-$(CONFIG_DRM_PANEL_DSI_CM) += panel-dsi-cm.o
+>   obj-$(CONFIG_DRM_PANEL_LVDS) += panel-lvds.o
+> diff --git a/drivers/gpu/drm/panel/panel-boe-th101mb31ig002-28a.c b/drivers/gpu/drm/panel/panel-boe-th101mb31ig002-28a.c
+> new file mode 100644
+> index 000000000000..ac1dc99a0300
+> --- /dev/null
+> +++ b/drivers/gpu/drm/panel/panel-boe-th101mb31ig002-28a.c
+> @@ -0,0 +1,307 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (c) 2023 Alexander Warnecke <awarnecke002@hotmail.com>
+> + * Copyright (c) 2023 Manuel Traut <manut@mecka.net>
+> + */
+> +
+> +#include <linux/delay.h>
+> +#include <linux/gpio/consumer.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/of_device.h>
+> +#include <linux/regulator/consumer.h>
+> +
+> +#include <drm/drm_connector.h>
+> +#include <drm/drm_mipi_dsi.h>
+> +#include <drm/drm_modes.h>
+> +#include <drm/drm_panel.h>
+> +
+> +struct boe_th101mb31ig002 {
+> +	struct drm_panel panel;
+> +	bool enabled;
+> +	bool prepared;
 
-EP side, it is not PCI bus. So it is reasonable that linux,pci-doamin not
-in EP side.
+Hi Manuel,
 
-iMX6 host driver(and other some host controller drivers) already use it as
-"controller id". EP driver is mostly reused with host bridge drivers. I
-think needn't create new property such as "controller_id" for EP only.
+If I remember correctly, commit 
+d2aacaf07395bd798373cbec6af05fff4147aff3 should have introduced 
+prepared/enabled do the drm_panel struct.
 
-A comments should be enough for this case.
+Thanks,
 
-Frank
+Jessica Zhang
 
-> > 
-> > If include pci.yaml, there are too much other properties was involved, but
-> > not used by pci-ep.
+> +
+> +	struct mipi_dsi_device *dsi;
+> +
+> +	struct regulator *power;
+> +	struct gpio_desc *enable;
+> +	struct gpio_desc *reset;
+> +
+> +	enum drm_panel_orientation orientation;
+> +};
+> +
+> +static int boe_th101mb31ig002_disable(struct drm_panel *panel)
+> +{
+> +	struct boe_th101mb31ig002 *ctx = container_of(panel,
+> +						      struct boe_th101mb31ig002,
+> +						      panel);
+> +
+> +	if (!ctx->enabled)
+> +		return 0;
+> +
+> +	mipi_dsi_dcs_set_display_off(ctx->dsi);
+> +	msleep(120);
+> +	ctx->enabled = false;
+> +
+> +	return 0;
+> +}
+> +
+> +static int boe_th101mb31ig002_unprepare(struct drm_panel *panel)
+> +{
+> +	struct boe_th101mb31ig002 *ctx = container_of(panel,
+> +						      struct boe_th101mb31ig002,
+> +						      panel);
+> +
+> +	if (!ctx->prepared)
+> +		return 0;
+> +
+> +	mipi_dsi_dcs_enter_sleep_mode(ctx->dsi);
+> +	msleep(220);
+> +	gpiod_set_value_cansleep(ctx->reset, 1);
+> +	gpiod_set_value_cansleep(ctx->enable, 0);
+> +	regulator_disable(ctx->power);
+> +	ctx->prepared = false;
+> +
+> +	return 0;
+> +}
+> +
+> +static int boe_th101mb31ig002_prepare(struct drm_panel *panel)
+> +{
+> +	struct boe_th101mb31ig002 *ctx = container_of(panel,
+> +						      struct boe_th101mb31ig002,
+> +						      panel);
+> +	struct mipi_dsi_device *dsi = ctx->dsi;
+> +	int ret;
+> +
+> +	if (ctx->prepared)
+> +		return 0;
+> +
+> +	ret = regulator_enable(ctx->power);
+> +	if (ret) {
+> +		dev_err(&dsi->dev, "Failed to enable power supply: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	gpiod_set_value_cansleep(ctx->enable, 1);
+> +	msleep(120);
+> +	gpiod_direction_output(ctx->reset, 1);
+> +	msleep(120);
+> +	gpiod_direction_output(ctx->reset, 0);
+> +	msleep(120);
+> +
+> +	mipi_dsi_dcs_write_seq(dsi, 0xE0, 0xAB, 0xBA);
+> +	mipi_dsi_dcs_write_seq(dsi, 0xE1, 0xBA, 0xAB);
+> +	mipi_dsi_dcs_write_seq(dsi, 0xB1, 0x10, 0x01, 0x47, 0xFF);
+> +	mipi_dsi_dcs_write_seq(dsi, 0xB2, 0x0C, 0x14, 0x04, 0x50, 0x50, 0x14);
+> +	mipi_dsi_dcs_write_seq(dsi, 0xB3, 0x56, 0x53, 0x00);
+> +	mipi_dsi_dcs_write_seq(dsi, 0xB4, 0x33, 0x30, 0x04);
+> +	mipi_dsi_dcs_write_seq(dsi, 0xB6, 0xB0, 0x00, 0x00, 0x10, 0x00, 0x10,
+> +			       0x00);
+> +	mipi_dsi_dcs_write_seq(dsi, 0xB8, 0x05, 0x12, 0x29, 0x49, 0x48, 0x00,
+> +			       0x00);
+> +	mipi_dsi_dcs_write_seq(dsi, 0xB9, 0x7C, 0x65, 0x55, 0x49, 0x46, 0x36,
+> +			       0x3B, 0x24, 0x3D, 0x3C, 0x3D, 0x5C, 0x4C, 0x55,
+> +			       0x47, 0x46, 0x39, 0x26, 0x06, 0x7C, 0x65, 0x55,
+> +			       0x49, 0x46, 0x36, 0x3B, 0x24, 0x3D, 0x3C, 0x3D,
+> +			       0x5C, 0x4C, 0x55, 0x47, 0x46, 0x39, 0x26, 0x06);
+> +	mipi_dsi_dcs_write_seq(dsi, 0xC0, 0xFF, 0x87, 0x12, 0x34, 0x44, 0x44,
+> +			       0x44, 0x44, 0x98, 0x04, 0x98, 0x04, 0x0F, 0x00,
+> +			       0x00, 0xC1);
+> +	mipi_dsi_dcs_write_seq(dsi, 0xC1, 0x54, 0x94, 0x02, 0x85, 0x9F, 0x00,
+> +			       0x7F, 0x00, 0x54, 0x00);
+> +	mipi_dsi_dcs_write_seq(dsi, 0xC2, 0x17, 0x09, 0x08, 0x89, 0x08, 0x11,
+> +			       0x22, 0x20, 0x44, 0xFF, 0x18, 0x00);
+> +	mipi_dsi_dcs_write_seq(dsi, 0xC3, 0x86, 0x46, 0x05, 0x05, 0x1C, 0x1C,
+> +			       0x1D, 0x1D, 0x02, 0x1F, 0x1F, 0x1E, 0x1E, 0x0F,
+> +			       0x0F, 0x0D, 0x0D, 0x13, 0x13, 0x11, 0x11, 0x00);
+> +	mipi_dsi_dcs_write_seq(dsi, 0xC4, 0x07, 0x07, 0x04, 0x04, 0x1C, 0x1C,
+> +			       0x1D, 0x1D, 0x02, 0x1F, 0x1F, 0x1E, 0x1E, 0x0E,
+> +			       0x0E, 0x0C, 0x0C, 0x12, 0x12, 0x10, 0x10, 0x00);
+> +	mipi_dsi_dcs_write_seq(dsi, 0xC6, 0x2A, 0x2A);
+> +	mipi_dsi_dcs_write_seq(dsi, 0xC8, 0x21, 0x00, 0x31, 0x42, 0x34, 0x16);
+> +	mipi_dsi_dcs_write_seq(dsi, 0xCA, 0xCB, 0x43);
+> +	mipi_dsi_dcs_write_seq(dsi, 0xCD, 0x0E, 0x4B, 0x4B, 0x20, 0x19, 0x6B,
+> +			       0x06, 0xB3);
+> +	mipi_dsi_dcs_write_seq(dsi, 0xD2, 0xE3, 0x2B, 0x38, 0x00);
+> +	mipi_dsi_dcs_write_seq(dsi, 0xD4, 0x00, 0x01, 0x00, 0x0E, 0x04, 0x44,
+> +			       0x08, 0x10, 0x00, 0x00, 0x00);
+> +	mipi_dsi_dcs_write_seq(dsi, 0xE6, 0x80, 0x01, 0xFF, 0xFF, 0xFF, 0xFF,
+> +			       0xFF, 0xFF);
+> +	mipi_dsi_dcs_write_seq(dsi, 0xF0, 0x12, 0x03, 0x20, 0x00, 0xFF);
+> +	mipi_dsi_dcs_write_seq(dsi, 0xF3, 0x00);
+> +
+> +	mipi_dsi_dcs_exit_sleep_mode(dsi);
+> +	msleep(120);
+> +	ctx->prepared = true;
+> +
+> +	return 0;
+> +}
+> +
+> +static int boe_th101mb31ig002_enable(struct drm_panel *panel)
+> +{
+> +	struct boe_th101mb31ig002 *ctx = container_of(panel,
+> +						      struct boe_th101mb31ig002,
+> +						      panel);
+> +
+> +	if (ctx->enabled)
+> +		return 0;
+> +
+> +	mipi_dsi_dcs_set_display_on(ctx->dsi);
+> +	msleep(120);
+> +	ctx->enabled = true;
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct drm_display_mode boe_th101mb31ig002_default_mode = {
+> +	.clock		= 73500,
+> +	.hdisplay	= 800,
+> +	.hsync_start	= 800 + 64,
+> +	.hsync_end	= 800 + 64 + 16,
+> +	.htotal		= 800 + 64 + 16 + 64,
+> +	.vdisplay	= 1280,
+> +	.vsync_start	= 1280 + 2,
+> +	.vsync_end	= 1280 + 2 + 4,
+> +	.vtotal		= 1280 + 2 + 4 + 12,
+> +	.type = DRM_MODE_TYPE_DRIVER | DRM_MODE_TYPE_PREFERRED,
+> +};
+> +
+> +static int boe_th101mb31ig002_get_modes(struct drm_panel *panel,
+> +					struct drm_connector *connector)
+> +{
+> +	struct boe_th101mb31ig002 *ctx = container_of(panel,
+> +						      struct boe_th101mb31ig002,
+> +						      panel);
+> +	struct drm_display_mode *mode;
+> +
+> +	mode = drm_mode_duplicate(connector->dev,
+> +				  &boe_th101mb31ig002_default_mode);
+> +	if (!mode) {
+> +		dev_err(panel->dev, "Failed to add mode %ux%u@%u\n",
+> +			boe_th101mb31ig002_default_mode.hdisplay,
+> +			boe_th101mb31ig002_default_mode.vdisplay,
+> +			drm_mode_vrefresh(&boe_th101mb31ig002_default_mode));
+> +		return -ENOMEM;
+> +	}
+> +
+> +	drm_mode_set_name(mode);
+> +	drm_mode_probed_add(connector, mode);
+> +
+> +	connector->display_info.bpc = 8;
+> +	connector->display_info.width_mm = 216;
+> +	connector->display_info.height_mm = 135;
+> +
+> +	/*
+> +	 * TODO: Remove once all drm drivers call
+> +	 * drm_connector_set_orientation_from_panel()
+> +	 */
+> +	drm_connector_set_panel_orientation(connector, ctx->orientation);
+> +
+> +	return 1;
+> +}
+> +
+> +static enum drm_panel_orientation boe_th101mb31ig002_get_orientation(struct drm_panel *panel)
+> +{
+> +	struct boe_th101mb31ig002 *ctx = container_of(panel,
+> +						      struct boe_th101mb31ig002,
+> +						      panel);
+> +
+> +	return ctx->orientation;
+> +}
+> +
+> +static const struct drm_panel_funcs boe_th101mb31ig002_funcs = {
+> +	.disable = boe_th101mb31ig002_disable,
+> +	.unprepare = boe_th101mb31ig002_unprepare,
+> +	.prepare = boe_th101mb31ig002_prepare,
+> +	.enable = boe_th101mb31ig002_enable,
+> +	.get_modes = boe_th101mb31ig002_get_modes,
+> +	.get_orientation = boe_th101mb31ig002_get_orientation,
+> +};
+> +
+> +static int boe_th101mb31ig002_dsi_probe(struct mipi_dsi_device *dsi)
+> +{
+> +	struct boe_th101mb31ig002 *ctx;
+> +	int ret;
+> +
+> +	ctx = devm_kzalloc(&dsi->dev, sizeof(*ctx), GFP_KERNEL);
+> +	if (!ctx)
+> +		return -ENOMEM;
+> +
+> +	ctx->enabled = false;
+> +	ctx->prepared = false;
+> +
+> +	mipi_dsi_set_drvdata(dsi, ctx);
+> +	ctx->dsi = dsi;
+> +
+> +	drm_panel_init(&ctx->panel, &dsi->dev, &boe_th101mb31ig002_funcs,
+> +		       DRM_MODE_CONNECTOR_DSI);
+> +
+> +	ctx->power = devm_regulator_get(&dsi->dev, "power");
+> +	if (IS_ERR(ctx->power))
+> +		return dev_err_probe(&dsi->dev, PTR_ERR(ctx->power),
+> +				     "Failed to get power regulator\n");
+> +
+> +	ctx->enable = devm_gpiod_get(&dsi->dev, "enable", GPIOD_OUT_LOW);
+> +	if (IS_ERR(ctx->enable))
+> +		return dev_err_probe(&dsi->dev, PTR_ERR(ctx->enable),
+> +				     "Failed to get enable GPIO\n");
+> +
+> +	ctx->reset = devm_gpiod_get(&dsi->dev, "reset", GPIOD_OUT_HIGH);
+> +	if (IS_ERR(ctx->reset))
+> +		return dev_err_probe(&dsi->dev, PTR_ERR(ctx->reset),
+> +				     "Failed to get reset GPIO\n");
+> +
+> +	ret = of_drm_get_panel_orientation(dsi->dev.of_node,
+> +					   &ctx->orientation);
+> +	if (ret)
+> +		return dev_err_probe(&dsi->dev, ret,
+> +				     "Failed to get orientation\n");
+> +
+> +	ret = drm_panel_of_backlight(&ctx->panel);
+> +	if (ret)
+> +		return ret;
+> +
+> +	drm_panel_add(&ctx->panel);
+> +
+> +	dsi->lanes = 4;
+> +	dsi->format = MIPI_DSI_FMT_RGB888;
+> +	dsi->mode_flags = MIPI_DSI_MODE_VIDEO_BURST |
+> +			  MIPI_DSI_MODE_NO_EOT_PACKET |
+> +			  MIPI_DSI_MODE_LPM;
+> +
+> +	ret = mipi_dsi_attach(dsi);
+> +	if (ret < 0) {
+> +		drm_panel_remove(&ctx->panel);
+> +		return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static void boe_th101mb31ig002_dsi_remove(struct mipi_dsi_device *dsi)
+> +{
+> +	struct boe_th101mb31ig002 *ctx = mipi_dsi_get_drvdata(dsi);
+> +
+> +	mipi_dsi_detach(dsi);
+> +	drm_panel_remove(&ctx->panel);
+> +}
+> +
+> +static const struct of_device_id boe_th101mb31ig002_of_match[] = {
+> +	{ .compatible = "boe,th101mb31ig002-28a", },
+> +	{ /* sentinel */ }
+> +};
+> +MODULE_DEVICE_TABLE(of, boe_th101mb31ig002_of_match);
+> +
+> +static struct mipi_dsi_driver boe_th101mb31ig002_driver = {
+> +	.driver = {
+> +		.name = "boe-th101mb31ig002-28a",
+> +		.of_match_table = boe_th101mb31ig002_of_match,
+> +	},
+> +	.probe = boe_th101mb31ig002_dsi_probe,
+> +	.remove = boe_th101mb31ig002_dsi_remove,
+> +};
+> +module_mipi_dsi_driver(boe_th101mb31ig002_driver);
+> +
+> +MODULE_AUTHOR("Alexander Warnecke <awarnecke002@hotmail.com>");
+> +MODULE_DESCRIPTION("BOE TH101MB31IG002-28A MIPI-DSI LCD panel");
+> +MODULE_LICENSE("GPL");
 > 
-> Best regards,
-> Krzysztof
+> -- 
+> 2.43.0
 > 
 
