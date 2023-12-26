@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-28463-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28464-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28D0981E672
-	for <lists+devicetree@lfdr.de>; Tue, 26 Dec 2023 10:37:11 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 335B081E675
+	for <lists+devicetree@lfdr.de>; Tue, 26 Dec 2023 10:38:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A86251F227B3
-	for <lists+devicetree@lfdr.de>; Tue, 26 Dec 2023 09:37:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 566481C21A0E
+	for <lists+devicetree@lfdr.de>; Tue, 26 Dec 2023 09:38:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A4A84D102;
-	Tue, 26 Dec 2023 09:36:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08BF04D114;
+	Tue, 26 Dec 2023 09:38:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kq4VXrax"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="MUJmqpCi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
+Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 917084D58C
-	for <devicetree@vger.kernel.org>; Tue, 26 Dec 2023 09:36:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99F3E4D113
+	for <devicetree@vger.kernel.org>; Tue, 26 Dec 2023 09:38:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-554de45baf3so1763041a12.1
-        for <devicetree@vger.kernel.org>; Tue, 26 Dec 2023 01:36:57 -0800 (PST)
+Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-50e7b9cca2fso894734e87.3
+        for <devicetree@vger.kernel.org>; Tue, 26 Dec 2023 01:38:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1703583416; x=1704188216; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1703583488; x=1704188288; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=aq/IL+aI2wvzsv74vMm6XI/3SuDRb0LU/4Y+hul9Li4=;
-        b=kq4VXraxutFoQwGUGX0k0dIc1r28SkaOsyyBDpS61Ds4OyzcXy6XtUB8rjUHXlNNRq
-         5sMAvoEfOYlIEdshBjdLjL4dRJJEiQAd4OTt4zOPKw/k2ivkz5EAqj9WpJYMX+M/CX6S
-         7Z3uuEfb1HH0+QJGQaPAABSxclZcBM9WlY36K9P53jeq2GMt+ac4OoULMwigQqNwtZsB
-         LvCbM4M+eRQQsI76z6zD+1iA0q8mV33fWnCvTjCKZ1PeMmceS7IaYwzDB410HhqnOEFX
-         54sOCm37nORawSecU/psmpCuVRmqRPi/FoXa0tArRLjCzEM9/YmSsKx54qqwTMo0Um5d
-         aV8Q==
+        bh=5cZiebTkFekri++mtky4VBNk7P2YVfvTzbdZIvExVRU=;
+        b=MUJmqpCi+mGXuA2k6fHTLzxxueyydzkN6rv8OL3KpDatr1e6KLCtHNuoNgCqatUGVi
+         lsJDnByqqrG+eIRRnY9oc94fW/V4vf/WQhuSRu34JdgGknIay6DMdym7Hax2UC+zhr3d
+         VkKC4MccLOpzsmBR22gWgSIR9SBOyCkCxuEdld00sLlEhUfmMifMOkNEf+9QCVvj9uMy
+         eyqfc7mgd45sK8i4vEdNw7DR+Gzrh5Gvptoo3A+ckRMO0aPTHV3xcQ/HuZ5K2dwVBM4q
+         u0gD9HgTkZND1qOYB/ahUVSHkcnh5oz0/g+XuME2/NqpStAbBij1Y1JfSWiE/VV3sa3h
+         mbUw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703583416; x=1704188216;
+        d=1e100.net; s=20230601; t=1703583488; x=1704188288;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=aq/IL+aI2wvzsv74vMm6XI/3SuDRb0LU/4Y+hul9Li4=;
-        b=VAu7eRakfFd+pRRYih6s0S2giD2CgoM+/p5cpfHohYxUtE/Qek01WpRszgd0S71Jg/
-         HpxqgYNFMaDNYf3eXdzsQHWrFOlDS/sFA8y39ZNIML/Fou9PSNLtclxnAJFoEnq8qKRR
-         PpqB3fo+oJFuz4zS9IhnBt3HQ9bWgyMal+KwnICtziT1kybtjTH6g0Pjwp7znQThDif+
-         kVQbJ5MsPzPjIMgHiVfOIHGFAcdduu4ot3GU3slaMOPyLnNt8ycIZRoiQOis9RPFVwU2
-         tq9RBPLxBSjcKqHxIwz6nptWjm8oTkGriki959s8i8vRpEJnfWHuCT2Y5WJhuueLFKx+
-         OCxQ==
-X-Gm-Message-State: AOJu0Yyrs0cxM9O3P7fPwpazc5QJ5ov+sYxZWmXYUI6fSvoxWUPQOkl/
-	ksfAmZZm9T5owgjBkW+t2jGj8MOLkWtDoA==
-X-Google-Smtp-Source: AGHT+IEm1vJdt9n9NRZSWj/SNczfh/2xCjOJy1cy7kFhPScEs4b0wVDQzpiJQU5OzyhUd+AdTWe50g==
-X-Received: by 2002:a50:cd14:0:b0:554:3bdb:52c6 with SMTP id z20-20020a50cd14000000b005543bdb52c6mr6318482edi.6.1703583415889;
-        Tue, 26 Dec 2023 01:36:55 -0800 (PST)
+        bh=5cZiebTkFekri++mtky4VBNk7P2YVfvTzbdZIvExVRU=;
+        b=AoicdNX5luTgp8el//Xp9UiTPZdUHH99DsL/ZI7RbIzbUuRcQBCstbMLLKOGymlnFz
+         IELu/eIZgJwHt+GDnst3cVIo4PNbtAHkJXeYV6SfaFzi3n0PG5iBTV5bFY8xEq/Lj6Vq
+         BQt0VAAecHukgDX26pSR+Pt2qGr0JIhxlUZBTHtTFpbtFbbDRu8F3NQrVgl954sZnRn3
+         v6aBYxsGj+0l58lvq9nVGqOftdPifS6WwQ9h4TQ6FARN23cziyhNQN6sADE1Oycq1cMc
+         T/987mWApC050WtK/pE+l9IK+kr0Jfn1FdywoJ+FzDPnz2bPjUSX/mO7kSLvmYUqiCGg
+         HpuA==
+X-Gm-Message-State: AOJu0YwU5T0C8af9SJXdDaBH7XgwIMcmuCubu1xw9o+uCHIK/lJAYQhl
+	zcs9LM/Dwp1N1/ipCQAZqz+H/DqszPsinQ==
+X-Google-Smtp-Source: AGHT+IGfVU0HhZvk8Mmz9MTxs3r5rD09VPnBFIrdd6PSbGdrmIv4odBHf4O51t+07ipoVB62sy2BEw==
+X-Received: by 2002:a05:6512:3767:b0:50e:644a:d384 with SMTP id z7-20020a056512376700b0050e644ad384mr2141825lft.129.1703583488672;
+        Tue, 26 Dec 2023 01:38:08 -0800 (PST)
 Received: from [192.168.0.22] ([78.10.206.178])
-        by smtp.gmail.com with ESMTPSA id p2-20020a056402044200b005553a8bb61dsm72021edw.87.2023.12.26.01.36.54
+        by smtp.gmail.com with ESMTPSA id p2-20020a056402044200b005553a8bb61dsm72021edw.87.2023.12.26.01.38.07
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 26 Dec 2023 01:36:55 -0800 (PST)
-Message-ID: <578d6319-5ab5-45e5-8457-00116c7c84ae@linaro.org>
-Date: Tue, 26 Dec 2023 10:36:54 +0100
+        Tue, 26 Dec 2023 01:38:08 -0800 (PST)
+Message-ID: <a672e883-08f5-4e52-85bf-f5537eef3e62@linaro.org>
+Date: Tue, 26 Dec 2023 10:38:07 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,32 +66,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/2] dt-bindings: arm: coresight: Update the pattern of
- ete node name
+Subject: Re: [PATCH v2 03/10] dt-bindings: iio: pressure:
+ honeywell,mprls0025pa.yaml add spi bus
 Content-Language: en-US
-To: Jinlong Mao <quic_jinlmao@quicinc.com>,
- Mathieu Poirier <mathieu.poirier@linaro.org>,
- Suzuki K Poulose <suzuki.poulose@arm.com>, Mike Leach
- <mike.leach@linaro.org>, James Clark <james.clark@arm.com>,
- Leo Yan <leo.yan@linaro.org>, Andy Gross <agross@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+To: Petre Rodan <petre.rodan@subdimension.ro>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Andreas Klinger <ak@it-klinger.de>,
+ Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
+ Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
  Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Tingwei Zhang <quic_tingweiz@quicinc.com>,
- Yuanfang Zhang <quic_yuanfang@quicinc.com>,
- Tao Zhang <quic_taozha@quicinc.com>, coresight@lists.linaro.org
-References: <20231220140538.13136-1-quic_jinlmao@quicinc.com>
- <20231220140538.13136-2-quic_jinlmao@quicinc.com>
- <79f88d35-17cc-43b0-bb22-3c854f89d961@linaro.org>
- <8e5e9603-456b-4956-be03-b866feeeafb4@quicinc.com>
- <c41ff7c8-48d6-4f4f-a9df-aafe953a2e98@linaro.org>
- <f2f983b7-4c57-4b1b-925d-ffb18f6350a0@quicinc.com>
- <c64a41af-ff62-43c5-89f7-0558f8456010@linaro.org>
- <16932826-fcc2-49d3-95ab-201eff729360@quicinc.com>
- <d4c6c32f-b1cf-4cf2-9c52-85fa8c1ed73f@linaro.org>
- <9d13e1ce-38b1-4cdd-83ba-eca0c3091ce1@quicinc.com>
+References: <20231224143500.10940-1-petre.rodan@subdimension.ro>
+ <20231224143500.10940-4-petre.rodan@subdimension.ro>
+ <b23a6b74-a568-4e11-8429-6344e10a9937@linaro.org> <ZYmcNySur-ZQryWc@sunspire>
+ <1b54a167-1c90-46b8-8a7b-a21f5d4655e7@linaro.org> <ZYnmJjUJjYZHxfUM@sunspire>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -137,74 +125,26 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <9d13e1ce-38b1-4cdd-83ba-eca0c3091ce1@quicinc.com>
+In-Reply-To: <ZYnmJjUJjYZHxfUM@sunspire>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 26/12/2023 02:50, Jinlong Mao wrote:
-> 
-> 
-> On 12/21/2023 4:44 PM, Krzysztof Kozlowski wrote:
->> On 21/12/2023 09:36, Jinlong Mao wrote:
->>>
->>>
->>> On 12/21/2023 4:17 PM, Krzysztof Kozlowski wrote:
->>>> On 21/12/2023 09:15, Jinlong Mao wrote:
->>>>>
->>>>>
->>>>> On 12/21/2023 4:12 PM, Krzysztof Kozlowski wrote:
->>>>>> On 21/12/2023 04:28, Jinlong Mao wrote:
->>>>>>>>> diff --git a/Documentation/devicetree/bindings/arm/arm,embedded-trace-extension.yaml b/Documentation/devicetree/bindings/arm/arm,embedded-trace-extension.yaml
->>>>>>>>> index f725e6940993..cbf583d34029 100644
->>>>>>>>> --- a/Documentation/devicetree/bindings/arm/arm,embedded-trace-extension.yaml
->>>>>>>>> +++ b/Documentation/devicetree/bindings/arm/arm,embedded-trace-extension.yaml
->>>>>>>>> @@ -23,7 +23,7 @@ description: |
->>>>>>>>>      
->>>>>>>>>      properties:
->>>>>>>>>        $nodename:
->>>>>>>>> -    pattern: "^ete([0-9a-f]+)$"
->>>>>>>>> +    pattern: "^ete-([0-9a-f]+)$"
->>>>>>>>
->>>>>>>> My concerns are not resolved. Why is it here in the first place?
->>>>>>>
->>>>>>> Hi Krzysztof,
->>>>>>>
->>>>>>> ETE is acronym of embedded trace extension. The number of the name is
->>>>>>> the same as the number of the CPU it belongs to.
->>>>>>
->>>>>> This is obvious and was not my question.
-
-You already said it here...
-
->>>>>
->>>>> Do you mean why the pattern match of the node name is added here ?
->>>>
->>>> Yes, especially that it is requiring a non-generic name.
->>>>
->>>>>
->>>>> This node should not have the node name match, right ?
->>>>
->>>> Usually. For sure shouldn't be for non-generic names.
->>>>
->>> Hi Suzuki,
->>>
->>> Can we remove the pattern match of the node name and use a generic name
->>> "ete" for the ete DT nodes ?
+On 25/12/2023 21:29, Petre Rodan wrote:
+>>> without a differentiation in the 'compatible' string I don't see how your request
+>>> can be implemented.
 >>
->> "ete" is not a generic name. What is generic here? It's an acronym of
->> some specific device name.
->>
+>> You cannot have different compatibles. I did not propose it. I wrote
+>> nothing about compatible. I wrote about missing $ref in top-level for
+>> spi-peripheral-props. Where do you see anything about compatible?
 > 
-> The device full name is embedded trace extension. So use ETE as the name 
-> here.
+> sorry, for one hot second I thought you want that property to be conditionally
+> defined, like
+> 
+> allOf:
+>   - $ref: /schemas/spi/spi-peripheral-props.yaml
+> 
 
-That's obvious and my comment was not about it. Second time... This is
-my unlucky day... I said, why do you even want to enforce name which is
-not generic, since the names should be generic?
-
-I assume you read the DT specification:
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-
+Yes, this one.
 
 Best regards,
 Krzysztof
