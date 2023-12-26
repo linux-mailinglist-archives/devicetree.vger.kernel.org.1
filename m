@@ -1,110 +1,201 @@
-Return-Path: <devicetree+bounces-28417-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28418-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5FB4481E297
-	for <lists+devicetree@lfdr.de>; Mon, 25 Dec 2023 23:32:42 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC70681E460
+	for <lists+devicetree@lfdr.de>; Tue, 26 Dec 2023 02:17:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0BB521F224A3
-	for <lists+devicetree@lfdr.de>; Mon, 25 Dec 2023 22:32:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 823B31F22429
+	for <lists+devicetree@lfdr.de>; Tue, 26 Dec 2023 01:17:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3DE41DFF7;
-	Mon, 25 Dec 2023 22:32:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mYcuzIjY"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36E7A380;
+	Tue, 26 Dec 2023 01:17:09 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f41.google.com (mail-qv1-f41.google.com [209.85.219.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98D111D68D;
-	Mon, 25 Dec 2023 22:32:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qv1-f41.google.com with SMTP id 6a1803df08f44-67fb9df3699so21491886d6.2;
-        Mon, 25 Dec 2023 14:32:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1703543554; x=1704148354; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=9AXVgWVsZaXTaZ2MYrLDbeRzFgb65vHx3yvBMYSyN7I=;
-        b=mYcuzIjY7U1Yq0FYAej9TdHfSwMrRKFTXh0339yt9qTkQw3sV/DIgmT4k4fZ5eJJAd
-         Hr1HoqCJ0+NGYe3inBZynkEYaUt7fAtEdLUeSrfmm6EfjnamPODVIDwYqWGpUGFZcqJI
-         88xKM5Zr2PYPMTa0nZUwhrRurhpmcndw4MF931hmZPYcBi0+dbG8Dcybape+xWo724I0
-         nz1PEd5BadRy7BgdWBwJuk5aq0e3kNDsiK1xabnkz3pfZC6AAjzQ+heBUfx1BAU4TkFY
-         gg/aV+dSIbkLLGN6sYKHypdSURCEjdExJ+GLdxZG1ytS5DLQTuA7YLwFxUtJvE8qh0wl
-         vrGg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703543554; x=1704148354;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=9AXVgWVsZaXTaZ2MYrLDbeRzFgb65vHx3yvBMYSyN7I=;
-        b=ATXBc/DtHdLuOxFmiWQ68F0gG6LIuaKusCUanaxpGzTVbpkaNBcKR74R0hIbaPYGAx
-         sRYFnG/EGC5ifacg/Cn+fLeBt4RQwAGMQOG6ddKO1xdpBVWgaICfxm0cttbzx9Qmac1X
-         fDmL9RTBqjlJ4hTx603lguTy04DHXpGr79ny6dX+ztSpdtmY4wEmkkxeXMSplDWR5Ez4
-         jCCdJZk82YTXC03Ay+3cw/d0/ntTB7U1bzR+8s8vu/43Bin26N+dQSRGZ+GeOINDirjS
-         2nYiVENwMrPO/TLuFqETAh67BdyMhh2mAKZBIdYwArEAJCB7UINdF+iTCO1n8XftOucY
-         OFBQ==
-X-Gm-Message-State: AOJu0YzWBj2U7dsG6oI2brP84cFTT/iI1NVtChF/qJa2lA4384cN5xpy
-	Z3Udw7qcDulhZwwma3uQBWM=
-X-Google-Smtp-Source: AGHT+IF525M1SC2MBZdNWTYLYvaOFmLvhK/WeGaLidoL7771wvZqYFubfDK0gB87y3l2paGzoVQTMw==
-X-Received: by 2002:a37:e112:0:b0:781:c38:8e60 with SMTP id c18-20020a37e112000000b007810c388e60mr7727978qkm.102.1703543554520;
-        Mon, 25 Dec 2023 14:32:34 -0800 (PST)
-Received: from localhost.localdomain (107-015-241-140.res.spectrum.com. [107.15.241.140])
-        by smtp.gmail.com with ESMTPSA id br37-20020a05620a462500b0077edde498d3sm3856151qkb.89.2023.12.25.14.32.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 25 Dec 2023 14:32:34 -0800 (PST)
-From: John Clark <inindev@gmail.com>
-To: "Rob Herring" <robh+dt@kernel.org>,
-	"Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-	"Conor Dooley" <conor+dt@kernel.org>,
-	"Heiko Stuebner" <heiko@sntech.de>,
-	linux-rockchip@lists.infradead.org
-Cc: "Thomas McKahan" <tmckahan@singleboardsolutions.com>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	John Clark <inindev@gmail.com>
-Subject: [PATCH v2] arm64: dts: rockchip: correct gpio_pwrctrl1 typo
-Date: Mon, 25 Dec 2023 22:32:16 +0000
-Message-ID: <20231225223226.17690-1-inindev@gmail.com>
-X-Mailer: git-send-email 2.43.0
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAD98A2A;
+	Tue, 26 Dec 2023 01:17:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 7513A1FB;
+	Mon, 25 Dec 2023 17:17:45 -0800 (PST)
+Received: from minigeek.lan (unknown [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 3B7A03F641;
+	Mon, 25 Dec 2023 17:16:58 -0800 (PST)
+Date: Tue, 26 Dec 2023 01:16:34 +0000
+From: Andre Przywara <andre.przywara@arm.com>
+To: fuyao <fuyao@sjterm.com>
+Cc: fuyao <fuyao1697@cyg.com>, Rob Herring <robh+dt@kernel.org>, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+ <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec
+ <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, Alexandre
+ TORGUE <alexandre.torgue@st.com>, Enric Balletbo i Serra
+ <eballetbo@gmail.com>, Baruch Siach <baruch@tkos.co.il>, Paul Barker
+ <paul.barker@sancloud.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH RESEND] ARM: dts: sun8i: r40: open the regulator aldo1
+Message-ID: <20231226011634.32e2342d@minigeek.lan>
+In-Reply-To: <ZYlVTFrWkPaci92K@debian.cyg>
+References: <ZYKjYypuAx7gNuam@debian.cyg>
+	<20231220150400.0f32e2a5@donnerap.manchester.arm.com>
+	<ZYOhAQi7XeLUuAC9@debian.cyg>
+	<20231221103906.1830ef94@donnerap.manchester.arm.com>
+	<ZYlVTFrWkPaci92K@debian.cyg>
+Organization: Arm Ltd.
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.31; x86_64-slackware-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-Both rk806_dvs1_null and rk806_dvs2_null duplicate gpio_pwrctrl2 and
-gpio_pwrctrl1 is not set. This patch sets gpio_pwrctrl1.
+On Mon, 25 Dec 2023 18:11:24 +0800
+fuyao <fuyao@sjterm.com> wrote:
 
-Signed-off-by: John Clark <inindev@gmail.com>
----
-Changes since v1:
- - added commit message with additional patch detail
+Hi,
 
----
- arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+thanks for the reply, with insightful information!
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dts b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dts
-index 0fc48fb0d34d..e83b71510a47 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dts
-@@ -591,7 +591,7 @@ pmic@0 {
- 		#gpio-cells = <2>;
- 
- 		rk806_dvs1_null: dvs1-null-pins {
--			pins = "gpio_pwrctrl2";
-+			pins = "gpio_pwrctrl1";
- 			function = "pin_fun0";
- 		};
- 
--- 
-2.43.0
+> On Thu, Dec 21, 2023 at 10:39:06AM +0000, Andre Przywara wrote:
+> > On Thu, 21 Dec 2023 10:20:49 +0800
+> > fuyao <fuyao@sjterm.com> wrote:
+> > 
+> > Hi,
+> > 
+> > thanks for the reply!
+> >   
+> > > On Wed, Dec 20, 2023 at 03:04:00PM +0000, Andre Przywara wrote:  
+> > > > On Wed, 20 Dec 2023 16:18:43 +0800
+> > > > fuyao <fuyao1697@cyg.com> wrote:
+> > > > 
+> > > > Hi,
+> > > >     
+> > > > > the aldo1 is connect regulator pin which power the TV.    
+> > > > 
+> > > > What do you mean with that? That ALDO1 is connected to VCC-TVOUT and/or
+> > > > VCC-TVIN on the R40 SoC?    
+> > > 
+> > > The ALDO1 is connected to VCC-TVOUT on the R40 Soc.  
+> > 
+> > Ah, thanks for the confirmation.
+> >   
+> > > > > The USB core use TV ref as reference Voltage.    
+> > > > 
+> > > > The USB core in the SoC? So pin VCC-USB, which requires 3.3V, the same
+> > > > voltage as the TV pins?
+> > > > Which means this doesn't really have much to do with TV, it's just that
+> > > > USB and also "TV" are supplied by ALDO1?    
+> > > 
+> > > The internal USB PHY requires a reference voltage. It seems that in
+> > > order to save costs, the reference voltage of the TVOUT module is used.  
+> > 
+> > Do you mean a USB *reference* voltage that is separate from the USB PHY
+> > power supply voltage, so pin VCC-USB on the SoC? And that it is internally
+> > connected to some TV-OUT related circuits? So that would apply to all
+> > devices using the R40 SoC then?  
+> yes, The usb need a power from TV module insides.
+
+Ah, alright. I dimly remember hearing reports about unstable USB
+operation on some (custom?) R40 boards, that might as well explain it.
+On the BananaPis (the only other officially supported R40 boards),
+TVOUT and TVOUT are connected to DCDC1, so are effectively always
+powered by 3.3V already, which would explain why we didn't observe USB
+issues there.
+
+> > Or is it simply that the SoC pins VCC-TVOUT and VCC-USB are connected
+> > together, on this SoM?  
+> no
+
+Thanks for the confirmation!
+
+> > Do you have access to some schematic? I couldn't find one online easily,
+> > so cannot check this myself.
+> >   
+> It has up to https://file.io/VSUL4FDrapDY
+
+Ah, many thanks, that's really useful! That indeed confirms that both
+TVIN and TVOUT are exclusively powered by ALDO1.
+
+So if you resend the patch as v2, with the regulator-name changed, and
+possibly with the following commit message, I'd support it:
+
+=============
+The USB PHY in the Allwinner R40 SoC seems to rely on voltage on the
+VCC-TVIN/OUT supply pins for proper operation, on top of its own supply
+voltage on VCC-USB. Without a 3.3V voltage supplied to VCC-TV*, USB
+operation becomes unstable and can result in disconnects.
+
+The Forlinx FETA40i-C SoM connects both the VCC-TVOUT and VCC-TVIN pins
+to the ALDO1 rail of the PMIC, so we need to enable that rail for USB
+operation. Since there is no supply property in the DT bindings for
+the USB core, we need to always enable the regulator.
+
+This fixes unstable USB operation on boards using the Forlinx FETA40i-C
+module.
+================
+
+Cheers,
+Andre
+
+
+> > Thanks,
+> > Andre
+> >   
+> > > > > Signed-off-by: fuyao <fuyao1697@cyg.com>
+> > > > > ---
+> > > > >  arch/arm/boot/dts/allwinner/sun8i-r40-feta40i.dtsi | 7 +++++++
+> > > > >  1 file changed, 7 insertions(+)
+> > > > > 
+> > > > > diff --git a/arch/arm/boot/dts/allwinner/sun8i-r40-feta40i.dtsi b/arch/arm/boot/dts/allwinner/sun8i-r40-feta40i.dtsi
+> > > > > index 9f39b5a2bb35..8906170461df 100644
+> > > > > --- a/arch/arm/boot/dts/allwinner/sun8i-r40-feta40i.dtsi
+> > > > > +++ b/arch/arm/boot/dts/allwinner/sun8i-r40-feta40i.dtsi
+> > > > > @@ -42,6 +42,13 @@ &pio {
+> > > > >  	vcc-pg-supply = <&reg_dldo1>;
+> > > > >  };
+> > > > >  
+> > > > > +&reg_aldo1 {
+> > > > > +	regulator-always-on;    
+> > > > 
+> > > > So did USB never work before, with the DT as in mainline?
+> > > >     
+> > > 
+> > > The USB can work, but is unstable. Occasionally disconnected because of
+> > > the D+/D- electrical characteristics.
+> > >   
+> > > > For always-on regulators it would be good to see some rationale why this
+> > > > cannot be referenced by its consumer. If it is really supplying the USB
+> > > > core, that would be a reason, because we don't have a good way of
+> > > > describing this.
+> > > >     
+> > > > > +	regulator-min-microvolt = <3300000>;
+> > > > > +	regulator-max-microvolt = <3300000>;
+> > > > > +	regulator-name = "vcc-aldo1";    
+> > > > 
+> > > > Regulators should be named after their users, so use something like:
+> > > > 	regulator-name = "vcc-3v3-tv-usb";
+> > > >     
+> > > 
+> > > thanks.
+> > >   
+> > > > That then also serves as documentation of why this is always on.
+> > > > 
+> > > > Cheers,
+> > > > Andre
+> > > >     
+> > > > > +};
+> > > > > +
+> > > > >  &reg_aldo2 {
+> > > > >  	regulator-always-on;
+> > > > >  	regulator-min-microvolt = <1800000>;    
+> > > >     
+> > >   
+> 
 
 
