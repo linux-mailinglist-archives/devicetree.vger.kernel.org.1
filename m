@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-28617-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28618-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 872B581EE95
-	for <lists+devicetree@lfdr.de>; Wed, 27 Dec 2023 12:40:53 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 375C181EE98
+	for <lists+devicetree@lfdr.de>; Wed, 27 Dec 2023 12:41:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B8FB21C2188B
-	for <lists+devicetree@lfdr.de>; Wed, 27 Dec 2023 11:40:52 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 956EDB222C4
+	for <lists+devicetree@lfdr.de>; Wed, 27 Dec 2023 11:41:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC57A446C0;
-	Wed, 27 Dec 2023 11:40:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44A14446B3;
+	Wed, 27 Dec 2023 11:41:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RUq7OYyi"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="m+piDqQ7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C89AB446A6
-	for <devicetree@vger.kernel.org>; Wed, 27 Dec 2023 11:40:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A86581E534
+	for <devicetree@vger.kernel.org>; Wed, 27 Dec 2023 11:41:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-336c5b5c163so1010129f8f.1
-        for <devicetree@vger.kernel.org>; Wed, 27 Dec 2023 03:40:35 -0800 (PST)
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-40d5f402571so3531835e9.0
+        for <devicetree@vger.kernel.org>; Wed, 27 Dec 2023 03:41:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1703677234; x=1704282034; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1703677265; x=1704282065; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=k8xitBfBDCof+qqntwU7d8AoHD0pzomEDNXPXqbpXvY=;
-        b=RUq7OYyid3LOvPxccQcs85ycAWMU3MI7vjsX34EzqJOsKfxAIW2PIiBQIfpeglJB9j
-         imEI/zKi6dcys2oYBxoLrVCRre4fE3mUZ4CiZpYpOG8Uq2ggKItt9nBBU8lICBBlCQs1
-         3leLbOUjEjbVUoJaKfTpK6glMNlox8CYJJjAUKaoHNGt9fYexY9LREBAaSu1/twKNnr8
-         4lYe7nyX3FOyE1JguRC9N8doaMPGVC4Em9tc2spGrRrS59B03wedTxwABQPX+5Oubr3D
-         jsZwhL233xHxk2GFmya4vZzGKuaGxXnzS4DZ2n3dt3ChHZESApar6m/DO81i/YbS2yXB
-         1x4Q==
+        bh=tzKcChpkwv+3nTiwyOxPF53DXcBE75/wsjZ3i5I4lGU=;
+        b=m+piDqQ7b5s6NrksXLWwqp80yFbeQgqK1Lm0Inukff1QxfFiVXpf7eolaGfO3rdh7o
+         qS0nfnnOeUyOYuFobuQTT6kT0qtE1Um1B8l0BAx6h9ax7z/B/5npzfPruOOW7gl2MxAX
+         /u5E1P7wkr+p2olJ+p72vF5OOeTxVZ+9Q3URDkbxnqSFUDCFCCNEvCMMXgZ+5oTnkT+l
+         DyDK0Cn6OB7UDI3KYCNbxz//3JyL+5E+DHRz8UwVIUCLRYLfmo1kH2eNBYFvAVdAYLYX
+         qBf7684ruIKUhtZVjjy2NxXN9Mkx1/uKNZle36pLO+3gor1BQI3zjwJoMkTgafhtkouC
+         2UsA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703677234; x=1704282034;
+        d=1e100.net; s=20230601; t=1703677265; x=1704282065;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=k8xitBfBDCof+qqntwU7d8AoHD0pzomEDNXPXqbpXvY=;
-        b=UZl2aYVCh1aJ0qip5W0EOelmSXS9jKWMmA3DV87ZBDatMpH6PbmF3clroMgrdtOC8X
-         qVOeCFvRqkF/MOSRcUsGnzvOVi4MjhiTmI5eANeqh7uhPZqm2avtn+vF0i58iEw1whCN
-         9C15bQ+/wnwYG1eQkWpQP+EqrYMnLrVIDbQkJbBg8TzZJaTuxMYU3SdvKlKwpSsl+2Yn
-         MxTEcuGzn6DUOEpeyE04HXyOVd2PR++hDJSUpi6w90d5s46YJyHO2O9VeQ7XIJJJpnhd
-         bys9nheGFJ/tdfOXf1V6f21wQLi62dujbotDVIgeEoK/0m8X8EXgCMWg4FC1LOnCLoUR
-         16tA==
-X-Gm-Message-State: AOJu0Yz+kL+5vOlMHRWfjXMSydBb6x5PQc+i9t7WNv7xUegmzcwKAstG
-	rv5PFz6Ian5i85kCtuXnszbKgaTn8UDoCA==
-X-Google-Smtp-Source: AGHT+IEA7bn2xEOrnHgvTjmO+M25nJu1oZXTYL0Vd9uaDJ3mdO29yjBGrEOxufxgaVsp9OBmYaqlqg==
-X-Received: by 2002:a05:6000:1151:b0:336:7758:957e with SMTP id d17-20020a056000115100b003367758957emr4608345wrx.25.1703677234073;
-        Wed, 27 Dec 2023 03:40:34 -0800 (PST)
+        bh=tzKcChpkwv+3nTiwyOxPF53DXcBE75/wsjZ3i5I4lGU=;
+        b=CnwcZjkYZNUeUcUmgozpnMRC7twKb9EpGGTZU5kvIC3idMfWrNq/Qs6alKT1WGr+aW
+         gO6LEWHpolRtTPKaG2qo/UJmYOsQeoAHIxG0ML4HaTdarTZVrxYdWrd/KjE5UeUFR4qm
+         JhjklT0kLbJP7+L5OkCipn/zZOzEEJHCR2UTYKor52AX/yyvpmFpBOmdp+iGVOw+cgaj
+         m+e+e+TpB+F7111dMX7fxpugjv1PepZS1AyB++Swb0/h2hLpQO0Dqtisc182DFmkjhvk
+         XHrz2m1tAgApM8XGIvtvQg65WuxlJ/AwzI0k6UIW1EsH2Fc1p8dBa9x+BPjrg2BrgEpP
+         ewcA==
+X-Gm-Message-State: AOJu0YzD+vchxrQmsJddWuGEjI5p2KAEKs+Jx2Wa9k+jQuDaj0XTjZib
+	p7eBk74VaGMiUJW6Miz5MS8uzLIxMQYJag==
+X-Google-Smtp-Source: AGHT+IHPlz00t9mgKJ9NFJMIghtnlnaK2+GbnhE2d7Vf1vGJAnzpvdyc6ee0j9Y8eQHhvQxvc7xVKA==
+X-Received: by 2002:a05:600c:1c22:b0:40d:5b89:7ec4 with SMTP id j34-20020a05600c1c2200b0040d5b897ec4mr946079wms.63.1703677264822;
+        Wed, 27 Dec 2023 03:41:04 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id b7-20020a5d45c7000000b00336c6b77584sm5652687wrs.91.2023.12.27.03.40.32
+        by smtp.gmail.com with ESMTPSA id b7-20020a5d45c7000000b00336c6b77584sm5652687wrs.91.2023.12.27.03.41.03
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 27 Dec 2023 03:40:33 -0800 (PST)
-Message-ID: <88719b92-1d69-4571-9323-a844ffc90d7e@linaro.org>
-Date: Wed, 27 Dec 2023 12:40:31 +0100
+        Wed, 27 Dec 2023 03:41:04 -0800 (PST)
+Message-ID: <e304aec7-5835-4f4f-89cb-bc3e1dfb78d4@linaro.org>
+Date: Wed, 27 Dec 2023 12:41:02 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,19 +66,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] clk: samsung: Fix typo error and extra space
+Subject: Re: [PATCH v3 1/2] dt-bindings: HID: i2c-hid: elan: Introduce Ilitek
+ ili2901
 Content-Language: en-US
-To: Varada Pavani <v.pavani@samsung.com>, mturquette@baylibre.com,
- sboyd@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, s.nawrocki@samsung.com, tomasz.figa@gmail.com
-Cc: linux-samsung-soc@vger.kernel.org, alim.akhtar@samsung.com,
- aswani.reddy@samsung.com, pankaj.dubey@samsung.com
-References: <20231219115834.65720-1-v.pavani@samsung.com>
- <CGME20231219115858epcas5p469e925738bcb93ee88842fdea0f9d3f0@epcas5p4.samsung.com>
- <20231219115834.65720-2-v.pavani@samsung.com>
- <58ded02d-a5d2-40e2-b575-dc520a7553cf@linaro.org>
- <003e01da381d$ae1b4240$0a51c6c0$@samsung.com>
+To: Zhengqiao Xia <xiazhengqiao@huaqin.corp-partner.google.com>,
+ linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Cc: dmitry.torokhov@gmail.com, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, jikos@kernel.org,
+ benjamin.tissoires@redhat.com, linus.walleij@linaro.org,
+ dianders@chromium.org
+References: <20231227085013.1317-1-xiazhengqiao@huaqin.corp-partner.google.com>
+ <20231227085013.1317-2-xiazhengqiao@huaqin.corp-partner.google.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -124,35 +123,17 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <003e01da381d$ae1b4240$0a51c6c0$@samsung.com>
+In-Reply-To: <20231227085013.1317-2-xiazhengqiao@huaqin.corp-partner.google.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 26/12/2023 18:05, Varada Pavani wrote:
->> hardware
->> - * registers to acheive a fast co-oridinated rate change for all the 
->> CPU domain
->> + * registers to achieve a fast co-oridinated rate change for all the 
->> + CPU domain
->>   * clocks.
->>   *
->>   * On a rate change request for the CPU clock, the rate change is 
->> propagated @@ -181,7 +181,7 @@ static int exynos_cpuclk_pre_rate_change(struct clk_notifier_data *ndata,
->>  	 * If the old parent clock speed is less than the clock speed of
->>  	 * the alternate parent, then it should be ensured that at no point
->>  	 * the armclk speed is more than the old_prate until the dividers are
->> -	 * set.  Also workaround the issue of the dividers being set to lower
->> +	 * set. Also workaround the issue of the dividers being set to lower
-> 
-> Why? The double-space is correct.
-> 
-> Okay, I couldn’t see any double space at the end of the statement apart from this line and below one. So updated to have uniformity.
+On 27/12/2023 09:50, Zhengqiao Xia wrote:
+> The Ilitek ili2901 touch screen chip same as Elan eKTH6915 controller
+> has a reset gpio. The difference is that they have different
+> post_power_delay_ms and post_gpio_reset_on_delay_ms.
+> Ilitek ili2901 also uses 3.3V power supply.
 
-Wait, there are only two statements here, so where do you expect double
-space? There is no "one space at the end of the statement".
-
-Your quoting is still not correct. Which part of above is quote of my
-message, which yours?
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
