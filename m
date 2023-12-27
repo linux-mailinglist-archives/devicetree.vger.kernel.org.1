@@ -1,290 +1,175 @@
-Return-Path: <devicetree+bounces-28641-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28644-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 102B881EF0B
-	for <lists+devicetree@lfdr.de>; Wed, 27 Dec 2023 13:43:27 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43CD181EF17
+	for <lists+devicetree@lfdr.de>; Wed, 27 Dec 2023 14:09:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 331B01C227AA
-	for <lists+devicetree@lfdr.de>; Wed, 27 Dec 2023 12:43:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EC6771F22BC5
+	for <lists+devicetree@lfdr.de>; Wed, 27 Dec 2023 13:09:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D443E44C74;
-	Wed, 27 Dec 2023 12:43:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70BE244C75;
+	Wed, 27 Dec 2023 13:08:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IYp7PIIS"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="hiV6n+4q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B232A446C6;
-	Wed, 27 Dec 2023 12:43:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0A69FC433C7;
-	Wed, 27 Dec 2023 12:43:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1703681001;
-	bh=fG3U9LgjzHMiSiELkBGqIA/RCiY7QC8U+5CJV01wDKk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=IYp7PIISHXbUtOUBLx7LALbsOVeEHZIOhDh3/kcTf/6PDJQKihC8Oh2nG4pNyAe+S
-	 PrT6EZpdAAwtlUS6tVg/hcx2ZQGVijt9bgAns8GbpV+n50CvvBxftlCSNyIkKX2Gna
-	 A6wlYHu4Xp8GHvIXww3W/nOHnQJGABexWJGNMrvfdsSzHj1nQjKHNWx0dQMqntJ9EC
-	 2mW/YZe8tunQtrNvu5AIMPgmr6Rgt/x1nJzGOv+Cw57VLrT885u/uD0tWMgTb7op2S
-	 +blyurKWSClpvWSTcw81KgmR29lKw7xUyzvKWXC17iQu9vVQZf40nSByF//oNkUuK+
-	 FuB6P/5YMzhdQ==
-Date: Wed, 27 Dec 2023 13:43:13 +0100
-From: Lorenzo Pieralisi <lpieralisi@kernel.org>
-To: Minda Chen <minda.chen@starfivetech.com>
-Cc: Conor Dooley <conor@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Daire McNamara <daire.mcnamara@microchip.com>,
-	Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org, linux-pci@vger.kernel.org,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Mason Huo <mason.huo@starfivetech.com>,
-	Leyfoon Tan <leyfoon.tan@starfivetech.com>,
-	Kevin Xie <kevin.xie@starfivetech.com>, tglx@linutronix.de
-Subject: Re: [PATCH v13 15/21] PCI: microchip: Add event irqchip field to
- host port and add PLDA irqchip
-Message-ID: <ZYwb4UQVoLDZw7kf@lpieralisi>
-References: <20231214072839.2367-1-minda.chen@starfivetech.com>
- <20231214072839.2367-16-minda.chen@starfivetech.com>
- <8c417157-8884-4e91-8912-0344e71f82c2@starfivetech.com>
- <ZYRaqYTcxWJGwWG8@lpieralisi>
- <025408dd-cc00-4744-8a41-cbd18209ed8b@starfivetech.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5A3545963
+	for <devicetree@vger.kernel.org>; Wed, 27 Dec 2023 13:08:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
+Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-3370769018cso19307f8f.3
+        for <devicetree@vger.kernel.org>; Wed, 27 Dec 2023 05:08:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=tuxon.dev; s=google; t=1703682510; x=1704287310; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ocsSiEqBdtanIffaaT52Hpat/4WnkDj2kMGWbB3pX8E=;
+        b=hiV6n+4q8Z0ZFX2ngX+LspAOsc5eVlPs0eU7Crk1XUHoFi5u4/paBB3Zspkf/NPIpj
+         uVC3JxdQoSJJXSzYr/1ZtEoEKSzy/0MzBeTrLDmjp6vROdjmyPbp1u6qLf3Fng/tcewk
+         yBgDIsP30+CBRDqjFdIgJVi4LpCUHEKzYkD1JhuLjDiq+AmVSnf4Ibb0tN01DEXqW3Tx
+         RvcL7KUNN00NYV17+LJIdytKap7f+qCdUSngiz3FD1Ueu93W4aepWrTqR4l2PGxZYdDm
+         /iP1XAeXi+nLPmn4SQdlN74VsLH3MasRlkiCFqDAfpyShUG+k3TMbsSf/WLyCXChho5f
+         58ZA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1703682510; x=1704287310;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ocsSiEqBdtanIffaaT52Hpat/4WnkDj2kMGWbB3pX8E=;
+        b=D4AXk26LkS058CHxHdAHb5XIRYbq9c1Zf3nV9Dan4FqH8Fl0Q2HDnPZYom0lq35NVu
+         RGrLbV8NqpyA5nJumpgdCnS5VmwAL1hDO/l/85QPCG/iahG1pnlyGCNYNffQJFH3NVt4
+         zlWvmfkGThdq75cGSiPwupoeLB6up2I6tzAhXu8WyrflXgh2lrMoxtkLLMT4VWQz5CHF
+         YPpeNkIkUTUbqChkm1cjydzWDq81YCEKqRJ3MOyzvZo0BLR6Tfqihv654SFsWGz38cma
+         I0uoMuhLCGCxWf13W0isL8jZSNynJjAUsymexhzPRx/WDSbA+/CWpTnN9C9hIzd5AMiS
+         VoKw==
+X-Gm-Message-State: AOJu0Yyhd4Rh5bNHa+S+azHpMPVHGzxceVSdElia6vJVhRTJ3GRpcYcf
+	Gch/qd2jsGWKNzvunwhYdKRS/IdKVpui8A==
+X-Google-Smtp-Source: AGHT+IFqg6rBequ445Nl+pCxjvGGT3EEDoFOIFQGo8u/WAIGCWjYYgshK4g+8oDoULLXedhnF5ap4Q==
+X-Received: by 2002:a5d:6d06:0:b0:336:c159:d3df with SMTP id e6-20020a5d6d06000000b00336c159d3dfmr3250890wrq.87.1703682509846;
+        Wed, 27 Dec 2023 05:08:29 -0800 (PST)
+Received: from claudiu-X670E-Pro-RS.. ([82.78.167.5])
+        by smtp.gmail.com with ESMTPSA id c6-20020adfe706000000b0033342338a24sm14906263wrm.6.2023.12.27.05.08.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 27 Dec 2023 05:08:29 -0800 (PST)
+From: Claudiu <claudiu.beznea@tuxon.dev>
+X-Google-Original-From: Claudiu <claudiu.beznea.uj@bp.renesas.com>
+To: geert+renesas@glider.be,
+	magnus.damm@gmail.com,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org
+Cc: linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	claudiu.beznea@tuxon.dev,
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Subject: [PATCH] arm64: dts: renesas: rzg3s-smarc: Add gpio keys
+Date: Wed, 27 Dec 2023 15:08:10 +0200
+Message-Id: <20231227130810.2744550-1-claudiu.beznea.uj@bp.renesas.com>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <025408dd-cc00-4744-8a41-cbd18209ed8b@starfivetech.com>
 
-[+Thomas]
+From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 
-On Fri, Dec 22, 2023 at 07:18:48PM +0800, Minda Chen wrote:
-> 
-> 
-> On 2023/12/21 23:32, Lorenzo Pieralisi wrote:
-> > On Thu, Dec 21, 2023 at 06:56:22PM +0800, Minda Chen wrote:
-> >> 
-> >> 
-> >> On 2023/12/14 15:28, Minda Chen wrote:
-> >> > PolarFire PCIE event IRQs includes PLDA local interrupts and PolarFire
-> >> > their own IRQs. PolarFire PCIe event irq_chip ops using an event_desc to
-> >> > unify different IRQ register addresses. On PLDA sides, PLDA irqchip codes
-> >> > only require to set PLDA local interrupt register. So the PLDA irqchip ops
-> >> > codes can not be extracted from PolarFire codes.
-> >> > 
-> >> > To support PLDA its own event IRQ process, implements PLDA irqchip ops and
-> >> > add event irqchip field to struct pcie_plda_rp.
-> >> > 
-> >> > Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
-> >> > ---
-> >> >  .../pci/controller/plda/pcie-microchip-host.c | 65 ++++++++++++++++++-
-> >> >  drivers/pci/controller/plda/pcie-plda.h       |  3 +
-> >> >  2 files changed, 67 insertions(+), 1 deletion(-)
-> >> > 
-> >> Hi Conor
-> >>    Could you take time to review this patch?  For I using event irq chip instead of event ops and the whole patch have been changed.  I think it's better 
-> >>    And I added the implementation of PLDA event irqchip  and make it easier to claim the necessity of the modification.
-> >>    If you approve this, I will add back the review tag. Thanks
-> >> 
-> >> Hi Lorenzo
-> >>    Have you reviewed this patch？ Does the commit message and the codes are can be approved ？Thanks
-> >> 
-> > 
-> > Please wrap the lines at 75 columns in length.
-> > 
-> OK
-> > I have not reviewed but I am still struggling to understand the
-> > commit log, I apologise, I can try to review the series and figure
-> > out what the patch is doing but I would appreciate if commits logs
-> > could be made easier to parse.
-> > 
-> > Thanks,
-> > Lorenzo
-> > 
-> 
-> The commit message it is not good.
-> 
-> I draw a graph about the PCIe global event interrupt domain
-> (related to patch 10- 16).
-> Actually all these interrupts patches are for extracting the common 
-> PLDA codes to pcie-plda-host.c and do not change microchip's codes logic.
+RZ SMARC Carrier II board has 3 user buttons called USER_SW1, USER_SW2,
+USER_SW3. Add a DT node in device tree to propertly instantiate the
+gpio-keys driver for these buttons.
 
-s/codes/code (please apply this to the the full series)
+Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+---
+ arch/arm64/boot/dts/renesas/rzg3s-smarc.dtsi | 53 ++++++++++++++++++++
+ 1 file changed, 53 insertions(+)
 
-I will have a look at the code but I can't rewrite the commit log myself
-(it does not scale I am afraid), as it stands I don't understand it and
-that's a problem, I am sorry but that's important.
+diff --git a/arch/arm64/boot/dts/renesas/rzg3s-smarc.dtsi b/arch/arm64/boot/dts/renesas/rzg3s-smarc.dtsi
+index 214520137230..deb2ad37bb2e 100644
+--- a/arch/arm64/boot/dts/renesas/rzg3s-smarc.dtsi
++++ b/arch/arm64/boot/dts/renesas/rzg3s-smarc.dtsi
+@@ -6,6 +6,7 @@
+  */
+ 
+ #include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/input/input.h>
+ #include <dt-bindings/pinctrl/rzg2l-pinctrl.h>
+ 
+ / {
+@@ -14,6 +15,37 @@ aliases {
+ 		mmc1 = &sdhi1;
+ 	};
+ 
++	keys {
++		compatible = "gpio-keys";
++
++		key-1 {
++			interrupts = <RZG2L_GPIO(18, 0) IRQ_TYPE_EDGE_FALLING>;
++			interrupt-parent = <&pinctrl>;
++			linux,code = <KEY_1>;
++			label = "USER_SW1";
++			wakeup-source;
++			debounce-interval = <20>;
++		};
++
++		key-2 {
++			interrupts = <RZG2L_GPIO(0, 1) IRQ_TYPE_EDGE_FALLING>;
++			interrupt-parent = <&pinctrl>;
++			linux,code = <KEY_2>;
++			label = "USER_SW2";
++			wakeup-source;
++			debounce-interval = <20>;
++		};
++
++		key-3 {
++			interrupts = <RZG2L_GPIO(0, 3) IRQ_TYPE_EDGE_FALLING>;
++			interrupt-parent = <&pinctrl>;
++			linux,code = <KEY_3>;
++			label = "USER_SW3";
++			wakeup-source;
++			debounce-interval = <20>;
++		};
++	};
++
+ 	vcc_sdhi1: regulator-vcc-sdhi1 {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "SDHI1 Vcc";
+@@ -35,6 +67,27 @@ vccq_sdhi1: regulator-vccq-sdhi1 {
+ };
+ 
+ &pinctrl {
++	key-1-gpio-hog {
++		gpio-hog;
++		gpios = <RZG2L_GPIO(18, 0) GPIO_ACTIVE_LOW>;
++		input;
++		line-name = "key-1-gpio-irq";
++	};
++
++	key-2-gpio-hog {
++		gpio-hog;
++		gpios = <RZG2L_GPIO(0, 1) GPIO_ACTIVE_LOW>;
++		input;
++		line-name = "key-2-gpio-irq";
++	};
++
++	key-3-gpio-hog {
++		gpio-hog;
++		gpios = <RZG2L_GPIO(0, 3) GPIO_ACTIVE_LOW>;
++		input;
++		line-name = "key-3-gpio-irq";
++	};
++
+ 	scif0_pins: scif0 {
+ 		pinmux = <RZG2L_PORT_PINMUX(6, 3, 1)>, /* RXD */
+ 			 <RZG2L_PORT_PINMUX(6, 4, 1)>; /* TXD */
+-- 
+2.39.2
 
-I added Thomas (you should CC him for irqchip [only] changes) if he
-has time to review these irqchip changes to make sure they are proper.
-
-Thanks,
-Lorenzo
-
->             +----------------------------------------------------------+
->             |    microchip  Global event interrupt domain              |
->             +-----------------------------------+-----------+----------+
->             |                                   | microchip | PLDA     |
->             |                                   | event num |(StarFive)|
->             |                                   |           |event num |
->             +-----------------------------------+-----------+----------+
->             |                                   | 0         |          |
->             |                                   |           |          |
-> (mc pcie    |microchip platform event interrupt |           |          |
-> int line)   |                                   |           |          |
-> ------------|                                   |           |          |
->             |                                   |10         |          |
->             +-----------------------------------+-----------+----------+
->             | PLDA host DMA interrupt           |11         |          |
->             | (int number is not fixed, defined |           |          |
->             |  by vendor)                       |14         |          |
->          +--+-----------------------------------+---------- +----------+-+
->          |  |  PLDA event interrupt             |15         |0         | |
->          |  |  (int number is fixed)            |           |          | |
-> ---------|--|                                   |           |          | |
-> (Starfive|  |                                   |           |          | |
-> pcie int |  |   +------------------+            |           |          | |
-> line)    |  |   |INTx event domain |            |           |          | |
->          |  |   +------------------+            |           |          | |
->          |  |                                   |           |          | |
->          |  |   +------------------+            |           |          | |
->          |  |   |MSI event domain  |            |           |          | |
->          |  |   +------------------+            |           |          | |
->          |  |                                   |27         |12        | |
->          |  +---------------------------------+-+-----------+----------+ |
->          | extract PLDA event part to common PLDA file.                  |
->          +---------------------------------------------------------------+
-> 
-> 
-> >> > diff --git a/drivers/pci/controller/plda/pcie-microchip-host.c b/drivers/pci/controller/plda/pcie-microchip-host.c
-> >> > index fd0d92c3d03f..ff40c1622173 100644
-> >> > --- a/drivers/pci/controller/plda/pcie-microchip-host.c
-> >> > +++ b/drivers/pci/controller/plda/pcie-microchip-host.c
-> >> > @@ -771,6 +771,63 @@ static struct irq_chip mc_event_irq_chip = {
-> >> >  	.irq_unmask = mc_unmask_event_irq,
-> >> >  };
-> >> > > +static u32 plda_hwirq_to_mask(int hwirq)
-> >> > +{
-> >> > +	u32 mask;
-> >> > +
-> >> > +	if (hwirq < EVENT_PM_MSI_INT_INTX)
-> >> > +		mask = BIT(hwirq + A_ATR_EVT_POST_ERR_SHIFT);
-> >> > +	else if (hwirq == EVENT_PM_MSI_INT_INTX)
-> >> > +		mask = PM_MSI_INT_INTX_MASK;
-> >> > +	else
-> >> > +		mask = BIT(hwirq + PM_MSI_TO_MASK_OFFSET);
-> >> > +
-> >> > +	return mask;
-> >> > +}
-> >> > +
-> >> > +static void plda_ack_event_irq(struct irq_data *data)
-> >> > +{
-> >> > +	struct plda_pcie_rp *port = irq_data_get_irq_chip_data(data);
-> >> > +
-> >> > +	writel_relaxed(plda_hwirq_to_mask(data->hwirq),
-> >> > +		       port->bridge_addr + ISTATUS_LOCAL);
-> >> > +}
-> >> > +
-> >> > +static void plda_mask_event_irq(struct irq_data *data)
-> >> > +{
-> >> > +	struct plda_pcie_rp *port = irq_data_get_irq_chip_data(data);
-> >> > +	u32 mask, val;
-> >> > +
-> >> > +	mask = plda_hwirq_to_mask(data->hwirq);
-> >> > +
-> >> > +	raw_spin_lock(&port->lock);
-> >> > +	val = readl_relaxed(port->bridge_addr + IMASK_LOCAL);
-> >> > +	val &= ~mask;
-> >> > +	writel_relaxed(val, port->bridge_addr + IMASK_LOCAL);
-> >> > +	raw_spin_unlock(&port->lock);
-> >> > +}
-> >> > +
-> >> > +static void plda_unmask_event_irq(struct irq_data *data)
-> >> > +{
-> >> > +	struct plda_pcie_rp *port = irq_data_get_irq_chip_data(data);
-> >> > +	u32 mask, val;
-> >> > +
-> >> > +	mask = plda_hwirq_to_mask(data->hwirq);
-> >> > +
-> >> > +	raw_spin_lock(&port->lock);
-> >> > +	val = readl_relaxed(port->bridge_addr + IMASK_LOCAL);
-> >> > +	val |= mask;
-> >> > +	writel_relaxed(val, port->bridge_addr + IMASK_LOCAL);
-> >> > +	raw_spin_unlock(&port->lock);
-> >> > +}
-> >> > +
-> >> > +static struct irq_chip plda_event_irq_chip = {
-> >> > +	.name = "PLDA PCIe EVENT",
-> >> > +	.irq_ack = plda_ack_event_irq,
-> >> > +	.irq_mask = plda_mask_event_irq,
-> >> > +	.irq_unmask = plda_unmask_event_irq,
-> >> > +};
-> >> > +
-> >> >  static const struct plda_event_ops plda_event_ops = {
-> >> >  	.get_events = plda_get_events,
-> >> >  };
-> >> > @@ -778,7 +835,9 @@ static const struct plda_event_ops plda_event_ops = {
-> >> >  static int plda_pcie_event_map(struct irq_domain *domain, unsigned int irq,
-> >> >  			       irq_hw_number_t hwirq)
-> >> >  {
-> >> > -	irq_set_chip_and_handler(irq, &mc_event_irq_chip, handle_level_irq);
-> >> > +	struct plda_pcie_rp *port = (void *)domain->host_data;
-> >> > +
-> >> > +	irq_set_chip_and_handler(irq, port->event_irq_chip, handle_level_irq);
-> >> >  	irq_set_chip_data(irq, domain->host_data);
-> >> >  
-> >> >  	return 0;
-> >> > @@ -963,6 +1022,9 @@ static int plda_init_interrupts(struct platform_device *pdev,
-> >> >  	if (!port->event_ops)
-> >> >  		port->event_ops = &plda_event_ops;
-> >> >  
-> >> > +	if (!port->event_irq_chip)
-> >> > +		port->event_irq_chip = &plda_event_irq_chip;
-> >> > +
-> >> >  	ret = plda_pcie_init_irq_domains(port);
-> >> >  	if (ret) {
-> >> >  		dev_err(dev, "failed creating IRQ domains\n");
-> >> > @@ -1040,6 +1102,7 @@ static int mc_platform_init(struct pci_config_window *cfg)
-> >> >  		return ret;
-> >> >  
-> >> >  	port->plda.event_ops = &mc_event_ops;
-> >> > +	port->plda.event_irq_chip = &mc_event_irq_chip;
-> >> >  
-> >> >  	/* Address translation is up; safe to enable interrupts */
-> >> >  	ret = plda_init_interrupts(pdev, &port->plda, &mc_event);
-> >> > diff --git a/drivers/pci/controller/plda/pcie-plda.h b/drivers/pci/controller/plda/pcie-plda.h
-> >> > index dd8bc2750bfc..24ac50c458dc 100644
-> >> > --- a/drivers/pci/controller/plda/pcie-plda.h
-> >> > +++ b/drivers/pci/controller/plda/pcie-plda.h
-> >> > @@ -128,6 +128,8 @@
-> >> >   * DMA end : reserved for vendor implement
-> >> >   */
-> >> >  
-> >> > +#define PM_MSI_TO_MASK_OFFSET			19
-> >> > +
-> >> >  struct plda_pcie_rp;
-> >> >  
-> >> >  struct plda_event_ops {
-> >> > @@ -150,6 +152,7 @@ struct plda_pcie_rp {
-> >> >  	raw_spinlock_t lock;
-> >> >  	struct plda_msi msi;
-> >> >  	const struct plda_event_ops *event_ops;
-> >> > +	const struct irq_chip *event_irq_chip;
-> >> >  	void __iomem *bridge_addr;
-> >> >  	int num_events;
-> >> >  };
 
