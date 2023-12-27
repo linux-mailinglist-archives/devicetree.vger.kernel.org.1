@@ -1,99 +1,106 @@
-Return-Path: <devicetree+bounces-28648-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28650-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5FE681EF78
-	for <lists+devicetree@lfdr.de>; Wed, 27 Dec 2023 15:36:20 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 739A581EFAB
+	for <lists+devicetree@lfdr.de>; Wed, 27 Dec 2023 16:12:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4BBF91F22141
-	for <lists+devicetree@lfdr.de>; Wed, 27 Dec 2023 14:36:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 752931C21946
+	for <lists+devicetree@lfdr.de>; Wed, 27 Dec 2023 15:12:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5A5745964;
-	Wed, 27 Dec 2023 14:36:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE8724596F;
+	Wed, 27 Dec 2023 15:12:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="fW2QWVSl"
+	dkim=pass (2048-bit key) header.d=tkos.co.il header.i=@tkos.co.il header.b="hnJQS6E5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.tkos.co.il (hours.tkos.co.il [84.110.109.230])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB77545958
-	for <devicetree@vger.kernel.org>; Wed, 27 Dec 2023 14:36:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
-Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-55322dbabf6so5497692a12.0
-        for <devicetree@vger.kernel.org>; Wed, 27 Dec 2023 06:36:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=suse.com; s=google; t=1703687762; x=1704292562; darn=vger.kernel.org;
-        h=mime-version:user-agent:references:message-id:in-reply-to:subject
-         :cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=wR0fA2efkJESrqqJYNa2oQGAt/YmCKg3TrlURKizJ00=;
-        b=fW2QWVSlSNLZwDTVrc5/lullVMXvChtN70fFK9aEFyE7WTKMHsI8TeuPTzR+YgEErr
-         j5w9Gb2iGUDo/DPvqUdW2jd3RalrOfyXZuakf3yfWsbTSRbOFyRpP24CBEM0JItRsiPN
-         rca2c2+sixXnX/5nyXjWDxs0H6kIu7YQhtdva7RFBSC7s0s9BO03QlXqv6NJIBX4a+0l
-         Z2vpTaR0lEM+ZTKQvcoWLt0FVXaBT7l+rdJmfF3R9K4WPWXwYenW3VORkS6T2HRZnNIy
-         k0uw8RMgJOx7dvWju4A8X/IFbqfG5BRLqw13TVjW6koU5XyImzGnqzsFxlSZWqfs5gsB
-         qeeA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703687762; x=1704292562;
-        h=mime-version:user-agent:references:message-id:in-reply-to:subject
-         :cc:to:date:from:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wR0fA2efkJESrqqJYNa2oQGAt/YmCKg3TrlURKizJ00=;
-        b=fMtvJ6YsDSPUivhAuXX1AAM057EXmFibBlbcCcK23Mt1IH25ZTaD+rLIPFp8RozKY9
-         dD55gfN6t3CO/b7NNYSJB3Ww2FyaU1DFxKMAFCxPc7QrLo5AloC8bvixuqmBw+PAmh7z
-         SwPiq69v7oVqiyQfAgbmwW7EhVbsqjVbxosl00FuYKjzqZWPgpyfsMotjWILMe+xNdNY
-         ErPGiDtjz5u/ktZR+h62TE301ibvVfRn9vs1OYrkd7qkppOV1CocUsMN5kk1EGEGaasO
-         bJHAAmkrDzBsmoXAgBkqdQpCWGGw/6tOF81aOgubZj3cgWGfTUn3LVIFll/dRe3zDyma
-         uqnw==
-X-Gm-Message-State: AOJu0YwFQ8VeY4/WVzebgGPuiUwlABywXgxytjp2GppwnggVnqFiGkNd
-	2G+z5xZChZwEPXrIGfwWL6yXrDHlS9M/Wg==
-X-Google-Smtp-Source: AGHT+IE9Q5JNB6Xn8MbtzTVI7wKdq/jzC7JpsJwbZ89E2w9tZ9KE/hSvKM4257pTwBaIWTef/FR9OQ==
-X-Received: by 2002:a50:c2c2:0:b0:555:56bc:c966 with SMTP id u2-20020a50c2c2000000b0055556bcc966mr438593edf.22.1703687761964;
-        Wed, 27 Dec 2023 06:36:01 -0800 (PST)
-Received: from localhost (nat2.prg.suse.com. [195.250.132.146])
-        by smtp.gmail.com with ESMTPSA id fe1-20020a056402390100b005544105f461sm7399656edb.29.2023.12.27.06.36.01
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 27 Dec 2023 06:36:01 -0800 (PST)
-From: Jiri Kosina <jkosina@suse.com>
-X-Google-Original-From: Jiri Kosina <jikos@kernel.org>
-Date: Wed, 27 Dec 2023 15:36:02 +0100 (CET)
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-cc: Zhengqiao Xia <xiazhengqiao@huaqin.corp-partner.google.com>, 
-    linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
-    linux-kernel@vger.kernel.org, dmitry.torokhov@gmail.com, 
-    robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-    benjamin.tissoires@redhat.com, linus.walleij@linaro.org, 
-    dianders@chromium.org
-Subject: Re: [PATCH v3 1/2] dt-bindings: HID: i2c-hid: elan: Introduce Ilitek
- ili2901
-In-Reply-To: <e304aec7-5835-4f4f-89cb-bc3e1dfb78d4@linaro.org>
-Message-ID: <nycvar.YFH.7.76.2312271535440.24250@cbobk.fhfr.pm>
-References: <20231227085013.1317-1-xiazhengqiao@huaqin.corp-partner.google.com> <20231227085013.1317-2-xiazhengqiao@huaqin.corp-partner.google.com> <e304aec7-5835-4f4f-89cb-bc3e1dfb78d4@linaro.org>
-User-Agent: Alpine 2.21 (LSU 202 2017-01-01)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EC2A45959;
+	Wed, 27 Dec 2023 15:12:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tkos.co.il
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tkos.co.il
+Received: from tarshish.tkos.co.il (unknown [10.0.8.3])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mail.tkos.co.il (Postfix) with ESMTPS id D227F440EEA;
+	Wed, 27 Dec 2023 17:02:42 +0200 (IST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=tkos.co.il;
+	s=default; t=1703689363;
+	bh=y8Nqn3nQCHk0ZkaLekGkm1wv2WHjXjHEQwYVdlqYNw4=;
+	h=From:To:Cc:Subject:Date:From;
+	b=hnJQS6E5gkFfPmVbn1G49jTHXsTmr28HHzApegH3Nh9uekRNg9Nbx84gIjPyM3meI
+	 B8aDIqGf/Cr0ZojHC7jU8qFTXNPe1NRx/vx/d9LhZ3tWMp5ciEu2nvUHwI6e7bhxza
+	 xO5ybfJWayCkTVkJEUz7SGOFZ13gv3Hq/0ZSAJl/oEJ9L5n5lcsdhrhAZr4Vb04R6Z
+	 Ho0ve/unVDMr1V8ygeQNTlk1OsaVmZse2wMAEBJBfWzOh7D/3p6mJCX8cqvXFRKrF0
+	 hOKP8FT6xS/ukTmxy1iYpucdb2Cus5fLrSV3LUfP9lILR0YnojWWhRtCNqttY+Ez7K
+	 Ut+N1A26VCJhQ==
+From: Baruch Siach <baruch@tkos.co.il>
+To: Christoph Hellwig <hch@lst.de>,
+	Marek Szyprowski <m.szyprowski@samsung.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Frank Rowand <frowand.list@gmail.com>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>
+Cc: Baruch Siach <baruch@tkos.co.il>,
+	Robin Murphy <robin.murphy@arm.com>,
+	iommu@lists.linux.dev,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	=?UTF-8?q?Petr=20Tesa=C5=99=C3=ADk?= <petr@tesarici.cz>,
+	Ramon Fried <ramon@neureality.ai>
+Subject: [PATCH RFC 0/4] arm64: support DMA zone starting above 4GB
+Date: Wed, 27 Dec 2023 17:04:24 +0200
+Message-ID: <cover.1703683642.git.baruch@tkos.co.il>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 8bit
 
-On Wed, 27 Dec 2023, Krzysztof Kozlowski wrote:
+DMA zones code assumes that DMA lower limit is zero. When there is no RAM 
+below 4GB, arm64 platform code sets DMA/DMA32 zone limits to cover the entire 
+RAM[0].
 
-> > The Ilitek ili2901 touch screen chip same as Elan eKTH6915 controller
-> > has a reset gpio. The difference is that they have different
-> > post_power_delay_ms and post_gpio_reset_on_delay_ms.
-> > Ilitek ili2901 also uses 3.3V power supply.
-> 
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+The platform I have has RAM starting at 32GB. Devices with 30-bit DMA mask are 
+mapped to 1GB at the bottom of RAM, between 32GB - 33GB. A DMA zone over the 
+entire RAM breaks DMA allocation for these devices.
 
-Thanks. I will take it together with the HID patch through my tree, if 
-that's fine with you.
+In response to a previous RFC hack[1] Catalin Marinas suggested to add a
+separate offset value as base address for the DMA zone. This RFC series 
+attempts to implement that suggestion.
+
+With this series applied, the DMA zone covers the right RAM range for my 
+platform.
+
+[0] See commit 791ab8b2e3db ("arm64: Ignore any DMA offsets in the 
+    max_zone_phys() calculation")
+
+[1] https://lore.kernel.org/all/9af8a19c3398e7dc09cfc1fbafed98d795d9f83e.1699464622.git.baruch@tkos.co.il/
+
+Baruch Siach (4):
+  of: get dma area lower limit
+  of: unittest: add test for of_dma_get_cpu_limits() 'min' param
+  dma-direct: add offset to zone_dma_bits
+  arm64: mm: take DMA zone offset into account
+
+ arch/arm64/mm/init.c       | 18 +++++++++++++-----
+ drivers/of/address.c       | 38 +++++++++++++++++++++++++++-----------
+ drivers/of/unittest.c      | 17 ++++++++++-------
+ include/linux/dma-direct.h |  1 +
+ include/linux/of.h         | 11 ++++++++---
+ kernel/dma/direct.c        | 10 ++++++----
+ kernel/dma/pool.c          |  2 +-
+ kernel/dma/swiotlb.c       |  5 +++--
+ 8 files changed, 69 insertions(+), 33 deletions(-)
 
 -- 
-Jiri Kosina
-SUSE Labs
+2.43.0
 
 
