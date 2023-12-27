@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-28597-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28598-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3C3181ED6F
-	for <lists+devicetree@lfdr.de>; Wed, 27 Dec 2023 09:50:45 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 28DB581ED74
+	for <lists+devicetree@lfdr.de>; Wed, 27 Dec 2023 09:51:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 98A4E282AB0
-	for <lists+devicetree@lfdr.de>; Wed, 27 Dec 2023 08:50:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4B9B81C21544
+	for <lists+devicetree@lfdr.de>; Wed, 27 Dec 2023 08:51:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 596326ADC;
-	Wed, 27 Dec 2023 08:50:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56AD0D2E8;
+	Wed, 27 Dec 2023 08:50:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=huaqin-corp-partner-google-com.20230601.gappssmtp.com header.i=@huaqin-corp-partner-google-com.20230601.gappssmtp.com header.b="OhgjR7ps"
+	dkim=pass (2048-bit key) header.d=huaqin-corp-partner-google-com.20230601.gappssmtp.com header.i=@huaqin-corp-partner-google-com.20230601.gappssmtp.com header.b="e7pUpx8j"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com [209.85.210.169])
+Received: from mail-oi1-f180.google.com (mail-oi1-f180.google.com [209.85.167.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0968463D3
-	for <devicetree@vger.kernel.org>; Wed, 27 Dec 2023 08:50:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD6106FCA
+	for <devicetree@vger.kernel.org>; Wed, 27 Dec 2023 08:50:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=huaqin.corp-partner.google.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huaqin.corp-partner.google.com
-Received: by mail-pf1-f169.google.com with SMTP id d2e1a72fcca58-6d9b13fe9e9so1884876b3a.2
-        for <devicetree@vger.kernel.org>; Wed, 27 Dec 2023 00:50:29 -0800 (PST)
+Received: by mail-oi1-f180.google.com with SMTP id 5614622812f47-3bbbc6b4ed1so864348b6e.2
+        for <devicetree@vger.kernel.org>; Wed, 27 Dec 2023 00:50:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=huaqin-corp-partner-google-com.20230601.gappssmtp.com; s=20230601; t=1703667029; x=1704271829; darn=vger.kernel.org;
+        d=huaqin-corp-partner-google-com.20230601.gappssmtp.com; s=20230601; t=1703667032; x=1704271832; darn=vger.kernel.org;
         h=references:in-reply-to:message-id:date:subject:cc:to:from:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=wx44H8htv1iVw8TJk4zePfs2PqDhMfaawR5YlGnQT90=;
-        b=OhgjR7psv7LjjneU0HClIkwgnQ/5x7Y5Z5KKQ7U8J6D43DOdH2+JRE2sZropdD32ou
-         d6APaZ8FwWWHYhU9QO1mKZGYGO0pTbesXZB6jsdjMNpNrKgSoaTvGr+/L2cyrpggxTzS
-         DUp80/vgoNxjJPcWzZFz0ULsL4QzwBfH2AZ8ebZ5H2lPElGOpxQxoy9Sn1bMegnlMjIe
-         t7uDmoUFElu/r5J4Ga3+oUVOSiw6VDiJAT26RFJqonACYKd3s4PqC/EZZ+yq7s5/U2Mb
-         1dPuXS2smb8QzH3LFqP8xYu5Fp0D4kWBk5bp/w3wWMPlEO7Hwx9NHoyM0JQ+WyUsJNh+
-         g13w==
+        bh=rg6+ljdZgixSWbRXWj3kXbuUdDrmIT/jkzTN+vEmTm0=;
+        b=e7pUpx8jpTVHfI+An8aR/60t2nc4uTFap1tWEBkB1Rf9G+yaPGg+D1SuPFC7oEAceL
+         YhtKt25EpqG0vTNhjUBKk5p0+WFTjlBC3H+5h0pi5WlbTczDUwHInafcCdNlhGZNY0Zj
+         k3KJUEZl+uZ/w/QW2z4GR8uLJHioyh6G4EKt2IEvTsAgHJWEBrEaf3jeB/+IjnHgY7g0
+         mYNb4iInnzdI/f2r22l8eLjYq/aQx7iMVL/uC9utU3WWQnXF2b0bXi3MWUegzDra4xGt
+         k7bLLCfFAVlQJsD0yfjdu5hySS3/kMIC/6BTUFidM52C/c75+6k6AAGWNgW3eUA4W09i
+         jF/Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703667029; x=1704271829;
+        d=1e100.net; s=20230601; t=1703667032; x=1704271832;
         h=references:in-reply-to:message-id:date:subject:cc:to:from
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=wx44H8htv1iVw8TJk4zePfs2PqDhMfaawR5YlGnQT90=;
-        b=ojPBbkhhXdLBs6oX9PIQvTI5mOJnx5m5km6o864FJHXI7NTGRRvMaWaPEYnJluorxD
-         UiL8CPv/HgfZp4z2lVLyYys5cCTo56JWz8Ld5JiHD0dePbluZv/h2jhBOLJbfel0JOHg
-         RN7i/k01c54nQTxv90vCNqU8q7w3ilMvwOks3M51hpWlpN8AjSfNyDqLWddqI3sM+604
-         a0oxUeInGaAituk8iGLEhVEJU98pU46SgZTu72dBJvb1h3hVrQazOVh1gza7rRt0DOXs
-         jndJktqazPV17sXuAoqSGsFUgoos91CkL4ZKZ2/aDej4VlyAv9wMZa7ne+SRMqDFZunc
-         XuYw==
-X-Gm-Message-State: AOJu0YyoXJqzfQjpWPWEviLhgaIpdPNB5ha4Zahy+hmOfk9qUf7a07/e
-	YeoWA8wtgYwnBK7p9BtFMpeScyuTA1ujqneVUR0MIJWTVKc=
-X-Google-Smtp-Source: AGHT+IHtbbeJJtoI+3WmeA/10kg1Xl33Sh0Jf3TPX9mNM3AMgg/fyFTeMOO/9rVr/4oKVbxlm8WHTg==
-X-Received: by 2002:a05:6a20:921e:b0:194:f912:ae77 with SMTP id i30-20020a056a20921e00b00194f912ae77mr8420152pzf.9.1703667029097;
-        Wed, 27 Dec 2023 00:50:29 -0800 (PST)
+        bh=rg6+ljdZgixSWbRXWj3kXbuUdDrmIT/jkzTN+vEmTm0=;
+        b=KtB/2mIRTAtdTxRaowZrj/pz0pFGo5Wvo6B1lKBf9tOwjQeVtBxm7IZO5LiWU8VYvb
+         TkGKiEFS6St/LDdEbiW0eqv/NI7GkfPYh5oe4CUPmZ6l9UJC09aZf9W4NtV04d4I/zAR
+         1PrXHYVUuMsO4xCeXkPkx/zTKXmOdJRqImOvAWYXUryHXGia1Dbty87QrSfH0cnJXkjr
+         xyMr0tCz+5MOD6FGuAMjhi2FcsJuq4sSfjiDXQ1hS9QY0kAyafnHWJG8eidaxfJ09Abk
+         L1e7qRrwKqC8IWc72Tg3wzQfnfrtHG/5vnVz0Edj/XMmSFfbDqmJa/u9WnFjiaeOHvjB
+         433Q==
+X-Gm-Message-State: AOJu0YwYsvOoaho6/RSNGKab/reftNiR7hrs+WWPZydLoGxhLRPA6Prn
+	Y/KR5pLIwb/hrnyKpRGvaXPNUgPfNxJyaQ==
+X-Google-Smtp-Source: AGHT+IEJyHe4ceLIVHZcj5qUbVaq6KZiQv8OtfJUHoIFiBOMhcirHT542PcOwmxn5pfhVafApPBDqA==
+X-Received: by 2002:a05:6808:1415:b0:3bb:6d9b:845 with SMTP id w21-20020a056808141500b003bb6d9b0845mr8824660oiv.44.1703667031736;
+        Wed, 27 Dec 2023 00:50:31 -0800 (PST)
 Received: from ubuntu.huaqin.com ([116.66.212.162])
-        by smtp.gmail.com with ESMTPSA id c26-20020aa781da000000b006d9d39354bcsm3157505pfn.74.2023.12.27.00.50.26
+        by smtp.gmail.com with ESMTPSA id c26-20020aa781da000000b006d9d39354bcsm3157505pfn.74.2023.12.27.00.50.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 27 Dec 2023 00:50:28 -0800 (PST)
+        Wed, 27 Dec 2023 00:50:31 -0800 (PST)
 From: Zhengqiao Xia <xiazhengqiao@huaqin.corp-partner.google.com>
 To: linux-input@vger.kernel.org,
 	devicetree@vger.kernel.org,
@@ -68,9 +68,9 @@ Cc: dmitry.torokhov@gmail.com,
 	linus.walleij@linaro.org,
 	dianders@chromium.org,
 	xiazhengqiao@huaqin.corp-partner.google.com
-Subject: [PATCH v3 1/2] dt-bindings: HID: i2c-hid: elan: Introduce Ilitek ili2901
-Date: Wed, 27 Dec 2023 16:50:12 +0800
-Message-Id: <20231227085013.1317-2-xiazhengqiao@huaqin.corp-partner.google.com>
+Subject: [PATCH v3 2/2] HID: i2c-hid: elan: Add ili2901 timing
+Date: Wed, 27 Dec 2023 16:50:13 +0800
+Message-Id: <20231227085013.1317-3-xiazhengqiao@huaqin.corp-partner.google.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20231227085013.1317-1-xiazhengqiao@huaqin.corp-partner.google.com>
 References: <20231227085013.1317-1-xiazhengqiao@huaqin.corp-partner.google.com>
@@ -80,32 +80,39 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 
-The Ilitek ili2901 touch screen chip same as Elan eKTH6915 controller
-has a reset gpio. The difference is that they have different
-post_power_delay_ms and post_gpio_reset_on_delay_ms.
-Ilitek ili2901 also uses 3.3V power supply.
+ILI2901 requires reset to pull down time greater than 10ms,
+so the configuration post_power_delay_ms is 10, and the chipset
+initial time is required to be greater than 100ms,
+so the post_gpio_reset_on_delay_ms is set to 100.
 
-Signed-off-by: Zhengqiao Xia  <xiazhengqiao@huaqin.corp-partner.google.com>
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+Signed-off-by: Zhengqiao Xia <xiazhengqiao@huaqin.corp-partner.google.com>
 ---
- Documentation/devicetree/bindings/input/elan,ekth6915.yaml | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+ drivers/hid/i2c-hid/i2c-hid-of-elan.c | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/input/elan,ekth6915.yaml b/Documentation/devicetree/bindings/input/elan,ekth6915.yaml
-index 3e2d216c6432..dc4ac41f2441 100644
---- a/Documentation/devicetree/bindings/input/elan,ekth6915.yaml
-+++ b/Documentation/devicetree/bindings/input/elan,ekth6915.yaml
-@@ -18,8 +18,9 @@ allOf:
+diff --git a/drivers/hid/i2c-hid/i2c-hid-of-elan.c b/drivers/hid/i2c-hid/i2c-hid-of-elan.c
+index 31abab57ad44..5b91fb106cfc 100644
+--- a/drivers/hid/i2c-hid/i2c-hid-of-elan.c
++++ b/drivers/hid/i2c-hid/i2c-hid-of-elan.c
+@@ -130,9 +130,17 @@ static const struct elan_i2c_hid_chip_data ilitek_ili9882t_chip_data = {
+ 	.main_supply_name = NULL,
+ };
  
- properties:
-   compatible:
--    items:
--      - const: elan,ekth6915
-+    enum:
-+      - elan,ekth6915
-+      - ilitek,ili2901
- 
-   reg:
-     const: 0x10
++static const struct elan_i2c_hid_chip_data ilitek_ili2901_chip_data = {
++	.post_power_delay_ms = 10,
++	.post_gpio_reset_on_delay_ms = 100,
++	.hid_descriptor_address = 0x0001,
++	.main_supply_name = "vcc33",
++};
++
+ static const struct of_device_id elan_i2c_hid_of_match[] = {
+ 	{ .compatible = "elan,ekth6915", .data = &elan_ekth6915_chip_data },
+ 	{ .compatible = "ilitek,ili9882t", .data = &ilitek_ili9882t_chip_data },
++	{ .compatible = "ilitek,ili2901", .data = &ilitek_ili2901_chip_data },
+ 	{ }
+ };
+ MODULE_DEVICE_TABLE(of, elan_i2c_hid_of_match);
 -- 
 2.17.1
 
