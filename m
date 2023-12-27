@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-28639-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28640-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5B3881EF02
-	for <lists+devicetree@lfdr.de>; Wed, 27 Dec 2023 13:41:10 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6788181EF07
+	for <lists+devicetree@lfdr.de>; Wed, 27 Dec 2023 13:42:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9CF2B280F51
-	for <lists+devicetree@lfdr.de>; Wed, 27 Dec 2023 12:41:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8A9091C22793
+	for <lists+devicetree@lfdr.de>; Wed, 27 Dec 2023 12:42:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1381A44C71;
-	Wed, 27 Dec 2023 12:41:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3F9C44C75;
+	Wed, 27 Dec 2023 12:42:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Jf5SkwoL"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="e+8Src8V"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5990C44C62
-	for <devicetree@vger.kernel.org>; Wed, 27 Dec 2023 12:41:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 758DF44C69
+	for <devicetree@vger.kernel.org>; Wed, 27 Dec 2023 12:42:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-40d5bc68bb7so9864965e9.3
-        for <devicetree@vger.kernel.org>; Wed, 27 Dec 2023 04:41:04 -0800 (PST)
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-40d5095834aso32038305e9.2
+        for <devicetree@vger.kernel.org>; Wed, 27 Dec 2023 04:42:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1703680862; x=1704285662; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1703680919; x=1704285719; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=IobSWW9egD1J6lnzp7nWS1ewez0NIEgra4uxbagq4Ac=;
-        b=Jf5SkwoLMAFvf/JGyqZ3KBpNUzPyXmQJ06LQ1rvWGMU9hzLfZ8XyCFB1rAdAL8gy+d
-         jFWpZC/AIBZOtYd30+aMx2mnqvpQx0kEmYXpYaEy8fZl1WRweOyTkwbJPrrwmxZdhNPo
-         90oojrNuu75rDam/Wh1bx6APpYmwNfkM0U0wGR8MguThR/qZzVCjvYRvcmK43e99CNPA
-         x/LOre6RjPlI0p9VrH/BDPe2rR132UHRzk98QKDsIpmMjvACfl5fNUTB5BjyZQ2OhDpD
-         zOwmCLzIiU+Mq83JxUsYU02PQTs+Wlxb8ZQ3C894sr43aKsBB9xbaq8A5t4+xFgf2QJY
-         8GAg==
+        bh=fCA4y8ftyHKmLQ+12Aop7on5k2jLExWJXUWPfHWiT3E=;
+        b=e+8Src8V6iqkUGYtBUTSwdT5CS/1ADXLwx1yC2zlbuRheMFND1c/T795MJ3YjgaaFs
+         9SgxnEapkefL8GUHNU1H1v9GEkaKb6f0a0izyTukZ0uBLR43sEXiFFdYvdIwyi1DRTL/
+         kpTsHoZqvZTHOYW5blsRff3ajxFOFTQztLM8Rn1z4ER4fEXE4NAaQS1FDEPblUhRRLBw
+         uZOWzJQsz19BweZghjfyMoW+0Ax7o72NE3TL0isxsRbdbvTYqEfJUM8caNA3SAYJI9qT
+         FQkFRZxh7Z0utMctkcYjHTDRN/5QCQaBN/cheFN/xQTCbxmH+RG4dI71aqKGRASVjnM5
+         wTew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703680862; x=1704285662;
+        d=1e100.net; s=20230601; t=1703680919; x=1704285719;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=IobSWW9egD1J6lnzp7nWS1ewez0NIEgra4uxbagq4Ac=;
-        b=AomzeNeJ6xtEFJF6bBvxxvY+RgO13gW/aRFUe7m6rIJnM6WceKeKEeu0S0dWxyzm0b
-         +pDYmCLEGtmygtTvJZjhmtGKtAUO+nd3dymlDzJW9wUsnbhs3Qhm1LG5Bhu9inDu3oWQ
-         hR2WHAHMTbMpT6UxCpvoj+UdkL9pL0PEBlQ7I1ymxLBEelZ4x1gRpxloc9jKjZPjg71C
-         PRcUbWt5JT86zBT5SUCX0++IA7ju/5d0/PsSpvO1Rvk+AU21bZAbEqEfHTXwNFLaauRE
-         RsEoUXGiUaqKYcc4FZ4nNuUBUEPO7mV/SQz/SOeAY8NgoAPJLUWSzaH0/2WYKW0V6Blw
-         F8rQ==
-X-Gm-Message-State: AOJu0YxTsThMvwkLJclAzQn3D2vcSlLb5Qvnfu/gf7cpTb5Jx0dZtCtm
-	abdWkgaKdutRDEARJs3l04G5wGGphCXF4g==
-X-Google-Smtp-Source: AGHT+IGBt+TovOPy4NKH37QHcuLITaQxwt7XvM/pUisHh8D6fzAOz557SHXJpaJ2EtnQ67ZT0anVNw==
-X-Received: by 2002:a1c:7415:0:b0:40d:492d:c376 with SMTP id p21-20020a1c7415000000b0040d492dc376mr4720648wmc.114.1703680862515;
-        Wed, 27 Dec 2023 04:41:02 -0800 (PST)
+        bh=fCA4y8ftyHKmLQ+12Aop7on5k2jLExWJXUWPfHWiT3E=;
+        b=aEQ0A+Kvqkyn+3lFOY0DWQN/lITiQwnOTekYCOLBOv7Dt91h3U2G/D1a5HCmECHbyM
+         F2Ae1hz1iKdQtjlUPlxhnvsOlpMRohv/2FMfc/xVoEqou1sqaklnVEdrWoD5Sm6qLkkB
+         e9pof20adjzc1x8oGMwXrVMRtnCYvUHcmMTZHIkUZ9vuuFHbE11av58aapuE7MWrbNyi
+         VlWwbdZ4I0IEYjiD/7NwEoq50SXDkyEPudGo8XPsHuJhC8krymP6AWXivpgA5IqCAiKr
+         6fs65DK71bsmHlG47DEcazJetf0laMg8zqA1x7oVo8TRohBgzjGhTZCtIFRwOYXv2g2t
+         mXfg==
+X-Gm-Message-State: AOJu0Yx6GFP5Sq37+mg+ELOZnpm3KnogLNvCGUu6mvp9nZFOwm2WVMMG
+	PZuRVmQyQJDdHOxwivDDn84HgDhxZZjzNw==
+X-Google-Smtp-Source: AGHT+IEoH+qnSU5br+Uphi7AbMtSSQGZ4WmC8BvMYyD7HcRCaKOXiUWu9xr465oysGUbPHpfYfualQ==
+X-Received: by 2002:a05:600c:19d1:b0:40d:5f5b:48a6 with SMTP id u17-20020a05600c19d100b0040d5f5b48a6mr176215wmq.102.1703680918787;
+        Wed, 27 Dec 2023 04:41:58 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id j16-20020a05600c191000b0040c11fbe581sm24050242wmq.27.2023.12.27.04.41.00
+        by smtp.gmail.com with ESMTPSA id j16-20020a05600c191000b0040c11fbe581sm24050242wmq.27.2023.12.27.04.41.56
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 27 Dec 2023 04:41:01 -0800 (PST)
-Message-ID: <75fd794c-0366-445b-aa69-0975afb247c7@linaro.org>
-Date: Wed, 27 Dec 2023 13:40:59 +0100
+        Wed, 27 Dec 2023 04:41:58 -0800 (PST)
+Message-ID: <80568ab6-da4c-408c-b628-fa399aedefc2@linaro.org>
+Date: Wed, 27 Dec 2023 13:41:56 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,7 +66,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/4] arm64: dts: ac5: add mmc node and clock
+Subject: Re: [PATCH 2/4] dt-bindings: mmc: add Marvell ac5
 Content-Language: en-US
 To: Elad Nachman <enachman@marvell.com>, robh+dt@kernel.org,
  krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, andrew@lunn.ch,
@@ -78,7 +78,7 @@ To: Elad Nachman <enachman@marvell.com>, robh+dt@kernel.org,
  linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
 Cc: cyuval@marvell.com
 References: <20231227123257.1170590-1-enachman@marvell.com>
- <20231227123257.1170590-4-enachman@marvell.com>
+ <20231227123257.1170590-3-enachman@marvell.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -124,100 +124,19 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231227123257.1170590-4-enachman@marvell.com>
+In-Reply-To: <20231227123257.1170590-3-enachman@marvell.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 27/12/2023 13:32, Elad Nachman wrote:
 > From: Elad Nachman <enachman@marvell.com>
 > 
-> Add mmc and mmc clock nodes to ac5 and ac5x device tree files
-> 
-> Signed-off-by: Elad Nachman <enachman@marvell.com>
-> ---
->  arch/arm64/boot/dts/marvell/ac5-98dx25xx.dtsi | 33 ++++++++++++++++++-
->  1 file changed, 32 insertions(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/marvell/ac5-98dx25xx.dtsi b/arch/arm64/boot/dts/marvell/ac5-98dx25xx.dtsi
-> index b5e042b8e929..decad14d0db8 100644
-> --- a/arch/arm64/boot/dts/marvell/ac5-98dx25xx.dtsi
-> +++ b/arch/arm64/boot/dts/marvell/ac5-98dx25xx.dtsi
-> @@ -77,7 +77,6 @@ soc {
->  		#address-cells = <2>;
->  		#size-cells = <2>;
->  		ranges;
-> -		dma-ranges;
->  
->  		internal-regs@7f000000 {
->  			#address-cells = <1>;
-> @@ -204,6 +203,31 @@ gpio1: gpio@18140 {
->  			};
->  		};
->  
-> +		mmc_dma: mmc-dma-peripherals@80500000 {
+> Add dt bindings for Marvell ac5 eMMC controller
 
-Generic node name, so bus@?
+Driver change says it is not fully compatible. Your commit msg here
+explains nothing, except what subject is saying. You have entire commit
+msg to explain such cases.
 
-> +				compatible = "simple-bus";
-> +				#address-cells = <0x2>;
-> +				#size-cells = <0x2>;
-> +				ranges;
-
-ranges is second.
-
-You have address/size cells, so are you sure dtbs W=1 does not complain?
-
-
-> +				dma-ranges = <0x0 0x0 0x2 0x0 0x0 0x80000000>;
-> +				dma-coherent;
-> +
-> +				sdhci: mmc@805c0000 {
-> +					compatible = "marvell,ac5-sdhci",
-> +						     "marvell,armada-ap806-sdhci";
-> +					reg = <0x0 0x805c0000 0x0 0x1000>;
-> +					interrupts = <GIC_SPI 92 IRQ_TYPE_LEVEL_HIGH>;
-> +					clocks = <&emmc_clock>, <&cnm_clock>;
-> +					clock-names = "core", "axi";
-> +					status = "okay";
-
-Drop
-
-> +					bus-width = <8>;
-> +					/*marvell,xenon-phy-slow-mode;*/
-
-Drop or explain why commented code should be here.
-
-> +					non-removable;
-> +					mmc-ddr-1_8v;
-> +					mmc-hs200-1_8v;
-> +					mmc-hs400-1_8v;
-> +				};
-> +		};
-> +
->  		/*
->  		 * Dedicated section for devices behind 32bit controllers so we
->  		 * can configure specific DMA mapping for them
-> @@ -335,5 +359,12 @@ nand_clock: nand-clock {
->  			#clock-cells = <0>;
->  			clock-frequency = <400000000>;
->  		};
-> +
-> +		emmc_clock: emmc_clock {
-
-No underscores in node names. I think you got such feedback before.
-
-But anyway, this looks like a fake clock.
-
-> +			compatible = "fixed-clock";
-> +			#clock-cells = <0>;
-> +			clock-frequency = <400000000>;
-> +		};
-> +
-
-Drop
-
->  	};
->  };
 
 Best regards,
 Krzysztof
