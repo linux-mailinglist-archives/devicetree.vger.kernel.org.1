@@ -1,224 +1,155 @@
-Return-Path: <devicetree+bounces-28572-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28573-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6477C81EBF5
-	for <lists+devicetree@lfdr.de>; Wed, 27 Dec 2023 04:58:28 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4573381EC43
+	for <lists+devicetree@lfdr.de>; Wed, 27 Dec 2023 06:35:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0EE21281E1A
-	for <lists+devicetree@lfdr.de>; Wed, 27 Dec 2023 03:58:27 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 48C18B222AF
+	for <lists+devicetree@lfdr.de>; Wed, 27 Dec 2023 05:35:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4AF2C2919;
-	Wed, 27 Dec 2023 03:58:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFDC83FF4;
+	Wed, 27 Dec 2023 05:35:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b="TIEzljUC"
+	dkim=pass (2048-bit key) header.d=hotmail.com header.i=@hotmail.com header.b="KeJnTNke"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-op-o10.zoho.com (sender4-op-o10.zoho.com [136.143.188.10])
+Received: from APC01-PSA-obe.outbound.protection.outlook.com (mail-psaapc01olkn2012.outbound.protection.outlook.com [40.92.52.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93875290B;
-	Wed, 27 Dec 2023 03:58:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=icenowy.me
-ARC-Seal: i=1; a=rsa-sha256; t=1703649446; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=ci+N34DZ/1jEYg/YaTh1Eju9R2R0ILw6v8amLrTBwPkYhKO1dT0NHYL/tn7Ah4jRNW17627qYYYTRcUzIFM/jVDBbLwwgjbv8ivgaLERkeWgZKyiEafZ6aUzirheDdEYESRagsVgigsMKoZJGphbwyJsr2cBl1DJt+4Qqq2bYRM=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1703649446; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=PDs/5RyQrkv8/uvBnzQ1A3NQ3kJYbwWBLDAWvp3dC/g=; 
-	b=LrkgA3sU1xiV7M3lI1Up+vd42ynvNWHNhE4s4yVw84ICVq3+issXa1nYZmJPhmzlIj7WdoEc+Ma6VS4s0Q9I3MoZyJusIgny4AKGvjxXV94f8tq8NbjB63shOjJlpTuJsbGNWKjxWHLx6zujZCMApKbeMJ7bBqe014ZdU7f9D1Y=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=icenowy.me;
-	spf=pass  smtp.mailfrom=uwu@icenowy.me;
-	dmarc=pass header.from=<uwu@icenowy.me>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1703649446;
-	s=zmail2; d=icenowy.me; i=uwu@icenowy.me;
-	h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
-	bh=PDs/5RyQrkv8/uvBnzQ1A3NQ3kJYbwWBLDAWvp3dC/g=;
-	b=TIEzljUCMSZFCXIRUzbbLkkGvEQThEuyOy5WvEjPHPZ9AIslNARA6SDTyNz+2B4u
-	gMdeLyfsZ23226ihMGECXJ0KArV0G85ZeDPWGHHzXsetMCxo/RrkFVPa0NhAh/VoIoy
-	2flbuVZQQQxqUslAKC8jxJskifGKJHpBgskwvYaFoppODCw8vfSLQsXmugDm7DZe9TS
-	wy6WsmdaIfO8APQ9qV4oKH845/0WmYoK2pCQWJgPxDHC5adABo7/yDvxiaYXb9ZxBkU
-	b+zbHU3PO5bXf3iPFi6x0jdzgPu5vC8VNkLmPXAQznA34Qj5pp1QfBocznBR+SAx++y
-	eDzVxShNgg==
-Received: from edelgard.fodlan.icenowy.me (120.85.97.19 [120.85.97.19]) by mx.zohomail.com
-	with SMTPS id 1703649444779355.6452133422597; Tue, 26 Dec 2023 19:57:24 -0800 (PST)
-Message-ID: <94bdac9b7347893cfa787b3f8c95215d4b7b4c12.camel@icenowy.me>
-Subject: Re: [v3 4/6] drm/vs: Add KMS crtc&plane
-From: Icenowy Zheng <uwu@icenowy.me>
-To: Keith Zhao <keith.zhao@starfivetech.com>, "devicetree@vger.kernel.org"
-	 <devicetree@vger.kernel.org>, "dri-devel@lists.freedesktop.org"
-	 <dri-devel@lists.freedesktop.org>, "linux-kernel@vger.kernel.org"
-	 <linux-kernel@vger.kernel.org>, "linux-riscv@lists.infradead.org"
-	 <linux-riscv@lists.infradead.org>
-Cc: "aou@eecs.berkeley.edu" <aou@eecs.berkeley.edu>, 
- "suijingfeng@loongson.cn" <suijingfeng@loongson.cn>, "tzimmermann@suse.de"
- <tzimmermann@suse.de>,  "paul.walmsley@sifive.com"
- <paul.walmsley@sifive.com>, "mripard@kernel.org" <mripard@kernel.org>, 
- Xingyu Wu <xingyu.wu@starfivetech.com>, Jack Zhu
- <jack.zhu@starfivetech.com>, "palmer@dabbelt.com" <palmer@dabbelt.com>,
- "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
- William Qiu <william.qiu@starfivetech.com>,  Shengyang Chen
- <shengyang.chen@starfivetech.com>, Changhuang Liang
- <changhuang.liang@starfivetech.com>
-Date: Wed, 27 Dec 2023 11:57:17 +0800
-In-Reply-To: <580e13ab-a73e-4ce7-999a-8a8685faf2dd@starfivetech.com>
-References: <20231204123315.28456-1-keith.zhao@starfivetech.com>
-	 <20231204123315.28456-5-keith.zhao@starfivetech.com>
-	 <7acd5af8fd4c5bf6ee0614f72cf6cb6751c89dc3.camel@icenowy.me>
-	 <580e13ab-a73e-4ce7-999a-8a8685faf2dd@starfivetech.com>
-Organization: Anthon Open-Source Community
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.44.4 
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 505513D7A;
+	Wed, 27 Dec 2023 05:35:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=hotmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hotmail.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=XUHVF0j+3cIKZtrXzaPwbJe/EMfVYTOceyzIm8xVu73PGW2hr9E8Nda6Hmc1N7xHCa4GZvkYniLWzH9cAveClRoGjR7AQXsrQc0oW0Ziwl+rCgi6FuoOYxPJB81zDLcWl96V5FFG8rk4OdcB7unW4rycYSr6aQmxvSyqBtVRam2q9G/DJWNO6DszB6SVWExBSd6FNuEPRz9JJ4Y/GJYBD7jjmo995JMCEFGdIasA5ub9SpkHhB+d81Zgh+Z/i+4gNIrejm3JNdZAmsfxIUTMxfoQtDzi52co3dlIUf/snHn/StMPdBNE7niMrXEFYJYW0/PqnI/lJxzY8BhBPTlNqw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Gb2AYUGcFuQ5czTHbaq9/vfUsxOl5J6XNnomTPkdZBg=;
+ b=j3G9HKFM9p7mXCuAucFjEpO8/E8OUrDXqWYMBmJ7SP1+Bmplc57WuACJiNkt6HDZAKzXbxg08zsQC5jz0PMGdhlj7cEv+ZkvFXS8kCUTRglQgtljsc5yNtYCEoBXMmOMgxqYDTuT5PCQHd+cAuCCYLxezPLXCE4k01ZovGBtO7xB5ey0Fctt5kI9bdLvhx0Fyzfo1hJGtezE8MolbDs85XTIzS24Lta0i7JHJHBSbFSK45xgGtYzjjC9/I7Gonq1diRb37NNCjGdOFam2Jtm/BV9jbKp9PZ7V/AJsDvtF1oRSOu2ZhmriNborFLNRR9G8BZM68ICQH3H2OgCHdmjZg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Gb2AYUGcFuQ5czTHbaq9/vfUsxOl5J6XNnomTPkdZBg=;
+ b=KeJnTNkeQXRYxjWpbB6ngrp92O82mnOmP3xP9r9qrAwDGBhV8VI3fGQeajcnaOxIBh7pxCnzGI/tnEBcbP9Dk1Sjf8+AlsTh5mMcQkwwAYke+edeOvuqhEIWKrJSOfByzjybnxRTKO95qZVpwAqMS+TB2ypjOqNyoZrB1yhau/RqNS2sJYp85Bs9BgQUUk3uUOx9w2AcvznW7QjnMg8XN7o7r37ixRwnAu60lk1T7P36rLozX2SO/6234IelQLTdtuI9M5T/NQTYWH941BeeMBkZnofgHy8xlTT+zQJrwSFcetCRmLxE67f/D/mJQHceC2uBE0rAbxkrp97oU3nqDQ==
+Received: from SEZPR06MB5608.apcprd06.prod.outlook.com (2603:1096:101:c8::13)
+ by JH0PR06MB6977.apcprd06.prod.outlook.com (2603:1096:990:70::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7113.27; Wed, 27 Dec
+ 2023 05:35:22 +0000
+Received: from SEZPR06MB5608.apcprd06.prod.outlook.com
+ ([fe80::3786:2a86:9685:a19d]) by SEZPR06MB5608.apcprd06.prod.outlook.com
+ ([fe80::3786:2a86:9685:a19d%2]) with mapi id 15.20.7113.027; Wed, 27 Dec 2023
+ 05:35:22 +0000
+From: Allen_Lin <allencl_lin@hotmail.com>
+To: dmitry.torokhov@gmail.com,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	jikos@kernel.org,
+	benjamin.tissoires@redhat.com,
+	linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Allen_Lin <allencl_lin@hotmail.com>
+Subject: [PATCH v3 0/2] Add HX83102j driver for HIMAX HID touchscreen
+Date: Wed, 27 Dec 2023 13:35:07 +0800
+Message-ID:
+ <SEZPR06MB560853A09167B9C804F1C53B9E9FA@SEZPR06MB5608.apcprd06.prod.outlook.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-TMN: [e/Nx10ubnAZlmJ2OqvIHmx2ml5pJJMqs]
+X-ClientProxiedBy: PS1PR01CA0021.apcprd01.prod.exchangelabs.com
+ (2603:1096:300:75::33) To SEZPR06MB5608.apcprd06.prod.outlook.com
+ (2603:1096:101:c8::13)
+X-Microsoft-Original-Message-ID:
+ <20231227053509.894642-1-allencl_lin@hotmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-ZohoMailClient: External
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SEZPR06MB5608:EE_|JH0PR06MB6977:EE_
+X-MS-Office365-Filtering-Correlation-Id: 44033084-dd88-4d27-d227-08dc069d9e7f
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	5//2s10KFRWXq2KZhlYxLHPDkYobj2/hMQEl8MdYj+p9sWV2Iks6M+p8CtkSr3KnCVsabj0+/40wmuvJT+DotohkerGdsUhmbH+ONcgJJxKBxafPTQZ14mMZ6GYl2SqticqYS60Ezhd8gz6hgtwLGMk8bZyQLPCWqtNpbaaNIdrAhr1ik8VV9gh7md0XWovlxKrazdLxTR5tYUvvKXldbBc3hqaQj3u4l8xzNXV7hJLwvxSMzp77X6v1Xg8kdi5GuFUme9JAc3Q3BPoYc30b9cr8fC5y66XeJENuySSmGGzgZHCZj9eRGmVNjSwjw8PDvDgeMenA61hbgaVlm2qHNyWTE/3fNzqN7SNIskc89+ruKVGjw1ganDIsS6xZDh5wyqB2u2UmBhjR01omlflBmaLMk2b2j7+FWoUhgcp/3N7vcWfaahyEscoGtBeLJuBTVOLAKuzK+v2VNlheRecX0bhacueub0gUFlwnTRH733C+988UgwZpZ4OdnG5UHPm3egxGccY4zPWIBspjPAMwJZG0BkwVBqEtiSAu6UB+vTmBVjh8D48yONyHGRHlFqKambx3SF2Tmoi9r6DARl1XogLy9C/b0P1+Kp6o3d88DH1CzLZ8phwS4Nla7//ZAF29
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?iKd5O8GOtO8vKBd8UOJBzLH0rW1qQT6sCCsHq7Gf5LIVVihoOkEVoVyJznwU?=
+ =?us-ascii?Q?xtf5M8rOATDuXTAACPlZCa21JU4IW67cnVp+FVoTHjDQXg+K2ttEsstC4YM6?=
+ =?us-ascii?Q?gCWMJA2jxeKzI21WEpWWDxRJwpkpKqwC+Xalm+1nU+ryLVH8w8x4BHDBRKMO?=
+ =?us-ascii?Q?O/YPZ03MUlMxR1sg4j2Is+OsX8wbLJdaznUG2s8Qb6s4D7wyQ+XBKDZ7tzt4?=
+ =?us-ascii?Q?CHISygt2PU+IcNxvRAHrz2O2J8yOS3O/YtV3tJWAZKSUF/AjzOBb2/TcIeQ5?=
+ =?us-ascii?Q?4P9NEyftG4timfyUAAa9ltJ/tx2Xq3F8AeMaQiHec3J65DeItszVy9t2tt/K?=
+ =?us-ascii?Q?hWdcF2yZcVIVA9pDlZiiOsp8Mn3A+XAf5tiMyCFboH7ThLRyvWByUFJDFw+j?=
+ =?us-ascii?Q?hzfnla5619NBgJzDwM0nVyLOiwQNHtszDfhJLMNBmtgj0cx+nBxhEUPq55ii?=
+ =?us-ascii?Q?IwGWquFS9bhgn3wm2l8OhW1kGj8leTE71X52SpmVCn10Nrw6uc5Lx3XR0XGa?=
+ =?us-ascii?Q?OyKBYtJr39ThnjEbrU9/ul+ZE4eb0uB2Z8EAc48n2Lh0mpgNjaOt6En83rr3?=
+ =?us-ascii?Q?CGHR4y2jYPLoCfeGyuC6UF2lziFoS6BPAZFUfsfHwKYCcZZBO+pTJIKmOQXG?=
+ =?us-ascii?Q?Emxmae+h5HzvgH7XscHCXMy/8GuyWOQ0dZI+fk31LdVEGzv8EvCsskS8LCAz?=
+ =?us-ascii?Q?3eV6Bav9zsass/DuvAE/Nu2kMrCkvH9FbH7tC+evlvCTWOSsHPrDcixLGE/1?=
+ =?us-ascii?Q?+LdVPvTvF7yUhK/29dB8+87Al8KwOTNRdX15RAf6QZnUvAjTZEoloWFWsN7Z?=
+ =?us-ascii?Q?6s0Yn5gMQj96qxoUi2FhPADRiZS2HWxyWW+BvVKGBj+3eqGc00punXY5Coq7?=
+ =?us-ascii?Q?j4ce2CbDe0JyiH1UhDkNdvhqEiPXExUxbwmmfutyFzEmlvF0wQWAJlly1Zrb?=
+ =?us-ascii?Q?JFR7BEIWXQTerjOSEApEVI9R42+AiHOSEYSNDLYIFaIQAE2LeD317Hg2aFFE?=
+ =?us-ascii?Q?K4UHMtzUbzuTzIiu+1oU40jKqmT61RVQdRw8jnhx5yeBmJtzSBUxYh2OlQmO?=
+ =?us-ascii?Q?U5H6w5AJqx6Ms4s5EX2t6xH8YlfU+OJq6yXFKW0v/g92ozFPhTuSksdut0cr?=
+ =?us-ascii?Q?/GkojShSaNW+WvN3QG/0Fd7RwqfMrHgbNX8cTQtYZoK7fawF5nPlMznIbuJV?=
+ =?us-ascii?Q?L/jg4nsF1YMtAmxL/BBn9JeBGLfl5vEx52E+sw=3D=3D?=
+X-OriginatorOrg: sct-15-20-4755-11-msonline-outlook-3208f.templateTenant
+X-MS-Exchange-CrossTenant-Network-Message-Id: 44033084-dd88-4d27-d227-08dc069d9e7f
+X-MS-Exchange-CrossTenant-AuthSource: SEZPR06MB5608.apcprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Dec 2023 05:35:22.1867
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: JH0PR06MB6977
 
-=E5=9C=A8 2023-12-07=E6=98=9F=E6=9C=9F=E5=9B=9B=E7=9A=84 19:31 +0800=EF=BC=
-=8CKeith Zhao=E5=86=99=E9=81=93=EF=BC=9A
->=20
->=20
-> On 2023/12/7 16:41, Icenowy Zheng wrote:
-> > =E5=9C=A8 2023-12-04=E6=98=9F=E6=9C=9F=E4=B8=80=E7=9A=84 20:33 +0800=EF=
-=BC=8CKeith Zhao=E5=86=99=E9=81=93=EF=BC=9A
-> > *snip*
-> >=20
-> > > +static void update_cursor_plane(struct vs_dc *dc, struct
-> > > vs_plane
-> > > *plane,
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct drm_plane *drm_plane,
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct drm_atomic_state
-> > > *drm_state)
-> > > +{
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct drm_plane_state *st=
-ate =3D
-> > > drm_atomic_get_new_plane_state(drm_state,
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0
-> > > =C2=A0=C2=A0=C2=A0=C2=A0
-> > > =C2=A0 drm_plane);
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct vs_plane_state *pla=
-ne_state =3D
-> > > to_vs_plane_state(state);
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct drm_framebuffer *dr=
-m_fb =3D state->fb;
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct dc_hw_cursor cursor=
-;
-> > > +
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0cursor.address =3D plane_s=
-tate->dma_addr[0];
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0cursor.x =3D state->crtc_x=
-;
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0cursor.y =3D state->crtc_y=
-;
-> >=20
-> > From my experiments on poking with registers on T-Head TH1520 (also
-> > uses DC8200 display controller and a similar driver), the DC8200
-> > hardware have a different definition of cursor position X and Y
-> > with
-> > the CRTC plane state.
-> >=20
-> > For CRTC plane state, hot_x and hot_y are only provided as
-> > reference,
-> > and the cursor should be displayed with its (0,0) drawn to (crtc_x,
-> > crtc_y) ([XY]_crtc are values specified in CRTC state, the right
-> > part
-> > of the assignments here), when the cursor is moved to (0,0) but the
-> > hot
-> > point is not (0,0), it could be negative.
-> >=20
-> > However, for DC8200 registers definition, cursor XY position could
-> > not
-> > be negative -- the cursor will disappear then; because in its
-> > definition, the cursor XY position should be where the cursor is
-> > pointing to, instead of its (0,0). DC8200 will draw (0,0) of the
-> > cursor
-> > to (x - hot_x, y - hot_y). So to met the expectation of the KMS
-> > plane
-> > settings, the DC8200 position should be set to (crtc_x + hot_x,
-> > crtc_y
-> > + hot_y) instead. Thus these two lines of code should be:
-> >=20
-> > ```
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 cursor.x =3D state->crtc_x +=
- drm_fb->hot_x;
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 cursor.y =3D state->crtc_y +=
- drm_fb->hot_y;
-> > ```
+Hi,
+This driver implements for Himax HID touchscreen HX83102j. 
 
-Well I realized that this change is not correct too: when moving the
-mouse cursor with the screen rotated, the mouse cursor will disappear
-at some screen border.
+Using SPI interface to receive/send HID packets. 
 
-My current idea is:
+Patchs notes as below 
+1. Add the Maintainer and devicetree bindings document for driver
+2. Add the driver code and modify Kconfig/Makefile to support the driver
 
-As the CRTC hot point is just a reference, we can just ignore it, and
-use the HW hot point to implement negative cursor position.
+change in v2 :
+- Fix kernel test robot build warnings.
+change in v3 :
+- Modify code according to review suggesions.
 
-The patch is like the follow:
+Thanks.
 
--    cursor.x =3D state->crtc_x;
--    cursor.y =3D state->crtc_y;
--    cursor.hot_x =3D drm_fb->hot_x;
--    cursor.hot_y =3D drm_fb->hot_y;
-+    if (state->crtc_x > 0) {
-+        cursor.x =3D state->crtc_x;
-+        cursor.hot_x =3D 0;
-+    } else {
-+        cursor.hot_x =3D -state->crtc_x;
-+        cursor.x =3D 0;
-+    }
-+    if (state->crtc_y > 0) {
-+        cursor.y =3D state->crtc_y;
-+        cursor.hot_y =3D 0;
-+    } else {
-+        cursor.hot_y =3D -state->crtc_y;
-+        cursor.y =3D 0;
-+    }
 
-drm_fb could just be removed in this function then because it's no
-longer needed (it's used to get the cursor's hot point, which we
-ignored now).
+Allen_Lin (2):
+  dt-bindings: input: Add Himax HX83102J touchscreen
+  Input: Add Himax HX83102J touchscreen driver
 
-> >=20
-> >=20
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0cursor.hot_x =3D drm_fb->h=
-ot_x;
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0cursor.hot_y =3D drm_fb->h=
-ot_y;
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0cursor.display_id =3D to_v=
-s_display_id(dc, state->crtc);
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0update_cursor_size(state, =
-&cursor);
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0cursor.enable =3D true;
-> > > +
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0dc_hw_update_cursor(&dc->h=
-w, cursor.display_id, &cursor);
-> > > +}
-> > *snip
-> hello Icenowy:
-> you are deep understanding on dc8200.
-> by the way of practice
-> I tested this change on the debian desktop, is there a way to compare
-> the cursor behavior change?
-> Thanks
->=20
->=20
->=20
+ .../bindings/input/himax,hx83102j.yaml        |   65 +
+ MAINTAINERS                                   |    7 +
+ drivers/hid/Kconfig                           |    8 +
+ drivers/hid/Makefile                          |    2 +
+ drivers/hid/hid-himax-83102j.c                | 1096 +++++++++++++++++
+ drivers/hid/hid-himax-83102j.h                |  202 +++
+ 6 files changed, 1380 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/input/himax,hx83102j.yaml
+ create mode 100644 drivers/hid/hid-himax-83102j.c
+ create mode 100644 drivers/hid/hid-himax-83102j.h
+
+-- 
+2.34.1
 
 
