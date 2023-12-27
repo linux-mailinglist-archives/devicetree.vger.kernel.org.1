@@ -1,242 +1,99 @@
-Return-Path: <devicetree+bounces-28716-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28717-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6446381F279
-	for <lists+devicetree@lfdr.de>; Wed, 27 Dec 2023 23:29:20 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8BAB81F316
+	for <lists+devicetree@lfdr.de>; Thu, 28 Dec 2023 00:39:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D027E1F22123
-	for <lists+devicetree@lfdr.de>; Wed, 27 Dec 2023 22:29:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1BD771F217DA
+	for <lists+devicetree@lfdr.de>; Wed, 27 Dec 2023 23:39:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB54549F95;
-	Wed, 27 Dec 2023 22:28:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6121E498A6;
+	Wed, 27 Dec 2023 23:39:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Blm0wOcc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Y+YnbUCH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B20649F68
-	for <devicetree@vger.kernel.org>; Wed, 27 Dec 2023 22:28:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-40b5155e154so73822395e9.3
-        for <devicetree@vger.kernel.org>; Wed, 27 Dec 2023 14:28:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1703716115; x=1704320915; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=tK6odd1OtAVKiOdlxNNM68RkmR7ig1R/23WAvAxgt60=;
-        b=Blm0wOccePPpXVB8N/zFnmMQWlTFTzPz6sTAkkEgiqXxXmPKrP+2fbPFl7oGOLOHAR
-         ebUAz3GstHQKEVnNNB9JO+w7ddgn2GK2vHld5lvaiBxAohrPUoVcaXS3/AfvJlRlJrEM
-         KqfAjRixns6qGJxb3h933QstokGdXnjiFDxXO+t624vrPvWveSVSPt+uwBULfZHu+rrm
-         ESZvd04UWUr7sjvQLtHn4AhfStrF9dFJU8uhcFmRNfcdyOWD9y8YmJJbeymjXgy3XzdT
-         4jWle++IjZlmxfOb3ypB9VP89EsgiqWIpZ7dI3qQVxl4L6Sh8nlzj4+GZ15bZdQ/6loH
-         G2Xg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703716115; x=1704320915;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=tK6odd1OtAVKiOdlxNNM68RkmR7ig1R/23WAvAxgt60=;
-        b=CfZSsXMnPPQ6tOE/8nDhXc6OMzSG64eepX3lLbrJMVXYoOwRgc43hv6NxFhkpDGsej
-         1HNsEWYvxGohzhJKsLaeS3LhYkKGqGgyfIxqq0zqGgGsXbC5Qil6CeiTUjV7IuhvXk8g
-         k5XA8PPSpWMmnuS1RQRSIE6f6Xon788uC50dB8HEJl6/BrZBOWkEvrzZ5wXlR/YXz9bQ
-         gqcBfDiu3By5KZOl5JJFS8ohwFKkEGvYEnoIAxa3z2BlNPP1lPFjWWTr2YPoGwOjqPLd
-         gowICc5KgOfe5gB3td6vfrIfcCnib3r2GQ7UeUkqO06tTp9siIUy/dRX1u+PXj8er8lu
-         m1uw==
-X-Gm-Message-State: AOJu0Yx2r9Exx3mOkO5R+MLzhdXkfhTC6GOBK/oITZHnvCq4iIjj4Xdy
-	VyvfE39lpOJeou/ow9h7YZbytMkv4bYKC7GXfWM6IpbOq0o=
-X-Google-Smtp-Source: AGHT+IEU/XUIqOL++xPi8/jutwJk5h4bHe8DFhWyvqha2kXnhOFAt+AX45R/bH+Cj4w0+Tdtu+nCnQ==
-X-Received: by 2002:a05:600c:524a:b0:40d:5fe9:b374 with SMTP id fc10-20020a05600c524a00b0040d5fe9b374mr584909wmb.71.1703716115176;
-        Wed, 27 Dec 2023 14:28:35 -0800 (PST)
-Received: from [10.167.154.1] (178235179028.dynamic-4-waw-k-1-3-0.vectranet.pl. [178.235.179.28])
-        by smtp.gmail.com with ESMTPSA id fb20-20020a1709073a1400b00a26a061ae1esm6854252ejc.97.2023.12.27.14.28.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 27 Dec 2023 14:28:34 -0800 (PST)
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-Date: Wed, 27 Dec 2023 23:28:28 +0100
-Subject: [PATCH 3/3] arm64: dts: qcom: sc8280xp-crd: Add PCIe CLKREQ# sleep
- state
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 428F24989E;
+	Wed, 27 Dec 2023 23:39:41 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C6898C433C7;
+	Wed, 27 Dec 2023 23:39:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1703720381;
+	bh=0sMsmWI7zpqMUswHtDGmxyLjwwWkq5VVZjSm6+7mC0I=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Y+YnbUCH97W0yN/0z0J8/vystbcMeY2xbp/FyWcTe2iVOXJBuSbXme4eNL92BZ3kQ
+	 x2XyrPkNg3a4Nk+aB+OiBBtdCu2Lauej14m5QegAQkfU7oIshitEkXBdaJ6k9GdRq/
+	 NpfJzxUm8oog1P33916yPwWNKuNcXN3hecmQI1Ac6dp5Ms+VlUzLgX35SVqCw/frw1
+	 paeb6PBuFYMfaZL3oNQtCCv1WbDy3yq03fAB8ofB0KyO4aeqWA4egLz0YYiT7H/onS
+	 4WvJVFz07zGlbMevKSGNLztJFknvaB59SczZn+AaVKWrYLkzm0wVs7Lx4Tkzy6Udfp
+	 /fWGAL6BC/l2g==
+Date: Wed, 27 Dec 2023 23:39:37 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Samuel Holland <samuel.holland@sifive.com>
+Cc: linux-riscv@lists.infradead.org, Albert Ou <aou@eecs.berkeley.edu>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: riscv: cpus: Clarify mmu-type interpretation
+Message-ID: <20231227-confined-dotted-4e255dd2475e@spud>
+References: <20231227175739.1453782-1-samuel.holland@sifive.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20231227-topic-8280_pcie_dts-v1-3-13d12b1698ff@linaro.org>
-References: <20231227-topic-8280_pcie_dts-v1-0-13d12b1698ff@linaro.org>
-In-Reply-To: <20231227-topic-8280_pcie_dts-v1-0-13d12b1698ff@linaro.org>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Johan Hovold <johan+linaro@kernel.org>
-Cc: Marijn Suijten <marijn.suijten@somainline.org>, 
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
- Konrad Dybcio <konrad.dybcio@somainline.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1703716109; l=3813;
- i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=wNNlr9q+wppYjS6msbjrsQS3RolKg1AY+hca/Z4U7jI=;
- b=qvq7xUeQksr7Wqrk/el2CPvZx9ZDK+mjMvIO6NWtJvxBebD4JEsJG5MRUsJQywBQ4No1d6d8u
- drvcG+ZKWDZB+kZyoUxuGcD2bA1JsYUTbQtbPJGX9VjDZf0OxLFEE2c
-X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
- pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="vRdODWm3L/LvIb8k"
+Content-Disposition: inline
+In-Reply-To: <20231227175739.1453782-1-samuel.holland@sifive.com>
 
-The CLKREQ pin should not be muxed to its active function when the RC
-is asleep. Add the missing pin sleep states to resolve that.
 
-Fixes: d907fe5acbf1 ("arm64: dts: qcom: sc8280xp-crd: enable WiFi controller")
-Fixes: 17e2ccaf65d1 ("arm64: dts: qcom: sc8280xp-crd: enable SDX55 modem")
-Fixes: 6a1ec5eca73c ("arm64: dts: qcom: sc8280xp-crd: enable NVMe SSD")
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
----
- arch/arm64/boot/dts/qcom/sc8280xp-crd.dts | 78 ++++++++++++++++++++-----------
- 1 file changed, 51 insertions(+), 27 deletions(-)
+--vRdODWm3L/LvIb8k
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts b/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
-index ffc4406422ae..58c0c2d10cb3 100644
---- a/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
-+++ b/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
-@@ -530,8 +530,9 @@ &pcie2a {
- 
- 	vddpe-3v3-supply = <&vreg_nvme>;
- 
--	pinctrl-names = "default";
--	pinctrl-0 = <&pcie2a_default>;
-+	pinctrl-0 = <&pcie2a_default>, <&pcie2a_clkreq_default>;
-+	pinctrl-1 = <&pcie2a_default>, <&pcie2a_clkreq_sleep>;
-+	pinctrl-names = "default", "sleep";
- 
- 	status = "okay";
- };
-@@ -549,8 +550,9 @@ &pcie3a {
- 
- 	vddpe-3v3-supply = <&vreg_wwan>;
- 
--	pinctrl-names = "default";
--	pinctrl-0 = <&pcie3a_default>;
-+	pinctrl-0 = <&pcie3a_default>, <&pcie3a_clkreq_default>;
-+	pinctrl-1 = <&pcie3a_default>, <&pcie3a_clkreq_sleep>;
-+	pinctrl-names = "default", "sleep";
- 
- 	status = "okay";
- };
-@@ -568,8 +570,9 @@ &pcie4 {
- 
- 	vddpe-3v3-supply = <&vreg_wlan>;
- 
--	pinctrl-names = "default";
--	pinctrl-0 = <&pcie4_default>;
-+	pinctrl-0 = <&pcie4_default>, <&pcie4_clkreq_default>;
-+	pinctrl-1 = <&pcie4_default>, <&pcie4_clkreq_sleep>;
-+	pinctrl-names = "default", "sleep";
- 
- 	status = "okay";
- };
-@@ -835,13 +838,6 @@ nvme_reg_en: nvme-reg-en-state {
- 	};
- 
- 	pcie2a_default: pcie2a-default-state {
--		clkreq-n-pins {
--			pins = "gpio142";
--			function = "pcie2a_clkreq";
--			drive-strength = <2>;
--			bias-pull-up;
--		};
--
- 		perst-n-pins {
- 			pins = "gpio143";
- 			function = "gpio";
-@@ -857,14 +853,21 @@ wake-n-pins {
- 	       };
- 	};
- 
--	pcie3a_default: pcie3a-default-state {
--		clkreq-n-pins {
--			pins = "gpio150";
--			function = "pcie3a_clkreq";
--			drive-strength = <2>;
--			bias-pull-up;
--		};
-+	pcie2a_clkreq_default: pcie2a-clkreq-default-state {
-+		pins = "gpio142";
-+		function = "pcie2a_clkreq";
-+		drive-strength = <2>;
-+		bias-pull-up;
-+	};
-+
-+	pcie2a_clkreq_sleep: pcie2a-clkreq-sleep-state {
-+		pins = "gpio142";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-pull-up;
-+	};
- 
-+	pcie3a_default: pcie3a-default-state {
- 		perst-n-pins {
- 			pins = "gpio151";
- 			function = "gpio";
-@@ -880,14 +883,21 @@ wake-n-pins {
- 		};
- 	};
- 
--	pcie4_default: pcie4-default-state {
--		clkreq-n-pins {
--			pins = "gpio140";
--			function = "pcie4_clkreq";
--			drive-strength = <2>;
--			bias-pull-up;
--		};
-+	pcie3a_clkreq_default: pcie3a-clkreq-default-state {
-+		pins = "gpio150";
-+		function = "pcie3a_clkreq";
-+		drive-strength = <2>;
-+		bias-pull-up;
-+	};
- 
-+	pcie3a_clkreq_sleep: pcie3a-clkreq-sleep-state {
-+		pins = "gpio150";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-pull-up;
-+	};
-+
-+	pcie4_default: pcie4-default-state {
- 		perst-n-pins {
- 			pins = "gpio141";
- 			function = "gpio";
-@@ -903,6 +913,20 @@ wake-n-pins {
- 		};
- 	};
- 
-+	pcie4_clkreq_default: pcie4-clkreq-default-state {
-+		pins = "gpio140";
-+		function = "pcie4_clkreq";
-+		drive-strength = <2>;
-+		bias-pull-up;
-+	};
-+
-+	pcie4_clkreq_sleep: pcie4-clkreq-sleep-state {
-+		pins = "gpio140";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-pull-up;
-+	};
-+
- 	sdc2_default_state: sdc2-default-state {
- 		clk-pins {
- 			pins = "sdc2_clk";
+On Wed, Dec 27, 2023 at 09:57:38AM -0800, Samuel Holland wrote:
+> The current description implies that only a single address translation
+> mode is available to the operating system. However, some implementations
+> support multiple address translation modes, and the operating system is
+> free to choose between them.
+>=20
+> Per the RISC-V privileged specification, Sv48 implementations must also
+> implement Sv39, and likewise Sv57 implies support for Sv48. This means
+> it is possible to describe all supported address translation modes using
+> a single value, by naming the largest supported mode. This appears to
+> have been the intended usage of the property, so note it explicitly.
+>=20
+> Fixes: 4fd669a8c487 ("dt-bindings: riscv: convert cpu binding to json-sch=
+ema")
+> Signed-off-by: Samuel Holland <samuel.holland@sifive.com>
 
--- 
-2.43.0
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
+Cheers,
+Conor.
+
+
+
+--vRdODWm3L/LvIb8k
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZYy1uQAKCRB4tDGHoIJi
+0oJzAP4m7KQu4HlKHw94QgFw60+7HtiWm+9c2ClBe/2m03XVZwEAjpAM8ZucmBLh
+gpAv0Rb3inYNpeyNYtkXVly/S+55Dwk=
+=BSxd
+-----END PGP SIGNATURE-----
+
+--vRdODWm3L/LvIb8k--
 
