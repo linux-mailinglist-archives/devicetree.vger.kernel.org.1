@@ -1,112 +1,143 @@
-Return-Path: <devicetree+bounces-28643-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28645-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B81381EF14
-	for <lists+devicetree@lfdr.de>; Wed, 27 Dec 2023 14:08:41 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F58F81EF3D
+	for <lists+devicetree@lfdr.de>; Wed, 27 Dec 2023 14:46:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AF4D91F22130
-	for <lists+devicetree@lfdr.de>; Wed, 27 Dec 2023 13:08:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 165001F22061
+	for <lists+devicetree@lfdr.de>; Wed, 27 Dec 2023 13:46:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D960844C9D;
-	Wed, 27 Dec 2023 13:08:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C468044C96;
+	Wed, 27 Dec 2023 13:45:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="F3gYODER"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="QvvjZhiU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FB1344C75;
-	Wed, 27 Dec 2023 13:08:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1703682502;
-	bh=HmyjXOD56zgdLDRREs3MjGe7P0nir2jbpaxQCaL5xWM=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=F3gYODER8pnUeQQ4RhLeIl6uvFvnY5Kj4qdCHil+dk8eUti5rjTBXHPwGODNyeUXB
-	 b3Q7x61UzMh1jmHWbY57TCn82zA9F9jO5qq2+ulGLMBvp+nkmebVfqR0/Eo03zsXdv
-	 /rVoVxh36fVTjOj9AFzL3uDEDC6FQ7qNA76WyDHQXIKKqcbF6Sz6B7SeKkd3SJcwbB
-	 Z7/eqpws2ldOOcJYhXTdpjZ+6OLl+V7/Hj7gqqkPRzqIqu0FXmH6EefEoK/TmrynHd
-	 AI+91XTt2WlGifOOQBrXietyLWSQ5hOG+qWbeD4630xepTpxi8M3Z4ObrcTF4yLBL3
-	 ygfT9/x4Ga2uA==
-Received: from eugen-station.. (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: ehristev)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id B7CC137802F2;
-	Wed, 27 Dec 2023 13:08:21 +0000 (UTC)
-From: Eugen Hristev <eugen.hristev@collabora.com>
-To: bin.liu@mediatek.com,
-	matthias.bgg@gmail.com,
-	angelogioacchino.delregno@collabora.com,
-	linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
-	Hsin-Yi Wang <hsinyi@chromium.org>,
-	Max Staudt <mstaudt@chromium.org>,
-	Ricardo Ribalda <ribalda@chromium.org>,
-	Eugen Hristev <eugen.hristev@collabora.com>
-Subject: [PATCH 2/2] arm64: dts: mediatek: mt8186: Add jpgenc node
-Date: Wed, 27 Dec 2023 15:08:12 +0200
-Message-Id: <20231227130812.148914-2-eugen.hristev@collabora.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231227130812.148914-1-eugen.hristev@collabora.com>
-References: <20231227130812.148914-1-eugen.hristev@collabora.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDE9D44C87;
+	Wed, 27 Dec 2023 13:45:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3BRDj5YI026292;
+	Wed, 27 Dec 2023 07:45:05 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1703684705;
+	bh=uQnVFQgOxFICd14iOj+b6LrPl6NWvE/dXUyz36ElLNM=;
+	h=From:To:CC:Subject:Date:References:In-Reply-To;
+	b=QvvjZhiUAUjEDbOnHw/j+3zQ9kDfhv9z/UBSbQl3aGbl6jWzObfmwIdqZ3xh4tdmh
+	 7G76TLxrxPVvNLwwyLyCi1QPpvln12Q36hqG64pTKH7qW02PD7s2Jy2QKsAeB1oN8a
+	 cw/74KDP7ea9zHiklDfB0AVf4MYrU27XhiC7vA00=
+Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3BRDj4JM057289
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 27 Dec 2023 07:45:05 -0600
+Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 27
+ Dec 2023 07:45:04 -0600
+Received: from DLEE101.ent.ti.com ([fe80::91ee:60bc:bfb7:851c]) by
+ DLEE101.ent.ti.com ([fe80::91ee:60bc:bfb7:851c%18]) with mapi id
+ 15.01.2507.023; Wed, 27 Dec 2023 07:45:03 -0600
+From: "Ding, Shenghao" <shenghao-ding@ti.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+CC: "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "andriy.shevchenko@linux.intel.com" <andriy.shevchenko@linux.intel.com>,
+        "Lu,
+ Kevin" <kevin-lu@ti.com>, "Xu, Baojun" <baojun.xu@ti.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
+        "perex@perex.cz"
+	<perex@perex.cz>,
+        "pierre-louis.bossart@linux.intel.com"
+	<pierre-louis.bossart@linux.intel.com>,
+        "13916275206@139.com"
+	<13916275206@139.com>,
+        "linux-sound@vger.kernel.org"
+	<linux-sound@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>,
+        "liam.r.girdwood@intel.com"
+	<liam.r.girdwood@intel.com>,
+        "soyer@irl.hu" <soyer@irl.hu>, "tiwai@suse.de"
+	<tiwai@suse.de>,
+        "Gupta, Peeyush" <peeyush@ti.com>,
+        "Navada Kanyana, Mukund"
+	<navada@ti.com>,
+        "broonie@kernel.org" <broonie@kernel.org>,
+        "conor+dt@kernel.org" <conor+dt@kernel.org>
+Subject: RE: [EXTERNAL] Re: [PATCH v2 1/5] ASoC: dt-bindings: remove tas2563
+ from yaml
+Thread-Topic: [EXTERNAL] Re: [PATCH v2 1/5] ASoC: dt-bindings: remove tas2563
+ from yaml
+Thread-Index: AQHaM/ZoVp/s6ZS3j0yS0WAx9ZwYwbC0Y5uAgAhaZbCAAKVTgP//xSNw
+Date: Wed, 27 Dec 2023 13:45:03 +0000
+Message-ID: <f102855dd1904036b14b9c80ccc469c0@ti.com>
+References: <20231221101346.429-1-shenghao-ding@ti.com>
+ <7362295b-4a01-4574-8d96-d10f405eaea0@linaro.org>
+ <8285d102645b43f6b46b15c99321105a@ti.com>
+ <ffc11f9c-6643-4e46-8bb2-8918e1179f72@linaro.org>
+In-Reply-To: <ffc11f9c-6643-4e46-8bb2-8918e1179f72@linaro.org>
+Accept-Language: en-US, zh-CN
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+x-exclaimer-md-config: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 
-From: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-
-Add JPEG encoder node.
-
-Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-Reviewed-by: Hsin-Yi Wang <hsinyi@chromium.org>
-Reviewed-by: Max Staudt <mstaudt@chromium.org>
-Tested-by: Max Staudt <mstaudt@chromium.org>
-Reviewed-by: Ricardo Ribalda <ribalda@chromium.org>
-[eugen.hristev@collabora.com: minor cleanup]
-Signed-off-by: Eugen Hristev <eugen.hristev@collabora.com>
----
- arch/arm64/boot/dts/mediatek/mt8186.dtsi | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/mediatek/mt8186.dtsi b/arch/arm64/boot/dts/mediatek/mt8186.dtsi
-index e451b6c8cd9e..ef1b269f9184 100644
---- a/arch/arm64/boot/dts/mediatek/mt8186.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8186.dtsi
-@@ -2054,6 +2054,19 @@ venc: video-encoder@17020000 {
- 			mediatek,scp = <&scp>;
- 		};
- 
-+		jpgenc: jpgenc@17030000 {
-+			compatible = "mediatek,mt8186-jpgenc", "mediatek,mtk-jpgenc";
-+			reg = <0 0x17030000 0 0x10000>;
-+			interrupts = <GIC_SPI 245 IRQ_TYPE_LEVEL_HIGH 0>;
-+			clocks = <&vencsys CLK_VENC_CKE2_JPGENC>;
-+			clock-names = "jpgenc";
-+			power-domains = <&spm MT8186_POWER_DOMAIN_VENC>;
-+			iommus = <&iommu_mm IOMMU_PORT_L7_JPGENC_Y_RDMA>,
-+				 <&iommu_mm IOMMU_PORT_L7_JPGENC_C_RDMA>,
-+				 <&iommu_mm IOMMU_PORT_L7_JPGENC_Q_TABLE>,
-+				 <&iommu_mm IOMMU_PORT_L7_JPGENC_BSDMA>;
-+		};
-+
- 		camsys: clock-controller@1a000000 {
- 			compatible = "mediatek,mt8186-camsys";
- 			reg = <0 0x1a000000 0 0x1000>;
--- 
-2.34.1
-
+DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogS3J6eXN6dG9mIEtvemxv
+d3NraSA8a3J6eXN6dG9mLmtvemxvd3NraUBsaW5hcm8ub3JnPg0KPiBTZW50OiBXZWRuZXNkYXks
+IERlY2VtYmVyIDI3LCAyMDIzIDY6NTYgUE0NCj4gVG86IERpbmcsIFNoZW5naGFvIDxzaGVuZ2hh
+by1kaW5nQHRpLmNvbT4NCj4gQ2M6IHJvYmgrZHRAa2VybmVsLm9yZzsgYW5kcml5LnNoZXZjaGVu
+a29AbGludXguaW50ZWwuY29tOyBMdSwgS2V2aW4NCj4gPGtldmluLWx1QHRpLmNvbT47IFh1LCBC
+YW9qdW4gPGJhb2p1bi54dUB0aS5jb20+Ow0KPiBkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZzsg
+bGdpcmR3b29kQGdtYWlsLmNvbTsgcGVyZXhAcGVyZXguY3o7IHBpZXJyZS0NCj4gbG91aXMuYm9z
+c2FydEBsaW51eC5pbnRlbC5jb207IDEzOTE2Mjc1MjA2QDEzOS5jb207IGxpbnV4LQ0KPiBzb3Vu
+ZEB2Z2VyLmtlcm5lbC5vcmc7IGxpbnV4LWtlcm5lbEB2Z2VyLmtlcm5lbC5vcmc7DQo+IGxpYW0u
+ci5naXJkd29vZEBpbnRlbC5jb207IHNveWVyQGlybC5odTsgdGl3YWlAc3VzZS5kZTsgR3VwdGEs
+IFBlZXl1c2gNCj4gPHBlZXl1c2hAdGkuY29tPjsgTmF2YWRhIEthbnlhbmEsIE11a3VuZCA8bmF2
+YWRhQHRpLmNvbT47DQo+IGJyb29uaWVAa2VybmVsLm9yZzsgY29ub3IrZHRAa2VybmVsLm9yZw0K
+PiBTdWJqZWN0OiBSZTogW0VYVEVSTkFMXSBSZTogW1BBVENIIHYyIDEvNV0gQVNvQzogZHQtYmlu
+ZGluZ3M6IHJlbW92ZQ0KPiB0YXMyNTYzIGZyb20geWFtbA0KPiANCj4gT24gMjcvMTIvMjAyMyAw
+ODowNywgRGluZywgU2hlbmdoYW8gd3JvdGU6DQo+ID4NCj4gPg0KPiA+PiAtLS0tLU9yaWdpbmFs
+IE1lc3NhZ2UtLS0tLQ0KPiA+PiBGcm9tOiBLcnp5c3p0b2YgS296bG93c2tpIDxrcnp5c3p0b2Yu
+a296bG93c2tpQGxpbmFyby5vcmc+DQo+ID4+IFNlbnQ6IEZyaWRheSwgRGVjZW1iZXIgMjIsIDIw
+MjMgMTozMSBBTQ0KPiA+PiBUbzogRGluZywgU2hlbmdoYW8gPHNoZW5naGFvLWRpbmdAdGkuY29t
+PjsgYnJvb25pZUBrZXJuZWwub3JnOw0KPiA+PiBjb25vcitkdEBrZXJuZWwub3JnDQo+ID4+IENj
+OiByb2JoK2R0QGtlcm5lbC5vcmc7IGFuZHJpeS5zaGV2Y2hlbmtvQGxpbnV4LmludGVsLmNvbTsg
+THUsIEtldmluDQo+ID4+IDxrZXZpbi1sdUB0aS5jb20+OyBYdSwgQmFvanVuIDxiYW9qdW4ueHVA
+dGkuY29tPjsNCj4gPj4gZGV2aWNldHJlZUB2Z2VyLmtlcm5lbC5vcmc7IGxnaXJkd29vZEBnbWFp
+bC5jb207IHBlcmV4QHBlcmV4LmN6Ow0KPiA+PiBwaWVycmUtIGxvdWlzLmJvc3NhcnRAbGludXgu
+aW50ZWwuY29tOyAxMzkxNjI3NTIwNkAxMzkuY29tOyBsaW51eC0NCj4gPj4gc291bmRAdmdlci5r
+ZXJuZWwub3JnOyBsaW51eC1rZXJuZWxAdmdlci5rZXJuZWwub3JnOw0KPiA+PiBsaWFtLnIuZ2ly
+ZHdvb2RAaW50ZWwuY29tOyBzb3llckBpcmwuaHU7IHRpd2FpQHN1c2UuZGU7IEd1cHRhLA0KPiA+
+PiBQZWV5dXNoIDxwZWV5dXNoQHRpLmNvbT47IE5hdmFkYSBLYW55YW5hLCBNdWt1bmQgPG5hdmFk
+YUB0aS5jb20+DQo+ID4+IFN1YmplY3Q6IFtFWFRFUk5BTF0gUmU6IFtQQVRDSCB2MiAxLzVdIEFT
+b0M6IGR0LWJpbmRpbmdzOiByZW1vdmUNCj4gPj4gdGFzMjU2MyBmcm9tIHlhbWwNCj4gPj4NCj4g
+Pj4gT24gMjEvMTIvMjAyMyAxMToxMywgU2hlbmdoYW8gRGluZyB3cm90ZToNCj4gPj4+IFJlbW92
+ZSB0YXMyNTYzIGZyb20gdGFzMjU2MiwgaXQgd2lsbCBiZSBzdXBwb3J0ZWQgaW4gdGFzMjc4MSB0
+bw0KPiA+Pj4gYmV0dGVyIHN1cHBvcnQgZHNwIG1vZGUuDQo+ID4+DQo+ID4+IFBsZWFzZSBwcm92
+aWRlIHJhdGlvbmFsZSBpbiB0ZXJtcyBvZiBiaW5kaW5ncyBhbmQgaGFyZHdhcmUsIG5vdCBpbg0K
+PiA+PiB0ZXJtcyBvZiBkcml2ZXIuIE9yIGF0IGxlYXN0IG5vdCBvbmx5LiBGb3IgZXhhbXBsZSAi
+c3VwcG9ydGVkIGluDQo+ID4+IHRhczI3ODEiIGRvZXMgbm90IGZpdCBoYXJkd2FyZSBwYXJ0LCBz
+byB5b3Ugc3VyZSBtdXN0IGJlIHRhbGtpbmcNCj4gPj4gYWJvdXQgZHJpdmVycyB0aHVzIHdoeSBk
+cml2ZXIgY2hhbmdlIHdvdWxkIGFmZmVjdCBiaW5kaW5ncz8NCj4gPiBUaGlzIHBhdGNoIG1haW5s
+eSBjaGFuZ2UgdGhlIGJpbmRpbmcsIG5vdCB0aGUgZHJpdmVyIGNvZGUuIFRhczI1NjMgaXMNCj4g
+PiB1bmJvdW5kIHRvIHRhczI1NjIgZHJpdmVyLCBhbmQgYm91bmQgdG8gdGFzMjc4MSBkcml2ZXIu
+DQo+IA0KPiBUaGVuIHdoeSBkbyB5b3UgcmVmZXJlbmNlIGRyaXZlciAidGFzMjc4MSIgaGVyZT8N
+CkJvdGggdGFzMjU2MyBhbmQgdGFzMjc4MSBhcmUgZHNwLWluc2lkZSBhdWRpbyBhbXBsaWZpZXIs
+IA0KdGFzMjc4MSBkcml2ZXIgaXMgZGVzaWduZWQgZm9yIGRzcC1pbnNpZGUgc2VyaWVzIGNoaXBz
+LCANCm5vdCBvbmx5IGZvciB0YXMyNzgxLg0KPiANCj4gQmVzdCByZWdhcmRzLA0KPiBLcnp5c3p0
+b2YNCg0K
 
