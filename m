@@ -1,249 +1,98 @@
-Return-Path: <devicetree+bounces-28670-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28671-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6AB381F072
-	for <lists+devicetree@lfdr.de>; Wed, 27 Dec 2023 17:32:12 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C18281F097
+	for <lists+devicetree@lfdr.de>; Wed, 27 Dec 2023 17:50:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6D14F2811B2
-	for <lists+devicetree@lfdr.de>; Wed, 27 Dec 2023 16:32:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CCAD41F22F56
+	for <lists+devicetree@lfdr.de>; Wed, 27 Dec 2023 16:50:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E260E1E480;
-	Wed, 27 Dec 2023 16:32:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07EAE4205D;
+	Wed, 27 Dec 2023 16:50:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lcjkANPK"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="IItrMSUU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE6421E50B;
-	Wed, 27 Dec 2023 16:32:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 27BEEC433C7;
-	Wed, 27 Dec 2023 16:32:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1703694726;
-	bh=qHvz5PL3DyDEfU+agFYX2QOF0tgzoXWZYQyMsGW40TU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=lcjkANPKjExwr803GzRvl1JFa34rtgCRR1O6vN32Xs0xwwZ+KriSey1zZDQvO2ZRz
-	 1sINaVMrj6NFi2oziIcG85CHdEis6o13Hjf4F9wJGr0AomWH+QoicIJZbZPkhsMj8j
-	 E3gyv2DCCF/CTnyg8mIpttCF91pTnXQ2Eo2bXBJ/umzGPnk+wJLpXafzrb891BzDLz
-	 oqCX1s2mFdo18yY1obKZLH1dqqlctgX+RWC8Hk/1qktPXEmKlLggKt1t/D38pca72q
-	 /smMH4j3jhpkkcFBSFjV6LVmRX7fESsfugWIPwSU957gTkYgjMGWpjugIw/GGhJrnt
-	 fWp7u40P9Jq6g==
-Date: Wed, 27 Dec 2023 17:31:59 +0100
-From: Lorenzo Pieralisi <lpieralisi@kernel.org>
-To: Minda Chen <minda.chen@starfivetech.com>
-Cc: Conor Dooley <conor@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Daire McNamara <daire.mcnamara@microchip.com>,
-	Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org, linux-pci@vger.kernel.org,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Mason Huo <mason.huo@starfivetech.com>,
-	Leyfoon Tan <leyfoon.tan@starfivetech.com>,
-	Kevin Xie <kevin.xie@starfivetech.com>
-Subject: Re: [PATCH v13 14/21] PCI: microchip: Add get_events() callback and
- add PLDA get_event()
-Message-ID: <ZYxRf8d0+gSoqeRs@lpieralisi>
-References: <20231214072839.2367-1-minda.chen@starfivetech.com>
- <20231214072839.2367-15-minda.chen@starfivetech.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DCCB45026;
+	Wed, 27 Dec 2023 16:50:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1703695829; x=1735231829;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=ObRmrEKrCs/aQWLW4FO1dZ1wW4evOUSWu2vqRi+/2iI=;
+  b=IItrMSUUIkpv+F4wGGq0vs4mWeG2SDBM9xL3tzsfAaZj2BuMyK3Gr0rE
+   H0LjhBrx3LRsHOhIYCVd6U+K1u5Alkh/IQZ2rMfPorYAPYiJucM2Ox1py
+   vZmLJ+YI30zVTwBIz+ldLml3fdLNtn6K5EMEAxL6aS1pPjyJUrbJlPxbS
+   9bx5u2iBEvjK2TBf8GkjU7nmJvRIRXhV0uaUw9bEkfEm5RU+0zvcVEuTr
+   ejhv2/27E6GyvpKnXYgz0Y+fhIkraHYoX6oCyghIp/J1OAx9+pPVW492J
+   sgGN2XNrTv2luTNzuiJGl5OxgKRS8URmWv8+Em1Fi0r9XmgZFVpo/SjJv
+   A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10936"; a="15131139"
+X-IronPort-AV: E=Sophos;i="6.04,309,1695711600"; 
+   d="scan'208";a="15131139"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Dec 2023 08:50:10 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10936"; a="812571252"
+X-IronPort-AV: E=Sophos;i="6.04,309,1695711600"; 
+   d="scan'208";a="812571252"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by orsmga001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Dec 2023 08:50:04 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.97)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1rIX6X-00000009T1e-0jFF;
+	Wed, 27 Dec 2023 18:50:01 +0200
+Date: Wed, 27 Dec 2023 18:50:00 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Shenghao Ding <shenghao-ding@ti.com>
+Cc: broonie@kernel.org, conor+dt@kernel.org, krzysztof.kozlowski@linaro.org,
+	robh+dt@kernel.org, kevin-lu@ti.com, baojun.xu@ti.com,
+	devicetree@vger.kernel.org, lgirdwood@gmail.com, perex@perex.cz,
+	pierre-louis.bossart@linux.intel.com, 13916275206@139.com,
+	linux-sound@vger.kernel.org, linux-kernel@vger.kernel.org,
+	liam.r.girdwood@intel.com, soyer@irl.hu, tiwai@suse.de,
+	peeyush@ti.com, navada@ti.com
+Subject: Re: [PATCH v3 2/5] ASoC: tas2562: move tas2563 from tas2562 driver
+ to tas2781 driver
+Message-ID: <ZYxVuGwyw1ZA3XBv@smile.fi.intel.com>
+References: <20231225053932.1138-1-shenghao-ding@ti.com>
+ <20231225053932.1138-2-shenghao-ding@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20231214072839.2367-15-minda.chen@starfivetech.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20231225053932.1138-2-shenghao-ding@ti.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-On Thu, Dec 14, 2023 at 03:28:32PM +0800, Minda Chen wrote:
-> PolarFire implements its own PCIe interrupts, additional to the regular
-> PCIe interrupts, due to lack of an MSI controller, so the interrupt to
-> event number mapping is different to the PLDA local interrupts,
+On Mon, Dec 25, 2023 at 01:39:28PM +0800, Shenghao Ding wrote:
+> Move tas2563 from tas2562 driver to tas2781 driver, because tas2563 only
+> work in bypass-DSP mode with tas2562 driver. In oder to enable DSP mode
+> for tas2563, it has been moved to tas2781 driver. As to the hardware part,
+> such as register setting and DSP firmware, all these are stored in the
+> binary firmware. What tas2781 drivder dooes is to parse the firmware and
+> download them to the tas2781 or tas2563, then power on tas2781 or tas2563.
+> So, tas2781 driver can be resued as tas2563 driver。 Only attention will
+> be paid to downloading corresponding firmware.
 
-I am sorry I don't understand what you mean here.
+I dunno if you got my emails, but my comments were completely ignored.
+You can't do this patch as after it the current users may have a regression.
 
-"its own PCIe interrupts" ?
+-- 
+With Best Regards,
+Andy Shevchenko
 
-"regular PCIe interrupts" ?
 
-"PLDA local interrupts" ?
-
-Can you spell out what those are referring to please ?
-
-Thanks,
-Lorenzo
-
-> necessitating a custom get_events() implementation.
-> 
-> plda_get_events() adds interrupt register to PLDA local event num mapping
-> codes except DMA engine interrupt events. The DMA engine interrupt events
-> are implemented by vendors.
-> 
-> Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> ---
->  .../pci/controller/plda/pcie-microchip-host.c | 35 ++++++++++++++++++-
->  drivers/pci/controller/plda/pcie-plda.h       | 33 +++++++++++++++++
->  2 files changed, 67 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/pci/controller/plda/pcie-microchip-host.c b/drivers/pci/controller/plda/pcie-microchip-host.c
-> index 00250781b11c..fd0d92c3d03f 100644
-> --- a/drivers/pci/controller/plda/pcie-microchip-host.c
-> +++ b/drivers/pci/controller/plda/pcie-microchip-host.c
-> @@ -627,6 +627,26 @@ static u32 mc_get_events(struct plda_pcie_rp *port)
->  	return events;
->  }
->  
-> +static u32 plda_get_events(struct plda_pcie_rp *port)
-> +{
-> +	u32 events, val, origin;
-> +
-> +	origin = readl_relaxed(port->bridge_addr + ISTATUS_LOCAL);
-> +
-> +	/* Error events and doorbell events */
-> +	events = (origin & ERROR_AND_DOORBELL_MASK) >> A_ATR_EVT_POST_ERR_SHIFT;
-> +
-> +	/* INTx events */
-> +	if (origin & PM_MSI_INT_INTX_MASK)
-> +		events |= BIT(EVENT_PM_MSI_INT_INTX);
-> +
-> +	/* MSI event and sys events */
-> +	val = (origin & SYS_AND_MSI_MASK) >> PM_MSI_INT_MSI_SHIFT;
-> +	events |= val << EVENT_PM_MSI_INT_MSI;
-> +
-> +	return events;
-> +}
-> +
->  static irqreturn_t mc_event_handler(int irq, void *dev_id)
->  {
->  	struct plda_pcie_rp *port = dev_id;
-> @@ -657,7 +677,7 @@ static void plda_handle_event(struct irq_desc *desc)
->  
->  	chained_irq_enter(chip, desc);
->  
-> -	events = mc_get_events(port);
-> +	events = port->event_ops->get_events(port);
->  
->  	for_each_set_bit(bit, &events, port->num_events)
->  		generic_handle_domain_irq(port->event_domain, bit);
-> @@ -751,6 +771,10 @@ static struct irq_chip mc_event_irq_chip = {
->  	.irq_unmask = mc_unmask_event_irq,
->  };
->  
-> +static const struct plda_event_ops plda_event_ops = {
-> +	.get_events = plda_get_events,
-> +};
-> +
->  static int plda_pcie_event_map(struct irq_domain *domain, unsigned int irq,
->  			       irq_hw_number_t hwirq)
->  {
-> @@ -816,6 +840,10 @@ static int mc_request_event_irq(struct plda_pcie_rp *plda, int event_irq,
->  				0, event_cause[event].sym, plda);
->  }
->  
-> +static const struct plda_event_ops mc_event_ops = {
-> +	.get_events = mc_get_events,
-> +};
-> +
->  static const struct plda_event mc_event = {
->  	.request_event_irq = mc_request_event_irq,
->  	.intx_event        = EVENT_LOCAL_PM_MSI_INT_INTX,
-> @@ -932,6 +960,9 @@ static int plda_init_interrupts(struct platform_device *pdev,
->  	int i, intx_irq, msi_irq, event_irq;
->  	int ret;
->  
-> +	if (!port->event_ops)
-> +		port->event_ops = &plda_event_ops;
-> +
->  	ret = plda_pcie_init_irq_domains(port);
->  	if (ret) {
->  		dev_err(dev, "failed creating IRQ domains\n");
-> @@ -1008,6 +1039,8 @@ static int mc_platform_init(struct pci_config_window *cfg)
->  	if (ret)
->  		return ret;
->  
-> +	port->plda.event_ops = &mc_event_ops;
-> +
->  	/* Address translation is up; safe to enable interrupts */
->  	ret = plda_init_interrupts(pdev, &port->plda, &mc_event);
->  	if (ret)
-> diff --git a/drivers/pci/controller/plda/pcie-plda.h b/drivers/pci/controller/plda/pcie-plda.h
-> index fba7343f9a96..dd8bc2750bfc 100644
-> --- a/drivers/pci/controller/plda/pcie-plda.h
-> +++ b/drivers/pci/controller/plda/pcie-plda.h
-> @@ -40,6 +40,7 @@
->  #define  P_ATR_EVT_DISCARD_ERR_SHIFT		22
->  #define  P_ATR_EVT_DOORBELL_MASK		0x00000000u
->  #define  P_ATR_EVT_DOORBELL_SHIFT		23
-> +#define  ERROR_AND_DOORBELL_MASK		GENMASK(23, 16)
->  #define  PM_MSI_INT_INTA_MASK			0x01000000u
->  #define  PM_MSI_INT_INTA_SHIFT			24
->  #define  PM_MSI_INT_INTB_MASK			0x02000000u
-> @@ -58,6 +59,7 @@
->  #define  PM_MSI_INT_EVENTS_SHIFT		30
->  #define  PM_MSI_INT_SYS_ERR_MASK		0x80000000u
->  #define  PM_MSI_INT_SYS_ERR_SHIFT		31
-> +#define  SYS_AND_MSI_MASK			GENMASK(31, 28)
->  #define  NUM_LOCAL_EVENTS			15
->  #define ISTATUS_LOCAL				0x184
->  #define IMASK_HOST				0x188
-> @@ -102,6 +104,36 @@
->  #define EVENT_PM_MSI_INT_SYS_ERR		12
->  #define NUM_PLDA_EVENTS				13
->  
-> +/*
-> + * PLDA local interrupt register
-> + *
-> + * 31         27     23              15           7          0
-> + * +--+--+--+-+------+-+-+-+-+-+-+-+-+-----------+-----------+
-> + * |12|11|10|9| intx |7|6|5|4|3|2|1|0| DMA error | DMA end   |
-> + * +--+--+--+-+------+-+-+-+-+-+-+-+-+-----------+-----------+
-> + * 0:  AXI post error
-> + * 1:  AXI fetch error
-> + * 2:  AXI discard error
-> + * 3:  AXI doorbell
-> + * 4:  PCIe post error
-> + * 5:  PCIe fetch error
-> + * 6:  PCIe discard error
-> + * 7:  PCIe doorbell
-> + * 8:  4 INTx interruts
-> + * 9:  MSI interrupt
-> + * 10: AER event
-> + * 11: PM/LTR/Hotplug
-> + * 12: System error
-> + * DMA error : reserved for vendor implement
-> + * DMA end : reserved for vendor implement
-> + */
-> +
-> +struct plda_pcie_rp;
-> +
-> +struct plda_event_ops {
-> +	u32 (*get_events)(struct plda_pcie_rp *pcie);
-> +};
-> +
->  struct plda_msi {
->  	struct mutex lock;		/* Protect used bitmap */
->  	struct irq_domain *msi_domain;
-> @@ -117,6 +149,7 @@ struct plda_pcie_rp {
->  	struct irq_domain *event_domain;
->  	raw_spinlock_t lock;
->  	struct plda_msi msi;
-> +	const struct plda_event_ops *event_ops;
->  	void __iomem *bridge_addr;
->  	int num_events;
->  };
-> -- 
-> 2.17.1
-> 
 
