@@ -1,107 +1,118 @@
-Return-Path: <devicetree+bounces-28680-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28681-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C931781F107
-	for <lists+devicetree@lfdr.de>; Wed, 27 Dec 2023 18:41:37 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A754281F115
+	for <lists+devicetree@lfdr.de>; Wed, 27 Dec 2023 18:57:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3277E281299
-	for <lists+devicetree@lfdr.de>; Wed, 27 Dec 2023 17:41:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 59A5B1F22203
+	for <lists+devicetree@lfdr.de>; Wed, 27 Dec 2023 17:57:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90D4246524;
-	Wed, 27 Dec 2023 17:41:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A1884654D;
+	Wed, 27 Dec 2023 17:57:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="g0ojs7z1"
+	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="RkJA4PFc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f177.google.com (mail-pg1-f177.google.com [209.85.215.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 318A946522;
-	Wed, 27 Dec 2023 17:41:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1703698892; x=1735234892;
-  h=date:from:to:cc:subject:message-id:mime-version:
-   content-transfer-encoding;
-  bh=A1VfCaddzy2SDlg+XO8w3Lq94MaVqkU//Wetdj4bhzc=;
-  b=g0ojs7z1CBfFmJaMN071RkpghFZhuxb3gETKLkelAhsvLv55P3YIUmVe
-   J5MH/J/2SBAM7DcxHXSQqOwa9f47hO4mqMqX0lNaG7A8x7Le/0wZhYYn0
-   UWrI44BdWzni5XfLujD2d8X1ixcZlyg5ehxG3WnQUN86Qyu5tRUD/TL6z
-   KFkX9zDrxefR+SU+xGdIXyD+JJ9Vv8kEnCFaKH6RuWfnBeUbcA2tHzMq8
-   teryGbUABxhErZ8foHx6gTnU+y9YYhngWDUXMzW+F/pXejqQem9yqXQJA
-   b1beQknCKVcXuADXVOwBwOvC9pPvFE5vcq22nsw3OONXzc5lWbFY7uZ3S
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10936"; a="381440462"
-X-IronPort-AV: E=Sophos;i="6.04,309,1695711600"; 
-   d="scan'208";a="381440462"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Dec 2023 09:41:31 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10936"; a="812585943"
-X-IronPort-AV: E=Sophos;i="6.04,309,1695711600"; 
-   d="scan'208";a="812585943"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by orsmga001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Dec 2023 09:41:25 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.97)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1rIXuE-00000009Tgl-06dW;
-	Wed, 27 Dec 2023 19:41:22 +0200
-Date: Wed, 27 Dec 2023 19:41:21 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Shenghao Ding <shenghao-ding@ti.com>
-Cc: broonie@kernel.org, conor+dt@kernel.org, krzysztof.kozlowski@linaro.org,
-	robh+dt@kernel.org, kevin-lu@ti.com, baojun.xu@ti.com,
-	devicetree@vger.kernel.org, lgirdwood@gmail.com, perex@perex.cz,
-	pierre-louis.bossart@linux.intel.com, 13916275206@139.com,
-	linux-sound@vger.kernel.org, linux-kernel@vger.kernel.org,
-	liam.r.girdwood@intel.com, soyer@irl.hu, tiwai@suse.de,
-	peeyush@ti.com, navada@ti.com
-Subject: Re: [PATCH v3 3/5] ASoC: tas2781: Add tas2563 into header file for
- DSP mode
-Message-ID: <ZYxhwW97kFu1pp6p@smile.fi.intel.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FFC94652F
+	for <devicetree@vger.kernel.org>; Wed, 27 Dec 2023 17:57:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
+Received: by mail-pg1-f177.google.com with SMTP id 41be03b00d2f7-5cd8667c59eso4041700a12.2
+        for <devicetree@vger.kernel.org>; Wed, 27 Dec 2023 09:57:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google; t=1703699862; x=1704304662; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=qFdk5z5GkjX88rNpaFiaLGBWYiEnPzJT6afZDm+eY4c=;
+        b=RkJA4PFc1fPlGPeup903dlfZcEiqEV+5E8gOOr9f9qcjFlAKUY+qRYmxi3blePvH3I
+         RCUu0tFNhy69ZsAqYE67ZQ1WzqZOEa/e+XYdra1c2naVAj/t6goggAn/oE2mgTIwQpI5
+         EkIdqqQEIr8+lxSmsXhopAq/+WtZY4iMI9son/X2VbgcfukVvKsDJy928hfWEa3CTib+
+         dMRJGNtuB8gUXUPPt/HSm5wduE+c8bcKykqlOKSk7UbnhjwV0C8LhhFRoF1pF/gTeW1M
+         bQ6Ly5wfVZVW9lUI3Ysbzjs+PjvL1MQ8lUVfxEKwVPcrFq7fqd7CByBAPrUUmR/TIZZs
+         u7qQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1703699862; x=1704304662;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=qFdk5z5GkjX88rNpaFiaLGBWYiEnPzJT6afZDm+eY4c=;
+        b=IeaxmwfBZ3M3GH/UjX72VUf238WykkXdyiXp8Hy2WL4dCJXXh/OBZh3SN/Ka4icRRj
+         +SmBZVRoqjMT3piCObe1tJKEevOJtZTzkW2gzBdSFcCI/AXofOLcA8Te8ztZj6I3e7X4
+         9DjmZOd5Q7H0G/g6WMu/lybyeof38UOtgs8Z6ONbk1jLVFtANHCV9TUOroBl7CgNXJ7i
+         fA6z4cMjwgN5eP7n/1Nj9HI6w/rHF9YrORAVkVaM1bD0NM/UkrIKGP9IXbIdOGs3t+dk
+         ha82dxYQFtoCFt5Z4h/9vpw8Fvxn6ekK/og+35xy69pNkMGKxRLBG3kuQmhPk+ulIAgn
+         bI0w==
+X-Gm-Message-State: AOJu0YzntQu36TWJQ/Ky2YMifhzu4El3/czhGA4uQ3wAtzYLuu/Em3Ag
+	z3TvG5zuCWn/AEN5ReBUDXIxTh1CeAoTpg==
+X-Google-Smtp-Source: AGHT+IG3LdGjYzMPRmS6MMdVEdOJ+KYoJn8AAAezZGQEdrEgTXTmxvLQ77RqjlA7YgUPq4uTh+mQCQ==
+X-Received: by 2002:a05:6a20:4da6:b0:18c:64b7:b217 with SMTP id gj38-20020a056a204da600b0018c64b7b217mr9235433pzb.22.1703699861863;
+        Wed, 27 Dec 2023 09:57:41 -0800 (PST)
+Received: from sw06.internal.sifive.com ([4.53.31.132])
+        by smtp.gmail.com with ESMTPSA id u5-20020a056a00098500b006d9bf35dd1fsm5198094pfg.142.2023.12.27.09.57.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 27 Dec 2023 09:57:41 -0800 (PST)
+From: Samuel Holland <samuel.holland@sifive.com>
+To: linux-riscv@lists.infradead.org
+Cc: Samuel Holland <samuel.holland@sifive.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Conor Dooley <conor@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: riscv: cpus: Clarify mmu-type interpretation
+Date: Wed, 27 Dec 2023 09:57:38 -0800
+Message-ID: <20231227175739.1453782-1-samuel.holland@sifive.com>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
+The current description implies that only a single address translation
+mode is available to the operating system. However, some implementations
+support multiple address translation modes, and the operating system is
+free to choose between them.
 
-On Mon, Dec 25, 2023 at 01:39:29PM +0800, Shenghao Ding wrote:
-> Move tas2563 from tas2562 header file to tas2781 header file, because
-> tas2563 only work in bypass-DSP mode with tas2562 driver. In oder to
-> enable DSP mode for tas2563, it has been moved to tas2781 driver. As to
-> the hardware part, such as register setting and DSP firmware, all these
-> are stored in the binary firmware. What tas2781 drivder dooes is to parse
-> the firmware and download them to the tas2781 or tas2563, then power on
-> tas2781 or tas2563. So, tas2781 driver can be resued as tas2563 driver。
-> Only attention will be paid to downloading corresponding firmware.
+Per the RISC-V privileged specification, Sv48 implementations must also
+implement Sv39, and likewise Sv57 implies support for Sv48. This means
+it is possible to describe all supported address translation modes using
+a single value, by naming the largest supported mode. This appears to
+have been the intended usage of the property, so note it explicitly.
 
->  enum audio_device {
->  	TAS2781	= 0,
-> +	TAS2563
->  };
+Fixes: 4fd669a8c487 ("dt-bindings: riscv: convert cpu binding to json-schema")
+Signed-off-by: Samuel Holland <samuel.holland@sifive.com>
+---
 
-Please, make it ordered, it doesn't seem to be an ABI.
+ Documentation/devicetree/bindings/riscv/cpus.yaml | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-enum audio_device {
-	TAS2563,
-	TAS2781,
-};
-
-Yes, and leave comma as the last entry is _not_ a terminator.
-
+diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml b/Documentation/devicetree/bindings/riscv/cpus.yaml
+index f392e367d673..f166c729c482 100644
+--- a/Documentation/devicetree/bindings/riscv/cpus.yaml
++++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
+@@ -62,8 +62,8 @@ properties:
+ 
+   mmu-type:
+     description:
+-      Identifies the MMU address translation mode used on this
+-      hart.  These values originate from the RISC-V Privileged
++      Identifies the largest MMU address translation mode supported by
++      this hart.  These values originate from the RISC-V Privileged
+       Specification document, available from
+       https://riscv.org/specifications/
+     $ref: /schemas/types.yaml#/definitions/string
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.42.0
 
 
