@@ -1,137 +1,154 @@
-Return-Path: <devicetree+bounces-28801-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28802-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44F9B81F76C
-	for <lists+devicetree@lfdr.de>; Thu, 28 Dec 2023 12:00:16 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C77E81F776
+	for <lists+devicetree@lfdr.de>; Thu, 28 Dec 2023 12:02:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 60DA11C20D27
-	for <lists+devicetree@lfdr.de>; Thu, 28 Dec 2023 11:00:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1AEA01F21EDC
+	for <lists+devicetree@lfdr.de>; Thu, 28 Dec 2023 11:02:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8700B6FBD;
-	Thu, 28 Dec 2023 10:57:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="fZBk20e2"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CDE363C9;
+	Thu, 28 Dec 2023 11:02:41 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f173.google.com (mail-pg1-f173.google.com [209.85.215.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 194506FBE
-	for <devicetree@vger.kernel.org>; Thu, 28 Dec 2023 10:57:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-pg1-f173.google.com with SMTP id 41be03b00d2f7-5cde7afa1d7so2011055a12.1
-        for <devicetree@vger.kernel.org>; Thu, 28 Dec 2023 02:57:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1703761049; x=1704365849; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=snYrry9zLuh+jWtvPEimeAzwraocI1J6hz5mOunhcYM=;
-        b=fZBk20e2nKa6rWmA3/7Vyt2SxtfIPDgl3TUA1cd59pOkHyTP76UsPINd8B1+G0a6AL
-         iOHNGlpn6BFUEW9bJicVY+jYW2nwF6t2iug+gACEN6siVT38tTO0/dJujeH2sTqtVO+G
-         29zOkTPee3CwuJvQv0TWP+2DL7s+gYuDP+p6A=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703761049; x=1704365849;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=snYrry9zLuh+jWtvPEimeAzwraocI1J6hz5mOunhcYM=;
-        b=oUzYaw+NIsS4/BtGP3vGMPFWn2eGhK4cL7oWGljeJP4ggBPb6FEA0cPhVCPKGMTnls
-         zv36+9oe1dZKBeeW7zRS/HEzn6UMII92TkgMvHPTE15Yr4UgNLvWJfDwHpxgwyENUkl2
-         rXrM5Mx41Nqpo8et33YcBWgQWNsHUTmpGTpwRDDk+et/JjdA8F9vLkU/x4rB3Fn5jC4B
-         bS5qFb1NUwRUmPR+d0y8boucxT3euDof90xY9elDF3A0bIAITUlyezdXEMDweBug4iCn
-         ffwKV1ZPI9c6+AFss4jm1sOgbnnllQE4oEOYwtplyX7q6ykh4frA6G2x2ZhmoWs5NWrB
-         vWXQ==
-X-Gm-Message-State: AOJu0Yzhp3JNOYeWls1vX6U39PNkwiZcO9TsiDt7ydhfrF3z6FlUe3dj
-	wqtzuwkMsKZ7bDALovfoa71LhAZTbJoz
-X-Google-Smtp-Source: AGHT+IFYsn9RDhTGSpo0c14KN3+HIjTHoXc3vMmiykGJJrVm4NBUKlRdW2Q19ABY3KG4K+gPwIsavg==
-X-Received: by 2002:a17:902:b58b:b0:1d3:442e:f0a2 with SMTP id a11-20020a170902b58b00b001d3442ef0a2mr5009163pls.139.1703761049479;
-        Thu, 28 Dec 2023 02:57:29 -0800 (PST)
-Received: from yuanhsinte-p1g4.corp.google.com ([2401:fa00:1:14:497f:b57b:3927:7371])
-        by smtp.gmail.com with ESMTPSA id d14-20020a170902aa8e00b001bf52834696sm13542193plr.207.2023.12.28.02.57.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 28 Dec 2023 02:57:29 -0800 (PST)
-From: Hsin-Te Yuan <yuanhsinte@chromium.org>
-To: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Hsin-Te Yuan <yuanhsinte@chromium.org>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-mediatek@lists.infradead.org
-Subject: [PATCH RESEND v2] arm64: dts: mt8195-cherry-tomato: change watchdog reset boot flow
-Date: Thu, 28 Dec 2023 18:57:01 +0800
-Message-ID: <20231228105717.719624-1-yuanhsinte@chromium.org>
-X-Mailer: git-send-email 2.43.0.472.g3155946c3a-goog
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 066D06FB6;
+	Thu, 28 Dec 2023 11:02:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id B804D2F4;
+	Thu, 28 Dec 2023 03:03:23 -0800 (PST)
+Received: from [192.168.151.22] (unknown [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 981AA3F5A1;
+	Thu, 28 Dec 2023 03:02:33 -0800 (PST)
+Message-ID: <cf5d97d0-ae79-9524-fc19-a73d4403a3d0@arm.com>
+Date: Thu, 28 Dec 2023 11:02:34 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH v1 1/2] dt-bindings: arm: coresight: Update the pattern of
+ ete node name
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Jinlong Mao <quic_jinlmao@quicinc.com>,
+ Suzuki K Poulose <suzuki.poulose@arm.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Tingwei Zhang <quic_tingweiz@quicinc.com>,
+ Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+ Tao Zhang <quic_taozha@quicinc.com>, coresight@lists.linaro.org,
+ Mathieu Poirier <mathieu.poirier@linaro.org>,
+ Mike Leach <mike.leach@linaro.org>, Leo Yan <leo.yan@linaro.org>,
+ Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+References: <20231220140538.13136-1-quic_jinlmao@quicinc.com>
+ <20231220140538.13136-2-quic_jinlmao@quicinc.com>
+ <79f88d35-17cc-43b0-bb22-3c854f89d961@linaro.org>
+ <8e5e9603-456b-4956-be03-b866feeeafb4@quicinc.com>
+ <c41ff7c8-48d6-4f4f-a9df-aafe953a2e98@linaro.org>
+ <f2f983b7-4c57-4b1b-925d-ffb18f6350a0@quicinc.com>
+ <c64a41af-ff62-43c5-89f7-0558f8456010@linaro.org>
+ <16932826-fcc2-49d3-95ab-201eff729360@quicinc.com>
+ <d4c6c32f-b1cf-4cf2-9c52-85fa8c1ed73f@linaro.org>
+ <9d13e1ce-38b1-4cdd-83ba-eca0c3091ce1@quicinc.com>
+ <578d6319-5ab5-45e5-8457-00116c7c84ae@linaro.org>
+Content-Language: en-US
+From: James Clark <james.clark@arm.com>
+In-Reply-To: <578d6319-5ab5-45e5-8457-00116c7c84ae@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-The external output reset signal was originally disabled and sent from
-firmware. However, an unfixed bug in the firmware on tomato prevents
-the signal from being sent, causing the device to fail to boot. To fix
-this, enable external output reset signal to allow the device to reboot
-normally.
 
-Signed-off-by: Hsin-Te Yuan <yuanhsinte@chromium.org>
 
----
+On 26/12/2023 09:36, Krzysztof Kozlowski wrote:
+> On 26/12/2023 02:50, Jinlong Mao wrote:
+>>
+>>
+>> On 12/21/2023 4:44 PM, Krzysztof Kozlowski wrote:
+>>> On 21/12/2023 09:36, Jinlong Mao wrote:
+>>>>
+>>>>
+>>>> On 12/21/2023 4:17 PM, Krzysztof Kozlowski wrote:
+>>>>> On 21/12/2023 09:15, Jinlong Mao wrote:
+>>>>>>
+>>>>>>
+>>>>>> On 12/21/2023 4:12 PM, Krzysztof Kozlowski wrote:
+>>>>>>> On 21/12/2023 04:28, Jinlong Mao wrote:
+>>>>>>>>>> diff --git a/Documentation/devicetree/bindings/arm/arm,embedded-trace-extension.yaml b/Documentation/devicetree/bindings/arm/arm,embedded-trace-extension.yaml
+>>>>>>>>>> index f725e6940993..cbf583d34029 100644
+>>>>>>>>>> --- a/Documentation/devicetree/bindings/arm/arm,embedded-trace-extension.yaml
+>>>>>>>>>> +++ b/Documentation/devicetree/bindings/arm/arm,embedded-trace-extension.yaml
+>>>>>>>>>> @@ -23,7 +23,7 @@ description: |
+>>>>>>>>>>      
+>>>>>>>>>>      properties:
+>>>>>>>>>>        $nodename:
+>>>>>>>>>> -    pattern: "^ete([0-9a-f]+)$"
+>>>>>>>>>> +    pattern: "^ete-([0-9a-f]+)$"
+>>>>>>>>>
+>>>>>>>>> My concerns are not resolved. Why is it here in the first place?
+>>>>>>>>
+>>>>>>>> Hi Krzysztof,
+>>>>>>>>
+>>>>>>>> ETE is acronym of embedded trace extension. The number of the name is
+>>>>>>>> the same as the number of the CPU it belongs to.
+>>>>>>>
+>>>>>>> This is obvious and was not my question.
+> 
+> You already said it here...
+> 
+>>>>>>
+>>>>>> Do you mean why the pattern match of the node name is added here ?
+>>>>>
+>>>>> Yes, especially that it is requiring a non-generic name.
+>>>>>
+>>>>>>
+>>>>>> This node should not have the node name match, right ?
+>>>>>
+>>>>> Usually. For sure shouldn't be for non-generic names.
+>>>>>
+>>>> Hi Suzuki,
+>>>>
+>>>> Can we remove the pattern match of the node name and use a generic name
+>>>> "ete" for the ete DT nodes ?
+>>>
+>>> "ete" is not a generic name. What is generic here? It's an acronym of
+>>> some specific device name.
+>>>
+>>
+>> The device full name is embedded trace extension. So use ETE as the name 
+>> here.
+> 
+> That's obvious and my comment was not about it. Second time... This is
+> my unlucky day... I said, why do you even want to enforce name which is
+> not generic, since the names should be generic?
+> 
 
-Changes in v2:
-- Limit the effect only on tomato.
+I think we can just drop the enforced name if it's getting in the way.
+It doesn't really do anything and other Coresight bindings don't have it
+anyway.
 
----
- arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r1.dts | 4 ++++
- arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r2.dts | 4 ++++
- arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r3.dts | 4 ++++
- 3 files changed, 12 insertions(+)
+> I assume you read the DT specification:
+> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+> 
+> 
+> Best regards,
+> Krzysztof
+> 
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r1.dts b/arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r1.dts
-index 2d5e8f371b6d..a82d716f10d4 100644
---- a/arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r1.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r1.dts
-@@ -23,3 +23,7 @@ &sound {
- &ts_10 {
- 	status = "okay";
- };
-+
-+&watchdog {
-+	/delete-property/ mediatek,disable-extrst;
-+};
-diff --git a/arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r2.dts b/arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r2.dts
-index 2586c32ce6e6..2fe20e0dad83 100644
---- a/arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r2.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r2.dts
-@@ -43,3 +43,7 @@ &sound {
- &ts_10 {
- 	status = "okay";
- };
-+
-+&watchdog {
-+	/delete-property/ mediatek,disable-extrst;
-+};
-diff --git a/arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r3.dts b/arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r3.dts
-index f54f9477b99d..dd294ca98194 100644
---- a/arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r3.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r3.dts
-@@ -44,3 +44,7 @@ &sound {
- &ts_10 {
- 	status = "okay";
- };
-+
-+&watchdog {
-+	/delete-property/ mediatek,disable-extrst;
-+};
--- 
-2.43.0.472.g3155946c3a-goog
+I couldn't find anything in that list that would be a good fit for a
+name, and it seems like all of the Coresight devices have already been
+added with non generic names (like funnel and replicator etc), so it
+might be a bit late now.
 
+But if we drop the enforced name then it's probably fine.
+
+James
 
