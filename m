@@ -1,119 +1,95 @@
-Return-Path: <devicetree+bounces-28856-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28857-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE7D381FA59
-	for <lists+devicetree@lfdr.de>; Thu, 28 Dec 2023 18:30:32 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 801D381FA62
+	for <lists+devicetree@lfdr.de>; Thu, 28 Dec 2023 18:40:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0D2871C21137
-	for <lists+devicetree@lfdr.de>; Thu, 28 Dec 2023 17:30:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1E9341F2288F
+	for <lists+devicetree@lfdr.de>; Thu, 28 Dec 2023 17:40:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70F42F51F;
-	Thu, 28 Dec 2023 17:30:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F80BF9D3;
+	Thu, 28 Dec 2023 17:40:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TxFCCc0f"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ImleyuI0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f47.google.com (mail-qv1-f47.google.com [209.85.219.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E2CDF9C1;
-	Thu, 28 Dec 2023 17:30:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qv1-f47.google.com with SMTP id 6a1803df08f44-68009cb4669so24795546d6.1;
-        Thu, 28 Dec 2023 09:30:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1703784626; x=1704389426; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=N4Z7YQkAwcysiA9pCezffCW5EWUHNwwvsbHz268u+54=;
-        b=TxFCCc0fNgbCiRRiz9OQFBDdFev1mIb8nlmUGljdUQqOACMlCNFTEZL7ejw7lm+Zme
-         SY2LewswnZgif7MixB1lJceRqtHkHerwfaTWza0X5ltUZV4DFVOeKgGVGyCpQ0RNmrdC
-         zKszS/1GdTGruOAuPILF1C1pfPiLXpl0CpgT3NIb4z0nvs8vwAdL5EthusizeqUjDwJ1
-         Ah53h0YJfGYE+bZ4kRlhvMBA4B8mQebwDYYRitz1DxzxgkFoXw1lpton7gp4lz/dL87Q
-         hcTdQWdhNv+NUwnDl3aISJsEzzGdXwU/m6rklxVC/DbMt2uExU/rtGZ8snhJeZWZ3wzU
-         yGWA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703784626; x=1704389426;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=N4Z7YQkAwcysiA9pCezffCW5EWUHNwwvsbHz268u+54=;
-        b=j7KRUu/LRtIsZtdqf23mKzq01Np9cvglUP2AkPRprd1YU/1HI6S2JM55Va1nXgNNrk
-         WCkKALeFExz4OqeNPXmu63kYi5Yve4DOP7mkw871MWHCzrQBavMRBqD62tbjC63tm65l
-         tQyDxai+x9rzE2K777Aj2y1L1F7WZ9LFXUbefWPU+w7TkTy0j8wgWraDn1lSrsAwja+s
-         D1o9f7Gt9xP7Vxhoig3uKXvcPogfg+r4Ze+NifyMzsW6iKl3+w8AwR4oIx0sUhxGbmCw
-         TTYJDmQblVeCqmfaOdGw7T1YctSTQQS+rwQsB9M/U29ycH6crIQFZhvCF2uToae3Hq4N
-         oOrA==
-X-Gm-Message-State: AOJu0Yy4g53KNk19Qs0WyqILu/kjvhbuP8Kg7/8u7LPG93ZI0aBo9L7a
-	lsl9iEWH0XBo8grbAXwGNTM=
-X-Google-Smtp-Source: AGHT+IH1asPUVNlDf2zYCLocNWw/DPbpdqhnc7Umuc9yND5MTYpiYP5Pk0oH9N3IonyIP77uoBbtGA==
-X-Received: by 2002:a0c:d7cd:0:b0:67f:f29f:93d6 with SMTP id g13-20020a0cd7cd000000b0067ff29f93d6mr6401646qvj.129.1703784625812;
-        Thu, 28 Dec 2023 09:30:25 -0800 (PST)
-Received: from localhost.localdomain (107-015-241-140.res.spectrum.com. [107.15.241.140])
-        by smtp.gmail.com with ESMTPSA id da7-20020a05621408c700b0067f2c03d4adsm6392917qvb.100.2023.12.28.09.30.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 28 Dec 2023 09:30:25 -0800 (PST)
-From: John Clark <inindev@gmail.com>
-To: "Rob Herring" <robh+dt@kernel.org>,
-	"Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-	"Conor Dooley" <conor+dt@kernel.org>,
-	"Heiko Stuebner" <heiko@sntech.de>,
-	linux-rockchip@lists.infradead.org
-Cc: "Thomas McKahan" <tmckahan@singleboardsolutions.com>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	John Clark <inindev@gmail.com>
-Subject: [PATCH v2] arm64: dts: rockchip: nanopc-t6 sdmmc device tuning
-Date: Thu, 28 Dec 2023 17:29:35 +0000
-Message-ID: <20231228173011.2863-1-inindev@gmail.com>
-X-Mailer: git-send-email 2.43.0
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E41B5F9CD;
+	Thu, 28 Dec 2023 17:40:13 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AE6AAC433C8;
+	Thu, 28 Dec 2023 17:40:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1703785213;
+	bh=9lvOW+y4p7AcyZznFgvQnRNjR+a6hfIT15DpVBLsxLw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ImleyuI0fhDC+fRRLwsjkCZc6QDM1p9TW0/2CUFE6snl/n2vIcK39cvmTOsodWiLL
+	 /LNbuEOKpIOZ3LNdJQzuvJQq0779LzQnpbK8hsuR95FRNg5zXruetSz0ZiqbZUCBil
+	 Rb5pBdmGSG9CLLLU6UjsakXN4TYCt+Siwptv3oyBKHZsTmBywoaQubX/2pLWD/XMLP
+	 JKGNe9iUQRIzmEQ81A++HYPncW4REz589Y1cMridSPiZnHlLEddqk8NOs7lPFdt8z0
+	 ftvwafAOtz7qr7PTpPkEuhsQrPtB1NoZoy0j0qzh/qyAiEDT8Ch24GQCjANW0RPb1w
+	 t6e84DEHEmGmw==
+Date: Thu, 28 Dec 2023 17:40:03 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: =?iso-8859-1?Q?Andr=E9?= Apitzsch <git@apitzsch.eu>,
+	Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Liam Girdwood <lgirdwood@gmail.com>
+Subject: Re: [PATCH] dt-bindings: regulator: Convert ti,tps65133 to YAML
+Message-ID: <ZY2y88J2gAn94wH9@finisterre.sirena.org.uk>
+References: <20231217-tps65132-v1-1-73c69a960d28@apitzsch.eu>
+ <170282308261.876422.2237767392476986368.robh@kernel.org>
+ <951a01b5da3061e1ac1d396ba7f6629e3a0e9a1e.camel@apitzsch.eu>
+ <b67eba2a-b07a-4076-92bb-07bd0faf338e@sirena.org.uk>
+ <401f400a-e267-4131-82ee-a5759edaa3cb@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="PAaX8K46RqP1ey/u"
+Content-Disposition: inline
+In-Reply-To: <401f400a-e267-4131-82ee-a5759edaa3cb@linaro.org>
+X-Cookie: You might have mail.
 
-drop max-frequency = <200000000> as it is already defined in rk3588s.dtsi
-order no-sdio & no-mmc properties while we are here
 
-Signed-off-by: John Clark <inindev@gmail.com>
----
-Changes since v1:
-Additional scenarios need to be tested for proposed regulator and
-cd-gpios changes. Withdrawing those submissions for now.
-- removed proposed vcc3v3_sd_s0 regulator
-- removed proposed cd-gpios
----
- arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dts | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
+--PAaX8K46RqP1ey/u
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dts b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dts
-index e83b71510a47..d7722772ecd8 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dts
-@@ -536,13 +536,12 @@ &sdhci {
- };
- 
- &sdmmc {
--	max-frequency = <200000000>;
--	no-sdio;
--	no-mmc;
- 	bus-width = <4>;
- 	cap-mmc-highspeed;
- 	cap-sd-highspeed;
- 	disable-wp;
-+	no-mmc;
-+	no-sdio;
- 	sd-uhs-sdr104;
- 	vmmc-supply = <&vcc_3v3_s3>;
- 	vqmmc-supply = <&vccio_sd_s0>;
--- 
-2.43.0
+On Sat, Dec 23, 2023 at 03:17:24PM +0100, Krzysztof Kozlowski wrote:
+> On 22/12/2023 15:49, Mark Brown wrote:
 
+> > The requirement for DT maintainer does seem to in conflict with the push
+> > to convert things when people are doing incidental work on the driver...
+
+> I agree. How about relaxing the check and not marking missing maintainer
+> as a failure?
+
+That certainly works for me - it could just be a warning for example.
+
+--PAaX8K46RqP1ey/u
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmWNsvMACgkQJNaLcl1U
+h9DGNQf/c/Kg4yQTxlaPyoonpSzeqWf1t2c6AeY1Uj/dmyRZ5de+1ZAnwqLWYbI1
+QkL1DXcYTi+Kzs1eiHdcgqNex7GaCOScJ5KY0TYh9oYv2HNGDjaVhjYxPtdxaQ+B
+6l05HergqcpyvA60AcQk9oCdyRvHpQjYsTx6OX1k/z/4tA7phLzsKtVsq6kz2C/l
+U+6WqmqqEIjeMh6pnGOROtksibxWTpNlklEjRZyBlJXTRRu3iFnLTcUwCK3oewIO
+osv6AbTwKIeAuAkLyEc/naN4dJWq8tx71agBKIfp+6NBQVjGe6DnmclL9WoYehhb
+YbHLXPu4vMCI2OnBFUe7f3GD4kKKsg==
+=BIPr
+-----END PGP SIGNATURE-----
+
+--PAaX8K46RqP1ey/u--
 
