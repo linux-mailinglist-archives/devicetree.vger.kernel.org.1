@@ -1,214 +1,155 @@
-Return-Path: <devicetree+bounces-28759-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28760-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B60781F59E
-	for <lists+devicetree@lfdr.de>; Thu, 28 Dec 2023 08:49:58 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 37C0581F5CC
+	for <lists+devicetree@lfdr.de>; Thu, 28 Dec 2023 08:59:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EBB3C1F224EF
-	for <lists+devicetree@lfdr.de>; Thu, 28 Dec 2023 07:49:57 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CF2CFB2203E
+	for <lists+devicetree@lfdr.de>; Thu, 28 Dec 2023 07:59:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 799923D62;
-	Thu, 28 Dec 2023 07:49:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Ir6VXvSj"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCF05440D;
+	Thu, 28 Dec 2023 07:58:54 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C90DF63A8
-	for <devicetree@vger.kernel.org>; Thu, 28 Dec 2023 07:49:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-40d3c4bfe45so63267265e9.1
-        for <devicetree@vger.kernel.org>; Wed, 27 Dec 2023 23:49:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1703749789; x=1704354589; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=DPH9AYxPTCLROk2PqQ2BSAenaIiGgIq9psooBBXVlnA=;
-        b=Ir6VXvSj6Q2YmuuXfEtr7zhoYnTM/agKZmxicD+QkP7KPa076YuFKZpobYgDjHYecU
-         AqpSd/sZR88FI/TSbbvW3pwknSH3VTrCahBpLFDkzpJlIU0I7/6rzBPBajt7zcZRUVPf
-         NTVovPo1THNtz2Nm87IXC4I3C4MJNP0/EfS+Vm5AJC8YdDIHsyr35aG76EYF8AfdBgdt
-         KrZWCCZIVWfTnsKaXQmjdkLpdvqZmackD3hjdvVxct+jxWRa6n811ADMusJJHRKV38hI
-         8vWhLyL9+PcejwJkG/zlK4UxsFREBTYMvBtwHyGpqf8yHQAuFPZoV2rJ8M0FNNxU4NZ4
-         arfQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703749789; x=1704354589;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=DPH9AYxPTCLROk2PqQ2BSAenaIiGgIq9psooBBXVlnA=;
-        b=JaQbz4pBxu0e7mPzM8saXL3KqOeO22PAzUFiqyRzxwxOl+4Xc4c+QwicWW+Iqylgf4
-         xWucrp10mttFBTIgZ6UqiegevkgTlgbwJFRIrbyWVHd6qLSMSJTgOHry21LlEQKQg3j3
-         Ls54OjdKKDxvjuZDSS61uP+A/us99csQYK9ksBBw7BWHOIBGagl0sM35840R083La9k0
-         1jMYHXQcnP2jFv/peVvUuxNZG8aBVWxKkeKRH2dkSAswtS8X024El4T+4XlyHglqrpiW
-         NN4Sa019Rwgcs5ZoDkcDSjjLqRGYgY7Uc7Yq+OUvkLE56TF5nv9azYjdITCy1CmsIN5Y
-         +PzQ==
-X-Gm-Message-State: AOJu0Ywc0DsXLzGfLm8ENd0iKP7igLBk7RreJE0Bq7F0fbDKtXLFH8FO
-	aj9h9GgEn4Lod7kOpgsEAL423oNGfVtcxA==
-X-Google-Smtp-Source: AGHT+IHuuf6SKbSYGy72wo6zNB6tHC+YGDelclJWtS6iyk2u5tfkq2RRgqJShnKZ27R45rO7VF6WWQ==
-X-Received: by 2002:a05:600c:4b1b:b0:40d:27e9:b5ca with SMTP id i27-20020a05600c4b1b00b0040d27e9b5camr2529125wmp.365.1703749789063;
-        Wed, 27 Dec 2023 23:49:49 -0800 (PST)
-Received: from [192.168.2.107] ([79.115.63.202])
-        by smtp.gmail.com with ESMTPSA id n2-20020a05600c3b8200b0040d5ab35657sm7908475wms.4.2023.12.27.23.49.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 27 Dec 2023 23:49:48 -0800 (PST)
-Message-ID: <68b64171-6548-44b0-b5c9-8a5343b57828@linaro.org>
-Date: Thu, 28 Dec 2023 07:49:46 +0000
+Received: from mg.richtek.com (mg.richtek.com [220.130.44.152])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 159665232;
+	Thu, 28 Dec 2023 07:58:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=richtek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=richtek.com
+X-MailGates: (SIP:2,PASS,NONE)(compute_score:DELIVER,40,3)
+Received: from 192.168.10.47
+	by mg.richtek.com with MailGates ESMTPS Server V6.0(636813:0:AUTH_RELAY)
+	(envelope-from <cy_huang@richtek.com>)
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256/256); Thu, 28 Dec 2023 15:58:24 +0800 (CST)
+Received: from ex4.rt.l (192.168.10.47) by ex4.rt.l (192.168.10.47) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1258.27; Thu, 28 Dec
+ 2023 15:58:24 +0800
+Received: from linuxcarl2.richtek.com (192.168.10.154) by ex4.rt.l
+ (192.168.10.45) with Microsoft SMTP Server id 15.2.1258.27 via Frontend
+ Transport; Thu, 28 Dec 2023 15:58:24 +0800
+Date: Thu, 28 Dec 2023 15:58:24 +0800
+From: ChiYuan Huang <cy_huang@richtek.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+CC: Jonathan Cameron <jic23@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>, Uwe
+ =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
+	<linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 1/2] dt-bindings: iio: adc: rtq6056: add support for the
+ whole RTQ6056 family
+Message-ID: <20231228075824.GA16067@linuxcarl2.richtek.com>
+References: <1703562468-29052-1-git-send-email-cy_huang@richtek.com>
+ <1703562468-29052-2-git-send-email-cy_huang@richtek.com>
+ <9715ed9d-7edf-430c-808c-00e7748bc59a@linaro.org>
+ <20231226111921.GA22684@linuxcarl2.richtek.com>
+ <0f1f0991-9ad9-4216-afc8-8340eddb1ad9@linaro.org>
+ <20231228031929.GA32046@linuxcarl2.richtek.com>
+ <e1036e63-1914-4412-8c55-40ae206d56d0@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 02/13] dt-bindings: clock: google,gs101-clock: add PERIC0
- clock management unit
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Peter Griffin <peter.griffin@linaro.org>
-Cc: sboyd@kernel.org, conor+dt@kernel.org, andi.shyti@kernel.org,
- alim.akhtar@samsung.com, gregkh@linuxfoundation.org, jirislaby@kernel.org,
- catalin.marinas@arm.com, will@kernel.org, s.nawrocki@samsung.com,
- tomasz.figa@gmail.com, cw00.choi@samsung.com, arnd@arndb.de,
- semen.protsenko@linaro.org, andre.draszik@linaro.org, saravanak@google.com,
- willmcvicker@google.com, linux-arm-kernel@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-i2c@vger.kernel.org, linux-serial@vger.kernel.org
-References: <20231214105243.3707730-1-tudor.ambarus@linaro.org>
- <20231214105243.3707730-3-tudor.ambarus@linaro.org>
- <20231220150726.GA223267-robh@kernel.org>
- <173b06ab-2518-49ee-a67f-85256bc5b6a7@linaro.org>
- <425a228e-b2d3-4b19-9bcb-6ee1a90cd2ef@linaro.org>
- <7b39f962-8040-48b0-8580-abf5970bfad0@linaro.org>
-From: Tudor Ambarus <tudor.ambarus@linaro.org>
-In-Reply-To: <7b39f962-8040-48b0-8580-abf5970bfad0@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <e1036e63-1914-4412-8c55-40ae206d56d0@linaro.org>
+User-Agent: Mutt/1.5.21 (2010-09-15)
 
-
-
-On 12/28/23 07:30, Krzysztof Kozlowski wrote:
-> On 27/12/2023 13:38, Tudor Ambarus wrote:
->> Hi, Rob,
->>
->> On 12/21/23 07:20, Tudor Ambarus wrote:
->>>
->>>
->>> On 12/20/23 15:07, Rob Herring wrote:
->>>> On Thu, Dec 14, 2023 at 10:52:32AM +0000, Tudor Ambarus wrote:
->>>>> Add dt-schema documentation for the Connectivity Peripheral 0 (PERIC0)
->>>>> clock management unit.
->>>>>
->>>>> Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
->>>>> ---
->>>>>  .../bindings/clock/google,gs101-clock.yaml    | 25 +++++-
->>>>>  include/dt-bindings/clock/google,gs101.h      | 86 +++++++++++++++++++
->>>>>  2 files changed, 109 insertions(+), 2 deletions(-)
->>>>>
->>>>> diff --git a/Documentation/devicetree/bindings/clock/google,gs101-clock.yaml b/Documentation/devicetree/bindings/clock/google,gs101-clock.yaml
->>>>> index 3eebc03a309b..ba54c13c55bc 100644
->>>>> --- a/Documentation/devicetree/bindings/clock/google,gs101-clock.yaml
->>>>> +++ b/Documentation/devicetree/bindings/clock/google,gs101-clock.yaml
->>>>> @@ -30,14 +30,15 @@ properties:
->>>>>        - google,gs101-cmu-top
->>>>>        - google,gs101-cmu-apm
->>>>>        - google,gs101-cmu-misc
->>>>> +      - google,gs101-cmu-peric0
->>>>>  
->>>>>    clocks:
->>>>>      minItems: 1
->>>>> -    maxItems: 2
->>>>> +    maxItems: 3
->>>>>  
->>>>>    clock-names:
->>>>>      minItems: 1
->>>>> -    maxItems: 2
->>>>> +    maxItems: 3
->>>>>  
->>>>>    "#clock-cells":
->>>>>      const: 1
->>>>> @@ -88,6 +89,26 @@ allOf:
->>>>>              - const: dout_cmu_misc_bus
->>>>>              - const: dout_cmu_misc_sss
->>>>>  
->>>>> +  - if:
->>>>> +      properties:
->>>>> +        compatible:
->>>>> +          contains:
->>>>> +            const: google,gs101-cmu-peric0
->>>>> +
->>>>> +    then:
->>>>> +      properties:
->>>>> +        clocks:
->>>>> +          items:
->>>>> +            - description: External reference clock (24.576 MHz)
->>>>> +            - description: Connectivity Peripheral 0 bus clock (from CMU_TOP)
->>>>> +            - description: Connectivity Peripheral 0 IP clock (from CMU_TOP)
->>>>> +
->>>>> +        clock-names:
->>>>> +          items:
->>>>> +            - const: oscclk
->>>>> +            - const: dout_cmu_peric0_bus
->>>>> +            - const: dout_cmu_peric0_ip
->>>>
->>>> 'bus' and 'ip' are sufficient because naming is local to the module. The 
->>>> same is true on 'dout_cmu_misc_bus'. As that has not made a release, 
->>>> please fix all of them.
->>>>
->>>
->>> Ok, will fix them shortly. Thanks, Rob!
->>
->> I tried your suggestion at
->> https://lore.kernel.org/linux-arm-kernel/c6cc6e74-6c3d-439b-8dc1-bc50a88a3d8f@linaro.org/
->>
->> and we noticed that we'd have to update the clock driver as well.
->> These CMUs set the DT clock-name of the parent clock in the driver in
->> struct samsung_cmu_info::clk_name[]. The driver then tries to enable the
->> parent clock based on the clock-name in exynos_arm64_register_cmu().
->>
->> In order to enable the parent clock of the CMU the following would be
->> needed in the driver:
->>
->> diff --git a/drivers/clk/samsung/clk-gs101.c
->> b/drivers/clk/samsung/clk-gs101.c
->> index 68a27b78b00b..e91836ea3a98 100644
->> --- a/drivers/clk/samsung/clk-gs101.c
->> +++ b/drivers/clk/samsung/clk-gs101.c
->> @@ -2476,7 +2476,7 @@ static const struct samsung_cmu_info misc_cmu_info
->> __initconst = {
->>         .nr_clk_ids             = CLKS_NR_MISC,
->>         .clk_regs               = misc_clk_regs,
->>         .nr_clk_regs            = ARRAY_SIZE(misc_clk_regs),
->> -       .clk_name               = "dout_cmu_misc_bus",
->> +       .clk_name               = "bus",
+On Thu, Dec 28, 2023 at 08:09:35AM +0100, Krzysztof Kozlowski wrote:
+> On 28/12/2023 04:19, ChiYuan Huang wrote:
+> > On Tue, Dec 26, 2023 at 01:12:50PM +0100, Krzysztof Kozlowski wrote:
+> >> On 26/12/2023 12:19, ChiYuan Huang wrote:
+> >>> On Tue, Dec 26, 2023 at 10:18:47AM +0100, Krzysztof Kozlowski wrote:
+> >>>> On 26/12/2023 04:47, cy_huang@richtek.com wrote:
+> >>>>> From: ChiYuan Huang <cy_huang@richtek.com>
+> >>>>>
+> >>>>> Add compatible support for RTQ6053 and RTQ6059.
+> >>>>>
+> >>>>> Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
+> >>>>> ---
+> >>>>>  .../devicetree/bindings/iio/adc/richtek,rtq6056.yaml         | 5 ++++-
+> >>>>>  1 file changed, 4 insertions(+), 1 deletion(-)
+> >>>>>
+> >>>>> diff --git a/Documentation/devicetree/bindings/iio/adc/richtek,rtq6056.yaml b/Documentation/devicetree/bindings/iio/adc/richtek,rtq6056.yaml
+> >>>>> index 88e008629ea8..d1e1f36d1972 100644
+> >>>>> --- a/Documentation/devicetree/bindings/iio/adc/richtek,rtq6056.yaml
+> >>>>> +++ b/Documentation/devicetree/bindings/iio/adc/richtek,rtq6056.yaml
+> >>>>> @@ -25,7 +25,10 @@ description: |
+> >>>>>  
+> >>>>>  properties:
+> >>>>>    compatible:
+> >>>>> -    const: richtek,rtq6056
+> >>>>> +    enum:
+> >>>>> +      - richtek,rtq6053
+> >>>>> +      - richtek,rtq6056
+> >>>>
+> >>>> Aren't these devices compatible? Your driver change says they are, so
+> >>>> express compatibility with list here (and oneOf).
+> >>>>
+> >>> Thanks, I try to take other binding as the reference. One more question.
+> >>> If rtq6053 is compatible with rtq6056, there's only chip package type difference.
+> >>> Do I need to seperate it into a dedicated enum element?
+> >>> Or just put it into one item and said this part number is compatible with rtq6056? 
+> >>
+> >> See example-schema. You need enum and items, both in oneOf:.
+> >>
+> > After reading the 'example-schema', I Still cannot understand what the special case items
+> > means.
 > 
-> Yes, obviously, the names are used...
+> What is "special case items"?
 > 
-> The entire point was that a week ago Rob said:
-> "As that has not made a release,  please fix all of them."
-> but if you keep waiting, like 8 days for this simple patch, his
-> statement is not true anymore.
+I may misunderstand something. The special case is the 'fallback' that you mentaioned in
+the last.
+> > 
+> > But in my case, is the below change correct?
+> > [Diff]
+> > properties:
+> >    compatible:
+> > -    enum:
+> > -      - richtek,rtq6053
+> > -      - richtek,rtq6056
+> > -      - richtek,rtq6059
+> > +    oneOf:
+> > +      - items:
+> > +          - enum:
+> > +              - richtek,rtq6053
+> > +              - richtek,rtq6056
+> > +              - richtek,rtq6059
 > 
-
-I saw the problem at the end of Thursday, reported it, and after that I
-entered vacation.
-
-> The only point was to send a fix *the next day*, so I would apply it and
-> send further. You kind of solved that problem by waiting entire week for
-> a simple driver and DTS change.
+> This changes nothing, you still have just one item. The example-schema
+> has exactly that case, so why you are coding it differently?
 > 
-Why can't we queue the name fix as a patch for v6.8-rc1? Of course if
-you consider that the change is worth it. As I said, I lean towards not
-changing it.
+> Anyway, test your DTS with the fallback, you will see that above does
+> not work.
+> 
+I rewrite the below one and tested. it seems correct.
 
-Thanks,
-ta
+[Diff]
+   compatible:
+-    enum:
+-      - richtek,rtq6053
+-      - richtek,rtq6056
+-      - richtek,rtq6059
++    oneOf:
++      - enum:
++          - richtek,rtq6053
++          - richtek,rtq6059
++      - items:
++          - const: richtek,rtq6056
+
+Just one more question. If rtq6053 is fully compatibie with rtq6056, does it need to be put
+into oneOf enum or be just put into items enum and use the 'fallback' mechanism?
+
+If so, the 'richtek,rtq6053' in of_device_id match can be removed. Though it just remove
+one line, but less-changed would be better.
+
+ChiYuan.
+Best regards,
+> Krzysztof
+> 
 
