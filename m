@@ -1,545 +1,322 @@
-Return-Path: <devicetree+bounces-28727-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28728-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4F7A81F47B
-	for <lists+devicetree@lfdr.de>; Thu, 28 Dec 2023 04:52:16 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C174681F487
+	for <lists+devicetree@lfdr.de>; Thu, 28 Dec 2023 05:12:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8FE65B21BD8
-	for <lists+devicetree@lfdr.de>; Thu, 28 Dec 2023 03:52:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 468341F22380
+	for <lists+devicetree@lfdr.de>; Thu, 28 Dec 2023 04:12:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6D31110B;
-	Thu, 28 Dec 2023 03:51:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FE8D15B3;
+	Thu, 28 Dec 2023 04:12:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BUYOkLJA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mg.richtek.com (mg.richtek.com [220.130.44.152])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E41704684;
-	Thu, 28 Dec 2023 03:51:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=richtek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=richtek.com
-X-MailGates: (SIP:2,PASS,NONE)(compute_score:DELIVER,40,3)
-Received: from 192.168.10.47
-	by mg.richtek.com with MailGates ESMTPS Server V6.0(636808:0:AUTH_RELAY)
-	(envelope-from <cy_huang@richtek.com>)
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256/256); Thu, 28 Dec 2023 11:51:13 +0800 (CST)
-Received: from ex4.rt.l (192.168.10.47) by ex4.rt.l (192.168.10.47) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1258.27; Thu, 28 Dec
- 2023 11:51:08 +0800
-Received: from linuxcarl2.richtek.com (192.168.10.154) by ex4.rt.l
- (192.168.10.45) with Microsoft SMTP Server id 15.2.1258.27 via Frontend
- Transport; Thu, 28 Dec 2023 11:51:08 +0800
-From: <cy_huang@richtek.com>
-To: Jonathan Cameron <jic23@kernel.org>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>
-CC: Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>,
-	ChiYuan Huang <cy_huang@richtek.com>, =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?=
-	<u.kleine-koenig@pengutronix.de>, <linux-iio@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH 2/2] iio: adc: rtq6056: Add support for the whole RTQ6056 family
-Date: Thu, 28 Dec 2023 11:51:07 +0800
-Message-ID: <8bc3368d50db48d11dee63957a1d30bde1d76ce6.1703734994.git.cy_huang@richtek.com>
-X-Mailer: git-send-email 1.8.3.1
-In-Reply-To: <cover.1703734994.git.cy_huang@richtek.com>
-References: <cover.1703734994.git.cy_huang@richtek.com>
+Received: from mail-ot1-f47.google.com (mail-ot1-f47.google.com [209.85.210.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D03C3137B;
+	Thu, 28 Dec 2023 04:12:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ot1-f47.google.com with SMTP id 46e09a7af769-6dc049c7b58so761796a34.3;
+        Wed, 27 Dec 2023 20:12:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1703736757; x=1704341557; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=oIDB5pmbMt1XqUVM4absiYJrqINr+tp7FdZ1i2KQDFY=;
+        b=BUYOkLJApiWBuY/tWa/0TY1JtWv2867IHgFWflXXANtoOwcWLkL/HC9z73p7XhyneN
+         ESSkJm4IQsjy+diYnmDHoLXfYdPwn1grZoOMBWL8dCukRZw1eRZM2N78yKJOvUM37oBJ
+         4hoSGb8uZxoUjvw5HOOuZ7L/2fGNGVi0bTMc8fFHWlADh5B+1LBSq8iabd9TaqnVmJpM
+         bX2bNJMxwEsWSbl1znfcXVj1p74eYIQ5ZBHg2vekJKft8yMSiZiYFs740xp+w3lHi44E
+         +L/GCWpEePOiyvVeEltNQhabFzMuSFXjvXMitmf41b3/h/0I1vCGx3ZkGYly76Prmx+Q
+         VbzQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1703736757; x=1704341557;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=oIDB5pmbMt1XqUVM4absiYJrqINr+tp7FdZ1i2KQDFY=;
+        b=o4CCMCtAYAWc502VawL9bCChc7A/XrPNFFu0b9yh85QbKz7tBGPSw+Z3C5517Fbono
+         V6rEWS7xX3kFPLwe6AEoNq7ao/kuxunDhKPzBpVP+hAmfayGJvqzVG4G9UiVGAvz2cfb
+         KAT8q33tezQTRUhnypLO7j2WO6Z/5IOe+QfujQCZUkemHjwp3seOTk+DiX86yK43Nmt+
+         0NE8k5pce79VPov3uMTtrMnODCdJ+1c+fipOXtE5QEuVrSikV0K/KoQ1iRYiwnblN8nP
+         TQ3dwbcZKDrjx5S/5zP6gZRCce3AfmHss8kGSIWkmIfj7ycceVDZ2zhCFWFuKk3+ZsPD
+         b2dA==
+X-Gm-Message-State: AOJu0YxlXSwRWaaE8175abHXg5NxxwC15eNhQe2VWA8ZnVFlDivRXqCB
+	FgO/n3nz/S40uA6LtdnOEyolMPE4+Xk9rZgWLJU=
+X-Google-Smtp-Source: AGHT+IEPWmJ5aWsQegJvn7MpL85gkKgsj48i09+iA217dPtnUCI4Rzv7DiL2DsPNRR9xuntq6Tatez2xlPjqH/Ntiuo=
+X-Received: by 2002:a05:6871:b0c:b0:203:a7fa:5931 with SMTP id
+ fq12-20020a0568710b0c00b00203a7fa5931mr11360524oab.30.1703736756517; Wed, 27
+ Dec 2023 20:12:36 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+References: <20231226100431.331616-1-qiujingbao.dlmu@gmail.com>
+ <20231226100431.331616-4-qiujingbao.dlmu@gmail.com> <20231226123743bd2d3f0d@mail.local>
+ <CAJRtX8TYP4NUsrWejVywgLpkPk1rMyNVf8xZGZWSTn6dqJJjwA@mail.gmail.com> <202312271350242a208426@mail.local>
+In-Reply-To: <202312271350242a208426@mail.local>
+From: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
+Date: Thu, 28 Dec 2023 12:12:25 +0800
+Message-ID: <CAJRtX8Qehq-E+Z9T+fc6r36dtF8ZMNwyqxF3WGOQAmwHZHgLkw@mail.gmail.com>
+Subject: Re: [PATCH v3 3/4] rtc: sophgo: add rtc support for Sophgo CV1800 SoC
+To: Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc: a.zummo@towertech.it, robh+dt@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor@kernel.org, conor+dt@kernel.org, 
+	chao.wei@sophgo.com, unicorn_wang@outlook.com, paul.walmsley@sifive.com, 
+	palmer@dabbelt.com, aou@eecs.berkeley.edu, linux-rtc@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, dlan@gentoo.org, 
+	inochiama@outlook.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: ChiYuan Huang <cy_huang@richtek.com>
+On Wed, Dec 27, 2023 at 9:50=E2=80=AFPM Alexandre Belloni
+<alexandre.belloni@bootlin.com> wrote:
+>
+> On 27/12/2023 16:03:56+0800, Jingbao Qiu wrote:
+> > On Tue, Dec 26, 2023 at 8:37=E2=80=AFPM Alexandre Belloni
+> > <alexandre.belloni@bootlin.com> wrote:
+> > >
+> > > Hello,
+> > >
+> > > please run checkpatch.pl --strict, there are a few issues.
+> > >
+> > > On 26/12/2023 18:04:30+0800, Jingbao Qiu wrote:
+> > > > +struct cv1800_rtc_priv {
+> > > > +     struct rtc_device *rtc_dev;
+> > > > +     struct device *dev;
+> > > > +     struct regmap *rtc_map;
+> > > > +     struct clk *clk;
+> > > > +     spinlock_t rtc_lock;
+> > >
+> > > This lock seems unnecessary, please check
+> > >
+> >
+> > you are right. I will fix it.
+> >
+> > > > +     int irq;
+> > > > +};
+> > > > +
+> > > > +static int cv1800_rtc_alarm_irq_enable(struct device *dev, unsigne=
+d int enabled)
+> > > > +{
+> > > > +     struct cv1800_rtc_priv *info =3D dev_get_drvdata(dev);
+> > > > +
+> > > > +     if (enabled)
+> > > > +             regmap_write(info->rtc_map, ALARM_ENABLE, REG_ENABLE_=
+FUN);
+> > > > +     else
+> > > > +             regmap_write(info->rtc_map, ALARM_ENABLE, REG_DISABLE=
+_FUN);
+> > > > +
+> > >
+> > > This could be:
+> > >         regmap_write(info->rtc_map, ALARM_ENABLE, enabled);
+> >
+> > you are right, i will fix it.
+> >
+> > >
+> > > > +     return 0;
+> > > > +}
+> > > > +
+> > > > +static int cv1800_rtc_set_alarm(struct device *dev, struct rtc_wka=
+lrm *alrm)
+> > > > +{
+> > > > +     struct cv1800_rtc_priv *info =3D dev_get_drvdata(dev);
+> > > > +     unsigned long alarm_time;
+> > > > +
+> > > > +     alarm_time =3D rtc_tm_to_time64(&alrm->time);
+> > > > +
+> > > > +     if (alarm_time > SEC_MAX_VAL)
+> > > > +             return -EINVAL;
+> > >
+> > > The core is already checking fr this.
+> >
+> > Thanks, I will remove it.
+> >
+> > >
+> > > > +
+> > > > +     regmap_write(info->rtc_map, ALARM_ENABLE, REG_DISABLE_FUN);
+> > > > +
+> > > > +     udelay(DEALY_TIME_PREPARE);
+> > >
+> > > Why is this needed?
+> >
+> > This doesn't seem to require waiting, I will check it.
+> >
+> > >
+> > > > +
+> > > > +     regmap_write(info->rtc_map, ALARM_TIME, alarm_time);
+> > > > +     regmap_write(info->rtc_map, ALARM_ENABLE, REG_ENABLE_FUN);
+> > >
+> > > You must follow alrm->enabled instead of unconditionally enabling the
+> > > alarm.
+> >
+> > ok,i will fix it.
+> >
+> > >
+> > > > +
+> > > > +     return 0;
+> > > > +}
+> > > > +
+> > >
+> > >
+> > > > +static int cv1800_rtc_32k_coarse_val_calib(struct cv1800_rtc_priv =
+*info)
+> > >
+> > > Please explain those two calibration functions. I don't think you can
+> > > achieve what you want to do.
+> >
+> > The goal of these two calibration functions is to achieve calibration
+> > of RTC time.
+> > The code is written according to the data manual.
+> >
+> > The calibration circuit uses 25MHz crystal clock to sample 32KHz
+> > clock. In coarse
+> > tune mode, the 25MHz crystal clock samples one 32KHz clock cycle period=
+ and
+> > report the counting results.
+> >
+> > the datasheet link:
+> > Link: https://github.com/milkv-duo/duo-files/blob/main/duo/datasheet/CV=
+1800B-CV1801B-Preliminary-Datasheet-full-en.pdf
+> > page:195
+>
+>
+> I'm really curious as to why this is calibrated using a 25MHz crystal as
+> it may be as imprecise as the 32kHz one. I'm asking because we have an
+> interface to get calibration done properly so you can use a precise clock
+> like GPS, NTP or PTP. This is what you should probably implement
+> instead or on top of it.
+>
 
-RTQ6053 and RTQ6059 are the same series of RTQ6056.
+Thanks, I will communicate with the IC designers later.
 
-The respective differences with RTQ6056 are listed below
-RTQ6053
-- chip package type
+> > >
+> > > > +}
+> > > > +
+> > > > +static int cv1800_rtc_read_time(struct device *dev, struct rtc_tim=
+e *tm)
+> > > > +{
+> > > > +     struct cv1800_rtc_priv *info =3D dev_get_drvdata(dev);
+> > > > +     unsigned int sec;
+> > > > +     unsigned int sec_ro_t;
+> > > > +     unsigned long flag;
+> > > > +
+> > > > +     spin_lock_irqsave(&info->rtc_lock, flag);
+> > > > +
+> > > > +     regmap_read(info->rtc_map, SEC_CNTR_VAL, &sec);
+> > > > +     regmap_read(info->rtc_map, MACRO_RO_T, &sec_ro_t);
+> > > > +
+> > > > +     if (sec_ro_t > (SET_SEC_CNTR_VAL_UPDATE)) {
+> > > > +             sec =3D sec_ro_t;
+> > > > +             regmap_write(info->rtc_map, SET_SEC_CNTR_VAL, sec);
+> > > > +             regmap_write(info->rtc_map, SET_SEC_CNTR_TRIG, REG_EN=
+ABLE_FUN);
+> > >
+> > > What does this do?
+> >
+> > the sec_ro_t be considered to have high accuracy after calibration.
+> > So every time read the time, update the RTC time.
+>
+> So why don't you always use sec_ro_t instead of sec?
+> Also, why is this done conditionally on a arbitrary value? As it stands,
+> it will happen if the date is after 1995-07-09T16:12:48 for no good
+> reason.
+> This is awful because the alarm is matching SEC_CNTR_VAL with ALARM_TIME
+> so if this means the calibration doesn't affect SEC_CNTR_VAL (which I
+> seriously doubt), the alarm will end up being imprecise anyway
+>
 
-RTQ6059
-- Reduce the pinout for vbus sensing pin
-- Some internal ADC scaling change
+Thanks, I will communicate with the IC designers later.
 
-Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
----
- drivers/iio/adc/rtq6056.c | 265 ++++++++++++++++++++++++++++++++++++--
- 1 file changed, 251 insertions(+), 14 deletions(-)
+> > > > +static int cv1800_rtc_probe(struct platform_device *pdev)
+> > > > +{
+> > > > +     struct cv1800_rtc_priv *rtc;
+> > > > +     uint32_t ctrl_val;
+> > > > +     int ret;
+> > > > +
+> > > > +     rtc =3D devm_kzalloc(&pdev->dev, sizeof(struct cv1800_rtc_pri=
+v),
+> > > > +                        GFP_KERNEL);
+> > > > +     if (!rtc)
+> > > > +             return -ENOMEM;
+> > > > +
+> > > > +     rtc->dev =3D &pdev->dev;
+> > > > +
+> > > > +     rtc->rtc_map =3D syscon_node_to_regmap(rtc->dev->of_node->par=
+ent);
+> > > > +     if (IS_ERR(rtc->rtc_map))
+> > > > +             return PTR_ERR(rtc->rtc_map);
+> > > > +
+> > > > +     rtc->irq =3D platform_get_irq(pdev, 0);
+> > > > +     if (rtc->irq < 0)
+> > > > +             return rtc->irq;
+> > > > +
+> > > > +     ret =3D devm_request_irq(&pdev->dev, rtc->irq, cv1800_rtc_irq=
+_handler,
+> > > > +                            IRQF_TRIGGER_HIGH, "alarm", &pdev->dev=
+);
+> > > > +     if (ret)
+> > > > +             return dev_err_probe(&pdev->dev, ret,
+> > > > +                                  "cannot register interrupt handl=
+er\n");
+> > > > +
+> > > > +     rtc->clk =3D devm_clk_get(rtc->dev, NULL);
+> > > > +     if (IS_ERR(rtc->clk))
+> > > > +             return PTR_ERR(rtc->clk);
+> > > > +
+> > >
+> > > You are going to leak rtc->clk after the next call.
+> >
+> > I will release him at the appropriate time. And add the remove
+> > function to release.
+> >
+> > >
+> > > > +     rtc->clk =3D devm_clk_get_enabled(&pdev->dev, NULL);
+> > > > +     if (IS_ERR(rtc->clk))
+> > > > +             return dev_err_probe(&pdev->dev, PTR_ERR(rtc->clk),
+> > > > +                                  "clk not found\n");
+> > > > +
+> > > > +     platform_set_drvdata(pdev, rtc);
+> > > > +
+> > > > +     spin_lock_init(&rtc->rtc_lock);
+> > > > +
+> > > > +     rtc->rtc_dev =3D devm_rtc_device_register(&pdev->dev,
+> > > > +                                                             dev_n=
+ame(&pdev->dev),
+> > > > +                                                             &cv80=
+0b_rtc_ops,
+> > > > +                                                             THIS_=
+MODULE);
+> > > > +     if (IS_ERR(rtc->rtc_dev))
+> > > > +             return dev_err_probe(&pdev->dev, PTR_ERR(rtc->rtc_dev=
+),
+> > > > +                                  "can't register rtc device\n");
+> > >
+> > > Please use devm_rtc_allocate_device and devm_rtc_register_device
+> >
+> > ok,I will use it.
+>
+> Also you have to set the RTC range properly.
 
-diff --git a/drivers/iio/adc/rtq6056.c b/drivers/iio/adc/rtq6056.c
-index ad4cea6839b2..1bf43a90ca46 100644
---- a/drivers/iio/adc/rtq6056.c
-+++ b/drivers/iio/adc/rtq6056.c
-@@ -39,6 +39,16 @@
- #define RTQ6056_DEFAULT_CONFIG	0x4127
- #define RTQ6056_CONT_ALLON	7
- 
-+#define RTQ6059_DEFAULT_CONFIG	0x3C47
-+#define RTQ6059_VBUS_LSB_OFFSET	3
-+#define RTQ6059_AVG_BASE	8
-+
-+enum {
-+	RICHTEK_DEV_RTQ6056 = 0,
-+	RICHTEK_DEV_RTQ6059,
-+	RICHTEK_DEV_MAX
-+};
-+
- enum {
- 	RTQ6056_CH_VSHUNT = 0,
- 	RTQ6056_CH_VBUS,
-@@ -50,16 +60,29 @@ enum {
- enum {
- 	F_OPMODE = 0,
- 	F_VSHUNTCT,
-+	F_SADC = F_VSHUNTCT,
- 	F_VBUSCT,
-+	F_BADC = F_VBUSCT,
- 	F_AVG,
-+	F_PGA = F_AVG,
- 	F_RESET,
- 	F_MAX_FIELDS
- };
- 
-+struct richtek_dev_data {
-+	int dev_id;
-+	int default_conv_time;
-+	unsigned int default_config;
-+	unsigned int calib_coefficient;
-+	const struct reg_field *reg_fields;
-+	const struct iio_chan_spec *channels;
-+};
-+
- struct rtq6056_priv {
- 	struct device *dev;
- 	struct regmap *regmap;
- 	struct regmap_field *rm_fields[F_MAX_FIELDS];
-+	const struct richtek_dev_data *devdata;
- 	u32 shunt_resistor_uohm;
- 	int vshuntct_us;
- 	int vbusct_us;
-@@ -74,6 +97,14 @@ static const struct reg_field rtq6056_reg_fields[F_MAX_FIELDS] = {
- 	[F_RESET] = REG_FIELD(RTQ6056_REG_CONFIG, 15, 15),
- };
- 
-+static const struct reg_field rtq6059_reg_fields[F_MAX_FIELDS] = {
-+	[F_OPMODE] = REG_FIELD(RTQ6056_REG_CONFIG, 0, 2),
-+	[F_SADC] = REG_FIELD(RTQ6056_REG_CONFIG, 3, 6),
-+	[F_BADC] = REG_FIELD(RTQ6056_REG_CONFIG, 7, 10),
-+	[F_PGA]	= REG_FIELD(RTQ6056_REG_CONFIG, 11, 12),
-+	[F_RESET] = REG_FIELD(RTQ6056_REG_CONFIG, 15, 15),
-+};
-+
- static const struct iio_chan_spec rtq6056_channels[RTQ6056_MAX_CHANNEL + 1] = {
- 	{
- 		.type = IIO_VOLTAGE,
-@@ -151,10 +182,93 @@ static const struct iio_chan_spec rtq6056_channels[RTQ6056_MAX_CHANNEL + 1] = {
- 	IIO_CHAN_SOFT_TIMESTAMP(RTQ6056_MAX_CHANNEL),
- };
- 
-+/*
-+ * Difference between RTQ6056 and RTQ6059
-+ * - Fixed sampling conversion time
-+ * - Average sample numbers
-+ * - Channel scale
-+ * - calibration coefficient
-+ */
-+static const struct iio_chan_spec rtq6059_channels[RTQ6056_MAX_CHANNEL + 1] = {
-+	{
-+		.type = IIO_VOLTAGE,
-+		.indexed = 1,
-+		.channel = 0,
-+		.address = RTQ6056_REG_SHUNTVOLT,
-+		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
-+				      BIT(IIO_CHAN_INFO_SCALE) |
-+				      BIT(IIO_CHAN_INFO_SAMP_FREQ),
-+		.info_mask_shared_by_all = BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO),
-+		.info_mask_shared_by_all_available = BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO),
-+		.scan_index = 0,
-+		.scan_type = {
-+			.sign = 's',
-+			.realbits = 16,
-+			.storagebits = 16,
-+			.endianness = IIO_CPU,
-+		},
-+	},
-+	{
-+		.type = IIO_VOLTAGE,
-+		.indexed = 1,
-+		.channel = 1,
-+		.address = RTQ6056_REG_BUSVOLT,
-+		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
-+				      BIT(IIO_CHAN_INFO_SCALE) |
-+				      BIT(IIO_CHAN_INFO_SAMP_FREQ),
-+		.info_mask_shared_by_all = BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO),
-+		.info_mask_shared_by_all_available = BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO),
-+		.scan_index = 1,
-+		.scan_type = {
-+			.sign = 'u',
-+			.realbits = 16,
-+			.storagebits = 16,
-+			.endianness = IIO_CPU,
-+		},
-+	},
-+	{
-+		.type = IIO_POWER,
-+		.indexed = 1,
-+		.channel = 2,
-+		.address = RTQ6056_REG_POWER,
-+		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
-+				      BIT(IIO_CHAN_INFO_SCALE) |
-+				      BIT(IIO_CHAN_INFO_SAMP_FREQ),
-+		.info_mask_shared_by_all = BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO),
-+		.info_mask_shared_by_all_available = BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO),
-+		.scan_index = 2,
-+		.scan_type = {
-+			.sign = 'u',
-+			.realbits = 16,
-+			.storagebits = 16,
-+			.endianness = IIO_CPU,
-+		},
-+	},
-+	{
-+		.type = IIO_CURRENT,
-+		.indexed = 1,
-+		.channel = 3,
-+		.address = RTQ6056_REG_CURRENT,
-+		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
-+				      BIT(IIO_CHAN_INFO_SAMP_FREQ),
-+		.info_mask_shared_by_all = BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO),
-+		.info_mask_shared_by_all_available = BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO),
-+		.scan_index = 3,
-+		.scan_type = {
-+			.sign = 's',
-+			.realbits = 16,
-+			.storagebits = 16,
-+			.endianness = IIO_CPU,
-+		},
-+	},
-+	IIO_CHAN_SOFT_TIMESTAMP(RTQ6056_MAX_CHANNEL),
-+};
-+
- static int rtq6056_adc_read_channel(struct rtq6056_priv *priv,
- 				    struct iio_chan_spec const *ch,
- 				    int *val)
- {
-+	const struct richtek_dev_data *devdata = priv->devdata;
- 	struct device *dev = priv->dev;
- 	unsigned int addr = ch->address;
- 	unsigned int regval;
-@@ -168,10 +282,18 @@ static int rtq6056_adc_read_channel(struct rtq6056_priv *priv,
- 		return ret;
- 
- 	/* Power and VBUS is unsigned 16-bit, others are signed 16-bit */
--	if (addr == RTQ6056_REG_BUSVOLT || addr == RTQ6056_REG_POWER)
-+	switch (addr) {
-+	case RTQ6056_REG_BUSVOLT:
-+		if (devdata->dev_id == RICHTEK_DEV_RTQ6059)
-+			regval >>= RTQ6059_VBUS_LSB_OFFSET;
-+		fallthrough;
-+	case RTQ6056_REG_POWER:
- 		*val = regval;
--	else
-+		break;
-+	default:
- 		*val = sign_extend32(regval, 16);
-+		break;
-+	}
- 
- 	return IIO_VAL_INT;
- }
-@@ -199,6 +321,28 @@ static int rtq6056_adc_read_scale(struct iio_chan_spec const *ch, int *val,
- 	}
- }
- 
-+static int rtq6059_adc_read_scale(struct iio_chan_spec const *ch, int *val,
-+				  int *val2)
-+{
-+	switch (ch->address) {
-+	case RTQ6056_REG_SHUNTVOLT:
-+		/* VSHUNT lsb  10uV */
-+		*val = 10000;
-+		*val2 = 1000000;
-+		return IIO_VAL_FRACTIONAL;
-+	case RTQ6056_REG_BUSVOLT:
-+		/* VBUS lsb 4mV */
-+		*val = 4;
-+		return IIO_VAL_INT;
-+	case RTQ6056_REG_POWER:
-+		/* Power lsb 20mW */
-+		*val = 20;
-+		return IIO_VAL_INT;
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
- /*
-  * Sample frequency for channel VSHUNT and VBUS. The indices correspond
-  * with the bit value expected by the chip. And it can be found at
-@@ -248,6 +392,10 @@ static const int rtq6056_avg_sample_list[] = {
- 	1, 4, 16, 64, 128, 256, 512, 1024,
- };
- 
-+static const int rtq6059_avg_sample_list[] = {
-+	1, 2, 4, 8, 16, 32, 64, 128,
-+};
-+
- static int rtq6056_adc_set_average(struct rtq6056_priv *priv, int val)
- {
- 	unsigned int selector;
-@@ -268,6 +416,30 @@ static int rtq6056_adc_set_average(struct rtq6056_priv *priv, int val)
- 	return 0;
- }
- 
-+static int rtq6059_adc_set_average(struct rtq6056_priv *priv, int val)
-+{
-+	unsigned int selector;
-+	int ret;
-+
-+	if (val > 128 || val < 1)
-+		return -EINVAL;
-+
-+	/* The supported average sample is 2^x (x from 0 to 7) */
-+	selector = fls(val) - 1;
-+
-+	ret = regmap_field_write(priv->rm_fields[F_BADC],
-+				 RTQ6059_AVG_BASE + selector);
-+	if (ret)
-+		return ret;
-+
-+	ret = regmap_field_write(priv->rm_fields[F_SADC],
-+				 RTQ6059_AVG_BASE + selector);
-+
-+	priv->avg_sample = BIT(selector + 1);
-+
-+	return 0;
-+}
-+
- static int rtq6056_adc_get_sample_freq(struct rtq6056_priv *priv,
- 				       struct iio_chan_spec const *ch, int *val)
- {
-@@ -292,11 +464,15 @@ static int rtq6056_adc_read_raw(struct iio_dev *indio_dev,
- 				int *val2, long mask)
- {
- 	struct rtq6056_priv *priv = iio_priv(indio_dev);
-+	const struct richtek_dev_data *devdata = priv->devdata;
- 
- 	switch (mask) {
- 	case IIO_CHAN_INFO_RAW:
- 		return rtq6056_adc_read_channel(priv, chan, val);
- 	case IIO_CHAN_INFO_SCALE:
-+		if (devdata->dev_id == RICHTEK_DEV_RTQ6059)
-+			return rtq6059_adc_read_scale(chan, val, val2);
-+
- 		return rtq6056_adc_read_scale(chan, val, val2);
- 	case IIO_CHAN_INFO_OVERSAMPLING_RATIO:
- 		*val = priv->avg_sample;
-@@ -313,16 +489,28 @@ static int rtq6056_adc_read_avail(struct iio_dev *indio_dev,
- 				  const int **vals, int *type, int *length,
- 				  long mask)
- {
-+	struct rtq6056_priv *priv = iio_priv(indio_dev);
-+	const struct richtek_dev_data *devdata = priv->devdata;
-+
- 	switch (mask) {
- 	case IIO_CHAN_INFO_SAMP_FREQ:
-+		if (devdata->dev_id == RICHTEK_DEV_RTQ6059)
-+			return -EINVAL;
-+
- 		*vals = rtq6056_samp_freq_list;
- 		*type = IIO_VAL_INT;
- 		*length = ARRAY_SIZE(rtq6056_samp_freq_list);
- 		return IIO_AVAIL_LIST;
- 	case IIO_CHAN_INFO_OVERSAMPLING_RATIO:
--		*vals = rtq6056_avg_sample_list;
-+		if (devdata->dev_id == RICHTEK_DEV_RTQ6059) {
-+			*vals = rtq6059_avg_sample_list;
-+			*length = ARRAY_SIZE(rtq6059_avg_sample_list);
-+		} else {
-+			*vals = rtq6056_avg_sample_list;
-+			*length = ARRAY_SIZE(rtq6056_avg_sample_list);
-+		}
-+
- 		*type = IIO_VAL_INT;
--		*length = ARRAY_SIZE(rtq6056_avg_sample_list);
- 		return IIO_AVAIL_LIST;
- 	default:
- 		return -EINVAL;
-@@ -334,6 +522,7 @@ static int rtq6056_adc_write_raw(struct iio_dev *indio_dev,
- 				 int val2, long mask)
- {
- 	struct rtq6056_priv *priv = iio_priv(indio_dev);
-+	const struct richtek_dev_data *devdata = priv->devdata;
- 	int ret;
- 
- 	ret = iio_device_claim_direct_mode(indio_dev);
-@@ -342,10 +531,16 @@ static int rtq6056_adc_write_raw(struct iio_dev *indio_dev,
- 
- 	switch (mask) {
- 	case IIO_CHAN_INFO_SAMP_FREQ:
--		ret = rtq6056_adc_set_samp_freq(priv, chan, val);
-+		if (devdata->dev_id == RICHTEK_DEV_RTQ6059)
-+			ret = -EINVAL;
-+		else
-+			ret = rtq6056_adc_set_samp_freq(priv, chan, val);
- 		break;
- 	case IIO_CHAN_INFO_OVERSAMPLING_RATIO:
--		ret = rtq6056_adc_set_average(priv, val);
-+		if (devdata->dev_id == RICHTEK_DEV_RTQ6059)
-+			ret = rtq6059_adc_set_average(priv, val);
-+		else
-+			ret = rtq6056_adc_set_average(priv, val);
- 		break;
- 	default:
- 		ret = -EINVAL;
-@@ -374,6 +569,7 @@ static int rtq6056_adc_read_label(struct iio_dev *indio_dev,
- static int rtq6056_set_shunt_resistor(struct rtq6056_priv *priv,
- 				      int resistor_uohm)
- {
-+	const struct richtek_dev_data *devdata = priv->devdata;
- 	unsigned int calib_val;
- 	int ret;
- 
-@@ -382,8 +578,8 @@ static int rtq6056_set_shunt_resistor(struct rtq6056_priv *priv,
- 		return -EINVAL;
- 	}
- 
--	/* calibration = 5120000 / (Rshunt (uOhm) * current lsb (1mA)) */
--	calib_val = 5120000 / resistor_uohm;
-+	/* calibration = coefficient / (Rshunt (uOhm) * current lsb (1mA)) */
-+	calib_val = devdata->calib_coefficient / resistor_uohm;
- 	ret = regmap_write(priv->regmap, RTQ6056_REG_CALIBRATION, calib_val);
- 	if (ret)
- 		return ret;
-@@ -445,11 +641,16 @@ static const struct iio_info rtq6056_info = {
- 	.read_label = rtq6056_adc_read_label,
- };
- 
-+static const struct iio_info rtq6059_info = {
-+	.attrs = &rtq6056_attribute_group,
-+};
-+
- static irqreturn_t rtq6056_buffer_trigger_handler(int irq, void *p)
- {
- 	struct iio_poll_func *pf = p;
- 	struct iio_dev *indio_dev = pf->indio_dev;
- 	struct rtq6056_priv *priv = iio_priv(indio_dev);
-+	const struct richtek_dev_data *devdata = priv->devdata;
- 	struct device *dev = priv->dev;
- 	struct {
- 		u16 vals[RTQ6056_MAX_CHANNEL];
-@@ -469,6 +670,10 @@ static irqreturn_t rtq6056_buffer_trigger_handler(int irq, void *p)
- 		if (ret)
- 			goto out;
- 
-+		if (devdata->dev_id == RICHTEK_DEV_RTQ6059 &&
-+		    addr == RTQ6056_REG_BUSVOLT)
-+			raw >>= RTQ6059_VBUS_LSB_OFFSET;
-+
- 		data.vals[i++] = raw;
- 	}
- 
-@@ -528,20 +733,26 @@ static int rtq6056_probe(struct i2c_client *i2c)
- 	struct rtq6056_priv *priv;
- 	struct device *dev = &i2c->dev;
- 	struct regmap *regmap;
-+	const struct richtek_dev_data *devdata;
- 	unsigned int vendor_id, shunt_resistor_uohm;
- 	int ret;
- 
- 	if (!i2c_check_functionality(i2c->adapter, I2C_FUNC_SMBUS_WORD_DATA))
- 		return -EOPNOTSUPP;
- 
-+	devdata = device_get_match_data(dev);
-+	if (!devdata)
-+		return dev_err_probe(dev, -EINVAL, "Invalid dev data\n");
-+
- 	indio_dev = devm_iio_device_alloc(dev, sizeof(*priv));
- 	if (!indio_dev)
- 		return -ENOMEM;
- 
- 	priv = iio_priv(indio_dev);
- 	priv->dev = dev;
--	priv->vshuntct_us = priv->vbusct_us = 1037;
-+	priv->vshuntct_us = priv->vbusct_us = devdata->default_conv_time;
- 	priv->avg_sample = 1;
-+	priv->devdata = devdata;
- 	i2c_set_clientdata(i2c, priv);
- 
- 	regmap = devm_regmap_init_i2c(i2c, &rtq6056_regmap_config);
-@@ -556,20 +767,26 @@ static int rtq6056_probe(struct i2c_client *i2c)
- 		return dev_err_probe(dev, ret,
- 				     "Failed to get manufacturer info\n");
- 
-+	/* For RTQ6059, this vendor id value is meaningless */
- 	if (vendor_id != RTQ6056_VENDOR_ID)
- 		return dev_err_probe(dev, -ENODEV,
- 				     "Invalid vendor id 0x%04x\n", vendor_id);
- 
- 	ret = devm_regmap_field_bulk_alloc(dev, regmap, priv->rm_fields,
--					   rtq6056_reg_fields, F_MAX_FIELDS);
-+					   devdata->reg_fields, F_MAX_FIELDS);
- 	if (ret)
- 		return dev_err_probe(dev, ret, "Failed to init regmap field\n");
- 
- 	/*
-+	 * RTQ6053 & RTQ6056:
- 	 * By default, configure average sample as 1, bus and shunt conversion
- 	 * time as 1037 microsecond, and operating mode to all on.
-+	 *
-+	 * RTQ6059:
-+	 * By default, configure average sample as 1, bus and shunt conversion
-+	 * time as 532 microsecond, and operating mode to all on.
- 	 */
--	ret = regmap_write(regmap, RTQ6056_REG_CONFIG, RTQ6056_DEFAULT_CONFIG);
-+	ret = regmap_write(regmap, RTQ6056_REG_CONFIG, devdata->default_config);
- 	if (ret)
- 		return dev_err_probe(dev, ret,
- 				     "Failed to enable continuous sensing\n");
-@@ -598,8 +815,8 @@ static int rtq6056_probe(struct i2c_client *i2c)
- 
- 	indio_dev->name = "rtq6056";
- 	indio_dev->modes = INDIO_DIRECT_MODE;
--	indio_dev->channels = rtq6056_channels;
--	indio_dev->num_channels = ARRAY_SIZE(rtq6056_channels);
-+	indio_dev->channels = devdata->channels;
-+	indio_dev->num_channels = RTQ6056_MAX_CHANNEL + 1;
- 	indio_dev->info = &rtq6056_info;
- 
- 	ret = devm_iio_triggered_buffer_setup(dev, indio_dev, NULL,
-@@ -640,8 +857,28 @@ static int rtq6056_runtime_resume(struct device *dev)
- static DEFINE_RUNTIME_DEV_PM_OPS(rtq6056_pm_ops, rtq6056_runtime_suspend,
- 				 rtq6056_runtime_resume, NULL);
- 
-+static const struct richtek_dev_data rtq6056_devdata = {
-+	.dev_id = RICHTEK_DEV_RTQ6056,
-+	.default_conv_time = 1037,
-+	.calib_coefficient = 5120000,
-+	.default_config = RTQ6056_DEFAULT_CONFIG,
-+	.reg_fields = rtq6056_reg_fields,
-+	.channels = rtq6056_channels,
-+};
-+
-+static const struct richtek_dev_data rtq6059_devdata = {
-+	.dev_id = RICHTEK_DEV_RTQ6059,
-+	.default_conv_time = 532,
-+	.calib_coefficient = 40960000,
-+	.default_config = RTQ6059_DEFAULT_CONFIG,
-+	.reg_fields = rtq6059_reg_fields,
-+	.channels = rtq6059_channels,
-+};
-+
- static const struct of_device_id rtq6056_device_match[] = {
--	{ .compatible = "richtek,rtq6056" },
-+	{ .compatible = "richtek,rtq6053", .data = &rtq6056_devdata },
-+	{ .compatible = "richtek,rtq6056", .data = &rtq6056_devdata },
-+	{ .compatible = "richtek,rtq6059", .data = &rtq6059_devdata },
- 	{}
- };
- MODULE_DEVICE_TABLE(of, rtq6056_device_match);
--- 
-2.34.1
+Thanks,I will fix it.
 
+Best regards,
+Jingbao Qiu
+
+>
+>
+> --
+> Alexandre Belloni, co-owner and COO, Bootlin
+> Embedded Linux and Kernel engineering
+> https://bootlin.com
 
