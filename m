@@ -1,174 +1,99 @@
-Return-Path: <devicetree+bounces-28775-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28776-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0EE3381F6EC
-	for <lists+devicetree@lfdr.de>; Thu, 28 Dec 2023 11:36:33 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0DB2281F6F6
+	for <lists+devicetree@lfdr.de>; Thu, 28 Dec 2023 11:43:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 332211C23340
-	for <lists+devicetree@lfdr.de>; Thu, 28 Dec 2023 10:36:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BD3A228158B
+	for <lists+devicetree@lfdr.de>; Thu, 28 Dec 2023 10:42:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 367E063CD;
-	Thu, 28 Dec 2023 10:36:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 275E66AA4;
+	Thu, 28 Dec 2023 10:42:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="a5SOfthJ"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="XagBvT/Z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60B076FBA
-	for <devicetree@vger.kernel.org>; Thu, 28 Dec 2023 10:36:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-336c8ab0b20so2567853f8f.1
-        for <devicetree@vger.kernel.org>; Thu, 28 Dec 2023 02:36:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1703759774; x=1704364574; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=/EnCFpXask+wrGeODC+ZosHkEJo+pMn4C1KjjQ/lxZ4=;
-        b=a5SOfthJ9RX/6qdWFbW3oVOLTWinJSSk+S83ot6OtTy4vrzFdDJXaq53NfHyRed4Bf
-         iJq6VFu9hOkxFhKT5PRhz8YFskffFRtqRWEUQACMWywsrdAnNOPVPG6WrsxPepZ2/RLj
-         CvZQY7o9IUkTlyZshrb8W+sN0gtRDzcPVstwyi2PFiDPTgbqM2V1ewamt9BQ9XBwOROo
-         WPb3Ow7tXV0SLSsXlU2bEEVCTZUCTPALosUgGSXvRArvWobABUEi8hGHahB3O9XYQV6J
-         oC4vjsh7Qr1AxHy2TZwFZlSfdMZ5eQKxJRgjPexMMXgm+pazQNLhkmPeCe+GkL7uqEgg
-         Jlsw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703759774; x=1704364574;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/EnCFpXask+wrGeODC+ZosHkEJo+pMn4C1KjjQ/lxZ4=;
-        b=KRV6bSqK0jgr1j2AzKq5GX2kGejKqLIZLnmyqqjxliPHOUcJ0DWf3ASatTFT4ROv/H
-         Jn0vwm9/ZDV/HLh1DM7N15a95Q3saZ48XsIJTsM5etMxWr2lidBHmCh+tZL2wLKuAzTY
-         4Bzk44VdyxH7pPkMzeF+k8y5MRJmoUMq854RRN54WNxLXPhFxQr82UM1kaSTKW58PjnG
-         G8MNdaXY3+UTcCfPJs8ory/e/70Khm9iT22fjKqNyhi9WNAWZuJQTiEygWLjyphEakw9
-         sDoALBuR+6eg52KRumzyruCeM3BsmBhTQjy4hO3bUtPDma8vnKi1ZHoB5J0MlTYIL0E7
-         m8kQ==
-X-Gm-Message-State: AOJu0YyoN/Z/30A+KfC1Jp965uTEcCyIGeJb5oy5UhgoPnsTsJaBIXOD
-	lQ5eevyh54amj9j8rv9gXzn2toB3aUHYZg==
-X-Google-Smtp-Source: AGHT+IE8PY5YFJm8dqiMIFOl7s3utUyAOPOwC6e8mQL5HC/d9hHWw0BW/MG83dyRpZ7qM5Ol7vvACw==
-X-Received: by 2002:a5d:4288:0:b0:336:8848:e7e5 with SMTP id k8-20020a5d4288000000b003368848e7e5mr5254180wrq.15.1703759774630;
-        Thu, 28 Dec 2023 02:36:14 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id a6-20020adfed06000000b003366796301csm16899111wro.0.2023.12.28.02.36.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 28 Dec 2023 02:36:14 -0800 (PST)
-Message-ID: <08623087-bf1c-411e-87de-d40ffab6e2bc@linaro.org>
-Date: Thu, 28 Dec 2023 11:36:12 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 722CE63DA;
+	Thu, 28 Dec 2023 10:42:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1703760175; x=1735296175;
+  h=message-id:date:mime-version:to:cc:references:from:
+   subject:in-reply-to:content-transfer-encoding;
+  bh=WY3yN9WgNfUdqLLgZpbcv5qQY5jc6G9ySIJZSYYAyew=;
+  b=XagBvT/Zcui/Hv08FxxDnnSbRbaRiAx8ZKC31a09SMgyz694KI5VLcjQ
+   1Orw2ZhInIzknv4vkfCN+edd4PpqMuSGpGcxdluy7z8/12QA/UZq981IC
+   YL9UTY+ltxyahVaSQM1ZdZc7UOFjioZsET4lKJ3ggUCeeTzPdt3WrseWq
+   ahA8zv+u3Vi1U5JzNb+gV2jHewnoKDbvWCQodVC/3IChTS9Z0Y0/B0e4L
+   ziJsUbK3ZeOWZYotCB0HHQMXgckgIPjRJd6wdEjTbFU6bIvCX/Pu1hAri
+   bWE/veS3WFZunJ7GuzyIsigmHTdNCbYNFQWXKERV2z2hr5rFFtwoDyBfi
+   A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10936"; a="400345434"
+X-IronPort-AV: E=Sophos;i="6.04,311,1695711600"; 
+   d="scan'208";a="400345434"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Dec 2023 02:42:54 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10936"; a="897169005"
+X-IronPort-AV: E=Sophos;i="6.04,311,1695711600"; 
+   d="scan'208";a="897169005"
+Received: from mattu-haswell.fi.intel.com (HELO [10.237.72.199]) ([10.237.72.199])
+  by fmsmga002.fm.intel.com with ESMTP; 28 Dec 2023 02:42:50 -0800
+Message-ID: <1718f25d-3274-3e4d-0cdf-72fda8788e39@linux.intel.com>
+Date: Thu, 28 Dec 2023 12:44:15 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] dt-bindings: input: Add Himax HX83102J touchscreen
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.13.0
 Content-Language: en-US
-To: Allen_Lin <allencl_lin@hotmail.com>, dmitry.torokhov@gmail.com,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- jikos@kernel.org, benjamin.tissoires@redhat.com,
- linux-input@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20231227053509.894642-1-allencl_lin@hotmail.com>
- <SEZPR06MB56080820EE51CBAE9C6B6B3E9E9FA@SEZPR06MB5608.apcprd06.prod.outlook.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <SEZPR06MB56080820EE51CBAE9C6B6B3E9E9FA@SEZPR06MB5608.apcprd06.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
+To: Chunfeng Yun <chunfeng.yun@mediatek.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: Conor Dooley <conor+dt@kernel.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ Mathias Nyman <mathias.nyman@intel.com>, linux-usb@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Eddie Hung <eddie.hung@mediatek.com>, Macpaul Lin <macpaul.lin@mediatek.com>
+References: <20231227060316.8539-1-chunfeng.yun@mediatek.com>
+From: Mathias Nyman <mathias.nyman@linux.intel.com>
+Subject: Re: [PATCH v4 1/3] dt-bindings: usb: mtk-xhci: add a property for
+ Gen1 isoc-in transfer issue
+In-Reply-To: <20231227060316.8539-1-chunfeng.yun@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 27/12/2023 06:35, Allen_Lin wrote:
-> Add the HX83102j touchscreen device tree bindings documents.
-> 
-> Signed-off-by: Allen_Lin <allencl_lin@hotmail.com>
-> ---
+Hi
 
-Where is the changelog? There is no cover letter attached, so changelog
-is supposed to be here. There were several comments, so does it mean you
-ignored them?
+On 27.12.2023 8.03, Chunfeng Yun wrote:
+> For Gen1 isoc-in endpoint on controller before about SSUSB IPM v1.6.0, it
+> still send out unexpected ACK after receiving a short packet in burst
+> transfer, this will cause an exception on connected device, specially for
+> a 4k camera.
+> Add a quirk property "rx-fifo-depth" to work around this hardware issue,
+> prefer to use 3k bytes;
+> The side-effect is that may cause performance drop about 10%, including
+> bulk transfer.
 
+Is it be possible to detect those Mediatek xHC versions that need this
+workaround in the xhci-mtk driver directly?
 
->  .../bindings/input/himax,hx83102j.yaml        | 65 +++++++++++++++++++
->  MAINTAINERS                                   |  6 ++
->  2 files changed, 71 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/input/himax,hx83102j.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/input/himax,hx83102j.yaml b/Documentation/devicetree/bindings/input/himax,hx83102j.yaml
-> new file mode 100644
-> index 000000000000..872b478c5753
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/input/himax,hx83102j.yaml
-> @@ -0,0 +1,65 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/input/himax,hx83102j.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Himax hx83102j touchscreen
-> +
+This way we could avoid passing a new "rx-fifo-depth" property to it.
 
-...
-
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    spi {
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +      hid-himax-spi@0 {
-
-Still not the name I asked - it should be generic, like touchscreen.
-
-Best regards,
-Krzysztof
+Thanks
+Mathias
 
 
