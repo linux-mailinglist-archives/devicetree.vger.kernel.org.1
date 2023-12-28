@@ -1,64 +1,54 @@
-Return-Path: <devicetree+bounces-28859-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28860-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D78C281FBF7
-	for <lists+devicetree@lfdr.de>; Fri, 29 Dec 2023 00:25:29 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B93BB81FC17
+	for <lists+devicetree@lfdr.de>; Fri, 29 Dec 2023 00:53:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 09C601C21E08
-	for <lists+devicetree@lfdr.de>; Thu, 28 Dec 2023 23:25:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5CEA71F21186
+	for <lists+devicetree@lfdr.de>; Thu, 28 Dec 2023 23:53:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76AC510A00;
-	Thu, 28 Dec 2023 23:25:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52EFE10A05;
+	Thu, 28 Dec 2023 23:53:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JD5uAs/1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bmailout3.hostsharing.net (bmailout3.hostsharing.net [176.9.242.62])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 264DD1097C;
-	Thu, 28 Dec 2023 23:25:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=wunner.de
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=h08.hostsharing.net
-Received: from h08.hostsharing.net (h08.hostsharing.net [83.223.95.28])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256
-	 client-signature RSA-PSS (4096 bits) client-digest SHA256)
-	(Client CN "*.hostsharing.net", Issuer "RapidSSL TLS RSA CA G1" (verified OK))
-	by bmailout3.hostsharing.net (Postfix) with ESMTPS id EECC2100D9410;
-	Fri, 29 Dec 2023 00:25:11 +0100 (CET)
-Received: by h08.hostsharing.net (Postfix, from userid 100393)
-	id B66B4232130; Fri, 29 Dec 2023 00:25:11 +0100 (CET)
-Date: Fri, 29 Dec 2023 00:25:11 +0100
-From: Lukas Wunner <lukas@wunner.de>
-To: Lino Sanfilippo <LinoSanfilippo@gmx.de>
-Cc: Christoph Niedermaier <cniedermaier@dh-electronics.com>,
-	Crescent CY Hsieh <crescentcy.hsieh@moxa.com>,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2113310A00;
+	Thu, 28 Dec 2023 23:53:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 36F3EC433C7;
+	Thu, 28 Dec 2023 23:53:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1703807630;
+	bh=AtXCWBZ3/hv7kak8skJj92km/jnX8jl2+Cn2Spna3ts=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=JD5uAs/1LZEK6k8suyobstsdyxgvjmREdGq1Ruc1dPJ8Cb1dReom3Z6Rhz4IaTFAU
+	 IbD1wsLGISDXayB2Wz4VOZ6uwj+uWdtGhrAguNsvSJn5c5eC1/hS2cgpNHjgrNvaaB
+	 T/j9Ru3/2cuWJsXRq6Q3JQVTa1gBpCf8JiR4NxnbubfIYnrrTHN/M1dOwKMHxYD339
+	 Ibj3wklQoo0bUgX02Y1yTNCIOQj6TDixFnRfZeHcQ/aGKWhRmdwlh983iyE2kUTm5R
+	 UnJnaqtZg8qh6orsRYd013WT9d4RGQKx3qPNzwd73/3kdSZ0a4nBu0Ss9ISkrW/yj+
+	 bmK1XF7GhL1tw==
+Date: Thu, 28 Dec 2023 17:53:48 -0600
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado <nfraprado@collabora.com>
+Cc: Shuah Khan <shuah@kernel.org>,
 	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>,
-	Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>,
-	"brenda.streiff@ni.com" <brenda.streiff@ni.com>,
-	Tomas Paukrt <tomaspaukrt@email.cz>
-Subject: Re: [PATCH 1/2] dt-bindings: serial: rs485: add rs485-mux-gpios
- binding
-Message-ID: <20231228232511.GA19291@wunner.de>
-References: <3b8548b1-b8a9-0c9e-4040-5cfda06a85c6@gmx.de>
- <ec66d25162de4cbc92720df1e7008fe8@dh-electronics.com>
- <5c140498-69e3-4187-8703-db0c41e7ca89@gmx.de>
- <fe28eb93-daa1-41af-a005-f21aa87e1984@gmx.de>
- <ZXcJr4VS_uGr_6TV@smile.fi.intel.com>
- <ZXrX4mQXPLum0jL3@moxa-ThinkCentre-M90t>
- <b35730df8288469fbaf67b5ceae4eece@dh-electronics.com>
- <20231221155305.GA13673@wunner.de>
- <f41f5ddcb52140b6a579043a5abce751@dh-electronics.com>
- <0ec4c423-3d18-4a29-b78e-938366ece117@gmx.de>
+	Bjorn Helgaas <bhelgaas@google.com>, kernelci@lists.linux.dev,
+	kernel@collabora.com, Tim Bird <Tim.Bird@sony.com>,
+	linux-pci@vger.kernel.org, David Gow <davidgow@google.com>,
+	linux-kselftest@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+	Doug Anderson <dianders@chromium.org>, linux-usb@vger.kernel.org,
+	Saravana Kannan <saravanak@google.com>,
+	Dan Carpenter <dan.carpenter@linaro.org>,
+	Guenter Roeck <groeck@chromium.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [RFC PATCH v3 0/3] Add test to verify probe of devices from
+ discoverable busses
+Message-ID: <20231228235348.GA1559485@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,45 +57,16 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <0ec4c423-3d18-4a29-b78e-938366ece117@gmx.de>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20231227123643.52348-1-nfraprado@collabora.com>
 
-On Sat, Dec 23, 2023 at 02:40:58PM +0100, Lino Sanfilippo wrote:
-> On 23.12.23 13:49, Christoph Niedermaier wrote:
-> > From: Lukas Wunner [mailto:lukas@wunner.de]
-> > Sent: Thursday, December 21, 2023 4:53 PM
-> > > Well why don't we just allow enabling or disabling RS-485 termination
-> > > independently from the SER_RS485_ENABLED bit in struct serial_rs485?
-> > >
-> > > Just let the user issue a TIOCSRS485 ioctl to toggle termination even
-> > > if in RS-232 mode and use that mode for RS-422.
-> >
-> > Sounds not bad. The termination should only depend on whether the GPIO is
-> > given or not.
-> >
-> > Irrespective of this, I think the Linos idea of an RS-422 mode is not bad.
-> > This allows you to take care of special features that were previously
-> > overlooked. For example, hardware flow control can be switched off so that
-> > this does not cause any problems.
-> 
-> Also note, that RS232 and RS422 may NOT always be the same from driver
-> perspective.
-> Take a look at 8250_excar.c for example. That driver has to configure
-> the hardware accordingly when switching from RS232 to RS422
-> (see iot2040_rs485_config()).
+I have no opinion about the patches themselves, but just a heads-up
+that "busses" may be regarded as a misspelling of "buses", e.g.,
+https://lore.kernel.org/r/20231223184720.25645-1-tintinm2017@gmail.com,
+I'm guessing because codespell complains about it.
 
-Actually it seems there are a bunch of GPIOs on the IOT2040 board
-(called MPIO instead of GPIO by the driver).  See the documentation
-of the wiring at line 87 in drivers/tty/serial/8250/8250_exar.c.
+Git grep says there are almost as many instances of "busses" as
+"buses" in the kernel, so I don't go out of my way to change them.
+Just FYI, doesn't matter to me either way.
 
-So "configure the hardware" seems to just boil down to toggling the
-right GPIO (aka MPIO) pins to mux the UART signals to the right
-(RS232/RS485/RS422) transceiver.
-
-IOT2040 is an ACPI-based platform, so no devicetree to describe
-the RS232/RS485/RS422 mux GPIOs, but the underlying concept is the same.
-
-Thanks,
-
-Lukas
+Bjorn
 
