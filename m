@@ -1,65 +1,64 @@
-Return-Path: <devicetree+bounces-28774-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28775-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0086981F6E1
-	for <lists+devicetree@lfdr.de>; Thu, 28 Dec 2023 11:29:48 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0EE3381F6EC
+	for <lists+devicetree@lfdr.de>; Thu, 28 Dec 2023 11:36:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AB5F9281511
-	for <lists+devicetree@lfdr.de>; Thu, 28 Dec 2023 10:29:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 332211C23340
+	for <lists+devicetree@lfdr.de>; Thu, 28 Dec 2023 10:36:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E723163C6;
-	Thu, 28 Dec 2023 10:29:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 367E063CD;
+	Thu, 28 Dec 2023 10:36:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="sCXuIXUH"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="a5SOfthJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A6206FA1
-	for <devicetree@vger.kernel.org>; Thu, 28 Dec 2023 10:29:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60B076FBA
+	for <devicetree@vger.kernel.org>; Thu, 28 Dec 2023 10:36:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-40d60c49ee7so8722845e9.0
-        for <devicetree@vger.kernel.org>; Thu, 28 Dec 2023 02:29:42 -0800 (PST)
+Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-336c8ab0b20so2567853f8f.1
+        for <devicetree@vger.kernel.org>; Thu, 28 Dec 2023 02:36:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1703759381; x=1704364181; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=Z19/VdFEt1xtQwSgkxGkwB2KhGw+2oZZfLaJJcNz5Hk=;
-        b=sCXuIXUHb5AdixmjbMiL7gQNzsE2PWL3SefTQlTr5BIqkUhj3cw6F3bCO+qclnw3Fg
-         lWtjAINQ2O4GBeGkY6XYQqDwOQRjIZDkyoVk4taTiThXPKHzd+smt/piZWS3WHaV869q
-         390ItcV7x5cagk5cfKM0bGL0F6nvSnr5Pad3cHOLOvke8ITt8/yypASqKTiBvRIEvsaa
-         29RlraAwUt7Ui7CtMrbucbCUz5GQeFFkB18+VUx+VBhH3wBb1zVeL8JYsXTVNAUZ6Ch8
-         xkyXeZ0j76+iy0CJKkaQJb7RhwYD++ToLEz8IFaocjwnbsG7Dp/K2tGE5/d8NvSCiHTh
-         DOdA==
+        d=linaro.org; s=google; t=1703759774; x=1704364574; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=/EnCFpXask+wrGeODC+ZosHkEJo+pMn4C1KjjQ/lxZ4=;
+        b=a5SOfthJ9RX/6qdWFbW3oVOLTWinJSSk+S83ot6OtTy4vrzFdDJXaq53NfHyRed4Bf
+         iJq6VFu9hOkxFhKT5PRhz8YFskffFRtqRWEUQACMWywsrdAnNOPVPG6WrsxPepZ2/RLj
+         CvZQY7o9IUkTlyZshrb8W+sN0gtRDzcPVstwyi2PFiDPTgbqM2V1ewamt9BQ9XBwOROo
+         WPb3Ow7tXV0SLSsXlU2bEEVCTZUCTPALosUgGSXvRArvWobABUEi8hGHahB3O9XYQV6J
+         oC4vjsh7Qr1AxHy2TZwFZlSfdMZ5eQKxJRgjPexMMXgm+pazQNLhkmPeCe+GkL7uqEgg
+         Jlsw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703759381; x=1704364181;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Z19/VdFEt1xtQwSgkxGkwB2KhGw+2oZZfLaJJcNz5Hk=;
-        b=c1MxZjg6DdReXtqKIcUBCpTcvP1MZqPXz0KG/mMRlWbPT62lyv4DyGKHP2wCsWvoUu
-         wZ4eheYXefXDg7eYi6yiDRfg+o30Eqg/yE1ZMWhTEjqSLNdZJCQG/zuDKNSyDJbaXn0l
-         yCidqeYdZAOobIRpDfruSX0dirWSfrtxRd08Uf1hq3d+Q7dX1zbkeW9j7UaBRYATwPq+
-         r3avL4nHrYXUuDVMinUP0oS296N8WzlQ1FMnYKAOmHo30sxm6yHpAUFXNwK6sf4OXBLR
-         OJWuVlVU4KDhbrFN0TPHl+r/uFa0XNigeivSRRMDbISyMI+oPHEaSsCePFYWX7i/tlYU
-         xmtg==
-X-Gm-Message-State: AOJu0Yx73F1zE3D9ZN5Naxw4ErIL0PYDmUrke+64jOIcWSuMKRgVz0Pc
-	NHAsQ5ot3c78S9GZCNcI4pqZvFVa7YjZfA==
-X-Google-Smtp-Source: AGHT+IHoZhvjjDTAWg3QxYfjUFZju28DcA5vl1IG7yFgTuayPhfKiZtk4ew/pfo6TUh1+zd8ssT58A==
-X-Received: by 2002:a05:600c:c0e:b0:40d:5dac:f1ce with SMTP id fm14-20020a05600c0c0e00b0040d5dacf1cemr1206238wmb.96.1703759380849;
-        Thu, 28 Dec 2023 02:29:40 -0800 (PST)
+        d=1e100.net; s=20230601; t=1703759774; x=1704364574;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=/EnCFpXask+wrGeODC+ZosHkEJo+pMn4C1KjjQ/lxZ4=;
+        b=KRV6bSqK0jgr1j2AzKq5GX2kGejKqLIZLnmyqqjxliPHOUcJ0DWf3ASatTFT4ROv/H
+         Jn0vwm9/ZDV/HLh1DM7N15a95Q3saZ48XsIJTsM5etMxWr2lidBHmCh+tZL2wLKuAzTY
+         4Bzk44VdyxH7pPkMzeF+k8y5MRJmoUMq854RRN54WNxLXPhFxQr82UM1kaSTKW58PjnG
+         G8MNdaXY3+UTcCfPJs8ory/e/70Khm9iT22fjKqNyhi9WNAWZuJQTiEygWLjyphEakw9
+         sDoALBuR+6eg52KRumzyruCeM3BsmBhTQjy4hO3bUtPDma8vnKi1ZHoB5J0MlTYIL0E7
+         m8kQ==
+X-Gm-Message-State: AOJu0YyoN/Z/30A+KfC1Jp965uTEcCyIGeJb5oy5UhgoPnsTsJaBIXOD
+	lQ5eevyh54amj9j8rv9gXzn2toB3aUHYZg==
+X-Google-Smtp-Source: AGHT+IE8PY5YFJm8dqiMIFOl7s3utUyAOPOwC6e8mQL5HC/d9hHWw0BW/MG83dyRpZ7qM5Ol7vvACw==
+X-Received: by 2002:a5d:4288:0:b0:336:8848:e7e5 with SMTP id k8-20020a5d4288000000b003368848e7e5mr5254180wrq.15.1703759774630;
+        Thu, 28 Dec 2023 02:36:14 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id ay14-20020a05600c1e0e00b0040c6ab53cd2sm27619659wmb.10.2023.12.28.02.29.39
+        by smtp.gmail.com with ESMTPSA id a6-20020adfed06000000b003366796301csm16899111wro.0.2023.12.28.02.36.13
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 28 Dec 2023 02:29:40 -0800 (PST)
-Message-ID: <662833e4-fd2a-481c-9d40-5e691d9a0cfa@linaro.org>
-Date: Thu, 28 Dec 2023 11:29:38 +0100
+        Thu, 28 Dec 2023 02:36:14 -0800 (PST)
+Message-ID: <08623087-bf1c-411e-87de-d40ffab6e2bc@linaro.org>
+Date: Thu, 28 Dec 2023 11:36:12 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,28 +66,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/5] dt-bindings: crypto: Add Tegra Security Engine
-To: Akhil R <akhilrajeev@nvidia.com>,
- "herbert@gondor.apana.org.au" <herbert@gondor.apana.org.au>,
- "davem@davemloft.net" <davem@davemloft.net>,
- "robh+dt@kernel.org" <robh+dt@kernel.org>,
- "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
- Jonathan Hunter <jonathanh@nvidia.com>,
- "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
- "will@kernel.org" <will@kernel.org>, Mikko Perttunen
- <mperttunen@nvidia.com>,
- "linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "krzk@kernel.org" <krzk@kernel.org>
-References: <20231219125614.33062-1-akhilrajeev@nvidia.com>
- <20231219125614.33062-2-akhilrajeev@nvidia.com>
- <fe87e220-560b-4d47-bc7f-cc7104d40921@linaro.org>
- <SJ1PR12MB63397127C6E6D1289FA7E464C09EA@SJ1PR12MB6339.namprd12.prod.outlook.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: input: Add Himax HX83102J touchscreen
 Content-Language: en-US
+To: Allen_Lin <allencl_lin@hotmail.com>, dmitry.torokhov@gmail.com,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ jikos@kernel.org, benjamin.tissoires@redhat.com,
+ linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20231227053509.894642-1-allencl_lin@hotmail.com>
+ <SEZPR06MB56080820EE51CBAE9C6B6B3E9E9FA@SEZPR06MB5608.apcprd06.prod.outlook.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -134,24 +120,53 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <SJ1PR12MB63397127C6E6D1289FA7E464C09EA@SJ1PR12MB6339.namprd12.prod.outlook.com>
+In-Reply-To: <SEZPR06MB56080820EE51CBAE9C6B6B3E9E9FA@SEZPR06MB5608.apcprd06.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 28/12/2023 10:33, Akhil R wrote:
->>> +properties:
->>> +  compatible:
->>> +    const: nvidia,tegra234-se4-hash
->>
->> What is se4?
->>
->> Anyway, filename like compatible.
-> Similar to the above, the hardware name is SE4.
+On 27/12/2023 06:35, Allen_Lin wrote:
+> Add the HX83102j touchscreen device tree bindings documents.
 > 
-> nvidia,tegra234-se-aes and nvidia,tegra234-se-hash does look good to me. But I am a bit concerned
-> about the ABI breakage in case, we need a different compatible for the remaining instance.
+> Signed-off-by: Allen_Lin <allencl_lin@hotmail.com>
+> ---
 
-Isn't this a new device? What ABI breakage? What would be affected?
+Where is the changelog? There is no cover letter attached, so changelog
+is supposed to be here. There were several comments, so does it mean you
+ignored them?
+
+
+>  .../bindings/input/himax,hx83102j.yaml        | 65 +++++++++++++++++++
+>  MAINTAINERS                                   |  6 ++
+>  2 files changed, 71 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/input/himax,hx83102j.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/input/himax,hx83102j.yaml b/Documentation/devicetree/bindings/input/himax,hx83102j.yaml
+> new file mode 100644
+> index 000000000000..872b478c5753
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/input/himax,hx83102j.yaml
+> @@ -0,0 +1,65 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/input/himax,hx83102j.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Himax hx83102j touchscreen
+> +
+
+...
+
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    spi {
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +      hid-himax-spi@0 {
+
+Still not the name I asked - it should be generic, like touchscreen.
 
 Best regards,
 Krzysztof
