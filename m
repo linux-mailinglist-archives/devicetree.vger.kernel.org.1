@@ -1,145 +1,101 @@
-Return-Path: <devicetree+bounces-28844-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28845-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79B1D81F951
-	for <lists+devicetree@lfdr.de>; Thu, 28 Dec 2023 16:01:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 49DB081F97C
+	for <lists+devicetree@lfdr.de>; Thu, 28 Dec 2023 16:10:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AC0751C2140C
-	for <lists+devicetree@lfdr.de>; Thu, 28 Dec 2023 15:01:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7BDC21C22A0F
+	for <lists+devicetree@lfdr.de>; Thu, 28 Dec 2023 15:10:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D79FFD2E6;
-	Thu, 28 Dec 2023 15:01:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4094DDB1;
+	Thu, 28 Dec 2023 15:09:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="UHomooy5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lyeXkaFp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A54BF4E3;
-	Thu, 28 Dec 2023 15:01:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3BSF0Upq096255;
-	Thu, 28 Dec 2023 09:00:30 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1703775630;
-	bh=SWUI72zFfaZSzR3YlfrP+ppCc53V4yo2+PSn73pK1Bs=;
-	h=From:To:CC:Subject:Date:References:In-Reply-To;
-	b=UHomooy5FpZvIKHjNvZgRtCg5HG0J24dh5w9n2qGf3PgEnoK0rpSVUcEb3RlXLosi
-	 QDyCdRHlkxjd1XWO3EUIuSysNWrkRtTizzwe8kdMxH4PktcyoGqmG8TNMT9+yE2RBn
-	 MHEiFQlLDhamTDYXkDo2xx54yQ3QrKCcSJIYn6gw=
-Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3BSF0Uww067178
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 28 Dec 2023 09:00:30 -0600
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 28
- Dec 2023 09:00:30 -0600
-Received: from DLEE108.ent.ti.com ([fe80::922:4dc:27cc:b334]) by
- DLEE108.ent.ti.com ([fe80::922:4dc:27cc:b334%17]) with mapi id
- 15.01.2507.023; Thu, 28 Dec 2023 09:00:30 -0600
-From: "Brnich, Brandon" <b-brnich@ti.com>
-To: "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "Mauro
- Carvalho Chehab" <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Nas Chung <nas.chung@chipsnmedia.com>,
-        Jackson Lee
-	<jackson.lee@chipsnmedia.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Sebastian Fricke <sebastian.fricke@collabora.com>,
-        Dafna Hirschfeld
-	<dafna.hirschfeld@collabora.com>,
-        Robert Beckett <bob.beckett@collabora.com>,
-        Nicolas Dufresne <nicolas.dufresne@collabora.com>,
-        Geert Uytterhoeven
-	<geert@linux-m68k.org>
-CC: "Menon, Nishanth" <nm@ti.com>, "Etheridge, Darren" <detheridge@ti.com>
-Subject: RE: [PATCH v3 0/2] Update Wave521c Compatible for TI Devices
-Thread-Topic: [PATCH v3 0/2] Update Wave521c Compatible for TI Devices
-Thread-Index: AQHaLHTuykr9ezkXHUS14iKL4BJOWLC+4oXg
-Date: Thu, 28 Dec 2023 15:00:30 +0000
-Message-ID: <4dba82cd7e264356ad66cf230c61dd89@ti.com>
-References: <20231211205920.698939-1-b-brnich@ti.com>
-In-Reply-To: <20231211205920.698939-1-b-brnich@ti.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-x-exclaimer-md-config: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90AD5F4F0;
+	Thu, 28 Dec 2023 15:09:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 89A99C433CA;
+	Thu, 28 Dec 2023 15:09:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1703776179;
+	bh=jCI/YMfr+NrtHxo3qHYZpBjBqghFPe+6yiDfEv5LI1s=;
+	h=From:To:Cc:Subject:Date:From;
+	b=lyeXkaFpTNlQ8A459Cp2D3+Mwy+bf2puUUc4xFDxB2odlSXM93Y+D6YBDw+BT8Jsk
+	 JryFCU4yiriOFCQqYIMScdhFTb7e/Qfr9jkTL+Hjsg9+sQGYlABZpI3cR6qymWfdaI
+	 rzRuCg7uIAwWSzUa9gHTu16fhm/009B7VcgKSPxkq2o2pIin+hO7LKju2O0xJ3PFr1
+	 +nqTsv8lVK01XPSJsTslTYjoIsbxQFIuKGFUaCDvoNPhQXhLbAz2juxWFk7Fo7OFSh
+	 F/BSyr/QNdbVmiyHi2NeNgGhrs1lGQDcTNJ8TYJOfaAfQdZrrLB3Mqi3a5/YJS5z5G
+	 5t/wud5LAAnSA==
+From: Jisheng Zhang <jszhang@kernel.org>
+To: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Andre Przywara <andre.przywara@arm.com>,
+	Icenowy Zheng <uwu@icenowy.me>
+Cc: devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-sunxi@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 0/2] arm64: dts: allwinner: h618: Add Sipeed Longan SoM 3H and Pi 3H board
+Date: Thu, 28 Dec 2023 22:56:45 +0800
+Message-Id: <20231228145647.1470-1-jszhang@kernel.org>
+X-Mailer: git-send-email 2.40.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 
-Hello,
+Add Sipeed Longan SoM 3H and Longan Pi 3H board support.
 
-> -----Original Message-----
-> Subject: [PATCH v3 0/2] Update Wave521c Compatible for TI Devices
->=20
-> Hello All,
->=20
-> There has been ongoing discussion[1] surrounding the issue of having K3
-> prefix included in the compatible for dt bindings. This series removes th=
-is
-> prefix from both the device tree binding as well as the driver. Updating =
-the
-> binding will not break the ABI at this point as the driver is still only =
-in linux-
-> next.
+The Sipeed Longan SoM 3H is a system on module based on the Allwinner
+H618 SoC. The SoM features:
 
-I noticed this series has still not made it in linux-next. I assume this is=
- because
-I improperly dropped the tags on the second patch [0] in the series between=
- v2
-and v3. This series should only be applied before bindings make it into rel=
-ease,
-or the ABI breaks. Should I resend the series picking up proper tags this t=
-ime?
-Or is it too late for 6.8 at this point?
+- Four ARM Cortex-A53 cores, Mali-G31 MP2 GPU
+- 2/4 GiB LPDDR4 DRAM SoMs
+- AXP313a PMIC
+- eMMC
 
-[0] https://patchwork.kernel.org/project/linux-media/patch/20231211205920.6=
-98939-3-b-brnich@ti.com/
+The Sipeed Longan PI 3H is a development board based on the above SoM.
+The board features:
+- Longan SoM 3H
+- Raspberry-Pi-1 compatible GPIO header
+- 2 USB 2.0 host port
+- 1 USB 2.0 type C port (power supply + OTG)
+- MicroSD slot
+- 1Gbps Ethernet port (via RTL8211 PHY)
+- HDMI port
+- WiFi/BT chip
 
->=20
-> Changes in v3:
-> - Update example in dt bindings to match new compatible
->=20
-> Changes in v2:
-> - Include more context surrounding patch
-> - Fix style issues addressed by Krzysztof
->=20
-> [1] https://lore.kernel.org/all/20231201063309.tingjc3cjhsqb6r7@confusing=
-/
->=20
->=20
-> Brandon Brnich (2):
->   dt-bindings: media: Remove K3 Family Prefix from Compatible
->   media: chips-media: wave5: Remove K3 References
->=20
->  Documentation/devicetree/bindings/media/cnm,wave521c.yaml | 4 ++--
->  drivers/media/platform/chips-media/wave5/wave5-vpu.c      | 2 +-
->  2 files changed, 3 insertions(+), 3 deletions(-)
->=20
-> --
-> 2.34.1
+NOTE: I know it's too late for v6.8-rc1, but I want to send out this
+series so that the board users can easily get mainline support with two
+additional patches. I will send out v2 once v6.8-rc1 is out.
 
-Thanks,
+Jisheng Zhang (2):
+  dt-bindings: arm: sunxi: Add Sipeed Longan Module 3H and Longan Pi 3H
+  arm64: dts: allwinner: h618: Add Sipeed Longan SoM 3H and Pi 3H board
+    support
 
-Brandon Brnich
+ .../devicetree/bindings/arm/sunxi.yaml        |   7 +
+ arch/arm64/boot/dts/allwinner/Makefile        |   1 +
+ .../sun50i-h618-longan-module-3h.dtsi         |  82 +++++++++++
+ .../dts/allwinner/sun50i-h618-longanpi-3h.dts | 133 ++++++++++++++++++
+ 4 files changed, 223 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h618-longan-module-3h.dtsi
+ create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h618-longanpi-3h.dts
+
+-- 
+2.40.0
 
 
