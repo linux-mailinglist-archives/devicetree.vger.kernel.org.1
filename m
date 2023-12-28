@@ -1,359 +1,482 @@
-Return-Path: <devicetree+bounces-28853-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28854-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5DFF81F9D4
-	for <lists+devicetree@lfdr.de>; Thu, 28 Dec 2023 17:06:10 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 40DB681F9F2
+	for <lists+devicetree@lfdr.de>; Thu, 28 Dec 2023 17:31:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6DA0D1F24336
-	for <lists+devicetree@lfdr.de>; Thu, 28 Dec 2023 16:06:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9348A285C47
+	for <lists+devicetree@lfdr.de>; Thu, 28 Dec 2023 16:31:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02FF0F4F8;
-	Thu, 28 Dec 2023 16:06:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED17F1FAB;
+	Thu, 28 Dec 2023 16:31:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=seco.com header.i=@seco.com header.b="nnKafV9N";
-	dkim=pass (2048-bit key) header.d=seco.com header.i=@seco.com header.b="nnKafV9N"
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="RZHs4hdP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05hn2223.outbound.protection.outlook.com [52.100.175.223])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [167.172.40.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3D6EF4F6;
-	Thu, 28 Dec 2023 16:06:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=seco.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=seco.com
-ARC-Seal: i=2; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=pass;
- b=V7fOp+WoK8z7n0V+9ftwkqtOD/t+P04KaPEk+l8LPoeG8bqruXoMb8L9OUIL2Uz04JVfR15Y44n1fC8qVkAxzdFhQA1PKcbUinIUno2QFMJAJvKfcI8dOMMdzZY3ujQ7dl8MRbocxFgoSrWkAnXtVROv+HSP1M5kcEazeoot6HDIap0ggilRfliceOOJUeTnruKpXPDaqfOpE8NWGTB2KJKGb0rYWCPMOVHPkLb0SIrqeC8JslYLZ6zGmdKG9qgbVXokUB0ppu5XG2bsLgtUOV7WqwlfTr6QWRszPOefJ8Y9zWMLwCf3EscbCinlMnOY+h4kF8wdK/O0WeZ0vs3c0A==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=x63fZZbPnEXYewDc3KTnWxQUXR7DidWUJeZeEQ9+loA=;
- b=kLQAQK0ZmO+S8UGDrzBt/hW194imt5zmPmMrmnDuckbuqahMOKy+LdoTOTh4XdOpJhDsCWAwOnAf3yum5OVShTBrS5W9J7WDjUSBb/rM2GZ0VSmedz/b4M0ZbYUdijFuWZfhnIcCtFaItnab/1VuiHhTLzNzKLTODZ4Xv/oG9rOowy3f23CWCXMFeQD8WluzfN3dEqQL6fYT/EktbYVLNrFWDXM2cbd8PoVxhpt9mprUxiIGGE/pUtVUp4uJgMTI62+JktS6UlhKXlLOkRlDqddfcKvU+FAunPM7OjZgZdhz0dqxCPU0ryISIlOmzv3MOMY+1zRyXz4Dow5Oi+UJCw==
-ARC-Authentication-Results: i=2; mx.microsoft.com 1; spf=pass (sender ip is
- 20.160.56.81) smtp.rcpttodomain=alsa-project.org smtp.mailfrom=seco.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none header.from=seco.com;
- dkim=fail (no key for signature) header.d=seco.com; arc=pass (0 oda=1 ltdi=1
- spf=[1,1,smtp.mailfrom=seco.com] dkim=[1,1,header.d=seco.com]
- dmarc=[1,1,header.from=seco.com])
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=seco.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=x63fZZbPnEXYewDc3KTnWxQUXR7DidWUJeZeEQ9+loA=;
- b=nnKafV9NbvEF/PVd50UD5b5jmPfHJKq/CDVbgINeuFyCcCXZeonlDIm9ptP9Zo9IQxGFIY1+UzOcy8KIquh7P6p3bSxdtfsd+3FTGq1tz/g8MZHhRh4EAWv0QYgWDDUT62o2IZB3Xdljb6EuI4I34/PJVuWGhE06eciTbm5Yko9bKs0foMyzbCUBgcQ8wdBapSpM35PTjv6kTI5d4/ZfDyHjyXYtUj+j9QCK75fv9OXEoCeKfM7Ml+VrbBsvVsQzrVHMWP29o/yJ6xkTNo8p50+oXwkUbmjo2B2ReRszZlAg7bx8IbeB4J1pNrgvjEc2KuCj8uurSbtCn4HeApaiHw==
-Received: from AS9PR06CA0684.eurprd06.prod.outlook.com (2603:10a6:20b:49c::29)
- by AM9PR03MB7677.eurprd03.prod.outlook.com (2603:10a6:20b:418::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7135.20; Thu, 28 Dec
- 2023 16:05:58 +0000
-Received: from AM6EUR05FT029.eop-eur05.prod.protection.outlook.com
- (2603:10a6:20b:49c:cafe::c0) by AS9PR06CA0684.outlook.office365.com
- (2603:10a6:20b:49c::29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7135.18 via Frontend
- Transport; Thu, 28 Dec 2023 16:05:58 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 20.160.56.81)
- smtp.mailfrom=seco.com; dkim=fail (no key for signature)
- header.d=seco.com;dmarc=pass action=none header.from=seco.com;
-Received-SPF: Pass (protection.outlook.com: domain of seco.com designates
- 20.160.56.81 as permitted sender) receiver=protection.outlook.com;
- client-ip=20.160.56.81; helo=repost-eu.tmcas.trendmicro.com; pr=C
-Received: from repost-eu.tmcas.trendmicro.com (20.160.56.81) by
- AM6EUR05FT029.mail.protection.outlook.com (10.233.240.74) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7135.20 via Frontend Transport; Thu, 28 Dec 2023 16:05:57 +0000
-Received: from outmta (unknown [192.168.82.140])
-	by repost-eu.tmcas.trendmicro.com (Trend Micro CAS) with ESMTP id ED9982009538A;
-	Thu, 28 Dec 2023 16:05:56 +0000 (UTC)
-Received: from EUR03-AM7-obe.outbound.protection.outlook.com (unknown [104.47.51.232])
-	by repre.tmcas.trendmicro.com (Trend Micro CAS) with ESMTPS id 3E0DF2008006E;
-	Thu, 28 Dec 2023 16:05:52 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=g3sAYxgtHs1LGLQ4wJ4V+9yS6ze0KSkObYLwF0uouFbNpr7hybVlGVpMd6yE3UGzPCkBQacWAPOyzhN5vXwDRliNl5sqVAW/47qppJumQ0/mWuIh34BJuFn7/kXluYszyzThgTIOKg+YJ+Ru4gDiZsy/lcYZPQsSLTfKTAroIjZ9zNT6M69jUzNURNfZa6m8iAG6lKspFZ+4nP9H2MpItOgF6ZRS+zmtCDVSi3C51z2kdJ8qQdi3sSprKscW2bHsJDaIQWoAzD0S9wO+DzPMGvxFsZ91YI9+ARSRIJGy9T/JGK35aMhn2SVZNtvlNRri1jJmIU7bI1ef0tqTlkR/Tw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=x63fZZbPnEXYewDc3KTnWxQUXR7DidWUJeZeEQ9+loA=;
- b=OVyZmaKSRqWp6LJ3jVUQJyWm5H1q8FkILNOLyj9AfIyQXal85R/BFr567TnGdi8RxBsThWXwOFLPJdu7c1lhsj2Ly50X8L5RV/Pqed2lVrknelRdoGG9ePhZefCaR8OeANOTexV0gHTswVIAa/YcjHWJ3hO30pyyCc7ixJyPwJhrHnA4vtUpe3ABZHbA1tu4TDspPNuX0Ok24qysVD2GzRXv+1XSqIdTBHcKYZJ61dQEqlhS9JRN+crDiJIPHZx1P5jeYoluq96vNXXpHUJVr3K68OAVnzqP7r7guZIEV4tlQtmFBHcj1IFrFgJWVUA98qs39sxmmS5qtqMRnw/gyA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=seco.com; dmarc=pass action=none header.from=seco.com;
- dkim=pass header.d=seco.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=seco.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=x63fZZbPnEXYewDc3KTnWxQUXR7DidWUJeZeEQ9+loA=;
- b=nnKafV9NbvEF/PVd50UD5b5jmPfHJKq/CDVbgINeuFyCcCXZeonlDIm9ptP9Zo9IQxGFIY1+UzOcy8KIquh7P6p3bSxdtfsd+3FTGq1tz/g8MZHhRh4EAWv0QYgWDDUT62o2IZB3Xdljb6EuI4I34/PJVuWGhE06eciTbm5Yko9bKs0foMyzbCUBgcQ8wdBapSpM35PTjv6kTI5d4/ZfDyHjyXYtUj+j9QCK75fv9OXEoCeKfM7Ml+VrbBsvVsQzrVHMWP29o/yJ6xkTNo8p50+oXwkUbmjo2B2ReRszZlAg7bx8IbeB4J1pNrgvjEc2KuCj8uurSbtCn4HeApaiHw==
-Authentication-Results-Original: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=seco.com;
-Received: from DB9PR03MB8847.eurprd03.prod.outlook.com (2603:10a6:10:3dd::13)
- by PAXPR03MB7651.eurprd03.prod.outlook.com (2603:10a6:102:200::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7135.20; Thu, 28 Dec
- 2023 16:05:50 +0000
-Received: from DB9PR03MB8847.eurprd03.prod.outlook.com
- ([fe80::5cfa:9e05:d8dc:ba0f]) by DB9PR03MB8847.eurprd03.prod.outlook.com
- ([fe80::5cfa:9e05:d8dc:ba0f%7]) with mapi id 15.20.7135.019; Thu, 28 Dec 2023
- 16:05:50 +0000
-Message-ID: <530e3473-eb3b-477c-8599-e7aa12779640@seco.com>
-Date: Thu, 28 Dec 2023 11:05:41 -0500
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/4] reset: add GPIO-based reset controller
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
- Banajit Goswami <bgoswami@quicinc.com>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
- Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
- linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
- linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Cc: Bartosz Golaszewski <brgl@bgdev.pl>
-References: <20231222150133.732662-1-krzysztof.kozlowski@linaro.org>
- <20231222150133.732662-3-krzysztof.kozlowski@linaro.org>
-From: Sean Anderson <sean.anderson@seco.com>
-In-Reply-To: <20231222150133.732662-3-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SJ0PR03CA0029.namprd03.prod.outlook.com
- (2603:10b6:a03:33a::34) To DB9PR03MB8847.eurprd03.prod.outlook.com
- (2603:10a6:10:3dd::13)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E86CF507
+	for <devicetree@vger.kernel.org>; Thu, 28 Dec 2023 16:31:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
+ Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
+ s=fe-e1b5cab7be; t=1703781056;
+ bh=0NJGbaWg6ieVa+gyqdUIcf0gO7lnRB31/cradYZcLBg=;
+ b=RZHs4hdP69teWcQd9YIhhMIUtLVqsIE8iDnCTZCeXCs9Lm6n/XC3R9J18TRcvbZoubuUPffkg
+ yraSV5Qw8Nog6nTqKOKqNXCNFqa7TM8v1dckiu+LxhZmzbvawGvIy95Tb5m2P4Eb1sqe6AoXQTQ
+ vURBRvc0PSKByePEE1+2FKT+/RsnYm9jsDHweVC6n2RiPz6yYXsbq3X2VLWT2sw8cKaBbVc43eW
+ m/HpPJv58fkCcHcTpciaTE5+UVACi6sCUNNCcp2gNJkURq7RxXweWJGqMxXAnjj1089vbnSJ7Lh
+ gXi40c6I+99G83Z4aFO7IRK1NMIT3lnEyjxWgQYSVqkw==
+Message-ID: <541b7633-af3b-4392-ac29-7ee1f2c6f943@kwiboo.se>
+Date: Thu, 28 Dec 2023 17:30:33 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-TrafficTypeDiagnostic:
-	DB9PR03MB8847:EE_|PAXPR03MB7651:EE_|AM6EUR05FT029:EE_|AM9PR03MB7677:EE_
-X-MS-Office365-Filtering-Correlation-Id: 63a874e7-34fb-4fa9-a25b-08dc07bee07e
-X-TrendMicro-CAS-OUT-LOOP-IDENTIFIER: 656f966764b7fb185830381c646b41a1
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam-Untrusted: BCL:0;
-X-Microsoft-Antispam-Message-Info-Original:
- gpdotrbLQc9l3JG3beiZh9szuGl2jbV1ixZ5LVTNA/CBP7IL5bgfFX15bonAo44Eoa1OqiBTxcUXRDbCsbSv2h4jyslZA2lRFSF6INg9g+XQV4MTJgJWp+QSXrlrHmgcx+mcdNvJfCD8nVfOEouwD5U2t0JR4h8iEb785xl2t3nf/f9+QwfwMOvQyR+SGBMTQ9h5AgviF2wF4IWmyhlkwWZbt88B5+bnV/fXZlDGBM4aECu7zg49EK/0wO0K/A1WlRK9GhUG1q9xzQgYpxiGjj1lXsmR651gZ0QKSPEIeIh+KvMY82E46lMfuEqWy8qTaIg/b/CebCHtiemxYn1X77a+avNcIggnNJeB8736awqJ31ly8zcfuRmMk8lotUEXF/GQYlJ5hTLPF2MUAGtik1EPtHtgVysWZtGIAsXCUIMfAJa2jPwDNaCunKDaww7gpbd/RcH0Amw0CvGEbFCSB4MQjXlhdpG5keBhOF8gz3lFHdfQWepgpvfFOGVvKfRSBlW+CuG9zUeKSarNa2jxFDLZVLaTjNeRPScWHnnmptkMte4MFZ5krYmk07ihDYlYC04mAJnzjCjhCUhklB1NwGH+y1Srl/D9G+7d3csuM7owrtYdVVj27bj3q2TIPcHsOJ9vs9j6wqkP8JhVyjBvO8qkiAF6PXs4pWsUFMCZXS0u2LYnWAkBRSAA3bKrgN79pO6Ik5o7Zqb/RQka4w8gVQ==
-X-Forefront-Antispam-Report-Untrusted:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR03MB8847.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(136003)(39850400004)(346002)(376002)(396003)(366004)(230922051799003)(186009)(64100799003)(1800799012)(451199024)(6486002)(478600001)(316002)(6666004)(110136005)(8936002)(8676002)(66946007)(66556008)(66476007)(2616005)(26005)(83380400001)(6512007)(6506007)(53546011)(52116002)(2906002)(44832011)(5660300002)(41300700001)(4326008)(7416002)(38350700005)(36756003)(38100700002)(31696002)(86362001)(31686004)(921011)(45980500001)(43740500002);DIR:OUT;SFP:1101;
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR03MB7651
-X-EOPAttributedMessage: 0
-X-MS-Exchange-Transport-CrossTenantHeadersStripped:
- AM6EUR05FT029.eop-eur05.prod.protection.outlook.com
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id-Prvs:
-	375cfc29-8dc5-4e2c-9631-08dc07bedc7b
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	YxE3kXE65/+K2gFfa6ci6RNx3kwuVwqvNmjAZvIta8aOHZTyyhbRycGdIF+Oco0/rQlKHwotd1cysfAAC/ItPH+MYfsgMDd4oBAkIuJeulRdWaGoY4dBGrPA8pM+PsKHZfX+zjQ9lR+LG7RLtfgkacd9o53KI2W8aNF4cd0Ckmo57Y9+rfmY6hk96rh/pd7ykpNgwXPan9hDS8sXhVQKgCnaU653P8bil8s/+UlgkYnRMZm8wfBuyxcpwTNa1437T/ZTpgtQFkFC+QbqEPnuNUEP8FqcWReOXaLCSYkOKTVqjreUA+VQ+FNjYqVjztGi1n5hzMQKomoH4kfRJbG38JpzREpCxTDhY6LiMVXhYY948hZ7OEvbgJjxrLpDr/tLUxO9pGVGjvzEsSqDRJHpk2GjFthcf4pZyIquemjbKu3lkNxjSkoU+Zh4Vq1MQoZRd/ww+3RAXHJlRwH9bw+4eqDsM3MMlPJr1xqtsSgR+daDTmqfyVQMpeaiYPINsp+waVH6Do5RpuAR0eZkG/M5YYwOaFhJm39rJRZAmwMc8Cwh5i3aXxtS7eKkXvJB+pDhf6Lk1ogQ3wednlz2GhnMcfkzhH/pO+IGR2HdNrfrDTj7EkL/dgbzIh74DuFoQ+ey8+kk+Gc1FXqqy7KBJw85LlawR3UaAm6tPyCpjlMewKAMuUPwEutypAP0dbdVokgh+d0ZqhgWalHUszOFbOu4RrpwnhIpSN6E9IRZ8mFddlHeUBfOdOlwbNim0udmInwQgE8HeSv5I9uGZwy89La5/U5AbUJoYnmr4L4XyCzpuWPuypo41LKtAWjazJ2ISLRL
-X-Forefront-Antispam-Report:
-	CIP:20.160.56.81;CTRY:NL;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:repost-eu.tmcas.trendmicro.com;PTR:repost-eu.tmcas.trendmicro.com;CAT:NONE;SFS:(13230031)(376002)(396003)(136003)(39850400004)(346002)(230922051799003)(186009)(451199024)(82310400011)(5400799018)(1800799012)(64100799003)(46966006)(36840700001)(34070700002)(478600001)(5660300002)(83380400001)(8676002)(26005)(8936002)(921011)(6486002)(336012)(53546011)(86362001)(40480700001)(4326008)(70586007)(70206006)(36860700001)(31686004)(6512007)(44832011)(41300700001)(316002)(110136005)(2906002)(47076005)(31696002)(6506007)(36756003)(7636003)(2616005)(7416002)(82740400003)(356005)(7596003)(6666004)(43740500002)(12100799051);DIR:OUT;SFP:1501;
-X-OriginatorOrg: seco.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Dec 2023 16:05:57.0875
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 63a874e7-34fb-4fa9-a25b-08dc07bee07e
-X-MS-Exchange-CrossTenant-Id: bebe97c3-6438-442e-ade3-ff17aa50e733
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=bebe97c3-6438-442e-ade3-ff17aa50e733;Ip=[20.160.56.81];Helo=[repost-eu.tmcas.trendmicro.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	AM6EUR05FT029.eop-eur05.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR03MB7677
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/2] ARM: dts: rockchip: add gpio-ranges property to
+ gpio nodes
+To: Johan Jonker <jbx6244@gmail.com>, heiko@sntech.de
+Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, kever.yang@rock-chips.com,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <cf46c685-bf4b-63b5-0373-dd0ba70e9700@gmail.com>
+Content-Language: en-US
+From: Jonas Karlman <jonas@kwiboo.se>
+In-Reply-To: <cf46c685-bf4b-63b5-0373-dd0ba70e9700@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Report-Abuse-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-ForwardEmail-Version: 0.4.40
+X-ForwardEmail-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 167.172.40.54
+X-ForwardEmail-ID: 658da2bf582984eac403eadf
 
-On 12/22/23 10:01, Krzysztof Kozlowski wrote:
-> Add simple driver to control GPIO-based resets using the reset
-> controller API for the cases when the GPIOs are shared and reset should
-> be coordinated.  The driver is expected to be used by reset core
-> framework for ad-hoc reset controllers.
+Hi Johan,
 
-How do we handle power sequencing? Often GPIOs need some pre/post delay in
-order to ensure proper power sequencing. For regular reset drivers, this is
-internal to the driver.
-
-Maybe something like
-
-my-device {
-	reset-gpios = <&gpio 555 GPIO_ACTIVE_LOW>;
-        reset-gpios-post-deassert-us = <100>;
-};
-
-Of course, this is a bit ambiguous if you have multiple devices using the same
-GPIO with different delays. Maybe we take the max? But the driver below seems
-to only have access to one device. Which I suppose begs the question: how do
-we know when it's safe to deassert the reset (e.g. we've gotten to the point
-where all devices using this reset gpio have gotten far enough to detect that
-they use it)?
-
---Sean
-
-> Cc: Bartosz Golaszewski <brgl@bgdev.pl>
-> Cc: Sean Anderson <sean.anderson@seco.com>
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->  MAINTAINERS                |   5 ++
->  drivers/reset/Kconfig      |   9 ++++
->  drivers/reset/Makefile     |   1 +
->  drivers/reset/reset-gpio.c | 105 +++++++++++++++++++++++++++++++++++++
->  4 files changed, 120 insertions(+)
->  create mode 100644 drivers/reset/reset-gpio.c
+On 2023-12-27 19:33, Johan Jonker wrote:
+> Add a gpio-ranges property to Rockchip gpio nodes similar to
+> rk356x/rk3588 to be independent from aliases and probe order.
 > 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 7fe27cd60e1b..a0fbd4814bc7 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -8866,6 +8866,11 @@ F:	Documentation/i2c/muxes/i2c-mux-gpio.rst
->  F:	drivers/i2c/muxes/i2c-mux-gpio.c
->  F:	include/linux/platform_data/i2c-mux-gpio.h
->  
-> +GENERIC GPIO RESET DRIVER
-> +M:	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> +S:	Maintained
-> +F:	drivers/reset/reset-gpio.c
-> +
->  GENERIC HDLC (WAN) DRIVERS
->  M:	Krzysztof Halasa <khc@pm.waw.pl>
->  S:	Maintained
-> diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
-> index ccd59ddd7610..bb1b5a326eb7 100644
-> --- a/drivers/reset/Kconfig
-> +++ b/drivers/reset/Kconfig
-> @@ -66,6 +66,15 @@ config RESET_BRCMSTB_RESCAL
->  	  This enables the RESCAL reset controller for SATA, PCIe0, or PCIe1 on
->  	  BCM7216.
->  
-> +config RESET_GPIO
-> +	tristate "GPIO reset controller"
-> +	help
-> +	  This enables a generic reset controller for resets attached via
-> +	  GPIOs.  Typically for OF platforms this driver expects "reset-gpios"
-> +	  property.
-> +
-> +	  If compiled as module, it will be called reset-gpio.
-> +
->  config RESET_HSDK
->  	bool "Synopsys HSDK Reset Driver"
->  	depends on HAS_IOMEM
-> diff --git a/drivers/reset/Makefile b/drivers/reset/Makefile
-> index 8270da8a4baa..fd8b49fa46fc 100644
-> --- a/drivers/reset/Makefile
-> +++ b/drivers/reset/Makefile
-> @@ -11,6 +11,7 @@ obj-$(CONFIG_RESET_BCM6345) += reset-bcm6345.o
->  obj-$(CONFIG_RESET_BERLIN) += reset-berlin.o
->  obj-$(CONFIG_RESET_BRCMSTB) += reset-brcmstb.o
->  obj-$(CONFIG_RESET_BRCMSTB_RESCAL) += reset-brcmstb-rescal.o
-> +obj-$(CONFIG_RESET_GPIO) += reset-gpio.o
->  obj-$(CONFIG_RESET_HSDK) += reset-hsdk.o
->  obj-$(CONFIG_RESET_IMX7) += reset-imx7.o
->  obj-$(CONFIG_RESET_INTEL_GW) += reset-intel-gw.o
-> diff --git a/drivers/reset/reset-gpio.c b/drivers/reset/reset-gpio.c
-> new file mode 100644
-> index 000000000000..6952996dbc9f
-> --- /dev/null
-> +++ b/drivers/reset/reset-gpio.c
-> @@ -0,0 +1,105 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +
-> +#include <linux/gpio/consumer.h>
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/reset-controller.h>
-> +
-> +struct reset_gpio_priv {
-> +	struct reset_controller_dev rc;
-> +	struct gpio_desc *reset;
-> +};
-> +
-> +static inline struct reset_gpio_priv
-> +*rc_to_reset_gpio(struct reset_controller_dev *rc)
-> +{
-> +	return container_of(rc, struct reset_gpio_priv, rc);
-> +}
-> +
-> +static int reset_gpio_assert(struct reset_controller_dev *rc, unsigned long id)
-> +{
-> +	struct reset_gpio_priv *priv = rc_to_reset_gpio(rc);
-> +
-> +	gpiod_set_value_cansleep(priv->reset, 1);
-> +
-> +	return 0;
-> +}
-> +
-> +static int reset_gpio_deassert(struct reset_controller_dev *rc,
-> +			       unsigned long id)
-> +{
-> +	struct reset_gpio_priv *priv = rc_to_reset_gpio(rc);
-> +
-> +	gpiod_set_value_cansleep(priv->reset, 0);
-> +
-> +	return 0;
-> +}
-> +
-> +static int reset_gpio_status(struct reset_controller_dev *rc, unsigned long id)
-> +{
-> +	struct reset_gpio_priv *priv = rc_to_reset_gpio(rc);
-> +
-> +	return gpiod_get_value_cansleep(priv->reset);
-> +}
-> +
-> +static const struct reset_control_ops reset_gpio_ops = {
-> +	.assert = reset_gpio_assert,
-> +	.deassert = reset_gpio_deassert,
-> +	.status = reset_gpio_status,
-> +};
-> +
-> +static int reset_gpio_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct device_node **platdata = dev_get_platdata(dev);
-> +	struct reset_gpio_priv *priv;
-> +
-> +	if (!platdata && !*platdata)
-> +		return -EINVAL;
-> +
-> +	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-> +	if (!priv)
-> +		return -ENOMEM;
-> +
-> +	platform_set_drvdata(pdev, &priv->rc);
-> +	device_set_node(dev, of_fwnode_handle(*platdata));
-> +
-> +	/*
-> +	 * Need to get non-exclusive because it is used in reset core as cookie
-> +	 * to find existing controllers.  However the actual use is exclusive.
-> +	 */
-> +	priv->reset = devm_gpiod_get(dev, "reset",
-> +				     GPIOD_OUT_HIGH);
-> +	if (IS_ERR(priv->reset))
-> +		return dev_err_probe(dev, PTR_ERR(priv->reset),
-> +				     "Could not get reset gpios\n");
-> +
-> +	priv->rc.ops = &reset_gpio_ops;
-> +	priv->rc.owner = THIS_MODULE;
-> +	priv->rc.dev = dev;
-> +	priv->rc.cookie = priv->reset;
-> +	priv->rc.nr_resets = 1;
-> +
-> +	return devm_reset_controller_register(dev, &priv->rc);
-> +}
-> +
-> +static const struct platform_device_id reset_gpio_ids[] = {
-> +	{ .name = "reset-gpio", },
-> +	{}
-> +};
-> +MODULE_DEVICE_TABLE(platform, reset_gpio_ids);
-> +
-> +static struct platform_driver reset_gpio_driver = {
-> +	.probe		= reset_gpio_probe,
-> +	.id_table	= reset_gpio_ids,
-> +	.driver	= {
-> +		.name = "reset-gpio",
-> +	},
-> +};
-> +module_platform_driver(reset_gpio_driver);
-> +
-> +MODULE_AUTHOR("Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>");
-> +MODULE_DESCRIPTION("Generic GPIO reset driver");
-> +MODULE_LICENSE("GPL");
+> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+> Reviewed-by: Kever Yang <kever.yang@rock-chips.com>
+> ---
+> 
+> Changed V3:
+>   reword
+>   rebase to new Rockchip directory
+>   remove unknown properties
+> ---
+>  arch/arm/boot/dts/rockchip/rk3036.dtsi  | 3 +++
+>  arch/arm/boot/dts/rockchip/rk3066a.dtsi | 6 ++++++
+>  arch/arm/boot/dts/rockchip/rk3128.dtsi  | 4 ++++
+>  arch/arm/boot/dts/rockchip/rk3188.dtsi  | 4 ++++
+>  arch/arm/boot/dts/rockchip/rk322x.dtsi  | 4 ++++
+>  arch/arm/boot/dts/rockchip/rk3288.dtsi  | 9 +++++++++
+>  arch/arm/boot/dts/rockchip/rv1108.dtsi  | 4 ++++
+>  arch/arm/boot/dts/rockchip/rv1126.dtsi  | 5 +++++
+>  8 files changed, 39 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/rockchip/rk3036.dtsi b/arch/arm/boot/dts/rockchip/rk3036.dtsi
+> index 2b00109bea6a..6e5028b6dbfa 100644
+> --- a/arch/arm/boot/dts/rockchip/rk3036.dtsi
+> +++ b/arch/arm/boot/dts/rockchip/rk3036.dtsi
+> @@ -593,6 +593,7 @@ gpio0: gpio@2007c000 {
+>  			clocks = <&cru PCLK_GPIO0>;
+> 
+>  			gpio-controller;
+> +			gpio-ranges = <&pinctrl 0 0 32>;
+>  			#gpio-cells = <2>;
+> 
+>  			interrupt-controller;
+> @@ -606,6 +607,7 @@ gpio1: gpio@20080000 {
+>  			clocks = <&cru PCLK_GPIO1>;
+> 
+>  			gpio-controller;
+> +			gpio-ranges = <&pinctrl 0 32 32>;
+>  			#gpio-cells = <2>;
+> 
+>  			interrupt-controller;
+> @@ -619,6 +621,7 @@ gpio2: gpio@20084000 {
+>  			clocks = <&cru PCLK_GPIO2>;
+> 
+>  			gpio-controller;
+> +			gpio-ranges = <&pinctrl 0 64 32>;
+>  			#gpio-cells = <2>;
+> 
+>  			interrupt-controller;
+> diff --git a/arch/arm/boot/dts/rockchip/rk3066a.dtsi b/arch/arm/boot/dts/rockchip/rk3066a.dtsi
+> index 30139f21de64..a4962b6b3f4c 100644
+> --- a/arch/arm/boot/dts/rockchip/rk3066a.dtsi
+> +++ b/arch/arm/boot/dts/rockchip/rk3066a.dtsi
+> @@ -285,6 +285,7 @@ gpio0: gpio@20034000 {
+>  			clocks = <&cru PCLK_GPIO0>;
+> 
+>  			gpio-controller;
+> +			gpio-ranges = <&pinctrl 0 0 32>;
+>  			#gpio-cells = <2>;
+> 
+>  			interrupt-controller;
+> @@ -298,6 +299,7 @@ gpio1: gpio@2003c000 {
+>  			clocks = <&cru PCLK_GPIO1>;
+> 
+>  			gpio-controller;
+> +			gpio-ranges = <&pinctrl 0 32 32>;
+>  			#gpio-cells = <2>;
+> 
+>  			interrupt-controller;
+> @@ -311,6 +313,7 @@ gpio2: gpio@2003e000 {
+>  			clocks = <&cru PCLK_GPIO2>;
+> 
+>  			gpio-controller;
+> +			gpio-ranges = <&pinctrl 0 64 32>;
+>  			#gpio-cells = <2>;
+> 
+>  			interrupt-controller;
+> @@ -324,6 +327,7 @@ gpio3: gpio@20080000 {
+>  			clocks = <&cru PCLK_GPIO3>;
+> 
+>  			gpio-controller;
+> +			gpio-ranges = <&pinctrl 0 96 32>;
+>  			#gpio-cells = <2>;
+> 
+>  			interrupt-controller;
+> @@ -337,6 +341,7 @@ gpio4: gpio@20084000 {
+>  			clocks = <&cru PCLK_GPIO4>;
+> 
+>  			gpio-controller;
+> +			gpio-ranges = <&pinctrl 0 128 32>;
+>  			#gpio-cells = <2>;
+> 
+>  			interrupt-controller;
+> @@ -350,6 +355,7 @@ gpio6: gpio@2000a000 {
+>  			clocks = <&cru PCLK_GPIO6>;
+> 
+>  			gpio-controller;
+> +			gpio-ranges = <&pinctrl 0 192 32>;
+
+It does not look like this matches what pins the pinctrl driver expose
+for rk3066a. Something like <&pinctrl 0 160 16> would probably be more
+correct.
+
+>  			#gpio-cells = <2>;
+> 
+>  			interrupt-controller;
+> diff --git a/arch/arm/boot/dts/rockchip/rk3128.dtsi b/arch/arm/boot/dts/rockchip/rk3128.dtsi
+> index e2264c40b924..d66fcf12032e 100644
+> --- a/arch/arm/boot/dts/rockchip/rk3128.dtsi
+> +++ b/arch/arm/boot/dts/rockchip/rk3128.dtsi
+> @@ -712,6 +712,7 @@ gpio0: gpio@2007c000 {
+>  			interrupts = <GIC_SPI 36 IRQ_TYPE_LEVEL_HIGH>;
+>  			clocks = <&cru PCLK_GPIO0>;
+>  			gpio-controller;
+> +			gpio-ranges = <&pinctrl 0 0 32>;
+>  			#gpio-cells = <2>;
+>  			interrupt-controller;
+>  			#interrupt-cells = <2>;
+> @@ -723,6 +724,7 @@ gpio1: gpio@20080000 {
+>  			interrupts = <GIC_SPI 37 IRQ_TYPE_LEVEL_HIGH>;
+>  			clocks = <&cru PCLK_GPIO1>;
+>  			gpio-controller;
+> +			gpio-ranges = <&pinctrl 0 32 32>;
+>  			#gpio-cells = <2>;
+>  			interrupt-controller;
+>  			#interrupt-cells = <2>;
+> @@ -734,6 +736,7 @@ gpio2: gpio@20084000 {
+>  			interrupts = <GIC_SPI 38 IRQ_TYPE_LEVEL_HIGH>;
+>  			clocks = <&cru PCLK_GPIO2>;
+>  			gpio-controller;
+> +			gpio-ranges = <&pinctrl 0 64 32>;
+>  			#gpio-cells = <2>;
+>  			interrupt-controller;
+>  			#interrupt-cells = <2>;
+> @@ -745,6 +748,7 @@ gpio3: gpio@20088000 {
+>  			interrupts = <GIC_SPI 39 IRQ_TYPE_LEVEL_HIGH>;
+>  			clocks = <&cru PCLK_GPIO3>;
+>  			gpio-controller;
+> +			gpio-ranges = <&pinctrl 0 96 32>;
+>  			#gpio-cells = <2>;
+>  			interrupt-controller;
+>  			#interrupt-cells = <2>;
+> diff --git a/arch/arm/boot/dts/rockchip/rk3188.dtsi b/arch/arm/boot/dts/rockchip/rk3188.dtsi
+> index 44b54af0bbf9..6677e4a10e5d 100644
+> --- a/arch/arm/boot/dts/rockchip/rk3188.dtsi
+> +++ b/arch/arm/boot/dts/rockchip/rk3188.dtsi
+> @@ -231,6 +231,7 @@ gpio0: gpio@2000a000 {
+>  			clocks = <&cru PCLK_GPIO0>;
+> 
+>  			gpio-controller;
+> +			gpio-ranges = <&pinctrl 0 0 32>;
+>  			#gpio-cells = <2>;
+> 
+>  			interrupt-controller;
+> @@ -244,6 +245,7 @@ gpio1: gpio@2003c000 {
+>  			clocks = <&cru PCLK_GPIO1>;
+> 
+>  			gpio-controller;
+> +			gpio-ranges = <&pinctrl 0 32 32>;
+>  			#gpio-cells = <2>;
+> 
+>  			interrupt-controller;
+> @@ -257,6 +259,7 @@ gpio2: gpio@2003e000 {
+>  			clocks = <&cru PCLK_GPIO2>;
+> 
+>  			gpio-controller;
+> +			gpio-ranges = <&pinctrl 0 64 32>;
+>  			#gpio-cells = <2>;
+> 
+>  			interrupt-controller;
+> @@ -270,6 +273,7 @@ gpio3: gpio@20080000 {
+>  			clocks = <&cru PCLK_GPIO3>;
+> 
+>  			gpio-controller;
+> +			gpio-ranges = <&pinctrl 0 96 32>;
+>  			#gpio-cells = <2>;
+> 
+>  			interrupt-controller;
+> diff --git a/arch/arm/boot/dts/rockchip/rk322x.dtsi b/arch/arm/boot/dts/rockchip/rk322x.dtsi
+> index 831561fc1814..0d4f9957b99b 100644
+> --- a/arch/arm/boot/dts/rockchip/rk322x.dtsi
+> +++ b/arch/arm/boot/dts/rockchip/rk322x.dtsi
+> @@ -959,6 +959,7 @@ gpio0: gpio@11110000 {
+>  			clocks = <&cru PCLK_GPIO0>;
+> 
+>  			gpio-controller;
+> +			gpio-ranges = <&pinctrl 0 0 32>;
+>  			#gpio-cells = <2>;
+> 
+>  			interrupt-controller;
+> @@ -972,6 +973,7 @@ gpio1: gpio@11120000 {
+>  			clocks = <&cru PCLK_GPIO1>;
+> 
+>  			gpio-controller;
+> +			gpio-ranges = <&pinctrl 0 32 32>;
+>  			#gpio-cells = <2>;
+> 
+>  			interrupt-controller;
+> @@ -985,6 +987,7 @@ gpio2: gpio@11130000 {
+>  			clocks = <&cru PCLK_GPIO2>;
+> 
+>  			gpio-controller;
+> +			gpio-ranges = <&pinctrl 0 64 32>;
+>  			#gpio-cells = <2>;
+> 
+>  			interrupt-controller;
+> @@ -998,6 +1001,7 @@ gpio3: gpio@11140000 {
+>  			clocks = <&cru PCLK_GPIO3>;
+> 
+>  			gpio-controller;
+> +			gpio-ranges = <&pinctrl 0 96 32>;
+>  			#gpio-cells = <2>;
+> 
+>  			interrupt-controller;
+> diff --git a/arch/arm/boot/dts/rockchip/rk3288.dtsi b/arch/arm/boot/dts/rockchip/rk3288.dtsi
+> index ead343dc3df1..c5550aae4ed8 100644
+> --- a/arch/arm/boot/dts/rockchip/rk3288.dtsi
+> +++ b/arch/arm/boot/dts/rockchip/rk3288.dtsi
+> @@ -1461,6 +1461,7 @@ gpio0: gpio@ff750000 {
+>  			clocks = <&cru PCLK_GPIO0>;
+> 
+>  			gpio-controller;
+> +			gpio-ranges = <&pinctrl 0 0 32>;
+
+The pinctrl driver for rk3288 only expose 24 pins for the first bank,
+correct range would probably be <&pinctrl 0 0 24> here,
+
+>  			#gpio-cells = <2>;
+> 
+>  			interrupt-controller;
+> @@ -1474,6 +1475,7 @@ gpio1: gpio@ff780000 {
+>  			clocks = <&cru PCLK_GPIO1>;
+> 
+>  			gpio-controller;
+> +			gpio-ranges = <&pinctrl 0 32 32>;
+
+and correct range would probably be <&pinctrl 0 24 32> here,
+
+>  			#gpio-cells = <2>;
+> 
+>  			interrupt-controller;
+> @@ -1487,6 +1489,7 @@ gpio2: gpio@ff790000 {
+>  			clocks = <&cru PCLK_GPIO2>;
+> 
+>  			gpio-controller;
+> +			gpio-ranges = <&pinctrl 0 64 32>;
+
+and <&pinctrl 0 56 32> here,
+
+>  			#gpio-cells = <2>;
+> 
+>  			interrupt-controller;
+> @@ -1500,6 +1503,7 @@ gpio3: gpio@ff7a0000 {
+>  			clocks = <&cru PCLK_GPIO3>;
+> 
+>  			gpio-controller;
+> +			gpio-ranges = <&pinctrl 0 96 32>;
+
+and <&pinctrl 0 88 32> here,
+
+>  			#gpio-cells = <2>;
+> 
+>  			interrupt-controller;
+> @@ -1513,6 +1517,7 @@ gpio4: gpio@ff7b0000 {
+>  			clocks = <&cru PCLK_GPIO4>;
+> 
+>  			gpio-controller;
+> +			gpio-ranges = <&pinctrl 0 128 32>;
+
+and <&pinctrl 0 120 32> here,
+
+>  			#gpio-cells = <2>;
+> 
+>  			interrupt-controller;
+> @@ -1526,6 +1531,7 @@ gpio5: gpio@ff7c0000 {
+>  			clocks = <&cru PCLK_GPIO5>;
+> 
+>  			gpio-controller;
+> +			gpio-ranges = <&pinctrl 0 160 32>;
+
+and <&pinctrl 0 152 32> here,
+
+>  			#gpio-cells = <2>;
+> 
+>  			interrupt-controller;
+> @@ -1539,6 +1545,7 @@ gpio6: gpio@ff7d0000 {
+>  			clocks = <&cru PCLK_GPIO6>;
+> 
+>  			gpio-controller;
+> +			gpio-ranges = <&pinctrl 0 192 32>;
+
+and <&pinctrl 0 184 32> here,
+
+>  			#gpio-cells = <2>;
+> 
+>  			interrupt-controller;
+> @@ -1552,6 +1559,7 @@ gpio7: gpio@ff7e0000 {
+>  			clocks = <&cru PCLK_GPIO7>;
+> 
+>  			gpio-controller;
+> +			gpio-ranges = <&pinctrl 0 224 32>;
+
+and <&pinctrl 0 216 32> here,
+
+>  			#gpio-cells = <2>;
+> 
+>  			interrupt-controller;
+> @@ -1565,6 +1573,7 @@ gpio8: gpio@ff7f0000 {
+>  			clocks = <&cru PCLK_GPIO8>;
+> 
+>  			gpio-controller;
+> +			gpio-ranges = <&pinctrl 0 256 32>;
+
+and bank num 8 only expose 16 pins, so <&pinctrl 0 248 16> here.
+
+>  			#gpio-cells = <2>;
+> 
+>  			interrupt-controller;
+> diff --git a/arch/arm/boot/dts/rockchip/rv1108.dtsi b/arch/arm/boot/dts/rockchip/rv1108.dtsi
+> index abf3006f0a84..d12b97ee7588 100644
+> --- a/arch/arm/boot/dts/rockchip/rv1108.dtsi
+> +++ b/arch/arm/boot/dts/rockchip/rv1108.dtsi
+> @@ -602,6 +602,7 @@ gpio0: gpio@20030000 {
+>  			clocks = <&cru PCLK_GPIO0_PMU>;
+> 
+>  			gpio-controller;
+> +			gpio-ranges = <&pinctrl 0 0 32>;
+>  			#gpio-cells = <2>;
+> 
+>  			interrupt-controller;
+> @@ -615,6 +616,7 @@ gpio1: gpio@10310000 {
+>  			clocks = <&cru PCLK_GPIO1>;
+> 
+>  			gpio-controller;
+> +			gpio-ranges = <&pinctrl 0 32 32>;
+>  			#gpio-cells = <2>;
+> 
+>  			interrupt-controller;
+> @@ -628,6 +630,7 @@ gpio2: gpio@10320000 {
+>  			clocks = <&cru PCLK_GPIO2>;
+> 
+>  			gpio-controller;
+> +			gpio-ranges = <&pinctrl 0 64 32>;
+>  			#gpio-cells = <2>;
+> 
+>  			interrupt-controller;
+> @@ -641,6 +644,7 @@ gpio3: gpio@10330000 {
+>  			clocks = <&cru PCLK_GPIO3>;
+> 
+>  			gpio-controller;
+> +			gpio-ranges = <&pinctrl 0 96 32>;
+>  			#gpio-cells = <2>;
+> 
+>  			interrupt-controller;
+> diff --git a/arch/arm/boot/dts/rockchip/rv1126.dtsi b/arch/arm/boot/dts/rockchip/rv1126.dtsi
+> index bb603cae13df..71d091af6395 100644
+> --- a/arch/arm/boot/dts/rockchip/rv1126.dtsi
+> +++ b/arch/arm/boot/dts/rockchip/rv1126.dtsi
+> @@ -569,6 +569,7 @@ gpio0: gpio@ff460000 {
+>  			interrupts = <GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>;
+>  			clocks = <&pmucru PCLK_GPIO0>, <&pmucru DBCLK_GPIO0>;
+>  			gpio-controller;
+> +			gpio-ranges = <&pinctrl 0 0 32>;
+>  			#gpio-cells = <2>;
+>  			interrupt-controller;
+>  			#interrupt-cells = <2>;
+> @@ -580,6 +581,7 @@ gpio1: gpio@ff620000 {
+>  			interrupts = <GIC_SPI 35 IRQ_TYPE_LEVEL_HIGH>;
+>  			clocks = <&cru PCLK_GPIO1>, <&cru DBCLK_GPIO1>;
+>  			gpio-controller;
+> +			gpio-ranges = <&pinctrl 0 32 32>;
+>  			#gpio-cells = <2>;
+>  			interrupt-controller;
+>  			#interrupt-cells = <2>;
+> @@ -591,6 +593,7 @@ gpio2: gpio@ff630000 {
+>  			interrupts = <GIC_SPI 36 IRQ_TYPE_LEVEL_HIGH>;
+>  			clocks = <&cru PCLK_GPIO2>, <&cru DBCLK_GPIO2>;
+>  			gpio-controller;
+> +			gpio-ranges = <&pinctrl 0 64 32>;
+>  			#gpio-cells = <2>;
+>  			interrupt-controller;
+>  			#interrupt-cells = <2>;
+> @@ -602,6 +605,7 @@ gpio3: gpio@ff640000 {
+>  			interrupts = <GIC_SPI 37 IRQ_TYPE_LEVEL_HIGH>;
+>  			clocks = <&cru PCLK_GPIO3>, <&cru DBCLK_GPIO3>;
+>  			gpio-controller;
+> +			gpio-ranges = <&pinctrl 0 96 32>;
+>  			#gpio-cells = <2>;
+>  			interrupt-controller;
+>  			#interrupt-cells = <2>;
+> @@ -613,6 +617,7 @@ gpio4: gpio@ff650000 {
+>  			interrupts = <GIC_SPI 38 IRQ_TYPE_LEVEL_HIGH>;
+>  			clocks = <&cru PCLK_GPIO4>, <&cru DBCLK_GPIO4>;
+>  			gpio-controller;
+> +			gpio-ranges = <&pinctrl 0 128 32>;
+
+Bank num 4 only expose 2 pins, so should probably be <&pinctrl 0 128 2>.
+
+Regards,
+Jonas
+
+>  			#gpio-cells = <2>;
+>  			interrupt-controller;
+>  			#interrupt-cells = <2>;
+> --
+> 2.39.2
+> 
+> 
+> _______________________________________________
+> Linux-rockchip mailing list
+> Linux-rockchip@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-rockchip
 
 
