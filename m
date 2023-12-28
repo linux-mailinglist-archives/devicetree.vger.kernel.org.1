@@ -1,99 +1,113 @@
-Return-Path: <devicetree+bounces-28776-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28778-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DB2281F6F6
-	for <lists+devicetree@lfdr.de>; Thu, 28 Dec 2023 11:43:01 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 210AC81F703
+	for <lists+devicetree@lfdr.de>; Thu, 28 Dec 2023 11:48:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BD3A228158B
-	for <lists+devicetree@lfdr.de>; Thu, 28 Dec 2023 10:42:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B0C101C21D06
+	for <lists+devicetree@lfdr.de>; Thu, 28 Dec 2023 10:48:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 275E66AA4;
-	Thu, 28 Dec 2023 10:42:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="XagBvT/Z"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57DFC6FAB;
+	Thu, 28 Dec 2023 10:48:31 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 722CE63DA;
-	Thu, 28 Dec 2023 10:42:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1703760175; x=1735296175;
-  h=message-id:date:mime-version:to:cc:references:from:
-   subject:in-reply-to:content-transfer-encoding;
-  bh=WY3yN9WgNfUdqLLgZpbcv5qQY5jc6G9ySIJZSYYAyew=;
-  b=XagBvT/Zcui/Hv08FxxDnnSbRbaRiAx8ZKC31a09SMgyz694KI5VLcjQ
-   1Orw2ZhInIzknv4vkfCN+edd4PpqMuSGpGcxdluy7z8/12QA/UZq981IC
-   YL9UTY+ltxyahVaSQM1ZdZc7UOFjioZsET4lKJ3ggUCeeTzPdt3WrseWq
-   ahA8zv+u3Vi1U5JzNb+gV2jHewnoKDbvWCQodVC/3IChTS9Z0Y0/B0e4L
-   ziJsUbK3ZeOWZYotCB0HHQMXgckgIPjRJd6wdEjTbFU6bIvCX/Pu1hAri
-   bWE/veS3WFZunJ7GuzyIsigmHTdNCbYNFQWXKERV2z2hr5rFFtwoDyBfi
-   A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10936"; a="400345434"
-X-IronPort-AV: E=Sophos;i="6.04,311,1695711600"; 
-   d="scan'208";a="400345434"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Dec 2023 02:42:54 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10936"; a="897169005"
-X-IronPort-AV: E=Sophos;i="6.04,311,1695711600"; 
-   d="scan'208";a="897169005"
-Received: from mattu-haswell.fi.intel.com (HELO [10.237.72.199]) ([10.237.72.199])
-  by fmsmga002.fm.intel.com with ESMTP; 28 Dec 2023 02:42:50 -0800
-Message-ID: <1718f25d-3274-3e4d-0cdf-72fda8788e39@linux.intel.com>
-Date: Thu, 28 Dec 2023 12:44:15 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 876D56AA4;
+	Thu, 28 Dec 2023 10:48:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=realtek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=realtek.com
+X-SpamFilter-By: ArmorX SpamTrap 5.78 with qID 3BSAmIoH51892682, This message is accepted by code: ctloc85258
+Received: from mail.realtek.com (rtexh36506.realtek.com.tw[172.21.6.27])
+	by rtits2.realtek.com.tw (8.15.2/2.95/5.92) with ESMTPS id 3BSAmIoH51892682
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Thu, 28 Dec 2023 18:48:18 +0800
+Received: from RTEXMBS05.realtek.com.tw (172.21.6.98) by
+ RTEXH36506.realtek.com.tw (172.21.6.27) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.17; Thu, 28 Dec 2023 18:48:18 +0800
+Received: from RTEXH36505.realtek.com.tw (172.21.6.25) by
+ RTEXMBS05.realtek.com.tw (172.21.6.98) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.34; Thu, 28 Dec 2023 18:48:17 +0800
+Received: from localhost.localdomain (172.21.252.101) by
+ RTEXH36505.realtek.com.tw (172.21.6.25) with Microsoft SMTP Server id
+ 15.1.2375.32 via Frontend Transport; Thu, 28 Dec 2023 18:48:17 +0800
+From: Tzuyi Chang <tychang@realtek.com>
+To: Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski
+	<brgl@bgdev.pl>,
+        Andy Shevchenko <andy@kernel.org>, Rob Herring
+	<robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: <linux-gpio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, TY Chang <tychang@realtek.com>
+Subject: [PATCH v5 0/2] Add gpio driver support for Realtek DHC SoCs
+Date: Thu, 28 Dec 2023 18:47:58 +0800
+Message-ID: <20231228104800.24913-1-tychang@realtek.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.13.0
-Content-Language: en-US
-To: Chunfeng Yun <chunfeng.yun@mediatek.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Conor Dooley <conor+dt@kernel.org>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- Mathias Nyman <mathias.nyman@intel.com>, linux-usb@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Eddie Hung <eddie.hung@mediatek.com>, Macpaul Lin <macpaul.lin@mediatek.com>
-References: <20231227060316.8539-1-chunfeng.yun@mediatek.com>
-From: Mathias Nyman <mathias.nyman@linux.intel.com>
-Subject: Re: [PATCH v4 1/3] dt-bindings: usb: mtk-xhci: add a property for
- Gen1 isoc-in transfer issue
-In-Reply-To: <20231227060316.8539-1-chunfeng.yun@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-KSE-ServerInfo: RTEXMBS05.realtek.com.tw, 9
+X-KSE-AntiSpam-Interceptor-Info: fallback
+X-KSE-Antivirus-Interceptor-Info: fallback
+X-KSE-AntiSpam-Interceptor-Info: fallback
 
-Hi
+These patches add the bindings and the gpio driver for Realtek
+DHC(Digital Home Center) RTD SoCs, including RTD1295, RTD1395,
+RTD1619, RTD1319, RTD1619B, RTD1319D and RTD1315E.
 
-On 27.12.2023 8.03, Chunfeng Yun wrote:
-> For Gen1 isoc-in endpoint on controller before about SSUSB IPM v1.6.0, it
-> still send out unexpected ACK after receiving a short packet in burst
-> transfer, this will cause an exception on connected device, specially for
-> a 4k camera.
-> Add a quirk property "rx-fifo-depth" to work around this hardware issue,
-> prefer to use 3k bytes;
-> The side-effect is that may cause performance drop about 10%, including
-> bulk transfer.
+Change log:
+v4->v5:
+1. Add more description in the Kconfig.
+2. Add comment for the counter-intuitive number 31.
+3. Convert to use cleanup API and module_platform_driver() macro.
+4. Simplify some of the code as suggested in patch v4.
+v3->v4:
+1. Arrange the compatible list in alphanumerical order.
+2. Remove the size check for the offset array.
+3. Add the debounce callback.
+4. Conducted a review of the critical section, employing raw_spinlock_t for locking purposes.
+5. Add gpiochip_enable_irq/gpiochip_disable_irq to fulfill the immutability requirements.
+6. Use irqd_to_hwirq to get hwirq.
+v2->v3:
+1. Remove generic compatible and use SoC-specific compatible instead.
+2. Add the missing descriptions for the rtd_gpio_info structure members.
+3. Assign gpio_chip fwnode.
+v1->v2:
+1. Add description for DHC RTD SoCs in the bindings.
+2. Revise the compatible names in the bindings.
+3. Transitioned from OF API to platform_device API.
+4. Use u8 for the offset array within the rtd_gpio_info structure.
+5. Record the size of each array within the rtd_gpio_info structure and
+   implement checks to prevent out-of-bounds access.
+6. Use GPIOLIB_IRQCHIP helpers to register interrupts.
+7. Use dynamic allocation for GPIO base.
 
-Is it be possible to detect those Mediatek xHC versions that need this
-workaround in the xhci-mtk driver directly?
+Tzuyi Chang (2):
+  dt-bindings: gpio: realtek: Add realtek,rtd-gpio
+  Add GPIO support for Realtek DHC(Digital Home Center) RTD SoCs.
 
-This way we could avoid passing a new "rx-fifo-depth" property to it.
+ .../bindings/gpio/realtek,rtd-gpio.yaml       |  69 ++
+ drivers/gpio/Kconfig                          |  13 +
+ drivers/gpio/Makefile                         |   1 +
+ drivers/gpio/gpio-rtd.c                       | 604 ++++++++++++++++++
+ 4 files changed, 687 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/gpio/realtek,rtd-gpio.yaml
+ create mode 100644 drivers/gpio/gpio-rtd.c
 
-Thanks
-Mathias
+-- 
+2.43.0
 
 
