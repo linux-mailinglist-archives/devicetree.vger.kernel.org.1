@@ -1,140 +1,99 @@
-Return-Path: <devicetree+bounces-28738-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28739-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C66A581F51C
-	for <lists+devicetree@lfdr.de>; Thu, 28 Dec 2023 07:41:03 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id DBC1181F52D
+	for <lists+devicetree@lfdr.de>; Thu, 28 Dec 2023 07:53:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8ADA2283BE4
-	for <lists+devicetree@lfdr.de>; Thu, 28 Dec 2023 06:41:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 618461F21C12
+	for <lists+devicetree@lfdr.de>; Thu, 28 Dec 2023 06:53:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F391B2909;
-	Thu, 28 Dec 2023 06:40:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="rbv5RNY+"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 386D233C9;
+	Thu, 28 Dec 2023 06:53:47 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C83863A8;
-	Thu, 28 Dec 2023 06:40:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3BS6dsld085183;
-	Thu, 28 Dec 2023 00:39:54 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1703745594;
-	bh=EJCG44e6LiY2ozmpMigA/5JiJCeZqYoyVZe30RPWG6Y=;
-	h=From:Date:Subject:To:CC;
-	b=rbv5RNY+MADYwh6Tw4OL4irSGRbsUlEttVko4ZRxetPTgdxDjtOC+ui95SygAT6YL
-	 Uv+A02W5fcKT7ctmO0U8ahfK/xspN8iOTj1cE0T0lS2gqYcE+NUDHWu0rEBOmVBlbJ
-	 inPkc+I3Ei/alHPY7fUsKtZEiYk1K+gtuQsJq5+8=
-Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3BS6dson016974
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 28 Dec 2023 00:39:54 -0600
-Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 28
- Dec 2023 00:39:53 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 28 Dec 2023 00:39:53 -0600
-Received: from [127.0.1.1] (uda0497581.dhcp.ti.com [10.24.69.44])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3BS6dm9n054066;
-	Thu, 28 Dec 2023 00:39:49 -0600
-From: Manorit Chawdhry <m-chawdhry@ti.com>
-Date: Thu, 28 Dec 2023 12:09:48 +0530
-Subject: [PATCH] dt-bindings: thermal: k3-j72xx: Update bindings for J721S2
- SoCs
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7948063AB;
+	Thu, 28 Dec 2023 06:53:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+	by ex01.ufhost.com (Postfix) with ESMTP id CE72724DBFD;
+	Thu, 28 Dec 2023 14:53:30 +0800 (CST)
+Received: from EXMBX066.cuchost.com (172.16.7.66) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 28 Dec
+ 2023 14:53:30 +0800
+Received: from localhost.localdomain (202.188.176.82) by EXMBX066.cuchost.com
+ (172.16.6.66) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 28 Dec
+ 2023 14:53:25 +0800
+From: Alex Soo <yuklin.soo@starfivetech.com>
+To: Ulf Hansson <ulf.hansson@linaro.org>, Adrian Hunter
+	<adrian.hunter@intel.com>, Yangtao Li <frank.li@vivo.com>, Andy Shevchenko
+	<andriy.shevchenko@linux.intel.com>, Linus Walleij
+	<linus.walleij@linaro.org>, Rob Herring <robh+dt@kernel.org>, "Krzysztof
+ Kozlowski" <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+	<conor+dt@kernel.org>, Emil Renner Berthing <kernel@esmil.dk>
+CC: <linux-mmc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-riscv@lists.infradead.org>, "Paul
+ Walmsley" <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alex Soo <yuklin.soo@starfivetech.com>
+Subject: [PATCH 0/3] Add driver for Cadence SD6HC SD/eMMC controller
+Date: Thu, 28 Dec 2023 14:53:19 +0800
+Message-ID: <20231228065322.1176351-1-yuklin.soo@starfivetech.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20231228-b4-upstream-j721s2-vtm-dt-binding-v1-1-e866277f9c64@ti.com>
-X-B4-Tracking: v=1; b=H4sIADMYjWUC/x3NQQqDMBBA0avIrB1oxlirV5EuNJnaEUwlk4og3
- t3g8m3+P0A5Cit0xQGRN1H5hQxTFuC+Q5gYxWcDPagyRC8cLf5XTZGHBeeGjBJuaUGfcJTgJUz
- Y1vw0rrXkKgu5s0b+yH4/+vd5XqClTF9zAAAA
-To: "Rafael J. Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano
-	<daniel.lezcano@linaro.org>,
-        Zhang Rui <rui.zhang@intel.com>, Lukasz Luba
-	<lukasz.luba@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, J
- Keerthy <j-keerthy@ti.com>
-CC: <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Udit Kumar <u-kumar1@ti.com>,
-        Nishanth Menon
-	<nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Manorit Chawdhry
-	<m-chawdhry@ti.com>
-X-Mailer: b4 0.13-dev
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1703745589; l=1535;
- i=m-chawdhry@ti.com; s=20231127; h=from:subject:message-id;
- bh=k6TeF/GvBob+g5G7fXguWw0kINtreXNy1kGKFr4s9Zs=;
- b=pKGrfs6sZX1F1lLx9Zst4Cbhmel8xkyFu4dC5qTPSkszqYdOSATTakhIdZAktCnG/3Zh8oJvs
- yzCHlIxj7YWBSKhfZCJ7KGeJKNPtpElTKWfDGf2iz6H9kv4YHT3O04G
-X-Developer-Key: i=m-chawdhry@ti.com; a=ed25519;
- pk=fsr6Tm39TvsTgfyfFQLk+nnqIz2sBA1PthfqqfiiYSs=
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX066.cuchost.com
+ (172.16.6.66)
+X-YovoleRuleAgent: yovoleflag
+Content-Transfer-Encoding: quoted-printable
 
-The clock and processor ID for J721S2 differs from the existing
-compatibles, add a new compatible to represent this change for adding
-support for Adaptive voltage scaling.
+Starfive JH8100 SoC consists of a Cadence SD/eMMC host controller
+(Version 6) with Combo PHY which provides DFI interface to SD/eMMC
+removable or embedded devices. This patch adds initial SD/eMMC support
+for JH8100 SoC by providing device drivers for Cadence SD/eMMC Version 6
+host controller and Combo PHY.  This patch series is depending on the
+JH8100 base patch series in [1], [2], and [3].
+The relevant dt-bindings documentation has been updated accordingly.
 
-Signed-off-by: Manorit Chawdhry <m-chawdhry@ti.com>
----
- .../devicetree/bindings/thermal/ti,j72xx-thermal.yaml        | 12 ++++++++----
- 1 file changed, 8 insertions(+), 4 deletions(-)
+[1] https://lore.kernel.org/lkml/20231201121410.95298-1-jeeheng.sia@starf=
+ivetech.com/
+[2] https://lore.kernel.org/lkml/20231206115000.295825-1-jeeheng.sia@star=
+fivetech.com/
+[3] https://lore.kernel.org/lkml/20231221083622.3445726-1-yuklin.soo@star=
+fivetech.com/=20
 
-diff --git a/Documentation/devicetree/bindings/thermal/ti,j72xx-thermal.yaml b/Documentation/devicetree/bindings/thermal/ti,j72xx-thermal.yaml
-index 171b3622ed84..5792ccc058aa 100644
---- a/Documentation/devicetree/bindings/thermal/ti,j72xx-thermal.yaml
-+++ b/Documentation/devicetree/bindings/thermal/ti,j72xx-thermal.yaml
-@@ -24,9 +24,13 @@ description: |
- 
- properties:
-   compatible:
--    enum:
--      - ti,j721e-vtm
--      - ti,j7200-vtm
-+    anyOf:
-+      - items:
-+          - enum:
-+              - ti,j721e-vtm
-+              - ti,j7200-vtm
-+              - ti,j721s2-vtm
-+      - maxItems: 2
- 
-   reg:
-     items:
-@@ -72,7 +76,7 @@ examples:
-   - |
-     #include <dt-bindings/soc/ti,sci_pm_domain.h>
-     wkup_vtm0: thermal-sensor@42040000 {
--        compatible = "ti,j721e-vtm";
-+        compatible = "ti,j721e-vtm", "ti,j7200-vtm";
-         reg = <0x42040000 0x350>,
-               <0x42050000 0x350>,
-               <0x43000300 0x10>;
+Alex Soo (3):
+  dt-bindings: mmc: sdhci-cadence6: add DT bindings documentation
+  mmc: sdhci-cadence6: add Cadence SD6HC support
+  riscv: dts: starfive: jh8100: Add SD/eMMC device tree nodes
 
----
-base-commit: 39676dfe52331dba909c617f213fdb21015c8d10
-change-id: 20231228-b4-upstream-j721s2-vtm-dt-binding-95e61c942c34
+ .../devicetree/bindings/mmc/cdns,sd6hci.yaml  |  65 +++
+ MAINTAINERS                                   |   6 +
+ arch/riscv/boot/dts/starfive/jh8100.dtsi      |  34 ++
+ drivers/mmc/host/Kconfig                      |  11 +
+ drivers/mmc/host/Makefile                     |   2 +
+ drivers/mmc/host/sdhci-cadence6-phy.c         | 384 +++++++++++++
+ drivers/mmc/host/sdhci-cadence6.c             | 531 ++++++++++++++++++
+ drivers/mmc/host/sdhci-cadence6.h             | 148 +++++
+ 8 files changed, 1181 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mmc/cdns,sd6hci.yam=
+l
+ create mode 100644 drivers/mmc/host/sdhci-cadence6-phy.c
+ create mode 100644 drivers/mmc/host/sdhci-cadence6.c
+ create mode 100644 drivers/mmc/host/sdhci-cadence6.h
 
-Best regards,
--- 
-Manorit Chawdhry <m-chawdhry@ti.com>
+--=20
+2.25.1
 
 
