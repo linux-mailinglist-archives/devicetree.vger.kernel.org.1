@@ -1,64 +1,38 @@
-Return-Path: <devicetree+bounces-28814-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28815-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA27F81F7F3
-	for <lists+devicetree@lfdr.de>; Thu, 28 Dec 2023 12:50:40 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D3C981F7FF
+	for <lists+devicetree@lfdr.de>; Thu, 28 Dec 2023 12:58:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3495E1F23E56
-	for <lists+devicetree@lfdr.de>; Thu, 28 Dec 2023 11:50:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F2F771C2335E
+	for <lists+devicetree@lfdr.de>; Thu, 28 Dec 2023 11:58:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C59897469;
-	Thu, 28 Dec 2023 11:50:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GKHeFGQb"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA7E26FD6;
+	Thu, 28 Dec 2023 11:58:39 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DFB7746C
-	for <devicetree@vger.kernel.org>; Thu, 28 Dec 2023 11:50:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-40d6b4e2945so4026665e9.0
-        for <devicetree@vger.kernel.org>; Thu, 28 Dec 2023 03:50:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1703764228; x=1704369028; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=wdlz29K/0/hxmvRfGCyQwCXF3ZGPPaE+h3Q1SiZRzNM=;
-        b=GKHeFGQb7gTzKRT1rFIxZHQm0mTuMUxJ7aYdz/VcO4OgoXRa0LBxkI7kIA7XXYWgoo
-         eShW+88/4E1iboHD8yO/ACi1xBjGXjmrQODmNMceoP6QOdZhpAAu07ngyQktm1Dg5GcM
-         whvQICqzolptswIWkhRv2fahLok0jW/nvAtgcrng5hiSZbY5oTNHhpJ+Vd2dGlmpVyaQ
-         DTGZ0QgV1pXc+dsrk0Bo2txTptq9BWx/kt8vVoKos25M/FU8E7j3aUEbFqWfheaM9h4d
-         ZMwyoIkppX1EiI//q4pWre7XkiXsbp+Hjr57uJgbYEwXo64BjOwKWfRfapfE4K1sg43h
-         ZzQg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703764228; x=1704369028;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=wdlz29K/0/hxmvRfGCyQwCXF3ZGPPaE+h3Q1SiZRzNM=;
-        b=vnJMcCHP98MUg9f8Q7gOn76c79sRhrjpoC8wbTBZOaUpQvQzKOTf9wyU8DUdooFQQ5
-         lXgMwVhG5O+yqlMFKjp0TuGEVaRhJPl3h0W3SWc0tAYGwKkv3LTwvFxpgm3D/hQQrfXo
-         MO8MdHOIm73iOpg7PyAL+9QmwlEr10P+N/EwKiMHWNaoLUoCjZ4pFzY6Q3+kJgnL+del
-         oKOv84MF9YGleyCoB6AXnUVOUBsiZknvxcTJf9lZm6edAG81XuiUIe5hCufXmM26AJe/
-         Wv3GQv2ximjXSS6yVxunrVKCjxYD0tYxJdnpr/vepsHtyzgkHH0zbgMWyd7WEeMIdMju
-         Tv4g==
-X-Gm-Message-State: AOJu0Yz4WUErYvkTsYzeEx026B1JBfjc1w7azFMnrUSW1jYN7mD/fEw3
-	niKFNk8QNgWQ4ToJ/iVtyTI61LfAQIG6Kg==
-X-Google-Smtp-Source: AGHT+IGwMaTZr9RTJIv3bjyi5QcuDrn+R2blMqLmdaPgtUFVl7DqVbechYNcWS6vBxGQReFauXoEXg==
-X-Received: by 2002:a05:600c:5207:b0:40d:5a6e:5ccd with SMTP id fb7-20020a05600c520700b0040d5a6e5ccdmr1353162wmb.69.1703764228393;
-        Thu, 28 Dec 2023 03:50:28 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id o20-20020a05600c4fd400b004094d4292aesm27190376wmq.18.2023.12.28.03.50.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 28 Dec 2023 03:50:27 -0800 (PST)
-Message-ID: <e1b39918-9b50-40fd-9c72-4daeff6f1c11@linaro.org>
-Date: Thu, 28 Dec 2023 12:50:26 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6382A7462;
+	Thu, 28 Dec 2023 11:58:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+	by ex01.ufhost.com (Postfix) with ESMTP id 41A0624E257;
+	Thu, 28 Dec 2023 19:58:32 +0800 (CST)
+Received: from EXMBX171.cuchost.com (172.16.6.91) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 28 Dec
+ 2023 19:58:32 +0800
+Received: from [192.168.125.85] (183.27.97.107) by EXMBX171.cuchost.com
+ (172.16.6.91) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 28 Dec
+ 2023 19:58:31 +0800
+Message-ID: <987e4153-236a-4bc6-9db6-f9ad58846267@starfivetech.com>
+Date: Thu, 28 Dec 2023 19:58:30 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,78 +40,182 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: iio: adc: rtq6056: add support for
- the whole RTQ6056 family
+Subject: Re: [PATCH v13 12/21] PCI: microchip: Add request_event_irq()
+ callback function
 Content-Language: en-US
-To: cy_huang@richtek.com, Jonathan Cameron <jic23@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>,
- =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <cover.1703762557.git.cy_huang@richtek.com>
- <02be8526c98f2ee02c8a6241b133adf2c3b58607.1703762557.git.cy_huang@richtek.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <02be8526c98f2ee02c8a6241b133adf2c3b58607.1703762557.git.cy_huang@richtek.com>
-Content-Type: text/plain; charset=UTF-8
+To: Lorenzo Pieralisi <lpieralisi@kernel.org>
+CC: Conor Dooley <conor@kernel.org>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?=
+	<kw@linux.com>, Rob Herring <robh+dt@kernel.org>, Bjorn Helgaas
+	<bhelgaas@google.com>, Daire McNamara <daire.mcnamara@microchip.com>, "Emil
+ Renner Berthing" <emil.renner.berthing@canonical.com>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
+	<linux-pci@vger.kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
+	"Palmer Dabbelt" <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+	"Philipp Zabel" <p.zabel@pengutronix.de>, Mason Huo
+	<mason.huo@starfivetech.com>, Leyfoon Tan <leyfoon.tan@starfivetech.com>,
+	Kevin Xie <kevin.xie@starfivetech.com>
+References: <20231214072839.2367-1-minda.chen@starfivetech.com>
+ <20231214072839.2367-13-minda.chen@starfivetech.com>
+ <ZYxKYhVycTOfbDTI@lpieralisi>
+From: Minda Chen <minda.chen@starfivetech.com>
+In-Reply-To: <ZYxKYhVycTOfbDTI@lpieralisi>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: EXCAS061.cuchost.com (172.16.6.21) To EXMBX171.cuchost.com
+ (172.16.6.91)
+X-YovoleRuleAgent: yovoleflag
 
-On 28/12/2023 12:29, cy_huang@richtek.com wrote:
-> From: ChiYuan Huang <cy_huang@richtek.com>
+
+
+On 2023/12/28 0:01, Lorenzo Pieralisi wrote:
+> On Thu, Dec 14, 2023 at 03:28:30PM +0800, Minda Chen wrote:
+>> PolarFire implements specific PCIe interrupts except PLDA local interrupt.
 > 
-> Add compatible support for RTQ6053 and RTQ6059.
+> Please explain to me what you want to say here.
+> >> For lack of MSI controller, these interrupts have to be added to global
+>> event field. PolarFire PCIe driver also register additional interrupt
+>> symbol name.
 > 
-> Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
-> ---
+> And here.
+> 
+The sentence mean architecture should have an advance interrupt 
+controller can support MSI interrupt and these new added interrupts should
+be added to MSI interrupt. (Like ARM GIC high level version)
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Maybe this commit message should be deleted. The commit message should claim
+why add request_event_irq() callback function.
 
-Best regards,
-Krzysztof
+Add this callback function is for vendor register the interrupt handler and
+the name of new added PCIe interrupts. 
 
+"new added PCIe interrupts" is mean microchip new added interrupt.
+#define EVENT_PCIE_L2_EXIT                      0
+#define EVENT_PCIE_HOTRST_EXIT                  1
+#define EVENT_PCIE_DLUP_EXIT                    2
+#define EVENT_SEC_TX_RAM_SEC_ERR                3
+#define EVENT_SEC_RX_RAM_SEC_ERR                4
+#define EVENT_SEC_PCIE2AXI_RAM_SEC_ERR          5
+#define EVENT_SEC_AXI2PCIE_RAM_SEC_ERR          6
+#define EVENT_DED_TX_RAM_DED_ERR                7
+#define EVENT_DED_RX_RAM_DED_ERR                8
+#define EVENT_DED_PCIE2AXI_RAM_DED_ERR          9
+#define EVENT_DED_AXI2PCIE_RAM_DED_ERR          10
+
+
+>> PolarFire PCIe contain total 28 interrupts event while PLDA contain 13
+>> local interrupts event, interrupt to event num mapping is different.
+> 
+> It "is different" in different platforms ? Is that correct ?
+> 
+yes
+>> So add a callback function to support different IRQ register function.
+>> Also Add PLDA default handler function, which will be moved to pcie-
+>> plda-host.c in moving codes patch.
+> 
+> As I said before, a patch is a single self-contained change, don't
+> refer to other patches, they may or may not be merged or even exist
+> by the time this one hits mainline.
+> 
+> Lorenzo
+> 
+OK. I will delete the "which will be moved to pcie-plda-host.c in 
+moving codes patch" and change the commit message.
+
+>> Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
+>> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+>> ---
+>>  .../pci/controller/plda/pcie-microchip-host.c | 31 ++++++++++++++++---
+>>  drivers/pci/controller/plda/pcie-plda.h       |  5 +++
+>>  2 files changed, 32 insertions(+), 4 deletions(-)
+>> 
+>> diff --git a/drivers/pci/controller/plda/pcie-microchip-host.c b/drivers/pci/controller/plda/pcie-microchip-host.c
+>> index 7b3f4f74745d..624e4e2e97d3 100644
+>> --- a/drivers/pci/controller/plda/pcie-microchip-host.c
+>> +++ b/drivers/pci/controller/plda/pcie-microchip-host.c
+>> @@ -643,6 +643,11 @@ static irqreturn_t mc_event_handler(int irq, void *dev_id)
+>>  	return IRQ_HANDLED;
+>>  }
+>>  
+>> +static irqreturn_t plda_event_handler(int irq, void *dev_id)
+>> +{
+>> +	return IRQ_HANDLED;
+>> +}
+>> +
+>>  static void plda_handle_event(struct irq_desc *desc)
+>>  {
+>>  	struct plda_pcie_rp *port = irq_desc_get_handler_data(desc);
+>> @@ -804,6 +809,17 @@ static int mc_pcie_init_clks(struct device *dev)
+>>  	return 0;
+>>  }
+>>  
+>> +static int mc_request_event_irq(struct plda_pcie_rp *plda, int event_irq,
+>> +				int event)
+>> +{
+>> +	return devm_request_irq(plda->dev, event_irq, mc_event_handler,
+>> +				0, event_cause[event].sym, plda);
+>> +}
+>> +
+>> +static const struct plda_event mc_event = {
+>> +	.request_event_irq = mc_request_event_irq,
+>> +};
+>> +
+>>  static int plda_pcie_init_irq_domains(struct plda_pcie_rp *port)
+>>  {
+>>  	struct device *dev = port->dev;
+>> @@ -905,7 +921,9 @@ static void mc_disable_interrupts(struct mc_pcie *port)
+>>  	writel_relaxed(GENMASK(31, 0), bridge_base_addr + ISTATUS_HOST);
+>>  }
+>>  
+>> -static int plda_init_interrupts(struct platform_device *pdev, struct plda_pcie_rp *port)
+>> +static int plda_init_interrupts(struct platform_device *pdev,
+>> +				struct plda_pcie_rp *port,
+>> +				const struct plda_event *event)
+>>  {
+>>  	struct device *dev = &pdev->dev;
+>>  	int irq;
+>> @@ -929,8 +947,13 @@ static int plda_init_interrupts(struct platform_device *pdev, struct plda_pcie_r
+>>  			return -ENXIO;
+>>  		}
+>>  
+>> -		ret = devm_request_irq(dev, event_irq, mc_event_handler,
+>> -				       0, event_cause[i].sym, port);
+>> +		if (event->request_event_irq)
+>> +			ret = event->request_event_irq(port, event_irq, i);
+>> +		else
+>> +			ret = devm_request_irq(dev, event_irq,
+>> +					       plda_event_handler,
+>> +					       0, NULL, port);
+>> +
+>>  		if (ret) {
+>>  			dev_err(dev, "failed to request IRQ %d\n", event_irq);
+>>  			return ret;
+>> @@ -984,7 +1007,7 @@ static int mc_platform_init(struct pci_config_window *cfg)
+>>  		return ret;
+>>  
+>>  	/* Address translation is up; safe to enable interrupts */
+>> -	ret = plda_init_interrupts(pdev, &port->plda);
+>> +	ret = plda_init_interrupts(pdev, &port->plda, &mc_event);
+>>  	if (ret)
+>>  		return ret;
+>>  
+>> diff --git a/drivers/pci/controller/plda/pcie-plda.h b/drivers/pci/controller/plda/pcie-plda.h
+>> index e3d35cef9894..28ed1374e1de 100644
+>> --- a/drivers/pci/controller/plda/pcie-plda.h
+>> +++ b/drivers/pci/controller/plda/pcie-plda.h
+>> @@ -121,6 +121,11 @@ struct plda_pcie_rp {
+>>  	int num_events;
+>>  };
+>>  
+>> +struct plda_event {
+>> +	int (*request_event_irq)(struct plda_pcie_rp *pcie,
+>> +				 int event_irq, int event);
+>> +};
+>> +
+>>  void plda_pcie_setup_window(void __iomem *bridge_base_addr, u32 index,
+>>  			    phys_addr_t axi_addr, phys_addr_t pci_addr,
+>>  			    size_t size);
+>> -- 
+>> 2.17.1
+>> 
 
