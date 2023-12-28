@@ -1,153 +1,109 @@
-Return-Path: <devicetree+bounces-28722-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28723-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 883A081F45F
-	for <lists+devicetree@lfdr.de>; Thu, 28 Dec 2023 04:21:43 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6C0181F466
+	for <lists+devicetree@lfdr.de>; Thu, 28 Dec 2023 04:26:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0CED2B20ACC
-	for <lists+devicetree@lfdr.de>; Thu, 28 Dec 2023 03:21:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8AC0F1F22210
+	for <lists+devicetree@lfdr.de>; Thu, 28 Dec 2023 03:26:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0627810F2;
-	Thu, 28 Dec 2023 03:21:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Nr1s9yot"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8ECC10F9;
+	Thu, 28 Dec 2023 03:26:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f173.google.com (mail-qk1-f173.google.com [209.85.222.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94A333C07;
-	Thu, 28 Dec 2023 03:21:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f173.google.com with SMTP id af79cd13be357-781708819c4so25624585a.1;
-        Wed, 27 Dec 2023 19:21:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1703733693; x=1704338493; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=9+46J6+2KoeZZSgHS8eqkcEN7H/BVTk49hUInsE7T38=;
-        b=Nr1s9yotz+cfodwH5AXc/kptGFXXqtj/HZa37anNUrQnETggAhauodpOTOaWtGS0WO
-         HC+jxBOeMg23YPFeGtJj66njE/2gM0k5BQPu7gVwsQ5R2dFfRyiLpP5iJXdFF25eWob2
-         fhPG07ZxiYyYmmrGmTaUYf1KCvKvWcWAwRWIjFh/HsROqu4kdOYBeABVdWX6PjOXu6jZ
-         NAmzZ8h2e8/pXuC0Najrh6T3qStjXq46yogofj3ME7mhiaWQH7CyW3jdx2BOXNRQYypA
-         YgEY3soY07BsMXX+Trcy7b2bP9PLFDNbaHb5Xt5XuJfCCsxRw8V7/E1bh8nYOq/zAdDM
-         rPIQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703733693; x=1704338493;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=9+46J6+2KoeZZSgHS8eqkcEN7H/BVTk49hUInsE7T38=;
-        b=dQYgTXXntV4TVJDq9yOAkpXSHj6GCCn9kxy3hS8SuRwoayoPmXpkAe3cWeg48s4Afq
-         4R7rRFcZUiicVPZt/06Aba+7N0bMDaLMscd0+ocee/gnSmx7fxAN455LMlHZUuVfs2K2
-         KBtOmZlnqueLStHdedFdl/JEfNOnkdFvKYzi9ASR5MBc+HByUl3VqjeY/GxhzykDxXvx
-         bW8CJYnOHcwwrI+WyyamQxoIEJg+NhbmiHi1jQc26yvBtS7QJVbWasUKPOqW2imNMxNc
-         5G1LKCm9AuBa5qhpwDC6GiI17g+gEKJzFqzkLi7HixehWRMC9xFZERPjwWsY0OyXyVMw
-         vFow==
-X-Gm-Message-State: AOJu0Yw/gLLtsjuOiaAzgbXqIafckNx1TwIT1Kdj62UvFjALZVu/EFUs
-	HESBXn8W4PUJazDa+iub8mU6Nxzv3FJpjA==
-X-Google-Smtp-Source: AGHT+IEh/GynUMc484RkLckzzPYuuSTDz6/asR0WgSk8uLlMI48DAARuq7L2QIzSjOBuY2Ivj3ds9g==
-X-Received: by 2002:ac8:5847:0:b0:427:ecee:fd01 with SMTP id h7-20020ac85847000000b00427eceefd01mr1795965qth.72.1703733693496;
-        Wed, 27 Dec 2023 19:21:33 -0800 (PST)
-Received: from localhost.localdomain (107-015-241-140.res.spectrum.com. [107.15.241.140])
-        by smtp.gmail.com with ESMTPSA id eq20-20020a05622a5e1400b004278e7f122esm3382294qtb.25.2023.12.27.19.21.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 27 Dec 2023 19:21:33 -0800 (PST)
-From: John Clark <inindev@gmail.com>
-To: "Rob Herring" <robh+dt@kernel.org>,
-	"Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-	"Conor Dooley" <conor+dt@kernel.org>,
-	"Heiko Stuebner" <heiko@sntech.de>,
-	linux-rockchip@lists.infradead.org
-Cc: "Thomas McKahan" <tmckahan@singleboardsolutions.com>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	John Clark <inindev@gmail.com>
-Subject: [PATCH] arm64: dts: rockchip: nanopc-t6 sdmmc device tuning
-Date: Thu, 28 Dec 2023 03:21:13 +0000
-Message-ID: <20231228032114.1157-1-inindev@gmail.com>
-X-Mailer: git-send-email 2.43.0
+Received: from mg.richtek.com (mg.richtek.com [220.130.44.152])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E098815A8;
+	Thu, 28 Dec 2023 03:26:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=richtek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=richtek.com
+X-MailGates: (SIP:2,PASS,NONE)(compute_score:DELIVER,40,3)
+Received: from 192.168.10.47
+	by mg.richtek.com with MailGates ESMTPS Server V6.0(636793:0:AUTH_RELAY)
+	(envelope-from <cy_huang@richtek.com>)
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256/256); Thu, 28 Dec 2023 11:26:04 +0800 (CST)
+Received: from ex4.rt.l (192.168.10.47) by ex4.rt.l (192.168.10.47) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1258.27; Thu, 28 Dec
+ 2023 11:26:04 +0800
+Received: from linuxcarl2.richtek.com (192.168.10.154) by ex4.rt.l
+ (192.168.10.45) with Microsoft SMTP Server id 15.2.1258.27 via Frontend
+ Transport; Thu, 28 Dec 2023 11:26:04 +0800
+Date: Thu, 28 Dec 2023 11:26:04 +0800
+From: ChiYuan Huang <cy_huang@richtek.com>
+To: Jonathan Cameron <jic23@kernel.org>
+CC: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>, Uwe
+ =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
+	<linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 1/2] dt-bindings: iio: adc: rtq6056: add support for the
+ whole RTQ6056 family
+Message-ID: <20231228032604.GA32365@linuxcarl2.richtek.com>
+References: <1703562468-29052-1-git-send-email-cy_huang@richtek.com>
+ <1703562468-29052-2-git-send-email-cy_huang@richtek.com>
+ <9715ed9d-7edf-430c-808c-00e7748bc59a@linaro.org>
+ <20231226162450.5437810a@jic23-huawei>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20231226162450.5437810a@jic23-huawei>
+User-Agent: Mutt/1.5.21 (2010-09-15)
 
-1) sdmmc on the nanopc-t6 is powered by vcc3v3_sd_s0, not vcc_3v3_s3
-   add the supply vcc3v3_sd_s0, and control it with gpio4_a5
-2) add the card detection property gpio0_a4
-3) drop max-frequency = <200000000> as it is already defined in rk3588s.dtsi
-4) order no-sdio & no-mmc properties while we are here
+On Tue, Dec 26, 2023 at 04:24:50PM +0000, Jonathan Cameron wrote:
+> On Tue, 26 Dec 2023 10:18:47 +0100
+> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+> 
+> > On 26/12/2023 04:47, cy_huang@richtek.com wrote:
+> > > From: ChiYuan Huang <cy_huang@richtek.com>
+> > > 
+> > > Add compatible support for RTQ6053 and RTQ6059.
+> > > 
+> > > Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
+> > > ---
+> > >  .../devicetree/bindings/iio/adc/richtek,rtq6056.yaml         | 5 ++++-
+> > >  1 file changed, 4 insertions(+), 1 deletion(-)
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/iio/adc/richtek,rtq6056.yaml b/Documentation/devicetree/bindings/iio/adc/richtek,rtq6056.yaml
+> > > index 88e008629ea8..d1e1f36d1972 100644
+> > > --- a/Documentation/devicetree/bindings/iio/adc/richtek,rtq6056.yaml
+> > > +++ b/Documentation/devicetree/bindings/iio/adc/richtek,rtq6056.yaml
+> > > @@ -25,7 +25,10 @@ description: |
+> > >  
+> > >  properties:
+> > >    compatible:
+> > > -    const: richtek,rtq6056
+> > > +    enum:
+> > > +      - richtek,rtq6053
+> > > +      - richtek,rtq6056  
+> > 
+> > Aren't these devices compatible? Your driver change says they are, so
+> > express compatibility with list here (and oneOf).
+> 
+> I'm not seeing this thread on lore.kernel.org or in my local email. 
+> Perhaps something went wrong?
+> 
+I also cannot find the original message in lore.kernel.org.
+But I checked the to/cc list. Nothing is lost.
 
-Signed-off-by: John Clark <inindev@gmail.com>
----
- .../boot/dts/rockchip/rk3588-nanopc-t6.dts    | 27 ++++++++++++++++---
- 1 file changed, 23 insertions(+), 4 deletions(-)
+Still not sure what happened.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dts b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dts
-index e83b71510a47..2360735e58a1 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dts
-@@ -159,6 +159,19 @@ vcc3v3_pcie30: vcc3v3-pcie30-regulator {
- 		regulator-max-microvolt = <3300000>;
- 		vin-supply = <&vcc5v0_sys>;
- 	};
-+
-+	vcc3v3_sd_s0: vcc3v3-sd-s0-regulator {
-+		compatible = "regulator-fixed";
-+		enable-active-high;
-+		gpio = <&gpio4 RK_PA5 GPIO_ACTIVE_HIGH>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&sd_s0_pwren>;
-+		regulator-boot-on;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-min-microvolt = <3300000>;
-+		regulator-name = "vcc3v3_sd_s0";
-+		vin-supply = <&vcc_3v3_s3>;
-+	};
- };
- 
- &combphy0_ps {
-@@ -503,6 +516,12 @@ pcie_m2_1_pwren: pcie-m21-pwren {
- 		};
- 	};
- 
-+	sdmmc {
-+		sd_s0_pwren: sd-s0-pwren {
-+			rockchip,pins = <4 RK_PA5 RK_FUNC_GPIO &pcfg_pull_down>;
-+		};
-+	};
-+
- 	usb {
- 		typec5v_pwren: typec5v-pwren {
- 			rockchip,pins = <1 RK_PD2 RK_FUNC_GPIO &pcfg_pull_none>;
-@@ -536,15 +555,15 @@ &sdhci {
- };
- 
- &sdmmc {
--	max-frequency = <200000000>;
--	no-sdio;
--	no-mmc;
- 	bus-width = <4>;
- 	cap-mmc-highspeed;
- 	cap-sd-highspeed;
-+	cd-gpios = <&gpio0 RK_PA4 GPIO_ACTIVE_LOW>;
- 	disable-wp;
-+	no-mmc;
-+	no-sdio;
- 	sd-uhs-sdr104;
--	vmmc-supply = <&vcc_3v3_s3>;
-+	vmmc-supply = <&vcc3v3_sd_s0>;
- 	vqmmc-supply = <&vccio_sd_s0>;
- 	status = "okay";
- };
--- 
-2.43.0
-
+Best Regards,
+ChiYuan
+> Jonathan
+> 
+> 
+> > 
+> > 
+> > Best regards,
+> > Krzysztof
+> > 
+> 
 
