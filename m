@@ -1,65 +1,38 @@
-Return-Path: <devicetree+bounces-28766-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28773-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D0D781F687
-	for <lists+devicetree@lfdr.de>; Thu, 28 Dec 2023 10:50:09 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 01F6781F6B2
+	for <lists+devicetree@lfdr.de>; Thu, 28 Dec 2023 11:04:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 88C27B21A86
-	for <lists+devicetree@lfdr.de>; Thu, 28 Dec 2023 09:50:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6B5471F2411F
+	for <lists+devicetree@lfdr.de>; Thu, 28 Dec 2023 10:04:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87AF36AAD;
-	Thu, 28 Dec 2023 09:49:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ByFrWrM7"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F4FC63C6;
+	Thu, 28 Dec 2023 10:04:14 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB11C63D6
-	for <devicetree@vger.kernel.org>; Thu, 28 Dec 2023 09:49:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-553ba2f0c8fso6858388a12.1
-        for <devicetree@vger.kernel.org>; Thu, 28 Dec 2023 01:49:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1703756996; x=1704361796; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=zt3Goil3g9CZsxO7JmIZIMG3puod+coP4eILkunbLhA=;
-        b=ByFrWrM7pz0mvzW2PuK+Q59qRnv3fHKEMpZY97NneVxIuisR3Ph8Gva55nZJaCsFRS
-         8gFFTy3vr5wU9H8uctuZNsX9qUphURT/Yteuz5oXiw4DK+qpbKKIB9FZsh09OQNE49Oe
-         KiKRZuE9a7gyIPjFpCoW98BJFlhleG4E1OWdvrGoM9atDWa6THyinWwtA1N1IAbTHC1y
-         LvIuA0TpzlThses52EZECaDpruAHMQNc5IKLM2zmuu1ADhvQWLjhleEFPkIvJVTH022Y
-         IQdOEdG0i44fU860pwmPHthgtoMj80EyiHnIuQSHhnZceIzd/+/u57wKbOnG8wWEpsa9
-         XkRw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703756996; x=1704361796;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=zt3Goil3g9CZsxO7JmIZIMG3puod+coP4eILkunbLhA=;
-        b=bPGSsU/3cgW1xKixXmVRY626lb8C6X6R6g3/Ug3AEHcpWsi96k+ThA2D0Zg6PNNjkA
-         Vy12XCbRqcKrCBLkYBLC7pdY0PPbYVRUnzF+gDOc9k7feEd7M30C5Ug6hmwhrxtWGnKM
-         n2zDDb7gA1mCA6+fCOFXtjd9p6qFK3X5Zr029fNNjTQcEh5DaUTarFoQ4UK5Zd6ExMe+
-         74wyr/Sulpcuz8DvTcJ4cZVdfYislXiGj9L1JVsIZG7PhEYOolzIP9wecxgwdCTbreWZ
-         n0s8kHqSU7whCsA8FsHJY7ClMbnEMojSDlzefoSOF4MOR3VGsUNiCeILMKbr9/CFql9F
-         M9pw==
-X-Gm-Message-State: AOJu0Yw6yI8znqofEuDGL02T95ieIZqrmPKtlcX4z6QZgbbdY30xRupT
-	nCu6je1iRst75UoYH8p+HmMfDYFWHRxDxg==
-X-Google-Smtp-Source: AGHT+IGybebBclQgoLB62bMHk+vv3ureLCHen0DyKZy3oITNiLPY/9fLDeaFU8L6A9gMT50dUMe/YQ==
-X-Received: by 2002:a50:9e0e:0:b0:554:489a:3004 with SMTP id z14-20020a509e0e000000b00554489a3004mr3735592ede.56.1703756995836;
-        Thu, 28 Dec 2023 01:49:55 -0800 (PST)
-Received: from [192.168.199.125] (178235179028.dynamic-4-waw-k-1-3-0.vectranet.pl. [178.235.179.28])
-        by smtp.gmail.com with ESMTPSA id t15-20020a056402020f00b005534057c72dsm9502420edv.18.2023.12.28.01.49.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 28 Dec 2023 01:49:55 -0800 (PST)
-Message-ID: <aa495827-4d20-4b66-8496-eef378d8f7c1@linaro.org>
-Date: Thu, 28 Dec 2023 10:49:51 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EC1A63C9;
+	Thu, 28 Dec 2023 10:04:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+	by ex01.ufhost.com (Postfix) with ESMTP id C498324E386;
+	Thu, 28 Dec 2023 18:04:01 +0800 (CST)
+Received: from EXMBX171.cuchost.com (172.16.6.91) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 28 Dec
+ 2023 18:04:01 +0800
+Received: from [192.168.125.85] (183.27.97.107) by EXMBX171.cuchost.com
+ (172.16.6.91) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 28 Dec
+ 2023 18:04:00 +0800
+Message-ID: <ba4a73af-2fe0-455d-98f8-2b21c59628e3@starfivetech.com>
+Date: Thu, 28 Dec 2023 18:04:00 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,177 +40,242 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/5] net: mdio: ipq4019: move eth_ldo_rdy before MDIO
- bus register
-To: Luo Jie <quic_luoj@quicinc.com>, agross@kernel.org, andersson@kernel.org,
- davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
- pabeni@redhat.com, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, andrew@lunn.ch, hkallweit1@gmail.com,
- linux@armlinux.org.uk, robert.marko@sartura.hr
-Cc: linux-arm-msm@vger.kernel.org, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- quic_srichara@quicinc.com
-References: <20231225084424.30986-1-quic_luoj@quicinc.com>
- <20231225084424.30986-2-quic_luoj@quicinc.com>
+Subject: Re: [PATCH v13 14/21] PCI: microchip: Add get_events() callback and
+ add PLDA get_event()
 Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <20231225084424.30986-2-quic_luoj@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
+To: Lorenzo Pieralisi <lpieralisi@kernel.org>
+CC: Conor Dooley <conor@kernel.org>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?=
+	<kw@linux.com>, Rob Herring <robh+dt@kernel.org>, Bjorn Helgaas
+	<bhelgaas@google.com>, Daire McNamara <daire.mcnamara@microchip.com>, "Emil
+ Renner Berthing" <emil.renner.berthing@canonical.com>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
+	<linux-pci@vger.kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
+	"Palmer Dabbelt" <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+	"Philipp Zabel" <p.zabel@pengutronix.de>, Mason Huo
+	<mason.huo@starfivetech.com>, Leyfoon Tan <leyfoon.tan@starfivetech.com>,
+	Kevin Xie <kevin.xie@starfivetech.com>
+References: <20231214072839.2367-1-minda.chen@starfivetech.com>
+ <20231214072839.2367-15-minda.chen@starfivetech.com>
+ <ZYxRf8d0+gSoqeRs@lpieralisi>
+From: Minda Chen <minda.chen@starfivetech.com>
+In-Reply-To: <ZYxRf8d0+gSoqeRs@lpieralisi>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX171.cuchost.com
+ (172.16.6.91)
+X-YovoleRuleAgent: yovoleflag
 
-On 25.12.2023 09:44, Luo Jie wrote:
-> The ethernet LDO provides the clock for the ethernet PHY that
-> is connected with PCS, each LDO enables the clock output to
-> each PCS, after the clock output enablement, the PHY GPIO reset
-> can take effect.
-> 
-> For the PHY taking the MDIO bus level GPIO reset, the ethernet
-> LDO should be enabled before the MDIO bus register.
-> 
-> For example, the qca8084 PHY takes the MDIO bus level GPIO
-> reset for quad PHYs, there is another reason for qca8084 PHY
-> using MDIO bus level GPIO reset instead of PHY level GPIO
-> reset as below.
-> 
-> The work sequence of qca8084:
-> 1. enable ethernet LDO.
-> 2. GPIO reset on quad PHYs.
-> 3. register clock provider based on MDIO device of qca8084.
-> 4. PHY probe function called for initializing common clocks.
-> 5. PHY capabilities acquirement.
-> 
-> If qca8084 takes PHY level GPIO reset in the step 4, the clock
-> provider of qca8084 can't be registered correctly, since the
-> clock parent(reading the current qca8084 hardware registers in
-> step 3) of the registered clocks is deserted after GPIO reset.
-> 
-> There are two PCS(UNIPHY) supported in SOC side on ipq5332,
-> and three PCS(UNIPHY) supported on ipq9574.
-> 
-> Signed-off-by: Luo Jie <quic_luoj@quicinc.com>
-> ---
->  drivers/net/mdio/mdio-ipq4019.c | 51 +++++++++++++++++++++------------
->  1 file changed, 32 insertions(+), 19 deletions(-)
-> 
-> diff --git a/drivers/net/mdio/mdio-ipq4019.c b/drivers/net/mdio/mdio-ipq4019.c
-> index abd8b508ec16..5273864fabb3 100644
-> --- a/drivers/net/mdio/mdio-ipq4019.c
-> +++ b/drivers/net/mdio/mdio-ipq4019.c
-> @@ -37,9 +37,12 @@
->  
->  #define IPQ_PHY_SET_DELAY_US	100000
->  
-> +/* Maximum SOC PCS(uniphy) number on IPQ platform */
-> +#define ETH_LDO_RDY_CNT				3
-> +
->  struct ipq4019_mdio_data {
-> -	void __iomem	*membase;
-> -	void __iomem *eth_ldo_rdy;
-> +	void __iomem *membase;
-> +	void __iomem *eth_ldo_rdy[ETH_LDO_RDY_CNT];
->  	struct clk *mdio_clk;
->  };
->  
-> @@ -206,19 +209,8 @@ static int ipq4019_mdio_write_c22(struct mii_bus *bus, int mii_id, int regnum,
->  static int ipq_mdio_reset(struct mii_bus *bus)
->  {
->  	struct ipq4019_mdio_data *priv = bus->priv;
-> -	u32 val;
->  	int ret;
->  
-> -	/* To indicate CMN_PLL that ethernet_ldo has been ready if platform resource 1
-> -	 * is specified in the device tree.
-> -	 */
-> -	if (priv->eth_ldo_rdy) {
-> -		val = readl(priv->eth_ldo_rdy);
-> -		val |= BIT(0);
-> -		writel(val, priv->eth_ldo_rdy);
-> -		fsleep(IPQ_PHY_SET_DELAY_US);
-> -	}
-> -
->  	/* Configure MDIO clock source frequency if clock is specified in the device tree */
->  	ret = clk_set_rate(priv->mdio_clk, IPQ_MDIO_CLK_RATE);
->  	if (ret)
-> @@ -236,7 +228,7 @@ static int ipq4019_mdio_probe(struct platform_device *pdev)
->  	struct ipq4019_mdio_data *priv;
->  	struct mii_bus *bus;
->  	struct resource *res;
-> -	int ret;
-> +	int ret, index;
->  
->  	bus = devm_mdiobus_alloc_size(&pdev->dev, sizeof(*priv));
->  	if (!bus)
-> @@ -252,11 +244,32 @@ static int ipq4019_mdio_probe(struct platform_device *pdev)
->  	if (IS_ERR(priv->mdio_clk))
->  		return PTR_ERR(priv->mdio_clk);
->  
-> -	/* The platform resource is provided on the chipset IPQ5018 */
-> -	/* This resource is optional */
-> -	res = platform_get_resource(pdev, IORESOURCE_MEM, 1);
-> -	if (res)
-> -		priv->eth_ldo_rdy = devm_ioremap_resource(&pdev->dev, res);
-> +	/* These platform resources are provided on the chipset IPQ5018 or
-> +	 * IPQ5332.
-> +	 */
-> +	/* This resource are optional */
-> +	for (index = 0; index < ETH_LDO_RDY_CNT; index++) {
-> +		res = platform_get_resource(pdev, IORESOURCE_MEM, index + 1);
-> +		if (res) {
-if (!res)
-	break
 
-> +			priv->eth_ldo_rdy[index] = devm_ioremap(&pdev->dev,
-> +								res->start,
-> +								resource_size(res));
-> +
-> +			/* The ethernet LDO enable is necessary to reset PHY
-> +			 * by GPIO, some PHY(such as qca8084) GPIO reset uses
-> +			 * the MDIO level reset, so this function should be
-> +			 * called before the MDIO bus register.
-> +			 */
-> +			if (priv->eth_ldo_rdy[index]) {
-> +				u32 val;
-> +
-> +				val = readl(priv->eth_ldo_rdy[index]);
-> +				val |= BIT(0);
-> +				writel(val, priv->eth_ldo_rdy[index]);
-> +				fsleep(IPQ_PHY_SET_DELAY_US);
-fsleep should only be used when the argument is variable
 
-Konrad
+On 2023/12/28 0:31, Lorenzo Pieralisi wrote:
+> On Thu, Dec 14, 2023 at 03:28:32PM +0800, Minda Chen wrote:
+>> PolarFire implements its own PCIe interrupts, additional to the regular
+>> PCIe interrupts, due to lack of an MSI controller, so the interrupt to
+>> event number mapping is different to the PLDA local interrupts,
+> 
+> I am sorry I don't understand what you mean here.
+> 
+> "its own PCIe interrupts" ?
+> 
+> "regular PCIe interrupts" ?
+> 
+> "PLDA local interrupts" ?
+> 
+> Can you spell out what those are referring to please ?
+> 
+> Thanks,
+> Lorenzo
+>
+
+"its own PCIe interrupts" ?
+
+PolarFire SoC PCIe implement 11 interrupt in their platform. 
+(can be found in pcie-microchip-host.c:87)
+
+#define EVENT_PCIE_L2_EXIT                      0
+#define EVENT_PCIE_HOTRST_EXIT                  1
+#define EVENT_PCIE_DLUP_EXIT                    2
+#define EVENT_SEC_TX_RAM_SEC_ERR                3
+#define EVENT_SEC_RX_RAM_SEC_ERR                4
+#define EVENT_SEC_PCIE2AXI_RAM_SEC_ERR          5
+#define EVENT_SEC_AXI2PCIE_RAM_SEC_ERR          6
+#define EVENT_DED_TX_RAM_DED_ERR                7
+#define EVENT_DED_RX_RAM_DED_ERR                8
+#define EVENT_DED_PCIE2AXI_RAM_DED_ERR          9
+#define EVENT_DED_AXI2PCIE_RAM_DED_ERR          10
+
+"regular PCIe interrupts" ?
+ 
+"PLDA local interrupts" ?
+
+Actually they are the same. I will change this.
+PLDA interrupt register graph in this patch.
+ 
+>> necessitating a custom get_events() implementation.
+>> 
+>> plda_get_events() adds interrupt register to PLDA local event num mapping
+>> codes except DMA engine interrupt events. The DMA engine interrupt events
+>> are implemented by vendors.
+>> 
+>> Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
+>> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+>> ---
+>>  .../pci/controller/plda/pcie-microchip-host.c | 35 ++++++++++++++++++-
+>>  drivers/pci/controller/plda/pcie-plda.h       | 33 +++++++++++++++++
+>>  2 files changed, 67 insertions(+), 1 deletion(-)
+>> 
+>> diff --git a/drivers/pci/controller/plda/pcie-microchip-host.c b/drivers/pci/controller/plda/pcie-microchip-host.c
+>> index 00250781b11c..fd0d92c3d03f 100644
+>> --- a/drivers/pci/controller/plda/pcie-microchip-host.c
+>> +++ b/drivers/pci/controller/plda/pcie-microchip-host.c
+>> @@ -627,6 +627,26 @@ static u32 mc_get_events(struct plda_pcie_rp *port)
+>>  	return events;
+>>  }
+>>  
+>> +static u32 plda_get_events(struct plda_pcie_rp *port)
+>> +{
+>> +	u32 events, val, origin;
+>> +
+>> +	origin = readl_relaxed(port->bridge_addr + ISTATUS_LOCAL);
+>> +
+>> +	/* Error events and doorbell events */
+>> +	events = (origin & ERROR_AND_DOORBELL_MASK) >> A_ATR_EVT_POST_ERR_SHIFT;
+>> +
+>> +	/* INTx events */
+>> +	if (origin & PM_MSI_INT_INTX_MASK)
+>> +		events |= BIT(EVENT_PM_MSI_INT_INTX);
+>> +
+>> +	/* MSI event and sys events */
+>> +	val = (origin & SYS_AND_MSI_MASK) >> PM_MSI_INT_MSI_SHIFT;
+>> +	events |= val << EVENT_PM_MSI_INT_MSI;
+>> +
+>> +	return events;
+>> +}
+>> +
+>>  static irqreturn_t mc_event_handler(int irq, void *dev_id)
+>>  {
+>>  	struct plda_pcie_rp *port = dev_id;
+>> @@ -657,7 +677,7 @@ static void plda_handle_event(struct irq_desc *desc)
+>>  
+>>  	chained_irq_enter(chip, desc);
+>>  
+>> -	events = mc_get_events(port);
+>> +	events = port->event_ops->get_events(port);
+>>  
+>>  	for_each_set_bit(bit, &events, port->num_events)
+>>  		generic_handle_domain_irq(port->event_domain, bit);
+>> @@ -751,6 +771,10 @@ static struct irq_chip mc_event_irq_chip = {
+>>  	.irq_unmask = mc_unmask_event_irq,
+>>  };
+>>  
+>> +static const struct plda_event_ops plda_event_ops = {
+>> +	.get_events = plda_get_events,
+>> +};
+>> +
+>>  static int plda_pcie_event_map(struct irq_domain *domain, unsigned int irq,
+>>  			       irq_hw_number_t hwirq)
+>>  {
+>> @@ -816,6 +840,10 @@ static int mc_request_event_irq(struct plda_pcie_rp *plda, int event_irq,
+>>  				0, event_cause[event].sym, plda);
+>>  }
+>>  
+>> +static const struct plda_event_ops mc_event_ops = {
+>> +	.get_events = mc_get_events,
+>> +};
+>> +
+>>  static const struct plda_event mc_event = {
+>>  	.request_event_irq = mc_request_event_irq,
+>>  	.intx_event        = EVENT_LOCAL_PM_MSI_INT_INTX,
+>> @@ -932,6 +960,9 @@ static int plda_init_interrupts(struct platform_device *pdev,
+>>  	int i, intx_irq, msi_irq, event_irq;
+>>  	int ret;
+>>  
+>> +	if (!port->event_ops)
+>> +		port->event_ops = &plda_event_ops;
+>> +
+>>  	ret = plda_pcie_init_irq_domains(port);
+>>  	if (ret) {
+>>  		dev_err(dev, "failed creating IRQ domains\n");
+>> @@ -1008,6 +1039,8 @@ static int mc_platform_init(struct pci_config_window *cfg)
+>>  	if (ret)
+>>  		return ret;
+>>  
+>> +	port->plda.event_ops = &mc_event_ops;
+>> +
+>>  	/* Address translation is up; safe to enable interrupts */
+>>  	ret = plda_init_interrupts(pdev, &port->plda, &mc_event);
+>>  	if (ret)
+>> diff --git a/drivers/pci/controller/plda/pcie-plda.h b/drivers/pci/controller/plda/pcie-plda.h
+>> index fba7343f9a96..dd8bc2750bfc 100644
+>> --- a/drivers/pci/controller/plda/pcie-plda.h
+>> +++ b/drivers/pci/controller/plda/pcie-plda.h
+>> @@ -40,6 +40,7 @@
+>>  #define  P_ATR_EVT_DISCARD_ERR_SHIFT		22
+>>  #define  P_ATR_EVT_DOORBELL_MASK		0x00000000u
+>>  #define  P_ATR_EVT_DOORBELL_SHIFT		23
+>> +#define  ERROR_AND_DOORBELL_MASK		GENMASK(23, 16)
+>>  #define  PM_MSI_INT_INTA_MASK			0x01000000u
+>>  #define  PM_MSI_INT_INTA_SHIFT			24
+>>  #define  PM_MSI_INT_INTB_MASK			0x02000000u
+>> @@ -58,6 +59,7 @@
+>>  #define  PM_MSI_INT_EVENTS_SHIFT		30
+>>  #define  PM_MSI_INT_SYS_ERR_MASK		0x80000000u
+>>  #define  PM_MSI_INT_SYS_ERR_SHIFT		31
+>> +#define  SYS_AND_MSI_MASK			GENMASK(31, 28)
+>>  #define  NUM_LOCAL_EVENTS			15
+>>  #define ISTATUS_LOCAL				0x184
+>>  #define IMASK_HOST				0x188
+>> @@ -102,6 +104,36 @@
+>>  #define EVENT_PM_MSI_INT_SYS_ERR		12
+>>  #define NUM_PLDA_EVENTS				13
+>>  
+>> +/*
+>> + * PLDA local interrupt register
+>> + *
+>> + * 31         27     23              15           7          0
+>> + * +--+--+--+-+------+-+-+-+-+-+-+-+-+-----------+-----------+
+>> + * |12|11|10|9| intx |7|6|5|4|3|2|1|0| DMA error | DMA end   |
+>> + * +--+--+--+-+------+-+-+-+-+-+-+-+-+-----------+-----------+
+>> + * 0:  AXI post error
+>> + * 1:  AXI fetch error
+>> + * 2:  AXI discard error
+>> + * 3:  AXI doorbell
+>> + * 4:  PCIe post error
+>> + * 5:  PCIe fetch error
+>> + * 6:  PCIe discard error
+>> + * 7:  PCIe doorbell
+>> + * 8:  4 INTx interruts
+>> + * 9:  MSI interrupt
+>> + * 10: AER event
+>> + * 11: PM/LTR/Hotplug
+>> + * 12: System error
+>> + * DMA error : reserved for vendor implement
+>> + * DMA end : reserved for vendor implement
+>> + */
+"PLDA local interrupts" ?
+
+They are all the PLDA PCIe interrupts .
+
+>> +
+>> +struct plda_pcie_rp;
+>> +
+>> +struct plda_event_ops {
+>> +	u32 (*get_events)(struct plda_pcie_rp *pcie);
+>> +};
+>> +
+>>  struct plda_msi {
+>>  	struct mutex lock;		/* Protect used bitmap */
+>>  	struct irq_domain *msi_domain;
+>> @@ -117,6 +149,7 @@ struct plda_pcie_rp {
+>>  	struct irq_domain *event_domain;
+>>  	raw_spinlock_t lock;
+>>  	struct plda_msi msi;
+>> +	const struct plda_event_ops *event_ops;
+>>  	void __iomem *bridge_addr;
+>>  	int num_events;
+>>  };
+>> -- 
+>> 2.17.1
+>> 
 
