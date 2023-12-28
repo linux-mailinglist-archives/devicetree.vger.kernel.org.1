@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-28744-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28745-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80C5181F54B
-	for <lists+devicetree@lfdr.de>; Thu, 28 Dec 2023 08:09:44 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D746B81F556
+	for <lists+devicetree@lfdr.de>; Thu, 28 Dec 2023 08:14:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ECEE8281EB4
-	for <lists+devicetree@lfdr.de>; Thu, 28 Dec 2023 07:09:42 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B42CEB20FC9
+	for <lists+devicetree@lfdr.de>; Thu, 28 Dec 2023 07:14:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A9B73C1D;
-	Thu, 28 Dec 2023 07:09:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE7BE3C0B;
+	Thu, 28 Dec 2023 07:14:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Fd2+Sdve"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="b2acwF+1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B78BC3C0B
-	for <devicetree@vger.kernel.org>; Thu, 28 Dec 2023 07:09:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0B6E63AA
+	for <devicetree@vger.kernel.org>; Thu, 28 Dec 2023 07:14:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-40d604b4b30so4893915e9.1
-        for <devicetree@vger.kernel.org>; Wed, 27 Dec 2023 23:09:38 -0800 (PST)
+Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-2ccbaea0a6cso32973431fa.2
+        for <devicetree@vger.kernel.org>; Wed, 27 Dec 2023 23:14:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1703747377; x=1704352177; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1703747667; x=1704352467; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=B5CoDrsJT4WQxjKaOLj/1Lwxi6E5LUOR3r0lk7wg4FY=;
-        b=Fd2+SdveVSxsqh/SvTb1g3SSeltmA23rfHYQ0Zx2XXAWBitBkawX/YMvMxHlPjll6f
-         +z7LUPVsZihmQFveW5Mp3TLmhPyi171ZLMb7gqHOmm8wIeWew5YEmVVls1c9XfRpnxgg
-         ki+DEWv+BtCqCpoJaPw4ejNI61eESbz0EhF8js96LwJ9m3VeJYiH/7vRRfEbeFxgSsjO
-         X1EAh2xBN3vA7PxWcPLV7zamzwvMLW1MacJHw45QDP+Qw0hVNUda+cocqf5dbL77f2QM
-         WY7zg7HtTfMIY7J85fXoy/7u7N9V4/glDW/YNKSRyC0R9EEDd5IBsShMakfdf0wJ7qSs
-         /OVw==
+        bh=BhSMFL+2HT+dSDSTP+uNKkyc+xeJJ+LqfYyUnCBoJHE=;
+        b=b2acwF+1/HCD6dv0NDvCVIML49Ez26U5cCZe4HtJGdpaBrttTjQuB9zCr9X6lclnFC
+         ywqvlZAPNIUROmeEkS6lxOPAKogwVrDwraC2MViWiSGn80STgcAjYU8hK5VCUsxlNP4y
+         RSed/2gct5S312V03+/uvN3v8HH1yMJkLqr8Qj1ZOZH7UDyxi9PIgBVY8eHUq2SsM6Wg
+         V4W8rt3MStgwzoPX0eAJMdpbVxzQsK+XeMHcLBnrwJ/kFekSCgyQes0XkKHqNR/AxzH+
+         urexHtkQwUsqwkTdis2/AbP/82XAJKW4/spz7uS8ojDunfRrmX5BX8s+NG2RDxDeDb+S
+         8rDA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703747377; x=1704352177;
+        d=1e100.net; s=20230601; t=1703747667; x=1704352467;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=B5CoDrsJT4WQxjKaOLj/1Lwxi6E5LUOR3r0lk7wg4FY=;
-        b=vZElJ+me8MGCRsm6YWbjFqhAYN9muk6tBHo/fcLIveMZ+XLhHaC7lQLYxllLGcKWss
-         Xo1tCUI2lSeXNdyAcjXhNMT7Q6v0COHBH4tjW8+znReASo1ETMyxMiLrBC3DlTXqnOXP
-         dKUoAP03wmYNFQWVOhE1VpgSlyTLCkKtjeAeKfSiDFMIc9433ErkwBSwOzdpVfVIX3dY
-         rK5C4vBJEfkNZssmhamUcXXib0eVNSCrI0zHWkLpuMmvpxCvQzWvnD/hj96vfu/8JkTi
-         +25T5puko0hwcqO+OKwDBSA1cijBmFAQVig9V8NT9ycq4OBAVABNMDUdK1AR0AbysABu
-         HLfg==
-X-Gm-Message-State: AOJu0Yx6/xMWmfpReui//1Xo4MemuFBZLQdmhnKjtmNofTnM7qlXASGj
-	ADSxg/dDf2LS87TQ0j7J5ebIwT90I1AORQ==
-X-Google-Smtp-Source: AGHT+IHKDq0wnzlsL1DgFGFQyMRD+KKB24a73tPdpWIi5Y9GM3Q0dQgyXMbFTQq6Q5UNTvLqKVSuYw==
-X-Received: by 2002:a05:600c:4705:b0:40b:5e4a:2348 with SMTP id v5-20020a05600c470500b0040b5e4a2348mr4811417wmo.74.1703747376998;
-        Wed, 27 Dec 2023 23:09:36 -0800 (PST)
+        bh=BhSMFL+2HT+dSDSTP+uNKkyc+xeJJ+LqfYyUnCBoJHE=;
+        b=ifFzLFM+VYkwxqyY38X+X1rYLojXKEh0vHYUEKZPlVD1m16Wbgx9CFTgIJYA+uSzRG
+         3FEWa1TKBmtCrfo5fW4Dhfux2ZsLGbMyCFN2yGNvH+rmmoxDAybEIaXNtP91SNjhJRKn
+         n6K5EDXQR9er7TgdYqUIaE4dgUV6AFCH1oS7+02cLnzMfAQeuN6jMYNxsIrKjb7qPzne
+         9KQzUzRGjt5qMADvdqmLXfv5QJ4HfnKm/3SKrWDoHPkF4kR5JEqt4Yqwaa/zIHxuaAdS
+         O/6QXZDO5tpUoeqAGXpz3S4AkpTavT01aUmpTxNl8rsgy3aRHnJktx5OAtj1n7NAlbJN
+         ggWQ==
+X-Gm-Message-State: AOJu0Yxvko1w5kqIF3NgeZgMzuB8nMGzOQuGNqcHacAVYTsWLygLltyX
+	Gqwue2mMcOh/UTTsw/rKTIxb/0fML2xplg==
+X-Google-Smtp-Source: AGHT+IG7ixYdscKkwtk36vyHIOjhIefzQL9OEYWpUFExTkKf4tL0MnVTIxxVDaTcZ69Wnxjwa8FN3g==
+X-Received: by 2002:a2e:6a09:0:b0:2cc:5d04:13cf with SMTP id f9-20020a2e6a09000000b002cc5d0413cfmr3739906ljc.43.1703747666913;
+        Wed, 27 Dec 2023 23:14:26 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id r20-20020a05600c459400b0040c3dcc36e6sm26334107wmo.47.2023.12.27.23.09.35
+        by smtp.gmail.com with ESMTPSA id b3-20020a5d5503000000b00336b8461a5esm10405114wrv.88.2023.12.27.23.14.25
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 27 Dec 2023 23:09:36 -0800 (PST)
-Message-ID: <e1036e63-1914-4412-8c55-40ae206d56d0@linaro.org>
-Date: Thu, 28 Dec 2023 08:09:35 +0100
+        Wed, 27 Dec 2023 23:14:26 -0800 (PST)
+Message-ID: <ddbdec9b-f075-4c7e-9411-28baf1e68401@linaro.org>
+Date: Thu, 28 Dec 2023 08:14:24 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,23 +66,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: iio: adc: rtq6056: add support for the
- whole RTQ6056 family
+Subject: Re: [PATCH] arm64: dts: mediatek: mt7986: fix reference to PWM in fan
+ node
 Content-Language: en-US
-To: ChiYuan Huang <cy_huang@richtek.com>
-Cc: Jonathan Cameron <jic23@kernel.org>,
+To: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
- Rob Herring <robh+dt@kernel.org>,
- =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <1703562468-29052-1-git-send-email-cy_huang@richtek.com>
- <1703562468-29052-2-git-send-email-cy_huang@richtek.com>
- <9715ed9d-7edf-430c-808c-00e7748bc59a@linaro.org>
- <20231226111921.GA22684@linuxcarl2.richtek.com>
- <0f1f0991-9ad9-4216-afc8-8340eddb1ad9@linaro.org>
- <20231228031929.GA32046@linuxcarl2.richtek.com>
+ Conor Dooley <conor+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>
+Cc: Daniel Golle <daniel@makrotopia.org>,
+ Frank Wunderlich <frank-w@public-files.de>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+References: <20231116130816.4932-1-zajec5@gmail.com>
+ <a5113b85-e29c-454f-b776-ac7abbca771f@gmail.com>
+ <d0734a8f-0b72-4609-a941-da4bdc3e323e@gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -128,73 +126,56 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231228031929.GA32046@linuxcarl2.richtek.com>
+In-Reply-To: <d0734a8f-0b72-4609-a941-da4bdc3e323e@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 28/12/2023 04:19, ChiYuan Huang wrote:
-> On Tue, Dec 26, 2023 at 01:12:50PM +0100, Krzysztof Kozlowski wrote:
->> On 26/12/2023 12:19, ChiYuan Huang wrote:
->>> On Tue, Dec 26, 2023 at 10:18:47AM +0100, Krzysztof Kozlowski wrote:
->>>> On 26/12/2023 04:47, cy_huang@richtek.com wrote:
->>>>> From: ChiYuan Huang <cy_huang@richtek.com>
->>>>>
->>>>> Add compatible support for RTQ6053 and RTQ6059.
->>>>>
->>>>> Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
->>>>> ---
->>>>>  .../devicetree/bindings/iio/adc/richtek,rtq6056.yaml         | 5 ++++-
->>>>>  1 file changed, 4 insertions(+), 1 deletion(-)
->>>>>
->>>>> diff --git a/Documentation/devicetree/bindings/iio/adc/richtek,rtq6056.yaml b/Documentation/devicetree/bindings/iio/adc/richtek,rtq6056.yaml
->>>>> index 88e008629ea8..d1e1f36d1972 100644
->>>>> --- a/Documentation/devicetree/bindings/iio/adc/richtek,rtq6056.yaml
->>>>> +++ b/Documentation/devicetree/bindings/iio/adc/richtek,rtq6056.yaml
->>>>> @@ -25,7 +25,10 @@ description: |
->>>>>  
->>>>>  properties:
->>>>>    compatible:
->>>>> -    const: richtek,rtq6056
->>>>> +    enum:
->>>>> +      - richtek,rtq6053
->>>>> +      - richtek,rtq6056
->>>>
->>>> Aren't these devices compatible? Your driver change says they are, so
->>>> express compatibility with list here (and oneOf).
->>>>
->>> Thanks, I try to take other binding as the reference. One more question.
->>> If rtq6053 is compatible with rtq6056, there's only chip package type difference.
->>> Do I need to seperate it into a dedicated enum element?
->>> Or just put it into one item and said this part number is compatible with rtq6056? 
+On 28/12/2023 08:03, Rafał Miłecki wrote:
+> Hi,
+> 
+> On 14.12.2023 07:43, Rafał Miłecki wrote:
+>> On 16.11.2023 14:08, Rafał Miłecki wrote:
+>>> From: Rafał Miłecki <rafal@milecki.pl>
+>>>
+>>> This fixes typo and resolves following validation error:
+>>> arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dtb: pwm-fan: pwms: [[54, 0, 10000], [0]] is too long
+>>>          from schema $id: http://devicetree.org/schemas/hwmon/pwm-fan.yaml#
+>>>
+>>> Fixes: c26f779a2295 ("arm64: dts: mt7986: add pwm-fan and cooling-maps to BPI-R3 dts")
+>>> Cc: Daniel Golle <daniel@makrotopia.org>
+>>> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 >>
->> See example-schema. You need enum and items, both in oneOf:.
+>> I sent those few trivial fixes weeks ago:
+>> [PATCH] arm64: dts: mediatek: mt7986: fix reference to PWM in fan node
+>> [PATCH 1/2] arm64: dts: mediatek: mt7986: fix SPI bus width properties
+>> [PATCH 2/2] arm64: dts: mediatek: mt7986: fix SPI nodename
+>> [PATCH] arm64: dts: mediatek: mt7986: drop crypto's unneeded/invalid clock name
 >>
-> After reading the 'example-schema', I Still cannot understand what the special case items
-> means.
+>> Could someone pick them up, please?
 
-What is "special case items"?
+This should happen some time ago but...
 
 > 
-> But in my case, is the below change correct?
-> [Diff]
-> properties:
->    compatible:
-> -    enum:
-> -      - richtek,rtq6053
-> -      - richtek,rtq6056
-> -      - richtek,rtq6059
-> +    oneOf:
-> +      - items:
-> +          - enum:
-> +              - richtek,rtq6053
-> +              - richtek,rtq6056
-> +              - richtek,rtq6059
+> Anyone, please?
 
-This changes nothing, you still have just one item. The example-schema
-has exactly that case, so why you are coding it differently?
+... exactly now, this cannot happen. We are way past applying patches
+for the next cycle. Please ping or resend after the merge window.
 
-Anyway, test your DTS with the fallback, you will see that above does
-not work.
+> 
+> I did quick research and it seems Linus pulls mediatek DTS changes from:
+> git://git.kernel.org/pub/scm/linux/kernel/git/soc/soc (from Arnd)
+> 
+> 
+> Arnd seems to pull mediatek changes from either:
+> 
+> 1. https://git.kernel.org/pub/scm/linux/kernel/git/matthias.bgg/linux
+> (Most pulls so far from Matthias)
+> 
+> 2. git://git.kernel.org/pub/scm/linux/kernel/git/mediatek/linux
+> (The most recent pull from AngeloGioacchino)
+> 
+> 
+> AngeloGioacchino, Matthias: can you pick up my patches, please?
 
 Best regards,
 Krzysztof
