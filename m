@@ -1,111 +1,187 @@
-Return-Path: <devicetree+bounces-28834-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28835-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B21481F8C0
-	for <lists+devicetree@lfdr.de>; Thu, 28 Dec 2023 14:17:54 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id E65EA81F8DC
+	for <lists+devicetree@lfdr.de>; Thu, 28 Dec 2023 14:36:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 06B20285A86
-	for <lists+devicetree@lfdr.de>; Thu, 28 Dec 2023 13:17:53 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 193DCB238AA
+	for <lists+devicetree@lfdr.de>; Thu, 28 Dec 2023 13:36:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 744DB848D;
-	Thu, 28 Dec 2023 13:17:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E13558495;
+	Thu, 28 Dec 2023 13:36:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cP++dU7l"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jPXC8vsA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com [209.85.214.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33C77F4E1;
-	Thu, 28 Dec 2023 13:17:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f179.google.com with SMTP id d9443c01a7336-1d3ef33e68dso40191615ad.1;
-        Thu, 28 Dec 2023 05:17:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1703769428; x=1704374228; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=yN/BwR58sjs6Z6HNo7x/JKwvYgjONzYk0BGkAM4zBTw=;
-        b=cP++dU7l5K23F16rYhlsogkj0dJtZJCvNtVYdyTjBBHkjRb66U3XV4AK0jX33kJqHS
-         bPOOnHUuhmhg7J8YGUdJpHgfm/L1yWcF6o2FGHolmOzrIhmTVHm3gNzVAOJuB0PSNYIK
-         r9cMkwtvftKbTYJ2cVd1c/KHEQ21KINi2ZMC81Ua0Vl5ExLsnjQAUl9NSscJhbHSDf+E
-         6pDxTDpB+WrB9ju/fP9qdlDmPKbofpGhpIbarR4fIcEi3t5XQzJ7W8iWpnZ8Qt4yv76e
-         +Tjl1yArr6V6Gpa5ya+I+IiQg71WoW255gxfpk1XSIBqwXvHIUPRuWAVxaXzBlolMWKj
-         pfWw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703769428; x=1704374228;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=yN/BwR58sjs6Z6HNo7x/JKwvYgjONzYk0BGkAM4zBTw=;
-        b=qOs74FatyujBwn3l9jHdoKKcnaxt8MpFHAOwx888esrYeMukwSYKv1ZI/F7tdXGjz/
-         rkpeEq2OeknqT/dXuy5GqZK+tG5OM8IhWM0/B50OxWpl7V6JRfhZQ2V8YlDIiKwVSxyy
-         FNNaO3PyoJHMixLGvtZLmdwVcjZzSZXItqgKEHHBpROKcbFoN7A2WSL6xv6luq2mzLcO
-         lyqEBTLSizDwerNRUFTSx/TC0PvJFdya3hbKkh3iIWbN4U+wzX+BKFYwORm6eUiW6nw4
-         5FH36mgcx/WVDGu5MAiGpfoBn+bfvl6xXhTZzLWzuRoShn7yUIC7QMO68tFUpqbIlTrC
-         ZUoQ==
-X-Gm-Message-State: AOJu0YwKv7l/XT3TdII29F6waWQyhRUCmYvFbRnmXeOs/hZaw37jTSuv
-	8xYMguprrVaJG6HswJf9FUc=
-X-Google-Smtp-Source: AGHT+IF+99H9vFulPcHP15rmUhxkM0gfuVWxtxhJUptQjIgcwPzGk7WYL5NXp8Vf+AEfz6qattXg1g==
-X-Received: by 2002:a17:902:784c:b0:1d4:7855:cdf6 with SMTP id e12-20020a170902784c00b001d47855cdf6mr3456088pln.30.1703769428408;
-        Thu, 28 Dec 2023 05:17:08 -0800 (PST)
-Received: from localhost.localdomain ([2408:8207:2540:8c00:3708:559:ea20:9883])
-        by smtp.gmail.com with ESMTPSA id m10-20020a170902db0a00b001d0b4693539sm13864221plx.189.2023.12.28.05.17.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 28 Dec 2023 05:17:08 -0800 (PST)
-From: Jianfeng Liu <liujianfeng1994@gmail.com>
-To: ezequiel@vanguardiasur.com.ar,
-	p.zabel@pengutronix.de,
-	mchehab@kernel.org,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	heiko@sntech.de,
-	sfr@canb.auug.org.au
-Cc: liujianfeng1994@gmail.com,
-	linux-media@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v2 3/3] dt-bindings: media: rockchip-vpu: Add RK3588 compatible
-Date: Thu, 28 Dec 2023 21:16:17 +0800
-Message-Id: <20231228131617.3411561-4-liujianfeng1994@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231228131617.3411561-1-liujianfeng1994@gmail.com>
-References: <20231228131617.3411561-1-liujianfeng1994@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCA0A8485;
+	Thu, 28 Dec 2023 13:36:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C3977C433C7;
+	Thu, 28 Dec 2023 13:36:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1703770567;
+	bh=bFpxYHW+l52Yon/qnLqsK7by+x6JrUkDWpOTaKXGCuQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=jPXC8vsA4C2uEmnk6veULjxQjJ5cBGEFMRtQM3NaK5BnN9GzktRORK+VB0UMuZWJA
+	 ruk1McP+5Zjei1gfrZv7E0/cBH6M+C5+EYMv4jxP3NEiKkVWxAb7AyF0eTjZyPmS3L
+	 YXh5PmNJV2CA7VFA14KitatLEhlJ7yTTel1v0ICnYPbcfFKtiQJIwthOwy1svDaLTo
+	 L053ziUbt703sWy4MZbHl5ErQk6Vvun6VF9F1SJQMD91zIZTh4vfcLdoRuKbqTaLIE
+	 XJ+WhHTL4Qa0M598ffFH7gIP1AeUMOUPy5MYbye3EpdHYbDJwzx/JI7Uyxs+xV+EPy
+	 wNsA48b/r7BNA==
+Date: Thu, 28 Dec 2023 13:36:02 +0000
+From: Conor Dooley <conor@kernel.org>
+To: AnnanLiu <annan.liu.xdu@outlook.com>
+Cc: chao.wei@sophgo.com, unicorn_wang@outlook.com, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] riscv: dts: sophgo: add timer dt node for CV1800
+Message-ID: <20231228-distill-heave-ebda9ee53576@spud>
+References: <DM6PR20MB23167E08FCA546D6C1899CB1AB9EA@DM6PR20MB2316.namprd20.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="PedUr4prEc/4tkOE"
+Content-Disposition: inline
+In-Reply-To: <DM6PR20MB23167E08FCA546D6C1899CB1AB9EA@DM6PR20MB2316.namprd20.prod.outlook.com>
 
-Add compatible for rk3588 Hantro G1 vpu decoder.
 
-Signed-off-by: Jianfeng Liu <liujianfeng1994@gmail.com>
----
- Documentation/devicetree/bindings/media/rockchip-vpu.yaml | 1 +
- 1 file changed, 1 insertion(+)
+--PedUr4prEc/4tkOE
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/Documentation/devicetree/bindings/media/rockchip-vpu.yaml b/Documentation/devicetree/bindings/media/rockchip-vpu.yaml
-index c57e1f488..ba41446f6 100644
---- a/Documentation/devicetree/bindings/media/rockchip-vpu.yaml
-+++ b/Documentation/devicetree/bindings/media/rockchip-vpu.yaml
-@@ -25,6 +25,7 @@ properties:
-           - rockchip,px30-vpu
-           - rockchip,rk3568-vpu
-           - rockchip,rk3588-av1-vpu
-+          - rockchip,rk3588-vpu
-       - items:
-           - const: rockchip,rk3188-vpu
-           - const: rockchip,rk3066-vpu
--- 
-2.34.1
+On Thu, Dec 28, 2023 at 09:06:54PM +0800, AnnanLiu wrote:
+> Add the timer device tree node to CV1800 SoC.
 
+> This patch depends on the clk driver and reset driver.
+> Clk driver link:
+> https://lore.kernel.org/all/IA1PR20MB49539CDAD9A268CBF6CA184BBB9FA@IA1PR2=
+0MB4953.namprd20.prod.outlook.com/
+> Reset driver link:
+> https://lore.kernel.org/all/20231113005503.2423-1-jszhang@kernel.org/
+
+FYI, this stuff should be under the --- line.
+
+If there's nothing else wrong with this commit, I can fix this while
+applying.
+
+Cheers,
+Conor.
+
+>=20
+> Signed-off-by: AnnanLiu <annan.liu.xdu@outlook.com>
+> ---
+>  arch/riscv/boot/dts/sophgo/cv1800b.dtsi | 72 +++++++++++++++++++++++++
+>  1 file changed, 72 insertions(+)
+>=20
+> diff --git a/arch/riscv/boot/dts/sophgo/cv1800b.dtsi b/arch/riscv/boot/dt=
+s/sophgo/cv1800b.dtsi
+> index aec6401a467b..34a1647cc51b 100644
+> --- a/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
+> +++ b/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
+> @@ -113,6 +113,78 @@ plic: interrupt-controller@70000000 {
+>  			riscv,ndev =3D <101>;
+>  		};
+> =20
+> +		timer0: timer@030a0000 {
+> +			compatible =3D "snps,dw-apb-timer";
+> +			reg =3D <0x030a0000 0x14>;
+> +			interrupts =3D <79 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks =3D <&osc>;
+> +			resets =3D <&rst RST_TIMER0>;
+> +			status =3D "disabled";
+> +		};
+> +
+> +		timer1: timer@030a0014 {
+> +			compatible =3D "snps,dw-apb-timer";
+> +			reg =3D <0x030a0014 0x14>;
+> +			interrupts =3D <80 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks =3D <&osc>;
+> +			resets =3D <&rst RST_TIMER1>;
+> +			status =3D "disabled";
+> +		};
+> +
+> +		timer2: timer@030a0028 {
+> +			compatible =3D "snps,dw-apb-timer";
+> +			reg =3D <0x030a0028 0x14>;
+> +			interrupts =3D <81 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks =3D <&osc>;
+> +			resets =3D <&rst RST_TIMER2>;
+> +			status =3D "disabled";
+> +		};
+> +
+> +		timer3: timer@030a003c {
+> +			compatible =3D "snps,dw-apb-timer";
+> +			reg =3D <0x030a003c 0x14>;
+> +			interrupts =3D <82 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks =3D <&osc>;
+> +			resets =3D <&rst RST_TIMER3>;
+> +			status =3D "disabled";
+> +		};
+> +
+> +		timer4: timer@030a0050 {
+> +			compatible =3D "snps,dw-apb-timer";
+> +			reg =3D <0x030a0050 0x14>;
+> +			interrupts =3D <83 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks =3D <&osc>;
+> +			resets =3D <&rst RST_TIMER4>;
+> +			status =3D "disabled";
+> +		};
+> +
+> +		timer5: timer@30a0064 {
+> +			compatible =3D "snps,dw-apb-timer";
+> +			reg =3D <0x030a0064 0x14>;
+> +			interrupts =3D <84 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks =3D <&osc>;
+> +			resets =3D <&rst RST_TIMER5>;
+> +			status =3D "disabled";
+> +		};
+> +
+> +		timer6: timer@030a0078 {
+> +			compatible =3D "snps,dw-apb-timer";
+> +			reg =3D <0x030a0078 0x14>;
+> +			interrupts =3D <85 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks =3D <&osc>;
+> +			resets =3D <&rst RST_TIMER6>;
+> +			status =3D "disabled";
+> +		};
+> +
+> +		timer7: timer@030a008c {
+> +			compatible =3D "snps,dw-apb-timer";
+> +			reg =3D <0x030a008c 0x14>;
+> +			interrupts =3D <86 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks =3D <&osc>;
+> +			resets =3D <&rst RST_TIMER7>;
+> +			status =3D "disabled";
+> +		};
+> +
+>  		clint: timer@74000000 {
+>  			compatible =3D "sophgo,cv1800b-clint", "thead,c900-clint";
+>  			reg =3D <0x74000000 0x10000>;
+> --=20
+> 2.34.1
+>=20
+
+--PedUr4prEc/4tkOE
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZY15vgAKCRB4tDGHoIJi
+0mo0AQCGttIjbdlNdLMJ5uVxoE+C9lVMfy8EQmXeaQrdch+F9QEAzVg8Yq6JN7Qd
+0qJbqKr0Sqd+51fwghslIbPvgoKSYgo=
+=45y3
+-----END PGP SIGNATURE-----
+
+--PedUr4prEc/4tkOE--
 
