@@ -1,38 +1,65 @@
-Return-Path: <devicetree+bounces-28765-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28766-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B85D81F675
-	for <lists+devicetree@lfdr.de>; Thu, 28 Dec 2023 10:46:30 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D0D781F687
+	for <lists+devicetree@lfdr.de>; Thu, 28 Dec 2023 10:50:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 70BE81C21BFB
-	for <lists+devicetree@lfdr.de>; Thu, 28 Dec 2023 09:46:29 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 88C27B21A86
+	for <lists+devicetree@lfdr.de>; Thu, 28 Dec 2023 09:50:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDDCB63CE;
-	Thu, 28 Dec 2023 09:46:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87AF36AAD;
+	Thu, 28 Dec 2023 09:49:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ByFrWrM7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 494C463C9;
-	Thu, 28 Dec 2023 09:46:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-	by fd01.gateway.ufhost.com (Postfix) with ESMTP id D6DF07FDC;
-	Thu, 28 Dec 2023 17:46:11 +0800 (CST)
-Received: from EXMBX171.cuchost.com (172.16.6.91) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 28 Dec
- 2023 17:46:11 +0800
-Received: from [192.168.125.85] (183.27.97.107) by EXMBX171.cuchost.com
- (172.16.6.91) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 28 Dec
- 2023 17:46:10 +0800
-Message-ID: <196e61f9-2beb-413f-b2fd-4cd8e347ad60@starfivetech.com>
-Date: Thu, 28 Dec 2023 17:46:09 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB11C63D6
+	for <devicetree@vger.kernel.org>; Thu, 28 Dec 2023 09:49:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-553ba2f0c8fso6858388a12.1
+        for <devicetree@vger.kernel.org>; Thu, 28 Dec 2023 01:49:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1703756996; x=1704361796; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=zt3Goil3g9CZsxO7JmIZIMG3puod+coP4eILkunbLhA=;
+        b=ByFrWrM7pz0mvzW2PuK+Q59qRnv3fHKEMpZY97NneVxIuisR3Ph8Gva55nZJaCsFRS
+         8gFFTy3vr5wU9H8uctuZNsX9qUphURT/Yteuz5oXiw4DK+qpbKKIB9FZsh09OQNE49Oe
+         KiKRZuE9a7gyIPjFpCoW98BJFlhleG4E1OWdvrGoM9atDWa6THyinWwtA1N1IAbTHC1y
+         LvIuA0TpzlThses52EZECaDpruAHMQNc5IKLM2zmuu1ADhvQWLjhleEFPkIvJVTH022Y
+         IQdOEdG0i44fU860pwmPHthgtoMj80EyiHnIuQSHhnZceIzd/+/u57wKbOnG8wWEpsa9
+         XkRw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1703756996; x=1704361796;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=zt3Goil3g9CZsxO7JmIZIMG3puod+coP4eILkunbLhA=;
+        b=bPGSsU/3cgW1xKixXmVRY626lb8C6X6R6g3/Ug3AEHcpWsi96k+ThA2D0Zg6PNNjkA
+         Vy12XCbRqcKrCBLkYBLC7pdY0PPbYVRUnzF+gDOc9k7feEd7M30C5Ug6hmwhrxtWGnKM
+         n2zDDb7gA1mCA6+fCOFXtjd9p6qFK3X5Zr029fNNjTQcEh5DaUTarFoQ4UK5Zd6ExMe+
+         74wyr/Sulpcuz8DvTcJ4cZVdfYislXiGj9L1JVsIZG7PhEYOolzIP9wecxgwdCTbreWZ
+         n0s8kHqSU7whCsA8FsHJY7ClMbnEMojSDlzefoSOF4MOR3VGsUNiCeILMKbr9/CFql9F
+         M9pw==
+X-Gm-Message-State: AOJu0Yw6yI8znqofEuDGL02T95ieIZqrmPKtlcX4z6QZgbbdY30xRupT
+	nCu6je1iRst75UoYH8p+HmMfDYFWHRxDxg==
+X-Google-Smtp-Source: AGHT+IGybebBclQgoLB62bMHk+vv3ureLCHen0DyKZy3oITNiLPY/9fLDeaFU8L6A9gMT50dUMe/YQ==
+X-Received: by 2002:a50:9e0e:0:b0:554:489a:3004 with SMTP id z14-20020a509e0e000000b00554489a3004mr3735592ede.56.1703756995836;
+        Thu, 28 Dec 2023 01:49:55 -0800 (PST)
+Received: from [192.168.199.125] (178235179028.dynamic-4-waw-k-1-3-0.vectranet.pl. [178.235.179.28])
+        by smtp.gmail.com with ESMTPSA id t15-20020a056402020f00b005534057c72dsm9502420edv.18.2023.12.28.01.49.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 28 Dec 2023 01:49:55 -0800 (PST)
+Message-ID: <aa495827-4d20-4b66-8496-eef378d8f7c1@linaro.org>
+Date: Thu, 28 Dec 2023 10:49:51 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -40,256 +67,177 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v13 09/21] PCI: microchip: Move setup functions to
- pcie-plda-host.c
+Subject: Re: [PATCH v4 1/5] net: mdio: ipq4019: move eth_ldo_rdy before MDIO
+ bus register
+To: Luo Jie <quic_luoj@quicinc.com>, agross@kernel.org, andersson@kernel.org,
+ davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+ pabeni@redhat.com, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, andrew@lunn.ch, hkallweit1@gmail.com,
+ linux@armlinux.org.uk, robert.marko@sartura.hr
+Cc: linux-arm-msm@vger.kernel.org, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ quic_srichara@quicinc.com
+References: <20231225084424.30986-1-quic_luoj@quicinc.com>
+ <20231225084424.30986-2-quic_luoj@quicinc.com>
 Content-Language: en-US
-To: Lorenzo Pieralisi <lpieralisi@kernel.org>
-CC: Conor Dooley <conor@kernel.org>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?=
-	<kw@linux.com>, Rob Herring <robh+dt@kernel.org>, Bjorn Helgaas
-	<bhelgaas@google.com>, Daire McNamara <daire.mcnamara@microchip.com>, "Emil
- Renner Berthing" <emil.renner.berthing@canonical.com>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
-	<linux-pci@vger.kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
-	"Palmer Dabbelt" <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
-	"Philipp Zabel" <p.zabel@pengutronix.de>, Mason Huo
-	<mason.huo@starfivetech.com>, Leyfoon Tan <leyfoon.tan@starfivetech.com>,
-	Kevin Xie <kevin.xie@starfivetech.com>
-References: <20231214072839.2367-1-minda.chen@starfivetech.com>
- <20231214072839.2367-10-minda.chen@starfivetech.com>
- <ZYxHl+R40b7t4Xn2@lpieralisi>
-From: Minda Chen <minda.chen@starfivetech.com>
-In-Reply-To: <ZYxHl+R40b7t4Xn2@lpieralisi>
-Content-Type: text/plain; charset="UTF-8"
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <20231225084424.30986-2-quic_luoj@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: EXCAS064.cuchost.com (172.16.6.24) To EXMBX171.cuchost.com
- (172.16.6.91)
-X-YovoleRuleAgent: yovoleflag
 
+On 25.12.2023 09:44, Luo Jie wrote:
+> The ethernet LDO provides the clock for the ethernet PHY that
+> is connected with PCS, each LDO enables the clock output to
+> each PCS, after the clock output enablement, the PHY GPIO reset
+> can take effect.
+> 
+> For the PHY taking the MDIO bus level GPIO reset, the ethernet
+> LDO should be enabled before the MDIO bus register.
+> 
+> For example, the qca8084 PHY takes the MDIO bus level GPIO
+> reset for quad PHYs, there is another reason for qca8084 PHY
+> using MDIO bus level GPIO reset instead of PHY level GPIO
+> reset as below.
+> 
+> The work sequence of qca8084:
+> 1. enable ethernet LDO.
+> 2. GPIO reset on quad PHYs.
+> 3. register clock provider based on MDIO device of qca8084.
+> 4. PHY probe function called for initializing common clocks.
+> 5. PHY capabilities acquirement.
+> 
+> If qca8084 takes PHY level GPIO reset in the step 4, the clock
+> provider of qca8084 can't be registered correctly, since the
+> clock parent(reading the current qca8084 hardware registers in
+> step 3) of the registered clocks is deserted after GPIO reset.
+> 
+> There are two PCS(UNIPHY) supported in SOC side on ipq5332,
+> and three PCS(UNIPHY) supported on ipq9574.
+> 
+> Signed-off-by: Luo Jie <quic_luoj@quicinc.com>
+> ---
+>  drivers/net/mdio/mdio-ipq4019.c | 51 +++++++++++++++++++++------------
+>  1 file changed, 32 insertions(+), 19 deletions(-)
+> 
+> diff --git a/drivers/net/mdio/mdio-ipq4019.c b/drivers/net/mdio/mdio-ipq4019.c
+> index abd8b508ec16..5273864fabb3 100644
+> --- a/drivers/net/mdio/mdio-ipq4019.c
+> +++ b/drivers/net/mdio/mdio-ipq4019.c
+> @@ -37,9 +37,12 @@
+>  
+>  #define IPQ_PHY_SET_DELAY_US	100000
+>  
+> +/* Maximum SOC PCS(uniphy) number on IPQ platform */
+> +#define ETH_LDO_RDY_CNT				3
+> +
+>  struct ipq4019_mdio_data {
+> -	void __iomem	*membase;
+> -	void __iomem *eth_ldo_rdy;
+> +	void __iomem *membase;
+> +	void __iomem *eth_ldo_rdy[ETH_LDO_RDY_CNT];
+>  	struct clk *mdio_clk;
+>  };
+>  
+> @@ -206,19 +209,8 @@ static int ipq4019_mdio_write_c22(struct mii_bus *bus, int mii_id, int regnum,
+>  static int ipq_mdio_reset(struct mii_bus *bus)
+>  {
+>  	struct ipq4019_mdio_data *priv = bus->priv;
+> -	u32 val;
+>  	int ret;
+>  
+> -	/* To indicate CMN_PLL that ethernet_ldo has been ready if platform resource 1
+> -	 * is specified in the device tree.
+> -	 */
+> -	if (priv->eth_ldo_rdy) {
+> -		val = readl(priv->eth_ldo_rdy);
+> -		val |= BIT(0);
+> -		writel(val, priv->eth_ldo_rdy);
+> -		fsleep(IPQ_PHY_SET_DELAY_US);
+> -	}
+> -
+>  	/* Configure MDIO clock source frequency if clock is specified in the device tree */
+>  	ret = clk_set_rate(priv->mdio_clk, IPQ_MDIO_CLK_RATE);
+>  	if (ret)
+> @@ -236,7 +228,7 @@ static int ipq4019_mdio_probe(struct platform_device *pdev)
+>  	struct ipq4019_mdio_data *priv;
+>  	struct mii_bus *bus;
+>  	struct resource *res;
+> -	int ret;
+> +	int ret, index;
+>  
+>  	bus = devm_mdiobus_alloc_size(&pdev->dev, sizeof(*priv));
+>  	if (!bus)
+> @@ -252,11 +244,32 @@ static int ipq4019_mdio_probe(struct platform_device *pdev)
+>  	if (IS_ERR(priv->mdio_clk))
+>  		return PTR_ERR(priv->mdio_clk);
+>  
+> -	/* The platform resource is provided on the chipset IPQ5018 */
+> -	/* This resource is optional */
+> -	res = platform_get_resource(pdev, IORESOURCE_MEM, 1);
+> -	if (res)
+> -		priv->eth_ldo_rdy = devm_ioremap_resource(&pdev->dev, res);
+> +	/* These platform resources are provided on the chipset IPQ5018 or
+> +	 * IPQ5332.
+> +	 */
+> +	/* This resource are optional */
+> +	for (index = 0; index < ETH_LDO_RDY_CNT; index++) {
+> +		res = platform_get_resource(pdev, IORESOURCE_MEM, index + 1);
+> +		if (res) {
+if (!res)
+	break
 
+> +			priv->eth_ldo_rdy[index] = devm_ioremap(&pdev->dev,
+> +								res->start,
+> +								resource_size(res));
+> +
+> +			/* The ethernet LDO enable is necessary to reset PHY
+> +			 * by GPIO, some PHY(such as qca8084) GPIO reset uses
+> +			 * the MDIO level reset, so this function should be
+> +			 * called before the MDIO bus register.
+> +			 */
+> +			if (priv->eth_ldo_rdy[index]) {
+> +				u32 val;
+> +
+> +				val = readl(priv->eth_ldo_rdy[index]);
+> +				val |= BIT(0);
+> +				writel(val, priv->eth_ldo_rdy[index]);
+> +				fsleep(IPQ_PHY_SET_DELAY_US);
+fsleep should only be used when the argument is variable
 
-On 2023/12/27 23:49, Lorenzo Pieralisi wrote:
-> On Thu, Dec 14, 2023 at 03:28:27PM +0800, Minda Chen wrote:
->> Move setup functions to common pcie-plda-host.c. So these two functions
->> can be re-used.
->> 
->> Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
->> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
->> ---
->>  drivers/pci/controller/plda/Kconfig           |  4 +
->>  drivers/pci/controller/plda/Makefile          |  1 +
->>  .../pci/controller/plda/pcie-microchip-host.c | 59 --------------
->>  drivers/pci/controller/plda/pcie-plda-host.c  | 80 +++++++++++++++++++
->>  drivers/pci/controller/plda/pcie-plda.h       |  5 ++
->>  5 files changed, 90 insertions(+), 59 deletions(-)
->>  create mode 100644 drivers/pci/controller/plda/pcie-plda-host.c
->> 
->> diff --git a/drivers/pci/controller/plda/Kconfig b/drivers/pci/controller/plda/Kconfig
->> index 5cb3be4fc98c..e54a82ee94f5 100644
->> --- a/drivers/pci/controller/plda/Kconfig
->> +++ b/drivers/pci/controller/plda/Kconfig
->> @@ -3,10 +3,14 @@
->>  menu "PLDA-based PCIe controllers"
->>  	depends on PCI
->>  
->> +config PCIE_PLDA_HOST
->> +	bool
->> +
->>  config PCIE_MICROCHIP_HOST
->>  	tristate "Microchip AXI PCIe controller"
->>  	depends on PCI_MSI && OF
->>  	select PCI_HOST_COMMON
->> +	select PCIE_PLDA_HOST
->>  	help
->>  	  Say Y here if you want kernel to support the Microchip AXI PCIe
->>  	  Host Bridge driver.
->> diff --git a/drivers/pci/controller/plda/Makefile b/drivers/pci/controller/plda/Makefile
->> index e1a265cbf91c..4340ab007f44 100644
->> --- a/drivers/pci/controller/plda/Makefile
->> +++ b/drivers/pci/controller/plda/Makefile
->> @@ -1,2 +1,3 @@
->>  # SPDX-License-Identifier: GPL-2.0
->> +obj-$(CONFIG_PCIE_PLDA_HOST) += pcie-plda-host.o
->>  obj-$(CONFIG_PCIE_MICROCHIP_HOST) += pcie-microchip-host.o
->> diff --git a/drivers/pci/controller/plda/pcie-microchip-host.c b/drivers/pci/controller/plda/pcie-microchip-host.c
->> index 31ca8d44ee2a..2e79bcc7c0a5 100644
->> --- a/drivers/pci/controller/plda/pcie-microchip-host.c
->> +++ b/drivers/pci/controller/plda/pcie-microchip-host.c
->> @@ -838,65 +838,6 @@ static int mc_pcie_init_irq_domains(struct plda_pcie_rp *port)
->>  	return mc_allocate_msi_domains(port);
->>  }
->>  
->> -static void plda_pcie_setup_window(void __iomem *bridge_base_addr, u32 index,
->> -				   phys_addr_t axi_addr, phys_addr_t pci_addr,
->> -				   size_t size)
->> -{
->> -	u32 atr_sz = ilog2(size) - 1;
->> -	u32 val;
->> -
->> -	if (index == 0)
->> -		val = PCIE_CONFIG_INTERFACE;
->> -	else
->> -		val = PCIE_TX_RX_INTERFACE;
->> -
->> -	writel(val, bridge_base_addr + (index * ATR_ENTRY_SIZE) +
->> -	       ATR0_AXI4_SLV0_TRSL_PARAM);
->> -
->> -	val = lower_32_bits(axi_addr) | (atr_sz << ATR_SIZE_SHIFT) |
->> -			    ATR_IMPL_ENABLE;
->> -	writel(val, bridge_base_addr + (index * ATR_ENTRY_SIZE) +
->> -	       ATR0_AXI4_SLV0_SRCADDR_PARAM);
->> -
->> -	val = upper_32_bits(axi_addr);
->> -	writel(val, bridge_base_addr + (index * ATR_ENTRY_SIZE) +
->> -	       ATR0_AXI4_SLV0_SRC_ADDR);
->> -
->> -	val = lower_32_bits(pci_addr);
->> -	writel(val, bridge_base_addr + (index * ATR_ENTRY_SIZE) +
->> -	       ATR0_AXI4_SLV0_TRSL_ADDR_LSB);
->> -
->> -	val = upper_32_bits(pci_addr);
->> -	writel(val, bridge_base_addr + (index * ATR_ENTRY_SIZE) +
->> -	       ATR0_AXI4_SLV0_TRSL_ADDR_UDW);
->> -
->> -	val = readl(bridge_base_addr + ATR0_PCIE_WIN0_SRCADDR_PARAM);
->> -	val |= (ATR0_PCIE_ATR_SIZE << ATR0_PCIE_ATR_SIZE_SHIFT);
->> -	writel(val, bridge_base_addr + ATR0_PCIE_WIN0_SRCADDR_PARAM);
->> -	writel(0, bridge_base_addr + ATR0_PCIE_WIN0_SRC_ADDR);
->> -}
->> -
->> -static int plda_pcie_setup_iomems(struct pci_host_bridge *bridge,
->> -				  struct plda_pcie_rp *port)
->> -{
->> -	void __iomem *bridge_base_addr = port->bridge_addr;
->> -	struct resource_entry *entry;
->> -	u64 pci_addr;
->> -	u32 index = 1;
->> -
->> -	resource_list_for_each_entry(entry, &bridge->windows) {
->> -		if (resource_type(entry->res) == IORESOURCE_MEM) {
->> -			pci_addr = entry->res->start - entry->offset;
->> -			plda_pcie_setup_window(bridge_base_addr, index,
->> -					       entry->res->start, pci_addr,
->> -					       resource_size(entry->res));
->> -			index++;
->> -		}
->> -	}
->> -
->> -	return 0;
->> -}
->> -
->>  static inline void mc_clear_secs(struct mc_pcie *port)
->>  {
->>  	void __iomem *ctrl_base_addr = port->axi_base_addr + MC_PCIE_CTRL_ADDR;
->> diff --git a/drivers/pci/controller/plda/pcie-plda-host.c b/drivers/pci/controller/plda/pcie-plda-host.c
->> new file mode 100644
->> index 000000000000..19131181897f
->> --- /dev/null
->> +++ b/drivers/pci/controller/plda/pcie-plda-host.c
->> @@ -0,0 +1,80 @@
->> +// SPDX-License-Identifier: GPL-2.0
->> +/*
->> + * PLDA PCIe XpressRich host controller driver
->> + *
->> + * Copyright (C) 2023 Microchip Co. Ltd
->> + *
->> + * Author: Daire McNamara <daire.mcnamara@microchip.com>
->> + */
->> +
->> +#include <linux/irqchip/chained_irq.h>
->> +#include <linux/irqdomain.h>
->> +#include <linux/msi.h>
->> +#include <linux/of_address.h>
->> +#include <linux/of_pci.h>
->> +#include <linux/pci_regs.h>
->> +#include <linux/pci-ecam.h>
->> +#include <linux/platform_device.h>
-> 
-> Do you really require these headers ? Not in this patch,
-> in later patches and that's why every header should be
-> added when it is really needed.
-> 
-> Lorenzo
-> 
-OK, I will change this. thanks.
->> +
->> +#include "pcie-plda.h"
->> +
->> +void plda_pcie_setup_window(void __iomem *bridge_base_addr, u32 index,
->> +			    phys_addr_t axi_addr, phys_addr_t pci_addr,
->> +			    size_t size)
->> +{
->> +	u32 atr_sz = ilog2(size) - 1;
->> +	u32 val;
->> +
->> +	if (index == 0)
->> +		val = PCIE_CONFIG_INTERFACE;
->> +	else
->> +		val = PCIE_TX_RX_INTERFACE;
->> +
->> +	writel(val, bridge_base_addr + (index * ATR_ENTRY_SIZE) +
->> +	       ATR0_AXI4_SLV0_TRSL_PARAM);
->> +
->> +	val = lower_32_bits(axi_addr) | (atr_sz << ATR_SIZE_SHIFT) |
->> +			    ATR_IMPL_ENABLE;
->> +	writel(val, bridge_base_addr + (index * ATR_ENTRY_SIZE) +
->> +	       ATR0_AXI4_SLV0_SRCADDR_PARAM);
->> +
->> +	val = upper_32_bits(axi_addr);
->> +	writel(val, bridge_base_addr + (index * ATR_ENTRY_SIZE) +
->> +	       ATR0_AXI4_SLV0_SRC_ADDR);
->> +
->> +	val = lower_32_bits(pci_addr);
->> +	writel(val, bridge_base_addr + (index * ATR_ENTRY_SIZE) +
->> +	       ATR0_AXI4_SLV0_TRSL_ADDR_LSB);
->> +
->> +	val = upper_32_bits(pci_addr);
->> +	writel(val, bridge_base_addr + (index * ATR_ENTRY_SIZE) +
->> +	       ATR0_AXI4_SLV0_TRSL_ADDR_UDW);
->> +
->> +	val = readl(bridge_base_addr + ATR0_PCIE_WIN0_SRCADDR_PARAM);
->> +	val |= (ATR0_PCIE_ATR_SIZE << ATR0_PCIE_ATR_SIZE_SHIFT);
->> +	writel(val, bridge_base_addr + ATR0_PCIE_WIN0_SRCADDR_PARAM);
->> +	writel(0, bridge_base_addr + ATR0_PCIE_WIN0_SRC_ADDR);
->> +}
->> +EXPORT_SYMBOL_GPL(plda_pcie_setup_window);
->> +
->> +int plda_pcie_setup_iomems(struct pci_host_bridge *bridge,
->> +			   struct plda_pcie_rp *port)
->> +{
->> +	void __iomem *bridge_base_addr = port->bridge_addr;
->> +	struct resource_entry *entry;
->> +	u64 pci_addr;
->> +	u32 index = 1;
->> +
->> +	resource_list_for_each_entry(entry, &bridge->windows) {
->> +		if (resource_type(entry->res) == IORESOURCE_MEM) {
->> +			pci_addr = entry->res->start - entry->offset;
->> +			plda_pcie_setup_window(bridge_base_addr, index,
->> +					       entry->res->start, pci_addr,
->> +					       resource_size(entry->res));
->> +			index++;
->> +		}
->> +	}
->> +
->> +	return 0;
->> +}
->> +EXPORT_SYMBOL_GPL(plda_pcie_setup_iomems);
->> diff --git a/drivers/pci/controller/plda/pcie-plda.h b/drivers/pci/controller/plda/pcie-plda.h
->> index 363fcbbaf6ec..3deefd35fa5a 100644
->> --- a/drivers/pci/controller/plda/pcie-plda.h
->> +++ b/drivers/pci/controller/plda/pcie-plda.h
->> @@ -120,4 +120,9 @@ struct plda_pcie_rp {
->>  	void __iomem *bridge_addr;
->>  };
->>  
->> +void plda_pcie_setup_window(void __iomem *bridge_base_addr, u32 index,
->> +			    phys_addr_t axi_addr, phys_addr_t pci_addr,
->> +			    size_t size);
->> +int plda_pcie_setup_iomems(struct pci_host_bridge *bridge,
->> +			   struct plda_pcie_rp *port);
->>  #endif
->> -- 
->> 2.17.1
->> 
+Konrad
 
