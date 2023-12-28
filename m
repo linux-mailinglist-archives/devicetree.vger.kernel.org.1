@@ -1,62 +1,41 @@
-Return-Path: <devicetree+bounces-28841-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28842-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2105981F917
-	for <lists+devicetree@lfdr.de>; Thu, 28 Dec 2023 15:30:13 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E629381F940
+	for <lists+devicetree@lfdr.de>; Thu, 28 Dec 2023 15:58:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CB047284F11
-	for <lists+devicetree@lfdr.de>; Thu, 28 Dec 2023 14:30:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8DBDB1F23568
+	for <lists+devicetree@lfdr.de>; Thu, 28 Dec 2023 14:58:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99C5ED526;
-	Thu, 28 Dec 2023 14:30:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 628B5C8F1;
+	Thu, 28 Dec 2023 14:58:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="dv8rhXUf"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="P6dIJJIT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BD5FC8E0
-	for <devicetree@vger.kernel.org>; Thu, 28 Dec 2023 14:29:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a26f73732c5so296863366b.3
-        for <devicetree@vger.kernel.org>; Thu, 28 Dec 2023 06:29:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1703773797; x=1704378597; darn=vger.kernel.org;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=IfOkw9nEcZxbA1rEGXnw7Xr3Fbv2QGCNa/sv3AZ14y4=;
-        b=dv8rhXUfeIIde9MZGjI6hLX+c81tekNQVvOna8wokRJYaskThEmkjZYVcF/8UpVNCA
-         WJvzBrDudVuXUJLvRRMGFNAs8WtmxyuyueFvSJhJ+dH9MnSewQju440m90hKwZZAa0om
-         EgT6qlyZDvDCdWti/BMZksKdrs6NyWCgFer1tHKrgEWph9k43KGI3aLlLZfAAfwFXLF8
-         U0azGfF+09/drjuMrS8jDXlqVMLvS8kAeywrbt/EGcJEWcGLD8zE0rJLTgyqAqUjK6Ww
-         Kuy+6x16nf1MtO3T0xaQvNIvZ2+6MXejx7NpdRdH260DejMtu4KIswRtwt6++COxddGn
-         rZ4w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703773797; x=1704378597;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=IfOkw9nEcZxbA1rEGXnw7Xr3Fbv2QGCNa/sv3AZ14y4=;
-        b=Inia3UVlRK0v7CUGG041Ly6fuz8oSSKdXBUzUR7+PQAEIMZLNDboneQXxN1aOOBbol
-         Oorx4nhtRTI3VAktQZAi/RvaB3f+uqm7///K+fdhUFe/NjNILorn5pBNzXjJo9+GhyPG
-         ZgHnbNLhu+tshLyI+IzXYzfMCz0bC7Zehq5dCoPlVFboFmzzOm4Vf+oJ+mCl5VNIfyKP
-         VafKaIxnWPf3UTScwppgGe/GRAYs9oz4q+gpb7e3dqG3cZeYf3B1eGbR1Bd/dwgsUtI5
-         b8RriZ5c+bftG36Cuf6eKSKM0+P0muCG4hi84pEdde7XFYAsSIhpENsc9eoYbqh3ZCVw
-         NjlA==
-X-Gm-Message-State: AOJu0YwH+cni+lRpWldyBNTekIjuQuv8fwLIBmgQDxvM2XxGDdZSZbOl
-	k+UZ1zFIkB77fPqKwlkI4f04gVfooJk8rA==
-X-Google-Smtp-Source: AGHT+IEwzibakp4+9ZXJZVidzN9ogA4Ep77wRAfVlvNC3XZ4Cuo92tm68q7JErfyuMvnMmslNephwA==
-X-Received: by 2002:a17:906:7810:b0:a12:78b5:3d81 with SMTP id u16-20020a170906781000b00a1278b53d81mr4527886ejm.1.1703773797149;
-        Thu, 28 Dec 2023 06:29:57 -0800 (PST)
-Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id r25-20020a170906281900b00a1f7c502736sm7523221ejc.164.2023.12.28.06.29.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 28 Dec 2023 06:29:56 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5719C8E2;
+	Thu, 28 Dec 2023 14:58:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id A91A4C0004;
+	Thu, 28 Dec 2023 14:57:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1703775476;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=SKJ5CNCkGEhT8rzWQFp0fG5E3RHlKoOVSwbE7uYwM9Y=;
+	b=P6dIJJITjtdYd4B/+r9+gvaFznjHLsB22inTw9/vkIQt0fNJsadUhijB0bNtWH2ULDCS4L
+	SnfMN04hpKhPmWUxj68j7NWPpbNe8eDETd0n8c1qTFBq84s30LylDgE/4uyS85W0EgtPTz
+	cvMEXWlHbcgpIHtPRM3DsEzG2H6quNoIagCc0ja8xPx4FFWxyph8ku6fL3QD4uYibj05hK
+	4zw6isFtrE4OwmuflfFbEJYtm7dJvWtoAaR64olSafsvpvd2aPEHhQOLikraiy0UqYXn+Z
+	7Jr03XvUV/Gj6le5tyVdvWkVJPTAvxAEvL7LPYjE6NP6KID6wpqbdlrr6JJ6gg==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,111 +44,125 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset=UTF-8
-Date: Thu, 28 Dec 2023 15:29:56 +0100
-Message-Id: <CY01EKQVWE36.B9X5TDXAREPF@fairphone.com>
-Cc: <neil.armstrong@linaro.org>, <konrad.dybcio@linaro.org>,
- <agross@kernel.org>, <andersson@kernel.org>, <conor+dt@kernel.org>,
- <davem@davemloft.net>, <devicetree@vger.kernel.org>,
- <herbert@gondor.apana.org.au>, <krzysztof.kozlowski+dt@linaro.org>,
- <linux-arm-msm@vger.kernel.org>, <linux-crypto@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <marijn.suijten@somainline.org>,
- <robh+dt@kernel.org>, <vkoul@kernel.org>,
- <cros-qcom-dts-watchers@chromium.org>
-Subject: Re: [PATCH V3 2/2] arm64: dts: qcom: sc7280: add QCrypto nodes
-From: "Luca Weiss" <luca.weiss@fairphone.com>
-To: "Om Prakash Singh" <quic_omprsing@quicinc.com>
+Date: Thu, 28 Dec 2023 15:57:55 +0100
+Message-Id: <CY02002PZ08V.368NYASI51S@bootlin.com>
+Subject: Re: [PATCH v2 3/6] dt-bindings: soc: mobileye: add EyeQ5 OLB system
+ controller
+Cc: "Gregory CLEMENT" <gregory.clement@bootlin.com>, "Michael Turquette"
+ <mturquette@baylibre.com>, "Stephen Boyd" <sboyd@kernel.org>, "Krzysztof
+ Kozlowski" <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley"
+ <conor+dt@kernel.org>, "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>,
+ "Vladimir Kondratiev" <vladimir.kondratiev@mobileye.com>,
+ <linux-mips@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>, "Thomas
+ Petazzoni" <thomas.petazzoni@bootlin.com>, "Tawfik Bayouk"
+ <tawfik.bayouk@mobileye.com>
+To: "Rob Herring" <robh+dt@kernel.org>
+From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
 X-Mailer: aerc 0.15.2
-References: <20231214103600.2613988-1-quic_omprsing@quicinc.com>
- <20231214103600.2613988-3-quic_omprsing@quicinc.com>
-In-Reply-To: <20231214103600.2613988-3-quic_omprsing@quicinc.com>
+References: <20231227-mbly-clk-v2-0-a05db63c380f@bootlin.com>
+ <20231227-mbly-clk-v2-3-a05db63c380f@bootlin.com>
+ <CAL_JsqJD4ZeR+n09gC2fXnk1MFuqO0c0zADSg_-MiY65pck1Yw@mail.gmail.com>
+In-Reply-To: <CAL_JsqJD4ZeR+n09gC2fXnk1MFuqO0c0zADSg_-MiY65pck1Yw@mail.gmail.com>
+X-GND-Sasl: theo.lebrun@bootlin.com
 
-On Thu Dec 14, 2023 at 11:36 AM CET, Om Prakash Singh wrote:
-> Add the QCE and Crypto BAM DMA nodes.
+Hello,
+
+On Wed Dec 27, 2023 at 7:27 PM CET, Rob Herring wrote:
+> On Wed, Dec 27, 2023 at 10:24=E2=80=AFAM Th=C3=A9o Lebrun <theo.lebrun@bo=
+otlin.com> wrote:
+> >
+> > Add documentation to describe the "Other Logic Block" syscon.
+> >
+> > Signed-off-by: Th=C3=A9o Lebrun <theo.lebrun@bootlin.com>
+> > ---
+> >  .../bindings/soc/mobileye/mobileye,eyeq5-olb.yaml  | 44 ++++++++++++++=
+++++++++
+> >  MAINTAINERS                                        |  1 +
+> >  2 files changed, 45 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/soc/mobileye/mobileye,ey=
+eq5-olb.yaml b/Documentation/devicetree/bindings/soc/mobileye/mobileye,eyeq=
+5-olb.yaml
+> > new file mode 100644
+> > index 000000000000..b148a49b08f1
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/soc/mobileye/mobileye,eyeq5-olb=
+.yaml
+> > @@ -0,0 +1,44 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/soc/mobileye/mobileye,eyeq5-olb.yam=
+l#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Mobileye EyeQ5 SoC system controller
+> > +
+> > +maintainers:
+> > +  - Gr=C3=A9gory Clement <gregory.clement@bootlin.com>
+> > +  - Th=C3=A9o Lebrun <theo.lebrun@bootlin.com>
+> > +  - Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>
+> > +
+> > +description:
+> > +  OLB ("Other Logic Block") is a hardware block grouping smaller block=
+s. Clocks,
+> > +  resets, pinctrl are being handled from here.
 >
-> Signed-off-by: Om Prakash Singh <quic_omprsing@quicinc.com>
-> ---
+> I don't see resets or pinctrl in the binding. Please make it complete
+> whether you have the driver or not.
 >
-> Changes in V3:
->   - V2 patch was sent without actual modification. Resending the patch wi=
-th modified file.
+> As-is, you don't need clocks to be a child node.
+
+Will do. Would it make sense to have the three drivers be a single
+series? Else we could have the dt-bindings be part of the base platform
+support series[1].
+
+[1]: https://lore.kernel.org/lkml/20231212163459.1923041-1-gregory.clement@=
+bootlin.com/
+
+> > +properties:
+> > +  compatible:
+> > +    items:
+> > +      - const: mobileye,eyeq5-olb
+> > +      - const: syscon
+> > +      - const: simple-mfd
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  reg-io-width:
+> > +    const: 4
 >
-> Changes in V2:
->   - Update DT node sequence as per register ascending order.
->   - Fix DT node properties as per convention.
+> Why do you need this? It is not a generic block and can only ever be 1
+> value.
+
+This block is still a syscon in the end. I wanted to explicit that
+access width must be 4 bytes and nothing else.
+
+Does you question mean you think I should be removing it?
+
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - reg-io-width
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    olb@e00000 {
+> > +      compatible =3D "mobileye,eyeq5-olb", "syscon", "simple-mfd";
+> > +      reg =3D <0xe00000 0x400>;
+> > +      reg-io-width =3D <4>;
 >
->  arch/arm64/boot/dts/qcom/sc7280.dtsi | 22 ++++++++++++++++++++++
->  1 file changed, 22 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/q=
-com/sc7280.dtsi
-> index 66f1eb83cca7..b819724c1255 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> @@ -2233,6 +2233,28 @@ pcie1_phy: phy@1c0e000 {
->  			status =3D "disabled";
->  		};
-> =20
-> +		cryptobam: dma-controller@1dc4000 {
-> +			compatible =3D "qcom,bam-v1.7.4", "qcom,bam-v1.7.0";
-> +			reg =3D <0x0 0x01dc4000 0x0 0x28000>;
-> +			interrupts =3D <GIC_SPI 272 IRQ_TYPE_LEVEL_HIGH>;
-> +			#dma-cells =3D <1>;
-> +			iommus =3D <&apps_smmu 0x4e4 0x0011>,
-> +				 <&apps_smmu 0x4e6 0x0011>;
-> +			qcom,ee =3D <0>;
-> +			qcom,controlled-remotely;
-> +		};
+> Make this example complete and drop the child node example.
 
-Hi,
+I hesitated inbetween the two options, I'll fix that on the next
+revision. Thanks!
 
-Unfortunately I seem to have boot failure / device crash with cryptobam
-enabled on my qcm6490-fairphone-fp5. Are you aware of any firmware
-differences that could cause this with QCM6490 LA firmware?
-
-Looking at downstream msm-5.4 dmesg I do see this BAM being used so it
-should generally be accessible from Linux.
-
-[    5.217214] qce 1de0000.qcedev: Adding to iommu group 18
-[    5.223741] QCE50: __qce_get_device_tree_data: CE operating frequency is=
- not defined, setting to default 100MHZ
-[    5.234986] qce 1de0000.qcedev: QTI Crypto 5.6.0 device found @0x1de0000
-[    5.242981] sps_register_bam_device: sps:BAM 0x0000000001dc4000 is regis=
-tered
-[    5.251124] sps_bam_enable: sps:BAM 0x0000000001dc4000 (va:0x000000001db=
-63156) enabled: ver:0x27, number of pipes:16
-[    5.262783] QCE50: qce_sps_init:  QTI MSM CE-BAM at 0x0000000001dc4000 i=
-rq 9
-[    5.271820] qce 1de0000.qcedev:qcom_cedev_ns_cb: Adding to iommu group 1=
-9
-[    5.281083] qce 1de0000.qcedev:qcom_cedev_s_cb: Adding to iommu group 20
-[    5.289376] qcrypto 1de0000.qcrypto: Adding to iommu group 21
-[    5.296326] QCE50: __qce_get_device_tree_data: CE operating frequency is=
- not defined, setting to default 100MHZ
-[    5.307675] qcrypto 1de0000.qcrypto: QTI Crypto 5.6.0 device found @0x1d=
-e0000
-[    5.315867] QCE50: qce_sps_init:  QTI MSM CE-BAM at 0x0000000001dc4000 i=
-rq 9
-
-Any idea?
-
-Regards
-Luca
-
-> +
-> +		crypto: crypto@1dfa000 {
-> +			compatible =3D "qcom,sc7280-qce", "qcom,sm8150-qce", "qcom,qce";
-> +			reg =3D <0x0 0x01dfa000 0x0 0x6000>;
-> +			dmas =3D <&cryptobam 4>, <&cryptobam 5>;
-> +			dma-names =3D "rx", "tx";
-> +			iommus =3D <&apps_smmu 0x4e4 0x0011>,
-> +				 <&apps_smmu 0x4e4 0x0011>;
-> +			interconnects =3D <&aggre2_noc MASTER_CRYPTO 0 &mc_virt SLAVE_EBI1 0>=
-;
-> +			interconnect-names =3D "memory";
-> +		};
-> +
->  		ipa: ipa@1e40000 {
->  			compatible =3D "qcom,sc7280-ipa";
-> =20
-
+--
+Th=C3=A9o Lebrun, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
