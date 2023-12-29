@@ -1,94 +1,91 @@
-Return-Path: <devicetree+bounces-28924-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28925-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 162E7820020
-	for <lists+devicetree@lfdr.de>; Fri, 29 Dec 2023 16:10:52 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A9892820032
+	for <lists+devicetree@lfdr.de>; Fri, 29 Dec 2023 16:25:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E8EA51C2198E
-	for <lists+devicetree@lfdr.de>; Fri, 29 Dec 2023 15:10:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 651D528257D
+	for <lists+devicetree@lfdr.de>; Fri, 29 Dec 2023 15:25:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4158E125A4;
-	Fri, 29 Dec 2023 15:10:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BE57125B0;
+	Fri, 29 Dec 2023 15:25:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="T1WAKmSL"
+	dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b="pgm0v+Kg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from ixit.cz (ip-89-177-23-149.bb.vodafone.cz [89.177.23.149])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 276E611CBF
-	for <devicetree@vger.kernel.org>; Fri, 29 Dec 2023 15:10:46 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9BE94C433D9
-	for <devicetree@vger.kernel.org>; Fri, 29 Dec 2023 15:10:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1703862646;
-	bh=SvBX/eCbZWF+DTvCkFPRMPOUIUGWSf/TKZf+zNov1RU=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=T1WAKmSLGOTr5CHVwatLdTU0u8sPsFvt6JF8+TMoedS2VPuqyMssoYeKwDJuV4ctc
-	 tEM3J6Ot0nLvtvxTeO+7JUhgEzQuZpph4hu7xTdQNDeXCHjXrGiBtvkZb1pVRGkCZu
-	 FvADqJtyns92WmbqpaU69sC/Hl6PQjwnBFC6WAROZqYvvCFUnYcP/YDKmbYCn4cK2E
-	 yDo1BeKeCwSgkI8c3iuzJPApCkgZGGeossm/HKBKOqSOyssJjYZIeNQ1eqPBZrnSDB
-	 cVwCJ56tOPubdYB8CkqN/Rxl5vALQGfreXr7If6EkKWl24ecVW/Vql0fvYcpPDZf5S
-	 +p1nDKF5cfYaw==
-Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-a26f7f5614fso289763066b.3
-        for <devicetree@vger.kernel.org>; Fri, 29 Dec 2023 07:10:46 -0800 (PST)
-X-Gm-Message-State: AOJu0YxUzVbhMmhsfgovmKx4aCcaihHMGFdHmZ97d57Ev2kq4G6bq/3X
-	qCl8hcoqd3MvbZpMozbFgDdGz+SRCkV2Lvm0T4I=
-X-Google-Smtp-Source: AGHT+IHkSCveTRbo6tJ+d9eQPxijP4045Bs1Z54IdHcgWRrymlTKGMmopvvWmoGT3rYlTgKSStzpXqs2kwPHPgfPJQk=
-X-Received: by 2002:a17:906:b10b:b0:a27:5342:aca4 with SMTP id
- u11-20020a170906b10b00b00a275342aca4mr2361684ejy.3.1703862645044; Fri, 29 Dec
- 2023 07:10:45 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D001125A3;
+	Fri, 29 Dec 2023 15:25:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ixit.cz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ixit.cz
+Received: from newone.congress.ccc.de (unknown [151.217.64.190])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by ixit.cz (Postfix) with ESMTPSA id 924581638E3;
+	Fri, 29 Dec 2023 16:17:51 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
+	t=1703863072;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=xchHYDvWOZwi4vwJm8ifd1Jdh6d+pqsm1Jnha2iBM84=;
+	b=pgm0v+Kg8Qd87BjgSgGmLfviaMyUz+c6AABslJ6MQsLy1YbyL6XbPsbUEQUfHfsJR3qZBI
+	eL6ui06woQdKHiOdz2uBPIvNZ9AXFns1Jugzxud6JFQxe/GwiXwDZmHN85j1gg8VehfkE5
+	A3QhOfW/UoeTfDOWfc6K+PKArldoNvA=
+From: David Heidelberg <david@ixit.cz>
+To: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh@kernel.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Manivannan Sadhasivam <mani@kernel.org>
+Cc: David Heidelberg <david@ixit.cz>,
+	linux-arm-msm@vger.kernel.org,
+	linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: PCI: qcom: delimit number of iommu-map entries
+Date: Fri, 29 Dec 2023 16:17:37 +0100
+Message-ID: <20231229151744.203828-1-david@ixit.cz>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1703229766.git.zhoubinbin@loongson.cn> <20231222-support-relieve-5d8f25292b40@spud>
- <CAMpQs4+Uwu=j56Qa_V211_hC+F4MKE6mvTVtW75M1wuAY3-p1g@mail.gmail.com> <20231228-ultimatum-paramedic-6c0301f56d1c@spud>
-In-Reply-To: <20231228-ultimatum-paramedic-6c0301f56d1c@spud>
-From: Huacai Chen <chenhuacai@kernel.org>
-Date: Fri, 29 Dec 2023 23:10:33 +0800
-X-Gmail-Original-Message-ID: <CAAhV-H6O_Ke-xJPGFmgdwNVbGkDS2P6EK3ecfgo9KkkNyi9eOg@mail.gmail.com>
-Message-ID: <CAAhV-H6O_Ke-xJPGFmgdwNVbGkDS2P6EK3ecfgo9KkkNyi9eOg@mail.gmail.com>
-Subject: Re: [PATCH v6 0/7] LoongArch: Add built-in dtb support
-To: Conor Dooley <conor@kernel.org>
-Cc: Binbin Zhou <zhoubb.aaron@gmail.com>, Binbin Zhou <zhoubinbin@loongson.cn>, 
-	Huacai Chen <chenhuacai@loongson.cn>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	devicetree@vger.kernel.org, Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev, 
-	Jiaxun Yang <jiaxun.yang@flygoat.com>, Hongliang Wang <wanghongliang@loongson.cn>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-This series is good enough for me, I will apply it to the loongarch
-tree after [1] is merged.
+The code or specific SoC doesn't seem to limit the number of iommu-map entries.
 
-[1] https://lore.kernel.org/loongarch/cover.1701933946.git.zhoubinbin@loong=
-son.cn/T/#t
+Signed-off-by: David Heidelberg <david@ixit.cz>
+---
+ Documentation/devicetree/bindings/pci/qcom,pcie.yaml | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-Huacai
+diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+index eadba38171e1..c6111278162f 100644
+--- a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
++++ b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+@@ -61,8 +61,7 @@ properties:
+     minItems: 1
+     maxItems: 8
+ 
+-  iommu-map:
+-    maxItems: 2
++  iommu-map: true
+ 
+   # Common definitions for clocks, clock-names and reset.
+   # Platform constraints are described later.
+-- 
+2.43.0
 
-On Thu, Dec 28, 2023 at 10:09=E2=80=AFPM Conor Dooley <conor@kernel.org> wr=
-ote:
->
-> On Wed, Dec 27, 2023 at 12:04:59PM +0600, Binbin Zhou wrote:
-> >
-> > Ah, yes, I tried looking at the `hwloc-ls` output before committing,
-> > and it's below(LS2K1000):
-> >
-> > [root@fedora ~]# hwloc-ls
-> > Machine (7730MB total)
-> >   Package L#0
-> >     NUMANode L#0 (P#0 7730MB)
-> >     L2 L#0 (1024KB)
-> >       L1d L#0 (32KB) + L1i L#0 (32KB) + Core L#0 + PU L#0 (P#0)
-> >       L1d L#1 (32KB) + L1i L#1 (32KB) + Core L#1 + PU L#1 (P#1)
-> >
-> > It's the same as what we actually have.
->
->
-> Yeah, that looks to be about what I would expect, thanks.
 
