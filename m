@@ -1,91 +1,99 @@
-Return-Path: <devicetree+bounces-28911-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28919-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D2D181FFA7
-	for <lists+devicetree@lfdr.de>; Fri, 29 Dec 2023 14:25:54 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C880381FFDC
+	for <lists+devicetree@lfdr.de>; Fri, 29 Dec 2023 14:54:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D6C4C1F21330
-	for <lists+devicetree@lfdr.de>; Fri, 29 Dec 2023 13:25:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 065671C223D2
+	for <lists+devicetree@lfdr.de>; Fri, 29 Dec 2023 13:54:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F71011701;
-	Fri, 29 Dec 2023 13:25:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD13411C84;
+	Fri, 29 Dec 2023 13:52:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XwkG7X7N"
+	dkim=pass (2048-bit key) header.d=savoirfairelinux.com header.i=@savoirfairelinux.com header.b="po3U1yBC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.savoirfairelinux.com (mail.savoirfairelinux.com [208.88.110.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35D0811C84;
-	Fri, 29 Dec 2023 13:25:48 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 99B04C433C7;
-	Fri, 29 Dec 2023 13:25:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1703856348;
-	bh=Qjdq/NiV7NMUTpVZdpiyOV0E08a+f4/G4AzkNI+HNQE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=XwkG7X7NWOjzQloEY+Hjh4c45ux4z/YP8Jg6OlOLSrx7tZmUlFKpu0Zi2/YFmLYyP
-	 poQzjlQhQ7peboc5IRDUf2EhKIuWfLWVk+mOG1WBt/FxoGVpDuaG3qGsQ5/sBjO2QI
-	 XHBbz+fVH1jRT1bT4cY8xqtxpaZxI72AiC13ttVKyX32PG9XYxMV4IaT9fM/24n9WS
-	 lRE4H33qAluaYRPQzMmYMuWUAGS2ZHE9IKI1A7A/J1iYnPDFYZGqUq8J+xfmREdaPl
-	 YmRqWdfqHsKxqnERH0pjpA4v7EoJON3PXXygfFksqiYQBis8SQA3HvRUrjGG4/bwfM
-	 iNDt9QBsChqDw==
-Received: from johan by xi.lan with local (Exim 4.96.2)
-	(envelope-from <johan@kernel.org>)
-	id 1rJCrt-0000B0-2I;
-	Fri, 29 Dec 2023 14:25:41 +0100
-Date: Fri, 29 Dec 2023 14:25:41 +0100
-From: Johan Hovold <johan@kernel.org>
-To: Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Johan Hovold <johan+linaro@kernel.org>,
-	Marijn Suijten <marijn.suijten@somainline.org>,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Konrad Dybcio <konrad.dybcio@somainline.org>
-Subject: Re: [PATCH 2/3] arm64: dts: qcom: sc8280xp: Correct USB PHY power
- domains
-Message-ID: <ZY7I1brn0chtOzis@hovoldconsulting.com>
-References: <20231227-topic-8280_pcie_dts-v1-0-13d12b1698ff@linaro.org>
- <20231227-topic-8280_pcie_dts-v1-2-13d12b1698ff@linaro.org>
- <ZY7DEpaIgvfL_A11@hovoldconsulting.com>
- <b730bf22-fa3a-4720-9fd1-79d2207d6812@linaro.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E98311C82;
+	Fri, 29 Dec 2023 13:52:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=savoirfairelinux.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=savoirfairelinux.com
+Received: from localhost (localhost [127.0.0.1])
+	by mail.savoirfairelinux.com (Postfix) with ESMTP id 0A2DD9C330F;
+	Fri, 29 Dec 2023 08:45:45 -0500 (EST)
+Received: from mail.savoirfairelinux.com ([127.0.0.1])
+ by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10032)
+ with ESMTP id RDHQVC7hAZsW; Fri, 29 Dec 2023 08:45:44 -0500 (EST)
+Received: from localhost (localhost [127.0.0.1])
+	by mail.savoirfairelinux.com (Postfix) with ESMTP id 8E1B49C3380;
+	Fri, 29 Dec 2023 08:45:44 -0500 (EST)
+DKIM-Filter: OpenDKIM Filter v2.10.3 mail.savoirfairelinux.com 8E1B49C3380
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=savoirfairelinux.com; s=DFC430D2-D198-11EC-948E-34200CB392D2;
+	t=1703857544; bh=Lyk686/x2Ez5b2w7VD1NWpu9PQmISjz21nS2j3Knoo8=;
+	h=Date:From:To:Message-ID:MIME-Version;
+	b=po3U1yBCDfCq7u3iTDEhMpY8CICqIY+mxPesFY9awIGMWGOZBSA/zcCmtcejahKEW
+	 NxEnYNdHTH3keUrQoK5VIZddX58OzHZF1Hff7Os09Z1MeHnvX14ykUwhVJpfvaEphu
+	 2xtN3k4Jbr//2Z+G7Lww8H0I944uvqDPcHqGbqwVRz4rYcmOR/C+O3cMFszFNaU/BS
+	 CBGXnjsKjfYSoQysu3xVtrJmDCqOSNfRojHHrAVWVqlSXpcpAkfhfViPUEzCTNjpL2
+	 ynpe8QHWMOaX0o7K/AQ+KC3XVGR9c//FwgX16u/rbZpvEm9na8cOAcv0dqSrRfDxxz
+	 0b26rCZdsiuaA==
+X-Virus-Scanned: amavis at mail.savoirfairelinux.com
+Received: from mail.savoirfairelinux.com ([127.0.0.1])
+ by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10026)
+ with ESMTP id sSUMGHPKYEW5; Fri, 29 Dec 2023 08:45:44 -0500 (EST)
+Received: from mail.savoirfairelinux.com (mail.savoirfairelinux.com [192.168.48.237])
+	by mail.savoirfairelinux.com (Postfix) with ESMTP id 515039C330F;
+	Fri, 29 Dec 2023 08:45:44 -0500 (EST)
+Date: Fri, 29 Dec 2023 08:45:44 -0500 (EST)
+From: Elinor Montmasson <elinor.montmasson@savoirfairelinux.com>
+To: Daniel Baluta <daniel.baluta@gmail.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, 
+	shengjiu wang <shengjiu.wang@gmail.com>, 
+	Xiubo Lee <Xiubo.Lee@gmail.com>, Fabio Estevam <festevam@gmail.com>, 
+	Nicolin Chen <nicoleotsuka@gmail.com>, 
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
+	linux-sound <linux-sound@vger.kernel.org>, 
+	devicetree <devicetree@vger.kernel.org>, 
+	linux-kernel <linux-kernel@vger.kernel.org>, 
+	alsa-devel <alsa-devel@alsa-project.org>, 
+	linuxppc-dev <linuxppc-dev@lists.ozlabs.org>, 
+	Philip-Dylan Gleonec <philip-dylan.gleonec@savoirfairelinux.com>
+Message-ID: <361044647.7067.1703857544284.JavaMail.zimbra@savoirfairelinux.com>
+In-Reply-To: <347346270.284192.1702989565367.JavaMail.zimbra@savoirfairelinux.com>
+References: <20231218124058.2047167-1-elinor.montmasson@savoirfairelinux.com> <CAEnQRZAwk-USZqXwLOVuN3iTn7r-55BJH=Sqq5+2Od+DhrK0iw@mail.gmail.com> <347346270.284192.1702989565367.JavaMail.zimbra@savoirfairelinux.com>
+Subject: Re: [PATCHv3 RESEND 00/10] ASoC: fsl-asoc-card: compatibility
+ integration of a generic codec use case for use with S/PDIF controller
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <b730bf22-fa3a-4720-9fd1-79d2207d6812@linaro.org>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+X-Mailer: Zimbra 8.8.15_GA_4581 (ZimbraWebClient - GC112 (Linux)/8.8.15_GA_4581)
+Thread-Topic: ASoC: fsl-asoc-card: compatibility integration of a generic codec use case for use with S/PDIF controller
+Thread-Index: lu32M+7WowvRn2WxYZZGeiz9hy0xKkRA+mdz
 
-[ Please remember to trim your replies and add a newline before your
-  inline comments to make them readable. ]
+Hello
 
-On Fri, Dec 29, 2023 at 02:06:26PM +0100, Konrad Dybcio wrote:
-> On 29.12.2023 14:01, Johan Hovold wrote:
-> > On Wed, Dec 27, 2023 at 11:28:27PM +0100, Konrad Dybcio wrote:
+On Monday, 18 December, 2023 14:54:03, Daniel Baluta wrote 
+> I know this is extra-work but we would greatly appreciate if you first 
+> convert fsl-asoc-card.txt 
+> to yml format and then add your new properties. 
 
-> >> Fix the power-domains assignment to stop potentially toggling the GDSC
-> >> unnecessarily.
-> > 
-> > Again, there's no additional toggling being done here, but yes, this may
-> > keep the domains enabled during suspend depending on how the driver is
-> > implemented.
+DT schema must have at least one maintainer in the "maintainers" field.
+Who should I put for fsl-asoc-card.yaml ?
 
-> No, it can actually happen. (Some) QMP PHYs are referenced by the
-> DP hardware. If USB is disabled (or suspended), the DP being active
-> will hold these GDSCs enabled.
+Best regards, 
+Elinor Montmasson 
 
-That's not a "toggling", is it? Also if the DP controller is a consumer of
-these PHY's why should it not prevent the PHYs from suspending?
-
-Johan
 
