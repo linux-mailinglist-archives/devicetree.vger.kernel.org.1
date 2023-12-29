@@ -1,114 +1,163 @@
-Return-Path: <devicetree+bounces-28934-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28935-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24401820095
-	for <lists+devicetree@lfdr.de>; Fri, 29 Dec 2023 17:48:38 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C13C8200AB
+	for <lists+devicetree@lfdr.de>; Fri, 29 Dec 2023 18:03:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CF3E92847A8
-	for <lists+devicetree@lfdr.de>; Fri, 29 Dec 2023 16:48:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 52D1D1F2181A
+	for <lists+devicetree@lfdr.de>; Fri, 29 Dec 2023 17:03:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF0B3125D3;
-	Fri, 29 Dec 2023 16:48:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E010C125B0;
+	Fri, 29 Dec 2023 17:03:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gnu.org header.i=@gnu.org header.b="F1LpKjRR"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ecCNE3lp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from eggs.gnu.org (eggs.gnu.org [209.51.188.92])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com [209.85.210.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85BA8125D8;
-	Fri, 29 Dec 2023 16:48:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gnu.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gnu.org
-Received: from fencepost.gnu.org ([2001:470:142:3::e])
-	by eggs.gnu.org with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.90_1)
-	(envelope-from <othacehe@gnu.org>)
-	id 1rJG25-0007qL-Bq; Fri, 29 Dec 2023 11:48:25 -0500
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=gnu.org;
-	s=fencepost-gnu-org; h=MIME-Version:Date:References:In-Reply-To:Subject:To:
-	From; bh=38VNaP7pfXM1GvqJGD2jWMf0tAg+ZbVq33Sknm8YBK4=; b=F1LpKjRRlV4aJDyJwf5s
-	emr6NKrn13fWNmqGLjgPcyXXlVgH2GGhcJZs4XE/z3gQ28la1zmMOtGjNwAfLPpZF+Umij4bVDQfo
-	xmK2BWDW2O+7299NW1wUs26WHr7Kx3/7sLVhf+tl1u7VJcIO4SUIFdssR0zkDGV+cIyipp+uAmhDS
-	hBC9wFLDN2CYG71YD3y+7YuQusBQwFWHpQR3UklGaaHwjwhJJmhMFYT9EeXmIIbfp+0EyEIZGCZnI
-	Fqr2h9clQUEhvKL264unK0tigYix/ytGRlBOlimm+ppF41lV61svejDheBTC97az8Zo52L0LH1cqh
-	tek+S2I+pdZkhQ==;
-From: Mathieu Othacehe <othacehe@gnu.org>
-To: Stefan Wahren <wahrenst@gmx.net>
-Cc: Rob Herring <robh+dt@kernel.org>,  Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>,  Conor Dooley <conor+dt@kernel.org>,
-  Shawn Guo <shawnguo@kernel.org>,  Sascha Hauer <s.hauer@pengutronix.de>,
-  Pengutronix Kernel Team <kernel@pengutronix.de>,  Fabio Estevam
- <festevam@gmail.com>,  NXP Linux Team <linux-imx@nxp.com>,  Li Yang
- <leoyang.li@nxp.com>,  devicetree@vger.kernel.org,
-  linux-kernel@vger.kernel.org,  linux-arm-kernel@lists.infradead.org,
-  Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v4 2/2] arm64: dts: imx93-var-som: Add Variscite
- VAR-SOM-MX93
-In-Reply-To: <4e3a0328-0ae7-40fa-b37d-16b661e28a1e@gmx.net> (Stefan Wahren's
-	message of "Fri, 29 Dec 2023 15:08:02 +0100")
-References: <20231227170919.8771-1-othacehe@gnu.org>
-	<20231227170919.8771-3-othacehe@gnu.org>
-	<d378ad67-2a75-4a14-a131-7eb91de9ad3d@gmx.net>
-	<87plypqi2d.fsf@gnu.org>
-	<4e3a0328-0ae7-40fa-b37d-16b661e28a1e@gmx.net>
-Date: Fri, 29 Dec 2023 17:48:21 +0100
-Message-ID: <87zfxtosyy.fsf@gnu.org>
-User-Agent: Gnus/5.13 (Gnus v5.13)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83C7512B6B
+	for <devicetree@vger.kernel.org>; Fri, 29 Dec 2023 17:03:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pf1-f169.google.com with SMTP id d2e1a72fcca58-6da202aa138so1128646b3a.2
+        for <devicetree@vger.kernel.org>; Fri, 29 Dec 2023 09:03:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1703869423; x=1704474223; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=dnGz3/95ZNgpRtUtsrg42smO9ALzI4JQqm7ZTY5JDAo=;
+        b=ecCNE3lptdnkGUNVk0wfRN+I5c5ARbFya5SK5PKhIClezApqFL0fnR77QhV46w7TNv
+         VG4r6hezzX6HUZwasT8p4Rl0vsb0tSrM88YN+bGVC1Wr2QUbDQAdKm0y47Gg04HcZ3Ud
+         7iueGcTodv0bg4ml9fsqCw39YIDGiHec8hGVDipnL6S7gsW3nfTuD2ZSpS5YhryPUUqf
+         YXXvyV1tI6NzFqBeHZxVCSCZDMhp5V+vuafkFs9OCgk993WGigh13aZe0uPCIJbuZfm/
+         2ym2AMxq9kB9t5+1MO9mv8+MKJ5supIl+lwM3lox0Eoui9dAKiOmG52QCNxlGO/fUOgC
+         JAPw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1703869423; x=1704474223;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=dnGz3/95ZNgpRtUtsrg42smO9ALzI4JQqm7ZTY5JDAo=;
+        b=klN2IyV1Csb/BZx06S0Ec7DCi+sgJ6O4k1mXXmOyzMuWn9yQCB/qK7P4VSk+7PAXPx
+         Fhv7ApSdIyq+kb3pCg/3CE6fgo96hK68KF0mNgjrXaMC/UcvfipLpExartLxzkn5BtbM
+         fL4LP9XE7lpPFXL2f0gP5df/ilUnc0plLYe97s/iMB6Bt/tL8rrsUcUMt+p4sp7YwgbG
+         srF0TjUzdVU5VR9qY8vuyd/yRNV4zV9dJQqMwFGdXo/vOpEXxxwCLB6zeRTrue2ub6+f
+         IF7uM2xi/VQhfF6y81eJ5Co+nW+wsljI0rIjtmsPoXwu0B07QB7FAWEv3GIjltjHkNxs
+         osAQ==
+X-Gm-Message-State: AOJu0YziUYW8Xp5bky/aTvB6PrNqcqZrbDlErG39ZreaqiHnHw4DMxCy
+	u/EPfK/J9tbOl1jqy8afh5bfIgwkngL/
+X-Google-Smtp-Source: AGHT+IHFnhTrgMRS7SY2RLFvJWaczD/REIhArzInITGghfYwmVt1ULQ1+WDhHrDr0KFMNo0xwJu/6w==
+X-Received: by 2002:a05:6a00:849:b0:6d9:bce7:d8e3 with SMTP id q9-20020a056a00084900b006d9bce7d8e3mr9836852pfk.24.1703869422684;
+        Fri, 29 Dec 2023 09:03:42 -0800 (PST)
+Received: from thinkpad ([117.207.24.172])
+        by smtp.gmail.com with ESMTPSA id p2-20020a056a0026c200b006d99170ab87sm12720099pfw.182.2023.12.29.09.03.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 29 Dec 2023 09:03:41 -0800 (PST)
+Date: Fri, 29 Dec 2023 22:33:34 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Johan Hovold <johan@kernel.org>
+Cc: Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Johan Hovold <johan+linaro@kernel.org>,
+	Marijn Suijten <marijn.suijten@somainline.org>,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Konrad Dybcio <konrad.dybcio@somainline.org>
+Subject: Re: [PATCH 1/3] arm64: dts: qcom: sc8280xp: Fix PCIe PHY
+ power-domains
+Message-ID: <20231229170334.GA9098@thinkpad>
+References: <20231227-topic-8280_pcie_dts-v1-0-13d12b1698ff@linaro.org>
+ <20231227-topic-8280_pcie_dts-v1-1-13d12b1698ff@linaro.org>
+ <ZY6sh8nlEUyEfL0u@hovoldconsulting.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <ZY6sh8nlEUyEfL0u@hovoldconsulting.com>
 
+On Fri, Dec 29, 2023 at 12:24:55PM +0100, Johan Hovold wrote:
+> On Wed, Dec 27, 2023 at 11:28:26PM +0100, Konrad Dybcio wrote:
+> > The PCIe GDSCs are only related to the RCs. The PCIe PHYs on the other
+> > hand, are powered by VDD_MX and their specific VDDA_PHY/PLL regulators.
+> 
+> No, that does not seem to be entirely correct. I added the power-domains
+> here precisely because they were needed to enable the PHYs.
+> 
+> This is something I stumbled over when trying to figure out how to
+> add support for the second lane pair (i.e. four-lane mode), and I just
+> went back and confirmed that this is still the case.
+> 
+> If you try to enable one of these PHYs without the corresponding GDSC
+> being enabled, you end up with:
+> 
+> [   37.709324] ------------[ cut here ]------------
+> [   37.718196] gcc_pcie_3b_aux_clk status stuck at 'off'
+> [   37.718205] WARNING: CPU: 4 PID: 482 at drivers/clk/qcom/clk-branch.c:86 clk_branch_wait+0x144/0x15c
+> 	
 
-Hey,
+Technically this patch is correct. PHYs are backed by MX domain only and not
+GDSCs. Only the controllers (PCIe, UFS, USB) are backed by GDSCs. The fact that
+you are seeing issue with PCIe Aux clock suggests me that this clock may not be
+applicable to the PHY but it needs to be enabled for working of the PHY somehow.
+I'll try to find the details on how exactly it is needed.
 
-> I also saw in the other Symphony DTS a LED for heartbeat. Is it usable, too?
+But if I get the answer like, "This clock is also sourced to PHY directly", then
+we may need to add dual power domain for PHY (both GDSC and MX).
 
-Yes, I will add it to in v5.
+> Now, you may or may not want to describe the above in the devicetree,
+> but this makes it sound like you're trying to work around an issue with
+> the current Linux implementation.
+> 
 
-> According to the datasheet the SOM expose 7 UARTs, but only the debug
-> UART is enable. What is the reason for this?
+Adding MX domain to PHY in devicetree is definitely not a workaround. It is the
+actual hardware representation. MX is the always on domain, and when CX collapse
+happens during suspend state, it will ensure that all the analog components
+(like PHY) are kept powered on. Otherwise, we will see link down issues.
 
-So those 7 UARTs are:
+But, I heard from Qcom that _only_ on this platform, MX is not backing the PCIe
+PHY. I can correlate that with my encounter with PCIe issues after forcing CX
+power collapse.
 
-UART1: console
-UART2: used by the microphone
-UART3: used by the resistive touch
-UART4: used by the ethernet/resistive touch
-UART5: on J18.4,6,8,10 (used by BT)
-UART6: on J18.7 and J18.9 (available)
-UART7: on J18.3 and J18.5 (used by the M33 firmware)
+I haven't looked in detail on how this series fixes that issue though.
 
-I will enable UART6, and add a mention about UART7, something like:
+- Mani
 
-/* J18.7, J18.9 */
-&lpuart6 {
-	pinctrl-names = "default";
-	pinctrl-0 = <&pinctrl_uart6>;
-	status = "okay";
-};
+> > Fix the power-domains assignment to stop potentially toggling the GDSC
+> > unnecessarily.
+> 
+> Nothing is being toggled unnecessarily, and generally this is just
+> another use count increment.
+> 
+> > Fixes: 813e83157001 ("arm64: dts: qcom: sc8280xp/sa8540p: add PCIe2-4 nodes")
+> 
+> So not sure a Fixes tag is warranted either.
+> 
+> > @@ -1895,7 +1895,7 @@ pcie3b_phy: phy@1c0e000 {
+> >  			assigned-clocks = <&gcc GCC_PCIE3B_PHY_RCHNG_CLK>;
+> >  			assigned-clock-rates = <100000000>;
+> >  
+> > -			power-domains = <&gcc PCIE_3B_GDSC>;
+> > +			power-domains = <&rpmhpd SC8280XP_MX>;
+> >  
+> >  			resets = <&gcc GCC_PCIE_3B_PHY_BCR>;
+> >  			reset-names = "phy";
+> 
+> Johan
+> 
 
-/* J18.3, J18.5 - used by M33 firmware */
-&lpuart7 {
-	pinctrl-names = "default";
-	pinctrl-0 = <&pinctrl_uart7>;
-	status = "disabled";
-};
-
-> Btw the commit log mentions a Wifi (via SDIO?) and audio interface. This
-> is currently not supported by Linux?
-
-I am not sure about that, and I would prefer to study that a bit later
-on if that's OK :) I can remove it from the commit log as this is
-misleading as not already supported / tested.
-
-Thanks,
-
-Mathieu
+-- 
+மணிவண்ணன் சதாசிவம்
 
