@@ -1,128 +1,151 @@
-Return-Path: <devicetree+bounces-28895-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28896-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B67081FF01
-	for <lists+devicetree@lfdr.de>; Fri, 29 Dec 2023 12:02:27 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7CE4481FF12
+	for <lists+devicetree@lfdr.de>; Fri, 29 Dec 2023 12:20:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 06C6228388F
-	for <lists+devicetree@lfdr.de>; Fri, 29 Dec 2023 11:02:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AEB261C20C32
+	for <lists+devicetree@lfdr.de>; Fri, 29 Dec 2023 11:20:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1660910A30;
-	Fri, 29 Dec 2023 11:02:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20F7710A3A;
+	Fri, 29 Dec 2023 11:20:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nAMLSXQy"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="J2vw8F5X"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B79D10A26;
-	Fri, 29 Dec 2023 11:02:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-50e49a0b5caso7591003e87.0;
-        Fri, 29 Dec 2023 03:02:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1703847739; x=1704452539; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=NsD+IB2GT6Qzi6UFqd7zR6s13SfDz8WzYWnYArIREis=;
-        b=nAMLSXQyfAOAF30s4eIBTK4KLNyHBeqwrAt5x8PG3P++ouDlOKAbekcTJWJ/6myYEl
-         Q4tjN/kTUD72XXVKNvOJnb/51XrFPOuZX/t4J8Mv0WzlscoMU4FLLiSBLXps1evByo0n
-         Jpv8fGXMCZFAnsYStdBB7re9JsY/XeLf8x7LwTMLjSoAy0gYKjehMIM90pBCq824g0hp
-         y9aZNN1IEgWG4FVx35IAV0qt0UrR9FOrKO5Af/uimHHzBRRV96QtDPOkXv2xw7ZXb2yV
-         YA4+ODoCp62qvYoMsfd5NEWTtHip7OKCw1INftcSgiVsyfUunUHkJK7YzB2TYanUKRHr
-         Z3Jw==
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C20310A1B
+	for <devicetree@vger.kernel.org>; Fri, 29 Dec 2023 11:20:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1703848834;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=d3KNTkAHMEq6kRnLdtQoUQE4cKQn8zc78RB5qaLNfps=;
+	b=J2vw8F5Xn7HPWrlohulLK5HsK3290yElhIo7Z+Nbwe4Iahv5BOmTXOo7uFxZo4T4puBe3h
+	j/AZqjcUVzJQBISaqAI6B6WH7SIGE+dVvutIo66a6C2ZFh+ZBy7Emo3UXFg3XWKIk+pmVe
+	xnHrTmP494SbvAB8LHLhodZZBOjnUgk=
+Received: from mail-lf1-f69.google.com (mail-lf1-f69.google.com
+ [209.85.167.69]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-591-To0CMfe2PaKhh2weyKy-RA-1; Fri, 29 Dec 2023 06:20:32 -0500
+X-MC-Unique: To0CMfe2PaKhh2weyKy-RA-1
+Received: by mail-lf1-f69.google.com with SMTP id 2adb3069b0e04-50e7ce2713cso3251588e87.3
+        for <devicetree@vger.kernel.org>; Fri, 29 Dec 2023 03:20:32 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703847739; x=1704452539;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1703848831; x=1704453631;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=NsD+IB2GT6Qzi6UFqd7zR6s13SfDz8WzYWnYArIREis=;
-        b=FHIBqnqRr9jdoI+2yDHWxGqLyTwpcgtqVbAbM1rEiJ/4P6NaotHjOioQat2kYIzeWt
-         KqxaxTVZKJJxxQ3ibACQwonpO0sB1SDrmF1NNJpEZlzISAdE9528u1SlJZ2+U/dpF5dV
-         I8SvLcjEb7ffAWXUcZ/qQVfLHPFyZY35zI18g0lz9cSMAwXDGPRsYk80pOXh8yzm8TSw
-         N/VuAASIRiHp+fbjK484X/DCs6Pza8xExkjQ9dVeiMcvwuvEXSJAvnMf+YWW2prqhiZj
-         mwrpescNLugmitL880J/ROw65xlZjRbju+poZqsg5dovgMd8ppCFfLbAHuiigIRe4M9P
-         eBSQ==
-X-Gm-Message-State: AOJu0Ywf0xPjgGlHil99iC9SmdJrjfETq8ZetkprHUHfYL9antg49NJf
-	wmluFbXojr6nlLykb/iVUgdANS1WHNsOeJnzCsI=
-X-Google-Smtp-Source: AGHT+IERL8Fz7j8WMbUOpMCFPbrDbSTtPYypwgal/QfaUZS54vWya0WCGbTSxe/zIN2kyKTgHAh7Lm/csOMuUbNpOMM=
-X-Received: by 2002:ac2:4259:0:b0:50e:40bf:e0a4 with SMTP id
- m25-20020ac24259000000b0050e40bfe0a4mr4242506lfl.132.1703847739347; Fri, 29
- Dec 2023 03:02:19 -0800 (PST)
+        bh=d3KNTkAHMEq6kRnLdtQoUQE4cKQn8zc78RB5qaLNfps=;
+        b=hwO/fmZcQfPlCaSLi3fD2zeMOiMKvMH7eEhOf0mAvaImqazvR3DBY0IolssdJ08CjE
+         ck2dqlugueQDVFxYLbZA8Aw6OFww7/DsUQbeGE2BAuO/4RYYycQ6u9ghNTuPNHOPNA5N
+         WJVmVY5MSYLEgrpbCjSAccZFjpjwCuT4k4+fEnj/yed0zUeT4Ztys6SQlkhpdNCVcJTm
+         60WZzVUabBNjwRX721VIjPdvoz7EzclhqKNOEtTrk6t9TXAynn/ge0xxG2ZJlGSgL0HI
+         M8FXOi7Dc5Kq/hcNPN+2FqNtr3vctXYKycqX/wKQVl1he80gdKERIbN/8XGDt5NreOQ+
+         esmw==
+X-Gm-Message-State: AOJu0YzLqXjRGjRKrUcYouitUR8PLsZaRTKZPNCz72jn6MLL9fQ0/Y2m
+	OG42YLFEMLr2Sy/D+yYRGAjmKokUiH9INuGuCxzgAT7vRcYDHQwCpS91qHwJQ7/kH7LwkebJXrL
+	jsGxIAqs8bsLQwF71Gyec0PMgBZqmlA==
+X-Received: by 2002:ac2:47e6:0:b0:50e:7702:a189 with SMTP id b6-20020ac247e6000000b0050e7702a189mr3613955lfp.22.1703848831381;
+        Fri, 29 Dec 2023 03:20:31 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHH/ywHRre541SoLTPy1QECA7NUgjNY8fcN4VeI019+xCIjYOchbO5JRtdR/qeeHiOlbvC6jw==
+X-Received: by 2002:ac2:47e6:0:b0:50e:7702:a189 with SMTP id b6-20020ac247e6000000b0050e7702a189mr3613937lfp.22.1703848830973;
+        Fri, 29 Dec 2023 03:20:30 -0800 (PST)
+Received: from localhost (205.pool92-176-231.dynamic.orange.es. [92.176.231.205])
+        by smtp.gmail.com with ESMTPSA id m2-20020a05600c4f4200b0040d5c58c41dsm10315024wmq.24.2023.12.29.03.20.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 29 Dec 2023 03:20:30 -0800 (PST)
+From: Javier Martinez Canillas <javierm@redhat.com>
+To: linux-kernel@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Maxime Ripard <mripard@kernel.org>,
+	Geert Uytterhoeven <geert@linux-m68k.org>,
+	Jocelyn Falempe <jfalempe@redhat.com>,
+	Conor Dooley <conor@kernel.org>,
+	Peter Robinson <pbrobinson@gmail.com>,
+	Javier Martinez Canillas <javierm@redhat.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Daniel Vetter <daniel@ffwll.ch>,
+	David Airlie <airlied@gmail.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	dri-devel@lists.freedesktop.org
+Subject: [PATCH v5 0/4] drm/solomon: Add support for the SSD133x controller family
+Date: Fri, 29 Dec 2023 12:20:17 +0100
+Message-ID: <20231229112026.2797483-1-javierm@redhat.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231228131617.3411561-1-liujianfeng1994@gmail.com> <20231228131617.3411561-3-liujianfeng1994@gmail.com>
-In-Reply-To: <20231228131617.3411561-3-liujianfeng1994@gmail.com>
-From: Hugh Cole-Baker <sigmaris@gmail.com>
-Date: Fri, 29 Dec 2023 11:02:08 +0000
-Message-ID: <CAAXNxMRkpM+dSV3azDFgm07ygJrXyS=Htz_h8Z_WMmeG0YZ+ig@mail.gmail.com>
-Subject: Re: [PATCH v2 2/3] arm64: dts: rockchip: Add Hantro G1 VPU support
- for RK3588
-To: Jianfeng Liu <liujianfeng1994@gmail.com>
-Cc: ezequiel@vanguardiasur.com.ar, p.zabel@pengutronix.de, mchehab@kernel.org, 
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	heiko@sntech.de, sfr@canb.auug.org.au, linux-media@vger.kernel.org, 
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-On Thu, 28 Dec 2023 at 13:17, Jianfeng Liu <liujianfeng1994@gmail.com> wrote:
->
-> This patch enables Hantro G1 video decoder in RK3588's
-> devicetree.
->
-> Tested with FFmpeg v4l2_request code taken from [1]
-> with MPEG2, H.264 and VP8 samples.
->
-> [1] https://github.com/LibreELEC/LibreELEC.tv/blob/master/packages/multimedia/ffmpeg/patches/v4l2-request/ffmpeg-001-v4l2-request.patch
->
-> Signed-off-by: Jianfeng Liu <liujianfeng1994@gmail.com>
-> ---
->  arch/arm64/boot/dts/rockchip/rk3588s.dtsi | 20 ++++++++++++++++++++
->  1 file changed, 20 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-> index 5fb0baf8a..5da668184 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-> @@ -640,6 +640,26 @@ i2c0: i2c@fd880000 {
->                 status = "disabled";
->         };
->
-> +       vpu: video-codec@fdb50400 {
+Hello,
 
-The node name should be video-codec@fdb50000 to match the reg address.
+This patch-set adds support for the family of SSD133x Solomon controllers,
+such as the SSD1331. These are used for RGB Dot Matrix OLED/PLED panels.
 
-> +               compatible = "rockchip,rk3588-vpu";
-> +               reg = <0x0 0xfdb50000 0x0 0x800>;
-> +               interrupts = <GIC_SPI 119 IRQ_TYPE_LEVEL_HIGH 0>;
-> +               clocks = <&cru ACLK_VPU>, <&cru HCLK_VPU>;
-> +               clock-names = "aclk", "hclk";
-> +               iommus = <&vdpu_mmu>;
-> +               power-domains = <&power RK3588_PD_VDPU>;
-> +       };
-> +
-> +       vdpu_mmu: iommu@fdb50800 {
-> +               compatible = "rockchip,rk3588-iommu", "rockchip,rk3568-iommu";
-> +               reg = <0x0 0xfdb50800 0x0 0x40>;
-> +               interrupts = <GIC_SPI 118 IRQ_TYPE_LEVEL_HIGH 0>;
-> +               clock-names = "aclk", "iface";
-> +               clocks = <&cru ACLK_VPU>, <&cru HCLK_VPU>;
-> +               power-domains = <&power RK3588_PD_VDPU>;
-> +               #iommu-cells = <0>;
-> +       };
-> +
->         vop: vop@fdd90000 {
->                 compatible = "rockchip,rk3588-vop";
->                 reg = <0x0 0xfdd90000 0x0 0x4200>, <0x0 0xfdd95000 0x0 0x1000>;
-> --
-> 2.34.1
+This is a v5 that is basically the same than the previous v4 but dropping
+support for I2C since the ssd133x family does not support that interface.
+
+The patches were tested on a Waveshare SSD1331 display using glmark2-drm,
+fbcon, fbtests and the retroarch emulator. The binding schema were tested
+using the `make W=1 dt_binding_check` target.
+
+Patch #1 and #2 are fixes for the DT binding schema of the existing SSD130x
+and SSD132x families.
+
+Patch #3 adds a DT binding schema for the SSD133x controllers and patch #4
+extends the ssd130x DRM driver to support the SSD133x controller family.
+
+Best regards,
+Javier
+
+Changes in v5:
+- Drop I2C example in DT binding schema due that bus not being supported.
+- Drop "solomon,ssd1331" entry from ssd130x-i2c due I2C bus not being supported.
+
+Changes in v4:
+- Fix typo in commit message (Jocelyn Falempe).
+- Add collected tags.
+
+Changes in v3:
+- Move solomon,ssd-common.yaml ref before the properties section and
+  width/height constraints after the other properties (Conor Dooley).
+
+Changes in v2:
+- Unconditionally set the width and height constraints (Conor Dooley).
+- Fix indentation in the DTS examples (Krzysztof Kozlowski).
+
+Javier Martinez Canillas (4):
+  dt-bindings: display: ssd1307fb: Add vendor prefix to width and height
+  dt-bindings: display: ssd132x: Add vendor prefix to width and height
+  dt-bindings: display: Add SSD133x OLED controllers
+  drm/ssd130x: Add support for the SSD133x OLED controller family
+
+ .../bindings/display/solomon,ssd1307fb.yaml   |  20 +-
+ .../bindings/display/solomon,ssd132x.yaml     |  12 +-
+ .../bindings/display/solomon,ssd133x.yaml     |  45 +++
+ drivers/gpu/drm/solomon/ssd130x-spi.c         |   7 +
+ drivers/gpu/drm/solomon/ssd130x.c             | 370 ++++++++++++++++++
+ drivers/gpu/drm/solomon/ssd130x.h             |   5 +-
+ 6 files changed, 442 insertions(+), 17 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/solomon,ssd133x.yaml
+
+-- 
+2.43.0
+
 
