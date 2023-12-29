@@ -1,107 +1,86 @@
-Return-Path: <devicetree+bounces-28950-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28951-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3B6C8201CF
-	for <lists+devicetree@lfdr.de>; Fri, 29 Dec 2023 22:31:30 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 946598201EB
+	for <lists+devicetree@lfdr.de>; Fri, 29 Dec 2023 22:38:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9C6DD1C223A2
-	for <lists+devicetree@lfdr.de>; Fri, 29 Dec 2023 21:31:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 522C51F21E45
+	for <lists+devicetree@lfdr.de>; Fri, 29 Dec 2023 21:38:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2F9D14292;
-	Fri, 29 Dec 2023 21:31:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAF8914298;
+	Fri, 29 Dec 2023 21:38:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="HPgwDdLK"
+	dkim=pass (1024-bit key) header.d=z3ntu.xyz header.i=@z3ntu.xyz header.b="X7qwEdQn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ahti.lucaweiss.eu (ahti.lucaweiss.eu [128.199.32.197])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 582D014AA5;
-	Fri, 29 Dec 2023 21:31:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1703885467;
-	bh=XL6wkiD2HYx6HaI4hGDV0Keb34y3XqC2DjGmqSSBy68=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=HPgwDdLKJcKpAtUbU9HxQhIW+JM1CO3SqRQv5YJMD2R4TwrVN+DJJBNTbNklpO7nS
-	 Bfklfoae+bCfaUPBoDG9McM1aebFRKxtHozaTaQZ2xjsuoC8tUX2utslWOKSADvf04
-	 X3SsEQVGUlzn4VfGVG6l45wtPcjIY10tTUeqZE1BMjpgEdkp9qbFSx/B+rl2z0vc6r
-	 Pc3Z+/REaBuT1b029wtURtyKCBUpAcvbzgfDOiGMi98HAa1J+/5/Kj+5QPvT44UK92
-	 9/ZIkguje/JeQsZ+vuHU81HeqEy4/e9iz0AM/HwPdFOdLMqtxuaV3IA0ALA/L8jQWL
-	 Pfsh9wZQX7AdA==
-Received: from localhost.localdomain (zone.collabora.co.uk [167.235.23.81])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: nfraprado)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id E0A023781FDE;
-	Fri, 29 Dec 2023 21:31:02 +0000 (UTC)
-From: =?UTF-8?q?N=C3=ADcolas=20F=2E=20R=2E=20A=2E=20Prado?= <nfraprado@collabora.com>
-To: Viresh Kumar <viresh.kumar@linaro.org>,
-	"Rafael J . Wysocki" <rafael@kernel.org>
-Cc: kernel@collabora.com,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	=?UTF-8?q?N=C3=ADcolas=20F=2E=20R=2E=20A=2E=20Prado?= <nfraprado@collabora.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-mediatek@lists.infradead.org
-Subject: [PATCH 2/2] arm64: dts: mediatek: cherry: Add CPU supply dependency to cpufreq-hw
-Date: Fri, 29 Dec 2023 18:28:40 -0300
-Message-ID: <20231229212853.277334-2-nfraprado@collabora.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20231229212853.277334-1-nfraprado@collabora.com>
-References: <20231229212853.277334-1-nfraprado@collabora.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96FC914A84;
+	Fri, 29 Dec 2023 21:37:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=z3ntu.xyz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=z3ntu.xyz
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=z3ntu.xyz; s=s1;
+	t=1703885877; bh=rlLO+itffQ8Pdluxb5C6POSj+RujmL7qJCHF3ofN3J4=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References;
+	b=X7qwEdQnLwr7FNmTSc/OyWdZH3dkdPHQc+vSUPmYBIc448lLace631pyWkzjxXDvD
+	 lCopRDcbkUdPd98oGcbQPKBWH0/QUDsYkVm5YP1axtE+l9R/Ocr8ugQzC5UAuEFlIx
+	 vor21uk9EnyIdoIb2PC/rGXw1KN9PegEOzmYGtWs=
+From: Luca Weiss <luca@z3ntu.xyz>
+To: Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, David Heidelberg <david@ixit.cz>
+Cc: Caleb Connolly <caleb.connolly@linaro.org>,
+ David Heidelberg <david@ixit.cz>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Manivannan Sadhasivam <mani@kernel.org>
+Subject:
+ Re: [PATCH] arm64: dts: qcom: sdm845: add power domain to UFS phy interface
+Date: Fri, 29 Dec 2023 22:37:56 +0100
+Message-ID: <2710291.mvXUDI8C0e@z3ntu.xyz>
+In-Reply-To: <20231229202959.266502-1-david@ixit.cz>
+References: <20231229202959.266502-1-david@ixit.cz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-When the mediatek-cpufreq-hw driver enables the hardware (by
-writing to REG_FREQ_ENABLE), if the regulator supplying the voltage to
-the big CPUs hasn't probed yet, the platform hangs shortly after and
-"rcu: INFO: rcu_preempt detected stalls on CPUs/tasks" are printed in
-the log.
+On Freitag, 29. Dezember 2023 21:29:54 CET David Heidelberg wrote:
+> Reported by: `make CHECK_DTBS=1 qcom/sdm845-oneplus-enchilada.dtb`
+> 
+> Signed-off-by: David Heidelberg <david@ixit.cz>
+> ---
+>  arch/arm64/boot/dts/qcom/sdm845.dtsi | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> b/arch/arm64/boot/dts/qcom/sdm845.dtsi index c2244824355a..ad8677b62bfb
+> 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> @@ -2644,6 +2644,8 @@ ufs_mem_phy: phy@1d87000 {
+>  			clocks = <&gcc GCC_UFS_MEM_CLKREF_CLK>,
+>  				 <&gcc GCC_UFS_PHY_PHY_AUX_CLK>;
+> 
+> +			power-domains = <&gcc UFS_PHY_GDSC>;
+> +
+>  			resets = <&ufs_mem_hc 0>;
+>  			reset-names = "ufsphy";
 
-To prevent this from happening, describe the big CPUs regulator in the
-performance-controller DT node, so that devlink ensures the regulator
-has been probed and configured before the frequency scaling hardware is
-probed and enabled.
+This is potentially the wrong power domain, see the conversation here:
+https://lore.kernel.org/linux-arm-msm/20231204172829.GA69580@thinkpad/
 
-Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+Hopefully Mani can give some input here :)
 
----
+Regards
+Luca
 
- arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi | 4 ++++
- 1 file changed, 4 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi b/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
-index dd5b89b73190..505da60eee90 100644
---- a/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
-@@ -502,6 +502,10 @@ &pcie1 {
- 	pinctrl-0 = <&pcie1_pins_default>;
- };
- 
-+&performance {
-+	big-cpus-supply = <&mt6315_6_vbuck1>;
-+};
-+
- &pio {
- 	mediatek,rsel-resistance-in-si-unit;
- 	pinctrl-names = "default";
--- 
-2.43.0
 
 
