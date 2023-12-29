@@ -1,102 +1,108 @@
-Return-Path: <devicetree+bounces-28940-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28941-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91B7D8200D5
-	for <lists+devicetree@lfdr.de>; Fri, 29 Dec 2023 18:29:32 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BFED18200DB
+	for <lists+devicetree@lfdr.de>; Fri, 29 Dec 2023 18:34:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AFBEA1C22429
-	for <lists+devicetree@lfdr.de>; Fri, 29 Dec 2023 17:29:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E927E1C211C5
+	for <lists+devicetree@lfdr.de>; Fri, 29 Dec 2023 17:34:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B516F12B80;
-	Fri, 29 Dec 2023 17:29:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4120212B7E;
+	Fri, 29 Dec 2023 17:34:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DTd/7iEe"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Myk8aPh5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com [209.85.219.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A10112B72;
-	Fri, 29 Dec 2023 17:29:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7E78FC433C8;
-	Fri, 29 Dec 2023 17:29:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1703870969;
-	bh=XbxclmQyipdavrwbYUYM8UDPBBktnT4V9RWeUQBnLvI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=DTd/7iEehsoBpqox1tu88K8oj8kQ6+VEqwJVEnGYVJjzE8W4jx5cWDYPhdtUMhlz9
-	 n7qw1tlD6xsopTJYyvFD7Z6Cn5MilknG+w9SIjnTHMAEMhchGmclQO2LgXnDqIVBAb
-	 BdYXr086Onj0YmAhYtInzVVYRpSNVJ/7IfF8RgWYMbiQa7xPK52nHLREpyOLs7Etco
-	 Y889OdjrHofLekMj314ZbCjDObF/leXcQTiI/HC9fiPswC+pTKxlle0TAZ3e5dA4S/
-	 6uKebtF9aqFi9LD0ba6PKy7iiAa8VPQThMh5V/O7AneTru1NaxOiaehuauQ85k5/3r
-	 skwJIkIz773Lg==
-Date: Fri, 29 Dec 2023 22:59:14 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: David Heidelberg <david@ixit.cz>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Abel Vesa <abel.vesa@linaro.org>,
-	Johan Hovold <johan+linaro@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] dt-bindings: PCI: qcom: delimit number of iommu-map
- entries
-Message-ID: <20231229172914.GE9098@thinkpad>
-References: <20231229153310.206764-1-david@ixit.cz>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C200712B6B
+	for <devicetree@vger.kernel.org>; Fri, 29 Dec 2023 17:34:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f180.google.com with SMTP id 3f1490d57ef6-dbdd61d80a3so4667342276.0
+        for <devicetree@vger.kernel.org>; Fri, 29 Dec 2023 09:34:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1703871275; x=1704476075; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=/bgoZanEJc0MVxJH2BDSMbBMEAKcJk5zfc5k6GcxfOA=;
+        b=Myk8aPh5ozIYsHGmlHmlNWZqfZ8c8qq+EVLEiWr0UAF8m67R1xY5ArWwi6GicAFSGl
+         fNTgRQAKwxQztZJIz4ujmK/NzFYAeVekcOgFz75eErA9vGvBamrF0fnTnTTjDftG8Rga
+         UtqKLpDWHCiAPjjLpN6H1P/2mwWTLdXN7LA0jbhe0ubR5bb+0J7uL50dIyIlKoE6Hd4u
+         vXBZgUWm+DuqsC7uhcozlgpT+/TDDWrAr1CAyHnIt6syPF/S6WXESYW6UoebO7q2TrFy
+         xnRDicbHYS1WrrShtcU6mprqaqs+rZAbbNNzaBvr4rykp+DrE1Sw7aC6a6Y5N4e4mHcG
+         Cp/g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1703871275; x=1704476075;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=/bgoZanEJc0MVxJH2BDSMbBMEAKcJk5zfc5k6GcxfOA=;
+        b=l5SlRtyhCWpWvkVKrK2G7AR///qpyH3ZvwxYK/BX87vLRVqh2sTIKARDtmTVUcj61U
+         d0uDq6li3Wq2/5KSxe5nzspG+I2HQWtl0bu7OmrttxuyGaGBt5FzxhoU4p6Aro6PZZH0
+         Jg3zWw2d4gMlfLY6brGoCX+N1WDo6XW70984as+1epfCcWKRbaIbG18JZxmXGmHHLM34
+         FhuUDyVh08l7AkpWudFPZYhIwbPMB2vtI3WPyJq7wPCnhIzJAaWo9gHaCK9ScdIOf2A5
+         K/8H+r4DuScyyAYRJ2M0hvNCqMOnwGkMHRFy6srZir8RXkCCwlMpv363nuPvQo+o8K3S
+         xWfQ==
+X-Gm-Message-State: AOJu0Yx9bNUK2FKnxINLvyn4SL2WtgQDz68m7Sl/23c4tG/1Bujxx5iG
+	fdr8uHHnD78pCa4Z7LEIfRI6OQoYfd33TPg76w2Dx9GH2mDrEw==
+X-Google-Smtp-Source: AGHT+IFSKk3LElC23rghumLsGQN44wIVKMmgnZ+4F9zE0vmvJUX+M2f//YN6JsyIMAeHJLG0lr44MKU3n7AuX9e1S0k=
+X-Received: by 2002:a05:6902:1782:b0:dbd:d003:3c16 with SMTP id
+ ca2-20020a056902178200b00dbdd0033c16mr7305225ybb.9.1703871275630; Fri, 29 Dec
+ 2023 09:34:35 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20231229153310.206764-1-david@ixit.cz>
+References: <20231229135154.675946-1-dario.binacchi@amarulasolutions.com> <20231229135154.675946-6-dario.binacchi@amarulasolutions.com>
+In-Reply-To: <20231229135154.675946-6-dario.binacchi@amarulasolutions.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Fri, 29 Dec 2023 18:34:24 +0100
+Message-ID: <CACRpkdbBBQ96qfdmNHrbOdV9hhFheyTwTkwATFZRPBRiRcN4tw@mail.gmail.com>
+Subject: Re: [PATCH 5/8] dt-bindings: nt35510: add compatible for FRIDA FRD400B25025-A-CTK
+To: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+Cc: linux-kernel@vger.kernel.org, linux-amarula@amarulasolutions.com, 
+	Alexandre Torgue <alexandre.torgue@foss.st.com>, Conor Dooley <conor+dt@kernel.org>, 
+	Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>, 
+	Jessica Zhang <quic_jesszhan@quicinc.com>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
+	Sam Ravnborg <sam@ravnborg.org>, Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Dec 29, 2023 at 04:32:58PM +0100, David Heidelberg wrote:
-> The code or specific SoC doesn't seem to limit the number of iommu-map entries.
-> 
-> Fixes: 1a24edc38dbf ("dt-bindings: PCI: qcom: Add SM8550 compatible")
+Hi Dario,
 
-NACK. There is a limitation in the SoCs but that limitation differs.
+thanks for your patch!
 
-- Mani
+On Fri, Dec 29, 2023 at 2:52=E2=80=AFPM Dario Binacchi
+<dario.binacchi@amarulasolutions.com> wrote:
 
-> Signed-off-by: David Heidelberg <david@ixit.cz>
-> ---
-> v2: added Fixes tag
-> 
->  Documentation/devicetree/bindings/pci/qcom,pcie.yaml | 3 +--
->  1 file changed, 1 insertion(+), 2 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
-> index eadba38171e1..c6111278162f 100644
-> --- a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
-> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
-> @@ -61,8 +61,7 @@ properties:
->      minItems: 1
->      maxItems: 8
->  
-> -  iommu-map:
-> -    maxItems: 2
-> +  iommu-map: true
->  
->    # Common definitions for clocks, clock-names and reset.
->    # Platform constraints are described later.
-> -- 
-> 2.43.0
-> 
+> The patch adds the FRIDA FRD400B25025-A-CTK panel, which belongs to the
+> Novatek NT35510-based panel family.
+>
+> Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+(...)
 
--- 
-மணிவண்ணன் சதாசிவம்
+
+> +    oneOf:
+> +      items:
+> +        - const: hydis,hva40wv1
+> +        - const: novatek,nt35510
+> +      items:
+> +        - const: frida,frd400b25025
+> +        - const: novatek,nt35510
+
+You need a dash in from of each "items:" for that to work.
+
+Yours,
+Linus Walleij
 
