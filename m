@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-28921-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28922-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C17681FFED
-	for <lists+devicetree@lfdr.de>; Fri, 29 Dec 2023 15:21:44 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D4D29820017
+	for <lists+devicetree@lfdr.de>; Fri, 29 Dec 2023 16:05:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 225EF1F220D0
-	for <lists+devicetree@lfdr.de>; Fri, 29 Dec 2023 14:21:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8A3B82846A4
+	for <lists+devicetree@lfdr.de>; Fri, 29 Dec 2023 15:05:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21A0A11C80;
-	Fri, 29 Dec 2023 14:21:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 211CD11CAE;
+	Fri, 29 Dec 2023 15:05:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uQmNVloQ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="EO+B0mM7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
+Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DBF611C81
-	for <devicetree@vger.kernel.org>; Fri, 29 Dec 2023 14:21:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79B66125A5
+	for <devicetree@vger.kernel.org>; Fri, 29 Dec 2023 15:05:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-3333b46f26aso6501167f8f.1
-        for <devicetree@vger.kernel.org>; Fri, 29 Dec 2023 06:21:34 -0800 (PST)
+Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-50e7aed09adso4658685e87.0
+        for <devicetree@vger.kernel.org>; Fri, 29 Dec 2023 07:05:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1703859693; x=1704464493; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=MG3HGnk+BEY3fgKeHZy+ZsbJ2eMQ1iNRXHfdIpsUof4=;
-        b=uQmNVloQiNNo+TC5Z08DEa3UlhrAC5IE39l9ly948vrhIBu8KTylsXYDzweU6XF2n7
-         W9SIom8Octv1Aa8mSL0wleJ9tTcUb97/6KKFxxYJ4XcskN3XDh3ZO2obqm70fIaAxUn4
-         wQKLPeT+vzSpScnRmOF1qPOZ/XnLHpYQsjBNcj00Yr3qXBz7lRV9c/yIFJfClTDbDSNr
-         kb9yz0MvuypR6Os4yvbrzBPwyyzBGK0X9EW492N+FFnjrf0+6eW/8hgXmlqa1WI18rfQ
-         /S3HMVCAe1JkbpwCYbTJSRTGws6xvKxDW72T0sMXYapNVyzP3o/fb7GcP97FOcsMzA5X
-         mOvg==
+        d=linaro.org; s=google; t=1703862321; x=1704467121; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=LI8tZ4xmGQoPWoAmYH9zktwI7/vEBWrFa18ETiwGSuM=;
+        b=EO+B0mM7HowwbGLsYgjiy6jEH+BRhfQiPlMyuey37QVzsI1X2GhFNdiBTHbkd/Lekv
+         C9WA8Nx+iVJjkkXFGS/M3cyJgoTmhN7oTdn4i3rFMDw24tNx9AUf2aPYFTBz+OaKiwes
+         V9o2FPUofR9ZPqIjRptKVCi68BZ2LSKtgJtcBTdP2Lqh8dwecGgLRoXYi+RGyDU5LJB/
+         TX8DoEMQVkl3J2ySY3o8BkOHuBP8cXlwMlKZPJJF02LHwHp0EC30lVYcW7wN0J9tr/iK
+         zCb+0Jpon49Fk8ZCy/gHQ+IjUkWIFCY18UzxM+Q7aKt+iWJAuxzs5OdqvmIyxulDNrAJ
+         aSXQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703859693; x=1704464493;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1703862321; x=1704467121;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=MG3HGnk+BEY3fgKeHZy+ZsbJ2eMQ1iNRXHfdIpsUof4=;
-        b=JkYz28dEVYXqM/yL4k//2Hv/lIz3AiTALLFUv4yv7xbBdPmbaE3F8DtkjKqsZUD2qY
-         NOh53P8e/j23SVbMVPCbv+ZXBvshX64kuRCh377F4+Gio5aLnFkbjCsTu3LjwKx/xvBv
-         SG8vRXn4r/zFJb5RMpFWntZ052kN20iQTs00AD2m4jmger0dz6b9gUed6vBqz3VrxRxs
-         PL2VeDFNBVIZUgVg5wDrE8JzQtNFLY681IEFAY+nnGnpSVdrP2q6N6ebx7P6CeyuLb3e
-         I3I/61ASAAP4VK9xn5IW4DOsDY2SYr0UtfW/2rCyrk9swqjjqwOxOXle5TgvwQdL3Obn
-         eC0Q==
-X-Gm-Message-State: AOJu0Yyl5GFmGXRVhgUGMhjsQ2SpcP9myfOXonWCfalxIwGSKE4TO5rM
-	AjWsyWKskEt5GgBeObATLuUKELzVrLbQfg==
-X-Google-Smtp-Source: AGHT+IHHSmzI1khJPusslQIOZi/UTnGxpSbZZWIOL6Cyu++MYhCAOXe1NlWHeIFyJUobv1chd8b+aA==
-X-Received: by 2002:adf:e790:0:b0:333:41a0:ef39 with SMTP id n16-20020adfe790000000b0033341a0ef39mr5897583wrm.105.1703859693054;
-        Fri, 29 Dec 2023 06:21:33 -0800 (PST)
-Received: from [192.168.2.107] ([79.115.63.202])
-        by smtp.gmail.com with ESMTPSA id a18-20020a5d5712000000b003368f9ec9e0sm17131785wrv.42.2023.12.29.06.21.30
+        bh=LI8tZ4xmGQoPWoAmYH9zktwI7/vEBWrFa18ETiwGSuM=;
+        b=oG55woKweRWopIP+f4V+EUHBAhju7TbbN8BNgpT/2oPTSJK51Urr02oFkme1r82ZfK
+         Xg8y/aowaq0p0NqNJZUCOLEVEv4S6LadHIBy7a19Fa/b1uFnLvLhNQ2AknJtfcqp5OQt
+         bQX3Mkqfui3O13wXLXLYsH1T3g/ugkgC59c5sn6E4y3y48w/ySK4zRGLk7EbWOOflGbm
+         Q/pnPU0sNAYZve2mo8GSr3GWFAPJ+uayxn2FzrzMkT5huS2mPvvhpvTFNtLcHAF2tq8T
+         T7vMArlN5IyA72wR1cW2CFPb+6H08yfNb+5VY/jmBTg9AZDG0s2Ma9qBf4uoMu++elNK
+         zPtg==
+X-Gm-Message-State: AOJu0YzMi8BW0g08KNkqdYSIPOGVFK9h5zro19DMsFuH+La9VkggCKhY
+	7KVralhJN6S5pWEs+XTR/FJU1sLJjbNfVw==
+X-Google-Smtp-Source: AGHT+IHtqF4araK/7HsfoTLOgdzip7g33hgiJXUjY4pAbP43QnQJKUFmRNfVvcHPMJ8E0UbKWjiL1w==
+X-Received: by 2002:a05:6512:3592:b0:50e:6a07:5c02 with SMTP id m18-20020a056512359200b0050e6a075c02mr4698769lfr.15.1703862321464;
+        Fri, 29 Dec 2023 07:05:21 -0800 (PST)
+Received: from [192.168.199.125] (178235179036.dynamic-4-waw-k-1-3-0.vectranet.pl. [178.235.179.36])
+        by smtp.gmail.com with ESMTPSA id bg10-20020a170906a04a00b00a26a443e98esm8225174ejb.169.2023.12.29.07.05.19
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 29 Dec 2023 06:21:32 -0800 (PST)
-Message-ID: <d1b17379-84b0-465b-a30c-1a1e62d3c86a@linaro.org>
-Date: Fri, 29 Dec 2023 14:21:29 +0000
+        Fri, 29 Dec 2023 07:05:21 -0800 (PST)
+Message-ID: <11aa0b82-ddab-4b65-8f49-54e15e0ce44e@linaro.org>
+Date: Fri, 29 Dec 2023 16:05:18 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,98 +66,89 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 11/12] arm64: dts: exynos: gs101: define USI8 with I2C
- configuration
-From: Tudor Ambarus <tudor.ambarus@linaro.org>
-To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
- peter.griffin@linaro.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
- sboyd@kernel.org, conor+dt@kernel.org, andi.shyti@kernel.org,
- alim.akhtar@samsung.com, gregkh@linuxfoundation.org, jirislaby@kernel.org,
- s.nawrocki@samsung.com, tomasz.figa@gmail.com, cw00.choi@samsung.com,
- arnd@arndb.de, semen.protsenko@linaro.org
-Cc: saravanak@google.com, willmcvicker@google.com,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
- linux-serial@vger.kernel.org, kernel-team@android.com
-References: <20231228125805.661725-1-tudor.ambarus@linaro.org>
- <20231228125805.661725-12-tudor.ambarus@linaro.org>
- <a40b5d0dc3e151fede14aa00bcb853d1eeb8824b.camel@linaro.org>
- <387303b4-d912-480c-a50c-9f9efa386ef3@linaro.org>
+Subject: Re: [PATCH 2/3] arm64: dts: qcom: sc8280xp: Correct USB PHY power
+ domains
 Content-Language: en-US
-In-Reply-To: <387303b4-d912-480c-a50c-9f9efa386ef3@linaro.org>
+To: Johan Hovold <johan@kernel.org>
+Cc: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Johan Hovold <johan+linaro@kernel.org>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Konrad Dybcio <konrad.dybcio@somainline.org>
+References: <20231227-topic-8280_pcie_dts-v1-0-13d12b1698ff@linaro.org>
+ <20231227-topic-8280_pcie_dts-v1-2-13d12b1698ff@linaro.org>
+ <ZY7DEpaIgvfL_A11@hovoldconsulting.com>
+ <b730bf22-fa3a-4720-9fd1-79d2207d6812@linaro.org>
+ <ZY7I1brn0chtOzis@hovoldconsulting.com>
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <ZY7I1brn0chtOzis@hovoldconsulting.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-
-
-On 12/29/23 08:04, Tudor Ambarus wrote:
+On 29.12.2023 14:25, Johan Hovold wrote:
+> [ Please remember to trim your replies and add a newline before your
+>   inline comments to make them readable. ]
 > 
+> On Fri, Dec 29, 2023 at 02:06:26PM +0100, Konrad Dybcio wrote:
+>> On 29.12.2023 14:01, Johan Hovold wrote:
+>>> On Wed, Dec 27, 2023 at 11:28:27PM +0100, Konrad Dybcio wrote:
 > 
-> On 12/28/23 14:04, André Draszik wrote:
->> Hi Tudor,
-> 
-> Hi!
-> 
->>
->> On Thu, 2023-12-28 at 12:58 +0000, Tudor Ambarus wrote:
->>> [...]
+>>>> Fix the power-domains assignment to stop potentially toggling the GDSC
+>>>> unnecessarily.
 >>>
->>> diff --git a/arch/arm64/boot/dts/exynos/google/gs101.dtsi b/arch/arm64/boot/dts/exynos/google/gs101.dtsi
->>> index 0e5b1b490b0b..c6ae33016992 100644
->>> --- a/arch/arm64/boot/dts/exynos/google/gs101.dtsi
->>> +++ b/arch/arm64/boot/dts/exynos/google/gs101.dtsi
->>> @@ -354,6 +354,35 @@ pinctrl_peric0: pinctrl@10840000 {
->>>  			interrupts = <GIC_SPI 625 IRQ_TYPE_LEVEL_HIGH 0>;
->>>  		};
->>>  
->>> +		usi8: usi@109700c0 {
->>> +			compatible = "google,gs101-usi",
->>> +				     "samsung,exynos850-usi";
->>> +			reg = <0x109700c0 0x20>;
->>> +			ranges;
->>> +			#address-cells = <1>;
->>> +			#size-cells = <1>;
->>> +			clocks = <&cmu_peric0 CLK_GOUT_PERIC0_PERIC0_TOP0_IPCLK_7>,
->>> +				 <&cmu_peric0 CLK_GOUT_PERIC0_CLK_PERIC0_USI8_USI_CLK>;
->>> +			clock-names = "pclk", "ipclk";
->>
->> Given the clock-names, shouldn't the clock indices be the other way around? Also see below.
+>>> Again, there's no additional toggling being done here, but yes, this may
+>>> keep the domains enabled during suspend depending on how the driver is
+>>> implemented.
 > 
-> You're right, they should have been the other way around! Didn't make
-> any difference at testing because the usi driver uses
-> clk_bulk_prepare_enable(), what matters is the order of clocks in the
-> i2c node, and those are fine.
+>> No, it can actually happen. (Some) QMP PHYs are referenced by the
+>> DP hardware. If USB is disabled (or suspended), the DP being active
+>> will hold these GDSCs enabled.
 > 
->>
->>> +			samsung,sysreg = <&sysreg_peric0 0x101c>;
->>> +			status = "disabled";
->>> +
->>> +			hsi2c_8: i2c@10970000 {
->>> +				compatible = "google,gs101-hsi2c",
->>> +					     "samsung,exynosautov9-hsi2c";
->>> +				reg = <0x10970000 0xc0>;
->>> +				interrupts = <GIC_SPI 642 IRQ_TYPE_LEVEL_HIGH 0>;
->>> +				#address-cells = <1>;
->>> +				#size-cells = <0>;
->>> +				pinctrl-names = "default";
->>> +				pinctrl-0 = <&hsi2c8_bus>;
->>> +				clocks = <&cmu_peric0 CLK_GOUT_PERIC0_PERIC0_TOP0_IPCLK_7>,
->>> +					 <&cmu_peric0 CLK_GOUT_PERIC0_CLK_PERIC0_USI8_USI_CLK>;
->>> +				clock-names = "hsi2c", "hsi2c_pclk";
->>
->> Here, pclk == CLK_GOUT_PERIC0_CLK_PERIC0_USI8_USI_CLK (which is correct, I believe), whereas
->> above pclk == CLK_GOUT_PERIC0_PERIC0_TOP0_IPCLK_7
->>
-> 
-> Indeed, I'll reverse the order for the USI clocks and do some more
-> testing. Thanks!
+> That's not a "toggling", is it? Also if the DP controller is a consumer of
+> these PHY's why should it not prevent the PHYs from suspending?
 
-FYI, I reversed the order of the USI clocks, tested again with the
-eeprom at 100 KHz and 10KHz, everything went fine. I'll wait for some
-other feedback and probably submit a v3 next week.
+As far as I'm concerned, "toggling" is the correct word for "switching it
+on".. While the PHYs are indeed useful for getting displayport to work,
+the USB controller itself may not be necessary there, so enabling its
+power line would be a bit of a waste..
 
-Cheers,
-ta
+Konrad
 
