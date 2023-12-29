@@ -1,142 +1,148 @@
-Return-Path: <devicetree+bounces-28918-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28920-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5E2281FFD8
-	for <lists+devicetree@lfdr.de>; Fri, 29 Dec 2023 14:53:44 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E12A81FFE4
+	for <lists+devicetree@lfdr.de>; Fri, 29 Dec 2023 15:08:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 665CDB224F1
-	for <lists+devicetree@lfdr.de>; Fri, 29 Dec 2023 13:53:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 114591F21EF3
+	for <lists+devicetree@lfdr.de>; Fri, 29 Dec 2023 14:08:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C592C1171E;
-	Fri, 29 Dec 2023 13:52:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1554F11720;
+	Fri, 29 Dec 2023 14:08:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="pUC7/h5h"
+	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="tJgbxEeD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.19])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DFCD12B6A
-	for <devicetree@vger.kernel.org>; Fri, 29 Dec 2023 13:52:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amarulasolutions.com
-Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-555526a060aso2951104a12.1
-        for <devicetree@vger.kernel.org>; Fri, 29 Dec 2023 05:52:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google; t=1703857946; x=1704462746; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=G2Gi1EmHukIt0jQJzaSt07+yXVEQJCsMbb8bSZVal5c=;
-        b=pUC7/h5hJvJ29NGXWiWLEqoZC5V5G6uEqN5ToPK4bGFQQzETAMwsfnKe1gQaRwvpWf
-         4XhxYR/Uo+95z0kpvO5a6r+nlhz/2Y/CavnY2wyDEdQfZDxRoZfuECfiIxlefuYZqqfO
-         wfdMNqtTKvp6DEb8/hNDUdSzu3Uwrt7buO4uw=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703857946; x=1704462746;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=G2Gi1EmHukIt0jQJzaSt07+yXVEQJCsMbb8bSZVal5c=;
-        b=mAilnEYTeufjbhsMFqD6O5IOJrsVFIGOhbq2pQUc1CWV5VmacGuaaBH3JcuC40RX5J
-         cX/YLnEwu9q3iHhVUOC63tV4uUDdykYEn6PCQ7G4lxhr1LqtM3/xGd849yMneZYNX7Lj
-         9Xv2zUn6fX2q01ZGVs9Thegl01EG9mK0s6Ta3vRPbbkQbrJ2QQLhbu/ppVW4Bg41Xm8B
-         4ALA+PqxYeFnTjj+AaRDCK3Go/UgWZnTmZ4gjk+PjXgPjxJSvS+3fCxiaatMO5HNOp2V
-         YCdiYT5M+fq5SotfjaM8vzAfDifLfEI+5s/dd+nw2cB5kwamuE6+8rb9On4byfQTPl4l
-         2SUg==
-X-Gm-Message-State: AOJu0YyNm7g3leWiBF9kjLARFBANZR58+vTY8GFsGv3fvrkYeuk/bo0M
-	tiFDKSkOhqXKX19VmgDcTWv+aZtpcN/FpQ==
-X-Google-Smtp-Source: AGHT+IEctE0vxDNjGsPYtDGoNP/VOIJMMYfD87twpZ/CDwjvjob6YX2X37wqTrnYlHKSKBRUuJ7xkA==
-X-Received: by 2002:a50:9313:0:b0:54b:25e8:c00b with SMTP id m19-20020a509313000000b0054b25e8c00bmr7540199eda.6.1703857946523;
-        Fri, 29 Dec 2023 05:52:26 -0800 (PST)
-Received: from dario-ThinkPad-T14s-Gen-2i.homenet.telecomitalia.it (host-79-49-57-70.retail.telecomitalia.it. [79.49.57.70])
-        by smtp.gmail.com with ESMTPSA id i16-20020aa7c710000000b00553b243b1a8sm11019160edq.92.2023.12.29.05.52.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 29 Dec 2023 05:52:26 -0800 (PST)
-From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-To: linux-kernel@vger.kernel.org
-Cc: linux-amarula@amarulasolutions.com,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Dario Binacchi <dario.binacchi@amarulasolutions.com>,
-	Andre Przywara <andre.przywara@arm.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	=?UTF-8?q?Leonard=20G=C3=B6hrs?= <l.goehrs@pengutronix.de>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Olivier Moysan <olivier.moysan@foss.st.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Sean Nyekjaer <sean@geanix.com>,
-	Tony Lindgren <tony@atomide.com>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-stm32@st-md-mailman.stormreply.com
-Subject: [PATCH 6/8] ARM: dts: add stm32f769-disco-mb1225-revb03-mb1166-reva09
-Date: Fri, 29 Dec 2023 14:51:21 +0100
-Message-ID: <20231229135154.675946-7-dario.binacchi@amarulasolutions.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20231229135154.675946-1-dario.binacchi@amarulasolutions.com>
-References: <20231229135154.675946-1-dario.binacchi@amarulasolutions.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3D9711711;
+	Fri, 29 Dec 2023 14:08:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+	s=s31663417; t=1703858886; x=1704463686; i=wahrenst@gmx.net;
+	bh=kDWH8Tx1ru2DGIhftcF+Di1qtXkh3Pa/f4fJ6S+NIS4=;
+	h=X-UI-Sender-Class:Date:Subject:To:Cc:References:From:
+	 In-Reply-To;
+	b=tJgbxEeDpdF01PhXxSxYxfQL9RLWJBG5f6JGeg62cKnDCrQgErUcnYO/cpSYue0c
+	 KdCxiTKnGcQdv+37NIBDm6xd03E8DvKvMvphsUD2H2uRkTv8dQwz8gXjXU2k7/3f6
+	 WVgqMIIuKzTACcBX27Rnkoeno1F+kjZxHEOeuZYCIcA0Jh2rOCEzl7BVcu+QANQQB
+	 hz1cU3lYB/ztjm3Sw7oAAO5u+5qVKNFlTN3nj2tHTsUyBxdmMhReTVJfNZrcg34eX
+	 M/UfESNgBHO9fVBGb0vCuozL9180FgJ6TMVptj2WscbQuGNmd84SQj7E1Ke/+/ziz
+	 5/AGjPidtKzIM+vIhg==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [192.168.1.167] ([37.4.248.43]) by mail.gmx.net (mrgmx005
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1N2E1M-1r6PFb3bQc-013cCT; Fri, 29
+ Dec 2023 15:08:05 +0100
+Message-ID: <4e3a0328-0ae7-40fa-b37d-16b661e28a1e@gmx.net>
+Date: Fri, 29 Dec 2023 15:08:02 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/2] arm64: dts: imx93-var-som: Add Variscite
+ VAR-SOM-MX93
+To: Mathieu Othacehe <othacehe@gnu.org>
+Cc: Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>,
+ Li Yang <leoyang.li@nxp.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+References: <20231227170919.8771-1-othacehe@gnu.org>
+ <20231227170919.8771-3-othacehe@gnu.org>
+ <d378ad67-2a75-4a14-a131-7eb91de9ad3d@gmx.net> <87plypqi2d.fsf@gnu.org>
+Content-Language: en-US
+From: Stefan Wahren <wahrenst@gmx.net>
+In-Reply-To: <87plypqi2d.fsf@gnu.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:Qu4gBhHxXa9H5O+2ubUz1y27MeYBfrBzfQyOQiLpHK3X77DhpqU
+ yP26AgY9yHzki4VTjGP5Mq2XhOolxYt6eekLqkdJMPi8pfs8UFHS1A3PA2Hhn0dIZW/lhyW
+ KPLJifj4JRTP7CsOJra1XpiKvrFQZQTiNoGdfNw6M4LlqIV/OImN5Nvcq9ZYIvBvRlUK6jY
+ hxMHLeEbPbHbZb9rtLN9g==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:x8uTtUQkO5c=;KnDIxyxuuGR1LdlLLLvoQqmJXLw
+ NVvS8chYXspy1GWnsJ+gS97V3zof++jD8kVICb2N3bReHWCQQMLPhtkejngfk8PZzPbzD9Xpg
+ 7xvRE+Il9s3Estp+/jswEnj1ZIge+8DwRyPFwkQpJInuwX19t+n/qHpuPxtKX4c7t13oq2h3u
+ ctO4Pbc6tXC71ritKeUV7uET857SlKsl3fqLOL86wZfsXH7CQJ/8r01MxxA/o5TXnC4Eqzvm9
+ VRBNsvCCdlb5X89Nb5vebaePbSWEi1E4DXuyPeOZqT2uwXF882yu+oSJTGqREzePfoShFyGKN
+ aZKAQsiZjH/5v8D7bec828Rxek3wbp+E3C85FSCpwTeyDU4U5ao/8xeJ+fUkHYmDbPr4UMCMa
+ biDc6EiIJx2tELH6DWJR6z+FSwmxDLuBOBQtBqR4FkdHdvXnNJH66MS5YvTBpzPLZk9ocT6j/
+ wGTWw67xghqnUcLnfYAnGgIHmGdzguDFnIU6Pm6Gv+D8iMM8ESIr66M44bdH4aFyvux0R+ndP
+ 4yKMmOXGR4ZnM6bsr0pF8CekZLff+o9He7MGzH27/C5rwebnDcvzvGC5Pnm4esGaJYTlquB1w
+ r+VTLDKQbfiNoqkDgwrOub5WeQKQI+UIMgEav8TrYef7LQWS/a65r9oKkWMz97PJZpXryHxUp
+ KNnuCqi7qv0Y7dcMJU/A3/AeIgSDlXs5xXnuQTMsqwj61qw7LG3YUSsoyHhjzrmTa8eLw7X0f
+ 8w3imXDGzAkdZ8P7ns/8fo82TmjpQ/E2h7zPIJquIH3fhBPBVeheiI3YxU/vryFmjV9OTC9O6
+ qPCrFyfE9SSt6TwVKnOnQSxvBn7XW3MktZgsd53fv9kdLCY5d6ywHScHaTzmt2FRa1q0mEKzt
+ obKSZKd3GnuWp5eCt8EDwTy5/c1cOmY1+GtqU1UuY0c0dTkV3Ru7eq6jNOPebuk8pm2tjkvkD
+ jNSeEhUFDryl65dPIMRsZSITAx+wGr2kzcXs40Q7bJtrSUuz
 
-As reported in the section 8.3 (i. e. Board revision history) of document
-UM2033 (i. e. Discovery kit with STM32F769NI MCU) these are the changes
-related to the board revisions addressed by the patch:
-- Board MB1225 revision B-03:
-  - Memory MICRON MT48LC4M32B2B5-6A replaced by ISSI IS42S32400F-6BL
-- Board MB1166 revision A-09:
-  - LCD FRIDA FRD397B25009-D-CTK replaced by FRIDA FRD400B25025-A-CTK
+Hi Mathieu,
 
-The patch only adds the DTS support for the new display which belongs to
-to the Novatek NT35510-based panel family.
+Am 29.12.23 um 14:00 schrieb Mathieu Othacehe:
+> Hello Stefan,
+>
+>> there are neither gpio-line-names defined for this GPIO expander nor th=
+e
+>> SOC. Are there no GPIOs which can be accessed from userspace?
+> The carrier board schematic is here:
+> https://www.variscite.com/wp-content/uploads/2023/01/symphony-board_VAR-=
+SOM-MX93.pdf
+Thanks this helps.
+>
+> All the pin headers are mapped to specific functions. On the other,
+> already mainlined device-trees, that are based on the same "Symphony"
+> carrier board, there are however gpio-keys for three buttons:
+>
+>
+> 	gpio-keys {
+> 		compatible =3D "gpio-keys";
+>
+> 		key-back {
+> 			label =3D "Back";
+> 			gpios =3D <&pca9534 1 GPIO_ACTIVE_LOW>;
+> 			linux,code =3D <KEY_BACK>;
+> 		};
+>
+> 		key-home {
+> 			label =3D "Home";
+> 			gpios =3D <&pca9534 2 GPIO_ACTIVE_LOW>;
+> 			linux,code =3D <KEY_HOME>;
+> 		};
+>
+> 		key-menu {
+> 			label =3D "Menu";
+> 			gpios =3D <&pca9534 3 GPIO_ACTIVE_LOW>;
+> 			linux,code =3D <KEY_MENU>;
+> 		};
+> 	};
+>
+> I can add that in v5.
+yes please.
 
-Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
----
+I also saw in the other Symphony DTS a LED for heartbeat. Is it usable, to=
+o?
 
- arch/arm/boot/dts/st/Makefile                       |  1 +
- .../stm32f769-disco-mb1225-revb03-mb1166-reva09.dts | 13 +++++++++++++
- 2 files changed, 14 insertions(+)
- create mode 100644 arch/arm/boot/dts/st/stm32f769-disco-mb1225-revb03-mb1166-reva09.dts
+According to the datasheet the SOM expose 7 UARTs, but only the debug
+UART is enable. What is the reason for this?
 
-diff --git a/arch/arm/boot/dts/st/Makefile b/arch/arm/boot/dts/st/Makefile
-index 7892ad69b441..390dbd300a57 100644
---- a/arch/arm/boot/dts/st/Makefile
-+++ b/arch/arm/boot/dts/st/Makefile
-@@ -23,6 +23,7 @@ dtb-$(CONFIG_ARCH_STM32) += \
- 	stm32f469-disco.dtb \
- 	stm32f746-disco.dtb \
- 	stm32f769-disco.dtb \
-+	stm32f769-disco-mb1225-revb03-mb1166-reva09.dts \
- 	stm32429i-eval.dtb \
- 	stm32746g-eval.dtb \
- 	stm32h743i-eval.dtb \
-diff --git a/arch/arm/boot/dts/st/stm32f769-disco-mb1225-revb03-mb1166-reva09.dts b/arch/arm/boot/dts/st/stm32f769-disco-mb1225-revb03-mb1166-reva09.dts
-new file mode 100644
-index 000000000000..ff7ff32371d0
---- /dev/null
-+++ b/arch/arm/boot/dts/st/stm32f769-disco-mb1225-revb03-mb1166-reva09.dts
-@@ -0,0 +1,13 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (c) 2023 Dario Binacchi <dario.binacchi@amarulasolutions.com>
-+ */
-+
-+#include "stm32f769-disco.dts"
-+
-+&panel0 {
-+	compatible = "frida,frd400b25025", "novatek,nt35510";
-+	vddi-supply = <&vcc_3v3>;
-+	vdd-supply = <&vcc_3v3>;
-+	/delete-property/power-supply;
-+};
--- 
-2.43.0
+Btw the commit log mentions a Wifi (via SDIO?) and audio interface. This
+is currently not supported by Linux?
+
+Thanks
+>
+> Thanks,
+>
+> Mathieu
 
 
