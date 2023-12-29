@@ -1,151 +1,145 @@
-Return-Path: <devicetree+bounces-28865-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28866-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9E2B81FCE6
-	for <lists+devicetree@lfdr.de>; Fri, 29 Dec 2023 04:46:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 46A1B81FD23
+	for <lists+devicetree@lfdr.de>; Fri, 29 Dec 2023 06:48:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D37D0282E30
-	for <lists+devicetree@lfdr.de>; Fri, 29 Dec 2023 03:46:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 02FBF284C6D
+	for <lists+devicetree@lfdr.de>; Fri, 29 Dec 2023 05:48:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EF1C17E2;
-	Fri, 29 Dec 2023 03:46:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 300F823A4;
+	Fri, 29 Dec 2023 05:48:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CpF5Y2Yv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7C1F23BB;
-	Fri, 29 Dec 2023 03:46:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-	by ex01.ufhost.com (Postfix) with ESMTP id 0434624E255;
-	Fri, 29 Dec 2023 11:46:12 +0800 (CST)
-Received: from EXMBX171.cuchost.com (172.16.6.91) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 29 Dec
- 2023 11:46:12 +0800
-Received: from [192.168.125.85] (183.27.96.32) by EXMBX171.cuchost.com
- (172.16.6.91) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 29 Dec
- 2023 11:46:10 +0800
-Message-ID: <fa9be81b-d81f-49a2-b879-0b9ada317e11@starfivetech.com>
-Date: Fri, 29 Dec 2023 11:46:10 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E3F523A1;
+	Fri, 29 Dec 2023 05:48:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-a26fa294e56so327146566b.0;
+        Thu, 28 Dec 2023 21:48:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1703828883; x=1704433683; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ClpHT/yJDzsGfgCrD6c+GMtCBr/uPP1onuzKC8VSZQ4=;
+        b=CpF5Y2YvIkzoEK+lve9nIwn+8tiQ2HYyy5S1YEQjwyoc9bCo79Lm24stYhkrcH7tzW
+         WgYMIYqhHIOqV5X59Bp9Q8Uy/JKd3WIaShK6d8o8fB3z27RLJ+bjA+I6zRm5Z/sf8u/N
+         t2bxSxA8hYw+c6KNtAsjJm6Ln7MbN+PMfGnkF13WISoOvNQ68hwTAGJRI2IBQj0OQAZi
+         NkGNNwNVwtP8sxlxIxn/vYuZ0U4RAWjMaZNvTGovfkxy+XWkq5V5mqvqBeBzT0g20CC/
+         nKPcP1vY2P6XpXiJectefdR1Ue8n/2xuvi+ll2V5GjEllFV638hKITeaa96Has9jf+vF
+         /nyQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1703828883; x=1704433683;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ClpHT/yJDzsGfgCrD6c+GMtCBr/uPP1onuzKC8VSZQ4=;
+        b=Fq/duKHs/43RTB4wkb4YDXdwipvzZXMYIzCT/Y2xYi+Kb4tjHIKQ5TkYy0PZ7Nndi9
+         lpSbkwj/pRbQNAaD2TCMEu1Vs9aodDZzLDwLrYOk8kunlsHheQ8fAHggxG4U2AoHf859
+         vIvO0f3q5Hh9QRDjnrxa4uiBLYRu7drbmmH79P41X5TaQjLHBchdELapknW/tBL4YrRb
+         Q5DVaD8ZSqFT5ibby7Jnl4+/7PVbEHz4VlZR2i4ax3YAGQWxoZ9JeQBegFmZVcZ3uYvM
+         TFJ+LKeCuAVMBksMk/e50RD4uIitn33CshEmCABhEDg0TL7QA1lrKAUkNOO0eWzevmtK
+         d8ag==
+X-Gm-Message-State: AOJu0YwWWZMqFBpVMPjzC5WJ43i6jSs+N5U0oKbMJUUL9LqkFuAq+SEo
+	sUh4Py2XnfSUXb9eiJ0b/r4=
+X-Google-Smtp-Source: AGHT+IFL8DFI8p3gnQwdfmcbvGKDdV8wbnHjMlisdB9dvoqPQBIZ7Ahgsoiclvysyoj+fShdas3h6A==
+X-Received: by 2002:a17:906:b114:b0:a27:59a2:93fc with SMTP id u20-20020a170906b11400b00a2759a293fcmr1726278ejy.107.1703828882565;
+        Thu, 28 Dec 2023 21:48:02 -0800 (PST)
+Received: from localhost.lan (031011218106.poznan.vectranet.pl. [31.11.218.106])
+        by smtp.gmail.com with ESMTPSA id e17-20020a170906505100b00a26ade46618sm7230880ejk.99.2023.12.28.21.48.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 28 Dec 2023 21:48:02 -0800 (PST)
+From: =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org,
+	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>,
+	Andrew Davis <afd@ti.com>,
+	Andrew Lunn <andrew@lunn.ch>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Chen-Yu Tsai <wens@kernel.org>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	Michal Simek <michal.simek@amd.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Nishanth Menon <nm@ti.com>,
+	Olof Johansson <olof@lixom.net>
+Subject: [PATCH] docs: dt-bindings: suggest "reg-names" position in DTS Coding Style
+Date: Fri, 29 Dec 2023 06:47:11 +0100
+Message-Id: <20231229054711.17317-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.35.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v13 11/21] PCI: microchip: Add num_events field to struct
- plda_pcie_rp
-Content-Language: en-US
-To: Lorenzo Pieralisi <lpieralisi@kernel.org>
-CC: Conor Dooley <conor@kernel.org>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?=
-	<kw@linux.com>, Rob Herring <robh+dt@kernel.org>, Bjorn Helgaas
-	<bhelgaas@google.com>, Daire McNamara <daire.mcnamara@microchip.com>, "Emil
- Renner Berthing" <emil.renner.berthing@canonical.com>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
-	<linux-pci@vger.kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
-	"Palmer Dabbelt" <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
-	"Philipp Zabel" <p.zabel@pengutronix.de>, Mason Huo
-	<mason.huo@starfivetech.com>, Leyfoon Tan <leyfoon.tan@starfivetech.com>,
-	Kevin Xie <kevin.xie@starfivetech.com>
-References: <20231214072839.2367-1-minda.chen@starfivetech.com>
- <20231214072839.2367-12-minda.chen@starfivetech.com>
- <ZYxJDIf1NDoEZkBJ@lpieralisi>
-From: Minda Chen <minda.chen@starfivetech.com>
-In-Reply-To: <ZYxJDIf1NDoEZkBJ@lpieralisi>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX171.cuchost.com
- (172.16.6.91)
-X-YovoleRuleAgent: yovoleflag
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
+From: Rafał Miłecki <rafal@milecki.pl>
 
+Property "reg-names" is strictly related to "reg" so it should follow it
+directly instead of falling into "Standard/common properties". This
+helps reading DTS files.
 
-On 2023/12/27 23:55, Lorenzo Pieralisi wrote:
-> On Thu, Dec 14, 2023 at 03:28:29PM +0800, Minda Chen wrote:
->> The event num is different in other platform. For re-using interrupt
->> process codes, replace macros with variable.
-> 
-> "The number of events is different across platforms. In order to
-> share interrupt processing code, add a variable that defines the
-> number of events so that it can be set per-platform instead of
-> hardcoding it".
-> 
-> Lorenzo
-> 
-Thanks for reviewing. Happy new year!
+Cc: Andrew Davis <afd@ti.com>
+cc: Andrew Lunn <andrew@lunn.ch>
+Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: Arnd Bergmann <arnd@arndb.de>
+Cc: Bjorn Andersson <andersson@kernel.org>
+Cc: Chen-Yu Tsai <wens@kernel.org>
+Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Jonathan Corbet <corbet@lwn.net>
+Cc: Matthias Brugger <matthias.bgg@gmail.com>
+Cc: Michal Simek <michal.simek@amd.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Nishanth Menon <nm@ti.com>
+Cc: Olof Johansson <olof@lixom.net>
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+---
+ .../devicetree/bindings/dts-coding-style.rst          | 11 ++++++-----
+ 1 file changed, 6 insertions(+), 5 deletions(-)
 
-All the maintainers:
- Happy new year!
+diff --git a/Documentation/devicetree/bindings/dts-coding-style.rst b/Documentation/devicetree/bindings/dts-coding-style.rst
+index a9bdd2b59dca..1a48e2ca80e9 100644
+--- a/Documentation/devicetree/bindings/dts-coding-style.rst
++++ b/Documentation/devicetree/bindings/dts-coding-style.rst
+@@ -116,12 +116,13 @@ The following order of properties in device nodes is preferred:
+ 
+ 1. "compatible"
+ 2. "reg"
+-3. "ranges"
+-4. Standard/common properties (defined by common bindings, e.g. without
++3. "reg-names"
++4. "ranges"
++5. Standard/common properties (defined by common bindings, e.g. without
+    vendor-prefixes)
+-5. Vendor-specific properties
+-6. "status" (if applicable)
+-7. Child nodes, where each node is preceded with a blank line
++6. Vendor-specific properties
++7. "status" (if applicable)
++8. Child nodes, where each node is preceded with a blank line
+ 
+ The "status" property is by default "okay", thus it can be omitted.
+ 
+-- 
+2.35.3
 
->> 
->> Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
->> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
->> ---
->>  drivers/pci/controller/plda/pcie-microchip-host.c | 8 +++++---
->>  drivers/pci/controller/plda/pcie-plda.h           | 1 +
->>  2 files changed, 6 insertions(+), 3 deletions(-)
->> 
->> diff --git a/drivers/pci/controller/plda/pcie-microchip-host.c b/drivers/pci/controller/plda/pcie-microchip-host.c
->> index 506e6eeadc76..7b3f4f74745d 100644
->> --- a/drivers/pci/controller/plda/pcie-microchip-host.c
->> +++ b/drivers/pci/controller/plda/pcie-microchip-host.c
->> @@ -654,7 +654,7 @@ static void plda_handle_event(struct irq_desc *desc)
->>  
->>  	events = mc_get_events(port);
->>  
->> -	for_each_set_bit(bit, &events, NUM_EVENTS)
->> +	for_each_set_bit(bit, &events, port->num_events)
->>  		generic_handle_domain_irq(port->event_domain, bit);
->>  
->>  	chained_irq_exit(chip, desc);
->> @@ -817,7 +817,8 @@ static int plda_pcie_init_irq_domains(struct plda_pcie_rp *port)
->>  		return -EINVAL;
->>  	}
->>  
->> -	port->event_domain = irq_domain_add_linear(pcie_intc_node, NUM_EVENTS,
->> +	port->event_domain = irq_domain_add_linear(pcie_intc_node,
->> +						   port->num_events,
->>  						   &plda_event_domain_ops,
->>  						   port);
->>  	if (!port->event_domain) {
->> @@ -921,7 +922,7 @@ static int plda_init_interrupts(struct platform_device *pdev, struct plda_pcie_r
->>  	if (irq < 0)
->>  		return -ENODEV;
->>  
->> -	for (i = 0; i < NUM_EVENTS; i++) {
->> +	for (i = 0; i < port->num_events; i++) {
->>  		event_irq = irq_create_mapping(port->event_domain, i);
->>  		if (!event_irq) {
->>  			dev_err(dev, "failed to map hwirq %d\n", i);
->> @@ -1013,6 +1014,7 @@ static int mc_host_probe(struct platform_device *pdev)
->>  
->>  	bridge_base_addr = port->axi_base_addr + MC_PCIE_BRIDGE_ADDR;
->>  	plda->bridge_addr = bridge_base_addr;
->> +	plda->num_events = NUM_EVENTS;
->>  
->>  	/* Allow enabling MSI by disabling MSI-X */
->>  	val = readl(bridge_base_addr + PCIE_PCI_IRQ_DW0);
->> diff --git a/drivers/pci/controller/plda/pcie-plda.h b/drivers/pci/controller/plda/pcie-plda.h
->> index 3deefd35fa5a..e3d35cef9894 100644
->> --- a/drivers/pci/controller/plda/pcie-plda.h
->> +++ b/drivers/pci/controller/plda/pcie-plda.h
->> @@ -118,6 +118,7 @@ struct plda_pcie_rp {
->>  	raw_spinlock_t lock;
->>  	struct plda_msi msi;
->>  	void __iomem *bridge_addr;
->> +	int num_events;
->>  };
->>  
->>  void plda_pcie_setup_window(void __iomem *bridge_base_addr, u32 index,
->> -- 
->> 2.17.1
->> 
 
