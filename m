@@ -1,110 +1,88 @@
-Return-Path: <devicetree+bounces-28952-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28953-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48A7B8201ED
-	for <lists+devicetree@lfdr.de>; Fri, 29 Dec 2023 22:41:36 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8CC8A820218
+	for <lists+devicetree@lfdr.de>; Fri, 29 Dec 2023 22:57:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F1C0B2827E8
-	for <lists+devicetree@lfdr.de>; Fri, 29 Dec 2023 21:41:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 39E761F21FF5
+	for <lists+devicetree@lfdr.de>; Fri, 29 Dec 2023 21:57:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D552C14298;
-	Fri, 29 Dec 2023 21:41:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9543114A90;
+	Fri, 29 Dec 2023 21:56:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=z3ntu.xyz header.i=@z3ntu.xyz header.b="IvI/93aV"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="IJINq1l8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ahti.lucaweiss.eu (ahti.lucaweiss.eu [128.199.32.197])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B51E414A85;
-	Fri, 29 Dec 2023 21:41:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=z3ntu.xyz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=z3ntu.xyz
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=z3ntu.xyz; s=s1;
-	t=1703886088; bh=xLta2et/RCU0Zo2v7ZHpE3DZ9Yskf/Y+2hhuLWPw8Ew=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=IvI/93aV6sGg+QjpqN/k8TxpIC7p57mFS8443iWsaFkmjUeJHZ2L+Ka/m8YRG/4Ac
-	 OlkN3kS3Fjfn65XaagnwE1Okf1ncqJcDPq4CYU4fJtP6VryPeDdR56n/Bg4rgD05Jl
-	 cEfrjhb6ci4bvQV0IeAR4kzDgRgRkTyVyKcInIFY=
-From: Luca Weiss <luca@z3ntu.xyz>
-To: Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Caleb Connolly <caleb.connolly@linaro.org>,
- Dylan Van Assche <me@dylanvanassche.be>, David Heidelberg <david@ixit.cz>
-Cc: David Heidelberg <david@ixit.cz>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject:
- Re: [PATCH] arm64: dts: qcom: sdm845-oneplus-common: improve DAI node naming
-Date: Fri, 29 Dec 2023 22:41:28 +0100
-Message-ID: <6001009.lOV4Wx5bFT@z3ntu.xyz>
-In-Reply-To: <20231229200245.259689-1-david@ixit.cz>
-References: <20231229200245.259689-1-david@ixit.cz>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB5F514A85;
+	Fri, 29 Dec 2023 21:56:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=etdFH97WvsBkR0owkaKZOdN2H9+dmGLc93dDrGAaQ8k=; b=IJINq1l82c3AlsqY20wG3Yfg7z
+	F0hhcAz2m7wj/um2f59YtmF95WIY2pkXCporZ7LBiM3dI1EB+XwvexNmONlHulPVBaaGlUehjIPf0
+	zNfCqq1OuKNsLlzItOAl43Sq2BbhBjjGvH1mMvu/I9+YimhfAHVYyrpwgAXyNc8cdpYY=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1rJKpu-003vNa-1x; Fri, 29 Dec 2023 22:56:10 +0100
+Date: Fri, 29 Dec 2023 22:56:10 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Elad Nachman <enachman@marvell.com>
+Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, gregory.clement@bootlin.com,
+	sebastian.hesselbarth@gmail.com, huziji@marvell.com,
+	ulf.hansson@linaro.org, catalin.marinas@arm.com, will@kernel.org,
+	adrian.hunter@intel.com, thunder.leizhen@huawei.com, bhe@redhat.com,
+	akpm@linux-foundation.org, yajun.deng@linux.dev,
+	chris.zjh@huawei.com, linux-mmc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, cyuval@marvell.com
+Subject: Re: [PATCH 0/4] mmc: xenon: add AC5 support
+Message-ID: <cfbbe706-5953-488c-9bff-f72f6d00b44f@lunn.ch>
+References: <20231227123257.1170590-1-enachman@marvell.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231227123257.1170590-1-enachman@marvell.com>
 
-On Freitag, 29. Dezember 2023 21:02:33 CET David Heidelberg wrote:
-> Make it easier to understand what the reg in those nodes is by using the
-> constants provided by qcom,q6dsp-lpass-ports.h.
+On Wed, Dec 27, 2023 at 02:32:53PM +0200, Elad Nachman wrote:
+> From: Elad Nachman <enachman@marvell.com>
 > 
-> Name nodes according to dt-binding expectations.
+> This patch series adds support for the Marvell AC5/X/IM series of SOCs.
+> The main hurdles in supporting these SOCs are the following limitations:
+> 1. DDR starts at offset 0x2_0000_0000
+> 2. mmc controller has only 31-bit path on the crossbar to the DDR.
 > 
-> Fix for
-> ```
-> arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dtb: service@4: dais:
-> Unevaluated properties are not allowed ('qi2s@22', 'qi2s@23' were
-> unexpected) ```
+> Point number one is solved by the first patch, which targets the
+> arm64 subsystem, by taking into account the DDR start address when
+> calculating the DMA and DMA32 zones.
 > 
-> Fixes: b7b734286856 ("arm64: dts: qcom: sdm845-oneplus-*: add audio
-> devices") Signed-off-by: David Heidelberg <david@ixit.cz>
-> ---
->  arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi | 8 ++++----
->  1 file changed, 4 insertions(+), 4 deletions(-)
+> This yields the correct split between DMA, DMA32 and NORMAL zones
+> according to the device tree CPU address limitations.
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
-> b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi index
-> e821103d49c0..46e25c53829a 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
-> @@ -508,13 +508,13 @@ led-1 {
->  };
-> 
->  &q6afedai {
-> -	qi2s@22 {
-> -		reg = <22>;
-> +	dai@22 {
-> +		reg = <QUATERNARY_MI2S_RX>;
->  		qcom,sd-lines = <1>;
->  	};
-> 
-> -	qi2s@23 {
-> -		reg = <23>;
-> +	dai@23 {
-> +		reg = <QUATERNARY_MI2S_TX>;
+> Point number two is solved in the mmc xenon driver by detecting the memory
+> size, and when it is more than 2GB, disable ADMA and 64-bit DMA, which
+> effectively enables SDMA with a bounce buffer.
+> DMA mask is then set manually to 34 bit to account for the DDR starting
+> at offset 0x2_0000_0000 .
 
-I did the 'reg' part before, either I missed this file or it was added after I
-made the patch.
-https://lore.kernel.org/linux-arm-msm/20220603094710.64591-1-luca.weiss@fairphone.com/
+You probably need to split this patchset up since the first patch will
+get merged via the arm64 core maintainers, the MMC driver change via
+the MMC maintainers, and maybe the DT changes for the
+ac5-98dx25xx.dtsi via the mvebu maintainers, or the MMC maintainer?
 
-But looks correct:
-
-Reviewed-by: Luca Weiss <luca@z3ntu.xyz>
-
-
->  		qcom,sd-lines = <0>;
->  	};
->  };
-
-
-
-
+	Andrew
 
