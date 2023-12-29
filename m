@@ -1,65 +1,64 @@
-Return-Path: <devicetree+bounces-28907-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28908-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6113E81FF8E
-	for <lists+devicetree@lfdr.de>; Fri, 29 Dec 2023 14:02:48 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2AC481FF92
+	for <lists+devicetree@lfdr.de>; Fri, 29 Dec 2023 14:06:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CA0A2B21C5E
-	for <lists+devicetree@lfdr.de>; Fri, 29 Dec 2023 13:02:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 70B82282A0E
+	for <lists+devicetree@lfdr.de>; Fri, 29 Dec 2023 13:06:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A1CD11701;
-	Fri, 29 Dec 2023 13:02:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D91DF111B5;
+	Fri, 29 Dec 2023 13:06:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="IOWT/RXd"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mKEVaFcD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
+Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 973A5111B1
-	for <devicetree@vger.kernel.org>; Fri, 29 Dec 2023 13:02:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 442F2111A4
+	for <devicetree@vger.kernel.org>; Fri, 29 Dec 2023 13:06:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-a26f73732c5so378651166b.3
-        for <devicetree@vger.kernel.org>; Fri, 29 Dec 2023 05:02:35 -0800 (PST)
+Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-a26fa294e56so355969566b.0
+        for <devicetree@vger.kernel.org>; Fri, 29 Dec 2023 05:06:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1703854954; x=1704459754; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=kBb9J4FLVr3c7zCjdLWSWFc3YEv2PP10mRTZA5K1t3A=;
-        b=IOWT/RXd596ZOC58+KLduDW1y0KMKchwCD8TpaL3iKDhpCh8/cFcmqAF7T6iPH01wG
-         doVbrrLrj1jRRyml43zzlAflOgO9ZnmgTldLtPlNX/BFFOm5a2cFexQivjjXjH5EuaIB
-         LD4omV2xwtMGXs1Lf+l+55o07FINivTuDgNj57wzk1ibZoJu724EqR5QHvjOtaIhR1T0
-         7cvd4NBWOkiYQOqvRoSp0ANZ5E3g6ysOPRq3aXh935lgj3B70+OS1leGhFJZfisrWdgP
-         4Ha7f1CAJmQn2bnjIv8ALzkXSKDD5sNg6rarK8sMClcn5rw5DQmlOxhVAIH3+5EofLfh
-         8/aA==
+        d=linaro.org; s=google; t=1703855189; x=1704459989; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=rKl2hv7xjGsCk4ipbW2TPD5NpXw4HvPQGvbNkejIlh4=;
+        b=mKEVaFcD/L2jaQ0hPvFrYEPYGCJswZBDPe0Ps+6c84ZAWBsa8q0Fx5Zsk06qwPM7Gx
+         gQV5DNeDWt2d6CBRVGVVUPPSiywHQ1SCGirRaEEFEhLQRcCfDf4yy6kHzQF5bQGJkGWy
+         WeKuRoI9qVL58g6as8+J+/tmD7/ONkfYp3wVhQHHgUhUzrTz6QNEa+YTyzwIXaRM03J/
+         RuibcVzwQl/P95jGDc9aUKkB99y1IPcwUYGWqjCdJAk4A3ZYFDQ08Ikk5PeECqWIRi0c
+         SCSnParoveJT7hXInk0OXwMVOMpf8WogBcP4w7vDwdOE8sQKFdByObzWfXQeWrsaHTST
+         s2Hw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703854954; x=1704459754;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=kBb9J4FLVr3c7zCjdLWSWFc3YEv2PP10mRTZA5K1t3A=;
-        b=XcnN+5QdaJNrtjXqnxOkJO0omqYCLL7lYU8hr4sFODGesTeeQENUU8ABSK/j1XmNoP
-         LIzhcyIjJ1KlXmG8zl8CIn9tlgxEf8n6A1X7YwgsnCB/7iVHKEz56RwUnPSb4XVKRrIQ
-         8cc6tQeq0R6qXqPInUKSXnmJDS5TM1JHPOJG7nR8fNSMEZUDexn8ZvMD/Q0iAEf//5BW
-         Zf33hzf7DqMcc36f0jVCWiWT04pMFZqy80XnW51eQ8WXJA5/PxnhORfDJqeYz3zbZjEA
-         ens5RtlQlDe+YaC6LR0bMBviIiS+hlIM0vEYxdTB9ppkDvWiDaWJtwqr0r8GMR4gALkc
-         jR1A==
-X-Gm-Message-State: AOJu0Yy2KAJDCMNAlmheqnhVyaEoUfLOg5tcNXNx+D0y36RW1+WvWvy2
-	nWePVl5y0ecSOYK/T8+ZQC5+1fjOM72hiQ==
-X-Google-Smtp-Source: AGHT+IGgYvYa38LRx0qUWUoijJrf/2agW1BUl2edx6ysDrhxh1li5Z0/oDbsurR/p1egoD4s76YeIA==
-X-Received: by 2002:a17:906:188:b0:a23:6fd9:b088 with SMTP id 8-20020a170906018800b00a236fd9b088mr5449826ejb.102.1703854953914;
-        Fri, 29 Dec 2023 05:02:33 -0800 (PST)
+        d=1e100.net; s=20230601; t=1703855189; x=1704459989;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=rKl2hv7xjGsCk4ipbW2TPD5NpXw4HvPQGvbNkejIlh4=;
+        b=Vjvdoc1P9xPwFgc7ZVnsLl6Hu+kjESE6C+sqk1PR6iw9ad8k13+1aL/TUb2gsZaq2L
+         YKT2oAc38MEsRnPPYtZ1SeuSGtPopPq+DEcjc7saFP4QNf+VBkovvGe8YjjeoqgBrqyI
+         2OYQN78Iwo/NGkMstAAkzH7+n+AnkRWLTKBQqgiqhqfCykQ/bqnxUpi+UNxLXyWH8+Q4
+         HCtikO7NR+52v4iMXQRrmicYOUxHcg+I9eV7iXBjCE96Gp9I+zokAmgbjx9eupFr3R1K
+         cfWvz94W56zBrsf6bkB2Zbp4zA1rcb0o3Snw7mY+pNwQ6lHrOTcj5GL9N8w4k3qDg3w3
+         SFIw==
+X-Gm-Message-State: AOJu0Yz+ARd/x9TImxUbaI7b2DSMzjcOOwxgwFwjp6rmIdk/j07Hhx2D
+	dm78qdmleH9TbeqqJ0KKmTq7Sfo8GydD1Q==
+X-Google-Smtp-Source: AGHT+IG6nayuDtLATAJ3w9ufh+iosF+lV0OjwmqvmBhBKgXTlvxjbK7Wz8rK3l6GS4p8DMngFG204w==
+X-Received: by 2002:a17:906:7386:b0:a26:f18a:b31d with SMTP id f6-20020a170906738600b00a26f18ab31dmr2827006ejl.13.1703855189611;
+        Fri, 29 Dec 2023 05:06:29 -0800 (PST)
 Received: from [192.168.199.125] (178235179036.dynamic-4-waw-k-1-3-0.vectranet.pl. [178.235.179.36])
-        by smtp.gmail.com with ESMTPSA id f21-20020a170906739500b00a26aa045e82sm6800939ejl.21.2023.12.29.05.02.32
+        by smtp.gmail.com with ESMTPSA id fh24-20020a1709073a9800b00a26a5f83cecsm7927239ejc.79.2023.12.29.05.06.27
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 29 Dec 2023 05:02:33 -0800 (PST)
-Message-ID: <03fb2c01-053b-42c9-aa8a-7469cbd344d8@linaro.org>
-Date: Fri, 29 Dec 2023 14:02:31 +0100
+        Fri, 29 Dec 2023 05:06:29 -0800 (PST)
+Message-ID: <b730bf22-fa3a-4720-9fd1-79d2207d6812@linaro.org>
+Date: Fri, 29 Dec 2023 14:06:26 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,18 +66,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: qcom: qcm6490-fairphone-fp5: Add missing
- reserved-memory
-To: Luca Weiss <luca.weiss@fairphone.com>,
- Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20231229-fp5-reserved-mem-v1-1-87bb818f1397@fairphone.com>
+Subject: Re: [PATCH 2/3] arm64: dts: qcom: sc8280xp: Correct USB PHY power
+ domains
 Content-Language: en-US
+To: Johan Hovold <johan@kernel.org>
+Cc: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Johan Hovold <johan+linaro@kernel.org>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Konrad Dybcio <konrad.dybcio@somainline.org>
+References: <20231227-topic-8280_pcie_dts-v1-0-13d12b1698ff@linaro.org>
+ <20231227-topic-8280_pcie_dts-v1-2-13d12b1698ff@linaro.org>
+ <ZY7DEpaIgvfL_A11@hovoldconsulting.com>
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
@@ -115,20 +117,44 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <20231229-fp5-reserved-mem-v1-1-87bb818f1397@fairphone.com>
+In-Reply-To: <ZY7DEpaIgvfL_A11@hovoldconsulting.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 29.12.2023 13:53, Luca Weiss wrote:
-> It seems we also need to reserve a region of 81 MiB called "removed_mem"
-> otherwise we can easily hit the following error with higher RAM usage:
+On 29.12.2023 14:01, Johan Hovold wrote:
+> On Wed, Dec 27, 2023 at 11:28:27PM +0100, Konrad Dybcio wrote:
+>> The USB GDSCs are only related to the controllers.
 > 
->   [ 1467.809274] Internal error: synchronous external abort: 0000000096000010 [#2] SMP
+> Are you sure?
+That's what I've been told from rather reliable sources.
+
 > 
-> Fixes: eee9602ad649 ("arm64: dts: qcom: qcm6490: Add device-tree for Fairphone 5")
-> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+>> The PHYs on the other
+>> hand, are powered by VDD_MX and their specific VDDA_PHY/PLL regulators.
+>>
+>> Fix the power-domains assignment to stop potentially toggling the GDSC
+>> unnecessarily.
+> 
+> Again, there's no additional toggling being done here, but yes, this may
+> keep the domains enabled during suspend depending on how the driver is
+> implemented.
+No, it can actually happen. (Some) QMP PHYs are referenced by the
+DP hardware. If USB is disabled (or suspended), the DP being active
+will hold these GDSCs enabled.
 
 Konrad
+> If that's the concern, then please spell that out too.
+> 
+>> Fixes: 152d1faf1e2f ("arm64: dts: qcom: add SC8280XP platform")
+> 
+> May not be needed either.
+> 
+>> @@ -2597,7 +2597,7 @@ usb_2_qmpphy0: phy@88ef000 {
+>>  				 <&gcc GCC_USB3UNIPHY_PHY_MP0_BCR>;
+>>  			reset-names = "phy", "phy_phy";
+>>  
+>> -			power-domains = <&gcc USB30_MP_GDSC>;
+>> +			power-domains = <&rpmhpd SC8280XP_MX>;
+> 
+> Johan
 
