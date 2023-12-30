@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-29011-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29012-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D75AA8206AE
-	for <lists+devicetree@lfdr.de>; Sat, 30 Dec 2023 15:10:54 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3390D8206B2
+	for <lists+devicetree@lfdr.de>; Sat, 30 Dec 2023 15:11:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0692C1C20A72
-	for <lists+devicetree@lfdr.de>; Sat, 30 Dec 2023 14:10:54 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id ACAA4B20FCD
+	for <lists+devicetree@lfdr.de>; Sat, 30 Dec 2023 14:11:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3AE28BE3;
-	Sat, 30 Dec 2023 14:10:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB03F8C17;
+	Sat, 30 Dec 2023 14:11:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HRcv/DPg"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="PhQEzXsa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 043FBB658
-	for <devicetree@vger.kernel.org>; Sat, 30 Dec 2023 14:10:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3109D8BED
+	for <devicetree@vger.kernel.org>; Sat, 30 Dec 2023 14:11:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-40d858c56cbso526265e9.2
-        for <devicetree@vger.kernel.org>; Sat, 30 Dec 2023 06:10:33 -0800 (PST)
+Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-a22f59c6ae6so902887766b.1
+        for <devicetree@vger.kernel.org>; Sat, 30 Dec 2023 06:11:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1703945432; x=1704550232; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1703945495; x=1704550295; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=+c0j6bbsjMBV/kl71pxi0oW3JLtWSbRYa2S4SYKJxzM=;
-        b=HRcv/DPgOcY1xfK+r+6cPndKsy80JTRYQ472uWutG/5zJduQz8gAwSMRuXIvXzPmif
-         1uYDukvnm8/XsPk4XuDJ7plVdL4DV4JlD/879F6l6/XbJ8hd6AA2CbinJcybHbqUpCb8
-         kFVQETaw7i/jSDdm/hjbqeZi5tdVK9kDgTe4CFG+1HCXMBfqdTTN903eeFjkjNeBZuoQ
-         axa1/DRRJ9Tt6ZTcmANa+J8K+Iw6KzhojJFw2H7afCGYE/zNbR3AwUJ4TFPBGDRx6wkY
-         Kf6RDRkMgvzPsXj4clcujwJrI7LTdhHsFTgQbbAb/T7fQHj9B1bMz/IDQ63lZ54FEAGr
-         2rbw==
+        bh=8D+6OD5768CMC9lV5VrV9hKQqRaZdZu6kBM6LK1mwKM=;
+        b=PhQEzXsanQYyQFSr3ZmngCGGoNvtzTDzFcEFs6rP68UNBGjq8gRPgsoy+BYQGzpthZ
+         cHHF5bsJ9Es4lt71Vk3NcyOnswPp04VubPEj3eGQBnwt75uXgPjnwp+XAeJkdg7u/P2C
+         E44JI8I9DeyLMwDE96ZXWhRhl8VlIhrTMJ82zk9zXRk/4lq7z/z87Zb5x4edtOjnepQF
+         evunM38DF2ToDminyiS/+1F7eUidl59H4osMbvqaSSLmqmTQze0nRJZ6wlbpXDiOwjJl
+         Mj2zc9+Qu394jjg3hGTv8yi2UPPM8+Qci10zh4ICwwQARiZoSnWcjpKOd/QS3AFKhmGO
+         KJUA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703945432; x=1704550232;
+        d=1e100.net; s=20230601; t=1703945495; x=1704550295;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+c0j6bbsjMBV/kl71pxi0oW3JLtWSbRYa2S4SYKJxzM=;
-        b=rCQUinIlHtAU+zO7aahmexgUDcfeUebM7XWueWewfEnILUKyuiAAPJ04UiZo6KRMh/
-         iULtv60+f8SeEbAOjQLTZFBPRDJjGXT29DwT/1lKQbc0nyfvW2/f1xMhCpEZ476nDSlL
-         W7+hA/VhHIeHevQD/KH9DBhYRQuI9ODgnUlOInJosnmY0MH6oz4kDY3Xp7tJYhGOSC4X
-         zelUmKhZlUOSByFm0RfqrdrakYMbVAZUyNb/ORz90bUxIuUumoZ6K/ApZdYY2Ip+H9hV
-         46OKhlMYjA519R1GhwDJrwGDn5n/oZOTIiQpM6bOPhy7uIqlIpG/g84M2O2yIfaA2NcO
-         MEsw==
-X-Gm-Message-State: AOJu0YxQFZWrKdFfd00Cl+3KLLG4TU8zKILExMCF8CjOnB0WWWY11krY
-	OZmdL/GnG2Pb9VzaqdXTozPmw/SsrWgK/g==
-X-Google-Smtp-Source: AGHT+IEOUp96O7ZsNz3WKe4aaNJiU7IunBwI94mNBFg1GDWyINcr756WH7QtNzOgMe1/c5+00qMBHA==
-X-Received: by 2002:a05:600c:3107:b0:40d:5f41:2e4d with SMTP id g7-20020a05600c310700b0040d5f412e4dmr2936770wmo.159.1703945432171;
-        Sat, 30 Dec 2023 06:10:32 -0800 (PST)
+        bh=8D+6OD5768CMC9lV5VrV9hKQqRaZdZu6kBM6LK1mwKM=;
+        b=fUK2mbBnNa5oS0hgjIWaNqhIiH704nFZNRTb/XVmXSamclO1SGnFZ4RgMiTqql2Wa1
+         huSTefWGPko/GIFjKR5t1LKKIsNsbXoqvOghSSQwSEk3gq4/epLbW6d7WdPAMp/kxVIZ
+         gIxdzzjsQPSCDwzjZjBuzuKyWYqn3NY0O71kFM+h7PwdluPlheR1YqJEhujBA6Wsd75w
+         txC2CvYK8Ts6SXTtJLpAKRLqompbH3rA1Z5jiRUnzCcmHQ0hRcuumh+MZO1/OacfUG7f
+         4ViYtYUW+vmW/lY88mrqB6WfXfsB9EG38bxKfBIXGe39jVuyAlUszPKGgeqBnDa8HgBJ
+         wfqg==
+X-Gm-Message-State: AOJu0Yy6J1Rd8+hXfknVyWwUjx8omUxQ+vR5iECjYbKQkzk/Bwk6yUUi
+	7P+pvNCntFYGT34u3iCUjvTc/slTzuS8qA==
+X-Google-Smtp-Source: AGHT+IGF34YfcXh8ZKfYGRWf52qQT9WIItnrZ/pMDd2s7/cltqWSEOnh4mIv2WeT19MpWQzzXf6R2A==
+X-Received: by 2002:a17:906:1807:b0:a26:e492:da8f with SMTP id v7-20020a170906180700b00a26e492da8fmr2474055eje.176.1703945495458;
+        Sat, 30 Dec 2023 06:11:35 -0800 (PST)
 Received: from [192.168.199.125] (178235179036.dynamic-4-waw-k-1-3-0.vectranet.pl. [178.235.179.36])
-        by smtp.gmail.com with ESMTPSA id p9-20020a170907910900b00a26ac5e3683sm8529380ejq.100.2023.12.30.06.10.30
+        by smtp.gmail.com with ESMTPSA id p9-20020a170907910900b00a26ac5e3683sm8529380ejq.100.2023.12.30.06.11.34
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 30 Dec 2023 06:10:31 -0800 (PST)
-Message-ID: <f431ab4e-fdd3-4771-a770-558cdba9ef75@linaro.org>
-Date: Sat, 30 Dec 2023 15:10:29 +0100
+        Sat, 30 Dec 2023 06:11:35 -0800 (PST)
+Message-ID: <240a1791-cb81-49e5-960b-9c960c0c15de@linaro.org>
+Date: Sat, 30 Dec 2023 15:11:34 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,7 +69,7 @@ User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH 3/3] arm64: dts: qcom: sc8280xp-crd: Add PCIe CLKREQ#
  sleep state
 Content-Language: en-US
-To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Johan Hovold <johan@kernel.org>
 Cc: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
  Conor Dooley <conor+dt@kernel.org>, Johan Hovold <johan+linaro@kernel.org>,
@@ -80,7 +80,7 @@ Cc: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh+dt@kernel.org>,
  Konrad Dybcio <konrad.dybcio@somainline.org>
 References: <20231227-topic-8280_pcie_dts-v1-0-13d12b1698ff@linaro.org>
  <20231227-topic-8280_pcie_dts-v1-3-13d12b1698ff@linaro.org>
- <20231229171425.GC9098@thinkpad>
+ <ZY7BqLJZ0btpuL4b@hovoldconsulting.com>
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
@@ -117,29 +117,33 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <20231229171425.GC9098@thinkpad>
+In-Reply-To: <ZY7BqLJZ0btpuL4b@hovoldconsulting.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 29.12.2023 18:14, Manivannan Sadhasivam wrote:
+On 29.12.2023 13:55, Johan Hovold wrote:
 > On Wed, Dec 27, 2023 at 11:28:28PM +0100, Konrad Dybcio wrote:
 >> The CLKREQ pin should not be muxed to its active function when the RC
->> is asleep. Add the missing pin sleep states to resolve that.
->>
+>> is asleep. 
 > 
-> I don't understand why it should not be muxed and wondering what is the actual
-> issue you are seeing that lead to this conclusion.
+> You forgot to explain *why* you think this is needed.
+You're right, I was in a flurry of patchsending..
 
-According to my knowledge, demuxing this pin prevents the RC from
-getting (possibly erronous) reference clock request signals when
-running the RC shutdown sequence. Reading this again, the fixes
-tags don't really fit this commit.
+> 
+> Note that this is only appears to be done for one upstream Qualcomm SoC
+> (msm8996) currently, and that, notably, there is no driver support for
+> actually changing the pin state.
+Please see my reply to Mani.
 
-What's perhaps more interesting is that on msm8996, Qualcomm vendor
-kernels used to remove the pull-up on the CLKREQ pin in its sleep
-state, while on msm8998 through sm8550 they keep it there, always..
-Perhaps an oversight?
+> 
+>> Add the missing pin sleep states to resolve that.
+> 
+>> Fixes: d907fe5acbf1 ("arm64: dts: qcom: sc8280xp-crd: enable WiFi controller")
+>> Fixes: 17e2ccaf65d1 ("arm64: dts: qcom: sc8280xp-crd: enable SDX55 modem")
+>> Fixes: 6a1ec5eca73c ("arm64: dts: qcom: sc8280xp-crd: enable NVMe SSD")
+> 
+> So not sure these Fixes tags are warranted either.
+Agreed!
 
 Konrad
-
 
