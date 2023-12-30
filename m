@@ -1,131 +1,110 @@
-Return-Path: <devicetree+bounces-28993-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28994-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C49CD820495
-	for <lists+devicetree@lfdr.de>; Sat, 30 Dec 2023 12:29:06 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 264978204AD
+	for <lists+devicetree@lfdr.de>; Sat, 30 Dec 2023 12:50:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 01AF91C208FB
-	for <lists+devicetree@lfdr.de>; Sat, 30 Dec 2023 11:29:06 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BE44EB211BB
+	for <lists+devicetree@lfdr.de>; Sat, 30 Dec 2023 11:49:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40F77290E;
-	Sat, 30 Dec 2023 11:29:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A650C7493;
+	Sat, 30 Dec 2023 11:49:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BpMv5QNJ"
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="rKacEDg6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D58B7488;
-	Sat, 30 Dec 2023 11:29:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0DA75C433C7;
-	Sat, 30 Dec 2023 11:28:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1703935740;
-	bh=ME7rmguraS+QpHkqvcm2mb6WLPZeSXv2g9gGYhHbKd4=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=BpMv5QNJkSEJvW9tGPoVnTR2P/7BBPeGd2MRE1q/3tqKOeuO3DIMvoyeFk9THxxla
-	 AqDpasD4j3SAO+H4A8qidvEryGKwlRjemoK4od6FzfOpvYHqXh3aJLq+A++UuVLBW/
-	 +7bt5ACb5KZYuCez/AYXlEMJZit5LQ/yt+YWHqoyqcTFBU9KLW1mvfcAHq+ymH/g7+
-	 4ZxOnfSudeveWRJziqNNztCWAC4NstynHPE5fxvatEo7gkRqGaqMWnUKNc977iwYmR
-	 RRUAa3xUX0ViGOrlFw+Dv7m+mAFetaL5AeGVfnFpgpHXF/OA+Ff8zQcoSco5dJwKie
-	 gqg9z7Ej0ByMQ==
-Date: Sat, 30 Dec 2023 11:28:52 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Petre Rodan <petre.rodan@subdimension.ro>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Andreas Klinger <ak@it-klinger.de>,
- Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>
-Subject: Re: [PATCH v2 01/10] dt-bindings: iio: pressure:
- honeywell,mprls0025pa.yaml fix
-Message-ID: <20231230112852.2a9c3d64@jic23-huawei>
-In-Reply-To: <ZYvOJ9tlO1fp_QBT@sunspire>
-References: <20231224143500.10940-1-petre.rodan@subdimension.ro>
-	<20231224143500.10940-2-petre.rodan@subdimension.ro>
-	<20231226162839.5ceddc9e@jic23-huawei>
-	<ZYvOJ9tlO1fp_QBT@sunspire>
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.38; x86_64-pc-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C399C79C2
+	for <devicetree@vger.kernel.org>; Sat, 30 Dec 2023 11:49:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
+ Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
+ s=fe-e1b5cab7be; t=1703936984;
+ bh=mxaMu8U3QMAFU/y35CQF9vSyxsVfW4Q2ekWUVTmfutI=;
+ b=rKacEDg6gxzfbiW3OXa2U6qYs+s8uJAUyDyNJsMRBpJOc6OVocug9j4mzTWadABLEh+JCEQow
+ gEWJ5yG+sYQ+aXjBBCPcfYtQHAYQX9ka0n/jAIb7KcmO5VtBj9O6Eggju9ONyGe2+KFIFoGWPKD
+ KAK0IqRBrqssiHo22FqgOQpAKaWN9LrKXvG5taIryO8w0TAA7OpK5x8WhZ65KAIImF3aeOhnAiZ
+ dnBMaFtoQ9udtJDHuHbPye4tSU2fwZFJxwFvAgCLV6IQSVKDVGIIJFgVs9ml3ZD0JblJ3mhQ5Ts
+ 95jKBhbp9RZXRzFjQCi+MvQdixFe2sdmAX7SQ0IpREhg==
+Message-ID: <97faf49b-0109-439a-accf-251b502ad40b@kwiboo.se>
+Date: Sat, 30 Dec 2023 12:49:38 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 0/3] Add hantro g1 video decoder support for RK3588
+To: amazingfate <liujianfeng1994@gmail.com>, sigmaris@gmail.com
+Cc: ezequiel@vanguardiasur.com.ar, p.zabel@pengutronix.de,
+ mchehab@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, heiko@sntech.de, sfr@canb.auug.org.au,
+ linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+References: <CAAXNxMT3f68-ptM7Crhrfmn7iwTyJc9pwz4Beob+5beVODaSHQ@mail.gmail.com>
+ <20231230095228.3739806-1-liujianfeng1994@gmail.com>
+Content-Language: en-US
+From: Jonas Karlman <jonas@kwiboo.se>
+In-Reply-To: <20231230095228.3739806-1-liujianfeng1994@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
+X-Report-Abuse-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-ForwardEmail-Version: 0.4.40
+X-ForwardEmail-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 149.28.215.223
+X-ForwardEmail-ID: 659003d74d40790198022670
 
-On Wed, 27 Dec 2023 09:11:35 +0200
-Petre Rodan <petre.rodan@subdimension.ro> wrote:
+Hi,
 
-> Hello Cameron,
+On 2023-12-30 10:52, amazingfate wrote:
+> Thanks for your test with fluster. I also tested on my rock-5b(rk3588)
+> and orangepi-3b(rk3566) which are sharing the same hantro g1 ip. I am
+> running on ubuntu jammy so I'm using gstreamer 1.20.1
 > 
-> On Tue, Dec 26, 2023 at 04:28:39PM +0000, Jonathan Cameron wrote:
-> > On Sun, 24 Dec 2023 16:34:46 +0200
-> > Petre Rodan <petre.rodan@subdimension.ro> wrote:
-> >   
-> > > Define enum inside the honeywell,transfer-function property block.
-> > > 
-> > > Set the correct irq edge in the example block.
-> > > Based on the datasheet, in table 13 on page 11:
-> > > "End-of-conversion indicator: This pin is set high when a measurement
-> > > and calculation have been completed and the data is ready to be
-> > > clocked out"
-> > > 
-> > > Add description on End-of-conversion interrupt.
-> > > 
-> > > Signed-off-by: Petre Rodan <petre.rodan@subdimension.ro>
-> > > Signed-off-by: Andreas Klinger <ak@it-klinger.de>  
-> > What's the relationship between Andreas and this patch?
-> > 
-> > Petre seems to have sent it so either Andreas should have a Co-authored-by or
-> > should be the author... Or not there at all  
+> rk3566 and rk3588 are sharing the same results:
+> JVT-AVC_V1 test suite with decoder GStreamer-H.264-V4L2SL-Gst1.0:
+>   Ran 112/135 tests successfully.
+> JVT-FR_EXT test suite with decoder GStreamer-H.264-V4L2SL-Gst1.0:
+>   Ran 27/69 tests successfully.
+> VP8-TEST-VECTORS test suite with decoder GStreamer-VP8-V4L2SL-Gst1.0:
+>   Ran 59/61 tests successfully.
 > 
-> Andreas has written this driver as it is in the mainline tree right now and he
-> is marked as a maintainer for it.
-> A month back I told him about the enum off-by-one problem and also about my plan
-> of adding more features to the driver.
-> He was happy to accept my code and once I sent v1 of this patch to the list has
-> asked to work together for the v2 you see here. This has helped with cleaning up
-> the code. He requested the additional 'Signed-off-by' tag, but if you have a more
-> explicit one I will happily use it. 'Co-developed-by' it is.
-
-Yup, needs combination of Co-developed-by and a Sign off for this case as in
-effect both of you wrote the code.
-
+> H264 decoder test has less test case passing. I think that's because
+> of my low gstreamer version. If you have a rk356x board I guess you
+> will get the same result as rk3588. That should be the mainline support
+> status of hantro g1 decoder.
 > 
-> He also owns an i2c version of the sensor so he was able to make sure that the
-> original half of the driver still works after my refactor, hence the 'Tested-by'
-> tag in the last patch.
+> For ffmpeg at the moment fluster doesn't support v4l2-request decoder.
+> I tried Kwiboo's fork[1] but failed to pass tests with decoder
+> FFmpeg-H.264-V4L2-request. I can decode video with ffmpeg command like:
+> "ffmpeg -benchmark -hwaccel drm -hwaccel_output_format drm_prime -i Big_Buck_Bunny_1080_10s_30MB.mp4 -f null -"
 
-That's fine.
+I have only tested this fork of fluster with ffmpeg 6.x, what version of
+ffmpeg did you test with? I was expecting it to also work on ffmpeg 5.x.
 
-> 
-> please tell me how do the 'fixes'/feature/improvement tags/keywords look like?
-> are these to be added on the subject line, or should they reside near my
-> 'Signed-off-by' inside the email body? I probably missed the documentation where
-> these are covered :)
-See https://elixir.bootlin.com/linux/latest/source/Documentation/process/submitting-patches.rst
-for lots of detail.  The fixes tag has a particular format and goes in the main
-tag block. Lots of examples in tree so can just take a look at the git history for
-how to apply these rules in practice.
+Please also note that ffmpeg v4l2-request patches at [2] contain some
+NV15/NV20 ffmpeg pix_fmt patches that fail ffmpeg tests. They are not
+needed for decoding of 10-bit frames using rkvdec but they are required
+to be able to run fluster test suite JVT-FR_EXT on rkvdec. (hantro g1 do
+not support 10-bit frames on rk)
+
+[2] https://github.com/Kwiboo/FFmpeg/commits/v4l2-request-n6.1
+
+Regards,
+Jonas
 
 > 
-> also, should I add a 'Reviewed-by:' you for 09/10 and 10/10 (the last two patches)?
-No. Tags should be explicitly given.  I tend not to give RB for stuff I'll pick up
-because they will have my SoB anyway as the person who applies the patches
-and that includes reviewing.
-
-In this case, Andreas asked for a tag to be included whereas I have not.
-
-Jonathan
-
-
+> [1] https://github.com/Kwiboo/fluster/tree/v4l2-request
 > 
-> best regards,
-> peter
 
 
