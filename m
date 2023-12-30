@@ -1,139 +1,131 @@
-Return-Path: <devicetree+bounces-28991-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28993-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06FAC820490
-	for <lists+devicetree@lfdr.de>; Sat, 30 Dec 2023 12:27:43 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C49CD820495
+	for <lists+devicetree@lfdr.de>; Sat, 30 Dec 2023 12:29:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A5C231F21915
-	for <lists+devicetree@lfdr.de>; Sat, 30 Dec 2023 11:27:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 01AF91C208FB
+	for <lists+devicetree@lfdr.de>; Sat, 30 Dec 2023 11:29:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE15428E6;
-	Sat, 30 Dec 2023 11:27:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40F77290E;
+	Sat, 30 Dec 2023 11:29:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="QYh7HljN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BpMv5QNJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com [209.85.128.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 576638F45
-	for <devicetree@vger.kernel.org>; Sat, 30 Dec 2023 11:27:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amarulasolutions.com
-Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-5cece20f006so66560657b3.3
-        for <devicetree@vger.kernel.org>; Sat, 30 Dec 2023 03:27:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google; t=1703935650; x=1704540450; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=BqmTg07L9Xjis/7k4DxCa7tRnJDtPkHV1RraDq6khcg=;
-        b=QYh7HljNqJi2+YWvh+1Dp38x7LSvF6zCIzaNGPmCR4dSb4aYcbzZXfxtjnhwt+D3HI
-         f/HgeSCNfW0Xzl8fDv2gdPMi7+sPkU0ChVV1V/7LtbD/uNKI5Cjl3G3TsdC/O1pWZQ1f
-         rTKb7EgVPYFrAMEjVAfYNbMEJLlSAIgglBgq8=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703935650; x=1704540450;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=BqmTg07L9Xjis/7k4DxCa7tRnJDtPkHV1RraDq6khcg=;
-        b=A2IZkJI/2X7l4+FMFUtuZfdL4rwIIWO4NgZ3CmpwxoQ4l1pucuzFPBEz4Brr9aP80v
-         rQg0IB+Zi/o2o2wyaGdsOmZnhVuPzJDKVt1e3d1afrIX5euUzb2vZYXdAt68W9sLwHjg
-         ISRnfMT4ZG4Iv9EnpwnVspLOcPSc77XEDCNSTI5S7/zbgh6oDlI3fnMftH9zJNO2lz6Z
-         lQVRe/k1xRtf14GDSzMYMxVIPEmZtmQv784EhBeuC/n/IRwLlK5s7KZ1QKak7BjCRlAa
-         M+AlycuSHaAAl2uhSb4pGUdLYspyg9TL2Smj2tK23mkEHOm1oFdKFhQMPwedhPtsAo2P
-         3s0g==
-X-Gm-Message-State: AOJu0YybzVAEMTqNgxSoG6NvuoVOBoF2cmYsOKn1BBv9jZntv1afox6k
-	G3DT1qOk1TQJIoMV8zhTjAr4Ae3NwXGq/w7VZMAMCCOsxP6mrQ==
-X-Google-Smtp-Source: AGHT+IE1r0S0LAjVTcbxxyQYJGt6YexIbq2As4b4Kc1EgXx/p5ebd2qlHzqdVuAFQXXYksM4upWkuU9Jq0EgWSNg4pI=
-X-Received: by 2002:a25:ada5:0:b0:dbc:ec6b:3e47 with SMTP id
- z37-20020a25ada5000000b00dbcec6b3e47mr7826906ybi.33.1703935650320; Sat, 30
- Dec 2023 03:27:30 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D58B7488;
+	Sat, 30 Dec 2023 11:29:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0DA75C433C7;
+	Sat, 30 Dec 2023 11:28:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1703935740;
+	bh=ME7rmguraS+QpHkqvcm2mb6WLPZeSXv2g9gGYhHbKd4=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=BpMv5QNJkSEJvW9tGPoVnTR2P/7BBPeGd2MRE1q/3tqKOeuO3DIMvoyeFk9THxxla
+	 AqDpasD4j3SAO+H4A8qidvEryGKwlRjemoK4od6FzfOpvYHqXh3aJLq+A++UuVLBW/
+	 +7bt5ACb5KZYuCez/AYXlEMJZit5LQ/yt+YWHqoyqcTFBU9KLW1mvfcAHq+ymH/g7+
+	 4ZxOnfSudeveWRJziqNNztCWAC4NstynHPE5fxvatEo7gkRqGaqMWnUKNc977iwYmR
+	 RRUAa3xUX0ViGOrlFw+Dv7m+mAFetaL5AeGVfnFpgpHXF/OA+Ff8zQcoSco5dJwKie
+	 gqg9z7Ej0ByMQ==
+Date: Sat, 30 Dec 2023 11:28:52 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Petre Rodan <petre.rodan@subdimension.ro>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Andreas Klinger <ak@it-klinger.de>,
+ Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+ <conor+dt@kernel.org>
+Subject: Re: [PATCH v2 01/10] dt-bindings: iio: pressure:
+ honeywell,mprls0025pa.yaml fix
+Message-ID: <20231230112852.2a9c3d64@jic23-huawei>
+In-Reply-To: <ZYvOJ9tlO1fp_QBT@sunspire>
+References: <20231224143500.10940-1-petre.rodan@subdimension.ro>
+	<20231224143500.10940-2-petre.rodan@subdimension.ro>
+	<20231226162839.5ceddc9e@jic23-huawei>
+	<ZYvOJ9tlO1fp_QBT@sunspire>
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231229135154.675946-1-dario.binacchi@amarulasolutions.com>
- <20231229135154.675946-6-dario.binacchi@amarulasolutions.com> <CACRpkdbBBQ96qfdmNHrbOdV9hhFheyTwTkwATFZRPBRiRcN4tw@mail.gmail.com>
-In-Reply-To: <CACRpkdbBBQ96qfdmNHrbOdV9hhFheyTwTkwATFZRPBRiRcN4tw@mail.gmail.com>
-From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-Date: Sat, 30 Dec 2023 12:27:19 +0100
-Message-ID: <CABGWkvrs+yqCC64Hugmp8jd-+Co7_oakYuMX36zpiFDJ5bvy=Q@mail.gmail.com>
-Subject: Re: [PATCH 5/8] dt-bindings: nt35510: add compatible for FRIDA FRD400B25025-A-CTK
-To: Linus Walleij <linus.walleij@linaro.org>
-Cc: linux-kernel@vger.kernel.org, linux-amarula@amarulasolutions.com, 
-	Alexandre Torgue <alexandre.torgue@foss.st.com>, Conor Dooley <conor+dt@kernel.org>, 
-	Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>, 
-	Jessica Zhang <quic_jesszhan@quicinc.com>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
-	Sam Ravnborg <sam@ravnborg.org>, Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-Hi Linus,
+On Wed, 27 Dec 2023 09:11:35 +0200
+Petre Rodan <petre.rodan@subdimension.ro> wrote:
 
-On Fri, Dec 29, 2023 at 6:34=E2=80=AFPM Linus Walleij <linus.walleij@linaro=
-.org> wrote:
->
-> Hi Dario,
->
-> thanks for your patch!
->
-> On Fri, Dec 29, 2023 at 2:52=E2=80=AFPM Dario Binacchi
-> <dario.binacchi@amarulasolutions.com> wrote:
->
-> > The patch adds the FRIDA FRD400B25025-A-CTK panel, which belongs to the
-> > Novatek NT35510-based panel family.
-> >
-> > Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-> (...)
->
->
-> > +    oneOf:
-> > +      items:
-> > +        - const: hydis,hva40wv1
-> > +        - const: novatek,nt35510
-> > +      items:
-> > +        - const: frida,frd400b25025
-> > +        - const: novatek,nt35510
->
-> You need a dash in from of each "items:" for that to work.
+> Hello Cameron,
+> 
+> On Tue, Dec 26, 2023 at 04:28:39PM +0000, Jonathan Cameron wrote:
+> > On Sun, 24 Dec 2023 16:34:46 +0200
+> > Petre Rodan <petre.rodan@subdimension.ro> wrote:
+> >   
+> > > Define enum inside the honeywell,transfer-function property block.
+> > > 
+> > > Set the correct irq edge in the example block.
+> > > Based on the datasheet, in table 13 on page 11:
+> > > "End-of-conversion indicator: This pin is set high when a measurement
+> > > and calculation have been completed and the data is ready to be
+> > > clocked out"
+> > > 
+> > > Add description on End-of-conversion interrupt.
+> > > 
+> > > Signed-off-by: Petre Rodan <petre.rodan@subdimension.ro>
+> > > Signed-off-by: Andreas Klinger <ak@it-klinger.de>  
+> > What's the relationship between Andreas and this patch?
+> > 
+> > Petre seems to have sent it so either Andreas should have a Co-authored-by or
+> > should be the author... Or not there at all  
+> 
+> Andreas has written this driver as it is in the mainline tree right now and he
+> is marked as a maintainer for it.
+> A month back I told him about the enum off-by-one problem and also about my plan
+> of adding more features to the driver.
+> He was happy to accept my code and once I sent v1 of this patch to the list has
+> asked to work together for the v2 you see here. This has helped with cleaning up
+> the code. He requested the additional 'Signed-off-by' tag, but if you have a more
+> explicit one I will happily use it. 'Co-developed-by' it is.
 
-Thanks for your help.
+Yup, needs combination of Co-developed-by and a Sign off for this case as in
+effect both of you wrote the code.
 
-Regards
-Dario
+> 
+> He also owns an i2c version of the sensor so he was able to make sure that the
+> original half of the driver still works after my refactor, hence the 'Tested-by'
+> tag in the last patch.
 
->
-> Yours,
-> Linus Walleij
+That's fine.
 
+> 
+> please tell me how do the 'fixes'/feature/improvement tags/keywords look like?
+> are these to be added on the subject line, or should they reside near my
+> 'Signed-off-by' inside the email body? I probably missed the documentation where
+> these are covered :)
+See https://elixir.bootlin.com/linux/latest/source/Documentation/process/submitting-patches.rst
+for lots of detail.  The fixes tag has a particular format and goes in the main
+tag block. Lots of examples in tree so can just take a look at the git history for
+how to apply these rules in practice.
 
+> 
+> also, should I add a 'Reviewed-by:' you for 09/10 and 10/10 (the last two patches)?
+No. Tags should be explicitly given.  I tend not to give RB for stuff I'll pick up
+because they will have my SoB anyway as the person who applies the patches
+and that includes reviewing.
 
---=20
+In this case, Andreas asked for a tag to be included whereas I have not.
 
-Dario Binacchi
-
-Senior Embedded Linux Developer
-
-dario.binacchi@amarulasolutions.com
-
-__________________________________
+Jonathan
 
 
-Amarula Solutions SRL
+> 
+> best regards,
+> peter
 
-Via Le Canevare 30, 31100 Treviso, Veneto, IT
-
-T. +39 042 243 5310
-info@amarulasolutions.com
-
-www.amarulasolutions.com
 
