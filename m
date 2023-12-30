@@ -1,215 +1,157 @@
-Return-Path: <devicetree+bounces-29025-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29030-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74A578206FB
-	for <lists+devicetree@lfdr.de>; Sat, 30 Dec 2023 16:46:26 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D830820716
+	for <lists+devicetree@lfdr.de>; Sat, 30 Dec 2023 17:07:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2C5C6281DA8
-	for <lists+devicetree@lfdr.de>; Sat, 30 Dec 2023 15:46:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E57CB1F219C7
+	for <lists+devicetree@lfdr.de>; Sat, 30 Dec 2023 16:07:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B077012B95;
-	Sat, 30 Dec 2023 15:44:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABE328F59;
+	Sat, 30 Dec 2023 16:06:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=solidrn.onmicrosoft.com header.i=@solidrn.onmicrosoft.com header.b="XIhzt1Xf"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="yEaqBOKT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR04-DB3-obe.outbound.protection.outlook.com (mail-db3eur04on2077.outbound.protection.outlook.com [40.107.6.77])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 303B4D2FF;
-	Sat, 30 Dec 2023 15:44:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=solid-run.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=solid-run.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=MA2jwtxgnsgFkv981E39/9HU0wDC/gdOQy/xBpfWVoBuCTmt5gQx8iyePTpXpALX52zveXbTwJbOnW9iC5CcsEQJ+R3lB22w2e6CA+8miB8RDP1Hqlm6WGp/z6PmBv4MuxG2E7+iAK5jNldbdBUWoZji9W1y5T/42v/OrOg3XtGjtlEdRoZpx7aV8xOeE81Lr7tjDoUVrLr85EjxjIAssYH6paMw09+Ih60xWHgnvAVtKzNl04swBwAKDEwd/TySZSLHr54o65ssnPb8vWNm7r4fEH2DO5pw7Pc7G92cy8KHcg0fnO77VgdQEHwzTAGhtc26aMSEgUKatD4kFdIKSw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=dgcl289EmJRwpJtbpRe4wL18fqPn5M9ka+q6zrHa0xg=;
- b=IieyRgD14jAdMYEETC2quxJNiPSCVHirYHRfvumrDQfiX+ZwcE0zfcSO8m1qgWGJm2iu+3lYe7f/TCFnQYmwwZEz/UFFPX7hY0kHn2UMrBCozHcSyktgtwfUmyL+DUypfYIHja9egRvYzBsuXf9D8mHAFdt1Fn7Rsqvrk5B3cLdx2dP6AcFzfeB23h9eGOw/f9SUWD9MUSe9vmEV+DFc9EMKVq0omahh3P10MhuUTnapGjAF3t9OReP/uXCb7AZO3PHHK10jd3mrL/4bzggduuYYnOUo1KzlVViL2jmgZPyoa/LZy/duXD2rxLL3ec3ESAcJrMbdDk8mtBz0Ww99bg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=solid-run.com; dmarc=pass action=none
- header.from=solid-run.com; dkim=pass header.d=solid-run.com; arc=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10EFC8F7D
+	for <devicetree@vger.kernel.org>; Sat, 30 Dec 2023 16:06:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-40d5a41143fso37647975e9.3
+        for <devicetree@vger.kernel.org>; Sat, 30 Dec 2023 08:06:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=solidrn.onmicrosoft.com; s=selector1-solidrn-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dgcl289EmJRwpJtbpRe4wL18fqPn5M9ka+q6zrHa0xg=;
- b=XIhzt1XfP8QcUERuCAR14l35baui2NfytFv2TZ2hwHRrvYEL70CdlspqHG04LXR/s8/YAlQR4IrU+tvgqtpvO/3n44FGX9H6ajifLn9o92Xrpa3N1hS5Zm4t1dzB8Dzm9Uzp579WsLnFggHG6O0KWgJKNNtfCx0T4QtVjDIkKEE=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=solid-run.com;
-Received: from AS8PR04MB8963.eurprd04.prod.outlook.com (2603:10a6:20b:42e::18)
- by DB9PR04MB9704.eurprd04.prod.outlook.com (2603:10a6:10:303::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7135.20; Sat, 30 Dec
- 2023 15:44:51 +0000
-Received: from AS8PR04MB8963.eurprd04.prod.outlook.com
- ([fe80::4db1:aae8:c643:2e73]) by AS8PR04MB8963.eurprd04.prod.outlook.com
- ([fe80::4db1:aae8:c643:2e73%6]) with mapi id 15.20.7135.023; Sat, 30 Dec 2023
- 15:44:51 +0000
-From: Josua Mayer <josua@solid-run.com>
-Date: Sat, 30 Dec 2023 16:44:45 +0100
-Subject: [PATCH v4 11/11] arm: dts: marvell: clearfog-gtr-l8: align port
- numbers with enclosure
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20231230-support-clearfog-gtr-l8-sfp-v4-11-1d7f0e2c7128@solid-run.com>
-References: <20231230-support-clearfog-gtr-l8-sfp-v4-0-1d7f0e2c7128@solid-run.com>
-In-Reply-To: <20231230-support-clearfog-gtr-l8-sfp-v4-0-1d7f0e2c7128@solid-run.com>
-To: Andrew Lunn <andrew@lunn.ch>, 
- Gregory Clement <gregory.clement@bootlin.com>, 
- Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, 
- Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Josua Mayer <josua@solid-run.com>
-X-Mailer: b4 0.12.4
-X-ClientProxiedBy: FR0P281CA0247.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:af::16) To AS8PR04MB8963.eurprd04.prod.outlook.com
- (2603:10a6:20b:42e::18)
+        d=linaro.org; s=google; t=1703952411; x=1704557211; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=LTftqumhaIAV1t6cyC+UDDkT3xpqS8YQPrHcdoHHP5A=;
+        b=yEaqBOKTEmjwBw/W+HWgYaMebDgVk97hLv/DAR6uMYO7IZmTwIvcEdHfbk3fPppTgd
+         Pu/pqH3Z6ZB66JZY0SLmi4NZCw9RRjFWRDLBP/6xeRQUr945O6PS3vVgdVg4ltpslZHr
+         5VuRcKnY09E2cIvngKfx05+ol96Gjx6e37qkQy04l5IwfhVx169mq/+B9UmzLfEygwf4
+         FoxlNFxAzHP5VpMR7VQwwcsdX1M9Cxb3leYFaJo/A/BYleE2lNGHkoC88/uJMTtCGd2U
+         tchNv42QAt6x+hznIuIOHIrfuGsjcBV6T5jJBukDDR1wgDnsW36oHO6uua5Kd6Ls33kS
+         JLxA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1703952411; x=1704557211;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=LTftqumhaIAV1t6cyC+UDDkT3xpqS8YQPrHcdoHHP5A=;
+        b=nkmjI5HckFc5jOarqkdw3bpVl9GTiFNtz8fOfPdQG4fJNqm6/PrTCbFf2+O8a4zA7s
+         j5POa6hCuIDJfBWXAdqwuF/hiV3vOWEwdU9d0cAseM1nz9uYhWKDo3WHTFPEro8Bk9tu
+         3LR8qXnf3BlV3+UkEx7XDIBZL9p5jDARK2/nt2Qa7snE5inXJ2v4nFsbG0ra0Ab2XjdT
+         XboFUFNwaKi5uipL5fIfitczFQ541sYKrCn+QSSSE+ejIxa8+wPgqwGTGmXmXMX7jfmi
+         cL3yNFobmXSvbpUjX0CdWqfd2BCRRurK8Eq3or9WYgCd/r7TtM20bm7zjZg75sAnBoVE
+         LXMA==
+X-Gm-Message-State: AOJu0YzaOw/57+sGoP4WnPPcZZcHUHKG1+WActMBoF0DuzJPS3+nS3X9
+	LYAa9KEd5M2BcaGw9lDuAPvGwQMWTLTOsA==
+X-Google-Smtp-Source: AGHT+IGi3MR+sRaDN0eBGmh0R8UC4uJ2TZM9KfsMx0I4l1HB8CvaLQ5cqvxpadz8CUQJttwaEsKmDA==
+X-Received: by 2002:a05:600c:a44:b0:40d:6c48:a1dc with SMTP id c4-20020a05600c0a4400b0040d6c48a1dcmr2029990wmq.176.1703952411145;
+        Sat, 30 Dec 2023 08:06:51 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.218.27])
+        by smtp.gmail.com with ESMTPSA id r12-20020a05600c35cc00b0040d3dc78003sm33698325wmq.17.2023.12.30.08.06.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 30 Dec 2023 08:06:50 -0800 (PST)
+Message-ID: <02e64f0f-6add-4583-9ee4-d5ace6497776@linaro.org>
+Date: Sat, 30 Dec 2023 17:06:48 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AS8PR04MB8963:EE_|DB9PR04MB9704:EE_
-X-MS-Office365-Filtering-Correlation-Id: cc4d20c0-a3e6-4a42-65c2-08dc094e426a
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	BkrvY9rfcCQJNT7OlpGTbTnXAOf0GEB6gcOp6PerCZH7b/fmupdnmLGVs+zGT8OUYCB39hCBorjSDHbTjPNtuBJ5NZKzjX9BTSY2xkP7X4qh/QAKjr3K2Hk2BsvexsOzt8vefnjCR3G6yS810Ovz9YhrDM0M9jSd/mXqyVsOjBgCMVPndEp8Q92X8HMyvOj10UDuJj0W3qo5ZgsRT4Js/CAaxjfFJkkuJR10VJ12y9Nz7VxR730KVC5efLe2Qe3RzTKnBA5YJtMYgQFTZBbhlOAjc1a0nb9sCm+R+iD3C6YJhMa4qAEi6t4jPaW7VC2U8umRZLJ0MKqjLnB7VqPMijw8K3L831wNCnphDt9GICJnW9S4yp3M0ALqYDCTIGHlf8SZiYThjeu+JQBgrQwUKxRth9IQ10lkVnehLVrgff3eA1I6fqHn79Da5xleMRy00PeFf1IymLiXIEP5EFQn2BGTNFUeQ7PqZ+HHVwtf2jashXaDj8kgQmehyeCEZsQ2UNS2EbjWMRi5BQ24b/7RXSvWniTxvDqCKFfGjA5/wjk1MmanzthcryWVayuHthl78PIx3et3LxRVklczS4BF1mqKgucB/9tABHz3NP7oKw+91WCPYYgmFSfKkSjyqqys
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB8963.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(396003)(39830400003)(376002)(136003)(366004)(346002)(230922051799003)(1800799012)(451199024)(186009)(64100799003)(26005)(2616005)(107886003)(86362001)(38100700002)(38350700005)(6506007)(36756003)(8676002)(4326008)(6512007)(83380400001)(52116002)(110136005)(66476007)(66556008)(316002)(478600001)(41300700001)(2906002)(8936002)(6486002)(6666004)(5660300002)(66946007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?WkttL1V4UzJ0Z2FsRmdXM1FOOS84b2hPR0hzYU5DTDJwMlhJeUd0TWNCZHhp?=
- =?utf-8?B?SmdubGo1RStqRHFEZ1ozVGVIWitoWFFMK2lmdHFBS3Y4Q3ZLNC9MOC92Z2VC?=
- =?utf-8?B?STZEcFZkR0NHNlpsTThXdXYwMk9OdDFoNWg3dXJpakJaYlVOZGFDTmlMTU5L?=
- =?utf-8?B?ZXhndTVPbHIvcWhTMTNDVXJKMjJoTWx5K1hyQWdlQ1NPTUwwMW9xRUF0OTBW?=
- =?utf-8?B?bjlpQkZNL0Jpc25PVCtmNkdiVkFGTzNtZXR1Q2J0c1lERXhFNjM5QTFoMmtx?=
- =?utf-8?B?QkV4WlByVUowMHliTHIrN09CcUNsZnBjYUxERm9OdWI2M1JkZ3R6MjhqS3JW?=
- =?utf-8?B?MG02TDBJNEljWHNJNlNwMmJKT0x3TzNjQlVXTFd0eFhMb0RzVlpheTZZenZx?=
- =?utf-8?B?MktQN25yUlFjZW5tNkJib0FFUWNaelpqSzc2blRzNUdQaGUzTkRnbkU1L1Yx?=
- =?utf-8?B?Y1NuQUtValdCa3BvUHNkQmJ1d2dTTUlUS1FWSk92THU0b1JhQUZqSm51MzZH?=
- =?utf-8?B?Q0w4cmJONlpiNDlUalBWdkxzL05DQWVWa0RaMDgrcElEYWZudVkvY3pMWXdC?=
- =?utf-8?B?aENSNmxibjZvWDJhZkxkaDNZSnhzOE1iSjdENTY5NmdWS3krdi9VaDFHQStI?=
- =?utf-8?B?MFIxSE44K2J2YmxwNUY5Nk9lSnFBdmhoRUtYUG9QQ1BzR1ZmOVlTRmwxa1VQ?=
- =?utf-8?B?ditWNWt3SU9PK0dOZHhQTzY4elN2SDUwVGZaVC9OeGJMSjMzTXdTZ25Rdm1Y?=
- =?utf-8?B?Mk43S3Q3WGI4TE42eXk0QitPeFBMZUZtdG5tMUJkemxhbWo1QWZ6UjQrNUFs?=
- =?utf-8?B?M2dJRFc1aFFNS1RHbkU5ZktVaG9mMjFpcHdiejlPaDFoK2wwZy9IVGdYbTFK?=
- =?utf-8?B?cFZ0djZwOHBuQmNJOEIxS1F0NG15NU5zQ2FMbVl5MmhrQjRWcEc1aTNNS3JG?=
- =?utf-8?B?WnZoeloyYXc4WDltYk9xY0JWWjVvNnBwSUk5b3lTVit4SnFvRm5xeUdIcXpE?=
- =?utf-8?B?TTJLb3BZWlNOUXVPb1dFekF1OWF2dFdCMmkyNzBqTUorYlNqQ201STJlV0RL?=
- =?utf-8?B?ekhldCsxdERqZHgyMEtsV1F1aXVMQVQ3T29DV2Q3Q0x5UEwvTk9PYmhNcGlB?=
- =?utf-8?B?b1JHREhlZ21QVktTSmZQd3U0RXB6eGpMWXJXQ0RGSDYwQm9veGE0d0E2TEtx?=
- =?utf-8?B?bGw3VldtZHptbkVIT2Z2UGpRRitGRUprMTIreGt2Z2o0MHg4bXppeWlMb1Fh?=
- =?utf-8?B?cEtoWHMwVEJYelVtcldaWTJoV3YyTXA4R0g2UmNXbEhyZTVhSVZOUDg2WkxQ?=
- =?utf-8?B?VUFSaU1VNzgyejBPek9EdkFMSUN0dHNTRVNDSjhqNWUvbC9pRzVtVDhBUGs0?=
- =?utf-8?B?aHpkU0N2ZElBNktFVnpJdXFuS0hTbldEMVE1Yk54U09oRzFSemUyeHo5Wisr?=
- =?utf-8?B?N0ZmRVNzRHYrVk1FbXZIVjcwWFJzSmMwNlpWblJVSEMwZWpidDFHSnNrQ3JM?=
- =?utf-8?B?dXhNSFZQRGlFZExZdlB4STRpdUN1U2p4c3ozMlVQWHA1Qi9NS2RjWFNacHl6?=
- =?utf-8?B?TGd5bWdwVDgzdU02L0I5cjBYcXkyMkhXY2xkNVJOTHp2Z1MvYSttRzVKK2s0?=
- =?utf-8?B?SlNHSUtWWlJQQ1RCbkxXc1MxUFVncWlXcE15RndYR3Y0WUlYaXBhc2s2Uk4z?=
- =?utf-8?B?TmhDN3AvcjZwRWttYlJUNUpOTFJSMm1Mdk9zb1lEWnpiRXZRSjdRYWRjZWQ0?=
- =?utf-8?B?MHZWNlZTdVozQVdxbjV1N3N2MTgwVk56QWlBeHhsU1ZyOWdMYzJIc0p1TGpo?=
- =?utf-8?B?MXpYVW9oWkt5NnhIcVVOY3BsNEVqTDhtTjA1WENCWkdLTTVCWXNXRU4reFJM?=
- =?utf-8?B?RmloT0wvbHg2RVB4UnpBZllSV2pGaFkzOFlDNmRzK2d0dDRzYnhSLzFmSjYv?=
- =?utf-8?B?cE4xZWJaNkpiQ2JSNWZ6YjV4dkJlTTROZHlQaEZDWkZubFNTRHh2U1lqTmhX?=
- =?utf-8?B?Vjl5TE9tdkdOU3VKVmtxaHNlSEovVitTWTk0NkJscW1iU21nUXZYeHJsRlVL?=
- =?utf-8?B?L3JlNklCQncyZiszdG5FS0FUQXIyZnlWU1RtYmZQTy80Skliay9EMEp5Z3Fo?=
- =?utf-8?Q?33GsuMtxzAmu4EBv1nTsXstt7?=
-X-OriginatorOrg: solid-run.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: cc4d20c0-a3e6-4a42-65c2-08dc094e426a
-X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB8963.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Dec 2023 15:44:50.8350
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: a4a8aaf3-fd27-4e27-add2-604707ce5b82
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ntsfHwh0ww0bZdg/XvMhyLOevQetYrpd9N06c1tob0mGOABeM/bxGihP4g+uYzeJiFvaWnTm5jcJtdSzqJklJw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB9704
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 3/3] dt-bindings: media: rockchip-vpu: Add RK3588
+ compatible
+To: Jianfeng Liu <liujianfeng1994@gmail.com>, ezequiel@vanguardiasur.com.ar,
+ p.zabel@pengutronix.de, mchehab@kernel.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, heiko@sntech.de,
+ sfr@canb.auug.org.au
+Cc: linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20231228131617.3411561-1-liujianfeng1994@gmail.com>
+ <20231228131617.3411561-4-liujianfeng1994@gmail.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20231228131617.3411561-4-liujianfeng1994@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Clearfog GTR has an official enclosure with labels for all interfaces.
-The "lan" ports on the 8-port switch in device-tree were numbered  in
-reverse wrt. enclosure.
+On 28/12/2023 14:16, Jianfeng Liu wrote:
+> Add compatible for rk3588 Hantro G1 vpu decoder.
+> 
+> Signed-off-by: Jianfeng Liu <liujianfeng1994@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/media/rockchip-vpu.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/media/rockchip-vpu.yaml b/Documentation/devicetree/bindings/media/rockchip-vpu.yaml
+> index c57e1f488..ba41446f6 100644
+> --- a/Documentation/devicetree/bindings/media/rockchip-vpu.yaml
+> +++ b/Documentation/devicetree/bindings/media/rockchip-vpu.yaml
+> @@ -25,6 +25,7 @@ properties:
+>            - rockchip,px30-vpu
+>            - rockchip,rk3568-vpu
+>            - rockchip,rk3588-av1-vpu
+> +          - rockchip,rk3588-vpu
 
-Update all device-tree labels to match.
+Your driver suggests it is compatible with 3568-vpu.
 
-Signed-off-by: Josua Mayer <josua@solid-run.com>
----
- arch/arm/boot/dts/marvell/armada-385-clearfog-gtr-l8.dts | 16 ++++++++--------
- 1 file changed, 8 insertions(+), 8 deletions(-)
+Also, nothing in commit msg explains me differences against existing
+av1-vpu.
 
-diff --git a/arch/arm/boot/dts/marvell/armada-385-clearfog-gtr-l8.dts b/arch/arm/boot/dts/marvell/armada-385-clearfog-gtr-l8.dts
-index 2df388f222ec..da6981677b03 100644
---- a/arch/arm/boot/dts/marvell/armada-385-clearfog-gtr-l8.dts
-+++ b/arch/arm/boot/dts/marvell/armada-385-clearfog-gtr-l8.dts
-@@ -32,49 +32,49 @@ ports {
- 
- 			port@1 {
- 				reg = <1>;
--				label = "lan8";
-+				label = "lan1";
- 				phy-handle = <&switch0phy0>;
- 			};
- 
- 			port@2 {
- 				reg = <2>;
--				label = "lan7";
-+				label = "lan2";
- 				phy-handle = <&switch0phy1>;
- 			};
- 
- 			port@3 {
- 				reg = <3>;
--				label = "lan6";
-+				label = "lan3";
- 				phy-handle = <&switch0phy2>;
- 			};
- 
- 			port@4 {
- 				reg = <4>;
--				label = "lan5";
-+				label = "lan4";
- 				phy-handle = <&switch0phy3>;
- 			};
- 
- 			port@5 {
- 				reg = <5>;
--				label = "lan4";
-+				label = "lan5";
- 				phy-handle = <&switch0phy4>;
- 			};
- 
- 			port@6 {
- 				reg = <6>;
--				label = "lan3";
-+				label = "lan6";
- 				phy-handle = <&switch0phy5>;
- 			};
- 
- 			port@7 {
- 				reg = <7>;
--				label = "lan2";
-+				label = "lan7";
- 				phy-handle = <&switch0phy6>;
- 			};
- 
- 			port@8 {
- 				reg = <8>;
--				label = "lan1";
-+				label = "lan8";
- 				phy-handle = <&switch0phy7>;
- 			};
- 
-
--- 
-2.35.3
+Best regards,
+Krzysztof
 
 
