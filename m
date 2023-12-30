@@ -1,120 +1,116 @@
-Return-Path: <devicetree+bounces-28976-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28979-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82699820310
-	for <lists+devicetree@lfdr.de>; Sat, 30 Dec 2023 01:07:34 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C39C82035E
+	for <lists+devicetree@lfdr.de>; Sat, 30 Dec 2023 03:42:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3DBB6283A6A
-	for <lists+devicetree@lfdr.de>; Sat, 30 Dec 2023 00:07:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1FCB728312A
+	for <lists+devicetree@lfdr.de>; Sat, 30 Dec 2023 02:42:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48546EC3;
-	Sat, 30 Dec 2023 00:05:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62AF8441A;
+	Sat, 30 Dec 2023 02:42:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="i3xvS13M"
+	dkim=pass (2048-bit key) header.d=dabbelt-com.20230601.gappssmtp.com header.i=@dabbelt-com.20230601.gappssmtp.com header.b="jpTpyxnJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
+Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com [209.85.167.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4B54C122
-	for <devicetree@vger.kernel.org>; Sat, 30 Dec 2023 00:05:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-5553cc31f1cso5098682a12.1
-        for <devicetree@vger.kernel.org>; Fri, 29 Dec 2023 16:05:22 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF0423D67
+	for <devicetree@vger.kernel.org>; Sat, 30 Dec 2023 02:42:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=dabbelt.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dabbelt.com
+Received: by mail-oi1-f176.google.com with SMTP id 5614622812f47-3bbd38715f2so1498456b6e.2
+        for <devicetree@vger.kernel.org>; Fri, 29 Dec 2023 18:42:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1703894721; x=1704499521; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+        d=dabbelt-com.20230601.gappssmtp.com; s=20230601; t=1703904122; x=1704508922; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:to:from:cc
+         :in-reply-to:subject:date:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=RD+KG1VrKD5oGt/gDgU1ORt0oWHI+QJ6WNkaDvndULs=;
-        b=i3xvS13Mba1mb1gSmcPxToDQ5WuboLjC/GlW9u8GcT80qGtzT8Ey7mUUkokRyOm7s1
-         JsGCp7CHIcPJkWoU+kyDe6/9d6hmvj0t3kvkk+UiGC5IZUqYry1MOZvspsEzAT78RPbp
-         eFWfTOsciBV9w4IczfKKoputMkJgzXI0mRzXz2FMgPp8yYdhAZVv6d+QSQW7pk1izGDa
-         eTjx76AC9pDW8VHPog8h9GJVJxzagh6q3Gjnz9zd9qj5DbadCtxwp9oBAmkTAIDO9ymI
-         aGB/KWOqSoqnsitJLuM/dhZTG0erdrPI+i7f/Mfd5QVVLRTj79K/DNzwiC6Jx7JGmXyX
-         0KzQ==
+        bh=PkMRDEc3q7i96HgJAw1IRoh+BsMy8VlyiKEtAyjrTsc=;
+        b=jpTpyxnJgYDTpq3zuDegrAALR41PYKjF7NHKRtQd8wykqphJE0IU0RMC6U2iXRHCxx
+         yuodqZtJKtQXW7SwMLzzbrgAmPQNbffsCI8nWRJt9ZFk8ipV5OrJzRjzyy4D+GDTjVUL
+         dKWpJ/of/6ajij9/fKK1oJxKdC3tn6eCgPvLcuUsL+hw7LoRkQIWjZNbLpkpGAQZC+MW
+         m+0dUMe1C2WdN9AUb0P3unz2t2DoAS0NLPyvL2S5fOph/XPpx7MOkk4jyvymQrMBGxjc
+         2Iub098FfO7PQGh310W3vOAfFlZXaHRRUV5lY77LUXHcG6G60yGMG/9l7kXkW3+WYKrL
+         vmRA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703894721; x=1704499521;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=RD+KG1VrKD5oGt/gDgU1ORt0oWHI+QJ6WNkaDvndULs=;
-        b=CH1iGfTcWP8OTYxRc/XWfMQV7kpvmOWHfm8p2j6B7IF1Vg9Xh2on2XXpZ03iNYfZcE
-         qEzeiSa0Jt78l2aUnAoYiwG/KcZIVWcHGdBBPlkQM7cCfesjer2cL+gPL9+7L2NQtl66
-         SPPfbwFeqZLJ7PyHlMsMszgSnOLHx488n4JhOaIsghbuM4UB+zYw8gAz/KP0hqRHqPbx
-         YskHVrwn1I5CGESyq7+qXnt1U2cXJuRg4XVdc1kYrMUQEK72vX9d5DyNYg15mW+jP8+p
-         lJnSFHnJL4AF094yjF3U6fJO/F9BM7irpRI5HV9aigtBX5+XISJOyvdRIfMd3lkZmZcE
-         a9Lw==
-X-Gm-Message-State: AOJu0YzxemRBDgFxSC6xkyPoQAiwF60h7qeh92mqE9oiPurmRglSH6e3
-	FWuuAnbgtSmdqkc9M20Q9Qku9jQ2xJ7057axvUXENEFssQE=
-X-Google-Smtp-Source: AGHT+IH2rjH7GbOvjD1sAUGCNW5dwQtU6peYxB7yj3ljeQbhlJ+7+ctpX8nJyowUxyOI/O/CfQWQmA==
-X-Received: by 2002:a17:906:6b8c:b0:a26:6d82:3261 with SMTP id l12-20020a1709066b8c00b00a266d823261mr10723651ejr.38.1703894721211;
-        Fri, 29 Dec 2023 16:05:21 -0800 (PST)
-Received: from [10.167.154.1] (178235179036.dynamic-4-waw-k-1-3-0.vectranet.pl. [178.235.179.36])
-        by smtp.gmail.com with ESMTPSA id wj6-20020a170907050600b00a26a0145c5esm8609623ejb.116.2023.12.29.16.05.20
+        d=1e100.net; s=20230601; t=1703904122; x=1704508922;
+        h=content-transfer-encoding:mime-version:message-id:to:from:cc
+         :in-reply-to:subject:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=PkMRDEc3q7i96HgJAw1IRoh+BsMy8VlyiKEtAyjrTsc=;
+        b=qrO7ApQiXJFrORecHwjQR1562a0NYsM0p37kljKtm3Rxy7XvXXaCMSqzqZHwtwk3Gu
+         /9WHPYrUqHxKgeHS/xl40z+WqWb7x6X962/UfqJdJZKFeyLw8F57BKUnMAu8OjkZ7qb3
+         s4PiOE2XZWoW4Q5SOY3QPcRcVlV7GfngWK3xQzRHqdpe/EkgRluI+9BUcPMGEfisLH1T
+         FGXDPGDHYKQ/XLKj5cxr2xqphAMkHuIrnaSWKPu+Pl4nQEScEOURsgQr88GR96TPq4wL
+         IAzyqiUxmdp6pn5dmT8fGgw7Y0qjRbt1JPk96gvqKlD+VmaWA/Mafu+7tIKdmAojn4rh
+         EEaA==
+X-Gm-Message-State: AOJu0Yzjl7Bev0ijznAoZO0hG1Q+reX/R0vPYpHyh0ADd5hYXNXzFv0s
+	TW/rGg6qIAmQdxMftynr7QgxrisMOQB9bQ==
+X-Google-Smtp-Source: AGHT+IE2LtcyOE7VGF7LqxlgOpp/gooJgjcVuO2l8WC7IBsT5j/W/mrEzafOXAobKw1fwRCfOs5KKQ==
+X-Received: by 2002:a05:6808:e8c:b0:3bb:edf8:c497 with SMTP id k12-20020a0568080e8c00b003bbedf8c497mr1147353oil.71.1703904121807;
+        Fri, 29 Dec 2023 18:42:01 -0800 (PST)
+Received: from localhost ([192.184.165.199])
+        by smtp.gmail.com with ESMTPSA id c18-20020aca1c12000000b003b3ec15d8ebsm2648397oic.5.2023.12.29.18.42.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 29 Dec 2023 16:05:20 -0800 (PST)
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-Date: Sat, 30 Dec 2023 01:05:11 +0100
-Subject: [PATCH 10/10] arm64: dts: qcom: sc8180x: Add RPMh sleep stats
+        Fri, 29 Dec 2023 18:42:01 -0800 (PST)
+Date: Fri, 29 Dec 2023 18:42:01 -0800 (PST)
+X-Google-Original-Date: Fri, 29 Dec 2023 18:41:57 PST (-0800)
+Subject:     Re: [PATCH v7 1/4] riscv: defconfig: Enable mmc and dma drivers for T-Head TH1520
+In-Reply-To: <20231129-th1520_mmc_dts-v7-1-c77fc19caa6f@baylibre.com>
+CC: Paul Walmsley <paul.walmsley@sifive.com>, aou@eecs.berkeley.edu,
+  jszhang@kernel.org, guoren@kernel.org, wefu@redhat.com, Conor Dooley <conor@kernel.org>,
+  robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, jkridner@beagleboard.org,
+  robertcnelson@beagleboard.org, linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+  devicetree@vger.kernel.org, dfustini@baylibre.com
+From: Palmer Dabbelt <palmer@dabbelt.com>
+To: dfustini@baylibre.com
+Message-ID: <mhng-577f4913-06ac-4f80-8793-6336132d503e@palmer-ri-x1c9>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20231230-topic-8180_more_fixes-v1-10-93b5c107ed43@linaro.org>
-References: <20231230-topic-8180_more_fixes-v1-0-93b5c107ed43@linaro.org>
-In-Reply-To: <20231230-topic-8180_more_fixes-v1-0-93b5c107ed43@linaro.org>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>
-Cc: Marijn Suijten <marijn.suijten@somainline.org>, 
- linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Konrad Dybcio <konrad.dybcio@linaro.org>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1703894704; l=805;
- i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=pAneHkQpjzXuVLq/czDVQq++TfgaWtAoMvT9u9bC34o=;
- b=BLapVO/wBAb72mb4TAzWGdgt3gUR5FsyzO3z83hEF+/iTNbmy9lF3956wIjEV04CmiTWfIRS8
- B46vZ+9h1NxCRAcCbgbAuzVvzDd9UrZYgEv1qzVwu8RVE+hjC3SU44L
-X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
- pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
+Mime-Version: 1.0 (MHng)
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Add the sleep stats node to enable peeking at the power collapse reports
-coming from the AOSS.
+On Wed, 29 Nov 2023 17:48:47 PST (-0800), dfustini@baylibre.com wrote:
+> Enable the mmc controller driver and dma controller driver needed for
+> T-Head TH1520 based boards, like the LicheePi 4A and BeagleV-Ahead, to
+> boot from eMMC storage.
+>
+> Reviewed-by: Guo Ren <guoren@kernel.org>
+> Signed-off-by: Drew Fustini <dfustini@baylibre.com>
+> ---
+>  arch/riscv/configs/defconfig | 2 ++
+>  1 file changed, 2 insertions(+)
+>
+> diff --git a/arch/riscv/configs/defconfig b/arch/riscv/configs/defconfig
+> index 905881282a7c..e635dc9d1997 100644
+> --- a/arch/riscv/configs/defconfig
+> +++ b/arch/riscv/configs/defconfig
+> @@ -214,6 +214,7 @@ CONFIG_MMC=y
+>  CONFIG_MMC_SDHCI=y
+>  CONFIG_MMC_SDHCI_PLTFM=y
+>  CONFIG_MMC_SDHCI_CADENCE=y
+> +CONFIG_MMC_SDHCI_OF_DWCMSHC=y
+>  CONFIG_MMC_SPI=y
+>  CONFIG_MMC_DW=y
+>  CONFIG_MMC_DW_STARFIVE=y
+> @@ -223,6 +224,7 @@ CONFIG_RTC_CLASS=y
+>  CONFIG_RTC_DRV_SUN6I=y
+>  CONFIG_DMADEVICES=y
+>  CONFIG_DMA_SUN6I=m
+> +CONFIG_DW_AXI_DMAC=y
+>  CONFIG_RZ_DMAC=y
+>  CONFIG_VIRTIO_PCI=y
+>  CONFIG_VIRTIO_BALLOON=y
 
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
----
- arch/arm64/boot/dts/qcom/sc8180x.dtsi | 5 +++++
- 1 file changed, 5 insertions(+)
+Acked-by: Palmer Dabbelt <palmer@rivosinc.com>
 
-diff --git a/arch/arm64/boot/dts/qcom/sc8180x.dtsi b/arch/arm64/boot/dts/qcom/sc8180x.dtsi
-index c0dd44f14674..013723be4bb7 100644
---- a/arch/arm64/boot/dts/qcom/sc8180x.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc8180x.dtsi
-@@ -3270,6 +3270,11 @@ aoss_qmp: power-controller@c300000 {
- 			#power-domain-cells = <1>;
- 		};
- 
-+		sram@c3f0000 {
-+			compatible = "qcom,rpmh-stats";
-+			reg = <0x0 0x0c3f0000 0x0 0x400>;
-+		};
-+
- 		spmi_bus: spmi@c440000 {
- 			compatible = "qcom,spmi-pmic-arb";
- 			reg = <0x0 0x0c440000 0x0 0x0001100>,
-
--- 
-2.43.0
-
+in case folks want to keep this with the DTS updates.  Thanks!
 
