@@ -1,65 +1,66 @@
-Return-Path: <devicetree+bounces-28972-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-28973-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D84228202FF
-	for <lists+devicetree@lfdr.de>; Sat, 30 Dec 2023 01:06:31 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B8450820302
+	for <lists+devicetree@lfdr.de>; Sat, 30 Dec 2023 01:06:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6B435B22447
-	for <lists+devicetree@lfdr.de>; Sat, 30 Dec 2023 00:06:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 642C01F22CCC
+	for <lists+devicetree@lfdr.de>; Sat, 30 Dec 2023 00:06:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F5D36D6C3;
-	Sat, 30 Dec 2023 00:05:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF6C964A;
+	Sat, 30 Dec 2023 00:05:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OQsboK5z"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ynx4kxj7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A2B96FB9
-	for <devicetree@vger.kernel.org>; Sat, 30 Dec 2023 00:05:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FF128C01
+	for <devicetree@vger.kernel.org>; Sat, 30 Dec 2023 00:05:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-2cce70ad1a3so19551771fa.1
-        for <devicetree@vger.kernel.org>; Fri, 29 Dec 2023 16:05:15 -0800 (PST)
+Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-3370769018cso1806422f8f.3
+        for <devicetree@vger.kernel.org>; Fri, 29 Dec 2023 16:05:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1703894714; x=1704499514; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1703894715; x=1704499515; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=hdzQ6yptIX2njJ0HGgMcRRxrAbv6o00bIQPPcaFemQk=;
-        b=OQsboK5zx/Ow/FpT9GEFU/73ZZv2yGtI74qaNmcjXHA41rR8NAFU1sJ9Q4aLF6p1dp
-         QrJC2ygU8Vepk2BHcQ6LlHH6WQodXg4sKrtMM7FZ4krsxHhW9l1CICLFfyYR+DAVP/RY
-         ETyoAb+qUfYI/EY8NScdMjlvCIjBQmKtuZnDbjME80Gu6k5oULij6WUZqpqWCWqQuoxw
-         6f0yY+tPeBpJX+55v1n32p7xigU8jBw6hq3sEvsUJn8eUgqnRNYmIq6Cd5pJd24+JivQ
-         iUMqAxVrZEs2BOxGiyFD106qBeJFbDgizCVrPWmTfNc1+BrDzs2QawkqWXHdIJIc1B8w
-         +rRA==
+        bh=JOgi+o+MjKjY2YxOi6EGv4wA3oq59/BsZJsnakzxR5Y=;
+        b=ynx4kxj7DITEGTK2A4oXlGnxTAzqCwD9Q3HDdzjzkgfyhXFps9ZO7WkBgGHTDjrvFG
+         djNQfMGAVXs2YWH25881GjKqd5NfaBkhBOuiyzp2r1meMelu/sG6IjN/NJmepYd/d+vq
+         D5LVRN2WIlDcgBjJzxpTrTFYOoW3wsQ6w1H/CQvkhcoQ8ZMDD30jzzC4Hh6tNa/L0Su5
+         KTnVpOLnLsNf9rgh8v7G7u55kjFhguimTVyte30pGX98F6+rCm5LlJcfrmqwXvqIE/mh
+         PGhZrsVUm1qLrYkE9PpcZXUnsRf3NktmQ/n4skLGrxlt6HfUXyjZcmjIIQs3yTh6+buv
+         tqMw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703894714; x=1704499514;
+        d=1e100.net; s=20230601; t=1703894715; x=1704499515;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=hdzQ6yptIX2njJ0HGgMcRRxrAbv6o00bIQPPcaFemQk=;
-        b=l1Vq9iBfBux+JKbDPQdp8/bkEUO7aw9rm7HtqeUOd1l1bTO7GUNg5QS5pgXNgqRDzl
-         mmSuM1V5rGnr5++G7Az7tDzPkNdci48uotBj4o34Jv6UEf+C6zw1DCidMvW48q1eemdj
-         ypMKtteGAwko+IfSExmSHLoxAdy/5YJS63Jn5ZLtjDn3UQfjk3uwEoex7LZ1a7q3DUbJ
-         lbU8k6gAPq2W3CATUzbVlAOtJ9QnghPXP6E3hdvyomfTFRtasPxTNwhqx9UfHj1LApRe
-         /xcSNwrobMVxAwBySgL1ZJBplSG6B+jIynIKqN7ti+evLVp3L2ekz+Jq147hCqwkOIf2
-         ii1Q==
-X-Gm-Message-State: AOJu0YzFfsFsxIsiDJJEzV7/tXGeohLJDAB/YjQsDs+VJMz1DjYn5Oyt
-	ihYg66roYINHqh2zzk00QL1g4sn2UuohyQ==
-X-Google-Smtp-Source: AGHT+IHkJHo0JcVN0pEEyc43DnIDm7I38b446ESXoLDcibwuplTstgMHQrj8QXKgxITeKwZfb1AiBw==
-X-Received: by 2002:a05:6512:374f:b0:50e:7410:d5b0 with SMTP id a15-20020a056512374f00b0050e7410d5b0mr4113081lfs.28.1703894713845;
-        Fri, 29 Dec 2023 16:05:13 -0800 (PST)
+        bh=JOgi+o+MjKjY2YxOi6EGv4wA3oq59/BsZJsnakzxR5Y=;
+        b=Ndp/XeAfhzOLQ5ZTNgtXrPDRCxv3nj9+F/aPfU/3BYb0Kwj2upbjdKN+/c6cMlz1LT
+         4boy/rnAHPW8zJY16uqMlhPliVDnd2Q3HXOb8JhwBAog/tVb5SxoSeVMi7iWXp9Bk28E
+         Bny3TVYxLI4g9m7SFYlo11uJR+Yu6CBLPoLBMWBBnjSyv2UJQ/e+uPCBR7K411cq/XiO
+         F2BdTIJM+k6cOTFmk7L29ZP4Tyln1LRyuyg9y/DsLNT8RlCHCi7Py21yeHymCLrfr5xy
+         yEOjjoixkQWUfydEuoVAVox6kbgMTzsuQD1qA9NCW+O1GAzgoZxjKMoLJ4s1F4/7ZHRE
+         dn/g==
+X-Gm-Message-State: AOJu0YyEobDWsTewA409hSU7RiFn3jqZ1DZ9AQDi8djzO1lntwPaXaPy
+	zmu7YLBuiN5JhNvrFFO7m5LXBXiVuGH/qA==
+X-Google-Smtp-Source: AGHT+IFGW2LD2QW3k7rCqKitq8ItqwmF4Wvmdnno4bATw8RRQPICnYUGEn2XwykwzHPOCh840yW/fw==
+X-Received: by 2002:a1c:7507:0:b0:40d:581c:f317 with SMTP id o7-20020a1c7507000000b0040d581cf317mr3636946wmc.127.1703894715725;
+        Fri, 29 Dec 2023 16:05:15 -0800 (PST)
 Received: from [10.167.154.1] (178235179036.dynamic-4-waw-k-1-3-0.vectranet.pl. [178.235.179.36])
-        by smtp.gmail.com with ESMTPSA id wj6-20020a170907050600b00a26a0145c5esm8609623ejb.116.2023.12.29.16.05.12
+        by smtp.gmail.com with ESMTPSA id wj6-20020a170907050600b00a26a0145c5esm8609623ejb.116.2023.12.29.16.05.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 29 Dec 2023 16:05:13 -0800 (PST)
+        Fri, 29 Dec 2023 16:05:15 -0800 (PST)
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
-Date: Sat, 30 Dec 2023 01:05:06 +0100
-Subject: [PATCH 05/10] arm64: dts: qcom: sc8180x: Fix eDP PHY power-domains
+Date: Sat, 30 Dec 2023 01:05:07 +0100
+Subject: [PATCH 06/10] arm64: dts: qcom: sc8180x: Don't hold MDP core clock
+ at FMAX
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,7 +69,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20231230-topic-8180_more_fixes-v1-5-93b5c107ed43@linaro.org>
+Message-Id: <20231230-topic-8180_more_fixes-v1-6-93b5c107ed43@linaro.org>
 References: <20231230-topic-8180_more_fixes-v1-0-93b5c107ed43@linaro.org>
 In-Reply-To: <20231230-topic-8180_more_fixes-v1-0-93b5c107ed43@linaro.org>
 To: Bjorn Andersson <andersson@kernel.org>, 
@@ -81,36 +82,39 @@ Cc: Marijn Suijten <marijn.suijten@somainline.org>,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
  Konrad Dybcio <konrad.dybcio@linaro.org>
 X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1703894704; l=823;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1703894704; l=1000;
  i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=ObS9KPr+adD530yamp8rmXpRsOgSyb9ixOlL4drF0HY=;
- b=Jr3YGkabU6aSzD4cFb/dwjAYacsf7jNVjfNOzcDsyKHQWtv9EvTY2/My+1aY7gkQIHjN26DmC
- 6iV/UZIe5hEAVqNDTDbh6UDR1GMbNGV1mtFqtioW8hAYRUmBLL01x+m
+ bh=M8bX5G9YVihCaiyP4SOPHUALrA9FvX1X19kxYRjo79o=;
+ b=qBSuZww/cfnY6WCaqXkt8K19wXn5NmgDE9scwK/qdrSuoEjfW6DBKSRPSIMJltFQ9bM9hN80C
+ TfujnXtqcQXCxCmejJU+uXloO0bmM/1c6+xqffF22N8PJr0MZPWsIow
 X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
  pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 
-The (e)DP PHYs are powered by the MX line, not through the MDSS GDSC.
-Fix that up.
+There's an OPP table to handle this, drop the permanent vote.
 
 Fixes: 494dec9b6f54 ("arm64: dts: qcom: sc8180x: Add display and gpu nodes")
 Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sc8180x.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm64/boot/dts/qcom/sc8180x.dtsi | 6 ++----
+ 1 file changed, 2 insertions(+), 4 deletions(-)
 
 diff --git a/arch/arm64/boot/dts/qcom/sc8180x.dtsi b/arch/arm64/boot/dts/qcom/sc8180x.dtsi
-index 8849469d0aa1..8f7f5b74cdb9 100644
+index 8f7f5b74cdb9..3bb9d25b1dec 100644
 --- a/arch/arm64/boot/dts/qcom/sc8180x.dtsi
 +++ b/arch/arm64/boot/dts/qcom/sc8180x.dtsi
-@@ -3193,7 +3193,7 @@ edp_phy: phy@aec2a00 {
- 				 <&dispcc DISP_CC_MDSS_AHB_CLK>;
- 			clock-names = "aux", "cfg_ahb";
+@@ -2732,10 +2732,8 @@ mdss_mdp: mdp@ae01000 {
+ 					      "rot",
+ 					      "lut";
  
--			power-domains = <&dispcc MDSS_GDSC>;
-+			power-domains = <&rpmhpd SC8180X_MX>;
+-				assigned-clocks = <&dispcc DISP_CC_MDSS_MDP_CLK>,
+-						  <&dispcc DISP_CC_MDSS_VSYNC_CLK>;
+-				assigned-clock-rates = <460000000>,
+-						       <19200000>;
++				assigned-clocks = <&dispcc DISP_CC_MDSS_VSYNC_CLK>;
++				assigned-clock-rates = <19200000>;
  
- 			#clock-cells = <1>;
- 			#phy-cells = <0>;
+ 				operating-points-v2 = <&mdp_opp_table>;
+ 				power-domains = <&rpmhpd SC8180X_MMCX>;
 
 -- 
 2.43.0
