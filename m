@@ -1,115 +1,227 @@
-Return-Path: <devicetree+bounces-29017-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29020-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98B538206DF
-	for <lists+devicetree@lfdr.de>; Sat, 30 Dec 2023 16:32:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6530B8206F1
+	for <lists+devicetree@lfdr.de>; Sat, 30 Dec 2023 16:45:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3578B1F21676
-	for <lists+devicetree@lfdr.de>; Sat, 30 Dec 2023 15:32:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CB7021F21D5D
+	for <lists+devicetree@lfdr.de>; Sat, 30 Dec 2023 15:45:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDC788C1B;
-	Sat, 30 Dec 2023 15:32:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E8BA9463;
+	Sat, 30 Dec 2023 15:44:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MTfMKHZa"
+	dkim=pass (1024-bit key) header.d=solidrn.onmicrosoft.com header.i=@solidrn.onmicrosoft.com header.b="LBcUV3zY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2083.outbound.protection.outlook.com [40.107.21.83])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FA028F6D;
-	Sat, 30 Dec 2023 15:32:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-1d422c9f894so49000605ad.3;
-        Sat, 30 Dec 2023 07:32:12 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9064D9465;
+	Sat, 30 Dec 2023 15:44:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=solid-run.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=solid-run.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=WaCVOcpbQi/12iahUHwLvfn4iscuQWZnDN2qs4uaO0/BoE5TJUCAnCzoKjKnjjxQzSlJLdf3YOwYAT5yf54w62eSELnC7TKl18ZW3r5vuY+s3K9dewYknOSnjVZlh8iNZcLg6ZtsQNiqozwL8dIuPbaWlvO6q+IbnCBYg+bFMzZXrGUHyhzIfH+prrfj4+18ErC8B2ZJ8x3SkgSZIBKwUFlHArUjEzdX7GMLG5jls/UQrqcQL2sdVyhuxcRQ6NI2PcvXv5tv45lh4pjkeoXOCgiQT4kE40I4s5kwat2O46dCnL6t4JGOmm2kPENuK8BucUGKged5bua4bh3BDX7YUg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=tOdUbyZIg4N0pHwkxAftRnGuagmHBGntjCthFDV3DOw=;
+ b=S8bkoNe1uzun2uCFpKey0cy3D9oCnVDZC3oCJqXSVLQW+INVaHMFlA1B0S0iPxKpbhNvd25v6YqiMb3XsEUdI34OG41F2VEAP34qNWFJaps/u69Z2dK5KVmdolT+R/4vx8TIrp0my4x9IPtiG/8USQP+8Qg2HPjss/xkODbWig513iOS0Y8XIKMW/3OkoFrZmmyYxpNfC36R6h8mgSr70zyVhl4M6J8Es94qbIhXjxw8fKHL04Ud+Thx0ggUwK3SupSf8MllGnkwDbK0GxgSWjKshn55fnglId4mL1qwjM/a/DBouAuzpaoLArCh2IiD8bLLA0c6gwEsa9oBXjQ9cQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=solid-run.com; dmarc=pass action=none
+ header.from=solid-run.com; dkim=pass header.d=solid-run.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1703950331; x=1704555131; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=0aQnswRfvf4BwrZOcbpjhGTjzzT98U1IdJ18XjrAJzU=;
-        b=MTfMKHZan78qBzQSC3v6n4B+LpaZB7mmmzXgiwo7K99qJyvinQ45bzOSqxgeiwZB7v
-         nDNW3CGYCz9EGZw7PXIT59xR+9cqOPRV2IoSE/37YVZgpj5XVgOBr1eK/LioYjqMy6Gt
-         8hcw5+p0qSKLETucYs/eXgEB7WS78DFq4CGKvsOyhSMLixNgK9fQ0bHVQHuqSp5EBhiE
-         xphXGHS4IYE61BAWZPDnd3ZTzgw77CZKB5dk5zBCOYMJ4qAA+IQ7hHAWcNxemWzBseiN
-         KYXPf89b2vWKN0+J+l+oj8QA0CZKwsaasuVntxLOtJRfMu/62YRuiXoHEP+7/Mn5KvOS
-         fxqQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703950331; x=1704555131;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=0aQnswRfvf4BwrZOcbpjhGTjzzT98U1IdJ18XjrAJzU=;
-        b=p7ii6fBj3ni0oVJI+512iPGxJR/eQzqXXRXqPcuMLtHehXinRVa1XH7WsMGQvPW6k0
-         cQZGb8A3jKg3AJhGDJfjqXZxRpUbHDEjsDLCorlaEnfi+UC3bNxpCuAsbrIPV1xK9pud
-         zrbP0mZRj5jWzfZEtDc3rgdN0ij55h9KHzs4NIcfwpa0VkIcqp/k7myzHIYJj/QFUJi2
-         xDEQVd2RxfZuZtfeGSp46IOAmGFm1dv/rU78prdnQN31Vifmcr8h1KZ66nC/5Y8pOdN8
-         QCE1ye2JRLBT+uAIpbjVMDLgEDlWvXlwsrCUwrXNVvpI21q62Z4ZH0n2gIEPV7TzYTvv
-         NypA==
-X-Gm-Message-State: AOJu0YwQMBxRzKfDpUxaprFO3hIxqtuXgECe9O40uZ7Tjeqt8Q4KDIw2
-	7LNUSBFcsB4YY3JilcxgbC0=
-X-Google-Smtp-Source: AGHT+IHhWDBSzfIZA4m7vsfoPPCYdAoRPfC1FFKRZhMnHzCX2ZKiEcTFknXXcIQJBqto4e5O5sW/Hg==
-X-Received: by 2002:a17:902:7590:b0:1d4:1bcd:6bae with SMTP id j16-20020a170902759000b001d41bcd6baemr13040572pll.31.1703950331583;
-        Sat, 30 Dec 2023 07:32:11 -0800 (PST)
-Received: from localhost.localdomain ([2408:8207:2540:8c00:9802:680d:e03a:17cd])
-        by smtp.gmail.com with ESMTPSA id 5-20020a170902ee4500b001d3c27e00f2sm17471750plo.284.2023.12.30.07.32.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 30 Dec 2023 07:32:11 -0800 (PST)
-From: amazingfate <liujianfeng1994@gmail.com>
-To: jonas@kwiboo.se
-Cc: conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	ezequiel@vanguardiasur.com.ar,
-	heiko@sntech.de,
-	krzysztof.kozlowski+dt@linaro.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-media@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	liujianfeng1994@gmail.com,
-	mchehab@kernel.org,
-	p.zabel@pengutronix.de,
-	robh+dt@kernel.org,
-	sfr@canb.auug.org.au,
-	sigmaris@gmail.com
-Subject: Re: [PATCH v2 0/3] Add hantro g1 video decoder support for RK3588
-Date: Sat, 30 Dec 2023 23:31:59 +0800
-Message-Id: <20231230153159.3748580-1-liujianfeng1994@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <97faf49b-0109-439a-accf-251b502ad40b@kwiboo.se>
-References: <97faf49b-0109-439a-accf-251b502ad40b@kwiboo.se>
+ d=solidrn.onmicrosoft.com; s=selector1-solidrn-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=tOdUbyZIg4N0pHwkxAftRnGuagmHBGntjCthFDV3DOw=;
+ b=LBcUV3zYXe4XomvjIWEkysaOVWxIvH1oqQdVyaRGbQ2ItF+Q1fB3DQNzN1u4f64pnXhs5vIrzHchZc6r71UzGa0FnDdjjrCMPY3eUNgQ3Lpm7E3yoZG7FntfRO22M7fv/augCVUDZ42Zk7vIXX0akA903AZ7jZQ/N8CrnK9XTmw=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=solid-run.com;
+Received: from AS8PR04MB8963.eurprd04.prod.outlook.com (2603:10a6:20b:42e::18)
+ by DB8PR04MB6970.eurprd04.prod.outlook.com (2603:10a6:10:fa::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7135.22; Sat, 30 Dec
+ 2023 15:44:45 +0000
+Received: from AS8PR04MB8963.eurprd04.prod.outlook.com
+ ([fe80::4db1:aae8:c643:2e73]) by AS8PR04MB8963.eurprd04.prod.outlook.com
+ ([fe80::4db1:aae8:c643:2e73%6]) with mapi id 15.20.7135.023; Sat, 30 Dec 2023
+ 15:44:45 +0000
+From: Josua Mayer <josua@solid-run.com>
+Subject: [PATCH v4 00/11] dt-bindings: marvell: a38x: add solidrun armada
+ 388 clearfog boards
+Date: Sat, 30 Dec 2023 16:44:34 +0100
+Message-Id: <20231230-support-clearfog-gtr-l8-sfp-v4-0-1d7f0e2c7128@solid-run.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAOI6kGUC/32PQQqDMBBFryJZdySZRGO76j1KF6lJNMUaSVRax
+ LtXhYJ04fINvPeZiUQTnInkkkwkmNFF59sFxCkhZa3ayoDTCxOkyBliDnHoOh96KBujgvUVVH2
+ ApoBoO9CFVEayTMlCkqXQBWPde6vf7gvXLvY+fLaxka3XX5cjwzOnKRM5CmDw9HFQ1+gbpyEMb
+ Vr6F1kLI+4twQSXGU2znB5KfC8dvzByoGA1UyXq/GHR/Pfmef4CwqhUCjUBAAA=
+To: Andrew Lunn <andrew@lunn.ch>, 
+ Gregory Clement <gregory.clement@bootlin.com>, 
+ Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Josua Mayer <josua@solid-run.com>
+X-Mailer: b4 0.12.4
+X-ClientProxiedBy: FR0P281CA0247.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:af::16) To AS8PR04MB8963.eurprd04.prod.outlook.com
+ (2603:10a6:20b:42e::18)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AS8PR04MB8963:EE_|DB8PR04MB6970:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1177cf65-5eb3-4508-4ca2-08dc094e3f2a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	AJRGe+zEfhm4TQwXxIltFYX+zGWyVqhU5a8u0/0x1jHNDRQBjgpzy875O8ln6c91yn8eEd0RpIMjijAopLsZ9agyBtdeZsEe+Ruv22wkQMTzs8cYSdR+ZdFnpMZ2SJtjkLu5kbwkD+puAAwQ8HEGpvCfak/MgluQke8nMI3BR6jA/rG84Q+5KOduVwRBwT1ZAmAdBVM9cGq+I6CCUZX2CRWOxUL6OKBOi/WYE61E6eGlQDY0qFMp4Ni8q6UwCp9M60YLLFZugt/S9k119/CljPckJQ630nAbKg3fajuxbcArgraOJ4fr/RrTLFnP1vjqqqTKbwmvYUwaqdiTi7f4oV7gdnpU32YjI7Z2WPi0qlYw8kr6T8e0RLSghzIgVDxaVPwERpZRn5l2DWNu/BIBlKlJgeR4iyb2zt2hGjdfc3fT+F6j/nZQGXLQiWx7HFsh1/B2znjLW/FlbTBltqFyNONvTqnXBmi/g8wP9PtF3s2eqDYtCnP/JULfWcMbFTUU2tHC6FtAE3eMMB9rY3IgYWjEvGI2fErDb+e+21+DWCsLQEOrPFZBa8yOf/LVhw8J7bWtV18h4z+1ttn8H4b8XqHoDsdA2j3fNTxK777N5L0=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB8963.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(396003)(366004)(346002)(39830400003)(376002)(136003)(230922051799003)(451199024)(186009)(1800799012)(64100799003)(2616005)(36756003)(2906002)(86362001)(107886003)(966005)(478600001)(66556008)(66476007)(66946007)(5660300002)(83380400001)(26005)(6486002)(110136005)(8936002)(8676002)(316002)(4326008)(6666004)(6506007)(6512007)(52116002)(38350700005)(41300700001)(38100700002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?R2gyWjlDQXVkRm8zTEEwRjdickx1WG13MFdtZ3o0ajRsajk0QXc2aUR6bnlq?=
+ =?utf-8?B?WDJab3VJZ1Jkd1FjcHFiaDVmNWdNUTdVbW90WFp4VWJieFh1T3dBVVNSTk42?=
+ =?utf-8?B?N2owRk56TXgwWDMwL2NlcW5XTGVHb1VzVmhRL1dldmkvU3hCOGpxTVl1UG9r?=
+ =?utf-8?B?K1NLYnF6Z00rWGFIeFVJbFZEUXZNNkI3MWlQUkJvVlJlejN0L0k2ekR5WGtR?=
+ =?utf-8?B?KzlZOExQeUE4TDdQMjJXeXN4NXVPc1NtZ3RpR3VvY1FpL0JKTmN6TVhpK05P?=
+ =?utf-8?B?R3M1Ri9oWmNoRlBpU1d3UkI5YUpSNHdJbUJyMTJWWnRlMDVBNGhqK2xraVVj?=
+ =?utf-8?B?aU1oWFVNWFZLY2d4amN2bmNwTW1EbU5MQTdCV1MvMzhidWdnR0NzTG5UMmpI?=
+ =?utf-8?B?cHNkbGp3WUV3b2xraDJ3R25nL3R6THNFYU5rQTkrWWwrQWkrZXNKVXh0b21h?=
+ =?utf-8?B?UEk2ZElKbzErK0NkTzZRejQyc09zN1RJZTRXZjZwMXZDdXBZbVg3eE1SeU9C?=
+ =?utf-8?B?V29GcnlwenZqdG1DZnZ3ZDZjdDQrMy9aREVVb1F2WTlsUFp3LzB2OWhDdXVa?=
+ =?utf-8?B?MUlCTk82Z3l4T0RHTm51L3dwOTd3WUdZd1pjOEdoOTljdTFubitoWW5HLzdr?=
+ =?utf-8?B?U08xTXRoNzNES2ZFUFpmNWVKRHdvQ093L3gxU2pFSjBCSFRkcVIvUGgwSktl?=
+ =?utf-8?B?dGxDMDl5RnJqN25lR2JkQzAvU1cxWFc1OFFtWk5nZkE0clUrNXl4Q2xkclRz?=
+ =?utf-8?B?MzY3K1pSZmdoSTFaVU9YMmlzWWJBWHZvR3ZscW9ZSFlINVBhYVgxeUtubEhz?=
+ =?utf-8?B?K3NSTFlKVnIzOS9xUS9CUWFyREZzUDBsWnlEUzV2WFpEU3p1Q01vK0tDZEta?=
+ =?utf-8?B?Y3JFbmVveTREbTFmL3AwbS8zOXl1NVRVdkgrNDROY2FQYXpRcGkrUzhWWHpp?=
+ =?utf-8?B?aDRIN2s0Y1hneFlyaXFXb3NRMFlzcW5aT3FQTURSOENzNWg5dDB4M0RlbFFO?=
+ =?utf-8?B?UCsrVmU3dU9PMkYwNkJlUkZjd25MVzhYSVZWQ2N5NWhYOGRKZTYzYm1SMEZ2?=
+ =?utf-8?B?RkUwNHJnL3k0ZVF1UmgrMnRDUytvZ2lSSVRRZ3R3STBGVFJzQjN0ZERHMDJR?=
+ =?utf-8?B?UE9XMWJqalRyaFNMYXJBY2hLSTYxRlEyWDhFejJhYXB3Sm4rcnN6RVc3V0ZP?=
+ =?utf-8?B?czJnUjd4U1o1NkV6ODhqRjYyQVVWSmtQcmdrejhlNnZvUWo5eFNQcHdDb1Z6?=
+ =?utf-8?B?UUs5Uk1RRHVmWWNJT1F4T1A4RkZCYTNsa0F6WnFRdUFqUE5hSnh4MjlRRGJy?=
+ =?utf-8?B?dlFhWVpsZzNzUklrc25rZDBZQzBGSkJjRisrRGxpMWMxdjlJeDdCWnZZYVha?=
+ =?utf-8?B?QkpzblhXWGtpcTFmQTVuejc0K0FvMG1Nb0N2VmxZMUZKRFFiOENneGFrUVFE?=
+ =?utf-8?B?K2hKVFE4S0hnSWF3dlNqMWErTVhJZHJQUnVubTI0UGR3ZjlLZkc1ODFlTXV6?=
+ =?utf-8?B?c3lTSm1MUTdwVkFodC9vY21uT2ZnY0paNUtEemJCR0dTUTIzSEh3RXQ0MW5E?=
+ =?utf-8?B?M3BwNGJHSVlHcmFQa1FvQjVEUEY1Qlk5SmwxOE9uZWZlMk9rSDhlSlpaRE1y?=
+ =?utf-8?B?VkhYajlHQVUwbnNWbi9OSU5FMzdUMCtnZ3lkS1dwbS92V2V0Zk51YVg3RlBj?=
+ =?utf-8?B?Z0o5TkdsSFV2UkQ5QWJxUlBORy9FMExOd25jbnJUUDRLcjk1cE9udXhKcVB6?=
+ =?utf-8?B?eUdBUUo4WnF1L1RqN3V2VVJjMnFDeGNkZ0VnalpQdW90NWo2MmQ2d1VHb1lJ?=
+ =?utf-8?B?K09HLzIyZGF4NENvSUsvYVlsYlgxVHNhZXAzU2RqSTE5UjV5ZHdWWFJ1L3BV?=
+ =?utf-8?B?Mm14NE1NRkFNZFpsT0QrVDA3aXVJVDV3ajlObDAxaFZ0ZUhNMnliRTRteVhl?=
+ =?utf-8?B?SFBNT3ZSaGRYMkFSS0g4bTZpd09aYlYzNGxtNWs0SnNIanJkMU4raHNsMXRn?=
+ =?utf-8?B?Q0FJMGhlOXdBdEhiN2JHVG95UEE3ZVI3QjR3cXptYVg1d3Y2NTk1c2xCUmZi?=
+ =?utf-8?B?MnpsR1RteDFDUUg0R1ZPb005TTFSTFJoSExLSmVJQVhPOHVQT2x0c3JycDVm?=
+ =?utf-8?Q?wm56kTftuTNJbZrwH8fPdxl4/?=
+X-OriginatorOrg: solid-run.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1177cf65-5eb3-4508-4ca2-08dc094e3f2a
+X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB8963.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Dec 2023 15:44:45.4589
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: a4a8aaf3-fd27-4e27-add2-604707ce5b82
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Dlwykbie1wR6DOqpq5p/ZSbe3J4U80D3Y6eLzrs8Plh8V9VqmjiGD5IfTvao0+jAUXxknc1eaEW4HH0UwrqEQw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR04MB6970
 
-Hi Jonas,
+Dear Maintainers,
 
-On Sat, 30 Dec 2023 12:49:38 +0100, Jonas Karlman <jonas@kwiboo.se> wrote:
->I have only tested this fork of fluster with ffmpeg 6.x, what version of
->ffmpeg did you test with? I was expecting it to also work on ffmpeg 5.x.
+The initially merged device-tree for Clearfog GTR devices contained
+various subtle mistakes and omissions:
 
-I am using ffmpeg 6.0 with v4l2-request patches from libreelec[1].
-Ffmpeg v4l2 decoder in fluster fork is using ffmpeg args:
-"-hwaccel_device /dev/dri/renderD128"
-which make the test fall with hantro g1 on rk3588. After removing it I
-can run tests by ffmpeg v4l2-request decoder. 
+- missing board-specific compatible strings
+- missing pinctrl entries
+- missing second sfp connector
+- invalid sfp loss-of-signal gpio
+- mismatch of labels between dsa ports and enclosure
 
-Rk3566 and rk3588 are sharing the same results:
-JVT-AVC_V1 test suite with decoder FFmpeg-H.264-V4L2-request:
- Ran 127/135 tests successfully.
-JVT-FR_EXT test suite with decoder FFmpeg-H.264-V4L2-request:
- Ran 44/69 tests successfully.
-VP8-TEST-VECTORS test suite with decoder FFmpeg-VP8-V4L2-request:
- Ran 59/61 tests successfully.
+Most notably this had caused functional issues with the sfp connectors.
 
-[1] https://github.com/LibreELEC/LibreELEC.tv/blob/master/packages/multimedia/ffmpeg/patches/v4l2-request/ffmpeg-001-v4l2-request.patch
+This patch-set first deletes the invalid armada-38x dt-bindings.
+New bindings are added specifically for the Clearfog GTR boards,
+and for the already in-tree clearfog base, clearfog pro and helios-4
+boards' compatible strings.
 
-Regards,
-Jianfeng
+Secondly pinctrl nodes are added for all referenced gpios for independence
+from bootloader defaults. U-Boot is shared between armada-388 clearfog,
+and armada-385 clearfog gtr.
+
+Further remove an invalid io from the first sfp connector description,
+and add descriptions for the secondary sfp connector which is driven
+by dsa switch port number 9.
+
+Finally labels of dsa switch ports were updated to match the enclosure.
+That patch is not suitable for stable.
+
+Signed-off-by: Josua Mayer <josua@solid-run.com>
+---
+Changes in v4:
+- dropped invalid soc-only armada-38x (txt) bindings
+  (reported by Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>)
+- add bindings for armada 388 helios-4
+- updated yaml whitespace indentation count
+  (reported by Rob Hering's bot)
+- Link to v3: https://lore.kernel.org/r/20231226-support-clearfog-gtr-l8-sfp-v3-0-fd1ac2d6bf2e@solid-run.com
+
+Changes in v3:
+- armada-38x.yaml: removed '|', no need to prerserve formatting
+  (reported by Conor Dooley conor+dt@kernel.org)
+- update commit descriptions to clarify confusing board names and
+  compatible strings
+  (reported by Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>)
+- send to all relevant lists
+  (reported by Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>)
+- remove duplicate binding for clearfog / clearfog
+- Link to v2 (patches 0-2):
+  https://lore.kernel.org/r/20231224143750.5604-1-josua@solid-run.com
+- Link to v2 (patches 3-8):
+  https://lore.kernel.org/r/20231224143850.5671-3-josua@solid-run.com
+
+Changes in v2:
+- removed changes changes to gpio numbers because they were wrong
+- added bindings documentation
+- Link to v1: https://lore.kernel.org/r/20231223212930.14624-1-josua@solid-run.com
+
+---
+Josua Mayer (11):
+      dt-bindings: marvell: a38x: remove invalid txt bindings for armada 38x SoCs
+      dt-bindings: marvell: a38x: convert the soc compatibles description to yaml
+      dt-bindings: marvell: a38x: add solidrun armada 388 clearfog boards
+      dt-bindings: marvell: a38x: add kobol helios-4 board
+      dt-bindings: marvell: a38x: add solidrun armada 385 clearfog gtr boards
+      arm: dts: marvell: clearfog: add pro variant compatible in legacy dts
+      arm: dts: marvell: clearfog-gtr: add board-specific compatible strings
+      arm: dts: marvell: clearfog-gtr: sort pinctrl nodes alphabetically
+      arm: dts: marvell: clearfog-gtr: add missing pinctrl for all used gpios
+      arm: dts: marvell: clearfog-gtr-l8: add support for second sfp connector
+      arm: dts: marvell: clearfog-gtr-l8: align port numbers with enclosure
+
+ .../devicetree/bindings/arm/marvell/armada-38x.txt | 27 -------
+ .../bindings/arm/marvell/armada-38x.yaml           | 49 +++++++++++++
+ .../dts/marvell/armada-385-clearfog-gtr-l8.dts     | 38 +++++++---
+ .../dts/marvell/armada-385-clearfog-gtr-s4.dts     |  2 +
+ .../boot/dts/marvell/armada-385-clearfog-gtr.dtsi  | 84 ++++++++++++++++------
+ arch/arm/boot/dts/marvell/armada-388-clearfog.dts  |  5 +-
+ 6 files changed, 146 insertions(+), 59 deletions(-)
+---
+base-commit: 861deac3b092f37b2c5e6871732f3e11486f7082
+change-id: 20231226-support-clearfog-gtr-l8-sfp-d87ae715a787
+
+Sincerely,
+-- 
+Josua Mayer <josua@solid-run.com>
+
 
