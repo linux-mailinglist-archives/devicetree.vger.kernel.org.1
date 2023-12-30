@@ -1,152 +1,115 @@
-Return-Path: <devicetree+bounces-29016-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29017-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 253568206C9
-	for <lists+devicetree@lfdr.de>; Sat, 30 Dec 2023 15:32:02 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 98B538206DF
+	for <lists+devicetree@lfdr.de>; Sat, 30 Dec 2023 16:32:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D099D281E5D
-	for <lists+devicetree@lfdr.de>; Sat, 30 Dec 2023 14:32:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3578B1F21676
+	for <lists+devicetree@lfdr.de>; Sat, 30 Dec 2023 15:32:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B30B02F4E;
-	Sat, 30 Dec 2023 14:31:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDC788C1B;
+	Sat, 30 Dec 2023 15:32:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="O7CkIRt8"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MTfMKHZa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F9DBBE4E
-	for <devicetree@vger.kernel.org>; Sat, 30 Dec 2023 14:31:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-40d5bc68bb7so35495245e9.3
-        for <devicetree@vger.kernel.org>; Sat, 30 Dec 2023 06:31:42 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FA028F6D;
+	Sat, 30 Dec 2023 15:32:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-1d422c9f894so49000605ad.3;
+        Sat, 30 Dec 2023 07:32:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1703946701; x=1704551501; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=b4gk9zeURxSP70R8K7qMMz7OFbYRIjI7BmDBTadm3dU=;
-        b=O7CkIRt86jaQE6ZM3qJSvFDhSCs8PsxYhXnOmL7MDVEgKJNLhX3YENFazbSm23btLP
-         +1eESQlwwXM8pJJcnqya4G2D9210USuT5ApcIRiDp1KgwcsPp3Bp9kJ+4rhhhW+IFDOy
-         SRPe5hZI9zZsanaNGYYuZKHhsBchv1oY1AcevQXsVMsO0EM8Mw4iWylnLSwlY26+I3nH
-         +7yayh5MNbjbbesOTsBv4RcRcBBC9AH6Fy/e5DYXJylMcQ98/fi055oed0lVzDxNa7RV
-         Yc1k/rjBrkp5jpTvyIMWZ8PRpiiXEFBQQF09BbYq5J3a3TwNLMqI7s2ulqgNVagLjLTk
-         yGfg==
+        d=gmail.com; s=20230601; t=1703950331; x=1704555131; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=0aQnswRfvf4BwrZOcbpjhGTjzzT98U1IdJ18XjrAJzU=;
+        b=MTfMKHZan78qBzQSC3v6n4B+LpaZB7mmmzXgiwo7K99qJyvinQ45bzOSqxgeiwZB7v
+         nDNW3CGYCz9EGZw7PXIT59xR+9cqOPRV2IoSE/37YVZgpj5XVgOBr1eK/LioYjqMy6Gt
+         8hcw5+p0qSKLETucYs/eXgEB7WS78DFq4CGKvsOyhSMLixNgK9fQ0bHVQHuqSp5EBhiE
+         xphXGHS4IYE61BAWZPDnd3ZTzgw77CZKB5dk5zBCOYMJ4qAA+IQ7hHAWcNxemWzBseiN
+         KYXPf89b2vWKN0+J+l+oj8QA0CZKwsaasuVntxLOtJRfMu/62YRuiXoHEP+7/Mn5KvOS
+         fxqQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1703946701; x=1704551501;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=b4gk9zeURxSP70R8K7qMMz7OFbYRIjI7BmDBTadm3dU=;
-        b=RPYCmiLtk4ts7ABid9yOWj8bxiF0qmZ2SeMLSYT5yxqBICLrZX9duSv3dKzCyTU0yi
-         m7AjWeiti1D7Ufw2FaNi1VcjbeGzdYs5D7FCfn04V8SqJ2TBoM0tSYp9+tZBdEGOd1xy
-         MUMbnyoSVIMufzvx67m/TUU6n1bSaoZpqCHwjqM9XSuGb1q/JFBegBkCJCvtzHv93lRv
-         jhXU2bO8/Kn53tzI9o6FN7GdW+BtbD03fmQhDnfJHAQLTDlYBtUBm07pA66yQXp4xDpG
-         0dPw7U5xlMVEj9ee2t5a9RU9ZctgqdeFJMMhC1gwY27FXNXld2DrG96380FiTCnRcnWi
-         F9iQ==
-X-Gm-Message-State: AOJu0YwpxhYdHv+P0ktglVX9GT7gSBQe/0qW8kwHfCTxFCAe7UllGEky
-	xxOYkkqzdSO+Nx45kC67nbhl5g55HRivww==
-X-Google-Smtp-Source: AGHT+IFeqEBjwbxvDCPdwj4hV18VumHO0MGlE/qsisETP462FxGiT8Br8SlMmaXDP/+a8gH7n6ExKw==
-X-Received: by 2002:a1c:7507:0:b0:40d:5821:516b with SMTP id o7-20020a1c7507000000b0040d5821516bmr4280663wmc.54.1703946700730;
-        Sat, 30 Dec 2023 06:31:40 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id iv7-20020a05600c548700b0040d746bb8a0sm6130026wmb.43.2023.12.30.06.31.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 30 Dec 2023 06:31:40 -0800 (PST)
-Message-ID: <04403a25-ea88-425d-bbb2-c042d2d0cacb@linaro.org>
-Date: Sat, 30 Dec 2023 15:31:37 +0100
+        d=1e100.net; s=20230601; t=1703950331; x=1704555131;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=0aQnswRfvf4BwrZOcbpjhGTjzzT98U1IdJ18XjrAJzU=;
+        b=p7ii6fBj3ni0oVJI+512iPGxJR/eQzqXXRXqPcuMLtHehXinRVa1XH7WsMGQvPW6k0
+         cQZGb8A3jKg3AJhGDJfjqXZxRpUbHDEjsDLCorlaEnfi+UC3bNxpCuAsbrIPV1xK9pud
+         zrbP0mZRj5jWzfZEtDc3rgdN0ij55h9KHzs4NIcfwpa0VkIcqp/k7myzHIYJj/QFUJi2
+         xDEQVd2RxfZuZtfeGSp46IOAmGFm1dv/rU78prdnQN31Vifmcr8h1KZ66nC/5Y8pOdN8
+         QCE1ye2JRLBT+uAIpbjVMDLgEDlWvXlwsrCUwrXNVvpI21q62Z4ZH0n2gIEPV7TzYTvv
+         NypA==
+X-Gm-Message-State: AOJu0YwQMBxRzKfDpUxaprFO3hIxqtuXgECe9O40uZ7Tjeqt8Q4KDIw2
+	7LNUSBFcsB4YY3JilcxgbC0=
+X-Google-Smtp-Source: AGHT+IHhWDBSzfIZA4m7vsfoPPCYdAoRPfC1FFKRZhMnHzCX2ZKiEcTFknXXcIQJBqto4e5O5sW/Hg==
+X-Received: by 2002:a17:902:7590:b0:1d4:1bcd:6bae with SMTP id j16-20020a170902759000b001d41bcd6baemr13040572pll.31.1703950331583;
+        Sat, 30 Dec 2023 07:32:11 -0800 (PST)
+Received: from localhost.localdomain ([2408:8207:2540:8c00:9802:680d:e03a:17cd])
+        by smtp.gmail.com with ESMTPSA id 5-20020a170902ee4500b001d3c27e00f2sm17471750plo.284.2023.12.30.07.32.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 30 Dec 2023 07:32:11 -0800 (PST)
+From: amazingfate <liujianfeng1994@gmail.com>
+To: jonas@kwiboo.se
+Cc: conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	ezequiel@vanguardiasur.com.ar,
+	heiko@sntech.de,
+	krzysztof.kozlowski+dt@linaro.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-media@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	liujianfeng1994@gmail.com,
+	mchehab@kernel.org,
+	p.zabel@pengutronix.de,
+	robh+dt@kernel.org,
+	sfr@canb.auug.org.au,
+	sigmaris@gmail.com
+Subject: Re: [PATCH v2 0/3] Add hantro g1 video decoder support for RK3588
+Date: Sat, 30 Dec 2023 23:31:59 +0800
+Message-Id: <20231230153159.3748580-1-liujianfeng1994@gmail.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <97faf49b-0109-439a-accf-251b502ad40b@kwiboo.se>
+References: <97faf49b-0109-439a-accf-251b502ad40b@kwiboo.se>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] docs: dt-bindings: suggest "reg-names" position in DTS
- Coding Style
-Content-Language: en-US
-To: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
- Konrad Dybcio <konradybcio@kernel.org>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
- =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
- Andrew Davis <afd@ti.com>, Andrew Lunn <andrew@lunn.ch>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Arnd Bergmann <arnd@arndb.de>, Bjorn Andersson <andersson@kernel.org>,
- Chen-Yu Tsai <wens@kernel.org>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Jonathan Corbet <corbet@lwn.net>, Matthias Brugger <matthias.bgg@gmail.com>,
- Michal Simek <michal.simek@amd.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Nishanth Menon <nm@ti.com>,
- Olof Johansson <olof@lixom.net>
-References: <20231229054711.17317-1-zajec5@gmail.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231229054711.17317-1-zajec5@gmail.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 29/12/2023 06:47, Rafał Miłecki wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
-> 
-> Property "reg-names" is strictly related to "reg" so it should follow it
-> directly instead of falling into "Standard/common properties". This
-> helps reading DTS files.
+Hi Jonas,
 
-All 'xxx-names' should immediately follow 'xxx'. Instead of this change,
-just add a note at the bottom of this section?
+On Sat, 30 Dec 2023 12:49:38 +0100, Jonas Karlman <jonas@kwiboo.se> wrote:
+>I have only tested this fork of fluster with ffmpeg 6.x, what version of
+>ffmpeg did you test with? I was expecting it to also work on ffmpeg 5.x.
 
-Best regards,
-Krzysztof
+I am using ffmpeg 6.0 with v4l2-request patches from libreelec[1].
+Ffmpeg v4l2 decoder in fluster fork is using ffmpeg args:
+"-hwaccel_device /dev/dri/renderD128"
+which make the test fall with hantro g1 on rk3588. After removing it I
+can run tests by ffmpeg v4l2-request decoder. 
 
+Rk3566 and rk3588 are sharing the same results:
+JVT-AVC_V1 test suite with decoder FFmpeg-H.264-V4L2-request:
+ Ran 127/135 tests successfully.
+JVT-FR_EXT test suite with decoder FFmpeg-H.264-V4L2-request:
+ Ran 44/69 tests successfully.
+VP8-TEST-VECTORS test suite with decoder FFmpeg-VP8-V4L2-request:
+ Ran 59/61 tests successfully.
+
+[1] https://github.com/LibreELEC/LibreELEC.tv/blob/master/packages/multimedia/ffmpeg/patches/v4l2-request/ffmpeg-001-v4l2-request.patch
+
+Regards,
+Jianfeng
 
