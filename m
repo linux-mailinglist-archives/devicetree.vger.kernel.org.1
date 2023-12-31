@@ -1,85 +1,72 @@
-Return-Path: <devicetree+bounces-29044-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29045-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76C2F820BBA
-	for <lists+devicetree@lfdr.de>; Sun, 31 Dec 2023 16:13:09 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C3EA820C13
+	for <lists+devicetree@lfdr.de>; Sun, 31 Dec 2023 18:13:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2C5F81F21459
-	for <lists+devicetree@lfdr.de>; Sun, 31 Dec 2023 15:13:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AC22B1C20F52
+	for <lists+devicetree@lfdr.de>; Sun, 31 Dec 2023 17:13:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A59863A7;
-	Sun, 31 Dec 2023 15:12:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 685598C00;
+	Sun, 31 Dec 2023 17:13:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LjE8+0aY"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="O7/eeO/1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com [209.85.214.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E418AD48;
-	Sun, 31 Dec 2023 15:12:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f174.google.com with SMTP id d9443c01a7336-1d2e6e14865so37444625ad.0;
-        Sun, 31 Dec 2023 07:12:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1704035556; x=1704640356; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=1LxeA0IIZhqjEAhSl3nYPkL3LXbf+ObZ5X4oac0U0NA=;
-        b=LjE8+0aYx7dpMcgP/cBEZJ7mhExAgYeKUoNj8EBUs8MWZbjfontFTi7bIJRQE9coro
-         AmdYliRaRlUiDFKqBZe2vmNzqHRu82yNxk3Cg2aN6HfqpQSvl6jPlwqn/cqUZzE4mgwf
-         j5IKvlg1SgzQr1Ry6XWxox5XXfk6XBl4gUjO5NTSyPxqbmTj3VwUU1pVp3HGaCtw8Kho
-         /k/eJL0o9Dim7zSrmopi8t6sPVhueVJQ7T6b5G+UIu/xT9FIEWxw95+rrLVrDcOEdJdw
-         lGCHaMVseLVDzJoginrzy49DUoXXSmyZ8on9mHOC5OdKWZT+sV6Pm+uRTezjCcuKavOY
-         zgJQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704035556; x=1704640356;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=1LxeA0IIZhqjEAhSl3nYPkL3LXbf+ObZ5X4oac0U0NA=;
-        b=luKJ22jTIN0HuprW3PIGn+CkRF+qVP3x2FCXRUW5XzGUa/EbJcoK1CI1gGvtlHVdnu
-         HN2RkF94b4shfU2tcUa6gzbZZXQ+MGNI6Zr0c5+pXR/IafR6J/e3mvzF2+R4oci9Aj1g
-         yjUQayG8FaDL4tHUEHCQUeMsv1xqKko1q7KC3DFYlLmCTkVNkS20nn1laVM0KGbFRVkq
-         N0M2BRhalATht2+4lJEIhSdHfmZHL/izieH83hKHePP2krm+CFOdgpRaSBy/8QZ2BMWi
-         H2sy+Z5+EqOzjjX9cuUwdzgUEO5EaEYvJd+luxeVSeSI9UqfKDaaMEFYHkKWHWTjB3UP
-         UT0Q==
-X-Gm-Message-State: AOJu0YwmqPu3+NkdFgTsP3Sqze5QzFZsKCL3PU0MTOvQmHO9DRQ3VUP8
-	x1EW36aQWAXg6fpzWpwC8kk=
-X-Google-Smtp-Source: AGHT+IEeC/oNDmebvGAlCDPpcUUA71dA7m7XJNDO6ov3pNSjePgSV63EBlmsTgDSigIUfGJ9GW9DjQ==
-X-Received: by 2002:a17:902:c601:b0:1d0:c888:d129 with SMTP id r1-20020a170902c60100b001d0c888d129mr5937727plr.103.1704035556512;
-        Sun, 31 Dec 2023 07:12:36 -0800 (PST)
-Received: from localhost.localdomain ([2408:8207:2540:8c00:2643:6273:f90:f77e])
-        by smtp.gmail.com with ESMTPSA id a4-20020a170902ecc400b001d058ad8770sm18775011plh.306.2023.12.31.07.12.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 31 Dec 2023 07:12:36 -0800 (PST)
-From: Jianfeng Liu <liujianfeng1994@gmail.com>
-To: robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	heiko@sntech.de,
-	ezequiel@vanguardiasur.com.ar,
-	p.zabel@pengutronix.de,
-	mchehab@kernel.org
-Cc: sfr@canb.auug.org.au,
-	liujianfeng1994@gmail.com,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-media@vger.kernel.org,
-	sigmaris@gmail.com,
-	knaerzche@gmail.com
-Subject: [PATCH v3 2/2] dt-bindings: media: rockchip-vpu: Add rk3588 vpu compatible string
-Date: Sun, 31 Dec 2023 23:11:12 +0800
-Message-Id: <20231231151112.3994194-3-liujianfeng1994@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231231151112.3994194-1-liujianfeng1994@gmail.com>
-References: <20231231151112.3994194-1-liujianfeng1994@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C19828F49;
+	Sun, 31 Dec 2023 17:13:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 3BVGxaBV031759;
+	Sun, 31 Dec 2023 17:13:07 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding:content-type; s=qcppdkim1; bh=3o727j2
+	CmpWTJWaazrQ8DTM+khCuXjkt6WTrm0HG8zk=; b=O7/eeO/1rjM51qz2+V3JKTn
+	Bz1PxXsW0puUKuzXXQnTOdvi/1SPJ7L37dmJSzwqQdvPA+o+ReJmlDCwm05zlvkx
+	zEPI77uqKOl1w/nalRZu1mxPpOZGD568klgmEezeeQQMCeBpXPu8vnSGGdi3+qNo
+	zEBbDPB9gVIyVaqIYU/p7NLNlfICW4qSDkLzDs1MnYk9i1z4y7qitfazGEkxPYvP
+	Ffm0wtxg/c1KuiM+BLxgOw88cjmD8YTCjGhHIihdFkhw2nonFvwCJyyk8uE/x338
+	SkIPzsRWg/6I0Gs8nO/Zys449GasgXv7LW9alKICwWK/0xqyuXLolJe7B/P0VUA=
+	=
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3va8js275q-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sun, 31 Dec 2023 17:13:06 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3BVHD5Ni015556
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sun, 31 Dec 2023 17:13:05 GMT
+Received: from hu-jprakash-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Sun, 31 Dec 2023 09:12:53 -0800
+From: Jishnu Prakash <quic_jprakash@quicinc.com>
+To: <jic23@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <andersson@kernel.org>, <konrad.dybcio@linaro.org>, <lee@kernel.org>,
+        <andriy.shevchenko@linux.intel.com>, <daniel.lezcano@linaro.org>,
+        <dmitry.baryshkov@linaro.org>
+CC: <quic_jprakash@quicinc.com>, <lars@metafoo.de>, <luca@z3ntu.xyz>,
+        <marijn.suijten@somainline.org>, <agross@kernel.org>,
+        <sboyd@kernel.org>, <rafael@kernel.org>, <rui.zhang@intel.com>,
+        <lukasz.luba@arm.com>, <linus.walleij@linaro.org>,
+        <quic_subbaram@quicinc.com>, <quic_collinsd@quicinc.com>,
+        <quic_amelende@quicinc.com>, <quic_kamalw@quicinc.com>,
+        <kernel@quicinc.com>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-arm-msm-owner@vger.kernel.org>,
+        <linux-iio@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <cros-qcom-dts-watchers@chromium.org>
+Subject: [PATCH v3 0/3] iio: adc: Add support for QCOM SPMI PMIC5 Gen3 ADC
+Date: Sun, 31 Dec 2023 22:42:34 +0530
+Message-ID: <20231231171237.3322376-1-quic_jprakash@quicinc.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -87,31 +74,125 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: E0tpdmncC4nqJKaUgF4AC7PX4LcfbsY8
+X-Proofpoint-ORIG-GUID: E0tpdmncC4nqJKaUgF4AC7PX4LcfbsY8
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-12-09_02,2023-12-07_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
+ lowpriorityscore=0 spamscore=0 phishscore=0 adultscore=0 suspectscore=0
+ priorityscore=1501 bulkscore=0 clxscore=1015 mlxlogscore=871
+ impostorscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2311290000 definitions=main-2312310141
 
-Add Hantro G1 VPU compatible string for RK3588.
-RK3588 has the same Hantro G1 ip as RK3568, which are both
-known as VDPU121 in TRM of RK3568 and RK3588.
+PMIC5 Gen3 has a similar ADC architecture to that on PMIC5 Gen2,
+with all SW communication to ADC going through PMK8550 which
+communicates with other PMICs through PBS. The major difference is
+that the register interface used here is that of an SDAM present on
+PMK8550, rather than a dedicated ADC peripheral. There may be more than one
+SDAM used for ADC5 Gen3. Each ADC SDAM has eight channels, each of which may
+be used for either immediate reads (same functionality as previous PMIC5 and
+PMIC5 Gen2 ADC peripherals) or recurring measurements (same as PMIC5 and PMIC5
+Gen2 ADC_TM functionality). In this case, we have VADC and ADC_TM functionality
+combined into the same driver.
 
-Signed-off-by: Jianfeng Liu <liujianfeng1994@gmail.com>
----
- Documentation/devicetree/bindings/media/rockchip-vpu.yaml | 3 +++
- 1 file changed, 3 insertions(+)
+Patch 1 is a cleanup, to move the QCOM ADC dt-bindings files from
+dt-bindings/iio to dt-bindings/iio/adc folder, as they are
+specifically for ADC devices. It also fixes all compilation errors
+with this change in driver and devicetree files and similar errors
+in documentation for dtbinding check.
 
-diff --git a/Documentation/devicetree/bindings/media/rockchip-vpu.yaml b/Documentation/devicetree/bindings/media/rockchip-vpu.yaml
-index c57e1f488..16886bccf 100644
---- a/Documentation/devicetree/bindings/media/rockchip-vpu.yaml
-+++ b/Documentation/devicetree/bindings/media/rockchip-vpu.yaml
-@@ -31,6 +31,9 @@ properties:
-       - items:
-           - const: rockchip,rk3228-vpu
-           - const: rockchip,rk3399-vpu
-+      - items:
-+          - const: rockchip,rk3588-vpu
-+          - const: rockchip,rk3568-vpu
- 
-   reg:
-     maxItems: 1
+Patch 2 adds bindings for ADC5 Gen3 peripheral.
+
+Patch 3 adds driver support for ADC5 Gen3.
+
+Changes since v2:
+- Reordered patches to keep cleanup change for ADC files first.
+- Moved ADC5 Gen3 documentation into a separate file
+
+Changes since v1:
+- Dropped patches 1-5 for changing 'ADC7' peripheral name to 'ADC5 Gen2'.
+- Addressed reviewer comments for binding and driver patches for ADC5 Gen3.
+- Combined patches 8-11 into a single patch as requested by reviewers to make
+  the change clearer and made all fixes required in same patch.
+
+Jishnu Prakash (3):
+  dt-bindings: iio/adc: Move QCOM ADC bindings to iio/adc folder
+  dt-bindings: iio: adc: Add support for QCOM PMIC5 Gen3 ADC
+  iio: adc: Add support for QCOM PMIC5 Gen3 ADC
+
+ .../bindings/iio/adc/qcom,spmi-adc5-gen3.yaml |  212 +++
+ .../bindings/iio/adc/qcom,spmi-vadc.yaml      |    4 +-
+ .../bindings/mfd/qcom,spmi-pmic.yaml          |    2 +-
+ .../bindings/thermal/qcom-spmi-adc-tm-hc.yaml |    2 +-
+ .../bindings/thermal/qcom-spmi-adc-tm5.yaml   |    6 +-
+ arch/arm64/boot/dts/qcom/pm2250.dtsi          |    2 +-
+ arch/arm64/boot/dts/qcom/pm6125.dtsi          |    2 +-
+ arch/arm64/boot/dts/qcom/pm6150.dtsi          |    2 +-
+ arch/arm64/boot/dts/qcom/pm6150l.dtsi         |    2 +-
+ arch/arm64/boot/dts/qcom/pm660.dtsi           |    2 +-
+ arch/arm64/boot/dts/qcom/pm660l.dtsi          |    2 +-
+ arch/arm64/boot/dts/qcom/pm7250b.dtsi         |    2 +-
+ arch/arm64/boot/dts/qcom/pm8150.dtsi          |    2 +-
+ arch/arm64/boot/dts/qcom/pm8150b.dtsi         |    2 +-
+ arch/arm64/boot/dts/qcom/pm8150l.dtsi         |    2 +-
+ arch/arm64/boot/dts/qcom/pm8916.dtsi          |    2 +-
+ arch/arm64/boot/dts/qcom/pm8950.dtsi          |    2 +-
+ arch/arm64/boot/dts/qcom/pm8953.dtsi          |    2 +-
+ arch/arm64/boot/dts/qcom/pm8994.dtsi          |    2 +-
+ arch/arm64/boot/dts/qcom/pm8998.dtsi          |    2 +-
+ arch/arm64/boot/dts/qcom/pmi632.dtsi          |    2 +-
+ arch/arm64/boot/dts/qcom/pmi8950.dtsi         |    2 +-
+ arch/arm64/boot/dts/qcom/pmm8155au_1.dtsi     |    2 +-
+ arch/arm64/boot/dts/qcom/pmp8074.dtsi         |    2 +-
+ arch/arm64/boot/dts/qcom/pms405.dtsi          |    2 +-
+ .../boot/dts/qcom/qcm6490-fairphone-fp5.dts   |    4 +-
+ arch/arm64/boot/dts/qcom/sc7280-idp.dts       |    2 +-
+ arch/arm64/boot/dts/qcom/sc7280-idp.dtsi      |    2 +-
+ arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi    |    4 +-
+ arch/arm64/boot/dts/qcom/sc8180x-pmics.dtsi   |    2 +-
+ .../qcom/sc8280xp-lenovo-thinkpad-x13s.dts    |    6 +-
+ .../boot/dts/qcom/sm7225-fairphone-fp4.dts    |    2 +-
+ arch/arm64/boot/dts/qcom/sm8450-hdk.dts       |    8 +-
+ drivers/iio/adc/Kconfig                       |   25 +
+ drivers/iio/adc/Makefile                      |    1 +
+ drivers/iio/adc/qcom-spmi-adc5-gen3.c         | 1198 +++++++++++++++++
+ drivers/iio/adc/qcom-spmi-adc5.c              |    2 +-
+ drivers/iio/adc/qcom-spmi-vadc.c              |    2 +-
+ .../iio/adc/qcom,spmi-adc5-gen3-pm8550.h      |   50 +
+ .../iio/adc/qcom,spmi-adc5-gen3-pm8550b.h     |   89 ++
+ .../iio/adc/qcom,spmi-adc5-gen3-pm8550vx.h    |   22 +
+ .../iio/adc/qcom,spmi-adc5-gen3-pmk8550.h     |   56 +
+ .../iio/{ => adc}/qcom,spmi-adc7-pm7325.h     |    2 +-
+ .../iio/{ => adc}/qcom,spmi-adc7-pm8350.h     |    2 +-
+ .../iio/{ => adc}/qcom,spmi-adc7-pm8350b.h    |    2 +-
+ .../iio/{ => adc}/qcom,spmi-adc7-pmk8350.h    |    2 +-
+ .../iio/{ => adc}/qcom,spmi-adc7-pmr735a.h    |    2 +-
+ .../iio/{ => adc}/qcom,spmi-adc7-pmr735b.h    |    2 +-
+ .../iio/{ => adc}/qcom,spmi-adc7-smb139x.h    |    2 +-
+ .../iio/{ => adc}/qcom,spmi-vadc.h            |   81 ++
+ 50 files changed, 1785 insertions(+), 51 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/qcom,spmi-adc5-gen3.yaml
+ create mode 100644 drivers/iio/adc/qcom-spmi-adc5-gen3.c
+ create mode 100644 include/dt-bindings/iio/adc/qcom,spmi-adc5-gen3-pm8550.h
+ create mode 100644 include/dt-bindings/iio/adc/qcom,spmi-adc5-gen3-pm8550b.h
+ create mode 100644 include/dt-bindings/iio/adc/qcom,spmi-adc5-gen3-pm8550vx.h
+ create mode 100644 include/dt-bindings/iio/adc/qcom,spmi-adc5-gen3-pmk8550.h
+ rename include/dt-bindings/iio/{ => adc}/qcom,spmi-adc7-pm7325.h (98%)
+ rename include/dt-bindings/iio/{ => adc}/qcom,spmi-adc7-pm8350.h (98%)
+ rename include/dt-bindings/iio/{ => adc}/qcom,spmi-adc7-pm8350b.h (99%)
+ rename include/dt-bindings/iio/{ => adc}/qcom,spmi-adc7-pmk8350.h (97%)
+ rename include/dt-bindings/iio/{ => adc}/qcom,spmi-adc7-pmr735a.h (95%)
+ rename include/dt-bindings/iio/{ => adc}/qcom,spmi-adc7-pmr735b.h (95%)
+ rename include/dt-bindings/iio/{ => adc}/qcom,spmi-adc7-smb139x.h (93%)
+ rename include/dt-bindings/iio/{ => adc}/qcom,spmi-vadc.h (77%)
+
 -- 
-2.34.1
+2.25.1
 
 
