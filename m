@@ -1,282 +1,105 @@
-Return-Path: <devicetree+bounces-29061-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29062-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8AD58213F2
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jan 2024 15:09:36 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3254C821443
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jan 2024 16:43:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8EEB22821FB
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jan 2024 14:09:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id ABA131F21035
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jan 2024 15:43:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E196E3FEC;
-	Mon,  1 Jan 2024 14:09:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 028D15683;
+	Mon,  1 Jan 2024 15:43:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="JhCd8xBu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eZRCOX8W"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 188F86108;
-	Mon,  1 Jan 2024 14:09:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1704118167;
-	bh=OZMmbVxNYTdn5G997u5ldg9//qwD2Jc/HwiTcRisc9k=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=JhCd8xBueIwwraiiSM1KXO3LAqwfjVvDTpi/URk5pfrGewSZOFyL+hhIs5tluFvOV
-	 AMRK5Wi1YgtsaunA+tOzFhF5WZsM+hEPb8k6qcvqR9i21rSnwvXsoYajv4I/9wMSJn
-	 /v1shqK7JVntFJuRb+ZI1o7ESNYFih1gWsmZDK1c3v8Xpds8O5SW8CkpBywT1x2ruW
-	 jbrkmjYGpF9dPEjMhr/Ehmrl4s8LpX++/yFUq/G6D9/72PT5bZLDK8V9jppzjubZnY
-	 ztdYr0XNQx2wBPMWmWexw+8DIiTXb5i5T06nm43OdClWrDLMirRPo6zF22MFo+OitU
-	 F5lwbhkC3rcVw==
-Received: from [100.90.194.27] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: ehristev)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 5B1DB37802F2;
-	Mon,  1 Jan 2024 14:09:26 +0000 (UTC)
-Message-ID: <19c98266-0a8e-4e99-8766-cdf31a3a97b6@collabora.com>
-Date: Mon, 1 Jan 2024 16:09:25 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D128F6116;
+	Mon,  1 Jan 2024 15:43:47 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 95469C433C7;
+	Mon,  1 Jan 2024 15:43:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1704123827;
+	bh=zPnzCjn9QOkXUy8dvYci9jgjlA+acxJXGlng7zvr0Gk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=eZRCOX8Wa+h7iZPKz6qbhKyje4SPcdT7RhbQP2LY7C3E8vHjtPJr1tNuwGEPbfFVl
+	 QSpxMXeJGAV2KqQYaEaYTCdoEI1ZOYfr/FzuE0ZGc8+A94yx8kSriEBe/7LXVibkaj
+	 T5YkRwT4sr4FvbROX9AkM1Gex/DA8LHMUA3fdIEzgr+ElbAyzuT1U831mPX8QekctQ
+	 B5p0YNxX93cY37btljgd2nG6D5VTgxMPhMUJ0yj3+4uTI9yuRQLIV3XUNey3+hhC0B
+	 L3cJkUdqTLrt3bKAYznj7dN3P0fOeygzyB5U6YbXpJFDS70OWKZ/W6yhBRMr/QO3vO
+	 oE5EFzXvFo+iw==
+Date: Mon, 1 Jan 2024 21:13:36 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Luca Weiss <luca@z3ntu.xyz>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	David Heidelberg <david@ixit.cz>,
+	Caleb Connolly <caleb.connolly@linaro.org>,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Manivannan Sadhasivam <mani@kernel.org>
+Subject: Re: [PATCH] arm64: dts: qcom: sdm845: add power domain to UFS phy
+ interface
+Message-ID: <20240101154336.GA3280@thinkpad>
+References: <20231229202959.266502-1-david@ixit.cz>
+ <2710291.mvXUDI8C0e@z3ntu.xyz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 6/9] arm64: dts: mediatek: Add MT8186 Krabby platform
- based Tentacruel / Tentacool
-Content-Language: en-US
-To: Chen-Yu Tsai <wenst@chromium.org>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>
-References: <20231213150435.4134390-1-wenst@chromium.org>
- <20231213150435.4134390-7-wenst@chromium.org>
-From: Eugen Hristev <eugen.hristev@collabora.com>
-In-Reply-To: <20231213150435.4134390-7-wenst@chromium.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <2710291.mvXUDI8C0e@z3ntu.xyz>
 
-Hello Chen-Yu,
-
-There is still some nonconformity with the bindings, please see below:
-
-On 12/13/23 17:04, Chen-Yu Tsai wrote:
-> Tentacruel and Tentacool are MT8186 based Chromebooks based on the
-> Krabby design.
+On Fri, Dec 29, 2023 at 10:37:56PM +0100, Luca Weiss wrote:
+> On Freitag, 29. Dezember 2023 21:29:54 CET David Heidelberg wrote:
+> > Reported by: `make CHECK_DTBS=1 qcom/sdm845-oneplus-enchilada.dtb`
+> > 
+> > Signed-off-by: David Heidelberg <david@ixit.cz>
+> > ---
+> >  arch/arm64/boot/dts/qcom/sdm845.dtsi | 2 ++
+> >  1 file changed, 2 insertions(+)
+> > 
+> > diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> > b/arch/arm64/boot/dts/qcom/sdm845.dtsi index c2244824355a..ad8677b62bfb
+> > 100644
+> > --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> > @@ -2644,6 +2644,8 @@ ufs_mem_phy: phy@1d87000 {
+> >  			clocks = <&gcc GCC_UFS_MEM_CLKREF_CLK>,
+> >  				 <&gcc GCC_UFS_PHY_PHY_AUX_CLK>;
+> > 
+> > +			power-domains = <&gcc UFS_PHY_GDSC>;
+> > +
+> >  			resets = <&ufs_mem_hc 0>;
+> >  			reset-names = "ufsphy";
 > 
-> Tentacruel, also known as the ASUS Chromebook CM14 Flip CM1402F, is a
-> convertible device with touchscreen and stylus.
+> This is potentially the wrong power domain, see the conversation here:
+> https://lore.kernel.org/linux-arm-msm/20231204172829.GA69580@thinkpad/
 > 
-> Tentacool, also known as the ASUS Chromebook CM14 CM1402C, is a laptop
-> device. It does not have a touchscreen or stylus.
+
+Yes, GDSCs are the power domain of the controllers, not PHYs. This applies to
+other peripherals such as USB, PCIe etc...
+
+- Mani
+
+> Hopefully Mani can give some input here :)
 > 
-> The two devices both have two variants. The difference is a second
-> source touchpad controller that shares the same address as the original,
-> but is incompatible.
+> Regards
+> Luca
 > 
-> The extra SKU IDs for the Tentacruel devices map to different sensor
-> components attached to the Embedded Controller. These are not visible
-> to the main processor.
 > 
-> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> ---
-> Changes since v3:
-> - Reorder some properties to conform better to the newly proposed DT
->   style guidelines
-> - Drop unused labels
-> - Rename bt-sco node name to bt-sco-codec
-> - Drop i2s*-share properties from afe node
-> - Drop aud_gpio_tdm_{on,off} pinctrl nodes
-> - Replace interrupts with interrupts-extended in tpm node
-> - Enable adsp device
-> 
-> Changes since v2:
-> - Picked up Conor's ack
-> - Rename touchpad to trackpad
-> - Drop pinctrl properties from trackpad in tentacruel/tentacool second
->   source trackpad
-> 
-> Changes since v1:
-> - Reorder SKU numbers in descending order.
-> - Fixed pinconfig node names
-> - Moved pinctrl-* properties after interrupts-*
-> - Switched to interrupts-extended for external components
-> - Marked ADSP as explicitly disabled, with a comment explaining that it
->   stalls the system
-> - Renamed "touchpad" to "trackpad"
-> - Dropped bogus "no-laneswap" property from it6505 node
-> - Moved "realtek,jd-src" property to after all the regulator supplies
-> - Switched to macros for MT6366 regulator "regulator-allowed-modes"
-> - Renamed "vgpu" regulator name to allow coupling, with a comment
->   containing the name used in the design
-> - Renamed "cr50" node name to "tpm"
-> - Moved trackpad_pins reference up to i2c2; workaround for second source
->   component resource sharing.
-> - Fix copyright year
-> - Fixed touchscreen supply name
-> ---
 
-[snip]
-
-> +
-> +&i2c3 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&i2c3_pins>;
-> +	clock-frequency = <100000>;
-> +	status = "okay";
-> +
-> +	it6505dptx: dp-bridge@5c {
-> +		compatible = "ite,it6505";
-
-dp-bridge@5c: '#address-cells', '#size-cells', '#sound-dai-cells' do not match any
-of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/display/bridge/ite,it6505.yaml#
-
-> +		reg = <0x5c>;
-> +		interrupts-extended = <&pio 8 IRQ_TYPE_LEVEL_LOW>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&it6505_pins>;
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-
-/soc/i2c@1100f000/dp-bridge@5c: unnecessary #address-cells/#size-cells without
-"ranges" or child "reg" property
-
-> +		#sound-dai-cells = <0>;
-> +		ovdd-supply = <&mt6366_vsim2_reg>;
-> +		pwr18-supply = <&pp1800_dpbrdg_dx>;
-> +		reset-gpios = <&pio 177 GPIO_ACTIVE_HIGH>;
-> +
-> +		ports {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +
-> +			port@0 {
-> +				reg = <0>;
-> +
-> +				it6505_in: endpoint {
-> +					link-frequencies = /bits/ 64 <150000000>;
-> +					remote-endpoint = <&dpi_out>;
-> +				};
-> +			};
-> +
-> +			port@1 {
-> +				reg = <1>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-
-[snip]
-
-> +&spi1 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&spi1_pins>;
-> +	mediatek,pad-select = <0>;
-> +	status = "okay";
-> +
-> +	cros_ec: ec@0 {
-> +		compatible = "google,cros-ec-spi";
-> +		reg = <0>;
-> +		interrupts-extended = <&pio 13 IRQ_TYPE_LEVEL_LOW>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&ec_ap_int>;
-> +		spi-max-frequency = <1000000>;
-> +
-> +		i2c_tunnel: i2c-tunnel {
-> +			compatible = "google,cros-ec-i2c-tunnel";
-> +			google,remote-bus = <1>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +		};
-> +
-> +		typec {
-> +			compatible = "google,cros-ec-typec";
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +
-> +			usb_c0: connector@0 {
-> +				compatible = "usb-c-connector";
-> +				reg = <0>;
-> +				label = "left";
-> +				power-role = "dual";
-> +				data-role = "host";
-> +				try-power-role = "source";
-> +
-> +				ports {
-> +					#address-cells = <1>;
-> +					#size-cells = <0>;
-> +
-typec:connector@0:ports: 'port@0' is a required property
-> +					port@1 {
-> +						reg = <1>;
-> +
-> +						typec_port0: endpoint { };
-> +					};
-> +				};
-> +			};
-> +
-> +			usb_c1: connector@1 {
-> +				compatible = "usb-c-connector";
-> +				reg = <1>;
-> +				label = "right";
-> +				power-role = "dual";
-> +				data-role = "host";
-> +				try-power-role = "source";
-> +
-> +				ports {
-connector@1: Unevaluated properties are not allowed ('ports' was unexpected)
-	from schema $id: http://devicetree.org/schemas/connector/usb-connector.yaml#
-> +					#address-cells = <1>;
-> +					#size-cells = <0>;
-> +
-> +					port@1 {
-connector@0: ports: 'port@0' is a required property
-> +						reg = <1>;
-> +
-> +						typec_port1: endpoint { };
-> +					};
-> +				};
-> +			};
-> +		};
-> +	};
-> +};
-> +
-
-[snip]
-
-> +
-> +&usb_host1 {
-> +	#address-cells = <2>;
-> +	#size-cells = <2>;
-
- usb@11281000: usb@11280000:#address-cells:0:0: 1 was expected
-	from schema $id: http://devicetree.org/schemas/usb/mediatek,mtu3.yaml#
-usb@11281000: usb@11280000:#size-cells:0:0: 0 was expected
-
-> +	vbus-supply = <&usb_p1_vbus>;
-> +	status = "okay";
-> +};
-> +
-> +&watchdog {
-> +	mediatek,reset-by-toprgu;
-> +};
-> +
-> +#include <arm/cros-ec-keyboard.dtsi>
-> +#include <arm/cros-ec-sbs.dtsi>
-
-
-Eugen
+-- 
+மணிவண்ணன் சதாசிவம்
 
