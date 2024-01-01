@@ -1,123 +1,100 @@
-Return-Path: <devicetree+bounces-29083-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29084-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC49E82155D
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jan 2024 22:00:52 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D5810821576
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jan 2024 22:47:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8D0D51F2179B
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jan 2024 21:00:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 76287281ABF
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jan 2024 21:47:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C889E542;
-	Mon,  1 Jan 2024 21:00:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61F6EDF6C;
+	Mon,  1 Jan 2024 21:47:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="f15NnXGY"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="O0c2aYV0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
+Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB9E9E57E;
-	Mon,  1 Jan 2024 21:00:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C3C2E542;
+	Mon,  1 Jan 2024 21:47:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-50e72e3d435so6359302e87.2;
-        Mon, 01 Jan 2024 13:00:26 -0800 (PST)
+Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-1d3dee5f534so62287975ad.1;
+        Mon, 01 Jan 2024 13:47:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1704142824; x=1704747624; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ZKO7t2hG9wQZbOuOZ2OBdmSsh90rgqQlCZCF6Y6YFcg=;
-        b=f15NnXGY2amTPPRVFmkx73O2jPiSy5A0/x6aY9zqj5tsmdb/sC6s+o3MBCTtjkaSN9
-         y3e/Pwm9/mGeipR5sGBBZp7xIyekzoW5IrLJ9cCMKkNeVOiIdtN959DoDkXapiOt2p8w
-         2s2ndjJe0wHBbvvS857oLsxS6ElJfDqfckY68aK460nBMYvcIUCBbBWt4FSz10fJFF7T
-         myl7sgBWQb/qui+2GiESmwwWJGZH5cFWct4ollcRfm/y+XlJz0sIs6chpiHjZ843vDgv
-         wNv8ee40/8CB0CmzkQV2UJn5rSoMvEYcXgdR7SP2ON7n34HkG/XkaibJl+dUSo5P99Do
-         C1UQ==
+        d=gmail.com; s=20230601; t=1704145640; x=1704750440; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=E/APosVrVMXUnOCJEXHbySPguKRvlISTy2lVQz7JRLU=;
+        b=O0c2aYV0hRxYJlB62k3/RxBQkKO/Nf0Lh7J0MXZ7h8Mjx9pOXhwPABjg1qaaeKezko
+         Ubd4crq5t34zelNBVya0q4cd89NyZFKAaSrwjmcaJQKkB7IPTx87YnlL/PLt2n3RXiZh
+         B32elD7tkiOGOhWewDNwoRwSWLfwk82N/cy0KRjiW/MPdpt90YPE/99COkXwLqw/RhyA
+         BmfiR93hzxf9DONGSIiKJfO8rXsjg1nTO8T3QMcerHD+fmULtdZr6Tg0JFsaSpNsZdCf
+         w6axCuMO7M6kpqx+9B8mDSlv26p9soH0iC+2b5I/k7kauzQpiNbg2JUEZKchploighRa
+         ZoyA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704142824; x=1704747624;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ZKO7t2hG9wQZbOuOZ2OBdmSsh90rgqQlCZCF6Y6YFcg=;
-        b=HFrsanv+B5rgk0j2t6FMOaI6Yqx6Gg2dBclEY6ZyDKUxpt79xGbhOHCArRwjAzM7fG
-         GwSWl97yhdXkYwdl+vX5ea854ySCPducuuZzkoirD+/rquuiq0Mtu3nfQ5tTrS8fFLD+
-         5kniih7d8RpRWWOjyMLDJBvHMQ7+F/vcss4W0ARddgl06iSj/ks6gbAJoHMp8zyy1Um7
-         BTlaAHlGJY+38eHVdoPWa5J3zE3vDyXf/V+spH9wuCDQohIu0UOOBpXVTSDZ4bhi4X9i
-         G2I+FTKOBPi4x8lCHU2k0gBPvo23KEKPZx0OGptK3qxCA4w7aQBg/I1y13w9OAsQXlQn
-         V9og==
-X-Gm-Message-State: AOJu0YwgbFaWHTnlSZQUM+Y4lFt4YekrlXh/hH2ukLELjJLs64qfTmaf
-	n5iWFeRcIjTkJbdMq51LmFI=
-X-Google-Smtp-Source: AGHT+IE86fSR+lttAonljpboKktMB8Ji41vcG9rV4MNjyxOno5Zp8U6svFT8fnkFNZxZ561m0wvtBA==
-X-Received: by 2002:a05:6512:33d5:b0:50e:7e1c:9049 with SMTP id d21-20020a05651233d500b0050e7e1c9049mr4083434lfg.70.1704142824646;
-        Mon, 01 Jan 2024 13:00:24 -0800 (PST)
-Received: from hex.my.domain (83.11.207.119.ipv4.supernova.orange.pl. [83.11.207.119])
-        by smtp.gmail.com with ESMTPSA id i15-20020a05640200cf00b0055404e08589sm15122045edu.85.2024.01.01.13.00.22
+        d=1e100.net; s=20230601; t=1704145640; x=1704750440;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=E/APosVrVMXUnOCJEXHbySPguKRvlISTy2lVQz7JRLU=;
+        b=j1FnKMHhJWkQO6W6DalffezLFcWHHsVKDfrsroxmBbFyvNVEpzhgiVH0WzuBib/7/V
+         Z7SFO8rZAbmuv7M989yGO2b4IRMqPhu33IEq3eDc6LVvCdpvCAVbp/WOQeNZOqvjJmtm
+         5i+a62c7muwt9v4KjWG1kI/dlUODJjiaFhy0h/KGu9EibIcKqMjJOQtKwoCQfEHTtMy7
+         S2zPxvWVGv+jUe3+1Hc9dEQSP+VgPKQ3hGjqtCqmuXWPKjqKd/A/AkO2SKeaEK1G3ZZO
+         M4lyxHiF+PJ/sTcwUn3iOwkIdHnVTv2ZB53ACYV7eldccYoU4J2QkERzd7GvNiEzqr0Z
+         EGSQ==
+X-Gm-Message-State: AOJu0YwKUpUotQ+g+0elXNgwjXmjGhoq9Kuypm2ssO223C8sEKqY/rGZ
+	JzhepxYsoOHLGoUd3ZzAiIU=
+X-Google-Smtp-Source: AGHT+IF6IBga4D7wqQkayDBJmBEBXK0W6YUoEaNegNC69eHdg4Xw1OJaU30HwH7mcfMoSSOSyjQUiQ==
+X-Received: by 2002:a17:903:120e:b0:1d4:73e1:420 with SMTP id l14-20020a170903120e00b001d473e10420mr11492808plh.67.1704145639566;
+        Mon, 01 Jan 2024 13:47:19 -0800 (PST)
+Received: from google.com ([2620:15c:9d:2:d07b:b054:c492:5e6f])
+        by smtp.gmail.com with ESMTPSA id w12-20020a170902a70c00b001d4b16f39a4sm3152207plq.197.2024.01.01.13.47.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 01 Jan 2024 13:00:23 -0800 (PST)
-From: Artur Weber <aweber.kernel@gmail.com>
-Date: Mon, 01 Jan 2024 22:00:16 +0100
-Subject: [PATCH 2/2] drm/panel: samsung-s6d7aa0: drop DRM_BUS_FLAG_DE_HIGH
- for lsl080al02
+        Mon, 01 Jan 2024 13:47:19 -0800 (PST)
+Date: Mon, 1 Jan 2024 13:47:16 -0800
+From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To: Jeff LaBundy <jeff@labundy.com>
+Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 0/4] Add support for slider gestures and OTP variants
+Message-ID: <ZZMy5CgX-WFwnG2W@google.com>
+References: <ZZMZzeX77VeHdIeL@nixie71>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240101-tab3-display-fixes-v1-2-887ba4dbd16b@gmail.com>
-References: <20240101-tab3-display-fixes-v1-0-887ba4dbd16b@gmail.com>
-In-Reply-To: <20240101-tab3-display-fixes-v1-0-887ba4dbd16b@gmail.com>
-To: Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org, 
- dri-devel@lists.freedesktop.org, Artur Weber <aweber.kernel@gmail.com>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1704142819; l=1047;
- i=aweber.kernel@gmail.com; s=20231030; h=from:subject:message-id;
- bh=pg28sLvX5GdC5bOF/yyzGASGCCoIgKs1qHIpKvHG7pQ=;
- b=V1bj5lEkTVkRcuqmS/0vog/IRKcLOnQ/VyKrfKyWkMBtEXBwTIYRhz1D8Isd2VzvjtsLbDXb0
- DvkWU1R5FlRBed5qaJ/SpcpwyEMKCETBnjzMpeIDR9/2JAqKyROVfsf
-X-Developer-Key: i=aweber.kernel@gmail.com; a=ed25519;
- pk=RhDBfWbJEHqDibXbhNEBAnc9FMkyznGxX/hwfhL8bv8=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZZMZzeX77VeHdIeL@nixie71>
 
-It turns out that I had misconfigured the device I was using the panel
-with; the bus data polarity is not high for this panel, I had to change
-the config on the display controller's side.
+On Mon, Jan 01, 2024 at 02:00:13PM -0600, Jeff LaBundy wrote:
+> This series introduces support for some additional features offered by the
+> Azoteq IQS269A capacitive touch controller.
+> 
+> Patches 1 and 2 add support for slider gestures (e.g. tap or swipe). Gestures
+> are recognized by the hardware itself based on touch activity across the chan-
+> nels associated with the slider. This feature is useful for lightweight systems
+> that do not post-process absolute coordinates to determine gestures expressed
+> by the user.
+> 
+> Gestures are presented to user space as keycodes. An example use-case is an
+> array of multimedia keys as seen in the following demo:
+> 
+> https://youtu.be/k_vMRQiHLgA
+> 
+> Patches 3 and 4 add support for the device's available OTP variants, which
+> trade features or exhibit errata that require workarounds.
 
-Fix the panel config to properly reflect its accurate settings.
-
-Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
----
- drivers/gpu/drm/panel/panel-samsung-s6d7aa0.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/panel/panel-samsung-s6d7aa0.c b/drivers/gpu/drm/panel/panel-samsung-s6d7aa0.c
-index ea5a85779382..f23d8832a1ad 100644
---- a/drivers/gpu/drm/panel/panel-samsung-s6d7aa0.c
-+++ b/drivers/gpu/drm/panel/panel-samsung-s6d7aa0.c
-@@ -309,7 +309,7 @@ static const struct s6d7aa0_panel_desc s6d7aa0_lsl080al02_desc = {
- 	.off_func = s6d7aa0_lsl080al02_off,
- 	.drm_mode = &s6d7aa0_lsl080al02_mode,
- 	.mode_flags = MIPI_DSI_MODE_VSYNC_FLUSH | MIPI_DSI_MODE_VIDEO_NO_HFP,
--	.bus_flags = DRM_BUS_FLAG_DE_HIGH,
-+	.bus_flags = 0,
- 
- 	.has_backlight = false,
- 	.use_passwd3 = false,
+Applied the lot, thank you.
 
 -- 
-2.43.0
-
+Dmitry
 
