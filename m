@@ -1,176 +1,175 @@
-Return-Path: <devicetree+bounces-29054-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29249-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98A7882119F
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jan 2024 01:00:15 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C58358221FC
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 20:29:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4D9BF1F2254A
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jan 2024 00:00:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EBA631C22763
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 19:29:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 840BBC2DE;
-	Mon,  1 Jan 2024 00:00:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D5ED15AF6;
+	Tue,  2 Jan 2024 19:29:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dpzRpl1P"
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="AGKUIlWB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16711C2C5
-	for <devicetree@vger.kernel.org>; Mon,  1 Jan 2024 00:00:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-556431c7d51so348963a12.2
-        for <devicetree@vger.kernel.org>; Sun, 31 Dec 2023 16:00:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704067209; x=1704672009; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=C1INtN/KwPq/Kh+/tuqCsXKBvEKli+VsBh43RgsVDQQ=;
-        b=dpzRpl1PomSZIYhR2GjpxTxDCBxboDuBOuKeC8A92+zLpovlUI9Frwy8fx/1A9ySW4
-         SsM6ohlo8NGbaajV/+RR071R7UN7+6HSox6fsoGJwLHM7/LysYLNA+isqQ4wPjeEZWaj
-         QwfVtxorNfkmB0dcTIumHuG5NqjBrJKm3cNlL5i2FxvpfMY4iYaaVWNl12EQQeAt7BV3
-         Ibwh2ZbmPyD5cnTxz1buvaJKn/6e+qzJhrdWhbFJ+o+jNYPh6asxYRbJXHh6h94PwXTw
-         WAWuJCtjJuCIj3o1d//1cyjX43KhDwiYJtdb6zgLDtUAbRtvjkEEQdPqG8UXe1grvf9H
-         hFHQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704067209; x=1704672009;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=C1INtN/KwPq/Kh+/tuqCsXKBvEKli+VsBh43RgsVDQQ=;
-        b=R59kN0KBVJSXY6czJpSTluUm7mIAhJjzxfv2Wv+MgXwTXW7Ri01wt3iQgKnyxBgOSP
-         jkyEJucgYk5wLPgpUgVrC0uG6ppMtSJwxmYmEsejtUK4FQa2BrUB18SxrnBPLlW34eeb
-         OR52BXvml2mIhEDS2eCcbHCNBjQQxupPB0sWK1oMHjq69LdDByZmDuzfJgssrzoBZtXb
-         8+EpE2UJIqU8N84J1QsXnVhe8gP7OUNAchPPk/1BHas+wcdm47Lp100ytw9wDtOxhk7y
-         lTOqTzrCHjdBnUGay5OPMW1i3etGHjXkp6NNR4L3dLQefN+LYrcF2YZ41Q+ax/4pndGy
-         IsvQ==
-X-Gm-Message-State: AOJu0YxEsCu8PxRBKQZBa/eBLNUZZoBA5gmAaHyW2602A4A4NvUFbuwA
-	9nyc1Rgx5YAndfX6o9YrlOovGtD+dosLAw==
-X-Google-Smtp-Source: AGHT+IFXEcZGbkvUmUE7n3yK8GOblmtp1rqPhnp6R3fS+jw+w58DxQeZOYGzzaX3pnL0cE39+XGT6g==
-X-Received: by 2002:a50:96cf:0:b0:555:f39a:8c90 with SMTP id z15-20020a5096cf000000b00555f39a8c90mr829490eda.35.1704067209415;
-        Sun, 31 Dec 2023 16:00:09 -0800 (PST)
-Received: from tux.Home ([2.223.42.238])
-        by smtp.gmail.com with ESMTPSA id ek20-20020a056402371400b00555f49e7080sm2710514edb.56.2023.12.31.16.00.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 31 Dec 2023 16:00:09 -0800 (PST)
-From: Alexey Klimov <alexey.klimov@linaro.org>
-To: anarsoul@gmail.com,
-	tiny.windzz@gmail.com,
-	linux-sunxi@lists.linux.dev
-Cc: rafael@kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	wens@csie.org,
-	jernej.skrabec@gmail.com,
-	samuel@sholland.org,
-	daniel.lezcano@linaro.org,
-	peter.griffin@linaro.org,
-	klimov.linux@gmail.com
-Subject: [PATCH RESEND] arm64: dts: allwinner: a64: Add thermal trip points for GPU
-Date: Mon,  1 Jan 2024 00:00:08 +0000
-Message-ID: <20240101000008.65747-1-alexey.klimov@linaro.org>
-X-Mailer: git-send-email 2.43.0
+Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1683B16401;
+	Tue,  2 Jan 2024 19:29:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.microsoft.com
+Received: from skinsburskii. (c-73-239-240-195.hsd1.wa.comcast.net [73.239.240.195])
+	by linux.microsoft.com (Postfix) with ESMTPSA id 13EF120B3CC1;
+	Tue,  2 Jan 2024 11:29:17 -0800 (PST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 13EF120B3CC1
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+	s=default; t=1704223757;
+	bh=NWTVgm1Yghg6D+rhM1rcN+66tvwgyzPsGZv9i/VSt6U=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=AGKUIlWB2Mm3FV6uXLBIaYKw+ZOwF2oq+eG0GukNiGT0FaLu/cVNCJon1WWLrmbVf
+	 J0hpNTn0r5lQ7JZB7M+RoCQjykomiAtupbkO2imOrk6t0a4a8otvll3IN45v8vvg9M
+	 ESzfuKVdNYd5yhrMIDgJwHYz4CZGB1jbtbq0mHws=
+Date: Sun, 31 Dec 2023 19:01:41 -0800
+From: Stanislav Kinsburskii <skinsburskii@linux.microsoft.com>
+To: Alexander Graf <graf@amazon.com>, ""@skinsburskii
+Cc: linux-kernel@vger.kernel.org, linux-trace-kernel@vger.kernel.org,
+	linux-mm@kvack.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, kexec@lists.infradead.org,
+	linux-doc@vger.kernel.org, x86@kernel.org,
+	Eric Biederman <ebiederm@xmission.com>,
+	"H. Peter Anvin" <hpa@zytor.com>, Andy Lutomirski <luto@kernel.org>,
+	Peter Zijlstra <peterz@infradead.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Steven Rostedt <rostedt@goodmis.org>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	Mark Rutland <mark.rutland@arm.com>,
+	Tom Lendacky <thomas.lendacky@amd.com>,
+	Ashish Kalra <ashish.kalra@amd.com>,
+	James Gowans <jgowans@amazon.com>, arnd@arndb.de,
+	pbonzini@redhat.com, madvenka@linux.microsoft.com,
+	Anthony Yznaga <anthony.yznaga@oracle.com>,
+	Usama Arif <usama.arif@bytedance.com>,
+	David Woodhouse <dwmw@amazon.co.uk>,
+	Benjamin Herrenschmidt <benh@kernel.crashing.org>
+Subject: Re: [PATCH v2 02/17] memblock: Declare scratch memory as CMA
+Message-ID: <20240101030141.GA723@skinsburskii.>
+References: <20231222193607.15474-1-graf@amazon.com>
+ <20231222193607.15474-3-graf@amazon.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231222193607.15474-3-graf@amazon.com>
 
-Without trip points for GPU, the following errors are printed in the
-dmesg log and the sun8i-thermal driver fails to load:
+On Fri, Dec 22, 2023 at 07:35:52PM +0000, Alexander Graf wrote:
+> When we finish populating our memory, we don't want to lose the scratch
+> region as memory we can use for useful data. Do do that, we mark it as
+> CMA memory. That means that any allocation within it only happens with
+> movable memory which we can then happily discard for the next kexec.
+> 
+> That way we don't lose the scratch region's memory anymore for
+> allocations after boot.
+> 
+> Signed-off-by: Alexander Graf <graf@amazon.com>
+> 
+> ---
+> 
+> v1 -> v2:
+> 
+>   - test bot warning fix
+> ---
+>  mm/memblock.c | 30 ++++++++++++++++++++++++++----
+>  1 file changed, 26 insertions(+), 4 deletions(-)
+> 
+> diff --git a/mm/memblock.c b/mm/memblock.c
+> index e89e6c8f9d75..3700c2c1a96d 100644
+> --- a/mm/memblock.c
+> +++ b/mm/memblock.c
+> @@ -16,6 +16,7 @@
+>  #include <linux/kmemleak.h>
+>  #include <linux/seq_file.h>
+>  #include <linux/memblock.h>
+> +#include <linux/page-isolation.h>
+>  
+>  #include <asm/sections.h>
+>  #include <linux/io.h>
+> @@ -1100,10 +1101,6 @@ static bool should_skip_region(struct memblock_type *type,
+>  	if ((flags & MEMBLOCK_SCRATCH) && !memblock_is_scratch(m))
+>  		return true;
+>  
+> -	/* Leave scratch memory alone after scratch-only phase */
+> -	if (!(flags & MEMBLOCK_SCRATCH) && memblock_is_scratch(m))
+> -		return true;
+> -
+>  	return false;
+>  }
+>  
+> @@ -2153,6 +2150,20 @@ static void __init __free_pages_memory(unsigned long start, unsigned long end)
+>  	}
+>  }
+>  
+> +#ifdef CONFIG_MEMBLOCK_SCRATCH
+> +static void reserve_scratch_mem(phys_addr_t start, phys_addr_t end)
 
-thermal_sys: Failed to find 'trips' node
-thermal_sys: Failed to find trip points for thermal-sensor id=1
-sun8i-thermal: probe of 1c25000.thermal-sensor failed with error -22
+nit: the function name doesn't look reasonable as it has nothing
+limiting it to neither reservation nor scratch mem.
+Perhaps something like "set_mem_cma_type" would be a better fit.
 
-When thermal zones are defined, trip points definitions are mandatory.
-Trip values for the GPU are assumed to be the same values as the CPU
-ones. The available specs do not provide any hints about thermal regimes
-for the GPU and it seems GPU is implemented on the same die as the CPU.
+> +{
+> +	ulong start_pfn = pageblock_start_pfn(PFN_DOWN(start));
+> +	ulong end_pfn = pageblock_align(PFN_UP(end));
+> +	ulong pfn;
+> +
+> +	for (pfn = start_pfn; pfn < end_pfn; pfn += pageblock_nr_pages) {
+> +		/* Mark as CMA to prevent kernel allocations in it */
 
-Tested on Pine a64+.
+nit: the comment above looks irrelevant/redundant.
 
-Cc: Samuel Holland <samuel@sholland.org>
-Cc: Jernej Skrabec <jernej.skrabec@gmail.com>
-Cc: Chen-Yu Tsai <wens@csie.org>
-Cc: Daniel Lezcano <daniel.lezcano@linaro.org>
-Cc: devicetree@vger.kernel.org
-Signed-off-by: Alexey Klimov <alexey.klimov@linaro.org>
----
- arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi | 46 +++++++++++++++++++
- 1 file changed, 46 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
-index 62f45f71ec65..07963eea1bf0 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
-@@ -243,6 +243,29 @@ gpu0_thermal: gpu0-thermal {
- 			polling-delay-passive = <0>;
- 			polling-delay = <0>;
- 			thermal-sensors = <&ths 1>;
-+
-+			trips {
-+				gpu0_alert0: gpu0_alert0 {
-+					/* milliCelsius */
-+					temperature = <75000>;
-+					hysteresis = <2000>;
-+					type = "passive";
-+				};
-+
-+				gpu0_alert1: gpu0_alert1 {
-+					/* milliCelsius */
-+					temperature = <90000>;
-+					hysteresis = <2000>;
-+					type = "hot";
-+				};
-+
-+				gpu0_crit: gpu0_crit {
-+					/* milliCelsius */
-+					temperature = <110000>;
-+					hysteresis = <2000>;
-+					type = "critical";
-+				};
-+			};
- 		};
- 
- 		gpu1_thermal: gpu1-thermal {
-@@ -250,6 +273,29 @@ gpu1_thermal: gpu1-thermal {
- 			polling-delay-passive = <0>;
- 			polling-delay = <0>;
- 			thermal-sensors = <&ths 2>;
-+
-+			trips {
-+				gpu1_alert0: gpu1_alert0 {
-+					/* milliCelsius */
-+					temperature = <75000>;
-+					hysteresis = <2000>;
-+					type = "passive";
-+				};
-+
-+				gpu1_alert1: gpu1_alert1 {
-+					/* milliCelsius */
-+					temperature = <90000>;
-+					hysteresis = <2000>;
-+					type = "hot";
-+				};
-+
-+				gpu1_crit: gpu1_crit {
-+					/* milliCelsius */
-+					temperature = <110000>;
-+					hysteresis = <2000>;
-+					type = "critical";
-+				};
-+			};
- 		};
- 	};
- 
--- 
-2.40.1
-
+> +		set_pageblock_migratetype(pfn_to_page(pfn), MIGRATE_CMA);
+> +	}
+> +}
+> +#endif
+> +
+>  static unsigned long __init __free_memory_core(phys_addr_t start,
+>  				 phys_addr_t end)
+>  {
+> @@ -2214,6 +2225,17 @@ static unsigned long __init free_low_memory_core_early(void)
+>  
+>  	memmap_init_reserved_pages();
+>  
+> +#ifdef CONFIG_MEMBLOCK_SCRATCH
+> +	/*
+> +	 * Mark scratch mem as CMA before we return it. That way we ensure that
+> +	 * no kernel allocations happen on it. That means we can reuse it as
+> +	 * scratch memory again later.
+> +	 */
+> +	__for_each_mem_range(i, &memblock.memory, NULL, NUMA_NO_NODE,
+> +			     MEMBLOCK_SCRATCH, &start, &end, NULL)
+> +		reserve_scratch_mem(start, end);
+> +#endif
+> +
+>  	/*
+>  	 * We need to use NUMA_NO_NODE instead of NODE_DATA(0)->node_id
+>  	 *  because in some case like Node0 doesn't have RAM installed
+> -- 
+> 2.40.1
+> 
+> 
+> 
+> 
+> Amazon Development Center Germany GmbH
+> Krausenstr. 38
+> 10117 Berlin
+> Geschaeftsfuehrung: Christian Schlaeger, Jonathan Weiss
+> Eingetragen am Amtsgericht Charlottenburg unter HRB 149173 B
+> Sitz: Berlin
+> Ust-ID: DE 289 237 879
+> 
+> 
 
