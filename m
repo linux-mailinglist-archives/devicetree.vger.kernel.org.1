@@ -1,123 +1,121 @@
-Return-Path: <devicetree+bounces-29057-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29058-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8340982139F
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jan 2024 12:45:23 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B57AA8213AD
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jan 2024 13:09:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E1A911F21644
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jan 2024 11:45:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BDF711C20B0A
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jan 2024 12:09:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAEFB23CE;
-	Mon,  1 Jan 2024 11:45:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A59723C1;
+	Mon,  1 Jan 2024 12:09:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RZHZIFpP"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="e3tJgRsy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2754820E8;
-	Mon,  1 Jan 2024 11:45:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-a27e323fdd3so76313566b.2;
-        Mon, 01 Jan 2024 03:45:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1704109516; x=1704714316; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=E/uOy3CnFQHiCBe8I/foRgMuvqzi5S8GoqT8eS9RKiI=;
-        b=RZHZIFpPRJhz7Ce1lw8t2hU5160eBDcM887ljuCkvcaHJZbA33k7NT42yiryTbTDhI
-         L3ZhxpFdlJiBaYv+txnBM1OGCLf/DOdvE5J/CXEUtWRviX+HblBtBbDuXUJzK8z1sDUo
-         uSkLNikIAEkme1BSJwj+Lo+Z1e2cMrD4sd3gEP1DcUBHj/OGNEW2dUVHR+RH62IcmDl7
-         weKTPnDAkM6OOd35XgOkftpI2GS96m0UGkjUUeLIVpALkGnhZi7AWfd1K+d07677lGz0
-         7n40MB45RLzYtGL4v7ujlOLfevgK1pRmVpvT0kcPQanqARoP6ZFey40bwwzJloOJnC2A
-         Om2g==
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8665820FD
+	for <devicetree@vger.kernel.org>; Mon,  1 Jan 2024 12:09:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1704110990;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Azch07lTg84aB2Rb6QjZFZSA7yP5wkRdozKvJbeWmDs=;
+	b=e3tJgRsyIpXQQ0YNAvcKQHzMadYwzV3iRfSPu9Luara5I45ddbSPeZV5iSBUbdErslqGv/
+	GXaTg0+oJYlkCW8ie/f1wHGpfTBwzrF5lI+mEuOO61ZFhiJ7ITBO36eZpjZ6z5Oa7ctmic
+	Yd1XynFbPExyTvcvPHbvGBpZgaDK2OU=
+Received: from mail-wr1-f72.google.com (mail-wr1-f72.google.com
+ [209.85.221.72]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-674-ATOs8xz4MiGcCtYt4IMXsg-1; Mon, 01 Jan 2024 07:09:48 -0500
+X-MC-Unique: ATOs8xz4MiGcCtYt4IMXsg-1
+Received: by mail-wr1-f72.google.com with SMTP id ffacd0b85a97d-3368c707b03so5748428f8f.3
+        for <devicetree@vger.kernel.org>; Mon, 01 Jan 2024 04:09:48 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704109516; x=1704714316;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=E/uOy3CnFQHiCBe8I/foRgMuvqzi5S8GoqT8eS9RKiI=;
-        b=wu6C85WukS8zYehEG944ZcImPd+dCbvTG9tySYkgcLb6/5Dhd5YZwnmhWC2Spsd4dy
-         BwCxqRQO75ZjE1AwKYmvoW4mEXbDUTAt7t6pX7586LSCaDeGHg4IVxCb4PAavui4B6km
-         7pk5JVqmAM0CI3ABIk7FmJZNbsBVSfgaThOghm3T8CwzUM1Il8uPY4uCZ8V3luo8QhBu
-         ftaXnZX6rypv043QseDTppaNun4ucwSBqAXwZt7yam+fDZ92awpoJ049e8XzykQJK5Bh
-         NFg9FihN4msPovs1m0vTYU3qz9n/DhX4waUVzpYK8v9IHURCIgo9fMV6ZDCUR7Mk8+NH
-         oeEw==
-X-Gm-Message-State: AOJu0YxhmsrnvOdyroCFOh2knBZs2Z/gJlwws8mkOADmUDyOHQ34hJpa
-	LkmSTHxT4pMdEMRo/0X3cS0=
-X-Google-Smtp-Source: AGHT+IFMWdpcy0/MWx/ibh/j5+HmrLs7nLJ4sDnWRai+R4T/INhnpkzvFC/JV7WzEppaM+XkK1gr4g==
-X-Received: by 2002:a17:906:f1da:b0:a26:9812:deb9 with SMTP id gx26-20020a170906f1da00b00a269812deb9mr6081870ejb.126.1704109516008;
-        Mon, 01 Jan 2024 03:45:16 -0800 (PST)
-Received: from localhost.lan (031011218106.poznan.vectranet.pl. [31.11.218.106])
-        by smtp.gmail.com with ESMTPSA id fc19-20020a1709073a5300b00a26ea2179e8sm7455038ejc.41.2024.01.01.03.45.14
+        d=1e100.net; s=20230601; t=1704110987; x=1704715787;
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Azch07lTg84aB2Rb6QjZFZSA7yP5wkRdozKvJbeWmDs=;
+        b=uNbxgktUQ8HDMjV0YOJ94uj1PZwkRE9cFajMf8BRUlKix0wlvak3E7Tj2dkMjdrsuz
+         dhjOCKWT890zm2N8hdUW/eO4bEelMspQoFq1IZm9xJuFjmTtdyTsIAW4f1HY326kSH/a
+         ohgof0l/Y5M6o6tvB0eT4BBNJmv2DSMVMzYZlD73oaVQf115s6WWiLxHR+fkCuXTEsx3
+         vA2yx4vNOAaSrlwQBrmTzjLlE4/5+HTLNWW4nzmSBSigLNxuqbhIt5y8BDeoWgyciwv0
+         W/eFIqzHMmGWhu+SuWa48N5M6HnHRkS+Se4gzNCtOzcmSN1QsOeYbLbZvLZxTFipd5gY
+         +OHg==
+X-Gm-Message-State: AOJu0YwDPBg/umOyXnP78SkKuskbGw6M5DXn0mgLj4ZpId5L1r5PG7Gj
+	Qtp9sOcN/uhhcjDMpHgSuKKGJ6bEYLNpbdnJNjt9BU3lNQBqXUId23zW1XOd39mukf3XVxQoBDK
+	AiDBiJ/F0wx7SeDenFp/N0xfEf+v6Bg==
+X-Received: by 2002:a5d:4491:0:b0:336:9ec:683 with SMTP id j17-20020a5d4491000000b0033609ec0683mr7965571wrq.24.1704110987781;
+        Mon, 01 Jan 2024 04:09:47 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGKWyLHJ5nrPlW/ehgVUQA9HtsiYksOgMjOeLi1VaymrGEKk3opJ5Q2oDMaXVlvjQ2jZaz94A==
+X-Received: by 2002:a5d:4491:0:b0:336:9ec:683 with SMTP id j17-20020a5d4491000000b0033609ec0683mr7965565wrq.24.1704110987518;
+        Mon, 01 Jan 2024 04:09:47 -0800 (PST)
+Received: from localhost (205.pool92-176-231.dynamic.orange.es. [92.176.231.205])
+        by smtp.gmail.com with ESMTPSA id p7-20020adfe607000000b00336843ae919sm25513643wrm.49.2024.01.01.04.09.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 01 Jan 2024 03:45:15 -0800 (PST)
-From: =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To: Antoine Tenart <atenart@kernel.org>,
-	Sam Shih <sam.shih@mediatek.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	linux-crypto@vger.kernel.org,
-	linux-mediatek@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Cc: =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH RFC] dt-bindings: crypto: inside-secure,safexcel: make eip/mem IRQs optional
-Date: Mon,  1 Jan 2024 12:44:32 +0100
-Message-Id: <20240101114432.28139-1-zajec5@gmail.com>
-X-Mailer: git-send-email 2.35.3
+        Mon, 01 Jan 2024 04:09:47 -0800 (PST)
+From: Javier Martinez Canillas <javierm@redhat.com>
+To: linux-kernel@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Rob Herring
+ <robh@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Maxime Ripard
+ <mripard@kernel.org>, Geert Uytterhoeven <geert@linux-m68k.org>, Jocelyn
+ Falempe <jfalempe@redhat.com>, Conor Dooley <conor@kernel.org>, Peter
+ Robinson <pbrobinson@gmail.com>, Conor Dooley <conor+dt@kernel.org>,
+ Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Rob Herring <robh+dt@kernel.org>,
+ devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH v5 0/4] drm/solomon: Add support for the SSD133x
+ controller family
+In-Reply-To: <20231229112026.2797483-1-javierm@redhat.com>
+References: <20231229112026.2797483-1-javierm@redhat.com>
+Date: Mon, 01 Jan 2024 13:09:46 +0100
+Message-ID: <87ttnx45md.fsf@minerva.mail-host-address-is-not-set>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-From: Rafał Miłecki <rafal@milecki.pl>
+Javier Martinez Canillas <javierm@redhat.com> writes:
 
-Binding for this cryptographic engine defined 6 interrupts since its
-beginning. It seems however only 4 rings IRQs are really required for
-operating this hardware. Linux driver doesn't use "eip" or "mem" IRQs
-and it isn't clear if they are always available (MT7986 SoC binding
-doesn't specify them).
+> Hello,
+>
+> This patch-set adds support for the family of SSD133x Solomon controllers,
+> such as the SSD1331. These are used for RGB Dot Matrix OLED/PLED panels.
+>
+> This is a v5 that is basically the same than the previous v4 but dropping
+> support for I2C since the ssd133x family does not support that interface.
+>
+> The patches were tested on a Waveshare SSD1331 display using glmark2-drm,
+> fbcon, fbtests and the retroarch emulator. The binding schema were tested
+> using the `make W=1 dt_binding_check` target.
+>
+> Patch #1 and #2 are fixes for the DT binding schema of the existing SSD130x
+> and SSD132x families.
+>
+> Patch #3 adds a DT binding schema for the SSD133x controllers and patch #4
+> extends the ssd130x DRM driver to support the SSD133x controller family.
+>
+> Best regards,
+> Javier
 
-This deals with:
-arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dtb: crypto@10320000: interrupts: [[0, 116, 4], [0, 117, 4], [0, 118, 4], [0, 119, 4]] is too short
-        from schema $id: http://devicetree.org/schemas/crypto/inside-secure,safexcel.yaml#
-arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dtb: crypto@10320000: interrupt-names: ['ring0', 'ring1', 'ring2', 'ring3'] is too short
-        from schema $id: http://devicetree.org/schemas/crypto/inside-secure,safexcel.yaml#
+Pushed to drm-misc (drm-misc-next). Thanks!
 
-Cc: Antoine Tenart <atenart@kernel.org>
-Ref: ecc5287cfe53 ("arm64: dts: mt7986: add crypto related device nodes")
-Cc: Sam Shih <sam.shih@mediatek.com>
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
----
- .../devicetree/bindings/crypto/inside-secure,safexcel.yaml      | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/crypto/inside-secure,safexcel.yaml b/Documentation/devicetree/bindings/crypto/inside-secure,safexcel.yaml
-index ef07258d16c1..c8f4028aa7f3 100644
---- a/Documentation/devicetree/bindings/crypto/inside-secure,safexcel.yaml
-+++ b/Documentation/devicetree/bindings/crypto/inside-secure,safexcel.yaml
-@@ -26,9 +26,11 @@ properties:
-     maxItems: 1
- 
-   interrupts:
-+    minItems: 4
-     maxItems: 6
- 
-   interrupt-names:
-+    minItems: 4
-     items:
-       - const: ring0
-       - const: ring1
 -- 
-2.35.3
+Best regards,
+
+Javier Martinez Canillas
+Core Platforms
+Red Hat
 
 
