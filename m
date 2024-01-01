@@ -1,238 +1,430 @@
-Return-Path: <devicetree+bounces-29055-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29056-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF66D821318
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jan 2024 06:27:00 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id E6CE7821340
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jan 2024 09:20:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 62B5E1F22080
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jan 2024 05:27:00 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C8A4CB21A77
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jan 2024 08:20:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4A501368;
-	Mon,  1 Jan 2024 05:26:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63A1315BD;
+	Mon,  1 Jan 2024 08:20:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="jjrTnmH8"
+	dkim=pass (1024-bit key) header.d=arri.de header.i=@arri.de header.b="FrL3QcE8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+Received: from EUR02-AM0-obe.outbound.protection.outlook.com (mail-am0eur02on2133.outbound.protection.outlook.com [40.107.247.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F0AB1373;
-	Mon,  1 Jan 2024 05:26:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1704086814; x=1735622814;
-  h=date:from:to:cc:subject:message-id:in-reply-to:
-   mime-version;
-  bh=qLURjs9VsOgWTIQXsi9fLYUTBKBj3g5y3VbKWQiJOYM=;
-  b=jjrTnmH8TlPeXk5mf+6kAmll/FD1kYK8BaGeAZ+SP62Zd3hteOcNw2Zc
-   qjCTXLkbgiMo5zWjMlPyRQ2J8gRDMzW5U4xfYpwL6EBiksW+HBzt1CBGf
-   yxdAt0B3BZUt2FUth11etXZTTpH9L18CGWVwY8mcwV0xjq1vB6J+E8FsM
-   OPmEHiqyuGX8y4/Rp8axGnIbiiKOUdABuID+gSD6z3rKx61oPXHk7TH1U
-   dBCJtJ8YO1msbS8+x2Wey0NKCHo3/VbBl7+/gVqho+vRyaaMNE7wxYv0O
-   IPuFjzIO06K8/tga2WJ2pv6Yc3phf/y/RYsyNaJ2rV8feAxGxew9ZB8NL
-   w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10940"; a="10164758"
-X-IronPort-AV: E=Sophos;i="6.04,321,1695711600"; 
-   d="scan'208";a="10164758"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
-  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Dec 2023 21:26:53 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10940"; a="782853483"
-X-IronPort-AV: E=Sophos;i="6.04,321,1695711600"; 
-   d="scan'208";a="782853483"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
-  by fmsmga007.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384; 31 Dec 2023 21:26:53 -0800
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Sun, 31 Dec 2023 21:26:52 -0800
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Sun, 31 Dec 2023 21:26:52 -0800
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.169)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Sun, 31 Dec 2023 21:26:51 -0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 408C617C9;
+	Mon,  1 Jan 2024 08:20:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=arri.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arri.de
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=O+rk1scmPECuDBn7Co6Z2wWMrRAggNcBOVXVLQML7j1GIeLlAXy+QHodzpnO37dTj+hdo8cveU4Ehdsf0MKSEpI6iXNgAn9uHH8o3D6b2pnQ9D9NvzOISX6+OJfj1I3Bhu6EyMyBgSi0nfCTZ9K2/crni9mZ12JIgmzdTejSVLkefLHyW3Cm8ZdjoDFUYVntDxaNKFotyUN/vsibWppVJXlgkf+aynj5g/MD3/0Dtagb83bed9uDtvXbYgMpgr+YFZ65oSz0Y2uUzq1QveLjY65lSbO7kV5Md24HQzxKGi9Ko/8fJ/BVyXc9giT+JOZxB+ZCX/UlEDya+yqDGTA/6Q==
+ b=CJQBaYi69QPwrTurjeM8sjbP1V9hmS5zRf3WHcn5crtRFxuCgP4F1JcNjTbT6LvkoJ7OhhF/l8y2WHjEPEhpy7Bfmn3yhKVsWmDc6VKuLcKkDZsTRH0jtdbU62sghYdFO98++MhbnaiE386drSR7uURi2VEyB5LdKOPH7ike5Jhk5QJtPc4fc1ZiCQ0gOqdfxX1jGNYrPD3TYgYdkZBB0NFC6e8D+ZxWIMzs4W36YTpH+dwl4+hJ+FnvslOCn8S+soqmcZl4OQC9u3AB9BS520Ea5qoClpkTfIljSrQ3Vj14CeRDdt9FSl6T5uE4MnUBa3GKPceag9WKuf4T7v7Mqg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Ipcx829yYdrtbbvDruxhsfyK6tGqfzTq/dzFcmsG0F0=;
- b=PGhKXn3zVBs7Q5gR1EoetbFl0EW0hJbBjWrkLYiqU9bMngqEnVnHohpfhOWKDsrfBTIsDoM54ZHud8SV0Ju04si8HhRTJ5uBN32Jso2goAT0c3msuU3c/q3FGsEVh1RfItoki2Huq+77eEQXwwBxXiecHxjM1pCtpVvW70n7OBC/5G+i8bHMcTV89DRrNRJWOOae4rc4aYCMKo4Kb5elCbQWY/soaT6VEbR0UVd67bLL2fsQS3dTorrtFvMUYIOhe31Bkl0C46g+gb/m0OgPU9SlEBxzD2qk8igWGzsmdMauW0kJyqV0ZtLiIgFz5Lcy4vrlEnhc9OF3+DBi+9PLyg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CH3PR11MB8414.namprd11.prod.outlook.com (2603:10b6:610:17e::19)
- by DS0PR11MB7681.namprd11.prod.outlook.com (2603:10b6:8:f0::11) with
+ bh=1H0hmoHbP3ZH2ytsSUisW809rpMRMa1mvWggycD3jH0=;
+ b=AwAyRz3r1SUkcq2ZJGr1hPkQFNu5+ZNTyG+kGrHLKQPGcxNBS0U+5qrHbjM/dnjYf3P6DQ5exvWxLnmygiUmfq1Jfobd2IF4jnZ8mLITLjWXB3s5F2YIGLdQ9TBXK23TJ2yWRAYoFoc6D+iyBg1nzfpVl9VnjPF9kLIdLoYDQ8lfUWMlZhMS7aUz+RsPT/orsivjxF2LYXq4G3mYG21o41YH54d31N7vBVblns4PKASNuu0WtTM7ylOA9NbwWqGaygEkYCXN1xTkan7c3Mss6qqjWmnvLAyuYBePzVk2NcXG214+PvoqFKSU0YEA0o0biWCg/5i+BYgQgo5sZt7Osg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 217.111.95.7) smtp.rcpttodomain=kernel.org smtp.mailfrom=arri.de; dmarc=none
+ action=none header.from=arri.de; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arri.de; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=1H0hmoHbP3ZH2ytsSUisW809rpMRMa1mvWggycD3jH0=;
+ b=FrL3QcE8FV/F4eEY4DUWnK4eewC2EFugXofoS5c0dE8SG/sf2sgefQ6ZvA2TlFyEWN89R5tlKSKEq9x4gyBa+VfOmFSJHZj25fp+R/BR4M2NOsEfgePSddBmFZKp4IYJ+9KBndpJUdXcWTLF7jFvKwZMgQs4Jbf3aoEnzLSChj4=
+Received: from DU2P250CA0024.EURP250.PROD.OUTLOOK.COM (2603:10a6:10:231::29)
+ by AS4PR07MB9632.eurprd07.prod.outlook.com (2603:10a6:20b:4f6::22) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7135.24; Mon, 1 Jan
- 2024 05:26:45 +0000
-Received: from CH3PR11MB8414.namprd11.prod.outlook.com
- ([fe80::a0ff:c576:dd44:3f12]) by CH3PR11MB8414.namprd11.prod.outlook.com
- ([fe80::a0ff:c576:dd44:3f12%5]) with mapi id 15.20.7135.023; Mon, 1 Jan 2024
- 05:26:45 +0000
-Date: Mon, 1 Jan 2024 13:26:34 +0800
-From: kernel test robot <lkp@intel.com>
-To: Dario Binacchi <dario.binacchi@amarulasolutions.com>,
-	<linux-kernel@vger.kernel.org>
-CC: <oe-kbuild-all@lists.linux.dev>, <dri-devel@lists.freedesktop.org>, "Neil
- Armstrong" <neil.armstrong@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>, Sam Ravnborg <sam@ravnborg.org>,
-	<devicetree@vger.kernel.org>, <linux-amarula@amarulasolutions.com>,
-	"Alexandre Torgue" <alexandre.torgue@foss.st.com>, Maxime Ripard
-	<mripard@kernel.org>, Rob Herring <robh+dt@kernel.org>, Thomas Zimmermann
-	<tzimmermann@suse.de>, Jessica Zhang <quic_jesszhan@quicinc.com>, Dario
- Binacchi <dario.binacchi@amarulasolutions.com>, David Airlie
-	<airlied@gmail.com>
-Subject: Re: [PATCH 5/8] dt-bindings: nt35510: add compatible for FRIDA
- FRD400B25025-A-CTK
-Message-ID: <ZZJNCgy8yD8/l6P8@rli9-mobl>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20231229135154.675946-6-dario.binacchi@amarulasolutions.com>
-X-ClientProxiedBy: SG2PR04CA0156.apcprd04.prod.outlook.com (2603:1096:4::18)
- To CH3PR11MB8414.namprd11.prod.outlook.com (2603:10b6:610:17e::19)
+ 2024 08:20:09 +0000
+Received: from DU6PEPF0000A7E1.eurprd02.prod.outlook.com
+ (2603:10a6:10:231:cafe::ef) by DU2P250CA0024.outlook.office365.com
+ (2603:10a6:10:231::29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7135.24 via Frontend
+ Transport; Mon, 1 Jan 2024 08:20:09 +0000
+X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 217.111.95.7)
+ smtp.mailfrom=arri.de; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=arri.de;
+Received-SPF: Fail (protection.outlook.com: domain of arri.de does not
+ designate 217.111.95.7 as permitted sender) receiver=protection.outlook.com;
+ client-ip=217.111.95.7; helo=mta.arri.de;
+Received: from mta.arri.de (217.111.95.7) by
+ DU6PEPF0000A7E1.mail.protection.outlook.com (10.167.8.45) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.7159.9 via Frontend Transport; Mon, 1 Jan 2024 08:20:08 +0000
+Received: from n95hx1g2.localnet (192.168.54.11) by mta.arri.de (10.10.18.5)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1258.28; Mon, 1 Jan
+ 2024 09:20:07 +0100
+From: Christian Eggers <ceggers@arri.de>
+To: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
+	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+	Javier Carrasco <javier.carrasco.cruz@gmail.com>
+CC: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, Javier Carrasco
+	<javier.carrasco.cruz@gmail.com>
+Subject: Re: [PATCH 2/2] io: light: as73211: add support for as7331
+Date: Mon, 1 Jan 2024 09:20:07 +0100
+Message-ID: <2337038.ElGaqSPkdT@n95hx1g2>
+Organization: Arnold & Richter Cine Technik GmbH & Co. Betriebs KG
+In-Reply-To: <20231220-as7331-v1-2-745b73c27703@gmail.com>
+References: <20231220-as7331-v1-0-745b73c27703@gmail.com> <20231220-as7331-v1-2-745b73c27703@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH3PR11MB8414:EE_|DS0PR11MB7681:EE_
-X-MS-Office365-Filtering-Correlation-Id: ea603302-fab1-4fc0-cae1-08dc0a8a3e5d
+X-MS-TrafficTypeDiagnostic: DU6PEPF0000A7E1:EE_|AS4PR07MB9632:EE_
+X-MS-Office365-Filtering-Correlation-Id: f098f6be-ee93-495e-78c4-08dc0aa27778
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: cf26toquSGfty3mwixklK7DORq2WG+JJQJrSLxBJYlRMuJgfEieBp8SDHDRNABO/7aWBWsyysCmO35FFtq2tOMnx0K19dqCDxuPuTsYB1kUids4RaQLQaf9WUbpy0/HqRgU4ISDpfGHfwNOn94Zbeq5uCLfjFXvne9afK/YeQvyuMowkvp1agQozDE0J4RVQfxEZF1H/ZIN9HcSQpVfUaB193MF7crxr0D1g8Khx8gpV2sUfUQV6X2uXfcmya+Ata2qe85ms7fBTd4+EkVvzUdYiJfzDWMSF4twrN58fip2dPvrdD+KxCvdxSRh8V4AgEfHjL5B83RQpSH+uRBkkD2TSRRfg100RoUgWXRnH63nqyldoaGkq92YgSq0YMmX2Q7XtV8uk1wNc8RX5cBGkUNIpAupr1ORGZqkxB7Wg4j5Km2rm17mNxye/56mPtzPgKVNF7tawq7qNnacKtLgpS6enE+4EQ6pS9TudNTf2iVKjoJsmOQDLZQW15E1dGuX8bC5D6Eq/5rX9N5J5BsrkKiGZBNMm1cfXSIEdZ8h9Mumau6FllBTsRUidk6f2XDA12EY+oOj+LYPL9Ff13gAj5Vx4TuXrRR9Pk7e11RZMWJiHbX5xIsV5Gpe+XdZQx9xB8y+F6bBJ83mmPUNap9gO+BWhUyqFFIvaKeu6mFr86J0=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CH3PR11MB8414.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(7916004)(366004)(396003)(39860400002)(346002)(136003)(376002)(230922051799003)(230273577357003)(230173577357003)(64100799003)(186009)(451199024)(1800799012)(83380400001)(38100700002)(316002)(54906003)(66476007)(66556008)(66946007)(966005)(6486002)(478600001)(5660300002)(4001150100001)(2906002)(7416002)(4326008)(8936002)(8676002)(33716001)(26005)(41300700001)(9686003)(6506007)(6512007)(6666004)(82960400001)(86362001);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?vVcn/bGfdYHfNm5Gtq8QAPJyxUQLp530p4wN5OpYly/6e6HXEc2+2jgqYwtZ?=
- =?us-ascii?Q?xbI7gUiS8LTLryJMAGo2uBWz6KqnaRc3wKYMUzT6K4S4Y7QJubu1TJE0JQfr?=
- =?us-ascii?Q?fwzGRB0V88Ip+po8HTxCk9cqlffY765gCvA56sHEdChilXwqXLDX048Vno4J?=
- =?us-ascii?Q?NambmIIW35TFPm84FuLb70fRHGYel2oJ/BAMtG+eq8ZfZdAX3Q9CFp/jXqzA?=
- =?us-ascii?Q?fdHAhm8XILu7ZQSo3CCvzjLUSajAs8B9chY3aXHaVf7Jj/i8heV0OZb/lMO7?=
- =?us-ascii?Q?eSas3N08SoVEhSoSeOSwZfTnuHIziNAV00++5o/A+TH1ExHhAqRy+QSvVWUx?=
- =?us-ascii?Q?BjROgPgihqViDyxw0c3cQPtm7ziTyrI2mJhd8N0Qf3iKwqcRRe2q3Im/dGpg?=
- =?us-ascii?Q?/bPZKbIIqlYNijlRfFqsL7+tUxZGhxJ6MmNREcAYJZZRfTGLdNDNMMr+N+Dw?=
- =?us-ascii?Q?6E7YcFfhXwdj7UEavjNtvFrWA3WFzvWHl0MveEwiX1oFMWp74okLMH4mDtkE?=
- =?us-ascii?Q?N/j4baHsDNFBjz4IbupYhZDhgsNRsLIYY50dnrX0MADt7+3lUlcoZ3CSCv2s?=
- =?us-ascii?Q?psjDaUhgfvlOKtyI2DwCOIlYnrAd3dLx15fED8QkTFjm3p4uxsl9xfiiE3gp?=
- =?us-ascii?Q?R6tr3u7gvQtTYeX9cfWiyw+BX9SJ7y8E/RQDFX4UupJ3bAhOh6yf9jYH8poE?=
- =?us-ascii?Q?7ZNqszEjTeWao1YIu48pANqjP0cQGFrQ+U77gWZQlqQ+CBJMmktYfVlzfrEs?=
- =?us-ascii?Q?41oba0cWm7NBeXB9RBcRZhrAy7eusq16lWa8KLGOHr/ODlbFnDdBlyz6Lzer?=
- =?us-ascii?Q?oQYI6HcS8hGLmuzLkcXgXPxAO/XEi0OCqtWjfpT0XfRM0qIebjAs74CyqzgZ?=
- =?us-ascii?Q?VezDNT9Pqfs3yDAJ3xeDJU9TJr0WU7fJ+KhV34e9aevCL+g8O71NykjDjHUx?=
- =?us-ascii?Q?YxkAYTi8N3JjBvG8yKtNlrC7JciJ5zumZL4NWRvIg82YbKC+yZ4jes1Hdvoj?=
- =?us-ascii?Q?NUQDNzZxSOtZrGKUwQYd4kG51XeqwAQiUA6+RD0Zzn0KX7QleMtYDbJ30yBQ?=
- =?us-ascii?Q?nMqiQ6VTRnZz7LIAMHrpoaLAtBdjGmtM6hu7kmONtMrRQvHyDWjS2M8IBPZF?=
- =?us-ascii?Q?kerwPHMqTkXKxNiE9O7UGbZoYLZRBs75fBVNkvR2ujL+sn3s6bRaTC+LwEoO?=
- =?us-ascii?Q?dBnl96wC2JFSEPAtDzbswwmySnnlRMrz7Ndl9xNIjibJ02nxwjCz+lAneY0Y?=
- =?us-ascii?Q?4XVnR7Vj9bZ0YpdQ16tHChRQTOZiafwwK7b3InIo9NGkoxBydf8PPpoFREBv?=
- =?us-ascii?Q?BMxjSKKkHWCF4vlyA00B4AckiYcMRiCntR116dpZwBHKabXuQ3Dc+TqERJSn?=
- =?us-ascii?Q?B4wadwfHDVd7ha047s8uZxWGZ9Zxnn+kZZuu1VraToLIxWEImjPKREMzyaaH?=
- =?us-ascii?Q?a50xxByG6sh6HvzNcKLYkAc9t6LltVsfMtyBoNJCpbIkmsu83e0ZOctW1DkW?=
- =?us-ascii?Q?m5I6XpiQT4ESlJD63uikBDpN/nYqhC+8VnALitproFO6FRzIMLlSSyylbhuj?=
- =?us-ascii?Q?MINBYjP6OMhWeTififuy8Rgw62U1xHUhQ0Eg47FzIXnD9NPjMTHkSS12ZoI8?=
- =?us-ascii?Q?4Q=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: ea603302-fab1-4fc0-cae1-08dc0a8a3e5d
-X-MS-Exchange-CrossTenant-AuthSource: CH3PR11MB8414.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Jan 2024 05:26:45.1158
+X-Microsoft-Antispam-Message-Info:
+	U7BR8gusP/UlXrKg6dQ+NbX8n2ZKtVE2by+5vbeVICFZxrtF55KAtTnX4Y6/SPQiIm9p17PVYmZYDbR92t/nkrU6hL+AXV/TZ9IMQ94KHrkLLdvq6sbgwW/22w6SIdp1nC7GwtYSlYtE925BU4NEEsVQeaSI/KEIWznCxheMzycIn6vRC9aGUPt9hJuR4RzGySFAW09CoSTWS+2hXDNlNKlAPyT8RjYIrbnyp+8KDNuCWoJofFCjqwP5M0DtkZyJIracCGAbUtsVYvT4gtoLkBvEReq9PtPUwdF0MOOzuaLAbIEWwTEM6bYS2OF2wga0La+bHV0qQ4jqkLrxwNBDUs06CkANqla6pABgu43kWqKtBKMQ6wnuNHXxWyXl1NzFwQuH2yw/bIrmWQkhfbnJZVV27Pdky5wOaH4NTaXiwrFYXqF5Xhv6aP10POq5WW7Jk/3J+gojbb9WPwAJHGbJIcZkL2XhgkF2OMXtk+aCDdXS2a/Oih95uMfGQ1tviahO3VYAOyGCdhhPCO4z75qxlJ5pAOJKaed5Gk6HSiajU4Svk6J5YTR7T+tseSudNayRCejMH3wSBn9wOtpRapgWbiHZDuQa3ylXXPy3Kh0+3ctQ63wULDXenxfeijwu4BYTi6Nlw73UX3SWDEl//ti1qVH7z0UNpf6rvgJyyXBeFkJmx0IhIS7v467BaOT4slniS+LZcTHiunF/5VOJ0Htu1DrdIsQRyeFDlEJlyBzIzCL2Bm0bbKRXd9V74KdW+LgruTcIl2Qsn1aFKInI+kuVzA==
+X-Forefront-Antispam-Report:
+	CIP:217.111.95.7;CTRY:DE;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mta.arri.de;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230031)(4636009)(136003)(346002)(396003)(39840400004)(376002)(230922051799003)(64100799003)(186009)(82310400011)(451199024)(1800799012)(36840700001)(46966006)(40140700001)(40480700001)(9686003)(36916002)(70206006)(70586007)(86362001)(41300700001)(426003)(336012)(83380400001)(16526019)(81166007)(356005)(33716001)(26005)(47076005)(2906002)(4326008)(5660300002)(30864003)(478600001)(9576002)(966005)(36860700001)(110136005)(316002)(54906003)(8936002)(8676002)(36900700001);DIR:OUT;SFP:1102;
+X-OriginatorOrg: arri.de
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Jan 2024 08:20:08.4506
  (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 8w6sRYgfXsbdfAOk33CSrBpR9uOHAKfAHxtJ9smsrwXoMC0ivqsRZTiYNGJixC0GSBEXeSC2L7UWiHBpFgkFTA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB7681
-X-OriginatorOrg: intel.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f098f6be-ee93-495e-78c4-08dc0aa27778
+X-MS-Exchange-CrossTenant-Id: e6a73a5a-614d-4c51-b3e3-53b660a9433a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e6a73a5a-614d-4c51-b3e3-53b660a9433a;Ip=[217.111.95.7];Helo=[mta.arri.de]
+X-MS-Exchange-CrossTenant-AuthSource:
+	DU6PEPF0000A7E1.eurprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS4PR07MB9632
 
-Hi Dario,
+On Saturday, 23 December 2023, 11:46:14 CET, Javier Carrasco wrote:
+> The AMS AS7331 is a UV light sensor with three channels: UVA, UVB and
+> UVC (also known as deep UV and referenced as DUV in the iio core).
+> Its internal structure and forming blocks are practically identical to
+> the ones the AS73211 contains: API, internal DAC, I2C interface and
+> registers, measurement modes, number of channels and pinout.
+> 
+> The only difference between them is the photodiodes used to acquire
+> light, which means that only some modifications are required to add
+> support for the AS7331 in the existing driver.
+> 
+> The temperature channel is identical for both devices and only the
+> channel modifiers of the IIO_INTENSITY channels need to account for the
+> device type.
+> 
+> The scale values have been obtained from the chapter "7.5 Transfer
+> Function" of the official datasheet[1] for the configuration chosen as
+> basis (Nclk = 1024 and GAIN = 1). Those values keep the units from the
+> datasheet (nW/cm^2) because no additional upscaling is required to work
+> with integers as opposed to the scale values for the AS73211. Actually
+> if the same upscaling is used, their values will not fit in 4-byte
+> integers without affecting its sign.
+> 
+> Instead, the AS7331-specific function to retrieve the intensity scales
+> returns decimal values as listed in the datasheet for every
+> combination of GAIN and Nclk, keeping the unit as nW/cm^2.
+> To achieve that, a fractional value is returned.
+> The AS73211 scales use nW/m^2 units to work with integers that fit in
+> a 4-byte integer, and in that case there is no need to modify the value
+> type.
+> 
+> Add a new device-specific data structure to account for the device
+> differences: channel types and scale of LSB per channel.
+> 
+> [1] https://ams.com/documents/20143/9106314/AS7331_DS001047_4-00.pdf
+> 
+> Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
+> ---
+>  drivers/iio/light/Kconfig   |   5 +-
+>  drivers/iio/light/as73211.c | 146 ++++++++++++++++++++++++++++++++++++--------
+>  2 files changed, 122 insertions(+), 29 deletions(-)
+> 
+> diff --git a/drivers/iio/light/Kconfig b/drivers/iio/light/Kconfig
+> index 143003232d1c..fd5a9879a582 100644
+> --- a/drivers/iio/light/Kconfig
+> +++ b/drivers/iio/light/Kconfig
+> @@ -87,13 +87,14 @@ config APDS9960
+>  	  module will be called apds9960
+>  
+>  config AS73211
+> -	tristate "AMS AS73211 XYZ color sensor"
+> +	tristate "AMS AS73211 XYZ color sensor and AMS AS7331 UV sensor"
+>  	depends on I2C
+>  	select IIO_BUFFER
+>  	select IIO_TRIGGERED_BUFFER
+>  	help
+>  	 If you say yes here you get support for the AMS AS73211
+> -	 JENCOLOR(R) Digital XYZ Sensor.
+> +	 JENCOLOR(R) Digital XYZ and the AMS AS7331 UVA, UVB and UVC
+> +	 ultraviolet sensors.
+>  
+>  	 For triggered measurements, you will need an additional trigger driver
+>  	 like IIO_HRTIMER_TRIGGER or IIO_SYSFS_TRIGGER.
+> diff --git a/drivers/iio/light/as73211.c b/drivers/iio/light/as73211.c
+> index ec97a3a46839..d53a0ae5255a 100644
+> --- a/drivers/iio/light/as73211.c
+> +++ b/drivers/iio/light/as73211.c
+> @@ -1,6 +1,7 @@
+>  // SPDX-License-Identifier: GPL-2.0-only
+>  /*
+> - * Support for AMS AS73211 JENCOLOR(R) Digital XYZ Sensor
+> + * Support for AMS AS73211 JENCOLOR(R) Digital XYZ Sensor and AMS AS7331
+> + * UVA, UVB and UVC (DUV) Ultraviolet Sensor
+>   *
+>   * Author: Christian Eggers <ceggers@arri.de>
+>   *
+> @@ -9,7 +10,9 @@
+>   * Color light sensor with 16-bit channels for x, y, z and temperature);
+>   * 7-bit I2C slave address 0x74 .. 0x77.
+>   *
+> - * Datasheet: https://ams.com/documents/20143/36005/AS73211_DS000556_3-01.pdf
+> + * Datasheets:
+> + * AS73211: https://ams.com/documents/20143/36005/AS73211_DS000556_3-01.pdf
+> + * AS7331: https://ams.com/documents/20143/9106314/AS7331_DS001047_4-00.pdf
+>   */
+>  
+>  #include <linux/bitfield.h>
+> @@ -84,6 +87,20 @@ static const int as73211_hardwaregain_avail[] = {
+>  	1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048,
+>  };
+>  
+> +struct as73211_data;
+> +
+> +/**
+> + * struct spec_dev_data - device-specific data
+> + * @intensity_scale:  Function to retrieve intensity scale values.
+> + * @channel:          Device channels.
+> + * @num_channels:     Number of channels of the device.
+> + */
+> +struct spec_dev_data {
+> +	int (*intensity_scale)(struct as73211_data *data, int chan, int *val, int *val2);
+> +	struct iio_chan_spec const *channel;
+> +	int num_channels;
+> +};
+> +
+>  /**
+>   * struct as73211_data - Instance data for one AS73211
+>   * @client: I2C client.
+> @@ -94,6 +111,7 @@ static const int as73211_hardwaregain_avail[] = {
+>   * @mutex:  Keeps cached registers in sync with the device.
+>   * @completion: Completion to wait for interrupt.
+>   * @int_time_avail: Available integration times (depend on sampling frequency).
+> + * @spec_dev: device-specific configuration.
+>   */
+>  struct as73211_data {
+>  	struct i2c_client *client;
+> @@ -104,6 +122,7 @@ struct as73211_data {
+>  	struct mutex mutex;
+>  	struct completion completion;
+>  	int int_time_avail[AS73211_SAMPLE_TIME_NUM * 2];
+> +	const struct spec_dev_data *spec_dev;
+>  };
+>  
+>  #define AS73211_COLOR_CHANNEL(_color, _si, _addr) { \
+> @@ -138,6 +157,10 @@ struct as73211_data {
+>  #define AS73211_SCALE_Y 298384270  /* nW/m^2 */
+>  #define AS73211_SCALE_Z 160241927  /* nW/m^2 */
+>  
+> +#define AS7331_SCALE_UVA 340000  /* nW/cm^2 */
+> +#define AS7331_SCALE_UVB 378000  /* nW/cm^2 */
+> +#define AS7331_SCALE_UVC 166000  /* nW/cm^2 */
+> +
+>  /* Channel order MUST match devices result register order */
+>  #define AS73211_SCAN_INDEX_TEMP 0
+>  #define AS73211_SCAN_INDEX_X    1
+> @@ -176,6 +199,28 @@ static const struct iio_chan_spec as73211_channels[] = {
+>  	IIO_CHAN_SOFT_TIMESTAMP(AS73211_SCAN_INDEX_TS),
+>  };
+>  
+> +static const struct iio_chan_spec as7331_channels[] = {
+> +	{
+> +		.type = IIO_TEMP,
+> +		.info_mask_separate =
+> +			BIT(IIO_CHAN_INFO_RAW) |
+> +			BIT(IIO_CHAN_INFO_OFFSET) |
+> +			BIT(IIO_CHAN_INFO_SCALE),
+> +		.address = AS73211_OUT_TEMP,
+> +		.scan_index = AS73211_SCAN_INDEX_TEMP,
+> +		.scan_type = {
+> +			.sign = 'u',
+> +			.realbits = 16,
+> +			.storagebits = 16,
+> +			.endianness = IIO_LE,
+> +		}
+> +	},
+> +	AS73211_COLOR_CHANNEL(LIGHT_UVA, AS73211_SCAN_INDEX_X, AS73211_OUT_MRES1),
+> +	AS73211_COLOR_CHANNEL(LIGHT_UVB, AS73211_SCAN_INDEX_Y, AS73211_OUT_MRES2),
+> +	AS73211_COLOR_CHANNEL(LIGHT_DUV, AS73211_SCAN_INDEX_Z, AS73211_OUT_MRES3),
+> +	IIO_CHAN_SOFT_TIMESTAMP(AS73211_SCAN_INDEX_TS),
+> +};
+> +
+>  static unsigned int as73211_integration_time_1024cyc(struct as73211_data *data)
+>  {
+>  	/*
+> @@ -316,6 +361,50 @@ static int as73211_req_data(struct as73211_data *data)
+>  	return 0;
+>  }
+>  
+> +static int as73211_intensity_scale(struct as73211_data *data, int chan, int *val, int *val2)
+> +{
+> +	unsigned int scale;
+> +
+> +	switch (chan) {
+> +	case IIO_MOD_X:
+> +		scale = AS73211_SCALE_X;
+> +		break;
+> +	case IIO_MOD_Y:
+> +		scale = AS73211_SCALE_Y;
+> +		break;
+> +	case IIO_MOD_Z:
+> +		scale = AS73211_SCALE_Z;
+> +		break;
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +	scale /= as73211_gain(data);
+> +	scale /= as73211_integration_time_1024cyc(data);
+> +	*val = scale;
+> +
+> +	return IIO_VAL_INT;
+> +}
+> +
+> +static int as7331_intensity_scale(struct as73211_data *data, int chan, int *val, int *val2)
+> +{
+> +	switch (chan) {
+> +	case IIO_MOD_LIGHT_UVA:
+> +		*val = AS7331_SCALE_UVA;
+> +		break;
+> +	case IIO_MOD_LIGHT_UVB:
+> +		*val = AS7331_SCALE_UVB;
+> +		break;
+> +	case IIO_MOD_LIGHT_DUV:
+> +		*val = AS7331_SCALE_UVC;
+> +		break;
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +	*val2 = as73211_gain(data) * as73211_integration_time_1024cyc(data);
+> +
+> +	return IIO_VAL_FRACTIONAL;
+> +}
+> +
+>  static int as73211_read_raw(struct iio_dev *indio_dev, struct iio_chan_spec const *chan,
+>  			     int *val, int *val2, long mask)
+>  {
+> @@ -355,30 +444,12 @@ static int as73211_read_raw(struct iio_dev *indio_dev, struct iio_chan_spec cons
+>  			*val2 = AS73211_SCALE_TEMP_MICRO;
+>  			return IIO_VAL_INT_PLUS_MICRO;
+>  
+> -		case IIO_INTENSITY: {
+> -			unsigned int scale;
+> -
+> -			switch (chan->channel2) {
+> -			case IIO_MOD_X:
+> -				scale = AS73211_SCALE_X;
+> -				break;
+> -			case IIO_MOD_Y:
+> -				scale = AS73211_SCALE_Y;
+> -				break;
+> -			case IIO_MOD_Z:
+> -				scale = AS73211_SCALE_Z;
+> -				break;
+> -			default:
+> -				return -EINVAL;
+> -			}
+> -			scale /= as73211_gain(data);
+> -			scale /= as73211_integration_time_1024cyc(data);
+> -			*val = scale;
+> -			return IIO_VAL_INT;
+> +		case IIO_INTENSITY:
+> +			return data->spec_dev->intensity_scale(data, chan->channel2, val, val2);
+>  
+>  		default:
+>  			return -EINVAL;
+> -		}}
+> +		}
+>  
+>  	case IIO_CHAN_INFO_SAMP_FREQ:
+>  		/* f_samp is configured in CREG3 in powers of 2 (x 1.024 MHz) */
+> @@ -676,13 +747,20 @@ static int as73211_probe(struct i2c_client *client)
+>  	i2c_set_clientdata(client, indio_dev);
+>  	data->client = client;
+>  
+> +	if (dev_fwnode(dev))
+> +		data->spec_dev = device_get_match_data(dev);
+> +	else
+> +		data->spec_dev = i2c_get_match_data(client);
+> +	if (!data->spec_dev)
+> +		return -EINVAL;
+> +
+>  	mutex_init(&data->mutex);
+>  	init_completion(&data->completion);
+>  
+>  	indio_dev->info = &as73211_info;
+>  	indio_dev->name = AS73211_DRV_NAME;
+> -	indio_dev->channels = as73211_channels;
+> -	indio_dev->num_channels = ARRAY_SIZE(as73211_channels);
+> +	indio_dev->channels = data->spec_dev->channel;
+> +	indio_dev->num_channels = data->spec_dev->num_channels;
+>  	indio_dev->modes = INDIO_DIRECT_MODE;
+>  
+>  	ret = i2c_smbus_read_byte_data(data->client, AS73211_REG_OSR);
+> @@ -772,14 +850,28 @@ static int as73211_resume(struct device *dev)
+>  static DEFINE_SIMPLE_DEV_PM_OPS(as73211_pm_ops, as73211_suspend,
+>  				as73211_resume);
+>  
+> +static const struct spec_dev_data as73211_spec = {
+> +	.intensity_scale = as73211_intensity_scale,
+> +	.channel = as73211_channels,
+> +	.num_channels = ARRAY_SIZE(as73211_channels),
+> +};
+> +
+> +static const struct spec_dev_data as7331_spec = {
+> +	.intensity_scale = as7331_intensity_scale,
+> +	.channel = as7331_channels,
+> +	.num_channels = ARRAY_SIZE(as7331_channels),
+> +};
+> +
+>  static const struct of_device_id as73211_of_match[] = {
+> -	{ .compatible = "ams,as73211" },
+> +	{ .compatible = "ams,as73211", &as73211_spec },
+> +	{ .compatible = "ams,as7331", &as7331_spec },
+>  	{ }
+>  };
+>  MODULE_DEVICE_TABLE(of, as73211_of_match);
+>  
+>  static const struct i2c_device_id as73211_id[] = {
+> -	{ "as73211", 0 },
+> +	{ "as73211", (kernel_ulong_t)&as73211_spec },
+> +	{ "as7331", (kernel_ulong_t)&as7331_spec },
+>  	{ }
+>  };
+>  MODULE_DEVICE_TABLE(i2c, as73211_id);
+> 
+> 
 
-kernel test robot noticed the following build warnings:
+As I still work with Linux 6.1, I backported this patch for
+that version. A short test with an as73211 didn't show any
+differences.
 
-[auto build test WARNING on atorgue-stm32/stm32-next]
-[also build test WARNING on drm-misc/drm-misc-next lee-mfd/for-mfd-next robh/for-next linus/master v6.7-rc7 next-20231222]
-[cannot apply to lee-mfd/for-mfd-fixes]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+If I shall test further revisions of this patch, I can do this
+after the 9th of January.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Dario-Binacchi/dt-bindings-mfd-stm32f7-Add-binding-definition-for-DSI/20231229-215601
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/atorgue/stm32.git stm32-next
-patch link:    https://lore.kernel.org/r/20231229135154.675946-6-dario.binacchi%40amarulasolutions.com
-patch subject: [PATCH 5/8] dt-bindings: nt35510: add compatible for FRIDA FRD400B25025-A-CTK
-:::::: branch date: 20 hours ago
-:::::: commit date: 20 hours ago
-compiler: loongarch64-linux-gcc (GCC) 13.2.0
-reproduce: (https://download.01.org/0day-ci/archive/20231230/202312301748.2BRGs7Xs-lkp@intel.com/reproduce)
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/r/202312301748.2BRGs7Xs-lkp@intel.com/
+If I shall test further revisions of this patch, I can do this
+after the 9th of January.
 
-dtcheck warnings: (new ones prefixed by >>)
->> Documentation/devicetree/bindings/display/panel/novatek,nt35510.yaml:21:7: [error] duplication of key "items" in mapping (key-duplicates)
---
->> Documentation/devicetree/bindings/display/panel/novatek,nt35510.yaml:21:7: found duplicate key "items" with value "[]" (original value: "[]")
-   Documentation/devicetree/bindings/iio/pressure/honeywell,mprls0025pa.yaml: properties:honeywell,pmin-pascal: '$ref' should not be valid under {'const': '$ref'}
-   	hint: Standard unit suffix properties don't need a type $ref
-   	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
-   Documentation/devicetree/bindings/iio/pressure/honeywell,mprls0025pa.yaml: properties:honeywell,pmax-pascal: '$ref' should not be valid under {'const': '$ref'}
-   	hint: Standard unit suffix properties don't need a type $ref
-   	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
---
->> Documentation/devicetree/bindings/display/panel/novatek,nt35510.yaml: ignoring, error parsing file
-   Documentation/devicetree/bindings/net/snps,dwmac.yaml: mac-mode: missing type definition
 
-vim +/items +21 Documentation/devicetree/bindings/display/panel/novatek,nt35510.yaml
+Tested-by: Christian Eggers <ceggers@arri.de>
 
-5ce96fe032f43e Linus Walleij  2020-02-23   8  
-5ce96fe032f43e Linus Walleij  2020-02-23   9  maintainers:
-5ce96fe032f43e Linus Walleij  2020-02-23  10    - Linus Walleij <linus.walleij@linaro.org>
-5ce96fe032f43e Linus Walleij  2020-02-23  11  
-5ce96fe032f43e Linus Walleij  2020-02-23  12  allOf:
-5ce96fe032f43e Linus Walleij  2020-02-23  13    - $ref: panel-common.yaml#
-5ce96fe032f43e Linus Walleij  2020-02-23  14  
-5ce96fe032f43e Linus Walleij  2020-02-23  15  properties:
-5ce96fe032f43e Linus Walleij  2020-02-23  16    compatible:
-859f1d9e26606c Dario Binacchi 2023-12-29  17      oneOf:
-5ce96fe032f43e Linus Walleij  2020-02-23  18        items:
-5ce96fe032f43e Linus Walleij  2020-02-23  19          - const: hydis,hva40wv1
-5ce96fe032f43e Linus Walleij  2020-02-23  20          - const: novatek,nt35510
-859f1d9e26606c Dario Binacchi 2023-12-29 @21        items:
-859f1d9e26606c Dario Binacchi 2023-12-29  22          - const: frida,frd400b25025
-859f1d9e26606c Dario Binacchi 2023-12-29  23          - const: novatek,nt35510
-5ce96fe032f43e Linus Walleij  2020-02-23  24        description: This indicates the panel manufacturer of the panel
-5ce96fe032f43e Linus Walleij  2020-02-23  25          that is in turn using the NT35510 panel driver. The compatible
-5ce96fe032f43e Linus Walleij  2020-02-23  26          string determines how the NT35510 panel driver shall be configured
-5ce96fe032f43e Linus Walleij  2020-02-23  27          to work with the indicated panel. The novatek,nt35510 compatible shall
-5ce96fe032f43e Linus Walleij  2020-02-23  28          always be provided as a fallback.
-5ce96fe032f43e Linus Walleij  2020-02-23  29    reg: true
-5ce96fe032f43e Linus Walleij  2020-02-23  30    reset-gpios: true
-5ce96fe032f43e Linus Walleij  2020-02-23  31    vdd-supply:
-5ce96fe032f43e Linus Walleij  2020-02-23  32      description: regulator that supplies the vdd voltage
-5ce96fe032f43e Linus Walleij  2020-02-23  33    vddi-supply:
-5ce96fe032f43e Linus Walleij  2020-02-23  34      description: regulator that supplies the vddi voltage
-5ce96fe032f43e Linus Walleij  2020-02-23  35    backlight: true
-5ce96fe032f43e Linus Walleij  2020-02-23  36  
-5ce96fe032f43e Linus Walleij  2020-02-23  37  required:
-5ce96fe032f43e Linus Walleij  2020-02-23  38    - compatible
-5ce96fe032f43e Linus Walleij  2020-02-23  39    - reg
-5ce96fe032f43e Linus Walleij  2020-02-23  40  
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
 
 
