@@ -1,82 +1,175 @@
-Return-Path: <devicetree+bounces-29467-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29054-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B85E8230D3
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 16:52:16 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 98A7882119F
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jan 2024 01:00:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 916F2B234DD
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 15:52:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4D9BF1F2254A
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jan 2024 00:00:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A27221B27B;
-	Wed,  3 Jan 2024 15:52:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 840BBC2DE;
+	Mon,  1 Jan 2024 00:00:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dpzRpl1P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bmailout3.hostsharing.net (bmailout3.hostsharing.net [176.9.242.62])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 519D71BDC4;
-	Wed,  3 Jan 2024 15:52:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=wunner.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wunner.de
-Received: from h08.hostsharing.net (h08.hostsharing.net [IPv6:2a01:37:1000::53df:5f1c:0])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256
-	 client-signature RSA-PSS (4096 bits) client-digest SHA256)
-	(Client CN "*.hostsharing.net", Issuer "RapidSSL TLS RSA CA G1" (verified OK))
-	by bmailout3.hostsharing.net (Postfix) with ESMTPS id 16EA4100DCEC0;
-	Wed,  3 Jan 2024 16:52:04 +0100 (CET)
-Received: by h08.hostsharing.net (Postfix, from userid 100393)
-	id BE5BC2CD19; Wed,  3 Jan 2024 16:52:03 +0100 (CET)
-Message-Id: <ea312fdaab76efd1cbcc4ed9fd0e15e5afd1ef88.1704296746.git.lukas@wunner.de>
-From: Lukas Wunner <lukas@wunner.de>
-Date: Wed, 3 Jan 2023 16:51:14 +0100
-Subject: [PATCH] dt-bindings: tpm: Add compatible string atmel,attpm20p
-To: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Jarkko Sakkinen <jarkko@kernel.org>, Peter Huewe <peterhuewe@gmx.de>, Jason Gunthorpe <jgg@ziepe.ca>, Tim Harvey <tharvey@gateworks.com>
-Cc: devicetree@vger.kernel.org, linux-integrity@vger.kernel.org
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16711C2C5
+	for <devicetree@vger.kernel.org>; Mon,  1 Jan 2024 00:00:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-556431c7d51so348963a12.2
+        for <devicetree@vger.kernel.org>; Sun, 31 Dec 2023 16:00:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1704067209; x=1704672009; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=C1INtN/KwPq/Kh+/tuqCsXKBvEKli+VsBh43RgsVDQQ=;
+        b=dpzRpl1PomSZIYhR2GjpxTxDCBxboDuBOuKeC8A92+zLpovlUI9Frwy8fx/1A9ySW4
+         SsM6ohlo8NGbaajV/+RR071R7UN7+6HSox6fsoGJwLHM7/LysYLNA+isqQ4wPjeEZWaj
+         QwfVtxorNfkmB0dcTIumHuG5NqjBrJKm3cNlL5i2FxvpfMY4iYaaVWNl12EQQeAt7BV3
+         Ibwh2ZbmPyD5cnTxz1buvaJKn/6e+qzJhrdWhbFJ+o+jNYPh6asxYRbJXHh6h94PwXTw
+         WAWuJCtjJuCIj3o1d//1cyjX43KhDwiYJtdb6zgLDtUAbRtvjkEEQdPqG8UXe1grvf9H
+         hFHQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1704067209; x=1704672009;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=C1INtN/KwPq/Kh+/tuqCsXKBvEKli+VsBh43RgsVDQQ=;
+        b=R59kN0KBVJSXY6czJpSTluUm7mIAhJjzxfv2Wv+MgXwTXW7Ri01wt3iQgKnyxBgOSP
+         jkyEJucgYk5wLPgpUgVrC0uG6ppMtSJwxmYmEsejtUK4FQa2BrUB18SxrnBPLlW34eeb
+         OR52BXvml2mIhEDS2eCcbHCNBjQQxupPB0sWK1oMHjq69LdDByZmDuzfJgssrzoBZtXb
+         8+EpE2UJIqU8N84J1QsXnVhe8gP7OUNAchPPk/1BHas+wcdm47Lp100ytw9wDtOxhk7y
+         lTOqTzrCHjdBnUGay5OPMW1i3etGHjXkp6NNR4L3dLQefN+LYrcF2YZ41Q+ax/4pndGy
+         IsvQ==
+X-Gm-Message-State: AOJu0YxEsCu8PxRBKQZBa/eBLNUZZoBA5gmAaHyW2602A4A4NvUFbuwA
+	9nyc1Rgx5YAndfX6o9YrlOovGtD+dosLAw==
+X-Google-Smtp-Source: AGHT+IFXEcZGbkvUmUE7n3yK8GOblmtp1rqPhnp6R3fS+jw+w58DxQeZOYGzzaX3pnL0cE39+XGT6g==
+X-Received: by 2002:a50:96cf:0:b0:555:f39a:8c90 with SMTP id z15-20020a5096cf000000b00555f39a8c90mr829490eda.35.1704067209415;
+        Sun, 31 Dec 2023 16:00:09 -0800 (PST)
+Received: from tux.Home ([2.223.42.238])
+        by smtp.gmail.com with ESMTPSA id ek20-20020a056402371400b00555f49e7080sm2710514edb.56.2023.12.31.16.00.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 31 Dec 2023 16:00:09 -0800 (PST)
+From: Alexey Klimov <alexey.klimov@linaro.org>
+To: anarsoul@gmail.com,
+	tiny.windzz@gmail.com,
+	linux-sunxi@lists.linux.dev
+Cc: rafael@kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	wens@csie.org,
+	jernej.skrabec@gmail.com,
+	samuel@sholland.org,
+	daniel.lezcano@linaro.org,
+	peter.griffin@linaro.org,
+	klimov.linux@gmail.com
+Subject: [PATCH RESEND] arm64: dts: allwinner: a64: Add thermal trip points for GPU
+Date: Mon,  1 Jan 2024 00:00:08 +0000
+Message-ID: <20240101000008.65747-1-alexey.klimov@linaro.org>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 
-Commit 4f2a348aa365 ("arm64: dts: imx8mm-venice-gw73xx: add TPM device")
-added a devicetree node for the Trusted Platform Module on certain
-Gateworks boards.
+Without trip points for GPU, the following errors are printed in the
+dmesg log and the sun8i-thermal driver fails to load:
 
-The commit only used the generic "tcg,tpm_tis-spi" compatible string,
-but public documentation shows that the chip is an ATTPM20P from Atmel
-(nowadays Microchip):
-https://trac.gateworks.com/wiki/tpm
+thermal_sys: Failed to find 'trips' node
+thermal_sys: Failed to find trip points for thermal-sensor id=1
+sun8i-thermal: probe of 1c25000.thermal-sensor failed with error -22
 
-Add the chip to the supported compatible strings of the TPM TIS SPI
-schema.
+When thermal zones are defined, trip points definitions are mandatory.
+Trip values for the GPU are assumed to be the same values as the CPU
+ones. The available specs do not provide any hints about thermal regimes
+for the GPU and it seems GPU is implemented on the same die as the CPU.
 
-For reference, a datasheet is available at:
-https://ww1.microchip.com/downloads/en/DeviceDoc/ATTPM20P-Trusted-Platform-Module-TPM-2.0-SPI-Interface-Summary-Data-Sheet-DS40002082A.pdf
+Tested on Pine a64+.
 
-Signed-off-by: Lukas Wunner <lukas@wunner.de>
-Cc: Tim Harvey <tharvey@gateworks.com>
+Cc: Samuel Holland <samuel@sholland.org>
+Cc: Jernej Skrabec <jernej.skrabec@gmail.com>
+Cc: Chen-Yu Tsai <wens@csie.org>
+Cc: Daniel Lezcano <daniel.lezcano@linaro.org>
+Cc: devicetree@vger.kernel.org
+Signed-off-by: Alexey Klimov <alexey.klimov@linaro.org>
 ---
-This patch depends on the following series to consolidate TCG TIS bindings:
-https://lore.kernel.org/all/cover.1702806810.git.lukas@wunner.de/
+ arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi | 46 +++++++++++++++++++
+ 1 file changed, 46 insertions(+)
 
- Documentation/devicetree/bindings/tpm/tcg,tpm_tis-spi.yaml | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/Documentation/devicetree/bindings/tpm/tcg,tpm_tis-spi.yaml b/Documentation/devicetree/bindings/tpm/tcg,tpm_tis-spi.yaml
-index c3413b4..6cb2de7 100644
---- a/Documentation/devicetree/bindings/tpm/tcg,tpm_tis-spi.yaml
-+++ b/Documentation/devicetree/bindings/tpm/tcg,tpm_tis-spi.yaml
-@@ -20,6 +20,7 @@ properties:
-   compatible:
-     items:
-       - enum:
-+          - atmel,attpm20p
-           - infineon,slb9670
-           - st,st33htpm-spi
-           - st,st33zp24-spi
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
+index 62f45f71ec65..07963eea1bf0 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
++++ b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
+@@ -243,6 +243,29 @@ gpu0_thermal: gpu0-thermal {
+ 			polling-delay-passive = <0>;
+ 			polling-delay = <0>;
+ 			thermal-sensors = <&ths 1>;
++
++			trips {
++				gpu0_alert0: gpu0_alert0 {
++					/* milliCelsius */
++					temperature = <75000>;
++					hysteresis = <2000>;
++					type = "passive";
++				};
++
++				gpu0_alert1: gpu0_alert1 {
++					/* milliCelsius */
++					temperature = <90000>;
++					hysteresis = <2000>;
++					type = "hot";
++				};
++
++				gpu0_crit: gpu0_crit {
++					/* milliCelsius */
++					temperature = <110000>;
++					hysteresis = <2000>;
++					type = "critical";
++				};
++			};
+ 		};
+ 
+ 		gpu1_thermal: gpu1-thermal {
+@@ -250,6 +273,29 @@ gpu1_thermal: gpu1-thermal {
+ 			polling-delay-passive = <0>;
+ 			polling-delay = <0>;
+ 			thermal-sensors = <&ths 2>;
++
++			trips {
++				gpu1_alert0: gpu1_alert0 {
++					/* milliCelsius */
++					temperature = <75000>;
++					hysteresis = <2000>;
++					type = "passive";
++				};
++
++				gpu1_alert1: gpu1_alert1 {
++					/* milliCelsius */
++					temperature = <90000>;
++					hysteresis = <2000>;
++					type = "hot";
++				};
++
++				gpu1_crit: gpu1_crit {
++					/* milliCelsius */
++					temperature = <110000>;
++					hysteresis = <2000>;
++					type = "critical";
++				};
++			};
+ 		};
+ 	};
+ 
 -- 
 2.40.1
 
