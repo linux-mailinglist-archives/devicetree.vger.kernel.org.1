@@ -1,123 +1,116 @@
-Return-Path: <devicetree+bounces-29237-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29238-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8F1582210B
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 19:31:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A46682210F
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 19:31:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EFF7D1C228B0
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 18:31:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 94F7C1C2298E
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 18:31:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C920156F4;
-	Tue,  2 Jan 2024 18:30:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02FE1156F4;
+	Tue,  2 Jan 2024 18:31:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vWcnYTO1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eEv45m5k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 801A5156EF
-	for <devicetree@vger.kernel.org>; Tue,  2 Jan 2024 18:30:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-a2814fa68eeso111004866b.1
-        for <devicetree@vger.kernel.org>; Tue, 02 Jan 2024 10:30:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704220213; x=1704825013; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=cp5GNYs8COIpVS3xr0MHdRdJQ4iBxaqmuCTnKQzb9HQ=;
-        b=vWcnYTO1HYUYJviMjPW/Omttgckm6yu/65N/K/836mrO/+6fo5Vg6ZSXbV4GcRtDah
-         0AFYeoLi3J/YIzfEyQtRvWpoDB/giitUw9ln9w1T4duMJbqxQeHgRioLbA2oZOwIkk6D
-         iJOJfBFIy/PR57nwxHTHH8xj86R8X1KUZ1FOUcKITx0ctMD4VXmSKTxIHwg2mZ5deUQF
-         YphfV+nN3cS+pBTDYxTZlD48yLKlDq/1IM1rvcG3ISlvGei5COmuvfs8FrXdCpjRDFwy
-         v3EUpGd9Kj9JSnEbrm3xsFR1J/g5wbU6SBG1V3KKYptKzH1ai7911xxG7CuwDMDpPHOY
-         v17w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704220213; x=1704825013;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=cp5GNYs8COIpVS3xr0MHdRdJQ4iBxaqmuCTnKQzb9HQ=;
-        b=JR0RSbBEjgOQ010voefRkkq/a/Rb3uW0GxpN1rOtyElJlwvX6N9RCfeqdtBu0I9/HV
-         /hN0Bp04tE2D1m3h4ZmiQ+LugZf+oVCZWO5jD9cyI8cBDy6CcOFiJqA57tgs/wty3Txf
-         hj6icIZFwHMcO6SM/t9BrfDwBbAM+x5l3Ry+tiJi+4UaEI2wWLhByUGhtw5gL5ASyjnR
-         XsNEnOjfK9AYX8qVqse53kI16dasYHoi+YR88XRaS2T2I6Dlc8Zgyvofx1bqqKHnuD8Z
-         w+aTBDNODSdH4vJIbEz2ido7JHUBtoN9mDGlfZK2VSz/8tfoHFEplbey6OGopVwePGeT
-         ujBw==
-X-Gm-Message-State: AOJu0Yx1VmEkiINf/6bTM+NqE/m6h2WUXnUqLerGNL3Z9Bl3qsdxmMzF
-	1zOA29AN/JFOfaqxQPdTHyycOf8kIUsBag==
-X-Google-Smtp-Source: AGHT+IEtrEeyMfPqrNLa3Jtqiv9w2sKozdJ2TbgYHjpAJW+k52RxgM/5dlUFCx+gNLIZkLr24Jpv+w==
-X-Received: by 2002:a17:906:413:b0:a28:2165:7c74 with SMTP id d19-20020a170906041300b00a2821657c74mr1307851eja.13.1704220212903;
-        Tue, 02 Jan 2024 10:30:12 -0800 (PST)
-Received: from [10.167.154.1] (178235179036.dynamic-4-waw-k-1-3-0.vectranet.pl. [178.235.179.36])
-        by smtp.gmail.com with ESMTPSA id et10-20020a170907294a00b00a2699a54888sm11968835ejc.64.2024.01.02.10.30.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 02 Jan 2024 10:30:12 -0800 (PST)
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-Date: Tue, 02 Jan 2024 19:29:50 +0100
-Subject: [PATCH 4/4] arm64: dts: qcom: x1e80100: Flush RSC sleep & wake
- votes
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7CE1156F0;
+	Tue,  2 Jan 2024 18:31:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 573D2C433C8;
+	Tue,  2 Jan 2024 18:31:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1704220282;
+	bh=a2nksk6kIBPxDGBv3UGxAQM7iBjL7hf0hbNNRAGystg=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=eEv45m5kFoRQ/7gQWJ1sqsuCI3uLdd4x6RajWHJLuydDWfnRJkRgWeHZoX2tnol1f
+	 CeCsC4jfMxqtijOSfUAzCJiUcp0CJ5SIDfI/Cf80JujlnUhVJkhMZbkeU/xIP3VJBs
+	 sX82tksg08IZOae+c4ufqN1Ll0Ju+haJb6dT5bh6417y1qI24e77k8jrh0yzTDV6C3
+	 XVG/h2M3ZBwuKFmhdiu633fMR08EFaOh0axrjnBoz+1JXic4iN0rwPbF7Ou8u4zH/B
+	 n96uFjwY6kZrqkqz+E1gyk6k2Ba2IgiOBEWeVeRc41AteZ8IcM9QTwqoh6+GXDuqZb
+	 FHSOKBaX8WTWg==
+Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-2cd1232a2c7so6979261fa.0;
+        Tue, 02 Jan 2024 10:31:22 -0800 (PST)
+X-Gm-Message-State: AOJu0Yz9JJJQOFTLZvLc2viHHfnpPXJMI6Tw2FPyjKVqvjv1wQQoQ6am
+	VswwcSsvzdKwMjDel0LxplpqZNrDICoprXC6FA==
+X-Google-Smtp-Source: AGHT+IHcaSoyRt5IyzuibmWh/dkkmcEzUUJ2eE6UdEpzS4Cis2MFZeEfvXQ3c/lHwNcUCtoAWOKO6fNIjTfdWYhMEJk=
+X-Received: by 2002:a2e:7816:0:b0:2cc:f1aa:8a3f with SMTP id
+ t22-20020a2e7816000000b002ccf1aa8a3fmr2707582ljc.88.1704220280569; Tue, 02
+ Jan 2024 10:31:20 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240102-topic-x1e_fixes-v1-4-70723e08d5f6@linaro.org>
-References: <20240102-topic-x1e_fixes-v1-0-70723e08d5f6@linaro.org>
-In-Reply-To: <20240102-topic-x1e_fixes-v1-0-70723e08d5f6@linaro.org>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Georgi Djakov <djakov@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Rajendra Nayak <quic_rjendra@quicinc.com>, 
- Sibi Sankar <quic_sibis@quicinc.com>, Abel Vesa <abel.vesa@linaro.org>
-Cc: Marijn Suijten <marijn.suijten@somainline.org>, 
- linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- Konrad Dybcio <konrad.dybcio@linaro.org>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1704220203; l=982;
- i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=ZMHte+R+v5WQ2x6Ng6sIhmvNpiEdoapaHW4wE0VSFZ4=;
- b=7um3uB/1kZ41KjjEu9/1KhmrD49Zm4CmzwAHeG/8u+R44ad6kRC5yv6KeqQ8a44EBZeBZKKAG
- sZ5DqheX/UACWzaZr8mqKzg6SQO0/ZNgd/wLY4Ks6b0ACbRoShImT3b
-X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
- pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
+References: <20240101114432.28139-1-zajec5@gmail.com>
+In-Reply-To: <20240101114432.28139-1-zajec5@gmail.com>
+From: Rob Herring <robh@kernel.org>
+Date: Tue, 2 Jan 2024 11:31:08 -0700
+X-Gmail-Original-Message-ID: <CAL_Jsq+hpOS-rdOYasJ1dzU6d_vVDWv2CseRhYmNHA2H_p=_pw@mail.gmail.com>
+Message-ID: <CAL_Jsq+hpOS-rdOYasJ1dzU6d_vVDWv2CseRhYmNHA2H_p=_pw@mail.gmail.com>
+Subject: Re: [PATCH RFC] dt-bindings: crypto: inside-secure,safexcel: make
+ eip/mem IRQs optional
+To: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc: Antoine Tenart <atenart@kernel.org>, Sam Shih <sam.shih@mediatek.com>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, linux-crypto@vger.kernel.org, 
+	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-The RPMh driver will cache sleep and wake votes until the cluster
-power-domain is about to enter idle, to avoid unnecessary writes. So
-associate the apps_rsc with the cluster pd, so that it can be notified
-about this event.
+On Mon, Jan 1, 2024 at 4:45=E2=80=AFAM Rafa=C5=82 Mi=C5=82ecki <zajec5@gmai=
+l.com> wrote:
+>
+> From: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
+>
+> Binding for this cryptographic engine defined 6 interrupts since its
+> beginning. It seems however only 4 rings IRQs are really required for
+> operating this hardware. Linux driver doesn't use "eip" or "mem" IRQs
+> and it isn't clear if they are always available (MT7986 SoC binding
+> doesn't specify them).
+>
+> This deals with:
+> arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dtb: crypto@10320000=
+: interrupts: [[0, 116, 4], [0, 117, 4], [0, 118, 4], [0, 119, 4]] is too s=
+hort
+>         from schema $id: http://devicetree.org/schemas/crypto/inside-secu=
+re,safexcel.yaml#
+> arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dtb: crypto@10320000=
+: interrupt-names: ['ring0', 'ring1', 'ring2', 'ring3'] is too short
+>         from schema $id: http://devicetree.org/schemas/crypto/inside-secu=
+re,safexcel.yaml#
 
-Without this, only AMC votes are being committed.
+Which platform does the schema currently match? None, because the
+Marvell ones get these:
 
-Fixes: af16b00578a7 ("arm64: dts: qcom: Add base X1E80100 dtsi and the QCP dts")
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
----
- arch/arm64/boot/dts/qcom/x1e80100.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+     28  crypto@800000: interrupt-names:5: 'mem' was expected
+     28  crypto@800000: interrupt-names:4: 'eip' was expected
+     28  crypto@800000: interrupt-names:3: 'ring3' was expected
+     28  crypto@800000: interrupt-names:2: 'ring2' was expected
+     28  crypto@800000: interrupt-names:1: 'ring1' was expected
+     28  crypto@800000: interrupt-names:0: 'ring0' was expected
+     28  crypto@800000: 'dma-coherent' does not match any of the
+regexes: 'pinctrl-[0-9]+'
 
-diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-index fc164b9b3ef1..2a14e8e39b3b 100644
---- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-+++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-@@ -3334,6 +3334,7 @@ apps_rsc: rsc@17500000 {
- 					  <WAKE_TCS      2>, <CONTROL_TCS   0>;
- 
- 			label = "apps_rsc";
-+			power-domains = <&SYSTEM_PD>;
- 
- 			apps_bcm_voter: bcm-voter {
- 				compatible = "qcom,bcm-voter";
+(28 is the number of occurrences)
 
--- 
-2.43.0
+The existing list of names defines the order AND index. Since there
+are 2 versions already in use, you have to define 2 lists.
 
+>
+> Cc: Antoine Tenart <atenart@kernel.org>
+> Ref: ecc5287cfe53 ("arm64: dts: mt7986: add crypto related device nodes")
+
+Not a documented tag. Don't make-up your own ones.
+
+> Cc: Sam Shih <sam.shih@mediatek.com>
+> Signed-off-by: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
+> ---
+>  .../devicetree/bindings/crypto/inside-secure,safexcel.yaml      | 2 ++
+>  1 file changed, 2 insertions(+)
 
