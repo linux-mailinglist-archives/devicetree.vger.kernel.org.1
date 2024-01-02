@@ -1,58 +1,59 @@
-Return-Path: <devicetree+bounces-29262-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29263-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06BDC8222EA
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 22:09:00 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DE4B8222F3
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 22:09:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8DC8E283FAA
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 21:08:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 027F11C225A7
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 21:09:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1B1C168BB;
-	Tue,  2 Jan 2024 21:08:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F37A168BC;
+	Tue,  2 Jan 2024 21:08:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="FXsKUh/S"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="mxlR/JRm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-io1-f50.google.com (mail-io1-f50.google.com [209.85.166.50])
+Received: from mail-io1-f46.google.com (mail-io1-f46.google.com [209.85.166.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6344B1642F
-	for <devicetree@vger.kernel.org>; Tue,  2 Jan 2024 21:08:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A81E6168CD
+	for <devicetree@vger.kernel.org>; Tue,  2 Jan 2024 21:08:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-io1-f50.google.com with SMTP id ca18e2360f4ac-7bbbe7b1b36so41533439f.1
-        for <devicetree@vger.kernel.org>; Tue, 02 Jan 2024 13:08:44 -0800 (PST)
+Received: by mail-io1-f46.google.com with SMTP id ca18e2360f4ac-7bbbe7b1b36so41537039f.1
+        for <devicetree@vger.kernel.org>; Tue, 02 Jan 2024 13:08:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1704229723; x=1704834523; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=C7mFJdJJR38MVoewAU3PshqnCmTUbmo4+vjrut4nXkA=;
-        b=FXsKUh/St9ROpCfBxBctElZ0B8NOZqVdhhpKFefJYaizRpZLwRtSk/hSpzpGNwADQf
-         EurbVWdvdquu7SIHdT0PKV6Ygvoc1xI3N7gLMSmXNZ1OR27sna3yytDi+Eij/TtOjzVj
-         Z7pFyGExz2c+fIdTeavtr7qLTDYYLxrN/lUzY=
+        d=chromium.org; s=google; t=1704229727; x=1704834527; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=WvEk8+CF0e0obxZ9GfqxQDlPWDurZBaCRVB9kdh79UY=;
+        b=mxlR/JRmwEzQ24gQbrDuASfLAvbvVtviILTojV9tH+legi9uf4b7ADzWQF5EqQddIX
+         xT6pNgZodzRXQHKsKbDQwzJoHjqoQgx2e8tm8tSVI049sJzPbI2KiAidhangrsB5MK5I
+         4w9xwxX7r/qLSQrGz9oBndIzZwjj3vIDlt9Ls=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704229723; x=1704834523;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=C7mFJdJJR38MVoewAU3PshqnCmTUbmo4+vjrut4nXkA=;
-        b=SCCgnSJd8I7jXW+jgqUBdvglPWlPoKW0LHT2uYfj0sD2RJv5wlewlYCY5GjzjaVpdn
-         /UWPVZiWdYQkMIJByLYaY81ig+fSuVEknxFOVEbesQbWoz2FqNeyr6v+sFBJTGlb8WEN
-         x3RPa7JFhHwg1weRn8U6XzlzBroTQnoUsjf9pIEUoN2h1gp/+Pf87TVzzbGMfUslkCst
-         QKhuprXN3ZhBtTmWMHoSJtgpS1Gy5gl12OxsGpd89bIcgoSDtH8e7noB2uvuiyD/Rx2I
-         02isU9GNtEBRJBk6s4Yu6DSC6QwMdR8UaqfVvjAKwPlB05dxX/MShkeh9EWGpGEug1xR
-         ZbBA==
-X-Gm-Message-State: AOJu0YxXLN81PCllUGl/rjHCe9+Bu7vzkAnWpL1Pn6mWduogU9zmAZ3/
-	xZgjukv8UjCpS5xH+HgvoUPXCaX/T6Pz
-X-Google-Smtp-Source: AGHT+IH30ze8lliPJsLy0+gFPaeKunMXu0LXjX1HO6/sLENHoZmveXOqCkZRgWXN24Z3/Wl9tJipHw==
-X-Received: by 2002:a05:6602:e03:b0:7ba:a232:30fe with SMTP id gp3-20020a0566020e0300b007baa23230femr13087461iob.20.1704229723563;
-        Tue, 02 Jan 2024 13:08:43 -0800 (PST)
+        d=1e100.net; s=20230601; t=1704229727; x=1704834527;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=WvEk8+CF0e0obxZ9GfqxQDlPWDurZBaCRVB9kdh79UY=;
+        b=jEELBgAqNmhA2JnDwz1DOP7PVw7kvdk8aSYR8HKyt6qEAs8w5QalIHKbiTSAniiGNR
+         ns/pueaTxi3jiu9Zx9CkWeE45e8DDvJB1FRwmPTR9z0EaF8JlvxFW+F49NT7am9vplLE
+         UrKyxnav4yYVeRc8UHRTK9wPNgSXYNiM2mXPsvVhRooy+bLbF2ig8UKtnr754M5cXY7U
+         jXjO0mW2V2lPMcAKLUihkLdEtWy5i97+zzvP0xknKyBcVZekNibM8wUQVOSnXn3GFYHS
+         0XZ8Hpu/N4q3EIUChqFkM3TctnZEZxW87Kr1C3P7/bVSujw+oqjsdJrUAWhO/wAO6nV2
+         x/uw==
+X-Gm-Message-State: AOJu0Yyy4vB/pXOtdrdy7y49lrN4wCozpeV7QgMtAEAy1dwCTQ6t9g4U
+	tA8HQb01ekmZHURVqICbh4rOpi/LQx2O
+X-Google-Smtp-Source: AGHT+IHI75xAGPFlil09eKYafdEG2aev9jD01DbjIlsGjx+6zXyEPaBuo+v0kDgukm1xT+F/6TUdeA==
+X-Received: by 2002:a6b:500e:0:b0:7ba:af56:55b4 with SMTP id e14-20020a6b500e000000b007baaf5655b4mr12329868iob.3.1704229726966;
+        Tue, 02 Jan 2024 13:08:46 -0800 (PST)
 Received: from markhas1.lan (71-218-50-136.hlrn.qwest.net. [71.218.50.136])
-        by smtp.gmail.com with ESMTPSA id bo18-20020a056638439200b0046993034c91sm6956978jab.77.2024.01.02.13.08.41
+        by smtp.gmail.com with ESMTPSA id bo18-20020a056638439200b0046993034c91sm6956978jab.77.2024.01.02.13.08.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 02 Jan 2024 13:08:43 -0800 (PST)
+        Tue, 02 Jan 2024 13:08:46 -0800 (PST)
 From: Mark Hasemeyer <markhas@chromium.org>
 To: LKML <linux-kernel@vger.kernel.org>
 Cc: Sudeep Holla <sudeep.holla@arm.com>,
@@ -64,63 +65,16 @@ Cc: Sudeep Holla <sudeep.holla@arm.com>,
 	Raul Rangel <rrangel@chromium.org>,
 	Tzung-Bi Shih <tzungbi@kernel.org>,
 	Mark Hasemeyer <markhas@chromium.org>,
-	AKASHI Takahiro <takahiro.akashi@linaro.org>,
-	Alexandre TORGUE <alexandre.torgue@st.com>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	Andre Przywara <andre.przywara@arm.com>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	Baoquan He <bhe@redhat.com>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Benson Leung <bleung@chromium.org>,
-	Bhanu Prakash Maiya <bhanumaiya@chromium.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Chen-Yu Tsai <wenst@chromium.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Daniel Scally <djrscally@gmail.com>,
-	David Gow <davidgow@google.com>,
-	Frank Rowand <frowand.list@gmail.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Guenter Roeck <groeck@chromium.org>,
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Len Brown <lenb@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Mark Brown <broonie@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	Mika Westerberg <mika.westerberg@linux.intel.com>,
-	Nick Hawkins <nick.hawkins@hpe.com>,
-	Paul Barker <paul.barker@sancloud.com>,
-	Prashant Malani <pmalani@chromium.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Rob Barnes <robbarnes@google.com>,
 	Rob Herring <robh+dt@kernel.org>,
-	Romain Perier <romain.perier@gmail.com>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Stephen Boyd <swboyd@chromium.org>,
-	Takashi Iwai <tiwai@suse.de>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
-	Wei Xu <xuwei5@hisilicon.com>,
-	Wolfram Sang <wsa@kernel.org>,
-	chrome-platform@lists.linux.dev,
-	cros-qcom-dts-watchers@chromium.org,
-	devicetree@vger.kernel.org,
-	linux-acpi@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-arm-msm@vger.kernel.org,
-	linux-gpio@vger.kernel.org,
-	linux-i2c@vger.kernel.org,
-	linux-mediatek@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org,
-	linux-tegra@vger.kernel.org
-Subject: [PATCH v4 00/24] Improve IRQ wake capability reporting and update the cros_ec driver to use it
-Date: Tue,  2 Jan 2024 14:07:24 -0700
-Message-ID: <20240102210820.2604667-1-markhas@chromium.org>
+	devicetree@vger.kernel.org
+Subject: [PATCH v4 04/24] dt-bindings: power: Clarify wording for wakeup-source property
+Date: Tue,  2 Jan 2024 14:07:28 -0700
+Message-ID: <20240102140734.v4.4.I1016a45ac9e8daf8a9ebc9854ab90ec3542e7c30@changeid>
 X-Mailer: git-send-email 2.43.0.472.g3155946c3a-goog
+In-Reply-To: <20240102210820.2604667-1-markhas@chromium.org>
+References: <20240102210820.2604667-1-markhas@chromium.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -129,98 +83,63 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Currently the cros_ec driver assumes that its associated interrupt is
-wake capable. This is an incorrect assumption as some Chromebooks use a
-separate wake pin, while others overload the interrupt for wake and IO.
-This patch train updates the driver to query the underlying ACPI/DT data
-to determine whether or not the IRQ should be enabled for wake.
+The wording in the current documentation is a little strong. The
+intention was not to fix any particular interrupt as wakeup capable but
+leave those details to the device. It wasn't intended to enforce any
+rules as what can be or can't be a wakeup interrupt.
 
-Both the device tree and ACPI systems have methods for reporting IRQ
-wake capability. In device tree based systems, a node can advertise
-itself as a 'wakeup-source'. In ACPI based systems, GpioInt and
-Interrupt resource descriptors can use the 'SharedAndWake' or
-'ExclusiveAndWake' share types.
+Soften the wording to not mandate that the 'wakeup-source' property be
+used, and clarify what it means when an interrupt is marked (or not
+marked) for wakeup.
 
-Some logic is added to the platform, ACPI, and DT subsystems to more
-easily pipe wakeirq information up to the driver.
+Link: https://lore.kernel.org/all/ZYAjxxHcCOgDVMTQ@bogus/
+Link: https://lore.kernel.org/all/CAL_Jsq+MYwOG40X26cYmO9EkZ9xqWrXDi03MaRfxnV-+VGkXWQ@mail.gmail.com/
+Signed-off-by: Mark Hasemeyer <markhas@chromium.org>
+---
 
-Changes in v4:
--Rebase on linux-next
--See each patch for patch specific changes
+(no changes since v3)
 
 Changes in v3:
--Rebase on linux-next
--See each patch for patch specific changes
+-Update commit title prefixes
 
 Changes in v2:
--Rebase on linux-next
--Add cover letter
--See each patch for patch specific changes
+-New patch
 
-Mark Hasemeyer (24):
-  resource: Add DEFINE_RES_*_NAMED_FLAGS macro
-  gpiolib: acpi: Modify acpi_dev_irq_wake_get_by() to use resource
-  i2c: acpi: Modify i2c_acpi_get_irq() to use resource
-  dt-bindings: power: Clarify wording for wakeup-source property
-  ARM: dts: tegra: Enable cros-ec-spi as wake source
-  ARM: dts: rockchip: rk3288: Enable cros-ec-spi as wake source
-  ARM: dts: samsung: exynos5420: Enable cros-ec-spi as wake source
-  ARM: dts: samsung: exynos5800: Enable cros-ec-spi as wake source
-  arm64: dts: mediatek: mt8173: Enable cros-ec-spi as wake source
-  arm64: dts: mediatek: mt8183: Enable cros-ec-spi as wake source
-  arm64: dts: mediatek: mt8192: Enable cros-ec-spi as wake source
-  arm64: dts: mediatek: mt8195: Enable cros-ec-spi as wake source
-  arm64: dts: tegra: Enable cros-ec-spi as wake source
-  arm64: dts: qcom: sc7180: Enable cros-ec-spi as wake source
-  arm64: dts: qcom: sc7280: Enable cros-ec-spi as wake source
-  arm64: dts: qcom: sdm845: Enable cros-ec-spi as wake source
-  arm64: dts: rockchip: rk3399: Enable cros-ec-spi as wake source
-  of: irq: add wake capable bit to of_irq_resource()
-  of: irq: Add default implementation for of_irq_to_resource()
-  of: irq: Remove extern from function declarations
-  device property: Modify fwnode irq_get() to use resource
-  device property: Update functions to use EXPORT_SYMBOL_GPL()
-  platform: Modify platform_get_irq_optional() to use resource
-  platform/chrome: cros_ec: Use PM subsystem to manage wakeirq
+ .../bindings/power/wakeup-source.txt           | 18 +++++++++++-------
+ 1 file changed, 11 insertions(+), 7 deletions(-)
 
- .../bindings/power/wakeup-source.txt          | 18 ++--
- arch/arm/boot/dts/nvidia/tegra124-nyan.dtsi   |  1 +
- arch/arm/boot/dts/nvidia/tegra124-venice2.dts |  1 +
- .../rockchip/rk3288-veyron-chromebook.dtsi    |  1 +
- .../boot/dts/samsung/exynos5420-peach-pit.dts |  1 +
- .../boot/dts/samsung/exynos5800-peach-pi.dts  |  1 +
- arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi  |  1 +
- .../arm64/boot/dts/mediatek/mt8183-kukui.dtsi |  1 +
- .../boot/dts/mediatek/mt8192-asurada.dtsi     |  1 +
- .../boot/dts/mediatek/mt8195-cherry.dtsi      |  1 +
- .../arm64/boot/dts/nvidia/tegra132-norrin.dts |  1 +
- arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi  |  1 +
- .../arm64/boot/dts/qcom/sc7280-herobrine.dtsi |  1 +
- .../arm64/boot/dts/qcom/sc7280-idp-ec-h1.dtsi |  1 +
- arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi    |  1 +
- arch/arm64/boot/dts/rockchip/rk3399-gru.dtsi  |  1 +
- drivers/acpi/property.c                       | 11 ++-
- drivers/base/platform.c                       | 90 ++++++++++++-------
- drivers/base/property.c                       | 40 ++++++---
- drivers/gpio/gpiolib-acpi.c                   | 28 ++++--
- drivers/i2c/i2c-core-acpi.c                   | 43 ++++-----
- drivers/i2c/i2c-core-base.c                   |  6 +-
- drivers/i2c/i2c-core.h                        |  4 +-
- drivers/of/irq.c                              | 39 +++++++-
- drivers/of/property.c                         |  8 +-
- drivers/platform/chrome/cros_ec.c             | 48 ++++++++--
- drivers/platform/chrome/cros_ec_lpc.c         | 40 +++++++--
- drivers/platform/chrome/cros_ec_spi.c         | 15 ++--
- drivers/platform/chrome/cros_ec_uart.c        | 14 ++-
- include/linux/acpi.h                          | 25 +++---
- include/linux/fwnode.h                        |  8 +-
- include/linux/ioport.h                        | 20 +++--
- include/linux/of_irq.h                        | 41 +++++----
- include/linux/platform_data/cros_ec_proto.h   |  4 +-
- include/linux/platform_device.h               |  3 +
- include/linux/property.h                      |  2 +
- 36 files changed, 350 insertions(+), 172 deletions(-)
-
+diff --git a/Documentation/devicetree/bindings/power/wakeup-source.txt b/Documentation/devicetree/bindings/power/wakeup-source.txt
+index 697333a56d5e2..75bc20b95688f 100644
+--- a/Documentation/devicetree/bindings/power/wakeup-source.txt
++++ b/Documentation/devicetree/bindings/power/wakeup-source.txt
+@@ -3,16 +3,20 @@ Specifying wakeup capability for devices
+ 
+ Any device nodes
+ ----------------
+-Nodes that describe devices which has wakeup capability must contain an
++Nodes that describe devices which have wakeup capability may contain a
+ "wakeup-source" boolean property.
+ 
+-Also, if device is marked as a wakeup source, then all the primary
+-interrupt(s) can be used as wakeup interrupt(s).
++If the device is marked as a wakeup-source, interrupt wake capability depends
++on the device specific "interrupt-names" property. If no interrupts are labeled
++as wake capable, then it is up to the device to determine which interrupts can
++wake the system.
+ 
+-However if the devices have dedicated interrupt as the wakeup source
+-then they need to specify/identify the same using device specific
+-interrupt name. In such cases only that interrupt can be used as wakeup
+-interrupt.
++However if a device has a dedicated interrupt as the wakeup source, then it
++needs to specify/identify it using a device specific interrupt name. In such
++cases only that interrupt can be used as a wakeup interrupt.
++
++While various legacy interrupt names exist, new devices should use "wakeup" as
++the canonical interrupt name.
+ 
+ List of legacy properties and respective binding document
+ ---------------------------------------------------------
 -- 
 2.43.0.472.g3155946c3a-goog
 
