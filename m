@@ -1,97 +1,119 @@
-Return-Path: <devicetree+bounces-29231-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29233-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 752908220C6
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 19:10:03 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A0BF8220FD
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 19:30:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 73A411C22892
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 18:10:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2E979283E77
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 18:30:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBBE5156D6;
-	Tue,  2 Jan 2024 18:09:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C589156F2;
+	Tue,  2 Jan 2024 18:30:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KVIyP+y+"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="TXZ58djF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBCB8156D2;
-	Tue,  2 Jan 2024 18:09:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5C3F4C433C7;
-	Tue,  2 Jan 2024 18:09:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1704218996;
-	bh=0B4MGO3nEzwJGG528F5URY4URve6DriUG1N7zW1et+Q=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=KVIyP+y+D2TBQ3d2+wAIcHBatKMgGdadyoZYeoCJP0by22tFPtnlUYXL7SGhlM4O8
-	 2K5u9HFuPnaLO2o4dwgQn49aR4UFRRwR4V+R/NOKZxnvapnPreVFV2MMq1b1PVXIel
-	 fhiayKYC3YcNYUJoIPlRbXXDWOJvVP+7ijwwAKdmpnPN/J/+wd8DeW5eUjuhLkUbKQ
-	 JHd5TDDCbD7p0Dj0y/2CoKNLxyoOC0aUEozbbsmWw0/vZf7yPENtcGjIiFX96Pt1MY
-	 mtDtJ6CVy0V/4/5bmbPG7X6i4nezHdQr3AXvI4MsOwZPdxkMXR1OGxd6GAkH7s7FsQ
-	 i3re/XN3rSd4Q==
-Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-2cceb5f0918so36575831fa.2;
-        Tue, 02 Jan 2024 10:09:56 -0800 (PST)
-X-Gm-Message-State: AOJu0YyL3dWnjEJygco+o/zqDgtZB4fNjKv9LGl5vNEJ+smyRCF56Uh0
-	6IOiv7KFIolgkfnCMREnXDXucCxOqPL7dJG/IQ==
-X-Google-Smtp-Source: AGHT+IGXIEZJi6VHeuPZatY3dAslENz6hJgEbGz8cu14HmNSVOac5JR58tclYtJVnkMf8XqtqCxeUECRx+eShgwuYwo=
-X-Received: by 2002:a05:651c:1a10:b0:2cc:cbd9:b3d7 with SMTP id
- by16-20020a05651c1a1000b002cccbd9b3d7mr5115618ljb.28.1704218994526; Tue, 02
- Jan 2024 10:09:54 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 022BC156FE
+	for <devicetree@vger.kernel.org>; Tue,  2 Jan 2024 18:30:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-a2330a92ae6so1064640866b.0
+        for <devicetree@vger.kernel.org>; Tue, 02 Jan 2024 10:30:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1704220206; x=1704825006; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=wrmBZACBBkgQtz1wQzBg7mU9m8qYCsgsxMH5h6qIB00=;
+        b=TXZ58djFyjfXlGHRpN5wmujv/V8nrMkt5eGF4LjGMZNZutff5n+CEThH6vWlDUmSSs
+         2hf8fnZD+g8MzXbMUbSq6lnjyGFAtS003DLcNaBasptwQqXF4UZXA/u5YYXo8+K7eB3s
+         x1vsCgjFi21QyeCWacSK0LhFaYlToD9i35Oy9nZ0Cd02n2GiN39uqYrHTBj1Qk/GUn4o
+         wHyaJ5yXTP7+SAlWdR368AxlpawmAP/BIP9+PsY5DmXbYiMolAnp0Yn8y9xDzT+SHqpn
+         diIc4kQ5GaPxgAEIclSPy89GudJxQwYqj339ZcS620uoRZ1XeBV2+UwzmsstjirKy2Ae
+         HacA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1704220206; x=1704825006;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=wrmBZACBBkgQtz1wQzBg7mU9m8qYCsgsxMH5h6qIB00=;
+        b=AoS5w1EgUNTkoKHU6bFFgpZQPEy6bBoiB7mIqDNq0yNZayc9QzaFh9r5oBmZEpzzmU
+         ktuNPAnGFhyzZavd3fR0gLFZW5wzbgY+l+tylVmg8RswQV+MoTbgRMJTncypTq8RU3r3
+         CCCoKSCdGacGCJIx+nNW7L+tM0/6ivec5egIQo1H8XXkfnK5PKoUppTWsXoRQJlC1Um6
+         nBEDGXnoL1C4vj3tDnw+FdrNCgbbMJl7dZ9jqw+OPLypEjG9lo92PMs+ss4A/bZagNwc
+         5r3NAezTP0ErywtTFYfDR/glzS3VM42MKS3e5QnowGJqZQKyb2K0EVRNaaqdvuVT1Tte
+         zYDQ==
+X-Gm-Message-State: AOJu0Yzl4HZZFVUnSNnaWEyM8+4n6tPOCREcgTUFeKsj2MmlBO3R42PG
+	UcIdp4pI5rZxRTyQYUZttOSlROSx9L/Mog==
+X-Google-Smtp-Source: AGHT+IG9IvUpGldKB4PaNtlMH7wBLVfuild8l90gv+1TvAK/xA0LqNk+HVAOCRIu2yA1EOjBv6+nSQ==
+X-Received: by 2002:a17:906:10dc:b0:a27:45a7:1b39 with SMTP id v28-20020a17090610dc00b00a2745a71b39mr5629778ejv.35.1704220206057;
+        Tue, 02 Jan 2024 10:30:06 -0800 (PST)
+Received: from [10.167.154.1] (178235179036.dynamic-4-waw-k-1-3-0.vectranet.pl. [178.235.179.36])
+        by smtp.gmail.com with ESMTPSA id et10-20020a170907294a00b00a2699a54888sm11968835ejc.64.2024.01.02.10.30.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 02 Jan 2024 10:30:04 -0800 (PST)
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Subject: [PATCH 0/4] X Elite fixups
+Date: Tue, 02 Jan 2024 19:29:46 +0100
+Message-Id: <20240102-topic-x1e_fixes-v1-0-70723e08d5f6@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231209171612.250868-1-krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20231209171612.250868-1-krzysztof.kozlowski@linaro.org>
-From: Rob Herring <robh+dt@kernel.org>
-Date: Tue, 2 Jan 2024 11:09:42 -0700
-X-Gmail-Original-Message-ID: <CAL_JsqKogbT_4DPd1n94xqeHaU_J8ve5K09WOyVsRX3jxxUW3w@mail.gmail.com>
-Message-ID: <CAL_JsqKogbT_4DPd1n94xqeHaU_J8ve5K09WOyVsRX3jxxUW3w@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: juno: align thermal zone names with bindings
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Liviu Dudau <liviu.dudau@arm.com>, Sudeep Holla <sudeep.holla@arm.com>, 
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIABpWlGUC/x2L0QqDMAwAf0XybKAt6sZ+ZchIa9SAVGmcCOK/L
+ +zxjrsLlIuwwqu6oPAhKms28HUFaaY8McpgDMGFxnkXcF83SXh6/oxysiJ1YXiOLfn4aMGuSMo
+ YC+U025e/y2JyK/yvzbz7+/4BKbcZxnYAAAA=
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Georgi Djakov <djakov@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Rajendra Nayak <quic_rjendra@quicinc.com>, 
+ Sibi Sankar <quic_sibis@quicinc.com>, Abel Vesa <abel.vesa@linaro.org>
+Cc: Marijn Suijten <marijn.suijten@somainline.org>, 
+ linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1704220203; l=906;
+ i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
+ bh=ujsRm5mcuT51iwbkbeM9ZXk2gxBgeFkoemJbUcYdSDg=;
+ b=6OenUz16unWK/pE/hAVmesAzNt+Wh8TGFZFgu0ZUGY+6k4twaIlYIRD0jPxJikYp4kyOk4Yjk
+ /j9YFBPv/mxB9/CngICqybERI0UKiyeyUVWkcrJZhEhnqRnbYK06CMP
+X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
+ pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 
-On Sat, Dec 9, 2023 at 10:16=E2=80=AFAM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> Thermal bindings require thermal zone node names to match
-> certain patterns:
->
->   juno.dtb: thermal-zones: 'big-cluster', 'gpu0', 'gpu1', 'little-cluster=
-', 'pmic', 'soc'
->     do not match any of the regexes: '^[a-zA-Z][a-zA-Z0-9\\-]{1,12}-therm=
-al$', 'pinctrl-[0-9]+'
+Just a couple of "usual" fixups that slipped through introduction
+reviews..
 
-You've just traded this warning for these:
+p1-2 for icc
+p3-4 for qcom
 
-      6  thermal-zones: 'little-cluster-thermal' does not match any of
-the regexes: '^[a-zA-Z][a-zA-Z0-9\\-]{1,12}-thermal$',
-'pinctrl-[0-9]+'
-      4  thermal-zones: gpu1-thermal: 'trips' is a required property
-      4  thermal-zones: gpu0-thermal: 'trips' is a required property
-      4  thermal-zones: big-cluster-thermal: 'trips' is a required property
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+---
+Konrad Dybcio (4):
+      interconnect: qcom: x1e80100: Remove bogus per-RSC BCMs and nodes
+      dt-bindings: interconnect: Remove bogus interconnect nodes
+      arm64: dts: qcom: x1e80100: Add missing system-wide PSCI power domain
+      arm64: dts: qcom: x1e80100: Flush RSC sleep & wake votes
 
-Last I checked this, it looked like the length of the child names was
-limited because the thermal subsys uses the node names for its naming
-which is limited to 20 chars (with null). Though the regex here allows
-for 21 chars without nul. Looks like a double off by one error.
+ arch/arm64/boot/dts/qcom/x1e80100.dtsi             |   9 +
+ drivers/interconnect/qcom/x1e80100.c               | 315 ---------------------
+ .../dt-bindings/interconnect/qcom,x1e80100-rpmh.h  |  24 --
+ 3 files changed, 9 insertions(+), 339 deletions(-)
+---
+base-commit: ab0b3e6ef50d305278b1971891cf1d82ab050b35
+change-id: 20240102-topic-x1e_fixes-a62d8f5a1b75
 
-The thought I had at the time was to make the kernel drop '-thermal'
-from its names. Might be an (Linux) ABI issue if userspace cares (I
-think it shouldn't). Also, I'm not sure how the kernel handles the
-names overflowing. Maybe it is fine and we can just extend the length
-in the schema from 12 to 18 (plus the 1 starting char).
+Best regards,
+-- 
+Konrad Dybcio <konrad.dybcio@linaro.org>
 
-Rob
 
