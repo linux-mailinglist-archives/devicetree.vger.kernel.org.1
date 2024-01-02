@@ -1,103 +1,96 @@
-Return-Path: <devicetree+bounces-29155-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29156-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6935C8219F5
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 11:36:02 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 686AF821A04
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 11:38:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EFFBBB20A37
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 10:35:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 65C411C216DA
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 10:38:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B32DD2F0;
-	Tue,  2 Jan 2024 10:35:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2C80D2FA;
+	Tue,  2 Jan 2024 10:38:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ahrD8bll"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="M6FRHFMn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DECC8D2E5;
-	Tue,  2 Jan 2024 10:35:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3277BC433C9;
-	Tue,  2 Jan 2024 10:35:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1704191755;
-	bh=+qEKOHUuvaeqbMv2dZKawxfqy3gZZ8r/eu72eL7McOQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ahrD8bll+9T4w+l6KytnHTr1qvj782jwU07/e5AujwKXmZSyG5Kbz2K5No5U6AwVx
-	 F5/c4lVQW3yPYiklQPsMMX3mirNZDPPZt68zEmkCzlqgWFYGYcTLVGLDVVQqBs+hKo
-	 ZYRnkJG7OntiLNGotlSGToorNfbtzScB4R0P8Cfd+A3a+xlzzohiEEp3b2G1GcS2Bo
-	 bvDmeJehj97YPD57LRSIoq/1MVqA10hUO7elWepSOYQhLcC1/mpnEsReJele3BFHcG
-	 czxOtPSs/dcuSWjSESee5/bZzfYaecy0bqZU902SWXiVUu52ZelIVjCoXi9kczhh3w
-	 98BWUb6tgzQ9w==
-Received: from johan by xi.lan with local (Exim 4.96.2)
-	(envelope-from <johan@kernel.org>)
-	id 1rKc7e-0002Im-1g;
-	Tue, 02 Jan 2024 11:35:46 +0100
-Date: Tue, 2 Jan 2024 11:35:46 +0100
-From: Johan Hovold <johan@kernel.org>
-To: Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, Andy Gross <agross@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Marijn Suijten <marijn.suijten@somainline.org>,
-	linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Subject: Re: [PATCH v4 02/12] clk: qcom: Use qcom_branch_set_clk_en()
-Message-ID: <ZZPnAvXB8oqds4KM@hovoldconsulting.com>
-References: <20230717-topic-branch_aon_cleanup-v4-0-32c293ded915@linaro.org>
- <20230717-topic-branch_aon_cleanup-v4-2-32c293ded915@linaro.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B716D507;
+	Tue,  2 Jan 2024 10:38:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1704191886;
+	bh=M7Xvx7dEYV5/Uj992gYqxQaLymoVlWi/PbPy7cgkjUQ=;
+	h=From:To:Cc:Subject:Date:From;
+	b=M6FRHFMnNf101tyVbQwluru0ACn738DHhwyLERK/KmF+dRrs3xYWo9tKuyPw82ufs
+	 hLrbXcwc6ZO6rSlEITpP1N7DgnlNSPTLjG4V15Hxsf8bvtwVvrzYPaZOvDDgdkIonl
+	 3j8wFrj8yUD6dwdebN/gQU0zLXcD/7eQuI2cbEF7jvfbSYT1dw9hTPr7QD3wl7J0lI
+	 tySu70fkNZN/s0cTU6TjsuNAOd24aJmBSfpH6vGb82ImrZGVxIaQ+F432LnfhGz3jz
+	 y6GnyphNK7onHffNSkBT5ncqUVx0cMVgxsRfUM6it7WLur1Gu1NaM9lWAibZNII945
+	 lD4i5HpdeyuOw==
+Received: from eugen-station.. (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: ehristev)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id BD17D3781FFA;
+	Tue,  2 Jan 2024 10:38:05 +0000 (UTC)
+From: Eugen Hristev <eugen.hristev@collabora.com>
+To: linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-mediatek@lists.infradead.org,
+	bin.liu@mediatek.com
+Cc: linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	angelogioacchino.delregno@collabora.com,
+	kernel@collabora.com,
+	eugen.hristev@collabora.com,
+	matthias.bgg@gmail.com
+Subject: [PATCH v2 1/2] dt-bindings: media: mediatek-jpeg-encoder: change max iommus count
+Date: Tue,  2 Jan 2024 12:38:00 +0200
+Message-Id: <20240102103801.268647-1-eugen.hristev@collabora.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230717-topic-branch_aon_cleanup-v4-2-32c293ded915@linaro.org>
+Content-Transfer-Encoding: 8bit
 
-On Sat, Dec 30, 2023 at 02:04:04PM +0100, Konrad Dybcio wrote:
-> Instead of magically poking at the bit0 of branch clocks' CBCR, use
-> the newly introduced helper.
-> 
-> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> ---
+MT8186 has 4 iommus in the list, to cope with this situation, adjust
+the maxItems to 4 (instead of previous 2).
+Add also minItems as 1 since iommus are mandatory, to avoid warning
+on the example.
 
-> diff --git a/drivers/clk/qcom/camcc-sc8280xp.c b/drivers/clk/qcom/camcc-sc8280xp.c
-> index 3dcd79b01515..94db130b85e2 100644
-> --- a/drivers/clk/qcom/camcc-sc8280xp.c
-> +++ b/drivers/clk/qcom/camcc-sc8280xp.c
-> @@ -3010,10 +3010,8 @@ static int camcc_sc8280xp_probe(struct platform_device *pdev)
->  	clk_lucid_pll_configure(&camcc_pll6, regmap, &camcc_pll6_config);
->  	clk_lucid_pll_configure(&camcc_pll7, regmap, &camcc_pll7_config);
->  
-> -	/*
-> -	 * Keep camcc_gdsc_clk always enabled:
-> -	 */
-> -	regmap_update_bits(regmap, 0xc1e4, BIT(0), 1);
-> +	/* Keep the critical clocks always-on */
-> +	qcom_branch_set_clk_en(regmap, 0xc1e4); /* CAMCC_GDSC_CLK */
+Signed-off-by: Eugen Hristev <eugen.hristev@collabora.com>
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+---
+Changes in v2:
+fixed typo in subject
 
-I still think something along the lines of
+ .../devicetree/bindings/media/mediatek-jpeg-encoder.yaml       | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-	/* Keep some clocks always on */
+diff --git a/Documentation/devicetree/bindings/media/mediatek-jpeg-encoder.yaml b/Documentation/devicetree/bindings/media/mediatek-jpeg-encoder.yaml
+index 37800e1908cc..60c75b9312e8 100644
+--- a/Documentation/devicetree/bindings/media/mediatek-jpeg-encoder.yaml
++++ b/Documentation/devicetree/bindings/media/mediatek-jpeg-encoder.yaml
+@@ -38,7 +38,8 @@ properties:
+     maxItems: 1
+ 
+   iommus:
+-    maxItems: 2
++    minItems: 1
++    maxItems: 4
+     description: |
+       Points to the respective IOMMU block with master port as argument, see
+       Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml for details.
+-- 
+2.34.1
 
-is preferred as it is far from obvious why a camera clock would be
-considered "critical".
-
-Or perhaps you can come up with a better description of why we've
-decided not to model these clocks and just leave them ungated.
-
->  
->  	ret = qcom_cc_really_probe(pdev, &camcc_sc8280xp_desc, regmap);
->  	if (ret)
-
-Johan
 
