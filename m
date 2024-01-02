@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-29220-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29221-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1DA9821FF0
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 18:06:53 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 91D35821FF3
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 18:07:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 19D53B2220F
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 17:06:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2FE7A1F23046
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 17:07:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D7A214F9A;
-	Tue,  2 Jan 2024 17:06:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0C3D14F9E;
+	Tue,  2 Jan 2024 17:06:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="L2CACMgK"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="MsMrrgP2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
+Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59E7B15482
-	for <devicetree@vger.kernel.org>; Tue,  2 Jan 2024 17:06:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11D8815480
+	for <devicetree@vger.kernel.org>; Tue,  2 Jan 2024 17:06:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-a2330a92ae6so1055615266b.0
-        for <devicetree@vger.kernel.org>; Tue, 02 Jan 2024 09:06:40 -0800 (PST)
+Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-a27874c861aso344156566b.1
+        for <devicetree@vger.kernel.org>; Tue, 02 Jan 2024 09:06:57 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704215198; x=1704819998; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1704215216; x=1704820016; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=cPtwYBYXt4TPKRj/tmb3AXbsOsIo7btRwwLxzT+G75I=;
-        b=L2CACMgKCEiYdoi3oxUneVGjBN92sLzVAJO77Nq+YUpSoZsylzxEdhwxuXxu9vPRYF
-         nG7fLrVGcItNtK2eUpRkYv95eFvroy23su0QQqfYwOZYFwAGzZC2QaYKWoD5Oty49QSU
-         LlQnXECyS4pEx0vuknqQz5IsiSvDfYvOqPM8DtCQhX4wAM/ihRnPJYw68cjaSjoeBFqo
-         vLIt2TQ3rYOVqqqAtl4hthxxqPQdnxagq6g/OgTHgfAYZz9apU+wPyC0OmuWenkZ4AK4
-         L6spvvz6Rh1F3S7gglEXZ+iNcGskMhA50JpL26P8Oyp/4MBc27GxvWn0xMUK80ESvKOl
-         sRlQ==
+        bh=7x5a+ClF8n6Kmc4EpbUBTFd5BFTJQd+3r73zChoBoAc=;
+        b=MsMrrgP2P0iu2soc0DVZM9soh+56zrlIhsRg/k2VSn3qxS9K75JorA6iORaNLpcDjr
+         ZauAeSuWCPn3wIUryHXR3HdyQoIo6VAI6eP4Et+tbX8cuSnwki7DAod85kbDra37KUC1
+         GZ1PO7H1O0QPfqd0TjD/XX+HoscNdTXPWknSV0F1HrxD2+1ePf2P6x1Yke6L/7SSrEJ4
+         1y6YndY4PdTQtHj5U0sz/13K4uhViwEi8DsvLRSo7GeNeb/1209ayNSELd6QKFZcmlRy
+         +oHmAFEBpIBD5nqYrQtLZa9sgT0ZNPUqNbR9GS0PJj/XNK6jNra5Y/7W/Y9RMqgAIumt
+         05Tw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704215198; x=1704819998;
+        d=1e100.net; s=20230601; t=1704215216; x=1704820016;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=cPtwYBYXt4TPKRj/tmb3AXbsOsIo7btRwwLxzT+G75I=;
-        b=igb38yIbABlIkwepWF7RYTwbqSYFahbLxyr1rhUbdiyceCFbtDMbQJTB2QBtCqBMkD
-         iWb9mc3fTMXmWguAlLVZhqllYtqXRkAUunKV5QE1g4/nOJ1K3IxFM57rHVJgyDBj/0Pp
-         esFmrYM5RvRqT7BeGQRndmq37ggGdE8cNP9DPJNRZNSZNmha3vOgwFfuOlqxYCaMp6dT
-         qWYSgjY6JxNE/aLlyL1g2t5PkKUO9W2mlxxyXoyIrYVC92FYNm3QqgGJ6FH6U+Bj4ECn
-         3RU5tCIasPiIjSZBGq/laXl1AKFQK9htrkiSjXcJGZ3UsKRZyeR1DZBrkWy/M8bddTUa
-         llmA==
-X-Gm-Message-State: AOJu0YxiTuC/6QUliD9IK1EaAUjSKedey54XCxAOe5fMoA6oR3lLTVpg
-	0XfJPRNv2MunAcIp9DuWAXB9S/gzV9v83Q==
-X-Google-Smtp-Source: AGHT+IGR2m906IX+d/dxlPPn9rgfwiv270Y19HVfEn50SIbcmQ20F/xE82Ujxe7ORG6mYL/3RHxaJw==
-X-Received: by 2002:a17:906:dfc5:b0:a27:9b37:d4dd with SMTP id jt5-20020a170906dfc500b00a279b37d4ddmr3073912ejc.77.1704215198544;
-        Tue, 02 Jan 2024 09:06:38 -0800 (PST)
+        bh=7x5a+ClF8n6Kmc4EpbUBTFd5BFTJQd+3r73zChoBoAc=;
+        b=vwP7mackfOTK5vJXZYpBlXKxsCrmofqyR/5ZkrRMNUsttfTVspTbWildItcVdJW36W
+         qV0om3IOVHTvg/CzMqRVO/VEXN5YkCql5Qxnz8zkxSVBPRt+j5CedGj9iDtSV4HF6E09
+         4kl1Z1wYvp1U8LJEulskEU+Gn6eROeLL6Tc7RCYxMIodHS2INigiSPLbNyojMhYh6bjh
+         KFNJP1I+I5ijZ17Wux4LtrEuViy4aMTuOlbQuITKeT0C0WLYPDGVeujULIKb5E8b0bkf
+         qWjLa8iOHW+LWDEkJwZc34krWjkvMhriqSxkvQ5zTCMRkB5Amhrp2Cmfco/l1AbzqfuC
+         38hA==
+X-Gm-Message-State: AOJu0Yz9FGQTCEKP2NwXS+pwE7iMxLQ1pEFLvKCkP33PYOSwgx3VP1Sb
+	f0NiZ3pDvPHXoIVhSH5sz7uaRUrGhGhOjg==
+X-Google-Smtp-Source: AGHT+IGiK/5/wwfNtFHQSaKYEe1xwkHj9EHWNn/VY1YqiFq1sr+Ogk86t8sK8wmg35+mhK3RZwzlNg==
+X-Received: by 2002:a17:906:f595:b0:a27:f465:298c with SMTP id cm21-20020a170906f59500b00a27f465298cmr2410876ejd.124.1704215216536;
+        Tue, 02 Jan 2024 09:06:56 -0800 (PST)
 Received: from [192.168.199.125] (178235179036.dynamic-4-waw-k-1-3-0.vectranet.pl. [178.235.179.36])
-        by smtp.gmail.com with ESMTPSA id ex18-20020a170907955200b00a26abea03bbsm11543368ejc.141.2024.01.02.09.06.37
+        by smtp.gmail.com with ESMTPSA id ex18-20020a170907955200b00a26abea03bbsm11543368ejc.141.2024.01.02.09.06.55
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 02 Jan 2024 09:06:38 -0800 (PST)
-Message-ID: <0be94ab9-51aa-4f55-b564-19bd391b55b3@linaro.org>
-Date: Tue, 2 Jan 2024 18:06:37 +0100
+        Tue, 02 Jan 2024 09:06:56 -0800 (PST)
+Message-ID: <cf58b681-b4c5-4d8e-929e-5ba312344939@linaro.org>
+Date: Tue, 2 Jan 2024 18:06:55 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,8 +66,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 07/22] ARM: dts: qcom: msm8974: use new compat string
- for L2 SAW2 unit
+Subject: Re: [PATCH v7 08/22] ARM: dts: qcom: msm8960: use SoC-specific
+ compatibles for SAW2 devices
 Content-Language: en-US
 To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
  Rob Herring <robh+dt@kernel.org>,
@@ -77,7 +77,7 @@ To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
 Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-arm-msm@vger.kernel.org
 References: <20240102-saw2-spm-regulator-v7-0-0472ec237f49@linaro.org>
- <20240102-saw2-spm-regulator-v7-7-0472ec237f49@linaro.org>
+ <20240102-saw2-spm-regulator-v7-8-0472ec237f49@linaro.org>
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
@@ -114,18 +114,17 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <20240102-saw2-spm-regulator-v7-7-0472ec237f49@linaro.org>
+In-Reply-To: <20240102-saw2-spm-regulator-v7-8-0472ec237f49@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 2.01.2024 06:17, Dmitry Baryshkov wrote:
-> Add SoC-specific compatibility strings to the L2 SAW2 unit. This is is
-> to distinguish the SAW2 units related to L2 cache and the CPU cores.
+> There is no such thing as a generic 'SAW2' device. Use device-specific
+> compatible strings to describe the SAW2 devices.
 > 
 > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > ---
 Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
-
 
