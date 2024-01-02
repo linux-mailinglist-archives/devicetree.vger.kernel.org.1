@@ -1,119 +1,85 @@
-Return-Path: <devicetree+bounces-29330-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29331-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97C2B82258E
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 00:34:14 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 48D8582259E
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 00:42:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 76478B2296A
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 23:34:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EC4E128442B
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 23:42:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0463B17745;
-	Tue,  2 Jan 2024 23:34:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F90E17752;
+	Tue,  2 Jan 2024 23:42:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="j09U362r"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="t19M/dx2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7541B17983
-	for <devicetree@vger.kernel.org>; Tue,  2 Jan 2024 23:34:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-a285d66a79eso97548666b.1
-        for <devicetree@vger.kernel.org>; Tue, 02 Jan 2024 15:34:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704238444; x=1704843244; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=zk6oHVMcIK6wAHvWLyxW6Opf0LhWwnBN+RD7Fzz1+XQ=;
-        b=j09U362rZHEiwrIAalDcXl0yd0KQ+jDRCz7nmg2EWocZTKYkg1dtwbrA7Tq5xLbLK9
-         /5jhRtLJgHnIkU0T9xOPsm05qnWqX7IG+3Lov792fN8BDmSvvTwJkr6DDkCS1zUAKkuP
-         jqUB95uyjHviOC5aNSLGsag0b+212SAyjE0yftUkPKz25a/+6aNRqn0dGJgHuSUzLIc7
-         VnynI7aqrNKZAXj3+naLCRwpdd4nXm9CKdOfHMFTD3iJDPBCS78b7zU+xGo/8FwWbgFv
-         eNIM1xYA/ZvD1Xvjss9rtTKmtdvTgSL3eqmxHkyrX7lHttwjHmNwkZtsCsHZejm3E5UI
-         y83w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704238444; x=1704843244;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=zk6oHVMcIK6wAHvWLyxW6Opf0LhWwnBN+RD7Fzz1+XQ=;
-        b=s4g+BPYaHD0WijJdbiPWDcfmegg85/ctXc3J6x1JjNqe6etY9CKYlZTUGVYnAjCTgJ
-         XU8/QZlusL28MFd8wEx9MTNQIztDZ8m2rpHxq5ItVNYiLtUFUEQqje1QrvGBqyfGUIuM
-         Xyuq3+2ic+2yX7Hf9t6ZgKDAvsy/Y8jqS7mKADDb1b5XdCywat1MOgLcBOtu4hymIxzq
-         glsj5Yx7GSoFDsbYnPoq//u87oCg6+/Jsd7ynB0QIVvBMGAhTYV/JkIA2iE/CO4r/wIX
-         +KC03vygLKzSeLM0nNd70BeYdYvXMV9EMPhnsgzyvzmUT3YGA2sGVMq+vXPb55UBqQCz
-         9oQg==
-X-Gm-Message-State: AOJu0YwF1U5+m0mjScfNpyziY9pAo/PRlEDGBTWR9nbqy9hcynHZ6aKW
-	2or8wQv0bHkFO1RA9KoVcXZSNkK8daa8/g==
-X-Google-Smtp-Source: AGHT+IEDIWbYuebx/kzhfTbw4i0zNV2fm/AuZ9oe97CUJHNKf5NgUTBvTFrKDjThsWg+6Vrbi+m5NQ==
-X-Received: by 2002:a17:906:97:b0:a27:a92a:ec15 with SMTP id 23-20020a170906009700b00a27a92aec15mr2652703ejc.122.1704238443706;
-        Tue, 02 Jan 2024 15:34:03 -0800 (PST)
-Received: from linaro.org ([79.115.23.25])
-        by smtp.gmail.com with ESMTPSA id jt6-20020a170906dfc600b00a234085cfa2sm12187081ejc.190.2024.01.02.15.34.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 02 Jan 2024 15:34:03 -0800 (PST)
-Date: Wed, 3 Jan 2024 01:34:01 +0200
-From: Abel Vesa <abel.vesa@linaro.org>
-To: Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Georgi Djakov <djakov@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Rajendra Nayak <quic_rjendra@quicinc.com>,
-	Sibi Sankar <quic_sibis@quicinc.com>,
-	Marijn Suijten <marijn.suijten@somainline.org>,
-	linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 4/4] arm64: dts: qcom: x1e80100: Flush RSC sleep & wake
- votes
-Message-ID: <ZZSdaXpwqb7jfhQZ@linaro.org>
-References: <20240102-topic-x1e_fixes-v1-0-70723e08d5f6@linaro.org>
- <20240102-topic-x1e_fixes-v1-4-70723e08d5f6@linaro.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56A1C17981;
+	Tue,  2 Jan 2024 23:42:47 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AB434C433C8;
+	Tue,  2 Jan 2024 23:42:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1704238967;
+	bh=YfSWBKVajWDhWg1Sr7vlQP066tr0a5p80GHvnjAdI9s=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=t19M/dx2bZFP0Gz1V9oTm8f434RnWH6i4JxgQvHlZ6snSX06ZfxN1LrLgr6xTZFn2
+	 IM4REYp/g7Rs8qmTRshvRLkkcklTVBNjjahvR44eIireFqUSvx5+i1UjNXu6Gm0h3M
+	 9qBgMC1Pv981+/tA45ssTJCypQj/B1HgLSgGNnT9AAAfPRRtgHAUHRpfiMIYqjSfd1
+	 OvgnzLvYqeWUUVWGANka1d0uxst0xBJ4A427xy8fEbvwMWTtQlwzRMuDZsrev7CoOn
+	 AA/r1MWTTEDRINB+kHDIHc3ZhNqNC3RRswROAHMQKm8VlwbpENf4N2RI2+do/rTexM
+	 Ik3/BuCnKuXLw==
+Message-ID: <fa32e6fae168e10d42051b89197855e9.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240102-topic-x1e_fixes-v1-4-70723e08d5f6@linaro.org>
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <CXUTPV1ZOSID.323RSEP4BL2AT@bootlin.com>
+References: <20231218-mbly-clk-v1-0-44ce54108f06@bootlin.com> <20231218-mbly-clk-v1-3-44ce54108f06@bootlin.com> <a8f740c7a8c1222d4a42bad588c75e87.sboyd@kernel.org> <CXUTPV1ZOSID.323RSEP4BL2AT@bootlin.com>
+Subject: Re: [PATCH 3/5] clk: eyeq5: add controller
+From: Stephen Boyd <sboyd@kernel.org>
+Cc: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, linux-mips@vger.kernel.org, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Tawfik Bayouk <tawfik.bayouk@mobileye.com>
+To: Conor Dooley <conor+dt@kernel.org>, Gregory CLEMENT <gregory.clement@bootlin.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Michael Turquette <mturquette@baylibre.com>, Rob Herring <robh+dt@kernel.org>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>, =?utf-8?q?Th=C3=A9o?= Lebrun <theo.lebrun@bootlin.com>
+Date: Tue, 02 Jan 2024 15:42:45 -0800
+User-Agent: alot/0.10
 
-On 24-01-02 19:29:50, Konrad Dybcio wrote:
-> The RPMh driver will cache sleep and wake votes until the cluster
-> power-domain is about to enter idle, to avoid unnecessary writes. So
-> associate the apps_rsc with the cluster pd, so that it can be notified
-> about this event.
-> 
-> Without this, only AMC votes are being committed.
-> 
-> Fixes: af16b00578a7 ("arm64: dts: qcom: Add base X1E80100 dtsi and the QCP dts")
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Quoting Th=C3=A9o Lebrun (2023-12-22 03:25:12)
+> On Wed Dec 20, 2023 at 12:09 AM CET, Stephen Boyd wrote:
+> > Quoting Th=C3=A9o Lebrun (2023-12-18 09:14:18)
+>=20
+> > > +       of_clk_add_hw_provider(np, of_clk_hw_onecell_get, data);
+> > > +}
+> > > +
+> > > +CLK_OF_DECLARE_DRIVER(eq5c, "mobileye,eyeq5-clk", eq5c_init);
+> >
+> > Please use a platform driver.
+>=20
+> I've been trying to do that but I had a stall at boot. I initially
+> associated it with the UART driver acquiring a clock too early but
+> instead it is the CPU timer clocksource driver that consumes one of our
+> clock way earlier than any platform driver initialisation.
+>=20
+> The clocksource driver we are talking about is this one for reference:
+> https://elixir.bootlin.com/linux/v6.6.8/source/drivers/clocksource/mips-g=
+ic-timer.c
+>=20
+> Its usage of TIMER_OF_DECLARE means it gets probed by timer_probe ->
+> plat_time_init -> time_init -> start_kernel. This is way before any
+> initcalls. Our prior use of CLK_OF_DECLARE_DRIVER meant that we got
+> probed by of_clk_init -> plat_time_init.
+>=20
+> I'm guessing we are not the first one in this situation; any advice on
+> how to deal with it?
+>=20
 
-Reviewed-by: Abel Vesa <abel.vesa@linaro.org>
-
-> ---
->  arch/arm64/boot/dts/qcom/x1e80100.dtsi | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-> index fc164b9b3ef1..2a14e8e39b3b 100644
-> --- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-> @@ -3334,6 +3334,7 @@ apps_rsc: rsc@17500000 {
->  					  <WAKE_TCS      2>, <CONTROL_TCS   0>;
->  
->  			label = "apps_rsc";
-> +			power-domains = <&SYSTEM_PD>;
->  
->  			apps_bcm_voter: bcm-voter {
->  				compatible = "qcom,bcm-voter";
-> 
-> -- 
-> 2.43.0
-> 
+You guessed correctly. In that case, use CLK_OF_DECLARE_DRIVER() and
+register the clk(s) needed for the timer in that function. Other clks
+shall be registered with a platform driver.
 
