@@ -1,130 +1,83 @@
-Return-Path: <devicetree+bounces-29168-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29169-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFA6D821B12
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 12:37:57 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C82C821B17
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 12:39:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8DD35283377
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 11:37:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DE6971F224EF
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 11:39:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43829E574;
-	Tue,  2 Jan 2024 11:37:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF702EAC0;
+	Tue,  2 Jan 2024 11:39:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=savoirfairelinux.com header.i=@savoirfairelinux.com header.b="HfBx0L9S"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="1JKJjvI3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.savoirfairelinux.com (mail.savoirfairelinux.com [208.88.110.44])
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 415BAEAC2;
-	Tue,  2 Jan 2024 11:37:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=savoirfairelinux.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=savoirfairelinux.com
-Received: from localhost (localhost [127.0.0.1])
-	by mail.savoirfairelinux.com (Postfix) with ESMTP id DFB4E9C0888;
-	Tue,  2 Jan 2024 06:37:40 -0500 (EST)
-Received: from mail.savoirfairelinux.com ([127.0.0.1])
- by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10032)
- with ESMTP id oH47By21Q_s9; Tue,  2 Jan 2024 06:37:40 -0500 (EST)
-Received: from localhost (localhost [127.0.0.1])
-	by mail.savoirfairelinux.com (Postfix) with ESMTP id 50F959C0957;
-	Tue,  2 Jan 2024 06:37:40 -0500 (EST)
-DKIM-Filter: OpenDKIM Filter v2.10.3 mail.savoirfairelinux.com 50F959C0957
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=savoirfairelinux.com; s=DFC430D2-D198-11EC-948E-34200CB392D2;
-	t=1704195460; bh=bAsNfTDPGcy9UE/qR8q9C/MYhrYIBcUMKG2G3Oi4VLE=;
-	h=Date:From:To:Message-ID:MIME-Version;
-	b=HfBx0L9SYhFxNTXnatyaVVD/0MKoxKv1DkFPwS4FhP21ZdGhZFAP2Yw2hgXG5W1+t
-	 DG22L6dYlNdqI/yA4nolhiQbAYRMk3Yvd1vhj35YZTZ1keQ1XC+emTImMoQmjgdIjh
-	 alA58hoYPXIYl8/8523fTVCfrQVCNMBqb6qPyKUQ1uoRLrwWFtxWeVm73HyoV71weA
-	 Vcvll8Fbldw/DCB9WQCaUVbMMf9+FXj0uatTbgq9RGC183UtRM5ockSfi6AD3jQlfV
-	 NlAXW2vSrvxzA0K2KrHkaWWkgrrQsn+4DCiJZlStF1JhWW5TYl6ACLELjZgkVicaEV
-	 5OCMfpqr9RX7g==
-X-Virus-Scanned: amavis at mail.savoirfairelinux.com
-Received: from mail.savoirfairelinux.com ([127.0.0.1])
- by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10026)
- with ESMTP id 20Ly5X62OB9G; Tue,  2 Jan 2024 06:37:40 -0500 (EST)
-Received: from mail.savoirfairelinux.com (mail.savoirfairelinux.com [192.168.48.237])
-	by mail.savoirfairelinux.com (Postfix) with ESMTP id 1AD139C0888;
-	Tue,  2 Jan 2024 06:37:40 -0500 (EST)
-Date: Tue, 2 Jan 2024 06:37:39 -0500 (EST)
-From: Elinor Montmasson <elinor.montmasson@savoirfairelinux.com>
-To: Rob Herring <robh@kernel.org>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, 
-	shengjiu wang <shengjiu.wang@gmail.com>, 
-	Xiubo Lee <Xiubo.Lee@gmail.com>, Fabio Estevam <festevam@gmail.com>, 
-	Nicolin Chen <nicoleotsuka@gmail.com>, 
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
-	linux-sound <linux-sound@vger.kernel.org>, 
-	devicetree <devicetree@vger.kernel.org>, 
-	linux-kernel <linux-kernel@vger.kernel.org>, 
-	alsa-devel <alsa-devel@alsa-project.org>, 
-	linuxppc-dev <linuxppc-dev@lists.ozlabs.org>, 
-	Philip-Dylan Gleonec <philip-dylan.gleonec@savoirfairelinux.com>
-Message-ID: <1300509761.24764.1704195459987.JavaMail.zimbra@savoirfairelinux.com>
-In-Reply-To: <20231220222550.GA1232936-robh@kernel.org>
-References: <20231218124058.2047167-1-elinor.montmasson@savoirfairelinux.com> <20231218124058.2047167-11-elinor.montmasson@savoirfairelinux.com> <20231220222550.GA1232936-robh@kernel.org>
-Subject: Re: [PATCHv3 RESEND 10/10] ASoC: dt-bindings: fsl-asoc-card: add
- compatible for generic codec
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23E54EAD3;
+	Tue,  2 Jan 2024 11:39:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=005zFironasLHcBtc+bj7hLY49N3H45GpbKUOXLX/qw=; b=1JKJjvI3SjSAL/bI9J5FteoT9I
+	F9sjuXU+WbthqFMfYRnOctc/r9THWJQilY85PBSKZjMsk5K/AG62lwdmt7tHXY2eijEQWzjlG8l3P
+	4pivQyLTBjiG78u54pOk2i/DcXO1XhAdozn+cV+pVebk0xgv/zW+4fvJkdalLyJ/HECtPFRqUO0eW
+	vajpZ2H/xS+yJUg1trBwthbiP/O8Gd+uMivsckbavb2TeiEgYSzEZRu3mYsZRII6dPEITPXU3909J
+	P7PlFYvPLyUNdxKrCCxU3yUR7m5ZwCsMfU0zRLNnaRIfprTSWZ60hIfuZmDgWcP/sE2Ss/j5dvaIN
+	iHzgSFRQ==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:37572)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1rKd6n-0006UK-0p;
+	Tue, 02 Jan 2024 11:38:57 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1rKd6p-0005F7-NS; Tue, 02 Jan 2024 11:38:59 +0000
+Date: Tue, 2 Jan 2024 11:38:59 +0000
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Jernej Skrabec <jernej.skrabec@gmail.com>, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	wens@csie.org, samuel@sholland.org, hkallweit1@gmail.com,
+	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+	pabeni@redhat.com, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+	linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+	Corentin Labbe <clabbe.montjoie@gmail.com>
+Subject: Re: [PATCH v5 1/3] phy: handle optional regulator for PHY
+Message-ID: <ZZP10wqfHFD72e9s@shell.armlinux.org.uk>
+References: <20231220203537.83479-1-jernej.skrabec@gmail.com>
+ <20231220203537.83479-2-jernej.skrabec@gmail.com>
+ <f729baa5-7986-4841-8cd6-fc4bdc652f75@lunn.ch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-X-Mailer: Zimbra 8.8.15_GA_4581 (ZimbraWebClient - GC112 (Linux)/8.8.15_GA_4581)
-Thread-Topic: ASoC: dt-bindings: fsl-asoc-card: add compatible for generic codec
-Thread-Index: r/qDupTL/n3XOuEH8yE+GIqg/zABBQ==
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <f729baa5-7986-4841-8cd6-fc4bdc652f75@lunn.ch>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-Hello,
+On Thu, Dec 21, 2023 at 10:06:50AM +0100, Andrew Lunn wrote:
+> I've not used regulators much, but i think you can combine these two
+> into one. Its guaranteed *consumer is NULL if reg_cnt == 0. And
+> kfree() is happy with a NULL pointer.
 
-On Wednesday, 20 December, 2023 23:25:50, Rob Herring wrote:
-> On Mon, Dec 18, 2023 at 01:40:58PM +0100, Elinor Montmasson wrote: 
-> > +Optional, relevant only with the "fsl,imx-audio-generic" compatible: 
-> > + 
-> > + - cpu-slot-width : Indicates a specific TDM slot width in bits. 
-> > + - cpu-slot-num : Indicates a specific number of TDM slots per frame. 
-> 
-> Pretty sure I've seen other bindings with TDM slot properties. A sign we 
-> need something common if we don't already have something. 
+kfree(NULL) is valid (and is a no-op.)
 
-That's right, "tdm-slot.txt" already defines TDM bindings, I will
-use them with the utility function snd_soc_of_parse_tdm_slot().
-
-> > + - cpu-sysclk-freq-rx : Frequency of the CPU DAI sys clock for Rx. 
-> > + - cpu-sysclk-freq-tx : Frequency of the CPU DAI sys clock for Tx. 
-> > + 
-> > + - cpu-sysclk-dir-rx-out : Boolean property. Specifies sys clock direction 
-> > + as 'out' on initialization for Rx. 
-> > + If not set, default direction is 'in'. 
-> > + - cpu-sysclk-dir-tx-out : Boolean property. Specifies sys clock direction 
-> > + as 'out' on initialization for Tx. 
-> > + If not set, default direction is 'in'. 
-> 
-> Looks like clock stuff. Use the clock binding. 
-
-simple-card defines similar properties at the dai level:
-"system-clock-frequency" and "system-clock-direction-out".
-The first is used if no "clocks" binding is specified for the dai node.
-
-Maybe I could use a similar logic with fsl-asoc-card ?
-* adding a "clock-cpu" phandle property which should be the cpu clock.
-It will be used to retreive the frequency for both RX and TX.
-* keeping "cpu-sysclk-freq-rx"/"cpu-sysclk-freq-tx", which are used if
-no clock is provided, like "system-clock-frequency" in simple-card.
-* keep using "cpu-sysclk-dir-rx-out"/"cpu-sysclk-dir-tx-out", like
-"system-clock-direction-out" in simple card.
-
-Also, maybe I could rename my new properties:
-cpu-system-clock-frequency-tx, cpu-system-clock-direction-out-rx, ...
-It would better match those in simple-card as they do the same thing.
-
-Best regards,
-Elinor Montmasson
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
