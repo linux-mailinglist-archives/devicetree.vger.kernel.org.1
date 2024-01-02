@@ -1,62 +1,62 @@
-Return-Path: <devicetree+bounces-29211-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29212-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A267C821F61
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 17:18:51 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FBBE821F63
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 17:18:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5138628177B
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 16:18:50 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A678FB21F59
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 16:18:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0533E14F6D;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1EE114F72;
 	Tue,  2 Jan 2024 16:18:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=easyb-ch.20230601.gappssmtp.com header.i=@easyb-ch.20230601.gappssmtp.com header.b="j1ngbm0Y"
+	dkim=pass (2048-bit key) header.d=easyb-ch.20230601.gappssmtp.com header.i=@easyb-ch.20230601.gappssmtp.com header.b="Y3uL6p8X"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
+Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B719714F65
-	for <devicetree@vger.kernel.org>; Tue,  2 Jan 2024 16:18:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFC9514F6C
+	for <devicetree@vger.kernel.org>; Tue,  2 Jan 2024 16:18:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=easyb.ch
 Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=easyb.ch
-Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-55369c59708so3176314a12.1
-        for <devicetree@vger.kernel.org>; Tue, 02 Jan 2024 08:18:44 -0800 (PST)
+Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-55668ccbb87so433396a12.1
+        for <devicetree@vger.kernel.org>; Tue, 02 Jan 2024 08:18:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=easyb-ch.20230601.gappssmtp.com; s=20230601; t=1704212323; x=1704817123; darn=vger.kernel.org;
+        d=easyb-ch.20230601.gappssmtp.com; s=20230601; t=1704212324; x=1704817124; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=vMFcXrpERZXaCP9uPS19JP2ScOwkrDDZS5qe/Ujb6s8=;
-        b=j1ngbm0Y7cIvaZIPANngxqC3h6F/ZllvbMaOKiPh1f7rqczj7+GwBW7t4EsICZ8O63
-         XlksXK2O1JuBAF0rbrwAt0yf8IGpKysGlsdL+7iTdswp0KM9wIFo88ZTOOPiMe4q3nlo
-         LPj9h66Dzrl7GAbcOOh+fFmGtGtbrbYIqF5EXaKBOEO1AsLTJFFc+TC5VL5EwIRvqo5l
-         hlq5+nWJ72JWVOlN/7FFkWOOc0+BbtJdUNrJwOYtrbGlKGQZhV4SWNb/k9rYgNGY3ahz
-         V/EfsEu6W4FsldIBV20tHjguYQp2DaZMixJ6pIfDUCRU6bhquANsfGQP/ytZ9kiOnKML
-         9l3Q==
+        bh=IebUmbVG/k5f+E1VZrJFf2G8VcKT4fPdAVa0LMaN04Y=;
+        b=Y3uL6p8X1TWRbdpWoquBs80bmy3p2nKfKHVAjDZicI7i3U7B9BmvqshV33Td4YmT7l
+         Qlh7cXz/lVrfKt1wSd0K7S3Bqt00/mcvT3eq1A5DGUH9ORUj8e/ABh7VJsLLn2sQnMgQ
+         hVJsYUdT/YU6nW/nWLPN75yeeoDoZScEt5dg9OBW+GJ49wyWoRdBGy6iFW/xz0kzb7JO
+         sjp/vyOa3hTc7DAD9VV/BatChf1G02iD5N9X+W6EpTT4WOlWogNSQOzBdLotgbeUceWB
+         f1eneaohTX6/7W0yVUQrfoedHFq1ftUuPQIgGCNXlXubALeXqx73ibn3wDa+sJY9cQYi
+         ZejA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704212323; x=1704817123;
+        d=1e100.net; s=20230601; t=1704212324; x=1704817124;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=vMFcXrpERZXaCP9uPS19JP2ScOwkrDDZS5qe/Ujb6s8=;
-        b=U5cXIF6SdWSh8moKkN2B1qSf4zJdTMXLrG97ZMNBGOg3JGT8w266vU/xGqlrzZFEMC
-         TZOlcuWoAvDrR102N3/e+3iwsleojVi8n1oaQTcOo5u8RFcOrU0oiGYn9DXRKicMVppR
-         735pdbV8iQQlzgrvvFA+TFcbvfSPfDLPEhueVawrT6jTwyKZ6+KBKUElHMQWwNzctk/w
-         eExCEGoDfPq3RGbUlfI+gemi8GRdyurgpPtRQWhlsXXGf7vLeJyWCHEp4ALQLyvJ+F+7
-         6U8LpanBSS9nNnGMYosuuAXVAPzxQqrtT/iqH+ycVqXK8O0/NBwr6cDVENXVF2+X5/au
-         ozJQ==
-X-Gm-Message-State: AOJu0Yy94S2pWrzXDmM/zQ6GnsO0NaRmJexzM/q0WECao/tJYAN1y2PB
-	gXrggc+0GLszlR4FGPsyEqoemn2s+JgvYw==
-X-Google-Smtp-Source: AGHT+IEET9neX9obFk5esYJTEcqRBHb85r0N5bqkFTeCpk3CM0h8awtabQKDJw/NeN28gjT54pViVQ==
-X-Received: by 2002:a50:8d03:0:b0:552:29d9:92c9 with SMTP id s3-20020a508d03000000b0055229d992c9mr22101109eds.3.1704212322891;
-        Tue, 02 Jan 2024 08:18:42 -0800 (PST)
+        bh=IebUmbVG/k5f+E1VZrJFf2G8VcKT4fPdAVa0LMaN04Y=;
+        b=mOMFlFPZ8GJFQZNUnzrm8lVEADANgJQfGIytXS1uoHiekhVxFWsQfm52W/xtqEAfYm
+         PjT0dyMcLZPytvieTg2boD94po45RonEmPfMMdsvEd7qal/dW0YVvPKR4HDMyJKp9+t6
+         GGV1lZ1DaF5dMTz4FGLvwfVdB6i05K4tG/7BIzLBEp3wJnwlA5KuFDrh1W/RjF8tcbnk
+         yanPUFJMYD3BwDiqFwZoJL7E9LvX61CIhnZxyyUeiPhaVD3zJfHTkvnbB+fIPwHCL35M
+         ODXYITMRbzVWPyajB/RIkTG7DdKFnItsMAfIVvXn+Ww9Zjeaqkd7Y2ktOlIulhgmcnq5
+         M5+A==
+X-Gm-Message-State: AOJu0Yy0BjRJmgtzH6Gbmo35IllH51aM7KFSHIzNiaTUGVpRLLN2Lowe
+	Q59j1AYA1eZthyL6z94z+PuT4XCsev6Hcw==
+X-Google-Smtp-Source: AGHT+IGuz+pvMnmNqi5iphXcTF7cDrb5NUR/Xn0jpNBfwhlN16DczT5kLZptWqVyrvcyO8VyJEVHpA==
+X-Received: by 2002:a50:d74f:0:b0:54c:6fc0:483a with SMTP id i15-20020a50d74f000000b0054c6fc0483amr20387335edj.2.1704212324140;
+        Tue, 02 Jan 2024 08:18:44 -0800 (PST)
 Received: from fraxinus.easyland ([77.109.191.117])
-        by smtp.gmail.com with ESMTPSA id h12-20020a0564020e0c00b005561a8c2badsm3969191edh.83.2024.01.02.08.18.41
+        by smtp.gmail.com with ESMTPSA id h12-20020a0564020e0c00b005561a8c2badsm3969191edh.83.2024.01.02.08.18.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 02 Jan 2024 08:18:42 -0800 (PST)
+        Tue, 02 Jan 2024 08:18:43 -0800 (PST)
 From: ezra@easyb.ch
 X-Google-Original-From: ezra.buehler@husqvarna.com
 To: Alexandre Belloni <alexandre.belloni@bootlin.com>,
@@ -70,9 +70,9 @@ Cc: Reto Schneider <reto.schneider@husqvarnagroup.com>,
 	Michael Zimmermann <michael.zimmermann@grandcentrix.net>,
 	devicetree@vger.kernel.org,
 	Ezra Buehler <ezra.buehler@husqvarnagroup.com>
-Subject: [PATCH v1 1/2] ARM: dts: at91: at91sam9x5ek: Use DMA for DBGU serial port
-Date: Tue,  2 Jan 2024 17:18:38 +0100
-Message-Id: <20240102161839.702625-2-ezra.buehler@husqvarna.com>
+Subject: [PATCH v1 2/2] ARM: dts: at91: gardena-smart-gateway: Use DMA for USART3
+Date: Tue,  2 Jan 2024 17:18:39 +0100
+Message-Id: <20240102161839.702625-3-ezra.buehler@husqvarna.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20240102161839.702625-1-ezra.buehler@husqvarna.com>
 References: <20240102161839.702625-1-ezra.buehler@husqvarna.com>
@@ -86,33 +86,32 @@ Content-Transfer-Encoding: 8bit
 
 From: Ezra Buehler <ezra.buehler@husqvarnagroup.com>
 
-The UART controller does not seem to be fast enough to receive data (at
-115200 baud) without dropping bytes when DMA is disabled.
+The AT91SAM9G25-based GARDENA smart Gateway uses USART3 (ttyS1) to
+communicate (over PPP, at 115200 baud) with the radio module.
 
-This has often been noticed when pasting SSH keys into the serial
-console (ttyS0). Only after multiple tries, the long strings would be
-successfully transferred without missing characters.
+We have been experiencing packet loss and seeing errors on the ppp0
+interface. Enabling DMA for the serial interface resolves the issues.
 
 Co-Developed-by: Michael Zimmermann <michael.zimmermann@grandcentrix.net>
 Signed-off-by: Michael Zimmermann <michael.zimmermann@grandcentrix.net>
 Signed-off-by: Ezra Buehler <ezra.buehler@husqvarnagroup.com>
 ---
- arch/arm/boot/dts/microchip/at91sam9x5ek.dtsi | 2 ++
+ .../boot/dts/microchip/at91sam9g25-gardena-smart-gateway.dts    | 2 ++
  1 file changed, 2 insertions(+)
 
-diff --git a/arch/arm/boot/dts/microchip/at91sam9x5ek.dtsi b/arch/arm/boot/dts/microchip/at91sam9x5ek.dtsi
-index 5f4eaa618ab4..9618b8d965b0 100644
---- a/arch/arm/boot/dts/microchip/at91sam9x5ek.dtsi
-+++ b/arch/arm/boot/dts/microchip/at91sam9x5ek.dtsi
-@@ -39,6 +39,8 @@ &adc0 {
+diff --git a/arch/arm/boot/dts/microchip/at91sam9g25-gardena-smart-gateway.dts b/arch/arm/boot/dts/microchip/at91sam9g25-gardena-smart-gateway.dts
+index 92f2c05c873f..af70eb8a3a02 100644
+--- a/arch/arm/boot/dts/microchip/at91sam9g25-gardena-smart-gateway.dts
++++ b/arch/arm/boot/dts/microchip/at91sam9g25-gardena-smart-gateway.dts
+@@ -121,6 +121,8 @@ &usart2 {
  };
  
- &dbgu {
+ &usart3 {
 +	atmel,use-dma-rx;
 +	atmel,use-dma-tx;
  	status = "okay";
- };
  
+ 	pinctrl-0 = <&pinctrl_usart3
 -- 
 2.39.2
 
