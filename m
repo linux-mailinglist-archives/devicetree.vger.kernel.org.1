@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-29225-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29226-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BCE3E822004
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 18:08:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 92F8A822008
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 18:08:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D18C3B225E0
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 17:08:15 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C7810B2251E
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 17:08:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0387E15497;
-	Tue,  2 Jan 2024 17:07:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1ED3F15483;
+	Tue,  2 Jan 2024 17:08:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RFm83o7V"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vTJrMW4V"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
+Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86FA0156DB
-	for <devicetree@vger.kernel.org>; Tue,  2 Jan 2024 17:07:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86350156CB
+	for <devicetree@vger.kernel.org>; Tue,  2 Jan 2024 17:08:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-552d39ac3ccso18162212a12.0
-        for <devicetree@vger.kernel.org>; Tue, 02 Jan 2024 09:07:50 -0800 (PST)
+Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-50e835800adso5674237e87.0
+        for <devicetree@vger.kernel.org>; Tue, 02 Jan 2024 09:08:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704215269; x=1704820069; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1704215279; x=1704820079; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=27QiV7eW4gDqhHy5Klg0CL+X90XyxyUpYzr0KRiSuD4=;
-        b=RFm83o7V8QF8pT1LXfHGt349YmubXxl18Trn9zCUT9mXtvGNaM1rZHox79p2rkOvhv
-         hdSIzhvocHu9u88EZjPC9PQDqy9SMcYq5mOW9b9lMHzfH4Q1W/RVT8QACnV8RcHvH+/T
-         wDrN274GDrFJo/nAAUgJsx4HgHW2wG8bz5LmZKq87gDeyIhbZWgq5dl3Mn9BII8L3Ihv
-         dof2vb6Pz4WSKZi1ujVPxwzpPL5FMDNWKmJiGbTAhpdv0SV3Mm0Y808Rab1/Ggg0cd8F
-         i41iHitSHAftE/I/9ERUV74KtrtZu3XvtQhYPl3WSB20E3W4qe3Dos6eOCdV77FYAL4k
-         iHcw==
+        bh=fEJIjzJT1CX2RBHfA7x3xWa5F2jpdnccc5z+7L7YE2c=;
+        b=vTJrMW4VylKW0v/W4Abhym2sfRVGtSwdztrkYa3r7NZSclOG/IfjLo9nH9rHLYOVuK
+         IIBaiEoaGuoFhDNuzF1YySAkOeZBvZG0IzNHFFRw22MKxyQWa6XRI+rYDxM5cm4zdH7s
+         7/D66zW6hpl3kt0OQj8BRdVOOUqK9TxjIsvZPmBJnAHfsL07w9wPsEk95GOacoNzL6AA
+         yTCc6Dx/QLo/0Xs0/m6ByA6OSE+pR76mF82doyej9zjOAb4TDzjpThFgInOzkUqJNuxe
+         pb6sGbdXyOSrX+Edb2DwWvtjutVyHNggGhbO0hhvWSxfpzyl+lZOBebKdMGIKDWmgD7T
+         xwkA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704215269; x=1704820069;
+        d=1e100.net; s=20230601; t=1704215279; x=1704820079;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=27QiV7eW4gDqhHy5Klg0CL+X90XyxyUpYzr0KRiSuD4=;
-        b=kFvwaFs48oHtf2C4Jb5l1sPXZoX7OWG00OaAqvJETM7h8+sBQ7g1N85YWDNDmvnOLp
-         zl2+3ngHdHDxE9h02/j8gPxjNeVLIzhdi8r4zOhIKlQDh2Eu8VE2xtORhdnL1dRhrOi5
-         Oh5ZWr6U7IL9prZz5fAoz0jNXEhxSh3dpr+Wt4aUUpijH8GT5YERBpZABfTHg82J9JOr
-         DRNLvS8v3qqUHKXz03jg9QduNEmed9wYnyAdc8R1j44lZ9T7TOMyYHhggpxAMqpuD0+C
-         fe36/Z3dCKBj05M9C3N+8vzICQq8ssJrJ6VMOUML+1YKjiZjYMjX5+GObKsgu2OgnVf+
-         GiPw==
-X-Gm-Message-State: AOJu0YwU2y0eM38c4ITiRbjilM27WzG/bgH1BU1cxvdBm1QkRQv2XZpD
-	O5Js4OTrG3HPwTl164zL5RgoQWF79ofhBJgXaC33j4c7ptY=
-X-Google-Smtp-Source: AGHT+IEuv966oqC5aNiZfFbnsU6SxSNK6wylwwUvgt98v5SZpiQvCG5U965gZ6+XHbH04nFyFc5v4Q==
-X-Received: by 2002:a17:907:61a2:b0:a27:ec6e:efaf with SMTP id mt34-20020a17090761a200b00a27ec6eefafmr3079538ejc.46.1704215269019;
-        Tue, 02 Jan 2024 09:07:49 -0800 (PST)
+        bh=fEJIjzJT1CX2RBHfA7x3xWa5F2jpdnccc5z+7L7YE2c=;
+        b=Erg1Kgjs3S01Xx/8l73VjW4ImxaB6mAK+hwqUQMqwqXEqVM6PmlbbpIWwW3lvQzseY
+         nt/Es2xW5nwP6q0t43CUmJM1iiSQWoBzggSK/9q5rIcxy1u+uHKkPFKsxahzgMWTHdF2
+         vDWpqi7i3LP/55m61iiz4Rv2Lgrp++LLQiuH6qt20ycKtk5xuMhBIGcnpevqUt3d8CVe
+         HU4aFD59W89dyNlnI2qFG64V0azOH5AHeOYegc/V7dW5eCAWuvbhoGOxQH/ENxa8ntkX
+         KdEd1PXfqRcdwVL7SCEbKVz6VuAVH/vqId+38oTHPncIc2l29sQsWhqcy9ES7Dkwcv57
+         Ewhg==
+X-Gm-Message-State: AOJu0Yz5TUl9ilQklKYMGcBFlgbY39a/MtZ5r6nfzFbUXr+NE/R+1DlA
+	EQJo/2+NuEkHLmyZV3h0hNCp128+/t4CqA==
+X-Google-Smtp-Source: AGHT+IFfjtKw+WD2kgi70SkXF8NH1yYj1LYJNlIogeRU6pJpbiVxK2RqPlFiQCM8J9GHhAQ+ehokkw==
+X-Received: by 2002:a19:750c:0:b0:50e:7c70:fbe8 with SMTP id y12-20020a19750c000000b0050e7c70fbe8mr3785801lfe.186.1704215279711;
+        Tue, 02 Jan 2024 09:07:59 -0800 (PST)
 Received: from [192.168.199.125] (178235179036.dynamic-4-waw-k-1-3-0.vectranet.pl. [178.235.179.36])
-        by smtp.gmail.com with ESMTPSA id ex18-20020a170907955200b00a26abea03bbsm11543368ejc.141.2024.01.02.09.07.47
+        by smtp.gmail.com with ESMTPSA id ex18-20020a170907955200b00a26abea03bbsm11543368ejc.141.2024.01.02.09.07.58
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 02 Jan 2024 09:07:48 -0800 (PST)
-Message-ID: <a8d4b8dc-de76-4ef7-b19b-a97a659c6a34@linaro.org>
-Date: Tue, 2 Jan 2024 18:07:46 +0100
+        Tue, 02 Jan 2024 09:07:59 -0800 (PST)
+Message-ID: <2c1c41f2-98ee-4ce0-b931-8411ce54544d@linaro.org>
+Date: Tue, 2 Jan 2024 18:07:58 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,7 +66,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 13/22] ARM: dts: qcom: msm8960: rename SAW nodes to
+Subject: Re: [PATCH v7 14/22] ARM: dts: qcom: msm8974: rename SAW nodes to
  power-manager
 Content-Language: en-US
 To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
@@ -77,7 +77,7 @@ To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
 Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-arm-msm@vger.kernel.org
 References: <20240102-saw2-spm-regulator-v7-0-0472ec237f49@linaro.org>
- <20240102-saw2-spm-regulator-v7-13-0472ec237f49@linaro.org>
+ <20240102-saw2-spm-regulator-v7-14-0472ec237f49@linaro.org>
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
@@ -114,15 +114,14 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <20240102-saw2-spm-regulator-v7-13-0472ec237f49@linaro.org>
+In-Reply-To: <20240102-saw2-spm-regulator-v7-14-0472ec237f49@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 2.01.2024 06:17, Dmitry Baryshkov wrote:
-> The SAW2 device is not a regulator. It is a frontend to the PMIC, which
-> handles voltage control, automatic voltage scaling and low-power states,
-> Rename SAW2 nodes to 'power-manager', the name which is suggested by
-> qcom,saw2.yaml
+> Per the power-domain.yaml, the power-controller node name is reserved
+> for power-domain providers. Rename SAW2 nodes to 'power-manager', the
+> name which is suggested by qcom,saw2.yaml
 > 
 > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > ---
