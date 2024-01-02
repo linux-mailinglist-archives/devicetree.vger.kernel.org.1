@@ -1,134 +1,84 @@
-Return-Path: <devicetree+bounces-29189-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29190-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id AAE65821D1B
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 14:53:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 07301821D71
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 15:14:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 46F511F21B66
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 13:53:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 906921F22C99
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 14:14:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62D0FFC02;
-	Tue,  2 Jan 2024 13:53:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F556101F2;
+	Tue,  2 Jan 2024 14:13:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="F/ehNzKq"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="cBYrHOUt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F64C1119C;
-	Tue,  2 Jan 2024 13:53:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DB4A9C433C7;
-	Tue,  2 Jan 2024 13:53:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1704203587;
-	bh=GjOKiW0xtneKjT+iVjyAoNrxX77mFm1Dq2j6C8liY9I=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=F/ehNzKqswC0ZnX/TtOamWQ/36hQN7FbZuWjYAjJR0QS3T/FjDAT5Y6aTuRKDwPqa
-	 LwEmdEMrrxEtmtRpxpV7uCja0xh4KW0U3GcZ6oKts53vJrJccrgGDYVjSK1kUokGkq
-	 qhEDN7rgiVeeOS1XCNQCCmdTBGW7BZIz+z3GDAQU=
-Date: Tue, 2 Jan 2024 14:53:04 +0100
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: Luca Weiss <luca.weiss@fairphone.com>
-Cc: Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-	cros-qcom-dts-watchers@chromium.org,
-	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org
-Subject: Re: [PATCH 0/3] Fairphone 5 PMIC-GLINK support (USB-C, charger, fuel
- gauge)
-Message-ID: <2024010205-placidly-expire-221c@gregkh>
-References: <20231220-fp5-pmic-glink-v1-0-2a1f8e3c661c@fairphone.com>
- <8d042095-1e09-45cc-9762-909fe8d663a9@linaro.org>
- <CXTU5MLN0YDS.29PPV8KZF8G9R@fairphone.com>
- <CAA8EJpoD3x=kVLu4x2yLtAqCp=wmGSU4ssq5Oj_SD5VQ=GyAYQ@mail.gmail.com>
- <d2007240-2779-4881-8e9d-1c4f5daa55e5@linaro.org>
- <CXU22OZNAH2H.24YIQWBA4KE3C@fairphone.com>
- <2024010227-darn-litmus-4ddf@gregkh>
- <CY49JOEDOEZX.1KNYT91GHL3MX@fairphone.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81D631078D;
+	Tue,  2 Jan 2024 14:13:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1704204832;
+	bh=TNz2bBbjdA8ttdYkWZtPUW/GO/y4iF7ensfXnYtQXew=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=cBYrHOUtswoP4Jqju05wwfV4ZlcVuMtYSMafpUEfTvPis0o9a3XR64npMCLCQ/Zz+
+	 NwrOPQ3bsW+l08qfZj3Hb/0Js697WCWxJoJNaok25S7VddTatB4MXU7F6In81wkesY
+	 eSMXKsC06dZ3gxX18KbaE8aQZ+CcsM+uezBsX7Iw7KPhuArNL18iMq7p7FH3x1r4dw
+	 fRK2VIDxhVrImFZZL9j/3TkgjbxkSoCc0o2JNAXEQbJSgkZjGE/TEX3uPA4XHp9kAj
+	 KDV0OVWHcu9SupmQ73mQ03uEAogjQS60N0LinimJIgkT+XAYAFpU8LVaFA4E4DKmcn
+	 Gol2qlV9XAyJQ==
+Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id AD3E13781FDF;
+	Tue,  2 Jan 2024 14:13:51 +0000 (UTC)
+Message-ID: <2c90633c-8d28-41e6-8c47-c58e1f1c3276@collabora.com>
+Date: Tue, 2 Jan 2024 15:13:46 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CY49JOEDOEZX.1KNYT91GHL3MX@fairphone.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] arm64: dts: mediatek: mt8186: Add jpgenc node
+Content-Language: en-US
+To: Eugen Hristev <eugen.hristev@collabora.com>, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org,
+ bin.liu@mediatek.com
+Cc: linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ kernel@collabora.com, matthias.bgg@gmail.com,
+ Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
+ Hsin-Yi Wang <hsinyi@chromium.org>, Max Staudt <mstaudt@chromium.org>,
+ Ricardo Ribalda <ribalda@chromium.org>
+References: <20240102103801.268647-1-eugen.hristev@collabora.com>
+ <20240102103801.268647-2-eugen.hristev@collabora.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20240102103801.268647-2-eugen.hristev@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Tue, Jan 02, 2024 at 02:43:24PM +0100, Luca Weiss wrote:
-> On Tue Jan 2, 2024 at 2:36 PM CET, Greg Kroah-Hartman wrote:
-> > On Thu, Dec 21, 2023 at 02:45:26PM +0100, Luca Weiss wrote:
-> > > On Thu Dec 21, 2023 at 1:53 PM CET, Konrad Dybcio wrote:
-> > > > On 21.12.2023 11:34, Dmitry Baryshkov wrote:
-> > > > > On Thu, 21 Dec 2023 at 09:33, Luca Weiss <luca.weiss@fairphone.com> wrote:
-> > > > >>
-> > > > >> On Wed Dec 20, 2023 at 1:32 PM CET, Konrad Dybcio wrote:
-> > > > >>> On 20.12.2023 11:02, Luca Weiss wrote:
-> > > > >>>> This series adds all the necessary bits to enable USB-C role switching,
-> > > > >>>> charger and fuel gauge (all via pmic-glink) on Fairphone 5.
-> > > > >>>>
-> > > > >>>> One thing that could be made different is the pmic-glink compatible.
-> > > > >>>> I've chosen to use qcm6490 compatible for it and not sc7280 since
-> > > > >>>> there's plenty of firmware variety on sc7280-based platforms and they
-> > > > >>>> might require different quirks in the future, so limit this PDOS quirk
-> > > > >>>> to just qcm6490 for now.
-> > > > >>>>
-> > > > >>>> If someone thinks it should be qcom,sc7280-pmic-glink, please let me
-> > > > >>>> know :)
-> > > > >>> IMO it's best to continue using the "base soc" (which just so happened
-> > > > >>> to fall onto sc7280 this time around) for all compatibles, unless the
-> > > > >>> derivatives actually had changes
-> > > > >>
-> > > > >> Hi Konrad,
-> > > > >>
-> > > > >> I think at some point I asked Dmitry what he thought and he mentioned
-> > > > >> qcm6490. Even found the message again:
-> > > > >>
-> > > > >>> well, since it is a firmware thing, you might want to emphasise that.
-> > > > >>> So from my POV qcm6490 makes more sense
-> > > > >>
-> > > > >> But yeah since it's likely that sc7280 firmware behaves the same as
-> > > > >> qcm6490 firmware it's probably okay to use sc7280 compatible, worst case
-> > > > >> we change it later :) I'll send a v2 with those changes.
-> > > > > 
-> > > > > Worst case we end up with sc7280 which has yet another slightly
-> > > > > different UCSI / PMIC GLINK implementation, but the compatible string
-> > > > > is already taken.
-> > > > > I still suppose that this should be a qcm6490-related string.
-> > > > Right, let's keep qcm then
-> > > 
-> > > Ack from my side also. Thanks for the feedback!
-> >
-> > This doesn't apply to my tree, where should it be going through?
+Il 02/01/24 11:38, Eugen Hristev ha scritto:
+> From: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
 > 
-> As far as I can see the dependency for the driver commit 1d103d6af241
-> ("usb: typec: ucsi: fix UCSI on buggy Qualcomm devices") was applied to
-> Bjorn's qcom tree, so 2/3 should also go there then.
+> Add JPEG encoder node.
 > 
-> Patch 3/3 (arm64 dts) definitely also Bjorn's qcom tree.
-> 
-> So that leaves patch 1/3 which Bjorn can probably pick up as well but
-> looking at git log you also picked up some for that file in the past,
-> dunno.
+> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+> Reviewed-by: Hsin-Yi Wang <hsinyi@chromium.org>
+> Reviewed-by: Max Staudt <mstaudt@chromium.org>
+> Tested-by: Max Staudt <mstaudt@chromium.org>
+> Reviewed-by: Ricardo Ribalda <ribalda@chromium.org>
+> [eugen.hristev@collabora.com: minor cleanup]
+> Signed-off-by: Eugen Hristev <eugen.hristev@collabora.com>
 
-Ok, for any remaining ones that want to be merged before 6.8-rc1 is out,
-feel free to add my:
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-Acked-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 
-If they don't get picked up by 6.8-rc1, feel free to rebase and send it
-for me to take through my tree.
-
-thanks,
-
-greg k-h
 
