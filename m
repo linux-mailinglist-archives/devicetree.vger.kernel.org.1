@@ -1,38 +1,54 @@
-Return-Path: <devicetree+bounces-29256-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29257-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97B7E8222BD
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 21:57:03 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E63858222C2
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 21:59:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 47FA92842B6
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 20:57:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 18BEA1C21D63
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 20:59:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 644DC16409;
-	Tue,  2 Jan 2024 20:56:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CE8016421;
+	Tue,  2 Jan 2024 20:58:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="DaH0KB+5"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="gbjTlTiK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B20E5168A2
-	for <devicetree@vger.kernel.org>; Tue,  2 Jan 2024 20:56:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
- h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
- To: Subject: MIME-Version: Date: Message-ID; q=dns/txt; s=fe-e1b5cab7be;
- t=1704228988; bh=ccZgqPCrJ4T9GeS8WnNP4L0gon1xZyOTx7zhUGDzNNc=;
- b=DaH0KB+5QYKAOAnRy5h6rDe5fjTgNdsmF4lFOcqxdsv3vpukMlnHOv9ESNFhq+KfIwTeEKjXk
- 2e0KzMSn/FK6IZOrohCBq/jCd4TuUYAG9537LgfPP+JlRDIicnd0BEfneaXY3FbPeGGH5G3uPT3
- PWqOEyLrX/S5lF8VUuLcQRWjen8bSmSxMlTH/cBvzOGFx+lXlK5Y8DkoIRrCyyNhD744o4kIY/K
- 56xbC4S1K5Ay/0LwhOpghd94srR0A79K/xSildlCid/akMIkCE1rD3e+MpoiaJL94eRnmWvq4aL
- 0vADC7dkPJOL8y3mshEqBZdKpAphrV424solT5lwvJlQ==
-Message-ID: <903e9d0c-a00c-4214-9f0e-dd676b13b428@kwiboo.se>
-Date: Tue, 2 Jan 2024 21:56:20 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 036421641A;
+	Tue,  2 Jan 2024 20:58:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 402IBch4007301;
+	Tue, 2 Jan 2024 20:58:34 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=NUPBWwzrWce/11pJJZOMDE/OxoFWKfvmYb5nB8VG/44=; b=gb
+	jTlTiKCzC1UJb+S2jxGNbrQ1GDG30RaG1WyDn3YP7ahAuZMCl5GZ7ibbYnN3P+2k
+	RUL98emA5GMMzbh/PbZ1yj+kWVBvtrCrYRKz9UGZqeeyP1s+ie3Mu+XMx4Em/XxO
+	mFoK77zV7Ia1dds7mVKAnxP+KgMa+4l3C2tXqO2bTwoyy+WHc1A6APyw9q6FPdwq
+	zCUYDvaFudWucTwuFXn3gAP7Fzs/K5XZgODjkaYQi0kDDXYA6428Om46imCIJqGU
+	p5WCQv0JI52ond5ZQEPpdSJgXsk6L84Orr3eBg+v6Ge+REsFegzHyEt7G12KYlLW
+	VqRW+03vqZSqCcGBG8TQ==
+Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vcets9dfj-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 02 Jan 2024 20:58:34 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 402KwXPC002559
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 2 Jan 2024 20:58:33 GMT
+Received: from [10.110.68.103] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Tue, 2 Jan
+ 2024 12:58:31 -0800
+Message-ID: <996dacdd-428a-4098-a0de-d4a12662d302@quicinc.com>
+Date: Tue, 2 Jan 2024 12:58:30 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -40,85 +56,88 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 4/4] arm64: dts: rockchip: Add devicetree for Pine64
- PineTab2
+Subject: Re: [PATCH 2/2] drm/panel: samsung-s6d7aa0: drop DRM_BUS_FLAG_DE_HIGH
+ for lsl080al02
 Content-Language: en-US
-To: "=?UTF-8?Q?Ond=C5=99ej_Jirman?=" <megi@xff.cz>, Manuel Traut
- <manut@mecka.net>, Neil Armstrong <neil.armstrong@linaro.org>, Jessica
- Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
- <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David
- Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Heiko Stuebner <heiko@sntech.de>, Sandy Huang <hjc@rock-chips.com>, Mark
- Yao <markyao0591@gmail.com>, Diederik de Haas <didi.debian@cknow.org>,
- Segfault <awarnecke002@hotmail.com>, Arnaud Ferraris
- <aferraris@debian.org>, Danct12 <danct12@riseup.net>,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org
-References: <20240102-pinetab2-v3-0-cb1aa69f8c30@mecka.net>
- <20240102-pinetab2-v3-4-cb1aa69f8c30@mecka.net>
- <775vjfucu2g2s6zzeutj7f7tapx3q2geccpxvv4ppcms4hxbq7@cbrdmlu2ryzp>
-From: Jonas Karlman <jonas@kwiboo.se>
-In-Reply-To: <775vjfucu2g2s6zzeutj7f7tapx3q2geccpxvv4ppcms4hxbq7@cbrdmlu2ryzp>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Report-Abuse-To: abuse@forwardemail.net
-X-Report-Abuse: abuse@forwardemail.net
-X-Complaints-To: abuse@forwardemail.net
-X-ForwardEmail-Version: 0.4.40
-X-ForwardEmail-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 149.28.215.223
-X-ForwardEmail-ID: 6594787c1cdb56bea851e248
+To: Artur Weber <aweber.kernel@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Neil Armstrong
+	<neil.armstrong@linaro.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Maarten
+ Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard
+	<mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie
+	<airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>
+CC: <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-samsung-soc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <dri-devel@lists.freedesktop.org>
+References: <20240101-tab3-display-fixes-v1-0-887ba4dbd16b@gmail.com>
+ <20240101-tab3-display-fixes-v1-2-887ba4dbd16b@gmail.com>
+From: Jessica Zhang <quic_jesszhan@quicinc.com>
+In-Reply-To: <20240101-tab3-display-fixes-v1-2-887ba4dbd16b@gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: WO5dtklJ8Xgb6m4_0rfjLf1Gmaw4sT5S
+X-Proofpoint-GUID: WO5dtklJ8Xgb6m4_0rfjLf1Gmaw4sT5S
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-12-09_01,2023-12-07_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ suspectscore=0 bulkscore=0 clxscore=1011 priorityscore=1501 spamscore=0
+ lowpriorityscore=0 phishscore=0 malwarescore=0 mlxlogscore=999
+ adultscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2311290000 definitions=main-2401020155
 
-Hi Manuel and Ondřej,
 
-On 2024-01-02 19:07, Ondřej Jirman wrote:
-> Hello Manuel,
 
-[...]
-
->> +
->> +&sfc {
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&fspi_dual_io_pins>;
->> +	status = "okay";
->> +	#address-cells = <1>;
->> +	#size-cells = <0>;
->> +
->> +	flash@0 {
->> +		compatible = "jedec,spi-nor";
->> +		reg = <0>;
->> +		spi-max-frequency = <24000000>;
+On 1/1/2024 1:00 PM, Artur Weber wrote:
+> It turns out that I had misconfigured the device I was using the panel
+> with; the bus data polarity is not high for this panel, I had to change
+> the config on the display controller's side.
 > 
-> That's a bit on the low side. The flash chip should work for all commands up to
-> 80MHz https://megous.com/dl/tmp/b428ad9b85ac4633.png and SGM3157YC6 switch
-> for the FSPI-CLK should have high enough bandwidth, too.
-
-I agree that this is a little bit on the low side, it was a safe rate
-that I used for U-Boot. U-Boot required an exact rate of the supported
-sfc clk rates: 24, 50, 75, 100, 125 or 150 MHz.
-
-Please also note that the SPI NOR flash chip used in PineTab2 is not a
-GigaDevice GD25LQ128E, it should be a SiliconKaiser SK25LP128, same as
-found in the Pine64 PinePhone Pro.
-
+> Fix the panel config to properly reflect its accurate settings.
 > 
->> +		spi-rx-bus-width = <2>;
+> Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
+
+Hi Artur,
+
+With Henrik's suggestion to add the Fixes tag,
+
+Reviewed-by: Jessica Zhang <quic_jesszhan@quicinc.com>
+
+Thanks,
+
+Jessica Zhang
+
+> ---
+>   drivers/gpu/drm/panel/panel-samsung-s6d7aa0.c | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> GD25LQ128E supports quad I/O. Maybe try 4 if it will work.
-
-The schematic only shows fspi D0 and D1 connected, and use the D2 line
-for eMMC_RSTn, so spi-rx-bus-width = <2> should be correct.
-
+> diff --git a/drivers/gpu/drm/panel/panel-samsung-s6d7aa0.c b/drivers/gpu/drm/panel/panel-samsung-s6d7aa0.c
+> index ea5a85779382..f23d8832a1ad 100644
+> --- a/drivers/gpu/drm/panel/panel-samsung-s6d7aa0.c
+> +++ b/drivers/gpu/drm/panel/panel-samsung-s6d7aa0.c
+> @@ -309,7 +309,7 @@ static const struct s6d7aa0_panel_desc s6d7aa0_lsl080al02_desc = {
+>   	.off_func = s6d7aa0_lsl080al02_off,
+>   	.drm_mode = &s6d7aa0_lsl080al02_mode,
+>   	.mode_flags = MIPI_DSI_MODE_VSYNC_FLUSH | MIPI_DSI_MODE_VIDEO_NO_HFP,
+> -	.bus_flags = DRM_BUS_FLAG_DE_HIGH,
+> +	.bus_flags = 0,
+>   
+>   	.has_backlight = false,
+>   	.use_passwd3 = false,
 > 
->> +		spi-tx-bus-width = <1>;
->> +	};
->> +};
->> +
-
-Regards,
-Jonas
+> -- 
+> 2.43.0
+> 
 
