@@ -1,59 +1,59 @@
-Return-Path: <devicetree+bounces-29278-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29279-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC69A82231B
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 22:13:50 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BF9582231D
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 22:14:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1B899B2260E
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 21:13:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 339331C22B74
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 21:14:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B303C18C07;
-	Tue,  2 Jan 2024 21:09:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D58D18EC5;
+	Tue,  2 Jan 2024 21:09:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="Jd+OrY9Y"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="PcMWXXwG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-io1-f53.google.com (mail-io1-f53.google.com [209.85.166.53])
+Received: from mail-io1-f42.google.com (mail-io1-f42.google.com [209.85.166.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51FD018EC5
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1359C19441
 	for <devicetree@vger.kernel.org>; Tue,  2 Jan 2024 21:09:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-io1-f53.google.com with SMTP id ca18e2360f4ac-7bb982d0f12so46516539f.0
+Received: by mail-io1-f42.google.com with SMTP id ca18e2360f4ac-7baa8da5692so421996539f.0
         for <devicetree@vger.kernel.org>; Tue, 02 Jan 2024 13:09:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1704229740; x=1704834540; darn=vger.kernel.org;
+        d=chromium.org; s=google; t=1704229741; x=1704834541; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=mrqyCRQGWqtYZon/B8x6Cl4Beyi5N2srdFtijVb67bM=;
-        b=Jd+OrY9YWz3i/Dgd40CfK61o+Ojf3v5aYpvPs2XixprcNnM76DiksrFsbbvnYCw1F/
-         NsxXHGO/4IdweWWLAfvIFHf3LCILdaCKVxlgufoMIRO5YwRMy8+w1Zs+GD/2UzJNi/6Q
-         4C4KqXzv4tj0m1mlNjS+7c7LM29ibY27GoC8Q=
+        bh=yuhkCzL2l+Es2a6yZtXMYTtf834z1coLX69xx0eVIxw=;
+        b=PcMWXXwGKxi3lOnc4PVx41Mbqm//fWa3Q8P5FK/aWfOfM4ABtshA+gXmY6cY5tkNqe
+         A8sIKKRrVMk2Wgz+YPZcl7R+2GAF0KdMU6rHV5xr1AJt55NCYK65MqZ7LBZzmpSh0iC2
+         qwsim/jG2f+82HVKObdmWlOw9oG0hMp41Y5Cg=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704229740; x=1704834540;
+        d=1e100.net; s=20230601; t=1704229741; x=1704834541;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=mrqyCRQGWqtYZon/B8x6Cl4Beyi5N2srdFtijVb67bM=;
-        b=e4VdrXgqtFVBQyswtxw5OuskrvriQg84JRLi5+ifCX7oB8JIlk9u223bXrFnDRf7+b
-         1KoZnIWh4h9uUf7JSviTBSHbBsHkyvKnWn1qDZp8JBE6cLxEM2Nzd+sz7XWVJ9FtSMrR
-         IpZgCsxYVVqQ3Ka6mhKUQpUF5w1t6ih9F9GzPdfJUCmRkkSpQ7NNlsSynoMiqqO/h5SF
-         b6Zsd1pQhMNDg2kQt6t3t2jsyH3+stPkIIbeNDwYXQiHMFcZ8wxBOLXFpqiXEAxKOez/
-         Nw26rbU3i9c2aH/sUlvlKt0ywOl+kCxac1/eSc1g97EW1qD3GKNOeMQAfx+KlRK1Jrlk
-         aDmA==
-X-Gm-Message-State: AOJu0Yztsc4ZEyhMs9AOWwEByokR7VIVBGKxP1yMnnNKPM68fXE3eFE0
-	5JBuSFvImmME82vDM/tD3on5NzzXaZMP
-X-Google-Smtp-Source: AGHT+IFQzUcaDIy67wDz2ySoGOwpwi0H1El9nejGF4EWnyK78NzOzFm7YOjrdDK8vQhhffUOy1ZGCw==
-X-Received: by 2002:a05:6e02:1a0e:b0:35d:59b3:2f7d with SMTP id s14-20020a056e021a0e00b0035d59b32f7dmr40919ild.18.1704229740602;
-        Tue, 02 Jan 2024 13:09:00 -0800 (PST)
+        bh=yuhkCzL2l+Es2a6yZtXMYTtf834z1coLX69xx0eVIxw=;
+        b=BuWxZLptq/rzFh54atElOPCnbb2gaRJW9wzO3xUQmlQxFwGOdwMcvCpwUAoCMK5GJL
+         dtGBfDOzQ9DarBCi4a8riOwa8ORvm9DQmXB3hega7bP32lMceOWMEKDpnwomPMLOgwDF
+         2Ju0Q0ak6jRefQsE0IeQpnwfA6cp/txbtQDDtqjrewMJBiLVluWDsx9TLRtxF7dN/VR5
+         sr/eMHSM3h6gVnZubqwvpoc7NrymQgu3N6KRxijg0IJqCN8BTParHKVbTABE2idQK5sb
+         YJzuW0IKkk0iIN+mgp0UMLyr6eOj61NN6ueUNxtEaLnWL8AFgtp+SxIxPbFSmHKqVEwZ
+         X14A==
+X-Gm-Message-State: AOJu0YzA++Jwz/7enlxnu9oksBsJEsmQs3ivaDn3ubgGrv+nAoBK6TCG
+	JudWI3zuR5rfOQ3hl+cd3Pz5JPHbeCCD
+X-Google-Smtp-Source: AGHT+IFp2QttZwtW1kCru0qHHoHoT70NG6O1ERnMyBH3znA+Ew+qlRfeZfzdwG/Vk/iKKPZKXXki8w==
+X-Received: by 2002:a05:6602:1492:b0:7b7:be85:23c with SMTP id a18-20020a056602149200b007b7be85023cmr25585003iow.30.1704229741350;
+        Tue, 02 Jan 2024 13:09:01 -0800 (PST)
 Received: from markhas1.lan (71-218-50-136.hlrn.qwest.net. [71.218.50.136])
         by smtp.gmail.com with ESMTPSA id bo18-20020a056638439200b0046993034c91sm6956978jab.77.2024.01.02.13.09.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 02 Jan 2024 13:09:00 -0800 (PST)
+        Tue, 02 Jan 2024 13:09:01 -0800 (PST)
 From: Mark Hasemeyer <markhas@chromium.org>
 To: LKML <linux-kernel@vger.kernel.org>
 Cc: Sudeep Holla <sudeep.holla@arm.com>,
@@ -68,9 +68,9 @@ Cc: Sudeep Holla <sudeep.holla@arm.com>,
 	Frank Rowand <frowand.list@gmail.com>,
 	Rob Herring <robh+dt@kernel.org>,
 	devicetree@vger.kernel.org
-Subject: [PATCH v4 19/24] of: irq: Add default implementation for of_irq_to_resource()
-Date: Tue,  2 Jan 2024 14:07:43 -0700
-Message-ID: <20240102140734.v4.19.I31d4dd6a7e5a3e5eee05c87b358e63cd1aa0e467@changeid>
+Subject: [PATCH v4 20/24] of: irq: Remove extern from function declarations
+Date: Tue,  2 Jan 2024 14:07:44 -0700
+Message-ID: <20240102140734.v4.20.I319e781c11e6352eb5b6c408dc20bd54a720edbf@changeid>
 X-Mailer: git-send-email 2.43.0.472.g3155946c3a-goog
 In-Reply-To: <20240102210820.2604667-1-markhas@chromium.org>
 References: <20240102210820.2604667-1-markhas@chromium.org>
@@ -82,8 +82,8 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Similar to of_irq_to_resource_table(), add a default implementation of
-of_irq_to_resource() for systems that don't have CONFIG_OF_IRQ defined.
+The extern keyword is implicit for function declarations.
+Remove it where possible and adjust the line wrapping accordingly.
 
 Acked-by: Rob Herring <robh@kernel.org>
 Signed-off-by: Mark Hasemeyer <markhas@chromium.org>
@@ -92,42 +92,69 @@ Signed-off-by: Mark Hasemeyer <markhas@chromium.org>
 Changes in v4:
 -Add Rob's Ack tag from v2
 
- include/linux/of_irq.h | 8 ++++++--
- 1 file changed, 6 insertions(+), 2 deletions(-)
+Changes in v2:
+-New patch
+
+ include/linux/of_irq.h | 35 +++++++++++++++++------------------
+ 1 file changed, 17 insertions(+), 18 deletions(-)
 
 diff --git a/include/linux/of_irq.h b/include/linux/of_irq.h
-index d6d3eae2f1452..0d73b2ca92d31 100644
+index 0d73b2ca92d31..a130dcbc4bb45 100644
 --- a/include/linux/of_irq.h
 +++ b/include/linux/of_irq.h
-@@ -34,8 +34,6 @@ static inline int of_irq_parse_oldworld(const struct device_node *device, int in
+@@ -32,27 +32,26 @@ static inline int of_irq_parse_oldworld(const struct device_node *device, int in
+ }
+ #endif /* CONFIG_PPC32 && CONFIG_PPC_PMAC */
  
- extern int of_irq_parse_raw(const __be32 *addr, struct of_phandle_args *out_irq);
- extern unsigned int irq_create_of_mapping(struct of_phandle_args *irq_data);
--extern int of_irq_to_resource(struct device_node *dev, int index,
--			      struct resource *r);
+-extern int of_irq_parse_raw(const __be32 *addr, struct of_phandle_args *out_irq);
+-extern unsigned int irq_create_of_mapping(struct of_phandle_args *irq_data);
++int of_irq_parse_raw(const __be32 *addr, struct of_phandle_args *out_irq);
++unsigned int irq_create_of_mapping(struct of_phandle_args *irq_data);
  
  #ifdef CONFIG_OF_IRQ
- extern void of_irq_init(const struct of_device_id *matches);
-@@ -44,6 +42,7 @@ extern int of_irq_parse_one(struct device_node *device, int index,
- extern int of_irq_count(struct device_node *dev);
- extern int of_irq_get(struct device_node *dev, int index);
- extern int of_irq_get_byname(struct device_node *dev, const char *name);
-+extern int of_irq_to_resource(struct device_node *dev, int index, struct resource *r);
- extern int of_irq_to_resource_table(struct device_node *dev,
- 		struct resource *res, int nr_irqs);
- extern struct device_node *of_irq_find_parent(struct device_node *child);
-@@ -76,6 +75,11 @@ static inline int of_irq_get_byname(struct device_node *dev, const char *name)
- {
- 	return 0;
- }
-+static inline int of_irq_to_resource(struct device_node *dev, int index,
-+			      struct resource *r)
-+{
-+	return 0;
-+}
- static inline int of_irq_to_resource_table(struct device_node *dev,
- 					   struct resource *res, int nr_irqs)
- {
+-extern void of_irq_init(const struct of_device_id *matches);
+-extern int of_irq_parse_one(struct device_node *device, int index,
+-			  struct of_phandle_args *out_irq);
+-extern int of_irq_count(struct device_node *dev);
+-extern int of_irq_get(struct device_node *dev, int index);
+-extern int of_irq_get_byname(struct device_node *dev, const char *name);
+-extern int of_irq_to_resource(struct device_node *dev, int index, struct resource *r);
+-extern int of_irq_to_resource_table(struct device_node *dev,
+-		struct resource *res, int nr_irqs);
+-extern struct device_node *of_irq_find_parent(struct device_node *child);
+-extern struct irq_domain *of_msi_get_domain(struct device *dev,
++void of_irq_init(const struct of_device_id *matches);
++int of_irq_parse_one(struct device_node *device, int index,
++		    struct of_phandle_args *out_irq);
++int of_irq_count(struct device_node *dev);
++int of_irq_get(struct device_node *dev, int index);
++int of_irq_get_byname(struct device_node *dev, const char *name);
++int of_irq_to_resource(struct device_node *dev, int index, struct resource *r);
++int of_irq_to_resource_table(struct device_node *dev, struct resource *res,
++			    int nr_irqs);
++struct device_node *of_irq_find_parent(struct device_node *child);
++struct irq_domain *of_msi_get_domain(struct device *dev,
+ 					    struct device_node *np,
+ 					    enum irq_domain_bus_token token);
+-extern struct irq_domain *of_msi_map_get_device_domain(struct device *dev,
+-							u32 id,
+-							u32 bus_token);
+-extern void of_msi_configure(struct device *dev, struct device_node *np);
++struct irq_domain *of_msi_map_get_device_domain(struct device *dev, u32 id,
++					       u32 bus_token);
++void of_msi_configure(struct device *dev, struct device_node *np);
+ u32 of_msi_map_id(struct device *dev, struct device_node *msi_np, u32 id_in);
+ #else
+ static inline void of_irq_init(const struct of_device_id *matches)
+@@ -117,7 +116,7 @@ static inline u32 of_msi_map_id(struct device *dev,
+  * implements it differently.  However, the prototype is the same for all,
+  * so declare it here regardless of the CONFIG_OF_IRQ setting.
+  */
+-extern unsigned int irq_of_parse_and_map(struct device_node *node, int index);
++unsigned int irq_of_parse_and_map(struct device_node *node, int index);
+ 
+ #else /* !CONFIG_OF && !CONFIG_SPARC */
+ static inline unsigned int irq_of_parse_and_map(struct device_node *dev,
 -- 
 2.43.0.472.g3155946c3a-goog
 
