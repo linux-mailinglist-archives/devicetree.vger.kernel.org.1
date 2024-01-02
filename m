@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-29183-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29184-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D28D821CC3
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 14:37:39 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B15D0821CC7
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 14:37:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2BCC51F22BA1
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 13:37:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B260E1C2211C
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 13:37:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14122125C7;
-	Tue,  2 Jan 2024 13:34:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D70E6125D2;
+	Tue,  2 Jan 2024 13:34:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mvfd2kz8"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xJ1vpSlv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7155515ACE
-	for <devicetree@vger.kernel.org>; Tue,  2 Jan 2024 13:34:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CE6D15AD7
+	for <devicetree@vger.kernel.org>; Tue,  2 Jan 2024 13:34:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-40d5a41143fso56766935e9.3
-        for <devicetree@vger.kernel.org>; Tue, 02 Jan 2024 05:34:33 -0800 (PST)
+Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-a2871a2b898so12678966b.3
+        for <devicetree@vger.kernel.org>; Tue, 02 Jan 2024 05:34:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704202471; x=1704807271; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1704202472; x=1704807272; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=5q9S+7Fya+VTzBEqrdZKh6qCvhpW7mOyZby8yv38yTU=;
-        b=mvfd2kz8wkm/VZX991ZItOJdbjjjSGZuGpLTxLpAUkc9yD+2zt6p8nh7CJ8PS2xyX1
-         SS6s2AwqhMIiOIdPQntoPtGSN2tGVePAtJSlJZTVE2SGGjgwWSqI1IlvaxSMxQddrHSr
-         3Mj1r980L8DKNQ3djjzbACR4mXDhCecTZHUzPgd1LemUC3WwVuUe4/WOwQV42y3Z26oY
-         MiuYy0ehYt6dI2EXLge/YH1KTQFlWHkzbV4z3vZd3DndTb2tGaN1PuPxfewq/C9XNFiF
-         mMO75Mm304nYwmw/F+2OPQZKF2lS7xrWjI8KtKtlcGtSUDCNYQhhVe+lfejKs4Vy60t8
-         A3xQ==
+        bh=kn6ZcGR++MLyZKYtulEm7pL4y4QPEqxKkTxTEz9NJCo=;
+        b=xJ1vpSlvQ4WpjA2eLh54Rd6f5XGamBZyMGETp3sWTWZO+/lsjvKUXu4EbOP7OwLcvq
+         gtHqfxDmhvgFwUFigFwCviJ2D3xHpALz5N8NehYzR7OFuDv85BC+mKzGg176DnBExaDr
+         Z/2jhHTz/m+7/DPsfMULF5Dnw66+2kljjBe1oXB1n5UU146NOAF8QksRKFBAuz+sCfE4
+         Ts6HsdQ+mpdp59uJr+8GUAapjIy7/oKUV2/cNsWm6cI8+p1YDBKGpybw0lKe2Ao97jGe
+         D1dErzf5A50h8xaIOiVcTfI9/0osHJT/9hdQYm0KHpoCye4EcaZM/BtOpmeYHtQBfasn
+         8a2g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704202471; x=1704807271;
+        d=1e100.net; s=20230601; t=1704202472; x=1704807272;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=5q9S+7Fya+VTzBEqrdZKh6qCvhpW7mOyZby8yv38yTU=;
-        b=CXrrzZak6bxxTAUljfPqbFd3vzUCec9w0Nm9W9E6HYjU0Xf7PMsrTby0qJfPFOiBBj
-         NghGXr2qWPiDOSLmtc8P2/WeO5Q2qPB1Xpp51zj47UA9T7T3JS+OZrVGpYe2Ap5prgkF
-         b4VGMieaW3EdbZfOxW8Q71WNYWn4gXGhumlfG0eFR8KPEKi6sMI8dy5QcNOIG1MzODCE
-         VxSvlfwniTSKVEka7jQzt1vd8C/L4jdHAS2K3pf9UoKN1u9edxYtxuLQZphCE2stPAEV
-         bKlMntUo6cfEGpDeGhYRi9WWnufXKt5hoBgtjrI+5CvyHpEB+tgUhcsvl1bMTTliuIV2
-         pp3g==
-X-Gm-Message-State: AOJu0Yxq/w1+JiL1fSf4N9xI/RFsTEA+Hgxad5jEGAX2kg4C33B2LYk7
-	znm9RjXz5bhPve81cHqEsuB4xlGUvJKXoRfsl7+vObgcJU4=
-X-Google-Smtp-Source: AGHT+IE+a8IxL1I3ilsYirsmCdIkKahi1rhlBPr9BqCZsZpYGmM6f5OjnDN8AoIfuuTMHhc5CKoStw==
-X-Received: by 2002:a05:600c:1d2a:b0:40d:5bc4:4e7f with SMTP id l42-20020a05600c1d2a00b0040d5bc44e7fmr5580444wms.20.1704202471606;
-        Tue, 02 Jan 2024 05:34:31 -0800 (PST)
+        bh=kn6ZcGR++MLyZKYtulEm7pL4y4QPEqxKkTxTEz9NJCo=;
+        b=EWx4/Fh9NQf3SO6lOr7T6v9FY7ofomxlXKgQQOLy+Jj0lulX78y3icU5JvFYg/+kNC
+         c7+xv9JBu1U9/Xe9l8LZaT76Jd3jbMW9H6egAKIv98Mwn3e5ERkWzi3F8Kvcy0XSAKC2
+         5VSq/4R0H1R8JbVnotysT7f/fes+sBWeZvRsbpCVjCT5Trf/KLEcDyrQs+w72F7cnPNQ
+         kZhIIlEZG1Gb+w74F8ibHtGXYOt7FuvTKSvJ6VDlk/ajND8oAJpKaXUTEka9rIdMWRed
+         +FqufPzu67qqUi7w8hOZN/9Rqjfd48gpkkag9HE7s/CCicw3rAYfEDIXxV78DIx3Akj9
+         FZ6w==
+X-Gm-Message-State: AOJu0YyuoAwY5PghiFjB3XZu2S/VRwP3MPNYu6uvawZGGJ/ovmhEyJR2
+	WNZEevbNDJi5gmlELqujxP6wh1lBLtUjzMsJfFRBSGJ7ePQ=
+X-Google-Smtp-Source: AGHT+IF8V3w4eO8tAGhtwTO7CeHY5MfrrduezFfd/hCSv78bIIbXrbW5bgSlswiqDeONC6lUwdP1vA==
+X-Received: by 2002:a17:906:1988:b0:a27:e0e2:e641 with SMTP id g8-20020a170906198800b00a27e0e2e641mr1874730ejd.19.1704202472564;
+        Tue, 02 Jan 2024 05:34:32 -0800 (PST)
 Received: from [10.167.154.1] (178235179036.dynamic-4-waw-k-1-3-0.vectranet.pl. [178.235.179.36])
-        by smtp.gmail.com with ESMTPSA id u23-20020a170906109700b00a26af5717e9sm10950923eju.42.2024.01.02.05.34.29
+        by smtp.gmail.com with ESMTPSA id u23-20020a170906109700b00a26af5717e9sm10950923eju.42.2024.01.02.05.34.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 02 Jan 2024 05:34:29 -0800 (PST)
+        Tue, 02 Jan 2024 05:34:32 -0800 (PST)
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
-Date: Tue, 02 Jan 2024 14:34:13 +0100
-Subject: [PATCH 09/12] arm64: dts: qcom: sm8350: Hook up GPU cooling device
+Date: Tue, 02 Jan 2024 14:34:14 +0100
+Subject: [PATCH 10/12] arm64: dts: qcom: sm8450: Hook up GPU cooling device
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,7 +68,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20240102-topic-gpu_cooling-v1-9-fda30c57e353@linaro.org>
+Message-Id: <20240102-topic-gpu_cooling-v1-10-fda30c57e353@linaro.org>
 References: <20240102-topic-gpu_cooling-v1-0-fda30c57e353@linaro.org>
 In-Reply-To: <20240102-topic-gpu_cooling-v1-0-fda30c57e353@linaro.org>
 To: Bjorn Andersson <andersson@kernel.org>, 
@@ -79,11 +79,11 @@ Cc: Marijn Suijten <marijn.suijten@somainline.org>,
  linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
  linux-kernel@vger.kernel.org, Konrad Dybcio <konrad.dybcio@linaro.org>
 X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1704202458; l=1563;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1704202458; l=1883;
  i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=EpO0KJ3F+IVJx7ZjcCfSRbGs6QkZ1fpSqdd5/2bxjR0=;
- b=n/bAhKc/aou494PJN57B7ksru+9pBNU1UF1o7bzN6Zrgx94HklFbYllHnPTQCujRMPkEJKC3Y
- 8e1IZqMQa22BvQSyZtVWkDcratnlruq+QkLj+N0zn615Qr+LzkQnIMk
+ bh=lgxbgRXfXDX4Jn2UaC0FqFuodM62KE9jmIfHnDAxRyI=;
+ b=r1N0BwVrwMRyHsSl/wlgYiyjpYzDxjqQwnnvJPf2fYSr+T2RY6ZNExH/zeL+RLmYR8wlycfOx
+ XoRmgKlx0klDyyJtSzKp6+wyUdh00TiOkXRaPzCXYHLdD+XOmuIDwb6
 X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
  pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 
@@ -93,14 +93,14 @@ to be more telling, while at it.
 
 Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sm8350.dtsi | 19 +++++++++++++++++--
+ arch/arm64/boot/dts/qcom/sm8450.dtsi | 19 +++++++++++++++++--
  1 file changed, 17 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi b/arch/arm64/boot/dts/qcom/sm8350.dtsi
-index e78c83a897c2..1c6f80b14d09 100644
---- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
-@@ -1847,6 +1847,7 @@ gpu: gpu@3d00000 {
+diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+index 01e4dfc4babd..8f5a093c8828 100644
+--- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+@@ -2038,6 +2038,7 @@ gpu: gpu@3d00000 {
  			operating-points-v2 = <&gpu_opp_table>;
  
  			qcom,gmu = <&gmu>;
@@ -108,9 +108,9 @@ index e78c83a897c2..1c6f80b14d09 100644
  
  			status = "disabled";
  
-@@ -4214,8 +4215,15 @@ gpu-top-thermal {
- 
- 			thermal-sensors = <&tsens1 1>;
+@@ -4890,6 +4891,13 @@ gpu-top-thermal {
+ 			polling-delay = <0>;
+ 			thermal-sensors = <&tsens0 14>;
  
 +			cooling-maps {
 +				map0 {
@@ -120,14 +120,20 @@ index e78c83a897c2..1c6f80b14d09 100644
 +			};
 +
  			trips {
--				gpu1_alert0: trip-point0 {
-+				gpu_top_alert0: trip-point0 {
- 					temperature = <90000>;
- 					hysteresis = <1000>;
- 					type = "hot";
-@@ -4229,8 +4237,15 @@ gpu-bottom-thermal {
+ 				thermal-engine-config {
+ 					temperature = <125000>;
+@@ -4909,7 +4917,7 @@ reset-mon-cfg {
+ 					type = "passive";
+ 				};
  
- 			thermal-sensors = <&tsens1 2>;
+-				gpu0_tj_cfg: tj-cfg {
++				gpu_top_alert0: trip-point0 {
+ 					temperature = <95000>;
+ 					hysteresis = <5000>;
+ 					type = "passive";
+@@ -4922,6 +4930,13 @@ gpu-bottom-thermal {
+ 			polling-delay = <0>;
+ 			thermal-sensors = <&tsens0 15>;
  
 +			cooling-maps {
 +				map0 {
@@ -137,11 +143,17 @@ index e78c83a897c2..1c6f80b14d09 100644
 +			};
 +
  			trips {
--				gpu2_alert0: trip-point0 {
+ 				thermal-engine-config {
+ 					temperature = <125000>;
+@@ -4941,7 +4956,7 @@ reset-mon-cfg {
+ 					type = "passive";
+ 				};
+ 
+-				gpu1_tj_cfg: tj-cfg {
 +				gpu_bottom_alert0: trip-point0 {
- 					temperature = <90000>;
- 					hysteresis = <1000>;
- 					type = "hot";
+ 					temperature = <95000>;
+ 					hysteresis = <5000>;
+ 					type = "passive";
 
 -- 
 2.43.0
