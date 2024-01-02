@@ -1,116 +1,139 @@
-Return-Path: <devicetree+bounces-29238-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29239-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A46682210F
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 19:31:53 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id EB30F82211C
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 19:38:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 94F7C1C2298E
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 18:31:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 98E611F233CD
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 18:38:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02FE1156F4;
-	Tue,  2 Jan 2024 18:31:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A02F3156F4;
+	Tue,  2 Jan 2024 18:38:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eEv45m5k"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="F/diWnij"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7CE1156F0;
-	Tue,  2 Jan 2024 18:31:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 573D2C433C8;
-	Tue,  2 Jan 2024 18:31:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1704220282;
-	bh=a2nksk6kIBPxDGBv3UGxAQM7iBjL7hf0hbNNRAGystg=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=eEv45m5kFoRQ/7gQWJ1sqsuCI3uLdd4x6RajWHJLuydDWfnRJkRgWeHZoX2tnol1f
-	 CeCsC4jfMxqtijOSfUAzCJiUcp0CJ5SIDfI/Cf80JujlnUhVJkhMZbkeU/xIP3VJBs
-	 sX82tksg08IZOae+c4ufqN1Ll0Ju+haJb6dT5bh6417y1qI24e77k8jrh0yzTDV6C3
-	 XVG/h2M3ZBwuKFmhdiu633fMR08EFaOh0axrjnBoz+1JXic4iN0rwPbF7Ou8u4zH/B
-	 n96uFjwY6kZrqkqz+E1gyk6k2Ba2IgiOBEWeVeRc41AteZ8IcM9QTwqoh6+GXDuqZb
-	 FHSOKBaX8WTWg==
-Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-2cd1232a2c7so6979261fa.0;
-        Tue, 02 Jan 2024 10:31:22 -0800 (PST)
-X-Gm-Message-State: AOJu0Yz9JJJQOFTLZvLc2viHHfnpPXJMI6Tw2FPyjKVqvjv1wQQoQ6am
-	VswwcSsvzdKwMjDel0LxplpqZNrDICoprXC6FA==
-X-Google-Smtp-Source: AGHT+IHcaSoyRt5IyzuibmWh/dkkmcEzUUJ2eE6UdEpzS4Cis2MFZeEfvXQ3c/lHwNcUCtoAWOKO6fNIjTfdWYhMEJk=
-X-Received: by 2002:a2e:7816:0:b0:2cc:f1aa:8a3f with SMTP id
- t22-20020a2e7816000000b002ccf1aa8a3fmr2707582ljc.88.1704220280569; Tue, 02
- Jan 2024 10:31:20 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F307156EF;
+	Tue,  2 Jan 2024 18:38:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-40d2e56f3a6so55564005e9.1;
+        Tue, 02 Jan 2024 10:38:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1704220729; x=1704825529; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=TSbX98OpsIFhknrkPUlnLd/Gb/xC0302JuUUTWaUNQQ=;
+        b=F/diWnijXehkaytk6d6bz516XLsD6t29KKBQLoUd9wiI7FxEgYSe1HuQrXWq4SzNUf
+         uoZIjjBKFspPIjfTbaZIrSCmcQ4kbALgQoy1cE7/DHCZWEB29KmHt8zU+gzA36tolp21
+         vQVeQOYbpELVh4o63Qy4U2MEz/G8Ozg1j2d+gJwe68EElPcEmQV61hQ/Sro7VAGjFkkH
+         9lKUQ5v/UK9uNPtKwD4ITMP7GVkAG/t4S3xgezWauUvqg5lsgLpHEHEl9xA5KYMRIZzu
+         34QOo9BUNn4iJc3iFbCyzY9zmqcZr4k1kPTzBndTdX2IKwJ1XwJbk+l7OXPBr9gY6WdX
+         P00Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1704220729; x=1704825529;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=TSbX98OpsIFhknrkPUlnLd/Gb/xC0302JuUUTWaUNQQ=;
+        b=ARZkmpptTy0FjyZiZjYFwPoij8nfJanwf07BzVOa33IZDrUdLlerX4MoLq16fYPDaX
+         DA9ZQYb2krKk+NtUtXz2zpCIYF4ooO+fbikb4rkzxkTnDEefL3Moqv/w7QuoNYXufcyP
+         KJsPh8zRGNChmD7t/WNSJepukyqbdBdu9+Z0PWpQEWr6XNRxt76l6kvb2lfNJ9U6VV79
+         Tc78CxFUC3R3eNeLDDPelMTduZa3XQkMXp0IVh9k8IsJVUcnLOwfOHFe3fZ0JeWxP2+F
+         ya9lOz/W3fg4L0HWzCNIwsuE4NA0LXe5KmETMETYXG8y3PYInzjUqf5WR9N/aT+z1tOI
+         Rhsw==
+X-Gm-Message-State: AOJu0Yx/mJpbspeFnbM3dzr+Z8pLFFcel5q22zuTal+Z6v6Bdh9Hgn+z
+	J6hB7kJuH5t7e7V7l2okJv4=
+X-Google-Smtp-Source: AGHT+IHS1rXQmYTNGbOeFEUNy2APVbixEkLwy9K4cxhk/vuhAL2D1ayBVg6w75D32M9xrGQChzIoaw==
+X-Received: by 2002:a05:600c:3542:b0:40d:5a6f:fb72 with SMTP id i2-20020a05600c354200b0040d5a6ffb72mr5752891wmq.57.1704220728913;
+        Tue, 02 Jan 2024 10:38:48 -0800 (PST)
+Received: from localhost.localdomain (host-87-10-250-100.retail.telecomitalia.it. [87.10.250.100])
+        by smtp.googlemail.com with ESMTPSA id p15-20020a05600c468f00b0040d4e1393dcsm37963071wmo.20.2024.01.02.10.38.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 02 Jan 2024 10:38:48 -0800 (PST)
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: Pavel Machek <pavel@ucw.cz>,
+	Lee Jones <lee@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	William Zhang <william.zhang@broadcom.com>,
+	Anand Gore <anand.gore@broadcom.com>,
+	Kursad Oney <kursad.oney@broadcom.com>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+	=?UTF-8?q?Fern=C3=A1ndez=20Rojas?= <noltari@gmail.com>,
+	Sven Schwermer <sven.schwermer@disruptive-technologies.com>,
+	Christian Marangi <ansuelsmth@gmail.com>,
+	linux-leds@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	netdev@vger.kernel.org
+Subject: [net-next PATCH v6 0/5] net: phy: generic polarity + LED support for qca808x
+Date: Tue,  2 Jan 2024 19:38:29 +0100
+Message-ID: <20240102183835.5332-1-ansuelsmth@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240101114432.28139-1-zajec5@gmail.com>
-In-Reply-To: <20240101114432.28139-1-zajec5@gmail.com>
-From: Rob Herring <robh@kernel.org>
-Date: Tue, 2 Jan 2024 11:31:08 -0700
-X-Gmail-Original-Message-ID: <CAL_Jsq+hpOS-rdOYasJ1dzU6d_vVDWv2CseRhYmNHA2H_p=_pw@mail.gmail.com>
-Message-ID: <CAL_Jsq+hpOS-rdOYasJ1dzU6d_vVDWv2CseRhYmNHA2H_p=_pw@mail.gmail.com>
-Subject: Re: [PATCH RFC] dt-bindings: crypto: inside-secure,safexcel: make
- eip/mem IRQs optional
-To: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Cc: Antoine Tenart <atenart@kernel.org>, Sam Shih <sam.shih@mediatek.com>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, linux-crypto@vger.kernel.org, 
-	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Mon, Jan 1, 2024 at 4:45=E2=80=AFAM Rafa=C5=82 Mi=C5=82ecki <zajec5@gmai=
-l.com> wrote:
->
-> From: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
->
-> Binding for this cryptographic engine defined 6 interrupts since its
-> beginning. It seems however only 4 rings IRQs are really required for
-> operating this hardware. Linux driver doesn't use "eip" or "mem" IRQs
-> and it isn't clear if they are always available (MT7986 SoC binding
-> doesn't specify them).
->
-> This deals with:
-> arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dtb: crypto@10320000=
-: interrupts: [[0, 116, 4], [0, 117, 4], [0, 118, 4], [0, 119, 4]] is too s=
-hort
->         from schema $id: http://devicetree.org/schemas/crypto/inside-secu=
-re,safexcel.yaml#
-> arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dtb: crypto@10320000=
-: interrupt-names: ['ring0', 'ring1', 'ring2', 'ring3'] is too short
->         from schema $id: http://devicetree.org/schemas/crypto/inside-secu=
-re,safexcel.yaml#
+This small series add LEDs support for qca808x.
 
-Which platform does the schema currently match? None, because the
-Marvell ones get these:
+QCA808x apply on PHY reset a strange polarity settings and require
+some tweak to apply a more common configuration found on devices.
+On adding support for it, it was pointed out that a similar
+feature is also being implemented for a marvell PHY where
+LED polarity is set per LED (and not global) and also have
+a special mode where the LED is tristated.
 
-     28  crypto@800000: interrupt-names:5: 'mem' was expected
-     28  crypto@800000: interrupt-names:4: 'eip' was expected
-     28  crypto@800000: interrupt-names:3: 'ring3' was expected
-     28  crypto@800000: interrupt-names:2: 'ring2' was expected
-     28  crypto@800000: interrupt-names:1: 'ring1' was expected
-     28  crypto@800000: interrupt-names:0: 'ring0' was expected
-     28  crypto@800000: 'dma-coherent' does not match any of the
-regexes: 'pinctrl-[0-9]+'
+The first 3 patch are to generalize this as we expect more PHY
+in the future to have a similar configuration.
 
-(28 is the number of occurrences)
+The implementation is extensible to support additional special
+mode in the future with minimal changes and don't create regression
+on already implemented PHY drivers.
 
-The existing list of names defines the order AND index. Since there
-are 2 versions already in use, you have to define 2 lists.
+(changelog present in single patch)
 
->
-> Cc: Antoine Tenart <atenart@kernel.org>
-> Ref: ecc5287cfe53 ("arm64: dts: mt7986: add crypto related device nodes")
+Christian Marangi (5):
+  dt-bindings: net: phy: Make LED active-low property common
+  dt-bindings: net: phy: Document LED inactive high impedance mode
+  net: phy: add support for PHY LEDs polarity modes
+  dt-bindings: net: Document QCA808x PHYs
+  net: phy: at803x: add LED support for qca808x
 
-Not a documented tag. Don't make-up your own ones.
+ .../devicetree/bindings/leds/common.yaml      |  12 +
+ .../bindings/leds/leds-bcm63138.yaml          |   4 -
+ .../bindings/leds/leds-bcm6328.yaml           |   4 -
+ .../devicetree/bindings/leds/leds-bcm6358.txt |   2 -
+ .../bindings/leds/leds-pwm-multicolor.yaml    |   4 -
+ .../devicetree/bindings/leds/leds-pwm.yaml    |   5 -
+ .../devicetree/bindings/net/qca,qca808x.yaml  |  54 +++
+ drivers/net/phy/at803x.c                      | 333 ++++++++++++++++++
+ drivers/net/phy/phy_device.c                  |  12 +
+ include/linux/phy.h                           |  22 ++
+ 10 files changed, 433 insertions(+), 19 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/qca,qca808x.yaml
 
-> Cc: Sam Shih <sam.shih@mediatek.com>
-> Signed-off-by: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
-> ---
->  .../devicetree/bindings/crypto/inside-secure,safexcel.yaml      | 2 ++
->  1 file changed, 2 insertions(+)
+-- 
+2.43.0
+
 
