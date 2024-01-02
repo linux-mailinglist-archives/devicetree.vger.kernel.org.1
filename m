@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-29143-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29144-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F4198218EE
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 10:32:00 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 55812821912
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 10:48:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2B99128255C
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 09:31:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E8A4E1F2125C
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 09:48:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 027CA6AD9;
-	Tue,  2 Jan 2024 09:31:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E577D6FB3;
+	Tue,  2 Jan 2024 09:48:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="hC5jvCVa"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="r6nhnP0Z"
 X-Original-To: devicetree@vger.kernel.org
 Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B6D66AB7;
-	Tue,  2 Jan 2024 09:31:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56691D2EA;
+	Tue,  2 Jan 2024 09:48:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1704187910;
-	bh=GS1ilAjGtQe9kYt0ZI0ljTUErP/Rc2UM30xX6zpBUl0=;
+	s=mail; t=1704188931;
+	bh=lcIOgXE6OIn9Fcsrj3oASGuidAvBxdVMC9raUI1LSV4=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=hC5jvCVas/Ki5j2R6EMxqy8XF1AZwdw0WBI++dRQdLK8BF7Czcj+1Mk/pg2Q5D0V9
-	 3aRpZnVS/OU9GI2ZFp6vGxtsykLR7XHYgG9ap6SRWHOhD9Mos/KDykGIZ5y9GAtaka
-	 syEVvz0ceeDCbtkfyAfbRumHjHIfklYBmzWxKf7Y6n7U3g8Zs6znpMdKmnLfMK6Z0O
-	 ZlxeH7ysuRCuY2rU45gJm21/abxJCWBxqv2TFxVBSRi+uvopFMpOm86kR99IXURS9X
-	 d6Igr+QeM6FYjxbm30Kf4s4FHJ3YwmxFisRHKB1PQPHUkVY48A/bYgOgWbyT74vYG5
-	 u245MsWFF5YDA==
+	b=r6nhnP0ZNJC/FtMrd+420G2H6IbzGwqeHXsRSbuhKbhzTzPXcGE8Zcw/ATuLKJAFM
+	 //wUCCeNKoanmY/YBdX5Ah7+F1EU1hqtPJXvJU+xWpnXF1qzQPHzXW+nG5q4QP7o2N
+	 vASLRXN0txjetnJBhBZSPG5XjdxgxoxIKiFYkVMx7WfBtJQbbAKQ+5iof9P36t/Iso
+	 UwBqvxAZ8YSQilta6ADtKYOfoJU2IeH/fT/yeGrPMBlrwtiYEQS2kjIWro8kWZxZeF
+	 FsVteTT1rx5Q8XuG2O0FqE7TJdp6ttG2cujiA/RrLBsHZnH/nimUbLJPp5cFSHUTHq
+	 gBh8VDEkquhTg==
 Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
 	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 8122737813DB;
-	Tue,  2 Jan 2024 09:31:49 +0000 (UTC)
-Message-ID: <db7b4cb4-7302-47c0-9712-0d746347c6a9@collabora.com>
-Date: Tue, 2 Jan 2024 10:31:48 +0100
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 82CCD37813DB;
+	Tue,  2 Jan 2024 09:48:50 +0000 (UTC)
+Message-ID: <94bbcec7-b587-4c19-8d81-44749885968c@collabora.com>
+Date: Tue, 2 Jan 2024 10:48:49 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,36 +48,31 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/3] dt-bindings: usb: mtk-xhci: add a property for
- Gen1 isoc-in transfer issue
+Subject: Re: [PATCH v4 3/3] nvmem: mtk-efuse: Register MediaTek socinfo driver
+ from efuse
 Content-Language: en-US
-To: Chunfeng Yun <chunfeng.yun@mediatek.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+To: William-tw Lin <william-tw.lin@mediatek.com>,
  Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: Conor Dooley <conor+dt@kernel.org>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- Mathias Nyman <mathias.nyman@intel.com>, linux-usb@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Eddie Hung <eddie.hung@mediatek.com>, Macpaul Lin <macpaul.lin@mediatek.com>
-References: <20231227060316.8539-1-chunfeng.yun@mediatek.com>
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>,
+ Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
+References: <20231222080739.21706-1-william-tw.lin@mediatek.com>
+ <20231222080739.21706-4-william-tw.lin@mediatek.com>
 From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20231227060316.8539-1-chunfeng.yun@mediatek.com>
+In-Reply-To: <20231222080739.21706-4-william-tw.lin@mediatek.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-Il 27/12/23 07:03, Chunfeng Yun ha scritto:
-> For Gen1 isoc-in endpoint on controller before about SSUSB IPM v1.6.0, it
-> still send out unexpected ACK after receiving a short packet in burst
-> transfer, this will cause an exception on connected device, specially for
-> a 4k camera.
-> Add a quirk property "rx-fifo-depth" to work around this hardware issue,
-> prefer to use 3k bytes;
-> The side-effect is that may cause performance drop about 10%, including
-> bulk transfer.
+Il 22/12/23 09:07, William-tw Lin ha scritto:
+> The socinfo driver reads chip information from eFuses and does not need
+> any devicetree node. Register it from mtk-efuse.
 > 
-> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+> While at it, also add the name for this driver's nvmem_config.
+> 
+> Signed-off-by: William-tw Lin <william-tw.lin@mediatek.com>
 
 Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
