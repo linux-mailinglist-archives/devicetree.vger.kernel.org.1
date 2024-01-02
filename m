@@ -1,131 +1,122 @@
-Return-Path: <devicetree+bounces-29134-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29135-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B0EA8218AB
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 10:06:06 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 40F248218AF
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 10:09:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4809E1C21574
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 09:06:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E3B9E282BA1
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 09:09:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42331568D;
-	Tue,  2 Jan 2024 09:06:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82C20568D;
+	Tue,  2 Jan 2024 09:09:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kDUxrUCm"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="P94UWCDe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FC325672;
-	Tue,  2 Jan 2024 09:06:01 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D5821C433C8;
-	Tue,  2 Jan 2024 09:06:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1704186360;
-	bh=L2uJ+bAvmhIK5Q/e3x9A1mvcDooM9dY7ZfhWFQ8inSM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=kDUxrUCmByrDI8zmdaiiRee5gx5PTGLC2S8azQkvEa9Pg9TgByQ01GjwEi/JTAETj
-	 O3g/DgzRr27BysH9R5q06LIWZQqfkj7hBr6qdjhgxjLkZ9+EalR1UDtRUdB+Y4PVsJ
-	 blgin1UhmZjTVHgComZEtdkrytNfC+tI3sUtiAod/+zNEVYsDBwVigOrQri7g6ns4n
-	 kcL1JUGSywFl/NS8Rl6a9O+qU7AMBgMt0L8pfLvaoRxzlmmlXS8ykjKP+i8D/qj4YK
-	 EvxVHhRXJJRNscAfIi2jXnL3NGLNk4ox1IxezApwLDhnIXZG6gS4SxC29jw0p03T7I
-	 OmOJ1tSfNxWgA==
-Received: from johan by xi.lan with local (Exim 4.96.2)
-	(envelope-from <johan@kernel.org>)
-	id 1rKaid-00053V-27;
-	Tue, 02 Jan 2024 10:05:51 +0100
-Date: Tue, 2 Jan 2024 10:05:51 +0100
-From: Johan Hovold <johan@kernel.org>
-To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc: Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Johan Hovold <johan+linaro@kernel.org>,
-	Marijn Suijten <marijn.suijten@somainline.org>,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Konrad Dybcio <konrad.dybcio@somainline.org>
-Subject: Re: [PATCH 1/3] arm64: dts: qcom: sc8280xp: Fix PCIe PHY
- power-domains
-Message-ID: <ZZPR793E3SoIplLw@hovoldconsulting.com>
-References: <20231227-topic-8280_pcie_dts-v1-0-13d12b1698ff@linaro.org>
- <20231227-topic-8280_pcie_dts-v1-1-13d12b1698ff@linaro.org>
- <ZY6sh8nlEUyEfL0u@hovoldconsulting.com>
- <20231229170334.GA9098@thinkpad>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D17B4568C;
+	Tue,  2 Jan 2024 09:09:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1704186572;
+	bh=0IJc2UOGZ6oMEAmRyC8mL1X+nZIu6VgIRz8xHSvM2KI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=P94UWCDeEk5DKNB6KMkv3dEvRD8cI6BmKuy/6krHuaJB+1o+zwQoDoGEVvPdZdaaD
+	 8VcqkRQfLaqEvHgRFs7agU3FTdKAfkJlamVTamOQVIwdt3uSITjLpAetWlPu80wFZf
+	 uehhpHxvakYiX8ZVTA1yaTuC+CnAk83nY9E6433BXB/8Dj76LWc+nBQLEpnvdL5FFT
+	 3jCWAxT7A9JLv4GDNjxCiZ6usIkmyBpWZEdnPCvRwBIpdEYsPeyeyrZd+Wafw3eb3T
+	 Fjk8QOqTY53UaB+3ahZDRfpHG77yfGQfiQNVSI+HHhO2EY4wYIXPvZ5runNQEXVMxp
+	 B0uah6DH1q7vg==
+Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 4C3C237804B2;
+	Tue,  2 Jan 2024 09:09:31 +0000 (UTC)
+Message-ID: <a288d5c8-6eb9-49f8-bcbc-f2b41e51c797@collabora.com>
+Date: Tue, 2 Jan 2024 10:09:30 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231229170334.GA9098@thinkpad>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] arm64: dts: mediatek: cherry: Add CPU supply
+ dependency to cpufreq-hw
+To: Viresh Kumar <viresh.kumar@linaro.org>,
+ =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= <nfraprado@collabora.com>
+Cc: "Rafael J . Wysocki" <rafael@kernel.org>, kernel@collabora.com,
+ Conor Dooley <conor+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
+References: <20231229212853.277334-1-nfraprado@collabora.com>
+ <20231229212853.277334-2-nfraprado@collabora.com>
+ <20240102061123.frvwltggqqh6m7pm@vireshk-i7>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <20240102061123.frvwltggqqh6m7pm@vireshk-i7>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Fri, Dec 29, 2023 at 10:33:34PM +0530, Manivannan Sadhasivam wrote:
-> On Fri, Dec 29, 2023 at 12:24:55PM +0100, Johan Hovold wrote:
-> > On Wed, Dec 27, 2023 at 11:28:26PM +0100, Konrad Dybcio wrote:
-> > > The PCIe GDSCs are only related to the RCs. The PCIe PHYs on the other
-> > > hand, are powered by VDD_MX and their specific VDDA_PHY/PLL regulators.
-> > 
-> > No, that does not seem to be entirely correct. I added the power-domains
-> > here precisely because they were needed to enable the PHYs.
-> > 
-> > This is something I stumbled over when trying to figure out how to
-> > add support for the second lane pair (i.e. four-lane mode), and I just
-> > went back and confirmed that this is still the case.
-> > 
-> > If you try to enable one of these PHYs without the corresponding GDSC
-> > being enabled, you end up with:
-> > 
-> > [   37.709324] ------------[ cut here ]------------
-> > [   37.718196] gcc_pcie_3b_aux_clk status stuck at 'off'
-> > [   37.718205] WARNING: CPU: 4 PID: 482 at drivers/clk/qcom/clk-branch.c:86 clk_branch_wait+0x144/0x15c
-> > 	
+Il 02/01/24 07:11, Viresh Kumar ha scritto:
+> On 29-12-23, 18:28, Nícolas F. R. A. Prado wrote:
+>> When the mediatek-cpufreq-hw driver enables the hardware (by
+>> writing to REG_FREQ_ENABLE), if the regulator supplying the voltage to
+>> the big CPUs hasn't probed yet, the platform hangs shortly after and
+>> "rcu: INFO: rcu_preempt detected stalls on CPUs/tasks" are printed in
+>> the log.
+>>
+>> To prevent this from happening, describe the big CPUs regulator in the
+>> performance-controller DT node, so that devlink ensures the regulator
+>> has been probed and configured before the frequency scaling hardware is
+>> probed and enabled.
+>>
+>> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+>>
+>> ---
+>>
+>>   arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi | 4 ++++
+>>   1 file changed, 4 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi b/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
+>> index dd5b89b73190..505da60eee90 100644
+>> --- a/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
+>> +++ b/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
+>> @@ -502,6 +502,10 @@ &pcie1 {
+>>   	pinctrl-0 = <&pcie1_pins_default>;
+>>   };
+>>   
+>> +&performance {
+>> +	big-cpus-supply = <&mt6315_6_vbuck1>;
+>> +};
+>> +
+>>   &pio {
+>>   	mediatek,rsel-resistance-in-si-unit;
+>>   	pinctrl-names = "default";
 > 
-> Technically this patch is correct. PHYs are backed by MX domain only and not
-> GDSCs. Only the controllers (PCIe, UFS, USB) are backed by GDSCs. The fact that
-> you are seeing issue with PCIe Aux clock suggests me that this clock may not be
-> applicable to the PHY but it needs to be enabled for working of the PHY somehow.
-> I'll try to find the details on how exactly it is needed.
-
-Sounds good, thanks.
-
-> But if I get the answer like, "This clock is also sourced to PHY directly", then
-> we may need to add dual power domain for PHY (both GDSC and MX).
-
-Right.
- 
-> > Now, you may or may not want to describe the above in the devicetree,
-> > but this makes it sound like you're trying to work around an issue with
-> > the current Linux implementation.
-> > 
+> I think the regulator needs to be mentioned in the CPU's node and not
+> here ?
 > 
-> Adding MX domain to PHY in devicetree is definitely not a workaround.
 
-I was referring to the fact that the GDSC domain also appears to be
-needed even if that may possible get in the way when trying to implement
-suspend.
+Even if the regulator voltage is being changed by firmware with cpufreq-hw, the
+actual regulators should go to each CPU node and not in the cpufreq driver node,
+I agree with Viresh.
 
-> It is the
-> actual hardware representation. MX is the always on domain, and when CX collapse
-> happens during suspend state, it will ensure that all the analog components
-> (like PHY) are kept powered on. Otherwise, we will see link down issues.
+Besides, that's the same thing that we're doing with mediatek-cpufreq as well...
+and since we're talking about that, we should also do something about this such
+that we stop declaring `regulator-always-on` for CPU cores in devicetree, but
+this is probably slightly out of context for what you're trying to do here, so,
+read that as an "extra consideration" :-)
 
-But if it's an always-on domain as you say, it should not be shut down,
-right? Perhaps you still want it described in DT for some other reason.
- 
-> But, I heard from Qcom that _only_ on this platform, MX is not backing the PCIe
-> PHY. I can correlate that with my encounter with PCIe issues after forcing CX
-> power collapse.
-
-Ok, but that seems to imply that this patch is definitely *not* correct
-(for sc8280xp)?
-
-Johan
+Cheers,
+Angelo
 
