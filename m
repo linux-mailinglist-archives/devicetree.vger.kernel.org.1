@@ -1,46 +1,47 @@
-Return-Path: <devicetree+bounces-29213-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29214-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D8F5821F8A
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 17:30:59 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id BBE5D821FA0
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 17:43:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 71EEC1C2248A
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 16:30:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 54CC91F225C3
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 16:43:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 949F6D523;
-	Tue,  2 Jan 2024 16:30:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B2AE14F87;
+	Tue,  2 Jan 2024 16:43:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SCosgBbj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o7Yj3Lp5"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7402D14F69;
-	Tue,  2 Jan 2024 16:30:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 46947C433C7;
-	Tue,  2 Jan 2024 16:30:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1791914F83;
+	Tue,  2 Jan 2024 16:43:05 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 013BBC433C8;
+	Tue,  2 Jan 2024 16:43:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1704213056;
-	bh=EknTmyeauM3nCVXkhmleZP6wGWhZAuQEfEGgcAs31ps=;
+	s=k20201202; t=1704213785;
+	bh=g7wHRyWwJkr3NEQCvhHzxxKyjX6X4R5nqKlvMKpRH3E=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=SCosgBbjLfPRoju/l5ZL0oUqcOjjztKaa40sU+kDBYcf62AxH171fkAicIW7I5Tq1
-	 61T0gE5S/AJyAHB5Ie/cKwXtmrMYGwIegs7js95mdY9USU4aMaDy1tGxDtHwDxDr6W
-	 UoqqqRGy5dKCsBaBGlBavC0d2B9z//HcKO3HMj7Q+c/Hw7L9Roub0mFjMB2uklJCmi
-	 yb6WJG2RElzwSyhWYv1AtVotXhkhb74HCD3hE8A5aLyLKEQ/4GmX3zTLeR4TG0bjfG
-	 2IwhRUN9t4XpWU88B/3KScVOUahBYcLhjDIDE/vvUT4g/mIoxQVlkw7cFM0B2N/AHO
-	 0MPvXy9ro3lIA==
-Received: (nullmailer pid 2968777 invoked by uid 1000);
-	Tue, 02 Jan 2024 16:30:38 -0000
-Date: Tue, 2 Jan 2024 09:30:38 -0700
+	b=o7Yj3Lp5wAW/2RccH39yN4dCX0GZmNG5YUfYaKtA2TfR3aiOY81ofEqB9U2UCx1nj
+	 YHW3sYOgXfIeW7UU/4Gi1HrUmQbPj+5KMHJq5vhv/2xwu4iJt3IYbOu3H/2dcFV0qE
+	 IwNshNqG3P9JySMI77GlgHqDVEgTHHuzyQAmf2a8Vb7UbQPUMBnnuGO/taa4xOhG+a
+	 JbXPK96gN3SsyMEvL12zTCu6G0IgqdzDDsIPxxnGMwLWF677tK8Ze3/tI8r0oymL6m
+	 KGCyK+5pJxrguhE/9Z42pOc/6iXjreOBxZSDkfjINEzCEIe/srxrHZK2ZY52SknkHP
+	 5majKLuPIh6pA==
+Received: (nullmailer pid 2980110 invoked by uid 1000);
+	Tue, 02 Jan 2024 16:39:21 -0000
+Date: Tue, 2 Jan 2024 09:39:21 -0700
 From: Rob Herring <robh@kernel.org>
 To: Rob Herring <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org, Lubomir Rintel <lkundrak@v3.sk>, Ulf Hansson <ulf.hansson@linaro.org>
-Subject: Re: [PATCH] dt-bindings: mmc: sdhci-pxa: Fix 'regs' typo
-Message-ID: <170421203410.2946186.5030215776329721242.robh@kernel.org>
-References: <20231213224219.2191721-1-robh@kernel.org>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Marek Szyprowski <m.szyprowski@samsung.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Aakarsh Jain <aakarsh.jain@samsung.com>, linux-media@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH v2] media: dt-bindings: samsung,s5p-mfc: Fix iommu
+ properties schemas
+Message-ID: <170421310662.2970284.2901924887435555463.robh@kernel.org>
+References: <20231214195553.862920-1-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -49,17 +50,25 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231213224219.2191721-1-robh@kernel.org>
+In-Reply-To: <20231214195553.862920-1-robh@kernel.org>
 
 
-On Wed, 13 Dec 2023 16:42:19 -0600, Rob Herring wrote:
-> The correct property name is 'reg' not 'regs'.
+On Thu, 14 Dec 2023 13:55:52 -0600, Rob Herring wrote:
+> The iommus and iommu-names property schemas have several issues. First,
+> 'iommus-names' in the if/then schemas is the wrong name. As all the names
+> are the same, they can be defined at the top level instead. Then the
+> if/then schemas just need to define how many entries. The iommus if/then
+> schemas are also redundant. Best I can tell, the desire was to require 2
+> entries for "samsung,exynos5433-mfc", "samsung,mfc-v5", "samsung,mfc-v6",
+> and "samsung,mfc-v8".
 > 
-> Fixes: ae5c0585dfc2 ("dt-bindings: mmc: Convert sdhci-pxa to json-schema")
 > Signed-off-by: Rob Herring <robh@kernel.org>
 > ---
->  Documentation/devicetree/bindings/mmc/sdhci-pxa.yaml | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
+> v2:
+>  - Fix some more cases of iommus-names
+> ---
+>  .../bindings/media/samsung,s5p-mfc.yaml       | 33 ++++++++-----------
+>  1 file changed, 13 insertions(+), 20 deletions(-)
 > 
 
 Applied, thanks!
