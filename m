@@ -1,65 +1,64 @@
-Return-Path: <devicetree+bounces-29260-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29261-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 486948222D4
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 22:01:14 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A71D8222E0
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 22:04:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E66BC281765
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 21:01:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 40BA31C22A78
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 21:04:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D44681642F;
-	Tue,  2 Jan 2024 21:01:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8E8F168A6;
+	Tue,  2 Jan 2024 21:04:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LKTUzykS"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LNReoulY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3AC651642D
-	for <devicetree@vger.kernel.org>; Tue,  2 Jan 2024 21:01:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A177916428
+	for <devicetree@vger.kernel.org>; Tue,  2 Jan 2024 21:04:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-40d560818b8so72075265e9.1
-        for <devicetree@vger.kernel.org>; Tue, 02 Jan 2024 13:01:05 -0800 (PST)
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-40d899205c7so15659615e9.2
+        for <devicetree@vger.kernel.org>; Tue, 02 Jan 2024 13:04:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704229264; x=1704834064; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=dstAtoDhSyAt9Ec6YxAr7xXLaqmXSKwXbZxFdyWhN30=;
-        b=LKTUzykSY0J/6pugrhNIxol79TNuqsI872SrAzA+IHKraf8tsaK2ermhd/BxjpH7aC
-         YaHRtlmEGswcVnMdnUbVmtrYWk6P6WNIdylWSvJAY0DhWf5jTTCdxdZIXDjMkObQOgdI
-         WIJNjKKCr9Aac6ftiBfTM2I07SxvU9C33/P9X4PwR7IRkY/IA70gucl/YVT1Tp7dChwl
-         Iwtl5x6hYMDxifgXxLiINUXppoVjrlUAtIH/AAJGFmCOmdcczQ1zFVaC0o2MiNI94QEn
-         5kqD840NaoKzG7Pw1J2MmuP0eQn/5sHQBTlU5AISpoyqlJzFuLfEG0Lj0muajc08/Ugv
-         ARqQ==
+        d=linaro.org; s=google; t=1704229441; x=1704834241; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=OKJoKCNa2on6MaUw+IXLyW9j+tclUcYQbGIbH/zTLG0=;
+        b=LNReoulYdt7YvJlzObO58x8UL17OIs4hGiNHhrytqtL0Vvuxs2S3vQagz6gwEQ3L5G
+         iyFfVrKbFfuMy7jHeFCPZzwY5GmMxKizZwOWa0MJBUR6atRhGErKOnx6R/aSUnjXNfAP
+         gdaJ/KR51tJnq+UUJGlho6ab8PmtTleTr5CATeYJIh9OT09yS9EKhFA2VMkYjZz6Kvyc
+         a2HrHrEX1vGWmzWFLFPBMn9vSRTSh0v9TC5OjPYa9mxRuCyTFnUKkF8kavg+Fpx4El5G
+         5TOR0FS5SZFZUzIqQI0MHtaN34tECT/jb5TIrVxyiv/WRdx1v/72kS7ioWpRRjlhWSmY
+         v5wQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704229264; x=1704834064;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=dstAtoDhSyAt9Ec6YxAr7xXLaqmXSKwXbZxFdyWhN30=;
-        b=MEBpqKzldtjiMrcPnfUvuT/Q9MHIyYOgP1os4KGt57wiBYMrcmOZE1QwCxXpsP1+3s
-         fcBvRz52ueM7m8/ZQF+8/If4lamQGETjnKIsNzlneQhZqVq3VIqSpdl2+7/9QbSz0kZ4
-         93XUWRMIblMKQSdz/mosU8CNHJiUDZVc8hfWZAQBczHuk/Ywn554anIgQ9WcNXwTbJK2
-         xCuYcy7lbwP2q8CP2cGDKjr6lXmcDd8Hrmi1pIk/c8Uv2+uCeut5GJ+hYZZfgxjw8Xk2
-         1z4o1l1Fp8fqM8jU7PjBqAtHqDU5QD+jp2SpL5l1Z78W9UImzZn/pnw9VpK5NuIwhjcm
-         DXXw==
-X-Gm-Message-State: AOJu0Yx0JqJEaPgc2lqmsA0xVQqRD+M5+VDk7L8LbDbPl+aFF7QEhaeh
-	vbice0JQMbgYt/1yQFP8+rBlIjZH1+81Fg==
-X-Google-Smtp-Source: AGHT+IHvYwQImOhlq5Jp5m7IRZTN6U6G0Gn2nqnXfeZK6+8tzjH/oqKq0tXr+YROcRTWiW8zh4HCSQ==
-X-Received: by 2002:a05:600c:4ed0:b0:40d:878d:6f81 with SMTP id g16-20020a05600c4ed000b0040d878d6f81mr2090256wmq.146.1704229264433;
-        Tue, 02 Jan 2024 13:01:04 -0800 (PST)
+        d=1e100.net; s=20230601; t=1704229441; x=1704834241;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=OKJoKCNa2on6MaUw+IXLyW9j+tclUcYQbGIbH/zTLG0=;
+        b=cPKbcLSs5AqZjG+Za+PvY4CojSR+9csBfaiL2Xa4zJ/MHDuMq+yEiofV2P1pEE7UmD
+         Ai42KkNCcRMY/vLbdG2nG1afj+C7HTdqOKz1jnqJXbcVlN5DdQLG9Qlg+ZWRrxol7nMl
+         fjDQMmpfmLSVkxHF6ICYxtMw6cULj/vXqpOSpGadROhYGyb5xxNVGDVkVbaqGdnH9JY6
+         9xtR1s2JbBamhJY7IRgOLwhMSzs84+Vn/4lqMPcI3WZGV8Xg9T8BTPY6lEiE5VE/GM3F
+         Z+w/17kiQarXLDdSFI4UelAG/ZlEIucip+szW5KvBQw1hkheYtUxCxGwaYHwwjBD7dee
+         0AwA==
+X-Gm-Message-State: AOJu0YzevXUptLthvRY6TEdFgYuTEgTcYPCnsh0yoPNSRnlXiLI+TKK5
+	RGHDt+6/wJspHs56SPjQe4jTO0fRyir2ew==
+X-Google-Smtp-Source: AGHT+IEK5cPCsj9m5d/GQtYelB04E1U7v+ztksDpXfXNxBtoE6427uqVQLyVG2dGgUBL3Ab426D8eg==
+X-Received: by 2002:a05:600c:3053:b0:40c:38dc:f6c8 with SMTP id n19-20020a05600c305300b0040c38dcf6c8mr9139926wmh.172.1704229440917;
+        Tue, 02 Jan 2024 13:04:00 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id v10-20020a05600c470a00b0040d839e7bb3sm134119wmo.19.2024.01.02.13.01.00
+        by smtp.gmail.com with ESMTPSA id 14-20020a05600c020e00b0040d23cea7bcsm19170797wmi.1.2024.01.02.13.03.59
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 02 Jan 2024 13:01:03 -0800 (PST)
-Message-ID: <e9ce1ead-d78b-4a89-b330-0f17cd57decc@linaro.org>
-Date: Tue, 2 Jan 2024 22:00:57 +0100
+        Tue, 02 Jan 2024 13:04:00 -0800 (PST)
+Message-ID: <69d285c8-1f0d-49b4-8ac7-6bafc3bce430@linaro.org>
+Date: Tue, 2 Jan 2024 22:03:58 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,21 +66,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/4] dt-bindings: interconnect: Remove bogus interconnect
- nodes
-To: Konrad Dybcio <konrad.dybcio@linaro.org>,
- Bjorn Andersson <andersson@kernel.org>, Georgi Djakov <djakov@kernel.org>,
+Subject: Re: [PATCH v4 1/3] dt-bindings: usb: mtk-xhci: add a property for
+ Gen1 isoc-in transfer issue
+Content-Language: en-US
+To: Chunfeng Yun <chunfeng.yun@mediatek.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
  Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Rajendra Nayak
- <quic_rjendra@quicinc.com>, Sibi Sankar <quic_sibis@quicinc.com>,
- Abel Vesa <abel.vesa@linaro.org>
-Cc: Marijn Suijten <marijn.suijten@somainline.org>,
- linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20240102-topic-x1e_fixes-v1-0-70723e08d5f6@linaro.org>
- <20240102-topic-x1e_fixes-v1-2-70723e08d5f6@linaro.org>
-Content-Language: en-US
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: Conor Dooley <conor+dt@kernel.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ Mathias Nyman <mathias.nyman@intel.com>, linux-usb@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Eddie Hung <eddie.hung@mediatek.com>, Macpaul Lin <macpaul.lin@mediatek.com>
+References: <20231227060316.8539-1-chunfeng.yun@mediatek.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -127,27 +126,23 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240102-topic-x1e_fixes-v1-2-70723e08d5f6@linaro.org>
+In-Reply-To: <20231227060316.8539-1-chunfeng.yun@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 02/01/2024 19:29, Konrad Dybcio wrote:
-> The downstream kernel has infrastructure for passing votes from different
-> interconnect nodes onto different RPMh RSCs. This neither implemented, not
-> is going to be implemented upstream (in favor of a different solution
-> using ICC tags through the same node).
+On 27/12/2023 07:03, Chunfeng Yun wrote:
+> For Gen1 isoc-in endpoint on controller before about SSUSB IPM v1.6.0, it
+> still send out unexpected ACK after receiving a short packet in burst
+> transfer, this will cause an exception on connected device, specially for
+> a 4k camera.
+> Add a quirk property "rx-fifo-depth" to work around this hardware issue,
+> prefer to use 3k bytes;
+> The side-effect is that may cause performance drop about 10%, including
+> bulk transfer.
 > 
-> Unfortunately, as it happens, meaningless (in the upstream context) parts
-> of the vendor driver were copied, ending up causing havoc - since all
-> "per-RSC" (in quotes because they all point to the main APPS one) BCMs
-> defined within the driver overwrite the value in RPMh on every
-> aggregation.
-> 
-> To both avoid keeping bogus code around and possibly introducing
-> impossible-to-track-down bugs (busses shutting down for no reason), get
-> rid of the duplicated ICC node definitions.
-> 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+> ---
+> v4: change rx-fifo size in bytes
 
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
