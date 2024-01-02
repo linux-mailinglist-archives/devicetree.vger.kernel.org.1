@@ -1,160 +1,156 @@
-Return-Path: <devicetree+bounces-29148-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29149-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C802782195A
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 11:02:38 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C89082196D
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 11:08:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C8ED41C21AAB
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 10:02:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E618F282EBE
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 10:08:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7519CA6B;
-	Tue,  2 Jan 2024 10:02:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AF72CA78;
+	Tue,  2 Jan 2024 10:08:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="ZBm9+e6E"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gXmgNEeF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B182CA64;
-	Tue,  2 Jan 2024 10:02:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 4028wxAp031023;
-	Tue, 2 Jan 2024 10:02:10 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=U/qIkXpqNy15nekMfvk/AQomDo1b68nmO+3poX3Uda0=; b=ZB
-	m9+e6E1iaENa7KrTz2VptTU7k8/J5qh6JLnl2AaNjd3r5AlULLR/T0nEES7cEPVU
-	a73He4TPM1LBIwwGw4yUeHx6t86YDtgS4pO+rFOlN7cFdflMen6A/GrItgesLD3G
-	CZH9kM6o8Xc1GQuyTJre3JiMBqLI8oKfVHZL9QMaxL6fdXfsmgxQz6NnhtE0gGGg
-	VbqlEkmEOC90t/WMHDp4bd9dpJRKR/9qz4fnZVWINO0VUZyYbASrZa/XdTa7p3sd
-	E3FlEBr1Oy8v7J1BqR7E6lA0K1Dr74fNaeUTr980+VOeSnfzpHM7v1JAo6EZDCJx
-	HByu9MyZkBTf7PeKDdtQ==
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vccc1gdgq-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 02 Jan 2024 10:02:10 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 402A29iZ016088
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 2 Jan 2024 10:02:09 GMT
-Received: from [10.239.132.150] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Tue, 2 Jan
- 2024 02:02:03 -0800
-Message-ID: <dce0f577-b08e-4eed-8457-9ea5fefbd8c9@quicinc.com>
-Date: Tue, 2 Jan 2024 18:01:59 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3F00DDAD;
+	Tue,  2 Jan 2024 10:08:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-40d5d898162so40626245e9.3;
+        Tue, 02 Jan 2024 02:08:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1704190116; x=1704794916; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=Dpc6DLWIrPxzCu9FbM53oVf2cxVoZey1VGjFQBWiI0o=;
+        b=gXmgNEeFZDRUIKxmMW+p/zYguW3gWoQYwJ6B6CagQrLk5RR/3v9fZW1twkHnmQih0f
+         WyXJnMc54PfmSVdJDBTw8PdWRDVACWjn1XxTioOr7e9v7OrPILmA0giUlDWylNe1uSXz
+         /eo18mPOShStuS5U6Vm1q04z8Aw0Dm2Yl2uEGc8YVVVBQcdhfQ4zlz7l9pPCtIvnWYSH
+         oyD4i/cNRL8+AHw+Kbi/mws0QP6zVCxHjry19b2Oom93qXlG9NIMcYieUEK3TdEaLAeT
+         7vrz/UtWiMK2fJWXH0YFH3TPPOUe/xzeIu2w9OaJYVsS4wSihPPM6A/xyugTulpgpRKj
+         z8hw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1704190116; x=1704794916;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Dpc6DLWIrPxzCu9FbM53oVf2cxVoZey1VGjFQBWiI0o=;
+        b=w0bOwVOH1oK5W0w7dT3F77Xn7N9Dcex2fsUOpbIMh3RneH/VbrHtULSkt49L3E7bal
+         OfTk644vR2MnkacuRm7w49GnK6A9+EwIplePUGlpY8By+n67bjOI68aGEyIWcYzLa9aB
+         xQXt6KjjOIMZCOjvNMiPwj79pxqe+IR8fqRNzm2ank3k5QoQJHTrUY0XOPEKz0suLaDa
+         bDjwCpymRDtzq8GzrTda+Nh6zYv3Uh3mWRRCLfKhgeJ/pDt9pyq0b3GZVeOrQ/m/xkS+
+         tIqZQPP6mvN7X3EHUwfYTAAzblNbFzQzf1JLq3X6E2Fbs3Vd7F03h06fh/EnSBUO10JV
+         qLkw==
+X-Gm-Message-State: AOJu0YxFvNexsgrWzrZRafEk+71Tya1HSbHyErqlRauBRqo4FVgt8jt9
+	IeDbnFQzrFPVlvhjbcbr3xA=
+X-Google-Smtp-Source: AGHT+IFazNVLxT/OuqmVZMCn5AzeEeZrraKYZ82bmTf+5NsyI7Rl/W2vE8iplRgQqwTcAnTGxxvyVA==
+X-Received: by 2002:a05:600c:34d6:b0:40d:8bbe:a720 with SMTP id d22-20020a05600c34d600b0040d8bbea720mr757213wmq.116.1704190115886;
+        Tue, 02 Jan 2024 02:08:35 -0800 (PST)
+Received: from Ansuel-xps. (host-87-21-250-146.retail.telecomitalia.it. [87.21.250.146])
+        by smtp.gmail.com with ESMTPSA id i16-20020a05600c355000b0040d5a5c523csm25317030wmq.1.2024.01.02.02.08.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 02 Jan 2024 02:08:35 -0800 (PST)
+Message-ID: <6593e0a3.050a0220.5c543.8e12@mx.google.com>
+X-Google-Original-Message-ID: <ZZPgopkuvmgpKeRA@Ansuel-xps.>
+Date: Tue, 2 Jan 2024 11:08:34 +0100
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: "Russell King (Oracle)" <linux@armlinux.org.uk>
+Cc: Jie Luo <quic_luoj@quicinc.com>, Andrew Lunn <andrew@lunn.ch>,
+	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+	pabeni@redhat.com, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	hkallweit1@gmail.com, corbet@lwn.net, p.zabel@pengutronix.de,
+	f.fainelli@gmail.com, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org
+Subject: Re: [PATCH v8 14/14] dt-bindings: net: ar803x: add qca8084 PHY
+ properties
+References: <60b9081c-76fa-4122-b7ae-5c3dcf7229f9@lunn.ch>
+ <a65ad12d-b990-4439-b196-903f4a5f096a@quicinc.com>
+ <f5c5cbce-c36e-498a-97e2-35f06d927d74@lunn.ch>
+ <a9798333-3105-422f-8033-76c0b1d4f439@quicinc.com>
+ <7c05b08a-bb6d-4fa1-8cee-c1051badc9d9@lunn.ch>
+ <ZX2rU5OFcZFyBmGl@shell.armlinux.org.uk>
+ <6abe5d6f-9d00-445f-8c81-9c89b9da3e0a@quicinc.com>
+ <ZX3LqN8DSdKXqsYc@shell.armlinux.org.uk>
+ <1bddd434-024c-45ff-9866-92951a3f555f@quicinc.com>
+ <ZZPeHJJU96y1kdlZ@shell.armlinux.org.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 01/14] arm64: dts: qcom: msm8916: Drop RPM bus clocks
-Content-Language: en-US
-To: Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        "Bjorn
- Andersson" <andersson@kernel.org>,
-        Mathieu Poirier
-	<mathieu.poirier@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Sibi Sankar
-	<quic_sibis@quicinc.com>, Will Deacon <will@kernel.org>,
-        Robin Murphy
-	<robin.murphy@arm.com>, Joerg Roedel <joro@8bytes.org>,
-        Greg Kroah-Hartman
-	<gregkh@linuxfoundation.org>,
-        Wesley Cheng <quic_wcheng@quicinc.com>
-CC: Marijn Suijten <marijn.suijten@somainline.org>,
-        Alexey Minnekhanov
-	<alexeymin@postmarketos.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-remoteproc@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <iommu@lists.linux.dev>,
-        <linux-usb@vger.kernel.org>
-References: <20230721-topic-rpm_clk_cleanup-v2-0-1e506593b1bd@linaro.org>
- <20230721-topic-rpm_clk_cleanup-v2-1-1e506593b1bd@linaro.org>
- <bd11d1b1-efe5-4f96-43e7-163fca5d3278@linaro.org>
- <ac501bcc-80a1-4b65-ba24-272152d1c95c@linaro.org>
- <7b500bba-3091-f425-a60d-e58a3d9e4c1a@linaro.org>
- <9a0ab5a9-d4d8-41b8-94b0-9c62bd686254@linaro.org>
- <30bb6068-6bb8-9a2c-af19-b989960d0be9@linaro.org>
- <70b19df7-c70c-41ea-ac4c-8af6956f4fc6@linaro.org>
-From: "Aiqun Yu (Maria)" <quic_aiquny@quicinc.com>
-In-Reply-To: <70b19df7-c70c-41ea-ac4c-8af6956f4fc6@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: wcsyJrzxICN3wHO1NZ9_HEVWn06ctdHI
-X-Proofpoint-ORIG-GUID: wcsyJrzxICN3wHO1NZ9_HEVWn06ctdHI
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-12-09_01,2023-12-07_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=921
- lowpriorityscore=0 malwarescore=0 spamscore=0 clxscore=1011
- impostorscore=0 adultscore=0 phishscore=0 suspectscore=0 mlxscore=0
- bulkscore=0 priorityscore=1501 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2311290000 definitions=main-2401020076
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZZPeHJJU96y1kdlZ@shell.armlinux.org.uk>
 
-
-
-On 9/13/2023 7:14 PM, Konrad Dybcio wrote:
-> On 13.09.2023 13:14, Krzysztof Kozlowski wrote:
->> On 13/09/2023 12:48, Konrad Dybcio wrote:
->>> On 13.09.2023 10:53, Krzysztof Kozlowski wrote:
->>>> On 13/09/2023 10:47, Konrad Dybcio wrote:
->>>>> On 13.09.2023 09:07, Krzysztof Kozlowski wrote:
->>>>>> On 12/09/2023 15:31, Konrad Dybcio wrote:
->>>>>>> These clocks are now handled from within the icc framework and are
->>>>>>
->>>>>> That's a driver behavior, not hardware.
->>>>> I believe we've been over this already..
->>>>>
->>>>> The rationale behind this change is: that hardware, which falls
->>>>> under the "interconnect" class, was previously misrepresented as
->>>>> a bunch of clocks. There are clocks underneath, but accessing them
->>>>> directly would be equivalent to e.g. circumventing the PHY subsystem
->>>>> and initializing your UFS PHY from within the UFS device.
->>>>
->>>> And every time one write such commit msg, how should we remember there
->>>> is some exception and actually it is about clock representation not CCF
->>>> or ICC framework.
->>> So is your reply essentially "fine, but please make it clear in
->>> each commit message"?
->>
->> I am fine with this change. If commit msg had such statement, I would
->> not have doubts :/
-> Ok, I'll resend, thanks for confirming!
-Is there any one continue working on this?
-
-The bindings already merged while the dtb is not consistent with current 
-binding files. So dt bindings checks are failed actually.
+On Tue, Jan 02, 2024 at 09:57:48AM +0000, Russell King (Oracle) wrote:
+> On Mon, Dec 18, 2023 at 11:01:03AM +0800, Jie Luo wrote:
+> > 
+> > 
+> > On 12/17/2023 12:09 AM, Russell King (Oracle) wrote:
+> > > On Sat, Dec 16, 2023 at 10:41:28PM +0800, Jie Luo wrote:
+> > > > 
+> > > > 
+> > > > On 12/16/2023 9:51 PM, Russell King (Oracle) wrote:
+> > > > > On Sat, Dec 16, 2023 at 11:21:53AM +0100, Andrew Lunn wrote:
+> > > > > > > The following is the chip package, the chip can work on the switch mode
+> > > > > > > like the existed upstream code qca8k, where PHY1-PHY4 is connected with
+> > > > > > > MAC1-MAC4 directly;
+> > > > > > 
+> > > > > > Ah, that is new information, and has a big effect on the design.
+> > > > > 
+> > > > > This QCA8084 that's being proposed in these patches is not a PHY in
+> > > > > itself, but is a SoC. I came across this:
+> > > > > 
+> > > > >    https://www.rt-rk.com/android-tv-solution-tv-in-smartphone-pantsstb-based-on-qualcomm-soc-design/
+> > > > 
+> > > > The chip mentioned in the link you mentioned is SoC, which is not the
+> > > > chip that the qca8084 driver work for.
+> > > 
+> > > So there's two chips called QCA8084 both produced by Qualcomm? I find
+> > > that hard to believe.
+> > > 
+> > 
+> > The SoC mentioned in the link you provided is the APQ8084 that is introduced
+> > in the link below:
+> > https://www.qualcomm.com/products/mobile/snapdragon/smartphones/snapdragon-8-series-mobile-platforms/snapdragon-processors-805
 > 
-> Konrad
+> So the one mentioned in the rt-rk article and a load of CVEs is _not_
+> QCA8084 but is APQ8084. Sounds like a lot of people are getting stuff
+> wrong - which is hardly surprising as there are people that seem to
+> _enjoy_ getting the technical details wrong. I haven't worked out if
+> it's intentional malace, or they're just fundamentally lazy individuals
+> who just like to screw with other people.
 > 
-> _______________________________________________
-> linux-arm-kernel mailing list
-> linux-arm-kernel@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+> Sigh.
+>
+
+Hoping to give some clarification with the naming.
+- APQ8084 ("Application" SoC for 8084 family)
+- IPQ8084 ("Internet" SoC version of APQ8084)
+- QCA8084 (Integrated PHYs in the IPQ8084 SoC)
+
+I guess?
+
+Considering QCA8084 is only in in IPQ8084 SoC, the confusion with
+referring to it is in the fact that it's all the same thing, and
+everything related to APQ is also related to IPQ since they are the same
+SoC with minor difference (different DSP, presence of NSS cores)
+
+I can totally see sencente like "The IPQ8084 PHYs..." referencing the
+QCA8084 PHY.
+
+(Just to put how the naming is confusing there are PMIC with the
+same exact naming)
 
 -- 
-Thx and BRs,
-Aiqun(Maria) Yu
+	Ansuel
 
