@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-29135-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29136-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40F248218AF
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 10:09:39 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0BB218218B8
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 10:13:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E3B9E282BA1
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 09:09:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2032F1C209F4
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 09:13:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82C20568D;
-	Tue,  2 Jan 2024 09:09:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 244E9610C;
+	Tue,  2 Jan 2024 09:13:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="P94UWCDe"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="lPv38sIr"
 X-Original-To: devicetree@vger.kernel.org
 Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D17B4568C;
-	Tue,  2 Jan 2024 09:09:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1B81D507;
+	Tue,  2 Jan 2024 09:13:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1704186572;
-	bh=0IJc2UOGZ6oMEAmRyC8mL1X+nZIu6VgIRz8xHSvM2KI=;
+	s=mail; t=1704186798;
+	bh=B+g24IYiBKORcfZQs1hoAavc4iFduekqDsr9toXcU+g=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=P94UWCDeEk5DKNB6KMkv3dEvRD8cI6BmKuy/6krHuaJB+1o+zwQoDoGEVvPdZdaaD
-	 8VcqkRQfLaqEvHgRFs7agU3FTdKAfkJlamVTamOQVIwdt3uSITjLpAetWlPu80wFZf
-	 uehhpHxvakYiX8ZVTA1yaTuC+CnAk83nY9E6433BXB/8Dj76LWc+nBQLEpnvdL5FFT
-	 3jCWAxT7A9JLv4GDNjxCiZ6usIkmyBpWZEdnPCvRwBIpdEYsPeyeyrZd+Wafw3eb3T
-	 Fjk8QOqTY53UaB+3ahZDRfpHG77yfGQfiQNVSI+HHhO2EY4wYIXPvZ5runNQEXVMxp
-	 B0uah6DH1q7vg==
+	b=lPv38sIrIyOx5QurwJmCJW1n3tFAcAidBfIeLyGrUDIO95QkL/6usSSP3retXr2jA
+	 ZBsUxnoxjgHSCUzlyybC//aWBaHo6F+w6I77sXGm+DgG1e1QSBHUvdctlqyhRJHLwJ
+	 PQ/JqdFkMxtur2GbXZEXQnZdUh4hfcEMLAUjarN+tzrY3bLeiXbyTNskhU1IjKgE0w
+	 OUAo5VLc46dC1aLlzRcsZiQrAZCxCymBIEYk5Ek+RpXwo/Z488/o8ZtieHBdLNjZZB
+	 enZ77+Z97j9jAxpCbYREEqMm6qIqAFgZ35eMt5JMMjKoBtVaRbG/1YlKhijxmHEP2T
+	 S8xU/Lp+2gBuQ==
 Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
 	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 4C3C237804B2;
-	Tue,  2 Jan 2024 09:09:31 +0000 (UTC)
-Message-ID: <a288d5c8-6eb9-49f8-bcbc-f2b41e51c797@collabora.com>
-Date: Tue, 2 Jan 2024 10:09:30 +0100
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id E222337804B2;
+	Tue,  2 Jan 2024 09:13:17 +0000 (UTC)
+Message-ID: <b2b8d64d-c975-45ed-a4ec-ff1b9a14708f@collabora.com>
+Date: Tue, 2 Jan 2024 10:13:17 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,75 +48,32 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: mediatek: cherry: Add CPU supply
- dependency to cpufreq-hw
-To: Viresh Kumar <viresh.kumar@linaro.org>,
- =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= <nfraprado@collabora.com>
-Cc: "Rafael J . Wysocki" <rafael@kernel.org>, kernel@collabora.com,
- Conor Dooley <conor+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Matthias Brugger <matthias.bgg@gmail.com>, Rob Herring <robh+dt@kernel.org>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
-References: <20231229212853.277334-1-nfraprado@collabora.com>
- <20231229212853.277334-2-nfraprado@collabora.com>
- <20240102061123.frvwltggqqh6m7pm@vireshk-i7>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Subject: Re: [PATCH v3 3/6] arm64: dts: mediatek: mt8192: fix vencoder clock
+ name
 Content-Language: en-US
-In-Reply-To: <20240102061123.frvwltggqqh6m7pm@vireshk-i7>
+To: Eugen Hristev <eugen.hristev@collabora.com>, tiffany.lin@mediatek.com,
+ andrew-ct.chen@mediatek.com, matthias.bgg@gmail.com,
+ linux-mediatek@lists.infradead.org
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ robh+dt@kernel.org, kernel@collabora.com
+References: <20231228113245.174706-1-eugen.hristev@collabora.com>
+ <20231228113245.174706-4-eugen.hristev@collabora.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20231228113245.174706-4-eugen.hristev@collabora.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-Il 02/01/24 07:11, Viresh Kumar ha scritto:
-> On 29-12-23, 18:28, Nícolas F. R. A. Prado wrote:
->> When the mediatek-cpufreq-hw driver enables the hardware (by
->> writing to REG_FREQ_ENABLE), if the regulator supplying the voltage to
->> the big CPUs hasn't probed yet, the platform hangs shortly after and
->> "rcu: INFO: rcu_preempt detected stalls on CPUs/tasks" are printed in
->> the log.
->>
->> To prevent this from happening, describe the big CPUs regulator in the
->> performance-controller DT node, so that devlink ensures the regulator
->> has been probed and configured before the frequency scaling hardware is
->> probed and enabled.
->>
->> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
->>
->> ---
->>
->>   arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi | 4 ++++
->>   1 file changed, 4 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi b/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
->> index dd5b89b73190..505da60eee90 100644
->> --- a/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
->> +++ b/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
->> @@ -502,6 +502,10 @@ &pcie1 {
->>   	pinctrl-0 = <&pcie1_pins_default>;
->>   };
->>   
->> +&performance {
->> +	big-cpus-supply = <&mt6315_6_vbuck1>;
->> +};
->> +
->>   &pio {
->>   	mediatek,rsel-resistance-in-si-unit;
->>   	pinctrl-names = "default";
+Il 28/12/23 12:32, Eugen Hristev ha scritto:
+> Clock name should be `venc_sel` as per binding.
+> Fix the warning message :
+> arch/arm64/boot/dts/mediatek/mt8192-asurada-hayato-r1.dtb: vcodec@17020000: clock-names:0: 'venc_sel' was expected
+>          from schema $id: http://devicetree.org/schemas/media/mediatek,vcodec-encoder.yaml#
 > 
-> I think the regulator needs to be mentioned in the CPU's node and not
-> here ?
-> 
+> Fixes: aa8f3711fc87 ("arm64: dts: mt8192: Add H264 venc device node")
+> Signed-off-by: Eugen Hristev <eugen.hristev@collabora.com>
 
-Even if the regulator voltage is being changed by firmware with cpufreq-hw, the
-actual regulators should go to each CPU node and not in the cpufreq driver node,
-I agree with Viresh.
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-Besides, that's the same thing that we're doing with mediatek-cpufreq as well...
-and since we're talking about that, we should also do something about this such
-that we stop declaring `regulator-always-on` for CPU cores in devicetree, but
-this is probably slightly out of context for what you're trying to do here, so,
-read that as an "extra consideration" :-)
 
-Cheers,
-Angelo
 
