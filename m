@@ -1,325 +1,112 @@
-Return-Path: <devicetree+bounces-29152-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29153-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1EF6E8219A5
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 11:26:09 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 97A0E8219CF
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 11:31:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8B9031F220F8
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 10:26:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 49A2B1F224C9
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 10:31:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51D0AD285;
-	Tue,  2 Jan 2024 10:26:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D29511858;
+	Tue,  2 Jan 2024 10:31:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="HgE6W/hn"
+	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="ABQ8F2tY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
+Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73622D281
-	for <devicetree@vger.kernel.org>; Tue,  2 Jan 2024 10:26:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-2ccbc328744so71829231fa.3
-        for <devicetree@vger.kernel.org>; Tue, 02 Jan 2024 02:26:00 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CA30DDAD
+	for <devicetree@vger.kernel.org>; Tue,  2 Jan 2024 10:31:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
+Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-555f581aed9so1990760a12.3
+        for <devicetree@vger.kernel.org>; Tue, 02 Jan 2024 02:31:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1704191158; x=1704795958; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=4cKlcr9TDXVMFehMkzlKiGxOSc5Va79SEC/vL9WVI28=;
-        b=HgE6W/hnge5njJheiWy3LC29QftcC0boKVfgebR4QIQZs4vMQCo++IzqDPru+5VtDI
-         NqXVizqBM7qMTTJGLr14IKu4tc4UttzITYLoqKz5KpaGx3cRCwLb0xBlmjJNCPAXmRuj
-         eCxAT1gUrhSftSkIlY6J2b/Hr3taFv4lcYhXI=
+        d=suse.com; s=google; t=1704191493; x=1704796293; darn=vger.kernel.org;
+        h=mime-version:user-agent:references:message-id:in-reply-to:subject
+         :cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=3uo2Tlt5PNlFfytmy7IbupTsQFgsSvR2/VN09g7vDPo=;
+        b=ABQ8F2tYhEzyMB4bkJ/eKb75yEynWhT2YGW9eEX6bXFRJ4+Kd8zJSphu+jMU4+J8NG
+         2IHMfti5WOB1NDzq1vM7J8qL5Lc1D6S2QvINaGUQhV5HTl6Y2d2lsb3b71u/nXL70+0l
+         6poeVIsGRVvjp2cWUyhW4zED0sOW8C7cvALaq5fvlpCkK5V+aRBP0KxDx+x+ow5ylZAY
+         /P0yogiu2QG+CtYTD7349hIUz5YyKvSQhwEjjKkq2RWlufA4hq5eknzcSWZwCrnp35mH
+         Oq7Rx3goZswZoAXfdjzl0M1AFZaxmBrE/Rism/VT7ZXY2IhVIOJxpDKrBmVAGG1bP1XH
+         xtSw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704191158; x=1704795958;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=4cKlcr9TDXVMFehMkzlKiGxOSc5Va79SEC/vL9WVI28=;
-        b=JSHRXTKSbFnf0ORyFqgefsKi03rt5CBpoq1/aXydBvvs/PnIWXEEWyIbA6bC2/FD+I
-         oOu+GSbdt8xIbXztNiO0ZJBQ1UQKJTm2xutLsB687g7RQXycCpiUR9t+4WrAZpujNLIL
-         ksIO4F720P/xPjwoqp4lE/0Zd/D0ghq5ynzm/N0D6hSMFmBPMFpBhdYhkkb0IHUl6Hso
-         q0W1MKiyrk4NvTTsU1k8ZR/y7V+diGeqny23qYvyJ6GK7aK2tJHMMw9UXbiCzW1JEIY7
-         5qa306GA/ukGk3iX5Sj3v+J/IbDQnQ7233tcVExjOCcEwyk1HjyAsO1NPd5tOM+rdKR6
-         C5qw==
-X-Gm-Message-State: AOJu0YyEFAZFrX9Ccj87XbyraGzP8VuQbvG+IHpZpncJnyeE4VLGE6Yp
-	iOhiIjBZgDRi2qz6vJfL5SQ5PEbMSMmH1MrurOVwBke8e2k5
-X-Google-Smtp-Source: AGHT+IEGSX35g6EPnerKa8KwPEvruyC+Q2TuN1yb8rNK9FEIB+XeyMq/8mUvO/5tVQzkmn1erUK1+fV7WllsmOUyyCA=
-X-Received: by 2002:a2e:9d9a:0:b0:2cb:30f4:a342 with SMTP id
- c26-20020a2e9d9a000000b002cb30f4a342mr6642927ljj.23.1704191158118; Tue, 02
- Jan 2024 02:25:58 -0800 (PST)
+        d=1e100.net; s=20230601; t=1704191493; x=1704796293;
+        h=mime-version:user-agent:references:message-id:in-reply-to:subject
+         :cc:to:date:from:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=3uo2Tlt5PNlFfytmy7IbupTsQFgsSvR2/VN09g7vDPo=;
+        b=LQJMOR4re0ZMSur8vke8FVQd5UM8iSbQMBubnp/YzbuiHV1tI6yDBA2RXlQFRoJjPS
+         6U1f/8Zp64um4YyMWo9ACs9bLf7p1jdLSedxIDYe/NKlVnZjFlakSASHMWh4S486wDG7
+         lNOV+OlBTnRkNF6flJgWPxchNyPzXo9fC/E+35E7i8L4FUnpbAsWacfLeHbdSYD45yas
+         31yPsYhylTDggMYFCxRMRjpOWwSyUTV8nsjo+X5RQ9pWjuVgtR3yv3B/hLq1jP2KG2uG
+         H3Mv31Qu0TzTW6OKvYY9yItcu7YQytMBZsEfEmbyo1Y94Rugt5LEPORFctbhYMQCDJOq
+         hsqA==
+X-Gm-Message-State: AOJu0Yw0cBz+xi5TlJaVf4ApSI1bOsYDb9ij+BvGARRieqKu9yh2IUnI
+	2AEE5Lc5mvj2AdcdZxbEiJY/HSgmDlOWgCj2vxJR/3kGx7s=
+X-Google-Smtp-Source: AGHT+IHU2aJgBWBK6zf9NwXwlyAr52pOBalLA8+OerTHl4J+zRE6N0bDgnl9du9GMVED+x5KWRUA6g==
+X-Received: by 2002:a17:907:101b:b0:a23:1163:24be with SMTP id ox27-20020a170907101b00b00a23116324bemr7646706ejb.95.1704191493272;
+        Tue, 02 Jan 2024 02:31:33 -0800 (PST)
+Received: from localhost (nat2.prg.suse.com. [195.250.132.146])
+        by smtp.gmail.com with ESMTPSA id rn28-20020a170906d93c00b00a26b036affbsm10706526ejb.96.2024.01.02.02.31.32
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 02 Jan 2024 02:31:33 -0800 (PST)
+From: Jiri Kosina <jkosina@suse.com>
+X-Google-Original-From: Jiri Kosina <jikos@kernel.org>
+Date: Tue, 2 Jan 2024 11:31:34 +0100 (CET)
+To: Zhengqiao Xia <xiazhengqiao@huaqin.corp-partner.google.com>
+cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
+    linux-kernel@vger.kernel.org, dmitry.torokhov@gmail.com, 
+    robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+    benjamin.tissoires@redhat.com, linus.walleij@linaro.org, 
+    dianders@chromium.org
+Subject: Re: [PATCH v3 0/2] HID: i2c-hid: elan: Add ili2901 timing
+In-Reply-To: <20231227085013.1317-1-xiazhengqiao@huaqin.corp-partner.google.com>
+Message-ID: <nycvar.YFH.7.76.2401021131220.29548@cbobk.fhfr.pm>
+References: <20231227085013.1317-1-xiazhengqiao@huaqin.corp-partner.google.com>
+User-Agent: Alpine 2.21 (LSU 202 2017-01-01)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231213150435.4134390-1-wenst@chromium.org> <20231213150435.4134390-7-wenst@chromium.org>
- <19c98266-0a8e-4e99-8766-cdf31a3a97b6@collabora.com>
-In-Reply-To: <19c98266-0a8e-4e99-8766-cdf31a3a97b6@collabora.com>
-From: Chen-Yu Tsai <wenst@chromium.org>
-Date: Tue, 2 Jan 2024 18:25:46 +0800
-Message-ID: <CAGXv+5E7yzwgEnSUaS3YerK_kcO853AJsq=gBbkWruh86mXbgQ@mail.gmail.com>
-Subject: Re: [PATCH v4 6/9] arm64: dts: mediatek: Add MT8186 Krabby platform
- based Tentacruel / Tentacool
-To: Eugen Hristev <eugen.hristev@collabora.com>
-Cc: Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	Conor Dooley <conor.dooley@microchip.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=US-ASCII
 
-Hi,
+On Wed, 27 Dec 2023, Zhengqiao Xia wrote:
 
-On Mon, Jan 1, 2024 at 10:09=E2=80=AFPM Eugen Hristev
-<eugen.hristev@collabora.com> wrote:
->
-> Hello Chen-Yu,
->
-> There is still some nonconformity with the bindings, please see below:
->
-> On 12/13/23 17:04, Chen-Yu Tsai wrote:
-> > Tentacruel and Tentacool are MT8186 based Chromebooks based on the
-> > Krabby design.
-> >
-> > Tentacruel, also known as the ASUS Chromebook CM14 Flip CM1402F, is a
-> > convertible device with touchscreen and stylus.
-> >
-> > Tentacool, also known as the ASUS Chromebook CM14 CM1402C, is a laptop
-> > device. It does not have a touchscreen or stylus.
-> >
-> > The two devices both have two variants. The difference is a second
-> > source touchpad controller that shares the same address as the original=
-,
-> > but is incompatible.
-> >
-> > The extra SKU IDs for the Tentacruel devices map to different sensor
-> > components attached to the Embedded Controller. These are not visible
-> > to the main processor.
-> >
-> > Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
-> > Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> > ---
-> > Changes since v3:
-> > - Reorder some properties to conform better to the newly proposed DT
-> >   style guidelines
-> > - Drop unused labels
-> > - Rename bt-sco node name to bt-sco-codec
-> > - Drop i2s*-share properties from afe node
-> > - Drop aud_gpio_tdm_{on,off} pinctrl nodes
-> > - Replace interrupts with interrupts-extended in tpm node
-> > - Enable adsp device
-> >
-> > Changes since v2:
-> > - Picked up Conor's ack
-> > - Rename touchpad to trackpad
-> > - Drop pinctrl properties from trackpad in tentacruel/tentacool second
-> >   source trackpad
-> >
-> > Changes since v1:
-> > - Reorder SKU numbers in descending order.
-> > - Fixed pinconfig node names
-> > - Moved pinctrl-* properties after interrupts-*
-> > - Switched to interrupts-extended for external components
-> > - Marked ADSP as explicitly disabled, with a comment explaining that it
-> >   stalls the system
-> > - Renamed "touchpad" to "trackpad"
-> > - Dropped bogus "no-laneswap" property from it6505 node
-> > - Moved "realtek,jd-src" property to after all the regulator supplies
-> > - Switched to macros for MT6366 regulator "regulator-allowed-modes"
-> > - Renamed "vgpu" regulator name to allow coupling, with a comment
-> >   containing the name used in the design
-> > - Renamed "cr50" node name to "tpm"
-> > - Moved trackpad_pins reference up to i2c2; workaround for second sourc=
-e
-> >   component resource sharing.
-> > - Fix copyright year
-> > - Fixed touchscreen supply name
-> > ---
->
-> [snip]
->
-> > +
-> > +&i2c3 {
-> > +     pinctrl-names =3D "default";
-> > +     pinctrl-0 =3D <&i2c3_pins>;
-> > +     clock-frequency =3D <100000>;
-> > +     status =3D "okay";
-> > +
-> > +     it6505dptx: dp-bridge@5c {
-> > +             compatible =3D "ite,it6505";
->
-> dp-bridge@5c: '#address-cells', '#size-cells', '#sound-dai-cells' do not =
-match any
-> of the regexes: 'pinctrl-[0-9]+'
->         from schema $id: http://devicetree.org/schemas/display/bridge/ite=
-,it6505.yaml#
+> ILI2901 requires reset to pull down time greater than 10ms,
+> so the configuration post_power_delay_ms is 10, and the chipset
+> initial time is required to be greater than 100ms,
+> so the post_gpio_reset_on_delay_ms is set to 100.
+> 
+> Change in v3:
+> - PATCH 1/2: Modify title and commit
+> - PATCH 2/2: No change
+> - Link to v2: https://lore.kernel.org/all/20231226023737.25618-2-xiazhengqiao@huaqin.corp-partner.google.com/
+> 
+> Change in v2:
+> - PATCH 1/2: Modify compatible properties values
+> - PATCH 2/2: No change
+> - Link to v1: https://lore.kernel.org/all/20231225092843.5993-3-xiazhengqiao@huaqin.corp-partner.google.com/
+> 
+> xiazhengqiao (2):
+>   dt-bindings: HID: i2c-hid: elan: Introduce Ilitek ili2901
+>   HID: i2c-hid: elan: Add ili2901 timing
+> 
+>  .../devicetree/bindings/input/elan,ekth6915.yaml          | 5 +++--
+>  drivers/hid/i2c-hid/i2c-hid-of-elan.c                     | 8 ++++++++
+>  2 files changed, 11 insertions(+), 2 deletions(-)
 
-Will add a patch to update the bindings.
+Now queued in hid.git#for-6.8/elan. Thanks,
 
-> > +             reg =3D <0x5c>;
-> > +             interrupts-extended =3D <&pio 8 IRQ_TYPE_LEVEL_LOW>;
-> > +             pinctrl-names =3D "default";
-> > +             pinctrl-0 =3D <&it6505_pins>;
-> > +             #address-cells =3D <1>;
-> > +             #size-cells =3D <0>;
->
-> /soc/i2c@1100f000/dp-bridge@5c: unnecessary #address-cells/#size-cells wi=
-thout
-> "ranges" or child "reg" property
+-- 
+Jiri Kosina
+SUSE Labs
 
-Dropped.
-
-> > +             #sound-dai-cells =3D <0>;
-> > +             ovdd-supply =3D <&mt6366_vsim2_reg>;
-> > +             pwr18-supply =3D <&pp1800_dpbrdg_dx>;
-> > +             reset-gpios =3D <&pio 177 GPIO_ACTIVE_HIGH>;
-> > +
-> > +             ports {
-> > +                     #address-cells =3D <1>;
-> > +                     #size-cells =3D <0>;
-> > +
-> > +                     port@0 {
-> > +                             reg =3D <0>;
-> > +
-> > +                             it6505_in: endpoint {
-> > +                                     link-frequencies =3D /bits/ 64 <1=
-50000000>;
-> > +                                     remote-endpoint =3D <&dpi_out>;
-> > +                             };
-> > +                     };
-> > +
-> > +                     port@1 {
-> > +                             reg =3D <1>;
-> > +                     };
-> > +             };
-> > +     };
-> > +};
-> > +
->
-> [snip]
->
-> > +&spi1 {
-> > +     pinctrl-names =3D "default";
-> > +     pinctrl-0 =3D <&spi1_pins>;
-> > +     mediatek,pad-select =3D <0>;
-> > +     status =3D "okay";
-> > +
-> > +     cros_ec: ec@0 {
-> > +             compatible =3D "google,cros-ec-spi";
-> > +             reg =3D <0>;
-> > +             interrupts-extended =3D <&pio 13 IRQ_TYPE_LEVEL_LOW>;
-> > +             pinctrl-names =3D "default";
-> > +             pinctrl-0 =3D <&ec_ap_int>;
-> > +             spi-max-frequency =3D <1000000>;
-> > +
-> > +             i2c_tunnel: i2c-tunnel {
-> > +                     compatible =3D "google,cros-ec-i2c-tunnel";
-> > +                     google,remote-bus =3D <1>;
-> > +                     #address-cells =3D <1>;
-> > +                     #size-cells =3D <0>;
-> > +             };
-> > +
-> > +             typec {
-> > +                     compatible =3D "google,cros-ec-typec";
-> > +                     #address-cells =3D <1>;
-> > +                     #size-cells =3D <0>;
-> > +
-> > +                     usb_c0: connector@0 {
-> > +                             compatible =3D "usb-c-connector";
-> > +                             reg =3D <0>;
-> > +                             label =3D "left";
-> > +                             power-role =3D "dual";
-> > +                             data-role =3D "host";
-> > +                             try-power-role =3D "source";
-> > +
-> > +                             ports {
-> > +                                     #address-cells =3D <1>;
-> > +                                     #size-cells =3D <0>;
-> > +
-> typec:connector@0:ports: 'port@0' is a required property
-> > +                                     port@1 {
-> > +                                             reg =3D <1>;
-> > +
-> > +                                             typec_port0: endpoint { }=
-;
-> > +                                     };
-> > +                             };
-> > +                     };
-> > +
-> > +                     usb_c1: connector@1 {
-> > +                             compatible =3D "usb-c-connector";
-> > +                             reg =3D <1>;
-> > +                             label =3D "right";
-> > +                             power-role =3D "dual";
-> > +                             data-role =3D "host";
-> > +                             try-power-role =3D "source";
-> > +
-> > +                             ports {
-> connector@1: Unevaluated properties are not allowed ('ports' was unexpect=
-ed)
->         from schema $id: http://devicetree.org/schemas/connector/usb-conn=
-ector.yaml#
-
-Not sure why this is happening. Maybe because the sub-schema validation
-failed?
-
-In any case, I will drop the whole ports section. This can be re-added once
-all the type-C mux stuff has been sorted out.
-
-> > +                                     #address-cells =3D <1>;
-> > +                                     #size-cells =3D <0>;
-> > +
-> > +                                     port@1 {
-> connector@0: ports: 'port@0' is a required property
-> > +                                             reg =3D <1>;
-> > +
-> > +                                             typec_port1: endpoint { }=
-;
-> > +                                     };
-> > +                             };
-> > +                     };
-> > +             };
-> > +     };
-> > +};
-> > +
->
-> [snip]
->
-> > +
-> > +&usb_host1 {
-> > +     #address-cells =3D <2>;
-> > +     #size-cells =3D <2>;
->
->  usb@11281000: usb@11280000:#address-cells:0:0: 1 was expected
->         from schema $id: http://devicetree.org/schemas/usb/mediatek,mtu3.=
-yaml#
-> usb@11281000: usb@11280000:#size-cells:0:0: 0 was expected
-
-Dropped.
-
-> > +     vbus-supply =3D <&usb_p1_vbus>;
-> > +     status =3D "okay";
-> > +};
-> > +
-> > +&watchdog {
-> > +     mediatek,reset-by-toprgu;
-> > +};
-> > +
-> > +#include <arm/cros-ec-keyboard.dtsi>
-> > +#include <arm/cros-ec-sbs.dtsi>
->
->
-> Eugen
-
-Thanks for the review. Since the merge window is just around the corner,
-I will send a new version later this month.
-
-ChenYu
 
