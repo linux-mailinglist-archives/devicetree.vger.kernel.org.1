@@ -1,213 +1,325 @@
-Return-Path: <devicetree+bounces-29151-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29152-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5BD75821988
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 11:18:41 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1EF6E8219A5
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 11:26:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 30C061C21A1C
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 10:18:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8B9031F220F8
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 10:26:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E10CD27F;
-	Tue,  2 Jan 2024 10:18:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51D0AD285;
+	Tue,  2 Jan 2024 10:26:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="HgE6W/hn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com [209.85.128.172])
+Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA548D266;
-	Tue,  2 Jan 2024 10:18:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-5eefd0da5c0so35964757b3.2;
-        Tue, 02 Jan 2024 02:18:03 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73622D281
+	for <devicetree@vger.kernel.org>; Tue,  2 Jan 2024 10:26:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-2ccbc328744so71829231fa.3
+        for <devicetree@vger.kernel.org>; Tue, 02 Jan 2024 02:26:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1704191158; x=1704795958; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=4cKlcr9TDXVMFehMkzlKiGxOSc5Va79SEC/vL9WVI28=;
+        b=HgE6W/hnge5njJheiWy3LC29QftcC0boKVfgebR4QIQZs4vMQCo++IzqDPru+5VtDI
+         NqXVizqBM7qMTTJGLr14IKu4tc4UttzITYLoqKz5KpaGx3cRCwLb0xBlmjJNCPAXmRuj
+         eCxAT1gUrhSftSkIlY6J2b/Hr3taFv4lcYhXI=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704190682; x=1704795482;
+        d=1e100.net; s=20230601; t=1704191158; x=1704795958;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=X5DxLXP6EyqotRgw2MuRFibbW2LOWQylrBdAXWNwj0E=;
-        b=kDmWk4+qMWPq3ulZECXV/fAqE+GbkVeQ+8oIByA45X30vt9CZteil2nJnx2kmmRghp
-         86oxzkOdzqTaALCAt9HYvQhqxPUf99lFl4s21vRc+6cEnFArwK0wuzzvcf+gsFUDdJbf
-         tOr291omrrtq7HgG18g6OH6H/RnJNrMuPoRVpwpw5a4/RP/z2wmc0ekNpRyOQB+KvW+x
-         0zkdCEFssFYiCMHjrKkx9zTIXM50hQz7i15To78tz/tC8MG0wkhWj5cOTvtqMweAYzO+
-         /+2Wm0ZC4OYrr8khpkXPNEeC2DMLak+g7wmqbrzLwvbTp4lMFkfEzDr6R9I9PCJ9Y+QQ
-         NB3A==
-X-Gm-Message-State: AOJu0YzdK4/d4mXOQV/xWhpoQjrla7j2ZTRY3jlj1XnsgC77U65q9/as
-	s0QY6g3JiBfB36RUADr4Wz0ylUsvQl2xWA==
-X-Google-Smtp-Source: AGHT+IFHm7SGgWLdlth02VAk2lQAvQcEQ6zfBgw66YQXK7ZWQsZrYxsxiII4aqrljuaUM64w5A3Uyg==
-X-Received: by 2002:a81:73c3:0:b0:5e8:e973:31ad with SMTP id o186-20020a8173c3000000b005e8e97331admr13001380ywc.33.1704190682530;
-        Tue, 02 Jan 2024 02:18:02 -0800 (PST)
-Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com. [209.85.128.169])
-        by smtp.gmail.com with ESMTPSA id gu6-20020a05690c458600b005f21555182bsm1934161ywb.1.2024.01.02.02.18.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 02 Jan 2024 02:18:02 -0800 (PST)
-Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-5eefd0da5c0so35964627b3.2;
-        Tue, 02 Jan 2024 02:18:01 -0800 (PST)
-X-Received: by 2002:a0d:c383:0:b0:5d8:e267:78e5 with SMTP id
- f125-20020a0dc383000000b005d8e26778e5mr12357254ywd.61.1704190681747; Tue, 02
- Jan 2024 02:18:01 -0800 (PST)
+        bh=4cKlcr9TDXVMFehMkzlKiGxOSc5Va79SEC/vL9WVI28=;
+        b=JSHRXTKSbFnf0ORyFqgefsKi03rt5CBpoq1/aXydBvvs/PnIWXEEWyIbA6bC2/FD+I
+         oOu+GSbdt8xIbXztNiO0ZJBQ1UQKJTm2xutLsB687g7RQXycCpiUR9t+4WrAZpujNLIL
+         ksIO4F720P/xPjwoqp4lE/0Zd/D0ghq5ynzm/N0D6hSMFmBPMFpBhdYhkkb0IHUl6Hso
+         q0W1MKiyrk4NvTTsU1k8ZR/y7V+diGeqny23qYvyJ6GK7aK2tJHMMw9UXbiCzW1JEIY7
+         5qa306GA/ukGk3iX5Sj3v+J/IbDQnQ7233tcVExjOCcEwyk1HjyAsO1NPd5tOM+rdKR6
+         C5qw==
+X-Gm-Message-State: AOJu0YyEFAZFrX9Ccj87XbyraGzP8VuQbvG+IHpZpncJnyeE4VLGE6Yp
+	iOhiIjBZgDRi2qz6vJfL5SQ5PEbMSMmH1MrurOVwBke8e2k5
+X-Google-Smtp-Source: AGHT+IEGSX35g6EPnerKa8KwPEvruyC+Q2TuN1yb8rNK9FEIB+XeyMq/8mUvO/5tVQzkmn1erUK1+fV7WllsmOUyyCA=
+X-Received: by 2002:a2e:9d9a:0:b0:2cb:30f4:a342 with SMTP id
+ c26-20020a2e9d9a000000b002cb30f4a342mr6642927ljj.23.1704191158118; Tue, 02
+ Jan 2024 02:25:58 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231201131551.201503-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20231201131551.201503-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <CAMuHMdUiaL__+CDaFxRbUFgrz69SYBNfZm4JvY_qQRKLMTCY0w@mail.gmail.com> <CA+V-a8tTWf8Kx-Ex=DPsSR2ZWHC29N_pAoEZN1sR5Nqobf139A@mail.gmail.com>
-In-Reply-To: <CA+V-a8tTWf8Kx-Ex=DPsSR2ZWHC29N_pAoEZN1sR5Nqobf139A@mail.gmail.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 2 Jan 2024 11:17:50 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdXosvV=EuRtL69r6=UT0SO8Aq-XjWwJMJQpWAhT2z+ffA@mail.gmail.com>
-Message-ID: <CAMuHMdXosvV=EuRtL69r6=UT0SO8Aq-XjWwJMJQpWAhT2z+ffA@mail.gmail.com>
-Subject: Re: [PATCH v3 1/3] pinctrl: renesas: rzg2l: Include pinmap in
- RZG2L_GPIO_PORT_PACK() macro
-To: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh+dt@kernel.org>, 
+References: <20231213150435.4134390-1-wenst@chromium.org> <20231213150435.4134390-7-wenst@chromium.org>
+ <19c98266-0a8e-4e99-8766-cdf31a3a97b6@collabora.com>
+In-Reply-To: <19c98266-0a8e-4e99-8766-cdf31a3a97b6@collabora.com>
+From: Chen-Yu Tsai <wenst@chromium.org>
+Date: Tue, 2 Jan 2024 18:25:46 +0800
+Message-ID: <CAGXv+5E7yzwgEnSUaS3YerK_kcO853AJsq=gBbkWruh86mXbgQ@mail.gmail.com>
+Subject: Re: [PATCH v4 6/9] arm64: dts: mediatek: Add MT8186 Krabby platform
+ based Tentacruel / Tentacool
+To: Eugen Hristev <eugen.hristev@collabora.com>
+Cc: Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Rob Herring <robh+dt@kernel.org>, 
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Linus Walleij <linus.walleij@linaro.org>, 
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	linux-gpio@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+	devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	Conor Dooley <conor.dooley@microchip.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Prabhakar,
+Hi,
 
-On Thu, Dec 21, 2023 at 10:04=E2=80=AFPM Lad, Prabhakar
-<prabhakar.csengg@gmail.com> wrote:
-> On Wed, Dec 6, 2023 at 1:13=E2=80=AFPM Geert Uytterhoeven <geert@linux-m6=
-8k.org> wrote:
-> > On Fri, Dec 1, 2023 at 2:16=E2=80=AFPM Prabhakar <prabhakar.csengg@gmai=
-l.com> wrote:
-> > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > >
-> > > Currently we assume all the port pins are sequential ie always PX_0 t=
-o
-> > > PX_n (n=3D1..7) exist, but on RZ/Five SoC we have additional pins P19=
-_1 to
-> > > P28_5 which have holes in them, for example only one pin on port19 is
-> > > available and that is P19_1 and not P19_0. So to handle such cases
-> > > include pinmap for each port which would indicate the pin availabilit=
-y
-> > > on each port. As the pincount can be calculated based on pinmap drop =
-this
-> > > from RZG2L_GPIO_PORT_PACK() macro and update RZG2L_GPIO_PORT_GET_PINC=
-NT()
-> > > macro.
-> > >
-> > > Previously we had a max of 7 pins on each port but on RZ/Five Port-20
-> > > has 8 pins, so move the single pin configuration to BIT(63).
-> > >
-> > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com=
+On Mon, Jan 1, 2024 at 10:09=E2=80=AFPM Eugen Hristev
+<eugen.hristev@collabora.com> wrote:
 >
-> >
-> > Thanks for your patch!
-> >
-> > > --- a/drivers/pinctrl/renesas/pinctrl-rzg2l.c
-> > > +++ b/drivers/pinctrl/renesas/pinctrl-rzg2l.c
-> > > @@ -80,15 +80,17 @@
-> > >   * n indicates number of pins in the port, a is the register index
-> > >   * and f is pin configuration capabilities supported.
-> > >   */
-> > > -#define RZG2L_GPIO_PORT_PACK(n, a, f)  (((n) << 28) | ((a) << 20) | =
-(f))
-> > > -#define RZG2L_GPIO_PORT_GET_PINCNT(x)  (((x) & GENMASK(30, 28)) >> 2=
-8)
-> > > +#define RZG2L_GPIO_PORT_PACK(n, a, f)  (((n) > 0 ? ((u64)(GENMASK_UL=
-L(((n) - 1 + 28), 28))) : 0) | \
-> >
-> > The mask creation can be simplified to
-> >
-> >     ((1ULL << (n)) - 1) << 28
-> >
-> OK.
+> Hello Chen-Yu,
 >
-> > but see below...
+> There is still some nonconformity with the bindings, please see below:
+>
+> On 12/13/23 17:04, Chen-Yu Tsai wrote:
+> > Tentacruel and Tentacool are MT8186 based Chromebooks based on the
+> > Krabby design.
 > >
-> > > +                                        ((a) << 20) | (f))
-> > > +#define RZG2L_GPIO_PORT_GET_PINMAP(x)  (((x) & GENMASK_ULL(35, 28)) =
->> 28)
-> > > +#define RZG2L_GPIO_PORT_GET_PINCNT(x)  (hweight8(RZG2L_GPIO_PORT_GET=
-_PINMAP((x))))
+> > Tentacruel, also known as the ASUS Chromebook CM14 Flip CM1402F, is a
+> > convertible device with touchscreen and stylus.
 > >
-> > I think we've reached the point where it would be easier for the
-> > casual reviewer to #define PIN_CFG_*_MASK for all fields, and use
-> > FIELD_{PREP,GET}() to pack resp. extract values.  That would also
-> > make it more obvious which bits are in use, and how many bits are
-> > still available for future use.
+> > Tentacool, also known as the ASUS Chromebook CM14 CM1402C, is a laptop
+> > device. It does not have a touchscreen or stylus.
 > >
-> If I use the FIELD_PREP() macro like below I get build issues as below:
+> > The two devices both have two variants. The difference is a second
+> > source touchpad controller that shares the same address as the original=
+,
+> > but is incompatible.
+> >
+> > The extra SKU IDs for the Tentacruel devices map to different sensor
+> > components attached to the Embedded Controller. These are not visible
+> > to the main processor.
+> >
+> > Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
+> > Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> > ---
+> > Changes since v3:
+> > - Reorder some properties to conform better to the newly proposed DT
+> >   style guidelines
+> > - Drop unused labels
+> > - Rename bt-sco node name to bt-sco-codec
+> > - Drop i2s*-share properties from afe node
+> > - Drop aud_gpio_tdm_{on,off} pinctrl nodes
+> > - Replace interrupts with interrupts-extended in tpm node
+> > - Enable adsp device
+> >
+> > Changes since v2:
+> > - Picked up Conor's ack
+> > - Rename touchpad to trackpad
+> > - Drop pinctrl properties from trackpad in tentacruel/tentacool second
+> >   source trackpad
+> >
+> > Changes since v1:
+> > - Reorder SKU numbers in descending order.
+> > - Fixed pinconfig node names
+> > - Moved pinctrl-* properties after interrupts-*
+> > - Switched to interrupts-extended for external components
+> > - Marked ADSP as explicitly disabled, with a comment explaining that it
+> >   stalls the system
+> > - Renamed "touchpad" to "trackpad"
+> > - Dropped bogus "no-laneswap" property from it6505 node
+> > - Moved "realtek,jd-src" property to after all the regulator supplies
+> > - Switched to macros for MT6366 regulator "regulator-allowed-modes"
+> > - Renamed "vgpu" regulator name to allow coupling, with a comment
+> >   containing the name used in the design
+> > - Renamed "cr50" node name to "tpm"
+> > - Moved trackpad_pins reference up to i2c2; workaround for second sourc=
+e
+> >   component resource sharing.
+> > - Fix copyright year
+> > - Fixed touchscreen supply name
+> > ---
 >
-> #define RZG2L_GPIO_PORT_PIN_CNT_MASK    GENMASK(31, 28)
-> #define RZG2L_GPIO_PORT_PIN_REG_MASK    GENMASK(27, 20)
-> #define RZG2L_GPIO_PORT_PIN_CFG_MASK    GENMASK(19, 0)
-> #define RZG2L_GPIO_PORT_PACK(n, a, f)
-> FIELD_PREP(RZG2L_GPIO_PORT_PIN_CNT_MASK, n) | \
->                     FIELD_PREP(RZG2L_GPIO_PORT_PIN_REG_MASK, a) | \
->                     FIELD_PREP(RZG2L_GPIO_PORT_PIN_CFG_MASK, f)
+> [snip]
+>
+> > +
+> > +&i2c3 {
+> > +     pinctrl-names =3D "default";
+> > +     pinctrl-0 =3D <&i2c3_pins>;
+> > +     clock-frequency =3D <100000>;
+> > +     status =3D "okay";
+> > +
+> > +     it6505dptx: dp-bridge@5c {
+> > +             compatible =3D "ite,it6505";
+>
+> dp-bridge@5c: '#address-cells', '#size-cells', '#sound-dai-cells' do not =
+match any
+> of the regexes: 'pinctrl-[0-9]+'
+>         from schema $id: http://devicetree.org/schemas/display/bridge/ite=
+,it6505.yaml#
+
+Will add a patch to update the bindings.
+
+> > +             reg =3D <0x5c>;
+> > +             interrupts-extended =3D <&pio 8 IRQ_TYPE_LEVEL_LOW>;
+> > +             pinctrl-names =3D "default";
+> > +             pinctrl-0 =3D <&it6505_pins>;
+> > +             #address-cells =3D <1>;
+> > +             #size-cells =3D <0>;
+>
+> /soc/i2c@1100f000/dp-bridge@5c: unnecessary #address-cells/#size-cells wi=
+thout
+> "ranges" or child "reg" property
+
+Dropped.
+
+> > +             #sound-dai-cells =3D <0>;
+> > +             ovdd-supply =3D <&mt6366_vsim2_reg>;
+> > +             pwr18-supply =3D <&pp1800_dpbrdg_dx>;
+> > +             reset-gpios =3D <&pio 177 GPIO_ACTIVE_HIGH>;
+> > +
+> > +             ports {
+> > +                     #address-cells =3D <1>;
+> > +                     #size-cells =3D <0>;
+> > +
+> > +                     port@0 {
+> > +                             reg =3D <0>;
+> > +
+> > +                             it6505_in: endpoint {
+> > +                                     link-frequencies =3D /bits/ 64 <1=
+50000000>;
+> > +                                     remote-endpoint =3D <&dpi_out>;
+> > +                             };
+> > +                     };
+> > +
+> > +                     port@1 {
+> > +                             reg =3D <1>;
+> > +                     };
+> > +             };
+> > +     };
+> > +};
+> > +
+>
+> [snip]
+>
+> > +&spi1 {
+> > +     pinctrl-names =3D "default";
+> > +     pinctrl-0 =3D <&spi1_pins>;
+> > +     mediatek,pad-select =3D <0>;
+> > +     status =3D "okay";
+> > +
+> > +     cros_ec: ec@0 {
+> > +             compatible =3D "google,cros-ec-spi";
+> > +             reg =3D <0>;
+> > +             interrupts-extended =3D <&pio 13 IRQ_TYPE_LEVEL_LOW>;
+> > +             pinctrl-names =3D "default";
+> > +             pinctrl-0 =3D <&ec_ap_int>;
+> > +             spi-max-frequency =3D <1000000>;
+> > +
+> > +             i2c_tunnel: i2c-tunnel {
+> > +                     compatible =3D "google,cros-ec-i2c-tunnel";
+> > +                     google,remote-bus =3D <1>;
+> > +                     #address-cells =3D <1>;
+> > +                     #size-cells =3D <0>;
+> > +             };
+> > +
+> > +             typec {
+> > +                     compatible =3D "google,cros-ec-typec";
+> > +                     #address-cells =3D <1>;
+> > +                     #size-cells =3D <0>;
+> > +
+> > +                     usb_c0: connector@0 {
+> > +                             compatible =3D "usb-c-connector";
+> > +                             reg =3D <0>;
+> > +                             label =3D "left";
+> > +                             power-role =3D "dual";
+> > +                             data-role =3D "host";
+> > +                             try-power-role =3D "source";
+> > +
+> > +                             ports {
+> > +                                     #address-cells =3D <1>;
+> > +                                     #size-cells =3D <0>;
+> > +
+> typec:connector@0:ports: 'port@0' is a required property
+> > +                                     port@1 {
+> > +                                             reg =3D <1>;
+> > +
+> > +                                             typec_port0: endpoint { }=
+;
+> > +                                     };
+> > +                             };
+> > +                     };
+> > +
+> > +                     usb_c1: connector@1 {
+> > +                             compatible =3D "usb-c-connector";
+> > +                             reg =3D <1>;
+> > +                             label =3D "right";
+> > +                             power-role =3D "dual";
+> > +                             data-role =3D "host";
+> > +                             try-power-role =3D "source";
+> > +
+> > +                             ports {
+> connector@1: Unevaluated properties are not allowed ('ports' was unexpect=
+ed)
+>         from schema $id: http://devicetree.org/schemas/connector/usb-conn=
+ector.yaml#
+
+Not sure why this is happening. Maybe because the sub-schema validation
+failed?
+
+In any case, I will drop the whole ports section. This can be re-added once
+all the type-C mux stuff has been sorted out.
+
+> > +                                     #address-cells =3D <1>;
+> > +                                     #size-cells =3D <0>;
+> > +
+> > +                                     port@1 {
+> connector@0: ports: 'port@0' is a required property
+> > +                                             reg =3D <1>;
+> > +
+> > +                                             typec_port1: endpoint { }=
+;
+> > +                                     };
+> > +                             };
+> > +                     };
+> > +             };
+> > +     };
+> > +};
+> > +
+>
+> [snip]
+>
+> > +
+> > +&usb_host1 {
+> > +     #address-cells =3D <2>;
+> > +     #size-cells =3D <2>;
+>
+>  usb@11281000: usb@11280000:#address-cells:0:0: 1 was expected
+>         from schema $id: http://devicetree.org/schemas/usb/mediatek,mtu3.=
+yaml#
+> usb@11281000: usb@11280000:#size-cells:0:0: 0 was expected
+
+Dropped.
+
+> > +     vbus-supply =3D <&usb_p1_vbus>;
+> > +     status =3D "okay";
+> > +};
+> > +
+> > +&watchdog {
+> > +     mediatek,reset-by-toprgu;
+> > +};
+> > +
+> > +#include <arm/cros-ec-keyboard.dtsi>
+> > +#include <arm/cros-ec-sbs.dtsi>
 >
 >
-> drivers/pinctrl/renesas/pinctrl-rzg2l.c:91:41: note: in expansion of
-> macro 'FIELD_PREP'
->    91 |
-> FIELD_PREP(RZG2L_GPIO_PORT_PIN_CFG_MASK, f)
->       |                                         ^~~~~~~~~~
-> drivers/pinctrl/renesas/pinctrl-rzg2l.c:1486:9: note: in expansion of
-> macro 'RZG2L_GPIO_PORT_PACK'
->  1486 |         RZG2L_GPIO_PORT_PACK(6, 0x2a,
-> RZG3S_MPXED_PIN_FUNCS(A)),                        /* P18 */
->       |         ^~~~~~~~~~~~~~~~~~~~
->
-> Do you have any pointers?
+> Eugen
 
-You left out the actual error :-(
+Thanks for the review. Since the merge window is just around the corner,
+I will send a new version later this month.
 
-include/linux/bitfield.h:113:9: error: braced-group within expression
-allowed only inside a function
-  113 |         ({
-         \
-      |         ^
-drivers/pinctrl/renesas/pinctrl-rzg2l.c:93:39: note: in expansion of
-macro =E2=80=98FIELD_PREP=E2=80=99
-   93 | #define RZG2L_GPIO_PORT_PACK(n, a, f)
-FIELD_PREP(RZG2L_GPIO_PORT_PIN_CNT_MASK, n) | \
-      |                                       ^~~~~~~~~~
-drivers/pinctrl/renesas/pinctrl-rzg2l.c:1555:9: note: in expansion of
-macro =E2=80=98RZG2L_GPIO_PORT_PACK=E2=80=99
- 1555 |         RZG2L_GPIO_PORT_PACK(2, 0x10, RZG2L_MPXED_PIN_FUNCS),
-      |         ^~~~~~~~~~~~~~~~~~~~
-
-Using FIELD_PREP_CONST() instead makes it build.
-
-/**
- * FIELD_PREP_CONST() - prepare a constant bitfield element
- * @_mask: shifted mask defining the field's length and position
- * @_val:  value to put in the field
- *
- * FIELD_PREP_CONST() masks and shifts up the value.  The result should
- * be combined with other fields of the bitfield using logical OR.
- *
- * Unlike FIELD_PREP() this is a constant expression and can therefore
- * be used in initializers. Error checking is less comfortable for this
- * version, and non-constant masks cannot be used.
- */
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+ChenYu
 
