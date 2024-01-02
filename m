@@ -1,59 +1,59 @@
-Return-Path: <devicetree+bounces-29265-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29266-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF60A8222FA
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 22:10:17 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F34F8222FD
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 22:10:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8DB79281452
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 21:10:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F007F1F23636
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 21:10:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB416171AC;
-	Tue,  2 Jan 2024 21:08:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDE0C171D7;
+	Tue,  2 Jan 2024 21:08:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="fXTEKLe7"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="grYAbEpE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-io1-f42.google.com (mail-io1-f42.google.com [209.85.166.42])
+Received: from mail-io1-f51.google.com (mail-io1-f51.google.com [209.85.166.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C981171DB
-	for <devicetree@vger.kernel.org>; Tue,  2 Jan 2024 21:08:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62DE617744
+	for <devicetree@vger.kernel.org>; Tue,  2 Jan 2024 21:08:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-io1-f42.google.com with SMTP id ca18e2360f4ac-7ba87489f97so485583639f.1
-        for <devicetree@vger.kernel.org>; Tue, 02 Jan 2024 13:08:49 -0800 (PST)
+Received: by mail-io1-f51.google.com with SMTP id ca18e2360f4ac-7ba8c218fe1so522825939f.3
+        for <devicetree@vger.kernel.org>; Tue, 02 Jan 2024 13:08:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1704229728; x=1704834528; darn=vger.kernel.org;
+        d=chromium.org; s=google; t=1704229729; x=1704834529; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Y5uC/dqzQmYcBPDfBK6LehJHA1Nu9NUaC8OommBsuso=;
-        b=fXTEKLe7q71mJsF+Dq10I3kngM4DFvGhqoxx//hTAim9J3VvhgQd4W/CiK4EUo7+Af
-         uK8PO27JvkAxve0otUSqSKXT1YNZKQzNw8P788roY0qn05/S1OcWuW6AAHJPIVeiIUHb
-         N4T8zQhbcNYrU/mfKq2Kf4JTp1/S8JwdyzYLs=
+        bh=kFylEVwz6/jxQq1ZweDsmHVwptzQPuyXfUnhxAJ710k=;
+        b=grYAbEpEGE+CY/lcVPOfo1nBGvsxD8gVu/PNJDxGLdxkl9JO2ttuV88LTUkBL6Nvu+
+         NDF4w4L2ULGkrLijFRY+PJ9FqOQwcOwgH7o1SnrTzXrh2gfX/nI8eyCeHlWwXbJ2WXe1
+         yzIBQweyAEsgllUrhRDkcgnbHpf4Er2TQLN0g=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20230601; t=1704229729; x=1704834529;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=Y5uC/dqzQmYcBPDfBK6LehJHA1Nu9NUaC8OommBsuso=;
-        b=mP8fBc7EvOAsoyoeBvNoWDeeI243XrP0Wqu7RpSlYaYFRi8sCB3RrUbWwARGVWaGD6
-         vLYdPY0LfWRFKz/pS6LgoKgDdAaXIaGJ91THO2B75eyrnFk0jULQzjdWSVsPcEio9LND
-         xQnggcWv2ObGYXqQry0Rr1tOEaM+mfIZjoE46Wc0UOGXSOlMWrOXbH0n7BYZINjO4vKf
-         be/IlE7JRJR4/1HScU+HqUXWv+E+j4IlzqOmn6Uf/JwfetOG3mrxZRI+n1USj5Xh8CHM
-         equevEZCELnYlO+SAHMKClJ1hXoGzDw9BO2RwSJrul48uOSmG1s5DpCGhoaQTqDOfdxI
-         iTfw==
-X-Gm-Message-State: AOJu0YxSj9Pqyra66PORrWx/ZrLaHAolG9zBlunXZx+TEacBdis0Hesg
-	LMXUkMFKO71bEv34n/rFnvXcKsU2b/V4iBrQQhhpB7yoXx3n
-X-Google-Smtp-Source: AGHT+IHWKoCxJRGKNJPcLHrsAhYdGs8ek7DpUdoZoMbtH5+b3OOlyzYczn2NyfouKVIhZZpmVYFcgQ==
-X-Received: by 2002:a5d:8d84:0:b0:7bb:40db:9a47 with SMTP id b4-20020a5d8d84000000b007bb40db9a47mr8538555ioj.34.1704229728788;
-        Tue, 02 Jan 2024 13:08:48 -0800 (PST)
+        bh=kFylEVwz6/jxQq1ZweDsmHVwptzQPuyXfUnhxAJ710k=;
+        b=ATGCvSQrNLxasK3fLX2T8l68tjK35NtrMHCGT34T34NN4Srzh3aaoS+zrM2H4X/jDl
+         rG2qLXTtvGFzAEs2AAPKGzx0s6dKt6X3TcMGMWsJZvGF70Q5KqMFzWFqDYmzAtItEUwI
+         pV2twSwO3hRbhSfQ5Q7O2QruHp+0kcPkfRzTwOESWDZl9wrIW2efRPoW4LcyZUUNqJka
+         epw3kg+ib8+LPtYn2Xpz9EhRXC3oa1CUU5oluQzCDJY9yA7ERT5Bubvp9WL4F/LpkZ/s
+         qRYWJ7rR1VDr0lmTcwmpLU3JKlRJSGKdyNDHguy45DI4eBglPWjhy09IQFKXk4B6j3LM
+         YCXg==
+X-Gm-Message-State: AOJu0Yz63APgeXp+FozE2+0j3heyd7QTI5AKuZNjaANr1m+J2Bd7QGn3
+	eRTFyPysaLmYWz2gDvp1aktFx9UQh39O
+X-Google-Smtp-Source: AGHT+IHEJbHth/xM3Ut15mQoMsgLsloOubZy6ZZ76RDsFpY7YTAqNzQUU9yztAFE3PAbKB9V85o07g==
+X-Received: by 2002:a6b:c342:0:b0:7bb:cc1:a3b3 with SMTP id t63-20020a6bc342000000b007bb0cc1a3b3mr7901421iof.21.1704229729647;
+        Tue, 02 Jan 2024 13:08:49 -0800 (PST)
 Received: from markhas1.lan (71-218-50-136.hlrn.qwest.net. [71.218.50.136])
-        by smtp.gmail.com with ESMTPSA id bo18-20020a056638439200b0046993034c91sm6956978jab.77.2024.01.02.13.08.48
+        by smtp.gmail.com with ESMTPSA id bo18-20020a056638439200b0046993034c91sm6956978jab.77.2024.01.02.13.08.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 02 Jan 2024 13:08:48 -0800 (PST)
+        Tue, 02 Jan 2024 13:08:49 -0800 (PST)
 From: Mark Hasemeyer <markhas@chromium.org>
 To: LKML <linux-kernel@vger.kernel.org>
 Cc: Sudeep Holla <sudeep.holla@arm.com>,
@@ -65,16 +65,16 @@ Cc: Sudeep Holla <sudeep.holla@arm.com>,
 	Raul Rangel <rrangel@chromium.org>,
 	Tzung-Bi Shih <tzungbi@kernel.org>,
 	Mark Hasemeyer <markhas@chromium.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Rob Herring <robh+dt@kernel.org>,
 	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org
-Subject: [PATCH v4 06/24] ARM: dts: rockchip: rk3288: Enable cros-ec-spi as wake source
-Date: Tue,  2 Jan 2024 14:07:30 -0700
-Message-ID: <20240102140734.v4.6.I8249df4df0b7d12fb68ea1e69f84ca589c574bb1@changeid>
+	linux-samsung-soc@vger.kernel.org
+Subject: [PATCH v4 07/24] ARM: dts: samsung: exynos5420: Enable cros-ec-spi as wake source
+Date: Tue,  2 Jan 2024 14:07:31 -0700
+Message-ID: <20240102140734.v4.7.I06b059021de1bf6103e60a73211f078f2af75d17@changeid>
 X-Mailer: git-send-email 2.43.0.472.g3155946c3a-goog
 In-Reply-To: <20240102210820.2604667-1-markhas@chromium.org>
 References: <20240102210820.2604667-1-markhas@chromium.org>
@@ -112,21 +112,21 @@ change
 Changes in v2:
 -Split by arch/soc
 
- arch/arm/boot/dts/rockchip/rk3288-veyron-chromebook.dtsi | 1 +
+ arch/arm/boot/dts/samsung/exynos5420-peach-pit.dts | 1 +
  1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm/boot/dts/rockchip/rk3288-veyron-chromebook.dtsi b/arch/arm/boot/dts/rockchip/rk3288-veyron-chromebook.dtsi
-index 092316be67f74..1554fe36e60fe 100644
---- a/arch/arm/boot/dts/rockchip/rk3288-veyron-chromebook.dtsi
-+++ b/arch/arm/boot/dts/rockchip/rk3288-veyron-chromebook.dtsi
-@@ -112,6 +112,7 @@ cros_ec: ec@0 {
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&ec_int>;
- 		spi-max-frequency = <3000000>;
+diff --git a/arch/arm/boot/dts/samsung/exynos5420-peach-pit.dts b/arch/arm/boot/dts/samsung/exynos5420-peach-pit.dts
+index 4e757b6e28e1c..3759742d38cac 100644
+--- a/arch/arm/boot/dts/samsung/exynos5420-peach-pit.dts
++++ b/arch/arm/boot/dts/samsung/exynos5420-peach-pit.dts
+@@ -967,6 +967,7 @@ cros_ec: cros-ec@0 {
+ 		reg = <0>;
+ 		spi-max-frequency = <3125000>;
+ 		google,has-vbc-nvram;
 +		wakeup-source;
  
- 		i2c_tunnel: i2c-tunnel {
- 			compatible = "google,cros-ec-i2c-tunnel";
+ 		controller-data {
+ 			samsung,spi-feedback-delay = <1>;
 -- 
 2.43.0.472.g3155946c3a-goog
 
