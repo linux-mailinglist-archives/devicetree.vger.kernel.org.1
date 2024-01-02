@@ -1,105 +1,130 @@
-Return-Path: <devicetree+bounces-29167-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29168-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED2B9821B0A
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 12:35:08 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EFA6D821B12
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 12:37:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 73B6A283116
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 11:35:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8DD35283377
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 11:37:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6895AE572;
-	Tue,  2 Jan 2024 11:35:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43829E574;
+	Tue,  2 Jan 2024 11:37:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Z1wJhPs/"
+	dkim=pass (2048-bit key) header.d=savoirfairelinux.com header.i=@savoirfairelinux.com header.b="HfBx0L9S"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.savoirfairelinux.com (mail.savoirfairelinux.com [208.88.110.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D950DE555;
-	Tue,  2 Jan 2024 11:35:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-3367632ce7bso8080581f8f.2;
-        Tue, 02 Jan 2024 03:35:01 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 415BAEAC2;
+	Tue,  2 Jan 2024 11:37:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=savoirfairelinux.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=savoirfairelinux.com
+Received: from localhost (localhost [127.0.0.1])
+	by mail.savoirfairelinux.com (Postfix) with ESMTP id DFB4E9C0888;
+	Tue,  2 Jan 2024 06:37:40 -0500 (EST)
+Received: from mail.savoirfairelinux.com ([127.0.0.1])
+ by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10032)
+ with ESMTP id oH47By21Q_s9; Tue,  2 Jan 2024 06:37:40 -0500 (EST)
+Received: from localhost (localhost [127.0.0.1])
+	by mail.savoirfairelinux.com (Postfix) with ESMTP id 50F959C0957;
+	Tue,  2 Jan 2024 06:37:40 -0500 (EST)
+DKIM-Filter: OpenDKIM Filter v2.10.3 mail.savoirfairelinux.com 50F959C0957
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1704195300; x=1704800100; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=orKv+A6OSfDSCHXqZgMuKri0ZasQ0RBaPs91SHs9hs4=;
-        b=Z1wJhPs/+m6cROii4fyc4JZnfOXbocQ6f37emD6PHGC6RdXDircjHWk6yFEQPDZeUr
-         tmADzMkKUss9gCBmkBU1Tcl4jK4OD+yTJcm49d2+sghZuJWxo7aoqrvUyQRhFGZs3Quh
-         Zva1QfL7GPQbWlNqo2v1u0UrsxAE5O6IedEWQmEEORf42xERsjUi/r2OsroKoTDT4PrR
-         ziRfT4WGuCxhkhz+vY9WdLIrzdo5n2sA45UPtMRXKdeJHiv8iIcfrRbIpHqhlLepg8W8
-         O5tHl3/r9mSTM/AWkMFGo8+R4lVQN5Jfk+yddNDrhByTwb1Q0z3P150ch8mg6YMCpezH
-         Oa3A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704195300; x=1704800100;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=orKv+A6OSfDSCHXqZgMuKri0ZasQ0RBaPs91SHs9hs4=;
-        b=JjlsqL7TbMI/H3pJK3LVf2DphSmZ0Do04f5JmDqwg5hXw4mKcd84v5bLk+l4sf09kO
-         uFjmSnCcpUrhapPJwlkN3WVeM/+UZU1r9EJ28bF/MVlhaHc8vut00zPUd2iEwibq8Nht
-         hsnRHWGVgrwh/fEvu7SrEW5nSvtXis+9tz/pkfAMSKXg483u/xsRuLNBaHLKCL4gJHzu
-         UDll8M60vgI+uGxtVT1tFF7zXW46F8352hWPFNf5U9GIbX2OXm30r9XpTDd/IN0xWm9P
-         WdpcqXR1KUwHN6Z4h+V64qXEn1XWlR0983qflXouW3Dzwa+2qjoEftRzAlbHLyBpo8Wn
-         On8Q==
-X-Gm-Message-State: AOJu0YydyHPzLzVGXnfu09+1HADI4nthZGlpDJ6qRJsgWrq9PwTYc63o
-	8s3zgqoVlGY6/08PD3cE6dmg4Hz3dd2BYqJH
-X-Google-Smtp-Source: AGHT+IFELfAmzLhdsEPLyRg6tHOQEeIWwtkfVf7ghI/7U2Dm2/h+LkSyBXG29dKTFvqZGT4Ld73Xfg==
-X-Received: by 2002:a05:6000:1c9:b0:336:7e39:a9c7 with SMTP id t9-20020a05600001c900b003367e39a9c7mr8644733wrx.141.1704195299883;
-        Tue, 02 Jan 2024 03:34:59 -0800 (PST)
-Received: from ?IPV6:2a02:8389:41cf:e200:f280:eb5b:2b83:dc35? (2a02-8389-41cf-e200-f280-eb5b-2b83-dc35.cable.dynamic.v6.surfer.at. [2a02:8389:41cf:e200:f280:eb5b:2b83:dc35])
-        by smtp.gmail.com with ESMTPSA id u17-20020a5d4351000000b00336f05840c4sm15498408wrr.100.2024.01.02.03.34.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 02 Jan 2024 03:34:59 -0800 (PST)
-Message-ID: <c0c18292-b766-490d-a564-275f25d476cc@gmail.com>
-Date: Tue, 2 Jan 2024 12:34:58 +0100
+	d=savoirfairelinux.com; s=DFC430D2-D198-11EC-948E-34200CB392D2;
+	t=1704195460; bh=bAsNfTDPGcy9UE/qR8q9C/MYhrYIBcUMKG2G3Oi4VLE=;
+	h=Date:From:To:Message-ID:MIME-Version;
+	b=HfBx0L9SYhFxNTXnatyaVVD/0MKoxKv1DkFPwS4FhP21ZdGhZFAP2Yw2hgXG5W1+t
+	 DG22L6dYlNdqI/yA4nolhiQbAYRMk3Yvd1vhj35YZTZ1keQ1XC+emTImMoQmjgdIjh
+	 alA58hoYPXIYl8/8523fTVCfrQVCNMBqb6qPyKUQ1uoRLrwWFtxWeVm73HyoV71weA
+	 Vcvll8Fbldw/DCB9WQCaUVbMMf9+FXj0uatTbgq9RGC183UtRM5ockSfi6AD3jQlfV
+	 NlAXW2vSrvxzA0K2KrHkaWWkgrrQsn+4DCiJZlStF1JhWW5TYl6ACLELjZgkVicaEV
+	 5OCMfpqr9RX7g==
+X-Virus-Scanned: amavis at mail.savoirfairelinux.com
+Received: from mail.savoirfairelinux.com ([127.0.0.1])
+ by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10026)
+ with ESMTP id 20Ly5X62OB9G; Tue,  2 Jan 2024 06:37:40 -0500 (EST)
+Received: from mail.savoirfairelinux.com (mail.savoirfairelinux.com [192.168.48.237])
+	by mail.savoirfairelinux.com (Postfix) with ESMTP id 1AD139C0888;
+	Tue,  2 Jan 2024 06:37:40 -0500 (EST)
+Date: Tue, 2 Jan 2024 06:37:39 -0500 (EST)
+From: Elinor Montmasson <elinor.montmasson@savoirfairelinux.com>
+To: Rob Herring <robh@kernel.org>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, 
+	shengjiu wang <shengjiu.wang@gmail.com>, 
+	Xiubo Lee <Xiubo.Lee@gmail.com>, Fabio Estevam <festevam@gmail.com>, 
+	Nicolin Chen <nicoleotsuka@gmail.com>, 
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
+	linux-sound <linux-sound@vger.kernel.org>, 
+	devicetree <devicetree@vger.kernel.org>, 
+	linux-kernel <linux-kernel@vger.kernel.org>, 
+	alsa-devel <alsa-devel@alsa-project.org>, 
+	linuxppc-dev <linuxppc-dev@lists.ozlabs.org>, 
+	Philip-Dylan Gleonec <philip-dylan.gleonec@savoirfairelinux.com>
+Message-ID: <1300509761.24764.1704195459987.JavaMail.zimbra@savoirfairelinux.com>
+In-Reply-To: <20231220222550.GA1232936-robh@kernel.org>
+References: <20231218124058.2047167-1-elinor.montmasson@savoirfairelinux.com> <20231218124058.2047167-11-elinor.montmasson@savoirfairelinux.com> <20231220222550.GA1232936-robh@kernel.org>
+Subject: Re: [PATCHv3 RESEND 10/10] ASoC: dt-bindings: fsl-asoc-card: add
+ compatible for generic codec
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] io: light: as73211: add support for as7331
-Content-Language: en-US
-To: Christian Eggers <ceggers@arri.de>, Jonathan Cameron <jic23@kernel.org>,
- Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20231220-as7331-v1-0-745b73c27703@gmail.com>
- <20231220-as7331-v1-2-745b73c27703@gmail.com> <2337038.ElGaqSPkdT@n95hx1g2>
-From: Javier Carrasco <javier.carrasco.cruz@gmail.com>
-In-Reply-To: <2337038.ElGaqSPkdT@n95hx1g2>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 7bit
+X-Mailer: Zimbra 8.8.15_GA_4581 (ZimbraWebClient - GC112 (Linux)/8.8.15_GA_4581)
+Thread-Topic: ASoC: dt-bindings: fsl-asoc-card: add compatible for generic codec
+Thread-Index: r/qDupTL/n3XOuEH8yE+GIqg/zABBQ==
 
-On 01.01.24 09:20, Christian Eggers wrote:
-> 
-> As I still work with Linux 6.1, I backported this patch for
-> that version. A short test with an as73211 didn't show any
-> differences.
-> 
-> If I shall test further revisions of this patch, I can do this
-> after the 9th of January.
-> 
-> 
-> If I shall test further revisions of this patch, I can do this
-> after the 9th of January.
-> 
-> 
-> Tested-by: Christian Eggers <ceggers@arri.de>
-> 
+Hello,
 
-Thanks a lot for testing, I am glad that everything still works as before.
+On Wednesday, 20 December, 2023 23:25:50, Rob Herring wrote:
+> On Mon, Dec 18, 2023 at 01:40:58PM +0100, Elinor Montmasson wrote: 
+> > +Optional, relevant only with the "fsl,imx-audio-generic" compatible: 
+> > + 
+> > + - cpu-slot-width : Indicates a specific TDM slot width in bits. 
+> > + - cpu-slot-num : Indicates a specific number of TDM slots per frame. 
+> 
+> Pretty sure I've seen other bindings with TDM slot properties. A sign we 
+> need something common if we don't already have something. 
+
+That's right, "tdm-slot.txt" already defines TDM bindings, I will
+use them with the utility function snd_soc_of_parse_tdm_slot().
+
+> > + - cpu-sysclk-freq-rx : Frequency of the CPU DAI sys clock for Rx. 
+> > + - cpu-sysclk-freq-tx : Frequency of the CPU DAI sys clock for Tx. 
+> > + 
+> > + - cpu-sysclk-dir-rx-out : Boolean property. Specifies sys clock direction 
+> > + as 'out' on initialization for Rx. 
+> > + If not set, default direction is 'in'. 
+> > + - cpu-sysclk-dir-tx-out : Boolean property. Specifies sys clock direction 
+> > + as 'out' on initialization for Tx. 
+> > + If not set, default direction is 'in'. 
+> 
+> Looks like clock stuff. Use the clock binding. 
+
+simple-card defines similar properties at the dai level:
+"system-clock-frequency" and "system-clock-direction-out".
+The first is used if no "clocks" binding is specified for the dai node.
+
+Maybe I could use a similar logic with fsl-asoc-card ?
+* adding a "clock-cpu" phandle property which should be the cpu clock.
+It will be used to retreive the frequency for both RX and TX.
+* keeping "cpu-sysclk-freq-rx"/"cpu-sysclk-freq-tx", which are used if
+no clock is provided, like "system-clock-frequency" in simple-card.
+* keep using "cpu-sysclk-dir-rx-out"/"cpu-sysclk-dir-tx-out", like
+"system-clock-direction-out" in simple card.
+
+Also, maybe I could rename my new properties:
+cpu-system-clock-frequency-tx, cpu-system-clock-direction-out-rx, ...
+It would better match those in simple-card as they do the same thing.
 
 Best regards,
-Javier Carrasco
+Elinor Montmasson
 
