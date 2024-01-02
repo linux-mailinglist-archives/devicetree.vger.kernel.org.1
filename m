@@ -1,223 +1,104 @@
-Return-Path: <devicetree+bounces-29160-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29161-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 585D0821A8D
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 11:55:08 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 465CB821A9B
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 12:01:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D7F8C1F222EB
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 10:55:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6C79E1C20DE6
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 11:01:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AF78D52C;
-	Tue,  2 Jan 2024 10:55:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74DF5D534;
+	Tue,  2 Jan 2024 11:01:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="OLRwXiX8"
+	dkim=pass (2048-bit key) header.d=edgeble-ai.20230601.gappssmtp.com header.i=@edgeble-ai.20230601.gappssmtp.com header.b="mJnJSifX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com [209.85.210.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF9BBDDB6;
-	Tue,  2 Jan 2024 10:55:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1704192900; x=1735728900;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=ernVMvHIdMmRyXTlOPbkeyMa4Sia/syaBuLWXeGaLU4=;
-  b=OLRwXiX8sBgIM3KaMwC90tnIY/z4vpvpGUZ03moqhmwVixJu1kB/kzeZ
-   3B+H/six6cVal5u8aZiCQvNXhzq1XnRzT4pb+/ovl3TQ16bL5odJlINtU
-   Q9nJTqXUd+zVfw0JphnWcvazIbpfbDU+cTphs1uYPmeQE/BG/HQjGAdi2
-   Cw0eqgbwZrXrPbRm9f3Dtxk526UQcCYcNhiaXtLqWsjNYCFLstm23fsXH
-   STX6cf35340gPvELB9hircQQ6vs4x2BZprOgLo5P6rdfeghBNg52XwGGL
-   0pMZxYNhvnV9LHBjuVosfrC4RI8BYCBWy0UWZGSEzXDpNgH/eoY614QQK
-   w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10940"; a="396596699"
-X-IronPort-AV: E=Sophos;i="6.04,324,1695711600"; 
-   d="scan'208";a="396596699"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Jan 2024 02:54:59 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10940"; a="779660508"
-X-IronPort-AV: E=Sophos;i="6.04,324,1695711600"; 
-   d="scan'208";a="779660508"
-Received: from ahunter6-mobl1.ger.corp.intel.com (HELO [10.0.2.15]) ([10.252.51.83])
-  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Jan 2024 02:54:55 -0800
-Message-ID: <92621539-4ec5-4aa0-a7da-c6eb87ee1a52@intel.com>
-Date: Tue, 2 Jan 2024 12:54:54 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D149DDA6
+	for <devicetree@vger.kernel.org>; Tue,  2 Jan 2024 11:01:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=edgeble.ai
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=edgeble.ai
+Received: by mail-pf1-f179.google.com with SMTP id d2e1a72fcca58-6da6b0eb2d4so188870b3a.1
+        for <devicetree@vger.kernel.org>; Tue, 02 Jan 2024 03:01:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=edgeble-ai.20230601.gappssmtp.com; s=20230601; t=1704193293; x=1704798093; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=Cl3+Gz73Blj8bbHen/MsuMvAvYRueD40O/9CXlEA1Ac=;
+        b=mJnJSifXdiGrl+YUcoDVGgIY+3696IDTRyDIH6F5w98M9IcaXPAhepjbg1g7gVNNxt
+         mhnDZVLnvcCIR2sMkl9YEpQPsQcvs5LqjfPRRV8pjjgtaECwWnwwYYqNAxo5CoJV2Owx
+         l1gC9OF7Fr08+xk1LmnUHeJFewEL1BS9eWvD4LP4AyTSGLYD/hj1WaucvF1nYN2eyJex
+         JUO1IAFdx3Wz/I2oK6ASEtaqPaPFuMkr3NxZoJxaj4IGA/qnxB5U9HlM0sY8NS6mLCLX
+         HNQaYmgxeKozLUiL1muh3JUXi91pd+7bNeAnniZosQq1sUbGjc+famSojPUQ9vsSfLXl
+         BvZQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1704193293; x=1704798093;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Cl3+Gz73Blj8bbHen/MsuMvAvYRueD40O/9CXlEA1Ac=;
+        b=tH47SEfGLhG3i7X86dh4GiCd5E2ZiNW3cEGqqw15u+Y+IhSLNozUb5y29wxswRU1/C
+         yt/1iHO1GQVavHM5FARl0GodQisiajjPiANOGmWZw7+kjuP5Q23Gz/48hZLaJBMA0kvg
+         0BirwUI/Cv5dFMwazmGAk6PYp0MCtBVMf2062jNlV55wNphTCKiNIY6MJczKinS6chtG
+         HKhENxVjsfVkJ3/v8JP7aOXt39uIv7obOiXnyOhK869difrrtBuSHov/2ykEDuZHyrjK
+         H9fxBMG/Vwpx4oqFQ8rbQ1gC29S7Jn4DiWYp5+vY5tCjG98BY5S6XvuDF3wBTXLHZGFo
+         DSZw==
+X-Gm-Message-State: AOJu0Yxdz1EgWvNe7FqcKryhRj9LAGEjsOXUGJApFijpvOdqFPYQiMk7
+	rmk16Sos6cx7IQWcaYb8H87S8fyM5CqPXVlkyNc1Xkq3Pb+WyA==
+X-Google-Smtp-Source: AGHT+IF2EGlw5GxLPP0MtA41B9f42K0EkBosD189HmVIxczVkPrEaRXnF58QaQps8h0wuPDaT95GdcqYAeKGjGLEysk=
+X-Received: by 2002:aa7:90d8:0:b0:6d5:a679:e8f4 with SMTP id
+ k24-20020aa790d8000000b006d5a679e8f4mr7350622pfk.57.1704193293222; Tue, 02
+ Jan 2024 03:01:33 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 2/2] mmc: add new sdhci reset sequence for brcm 74165b0
-Content-Language: en-US
-To: Kamal Dasu <kamal.dasu@broadcom.com>, ulf.hansson@linaro.org,
- linux-kernel@vger.kernel.org, alcooperx@gmail.com,
- linux-arm-kernel@lists.infradead.org, linux-mmc@vger.kernel.org,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- devicetree@vger.kernel.org
-Cc: f.fainelli@gmail.com, bcm-kernel-feedback-list@broadcom.com,
- Kamal Dasu <kdasu@broadcom.com>
-References: <20231220153031.38678-1-kamal.dasu@broadcom.com>
- <20231220153031.38678-3-kamal.dasu@broadcom.com>
-From: Adrian Hunter <adrian.hunter@intel.com>
-Organization: Intel Finland Oy, Registered Address: PL 281, 00181 Helsinki,
- Business Identity Code: 0357606 - 4, Domiciled in Helsinki
-In-Reply-To: <20231220153031.38678-3-kamal.dasu@broadcom.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20231125190522.87607-1-jagan@edgeble.ai>
+In-Reply-To: <20231125190522.87607-1-jagan@edgeble.ai>
+From: Jagan Teki <jagan@edgeble.ai>
+Date: Tue, 2 Jan 2024 16:31:21 +0530
+Message-ID: <CA+VMnFx4j1=CGou4yya_7RbFgPwQ_KqOLoTWbYLthPw2VwR3iQ@mail.gmail.com>
+Subject: Re: [PATCH v2 00/10] arm64: dts: rockchip: Pack Edgeble NCM6A, 6B DT
+To: Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-rockchip@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
 
-On 20/12/23 17:30, Kamal Dasu wrote:
-> From: Kamal Dasu <kdasu@broadcom.com>
-> 
-> 74165b0 shall use a new sdio controller core version which
-> requires a different reset sequence. For core reset we use
-> sdhci_reset. For CMD and/or DATA reset added a new function
-> to also enable SDHCI clocks SDHCI_CLOCK_CARD_EN
-> SDHCI_CLOCK_INT_EN along with the SDHCI_RESET_CMD and/or
-> SDHCI_RESET_DATA fields.
-> 
-> Signed-off-by: Kamal Dasu <kdasu@broadcom.com>
-> ---
->  drivers/mmc/host/sdhci-brcmstb.c | 67 +++++++++++++++++++++++++++++---
->  1 file changed, 62 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/mmc/host/sdhci-brcmstb.c b/drivers/mmc/host/sdhci-brcmstb.c
-> index c23251bb95f3..f171980b014e 100644
-> --- a/drivers/mmc/host/sdhci-brcmstb.c
-> +++ b/drivers/mmc/host/sdhci-brcmstb.c
-> @@ -6,6 +6,7 @@
->   */
->  
->  #include <linux/io.h>
-> +#include <linux/iopoll.h>
->  #include <linux/mmc/host.h>
->  #include <linux/module.h>
->  #include <linux/of.h>
-> @@ -44,8 +45,13 @@ struct brcmstb_match_priv {
->  
->  static inline void enable_clock_gating(struct sdhci_host *host)
->  {
-> +	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
-> +	struct sdhci_brcmstb_priv *priv = sdhci_pltfm_priv(pltfm_host);
->  	u32 reg;
->  
-> +	if (!(priv->flags & BRCMSTB_PRIV_FLAGS_GATE_CLOCK))
-> +		return;
-> +
->  	reg = sdhci_readl(host, SDHCI_VENDOR);
->  	reg |= SDHCI_VENDOR_GATE_SDCLK_EN;
->  	sdhci_writel(host, reg, SDHCI_VENDOR);
-> @@ -53,14 +59,51 @@ static inline void enable_clock_gating(struct sdhci_host *host)
->  
->  static void brcmstb_reset(struct sdhci_host *host, u8 mask)
->  {
-> -	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
-> -	struct sdhci_brcmstb_priv *priv = sdhci_pltfm_priv(pltfm_host);
-> -
->  	sdhci_and_cqhci_reset(host, mask);
->  
->  	/* Reset will clear this, so re-enable it */
-> -	if (priv->flags & BRCMSTB_PRIV_FLAGS_GATE_CLOCK)
-> -		enable_clock_gating(host);
-> +	enable_clock_gating(host);
-> +}
-> +
-> +static void brcmstb_sdhci_reset_cmd_data(struct sdhci_host *host, u8 mask)
-> +{
-> +	int ret;
-> +	u32 reg;
-> +	u32 new_mask = (mask &  (SDHCI_RESET_CMD | SDHCI_RESET_DATA)) << 24;
+Hi Heiko,
 
-It looks slightly neater if longer lines comes first i.e.
+On Sun, 26 Nov 2023 at 00:35, Jagan Teki <jagan@edgeble.ai> wrote:
+>
+> DT patch set for Edgeble NCM6A, NCM6B SoM, and IO board.
+>
+> Changes for v2:
+> - suffix -regulator in node names
+> - fix node lables
+> - update commit message
+>
+> Any inputs?
+> Jagan.
+>
+> Jagan Teki (10):
+>   arm64: dts: rockchip: Drop edgeble-neu6b dcdc-reg4 regulator-init-microvolt
+>   arm64: dts: rockchip: Add edgeble-neu6a-common DT
+>   arm64: dts: rockchip: Add common DT for edgeble-neu6b-io
+>   arm64: dts: rockchip: Add Edgeble NCM6A WiFi6 Overlay
+>   arm64: dts: rockchip: Add vdd_cpu_big reg to rk3588-edgeble-ncm6
+>   arm64: dts: rockchip: Add Edgeble NCM6A-IO 2.5G ETH
+>   arm64: dts: rockchip: Add Edgeble NCM6A-IO M.2 M-Key
+>   arm64: dts: rockchip: Add Edgeble NCM6A-IO M.2 B-Key, E-Key
+>   arm64: dts: rockchip: Add Edgeble NCM6A-IO USB2
+>   arm64: dts: rockchip: Add LED_GREEN for edgeble-neu6a
 
-	u32 new_mask = (mask &  (SDHCI_RESET_CMD | SDHCI_RESET_DATA)) << 24;
-	u32 reg;
-	int ret;
+Any update on this patch-set?
 
-> +
-> +	/*
-> +	 * SDHCI_CLOCK_CONTROL register CARD_EN and CLOCK_INT_EN bits shall
-> +	 * be set along with SOFTWARE_RESET register RESET_CMD or RESET_DATA
-> +	 * bits, hence access SDHCI_CLOCK_CONTROL register as 32-bit register
-> +	 */
-> +	new_mask |= SDHCI_CLOCK_CARD_EN | SDHCI_CLOCK_INT_EN;
-> +	reg = sdhci_readl(host, SDHCI_CLOCK_CONTROL);
-> +	sdhci_writel(host, reg | new_mask, SDHCI_CLOCK_CONTROL);
-> +
-> +	reg = sdhci_readb(host, SDHCI_SOFTWARE_RESET);
-> +	ret = readb_poll_timeout_atomic(host->ioaddr + SDHCI_SOFTWARE_RESET,
-> +					reg, reg & mask, 10, 10000);
-
-The break condition does not seem the right way around.
-Also read_poll_timeout_atomic() seems neater e.g.
-
-	ret = read_poll_timeout_atomic(sdhci_readb, reg, !(reg & mask),
-				       10, 10000, false,
-				       host, SDHCI_SOFTWARE_RESET);
-
-
-> +
-> +	if (ret) {
-> +		pr_err("%s: Reset 0x%x never completed.\n",
-> +		       mmc_hostname(host->mmc), (int)mask);
-> +		sdhci_err_stats_inc(host, CTRL_TIMEOUT);
-> +		sdhci_dumpregs(host);
-> +	}
-> +}
-> +
-> +static void brcmstb_reset_74165b0(struct sdhci_host *host, u8 mask)
-> +{
-> +	/* take care of RESET_ALL as usual */
-> +	if (mask & SDHCI_RESET_ALL)
-> +		sdhci_and_cqhci_reset(host, SDHCI_RESET_ALL);
-> +
-> +	/* cmd and/or data treated differently on this core */
-> +	if (mask & (SDHCI_RESET_CMD | SDHCI_RESET_DATA))
-> +		brcmstb_sdhci_reset_cmd_data(host, mask);
-> +
-> +	/* Reset will clear this, so re-enable it */
-> +	enable_clock_gating(host);
->  }
->  
->  static void sdhci_brcmstb_hs400es(struct mmc_host *mmc, struct mmc_ios *ios)
-> @@ -162,6 +205,13 @@ static struct sdhci_ops sdhci_brcmstb_ops_7216 = {
->  	.set_uhs_signaling = sdhci_brcmstb_set_uhs_signaling,
->  };
->  
-> +static struct sdhci_ops sdhci_brcmstb_ops_74165b0 = {
-> +	.set_clock = sdhci_brcmstb_set_clock,
-> +	.set_bus_width = sdhci_set_bus_width,
-> +	.reset = brcmstb_reset_74165b0,
-> +	.set_uhs_signaling = sdhci_brcmstb_set_uhs_signaling,
-> +};
-> +
->  static struct brcmstb_match_priv match_priv_7425 = {
->  	.flags = BRCMSTB_MATCH_FLAGS_NO_64BIT |
->  	BRCMSTB_MATCH_FLAGS_BROKEN_TIMEOUT,
-> @@ -179,10 +229,17 @@ static const struct brcmstb_match_priv match_priv_7216 = {
->  	.ops = &sdhci_brcmstb_ops_7216,
->  };
->  
-> +static struct brcmstb_match_priv match_priv_74165b0 = {
-> +	.flags = BRCMSTB_MATCH_FLAGS_HAS_CLOCK_GATE,
-> +	.hs400es = sdhci_brcmstb_hs400es,
-> +	.ops = &sdhci_brcmstb_ops_74165b0,
-> +};
-> +
->  static const struct of_device_id __maybe_unused sdhci_brcm_of_match[] = {
->  	{ .compatible = "brcm,bcm7425-sdhci", .data = &match_priv_7425 },
->  	{ .compatible = "brcm,bcm7445-sdhci", .data = &match_priv_7445 },
->  	{ .compatible = "brcm,bcm7216-sdhci", .data = &match_priv_7216 },
-> +	{ .compatible = "brcm,bcm74165b0-sdhci", .data = &match_priv_74165b0 },
->  	{},
->  };
->  
-
+Thanks,
+Jagan.
 
