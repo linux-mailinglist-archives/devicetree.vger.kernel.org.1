@@ -1,445 +1,401 @@
-Return-Path: <devicetree+bounces-29131-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29132-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46E92821871
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 09:40:21 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B3FB821885
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 09:48:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 98623B21144
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 08:40:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A307E1F21D4A
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 08:48:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3ED4C4C84;
-	Tue,  2 Jan 2024 08:40:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E0344C8F;
+	Tue,  2 Jan 2024 08:47:59 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mg.richtek.com (mg.richtek.com [220.130.44.152])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09F8C53A7;
-	Tue,  2 Jan 2024 08:40:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=richtek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=richtek.com
-X-MailGates: (SIP:2,PASS,NONE)(compute_score:DELIVER,40,3)
-Received: from 192.168.10.46
-	by mg.richtek.com with MailGates ESMTPS Server V6.0(636803:1:AUTH_RELAY)
-	(envelope-from <cy_huang@richtek.com>)
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256/256); Tue, 02 Jan 2024 16:39:43 +0800 (CST)
-Received: from ex3.rt.l (192.168.10.46) by ex3.rt.l (192.168.10.46) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1258.27; Tue, 2 Jan
- 2024 16:39:42 +0800
-Received: from linuxcarl2.richtek.com (192.168.10.154) by ex3.rt.l
- (192.168.10.45) with Microsoft SMTP Server id 15.2.1258.27 via Frontend
- Transport; Tue, 2 Jan 2024 16:39:42 +0800
-Date: Tue, 2 Jan 2024 16:39:42 +0800
-From: ChiYuan Huang <cy_huang@richtek.com>
-To: Jonathan Cameron <jic23@kernel.org>
-CC: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
-	<conor+dt@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, Rob Herring
-	<robh+dt@kernel.org>, Uwe =?iso-8859-1?Q?Kleine-K=F6nig?=
-	<u.kleine-koenig@pengutronix.de>, <linux-iio@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 2/2] iio: adc: rtq6056: Add support for the whole
- RTQ6056 family
-Message-ID: <20240102083942.GA14725@linuxcarl2.richtek.com>
-References: <cover.1703762557.git.cy_huang@richtek.com>
- <74db15583a9a68701dbff5a1a967c0d987d6dfb6.1703762557.git.cy_huang@richtek.com>
- <20231230120347.0816bd09@jic23-huawei>
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37BDE53A7
+	for <devicetree@vger.kernel.org>; Tue,  2 Jan 2024 08:47:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1rKaR9-0004UX-8C; Tue, 02 Jan 2024 09:47:47 +0100
+Received: from [2a0a:edc0:2:b01:1d::c0] (helo=ptx.whiteo.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1rKaR5-0038oO-JY; Tue, 02 Jan 2024 09:47:44 +0100
+Received: from mfe by ptx.whiteo.stw.pengutronix.de with local (Exim 4.92)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1rKaR6-009tC8-J4; Tue, 02 Jan 2024 09:47:44 +0100
+Date: Tue, 2 Jan 2024 09:47:44 +0100
+From: Marco Felsch <m.felsch@pengutronix.de>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: krzysztof.kozlowski@linaro.org, devicetree@vger.kernel.org,
+	conor+dt@kernel.org, hongxing.zhu@nxp.com,
+	krzysztof.kozlowski+dt@linaro.org, imx@lists.linux.dev,
+	linux-pci@vger.kernel.org, lpieralisi@kernel.org,
+	linux-kernel@vger.kernel.org, s.hauer@pengutronix.de,
+	helgaas@kernel.org, linux-imx@nxp.com, kernel@pengutronix.de,
+	manivannan.sadhasivam@linaro.org, bhelgaas@google.com,
+	shawnguo@kernel.org, kw@linux.com, festevam@gmail.com,
+	robh@kernel.org, linux-arm-kernel@lists.infradead.org,
+	l.stach@pengutronix.de
+Subject: Re: [PATCH v7 01/16] PCI: imx6: Simplify clock handling by using
+ bulk_clk_*() function
+Message-ID: <20240102084744.tyquwp6hkb36tfxg@pengutronix.de>
+References: <20231227182727.1747435-1-Frank.Li@nxp.com>
+ <20231227182727.1747435-2-Frank.Li@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231230120347.0816bd09@jic23-huawei>
-User-Agent: Mutt/1.5.21 (2010-09-15)
+In-Reply-To: <20231227182727.1747435-2-Frank.Li@nxp.com>
+User-Agent: NeoMutt/20180716
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On Sat, Dec 30, 2023 at 12:03:47PM +0000, Jonathan Cameron wrote:
-> On Thu, 28 Dec 2023 19:29:35 +0800
-> <cy_huang@richtek.com> wrote:
-> 
-> > From: ChiYuan Huang <cy_huang@richtek.com>
-> > 
-> > RTQ6053 and RTQ6059 are the same series of RTQ6056.
-> > 
-> > The respective differences with RTQ6056 are listed below
-> > RTQ6053
-> > - chip package type
-> > 
-> > RTQ6059
-> > - Reduce the pinout for vbus sensing pin
-> > - Some internal ADC scaling change
-> > 
-> > Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
-> Hi ChiYuan,
-> 
-> Some comments inline, most focus on not mixing device specific features
-> across code and data.  You always want them to be fully specified by
-> the the device specific const struct directly not by code using an
-> ID from there.  It ends up more readable and more flexible to have it
-> all done via data or callbacks where things are a too complex for data.
-> 
-> Thanks,
-> 
-> Jonathan
-> 
-> > ---
-> > v2
-> > - Remove rtq6053 in DT match table and make rtq6053 fallback compatible
-> >   with rtq6056
-> > ---
-> >  drivers/iio/adc/rtq6056.c | 264 ++++++++++++++++++++++++++++++++++++--
-> >  1 file changed, 250 insertions(+), 14 deletions(-)
-> > 
-> > diff --git a/drivers/iio/adc/rtq6056.c b/drivers/iio/adc/rtq6056.c
-> > index ad4cea6839b2..5587178cea83 100644
-> > --- a/drivers/iio/adc/rtq6056.c
-> > +++ b/drivers/iio/adc/rtq6056.c
-> > @@ -39,6 +39,16 @@
-> >  #define RTQ6056_DEFAULT_CONFIG	0x4127
-> >  #define RTQ6056_CONT_ALLON	7
-> >  
-> > +#define RTQ6059_DEFAULT_CONFIG	0x3C47
-> > +#define RTQ6059_VBUS_LSB_OFFSET	3
-> > +#define RTQ6059_AVG_BASE	8
-> > +
-> > +enum {
-> > +	RICHTEK_DEV_RTQ6056 = 0,
-> > +	RICHTEK_DEV_RTQ6059,
-> > +	RICHTEK_DEV_MAX
-> > +};
-> > +
-> >  enum {
-> >  	RTQ6056_CH_VSHUNT = 0,
-> >  	RTQ6056_CH_VBUS,
-> > @@ -50,16 +60,29 @@ enum {
-> >  enum {
-> >  	F_OPMODE = 0,
-> >  	F_VSHUNTCT,
-> > +	F_SADC = F_VSHUNTCT,
-> 
-> If the devices have different register fields, better to have different enums
-> for them as well as that should result in less confusing code.
-> 
-> 
-> >  	F_VBUSCT,
-> > +	F_BADC = F_VBUSCT,
-> >  	F_AVG,
-> > +	F_PGA = F_AVG,
-> >  	F_RESET,
-> >  	F_MAX_FIELDS
-> >  };
-> >  
-> > +struct richtek_dev_data {
-> > +	int dev_id;
-> 
-> It almost always turns out to be a bad idea to use a mixture of
-> 'data' in a structure like this and a device id plus special casing int he
-> code.  Better to add more data to this structure or callbacks specific
-> to the individual devices types.  So I shouldn't see a dev_id field in
-> here at all.
-> 
-> > +	int default_conv_time;
-> > +	unsigned int default_config;
-> > +	unsigned int calib_coefficient;
-> > +	const struct reg_field *reg_fields;
-> > +	const struct iio_chan_spec *channels;
-> > +};
-> 
-> ...
-> 
-> >  static int rtq6056_adc_read_channel(struct rtq6056_priv *priv,
-> >  				    struct iio_chan_spec const *ch,
-> >  				    int *val)
-> >  {
-> > +	const struct richtek_dev_data *devdata = priv->devdata;
-> >  	struct device *dev = priv->dev;
-> >  	unsigned int addr = ch->address;
-> >  	unsigned int regval;
-> > @@ -168,10 +282,18 @@ static int rtq6056_adc_read_channel(struct rtq6056_priv *priv,
-> >  		return ret;
-> >  
-> >  	/* Power and VBUS is unsigned 16-bit, others are signed 16-bit */
-> > -	if (addr == RTQ6056_REG_BUSVOLT || addr == RTQ6056_REG_POWER)
-> > +	switch (addr) {
-> > +	case RTQ6056_REG_BUSVOLT:
-> > +		if (devdata->dev_id == RICHTEK_DEV_RTQ6059)
-> > +			regval >>= RTQ6059_VBUS_LSB_OFFSET;
-> 
-> Store the offset as for other case below and apply it unconditionally. If it is
-> zero then this is a noop.
-> 
-> > +		fallthrough;
-> > +	case RTQ6056_REG_POWER:
-> >  		*val = regval;
-> > -	else
-> > +		break;
-> > +	default:
-> >  		*val = sign_extend32(regval, 16);
-> 
-> Fallthrough stuff is harder to read so only use it when there is significant saving
-> in code.  here just repeat the sign_extend32() in both cases.
-> 
-> > +		break;
-> > +	}
-> >  
-> >  	return IIO_VAL_INT;
-> >  }
-> > @@ -199,6 +321,28 @@ static int rtq6056_adc_read_scale(struct iio_chan_spec const *ch, int *val,
-> >  	}
-> >  }
-> >  
-> 
-> >  static int rtq6056_adc_get_sample_freq(struct rtq6056_priv *priv,
-> >  				       struct iio_chan_spec const *ch, int *val)
-> >  {
-> > @@ -292,11 +464,15 @@ static int rtq6056_adc_read_raw(struct iio_dev *indio_dev,
-> >  				int *val2, long mask)
-> >  {
-> >  	struct rtq6056_priv *priv = iio_priv(indio_dev);
-> > +	const struct richtek_dev_data *devdata = priv->devdata;
-> >  
-> >  	switch (mask) {
-> >  	case IIO_CHAN_INFO_RAW:
-> >  		return rtq6056_adc_read_channel(priv, chan, val);
-> >  	case IIO_CHAN_INFO_SCALE:
-> > +		if (devdata->dev_id == RICHTEK_DEV_RTQ6059)
-> > +			return rtq6059_adc_read_scale(chan, val, val2);
-> 
-> Provide a callback for this as for other examples below.
-> 
-> > +
-> >  		return rtq6056_adc_read_scale(chan, val, val2);
-> >  	case IIO_CHAN_INFO_OVERSAMPLING_RATIO:
-> >  		*val = priv->avg_sample;
-> > @@ -313,16 +489,28 @@ static int rtq6056_adc_read_avail(struct iio_dev *indio_dev,
-> >  				  const int **vals, int *type, int *length,
-> >  				  long mask)
-> >  {
-> > +	struct rtq6056_priv *priv = iio_priv(indio_dev);
-> > +	const struct richtek_dev_data *devdata = priv->devdata;
-> > +
-> >  	switch (mask) {
-> >  	case IIO_CHAN_INFO_SAMP_FREQ:
-> > +		if (devdata->dev_id == RICHTEK_DEV_RTQ6059)
-> > +			return -EINVAL;
-> 
-> Shouldn't need this protection as the channels won't have relevant
-> bitmap bit set and this will never be called.
-> 
-> > +
-> >  		*vals = rtq6056_samp_freq_list;
-> >  		*type = IIO_VAL_INT;
-> >  		*length = ARRAY_SIZE(rtq6056_samp_freq_list);
-> >  		return IIO_AVAIL_LIST;
-> >  	case IIO_CHAN_INFO_OVERSAMPLING_RATIO:
-> > -		*vals = rtq6056_avg_sample_list;
-> > +		if (devdata->dev_id == RICHTEK_DEV_RTQ6059) {
-> > +			*vals = rtq6059_avg_sample_list;
-> > +			*length = ARRAY_SIZE(rtq6059_avg_sample_list);
-> Store all this in devdata.
-> 
-> 		*vals = devdata->avg_sample_list;
-> 		*length = devdata->avg_sample_list_length;
-> 
-> > +		} else {
-> > +			*vals = rtq6056_avg_sample_list;
-> > +			*length = ARRAY_SIZE(rtq6056_avg_sample_list);
-> > +		}
-> > +
-> >  		*type = IIO_VAL_INT;
-> > -		*length = ARRAY_SIZE(rtq6056_avg_sample_list);
-> >  		return IIO_AVAIL_LIST;
-> >  	default:
-> >  		return -EINVAL;
-> > @@ -334,6 +522,7 @@ static int rtq6056_adc_write_raw(struct iio_dev *indio_dev,
-> >  				 int val2, long mask)
-> >  {
-> >  	struct rtq6056_priv *priv = iio_priv(indio_dev);
-> > +	const struct richtek_dev_data *devdata = priv->devdata;
-> >  	int ret;
-> >  
-> >  	ret = iio_device_claim_direct_mode(indio_dev);
-> > @@ -342,10 +531,16 @@ static int rtq6056_adc_write_raw(struct iio_dev *indio_dev,
-> >  
-> >  	switch (mask) {
-> >  	case IIO_CHAN_INFO_SAMP_FREQ:
-> > -		ret = rtq6056_adc_set_samp_freq(priv, chan, val);
-> > +		if (devdata->dev_id == RICHTEK_DEV_RTQ6059)
-> > +			ret = -EINVAL;
-> > +		else
-> > +			ret = rtq6056_adc_set_samp_freq(priv, chan, val);
-> >  		break;
-> >  	case IIO_CHAN_INFO_OVERSAMPLING_RATIO:
-> > -		ret = rtq6056_adc_set_average(priv, val);
-> > +		if (devdata->dev_id == RICHTEK_DEV_RTQ6059)
-> > +			ret = rtq6059_adc_set_average(priv, val);
-> > +		else
-> > +			ret = rtq6056_adc_set_average(priv, val);
-> 
-> Provide a callback in devdata so this becomes something like
-> 		ret = devdata->set_averate(priv, val);
-> 
-> >  		break;
-> >  	default:
-> 
-> > +static const struct iio_info rtq6059_info = {
-> > +	.attrs = &rtq6056_attribute_group,
-> 
-> This is odd. you don't provide an access functions so you won't be able to read
-> channels etc. It isn't used so I guess you should just get rid of it.
-> 
-> > +};
-> > +
-> >  static irqreturn_t rtq6056_buffer_trigger_handler(int irq, void *p)
-> >  {
-> >  	struct iio_poll_func *pf = p;
-> >  	struct iio_dev *indio_dev = pf->indio_dev;
-> >  	struct rtq6056_priv *priv = iio_priv(indio_dev);
-> > +	const struct richtek_dev_data *devdata = priv->devdata;
-> >  	struct device *dev = priv->dev;
-> >  	struct {
-> >  		u16 vals[RTQ6056_MAX_CHANNEL];
-> > @@ -469,6 +670,10 @@ static irqreturn_t rtq6056_buffer_trigger_handler(int irq, void *p)
-> >  		if (ret)
-> >  			goto out;
-> >  
-> > +		if (devdata->dev_id == RICHTEK_DEV_RTQ6059 &&
-> > +		    addr == RTQ6056_REG_BUSVOLT)
-> 
-> Store an offset in the devdata->dev_id and this becomes something like.
-> 		if (addr == RTQ6056_REG_BUS_VOLT)
-> 			raw >>= devdata->vbus_offset;
-> 
-> > +			raw >>= RTQ6059_VBUS_LSB_OFFSET;
-> > +
-> >  		data.vals[i++] = raw;
-> >  	}
-> >  
-> > @@ -528,20 +733,26 @@ static int rtq6056_probe(struct i2c_client *i2c)
-> >  	struct rtq6056_priv *priv;
-> >  	struct device *dev = &i2c->dev;
-> >  	struct regmap *regmap;
-> > +	const struct richtek_dev_data *devdata;
-> >  	unsigned int vendor_id, shunt_resistor_uohm;
-> >  	int ret;
-> >  
-> >  	if (!i2c_check_functionality(i2c->adapter, I2C_FUNC_SMBUS_WORD_DATA))
-> >  		return -EOPNOTSUPP;
-> >  
-> > +	devdata = device_get_match_data(dev);
-> > +	if (!devdata)
-> > +		return dev_err_probe(dev, -EINVAL, "Invalid dev data\n");
-> > +
-> >  	indio_dev = devm_iio_device_alloc(dev, sizeof(*priv));
-> >  	if (!indio_dev)
-> >  		return -ENOMEM;
-> >  
-> >  	priv = iio_priv(indio_dev);
-> >  	priv->dev = dev;
-> > -	priv->vshuntct_us = priv->vbusct_us = 1037;
-> > +	priv->vshuntct_us = priv->vbusct_us = devdata->default_conv_time;
-> 
-> I'd keep a _us postfix for default_conv_time to make the units of that
-> self documenting as well.
-> 
-> >  	priv->avg_sample = 1;
-> > +	priv->devdata = devdata;
-> >  	i2c_set_clientdata(i2c, priv);
-> >  
-> >  	regmap = devm_regmap_init_i2c(i2c, &rtq6056_regmap_config);
-> > @@ -556,20 +767,26 @@ static int rtq6056_probe(struct i2c_client *i2c)
-> >  		return dev_err_probe(dev, ret,
-> >  				     "Failed to get manufacturer info\n");
-> >  
-> > +	/* For RTQ6059, this vendor id value is meaningless */
-> 
-> If that is the case, why are you checking it?
-> I'd read that comment as meaning this will fail for RTQ6059
->
-This is my misunderstanding. That's due to the draft datasheet not said this register
-exist.  After I contact the designer, that's all the same with RTQ6056.
+Hi Frank,
 
-So I'll remove the comment line. The check is still needed. RTQ6059 won't fail in this check.
-> >  	if (vendor_id != RTQ6056_VENDOR_ID)
-> >  		return dev_err_probe(dev, -ENODEV,
-> >  				     "Invalid vendor id 0x%04x\n", vendor_id);
-> >  
-> >  	ret = devm_regmap_field_bulk_alloc(dev, regmap, priv->rm_fields,
-> > -					   rtq6056_reg_fields, F_MAX_FIELDS);
-> > +					   devdata->reg_fields, F_MAX_FIELDS);
-> >  	if (ret)
-> >  		return dev_err_probe(dev, ret, "Failed to init regmap field\n");
-> >  
-> >  	/*
-> > +	 * RTQ6053 & RTQ6056:
-> >  	 * By default, configure average sample as 1, bus and shunt conversion
-> >  	 * time as 1037 microsecond, and operating mode to all on.
-> > +	 *
-> > +	 * RTQ6059:
-> > +	 * By default, configure average sample as 1, bus and shunt conversion
-> > +	 * time as 532 microsecond, and operating mode to all on.
-> Move this documentation to where devdata->default_config is set. 
-> It's device specific information, so put it in the device specific place not
-> the main code flow.
+On 23-12-27, Frank Li wrote:
+> Refactors the clock handling logic. Adds clk_names[] define in drvdata.
+> Using clk_bulk*() api simplifies the code.
+
+does this influence the clock enable/disable sequence ordering? Just
+asking to avoid regressions on older platforms which may require some
+sort of order (e.g. require clock-a before clock-b).
+
+Regards,
+  Marco
+
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
 > 
-> >  	 */
-> > -	ret = regmap_write(regmap, RTQ6056_REG_CONFIG, RTQ6056_DEFAULT_CONFIG);
-> > +	ret = regmap_write(regmap, RTQ6056_REG_CONFIG, devdata->default_config);
-> >  	if (ret)
-> >  		return dev_err_probe(dev, ret,
-> >  				     "Failed to enable continuous sensing\n");
-> > @@ -598,8 +815,8 @@ static int rtq6056_probe(struct i2c_client *i2c)
-> >  
-> >  	indio_dev->name = "rtq6056";
-> >  	indio_dev->modes = INDIO_DIRECT_MODE;
-> > -	indio_dev->channels = rtq6056_channels;
-> > -	indio_dev->num_channels = ARRAY_SIZE(rtq6056_channels);
-> > +	indio_dev->channels = devdata->channels;
-> > +	indio_dev->num_channels = RTQ6056_MAX_CHANNEL + 1;
+> Notes:
+>     Change from v4 to v5
+>     - update commit message
+>     - direct using clk name list, instead of macro
+>     - still keep caculate clk list count because sizeof return pre allocated
+>     array size.
+>     
+>     Change from v3 to v4
+>     - using clk_bulk_*() API
+>     Change from v1 to v3
+>     - none
 > 
-> I'd embed the number of channels in devdata as well then the ARRAY_SIZE() code
-> that is obviously correct can still be used (just with different things being
-> counted depending on which channels are being used). The gain in readability
-> is worth the tiny bit of extra code and data.
+>  drivers/pci/controller/dwc/pci-imx6.c | 125 ++++++++------------------
+>  1 file changed, 35 insertions(+), 90 deletions(-)
 > 
-> >  	indio_dev->info = &rtq6056_info;
-> >  
-> >  	ret = devm_iio_triggered_buffer_setup(dev, indio_dev, NULL,
-> > @@ -640,8 +857,27 @@ static int rtq6056_runtime_resume(struct device *dev)
-> >  static DEFINE_RUNTIME_DEV_PM_OPS(rtq6056_pm_ops, rtq6056_runtime_suspend,
-> >  				 rtq6056_runtime_resume, NULL);
-> >  
-> > +static const struct richtek_dev_data rtq6056_devdata = {
-> > +	.dev_id = RICHTEK_DEV_RTQ6056,
-> > +	.default_conv_time = 1037,
-> > +	.calib_coefficient = 5120000,
-> > +	.default_config = RTQ6056_DEFAULT_CONFIG,
-> > +	.reg_fields = rtq6056_reg_fields,
-> > +	.channels = rtq6056_channels,
-> > +};
-> > +
-> > +static const struct richtek_dev_data rtq6059_devdata = {
-> > +	.dev_id = RICHTEK_DEV_RTQ6059,
-> As mentioned above, this mix of data and a dev_id is not a good design pattern.
-> It tends to end up as insufficiently flexible as support for more devices is
-> added to a driver - plus it scatters the device type specific stuff all through
-> the driver rather than having it all in one place.
+> diff --git a/drivers/pci/controller/dwc/pci-imx6.c b/drivers/pci/controller/dwc/pci-imx6.c
+> index 74703362aeec7..50d9faaa17f71 100644
+> --- a/drivers/pci/controller/dwc/pci-imx6.c
+> +++ b/drivers/pci/controller/dwc/pci-imx6.c
+> @@ -61,12 +61,15 @@ enum imx6_pcie_variants {
+>  #define IMX6_PCIE_FLAG_IMX6_SPEED_CHANGE	BIT(1)
+>  #define IMX6_PCIE_FLAG_SUPPORTS_SUSPEND		BIT(2)
+>  
+> +#define IMX6_PCIE_MAX_CLKS       6
+> +
+>  struct imx6_pcie_drvdata {
+>  	enum imx6_pcie_variants variant;
+>  	enum dw_pcie_device_mode mode;
+>  	u32 flags;
+>  	int dbi_length;
+>  	const char *gpr;
+> +	const char *clk_names[IMX6_PCIE_MAX_CLKS];
+>  };
+>  
+>  struct imx6_pcie {
+> @@ -74,11 +77,8 @@ struct imx6_pcie {
+>  	int			reset_gpio;
+>  	bool			gpio_active_high;
+>  	bool			link_is_up;
+> -	struct clk		*pcie_bus;
+> -	struct clk		*pcie_phy;
+> -	struct clk		*pcie_inbound_axi;
+> -	struct clk		*pcie;
+> -	struct clk		*pcie_aux;
+> +	struct clk_bulk_data	clks[IMX6_PCIE_MAX_CLKS];
+> +	u32			clks_cnt;
+>  	struct regmap		*iomuxc_gpr;
+>  	u16			msi_ctrl;
+>  	u32			controller_id;
+> @@ -407,13 +407,18 @@ static void imx7d_pcie_wait_for_phy_pll_lock(struct imx6_pcie *imx6_pcie)
+>  
+>  static int imx6_setup_phy_mpll(struct imx6_pcie *imx6_pcie)
+>  {
+> -	unsigned long phy_rate = clk_get_rate(imx6_pcie->pcie_phy);
+> +	unsigned long phy_rate = 0;
+>  	int mult, div;
+>  	u16 val;
+> +	int i;
+>  
+>  	if (!(imx6_pcie->drvdata->flags & IMX6_PCIE_FLAG_IMX6_PHY))
+>  		return 0;
+>  
+> +	for (i = 0; i < imx6_pcie->clks_cnt; i++)
+> +		if (strncmp(imx6_pcie->clks[i].id, "pcie_phy", 8) == 0)
+> +			phy_rate = clk_get_rate(imx6_pcie->clks[i].clk);
+> +
+>  	switch (phy_rate) {
+>  	case 125000000:
+>  		/*
+> @@ -550,19 +555,11 @@ static int imx6_pcie_attach_pd(struct device *dev)
+>  
+>  static int imx6_pcie_enable_ref_clk(struct imx6_pcie *imx6_pcie)
+>  {
+> -	struct dw_pcie *pci = imx6_pcie->pci;
+> -	struct device *dev = pci->dev;
+>  	unsigned int offset;
+>  	int ret = 0;
+>  
+>  	switch (imx6_pcie->drvdata->variant) {
+>  	case IMX6SX:
+> -		ret = clk_prepare_enable(imx6_pcie->pcie_inbound_axi);
+> -		if (ret) {
+> -			dev_err(dev, "unable to enable pcie_axi clock\n");
+> -			break;
+> -		}
+> -
+>  		regmap_update_bits(imx6_pcie->iomuxc_gpr, IOMUXC_GPR12,
+>  				   IMX6SX_GPR12_PCIE_TEST_POWERDOWN, 0);
+>  		break;
+> @@ -589,12 +586,6 @@ static int imx6_pcie_enable_ref_clk(struct imx6_pcie *imx6_pcie)
+>  	case IMX8MQ_EP:
+>  	case IMX8MP:
+>  	case IMX8MP_EP:
+> -		ret = clk_prepare_enable(imx6_pcie->pcie_aux);
+> -		if (ret) {
+> -			dev_err(dev, "unable to enable pcie_aux clock\n");
+> -			break;
+> -		}
+> -
+>  		offset = imx6_pcie_grp_offset(imx6_pcie);
+>  		/*
+>  		 * Set the over ride low and enabled
+> @@ -615,9 +606,6 @@ static int imx6_pcie_enable_ref_clk(struct imx6_pcie *imx6_pcie)
+>  static void imx6_pcie_disable_ref_clk(struct imx6_pcie *imx6_pcie)
+>  {
+>  	switch (imx6_pcie->drvdata->variant) {
+> -	case IMX6SX:
+> -		clk_disable_unprepare(imx6_pcie->pcie_inbound_axi);
+> -		break;
+>  	case IMX6QP:
+>  	case IMX6Q:
+>  		regmap_update_bits(imx6_pcie->iomuxc_gpr, IOMUXC_GPR1,
+> @@ -631,14 +619,6 @@ static void imx6_pcie_disable_ref_clk(struct imx6_pcie *imx6_pcie)
+>  				   IMX7D_GPR12_PCIE_PHY_REFCLK_SEL,
+>  				   IMX7D_GPR12_PCIE_PHY_REFCLK_SEL);
+>  		break;
+> -	case IMX8MM:
+> -	case IMX8MM_EP:
+> -	case IMX8MQ:
+> -	case IMX8MQ_EP:
+> -	case IMX8MP:
+> -	case IMX8MP_EP:
+> -		clk_disable_unprepare(imx6_pcie->pcie_aux);
+> -		break;
+>  	default:
+>  		break;
+>  	}
+> @@ -650,23 +630,9 @@ static int imx6_pcie_clk_enable(struct imx6_pcie *imx6_pcie)
+>  	struct device *dev = pci->dev;
+>  	int ret;
+>  
+> -	ret = clk_prepare_enable(imx6_pcie->pcie_phy);
+> -	if (ret) {
+> -		dev_err(dev, "unable to enable pcie_phy clock\n");
+> +	ret =  clk_bulk_prepare_enable(imx6_pcie->clks_cnt, imx6_pcie->clks);
+> +	if (ret)
+>  		return ret;
+> -	}
+> -
+> -	ret = clk_prepare_enable(imx6_pcie->pcie_bus);
+> -	if (ret) {
+> -		dev_err(dev, "unable to enable pcie_bus clock\n");
+> -		goto err_pcie_bus;
+> -	}
+> -
+> -	ret = clk_prepare_enable(imx6_pcie->pcie);
+> -	if (ret) {
+> -		dev_err(dev, "unable to enable pcie clock\n");
+> -		goto err_pcie;
+> -	}
+>  
+>  	ret = imx6_pcie_enable_ref_clk(imx6_pcie);
+>  	if (ret) {
+> @@ -679,11 +645,7 @@ static int imx6_pcie_clk_enable(struct imx6_pcie *imx6_pcie)
+>  	return 0;
+>  
+>  err_ref_clk:
+> -	clk_disable_unprepare(imx6_pcie->pcie);
+> -err_pcie:
+> -	clk_disable_unprepare(imx6_pcie->pcie_bus);
+> -err_pcie_bus:
+> -	clk_disable_unprepare(imx6_pcie->pcie_phy);
+> +	clk_bulk_disable_unprepare(imx6_pcie->clks_cnt, imx6_pcie->clks);
+>  
+>  	return ret;
+>  }
+> @@ -691,9 +653,7 @@ static int imx6_pcie_clk_enable(struct imx6_pcie *imx6_pcie)
+>  static void imx6_pcie_clk_disable(struct imx6_pcie *imx6_pcie)
+>  {
+>  	imx6_pcie_disable_ref_clk(imx6_pcie);
+> -	clk_disable_unprepare(imx6_pcie->pcie);
+> -	clk_disable_unprepare(imx6_pcie->pcie_bus);
+> -	clk_disable_unprepare(imx6_pcie->pcie_phy);
+> +	clk_bulk_disable_unprepare(imx6_pcie->clks_cnt, imx6_pcie->clks);
+>  }
+>  
+>  static void imx6_pcie_assert_core_reset(struct imx6_pcie *imx6_pcie)
+> @@ -1305,32 +1265,19 @@ static int imx6_pcie_probe(struct platform_device *pdev)
+>  		return imx6_pcie->reset_gpio;
+>  	}
+>  
+> -	/* Fetch clocks */
+> -	imx6_pcie->pcie_bus = devm_clk_get(dev, "pcie_bus");
+> -	if (IS_ERR(imx6_pcie->pcie_bus))
+> -		return dev_err_probe(dev, PTR_ERR(imx6_pcie->pcie_bus),
+> -				     "pcie_bus clock source missing or invalid\n");
+> +	while (imx6_pcie->drvdata->clk_names[imx6_pcie->clks_cnt]) {
+> +		int i = imx6_pcie->clks_cnt;
+> +
+> +		imx6_pcie->clks[i].id = imx6_pcie->drvdata->clk_names[i];
+> +		imx6_pcie->clks_cnt++;
+> +	}
+>  
+> -	imx6_pcie->pcie = devm_clk_get(dev, "pcie");
+> -	if (IS_ERR(imx6_pcie->pcie))
+> -		return dev_err_probe(dev, PTR_ERR(imx6_pcie->pcie),
+> -				     "pcie clock source missing or invalid\n");
+> +	/* Fetch clocks */
+> +	ret = devm_clk_bulk_get(dev, imx6_pcie->clks_cnt, imx6_pcie->clks);
+> +	if (ret)
+> +		return ret;
+>  
+>  	switch (imx6_pcie->drvdata->variant) {
+> -	case IMX6SX:
+> -		imx6_pcie->pcie_inbound_axi = devm_clk_get(dev,
+> -							   "pcie_inbound_axi");
+> -		if (IS_ERR(imx6_pcie->pcie_inbound_axi))
+> -			return dev_err_probe(dev, PTR_ERR(imx6_pcie->pcie_inbound_axi),
+> -					     "pcie_inbound_axi clock missing or invalid\n");
+> -		break;
+> -	case IMX8MQ:
+> -	case IMX8MQ_EP:
+> -		imx6_pcie->pcie_aux = devm_clk_get(dev, "pcie_aux");
+> -		if (IS_ERR(imx6_pcie->pcie_aux))
+> -			return dev_err_probe(dev, PTR_ERR(imx6_pcie->pcie_aux),
+> -					     "pcie_aux clock source missing or invalid\n");
+> -		fallthrough;
+>  	case IMX7D:
+>  		if (dbi_base->start == IMX8MQ_PCIE2_BASE_ADDR)
+>  			imx6_pcie->controller_id = 1;
+> @@ -1353,10 +1300,6 @@ static int imx6_pcie_probe(struct platform_device *pdev)
+>  	case IMX8MM_EP:
+>  	case IMX8MP:
+>  	case IMX8MP_EP:
+> -		imx6_pcie->pcie_aux = devm_clk_get(dev, "pcie_aux");
+> -		if (IS_ERR(imx6_pcie->pcie_aux))
+> -			return dev_err_probe(dev, PTR_ERR(imx6_pcie->pcie_aux),
+> -					     "pcie_aux clock source missing or invalid\n");
+>  		imx6_pcie->apps_reset = devm_reset_control_get_exclusive(dev,
+>  									 "apps");
+>  		if (IS_ERR(imx6_pcie->apps_reset))
+> @@ -1372,14 +1315,6 @@ static int imx6_pcie_probe(struct platform_device *pdev)
+>  	default:
+>  		break;
+>  	}
+> -	/* Don't fetch the pcie_phy clock, if it has abstract PHY driver */
+> -	if (imx6_pcie->phy == NULL) {
+> -		imx6_pcie->pcie_phy = devm_clk_get(dev, "pcie_phy");
+> -		if (IS_ERR(imx6_pcie->pcie_phy))
+> -			return dev_err_probe(dev, PTR_ERR(imx6_pcie->pcie_phy),
+> -					     "pcie_phy clock source missing or invalid\n");
+> -	}
+> -
+>  
+>  	/* Grab turnoff reset */
+>  	imx6_pcie->turnoff_reset = devm_reset_control_get_optional_exclusive(dev, "turnoff");
+> @@ -1477,6 +1412,7 @@ static const struct imx6_pcie_drvdata drvdata[] = {
+>  			 IMX6_PCIE_FLAG_IMX6_SPEED_CHANGE,
+>  		.dbi_length = 0x200,
+>  		.gpr = "fsl,imx6q-iomuxc-gpr",
+> +		.clk_names = {"pcie_bus", "pcie", "pcie_phy"},
+>  	},
+>  	[IMX6SX] = {
+>  		.variant = IMX6SX,
+> @@ -1484,6 +1420,7 @@ static const struct imx6_pcie_drvdata drvdata[] = {
+>  			 IMX6_PCIE_FLAG_IMX6_SPEED_CHANGE |
+>  			 IMX6_PCIE_FLAG_SUPPORTS_SUSPEND,
+>  		.gpr = "fsl,imx6q-iomuxc-gpr",
+> +		.clk_names = {"pcie_bus", "pcie", "pcie_phy", "pcie_inbound_axi"},
+>  	},
+>  	[IMX6QP] = {
+>  		.variant = IMX6QP,
+> @@ -1492,40 +1429,48 @@ static const struct imx6_pcie_drvdata drvdata[] = {
+>  			 IMX6_PCIE_FLAG_SUPPORTS_SUSPEND,
+>  		.dbi_length = 0x200,
+>  		.gpr = "fsl,imx6q-iomuxc-gpr",
+> +		.clk_names = {"pcie_bus", "pcie", "pcie_phy"},
+>  	},
+>  	[IMX7D] = {
+>  		.variant = IMX7D,
+>  		.flags = IMX6_PCIE_FLAG_SUPPORTS_SUSPEND,
+>  		.gpr = "fsl,imx7d-iomuxc-gpr",
+> +		.clk_names = {"pcie_bus", "pcie", "pcie_phy"},
+>  	},
+>  	[IMX8MQ] = {
+>  		.variant = IMX8MQ,
+>  		.gpr = "fsl,imx8mq-iomuxc-gpr",
+> +		.clk_names = {"pcie_bus", "pcie", "pcie_phy", "pcie_aux"},
+>  	},
+>  	[IMX8MM] = {
+>  		.variant = IMX8MM,
+>  		.flags = IMX6_PCIE_FLAG_SUPPORTS_SUSPEND,
+>  		.gpr = "fsl,imx8mm-iomuxc-gpr",
+> +		.clk_names = {"pcie_bus", "pcie", "pcie_aux"},
+>  	},
+>  	[IMX8MP] = {
+>  		.variant = IMX8MP,
+>  		.flags = IMX6_PCIE_FLAG_SUPPORTS_SUSPEND,
+>  		.gpr = "fsl,imx8mp-iomuxc-gpr",
+> +		.clk_names = {"pcie_bus", "pcie", "pcie_aux"},
+>  	},
+>  	[IMX8MQ_EP] = {
+>  		.variant = IMX8MQ_EP,
+>  		.mode = DW_PCIE_EP_TYPE,
+>  		.gpr = "fsl,imx8mq-iomuxc-gpr",
+> +		.clk_names = {"pcie_bus", "pcie", "pcie_phy", "pcie_aux"},
+>  	},
+>  	[IMX8MM_EP] = {
+>  		.variant = IMX8MM_EP,
+>  		.mode = DW_PCIE_EP_TYPE,
+>  		.gpr = "fsl,imx8mm-iomuxc-gpr",
+> +		.clk_names = {"pcie_bus", "pcie", "pcie_aux"},
+>  	},
+>  	[IMX8MP_EP] = {
+>  		.variant = IMX8MP_EP,
+>  		.mode = DW_PCIE_EP_TYPE,
+>  		.gpr = "fsl,imx8mp-iomuxc-gpr",
+> +		.clk_names = {"pcie_bus", "pcie", "pcie_aux"},
+>  	},
+>  };
+>  
+> -- 
+> 2.34.1
 > 
-> > +	.default_conv_time = 532,
-> > +	.calib_coefficient = 40960000,
-> > +	.default_config = RTQ6059_DEFAULT_CONFIG,
-> > +	.reg_fields = rtq6059_reg_fields,
-> > +	.channels = rtq6059_channels,
-> > +};
-> > +
-> >  static const struct of_device_id rtq6056_device_match[] = {
-> > -	{ .compatible = "richtek,rtq6056" },
-> > +	{ .compatible = "richtek,rtq6056", .data = &rtq6056_devdata },
-> > +	{ .compatible = "richtek,rtq6059", .data = &rtq6059_devdata },
-> >  	{}
-> >  };
-> >  MODULE_DEVICE_TABLE(of, rtq6056_device_match);
+> 
 > 
 
