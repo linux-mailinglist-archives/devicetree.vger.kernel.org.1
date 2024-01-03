@@ -1,68 +1,73 @@
-Return-Path: <devicetree+bounces-29380-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29381-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9FF7822A5C
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 10:43:05 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A1B7822A63
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 10:46:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 98BB01F23920
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 09:43:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 04BA71F20D22
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 09:46:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B557182CC;
-	Wed,  3 Jan 2024 09:43:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BAF0182D4;
+	Wed,  3 Jan 2024 09:45:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=xff.cz header.i=@xff.cz header.b="DWllvzcs"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="V6TRokKm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps.xff.cz (vps.xff.cz [195.181.215.36])
+Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF505182A4;
-	Wed,  3 Jan 2024 09:42:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=xff.cz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=xff.cz
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=xff.cz; s=mail;
-	t=1704274974; bh=+FuXJj2iKg82sXCjmgWQQwQpfkrjPVRuS95BkQPHOsw=;
-	h=Date:From:To:Cc:Subject:X-My-GPG-KeyId:References:From;
-	b=DWllvzcsi439e2+YBGopYhr7/9P4TW/n11basEqxa5WmGOsOuP9HnwC1kXB4B2o1+
-	 SbiCHP4a0BGb1mZFtaJjf3sSm54STGsn0NSLu5ZpzdrxDb3+tuGLSgdyPZpmbBYqrL
-	 7VHgotempQviHZ7yLqhZT+zg9JoMETqwqz2oaZt8=
-Date: Wed, 3 Jan 2024 10:42:54 +0100
-From: =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>
-To: Manuel Traut <manut@mecka.net>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, 
-	Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
-	Daniel Vetter <daniel@ffwll.ch>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Heiko Stuebner <heiko@sntech.de>, Sandy Huang <hjc@rock-chips.com>, 
-	Mark Yao <markyao0591@gmail.com>, Diederik de Haas <didi.debian@cknow.org>, 
-	Segfault <awarnecke002@hotmail.com>, Arnaud Ferraris <aferraris@debian.org>, 
-	Danct12 <danct12@riseup.net>, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH v3 4/4] arm64: dts: rockchip: Add devicetree for Pine64
- PineTab2
-Message-ID: <vj3elmkt6czisvwqouv2hhvut2va5jw6bbj5kjyxawvrnrdfwm@tlpo3dp3qcyb>
-Mail-Followup-To: =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>, 
-	Manuel Traut <manut@mecka.net>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
-	Daniel Vetter <daniel@ffwll.ch>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Heiko Stuebner <heiko@sntech.de>, Sandy Huang <hjc@rock-chips.com>, 
-	Mark Yao <markyao0591@gmail.com>, Diederik de Haas <didi.debian@cknow.org>, 
-	Segfault <awarnecke002@hotmail.com>, Arnaud Ferraris <aferraris@debian.org>, 
-	Danct12 <danct12@riseup.net>, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-rockchip@lists.infradead.org
-X-My-GPG-KeyId: EBFBDDE11FB918D44D1F56C1F9F0A873BE9777ED
- <https://xff.cz/key.txt>
-References: <20240102-pinetab2-v3-0-cb1aa69f8c30@mecka.net>
- <20240102-pinetab2-v3-4-cb1aa69f8c30@mecka.net>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D473518623
+	for <devicetree@vger.kernel.org>; Wed,  3 Jan 2024 09:45:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-a28a997f3dfso11793466b.0
+        for <devicetree@vger.kernel.org>; Wed, 03 Jan 2024 01:45:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1704275138; x=1704879938; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
+         :to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=1XFro0zDE33nuxg1ml/0DMiVoso4Wj1BQrGtGR63iVA=;
+        b=V6TRokKmzjOXZ+tleY9yYMIhWcucqU5pn6GccoCbFQPjsWrbyyW3i37kGHAxGW1sn8
+         SJAyhyqTQdu+01WwN5XLBG4gPfVEZF7olXI8hvdP13LHkUEji4PCXPalVnlUEqbp4oyZ
+         MHMaDzmiMDURbxaLV9tPqqQ2tNHN3QCMuAJPuepnm12fG1IQqEepaxnbftzNTs2gFzi3
+         8k9i1/j0ckpeFu68XZu7FEcEK0YwKP48pWUM+moVniL5/yqQkbdPxjpqsPyj3pYHD5ho
+         2aQ6sWnrt8lpqB3vKf1BVf6eLJiT4VtRrydJXSN3JOlQQ7TPzddQv/cfQc8gk46iYyhX
+         oaXw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1704275138; x=1704879938;
+        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
+         :to:from:date:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=1XFro0zDE33nuxg1ml/0DMiVoso4Wj1BQrGtGR63iVA=;
+        b=RkHJ1SqHvL56mC6O8bKsqdp5Cx+zteiIOcMwc1ghn2KLyRd8JeVgiYFVH0QlaUdeTI
+         mEn+XYOjJhlWYhMwn8/B4aNUOaN7WV0YyE92ORRxlyvhpxlC8X7lXG+MlzANZKTHoVp/
+         4diNBtODXtO+BSkScSnFnIG4S3WwcnxzsGOWpWZiG/PkJ0RDwWcdAWZGrcx5K3bkqwfq
+         cAg3J+jXbE0ol5sRFCYzpwEILl/NOlXaDGgeFnv/VYO7it2bBiJDRK+/UpbeHSvOp98I
+         mBgUv9zIQff07u/td882jdiR1Mj1ASATrCl2nsEw99xWk6NkTTmJLQNwKLeJzkB3MY5f
+         jiNQ==
+X-Gm-Message-State: AOJu0YxIkPHhQAAG5EI93hGNnktE7jNcKwaxyujZKmUasyGeCILNhHRm
+	IPY/npYlP0CA3lZYQlubuXp1NxweXWtz4g==
+X-Google-Smtp-Source: AGHT+IEJZtiOe8S7Hm02u5QiHa9HqT4SSVlifY1Jy9f4gxVxzrACTb8d6jybuGtZDZaFQiT2nUhP4Q==
+X-Received: by 2002:a17:907:984:b0:a27:af7:bba5 with SMTP id bf4-20020a170907098400b00a270af7bba5mr8336282ejc.22.1704275138083;
+        Wed, 03 Jan 2024 01:45:38 -0800 (PST)
+Received: from localhost ([102.140.209.237])
+        by smtp.gmail.com with ESMTPSA id t15-20020a170906178f00b00a28acfac149sm56045eje.53.2024.01.03.01.45.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 03 Jan 2024 01:45:37 -0800 (PST)
+Date: Wed, 3 Jan 2024 12:45:34 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: oe-kbuild@lists.linux.dev, James Tai <james.tai@realtek.com>,
+	Thomas Gleixner <tglx@linutronix.de>, Marc Zyngier <maz@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: lkp@intel.com, oe-kbuild-all@lists.linux.dev,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 3/6] irqchip: Introduce RTD1319 support using the
+ Realtek common interrupt controller driver
+Message-ID: <edcbb1d9-ba72-496c-90c5-57948efe23f4@moroto.mountain>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,141 +76,73 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240102-pinetab2-v3-4-cb1aa69f8c30@mecka.net>
+In-Reply-To: <20231117162709.1096585-4-james.tai@realtek.com>
 
-Hello Manuel,
+Hi James,
 
-a few more things I noticed:
+kernel test robot noticed the following build warnings:
 
-On Tue, Jan 02, 2024 at 05:15:47PM +0100, Manuel Traut wrote:
-> From: Alexander Warnecke <awarnecke002@hotmail.com>
-> 
-> +	leds {
-> +		compatible = "gpio-leds";
-> +
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&flash_led_en_h>;
-> +
-> +		led-0 {
-> +			gpios = <&gpio4 RK_PA5 GPIO_ACTIVE_HIGH>;
-> +			color = <LED_COLOR_ID_WHITE>;
-> +			function = LED_FUNCTION_FLASH;
-> +		};
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-This LED is supplied by VCC5V_MIDU, so maybe this should be a regulator-led
-supplied by gpio (FLASH_LED_EN_H) controlled regulator-fixed named f_led which
-is in turn supplied by VCC5V_MIDU.
+url:    https://github.com/intel-lab-lkp/linux/commits/James-Tai/dt-bindings-interrupt-controller-Add-support-for-Realtek-DHC-SoCs/20231118-003036
+base:   tip/irq/core
+patch link:    https://lore.kernel.org/r/20231117162709.1096585-4-james.tai%40realtek.com
+patch subject: [PATCH v2 3/6] irqchip: Introduce RTD1319 support using the Realtek common interrupt controller driver
+config: nios2-randconfig-r081-20231120 (https://download.01.org/0day-ci/archive/20231217/202312172011.8iKGuYB9-lkp@intel.com/config)
+compiler: nios2-linux-gcc (GCC) 13.2.0
 
-https://megous.com/dl/tmp/9bf0d85d78946b5e.png
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
+| Closes: https://lore.kernel.org/r/202312172011.8iKGuYB9-lkp@intel.com/
 
-> +	};
-> +
-> [...]
->
-> +
-> +	speaker_amp: speaker-amplifier {
-> +		compatible = "simple-audio-amplifier";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&spk_ctl>;
-> +		enable-gpios = <&gpio4 RK_PC2 GPIO_ACTIVE_HIGH>;
-> +		sound-name-prefix = "Speaker Amplifier";
-> +		VCC-supply = <&vcc_bat>;
-> +	};
-> +
-> +	vcc_3v3: vcc-3v3 {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vcc_3v3";
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		vin-supply = <&vcc3v3_sys>;
-> +	};
-> +
-> +	vcc3v3_minipcie: vcc3v3-minipcie {
-> +		compatible = "regulator-fixed";
-> +		enable-active-high;
-> +		gpio = <&gpio4 RK_PC3 GPIO_ACTIVE_HIGH>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pcie_pwren_h>;
-> +		regulator-name = "vcc3v3_minipcie";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		vin-supply = <&vcc_sys>;
+smatch warnings:
+drivers/irqchip/irq-realtek-intc-common.c:179 realtek_intc_probe() warn: ignoring unreachable code.
+drivers/irqchip/irq-realtek-intc-common.c:187 realtek_intc_probe() warn: 'data->base' from of_iomap() not released on lines: 176,182.
 
-This regulator is supplied by vcc_bat: https://megous.com/dl/tmp/4ec71a4a2aea9498.png
+vim +179 drivers/irqchip/irq-realtek-intc-common.c
 
-> +	};
-> +
-> +	vcc3v3_sd: vcc3v3-sd {
-> +		compatible = "regulator-fixed";
-> +		gpio = <&gpio0 RK_PA5 GPIO_ACTIVE_HIGH>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&sdmmc_pwren_l>;
-> +		regulator-name = "vcc3v3_sd";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		vin-supply = <&vcc3v3_sys>;
-> +	};
-> +
-> +	vcc5v0_usb_host0: vcc5v0-usb-host0 {
-> +		compatible = "regulator-fixed";
-> +		enable-active-high;
-> +		gpio = <&gpio4 RK_PC4 GPIO_ACTIVE_HIGH>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&usb_host_pwren1_h>;
-> +		regulator-name = "vcc5v0_usb_host0";
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-max-microvolt = <5000000>;
-> +		vin-supply = <&vcc5v_midu>;
-> +	};
-> +
-> +	vcc5v0_usb_host2: vcc5v0-usb-host2 {
-> +		compatible = "regulator-fixed";
-> +		enable-active-high;
-> +		gpio = <&gpio4 RK_PC5 GPIO_ACTIVE_HIGH>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&usb_host_pwren2_h>;
-> +		regulator-name = "vcc5v0_usb_host2";
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-max-microvolt = <5000000>;
-> +		vin-supply = <&vcc5v_midu>;
-> +	};
-> +
-> +	vcc_bat: vcc-bat {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vcc_bat";
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +	};
-> +
-> +	vcc_sys: vcc-sys {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vcc_sys";
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +		vin-supply = <&vcc_bat>;
-> +	};
-> +
-> +	vdd1v2_dvp: vdd1v2-dvp {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vdd1v2_dvp";
-> +		regulator-min-microvolt = <1200000>;
-> +		regulator-max-microvolt = <1200000>;
-> +		vin-supply = <&vcc_3v3>;
-> +		/*enable-supply = <&vcc2v8_dvp>;*/
-> +	};
+40e5ff4eaef72b James Tai 2023-11-18  155  int realtek_intc_probe(struct platform_device *pdev, const struct realtek_intc_info *info)
+40e5ff4eaef72b James Tai 2023-11-18  156  {
+40e5ff4eaef72b James Tai 2023-11-18  157  	struct realtek_intc_data *data;
+40e5ff4eaef72b James Tai 2023-11-18  158  	struct device *dev = &pdev->dev;
+40e5ff4eaef72b James Tai 2023-11-18  159  	struct device_node *node = dev->of_node;
+40e5ff4eaef72b James Tai 2023-11-18  160  	int ret, i;
+40e5ff4eaef72b James Tai 2023-11-18  161  
+40e5ff4eaef72b James Tai 2023-11-18  162  	data = devm_kzalloc(dev, struct_size(data, subset_data, info->cfg_num), GFP_KERNEL);
+40e5ff4eaef72b James Tai 2023-11-18  163  	if (!data)
+40e5ff4eaef72b James Tai 2023-11-18  164  		return -ENOMEM;
+40e5ff4eaef72b James Tai 2023-11-18  165  
+40e5ff4eaef72b James Tai 2023-11-18  166  	data->base = of_iomap(node, 0);
+40e5ff4eaef72b James Tai 2023-11-18  167  	if (!data->base)
+40e5ff4eaef72b James Tai 2023-11-18  168  		return -ENOMEM;
+40e5ff4eaef72b James Tai 2023-11-18  169  
+40e5ff4eaef72b James Tai 2023-11-18  170  	data->info = info;
+40e5ff4eaef72b James Tai 2023-11-18  171  
+40e5ff4eaef72b James Tai 2023-11-18  172  	raw_spin_lock_init(&data->lock);
+40e5ff4eaef72b James Tai 2023-11-18  173  
+40e5ff4eaef72b James Tai 2023-11-18  174  	data->domain = irq_domain_add_linear(node, 32, &realtek_intc_domain_ops, data);
+40e5ff4eaef72b James Tai 2023-11-18  175  	if (!data->domain)
+40e5ff4eaef72b James Tai 2023-11-18  176  		return -ENOMEM;
+40e5ff4eaef72b James Tai 2023-11-18  177  
+40e5ff4eaef72b James Tai 2023-11-18  178  	data->subset_data_num = info->cfg_num;
+40e5ff4eaef72b James Tai 2023-11-18 @179  	for (i = 0; i < info->cfg_num; i++) {
+40e5ff4eaef72b James Tai 2023-11-18  180  		ret = realtek_intc_subset(node, data, i);
+40e5ff4eaef72b James Tai 2023-11-18  181  		WARN(ret, "failed to init subset %d: %d", i, ret);
 
-There's no vdd1v2_dvp in the schematic on the camera sensor connector, or elsewhere:
+if statement missing
 
-  https://megous.com/dl/tmp/fd95f003d8f3fbfb.png
+40e5ff4eaef72b James Tai 2023-11-18  182  		return -ENOMEM;
+40e5ff4eaef72b James Tai 2023-11-18  183  	}
+40e5ff4eaef72b James Tai 2023-11-18  184  
+40e5ff4eaef72b James Tai 2023-11-18  185  	platform_set_drvdata(pdev, data);
+40e5ff4eaef72b James Tai 2023-11-18  186  
+40e5ff4eaef72b James Tai 2023-11-18 @187  	return 0;
+40e5ff4eaef72b James Tai 2023-11-18  188  }
 
-So I guess, you can drop this, entirely. Maybe it's VDD1V5_DVP but I don't think
-it needs to be described in DT, since it's pretty local to this camera sensor,
-and nothing else uses it.
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
-  https://megous.com/dl/tmp/7fc384e196c5428f.png
-
-regards,
-	o.
 
