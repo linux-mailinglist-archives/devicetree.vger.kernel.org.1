@@ -1,48 +1,75 @@
-Return-Path: <devicetree+bounces-29334-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29335-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 890BF8225BD
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 00:58:24 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 874A08225D6
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 01:11:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3CB491F223C3
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jan 2024 23:58:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AD5521C21B01
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 00:11:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D356517994;
-	Tue,  2 Jan 2024 23:58:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C08571869;
+	Wed,  3 Jan 2024 00:11:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QqKXyvap"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gQhc6c1P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f174.google.com (mail-oi1-f174.google.com [209.85.167.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A893817980;
-	Tue,  2 Jan 2024 23:58:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 48B06C433C9;
-	Tue,  2 Jan 2024 23:58:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1704239897;
-	bh=Dbcu2HMKJdgZOFIcgm2z6JbgCtq1iCqB4x9KNyEY55s=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=QqKXyvapVjE9s3RZop7zgv7u/8fP9h+EKsC6yP3Pg1o5Z4T2tNaljwwv+Olm+9LIK
-	 HDhJvTRCWf3yf7y2A2mONyEk5K/VHW1xM4oTg+eoYDBzAW97t4OEBW2l+oC8eub58y
-	 gxUbyhwfFtmQfryQs98cSA9fplQKteA5qkTgk559Rtw4olfEJi0dtU9SP4JDrm3Sgn
-	 999Oqf8F9g1Ff0eV8+52uxUKrek6KPT95kooSqg47nRa2P/K7MlALm5sMJoikBHoar
-	 TQ3ftFH/0NLR7MJNE+iKEIwsTRlIdg2Bx6Ab7SBWtO8izUBaWPF+ZCV3bX12E3uxxi
-	 KxjPWm/qsNn1w==
-Received: (nullmailer pid 3968482 invoked by uid 1000);
-	Tue, 02 Jan 2024 23:58:15 -0000
-Date: Tue, 2 Jan 2024 16:58:15 -0700
-From: Rob Herring <robh@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: David Heidelberg <david@ixit.cz>, Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>, Stephen Boyd <sboyd@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Manivannan Sadhasivam <mani@kernel.org>, Bjorn Andersson <andersson@kernel.org>, Viresh Kumar <viresh.kumar@linaro.org>, linux-pm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: opp: switch inner and outer min/maxItems
- rules for opp-hz
-Message-ID: <20240102235815.GA3700567-robh@kernel.org>
-References: <20231229191038.247258-1-david@ixit.cz>
- <2c9e91c7-8588-4260-8f5d-22c822019f62@linaro.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6812B1841;
+	Wed,  3 Jan 2024 00:11:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oi1-f174.google.com with SMTP id 5614622812f47-3bbbc6bcc78so5239705b6e.1;
+        Tue, 02 Jan 2024 16:11:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1704240692; x=1704845492; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=vPhCoFUOrRe68PAKBuJ0XCZdiktRxtpdmXF3NphnPpo=;
+        b=gQhc6c1Pz90XKZa8s85mPmZJDT1AM73TxhN0X4PpgeYUsvYvkuQRrqwiijVDxQduNK
+         G7VNO3ozHTTTeCZjX4Tt1WBlAYAbEylndrb78LeE1N6vqdSrPaVuQ933JBQkvyBMrU4o
+         bo/Fv2lUbSGcHTXPSBUAF/DJYBuWveEdqxkkeXfcAbVO6/jQzvtCPS+K44VVGZApCVnA
+         Ubjcr+Ju4YivaWo0g1jKP8oN00EZMeMUusHatEMKPNfBHmt0qgn8TwyFYe59QlMJl0cL
+         Z7pwtj1gt9LFBumxmysBfb1fVDIuHtLtNg921MVg2yHHQ/sifHBtRc/2KbP10SqYlQDj
+         oSzg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1704240692; x=1704845492;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=vPhCoFUOrRe68PAKBuJ0XCZdiktRxtpdmXF3NphnPpo=;
+        b=bdWJ2lvT6VGt+huk9j4qj2yvnYe9f0tnYtBHwjgL5CQlpYNb2PZARyiN0qg30icYUW
+         cSbTmjfogSoeBgrVKYovS0iD+7dBYYwY0JZhKTuhaQPRlvN401ZPCaZEcmY3ma3rL8It
+         Tq1alzYolpBe6oCmR+crWzICbPvO0lquWqpA6lENptpaILpgYVlMR9JSZ1W04Mqn/kRl
+         yRWA7atX6G71Pps9wUiqdxAuWK/Re7qLip0UlUmgHSj2ksM48gs6/jq4YOT7/gp7IXGO
+         Ldzr+tGdwecjXoC1WOojsBqCmSKepYpPek+K/jOXcJpLfNQ8JA3LWla1295ti4Fi14i7
+         leSg==
+X-Gm-Message-State: AOJu0YywhQtWpuzZSmPQRtjdFkHM3eI9eK9N0IKCfDwGWbrxexmNkLYB
+	FMMNvilY5ir6iiIeLb2FJZ8GXT54tU8rcQ==
+X-Google-Smtp-Source: AGHT+IGhE/yALeHSypQiLTPZ6IwELmr85Vhh6yAAxpExlueWQuwRyjPkDph8C0Z8fA5XSFJdnFLr4Q==
+X-Received: by 2002:a05:6358:718b:b0:175:2cec:a767 with SMTP id t11-20020a056358718b00b001752ceca767mr4225579rwt.36.1704240692039;
+        Tue, 02 Jan 2024 16:11:32 -0800 (PST)
+Received: from fedora (c-24-4-59-2.hsd1.ca.comcast.net. [24.4.59.2])
+        by smtp.gmail.com with ESMTPSA id qc8-20020a17090b288800b0028b1fce7c01sm195551pjb.37.2024.01.02.16.11.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 02 Jan 2024 16:11:31 -0800 (PST)
+Date: Tue, 2 Jan 2024 16:11:28 -0800
+From: Tao Ren <rentao.bupt@gmail.com>
+To: Lukas Wunner <lukas@wunner.de>
+Cc: devicetree@vger.kernel.org, linux-aspeed@lists.ozlabs.org,
+	Andrew Jeffery <andrew@aj.id.au>, taoren@fb.com,
+	openbmc@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+	Rob Herring <robh+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 3/6] ARM: dts: aspeed: Common dtsi for Facebook
+ AST2600 Network BMCs
+Message-ID: <ZZSmMJ//l972Qbxu@fedora>
+References: <20210805222818.8391-1-rentao.bupt@gmail.com>
+ <20210805222818.8391-4-rentao.bupt@gmail.com>
+ <20231220081402.GA3831@wunner.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -51,55 +78,30 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <2c9e91c7-8588-4260-8f5d-22c822019f62@linaro.org>
+In-Reply-To: <20231220081402.GA3831@wunner.de>
 
-On Sat, Dec 30, 2023 at 03:17:21PM +0100, Krzysztof Kozlowski wrote:
-> On 29/12/2023 20:10, David Heidelberg wrote:
-> > Fixes issue as:
-> > ```
+Hi Lukas,
+
+On Wed, Dec 20, 2023 at 09:14:02AM +0100, Lukas Wunner wrote:
+> On Thu, Aug 05, 2021 at 03:28:15PM -0700, rentao.bupt@gmail.com wrote:
+> > This common descirption is included by all Facebook AST2600 Network BMC
+> > platforms to minimize duplicated device entries across Facebook Network
+> > BMC device trees.
+> [...]
+> > --- /dev/null
+> > +++ b/arch/arm/boot/dts/ast2600-facebook-netbmc-common.dtsi
+> [...]
+> > +		tpmdev@0 {
+> > +			compatible = "tcg,tpm_tis-spi";
 > 
-> Drop, it's not RST, but commit msg.
-> 
-> > arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dtb: opp-table: opp-200000000:opp-hz:0: [200000000, 0, 0, 150000000, 0, 0, 0, 0, 300000000] is too long
-> > ```
-> > 
-> > Fixes: 3cb16ad69bef ("dt-bindings: opp: accept array of frequencies")
-> > 
-> > Signed-off-by: David Heidelberg <david@ixit.cz>
-> > ---
-> >  Documentation/devicetree/bindings/opp/opp-v2-base.yaml | 5 ++---
-> >  1 file changed, 2 insertions(+), 3 deletions(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/opp/opp-v2-base.yaml b/Documentation/devicetree/bindings/opp/opp-v2-base.yaml
-> > index e2f8f7af3cf4..86d3aa0eb435 100644
-> > --- a/Documentation/devicetree/bindings/opp/opp-v2-base.yaml
-> > +++ b/Documentation/devicetree/bindings/opp/opp-v2-base.yaml
-> > @@ -55,10 +55,9 @@ patternProperties:
-> >            to relate the values to their clocks or the order in which the clocks
-> >            need to be configured and that is left for the implementation
-> >            specific binding.
-> > -        minItems: 1
-> > -        maxItems: 32
-> >          items:
-> > -          maxItems: 1
-> > +          minItems: 1
-> > +          maxItems: 32
-> 
-> This does not look like correct fix. The original code looked fine -
-> only one item is allowed in each sub-element (array).
+> What's the chip used on this board?  Going forward, the DT schema for TPMs
+> requires the exact chip name in addition to the generic "tcg,tpm_tis-spi".
 
-This one is special being 64-bit values so we have an exception in 
-property-units.yaml. The constraints here don't get used in decoding the 
-dtb and the default way of 1 outer element is used.
+Sorry about the late response. It's "infineon,slb9670", and I will
+submit a patch for fix it soon.
 
-It doesn't look like opp-hz needs to be a matrix as it is really just an 
-array. Perhaps it should just be changed to an array type. 
-Alternatively, adding 'items: { maxItems: 1 }' to the definition in 
-property-units.yaml fixes the issue as well.
 
-Though we can fix this, I'm looking into if we have other cases where we 
-need this to work as-is. There's probably some room for improvement in 
-how matrix dimensions are handled.
+Cheers,
 
-Rob
+- Tao
 
