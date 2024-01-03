@@ -1,118 +1,170 @@
-Return-Path: <devicetree+bounces-29440-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29441-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81C75822EB6
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 14:41:08 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 70F7D822EC1
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 14:42:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1F6EF282F75
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 13:41:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 57E591C23510
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 13:42:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37EF819BCD;
-	Wed,  3 Jan 2024 13:37:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E80371A708;
+	Wed,  3 Jan 2024 13:39:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="h1ixBfMk"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="FHMvbDq3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
+Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85CF01CF8A
-	for <devicetree@vger.kernel.org>; Wed,  3 Jan 2024 13:37:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DA331A729
+	for <devicetree@vger.kernel.org>; Wed,  3 Jan 2024 13:39:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-55539cac143so7208820a12.0
-        for <devicetree@vger.kernel.org>; Wed, 03 Jan 2024 05:37:19 -0800 (PST)
+Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-555bd21f9fdso4704469a12.0
+        for <devicetree@vger.kernel.org>; Wed, 03 Jan 2024 05:39:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704289038; x=1704893838; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=RUTCpmfzsSKDHjYlRAYYiQ/aykX/VSlVLVDx9q/aHss=;
-        b=h1ixBfMknoaC4l+AUBd8AJxLIjHhdyqHNtr3TRY2V1hHkTm9QeSDGOvrG1GzBlZq+Q
-         NVCTPRvFcjckYbw7Y6qRd5AoJ4ONtTKVESzq/rubsJ+DENS23TMIeAr1KGrbpqCe3Yw0
-         v3sW3Z/obnwJ2/V+id+HCUx1KE9Z08MaYUzqTfLd6zhT5GjX7m4NQfn3DE/ZOzhK35ei
-         smQdQui0GNmWoXV4sodszlxVuV4gNDVT4wV6TVGPOaABi2MEYB7P68xFTYdd7u/U8NRv
-         l4VngCj4nKauf9etSdvfoWYSBL6LGYEU1bF43kR/SmQ31yXvIM0q+5JAyUJ0BfVJsHvb
-         eQFQ==
+        d=linaro.org; s=google; t=1704289148; x=1704893948; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:references:cc:to
+         :from:content-language:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=5yn09ffYZPc7aBLokf+bfH+Tett0Gy39mn9i+Z/bJZY=;
+        b=FHMvbDq3l4FduL1U91gFrVrmirpdPi606A+9f9H0Yzj9Jq2MergD2QEFfk28XwOLKI
+         cFQjTRvVFQS8qcmfRwoM2XD5SJ6e5ZttNxIvnZb+5jdW+0HPyXNRa9mzAMtCrLcCauwV
+         J50X2O5dGWOKyGgxqe34/O3KbIqvM6Z47fC5suYQbZS5wLrrdDP7fIIc1O9wrQQQstnw
+         MipOc7owJ8jzdckl8g7aKzF0ZoxUSN+1vOx4gijdAtk1M3UV53jRpTne6WVSXTSbk8Mk
+         ZcfoCOii+8MKV16ZsJ67La71pQpZ3dk2OtAg9kD1PBDFIbwjMZCwY+d4GMjvxwHg/8zj
+         yCow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704289038; x=1704893838;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=RUTCpmfzsSKDHjYlRAYYiQ/aykX/VSlVLVDx9q/aHss=;
-        b=ZcMCTR3hgtxWVqKh++hqTvSTtAlfu/Nw+XaTVE14sR+x8w3XlxBE3Iwcn3h5ZUWfea
-         UVozMcM9oGbIT7KeJKTxYV5+NgLXie8Y0e7ihCSIIZm28maTKsBMY+RRm/tSVmFBdnfq
-         KAaplabd2hQ7PxDEkRS2e6ObFSCsEPBvAqS1bNeKcKr+J9mpa4RHjf62z5M2dEioeqjr
-         In6syW3cbcsz2rtqS/YFdZG6GRnsKapzbidYF0i0kmR37eOv4PZmPABwlPjd+gqwVcNM
-         ozz+3UWYGUxWfAlEVzcdG4yQ3ZyKEfxCxWgOM7d8k13jKABxuJVAhpBVbH36KTRrQKUT
-         epGA==
-X-Gm-Message-State: AOJu0Yxt97an/IFdo81hhR8xvXt/hVtjThF3fOYGgs0dvclEJZtU/6fD
-	5pmb9VJwdJ9F6dpkQwRuqGeAXMn3KAx9Yg==
-X-Google-Smtp-Source: AGHT+IGb2r7J18V8yKKCdqerodJ+VgX/4qpTBHIyyTYZHgIVHNAnqdK32Kg08Qc9J+Leig1llChqKA==
-X-Received: by 2002:a17:906:1cca:b0:a26:9776:5ed8 with SMTP id i10-20020a1709061cca00b00a2697765ed8mr8882690ejh.91.1704289037859;
-        Wed, 03 Jan 2024 05:37:17 -0800 (PST)
-Received: from [10.167.154.1] (178235179036.dynamic-4-waw-k-1-3-0.vectranet.pl. [178.235.179.36])
-        by smtp.gmail.com with ESMTPSA id cl2-20020a170906c4c200b00a275637e699sm6474351ejb.166.2024.01.03.05.37.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 03 Jan 2024 05:37:17 -0800 (PST)
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-Date: Wed, 03 Jan 2024 14:36:10 +0100
-Subject: [PATCH v5 12/12] arm64: dts: qcom: sm6115: Add VDD_CX to GPU_CC
+        d=1e100.net; s=20230601; t=1704289148; x=1704893948;
+        h=content-transfer-encoding:in-reply-to:autocrypt:references:cc:to
+         :from:content-language:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=5yn09ffYZPc7aBLokf+bfH+Tett0Gy39mn9i+Z/bJZY=;
+        b=v8Z+GU5xN3lfqthqqw4NP8H8xUNf4fXLnOfctOgS7guvabfyKzkiI33myIfXkI2Xjh
+         cAmH/WpOM62Eq0Uenu3ovX5LQnLOBTxaGcCT+a0lXH1jMRxE6s/nZsbWOam4/d9Z+bt1
+         00Tc5xm85tMTY6xiUFx70i/RZ4Gvs3TwmLWBcj/n7wN5JKqnXJb7p6hPhR8tHTKdwmSt
+         Grk1R23Vol2Pf+zuImSGdDsetUThq4l0bWNzsZfwXdSQ6bUUj5j7k3rRcN040rJuHZgf
+         SyeD5OlKQSSBZJg3O47nt6kM6fMBX9ZjtWz5gex421jbgIoHjyFD4yqLbIwwqrJbdXgw
+         Jmkw==
+X-Gm-Message-State: AOJu0Yzh+XC8oC0Pe95R4h2JOc7JaOPtXUaSZT2OddJvChOxzDqJ9/2/
+	/Ur5GK4aNoaDkR3/tGFkN2Y/c5Jkfyb6Lg==
+X-Google-Smtp-Source: AGHT+IGACRGMGX0Yf8cFK5MjN5WbNwSG9jrViLn6jwAsqsPJh2xixQVVpDljbKRh92Td3zAvTc9LMA==
+X-Received: by 2002:a17:906:71ce:b0:a26:a49a:7d3a with SMTP id i14-20020a17090671ce00b00a26a49a7d3amr9198715ejk.67.1704289148551;
+        Wed, 03 Jan 2024 05:39:08 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.218.27])
+        by smtp.gmail.com with ESMTPSA id gh13-20020a1709073c0d00b00a2797a545a3sm4926210ejc.193.2024.01.03.05.39.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 03 Jan 2024 05:39:08 -0800 (PST)
+Message-ID: <cbe43d1e-8de8-4f05-887c-a34b45ee327f@linaro.org>
+Date: Wed, 3 Jan 2024 14:39:06 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: juno: align thermal zone names with bindings
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Rob Herring <robh+dt@kernel.org>
+Cc: Liviu Dudau <liviu.dudau@arm.com>, Sudeep Holla <sudeep.holla@arm.com>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20231209171612.250868-1-krzysztof.kozlowski@linaro.org>
+ <CAL_JsqKogbT_4DPd1n94xqeHaU_J8ve5K09WOyVsRX3jxxUW3w@mail.gmail.com>
+ <b9943188-b3f9-472f-bc60-e8e6e043ddf4@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <b9943188-b3f9-472f-bc60-e8e6e043ddf4@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230717-topic-branch_aon_cleanup-v5-12-99942e6bf1ba@linaro.org>
-References: <20230717-topic-branch_aon_cleanup-v5-0-99942e6bf1ba@linaro.org>
-In-Reply-To: <20230717-topic-branch_aon_cleanup-v5-0-99942e6bf1ba@linaro.org>
-To: Bjorn Andersson <andersson@kernel.org>, Andy Gross <agross@kernel.org>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: Marijn Suijten <marijn.suijten@somainline.org>, 
- linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- Konrad Dybcio <konrad.dybcio@linaro.org>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1704289018; l=911;
- i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=WDI26IliceRlW0YgN7X8GrPWGyVd7988pOYar0kAAss=;
- b=01bznyiO7SHJ7u1n+mr2x5/l72XfL8vU3ZTAqXysZ9MQBbaRmXXk4/moJBIOB2Jy+kHXEQjaM
- l7nr6hxPSFuDoC/YFopLpiuMznUulnRmARQvej1R6ze5B6MQZen2SfK
-X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
- pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 
-The GPU_CC block is powered by VDD_CX. Link the power domain and
-provide a reasonable minimum vote (lowest available on the platform)
-to ensure the registers within are accessible.
+On 03/01/2024 11:13, Krzysztof Kozlowski wrote:
+> 
+>> 'pinctrl-[0-9]+'
+>>       4  thermal-zones: gpu1-thermal: 'trips' is a required property
+>>       4  thermal-zones: gpu0-thermal: 'trips' is a required property
+>>       4  thermal-zones: big-cluster-thermal: 'trips' is a required property
+>>
+>> Last I checked this, it looked like the length of the child names was
+>> limited because the thermal subsys uses the node names for its naming
+>> which is limited to 20 chars (with null). Though the regex here allows
+>> for 21 chars without nul. Looks like a double off by one error.
+> 
+> Yes, that's another issue.
+> 
+>>
+>> The thought I had at the time was to make the kernel drop '-thermal'
+>> from its names. Might be an (Linux) ABI issue if userspace cares (I
+>> think it shouldn't). Also, I'm not sure how the kernel handles the
+>> names overflowing. Maybe it is fine and we can just extend the length
+>> in the schema from 12 to 18 (plus the 1 starting char).
+> 
+> The name is used in the "/sys/class/thermal/thermal_zone0/type" file, so
+> actually some userspace could depend on it, but it would be affected
+> anyway by my renaming of nodes.
 
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm6115.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
+Stripping "-thermal" prefix is a bit bigger task, because it is later
+used to find the actual nodes. The thermal framework does not store
+device_node pointer, but looks up by the name.
 
-diff --git a/arch/arm64/boot/dts/qcom/sm6115.dtsi b/arch/arm64/boot/dts/qcom/sm6115.dtsi
-index 30b140e1cec0..ec9a74acc69c 100644
---- a/arch/arm64/boot/dts/qcom/sm6115.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm6115.dtsi
-@@ -1723,6 +1723,8 @@ gpucc: clock-controller@5990000 {
- 			clocks = <&rpmcc RPM_SMD_XO_CLK_SRC>,
- 				 <&gcc GCC_GPU_GPLL0_CLK_SRC>,
- 				 <&gcc GCC_GPU_GPLL0_DIV_CLK_SRC>;
-+			power-domains = <&rpmpd SM6115_VDDCX>;
-+			required-opps = <&rpmpd_opp_low_svs>;
- 			#clock-cells = <1>;
- 			#reset-cells = <1>;
- 			#power-domain-cells = <1>;
+There is on-going work around this:
+https://lore.kernel.org/all/20231012175836.3408077-2-thierry.reding@gmail.com/
 
--- 
-2.43.0
+https://lore.kernel.org/all/20231221124825.149141-27-angelogioacchino.delregno@collabora.com/
+
+so I will just fix the DTS (shorten the name) and fix bindings for 11
+characters.
+
+Best regards,
+Krzysztof
 
 
