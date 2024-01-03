@@ -1,122 +1,170 @@
-Return-Path: <devicetree+bounces-29442-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29443-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 259E1822EC3
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 14:42:56 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B905822ECB
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 14:43:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A3747283F3A
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 13:42:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0C43C1F23B55
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 13:43:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8FC9199D2;
-	Wed,  3 Jan 2024 13:40:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0A6C199B4;
+	Wed,  3 Jan 2024 13:42:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=mecka.net header.i=@mecka.net header.b="cpu0Ye8I"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="eaFmddNB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mecka.net (mecka.net [159.69.159.214])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D5991B270;
-	Wed,  3 Jan 2024 13:40:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mecka.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mecka.net
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mecka.net; s=2016.11;
-	t=1704289233; bh=vv+J84aXLGq+PleY0UyhFYxaeGAaLPX+RfeAkhXQ200=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=cpu0Ye8IMdGiDBxzyzZoReAEfROyEgoo9iUD2E/KCtoinzklkZ2EY2k8LlfjMkdO1
-	 khHcsTIaAOby6KzxVGlv35+5nM2QAdsEuaCXw6pDtBQNgblFEAnaRq29gNpf3heJzn
-	 Tbi4yLOOHPKyAJ5M++PCe/6zsgafjtf5Kg+uc4XOOKIMn/xdit+j56ptkieFCrLKfH
-	 twHm50FJdGRXndg5wYG7lRhubiwrcMHcIPrBcotnVbl6ufke16NNEE8v0SMhNsVT0i
-	 SSJuX8QV2UYgDdg+KFGXAAcon4Vfo7MZAtb95DKNqmcC6jJXnCc9nHjV/81MHLV/DG
-	 soQrY8N8pO/JQ==
-Received: from mecka.net (unknown [185.147.11.134])
-	by mecka.net (Postfix) with ESMTPSA id 6BF8E379D1E;
-	Wed,  3 Jan 2024 14:40:32 +0100 (CET)
-Date: Wed, 3 Jan 2024 14:40:31 +0100
-From: Manuel Traut <manut@mecka.net>
-To: Jonas Karlman <jonas@kwiboo.se>
-Cc: =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Jessica Zhang <quic_jesszhan@quicinc.com>,
-	Sam Ravnborg <sam@ravnborg.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>, Sandy Huang <hjc@rock-chips.com>,
-	Mark Yao <markyao0591@gmail.com>,
-	Diederik de Haas <didi.debian@cknow.org>,
-	Segfault <awarnecke002@hotmail.com>,
-	Arnaud Ferraris <aferraris@debian.org>,
-	Danct12 <danct12@riseup.net>, dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH v3 4/4] arm64: dts: rockchip: Add devicetree for Pine64
- PineTab2
-Message-ID: <ZZVjzwgANJMdHnuo@mecka.net>
-References: <20240102-pinetab2-v3-0-cb1aa69f8c30@mecka.net>
- <20240102-pinetab2-v3-4-cb1aa69f8c30@mecka.net>
- <775vjfucu2g2s6zzeutj7f7tapx3q2geccpxvv4ppcms4hxbq7@cbrdmlu2ryzp>
- <903e9d0c-a00c-4214-9f0e-dd676b13b428@kwiboo.se>
+Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52B2119BB8
+	for <devicetree@vger.kernel.org>; Wed,  3 Jan 2024 13:42:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-50e7aed09adso8574642e87.0
+        for <devicetree@vger.kernel.org>; Wed, 03 Jan 2024 05:42:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1704289372; x=1704894172; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ywm1NJM84MFVbNs8Kn4Mu02P9WC9fu63PnwufUkYyus=;
+        b=eaFmddNB4wQQ6+LzNAHt0op2ZK3Cqm5zFKktcbxDa5pLixURkQqsakepP+CCKwog/g
+         k95vv9wAyEhZJMBnlHnpJRzyIwpJBsLK78S824Sc0IwKteyNtGVZXnWkFubEAg/4lbWo
+         uGzZsySL8E9v5F9gDnlR/meLHYTbSdUgLgGZwRvJa+SkN0TrttrzncTJM7qCqFdJPavC
+         2i6YKLvnmc6O6PDDJhwKq3GiMKA/sZLeEcTyu3ybYZX7K0GvO9UJ3p8MnxSMnlI6yVdn
+         OPWa4RCSJdvGlOJwpCs8sxJr9+tyaWFmcP4NLbRNaOJUCfiyFvt70xTinw3nAVUEeuXQ
+         l1MA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1704289372; x=1704894172;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ywm1NJM84MFVbNs8Kn4Mu02P9WC9fu63PnwufUkYyus=;
+        b=DRXWPoN5X+Wcgu1SnxhmxQm/hTP4Jc7uLblhzlaoLQbQ+Idi1r1tsgK54dv2I98TUP
+         gNyIJg1jiO+F+BEBlES2jwA2XAy2zXq9qB+MfzplLnivDNo5y8QPSYS2Y8gvVWtp4ygc
+         1h+UM0o40MLhHTmFByjdEmPmXStPOsTKLgb/gWo18570eiT2Bx96FrvNqqWbRFdUo/fM
+         PKlNRbGXNqrPwZQ4qvdbLfQd+JgS54tzF1LQHYziLlIt37xdPJ3Fpxnlxbdgn16Tw3HG
+         VirWIQebz75LuFrEqmC1/vWgNS9RlOsO8Ko4FJd2aOOxnYieLmjDxsKzwOEGo3FFrDj+
+         4TTg==
+X-Gm-Message-State: AOJu0YwG9ZIt8TruLxVqyZaS7qP3U9Z7y/hNxlbFvVshxcTzLWdDdvZ0
+	PnB0DhiJA2nrT41qUy4jOgDBeyI8A5NvMg==
+X-Google-Smtp-Source: AGHT+IF/E3O4/SeJ3/L03JtNje4HPHmKSxk1jYT6GhkDV/vLGOKfuXNGpS6l0kqQGCl2uDjt2JUZ0A==
+X-Received: by 2002:a05:6512:39d4:b0:50e:8158:1fae with SMTP id k20-20020a05651239d400b0050e81581faemr7183741lfu.99.1704289372403;
+        Wed, 03 Jan 2024 05:42:52 -0800 (PST)
+Received: from [192.168.199.125] (178235179036.dynamic-4-waw-k-1-3-0.vectranet.pl. [178.235.179.36])
+        by smtp.gmail.com with ESMTPSA id a5-20020a17090680c500b00a26a4458241sm12720131ejx.18.2024.01.03.05.42.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 03 Jan 2024 05:42:52 -0800 (PST)
+Message-ID: <6179e3c7-f399-4b0f-abb0-aaf5e549d8d9@linaro.org>
+Date: Wed, 3 Jan 2024 14:42:49 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <903e9d0c-a00c-4214-9f0e-dd676b13b428@kwiboo.se>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/3] phy: qcom: edp: Add support for DT phy mode
+ configuration
+Content-Language: en-US
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Abel Vesa <abel.vesa@linaro.org>
+Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I
+ <kishon@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Johan Hovold <johan@kernel.org>,
+ linux-phy@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+References: <20231219-x1e80100-phy-edp-compatible-refactor-v1-0-f9e77752953d@linaro.org>
+ <CAA8EJpr8rKMBzcm-=HGu7-C5hPkNMrnG1cA78O00UjgJVT7p6Q@mail.gmail.com>
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <CAA8EJpr8rKMBzcm-=HGu7-C5hPkNMrnG1cA78O00UjgJVT7p6Q@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Jonas and Ondřej,
-
-> >> +&sfc {
-> >> +	pinctrl-names = "default";
-> >> +	pinctrl-0 = <&fspi_dual_io_pins>;
-> >> +	status = "okay";
-> >> +	#address-cells = <1>;
-> >> +	#size-cells = <0>;
-> >> +
-> >> +	flash@0 {
-> >> +		compatible = "jedec,spi-nor";
-> >> +		reg = <0>;
-> >> +		spi-max-frequency = <24000000>;
-> > 
-> > That's a bit on the low side. The flash chip should work for all commands up to
-> > 80MHz https://megous.com/dl/tmp/b428ad9b85ac4633.png and SGM3157YC6 switch
-> > for the FSPI-CLK should have high enough bandwidth, too.
+On 21.12.2023 17:27, Dmitry Baryshkov wrote:
+> On Tue, 19 Dec 2023 at 22:55, Abel Vesa <abel.vesa@linaro.org> wrote:
+>>
+>> Until now, all platform that supported both eDP and DP had different
+>> compatibles for each mode. Using different compatibles for basically
+>> the same IP block but for a different configuration is bad way all
+>> around. There is a new compute platform from Qualcomm that supports
+>> both eDP and DP with the same PHY. So instead of following the old
+>> method, we should allow the mode to be configured from devicetree.
+>>
+>> There has been an off-list discussion on what would be the right way
+>> to pass on the PHY mode information to the driver and it has been
+>> concluded that phy-cells is the way to go. This means that basically
+>> the controller will pass another value (that is, the PHY type) to
+>> its 'phys' DT property.
+>>
+>> For this, we need both the bindings value and the PHY mode value to be
+>> added as well.
+>>
+>> The controller part will follow shortly. But for now, lets see where
+>> this is going.
+>>
+>> There has been another attempt at this here:
+>> https://lore.kernel.org/all/20231122-phy-qualcomm-edp-x1e80100-v3-3-576fc4e9559d@linaro.org/
+>>
+>> Compared to that version, this one uses the phy-cells method and drops
+>> the X1E80100 support. The X1E80100 support will be a separate patchset.
 > 
-> I agree that this is a little bit on the low side, it was a safe rate
-> that I used for U-Boot. U-Boot required an exact rate of the supported
-> sfc clk rates: 24, 50, 75, 100, 125 or 150 MHz.
+> After several back and forth discussions, I think that this approach
+> is not correct and not that easy to extend. Instead I'd like to
+> suggest adding a property to the DP controller, which enables eDP
+> behaviour (and thus makes DP driver call phy_set_mode()). Something
+> like this:
+> dp: displayport-controller@ae0000 {
+>     compatible = "qcom,sm8000-dp";
+>     /* reg, interrupts, etc */
+>    edp-interface;
+>    /* or simpler */
+>    is-edp;
+> };
 > 
-> Please also note that the SPI NOR flash chip used in PineTab2 is not a
-> GigaDevice GD25LQ128E, it should be a SiliconKaiser SK25LP128, same as
-> found in the Pine64 PinePhone Pro.
+> What do you think?
 
-The schematics for v2.0 reference a GD25LQ128EWIGR. I never checked the jedec
-id. How did you retrieve this information, or is it maybe a difference in v0.1
-and 2.0?
+Please excuse my alzheimer, but why did we not go with phy-type after
+the last discussion?
 
-> >> +		spi-rx-bus-width = <2>;
-> > 
-> > GD25LQ128E supports quad I/O. Maybe try 4 if it will work.
-> 
-> The schematic only shows fspi D0 and D1 connected, and use the D2 line
-> for eMMC_RSTn, so spi-rx-bus-width = <2> should be correct.
-
-ack
-
-Since it is only needed for bootloader updates and environment its maybe better
-to stay on the safe side?
-
-But I can test faster frequency if you want me to do..
-
-Regards
-Manuel
+Konrad
 
