@@ -1,179 +1,167 @@
-Return-Path: <devicetree+bounces-29473-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29474-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F3A382314B
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 17:29:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2101E823177
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 17:47:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7898A1F2433C
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 16:29:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8A73F1F22330
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 16:47:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 117DE1BDE6;
-	Wed,  3 Jan 2024 16:29:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAD041BDE2;
+	Wed,  3 Jan 2024 16:47:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="d48aEIxX"
+	dkim=pass (2048-bit key) header.d=theobroma-systems.com header.i=@theobroma-systems.com header.b="OlpmG679"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR01-DB5-obe.outbound.protection.outlook.com (mail-db5eur01on2058.outbound.protection.outlook.com [40.107.15.58])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A34181BDC3
-	for <devicetree@vger.kernel.org>; Wed,  3 Jan 2024 16:29:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-a27874c861aso456573666b.1
-        for <devicetree@vger.kernel.org>; Wed, 03 Jan 2024 08:29:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704299373; x=1704904173; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=az19ubiIuB1XQs18jJiJ3GzVSuYQgFZqp/BptEnEKEs=;
-        b=d48aEIxXM7X5PRh/Db19JwfZFU1a8XfISZQ4f9MrpX638cw2WOn0GNKj7hIlw4L5TZ
-         MmxOxfpQjCFCn/u38O+Q0R+5WhHc8136V/PWvalgs8GIzJaFzksmL/ttpUIiEz73Nyxn
-         rRuOZXfMWbWmDfI3DgIb0gEgOnUBgiOGWAr14AzSF2796QoFXk8n2fNa3sFQ0cjv6xRP
-         1qah3QNzbfkBxMUJzCZgkg0D9MSMW52AaY7Lx7jJGralMhiykPBnfIrsxcvU4rO/LKwI
-         69fuwejvU0uohH4VuG0RcgmbNqFWtw9a/n3Bh7vN7xKnu5G76CJPzbEYp3c8opDfffAn
-         Z43g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704299373; x=1704904173;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=az19ubiIuB1XQs18jJiJ3GzVSuYQgFZqp/BptEnEKEs=;
-        b=MbkKNLMZRWfT7oq5K1CKrs3Tq3ix/nS/2ZU41wnn3nAtHjamF4oHW2n8lzXEFyVG5v
-         URtspcHGiJFHFOGr506fwGl+2FQR9LomSoVrMe+chEkTdal54mdbfN7nZM6YFqZEj9+e
-         gu2Kwvv4RMahVkmJZ8frW3pP5E5JxLD13L6tlrIqaE4RRFBOqSLxPbdyATV+M3fitQ0i
-         HCYHdNne2qpVBZTYTKNA2Z8S/UWJZ/s/I9zy6VJ2XIGZP36+SkCDFckSiX6Fq9W8rZ/2
-         ybgBXeU+D+LVQEm0iXoK6rWAXr1jBjos5oQxxqvPnAdAHw8vqb2EvaWqiLg1IGQE9TNm
-         iFWA==
-X-Gm-Message-State: AOJu0YyV9N21ITy2x+A8Y2e08k/Oh9wu3qP4TkutjjTXPshMJDu23uKY
-	/sgKIzFuLQ88vPTDE4RU64kRJCMQMioEjA==
-X-Google-Smtp-Source: AGHT+IGsgei5JGl4HpNN+todsAFo0mJSAkJaefQ6l/kSjvHAkWXL8v0+zTZ105CZUJEhPV8PynnaGg==
-X-Received: by 2002:a17:907:36c3:b0:a27:f7a1:2ad2 with SMTP id bj3-20020a17090736c300b00a27f7a12ad2mr2936599ejc.69.1704299372972;
-        Wed, 03 Jan 2024 08:29:32 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id vl8-20020a17090730c800b00a27eddc3dcbsm3322242ejb.198.2024.01.03.08.29.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 03 Jan 2024 08:29:32 -0800 (PST)
-Message-ID: <103a9eb8-c955-4a56-b9dd-9b1eea94e285@linaro.org>
-Date: Wed, 3 Jan 2024 17:29:30 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C7D41C287;
+	Wed,  3 Jan 2024 16:47:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=theobroma-systems.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=theobroma-systems.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=WSO9hrBJGDOZbWS7BfIKFff4AMJbs4/JIHBa42MR76ezLKQ4nj4aAh6RhCTmkJIjVLj2tkgiqhf4nwFkHzdGIIVQ6aSlqlLYP4yCOn1oOnJCj7FlPbwFjXs0XE3rR3OmYXO6cLMdW8HMm5f0HWZTgrt3+RRN8rYLJ5gPVs/759QpNqJ4zUF1RsSPq/oT7pVXcjJn+qliiL6Ab/hbumjD99Xr5RvIH6DuyexG/feFz6LNRSgWkF5KltsDW5HmCSkomDYHl5aDr+VeyBsHNakR6ERqQyerhD6wxq1HnRveQ5583qFFd/zAdzvTI3FvCb5cfq4PEAIp727eNTOGgSma6g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=I9yMYUt6yt3mDJ5Zu76UoO4nZlgHgH9hpvVYIewn5xM=;
+ b=GXRjAGe1BJOzFq2BdjZKdZVoYMxko5AjOXLt+IpCXQL78xhIjMq7FE+cyDPcDdhdV+UOycyR31P6xxDAraegvWnL8WVYACB/81e6CqNxM0nK3WGQyW56HVld1m8YDZJjh+Cs285EsL1Qm8bykwjRQTHUjKCWyFS0rYtIsQv4OLchKSbhK4P84BV6Ho2kYPdql1uty+89PLR+9GgJfmdHxvZjvb5Dq+e5/ACDZ/iVsifsGFKSd02ItCTinHZ+3FfRh0Zn/xIcSNaWz0UY8v4eLSZzTfxy1VyQcoiqNIszPvkHIz5hm3hpdP5aaShntb+szdD+U1NOemFK9n7D8UEaKQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=theobroma-systems.com; dmarc=pass action=none
+ header.from=theobroma-systems.com; dkim=pass header.d=theobroma-systems.com;
+ arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=theobroma-systems.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=I9yMYUt6yt3mDJ5Zu76UoO4nZlgHgH9hpvVYIewn5xM=;
+ b=OlpmG6791Ss6w7Z06RAUPhN9064VFSOLnju579Ksb7JnZzhy7yFdcOzDtL4IYlHbg+J1eNR25ni3HbduI+5+FA8tkuZoSJdkuRy7Ao8Z7MyRs5FEtJwZVuYXv59bLBS50yFyiXNQxLdu5A1ZRL9JgaSZMZPrDwHKoyYvN7QLkB48aWUnR184YKrd/3sry54K8ryasDXS7XcDcUfHEv/JXn6J/u1F1P9Py3DriMFXVV6NqycUk1btCpgE1Z1ty7DA8OKAuuhh+PHXvBhDCk3R5YRkaQf/nmGTDk5Os1WkYJIOkknLCIIShaxWy3bhEA5xbxOH3tPi+WRil8F+Cj4INA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=theobroma-systems.com;
+Received: from VI1PR04MB6013.eurprd04.prod.outlook.com (2603:10a6:803:cb::15)
+ by AM7PR04MB7144.eurprd04.prod.outlook.com (2603:10a6:20b:11b::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7159.13; Wed, 3 Jan
+ 2024 16:47:41 +0000
+Received: from VI1PR04MB6013.eurprd04.prod.outlook.com
+ ([fe80::cc4a:6b4:812d:7c8a]) by VI1PR04MB6013.eurprd04.prod.outlook.com
+ ([fe80::cc4a:6b4:812d:7c8a%5]) with mapi id 15.20.7159.013; Wed, 3 Jan 2024
+ 16:47:41 +0000
+From: Iskander Amara <iskander.amara@theobroma-systems.com>
+To: robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	heiko@sntech.de,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Cc: quentin.schulz@theobroma-systems.com,
+	Iskander Amara <iskander.amara@theobroma-systems.com>
+Subject: [PATCH v2] arm64: dts: rockchip: add missing definition of pmu io domains 1 and 2 on ringneck
+Date: Wed,  3 Jan 2024 17:47:34 +0100
+Message-Id: <20240103164734.1151290-1-iskander.amara@theobroma-systems.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: VI1P194CA0036.EURP194.PROD.OUTLOOK.COM
+ (2603:10a6:803:3c::25) To VI1PR04MB6013.eurprd04.prod.outlook.com
+ (2603:10a6:803:cb::15)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: thermal: correct thermal zone node name
- limit
-Content-Language: en-US
-To: Rob Herring <robh+dt@kernel.org>
-Cc: "Rafael J. Wysocki" <rafael@kernel.org>,
- Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>,
- Lukasz Luba <lukasz.luba@arm.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Liviu Dudau <liviu.dudau@arm.com>,
- Sudeep Holla <sudeep.holla@arm.com>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- Amit Kucheria <amit.kucheria@linaro.org>, linux-pm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, stable@vger.kernel.org
-References: <20240103142051.111717-1-krzysztof.kozlowski@linaro.org>
- <CAL_JsqKAKNHz4wPuJPX7ULhVUz=KFRtNn=coWhs3d6LWk+jtGQ@mail.gmail.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <CAL_JsqKAKNHz4wPuJPX7ULhVUz=KFRtNn=coWhs3d6LWk+jtGQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: VI1PR04MB6013:EE_|AM7PR04MB7144:EE_
+X-MS-Office365-Filtering-Correlation-Id: c5494a30-5d53-46b5-80f8-08dc0c7bb395
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	qSYKJxZ1T9o3/BkT//iQdPHyKpmmpui2oXEM0/qMJUUaKGA5f48n9VZOLG6zvtpi3BqOzOUcFtoZg0t/QZuM8K6XZN9LOLkI9T433ETzokQI331tWg6S9bsQPx+4m8SkLoOiD3d730ytFlejqTAa9MWb9ZooylWHrTnwpBpugElYrzkpqBnr9z9Ux+BDCWZCXasqyo1D6MDZuNIHe7BWW2cQUsULaRiTUvPuUwGwTO8lMxLSK4NIeGVzLCvW157oXFv42/nAwoA9s7K7N6LBvznL48ozh4tdnlsD9Tre0oGXkQFbIu39Z36gV/vejp0z/UhkXCoBKmZWf1D0nZTLb9ydR0YaigBo/HcfpRWSH+aHOcVd/BuMFDaXSPqCeXMvq7z7tIaCyt58ezFZD6Fygk/JJyBMmk8Qo7nrwmH5FOyFG/ojheIP6Oedz6lao+ky98Rl4aoXh8Jv1Isg4v89PDt0Zaexl5NZNMhBLP7JJdvbS6HyPDsVBNhsGo3xJ30Snu8ldzJOHCq2kDqo51KpOoKMcxL7C3TiU5A4ArunxHKa3Y/EeYD4zPkeLUpgoBVxP6GBWsJxH/P/Yo4IpANfJfDqTd83LiG46N24169B6RwsVZ3T6g/CKk1nYaMzgmo4
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB6013.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(346002)(376002)(396003)(136003)(366004)(39840400004)(230922051799003)(64100799003)(1800799012)(186009)(451199024)(36756003)(52116002)(6512007)(66476007)(6506007)(66556008)(66946007)(6486002)(86362001)(38350700005)(38100700002)(2616005)(1076003)(26005)(107886003)(41300700001)(2906002)(5660300002)(478600001)(4326008)(6666004)(44832011)(8676002)(316002)(8936002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?VTe6MtLbn99JRVveEVxIFGG7X7FWiQDnG0nJKFeDUsdW66MaxXyMZxo3YK8v?=
+ =?us-ascii?Q?En5+RBDGUxGO2vvE4DWhYd3Bws9krx2eyX9ccUHEGkDaqC/26dHqkRCdwKD7?=
+ =?us-ascii?Q?ls9N+bMLoYzVrLdei2h90r61NaxbqGSrA3FoAF2LHpJ0o96TLbPVhfAdTnIm?=
+ =?us-ascii?Q?K7lsm360ctZvR89SdJ6cSdoodTK27SBWNuf6TkPFDmFlUDYIXPMBdmQHqNZ1?=
+ =?us-ascii?Q?iQ4teyy9+OitHAey3LvCsmtu0CplBcyKmf4ba9k8hOR3qcL68MA5cO6QcUW4?=
+ =?us-ascii?Q?3W6Nci77TA1fDOnqlLoKW9kWHngcMtQUKjsCSwS+LCHoHJIyaTe6UWOdJK8i?=
+ =?us-ascii?Q?TyVS5jPYx/LiCq0FvFwK/IhBkE9s4ZfZqk7NGqu6K1lEb8k4oUE+ic8mRUMg?=
+ =?us-ascii?Q?T2s0TUDY/a/Cw9QE/2GSexevYVr21wtWdkS7rshPc2FmvEp9RDg7uPC0m1We?=
+ =?us-ascii?Q?QXmuxRrWJaGxagudcRXNsc15GWFzt1Rb7pv7ldUItbCuc5wMzQa7cnWw7tA1?=
+ =?us-ascii?Q?6P4Dkh/w44kLdRCcDewsyDfNJQtYZkWcHaZJuK3lKmP68I4kPAtR77MJEPST?=
+ =?us-ascii?Q?Z4AAAlaGh+PM+L7geA764AhH03CMy7IxcaUKIfO7PXu7Kgx38kO/1xjBPXHC?=
+ =?us-ascii?Q?P7MWrpkAPmTEyo57/aKn6PccJhxNStjDkA3iD9pPp/o4eCOEM2S5n9yDKzs0?=
+ =?us-ascii?Q?7o+nNp4iP+G5nYptGH9B/esfKi7IC06O3mYTsIdxzaUvQkuWS3Co1mzk7itv?=
+ =?us-ascii?Q?I5H/5QMxXfMZlDsQ4I7tjBW12sMxEu/wjMdMH2zQudH3Uh92Ea0gSkR4lK0i?=
+ =?us-ascii?Q?om/Yw//LcUfXfx636sf6yuHgO82qZBKBCi8mX/xp70fC5dsWXBtk8KdBOBTZ?=
+ =?us-ascii?Q?5Cd3nyVU68DFQaeM0QDMHkCIUTzO/eA4ArsH1RnQ2R03qjFg5muA/TzgUtID?=
+ =?us-ascii?Q?7MmkczcEPMP9RIaDsL0AqOVNl663SHrp99v7CVfgmhLAM72Lr4z+oseB9L9M?=
+ =?us-ascii?Q?8icCe5Hc0rGuGfBm+1zlhGQwNW6CnZo9nYkZ1xsYlyRwQvRua5D8YZ9TW6RA?=
+ =?us-ascii?Q?7+uv8GVRVpTcb+iGzqfuhNvP6mjeSEHu/ftGXh2/O4JOiVch8MDcL5u5eUCb?=
+ =?us-ascii?Q?ffYWfLdwL2hPNIUqaU0wRDis0FkGzRUxRJm4S1W88Q7SAstlfzo9CCgm5DRY?=
+ =?us-ascii?Q?PothQq8Rpm5v3YPSlWaAnTKyo/aOvc0qjsnEjwbVS3jueb2TrITeEtp1jABv?=
+ =?us-ascii?Q?8ASCDls77WA6sFFSe0xuCt3HiS+uhu90vk+q/aMrIQ7H4+i2oMpT2RT5WcvD?=
+ =?us-ascii?Q?vUofFzV2DA354NE2/rh0sX2OazR6Wip5zCYdg8/cvoJGdTFWNzC6R3NN86jN?=
+ =?us-ascii?Q?uQGKma/5Zhmvy8Qgwmu/hyECWjGMbdMA8YbCY4OjHbFRLc0xi5AR2MELC8Ke?=
+ =?us-ascii?Q?qhTqkZtPaLalDuBZK7oU0yzn8t47Fck6YMcYH4O7+Akh8JfZVR4VmJrZZRm9?=
+ =?us-ascii?Q?GlaYwbd05fUR+o0sLCGSPaMo/ht0AFjA2JJdefqFvDJMfIk0Fy8aCgMjFQxj?=
+ =?us-ascii?Q?7KzHXrL4smnfWLFn1RsNWIiBi4b5gpaCpYL852tPy7l/eDV97Wh9tzNdMmeX?=
+ =?us-ascii?Q?03V4FOtSLb1iSGONpWgSV28=3D?=
+X-OriginatorOrg: theobroma-systems.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c5494a30-5d53-46b5-80f8-08dc0c7bb395
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB6013.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Jan 2024 16:47:41.4815
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 5e0e1b52-21b5-4e7b-83bb-514ec460677e
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: XzK1zDAhhOEaI6DktyEYnA5FjLuqscm0iFzTDdGUmcX50amUzkwFFPHMi0Ee+5R3NVgZD7sdym7mhdWHr5xRa1gGmvbSFI+kNltfAB7/hKypI9az8GrI3mrbTAwvnR7D
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM7PR04MB7144
 
-On 03/01/2024 16:12, Rob Herring wrote:
-> On Wed, Jan 3, 2024 at 7:20 AM Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->>
->> Linux kernel uses thermal zone node name during registering thermal
->> zones and has a hard-coded limit of 20 characters, including terminating
->> NUL byte.  The bindings expect node names to finish with '-thermal'
->> which is eight bytes long, thus we have only 11 characters for the reset
->> of the node name, not 12.
->>
->> Reported-by: Rob Herring <robh@kernel.org>
->> Closes: https://lore.kernel.org/all/CAL_JsqKogbT_4DPd1n94xqeHaU_J8ve5K09WOyVsRX3jxxUW3w@mail.gmail.com/
->> Fixes: 1202a442a31f ("dt-bindings: thermal: Add yaml bindings for thermal zones")
->> Cc: <stable@vger.kernel.org>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> ---
->>  Documentation/devicetree/bindings/thermal/thermal-zones.yaml | 2 +-
->>  1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/Documentation/devicetree/bindings/thermal/thermal-zones.yaml b/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
->> index 4a8dabc48170..bbc883fd4044 100644
->> --- a/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
->> +++ b/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
->> @@ -49,7 +49,7 @@ properties:
->>        to take when the temperature crosses those thresholds.
->>
->>  patternProperties:
->> -  "^[a-zA-Z][a-zA-Z0-9\\-]{1,12}-thermal$":
->> +  "^[a-zA-Z][a-zA-Z0-9\\-]{1,11}-thermal$":
-> 
-> Now off by 1 instead of 2. It should be 1 starting char, 1-10 chars,
-> and 8 chars for "-thermal".
+Two pmuio domains on ringneck are not defined:
+	1- PMUIO1: supplied by vcc_3v3 regulator(PMIC RK809)
+	2- PMUIO2: supplied by vcc_3v3 regulator(PMIC RK809)
 
-Why off by 2? prefix can be up to 11 bytes, plus 8 bytes for "-thermal"
-and 1 byte for NUL. This gives 11+8+1=20, exactly the size used in Linux
-kernel.
+The reason why no functional effect was observed is because of that
+the above mentionned PMUIO domains were supplied by a regulator
+which is always on.
 
-> 
-> Can you also add a comment that this length is due to the kernel.
+So let's add their definition in the dtsi.
 
-Sure
+Signed-off-by: Iskander Amara <iskander.amara@theobroma-systems.com>
+---
+v2:
+	- Fix indentation
+ arch/arm64/boot/dts/rockchip/px30-ringneck.dtsi | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-Best regards,
-Krzysztof
+diff --git a/arch/arm64/boot/dts/rockchip/px30-ringneck.dtsi b/arch/arm64/boot/dts/rockchip/px30-ringneck.dtsi
+index 12397755830b..bb1aea82e666 100644
+--- a/arch/arm64/boot/dts/rockchip/px30-ringneck.dtsi
++++ b/arch/arm64/boot/dts/rockchip/px30-ringneck.dtsi
+@@ -347,6 +347,12 @@ pmic_int: pmic-int {
+ 	};
+ };
+ 
++&pmu_io_domains {
++	pmuio1-supply = <&vcc_3v3>;
++	pmuio2-supply = <&vcc_3v3>;
++	status = "okay";
++};
++
+ &saradc {
+ 	vref-supply = <&vcc_1v8>;
+ 	status = "okay";
+-- 
+2.34.1
 
 
