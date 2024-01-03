@@ -1,61 +1,62 @@
-Return-Path: <devicetree+bounces-29454-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29455-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C386F822F51
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 15:21:05 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5454B822F53
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 15:21:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 51BEF1F246B6
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 14:21:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 596381C2357E
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 14:21:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4998D1A59C;
-	Wed,  3 Jan 2024 14:20:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C41B1A5A9;
+	Wed,  3 Jan 2024 14:21:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="hNp/NtiO"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UYO54ebB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFBBF1A587
-	for <devicetree@vger.kernel.org>; Wed,  3 Jan 2024 14:20:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBB431A58A
+	for <devicetree@vger.kernel.org>; Wed,  3 Jan 2024 14:20:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-553ba2f0c8fso11604451a12.1
-        for <devicetree@vger.kernel.org>; Wed, 03 Jan 2024 06:20:56 -0800 (PST)
+Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-a2814fa68eeso175003066b.1
+        for <devicetree@vger.kernel.org>; Wed, 03 Jan 2024 06:20:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704291655; x=1704896455; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Bvb45RnFS+kEP29Py4mFpvqfYdOepUjValoNOpE4LSM=;
-        b=hNp/NtiOQtzccHHjdpw2r09WJiL5xuh9EBIvPBrj4WAVE028+NCWgXSP9tB3VrsN/5
-         gNDkhFZfoXD2DOqM4p/rQL+q4LxNq5At5ngOBvZSw/qq/WbdJnBL50rh64Mh/xxP9PsK
-         TJ8GSSze4mi60G9gPFAgVlDVAF8wsRDFdL4cUq+mwtvJ+1pNepb+raBkWCd/p6Tsge27
-         n7ZCFclh0EQ8UZ46ckixFOrt0XaaDmjXL+AbDe8eqtyMqYb3wwiSQJUoSkzlkpJr3Z0r
-         So/0CQtwPl0/Yei4nwiUc3Ias3jiXNIXDM/gFte+1TL8elUkleAACcCADKMraVl7w5xD
-         z9Hw==
+        d=linaro.org; s=google; t=1704291657; x=1704896457; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ENyq9C8VT12HKkFyaBEnj5k/Q7yDIEUWoULUxoNgLvw=;
+        b=UYO54ebBY4UoITxOiJvd1TFS5ZMEa5mwZtNqBc6yXBt3ps3QfnS4hp7rZMIsjfQ5UL
+         TkovF3f+h1TDY5Cbq/wBjTYVFbVk7GgX6vpZjAKnauiEjY1MqaUqe5Pc3zptMjaCHrVK
+         GgnARH5PhKfJKnIDGIyjlrmmsORMFtr55dHy9n2FyWzUMYjwzx+1j5j+nm1ZS5sXNJnu
+         Ch2J2UA+6kujy9DkC9+vAr+MIxtV72sLNlqrtq5zMMLS+KZoDA42qGc2QbI9gpLk29/A
+         psK6Dz3p16bIUyANzytxYiWaqk2slu7bszTb9qWjgL/vEFTIYsFUqWssWclzBSiHnUMM
+         3UhA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704291655; x=1704896455;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Bvb45RnFS+kEP29Py4mFpvqfYdOepUjValoNOpE4LSM=;
-        b=V/87ddXBEHtXnFA2CA048bQmFNmabU4WDnAVDcESXlV2cxgo/sNMEYI+I0450gbPF6
-         RLXiumd76s+5j/AHOxe8ZX3YpGV6LKRMWYAC2Wssw8wjl08aCktCLCtnIrsNZXL7CAe2
-         lcDBNz1EzoaVgIrU+PPFkhwF+qVyvx1SVKwyg6SeICFrj5WRTxTnIG/y3d7Iblpvw5eY
-         2K7PZd4TjyEHhn1f9/m/xrq/s06JiaQ9+h0Hnw2H4HOgauGhBabPloBuI8m+FDhD35fD
-         rV2YtNqlpf1Jpnrm+empVb+s8s0ysQZv96O3yUlM7L2dHycZuFlC7cCBmCrbgZYIuk/E
-         MqUA==
-X-Gm-Message-State: AOJu0YzB3gyoY947ueNltsyyPYPVW3gn1Sce0adAWtCnhYb4YazXfI9H
-	QAakYQG2rGcQfK30VL8U9hZbrRGkdtC1lw==
-X-Google-Smtp-Source: AGHT+IHDZT4bLFqR/GRWN08QLzEICPW0/x7Ga9yWw7doPWkQ11xe2R+5lwJ4fdglYrnv/j5X1LRe6A==
-X-Received: by 2002:a17:906:3:b0:a27:908b:e6b2 with SMTP id 3-20020a170906000300b00a27908be6b2mr1793479eja.35.1704291655000;
-        Wed, 03 Jan 2024 06:20:55 -0800 (PST)
+        d=1e100.net; s=20230601; t=1704291657; x=1704896457;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ENyq9C8VT12HKkFyaBEnj5k/Q7yDIEUWoULUxoNgLvw=;
+        b=rfDC51YJA4WTVM7z8LkagXi5TgkjaaockQz/71OVDVViqduKa1BrD1MHHjtpWHF4LU
+         H9OVd0dvM7jDZGYArCzx1QGC6Q5KLU3cKYH7ucYXne8fXVzLyfv31Qgbia8hA2B+fBPb
+         IvV8aE+/v8naLVhx2ZY0/0n6LuzFf+PPbQrwHSlQm9QNxsAC9lRRwmtwRMP/WTEC0Qv7
+         u7rSQAomRbXvLRnga0UOVf0b3hUq03ramT1sTaYrmYcy+5KEyDOuIa8b54bYx/y9YeWi
+         wqceaRFzximFjjVFO0hENNA4pbc1+mIY7ciyHaxow5ez+t8lz5F7ZNCgGxehm1oFANpO
+         hJXg==
+X-Gm-Message-State: AOJu0Yw0hJlKeCDfy9yCLkvqj+50Q9JAvTPWkOp+LSDTlC4VX110qg09
+	ZOo/TKf5hxKS93ak1t6KoC2r4L5ueaHWqQ==
+X-Google-Smtp-Source: AGHT+IH7MJevMD7XZ43XmWVT3UQtQVmLymVJAkmIgQoi6Jelzk4nVGGYuMAwr4bcDeCTaDCGkQQfPg==
+X-Received: by 2002:a17:907:968d:b0:a23:357f:f583 with SMTP id hd13-20020a170907968d00b00a23357ff583mr13158197ejc.30.1704291657122;
+        Wed, 03 Jan 2024 06:20:57 -0800 (PST)
 Received: from krzk-bin.. ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id ka24-20020a170907921800b00a26abf393d0sm12229325ejb.138.2024.01.03.06.20.52
+        by smtp.gmail.com with ESMTPSA id ka24-20020a170907921800b00a26abf393d0sm12229325ejb.138.2024.01.03.06.20.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 03 Jan 2024 06:20:54 -0800 (PST)
+        Wed, 03 Jan 2024 06:20:56 -0800 (PST)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To: "Rafael J. Wysocki" <rafael@kernel.org>,
 	Daniel Lezcano <daniel.lezcano@linaro.org>,
@@ -73,12 +74,13 @@ To: "Rafael J. Wysocki" <rafael@kernel.org>,
 	linux-kernel@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org
 Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	stable@vger.kernel.org
-Subject: [PATCH 1/2] dt-bindings: thermal: correct thermal zone node name limit
-Date: Wed,  3 Jan 2024 15:20:50 +0100
-Message-Id: <20240103142051.111717-1-krzysztof.kozlowski@linaro.org>
+	Rob Herring <robh@kernel.org>
+Subject: [PATCH 2/2] arm64: dts: juno: fix thermal zone node names
+Date: Wed,  3 Jan 2024 15:20:51 +0100
+Message-Id: <20240103142051.111717-2-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20240103142051.111717-1-krzysztof.kozlowski@linaro.org>
+References: <20240103142051.111717-1-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,32 +91,57 @@ Content-Transfer-Encoding: 8bit
 
 Linux kernel uses thermal zone node name during registering thermal
 zones and has a hard-coded limit of 20 characters, including terminating
-NUL byte.  The bindings expect node names to finish with '-thermal'
-which is eight bytes long, thus we have only 11 characters for the reset
-of the node name, not 12.
+NUL byte.  Exceeding the limit will cause failure to configure thermal
+zone.
 
 Reported-by: Rob Herring <robh@kernel.org>
 Closes: https://lore.kernel.org/all/CAL_JsqKogbT_4DPd1n94xqeHaU_J8ve5K09WOyVsRX3jxxUW3w@mail.gmail.com/
-Fixes: 1202a442a31f ("dt-bindings: thermal: Add yaml bindings for thermal zones")
-Cc: <stable@vger.kernel.org>
+Fixes: fb4d25d7a33f ("arm64: dts: juno: Align thermal zone names with bindings")
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- Documentation/devicetree/bindings/thermal/thermal-zones.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm64/boot/dts/arm/juno-base.dtsi | 4 ++--
+ arch/arm64/boot/dts/arm/juno-scmi.dtsi | 4 ++--
+ 2 files changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/thermal/thermal-zones.yaml b/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
-index 4a8dabc48170..bbc883fd4044 100644
---- a/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
-+++ b/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
-@@ -49,7 +49,7 @@ properties:
-       to take when the temperature crosses those thresholds.
+diff --git a/arch/arm64/boot/dts/arm/juno-base.dtsi b/arch/arm64/boot/dts/arm/juno-base.dtsi
+index b897f5542c0a..98ed2b329ed6 100644
+--- a/arch/arm64/boot/dts/arm/juno-base.dtsi
++++ b/arch/arm64/boot/dts/arm/juno-base.dtsi
+@@ -773,14 +773,14 @@ soc_crit0: trip0 {
+ 			};
+ 		};
  
- patternProperties:
--  "^[a-zA-Z][a-zA-Z0-9\\-]{1,12}-thermal$":
-+  "^[a-zA-Z][a-zA-Z0-9\\-]{1,11}-thermal$":
-     type: object
-     description:
-       Each thermal zone node contains information about how frequently it
+-		big_cluster_thermal_zone: big-cluster-thermal {
++		big_cluster_thermal_zone: big-cl-thermal {
+ 			polling-delay = <1000>;
+ 			polling-delay-passive = <100>;
+ 			thermal-sensors = <&scpi_sensors0 21>;
+ 			status = "disabled";
+ 		};
+ 
+-		little_cluster_thermal_zone: little-cluster-thermal {
++		little_cluster_thermal_zone: little-cl-thermal {
+ 			polling-delay = <1000>;
+ 			polling-delay-passive = <100>;
+ 			thermal-sensors = <&scpi_sensors0 22>;
+diff --git a/arch/arm64/boot/dts/arm/juno-scmi.dtsi b/arch/arm64/boot/dts/arm/juno-scmi.dtsi
+index 31929e2377d8..f38c5b6ef657 100644
+--- a/arch/arm64/boot/dts/arm/juno-scmi.dtsi
++++ b/arch/arm64/boot/dts/arm/juno-scmi.dtsi
+@@ -84,11 +84,11 @@ soc-thermal {
+ 			thermal-sensors = <&scmi_sensors0 3>;
+ 		};
+ 
+-		big-cluster-thermal {
++		big-cl-thermal {
+ 			thermal-sensors = <&scmi_sensors0 21>;
+ 		};
+ 
+-		little-cluster-thermal {
++		little-cl-thermal {
+ 			thermal-sensors = <&scmi_sensors0 22>;
+ 		};
+ 
 -- 
 2.34.1
 
