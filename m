@@ -1,146 +1,302 @@
-Return-Path: <devicetree+bounces-29520-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29527-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C34A0823848
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 23:40:49 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 21E46823910
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 00:17:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 65D38B22300
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 22:40:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BFCB6287546
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 23:17:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B4201D6AE;
-	Wed,  3 Jan 2024 22:40:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40E031EB29;
+	Wed,  3 Jan 2024 23:16:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="uBh9XVvW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o0Wj0YSN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C73291DA52
-	for <devicetree@vger.kernel.org>; Wed,  3 Jan 2024 22:40:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-1d45f182fa2so57281825ad.3
-        for <devicetree@vger.kernel.org>; Wed, 03 Jan 2024 14:40:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1704321638; x=1704926438; darn=vger.kernel.org;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=0h7PgAKHLBBL550JFcFthbjqC6UsTh1CLzAgFeU19vM=;
-        b=uBh9XVvWyWYQQ09JmpqVoNebkFNQVyb0SUYGJ9TnEaX1jjIOMkginNazGqL3lQ7flU
-         9jjrclrMyBT3QPzgwLkdM6sw8wPvpOsN4A+PHp2rD0KXAROlsX6VPqmDR8fpD+RDju6L
-         nxW687QdxgEaBWnmZ23bcaA7nmfHskBJ0TxDCJerRLgY/VzXLWWYQEy6lDPzjB2Q2aes
-         aBGlPQTnUHjarPvf2IzbnLvAFl6PLwTlErs+KkKOCCZEKDbXURvAfB6jo2Bgf9DmwVR5
-         0OXCNJ/9yoGUeVdZqn3iJnJPMrFq+REu8n+fBrt1yeUmeYeA0N3F2Me/KUEEPN+VyO5N
-         Hf0w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704321638; x=1704926438;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0h7PgAKHLBBL550JFcFthbjqC6UsTh1CLzAgFeU19vM=;
-        b=PxrNWBF5Q0IBURMTHEe9aXHyHCjCz1kKqB57gh6A+KP1A/IteMDQl1F9T9Nt0T03mz
-         Eq6f/3ZwIcBAXI14QY+Dimotj2g+oYpQk0Ja6Wgm6Dv1wsd51rsYhA9VTcmJ1POZfYmA
-         oPb13zxtHFB5aw3ZHk8so/aXGF5mh7tYweLIr6tOhT9Og3cD8cLa8UaJqWt9dIFvgg4r
-         5cExrvT7F7GFYm3vexKF/fsLhCL2wutsFz7AmKZKgOf9B+bkgtDs57uFlByWSmderrrt
-         85rp3m1XukomTEckzzS7NdCpqMyMLI1bSxeX6nk86zLgyXE/zw/8C8sK0DZ2FJvy3U1J
-         7H9A==
-X-Gm-Message-State: AOJu0YyK83TYvTzZpF58vPiAVgfbjF6b8QT8yGp3YkbdCOnIJ0AZ6dkH
-	IVKF5XWE+qm+uajE0A5WsEf97iF24Zub8w==
-X-Google-Smtp-Source: AGHT+IGZCHN9Av1WNlNPUdB6KQ1jk2qnXWzZ7w5vQl8+w8WwvKce7rZQQlWFz/cP/YGLrakvB1D3SA==
-X-Received: by 2002:a17:902:d50b:b0:1d4:32d8:ea78 with SMTP id b11-20020a170902d50b00b001d432d8ea78mr22084129plg.79.1704321638123;
-        Wed, 03 Jan 2024 14:40:38 -0800 (PST)
-Received: from localhost (75-172-121-199.tukw.qwest.net. [75.172.121.199])
-        by smtp.gmail.com with ESMTPSA id u17-20020a170903125100b001cfa0c04553sm24071484plh.116.2024.01.03.14.40.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 03 Jan 2024 14:40:37 -0800 (PST)
-From: Kevin Hilman <khilman@baylibre.com>
-To: Minda Chen <minda.chen@starfivetech.com>, Conor Dooley
- <conor@kernel.org>, Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
- Rob Herring
- <robh+dt@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, Lorenzo
- Pieralisi <lpieralisi@kernel.org>, Daire
- McNamara <daire.mcnamara@microchip.com>, Emil Renner Berthing
- <emil.renner.berthing@canonical.com>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-riscv@lists.infradead.org, linux-pci@vger.kernel.org, Paul Walmsley
- <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou
- <aou@eecs.berkeley.edu>, Philipp Zabel <p.zabel@pengutronix.de>, Mason Huo
- <mason.huo@starfivetech.com>, Leyfoon Tan <leyfoon.tan@starfivetech.com>,
- Kevin Xie <kevin.xie@starfivetech.com>, Minda Chen
- <minda.chen@starfivetech.com>
-Subject: Re: [PATCH v13 0/21] Refactoring Microchip PCIe driver and add
- StarFive PCIe
-In-Reply-To: <20231214072839.2367-1-minda.chen@starfivetech.com>
-References: <20231214072839.2367-1-minda.chen@starfivetech.com>
-Date: Wed, 03 Jan 2024 14:40:36 -0800
-Message-ID: <7hfrzeavmj.fsf@baylibre.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F78320321;
+	Wed,  3 Jan 2024 23:16:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7B242C433CD;
+	Wed,  3 Jan 2024 23:16:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1704323781;
+	bh=yEGR043qt+dE+WGZhZAa/guimX9DAzWuYhf0RWwWwTE=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=o0Wj0YSNTzVks0rALhjRa4xpZwN5ZmC1OCaIkkn+oakPQ9TkUBgkhbBOD/2Kp6IHD
+	 8hZSob74XUQ3eLSP0JFpFbzerMRDSMwcePQUIhXAlJpkpc7oQtFsYBuRcJ73XViXkl
+	 3zUgkOj9PEQKy1enSUgvd3mPiagVlpcSAnufbQOktG8RkbV029zyIvihcETvky01FM
+	 GMTZafbzu67TTgXSVGDhJuNLbSOXAnTnna35KymIbltqQsHItMGz25u+DV5FPYBtSh
+	 BoBn1xDjQ7ccMvDN1X5Z5OhN+I6Sja2UN/FwAMNJo6O6pnSzcmDgGERoGZGFlJqEXv
+	 zEp+MSdUeevJQ==
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: Randy Dunlap <rdunlap@infradead.org>,
+	linux-kernel@vger.kernel.org,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org
+Subject: [PATCH 4/8] arm64: dts: Fix typos
+Date: Wed,  3 Jan 2024 17:16:01 -0600
+Message-Id: <20240103231605.1801364-5-helgaas@kernel.org>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20240103231605.1801364-1-helgaas@kernel.org>
+References: <20240103231605.1801364-1-helgaas@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
 
-Minda Chen <minda.chen@starfivetech.com> writes:
+From: Bjorn Helgaas <bhelgaas@google.com>
 
-> This patchset final purpose is add PCIe driver for StarFive JH7110 SoC.
-> JH7110 using PLDA XpressRICH PCIe IP. Microchip PolarFire Using the
-> same IP and have commit their codes, which are mixed with PLDA
-> controller codes and Microchip platform codes.
+Fix typos, most reported by "codespell arch/arm64/boot/dts".  Only touches
+comments, no code changes.
 
-Thank you for this series.
+Signed-off-by: Bjorn Helgaas <bhelgaas@google.com>
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: devicetree@vger.kernel.org
+---
+ arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone-1.1.dts | 2 +-
+ arch/arm64/boot/dts/apm/apm-shadowcat.dtsi                 | 2 +-
+ arch/arm64/boot/dts/apm/apm-storm.dtsi                     | 2 +-
+ arch/arm64/boot/dts/exynos/exynos7.dtsi                    | 2 +-
+ arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi             | 2 +-
+ arch/arm64/boot/dts/freescale/fsl-ls1088a-ten64.dts        | 2 +-
+ arch/arm64/boot/dts/freescale/imx8x-colibri.dtsi           | 2 +-
+ arch/arm64/boot/dts/qcom/msm8916.dtsi                      | 4 ++--
+ arch/arm64/boot/dts/qcom/msm8994-msft-lumia-octagon.dtsi   | 2 +-
+ arch/arm64/boot/dts/qcom/sa8155p.dtsi                      | 2 +-
+ arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi                 | 4 ++--
+ arch/arm64/boot/dts/qcom/sdm670-google-sargo.dts           | 2 +-
+ arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama.dtsi      | 2 +-
+ arch/arm64/boot/dts/renesas/draak.dtsi                     | 2 +-
+ arch/arm64/boot/dts/rockchip/rk3399-roc-pc-plus.dts        | 2 +-
+ arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi                 | 2 +-
+ 16 files changed, 18 insertions(+), 18 deletions(-)
 
-I tested this on a VisionFive v2 board, and it seems to probe and find my
-M.2 NVMe SSD, but then gets timeouts when trying to use the NVMe
-(e.g. 'blkid' command)
-
-Kernel logs below.
-
-Kevin
-
-[   15.131094] pcie-starfive 9c0000000.pcie: host bridge /soc/pcie@9c0000000 ranges:
-[   15.138637] pcie-starfive 9c0000000.pcie:      MEM 0x0038000000..0x003fffffff -> 0x0038000000
-[   15.147180] pcie-starfive 9c0000000.pcie:      MEM 0x0980000000..0x09bfffffff -> 0x0980000000
-[   15.368040] pcie-starfive 9c0000000.pcie: port link up
-[   15.374219] pcie-starfive 9c0000000.pcie: PCI host bridge to bus 0001:00
-[   15.380944] pci_bus 0001:00: root bus resource [bus 00-ff]
-[   15.386443] pci_bus 0001:00: root bus resource [mem 0x38000000-0x3fffffff]
-[   15.393330] pci_bus 0001:00: root bus resource [mem 0x980000000-0x9bfffffff pref]
-[   15.400882] pci 0001:00:00.0: [1556:1111] type 01 class 0x060400
-[   15.407165] pci 0001:00:00.0: supports D1 D2
-[   15.411447] pci 0001:00:00.0: PME# supported from D0 D1 D2 D3hot D3cold
-[   15.419964] pci 0001:00:00.0: bridge configuration invalid ([bus 00-00]), reconfiguring
-[   15.428245] pci 0001:01:00.0: [126f:2263] type 00 class 0x010802
-[   15.434331] pci 0001:01:00.0: reg 0x10: [mem 0x00000000-0x00003fff 64bit]
-[   15.441578] pci 0001:01:00.0: 4.000 Gb/s available PCIe bandwidth, limited by 5.0 GT/s PCIe x1 link at 0001:00:00.0 (capable of 31.504 Gb/s with 8
-.0 GT/s PCIe x4 link)
-[   15.456910] pci_bus 0001:01: busn_res: [bus 01-ff] end is updated to 01
-[   15.463553] pci 0001:00:00.0: BAR 8: assigned [mem 0x38000000-0x380fffff]
-[   15.470352] pci 0001:01:00.0: BAR 0: assigned [mem 0x38000000-0x38003fff 64bit]
-[   15.477699] pci 0001:00:00.0: PCI bridge to [bus 01]
-[   15.482686] pci 0001:00:00.0:   bridge window [mem 0x38000000-0x380fffff]
-[   15.489632] pcieport 0001:00:00.0: enabling device (0000 -> 0002)
-[   15.496038] pcieport 0001:00:00.0: PME: Signaling with IRQ 56
-[   15.502472] usb 1-1: new high-speed USB device number 2 using xhci_hcd
-[   15.509755] usb usb2-port2: over-current condition
-[   15.515883] nvme nvme0: pci function 0001:01:00.0
-[   15.520615] nvme 0001:01:00.0: enabling device (0000 -> 0002)
-[   15.532685] nvme nvme0: allocated 64 MiB host memory buffer.
-[   15.550070] nvme nvme0: 4/0/0 default/read/poll queues
-[   15.562992] nvme nvme0: Ignoring bogus Namespace Identifiers
-[   15.663327] hub 1-1:1.0: USB hub found
-[   15.667320] hub 1-1:1.0: 4 ports detected
-
-[   46.064052] nvme nvme0: I/O 424 QID 3 timeout, completion polled
-
-[   76.784046] nvme nvme0: I/O 425 (I/O Cmd) QID 3 timeout, aborting
-[   76.790179] nvme nvme0: I/O 426 (I/O Cmd) QID 3 timeout, aborting
-[   76.796294] nvme nvme0: I/O 427 (I/O Cmd) QID 3 timeout, aborting
-[   76.802411] nvme nvme0: I/O 428 (I/O Cmd) QID 3 timeout, aborting
-[   76.808525] nvme nvme0: I/O 429 (I/O Cmd) QID 3 timeout, aborting
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone-1.1.dts b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone-1.1.dts
+index 723af64a9cee..bac2a1ecfb9e 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone-1.1.dts
++++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone-1.1.dts
+@@ -16,7 +16,7 @@ &backlight {
+ 	 * PWM backlight circuit on this PinePhone revision was changed since
+ 	 * 1.0, and the lowest PWM duty cycle that doesn't lead to backlight
+ 	 * being off is around 20%. Duty cycle for the lowest brightness level
+-	 * also varries quite a bit between individual boards, so the lowest
++	 * also varies quite a bit between individual boards, so the lowest
+ 	 * value here was chosen as a safe default.
+ 	 */
+ 	brightness-levels = <
+diff --git a/arch/arm64/boot/dts/apm/apm-shadowcat.dtsi b/arch/arm64/boot/dts/apm/apm-shadowcat.dtsi
+index 65ebac3082e2..8891a6c17347 100644
+--- a/arch/arm64/boot/dts/apm/apm-shadowcat.dtsi
++++ b/arch/arm64/boot/dts/apm/apm-shadowcat.dtsi
+@@ -123,7 +123,7 @@ gic: interrupt-controller@78090000 {
+ 		#address-cells = <2>;
+ 		#size-cells = <2>;
+ 		interrupt-controller;
+-		interrupts = <1 9 0xf04>;	/* GIC Maintenence IRQ */
++		interrupts = <1 9 0xf04>;	/* GIC Maintenance IRQ */
+ 		ranges = <0 0 0 0x79000000 0x0 0x800000>; /* MSI Range */
+ 		reg = <0x0 0x78090000 0x0 0x10000>,	/* GIC Dist */
+ 		      <0x0 0x780a0000 0x0 0x20000>,	/* GIC CPU */
+diff --git a/arch/arm64/boot/dts/apm/apm-storm.dtsi b/arch/arm64/boot/dts/apm/apm-storm.dtsi
+index 988928c60f15..ee1303a68d50 100644
+--- a/arch/arm64/boot/dts/apm/apm-storm.dtsi
++++ b/arch/arm64/boot/dts/apm/apm-storm.dtsi
+@@ -109,7 +109,7 @@ gic: interrupt-controller@78010000 {
+ 		      <0x0 0x78020000 0x0 0x1000>,	/* GIC CPU */
+ 		      <0x0 0x78040000 0x0 0x2000>,	/* GIC VCPU Control */
+ 		      <0x0 0x78060000 0x0 0x2000>;	/* GIC VCPU */
+-		interrupts = <1 9 0xf04>;	/* GIC Maintenence IRQ */
++		interrupts = <1 9 0xf04>;	/* GIC Maintenance IRQ */
+ 	};
+ 
+ 	timer {
+diff --git a/arch/arm64/boot/dts/exynos/exynos7.dtsi b/arch/arm64/boot/dts/exynos/exynos7.dtsi
+index 6ed80ddf3369..6e83d288de53 100644
+--- a/arch/arm64/boot/dts/exynos/exynos7.dtsi
++++ b/arch/arm64/boot/dts/exynos/exynos7.dtsi
+@@ -645,7 +645,7 @@ tmuctrl_0: tmu@10060000 {
+ 		ufs: ufs@15570000 {
+ 			compatible = "samsung,exynos7-ufs";
+ 			reg = <0x15570000 0x100>,  /* 0: HCI standard */
+-				<0x15570100 0x100>,  /* 1: Vendor specificed */
++				<0x15570100 0x100>,  /* 1: Vendor specified */
+ 				<0x15571000 0x200>,  /* 2: UNIPRO */
+ 				<0x15572000 0x300>;  /* 3: UFS protector */
+ 			reg-names = "hci", "vs_hci", "unipro", "ufsp";
+diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+index eefe3577d94e..459e43785c83 100644
+--- a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
++++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+@@ -150,7 +150,7 @@ gic: interrupt-controller@6000000 {
+ 		its: msi-controller@6020000 {
+ 			compatible = "arm,gic-v3-its";
+ 			msi-controller;
+-			reg = <0x0 0x06020000 0 0x20000>;/* GIC Translater */
++			reg = <0x0 0x06020000 0 0x20000>;/* GIC Translator */
+ 		};
+ 	};
+ 
+diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1088a-ten64.dts b/arch/arm64/boot/dts/freescale/fsl-ls1088a-ten64.dts
+index d4867d6cf47c..7436d041cca4 100644
+--- a/arch/arm64/boot/dts/freescale/fsl-ls1088a-ten64.dts
++++ b/arch/arm64/boot/dts/freescale/fsl-ls1088a-ten64.dts
+@@ -1,6 +1,6 @@
+ // SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+ /*
+- * Device Tree file for Travese Ten64 (LS1088) board
++ * Device Tree file for Traverse Ten64 (LS1088) board
+  * Based on fsl-ls1088a-rdb.dts
+  * Copyright 2017-2020 NXP
+  * Copyright 2019-2021 Traverse Technologies
+diff --git a/arch/arm64/boot/dts/freescale/imx8x-colibri.dtsi b/arch/arm64/boot/dts/freescale/imx8x-colibri.dtsi
+index 49d105eb4769..2b41fbdf136e 100644
+--- a/arch/arm64/boot/dts/freescale/imx8x-colibri.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8x-colibri.dtsi
+@@ -504,7 +504,7 @@ pinctrl_hog2: hog2grp {
+ 
+ 	/*
+ 	 * This pin is used in the SCFW as a UART. Using it from
+-	 * Linux would require rewritting the SCFW board file.
++	 * Linux would require rewriting the SCFW board file.
+ 	 */
+ 	pinctrl_hog_scfw: hogscfwgrp {
+ 		fsl,pins = <IMX8QXP_SCU_GPIO0_00_LSIO_GPIO2_IO03		0x20>;		/* SODIMM 144 */
+diff --git a/arch/arm64/boot/dts/qcom/msm8916.dtsi b/arch/arm64/boot/dts/qcom/msm8916.dtsi
+index 4f799b536a92..34fa2843fdc7 100644
+--- a/arch/arm64/boot/dts/qcom/msm8916.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8916.dtsi
+@@ -666,12 +666,12 @@ in-ports {
+ 
+ 				/*
+ 				 * Not described input ports:
+-				 * 0 - connected to Resource and Power Manger CPU ETM
++				 * 0 - connected to Resource and Power Manager CPU ETM
+ 				 * 1 - not-connected
+ 				 * 2 - connected to Modem CPU ETM
+ 				 * 3 - not-connected
+ 				 * 5 - not-connected
+-				 * 6 - connected trought funnel to Wireless CPU ETM
++				 * 6 - connected through funnel to Wireless CPU ETM
+ 				 * 7 - connected to STM component
+ 				 */
+ 
+diff --git a/arch/arm64/boot/dts/qcom/msm8994-msft-lumia-octagon.dtsi b/arch/arm64/boot/dts/qcom/msm8994-msft-lumia-octagon.dtsi
+index cbc84459a5ae..4e0e7dfe1b4a 100644
+--- a/arch/arm64/boot/dts/qcom/msm8994-msft-lumia-octagon.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8994-msft-lumia-octagon.dtsi
+@@ -857,7 +857,7 @@ &sdhc1 {
+ 	status = "okay";
+ 
+ 	/*
+-	 * This device is shipped with HS400 capabable eMMCs
++	 * This device is shipped with HS400 capable eMMCs
+ 	 * However various brands have been used in various product batches,
+ 	 * including a Samsung eMMC (BGND3R) which features a quirk with HS400.
+ 	 * Set the speed to HS200 as a safety measure.
+diff --git a/arch/arm64/boot/dts/qcom/sa8155p.dtsi b/arch/arm64/boot/dts/qcom/sa8155p.dtsi
+index ffb7ab695213..1bc86a8529e1 100644
+--- a/arch/arm64/boot/dts/qcom/sa8155p.dtsi
++++ b/arch/arm64/boot/dts/qcom/sa8155p.dtsi
+@@ -4,7 +4,7 @@
+  *
+  * SA8155P is an automotive variant of SM8150, with some minor changes.
+  * Most notably, the RPMhPD setup differs: MMCX and LCX/LMX rails are gone,
+- * though the cmd-db doesn't reflect that and access attemps result in a bite.
++ * though the cmd-db doesn't reflect that and access attempts result in a bite.
+  */
+ 
+ #include "sm8150.dtsi"
+diff --git a/arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi b/arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi
+index f9b96bd2477e..9dae5931dead 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi
+@@ -563,8 +563,8 @@ &sdc1_rclk {
+  *
+  * This has entries that are defined by Qcard even if they go to the main
+  * board. In cases where the pulls may be board dependent we defer those
+- * settings to the board device tree. Drive strengths tend to be assinged here
+- * but could conceivably be overwridden by board device trees.
++ * settings to the board device tree. Drive strengths tend to be assigned here
++ * but could conceivably be overridden by board device trees.
+  */
+ 
+ &pm8350c_gpios {
+diff --git a/arch/arm64/boot/dts/qcom/sdm670-google-sargo.dts b/arch/arm64/boot/dts/qcom/sdm670-google-sargo.dts
+index 32a7bd59e1ec..8f89352aeb73 100644
+--- a/arch/arm64/boot/dts/qcom/sdm670-google-sargo.dts
++++ b/arch/arm64/boot/dts/qcom/sdm670-google-sargo.dts
+@@ -168,7 +168,7 @@ vph_pwr: vph-pwr-regulator {
+ 	 * Supply map from xiaomi-lavender specifies this as the supply for
+ 	 * ldob1, ldob9, ldob10, ldoa2, and ldoa3, while downstream specifies
+ 	 * this as a power domain. Set this as a fixed regulator with the same
+-	 * voltage as lavender until display is needed to avoid unneccessarily
++	 * voltage as lavender until display is needed to avoid unnecessarily
+ 	 * using a deprecated binding (regulator-fixed-domain).
+ 	 */
+ 	vreg_s2b_1p05: vreg-s2b-regulator {
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama.dtsi b/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama.dtsi
+index b02a1dc5fecd..a4be5c6ebb47 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama.dtsi
+@@ -305,7 +305,7 @@ vreg_l19a_2p7: ldo19 {
+ 			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+ 
+ 			/*
+-			 * The driver *really* doesn't want this regualtor to exist,
++			 * The driver *really* doesn't want this regulator to exist,
+ 			 * saying that it could not get the current voltage (-ENOTRECOVERABLE)
+ 			 * even though it surely is used on these devices (as a voltage
+ 			 * source for camera autofocus)
+diff --git a/arch/arm64/boot/dts/renesas/draak.dtsi b/arch/arm64/boot/dts/renesas/draak.dtsi
+index ef3bb835d5c0..67c36f71f4cb 100644
+--- a/arch/arm64/boot/dts/renesas/draak.dtsi
++++ b/arch/arm64/boot/dts/renesas/draak.dtsi
+@@ -226,7 +226,7 @@ &audio_clk_b {
+ 	/*
+ 	 * X11 is connected to VI4_FIELD/SCIF_CLK/AUDIO_CLKB,
+ 	 * and R-Car Sound uses AUDIO_CLKB.
+-	 * Note is that schematic indicates VI4_FIELD conection only
++	 * Note is that schematic indicates VI4_FIELD connection only
+ 	 * not AUDIO_CLKB at SoC page.
+ 	 * And this VI4_FIELD/SCIF_CLK/AUDIO_CLKB is connected to SW60.
+ 	 * SW60 should be 1-2.
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-roc-pc-plus.dts b/arch/arm64/boot/dts/rockchip/rk3399-roc-pc-plus.dts
+index 7ba1c28f70a9..ce55f82268b2 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-roc-pc-plus.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3399-roc-pc-plus.dts
+@@ -9,7 +9,7 @@
+ /*
+  * Notice:
+  * 1. rk3399-roc-pc-plus is powered by dc_12v directly.
+- * 2. rk3399-roc-pc-plus has only vcc_bus_typec0 in schematic, which is coresponding
++ * 2. rk3399-roc-pc-plus has only vcc_bus_typec0 in schematic, which is corresponding
+  *    to vcc_vbus_typec1 in rk3399-roc-pc.
+  *    For simplicity, reserve the node name of vcc_vbus_typec1.
+  * 3. vcc5v0_host is actually 2 regulators (host0, 1) controlled by the same gpio.
+diff --git a/arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi b/arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi
+index 5db52f237253..e99e69027125 100644
+--- a/arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi
+@@ -1415,7 +1415,7 @@ &usbss0 {
+ 	status = "disabled";
+ };
+ 
+-/* TODO: role swich using ID pin */
++/* TODO: role switch using ID pin */
+ &usb0 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_usb0>, <&pinctrl_usb0_id>;
+-- 
+2.34.1
 
 
