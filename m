@@ -1,123 +1,113 @@
-Return-Path: <devicetree+bounces-29514-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29515-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95311823734
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 22:39:53 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6371D823749
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 22:51:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 197A72832BE
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 21:39:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 727051C248A9
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 21:51:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8086A1D6BD;
-	Wed,  3 Jan 2024 21:39:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B72C1D6BE;
+	Wed,  3 Jan 2024 21:51:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="KDpR54+e"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YOSyWYAe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com [209.85.208.176])
+Received: from mail-pj1-f48.google.com (mail-pj1-f48.google.com [209.85.216.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7CE31DA23
-	for <devicetree@vger.kernel.org>; Wed,  3 Jan 2024 21:39:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-2ccc6e509c8so8364481fa.0
-        for <devicetree@vger.kernel.org>; Wed, 03 Jan 2024 13:39:42 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 240E91DA26;
+	Wed,  3 Jan 2024 21:51:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f48.google.com with SMTP id 98e67ed59e1d1-28b93b04446so2087226a91.0;
+        Wed, 03 Jan 2024 13:51:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1704317980; x=1704922780; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1704318674; x=1704923474; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=5+AIF4yNGi2dja8BCgq5OeAUBgUsXRyLuw34D2kZ4yA=;
-        b=KDpR54+eTUGZwNQfntJRymMgezPSIt1hO34xlA1IpPBmm1kMJdpztf9sMQpqxxghHY
-         zU5jQGd8v22sP9upLYlchXBP9sYMxYfixJRiTox3KwDnQbgezquoqBXsafxt1ifxyAQj
-         Hm0miBqnKnX2oUpNhnuq1jsGEYiYD9E5mX33g65iVQLX8BWS60Gj1YEXU9DLjr83gKnf
-         /BxgdSz6ChrQHN1iNuNeVFh9MzpskP8nDyihcc1BEifyiOOURnbZk44gHsoxVeBigmQK
-         zCkDLiBceV88zvBNZfx4+xVpV3Z5CrJQoFuatMgjsv0J1Iy5VSWe3Yd24B2cHsr+K51R
-         6Ksg==
+        bh=8dJaSTSDWLtUQ00fuVpIlouln4xdudcB+SfHwdWcyQg=;
+        b=YOSyWYAeFxjal8DW+RkpP9GpV7lEu5dDZnkZAq9OtgA5tJdpRHIinBR93wZX/0kolm
+         p6cBB1AlErcZxmPePwDrwKDXlU7mjRNBArIXO+h95LhYSxUXX+5oTYlk4H0WDERYYLnA
+         rSQn0vJkuWayE0P5DUZK2j7COw/0zUHGFO4fXdw3wooCEIbG9yDCo4v12eGmys2LfhnP
+         xFyZlGwkMK8pqhB+pjA5TyRdfNaiperFMAWE6ibkD9rGpAh/7o5vGM6L3S0ZGy2ojxf9
+         yuLc1hUpYVVlLhen6pvtP3z5oSJoXxz2JFyXwyBbcVVDNjErKNhmLm+r6xlJ4I6R/AWo
+         dnlw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704317980; x=1704922780;
+        d=1e100.net; s=20230601; t=1704318674; x=1704923474;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=5+AIF4yNGi2dja8BCgq5OeAUBgUsXRyLuw34D2kZ4yA=;
-        b=LB1THFlIoPEYZA1PeESgWjTs9PXLY98OHz6TNNe0kidgtNOk+rGCcgl3FYZPdKeUGE
-         k23nRZTt8LuaYEw/OB6hNcc4xz6ywOAuCPpK2YOLVA+nGO0ZwDQmRawZKDETq6kBQvMa
-         IpsPQjMAHxs/4kfK19uudH+L7eKmqGu2rk8UNYF3hSvg4OTsUR+5c1JnqH3XV4nP7FOe
-         5v5yMPCk0H1vwtpCJS/VlE1zuFcqo9/qOo3AmGGHT/cTtuOTQ4pjWSOTbyCKjlifDym7
-         3Lq2g8pliXAIL1BHFU9DR+pkxgjQq7/PBxdzP1NrqLT44zBMckk9o2wovpJJi+oQY9xh
-         qKWw==
-X-Gm-Message-State: AOJu0Ywplnhj56y3Zt0o50K59cPlxgPBORkQgdwbWOE+QVraxD0F/5X2
-	C1o4i8CjnqZyOXmNZWXD9fmSQm6Zylds5COWt6NcxkYmx41s0Q==
-X-Google-Smtp-Source: AGHT+IGYwc0Z+OoYf9gRchldd/zsmaHTh6H9KXhOhxmqlpWrivpDtIVb/VUOzOZS102/op8wl0KG+/+jH0xvkr0nyTc=
-X-Received: by 2002:a05:651c:b27:b0:2cd:171c:1f42 with SMTP id
- b39-20020a05651c0b2700b002cd171c1f42mr837495ljr.2.1704317980590; Wed, 03 Jan
- 2024 13:39:40 -0800 (PST)
+        bh=8dJaSTSDWLtUQ00fuVpIlouln4xdudcB+SfHwdWcyQg=;
+        b=vGA/yMoNACLkcCmCDgftGvAgFWvHYtfpmHXzSWy8ivjoJL5i6wsMO1P7CQNAOwgHll
+         wUgXaHI9WzJE3VbvWWcmNN9uc8bfaxAZkgKJJJYMvHEwKj1AaAovQrSlYP1kMc2/VgSa
+         QXNMfZp+4Vs+kjk4j3pdqa8nP00VCOBvKkrFmnBhKj3Wf18EVxJDcM9iz4O9301BzwDe
+         cUAERUpGk3Bq1Sj+ylCRVw5Ty9HLmIpcSVGsCYESu/3lJBvrwxu4Zm4W95t9FBZHG1x8
+         Yae+eugUcxkpak5wCZKr2uATtgnBQ4ZfKGx20Redht9+lyt3dsWSIAS9/Q+B96CN4H6x
+         YWrw==
+X-Gm-Message-State: AOJu0YzeC0cvLtRvbusEhjqr3zDSJKah8iDw5JF5eBHXpIyHOkx4CkxD
+	ELgWurtKsjUnSdnVImvMqDZBkQ9scEKX6ffPr6k=
+X-Google-Smtp-Source: AGHT+IFcRngpFOEX/4Z43AJlFRQL41idrKJZun5zfcv03mqgK8stNt3SwpeybS0/QhxwPGo7bXWIu0p7yiH09IrE684=
+X-Received: by 2002:a17:90a:4815:b0:28c:ee93:7575 with SMTP id
+ a21-20020a17090a481500b0028cee937575mr1823914pjh.1.1704318674314; Wed, 03 Jan
+ 2024 13:51:14 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231220-iio-backend-v4-0-998e9148b692@analog.com> <20231220-iio-backend-v4-4-998e9148b692@analog.com>
-In-Reply-To: <20231220-iio-backend-v4-4-998e9148b692@analog.com>
-From: David Lechner <dlechner@baylibre.com>
-Date: Wed, 3 Jan 2024 15:39:29 -0600
-Message-ID: <CAMknhBHqnQoEMoaFQxp5Us+X7bs7G2J2QTNZwguPmJ7XwEHe0Q@mail.gmail.com>
-Subject: Re: [PATCH v4 4/8] of: property: add device link support for io-backends
-To: Nuno Sa <nuno.sa@analog.com>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
-	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Frank Rowand <frowand.list@gmail.com>, Olivier Moysan <olivier.moysan@foss.st.com>
+References: <20230928222130.580487-1-festevam@gmail.com> <20231002-unheard-copy-f9dceb6498a9@spud>
+ <CAOMZO5Di6Saq_r2k8AkGeANRvXwwx26U=Vf5-Eu-_2Qhu5sDCw@mail.gmail.com>
+ <20231209-singular-tighten-eef5f7909dcd@spud> <a591318fbba10b764075e9395ddd9f7f@denx.de>
+ <20231210-stimulant-halogen-e3aaca2279c5@spud> <20231210153749.GA4141628-robh@kernel.org>
+ <20231214-smoked-extending-a76e33621470@spud> <CAL_JsqJ=5zU8NurxJ_b0DKOy6=fo1==yYh=A42R4nvXsCJEKXA@mail.gmail.com>
+In-Reply-To: <CAL_JsqJ=5zU8NurxJ_b0DKOy6=fo1==yYh=A42R4nvXsCJEKXA@mail.gmail.com>
+From: Fabio Estevam <festevam@gmail.com>
+Date: Wed, 3 Jan 2024 18:51:02 -0300
+Message-ID: <CAOMZO5Dzy5zncNMKze7bavFd9MmnMxqD4Gvf7G6e_boHhApc8Q@mail.gmail.com>
+Subject: Re: [PATCH v3] dt-bindings: thermal: qoriq-thermal: Adjust
+ fsl,tmu-range min/maxItems
+To: Rob Herring <robh@kernel.org>
+Cc: Conor Dooley <conor@kernel.org>, Fabio Estevam <festevam@denx.de>, daniel.lezcano@linaro.org, 
+	rafael@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	linux-pm@vger.kernel.org, devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Dec 20, 2023 at 9:32=E2=80=AFAM Nuno Sa <nuno.sa@analog.com> wrote:
->
-> From: Olivier Moysan <olivier.moysan@foss.st.com>
->
-> Add support for creating device links out of more DT properties.
->
-> Signed-off-by: Olivier Moysan <olivier.moysan@foss.st.com>
-> Signed-off-by: Nuno Sa <nuno.sa@analog.com>
-> ---
->  drivers/of/property.c | 2 ++
->  1 file changed, 2 insertions(+)
->
-> diff --git a/drivers/of/property.c b/drivers/of/property.c
-> index afdaefbd03f6..a4835447759f 100644
-> --- a/drivers/of/property.c
-> +++ b/drivers/of/property.c
-> @@ -1244,6 +1244,7 @@ DEFINE_SIMPLE_PROP(interconnects, "interconnects", =
-"#interconnect-cells")
->  DEFINE_SIMPLE_PROP(iommus, "iommus", "#iommu-cells")
->  DEFINE_SIMPLE_PROP(mboxes, "mboxes", "#mbox-cells")
->  DEFINE_SIMPLE_PROP(io_channels, "io-channel", "#io-channel-cells")
-> +DEFINE_SIMPLE_PROP(io_backends, "io-backends", NULL)
+On Wed, Jan 3, 2024 at 6:39=E2=80=AFPM Rob Herring <robh@kernel.org> wrote:
 
-In v3 it was agreed that adding #io-backend-cells right way seemed
-like a good idea. Do we need to include that here?
+> Yes. There's not really an immediate fix I see. The issue is in the
+> if/then schemas we don't have enough information to know the type of
+> fsl,tmu-range. To work correctly, it needs to be transformed to:
+>
+> fsl,tmu-range:
+>   items:
+>     minItems: 7
+>     maxItems: 7
 
->  DEFINE_SIMPLE_PROP(interrupt_parent, "interrupt-parent", NULL)
->  DEFINE_SIMPLE_PROP(dmas, "dmas", "#dma-cells")
->  DEFINE_SIMPLE_PROP(power_domains, "power-domains", "#power-domain-cells"=
-)
-> @@ -1334,6 +1335,7 @@ static const struct supplier_bindings of_supplier_b=
-indings[] =3D {
->         { .parse_prop =3D parse_iommu_maps, .optional =3D true, },
->         { .parse_prop =3D parse_mboxes, },
->         { .parse_prop =3D parse_io_channels, },
-> +       { .parse_prop =3D parse_io_backends, },
->         { .parse_prop =3D parse_interrupt_parent, },
->         { .parse_prop =3D parse_dmas, .optional =3D true, },
->         { .parse_prop =3D parse_power_domains, },
+Is this a typo?
+
+minItems cannot be 7.
+
+- lx2160a has two fsl,tmu-range entries
+- imx8mq has four fsl,tmu-range entries.
+
+> This goes back to everything gets encoded into a 2 dim matrix, but the
+> schemas try to hide this encoding. My plan here is to eventually drop
+> doing that and decode properties to their correct type. That will drop
+> a lot of the fixups. I have patches to do that, but then it has other
+> corner cases.
 >
-> --
-> 2.43.0
->
->
+> So short term, I'd just leave things such that they don't warn or just
+> drop the conditional.
+
+Is my v3 proposal good then?
+https://patchwork.kernel.org/project/linux-pm/patch/20230928222130.580487-1=
+-festevam@gmail.com/
+
+It fixes all fsl,tmu-range warnings
 
