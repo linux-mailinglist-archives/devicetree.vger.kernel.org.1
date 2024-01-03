@@ -1,215 +1,146 @@
-Return-Path: <devicetree+bounces-29519-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29520-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 915A8823830
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 23:29:45 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C34A0823848
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 23:40:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 157961F27954
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 22:29:45 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 65D38B22300
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 22:40:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79F741F612;
-	Wed,  3 Jan 2024 22:25:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B4201D6AE;
+	Wed,  3 Jan 2024 22:40:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="aRp7ZMez"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="uBh9XVvW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f177.google.com (mail-qk1-f177.google.com [209.85.222.177])
+Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CAB220327
-	for <devicetree@vger.kernel.org>; Wed,  3 Jan 2024 22:25:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: by mail-qk1-f177.google.com with SMTP id af79cd13be357-7815fc8dd17so398111985a.1
-        for <devicetree@vger.kernel.org>; Wed, 03 Jan 2024 14:25:25 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C73291DA52
+	for <devicetree@vger.kernel.org>; Wed,  3 Jan 2024 22:40:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-1d45f182fa2so57281825ad.3
+        for <devicetree@vger.kernel.org>; Wed, 03 Jan 2024 14:40:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1704320725; x=1704925525; darn=vger.kernel.org;
-        h=in-reply-to:autocrypt:from:references:cc:to:subject:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=0Okcz2KXuKoOzzusz2w9lLhg9ZMvyD10LdZ1mJdBTQc=;
-        b=aRp7ZMezxk1rTLeRv91Xv6et/X5MjNThSVIuiJEEVjGY8kw1Qqx+JL/ltrce+/s2md
-         1kM+QiP45+W+pR7RdNn2q5TlUSxyeBwUraBQbRU297mn62I4FgHnxD22W7FIs8xv5beY
-         mi+/O8psjI8EdqvPlShoWF6s8AvTaaQqBKFoA=
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1704321638; x=1704926438; darn=vger.kernel.org;
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=0h7PgAKHLBBL550JFcFthbjqC6UsTh1CLzAgFeU19vM=;
+        b=uBh9XVvWyWYQQ09JmpqVoNebkFNQVyb0SUYGJ9TnEaX1jjIOMkginNazGqL3lQ7flU
+         9jjrclrMyBT3QPzgwLkdM6sw8wPvpOsN4A+PHp2rD0KXAROlsX6VPqmDR8fpD+RDju6L
+         nxW687QdxgEaBWnmZ23bcaA7nmfHskBJ0TxDCJerRLgY/VzXLWWYQEy6lDPzjB2Q2aes
+         aBGlPQTnUHjarPvf2IzbnLvAFl6PLwTlErs+KkKOCCZEKDbXURvAfB6jo2Bgf9DmwVR5
+         0OXCNJ/9yoGUeVdZqn3iJnJPMrFq+REu8n+fBrt1yeUmeYeA0N3F2Me/KUEEPN+VyO5N
+         Hf0w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704320725; x=1704925525;
-        h=in-reply-to:autocrypt:from:references:cc:to:subject:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=0Okcz2KXuKoOzzusz2w9lLhg9ZMvyD10LdZ1mJdBTQc=;
-        b=fstnO07Dea8PLfnCNMwAiLzKtedexLm4PFSdQo40cv1V1AnGP1FS+r8yWSULEsG7mV
-         A43AaOOyxblNP704lxl0CNyeyAqZ1I4ocPa0QyPjpvC0OHwhfwhiIN05BriogtUTxFH6
-         iK4aRiiu0jxlPyI8UEIUBFfNDicO9HBYMa+lCNwZdnrywWGul/HoqU+Vjgh0N6i0sbmk
-         5pdjtX47qMVFLQ/5UESxW4Wk0kjAdzBHhP+WIeRdxJysh+QXqI4badyIqUYfP/0DKW2E
-         0AfM0U3Q7K+/0rdDI+op5kzIvjRqQNGAcLZhFLA9jvqzZLitZKYHumgubKbqmOek6fEt
-         V4mA==
-X-Gm-Message-State: AOJu0YwCiMlxawwldPHbj88TlZvgxEgfx1GOBJZ7aYMTY8fgSW7PtsRu
-	mpyzV2xgPUkGS3q//mngn69u/6Y8nG4n
-X-Google-Smtp-Source: AGHT+IFkTRKLsmfBRKkI5iDV4A6u3IJFnz7y7r4854ozq8b8/jgewOA29WE6/yH36IZ0GBX0CdafRA==
-X-Received: by 2002:a05:620a:1441:b0:781:1d50:b4ab with SMTP id i1-20020a05620a144100b007811d50b4abmr19572431qkl.152.1704320725043;
-        Wed, 03 Jan 2024 14:25:25 -0800 (PST)
-Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id d6-20020a37c406000000b007816e4e9bf8sm5376327qki.102.2024.01.03.14.25.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 03 Jan 2024 14:25:24 -0800 (PST)
-Message-ID: <ee90408f-84a0-4039-9c77-2dbdfa1c21fc@broadcom.com>
-Date: Wed, 3 Jan 2024 14:25:22 -0800
+        d=1e100.net; s=20230601; t=1704321638; x=1704926438;
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=0h7PgAKHLBBL550JFcFthbjqC6UsTh1CLzAgFeU19vM=;
+        b=PxrNWBF5Q0IBURMTHEe9aXHyHCjCz1kKqB57gh6A+KP1A/IteMDQl1F9T9Nt0T03mz
+         Eq6f/3ZwIcBAXI14QY+Dimotj2g+oYpQk0Ja6Wgm6Dv1wsd51rsYhA9VTcmJ1POZfYmA
+         oPb13zxtHFB5aw3ZHk8so/aXGF5mh7tYweLIr6tOhT9Og3cD8cLa8UaJqWt9dIFvgg4r
+         5cExrvT7F7GFYm3vexKF/fsLhCL2wutsFz7AmKZKgOf9B+bkgtDs57uFlByWSmderrrt
+         85rp3m1XukomTEckzzS7NdCpqMyMLI1bSxeX6nk86zLgyXE/zw/8C8sK0DZ2FJvy3U1J
+         7H9A==
+X-Gm-Message-State: AOJu0YyK83TYvTzZpF58vPiAVgfbjF6b8QT8yGp3YkbdCOnIJ0AZ6dkH
+	IVKF5XWE+qm+uajE0A5WsEf97iF24Zub8w==
+X-Google-Smtp-Source: AGHT+IGZCHN9Av1WNlNPUdB6KQ1jk2qnXWzZ7w5vQl8+w8WwvKce7rZQQlWFz/cP/YGLrakvB1D3SA==
+X-Received: by 2002:a17:902:d50b:b0:1d4:32d8:ea78 with SMTP id b11-20020a170902d50b00b001d432d8ea78mr22084129plg.79.1704321638123;
+        Wed, 03 Jan 2024 14:40:38 -0800 (PST)
+Received: from localhost (75-172-121-199.tukw.qwest.net. [75.172.121.199])
+        by smtp.gmail.com with ESMTPSA id u17-20020a170903125100b001cfa0c04553sm24071484plh.116.2024.01.03.14.40.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 03 Jan 2024 14:40:37 -0800 (PST)
+From: Kevin Hilman <khilman@baylibre.com>
+To: Minda Chen <minda.chen@starfivetech.com>, Conor Dooley
+ <conor@kernel.org>, Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+ Rob Herring
+ <robh+dt@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, Lorenzo
+ Pieralisi <lpieralisi@kernel.org>, Daire
+ McNamara <daire.mcnamara@microchip.com>, Emil Renner Berthing
+ <emil.renner.berthing@canonical.com>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-riscv@lists.infradead.org, linux-pci@vger.kernel.org, Paul Walmsley
+ <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou
+ <aou@eecs.berkeley.edu>, Philipp Zabel <p.zabel@pengutronix.de>, Mason Huo
+ <mason.huo@starfivetech.com>, Leyfoon Tan <leyfoon.tan@starfivetech.com>,
+ Kevin Xie <kevin.xie@starfivetech.com>, Minda Chen
+ <minda.chen@starfivetech.com>
+Subject: Re: [PATCH v13 0/21] Refactoring Microchip PCIe driver and add
+ StarFive PCIe
+In-Reply-To: <20231214072839.2367-1-minda.chen@starfivetech.com>
+References: <20231214072839.2367-1-minda.chen@starfivetech.com>
+Date: Wed, 03 Jan 2024 14:40:36 -0800
+Message-ID: <7hfrzeavmj.fsf@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 1/2] dt-bindings: mmc: brcm,sdhci-brcmstb: Add support
- for 74165b0
-To: Kamal Dasu <kamal.dasu@broadcom.com>, ulf.hansson@linaro.org,
- linux-kernel@vger.kernel.org, alcooperx@gmail.com,
- linux-arm-kernel@lists.infradead.org, adrian.hunter@intel.com,
- linux-mmc@vger.kernel.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- devicetree@vger.kernel.org
-Cc: bcm-kernel-feedback-list@broadcom.com, Kamal Dasu <kdasu@broadcom.com>
-References: <20240103222338.31447-1-kamal.dasu@broadcom.com>
- <20240103222338.31447-2-kamal.dasu@broadcom.com>
-From: Florian Fainelli <florian.fainelli@broadcom.com>
-Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
- 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
-In-Reply-To: <20240103222338.31447-2-kamal.dasu@broadcom.com>
-Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-	boundary="0000000000006aa9cd060e12172d"
+Content-Type: text/plain
 
---0000000000006aa9cd060e12172d
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Minda Chen <minda.chen@starfivetech.com> writes:
 
-On 1/3/24 14:23, Kamal Dasu wrote:
-> From: Kamal Dasu <kdasu@broadcom.com>
-> 
-> With newer sdio controller core used for 74165b0 we need to update
-> the compatibility with "brcm,bcm74165b0-sdhci".
-> 
-> Signed-off-by: Kamal Dasu <kdasu@broadcom.com>
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> This patchset final purpose is add PCIe driver for StarFive JH7110 SoC.
+> JH7110 using PLDA XpressRICH PCIe IP. Microchip PolarFire Using the
+> same IP and have commit their codes, which are mixed with PLDA
+> controller codes and Microchip platform codes.
 
-Reviewed-by: Florian Fainelli <florian.fainelli@broadcom.com>
--- 
-Florian
+Thank you for this series.
 
+I tested this on a VisionFive v2 board, and it seems to probe and find my
+M.2 NVMe SSD, but then gets timeouts when trying to use the NVMe
+(e.g. 'blkid' command)
 
---0000000000006aa9cd060e12172d
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Description: S/MIME Cryptographic Signature
+Kernel logs below.
 
-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
-riBJ/K1AFUjRAjFhGV64l++td7dkmnq/X8ET75ti+w1s4FRpFqkD2m7pg5NxdsZphYIXAgMBAAGj
-QjBAMA4GA1UdDwEB/wQEAwIBBjAPBgNVHRMBAf8EBTADAQH/MB0GA1UdDgQWBBSP8Et/qC5FJK5N
-UPpjmove4t0bvDANBgkqhkiG9w0BAQsFAAOCAQEAS0DbwFCq/sgM7/eWVEVJu5YACUGssxOGhigH
-M8pr5nS5ugAtrqQK0/Xx8Q+Kv3NnSoPHRHt44K9ubG8DKY4zOUXDjuS5V2yq/BKW7FPGLeQkbLmU
-Y/vcU2hnVj6DuM81IcPJaP7O2sJTqsyQiunwXUaMld16WCgaLx3ezQA3QY/tRG3XUyiXfvNnBB4V
-14qWtNPeTCekTBtzc3b0F5nCH3oO4y0IrQocLP88q1UOD5F+NuvDV0m+4S4tfGCLw0FREyOdzvcy
-a5QBqJnnLDMfOjsl0oZAzjsshnjJYS8Uuu7bVW/fhO4FCU29KNhyztNiUGUe65KXgzHZs7XKR1g/
-XzCCBVgwggRAoAMCAQICDBP8P9hKRVySg3Qv5DANBgkqhkiG9w0BAQsFADBbMQswCQYDVQQGEwJC
-RTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTExMC8GA1UEAxMoR2xvYmFsU2lnbiBHQ0MgUjMg
-UGVyc29uYWxTaWduIDIgQ0EgMjAyMDAeFw0yMjA5MTAxMjE4MTFaFw0yNTA5MTAxMjE4MTFaMIGW
-MQswCQYDVQQGEwJJTjESMBAGA1UECBMJS2FybmF0YWthMRIwEAYDVQQHEwlCYW5nYWxvcmUxFjAU
-BgNVBAoTDUJyb2FkY29tIEluYy4xGTAXBgNVBAMTEEZsb3JpYW4gRmFpbmVsbGkxLDAqBgkqhkiG
-9w0BCQEWHWZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tMIIBIjANBgkqhkiG9w0BAQEFAAOC
-AQ8AMIIBCgKCAQEA+oi3jMmHltY4LMUy8Up5+1zjd1iSgUBXhwCJLj1GJQF+GwP8InemBbk5rjlC
-UwbQDeIlOfb8xGqHoQFGSW8p9V1XUw+cthISLkycex0AJ09ufePshLZygRLREU0H4ecNPMejxCte
-KdtB4COST4uhBkUCo9BSy1gkl8DJ8j/BQ1KNUx6oYe0CntRag+EnHv9TM9BeXBBLfmMRnWNhvOSk
-nSmRX0J3d9/G2A3FIC6WY2XnLW7eAZCQPa1Tz3n2B5BGOxwqhwKLGLNu2SRCPHwOdD6e0drURF7/
-Vax85/EqkVnFNlfxtZhS0ugx5gn2pta7bTdBm1IG4TX+A3B1G57rVwIDAQABo4IB3jCCAdowDgYD
-VR0PAQH/BAQDAgWgMIGjBggrBgEFBQcBAQSBljCBkzBOBggrBgEFBQcwAoZCaHR0cDovL3NlY3Vy
-ZS5nbG9iYWxzaWduLmNvbS9jYWNlcnQvZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3J0MEEG
-CCsGAQUFBzABhjVodHRwOi8vb2NzcC5nbG9iYWxzaWduLmNvbS9nc2djY3IzcGVyc29uYWxzaWdu
-MmNhMjAyMDBNBgNVHSAERjBEMEIGCisGAQQBoDIBKAowNDAyBggrBgEFBQcCARYmaHR0cHM6Ly93
-d3cuZ2xvYmFsc2lnbi5jb20vcmVwb3NpdG9yeS8wCQYDVR0TBAIwADBJBgNVHR8EQjBAMD6gPKA6
-hjhodHRwOi8vY3JsLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwLmNy
-bDAoBgNVHREEITAfgR1mbG9yaWFuLmZhaW5lbGxpQGJyb2FkY29tLmNvbTATBgNVHSUEDDAKBggr
-BgEFBQcDBDAfBgNVHSMEGDAWgBSWM9HmWBdbNHWKgVZk1b5I3qGPzzAdBgNVHQ4EFgQUUwwfJ6/F
-KL0fRdVROal/Lp4lAF0wDQYJKoZIhvcNAQELBQADggEBAKBgfteDc1mChZjKBY4xAplC6uXGyBrZ
-kNGap1mHJ+JngGzZCz+dDiHRQKGpXLxkHX0BvEDZLW6LGOJ83ImrW38YMOo3ZYnCYNHA9qDOakiw
-2s1RH00JOkO5SkYdwCHj4DB9B7KEnLatJtD8MBorvt+QxTuSh4ze96Jz3kEIoHMvwGFkgObWblsc
-3/YcLBmCgaWpZ3Ksev1vJPr5n8riG3/N4on8gO5qinmmr9Y7vGeuf5dmZrYMbnb+yCBalkUmZQwY
-NxADYvcRBA0ySL6sZpj8BIIhWiXiuusuBmt2Mak2eEv0xDbovE6Z6hYyl/ZnRadbgK/ClgbY3w+O
-AfUXEZ0xggJtMIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52
-LXNhMTEwLwYDVQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgwT
-/D/YSkVckoN0L+QwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIFJJ0t9fiAgUCI04
-/NYH59c3KL4vfW4nSSRIicOmREzLMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcN
-AQkFMQ8XDTI0MDEwMzIyMjUyNVowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZI
-AWUDBAEWMAsGCWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEH
-MAsGCWCGSAFlAwQCATANBgkqhkiG9w0BAQEFAASCAQC+eh2lqnd/dBpM13hQgWQ1Plh8BLNJyegK
-WtQylAnLmst9/NBHlsDvS+ETX53sZk9GctDuDHQrHYFBW2OT4FYLCn+b7fo5d6TRak/VK8sv9p1T
-gbtL0ijNZK5BXDF5Pm6hcuqmkloPCkwX0vb4vrmkJ+Nd9P2M2elZxVN2x5sSzmUKkFoOV+hhGs1g
-cPObm1TlPVF6wDylrcqpMvHSXhDBukAiTLx+/y/FRuQ3Ik9aLxqCa10lCTrkCc+UEsuAGKjxFpqd
-0jOvymVvJRxxP/vhscSjkIMJGkFPxUmaKZb9eErZQHjAGL6HmYrM01fZxGlyeypIiPVydTVQB5UI
-Txf1
---0000000000006aa9cd060e12172d--
+Kevin
+
+[   15.131094] pcie-starfive 9c0000000.pcie: host bridge /soc/pcie@9c0000000 ranges:
+[   15.138637] pcie-starfive 9c0000000.pcie:      MEM 0x0038000000..0x003fffffff -> 0x0038000000
+[   15.147180] pcie-starfive 9c0000000.pcie:      MEM 0x0980000000..0x09bfffffff -> 0x0980000000
+[   15.368040] pcie-starfive 9c0000000.pcie: port link up
+[   15.374219] pcie-starfive 9c0000000.pcie: PCI host bridge to bus 0001:00
+[   15.380944] pci_bus 0001:00: root bus resource [bus 00-ff]
+[   15.386443] pci_bus 0001:00: root bus resource [mem 0x38000000-0x3fffffff]
+[   15.393330] pci_bus 0001:00: root bus resource [mem 0x980000000-0x9bfffffff pref]
+[   15.400882] pci 0001:00:00.0: [1556:1111] type 01 class 0x060400
+[   15.407165] pci 0001:00:00.0: supports D1 D2
+[   15.411447] pci 0001:00:00.0: PME# supported from D0 D1 D2 D3hot D3cold
+[   15.419964] pci 0001:00:00.0: bridge configuration invalid ([bus 00-00]), reconfiguring
+[   15.428245] pci 0001:01:00.0: [126f:2263] type 00 class 0x010802
+[   15.434331] pci 0001:01:00.0: reg 0x10: [mem 0x00000000-0x00003fff 64bit]
+[   15.441578] pci 0001:01:00.0: 4.000 Gb/s available PCIe bandwidth, limited by 5.0 GT/s PCIe x1 link at 0001:00:00.0 (capable of 31.504 Gb/s with 8
+.0 GT/s PCIe x4 link)
+[   15.456910] pci_bus 0001:01: busn_res: [bus 01-ff] end is updated to 01
+[   15.463553] pci 0001:00:00.0: BAR 8: assigned [mem 0x38000000-0x380fffff]
+[   15.470352] pci 0001:01:00.0: BAR 0: assigned [mem 0x38000000-0x38003fff 64bit]
+[   15.477699] pci 0001:00:00.0: PCI bridge to [bus 01]
+[   15.482686] pci 0001:00:00.0:   bridge window [mem 0x38000000-0x380fffff]
+[   15.489632] pcieport 0001:00:00.0: enabling device (0000 -> 0002)
+[   15.496038] pcieport 0001:00:00.0: PME: Signaling with IRQ 56
+[   15.502472] usb 1-1: new high-speed USB device number 2 using xhci_hcd
+[   15.509755] usb usb2-port2: over-current condition
+[   15.515883] nvme nvme0: pci function 0001:01:00.0
+[   15.520615] nvme 0001:01:00.0: enabling device (0000 -> 0002)
+[   15.532685] nvme nvme0: allocated 64 MiB host memory buffer.
+[   15.550070] nvme nvme0: 4/0/0 default/read/poll queues
+[   15.562992] nvme nvme0: Ignoring bogus Namespace Identifiers
+[   15.663327] hub 1-1:1.0: USB hub found
+[   15.667320] hub 1-1:1.0: 4 ports detected
+
+[   46.064052] nvme nvme0: I/O 424 QID 3 timeout, completion polled
+
+[   76.784046] nvme nvme0: I/O 425 (I/O Cmd) QID 3 timeout, aborting
+[   76.790179] nvme nvme0: I/O 426 (I/O Cmd) QID 3 timeout, aborting
+[   76.796294] nvme nvme0: I/O 427 (I/O Cmd) QID 3 timeout, aborting
+[   76.802411] nvme nvme0: I/O 428 (I/O Cmd) QID 3 timeout, aborting
+[   76.808525] nvme nvme0: I/O 429 (I/O Cmd) QID 3 timeout, aborting
+
 
