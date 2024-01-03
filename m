@@ -1,65 +1,64 @@
-Return-Path: <devicetree+bounces-29472-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29473-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC202823139
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 17:25:06 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F3A382314B
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 17:29:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5C2801F238B3
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 16:25:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7898A1F2433C
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 16:29:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 038B51B29F;
-	Wed,  3 Jan 2024 16:24:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 117DE1BDE6;
+	Wed,  3 Jan 2024 16:29:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cBGNN5Uy"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="d48aEIxX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
+Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55A8D1C68A
-	for <devicetree@vger.kernel.org>; Wed,  3 Jan 2024 16:24:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A34181BDC3
+	for <devicetree@vger.kernel.org>; Wed,  3 Jan 2024 16:29:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-a26f5e937b5so745311466b.0
-        for <devicetree@vger.kernel.org>; Wed, 03 Jan 2024 08:24:36 -0800 (PST)
+Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-a27874c861aso456573666b.1
+        for <devicetree@vger.kernel.org>; Wed, 03 Jan 2024 08:29:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704299074; x=1704903874; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=F9SlIeWcaqv2yOr3ouOUtpw7mg0zqNKMNARNJ4ZDONI=;
-        b=cBGNN5UyHYH5DriH6iwbIRiDM39qZLlBWX9XIkEunysnHkE8qDlUHBGRDvdUTrTafk
-         EM+lfyXrR/8vaXtb8Kwy3oZRchBkHksiDwiO1OLHFBohcdD/ffPO+d/Sf90ZrOOLgyAO
-         k03CI9eFJPfc/9X2PpZ3Z5gR8w7EUBBK8ParTD873IhY9jz4y2W1r5x7hWhuIfx+WdcR
-         AJ9Kare3PjPmx5f6PG4o6Bxaq5XMGzCwROwY70ls0qPaq5zaAPJnv5YI7HFrT15v+yIR
-         tbyj9mIrHQ7atnpK8iUPxc/fGrSX76uGA8qoO6tIUOk/LT+6SoeaDPZIWUDlkIlrtkv0
-         QdmA==
+        d=linaro.org; s=google; t=1704299373; x=1704904173; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=az19ubiIuB1XQs18jJiJ3GzVSuYQgFZqp/BptEnEKEs=;
+        b=d48aEIxXM7X5PRh/Db19JwfZFU1a8XfISZQ4f9MrpX638cw2WOn0GNKj7hIlw4L5TZ
+         MmxOxfpQjCFCn/u38O+Q0R+5WhHc8136V/PWvalgs8GIzJaFzksmL/ttpUIiEz73Nyxn
+         rRuOZXfMWbWmDfI3DgIb0gEgOnUBgiOGWAr14AzSF2796QoFXk8n2fNa3sFQ0cjv6xRP
+         1qah3QNzbfkBxMUJzCZgkg0D9MSMW52AaY7Lx7jJGralMhiykPBnfIrsxcvU4rO/LKwI
+         69fuwejvU0uohH4VuG0RcgmbNqFWtw9a/n3Bh7vN7xKnu5G76CJPzbEYp3c8opDfffAn
+         Z43g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704299074; x=1704903874;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=F9SlIeWcaqv2yOr3ouOUtpw7mg0zqNKMNARNJ4ZDONI=;
-        b=suAwxCn+Mvsv6Zwo8POUn5hjcpwv851nc8AHSaIPu32lEgqZhMeQWfCrYUr3Y7TOz8
-         Rg+xJF8vDjqD0LfRCW65r5weBYhA5Mzc7Cbjd6AE/Mr9UFCc03f8A3CbH/1N6hXivDv4
-         pQZELlm1+kN/khmkfnf44Igb5GgjpkbPBTa1PCLZRsSkVaaGnMp3TUdAwCUISrRrrTx3
-         i57+So5jang5ycAwc+Mixd09069QiGYOX5TB1eAkCd1gZ7aOe32Fcm1U6mbqTfrl0AaV
-         9pBArmb8lvfswlLqcShCiAUr5irAzQCItQbwH+c0XuINfBDbPZxE7e8uTdreF5rVWhQF
-         Bpmw==
-X-Gm-Message-State: AOJu0Yxx6m9+sFZeIn+PNY/WLPjCRJfeFk6zhzpSQxtCkxXnb97sfb4Y
-	YtKAPjjTBk/a3/xjsYWXQ+0XdD/BnI8VZQ==
-X-Google-Smtp-Source: AGHT+IEGl2d/6RfI7kPbbhbadH5zUAplq5zOIZjAnjK82rtJ/BbUlgrYoB7qji0mXUONfeL379eXtg==
-X-Received: by 2002:a17:906:1251:b0:a23:3753:c64c with SMTP id u17-20020a170906125100b00a233753c64cmr7329354eja.57.1704299074602;
-        Wed, 03 Jan 2024 08:24:34 -0800 (PST)
+        d=1e100.net; s=20230601; t=1704299373; x=1704904173;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=az19ubiIuB1XQs18jJiJ3GzVSuYQgFZqp/BptEnEKEs=;
+        b=MbkKNLMZRWfT7oq5K1CKrs3Tq3ix/nS/2ZU41wnn3nAtHjamF4oHW2n8lzXEFyVG5v
+         URtspcHGiJFHFOGr506fwGl+2FQR9LomSoVrMe+chEkTdal54mdbfN7nZM6YFqZEj9+e
+         gu2Kwvv4RMahVkmJZ8frW3pP5E5JxLD13L6tlrIqaE4RRFBOqSLxPbdyATV+M3fitQ0i
+         HCYHdNne2qpVBZTYTKNA2Z8S/UWJZ/s/I9zy6VJ2XIGZP36+SkCDFckSiX6Fq9W8rZ/2
+         ybgBXeU+D+LVQEm0iXoK6rWAXr1jBjos5oQxxqvPnAdAHw8vqb2EvaWqiLg1IGQE9TNm
+         iFWA==
+X-Gm-Message-State: AOJu0YyV9N21ITy2x+A8Y2e08k/Oh9wu3qP4TkutjjTXPshMJDu23uKY
+	/sgKIzFuLQ88vPTDE4RU64kRJCMQMioEjA==
+X-Google-Smtp-Source: AGHT+IGsgei5JGl4HpNN+todsAFo0mJSAkJaefQ6l/kSjvHAkWXL8v0+zTZ105CZUJEhPV8PynnaGg==
+X-Received: by 2002:a17:907:36c3:b0:a27:f7a1:2ad2 with SMTP id bj3-20020a17090736c300b00a27f7a12ad2mr2936599ejc.69.1704299372972;
+        Wed, 03 Jan 2024 08:29:32 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id vz8-20020a17090704c800b00a26c308df74sm11186558ejb.195.2024.01.03.08.24.33
+        by smtp.gmail.com with ESMTPSA id vl8-20020a17090730c800b00a27eddc3dcbsm3322242ejb.198.2024.01.03.08.29.31
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 03 Jan 2024 08:24:34 -0800 (PST)
-Message-ID: <c23ca102-f80d-45f7-96a2-857a567f1d5c@linaro.org>
-Date: Wed, 3 Jan 2024 17:24:32 +0100
+        Wed, 03 Jan 2024 08:29:32 -0800 (PST)
+Message-ID: <103a9eb8-c955-4a56-b9dd-9b1eea94e285@linaro.org>
+Date: Wed, 3 Jan 2024 17:29:30 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,20 +66,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 2/2] arm64: dts: imx93-var-som: Add Variscite
- VAR-SOM-MX93
-To: Mathieu Othacehe <othacehe@gnu.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>,
- Li Yang <leoyang.li@nxp.com>, Stefan Wahren <wahrenst@gmx.net>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-References: <20240103143639.32280-1-othacehe@gnu.org>
- <20240103143639.32280-3-othacehe@gnu.org>
+Subject: Re: [PATCH 1/2] dt-bindings: thermal: correct thermal zone node name
+ limit
 Content-Language: en-US
+To: Rob Herring <robh+dt@kernel.org>
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>,
+ Lukasz Luba <lukasz.luba@arm.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Liviu Dudau <liviu.dudau@arm.com>,
+ Sudeep Holla <sudeep.holla@arm.com>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ Amit Kucheria <amit.kucheria@linaro.org>, linux-pm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, stable@vger.kernel.org
+References: <20240103142051.111717-1-krzysztof.kozlowski@linaro.org>
+ <CAL_JsqKAKNHz4wPuJPX7ULhVUz=KFRtNn=coWhs3d6LWk+jtGQ@mail.gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -126,61 +127,51 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240103143639.32280-3-othacehe@gnu.org>
+In-Reply-To: <CAL_JsqKAKNHz4wPuJPX7ULhVUz=KFRtNn=coWhs3d6LWk+jtGQ@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 03/01/2024 15:36, Mathieu Othacehe wrote:
-> Add DTSI for Variscite VAR-SOM-MX93 System on Module and DTS for Variscite
-> VAR-SOM-MX93 on Symphony evaluation board.
+On 03/01/2024 16:12, Rob Herring wrote:
+> On Wed, Jan 3, 2024 at 7:20 AM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>>
+>> Linux kernel uses thermal zone node name during registering thermal
+>> zones and has a hard-coded limit of 20 characters, including terminating
+>> NUL byte.  The bindings expect node names to finish with '-thermal'
+>> which is eight bytes long, thus we have only 11 characters for the reset
+>> of the node name, not 12.
+>>
+>> Reported-by: Rob Herring <robh@kernel.org>
+>> Closes: https://lore.kernel.org/all/CAL_JsqKogbT_4DPd1n94xqeHaU_J8ve5K09WOyVsRX3jxxUW3w@mail.gmail.com/
+>> Fixes: 1202a442a31f ("dt-bindings: thermal: Add yaml bindings for thermal zones")
+>> Cc: <stable@vger.kernel.org>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> ---
+>>  Documentation/devicetree/bindings/thermal/thermal-zones.yaml | 2 +-
+>>  1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/thermal/thermal-zones.yaml b/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
+>> index 4a8dabc48170..bbc883fd4044 100644
+>> --- a/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
+>> +++ b/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
+>> @@ -49,7 +49,7 @@ properties:
+>>        to take when the temperature crosses those thresholds.
+>>
+>>  patternProperties:
+>> -  "^[a-zA-Z][a-zA-Z0-9\\-]{1,12}-thermal$":
+>> +  "^[a-zA-Z][a-zA-Z0-9\\-]{1,11}-thermal$":
 > 
-> This version comes with:
-> - NXP i.MX 93 Dual, 1.7GHz, Cortex-A55 + Cortex-M33
-> - 2 GB of RAM
-> - 16GB eMMC
-> - 802.11ax/ac/a/b/g/n WiFi with 5.3 Bluetooth
-> - CAN bus
-> - Audio codec
+> Now off by 1 instead of 2. It should be 1 starting char, 1-10 chars,
+> and 8 chars for "-thermal".
+
+Why off by 2? prefix can be up to 11 bytes, plus 8 bytes for "-thermal"
+and 1 byte for NUL. This gives 11+8+1=20, exactly the size used in Linux
+kernel.
+
 > 
-> Reviewed-by: Fabio Estevam <festevam@gmail.com>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Can you also add a comment that this length is due to the kernel.
 
-You made significant changes, which invalidates both reviews. What's
-more, you did not test the changes after adding them.
-
-You must drop the tags after introducing such changes.
-
-> +
-> +		key-menu {
-> +			label = "Menu";
-> +			gpios = <&pca9534 3 GPIO_ACTIVE_LOW>;
-> +			linux,code = <KEY_MENU>;
-> +		};
-> +	};
-> +
-> +	leds {
-> +		compatible = "gpio-leds";
-> +		status = "okay";
-
-???
-
-> +
-> +		heartbeat {
-
-This wasn't here during my review
-
-> +			label = "Heartbeat";
-> +			gpios = <&pca9534 0 GPIO_ACTIVE_HIGH>;
-> +			linux,default-trigger = "heartbeat";
-> +		};
-> +	};
-
-It does not look like you tested the DTS against bindings. Please run
-`make dtbs_check W=1` (see
-Documentation/devicetree/bindings/writing-schema.rst or
-https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
-for instructions).
-
+Sure
 
 Best regards,
 Krzysztof
