@@ -1,219 +1,180 @@
-Return-Path: <devicetree+bounces-29354-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29355-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1ED33822667
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 02:12:34 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FC51822699
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 02:41:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 834471F2288C
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 01:12:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id ADC431F231B9
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 01:41:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AF55EA6;
-	Wed,  3 Jan 2024 01:12:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8B9EED5;
+	Wed,  3 Jan 2024 01:41:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b="RU2g7DHz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mg.richtek.com (mg.richtek.com [220.130.44.152])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2ADE417981;
-	Wed,  3 Jan 2024 01:12:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=richtek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=richtek.com
-X-MailGates: (SIP:2,PASS,NONE)(compute_score:DELIVER,40,3)
-Received: from 192.168.10.47
-	by mg.richtek.com with MailGates ESMTPS Server V6.0(636813:0:AUTH_RELAY)
-	(envelope-from <cy_huang@richtek.com>)
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256/256); Wed, 03 Jan 2024 09:11:56 +0800 (CST)
-Received: from ex3.rt.l (192.168.10.46) by ex4.rt.l (192.168.10.47) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1258.27; Wed, 3 Jan
- 2024 09:11:56 +0800
-Received: from linuxcarl2.richtek.com (192.168.10.154) by ex3.rt.l
- (192.168.10.45) with Microsoft SMTP Server id 15.2.1258.27 via Frontend
- Transport; Wed, 3 Jan 2024 09:11:56 +0800
-Date: Wed, 3 Jan 2024 09:11:56 +0800
-From: ChiYuan Huang <cy_huang@richtek.com>
-To: Jonathan Cameron <jic23@kernel.org>
-CC: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
-	<conor+dt@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, Rob Herring
-	<robh+dt@kernel.org>, Uwe =?iso-8859-1?Q?Kleine-K=F6nig?=
-	<u.kleine-koenig@pengutronix.de>, <linux-iio@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v3 2/2] iio: adc: rtq6056: Add support for the whole
- RTQ6056 family
-Message-ID: <20240103011156.GA7587@linuxcarl2.richtek.com>
-References: <cover.1704189363.git.cy_huang@richtek.com>
- <bc97e776171d589c9d97541cc7ce8d74c899bc92.1704189363.git.cy_huang@richtek.com>
- <20240102195340.33de9a02@jic23-huawei>
+Received: from sender4-op-o10.zoho.com (sender4-op-o10.zoho.com [136.143.188.10])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DE3F139E;
+	Wed,  3 Jan 2024 01:41:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=icenowy.me
+ARC-Seal: i=1; a=rsa-sha256; t=1704246050; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=HSg+e+Nw84UJKsztMiRO82NEuT6N2ItlXPkE9p0puFZ50zVdAiTgyjvS6IVskgROQRKGcxyylr3Da8TIUYlYO2+Btj88BYZxuHyrnHo1IOye/yKKvVjRQw6x1w/hKW+kn/tiCpv2wdkbKvxVfzo8aKoqyO5XvOs1YtndkptqAZA=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1704246050; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=Gj6YxQ75iiB/BEXS7c2m5L18+BjacyE9oLwb6HHBAEI=; 
+	b=btTks4pX6r4DE8Xl0Cx92ggtDd53/jqGz6TKG25sJBkCvHHNOmTqX/k9A/K2GWGJ3AkgSJtys87K0sC5j/aPmGwIt3aQoLS7EOJ3aYRGj1ECatdDocOKX/QHhHk6C6i19j3WlgP7y2A2x9fMO6gsJUuGx2eSn29FbbDHKuSZD5Q=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=icenowy.me;
+	spf=pass  smtp.mailfrom=uwu@icenowy.me;
+	dmarc=pass header.from=<uwu@icenowy.me>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1704246050;
+	s=zmail2; d=icenowy.me; i=uwu@icenowy.me;
+	h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
+	bh=Gj6YxQ75iiB/BEXS7c2m5L18+BjacyE9oLwb6HHBAEI=;
+	b=RU2g7DHzRw6IcVzBKnwmxU/a9lh/sP6u8hidJcxGPGi69i5RKhQR2gifEoV9uUO5
+	1t9gginnxFRl64V/DlrWX3XHI6oC7s5AF5xVc0XXr/6TRS7zaXeaqgUy6z+6nsWoE0+
+	fO6qLuwTXvXnp1a5a8PVSPJ/BaSJxrEQiFAuqUl5iMX5bmh6dB4MUgn10iO5VJTcpo5
+	dNhMtcT3uksd+p4fCDiA56cFOOvHQXjkrn/U3IhCom003IEA9aPFHni5HIJijtENqC+
+	CAYr05KKgrdTiQBsnUFsdl62P3NEh3VXu69As58dWZRnUCL2vWzAVqRl7kEMQHA4Www
+	QKGUfAGifA==
+Received: from edelgard.fodlan.icenowy.me (120.85.97.100 [120.85.97.100]) by mx.zohomail.com
+	with SMTPS id 1704246049145819.0302806532882; Tue, 2 Jan 2024 17:40:49 -0800 (PST)
+Message-ID: <fff240d6ef9ac1f4c67f9c1a7eaebc3b90af53b4.camel@icenowy.me>
+Subject: Re: [PATCH RESEND] arm64: dts: allwinner: a64: Add thermal trip
+ points for GPU
+From: Icenowy Zheng <uwu@icenowy.me>
+To: Alexey Klimov <alexey.klimov@linaro.org>, anarsoul@gmail.com, 
+	tiny.windzz@gmail.com, linux-sunxi@lists.linux.dev
+Cc: rafael@kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	wens@csie.org, jernej.skrabec@gmail.com, samuel@sholland.org, 
+	daniel.lezcano@linaro.org, peter.griffin@linaro.org, klimov.linux@gmail.com
+Date: Wed, 03 Jan 2024 09:40:43 +0800
+In-Reply-To: <20240101000008.65747-1-alexey.klimov@linaro.org>
+References: <20240101000008.65747-1-alexey.klimov@linaro.org>
+Organization: Anthon Open-Source Community
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: base64
+User-Agent: Evolution 3.44.4 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20240102195340.33de9a02@jic23-huawei>
-User-Agent: Mutt/1.5.21 (2010-09-15)
+X-ZohoMailClient: External
 
-On Tue, Jan 02, 2024 at 07:53:40PM +0000, Jonathan Cameron wrote:
-> On Tue, 2 Jan 2024 19:28:22 +0800
-> <cy_huang@richtek.com> wrote:
-> 
-> > From: ChiYuan Huang <cy_huang@richtek.com>
-> > 
-> > RTQ6053 and RTQ6059 are the same series of RTQ6056.
-> > 
-> > The respective differences with RTQ6056 are listed below
-> > RTQ6053
-> > - chip package type
-> > 
-> > RTQ6059
-> > - Reduce the pinout for vbus sensing pin
-> > - Some internal ADC scaling change
-> > 
-> > Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
-> 
-> I replied to your question on v2. As a general rule don't send a new version
-> out quite so quickly.  Better to let all questions be answered (or a week or so
-> to pass) before sending a new version.  That way it saves on review time.
-OK. I'll send the new one after all the answers were got.
-> 
-> Anyhow, some follow up comments and one or two things I didn't notice before.
->
-All wii be fixed in v4. 
-> Jonathan
-> 
-> > ---
-> > v3
-> > - Resotre the enum for control field.
-> > - Put all the predefined datas/callbacks in dev_data.
-> > - Remove the unused 'rtq6059_info'.
-> > - Change 'default_conv_time' to 'default_conv_time_us'.
-> > - Move the comment for default config above the dev_data setting line.
-> > 
-> > v2
-> > - Remove rtq6053 in DT match table and make rtq6053 fallback compatible
-> >   with rtq6056
-> > ---
-> >  drivers/iio/adc/rtq6056.c | 270 +++++++++++++++++++++++++++++++++++---
-> >  1 file changed, 251 insertions(+), 19 deletions(-)
-> > 
-> > diff --git a/drivers/iio/adc/rtq6056.c b/drivers/iio/adc/rtq6056.c
-> > index ad4cea6839b2..c87d78e161ce 100644
-> > --- a/drivers/iio/adc/rtq6056.c
-> > +++ b/drivers/iio/adc/rtq6056.c
-> > @@ -39,6 +39,16 @@
-> >  #define RTQ6056_DEFAULT_CONFIG	0x4127
-> >  #define RTQ6056_CONT_ALLON	7
-> >  
-> > +#define RTQ6059_DEFAULT_CONFIG	0x3C47
-> > +#define RTQ6059_VBUS_LSB_OFFSET	3
-> > +#define RTQ6059_AVG_BASE	8
-> > +
-> > +enum {
-> > +	RICHTEK_DEV_RTQ6056 = 0,
-> > +	RICHTEK_DEV_RTQ6059,
-> > +	RICHTEK_DEV_MAX
-> > +};
-> > +
-> 
-> No longer used so drop this enum.
-> 
-> >  static int rtq6056_adc_read_channel(struct rtq6056_priv *priv,
-> >  				    struct iio_chan_spec const *ch,
-> >  				    int *val)
-> >  {
-> > +	const struct richtek_dev_data *devdata = priv->devdata;
-> >  	struct device *dev = priv->dev;
-> >  	unsigned int addr = ch->address;
-> >  	unsigned int regval;
-> > @@ -168,10 +287,21 @@ static int rtq6056_adc_read_channel(struct rtq6056_priv *priv,
-> >  		return ret;
-> >  
-> >  	/* Power and VBUS is unsigned 16-bit, others are signed 16-bit */
-> > -	if (addr == RTQ6056_REG_BUSVOLT || addr == RTQ6056_REG_POWER)
-> > +	switch (addr) {
-> > +	case RTQ6056_REG_BUSVOLT:
-> > +		regval >>= devdata->vbus_offset;
-> >  		*val = regval;
-> > -	else
-> > +		break;
-> Can just return directly here
-> 		return IIO_VAL_INT;
-> > +	case RTQ6056_REG_POWER:
-> > +		*val = regval;
-> > +		break;
-> 		return IIO_VAL_INT;
-> > +	case RTQ6056_REG_SHUNTVOLT:
-> > +	case RTQ6056_REG_CURRENT:
-> >  		*val = sign_extend32(regval, 16);
-> > +		break;
-> 		return IIO_VAL_INT;
-> > +	default:
-> > +		return -EINVAL;
-> > +	}
-> >  
-> >  	return IIO_VAL_INT;
-> And drop this.
-> >  }
-> > @@ -199,6 +329,28 @@ static int rtq6056_adc_read_scale(struct iio_chan_spec const *ch, int *val,
-> >  	}
-> >  }
-> >  
-> 
-> > @@ -334,6 +518,7 @@ static int rtq6056_adc_write_raw(struct iio_dev *indio_dev,
-> >  				 int val2, long mask)
-> >  {
-> >  	struct rtq6056_priv *priv = iio_priv(indio_dev);
-> > +	const struct richtek_dev_data *devdata = priv->devdata;
-> >  	int ret;
-> >  
-> >  	ret = iio_device_claim_direct_mode(indio_dev);
-> > @@ -342,10 +527,13 @@ static int rtq6056_adc_write_raw(struct iio_dev *indio_dev,
-> >  
-> >  	switch (mask) {
-> >  	case IIO_CHAN_INFO_SAMP_FREQ:
-> > -		ret = rtq6056_adc_set_samp_freq(priv, chan, val);
-> > +		if (devdata->fixed_samp_freq)
-> > +			ret = -EINVAL;
-> 
-> Slight preference here for following form to make it easy to see nothing is done
-> in error paths beyond breaking out of the switch statement.
-> 
-> 		if (devdata->fixed_samp_freq) {
-> 			ret = -EINVAL;
-> 			break;
-> 		}
-> 
-> 		ret = rtq....
-> 		break;
-> 
-> > +		else
-> > +			ret = rtq6056_adc_set_samp_freq(priv, chan, val);
-> >  		break;
-> >  	case IIO_CHAN_INFO_OVERSAMPLING_RATIO:
-> > -		ret = rtq6056_adc_set_average(priv, val);
-> > +		ret = devdata->set_average(priv, val);
-> >  		break;
-> >  	default:
-> >  		ret = -EINVAL;
-> ;
-> > @@ -598,8 +793,8 @@ static int rtq6056_probe(struct i2c_client *i2c)
-> >  
-> >  	indio_dev->name = "rtq6056";
-> >  	indio_dev->modes = INDIO_DIRECT_MODE;
-> > -	indio_dev->channels = rtq6056_channels;
-> > -	indio_dev->num_channels = ARRAY_SIZE(rtq6056_channels);
-> > +	indio_dev->channels = devdata->channels;
-> > +	indio_dev->num_channels = RTQ6056_MAX_CHANNEL + 1;
-> 
-> You have added devdata->num_channels but seem to have forgotten to use it.
-> 
-> >  	indio_dev->info = &rtq6056_info;
-> >  
-> >  	ret = devm_iio_triggered_buffer_setup(dev, indio_dev, NULL,
-> > @@ -640,8 +835,45 @@ static int rtq6056_runtime_resume(struct device *dev)
-> >  static DEFINE_RUNTIME_DEV_PM_OPS(rtq6056_pm_ops, rtq6056_runtime_suspend,
-> >  				 rtq6056_runtime_resume, NULL);
-> >  
+5ZyoIDIwMjQtMDEtMDHmmJ/mnJ/kuIDnmoQgMDA6MDAgKzAwMDDvvIxBbGV4ZXkgS2xpbW925YaZ
+6YGT77yaCj4gV2l0aG91dCB0cmlwIHBvaW50cyBmb3IgR1BVLCB0aGUgZm9sbG93aW5nIGVycm9y
+cyBhcmUgcHJpbnRlZCBpbiB0aGUKPiBkbWVzZyBsb2cgYW5kIHRoZSBzdW44aS10aGVybWFsIGRy
+aXZlciBmYWlscyB0byBsb2FkOgo+IAo+IHRoZXJtYWxfc3lzOiBGYWlsZWQgdG8gZmluZCAndHJp
+cHMnIG5vZGUKPiB0aGVybWFsX3N5czogRmFpbGVkIHRvIGZpbmQgdHJpcCBwb2ludHMgZm9yIHRo
+ZXJtYWwtc2Vuc29yIGlkPTEKPiBzdW44aS10aGVybWFsOiBwcm9iZSBvZiAxYzI1MDAwLnRoZXJt
+YWwtc2Vuc29yIGZhaWxlZCB3aXRoIGVycm9yIC0yMgo+IAo+IFdoZW4gdGhlcm1hbCB6b25lcyBh
+cmUgZGVmaW5lZCwgdHJpcCBwb2ludHMgZGVmaW5pdGlvbnMgYXJlCj4gbWFuZGF0b3J5LgoKSSBz
+dWdnZXN0IGV2ZXJ5b25lIHNlZWluZyB0aGlzIHBhdGNoIGhhdmUgYSBsb29rIG9uIG15IHBhdGNo
+IGF0IFsxXSwKd2hpY2ggbWFrZXMgdHJpcCBwb2ludHMgbm90IHNvIG1hbmRhdG9yeSAtLSBpdCdz
+IGF0IGxlYXN0IG9uY2UgYW4KYWxsb3dlZCBiZWhhdmlvciwgYnV0IGxvc3Qgd2hlbiBjb252ZXJ0
+aW5nIERUIGJpbmRpbmcgdG8gWUFNTC4KClsxXQpodHRwczovL2xpc3RzLmluZnJhZGVhZC5vcmcv
+cGlwZXJtYWlsL2xpbnV4LWFybS1rZXJuZWwvMjAyMy1KdWx5Lzg1MjA4OC5odG1sCgo+IFRyaXAg
+dmFsdWVzIGZvciB0aGUgR1BVIGFyZSBhc3N1bWVkIHRvIGJlIHRoZSBzYW1lIHZhbHVlcyBhcyB0
+aGUgQ1BVCj4gb25lcy4gVGhlIGF2YWlsYWJsZSBzcGVjcyBkbyBub3QgcHJvdmlkZSBhbnkgaGlu
+dHMgYWJvdXQgdGhlcm1hbAo+IHJlZ2ltZXMKPiBmb3IgdGhlIEdQVSBhbmQgaXQgc2VlbXMgR1BV
+IGlzIGltcGxlbWVudGVkIG9uIHRoZSBzYW1lIGRpZSBhcyB0aGUKPiBDUFUuCj4gCj4gVGVzdGVk
+IG9uIFBpbmUgYTY0Ky4KPiAKPiBDYzogU2FtdWVsIEhvbGxhbmQgPHNhbXVlbEBzaG9sbGFuZC5v
+cmc+Cj4gQ2M6IEplcm5laiBTa3JhYmVjIDxqZXJuZWouc2tyYWJlY0BnbWFpbC5jb20+Cj4gQ2M6
+IENoZW4tWXUgVHNhaSA8d2Vuc0Bjc2llLm9yZz4KPiBDYzogRGFuaWVsIExlemNhbm8gPGRhbmll
+bC5sZXpjYW5vQGxpbmFyby5vcmc+Cj4gQ2M6IGRldmljZXRyZWVAdmdlci5rZXJuZWwub3JnCj4g
+U2lnbmVkLW9mZi1ieTogQWxleGV5IEtsaW1vdiA8YWxleGV5LmtsaW1vdkBsaW5hcm8ub3JnPgo+
+IC0tLQo+IMKgYXJjaC9hcm02NC9ib290L2R0cy9hbGx3aW5uZXIvc3VuNTBpLWE2NC5kdHNpIHwg
+NDYKPiArKysrKysrKysrKysrKysrKysrCj4gwqAxIGZpbGUgY2hhbmdlZCwgNDYgaW5zZXJ0aW9u
+cygrKQo+IAo+IGRpZmYgLS1naXQgYS9hcmNoL2FybTY0L2Jvb3QvZHRzL2FsbHdpbm5lci9zdW41
+MGktYTY0LmR0c2kKPiBiL2FyY2gvYXJtNjQvYm9vdC9kdHMvYWxsd2lubmVyL3N1bjUwaS1hNjQu
+ZHRzaQo+IGluZGV4IDYyZjQ1ZjcxZWM2NS4uMDc5NjNlZWExYmYwIDEwMDY0NAo+IC0tLSBhL2Fy
+Y2gvYXJtNjQvYm9vdC9kdHMvYWxsd2lubmVyL3N1bjUwaS1hNjQuZHRzaQo+ICsrKyBiL2FyY2gv
+YXJtNjQvYm9vdC9kdHMvYWxsd2lubmVyL3N1bjUwaS1hNjQuZHRzaQo+IEBAIC0yNDMsNiArMjQz
+LDI5IEBAIGdwdTBfdGhlcm1hbDogZ3B1MC10aGVybWFsIHsKPiDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBwb2xsaW5nLWRlbGF5LXBhc3NpdmUgPSA8MD47
+Cj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgcG9sbGlu
+Zy1kZWxheSA9IDwwPjsKPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqB0aGVybWFsLXNlbnNvcnMgPSA8JnRocyAxPjsKPiArCj4gK8KgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqB0cmlwcyB7Cj4gK8KgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgZ3B1MF9hbGVy
+dDA6IGdwdTBfYWxlcnQwIHsKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgLyogbWlsbGlDZWxzaXVz
+ICovCj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHRlbXBlcmF0dXJlID0gPDc1MDAwPjsKPiArwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgaHlzdGVyZXNpcyA9IDwyMDAwPjsKPiArwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgdHlwZSA9ICJwYXNzaXZlIjsKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqB9Owo+ICsKPiArwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBncHUwX2FsZXJ0
+MTogZ3B1MF9hbGVydDEgewo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAvKiBtaWxsaUNlbHNpdXMg
+Ki8KPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgdGVtcGVyYXR1cmUgPSA8OTAwMDA+Owo+ICvCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqBoeXN0ZXJlc2lzID0gPDIwMDA+Owo+ICvCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqB0eXBlID0gImhvdCI7Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgfTsKPiArCj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgZ3B1MF9jcml0OiBncHUw
+X2NyaXQgewo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAvKiBtaWxsaUNlbHNpdXMgKi8KPiArwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgdGVtcGVyYXR1cmUgPSA8MTEwMDAwPjsKPiArwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgaHlzdGVyZXNpcyA9IDwyMDAwPjsKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgdHlw
+ZSA9ICJjcml0aWNhbCI7Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgfTsKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoH07Cj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqB9
+Owo+IMKgCj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBncHUxX3RoZXJtYWw6IGdw
+dTEtdGhlcm1hbCB7Cj4gQEAgLTI1MCw2ICsyNzMsMjkgQEAgZ3B1MV90aGVybWFsOiBncHUxLXRo
+ZXJtYWwgewo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oHBvbGxpbmctZGVsYXktcGFzc2l2ZSA9IDwwPjsKPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBwb2xsaW5nLWRlbGF5ID0gPDA+Owo+IMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHRoZXJtYWwtc2Vuc29ycyA9IDwm
+dGhzIDI+Owo+ICsKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoHRyaXBzIHsKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqBncHUxX2FsZXJ0MDogZ3B1MV9hbGVydDAgewo+ICvCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqAvKiBtaWxsaUNlbHNpdXMgKi8KPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+dGVtcGVyYXR1cmUgPSA8NzUwMDA+Owo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBoeXN0ZXJlc2lz
+ID0gPDIwMDA+Owo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqB0eXBlID0gInBhc3NpdmUiOwo+ICvC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoH07Cj4gKwo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoGdwdTFfYWxlcnQxOiBncHUxX2FsZXJ0MSB7Cj4gK8KgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoC8qIG1pbGxpQ2Vsc2l1cyAqLwo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqB0
+ZW1wZXJhdHVyZSA9IDw5MDAwMD47Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGh5c3RlcmVzaXMg
+PSA8MjAwMD47Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHR5cGUgPSAiaG90IjsKPiArwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqB9
+Owo+ICsKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqBncHUxX2NyaXQ6IGdwdTFfY3JpdCB7Cj4gK8KgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoC8qIG1pbGxpQ2Vsc2l1cyAqLwo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqB0ZW1wZXJhdHVy
+ZSA9IDwxMTAwMDA+Owo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBoeXN0ZXJlc2lzID0gPDIwMDA+
+Owo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqB0eXBlID0gImNyaXRpY2FsIjsKPiArwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqB9Owo+
+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgfTsKPiDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoH07Cj4gwqDCoMKgwqDCoMKgwqDCoH07Cj4gwqAK
+Cg==
+
 
