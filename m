@@ -1,78 +1,73 @@
-Return-Path: <devicetree+bounces-29483-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29484-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7651823429
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 19:16:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 98060823433
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 19:17:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 47582286BF1
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 18:16:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3FFF7286D22
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 18:17:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB5951C2BE;
-	Wed,  3 Jan 2024 18:16:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56A101C687;
+	Wed,  3 Jan 2024 18:17:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="B+p0Fx1l"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Q5Y15G8y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f179.google.com (mail-pg1-f179.google.com [209.85.215.179])
+Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 933CB1C68C;
-	Wed,  3 Jan 2024 18:16:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f179.google.com with SMTP id 41be03b00d2f7-5c6bd3100fcso3080787a12.3;
-        Wed, 03 Jan 2024 10:16:41 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2BE01CA8E
+	for <devicetree@vger.kernel.org>; Wed,  3 Jan 2024 18:17:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-1d4d4542526so4644685ad.0
+        for <devicetree@vger.kernel.org>; Wed, 03 Jan 2024 10:17:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1704305801; x=1704910601; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1704305836; x=1704910636; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=uumraeqLsr2lYf5i74U7JAgU/UNRCFo3U3jeL0oqQzo=;
-        b=B+p0Fx1lqMgw9hIN42LrOIleRg47LrzkbJhd+ekrwb37E7RLllezL+4JMByuRE9vzt
-         NoMyVIkbfSHJuLV5G5XgdHmvppWQZ35gHk97PSHcAHSIDgXYpR7PL7ENqDUqG4h7i7yL
-         BlsC/A5qtgc3hVNuha1OS04iLRIa7AW4ZXhBgwHMnK0EpY7IjUZxkLti/Tt76AHLKxZx
-         55vs5xk+w/r36tUzCfkfCCA6XYYt+RmH/DC+zoaMoLsgZ8GBUtArEsJvTdC7Dk5O/qDN
-         dBpiJMFZv5naXi8pNDwbsU7SCU8GMUndZNlC/UGtFLP3DXaiOy2IoqZAryf0s7jWkyK5
-         7gow==
+        bh=D3rgTpCUDgPB4Cy8NgFDhEAQ1mbTQkJOhdsy502inPg=;
+        b=Q5Y15G8ycRY6YZebI5IuGrGRPUFo9/auy3QwDvuYJ8CpHTs7TnHs/ve/XdBfH6Bdjm
+         Bk8D/ikmfCkCbu7K1rnatg4nj9Aha9JDnnfHCD8sIdxAFYwBdPn1nFXeJRV2yI4kSiTX
+         TzW52ZfrdeVc9gOSLnsiYTX8zPM12eS6Beo3tgH51fOHIH0cCVDzYNH/Qtjjgj3DOlyN
+         Y7O1BO8O47vk4KgE1ubHDV9WzqbU5Mb7DwHJVYYS7zSBzX9ENa34veT03Kuc5Um5k/X0
+         QzepGlpd/whRCRmEuWnFHKRZxrHdXnGjd2Aogayd1/fAnhqgu3lwOgeqjlK/lk0x3jUM
+         +gRw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704305801; x=1704910601;
+        d=1e100.net; s=20230601; t=1704305836; x=1704910636;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=uumraeqLsr2lYf5i74U7JAgU/UNRCFo3U3jeL0oqQzo=;
-        b=uW9uG7/y/sP70iNYOvU5J8vIYfjrFRbSkVpYVg5Ew/CIlIxZjtGOegHitr9wEduAMX
-         4oI1VsJ/ZPUULPlz72zquKdYW2kWNq8AknV9+zgc9AKPio6MeYsHPCNWxjsUMScAtR4h
-         VsheozQSMG/jiKQ4uN/UAhWnJvVlCxhm+Kpi7LhqbmojqzzqTS07I9bSwWZ9P9iwnouD
-         VjAvkPhZ79YGz5cff2EROHPF8/nrEzAFwJSDy2hInfkNqk9WQJPuFbeT4EHDE2eP8DhI
-         IkOMN5sRIHfd5K5GNDzPiESrnnKPSY7Akxv+xMz0Gn0rVRVj/s9W8X2mH+F0KyH3KIr4
-         Ix6A==
-X-Gm-Message-State: AOJu0YwCBQeu4ntXQUFzX0yBEjiLoMWLH0v1q7qZ3P0wUBnhPcyLk2IT
-	5r6vxTcSdsryr7Ar/WzUyRYA+319XpI74g==
-X-Google-Smtp-Source: AGHT+IFbrNrWh744ukhvuIJvNBRk8q07YX7qKiTp8NDJFFroVwlad6rHVCsw6FswhMTHaFTSu5rf5g==
-X-Received: by 2002:a17:903:645:b0:1d3:68ee:d958 with SMTP id kh5-20020a170903064500b001d368eed958mr8544492plb.107.1704305800708;
-        Wed, 03 Jan 2024 10:16:40 -0800 (PST)
-Received: from fedora (c-24-4-59-2.hsd1.ca.comcast.net. [24.4.59.2])
-        by smtp.gmail.com with ESMTPSA id o24-20020a170902779800b001d46b2ec6a5sm15809732pll.192.2024.01.03.10.16.39
+        bh=D3rgTpCUDgPB4Cy8NgFDhEAQ1mbTQkJOhdsy502inPg=;
+        b=IDfPLJU00krrbLIAOxjI9PaVCcqGflZRlmdj/uTiPr5h+92AfYGFErzNdKuPPsng1Z
+         jcQ7NuZeKqkXCpEqpWpfxDiM39SoGWBxHRUBuprbyLE4wCzd88dVN2g8Mx0hw657kit3
+         zCcMMF/QlmKjoTlsMvD+ex40zcGfd2yVMuUGYIXV9DcQlwoYz6fKBWXGUrqWVWFg2G6g
+         d/DDLNQJGyqNCePHf7hV7FuSKTnrwKTaAg/lONYheW4HlU/mdpf9BsyPUZXplUnsHTo3
+         m4SdSJshnU3vKP2ZniWU+L57qjvM5Ox4VNSLwDvbmcFrscdMKOJVwytU/BC0xpSDkLzv
+         1L7Q==
+X-Gm-Message-State: AOJu0YzxhyB7Xv5bqOpBe0CJKDriCthOzUyFmnoiAWFbPi2oT+t3WGO5
+	mAjzTUjn+dblOzw2UjW42aUnjJ9rX/ckYA==
+X-Google-Smtp-Source: AGHT+IGHjadNPXX/3iWAkEBIfSUYeUkR/7ZVvVSS9grXrqNieaHIK1/VviWokcynSptX8yu47Qd4sw==
+X-Received: by 2002:a17:902:ecc8:b0:1d4:152b:dd8e with SMTP id a8-20020a170902ecc800b001d4152bdd8emr22976430plh.108.1704305836138;
+        Wed, 03 Jan 2024 10:17:16 -0800 (PST)
+Received: from p14s ([2604:3d09:148c:c800:d745:ffcc:b786:a182])
+        by smtp.gmail.com with ESMTPSA id f10-20020a170902ce8a00b001d347a98e7asm23991924plg.260.2024.01.03.10.17.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 03 Jan 2024 10:16:40 -0800 (PST)
-Date: Wed, 3 Jan 2024 10:16:37 -0800
-From: Tao Ren <rentao.bupt@gmail.com>
-To: Lukas Wunner <lukas@wunner.de>
-Cc: devicetree@vger.kernel.org, linux-aspeed@lists.ozlabs.org,
-	Andrew Jeffery <andrew@aj.id.au>, taoren@fb.com,
-	openbmc@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-	Rob Herring <robh+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
-	linux-arm-kernel@lists.infradead.org,
-	Patrick Williams <patrick@stwcx.xyz>
-Subject: Re: [PATCH v2 3/6] ARM: dts: aspeed: Common dtsi for Facebook
- AST2600 Network BMCs
-Message-ID: <ZZWkhaiDFOGvcPQy@fedora>
-References: <20210805222818.8391-1-rentao.bupt@gmail.com>
- <20210805222818.8391-4-rentao.bupt@gmail.com>
- <20231220081402.GA3831@wunner.de>
- <ZZSmMJ//l972Qbxu@fedora>
- <20240103124502.GB23899@wunner.de>
+        Wed, 03 Jan 2024 10:17:15 -0800 (PST)
+Date: Wed, 3 Jan 2024 11:17:13 -0700
+From: Mathieu Poirier <mathieu.poirier@linaro.org>
+To: Tanmay Shah <tanmay.shah@amd.com>
+Cc: andersson@kernel.org, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	michal.simek@amd.com, ben.levinsky@amd.com,
+	linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v8 3/3] remoteproc: zynqmp: parse TCM from device tree
+Message-ID: <ZZWkqYNqR2/Qq54m@p14s>
+References: <20231215235725.1247350-1-tanmay.shah@amd.com>
+ <20231215235725.1247350-4-tanmay.shah@amd.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,64 +76,241 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240103124502.GB23899@wunner.de>
+In-Reply-To: <20231215235725.1247350-4-tanmay.shah@amd.com>
 
-Hi Lukas,
+On Fri, Dec 15, 2023 at 03:57:25PM -0800, Tanmay Shah wrote:
+> ZynqMP TCM information is fixed in driver. Now ZynqMP TCM information
 
-On Wed, Jan 03, 2024 at 01:45:02PM +0100, Lukas Wunner wrote:
-> On Tue, Jan 02, 2024 at 04:11:28PM -0800, Tao Ren wrote:
-> > On Wed, Dec 20, 2023 at 09:14:02AM +0100, Lukas Wunner wrote:
-> > > On Thu, Aug 05, 2021 at 03:28:15PM -0700, rentao.bupt@gmail.com wrote:
-> > > > This common descirption is included by all Facebook AST2600 Network BMC
-> > > > platforms to minimize duplicated device entries across Facebook Network
-> > > > BMC device trees.
-> > > [...]
-> > > > --- /dev/null
-> > > > +++ b/arch/arm/boot/dts/ast2600-facebook-netbmc-common.dtsi
-> > > [...]
-> > > > +		tpmdev@0 {
-> > > > +			compatible = "tcg,tpm_tis-spi";
-> > > 
-> > > What's the chip used on this board?  Going forward, the DT schema for TPMs
-> > > requires the exact chip name in addition to the generic "tcg,tpm_tis-spi".
-> > 
-> > Sorry about the late response. It's "infineon,slb9670", and I will
-> > submit a patch for fix it soon.
-> 
-> Thank you Tao and Patrick for the replies.  I've prepared two commits
-> to fix all violations of the TPM schema on this branch:
-> 
->   https://github.com/l1k/linux/commits/tpm-dt3
-> 
-> The commits are named:
-> 
->   e95bdbc arm64: dts: Fix TPM schema violations
->   63e5dfd ARM: dts: Fix TPM schema violations
-> 
-> I've now amended the ARM commit to use "infineon,slb9670" for:
-> 
->   arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-bletchley.dts
->   arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-wedge400.dts
->   arch/arm/boot/dts/aspeed/ast2600-facebook-netbmc-common.dtsi
-> 
-> I intend to submit the two commits once the TPM schema is applied
-> either to Jarkko's or Rob's tree:
-> 
->   https://lore.kernel.org/all/20231220160422.GA282877-robh@kernel.org/
-> 
-> Thanks,
-> 
-> Lukas
+s/"is fixed in driver"/"was fixed in driver"
 
-I've confirmed it's "infineon,slb9670" for both wedge400 and
-ast2600-facebook-netbmc-common.
+> is available in device-tree. Parse TCM information in driver
+> as per new bindings.
+> 
+> Signed-off-by: Tanmay Shah <tanmay.shah@amd.com>
+> ---
+> 
+> Changes in v8:
+>   - parse power-domains property from device-tree and use EEMI calls
+>     to power on/off TCM instead of using pm domains framework
+>   - Remove checking of pm_domain_id validation to power on/off tcm
+>   - Remove spurious change
+> 
+> Changes in v7:
+>   - move checking of pm_domain_id from previous patch
+>   - fix mem_bank_data memory allocation
+> 
+>  drivers/remoteproc/xlnx_r5_remoteproc.c | 154 +++++++++++++++++++++++-
+>  1 file changed, 148 insertions(+), 6 deletions(-)
+> 
+> diff --git a/drivers/remoteproc/xlnx_r5_remoteproc.c b/drivers/remoteproc/xlnx_r5_remoteproc.c
+> index 4395edea9a64..36d73dcd93f0 100644
+> --- a/drivers/remoteproc/xlnx_r5_remoteproc.c
+> +++ b/drivers/remoteproc/xlnx_r5_remoteproc.c
+> @@ -74,8 +74,8 @@ struct mbox_info {
+>  };
+>  
+>  /*
+> - * Hardcoded TCM bank values. This will be removed once TCM bindings are
+> - * accepted for system-dt specifications and upstreamed in linux kernel
+> + * Hardcoded TCM bank values. This will stay in driver to maintain backward
+> + * compatibility with device-tree that does not have TCM information.
+>   */
+>  static const struct mem_bank_data zynqmp_tcm_banks_split[] = {
+>  	{0xffe00000UL, 0x0, 0x10000UL, PD_R5_0_ATCM, "atcm0"}, /* TCM 64KB each */
+> @@ -878,6 +878,139 @@ static struct zynqmp_r5_core *zynqmp_r5_add_rproc_core(struct device *cdev)
+>  	return ERR_PTR(ret);
+>  }
+>  
+> +static int zynqmp_r5_get_tcm_node_from_dt(struct zynqmp_r5_cluster *cluster)
+> +{
+> +	struct of_phandle_args out_args;
+> +	int tcm_reg_per_r5, tcm_pd_idx;
+> +	struct zynqmp_r5_core *r5_core;
+> +	int i, j, tcm_bank_count, ret;
+> +	struct platform_device *cpdev;
+> +	struct mem_bank_data *tcm;
+> +	struct device_node *np;
+> +	struct resource *res;
+> +	u64 abs_addr, size;
+> +	struct device *dev;
+> +
+> +	for (i = 0; i < cluster->core_count; i++) {
+> +		r5_core = cluster->r5_cores[i];
+> +		dev = r5_core->dev;
+> +		np = of_node_get(dev_of_node(dev));
+> +		tcm_pd_idx = 1;
+> +
+> +		/* we have address cell 2 and size cell as 2 */
+> +		tcm_reg_per_r5 = of_property_count_elems_of_size(np, "reg",
+> +								 4 * sizeof(u32));
+> +		if (tcm_reg_per_r5 <= 0) {
+> +			dev_err(dev, "can't get reg property err %d\n", tcm_reg_per_r5);
+> +			return -EINVAL;
+> +		}
+> +
+> +		/*
+> +		 * In lockstep mode, r5 core 0 will use r5 core 1 TCM
+> +		 * power domains as well. so allocate twice of per core TCM
 
-Pleasr free to add to "63e5dfd (ARM: dts: Fix TPM schema violations)":
+Twice of what?  Please use proper english in your multi line comments, i.e a
+capital letter for the first word and a dot at the end.  
 
-Reviewed-by: Tao Ren <rentao.bupt@gmail.com>
+> +		 */
+> +		if (cluster->mode == LOCKSTEP_MODE)
+> +			tcm_bank_count = tcm_reg_per_r5 * 2;
+> +		else
+> +			tcm_bank_count = tcm_reg_per_r5;
+> +
+> +		r5_core->tcm_banks = devm_kcalloc(dev, tcm_bank_count,
+> +						  sizeof(struct mem_bank_data *),
+> +						  GFP_KERNEL);
+> +		if (!r5_core->tcm_banks)
+> +			ret = -ENOMEM;
+> +
+> +		r5_core->tcm_bank_count = tcm_bank_count;
+> +		for (j = 0; j < tcm_bank_count; j++) {
+> +			tcm = devm_kzalloc(dev, sizeof(struct mem_bank_data),
+> +					   GFP_KERNEL);
+> +			if (!tcm)
+> +				return -ENOMEM;
+> +
+> +			r5_core->tcm_banks[j] = tcm;
+> +
+> +			/*
+> +			 * In lockstep mode, get second core's TCM power domains id
+> +			 * after first core TCM parsing is done as
 
+There seems to be words missing at the end of the sentence, and there is no dot.
 
-Cheers,
+> +			 */
+> +			if (j == tcm_reg_per_r5) {
+> +				/* dec first core node */
+> +				of_node_put(np);
+> +
+> +				/* get second core node */
+> +				np = of_get_next_child(cluster->dev->of_node, np);
+> +
+> +				/*
+> +				 * reset index of power-domains property list
+> +				 * for second core
+> +				 */
+> +				tcm_pd_idx = 1;
+> +			}
+> +
+> +			/* get power-domains id of tcm */
+> +			ret = of_parse_phandle_with_args(np, "power-domains",
+> +							 "#power-domain-cells",
+> +							 tcm_pd_idx,
+> +							 &out_args);
+> +			if (ret) {
+> +				dev_err(r5_core->dev,
+> +					"failed to get tcm %d pm domain, ret %d\n",
+> +					j, ret);
+> +				of_node_put(out_args.np);
 
-- Tao
+I'm pretty sure this isn't needed in error conditions since @out_args would not
+have been assigned.
+
+> +				return ret;
+> +			}
+> +			tcm->pm_domain_id = out_args.args[0];
+> +			of_node_put(out_args.np);
+> +			tcm_pd_idx++;
+> +
+> +			/*
+> +			 * In lockstep mode, we only need second core's power domain
+> +			 * ids. Other information from second core isn't needed so
+> +			 * ignore it. This forms table as zynqmp_tcm_banks_lockstep
+
+I don't understand the last sentence of this comment and it is missing a dot at
+the end.  Comments should be enlightening, the ones I found in this patch are
+sowing confusion.  
+
+> +			 */
+> +			if (j >= tcm_reg_per_r5)
+> +				contiue;
+> +
+
+This condition and the one above (j == tcm_reg_per_r5) is brittle and almost
+guaranteed to cause maintenance problems in the future.
+
+I understand your will to reuse as much code as possible but this is one of the
+rare cases where duplicating code is probably better.  Please introduce two new
+functions, i.e zynqmp_r5_get_tcm_node_from_dt_split() and
+zynqmp_r5_get_tcm_node_from_dt_lockstep(), and do all the necessary processing
+based on the use case.
+
+Thanks,
+Mathieu
+
+> +			/* get tcm address without translation */
+> +			ret = of_property_read_reg(np, j, &abs_addr, &size);
+> +			if (ret) {
+> +				of_node_put(np);
+> +				dev_err(dev, "failed to get reg property\n");
+> +				return ret;
+> +			}
+> +
+> +			/*
+> +			 * remote processor can address only 32 bits
+> +			 * so convert 64-bits into 32-bits. This will discard
+> +			 * any unwanted upper 32-bits.
+> +			 */
+> +			tcm->da = (u32)abs_addr;
+> +			tcm->size = (u32)size;
+> +
+> +			cpdev = to_platform_device(dev);
+> +			res = platform_get_resource(cpdev, IORESOURCE_MEM, j);
+> +			if (!res) {
+> +				of_node_put(np);
+> +				dev_err(dev, "failed to get tcm resource\n");
+> +				return -EINVAL;
+> +			}
+> +
+> +			tcm->addr = (u32)res->start;
+> +			tcm->bank_name = (char *)res->name;
+> +			res = devm_request_mem_region(dev, tcm->addr, tcm->size,
+> +						      tcm->bank_name);
+> +			if (!res) {
+> +				dev_err(dev, "failed to request tcm resource\n");
+> +				of_node_put(np);
+> +				return -EINVAL;
+> +			}
+> +		}
+> +	}
+> +
+> +	of_node_put(np);
+> +	return 0;
+> +}
+> +
+>  /**
+>   * zynqmp_r5_get_tcm_node()
+>   * Ideally this function should parse tcm node and store information
+> @@ -956,10 +1089,19 @@ static int zynqmp_r5_core_init(struct zynqmp_r5_cluster *cluster,
+>  	struct zynqmp_r5_core *r5_core;
+>  	int ret, i;
+>  
+> -	ret = zynqmp_r5_get_tcm_node(cluster);
+> -	if (ret < 0) {
+> -		dev_err(dev, "can't get tcm node, err %d\n", ret);
+> -		return ret;
+> +	r5_core = cluster->r5_cores[0];
+> +	if (of_find_property(r5_core->np, "reg", NULL)) {
+> +		ret = zynqmp_r5_get_tcm_node_from_dt(cluster);
+> +		if (ret) {
+> +			dev_err(dev, "can't get tcm node from dt, err %d\n", ret);
+> +			return ret;
+> +		}
+> +	} else {
+> +		ret = zynqmp_r5_get_tcm_node(cluster);
+> +		if (ret < 0) {
+> +			dev_err(dev, "can't get tcm node, err %d\n", ret);
+> +			return ret;
+> +		}
+>  	}
+>  
+>  	for (i = 0; i < cluster->core_count; i++) {
+> -- 
+> 2.25.1
+> 
 
