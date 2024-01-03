@@ -1,167 +1,106 @@
-Return-Path: <devicetree+bounces-29474-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29475-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2101E823177
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 17:47:50 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8605E8231E8
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 18:00:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8A73F1F22330
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 16:47:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 182AC2899CD
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 17:00:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAD041BDE2;
-	Wed,  3 Jan 2024 16:47:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91CFB1C282;
+	Wed,  3 Jan 2024 17:00:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=theobroma-systems.com header.i=@theobroma-systems.com header.b="OlpmG679"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="EFh0ToC/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR01-DB5-obe.outbound.protection.outlook.com (mail-db5eur01on2058.outbound.protection.outlook.com [40.107.15.58])
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C7D41C287;
-	Wed,  3 Jan 2024 16:47:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=theobroma-systems.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=theobroma-systems.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=WSO9hrBJGDOZbWS7BfIKFff4AMJbs4/JIHBa42MR76ezLKQ4nj4aAh6RhCTmkJIjVLj2tkgiqhf4nwFkHzdGIIVQ6aSlqlLYP4yCOn1oOnJCj7FlPbwFjXs0XE3rR3OmYXO6cLMdW8HMm5f0HWZTgrt3+RRN8rYLJ5gPVs/759QpNqJ4zUF1RsSPq/oT7pVXcjJn+qliiL6Ab/hbumjD99Xr5RvIH6DuyexG/feFz6LNRSgWkF5KltsDW5HmCSkomDYHl5aDr+VeyBsHNakR6ERqQyerhD6wxq1HnRveQ5583qFFd/zAdzvTI3FvCb5cfq4PEAIp727eNTOGgSma6g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=I9yMYUt6yt3mDJ5Zu76UoO4nZlgHgH9hpvVYIewn5xM=;
- b=GXRjAGe1BJOzFq2BdjZKdZVoYMxko5AjOXLt+IpCXQL78xhIjMq7FE+cyDPcDdhdV+UOycyR31P6xxDAraegvWnL8WVYACB/81e6CqNxM0nK3WGQyW56HVld1m8YDZJjh+Cs285EsL1Qm8bykwjRQTHUjKCWyFS0rYtIsQv4OLchKSbhK4P84BV6Ho2kYPdql1uty+89PLR+9GgJfmdHxvZjvb5Dq+e5/ACDZ/iVsifsGFKSd02ItCTinHZ+3FfRh0Zn/xIcSNaWz0UY8v4eLSZzTfxy1VyQcoiqNIszPvkHIz5hm3hpdP5aaShntb+szdD+U1NOemFK9n7D8UEaKQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=theobroma-systems.com; dmarc=pass action=none
- header.from=theobroma-systems.com; dkim=pass header.d=theobroma-systems.com;
- arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=theobroma-systems.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=I9yMYUt6yt3mDJ5Zu76UoO4nZlgHgH9hpvVYIewn5xM=;
- b=OlpmG6791Ss6w7Z06RAUPhN9064VFSOLnju579Ksb7JnZzhy7yFdcOzDtL4IYlHbg+J1eNR25ni3HbduI+5+FA8tkuZoSJdkuRy7Ao8Z7MyRs5FEtJwZVuYXv59bLBS50yFyiXNQxLdu5A1ZRL9JgaSZMZPrDwHKoyYvN7QLkB48aWUnR184YKrd/3sry54K8ryasDXS7XcDcUfHEv/JXn6J/u1F1P9Py3DriMFXVV6NqycUk1btCpgE1Z1ty7DA8OKAuuhh+PHXvBhDCk3R5YRkaQf/nmGTDk5Os1WkYJIOkknLCIIShaxWy3bhEA5xbxOH3tPi+WRil8F+Cj4INA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=theobroma-systems.com;
-Received: from VI1PR04MB6013.eurprd04.prod.outlook.com (2603:10a6:803:cb::15)
- by AM7PR04MB7144.eurprd04.prod.outlook.com (2603:10a6:20b:11b::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7159.13; Wed, 3 Jan
- 2024 16:47:41 +0000
-Received: from VI1PR04MB6013.eurprd04.prod.outlook.com
- ([fe80::cc4a:6b4:812d:7c8a]) by VI1PR04MB6013.eurprd04.prod.outlook.com
- ([fe80::cc4a:6b4:812d:7c8a%5]) with mapi id 15.20.7159.013; Wed, 3 Jan 2024
- 16:47:41 +0000
-From: Iskander Amara <iskander.amara@theobroma-systems.com>
-To: robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	heiko@sntech.de,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Cc: quentin.schulz@theobroma-systems.com,
-	Iskander Amara <iskander.amara@theobroma-systems.com>
-Subject: [PATCH v2] arm64: dts: rockchip: add missing definition of pmu io domains 1 and 2 on ringneck
-Date: Wed,  3 Jan 2024 17:47:34 +0100
-Message-Id: <20240103164734.1151290-1-iskander.amara@theobroma-systems.com>
-X-Mailer: git-send-email 2.34.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: VI1P194CA0036.EURP194.PROD.OUTLOOK.COM
- (2603:10a6:803:3c::25) To VI1PR04MB6013.eurprd04.prod.outlook.com
- (2603:10a6:803:cb::15)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BD2F1BDE9;
+	Wed,  3 Jan 2024 17:00:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=oVTmI+8SJlo66J8e4e/1PXwZd0ZEK+jDBeMKC2o+Ab8=; b=EFh0ToC/9RxY68FyQPfSmJBxkr
+	0jQUb8I3mc4fZ2atp9SL3oJkZTRcg5BoLVYQXEK4hQX5h1kbKX9FzGKjkNJ4L28jthZSTu54Xkgl9
+	vJP2aYFpNgdwHXJWtAG2ZeWkOqYMEakNXaZID41bdpzDRS+Aig2KRdKGcxTullSakE9yUhOYUmMNm
+	WVPNX32gxmcPQmyi8pnR7R7wYIKyxjDlwCdE1gTsasGdWynZb2Zf4/1W/FJdEF3X7UGxoF2yub4WL
+	DF/oaj211yxamL9CtaPiSrKsXS2Vu57xo/2owzMqI00cbOX134oGZKetqzS3AkbO9LeA/f/t5Ufzj
+	qeLsKXBg==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:55008)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1rL4as-0007iH-2U;
+	Wed, 03 Jan 2024 16:59:50 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1rL4as-0006Xp-OQ; Wed, 03 Jan 2024 16:59:50 +0000
+Date: Wed, 3 Jan 2024 16:59:50 +0000
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	William Zhang <william.zhang@broadcom.com>,
+	Anand Gore <anand.gore@broadcom.com>,
+	Kursad Oney <kursad.oney@broadcom.com>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+	=?iso-8859-1?Q?Fern=E1ndez?= Rojas <noltari@gmail.com>,
+	Sven Schwermer <sven.schwermer@disruptive-technologies.com>,
+	linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	netdev@vger.kernel.org
+Subject: Re: [net-next PATCH v6 5/5] net: phy: at803x: add LED support for
+ qca808x
+Message-ID: <ZZWShvM4Fcs3Oogk@shell.armlinux.org.uk>
+References: <20240102183835.5332-1-ansuelsmth@gmail.com>
+ <20240102183835.5332-6-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: VI1PR04MB6013:EE_|AM7PR04MB7144:EE_
-X-MS-Office365-Filtering-Correlation-Id: c5494a30-5d53-46b5-80f8-08dc0c7bb395
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	qSYKJxZ1T9o3/BkT//iQdPHyKpmmpui2oXEM0/qMJUUaKGA5f48n9VZOLG6zvtpi3BqOzOUcFtoZg0t/QZuM8K6XZN9LOLkI9T433ETzokQI331tWg6S9bsQPx+4m8SkLoOiD3d730ytFlejqTAa9MWb9ZooylWHrTnwpBpugElYrzkpqBnr9z9Ux+BDCWZCXasqyo1D6MDZuNIHe7BWW2cQUsULaRiTUvPuUwGwTO8lMxLSK4NIeGVzLCvW157oXFv42/nAwoA9s7K7N6LBvznL48ozh4tdnlsD9Tre0oGXkQFbIu39Z36gV/vejp0z/UhkXCoBKmZWf1D0nZTLb9ydR0YaigBo/HcfpRWSH+aHOcVd/BuMFDaXSPqCeXMvq7z7tIaCyt58ezFZD6Fygk/JJyBMmk8Qo7nrwmH5FOyFG/ojheIP6Oedz6lao+ky98Rl4aoXh8Jv1Isg4v89PDt0Zaexl5NZNMhBLP7JJdvbS6HyPDsVBNhsGo3xJ30Snu8ldzJOHCq2kDqo51KpOoKMcxL7C3TiU5A4ArunxHKa3Y/EeYD4zPkeLUpgoBVxP6GBWsJxH/P/Yo4IpANfJfDqTd83LiG46N24169B6RwsVZ3T6g/CKk1nYaMzgmo4
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB6013.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(346002)(376002)(396003)(136003)(366004)(39840400004)(230922051799003)(64100799003)(1800799012)(186009)(451199024)(36756003)(52116002)(6512007)(66476007)(6506007)(66556008)(66946007)(6486002)(86362001)(38350700005)(38100700002)(2616005)(1076003)(26005)(107886003)(41300700001)(2906002)(5660300002)(478600001)(4326008)(6666004)(44832011)(8676002)(316002)(8936002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?VTe6MtLbn99JRVveEVxIFGG7X7FWiQDnG0nJKFeDUsdW66MaxXyMZxo3YK8v?=
- =?us-ascii?Q?En5+RBDGUxGO2vvE4DWhYd3Bws9krx2eyX9ccUHEGkDaqC/26dHqkRCdwKD7?=
- =?us-ascii?Q?ls9N+bMLoYzVrLdei2h90r61NaxbqGSrA3FoAF2LHpJ0o96TLbPVhfAdTnIm?=
- =?us-ascii?Q?K7lsm360ctZvR89SdJ6cSdoodTK27SBWNuf6TkPFDmFlUDYIXPMBdmQHqNZ1?=
- =?us-ascii?Q?iQ4teyy9+OitHAey3LvCsmtu0CplBcyKmf4ba9k8hOR3qcL68MA5cO6QcUW4?=
- =?us-ascii?Q?3W6Nci77TA1fDOnqlLoKW9kWHngcMtQUKjsCSwS+LCHoHJIyaTe6UWOdJK8i?=
- =?us-ascii?Q?TyVS5jPYx/LiCq0FvFwK/IhBkE9s4ZfZqk7NGqu6K1lEb8k4oUE+ic8mRUMg?=
- =?us-ascii?Q?T2s0TUDY/a/Cw9QE/2GSexevYVr21wtWdkS7rshPc2FmvEp9RDg7uPC0m1We?=
- =?us-ascii?Q?QXmuxRrWJaGxagudcRXNsc15GWFzt1Rb7pv7ldUItbCuc5wMzQa7cnWw7tA1?=
- =?us-ascii?Q?6P4Dkh/w44kLdRCcDewsyDfNJQtYZkWcHaZJuK3lKmP68I4kPAtR77MJEPST?=
- =?us-ascii?Q?Z4AAAlaGh+PM+L7geA764AhH03CMy7IxcaUKIfO7PXu7Kgx38kO/1xjBPXHC?=
- =?us-ascii?Q?P7MWrpkAPmTEyo57/aKn6PccJhxNStjDkA3iD9pPp/o4eCOEM2S5n9yDKzs0?=
- =?us-ascii?Q?7o+nNp4iP+G5nYptGH9B/esfKi7IC06O3mYTsIdxzaUvQkuWS3Co1mzk7itv?=
- =?us-ascii?Q?I5H/5QMxXfMZlDsQ4I7tjBW12sMxEu/wjMdMH2zQudH3Uh92Ea0gSkR4lK0i?=
- =?us-ascii?Q?om/Yw//LcUfXfx636sf6yuHgO82qZBKBCi8mX/xp70fC5dsWXBtk8KdBOBTZ?=
- =?us-ascii?Q?5Cd3nyVU68DFQaeM0QDMHkCIUTzO/eA4ArsH1RnQ2R03qjFg5muA/TzgUtID?=
- =?us-ascii?Q?7MmkczcEPMP9RIaDsL0AqOVNl663SHrp99v7CVfgmhLAM72Lr4z+oseB9L9M?=
- =?us-ascii?Q?8icCe5Hc0rGuGfBm+1zlhGQwNW6CnZo9nYkZ1xsYlyRwQvRua5D8YZ9TW6RA?=
- =?us-ascii?Q?7+uv8GVRVpTcb+iGzqfuhNvP6mjeSEHu/ftGXh2/O4JOiVch8MDcL5u5eUCb?=
- =?us-ascii?Q?ffYWfLdwL2hPNIUqaU0wRDis0FkGzRUxRJm4S1W88Q7SAstlfzo9CCgm5DRY?=
- =?us-ascii?Q?PothQq8Rpm5v3YPSlWaAnTKyo/aOvc0qjsnEjwbVS3jueb2TrITeEtp1jABv?=
- =?us-ascii?Q?8ASCDls77WA6sFFSe0xuCt3HiS+uhu90vk+q/aMrIQ7H4+i2oMpT2RT5WcvD?=
- =?us-ascii?Q?vUofFzV2DA354NE2/rh0sX2OazR6Wip5zCYdg8/cvoJGdTFWNzC6R3NN86jN?=
- =?us-ascii?Q?uQGKma/5Zhmvy8Qgwmu/hyECWjGMbdMA8YbCY4OjHbFRLc0xi5AR2MELC8Ke?=
- =?us-ascii?Q?qhTqkZtPaLalDuBZK7oU0yzn8t47Fck6YMcYH4O7+Akh8JfZVR4VmJrZZRm9?=
- =?us-ascii?Q?GlaYwbd05fUR+o0sLCGSPaMo/ht0AFjA2JJdefqFvDJMfIk0Fy8aCgMjFQxj?=
- =?us-ascii?Q?7KzHXrL4smnfWLFn1RsNWIiBi4b5gpaCpYL852tPy7l/eDV97Wh9tzNdMmeX?=
- =?us-ascii?Q?03V4FOtSLb1iSGONpWgSV28=3D?=
-X-OriginatorOrg: theobroma-systems.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c5494a30-5d53-46b5-80f8-08dc0c7bb395
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB6013.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Jan 2024 16:47:41.4815
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 5e0e1b52-21b5-4e7b-83bb-514ec460677e
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: XzK1zDAhhOEaI6DktyEYnA5FjLuqscm0iFzTDdGUmcX50amUzkwFFPHMi0Ee+5R3NVgZD7sdym7mhdWHr5xRa1gGmvbSFI+kNltfAB7/hKypI9az8GrI3mrbTAwvnR7D
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM7PR04MB7144
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240102183835.5332-6-ansuelsmth@gmail.com>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-Two pmuio domains on ringneck are not defined:
-	1- PMUIO1: supplied by vcc_3v3 regulator(PMIC RK809)
-	2- PMUIO2: supplied by vcc_3v3 regulator(PMIC RK809)
+On Tue, Jan 02, 2024 at 07:38:34PM +0100, Christian Marangi wrote:
+> +	if (active_low) {
+> +		ret = phy_clear_bits_mmd(phydev, MDIO_MMD_AN,
+> +					 QCA808X_MMD7_LED_POLARITY_CTRL,
+> +					 QCA808X_LED_ACTIVE_HIGH);
+> +	} else {
+> +		ret = phy_set_bits_mmd(phydev, MDIO_MMD_AN,
+> +				       QCA808X_MMD7_LED_POLARITY_CTRL,
+> +				       QCA808X_LED_ACTIVE_HIGH);
+> +	}
 
-The reason why no functional effect was observed is because of that
-the above mentionned PMUIO domains were supplied by a regulator
-which is always on.
+Maybe:
 
-So let's add their definition in the dtsi.
+	return phy_modify_mmd(phydev, MDIO_MMD_AN,
+			      QCA808X_MMD7_LED_POLARITY_CTRL,
+			      active_low ? 0 : QCA808X_LED_ACTIVE_HIGH);
 
-Signed-off-by: Iskander Amara <iskander.amara@theobroma-systems.com>
----
-v2:
-	- Fix indentation
- arch/arm64/boot/dts/rockchip/px30-ringneck.dtsi | 6 ++++++
- 1 file changed, 6 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/rockchip/px30-ringneck.dtsi b/arch/arm64/boot/dts/rockchip/px30-ringneck.dtsi
-index 12397755830b..bb1aea82e666 100644
---- a/arch/arm64/boot/dts/rockchip/px30-ringneck.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/px30-ringneck.dtsi
-@@ -347,6 +347,12 @@ pmic_int: pmic-int {
- 	};
- };
- 
-+&pmu_io_domains {
-+	pmuio1-supply = <&vcc_3v3>;
-+	pmuio2-supply = <&vcc_3v3>;
-+	status = "okay";
-+};
-+
- &saradc {
- 	vref-supply = <&vcc_1v8>;
- 	status = "okay";
 -- 
-2.34.1
-
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
