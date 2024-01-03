@@ -1,247 +1,184 @@
-Return-Path: <devicetree+bounces-29465-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29466-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C72A823074
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 16:22:32 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 492558230CB
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 16:49:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7B3BE1C23753
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 15:22:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C1BCD285D09
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 15:49:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2EA41A730;
-	Wed,  3 Jan 2024 15:22:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 406FC1B278;
+	Wed,  3 Jan 2024 15:48:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HTCVvdqZ"
+	dkim=pass (2048-bit key) header.d=stwcx.xyz header.i=@stwcx.xyz header.b="sL8Ab9HB";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="l52ne/j2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from out2-smtp.messagingengine.com (out2-smtp.messagingengine.com [66.111.4.26])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0C521A726;
-	Wed,  3 Jan 2024 15:22:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3CBF8C433C7;
-	Wed,  3 Jan 2024 15:22:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1704295347;
-	bh=PSULNPafTiN5YA/zznHKljEYILe0lgiiOYnPvIBLCtU=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=HTCVvdqZyxiXxnTanJVRMJKPFRpS9n90G2HKitP4aY/wBhmMUdJ53AsIa/Gyl/4Jz
-	 pLkz9apw4Rim6otI0sGhlUTS2iqiCWEa3hp739v+hUiMUAxOtvb33hj666Vi5bZvuJ
-	 fvzcGHlQMBAt1WqUkYrIWo8lfzxiLZ+8u19gY1e1W5JsS1XnH0xTngSdeOTujLwcKz
-	 VpAZNDzQG9AYcV+R6bZfBgwTehETca+wsNrozRuYNycZOxUS8ftq55ZRjIPN+t6yL+
-	 uuvihs48iNhQJaz1R9ps25naygJYNwSJTmPHLEZ05ePe1M3Kwgn1TzVDNt8unNxKHl
-	 Rh7pRU/LdxtMQ==
-Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-50e7dd8bce8so7814459e87.1;
-        Wed, 03 Jan 2024 07:22:27 -0800 (PST)
-X-Gm-Message-State: AOJu0YzUi1J9e6raYk8qBu25AWdTjQj8yNYExQILFg09ecR+HPc3e6hu
-	wjf2zNutkE5Mx1h6kjXQYENWDt4R1Tk05unG83Q=
-X-Google-Smtp-Source: AGHT+IGFcFYO2J618BYFfSaaCdih8PzDV/WsOJ6Eg0j1h8wQdMvLsG1eT5V9WrmOXvxhn44h3RXmYuOstjkzgkiucVI=
-X-Received: by 2002:a05:6512:12cd:b0:50e:a08d:172 with SMTP id
- p13-20020a05651212cd00b0050ea08d0172mr1429415lfg.85.1704295345418; Wed, 03
- Jan 2024 07:22:25 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F8371B268;
+	Wed,  3 Jan 2024 15:48:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=stwcx.xyz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=stwcx.xyz
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
+	by mailout.nyi.internal (Postfix) with ESMTP id 48AF25C01A4;
+	Wed,  3 Jan 2024 10:48:53 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute2.internal (MEProxy); Wed, 03 Jan 2024 10:48:53 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=stwcx.xyz; h=cc
+	:cc:content-type:content-type:date:date:from:from:in-reply-to
+	:in-reply-to:message-id:mime-version:references:reply-to:subject
+	:subject:to:to; s=fm1; t=1704296933; x=1704383333; bh=t2o8Mw2ZMm
+	KTwiVDDaiNKiFCvU6VgZlkt0pKLX3ZNLA=; b=sL8Ab9HB78YPzTe3LUmU4OKfIl
+	MMNR9BmvHv0bYllciytC6z5SKiToQfV9h0f0fPTaln845B3QMnmo82yV7tPhRGe+
+	/YKinkh0xqJLYwdSBjvxI0yqyufCP8V+2diy9OvJ8cSap7i6zqKEEFSHNA3cu1Bv
+	+vS6K6SL9zKpYvV2U3X3Ra2isUAsH31VZovzRprKFerZ4RHb5grjKkyMxQnaG+Ez
+	Wt5zPqwMD7bHh5XxbLsoCTEtOsJLRnben7ySHe4eWKR+J74UtQrN0b3ATbBULALV
+	uqiHUPliCXLPPK9Ei7OEWGE/OuR9BpEadHqc51Si5F+3mGW0N6ILD2CxVA1w==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-type:content-type:date:date
+	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
+	:message-id:mime-version:references:reply-to:subject:subject:to
+	:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+	fm2; t=1704296933; x=1704383333; bh=t2o8Mw2ZMmKTwiVDDaiNKiFCvU6V
+	gZlkt0pKLX3ZNLA=; b=l52ne/j2jwEJ+wyF3epS32mmS4KSND06Z5iVkt9NlANy
+	WEsbmje+tACmpQcveIPfP9KCSYOXBVexUYfRLksr8Yge39GzsNY5QAB/fjtAKlhz
+	cvM3TyfIblSS/rcv6S/eGR2fb7cJKhwcNTaIdHeXfTrB0UrtjK5P6If5q47XFERB
+	+6QMvUq4t15JJbyJqcgZtQ5swYAL7pxFdohuQl+LuoOeIiGTc96PZFyGlE8bqyT5
+	sF80GDx6kHWcI09F0QK6Jq+aLPvgTRoHbxrgphHbo2Zsu2q9po9Ez20PDnUIsHHV
+	hgPnU1UNEYDgSkxP/LNDIAyiAAnJEUTha16qdmxrIg==
+X-ME-Sender: <xms:5IGVZa4D5qIOTA9oPZpJHhFvwEj1uHJXRO_zS_3d5_Qyp1HIRMIeYA>
+    <xme:5IGVZT4BnJOLSyPRiA_MUSfin2MRG_6pZqsUvANFFEGsGQafsfJFAxIeaSKZO3sCp
+    gDbiq659LJhgHT8_gg>
+X-ME-Received: <xmr:5IGVZZeTEuOYt9Ma9I8G-lnC1pCxenE_-qLeHJfyafOJchvcrqfODpJaWdVTxZ4bZT4S_a9hdMsbKWmvtc0F_7ahSoBX9w>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvkedrvdeghedgkeduucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    gfrhhlucfvnfffucdludejmdenucfjughrpeffhffvvefukfhfgggtuggjsehgtderredt
+    tddvnecuhfhrohhmpefrrghtrhhitghkucghihhllhhirghmshcuoehprghtrhhitghkse
+    hsthiftgigrdighiiiqeenucggtffrrghtthgvrhhnpeehiedtudehvddutdejgfdufeeh
+    uddukeeltdduvdffteehhffhjeevhfdtjeevfeenucffohhmrghinhepghhithhhuhgsrd
+    gtohhmpdhkvghrnhgvlhdrohhrghenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgr
+    mhepmhgrihhlfhhrohhmpehprghtrhhitghksehsthiftgigrdighiii
+X-ME-Proxy: <xmx:5IGVZXLtmaXW6Kbl9BZtINmkmf7KZ3cX65sZUvOVJKoRWeO-u7NUsg>
+    <xmx:5IGVZeJJOsveBuJMvOxn-we-qgdlWmDrCqGAW8E5Nv05dy-GqYfffg>
+    <xmx:5IGVZYwdcX_jlfgulpN2tILHuCX47lPuGAS3meGfSGYEpk48nrVgIw>
+    <xmx:5YGVZbVOrbQkkvwolnPXpr7QzFTLIHgo4RAczsfRMW3g2bUoXwPbLw>
+Feedback-ID: i68a1478a:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
+ 3 Jan 2024 10:48:52 -0500 (EST)
+Date: Wed, 3 Jan 2024 09:48:51 -0600
+From: Patrick Williams <patrick@stwcx.xyz>
+To: Lukas Wunner <lukas@wunner.de>
+Cc: Tao Ren <rentao.bupt@gmail.com>, devicetree@vger.kernel.org,
+	linux-aspeed@lists.ozlabs.org, Andrew Jeffery <andrew@aj.id.au>,
+	taoren@fb.com, openbmc@lists.ozlabs.org,
+	linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+	Joel Stanley <joel@jms.id.au>, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 3/6] ARM: dts: aspeed: Common dtsi for Facebook
+ AST2600 Network BMCs
+Message-ID: <ZZWB4wRiAyDtlLJM@heinlein.vulture-banana.ts.net>
+References: <20210805222818.8391-1-rentao.bupt@gmail.com>
+ <20210805222818.8391-4-rentao.bupt@gmail.com>
+ <20231220081402.GA3831@wunner.de>
+ <ZZSmMJ//l972Qbxu@fedora>
+ <20240103124502.GB23899@wunner.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230926194242.2732127-1-sjg@chromium.org> <20230926194242.2732127-2-sjg@chromium.org>
- <BN9PR11MB5483FF3039913334C7EA83E1E6AEA@BN9PR11MB5483.namprd11.prod.outlook.com>
- <CAMj1kXFG92NpL7T7YocOup0xLKyopt3MnSCp0RL8cLzozzJz7A@mail.gmail.com>
- <BN9PR11MB548303B09536EB1577472029E6B3A@BN9PR11MB5483.namprd11.prod.outlook.com>
- <CAPnjgZ36t8g7E=0MSJyaV8-QKv9RVYe47Jd5E=NU-mFM4LWBQA@mail.gmail.com>
- <CAMj1kXHAEeK7x2f13k_JV3Xcw61nNLasyvXQf+mKwKekQ48EpQ@mail.gmail.com>
- <BN9PR11MB548334E0DA6495C438FBFDE1E6BBA@BN9PR11MB5483.namprd11.prod.outlook.com>
- <BN9PR11MB548314DDE8D4C9503103D51CE6BBA@BN9PR11MB5483.namprd11.prod.outlook.com>
- <CAMj1kXHbM+ArLgNZgnmiok4gOfv6QLYxzyB9OCwfhEkJ2xGK_g@mail.gmail.com>
- <BN9PR11MB5483C2FBCD07DE61DCCDB523E6BCA@BN9PR11MB5483.namprd11.prod.outlook.com>
- <CAMj1kXHmu=ykgBMRiFqG4_ra3FJtHa=GASoMUJswdMFa9v4Xgw@mail.gmail.com>
- <BN9PR11MB54837EEB391CC2A8FA6C0BF5E695A@BN9PR11MB5483.namprd11.prod.outlook.com>
- <CAMj1kXEQL9n1Adedow5KEyZ5gdFQY3Fn+Fz8vSK3mHib_vDFig@mail.gmail.com> <BN9PR11MB5483E191F1906641565A1337E694A@BN9PR11MB5483.namprd11.prod.outlook.com>
-In-Reply-To: <BN9PR11MB5483E191F1906641565A1337E694A@BN9PR11MB5483.namprd11.prod.outlook.com>
-From: Ard Biesheuvel <ardb@kernel.org>
-Date: Wed, 3 Jan 2024 16:22:14 +0100
-X-Gmail-Original-Message-ID: <CAMj1kXGcZP99hyURXFAZfwKmYqj-xBN9BcW7R3h9Mm2k937Buw@mail.gmail.com>
-Message-ID: <CAMj1kXGcZP99hyURXFAZfwKmYqj-xBN9BcW7R3h9Mm2k937Buw@mail.gmail.com>
-Subject: Re: [PATCH v7 2/2] schemas: Add some common reserved-memory usages
-To: "Chiu, Chasel" <chasel.chiu@intel.com>
-Cc: Simon Glass <sjg@chromium.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, Mark Rutland <mark.rutland@arm.com>, 
-	Rob Herring <robh@kernel.org>, "Tan, Lean Sheng" <sheng.tan@9elements.com>, 
-	lkml <linux-kernel@vger.kernel.org>, Dhaval Sharma <dhaval@rivosinc.com>, 
-	"Brune, Maximilian" <maximilian.brune@9elements.com>, Yunhui Cui <cuiyunhui@bytedance.com>, 
-	"Dong, Guo" <guo.dong@intel.com>, Tom Rini <trini@konsulko.com>, 
-	ron minnich <rminnich@gmail.com>, "Guo, Gua" <gua.guo@intel.com>, 
-	"linux-acpi@vger.kernel.org" <linux-acpi@vger.kernel.org>, U-Boot Mailing List <u-boot@lists.denx.de>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="okJL0W4XmHaJ4PYq"
+Content-Disposition: inline
+In-Reply-To: <20240103124502.GB23899@wunner.de>
+
+
+--okJL0W4XmHaJ4PYq
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, 22 Dec 2023 at 20:52, Chiu, Chasel <chasel.chiu@intel.com> wrote:
->
->
-> Please see my reply below inline.
->
+On Wed, Jan 03, 2024 at 01:45:02PM +0100, Lukas Wunner wrote:
+> On Tue, Jan 02, 2024 at 04:11:28PM -0800, Tao Ren wrote:
+> > On Wed, Dec 20, 2023 at 09:14:02AM +0100, Lukas Wunner wrote:
+> > > On Thu, Aug 05, 2021 at 03:28:15PM -0700, rentao.bupt@gmail.com wrote:
+> > > > This common descirption is included by all Facebook AST2600 Network=
+ BMC
+> > > > platforms to minimize duplicated device entries across Facebook Net=
+work
+> > > > BMC device trees.
+> > > [...]
+> > > > --- /dev/null
+> > > > +++ b/arch/arm/boot/dts/ast2600-facebook-netbmc-common.dtsi
+> > > [...]
+> > > > +		tpmdev@0 {
+> > > > +			compatible =3D "tcg,tpm_tis-spi";
+> > >=20
+> > > What's the chip used on this board?  Going forward, the DT schema for=
+ TPMs
+> > > requires the exact chip name in addition to the generic "tcg,tpm_tis-=
+spi".
+> >=20
+> > Sorry about the late response. It's "infineon,slb9670", and I will
+> > submit a patch for fix it soon.
+>=20
+> Thank you Tao and Patrick for the replies.  I've prepared two commits
+> to fix all violations of the TPM schema on this branch:
+>=20
+>   https://github.com/l1k/linux/commits/tpm-dt3
+>=20
+> The commits are named:
+>=20
+>   e95bdbc arm64: dts: Fix TPM schema violations
+>   63e5dfd ARM: dts: Fix TPM schema violations
+
+Feel free to add to "63e5dfd (ARM: dts: Fix TPM schema violations)":
+
+Reviewed-by: Patrick Williams <patrick@stwcx.xyz>
+
+>=20
+> I've now amended the ARM commit to use "infineon,slb9670" for:
+>=20
+>   arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-bletchley.dts
+>   arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-wedge400.dts
+>   arch/arm/boot/dts/aspeed/ast2600-facebook-netbmc-common.dtsi
+>=20
+> I intend to submit the two commits once the TPM schema is applied
+> either to Jarkko's or Rob's tree:
+>=20
+>   https://lore.kernel.org/all/20231220160422.GA282877-robh@kernel.org/
+>=20
 > Thanks,
-> Chasel
->
-...
-> > > > The gEfiMemoryTypeInformationGuid HOB typically carries platform
-> > > > defaults, and the actual memory type information is kept in a
-> > > > non-volatile EFI variable, which gets updated when the memory usage
-> > > > changes. Is this different for UefiPayloadPkg?
-> > > >
-> > > > (For those among the cc'ees less versed in EFI/EDK2: when you get
-> > > > the 'config changed -rebooting' message from the boot firmware, it
-> > > > typically means that this memory type table has changed, and a
-> > > > reboot is necessary.)
-> > > >
-> > > > So the platform init needs to read this variable, or get the
-> > > > information in a different way. I assume it is the payload, not the
-> > > > platform init that updates the variable when necessary. This means
-> > > > the information flows from payload(n) to platform init(n+1), where =
-n
-> > > > is a monotonic index tracking consecutive boots of the system.
-> > > >
-> > > > Can you explain how the DT fits into this? How are the runtime-code
-> > > > and runtime-data memory reservation nodes under /reserved-memory
-> > > > used to implement this information exchange between platform init
-> > > > and payload? And how do the HOB and the EFI variable fit into this =
-picture?
-> > >
-> > >
-> > > 1. With some offline discussion, we would move
-> > > gEfiMemoryTypeInformationGuid usage to FDT->upl-custom node. This is
-> > > because it is edk2 implementation choice and non-edk2 PlatformInit or
-> > > Payload may not have such memory optimization implementation. (not a
-> > > generic usage/requirement for PlatformInit and Payload)
-> > >
-> > > The edk2 example flow will be like below:
-> > >
-> > > PlatformInit to GetVariable of gEfiMemoryTypeInformationGuid and crea=
-te Hob-
-> > >
-> > >   PlatformInit to initialize FDT->upl-custom node to report
-> > gEfiMemoryTypeInformationGuid HOB information ->
-> > >     UefiPayload entry to re-create gEfiMemoryTypeInformationGuid HOB =
-basing
-> > on FDT input (instead of the default MemoryType inside UefiPayload) ->
-> > >       UefiPayload DxeMain/Gcd will consume gEfiMemoryTypeInformationG=
-uid
-> > Hob for memory type information ->
-> > >         UefiPayload to initialize UEFI environment (mainly DXE dispat=
-cher) ->
-> > >           (additional FV binary appended to common UefiPayload binary=
-)
-> > PlatformPayload to provide VariableService which is platform specific -=
->
-> > >             UefiPayload UefiBootManager will SetVariable if memory ty=
-pe change
-> > needed and request a warm reset ->
-> > >               Back to PlatformInit ...
-> > >
-> >
-> > OK so the upl-custom node can do whatever it needs to. I imagine these =
-will
-> > include the memory descriptor attribute field, and other parts that may=
- be missing
-> > from the /reserved-memory DT node specification?
->
->
-> Yes, if needed by edk2 specific implementation, not generic enough, we ma=
-y consider to use upl-custom node to pass those data.
->
->
-> >
-> > >
-> > > 2. Now the proposed reserved-memory node usages will be for PlatformI=
-nit to
-> > provide data which may be used by Payload or OS. This is not edk2 speci=
-fic and
-> > any PlatformInit/Payload could have same support.
-> > > Note: all of below are optional and PlatformInit may choose to implem=
-ent some
-> > of them or not.
-> > >
-> > >       - acpi
-> > > If PlatformInit created some ACPI tables, this will report a memory r=
-egion which
-> > contains all the tables to Payload and Payload may base on this to add =
-some more
-> > tables if required.
-> > >
-> > >       - acpi-nvs
-> > > If PlatformInit has created some ACPI tables which having ACPI NVS me=
-mory
-> > dependency, this will be that nvs region.
-> > >
-> >
-> > These make sense.
-> >
-> > >       - boot-code
-> > > When PlatformInit having some FW boot phase code that could be freed
-> > > for OS to use when payload transferring control to UEFI OS
-> > >
-> > >       - boot-data
-> > > When PlatformInit having some FW boot phase data that could be freed =
-for OS
-> > to use when payload transferring control to UEFI OS.
-> > >
-> > >       - runtime-code
-> > > PlatformInit may provide some services code that can be used for Payl=
-oad to
-> > initialize UEFI Runtime Services for supporting UEFI OS.
-> > >
-> > >       - runtime-data
-> > > PlatformInit may provide some services data that can be used for Payl=
-oad to
-> > Initialize UEFI Runtime Services for supporting UEFI OS.
-> > >
-> >
-> > A UEFI OS must consume this information from the UEFI memory map, not f=
-rom
-> > the /reserved-memory nodes. So these nodes must either not be visible t=
-o the OS
-> > at all, or carry an annotation that the OS must ignore them.
-> >
-> > Would it be possible to include a restriction in the DT schema that the=
-se are only
-> > valid in the firmware boot phase?
->
->
-> https://uefi.org/specs/UEFI/2.10/07_Services_Boot_Services.html#efi-boot-=
-services-exitbootservices
-> Per UEFI specification, UEFI OS will always call UEFI GetMemoryMap functi=
-on to retrieve memory map, so FDT node present or not does not matter to UE=
-FI OS. We probably could have annotation in UPL specification to emphasize =
-this.
-> I'm not familiar with Linux FDT boot, but if non-UEFI OS does not call UE=
-FI GetMemoryMap() and does not know what is runtime-code/data, boot-code/da=
-ta, it might just treat such reserved-memory nodes as 'regular' reserved me=
-mory nodes, and that's still ok because non-UEFI OS will not call to any ru=
-ntime service or re-purpose boot-code/data memory regions.
->
+>=20
+> Lukas
 
-You are saying the same thing but in a different way. A UEFI OS must
-only rely on GetMemoryMap(), and not on the /reserved-memory node to
-obtain this information. But this requirement needs to be stated
-somewhere: the UEFI spec does not reason about other sources of EFI
-memory information at all, and this DT schema does not mention any of
-this either.
+--=20
+Patrick Williams
 
-> Would you provide a real OS case which will be impacted by this reserved-=
-memory schema so we can discuss basing on real case?
->
+--okJL0W4XmHaJ4PYq
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Funny, that is what I have been trying to get from you :-)
+-----BEGIN PGP SIGNATURE-----
 
-The problem I am anticipating here is that the information in
-/reserved-memory may be out of sync with the EFI memory map. It needs
-to be made clear that the EFI memory map is the only source of truth
-when the OS is involved, and this /reserved-memory mechanism should
-only be used by other firmware stages. But the schema does not mention
-this at all. The schema also does not mention that the information in
-/reserved-memory is not actually sufficient to reconstruct the EFI
-memory map that the firmware payload expects (which is why the
-upl-custom-node exists too)
+iQIzBAABCAAdFiEEBGD9ii4LE9cNbqJBqwNHzC0AwRkFAmWVgeEACgkQqwNHzC0A
+wRkvTw//T1cnJTGzg/6kFDNyAZuvtL3/7mfpjO8xbDu2rsJTZVsniLO2FOqAZEJ8
+m34ZaDfrxU6afTZ/A0vDE0gszHYchlJkalJq7jIonvB7dyJAF0jZ/JXDHvQa8H1B
+TqqjjY4lJEir0l+xTlCoGZ1/bRUJGb202H2KYxQebvrV6qOKn39hvz6CMmB2FiXB
+7iCGeQzMucKPvb0ZYe+OQvbPHwe+WF/vkjBqKaQzRBKCNF6YCIAAY28gV4QW9clo
+OCasLcIZiaUNeWF7S3GFR1y1vU/PGpiELAMvwQ5YaXj8zyDclh0RePR77uwxGUbQ
+594CoIdF9NvaTh598DRow1bHBmK6PIC4tqD5or6g29PnR2PW6OPUrmwu8o/4KsAc
+tgzJovsaCmnoCv+uKAj3QVcVP5++9Uq54oI4BC8tWNl/y5Pr0yj2H5v+WdfRJYxd
+/pE/Zm4O3S9i+a55T7e5Me9GRgf8PHnjPlfNeOtVppxTn4gqkVvLGv6eVXQPh0vf
+Ho0K5BBekzdqtK7pES3B9WPvDUQi2XqjzMFzxfsQ+qdt6Ylxb+cIPtfd1Ybpvijl
+hwqAOMDZgTFIklmT4hPDSdTPzF3ECwopGoNdjFrDeqy9Y3sHwgL3fRHeWCojwoXy
+HtjcjfNjZa9Kgpswis/r80jVGMGHgrNDhnUxcrbts8WpovGX4FI=
+=xr0d
+-----END PGP SIGNATURE-----
+
+--okJL0W4XmHaJ4PYq--
 
