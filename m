@@ -1,174 +1,284 @@
-Return-Path: <devicetree+bounces-29413-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29414-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83602822DF9
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 14:06:44 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id E09EC822E25
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 14:22:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 368401F21E84
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 13:06:44 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 53EB0B23033
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 13:22:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBF9519465;
-	Wed,  3 Jan 2024 13:06:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E527F199A1;
+	Wed,  3 Jan 2024 13:22:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="o1HORcO6"
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=mecka.net header.i=@mecka.net header.b="gigy8Xom"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2743C1945E;
-	Wed,  3 Jan 2024 13:06:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 403CICU4030794;
-	Wed, 3 Jan 2024 13:06:19 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=6AihegcrHuKOKVAT22QfdIlNLXan2cC61758qMqmqts=; b=o1
-	HORcO66e7KRXO79u2YP06PNJvhOWBc8QJui8Vd6ufOk4RNIY117WyGj/IZkwCaOC
-	WHtxgIKdnq0CKl7zNTpNimaajPO49ZlbWZ6CoKLglZ/SiHCt1GvHrmbA8QClWQZe
-	MfIvm/QQNmY08T+DImeXjYMJIT+3yRoKZoXKHJ8+JT2xCHdbGcv8FGfFrvtXsj6o
-	rjOuSEOQnCYyxO22pKEiYO/5XMi6bhWBQwt48D1ep+NFP+u8iL4BBOsE5W4rsDr4
-	r8+cZ1rzvSDBnMoGUxqoWN5z3qEQnrnX0yEZou0jhP88MG9HSsOPy9siBkE8wy0r
-	RnJTNgmmauFLh6c0MIvA==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vcg41ba7j-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 03 Jan 2024 13:06:19 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 403D6IZw032623
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 3 Jan 2024 13:06:18 GMT
-Received: from [10.253.72.77] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Wed, 3 Jan
- 2024 05:06:13 -0800
-Message-ID: <365d76a4-db05-40ac-a453-fb7e8b6db423@quicinc.com>
-Date: Wed, 3 Jan 2024 21:06:10 +0800
+Received: from mecka.net (mecka.net [159.69.159.214])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A37321947C;
+	Wed,  3 Jan 2024 13:22:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mecka.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mecka.net
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mecka.net; s=2016.11;
+	t=1704288144; bh=jI38MkiHkb6c5DZuzb+pvbd/Eze9cPlo8CmwRLCLqrM=;
+	h=Date:From:To:Subject:References:In-Reply-To:From;
+	b=gigy8Xom3an2US+AIMPH7e3W5YVhBtfs9THOE0aly9+wfI62SaVJ/wqj88fR9XBIS
+	 0Tmb/JrVpNW5zAvnZueh63ddNOkl++BCDUX1C+l061pFLEoWCfxyxhdxTaf8pqwtJ6
+	 m1nqm3jdt40GudCzGaJzCX/Re2J1mxAT8MaMEETwqzYULuld4MXtwNJKEw3a4l4ris
+	 +kgWAqHTOO+0MJeWAPqDdFoDEfHD8uxDsfzSXdxHAsscBJytq/omZpuKWmREZAwmrK
+	 Q+F2BhPk1xxBGFd1Yp1fAwnMYQDUoqZkWxudCse8wVFY3Eng2DG1uoOaTL3ePJ0PhE
+	 1Kq1COlzWtPJA==
+Received: from mecka.net (unknown [185.147.11.134])
+	by mecka.net (Postfix) with ESMTPSA id 6F475379CE7;
+	Wed,  3 Jan 2024 14:22:23 +0100 (CET)
+Date: Wed, 3 Jan 2024 14:22:22 +0100
+From: Manuel Traut <manut@mecka.net>
+To: =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Jessica Zhang <quic_jesszhan@quicinc.com>,
+	Sam Ravnborg <sam@ravnborg.org>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>, Sandy Huang <hjc@rock-chips.com>,
+	Mark Yao <markyao0591@gmail.com>,
+	Diederik de Haas <didi.debian@cknow.org>,
+	Segfault <awarnecke002@hotmail.com>,
+	Arnaud Ferraris <aferraris@debian.org>,
+	Danct12 <danct12@riseup.net>, dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH v3 4/4] arm64: dts: rockchip: Add devicetree for Pine64
+ PineTab2
+Message-ID: <ZZVfjpOqcoM3U5b3@mecka.net>
+References: <20240102-pinetab2-v3-0-cb1aa69f8c30@mecka.net>
+ <20240102-pinetab2-v3-4-cb1aa69f8c30@mecka.net>
+ <775vjfucu2g2s6zzeutj7f7tapx3q2geccpxvv4ppcms4hxbq7@cbrdmlu2ryzp>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 3/5] net: mdio: ipq4019: configure CMN PLL clock for
- ipq5332
-Content-Language: en-US
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>, <agross@kernel.org>,
-        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
-        <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
-        <pabeni@redhat.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <andrew@lunn.ch>, <hkallweit1@gmail.com>, <linux@armlinux.org.uk>,
-        <robert.marko@sartura.hr>
-CC: <linux-arm-msm@vger.kernel.org>, <netdev@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <quic_srichara@quicinc.com>
-References: <20231225084424.30986-1-quic_luoj@quicinc.com>
- <20231225084424.30986-4-quic_luoj@quicinc.com>
- <1d7ef6cc-5c25-4a59-ad7f-38870ac132c4@linaro.org>
-From: Jie Luo <quic_luoj@quicinc.com>
-In-Reply-To: <1d7ef6cc-5c25-4a59-ad7f-38870ac132c4@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: TdYOiUNuml-WWw9-fiDVZ4SKAWquoQeD
-X-Proofpoint-ORIG-GUID: TdYOiUNuml-WWw9-fiDVZ4SKAWquoQeD
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-12-09_01,2023-12-07_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 mlxscore=0
- phishscore=0 spamscore=0 bulkscore=0 adultscore=0 priorityscore=1501
- impostorscore=0 mlxlogscore=999 malwarescore=0 suspectscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2311290000 definitions=main-2401030107
+In-Reply-To: <775vjfucu2g2s6zzeutj7f7tapx3q2geccpxvv4ppcms4hxbq7@cbrdmlu2ryzp>
 
+On Tue, Jan 02, 2024 at 07:07:56PM +0100, Ondřej Jirman wrote:
+> Hello Manuel,
 
+Hello Ondřej,
 
-On 1/3/2024 5:50 PM, Bryan O'Donoghue wrote:
-> On 25/12/2023 08:44, Luo Jie wrote:
->> The reference clock of CMN PLL block is selectable, the internal
->> 48MHZ is used by default.
->>
->> The output clock of CMN PLL block is for providing the clock
->> source of ethernet device(such as qca8084), there are 1 * 25MHZ
->> and 3 * 50MHZ output clocks available for the ethernet devices.
->>
->> Signed-off-by: Luo Jie <quic_luoj@quicinc.com>
->> ---
->>   drivers/net/mdio/mdio-ipq4019.c | 129 +++++++++++++++++++++++++++++++-
->>   1 file changed, 128 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/net/mdio/mdio-ipq4019.c 
->> b/drivers/net/mdio/mdio-ipq4019.c
->> index e24b0e688b10..e4862ac02026 100644
->> --- a/drivers/net/mdio/mdio-ipq4019.c
->> +++ b/drivers/net/mdio/mdio-ipq4019.c
->> @@ -44,6 +44,17 @@
->>   /* Maximum SOC PCS(uniphy) number on IPQ platform */
->>   #define ETH_LDO_RDY_CNT                3
->> +#define CMN_PLL_REFERENCE_SOURCE_SEL        0x28
->> +#define CMN_PLL_REFCLK_SOURCE_DIV        GENMASK(9, 8)
->> +
->> +#define CMN_PLL_REFERENCE_CLOCK            0x784
->> +#define CMN_PLL_REFCLK_EXTERNAL            BIT(9)
->> +#define CMN_PLL_REFCLK_DIV            GENMASK(8, 4)
->> +#define CMN_PLL_REFCLK_INDEX            GENMASK(3, 0)
->> +
->> +#define CMN_PLL_POWER_ON_AND_RESET        0x780
->> +#define CMN_ANA_EN_SW_RSTN            BIT(6)
->> +
->>   enum mdio_clk_id {
->>       MDIO_CLK_MDIO_AHB,
->>       MDIO_CLK_UNIPHY0_AHB,
->> @@ -55,6 +66,7 @@ enum mdio_clk_id {
->>   struct ipq4019_mdio_data {
->>       void __iomem *membase;
->> +    void __iomem *cmn_membase;
->>       void __iomem *eth_ldo_rdy[ETH_LDO_RDY_CNT];
->>       struct clk *clk[MDIO_CLK_CNT];
->>   };
->> @@ -227,12 +239,116 @@ static int ipq4019_mdio_write_c22(struct 
->> mii_bus *bus, int mii_id, int regnum,
->>       return 0;
->>   }
->> +/* For the CMN PLL block, the reference clock can be configured 
->> according to
->> + * the device tree property "qcom,cmn-ref-clock-frequency", the 
->> internal 48MHZ
->> + * is used by default.
->> + *
->> + * The output clock of CMN PLL block is provided to the ethernet 
->> devices,
->> + * threre are 4 CMN PLL output clocks (1*25MHZ + 3*50MHZ) enabled by 
->> default.
->> + *
->> + * Such as the output 50M clock for the qca8084 ethernet PHY.
->> + */
->> +static int ipq_cmn_clock_config(struct mii_bus *bus)
->> +{
->> +    struct ipq4019_mdio_data *priv;
->> +    u32 reg_val, src_sel, ref_clk;
->> +    int ret;
->> +
->> +    priv = bus->priv;
->> +    if (priv->cmn_membase) {
+> On Tue, Jan 02, 2024 at 05:15:47PM +0100, Manuel Traut wrote:
+> > From: Alexander Warnecke <awarnecke002@hotmail.com>
+> > 
+> > [...]
+> >
+> > +
+> > +	backlight: backlight {
+> > +		compatible = "pwm-backlight";
+> > +		pwms = <&pwm4 0 25000 0>;
+> > +		brightness-levels = <20 220>;
+> > +		num-interpolated-steps = <200>;
 > 
-> if (!priv->cnm_membase)
->      return 0;
+> Does this linear brightness -> PWM duty cycle mapping lead to linear
+> relationship between brighntess level and subjective brightness on this HW?
 > 
-> then move the indentation here one tab left.
-> 
-Ok, will update this, Thanks.
+> I doubt it a bit...
 
-> ---
-> bod
+I tested it with the brightness slider in phosh, for me it looks good.
+
+> > +
+> > +	hdmi-con {
+> 
+> hdmi-connector
+
+ack, changed for v4
+
+> > +		compatible = "hdmi-connector";
+> > +		type = "d";
+> > +
+> > +		port {
+> > +			hdmi_con_in: endpoint {
+> > +				remote-endpoint = <&hdmi_out_con>;
+> > +			};
+> > +		};
+> > +	};
+> > +
+> > +	leds {
+> > +		compatible = "gpio-leds";
+> > +
+> 
+> Spurious newline ^
+
+ack, changed for v4
+
+> > +	vcc_3v3: vcc-3v3 {
+> 
+> Regulator node names shoule end with -regulator suffix. The same applies for
+> all of the below nodes.
+
+ack, changed for v4
+
+> > +		compatible = "regulator-fixed";
+> > +		regulator-name = "vcc_3v3";
+> > +		regulator-always-on;
+> > +		regulator-boot-on;
+> > +		regulator-min-microvolt = <3300000>;
+> > +		regulator-max-microvolt = <3300000>;
+> > +		vin-supply = <&vcc3v3_sys>;
+> > +	};
+> > +
+> > +	vdd1v2_dvp: vdd1v2-dvp {
+> > +		compatible = "regulator-fixed";
+> > +		regulator-name = "vdd1v2_dvp";
+> > +		regulator-min-microvolt = <1200000>;
+> > +		regulator-max-microvolt = <1200000>;
+> > +		vin-supply = <&vcc_3v3>;
+> > +		/*enable-supply = <&vcc2v8_dvp>;*/
+> 
+> There's no such property. Delete this commented out line.
+
+ack, changed for v4
+
+> > +	lcd: panel@0 {
+> > +		compatible = "boe,th101mb31ig002-28a";
+> > +		reg = <0>;
+> > +		backlight = <&backlight>;
+> > +		enable-gpios = <&gpio0 RK_PC7 GPIO_ACTIVE_HIGH>;
+> > +		pinctrl-names = "default";
+> > +		pinctrl-0 = <&lcd_pwren_h &lcd0_rst_l>;
+> 
+> Re lcd0_rst_l:
+> 
+> It's a bit weird conceptually to reference from dtsi something that's only 
+> declared in dts that includes the dtsi. Maybe move pinctrl-* properties
+> to dts &lcd, too...
+
+Will be better I guess, changed for v4.
+
+> > +			vcc5v_midu: BOOST {
+> > +				regulator-always-on;
+> > +				regulator-boot-on;
+> > +				regulator-min-microvolt = <5000000>;
+> > +				regulator-max-microvolt = <5000000>;
+> > +				regulator-name = "boost";
+> > +				regulator-state-mem {
+> > +					regulator-off-in-suspend;
+> 
+> I guess this prevents remote USB wakeup by USB devices. Like wakeup via USB
+> keyboard. Probably not a bad thing, though.
+
+That is true. After 'echo mem > /sys/power/state' It is not possible to wakeup
+the device with a USB Keyboard or mouse. However if the surface like keyboard
+is used that is shipped with the device, wakeup works if the keyboard/tablet
+gets unfold. For me this behaviour is fine. Other opinions?
+
+> > +&pcie2x1 {
+> > +	pinctrl-names = "default";
+> > +	pinctrl-0 = <&pcie_reset_h>;
+> > +	reset-gpios = <&gpio1 RK_PB2 GPIO_ACTIVE_HIGH>;
+> > +	vpcie3v3-supply = <&vcc3v3_minipcie>;
+> > +	status = "okay";
+> > +};
+> 
+> Does it make sense to enable this HW block by default, when it isn't used on
+> actual HW?
+
+There is a flat ribbon connector, if someone wants to build sth. it might be
+helpful. However I am also fine with removing it for now.
+
+> > +&pinctrl {
+> > +	bt {
+> > +		bt_wake_host_h: bt-wake-host-h {
+> > +			rockchip,pins = <0 RK_PB5 RK_FUNC_GPIO &pcfg_pull_down>;
+> > +		};
+> > +	};
+> 
+> ^^^ unused
+
+I do not bother to removing unused pinctrls, however even if there is no user at
+the moment, if we look at a dtb as a machine parseable device description it
+is probably ok, that it is there?
+
+> > +
+> > +	camerab {
+> > +		camerab_pdn_l: camerab-pdn-l {
+> > +			rockchip,pins = <4 RK_PB3 RK_FUNC_GPIO &pcfg_pull_none>;
+> > +		};
+> > +
+> > +		camerab_rst_l: camerab-rst-l {
+> > +			rockchip,pins = <4 RK_PB1 RK_FUNC_GPIO &pcfg_pull_none>;
+> > +		};
+> > +	};
+> > +
+> > +	cameraf {
+> > +		cameraf_pdn_l: cameraf-pdn-l {
+> > +			rockchip,pins = <4 RK_PB2 RK_FUNC_GPIO &pcfg_pull_none>;
+> > +		};
+> > +
+> > +		cameraf_rst_l: cameraf-rst-l {
+> > +			rockchip,pins = <4 RK_PB0 RK_FUNC_GPIO &pcfg_pull_none>;
+> > +		};
+> > +	};
+> 
+> ^^^ unused
+> 
+> > +	usb {
+> > +		usbcc_int_l: usbcc-int-l {
+> > +			rockchip,pins = <0 RK_PC5 RK_FUNC_GPIO &pcfg_pull_none>;
+> > +		};
+> 
+> ^^^ unused
+> 
+> > +	wifi {
+> > +		host_wake_wl: host-wake-wl {
+> > +			rockchip,pins = <0 RK_PB7 RK_FUNC_GPIO &pcfg_pull_none>;
+> > +		};
+> > +
+> > +		wifi_pwren: wifi-pwren {
+> > +			rockchip,pins = <0 RK_PA0 RK_FUNC_GPIO &pcfg_pull_none>;
+> > +		};
+> > +
+> > +		wifi_wake_host_h: wifi-wake-host-h {
+> > +			rockchip,pins = <0 RK_PC4 RK_FUNC_GPIO &pcfg_pull_down>;
+> > +		};
+> > +	};
+> 
+> ^^^ all of this wifi stuff is unused
+> 
+> Also wifi_pwren is not really useful on actual HW. W_VBAT is routed directly
+> to wifi chip, with wifi_pwren_h signal having no effect: (short via R9664)
+> 
+>    https://megous.com/dl/tmp/b499859c1012f969.png
+
+ack, removed for v4
+
+> > +&uart1 {
+> > +	pinctrl-names = "default";
+> > +	pinctrl-0 = <&uart1m0_xfer
+> > +		     &uart1m0_ctsn
+> > +		     &uart1m0_rtsn>;
+> > +	status = "okay";
+> > +	uart-has-rtscts;
+> > +};
+> 
+> Not sure about enabling UART for bluetooth, without having the bluetooth driver
+> hooked in, somehow. UART will by default pull TX signal high, which may cause
+> current leakage into gpio/uart pin of the bluetooth chip, if it's not powered up.
+> 
+> Maybe just remove this, until bluetooth is figured out...
+
+Makes sense, removed for v4.
+
+Thanks for your feedback,
+
+Manuel
 
