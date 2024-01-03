@@ -1,148 +1,135 @@
-Return-Path: <devicetree+bounces-29381-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29382-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A1B7822A63
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 10:46:02 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 062AF822A6D
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 10:47:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 04BA71F20D22
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 09:46:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8576D1F23DF7
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 09:47:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BAF0182D4;
-	Wed,  3 Jan 2024 09:45:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 550F8182DB;
+	Wed,  3 Jan 2024 09:47:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="V6TRokKm"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="VNE1vr6+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
+Received: from mail-ua1-f47.google.com (mail-ua1-f47.google.com [209.85.222.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D473518623
-	for <devicetree@vger.kernel.org>; Wed,  3 Jan 2024 09:45:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-a28a997f3dfso11793466b.0
-        for <devicetree@vger.kernel.org>; Wed, 03 Jan 2024 01:45:39 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3ECD18626
+	for <devicetree@vger.kernel.org>; Wed,  3 Jan 2024 09:47:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
+Received: by mail-ua1-f47.google.com with SMTP id a1e0cc1a2514c-7ccdb4b764cso2150695241.2
+        for <devicetree@vger.kernel.org>; Wed, 03 Jan 2024 01:47:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704275138; x=1704879938; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
-         :to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=1XFro0zDE33nuxg1ml/0DMiVoso4Wj1BQrGtGR63iVA=;
-        b=V6TRokKmzjOXZ+tleY9yYMIhWcucqU5pn6GccoCbFQPjsWrbyyW3i37kGHAxGW1sn8
-         SJAyhyqTQdu+01WwN5XLBG4gPfVEZF7olXI8hvdP13LHkUEji4PCXPalVnlUEqbp4oyZ
-         MHMaDzmiMDURbxaLV9tPqqQ2tNHN3QCMuAJPuepnm12fG1IQqEepaxnbftzNTs2gFzi3
-         8k9i1/j0ckpeFu68XZu7FEcEK0YwKP48pWUM+moVniL5/yqQkbdPxjpqsPyj3pYHD5ho
-         2aQ6sWnrt8lpqB3vKf1BVf6eLJiT4VtRrydJXSN3JOlQQ7TPzddQv/cfQc8gk46iYyhX
-         oaXw==
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1704275265; x=1704880065; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=/Uu3c8CS1lVfKVNMcApNeIRZ8Y8V3EqweSncyL4lcTY=;
+        b=VNE1vr6+zbcW+RbuKh48/16HqjYZBHVcz0NYHe6UiYsVmbAde+BZjIMHpmbK8O+C4M
+         hjK+UG4v0/aOOvpogWzUWGJJw2wWt3BTRPKh9BH7OMJ2RFLeyJuE5wGdRzAdmx6taF3U
+         WosPh1KaxZAHyIQqYqbN73SbzE8hOAm6miln6AlWZasmp+iPBfx6nOmY97nWlQk2F040
+         eKx4W169JBStTe+7qr2H9KhYEAVSeECiVfaKokqZ9eB1MomNCXAZnQeOMMalwmfQs/eU
+         gXHxFwewzNeZ7Ga16rKuBAlLxfrQhY8rajcwasv3SW6lehcMRtl1BHOqkdKnt4dEVZKg
+         Rofg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704275138; x=1704879938;
-        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
-         :to:from:date:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=1XFro0zDE33nuxg1ml/0DMiVoso4Wj1BQrGtGR63iVA=;
-        b=RkHJ1SqHvL56mC6O8bKsqdp5Cx+zteiIOcMwc1ghn2KLyRd8JeVgiYFVH0QlaUdeTI
-         mEn+XYOjJhlWYhMwn8/B4aNUOaN7WV0YyE92ORRxlyvhpxlC8X7lXG+MlzANZKTHoVp/
-         4diNBtODXtO+BSkScSnFnIG4S3WwcnxzsGOWpWZiG/PkJ0RDwWcdAWZGrcx5K3bkqwfq
-         cAg3J+jXbE0ol5sRFCYzpwEILl/NOlXaDGgeFnv/VYO7it2bBiJDRK+/UpbeHSvOp98I
-         mBgUv9zIQff07u/td882jdiR1Mj1ASATrCl2nsEw99xWk6NkTTmJLQNwKLeJzkB3MY5f
-         jiNQ==
-X-Gm-Message-State: AOJu0YxIkPHhQAAG5EI93hGNnktE7jNcKwaxyujZKmUasyGeCILNhHRm
-	IPY/npYlP0CA3lZYQlubuXp1NxweXWtz4g==
-X-Google-Smtp-Source: AGHT+IEJZtiOe8S7Hm02u5QiHa9HqT4SSVlifY1Jy9f4gxVxzrACTb8d6jybuGtZDZaFQiT2nUhP4Q==
-X-Received: by 2002:a17:907:984:b0:a27:af7:bba5 with SMTP id bf4-20020a170907098400b00a270af7bba5mr8336282ejc.22.1704275138083;
-        Wed, 03 Jan 2024 01:45:38 -0800 (PST)
-Received: from localhost ([102.140.209.237])
-        by smtp.gmail.com with ESMTPSA id t15-20020a170906178f00b00a28acfac149sm56045eje.53.2024.01.03.01.45.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 03 Jan 2024 01:45:37 -0800 (PST)
-Date: Wed, 3 Jan 2024 12:45:34 +0300
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: oe-kbuild@lists.linux.dev, James Tai <james.tai@realtek.com>,
-	Thomas Gleixner <tglx@linutronix.de>, Marc Zyngier <maz@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: lkp@intel.com, oe-kbuild-all@lists.linux.dev,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 3/6] irqchip: Introduce RTD1319 support using the
- Realtek common interrupt controller driver
-Message-ID: <edcbb1d9-ba72-496c-90c5-57948efe23f4@moroto.mountain>
+        d=1e100.net; s=20230601; t=1704275265; x=1704880065;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=/Uu3c8CS1lVfKVNMcApNeIRZ8Y8V3EqweSncyL4lcTY=;
+        b=FKPzxAzPFYGQPPjN5YVbQzb3NRNhoMq14ohpm/lBU6e6mzoqyHp2NAslYW+RM2/V3y
+         FM46GDRV904iGVX/iLgl7WITuo9Ll1xMnYq592qTbpjq8YlESLbZUoex7KW93SFOKGji
+         382Ls+Oz3buC8moHhZPC6xkeKaT1sAhoZ7HmOOW2Zif6LdFIJvQkmB5K5Onp3ztu9oAn
+         sJmo35tnpGrDnR9HsEgJwjJqsE386gd4RTtCIlb10dMckMXbduwjNV4ApT/8VgzKyq9j
+         h1HKx117rDpJh7BqSFDK2qak72tN4bKM+ZdwWZ1oT8WcBU3LPTmtw6JlfmSrsrLYaTBo
+         tC5w==
+X-Gm-Message-State: AOJu0YxA83ap+s3pS9dvsMJeoH9j6uWjLWoyaRu/cM8hSL5TIZAD14v8
+	YGxUe/X2a029+7SW78Y3eLVUxJhbEojCyh9hrUFkwB0aAG77OQ==
+X-Google-Smtp-Source: AGHT+IEYu7lrKPktfj6xVwnpsPDmZsLaProxg+WpiLZAf8IdKHO8AmnXGk+VkPfNvNleTDCFWcsjOBbBtgiFrLe2YUo=
+X-Received: by 2002:a05:6102:2b86:b0:467:7814:ec21 with SMTP id
+ ib6-20020a0561022b8600b004677814ec21mr2561562vsb.9.1704275264727; Wed, 03 Jan
+ 2024 01:47:44 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231117162709.1096585-4-james.tai@realtek.com>
+References: <20231228104800.24913-1-tychang@realtek.com>
+In-Reply-To: <20231228104800.24913-1-tychang@realtek.com>
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+Date: Wed, 3 Jan 2024 10:47:33 +0100
+Message-ID: <CAMRc=MeB6UBf2cCrB8XHtfKigmS3Gb41SV-G6F+0X7Dd+7oatw@mail.gmail.com>
+Subject: Re: [PATCH v5 0/2] Add gpio driver support for Realtek DHC SoCs
+To: Tzuyi Chang <tychang@realtek.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>, Andy Shevchenko <andy@kernel.org>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi James,
+On Thu, Dec 28, 2023 at 11:48=E2=80=AFAM Tzuyi Chang <tychang@realtek.com> =
+wrote:
+>
+> These patches add the bindings and the gpio driver for Realtek
+> DHC(Digital Home Center) RTD SoCs, including RTD1295, RTD1395,
+> RTD1619, RTD1319, RTD1619B, RTD1319D and RTD1315E.
+>
+> Change log:
+> v4->v5:
+> 1. Add more description in the Kconfig.
+> 2. Add comment for the counter-intuitive number 31.
+> 3. Convert to use cleanup API and module_platform_driver() macro.
+> 4. Simplify some of the code as suggested in patch v4.
+> v3->v4:
+> 1. Arrange the compatible list in alphanumerical order.
+> 2. Remove the size check for the offset array.
+> 3. Add the debounce callback.
+> 4. Conducted a review of the critical section, employing raw_spinlock_t f=
+or locking purposes.
+> 5. Add gpiochip_enable_irq/gpiochip_disable_irq to fulfill the immutabili=
+ty requirements.
+> 6. Use irqd_to_hwirq to get hwirq.
+> v2->v3:
+> 1. Remove generic compatible and use SoC-specific compatible instead.
+> 2. Add the missing descriptions for the rtd_gpio_info structure members.
+> 3. Assign gpio_chip fwnode.
+> v1->v2:
+> 1. Add description for DHC RTD SoCs in the bindings.
+> 2. Revise the compatible names in the bindings.
+> 3. Transitioned from OF API to platform_device API.
+> 4. Use u8 for the offset array within the rtd_gpio_info structure.
+> 5. Record the size of each array within the rtd_gpio_info structure and
+>    implement checks to prevent out-of-bounds access.
+> 6. Use GPIOLIB_IRQCHIP helpers to register interrupts.
+> 7. Use dynamic allocation for GPIO base.
+>
+> Tzuyi Chang (2):
+>   dt-bindings: gpio: realtek: Add realtek,rtd-gpio
+>   Add GPIO support for Realtek DHC(Digital Home Center) RTD SoCs.
+>
+>  .../bindings/gpio/realtek,rtd-gpio.yaml       |  69 ++
+>  drivers/gpio/Kconfig                          |  13 +
+>  drivers/gpio/Makefile                         |   1 +
+>  drivers/gpio/gpio-rtd.c                       | 604 ++++++++++++++++++
+>  4 files changed, 687 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/gpio/realtek,rtd-gp=
+io.yaml
+>  create mode 100644 drivers/gpio/gpio-rtd.c
+>
+> --
+> 2.43.0
+>
 
-kernel test robot noticed the following build warnings:
+I applied this series. For the future: the commit subject should have
+the "gpio: rtd: ..." prefix. I added it this time.
 
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/James-Tai/dt-bindings-interrupt-controller-Add-support-for-Realtek-DHC-SoCs/20231118-003036
-base:   tip/irq/core
-patch link:    https://lore.kernel.org/r/20231117162709.1096585-4-james.tai%40realtek.com
-patch subject: [PATCH v2 3/6] irqchip: Introduce RTD1319 support using the Realtek common interrupt controller driver
-config: nios2-randconfig-r081-20231120 (https://download.01.org/0day-ci/archive/20231217/202312172011.8iKGuYB9-lkp@intel.com/config)
-compiler: nios2-linux-gcc (GCC) 13.2.0
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
-| Closes: https://lore.kernel.org/r/202312172011.8iKGuYB9-lkp@intel.com/
-
-smatch warnings:
-drivers/irqchip/irq-realtek-intc-common.c:179 realtek_intc_probe() warn: ignoring unreachable code.
-drivers/irqchip/irq-realtek-intc-common.c:187 realtek_intc_probe() warn: 'data->base' from of_iomap() not released on lines: 176,182.
-
-vim +179 drivers/irqchip/irq-realtek-intc-common.c
-
-40e5ff4eaef72b James Tai 2023-11-18  155  int realtek_intc_probe(struct platform_device *pdev, const struct realtek_intc_info *info)
-40e5ff4eaef72b James Tai 2023-11-18  156  {
-40e5ff4eaef72b James Tai 2023-11-18  157  	struct realtek_intc_data *data;
-40e5ff4eaef72b James Tai 2023-11-18  158  	struct device *dev = &pdev->dev;
-40e5ff4eaef72b James Tai 2023-11-18  159  	struct device_node *node = dev->of_node;
-40e5ff4eaef72b James Tai 2023-11-18  160  	int ret, i;
-40e5ff4eaef72b James Tai 2023-11-18  161  
-40e5ff4eaef72b James Tai 2023-11-18  162  	data = devm_kzalloc(dev, struct_size(data, subset_data, info->cfg_num), GFP_KERNEL);
-40e5ff4eaef72b James Tai 2023-11-18  163  	if (!data)
-40e5ff4eaef72b James Tai 2023-11-18  164  		return -ENOMEM;
-40e5ff4eaef72b James Tai 2023-11-18  165  
-40e5ff4eaef72b James Tai 2023-11-18  166  	data->base = of_iomap(node, 0);
-40e5ff4eaef72b James Tai 2023-11-18  167  	if (!data->base)
-40e5ff4eaef72b James Tai 2023-11-18  168  		return -ENOMEM;
-40e5ff4eaef72b James Tai 2023-11-18  169  
-40e5ff4eaef72b James Tai 2023-11-18  170  	data->info = info;
-40e5ff4eaef72b James Tai 2023-11-18  171  
-40e5ff4eaef72b James Tai 2023-11-18  172  	raw_spin_lock_init(&data->lock);
-40e5ff4eaef72b James Tai 2023-11-18  173  
-40e5ff4eaef72b James Tai 2023-11-18  174  	data->domain = irq_domain_add_linear(node, 32, &realtek_intc_domain_ops, data);
-40e5ff4eaef72b James Tai 2023-11-18  175  	if (!data->domain)
-40e5ff4eaef72b James Tai 2023-11-18  176  		return -ENOMEM;
-40e5ff4eaef72b James Tai 2023-11-18  177  
-40e5ff4eaef72b James Tai 2023-11-18  178  	data->subset_data_num = info->cfg_num;
-40e5ff4eaef72b James Tai 2023-11-18 @179  	for (i = 0; i < info->cfg_num; i++) {
-40e5ff4eaef72b James Tai 2023-11-18  180  		ret = realtek_intc_subset(node, data, i);
-40e5ff4eaef72b James Tai 2023-11-18  181  		WARN(ret, "failed to init subset %d: %d", i, ret);
-
-if statement missing
-
-40e5ff4eaef72b James Tai 2023-11-18  182  		return -ENOMEM;
-40e5ff4eaef72b James Tai 2023-11-18  183  	}
-40e5ff4eaef72b James Tai 2023-11-18  184  
-40e5ff4eaef72b James Tai 2023-11-18  185  	platform_set_drvdata(pdev, data);
-40e5ff4eaef72b James Tai 2023-11-18  186  
-40e5ff4eaef72b James Tai 2023-11-18 @187  	return 0;
-40e5ff4eaef72b James Tai 2023-11-18  188  }
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
-
+Bart
 
