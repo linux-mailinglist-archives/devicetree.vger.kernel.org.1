@@ -1,200 +1,114 @@
-Return-Path: <devicetree+bounces-29398-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29399-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09BF8822C43
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 12:38:07 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 87122822C70
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 12:57:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 847C4B22B8F
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 11:38:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3B76A1F22341
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 11:57:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB74018E23;
-	Wed,  3 Jan 2024 11:38:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 484CA18EA2;
+	Wed,  3 Jan 2024 11:56:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b="DkaoUD9m"
+	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="JRClat5I"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60B22199A1;
-	Wed,  3 Jan 2024 11:37:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=public-files.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=public-files.de;
-	s=s31663417; t=1704281856; x=1704886656; i=frank-w@public-files.de;
-	bh=sUpi9OO18E6+D4gSZ3zZNN+IT1SjgCxBXG5+RS7BeFk=;
-	h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:
-	 References;
-	b=DkaoUD9mIKj4cwMCmzN4odZ5Qfr7MwPs2SOO/cwIcQo7KU9WI7m3nA6Udjxs1AL3
-	 +h+HFCv7ttqCspwQArgaHQILKA8wgcjr1HZOZZC//40Vs7aGvoe6Eb29OSOD8tSlD
-	 Ig5cl8rTJrfpzpMzYcXwiniILgzTXq2H2WfiTgW+of5iEACMrz2m5j/1tgf7vdRD3
-	 GqJEIJgmNbB0+Hcd+y1WEbQMp8ZWpejeTJhFi8CH9ZmnSPzppUihgKZWT3kNuGMpb
-	 eCvaA1A2vZ2tQ03eVgKI1Lo50zFroBLctT/Nc6b8DJFVCyhe1FTLR8cy0EecZyoyf
-	 a5wCOs5Rb0/9l9O9Uw==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [217.61.158.44] ([217.61.158.44]) by web-mail.gmx.net
- (3c-app-gmx-bs51.server.lan [172.19.170.104]) (via HTTP); Wed, 3 Jan 2024
- 12:37:36 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97D2118E3F
+	for <devicetree@vger.kernel.org>; Wed,  3 Jan 2024 11:56:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
+Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-a28ab7ae504so24786966b.3
+        for <devicetree@vger.kernel.org>; Wed, 03 Jan 2024 03:56:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ventanamicro.com; s=google; t=1704282984; x=1704887784; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=j1w+ahe+6fF4Xvq18aSfd3iw7WLNztkXwapqNFYwZps=;
+        b=JRClat5I01zaKJRs95C5+udQnXjsCeCNtGMhxqzPmLv0vh1mTsCmfGDLF/Su3p1B+z
+         YcosjB6bo5UZLnfYti8sUyjRNH39ppfE0sWNZJGr6aCzLHGaQ67vfcTzC0M8QVHC4Znk
+         wg3D2EsMJ9bfjPHDRpX6DPLsUzznv1u2heeKEKvTs3FYrRAOP2a93K68uhzBDJMndFOV
+         xJJ88PU3c6crELxVYGmfPsNt3DWZDeREHvdEzRzz3rRXwUNztf6XHNgTZJgI1IH8MvxE
+         V/8JoBBVvUru8fIAe+/XgJfECYrq9IIYxOF0rt3CXVgFOxWKbZOnwSh/fGSgV0PxKKOT
+         zdPw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1704282984; x=1704887784;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=j1w+ahe+6fF4Xvq18aSfd3iw7WLNztkXwapqNFYwZps=;
+        b=Xrb4x474naEQyP8Tz+2ja/pFfyFm0nMFXt6Onvq5/pIzcFoBGRJjPWgp+Emo/zJaXH
+         WKpU9TcfjrMDyN/wcyX9Q0RoEmwMmRe7c1haZsSgUUZ7VWWuVw/RNjrJsA1JNB2KoASh
+         EcAjzSw/t/AJOUdkeMaGDU8cGNAje2GHG/bf/PXJp+8eAtKq3p9MA9hKSvKBU9ZjX+n8
+         nF+cOXot8ow0k00ONkbPEU4N7ohwDzUStG7q02/whGQJ+PRBVThsDQkpDZcE8srlaqWM
+         iXwj2pqc5Z997KFguCsE+BMkQodM9N2pFflFQv/OKZN7mWh+TFOstn0Apa9oJQ8CTIgX
+         nzBQ==
+X-Gm-Message-State: AOJu0YynU84UmU/3hSI+h9djDzO4hmp2As3WKjA33LyToJ2ihtCkYFAp
+	029S8HzKExEs761Hk/JegD1v+VmrNoE+EQ==
+X-Google-Smtp-Source: AGHT+IEPAlnfVbxd2sMR5+JjHkBK2BsKlvHArDwIl4WKQpiz0gmnfSPLQnxPoi85XwjZ/1LIjPAtEw==
+X-Received: by 2002:a17:906:fe09:b0:a26:e292:394b with SMTP id wy9-20020a170906fe0900b00a26e292394bmr9258905ejb.67.1704282983328;
+        Wed, 03 Jan 2024 03:56:23 -0800 (PST)
+Received: from localhost (2001-1ae9-1c2-4c00-20f-c6b4-1e57-7965.ip6.tmcz.cz. [2001:1ae9:1c2:4c00:20f:c6b4:1e57:7965])
+        by smtp.gmail.com with ESMTPSA id wb1-20020a170907d50100b00a2300127f26sm12709680ejc.185.2024.01.03.03.56.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 03 Jan 2024 03:56:22 -0800 (PST)
+Date: Wed, 3 Jan 2024 12:56:21 +0100
+From: Andrew Jones <ajones@ventanamicro.com>
+To: Daniel Henrique Barboza <dbarboza@ventanamicro.com>
+Cc: linux-riscv@lists.infradead.org, apatel@ventanamicro.com, 
+	palmer@dabbelt.com, devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>, 
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH] dt-bindings: riscv: Document cbop-block-size
+Message-ID: <20240103-ff49d0645e36f2822e755f4d@orel>
+References: <20231029123500.739409-1-dbarboza@ventanamicro.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <trinity-9d471f1d-cbfd-492b-95a6-59aca5412fab-1704281856691@3c-app-gmx-bs51>
-From: Frank Wunderlich <frank-w@public-files.de>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Daniel Golle <daniel@makrotopia.org>, =?UTF-8?Q?Rafa=C5=82_Mi=C5=82ecki?=
- <zajec5@gmail.com>
-Cc: Matthias Brugger <matthias.bgg@gmail.com>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Hsin-Yi Wang <hsinyi@chromium.org>,
- =?UTF-8?Q?N=C3=ADcolas_F_=2E_R_=2E_A_=2E_Prado?= <nfraprado@collabora.com>,
- jason-ch chen <Jason-ch.Chen@mediatek.com>, Macpaul Lin
- <macpaul.lin@mediatek.com>, =?UTF-8?Q?Bernhard_Rosenkr=C3=A4nzer?=
- <bero@baylibre.com>, Sean Wang <sean.wang@mediatek.com>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org, Daniel
- Golle <daniel@makrotopia.org>
-Subject: Aw: Re: [PATCH 2/2] arm64: dts: mediatek: Add initial MT7988A and
- BPI-R4
-Content-Type: text/plain; charset=UTF-8
-Date: Wed, 3 Jan 2024 12:37:36 +0100
-Importance: normal
-Sensitivity: Normal
-In-Reply-To: <04dbf010-5e0a-42f9-8a13-d02f97347c23@collabora.com>
-References: <20240102205941.29654-1-zajec5@gmail.com>
- <20240102205941.29654-2-zajec5@gmail.com>
- <04dbf010-5e0a-42f9-8a13-d02f97347c23@collabora.com>
-Content-Transfer-Encoding: quoted-printable
-X-UI-Message-Type: mail
-X-Priority: 3
-X-Provags-ID: V03:K1:UwYn9+R8+0ROzDo5XL00LlQX5+rKlJBgLjUUaYfq5iSqqHiUEJTjbA8gqjeS2XPDokroC
- H41V2BF6UJR1VrJhdN4z/T3jssHSVxO6DS5A3cb5aEjELuXAawMQKgCf8+meG61g9hQzrK9QfU9d
- J2kP3bGpFwefsHMASVgiaSQ3NOLdYmTJKBlwhpASs7kG/9VvtTDcfcOALF8m9E/Se1rRbvgiEoE2
- 4xt1FmUUlO0IzKfbxsvkVRSEhf87D+vlaHBIFQVJ6QDLoFzxV39XSLIG0C3BgJa0kEvJN0Na0IBz
- 1c=
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:Ml/GBz+8k3w=;0yL9TS6Khvfp6Eds/Jka3DWq23I
- Hi/qc5Tuz4deq2FsACkpvO4/GEzaxaJgJz8b7yrfFerTLdayeDnDlDGVyrCnZAygLnC01oNf+
- z1T73zzayk4BWQJs91FT31LFYmOyxMpF/7rS+LbnBj4/3X4WuWDueLOChxffVg7s4yQ3oQYrn
- /s4UOdc+UBCFjYJCDa7P8tSTOHKZyPxDbUcRCQ1TJj/Adn6d3mGWeUlZdQBNCPQYKSOL4WFnL
- wkC0il4KHnxvI4ctlB91KRlL9vzigMwwA7eSvrfqYxPfv6QzfUN/GmO8L/WhYPNUL6+4iiFOI
- DhKDsCKW/UCFdG/elAqPFVe35ENTYpRlEX5i4KpRlbnaZXXiKIrKcdTCgwaUAzY0/f/tiwPI4
- 2iLXRp933jIobMft70ncF5/lAoEhOA7bwnYM6J2yqAh388ma3DFnE5IyM7SllJ4HZM/xOQKeP
- JdCsL3hdMzFL0vSi0mnlN7QGBBtLc1YcuPO3xQYTZ4VtfjkpWq2jF7qcJ33KWyx1fnaBK4rkL
- ERo/c4PwwmkujuGR1byH8enj+tW/XHh1NVhwdCUA1/wy6JWMOI0EUr0NaZhs7KPdonzr6nSrO
- lEwpJNTeDWdwnzc0+12K7LAIkzUeDQUPqfFvTXBFDTJ3H17wpIsLkrOtMlBKmpu0yVA6QQ+Jj
- i3LlWAnvvSvmr0O3YZ5ojir0lRnsKRdNPSXekluSiAk702uus578yIgdQI5MRY+Lt9pW9w4Mu
- kcAucHSqbnJhZonS6BVkEWGSM3g4wgbgiMhfIiPB35V31chQt/k+HNN5qD4OQFK90Pw/khQFf
- AKU9far4mZG4i888k2esby2Q==
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231029123500.739409-1-dbarboza@ventanamicro.com>
 
-Hi
-
-thanks Rafal for making the first loop of Dts-patches and splitting it and=
- Angelo for first review=2E
-Just my 2c on the thermal-part=2E
-
-> Gesendet: Mittwoch, 03=2E Januar 2024 um 10:49 Uhr
-> Von: "AngeloGioacchino Del Regno" <angelogioacchino=2Edelregno@collabora=
-=2Ecom>
+On Sun, Oct 29, 2023 at 09:35:00AM -0300, Daniel Henrique Barboza wrote:
+> Following the examples of cbom-block-size and cboz-block-size,
+> cbop-block-size is the cache size of Zicbop (cbo.prefetch) operations.
+> The most common case is to have all cache block sizes to be the same
+> size (e.g. profiles such as rva22u64 mandates a 64 bytes size for all
+> cache operations), but there's no specification requirement for that,
+> and an implementation can have different cache sizes for each operation.
+> 
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: Conor Dooley <conor.dooley@microchip.com>
+> Signed-off-by: Daniel Henrique Barboza <dbarboza@ventanamicro.com>
+> ---
+>  Documentation/devicetree/bindings/riscv/cpus.yaml | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml b/Documentation/devicetree/bindings/riscv/cpus.yaml
+> index 97e8441eda1c..1660b296f7de 100644
+> --- a/Documentation/devicetree/bindings/riscv/cpus.yaml
+> +++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
+> @@ -78,6 +78,11 @@ properties:
+>      description:
+>        The blocksize in bytes for the Zicbom cache operations.
+>  
+> +  riscv,cbop-block-size:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      The blocksize in bytes for the Zicbop cache operations.
+> +
+>    riscv,cboz-block-size:
+>      $ref: /schemas/types.yaml#/definitions/uint32
+>      description:
+> -- 
+> 2.41.0
 >
-> Il 02/01/24 21:59, Rafa=C5=82 Mi=C5=82ecki ha scritto:
-> > From: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki=2Epl>
-> >=20
-> > MT7988A (AKA MediaTek Filogic 880) is a quad-core ARM Cortex-A73
-> > platform designed for Wi-Fi 7 devices (there is no wireless on SoC
-> > though)=2E The first public MT7988A device is Banana Pi BPI-R4=2E
-> >=20
-> > Many SoC parts remain to be added (they need their own bindings or
-> > depend on missing clocks)=2E Those present block however are correct a=
-nd
-> > having base =2Edtsi will help testing & working on missing stuff=2E
-> >=20
-> > +	thermal-zones {
-> > +		cpu-thermal {
-> > +			polling-delay-passive =3D <1000>;
-> > +			polling-delay =3D <1000>;
-> > +
->=20
-> Those thermal zones will not work, as they have no thermal-sensors - as =
-this
-> node is right now, it will produce a probe error and nothing else: pleas=
-e
-> either drop it entirely or add support for the thermal sensors (lvts or =
-auxadc?)
-> and fix this node to use them=2E
 
-it is LVTS and i upstreamed dt-binding and driverchange already, but it al=
-so needs a (infracfg-)reset which
-i try to upstream soon after infracfg clock driver appear in next (imho da=
-niels patch merged in subsystem tree today)=2E
-
-so also the infracfg-node will be needed in next round, if thermal part sh=
-ould be part of it (else not much is in the dtsi at this time)=2E
-
-> > +			trips {
-> > +				crit {
-> > +					temperature =3D <125000>;
-> > +					hysteresis =3D <2000>;
-> > +					type =3D "critical";
-> > +				};
-> > +
-> > +				hot {
-> > +					temperature =3D <120000>;
-> > +					hysteresis =3D <2000>;
-> > +					type =3D "hot";
-> > +				};
-> > +
-> > +				active-high {
-> > +					temperature =3D <115000>;
-> > +					hysteresis =3D <2000>;
-> > +					type =3D "active";
->=20
-> Active cooling is board specific=2E Keep only critical/hot trips in the =
-SoC DT=2E
->=20
-> > +				};
-> > +
-> > +				active-med {
-> > +					temperature =3D <85000>;
-> > +					hysteresis =3D <2000>;
-> > +					type =3D "active";
-> > +				};
-> > +
-> > +				active-low {
-> > +					temperature =3D <40000>;
-> > +					hysteresis =3D <2000>;
-> > +					type =3D "active";
-> > +				};
-> > +			};
-> > +		};
-> > +	};
-> > +
-> > +	timer {
-> > +		compatible =3D "arm,armv8-timer";
-> > +		interrupt-parent =3D <&gic>;
-> > +		interrupts =3D <GIC_PPI 13 IRQ_TYPE_LEVEL_LOW>,
-> > +			     <GIC_PPI 14 IRQ_TYPE_LEVEL_LOW>,
-> > +			     <GIC_PPI 11 IRQ_TYPE_LEVEL_LOW>,
-> > +			     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>;
-> > +	};
-> > +};
->=20
-> Regards,
-> Angelo
-
-@rafal how do we sync our work? what is your codebase?
-i currently work on daniels wip tree, but it does not contain your current=
- splitting=2E=2E=2E
-maybe daniel can include your splitted dts patches?
-
-i already tried to fix some binding-issues in the full dts(i)=2E=2E=2E=2E
-waiting for vendor about clocks for mmc which are currently not matching a=
-ctual binding (and using mt7986 compatible)=2E
-
-regards Frank
+Reviewed-by: Andrew Jones <ajones@ventanamicro.com>
 
