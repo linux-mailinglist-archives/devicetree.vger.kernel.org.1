@@ -1,382 +1,188 @@
-Return-Path: <devicetree+bounces-29402-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29404-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0F03822CB7
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 13:09:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E023E822CCD
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 13:17:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2668D1F241A6
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 12:09:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 21A821F238C1
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 12:17:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E994E18EC2;
-	Wed,  3 Jan 2024 12:09:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42FC318EBC;
+	Wed,  3 Jan 2024 12:17:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hEk0Oag4"
+	dkim=pass (2048-bit key) header.d=stwcx.xyz header.i=@stwcx.xyz header.b="Ok9yJgrr";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="0o4Fwpm1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from out4-smtp.messagingengine.com (out4-smtp.messagingengine.com [66.111.4.28])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CC0E19456;
-	Wed,  3 Jan 2024 12:09:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-40d3352b525so113804175e9.1;
-        Wed, 03 Jan 2024 04:09:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1704283749; x=1704888549; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=mQ7sYvZt+Hf2d2qr73Yb6Uv+J9M3D9ss9N8ljtt/mVM=;
-        b=hEk0Oag4LYpOyuOA3Qg9U2jq2kdmta+aQLWmDPb3yvKRN/5V8L26Z4MRa9RJfS70UE
-         RyQMwg7kJFLsIy6wZW5Uz0tq9acWqYTQ9GH75rPp/Wr7ZvRhjJcRcSmpypk2+syxrlG7
-         M5fwzwvBh1QdbUM436K6ivyHiKXD22Szyx/x35XD5KzYOhuXha0g5uaJqPEx99g/xfWW
-         m8rNpoH/StSJHgjk1mr/izA5me1fG9cTUUNB1k9X72UuqhzvgjR1LOUuCOdeIj/iV1qR
-         8as0yBdFJATejfvsNt5yafKOGxpdSurmE0xUhgqC4/v8o61AT5sWXoQmS+ho1od9FJ6v
-         WWMA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704283749; x=1704888549;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=mQ7sYvZt+Hf2d2qr73Yb6Uv+J9M3D9ss9N8ljtt/mVM=;
-        b=KdGVpG2M/Q/gfJG36imtf73d9h1tvbdY8YwgCpuwM/scYQ4h+oduKmlvNM2A9wljf9
-         EUIF45DrAmfC6oK21i4n6b8ODRJvUDRu5HLOjsAUS6F5Ibrme+QEbLkTgKxQUjtWAdyw
-         65rx3MBy0wusPA7M71HjL7bieaDJh3cF/wS7ecPTtcNcdmcvASxn3Mz5aTuWZDmuSLDJ
-         mdoyLYehiNl1Gyf9cdFhIZ+sZrw0tfGI8v1hGpYEVpuVNzE371yWv6u0TpP/clwEQy5G
-         PdPORrABgphXFid84WgkFZyMecNOV7j8l2DtMR1zRwWoYON5v5qCtLrnTC7ingkybFLE
-         m9kQ==
-X-Gm-Message-State: AOJu0Yw3/nhhycv0rCylJYLuUg0SJP/sSOnnS9TeOL3WwnyRUnLMm4H3
-	MJl9EnDTDjrS+ApcDOhD9lq0WORL+B8Cwwd2
-X-Google-Smtp-Source: AGHT+IFZnKN+CxFoHVbo18LPs+6QA5wqNG75V6dA+/qhvPjlY3lU4zQBH0faDrcAdWpbwx6vSl7cBA==
-X-Received: by 2002:a05:600c:3115:b0:40d:8919:d1df with SMTP id g21-20020a05600c311500b0040d8919d1dfmr2111442wmo.163.1704283748824;
-        Wed, 03 Jan 2024 04:09:08 -0800 (PST)
-Received: from [127.0.1.1] (2a02-8389-41cf-e200-1a90-a88c-d3fe-4285.cable.dynamic.v6.surfer.at. [2a02:8389:41cf:e200:1a90:a88c:d3fe:4285])
-        by smtp.gmail.com with ESMTPSA id o28-20020a05600c511c00b0040b37f1079dsm2106443wms.29.2024.01.03.04.09.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 03 Jan 2024 04:09:08 -0800 (PST)
-From: Javier Carrasco <javier.carrasco.cruz@gmail.com>
-Date: Wed, 03 Jan 2024 13:08:53 +0100
-Subject: [PATCH v2 3/3] iio: light: as73211: add support for as7331
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB30318EB5;
+	Wed,  3 Jan 2024 12:17:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=stwcx.xyz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=stwcx.xyz
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+	by mailout.nyi.internal (Postfix) with ESMTP id DED985C01B4;
+	Wed,  3 Jan 2024 07:17:11 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute4.internal (MEProxy); Wed, 03 Jan 2024 07:17:11 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=stwcx.xyz; h=cc
+	:cc:content-type:content-type:date:date:from:from:in-reply-to
+	:in-reply-to:message-id:mime-version:references:reply-to:subject
+	:subject:to:to; s=fm1; t=1704284231; x=1704370631; bh=tO+/ZwtPBh
+	TkBucL3MQP+jVMBKPcHDEPNI5yeaQsy0g=; b=Ok9yJgrrQNbTqq1quT9+5hA9+9
+	ydSTtfAOHyLVi+qmv0dvTmu+QSc5/94mxZ+UYSbZdYgRaPC5r3Jq7JqzXnX33CER
+	OtZI/9s73E4+reNJJBcYui8BoEHTPdg0+05JeJ+aHESkRsMWC+/q0ETzYXdWVBDy
+	/DFzr2K0R6ZRk7wdEEnPxLOa+K8Q20AgxW9j9QPt6PZCRDA9z3ZNnrWOwD+NwMYP
+	8hu2zhp8FnOIcOsCCMOx07i3t5YVPr+OoR1TkvNAbN7JgglBjY4F1iJz3IMrhh+7
+	rNHpfVotDWGP3qnrMrS5LsA5Bw1FQlwpi5FQbHJcF0k5akyIlG1XOt9fTR0A==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-type:content-type:date:date
+	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
+	:message-id:mime-version:references:reply-to:subject:subject:to
+	:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+	fm2; t=1704284231; x=1704370631; bh=tO+/ZwtPBhTkBucL3MQP+jVMBKPc
+	HDEPNI5yeaQsy0g=; b=0o4Fwpm1z94GqyybFh7C7kMVDnibVGf34jRMCs7y9Dum
+	yg/uaRM5JfDCeFkqYy8kO7OzUT8s9zDNCs/ArtPhotFL2oo3lI8lLgwnimhgM/y9
+	b0jokNtFJDGpBLyoT+laIs4PAOa1pj1RGOIYiaINu59wyZuydPjxRiBLZ91ljQ70
+	0LJVduSR7EM7k+/YWSrcKd7RO757sZ3/LlGDrn6jWF1h7Py85X0MGQ8190mgmtEe
+	0ZLkh1iUR5aP4ZpJMpsd7UDcbmmDADpoXAOlZ3TAEf3zMZRx/SUSlwPEAa8VJN3y
+	7JGpRyeXIhr1VaM9NTA2TzaIIHvGjoXaZKWGJwQXxQ==
+X-ME-Sender: <xms:R1CVZW25N90Vuj1NwQ1w7qYIYK9CitGwxTL_ZFSjyXsrqgYdbL-RGQ>
+    <xme:R1CVZZH9w_9vGC8uIK-jGS3SeZ7zrE8H-RKTD3oi1a4pY6pnooIm9NsyezhmqrrnV
+    TyOnLYPusRK8hngayE>
+X-ME-Received: <xmr:R1CVZe6UT3ObH9HkHENiPVRFWfVc-4YYkkcleqOn2bvCjYkbrLw2_XKe0o6Lalv4aELxkXQ3SgjSzOD8sfBZ6ES2LQmNbA>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvkedrvdeghedgfeekucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    gfrhhlucfvnfffucdludejmdenucfjughrpeffhffvvefukfhfgggtuggjsehgtderredt
+    tddvnecuhfhrohhmpefrrghtrhhitghkucghihhllhhirghmshcuoehprghtrhhitghkse
+    hsthiftgigrdighiiiqeenucggtffrrghtthgvrhhnpeejgfdtleelvdeftdeggefffeeu
+    feevgeejkeelgeeujeevveeufeeigfeivdejjeenucffohhmrghinhepkhgvrhhnvghlrd
+    horhhgnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhep
+    phgrthhrihgtkhesshhtfigtgidrgiihii
+X-ME-Proxy: <xmx:R1CVZX2p-4zlfpUjMW-3DGP8_Zhc3ShVJ-JLjM9MeM_jnZ-jNseA5w>
+    <xmx:R1CVZZE87QIkubNdFBGcxvuD76HyP1qotBCCLXaRHjuF9IghO8f_bA>
+    <xmx:R1CVZQ-s_3fl7A0xVz1h1dMrDE99g4vYxbueZNlJPs9k4ZzSTWLrNw>
+    <xmx:R1CVZfaU5dnwr5OUeDnEQvd0oJ3hPmmku6rXhfAd-hPyMyFMlIK9cA>
+Feedback-ID: i68a1478a:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
+ 3 Jan 2024 07:17:11 -0500 (EST)
+Date: Wed, 3 Jan 2024 06:17:10 -0600
+From: Patrick Williams <patrick@stwcx.xyz>
+To: Peter Yin <peteryin.openbmc@gmail.com>
+Cc: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+	Andrew Jeffery <andrew@aj.id.au>, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 5/5] ARM: dts: aspeed: Harma: Add spi-gpio
+Message-ID: <ZZVQRgTe57G4Tc_w@heinlein.vulture-banana.ts.net>
+References: <20240102044409.3810873-1-peteryin.openbmc@gmail.com>
+ <20240102044409.3810873-6-peteryin.openbmc@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240103-as7331-v2-3-6f0ad05e0482@gmail.com>
-References: <20240103-as7331-v2-0-6f0ad05e0482@gmail.com>
-In-Reply-To: <20240103-as7331-v2-0-6f0ad05e0482@gmail.com>
-To: Christian Eggers <ceggers@arri.de>, Jonathan Cameron <jic23@kernel.org>, 
- Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- Javier Carrasco <javier.carrasco.cruz@gmail.com>
-X-Mailer: b4 0.13-dev-4e032
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1704283743; l=9566;
- i=javier.carrasco.cruz@gmail.com; s=20230509; h=from:subject:message-id;
- bh=C+/+kQ2C27ds2UC68SS96vr1DGcfshe3A9AsxHtV6EI=;
- b=8VybhJeoxFmQMEye7wYzm6Xtg9CnjnCLtkEor8oxCKcfT6tEcKrpgib3sXAMxVnC+bkpdIaI7
- OrqV8cmMlZ3CWKoGnX5cTmPm/jD4Qrkrg0ykDmt1Hg29xOiqGnQPqUJ
-X-Developer-Key: i=javier.carrasco.cruz@gmail.com; a=ed25519;
- pk=tIGJV7M+tCizagNijF0eGMBGcOsPD+0cWGfKjl4h6K8=
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="4MieZFNir6FV4A2x"
+Content-Disposition: inline
+In-Reply-To: <20240102044409.3810873-6-peteryin.openbmc@gmail.com>
 
-The AMS AS7331 is a UV light sensor with three channels: UVA, UVB and
-UVC (also known as deep UV and referenced as DUV in the iio core).
-Its internal structure and forming blocks are practically identical to
-the ones the AS73211 contains: API, internal DAC, I2C interface and
-registers, measurement modes, number of channels and pinout.
 
-The only difference between them is the photodiodes used to acquire
-light, which means that only some modifications are required to add
-support for the AS7331 in the existing driver.
+--4MieZFNir6FV4A2x
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-The temperature channel is identical for both devices and only the
-channel modifiers of the IIO_INTENSITY channels need to account for the
-device type.
+On Tue, Jan 02, 2024 at 12:44:09PM +0800, Peter Yin wrote:
+> Add spi-gpio for tpm device.
+>=20
+> Signed-off-by: Peter Yin <peteryin.openbmc@gmail.com>
+> ---
+>  .../dts/aspeed/aspeed-bmc-facebook-harma.dts  | 21 +++++++++++++++++++
+>  1 file changed, 21 insertions(+)
+>=20
+> diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dts b/arc=
+h/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dts
+> index 36aad01dda20..25ae044cd176 100644
+> --- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dts
+> +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dts
+> @@ -28,6 +28,8 @@ aliases {
+>  		i2c29 =3D &imux29;
+>  		i2c30 =3D &imux30;
+>  		i2c31 =3D &imux31;
+> +
+> +		spi1 =3D &spi_gpio;
+>  	};
+> =20
+>  	chosen {
+> @@ -67,6 +69,25 @@ led-2 {
+>  			gpios =3D <&gpio0 124 GPIO_ACTIVE_HIGH>;
+>  		};
+>  	};
+> +
+> +	spi_gpio: spi-gpio {
+> +		status =3D "okay";
+> +		compatible =3D "spi-gpio";
+> +		#address-cells =3D <1>;
+> +		#size-cells =3D <0>;
+> +
+> +		gpio-sck =3D <&gpio0 ASPEED_GPIO(Z, 3) GPIO_ACTIVE_HIGH>;
+> +		gpio-mosi =3D <&gpio0 ASPEED_GPIO(Z, 4) GPIO_ACTIVE_HIGH>;
+> +		gpio-miso =3D <&gpio0 ASPEED_GPIO(Z, 5) GPIO_ACTIVE_HIGH>;
+> +		num-chipselects =3D <1>;
+> +		cs-gpios =3D <&gpio0 ASPEED_GPIO(Z, 0) GPIO_ACTIVE_LOW>;
+> +
+> +		tpmdev@0 {
+> +			compatible =3D "tcg,tpm_tis-spi";
 
-The scale values have been obtained from the chapter "7.5 Transfer
-Function" of the official datasheet[1] for the configuration chosen as
-basis (Nclk = 1024 and GAIN = 1). Those values keep the units from the
-datasheet (nW/cm^2), as opposed to the units used for the AS73211
-(nW/m^2).
+Due to other pending changes, there is a request that all tpm_tis-spi
+also contain a compatible with a chip vendor.  Please add
+"infineon,slb9670".
 
-Add a new device-specific data structure to account for the device
-differences: channel types and scale of LSB per channel.
+See https://lore.kernel.org/lkml/ZZTS0p1hdAchIbKp@heinlein.vulture-banana.t=
+s.net/
+for more context.
 
-[1] https://ams.com/documents/20143/9106314/AS7331_DS001047_4-00.pdf
+> +			spi-max-frequency =3D <33000000>;
+> +			reg =3D <0>;
+> +		};
+> +	};
+>  };
+> =20
+>  // HOST BIOS Debug
+> --=20
+> 2.25.1
+>=20
 
-Tested-by: Christian Eggers <ceggers@arri.de>
-Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
----
- drivers/iio/light/Kconfig   |   5 +-
- drivers/iio/light/as73211.c | 141 ++++++++++++++++++++++++++++++++++++--------
- 2 files changed, 118 insertions(+), 28 deletions(-)
+--=20
+Patrick Williams
 
-diff --git a/drivers/iio/light/Kconfig b/drivers/iio/light/Kconfig
-index 143003232d1c..fd5a9879a582 100644
---- a/drivers/iio/light/Kconfig
-+++ b/drivers/iio/light/Kconfig
-@@ -87,13 +87,14 @@ config APDS9960
- 	  module will be called apds9960
- 
- config AS73211
--	tristate "AMS AS73211 XYZ color sensor"
-+	tristate "AMS AS73211 XYZ color sensor and AMS AS7331 UV sensor"
- 	depends on I2C
- 	select IIO_BUFFER
- 	select IIO_TRIGGERED_BUFFER
- 	help
- 	 If you say yes here you get support for the AMS AS73211
--	 JENCOLOR(R) Digital XYZ Sensor.
-+	 JENCOLOR(R) Digital XYZ and the AMS AS7331 UVA, UVB and UVC
-+	 ultraviolet sensors.
- 
- 	 For triggered measurements, you will need an additional trigger driver
- 	 like IIO_HRTIMER_TRIGGER or IIO_SYSFS_TRIGGER.
-diff --git a/drivers/iio/light/as73211.c b/drivers/iio/light/as73211.c
-index b4c6f389a292..44daf816ae57 100644
---- a/drivers/iio/light/as73211.c
-+++ b/drivers/iio/light/as73211.c
-@@ -1,6 +1,7 @@
- // SPDX-License-Identifier: GPL-2.0-only
- /*
-- * Support for AMS AS73211 JENCOLOR(R) Digital XYZ Sensor
-+ * Support for AMS AS73211 JENCOLOR(R) Digital XYZ Sensor and AMS AS7331
-+ * UVA, UVB and UVC (DUV) Ultraviolet Sensor
-  *
-  * Author: Christian Eggers <ceggers@arri.de>
-  *
-@@ -9,7 +10,9 @@
-  * Color light sensor with 16-bit channels for x, y, z and temperature);
-  * 7-bit I2C slave address 0x74 .. 0x77.
-  *
-- * Datasheet: https://ams.com/documents/20143/36005/AS73211_DS000556_3-01.pdf
-+ * Datasheets:
-+ * AS73211: https://ams.com/documents/20143/36005/AS73211_DS000556_3-01.pdf
-+ * AS7331: https://ams.com/documents/20143/9106314/AS7331_DS001047_4-00.pdf
-  */
- 
- #include <linux/bitfield.h>
-@@ -84,6 +87,20 @@ static const int as73211_hardwaregain_avail[] = {
- 	1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048,
- };
- 
-+struct as73211_data;
-+
-+/**
-+ * struct spec_dev_data - device-specific data
-+ * @intensity_scale:  Function to retrieve intensity scale values.
-+ * @channel:          Device channels.
-+ * @num_channels:     Number of channels of the device.
-+ */
-+struct spec_dev_data {
-+	int (*intensity_scale)(struct as73211_data *data, int chan, int *val, int *val2);
-+	struct iio_chan_spec const *channel;
-+	int num_channels;
-+};
-+
- /**
-  * struct as73211_data - Instance data for one AS73211
-  * @client: I2C client.
-@@ -94,6 +111,7 @@ static const int as73211_hardwaregain_avail[] = {
-  * @mutex:  Keeps cached registers in sync with the device.
-  * @completion: Completion to wait for interrupt.
-  * @int_time_avail: Available integration times (depend on sampling frequency).
-+ * @spec_dev: device-specific configuration.
-  */
- struct as73211_data {
- 	struct i2c_client *client;
-@@ -104,6 +122,7 @@ struct as73211_data {
- 	struct mutex mutex;
- 	struct completion completion;
- 	int int_time_avail[AS73211_SAMPLE_TIME_NUM * 2];
-+	const struct spec_dev_data *spec_dev;
- };
- 
- #define AS73211_COLOR_CHANNEL(_color, _si, _addr) { \
-@@ -138,6 +157,10 @@ struct as73211_data {
- #define AS73211_SCALE_Y 298384270  /* nW/m^2 */
- #define AS73211_SCALE_Z 160241927  /* nW/m^2 */
- 
-+#define AS7331_SCALE_UVA 340000  /* nW/cm^2 */
-+#define AS7331_SCALE_UVB 378000  /* nW/cm^2 */
-+#define AS7331_SCALE_UVC 166000  /* nW/cm^2 */
-+
- /* Channel order MUST match devices result register order */
- #define AS73211_SCAN_INDEX_TEMP 0
- #define AS73211_SCAN_INDEX_X    1
-@@ -176,6 +199,28 @@ static const struct iio_chan_spec as73211_channels[] = {
- 	IIO_CHAN_SOFT_TIMESTAMP(AS73211_SCAN_INDEX_TS),
- };
- 
-+static const struct iio_chan_spec as7331_channels[] = {
-+	{
-+		.type = IIO_TEMP,
-+		.info_mask_separate =
-+			BIT(IIO_CHAN_INFO_RAW) |
-+			BIT(IIO_CHAN_INFO_OFFSET) |
-+			BIT(IIO_CHAN_INFO_SCALE),
-+		.address = AS73211_OUT_TEMP,
-+		.scan_index = AS73211_SCAN_INDEX_TEMP,
-+		.scan_type = {
-+			.sign = 'u',
-+			.realbits = 16,
-+			.storagebits = 16,
-+			.endianness = IIO_LE,
-+		}
-+	},
-+	AS73211_COLOR_CHANNEL(LIGHT_UVA, AS73211_SCAN_INDEX_X, AS73211_OUT_MRES1),
-+	AS73211_COLOR_CHANNEL(LIGHT_UVB, AS73211_SCAN_INDEX_Y, AS73211_OUT_MRES2),
-+	AS73211_COLOR_CHANNEL(LIGHT_DUV, AS73211_SCAN_INDEX_Z, AS73211_OUT_MRES3),
-+	IIO_CHAN_SOFT_TIMESTAMP(AS73211_SCAN_INDEX_TS),
-+};
-+
- static unsigned int as73211_integration_time_1024cyc(struct as73211_data *data)
- {
- 	/*
-@@ -316,6 +361,48 @@ static int as73211_req_data(struct as73211_data *data)
- 	return 0;
- }
- 
-+static int as73211_intensity_scale(struct as73211_data *data, int chan,
-+				   int *val, int *val2)
-+{
-+	switch (chan) {
-+	case IIO_MOD_X:
-+		*val = AS73211_SCALE_X;
-+		break;
-+	case IIO_MOD_Y:
-+		*val = AS73211_SCALE_Y;
-+		break;
-+	case IIO_MOD_Z:
-+		*val = AS73211_SCALE_Z;
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+	*val2 = as73211_integration_time_1024cyc(data) * as73211_gain(data);
-+
-+	return IIO_VAL_FRACTIONAL;
-+}
-+
-+static int as7331_intensity_scale(struct as73211_data *data, int chan,
-+				  int *val, int *val2)
-+{
-+	switch (chan) {
-+	case IIO_MOD_LIGHT_UVA:
-+		*val = AS7331_SCALE_UVA;
-+		break;
-+	case IIO_MOD_LIGHT_UVB:
-+		*val = AS7331_SCALE_UVB;
-+		break;
-+	case IIO_MOD_LIGHT_DUV:
-+		*val = AS7331_SCALE_UVC;
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+	*val2 = as73211_integration_time_1024cyc(data) * as73211_gain(data);
-+
-+	return IIO_VAL_FRACTIONAL;
-+}
-+
- static int as73211_read_raw(struct iio_dev *indio_dev, struct iio_chan_spec const *chan,
- 			     int *val, int *val2, long mask)
- {
-@@ -355,29 +442,13 @@ static int as73211_read_raw(struct iio_dev *indio_dev, struct iio_chan_spec cons
- 			*val2 = AS73211_SCALE_TEMP_MICRO;
- 			return IIO_VAL_INT_PLUS_MICRO;
- 
--		case IIO_INTENSITY: {
--
--			switch (chan->channel2) {
--			case IIO_MOD_X:
--				*val = AS73211_SCALE_X;
--				break;
--			case IIO_MOD_Y:
--				*val = AS73211_SCALE_Y;
--				break;
--			case IIO_MOD_Z:
--				*val = AS73211_SCALE_Z;
--				break;
--			default:
--				return -EINVAL;
--			}
--			*val2 = as73211_integration_time_1024cyc(data) *
--				as73211_gain(data);
--
--			return IIO_VAL_FRACTIONAL;
-+		case IIO_INTENSITY:
-+			return data->spec_dev->intensity_scale(data, chan->channel2,
-+							       val, val2);
- 
- 		default:
- 			return -EINVAL;
--		}}
-+		}
- 
- 	case IIO_CHAN_INFO_SAMP_FREQ:
- 		/* f_samp is configured in CREG3 in powers of 2 (x 1.024 MHz) */
-@@ -675,13 +746,17 @@ static int as73211_probe(struct i2c_client *client)
- 	i2c_set_clientdata(client, indio_dev);
- 	data->client = client;
- 
-+	data->spec_dev = i2c_get_match_data(client);
-+	if (!data->spec_dev)
-+		return -EINVAL;
-+
- 	mutex_init(&data->mutex);
- 	init_completion(&data->completion);
- 
- 	indio_dev->info = &as73211_info;
- 	indio_dev->name = AS73211_DRV_NAME;
--	indio_dev->channels = as73211_channels;
--	indio_dev->num_channels = ARRAY_SIZE(as73211_channels);
-+	indio_dev->channels = data->spec_dev->channel;
-+	indio_dev->num_channels = data->spec_dev->num_channels;
- 	indio_dev->modes = INDIO_DIRECT_MODE;
- 
- 	ret = i2c_smbus_read_byte_data(data->client, AS73211_REG_OSR);
-@@ -771,14 +846,28 @@ static int as73211_resume(struct device *dev)
- static DEFINE_SIMPLE_DEV_PM_OPS(as73211_pm_ops, as73211_suspend,
- 				as73211_resume);
- 
-+static const struct spec_dev_data as73211_spec = {
-+	.intensity_scale = as73211_intensity_scale,
-+	.channel = as73211_channels,
-+	.num_channels = ARRAY_SIZE(as73211_channels),
-+};
-+
-+static const struct spec_dev_data as7331_spec = {
-+	.intensity_scale = as7331_intensity_scale,
-+	.channel = as7331_channels,
-+	.num_channels = ARRAY_SIZE(as7331_channels),
-+};
-+
- static const struct of_device_id as73211_of_match[] = {
--	{ .compatible = "ams,as73211" },
-+	{ .compatible = "ams,as73211", &as73211_spec },
-+	{ .compatible = "ams,as7331", &as7331_spec },
- 	{ }
- };
- MODULE_DEVICE_TABLE(of, as73211_of_match);
- 
- static const struct i2c_device_id as73211_id[] = {
--	{ "as73211", 0 },
-+	{ "as73211", (kernel_ulong_t)&as73211_spec },
-+	{ "as7331", (kernel_ulong_t)&as7331_spec },
- 	{ }
- };
- MODULE_DEVICE_TABLE(i2c, as73211_id);
+--4MieZFNir6FV4A2x
+Content-Type: application/pgp-signature; name="signature.asc"
 
--- 
-2.39.2
+-----BEGIN PGP SIGNATURE-----
 
+iQIzBAABCAAdFiEEBGD9ii4LE9cNbqJBqwNHzC0AwRkFAmWVUEYACgkQqwNHzC0A
+wRlu0Q/+JCxoappGQgYN8XwykKfMvTqOKTOoH56HMD4//s7BZSAqhc663TqU+iSk
+GdF5fU6nXjga9rM/eh5t4HPBmptag+RnUIAYolxL3G5UoRaJs0Mk6k2qQzCUheZv
++aIo5H1NDzurnUt4WXhpc07nVwQRlsu/q6+xPLrLfd2sVnHLRbGjfo9T+Q1w+9P7
+bKsSfO8dqtfxIvHc4GRqQTJTprzpyJd9X3WC6PmeS5PEWuLzG5JDK4LzEjGHpEno
+ldZKmO7TNInpLA4TbeLzS3O1dHSPIGcqwAAzrkgZ1pJUZaTmpdoHKFgpIeYq5p+b
+INHCEaBukf20jwjC04FQaF3dif+zMlMUiRkDdZIQmc4RatAVWv5pkfj4hRqbnDk3
+/1VOY6C3NKtu+1v7MOQsfuxwNrbrb20TQu5LWco9z1ENsbW5ngr6iHU/yx164UDs
+xy1HPRm7Y9wJUz3VmvQmvdUHNIQ6gAMGMnrk+4F69pUR5drmUtgDAxc1TTsUBklV
+MCj47BP+o1PNwT/UaScuQorCS8ffxk7tGOT4zfKLqQghEpLO/aKzaSk+V8k8hoRC
+pXbBmjXtyuYEp50RG5Uim4/PdoWX6Dm1Vfz6pE7t0XzcntXgwzPNgWYBiGwamhEL
+ajhb2hf4aXXIyutOcF+F2g/VSpRh1cJ8AFomfqW+CSLRWn9zXAY=
+=ZFb5
+-----END PGP SIGNATURE-----
+
+--4MieZFNir6FV4A2x--
 
