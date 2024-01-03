@@ -1,101 +1,100 @@
-Return-Path: <devicetree+bounces-29361-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29362-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 05DC88227CC
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 05:18:53 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E7E278227DE
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 05:52:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 148E11C22D64
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 04:18:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7650328479A
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 04:52:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 010A413AF4;
-	Wed,  3 Jan 2024 04:18:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71279111BB;
+	Wed,  3 Jan 2024 04:52:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=riseup.net header.i=@riseup.net header.b="gvkkEwF3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Gvax/kdu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.riseup.net (mx1.riseup.net [198.252.153.129])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A562913AD4;
-	Wed,  3 Jan 2024 04:18:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riseup.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riseup.net
-Received: from mx0.riseup.net (mx0-pn.riseup.net [10.0.1.42])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mx1.riseup.net (Postfix) with ESMTPS id 4T4bq41RG0zDqCy;
-	Wed,  3 Jan 2024 04:10:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=riseup.net; s=squak;
-	t=1704255024; bh=Q4QSWB4lpoWhI6LvZXYA/LFlYxYL0e3ql56uc4uLsUs=;
-	h=From:To:Subject:Date:In-Reply-To:References:From;
-	b=gvkkEwF3/QebBiVMO+2/EJNfLPfOgE+cXeV60VrcsObrJdNuBzSfA7e5nNjsFJ6nx
-	 dMQepmLCj7aRiupGy83fdalGF5X8v3/jNOakJSaoNGxu9xNU7TF0bVMlyj/1N9FWKZ
-	 ++l1Gi8E+caHIQDYeaxPZpZu+INxm9+u8YwevTBM=
-Received: from fews01-sea.riseup.net (fews01-sea-pn.riseup.net [10.0.1.109])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mx0.riseup.net (Postfix) with ESMTPS id 4T4bpx2l20z9vy5;
-	Wed,  3 Jan 2024 04:10:17 +0000 (UTC)
-X-Riseup-User-ID: 405420CC388E9EF22FE493B6FCB7CB07418DA6345B23D1C17FCD1E61398A9170
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-	 by fews01-sea.riseup.net (Postfix) with ESMTPSA id 4T4bpp3Bf5zJmps;
-	Wed,  3 Jan 2024 04:10:09 +0000 (UTC)
-From: Dang Huynh <danct12@riseup.net>
-To: =?utf-8?B?T25kxZllag==?= Jirman <megi@xff.cz>,
- Manuel Traut <manut@mecka.net>, Neil Armstrong <neil.armstrong@linaro.org>,
- Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Sandy Huang <hjc@rock-chips.com>, Mark Yao <markyao0591@gmail.com>,
- Diederik de Haas <didi.debian@cknow.org>,
- Segfault <awarnecke002@hotmail.com>, Arnaud Ferraris <aferraris@debian.org>,
- Danct12 <danct12@riseup.net>, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org
-Subject:
- Re: [PATCH v3 4/4] arm64: dts: rockchip: Add devicetree for Pine64 PineTab2
-Date: Wed, 03 Jan 2024 04:09:55 +0000
-Message-ID: <4814116.aeNJFYEL58@melttower>
-In-Reply-To: <775vjfucu2g2s6zzeutj7f7tapx3q2geccpxvv4ppcms4hxbq7@cbrdmlu2ryzp>
-References:
- <20240102-pinetab2-v3-0-cb1aa69f8c30@mecka.net>
- <20240102-pinetab2-v3-4-cb1aa69f8c30@mecka.net>
- <775vjfucu2g2s6zzeutj7f7tapx3q2geccpxvv4ppcms4hxbq7@cbrdmlu2ryzp>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48834171C4;
+	Wed,  3 Jan 2024 04:52:47 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 328E9C433C8;
+	Wed,  3 Jan 2024 04:52:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1704257567;
+	bh=tvCyrRIjW1YlwmYYyoZdYaJ+9swtlUUOKuunbAY/B6k=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=Gvax/kdu8sOeGWftPJ+HJSaZgv9R0lLMMmsU/2hMWmqUvdTFNc1nWQ4c/Wvoov3ou
+	 DwSyj1TH1iEDxx4976xYd4r1iLwsXGMiKUwWpqEw0NzSN2HCHvyq5jfST7qwh/HxAg
+	 kdmA+PwBCDXGBA3cLrmjONDJCCnJlNx39JGlplelxfquBrphYM8lFWjbvbIidioYjt
+	 CMe+kuWTS0RnoUf+QqAkUpyouexD+iXxdrjp/zlsOusR51f7hUVLs3+Fob3nZvPcKo
+	 BwX/qvoySp7VLWiMbsqrNCQGpWyFr2Uny36Lla35QkERqOAU8WZGA36a6q1vOblgCe
+	 2jB0siUwz3sJA==
+Received: (nullmailer pid 227217 invoked by uid 1000);
+	Wed, 03 Jan 2024 04:52:44 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="UTF-8"
+From: Rob Herring <robh@kernel.org>
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc: Bjorn Andersson <andersson@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Todor Tomov <todor.too@gmail.com>, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, devicetree@vger.kernel.org, linux-media@vger.kernel.org, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, Robert Foss <rfoss@kernel.org>, Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh+dt@kernel.org>
+In-Reply-To: <20240103-linux-next-24-01-02-sc8280xp-camss-core-dtsi-v1-1-abacaa63a961@linaro.org>
+References: <20240103-linux-next-24-01-02-sc8280xp-camss-core-dtsi-v1-0-abacaa63a961@linaro.org>
+ <20240103-linux-next-24-01-02-sc8280xp-camss-core-dtsi-v1-1-abacaa63a961@linaro.org>
+Message-Id: <170425756490.227176.673951175372345550.robh@kernel.org>
+Subject: Re: [PATCH 1/3] media: dt-bindings: media: camss: Add
+ qcom,sc8280xp-camss binding
+Date: Tue, 02 Jan 2024 21:52:44 -0700
 
-On Tuesday, January 2, 2024 6:07:56 PM UTC Ond=C5=99ej Jirman wrote:
-> On Tue, Jan 02, 2024 at 05:15:47PM +0100, Manuel Traut wrote:
-> > +&pcie2x1 {
-> > +	pinctrl-names =3D "default";
-> > +	pinctrl-0 =3D <&pcie_reset_h>;
-> > +	reset-gpios =3D <&gpio1 RK_PB2 GPIO_ACTIVE_HIGH>;
-> > +	vpcie3v3-supply =3D <&vcc3v3_minipcie>;
-> > +	status =3D "okay";
-> > +};
->=20
-> Does it make sense to enable this HW block by default, when it isn't used=
- on
-> actual HW?
->=20
 
-PCI-E is hooked up to a connector in the schematics, so I think it make sen=
-se=20
-to enable it when there's one available.
+On Wed, 03 Jan 2024 02:18:39 +0000, Bryan O'Donoghue wrote:
+> Add bindings for qcom,sc8280xp-camss in order to support the camera
+> subsystem for sc8280xp as found in the Lenovo x13s Laptop.
+> 
+> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  .../bindings/media/qcom,sc8280xp-camss.yaml        | 512 +++++++++++++++++++++
+>  1 file changed, 512 insertions(+)
+> 
 
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/media/qcom,sc8280xp-camss.example.dts:26:18: fatal error: dt-bindings/clock/qcom,sc8280xp-camcc.h: No such file or directory
+   26 |         #include <dt-bindings/clock/qcom,sc8280xp-camcc.h>
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+make[2]: *** [scripts/Makefile.lib:419: Documentation/devicetree/bindings/media/qcom,sc8280xp-camss.example.dtb] Error 1
+make[2]: *** Waiting for unfinished jobs....
+make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1424: dt_binding_check] Error 2
+make: *** [Makefile:234: __sub-make] Error 2
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240103-linux-next-24-01-02-sc8280xp-camss-core-dtsi-v1-1-abacaa63a961@linaro.org
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
