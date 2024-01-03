@@ -1,69 +1,91 @@
-Return-Path: <devicetree+bounces-29340-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29341-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE42582262C
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 01:54:08 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B898822639
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 02:05:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 49DA6B227B9
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 00:54:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E8AED1C21AD2
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 01:05:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55965186B;
-	Wed,  3 Jan 2024 00:53:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71A227E8;
+	Wed,  3 Jan 2024 01:05:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SWGa1Atq"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jcDX0A8V"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com [209.85.128.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31961171C4;
-	Wed,  3 Jan 2024 00:53:15 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 88358C433C8;
-	Wed,  3 Jan 2024 00:53:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1704243195;
-	bh=hIc7vil6oQXNWIFG6TyLDS6yimIz2qi/c2PwKRpmK7E=;
-	h=In-Reply-To:References:Subject:From:To:Date:From;
-	b=SWGa1Atq4YkIusWtYtpoNkl5HcChw+0/A5eSXdtb8A1OjYGaU4MdVuE6ilLD7EZec
-	 2gW0VoN12JDQdj1A4hEcP9+t1u5tGsD0W2PGerruosDQopLKPeO2eUYBfHPI3+GUpp
-	 KC/x2uoNFjnY8yFsEr2qjANnVRwgAwvM2zsqto4TWm0UpzkSudUDe5gF4SyT5y3OLN
-	 D4yS+eiI48qoSDLJzVg4HzyRFM+YNNj5mh3B2/3Sbq999WraoYZsKEu4/ygUiVJFWH
-	 XKvAawQF7cR/gb1l7QepdquDnqHUdfe4wvT/Zxj3keNp+nl0N/I48/Ys6sSZF6Dy/c
-	 qLCsC0035PfFg==
-Message-ID: <f2ee0e96fc2467fdf44b960d0ffe94c1.sboyd@kernel.org>
-Content-Type: text/plain; charset="utf-8"
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F21B10EE
+	for <devicetree@vger.kernel.org>; Wed,  3 Jan 2024 01:04:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-5edf3780534so48189017b3.0
+        for <devicetree@vger.kernel.org>; Tue, 02 Jan 2024 17:04:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1704243897; x=1704848697; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=TQSx9psUw9oTbZGR+KHCIwReL7n5ZCIfgzIPIKpKg1M=;
+        b=jcDX0A8V4fgFW+iVVwPYvDijnona7Ju+cR0jBvKC0lebNUdt5m9f5T+dPZjvnZE2+o
+         gXJIx0OE4UC8xam7bWvHGhtiRq3bwjs6EqLVyaHKJ0OVp3WrixEBoQ2Cf2ahhNCfaBka
+         LcNCBZNa5G7++ON8HSV/SIgoHU51E1m24nxj/o3SYSunHcuszU5qrGFFAJNppdABVGZG
+         +e/jt/OmQaCaumMvXSW5F858S7hr5hV6WYQ2fXrMhsPYsU4cI6f2fhYx8FKn0xJuFG76
+         u60Mg0JAk6/ljv/xKq5HzV1w+d+oh/v/Bc3OkPmpEXgs1ujDYgWuDUJxdJkCpOnPd5Ru
+         k7cg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1704243897; x=1704848697;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=TQSx9psUw9oTbZGR+KHCIwReL7n5ZCIfgzIPIKpKg1M=;
+        b=n7+yziMjJE7fnl1yhRjJeExvVQ1vJdXowiYAU/9R5a27KuW+86Y8tPNMS+O+sMMU1t
+         Ae12m8LdYSBcBieavbmR1Z4vAdQDYQ2f7+lNUmb01IqlSN8ROoniYSd/sZWKS7ReMs51
+         LJRIigtRV0yn/WAxA7342FL/FQbYo1jOtb5B45QOJlGuUczyI0y2kREosORTyQq8LPI9
+         O/PJzwOREmaFIJ540sZCBVzWxg/9x2dGxLAf1M9YFMd7kfAlDomhW5LhB3ub8663j4Yq
+         sBmH6zgUm4c/i+3v+evOiwOW2lOa9legFi/A5ikfThoAaj4f9z33AFFQiO68Xrn5hRC+
+         V/sw==
+X-Gm-Message-State: AOJu0YzpVIuJYOPKqi4LWGIZf2Hk/EWPWZh9pOwygAAzOWsRGV2vb54D
+	ECnByFwnfqDsn1YMTO4HkMg3GzlZOdsUPL9KgozGAHvMAFD5IQ==
+X-Google-Smtp-Source: AGHT+IG5PG1R+n1LmMee/LvkPlexxf/e36Gs+fr/vMs1zvzGXA2xFnirJcEViDaAogqMYLkyvifTh5m0vmHSz9oLG3E=
+X-Received: by 2002:a0d:fec4:0:b0:5e7:e672:fe47 with SMTP id
+ o187-20020a0dfec4000000b005e7e672fe47mr11403301ywf.72.1704243897097; Tue, 02
+ Jan 2024 17:04:57 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <c7574d808e2da1a530182f0fd790c1337c336e1b.1702849494.git.daniel@makrotopia.org>
-References: <27f99db432e9ccc804cc5b6501d7d17d72cae879.1702849494.git.daniel@makrotopia.org> <c7574d808e2da1a530182f0fd790c1337c336e1b.1702849494.git.daniel@makrotopia.org>
-Subject: Re: [PATCH v7 5/5] clk: mediatek: add drivers for MT7988 SoC
-From: Stephen Boyd <sboyd@kernel.org>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Chen-Yu Tsai <wenst@chromium.org>, Conor Dooley <conor+dt@kernel.org>, Dan Carpenter <dan.carpenter@linaro.org>, Daniel Golle <daniel@makrotopia.org>, David S. Miller <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Frank Wunderlich <frank-w@public-files.de>, Garmin.Chang <Garmin.Chang@mediatek.com>, Jakub Kicinski <kuba@kernel.org>, James Liao <jamesjj.liao@mediatek.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Matthias Brugger <matthias.bgg@gmail.com>, Michael Turquette <mturquette@baylibre.com>, Paolo Abeni <pabeni@redhat.com>, Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh+dt@kernel.org>, Sabrina Dubroca <sd@queasysnail.net>, Sam Shih <sam.shih@mediatek.com>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org, netdev@vger.kernel.org
-Date: Tue, 02 Jan 2024 16:53:13 -0800
-User-Agent: alot/0.10
+References: <20240102-topic-gpu_cooling-v1-0-fda30c57e353@linaro.org> <20240102-topic-gpu_cooling-v1-1-fda30c57e353@linaro.org>
+In-Reply-To: <20240102-topic-gpu_cooling-v1-1-fda30c57e353@linaro.org>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Wed, 3 Jan 2024 03:04:46 +0200
+Message-ID: <CAA8EJpoCTF4mAWJv_4ZGS0eMGpic66vSJWqkjzqkyNU_1V7Npw@mail.gmail.com>
+Subject: Re: [PATCH 01/12] arm64: dts: qcom: msm8916: Hook up GPU cooling device
+To: Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Marijn Suijten <marijn.suijten@somainline.org>, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-Quoting Daniel Golle (2023-12-17 13:50:15)
-> From: Sam Shih <sam.shih@mediatek.com>
->=20
-> Add APMIXED, ETH, INFRACFG and TOPCKGEN clock drivers which are
-> typical MediaTek designs.
->=20
-> Also add driver for XFIPLL clock generating the 156.25MHz clock for
-> the XFI SerDes. It needs an undocumented software workaround and has
-> an unknown internal design.
->=20
-> Signed-off-by: Sam Shih <sam.shih@mediatek.com>
-> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collab=
-ora.com>
+On Tue, 2 Jan 2024 at 15:35, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
+>
+> In order to allow for throttling the GPU, hook up the cooling device
+> to the respective thermal zones.
+>
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 > ---
+>  arch/arm64/boot/dts/qcom/msm8916.dtsi | 9 +++++++++
+>  1 file changed, 9 insertions(+)
 
-Applied to clk-next
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+
+
+-- 
+With best wishes
+Dmitry
 
