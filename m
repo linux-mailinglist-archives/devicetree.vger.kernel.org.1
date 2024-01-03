@@ -1,280 +1,183 @@
-Return-Path: <devicetree+bounces-29485-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29493-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D896823440
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 19:19:34 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 83B218234E7
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 19:49:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 430B91C23FE3
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 18:19:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3CFA1286782
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 18:49:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01CC61C698;
-	Wed,  3 Jan 2024 18:19:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43E741C6BA;
+	Wed,  3 Jan 2024 18:49:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="ORSG1kp1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QWx1LZ2P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (mail-bn7nam10on2051.outbound.protection.outlook.com [40.107.92.51])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 171591C68C;
-	Wed,  3 Jan 2024 18:19:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=iBqQ7XCI6EbtlVNfNB8yTnWR4OfUkiv3JobrudoTWQjzulJNdE5VAUsq0P0lmyTiFSuFF3FAEwNun0qRQsRyl7jmvJeM1EHMUA1Fo8oxJJ3jRYXIeXS/2/l3nfu8y5YTtcN19Z4ddqIcqCY4R/y3y3UX6cEnXLSnYg/jr9pGzauevrp7c/1VTcm04UZOQ7OwbUS7DkPcOZIz+mxUocYVMlrDzo+ZYuajlidNDjgHwMNMQqIpF+VKUOSKGa82LWTrjgv2GzJ/T2QAFoWwdA9XQl7Ax+i0RTqPAlTHSadkvoN8vK+hNDamTaJX1HdvoMbOQoGJxgCtRQoGNvq9RPEZvg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=SK7mCdkoj0N6wkcjU4H7NjUBVzcz/jI/mdjmr4nGObc=;
- b=oFPya2mjEa9V0+yhMBlSrxAuLb/co3a5MAnIsEkSUihDr3mQYtNPqboIbvB1AaldYgc+u4BdCRJKtzt0wcywpZ1Fz8IH1alWSRoYQblMdpNsOosiKk2HQT0Kz1tOdKJI51HdDocCKgD7tmQycIseLIi0+tqrY5poEkVbTP9eUp/ANvMhhPZt19zGu9ZOSrEYPRyR3DiI/g1b7JFswfWT1a9ntQXD4EtdPK9o6D//kIToz4HfJm0VnYZ+4NR3RGweC6mm7kjSGTLX75hXod9uSJqS3wVqiGQvR8sTlNA1SKOgifgwRFFLfeD+9CFAQ3S+q9XwH8Z6Xi79U0D4WIVoPg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=SK7mCdkoj0N6wkcjU4H7NjUBVzcz/jI/mdjmr4nGObc=;
- b=ORSG1kp1PGKoo9enfJY9fgh1gtYn40x67wRKkHXBMNpxtC9rWdDn8PvR+O57Hsm6TyMWvNiyNBHqErKExHb0occMKnPIS5danSGVqRTo0+7kpZ7o4dD1i8umI3zQR4P6mohRCgujzCCxaFjIz/4KBSNJFO1Mt0ZobBhYGa9or4M=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from BL1PR12MB5874.namprd12.prod.outlook.com (2603:10b6:208:396::17)
- by CYXPR12MB9317.namprd12.prod.outlook.com (2603:10b6:930:e2::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7135.25; Wed, 3 Jan
- 2024 18:19:25 +0000
-Received: from BL1PR12MB5874.namprd12.prod.outlook.com
- ([fe80::6452:1eb:50fa:311d]) by BL1PR12MB5874.namprd12.prod.outlook.com
- ([fe80::6452:1eb:50fa:311d%4]) with mapi id 15.20.7135.023; Wed, 3 Jan 2024
- 18:19:25 +0000
-Message-ID: <ceacb4a6-7768-43b4-a3e7-ed8e8665f5f6@amd.com>
-Date: Wed, 3 Jan 2024 12:19:22 -0600
-User-Agent: Mozilla Thunderbird Beta
-Subject: Re: [PATCH v8 2/3] dts: zynqmp: add properties for TCM in remoteproc
-Content-Language: en-US
-To: Mathieu Poirier <mathieu.poirier@linaro.org>
-Cc: "andersson@kernel.org" <andersson@kernel.org>,
- "robh+dt@kernel.org" <robh+dt@kernel.org>,
- "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "Simek, Michal" <michal.simek@amd.com>, "Levinsky, Ben"
- <ben.levinsky@amd.com>,
- "linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20231215235725.1247350-1-tanmay.shah@amd.com>
- <20231215235725.1247350-3-tanmay.shah@amd.com> <ZZWfUkrQc58+GATN@p14s>
-From: Tanmay Shah <tanmay.shah@amd.com>
-In-Reply-To: <ZZWfUkrQc58+GATN@p14s>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SA0PR13CA0002.namprd13.prod.outlook.com
- (2603:10b6:806:130::7) To BL1PR12MB5874.namprd12.prod.outlook.com
- (2603:10b6:208:396::17)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B4EC1CA8E;
+	Wed,  3 Jan 2024 18:49:13 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E50E0C433AD;
+	Wed,  3 Jan 2024 18:49:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1704307752;
+	bh=RMZCoyni1dg/u5PWGXOjNR0UmnG/FzeuF8AtWgpE53o=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=QWx1LZ2PIbiMG1XZqGmr22SPfJH41Dy22FvwvzfIv4KyUPRrF5q8WzXYnLQd9rs86
+	 yL9ePwqcN1S1rRlB/biKp0ukhEFgmop2NIjmL5EOxem1NomAWFjolJWxrSQqZzWr8x
+	 ELxW+cJ9NFuIupoCwP1JzeF0+Ju7CBhcyieXXWz28QBbjF+H9pFE7wpQi6sKHyGWLo
+	 L2y3ySPb30L7oKKU6Z2zM2pPhlsfPKq1GXfNqbTtfspFz63rKyw/qVLr48k/p6PbfD
+	 eF9JrBEGat+1z6GrQFq5ndH7z1VnyfJDiHgpQPidNftQNKdMLg38oO/rYLRh2LwOOF
+	 4/LJj9oAZ5qwg==
+Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-2cceb5f0918so48208721fa.2;
+        Wed, 03 Jan 2024 10:49:12 -0800 (PST)
+X-Gm-Message-State: AOJu0Yxry7RhlAyi3fdK7SDpv6n48GBSCsU4ayGm2xpaF+igwcPDfVUi
+	TX5ZCiYsCQBjcoEl/p0TGZQqRF4zrw9Klh/yVA==
+X-Google-Smtp-Source: AGHT+IFb3zTv3w6i/eFBsPe9r0iuXmmX/2JiP7xGNWZZFBabGYb5yb23iDV40OA8jh6BzQ1/gm/DPrOco/LCOyYOSFg=
+X-Received: by 2002:a05:651c:168f:b0:2cc:6dff:9383 with SMTP id
+ bd15-20020a05651c168f00b002cc6dff9383mr5104245ljb.83.1704307750860; Wed, 03
+ Jan 2024 10:49:10 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL1PR12MB5874:EE_|CYXPR12MB9317:EE_
-X-MS-Office365-Filtering-Correlation-Id: 823068f0-c5f9-41d2-f7cc-08dc0c888428
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	8KRKc07OlDX+0Th+z77BsmeBWe1Uy6XcTF/GTsZgjU1ZuBtT3uPO5n6oy3LnmSHwiW8HGVmtHx7Wpvy9QYPPIdR9TLyPdab2p5MyIseQ7hj19jXGoCgdTmHQDnW+ycSJTxcwwp/WrbVvhMIFwSbZWS6nkz447xhfn+Cc4PtVWi93UTE1WVfWrz5exRrpOaGxd/HlyYOff6rujIMQI7ZE+FGSbnofqYjby7h+S/l4nvN8d63U6BbctI9VllP1TvtzlyT926OnrQUfKrSQM95dCTYvOzAE3DV95EXNJRfQtutYBp/RK4lBN7wKCes3Ux7/a3/KxKVI0FoNkRerykhns5Spx0N70aM68lTabQ/IgczFH05XCPtOXkOjl5I4qsA9jNg9rZ5FnJu/FOu6NTZ2HyGVodDccFGHdDUYfPfchV9pxGK5ZftEczE5shijyUcacksPt0vLgp2E2RjcJ/gEJsrsEYol1xSWO5gtXwoCP+J7afBcyL1767ccmk8tPdzH6wj+g1IlmST9BfT9P7MpD2RkLOGy+jnOINZ6wsE7n84KyUqON5nPbLrQNhJADwUkNyBD7dJSh+427oQVYFRCL+iNLhkS4yIUTJxPg70vwUi4IwRJ1zPBSpQyOi526qKFhnLdumWJomcisf11R66hSw==
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BL1PR12MB5874.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(396003)(136003)(366004)(376002)(346002)(39860400002)(230922051799003)(64100799003)(451199024)(186009)(1800799012)(31686004)(38100700002)(31696002)(86362001)(36756003)(66946007)(6512007)(83380400001)(53546011)(26005)(2616005)(6916009)(54906003)(5660300002)(6486002)(66556008)(478600001)(6666004)(2906002)(66476007)(316002)(6506007)(44832011)(8936002)(41300700001)(8676002)(4326008)(45980500001)(43740500002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?WW5SWGFvcUxYbEt6UzZyRitGMjVIZU9CclRKTFd2ZzBhQVJWdXRPT1hQZXZS?=
- =?utf-8?B?Nmxya2M3WnFZYkV6c3dPTWFpOGIwVGdjYzBkcWdaQVdGZTYyc2NXR2ZqbCta?=
- =?utf-8?B?RGpEMXVOVldIWTZpc2hNdkZqamtWZHJZMVJPUk9XcCtTcUlhS0NLOThOa2lq?=
- =?utf-8?B?eU9IL0o1RHNiaTJVbTZJWTR1ZEt5eG5veERrdVNXZTZZMVpqZGVpYWM1VTdR?=
- =?utf-8?B?Wmhoa0lEYXlFV3YvdEJPYVo1K2lITXpIYlNSTDN1djZGakoyZ3p2VGVwc2Zy?=
- =?utf-8?B?RzVmN1hEamRyRE0yaisvdTB2S2lXWUJpZHBJRDQzZTNkZTU2Tk9mSmFsNEVI?=
- =?utf-8?B?b2RxaHVpK29HREViN1pQUk82aytUMkRjQlV1alp1cXg3aXFkaXgxV3BzRFRG?=
- =?utf-8?B?emFJNVVFOFFVNHh2S1BnZUdaOVk5OFdxd0VVNmlJK3pYSjhyVEFsOEhPNGpx?=
- =?utf-8?B?UjRsSGhqSitGeUw3bVdneW1BWHZNTGpQZVh4SnZvbmlKR2pwYVB4d1FMbkUw?=
- =?utf-8?B?YzJpdVNXWGpjRkpHSTlsaGNWd3NzUjlCbTRDWUdERW12a2NMSGRUY3B5U0Jl?=
- =?utf-8?B?UG9zUWl0ZjRJUnBaZmdnZ2tjSUlSdHNmVWxSU1FCdXVUVHgyMjFwNUx5SzRZ?=
- =?utf-8?B?L1g0b1JOTTdjNkpQaHFsYTkycS9mVG1qeXBqNlI3aE1PNC9DS3VXWHpSRXNa?=
- =?utf-8?B?ejlLOW5VU2UxeUtCVlVyUDNhOTduRzZFYlk0ZU5ZQ1FJS0V5eTlVZ1hWVk16?=
- =?utf-8?B?MTJnaGxuWi90dmVBS2tXQThsZXh5Z2dkdWRjQmtlY3g5UG9UYTRrOEJPd29X?=
- =?utf-8?B?aWtoTE5zQ0h5MVZLM1pKK0VSM1FXSUVrOENaSHBiN2s5SmJCZjR6czZEMDJu?=
- =?utf-8?B?d3FNa2dtY0xzVzRFYUQ5anQ1RWlEZVY3SXptOXFiSW1IVU50b0dlNnBqR3NP?=
- =?utf-8?B?STJpZnVkVk9Xcko4MkwxTEFhQ1g0M1R5UGpneVBNdktYbkprdG40SVF0T1J4?=
- =?utf-8?B?M093SXVnMDZ2NjMvRkszWEFvVFlIOElmcXRsRytKQ0Npd2VUUUQ1Z0xaNDl3?=
- =?utf-8?B?djFWNXdmRTZZQU9WajVESG85SVdwYmtUajQwVHMxdFRUbDcxa2lIcWFGNUV4?=
- =?utf-8?B?ZS9wZm4vTCtqQS9OTzN4Wjh3ZkVTb0dsY1Q4SlBMODZKR0ZlY1pHOHNRZkh3?=
- =?utf-8?B?SHM3a0FUcktTVnkvWVhvS0hNRWYxNy9RRVczblpNbkxHc1luNFFRUXVwVGpQ?=
- =?utf-8?B?SkZoeVB6V3llZVlVTXFGWExoRnpEbGF2ck92RDRaQnRrNi84cW85VUxqeGMx?=
- =?utf-8?B?djBNSTRKZGdnNWpNQThwUTZTWitKelBLUjVQZXpodmMzK3puSHE5c1M3ckhD?=
- =?utf-8?B?MEJIcG91eTRNZHJiNFBLVUdnQldTVHhSM01xdmJCNzBjbmpXcXN3dkdVbjUv?=
- =?utf-8?B?V0lRT3JJQ0dUbjk0UklEZ3hpMHd2eG1hNFVISGx1b1BxalV6MmlLNVJ5bHNl?=
- =?utf-8?B?dGQ2di9ReEhwc3VFUHVoM0J4Zk5tbGhleFkyTEJBMnZzVjJuQjkwbWpMMFVJ?=
- =?utf-8?B?Q2hMWklHRFRYOElFaTRJUWZCNjBXWkg2dGVlSW44NUdjeXFoOWd3L1B1T3J3?=
- =?utf-8?B?eUpxb0wxOEc2NTRrZlJ5cHdvZDdpL3llQjZPNVVoTTRQdkp5SUVsSkt2b0hD?=
- =?utf-8?B?ZEJGa1dqNWx0MkhoQU5GWDdFMkU1WnMrQkxWa1RSSG5SUU5RQ1NwZXJ3T3Bx?=
- =?utf-8?B?YnMzWjFoS3RVTHI1Sm9ZMHIzMXZQTUFDdVdZRk1NZ3k5VmVpd2xhWWdEeGFo?=
- =?utf-8?B?eS9WU2xma202SEpyMWd3em9HVjVBb3hrd0lBYkZsaEtpMlRMMlBmaFVVQjEy?=
- =?utf-8?B?OUpLaGZyVjNuUlF4SmluaXpBdC81aTBMRTBMWEo1ZjRSSGZkbkJnemg4dE12?=
- =?utf-8?B?UDBZbTVlbmVIRjlTYmcybGdldUhBcCtIOUx6QnN0S215Z1VoQTlyMnNETW9P?=
- =?utf-8?B?Z3crSlc4MzM0SWx5c29FQnU1dnVnVmZhTjFNRnRzMS8rbmRhSVhZcEoxNk1F?=
- =?utf-8?B?YVRZa1VSQjI2RWo0aGw1aGVvUU1ySWRpUW9lakRuRGF5Y3lINjF2ekRVR1pJ?=
- =?utf-8?Q?hF0Ah4j71utK3t9f8wyeTSde+?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 823068f0-c5f9-41d2-f7cc-08dc0c888428
-X-MS-Exchange-CrossTenant-AuthSource: BL1PR12MB5874.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Jan 2024 18:19:25.3447
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: +LAv94oHvXnChqcvQY2fWGbTAGQcyKEWPN/aFZhDSZl13J25OJ9kHeYnyeK3o/oh
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CYXPR12MB9317
+References: <20231222193607.15474-1-graf@amazon.com> <20231222195144.24532-1-graf@amazon.com>
+ <20231222195144.24532-2-graf@amazon.com>
+In-Reply-To: <20231222195144.24532-2-graf@amazon.com>
+From: Rob Herring <robh+dt@kernel.org>
+Date: Wed, 3 Jan 2024 11:48:58 -0700
+X-Gmail-Original-Message-ID: <CAL_JsqJSYgq7BJnSxwKebEX8e9tL-FG74rT+eLJ4e32kKZC30g@mail.gmail.com>
+Message-ID: <CAL_JsqJSYgq7BJnSxwKebEX8e9tL-FG74rT+eLJ4e32kKZC30g@mail.gmail.com>
+Subject: Re: [PATCH v2 07/17] kexec: Add documentation for KHO
+To: Alexander Graf <graf@amazon.com>
+Cc: linux-kernel@vger.kernel.org, linux-trace-kernel@vger.kernel.org, 
+	linux-mm@kvack.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, kexec@lists.infradead.org, 
+	linux-doc@vger.kernel.org, x86@kernel.org, 
+	Eric Biederman <ebiederm@xmission.com>, "H. Peter Anvin" <hpa@zytor.com>, Andy Lutomirski <luto@kernel.org>, 
+	Peter Zijlstra <peterz@infradead.org>, Steven Rostedt <rostedt@goodmis.org>, 
+	Andrew Morton <akpm@linux-foundation.org>, Mark Rutland <mark.rutland@arm.com>, 
+	Tom Lendacky <thomas.lendacky@amd.com>, Ashish Kalra <ashish.kalra@amd.com>, 
+	James Gowans <jgowans@amazon.com>, 
+	Stanislav Kinsburskii <skinsburskii@linux.microsoft.com>, arnd@arndb.de, pbonzini@redhat.com, 
+	madvenka@linux.microsoft.com, Anthony Yznaga <anthony.yznaga@oracle.com>, 
+	Usama Arif <usama.arif@bytedance.com>, David Woodhouse <dwmw@amazon.co.uk>, 
+	Benjamin Herrenschmidt <benh@kernel.crashing.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-
-On 1/3/24 11:54 AM, Mathieu Poirier wrote:
-> Hi Tanmay,
+On Fri, Dec 22, 2023 at 12:52=E2=80=AFPM Alexander Graf <graf@amazon.com> w=
+rote:
 >
-> On Fri, Dec 15, 2023 at 03:57:24PM -0800, Tanmay Shah wrote:
-> > Add properties as per new bindings in zynqmp remoteproc node
-> > to represent TCM address and size.
-> > 
-> > This patch also adds alternative remoteproc node to represent
-> > remoteproc cluster in split mode. By default lockstep mode is
-> > enabled and users should disable it before using split mode
-> > dts. Both device-tree nodes can't be used simultaneously one
-> > of them must be disabled. For zcu102-1.0 and zcu102-1.1 board
-> > remoteproc split mode dts node is enabled and lockstep mode
-> > dts is disabled.
-> > 
-> > Signed-off-by: Tanmay Shah <tanmay.shah@amd.com>
-> > ---
-> >  .../boot/dts/xilinx/zynqmp-zcu102-rev1.0.dts  |  8 +++
-> >  arch/arm64/boot/dts/xilinx/zynqmp.dtsi        | 60 +++++++++++++++++--
-> >  2 files changed, 63 insertions(+), 5 deletions(-)
-> > 
-> > diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-rev1.0.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-rev1.0.dts
-> > index c8f71a1aec89..495ca94b45db 100644
-> > --- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-rev1.0.dts
-> > +++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-rev1.0.dts
-> > @@ -14,6 +14,14 @@ / {
-> >  	compatible = "xlnx,zynqmp-zcu102-rev1.0", "xlnx,zynqmp-zcu102", "xlnx,zynqmp";
-> >  };
-> >  
-> > +&rproc_split {
-> > +	status = "okay";
-> > +};
-> > +
-> > +&rproc_lockstep {
-> > +	status = "disabled";
-> > +};
-> > +
-> >  &eeprom {
-> >  	#address-cells = <1>;
-> >  	#size-cells = <1>;
-> > diff --git a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-> > index b61fc99cd911..602e6aba7ac5 100644
-> > --- a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-> > +++ b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-> > @@ -247,19 +247,69 @@ fpga_full: fpga-full {
-> >  		ranges;
-> >  	};
-> >  
-> > -	remoteproc {
-> > +	rproc_lockstep: remoteproc@ffe00000 {
-> >  		compatible = "xlnx,zynqmp-r5fss";
-> >  		xlnx,cluster-mode = <1>;
-> >  
-> > -		r5f-0 {
-> > +		#address-cells = <2>;
-> > +		#size-cells = <2>;
-> > +
-> > +		ranges = <0x0 0x0 0x0 0xffe00000 0x0 0x20000>,
-> > +			 <0x0 0x20000 0x0 0xffe20000 0x0 0x20000>,
-> > +			 <0x1 0x0 0x0 0xffe90000 0x0 0x10000>,
-> > +			 <0x1 0x20000 0x0 0xffeb0000 0x0 0x10000>;
+> With KHO in place, let's add documentation that describes what it is and
+> how to use it.
 >
-> As far as I can tell, in lockstep mode the last two entries are not needed.
-> This is also contrasting with that is in the bindings, which is quite confusing.
+> Signed-off-by: Alexander Graf <graf@amazon.com>
+> ---
+>  Documentation/kho/concepts.rst   | 88 ++++++++++++++++++++++++++++++++
+>  Documentation/kho/index.rst      | 19 +++++++
+>  Documentation/kho/usage.rst      | 57 +++++++++++++++++++++
+>  Documentation/subsystem-apis.rst |  1 +
+>  4 files changed, 165 insertions(+)
+>  create mode 100644 Documentation/kho/concepts.rst
+>  create mode 100644 Documentation/kho/index.rst
+>  create mode 100644 Documentation/kho/usage.rst
+>
+> diff --git a/Documentation/kho/concepts.rst b/Documentation/kho/concepts.=
+rst
+> new file mode 100644
+> index 000000000000..8e4fe8c57865
+> --- /dev/null
+> +++ b/Documentation/kho/concepts.rst
+> @@ -0,0 +1,88 @@
+> +.. SPDX-License-Identifier: GPL-2.0-or-later
+> +
+> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> +Kexec Handover Concepts
+> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> +
+> +Kexec HandOver (KHO) is a mechanism that allows Linux to preserve state =
+-
+> +arbitrary properties as well as memory locations - across kexec.
+> +
+> +It introduces multiple concepts:
+> +
+> +KHO Device Tree
+> +---------------
+> +
+> +Every KHO kexec carries a KHO specific flattened device tree blob that
+> +describes the state of the system. Device drivers can register to KHO to
+> +serialize their state before kexec. After KHO, device drivers can read
+> +the device tree and extract previous state.
 
-Hi Mathieu,
+How does this work with kexec when there is also the FDT for the h/w?
+The h/w FDT has a /chosen property pointing to this FDT blob?
 
-Yes I agree. I think it should be same as of bindings example.
+> +
+> +KHO only uses the fdt container format and libfdt library, but does not
+> +adhere to the same property semantics that normal device trees do: Prope=
+rties
+> +are passed in native endianness and standardized properties like ``regs`=
+` and
+> +``ranges`` do not exist, hence there are no ``#...-cells`` properties.
 
-However, I will have to test and make sure no impact on driver. I will fix it in next revision.
+I think native endianness is asking for trouble. libfdt would need
+different swap functions here than elsewhere in the kernel for example
+which wouldn't even work. So you are just crossing your fingers that
+you aren't using any libfdt functions that swap. And when I sync
+dtc/libfdt and that changes, I might break you.
 
-Meanwhile, are you going to review driver changes as well or do you want to wait for next revision ?
+Also, if you want to dump the FDT and do a dtc DTB->DTS pass, it is
+not going to be too readable given that outputs swapped 32-bit values
+for anything that's a 4 byte multiple.
 
-Tanmay
+> +
+> +KHO introduces a new concept to its device tree: ``mem`` properties. A
+> +``mem`` property can inside any subnode in the device tree. When present=
+,
+> +it contains an array of physical memory ranges that the new kernel must =
+mark
+> +as reserved on boot. It is recommended, but not required, to make these =
+ranges
+> +as physically contiguous as possible to reduce the number of array eleme=
+nts ::
+> +
+> +    struct kho_mem {
+> +            __u64 addr;
+> +            __u64 len;
+> +    };
+> +
+> +After boot, drivers can call the kho subsystem to transfer ownership of =
+memory
+> +that was reserved via a ``mem`` property to themselves to continue using=
+ memory
+> +from the previous execution.
+> +
+> +The KHO device tree follows the in-Linux schema requirements. Any elemen=
+t in
+> +the device tree is documented via device tree schema yamls that explain =
+what
+> +data gets transferred.
 
+If this is all separate, then I think the schemas should be too. And
+then from my (DT maintainer) perspective, you can do whatever you want
+here (like FIT images). The dtschema tools are pretty much only geared
+for "normal" DTs. A couple of problems come to mind. You can't exclude
+or change standard properties. The decoding of the DTB to run
+validation assumes big endian. We could probably split things up a
+bit, but you may be better off just using jsonschema directly. I'm not
+even sure running validation here would that valuable. You have 1
+source of code generating the DT and 1 consumer. Yes, there's
+different kernel versions to deal with, but it's not 100s of people
+creating 1000s of DTs with 100s of nodes.
 
-> > +
-> > +		r5f@0 {
-> > +			compatible = "xlnx,zynqmp-r5f";
-> > +			reg = <0x0 0x0 0x0 0x20000>, <0x0 0x20000 0x0 0x20000>;
-> > +			reg-names = "atcm", "btcm";
-> > +			power-domains = <&zynqmp_firmware PD_RPU_0>,
-> > +					<&zynqmp_firmware PD_R5_0_ATCM>,
-> > +					<&zynqmp_firmware PD_R5_0_BTCM>;
-> > +			memory-region = <&rproc_0_fw_image>;
-> > +		};
-> > +
-> > +		r5f@1 {
-> > +			compatible = "xlnx,zynqmp-r5f";
-> > +			reg = <0x1 0x0 0x0 0x10000>, <0x1 0x20000 0x0 0x10000>;
-> > +			reg-names = "atcm", "btcm";
-> > +			power-domains = <&zynqmp_firmware PD_RPU_1>,
-> > +					<&zynqmp_firmware PD_R5_1_ATCM>,
-> > +					<&zynqmp_firmware PD_R5_1_BTCM>;
-> > +			memory-region = <&rproc_1_fw_image>;
-> > +		};
-> > +	};
-> > +
-> > +	rproc_split: remoteproc-split@ffe00000 {
-> > +		status = "disabled";
-> > +		compatible = "xlnx,zynqmp-r5fss";
-> > +		xlnx,cluster-mode = <0>;
-> > +
-> > +		#address-cells = <2>;
-> > +		#size-cells = <2>;
-> > +
-> > +		ranges = <0x0 0x0 0x0 0xffe00000 0x0 0x10000>,
-> > +			 <0x0 0x20000 0x0 0xffe20000 0x0 0x10000>,
-> > +			 <0x1 0x0 0x0 0xffe90000 0x0 0x10000>,
-> > +			 <0x1 0x20000 0x0 0xffeb0000 0x0 0x10000>;
-> > +
-> > +		r5f@0 {
-> >  			compatible = "xlnx,zynqmp-r5f";
-> > -			power-domains = <&zynqmp_firmware PD_RPU_0>;
-> > +			reg = <0x0 0x0 0x0 0x10000>, <0x0 0x20000 0x0 0x10000>;
-> > +			reg-names = "atcm", "btcm";
-> > +			power-domains = <&zynqmp_firmware PD_RPU_0>,
-> > +					<&zynqmp_firmware PD_R5_0_ATCM>,
-> > +					<&zynqmp_firmware PD_R5_0_BTCM>;
-> >  			memory-region = <&rproc_0_fw_image>;
-> >  		};
-> >  
-> > -		r5f-1 {
-> > +		r5f@1 {
-> >  			compatible = "xlnx,zynqmp-r5f";
-> > -			power-domains = <&zynqmp_firmware PD_RPU_1>;
-> > +			reg = <0x1 0x0 0x0 0x10000>, <0x1 0x20000 0x0 0x10000>;
-> > +			reg-names = "atcm", "btcm";
-> > +			power-domains = <&zynqmp_firmware PD_RPU_1>,
-> > +					<&zynqmp_firmware PD_R5_1_ATCM>,
-> > +					<&zynqmp_firmware PD_R5_1_BTCM>;
-> >  			memory-region = <&rproc_1_fw_image>;
-> >  		};
-> >  	};
-> > -- 
-> > 2.25.1
-> > 
+You might look at the netlink stuff which is using its own yaml syntax
+to generate code and jsonschema is used to validate the yaml.
+
+Rob
 
