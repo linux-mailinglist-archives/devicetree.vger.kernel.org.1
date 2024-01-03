@@ -1,326 +1,220 @@
-Return-Path: <devicetree+bounces-29377-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29378-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8D85822927
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 08:57:36 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5746D8229D9
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 10:02:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EA27028520E
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 07:57:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D63FD1F23D1D
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 09:02:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFF7318043;
-	Wed,  3 Jan 2024 07:57:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67199182A4;
+	Wed,  3 Jan 2024 09:02:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="SzhiVU4U"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="3UW8I2oO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (mail-bn8nam11on2041.outbound.protection.outlook.com [40.107.236.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC5C4182A2;
-	Wed,  3 Jan 2024 07:57:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1704268648; x=1735804648;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-transfer-encoding:mime-version;
-  bh=y4e1hgBtuxR5D/7Xh+Gb1aESCcIHqUe7uEsR2lbJ2pc=;
-  b=SzhiVU4UaWkgGgorwjDGiYabwUtIRdY56D1FtoRifK5EUQjtVj6pQChf
-   iidbMO+u8724/7IUVHgUgNIcId7cFRTqdqCcPX65rIxBLFrt6pagJQTwE
-   l/jzNUFsOksKIe37RrHBtqKzF3eB0eEmah0f31NhcKCtJx1BTn7XdoZmq
-   rtkrlvd05bgokkxT0ICeKxv7d1Hu1kUZ0VQ7WHeNPybmgBlGVbR28czyH
-   G29zgNKovhgrnTwiGcaa+YGXSZlZ/y6uiYJ3x89ALqykXcVGEAB6Z3GM4
-   Vvj8Hi62bVM7bTZUs64jE8DO6TwGhydE5ZudWNxr1zR5u+EFyeY5hQQJc
-   A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10941"; a="461285967"
-X-IronPort-AV: E=Sophos;i="6.04,327,1695711600"; 
-   d="scan'208";a="461285967"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
-  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Jan 2024 23:57:27 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10941"; a="845802655"
-X-IronPort-AV: E=Sophos;i="6.04,327,1695711600"; 
-   d="scan'208";a="845802655"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
-  by fmsmga008.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384; 02 Jan 2024 23:57:27 -0800
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Tue, 2 Jan 2024 23:57:26 -0800
-Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
- ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Tue, 2 Jan 2024 23:57:26 -0800
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Tue, 2 Jan 2024 23:57:26 -0800
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.168)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Tue, 2 Jan 2024 23:57:26 -0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A43F61862A;
+	Wed,  3 Jan 2024 09:02:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=KQf3k0TkU8ORZfvi9uIkEm8gLUa7cFZ0BAYPRrsIxXIhBbs5DIJIrXETENUA918u2tEaysHb7rSd8uBKQOVm0dzeh4qnIt8ZiB06obHd8d66BozNz/+489uEKPWo1SbGKDBFZm5ZxuAiSxeClZtGEctL6TxEezabGJMKs86f59je6Bc8Vc8gi61GTVJ5/hfyYteLT79eoy4pWk7bzkK4Wr8IzuzLcCGZhtFNTM8tkltGghId6uw6Gd8PKQN0YCB1QULAjKTTlJZHvvPLaJiIzxa5G30iL4rLFLUlRnqFdvmUpdjphUDvRZ7IRkOOaGdnCl7gcO4EKe5iew6+a7dlYA==
+ b=UZNExqaDBz3n7uBwILN7L+5rPdqxOx2Lo3GyWAy+sgYbi1qcBtepS9Xt845aGpBaJii7+65hHVJGwKEdTHGEzD8Kltoq73Wd2SpKy/p7wWRoh8IhnzJM2k9znjjAmwjmIZXDvvwYzh7HdOb1RwjiR3iG1vGm4ZchEn02Zmbl04TiQoVhFOLQula8UbVG8w3L2E2eXRtlwhch7cf0FsoD7gmvC2JINc0P8tqvIbCGTvT1CL/XfmPPdjl6pzg8KksjWI9BPw0fgdTDKjckdVtpDIx0KHm8jiMWIMdTlYXjoqojd6f+bdN69d0vZ+ilI6JVByKyu8gnjv0JObDzpEWfAQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=TOUzaiRJFGmUgt8czOK5QjVW6wqpqsSSzfecEzUah8A=;
- b=k4QCgMk19cTREHDU5aZCf3K6t5om2hg3rNT1lJdYFaFPOw3s5cbOC0BycngdEIgLtdExalI1FZQkbT8LycrYLC00gHfYvkSZ2wVs8QOyhEKGfaiBh79OjfF7JTponQMoJJpxYEfIMUcYWIYqdm24Bqptq7G/ERVrwKLD1a7XMvGkKj1H/0PDr0lSY3VqhhsqVaC13iR8Nh6hZKJeXqSOBvnoneccWlSyJ3mhLoMHAMCG0ZW8O+Jv8GJtzyL4eg2O2lLuk2TUYpD/YJQ0hMiqniWQfJx7UeyNeLMwnjTER9qcOY2gqLvTo5DIv5i/IlkPbZcLlzvbFOWRlrnWeFlNCg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from CH0PR11MB5490.namprd11.prod.outlook.com (2603:10b6:610:d5::6)
- by BN9PR11MB5337.namprd11.prod.outlook.com (2603:10b6:408:136::23) with
+ bh=y6MqCfOD6eQQ1Eh8/I1RNjGVLq5YSYszEpvYybTxlME=;
+ b=QQPh20T0Lr0J9FqDWdJ4NnmCuUB9ohC0ra0yqpFXaPU6lHp1D/6hgD7pcr5JEFiyOYyNeVeBYgyeHWAwFY8lxivqNIVVXszxYgJk7LysFuODReBE6rO1sQS18YnF6Nn3qyRL12i1Kd2s2d9Ft/91d7zfVQkutgQf3mgWj/mHMjDSZ5wRgBQWMTrj+OXmmajrFIpND6+QjuvVz0uQPcXPNuNh4wjvkd5hrjJ/26k1glnyhAuz46nk/iG2dp3r+SsO6XCR+nV+B7U8pGCtJu307cXfnEKNZ0+7j1gFM8AKRrkNYhUYYbevYajwGKm5Cgmta2oL6kkWU5l2JknyDg3RkA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=y6MqCfOD6eQQ1Eh8/I1RNjGVLq5YSYszEpvYybTxlME=;
+ b=3UW8I2oOuq3Tcgz2X3c0CqqaPIsgJ2ndvhTnMl1j+CtHzQlaap/jZTG8YFY92R+d9IsX+LsYoIE9/6BGkD81vcKd9xppTW+86mf+R58IV8ATbgM435MZV7fyM1aLSxZH4AMu6rWczQ4IKUh0SfPce+bJJ9vyrNtEKb3CKHlnfgQ=
+Received: from DS7P222CA0021.NAMP222.PROD.OUTLOOK.COM (2603:10b6:8:2e::20) by
+ SA3PR12MB7880.namprd12.prod.outlook.com (2603:10b6:806:305::18) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7159.13; Wed, 3 Jan
- 2024 07:57:23 +0000
-Received: from CH0PR11MB5490.namprd11.prod.outlook.com
- ([fe80::9afc:fa9d:5f42:8fd7]) by CH0PR11MB5490.namprd11.prod.outlook.com
- ([fe80::9afc:fa9d:5f42:8fd7%7]) with mapi id 15.20.7159.013; Wed, 3 Jan 2024
- 07:57:23 +0000
-From: "Swee, Leong Ching" <leong.ching.swee@intel.com>
-To: Serge Semin <fancer.lancer@gmail.com>
-CC: Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue
-	<alexandre.torgue@foss.st.com>, Jose Abreu <joabreu@synopsys.com>, "David S .
- Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, "Jakub
- Kicinski" <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring
-	<robh+dt@kernel.org>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
-	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-	"linux-stm32@st-md-mailman.stormreply.com"
-	<linux-stm32@st-md-mailman.stormreply.com>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "netdev@vger.kernel.org"
-	<netdev@vger.kernel.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, Teoh Ji Sheng <ji.sheng.teoh@intel.com>
-Subject: RE: [PATCH net-next v1 3/4] net: stmmac: Add support for TX/RX
- channel interrupt
-Thread-Topic: [PATCH net-next v1 3/4] net: stmmac: Add support for TX/RX
- channel interrupt
-Thread-Index: AQHaNJox4jd+E/aBcUiXrRKS2mOw+bC12C8AgBHyAHA=
-Date: Wed, 3 Jan 2024 07:57:23 +0000
-Message-ID: <CH0PR11MB54909520AD7A8B5FE4C68334CF60A@CH0PR11MB5490.namprd11.prod.outlook.com>
-References: <20231222054451.2683242-1-leong.ching.swee@intel.com>
- <20231222054451.2683242-4-leong.ching.swee@intel.com>
- <qyiveqz3egzctymkwflgw4u6ubnpiss2x244fsepop7t3ve7ev@7x24oaiferuy>
-In-Reply-To: <qyiveqz3egzctymkwflgw4u6ubnpiss2x244fsepop7t3ve7ev@7x24oaiferuy>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: CH0PR11MB5490:EE_|BN9PR11MB5337:EE_
-x-ms-office365-filtering-correlation-id: d110b593-97ba-4e44-359c-08dc0c319e82
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: gK2SFAU/KR7IlLt1DmVMILqbqE9ZrwPVdJNvGaoefc37BEuN0fuf+ZrrGIhAFMJyrTdcA4ptC8w/N13QdZ9YQs8Znz0iS1v0Br4mAl63V/jdmgFpUbyvFjQwgWDPHXfm6gu9YVe7Zl6oYvEhzeyyc4lbRrWHppLMpm9XRG1fjy8xXBvBN4lvMkgTX3NBjUyhQmJnemIhsVu2HIM9lDUO29YZLYQCj74zgvlPiJfV/O4MypFpJPDyFMRRU9/joiONI5TXxGb32rKK2GOdEgzFjA2aDhToaaO4WRMGLvaJJNuXhyRoscwkrIDGiWA5/EuHH92+xvQUp+HJpFLxdEaf2W6qBRJNa6O0QcUNcSEsTTFnS5OlbaT1yqybfVxDlnxkvTapceXxQPLcdbYP+0ri8VgYsdCKE3qimTJ/qD9Q/anBUUU3nTpIGAt9ptjAdbjvw/Lcd2y5af+AvsuSQcaycpexPdP3LAZIoslMVDUFSw6hpe1w/5wMFUxD98M33p/kE/JN8YZ+MVCfzo7UEeTMIrEWOrqhMAfGDuw9SC65JcDvEdpHis+iyAazWaqThxjHMF5vuKV36VM8GhqPFRJEprF5aw6YRDJGPrcRs+d4n7zZ81HJJVwMuBklFurjlhjB8/EN8FmzCCc9Qb0rdOz6qxlhnljyAgcBd1baeLwyL+E=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CH0PR11MB5490.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(136003)(366004)(396003)(346002)(376002)(39860400002)(230922051799003)(230173577357003)(230273577357003)(186009)(64100799003)(1800799012)(451199024)(5660300002)(7416002)(2906002)(4326008)(8676002)(8936002)(316002)(52536014)(76116006)(66446008)(64756008)(6916009)(66476007)(66556008)(66946007)(55016003)(54906003)(107886003)(26005)(9686003)(83380400001)(41300700001)(38100700002)(122000001)(82960400001)(86362001)(33656002)(6506007)(7696005)(478600001)(71200400001)(53546011)(38070700009);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?FPufNI5ATofH+7CZ1I/8pRGQax7iQ9wryZUJ8jAUUL3oFF8MKVvyFKGVtdnw?=
- =?us-ascii?Q?XwtV4yB+aLg8y62QwMuk32wgAH1P4sPqaegaasBacOxdLE1QFOrmnxGlqb7H?=
- =?us-ascii?Q?ziQJnqUhobb+yX/XXRz4iT8/NJq7ivlwV1muBrinvMU3VfE2EhhCRd29gE8v?=
- =?us-ascii?Q?s57EDdYvM/ncEElxocSz2sqnKIGZtekGT5Fe4d3vmJzc/7nYJ/VGqsb1JdaP?=
- =?us-ascii?Q?og6UL6AaDDnuQ2oja2k84uK0dLPzJ1g1EdOgIwdGVWW1TKhKsHi763EzRIdZ?=
- =?us-ascii?Q?Z4SqF58HAqOlY9kfFIsqQ1jRv7g7nB0y+M1rOtYlYmoV5EKU3gXGzoubIepa?=
- =?us-ascii?Q?7NIcQvpnx2SpV4dqV1IogLAgvdY8v13XWLtFcjC1j+jsSrhmlnpR5NJU8JaG?=
- =?us-ascii?Q?Ye1MtT29MerAv0jf1P/xV3jKSKwCIE4zwSmL3jYlf8OgfdJig81jzp9Jukiz?=
- =?us-ascii?Q?tqcgnGjTOlxcgHtL8EE5JJvBVfuYNdZkEbS8ibonhlrEpxwV6IecoCgkviBI?=
- =?us-ascii?Q?ywPHwEZjsW7OiSzfU4jF0EaIfryl+aBkjBdrbosiS3m/YasHS2Vq/uF32QJl?=
- =?us-ascii?Q?sQ5qV0BCf1W/aMheqQDpjHCIWMQZFQI2wEXfYBteF2oZihIUrSSzei0KlEE+?=
- =?us-ascii?Q?2j9jRqo8eecgUaf5B7UIoNSj+ieLq5j7O3ewUrhDT5ehlNOcJrthaXyJu0OJ?=
- =?us-ascii?Q?wVc/iyzOivRU5NdGA/v+XneMATy2/hViuF4n0h8sabexeRraVoXxdC0BJ5NB?=
- =?us-ascii?Q?NuvYvGct1OStrvv8FJfPx1W4mzlDN7Y11xEnZyxqtX2w0YP6JHQ/DTIOdClD?=
- =?us-ascii?Q?3h/AZODA1gjm/PXBBuSi0ZHRgwvNJTlvSEdguZ906HNL6M7WskKHsTpHFvg6?=
- =?us-ascii?Q?mWQ9Sk2ohKlHM+XBLwAlXI1zVQ0b/efC8Tn4kuSotv+gy3ha5eO7+zpnsoSM?=
- =?us-ascii?Q?94YyzxI81P8VgYd32x1m0h0UF2CjDckhi7fvSnKPPHMxW7uohjTwoooHY6FY?=
- =?us-ascii?Q?AFFvJjLwGxQdBEsX1qsGhVfNmmvmAiASqnschrK6Lq2SaQBZN+j/6gfOCRq/?=
- =?us-ascii?Q?bEjHIz7Cxoj6dHxdjTnx9KV5PVwCVSnvMf8cSqvAlq1U+UqzWRrKdUJG4TAA?=
- =?us-ascii?Q?z3VE7q4Ohjj9dvn/8sT6OqhUCkjysZzDMjP19hwyt17zAeNgCatUvrcwzYhs?=
- =?us-ascii?Q?4FgbIL99Tlz8phXUNUzUaREPST5xf+t5vDDr2/vUh+pCsWowzhVHc5BIGaeG?=
- =?us-ascii?Q?XbteeDZFhVpOqaSets+9mrJTaNRPjHM5nBxom09VL0bEYmUMxOLZHH0BoK1m?=
- =?us-ascii?Q?krEF5uYfIxceu7jAvc06j2dAbigfQuu8GPpJ+tqVOyuQH1JVSpg1QFMBLKe6?=
- =?us-ascii?Q?ZNYgbOrHW+yKMMQDvr3sjpH8n8ClVQbH0mjF0hwOkiQhTge6p3ozduQV8uMp?=
- =?us-ascii?Q?vl3s1vmWGaQpCFb6sLonoS0AhHiwRWeGYYfVke4lRg16kxKut7xSBoKYkmgM?=
- =?us-ascii?Q?mXEX+K03CR5UIHr3RcuBYrc0PomvlNQOeZ/KLTjBDMZcJ+exdtXFVSOEPLKA?=
- =?us-ascii?Q?TnrLZVHn1Ca8DHlOvtj7jMsLvk/5ALatthGRhbdfSqODaKkBsUKBoAUfJ2Fq?=
- =?us-ascii?Q?YA=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7135.25; Wed, 3 Jan
+ 2024 09:02:10 +0000
+Received: from CY4PEPF0000E9D6.namprd05.prod.outlook.com
+ (2603:10b6:8:2e:cafe::d6) by DS7P222CA0021.outlook.office365.com
+ (2603:10b6:8:2e::20) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7159.13 via Frontend
+ Transport; Wed, 3 Jan 2024 09:02:09 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CY4PEPF0000E9D6.mail.protection.outlook.com (10.167.241.80) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.7159.9 via Frontend Transport; Wed, 3 Jan 2024 09:02:09 +0000
+Received: from localhost (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.34; Wed, 3 Jan
+ 2024 03:02:03 -0600
+From: Michal Simek <michal.simek@amd.com>
+To: <linux-kernel@vger.kernel.org>, <monstr@monstr.eu>,
+	<michal.simek@xilinx.com>, <git@xilinx.com>
+CC: Conor Dooley <conor+dt@kernel.org>, Jarkko Sakkinen <jarkko@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Peter Huewe
+	<peterhuewe@gmx.de>, Rob Herring <robh+dt@kernel.org>,
+	<devicetree@vger.kernel.org>
+Subject: [PATCH] dt-bindings: security: tpm: Convert TPM tis spi to yaml
+Date: Wed, 3 Jan 2024 10:01:46 +0100
+Message-ID: <0f59acbb394cd09ae2a7950d8c01f8e40abf9f34.1704272496.git.michal.simek@amd.com>
+X-Mailer: git-send-email 2.36.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CH0PR11MB5490.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d110b593-97ba-4e44-359c-08dc0c319e82
-X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Jan 2024 07:57:23.1675
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3294; i=michal.simek@amd.com; h=from:subject:message-id; bh=in8bCANvdWINK2juUHEULdmDc8loyOis1d6CLD/bSyU=; b=owGbwMvMwCR4yjP1tKYXjyLjabUkhtSpSiW8Hdk3f/ud0fsasvOIp8eM9j7/A29yN/I6Chfsz kybIr26I5aFQZCJQVZMkUXa5sqZvZUzpghfPCwHM4eVCWQIAxenAEzkewnDgobpm54UrO3mNTtm pmYXbvuqQ/DaOYb5iXZbrX17TP9G6512N/aZyu7e4ioCAA==
+X-Developer-Key: i=michal.simek@amd.com; a=openpgp; fpr=67350C9BF5CCEE9B5364356A377C7F21FE3D1F91
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000E9D6:EE_|SA3PR12MB7880:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1157bd7e-dcd1-4ca7-9924-08dc0c3aab1b
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	HV+RQEdquUB/K9r7/3ZPgN6c1QvY2HBDpt2FzEWbpsWF1Gljy7Y1JCSu8fPbCL21zA55NXUDzjt0XoONNaXcmD2YIxrwd3c6u2Sg/rTP7pXV/HGSiG61QaCBvmMcTS2WlKReWcjJJ8w45jPI7Gw0xUqamRbcAJ6yZmdoXiiCEf3M6u+rsH2S85kcZ/9mLd4oxscqTm62eshxPanPghtQw+21TwUiGI7Etmg8p3NPhaSXLao9ZB9znfVFYT+fJgIx/Q5ZcCu62bYh1JgrDS2CXChHIhahn/si8QQgB4psIZJuvdk6pP1ZLwdE18NoRRm/S7Fga7iFfXwpYQslko881ylCEcuIgK541Qu7/6cWRorIMeu891cQfa6xpZR9HFv7eFrvAzCW41Wm0gpGFDZRqyJaZ5IataXLNvUZ7Bmb95ViVziMHG2VwN4fc9q6H9Rfq1fqp12vmgh9VG6A2z1Y3majrYkJtxG/zXKP2MLXGUWc+DGw2X9QcAgWT83FDPhaQiH0tVLYLNsfeHs/XFqiZkOwnlGoJ5/6zp9rMb1FvxES0IffeYEYHCuAd2JOKXeJtgVn0XTM/fYIE6tnJisNgVWoL24yAqMNyd/Pi2zeRB2NyJNnLxCqjvVi7yfAShHTK12H6vzqszuN+mZWmKEp3WDsj6zKTTU1S3tJKWaWMtD2teVOJ45D+W5bb6mQ1obt315VNS4Cz4nrKwSzMNZ2Mz0nXXgD6zkW6xihfLZHqi1Oe9YANr95pog9hwW9e/gjCmWaXUg+J43ZZNhbqFM0BQ==
+X-Forefront-Antispam-Report:
+	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230031)(4636009)(376002)(136003)(346002)(396003)(39860400002)(230922051799003)(1800799012)(451199024)(186009)(64100799003)(82310400011)(36840700001)(46966006)(40470700004)(5660300002)(15650500001)(2906002)(966005)(44832011)(41300700001)(478600001)(82740400003)(8936002)(356005)(81166007)(86362001)(47076005)(36756003)(83380400001)(26005)(16526019)(2616005)(336012)(36860700001)(426003)(316002)(4326008)(8676002)(110136005)(54906003)(70206006)(70586007)(6666004)(40480700001)(40460700003)(36900700001)(2101003);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Jan 2024 09:02:09.7023
  (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 7g7aEZKYlFE9+1sHvQ/nLVDM26zyyfqUBp42atoj1KJ3idJYmyIbrBYJliIw8D3ND4r2rvB2uAU1QZZ73sYhV7oZmzlxReSNfXTtDw6CpJs=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN9PR11MB5337
-X-OriginatorOrg: intel.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1157bd7e-dcd1-4ca7-9924-08dc0c3aab1b
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	CY4PEPF0000E9D6.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR12MB7880
 
-> -----Original Message-----
-> From: Serge Semin <fancer.lancer@gmail.com>
-> Sent: Saturday, December 23, 2023 5:49 AM
-> To: Swee, Leong Ching <leong.ching.swee@intel.com>
-> Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>; Alexandre Torgue
-> <alexandre.torgue@foss.st.com>; Jose Abreu <joabreu@synopsys.com>;
-> David S . Miller <davem@davemloft.net>; Eric Dumazet
-> <edumazet@google.com>; Jakub Kicinski <kuba@kernel.org>; Paolo Abeni
-> <pabeni@redhat.com>; Rob Herring <robh+dt@kernel.org>; Krzysztof
-> Kozlowski <krzysztof.kozlowski+dt@linaro.org>; Conor Dooley
-> <conor+dt@kernel.org>; Giuseppe Cavallaro <peppe.cavallaro@st.com>;
-> linux-stm32@st-md-mailman.stormreply.com; linux-arm-
-> kernel@lists.infradead.org; linux-kernel@vger.kernel.org;
-> netdev@vger.kernel.org; devicetree@vger.kernel.org; Teoh Ji Sheng
-> <ji.sheng.teoh@intel.com>
-> Subject: Re: [PATCH net-next v1 3/4] net: stmmac: Add support for TX/RX
-> channel interrupt
->=20
-> On Fri, Dec 22, 2023 at 01:44:50PM +0800, Leong Ching Swee wrote:
-> > From: Swee Leong Ching <leong.ching.swee@intel.com>
-> >
-> > Enable TX/RX channel interrupt registration for MAC that interrupts
-> > CPU through shared peripheral interrupt (SPI).
-> >
-> > Per channel interrupts and interrupt-names are registered through,
-> > Eg: 4 tx and 4 rx channels:
-> > interrupts =3D <GIC_SPI 100 IRQ_TYPE_LEVEL_HIGH>,
-> >              <GIC_SPI 101 IRQ_TYPE_LEVEL_HIGH>,
-> >              <GIC_SPI 102 IRQ_TYPE_LEVEL_HIGH>,
-> >              <GIC_SPI 103 IRQ_TYPE_LEVEL_HIGH>;
-> >              <GIC_SPI 104 IRQ_TYPE_LEVEL_HIGH>;
-> >              <GIC_SPI 105 IRQ_TYPE_LEVEL_HIGH>;
-> >              <GIC_SPI 106 IRQ_TYPE_LEVEL_HIGH>;
-> >              <GIC_SPI 107 IRQ_TYPE_LEVEL_HIGH>; interrupt-names =3D
-> > "dma_tx0",
-> >                   "dma_tx1",
-> >                   "dma_tx2",
-> >                   "dma_tx3",
-> >                   "dma_rx0",
-> >                   "dma_rx1",
-> >                   "dma_rx2",
-> >                   "dma_rx3";
-> >
-> > Signed-off-by: Teoh Ji Sheng <ji.sheng.teoh@intel.com>
-> > Signed-off-by: Swee Leong Ching <leong.ching.swee@intel.com>
-> > ---
-> >  .../ethernet/stmicro/stmmac/stmmac_platform.c | 24
-> > +++++++++++++++++++
-> >  1 file changed, 24 insertions(+)
-> >
-> > diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
-> > b/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
-> > index 70eadc83ca68..f857907f13a0 100644
-> > --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
-> > +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
-> > @@ -710,6 +710,8 @@
-> EXPORT_SYMBOL_GPL(devm_stmmac_probe_config_dt);
-> >  int stmmac_get_platform_resources(struct platform_device *pdev,
-> >  				  struct stmmac_resources *stmmac_res)  {
->=20
-> > +	char irq_name[8];
->=20
-> By DW XGMAC v2.x IP-core design there can be up to 16 Tx channels and
-> 12 Rx channels. Thus it's better to set irq_name size being at least
-> (strlen("dma_tx16") + 1) =3D=3D 9 beforehand since you are adding this co=
-de
-> anyway and for some reason didn't consider to pick the Jisheng'
-> patch up which fixed the MTL_MAX_TX_QUEUES/MTL_MAX_RX_QUEUES
-> macros.
->=20
-I only have 8 channels tx/rx dma irq setup, so I could not test 16 channels
-Patch. Will update to 9 in v2.
-> > +	int i;
->=20
-> Please add an empty line between the variables declaration and the next
-> statement.
->=20
-Thanks. Will update this in v2.
-> >  	memset(stmmac_res, 0, sizeof(*stmmac_res));
-> >
-> >  	/* Get IRQ information early to have an ability to ask for deferred
-> > @@ -719,6 +721,28 @@ int stmmac_get_platform_resources(struct
-> platform_device *pdev,
-> >  	if (stmmac_res->irq < 0)
-> >  		return stmmac_res->irq;
-> >
->=20
-> > +	/* For RX Channel */
-> > +	for (i =3D 0; i < MTL_MAX_RX_QUEUES; i++) {
-> > +		snprintf(irq_name, sizeof(irq_name), "dma_rx%i", i);
-> > +		stmmac_res->rx_irq[i] =3D
-> platform_get_irq_byname_optional(pdev, irq_name);
-> > +		if (stmmac_res->rx_irq[i] < 0) {
-> > +			if (stmmac_res->rx_irq[i] =3D=3D -EPROBE_DEFER)
-> > +				return -EPROBE_DEFER;
-> > +			break;
-> > +		}
-> > +	}
->=20
-> What about:
->=20
-> +	/* Get optional Tx/Rx DMA per-channel IRQs, which otherwise
-> +	 * are supposed to be delivered via the common MAC IRQ line
-> +	 */
-> +	for (i =3D 0; i < MTL_MAX_RX_QUEUES; i++) {
-> +		snprintf(irq_name, sizeof(irq_name), "dma_rx%i", i);
-> +		irq =3D platform_get_irq_byname_optional(pdev, irq_name);
-> +		if (irq =3D=3D -EPROBE_DEFER)
-> +			return irq;
-> +		else if (irq < 0)
-> +			break;
-> +
-> +		stmmac_res->rx_irq[i] =3D irq;
-> +	}
->=20
-> It's cleaner a bit with less indentations and doesn't pollute rx_irq[]/tx=
-_irq[]
-> arrays with the error numbers.
->=20
-Sure, will update this in v2.
-> > +
-> > +	/* For TX Channel */
-> > +	for (i =3D 0; i < MTL_MAX_TX_QUEUES; i++) {
-> > +		snprintf(irq_name, sizeof(irq_name), "dma_tx%i", i);
-> > +		stmmac_res->tx_irq[i] =3D
-> platform_get_irq_byname_optional(pdev, irq_name);
-> > +		if (stmmac_res->tx_irq[i] < 0) {
-> > +			if (stmmac_res->rx_irq[i] =3D=3D -EPROBE_DEFER)
-> > +				return -EPROBE_DEFER;
-> > +			break;
-> > +		}
-> > +	}
-> > +
->=20
-> Please move the Tx/Rx IRQs getting loops to the bottom of the
-> stmmac_get_platform_resources() method. Thus the order of the IRQs
-> getting would be the same as the order of the IRQs requests implemented i=
-n
-> the stmmac_request_irq_multi_msi() and
-> stmmac_request_irq_single() methods.
->=20
-> -Serge(y)
->=20
-Will move those methods to bottom in v2.
-> >  	/* On some platforms e.g. SPEAr the wake up irq differs from the
-> mac irq
-> >  	 * The external wake up irq can be passed through the platform code
-> >  	 * named as "eth_wake_irq"
-> > --
-> > 2.34.1
-> >
-> >
+Convert binding from txt to yaml. Enforce that node name starts with tpm@
+which should be generic enough for these devices.
+Deprecating tcg,tpm_tis-spi because it is using "_" which shouldn't be used
+by in compatible string that's why infineon compatible string is used for
+file name too.
+Also add current TPM maintainers and maintainers of this dt binding too.
+
+Signed-off-by: Michal Simek <michal.simek@amd.com>
+---
+
+I want to do just conversion but not really take care about this device.
+---
+ .../security/tpm/infineon,slb9670.yaml        | 54 +++++++++++++++++++
+ .../bindings/security/tpm/tpm_tis_spi.txt     | 23 --------
+ 2 files changed, 54 insertions(+), 23 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/security/tpm/infineon,slb9670.yaml
+ delete mode 100644 Documentation/devicetree/bindings/security/tpm/tpm_tis_spi.txt
+
+diff --git a/Documentation/devicetree/bindings/security/tpm/infineon,slb9670.yaml b/Documentation/devicetree/bindings/security/tpm/infineon,slb9670.yaml
+new file mode 100644
+index 000000000000..309b91881774
+--- /dev/null
++++ b/Documentation/devicetree/bindings/security/tpm/infineon,slb9670.yaml
+@@ -0,0 +1,54 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/security/tpm/infineon,slb9670.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Trusted Platform Module (TPM) with a SPI interface
++
++maintainers:
++  - Peter Huewe <peterhuewe@gmx.de>
++  - Jarkko Sakkinen <jarkko@kernel.org>
++
++properties:
++  $nodename:
++    pattern: "^tpm@[0-9a-f]{1,2}$"
++
++  compatible:
++    oneOf:
++      - enum:
++          - st,st33htpm-spi
++          - infineon,slb9670
++          - google,cr50
++      - const: tcg,tpm_tis-spi
++        deprecated: true
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - spi-max-frequency
++
++allOf:
++  - $ref: /schemas/spi/spi-peripheral-props.yaml#
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    spi {
++      #address-cells = <1>;
++      #size-cells = <0>;
++      tpm@1 {
++        compatible = "infineon,slb9670";
++        reg = <0x1>;
++        pinctrl-names = "default";
++        pinctrl-0 = <&pinctrl_tpm>;
++        spi-max-frequency = <20000000>;
++      };
++    };
+diff --git a/Documentation/devicetree/bindings/security/tpm/tpm_tis_spi.txt b/Documentation/devicetree/bindings/security/tpm/tpm_tis_spi.txt
+deleted file mode 100644
+index b800667da92b..000000000000
+--- a/Documentation/devicetree/bindings/security/tpm/tpm_tis_spi.txt
++++ /dev/null
+@@ -1,23 +0,0 @@
+-Required properties:
+-- compatible: should be one of the following
+-    "st,st33htpm-spi"
+-    "infineon,slb9670"
+-    "tcg,tpm_tis-spi"
+-- spi-max-frequency: Maximum SPI frequency (depends on TPMs).
+-
+-Optional SoC Specific Properties:
+-- pinctrl-names: Contains only one value - "default".
+-- pintctrl-0: Specifies the pin control groups used for this controller.
+-
+-Example (for ARM-based BeagleBoard xM with TPM_TIS on SPI4):
+-
+-&mcspi4 {
+-
+-
+-        tpm_tis@0 {
+-
+-                compatible = "tcg,tpm_tis-spi";
+-
+-                spi-max-frequency = <10000000>;
+-        };
+-};
+-- 
+2.36.1
+
 
