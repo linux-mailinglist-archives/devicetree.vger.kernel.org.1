@@ -1,206 +1,111 @@
-Return-Path: <devicetree+bounces-29481-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29489-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D20508233EE
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 18:55:00 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F2E382344F
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 19:22:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4E73CB20912
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 17:54:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CACC3284BC2
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 18:22:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96A821C2AF;
-	Wed,  3 Jan 2024 17:54:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A41BB1CA81;
+	Wed,  3 Jan 2024 18:22:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WRuUs5Eg"
+	dkim=pass (1024-bit key) header.d=siemens.com header.i=jan.kiszka@siemens.com header.b="A+VZDDNU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com [209.85.210.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mta-65-227.siemens.flowmailer.net (mta-65-227.siemens.flowmailer.net [185.136.65.227])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 204DD1CA85
-	for <devicetree@vger.kernel.org>; Wed,  3 Jan 2024 17:54:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pf1-f170.google.com with SMTP id d2e1a72fcca58-6d9af1f52bcso2938251b3a.3
-        for <devicetree@vger.kernel.org>; Wed, 03 Jan 2024 09:54:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704304469; x=1704909269; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=GqC8WuRh/8p1x9/33Rb+DGy4l29zRBxg2wDvMoE4m+M=;
-        b=WRuUs5Eg0+4cAurndDPkP/Y72dqOC6QEsAEHa068CKWO2qKTdWy82GwzIQsmzoVmGc
-         s4lPHi3EEpR/lR1XY6ZQPQEMR+5+/WTyVdUX4NZWX0Fp6eMoS0sffKM+wRLi8tnpobIN
-         t0saeZAugZpqjZY1MFQTr8sYb3Wtw0qDx3DUECRxjH67WkzbHkJ2NyBZd2ZLIJ1DJrW/
-         pg4tLbFQbCRkHiHuKaQS3t/AsmxiD0hFt+mllOxJjSrmWaXR/QWlbSxxxNTsJ5FQlb6U
-         KU6QPCTAGpV/6pDEfAdwu/Pc2jH8TtVx4FRlxe9WgPst443wzbxXrIpE/woFOE8Y060E
-         waww==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704304469; x=1704909269;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=GqC8WuRh/8p1x9/33Rb+DGy4l29zRBxg2wDvMoE4m+M=;
-        b=AUxDdWXO+ZRgus62oRzqDcaITV3zyQ0uOpC0tA6MSSPR37VrCLPKif82yMF6H9Se5i
-         H83AWtyHpooED/CF/ekknQPuuLIHiKpU92pUqVWAPIXh828tmGOZW6J8Rp5JdquiAAHT
-         WrZcmndYVKJq8nVdUc2ZhCaEjAtZyhCNW3OmYOZP2rGiqeHeHl3TANHDASWeAiNbqUr1
-         Xcr3NrEBDwAU7jRg19tyKQy+kY2wc5T4YIbu+W9Fs5IM3f0ZuDqUTBlAxlqulmRJoRis
-         LoqZSDNJtyLDNJkggCdop2T0QWjC1XLUYexHGeWNjXP+bkuuujtubTg0WiP87uge1SUw
-         F2OQ==
-X-Gm-Message-State: AOJu0YzkwnAYRZqI7Vp9sbSejbsKaBcINhxx31QDk5KgZBRk2KscV0fT
-	U4zCyQOBlO2xFUV7qd6lsw5jjFJBISZPsA==
-X-Google-Smtp-Source: AGHT+IHr0h0GmUrkqdrwa1J68hGjAFFzQbB98LeOaC+uSILGCr+6mQIPScc+eSEUTo8cV/pV4GCuBw==
-X-Received: by 2002:aa7:8098:0:b0:6d9:cc4e:4946 with SMTP id v24-20020aa78098000000b006d9cc4e4946mr6877009pff.32.1704304469418;
-        Wed, 03 Jan 2024 09:54:29 -0800 (PST)
-Received: from p14s ([2604:3d09:148c:c800:d745:ffcc:b786:a182])
-        by smtp.gmail.com with ESMTPSA id c5-20020a62f845000000b006da2b1e4fabsm10452802pfm.163.2024.01.03.09.54.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 03 Jan 2024 09:54:29 -0800 (PST)
-Date: Wed, 3 Jan 2024 10:54:26 -0700
-From: Mathieu Poirier <mathieu.poirier@linaro.org>
-To: Tanmay Shah <tanmay.shah@amd.com>
-Cc: andersson@kernel.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	michal.simek@amd.com, ben.levinsky@amd.com,
-	linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v8 2/3] dts: zynqmp: add properties for TCM in remoteproc
-Message-ID: <ZZWfUkrQc58+GATN@p14s>
-References: <20231215235725.1247350-1-tanmay.shah@amd.com>
- <20231215235725.1247350-3-tanmay.shah@amd.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7ABB81C69E
+	for <devicetree@vger.kernel.org>; Wed,  3 Jan 2024 18:22:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rts-flowmailer.siemens.com
+Received: by mta-65-227.siemens.flowmailer.net with ESMTPSA id 202401031812253d42308e5630632735
+        for <devicetree@vger.kernel.org>;
+        Wed, 03 Jan 2024 19:12:25 +0100
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; s=fm1;
+ d=siemens.com; i=jan.kiszka@siemens.com;
+ h=Date:From:Subject:To:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:Cc;
+ bh=IEH6nvsMj011pWE7jF9KmAgYyT5EGs2I+43ptPArTJg=;
+ b=A+VZDDNUHPhWx6rdrx4MfEKqm3Vimq9yMjlHriJL0Y2BVvxOrE0G5lH9YmEbZNd+ZEbNM3
+ 83Ybr8paUxhGk844d+OR3lY5vYORauvPfWtBsWD/UYEAJsbCi0W8pILILRLyIIQ+sD8uMx/Z
+ HlI0MwskGd3sBMn4ID5gZEPxrDXwM=;
+From: Jan Kiszka <jan.kiszka@siemens.com>
+To: Nishanth Menon <nm@ti.com>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Tero Kristo <kristo@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Bao Cheng Su <baocheng.su@siemens.com>
+Subject: [PATCH v2 0/7] arm64: dts: iot2050: Add support for new SM variant
+Date: Wed,  3 Jan 2024 19:12:17 +0100
+Message-Id: <cover.1704305544.git.jan.kiszka@siemens.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231215235725.1247350-3-tanmay.shah@amd.com>
+Content-Transfer-Encoding: 8bit
+X-Flowmailer-Platform: Siemens
+Feedback-ID: 519:519-294854:519-21489:flowmailer
 
-Hi Tanmay,
+Changes in v2:
+ - LED improvements
+ - factor out DP and USB3 dtsi files
+ - fix subject of last patch
 
-On Fri, Dec 15, 2023 at 03:57:24PM -0800, Tanmay Shah wrote:
-> Add properties as per new bindings in zynqmp remoteproc node
-> to represent TCM address and size.
-> 
-> This patch also adds alternative remoteproc node to represent
-> remoteproc cluster in split mode. By default lockstep mode is
-> enabled and users should disable it before using split mode
-> dts. Both device-tree nodes can't be used simultaneously one
-> of them must be disabled. For zcu102-1.0 and zcu102-1.1 board
-> remoteproc split mode dts node is enabled and lockstep mode
-> dts is disabled.
-> 
-> Signed-off-by: Tanmay Shah <tanmay.shah@amd.com>
-> ---
->  .../boot/dts/xilinx/zynqmp-zcu102-rev1.0.dts  |  8 +++
->  arch/arm64/boot/dts/xilinx/zynqmp.dtsi        | 60 +++++++++++++++++--
->  2 files changed, 63 insertions(+), 5 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-rev1.0.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-rev1.0.dts
-> index c8f71a1aec89..495ca94b45db 100644
-> --- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-rev1.0.dts
-> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-rev1.0.dts
-> @@ -14,6 +14,14 @@ / {
->  	compatible = "xlnx,zynqmp-zcu102-rev1.0", "xlnx,zynqmp-zcu102", "xlnx,zynqmp";
->  };
->  
-> +&rproc_split {
-> +	status = "okay";
-> +};
-> +
-> +&rproc_lockstep {
-> +	status = "disabled";
-> +};
-> +
->  &eeprom {
->  	#address-cells = <1>;
->  	#size-cells = <1>;
-> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-> index b61fc99cd911..602e6aba7ac5 100644
-> --- a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-> +++ b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-> @@ -247,19 +247,69 @@ fpga_full: fpga-full {
->  		ranges;
->  	};
->  
-> -	remoteproc {
-> +	rproc_lockstep: remoteproc@ffe00000 {
->  		compatible = "xlnx,zynqmp-r5fss";
->  		xlnx,cluster-mode = <1>;
->  
-> -		r5f-0 {
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +
-> +		ranges = <0x0 0x0 0x0 0xffe00000 0x0 0x20000>,
-> +			 <0x0 0x20000 0x0 0xffe20000 0x0 0x20000>,
-> +			 <0x1 0x0 0x0 0xffe90000 0x0 0x10000>,
-> +			 <0x1 0x20000 0x0 0xffeb0000 0x0 0x10000>;
+This bring support for yet another IOT2050 device variant, see last
+patch for details. The rest is binding and refactoring to make that
+happen. Plus, LED nodes are improved by adding function and color
+properties.
 
-As far as I can tell, in lockstep mode the last two entries are not needed.
-This is also contrasting with that is in the bindings, which is quite confusing.
+This series needs to go on top of
+https://lore.kernel.org/lkml/cover.1699087938.git.jan.kiszka@siemens.com/
 
-> +
-> +		r5f@0 {
-> +			compatible = "xlnx,zynqmp-r5f";
-> +			reg = <0x0 0x0 0x0 0x20000>, <0x0 0x20000 0x0 0x20000>;
-> +			reg-names = "atcm", "btcm";
-> +			power-domains = <&zynqmp_firmware PD_RPU_0>,
-> +					<&zynqmp_firmware PD_R5_0_ATCM>,
-> +					<&zynqmp_firmware PD_R5_0_BTCM>;
-> +			memory-region = <&rproc_0_fw_image>;
-> +		};
-> +
-> +		r5f@1 {
-> +			compatible = "xlnx,zynqmp-r5f";
-> +			reg = <0x1 0x0 0x0 0x10000>, <0x1 0x20000 0x0 0x10000>;
-> +			reg-names = "atcm", "btcm";
-> +			power-domains = <&zynqmp_firmware PD_RPU_1>,
-> +					<&zynqmp_firmware PD_R5_1_ATCM>,
-> +					<&zynqmp_firmware PD_R5_1_BTCM>;
-> +			memory-region = <&rproc_1_fw_image>;
-> +		};
-> +	};
-> +
-> +	rproc_split: remoteproc-split@ffe00000 {
-> +		status = "disabled";
-> +		compatible = "xlnx,zynqmp-r5fss";
-> +		xlnx,cluster-mode = <0>;
-> +
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +
-> +		ranges = <0x0 0x0 0x0 0xffe00000 0x0 0x10000>,
-> +			 <0x0 0x20000 0x0 0xffe20000 0x0 0x10000>,
-> +			 <0x1 0x0 0x0 0xffe90000 0x0 0x10000>,
-> +			 <0x1 0x20000 0x0 0xffeb0000 0x0 0x10000>;
-> +
-> +		r5f@0 {
->  			compatible = "xlnx,zynqmp-r5f";
-> -			power-domains = <&zynqmp_firmware PD_RPU_0>;
-> +			reg = <0x0 0x0 0x0 0x10000>, <0x0 0x20000 0x0 0x10000>;
-> +			reg-names = "atcm", "btcm";
-> +			power-domains = <&zynqmp_firmware PD_RPU_0>,
-> +					<&zynqmp_firmware PD_R5_0_ATCM>,
-> +					<&zynqmp_firmware PD_R5_0_BTCM>;
->  			memory-region = <&rproc_0_fw_image>;
->  		};
->  
-> -		r5f-1 {
-> +		r5f@1 {
->  			compatible = "xlnx,zynqmp-r5f";
-> -			power-domains = <&zynqmp_firmware PD_RPU_1>;
-> +			reg = <0x1 0x0 0x0 0x10000>, <0x1 0x20000 0x0 0x10000>;
-> +			reg-names = "atcm", "btcm";
-> +			power-domains = <&zynqmp_firmware PD_RPU_1>,
-> +					<&zynqmp_firmware PD_R5_1_ATCM>,
-> +					<&zynqmp_firmware PD_R5_1_BTCM>;
->  			memory-region = <&rproc_1_fw_image>;
->  		};
->  	};
-> -- 
-> 2.25.1
-> 
+Jan
+
+Baocheng Su (2):
+  arm64: dts: ti: iot2050: Disable R5 lockstep for all PG2 boards
+  arm64: dts: ti: iot2050: Support IOT2050-SM variant
+
+Jan Kiszka (4):
+  arm64: dts: ti: iot2050: Factor out arduino connector bits
+  arm64: dts: ti: iot2050: Factor out enabling of USB3 support
+  arm64: dts: ti: iot2050: Factor out DP related bits
+  arm64: dts: ti: iot2050: Annotate LED nodes
+
+Su Bao Cheng (1):
+  dt-bindings: arm: ti: Add binding for Siemens IOT2050 SM variant
+
+ .../devicetree/bindings/arm/ti/k3.yaml        |   1 +
+ arch/arm64/boot/dts/ti/Makefile               |   1 +
+ .../ti/k3-am65-iot2050-arduino-connector.dtsi | 768 ++++++++++++++++
+ .../dts/ti/k3-am65-iot2050-common-pg1.dtsi    |   5 +-
+ .../dts/ti/k3-am65-iot2050-common-pg2.dtsi    |  25 +-
+ .../boot/dts/ti/k3-am65-iot2050-common.dtsi   | 869 +-----------------
+ .../arm64/boot/dts/ti/k3-am65-iot2050-dp.dtsi |  98 ++
+ .../boot/dts/ti/k3-am65-iot2050-usb3.dtsi     |  27 +
+ .../ti/k3-am6528-iot2050-basic-common.dtsi    |   6 +-
+ .../dts/ti/k3-am6528-iot2050-basic-pg2.dts    |   2 +
+ .../boot/dts/ti/k3-am6528-iot2050-basic.dts   |   5 +
+ .../dts/ti/k3-am6548-iot2050-advanced-m2.dts  |  20 +-
+ .../dts/ti/k3-am6548-iot2050-advanced-pg2.dts |  10 +-
+ .../dts/ti/k3-am6548-iot2050-advanced-sm.dts  | 189 ++++
+ .../dts/ti/k3-am6548-iot2050-advanced.dts     |   1 +
+ 15 files changed, 1131 insertions(+), 896 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am65-iot2050-arduino-connector.dtsi
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am65-iot2050-dp.dtsi
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am65-iot2050-usb3.dtsi
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-sm.dts
+
+-- 
+2.35.3
+
 
