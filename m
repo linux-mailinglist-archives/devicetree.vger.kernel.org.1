@@ -1,92 +1,102 @@
-Return-Path: <devicetree+bounces-29409-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29410-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id F381E822CED
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 13:23:33 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 902BC822D64
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 13:45:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A60EC1F24267
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 12:23:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B67281C21955
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jan 2024 12:45:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0E8318EC7;
-	Wed,  3 Jan 2024 12:22:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="E9mSVbTY"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19D4218E16;
+	Wed,  3 Jan 2024 12:45:16 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from bmailout3.hostsharing.net (bmailout3.hostsharing.net [176.9.242.62])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 619B9199D9;
-	Wed,  3 Jan 2024 12:22:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1704284548;
-	bh=lvVhhUPH6kgSD2hH7kfMwPENfYjI5v43CDGfoYJVRe0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=E9mSVbTYG4tlQT1A7IfwrqibQxxjhvypSmCoxWCccB8QSi16wIajqfsJDJq6dmLJ/
-	 PTucrbfUU0HyfT5wkpHwRVnQCpEjRDlAeYxUXI8A86eYgEfrfuxLxAhwA4sZK/UeOg
-	 rEk8mYSfJ1ackWN/aW2sFJF5hUwdUjL6sYexWjfCBcBsXE6/CsarDJ1yAZFQ8JNnfI
-	 yDL0EGeXpotrbN4wyRjq5lyEZWC66VIARJk7sY5XYDCTRsHMHUEP7LmV831qOMQj9I
-	 LdiVTPqGD/+k3u7mHwkl/aRnNvR0i8nyCfq1q3ZUFdEZMfN1FyBezRhLDnxRxr6Cbx
-	 dpIUxvcIiyqOQ==
-Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 9BC163781F8C;
-	Wed,  3 Jan 2024 12:22:27 +0000 (UTC)
-Message-ID: <709e7af4-21d5-408a-9989-98493232421f@collabora.com>
-Date: Wed, 3 Jan 2024 13:22:27 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E40001A27D;
+	Wed,  3 Jan 2024 12:45:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=wunner.de
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=h08.hostsharing.net
+Received: from h08.hostsharing.net (h08.hostsharing.net [83.223.95.28])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256
+	 client-signature RSA-PSS (4096 bits) client-digest SHA256)
+	(Client CN "*.hostsharing.net", Issuer "RapidSSL TLS RSA CA G1" (verified OK))
+	by bmailout3.hostsharing.net (Postfix) with ESMTPS id A05C4100DA1A2;
+	Wed,  3 Jan 2024 13:45:02 +0100 (CET)
+Received: by h08.hostsharing.net (Postfix, from userid 100393)
+	id 3FEC5294C4E; Wed,  3 Jan 2024 13:45:02 +0100 (CET)
+Date: Wed, 3 Jan 2024 13:45:02 +0100
+From: Lukas Wunner <lukas@wunner.de>
+To: Tao Ren <rentao.bupt@gmail.com>
+Cc: devicetree@vger.kernel.org, linux-aspeed@lists.ozlabs.org,
+	Andrew Jeffery <andrew@aj.id.au>, taoren@fb.com,
+	openbmc@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+	Rob Herring <robh+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+	linux-arm-kernel@lists.infradead.org,
+	Patrick Williams <patrick@stwcx.xyz>
+Subject: Re: [PATCH v2 3/6] ARM: dts: aspeed: Common dtsi for Facebook
+ AST2600 Network BMCs
+Message-ID: <20240103124502.GB23899@wunner.de>
+References: <20210805222818.8391-1-rentao.bupt@gmail.com>
+ <20210805222818.8391-4-rentao.bupt@gmail.com>
+ <20231220081402.GA3831@wunner.de>
+ <ZZSmMJ//l972Qbxu@fedora>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 09/24] arm64: dts: mediatek: mt8173: Enable cros-ec-spi
- as wake source
-Content-Language: en-US
-To: Mark Hasemeyer <markhas@chromium.org>, LKML <linux-kernel@vger.kernel.org>
-Cc: Sudeep Holla <sudeep.holla@arm.com>, Rob Herring <robh@kernel.org>,
- Andy Shevchenko <andriy.shevchenko@intel.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Raul Rangel
- <rrangel@chromium.org>, Tzung-Bi Shih <tzungbi@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Matthias Brugger <matthias.bgg@gmail.com>, Rob Herring <robh+dt@kernel.org>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org
-References: <20240102210820.2604667-1-markhas@chromium.org>
- <20240102140734.v4.9.Ic09ebe116c18e83cc1161f4bb073fea8043f03f3@changeid>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20240102140734.v4.9.Ic09ebe116c18e83cc1161f4bb073fea8043f03f3@changeid>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZZSmMJ//l972Qbxu@fedora>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 
-Il 02/01/24 22:07, Mark Hasemeyer ha scritto:
-> The cros_ec driver currently assumes that cros-ec-spi compatible device
-> nodes are a wakeup-source even though the wakeup-source property is not
-> defined.
+On Tue, Jan 02, 2024 at 04:11:28PM -0800, Tao Ren wrote:
+> On Wed, Dec 20, 2023 at 09:14:02AM +0100, Lukas Wunner wrote:
+> > On Thu, Aug 05, 2021 at 03:28:15PM -0700, rentao.bupt@gmail.com wrote:
+> > > This common descirption is included by all Facebook AST2600 Network BMC
+> > > platforms to minimize duplicated device entries across Facebook Network
+> > > BMC device trees.
+> > [...]
+> > > --- /dev/null
+> > > +++ b/arch/arm/boot/dts/ast2600-facebook-netbmc-common.dtsi
+> > [...]
+> > > +		tpmdev@0 {
+> > > +			compatible = "tcg,tpm_tis-spi";
+> > 
+> > What's the chip used on this board?  Going forward, the DT schema for TPMs
+> > requires the exact chip name in addition to the generic "tcg,tpm_tis-spi".
 > 
-> Some Chromebooks use a separate wake pin, while others overload the
-> interrupt for wake and IO. With the current assumption, spurious wakes
-> can occur on systems that use a separate wake pin. It is planned to
-> update the driver to no longer assume that the EC interrupt pin should
-> be enabled for wake.
-> 
-> Add the wakeup-source property to all cros-ec-spi compatible device
-> nodes to signify to the driver that they should still be a valid wakeup
-> source.
-> 
-> Signed-off-by: Mark Hasemeyer <markhas@chromium.org>
+> Sorry about the late response. It's "infineon,slb9670", and I will
+> submit a patch for fix it soon.
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Thank you Tao and Patrick for the replies.  I've prepared two commits
+to fix all violations of the TPM schema on this branch:
 
+  https://github.com/l1k/linux/commits/tpm-dt3
 
+The commits are named:
+
+  e95bdbc arm64: dts: Fix TPM schema violations
+  63e5dfd ARM: dts: Fix TPM schema violations
+
+I've now amended the ARM commit to use "infineon,slb9670" for:
+
+  arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-bletchley.dts
+  arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-wedge400.dts
+  arch/arm/boot/dts/aspeed/ast2600-facebook-netbmc-common.dtsi
+
+I intend to submit the two commits once the TPM schema is applied
+either to Jarkko's or Rob's tree:
+
+  https://lore.kernel.org/all/20231220160422.GA282877-robh@kernel.org/
+
+Thanks,
+
+Lukas
 
