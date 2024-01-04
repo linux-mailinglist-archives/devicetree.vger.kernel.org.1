@@ -1,227 +1,189 @@
-Return-Path: <devicetree+bounces-29795-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29796-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76BC3824A83
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 22:54:57 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 09AB1824AF3
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 23:38:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E1E94B235E5
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 21:54:54 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 850A3B211E0
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 22:38:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86A5A2C6BE;
-	Thu,  4 Jan 2024 21:54:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 657162BD12;
+	Thu,  4 Jan 2024 22:38:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="b1Z+2Eqk"
+	dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b="VJach6FS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f53.google.com (mail-qv1-f53.google.com [209.85.219.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-001ae601.pphosted.com (mx0b-001ae601.pphosted.com [67.231.152.168])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB4E62C84E
-	for <devicetree@vger.kernel.org>; Thu,  4 Jan 2024 21:54:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-qv1-f53.google.com with SMTP id 6a1803df08f44-680d1908fb2so4292706d6.3
-        for <devicetree@vger.kernel.org>; Thu, 04 Jan 2024 13:54:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1704405288; x=1705010088; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=UHu/9yYjuNs9M6rsUIsCrmi3APbGPXR8WfnnSC4pWIc=;
-        b=b1Z+2EqkEhS6Kk6l1CNJ0lSexxghl4ZA2d8vUGqekuil205aUASveOUacFtY3x86EB
-         pnRYWDvKEF3Eb03/aG0wYAD/FtPyFf+z7eND0CRjRBHjYOhySrbrJS/VmgUu317PraKU
-         v6WqiOKgJwjQhrzqG1wAEVzVjWmnnKjYJwYtA=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704405288; x=1705010088;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=UHu/9yYjuNs9M6rsUIsCrmi3APbGPXR8WfnnSC4pWIc=;
-        b=iyx3km4nuZthmZWYnYuX+BgEDn12bO77tY1+oG94l+Khr7KWTZi+hT4+HqgpWn5DR+
-         H99XZGuM3ZIgC4iB3NH/2vR2qOwqCBUfC8ZcwlvYr0Eka/KE6yqqUktwWqzRSIAF4wpU
-         Jp3Qher4Ps7Rizh3jvL+1U0HAb77llc2IbFSBnJx9komk3kuXZGtwHn0siF+Hg4SpNTk
-         ld2/4LlK3e1qInCxhURcEVFEZxS7FYs87K90F+OsARw8trwuobDqdX9iOjU/grkCyLKt
-         z0OgWYMKb6J4IuzdT5+WOFMSamxp4BsDYAgoNpio4UVO1CTkw5oT9ZCk2ueucuJV+EFO
-         EjDA==
-X-Gm-Message-State: AOJu0Yx6Ca8/s0dfN6dnAVwZjSgjyIaV1Fp/GDIGNBKEmd02/Y+861fx
-	g5lk6kHVYNixyNtbS+W/FSmSLdnvXFW5AVaG3FjhQtiU1B7v
-X-Google-Smtp-Source: AGHT+IFuqeDMdG4zBQldI5XyvT6/jarUq5+fL5rEaozsnTJloLarXEyiTxEWhTea3tqeSV9UrqYBu0DbQI4IMlO5FpU=
-X-Received: by 2002:a05:6214:2305:b0:67f:7c5c:3434 with SMTP id
- gc5-20020a056214230500b0067f7c5c3434mr1242635qvb.73.1704405287791; Thu, 04
- Jan 2024 13:54:47 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A195328DB0;
+	Thu,  4 Jan 2024 22:38:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=opensource.cirrus.com
+Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
+	by mx0b-001ae601.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 404HdK1Z029968;
+	Thu, 4 Jan 2024 16:37:19 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding:content-type; s=PODMain02222019; bh=M
+	Shzt3LVhFxMMuG6ippnJ3aKDGhRinbXBUUZ94iQi08=; b=VJach6FSwwbzt9KmI
+	GWjCTzJzGjLLeGGhyU96URR9nObLd4F+tECWcYZVXnh9so3tG/UyD3OMzAekeJPR
+	yO/CLF3Cyt7sS9sZJyxiSlsdFeIczLXTD5+PjX+5DTlD0ryn/29hyd5YeCCMTar+
+	M/udBGMya454ibWyxn9mZERg12Gx+HFsP6vi67cBDnTcXnfDUQ4e5IDq+FZh07xm
+	2g4iFzL2z5yxYKuAfCFpe3VFVdbw7LwUZy0BJ72/MAisZP7A6Z1U4RqpguIX4THo
+	aixE2vx4Yx9W5aqLCMOJ1qbD5sAcq5X8nf12uir/DFeip6K2PC+GakcXUOR9tHSS
+	LIY4Q==
+Received: from ediex01.ad.cirrus.com ([84.19.233.68])
+	by mx0b-001ae601.pphosted.com (PPS) with ESMTPS id 3ve18src5a-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 04 Jan 2024 16:37:18 -0600 (CST)
+Received: from ediex02.ad.cirrus.com (198.61.84.81) by ediex01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Thu, 4 Jan
+ 2024 22:37:16 +0000
+Received: from ediswmail.ad.cirrus.com (198.61.86.93) by
+ anon-ediex02.ad.cirrus.com (198.61.84.81) with Microsoft SMTP Server id
+ 15.2.1118.40 via Frontend Transport; Thu, 4 Jan 2024 22:37:01 +0000
+Received: from aus-sw-rshr002.ad.cirrus.com (aus-sw-rshr002.ad.cirrus.com [141.131.145.53])
+	by ediswmail.ad.cirrus.com (Postfix) with ESMTP id E99CC474;
+	Thu,  4 Jan 2024 22:36:56 +0000 (UTC)
+From: James Ogletree <jogletre@opensource.cirrus.com>
+To: 
+CC: James Ogletree <jogletre@opensource.cirrus.com>,
+        James Ogletree
+	<james.ogletree@cirrus.com>,
+        Fred Treven <fred.treven@cirrus.com>,
+        Ben Bright
+	<ben.bright@cirrus.com>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        "Rob
+ Herring" <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Simon Trimmer <simont@opensource.cirrus.com>,
+        Charles Keepax
+	<ckeepax@opensource.cirrus.com>,
+        Richard Fitzgerald
+	<rf@opensource.cirrus.com>,
+        Lee Jones <lee@kernel.org>, Liam Girdwood
+	<lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, Jaroslav Kysela
+	<perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        James Schulman
+	<james.schulman@cirrus.com>,
+        David Rhodes <david.rhodes@cirrus.com>,
+        Sebastian Reichel <sebastian.reichel@collabora.com>,
+        Alexandre Belloni
+	<alexandre.belloni@bootlin.com>,
+        Peng Fan <peng.fan@nxp.com>, Jacky Bai
+	<ping.bai@nxp.com>,
+        Jeff LaBundy <jeff@labundy.com>,
+        Weidong Wang
+	<wangweidong.a@awinic.com>,
+        Herve Codina <herve.codina@bootlin.com>,
+        "Arnd
+ Bergmann" <arnd@arndb.de>, Shuming Fan <shumingf@realtek.com>,
+        Shenghao Ding
+	<13916275206@139.com>, Ryan Lee <ryans.lee@analog.com>,
+        Linus Walleij
+	<linus.walleij@linaro.org>,
+        Maxim Kochetkov <fido_max@inbox.ru>,
+        "open
+ list:CIRRUS LOGIC HAPTIC DRIVERS" <patches@opensource.cirrus.com>,
+        "open
+ list:INPUT (KEYBOARD, MOUSE, JOYSTICK, TOUCHSCREEN)..."
+	<linux-input@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE
+ TREE BINDINGS" <devicetree@vger.kernel.org>,
+        open list
+	<linux-kernel@vger.kernel.org>,
+        "open list:SOUND - SOC LAYER / DYNAMIC AUDIO
+ POWER MANAGEM..." <linux-sound@vger.kernel.org>,
+        "moderated list:CIRRUS LOGIC
+ AUDIO CODEC DRIVERS" <alsa-devel@alsa-project.org>
+Subject: [PATCH v5 0/5] Add support for CS40L50
+Date: Thu, 4 Jan 2024 22:36:33 +0000
+Message-ID: <20240104223643.876292-1-jogletre@opensource.cirrus.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231116172859.393744-1-sjg@chromium.org> <20231208150042.GA1278773-robh@kernel.org>
- <CAPnjgZ2i4gvgiUeHPOfHuOdBooV4e=QQEq6iMo0JbDwOS6dCwA@mail.gmail.com>
- <CAL_Jsq+xMZ8yz4H9D59uCSyX4h5W+4ruGF++=wVA=msXz+Y01A@mail.gmail.com>
- <CAPnjgZ1uW8T6woXSqFUNm301=W3zBYOrADREkrz=DuwSW87qZg@mail.gmail.com>
- <20231214172702.GA617226-robh@kernel.org> <CAPnjgZ2oJSGPO91Y_aLbe+v250WFrND4n3T0mOvhERYidVu=eQ@mail.gmail.com>
-In-Reply-To: <CAPnjgZ2oJSGPO91Y_aLbe+v250WFrND4n3T0mOvhERYidVu=eQ@mail.gmail.com>
-From: Simon Glass <sjg@chromium.org>
-Date: Thu, 4 Jan 2024 14:54:36 -0700
-Message-ID: <CAFLszTizRRVbRO6_ygE2X-Lp5dENWSc4uMGL5GPJAFGAbRdCyQ@mail.gmail.com>
-Subject: Re: [PATCH v6 1/3] dt-bindings: mtd: partitions: Add binman compatible
-To: Rob Herring <robh@kernel.org>
-Cc: devicetree@vger.kernel.org, Miquel Raynal <miquel.raynal@bootlin.com>, 
-	linux-mtd@lists.infradead.org, Tom Rini <trini@konsulko.com>, 
-	Michael Walle <mwalle@kernel.org>, U-Boot Mailing List <u-boot@lists.denx.de>, 
-	Conor Dooley <conor+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Pratyush Yadav <ptyadav@amazon.de>, 
-	=?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>, 
-	Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Proofpoint-ORIG-GUID: rpOIz0vGtpWU2aw1DIz15-q1kEDNu-vQ
+X-Proofpoint-GUID: rpOIz0vGtpWU2aw1DIz15-q1kEDNu-vQ
+X-Proofpoint-Spam-Reason: safe
 
-Hi Rob,
+There is a massive delta from V4, so only the highlgihts are
+mentioned below. I intend for this version to address all
+feedback to-date, so if you find something left unaddressed
+then please let me know.
 
-On Thu, Dec 14, 2023 at 2:09=E2=80=AFPM Simon Glass <sjg@chromium.org> wrot=
-e:
->
-> Hi Rob,
->
-> On Thu, 14 Dec 2023 at 10:27, Rob Herring <robh@kernel.org> wrote:
-> >
-> > On Fri, Dec 08, 2023 at 03:58:10PM -0700, Simon Glass wrote:
-> > > Hi Rob,
-> > >
-> > > On Fri, 8 Dec 2023 at 14:56, Rob Herring <robh@kernel.org> wrote:
-> > > >
-> > > > On Fri, Dec 8, 2023 at 11:47=E2=80=AFAM Simon Glass <sjg@chromium.o=
-rg> wrote:
-> > > > >
-> > > > > Hi Rob,
-> > > > >
-> > > > > On Fri, 8 Dec 2023 at 08:00, Rob Herring <robh@kernel.org> wrote:
-> > > > > >
-> > > > > > On Thu, Nov 16, 2023 at 10:28:50AM -0700, Simon Glass wrote:
-> > > > > > > Add a compatible string for binman, so we can extend fixed-pa=
-rtitions
-> > > > > > > in various ways.
-> > > > > > >
-> > > > > > > Signed-off-by: Simon Glass <sjg@chromium.org>
-> > > > > > > ---
-> > > > > > >
-> > > > > > > (no changes since v5)
-> > > > > > >
-> > > > > > > Changes in v5:
-> > > > > > > - Add #address/size-cells and parternProperties
-> > > > > > > - Drop $ref to fixed-partitions.yaml
-> > > > > > > - Drop 'select: false'
-> > > > > > >
-> > > > > > > Changes in v4:
-> > > > > > > - Change subject line
-> > > > > > >
-> > > > > > > Changes in v3:
-> > > > > > > - Drop fixed-partition additional compatible string
-> > > > > > > - Drop fixed-partitions from the example
-> > > > > > > - Mention use of compatible instead of label
-> > > > > > >
-> > > > > > > Changes in v2:
-> > > > > > > - Drop mention of 'enhanced features' in fixed-partitions.yam=
-l
-> > > > > > > - Mention Binman input and output properties
-> > > > > > > - Use plain partition@xxx for the node name
-> > > > > > >
-> > > > > > >  .../bindings/mtd/partitions/binman.yaml       | 68 +++++++++=
-++++++++++
-> > > > > > >  .../bindings/mtd/partitions/partitions.yaml   |  1 +
-> > > > > > >  MAINTAINERS                                   |  5 ++
-> > > > > > >  3 files changed, 74 insertions(+)
-> > > > > > >  create mode 100644 Documentation/devicetree/bindings/mtd/par=
-titions/binman.yaml
-> > > > > > >
-> > > > > > > diff --git a/Documentation/devicetree/bindings/mtd/partitions=
-/binman.yaml b/Documentation/devicetree/bindings/mtd/partitions/binman.yaml
-> > > > > > > new file mode 100644
-> > > > > > > index 000000000000..329217550a98
-> > > > > > > --- /dev/null
-> > > > > > > +++ b/Documentation/devicetree/bindings/mtd/partitions/binman=
-.yaml
-> > > > > > > @@ -0,0 +1,68 @@
-> > > > > > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > > > > > > +# Copyright 2023 Google LLC
-> > > > > > > +
-> > > > > > > +%YAML 1.2
-> > > > > > > +---
-> > > > > > > +$id: http://devicetree.org/schemas/mtd/partitions/binman.yam=
-l#
-> > > > > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > > > > > +
-> > > > > > > +title: Binman firmware layout
-> > > > > > > +
-> > > > > > > +maintainers:
-> > > > > > > +  - Simon Glass <sjg@chromium.org>
-> > > > > > > +
-> > > > > > > +description: |
-> > > > > > > +  The binman node provides a layout for firmware, used when =
-packaging firmware
-> > > > > > > +  from multiple projects. It is based on fixed-partitions, w=
-ith some
-> > > > > > > +  extensions, but uses 'compatible' to indicate the contents=
- of the node, to
-> > > > > > > +  avoid perturbing or confusing existing installations which=
- use 'label' for a
-> > > > > > > +  particular purpose.
-> > > > > > > +
-> > > > > > > +  Binman supports properties used as inputs to the firmware-=
-packaging process,
-> > > > > > > +  such as those which control alignment of partitions. This =
-binding addresses
-> > > > > > > +  these 'input' properties. For example, it is common for th=
-e 'reg' property
-> > > > > > > +  (an 'output' property) to be set by Binman, based on the a=
-lignment requested
-> > > > > > > +  in the input.
-> > > > > > > +
-> > > > > > > +  Once processing is complete, input properties have mostly =
-served their
-> > > > > > > +  purpose, at least until the firmware is repacked later, e.=
-g. due to a
-> > > > > > > +  firmware update. The 'fixed-partitions' binding should pro=
-vide enough
-> > > > > > > +  information to read the firmware at runtime, including dec=
-ompression if
-> > > > > > > +  needed.
-> > > > > >
-> > > > > > How is this going to work exactly? binman reads these nodes and=
- then
-> > > > > > writes out 'fixed-partitions' nodes. But then you've lost the b=
-inman
-> > > > > > specifc parts needed for repacking.
-> > > > >
-> > > > > No, they are the same node. I do want the extra information to st=
-ick
-> > > > > around. So long as it is compatible with fixed-partition as well,=
- this
-> > > > > should work OK.
-> > > >
-> > > > How can it be both? The partitions node compatible can be either
-> > > > 'fixed-partitions' or 'binman'.
-> > >
-> > > Can we not allow it to be both? I have tried to adjust things in
-> > > response to feedback but perhaps the feedback was leading me down the
-> > > wrong path?
-> >
-> > Sure, but then the schema has to and that means extending
-> > fixed-partitions.
->
-> Can we cross that bridge later? There might be resistance to it. I'm
-> not sure. For now, perhaps just a binman compatible works well enough
-> to make progress.
+Changes in v5:
+- Added a codec sub-device to support I2S streaming
+- Moved write sequencer code from cirrus_haptics to cs_dsp
+- Reverted cirrus_haptics library; future Cirrus input
+  drivers will export and utilize cs40l50_vibra functions
+- Added more comments
+- Many small stylistic and logical improvements
 
-Is there any way to make progress on this? I would like to have
-software which doesn't understand the binman compatible to at least be
-able to understand the fixed-partition compatible. Is that acceptable?
-If not, what is?
+Changes in v4:
+- Moved from Input to MFD
+- Moved common Cirrus haptic functions to a library
+- Incorporated runtime PM framework
+- Many style improvements
 
-In any case, please can you help with this?
+Changes in v3:
+- YAML formatting corrections
+- Fixed typo in MAINTAINERS
+- Used generic node name "haptic-driver"
+- Fixed probe error code paths
+- Switched to "sizeof(*)"
+- Removed tree reference in MAINTAINERS
 
-Regards,
-Simon
+Changes in v2:
+- Fixed checkpatch warnings
+
+James Ogletree (5):
+  firmware: cs_dsp: Add write sequencer interface
+  dt-bindings: input: cirrus,cs40l50: Add initial DT binding
+  mfd: cs40l50: Add support for CS40L50 core driver
+  Input: cs40l50 - Add support for the CS40L50 haptic driver
+  ASoC: cs40l50: Support I2S streaming to CS40L50
+
+ .../bindings/input/cirrus,cs40l50.yaml        |  70 +++
+ MAINTAINERS                                   |  12 +
+ drivers/firmware/cirrus/cs_dsp.c              | 261 ++++++++
+ drivers/input/misc/Kconfig                    |  10 +
+ drivers/input/misc/Makefile                   |   1 +
+ drivers/input/misc/cs40l50-vibra.c            | 572 ++++++++++++++++++
+ drivers/mfd/Kconfig                           |  30 +
+ drivers/mfd/Makefile                          |   4 +
+ drivers/mfd/cs40l50-core.c                    | 536 ++++++++++++++++
+ drivers/mfd/cs40l50-i2c.c                     |  69 +++
+ drivers/mfd/cs40l50-spi.c                     |  69 +++
+ include/linux/firmware/cirrus/cs_dsp.h        |  28 +
+ include/linux/mfd/cs40l50.h                   | 128 ++++
+ sound/soc/codecs/Kconfig                      |  11 +
+ sound/soc/codecs/Makefile                     |   2 +
+ sound/soc/codecs/cs40l50-codec.c              | 304 ++++++++++
+ 16 files changed, 2107 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/input/cirrus,cs40l50.yaml
+ create mode 100644 drivers/input/misc/cs40l50-vibra.c
+ create mode 100644 drivers/mfd/cs40l50-core.c
+ create mode 100644 drivers/mfd/cs40l50-i2c.c
+ create mode 100644 drivers/mfd/cs40l50-spi.c
+ create mode 100644 include/linux/mfd/cs40l50.h
+ create mode 100644 sound/soc/codecs/cs40l50-codec.c
+
+-- 
+2.25.1
+
 
