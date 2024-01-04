@@ -1,142 +1,122 @@
-Return-Path: <devicetree+bounces-29567-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29568-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65A79823D0B
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 08:56:03 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D38C823D10
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 08:58:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CF5D21F21671
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 07:56:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1FF011C21166
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 07:58:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D82D81F94D;
-	Thu,  4 Jan 2024 07:55:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AB7E1F95A;
+	Thu,  4 Jan 2024 07:58:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="IX3Waag4"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="WjHkc//S"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48E6D200AB
-	for <devicetree@vger.kernel.org>; Thu,  4 Jan 2024 07:55:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-556ab8b85e3so354230a12.1
-        for <devicetree@vger.kernel.org>; Wed, 03 Jan 2024 23:55:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704354952; x=1704959752; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=QDvTOk/KWzeqBKI7Ma65OT376dw//nG1/WVMf4soPAU=;
-        b=IX3Waag4v0ZuVdclHSR56wLHHC65pcHqXVIwhfbXJmWMIK1a5JPWHRwFv2y3P4Xk/1
-         QUAkCaB7d3gyYISYR2BStq+QfWwHX6nAoixoQ7XykmUn2+hCbHTPBZV2rLwH4UHy33k+
-         skzb1DPQYIZDmbVV3+hTsfMnWXV7Xy+8pdI9cJzr5TUbCUWfWc2ODVW0Hh4sFr9YpQA2
-         SEyAwaixmDqf9X+C0j5lJ+dRD3bENvftVpVZwLf38p9cNeQkALPLlsaKTZbcvPKhKJMh
-         mSg/IYDyH9wCcNJTGz1B+n1ak9cwZEf2reM7lHgIac/kMGZtJyZdVEaiTxjvKRhhXfn1
-         BVtg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704354952; x=1704959752;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=QDvTOk/KWzeqBKI7Ma65OT376dw//nG1/WVMf4soPAU=;
-        b=RuH4pH3R7HlnPK6OvTXHYE43ECQyINFIHDVL/fJW8CHTRf5e5Dk6TdbAUC4NefEqJH
-         bDl9wRKaOuKI1n0xKYVLeBn1nklqXjsFjzacaZQFt7QxjlKSRJhh1Gn41ClNSQBvJ1nA
-         RikNWokaqDrjKB4kzg7kqOpkVLyj7Xoj4jwpJK9k0bbs7av1Ytz5t3XLM+eV3scC15hf
-         8lhmDtwB9sUIqgKdBtK1z8d9I5n6kaZzzm01NZAu7GMs0kXEMGM2VSlPhRw4xoT+t5cM
-         ZCgQtOkk+FPhj0oCEpPGMBRTd7dgw9HYiS2xMpx8kCkton4TNSltId5/rux34IXTmccW
-         YD8Q==
-X-Gm-Message-State: AOJu0YygEstq4O5e2kZagE82oPoh5c4szGCnX/SQJozrLOX94QDjHWvF
-	KiduSOc1Bj1Qxb10m9KJGcNuQwANC+nFzA==
-X-Google-Smtp-Source: AGHT+IHaX3ZpZ6EXao96iHCG12YIB9kNdfzjUv/T9dHV6+c96hrdFRrAwB6VR2ynrYi+brx09lQ9ZA==
-X-Received: by 2002:a50:aa9e:0:b0:552:574a:5390 with SMTP id q30-20020a50aa9e000000b00552574a5390mr166263edc.15.1704354952604;
-        Wed, 03 Jan 2024 23:55:52 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id t15-20020a056402020f00b005534057c72dsm18301480edv.18.2024.01.03.23.55.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 03 Jan 2024 23:55:52 -0800 (PST)
-Message-ID: <d70a035b-b21f-42b1-a2e5-5a2341bb48e6@linaro.org>
-Date: Thu, 4 Jan 2024 08:55:51 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB191200A0;
+	Thu,  4 Jan 2024 07:58:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 42225FF80A;
+	Thu,  4 Jan 2024 07:58:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1704355121;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=7tDgF8jmLlYnxlNyI3TgVBeZTXRFDyykxfhy3VnRuqc=;
+	b=WjHkc//SMCn9WSqtxGYRZEWtGnibX5AGg6J5U2qcFSDINWfx1hGmp6q8+7nOrL9VqZQBlI
+	3P9bKP4usCn5p/pu34lVn1nqKcPI0Vhr4ZYBUW3gHW55natIxMAjFgj+wE6WGGee3JVL0N
+	fa6Qgh2pM6NeJjbsc8VaiLjWvJ4zf1+KzpO+gmYlH4t6pmwswo6QazEjHD4dTl3lzVGjbZ
+	FLdKjgjv71ASWY2DG/E3KQVVI0m55hKHum7MdnLoiLIaIYyHQwF53iY2pXZ8/N38cih49e
+	x/24R4u+6d0hapbAM2sGRhHZOY9zp3THYJMVOblYLJyba70l73XJj9RBGCdv0Q==
+Date: Thu, 4 Jan 2024 08:58:39 +0100
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+To: Rob Herring <robh@kernel.org>
+Cc: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>, Srinivas Kandagatla
+ <srinivas.kandagatla@linaro.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Michael Walle
+ <michael@walle.cc>, linux-mtd@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, u-boot@lists.denx.de, =?UTF-8?B?UmFmYcWC?=
+ =?UTF-8?B?IE1pxYJlY2tp?= <rafal@milecki.pl>
+Subject: Re: [PATCH V3 1/6] dt-bindings: nvmem: layouts: add U-Boot
+ environment variables layout
+Message-ID: <20240104085839.5624c354@xps-13>
+In-Reply-To: <20240104001129.GA2045237-robh@kernel.org>
+References: <20231221173421.13737-1-zajec5@gmail.com>
+	<20240104001129.GA2045237-robh@kernel.org>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: security: tpm: Convert TPM tis spi to yaml
-Content-Language: en-US
-To: Michal Simek <michal.simek@amd.com>, linux-kernel@vger.kernel.org,
- monstr@monstr.eu, michal.simek@xilinx.com, git@xilinx.com
-Cc: Conor Dooley <conor+dt@kernel.org>, Jarkko Sakkinen <jarkko@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Peter Huewe <peterhuewe@gmx.de>, Rob Herring <robh+dt@kernel.org>,
- devicetree@vger.kernel.org
-References: <0f59acbb394cd09ae2a7950d8c01f8e40abf9f34.1704272496.git.michal.simek@amd.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <0f59acbb394cd09ae2a7950d8c01f8e40abf9f34.1704272496.git.michal.simek@amd.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+X-GND-Sasl: miquel.raynal@bootlin.com
 
-On 03/01/2024 10:01, Michal Simek wrote:
-> Convert binding from txt to yaml. Enforce that node name starts with tpm@
-> which should be generic enough for these devices.
-> Deprecating tcg,tpm_tis-spi because it is using "_" which shouldn't be used
-> by in compatible string that's why infineon compatible string is used for
-> file name too.
-> Also add current TPM maintainers and maintainers of this dt binding too.
-> 
-> Signed-off-by: Michal Simek <michal.simek@amd.com>
+Hello,
 
-https://lore.kernel.org/all/953fd4c7519030db88e5b5e12ab6307414ebdd21.1702806810.git.lukas@wunner.de/
+robh@kernel.org wrote on Wed, 3 Jan 2024 17:11:29 -0700:
 
-Best regards,
-Krzysztof
+> On Thu, Dec 21, 2023 at 06:34:16PM +0100, Rafa=C5=82 Mi=C5=82ecki wrote:
+> > From: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
+> >=20
+> > U-Boot env data is a way of storing firmware variables. It's a format
+> > that can be used of top of various storage devices. Its binding should
+> > be an NVMEM layout instead of a standalone device.
+> >=20
+> > This patch adds layout binding which allows using it on top of MTD NVMEM
+> > device as well as any other. At the same time it deprecates the old
+> > combined binding.
+>=20
+> I don't understand the issue. From a DT perspective, there isn't. A=20
+> partition is not a device, but is describing the layout of storage=20
+> already.
 
+Actually I think what Rafa=C5=82 wants to do goes in the right direction but
+I also understand from a binding perspective it may be a little
+confusing, even more if we consider "NVMEM" a Linux specific concept.
+
+There is today a "u-boot env" NVMEM *device* description which
+almost sits at the same level as eg. an eeprom device. We cannot
+compare "an eeprom device" and "a u-boot environment" of course. But
+that's truly what is currently described.
+
+* Current situation
+
+	Flash device -> U-Boot env layout -> NVMEM cells
+
+* Improved situation
+
+	Any storage device -> NVMEM -> U-Boot env layout -> NVMEM cells
+
+The latter is of course the most relevant description as we expect
+storage devices to expose a storage-agnostic interface (NVMEM in
+this case) which can then be parsed (by NVMEM layouts) in a storage
+agnostic way.
+
+In the current case, the current U-Boot env binding tells people to
+declare the env layout on top of a flash device (only). The current
+description also expects a partition node which is typical to flash
+devices. Whereas what we should have described in the first place is a
+layout that applies on any kind of NVMEM device.
+
+Bonus point: We've been working the last couple years on clarifying
+bindings, especially with mtd partitions (with the partitions{}
+container) and NVMEM layouts (with the nvmem-layout{} container).
+The switch proposed in this patch makes use of the latter, of course.
+
+Thanks,
+Miqu=C3=A8l
 
