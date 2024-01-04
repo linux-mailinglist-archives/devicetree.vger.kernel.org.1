@@ -1,112 +1,122 @@
-Return-Path: <devicetree+bounces-29719-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29723-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C68B82434E
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 15:10:12 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D21338243B3
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 15:24:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 091E6285D63
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 14:10:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 64206282358
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 14:24:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C27C821A0F;
-	Thu,  4 Jan 2024 14:10:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83638224FB;
+	Thu,  4 Jan 2024 14:23:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="FrMIc0/b"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Kb7SQSY6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FE9F224CA
-	for <devicetree@vger.kernel.org>; Thu,  4 Jan 2024 14:10:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-2cd0db24e03so6323151fa.3
-        for <devicetree@vger.kernel.org>; Thu, 04 Jan 2024 06:10:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704377403; x=1704982203; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=QvyBwEaiMbUvG2bcyPLm6XlY6v4Hxt5APwIYm1XSkrE=;
-        b=FrMIc0/bg63yGw8pviWosTx9WqTOaB3Yhmamf1wOrXyiwywX8XOqTDNTA1HncN8WtV
-         HHe7Efb2devZ/OnYaX4iwXMaDH2pESREbJxKwzofwJvCdbHvoBWrJrGiQz482zRvk8ZW
-         nu+wrG7cSBTgUVhYFt04aU7BWFansoknyi+BjJ1rvip0KtzbTNXPDui2cJxgGs5x4BpY
-         DnBeoCtgkr128NIq/l9BeUdrtE5OSg3ofKXe6Xj0l4S9CMqBVjy/2ekk3wNiO5GN2NvC
-         aSIGRjsg2+lTWNxfGPqzieQk3io79NATZfVRNdrAcSb9bhljlSrZUqplMee7IUZItkZH
-         ppfg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704377403; x=1704982203;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=QvyBwEaiMbUvG2bcyPLm6XlY6v4Hxt5APwIYm1XSkrE=;
-        b=mfru+u6HttVZ1LJwhDETCh1SA0VGUK4rarOs+z3y0xIlTFVj1rWeQyu4COyKCwWzK3
-         eGPK9dY51mRRONq4k1Z46YGhIBHBt7DNKVL19ZMiS6nAiewdsGU2ymuAsvLQelRcCxGN
-         hZ3NOjdatHi2l4FPVxcBkG9ZI8/ApeGsfa0UAmD+LMM0JPYRy+gtwqphQwSFLBsOq9Ct
-         WQ+UobaHrNzqdVck8Wyw+3opfun25yzHR0Gtx1FM2FZIP0MSSNSQW3gC6fIlFX/KM4nP
-         PD5T9MHPgzPZcqGl7LHUaz+ZZlDjKcVPQHPLtVBWJ0ObnCXOnYxsTZSX/LKrJI7UTUZQ
-         XLdA==
-X-Gm-Message-State: AOJu0YwqQ7mKsMMYa9/GMxGGIB2ZKrT5FsrhJQOABfTJxBUtflcwHjkF
-	Iv7aJlOR2imu4WUnLSIofDisuyhGMqftWg==
-X-Google-Smtp-Source: AGHT+IG0lzZDESK7ygOFl5Ea/ju6snk5+bN5kdUcnPQ8W0V8q1L5nCMWaYuaUq4yiByYpdIAEKbzWw==
-X-Received: by 2002:a05:651c:607:b0:2cc:7578:3ce6 with SMTP id k7-20020a05651c060700b002cc75783ce6mr152556lje.10.1704377403284;
-        Thu, 04 Jan 2024 06:10:03 -0800 (PST)
-Received: from [192.168.100.86] ([37.228.218.3])
-        by smtp.gmail.com with ESMTPSA id dr15-20020a5d5f8f000000b003373ece28efsm10611785wrb.29.2024.01.04.06.10.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 04 Jan 2024 06:10:02 -0800 (PST)
-Message-ID: <db83302e-0f2a-4611-b8c9-345668d0bbef@linaro.org>
-Date: Thu, 4 Jan 2024 14:10:01 +0000
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E47B822F14;
+	Thu,  4 Jan 2024 14:23:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 404DTST1015771;
+	Thu, 4 Jan 2024 14:23:24 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	from:subject:date:message-id:mime-version:content-type
+	:content-transfer-encoding:to:cc; s=qcppdkim1; bh=RSiX/nlv3LYAiV
+	eziNiiqDW6FTFfdI/6EMRMpkIGZcE=; b=Kb7SQSY6/AwgbcE0dqjiH3Hxv9vvc2
+	SaVsS6k1iibVq+zSRDhzPUoSf6c1AGGzJ+wS9KNOaKaw/oHTiDrbxzxSQaDorzLl
+	+k/VXbihdjb/n1kwA5qxjeL7JnrtU0ZfAGEWHfumcUlCM/bzo879DlAwC1vipdRi
+	leNXd/B25LP8q5g4y82VXw/fmA8Kfbj6AeNIBJuvlkpkaVzj5ykleKSQkW3HFjoa
+	Kmf/7qFUjhpb6o1W+LMjjbPzlfYdYDh0R/b9BJO7UdKywYVWEvVLl0lEVicc1aG1
+	xQi7pXea8F0H6uhtGIHbkj2+Ms5kqhpxOzrvYYvhkNgO4Q7lCuNgtFFQ==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vdqb1s4yu-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 04 Jan 2024 14:23:24 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 404ENNb5021241
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 4 Jan 2024 14:23:23 GMT
+Received: from hu-skakitap-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Thu, 4 Jan 2024 06:23:18 -0800
+From: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
+Subject: [PATCH 0/3] clk: qcom: Add dfs support for QUPv3 RCGs on SM8150
+Date: Thu, 4 Jan 2024 19:53:03 +0530
+Message-ID: <20240104-sm8150-dfs-support-v1-0-a5eebfdc1b12@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] media: dt-bindings: media: camss: Add
- qcom,sc8280xp-camss binding
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Rob Herring <robh@kernel.org>,
- Bryan O'Donoghue <pure.logic@nexus-software.ie>
-Cc: Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240103-linux-next-24-01-02-sc8280xp-camss-core-dtsi-v1-0-abacaa63a961@linaro.org>
- <20240103-linux-next-24-01-02-sc8280xp-camss-core-dtsi-v1-1-abacaa63a961@linaro.org>
- <87bcff40-b5ff-41c9-a33f-95f5e80a2f22@linaro.org>
- <62995a12-e835-40ff-966f-8522f2ab53dc@nexus-software.ie>
- <20240103175424.GA1440392-robh@kernel.org>
- <3627b156-a4e4-458e-9cf0-ca6c62366e7e@linaro.org>
- <36dfbb05-d538-4f83-9e0d-898e3d35f3dc@linaro.org>
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <36dfbb05-d538-4f83-9e0d-898e3d35f3dc@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAEe/lmUC/x3MPQqAMAxA4atIZgOJP7R4FXEQjZpBLY2KIN7d4
+ vgN7z1gElUMmuyBKJea7lsC5xkMS7/NgjomQ0FFRUwV2uq5JhwnQztD2OOB5N0g7FzJvoQUhii
+ T3v+07d73AxdjZ/RkAAAA
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konrad.dybcio@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Deepak Katragadda <dkatraga@codeaurora.org>,
+        Vinod Koul <vkoul@kernel.org>, Taniya Das <quic_tdas@quicinc.com>,
+        "Rob
+ Herring" <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Ajit Pandey
+	<quic_ajipan@quicinc.com>,
+        Imran Shaik <quic_imrashai@quicinc.com>,
+        "Jagadeesh Kona" <quic_jkona@quicinc.com>,
+        Satya Priya Kakitapalli
+	<quic_skakitap@quicinc.com>
+X-Mailer: b4 0.12.4
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: vu4WSVYwThloEeMVgG2NDWL8Sb06w45T
+X-Proofpoint-ORIG-GUID: vu4WSVYwThloEeMVgG2NDWL8Sb06w45T
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-12-09_02,2023-12-07_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ suspectscore=0 mlxscore=0 adultscore=0 priorityscore=1501
+ lowpriorityscore=0 bulkscore=0 mlxlogscore=785 clxscore=1011
+ malwarescore=0 phishscore=0 spamscore=0 classifier=spam adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2311290000
+ definitions=main-2401040113
 
-On 04/01/2024 12:40, Krzysztof Kozlowski wrote:
->> https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240103-linux-next-24-01-02-sc8280xp-camss-core-dtsi-v1-1-abacaa63a961@linaro.org/
->>
->> If not - what is the base of the build ?
-> master
-> 
-> Anyway, the base of the build matters less. The main problem is that you
-> have dependency which is nowhere explained. This cannot go via media
-> tree, because of that dependency.
+Add dfs support and missing resets for SM8150 global clock
+controller.
 
-Obvs my mistake I'd have assumed the dts stuff built against -next, 
-clearly not how this works.
-
-I'll ensure I spell out the base dep in v2.
-
+Signed-off-by: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
 ---
-bod
+Satya Priya Kakitapalli (3):
+      clk: qcom: gcc-sm8150: Register QUPv3 RCGs for DFS on SM8150
+      dt-bindings: clock: Update the gcc resets for sm8150
+      clk: qcom: gcc-sm8150: Update the gcc resets
+
+ drivers/clk/qcom/gcc-sm8150.c               | 354 +++++++++++++++++-----------
+ include/dt-bindings/clock/qcom,gcc-sm8150.h |   3 +
+ 2 files changed, 217 insertions(+), 140 deletions(-)
+---
+base-commit: ab0b3e6ef50d305278b1971891cf1d82ab050b35
+change-id: 20240104-sm8150-dfs-support-087ce1773183
+
+Best regards,
+-- 
+Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
+
 
