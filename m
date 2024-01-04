@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-29680-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29681-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96AB1824139
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 13:03:12 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 77D85824148
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 13:07:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 320D31F24A23
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 12:03:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 21FE22834AB
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 12:07:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9274A21360;
-	Thu,  4 Jan 2024 12:03:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F25A02111A;
+	Thu,  4 Jan 2024 12:07:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xpes5WeJ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="L2hAgAPR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
+Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D27E3219ED
-	for <devicetree@vger.kernel.org>; Thu,  4 Jan 2024 12:03:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D9A72136C
+	for <devicetree@vger.kernel.org>; Thu,  4 Jan 2024 12:07:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-2cd1919f0acso6002211fa.0
-        for <devicetree@vger.kernel.org>; Thu, 04 Jan 2024 04:03:06 -0800 (PST)
+Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-a28fb463a28so4097766b.3
+        for <devicetree@vger.kernel.org>; Thu, 04 Jan 2024 04:07:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704369785; x=1704974585; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1704370061; x=1704974861; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=DFIN0JRPxZeIYz9kF4NaZedcE87VAaRvQmqCR63HznA=;
-        b=xpes5WeJ03jylSvs61Gd4ZQcY3A6dT/3JtBf8h184UkojiC1np8xwvhnkkQIxFePw2
-         292R8Ls6I2MK0wK7Iwc+ms068/Um8sB1a9l9KtNavM1QD8o4a/lm72Qz9O2PWuP3j06t
-         /KJ89YjO5AJHGKApI2rQ9D0Mvyyws3g+DyVxsWZ6K38y3EyWdPE9VeWo+LxdGI3xE3GW
-         xXI2Lu9e+5zCKYPiJY/0j99G+tfh0T7+hgyB0wiPW3QeQvEI3+5JjteZwk2Ez3INeCW+
-         ljgBj9UNHu1C7YgSUuubiOO5r+qwMecXRLFQoXhElDz3QzymVM034mvXpH40r4z3ONNK
-         2cBQ==
+        bh=B8jCwMDgZSyl6nR1Fd9Z+yK1tqC9F+y4Fnvbfm9QdOo=;
+        b=L2hAgAPRZESEczY18IocUr+4g9YeKy06kK8lAArXN4b8jaQ735ZRIhr9rAQjrdNrxY
+         BZqvl/NUxYYNx+Z4Nxv5UuIZrRZ0fPTRqHtpGygrvKlffbM8HVCu/OgrdB0HFVhYOCtl
+         RFgbOvUHCG9OzprmHtIS1bGivyAoi0y/oeNv8PEKgTISidUvy8CrziaVhFqh1wHJzi3I
+         yfwkkMSU1h1Bk1++EIIil2H5gY9dqOngZlJKvnp5Fw1EJS5QMANgluc+0hoDLFlytILW
+         C4gf9f2TGbEqah5nZPKoucXzqnjT/5/9ktPXTm3qpHcBID7hUFYRfPjgth4IIkmAhMXb
+         KEpA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704369785; x=1704974585;
+        d=1e100.net; s=20230601; t=1704370061; x=1704974861;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=DFIN0JRPxZeIYz9kF4NaZedcE87VAaRvQmqCR63HznA=;
-        b=jtro6QySs/2NJ6IZU/gwalmAKI9DkTkLTAwZn1hcjLjLvk5WqxQjImsaD06BHKzCg9
-         JPtDEQJaLRgYZ4AsdWVDxeizfM7icoIR8a0U8jeHLKHj6JNHKWBCyUqUnsV0Fnm708fy
-         vB1VGmR1/YIUgZ6eLR0WJXsVZxlfbSsWKQGc+vvblLAF8wvJCEtio9d1l1j9uCkznLoo
-         kq7+yMb71a4gCdI7gTg73W3TcoABJcBdeAs6L875hwYdmFX/znqTYudeS0w8VK2D0bv5
-         Uweg+64UTts0tDCm30XA7rh9wq2MbZttx5it869t7L98PAZ0ar97xzg3ZhtDVD/dO5Vq
-         x5pQ==
-X-Gm-Message-State: AOJu0YwwZJeZ/3UxNSklA9eAFzUyyducenAWx4sks+lmPX866JF0IcCx
-	IMGUGlxhGRl3uGs1fKPGPZ53bAcaVh3WaA==
-X-Google-Smtp-Source: AGHT+IEfclptb3Y6RoCGpyhaqWbQXBt6VX579x8n32GryTMhIBu+yxRbTfoeKYc+baWP3G64gwLKpw==
-X-Received: by 2002:a2e:9d84:0:b0:2cd:13bf:78d7 with SMTP id c4-20020a2e9d84000000b002cd13bf78d7mr255488ljj.10.1704369784952;
-        Thu, 04 Jan 2024 04:03:04 -0800 (PST)
+        bh=B8jCwMDgZSyl6nR1Fd9Z+yK1tqC9F+y4Fnvbfm9QdOo=;
+        b=egQD7ooFPubmfNA8uu/EgEaORUeKEGn12qafIhMfacSvqkJrE/tb3dFRIJ2V0/u8vE
+         IOZHzUvK+/ITHuWliMVDo306/z/XCdy8yBZr8IYe8J9in2059RacBOlo4zeD3kjxG7F7
+         L1gcnsMNaAwmJEvcDFTmJ6Hy1pXe6y2Vxtn03u/d/CIQNY9EkJdTtIbKydmo3AsDZdJw
+         vlJ3/N1/+jKvnScaPcOpzWHLFcY7iDjJouLtNCfH2WpD4II0xEpG27bCL+Pqcx25JNqI
+         iq1iA5OU/+dByZOrHqrl1Fq+x6PrIwSRUyUjwDClYzkptN0hpu+7qr92W6GOExHz0nSA
+         fMqQ==
+X-Gm-Message-State: AOJu0YwiOOxuw47TLAzySZf4eoALcN5Tp4f7SK+afD4tPKdbGkYdl3cw
+	/4iiQZfY+OfBTUgIvsiccTIXS8709mhWcg==
+X-Google-Smtp-Source: AGHT+IFzYMSyCJ9fZ4PHUD/vE+PZ5odR4nVxHjsWim15tqnHJR9IsUjahbejBEWkodskfOWG/UDoaw==
+X-Received: by 2002:a17:906:4153:b0:a28:ab53:eda1 with SMTP id l19-20020a170906415300b00a28ab53eda1mr283695ejk.34.1704370061429;
+        Thu, 04 Jan 2024 04:07:41 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id wh14-20020a170906fd0e00b00a234907311asm13618345ejb.55.2024.01.04.04.03.03
+        by smtp.gmail.com with ESMTPSA id wh14-20020a170906fd0e00b00a234907311asm13622465ejb.55.2024.01.04.04.07.39
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 04 Jan 2024 04:03:04 -0800 (PST)
-Message-ID: <5cdd7549-1b44-4612-b020-84ce5a24e15a@linaro.org>
-Date: Thu, 4 Jan 2024 13:03:02 +0100
+        Thu, 04 Jan 2024 04:07:40 -0800 (PST)
+Message-ID: <166fb0ff-dfd7-408a-ade1-2aa5a51d96aa@linaro.org>
+Date: Thu, 4 Jan 2024 13:07:38 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,21 +66,26 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 3/3] dt-bindings: mfd: sophgo: add misc MFD for Sophgo
- CV1800 series SoC.
+Subject: Re: [PATCH] arm64: dts: qcom: ipq6018: add #power-domain-cells for
+ gcc node
 Content-Language: en-US
-To: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
-Cc: a.zummo@towertech.it, alexandre.belloni@bootlin.com, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
- linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, dlan@gentoo.org, inochiama@outlook.com
-References: <20231229090643.116575-1-qiujingbao.dlmu@gmail.com>
- <20231229090643.116575-4-qiujingbao.dlmu@gmail.com>
- <942d79d0-08a8-4cda-90de-57daa44d9dd7@linaro.org>
- <CAJRtX8Rv0Ws=fcgDf2jh6GRz3ba+CkjH4u6JUPZnN61-CqqzZA@mail.gmail.com>
- <73dc5e85-0442-4b48-8abb-4a323403f3c0@linaro.org>
- <CAJRtX8QKyGDrCa_L8YY_Bsy3TTJsfw0LOt2T8uLWEfKE9QrQDg@mail.gmail.com>
+To: Fenglin Wu <quic_fenglinw@quicinc.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Robert Marko <robimarko@gmail.com>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, quic_tdas@quicinc.com,
+ quic_aiquny@quicinc.com, kernel@quicinc.com, Andy Gross <agross@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240104-gcc-docs-update-v1-1-127e4816b798@quicinc.com>
+ <CAA8EJprsGke9zZBy_x=YSxz7R1aSpx8r3ndjjXVVKhjKBxd=QQ@mail.gmail.com>
+ <724f608a-cbfe-48f6-a1f7-59b961a7d724@quicinc.com>
+ <56ee556d-ec31-4553-bce3-0c1e12c111ed@linaro.org>
+ <685f45d9-48e8-49c6-9de0-6771777ba62e@gmail.com>
+ <a8012b92-6072-406d-8aab-ecb167ea44d2@quicinc.com>
+ <CAA8EJpoAA7RyD=9JZ9aYLMhyvCMWLVr1yhe7NSryRe=VjfmZPw@mail.gmail.com>
+ <c9f258f7-d075-47e9-8750-3e1427d03180@quicinc.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -126,37 +131,84 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <CAJRtX8QKyGDrCa_L8YY_Bsy3TTJsfw0LOt2T8uLWEfKE9QrQDg@mail.gmail.com>
+In-Reply-To: <c9f258f7-d075-47e9-8750-3e1427d03180@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 04/01/2024 12:42, Jingbao Qiu wrote:
-ties: false
->>>>> +
->>>>> +examples:
->>>>> +  - |
->>>>> +    #include <dt-bindings/interrupt-controller/irq.h>
->>>>> +
->>>>> +    misc@5025000 {
->>>>
->>>>
->>>> misc can be anything.
->>>
->>> Actually, there are RTC and (Power On Reset/POR) here. I can't find a suitable
->>> word to describe him. Can you give me some advice?
->>
->> Then maybe just rtc? If there is nothing else, why RTC is separate subnode?
->>
+On 04/01/2024 11:55, Fenglin Wu wrote:
 > 
-> There is also a por submodule used to provide power off and restart functions.
-> Do you mean to use RTC as the parent node like this.
-> rtc{
->     //something
->     por{
->     }
+> 
+> On 1/4/2024 6:49 PM, Dmitry Baryshkov wrote:
+>> On Thu, 4 Jan 2024 at 12:41, Fenglin Wu <quic_fenglinw@quicinc.com> wrote:
+>>>
+>>>
+>>>
+>>> On 1/4/2024 6:32 PM, Robert Marko wrote:
+>>>>
+>>>> On 04. 01. 2024. 11:16, Konrad Dybcio wrote:
+>>>>> On 4.01.2024 11:13, Fenglin Wu wrote:
+>>>>>>
+>>>>>> On 1/4/2024 5:53 PM, Dmitry Baryshkov wrote:
+>>>>>>> On Thu, 4 Jan 2024 at 10:06, Fenglin Wu via B4 Relay
+>>>>>>> <devnull+quic_fenglinw.quicinc.com@kernel.org> wrote:
+>>>>>>>> From: Fenglin Wu <quic_fenglinw@quicinc.com>
+>>>>>>>>
+>>>>>>>> Property '#power-domain-cells' is required as per defined in
+>>>>>>>> qcom,gcc.yaml
+>>>>>>>> so add it for ipq6018 gcc device node to eliminate following
+>>>>>>>> warning in
+>>>>>>>> dtbs_check:
+>>>>>>>>
+>>>>>>>> arch/arm64/boot/dts/qcom/ipq6018-cp01-c1.dtb: gcc@1800000:
+>>>>>>>>            '#power-domain-cells' is a required property
+>>>>>>>> from schema $id:
+>>>>>>>> http://devicetree.org/schemas/clock/qcom,gcc-ipq6018.yaml#
+>>>>>>> But ipq6018 doesn't implement GDSC support. So for the sake of fixing
+>>>>>>> the warning you are adding a bogus property.
+>>>>>>>
+>>>>>> I agree. However, there are also some gcc drivers not implementing
+>>>>>> GDSC support but the bindings are adding '#power-domain-cells' in the
+>>>>>> DT example, such as: qcom,gcc-apq8064.yaml, qcom,gcc-ipq4019.yaml,
+>>>>>> qcom,gcc-ipq6018.yaml, qcom,gcc-ipq8064.yaml, qcom,gcc-msm8660.yaml.
+>>>>>>
+>>>>>> Actually I thought that maybe we should do a clean up by removing
+>>>>>> '#power-domain-cells' out of the qcom,gcc.yaml binding and only
+>>>>>> adding it into individual qcom,gcc-xxx.yaml for the driver which has
+>>>>>> implemented GDSC support. I checked this with Taniya offline, but she
+>>>>>> prefers only fixing it in ipq6018.dtsi as it doesn't hurt anything by
+>>>>>> adding the property, and she expects the GDSC support should be
+>>>>>> existing in most of qcom,gcc drivers especially the newer Qcom chipsets.
+>>>>> Before we start changing anything, we should assess whether these
+>>>>> platforms actually have GDSCs within this clock controller block,
+>>>>> even if they are (currently) not described in the clk driver.
+>>>> Hi,
+>>>> IPQ6018 has GDSC-s, at least for the USB-s.
+>>>> I tried configuring them a while ago, but the USB2.0 GDSC seems to
+>>>> either have a HW bug or
+>>>> it uses some special configuration as its status bits never show that
+>>>> its ON [1].
+>>>>
+>>>> [1]
+>>>> https://patchwork.kernel.org/project/linux-arm-msm/patch/20231025104457.628109-2-robimarko@gmail.com/
+>>>>
+>>> Thanks for the link! I checked the spec internal, and I did see GDSC
+>>> device for USB0/USB1 controller is present in GCC clock controller.
+>>> So considering there is a patch ongoing to add GDSC device for ipq6018
+>>> gcc driver, can the DT commit which adds '#power-domain-cells' be accepted?
+>>
+>> What for?
+> Maria (quic_aiquny@quicinc.com, copied) is working on automation tool in 
+> Qcom internally to check dt_binding and dtbs and she expects all the 
 
-por is empty in your binding, so there is little point in having it as
-subnode.
+Check existing tree is trivial, I had something running months ago.
+Unless you meant checking patches before you send them?
+
+> warnings/errors reported on Qcom board files can be fixed. She can help 
+> to comment further.
+
+Anyway, fixing something incorrectly just because your tool cannot
+handle existing issues, is not the reason.
+
 
 Best regards,
 Krzysztof
