@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-29562-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29563-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E086A823CD2
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 08:37:58 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B4A1F823CEA
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 08:47:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3D29CB24BAF
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 07:37:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2A8371F26122
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 07:47:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 208A31EB3E;
-	Thu,  4 Jan 2024 07:37:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C77DA1D68D;
+	Thu,  4 Jan 2024 07:47:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gCRrxT6h"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mkFEL6Hz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 731971EB42
-	for <devicetree@vger.kernel.org>; Thu,  4 Jan 2024 07:37:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24302200A7
+	for <devicetree@vger.kernel.org>; Thu,  4 Jan 2024 07:47:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a2768b78a9eso216533966b.0
-        for <devicetree@vger.kernel.org>; Wed, 03 Jan 2024 23:37:45 -0800 (PST)
+Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-5542a7f1f3cso264688a12.2
+        for <devicetree@vger.kernel.org>; Wed, 03 Jan 2024 23:47:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704353864; x=1704958664; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1704354434; x=1704959234; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=XcmxxauYbfKJDqvFNCXACuCIGrw/Uc+4qzPY1VHZt9A=;
-        b=gCRrxT6hiBPxXsAY03uiaxvwWXIq+oOqa4r8I8lbz3MYWMGvuZjWX31etE0PmCauqh
-         b9GBiah+3q0SLODP/V+jn7ck6Bz3sda5/n/ypU7x8u4yrIWzBWYIilTewqYkQ22hZs6B
-         CXp1u7b4VnuDxDP4XUi1/QRJ1nZGOoSfu6HZtpSNhWfnuLopt+YzzpyCgMz9fU9pp8mB
-         fS1Awx2OkXSmGgcRY7In+Fhh7nmEj1XBdy1Nxfj1u47TFqa+RU90xkQ6YM3vOOrGOPul
-         6+a/jZfOzDZ8yuUGKfqp0xi3avwFKkP/B2UTAMqI6BQy61/VEWr9L76SUphW5ZBpXFzQ
-         w6AA==
+        bh=oGF4/vmIJ8o7IJvlJQyYKaxW9KtTtwYjR9BBLu19fK4=;
+        b=mkFEL6HzI8xj4xcJEgGtfq2/GQfxmpYfCM6qKsp/DwjdhHavpkkdYUNWqZe4tZnbpj
+         nummQLXCZGmtl3W/LPaBOpVBxSLlENm/joY/SgTTfbouINsw8USktKevRISs8zFuewb+
+         olIiZzsqmf5C/b1WyvS/jRc5qi85L6TnOlQLeAkSk2IRBghZDeJDDm6ZiFjNfxK13lJW
+         syVCKMHEvRgKxAlpM1R6Q9agccCRPEosXITT7OS9ZEW71GKv6c3KdBCJXwrFS46CG6ML
+         J/uCEciNYweY5UKPtX5e562LGcpzjXKpA0HLXCRJ6TzEKHT0gMGgjksWdv726GiysYfN
+         YcGg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704353864; x=1704958664;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1704354434; x=1704959234;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=XcmxxauYbfKJDqvFNCXACuCIGrw/Uc+4qzPY1VHZt9A=;
-        b=lkgOeemwu3SySBbLK6zf90kChKnGSLg/9mKk/m+oAQxIyBSpdLlSkBpFT53plTPTix
-         r1bTHeA90ifFaF49Uh1SgIvg3F2xUN/Hq/ELWUEPgyZ24EbtpUeV10VULw3a23NA8R2/
-         +p1yCblVUlpOG/b6JdmoexcQyvU6yX9ldJ26EM5jM90SeSIyDMvhhuEmaSjPHoSxWD23
-         ZJmj73y5CP8egEum4HuVOFJDg9xlZofmtMdnhS51ea5H5tgSADihkU7yOXSyHYiIU/qi
-         opwy/urWShtxx3d/S6MSisPtxMPfJvo4Kg30eqru6PA1QnmDGl7a/hCd4iSzTALNFK4f
-         Fr1A==
-X-Gm-Message-State: AOJu0YwR6XMyZOVTwjvr5MfGCcvpt0j1nShzfeiMW9jtd6bdBF8mPO4i
-	KBXDjFgM8y9Qyxb8Ugxbrs/Zao7gMUBB1A==
-X-Google-Smtp-Source: AGHT+IF7EXuxwSlHTY5javAEI9SH4fqaYbbA3qEZhIO8Ef01OIU3T8e0S9VOYlK0L07mInkTxs8Byw==
-X-Received: by 2002:a17:906:ee81:b0:a28:ac72:4570 with SMTP id wt1-20020a170906ee8100b00a28ac724570mr218580ejb.21.1704353863819;
-        Wed, 03 Jan 2024 23:37:43 -0800 (PST)
+        bh=oGF4/vmIJ8o7IJvlJQyYKaxW9KtTtwYjR9BBLu19fK4=;
+        b=EIDP5ijjBa2FyOjeP7hAbytBCoJ3+R4D6bWCg7QzlVZe47H37SeXzjzI9E7LnGE8HG
+         ImuwK3iCigWPkC0eTMegmwARsatcB4HwGx9tNfZS4yDDo8dEQWx3X6QqEXOU3pGyXHJc
+         jrYeJBYYaGiBVR6MwjBEFlw+fVYSOxD/+I0875dgOMIY3zhDlii5UQTO9zN1AMu+3eKN
+         gzICtMmeqmRMx336WsMZu4lZmX64PTSwoCxbtoiA2AlxM6nH31bA4Ye7pFbkLXBl2jv/
+         C0XXPr73zClobYyWUB3s1T4fH8rpc/+xi67Im4Pi1V4rsKvzuel9eJTFxohCiLFpuHT3
+         LFJg==
+X-Gm-Message-State: AOJu0Yzv4+c5tqep0lx23GL4m4ZngqFAelru95ZUhDjhtnx4O1tCV8+K
+	59EwUY9wHFfvEezyclaanf09+S55qFtjxw==
+X-Google-Smtp-Source: AGHT+IHD4M0r8yDP/YsO00ANonos/KjanteYCjmiTxyH/zJvMcNhKtTUPBA9N36eVzDrvVyTOgmzew==
+X-Received: by 2002:a50:9b4f:0:b0:555:ea2f:a97f with SMTP id a15-20020a509b4f000000b00555ea2fa97fmr98511edj.13.1704354434368;
+        Wed, 03 Jan 2024 23:47:14 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id fw34-20020a170907502200b00a27aabff0dcsm5328306ejc.179.2024.01.03.23.37.42
+        by smtp.gmail.com with ESMTPSA id p12-20020a05640243cc00b0055493aa8905sm14982937edc.63.2024.01.03.23.47.12
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 03 Jan 2024 23:37:43 -0800 (PST)
-Message-ID: <c343e7f5-ea90-4bfb-a837-0cc6fd9a3488@linaro.org>
-Date: Thu, 4 Jan 2024 08:37:41 +0100
+        Wed, 03 Jan 2024 23:47:13 -0800 (PST)
+Message-ID: <c4831e26-5ff0-40b1-98d4-addfdc1ee5a8@linaro.org>
+Date: Thu, 4 Jan 2024 08:47:12 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,16 +66,25 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: mmc: add Marvell ac5
+Subject: Re: [PATCH v4 5/5] dt-bindings: net: ipq4019-mdio: Document ipq5332
+ platform
 Content-Language: en-US
-To: Elad Nachman <enachman@marvell.com>, robh+dt@kernel.org,
+To: Jie Luo <quic_luoj@quicinc.com>, agross@kernel.org, andersson@kernel.org,
+ konrad.dybcio@linaro.org, davem@davemloft.net, edumazet@google.com,
+ kuba@kernel.org, pabeni@redhat.com, robh+dt@kernel.org,
  krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, andrew@lunn.ch,
- gregory.clement@bootlin.com, sebastian.hesselbarth@gmail.com,
- huziji@marvell.com, ulf.hansson@linaro.org, linux-mmc@vger.kernel.org,
+ hkallweit1@gmail.com, linux@armlinux.org.uk, robert.marko@sartura.hr
+Cc: linux-arm-msm@vger.kernel.org, netdev@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-References: <20240103172803.1826113-1-enachman@marvell.com>
- <20240103172803.1826113-2-enachman@marvell.com>
+ quic_srichara@quicinc.com
+References: <20231225084424.30986-1-quic_luoj@quicinc.com>
+ <20231225084424.30986-6-quic_luoj@quicinc.com>
+ <dee72ce8-b24e-467a-b265-1b965588807f@linaro.org>
+ <aeb364a3-6c05-4a1b-ba32-e687a89f20f8@quicinc.com>
+ <58dde1a7-ed4a-442c-bb5c-c3f6d926fb7e@linaro.org>
+ <06ddbae8-1502-41fb-8cf8-9a3390dad557@quicinc.com>
+ <28c8b31c-8dcb-4a19-9084-22c77a74b9a1@linaro.org>
+ <d231b7e2-51f5-4676-8fc0-e4bc6154e2d7@quicinc.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -121,40 +130,81 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240103172803.1826113-2-enachman@marvell.com>
+In-Reply-To: <d231b7e2-51f5-4676-8fc0-e4bc6154e2d7@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 03/01/2024 18:28, Elad Nachman wrote:
-> From: Elad Nachman <enachman@marvell.com>
+On 28/12/2023 08:38, Jie Luo wrote:
+>>> Sorry for this confusion.
+>>> Rob said the internal reference source can be decided by the absence of
+>>> the property combined with compatible string, because i said the
+>>
+>> So all your three DT maintainers agree that lack of property for
+>> choosing clock, defines the usage of interrupt source.
 > 
-> Add dt bindings for Marvell AC5/X/IM eMMC controller.
-> This compatibility string covers the differences in the
-> AC5/X version of the driver: 31-bit bus limitation and
-> DDR memory starting at address 0x2_0000_0000, which are handled
-> by usage of a bounce buffer plus a different DMA mask.
+> This is the reference clock source selection of CMN block, which
+> generates the clocks for the Ethernet devices.
 > 
-> Signed-off-by: Elad Nachman <enachman@marvell.com>
-> ---
->  .../devicetree/bindings/mmc/marvell,xenon-sdhci.yaml          | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
+>>
+>> Now we had huge amount of arguments that you do not represent properly
+>> the clock relationships. Still.
 > 
-> diff --git a/Documentation/devicetree/bindings/mmc/marvell,xenon-sdhci.yaml b/Documentation/devicetree/bindings/mmc/marvell,xenon-sdhci.yaml
-> index 3a8e74894ae0..cfe6237716f4 100644
-> --- a/Documentation/devicetree/bindings/mmc/marvell,xenon-sdhci.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/marvell,xenon-sdhci.yaml
-> @@ -27,7 +27,9 @@ properties:
->            - marvell,armada-ap806-sdhci
->  
->        - items:
-> -          - const: marvell,armada-ap807-sdhci
-> +          - enum:
-> +              - marvell,armada-ap807-sdhci
-> +              - marvell,ac5-sdhci
+> here is the clock topology.
+> reference clock sources ---> CMN PLL ---> various output clocks
 
-Order entries alphabetically if there is going to be resend/new version.
+How do you guarantee that these clocks are enabled without proper
+relationships described in DT? In current and future designs?
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> the output clocks are provided to the Ethernet devices(such as the
+> qca808x PHY devices).
+> 
+> These information is also provided the commit message of the patch
+> <net: mdio: ipq4019: configure CMN PLL clock for ipq5332>.
+> 
+>>
+>>> internal 96MHZ is used on ipq5018 currently in the previous message.
+>>>
+>>> per double checked the current IPQ platforms, the internal 96MHZ is also
+>>> possible on ipq9574, and the reference clock source should be kept as
+>>> configurable instead of limited by the compatible string, maybe the
+>>> different reference clock source is acquired in the future, even
+>>> currently it is not used on the special platform for now.
+>>>
+>>> so i update the solution with a little bit of changes.
+>>
+>> You still do not want to implement our suggestions and I don't
+>> understand your arguments. Nothing in above paragraph explains me why
+>> you cannot use clock provider/consumer relationships.
+> 
+> Hi Krzysztof,
+> 
+> The reference clock source can be registered as the fix clock provider,
+>  From the current fix clock provider, the clock rate is useful for the
+> clock consumer, the fix clock rate is used to generate the output clocks
+> by the divider or multiplier.
+> 
+> For the CMN block to select reference clock, which is configuring the
+> clock source, we don't know the formula to get the output clock value
+> based on the reference clock value.
+
+I don't understand what does it mean. You do not know how to program CMN
+block?
+
+> 
+> i also see there is an example in the upstream code, which is same as
+> the CMN block to select the reference clock source.
+
+Oh, the old argument. So if there is a bug in the code, you are going
+for example to implement it as well?
+
+> 
+> the property "ref-clock-frequency" is defined in the yaml file below.
+> Documentation/devicetree/bindings/net/wireless/ti,wlcore.yaml.
+
+And how does the hardware look like there? It's TI, so how do you even know?
+
+
 
 Best regards,
 Krzysztof
