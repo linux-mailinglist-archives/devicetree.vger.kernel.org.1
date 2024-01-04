@@ -1,109 +1,124 @@
-Return-Path: <devicetree+bounces-29778-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29779-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D687F82485A
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 19:46:48 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8BD87824883
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 20:02:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 85E981F230DF
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 18:46:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2B2471F2566B
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 19:02:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6342D28E1A;
-	Thu,  4 Jan 2024 18:46:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9ECB628E1E;
+	Thu,  4 Jan 2024 19:02:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="c0Jc5VRG"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Ite9pqD8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 444B528E0F;
-	Thu,  4 Jan 2024 18:46:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A8E2AC433C8;
-	Thu,  4 Jan 2024 18:46:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1704393994;
-	bh=sENc5CCnxhI6r+hrIlR9tlhr2WUZEqLABBgNTIa2NzI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=c0Jc5VRGht41sBI1wBEvrgYuZzegmyVNiwD8dYnY5SWBbVHyUelzEWC+RU9xC8Ch+
-	 fwB8iTeeEJb/BBXxs32a9XveEKcVurNGVxT9/zNORFRk0C1nIKoP7Mwrh11A+g3s4V
-	 02hg/4qHtO3bieo/VaZThvBix6otXiF1gLFhYUfuWPmD9wqB8jg+xDSTXbir0vMYRH
-	 j4eCBK0aKJ0lix2UEN80xmgJd+SRMJtBFdn+qDUsam3dV0VhhLyTsPwThH5C59818z
-	 BXsQtIc+SQDU0KxmQEbXV0btCpxD0F7eJRNDaeHgBYtLm9uQLlBCz8iSPOHcQyf2rO
-	 LwGW4FG0Qt7Gw==
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E58632C18C;
+	Thu,  4 Jan 2024 19:02:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1704394939; x=1735930939;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=3rUMvGvL6YB+Sg9CHINyeLAItR2uRWwb2yiVVnAXKvo=;
+  b=Ite9pqD8PVpBehoUBHD/lOxhZrPkdFj7nOUBoepMwVkOBx9qKHSnENiA
+   5hWsw5RiPxpbOB2uF3dX+fPFGjM5VjzMg4NFwSldjmAYnOIr1VL3aeI6i
+   mTY1Ol1Oa/KgvSJdn0XbEzU9xMQ/PoEgwiZ2kDLIgAnFzIHX2AkZ4yG5t
+   i3AMkwZ1qTCme/HrbOqrrRlkaFzAAAxY4TPg21l5wUc3gzIcXe7oGcAxp
+   7CJl9t2gBKO3joq3oF0N7TDuvONHb7nMt9YrRuwq2GKN46P1zZetUskZU
+   tb/YYA4l7/uJsChmCVHuPPntSYgAQunAi07H3V76vA8ra0o+1keD2iiX1
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10943"; a="4707778"
+X-IronPort-AV: E=Sophos;i="6.04,331,1695711600"; 
+   d="scan'208";a="4707778"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Jan 2024 11:02:18 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10943"; a="1111857269"
+X-IronPort-AV: E=Sophos;i="6.04,331,1695711600"; 
+   d="scan'208";a="1111857269"
+Received: from lkp-server02.sh.intel.com (HELO b07ab15da5fe) ([10.239.97.151])
+  by fmsmga005.fm.intel.com with ESMTP; 04 Jan 2024 11:02:12 -0800
+Received: from kbuild by b07ab15da5fe with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1rLSyo-0000LI-1z;
+	Thu, 04 Jan 2024 19:02:10 +0000
+Date: Fri, 5 Jan 2024 03:01:51 +0800
+From: kernel test robot <lkp@intel.com>
+To: Billy Tsai <billy_tsai@aspeedtech.com>, jdelvare@suse.com,
+	linux@roeck-us.net, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, joel@jms.id.au, andrew@aj.id.au,
+	corbet@lwn.net, thierry.reding@gmail.com,
+	u.kleine-koenig@pengutronix.de, p.zabel@pengutronix.de,
+	naresh.solanki@9elements.com, linux-hwmon@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org, linux-pwm@vger.kernel.org,
+	BMC-SW@aspeedtech.com, patrick@stwcx.xyz
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev
+Subject: Re: [PATCH v11 3/3] hwmon: (aspeed-g6-pwm-tacho): Support for ASPEED
+ g6 PWM/Fan tach
+Message-ID: <202401050234.nDBceclJ-lkp@intel.com>
+References: <20240104034120.3516290-4-billy_tsai@aspeedtech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Thu, 04 Jan 2024 20:46:30 +0200
-Message-Id: <CY658TZN29WJ.2DMIWN3W68P2P@suppilovahvero>
-From: "Jarkko Sakkinen" <jarkko@kernel.org>
-To: "Jarkko Sakkinen" <jarkko@kernel.org>, "Lukas Wunner" <lukas@wunner.de>,
- "Rob Herring" <robh+dt@kernel.org>, "Krzysztof Kozlowski"
- <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley" <conor+dt@kernel.org>,
- "Peter Huewe" <peterhuewe@gmx.de>, "Jason Gunthorpe" <jgg@ziepe.ca>, "Tim
- Harvey" <tharvey@gateworks.com>
-Cc: <devicetree@vger.kernel.org>, <linux-integrity@vger.kernel.org>
-Subject: Re: [PATCH] dt-bindings: tpm: Add compatible string atmel,attpm20p
-X-Mailer: aerc 0.15.2
-References: <ea312fdaab76efd1cbcc4ed9fd0e15e5afd1ef88.1704296746.git.lukas@wunner.de> <CY62RZMRHTT4.30ELSWNQFH6K4@suppilovahvero>
-In-Reply-To: <CY62RZMRHTT4.30ELSWNQFH6K4@suppilovahvero>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240104034120.3516290-4-billy_tsai@aspeedtech.com>
 
-On Thu Jan 4, 2024 at 6:50 PM EET, Jarkko Sakkinen wrote:
-> On Tue Jan 3, 2023 at 5:51 PM EET, Lukas Wunner wrote:
-> > Commit 4f2a348aa365 ("arm64: dts: imx8mm-venice-gw73xx: add TPM device"=
-)
-> > added a devicetree node for the Trusted Platform Module on certain
-> > Gateworks boards.
-> >
-> > The commit only used the generic "tcg,tpm_tis-spi" compatible string,
-> > but public documentation shows that the chip is an ATTPM20P from Atmel
-> > (nowadays Microchip):
-> > https://trac.gateworks.com/wiki/tpm
-> >
-> > Add the chip to the supported compatible strings of the TPM TIS SPI
-> > schema.
-> >
-> > For reference, a datasheet is available at:
-> > https://ww1.microchip.com/downloads/en/DeviceDoc/ATTPM20P-Trusted-Platf=
-orm-Module-TPM-2.0-SPI-Interface-Summary-Data-Sheet-DS40002082A.pdf
-> >
-> > Signed-off-by: Lukas Wunner <lukas@wunner.de>
-> > Cc: Tim Harvey <tharvey@gateworks.com>
-> > ---
-> > This patch depends on the following series to consolidate TCG TIS bindi=
-ngs:
-> > https://lore.kernel.org/all/cover.1702806810.git.lukas@wunner.de/
-> >
-> >  Documentation/devicetree/bindings/tpm/tcg,tpm_tis-spi.yaml | 1 +
-> >  1 file changed, 1 insertion(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/tpm/tcg,tpm_tis-spi.yaml=
- b/Documentation/devicetree/bindings/tpm/tcg,tpm_tis-spi.yaml
-> > index c3413b4..6cb2de7 100644
-> > --- a/Documentation/devicetree/bindings/tpm/tcg,tpm_tis-spi.yaml
-> > +++ b/Documentation/devicetree/bindings/tpm/tcg,tpm_tis-spi.yaml
-> > @@ -20,6 +20,7 @@ properties:
-> >    compatible:
-> >      items:
-> >        - enum:
-> > +          - atmel,attpm20p
-> >            - infineon,slb9670
-> >            - st,st33htpm-spi
-> >            - st,st33zp24-spi
->
-> Acked-by: Jarkko Sakkinen <jarkko@kernel.org>
+Hi Billy,
 
-meant:
+kernel test robot noticed the following build errors:
 
-Reviewed-by: Jarkko Sakkinen <jarkko@kernel.org>
+[auto build test ERROR on groeck-staging/hwmon-next]
+[also build test ERROR on linus/master v6.7-rc8 next-20240104]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-I can pick this if no objections.
+url:    https://github.com/intel-lab-lkp/linux/commits/Billy-Tsai/dt-bindings-hwmon-fan-Add-fan-binding-to-schema/20240104-114552
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/groeck/linux-staging.git hwmon-next
+patch link:    https://lore.kernel.org/r/20240104034120.3516290-4-billy_tsai%40aspeedtech.com
+patch subject: [PATCH v11 3/3] hwmon: (aspeed-g6-pwm-tacho): Support for ASPEED g6 PWM/Fan tach
+config: x86_64-allyesconfig (https://download.01.org/0day-ci/archive/20240105/202401050234.nDBceclJ-lkp@intel.com/config)
+compiler: ClangBuiltLinux clang version 17.0.6 (https://github.com/llvm/llvm-project 6009708b4367171ccdbf4b5905cb6a803753fe18)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240105/202401050234.nDBceclJ-lkp@intel.com/reproduce)
 
-BR, Jarkko
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202401050234.nDBceclJ-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+>> drivers/hwmon/aspeed-g6-pwm-tach.c:270:3: error: field designator 'owner' does not refer to any field in type 'const struct pwm_ops'
+     270 |         .owner = THIS_MODULE,
+         |         ~^~~~~~~~~~~~~~~~~~~
+   1 error generated.
+
+
+vim +270 drivers/hwmon/aspeed-g6-pwm-tach.c
+
+   266	
+   267	static const struct pwm_ops aspeed_pwm_ops = {
+   268		.apply = aspeed_pwm_apply,
+   269		.get_state = aspeed_pwm_get_state,
+ > 270		.owner = THIS_MODULE,
+   271	};
+   272	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
