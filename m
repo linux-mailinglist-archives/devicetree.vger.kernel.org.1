@@ -1,65 +1,64 @@
-Return-Path: <devicetree+bounces-29561-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29562-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 828D2823CC9
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 08:34:06 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E086A823CD2
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 08:37:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 588D8B2445A
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 07:34:03 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3D29CB24BAF
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 07:37:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C5961D693;
-	Thu,  4 Jan 2024 07:34:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 208A31EB3E;
+	Thu,  4 Jan 2024 07:37:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tG995bZ7"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gCRrxT6h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A06A200A7
-	for <devicetree@vger.kernel.org>; Thu,  4 Jan 2024 07:33:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 731971EB42
+	for <devicetree@vger.kernel.org>; Thu,  4 Jan 2024 07:37:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-5534dcfdd61so344958a12.0
-        for <devicetree@vger.kernel.org>; Wed, 03 Jan 2024 23:33:58 -0800 (PST)
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a2768b78a9eso216533966b.0
+        for <devicetree@vger.kernel.org>; Wed, 03 Jan 2024 23:37:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704353637; x=1704958437; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=DP6M+yDlXDj3yagLaZ2w6HOzz3bnG4toPFPTwIxDIE8=;
-        b=tG995bZ7YixVIDyHIQO3Td8nxkk64GUkbUGNFfSRngtHgHgd0mx3NxgYFEgGLXwE8S
-         i9RJkSSUJhQspjn14xeEF2ZLyw+jhmU8YoLXeyCbyQkyCxPMwvD+pvw+7+M71Uwkx4fr
-         Rm7u1VY0vtSqGMtP3qRtCLVymHhyz0MpeX38M/ZyR2calLKsFJpGORfaWZDXWHkud+78
-         /Kdhpge7TOhZVCGplZUbmctmZBI/MDa3BeKXDRsd9GShP2/T3CM5nVIrPp9YikU2uQZ0
-         zPkOiEYRdougWkctr9E1e9kfpJBIT2IrnRwx0Un2azu6w35/H6egkITLn4mwgzJy3lsS
-         BViA==
+        d=linaro.org; s=google; t=1704353864; x=1704958664; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=XcmxxauYbfKJDqvFNCXACuCIGrw/Uc+4qzPY1VHZt9A=;
+        b=gCRrxT6hiBPxXsAY03uiaxvwWXIq+oOqa4r8I8lbz3MYWMGvuZjWX31etE0PmCauqh
+         b9GBiah+3q0SLODP/V+jn7ck6Bz3sda5/n/ypU7x8u4yrIWzBWYIilTewqYkQ22hZs6B
+         CXp1u7b4VnuDxDP4XUi1/QRJ1nZGOoSfu6HZtpSNhWfnuLopt+YzzpyCgMz9fU9pp8mB
+         fS1Awx2OkXSmGgcRY7In+Fhh7nmEj1XBdy1Nxfj1u47TFqa+RU90xkQ6YM3vOOrGOPul
+         6+a/jZfOzDZ8yuUGKfqp0xi3avwFKkP/B2UTAMqI6BQy61/VEWr9L76SUphW5ZBpXFzQ
+         w6AA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704353637; x=1704958437;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=DP6M+yDlXDj3yagLaZ2w6HOzz3bnG4toPFPTwIxDIE8=;
-        b=Msm1WBpfwcaejFSeYPSREqNx3+U5fbOGgruK2lsBuPZ/8JRQHpMEu08r7yCAc+/lMU
-         gSTsQPSCcZRRuKOcO39oFOSKmACVKYzBvDH1Wj5wxBb1tHwQiuz7/MYo6piTrfDNDZMh
-         bEivOsusXiBTLt/ioyZ5Mqc0vFnNK+sH3SY+R1V/OjyvmDwCHpkrs1OBzvvPYwM8UFI7
-         U2mXzke5xfvl/biEHxwYzKKJ3Ye+FxBgTsMfEIa8/7U9mDGBgSAnG1BjtM+ZR9guGrfT
-         VG9MzLAay+tlQ1V1AFlsDiR2T4NYUFzw1XAhkSuWmDrlXPklbwllcudRj+FpaGu6gk+u
-         Lv0Q==
-X-Gm-Message-State: AOJu0Yw2klrzNMW+f9MH1yH5cJK3H8hi6Lfz66V9zTSMb5QGeMQx8/ly
-	icEr2XudS+6FeUtzi6BkLYiO0nzQxyBhxw==
-X-Google-Smtp-Source: AGHT+IFHJbTkMKbaRRRuUG4J5MwvcTPbcC2ULkVPb5k3m+oW6sp/GtFnGeon3VCpyur6EUd/QUacRw==
-X-Received: by 2002:a05:6402:30b2:b0:557:c42:977 with SMTP id df18-20020a05640230b200b005570c420977mr105466edb.1.1704353636915;
-        Wed, 03 Jan 2024 23:33:56 -0800 (PST)
+        d=1e100.net; s=20230601; t=1704353864; x=1704958664;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=XcmxxauYbfKJDqvFNCXACuCIGrw/Uc+4qzPY1VHZt9A=;
+        b=lkgOeemwu3SySBbLK6zf90kChKnGSLg/9mKk/m+oAQxIyBSpdLlSkBpFT53plTPTix
+         r1bTHeA90ifFaF49Uh1SgIvg3F2xUN/Hq/ELWUEPgyZ24EbtpUeV10VULw3a23NA8R2/
+         +p1yCblVUlpOG/b6JdmoexcQyvU6yX9ldJ26EM5jM90SeSIyDMvhhuEmaSjPHoSxWD23
+         ZJmj73y5CP8egEum4HuVOFJDg9xlZofmtMdnhS51ea5H5tgSADihkU7yOXSyHYiIU/qi
+         opwy/urWShtxx3d/S6MSisPtxMPfJvo4Kg30eqru6PA1QnmDGl7a/hCd4iSzTALNFK4f
+         Fr1A==
+X-Gm-Message-State: AOJu0YwR6XMyZOVTwjvr5MfGCcvpt0j1nShzfeiMW9jtd6bdBF8mPO4i
+	KBXDjFgM8y9Qyxb8Ugxbrs/Zao7gMUBB1A==
+X-Google-Smtp-Source: AGHT+IF7EXuxwSlHTY5javAEI9SH4fqaYbbA3qEZhIO8Ef01OIU3T8e0S9VOYlK0L07mInkTxs8Byw==
+X-Received: by 2002:a17:906:ee81:b0:a28:ac72:4570 with SMTP id wt1-20020a170906ee8100b00a28ac724570mr218580ejb.21.1704353863819;
+        Wed, 03 Jan 2024 23:37:43 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id cq8-20020a056402220800b0055507ee70a4sm12374444edb.23.2024.01.03.23.33.55
+        by smtp.gmail.com with ESMTPSA id fw34-20020a170907502200b00a27aabff0dcsm5328306ejc.179.2024.01.03.23.37.42
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 03 Jan 2024 23:33:56 -0800 (PST)
-Message-ID: <3542a18d-0fc4-40b5-8f16-c70cd0dde5b8@linaro.org>
-Date: Thu, 4 Jan 2024 08:33:54 +0100
+        Wed, 03 Jan 2024 23:37:43 -0800 (PST)
+Message-ID: <c343e7f5-ea90-4bfb-a837-0cc6fd9a3488@linaro.org>
+Date: Thu, 4 Jan 2024 08:37:41 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,20 +66,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/9] dt-bindings: usb: qcom,dwc3: Fix SDM660 clock
- description
-To: Konrad Dybcio <konrad.dybcio@linaro.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Wesley Cheng <quic_wcheng@quicinc.com>
-Cc: Marijn Suijten <marijn.suijten@somainline.org>,
- linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230721-topic-rpm_clk_cleanup-v3-0-a66e698932e3@linaro.org>
- <20230721-topic-rpm_clk_cleanup-v3-1-a66e698932e3@linaro.org>
+Subject: Re: [PATCH v2 1/2] dt-bindings: mmc: add Marvell ac5
 Content-Language: en-US
+To: Elad Nachman <enachman@marvell.com>, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, andrew@lunn.ch,
+ gregory.clement@bootlin.com, sebastian.hesselbarth@gmail.com,
+ huziji@marvell.com, ulf.hansson@linaro.org, linux-mmc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20240103172803.1826113-1-enachman@marvell.com>
+ <20240103172803.1826113-2-enachman@marvell.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -126,16 +121,38 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20230721-topic-rpm_clk_cleanup-v3-1-a66e698932e3@linaro.org>
+In-Reply-To: <20240103172803.1826113-2-enachman@marvell.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 03/01/2024 21:15, Konrad Dybcio wrote:
-> SDM660 was abusingly referencing one of the internal bus clocks, that
-> were recently dropped from Linux (because the original implementation
-> did not make much sense), circumventing the interconnect framework.
+On 03/01/2024 18:28, Elad Nachman wrote:
+> From: Elad Nachman <enachman@marvell.com>
 > 
-> Drop it.
+> Add dt bindings for Marvell AC5/X/IM eMMC controller.
+> This compatibility string covers the differences in the
+> AC5/X version of the driver: 31-bit bus limitation and
+> DDR memory starting at address 0x2_0000_0000, which are handled
+> by usage of a bounce buffer plus a different DMA mask.
+> 
+> Signed-off-by: Elad Nachman <enachman@marvell.com>
+> ---
+>  .../devicetree/bindings/mmc/marvell,xenon-sdhci.yaml          | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/mmc/marvell,xenon-sdhci.yaml b/Documentation/devicetree/bindings/mmc/marvell,xenon-sdhci.yaml
+> index 3a8e74894ae0..cfe6237716f4 100644
+> --- a/Documentation/devicetree/bindings/mmc/marvell,xenon-sdhci.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/marvell,xenon-sdhci.yaml
+> @@ -27,7 +27,9 @@ properties:
+>            - marvell,armada-ap806-sdhci
+>  
+>        - items:
+> -          - const: marvell,armada-ap807-sdhci
+> +          - enum:
+> +              - marvell,armada-ap807-sdhci
+> +              - marvell,ac5-sdhci
+
+Order entries alphabetically if there is going to be resend/new version.
 
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
