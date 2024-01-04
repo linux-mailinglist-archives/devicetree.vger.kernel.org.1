@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-29575-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29576-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28FF4823D56
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 09:22:50 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A5BA8823D5C
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 09:24:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B3FCB2834EF
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 08:22:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A81F51C20F18
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 08:24:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FF2B1EB23;
-	Thu,  4 Jan 2024 08:22:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECFC1200DB;
+	Thu,  4 Jan 2024 08:24:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="V1SRjZt/"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kG8x5bg4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
+Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFDEA20309
-	for <devicetree@vger.kernel.org>; Thu,  4 Jan 2024 08:22:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B0872030E
+	for <devicetree@vger.kernel.org>; Thu,  4 Jan 2024 08:24:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-5553f251e3cso198450a12.2
-        for <devicetree@vger.kernel.org>; Thu, 04 Jan 2024 00:22:44 -0800 (PST)
+Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-50ea9e189ebso211637e87.3
+        for <devicetree@vger.kernel.org>; Thu, 04 Jan 2024 00:24:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704356563; x=1704961363; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1704356645; x=1704961445; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=IgXeMN54pUZnkV6l4YUdIvpMgpHpXd/mxcgg00gHhZo=;
-        b=V1SRjZt/ddQoJ04BPkTwrsQM+gTllJOO2OcvtgjAeQSSQua4qodIhganmU0uMu1HOt
-         Cd/u85vd71eV1Wvfb6SfC+YaTf8qd17EvJruuqgn3+AguvDMdkV0GCLtv+N5Ajv84vth
-         QshtvTry4VUj+gATkLcqNatf6qdRnSJfG4zXZ2pF8wf+c+9kYIMrfnLtBgb2uGhlPJbs
-         fYdQQWRY52A9Y501IIkDm48mvcIXLwrhELXFIpOVyfpE6/Yrog0aYaFfEEr780y9LdSs
-         UH557cU+kOEKIZPhp6FXijn51pwPr/9USFSAbSHwKVvEShD6TjvidISNR7WSzQBFb4ze
-         zRRQ==
+        bh=7Gx+hMSZuJwkgLGLbh+ONYmWiatxGCDrgX1XA5VWUQs=;
+        b=kG8x5bg4NROMzCoX3cVQuB52xbx0SzRd0HLeymXiPaEnBFmZvoaOFKWJRlF+Zp14CO
+         5rt6vhZnnsTMUW9V1gP8CC/hGSNZwTrKDPmQyB6ICFjxZWsjS+tBhrsJocV4vzJMA7Jd
+         CPmPm0vqaoV1TQaQovxyfyhPhnXjYUoIoqldJZVF9Q0Prs89zvPAL9wj7/c5uWocOHdz
+         yuuSIc7JSgWVUw8NuJRDIEv4d3xa0b8eOizwX5XMGg63A+Ww8Jrcmoiw6MYIoVtg/n/g
+         k2b5P0PAFvZ1Lul8UmE/EV6NGzhQs57n0/O2QlmTCW2ecgo1H0YAx5mcvbTuCAPDlqGL
+         1sLw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704356563; x=1704961363;
+        d=1e100.net; s=20230601; t=1704356645; x=1704961445;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=IgXeMN54pUZnkV6l4YUdIvpMgpHpXd/mxcgg00gHhZo=;
-        b=VeR7/AAERJRQwupaDRIJaxb9/t9rPafDLP0DCUatr0BMZmm1NR6JYjMXlJQvonLCBq
-         5A0QJ1MqZqdBIsriZMvGH4+tl8Tqg4Rs0PHm6O6GqzhXili6yChjEObPaz5OgSFnX1wR
-         HDjfLlgTozpjz/PJMOgTfwVbGpTQNgs6O4ngUFQkb28lCOagNQTYs2OI/KrRDkPgfkr0
-         CMR0DlwBrB8euDHfRdpqXVlJRE5OqQPFOU87ozU/2Ld12XADqcBSp0Ms8P1mxaFjh/01
-         JiPx9cWiGeuQ7YVSr7uLJWXRs8N0EHHJv0B4rLOiAdCh5wx2gUvF9DCUhruDSXNG92jR
-         NTNQ==
-X-Gm-Message-State: AOJu0YwdLhcGtqxkOjg69Qe564t8DCv4ysFLL0fSn0ajLDEvVpIm/1YO
-	mZ+pbwe+vybUL/amyh55z5n8w7unwjbviA==
-X-Google-Smtp-Source: AGHT+IHBGoDQlgFBgTSZCEJDdSVmseiVErX2CV9nhSmPcmkCgmpPNR5JHFGl3Sjak7Bhn9qN3SWyZg==
-X-Received: by 2002:a50:c299:0:b0:555:f630:f869 with SMTP id o25-20020a50c299000000b00555f630f869mr133243edf.74.1704356562987;
-        Thu, 04 Jan 2024 00:22:42 -0800 (PST)
+        bh=7Gx+hMSZuJwkgLGLbh+ONYmWiatxGCDrgX1XA5VWUQs=;
+        b=TqjwTAlu9BIOEjvMAH0BZD6Q7SmVBXhBtQTCi7Ab6AQbgp2cYL18VKrjWVRTwRNqTG
+         QCFSGk/qIQTzHbicoZwDTqmiubZeiVOzz1NxIwYfA/V0d6kr67HQvPPtgQMcmUtGIYYx
+         aLRY2DcJr5aayQw9j4RgtiWNT5EjK9vctpJ8i3lub4qkNGZW6+XTEojjovgjgT/MdB+T
+         TEEnLr4Ooid9Ni3QtCRgkMB2iNaJDuMoiM7XeVc4tcm7F0YZRsQStFOwy6+VKLTTHW05
+         gR8mQ/HDhza3uJIHKFpdo9oKiSllAtQYFtcLooVtpVqwZcNw/UHFzn6Zd0X2WZmqVWa9
+         UcWw==
+X-Gm-Message-State: AOJu0YxYPOVo2Pq2fD2qcealS7kvfTNVMYNYaTdzWwMWVDJTSAdw1kyU
+	mo3YXCthrOP+WqHdPZm5vaRjF47wzky84w==
+X-Google-Smtp-Source: AGHT+IG7HZZOnV+rOPboWNVjXtIlHkzutc4J5nDYXRLJW4NkppAd5WgvP1R5BDh7ewdrU9NLBOffJw==
+X-Received: by 2002:a05:6512:685:b0:50e:3904:4f0a with SMTP id t5-20020a056512068500b0050e39044f0amr161541lfe.9.1704356645417;
+        Thu, 04 Jan 2024 00:24:05 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id cs5-20020a0564020c4500b00556fe614fe3sm624633edb.21.2024.01.04.00.22.41
+        by smtp.gmail.com with ESMTPSA id cs5-20020a0564020c4500b00556fe614fe3sm624633edb.21.2024.01.04.00.24.03
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 04 Jan 2024 00:22:42 -0800 (PST)
-Message-ID: <1de13104-f3aa-4685-9a53-9ae38ac276eb@linaro.org>
-Date: Thu, 4 Jan 2024 09:22:39 +0100
+        Thu, 04 Jan 2024 00:24:04 -0800 (PST)
+Message-ID: <1ef1317a-b721-4ada-a37a-4347fcfa3fc0@linaro.org>
+Date: Thu, 4 Jan 2024 09:24:03 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,25 +66,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 5/8] dt-bindings: nt35510: add compatible for FRIDA
- FRD400B25025-A-CTK
+Subject: Re: [PATCH 01/10] dt-bindings: clock: gcc-sc8180x: Add the missing CX
+ power domain
 Content-Language: en-US
-To: Dario Binacchi <dario.binacchi@amarulasolutions.com>,
- linux-kernel@vger.kernel.org
-Cc: linux-amarula@amarulasolutions.com,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Conor Dooley <conor+dt@kernel.org>, Daniel Vetter <daniel@ffwll.ch>,
- David Airlie <airlied@gmail.com>, Jessica Zhang <quic_jesszhan@quicinc.com>,
+To: Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Linus Walleij <linus.walleij@linaro.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring
- <robh+dt@kernel.org>, Sam Ravnborg <sam@ravnborg.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org,
- dri-devel@lists.freedesktop.org
-References: <20240104072407.41290-1-dario.binacchi@amarulasolutions.com>
- <20240104072407.41290-6-dario.binacchi@amarulasolutions.com>
+ Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>
+Cc: Marijn Suijten <marijn.suijten@somainline.org>,
+ linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20231230-topic-8180_more_fixes-v1-0-93b5c107ed43@linaro.org>
+ <20231230-topic-8180_more_fixes-v1-1-93b5c107ed43@linaro.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -130,41 +125,18 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240104072407.41290-6-dario.binacchi@amarulasolutions.com>
+In-Reply-To: <20231230-topic-8180_more_fixes-v1-1-93b5c107ed43@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 04/01/2024 08:23, Dario Binacchi wrote:
-> The patch adds the FRIDA FRD400B25025-A-CTK panel, which belongs to the
-> Novatek NT35510-based panel family.
+On 30/12/2023 01:05, Konrad Dybcio wrote:
+> The GCC block is (mostly) powered by the VDD_CX rail. Allow specifying
+> it in power-domains.
 > 
-> Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-> 
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 > ---
-> 
-> Changes in v3:
-> - Use "enum" to have less code changed
-> 
-> Changes in v2:
-> - Add a dash in front of each "items:"
-> 
->  .../devicetree/bindings/display/panel/novatek,nt35510.yaml    | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/panel/novatek,nt35510.yaml b/Documentation/devicetree/bindings/display/panel/novatek,nt35510.yaml
-> index bc92928c805b..43afb316e0e9 100644
-> --- a/Documentation/devicetree/bindings/display/panel/novatek,nt35510.yaml
-> +++ b/Documentation/devicetree/bindings/display/panel/novatek,nt35510.yaml
-> @@ -15,7 +15,9 @@ allOf:
->  properties:
->    compatible:
->      items:
-> -      - const: hydis,hva40wv1
-> +      - enum:
-> +          - hydis,hva40wv1
-> +          - frida,frd400b25025
 
-f goes before h
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
