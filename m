@@ -1,130 +1,130 @@
-Return-Path: <devicetree+bounces-29642-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29643-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A74E823F79
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 11:32:59 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 53303823F7E
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 11:34:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9A79F1C23A05
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 10:32:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E4C111F249DD
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 10:34:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08C961DDDF;
-	Thu,  4 Jan 2024 10:32:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DAD21EB48;
+	Thu,  4 Jan 2024 10:34:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jUr/M+fd"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="U3hD1lil"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
+Received: from mail-oa1-f41.google.com (mail-oa1-f41.google.com [209.85.160.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6549220B28;
-	Thu,  4 Jan 2024 10:32:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C0C420B28;
+	Thu,  4 Jan 2024 10:34:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-50e7f58c5fbso444369e87.1;
-        Thu, 04 Jan 2024 02:32:53 -0800 (PST)
+Received: by mail-oa1-f41.google.com with SMTP id 586e51a60fabf-204df0830ccso253335fac.1;
+        Thu, 04 Jan 2024 02:34:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1704364371; x=1704969171; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Rtz1xNRlMswnqcuKEEgCXeQXrJfizAMkC6Qe5Iyxzog=;
-        b=jUr/M+fdfJTkt8L2kYcOIpM+JEWj/LUbb/tVxLsgRRp1ARXqdMWZM9rGM+Xm5UUirh
-         82KAQYNnYNiFJtKkU6CSvUFmHe2yLk7icjSzKMDHkwWFBdY1SdRSgIjVa0Xp4XFysCOo
-         hHFF5U815ZfHVmZVFbYJ6uE4KXloE6SlmTrD6FhstbUvRKYbMtWV4pfnHodr6NT8y7+J
-         PmhwZGIsSeJXaJxugkD6Y+fJ43l8a8PEkCXikOfoZt6QC+jRzTdEKInon7iB0bOspNsj
-         vJoSvJOxg5MzGlxaaQoqa28s01kOj2CoP+5MU6nC6BKcCS/iZcfN5gBFmJkXK7Nmw/sW
-         l3lg==
+        d=gmail.com; s=20230601; t=1704364483; x=1704969283; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=fS/Q9GVBRyVKTadPh7mSSJ4C5FDOro6DyfomCqB3lUk=;
+        b=U3hD1lilzFA0MIr5avaKtQv5KvVt5rCrQDcwLJll2Z9/gGK2OR8LZWRJcfqTet7VrJ
+         l50X9h/xLu3WhV/JsPlmpl+tTXX4pLW/XQB4XICszSTcNBgWwjDRN5RBsgNILAzerkYk
+         KsGDQQtLPSV/bURaiDrStEP5yE4rIy57rCGQ2i1/4Vn/0fOVgE6Cdesa5u2RhPMl3jsi
+         dpYP2bzX5j4slqNRYOC15AeTTG/VE4xVgQ7wAkBecmvV8LUpctYiaBiepJv+B9os8GyZ
+         ZOXWJMHcaDVFNwHPG7JsefnxxHOeG4573j944Uo3G05Zn7nmkvtjl5gYhJdMupHNiaxx
+         p5Lg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704364371; x=1704969171;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Rtz1xNRlMswnqcuKEEgCXeQXrJfizAMkC6Qe5Iyxzog=;
-        b=FssM33ccSCPG3fBXG57dPrQ3CkLwpFVKAroA44TC6LYQV5FEPedP8IiBUkOdJ7yLYD
-         K5tKewU1YEDJpj81UmdMVpV4Ho9GR9BiuotQj82qdAygm3L6JdEv8/P1Nde+Q9n3wPV8
-         7Qu3kf2w3eo83RZx/kQAiQyLkGb648zoZ9mq0KkN3odfoiqtr2MOaVYrMu78TFOoqXW7
-         5uy33QgmZnwkSbPjwzuz5S5IdE9NjVMILgKXVm5hNwMI2nb59adA92Q+RoAbRLeDr41k
-         isvTiGF8Yd4Rxly2/Bkyf+I1jLw4vX5kuqWITVUoekb/V2RwIPFk3beRCZe4inJIvfqi
-         N0XA==
-X-Gm-Message-State: AOJu0Yzh9HUpw+9aljEDeKGY+oX6hPuIw6BzY2ME/yT5PNlyqg08MOQc
-	f69fjoiT1fBbbXE4mUGgjso=
-X-Google-Smtp-Source: AGHT+IGFsv99DMSiISYdT+EBH3jsO+fGLVth82tNHEPrOgs4CJmgAu4ggXShhXsO6z1UYQNgiOkcqw==
-X-Received: by 2002:a05:6512:ba3:b0:50e:7044:7656 with SMTP id b35-20020a0565120ba300b0050e70447656mr337718lfv.57.1704364371133;
-        Thu, 04 Jan 2024 02:32:51 -0800 (PST)
-Received: from [192.168.3.32] (dh207-98-100.xnet.hr. [88.207.98.100])
-        by smtp.gmail.com with ESMTPSA id ka16-20020a170907921000b00a28ab7cd8e5sm1142096ejb.191.2024.01.04.02.32.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 04 Jan 2024 02:32:50 -0800 (PST)
-Message-ID: <685f45d9-48e8-49c6-9de0-6771777ba62e@gmail.com>
-Date: Thu, 4 Jan 2024 11:32:48 +0100
+        d=1e100.net; s=20230601; t=1704364483; x=1704969283;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=fS/Q9GVBRyVKTadPh7mSSJ4C5FDOro6DyfomCqB3lUk=;
+        b=wG5By7E+z4jm0V3VrZnEGNr9t/TyZ2R0mGtDNPTqUnq847lBxKCvs5bhHyJjblajBe
+         WO1BdLN4Hqy94zUXmCLBVdBL8nIpHTojdtem+nreAr7KjMI5tzDdf7zrODOJN1fKCRyS
+         d7LwlP41sBID1jiN93dAjoYZMUxziIuT8pAL8+NZzWMqnY8E/VZBWyf9QcLC4LhaZKLZ
+         bifaejAYtGPCT0b+fkEhCv48na+Iv+LyDZ2lfZeHInTOTMn+ooMe73wHVV10lBX3GOtY
+         IMiy1c1eqPMoK7yoWAitvAsYvv2o020pqbNA0tmh4/Hw+kyQtmD52W4/PPVeCUsY4D+B
+         M36A==
+X-Gm-Message-State: AOJu0YzAcnMa0WguGhf86jwSccPktjru7NOgtRThn1rxr2FoMXRCttPM
+	7xwwr9uqXlgx+uX6HWU0Z2oDvkpjA1P9WVVmVKU=
+X-Google-Smtp-Source: AGHT+IE2tgR1X/gyhHMsmwRS5MbhKev21ngS0vyt9Oeqr9406leou2qM2IPXgJCx8/5X5ZnGKBUYa6UehjNKUrKP7P0=
+X-Received: by 2002:a05:6871:a908:b0:203:64c3:7b86 with SMTP id
+ wn8-20020a056871a90800b0020364c37b86mr372875oab.44.1704364482541; Thu, 04 Jan
+ 2024 02:34:42 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: qcom: ipq6018: add #power-domain-cells for
- gcc node
-To: Konrad Dybcio <konrad.dybcio@linaro.org>,
- Fenglin Wu <quic_fenglinw@quicinc.com>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, quic_tdas@quicinc.com,
- quic_aiquny@quicinc.com
-Cc: kernel@quicinc.com, Andy Gross <agross@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240104-gcc-docs-update-v1-1-127e4816b798@quicinc.com>
- <CAA8EJprsGke9zZBy_x=YSxz7R1aSpx8r3ndjjXVVKhjKBxd=QQ@mail.gmail.com>
- <724f608a-cbfe-48f6-a1f7-59b961a7d724@quicinc.com>
- <56ee556d-ec31-4553-bce3-0c1e12c111ed@linaro.org>
-Content-Language: en-US
-From: Robert Marko <robimarko@gmail.com>
-In-Reply-To: <56ee556d-ec31-4553-bce3-0c1e12c111ed@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+References: <20231229090643.116575-1-qiujingbao.dlmu@gmail.com>
+ <20231229090643.116575-2-qiujingbao.dlmu@gmail.com> <c5f7571e-8c99-4143-bfcd-cfd5b08329a9@linaro.org>
+In-Reply-To: <c5f7571e-8c99-4143-bfcd-cfd5b08329a9@linaro.org>
+From: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
+Date: Thu, 4 Jan 2024 18:34:31 +0800
+Message-ID: <CAJRtX8SjutyeA29zvkHR2LmoPF0BSWSVVg44MOGqzn5znOmQVw@mail.gmail.com>
+Subject: Re: [PATCH v1 1/3] dt-bindings: rtc: sophgo: add RTC for Sophgo
+ CV1800 series SoC.
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: a.zummo@towertech.it, alexandre.belloni@bootlin.com, robh+dt@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu, 
+	linux-rtc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, dlan@gentoo.org, inochiama@outlook.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Thu, Jan 4, 2024 at 4:32=E2=80=AFPM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 29/12/2023 10:06, Jingbao Qiu wrote:
+> > Add devicetree binding to describe the RTC for Sophgo CV1800 SoC.
+> >
+> > Signed-off-by: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
+> > ---
+> > This patch depends on the clk driver
+> > Clk driver link:
+> > https://lore.kernel.org/all/IA1PR20MB49539CDAD9A268CBF6CA184BBB9FA@IA1P=
+R20MB4953.namprd20.prod.outlook.com/
+>
+> I don't understand how binding can depend on a driver. This is very
+> confusing and suggests you write binding for the driver, which is not
+> what we want.
+>
+> What's more, I really do not see the dependency here, so your message is
+> incorrect?
+>
 
-On 04. 01. 2024. 11:16, Konrad Dybcio wrote:
-> On 4.01.2024 11:13, Fenglin Wu wrote:
->>
->> On 1/4/2024 5:53 PM, Dmitry Baryshkov wrote:
->>> On Thu, 4 Jan 2024 at 10:06, Fenglin Wu via B4 Relay
->>> <devnull+quic_fenglinw.quicinc.com@kernel.org> wrote:
->>>> From: Fenglin Wu <quic_fenglinw@quicinc.com>
->>>>
->>>> Property '#power-domain-cells' is required as per defined in qcom,gcc.yaml
->>>> so add it for ipq6018 gcc device node to eliminate following warning in
->>>> dtbs_check:
->>>>
->>>> arch/arm64/boot/dts/qcom/ipq6018-cp01-c1.dtb: gcc@1800000:
->>>>           '#power-domain-cells' is a required property
->>>> from schema $id: http://devicetree.org/schemas/clock/qcom,gcc-ipq6018.yaml#
->>> But ipq6018 doesn't implement GDSC support. So for the sake of fixing
->>> the warning you are adding a bogus property.
->>>
->> I agree. However, there are also some gcc drivers not implementing GDSC support but the bindings are adding '#power-domain-cells' in the DT example, such as: qcom,gcc-apq8064.yaml, qcom,gcc-ipq4019.yaml, qcom,gcc-ipq6018.yaml, qcom,gcc-ipq8064.yaml, qcom,gcc-msm8660.yaml.
->>
->> Actually I thought that maybe we should do a clean up by removing '#power-domain-cells' out of the qcom,gcc.yaml binding and only adding it into individual qcom,gcc-xxx.yaml for the driver which has implemented GDSC support. I checked this with Taniya offline, but she prefers only fixing it in ipq6018.dtsi as it doesn't hurt anything by adding the property, and she expects the GDSC support should be existing in most of qcom,gcc drivers especially the newer Qcom chipsets.
-> Before we start changing anything, we should assess whether these
-> platforms actually have GDSCs within this clock controller block,
-> even if they are (currently) not described in the clk driver.
-Hi,
-IPQ6018 has GDSC-s, at least for the USB-s.
-I tried configuring them a while ago, but the USB2.0 GDSC seems to 
-either have a HW bug or
-it uses some special configuration as its status bits never show that 
-its ON [1].
+What I mean is that clk is used in the following example. In the clk
+patch, there
+is a macro definition that can be used to replace this number.
 
-[1] 
-https://patchwork.kernel.org/project/linux-arm-msm/patch/20231025104457.628109-2-robimarko@gmail.com/
+> >
+> >  .../bindings/rtc/sophgo,cv1800-rtc.yaml       | 40 +++++++++++++++++++
+> >  1 file changed, 40 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/rtc/sophgo,cv1800=
+-rtc.yaml
+> >
+>
+> You have dependencies between patches, but I do not see this explained
+> at all. How people can figure out merging strategy if they are not aware
+> there is dependency?
 
-Regards,
-Robert
+I'm sorry for that, I will add an explanation in the description.
+
+Happy new year!
+
+Best regards,
+Jingbao Qiu
 
 >
-> Konrad
+>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>
+> Best regards,
+> Krzysztof
+>
 
