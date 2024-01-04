@@ -1,52 +1,54 @@
-Return-Path: <devicetree+bounces-29658-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29659-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64B67823FE2
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 11:50:55 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6408D823FF3
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 11:55:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 03AE61F22265
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 10:50:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 186FB1F2525A
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 10:55:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A75BB20DD4;
-	Thu,  4 Jan 2024 10:50:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C12820DE9;
+	Thu,  4 Jan 2024 10:55:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="eeC8doGE"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="HBQIlj5Z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E95620DD6;
-	Thu,  4 Jan 2024 10:50:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1704365447; x=1735901447;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=783NzBy3M7MqOSyZDODCfrbGjFcGEzOaO/feDRZVE/Q=;
-  b=eeC8doGEZO7YcpTG2X7KyQNSW3vkP4W4tK9JiATGiiaK/cGZtBI+VmYx
-   KHEB+3dibRyR4qQQjYaa8GHNS6vAin2m15vpPUAazR8O2cTail/lHfMxu
-   IOSFFBdWKr9+4Y6uf7X8JVWiym1PrMhnSg1Fdhsl2hwejqRMUf4UZzfcS
-   SJWE5VCZ1i+3yHakXj32YQ9js4WpxMzcD6/7f35rvOFJhL+sqCUeAQTaY
-   5nXFtEKBRwAHvLvnSqdCHTF4gNXvYdz/9H0Rs8WbP5Oz+U9XueARmS8cb
-   hVYhnQcgFP4ocKJZbtK1VMzpIrV1tE4oLvfIff8mxKVlvQil/RRvcou3T
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10942"; a="10775599"
-X-IronPort-AV: E=Sophos;i="6.04,330,1695711600"; 
-   d="scan'208";a="10775599"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
-  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Jan 2024 02:50:46 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.04,330,1695711600"; 
-   d="scan'208";a="28741052"
-Received: from ahunter6-mobl1.ger.corp.intel.com (HELO [10.0.2.15]) ([10.252.35.85])
-  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Jan 2024 02:50:40 -0800
-Message-ID: <d3208fee-9784-4dee-994d-ac1f7c526e74@intel.com>
-Date: Thu, 4 Jan 2024 12:50:34 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C819520DDE;
+	Thu,  4 Jan 2024 10:55:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 4048ADkP011104;
+	Thu, 4 Jan 2024 10:55:22 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=jJxf3ykBzLOve/gMDAYe0KU704WucKcXMjpxdgkaS3U=; b=HB
+	QIlj5Z0Iue7xkthyxIDNbocF6PzCtdt6gV+jXnFBRhRktqSKsbglHlrIw0B+jhJn
+	/2XIC4E9UWfWI37//ZOPUgumBWAg3Cl189ct4VlRVAV5octyPxeHtHuU597Chyvl
+	nIpxEIppsQzvTuR54mxbukESFGUmZjdyg45x52T13+QzKc891DjxbMnkO331dQWm
+	l23RXGZOcCagsCSCujABUp45Tzh66abC9TSqM1868I7P1g0H28QKuzdhc+VbQPUW
+	zg/jD4F+rcej/WSbln9DYzkpIRbKgwK2Z9wR39sE2l2mkNyIxBBZlTlK7WWv3vr0
+	emziBTglcP4cTyplnCsQ==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vdev61ppu-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 04 Jan 2024 10:55:21 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 404AtK5S024963
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 4 Jan 2024 10:55:20 GMT
+Received: from [10.239.154.73] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Thu, 4 Jan
+ 2024 02:55:14 -0800
+Message-ID: <c9f258f7-d075-47e9-8750-3e1427d03180@quicinc.com>
+Date: Thu, 4 Jan 2024 18:55:12 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -54,140 +56,114 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/4] mmc: xenon: Add ac5 support via bounce buffer
+Subject: Re: [PATCH] arm64: dts: qcom: ipq6018: add #power-domain-cells for
+ gcc node
 Content-Language: en-US
-To: Elad Nachman <enachman@marvell.com>, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, andrew@lunn.ch,
- gregory.clement@bootlin.com, sebastian.hesselbarth@gmail.com,
- huziji@marvell.com, ulf.hansson@linaro.org, catalin.marinas@arm.com,
- will@kernel.org, thunder.leizhen@huawei.com, bhe@redhat.com,
- akpm@linux-foundation.org, yajun.deng@linux.dev, chris.zjh@huawei.com,
- linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Cc: cyuval@marvell.com
-References: <20231227123257.1170590-1-enachman@marvell.com>
- <20231227123257.1170590-5-enachman@marvell.com>
-From: Adrian Hunter <adrian.hunter@intel.com>
-Organization: Intel Finland Oy, Registered Address: PL 281, 00181 Helsinki,
- Business Identity Code: 0357606 - 4, Domiciled in Helsinki
-In-Reply-To: <20231227123257.1170590-5-enachman@marvell.com>
-Content-Type: text/plain; charset=UTF-8
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: Robert Marko <robimarko@gmail.com>,
+        Konrad Dybcio
+	<konrad.dybcio@linaro.org>, <quic_tdas@quicinc.com>,
+        <quic_aiquny@quicinc.com>, <kernel@quicinc.com>,
+        Andy Gross
+	<agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring
+	<robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20240104-gcc-docs-update-v1-1-127e4816b798@quicinc.com>
+ <CAA8EJprsGke9zZBy_x=YSxz7R1aSpx8r3ndjjXVVKhjKBxd=QQ@mail.gmail.com>
+ <724f608a-cbfe-48f6-a1f7-59b961a7d724@quicinc.com>
+ <56ee556d-ec31-4553-bce3-0c1e12c111ed@linaro.org>
+ <685f45d9-48e8-49c6-9de0-6771777ba62e@gmail.com>
+ <a8012b92-6072-406d-8aab-ecb167ea44d2@quicinc.com>
+ <CAA8EJpoAA7RyD=9JZ9aYLMhyvCMWLVr1yhe7NSryRe=VjfmZPw@mail.gmail.com>
+From: Fenglin Wu <quic_fenglinw@quicinc.com>
+In-Reply-To: <CAA8EJpoAA7RyD=9JZ9aYLMhyvCMWLVr1yhe7NSryRe=VjfmZPw@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: boIiyprB72E7FDxOgs4SXEuNFWYs6zAZ
+X-Proofpoint-GUID: boIiyprB72E7FDxOgs4SXEuNFWYs6zAZ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-12-09_01,2023-12-07_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 spamscore=0
+ impostorscore=0 suspectscore=0 phishscore=0 lowpriorityscore=0
+ mlxlogscore=999 priorityscore=1501 bulkscore=0 mlxscore=0 malwarescore=0
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2311290000 definitions=main-2401040083
 
-On 27/12/23 14:32, Elad Nachman wrote:
-> From: Elad Nachman <enachman@marvell.com>
+
+
+On 1/4/2024 6:49 PM, Dmitry Baryshkov wrote:
+> On Thu, 4 Jan 2024 at 12:41, Fenglin Wu <quic_fenglinw@quicinc.com> wrote:
+>>
+>>
+>>
+>> On 1/4/2024 6:32 PM, Robert Marko wrote:
+>>>
+>>> On 04. 01. 2024. 11:16, Konrad Dybcio wrote:
+>>>> On 4.01.2024 11:13, Fenglin Wu wrote:
+>>>>>
+>>>>> On 1/4/2024 5:53 PM, Dmitry Baryshkov wrote:
+>>>>>> On Thu, 4 Jan 2024 at 10:06, Fenglin Wu via B4 Relay
+>>>>>> <devnull+quic_fenglinw.quicinc.com@kernel.org> wrote:
+>>>>>>> From: Fenglin Wu <quic_fenglinw@quicinc.com>
+>>>>>>>
+>>>>>>> Property '#power-domain-cells' is required as per defined in
+>>>>>>> qcom,gcc.yaml
+>>>>>>> so add it for ipq6018 gcc device node to eliminate following
+>>>>>>> warning in
+>>>>>>> dtbs_check:
+>>>>>>>
+>>>>>>> arch/arm64/boot/dts/qcom/ipq6018-cp01-c1.dtb: gcc@1800000:
+>>>>>>>            '#power-domain-cells' is a required property
+>>>>>>> from schema $id:
+>>>>>>> http://devicetree.org/schemas/clock/qcom,gcc-ipq6018.yaml#
+>>>>>> But ipq6018 doesn't implement GDSC support. So for the sake of fixing
+>>>>>> the warning you are adding a bogus property.
+>>>>>>
+>>>>> I agree. However, there are also some gcc drivers not implementing
+>>>>> GDSC support but the bindings are adding '#power-domain-cells' in the
+>>>>> DT example, such as: qcom,gcc-apq8064.yaml, qcom,gcc-ipq4019.yaml,
+>>>>> qcom,gcc-ipq6018.yaml, qcom,gcc-ipq8064.yaml, qcom,gcc-msm8660.yaml.
+>>>>>
+>>>>> Actually I thought that maybe we should do a clean up by removing
+>>>>> '#power-domain-cells' out of the qcom,gcc.yaml binding and only
+>>>>> adding it into individual qcom,gcc-xxx.yaml for the driver which has
+>>>>> implemented GDSC support. I checked this with Taniya offline, but she
+>>>>> prefers only fixing it in ipq6018.dtsi as it doesn't hurt anything by
+>>>>> adding the property, and she expects the GDSC support should be
+>>>>> existing in most of qcom,gcc drivers especially the newer Qcom chipsets.
+>>>> Before we start changing anything, we should assess whether these
+>>>> platforms actually have GDSCs within this clock controller block,
+>>>> even if they are (currently) not described in the clk driver.
+>>> Hi,
+>>> IPQ6018 has GDSC-s, at least for the USB-s.
+>>> I tried configuring them a while ago, but the USB2.0 GDSC seems to
+>>> either have a HW bug or
+>>> it uses some special configuration as its status bits never show that
+>>> its ON [1].
+>>>
+>>> [1]
+>>> https://patchwork.kernel.org/project/linux-arm-msm/patch/20231025104457.628109-2-robimarko@gmail.com/
+>>>
+>> Thanks for the link! I checked the spec internal, and I did see GDSC
+>> device for USB0/USB1 controller is present in GCC clock controller.
+>> So considering there is a patch ongoing to add GDSC device for ipq6018
+>> gcc driver, can the DT commit which adds '#power-domain-cells' be accepted?
 > 
-> AC5/X/IM SOCs has a variant of the Xenon eMMC controller,
-> in which only 31-bit of addressing pass from the controller
-> on the AXI bus.
-> Since we cannot guarantee that only buffers from the first 2GB
-> of memory will reach the driver, the driver is configured for
-> SDMA mode, without 64-bit mode, overriding the DMA mask to 34-bit
-> to support the DDR memory mapping, which starts at offset 8GB.
+> What for?
+Maria (quic_aiquny@quicinc.com, copied) is working on automation tool in 
+Qcom internally to check dt_binding and dtbs and she expects all the 
+warnings/errors reported on Qcom board files can be fixed. She can help 
+to comment further.
+
 > 
-> Signed-off-by: Elad Nachman <enachman@marvell.com>
-
-One minor comment below otherwise:
-
-Acked-by: Adrian Hunter <adrian.hunter@intel.com>
-
-> ---
->  drivers/mmc/host/sdhci-xenon.c | 33 ++++++++++++++++++++++++++++++++-
->  drivers/mmc/host/sdhci-xenon.h |  3 ++-
->  2 files changed, 34 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/mmc/host/sdhci-xenon.c b/drivers/mmc/host/sdhci-xenon.c
-> index 25ba7aecc3be..4d6df1815da1 100644
-> --- a/drivers/mmc/host/sdhci-xenon.c
-> +++ b/drivers/mmc/host/sdhci-xenon.c
-> @@ -18,6 +18,8 @@
->  #include <linux/of.h>
->  #include <linux/pm.h>
->  #include <linux/pm_runtime.h>
-> +#include <linux/mm.h>
-> +#include <linux/dma-mapping.h>
->  
->  #include "sdhci-pltfm.h"
->  #include "sdhci-xenon.h"
-> @@ -422,6 +424,7 @@ static int xenon_probe_params(struct platform_device *pdev)
->  	struct xenon_priv *priv = sdhci_pltfm_priv(pltfm_host);
->  	u32 sdhc_id, nr_sdhc;
->  	u32 tuning_count;
-> +	struct sysinfo si;
->  
->  	/* Disable HS200 on Armada AP806 */
->  	if (priv->hw_version == XENON_AP806)
-> @@ -450,6 +453,23 @@ static int xenon_probe_params(struct platform_device *pdev)
->  	}
->  	priv->tuning_count = tuning_count;
->  
-> +	/*
-> +	 * AC5/X/IM HW has only 31-bits passed in the crossbar switch.
-> +	 * If we have more than 2GB of memory, this means we might pass
-> +	 * memory pointers which are above 2GB and which cannot be properly
-> +	 * represented. In this case, disable ADMA, 64-bit DMA and allow only SDMA.
-> +	 * This effectively will enable bounce buffer quirk in the
-> +	 * generic SDHCI driver, which will make sure DMA is only done
-> +	 * from supported memory regions:
-> +	 */
-> +	if (priv->hw_version == XENON_AC5) {
-> +		si_meminfo(&si);
-> +		if (si.totalram * si.mem_unit > SZ_2G) {
-> +			host->quirks |= SDHCI_QUIRK_BROKEN_ADMA;
-> +			host->quirks2 |= SDHCI_QUIRK2_BROKEN_64_BIT_DMA;
-> +		}
-> +	}
-> +
->  	return xenon_phy_parse_params(dev, host);
->  }
->  
-> @@ -562,7 +582,17 @@ static int xenon_probe(struct platform_device *pdev)
->  		goto remove_sdhc;
->  
->  	pm_runtime_put_autosuspend(&pdev->dev);
-> -
-> +	/*
-> +	 * If we previously detected AC5 with over 2GB of memory,
-> +	 * then we disable ADMA and 64-bit DMA.
-> +	 * This means generic SDHCI driver has set the DMA mask to
-> +	 * 32-bit. Since DDR starts at 0x2_0000_0000, we must use
-> +	 * 34-bit DMA mask to access this DDR memory:
-> +	 */
-> +	if (priv->hw_version == XENON_AC5) {
-> +		if (host->quirks2 & SDHCI_QUIRK2_BROKEN_64_BIT_DMA)
-
-Kernel style is to avoid nested if-statements i.e.
-
-	if (priv->hw_version == XENON_AC5 &&
-	    host->quirks2 & SDHCI_QUIRK2_BROKEN_64_BIT_DMA)
-		dma_set_mask_and_coherent(&pdev->dev, DMA_BIT_MASK(34));
-
-> +			dma_set_mask_and_coherent(&pdev->dev, DMA_BIT_MASK(34));
-> +	}
->  	return 0;
->  
->  remove_sdhc:
-> @@ -680,6 +710,7 @@ static const struct of_device_id sdhci_xenon_dt_ids[] = {
->  	{ .compatible = "marvell,armada-ap807-sdhci", .data = (void *)XENON_AP807},
->  	{ .compatible = "marvell,armada-cp110-sdhci", .data =  (void *)XENON_CP110},
->  	{ .compatible = "marvell,armada-3700-sdhci", .data =  (void *)XENON_A3700},
-> +	{ .compatible = "marvell,ac5-sdhci",	     .data =  (void *)XENON_AC5},
->  	{}
->  };
->  MODULE_DEVICE_TABLE(of, sdhci_xenon_dt_ids);
-> diff --git a/drivers/mmc/host/sdhci-xenon.h b/drivers/mmc/host/sdhci-xenon.h
-> index 3e9c6c908a79..0460d97aad26 100644
-> --- a/drivers/mmc/host/sdhci-xenon.h
-> +++ b/drivers/mmc/host/sdhci-xenon.h
-> @@ -57,7 +57,8 @@ enum xenon_variant {
->  	XENON_A3700,
->  	XENON_AP806,
->  	XENON_AP807,
-> -	XENON_CP110
-> +	XENON_CP110,
-> +	XENON_AC5
->  };
->  
->  struct xenon_priv {
-
 
