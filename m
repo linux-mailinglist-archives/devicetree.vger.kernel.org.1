@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-29623-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29624-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 723D0823EA4
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 10:29:31 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2AB0823EA9
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 10:31:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ECDD92874C1
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 09:29:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 25ED41C236AE
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 09:31:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CF4B2032E;
-	Thu,  4 Jan 2024 09:29:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F7AB208AD;
+	Thu,  4 Jan 2024 09:31:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ruXDC2hR"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Jr/wUvc+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
+Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF548208AB
-	for <devicetree@vger.kernel.org>; Thu,  4 Jan 2024 09:29:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B092208A9
+	for <devicetree@vger.kernel.org>; Thu,  4 Jan 2024 09:31:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-a2814fa68eeso23160166b.1
-        for <devicetree@vger.kernel.org>; Thu, 04 Jan 2024 01:29:25 -0800 (PST)
+Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-554e902064aso376081a12.1
+        for <devicetree@vger.kernel.org>; Thu, 04 Jan 2024 01:31:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704360564; x=1704965364; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1704360665; x=1704965465; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=sxCSOtgIuTCmDMgckUR1KMBV4DlQWWFk6eRZHQf9FiI=;
-        b=ruXDC2hRxKwiU8UUX+shqHzu9+A9t5Tvs13Du8DJ+S3W/ex3LxRPGEr5uJwqjgCbtu
-         lPZa6jA9A5kOrvnd+D1R/5DMYJYsywhPCXWhh7e1vtLgqn/G5P9Z6nP/DF0uB5JGbbDa
-         zFAg891pFCy2DI50aw618BjnIhb76LXeXerTacxVdaWLyH8xhcducVeKS8ijKRIMraNR
-         LXhUMKKul0ovGoyxn2LjCl15SLkWzWgY1U0sZpol2wfTOOTZDUzEKM6hlq40KJCcJxvk
-         Blbxz0TltST1F6vp7jbfNvLsOCKl+3SStt6bpNn39goz06nvbbt1BGr5f2LwYo8tnb4x
-         Tbgg==
+        bh=y+E7YrBlkhYNDogi7xlUtXlc4iitfTsqQEsfWrTgqeM=;
+        b=Jr/wUvc+4E6YkAv19RZysWZWFgw0Y+CyHSueS0SXlVdmuROduSTFrU8/1j+Dj17cld
+         thlo2yIytX1eRgooMuDsd3cFPYz1+D+4gXTZXnzETHE4coO5gJYXNCRS0l6/W38w/PwG
+         tRdSBXEEW5Df4bn8s0en0SZHYn3ECz9f0QiKpQAYM4Zi9KzjAGEwzFS+XC39UzwYgrdF
+         mmEg5xk9MOt+/TOLcopihOxNp+X2te6tgSiUWK7VsZiX2UMYQ8U1++Vh3UY7KlIVp98c
+         txRyBKwW2hLge5dMAqI+oHtT+g3ab/CpucU8odNFUA4msBSwnb964blSNaIJxa1b4k/Q
+         +0DA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704360564; x=1704965364;
+        d=1e100.net; s=20230601; t=1704360665; x=1704965465;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=sxCSOtgIuTCmDMgckUR1KMBV4DlQWWFk6eRZHQf9FiI=;
-        b=mSPwE9bZheKBSsTpSMWfSGNoxyx2OyBGLVgKfDCZleRY/+Crkd4oE0qNs7NZcEmRL1
-         zl757bGJxMTuQDuHL6JiUncyizPaZyzhcNwwENRfiogyJxtJOtevelMcaEcbhJh53bLo
-         JydtitCzmcyuhLQNa0FaLCgNvcNFiWHlQ07jP38w8Nb6JXmraniz5BcNG8GhS7slcJ+H
-         dH0SZwlmNCnOBZgdR6d9TCIoqlXZP81WH05GAUhDyFgm0YPoeSrbm260JqOAvhBIpmDi
-         0k5XNb+euY7IPR3+ZvLTJb32/IB8jU4RqKX1i51Sar2DH4FDgdchu6rA0b4SNSMyLs9A
-         +QPA==
-X-Gm-Message-State: AOJu0Yy237QUileBCU97qpah7srgmlieewDjkQnx8kviXxzqxy5/ORvb
-	/EA1J3a3CZYaemXCJEvlzyLZ6olbLW9aAw==
-X-Google-Smtp-Source: AGHT+IFajqTWmTnMMBn/8bztmTnBY8FlKldSofq+dadysBPgbVWftwgMb7NUtZMZv1WH36cUoeyBGg==
-X-Received: by 2002:a17:906:cf83:b0:a27:4c43:ad3 with SMTP id um3-20020a170906cf8300b00a274c430ad3mr193833ejb.8.1704360563957;
-        Thu, 04 Jan 2024 01:29:23 -0800 (PST)
+        bh=y+E7YrBlkhYNDogi7xlUtXlc4iitfTsqQEsfWrTgqeM=;
+        b=h963pv7kc1FKxQFFnYuijH2/znkiQeZmJr8ywIdu7xY61vjdWKVPuhMXK8fNhc20bO
+         9IQ6iFh7072ERxxsDqw5rywJI0mraLLcxPmFeXl1dYIxdvqpQIuSHw8rCSAi9v38V/o6
+         qxzvfdsddbe5HlgUEEco6dHH9XcB7UXHcT9BG6eIDMVYJ2Cf7ryC6Y6yOLab2o9lCbwV
+         xbvY5lqxuTObZESuaEiN0t6C7qlVwTXYzBG/HkVDmnuPDvsxM609Hn+esiacsMF1oTkM
+         5ZG0Jycb6euESziLtbYYhpFEvxJEw/TnsdmNd7aCqwQYQ88wooCIxOtrjDPG5+t4Bg4m
+         ezng==
+X-Gm-Message-State: AOJu0YwSLGGjAAhu0qfBPnVzQVxHuWLuxQgP9D2v8u0Q+sG8zfHlyEmU
+	NHDZVZc5E6ZUGKFasSB+eAkEznjPp6BGOQ==
+X-Google-Smtp-Source: AGHT+IGaZ00I4iu62g+5yeAUmS84jz3g3vAU1ga1EjhwZdgRSgEqazJbHks6Ja9FHIRKlu3Ut53abg==
+X-Received: by 2002:a17:907:c96:b0:a23:71ca:2bb4 with SMTP id gi22-20020a1709070c9600b00a2371ca2bb4mr149904ejc.144.1704360665262;
+        Thu, 04 Jan 2024 01:31:05 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id f17-20020a170906495100b00a26b057df46sm9910107ejt.126.2024.01.04.01.29.22
+        by smtp.gmail.com with ESMTPSA id f17-20020a170906495100b00a26b057df46sm9910107ejt.126.2024.01.04.01.31.03
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 04 Jan 2024 01:29:23 -0800 (PST)
-Message-ID: <0adf22be-bbab-48d5-909e-ad43ccf4ff5f@linaro.org>
-Date: Thu, 4 Jan 2024 10:29:22 +0100
+        Thu, 04 Jan 2024 01:31:04 -0800 (PST)
+Message-ID: <1f66cf69-5d2c-4e15-bf44-4b96a4cc2900@linaro.org>
+Date: Thu, 4 Jan 2024 10:31:03 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,21 +66,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] mmc: sdhci-cadence6: add Cadence SD6HC support
+Subject: Re: [PATCH 1/3] dt-bindings: clk: sprd: Add UMS9620 support
 Content-Language: en-US
-To: Alex Soo <yuklin.soo@starfivetech.com>,
- Ulf Hansson <ulf.hansson@linaro.org>, Adrian Hunter
- <adrian.hunter@intel.com>, Yangtao Li <frank.li@vivo.com>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+To: Chunyan Zhang <zhang.lyra@gmail.com>
+Cc: Chunyan Zhang <chunyan.zhang@unisoc.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Emil Renner Berthing <kernel@esmil.dk>
-Cc: linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>
-References: <20231228065322.1176351-1-yuklin.soo@starfivetech.com>
- <20231228065322.1176351-3-yuklin.soo@starfivetech.com>
+ Conor Dooley <conor+dt@kernel.org>, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Orson Zhai <orsonzhai@gmail.com>, Baolin Wang <baolin.wang@linux.alibaba.com>
+References: <20231229085156.1490233-1-chunyan.zhang@unisoc.com>
+ <20231229085156.1490233-2-chunyan.zhang@unisoc.com>
+ <3a290bf9-928d-4d21-9c93-0d1db59d6fff@linaro.org>
+ <CAAfSe-stvoKSVynTnoy87CUK3NM+ZEwfTMazO0tfwcx5BXG0Og@mail.gmail.com>
+ <b8fdce9e-50d9-4b43-a018-c35350bcec0f@linaro.org>
+ <CAAfSe-vRLaCZca2anp7iBnHDPUr-oVexSVy7PKYhNDUZ8GGgaw@mail.gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -126,29 +126,39 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231228065322.1176351-3-yuklin.soo@starfivetech.com>
+In-Reply-To: <CAAfSe-vRLaCZca2anp7iBnHDPUr-oVexSVy7PKYhNDUZ8GGgaw@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 28/12/2023 07:53, Alex Soo wrote:
-> Add a driver for the Cadence SD6HC SD/SDIO/eMMC controller.
+On 04/01/2024 10:26, Chunyan Zhang wrote:
+>>>> Missing names.
+>>>
+>>> The names are fixed, but the order are not.
+>>
+>> Order must be fixed.
+
+Did you read this? It must be. If it is not, your patchset has issues
+you must fix.
+
+
+>>
+>>>
+>>> For example:
+>>> clk_a {
+>>>     clocks = <&ext_26m>, <&ext_32k>;
+>>>     clock-names = "ext-26m", "ext-32k";
+>>> };
+>>>
+>>> clk_b {
+>>>     clocks = <&ext_26m>, <&ext_4m>;
+>>>     clock-names = "ext-26m", "ext-4m";
+>>
+>> And here the order is fixed...
 > 
-> Signed-off-by: Alex Soo <yuklin.soo@starfivetech.com>
-> ---
->  MAINTAINERS                           |   6 +
->  drivers/mmc/host/Kconfig              |  11 +
->  drivers/mmc/host/Makefile             |   2 +
->  drivers/mmc/host/sdhci-cadence6-phy.c | 384 +++++++++++++++++++
->  drivers/mmc/host/sdhci-cadence6.c     | 531 ++++++++++++++++++++++++++
->  drivers/mmc/host/sdhci-cadence6.h     | 148 +++++++
->  6 files changed, 1082 insertions(+)
->  create mode 100644 drivers/mmc/host/sdhci-cadence6-phy.c
->  create mode 100644 drivers/mmc/host/sdhci-cadence6.c
->  create mode 100644 drivers/mmc/host/sdhci-cadence6.h
+> The order is not fixed, 'clk_b' will cause dtb_check error, since it
+> skips the second one i.e. ext-32k in the clock-names list.
 
-Please work with existing submissions:
-
-https://lore.kernel.org/all/?q=sd6hc
+Then why do you use the same compatible for two different devices?
 
 Best regards,
 Krzysztof
