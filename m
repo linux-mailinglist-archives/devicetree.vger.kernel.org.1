@@ -1,72 +1,82 @@
-Return-Path: <devicetree+bounces-29531-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29532-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15D08823974
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 01:11:38 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D5BDD82397B
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 01:15:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9E3371F25A99
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 00:11:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 474BE28810F
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 00:15:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77C2A195;
-	Thu,  4 Jan 2024 00:11:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DD5C195;
+	Thu,  4 Jan 2024 00:15:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aDFo2wP2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="h/OhUouo"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58E02367;
-	Thu,  4 Jan 2024 00:11:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CAF11C433C7;
-	Thu,  4 Jan 2024 00:11:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09542367;
+	Thu,  4 Jan 2024 00:15:54 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6DD01C433C7;
+	Thu,  4 Jan 2024 00:15:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1704327091;
-	bh=FVnLkp+lC5YchY+7IQkFupGJ+/28QBnreRLrXMvUCGk=;
+	s=k20201202; t=1704327354;
+	bh=PQSQaWGIFy6CX+nXdrF2dhNFv4Stmlq/cXbCvLt/kS4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=aDFo2wP2hEspYa03CA3X/8uOdaAOdrf3YXkarUJI5EkAbli/jbYewN9g7mYV5HmmH
-	 agPuqbvxyGaRACwz3PAJyb8HhPJPWithaBwOkXWBRG/AJjRemEpOILM4g1Agcl+HKm
-	 j9EpEndi8OQdzYBCvN1ABsPjPCv7NQpn6mG3FFrSChRWeIZD4YXyhWl7ilgzHBcn2g
-	 qxq2t6g8DzWr4Jri4i2MitG5Tt0UTasXzBxJJNmSC4G5Ei1a+iy/dxy4LP0JpULg3B
-	 UVooQDIAs0fo5ME9VELYQhXZXeaNF0MtvXU4ZC1Xi9pcRIIJKgUlKvois9PN/sTsjN
-	 LO391lTDWryYw==
-Received: (nullmailer pid 2095445 invoked by uid 1000);
-	Thu, 04 Jan 2024 00:11:29 -0000
-Date: Wed, 3 Jan 2024 17:11:29 -0700
+	b=h/OhUouodemCO7MsPxXjy50JIFcBMMH1YcKMwZlznv/nNyLDcE3oWzDSFjGRv4cUi
+	 F0egIAh9maLR7HScfZipVxtc7xFow7YZA2DthHBHST0bFiWPPblLE15j5Gzlzh1eR9
+	 oZLd2dybgKlrlzb4Zs1S8/nNyi2+6x3GkiQHXtswxUUeMl2Qp0Ocv8eKlwWCncp+FM
+	 YCaa5IWeKk6/DLKo2IQ1vV0PuBD/2+uVhPJNbsz8gaI8yAyV6VV5CvY33ty0IVVsOQ
+	 nO8IVla5Ui6kdIdRlRvLPfr5ZOt/Izyr662dpdTWAnyHhFVU4Zscx1CnGv8vmFkcZo
+	 mb6o//1s3QuHA==
+Received: (nullmailer pid 2128936 invoked by uid 1000);
+	Thu, 04 Jan 2024 00:15:52 -0000
+Date: Wed, 3 Jan 2024 17:15:52 -0700
 From: Rob Herring <robh@kernel.org>
-To: =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Michael Walle <michael@walle.cc>, Miquel Raynal <miquel.raynal@bootlin.com>, linux-mtd@lists.infradead.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, u-boot@lists.denx.de, =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-Subject: Re: [PATCH V3 1/6] dt-bindings: nvmem: layouts: add U-Boot
- environment variables layout
-Message-ID: <20240104001129.GA2045237-robh@kernel.org>
-References: <20231221173421.13737-1-zajec5@gmail.com>
+To: baneric926@gmail.com
+Cc: jdelvare@suse.com, linux@roeck-us.net, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, corbet@lwn.net, linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org, openbmc@lists.ozlabs.org, kwliu@nuvoton.com, kcfeng0@nuvoton.com, DELPHINE_CHIU@wiwynn.com, Bonnie_Lo@wiwynn.com, naresh.solanki@9elements.com, billy_tsai@aspeedtech.com
+Subject: Re: [PATCH v3 1/3] dt-bindings: hwmon: fan: Add fan binding to schema
+Message-ID: <20240104001552.GA2096243-robh@kernel.org>
+References: <20231222013352.3873689-1-kcfeng0@nuvoton.com>
+ <20231222013352.3873689-2-kcfeng0@nuvoton.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20231221173421.13737-1-zajec5@gmail.com>
+In-Reply-To: <20231222013352.3873689-2-kcfeng0@nuvoton.com>
 
-On Thu, Dec 21, 2023 at 06:34:16PM +0100, Rafał Miłecki wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
+On Fri, Dec 22, 2023 at 09:33:50AM +0800, baneric926@gmail.com wrote:
+> From: Naresh Solanki <naresh.solanki@9elements.com>
 > 
-> U-Boot env data is a way of storing firmware variables. It's a format
-> that can be used of top of various storage devices. Its binding should
-> be an NVMEM layout instead of a standalone device.
+> Add common fan properties bindings to a schema.
 > 
-> This patch adds layout binding which allows using it on top of MTD NVMEM
-> device as well as any other. At the same time it deprecates the old
-> combined binding.
+> Bindings for fan controllers can reference the common schema for the
+> fan
+> 
+> child nodes:
+> 
+>   patternProperties:
+>     "^fan@[0-2]":
+>       type: object
+>       $ref: fan-common.yaml#
+>       unevaluatedProperties: false
+> 
+> Signed-off-by: Naresh Solanki <naresh.solanki@9elements.com>
+> Signed-off-by: Billy Tsai <billy_tsai@aspeedtech.com>
+> Signed-off-by: Ban Feng <kcfeng0@nuvoton.com>
+> ---
+>  .../devicetree/bindings/hwmon/fan-common.yaml | 76 +++++++++++++++++++
+>  1 file changed, 76 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/hwmon/fan-common.yaml
 
-I don't understand the issue. From a DT perspective, there isn't. A 
-partition is not a device, but is describing the layout of storage 
-already.
+Please implement my comments on v10.
 
 Rob
 
