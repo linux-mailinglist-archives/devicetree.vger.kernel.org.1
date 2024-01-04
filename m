@@ -1,184 +1,98 @@
-Return-Path: <devicetree+bounces-29610-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29612-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC754823DFB
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 09:57:31 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 28539823E1C
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 10:04:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F03CB1C21541
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 08:57:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A4C46B235A1
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 09:04:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F15E1EA72;
-	Thu,  4 Jan 2024 08:57:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="w/w4HxSL"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74D492032E;
+	Thu,  4 Jan 2024 09:04:16 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 810302030A
-	for <devicetree@vger.kernel.org>; Thu,  4 Jan 2024 08:57:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-a28a997f3dfso21052666b.0
-        for <devicetree@vger.kernel.org>; Thu, 04 Jan 2024 00:57:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704358644; x=1704963444; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=7NM+lSy2JFxNYRdnQ3pFJqK0nq1Xog5/qHx1MD7yLMc=;
-        b=w/w4HxSLQFMKgByHRUGmfX28BYcufxhX6qasbzuG+zWoPS7sHh9Onk0L1bVY4LAoeU
-         1cjBdw5jVoAqi378ptS820c4MoB0eQqYBhtW8Pa2H+StvqJAQ42m2aH62MMEumdvNOnf
-         3mHsMHXB4znYelItSt9HuM0TLv4uHvDawMJiHo30zHF1iJGBzTeVqkftvIonG8N4obTd
-         748ShNQLo+bYB9CruWTtCeY+Vr2UpKd9OCdlLch5gTP03nKTWOo3VAJukvuRDFS5pC1j
-         BkKWDqMUBBhJ8TBW87kmx505aOiNSPEJ36scLCAzeljZ72oMg1fhWexXSpzOiiW6S4A2
-         LmIw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704358644; x=1704963444;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7NM+lSy2JFxNYRdnQ3pFJqK0nq1Xog5/qHx1MD7yLMc=;
-        b=F7gzdtvqE/SCS7mhUZ/yn1DVz/MJMD3qZRwjpyUaXxkb3Vr58s5t0G8e2k0A5b7GAJ
-         sU/zP/l/uQH6C6QTMsfc+waBPfiFANNqSZKrEZXYSkeJ6xQ+KJYPmj8d4/X+q23CsFgf
-         0ymJakx/c2CsqwsH2BJZ2zgrcn8C7UIeBdxSpBwX9j43PPRIRSpYji3gqXVxx2w/YFih
-         sUbRevgmwrDms12z0VxgaNRrikCSayfoIQv5E8g3ENgq0JZVx+w3sJgVlLB8HTu9YR7U
-         fUqTY7FgtNg4kU2Yq2d+BzuVE6RO4DmWG+lDSaiX0jqgWMIGrnivezpkxaj27oTA6CEB
-         w/aA==
-X-Gm-Message-State: AOJu0YyujRxRsrblpirRgKygu4MVhBkwCxT715ANn5q7job1eP9uA0kd
-	FY39GCr+LCKh4+g9W+pXi58pU9sUd1/1LA==
-X-Google-Smtp-Source: AGHT+IEQlUMy9peGvgc3YEyUx/m3a0L7XKMOxnVNhL9drrpoC27NW8FsiiouncEBPpsG07FDZagAnw==
-X-Received: by 2002:a17:906:b247:b0:a27:6570:adbc with SMTP id ce7-20020a170906b24700b00a276570adbcmr187783ejb.33.1704358643864;
-        Thu, 04 Jan 2024 00:57:23 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id li4-20020a170906f98400b00a26f5eb0554sm9020697ejb.63.2024.01.04.00.57.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 04 Jan 2024 00:57:23 -0800 (PST)
-Message-ID: <88bd6668-7e67-42c7-97b6-d7029f371349@linaro.org>
-Date: Thu, 4 Jan 2024 09:57:21 +0100
+Received: from mg.richtek.com (mg.richtek.com [220.130.44.152])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E54831EA95;
+	Thu,  4 Jan 2024 09:04:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=richtek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=richtek.com
+X-MailGates: (SIP:2,PASS,NONE)(compute_score:DELIVER,40,3)
+Received: from 192.168.10.47
+	by mg.richtek.com with MailGates ESMTPS Server V6.0(636814:1:AUTH_RELAY)
+	(envelope-from <cy_huang@richtek.com>)
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256/256); Thu, 04 Jan 2024 17:03:32 +0800 (CST)
+Received: from ex4.rt.l (192.168.10.47) by ex4.rt.l (192.168.10.47) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1258.27; Thu, 4 Jan
+ 2024 17:03:32 +0800
+Received: from linuxcarl2.richtek.com (192.168.10.154) by ex4.rt.l
+ (192.168.10.45) with Microsoft SMTP Server id 15.2.1258.27 via Frontend
+ Transport; Thu, 4 Jan 2024 17:03:32 +0800
+From: <cy_huang@richtek.com>
+To: Jonathan Cameron <jic23@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>
+CC: Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>,
+	ChiYuan Huang <cy_huang@richtek.com>, =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?=
+	<u.kleine-koenig@pengutronix.de>, <linux-iio@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v4 0/2] RTQ6056: Add compatible for the same chip family
+Date: Thu, 4 Jan 2024 17:03:29 +0800
+Message-ID: <cover.1704357933.git.cy_huang@richtek.com>
+X-Mailer: git-send-email 1.8.3.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/4] reset: add GPIO-based reset controller
-Content-Language: en-US
-To: Sean Anderson <sean.anderson@seco.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
- Banajit Goswami <bgoswami@quicinc.com>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
- Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
- linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
- linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Cc: Bartosz Golaszewski <brgl@bgdev.pl>
-References: <20231222150133.732662-1-krzysztof.kozlowski@linaro.org>
- <20231222150133.732662-3-krzysztof.kozlowski@linaro.org>
- <530e3473-eb3b-477c-8599-e7aa12779640@seco.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzTRLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+wsGUBBMBCgA+FiEE
- m9B+DgxR+NWWd7dUG5NDfTtBYpsFAmI+BxMCGwMFCRRfreEFCwkIBwIGFQoJCAsCBBYCAwEC
- HgECF4AACgkQG5NDfTtBYptgbhAAjAGunRoOTduBeC7V6GGOQMYIT5n3OuDSzG1oZyM4kyvO
- XeodvvYv49/ng473E8ZFhXfrre+c1olbr1A8pnz9vKVQs9JGVa6wwr/6ddH7/yvcaCQnHRPK
- mnXyP2BViBlyDWQ71UC3N12YCoHE2cVmfrn4JeyK/gHCvcW3hUW4i5rMd5M5WZAeiJj3rvYh
- v8WMKDJOtZFXxwaYGbvFJNDdvdTHc2x2fGaWwmXMJn2xs1ZyFAeHQvrp49mS6PBQZzcx0XL5
- cU9ZjhzOZDn6Apv45/C/lUJvPc3lo/pr5cmlOvPq1AsP6/xRXsEFX/SdvdxJ8w9KtGaxdJuf
- rpzLQ8Ht+H0lY2On1duYhmro8WglOypHy+TusYrDEry2qDNlc/bApQKtd9uqyDZ+rx8bGxyY
- qBP6bvsQx5YACI4p8R0J43tSqWwJTP/R5oPRQW2O1Ye1DEcdeyzZfifrQz58aoZrVQq+innR
- aDwu8qDB5UgmMQ7cjDSeAQABdghq7pqrA4P8lkA7qTG+aw8Z21OoAyZdUNm8NWJoQy8m4nUP
- gmeeQPRc0vjp5JkYPgTqwf08cluqO6vQuYL2YmwVBIbO7cE7LNGkPDA3RYMu+zPY9UUi/ln5
- dcKuEStFZ5eqVyqVoZ9eu3RTCGIXAHe1NcfcMT9HT0DPp3+ieTxFx6RjY3kYTGLOwU0EVUNc
- NAEQAM2StBhJERQvgPcbCzjokShn0cRA4q2SvCOvOXD+0KapXMRFE+/PZeDyfv4dEKuCqeh0
- hihSHlaxTzg3TcqUu54w2xYskG8Fq5tg3gm4kh1Gvh1LijIXX99ABA8eHxOGmLPRIBkXHqJY
- oHtCvPc6sYKNM9xbp6I4yF56xVLmHGJ61KaWKf5KKWYgA9kfHufbja7qR0c6H79LIsiYqf92
- H1HNq1WlQpu/fh4/XAAaV1axHFt/dY/2kU05tLMj8GjeQDz1fHas7augL4argt4e+jum3Nwt
- yupodQBxncKAUbzwKcDrPqUFmfRbJ7ARw8491xQHZDsP82JRj4cOJX32sBg8nO2N5OsFJOcd
- 5IE9v6qfllkZDAh1Rb1h6DFYq9dcdPAHl4zOj9EHq99/CpyccOh7SrtWDNFFknCmLpowhct9
- 5ZnlavBrDbOV0W47gO33WkXMFI4il4y1+Bv89979rVYn8aBohEgET41SpyQz7fMkcaZU+ok/
- +HYjC/qfDxT7tjKXqBQEscVODaFicsUkjheOD4BfWEcVUqa+XdUEciwG/SgNyxBZepj41oVq
- FPSVE+Ni2tNrW/e16b8mgXNngHSnbsr6pAIXZH3qFW+4TKPMGZ2rZ6zITrMip+12jgw4mGjy
- 5y06JZvA02rZT2k9aa7i9dUUFggaanI09jNGbRA/ABEBAAHCwXwEGAEKACYCGwwWIQSb0H4O
- DFH41ZZ3t1Qbk0N9O0FimwUCYDzvagUJFF+UtgAKCRAbk0N9O0Fim9JzD/0auoGtUu4mgnna
- oEEpQEOjgT7l9TVuO3Qa/SeH+E0m55y5Fjpp6ZToc481za3xAcxK/BtIX5Wn1mQ6+szfrJQ6
- 59y2io437BeuWIRjQniSxHz1kgtFECiV30yHRgOoQlzUea7FgsnuWdstgfWi6LxstswEzxLZ
- Sj1EqpXYZE4uLjh6dW292sO+j4LEqPYr53hyV4I2LPmptPE9Rb9yCTAbSUlzgjiyyjuXhcwM
- qf3lzsm02y7Ooq+ERVKiJzlvLd9tSe4jRx6Z6LMXhB21fa5DGs/tHAcUF35hSJrvMJzPT/+u
- /oVmYDFZkbLlqs2XpWaVCo2jv8+iHxZZ9FL7F6AHFzqEFdqGnJQqmEApiRqH6b4jRBOgJ+cY
- qc+rJggwMQcJL9F+oDm3wX47nr6jIsEB5ZftdybIzpMZ5V9v45lUwmdnMrSzZVgC4jRGXzsU
- EViBQt2CopXtHtYfPAO5nAkIvKSNp3jmGxZw4aTc5xoAZBLo0OV+Ezo71pg3AYvq0a3/oGRG
- KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
- fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <530e3473-eb3b-477c-8599-e7aa12779640@seco.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
 
-On 28/12/2023 17:05, Sean Anderson wrote:
-> On 12/22/23 10:01, Krzysztof Kozlowski wrote:
->> Add simple driver to control GPIO-based resets using the reset
->> controller API for the cases when the GPIOs are shared and reset should
->> be coordinated.  The driver is expected to be used by reset core
->> framework for ad-hoc reset controllers.
-> 
-> How do we handle power sequencing? Often GPIOs need some pre/post delay in
-> order to ensure proper power sequencing. For regular reset drivers, this is
-> internal to the driver.
+From: ChiYuan Huang <cy_huang@richtek.com>
 
-It's not part of this patchset. Power sequencing is an old topic and
-generic solutions were failing, rejected, did not solve the problems,
-etc (choose your reason).
+RTQ6053 and RTQ6059 are the same RTQ6056 family.
+The differences are listed below
+- RTQ6053
+  Only change chip package type
+- RTQ6059
+  1. Enlarge the shunt voltage sensing range
+  2. Shrink the pinout for VBUS sense pin
+  3. Due to 1, the scale value is also changed
 
-Delays are device specific, so they go to drivers (depending on the
-compatible). Complex power sequencing is way too much for simplified
-reset-framework handling, so anyway it is expected you do it in your driver.
+Since v4:
+- Remove the unused chip type enum
+- Directly return in switch case of read_channel function
+- Refine in write_raw switch case for IIO_CHAN_INFO_SAMP_FREQ
+  If sample frequency is fixed, return invalid and break switch case
+- Use devdata->num_channels to replace the predefined constant
+- Change the rtq6059 difference part for the control bitfield name from
+  the general 'F_xxx' to 'F_RTQ6059_xxx'
+- Fix rtq6059 average sample variable store problem in 'set_average' function
+
+Since v3:
+- Add Reviewed-by tag in binding document patch
+- Resotre the enum for control field.
+- Put all the predefined datas/callbacks in dev_data.
+- Remove the unused 'rtq6059_info'.
+- Change 'default_conv_time' to 'default_conv_time_us'.
+- Move the comment for default config above the dev_data setting line.
+
+Since v2:
+- Refine the description of 'compatible' property
+
+ChiYuan Huang (2):
+  dt-bindings: iio: adc: rtq6056: add support for the whole RTQ6056
+    family
+  iio: adc: rtq6056: Add support for the whole RTQ6056 family
+
+ .../bindings/iio/adc/richtek,rtq6056.yaml     |   9 +-
+ drivers/iio/adc/rtq6056.c                     | 275 ++++++++++++++++--
+ 2 files changed, 263 insertions(+), 21 deletions(-)
 
 
-> 
-> Maybe something like
-> 
-> my-device {
-> 	reset-gpios = <&gpio 555 GPIO_ACTIVE_LOW>;
->         reset-gpios-post-deassert-us = <100>;
-
-Feel free to add it later. This patchset, and actually all patches
-should, solves one problem while allowing you to extend it later.
-
-If there is a architectural problem in my approach not allowing you to
-extend it later, then we should discuss it.
-
-> };
-> 
-> Of course, this is a bit ambiguous if you have multiple devices using the same
-> GPIO with different delays. Maybe we take the max? But the driver below seems
-> to only have access to one device. Which I suppose begs the question: how do
-> we know when it's safe to deassert the reset (e.g. we've gotten to the point
-> where all devices using this reset gpio have gotten far enough to detect that
-> they use it)?
-
-The driver (reset consumer) knows when it is safe or not. You must
-implement proper reset handling in your driver.
-
-Best regards,
-Krzysztof
+base-commit: 610a9b8f49fbcf1100716370d3b5f6f884a2835a
+-- 
+2.34.1
 
 
