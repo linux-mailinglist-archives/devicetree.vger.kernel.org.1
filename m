@@ -1,122 +1,164 @@
-Return-Path: <devicetree+bounces-29568-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29569-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D38C823D10
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 08:58:57 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E695B823D21
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 09:04:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1FF011C21166
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 07:58:56 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AA15DB21096
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 08:04:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AB7E1F95A;
-	Thu,  4 Jan 2024 07:58:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 351B0200C8;
+	Thu,  4 Jan 2024 08:04:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="WjHkc//S"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="s53y7Gmo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB191200A0;
-	Thu,  4 Jan 2024 07:58:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 42225FF80A;
-	Thu,  4 Jan 2024 07:58:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1704355121;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=7tDgF8jmLlYnxlNyI3TgVBeZTXRFDyykxfhy3VnRuqc=;
-	b=WjHkc//SMCn9WSqtxGYRZEWtGnibX5AGg6J5U2qcFSDINWfx1hGmp6q8+7nOrL9VqZQBlI
-	3P9bKP4usCn5p/pu34lVn1nqKcPI0Vhr4ZYBUW3gHW55natIxMAjFgj+wE6WGGee3JVL0N
-	fa6Qgh2pM6NeJjbsc8VaiLjWvJ4zf1+KzpO+gmYlH4t6pmwswo6QazEjHD4dTl3lzVGjbZ
-	FLdKjgjv71ASWY2DG/E3KQVVI0m55hKHum7MdnLoiLIaIYyHQwF53iY2pXZ8/N38cih49e
-	x/24R4u+6d0hapbAM2sGRhHZOY9zp3THYJMVOblYLJyba70l73XJj9RBGCdv0Q==
-Date: Thu, 4 Jan 2024 08:58:39 +0100
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Rob Herring <robh@kernel.org>
-Cc: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>, Srinivas Kandagatla
- <srinivas.kandagatla@linaro.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Michael Walle
- <michael@walle.cc>, linux-mtd@lists.infradead.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, u-boot@lists.denx.de, =?UTF-8?B?UmFmYcWC?=
- =?UTF-8?B?IE1pxYJlY2tp?= <rafal@milecki.pl>
-Subject: Re: [PATCH V3 1/6] dt-bindings: nvmem: layouts: add U-Boot
- environment variables layout
-Message-ID: <20240104085839.5624c354@xps-13>
-In-Reply-To: <20240104001129.GA2045237-robh@kernel.org>
-References: <20231221173421.13737-1-zajec5@gmail.com>
-	<20240104001129.GA2045237-robh@kernel.org>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39D8D2030C
+	for <devicetree@vger.kernel.org>; Thu,  4 Jan 2024 08:03:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-5534dcfdd61so379958a12.0
+        for <devicetree@vger.kernel.org>; Thu, 04 Jan 2024 00:03:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1704355436; x=1704960236; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=SyuGcP1D5BGUcMJ8icIN8M3Lavd6GsNJCUB2gjJbli4=;
+        b=s53y7GmoHTi+YmaJV3cqtom4vYuW3K6A8eVVcLmUXfsvWXC8qfQXl33bOXbqbfdA++
+         vhcQIQYcaRv8KmR6t46dXXCvsoILE0Eg8hCLyzijyDJkJptU8HgjxYxTp7iPS+6X4HyI
+         wd2OXZhK+Miys+qE97A7eAK5zvpwMKqfzg1/7FVjFFQS7UDfBnCPZflh1O1+jdE5bi0s
+         La+WNYY1gcjF6C1kMti8t3BYDWOrs8vIcPHuy+twf8+FV2XqUuJjy2WIkcIDMoOEf6rg
+         c58ZDU4eAZGRSpXYkUachih4WLrULj+qMBkhCjuAIA5ATNtTxQmukEBD33C5p2LTe7A7
+         raPw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1704355436; x=1704960236;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=SyuGcP1D5BGUcMJ8icIN8M3Lavd6GsNJCUB2gjJbli4=;
+        b=JxnzEjTCFMFyzKuhXPuuzxJJIaPaNq2N7r/rmy2ahKbKwkydnLOpe1wrc07EE1HT7U
+         lN6BPlUsvPkzVPfe7CvPyRUMuhNQpdGa54uQp7S01WvtoaxrkuBm7k4eSeJqHqm6sFxE
+         xttQxryh2wIYREk2pR16wRZA9z/G4pgLJb4cv8vIOIST9C1siN8gI5VGcZiGvLreMvDg
+         FLomneluzI7vtyZBwb55L5vXx3CPwXp8Hkpt6T+C6zvhsDkpSD5i9g7l7+n7DaGBJXp2
+         Z/uw68A3m0LsOl6BXxiPYDPF7c1trB9QbOqIEBC85ssvaaL+vVpjcRC2i43OeQyfS25+
+         uAIQ==
+X-Gm-Message-State: AOJu0YxRVEk5nxVbYS6GAzEh8heUGX9LFigOZ04uLL6MF+Pa7YzuR6WJ
+	n2gvhcMOfFTLcZODa2mm7lelURnFRjqtkQ==
+X-Google-Smtp-Source: AGHT+IE170fCL0MUDsxr5CJ+VSflu51pi+pM6vymQ13pCBE9PZBZWH516etaNPrMuOpihTN7PAby9Q==
+X-Received: by 2002:a50:c301:0:b0:553:2cbe:9abb with SMTP id a1-20020a50c301000000b005532cbe9abbmr210907edb.2.1704355436551;
+        Thu, 04 Jan 2024 00:03:56 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.218.27])
+        by smtp.gmail.com with ESMTPSA id p12-20020a05640243cc00b0055493aa8905sm15001520edc.63.2024.01.04.00.03.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 04 Jan 2024 00:03:56 -0800 (PST)
+Message-ID: <4aa2c006-3210-4667-b05c-3c7b8e8e61be@linaro.org>
+Date: Thu, 4 Jan 2024 09:03:53 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: cpufreq: Add big CPU supply
+To: =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= <nfraprado@collabora.com>,
+ Viresh Kumar <viresh.kumar@linaro.org>,
+ "Rafael J . Wysocki" <rafael@kernel.org>
+Cc: kernel@collabora.com,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Conor Dooley <conor+dt@kernel.org>, Hector Yuan <hector.yuan@mediatek.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+ linux-pm@vger.kernel.org
+References: <20231229212853.277334-1-nfraprado@collabora.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzTRLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+wsGUBBMBCgA+FiEE
+ m9B+DgxR+NWWd7dUG5NDfTtBYpsFAmI+BxMCGwMFCRRfreEFCwkIBwIGFQoJCAsCBBYCAwEC
+ HgECF4AACgkQG5NDfTtBYptgbhAAjAGunRoOTduBeC7V6GGOQMYIT5n3OuDSzG1oZyM4kyvO
+ XeodvvYv49/ng473E8ZFhXfrre+c1olbr1A8pnz9vKVQs9JGVa6wwr/6ddH7/yvcaCQnHRPK
+ mnXyP2BViBlyDWQ71UC3N12YCoHE2cVmfrn4JeyK/gHCvcW3hUW4i5rMd5M5WZAeiJj3rvYh
+ v8WMKDJOtZFXxwaYGbvFJNDdvdTHc2x2fGaWwmXMJn2xs1ZyFAeHQvrp49mS6PBQZzcx0XL5
+ cU9ZjhzOZDn6Apv45/C/lUJvPc3lo/pr5cmlOvPq1AsP6/xRXsEFX/SdvdxJ8w9KtGaxdJuf
+ rpzLQ8Ht+H0lY2On1duYhmro8WglOypHy+TusYrDEry2qDNlc/bApQKtd9uqyDZ+rx8bGxyY
+ qBP6bvsQx5YACI4p8R0J43tSqWwJTP/R5oPRQW2O1Ye1DEcdeyzZfifrQz58aoZrVQq+innR
+ aDwu8qDB5UgmMQ7cjDSeAQABdghq7pqrA4P8lkA7qTG+aw8Z21OoAyZdUNm8NWJoQy8m4nUP
+ gmeeQPRc0vjp5JkYPgTqwf08cluqO6vQuYL2YmwVBIbO7cE7LNGkPDA3RYMu+zPY9UUi/ln5
+ dcKuEStFZ5eqVyqVoZ9eu3RTCGIXAHe1NcfcMT9HT0DPp3+ieTxFx6RjY3kYTGLOwU0EVUNc
+ NAEQAM2StBhJERQvgPcbCzjokShn0cRA4q2SvCOvOXD+0KapXMRFE+/PZeDyfv4dEKuCqeh0
+ hihSHlaxTzg3TcqUu54w2xYskG8Fq5tg3gm4kh1Gvh1LijIXX99ABA8eHxOGmLPRIBkXHqJY
+ oHtCvPc6sYKNM9xbp6I4yF56xVLmHGJ61KaWKf5KKWYgA9kfHufbja7qR0c6H79LIsiYqf92
+ H1HNq1WlQpu/fh4/XAAaV1axHFt/dY/2kU05tLMj8GjeQDz1fHas7augL4argt4e+jum3Nwt
+ yupodQBxncKAUbzwKcDrPqUFmfRbJ7ARw8491xQHZDsP82JRj4cOJX32sBg8nO2N5OsFJOcd
+ 5IE9v6qfllkZDAh1Rb1h6DFYq9dcdPAHl4zOj9EHq99/CpyccOh7SrtWDNFFknCmLpowhct9
+ 5ZnlavBrDbOV0W47gO33WkXMFI4il4y1+Bv89979rVYn8aBohEgET41SpyQz7fMkcaZU+ok/
+ +HYjC/qfDxT7tjKXqBQEscVODaFicsUkjheOD4BfWEcVUqa+XdUEciwG/SgNyxBZepj41oVq
+ FPSVE+Ni2tNrW/e16b8mgXNngHSnbsr6pAIXZH3qFW+4TKPMGZ2rZ6zITrMip+12jgw4mGjy
+ 5y06JZvA02rZT2k9aa7i9dUUFggaanI09jNGbRA/ABEBAAHCwXwEGAEKACYCGwwWIQSb0H4O
+ DFH41ZZ3t1Qbk0N9O0FimwUCYDzvagUJFF+UtgAKCRAbk0N9O0Fim9JzD/0auoGtUu4mgnna
+ oEEpQEOjgT7l9TVuO3Qa/SeH+E0m55y5Fjpp6ZToc481za3xAcxK/BtIX5Wn1mQ6+szfrJQ6
+ 59y2io437BeuWIRjQniSxHz1kgtFECiV30yHRgOoQlzUea7FgsnuWdstgfWi6LxstswEzxLZ
+ Sj1EqpXYZE4uLjh6dW292sO+j4LEqPYr53hyV4I2LPmptPE9Rb9yCTAbSUlzgjiyyjuXhcwM
+ qf3lzsm02y7Ooq+ERVKiJzlvLd9tSe4jRx6Z6LMXhB21fa5DGs/tHAcUF35hSJrvMJzPT/+u
+ /oVmYDFZkbLlqs2XpWaVCo2jv8+iHxZZ9FL7F6AHFzqEFdqGnJQqmEApiRqH6b4jRBOgJ+cY
+ qc+rJggwMQcJL9F+oDm3wX47nr6jIsEB5ZftdybIzpMZ5V9v45lUwmdnMrSzZVgC4jRGXzsU
+ EViBQt2CopXtHtYfPAO5nAkIvKSNp3jmGxZw4aTc5xoAZBLo0OV+Ezo71pg3AYvq0a3/oGRG
+ KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
+ fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20231229212853.277334-1-nfraprado@collabora.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-Sasl: miquel.raynal@bootlin.com
+Content-Transfer-Encoding: 8bit
 
-Hello,
+On 29/12/2023 22:28, Nícolas F. R. A. Prado wrote:
+> The performance-controller hardware block on MediaTek SoCs is
+> responsible for controlling the frequency of the CPUs. As such, it needs
+> any CPU regulator to have been configured prior to initializing. Add a
+> phandle in the binding so this dependency can be described.
+> 
+> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+> ---
+> 
+>  .../devicetree/bindings/cpufreq/cpufreq-mediatek-hw.yaml        | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/cpufreq/cpufreq-mediatek-hw.yaml b/Documentation/devicetree/bindings/cpufreq/cpufreq-mediatek-hw.yaml
+> index d0aecde2b89b..d75b01d04998 100644
+> --- a/Documentation/devicetree/bindings/cpufreq/cpufreq-mediatek-hw.yaml
+> +++ b/Documentation/devicetree/bindings/cpufreq/cpufreq-mediatek-hw.yaml
+> @@ -33,6 +33,8 @@ properties:
+>        performance domains.
+>      const: 1
+>  
+> +  big-cpus-supply: true
 
-robh@kernel.org wrote on Wed, 3 Jan 2024 17:11:29 -0700:
+Why big? Neither little nor medium need power? Why you do not need to
+provide all supplies?
 
-> On Thu, Dec 21, 2023 at 06:34:16PM +0100, Rafa=C5=82 Mi=C5=82ecki wrote:
-> > From: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
-> >=20
-> > U-Boot env data is a way of storing firmware variables. It's a format
-> > that can be used of top of various storage devices. Its binding should
-> > be an NVMEM layout instead of a standalone device.
-> >=20
-> > This patch adds layout binding which allows using it on top of MTD NVMEM
-> > device as well as any other. At the same time it deprecates the old
-> > combined binding.
->=20
-> I don't understand the issue. From a DT perspective, there isn't. A=20
-> partition is not a device, but is describing the layout of storage=20
-> already.
+About the naming, use something matching the devices, e.g. from their
+datasheet/manual.
 
-Actually I think what Rafa=C5=82 wants to do goes in the right direction but
-I also understand from a binding perspective it may be a little
-confusing, even more if we consider "NVMEM" a Linux specific concept.
+Best regards,
+Krzysztof
 
-There is today a "u-boot env" NVMEM *device* description which
-almost sits at the same level as eg. an eeprom device. We cannot
-compare "an eeprom device" and "a u-boot environment" of course. But
-that's truly what is currently described.
-
-* Current situation
-
-	Flash device -> U-Boot env layout -> NVMEM cells
-
-* Improved situation
-
-	Any storage device -> NVMEM -> U-Boot env layout -> NVMEM cells
-
-The latter is of course the most relevant description as we expect
-storage devices to expose a storage-agnostic interface (NVMEM in
-this case) which can then be parsed (by NVMEM layouts) in a storage
-agnostic way.
-
-In the current case, the current U-Boot env binding tells people to
-declare the env layout on top of a flash device (only). The current
-description also expects a partition node which is typical to flash
-devices. Whereas what we should have described in the first place is a
-layout that applies on any kind of NVMEM device.
-
-Bonus point: We've been working the last couple years on clarifying
-bindings, especially with mtd partitions (with the partitions{}
-container) and NVMEM layouts (with the nvmem-layout{} container).
-The switch proposed in this patch makes use of the latter, of course.
-
-Thanks,
-Miqu=C3=A8l
 
