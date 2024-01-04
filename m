@@ -1,166 +1,227 @@
-Return-Path: <devicetree+bounces-29794-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29795-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4EA5F824A7B
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 22:51:49 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 76BC3824A83
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 22:54:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 610F61C226F3
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 21:51:48 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E1E94B235E5
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 21:54:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8201C2C6BE;
-	Thu,  4 Jan 2024 21:51:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86A5A2C6BE;
+	Thu,  4 Jan 2024 21:54:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NB8/pL+x"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="b1Z+2Eqk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+Received: from mail-qv1-f53.google.com (mail-qv1-f53.google.com [209.85.219.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E90B52C69B;
-	Thu,  4 Jan 2024 21:51:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-40d60c49ee7so9606355e9.0;
-        Thu, 04 Jan 2024 13:51:42 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB4E62C84E
+	for <devicetree@vger.kernel.org>; Thu,  4 Jan 2024 21:54:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-qv1-f53.google.com with SMTP id 6a1803df08f44-680d1908fb2so4292706d6.3
+        for <devicetree@vger.kernel.org>; Thu, 04 Jan 2024 13:54:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1704405101; x=1705009901; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=Bas+YdPjRljGtlJX4ssRIxTCAw0axobXiWVL+eDf96Y=;
-        b=NB8/pL+xT5xrGmhKGUlzACK277QDPDMFmQWriCDUQSLbghBALZiAzAg/bukhqgMjtc
-         l0zSVxsoGw9Flb2OmsXsSl9nbJN9w82CLGpEc/IGXqawCeLtuE0t9yp+caVSqM8u6NyQ
-         acgblUtmUMGSw7nyq/3tMNa6M5zUsLT20DP9f6YAGsQAa7L7VUmTM8z9qPXu/2lt12P/
-         0SZxpRKG0dnxz4p29VsESksTADS7mDAEUOONVaBvl0s2YDHXumuzqifImphsSChuLaxK
-         FFd3M1+PB3dt8oIsqa3oM9kbPAnKbZsa/SjYZDXqhtyZPfxzPHxeCtFWMGoaejrm75S5
-         KTQA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704405101; x=1705009901;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
+        d=chromium.org; s=google; t=1704405288; x=1705010088; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Bas+YdPjRljGtlJX4ssRIxTCAw0axobXiWVL+eDf96Y=;
-        b=ArKXxRVFaHqze4JS245DOkhizCBG8hrm+KCSlpvRU425ic0aCl/SthZBfuz2+v8+wM
-         L/oFG/cFn8taZ+bJ9fiespgXFARt9zQjCjaujEhPRnnfzv2xKsQkv2hFcw6eGPedKMnq
-         zPF5NxumX8Y3U+6quW60qfaRZo1+QcMXRIkjon6wPBkAJquOBlTdftqaXEdHLIhZJyW3
-         JR4R1A7X6I1tY0H90Qk/4lr4RFRYXrkEI0dCSjSyd9xk7zXAPmezia5ligwoVfj+Xax9
-         VTcLBC/4xEXm3Leto9MxPt3XLP1xs1fqntPhvhNEwSrk8sY4xKlMLBVkjA3R73S24EvH
-         5djw==
-X-Gm-Message-State: AOJu0YyzHdo7JV2jOWRpEA3xGsHtBw1Q1PH/xBueU8utvbzzMqShXj20
-	Rm8VflvuC1Hl/okuPE05hPo=
-X-Google-Smtp-Source: AGHT+IHZyjHBUN0jDo/92RJRPvzGHGPyqBLjQ4NZE1nxbAPYeJtwdJ1AmotGhClp5OzXnm8VlOE/Fg==
-X-Received: by 2002:a05:600c:3acd:b0:40d:5b0d:b105 with SMTP id d13-20020a05600c3acd00b0040d5b0db105mr754745wms.117.1704405101029;
-        Thu, 04 Jan 2024 13:51:41 -0800 (PST)
-Received: from Ansuel-xps. (host-80-116-159-187.pool80116.interbusiness.it. [80.116.159.187])
-        by smtp.gmail.com with ESMTPSA id u18-20020a05600c139200b0040d5ae2905asm426374wmf.30.2024.01.04.13.51.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 04 Jan 2024 13:51:40 -0800 (PST)
-Message-ID: <6597286c.050a0220.4684a.182e@mx.google.com>
-X-Google-Original-Message-ID: <ZZcmP1GVBR1Taj0U@Ansuel-xps.>
-Date: Thu, 4 Jan 2024 22:42:23 +0100
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	William Zhang <william.zhang@broadcom.com>,
-	Anand Gore <anand.gore@broadcom.com>,
-	Kursad Oney <kursad.oney@broadcom.com>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-	=?iso-8859-1?Q?Fern=E1ndez?= Rojas <noltari@gmail.com>,
-	Sven Schwermer <sven.schwermer@disruptive-technologies.com>,
-	linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	netdev@vger.kernel.org
-Subject: Re: [net-next PATCH v8 3/5] net: phy: add support for PHY LEDs
- polarity modes
-References: <20240104110114.2020-1-ansuelsmth@gmail.com>
- <20240104110114.2020-4-ansuelsmth@gmail.com>
- <47f18def-d34f-4224-9de2-6e0ae7122a52@lunn.ch>
+        bh=UHu/9yYjuNs9M6rsUIsCrmi3APbGPXR8WfnnSC4pWIc=;
+        b=b1Z+2EqkEhS6Kk6l1CNJ0lSexxghl4ZA2d8vUGqekuil205aUASveOUacFtY3x86EB
+         pnRYWDvKEF3Eb03/aG0wYAD/FtPyFf+z7eND0CRjRBHjYOhySrbrJS/VmgUu317PraKU
+         v6WqiOKgJwjQhrzqG1wAEVzVjWmnnKjYJwYtA=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1704405288; x=1705010088;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=UHu/9yYjuNs9M6rsUIsCrmi3APbGPXR8WfnnSC4pWIc=;
+        b=iyx3km4nuZthmZWYnYuX+BgEDn12bO77tY1+oG94l+Khr7KWTZi+hT4+HqgpWn5DR+
+         H99XZGuM3ZIgC4iB3NH/2vR2qOwqCBUfC8ZcwlvYr0Eka/KE6yqqUktwWqzRSIAF4wpU
+         Jp3Qher4Ps7Rizh3jvL+1U0HAb77llc2IbFSBnJx9komk3kuXZGtwHn0siF+Hg4SpNTk
+         ld2/4LlK3e1qInCxhURcEVFEZxS7FYs87K90F+OsARw8trwuobDqdX9iOjU/grkCyLKt
+         z0OgWYMKb6J4IuzdT5+WOFMSamxp4BsDYAgoNpio4UVO1CTkw5oT9ZCk2ueucuJV+EFO
+         EjDA==
+X-Gm-Message-State: AOJu0Yx6Ca8/s0dfN6dnAVwZjSgjyIaV1Fp/GDIGNBKEmd02/Y+861fx
+	g5lk6kHVYNixyNtbS+W/FSmSLdnvXFW5AVaG3FjhQtiU1B7v
+X-Google-Smtp-Source: AGHT+IFuqeDMdG4zBQldI5XyvT6/jarUq5+fL5rEaozsnTJloLarXEyiTxEWhTea3tqeSV9UrqYBu0DbQI4IMlO5FpU=
+X-Received: by 2002:a05:6214:2305:b0:67f:7c5c:3434 with SMTP id
+ gc5-20020a056214230500b0067f7c5c3434mr1242635qvb.73.1704405287791; Thu, 04
+ Jan 2024 13:54:47 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <47f18def-d34f-4224-9de2-6e0ae7122a52@lunn.ch>
+References: <20231116172859.393744-1-sjg@chromium.org> <20231208150042.GA1278773-robh@kernel.org>
+ <CAPnjgZ2i4gvgiUeHPOfHuOdBooV4e=QQEq6iMo0JbDwOS6dCwA@mail.gmail.com>
+ <CAL_Jsq+xMZ8yz4H9D59uCSyX4h5W+4ruGF++=wVA=msXz+Y01A@mail.gmail.com>
+ <CAPnjgZ1uW8T6woXSqFUNm301=W3zBYOrADREkrz=DuwSW87qZg@mail.gmail.com>
+ <20231214172702.GA617226-robh@kernel.org> <CAPnjgZ2oJSGPO91Y_aLbe+v250WFrND4n3T0mOvhERYidVu=eQ@mail.gmail.com>
+In-Reply-To: <CAPnjgZ2oJSGPO91Y_aLbe+v250WFrND4n3T0mOvhERYidVu=eQ@mail.gmail.com>
+From: Simon Glass <sjg@chromium.org>
+Date: Thu, 4 Jan 2024 14:54:36 -0700
+Message-ID: <CAFLszTizRRVbRO6_ygE2X-Lp5dENWSc4uMGL5GPJAFGAbRdCyQ@mail.gmail.com>
+Subject: Re: [PATCH v6 1/3] dt-bindings: mtd: partitions: Add binman compatible
+To: Rob Herring <robh@kernel.org>
+Cc: devicetree@vger.kernel.org, Miquel Raynal <miquel.raynal@bootlin.com>, 
+	linux-mtd@lists.infradead.org, Tom Rini <trini@konsulko.com>, 
+	Michael Walle <mwalle@kernel.org>, U-Boot Mailing List <u-boot@lists.denx.de>, 
+	Conor Dooley <conor+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Pratyush Yadav <ptyadav@amazon.de>, 
+	=?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>, 
+	Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Jan 04, 2024 at 02:20:45PM +0100, Andrew Lunn wrote:
-> > +	if (phydev->drv->led_polarity_set) {
-> > +		if (of_property_read_bool(led, "active-low"))
-> > +			set_bit(PHY_LED_ACTIVE_LOW, &modes);
-> > +		if (of_property_read_bool(led, "inactive-high-impedance"))
-> > +			set_bit(PHY_LED_INACTIVE_HIGH_IMPEDANCE, &modes);
-> > +
-> > +		err = phydev->drv->led_polarity_set(phydev, index, modes);
-> > +		if (err)
-> > +			return err;
-> > +	}
-> 
-> I think we should return an error if asked to set the mode, but its
-> not implemented by the driver. Something like:
-> 
-> 	if (of_property_read_bool(led, "active-low"))
-> 		set_bit(PHY_LED_ACTIVE_LOW, &modes);
-> 	if (of_property_read_bool(led, "inactive-high-impedance"))
-> 		set_bit(PHY_LED_INACTIVE_HIGH_IMPEDANCE, &modes);
-> 
-> 		
-> 	if (mode)
-> 		if (phydev->drv->led_polarity_set) {
-> 			return -EINVAL;
-> 		} else {
-> 			err = phydev->drv->led_polarity_set(phydev, index, modes);
-> 			if (err)
-> 				return err;
-> 		}
-> 	}
-> 
-> > +	/**
-> > +	 * @led_polarity_set: Set the LED polarity if active low
-> 
-> The 'if active low' is not ouw of date, since it is used for more than
-> that.
-> 
-> > +	 * @dev: PHY device which has the LED
-> > +	 * @index: Which LED of the PHY device or -1
-> > +	 * @modes: bitmap of LED polarity modes
-> > +	 *
-> > +	 * Configure LED with all the required polarity modes in @modes
-> > +	 * to make it correctly turn ON or OFF.
-> 
-> index == -1 should be explained.
+Hi Rob,
+
+On Thu, Dec 14, 2023 at 2:09=E2=80=AFPM Simon Glass <sjg@chromium.org> wrot=
+e:
 >
+> Hi Rob,
+>
+> On Thu, 14 Dec 2023 at 10:27, Rob Herring <robh@kernel.org> wrote:
+> >
+> > On Fri, Dec 08, 2023 at 03:58:10PM -0700, Simon Glass wrote:
+> > > Hi Rob,
+> > >
+> > > On Fri, 8 Dec 2023 at 14:56, Rob Herring <robh@kernel.org> wrote:
+> > > >
+> > > > On Fri, Dec 8, 2023 at 11:47=E2=80=AFAM Simon Glass <sjg@chromium.o=
+rg> wrote:
+> > > > >
+> > > > > Hi Rob,
+> > > > >
+> > > > > On Fri, 8 Dec 2023 at 08:00, Rob Herring <robh@kernel.org> wrote:
+> > > > > >
+> > > > > > On Thu, Nov 16, 2023 at 10:28:50AM -0700, Simon Glass wrote:
+> > > > > > > Add a compatible string for binman, so we can extend fixed-pa=
+rtitions
+> > > > > > > in various ways.
+> > > > > > >
+> > > > > > > Signed-off-by: Simon Glass <sjg@chromium.org>
+> > > > > > > ---
+> > > > > > >
+> > > > > > > (no changes since v5)
+> > > > > > >
+> > > > > > > Changes in v5:
+> > > > > > > - Add #address/size-cells and parternProperties
+> > > > > > > - Drop $ref to fixed-partitions.yaml
+> > > > > > > - Drop 'select: false'
+> > > > > > >
+> > > > > > > Changes in v4:
+> > > > > > > - Change subject line
+> > > > > > >
+> > > > > > > Changes in v3:
+> > > > > > > - Drop fixed-partition additional compatible string
+> > > > > > > - Drop fixed-partitions from the example
+> > > > > > > - Mention use of compatible instead of label
+> > > > > > >
+> > > > > > > Changes in v2:
+> > > > > > > - Drop mention of 'enhanced features' in fixed-partitions.yam=
+l
+> > > > > > > - Mention Binman input and output properties
+> > > > > > > - Use plain partition@xxx for the node name
+> > > > > > >
+> > > > > > >  .../bindings/mtd/partitions/binman.yaml       | 68 +++++++++=
+++++++++++
+> > > > > > >  .../bindings/mtd/partitions/partitions.yaml   |  1 +
+> > > > > > >  MAINTAINERS                                   |  5 ++
+> > > > > > >  3 files changed, 74 insertions(+)
+> > > > > > >  create mode 100644 Documentation/devicetree/bindings/mtd/par=
+titions/binman.yaml
+> > > > > > >
+> > > > > > > diff --git a/Documentation/devicetree/bindings/mtd/partitions=
+/binman.yaml b/Documentation/devicetree/bindings/mtd/partitions/binman.yaml
+> > > > > > > new file mode 100644
+> > > > > > > index 000000000000..329217550a98
+> > > > > > > --- /dev/null
+> > > > > > > +++ b/Documentation/devicetree/bindings/mtd/partitions/binman=
+.yaml
+> > > > > > > @@ -0,0 +1,68 @@
+> > > > > > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > > > > > > +# Copyright 2023 Google LLC
+> > > > > > > +
+> > > > > > > +%YAML 1.2
+> > > > > > > +---
+> > > > > > > +$id: http://devicetree.org/schemas/mtd/partitions/binman.yam=
+l#
+> > > > > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > > > > +
+> > > > > > > +title: Binman firmware layout
+> > > > > > > +
+> > > > > > > +maintainers:
+> > > > > > > +  - Simon Glass <sjg@chromium.org>
+> > > > > > > +
+> > > > > > > +description: |
+> > > > > > > +  The binman node provides a layout for firmware, used when =
+packaging firmware
+> > > > > > > +  from multiple projects. It is based on fixed-partitions, w=
+ith some
+> > > > > > > +  extensions, but uses 'compatible' to indicate the contents=
+ of the node, to
+> > > > > > > +  avoid perturbing or confusing existing installations which=
+ use 'label' for a
+> > > > > > > +  particular purpose.
+> > > > > > > +
+> > > > > > > +  Binman supports properties used as inputs to the firmware-=
+packaging process,
+> > > > > > > +  such as those which control alignment of partitions. This =
+binding addresses
+> > > > > > > +  these 'input' properties. For example, it is common for th=
+e 'reg' property
+> > > > > > > +  (an 'output' property) to be set by Binman, based on the a=
+lignment requested
+> > > > > > > +  in the input.
+> > > > > > > +
+> > > > > > > +  Once processing is complete, input properties have mostly =
+served their
+> > > > > > > +  purpose, at least until the firmware is repacked later, e.=
+g. due to a
+> > > > > > > +  firmware update. The 'fixed-partitions' binding should pro=
+vide enough
+> > > > > > > +  information to read the firmware at runtime, including dec=
+ompression if
+> > > > > > > +  needed.
+> > > > > >
+> > > > > > How is this going to work exactly? binman reads these nodes and=
+ then
+> > > > > > writes out 'fixed-partitions' nodes. But then you've lost the b=
+inman
+> > > > > > specifc parts needed for repacking.
+> > > > >
+> > > > > No, they are the same node. I do want the extra information to st=
+ick
+> > > > > around. So long as it is compatible with fixed-partition as well,=
+ this
+> > > > > should work OK.
+> > > >
+> > > > How can it be both? The partitions node compatible can be either
+> > > > 'fixed-partitions' or 'binman'.
+> > >
+> > > Can we not allow it to be both? I have tried to adjust things in
+> > > response to feedback but perhaps the feedback was leading me down the
+> > > wrong path?
+> >
+> > Sure, but then the schema has to and that means extending
+> > fixed-partitions.
+>
+> Can we cross that bridge later? There might be resistance to it. I'm
+> not sure. For now, perhaps just a binman compatible works well enough
+> to make progress.
 
-If you are referring to the special way of setting the LED globally,
-that is not a thing anymore. Rob pointed out that having the double
-reference in DT is problematic and PHY driver should handle that
-internally.
+Is there any way to make progress on this? I would like to have
+software which doesn't understand the binman compatible to at least be
+able to understand the fixed-partition compatible. Is that acceptable?
+If not, what is?
 
-> > +	 *
-> > +	 * Returns 0, or an error code.
-> > +	 */
-> > +	int (*led_polarity_set)(struct phy_device *dev, int index,
-> > +				unsigned long modes);
-> 
-> 
->     Andrew
-> 
-> ---
-> pw-bot: cr
+In any case, please can you help with this?
 
--- 
-	Ansuel
+Regards,
+Simon
 
