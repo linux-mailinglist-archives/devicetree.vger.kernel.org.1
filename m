@@ -1,149 +1,145 @@
-Return-Path: <devicetree+bounces-29745-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29746-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8E2F824541
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 16:44:57 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 07541824549
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 16:46:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DD68E1C21129
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 15:44:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 942832834B0
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 15:46:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69ABF2421A;
-	Thu,  4 Jan 2024 15:44:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D676724210;
+	Thu,  4 Jan 2024 15:46:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wLJpEuyN"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="MdBhR7cS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6B7D1427B
-	for <devicetree@vger.kernel.org>; Thu,  4 Jan 2024 15:44:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-556c60c3f9aso875147a12.3
-        for <devicetree@vger.kernel.org>; Thu, 04 Jan 2024 07:44:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704383091; x=1704987891; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Tubds6RL8BfJvxnz4IGYcV/XELCKRxYk4kk1CPB39m0=;
-        b=wLJpEuyNNaQ2uK0rw8XaEw/N95r4MBf5A2TJuV0PI2lg7SK4kw3HoaLg3tkKbRbLmV
-         qVqRTxScknBwM1L2gjOmC5LJk3fIDKkkYGI46sihLb5wHS72Z+b4ibrlqTOEbagXM3bs
-         onQKQnE2CoeX7zaPKuyxzLrnfSBGwd6czYGOnhvStp2VyuE8dzR7NLfwNPozbHGABWpp
-         Pqq81bu3HgIWEehJN+2YzsSzUjG/JFksW9xapoalVYyvZE0kScfB+oL7nq/E5bI8tDz/
-         TrNtSW1K7gELr2ciUKvYQFQrNRhEQnShuLG19X+tfHq0L3QT624nC1VojzDn6srA6EKw
-         dhVw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704383091; x=1704987891;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Tubds6RL8BfJvxnz4IGYcV/XELCKRxYk4kk1CPB39m0=;
-        b=Finu0RwoU6mcywDje9Sz1K6V6rFy1T7wOcIqQhFUOrQoYX3kBE1zNXAKYeDIdqumPA
-         y0IBNYlXNdxPEOHd20jagQTSLnn3tqapFt67ziLdPVHF57E6XhfW3ao0pKtriXhP7tum
-         6+jTKr++MFyemQjXijXHhRWR2tzCcyr2+dWq4liQKrYjWttM4nfIUHJRbX1B66Ftva59
-         U/EMQuZyLC6EB76BJIYoGeja/y9cGAk5qqAHVgNwd/XxFooCjEPM8BumoxQ2YrIKnISu
-         jz+PUqQineD+D3ryW70pBau45w8tqdPjnneN+++eU7lG2JRlxsj0svmEnppYIntLu/Q8
-         7Q2A==
-X-Gm-Message-State: AOJu0Yz2wdmz/dfdWvbHoBX1h2y1IsYfJeA3O4E2UD8jT7LkJuPnYOUx
-	Aas3TikpxBfF+n+l4glaEZF6EZ/dQ0hyaQ==
-X-Google-Smtp-Source: AGHT+IEmJ49VDkZN8QpWTiAWHH7AcXY9ND/OMm7IkK9llm9jh3JKs2nWm/KV0Ahe49nCtP21V0ZWsQ==
-X-Received: by 2002:a17:906:229a:b0:a28:b71d:5e3a with SMTP id p26-20020a170906229a00b00a28b71d5e3amr467584eja.67.1704383091216;
-        Thu, 04 Jan 2024 07:44:51 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id wi22-20020a170906fd5600b00a2693ce340csm13898856ejb.59.2024.01.04.07.44.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 04 Jan 2024 07:44:50 -0800 (PST)
-Message-ID: <d4f79e6c-2803-4ffd-b8b9-74b902597aad@linaro.org>
-Date: Thu, 4 Jan 2024 16:44:49 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1568E23762;
+	Thu,  4 Jan 2024 15:46:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 404Fjrmm105829;
+	Thu, 4 Jan 2024 09:45:53 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1704383153;
+	bh=SS4qp3FbuwSqV8rxN86fLN4iZLCeCkhuyatEDQHR1cc=;
+	h=From:To:CC:Subject:Date;
+	b=MdBhR7cSqxkMrjuQdnmh/n+7M2JbB/mhh51pbpt1J4QJLWRy6hBFU64466rBMISF7
+	 nSQTRZJEvbpRtqL55lfOlNGX16A+QQf/GnOMuYvSqg7wAlpp0XtptdOxmTex90lCzT
+	 fQ0wnVTg88Hj2rqhmRjDmlxjjlSahhXfNKLyEX5g=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 404Fjrhu077332
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 4 Jan 2024 09:45:53 -0600
+Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 4
+ Jan 2024 09:45:53 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 4 Jan 2024 09:45:53 -0600
+Received: from lelvsmtp5.itg.ti.com ([10.249.40.136])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 404FjqGQ040462;
+	Thu, 4 Jan 2024 09:45:53 -0600
+From: Andrew Davis <afd@ti.com>
+To: Peter Rosin <peda@axentia.se>,
+        Greg Kroah-Hartman
+	<gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>
+CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Andrew Davis
+	<afd@ti.com>
+Subject: [PATCH v6] mux: mmio: use reg property when parent device is not a syscon
+Date: Thu, 4 Jan 2024 09:45:52 -0600
+Message-ID: <20240104154552.17852-1-afd@ti.com>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] clk: qcom: gcc-sm8150: Register QUPv3 RCGs for DFS on
- SM8150
-Content-Language: en-US
-To: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Deepak Katragadda <dkatraga@codeaurora.org>,
- Vinod Koul <vkoul@kernel.org>, Taniya Das <quic_tdas@quicinc.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- Ajit Pandey <quic_ajipan@quicinc.com>,
- Imran Shaik <quic_imrashai@quicinc.com>,
- Jagadeesh Kona <quic_jkona@quicinc.com>
-References: <20240104-sm8150-dfs-support-v1-0-a5eebfdc1b12@quicinc.com>
- <20240104-sm8150-dfs-support-v1-1-a5eebfdc1b12@quicinc.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240104-sm8150-dfs-support-v1-1-a5eebfdc1b12@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On 04/01/2024 15:23, Satya Priya Kakitapalli wrote:
-> QUPv3 clocks support DFS and thus register the RCGs which require
-> support for the same.
-> 
-> Fixes: 2a1d7eb854bb ("clk: qcom: gcc: Add global clock controller driver for SM8150")
+The DT binding for the reg-mux compatible states it can be used when the
+"parent device of mux controller is not syscon device". It also allows
+for a reg property. When the reg property is provided, use that to
+identify the address space for this mux. If not provided fallback to
+using the parent device as a regmap provider.
 
-Please describe user-observable issues you are fixing here. It's not
-obvious to me.
+While here use dev_err_probe() in the error path to prevent printing
+a message on probe defer which now can happen in extra ways.
 
-Best regards,
-Krzysztof
+Signed-off-by: Andrew Davis <afd@ti.com>
+Reviewed-by: Nishanth Menon <nm@ti.com>
+Acked-by: Peter Rosin <peda@axentia.se>
+---
+
+Changes from v5:
+ - Rebased on next-20240104
+
+Changes from v4:
+ - Shorten comment and code lines
+ - Remove extra ret assignment
+
+Changes from v3:
+ - Check for probe defer
+
+Changes from v2:
+ - Rebased on v6.6-rc1
+
+Changes from v1:
+ - Flip logic as suggested in v1[0]
+
+[0] https://lore.kernel.org/lkml/1c27d9d4-b1cc-c158-90f7-f7e47e02c424@ti.com/T/
+
+ drivers/mux/mmio.c | 19 ++++++++++++-------
+ 1 file changed, 12 insertions(+), 7 deletions(-)
+
+diff --git a/drivers/mux/mmio.c b/drivers/mux/mmio.c
+index fd1d121a584ba..30a952c34365f 100644
+--- a/drivers/mux/mmio.c
++++ b/drivers/mux/mmio.c
+@@ -44,15 +44,20 @@ static int mux_mmio_probe(struct platform_device *pdev)
+ 	int ret;
+ 	int i;
+ 
+-	if (of_device_is_compatible(np, "mmio-mux"))
++	if (of_device_is_compatible(np, "mmio-mux")) {
+ 		regmap = syscon_node_to_regmap(np->parent);
+-	else
+-		regmap = dev_get_regmap(dev->parent, NULL) ?: ERR_PTR(-ENODEV);
+-	if (IS_ERR(regmap)) {
+-		ret = PTR_ERR(regmap);
+-		dev_err(dev, "failed to get regmap: %d\n", ret);
+-		return ret;
++	} else {
++		regmap = device_node_to_regmap(np);
++		/* Fallback to checking the parent node on "real" errors. */
++		if (IS_ERR(regmap) && regmap != ERR_PTR(-EPROBE_DEFER)) {
++			regmap = dev_get_regmap(dev->parent, NULL);
++			if (!regmap)
++				regmap = ERR_PTR(-ENODEV);
++		}
+ 	}
++	if (IS_ERR(regmap))
++		return dev_err_probe(dev, PTR_ERR(regmap),
++				     "failed to get regmap\n");
+ 
+ 	ret = of_property_count_u32_elems(np, "mux-reg-masks");
+ 	if (ret == 0 || ret % 2)
+-- 
+2.39.2
 
 
