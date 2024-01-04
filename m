@@ -1,71 +1,50 @@
-Return-Path: <devicetree+bounces-29547-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29550-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30E9D823C29
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 07:17:08 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 26DB2823C98
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 08:22:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4370A1C24B81
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 06:17:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3C8011C23533
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 07:22:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B19221DA27;
-	Thu,  4 Jan 2024 06:16:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="JTlWnxDx"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDB541EB23;
+	Thu,  4 Jan 2024 07:22:38 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+Received: from SHSQR01.spreadtrum.com (mx1.unisoc.com [222.66.158.135])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B64571DFE2;
-	Thu,  4 Jan 2024 06:16:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: d5f6a8f4aac811ee9e680517dc993faa-20240104
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=OBJFbL2C1ILjW3znPpIBbQnFXI0JmJM1mwSv2zR9fpQ=;
-	b=JTlWnxDx/IbgE2raQ87lShkdhBYHzfvWtZnjLS+QctMyW9paWGv/sHGeJZ4LItotiLYhO7E4sE3d/TjQRGxtS+QIVWqyrczmnW2bZMhSUX4gLvTOzY0EiGTtw/fsnN2a+bsTI5jok8DnqK1fcHxFN2QXZL74cH2vMArx834OUCs=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.35,REQID:7a619cc7-e3d6-4558-a333-b01d1a568dcb,IP:0,U
-	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:0
-X-CID-META: VersionHash:5d391d7,CLOUDID:11f5ca2e-1ab8-4133-9780-81938111c800,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-	RL:11|1,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:
-	NO,DKR:0,DKP:0,BRR:0,BRE:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULN
-X-UUID: d5f6a8f4aac811ee9e680517dc993faa-20240104
-Received: from mtkmbs14n1.mediatek.inc [(172.21.101.75)] by mailgw01.mediatek.com
-	(envelope-from <chunfeng.yun@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 1702599662; Thu, 04 Jan 2024 14:16:45 +0800
-Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
- mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Thu, 4 Jan 2024 14:16:44 +0800
-Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
- mtkmbs13n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Thu, 4 Jan 2024 14:16:43 +0800
-From: Chunfeng Yun <chunfeng.yun@mediatek.com>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Rob Herring
-	<robh+dt@kernel.org>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>
-CC: Chunfeng Yun <chunfeng.yun@mediatek.com>, Conor Dooley
-	<conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, Mathias
- Nyman <mathias.nyman@intel.com>, <linux-usb@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>, Eddie Hung
-	<eddie.hung@mediatek.com>, Macpaul Lin <macpaul.lin@mediatek.com>
-Subject: [PATCH v5 3/3] arm64: dts: mediatek: mt8195: Add 'rx-fifo-depth' for cherry
-Date: Thu, 4 Jan 2024 14:16:40 +0800
-Message-ID: <20240104061640.7335-3-chunfeng.yun@mediatek.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240104061640.7335-1-chunfeng.yun@mediatek.com>
-References: <20240104061640.7335-1-chunfeng.yun@mediatek.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E7E51DFE5;
+	Thu,  4 Jan 2024 07:22:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=unisoc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=unisoc.com
+Received: from dlp.unisoc.com ([10.29.3.86])
+	by SHSQR01.spreadtrum.com with ESMTP id 4047M60j002224;
+	Thu, 4 Jan 2024 15:22:06 +0800 (+08)
+	(envelope-from Chunyan.Zhang@unisoc.com)
+Received: from SHDLP.spreadtrum.com (bjmbx02.spreadtrum.com [10.0.64.8])
+	by dlp.unisoc.com (SkyGuard) with ESMTPS id 4T5Ht14l0yz2QdFD2;
+	Thu,  4 Jan 2024 15:15:21 +0800 (CST)
+Received: from ubt.spreadtrum.com (10.0.73.88) by BJMBX02.spreadtrum.com
+ (10.0.64.8) with Microsoft SMTP Server (TLS) id 15.0.1497.23; Thu, 4 Jan 2024
+ 15:22:03 +0800
+From: Chunyan Zhang <chunyan.zhang@unisoc.com>
+To: Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>
+CC: <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Orson Zhai <orsonzhai@gmail.com>,
+        Baolin Wang
+	<baolin.wang@linux.alibaba.com>,
+        Chunyan Zhang <chunyan.zhang@unisoc.com>,
+        Chunyan Zhang <zhang.lyra@gmail.com>
+Subject: [PATCH V2 0/3] Add UMS9620 clocks driver and bindings
+Date: Thu, 4 Jan 2024 15:21:45 +0800
+Message-ID: <20240104072148.1619009-1-chunyan.zhang@unisoc.com>
+X-Mailer: git-send-email 2.41.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -74,47 +53,30 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-MTK: N
+X-ClientProxiedBy: SHCAS03.spreadtrum.com (10.0.1.207) To
+ BJMBX02.spreadtrum.com (10.0.64.8)
+X-MAIL:SHSQR01.spreadtrum.com 4047M60j002224
 
-Add the quirk property "rx-fifo-depth" to work around Gen1 isoc-in
-transfer issue which send out unexpected ACK even after device
-already finished the burst transfer with a short patcket, specially
-for a 4K camera device.
+Add UMS9620 clock driver and update clock bindings for UMS9620.
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
----
-v5: no changes
-v4:
-change property value, and put before supply
-add reviewed-by Angelo
-v3: change value according to binding
-v2: use 'rx-fifo-depth' property
----
- arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
+V2:
+- Fixed compile warnings reported by kernel test robot <lkp@intel.com>.
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi b/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
-index dd5b89b73190..00fcde60300e 100644
---- a/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
-@@ -1183,6 +1183,7 @@
- &xhci0 {
- 	status = "okay";
- 
-+	rx-fifo-depth = <3072>;
- 	vusb33-supply = <&mt6359_vusb_ldo_reg>;
- 	vbus-supply = <&usb_vbus>;
- };
-@@ -1190,6 +1191,7 @@
- &xhci1 {
- 	status = "okay";
- 
-+	rx-fifo-depth = <3072>;
- 	vusb33-supply = <&mt6359_vusb_ldo_reg>;
- 	vbus-supply = <&usb_vbus>;
- };
+Chunyan Zhang (3):
+  dt-bindings: clk: sprd: Add UMS9620 support
+  clk: sprd: Add dt-bindings include file for UMS9620
+  clk: sprd: add support for UMS9620
+
+ .../bindings/clock/sprd,ums512-clk.yaml       |   79 +-
+ drivers/clk/sprd/Kconfig                      |    9 +
+ drivers/clk/sprd/Makefile                     |    1 +
+ drivers/clk/sprd/ums9620-clk.c                | 3120 +++++++++++++++++
+ include/dt-bindings/clock/sprd,ums9620-clk.h  |  515 +++
+ 5 files changed, 3713 insertions(+), 11 deletions(-)
+ create mode 100644 drivers/clk/sprd/ums9620-clk.c
+ create mode 100644 include/dt-bindings/clock/sprd,ums9620-clk.h
+
 -- 
-2.18.0
+2.41.0
 
 
