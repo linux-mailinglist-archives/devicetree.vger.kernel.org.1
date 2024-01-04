@@ -1,127 +1,164 @@
-Return-Path: <devicetree+bounces-29726-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29727-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 832D38243C2
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 15:25:07 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3906A8243CE
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 15:29:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 936C21C20FBC
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 14:25:06 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B55E3B24EA7
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 14:29:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31760225A5;
-	Thu,  4 Jan 2024 14:24:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D53EA224F0;
+	Thu,  4 Jan 2024 14:28:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="IEB/+bGv"
+	dkim=pass (2048-bit key) header.d=stwcx.xyz header.i=@stwcx.xyz header.b="Tqh6216P";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="MS+FNCu9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from out1-smtp.messagingengine.com (out1-smtp.messagingengine.com [66.111.4.25])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7D1E241ED;
-	Thu,  4 Jan 2024 14:24:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 404E01EN026938;
-	Thu, 4 Jan 2024 14:23:40 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	from:date:subject:mime-version:content-type
-	:content-transfer-encoding:message-id:references:in-reply-to:to
-	:cc; s=qcppdkim1; bh=C4eC814GmPEtEFPN+OlM7TiAaskuBpnOkF9UFumXED8
-	=; b=IEB/+bGvPcQQDNkK8nnwGZ0R4sP3lrf17yW2F00V/uRxS5m/W4qnqqUwIp/
-	BBDXfYV/XEqaziF0RHYh50LK8ug+TA/KILDUW5mys8a93k8wnLsOe5HztEm7TpmV
-	11ZKgHYRo67hdHvycUwd+SPTgw2J1Is/gl4uIu/KQczyWo5hNkhGy9qjTQVEQD90
-	s1HewSxi6qZVaO7dtc3cksGoemU47YTC7OGT/kdnrEMDy7dENBgNBT8PsbMoVA9h
-	FvOUzW57T/lChVjiVLGyvliIKTQqjDIoCM48FkzOc31UzD+oZ8Rfok1oXFvoQfEU
-	3p8uvAViaD1V8R16g1NSeww+GhA==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vdx28024d-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 04 Jan 2024 14:23:40 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 404ENd1i011620
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 4 Jan 2024 14:23:39 GMT
-Received: from hu-skakitap-hyd.qualcomm.com (10.80.80.8) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Thu, 4 Jan 2024 06:23:34 -0800
-From: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
-Date: Thu, 4 Jan 2024 19:53:06 +0530
-Subject: [PATCH 3/3] clk: qcom: gcc-sm8150: Update the gcc resets
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE879225A5;
+	Thu,  4 Jan 2024 14:28:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=stwcx.xyz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=stwcx.xyz
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
+	by mailout.nyi.internal (Postfix) with ESMTP id 89CAC5C00D2;
+	Thu,  4 Jan 2024 09:28:53 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute2.internal (MEProxy); Thu, 04 Jan 2024 09:28:53 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=stwcx.xyz; h=cc
+	:cc:content-type:content-type:date:date:from:from:in-reply-to
+	:in-reply-to:message-id:mime-version:references:reply-to:subject
+	:subject:to:to; s=fm1; t=1704378533; x=1704464933; bh=DipVrQhrjW
+	IAtEKqD45J/bUSQRWUjrpsRHzMOm1b6FI=; b=Tqh6216PYWjOZGszyXs+YuYur2
+	GEnYGy75X1hPI/EWurqYWL+a6bKnXfXsJ4swCPD0BHYaBOPMmF82EaA4sqEi37Vv
+	hp9X5UgPoxTLQuuzGhdzysVSjBt4v3paMmeISV/HCGKHfHzyH8KWRwM9iTMMY7XH
+	jZsjE7NtHYlP+zhgc9CWhdxpeQ+Ku9OK4qF4OU56EFMB514lo+066Ar0hmrxWZ/g
+	HL4qohmXRtmDZeG2WSAbeRYQ4Obx+4wvuMSOTXi+JR97lOjVcPfV1weZ0uccxpfg
+	X0o9lrXWWTw2E+9rIF9RoH4YiWC84Wh/FOBNeuM0ZRDPV8du8DwcWHfJgnoA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-type:content-type:date:date
+	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
+	:message-id:mime-version:references:reply-to:subject:subject:to
+	:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+	fm2; t=1704378533; x=1704464933; bh=DipVrQhrjWIAtEKqD45J/bUSQRWU
+	jrpsRHzMOm1b6FI=; b=MS+FNCu9SK0W/U8W8PKFHqpkVXomqqsE3pPNMWJUvg29
+	8al0XTXEAEub3Zev7V7RZq6SmGJcPuaASjz9EoYSk8YFbsQp1rbFVd+6SXSXHo64
+	HNh1A/QjG/9GZ01TcgT1/lp+qOOBUXRH8G53h/oQIon4TM80ltnY9a8hXE6oa1lR
+	pkWD8e8CeSa3XK/FNv6EQJVooBN6V1QabY14ut8qk4dkl1ugWSJaXzvSZCnroW2D
+	iJs2pjnUHNcKJ7gQSgVWxuwxDXXldT2qxxVGfmlzkcB9NnCp6uDhyrMUAZhqnuFU
+	izAyqQmp8d6SIdEb/LG81t61Lod57s8tNZCrbZdd8A==
+X-ME-Sender: <xms:pcCWZdwXqpE4ri9YrKfxZoz2T2__PRqECdraozDhBGdzLPhh6mOLYQ>
+    <xme:pcCWZdTsoeXQlbV5UuxVdlunf9J03KtVTrbwc6Rzavf-VM0hwfvuesWW60gr8YJCf
+    uOLCpxE70sJ0dg1Ads>
+X-ME-Received: <xmr:pcCWZXWmiGNwvvglMD5TlFMlziCKMdDOurwL0ePq0Nt7VsivmJAQhzjnsVvVeSBI1q1I0kGE_Kdw9QcrUExqdSMtdXgG8g>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvkedrvdegjedgieehucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    gfrhhlucfvnfffucdlvdefmdenucfjughrpeffhffvvefukfhfgggtuggjsehgtderredt
+    tddvnecuhfhrohhmpefrrghtrhhitghkucghihhllhhirghmshcuoehprghtrhhitghkse
+    hsthiftgigrdighiiiqeenucggtffrrghtthgvrhhnpeejgfdtleelvdeftdeggefffeeu
+    feevgeejkeelgeeujeevveeufeeigfeivdejjeenucffohhmrghinhepkhgvrhhnvghlrd
+    horhhgnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhep
+    phgrthhrihgtkhesshhtfigtgidrgiihii
+X-ME-Proxy: <xmx:pcCWZfhpe1Wr7ZEAJBUXIlfTV3k0gPVZgLHbvwE0q9KMcu9rn6MCBw>
+    <xmx:pcCWZfCypEM4Y-vmgaap2mwZeEQVNgoMgbs4ybeeX7E4PTzQPu3blQ>
+    <xmx:pcCWZYJsClyvl2Kz3e8m0weXZ7LzS_EQiVcJsgKdbOsEF1Qo6dynEQ>
+    <xmx:pcCWZT0WstvisP_jeKJGZnVDWd--zUPJ_sF49fc4qfogK3E4PiVB4Q>
+Feedback-ID: i68a1478a:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 4 Jan 2024 09:28:52 -0500 (EST)
+Date: Thu, 4 Jan 2024 08:28:51 -0600
+From: Patrick Williams <patrick@stwcx.xyz>
+To: Peter Yin <peteryin.openbmc@gmail.com>
+Cc: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+	Andrew Jeffery <andrew@aj.id.au>, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 0/6] Revise Meta(Facebook) Harma BMC(AST2600)
+Message-ID: <ZZbAoxDm39qeBtCy@heinlein.vulture-banana.ts.net>
+References: <20240104134532.536793-1-peteryin.openbmc@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20240104-sm8150-dfs-support-v1-3-a5eebfdc1b12@quicinc.com>
-References: <20240104-sm8150-dfs-support-v1-0-a5eebfdc1b12@quicinc.com>
-In-Reply-To: <20240104-sm8150-dfs-support-v1-0-a5eebfdc1b12@quicinc.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konrad.dybcio@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Deepak Katragadda <dkatraga@codeaurora.org>,
-        Vinod Koul <vkoul@kernel.org>, Taniya Das <quic_tdas@quicinc.com>,
-        "Rob
- Herring" <robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Ajit Pandey
-	<quic_ajipan@quicinc.com>,
-        Imran Shaik <quic_imrashai@quicinc.com>,
-        "Jagadeesh Kona" <quic_jkona@quicinc.com>,
-        Satya Priya Kakitapalli
-	<quic_skakitap@quicinc.com>
-X-Mailer: b4 0.12.4
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: UdK7BLfOJYq5U9ywj3RJpE5aIpf8MN_p
-X-Proofpoint-ORIG-GUID: UdK7BLfOJYq5U9ywj3RJpE5aIpf8MN_p
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-12-09_01,2023-12-07_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- priorityscore=1501 mlxscore=0 impostorscore=0 phishscore=0 clxscore=1015
- malwarescore=0 adultscore=0 mlxlogscore=778 suspectscore=0 bulkscore=0
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2311290000 definitions=main-2401040113
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="+82ChjIsQHnggrIX"
+Content-Disposition: inline
+In-Reply-To: <20240104134532.536793-1-peteryin.openbmc@gmail.com>
 
-Add all the available resets for the global clock controller
-on sm8150.
 
-Fixes: 2a1d7eb854bb ("clk: qcom: gcc: Add global clock controller driver for SM8150")
-Signed-off-by: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
----
- drivers/clk/qcom/gcc-sm8150.c | 3 +++
- 1 file changed, 3 insertions(+)
+--+82ChjIsQHnggrIX
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/drivers/clk/qcom/gcc-sm8150.c b/drivers/clk/qcom/gcc-sm8150.c
-index 6d76fd344ddf..833e64b61e6b 100644
---- a/drivers/clk/qcom/gcc-sm8150.c
-+++ b/drivers/clk/qcom/gcc-sm8150.c
-@@ -3778,6 +3778,9 @@ static const struct qcom_reset_map gcc_sm8150_resets[] = {
- 	[GCC_USB30_PRIM_BCR] = { 0xf000 },
- 	[GCC_USB30_SEC_BCR] = { 0x10000 },
- 	[GCC_USB_PHY_CFG_AHB2PHY_BCR] = { 0x6a000 },
-+	[GCC_VIDEO_AXIC_CLK_BCR] = { 0xb02c, 2 },
-+	[GCC_VIDEO_AXI0_CLK_BCR] = { 0xb024, 2 },
-+	[GCC_VIDEO_AXI1_CLK_BCR] = { 0xb028, 2 },
- };
- 
- static struct gdsc *gcc_sm8150_gdscs[] = {
+On Thu, Jan 04, 2024 at 09:45:26PM +0800, Peter Yin wrote:
+> Summary:
+> Revise linux device tree entry related to Meta(Facebook) Harma
+> specific devices connected to BMC(AST2600) SoC.
+>=20
+> Base on : https://lore.kernel.org/all/CACPK8XePx+PvDKzPMjPRn_g9z8yrtAmLvP=
+8Qbepm1AVjuCbaKw@mail.gmail.com/
+>=20
+> Change log:
+>=20
+> v1 -> v2
+>   - Add infineon,slb9670 information for tpm.
+>   - Patch 0006 - Add PDB temperature.
+>=20
+> v1
+>   - Patch 0001 - Revise SGPIO line name.
+>   - Patch 0002 - Mapping ttyS2 to UART4.
+>   - Patch 0003 - Remove Vuart.
+>   - Patch 0004 - Add cpu power good line name.
+>   - Patch 0005 - Add spi-gpio.
+>=20
+> Peter Yin (6):
+>   ARM: dts: aspeed: Harma: Revise SGPIO line name.
+>   ARM: dts: aspeed: Harma: mapping ttyS2 to UART4.
+>   ARM: dts: aspeed: Harma: Remove Vuart
+>   ARM: dts: aspeed: Harma: Add cpu power good line name
+>   ARM: dts: aspeed: Harma: Add spi-gpio
+>   ARM: dts: aspeed: Harma: Add PDB temperature
+>=20
+>  .../dts/aspeed/aspeed-bmc-facebook-harma.dts  | 38 +++++++++++++++----
+>  1 file changed, 30 insertions(+), 8 deletions(-)
+>=20
+> --=20
+> 2.25.1
+>=20
 
--- 
-2.25.1
+Reviewed-by: Patrick Williams <patrick@stwcx.xyz>
 
+--=20
+Patrick Williams
+
+--+82ChjIsQHnggrIX
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEBGD9ii4LE9cNbqJBqwNHzC0AwRkFAmWWwKEACgkQqwNHzC0A
+wRmpqA/7BL+RG9Bd7wpYt0zewQCiZlzcRSnSo5oTw4W9jyLABk27jgQ/Pp2UyHpk
+pWU6GAcVtsKhJgvvocEHneMhaV5mrTMeKAXtVcva18CbmfrF2rDPj4FX0kPKCGD9
+iWNLMCDZib8vRoRv9C2YxoR1jd3t+JFFG7CrUP4ORT5iqq0TzCXRoEm+y+PqFc2U
+rbOdXgwgmp1vx5yAJAu7KFZOGn63U8sMX2y5u2xcnuNmW25iYZmQVL/cH50L7zld
+XkrCELp7lmlLbd9/+4eKzFbfCkVgWMPblIYBBBo8DP9OoFZCi7Keh1ZFqATzjnI9
+7g03Y49uZZsvFrxbe+sNIWw1eFnZp/HG1ePrDNqEFj3KxDNyN9QJNOQqLCKOIBbi
+6XmG19UJ3pV+px9Zzt7KtvrxaA4pLah3yTZvMmrqyEAZ1P9m9QDeV1iRvJKwIR0U
+9wO5MbB1vS0S3KdrIgmgenT2SFQorkDVfZzvTsU9eQrDsiFQej4fWGI5fdSGqlSc
+wdEQqriKFuqvLfZI1oyDymn4DcPCwU32ySh9vjpfibxnBAkh/i1ZbRwN1knrTrZ2
+omgOkkJwjOov4chib1B/KWGSOzREhdwLwmDv7vIEtXyTkVeiZgsEx2Jy1Ge9GzrN
+QuFp3ujJ7Zf4w9lwDfu1CI6zKs7rpmChAgRfGmFH4zNsuXt3Cds=
+=tNZc
+-----END PGP SIGNATURE-----
+
+--+82ChjIsQHnggrIX--
 
