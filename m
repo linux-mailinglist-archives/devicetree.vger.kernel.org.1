@@ -1,183 +1,183 @@
-Return-Path: <devicetree+bounces-29737-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29738-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83D308244B6
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 16:13:47 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C0568244CD
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 16:17:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AB1EFB20E09
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 15:13:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EFB101F221BD
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 15:17:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCECF22F1E;
-	Thu,  4 Jan 2024 15:13:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A98C52376D;
+	Thu,  4 Jan 2024 15:17:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="B2V/7Luf"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="cJmiX8ix"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f169.google.com (mail-vk1-f169.google.com [209.85.221.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DA682375F
-	for <devicetree@vger.kernel.org>; Thu,  4 Jan 2024 15:13:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-vk1-f169.google.com with SMTP id 71dfb90a1353d-4b724272f50so188083e0c.0
-        for <devicetree@vger.kernel.org>; Thu, 04 Jan 2024 07:13:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1704381218; x=1704986018; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Uo3GncCKNR0AkCV/1DPqjQ0hOppoX5B784xjEgiLIT0=;
-        b=B2V/7Lufa01ra+BQx/BCUI+1EvXD+HJntVatc7ihvYQb3uyRveLNHeTF++ZjMZgjOv
-         Qs5oTydMw9ifdMHzbvReE9Le8l+bbtchpxCxyYFrKiaJwJIb1sMUuVMU5bhBwdcjBROj
-         Ue0cRmcuSHRxq9X1TQ1nc50Nno34utaFim19ldizvhbLMdu1HmSRgpvHZ+3xigYGQf6J
-         C+r7UiHdsOcSxwk8f3EruqbT7NS+sEI94BEGEHztD3KvhYp02xS1hFlfLz2lh7diVcj0
-         0yw3pQPVepL0+qabCdNwTo9gONEADVQzQMNB033E+O3Dlb0VzapjBxXDOgC5Kz2Wa0To
-         Mo3A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704381218; x=1704986018;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Uo3GncCKNR0AkCV/1DPqjQ0hOppoX5B784xjEgiLIT0=;
-        b=XJNq71ZxtUQqFa7QSMG5d+CrTC9mdQg3ruTUEdBlY1Ul3uZGZLKU/Lv7ZNz39iNFet
-         7woRwx5ZbYsQGIRNnu/T2YEJP9u6aaxnBqzJEg84B+Y4hMnGlFw9gjfXfNbCiQY6ja5J
-         TG+zS0b9iUn/tqZqiEx/1soHFVkyPeG5rtxv2x51itVr4S2gpGM1hzATd9gV9BkfXpyT
-         YjC1d4MgtlksRSLsaRHgDEECRKBfn6kBGSMG1/fJCml0yn+Dm+QBZBdBIuPR3sS1ongN
-         RD/l3pIGrynGJD8D/ylxmL8+7B/5HvcefpGLemOYvFqxJkDqABbNxIpXgzn1DR4i+9DY
-         d1PA==
-X-Gm-Message-State: AOJu0Yyw0ABY4iDC0Vkj7BecFfT0IFVnSm80szsMNzEGuirjQnKFRgmW
-	bKzKBNiOXambdp1F9JioFiqGw5Qf5sHnf7qTzZX/M6OXAuoV6Q==
-X-Google-Smtp-Source: AGHT+IGaU5XfoSCmXhPgB9dPZjVC5ipLctZH7E/xd+njpdt3eUTn/nDydi+QSdw8aSiqRs0d+1vMZ53MS8OTwZuJ5V8=
-X-Received: by 2002:ac5:c9ab:0:b0:4b7:295d:a048 with SMTP id
- f11-20020ac5c9ab000000b004b7295da048mr619470vkm.29.1704381218190; Thu, 04 Jan
- 2024 07:13:38 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1022249FF;
+	Thu,  4 Jan 2024 15:17:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 404FGoGf022442;
+	Thu, 4 Jan 2024 09:16:50 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1704381410;
+	bh=1vVZQWCwm6Aj79XrJxm6KaggjAzeXoVxnAU3BgYJzNE=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=cJmiX8ixi+74wWuZdZaxJehD+9jpabLWXKenhDNsCPEdm8MCUpHi6Nl5IiSCNfsnW
+	 FUO/lZOpvtCmJyuyeI0oiv/eObYGls0euuQvRKSybj0rhKupUkG6TINwPogag6rZuu
+	 ty7rT1Z6l1hEJACvkx1SA+1VlaG9lQ7WXXWGECCg=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 404FGoc2012514
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 4 Jan 2024 09:16:50 -0600
+Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 4
+ Jan 2024 09:16:50 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 4 Jan 2024 09:16:50 -0600
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 404FGoSG002746;
+	Thu, 4 Jan 2024 09:16:50 -0600
+Date: Thu, 4 Jan 2024 09:16:50 -0600
+From: Nishanth Menon <nm@ti.com>
+To: Neha Malcom Francis <n-francis@ti.com>
+CC: <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <vigneshr@ti.com>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <a-nandan@ti.com>, <kristo@kernel.org>, <u-kumar1@ti.com>
+Subject: Re: [PATCH v2] arm64: dts: ti: k3-j721e: Add support for DFS in
+ J721E A72
+Message-ID: <20240104151650.my3cuhgase4yf7gj@luminance>
+References: <20240104111922.832040-1-n-francis@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240104130123.37115-1-brgl@bgdev.pl> <20240104130123.37115-3-brgl@bgdev.pl>
- <CAA8EJpqZ8zbNcK1BsJaaoK3Fje9KhrvFvJpgdBa-US3eMhOmOw@mail.gmail.com>
-In-Reply-To: <CAA8EJpqZ8zbNcK1BsJaaoK3Fje9KhrvFvJpgdBa-US3eMhOmOw@mail.gmail.com>
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Thu, 4 Jan 2024 16:13:27 +0100
-Message-ID: <CAMRc=McmhPMb9bykwKXmQ-1DL4sJW+7caXkxUq=8v16hT1k_oA@mail.gmail.com>
-Subject: Re: [RFC 2/9] arm64: dts: qcom: qrb5165-rb5: describe the WLAN module
- of QCA6390
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Kalle Valo <kvalo@kernel.org>, "David S . Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
-	Bjorn Helgaas <bhelgaas@google.com>, Heiko Stuebner <heiko@sntech.de>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Chris Morgan <macromorgan@hotmail.com>, 
-	Linus Walleij <linus.walleij@linaro.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Arnd Bergmann <arnd@arndb.de>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	=?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= <nfraprado@collabora.com>, 
-	Marek Szyprowski <m.szyprowski@samsung.com>, Peng Fan <peng.fan@nxp.com>, 
-	Robert Richter <rrichter@amd.com>, Dan Williams <dan.j.williams@intel.com>, 
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>, Terry Bowman <terry.bowman@amd.com>, 
-	Kuppuswamy Sathyanarayanan <sathyanarayanan.kuppuswamy@linux.intel.com>, 
-	=?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>, 
-	Huacai Chen <chenhuacai@kernel.org>, Alex Elder <elder@linaro.org>, 
-	Srini Kandagatla <srinivas.kandagatla@linaro.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, linux-wireless@vger.kernel.org, 
-	netdev@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org, 
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20240104111922.832040-1-n-francis@ti.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On Thu, Jan 4, 2024 at 2:44=E2=80=AFPM Dmitry Baryshkov
-<dmitry.baryshkov@linaro.org> wrote:
->
-> On Thu, 4 Jan 2024 at 15:03, Bartosz Golaszewski <brgl@bgdev.pl> wrote:
-> >
-> > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> >
-> > Describe the ath11k WLAN on-board the QCA6390 module. Include the
-> > relevant regulators and the enable GPIO.
-> >
-> > Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> > ---
-> >  arch/arm64/boot/dts/qcom/qrb5165-rb5.dts | 24 ++++++++++++++++++++++++
-> >  1 file changed, 24 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts b/arch/arm64/boot=
-/dts/qcom/qrb5165-rb5.dts
-> > index cd0db4f31d4a..721f86af952b 100644
-> > --- a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-> > +++ b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-> > @@ -734,6 +734,22 @@ &pcie0_phy {
-> >         vdda-pll-supply =3D <&vreg_l9a_1p2>;
-> >  };
-> >
-> > +&pcieport0 {
-> > +       wifi@0 {
-> > +               compatible =3D "pci17cb,1101";
-> > +               reg =3D <0x10000 0x0 0x0 0x0 0x0>;
-> > +
-> > +               pinctrl-names =3D "default";
-> > +               pinctrl-0 =3D <&wlan_en_state>;
-> > +
-> > +               enable-gpios =3D <&tlmm 20 GPIO_ACTIVE_HIGH>;
-> > +
-> > +               vddpmu-supply =3D <&vreg_s2f_0p95>;
-> > +               vddpcie1-supply =3D <&vreg_s8c_1p3>;
-> > +               vddpcie2-supply =3D <&vreg_s5a_1p9>;
->
-> If I remember correctly, qca6390 has at least 8 power supplies AON,
-> PMU, 3xRFA, 2xPCIe and VDDIO.
->
-> Moreover, these bindings do not solve another problem: the PMU is
-> shared between WiFi and BT parts. For the next gen (WCN6855) this
-> becomes even more important, see the code in msm-5.10 which makes sure
-> that there is a proper time between one of the units going down and
-> another one being powered on.
->
+On 16:49-20240104, Neha Malcom Francis wrote:
+> Add 2G, 1G, 500M and 250M as the supported frequencies for A72. This
+> enables support for Dynamic Frequency Scaling (DFS). Note that Dynamic
+> Voltage and Frequency Scaling (DVFS) is not supported on J7 devices.
+> 
+> J721E SoC has three different speed grade devices (see [1], 7.5
+> Operating Performance Points) which as of today are indiscernible in
+> software, users of a different speed grade device must manually change
+> the DTS to ensure their maximum speed frequency is supported.
+> 
+> To obtain clock-latency-ns, the maximum time was found to switch from/to
+> any frequency for a CPU and this value was rounded off and set.
+> 
+> [1] https://www.ti.com/lit/gpn/tda4vm
+> 
+> Signed-off-by: Neha Malcom Francis <n-francis@ti.com>
+> ---
+> Test and boot logs:
+> https://gist.github.com/nehamalcom/33608837ab5ad3332ff11a7fa7a602e2
+> 
+> Changes since v1:
+> https://lore.kernel.org/all/20231214075637.176586-1-n-francis@ti.com/
+> - removed OPPs 1.5G and 750M as they introduced boot regression in
+>   J721E-SK
 
-Unified, shared power sequencing for this type of loosely coupled MFD
-devices is something I have in mind and that will be orthogonal to
-this. It will come on top of the PCIe power sequencing driver. I
-wanted to address a simpler issue first.
+I do not think this is the right approach precisely for the above
+reason.
 
-Bartosz
+See my comment in V1: https://lore.kernel.org/all/20231214125130.zqtq6ioj4c533wha@elbow/
 
-> > +       };
-> > +};
-> > +
-> >  &pcie1 {
-> >         status =3D "okay";
-> >  };
-> > @@ -1303,6 +1319,14 @@ sdc2_card_det_n: sd-card-det-n-state {
-> >                 function =3D "gpio";
-> >                 bias-pull-up;
-> >         };
-> > +
-> > +       wlan_en_state: wlan-default-state {
-> > +               pins =3D "gpio20";
-> > +               function =3D "gpio";
-> > +               drive-strength =3D <16>;
-> > +               output-low;
-> > +               bias-pull-up;
-> > +       };
-> >  };
-> >
-> >  &uart6 {
-> > --
-> > 2.40.1
-> >
-> >
->
->
-> --
-> With best wishes
-> Dmitry
+"
+I am also concerned if the table should be separated out as a dtsi and
+included at board.dts level to prevent downstream users going crazy..
+"
+
+I suspect there is no magic opp configuration that will work with all
+downstream and board variations. instead of creating a trimmed down
+non-datasheet tuples of OPP configuration, use the data sheet provided
+OPP configurations into each dtsi and the boards can apply the dtsi
+based on the type of sample they have.
+
+I don't see any other scheme (overlays, maybe?).. but this approach is
+broken and your note above proves why this approach is broken.
+
+> - Nishanth
+> 	- indicated DVFS not supported in commit message
+> 	- moved critical data sheet info from below tear line to commit
+> 	  message
+> 	- added opp-shared property
+> 	- added clock-latency-ns property
+> 
+>  arch/arm64/boot/dts/ti/k3-j721e.dtsi | 31 ++++++++++++++++++++++++++++
+>  1 file changed, 31 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-j721e.dtsi b/arch/arm64/boot/dts/ti/k3-j721e.dtsi
+> index a200810df54a..5de6c70bd989 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j721e.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j721e.dtsi
+> @@ -48,6 +48,9 @@ cpu0: cpu@0 {
+>  			d-cache-line-size = <64>;
+>  			d-cache-sets = <256>;
+>  			next-level-cache = <&L2_0>;
+> +			clocks = <&k3_clks 202 2>;
+> +			clock-names = "cpu";
+> +			operating-points-v2 = <&cpu0_opp_table>;
+>  		};
+>  
+>  		cpu1: cpu@1 {
+> @@ -62,6 +65,34 @@ cpu1: cpu@1 {
+>  			d-cache-line-size = <64>;
+>  			d-cache-sets = <256>;
+>  			next-level-cache = <&L2_0>;
+> +			clocks = <&k3_clks 203 0>;
+> +			clock-names = "cpu";
+> +			operating-points-v2 = <&cpu0_opp_table>;
+> +		};
+> +	};
+> +
+> +	cpu0_opp_table: opp-table {
+> +		compatible = "operating-points-v2";
+> +		opp-shared;
+> +
+> +		opp6-2000000000 {
+> +			opp-hz = /bits/ 64 <2000000000>;
+> +			clock-latency-ns = <300000>;
+> +		};
+> +
+> +		opp4-1000000000 {
+> +			opp-hz = /bits/ 64 <1000000000>;
+> +			clock-latency-ns = <300000>;
+> +		};
+> +
+> +		opp2-500000000 {
+> +			opp-hz = /bits/ 64 <500000000>;
+> +			clock-latency-ns = <300000>;
+> +		};
+> +
+> +		opp1-250000000 {
+> +			opp-hz = /bits/ 64 <250000000>;
+> +			clock-latency-ns = <300000>;
+>  		};
+>  	};
+>  
+> -- 
+> 2.34.1
+> 
+
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
