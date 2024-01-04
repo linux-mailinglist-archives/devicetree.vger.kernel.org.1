@@ -1,126 +1,105 @@
-Return-Path: <devicetree+bounces-29740-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29741-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 960BA8244EB
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 16:28:00 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3DA6A8244FE
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 16:32:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 30B4A286A78
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 15:27:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CFFFB1F25572
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 15:32:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D371B241FC;
-	Thu,  4 Jan 2024 15:27:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB835241FF;
+	Thu,  4 Jan 2024 15:32:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ldJYBbwd"
+	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="krvH+vf8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43FCF241F5
-	for <devicetree@vger.kernel.org>; Thu,  4 Jan 2024 15:27:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-40d89105365so5347465e9.0
-        for <devicetree@vger.kernel.org>; Thu, 04 Jan 2024 07:27:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704382072; x=1704986872; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=gtdq0SrgO0k3fu2GrlQuTjv3qKZgCLrSfrhsu6oYX/o=;
-        b=ldJYBbwdRLZRG4AruKy4uGnHTmGgjCtXHHg0HWVgiGVOTmDN/z7ZcGx/9uxBrdUieg
-         VaXTCXB+SB6ZAziwGQP7NVcWA7EmfzPfCKUEOs5PeaFVmoTGzXF2DJJjDAoNselQzymM
-         meuR18i/0EXRTfSL5E2O/8pN8HKm84FV+y/HajE3Tub6W5sm/S5HMY03E9PiVKe6OE5N
-         ryi6P0OgxSDPma/zvHdFB2qcLA+xteA7XXIo3GFbAyA0CvUTp/V/FFKl5pHxDdLRcWJ6
-         RItKfCPxuGqQ7Hnzmhq177yN2IPNGLD3evL7MRGoKJh6ruRapHPpVT6MzpSMpL/E4g5r
-         A1Aw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704382072; x=1704986872;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=gtdq0SrgO0k3fu2GrlQuTjv3qKZgCLrSfrhsu6oYX/o=;
-        b=Z/s4Tus//9iwyusL4noBF4v1rok9BBbPXaEyOjDF2Jzp6F3Js+i7fuDI5urbVillSU
-         L2wgjLami+2ABsFpK6BlcKR92yxGK8XtCS+VaosT5vztYtqs3344J1qRbV5QqrqzMQ0Y
-         3SYfDs6PF2UyJEe3/4ma405KK6HkLAJ+lnV6piUTFlC5QyE9k+4lMy7ZJ2gOfRXE6RsH
-         EC26k8s6iZPyfWPUdWWsB+VR1p4SACi48/U+naLDssEpp5WxE1vTxIbSSAn1umuULCDe
-         VntgQcBDch8N5Be5nD9yytRBJED6yu6nGKttjPKh1fMu+SUfVf0hcaTTYwWUqBeajajO
-         dCxg==
-X-Gm-Message-State: AOJu0YyZzTjtzt6A05R89A9F9XSuEJqGU3nAYHz46LXXlwfIE0srRLBf
-	5m1e03mggHQrc7q9gltC/wnWFHW2lpvzRg==
-X-Google-Smtp-Source: AGHT+IFmi1/jiWhUQs7PjY7Dh23Nh9Tlpcyy34mUPD3sb3aLzgD0Jvux4q5yB79GBUpKiBF7aD/FmA==
-X-Received: by 2002:a05:600c:219:b0:40d:60a5:b34e with SMTP id 25-20020a05600c021900b0040d60a5b34emr409320wmi.109.1704382072426;
-        Thu, 04 Jan 2024 07:27:52 -0800 (PST)
-Received: from [192.168.100.125] ([37.228.218.3])
-        by smtp.gmail.com with ESMTPSA id r16-20020a05600c35d000b0040d7b1ef521sm6122802wmq.15.2024.01.04.07.27.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 04 Jan 2024 07:27:52 -0800 (PST)
-Message-ID: <7744ff07-80e4-4010-b7af-0d6d74ae31db@linaro.org>
-Date: Thu, 4 Jan 2024 15:27:51 +0000
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F02D241FD;
+	Thu,  4 Jan 2024 15:32:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5F40FC433C8;
+	Thu,  4 Jan 2024 15:32:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+	s=korg; t=1704382349;
+	bh=iRcnDzw86EyKYKY1HoAEg7+jfRyhxW/8AJdQHVxMfJQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=krvH+vf8alA3OYa9PQUG7prv2rIPcjCZ5kuHMdK+c3PwsxStQqpFCYmx5FNFsyai3
+	 2i/0ruoxpd1QKA7a2mNiz8Q/gPGO9rhfdj9HEFN1mP+HmO/IAN7ocfDmJVt4+nGnZw
+	 zWZobXaYovtT3amQgB9QV2L45gttEzKA9QzuBn+0=
+Date: Thu, 4 Jan 2024 16:32:27 +0100
+From: Greg KH <gregkh@linuxfoundation.org>
+To: Tudor Ambarus <tudor.ambarus@linaro.org>
+Cc: peter.griffin@linaro.org, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
+	sboyd@kernel.org, conor+dt@kernel.org, andi.shyti@kernel.org,
+	alim.akhtar@samsung.com, jirislaby@kernel.org,
+	s.nawrocki@samsung.com, tomasz.figa@gmail.com,
+	cw00.choi@samsung.com, arnd@arndb.de, semen.protsenko@linaro.org,
+	andre.draszik@linaro.org, saravanak@google.com,
+	willmcvicker@google.com, linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-i2c@vger.kernel.org, linux-serial@vger.kernel.org,
+	kernel-team@android.com
+Subject: Re: [PATCH v2 04/12] tty: serial: samsung: prepare for different IO
+ types
+Message-ID: <2024010432-taco-moneyless-53e2@gregkh>
+References: <20231228125805.661725-1-tudor.ambarus@linaro.org>
+ <20231228125805.661725-5-tudor.ambarus@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/3] arm64: dts: qcom: sc8280xp: Add CAMSS core dtsi
- support
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240103-linux-next-24-01-02-sc8280xp-camss-core-dtsi-v1-0-abacaa63a961@linaro.org>
- <360ff767-e48f-4a02-a2cf-f6c99048fd93@linaro.org>
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <360ff767-e48f-4a02-a2cf-f6c99048fd93@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231228125805.661725-5-tudor.ambarus@linaro.org>
 
-On 04/01/2024 12:42, Krzysztof Kozlowski wrote:
-> On 03/01/2024 03:18, Bryan O'Donoghue wrote:
->> This series adds the yaml, CAMSS and CCI dts definitions for the sc8280xp.
->>
->> 4 x CCI master busses
->> 4 x VFE
->> 4 x VFE Lite
->> 4 x CSID
->> 4 x CSIPHY
->>
->> Link: https://git.codelinaro.org/bryan.odonoghue/kernel/-/tree/linux-next-24-01-02-sc8280xp-camss-core-dtsi
->>
->> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
->> ---
->> Bryan O'Donoghue (3):
->>        media: dt-bindings: media: camss: Add qcom,sc8280xp-camss binding
->>        arm64: dts: qcom: sc8280xp: camss: Add CCI definitions
->>        arm64: dts: qcom: sc8280xp: camss: Add CAMSS block definition
->>
->>   .../bindings/media/qcom,sc8280xp-camss.yaml        | 512 +++++++++++++++++++
->>   arch/arm64/boot/dts/qcom/sc8280xp.dtsi             | 563 +++++++++++++++++++++
->>   2 files changed, 1075 insertions(+)
->> ---
->> base-commit: ab0b3e6ef50d305278b1971891cf1d82ab050b35
+On Thu, Dec 28, 2023 at 12:57:57PM +0000, Tudor Ambarus wrote:
+> GS101's Connectivity Peripheral blocks (peric0/1 blocks) which
+> include the I3C and USI (I2C, SPI, UART) only allow 32-bit
+> register accesses. If using 8-bit register accesses, a SError
+> Interrupt is raised causing the system unusable.
 > 
-> BTW, this also does not help, when used on random commit or random tree:
+> Instead of specifying the reg-io-width = 4 everywhere, for each node,
+> the requirement should be deduced from the compatible.
 > 
-> $ git show ab0b3e6ef50d305278b1971891cf1d82ab050b35
-> fatal: bad object ab0b3e6ef50d305278b1971891cf1d82ab050b35
+> Prepare the samsung tty driver to allow IO types different than
+> UPIO_MEM. ``struct uart_port::iotype`` is an unsigned char where all
+> its 8 bits are exposed to uapi. We can't make NULL checks on it to
+> verify if it's set, thus always set it from the driver's data.
 > 
-> Best regards,
-> Krzysztof
+> Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
+> ---
+> v2: new patch
 > 
+>  drivers/tty/serial/samsung_tty.c | 9 ++++++++-
+>  1 file changed, 8 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/tty/serial/samsung_tty.c b/drivers/tty/serial/samsung_tty.c
+> index 66bd6c090ace..97ce4b2424af 100644
+> --- a/drivers/tty/serial/samsung_tty.c
+> +++ b/drivers/tty/serial/samsung_tty.c
+> @@ -72,6 +72,7 @@ struct s3c24xx_uart_info {
+>  	const char		*name;
+>  	enum s3c24xx_port_type	type;
+>  	unsigned int		port_type;
+> +	unsigned char		iotype;
+>  	unsigned int		fifosize;
+>  	unsigned long		rx_fifomask;
+>  	unsigned long		rx_fifoshift;
 
-That's a b4 thing I think, not sure what it uses it for.
+Is there a reason you are trying to add unused memory spaces to this
+structure for no valid reason?  I don't think you could have picked a
+more incorrect place in there to add this :)
 
----
-bod
+Please fix.
+
+thanks,
+
+greg k-h
 
