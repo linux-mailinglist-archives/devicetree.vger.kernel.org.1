@@ -1,135 +1,112 @@
-Return-Path: <devicetree+bounces-29718-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29719-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BBA84824329
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 14:57:34 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C68B82434E
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 15:10:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CCA461C20C2C
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 13:57:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 091E6285D63
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 14:10:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FC802230B;
-	Thu,  4 Jan 2024 13:57:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C27C821A0F;
+	Thu,  4 Jan 2024 14:10:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="FgLCAT7+"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="FrMIc0/b"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D37F1224C1;
-	Thu,  4 Jan 2024 13:57:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=lwfKVVx7X4nlA2hPQXF4+V6T0p8TvsOTKoeOLz3fkv4=; b=FgLCAT7+PCX2erOAbptE1TsR3G
-	fBMJFNMH/TOX7AXKwZu3cpsOohCW7t3zRlStq+NNVkokdz6+V9OAaGOXE+QNOb7wklGKyQ77qgLGN
-	NwDsk4QIUIb0/xJGN3Oa9AtFJ4CITRID5ENOiLZ6D+8AclTwYT7VNfYLHFhrXazmUXT8=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1rLODb-004Lvc-37; Thu, 04 Jan 2024 14:57:07 +0100
-Date: Thu, 4 Jan 2024 14:57:07 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Jie Luo <quic_luoj@quicinc.com>
-Cc: Christian Marangi <ansuelsmth@gmail.com>,
-	"Russell King (Oracle)" <linux@armlinux.org.uk>,
-	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-	pabeni@redhat.com, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	hkallweit1@gmail.com, corbet@lwn.net, p.zabel@pengutronix.de,
-	f.fainelli@gmail.com, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org
-Subject: Re: [PATCH v8 14/14] dt-bindings: net: ar803x: add qca8084 PHY
- properties
-Message-ID: <50252a5a-e4fb-42d3-b838-9ef04faf4c5c@lunn.ch>
-References: <7c05b08a-bb6d-4fa1-8cee-c1051badc9d9@lunn.ch>
- <ZX2rU5OFcZFyBmGl@shell.armlinux.org.uk>
- <6abe5d6f-9d00-445f-8c81-9c89b9da3e0a@quicinc.com>
- <ZX3LqN8DSdKXqsYc@shell.armlinux.org.uk>
- <1bddd434-024c-45ff-9866-92951a3f555f@quicinc.com>
- <ZZPeHJJU96y1kdlZ@shell.armlinux.org.uk>
- <6593e0a3.050a0220.5c543.8e12@mx.google.com>
- <cee9de2c-bfa4-4ca9-9001-725e2041bc25@quicinc.com>
- <85590a5b-9d5a-40cb-8a0e-a3a3a1c3720a@lunn.ch>
- <c5263daa-b5f4-4b9c-a216-73d68493a802@quicinc.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FE9F224CA
+	for <devicetree@vger.kernel.org>; Thu,  4 Jan 2024 14:10:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-2cd0db24e03so6323151fa.3
+        for <devicetree@vger.kernel.org>; Thu, 04 Jan 2024 06:10:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1704377403; x=1704982203; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=QvyBwEaiMbUvG2bcyPLm6XlY6v4Hxt5APwIYm1XSkrE=;
+        b=FrMIc0/bg63yGw8pviWosTx9WqTOaB3Yhmamf1wOrXyiwywX8XOqTDNTA1HncN8WtV
+         HHe7Efb2devZ/OnYaX4iwXMaDH2pESREbJxKwzofwJvCdbHvoBWrJrGiQz482zRvk8ZW
+         nu+wrG7cSBTgUVhYFt04aU7BWFansoknyi+BjJ1rvip0KtzbTNXPDui2cJxgGs5x4BpY
+         DnBeoCtgkr128NIq/l9BeUdrtE5OSg3ofKXe6Xj0l4S9CMqBVjy/2ekk3wNiO5GN2NvC
+         aSIGRjsg2+lTWNxfGPqzieQk3io79NATZfVRNdrAcSb9bhljlSrZUqplMee7IUZItkZH
+         ppfg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1704377403; x=1704982203;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=QvyBwEaiMbUvG2bcyPLm6XlY6v4Hxt5APwIYm1XSkrE=;
+        b=mfru+u6HttVZ1LJwhDETCh1SA0VGUK4rarOs+z3y0xIlTFVj1rWeQyu4COyKCwWzK3
+         eGPK9dY51mRRONq4k1Z46YGhIBHBt7DNKVL19ZMiS6nAiewdsGU2ymuAsvLQelRcCxGN
+         hZ3NOjdatHi2l4FPVxcBkG9ZI8/ApeGsfa0UAmD+LMM0JPYRy+gtwqphQwSFLBsOq9Ct
+         WQ+UobaHrNzqdVck8Wyw+3opfun25yzHR0Gtx1FM2FZIP0MSSNSQW3gC6fIlFX/KM4nP
+         PD5T9MHPgzPZcqGl7LHUaz+ZZlDjKcVPQHPLtVBWJ0ObnCXOnYxsTZSX/LKrJI7UTUZQ
+         XLdA==
+X-Gm-Message-State: AOJu0YwqQ7mKsMMYa9/GMxGGIB2ZKrT5FsrhJQOABfTJxBUtflcwHjkF
+	Iv7aJlOR2imu4WUnLSIofDisuyhGMqftWg==
+X-Google-Smtp-Source: AGHT+IG0lzZDESK7ygOFl5Ea/ju6snk5+bN5kdUcnPQ8W0V8q1L5nCMWaYuaUq4yiByYpdIAEKbzWw==
+X-Received: by 2002:a05:651c:607:b0:2cc:7578:3ce6 with SMTP id k7-20020a05651c060700b002cc75783ce6mr152556lje.10.1704377403284;
+        Thu, 04 Jan 2024 06:10:03 -0800 (PST)
+Received: from [192.168.100.86] ([37.228.218.3])
+        by smtp.gmail.com with ESMTPSA id dr15-20020a5d5f8f000000b003373ece28efsm10611785wrb.29.2024.01.04.06.10.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 04 Jan 2024 06:10:02 -0800 (PST)
+Message-ID: <db83302e-0f2a-4611-b8c9-345668d0bbef@linaro.org>
+Date: Thu, 4 Jan 2024 14:10:01 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <c5263daa-b5f4-4b9c-a216-73d68493a802@quicinc.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] media: dt-bindings: media: camss: Add
+ qcom,sc8280xp-camss binding
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Rob Herring <robh@kernel.org>,
+ Bryan O'Donoghue <pure.logic@nexus-software.ie>
+Cc: Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240103-linux-next-24-01-02-sc8280xp-camss-core-dtsi-v1-0-abacaa63a961@linaro.org>
+ <20240103-linux-next-24-01-02-sc8280xp-camss-core-dtsi-v1-1-abacaa63a961@linaro.org>
+ <87bcff40-b5ff-41c9-a33f-95f5e80a2f22@linaro.org>
+ <62995a12-e835-40ff-966f-8522f2ab53dc@nexus-software.ie>
+ <20240103175424.GA1440392-robh@kernel.org>
+ <3627b156-a4e4-458e-9cf0-ca6c62366e7e@linaro.org>
+ <36dfbb05-d538-4f83-9e0d-898e3d35f3dc@linaro.org>
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <36dfbb05-d538-4f83-9e0d-898e3d35f3dc@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-> 1. For IPQ SoC series, there are only ipq4019, ipq5018, ipq6018,
-> ipq8074 documented in the current dt-bindings doc qcom,ipq4019-mdio.yaml
-> and ipq9574, ipq5332 that are being added by the MDIO patch, and one
-> more ipq8064 whose MDIO driver is mdio-ipq8064.c, on more others.
+On 04/01/2024 12:40, Krzysztof Kozlowski wrote:
+>> https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240103-linux-next-24-01-02-sc8280xp-camss-core-dtsi-v1-1-abacaa63a961@linaro.org/
+>>
+>> If not - what is the base of the build ?
+> master
 > 
-> 2. For qca8084(pure PHY chip), which is the quad-phy chip, which is just
->    like qca8081 PHY(single port PHY), each port can be linked to maximum
->    speed 2.5G.
-> 
->    For qca8386(switch chip), which includes the same PHY CHIP as qca8084
->    (4 physical ports and two CPU ports), qca8386 switch can work with
->    the current qca8k.c DSA driver with the supplement patches.
+> Anyway, the base of the build matters less. The main problem is that you
+> have dependency which is nowhere explained. This cannot go via media
+> tree, because of that dependency.
 
-Is the qca8386 purely a switch plus integrated PHYs? There is no CPU
-on it? What is the management path? MDIO?
+Obvs my mistake I'd have assumed the dts stuff built against -next, 
+clearly not how this works.
 
-> 
->    Both qca8084 and qca8386 includes same network clock controller(let's
->    call it NSSCC, since this clock controller is located in the
->    Ethernet chip qca8084 and qca8386), they have the same clock initial
->    configuration sequence to initialize the Ethernet chip.
+I'll ensure I spell out the base dep in v2.
 
-You said For "qca8084(pure PHY chip)". Here you just called it an
-Ethernet chip? To me, and Ethernet chip is a MAC, Intel e1000e etc.
-Do you now see how your explanations are confusing. Is it s pure PHY,
-or is it an Ethernet chip?
-
-O.K. Since we are getting nowhere at the moment, lets take just the
-pure PHY chip, and ignore the rest for the moment.
-
-For any pure PHY, there is generally one clock input, which might be a
-crystal, or an actual clock. If you look at other DT bindings for
-PHYs, it is only listed if the clock is expected to come from
-somewhere else, like a SoC, and it needs to be turned on before the
-PHY will work. And generally, a pure PHY has one defined clock
-frequency input. If that is true, there is no need to specify the
-clock. If multiple clock input frequencies are supported, then you do
-need to specify the clock, so its possible to work out what frequency
-it is using. How that clock input is then used internally in the PHY
-is not described in DT, but the driver can set any dividers, PLLs
-needed etc.
-
-So, for the pure PHY chip, what is the pinout? Is there one clock
-input? Or 4 clock inputs, one per PHY in the quad package? Typically,
-where does this/these clocks come from? Is the frequency fixed by the
-design, or are a number of input frequencies supported?
-
->   The Ethernet chip qca8084 and qca8386 are only connected with IPQ SoC,
->   Currently qca8084 is connected with IPQ SoC by 10G-QXGMII mode.
->   the 4 PHYs of qca8386 are connected with the internal MAC of qca8386
->   by GMII, the maximum speed is also 2.5G.
->   The port4 of qca8084 or qca8386 is optionally be able to connected
->   with IPQ SoC by sgmii.
-
-To some extent, this does not matter. The DT binding and the driver
-should not care what the pure PHY is connected to. It has standardised
-ports, so in theory it could be connected to any vendors MAC.
-
-Please be very careful with your wording. Because computers
-instructions should be unambiguous, it does what it is told, we also
-expect computer scientists to be unambiguous. Wording is very
-important.
-
-       Andrew
+---
+bod
 
