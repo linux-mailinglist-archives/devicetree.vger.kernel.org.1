@@ -1,90 +1,158 @@
-Return-Path: <devicetree+bounces-29637-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29638-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BEADC823F3E
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 11:08:08 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9811B823F4C
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 11:14:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6C6CD285A1F
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 10:08:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 36F5E1F251E1
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 10:14:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0444420DD3;
-	Thu,  4 Jan 2024 10:07:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E596720B03;
+	Thu,  4 Jan 2024 10:14:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="d+2dV+LL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F94820B04
-	for <devicetree@vger.kernel.org>; Thu,  4 Jan 2024 10:07:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1rLKdN-0001FW-3A; Thu, 04 Jan 2024 11:07:29 +0100
-Received: from [2a0a:edc0:2:b01:1d::c0] (helo=ptx.whiteo.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1rLKdL-000JzL-Dq; Thu, 04 Jan 2024 11:07:27 +0100
-Received: from mfe by ptx.whiteo.stw.pengutronix.de with local (Exim 4.92)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1rLKdL-00ACE9-AR; Thu, 04 Jan 2024 11:07:27 +0100
-Date: Thu, 4 Jan 2024 11:07:27 +0100
-From: Marco Felsch <m.felsch@pengutronix.de>
-To: Frank Li <Frank.li@nxp.com>
-Cc: krzysztof.kozlowski@linaro.org, devicetree@vger.kernel.org,
-	conor+dt@kernel.org, hongxing.zhu@nxp.com,
-	krzysztof.kozlowski+dt@linaro.org, imx@lists.linux.dev,
-	linux-pci@vger.kernel.org, lpieralisi@kernel.org,
-	linux-kernel@vger.kernel.org, s.hauer@pengutronix.de,
-	helgaas@kernel.org, linux-imx@nxp.com, kernel@pengutronix.de,
-	manivannan.sadhasivam@linaro.org, bhelgaas@google.com,
-	shawnguo@kernel.org, kw@linux.com, festevam@gmail.com,
-	robh@kernel.org, linux-arm-kernel@lists.infradead.org,
-	l.stach@pengutronix.de
-Subject: Re: [PATCH v7 01/16] PCI: imx6: Simplify clock handling by using
- bulk_clk_*() function
-Message-ID: <20240104100727.xtwn76lhp72ika7i@pengutronix.de>
-References: <20231227182727.1747435-1-Frank.Li@nxp.com>
- <20231227182727.1747435-2-Frank.Li@nxp.com>
- <20240102084744.tyquwp6hkb36tfxg@pengutronix.de>
- <ZZWTIbjBJ/DdpUQi@lizhi-Precision-Tower-5810>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 724FC210E7;
+	Thu,  4 Jan 2024 10:14:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 4045c2b3002185;
+	Thu, 4 Jan 2024 10:14:02 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=KwMij2SG2PvQhi8h7xHrNorkASMycb45hj8OGRx8f0Q=; b=d+
+	2dV+LLfapkEOh6/uM4goiFijaeB/awEXX5FrrBpyj9RI3xSCWEkJqX8Xa3ATIIGM
+	vJKkyVuZ6DABpsD1cNWh0J1+1CAhVfYkiCjTOeitladNakBSI1/Ny4MHbtAcF35R
+	yc3vVFN9p1ANTegIsGq0r89IZJQi0zmraSycVndoivKeMujaV6oWIwswe1P1beZc
+	8a6FbTkvOABmcNFeFcDYjOAqIDFWesa+TegxSEZJkLXJLz8+8n8XhUlffK4Tr3vl
+	O/3a24ZZA97mG+T4oS/01mUl6dqFeVGJak7yLlCSU0VHsW1JwgWPC+FXi5d12zyW
+	q1MLVSCwUoMdylNegnaw==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vdchnhxhn-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 04 Jan 2024 10:14:02 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 404AE15a031170
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 4 Jan 2024 10:14:01 GMT
+Received: from [10.239.154.73] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Thu, 4 Jan
+ 2024 02:13:55 -0800
+Message-ID: <724f608a-cbfe-48f6-a1f7-59b961a7d724@quicinc.com>
+Date: Thu, 4 Jan 2024 18:13:52 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZZWTIbjBJ/DdpUQi@lizhi-Precision-Tower-5810>
-User-Agent: NeoMutt/20180716
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: qcom: ipq6018: add #power-domain-cells for
+ gcc node
+Content-Language: en-US
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, <quic_tdas@quicinc.com>,
+        <quic_aiquny@quicinc.com>
+CC: <kernel@quicinc.com>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring
+	<robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20240104-gcc-docs-update-v1-1-127e4816b798@quicinc.com>
+ <CAA8EJprsGke9zZBy_x=YSxz7R1aSpx8r3ndjjXVVKhjKBxd=QQ@mail.gmail.com>
+From: Fenglin Wu <quic_fenglinw@quicinc.com>
+In-Reply-To: <CAA8EJprsGke9zZBy_x=YSxz7R1aSpx8r3ndjjXVVKhjKBxd=QQ@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: baXiAJOpXXOGjiqjqKgU4U7boWzG372q
+X-Proofpoint-GUID: baXiAJOpXXOGjiqjqKgU4U7boWzG372q
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-12-09_01,2023-12-07_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0
+ priorityscore=1501 malwarescore=0 adultscore=0 clxscore=1011
+ suspectscore=0 impostorscore=0 mlxscore=0 spamscore=0 bulkscore=0
+ mlxlogscore=999 lowpriorityscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2311290000 definitions=main-2401040075
 
-On 24-01-03, Frank Li wrote:
-> On Tue, Jan 02, 2024 at 09:47:44AM +0100, Marco Felsch wrote:
-> > Hi Frank,
-> > 
-> > On 23-12-27, Frank Li wrote:
-> > > Refactors the clock handling logic. Adds clk_names[] define in drvdata.
-> > > Using clk_bulk*() api simplifies the code.
-> > 
-> > does this influence the clock enable/disable sequence ordering? Just
-> > asking to avoid regressions on older platforms which may require some
-> > sort of order (e.g. require clock-a before clock-b).
+
+
+On 1/4/2024 5:53 PM, Dmitry Baryshkov wrote:
+> On Thu, 4 Jan 2024 at 10:06, Fenglin Wu via B4 Relay
+> <devnull+quic_fenglinw.quicinc.com@kernel.org> wrote:
+>>
+>> From: Fenglin Wu <quic_fenglinw@quicinc.com>
+>>
+>> Property '#power-domain-cells' is required as per defined in qcom,gcc.yaml
+>> so add it for ipq6018 gcc device node to eliminate following warning in
+>> dtbs_check:
+>>
+>> arch/arm64/boot/dts/qcom/ipq6018-cp01-c1.dtb: gcc@1800000:
+>>          '#power-domain-cells' is a required property
+>> from schema $id: http://devicetree.org/schemas/clock/qcom,gcc-ipq6018.yaml#
 > 
-> drvdata::clk_names is order of enble sequence. So far we have not found
-> the problem.
+> But ipq6018 doesn't implement GDSC support. So for the sake of fixing
+> the warning you are adding a bogus property.
+> 
+I agree. However, there are also some gcc drivers not implementing GDSC 
+support but the bindings are adding '#power-domain-cells' in the DT 
+example, such as: qcom,gcc-apq8064.yaml, qcom,gcc-ipq4019.yaml, 
+qcom,gcc-ipq6018.yaml, qcom,gcc-ipq8064.yaml, qcom,gcc-msm8660.yaml.
 
-Okay, thanks.
+Actually I thought that maybe we should do a clean up by removing 
+'#power-domain-cells' out of the qcom,gcc.yaml binding and only adding 
+it into individual qcom,gcc-xxx.yaml for the driver which has 
+implemented GDSC support. I checked this with Taniya offline, but she 
+prefers only fixing it in ipq6018.dtsi as it doesn't hurt anything by 
+adding the property, and she expects the GDSC support should be existing 
+in most of qcom,gcc drivers especially the newer Qcom chipsets.
 
-Regards,
-  Marco
+
+>>
+>> Signed-off-by: Fenglin Wu <quic_fenglinw@quicinc.com>
+>> ---
+>>   arch/arm64/boot/dts/qcom/ipq6018.dtsi | 1 +
+>>   1 file changed, 1 insertion(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/ipq6018.dtsi b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
+>> index 39cd6b76b4c1..54914912d610 100644
+>> --- a/arch/arm64/boot/dts/qcom/ipq6018.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
+>> @@ -386,6 +386,7 @@ gcc: gcc@1800000 {
+>>                          reg = <0x0 0x01800000 0x0 0x80000>;
+>>                          clocks = <&xo>, <&sleep_clk>;
+>>                          clock-names = "xo", "sleep_clk";
+>> +                       #power-domain-cells = <1>;
+>>                          #clock-cells = <1>;
+>>                          #reset-cells = <1>;
+>>                  };
+>>
+>> ---
+>> base-commit: 17cb8a20bde66a520a2ca7aad1063e1ce7382240
+>> change-id: 20240103-gcc-docs-update-fa604579e468
+>>
+>> Best regards,
+>> --
+>> Fenglin Wu <quic_fenglinw@quicinc.com>
+>>
+>>
+> 
+> 
 
