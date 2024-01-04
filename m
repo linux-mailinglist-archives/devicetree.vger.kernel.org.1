@@ -1,132 +1,92 @@
-Return-Path: <devicetree+bounces-29776-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29777-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 622F08247F6
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 19:07:15 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 65F4A824806
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 19:15:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DECAB285B8D
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 18:07:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0379D1F22BE9
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 18:15:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 018A828DC1;
-	Thu,  4 Jan 2024 18:07:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uA6ZNlbl"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9550028DC7;
+	Thu,  4 Jan 2024 18:15:11 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D265D28DB0;
-	Thu,  4 Jan 2024 18:07:09 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C3E50C433C7;
-	Thu,  4 Jan 2024 18:07:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1704391629;
-	bh=2g4riwRlJYPaXC4pPnyGhw8jIgLWVYYCfFGE3oWgRxU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=uA6ZNlbl+HEha9Rm2MGfY7kGSNXWKOSH99nnBthw4IQK1fwi3DoVl5RdvrD1d1wOg
-	 tGFB1K/B7bujJ9Jst1DJC0F/m4TGAMyMr+R42PTZyCM8iV1flFO6V+MlTfRFOVwr/D
-	 6Y/sz+3Y4aKz1M5gsBzqssqQ+crQGKQtXpOdDqpiKavtDjGO96uhJ8lr5CVqFl6PrA
-	 Vmn5magbGW7KrOYmKEDOfMHuDwE+CW8jk1cZROSzaVFtqeungQDCeyMrb+U3tIJVMG
-	 FrcsO8dHJ+pQ2iMUw5jLp6ubHeM5tz+qYM+wHak65qGK34QjYxqxQSFE4pkkwM6VwR
-	 rnGbfRGSMKuNw==
-Date: Thu, 4 Jan 2024 18:07:03 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Yuklin Soo <yuklin.soo@starfivetech.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-	Hal Feng <hal.feng@starfivetech.com>,
-	Leyfoon Tan <leyfoon.tan@starfivetech.com>,
-	Jianlong Huang <jianlong.huang@starfivetech.com>,
-	Emil Renner Berthing <kernel@esmil.dk>,
-	Rob Herring <robh@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C406E28DBF;
+	Thu,  4 Jan 2024 18:15:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
+Received: from local
+	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
+	 (Exim 4.96.2)
+	(envelope-from <daniel@makrotopia.org>)
+	id 1rLSEx-0003UN-12;
+	Thu, 04 Jan 2024 18:14:48 +0000
+Date: Thu, 4 Jan 2024 19:12:10 +0100
+From: Daniel Golle <daniel@makrotopia.org>
+To: Frank Wunderlich <linux@fw-web.de>
+Cc: linux-mediatek@lists.infradead.org,
+	Frank Wunderlich <frank-w@public-files.de>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Drew Fustini <drew@beagleboard.org>,
-	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>
-Subject: Re: [RFC PATCH 1/6] dt-bindings: pinctrl: starfive: add JH8100
- pinctrl bindings
-Message-ID: <20240104-thread-jot-53ee01efc63b@spud>
-References: <20231221083622.3445726-1-yuklin.soo@starfivetech.com>
- <20231221083622.3445726-2-yuklin.soo@starfivetech.com>
- <CACRpkdYL8wK2vX7P7p4QvU9VV2CPjRv_aXiLqO+07MMCCKKk4Q@mail.gmail.com>
- <6c861db8-f6cd-4e12-856a-ef45efc654a2@linaro.org>
- <ZQ0PR01MB130273F2A3286849FB5BB0C9F667A@ZQ0PR01MB1302.CHNPR01.prod.partner.outlook.cn>
+	Sam Shih <sam.shih@mediatek.com>, linux-clk@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: reset: mediatek: add MT7988 LVTS reset
+ ID
+Message-ID: <ZZb0-pFWxuQlEm7q@pidgin.makrotopia.org>
+References: <20240104173930.13907-1-linux@fw-web.de>
+ <20240104173930.13907-2-linux@fw-web.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="5tQP8I1x4qTGmqU1"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <ZQ0PR01MB130273F2A3286849FB5BB0C9F667A@ZQ0PR01MB1302.CHNPR01.prod.partner.outlook.cn>
+In-Reply-To: <20240104173930.13907-2-linux@fw-web.de>
 
+Hi Frank,
 
---5tQP8I1x4qTGmqU1
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Thu, Jan 04, 2024 at 06:39:29PM +0100, Frank Wunderlich wrote:
+> From: Frank Wunderlich <frank-w@public-files.de>
+> 
+> ---
+>  include/dt-bindings/reset/mediatek,mt7988-resets.h | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
+> diff --git a/include/dt-bindings/reset/mediatek,mt7988-resets.h b/include/dt-bindings/reset/mediatek,mt7988-resets.h
+> index 493301971367..3f1e4ec07ad5 100644
+> --- a/include/dt-bindings/reset/mediatek,mt7988-resets.h
+> +++ b/include/dt-bindings/reset/mediatek,mt7988-resets.h
+> @@ -10,4 +10,8 @@
+>  /* ETHWARP resets */
+>  #define MT7988_ETHWARP_RST_SWITCH		0
+>  
+> +/* INFRA resets */
+> +#define MT7988_INFRA_RST0_THERM_CTRL_SWRST	9
 
-On Thu, Jan 04, 2024 at 03:12:31AM +0000, Yuklin Soo wrote:
->=20
->=20
-> > -----Original Message-----
-> > From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > Sent: Thursday, December 21, 2023 11:45 PM
-> > To: Linus Walleij <linus.walleij@linaro.org>; Yuklin Soo
-> > <yuklin.soo@starfivetech.com>
-> > Cc: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>; Hal Feng
-> > <hal.feng@starfivetech.com>; Leyfoon Tan <leyfoon.tan@starfivetech.com>;
-> > Jianlong Huang <jianlong.huang@starfivetech.com>; Emil Renner Berthing
-> > <kernel@esmil.dk>; Rob Herring <robh@kernel.org>; Krzysztof Kozlowski
-> > <krzysztof.kozlowski+dt@linaro.org>; Conor Dooley <conor+dt@kernel.org>;
-> > Drew Fustini <drew@beagleboard.org>; linux-gpio@vger.kernel.org; linux-
-> > kernel@vger.kernel.org; devicetree@vger.kernel.org; linux-
-> > riscv@lists.infradead.org; Paul Walmsley <paul.walmsley@sifive.com>; Pa=
-lmer
-> > Dabbelt <palmer@dabbelt.com>; Albert Ou <aou@eecs.berkeley.edu>
-> > Subject: Re: [RFC PATCH 1/6] dt-bindings: pinctrl: starfive: add JH8100=
- pinctrl
-> > bindings
-> >=20
-> > On 21/12/2023 14:57, Linus Walleij wrote:
-> > >> +          drive-strength:
-> > >> +            enum: [ 2, 4, 8, 12 ]
-> > >
-> > > Milliamperes? Then spell that out in a description:
-> >=20
-> > Or just use drive-strength-microamp
->=20
-> Suggest changing =E2=80=9Cdrive-strength:=E2=80=9D to =E2=80=9Cdrive-stre=
-ngth: Drive strength in mA=E2=80=9D since the unit is in mA.
+I suppose this argument applies here as well:
 
-Just call the property "drive-strength-microamp". We have existing users
-of that property.
+"IDs should start from 0 or 1 and increment by 1. If these are not IDs,
+then you do not need them in the bindings."
 
-Cheers,
-Conor.
+https://lore.kernel.org/all/59629ec1-cc0c-4c5a-87cc-ea30d64ec191@linaro.org/
 
---5tQP8I1x4qTGmqU1
-Content-Type: application/pgp-signature; name="signature.asc"
+As a consequence, as what you are describing there are hardware bits
+rather than IDs used by the driver, you can just use a numeric constant
+in device tree instead of adding dt-bindings header.
+Or change the driver so RST0_THERM_CTRL_SWRST could be defined as 0.
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZZbzxwAKCRB4tDGHoIJi
-0q7mAQCKFq6hqG7JgQvVCfALjMOSzO+iKRfObMSQ6yyM/rg58AEAtyRFbdlGJiZB
-GDLJ3QYvJCZAipAuCc44uWnALtuSBAI=
-=6FU+
------END PGP SIGNATURE-----
-
---5tQP8I1x4qTGmqU1--
 
