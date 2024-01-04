@@ -1,63 +1,76 @@
-Return-Path: <devicetree+bounces-29738-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29739-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C0568244CD
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 16:17:42 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB53F8244D6
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 16:20:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EFB101F221BD
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 15:17:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 51F6E286319
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 15:20:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A98C52376D;
-	Thu,  4 Jan 2024 15:17:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C51E0241E4;
+	Thu,  4 Jan 2024 15:20:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="cJmiX8ix"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="tGYYc6hr"
 X-Original-To: devicetree@vger.kernel.org
 Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1022249FF;
-	Thu,  4 Jan 2024 15:17:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39508241E6;
+	Thu,  4 Jan 2024 15:20:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 404FGoGf022442;
-	Thu, 4 Jan 2024 09:16:50 -0600
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 404FKY2O025030;
+	Thu, 4 Jan 2024 09:20:34 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1704381410;
-	bh=1vVZQWCwm6Aj79XrJxm6KaggjAzeXoVxnAU3BgYJzNE=;
+	s=ti-com-17Q1; t=1704381634;
+	bh=8L6XjEgvpWhme0+WHDMHLTnWTs8TNY8c5ZoS/bqIkNM=;
 	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=cJmiX8ixi+74wWuZdZaxJehD+9jpabLWXKenhDNsCPEdm8MCUpHi6Nl5IiSCNfsnW
-	 FUO/lZOpvtCmJyuyeI0oiv/eObYGls0euuQvRKSybj0rhKupUkG6TINwPogag6rZuu
-	 ty7rT1Z6l1hEJACvkx1SA+1VlaG9lQ7WXXWGECCg=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 404FGoc2012514
+	b=tGYYc6hrcDhXDL3m/gtiKBRT7BIs7xj95ssF2l98MJFLbKoKI5X59QSFljFRn3R6x
+	 IV/g34ACniFJH9XUvQ8oWjSwDO3GYbxv9nzfweyc0xvxdG+7GtP5/P8JEfyslJk61I
+	 1pGTXaIZrGUqhofgFq9Dprf+mTUoOOOIih2FQVls=
+Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 404FKYWt088547
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 4 Jan 2024 09:16:50 -0600
-Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+	Thu, 4 Jan 2024 09:20:34 -0600
+Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 4
- Jan 2024 09:16:50 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ Jan 2024 09:20:34 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE106.ent.ti.com
+ (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 4 Jan 2024 09:16:50 -0600
+ Frontend Transport; Thu, 4 Jan 2024 09:20:34 -0600
 Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 404FGoSG002746;
-	Thu, 4 Jan 2024 09:16:50 -0600
-Date: Thu, 4 Jan 2024 09:16:50 -0600
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 404FKYnn007652;
+	Thu, 4 Jan 2024 09:20:34 -0600
+Date: Thu, 4 Jan 2024 09:20:34 -0600
 From: Nishanth Menon <nm@ti.com>
-To: Neha Malcom Francis <n-francis@ti.com>
-CC: <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <vigneshr@ti.com>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <a-nandan@ti.com>, <kristo@kernel.org>, <u-kumar1@ti.com>
-Subject: Re: [PATCH v2] arm64: dts: ti: k3-j721e: Add support for DFS in
- J721E A72
-Message-ID: <20240104151650.my3cuhgase4yf7gj@luminance>
-References: <20240104111922.832040-1-n-francis@ti.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+CC: Manorit Chawdhry <m-chawdhry@ti.com>,
+        "Rafael J. Wysocki"
+	<rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Zhang Rui
+	<rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
+        Rob Herring
+	<robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, J
+ Keerthy <j-keerthy@ti.com>,
+        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Udit Kumar
+	<u-kumar1@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+Subject: Re: [PATCH] dt-bindings: thermal: k3-j72xx: Update bindings for
+ J721S2 SoCs
+Message-ID: <20240104152034.gijjaeehlcylorws@tranquil>
+References: <20231228-b4-upstream-j721s2-vtm-dt-binding-v1-1-e866277f9c64@ti.com>
+ <65a294e7-1c3c-4022-9498-e83e7415ffb3@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,114 +79,80 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20240104111922.832040-1-n-francis@ti.com>
+In-Reply-To: <65a294e7-1c3c-4022-9498-e83e7415ffb3@linaro.org>
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On 16:49-20240104, Neha Malcom Francis wrote:
-> Add 2G, 1G, 500M and 250M as the supported frequencies for A72. This
-> enables support for Dynamic Frequency Scaling (DFS). Note that Dynamic
-> Voltage and Frequency Scaling (DVFS) is not supported on J7 devices.
-> 
-> J721E SoC has three different speed grade devices (see [1], 7.5
-> Operating Performance Points) which as of today are indiscernible in
-> software, users of a different speed grade device must manually change
-> the DTS to ensure their maximum speed frequency is supported.
-> 
-> To obtain clock-latency-ns, the maximum time was found to switch from/to
-> any frequency for a CPU and this value was rounded off and set.
-> 
-> [1] https://www.ti.com/lit/gpn/tda4vm
-> 
-> Signed-off-by: Neha Malcom Francis <n-francis@ti.com>
-> ---
-> Test and boot logs:
-> https://gist.github.com/nehamalcom/33608837ab5ad3332ff11a7fa7a602e2
-> 
-> Changes since v1:
-> https://lore.kernel.org/all/20231214075637.176586-1-n-francis@ti.com/
-> - removed OPPs 1.5G and 750M as they introduced boot regression in
->   J721E-SK
+On 10:33-20240104, Krzysztof Kozlowski wrote:
+> On 28/12/2023 07:39, Manorit Chawdhry wrote:
+> > The clock and processor ID for J721S2 differs from the existing
+> > compatibles, add a new compatible to represent this change for adding
+> > support for Adaptive voltage scaling.
 
-I do not think this is the right approach precisely for the above
-reason.
+This makes no sense to begin with. You do not need a new compatible just
+for clock ID change (processor ID has nothing to do with vtm node).
 
-See my comment in V1: https://lore.kernel.org/all/20231214125130.zqtq6ioj4c533wha@elbow/
+This approach is just plain wrong. AVS support has been done in the past
+(class 3,2,1.5 and 0) and bindings have been mature for more that a
+decade for the same.
 
-"
-I am also concerned if the table should be separated out as a dtsi and
-included at board.dts level to prevent downstream users going crazy..
-"
+So NAK for this patch
 
-I suspect there is no magic opp configuration that will work with all
-downstream and board variations. instead of creating a trimmed down
-non-datasheet tuples of OPP configuration, use the data sheet provided
-OPP configurations into each dtsi and the boards can apply the dtsi
-based on the type of sample they have.
-
-I don't see any other scheme (overlays, maybe?).. but this approach is
-broken and your note above proves why this approach is broken.
-
-> - Nishanth
-> 	- indicated DVFS not supported in commit message
-> 	- moved critical data sheet info from below tear line to commit
-> 	  message
-> 	- added opp-shared property
-> 	- added clock-latency-ns property
 > 
->  arch/arm64/boot/dts/ti/k3-j721e.dtsi | 31 ++++++++++++++++++++++++++++
->  1 file changed, 31 insertions(+)
+> Subject: everything is "update". Write proper subjects.
 > 
-> diff --git a/arch/arm64/boot/dts/ti/k3-j721e.dtsi b/arch/arm64/boot/dts/ti/k3-j721e.dtsi
-> index a200810df54a..5de6c70bd989 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j721e.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j721e.dtsi
-> @@ -48,6 +48,9 @@ cpu0: cpu@0 {
->  			d-cache-line-size = <64>;
->  			d-cache-sets = <256>;
->  			next-level-cache = <&L2_0>;
-> +			clocks = <&k3_clks 202 2>;
-> +			clock-names = "cpu";
-> +			operating-points-v2 = <&cpu0_opp_table>;
->  		};
->  
->  		cpu1: cpu@1 {
-> @@ -62,6 +65,34 @@ cpu1: cpu@1 {
->  			d-cache-line-size = <64>;
->  			d-cache-sets = <256>;
->  			next-level-cache = <&L2_0>;
-> +			clocks = <&k3_clks 203 0>;
-> +			clock-names = "cpu";
-> +			operating-points-v2 = <&cpu0_opp_table>;
-> +		};
-> +	};
-> +
-> +	cpu0_opp_table: opp-table {
-> +		compatible = "operating-points-v2";
-> +		opp-shared;
-> +
-> +		opp6-2000000000 {
-> +			opp-hz = /bits/ 64 <2000000000>;
-> +			clock-latency-ns = <300000>;
-> +		};
-> +
-> +		opp4-1000000000 {
-> +			opp-hz = /bits/ 64 <1000000000>;
-> +			clock-latency-ns = <300000>;
-> +		};
-> +
-> +		opp2-500000000 {
-> +			opp-hz = /bits/ 64 <500000000>;
-> +			clock-latency-ns = <300000>;
-> +		};
-> +
-> +		opp1-250000000 {
-> +			opp-hz = /bits/ 64 <250000000>;
-> +			clock-latency-ns = <300000>;
->  		};
->  	};
->  
-> -- 
-> 2.34.1
+> A nit, subject: drop second/last, redundant "bindings for". The
+> "dt-bindings" prefix is already stating that these are bindings.
+> 
+> 
+> 
+> > 
+> > Signed-off-by: Manorit Chawdhry <m-chawdhry@ti.com>
+> > ---
+> >  .../devicetree/bindings/thermal/ti,j72xx-thermal.yaml        | 12 ++++++++----
+> >  1 file changed, 8 insertions(+), 4 deletions(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/thermal/ti,j72xx-thermal.yaml b/Documentation/devicetree/bindings/thermal/ti,j72xx-thermal.yaml
+> > index 171b3622ed84..5792ccc058aa 100644
+> > --- a/Documentation/devicetree/bindings/thermal/ti,j72xx-thermal.yaml
+> > +++ b/Documentation/devicetree/bindings/thermal/ti,j72xx-thermal.yaml
+> > @@ -24,9 +24,13 @@ description: |
+> >  
+> >  properties:
+> >    compatible:
+> > -    enum:
+> > -      - ti,j721e-vtm
+> > -      - ti,j7200-vtm
+> > +    anyOf:
+> 
+> ? Eh, what?
+> 
+> > +      - items:
+> > +          - enum:
+> > +              - ti,j721e-vtm
+> > +              - ti,j7200-vtm
+> > +              - ti,j721s2-vtm
+> > +      - maxItems: 2
+> 
+> What? I really do not understand what are you doing here.
+> 
+> 
+> >  
+> >    reg:
+> >      items:
+> > @@ -72,7 +76,7 @@ examples:
+> >    - |
+> >      #include <dt-bindings/soc/ti,sci_pm_domain.h>
+> >      wkup_vtm0: thermal-sensor@42040000 {
+> > -        compatible = "ti,j721e-vtm";
+> > +        compatible = "ti,j721e-vtm", "ti,j7200-vtm";
+> 
+> It's an enum, not a list.
+> 
+> NAK, please read example-schema and other bindings. Then get review from
+> TI folks before posting new versions.
+> 
+> Best regards,
+> Krzysztof
 > 
 
 -- 
