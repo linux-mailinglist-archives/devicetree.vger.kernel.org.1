@@ -1,62 +1,62 @@
-Return-Path: <devicetree+bounces-29689-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29690-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01952824236
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 14:02:56 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F67782423C
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 14:03:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A67292879CC
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 13:02:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3C36C28796D
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 13:03:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAAFB225AE;
-	Thu,  4 Jan 2024 13:02:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30DCD2233B;
+	Thu,  4 Jan 2024 13:02:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="e1s7/3EE"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="LwzpOVgJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
+Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 313F92230C
-	for <devicetree@vger.kernel.org>; Thu,  4 Jan 2024 13:02:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69803224F9
+	for <devicetree@vger.kernel.org>; Thu,  4 Jan 2024 13:02:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
 Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-336c5b5c163so256506f8f.1
-        for <devicetree@vger.kernel.org>; Thu, 04 Jan 2024 05:02:05 -0800 (PST)
+Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-3368b9bbeb4so414607f8f.2
+        for <devicetree@vger.kernel.org>; Thu, 04 Jan 2024 05:02:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1704373324; x=1704978124; darn=vger.kernel.org;
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1704373325; x=1704978125; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=HQIEpNJctaz16RzA/leTZqNcUN7vsgkXc8Xvi93qAho=;
-        b=e1s7/3EE+MeuNW95g+yb4nI2EfzKykj8shaTLoibDu7D3m/ffNrI6tEAU6DA6QSoTA
-         mbnGXGkLbXqOvSFgn1mDXvBUqyIV91SKIGuKK7zJPhRjRXPwh4eMBYE9UOX9lndUWwPw
-         fCfoSjPUPU4PGZn2Q3DO5UfmCX8Ql7GfM1BtQ4AfGNg9CxcR40b4tn5XkYVhadTUsCpJ
-         TFaJULVT6u5l6SYVa9Z9hqAzB6+liviUn725RIMw31MnRlyZFwUpIjUIKQN6BF2+NDnZ
-         O4CwH+t/AGZoWaEy/u3AAn2Ug/tiCKBUj4FeAjcxA/5pwS+ZB9sYFG1Zkht3aWPNu4Gl
-         lncA==
+        bh=ef54oPQshoe7Gm//fznSEK5vgc/1PN5IaLbwIyajU/k=;
+        b=LwzpOVgJodhygxDlW6YFe6csiuO+9HxvTvMHgGSzjBIotXkjlmxdDH3aG+0f0SCygj
+         8iO0lsFZaljaKCf2O7KwfuE6l4VsiYEvzEuhIJm9FrVNVmBxCVZMMXqaz+W/RKf8Kju3
+         P0Zw5wJCvw6Ptw27/ujtAnAcdeLNIp0Tdv6hOGIyU2tm0Nq4ned+ArRXem8ESSlTUYXw
+         MLgAMP4F8kB2EpWj05qdk6X2udED2FidzfFIeKDOQ08loU2GFowMTWowMofcG67t4lbo
+         TrkaRJLuqmU7/Vei5ZS/M3gvByPAJNrJzfRvUTZTa4bMx9Yy65LlHOOe2XdPD78QaK/A
+         dKtQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704373324; x=1704978124;
+        d=1e100.net; s=20230601; t=1704373325; x=1704978125;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=HQIEpNJctaz16RzA/leTZqNcUN7vsgkXc8Xvi93qAho=;
-        b=YYZ6U80AvRfiQVggQJtR57SHqYsm3crLqFuA1dOOkvRCszUMZchEGmhZr5UYdYKyoh
-         W8dn3134Jket+VX5FmrogCB4XDKa4k5PRbJc70ZwG6g7t/PCKAvr/Cq8iwbpn6fZ7XuA
-         4qV/nxVrw30kEccTHDWDIKZyGiHRCL7BvWjcL2TvjXketLUhFz3bWxvH/w1caFS0eqBx
-         n8aLRydqfYTMnFMlN4Y78cTwaJdqUSO2QGdO13iJt8Cint6uYSVAEw2Z7yJyEO0IZuCf
-         KgXu081Q2KVjRrXOlWMu3w3YLe0k5LscDYVxFw48yxecUAUakeCrfTARG3DYi4+/dnXy
-         IXUQ==
-X-Gm-Message-State: AOJu0YzDuTpT+1gTaLYFyBKkr8WHZPRLW7GJ49hiH5DiQVo67R6Qveba
-	fprs0FCTM+fU8xWR2sm3YuusbTgcCsHoqg==
-X-Google-Smtp-Source: AGHT+IEYrrjaOaf5/IBZBDz2VUcMEHweLF977kWhWHW+xRF7Tv9rMBKm8dg3stU9d6EnW3pR2nQiEQ==
-X-Received: by 2002:a5d:4576:0:b0:337:4f04:933c with SMTP id a22-20020a5d4576000000b003374f04933cmr318898wrc.54.1704373323681;
-        Thu, 04 Jan 2024 05:02:03 -0800 (PST)
+        bh=ef54oPQshoe7Gm//fznSEK5vgc/1PN5IaLbwIyajU/k=;
+        b=QjNa1lHkqOtmm3QMK3tABl3exXeptHsfJ6wd1ybj5ZAC0r4wxDnwGKQLdNxetIW2qc
+         EGpzxGJMCosutgBhOkPUW9kmfuaezKNOCOjlvl2j36jR3inWsdXv/JHEBuX3mpaEzupl
+         prtinmQ/4andWtvyxocrNv0x2qm+9BRG+IhLUQABA7s1s/m+solS2vdiao0UkZOWyhWu
+         WQOYFRXKW8QJp9gy1VM5B9Oc2TtoYNxxJaTZ9USuG0Jdd0wDDCwb8ccmjNm2qjA8X0lb
+         3MsRK+8HIAFORJp91S8oG7iD+b888vhK3eP6ct33CcnFNPVNsYq6b7XnOj4JWg3YR76u
+         iwiw==
+X-Gm-Message-State: AOJu0YyA+cyc8O5JxpcnQSYz5kTRgVgSL5f3IkC8aJb8h9ZEDThedTgX
+	ldmkivOZUOoKPi6CMQt3SoFMZL0YzGFTRw==
+X-Google-Smtp-Source: AGHT+IE3hMjwAGjPrVJAC4uAAQmbYFgXxxZo1RNc4JRLcmBIwG0h5ZwWYvnldKAKE5zO1xwte3fjeQ==
+X-Received: by 2002:adf:ef47:0:b0:336:7d86:113e with SMTP id c7-20020adfef47000000b003367d86113emr232689wrp.80.1704373325566;
+        Thu, 04 Jan 2024 05:02:05 -0800 (PST)
 Received: from brgl-uxlite.home ([2a01:cb1d:334:ac00:5b69:3768:8459:8fee])
-        by smtp.gmail.com with ESMTPSA id w5-20020a5d5445000000b0033660f75d08sm32887387wrv.116.2024.01.04.05.02.02
+        by smtp.gmail.com with ESMTPSA id w5-20020a5d5445000000b0033660f75d08sm32887387wrv.116.2024.01.04.05.02.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 04 Jan 2024 05:02:03 -0800 (PST)
+        Thu, 04 Jan 2024 05:02:04 -0800 (PST)
 From: Bartosz Golaszewski <brgl@bgdev.pl>
 To: Kalle Valo <kvalo@kernel.org>,
 	"David S . Miller" <davem@davemloft.net>,
@@ -99,9 +99,9 @@ Cc: linux-wireless@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-pci@vger.kernel.org,
 	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: [RFC 1/9] arm64: dts: qcom: sm8250: describe the PCIe port
-Date: Thu,  4 Jan 2024 14:01:15 +0100
-Message-Id: <20240104130123.37115-2-brgl@bgdev.pl>
+Subject: [RFC 2/9] arm64: dts: qcom: qrb5165-rb5: describe the WLAN module of QCA6390
+Date: Thu,  4 Jan 2024 14:01:16 +0100
+Message-Id: <20240104130123.37115-3-brgl@bgdev.pl>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20240104130123.37115-1-brgl@bgdev.pl>
 References: <20240104130123.37115-1-brgl@bgdev.pl>
@@ -115,35 +115,56 @@ Content-Transfer-Encoding: 8bit
 
 From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
-Improve the description of the PCIe topology by defining the port node
-at the SoC level.
+Describe the ath11k WLAN on-board the QCA6390 module. Include the
+relevant regulators and the enable GPIO.
 
 Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sm8250.dtsi | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+ arch/arm64/boot/dts/qcom/qrb5165-rb5.dts | 24 ++++++++++++++++++++++++
+ 1 file changed, 24 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-index 760501c1301a..fef9c314ce55 100644
---- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-@@ -2197,6 +2197,16 @@ pcie0: pcie@1c00000 {
- 			dma-coherent;
+diff --git a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
+index cd0db4f31d4a..721f86af952b 100644
+--- a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
++++ b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
+@@ -734,6 +734,22 @@ &pcie0_phy {
+ 	vdda-pll-supply = <&vreg_l9a_1p2>;
+ };
  
- 			status = "disabled";
++&pcieport0 {
++	wifi@0 {
++		compatible = "pci17cb,1101";
++		reg = <0x10000 0x0 0x0 0x0 0x0>;
 +
-+			pcieport0: pcie@0 {
-+				device_type = "pci";
-+				reg = <0x0 0x0 0x0 0x0 0x0>;
-+				#address-cells = <3>;
-+				#size-cells = <2>;
-+				ranges;
++		pinctrl-names = "default";
++		pinctrl-0 = <&wlan_en_state>;
 +
-+				bus-range = <0x01 0xff>;
-+			};
- 		};
++		enable-gpios = <&tlmm 20 GPIO_ACTIVE_HIGH>;
++
++		vddpmu-supply = <&vreg_s2f_0p95>;
++		vddpcie1-supply = <&vreg_s8c_1p3>;
++		vddpcie2-supply = <&vreg_s5a_1p9>;
++	};
++};
++
+ &pcie1 {
+ 	status = "okay";
+ };
+@@ -1303,6 +1319,14 @@ sdc2_card_det_n: sd-card-det-n-state {
+ 		function = "gpio";
+ 		bias-pull-up;
+ 	};
++
++	wlan_en_state: wlan-default-state {
++		pins = "gpio20";
++		function = "gpio";
++		drive-strength = <16>;
++		output-low;
++		bias-pull-up;
++	};
+ };
  
- 		pcie0_phy: phy@1c06000 {
+ &uart6 {
 -- 
 2.40.1
 
