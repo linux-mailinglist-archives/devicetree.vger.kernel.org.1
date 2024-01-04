@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-29625-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29626-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11314823EB1
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 10:33:15 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 73290823EC0
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 10:36:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9B4F228614E
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 09:33:13 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C2AB7B22161
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 09:36:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBEFD208AD;
-	Thu,  4 Jan 2024 09:33:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBE81208AA;
+	Thu,  4 Jan 2024 09:36:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="p5mtjN9e"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="NEQBqD9+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
+Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40229208A9
-	for <devicetree@vger.kernel.org>; Thu,  4 Jan 2024 09:33:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E425208BB
+	for <devicetree@vger.kernel.org>; Thu,  4 Jan 2024 09:36:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-55590da560dso385247a12.0
-        for <devicetree@vger.kernel.org>; Thu, 04 Jan 2024 01:33:07 -0800 (PST)
+Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-5570bef7cb8so203729a12.2
+        for <devicetree@vger.kernel.org>; Thu, 04 Jan 2024 01:36:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704360786; x=1704965586; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1704360987; x=1704965787; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=qiYJkoIy0pmNV8TbTzTiyxf/Ff6xMk7GjdWetSc+lsI=;
-        b=p5mtjN9eLq7j7m+74MnlDeWjMW7RQW6zVcylEE/z6TKU/neBY8wE7GjyJ+pkHKoJPR
-         B1FB6ex8eWjUm70vgFxT13tlMAvblpE1DIUHiy0WVFL8f0CDH76s09HE+onzX2CU6PcN
-         znmXe+h/1AbEKNxyZIw0A8EEyQhc2bwGl8UzH7FhK2NCZZUi1LbfAQs28+0FdZqMcBQj
-         8C29djgia1ZTIDl6sTRKtXCQ91NqEQBLV5UxCDszJlSuevUSfpzqBTN4Xgv4/+xnj2hg
-         lLycJ6ogS4DBmgYMIMjST9l15ZQROxVnNwtwcUGmBGv8eii7lbF+xBG+G+nfN7PcGSig
-         eM+A==
+        bh=CcrMBrCLlXesFRlp8vDddecUwnr5NzU+N4NhklXhlWQ=;
+        b=NEQBqD9+Js6J5B0eQtX79cW1jvEccW/pDqYvRxHrkNCcxDbq+imagFR7DJPo8YJBjS
+         ZQalt4ZMI2rG1KPB0eo4d25ly4rf+tuqm6/PTLYs17ZZzrBJ+YjY9bjzePFYcfv9Hpns
+         Jnyd/GCEuP3/gpAdkEszTY0d0Re1zmOCt6mjlH3NlqPX84RVCu6djxAJ0gbjSk/RGRK7
+         j6RGCRCDs3azdJ0nFMpWtD9Rd7ARnTkCcfTVD1rkNEwsUUKzMSZmQnPJtCNOtQpVsHK+
+         6fx8F/GamsCTitf9HwHy7rpmRF1crAPxPlsZS4XU+f6sshFAqNR65JSEl/L/LsHh0I3j
+         Myxg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704360786; x=1704965586;
+        d=1e100.net; s=20230601; t=1704360987; x=1704965787;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=qiYJkoIy0pmNV8TbTzTiyxf/Ff6xMk7GjdWetSc+lsI=;
-        b=gedcBdYAvllt955FX1RUrFLRoLhwf4Yep2U39rrAL1JjTnXbKKZ4R5f6gv0tiMtuK/
-         SKWsis+mDRiVirksjyuzRMW7dukamvy2sCTzDjB7xLBzk57y4PMpmp0k1esrkB2yMKDN
-         r83xIA9uH91hm0HZ4YjlnxH8qcVGoVsV2H0zbFmPxgNBxhuwNKHGceWdT44bEOfEkyLO
-         t9BRUcO9bISvncWeDyfpJLBj4wacEfc1nVVKp/9QkgleHnFgWIqnwz8JMsm2LGE2b6j6
-         RkVbhH2MXFPLNDwysGVO3kcNiqrNjlI1bUGpRmzKXBpxI5zW17ojepAqKnQ+JU4Bysxb
-         iuNw==
-X-Gm-Message-State: AOJu0YwTs0AStvhCAacqHXpzH2nVHPxDS9RQzLIWb38C7CyD3CQel94P
-	MsIFj+V0UoVFIcdfpPTtucpBfCQtXUkaTw==
-X-Google-Smtp-Source: AGHT+IE0TgiuztMFBLE9AhAcj1CbO8StwcUycV02HGLStY11QlN89ZEdWEw7Bw9SBo2cX8DR6vbrTQ==
-X-Received: by 2002:a50:ccca:0:b0:550:5173:22f0 with SMTP id b10-20020a50ccca000000b00550517322f0mr200455edj.46.1704360786562;
-        Thu, 04 Jan 2024 01:33:06 -0800 (PST)
+        bh=CcrMBrCLlXesFRlp8vDddecUwnr5NzU+N4NhklXhlWQ=;
+        b=uR2woosDL3Z6SWlx5HRixfXlDgCvb9NZ/YejQjpq4mnwey2paUZjuF3DLsJRK5rq0X
+         5Xra8KCf8drSExqep2+W83eIP3Ff0zp2Qek0M8udS3M0XfFu7o01srWG2cF+ZhcxMFnq
+         KpUnTXgR6NX4cGPZv7TRW179ICest/dm2H8RDlOz8DjFX+1+zceIdOHKSIJXevXSGiqk
+         R38iirPkuO9/uG+JeUkP1Q2WWOBAZdmQ3kEu+D5Av5OgYGDAXoeLw4XAnM5bX79wNoe1
+         kEwfP/vPhl8JcO9pOtONzegaSPJ4dIA8MKAP5IOIYULcx86b679xT974cjk3uv8emtqU
+         QpFw==
+X-Gm-Message-State: AOJu0YwdlKRQSAAtcnBHye/eWluWxyyHhvkf+qQr2ix05A5IkW0A4IYc
+	JYSnrL0fRa1Tj2c3lS7eh8Pkz16mCOGPhA==
+X-Google-Smtp-Source: AGHT+IF4r7lDkkGEKk2sg7zd7CcsT2/Yn+ZXL0VND56CHrW4Ko/8I4MmLqHluOP5Qv9sVoGRzmskuw==
+X-Received: by 2002:a05:6402:3086:b0:553:51ba:7402 with SMTP id de6-20020a056402308600b0055351ba7402mr209066edb.36.1704360986765;
+        Thu, 04 Jan 2024 01:36:26 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id m9-20020aa7c2c9000000b00552666f4745sm18501600edp.22.2024.01.04.01.33.05
+        by smtp.gmail.com with ESMTPSA id es15-20020a056402380f00b0055267663784sm18432283edb.11.2024.01.04.01.36.25
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 04 Jan 2024 01:33:06 -0800 (PST)
-Message-ID: <65a294e7-1c3c-4022-9498-e83e7415ffb3@linaro.org>
-Date: Thu, 4 Jan 2024 10:33:04 +0100
+        Thu, 04 Jan 2024 01:36:26 -0800 (PST)
+Message-ID: <4129627a-f045-4049-b561-d68044766912@linaro.org>
+Date: Thu, 4 Jan 2024 10:36:24 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,19 +66,23 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: thermal: k3-j72xx: Update bindings for
- J721S2 SoCs
+Subject: Re: [PATCH v6 1/2] dt-bindings: usb: dwc3: Clean up hs_phy_irq in
+ binding
 Content-Language: en-US
-To: Manorit Chawdhry <m-chawdhry@ti.com>,
- "Rafael J. Wysocki" <rafael@kernel.org>,
- Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>,
- Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh+dt@kernel.org>,
+To: Krishna Kurapati <quic_kriskura@quicinc.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, J Keerthy <j-keerthy@ti.com>
-Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Udit Kumar <u-kumar1@ti.com>,
- Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>
-References: <20231228-b4-upstream-j721s2-vtm-dt-binding-v1-1-e866277f9c64@ti.com>
+ Rob Herring <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Wesley Cheng <quic_wcheng@quicinc.com>, Conor Dooley <conor+dt@kernel.org>,
+ Johan Hovold <johan@kernel.org>
+Cc: linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ quic_ppratap@quicinc.com, quic_jackp@quicinc.com
+References: <20231227091951.685-1-quic_kriskura@quicinc.com>
+ <20231227091951.685-2-quic_kriskura@quicinc.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -124,67 +128,21 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231228-b4-upstream-j721s2-vtm-dt-binding-v1-1-e866277f9c64@ti.com>
+In-Reply-To: <20231227091951.685-2-quic_kriskura@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 28/12/2023 07:39, Manorit Chawdhry wrote:
-> The clock and processor ID for J721S2 differs from the existing
-> compatibles, add a new compatible to represent this change for adding
-> support for Adaptive voltage scaling.
-
-Subject: everything is "update". Write proper subjects.
-
-A nit, subject: drop second/last, redundant "bindings for". The
-"dt-bindings" prefix is already stating that these are bindings.
-
-
-
+On 27/12/2023 10:19, Krishna Kurapati wrote:
+> The high speed related interrupts present on QC targets are as follows:
 > 
-> Signed-off-by: Manorit Chawdhry <m-chawdhry@ti.com>
-> ---
->  .../devicetree/bindings/thermal/ti,j72xx-thermal.yaml        | 12 ++++++++----
->  1 file changed, 8 insertions(+), 4 deletions(-)
+> 1. dp/dm irq's
+> These IRQ's directly reflect changes on the DP/DM pads of the SoC. These
+> are used as wakeup interrupts only on SoCs with non-QUSB2 targets with
+> exception of SDM670/SDM845/SM6350.
 > 
-> diff --git a/Documentation/devicetree/bindings/thermal/ti,j72xx-thermal.yaml b/Documentation/devicetree/bindings/thermal/ti,j72xx-thermal.yaml
-> index 171b3622ed84..5792ccc058aa 100644
-> --- a/Documentation/devicetree/bindings/thermal/ti,j72xx-thermal.yaml
-> +++ b/Documentation/devicetree/bindings/thermal/ti,j72xx-thermal.yaml
-> @@ -24,9 +24,13 @@ description: |
->  
->  properties:
->    compatible:
-> -    enum:
-> -      - ti,j721e-vtm
-> -      - ti,j7200-vtm
-> +    anyOf:
-
-? Eh, what?
-
-> +      - items:
-> +          - enum:
-> +              - ti,j721e-vtm
-> +              - ti,j7200-vtm
-> +              - ti,j721s2-vtm
-> +      - maxItems: 2
-
-What? I really do not understand what are you doing here.
 
 
->  
->    reg:
->      items:
-> @@ -72,7 +76,7 @@ examples:
->    - |
->      #include <dt-bindings/soc/ti,sci_pm_domain.h>
->      wkup_vtm0: thermal-sensor@42040000 {
-> -        compatible = "ti,j721e-vtm";
-> +        compatible = "ti,j721e-vtm", "ti,j7200-vtm";
-
-It's an enum, not a list.
-
-NAK, please read example-schema and other bindings. Then get review from
-TI folks before posting new versions.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
