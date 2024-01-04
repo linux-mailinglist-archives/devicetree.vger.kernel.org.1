@@ -1,101 +1,89 @@
-Return-Path: <devicetree+bounces-29759-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29761-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 288C2824762
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 18:25:32 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D7838247AF
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 18:46:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BB6291F22C83
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 17:25:31 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AA242B21CFC
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 17:46:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DB1A2C858;
-	Thu,  4 Jan 2024 17:22:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CBA6286BC;
+	Thu,  4 Jan 2024 17:46:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fix3L17+"
+	dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b="c975Y8NJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mxout4.routing.net (mxout4.routing.net [134.0.28.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EA172C855;
-	Thu,  4 Jan 2024 17:22:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D7BD6C433C7;
-	Thu,  4 Jan 2024 17:22:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1704388939;
-	bh=zTbm8vqIgREP9xUh5RR/d7xMKSNXbjKCjPWbk6W/NSU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=fix3L17+M3Q9NTGotqRuLRCFkkzimgaIIPzqhnOysfC0vb86AaR/2SIAYkhw4qYfe
-	 u9OsO5rMLFgKGh8ajLxdFx+hl8dml4XKW1LznKISvr9IsRdVym9I8OeogDU7cy5bJN
-	 C8aozsYBnM9o2ez8TkSAfWG+xZYoICoAgNuZbgFeKrFgcD10a30kHKy7dJ1h7wf3az
-	 Cnf+4oiPbOS2J15dDrxKA1S0IzRuo+G1jrM4mqSdf4j3eE/LJxv2/lEwVUmWuKqswG
-	 cWBNfmW3M6ca5GQ2KjZPhLfPxfwst9xa6dGWShhroL27OxwUFmSYBUjoALUDd3/ZP6
-	 Tkm/xWnDrxOyQ==
-Date: Thu, 4 Jan 2024 17:22:14 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Thierry Reding <thierry.reding@gmail.com>
-Cc: Sameer Pujar <spujar@nvidia.com>, alsa-devel@alsa-project.org,
-	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-	devicetree@vger.kernel.org, robh+dt@kernel.org,
-	Jon Hunter <jonathanh@nvidia.com>, linux-tegra@vger.kernel.org
-Subject: Re: Query on audio-graph-card DT binding
-Message-ID: <42c0c4fa-585e-4194-bbe4-e0377c87e632@sirena.org.uk>
-References: <dfe363ef-4638-4b5e-8308-73e286ac0b50@nvidia.com>
- <ZZblyhfzQjzyoUc_@orome.fritz.box>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12019288B0;
+	Thu,  4 Jan 2024 17:46:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fw-web.de
+Received: from mxbox2.masterlogin.de (unknown [192.168.10.89])
+	by mxout4.routing.net (Postfix) with ESMTP id CF7AB1014B6;
+	Thu,  4 Jan 2024 17:39:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
+	s=20200217; t=1704389986;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=sOz1O4pjxE/REIdHLNp2qfDDHbv7PuT58fkQ9O14R/E=;
+	b=c975Y8NJKjmPAZwNvp6m95HCwfoTLvEEwhYOj405qHLejD130sBUkMvTEDp4Boi5+g6UJJ
+	n31KX0wNmaG4nKwgMRCvyguYW/E5jWC43/gA5+ZFFCbk0Ui6zZjup8kYDmRpY8d3FrcDjN
+	LIMOMlbVQ6ZyA7bX1h7kMpuXIRIjSFE=
+Received: from frank-G5.. (fttx-pool-157.180.226.237.bambit.de [157.180.226.237])
+	by mxbox2.masterlogin.de (Postfix) with ESMTPSA id A3BA5100671;
+	Thu,  4 Jan 2024 17:39:44 +0000 (UTC)
+From: Frank Wunderlich <linux@fw-web.de>
+To: linux-mediatek@lists.infradead.org
+Cc: Frank Wunderlich <frank-w@public-files.de>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sam Shih <sam.shih@mediatek.com>,
+	Daniel Golle <daniel@makrotopia.org>,
+	linux-clk@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org
+Subject: [PATCH 0/2] Add reset controller to mt7988 infracfg
+Date: Thu,  4 Jan 2024 18:39:28 +0100
+Message-Id: <20240104173930.13907-1-linux@fw-web.de>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="qsCYEYAbIVCe8tbR"
-Content-Disposition: inline
-In-Reply-To: <ZZblyhfzQjzyoUc_@orome.fritz.box>
-X-Cookie: Q:	Are we not men?
+Content-Transfer-Encoding: 8bit
+X-Mail-ID: ec8c89cb-a0c3-4261-a987-75d4585d7863
 
+From: Frank Wunderlich <frank-w@public-files.de>
 
---qsCYEYAbIVCe8tbR
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Infracfg on mt7988 supports reset controller function which is
+needed to get lvts thermal working.
 
-On Thu, Jan 04, 2024 at 06:07:22PM +0100, Thierry Reding wrote:
-> On Tue, Dec 26, 2023 at 09:58:02PM +0530, Sameer Pujar wrote:
+Patches are based on clk-next due to recently added mt7988 clock driver:
+https://git.kernel.org/pub/scm/linux/kernel/git/clk/linux.git
 
-> > =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 /-----> codec1 endpoint
-> > =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 /
-> > CPU endpoint \
-> > =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 \-----> codec2 endpoint
+Frank Wunderlich (2):
+  dt-bindings: reset: mediatek: add MT7988 LVTS reset ID
+  clk: mediatek: add infracfg reset controller for mt7988
 
-> Can you describe the use-case? Is there a need to switch between codec1
-> and codec2 endpoints or do they receive the same data in parallel all
-> the time?
+ drivers/clk/mediatek/clk-mt7988-infracfg.c    | 20 +++++++++++++++++++
+ .../reset/mediatek,mt7988-resets.h            |  4 ++++
+ 2 files changed, 24 insertions(+)
 
-> Could this perhaps be described by adding multiple CPU ports with one
-> endpoint each?
+-- 
+2.34.1
 
-Don't know about the specific use case that Sameer is looking at but to
-me this looks like a surround sound setup where multiple stereo (or
-mono) DACs are wired in parallel, either with a TDM setup or with
-multiple data lines.  There's multiple CODECs all taking input from a
-single host controller.
-
---qsCYEYAbIVCe8tbR
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmWW6UYACgkQJNaLcl1U
-h9BvSAf/fR1ssQ4GinXH1HRespMqPWRE4tXIuKIpgLNB3VLe4jio3IDHRoDmJrZ9
-L+farGwkmen3ti02C692QzdHaRDKsPeCDjzWBEihR685UkOO5u2053eiwTwwhjRW
-KtBfH7pgKiZbbQnfGwOfgzztNtW+btyQ3XeLA1sXs0y0TIzi0VgGiAihohMJ7x/5
-oU2zKrqeLn7haSIzKiwU44AMssq6Nn4DVMjgLynTdlbb4xGyKFzyeI3tCgl16hTJ
-bwEWxcDmHxSL9yIirvUZTM4JzuY7CuNy7JTW680vWAZx1WrqzpTXAY0jiVje7akJ
-N93tflyKEj/dKxpUJIZjCNZaIHIJgA==
-=cAAN
------END PGP SIGNATURE-----
-
---qsCYEYAbIVCe8tbR--
 
