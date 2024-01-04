@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-29600-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29601-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1018823DD2
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 09:47:03 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id BDE72823DD8
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 09:48:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6B07C282A20
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 08:47:02 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2F991B24214
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 08:48:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAB0F1DDF6;
-	Thu,  4 Jan 2024 08:46:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 424441E535;
+	Thu,  4 Jan 2024 08:48:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="qBmw/LTR"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="L+F+CNn/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2782F1E502
-	for <devicetree@vger.kernel.org>; Thu,  4 Jan 2024 08:46:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 912412030E
+	for <devicetree@vger.kernel.org>; Thu,  4 Jan 2024 08:48:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a282cb36d37so25918666b.3
-        for <devicetree@vger.kernel.org>; Thu, 04 Jan 2024 00:46:55 -0800 (PST)
+Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-556fc91aba9so356920a12.1
+        for <devicetree@vger.kernel.org>; Thu, 04 Jan 2024 00:48:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704358014; x=1704962814; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1704358086; x=1704962886; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=dxxff/ErUIZVKvL74Mkxu99RYlOp8uSYyZc1MOwQOvU=;
-        b=qBmw/LTR0k6S3qJV3gm8fXzIBYDmV4fUyX2REyOj4a3PccxOzqw8ZJgseKhkJ1I9hq
-         BYWPpicXz+HJGdrauwZ4i7mcJyYNElWXJxh09VHw/h1TDIBUOp3O+FOxn82vh4fjtE8V
-         Hh/4gsQ8SGx/+HX+v48AHBGJMgpFtn7K7L6V/J2FzB9IuGXjuP6keKcWZGMytYlykei9
-         y/kSQC2Z4AuwVG707bYWnR09NgFOAjL/JrIIVBGOuBl3E8zIGq+AYDtW58ARvwGKfcjO
-         WsXUfxXAI9LxXkNMZYVeUA8yID1OCovfsPIgqwenxmQK1aSFgb++iOqYegd9LEiWWyXX
-         Hs2w==
+        bh=yz8L5rcS/oZQG0JzRb54lfQRZQgbbjO7+jKrtemXPv4=;
+        b=L+F+CNn/ILzYTfOsS7ybnHoe/BDWHJj8peDKWfmwAtrKegKWrxeIdw2ow0/+5j6pg2
+         ViCjI/tSdLQ16bQ5RUc4ag/CPNZP7l3BsE3pm75eDg9P4YPslBcUqKHnx8aD9POckrdM
+         8Dy4W+Jnj8o8xo4IZBZKid5qKdJaJ3BtNDBEx7xpTOT2WEyrOB7+5qPQc4ax09mvZWdK
+         o4PBV7uQs2h7Dbah03PNaGIV5SSnzxogQjlnZ8hteBjEV0tM4Zd5LYuhkV9s7mxJQJly
+         mYPtrqApwJHp1tATNylfba0RexVMPhsQp2XwM/37qmoejBf7LCR5LefZORdHA252Irvs
+         Xvhg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704358014; x=1704962814;
+        d=1e100.net; s=20230601; t=1704358086; x=1704962886;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=dxxff/ErUIZVKvL74Mkxu99RYlOp8uSYyZc1MOwQOvU=;
-        b=EjMLl+LaMJcJBctRD7UOkKzkzztncYl+BMT5WIcReBb32anFSvEEoqIwFFMwXZeM4X
-         EA4/qOL6qlGqf4yVjABDoOi6tozLYNXiCDd3+SNk5lt8KghohF3lIwgHjx+KxDg5CWyD
-         hBbiEIfe0OPQybHUrEA4jUs8x8+alyUCyB1Zih8kSePpk47WNKL2xHI/NxPuSyAQHjID
-         gS/KBkoww0+BU9FX1GMpf9Z66PT0ZYN/vLraPnyAkbNOqXGFARzMsLFoD1AcrE3tUjhw
-         Nrv7kB6IDL5SXoBdL8jGkISfxchR8bZIP1fbW9zIMSrm0WZ9TcybzsLOl2G+96Ui8Xph
-         hQRA==
-X-Gm-Message-State: AOJu0Yy5lUb3hrspDmIkAk+VNb9vpdycwxTOM3N4Y6w0LiQcp8xAzLEe
-	hs4vy+kgeG/jBVByxmAM6QIHk1yiW0QyRg==
-X-Google-Smtp-Source: AGHT+IHYpBh1xZGp/wlODRHn1IqGJT/3CyW1hfetHp5iswBWH6tlMsaNV98kS4VgOho0zPiuXenKgQ==
-X-Received: by 2002:a17:906:ad8a:b0:a27:f950:4576 with SMTP id la10-20020a170906ad8a00b00a27f9504576mr122278ejb.151.1704358014442;
-        Thu, 04 Jan 2024 00:46:54 -0800 (PST)
+        bh=yz8L5rcS/oZQG0JzRb54lfQRZQgbbjO7+jKrtemXPv4=;
+        b=Ed06o916W8RXQBIE+dIYCElqu7g4U8BT2wd6/hIuaANOGd7vpHDtsQ/tO9NKCAJ2HL
+         DUhdn2ACAYQ35Uyr1M7IwddzG0MWbYUYLCjajgsQD6DlcE9gcHrPDWBN+h8HycYA3JxK
+         PsOp8qciWzYw1Z92LZ5RbSysBYthHmzzA1aVA01DaDQIqPYz9fEEoo7urXl2kEhvY4Cq
+         pbVBWPpP7pvwVVpEw8LfD9CBXU2i7z6upECaPYIlqFy0U0GiXcCB9xS84OAczMne9FNX
+         Sb+98t/DCZSy/w5x6/h5h0La4nDhdSygZD1KcCt42WVuEkS8j5w9vsRt6vFJO+MZYZDB
+         qt0g==
+X-Gm-Message-State: AOJu0Yw/XdlakOQt8QJ2h9PKFqs+xb0XExVCB0lO+PV0CdkSRfsAghq5
+	0ImHEfb+MpvYd+WjLVVrRJz0fE2LA+2EDYBfXULzLVD9DaY=
+X-Google-Smtp-Source: AGHT+IErboZlZUNTK/tkXvn3hKifzKAK/kYmSKAFSgzlTSjZGbp/TRrtj4IWK+r9w/xjGiFvDysZmQ==
+X-Received: by 2002:a17:906:33d9:b0:a23:6244:8370 with SMTP id w25-20020a17090633d900b00a2362448370mr156939eja.142.1704358085794;
+        Thu, 04 Jan 2024 00:48:05 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id ka24-20020a170907921800b00a26a80a58fcsm13126060ejb.196.2024.01.04.00.46.53
+        by smtp.gmail.com with ESMTPSA id ka24-20020a170907921800b00a26a80a58fcsm13126060ejb.196.2024.01.04.00.48.04
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 04 Jan 2024 00:46:54 -0800 (PST)
-Message-ID: <3a290bf9-928d-4d21-9c93-0d1db59d6fff@linaro.org>
-Date: Thu, 4 Jan 2024 09:46:52 +0100
+        Thu, 04 Jan 2024 00:48:05 -0800 (PST)
+Message-ID: <71cf6e71-6273-4305-8fc4-44df6ce35eda@linaro.org>
+Date: Thu, 4 Jan 2024 09:48:04 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,7 +66,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: clk: sprd: Add UMS9620 support
+Subject: Re: [PATCH 2/3] clk: sprd: Add dt-bindings include file for UMS9620
 Content-Language: en-US
 To: Chunyan Zhang <chunyan.zhang@unisoc.com>, Stephen Boyd
  <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
@@ -77,7 +77,7 @@ Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
  Baolin Wang <baolin.wang@linux.alibaba.com>,
  Chunyan Zhang <zhang.lyra@gmail.com>
 References: <20231229085156.1490233-1-chunyan.zhang@unisoc.com>
- <20231229085156.1490233-2-chunyan.zhang@unisoc.com>
+ <20231229085156.1490233-3-chunyan.zhang@unisoc.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -123,140 +123,86 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231229085156.1490233-2-chunyan.zhang@unisoc.com>
+In-Reply-To: <20231229085156.1490233-3-chunyan.zhang@unisoc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 29/12/2023 09:51, Chunyan Zhang wrote:
-> Add UMS9620's clock compatible strings and descriptions for clock
-> and clock-names for UMS9620.
+> This file defines all UMS9620 clock indexes. It should be included in
+> the DTS file(s) in which there're devices using these clocks.
 > 
+
+Please use subject prefixes matching the subsystem. You can get them for
+example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+your patch is touching.
+
+A nit, subject: drop second/last, redundant "bindings". The
+"dt-bindings" prefix is already stating that these are bindings.
+
+
 > Signed-off-by: Chunyan Zhang <chunyan.zhang@unisoc.com>
 > ---
->  .../bindings/clock/sprd,ums512-clk.yaml       | 79 ++++++++++++++++---
->  1 file changed, 68 insertions(+), 11 deletions(-)
+>  include/dt-bindings/clock/sprd,ums9620-clk.h | 515 +++++++++++++++++++
+
+This is part of previous patch.
+
+
+>  1 file changed, 515 insertions(+)
+>  create mode 100644 include/dt-bindings/clock/sprd,ums9620-clk.h
 > 
-> diff --git a/Documentation/devicetree/bindings/clock/sprd,ums512-clk.yaml b/Documentation/devicetree/bindings/clock/sprd,ums512-clk.yaml
-> index 43d2b6c31357..dcad41a1fea7 100644
-> --- a/Documentation/devicetree/bindings/clock/sprd,ums512-clk.yaml
-> +++ b/Documentation/devicetree/bindings/clock/sprd,ums512-clk.yaml
-> @@ -30,25 +30,38 @@ properties:
->        - sprd,ums512-mm-clk
->        - sprd,ums512-mm-gate-clk
->        - sprd,ums512-apapb-gate
-> +      - sprd,ums9620-pmu-gate
-> +      - sprd,ums9620-g1-pll
-> +      - sprd,ums9620-g5l-pll
-> +      - sprd,ums9620-g5r-pll
-> +      - sprd,ums9620-g8-pll
-> +      - sprd,ums9620-g9-pll
-> +      - sprd,ums9620-g10-pll
-> +      - sprd,ums9620-apapb-gate
-> +      - sprd,ums9620-ap-clk
-> +      - sprd,ums9620-apahb-gate
-> +      - sprd,ums9620-aon-gate
-> +      - sprd,ums9620-aonapb-clk
-> +      - sprd,ums9620-topdvfs-clk
-> +      - sprd,ums9620-ipaapb-gate
-> +      - sprd,ums9620-ipa-clk
-> +      - sprd,ums9620-ipaglb-gate
-> +      - sprd,ums9620-ipadispc-gate
-> +      - sprd,ums9620-pcieapb-gate
-> +      - sprd,ums9620-pcie-clk
-> +      - sprd,ums9620-mm-gate
-> +      - sprd,ums9620-mm-clk
-> +      - sprd,ums9620-dpu-vsp-gate
-> +      - sprd,ums9620-dpu-vsp-clk
->  
->    "#clock-cells":
->      const: 1
->  
->    clocks:
-> -    minItems: 1
-> -    maxItems: 4
-
-No, constraints stay here.
-
->      description: |
->        The input parent clock(s) phandle for the clock, only list
->        fixed clocks which are declared in devicetree.
->  
-> -  clock-names:
-
-No, you cannot just drop properties. Widest constraints stay here.
-
-> -    minItems: 1
-> -    items:
-> -      - const: ext-26m
-> -      - const: ext-32k
-> -      - const: ext-4m
-> -      - const: rco-100m
-> -
->    reg:
->      maxItems: 1
->  
-> @@ -57,7 +70,43 @@ required:
->    - '#clock-cells'
->    - reg
->  
-> -additionalProperties: false
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            pattern: "^sprd,ums512-.*"
+> diff --git a/include/dt-bindings/clock/sprd,ums9620-clk.h b/include/dt-bindings/clock/sprd,ums9620-clk.h
+> new file mode 100644
+> index 000000000000..ed566e1208d7
+> --- /dev/null
+> +++ b/include/dt-bindings/clock/sprd,ums9620-clk.h
+> @@ -0,0 +1,515 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause */
+> +/*
+> + * Unisoc UMS9620 platform clocks
+> + *
+> + * Copyright (C) 2020-2023, Unisoc Inc.
+> + */
 > +
-> +    then:
-> +      properties:
-> +        clocks:
-> +          minItems: 1
-> +          maxItems: 4
+> +#ifndef _DT_BINDINGS_CLK_UMS9620_H_
+> +#define _DT_BINDINGS_CLK_UMS9620_H_
 > +
-> +        clock-names:
-> +          minItems: 1
-> +          items:
-> +            - const: ext-26m
-> +            - const: ext-32k
-> +            - const: ext-4m
-> +            - const: rco-100m
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            pattern: "^sprd,ums9620-.*"
-> +    then:
-> +      properties:
-> +        clocks:
-> +          minItems: 1
-> +          maxItems: 6
-> +
-> +        clock-names:
-> +          minItems: 1
-> +          maxItems: 6
+> +#define CLK_26M_AUD		0
+> +#define CLK_13M			1
+> +#define CLK_6M5			2
+> +#define CLK_4M3			3
+> +#define CLK_4M			4
+> +#define CLK_2M			5
+> +#define CLK_1M			6
+> +#define CLK_250K		7
+> +#define CLK_16K			8
+> +#define CLK_RCO_100M_25M	9
+> +#define CLK_RCO_100m_20M	10
+> +#define CLK_RCO_100m_4M		11
+> +#define CLK_RCO_100m_2M		12
+> +#define CLK_RCO_60m_20M		13
+> +#define CLK_RCO_60m_4M		14
+> +#define CLK_RCO_60m_2M		15
+> +#define CLK_PHYR8PLL_GATE	16
+> +#define CLK_PSR8PLL_GATE	17
+> +#define CLK_CPLL_GATE		18
+> +#define CLK_V4NRPLL_GATE	19
+> +#define CLK_TGPLL_GATE		20
+> +#define CLK_MPLLL_GATE		21
+> +#define CLK_MPLLM_GATE		22
+> +#define CLK_MPLLB_GATE		23
+> +#define CLK_MPLLS_GATE		24
+> +#define CLK_DPLL0_GATE		25
+> +#define CLK_DPLL1_GATE		26
+> +#define CLK_DPLL2_GATE		27
+> +#define CLK_GPLL_GATE		28
+> +#define CLK_AIPLL_GATE		29
+> +#define CLK_VDSPPLL_GATE	30
+> +#define CLK_AUDPLL_GATE		31
+> +#define CLK_PIXELPLL_GATE	32
+> +#define CLK_PMU_GATE_NUM	(CLK_PIXELPLL_GATE + 1)
 
-Missing names.
-
-Most likely you are trying to stuff too many devices into one binding. I
-suggest split, could be with some shared/common schema (see Qualcomm GCC
-bindings).
-
-> +
-> +unevaluatedProperties: false
->  
->  examples:
->    - |
-> @@ -68,4 +117,12 @@ examples:
->        clock-names = "ext-26m";
->        #clock-cells = <1>;
->      };
-> +
-> +    aonapb_gate: clock-controller@0 {
-> +      compatible = "sprd,ums9620-aon-gate";
-
-Drop entire example, no need for new example for every new compatible.
-
+Drop this and all other numbers. Not a binding and you cannot change it,
+if you ever want to add missing clock.
 
 
 Best regards,
