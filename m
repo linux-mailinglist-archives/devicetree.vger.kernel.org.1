@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-29564-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29565-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1487823CFD
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 08:51:03 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 02717823D04
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 08:54:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C972A1C21977
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 07:51:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6B72D1F261A7
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 07:54:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A1BB1F927;
-	Thu,  4 Jan 2024 07:50:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDF961F5F0;
+	Thu,  4 Jan 2024 07:54:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="i9cJPe5v"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ZiCNCzIP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
+Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A587200DB
-	for <devicetree@vger.kernel.org>; Thu,  4 Jan 2024 07:50:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5DE72030C
+	for <devicetree@vger.kernel.org>; Thu,  4 Jan 2024 07:54:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-556ab8b85e3so348164a12.1
-        for <devicetree@vger.kernel.org>; Wed, 03 Jan 2024 23:50:43 -0800 (PST)
+Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-555f95cc2e4so269412a12.3
+        for <devicetree@vger.kernel.org>; Wed, 03 Jan 2024 23:54:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704354641; x=1704959441; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1704354871; x=1704959671; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=wJj4uRZgSuxlUWdDgDRfCkBMC7jvh/H+PwEabbg3iCM=;
-        b=i9cJPe5v+JRC4jhXRo/XOCUrH+VdcW4Lu5lGM/j18+FkJ33Lfj1F1ltN9wwcu+FyI/
-         yFlxvfAMhEfbmFFu4RfqsDzzq8b83x8YcT7NkCwbhFAU97U6lDypXAsMrBsO2wx5uj1n
-         nFJNQ/ww73988iODqNOy8cKVpbFxLiSBpYvSONJOBP4Bt4fSwcWRuxbZvQS2b2E3daBI
-         qoYp15GgRtbQdtb/Xz3qax6D3mLQGHbZ0L0YQL1Aaw5wNEwXbtYTY6Pid2VcD9mZjuLc
-         zryTm9GpcmlAVWCPVLxj3uKE7q0PpQkeI4v0Et/gAQaod5sOqPT8vpp5G43zclzC/bqG
-         yWeg==
+        bh=UHn9Ugkqr+y3vge4PYMFpoXgKhGknBDSsMB7++3Vp1I=;
+        b=ZiCNCzIPWrpEinps2J/J2X4+Hzpae9zvlSm+VX6TYTgN+Dr4wpERU1nkvhiaA5x/KH
+         eSS6ufV9bGY0l9QH5osgPR5QsLWkSOn3IdIGjr/65b0uZeYgcEgvRzYSy8W8d3/zdafy
+         4G3Ycw9knfxjFBuDu4Lzm2DC9hkcHOxfrJSejNhsmRMEAtAcSjPlnmSSG2gymDU2D9O3
+         3BHiVW6Z7jZAibAeDaCVLFhBQndRM7TFoyfjd3zniDGrXm7Eck2wb+8P4a6oz6NP9T0b
+         VkCgQfx3Zf1DUpEJ//rewCzLLQi0pT0h/m2qN1j4wTJmkwhYcdi2XFc9CSz9jZw5iktc
+         SZ0w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704354641; x=1704959441;
+        d=1e100.net; s=20230601; t=1704354871; x=1704959671;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=wJj4uRZgSuxlUWdDgDRfCkBMC7jvh/H+PwEabbg3iCM=;
-        b=jgN/wnJdq05jTUj4Se3vQ3jrh2BY6ojTjqD0uieCUY6CEyJvuURtgPRAWkt8AlEoFm
-         0bPZRi074o7QXCjLmZb1krBzlt6hFOOrc0ZyMf74BZPKMCfv/cWKc61aQDPEIIevP84K
-         9Zk6qcuzUFcVlhwBRwDNAU2XScGdHFZPcE7JUlZ82keFhPd3hslA0p8I+NtNbTH7/93O
-         LozLwz/p1qf2wbg1n7a+dEZcpb8tT98YVwuJOZrtmc3ytUriMaJ3Vm0Rtbq6zfcJBx7W
-         mQ9uGeorCnN6k6GXMaIqtWOTAy04pKA7tAP4L8aFcqKizY0g5IKKRWKIRWHOchStOFyJ
-         Hzuw==
-X-Gm-Message-State: AOJu0Yy+a/P/SbbWAB5s7EydnoPSA+0NmYlPKKVf6GZYDECvlSDRqYjh
-	M8pRLARzZXPsn1VoNsOcV9fHV8QwwZvU/Q==
-X-Google-Smtp-Source: AGHT+IEmcbd9zaXJouTkf5sXcsT1zk/tGSQqaLhH5Wk5y7vsKOw8SgFGn8U233EL2sySxbgb2C+0UQ==
-X-Received: by 2002:aa7:cf8f:0:b0:556:f13d:37e with SMTP id z15-20020aa7cf8f000000b00556f13d037emr186395edx.6.1704354641742;
-        Wed, 03 Jan 2024 23:50:41 -0800 (PST)
+        bh=UHn9Ugkqr+y3vge4PYMFpoXgKhGknBDSsMB7++3Vp1I=;
+        b=Ra1dHVJgt7MMB9xJGY4+hK9sLZyh/TtX3Y5m6csSc3FWtjWRsV579kyMjBzgYmJAGT
+         Q6ebDvogE0o8N0Gnbue4gRluAWNXWnYHS/q1CQrKiWbi65blKrHoG9mciQfV74HVnqiX
+         Lu1vR/3PItZG80GBDFe8mespDo6f2SBNEqlBqrIw/Z6StmS59bv2JOFNbNP5Acry3x2E
+         DTRSiLy0SDUClBuWuuZ8O7/0HsBKYBuaHHgdbp+TgVq+MA/XMEToHopZ8ky2f85gRejT
+         B+/99sXurl4tEsmj1AriXUn50FfyKPDMCaS3vYhdtqZ7BrH5fb/FYTnAeiThciuGnmZA
+         3hsg==
+X-Gm-Message-State: AOJu0YzS+KTR0S0zJw3icvBdMV7D5QtP+gNSG7tgn235k3ljIXyES+xQ
+	79Q0oiKoAGcUddlgRErEuU9rLIv1jHGA1A==
+X-Google-Smtp-Source: AGHT+IHXVXa0hGta0md8FJ5WJOO0weIqbPnzglTnZv5g2qsy+yP+W9rIIVLgm/YEKRFBIJwIn2zLxQ==
+X-Received: by 2002:a05:6402:886:b0:556:f8dc:5f69 with SMTP id e6-20020a056402088600b00556f8dc5f69mr114215edy.83.1704354870927;
+        Wed, 03 Jan 2024 23:54:30 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id h12-20020a0564020e0c00b005561a8c2badsm6362201edh.83.2024.01.03.23.50.40
+        by smtp.gmail.com with ESMTPSA id t15-20020a056402020f00b005534057c72dsm18301480edv.18.2024.01.03.23.54.29
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 03 Jan 2024 23:50:41 -0800 (PST)
-Message-ID: <c52c9ab7-6920-4a8b-b31c-db02989aebf9@linaro.org>
-Date: Thu, 4 Jan 2024 08:50:39 +0100
+        Wed, 03 Jan 2024 23:54:30 -0800 (PST)
+Message-ID: <eb90f92f-de58-42b2-8eb1-9d78e1fd7a60@linaro.org>
+Date: Thu, 4 Jan 2024 08:54:28 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,8 +66,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/5] dt-bindings: arm: ti: Add bindings for SolidRun AM642
- HummingBoard-T
+Subject: Re: [PATCH 2/5] arm64: dts: add description for solidrun am642 som
+ and evaluation board
 Content-Language: en-US
 To: Josua Mayer <josua@solid-run.com>, Nishanth Menon <nm@ti.com>,
  Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
@@ -77,7 +77,7 @@ To: Josua Mayer <josua@solid-run.com>, Nishanth Menon <nm@ti.com>,
 Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org
 References: <20240103-add-am64-som-v1-0-dda1f9227aef@solid-run.com>
- <20240103-add-am64-som-v1-1-dda1f9227aef@solid-run.com>
+ <20240103-add-am64-som-v1-2-dda1f9227aef@solid-run.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -123,18 +123,289 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240103-add-am64-som-v1-1-dda1f9227aef@solid-run.com>
+In-Reply-To: <20240103-add-am64-som-v1-2-dda1f9227aef@solid-run.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 03/01/2024 12:27, Josua Mayer wrote:
-> Add bindings for SolidRun AM642 HummingBoard-T Board, which is the
-> evaluation board for SolidRun AM642 SoM.
+> Add description for the SolidRun AM642 SoM, and HummingBoard-T
+> evaluation board.
+> 
+> The SoM features:
+> - 1x cpsw ethernet with phy
+> - 2x pru ethernet with phy
+> - eMMC
+> - spi flash (assembly option)
+> 
+> Additionally microSD and usb-2.0 otg are included in the SoM
+> description as they are supported boot sources for the SOC boot-rom.
+> 
+> The Carrier provides:
+> - 3x RJ45 connector
+> - 2x M.2 connector
+> - USB-2.0 Hub
+> - USB-A Connector
+> - LEDs
+> - 2x CAN transceiver
+> - 1x RS485 transceiver
+> - sensors
+> 
+> The M.2 connectors support either USB-3.1 or PCI-E depending on status
+> of a mux. By default the mux is switched off.
+> 
+> RFC: dtbs_check reports:
+> 
+> - error in pru ethernet:
+> 
+>   arch/arm64/boot/dts/ti/k3-am642-hummingboard-t.dtb: icssg1-eth: dmas: [[12, 49664, 15], [12, 49665, 15], [12, 49666, 15], [12, 49667, 15], [12, 49668, 15], [12, 49669, 15], [12, 49670, 15], [12, 49671, 15], [12, 16896, 15], [12, 16897, 15], [12, 16898, 0], [12, 16899, 0]] is too long
+>   from schema $id: http://devicetree.org/schemas/net/ti,icssg-prueth.yaml#
+>   arch/arm64/boot/dts/ti/k3-am642-hummingboard-t.dtb: icssg1-eth: Unevaluated properties are not allowed ('dmas' was unexpected)
+>   from schema $id: http://devicetree.org/schemas/net/ti,icssg-prueth.yaml#
+> 
+>   It is caused by definint 12 dmas, when ti,icssg-prueth.yaml specifies a
+>   maximum of 10. The pru ethernet on am64 mostly identical to am65 - see
+>   e.g. arch/arm64/boot/dts/ti/k3-am654-idk.dtso which also defines 12 dma.
+> 
+>   At least for this revision I am skipping fixing the bindings, because
+>   aside from raising the maximum to 12, dma-names also has just 10 entries
+>   - and  don't know which names would be correct to add.
+> 
+> - undocumented compatible ti,bq25713 (battery charger)
+> 
+>   arch/arm64/boot/dts/ti/k3-am642-hummingboard-t-pcie.dtb: /bus@f4000/i2c@20000000/battery-charger@6a: failed to match any schema with compatible: ['ti,bq25713']
+> 
+>   This specific charger has no linux support yet, I am not sure where
+>   (or whether) to document the new compatible.
+>   The reference could also be dropped completely, since the charger is
+>   not assebled by default.
+> 
+> - undocumented compatible for rtc: "abracon,abx80x"
+> 
+>   arch/arm64/boot/dts/ti/k3-am642-hummingboard-t-pcie.dtb: /bus@f4000/i2c@20010000/am1805aq@69: failed to match any schema with compatible: ['abracon,abx80x']
+> 
+>   It is actually documented in text format:
+>   Documentation/devicetree/bindings/rtc/abracon,abx80x.txt
+> 
+> - phy@0:cdns,phy-type:0:0: 0 is less than the minimum of 1
+> 
+>   arch/arm64/boot/dts/ti/k3-am642-hummingboard-t.dtb: serdes@f000000: phy@0:cdns,phy-type:0:0: 0 is less than the minimum of 1
+>   from schema $id: http://devicetree.org/schemas/phy/phy-cadence-torrent.yaml#
+> 
+>   I used value 0 here on purpose (phy.h: #define PHY_NONE 0), however
+>   maybe better to choose a specific protocol?
+>   Or better to update binding and allow 0?
+> 
+> - interrupt properties not allowed for spi flash
+> 
+>   arch/arm64/boot/dts/ti/k3-am642-hummingboard-t.dtb: flash@0: Unevaluated properties are not allowed ('interrupt-parent', 'interrupts' were unexpected)
+>   from schema $id: http://devicetree.org/schemas/mtd/jedec,spi-nor.yaml#
+> 
+>   The assembled flash memory "sh28hs512t" definitely has an interrupt
+>   pin wired to a cpu gpio. Should interrupts be added to spi flash
+>   binding?
+> 
+> - wrong names for pinctrl nodes
+> 
+>   arch/arm64/boot/dts/ti/k3-am642-hummingboard-t.dtb: pinctrl@f4000: 'ethernet-phy-pins-default', 'ethernet-phy0-pins-default', 'ethernet-phy1-pins-default', 'ethernet-phy2-pins-default', 'leds-pins-default', 'main-i2c0-pins-default', 'main-i2c0-pins-int-default', 'main-i2c1-int-pins-default', 'main-i2c1-pins-default', 'main-mcan0-pins-default', 'main-mcan1-pins-default', 'main-mmc1-pins-default', 'main-uart0-pins-default', 'main-uart3-pins-default', 'mdio0-pins-default', 'ospi0-flash0-pins-default', 'ospi0-pins-default', 'pcie0-pins-default', 'pru-rgmii1-pins-default', 'pru-rgmii2-pins-default', 'pru1-mdio0-pins-default', 'regulator-pcie-3v3-pins-default', 'regulator-vpp-1v8-pins-default', 'rgmii1-pins-default', 'serdes-mux-pins-default', 'usb0-pins-default' do not match any of the regexes: '-pins(-[0-9]+)?$|-pin$', 'pinctrl-[0-9]+'
+> 
+>   Other TI DTSs consistently end with *-pins-default. Should a different
+>   naming convention be used?
 > 
 > Signed-off-by: Josua Mayer <josua@solid-run.com>
 > ---
+>  arch/arm64/boot/dts/ti/Makefile                    |   1 +
+>  arch/arm64/boot/dts/ti/k3-am642-hummingboard-t.dts | 333 +++++++++++
+>  arch/arm64/boot/dts/ti/k3-am642-sr-som.dtsi        | 638 +++++++++++++++++++++
+>  3 files changed, 972 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
+> index 77a347f9f47d..041c3b71155e 100644
+> --- a/arch/arm64/boot/dts/ti/Makefile
+> +++ b/arch/arm64/boot/dts/ti/Makefile
+> @@ -32,6 +32,7 @@ dtb-$(CONFIG_ARCH_K3) += k3-am62p5-sk.dtb
+>  
+>  # Boards with AM64x SoC
+>  dtb-$(CONFIG_ARCH_K3) += k3-am642-evm.dtb
+> +dtb-$(CONFIG_ARCH_K3) += k3-am642-hummingboard-t.dtb
+>  dtb-$(CONFIG_ARCH_K3) += k3-am642-phyboard-electra-rdk.dtb
+>  dtb-$(CONFIG_ARCH_K3) += k3-am642-sk.dtb
+>  dtb-$(CONFIG_ARCH_K3) += k3-am642-tqma64xxl-mbax4xxl.dtb
+> diff --git a/arch/arm64/boot/dts/ti/k3-am642-hummingboard-t.dts b/arch/arm64/boot/dts/ti/k3-am642-hummingboard-t.dts
+> new file mode 100644
+> index 000000000000..f7b48ada8ef3
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/ti/k3-am642-hummingboard-t.dts
+> @@ -0,0 +1,333 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +/*
+> + * Copyright (C) 2023 Josua Mayer <josua@solid-run.com>
+> + *
+> + * DTS for SolidRun AM642 HummingBoard-T,
+> + * running on Cortex A53.
+> + *
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include <dt-bindings/phy/phy.h>
+> +
+> +#include "k3-am642.dtsi"
+> +#include "k3-am642-sr-som.dtsi"
+> +
+> +/ {
+> +	model = "SolidRun AM642 HummingBoard-T";
+> +	compatible = "solidrun,am642-hummingboard-t", "solidrun,am642-sr-som", "ti,am642";
+> +
+> +	aliases {
+> +		serial5 = &main_uart3;
+> +	};
+> +
+> +	leds {
+> +		compatible = "gpio-leds";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&leds_pins_default>;
+> +		status = "okay";
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Where was it disabled?
+
+> +
+> +		/* D24 */
+> +		led1: led-1 {
+> +			label = "led1:green";
+
+Use function and color instead.
+
+> +			gpios = <&main_gpio0 29 GPIO_ACTIVE_HIGH>;
+> +		};
+> +
+...
+
+> +
+> +&main_i2c0 {
+> +	pinctrl-0 = <&main_i2c0_pins_default>, <&main_i2c0_int_pins_default>;
+> +
+> +	humidity-sensor@41 {
+> +		compatible = "ti,hdc2010";
+> +		reg = <0x41>;
+> +		interrupt-parent = <&main_gpio0>;
+> +		interrupts = <37 IRQ_TYPE_EDGE_FALLING>;
+> +		status = "okay";
+
+Where was it disabled?
+
+> +	};
+> +
+> +	light-sensor@44 {
+> +		compatible = "ti,opt3001";
+> +		reg = <0x44>;
+> +		interrupt-parent = <&main_gpio0>;
+> +		interrupts = <37 IRQ_TYPE_EDGE_FALLING>;
+> +		status = "okay";
+
+Where was it disabled?
+
+> +	};
+> +
+> +	battery-charger@6a {
+
+charger@
+
+> +		compatible = "ti,bq25713";
+> +		reg = <0x6a>;
+> +		status = "okay";
+
+Where was it disabled?
+
+> +	};
+> +};
+> +
+> +&main_i2c1 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&main_i2c1_pins_default>, <&main_i2c1_int_pins_default>;
+> +	status = "okay";
+> +
+> +	rtc: am1805aq@69 {
+
+Node names should be generic. See also an explanation and list of
+examples (not exhaustive) in DT specification:
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+
+> +		compatible = "abracon,abx80x";
+> +		reg = <0x69>;
+> +		abracon,tc-diode = "schottky";
+> +		abracon,tc-resistor = <3>;
+> +		interrupt-parent = <&main_gpio0>;
+> +		interrupts = <44 IRQ_TYPE_EDGE_FALLING>;
+> +		status = "okay";
+Where was it disabled?
+
+> +	};
+> +};
+> +
+
+...
+
+> +
+> +&serdes0 {
+> +	/*
+> +	 * Serdes Signals are routed via mux to either m.2 connectors:
+> +	 * - M1: USB-3.1
+> +	 * - M2: PCI-E
+> +	 */
+> +	status = "okay";
+> +
+> +	serdes0_link: phy@0 {
+> +		reg = <0>;
+> +		cdns,num-lanes = <1>;
+> +		#phy-cells = <0>;
+> +		cdns,phy-type = <PHY_NONE>;
+> +		resets = <&serdes_wiz0 1>;
+> +		status = "okay";
+
+Where was it disabled?
+
+> +	};
+> +};
+> +
+> +&usb0 {
+> +	dr_mode = "host";
+> +};
+> diff --git a/arch/arm64/boot/dts/ti/k3-am642-sr-som.dtsi b/arch/arm64/boot/dts/ti/k3-am642-sr-som.dtsi
+> new file mode 100644
+> index 000000000000..952a262d6874
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/ti/k3-am642-sr-som.dtsi
+> @@ -0,0 +1,638 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +/*
+> + * Copyright (C) 2023 Josua Mayer <josua@solid-run.com>
+> + *
+> + */
+> +
+> +#include <dt-bindings/net/ti-dp83869.h>
+> +
+> +/ {
+> +	model = "SolidRun AM642 SoM";
+> +	compatible = "solidrun,am642-sr-som", "ti,am642";
+> +
+> +	aliases {
+> +		ethernet0 = &cpsw_port1;
+> +		ethernet1 = &icssg1_emac0;
+> +		ethernet2 = &icssg1_emac1;
+> +		mmc0 = &sdhci0;
+> +		mmc1 = &sdhci1;
+> +		serial2 = &main_uart0;
+> +	};
+> +
+> +	chosen {
+> +		/* SoC default UART console */
+> +		stdout-path = "serial2:115200n8";
+> +		bootargs = "earlycon=ns16550a,mmio32,0x02800000";
+
+Drop bootargs. earlycon is for debugging.
+
+
 
 Best regards,
 Krzysztof
