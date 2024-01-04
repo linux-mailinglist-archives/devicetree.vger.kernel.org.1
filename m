@@ -1,120 +1,164 @@
-Return-Path: <devicetree+bounces-29679-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29680-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD3CC8240E5
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 12:48:19 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 96AB1824139
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 13:03:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B96401C212C4
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 11:48:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 320D31F24A23
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 12:03:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0AC2521346;
-	Thu,  4 Jan 2024 11:48:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9274A21360;
+	Thu,  4 Jan 2024 12:03:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Q+3QJNw+"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xpes5WeJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72BA921344;
-	Thu,  4 Jan 2024 11:48:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 18F322000A;
-	Thu,  4 Jan 2024 11:48:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1704368889;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=9jtxASBHYv7DYWaUVWi8zHXXkgICuHN1u6bOMe9fkFs=;
-	b=Q+3QJNw+iinp96gAThb2+cr1/1jNmbAMsuTsmzXtwdFbYE50g/h5DGmC2NmUID1HolWQgy
-	MZun+DnRrZ2WZe4nP6h3AbKbygeNtiYp2/Au2P7n3zHkx2cenkA9jrtQp86thrb47iOuDB
-	P+0ys/Whl3QF9i8JcSrNWeqSxm0gaMfqHW2eLcnWolOQtk3yPcsbWmz8Yi7e0XysZjwbVY
-	rpqaKtzLWUZYYvl2wkZrZDiZTXH5qprzluTmj1x1GGYmS00aiqfFdJtKcNSKWCN1W+7DYD
-	h/0z2LnpDSqVCfbJqFLiN8uIw8s8UOIithNnmmSVruF6rBcPsvZPi7X6kQ8PNQ==
-Date: Thu, 4 Jan 2024 12:48:05 +0100
-From: Maxime Chevallier <maxime.chevallier@bootlin.com>
-To: Christian Marangi <ansuelsmth@gmail.com>
-Cc: Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- William Zhang <william.zhang@broadcom.com>, Anand Gore
- <anand.gore@broadcom.com>, Kursad Oney <kursad.oney@broadcom.com>, Florian
- Fainelli <florian.fainelli@broadcom.com>, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?=
- <rafal@milecki.pl>, Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub Kicinski
- <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Andrew Lunn
- <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>, Russell King
- <linux@armlinux.org.uk>, Jacek Anaszewski <jacek.anaszewski@gmail.com>,
- =?UTF-8?B?RmVybsOhbmRleg==?= Rojas <noltari@gmail.com>, Sven Schwermer
- <sven.schwermer@disruptive-technologies.com>, linux-leds@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org
-Subject: Re: [net-next PATCH v8 5/5] net: phy: at803x: add LED support for
- qca808x
-Message-ID: <20240104124805.1b0ba142@device-28.home>
-In-Reply-To: <20240104110114.2020-6-ansuelsmth@gmail.com>
-References: <20240104110114.2020-1-ansuelsmth@gmail.com>
-	<20240104110114.2020-6-ansuelsmth@gmail.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.39; x86_64-redhat-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D27E3219ED
+	for <devicetree@vger.kernel.org>; Thu,  4 Jan 2024 12:03:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-2cd1919f0acso6002211fa.0
+        for <devicetree@vger.kernel.org>; Thu, 04 Jan 2024 04:03:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1704369785; x=1704974585; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=DFIN0JRPxZeIYz9kF4NaZedcE87VAaRvQmqCR63HznA=;
+        b=xpes5WeJ03jylSvs61Gd4ZQcY3A6dT/3JtBf8h184UkojiC1np8xwvhnkkQIxFePw2
+         292R8Ls6I2MK0wK7Iwc+ms068/Um8sB1a9l9KtNavM1QD8o4a/lm72Qz9O2PWuP3j06t
+         /KJ89YjO5AJHGKApI2rQ9D0Mvyyws3g+DyVxsWZ6K38y3EyWdPE9VeWo+LxdGI3xE3GW
+         xXI2Lu9e+5zCKYPiJY/0j99G+tfh0T7+hgyB0wiPW3QeQvEI3+5JjteZwk2Ez3INeCW+
+         ljgBj9UNHu1C7YgSUuubiOO5r+qwMecXRLFQoXhElDz3QzymVM034mvXpH40r4z3ONNK
+         2cBQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1704369785; x=1704974585;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=DFIN0JRPxZeIYz9kF4NaZedcE87VAaRvQmqCR63HznA=;
+        b=jtro6QySs/2NJ6IZU/gwalmAKI9DkTkLTAwZn1hcjLjLvk5WqxQjImsaD06BHKzCg9
+         JPtDEQJaLRgYZ4AsdWVDxeizfM7icoIR8a0U8jeHLKHj6JNHKWBCyUqUnsV0Fnm708fy
+         vB1VGmR1/YIUgZ6eLR0WJXsVZxlfbSsWKQGc+vvblLAF8wvJCEtio9d1l1j9uCkznLoo
+         kq7+yMb71a4gCdI7gTg73W3TcoABJcBdeAs6L875hwYdmFX/znqTYudeS0w8VK2D0bv5
+         Uweg+64UTts0tDCm30XA7rh9wq2MbZttx5it869t7L98PAZ0ar97xzg3ZhtDVD/dO5Vq
+         x5pQ==
+X-Gm-Message-State: AOJu0YwwZJeZ/3UxNSklA9eAFzUyyducenAWx4sks+lmPX866JF0IcCx
+	IMGUGlxhGRl3uGs1fKPGPZ53bAcaVh3WaA==
+X-Google-Smtp-Source: AGHT+IEfclptb3Y6RoCGpyhaqWbQXBt6VX579x8n32GryTMhIBu+yxRbTfoeKYc+baWP3G64gwLKpw==
+X-Received: by 2002:a2e:9d84:0:b0:2cd:13bf:78d7 with SMTP id c4-20020a2e9d84000000b002cd13bf78d7mr255488ljj.10.1704369784952;
+        Thu, 04 Jan 2024 04:03:04 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.218.27])
+        by smtp.gmail.com with ESMTPSA id wh14-20020a170906fd0e00b00a234907311asm13618345ejb.55.2024.01.04.04.03.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 04 Jan 2024 04:03:04 -0800 (PST)
+Message-ID: <5cdd7549-1b44-4612-b020-84ce5a24e15a@linaro.org>
+Date: Thu, 4 Jan 2024 13:03:02 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 3/3] dt-bindings: mfd: sophgo: add misc MFD for Sophgo
+ CV1800 series SoC.
+Content-Language: en-US
+To: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
+Cc: a.zummo@towertech.it, alexandre.belloni@bootlin.com, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
+ linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, dlan@gentoo.org, inochiama@outlook.com
+References: <20231229090643.116575-1-qiujingbao.dlmu@gmail.com>
+ <20231229090643.116575-4-qiujingbao.dlmu@gmail.com>
+ <942d79d0-08a8-4cda-90de-57daa44d9dd7@linaro.org>
+ <CAJRtX8Rv0Ws=fcgDf2jh6GRz3ba+CkjH4u6JUPZnN61-CqqzZA@mail.gmail.com>
+ <73dc5e85-0442-4b48-8abb-4a323403f3c0@linaro.org>
+ <CAJRtX8QKyGDrCa_L8YY_Bsy3TTJsfw0LOt2T8uLWEfKE9QrQDg@mail.gmail.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <CAJRtX8QKyGDrCa_L8YY_Bsy3TTJsfw0LOt2T8uLWEfKE9QrQDg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-GND-Sasl: maxime.chevallier@bootlin.com
 
-Hello Christian,
-
-On Thu,  4 Jan 2024 12:01:12 +0100
-Christian Marangi <ansuelsmth@gmail.com> wrote:
-
-> Add LED support for QCA8081 PHY.
+On 04/01/2024 12:42, Jingbao Qiu wrote:
+ties: false
+>>>>> +
+>>>>> +examples:
+>>>>> +  - |
+>>>>> +    #include <dt-bindings/interrupt-controller/irq.h>
+>>>>> +
+>>>>> +    misc@5025000 {
+>>>>
+>>>>
+>>>> misc can be anything.
+>>>
+>>> Actually, there are RTC and (Power On Reset/POR) here. I can't find a suitable
+>>> word to describe him. Can you give me some advice?
+>>
+>> Then maybe just rtc? If there is nothing else, why RTC is separate subnode?
+>>
 > 
-> Documentation for this LEDs PHY is very scarce even with NDA access
-> to Documentation for OEMs. Only the blink pattern are documented and are
-> very confusing most of the time. No documentation is present about
-> forcing the LED on/off or to always blink.
-> 
-> Those settings were reversed by poking the regs and trying to find the
-> correct bits to trigger these modes. Some bits mode are not clear and
-> maybe the documentation option are not 100% correct. For the sake of LED
-> support the reversed option are enough to add support for current LED
-> APIs.
+> There is also a por submodule used to provide power off and restart functions.
+> Do you mean to use RTC as the parent node like this.
+> rtc{
+>     //something
+>     por{
+>     }
 
-I have one small comment below :
+por is empty in your binding, so there is little point in having it as
+subnode.
 
-> +static int qca808x_led_blink_set(struct phy_device *phydev, u8 index,
-> +				 unsigned long *delay_on,
-> +				 unsigned long *delay_off)
-> +{
-> +	int ret;
-> +	u16 reg;
-> +
-> +	if (index > 2)
-> +		return -EINVAL;
-> +
-> +	reg = QCA808X_MMD7_LED_FORCE_CTRL(index);
-> +
-> +	/* Set blink to 50% off, 50% on at 4Hz by default */
-> +	ret = phy_modify_mmd(phydev, MDIO_MMD_AN, QCA808X_MMD7_LED_GLOBAL,
-> +			     QCA808X_LED_BLINK_FREQ_MASK | QCA808X_LED_BLINK_DUTY_MASK,
-> +			     QCA808X_LED_BLINK_FREQ_256HZ | QCA808X_LED_BLINK_DUTY_50_50);
+Best regards,
+Krzysztof
 
-The comment (4Hz) and the blink frequency (256Hz) don't match, is that
-right ? because I see there exists a QCA808X_LED_BLINK_FREQ_4HZ
-definition, shouldn't it be used ?
-
-Thanks,
-
-Maxime
 
