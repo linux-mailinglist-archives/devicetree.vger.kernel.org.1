@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-29576-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29577-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5BA8823D5C
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 09:24:13 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF2D4823D66
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 09:26:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A81F51C20F18
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 08:24:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 53B7B1F24A28
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 08:26:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECFC1200DB;
-	Thu,  4 Jan 2024 08:24:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F585200DD;
+	Thu,  4 Jan 2024 08:26:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kG8x5bg4"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fDDiKuPr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
+Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B0872030E
-	for <devicetree@vger.kernel.org>; Thu,  4 Jan 2024 08:24:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B50A20300
+	for <devicetree@vger.kernel.org>; Thu,  4 Jan 2024 08:26:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-50ea9e189ebso211637e87.3
-        for <devicetree@vger.kernel.org>; Thu, 04 Jan 2024 00:24:07 -0800 (PST)
+Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-a27e323fdd3so21795266b.2
+        for <devicetree@vger.kernel.org>; Thu, 04 Jan 2024 00:26:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704356645; x=1704961445; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1704356795; x=1704961595; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=7Gx+hMSZuJwkgLGLbh+ONYmWiatxGCDrgX1XA5VWUQs=;
-        b=kG8x5bg4NROMzCoX3cVQuB52xbx0SzRd0HLeymXiPaEnBFmZvoaOFKWJRlF+Zp14CO
-         5rt6vhZnnsTMUW9V1gP8CC/hGSNZwTrKDPmQyB6ICFjxZWsjS+tBhrsJocV4vzJMA7Jd
-         CPmPm0vqaoV1TQaQovxyfyhPhnXjYUoIoqldJZVF9Q0Prs89zvPAL9wj7/c5uWocOHdz
-         yuuSIc7JSgWVUw8NuJRDIEv4d3xa0b8eOizwX5XMGg63A+Ww8Jrcmoiw6MYIoVtg/n/g
-         k2b5P0PAFvZ1Lul8UmE/EV6NGzhQs57n0/O2QlmTCW2ecgo1H0YAx5mcvbTuCAPDlqGL
-         1sLw==
+        bh=I7c3Xx7+Y9+EASzp/BJfq9wiJbc/5tE3tM263Ku+ZoA=;
+        b=fDDiKuPrKQbBsr8L8tPwx771fSThsH7gFj7sWSGkw3OldrP9xBCbECNK3I9PWs8Yfy
+         VYuYKkpRPX3rhsN3Kx8xN/tMEpCNBB86hFEKSLJtcZwHkv1rdq5S+GJTmLB6rx8AMDbn
+         6HvkxfZAjffRyoug6Z9C24vkzCg8lphEftqFg7/2obC3J4PvV9p+gM+zr3pj9Sl8XCiT
+         XhBO8aKHQ0mVOEmYX88qRFCYV3jYUQDUg7aXesx2oNlSsS3LffmTUSMyEBZdongEufgn
+         8mx1uA9RwNyWTJuFYdQC6WhZgqo7uKIQZl9fDSQSTg26+aY+eJfo/G0/xXnzCHKhiZq6
+         zlKQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704356645; x=1704961445;
+        d=1e100.net; s=20230601; t=1704356795; x=1704961595;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7Gx+hMSZuJwkgLGLbh+ONYmWiatxGCDrgX1XA5VWUQs=;
-        b=TqjwTAlu9BIOEjvMAH0BZD6Q7SmVBXhBtQTCi7Ab6AQbgp2cYL18VKrjWVRTwRNqTG
-         QCFSGk/qIQTzHbicoZwDTqmiubZeiVOzz1NxIwYfA/V0d6kr67HQvPPtgQMcmUtGIYYx
-         aLRY2DcJr5aayQw9j4RgtiWNT5EjK9vctpJ8i3lub4qkNGZW6+XTEojjovgjgT/MdB+T
-         TEEnLr4Ooid9Ni3QtCRgkMB2iNaJDuMoiM7XeVc4tcm7F0YZRsQStFOwy6+VKLTTHW05
-         gR8mQ/HDhza3uJIHKFpdo9oKiSllAtQYFtcLooVtpVqwZcNw/UHFzn6Zd0X2WZmqVWa9
-         UcWw==
-X-Gm-Message-State: AOJu0YxYPOVo2Pq2fD2qcealS7kvfTNVMYNYaTdzWwMWVDJTSAdw1kyU
-	mo3YXCthrOP+WqHdPZm5vaRjF47wzky84w==
-X-Google-Smtp-Source: AGHT+IG7HZZOnV+rOPboWNVjXtIlHkzutc4J5nDYXRLJW4NkppAd5WgvP1R5BDh7ewdrU9NLBOffJw==
-X-Received: by 2002:a05:6512:685:b0:50e:3904:4f0a with SMTP id t5-20020a056512068500b0050e39044f0amr161541lfe.9.1704356645417;
-        Thu, 04 Jan 2024 00:24:05 -0800 (PST)
+        bh=I7c3Xx7+Y9+EASzp/BJfq9wiJbc/5tE3tM263Ku+ZoA=;
+        b=swxsfxT84tczE3z7euPZ0R6RCgDl8vyagx0VurCXvL1XnPJwvhrE8LVOkp66hmb/wP
+         oS0mhgGYBLeyUT8RH/YkRM1GzGttlDVTKf/y/A8htFZcIL51PGG4DwA1Qw56Kg7R20Bl
+         bgEVJ9VohsVa4iLHniV8s7qDUkmvxqu/ZdER/Sm4vlsR0nq2cAFSC2eKJZb+WsFxfeyP
+         lyh0U1dxSv4RqoCjwG42/Sy2vVfcBOPpwFcJ8deLVICstZ6+CJwagBNWtJtnHO4ytOXq
+         +UvAx9w+n4ZNkCWS4ZZfV5xnEAdln82hpS4wwP9LbMfBbZCIcd8ZNDIHyCm4xhF9R9wB
+         c0Vg==
+X-Gm-Message-State: AOJu0YwsR/wjqeKP4pkXFXzdU0PXPBOqhbt2iTHbEtbKX+hWx0M/oSA7
+	B6mn09CRwECt74IzYwVDW4X8MPG7wLVyLQ==
+X-Google-Smtp-Source: AGHT+IEDCr+v7lsS5laflhggy3zR6LDIqluiQbRJqs9MTAQ3mURM3T02xiXX0VEvhzvI1ZtFuQQDig==
+X-Received: by 2002:a17:906:35cf:b0:a28:bb1a:6209 with SMTP id p15-20020a17090635cf00b00a28bb1a6209mr121499ejb.118.1704356794848;
+        Thu, 04 Jan 2024 00:26:34 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id cs5-20020a0564020c4500b00556fe614fe3sm624633edb.21.2024.01.04.00.24.03
+        by smtp.gmail.com with ESMTPSA id ka23-20020a170907921700b00a1e04f24df1sm1396790ejb.223.2024.01.04.00.26.33
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 04 Jan 2024 00:24:04 -0800 (PST)
-Message-ID: <1ef1317a-b721-4ada-a37a-4347fcfa3fc0@linaro.org>
-Date: Thu, 4 Jan 2024 09:24:03 +0100
+        Thu, 04 Jan 2024 00:26:34 -0800 (PST)
+Message-ID: <5acf1ab1-f82d-4d8c-94aa-3234e73bad77@linaro.org>
+Date: Thu, 4 Jan 2024 09:26:32 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,20 +66,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 01/10] dt-bindings: clock: gcc-sc8180x: Add the missing CX
- power domain
+Subject: Re: [PATCH v3 02/10] dt-bindings: iio: pressure:
+ honeywell,mprls0025pa.yaml add pressure-triplet
 Content-Language: en-US
-To: Konrad Dybcio <konrad.dybcio@linaro.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>
-Cc: Marijn Suijten <marijn.suijten@somainline.org>,
- linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+To: Petre Rodan <petre.rodan@subdimension.ro>, linux-iio@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20231230-topic-8180_more_fixes-v1-0-93b5c107ed43@linaro.org>
- <20231230-topic-8180_more_fixes-v1-1-93b5c107ed43@linaro.org>
+Cc: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen
+ <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Andreas Klinger <ak@it-klinger.de>
+References: <20231229092445.30180-1-petre.rodan@subdimension.ro>
+ <20231229092445.30180-3-petre.rodan@subdimension.ro>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -125,18 +124,26 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231230-topic-8180_more_fixes-v1-1-93b5c107ed43@linaro.org>
+In-Reply-To: <20231229092445.30180-3-petre.rodan@subdimension.ro>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 30/12/2023 01:05, Konrad Dybcio wrote:
-> The GCC block is (mostly) powered by the VDD_CX rail. Allow specifying
-> it in power-domains.
+On 29/12/2023 10:24, Petre Rodan wrote:
+> Change order of properties in order for the end user to hopefully ignore
+> pmin-pascal and pmax-pascal which are superseded by pressure-triplet.
 > 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> Add pressure-triplet property which automatically initializes
+> pmin-pascal and pmax-pascal inside the driver.
+> 
+> Rework honeywell,pmXX-pascal requirements based on feedback from
+> Jonathan and Conor.
+> 
+> Co-developed-by: Andreas Klinger <ak@it-klinger.de>
+> Signed-off-by: Andreas Klinger <ak@it-klinger.de>
+> Signed-off-by: Petre Rodan <petre.rodan@subdimension.ro>
 > ---
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
