@@ -1,150 +1,145 @@
-Return-Path: <devicetree+bounces-29626-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29627-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73290823EC0
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 10:36:34 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id DEAFA823EDD
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 10:44:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C2AB7B22161
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 09:36:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7126A1F21D92
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 09:44:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBE81208AA;
-	Thu,  4 Jan 2024 09:36:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02B80208C3;
+	Thu,  4 Jan 2024 09:44:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="NEQBqD9+"
+	dkim=pass (2048-bit key) header.d=shantur-com.20230601.gappssmtp.com header.i=@shantur-com.20230601.gappssmtp.com header.b="LVa0RaPW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
+Received: from mail-vk1-f177.google.com (mail-vk1-f177.google.com [209.85.221.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E425208BB
-	for <devicetree@vger.kernel.org>; Thu,  4 Jan 2024 09:36:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-5570bef7cb8so203729a12.2
-        for <devicetree@vger.kernel.org>; Thu, 04 Jan 2024 01:36:28 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AB59208B9
+	for <devicetree@vger.kernel.org>; Thu,  4 Jan 2024 09:44:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=shantur.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=shantur.com
+Received: by mail-vk1-f177.google.com with SMTP id 71dfb90a1353d-4b745fa9671so93548e0c.0
+        for <devicetree@vger.kernel.org>; Thu, 04 Jan 2024 01:44:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704360987; x=1704965787; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=CcrMBrCLlXesFRlp8vDddecUwnr5NzU+N4NhklXhlWQ=;
-        b=NEQBqD9+Js6J5B0eQtX79cW1jvEccW/pDqYvRxHrkNCcxDbq+imagFR7DJPo8YJBjS
-         ZQalt4ZMI2rG1KPB0eo4d25ly4rf+tuqm6/PTLYs17ZZzrBJ+YjY9bjzePFYcfv9Hpns
-         Jnyd/GCEuP3/gpAdkEszTY0d0Re1zmOCt6mjlH3NlqPX84RVCu6djxAJ0gbjSk/RGRK7
-         j6RGCRCDs3azdJ0nFMpWtD9Rd7ARnTkCcfTVD1rkNEwsUUKzMSZmQnPJtCNOtQpVsHK+
-         6fx8F/GamsCTitf9HwHy7rpmRF1crAPxPlsZS4XU+f6sshFAqNR65JSEl/L/LsHh0I3j
-         Myxg==
+        d=shantur-com.20230601.gappssmtp.com; s=20230601; t=1704361468; x=1704966268; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=KL+BFmkA6DEGueNkcmUtIl3aeHKtthqFqP2SJiyrXjM=;
+        b=LVa0RaPWFpV45RQ2gKR3QduH4d8p7MpQm8jVbtoGJ+t7TsGz2zGgT8+LgGPp9YOLcd
+         Z4pSVbK41qm5oTB8sPvMxvTmIuTJmzDvB2wiQFnLNDUeyCEtfX+w1I7HowoYsjTza26u
+         FWQV6I/U6fx9TIaOFrKYhthTGfzbTzw0DUwwaFizmhbkZhV9G6uP3WNfjRMlo1Vgpj/H
+         E3e6BE7ihvW+67YS+seA7UTJAOzC6nyB9VoOGXeFO6MMrlkkJYdnSQ1SBvb4IsBNzjp2
+         RHJIFlFz8iMS1AcTOi4xZTbS7a60m2BF3JcvIkmnd3OvvDGF9kmhmjihugk/U4CtsvYd
+         wydg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704360987; x=1704965787;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=CcrMBrCLlXesFRlp8vDddecUwnr5NzU+N4NhklXhlWQ=;
-        b=uR2woosDL3Z6SWlx5HRixfXlDgCvb9NZ/YejQjpq4mnwey2paUZjuF3DLsJRK5rq0X
-         5Xra8KCf8drSExqep2+W83eIP3Ff0zp2Qek0M8udS3M0XfFu7o01srWG2cF+ZhcxMFnq
-         KpUnTXgR6NX4cGPZv7TRW179ICest/dm2H8RDlOz8DjFX+1+zceIdOHKSIJXevXSGiqk
-         R38iirPkuO9/uG+JeUkP1Q2WWOBAZdmQ3kEu+D5Av5OgYGDAXoeLw4XAnM5bX79wNoe1
-         kEwfP/vPhl8JcO9pOtONzegaSPJ4dIA8MKAP5IOIYULcx86b679xT974cjk3uv8emtqU
-         QpFw==
-X-Gm-Message-State: AOJu0YwdlKRQSAAtcnBHye/eWluWxyyHhvkf+qQr2ix05A5IkW0A4IYc
-	JYSnrL0fRa1Tj2c3lS7eh8Pkz16mCOGPhA==
-X-Google-Smtp-Source: AGHT+IF4r7lDkkGEKk2sg7zd7CcsT2/Yn+ZXL0VND56CHrW4Ko/8I4MmLqHluOP5Qv9sVoGRzmskuw==
-X-Received: by 2002:a05:6402:3086:b0:553:51ba:7402 with SMTP id de6-20020a056402308600b0055351ba7402mr209066edb.36.1704360986765;
-        Thu, 04 Jan 2024 01:36:26 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id es15-20020a056402380f00b0055267663784sm18432283edb.11.2024.01.04.01.36.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 04 Jan 2024 01:36:26 -0800 (PST)
-Message-ID: <4129627a-f045-4049-b561-d68044766912@linaro.org>
-Date: Thu, 4 Jan 2024 10:36:24 +0100
+        d=1e100.net; s=20230601; t=1704361468; x=1704966268;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=KL+BFmkA6DEGueNkcmUtIl3aeHKtthqFqP2SJiyrXjM=;
+        b=vBdx7DQOGkwdJUi4lOCcMW5++rLMt5xYwH7w6DUehSaRsAmDkB3b0pIM9kfKLWFJDj
+         8RX4RyHCAcy8/U9Mb9QD6SLH2CMWqtNy7eWknOI0XEidZiIf23jKIAYIoe81k0cnXoRR
+         4aDMvWByZGhzdr19Kw4vBbHAs730jn/iyf/QLM7622n2qjPQ9cV1q2soWOiNmjrMFMOd
+         3ECEniGkQ7uHh1FXcKADtr1tL9+cdffr+uPu1SDCmOwmDVxnNOrDxIDKNsb/7JN4yh1O
+         DpJOxINkiC9V7VM+sMCAcjjBVJ328ZYi2PS1YgBqlDzT4BJrq+CvVvyWdaY2ObqTtVfq
+         B+Aw==
+X-Gm-Message-State: AOJu0YypA9WJn1KjCt/+DkfxRK7K+0qHOZO0u0J9CK6jrDxD1dMJ/geV
+	xcT3so7ZEC7tUSAjU/5KtDeTj+ehdv8SEqUchxotmCCWT+wszQ==
+X-Google-Smtp-Source: AGHT+IEmKatiFXU5jrT1Y+qLG5Z2tT15J2/KyXKcN8B36rYHpBL0Z7EQFQCpKx+owfQKfZQF3n7CfUAd88GPattGWZQ=
+X-Received: by 2002:a05:6122:709:b0:4b6:be59:ebc5 with SMTP id
+ 9-20020a056122070900b004b6be59ebc5mr229700vki.30.1704361467947; Thu, 04 Jan
+ 2024 01:44:27 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 1/2] dt-bindings: usb: dwc3: Clean up hs_phy_irq in
- binding
-Content-Language: en-US
-To: Krishna Kurapati <quic_kriskura@quicinc.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Rob Herring <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Wesley Cheng <quic_wcheng@quicinc.com>, Conor Dooley <conor+dt@kernel.org>,
- Johan Hovold <johan@kernel.org>
-Cc: linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- quic_ppratap@quicinc.com, quic_jackp@quicinc.com
-References: <20231227091951.685-1-quic_kriskura@quicinc.com>
- <20231227091951.685-2-quic_kriskura@quicinc.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231227091951.685-2-quic_kriskura@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20231222141616.508073-1-i@shantur.com> <2323515.eGJsNajkDb@diego>
+In-Reply-To: <2323515.eGJsNajkDb@diego>
+From: Shantur Rathore <i@shantur.com>
+Date: Thu, 4 Jan 2024 09:44:17 +0000
+Message-ID: <CABEcMwVwyp0zGvxL0nY3aW1_SFUEh++0bV8qBRZLK1aEpa=NHw@mail.gmail.com>
+Subject: Re: [PATCH v2] dts: rockpro64: Remove usb regulator-always-on
+To: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>
+Cc: linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org, 
+	sigmaris@gmail.com, dsimic@manjaro.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 27/12/2023 10:19, Krishna Kurapati wrote:
-> The high speed related interrupts present on QC targets are as follows:
-> 
-> 1. dp/dm irq's
-> These IRQ's directly reflect changes on the DP/DM pads of the SoC. These
-> are used as wakeup interrupts only on SoCs with non-QUSB2 targets with
-> exception of SDM670/SDM845/SM6350.
-> 
+Hi Heiko,
 
+On Fri, Dec 29, 2023 at 10:08=E2=80=AFPM Heiko St=C3=BCbner <heiko@sntech.d=
+e> wrote:
+>
+> Hi,
+>
+> Am Freitag, 22. Dezember 2023, 15:16:16 CET schrieb Shantur Rathore:
+> > USB port regulators should be controlled by PHYs
+> > so we remove always-on property and let PHYs manage the
+> > regulator.
+> >
+> > phy-supply isn't sconfugred for the TypeC port and now that we are
+>                 ^^ configured ?
+>
+> > removing regulator-always-on, we need to fix the phy-supply
+> > so the PHYs are able to turn power to type-c port.
+> >
+> > Series-version: 2
+> >
+> > Signed-off-by: Shantur Rathore <i@shantur.com>
+> > ---
+> >  arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi | 3 +--
+> >  1 file changed, 1 insertion(+), 2 deletions(-)
+> >
+> > diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi b/arch/=
+arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi
+> > index bca2b50e0a..f7273f7990 100644
+> > --- a/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi
+> > +++ b/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi
+> > @@ -192,7 +192,6 @@ vcc5v0_host: vcc5v0-host-regulator {
+> >               pinctrl-names =3D "default";
+> >               pinctrl-0 =3D <&vcc5v0_host_en>;
+> >               regulator-name =3D "vcc5v0_host";
+> > -             regulator-always-on;
+> >               vin-supply =3D <&vcc5v0_usb>;
+> >       };
+> >
+> > @@ -203,7 +202,6 @@ vcc5v0_typec: vcc5v0-typec-regulator {
+> >               pinctrl-names =3D "default";
+> >               pinctrl-0 =3D <&vcc5v0_typec_en>;
+> >               regulator-name =3D "vcc5v0_typec";
+> > -             regulator-always-on;
+> >               vin-supply =3D <&vcc5v0_usb>;
+> >       };
+> >
+> > @@ -859,6 +857,7 @@ &u2phy0 {
+> >       status =3D "okay";
+> >
+> >       u2phy0_otg: otg-port {
+> > +             phy-supply =3D <&vcc5v0_typec>;
+> >               status =3D "okay";
+> >       };
+>
+> Just to explain for me, what is supplying the "other" OTG port
+>         u2phy1_otg: otg-port {}
+>
+> in u2phy1 ... this one is status okay, but does not have any phy
+> supply?
+>
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In RockPro64 there is only 1 USB-C OTG port and the other port
+is a USB-3.0 port.
+To be honest, I am not 100% sure how this all works, as I understand
+the USB3.0 port is wired to the second TypeC Phy.
 
-Best regards,
-Krzysztof
+Maybe Dragan has more info on this.
 
+Kind regards,
+Shantur
 
