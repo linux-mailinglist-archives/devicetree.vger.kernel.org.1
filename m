@@ -1,73 +1,107 @@
-Return-Path: <devicetree+bounces-29687-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29688-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6997B824203
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 13:50:13 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DD48824230
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 14:02:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 04E78286351
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 12:50:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 127881F23FD6
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 13:02:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 921B221374;
-	Thu,  4 Jan 2024 12:50:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE71D224E1;
+	Thu,  4 Jan 2024 13:02:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WWdBu06O"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="WK1xaleo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4724E219E8;
-	Thu,  4 Jan 2024 12:50:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-1d4c77effe9so419695ad.0;
-        Thu, 04 Jan 2024 04:50:05 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3ABE2224DB
+	for <devicetree@vger.kernel.org>; Thu,  4 Jan 2024 13:02:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
+Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-3366ddd1eddso425532f8f.0
+        for <devicetree@vger.kernel.org>; Thu, 04 Jan 2024 05:02:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1704372605; x=1704977405; darn=vger.kernel.org;
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1704373322; x=1704978122; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=/9MytnKXy6VUbepQQQq3LMvOhLoxpcNzLzoYfwIfbJ4=;
-        b=WWdBu06O50xuXUq4uocvFL0xDN7Wz8BefazDY1aYDZBcu5aRijz+xBL2qi469aD3K1
-         XRxYELzIYbW1ZXY4hn/IV6Ru4dpWSIUF6nUec2bea/44S8m8dpPqNt/J+slkhbaxZN5v
-         VSfMHCChtp8oKm9XFEs9T6HzQgxLD4/+Kp8I6141HYe6w/KrdCrtyIguj509fEye4vto
-         mHUYqSu/720GSh1aWJCB/QBwYGfT8i7a0G8v9Nr0YO6473JAjYaJFK5lFQ6wuC4q54rP
-         9e5TGrgR2f6UpOxwcdChstd7ixG8I3Vf4oxr3xlnXPmSEHd1/wVumMHm8vmgFTFyBgb2
-         nkfw==
+        bh=opVDF4AOHQah3OrT16oGMK2ccRRJHeIMJXkpc+aZwFs=;
+        b=WK1xaleoMk7IVXPllfXEUF4Xo7mTNqo5t2Eu1pESyW/Y+enVzlgw2jNS6NG0ix03uW
+         R3eEPFGjgzWgVBUx6oChjpFfyhCOFLNySVeIg9x/1AyeyCOnHphPJBYjCU11dCsbNd67
+         jD4Hsp6G8K54zNh+9zAbbMQJODkn84rl4B92p9Efk6QQ1cboEVYDHPFVdBH2wLBTzHyc
+         o33J/zut+6c66m+g+0Qjkogk7AG+SVphmFVCUlA04TUnXWHsucHF8yBrWPh9MbphLmYk
+         Xjo7Y2Xsk+yhKozFeEUyIquoRJwCHZylOWw21UfOv/pobf7YH8XTUf/8rvEGFVGuVWCy
+         ABaA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704372605; x=1704977405;
+        d=1e100.net; s=20230601; t=1704373322; x=1704978122;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=/9MytnKXy6VUbepQQQq3LMvOhLoxpcNzLzoYfwIfbJ4=;
-        b=gSH1K33qIgTh29/ZhlF8hggsVWCVWoxbOhNdJmyNv5qPZqWtuXp98T6DGtW12+GolV
-         3BpL86xUKfVMCeAqINjIqjp23oT3kBXxPz3WRk4sFd0Nt/PaiTm5Bn2ns8ZMGWd7ZULo
-         8F+MSzZIOHk/zkVlEurOnJl0DlR3Ewqki7EcwdQN5VesGuObiHI8KE+DwuVAqw4YKyLC
-         QXbZYraCTYslIVaPqb4NrougP7eLQ7qkfTGZ/ZyiGc2DrNPyA0i7z04ZoiiNDKaLZJdF
-         BCZfYcKfStmUUvcJ7GRt4mRVY047IMMbDWtl4HtRBPwnOmZJIBgFgLPJQs27Qxyckdbc
-         9NGg==
-X-Gm-Message-State: AOJu0Yy8ekJ8RIE3q4cxABlaeSt81RxvAFTqxw8emM1AkEoU7FJ0TMq0
-	BYCOuxEs8mQ9DP9sM4one3Y=
-X-Google-Smtp-Source: AGHT+IEg5OFJG0S7RHO+vGgSKUxk8zLrgU3NE2gefe4MDNbH+XxqlynXdqAOantob0MB5crda/uprA==
-X-Received: by 2002:a05:6a21:3384:b0:196:1899:d756 with SMTP id yy4-20020a056a21338400b001961899d756mr1010755pzb.2.1704372605233;
-        Thu, 04 Jan 2024 04:50:05 -0800 (PST)
-Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:5a8e:132d:4dac:265a])
-        by smtp.gmail.com with ESMTPSA id v24-20020a17090331d800b001d4cac52e73sm4490082ple.131.2024.01.04.04.50.02
+        bh=opVDF4AOHQah3OrT16oGMK2ccRRJHeIMJXkpc+aZwFs=;
+        b=RBLdph8edCvLNsuLgZfDKH7g7W/V2NlZkZV5BjfJwNxLEx0Tz/1hH/PuJM1HvfmJ0o
+         ffyzmfiP5r8bKl72w2biB+3dSLk8vWp0VzT3UlO5+RFdzQnoCqN/QdUeOswI4BwKuDGB
+         BnqQfKzXEgnY8CMEDtL00TsACPX9LXDErQwRtuqnHMl593n5cXlYnhEfKJ8S1MQKmcLq
+         5Z+nERMSeubbGTKlrXBHTVjEiHouUNPcG8gRSHgLqLSra7lZhgrrG/5gBsl8Z9qRVGV5
+         OrXGKIYUIQGTCS6sj11z1ZTFspv/CyvyM+Ib6SLIeCBcX2ir+rOurxO6BVi5rT5DGq5F
+         z70Q==
+X-Gm-Message-State: AOJu0YzJ8pHkTV+NeGAJco6HE8yoPa6RGdVtioKYk6PkRPJGCZBa//iB
+	HeLqmFhjw9kfmX0OifY9ug37SlM+/Zd+kw==
+X-Google-Smtp-Source: AGHT+IFsoUaWFe3hNCg6/b09WcRv7wsIMJMlEiNm/lu4Y1OTN1yICGktvfbzMdrteuCPKZTBntbM6g==
+X-Received: by 2002:adf:cc86:0:b0:337:157:2d3e with SMTP id p6-20020adfcc86000000b0033701572d3emr161961wrj.222.1704373322145;
+        Thu, 04 Jan 2024 05:02:02 -0800 (PST)
+Received: from brgl-uxlite.home ([2a01:cb1d:334:ac00:5b69:3768:8459:8fee])
+        by smtp.gmail.com with ESMTPSA id w5-20020a5d5445000000b0033660f75d08sm32887387wrv.116.2024.01.04.05.02.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 04 Jan 2024 04:50:04 -0800 (PST)
-From: Fabio Estevam <festevam@gmail.com>
-To: daniel.lezcano@linaro.org
-Cc: robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	linux-pm@vger.kernel.org,
+        Thu, 04 Jan 2024 05:02:01 -0800 (PST)
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+To: Kalle Valo <kvalo@kernel.org>,
+	"David S . Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Chris Morgan <macromorgan@hotmail.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	=?UTF-8?q?N=C3=ADcolas=20F=20=2E=20R=20=2E=20A=20=2E=20Prado?= <nfraprado@collabora.com>,
+	Marek Szyprowski <m.szyprowski@samsung.com>,
+	Peng Fan <peng.fan@nxp.com>,
+	Robert Richter <rrichter@amd.com>,
+	Dan Williams <dan.j.williams@intel.com>,
+	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+	Terry Bowman <terry.bowman@amd.com>,
+	Kuppuswamy Sathyanarayanan <sathyanarayanan.kuppuswamy@linux.intel.com>,
+	=?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+	Huacai Chen <chenhuacai@kernel.org>,
+	Alex Elder <elder@linaro.org>,
+	Srini Kandagatla <srinivas.kandagatla@linaro.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: linux-wireless@vger.kernel.org,
+	netdev@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	Fabio Estevam <festevam@denx.de>
-Subject: [PATCH v4] dt-bindings: thermal: qoriq-thermal: Adjust fsl,tmu-range min/maxItems
-Date: Thu,  4 Jan 2024 09:49:52 -0300
-Message-Id: <20240104124952.1975160-1-festevam@gmail.com>
-X-Mailer: git-send-email 2.34.1
+	linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-pci@vger.kernel.org,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Subject: [RFC 0/9] PCI: introduce the concept of power sequencing of PCIe devices
+Date: Thu,  4 Jan 2024 14:01:14 +0100
+Message-Id: <20240104130123.37115-1-brgl@bgdev.pl>
+X-Mailer: git-send-email 2.40.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,47 +110,64 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-From: Fabio Estevam <festevam@denx.de>
+From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
-The number of fsl,tmu-range entries vary among the several NXP SoCs.
+During last year's Linux Plumbers we had several discussions centered
+around the need to power-on PCI devices before they can be detected on
+the bus.
 
-- lx2160a has two fsl,tmu-range entries  (fsl,qoriq-tmu compatible)
-- imx8mq has four fsl,tmu-range entries. (fsl,imx8mq-tmu compatible)
-- imx93 has seven fsl,tmu-range entries. (fsl,qoriq-tmu compatible)
+The consensus during the conference was that we need to introduce a
+class of "PCI slot drivers" that would handle the power-sequencing.
 
-Change minItems and maxItems accordingly.
+After some additional brain-storming with Manivannan and the realization
+that the DT maintainers won't like adding any "fake" nodes not
+representing actual devices, we decided to reuse the existing
+infrastructure provided by the PCIe port drivers.
 
-This fixes the following schema warning:
+The general idea is to instantiate platform devices for child nodes of
+the PCIe port DT node. For those nodes for which a power-sequencing
+driver exists, we bind it and let it probe. The driver then triggers a
+rescan of the PCI bus with the aim of detecting the now powered-on
+device. The device will consume the same DT node as the platform,
+power-sequencing device. We use device links to make the latter become
+the parent of the former.
 
-imx93-11x11-evk.dtb: tmu@44482000: fsl,tmu-range: 'oneOf' conditional failed, one must be fixed:
-        [2147483866, 2147483881, 2147483906, 2147483946, 2147484006, 2147484071, 2147484086] is too long
+The main advantage of this approach is not modifying the existing DT in
+any way and especially not adding any "fake" platform devices.
 
-Signed-off-by: Fabio Estevam <festevam@denx.de>
----
-Changes since v3:
-- Rebased against next-20240104.
-- Do as suggested by Rob:
-"So short term, I'd just leave things such that they don't warn or just
-drop the conditional."
+Bartosz Golaszewski (9):
+  arm64: dts: qcom: sm8250: describe the PCIe port
+  arm64: dts: qcom: qrb5165-rb5: describe the WLAN module of QCA6390
+  PCI/portdrv: create platform devices for child OF nodes
+  PCI: hold the rescan mutex when scanning for the first time
+  PCI/pwrseq: add pwrseq core code
+  dt-bindings: vendor-prefixes: add a PCI prefix for Qualcomm Atheros
+  dt-bindings: wireless: ath11k: describe QCA6390
+  PCI/pwrseq: add a pwrseq driver for QCA6390
+  arm64: defconfig: enable the PCIe power sequencing for QCA6390
 
- Documentation/devicetree/bindings/thermal/qoriq-thermal.yaml | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ .../net/wireless/qcom,ath11k-pci.yaml         |  14 ++
+ .../devicetree/bindings/vendor-prefixes.yaml  |   1 +
+ arch/arm64/boot/dts/qcom/qrb5165-rb5.dts      |  24 +++
+ arch/arm64/boot/dts/qcom/sm8250.dtsi          |  10 +
+ arch/arm64/configs/defconfig                  |   2 +
+ drivers/pci/pcie/Kconfig                      |   2 +
+ drivers/pci/pcie/Makefile                     |   2 +
+ drivers/pci/pcie/portdrv.c                    |   3 +-
+ drivers/pci/pcie/pwrseq/Kconfig               |  19 ++
+ drivers/pci/pcie/pwrseq/Makefile              |   4 +
+ drivers/pci/pcie/pwrseq/pcie-pwrseq-qca6390.c | 197 ++++++++++++++++++
+ drivers/pci/pcie/pwrseq/pwrseq.c              |  83 ++++++++
+ drivers/pci/probe.c                           |   2 +
+ include/linux/pcie-pwrseq.h                   |  24 +++
+ 14 files changed, 386 insertions(+), 1 deletion(-)
+ create mode 100644 drivers/pci/pcie/pwrseq/Kconfig
+ create mode 100644 drivers/pci/pcie/pwrseq/Makefile
+ create mode 100644 drivers/pci/pcie/pwrseq/pcie-pwrseq-qca6390.c
+ create mode 100644 drivers/pci/pcie/pwrseq/pwrseq.c
+ create mode 100644 include/linux/pcie-pwrseq.h
 
-diff --git a/Documentation/devicetree/bindings/thermal/qoriq-thermal.yaml b/Documentation/devicetree/bindings/thermal/qoriq-thermal.yaml
-index 145744027234..d155d6799da6 100644
---- a/Documentation/devicetree/bindings/thermal/qoriq-thermal.yaml
-+++ b/Documentation/devicetree/bindings/thermal/qoriq-thermal.yaml
-@@ -33,7 +33,8 @@ properties:
-     description: |
-       The values to be programmed into TTRnCR, as specified by the SoC
-       reference manual. The first cell is TTR0CR, the second is TTR1CR, etc.
--    maxItems: 4
-+    minItems: 2
-+    maxItems: 7
- 
-   fsl,tmu-calibration:
-     $ref: /schemas/types.yaml#/definitions/uint32-matrix
 -- 
-2.34.1
+2.40.1
 
 
