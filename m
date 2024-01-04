@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-29782-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29783-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94DA58248BA
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 20:12:12 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 68A148248C9
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 20:13:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BAAE01C20860
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 19:12:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E662F1F2315A
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 19:13:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5343E28E38;
-	Thu,  4 Jan 2024 19:12:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C00D92C1A1;
+	Thu,  4 Jan 2024 19:13:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="NeUNcOd4"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wlmZyAN4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3D4328E06
-	for <devicetree@vger.kernel.org>; Thu,  4 Jan 2024 19:12:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 291A62C18C
+	for <devicetree@vger.kernel.org>; Thu,  4 Jan 2024 19:13:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-40d76923ec4so7494035e9.3
-        for <devicetree@vger.kernel.org>; Thu, 04 Jan 2024 11:12:06 -0800 (PST)
+Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-55559e26ccfso1075173a12.3
+        for <devicetree@vger.kernel.org>; Thu, 04 Jan 2024 11:13:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704395525; x=1705000325; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1704395605; x=1705000405; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=7pk9cuwFEjhzJcvplMp4lPOOwwRFJBsF7ZNNKBXT5Uw=;
-        b=NeUNcOd4lX3tPZp88EUtar9+knZIYwRAqOdIwkarRpxuSPKOJcEknbwRt0gATq+Jig
-         d0/SjRj0ORS3U8w0vzInXcruQvSTHyIKPsMYh4dQ7D1/BhhKy0AsxJEzFAo3KbmQ0n8G
-         8qKOvaytEdOQxpahwHSNkhiRz+VkvumepJT+ZG9k+bz2S4ZtXyvEkwUv0LMi0n3Jb4uj
-         A4u5Nvz5KPZC4uDfkJ/mH+d+3WmvBGqyE/R2ibuVIbo0Btq6HzZ7s7wLW2slb7biS5CQ
-         H7CR4n4iZ1zT9EarBWTwqigwNT1ZnciWegopOCp4eJGRn5rUsbfHjSzQ34dMPReqB2B8
-         SDZg==
+        bh=w1jHdRbaPGpj1yWdyU57CtY1OuGSl5HjxG3Iq2FzE5U=;
+        b=wlmZyAN49SklqaLacqGG/aidl2rPDwLdSzsCCEzAEgrjDZmNNQtfk4X6j4p4ow6O4V
+         BiLBl/WKsaGdpBIDVv7ReAzq6SyeyDyyi8UViS6EEKrNudy5E4NJ8KImJf/ASOzttse2
+         VFs2fowCmXeBttdSLiWThkChW9zkC65AyF2h8XpJ/mWvBVmor/3/4h9UafjCbCR4K5xK
+         KSh1L9fjNDpW1igJtuHVMqLxUX9TNMusHnyXzRBueQbA9SWdow7kJusW0RWbO+m8UlKW
+         xk1z3PPFThoXIStHjMeO1mgOo9xDGTMldGj3bw0Jqm+/iXTrtPv2qk7DJrW+g8BdjXrd
+         GJwg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704395525; x=1705000325;
+        d=1e100.net; s=20230601; t=1704395605; x=1705000405;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7pk9cuwFEjhzJcvplMp4lPOOwwRFJBsF7ZNNKBXT5Uw=;
-        b=tRGfq5uKI7J2R2vpoD7PjDTT932pVlDWdUh5hyfpB3DgJEL9vzhIm6uzRe+4mYp9q5
-         kJlVTmMmWgasRSqYOBDoY3p8kU99HWMIXO1MXr+Fi2Ka7Wr1yQpekG5g+vu497aeciOE
-         cgc3HPvNbMx5mqAz0XvouXVcZuXQiGR/24dMxSIfxcGPcVRkBlyd6iQIXbBNgpZxJi6c
-         WzzU+9M6fz98ag5HRca+lvtbVUls0bo6GVQS+rrQu42saeKCmFb6zMy5Myi4o+yIgEXc
-         72M19tnd88kfOLSL2j8rHYaL0PjbbLO/GDo7/cLE7hMhksWtneTCuXKoSshVQmV3M9Ao
-         ewEw==
-X-Gm-Message-State: AOJu0Yx4i/r3k0ec2qbSF5k6B+/xd3YB3w1Rkvcd/o9H/4R2lqUtdlrn
-	4pRwkCqxctEwOfxd1UeR5V0pETiUY7qinQ==
-X-Google-Smtp-Source: AGHT+IG87m8RmeKZcR5GXD2cz2yMlvcOizM2Ei/cVDZuD6IZT700mhyVop3wNc9BaJS+ypo5vdA58A==
-X-Received: by 2002:a05:600c:8505:b0:40d:62d5:83f2 with SMTP id gw5-20020a05600c850500b0040d62d583f2mr643369wmb.134.1704395524539;
-        Thu, 04 Jan 2024 11:12:04 -0800 (PST)
+        bh=w1jHdRbaPGpj1yWdyU57CtY1OuGSl5HjxG3Iq2FzE5U=;
+        b=RC7SRaGdDju9HIFNwwSwF05a5zMncNgVr9MEctWJ5erB7irOUnMWsITz0Vn0MPOJx3
+         AQSV+vzoXog/7IXdbTPOpXw+nIqd1psA+1B5K49DV5efFyPjH2R7isZ/Syj8Lugka18A
+         6YFbpU5twH4h8M0Yzew3ofS5hw6ioYJFnxWGv5aQGx9wUP3/BPr3xVTmOfY0hx5z6e28
+         ykaUnzkWiv1U2PTICW9e4cxka9o4WYLJmmZLyegPIUbPnuCbvzNBZFCLBymgvsp5hVpB
+         BHAhd4QOhF0EtESm09xF2tlzq9xnJdS3M+1cFAxyYaSVY5jBsJZM0E6hVdakoL0YwSPG
+         5qOQ==
+X-Gm-Message-State: AOJu0YxnqGxmzoB8TUqK0mrdYuaVeN3r4Asza3I+7QbAqAon4qfpa5qX
+	KIUwEbnPOrUJgY1KcnFRQoh8j6Dh4VXUIQ==
+X-Google-Smtp-Source: AGHT+IF3gA/z2MxTiWhuND4fB3e+UpH8GeyHFQBka37rK4T8DzoFwTLLPQl4p5SA0zuFPqgPcIGFog==
+X-Received: by 2002:a17:906:4e97:b0:a28:b34c:ccc1 with SMTP id v23-20020a1709064e9700b00a28b34cccc1mr445644eju.224.1704395605442;
+        Thu, 04 Jan 2024 11:13:25 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id fb20-20020a1709073a1400b00a26a061ae1esm14054583ejc.97.2024.01.04.11.12.03
+        by smtp.gmail.com with ESMTPSA id fb20-20020a1709073a1400b00a26a061ae1esm14054583ejc.97.2024.01.04.11.13.24
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 04 Jan 2024 11:12:04 -0800 (PST)
-Message-ID: <1f6f19f6-f9ca-4500-9bac-05033d6f6682@linaro.org>
-Date: Thu, 4 Jan 2024 20:12:02 +0100
+        Thu, 04 Jan 2024 11:13:25 -0800 (PST)
+Message-ID: <35693c2f-6a6e-4161-bd1d-f63d814d7636@linaro.org>
+Date: Thu, 4 Jan 2024 20:13:23 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,8 +66,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 01/10] dt-bindings: marvell: a38x: convert soc
- compatibles to yaml
+Subject: Re: [PATCH v5 02/10] dt-bindings: marvell: a38x: add solidrun armada
+ 388 clearfog boards
 Content-Language: en-US
 To: Josua Mayer <josua@solid-run.com>, Andrew Lunn <andrew@lunn.ch>,
  Gregory Clement <gregory.clement@bootlin.com>,
@@ -78,7 +78,7 @@ To: Josua Mayer <josua@solid-run.com>, Andrew Lunn <andrew@lunn.ch>,
 Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org
 References: <20240104-support-clearfog-gtr-l8-sfp-v5-0-52be60fc54e3@solid-run.com>
- <20240104-support-clearfog-gtr-l8-sfp-v5-1-52be60fc54e3@solid-run.com>
+ <20240104-support-clearfog-gtr-l8-sfp-v5-2-52be60fc54e3@solid-run.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -124,25 +124,17 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240104-support-clearfog-gtr-l8-sfp-v5-1-52be60fc54e3@solid-run.com>
+In-Reply-To: <20240104-support-clearfog-gtr-l8-sfp-v5-2-52be60fc54e3@solid-run.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 04/01/2024 18:48, Josua Mayer wrote:
-> Convert the existing txt binding for armada-38x socs to DT schema
-> format.
-> 
-> The current bindings documentation for armada-38x are only listing SoCs,
-> but no actual boards. Only actual boards should be listed.
-> 
-> Replace the dropped entries with some actual baords that already have
-> valid compatibles in-tree:
-> - armada 380 netgear switch
-> - armada 385 marvell development boards
-> - armada 388 development board
+> Add DT compatible for SolidRun Armada-388 based Clearfog Base and Pro
+> boards, which are already in place in-tree.
 > 
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
 
 Best regards,
 Krzysztof
