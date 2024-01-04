@@ -1,167 +1,135 @@
-Return-Path: <devicetree+bounces-29717-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29718-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFC3A82431F
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 14:52:13 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id BBA84824329
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 14:57:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 982EAB24FC4
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 13:52:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CCA461C20C2C
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 13:57:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49C0D2232E;
-	Thu,  4 Jan 2024 13:51:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FC802230B;
+	Thu,  4 Jan 2024 13:57:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="vPkrYsx+"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="FgLCAT7+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D042224D1;
-	Thu,  4 Jan 2024 13:51:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 404AXOvq022627;
-	Thu, 4 Jan 2024 14:51:11 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	selector1; bh=au43nqK7nHZ8BJAhVEW3trO9826zxXlgdNutC4+DT1Y=; b=vP
-	krYsx+7jfA0/FQ9Acpp/VHNZUmXIRAhIVuHq3tDml8QxhOrG8l9OIBMYLgB2PJdE
-	4fzmztnfFVG17nwDJD0vmW7tm+LiegstY1zbKLffvs/v3b1gI952+7KM7fk2+JIa
-	MMp/PbftaUayc1uYuVwFxWlXGbTV9xvUFyluEmzLy5l13FOG2o6UAlqi9ynqneOv
-	J0UbYJtSrLp6GHBuQHCPcYsHq21/TGiGIVEfzIuav9t/cS/pnw83ngikvj2J/smZ
-	6yJA2NkH5UKLQuAMcRzR0DFAvQ4Wp0U2h5kTKfpQEoOBatPAP2T6xY32fmEo945+
-	vQvZDBNcgAuLCO829vDQ==
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3vdjtu2nrr-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 04 Jan 2024 14:51:11 +0100 (CET)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 1E4DB10002A;
-	Thu,  4 Jan 2024 14:51:10 +0100 (CET)
-Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 0D61322FA44;
-	Thu,  4 Jan 2024 14:51:10 +0100 (CET)
-Received: from [10.252.5.254] (10.252.5.254) by SHFDAG1NODE2.st.com
- (10.75.129.70) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Thu, 4 Jan
- 2024 14:51:08 +0100
-Message-ID: <29b3092f-4d4d-4b6d-9667-aa04eddd2956@foss.st.com>
-Date: Thu, 4 Jan 2024 14:51:08 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D37F1224C1;
+	Thu,  4 Jan 2024 13:57:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=lwfKVVx7X4nlA2hPQXF4+V6T0p8TvsOTKoeOLz3fkv4=; b=FgLCAT7+PCX2erOAbptE1TsR3G
+	fBMJFNMH/TOX7AXKwZu3cpsOohCW7t3zRlStq+NNVkokdz6+V9OAaGOXE+QNOb7wklGKyQ77qgLGN
+	NwDsk4QIUIb0/xJGN3Oa9AtFJ4CITRID5ENOiLZ6D+8AclTwYT7VNfYLHFhrXazmUXT8=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1rLODb-004Lvc-37; Thu, 04 Jan 2024 14:57:07 +0100
+Date: Thu, 4 Jan 2024 14:57:07 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Jie Luo <quic_luoj@quicinc.com>
+Cc: Christian Marangi <ansuelsmth@gmail.com>,
+	"Russell King (Oracle)" <linux@armlinux.org.uk>,
+	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+	pabeni@redhat.com, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	hkallweit1@gmail.com, corbet@lwn.net, p.zabel@pengutronix.de,
+	f.fainelli@gmail.com, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org
+Subject: Re: [PATCH v8 14/14] dt-bindings: net: ar803x: add qca8084 PHY
+ properties
+Message-ID: <50252a5a-e4fb-42d3-b838-9ef04faf4c5c@lunn.ch>
+References: <7c05b08a-bb6d-4fa1-8cee-c1051badc9d9@lunn.ch>
+ <ZX2rU5OFcZFyBmGl@shell.armlinux.org.uk>
+ <6abe5d6f-9d00-445f-8c81-9c89b9da3e0a@quicinc.com>
+ <ZX3LqN8DSdKXqsYc@shell.armlinux.org.uk>
+ <1bddd434-024c-45ff-9866-92951a3f555f@quicinc.com>
+ <ZZPeHJJU96y1kdlZ@shell.armlinux.org.uk>
+ <6593e0a3.050a0220.5c543.8e12@mx.google.com>
+ <cee9de2c-bfa4-4ca9-9001-725e2041bc25@quicinc.com>
+ <85590a5b-9d5a-40cb-8a0e-a3a3a1c3720a@lunn.ch>
+ <c5263daa-b5f4-4b9c-a216-73d68493a802@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/4] drm/stm: dsi: expose DSI PHY internal clock
-To: Simon Horman <horms@kernel.org>
-CC: Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue
-	<alexandre.torgue@foss.st.com>,
-        Yannick Fertre <yannick.fertre@foss.st.com>,
-        Philippe Cornu <philippe.cornu@foss.st.com>,
-        Maarten Lankhorst
-	<maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-        Richard Cochran <richardcochran@gmail.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <dri-devel@lists.freedesktop.org>, <netdev@vger.kernel.org>
-References: <20231204101113.276368-1-raphael.gallais-pou@foss.st.com>
- <20231204101113.276368-4-raphael.gallais-pou@foss.st.com>
- <20231208165855.GA8459@kernel.org>
-Content-Language: en-US
-From: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
-In-Reply-To: <20231208165855.GA8459@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE2.st.com
- (10.75.129.70)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-01-04_07,2024-01-03_01,2023-05-22_02
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <c5263daa-b5f4-4b9c-a216-73d68493a802@quicinc.com>
 
+> 1. For IPQ SoC series, there are only ipq4019, ipq5018, ipq6018,
+> ipq8074 documented in the current dt-bindings doc qcom,ipq4019-mdio.yaml
+> and ipq9574, ipq5332 that are being added by the MDIO patch, and one
+> more ipq8064 whose MDIO driver is mdio-ipq8064.c, on more others.
+> 
+> 2. For qca8084(pure PHY chip), which is the quad-phy chip, which is just
+>    like qca8081 PHY(single port PHY), each port can be linked to maximum
+>    speed 2.5G.
+> 
+>    For qca8386(switch chip), which includes the same PHY CHIP as qca8084
+>    (4 physical ports and two CPU ports), qca8386 switch can work with
+>    the current qca8k.c DSA driver with the supplement patches.
 
-On 12/8/23 17:58, Simon Horman wrote:
-> On Mon, Dec 04, 2023 at 11:11:12AM +0100, Raphael Gallais-Pou wrote:
->
-> ...
->
->> @@ -514,18 +675,40 @@ static int dw_mipi_dsi_stm_probe(struct platform_device *pdev)
->>  		dsi->lane_max_kbps *= 2;
->>  	}
->>  
->> -	dw_mipi_dsi_stm_plat_data.base = dsi->base;
->> -	dw_mipi_dsi_stm_plat_data.priv_data = dsi;
->> +	dsi->pdata = *pdata;
->> +	dsi->pdata.base = dsi->base;
->> +	dsi->pdata.priv_data = dsi;
->> +
->> +	dsi->pdata.max_data_lanes = 2;
->> +	dsi->pdata.phy_ops = &dw_mipi_dsi_stm_phy_ops;
->>  
->>  	platform_set_drvdata(pdev, dsi);
->>  
->> -	dsi->dsi = dw_mipi_dsi_probe(pdev, &dw_mipi_dsi_stm_plat_data);
->> +	dsi->dsi = dw_mipi_dsi_probe(pdev, &dsi->pdata);
->>  	if (IS_ERR(dsi->dsi)) {
->>  		ret = PTR_ERR(dsi->dsi);
->>  		dev_err_probe(dev, ret, "Failed to initialize mipi dsi host\n");
->>  		goto err_dsi_probe;
->>  	}
->>  
->> +	/*
->> +	 * We need to wait for the generic bridge to probe before enabling and
->> +	 * register the internal pixel clock.
->> +	 */
->> +	ret = clk_prepare_enable(dsi->pclk);
->> +	if (ret) {
->> +		DRM_ERROR("%s: Failed to enable peripheral clk\n", __func__);
->> +		goto err_dsi_probe;
->> +	}
->> +
->> +	ret = dw_mipi_dsi_clk_register(dsi, dev);
->> +	if (ret) {
->> +		DRM_ERROR("Failed to register DSI pixel clock: %d\n", ret);
-> Hi Raphael,
+Is the qca8386 purely a switch plus integrated PHYs? There is no CPU
+on it? What is the management path? MDIO?
 
-Hi Simon,
+> 
+>    Both qca8084 and qca8386 includes same network clock controller(let's
+>    call it NSSCC, since this clock controller is located in the
+>    Ethernet chip qca8084 and qca8386), they have the same clock initial
+>    configuration sequence to initialize the Ethernet chip.
 
-You are right,  dsi->clk needs to be disabled in case the clock register fails
-before exiting the probe.
+You said For "qca8084(pure PHY chip)". Here you just called it an
+Ethernet chip? To me, and Ethernet chip is a MAC, Intel e1000e etc.
+Do you now see how your explanations are confusing. Is it s pure PHY,
+or is it an Ethernet chip?
 
-I've sent a v3, which normally fixes it.
+O.K. Since we are getting nowhere at the moment, lets take just the
+pure PHY chip, and ignore the rest for the moment.
 
+For any pure PHY, there is generally one clock input, which might be a
+crystal, or an actual clock. If you look at other DT bindings for
+PHYs, it is only listed if the clock is expected to come from
+somewhere else, like a SoC, and it needs to be turned on before the
+PHY will work. And generally, a pure PHY has one defined clock
+frequency input. If that is true, there is no need to specify the
+clock. If multiple clock input frequencies are supported, then you do
+need to specify the clock, so its possible to work out what frequency
+it is using. How that clock input is then used internally in the PHY
+is not described in DT, but the driver can set any dividers, PLLs
+needed etc.
 
-Regards,
+So, for the pure PHY chip, what is the pinout? Is there one clock
+input? Or 4 clock inputs, one per PHY in the quad package? Typically,
+where does this/these clocks come from? Is the frequency fixed by the
+design, or are a number of input frequencies supported?
 
-Raphaël
+>   The Ethernet chip qca8084 and qca8386 are only connected with IPQ SoC,
+>   Currently qca8084 is connected with IPQ SoC by 10G-QXGMII mode.
+>   the 4 PHYs of qca8386 are connected with the internal MAC of qca8386
+>   by GMII, the maximum speed is also 2.5G.
+>   The port4 of qca8084 or qca8386 is optionally be able to connected
+>   with IPQ SoC by sgmii.
 
->
-> Does clk_disable_unprepare(dsi->pclk) need to be added to this unwind
-> chain?
->
-> Flagged by Smatch.
->
->> +		goto err_dsi_probe;
->> +	}
->> +
->> +	clk_disable_unprepare(dsi->pclk);
->> +
->>  	return 0;
->>  
->>  err_dsi_probe:
-> ...
+To some extent, this does not matter. The DT binding and the driver
+should not care what the pure PHY is connected to. It has standardised
+ports, so in theory it could be connected to any vendors MAC.
+
+Please be very careful with your wording. Because computers
+instructions should be unambiguous, it does what it is told, we also
+expect computer scientists to be unambiguous. Wording is very
+important.
+
+       Andrew
 
