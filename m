@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-29785-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29786-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B6948248D2
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 20:15:01 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 400E38248E4
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 20:19:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 63FBD1C22590
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 19:15:00 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 64E2AB20EF5
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 19:19:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8B382C197;
-	Thu,  4 Jan 2024 19:14:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A674B2C19A;
+	Thu,  4 Jan 2024 19:19:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="CBzjw5W/"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="qTG9Q+6t"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15FFF2C18C
-	for <devicetree@vger.kernel.org>; Thu,  4 Jan 2024 19:14:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 112FC2C194
+	for <devicetree@vger.kernel.org>; Thu,  4 Jan 2024 19:19:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a27733ae1dfso104591366b.3
-        for <devicetree@vger.kernel.org>; Thu, 04 Jan 2024 11:14:55 -0800 (PST)
+Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-a28f66dc7ffso91056666b.0
+        for <devicetree@vger.kernel.org>; Thu, 04 Jan 2024 11:19:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704395694; x=1705000494; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1704395961; x=1705000761; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=PH/gjT7PT5ZNNJFbBHa48BRb8fUvxYHdUoHeahN8ucY=;
-        b=CBzjw5W/C+ACEfReSGUwJKoa6KvvzwnaCoPfPfpRYm7NmNmxoI1leOXc8oDWe4orim
-         RcyYH7hiKScXRJWM5YALTM2bfMr1C2rR7KLe4PK57TwQc0IH2fA8I/HYONiaI2zQF4LL
-         7P/HUtkNWpTFAmM7BB9XYzB3DBvYY/JKYIT+15pQPUXymO0bONHt91Xx5noeLz4u2JEK
-         A2w3ljrGg2jXZvNGpejYhrOF8rit/JaTsP3AnNkQNKMwM4d3YJ+sYThr1m8UWP0dtJ2J
-         dFlRTYN+1Oq7UUz7kFq5ZjDxDQ1mfWYwOeKukQWIQQtHeD/8IcM3D9m42/jjayU03oWh
-         2v0g==
+        bh=ODG/WY+m1sczivh5xbMK5YbAXeuwMsG0RhioOZlpsCE=;
+        b=qTG9Q+6tRoVAQWVQauMXHa6gml4USJMIJL4RmxlKVJUAtZDYQ2X8hneaNqscMPtRfh
+         kEi+XiIGHsHscvY2ZEYsXlJE+PCePm895DuEUmIfhrwH/h9jerIrkaDDmL11/mmO0qEO
+         RlZHhE11t++9ExPE2GAnTf0VH4HJjXBjQa9o+adtKujkJ2+xW5czMET1ZZzGOUjgty70
+         t6MAH3EOPisLQquaieVRlfvtEHrx5p7vOWACFRBAlxKLqW4Pde2ByhO19jb4wxJZM7EZ
+         BY0Tyksc7p81fbgr1No+D/PnhQxArqnYT11Jjb3smhL2a5FzgoZPhqe/3iiEUA2P22ZN
+         8rGQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704395694; x=1705000494;
+        d=1e100.net; s=20230601; t=1704395961; x=1705000761;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=PH/gjT7PT5ZNNJFbBHa48BRb8fUvxYHdUoHeahN8ucY=;
-        b=ORWAE1DvJ11vIW6QRFbjhgcNnSDhZo+IwznKlV0Q7jZRkooTVijCrT/34/39sO5l2p
-         OH+Ge7mI6j/6PCRAFaViWXsxF/hBB8NfDIFwfiyd8nbZOhE2iXiZe6jc6v0lJvdGq6nn
-         /JRMFFbKCgaSzXceMQZEkqUdI+cS/aup0Ogcy9NGLqwHnvbCRB3fAGo7uxNEJdccK2Go
-         GfadjheDD4Wjih4MRANVRNxMrNYY8nX0T81XpgSqLYUmjgWVNgBy4e9762XmAR5KRScl
-         Hjff8WMRjNe2xHQAvGbYt3p2vlo8SunrPFTR9t6YaAfX1Ku5+FsT+0xDBvpRhr6NESdd
-         0j0g==
-X-Gm-Message-State: AOJu0Yw+0PdaD+gNfK5G0L1K31uVIDcAW4Ik5Vg67gFIdkk2H+9XYtWo
-	0PQgUj7oDsteyIOrSWhwCBIECrc7C9LmUA==
-X-Google-Smtp-Source: AGHT+IHngc2OUxNVCoV9xyTqGucH2A3zVo3EFB/VSjl1sPQVVcVP3af1eICkAdZgqsZQ05pmp4h+xw==
-X-Received: by 2002:a17:906:5792:b0:a23:748e:f3eb with SMTP id k18-20020a170906579200b00a23748ef3ebmr275345ejq.286.1704395694501;
-        Thu, 04 Jan 2024 11:14:54 -0800 (PST)
+        bh=ODG/WY+m1sczivh5xbMK5YbAXeuwMsG0RhioOZlpsCE=;
+        b=a/tYyE6KpEv8+86FyDaPOfQ+eXUctey811VW15vA+0EvbOg2qReup93hzLqv6Nx7Hu
+         U+hcsCOkCHxCkokRsuHnYgqN9OSuAMXkeiB3tYa236X9qEfpkt2wnfTZWNlnoJLahdBf
+         GAQZE5QyBCvtULnajUJT9x5GlSJG6fhChmCcRGFnHwiC0dUR6kZ6b/X+GEDhL9bLSDEF
+         yyoyvmJCD1Upfy6b+umDVTk14RusYZ1uWJnDPKK/iCRYn62U5yrYOdmRArrPb8qED9ss
+         6cISnk7lOuuN92uFrjPJSemdLIKIke7QZoQkuNHVgTaHvj9QGWGN8wP37YVs5sIWB7mw
+         V32g==
+X-Gm-Message-State: AOJu0YyewO7zkioWWjvy8P2ApEWeUtY8zp6/6aeDdM88i5NsbppsHlBO
+	sfrr2gGFEPgxX1Hdc9uxo5vduUIUgHI2ixfEnrKuv+w2EsU=
+X-Google-Smtp-Source: AGHT+IHlBpIP232uteEqrO/gsyTlyLxbodxnzCp/OE3ddkYrQ4RChRkbBVMdNCM0xT34uDfZM4Nl1w==
+X-Received: by 2002:a17:906:8464:b0:a28:dd23:df92 with SMTP id hx4-20020a170906846400b00a28dd23df92mr956515ejc.71.1704395961295;
+        Thu, 04 Jan 2024 11:19:21 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id fb20-20020a1709073a1400b00a26a061ae1esm14054583ejc.97.2024.01.04.11.14.53
+        by smtp.gmail.com with ESMTPSA id i1-20020a170906444100b00a279fa8b3f0sm6124817ejp.124.2024.01.04.11.19.19
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 04 Jan 2024 11:14:54 -0800 (PST)
-Message-ID: <2a564f48-f60a-40e2-9b9b-756d81071ac0@linaro.org>
-Date: Thu, 4 Jan 2024 20:14:52 +0100
+        Thu, 04 Jan 2024 11:19:20 -0800 (PST)
+Message-ID: <3e3455a1-c540-4323-9d9d-95289a395c3f@linaro.org>
+Date: Thu, 4 Jan 2024 20:19:18 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,19 +66,23 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 04/10] dt-bindings: marvell: a38x: add solidrun armada
- 385 clearfog gtr boards
+Subject: Re: [PATCH 1/2] dt-bindings: reset: mediatek: add MT7988 LVTS reset
+ ID
 Content-Language: en-US
-To: Josua Mayer <josua@solid-run.com>, Andrew Lunn <andrew@lunn.ch>,
- Gregory Clement <gregory.clement@bootlin.com>,
- Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
- Rob Herring <robh+dt@kernel.org>,
+To: Daniel Golle <daniel@makrotopia.org>, Frank Wunderlich <linux@fw-web.de>
+Cc: linux-mediatek@lists.infradead.org,
+ Frank Wunderlich <frank-w@public-files.de>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Russell King <linux@armlinux.org.uk>
-Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240104-support-clearfog-gtr-l8-sfp-v5-0-52be60fc54e3@solid-run.com>
- <20240104-support-clearfog-gtr-l8-sfp-v5-4-52be60fc54e3@solid-run.com>
+ Conor Dooley <conor+dt@kernel.org>, Sam Shih <sam.shih@mediatek.com>,
+ linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+References: <20240104173930.13907-1-linux@fw-web.de>
+ <20240104173930.13907-2-linux@fw-web.de>
+ <ZZb0-pFWxuQlEm7q@pidgin.makrotopia.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -124,21 +128,42 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240104-support-clearfog-gtr-l8-sfp-v5-4-52be60fc54e3@solid-run.com>
+In-Reply-To: <ZZb0-pFWxuQlEm7q@pidgin.makrotopia.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 04/01/2024 18:48, Josua Mayer wrote:
-> Add DT compatible for SolidRun Armada-385 based Clearfog GTR L8 and S4
-> boards.
+On 04/01/2024 19:12, Daniel Golle wrote:
+> Hi Frank,
 > 
-> Despite similar name these two boards are designed differently from the
-> armada 388 clearfog base and pro, they only share a name and general use
-> case.
+> On Thu, Jan 04, 2024 at 06:39:29PM +0100, Frank Wunderlich wrote:
+>> From: Frank Wunderlich <frank-w@public-files.de>
+>>
+>> ---
+>>  include/dt-bindings/reset/mediatek,mt7988-resets.h | 4 ++++
+>>  1 file changed, 4 insertions(+)
+>>
+>> diff --git a/include/dt-bindings/reset/mediatek,mt7988-resets.h b/include/dt-bindings/reset/mediatek,mt7988-resets.h
+>> index 493301971367..3f1e4ec07ad5 100644
+>> --- a/include/dt-bindings/reset/mediatek,mt7988-resets.h
+>> +++ b/include/dt-bindings/reset/mediatek,mt7988-resets.h
+>> @@ -10,4 +10,8 @@
+>>  /* ETHWARP resets */
+>>  #define MT7988_ETHWARP_RST_SWITCH		0
+>>  
+>> +/* INFRA resets */
+>> +#define MT7988_INFRA_RST0_THERM_CTRL_SWRST	9
 > 
-> Signed-off-by: Josua Mayer <josua@solid-run.com>
+> I suppose this argument applies here as well:
+> 
+> "IDs should start from 0 or 1 and increment by 1. If these are not IDs,
+> then you do not need them in the bindings."
+> 
+> https://lore.kernel.org/all/59629ec1-cc0c-4c5a-87cc-ea30d64ec191@linaro.org/
+> 
+> As a consequence, as what you are describing there are hardware bits
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+If this is existing driver which already uses such pattern, then it is
+fine. I usually comment this on new drivers which can be changed.
 
 Best regards,
 Krzysztof
