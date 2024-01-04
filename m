@@ -1,124 +1,342 @@
-Return-Path: <devicetree+bounces-29779-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29780-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BD87824883
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 20:02:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 536958248A6
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 20:09:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2B2471F2566B
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 19:02:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B6DC11F2570E
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 19:09:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9ECB628E1E;
-	Thu,  4 Jan 2024 19:02:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2628028E21;
+	Thu,  4 Jan 2024 19:08:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Ite9pqD8"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dKVl3KHF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E58632C18C;
-	Thu,  4 Jan 2024 19:02:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1704394939; x=1735930939;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=3rUMvGvL6YB+Sg9CHINyeLAItR2uRWwb2yiVVnAXKvo=;
-  b=Ite9pqD8PVpBehoUBHD/lOxhZrPkdFj7nOUBoepMwVkOBx9qKHSnENiA
-   5hWsw5RiPxpbOB2uF3dX+fPFGjM5VjzMg4NFwSldjmAYnOIr1VL3aeI6i
-   mTY1Ol1Oa/KgvSJdn0XbEzU9xMQ/PoEgwiZ2kDLIgAnFzIHX2AkZ4yG5t
-   i3AMkwZ1qTCme/HrbOqrrRlkaFzAAAxY4TPg21l5wUc3gzIcXe7oGcAxp
-   7CJl9t2gBKO3joq3oF0N7TDuvONHb7nMt9YrRuwq2GKN46P1zZetUskZU
-   tb/YYA4l7/uJsChmCVHuPPntSYgAQunAi07H3V76vA8ra0o+1keD2iiX1
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10943"; a="4707778"
-X-IronPort-AV: E=Sophos;i="6.04,331,1695711600"; 
-   d="scan'208";a="4707778"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
-  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Jan 2024 11:02:18 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10943"; a="1111857269"
-X-IronPort-AV: E=Sophos;i="6.04,331,1695711600"; 
-   d="scan'208";a="1111857269"
-Received: from lkp-server02.sh.intel.com (HELO b07ab15da5fe) ([10.239.97.151])
-  by fmsmga005.fm.intel.com with ESMTP; 04 Jan 2024 11:02:12 -0800
-Received: from kbuild by b07ab15da5fe with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1rLSyo-0000LI-1z;
-	Thu, 04 Jan 2024 19:02:10 +0000
-Date: Fri, 5 Jan 2024 03:01:51 +0800
-From: kernel test robot <lkp@intel.com>
-To: Billy Tsai <billy_tsai@aspeedtech.com>, jdelvare@suse.com,
-	linux@roeck-us.net, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, joel@jms.id.au, andrew@aj.id.au,
-	corbet@lwn.net, thierry.reding@gmail.com,
-	u.kleine-koenig@pengutronix.de, p.zabel@pengutronix.de,
-	naresh.solanki@9elements.com, linux-hwmon@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org, linux-pwm@vger.kernel.org,
-	BMC-SW@aspeedtech.com, patrick@stwcx.xyz
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev
-Subject: Re: [PATCH v11 3/3] hwmon: (aspeed-g6-pwm-tacho): Support for ASPEED
- g6 PWM/Fan tach
-Message-ID: <202401050234.nDBceclJ-lkp@intel.com>
-References: <20240104034120.3516290-4-billy_tsai@aspeedtech.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39C2F28E26
+	for <devicetree@vger.kernel.org>; Thu,  4 Jan 2024 19:08:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-50ea98440a7so878445e87.1
+        for <devicetree@vger.kernel.org>; Thu, 04 Jan 2024 11:08:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1704395334; x=1705000134; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=WrAc8y7ksD7LSd2oegA9ea7MEhlctFkip+JgP2VCZP0=;
+        b=dKVl3KHFMenXGrUjxGqTOS+NAZ6nWCjPahYb15oOQ4s4IZKiGh1lvFyRfBzws9uWLE
+         HZK47p20u7+TfYj/+MZtAdyAVQ66NvSAJDDZuKiq1ZaQc8iheimrUcJ+I+Xi7GgrRIBa
+         785CSjzB1hb/fki3rVSoIceoI7U//X1GxGO4Fb/PPpCf7TEpwVN6C2MKH1uRAfPjugI5
+         x6JLLrkrC+FikXnPSxc9JABV+qDnfhj9FhUPZRfQHQC/DzBWdgbflIDLFVXPgh6hsvdW
+         XIuwO3KadYn024ICr88IMa4NrgoQHNAlcrrQPFwcotQCPNExXuKgXaQHUv0ejyK76+mz
+         FuuQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1704395334; x=1705000134;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=WrAc8y7ksD7LSd2oegA9ea7MEhlctFkip+JgP2VCZP0=;
+        b=OXy/sbO6d5HzBW5lcACVHx+P9NjEDQAtZVZ38Fl+nQe9Z8pI4jiFLRIV3R7oj4II3D
+         sqLLTaGXA9VkIybzBfLvXbLr4uWrfJ/lVQZZj7wtad2Y9dQp5tzZYdTghrGpLjsInM5s
+         U118BYb/qOg8gpyTVlPcG50YPhoaHLBIIR4Ozqyhl2dMn9JIoKIKz0fJcDf8aDsa8eLN
+         /hNb8fxkQ3+X33fpMbJ1GzSuPdTaTgqbAAF8oVmVFLNfvwikz9OB4FpsG/ZbwUxWKqY3
+         D+VdFFyyHUTbUSW95TS933wA3OlFOMBcbSQQRrpd7Lm0aeYRTdgdtH1ivR9cdn3IRzRv
+         Jeng==
+X-Gm-Message-State: AOJu0YwgbM2R98bpMOLDCon3HBc2d53+/bg6MgxNn2EXGdqYifvpd9zq
+	se6DChKJ4+5uO1SQD9d/1/NHyPXOcVkFFA==
+X-Google-Smtp-Source: AGHT+IElHsOKbL1fqCBl0CKJPvAcZft0+Oj3qVO7GyVQ09CYlZLBhjYBlruXCP558WmXPYbFC/nktA==
+X-Received: by 2002:a05:6512:281e:b0:50e:6a13:cd23 with SMTP id cf30-20020a056512281e00b0050e6a13cd23mr438168lfb.128.1704395334182;
+        Thu, 04 Jan 2024 11:08:54 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.218.27])
+        by smtp.gmail.com with ESMTPSA id d8-20020a50fe88000000b005545dffa0bdsm39971edt.13.2024.01.04.11.08.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 04 Jan 2024 11:08:53 -0800 (PST)
+Message-ID: <d2d17b94-6f29-423d-a7e0-e24513a8e59f@linaro.org>
+Date: Thu, 4 Jan 2024 20:08:50 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240104034120.3516290-4-billy_tsai@aspeedtech.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/4] reset: add GPIO-based reset controller
+Content-Language: en-US
+To: Sean Anderson <sean.anderson@seco.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+ Banajit Goswami <bgoswami@quicinc.com>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+ linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
+ linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Cc: Bartosz Golaszewski <brgl@bgdev.pl>
+References: <20231222150133.732662-1-krzysztof.kozlowski@linaro.org>
+ <20231222150133.732662-3-krzysztof.kozlowski@linaro.org>
+ <530e3473-eb3b-477c-8599-e7aa12779640@seco.com>
+ <88bd6668-7e67-42c7-97b6-d7029f371349@linaro.org>
+ <075990bb-5fdb-4d30-9484-9df6b978e805@seco.com>
+ <fcbae47b-3b28-42f0-b93f-f83932025dc1@linaro.org>
+ <2be19fbf-4c73-4594-be42-31587dc7b747@seco.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <2be19fbf-4c73-4594-be42-31587dc7b747@seco.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Billy,
+On 04/01/2024 17:30, Sean Anderson wrote:
+> On 1/4/24 11:08, Krzysztof Kozlowski wrote:
+>> On 04/01/2024 17:04, Sean Anderson wrote:
+>>> On 1/4/24 03:57, Krzysztof Kozlowski wrote:
+>>>> On 28/12/2023 17:05, Sean Anderson wrote:
+>>>>> On 12/22/23 10:01, Krzysztof Kozlowski wrote:
+>>>>>> Add simple driver to control GPIO-based resets using the reset
+>>>>>> controller API for the cases when the GPIOs are shared and reset should
+>>>>>> be coordinated.  The driver is expected to be used by reset core
+>>>>>> framework for ad-hoc reset controllers.
+>>>>>
+>>>>> How do we handle power sequencing? Often GPIOs need some pre/post delay in
+>>>>> order to ensure proper power sequencing. For regular reset drivers, this is
+>>>>> internal to the driver.
+>>>>
+>>>> It's not part of this patchset. Power sequencing is an old topic and
+>>>> generic solutions were failing, rejected, did not solve the problems,
+>>>> etc (choose your reason).
+>>>>
+>>>> Delays are device specific, so they go to drivers (depending on the
+>>>> compatible). Complex power sequencing is way too much for simplified
+>>>> reset-framework handling, so anyway it is expected you do it in your driver.
+>>>
+>>> Well, the reason to bring it up is twofold:
+>>>
+>>> - Traditionally, drivers expect the reset controller to handle all
+>>>   necessary delays. For example, reset-k210 includes a 10us delay
+>>>   between asserting and deasserting the reset. There's a similar thing
+>>>   in reset-imx7, and several other reset drivers.
+>>> - We would need to add custom assert/deassert delays to every driver
+>>>   using this interface. These are not always added, since any given
+>>>   device may require delays which can be inferred from its compatible.
+>>>   However, an integrated system may require delays to be different from
+>>>   what any individual device requires.
+>>>
+>>>>>
+>>>>> Maybe something like
+>>>>>
+>>>>> my-device {
+>>>>> 	reset-gpios = <&gpio 555 GPIO_ACTIVE_LOW>;
+>>>>>         reset-gpios-post-deassert-us = <100>;
+>>>>
+>>>> Feel free to add it later. This patchset, and actually all patches
+>>>> should, solves one problem while allowing you to extend it later.
+>>>
+>>> Yes, but we should try to avoid creating problems for ourselves in the
+>>> future.
+>>>
+>>>> If there is a architectural problem in my approach not allowing you to
+>>>> extend it later, then we should discuss it.
+>>>
+>>> Well, I brought up just such an architectural issue below...
+>>
+>> Sorry, but where the issue? You did not present any arguments stating
+>> that it is not possible to add your feature.
+>>
+>> What is the problem to parse that property?
+>>
+>>>
+>>>>> };
+>>>>>
+>>>>> Of course, this is a bit ambiguous if you have multiple devices using the same
+>>>>> GPIO with different delays.
+>>>
+>>> This is the most concerning one to me.
+>>>
+>>>>> Maybe we take the max? But the driver below seems
+>>>>> to only have access to one device. Which I suppose begs the question: how do
+>>>>> we know when it's safe to deassert the reset (e.g. we've gotten to the point
+>>>>> where all devices using this reset gpio have gotten far enough to detect that
+>>>>> they use it)?
+>>>>
+>>>> The driver (reset consumer) knows when it is safe or not. You must
+>>>> implement proper reset handling in your driver.
+>>>
+>>> The driver has no idea whether it is safe or not. It just calls
+>>> reset_assert/deassert at the appropriate time, and the reset
+>>> framework/controller is supposed to coordinate things so e.g. the device
+>>> doesn't get reset multiple times as multiple drivers all probe.
+>>
+>>
+>> Sorry, then I don't get what you refer to. The driver calls deassert
+>> when it is safe for it to do it, so the driver *knows*. Now, you claim
+>> that driver does not know that... core also does not know, so no one knows.
+> 
+> Yes! That is the problem with this design. Someone has to coordinate the
+> reset, and it can't be the driver. But the core also doesn't have enough
+> information. So no one can do it.
 
-kernel test robot noticed the following build errors:
+The point is that the driver coordinates.
 
-[auto build test ERROR on groeck-staging/hwmon-next]
-[also build test ERROR on linus/master v6.7-rc8 next-20240104]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+> 
+> For example, say we want to share a reset GPIO between two devices. Each
+> device has the following constraints:
+> 
+> device post-assert delay post-deassert delay
+> ====== ================= ===================
+> A                  500us                 1ms
+> B                    1ms               300us
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Billy-Tsai/dt-bindings-hwmon-fan-Add-fan-binding-to-schema/20240104-114552
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/groeck/linux-staging.git hwmon-next
-patch link:    https://lore.kernel.org/r/20240104034120.3516290-4-billy_tsai%40aspeedtech.com
-patch subject: [PATCH v11 3/3] hwmon: (aspeed-g6-pwm-tacho): Support for ASPEED g6 PWM/Fan tach
-config: x86_64-allyesconfig (https://download.01.org/0day-ci/archive/20240105/202401050234.nDBceclJ-lkp@intel.com/config)
-compiler: ClangBuiltLinux clang version 17.0.6 (https://github.com/llvm/llvm-project 6009708b4367171ccdbf4b5905cb6a803753fe18)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240105/202401050234.nDBceclJ-lkp@intel.com/reproduce)
+And now imagine that these values are incompatible between them, so
+using 1ms on device A is wrong - too long.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202401050234.nDBceclJ-lkp@intel.com/
+This is just not doable. You invented some imaginary case to prove that
+hardware is broken.
 
-All errors (new ones prefixed by >>):
-
->> drivers/hwmon/aspeed-g6-pwm-tach.c:270:3: error: field designator 'owner' does not refer to any field in type 'const struct pwm_ops'
-     270 |         .owner = THIS_MODULE,
-         |         ~^~~~~~~~~~~~~~~~~~~
-   1 error generated.
+Now, if we are back to realistic cases - use just the longest reset time.
 
 
-vim +270 drivers/hwmon/aspeed-g6-pwm-tach.c
 
-   266	
-   267	static const struct pwm_ops aspeed_pwm_ops = {
-   268		.apply = aspeed_pwm_apply,
-   269		.get_state = aspeed_pwm_get_state,
- > 270		.owner = THIS_MODULE,
-   271	};
-   272	
+> 
+> If we leave things up to the drivers, then whoever probes first will get
+> to decide the reset sequence.
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+In current design yes, but it's not a problem to change it. Where is the
+limitation? Just read other values and update the reset time.
+
+> 
+> So if we choose the post-assert delay to be 1ms and the post-deassert
+> delay to be 1ms then everyone is happy. How can we make sure the reset
+
+No, not everyone is happy, if these values are incompatible. OTOH, if
+they are compatible, just put same values to your DTS, because that's
+the requirement of the reset line.
+
+> controller enforces this? Well, we can do the above thing and specify
+> something like
+> 
+> A {
+>     reset-gpios = <&gpio 555 GPIO_ACTIVE_LOW>;
+>     reset-gpios-post-assert-us = <1000>;
+>     reset-gpios-post-deassert-us = <1000>;
+> };
+> 
+> B {
+>     reset-gpios = <&gpio 555 GPIO_ACTIVE_LOW>;
+> };
+> 
+> But what if B gets probed first? Then we will have to also specify the
+> delays on B as well. I'm not a big fan of this because
+
+It's a shared reset line, thus the shared or global delays can be
+described in every place. That's for DT correctness. Now from the driver
+point of view, there is no problem to update the reset values after
+probing A.
+
+> 
+> - We have to specify (identical) delays in every consumer (instead of
+>   having a central place to put the delays)
+> - Having the delays depend on the probe order (if one of the consumers'
+>   delays don't match) will result in bugs for board maintainers. Maybe
+>   we should just warn in that case and that is enough?
+
+No, it does not depend. Just update the values.
+
+> - Actually, the same problem exists for reset-gpios (e.g. if one driver
+>   specifies ACTIVE_HIGH and another specifies ACTIVE_LOW).
+
+No, actually this is handled. This is not a shared reset line and it
+will not be handled. Second device probe should fail.
+
+> 
+> Maybe the delays should go instead on the gpio controller? So something
+> like (taking inspiration from gpio-hog):
+
+We talked about this for other patchsets and answer was no, that's not
+the property of GPIO.
+
+> 
+> gpio {
+> 	gpio-controller;
+> 	#gpio-cells = <2>;
+> 
+> 	my-reset {
+> 		gpio-reset;
+> 		gpio = <555 GPIO_ACTIVE_LOW>;
+> 		post-assert-us = <1000>;
+> 		post-deassert-us = <1000>;
+> 	};
+> };
+> 
+>> Hm, wait, now maybe I understand your concern. Did you read the
+>> patchset? This is for the coordinated, shared, non-exclusive reset by
+>> design.  And as stated during previous discussions: that's the driver's
+>> job to be sure it is called like that.
+> 
+> Well, one of the major advantages of moving GPIO resets to a reset
+> controller is that the reset framework can coordinate things if we want.
+> This is a rather natural extension of this patchset IMO. Even if you are
+> not adding this functionality now, it is good not to make it difficult
+> for future work.
+
+And nothing is made here difficult. You want same delays on each
+consumer? No problem in adding them, just few lines. You want
+contradictory or inconsistent delays? A bit more code, but still nothing
+here is blocked. You want totally random stuff because hardware is
+broken? You might need to write dedicated reset controller for your case
+because generic binding stops being generic for such cases.
+
+Best regards,
+Krzysztof
+
 
