@@ -1,168 +1,136 @@
-Return-Path: <devicetree+bounces-29703-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29706-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 847F48242D7
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 14:44:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B9F608242E7
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 14:46:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 22BD01F24ED5
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 13:44:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 570AE1F210B3
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 13:46:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4AB2A22335;
-	Thu,  4 Jan 2024 13:44:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 829DC224CB;
+	Thu,  4 Jan 2024 13:46:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="opbxd8AE"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="sZEd0/Ip"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com [209.85.128.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C2192232E
-	for <devicetree@vger.kernel.org>; Thu,  4 Jan 2024 13:44:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-5e7467eb93aso4429787b3.1
-        for <devicetree@vger.kernel.org>; Thu, 04 Jan 2024 05:44:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704375868; x=1704980668; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=PaHFfcOelAjR2MGyweZQdTrdxlz7oJntZOkTBcCfI/8=;
-        b=opbxd8AE34sHMyezy1o5VQjDdK8T42j+qoBaOn7eNu/G0jf4lGpoo+USBc8Ogu3S3H
-         6DGy5kTD2Bo9z68+RvDeZGvXFymh1YeiTDg8t5xfFWJQnFLAPA8MjADeIxjhHomoU3E+
-         5pmK+IxAr/4eAZcSl8eFk03QBwSSjwFbMx1MQ4W/z1hlVFj60K2XzesKjXIFwzKk0CwC
-         nne24IqoJuu4m9Cxdy5vqcEsna3q+/RuN5FQ6JAz1sBEWm+rjo6zOF5/Ddw0S/Kf5EWP
-         Ylxk4d9VR6dZ+5e3fq5624qBtz92Rg7CnJTSeUibgX5KazQZ8SmgWZN7FaqJBpmggdom
-         dqSg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704375868; x=1704980668;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=PaHFfcOelAjR2MGyweZQdTrdxlz7oJntZOkTBcCfI/8=;
-        b=he8pBRnNEf4/EMxFGRm9bRPLb/0bI24PbPE+ebV7KWM2BLIcvXDWEaSejcEDllTEDB
-         +lj2Cpsc8EwCh4udqK38i1h6mdz3Hi9TvR52ESgQ5W9ian3QKUgXFXzTyW8QpvsApApa
-         UZhl5XMgI9lRvzD+nZYIE9zPYsaNr9Jfbj33NPisXc3ToXLysoCkdMPboUjGPF8Bex6+
-         CjsaDmJgX5E1MhZLn/r8aQSjvtO9/L01uC8oEsp3IPXnouMYDT7HIM2SOYl4VMG0uMtA
-         4dplIdP4pmI4NCyj/xmVhDYfR66CGf4jKiSbjMJ7SjCe37I2h6iOkwX4O8zonjQR3Wiw
-         QM3g==
-X-Gm-Message-State: AOJu0Yy1fZE/6Gqn7ar5XaizdDpakZwAwHQ5tw/jCZxlbp/QLXpIAP43
-	/FqprhSFoqmKbE1xG+G8Ozu290kM5asfbULSetyPH3QZe6yrZg==
-X-Google-Smtp-Source: AGHT+IEZCkEXOIdEM0j+8NIK0uK6YCf75WCjyHpwydLwlV5/P5Xet8pHKf/9cbHSR3VeVJohCL4uPwgEzC0vSgDbJM8=
-X-Received: by 2002:a0d:cb85:0:b0:5d7:1940:8dea with SMTP id
- n127-20020a0dcb85000000b005d719408deamr463700ywd.81.1704375868283; Thu, 04
- Jan 2024 05:44:28 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 223CB22337;
+	Thu,  4 Jan 2024 13:46:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 404BG7q8008005;
+	Thu, 4 Jan 2024 14:44:46 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding:content-type; s=selector1; bh=4Xb/guP
+	VNffz69iwgR6eg6cVtv2SHDElUbVJtlX0iAw=; b=sZEd0/IpcdQwa8fAKxNW01x
+	0PsNSAo0aRzKjG8wyz216iXv5FYt+8+usw4gsTXpdNyUAkA3CvEbTqHnWdlLktPZ
+	2fJ+hSwuGvFOOpk5vWumdNpfEmXGsmhlnyrhjdCIdvhZM8Lh8hFrnCWvH/3TFgqv
+	a2VQ/XYwWV6b1FRhQ4fbovCZq9bUzlYMzmye/BuXy7su3wV5bNQwn75J6/d1rHRL
+	STgoDFkSs5gTyRW8+G/DGEMt3ZALiRDwZwmr8cEYAGDttzF+gdacAMOefHz83pOX
+	V3acnCXqH3snGO8oMrC9Lf62eDq49qHxthlEnE8IqR7BYvwJByZazzVEsSvGCAA=
+	=
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3vd9q1m8ey-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 04 Jan 2024 14:44:46 +0100 (CET)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 65E7410002A;
+	Thu,  4 Jan 2024 14:44:42 +0100 (CET)
+Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 517BF22FA28;
+	Thu,  4 Jan 2024 14:44:42 +0100 (CET)
+Received: from localhost (10.252.5.254) by SHFDAG1NODE2.st.com (10.75.129.70)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Thu, 4 Jan
+ 2024 14:44:41 +0100
+From: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
+To: Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue
+	<alexandre.torgue@foss.st.com>,
+        Yannick Fertre <yannick.fertre@foss.st.com>,
+        Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>,
+        Philippe Cornu
+	<philippe.cornu@foss.st.com>,
+        Maarten Lankhorst
+	<maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>
+CC: <devicetree@vger.kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <dri-devel@lists.freedesktop.org>
+Subject: [PATCH v3 0/4] Update STM DSI PHY driver
+Date: Thu, 4 Jan 2024 14:44:30 +0100
+Message-ID: <20240104134434.744497-1-raphael.gallais-pou@foss.st.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240104130123.37115-1-brgl@bgdev.pl> <20240104130123.37115-3-brgl@bgdev.pl>
-In-Reply-To: <20240104130123.37115-3-brgl@bgdev.pl>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Thu, 4 Jan 2024 15:44:16 +0200
-Message-ID: <CAA8EJpqZ8zbNcK1BsJaaoK3Fje9KhrvFvJpgdBa-US3eMhOmOw@mail.gmail.com>
-Subject: Re: [RFC 2/9] arm64: dts: qcom: qrb5165-rb5: describe the WLAN module
- of QCA6390
-To: Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: Kalle Valo <kvalo@kernel.org>, "David S . Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
-	Bjorn Helgaas <bhelgaas@google.com>, Heiko Stuebner <heiko@sntech.de>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Chris Morgan <macromorgan@hotmail.com>, 
-	Linus Walleij <linus.walleij@linaro.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Arnd Bergmann <arnd@arndb.de>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	=?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= <nfraprado@collabora.com>, 
-	Marek Szyprowski <m.szyprowski@samsung.com>, Peng Fan <peng.fan@nxp.com>, 
-	Robert Richter <rrichter@amd.com>, Dan Williams <dan.j.williams@intel.com>, 
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>, Terry Bowman <terry.bowman@amd.com>, 
-	Kuppuswamy Sathyanarayanan <sathyanarayanan.kuppuswamy@linux.intel.com>, 
-	=?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>, 
-	Huacai Chen <chenhuacai@kernel.org>, Alex Elder <elder@linaro.org>, 
-	Srini Kandagatla <srinivas.kandagatla@linaro.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, linux-wireless@vger.kernel.org, 
-	netdev@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org, 
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE2.st.com
+ (10.75.129.70)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-01-04_07,2024-01-03_01,2023-05-22_02
 
-On Thu, 4 Jan 2024 at 15:03, Bartosz Golaszewski <brgl@bgdev.pl> wrote:
->
-> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
->
-> Describe the ath11k WLAN on-board the QCA6390 module. Include the
-> relevant regulators and the enable GPIO.
->
-> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/qrb5165-rb5.dts | 24 ++++++++++++++++++++++++
->  1 file changed, 24 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-> index cd0db4f31d4a..721f86af952b 100644
-> --- a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-> +++ b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-> @@ -734,6 +734,22 @@ &pcie0_phy {
->         vdda-pll-supply = <&vreg_l9a_1p2>;
->  };
->
-> +&pcieport0 {
-> +       wifi@0 {
-> +               compatible = "pci17cb,1101";
-> +               reg = <0x10000 0x0 0x0 0x0 0x0>;
-> +
-> +               pinctrl-names = "default";
-> +               pinctrl-0 = <&wlan_en_state>;
-> +
-> +               enable-gpios = <&tlmm 20 GPIO_ACTIVE_HIGH>;
-> +
-> +               vddpmu-supply = <&vreg_s2f_0p95>;
-> +               vddpcie1-supply = <&vreg_s8c_1p3>;
-> +               vddpcie2-supply = <&vreg_s5a_1p9>;
+This patch series aims to add several features of the dw-mipi-dsi phy
+driver that are missing or need to be updated.
 
-If I remember correctly, qca6390 has at least 8 power supplies AON,
-PMU, 3xRFA, 2xPCIe and VDDIO.
+First patch update a PM macro.
 
-Moreover, these bindings do not solve another problem: the PMU is
-shared between WiFi and BT parts. For the next gen (WCN6855) this
-becomes even more important, see the code in msm-5.10 which makes sure
-that there is a proper time between one of the units going down and
-another one being powered on.
+Second patch adds runtime PM functionality to the driver.
 
-> +       };
-> +};
-> +
->  &pcie1 {
->         status = "okay";
->  };
-> @@ -1303,6 +1319,14 @@ sdc2_card_det_n: sd-card-det-n-state {
->                 function = "gpio";
->                 bias-pull-up;
->         };
-> +
-> +       wlan_en_state: wlan-default-state {
-> +               pins = "gpio20";
-> +               function = "gpio";
-> +               drive-strength = <16>;
-> +               output-low;
-> +               bias-pull-up;
-> +       };
->  };
->
->  &uart6 {
-> --
-> 2.40.1
->
->
+Third patch adds a clock provider generated by the PHY itself.  As
+explained in the commit log of the second patch, a clock declaration is
+missing.  Since this clock is parent of 'dsi_k', it leads to an orphan
+clock.  Most importantly this patch is an anticipation for future
+versions of the DSI PHY, and its inclusion within the display subsystem
+and the DRM framework.
 
+Last patch fixes a corner effect introduced previously.  Since 'dsi' and
+'dsi_k' are gated by the same bit on the same register, both reference
+work as peripheral clock in the device-tree.
+
+---
+Changes in v3:
+	- Fix smatch warning (disable dsi->pclk when clk_register fails)
+
+Changes in v2:
+	- Added patch 1/4 to use SYSTEM_SLEEP_PM_OPS instead of old macro
+	  and removed __maybe_used for accordingly
+	- Changed SET_RUNTIME_PM_OPS to RUNTIME_PM_OPS
+
+Raphael Gallais-Pou (3):
+  drm/stm: dsi: use new SYSTEM_SLEEP_PM_OPS() macro
+  drm/stm: dsi: expose DSI PHY internal clock
+  arm: dts: st: fix DSI peripheral clock on stm32mp15 boards
+
+Yannick Fertre (1):
+  drm/stm: dsi: add pm runtime ops
+
+ arch/arm/boot/dts/st/stm32mp157.dtsi          |   2 +-
+ arch/arm/boot/dts/st/stm32mp157a-dk1-scmi.dts |   2 +-
+ arch/arm/boot/dts/st/stm32mp157c-dk2-scmi.dts |   2 +-
+ arch/arm/boot/dts/st/stm32mp157c-ed1-scmi.dts |   2 +-
+ arch/arm/boot/dts/st/stm32mp157c-ev1-scmi.dts |   2 +-
+ drivers/gpu/drm/stm/dw_mipi_dsi-stm.c         | 279 +++++++++++++++---
+ 6 files changed, 243 insertions(+), 46 deletions(-)
 
 -- 
-With best wishes
-Dmitry
+2.25.1
+
 
