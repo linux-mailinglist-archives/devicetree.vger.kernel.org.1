@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-29563-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29564-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4A1F823CEA
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 08:47:22 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1487823CFD
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 08:51:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2A8371F26122
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 07:47:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C972A1C21977
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 07:51:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C77DA1D68D;
-	Thu,  4 Jan 2024 07:47:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A1BB1F927;
+	Thu,  4 Jan 2024 07:50:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mkFEL6Hz"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="i9cJPe5v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
+Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24302200A7
-	for <devicetree@vger.kernel.org>; Thu,  4 Jan 2024 07:47:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A587200DB
+	for <devicetree@vger.kernel.org>; Thu,  4 Jan 2024 07:50:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-5542a7f1f3cso264688a12.2
-        for <devicetree@vger.kernel.org>; Wed, 03 Jan 2024 23:47:15 -0800 (PST)
+Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-556ab8b85e3so348164a12.1
+        for <devicetree@vger.kernel.org>; Wed, 03 Jan 2024 23:50:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704354434; x=1704959234; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1704354641; x=1704959441; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=oGF4/vmIJ8o7IJvlJQyYKaxW9KtTtwYjR9BBLu19fK4=;
-        b=mkFEL6HzI8xj4xcJEgGtfq2/GQfxmpYfCM6qKsp/DwjdhHavpkkdYUNWqZe4tZnbpj
-         nummQLXCZGmtl3W/LPaBOpVBxSLlENm/joY/SgTTfbouINsw8USktKevRISs8zFuewb+
-         olIiZzsqmf5C/b1WyvS/jRc5qi85L6TnOlQLeAkSk2IRBghZDeJDDm6ZiFjNfxK13lJW
-         syVCKMHEvRgKxAlpM1R6Q9agccCRPEosXITT7OS9ZEW71GKv6c3KdBCJXwrFS46CG6ML
-         J/uCEciNYweY5UKPtX5e562LGcpzjXKpA0HLXCRJ6TzEKHT0gMGgjksWdv726GiysYfN
-         YcGg==
+        bh=wJj4uRZgSuxlUWdDgDRfCkBMC7jvh/H+PwEabbg3iCM=;
+        b=i9cJPe5v+JRC4jhXRo/XOCUrH+VdcW4Lu5lGM/j18+FkJ33Lfj1F1ltN9wwcu+FyI/
+         yFlxvfAMhEfbmFFu4RfqsDzzq8b83x8YcT7NkCwbhFAU97U6lDypXAsMrBsO2wx5uj1n
+         nFJNQ/ww73988iODqNOy8cKVpbFxLiSBpYvSONJOBP4Bt4fSwcWRuxbZvQS2b2E3daBI
+         qoYp15GgRtbQdtb/Xz3qax6D3mLQGHbZ0L0YQL1Aaw5wNEwXbtYTY6Pid2VcD9mZjuLc
+         zryTm9GpcmlAVWCPVLxj3uKE7q0PpQkeI4v0Et/gAQaod5sOqPT8vpp5G43zclzC/bqG
+         yWeg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704354434; x=1704959234;
+        d=1e100.net; s=20230601; t=1704354641; x=1704959441;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=oGF4/vmIJ8o7IJvlJQyYKaxW9KtTtwYjR9BBLu19fK4=;
-        b=EIDP5ijjBa2FyOjeP7hAbytBCoJ3+R4D6bWCg7QzlVZe47H37SeXzjzI9E7LnGE8HG
-         ImuwK3iCigWPkC0eTMegmwARsatcB4HwGx9tNfZS4yDDo8dEQWx3X6QqEXOU3pGyXHJc
-         jrYeJBYYaGiBVR6MwjBEFlw+fVYSOxD/+I0875dgOMIY3zhDlii5UQTO9zN1AMu+3eKN
-         gzICtMmeqmRMx336WsMZu4lZmX64PTSwoCxbtoiA2AlxM6nH31bA4Ye7pFbkLXBl2jv/
-         C0XXPr73zClobYyWUB3s1T4fH8rpc/+xi67Im4Pi1V4rsKvzuel9eJTFxohCiLFpuHT3
-         LFJg==
-X-Gm-Message-State: AOJu0Yzv4+c5tqep0lx23GL4m4ZngqFAelru95ZUhDjhtnx4O1tCV8+K
-	59EwUY9wHFfvEezyclaanf09+S55qFtjxw==
-X-Google-Smtp-Source: AGHT+IHD4M0r8yDP/YsO00ANonos/KjanteYCjmiTxyH/zJvMcNhKtTUPBA9N36eVzDrvVyTOgmzew==
-X-Received: by 2002:a50:9b4f:0:b0:555:ea2f:a97f with SMTP id a15-20020a509b4f000000b00555ea2fa97fmr98511edj.13.1704354434368;
-        Wed, 03 Jan 2024 23:47:14 -0800 (PST)
+        bh=wJj4uRZgSuxlUWdDgDRfCkBMC7jvh/H+PwEabbg3iCM=;
+        b=jgN/wnJdq05jTUj4Se3vQ3jrh2BY6ojTjqD0uieCUY6CEyJvuURtgPRAWkt8AlEoFm
+         0bPZRi074o7QXCjLmZb1krBzlt6hFOOrc0ZyMf74BZPKMCfv/cWKc61aQDPEIIevP84K
+         9Zk6qcuzUFcVlhwBRwDNAU2XScGdHFZPcE7JUlZ82keFhPd3hslA0p8I+NtNbTH7/93O
+         LozLwz/p1qf2wbg1n7a+dEZcpb8tT98YVwuJOZrtmc3ytUriMaJ3Vm0Rtbq6zfcJBx7W
+         mQ9uGeorCnN6k6GXMaIqtWOTAy04pKA7tAP4L8aFcqKizY0g5IKKRWKIRWHOchStOFyJ
+         Hzuw==
+X-Gm-Message-State: AOJu0Yy+a/P/SbbWAB5s7EydnoPSA+0NmYlPKKVf6GZYDECvlSDRqYjh
+	M8pRLARzZXPsn1VoNsOcV9fHV8QwwZvU/Q==
+X-Google-Smtp-Source: AGHT+IEmcbd9zaXJouTkf5sXcsT1zk/tGSQqaLhH5Wk5y7vsKOw8SgFGn8U233EL2sySxbgb2C+0UQ==
+X-Received: by 2002:aa7:cf8f:0:b0:556:f13d:37e with SMTP id z15-20020aa7cf8f000000b00556f13d037emr186395edx.6.1704354641742;
+        Wed, 03 Jan 2024 23:50:41 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id p12-20020a05640243cc00b0055493aa8905sm14982937edc.63.2024.01.03.23.47.12
+        by smtp.gmail.com with ESMTPSA id h12-20020a0564020e0c00b005561a8c2badsm6362201edh.83.2024.01.03.23.50.40
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 03 Jan 2024 23:47:13 -0800 (PST)
-Message-ID: <c4831e26-5ff0-40b1-98d4-addfdc1ee5a8@linaro.org>
-Date: Thu, 4 Jan 2024 08:47:12 +0100
+        Wed, 03 Jan 2024 23:50:41 -0800 (PST)
+Message-ID: <c52c9ab7-6920-4a8b-b31c-db02989aebf9@linaro.org>
+Date: Thu, 4 Jan 2024 08:50:39 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,25 +66,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 5/5] dt-bindings: net: ipq4019-mdio: Document ipq5332
- platform
+Subject: Re: [PATCH 1/5] dt-bindings: arm: ti: Add bindings for SolidRun AM642
+ HummingBoard-T
 Content-Language: en-US
-To: Jie Luo <quic_luoj@quicinc.com>, agross@kernel.org, andersson@kernel.org,
- konrad.dybcio@linaro.org, davem@davemloft.net, edumazet@google.com,
- kuba@kernel.org, pabeni@redhat.com, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, andrew@lunn.ch,
- hkallweit1@gmail.com, linux@armlinux.org.uk, robert.marko@sartura.hr
-Cc: linux-arm-msm@vger.kernel.org, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- quic_srichara@quicinc.com
-References: <20231225084424.30986-1-quic_luoj@quicinc.com>
- <20231225084424.30986-6-quic_luoj@quicinc.com>
- <dee72ce8-b24e-467a-b265-1b965588807f@linaro.org>
- <aeb364a3-6c05-4a1b-ba32-e687a89f20f8@quicinc.com>
- <58dde1a7-ed4a-442c-bb5c-c3f6d926fb7e@linaro.org>
- <06ddbae8-1502-41fb-8cf8-9a3390dad557@quicinc.com>
- <28c8b31c-8dcb-4a19-9084-22c77a74b9a1@linaro.org>
- <d231b7e2-51f5-4676-8fc0-e4bc6154e2d7@quicinc.com>
+To: Josua Mayer <josua@solid-run.com>, Nishanth Menon <nm@ti.com>,
+ Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240103-add-am64-som-v1-0-dda1f9227aef@solid-run.com>
+ <20240103-add-am64-som-v1-1-dda1f9227aef@solid-run.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -130,81 +123,18 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <d231b7e2-51f5-4676-8fc0-e4bc6154e2d7@quicinc.com>
+In-Reply-To: <20240103-add-am64-som-v1-1-dda1f9227aef@solid-run.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 28/12/2023 08:38, Jie Luo wrote:
->>> Sorry for this confusion.
->>> Rob said the internal reference source can be decided by the absence of
->>> the property combined with compatible string, because i said the
->>
->> So all your three DT maintainers agree that lack of property for
->> choosing clock, defines the usage of interrupt source.
+On 03/01/2024 12:27, Josua Mayer wrote:
+> Add bindings for SolidRun AM642 HummingBoard-T Board, which is the
+> evaluation board for SolidRun AM642 SoM.
 > 
-> This is the reference clock source selection of CMN block, which
-> generates the clocks for the Ethernet devices.
-> 
->>
->> Now we had huge amount of arguments that you do not represent properly
->> the clock relationships. Still.
-> 
-> here is the clock topology.
-> reference clock sources ---> CMN PLL ---> various output clocks
+> Signed-off-by: Josua Mayer <josua@solid-run.com>
+> ---
 
-How do you guarantee that these clocks are enabled without proper
-relationships described in DT? In current and future designs?
-
-> 
-> the output clocks are provided to the Ethernet devices(such as the
-> qca808x PHY devices).
-> 
-> These information is also provided the commit message of the patch
-> <net: mdio: ipq4019: configure CMN PLL clock for ipq5332>.
-> 
->>
->>> internal 96MHZ is used on ipq5018 currently in the previous message.
->>>
->>> per double checked the current IPQ platforms, the internal 96MHZ is also
->>> possible on ipq9574, and the reference clock source should be kept as
->>> configurable instead of limited by the compatible string, maybe the
->>> different reference clock source is acquired in the future, even
->>> currently it is not used on the special platform for now.
->>>
->>> so i update the solution with a little bit of changes.
->>
->> You still do not want to implement our suggestions and I don't
->> understand your arguments. Nothing in above paragraph explains me why
->> you cannot use clock provider/consumer relationships.
-> 
-> Hi Krzysztof,
-> 
-> The reference clock source can be registered as the fix clock provider,
->  From the current fix clock provider, the clock rate is useful for the
-> clock consumer, the fix clock rate is used to generate the output clocks
-> by the divider or multiplier.
-> 
-> For the CMN block to select reference clock, which is configuring the
-> clock source, we don't know the formula to get the output clock value
-> based on the reference clock value.
-
-I don't understand what does it mean. You do not know how to program CMN
-block?
-
-> 
-> i also see there is an example in the upstream code, which is same as
-> the CMN block to select the reference clock source.
-
-Oh, the old argument. So if there is a bug in the code, you are going
-for example to implement it as well?
-
-> 
-> the property "ref-clock-frequency" is defined in the yaml file below.
-> Documentation/devicetree/bindings/net/wireless/ti,wlcore.yaml.
-
-And how does the hardware look like there? It's TI, so how do you even know?
-
-
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
