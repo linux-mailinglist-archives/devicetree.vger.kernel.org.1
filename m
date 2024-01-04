@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-29784-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29785-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7ABC88248CF
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 20:14:34 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B6948248D2
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 20:15:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 181CE2833D5
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 19:14:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 63FBD1C22590
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 19:15:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0EB12C193;
-	Thu,  4 Jan 2024 19:14:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8B382C197;
+	Thu,  4 Jan 2024 19:14:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cEKei32p"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="CBzjw5W/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06FDB2C18F
-	for <devicetree@vger.kernel.org>; Thu,  4 Jan 2024 19:14:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15FFF2C18C
+	for <devicetree@vger.kernel.org>; Thu,  4 Jan 2024 19:14:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-55569b59f81so1042757a12.1
-        for <devicetree@vger.kernel.org>; Thu, 04 Jan 2024 11:14:26 -0800 (PST)
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a27733ae1dfso104591366b.3
+        for <devicetree@vger.kernel.org>; Thu, 04 Jan 2024 11:14:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704395665; x=1705000465; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1704395694; x=1705000494; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=qC1D7ZJQukV9JUtu/Ig3Hsm+0CiOfflEC5pCOPKb8gQ=;
-        b=cEKei32phX+oWOS6Enm10n1zjmA89VWbiyYgNfb/wTGWSPvJms4HqekpF9J8JCUVm4
-         Pfo1vn9dYEtxiv7IXUFdYDjD/D4qwvj+hBTkDpH7pEzh5p544b/WDvuLVGkjJWbF0Mj0
-         auiemYvo2nAALVwfC8YIUM08aXLlSKoPMVSQt3DndZUEEhOntX2vc7ou4OFOAjOju7Hm
-         2YKmeTKk9qBTksra8loTGxmcWKrwYLzmNtDwuqckaGxLHrJIXKP+x4FEFK+GiWkTncuw
-         /B92GUmUXoK4xwMwit2wTsvwRfxgqVNG6r6nZ2ulXiTT6gi8BF4pwfL3qFRG/fvEON7J
-         oAAQ==
+        bh=PH/gjT7PT5ZNNJFbBHa48BRb8fUvxYHdUoHeahN8ucY=;
+        b=CBzjw5W/C+ACEfReSGUwJKoa6KvvzwnaCoPfPfpRYm7NmNmxoI1leOXc8oDWe4orim
+         RcyYH7hiKScXRJWM5YALTM2bfMr1C2rR7KLe4PK57TwQc0IH2fA8I/HYONiaI2zQF4LL
+         7P/HUtkNWpTFAmM7BB9XYzB3DBvYY/JKYIT+15pQPUXymO0bONHt91Xx5noeLz4u2JEK
+         A2w3ljrGg2jXZvNGpejYhrOF8rit/JaTsP3AnNkQNKMwM4d3YJ+sYThr1m8UWP0dtJ2J
+         dFlRTYN+1Oq7UUz7kFq5ZjDxDQ1mfWYwOeKukQWIQQtHeD/8IcM3D9m42/jjayU03oWh
+         2v0g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704395665; x=1705000465;
+        d=1e100.net; s=20230601; t=1704395694; x=1705000494;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=qC1D7ZJQukV9JUtu/Ig3Hsm+0CiOfflEC5pCOPKb8gQ=;
-        b=sYub/tRM8sK4qeKXgM2DsLqdQ94YUngE+1owy6xerM/9jL5qAxsZ7LPmcPPulBi8/j
-         9x8qy0hF8T/arAfbTcD7m5Ix55sWhl7UNXqTZXmIX4pCy3f2pBoht8yY5Roc8nmTxrSL
-         F9dt6BLZkMVm4nOVNDhL2iDI3MRSxiuxT98T6gxc5mjcGd4t+T3NYYsOEkv5NKT2Qn3e
-         iZ+BhGz82icRrkjw5hALL7fj2ChFie3HJSXTinqHULxvD/+NKg2VUh8gK63vtnGqfl7P
-         YwO4NVL2CVWS2g3awLpx44UmIHSf6Jxclxd60I4tsqw6wmHmcvS5QdiY8RB0LU3M+j/L
-         gPZw==
-X-Gm-Message-State: AOJu0YzioWz0BggfUfLS/eio+msrp4i0GI/6gZAE0JUwxWvwaU+qkROV
-	Dl/gIM6InuS/4aTcQGg6pIlAnCvke4rIXw==
-X-Google-Smtp-Source: AGHT+IGAGKIdD5oCEK6AP88dwRCzHpsn5A15rBokiYZusl8Psmv3JOq2tXrH5wYSQanRD5rdsr1utg==
-X-Received: by 2002:a17:906:154e:b0:a27:4adc:122d with SMTP id c14-20020a170906154e00b00a274adc122dmr617755ejd.37.1704395665299;
-        Thu, 04 Jan 2024 11:14:25 -0800 (PST)
+        bh=PH/gjT7PT5ZNNJFbBHa48BRb8fUvxYHdUoHeahN8ucY=;
+        b=ORWAE1DvJ11vIW6QRFbjhgcNnSDhZo+IwznKlV0Q7jZRkooTVijCrT/34/39sO5l2p
+         OH+Ge7mI6j/6PCRAFaViWXsxF/hBB8NfDIFwfiyd8nbZOhE2iXiZe6jc6v0lJvdGq6nn
+         /JRMFFbKCgaSzXceMQZEkqUdI+cS/aup0Ogcy9NGLqwHnvbCRB3fAGo7uxNEJdccK2Go
+         GfadjheDD4Wjih4MRANVRNxMrNYY8nX0T81XpgSqLYUmjgWVNgBy4e9762XmAR5KRScl
+         Hjff8WMRjNe2xHQAvGbYt3p2vlo8SunrPFTR9t6YaAfX1Ku5+FsT+0xDBvpRhr6NESdd
+         0j0g==
+X-Gm-Message-State: AOJu0Yw+0PdaD+gNfK5G0L1K31uVIDcAW4Ik5Vg67gFIdkk2H+9XYtWo
+	0PQgUj7oDsteyIOrSWhwCBIECrc7C9LmUA==
+X-Google-Smtp-Source: AGHT+IHngc2OUxNVCoV9xyTqGucH2A3zVo3EFB/VSjl1sPQVVcVP3af1eICkAdZgqsZQ05pmp4h+xw==
+X-Received: by 2002:a17:906:5792:b0:a23:748e:f3eb with SMTP id k18-20020a170906579200b00a23748ef3ebmr275345ejq.286.1704395694501;
+        Thu, 04 Jan 2024 11:14:54 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id fb20-20020a1709073a1400b00a26a061ae1esm14054583ejc.97.2024.01.04.11.14.23
+        by smtp.gmail.com with ESMTPSA id fb20-20020a1709073a1400b00a26a061ae1esm14054583ejc.97.2024.01.04.11.14.53
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 04 Jan 2024 11:14:24 -0800 (PST)
-Message-ID: <7cc303f7-c7ad-42ae-9ac3-d5aa486dab70@linaro.org>
-Date: Thu, 4 Jan 2024 20:14:23 +0100
+        Thu, 04 Jan 2024 11:14:54 -0800 (PST)
+Message-ID: <2a564f48-f60a-40e2-9b9b-756d81071ac0@linaro.org>
+Date: Thu, 4 Jan 2024 20:14:52 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,8 +66,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 03/10] dt-bindings: marvell: a38x: add kobol helios-4
- board
+Subject: Re: [PATCH v5 04/10] dt-bindings: marvell: a38x: add solidrun armada
+ 385 clearfog gtr boards
 Content-Language: en-US
 To: Josua Mayer <josua@solid-run.com>, Andrew Lunn <andrew@lunn.ch>,
  Gregory Clement <gregory.clement@bootlin.com>,
@@ -78,7 +78,7 @@ To: Josua Mayer <josua@solid-run.com>, Andrew Lunn <andrew@lunn.ch>,
 Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org
 References: <20240104-support-clearfog-gtr-l8-sfp-v5-0-52be60fc54e3@solid-run.com>
- <20240104-support-clearfog-gtr-l8-sfp-v5-3-52be60fc54e3@solid-run.com>
+ <20240104-support-clearfog-gtr-l8-sfp-v5-4-52be60fc54e3@solid-run.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -124,14 +124,19 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240104-support-clearfog-gtr-l8-sfp-v5-3-52be60fc54e3@solid-run.com>
+In-Reply-To: <20240104-support-clearfog-gtr-l8-sfp-v5-4-52be60fc54e3@solid-run.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 04/01/2024 18:48, Josua Mayer wrote:
-> Add DT compatible for the helios-4 nas by Kobol, which is already used
-> in-tree.
+> Add DT compatible for SolidRun Armada-385 based Clearfog GTR L8 and S4
+> boards.
 > 
+> Despite similar name these two boards are designed differently from the
+> armada 388 clearfog base and pro, they only share a name and general use
+> case.
+> 
+> Signed-off-by: Josua Mayer <josua@solid-run.com>
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
