@@ -1,215 +1,304 @@
-Return-Path: <devicetree+bounces-29772-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29774-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94FCF8247C7
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 18:50:40 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B07AF8247CF
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 18:53:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3BDDE28703D
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 17:50:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C921E1C23DF4
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 17:53:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B2412C87D;
-	Thu,  4 Jan 2024 17:48:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0905288DF;
+	Thu,  4 Jan 2024 17:53:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=solidrn.onmicrosoft.com header.i=@solidrn.onmicrosoft.com header.b="GSnxSEUI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="r1xGtIhZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR04-VI1-obe.outbound.protection.outlook.com (mail-vi1eur04on2083.outbound.protection.outlook.com [40.107.8.83])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BA452C856;
-	Thu,  4 Jan 2024 17:48:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=solid-run.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=solid-run.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Ag53CVUWHYoiNLoyVg5Ftw3C78kLNnzBevmXT/Lpb4PK167eumoSnXNoaboeIhR3DiHqkQzXRUmsz3grQ2CVKKRDLosuAP7wHzh+TNm3UYsBurWtxt4cqDoJZRmr73deA5b2lqcyD6BPZUCdsXHXPkO1w5vUb8Dgr4+Pu4gvCBFplZqvpD3rmxvDa4l284Fe0FPU4roJo/wDhUavB04zK3FVd7OQ3AVfWg0HS8LrvzFg+EVJWswNf77lwOkBEiC0Mn/EOn+4aLiPqyKjMaAHzeK9z4zZV5ecQi2uuhyKQK9eHtdxDFQFV7aI9W5Nos54w/ADAl4yoA4XtREa4ZnzhQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=dgcl289EmJRwpJtbpRe4wL18fqPn5M9ka+q6zrHa0xg=;
- b=OsgHWFOqpkZ9f6rLTjdJZbGmeCbmFyIL74VqNTQYEV3vimExq1duSJ7nb71Wj8yyqw/c6r6HQ57yO2LK7BS6X+deg54q/5v2O9GO75ZKXGgPheXwYV1+IUHhJL4qQnEt9/yfw9Lley2BWJazcjj4Mo4e71kl1bXU23eIyBlNd2uCuobU3i4Lyp19P2HAQpSI74v47wnUzxSThrKaT3ftpD53lGoYlhPQ9S833YeCFTZLZ+Ak0Jnr5hZJ+sar5/TLh6Qy4YvUEUbhlLxV9yH6qfgkxUT7dIqYnk8jOhRIsIONqULaAljbelLvMupw/LfIKrBXTqYQ8CcqXlKqi4E5LQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=solid-run.com; dmarc=pass action=none
- header.from=solid-run.com; dkim=pass header.d=solid-run.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=solidrn.onmicrosoft.com; s=selector1-solidrn-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dgcl289EmJRwpJtbpRe4wL18fqPn5M9ka+q6zrHa0xg=;
- b=GSnxSEUISUYUEs2Xna+SEX/OFaXEJl7UdFirS+c4IWl9DjxZzbJ7XwWhOiiUS7lJpn7jK9N8buxkK8Lsr4AtI3uSDP7TjCdB31+Jsh14YkgK8YO8E+w/PtKArKq2uhMfo9h5qT/SzKpQYBa7rCZ7b3R/5ntVFSC2H0UcS1qxwaY=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=solid-run.com;
-Received: from AS8PR04MB8963.eurprd04.prod.outlook.com (2603:10a6:20b:42e::18)
- by DB9PR04MB8233.eurprd04.prod.outlook.com (2603:10a6:10:24b::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7159.14; Thu, 4 Jan
- 2024 17:48:12 +0000
-Received: from AS8PR04MB8963.eurprd04.prod.outlook.com
- ([fe80::daf2:8c54:d469:793d]) by AS8PR04MB8963.eurprd04.prod.outlook.com
- ([fe80::daf2:8c54:d469:793d%6]) with mapi id 15.20.7159.013; Thu, 4 Jan 2024
- 17:48:12 +0000
-From: Josua Mayer <josua@solid-run.com>
-Date: Thu, 04 Jan 2024 18:48:11 +0100
-Subject: [PATCH v5 10/10] arm: dts: marvell: clearfog-gtr-l8: align port
- numbers with enclosure
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240104-support-clearfog-gtr-l8-sfp-v5-10-52be60fc54e3@solid-run.com>
-References: <20240104-support-clearfog-gtr-l8-sfp-v5-0-52be60fc54e3@solid-run.com>
-In-Reply-To: <20240104-support-clearfog-gtr-l8-sfp-v5-0-52be60fc54e3@solid-run.com>
-To: Andrew Lunn <andrew@lunn.ch>, 
- Gregory Clement <gregory.clement@bootlin.com>, 
- Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, 
- Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Russell King <linux@armlinux.org.uk>
-Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Josua Mayer <josua@solid-run.com>
-X-Mailer: b4 0.12.4
-X-ClientProxiedBy: FR4P281CA0409.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:d0::9) To AS8PR04MB8963.eurprd04.prod.outlook.com
- (2603:10a6:20b:42e::18)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3EF128DAB;
+	Thu,  4 Jan 2024 17:53:02 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6501DC433C7;
+	Thu,  4 Jan 2024 17:52:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1704390782;
+	bh=wKYftDd3FW5eeDWnzupfy2i9v4YDDNe798XkVIlpntA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=r1xGtIhZLKg/DWo5tFxE72e0gxuhkDIKV4oTNFvWvLqyDfrPQlNjK41WMhUYcJ1Hy
+	 7l4MiWr16D03U44+WfsgK+XEiKYsL32Ukwtb+j/zownEYSCDtIc4jIudL8FCPlztJa
+	 wa3BjGjg6ADD5tLTRzht7v5o/AtHz6wJOmu6cGaHjdJhk2IFea8qY2lPnxJ6cm1Qjh
+	 xd0qOT1j7Yhp3oL6StLi286l42ZzdauAuy+Mqtq4fkVcX1zQ/VIPPAK5WbYmULuKja
+	 UuqG0mCKG/yDEgIxi9pDNgNiLE0gWveCqOYbIqd2Tk7qom5amXmA6wKNlSJKE3rHuA
+	 pKoSbTQBou1NQ==
+Date: Thu, 4 Jan 2024 17:52:53 +0000
+From: Simon Horman <horms@kernel.org>
+To: Yi-De Wu <yi-de.wu@mediatek.com>
+Cc: Yingshiuan Pan <yingshiuan.pan@mediatek.com>,
+	Ze-Yu Wang <ze-yu.wang@mediatek.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Wihl Deacon <will@kernel.org>, Steven Rostedt <rostedt@goodmis.org>,
+	Masami Hiramatsu <mhiramat@kernel.org>,
+	Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
+	Richard Cochran <richardcochran@gmail.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-trace-kernel@vger.kernel.org, netdev@vger.kernel.org,
+	linux-mediatek@lists.infradead.org,
+	David Bradil <dbrazdil@google.com>,
+	Trilok Soni <quic_tsoni@quicinc.com>,
+	Jade Shih <jades.shih@mediatek.com>,
+	Ivan Tseng <ivan.tseng@mediatek.com>,
+	My Chuang <my.chuang@mediatek.com>,
+	Shawn Hsiao <shawn.hsiao@mediatek.com>,
+	PeiLun Suei <peilun.suei@mediatek.com>,
+	Liju Chen <liju-clr.chen@mediatek.com>,
+	Willix Yeh <chi-shen.yeh@mediatek.com>,
+	Kevenny Hsieh <kevenny.hsieh@mediatek.com>
+Subject: Re: [PATCH v8 08/20] virt: geniezone: Add vcpu support
+Message-ID: <20240104175253.GK31813@kernel.org>
+References: <20231228105147.13752-1-yi-de.wu@mediatek.com>
+ <20231228105147.13752-9-yi-de.wu@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AS8PR04MB8963:EE_|DB9PR04MB8233:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6c8a8fb3-272e-42be-99ae-08dc0d4d5150
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	3dsszoaNtynyG8jkUgZ7FkWNjVPKIyBZSf6KGR7mx/nOfXN098WhH6MzK7SWydTTZLhOAePscQBPGK57sX0UM/Z/kf0pCqQ2Kq7UtyTAB9Z+i/2RTVTZ4t4QcUSSKQq5jCtmTc8WAnjZ8FzgQGQZNhMylF4MEXh68UwyAcfLGHNy4OobPy1MsqhCVHwbstgwIeTNIk1cBunpi7h4TGl3o7qO3mOZ9p128RPBCkZF5iFH4zAOblp5g7C4W67+tXBjzqWcvJaDCfGaifgFu0tAmwEOS0RFAhHyqXHwvCGuvM/XgQWGTfMh9cfc6P2wGuVIhyYIk3UpgHNAVyKdAgFuGLCpqKLXVw0irEjLSz/J6dkaPE7GZpgQ6YIJZh17PZwiUX5bVgy8A+lZRMkGx+2gy+1vLWqU+GOU/hSTSdWHLt4e7ITacqkNjGL0LhViKOfsHScQ93Y6bnOUv5ecRp/0HB3HX7aJGVXlpu4clNfQ+OreJPGOZUJmsnapbQiV7dFuMOzUvgqcAmG6gIXtk3oraMjlC2z4WQTlR/IaubuSeQiL+aGTmHHckZFKxw9sSGSwUY2xF/tcJUpQrI3Gtrs3d5yV0uJDtjseWNCSROcyIHtffSrobiw/SSymb89QsKlG
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB8963.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(136003)(376002)(346002)(366004)(396003)(39840400004)(230922051799003)(186009)(64100799003)(451199024)(1800799012)(38100700002)(38350700005)(36756003)(86362001)(26005)(4326008)(107886003)(6512007)(6506007)(66476007)(66946007)(66556008)(8676002)(478600001)(8936002)(6486002)(52116002)(316002)(110136005)(2616005)(83380400001)(41300700001)(5660300002)(7416002)(2906002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?K3ZXVzUvOFFIUklvTWIrQytpVjBlT1ZhdHQ0Q2NxSkNLeEZ4V2NDclFRMkJw?=
- =?utf-8?B?VUh1cXRmNUNOMTBkTUpMelJTRFBLV0lqb2FPR3BSMkYxb3MzWUg5OG5pdkRh?=
- =?utf-8?B?WC80b3hkYXFqeTE2enVLTWdGZGViYmIwbS9pT3BWcExEeXBsQjhRZGFIbU8z?=
- =?utf-8?B?bzFmU0lGY2cyQ3pLTUUrNFdtT3Rpb2QvU1BZdFVIc3FqazZkUjFObGhqN3Jq?=
- =?utf-8?B?NDQ2M1hJWnl6WHZsT1pPcko1N0xKZXduWGtxbTZpdFNvRVJUOW9zTWRDWFBP?=
- =?utf-8?B?Si9idHYvSHJhdDVZT3Q1cFNPd3N5K3daMGVVNEJ1dFlrbUczY2IyTEJCa0F5?=
- =?utf-8?B?Zk9lVG9Ta003bXkyRkdwRlYvbVpOUXpoQWVhS2s5STN3bUdlWjhUYW5ZZFNh?=
- =?utf-8?B?OEowcUwvaVRWWHRGNnZDOWZJQjlYSnVSdytubCtFZC9Yd28wMXhmZXRYaFhw?=
- =?utf-8?B?WnhDczJhbUE0TVgwdjNrVnVmUmlJMHdVbDhoYm8zQ2d6cVZmSlVtU21tanR2?=
- =?utf-8?B?S0lLWVE2OTVCa3IzaU82VlhSTVB1RFJ3MVpzWEkxQ2tqbGcrajVLVVBJZ0tp?=
- =?utf-8?B?N0xxaDIzcjFhZlN2VFdaNGRndXFOeTdIdlRTUlZvdEJueUhLMnF2cTZib2ZC?=
- =?utf-8?B?M0VvaXJLdng2Z3FuL2p2NmFPSlM1cWtOVVVaaUlhMW5QOWZyc0x3THdXYXl0?=
- =?utf-8?B?UHo0QndIRXlxTjBWOUgzSkJ4SHNZVzhncjJkUHhRNlYxZXRMcEduTmVHN1Ux?=
- =?utf-8?B?S1FDM3NqcDM5Q0Jvc0Y3KzhIOFZGMXRhYkpJU093ZHhQK2wvM2RSaUE2L2lk?=
- =?utf-8?B?T05vQlljbTgwdFBhcVNUNFlmYmJSNTZRd09PVmt3eFNRM0ZtYm1Ka2k3c0gw?=
- =?utf-8?B?TTBwVURuZlUzaE85OC94eHZHa05idzJsZnhrRHBUeWZZaXJvOWJaYTg5WG96?=
- =?utf-8?B?c2FkcUNRaG1sV2g3TkVIbDVsWkRvU0tzTi82SHZGV1BUNUk3eURsNEFHMjJl?=
- =?utf-8?B?K3c4VXBxblcraGVvbmFZV2hwQTBuWERNVHhGS21WSzVwS0MwUUc0YVo5eWV3?=
- =?utf-8?B?VUNQYy9tRTJYNURlRURNcW9hd3RnY2NuMlBjcFk1L2tKV3BYZTRmRnVUQzl2?=
- =?utf-8?B?d01NRFRsT3prTDB6RzRJdmgzaEZ1bUgwKytiT1JMQi9BTmxoOXBxUUtocjRF?=
- =?utf-8?B?ZVg1VkMySEZhZUprenZ1NVBPN3dvdWh1MUt5dE14LzIyL3dxT2N0RUpDTTY3?=
- =?utf-8?B?ckh6YzJGMWlQWGMrOTIrVytuZ05lWXhTMGtsYWV3Vlh5Z2YvWXJGNGhIeG5Z?=
- =?utf-8?B?c3laZVhjWmkyR1J0aE95SlE5aXl3Si84OVMwRHk3SmJieTFUaXUzZkR1Zk9n?=
- =?utf-8?B?MlRZU3FWSjdLOEdPSEFFN1NoWGROdlg0bVFWNzhMSnJDYkl1UTFKUEcwMWoz?=
- =?utf-8?B?NTFaVWRUYzI2eDQycHpybmxycUpILytwMytHbWJrNVVkQTdMcXMvUmVMSEwr?=
- =?utf-8?B?U2VkVlFoRldEdktITk1sNTV1K1lkeWwrRXh2N1lDSXZiT3BsVDVCKzVHWER3?=
- =?utf-8?B?cDc4dStHKzlwdUE2YlFSRFRGZG84NysxelJaV1h5ZEtKd3R2RXp3NHc3MWJ3?=
- =?utf-8?B?TXc2SGhrRTFpZGl1V3MreXNFZFl2cWN1YlZPemRwdFJFMnU0Rlp0TnN6Mkhh?=
- =?utf-8?B?b2RPeEtUOG9ReDdKV3ZtcWhGT2Yrc2NwUG9TWXJiakZlcktWQ3FKd0d0Y2VZ?=
- =?utf-8?B?TUN5RklBcWdZUXNpUGRqTjFRMnlzOFF4VUlaNnlLaHhtbzNEd1dERXhlM1Qv?=
- =?utf-8?B?ZmZLTGlJeWhBLzJkL1pHb3JoNE40bC9VUjg5VTFjMmdpK3AvWStYUXZSMTlF?=
- =?utf-8?B?Q2p3R2VPMWxHNytZeHg5bUZHbjlBNHdIWnZxeHBZK2E5MUtiRGlXdWxrcW01?=
- =?utf-8?B?MXZQb0h2U0g2UE15anBzSmlIRllKa2pNTHhMRjJGTTJlRDRjbkUzM3pHY21i?=
- =?utf-8?B?bll2SjRENk4vdXJ6QmltRy9qMjVlenU5UHViL0hBRTl5TXExNkV0OVNQRjNk?=
- =?utf-8?B?UHo1RkxwM0VYRllNS0hxaTdpQWZMeTBpYnU0Y0FwTmNvNnNQZ1l0a1dzVFN1?=
- =?utf-8?Q?oOUoGFKUzKBs3OKDX2cNRmQNn?=
-X-OriginatorOrg: solid-run.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6c8a8fb3-272e-42be-99ae-08dc0d4d5150
-X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB8963.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Jan 2024 17:48:10.8848
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: a4a8aaf3-fd27-4e27-add2-604707ce5b82
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: S3KLQlSOYVXktBVsPD0V0A/ADE2VVU95BU5NkLpIlc9DxNxpP45tDitGVNoxRJWfb0VDQSofwH5qMODNkqJw5g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB8233
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231228105147.13752-9-yi-de.wu@mediatek.com>
 
-Clearfog GTR has an official enclosure with labels for all interfaces.
-The "lan" ports on the 8-port switch in device-tree were numbered  in
-reverse wrt. enclosure.
+On Thu, Dec 28, 2023 at 06:51:35PM +0800, Yi-De Wu wrote:
+> From: "Yingshiuan Pan" <yingshiuan.pan@mediatek.com>
+> 
+> VMM use this interface to create vcpu instance which is a fd, and this
+> fd will be for any vcpu operations, such as setting vcpu registers and
+> accepts the most important ioctl GZVM_VCPU_RUN which requests GenieZone
+> hypervisor to do context switch to execute VM's vcpu context.
+> 
+> Signed-off-by: Yingshiuan Pan <yingshiuan.pan@mediatek.com>
+> Signed-off-by: Jerry Wang <ze-yu.wang@mediatek.com>
+> Signed-off-by: kevenny hsieh <kevenny.hsieh@mediatek.com>
+> Signed-off-by: Liju Chen <liju-clr.chen@mediatek.com>
+> Signed-off-by: Yi-De Wu <yi-de.wu@mediatek.com>
 
-Update all device-tree labels to match.
+Hi Yi-De Wu,
 
-Signed-off-by: Josua Mayer <josua@solid-run.com>
----
- arch/arm/boot/dts/marvell/armada-385-clearfog-gtr-l8.dts | 16 ++++++++--------
- 1 file changed, 8 insertions(+), 8 deletions(-)
+some minor feedback from my side.
 
-diff --git a/arch/arm/boot/dts/marvell/armada-385-clearfog-gtr-l8.dts b/arch/arm/boot/dts/marvell/armada-385-clearfog-gtr-l8.dts
-index 2df388f222ec..da6981677b03 100644
---- a/arch/arm/boot/dts/marvell/armada-385-clearfog-gtr-l8.dts
-+++ b/arch/arm/boot/dts/marvell/armada-385-clearfog-gtr-l8.dts
-@@ -32,49 +32,49 @@ ports {
- 
- 			port@1 {
- 				reg = <1>;
--				label = "lan8";
-+				label = "lan1";
- 				phy-handle = <&switch0phy0>;
- 			};
- 
- 			port@2 {
- 				reg = <2>;
--				label = "lan7";
-+				label = "lan2";
- 				phy-handle = <&switch0phy1>;
- 			};
- 
- 			port@3 {
- 				reg = <3>;
--				label = "lan6";
-+				label = "lan3";
- 				phy-handle = <&switch0phy2>;
- 			};
- 
- 			port@4 {
- 				reg = <4>;
--				label = "lan5";
-+				label = "lan4";
- 				phy-handle = <&switch0phy3>;
- 			};
- 
- 			port@5 {
- 				reg = <5>;
--				label = "lan4";
-+				label = "lan5";
- 				phy-handle = <&switch0phy4>;
- 			};
- 
- 			port@6 {
- 				reg = <6>;
--				label = "lan3";
-+				label = "lan6";
- 				phy-handle = <&switch0phy5>;
- 			};
- 
- 			port@7 {
- 				reg = <7>;
--				label = "lan2";
-+				label = "lan7";
- 				phy-handle = <&switch0phy6>;
- 			};
- 
- 			port@8 {
- 				reg = <8>;
--				label = "lan1";
-+				label = "lan8";
- 				phy-handle = <&switch0phy7>;
- 			};
- 
+...
 
--- 
-2.35.3
+> diff --git a/include/uapi/linux/gzvm.h b/include/uapi/linux/gzvm.h
+> index 77a58ee085df..bdf277fa248a 100644
+> --- a/include/uapi/linux/gzvm.h
+> +++ b/include/uapi/linux/gzvm.h
+> @@ -25,6 +25,34 @@
+>  /* GZVM_CAP_PVM_SET_PROTECTED_VM only sets protected but not load pvmfw */
+>  #define GZVM_CAP_PVM_SET_PROTECTED_VM		2
+>  
+> +/*
+> + * Architecture specific registers are to be defined and ORed with
+> + * the arch identifier.
+> + */
+> +#define GZVM_REG_ARCH_ARM64	0x6000000000000000ULL
+> +#define GZVM_REG_ARCH_MASK	0xff00000000000000ULL
 
+nit: using GENMASK_ULL and FIELD_PREP seems appropriate here.
+
+> +
+> +/*
+> + * Reg size = BIT((reg.id & GZVM_REG_SIZE_MASK) >> GZVM_REG_SIZE_SHIFT) bytes
+> + */
+> +#define GZVM_REG_SIZE_SHIFT	52
+> +#define GZVM_REG_SIZE_MASK	0x00f0000000000000ULL
+> +
+> +#define GZVM_REG_SIZE_U8	0x0000000000000000ULL
+> +#define GZVM_REG_SIZE_U16	0x0010000000000000ULL
+> +#define GZVM_REG_SIZE_U32	0x0020000000000000ULL
+> +#define GZVM_REG_SIZE_U64	0x0030000000000000ULL
+> +#define GZVM_REG_SIZE_U128	0x0040000000000000ULL
+> +#define GZVM_REG_SIZE_U256	0x0050000000000000ULL
+> +#define GZVM_REG_SIZE_U512	0x0060000000000000ULL
+> +#define GZVM_REG_SIZE_U1024	0x0070000000000000ULL
+> +#define GZVM_REG_SIZE_U2048	0x0080000000000000ULL
+
+And here.
+
+> +
+> +/* Register type definitions */
+> +#define GZVM_REG_TYPE_SHIFT	16
+> +/* Register type: general purpose */
+> +#define GZVM_REG_TYPE_GENERAL	(0x10 << GZVM_REG_TYPE_SHIFT)
+
+And using FIELD_PREP seems appropriate here too.
+
+...
+
+> @@ -51,6 +79,11 @@ struct gzvm_memory_region {
+>  
+>  #define GZVM_SET_MEMORY_REGION     _IOW(GZVM_IOC_MAGIC,  0x40, \
+>  					struct gzvm_memory_region)
+> +/*
+> + * GZVM_CREATE_VCPU receives as a parameter the vcpu slot,
+> + * and returns a vcpu fd.
+> + */
+> +#define GZVM_CREATE_VCPU           _IO(GZVM_IOC_MAGIC,   0x41)
+>  
+>  /* for GZVM_SET_USER_MEMORY_REGION */
+>  struct gzvm_userspace_memory_region {
+> @@ -66,6 +99,124 @@ struct gzvm_userspace_memory_region {
+>  #define GZVM_SET_USER_MEMORY_REGION _IOW(GZVM_IOC_MAGIC, 0x46, \
+>  					 struct gzvm_userspace_memory_region)
+>  
+> +/*
+> + * ioctls for vcpu fds
+> + */
+> +#define GZVM_RUN                   _IO(GZVM_IOC_MAGIC,   0x80)
+> +
+> +/* VM exit reason */
+> +enum {
+> +	GZVM_EXIT_UNKNOWN = 0x92920000,
+> +	GZVM_EXIT_MMIO = 0x92920001,
+> +	GZVM_EXIT_HYPERCALL = 0x92920002,
+> +	GZVM_EXIT_IRQ = 0x92920003,
+> +	GZVM_EXIT_EXCEPTION = 0x92920004,
+> +	GZVM_EXIT_DEBUG = 0x92920005,
+> +	GZVM_EXIT_FAIL_ENTRY = 0x92920006,
+> +	GZVM_EXIT_INTERNAL_ERROR = 0x92920007,
+> +	GZVM_EXIT_SYSTEM_EVENT = 0x92920008,
+> +	GZVM_EXIT_SHUTDOWN = 0x92920009,
+> +	GZVM_EXIT_GZ = 0x9292000a,
+> +};
+> +
+> +/**
+> + * struct gzvm_vcpu_run: Same purpose as kvm_run, this struct is
+> + *			shared between userspace, kernel and
+> + *			GenieZone hypervisor
+> + * @exit_reason: The reason why gzvm_vcpu_run has stopped running the vCPU
+> + * @immediate_exit: Polled when the vcpu is scheduled.
+> + *                  If set, immediately returns -EINTR
+> + * @padding1: Reserved for future-proof and must be zero filled
+> + * @mmio: The nested struct in anonymous union. Handle mmio in host side
+> + * @phys_addr: The address guest tries to access
+> + * @data: The value to be written (is_write is 1) or
+> + *        be filled by user for reads (is_write is 0)
+> + * @size: The size of written data.
+> + *        Only the first `size` bytes of `data` are handled
+> + * @reg_nr: The register number where the data is stored
+> + * @is_write: 1 for VM to perform a write or 0 for VM to perform a read
+> + * @fail_entry: The nested struct in anonymous union.
+> + *              Handle invalid entry address at the first run
+> + * @hardware_entry_failure_reason: The reason codes about hardware entry failure
+> + * @cpu: The current processor number via smp_processor_id()
+> + * @exception: The nested struct in anonymous union.
+> + *             Handle exception occurred in VM
+> + * @exception: Which exception vector
+> + * @error_code: Exception error codes
+> + * @hypercall: The nested struct in anonymous union.
+> + *             Some hypercalls issued from VM must be handled
+> + * @args: The hypercall's arguments
+> + * @internal: The nested struct in anonymous union. The errors from hypervisor
+> + * @suberror: The errors codes about GZVM_EXIT_INTERNAL_ERROR
+> + * @ndata: The number of elements used in data[]
+> + * @data: Keep the detailed information about GZVM_EXIT_INTERNAL_ERROR
+> + * @system_event: The nested struct in anonymous union.
+> + *                VM's PSCI must be handled by host
+> + * @type: System event type.
+> + *        Ex. GZVM_SYSTEM_EVENT_SHUTDOWN or GZVM_SYSTEM_EVENT_RESET...etc.
+> + * @ndata: The number of elements used in data[]
+> + * @data: Keep the detailed information about GZVM_EXIT_SYSTEM_EVENT
+> + * @padding: Fix it to a reasonable size future-proof for keeping the same
+> + *           struct size when adding new variables in the union is needed
+> + *
+> + * Keep identical layout between the 3 modules
+> + */
+
+I am unsure how to address this, but ./scripts/kernel-doc seems confused
+about the correlation between the fields documented above and the nested
+structure below.
+
+"./scripts/kernel-doc -none" says:
+
+ .../gzvm.h:219: warning: Excess struct member 'phys_addr' description in 'gzvm_vcpu_run'
+ .../gzvm.h:219: warning: Excess struct member 'data' description in 'gzvm_vcpu_run'
+ .../gzvm.h:219: warning: Excess struct member 'size' description in 'gzvm_vcpu_run'
+ .../gzvm.h:219: warning: Excess struct member 'reg_nr' description in 'gzvm_vcpu_run'
+ .../gzvm.h:219: warning: Excess struct member 'is_write' description in 'gzvm_vcpu_run'
+ .../gzvm.h:219: warning: Excess struct member 'hardware_entry_failure_reason' description in 'gzvm_vcpu_run'
+ .../gzvm.h:219: warning: Excess struct member 'cpu' description in 'gzvm_vcpu_run'
+ .../gzvm.h:219: warning: Excess struct member 'error_code' description in 'gzvm_vcpu_run'
+ .../gzvm.h:219: warning: Excess struct member 'args' description in 'gzvm_vcpu_run'
+ .../gzvm.h:219: warning: Excess struct member 'suberror' description in 'gzvm_vcpu_run'
+ .../gzvm.h:219: warning: Excess struct member 'ndata' description in 'gzvm_vcpu_run'
+ .../gzvm.h:219: warning: Excess struct member 'data' description in 'gzvm_vcpu_run'
+ .../gzvm.h:219: warning: Excess struct member 'type' description in 'gzvm_vcpu_run'
+ .../gzvm.h:219: warning: Excess struct member 'ndata' description in 'gzvm_vcpu_run'
+ .../gzvm.h:219: warning: Excess struct member 'data' description in 'gzvm_vcpu_run'
+
+
+> +struct gzvm_vcpu_run {
+> +	/* to userspace */
+> +	__u32 exit_reason;
+> +	__u8 immediate_exit;
+> +	__u8 padding1[3];
+> +	/* union structure of collection of guest exit reason */
+> +	union {
+> +		/* GZVM_EXIT_MMIO */
+> +		struct {
+> +			/* from FAR_EL2 */
+> +			__u64 phys_addr;
+> +			__u8 data[8];
+> +			/* from ESR_EL2 as */
+> +			__u64 size;
+> +			/* from ESR_EL2 */
+> +			__u32 reg_nr;
+> +			/* from ESR_EL2 */
+> +			__u8 is_write;
+> +		} mmio;
+> +		/* GZVM_EXIT_FAIL_ENTRY */
+> +		struct {
+> +			__u64 hardware_entry_failure_reason;
+> +			__u32 cpu;
+> +		} fail_entry;
+> +		/* GZVM_EXIT_EXCEPTION */
+> +		struct {
+> +			__u32 exception;
+> +			__u32 error_code;
+> +		} exception;
+> +		/* GZVM_EXIT_HYPERCALL */
+> +		struct {
+> +			__u64 args[8];	/* in-out */
+> +		} hypercall;
+> +		/* GZVM_EXIT_INTERNAL_ERROR */
+> +		struct {
+> +			__u32 suberror;
+> +			__u32 ndata;
+> +			__u64 data[16];
+> +		} internal;
+> +		/* GZVM_EXIT_SYSTEM_EVENT */
+> +		struct {
+> +#define GZVM_SYSTEM_EVENT_SHUTDOWN       1
+> +#define GZVM_SYSTEM_EVENT_RESET          2
+> +#define GZVM_SYSTEM_EVENT_CRASH          3
+> +#define GZVM_SYSTEM_EVENT_WAKEUP         4
+> +#define GZVM_SYSTEM_EVENT_SUSPEND        5
+> +#define GZVM_SYSTEM_EVENT_SEV_TERM       6
+> +#define GZVM_SYSTEM_EVENT_S2IDLE         7
+> +			__u32 type;
+> +			__u32 ndata;
+> +			__u64 data[16];
+> +		} system_event;
+> +		char padding[256];
+> +	};
+> +};
+
+...
 
