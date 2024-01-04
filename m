@@ -1,92 +1,109 @@
-Return-Path: <devicetree+bounces-29777-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29778-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65F4A824806
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 19:15:16 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D687F82485A
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 19:46:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0379D1F22BE9
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 18:15:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 85E981F230DF
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jan 2024 18:46:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9550028DC7;
-	Thu,  4 Jan 2024 18:15:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6342D28E1A;
+	Thu,  4 Jan 2024 18:46:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="c0Jc5VRG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C406E28DBF;
-	Thu,  4 Jan 2024 18:15:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
-Received: from local
-	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
-	 (Exim 4.96.2)
-	(envelope-from <daniel@makrotopia.org>)
-	id 1rLSEx-0003UN-12;
-	Thu, 04 Jan 2024 18:14:48 +0000
-Date: Thu, 4 Jan 2024 19:12:10 +0100
-From: Daniel Golle <daniel@makrotopia.org>
-To: Frank Wunderlich <linux@fw-web.de>
-Cc: linux-mediatek@lists.infradead.org,
-	Frank Wunderlich <frank-w@public-files.de>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sam Shih <sam.shih@mediatek.com>, linux-clk@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: reset: mediatek: add MT7988 LVTS reset
- ID
-Message-ID: <ZZb0-pFWxuQlEm7q@pidgin.makrotopia.org>
-References: <20240104173930.13907-1-linux@fw-web.de>
- <20240104173930.13907-2-linux@fw-web.de>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 444B528E0F;
+	Thu,  4 Jan 2024 18:46:34 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A8E2AC433C8;
+	Thu,  4 Jan 2024 18:46:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1704393994;
+	bh=sENc5CCnxhI6r+hrIlR9tlhr2WUZEqLABBgNTIa2NzI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=c0Jc5VRGht41sBI1wBEvrgYuZzegmyVNiwD8dYnY5SWBbVHyUelzEWC+RU9xC8Ch+
+	 fwB8iTeeEJb/BBXxs32a9XveEKcVurNGVxT9/zNORFRk0C1nIKoP7Mwrh11A+g3s4V
+	 02hg/4qHtO3bieo/VaZThvBix6otXiF1gLFhYUfuWPmD9wqB8jg+xDSTXbir0vMYRH
+	 j4eCBK0aKJ0lix2UEN80xmgJd+SRMJtBFdn+qDUsam3dV0VhhLyTsPwThH5C59818z
+	 BXsQtIc+SQDU0KxmQEbXV0btCpxD0F7eJRNDaeHgBYtLm9uQLlBCz8iSPOHcQyf2rO
+	 LwGW4FG0Qt7Gw==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240104173930.13907-2-linux@fw-web.de>
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Thu, 04 Jan 2024 20:46:30 +0200
+Message-Id: <CY658TZN29WJ.2DMIWN3W68P2P@suppilovahvero>
+From: "Jarkko Sakkinen" <jarkko@kernel.org>
+To: "Jarkko Sakkinen" <jarkko@kernel.org>, "Lukas Wunner" <lukas@wunner.de>,
+ "Rob Herring" <robh+dt@kernel.org>, "Krzysztof Kozlowski"
+ <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley" <conor+dt@kernel.org>,
+ "Peter Huewe" <peterhuewe@gmx.de>, "Jason Gunthorpe" <jgg@ziepe.ca>, "Tim
+ Harvey" <tharvey@gateworks.com>
+Cc: <devicetree@vger.kernel.org>, <linux-integrity@vger.kernel.org>
+Subject: Re: [PATCH] dt-bindings: tpm: Add compatible string atmel,attpm20p
+X-Mailer: aerc 0.15.2
+References: <ea312fdaab76efd1cbcc4ed9fd0e15e5afd1ef88.1704296746.git.lukas@wunner.de> <CY62RZMRHTT4.30ELSWNQFH6K4@suppilovahvero>
+In-Reply-To: <CY62RZMRHTT4.30ELSWNQFH6K4@suppilovahvero>
 
-Hi Frank,
+On Thu Jan 4, 2024 at 6:50 PM EET, Jarkko Sakkinen wrote:
+> On Tue Jan 3, 2023 at 5:51 PM EET, Lukas Wunner wrote:
+> > Commit 4f2a348aa365 ("arm64: dts: imx8mm-venice-gw73xx: add TPM device"=
+)
+> > added a devicetree node for the Trusted Platform Module on certain
+> > Gateworks boards.
+> >
+> > The commit only used the generic "tcg,tpm_tis-spi" compatible string,
+> > but public documentation shows that the chip is an ATTPM20P from Atmel
+> > (nowadays Microchip):
+> > https://trac.gateworks.com/wiki/tpm
+> >
+> > Add the chip to the supported compatible strings of the TPM TIS SPI
+> > schema.
+> >
+> > For reference, a datasheet is available at:
+> > https://ww1.microchip.com/downloads/en/DeviceDoc/ATTPM20P-Trusted-Platf=
+orm-Module-TPM-2.0-SPI-Interface-Summary-Data-Sheet-DS40002082A.pdf
+> >
+> > Signed-off-by: Lukas Wunner <lukas@wunner.de>
+> > Cc: Tim Harvey <tharvey@gateworks.com>
+> > ---
+> > This patch depends on the following series to consolidate TCG TIS bindi=
+ngs:
+> > https://lore.kernel.org/all/cover.1702806810.git.lukas@wunner.de/
+> >
+> >  Documentation/devicetree/bindings/tpm/tcg,tpm_tis-spi.yaml | 1 +
+> >  1 file changed, 1 insertion(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/tpm/tcg,tpm_tis-spi.yaml=
+ b/Documentation/devicetree/bindings/tpm/tcg,tpm_tis-spi.yaml
+> > index c3413b4..6cb2de7 100644
+> > --- a/Documentation/devicetree/bindings/tpm/tcg,tpm_tis-spi.yaml
+> > +++ b/Documentation/devicetree/bindings/tpm/tcg,tpm_tis-spi.yaml
+> > @@ -20,6 +20,7 @@ properties:
+> >    compatible:
+> >      items:
+> >        - enum:
+> > +          - atmel,attpm20p
+> >            - infineon,slb9670
+> >            - st,st33htpm-spi
+> >            - st,st33zp24-spi
+>
+> Acked-by: Jarkko Sakkinen <jarkko@kernel.org>
 
-On Thu, Jan 04, 2024 at 06:39:29PM +0100, Frank Wunderlich wrote:
-> From: Frank Wunderlich <frank-w@public-files.de>
-> 
-> ---
->  include/dt-bindings/reset/mediatek,mt7988-resets.h | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
-> diff --git a/include/dt-bindings/reset/mediatek,mt7988-resets.h b/include/dt-bindings/reset/mediatek,mt7988-resets.h
-> index 493301971367..3f1e4ec07ad5 100644
-> --- a/include/dt-bindings/reset/mediatek,mt7988-resets.h
-> +++ b/include/dt-bindings/reset/mediatek,mt7988-resets.h
-> @@ -10,4 +10,8 @@
->  /* ETHWARP resets */
->  #define MT7988_ETHWARP_RST_SWITCH		0
->  
-> +/* INFRA resets */
-> +#define MT7988_INFRA_RST0_THERM_CTRL_SWRST	9
+meant:
 
-I suppose this argument applies here as well:
+Reviewed-by: Jarkko Sakkinen <jarkko@kernel.org>
 
-"IDs should start from 0 or 1 and increment by 1. If these are not IDs,
-then you do not need them in the bindings."
+I can pick this if no objections.
 
-https://lore.kernel.org/all/59629ec1-cc0c-4c5a-87cc-ea30d64ec191@linaro.org/
-
-As a consequence, as what you are describing there are hardware bits
-rather than IDs used by the driver, you can just use a numeric constant
-in device tree instead of adding dt-bindings header.
-Or change the driver so RST0_THERM_CTRL_SWRST could be defined as 0.
-
+BR, Jarkko
 
