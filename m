@@ -1,527 +1,115 @@
-Return-Path: <devicetree+bounces-29880-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29881-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D642825539
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jan 2024 15:29:29 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B4F68825547
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jan 2024 15:31:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 27D4D1F23E04
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jan 2024 14:29:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EB91C1C212DE
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jan 2024 14:31:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC87B2DF94;
-	Fri,  5 Jan 2024 14:27:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15D562DF73;
+	Fri,  5 Jan 2024 14:29:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QqS4T71y"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="wfIf5PxI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C008D31A89;
-	Fri,  5 Jan 2024 14:27:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-40d87df95ddso14271575e9.0;
-        Fri, 05 Jan 2024 06:27:46 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B91F2DF95
+	for <devicetree@vger.kernel.org>; Fri,  5 Jan 2024 14:29:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
+Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-a28ec136715so175712966b.1
+        for <devicetree@vger.kernel.org>; Fri, 05 Jan 2024 06:29:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1704464865; x=1705069665; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=1RPN76dImVZ9qk/dQRb5vSc4CF59XSeyiqnxzvzXS/Y=;
-        b=QqS4T71y7Bz51SUtMnGpadueGoVE5VOo23pnWLtWqaflXoHy/1vU3xg9K0j3ZeZfIK
-         CazyvZmJqyzEMONNTo3B/JfMhabGaIUST1jFdsuOrHs7niCN5aVyn6Zxu4AbClmxqDkC
-         0CoF0YVA37HETm1YV7pDoYIx74Nro72gg5H8tw8ap7BLQNGKzchb4Op06efHP1rAdDeW
-         C7AJmNguSrGFLN8LzCgGt/jDoTC4yKm//GgPD71twbUToecJMT9+Yjf/WFHNmMc8DLUu
-         PjIz+IejXWi2RO7WKLc7M+9Gquk/c9d5A/OnIFqb8+eX/lfRtUA6RcY3E4IVDb3BvMJ4
-         i59w==
+        d=fairphone.com; s=fair; t=1704464960; x=1705069760; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=u39RBCFFtI0yX9VLekdwvDVmxDIhVLYsBRs0wCaV+pU=;
+        b=wfIf5PxIhbv59uVTDplNx/P2tqOV2TlZsjHTk5ze5uyAPFSYWkRd/x316xClzEEQcv
+         YPuOL2DgYdi47DzbRfijahzgOgVaDsnCRfZvUP5lmolHs6KN7cwVCqfNld6qxhPNKzAh
+         G0aRw7a7Gt7QUvA7hhFhIktbZitF/04pf0Ena1LQ9oq3l51P0JDqZvxF7J3M4NZWyTdN
+         Nd8jfZSxnI8fqlOqFcfPul+kPR1+s2blQEFg3WJZqjCdiWP5+8p5XOxAmbc3jIft5UL7
+         w7liKrnGsvYModZp7YfVnyOs+wqIK1DcgxLk/UU8LRytIm28GWbSkOhufzVTi+bN4wou
+         jV3g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704464865; x=1705069665;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=1RPN76dImVZ9qk/dQRb5vSc4CF59XSeyiqnxzvzXS/Y=;
-        b=LjA/Eu9vEUr3Pg4QIA2nEf4lwkwvvm/wgaT26lwK4BH5JY8LxOgunrwL3+obzKDRb7
-         vj8YhkiWQ5icZrDqIm1c0M1lIuT9gl/IHUG87xs0Lcn+fDP+UIDP1R5gIEG1MY3VjbPF
-         a1Pt6x8CQXZhG5IoH5R7uNdZJKl/YznizvW3QbkRKP19AMWErSoG1FA1Xzp1yWimE7xr
-         8OrEdEme4aXwuKyo/1UBcSUqlIuVq5WAlaUFDXmTpdLUu4jEhxirclIptza9CTgX1T4z
-         AJK3XNINbsGUAXdmpxm9bJkZY2NUfdDvbPoaZML7te8ek0UXhOhLajMqM1xcsKGd+ynD
-         FZgA==
-X-Gm-Message-State: AOJu0YzJjKzX6okc41Cs2n9E6nIQv2wAdEJFs0hUKKGEQTqNNi25Q2PD
-	RCtpFhmPPj1M6BysMgOokCs=
-X-Google-Smtp-Source: AGHT+IHu43QPGzQCbul+r4WQ159aXXuoPh/GzOxgYPcbOIyFUJK74U+H5XDij62VuYdOLrBqbfP+yA==
-X-Received: by 2002:a05:600c:4f4e:b0:40d:5f3e:e985 with SMTP id m14-20020a05600c4f4e00b0040d5f3ee985mr642484wmq.154.1704464864973;
-        Fri, 05 Jan 2024 06:27:44 -0800 (PST)
-Received: from localhost.localdomain (host-80-116-159-187.retail.telecomitalia.it. [80.116.159.187])
-        by smtp.googlemail.com with ESMTPSA id j10-20020a05600c190a00b0040d87100733sm1721901wmq.39.2024.01.05.06.27.42
+        d=1e100.net; s=20230601; t=1704464960; x=1705069760;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=u39RBCFFtI0yX9VLekdwvDVmxDIhVLYsBRs0wCaV+pU=;
+        b=YzWD5Z2quM16RG16U+pPgJylKhXSLHMJpd0SiklgTHgOoZKazLFRkHXkH03wG/djww
+         1scaIuA6zk8zg0cg4PTEg24KzPOEh8owbA5qYWInMHYniOI0peYzcWEAfaxpTjFVY/V0
+         NxkaLE0GKnB7AhtZ48V2C3TD2WtOLxfjUI/LiPimahSjZCuwH4+JbF+dgJoHV8QHvuJ8
+         kUlrN0CLNjQfd5cSnBUDDx6wBVsh60LPgeogee1tcz2vf8y4aPyjOXJlvYAfC85//VCJ
+         EczJ9ri/IAapBAUmfkATIGJ14eZONqh20fTqjOxBF9SR3O5wO+s8DfwCHN/tku/mIzrH
+         wrhg==
+X-Gm-Message-State: AOJu0Yy81vC0OTDyMZ4kKXVcRMT7OLwtsqeSy40z8euCd2NIOKCFr4pv
+	VSb+h86TbWJYIFfoNG6SjiTv43GA9JVgKa/1QH3pRK71fip5rw==
+X-Google-Smtp-Source: AGHT+IFC8mQP7zYTa3qScnA9e4FhaBfqsr8V6I6BOY6f96K6u4BAyNvPTsxb81TwxVoCl0xiM/3dSw==
+X-Received: by 2002:a17:906:d92a:b0:a28:b12e:324d with SMTP id rn10-20020a170906d92a00b00a28b12e324dmr1131944ejb.10.1704464960408;
+        Fri, 05 Jan 2024 06:29:20 -0800 (PST)
+Received: from otso.luca.vpn.lucaweiss.eu (144-178-202-138.static.ef-service.nl. [144.178.202.138])
+        by smtp.gmail.com with ESMTPSA id u7-20020a1709067d0700b00a26b057df46sm927006ejo.126.2024.01.05.06.29.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 05 Jan 2024 06:27:44 -0800 (PST)
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: Pavel Machek <pavel@ucw.cz>,
-	Lee Jones <lee@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	William Zhang <william.zhang@broadcom.com>,
-	Anand Gore <anand.gore@broadcom.com>,
-	Kursad Oney <kursad.oney@broadcom.com>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Andrew Lunn <andrew@lunn.ch>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-	=?UTF-8?q?Fern=C3=A1ndez=20Rojas?= <noltari@gmail.com>,
-	Sven Schwermer <sven.schwermer@disruptive-technologies.com>,
-	Christian Marangi <ansuelsmth@gmail.com>,
-	linux-leds@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	netdev@vger.kernel.org
-Subject: [net-next PATCH v9 5/5] net: phy: at803x: add LED support for qca808x
-Date: Fri,  5 Jan 2024 15:27:17 +0100
-Message-ID: <20240105142719.11042-6-ansuelsmth@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240105142719.11042-1-ansuelsmth@gmail.com>
-References: <20240105142719.11042-1-ansuelsmth@gmail.com>
+        Fri, 05 Jan 2024 06:29:19 -0800 (PST)
+From: Luca Weiss <luca.weiss@fairphone.com>
+Subject: [PATCH 0/3] Add display support for Fairphone 4
+Date: Fri, 05 Jan 2024 15:29:11 +0100
+Message-Id: <20240105-fp4-panel-v1-0-1afbabc55276@fairphone.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIADcSmGUC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIxMDQwNT3bQCE92CxLzUHF1Tg8SkRAtTY7NEg0QloPqCotS0zAqwWdGxtbU
+ ABQmog1sAAAA=
+To: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>, 
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+ Luca Weiss <luca.weiss@fairphone.com>
+X-Mailer: b4 0.12.4
 
-Add LED support for QCA8081 PHY.
+Introduce the bindings and panel driver for the DJN LCD panel using
+HX83112A driver IC.
 
-Documentation for this LEDs PHY is very scarce even with NDA access
-to Documentation for OEMs. Only the blink pattern are documented and are
-very confusing most of the time. No documentation is present about
-forcing the LED on/off or to always blink.
+Then we can add the panel to the device dts and also enable the GPU.
 
-Those settings were reversed by poking the regs and trying to find the
-correct bits to trigger these modes. Some bits mode are not clear and
-maybe the documentation option are not 100% correct. For the sake of LED
-support the reversed option are enough to add support for current LED
-APIs.
-
-Supported HW control modes are:
-- tx
-- rx
-- link10
-- link100
-- link1000
-- half_duplex
-- full_duplex
-
-Also add support for LED polarity set to set LED polarity to active
-high or low. QSDK sets this value to high by default but PHY reset value
-doesn't have this enabled by default.
-
-QSDK also sets 2 additional bits but their usage is not clear, info about
-this is added in the header. It was verified that for correct function
-of the LED if active high is needed, only BIT 6 is needed.
-
-Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
 ---
-Changes v9:
-- Fix copy-paste error for blink settings
-Changes v8:
-- Drop unused ret variable
-Changes v7:
-- Improve set polarity settings (Suggested by Russell)
-Changes v6:
-- Rebase on top of net-next
-Changes v5:
-- Rework to polarity option bitmap
-- Rafactor with new finding from further reverse
-Changes v4:
-- Rework to polarity option (for marvell10g series support)
-- Rework logic to enforce single PHY polarity mode
-Changes v3:
-- Out of RFC
-- Drop link_25000 and add TODO commends waiting for the
-  netdev trigger thing to be merged (I will take care of
-  sending a followup patch later)
-Changes v2:
-- Move to new led_polarity_set implementation
-- Drop special probe
+Luca Weiss (3):
+      dt-bindings: display: panel: Add Himax HX83112A
+      drm/panel: Add driver for DJN HX83112A LCD panel
+      arm64: dts: qcom: sm7225-fairphone-fp4: Enable display and GPU
 
- drivers/net/phy/at803x.c | 325 +++++++++++++++++++++++++++++++++++++++
- 1 file changed, 325 insertions(+)
+ .../bindings/display/panel/himax,hx83112a.yaml     |  75 +++++
+ arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts  |  62 +++-
+ drivers/gpu/drm/panel/Kconfig                      |   9 +
+ drivers/gpu/drm/panel/Makefile                     |   1 +
+ drivers/gpu/drm/panel/panel-himax-hx83112a.c       | 372 +++++++++++++++++++++
+ 5 files changed, 510 insertions(+), 9 deletions(-)
+---
+base-commit: e9ad8e6186dbc420e26d2ffbb05cdce33fbf041d
+change-id: 20240105-fp4-panel-50aba8536a0a
 
-diff --git a/drivers/net/phy/at803x.c b/drivers/net/phy/at803x.c
-index aaf6c654aaed..3e3a95e594c7 100644
---- a/drivers/net/phy/at803x.c
-+++ b/drivers/net/phy/at803x.c
-@@ -272,6 +272,87 @@
- #define QCA808X_CDT_STATUS_STAT_OPEN		2
- #define QCA808X_CDT_STATUS_STAT_SHORT		3
- 
-+#define QCA808X_MMD7_LED_GLOBAL			0x8073
-+#define QCA808X_LED_BLINK_1			GENMASK(11, 6)
-+#define QCA808X_LED_BLINK_2			GENMASK(5, 0)
-+/* Values are the same for both BLINK_1 and BLINK_2 */
-+#define QCA808X_LED_BLINK_FREQ_MASK		GENMASK(5, 3)
-+#define QCA808X_LED_BLINK_FREQ_2HZ		FIELD_PREP(QCA808X_LED_BLINK_FREQ_MASK, 0x0)
-+#define QCA808X_LED_BLINK_FREQ_4HZ		FIELD_PREP(QCA808X_LED_BLINK_FREQ_MASK, 0x1)
-+#define QCA808X_LED_BLINK_FREQ_8HZ		FIELD_PREP(QCA808X_LED_BLINK_FREQ_MASK, 0x2)
-+#define QCA808X_LED_BLINK_FREQ_16HZ		FIELD_PREP(QCA808X_LED_BLINK_FREQ_MASK, 0x3)
-+#define QCA808X_LED_BLINK_FREQ_32HZ		FIELD_PREP(QCA808X_LED_BLINK_FREQ_MASK, 0x4)
-+#define QCA808X_LED_BLINK_FREQ_64HZ		FIELD_PREP(QCA808X_LED_BLINK_FREQ_MASK, 0x5)
-+#define QCA808X_LED_BLINK_FREQ_128HZ		FIELD_PREP(QCA808X_LED_BLINK_FREQ_MASK, 0x6)
-+#define QCA808X_LED_BLINK_FREQ_256HZ		FIELD_PREP(QCA808X_LED_BLINK_FREQ_MASK, 0x7)
-+#define QCA808X_LED_BLINK_DUTY_MASK		GENMASK(2, 0)
-+#define QCA808X_LED_BLINK_DUTY_50_50		FIELD_PREP(QCA808X_LED_BLINK_DUTY_MASK, 0x0)
-+#define QCA808X_LED_BLINK_DUTY_75_25		FIELD_PREP(QCA808X_LED_BLINK_DUTY_MASK, 0x1)
-+#define QCA808X_LED_BLINK_DUTY_25_75		FIELD_PREP(QCA808X_LED_BLINK_DUTY_MASK, 0x2)
-+#define QCA808X_LED_BLINK_DUTY_33_67		FIELD_PREP(QCA808X_LED_BLINK_DUTY_MASK, 0x3)
-+#define QCA808X_LED_BLINK_DUTY_67_33		FIELD_PREP(QCA808X_LED_BLINK_DUTY_MASK, 0x4)
-+#define QCA808X_LED_BLINK_DUTY_17_83		FIELD_PREP(QCA808X_LED_BLINK_DUTY_MASK, 0x5)
-+#define QCA808X_LED_BLINK_DUTY_83_17		FIELD_PREP(QCA808X_LED_BLINK_DUTY_MASK, 0x6)
-+#define QCA808X_LED_BLINK_DUTY_8_92		FIELD_PREP(QCA808X_LED_BLINK_DUTY_MASK, 0x7)
-+
-+#define QCA808X_MMD7_LED2_CTRL			0x8074
-+#define QCA808X_MMD7_LED2_FORCE_CTRL		0x8075
-+#define QCA808X_MMD7_LED1_CTRL			0x8076
-+#define QCA808X_MMD7_LED1_FORCE_CTRL		0x8077
-+#define QCA808X_MMD7_LED0_CTRL			0x8078
-+#define QCA808X_MMD7_LED_CTRL(x)		(0x8078 - ((x) * 2))
-+
-+/* LED hw control pattern is the same for every LED */
-+#define QCA808X_LED_PATTERN_MASK		GENMASK(15, 0)
-+#define QCA808X_LED_SPEED2500_ON		BIT(15)
-+#define QCA808X_LED_SPEED2500_BLINK		BIT(14)
-+/* Follow blink trigger even if duplex or speed condition doesn't match */
-+#define QCA808X_LED_BLINK_CHECK_BYPASS		BIT(13)
-+#define QCA808X_LED_FULL_DUPLEX_ON		BIT(12)
-+#define QCA808X_LED_HALF_DUPLEX_ON		BIT(11)
-+#define QCA808X_LED_TX_BLINK			BIT(10)
-+#define QCA808X_LED_RX_BLINK			BIT(9)
-+#define QCA808X_LED_TX_ON_10MS			BIT(8)
-+#define QCA808X_LED_RX_ON_10MS			BIT(7)
-+#define QCA808X_LED_SPEED1000_ON		BIT(6)
-+#define QCA808X_LED_SPEED100_ON			BIT(5)
-+#define QCA808X_LED_SPEED10_ON			BIT(4)
-+#define QCA808X_LED_COLLISION_BLINK		BIT(3)
-+#define QCA808X_LED_SPEED1000_BLINK		BIT(2)
-+#define QCA808X_LED_SPEED100_BLINK		BIT(1)
-+#define QCA808X_LED_SPEED10_BLINK		BIT(0)
-+
-+#define QCA808X_MMD7_LED0_FORCE_CTRL		0x8079
-+#define QCA808X_MMD7_LED_FORCE_CTRL(x)		(0x8079 - ((x) * 2))
-+
-+/* LED force ctrl is the same for every LED
-+ * No documentation exist for this, not even internal one
-+ * with NDA as QCOM gives only info about configuring
-+ * hw control pattern rules and doesn't indicate any way
-+ * to force the LED to specific mode.
-+ * These define comes from reverse and testing and maybe
-+ * lack of some info or some info are not entirely correct.
-+ * For the basic LED control and hw control these finding
-+ * are enough to support LED control in all the required APIs.
-+ *
-+ * On doing some comparison with implementation with qca807x,
-+ * it was found that it's 1:1 equal to it and confirms all the
-+ * reverse done. It was also found further specification with the
-+ * force mode and the blink modes.
-+ */
-+#define QCA808X_LED_FORCE_EN			BIT(15)
-+#define QCA808X_LED_FORCE_MODE_MASK		GENMASK(14, 13)
-+#define QCA808X_LED_FORCE_BLINK_1		FIELD_PREP(QCA808X_LED_FORCE_MODE_MASK, 0x3)
-+#define QCA808X_LED_FORCE_BLINK_2		FIELD_PREP(QCA808X_LED_FORCE_MODE_MASK, 0x2)
-+#define QCA808X_LED_FORCE_ON			FIELD_PREP(QCA808X_LED_FORCE_MODE_MASK, 0x1)
-+#define QCA808X_LED_FORCE_OFF			FIELD_PREP(QCA808X_LED_FORCE_MODE_MASK, 0x0)
-+
-+#define QCA808X_MMD7_LED_POLARITY_CTRL		0x901a
-+/* QSDK sets by default 0x46 to this reg that sets BIT 6 for
-+ * LED to active high. It's not clear what BIT 3 and BIT 4 does.
-+ */
-+#define QCA808X_LED_ACTIVE_HIGH			BIT(6)
-+
- /* QCA808X 1G chip type */
- #define QCA808X_PHY_MMD7_CHIP_TYPE		0x901d
- #define QCA808X_PHY_CHIP_TYPE_1G		BIT(0)
-@@ -317,6 +398,7 @@ struct at803x_priv {
- 	struct regulator_dev *vddio_rdev;
- 	struct regulator_dev *vddh_rdev;
- 	u64 stats[ARRAY_SIZE(qca83xx_hw_stats)];
-+	int led_polarity_mode;
- };
- 
- struct at803x_context {
-@@ -677,6 +759,9 @@ static int at803x_probe(struct phy_device *phydev)
- 	if (!priv)
- 		return -ENOMEM;
- 
-+	/* Init LED polarity mode to -1 */
-+	priv->led_polarity_mode = -1;
-+
- 	phydev->priv = priv;
- 
- 	ret = at803x_parse_dt(phydev);
-@@ -2161,6 +2246,240 @@ static void qca808x_link_change_notify(struct phy_device *phydev)
- 				   phydev->link ? QCA8081_PHY_FIFO_RSTN : 0);
- }
- 
-+static int qca808x_led_parse_netdev(struct phy_device *phydev, unsigned long rules,
-+				    u16 *offload_trigger)
-+{
-+	/* TODO: add link_2500 when added to netdev trigger */
-+	/* Parsing specific to netdev trigger */
-+	if (test_bit(TRIGGER_NETDEV_TX, &rules))
-+		*offload_trigger |= QCA808X_LED_TX_BLINK;
-+	if (test_bit(TRIGGER_NETDEV_RX, &rules))
-+		*offload_trigger |= QCA808X_LED_RX_BLINK;
-+	if (test_bit(TRIGGER_NETDEV_LINK_10, &rules))
-+		*offload_trigger |= QCA808X_LED_SPEED10_ON;
-+	if (test_bit(TRIGGER_NETDEV_LINK_100, &rules))
-+		*offload_trigger |= QCA808X_LED_SPEED100_ON;
-+	if (test_bit(TRIGGER_NETDEV_LINK_1000, &rules))
-+		*offload_trigger |= QCA808X_LED_SPEED1000_ON;
-+	if (test_bit(TRIGGER_NETDEV_HALF_DUPLEX, &rules))
-+		*offload_trigger |= QCA808X_LED_HALF_DUPLEX_ON;
-+	if (test_bit(TRIGGER_NETDEV_FULL_DUPLEX, &rules))
-+		*offload_trigger |= QCA808X_LED_FULL_DUPLEX_ON;
-+
-+	if (rules && !*offload_trigger)
-+		return -EOPNOTSUPP;
-+
-+	/* Enable BLINK_CHECK_BYPASS by default to make the LED
-+	 * blink even with duplex or speed mode not enabled.
-+	 */
-+	*offload_trigger |= QCA808X_LED_BLINK_CHECK_BYPASS;
-+
-+	return 0;
-+}
-+
-+static int qca808x_led_hw_control_enable(struct phy_device *phydev, u8 index)
-+{
-+	u16 reg;
-+
-+	if (index > 2)
-+		return -EINVAL;
-+
-+	reg = QCA808X_MMD7_LED_FORCE_CTRL(index);
-+
-+	return phy_clear_bits_mmd(phydev, MDIO_MMD_AN, reg,
-+				  QCA808X_LED_FORCE_EN);
-+}
-+
-+static int qca808x_led_hw_is_supported(struct phy_device *phydev, u8 index,
-+				       unsigned long rules)
-+{
-+	u16 offload_trigger = 0;
-+
-+	if (index > 2)
-+		return -EINVAL;
-+
-+	return qca808x_led_parse_netdev(phydev, rules, &offload_trigger);
-+}
-+
-+static int qca808x_led_hw_control_set(struct phy_device *phydev, u8 index,
-+				      unsigned long rules)
-+{
-+	u16 reg, offload_trigger = 0;
-+	int ret;
-+
-+	if (index > 2)
-+		return -EINVAL;
-+
-+	reg = QCA808X_MMD7_LED_CTRL(index);
-+
-+	ret = qca808x_led_parse_netdev(phydev, rules, &offload_trigger);
-+	if (ret)
-+		return ret;
-+
-+	ret = qca808x_led_hw_control_enable(phydev, index);
-+	if (ret)
-+		return ret;
-+
-+	return phy_modify_mmd(phydev, MDIO_MMD_AN, reg,
-+			      QCA808X_LED_PATTERN_MASK,
-+			      offload_trigger);
-+}
-+
-+static bool qca808x_led_hw_control_status(struct phy_device *phydev, u8 index)
-+{
-+	u16 reg;
-+	int val;
-+
-+	if (index > 2)
-+		return false;
-+
-+	reg = QCA808X_MMD7_LED_FORCE_CTRL(index);
-+
-+	val = phy_read_mmd(phydev, MDIO_MMD_AN, reg);
-+
-+	return !(val & QCA808X_LED_FORCE_EN);
-+}
-+
-+static int qca808x_led_hw_control_get(struct phy_device *phydev, u8 index,
-+				      unsigned long *rules)
-+{
-+	u16 reg;
-+	int val;
-+
-+	if (index > 2)
-+		return -EINVAL;
-+
-+	/* Check if we have hw control enabled */
-+	if (qca808x_led_hw_control_status(phydev, index))
-+		return -EINVAL;
-+
-+	reg = QCA808X_MMD7_LED_CTRL(index);
-+
-+	/* TODO: add link_2500 when added to netdev trigger */
-+	val = phy_read_mmd(phydev, MDIO_MMD_AN, reg);
-+	if (val & QCA808X_LED_TX_BLINK)
-+		set_bit(TRIGGER_NETDEV_TX, rules);
-+	if (val & QCA808X_LED_RX_BLINK)
-+		set_bit(TRIGGER_NETDEV_RX, rules);
-+	if (val & QCA808X_LED_SPEED10_ON)
-+		set_bit(TRIGGER_NETDEV_LINK_10, rules);
-+	if (val & QCA808X_LED_SPEED100_ON)
-+		set_bit(TRIGGER_NETDEV_LINK_100, rules);
-+	if (val & QCA808X_LED_SPEED1000_ON)
-+		set_bit(TRIGGER_NETDEV_LINK_1000, rules);
-+	if (val & QCA808X_LED_HALF_DUPLEX_ON)
-+		set_bit(TRIGGER_NETDEV_HALF_DUPLEX, rules);
-+	if (val & QCA808X_LED_FULL_DUPLEX_ON)
-+		set_bit(TRIGGER_NETDEV_FULL_DUPLEX, rules);
-+
-+	return 0;
-+}
-+
-+static int qca808x_led_hw_control_reset(struct phy_device *phydev, u8 index)
-+{
-+	u16 reg;
-+
-+	if (index > 2)
-+		return -EINVAL;
-+
-+	reg = QCA808X_MMD7_LED_CTRL(index);
-+
-+	return phy_clear_bits_mmd(phydev, MDIO_MMD_AN, reg,
-+				  QCA808X_LED_PATTERN_MASK);
-+}
-+
-+static int qca808x_led_brightness_set(struct phy_device *phydev,
-+				      u8 index, enum led_brightness value)
-+{
-+	u16 reg;
-+	int ret;
-+
-+	if (index > 2)
-+		return -EINVAL;
-+
-+	if (!value) {
-+		ret = qca808x_led_hw_control_reset(phydev, index);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	reg = QCA808X_MMD7_LED_FORCE_CTRL(index);
-+
-+	return phy_modify_mmd(phydev, MDIO_MMD_AN, reg,
-+			      QCA808X_LED_FORCE_EN | QCA808X_LED_FORCE_MODE_MASK,
-+			      QCA808X_LED_FORCE_EN | value ? QCA808X_LED_FORCE_ON :
-+							     QCA808X_LED_FORCE_OFF);
-+}
-+
-+static int qca808x_led_blink_set(struct phy_device *phydev, u8 index,
-+				 unsigned long *delay_on,
-+				 unsigned long *delay_off)
-+{
-+	int ret;
-+	u16 reg;
-+
-+	if (index > 2)
-+		return -EINVAL;
-+
-+	reg = QCA808X_MMD7_LED_FORCE_CTRL(index);
-+
-+	/* Set blink to 50% off, 50% on at 4Hz by default */
-+	ret = phy_modify_mmd(phydev, MDIO_MMD_AN, QCA808X_MMD7_LED_GLOBAL,
-+			     QCA808X_LED_BLINK_FREQ_MASK | QCA808X_LED_BLINK_DUTY_MASK,
-+			     QCA808X_LED_BLINK_FREQ_4HZ | QCA808X_LED_BLINK_DUTY_50_50);
-+	if (ret)
-+		return ret;
-+
-+	/* We use BLINK_1 for normal blinking */
-+	ret = phy_modify_mmd(phydev, MDIO_MMD_AN, reg,
-+			     QCA808X_LED_FORCE_EN | QCA808X_LED_FORCE_MODE_MASK,
-+			     QCA808X_LED_FORCE_EN | QCA808X_LED_FORCE_BLINK_1);
-+	if (ret)
-+		return ret;
-+
-+	/* We set blink to 4Hz, aka 250ms */
-+	*delay_on = 250 / 2;
-+	*delay_off = 250 / 2;
-+
-+	return 0;
-+}
-+
-+static int qca808x_led_polarity_set(struct phy_device *phydev, int index,
-+				    unsigned long modes)
-+{
-+	struct at803x_priv *priv = phydev->priv;
-+	bool active_low = false;
-+	u32 mode;
-+
-+	for_each_set_bit(mode, &modes, __PHY_LED_MODES_NUM) {
-+		switch (mode) {
-+		case PHY_LED_ACTIVE_LOW:
-+			active_low = true;
-+			break;
-+		default:
-+			return -EINVAL;
-+		}
-+	}
-+
-+	/* PHY polarity is global and can't be set per LED.
-+	 * To detect this, check if last requested polarity mode
-+	 * match the new one.
-+	 */
-+	if (priv->led_polarity_mode >= 0 &&
-+	    priv->led_polarity_mode != active_low) {
-+		phydev_err(phydev, "PHY polarity is global. Mismatched polarity on different LED\n");
-+		return -EINVAL;
-+	}
-+
-+	/* Save the last PHY polarity mode */
-+	priv->led_polarity_mode = active_low;
-+
-+	return phy_modify_mmd(phydev, MDIO_MMD_AN,
-+			      QCA808X_MMD7_LED_POLARITY_CTRL,
-+			      QCA808X_LED_ACTIVE_HIGH,
-+			      active_low ? 0 : QCA808X_LED_ACTIVE_HIGH);
-+}
-+
- static struct phy_driver at803x_driver[] = {
- {
- 	/* Qualcomm Atheros AR8035 */
-@@ -2337,6 +2656,12 @@ static struct phy_driver at803x_driver[] = {
- 	.cable_test_start	= qca808x_cable_test_start,
- 	.cable_test_get_status	= qca808x_cable_test_get_status,
- 	.link_change_notify	= qca808x_link_change_notify,
-+	.led_brightness_set	= qca808x_led_brightness_set,
-+	.led_blink_set		= qca808x_led_blink_set,
-+	.led_hw_is_supported	= qca808x_led_hw_is_supported,
-+	.led_hw_control_set	= qca808x_led_hw_control_set,
-+	.led_hw_control_get	= qca808x_led_hw_control_get,
-+	.led_polarity_set	= qca808x_led_polarity_set,
- }, };
- 
- module_phy_driver(at803x_driver);
+Best regards,
 -- 
-2.43.0
+Luca Weiss <luca.weiss@fairphone.com>
 
 
