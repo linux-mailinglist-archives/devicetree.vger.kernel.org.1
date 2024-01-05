@@ -1,127 +1,121 @@
-Return-Path: <devicetree+bounces-29827-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29828-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DAF79824EE3
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jan 2024 08:02:52 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 591BE824EF2
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jan 2024 08:09:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 775D91F22B3D
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jan 2024 07:02:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EC5BC284E25
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jan 2024 07:09:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C822A5CBE;
-	Fri,  5 Jan 2024 07:02:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0735C8C6;
+	Fri,  5 Jan 2024 07:09:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="SnPmFByC"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Ddd73IgM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3AFC41D68F;
-	Fri,  5 Jan 2024 07:02:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 4054lZaI018206;
-	Fri, 5 Jan 2024 07:02:39 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	from:to:cc:subject:date:message-id:mime-version:content-type; s=
-	qcppdkim1; bh=daUbjRA4w9MhA/HZMlgc3cAZna0YvIsopZW/rhUvTjg=; b=Sn
-	PmFByCEViHuBTapBqGTDryrG8t3RQRNTiS10/S6NJaJKnhBRuoW9FUqVOUsg3IhI
-	ayFUf+c6G6zCgLWossix3sE7E+ORco2ZTQFV+kMEYfBBWokv//0e2au8bXKSiq93
-	9xQv9AjbI8gRxl8HYweB0or+uGvTIWrHE/m5NlUKO2wa9nQ33Nd/RyZMkOzR6bgk
-	eYKN6ly7qVK4MSbSMIVEeXFs2kTg22mpkqFE8vOAme9Fw8pka4+B5lbBXWUZ6jig
-	AF+xWQH6uuyX/JA+yiWQztV8Ru1t3h0j8bCwsHWIG4tUnhYC+cY7VwxycN+jj83P
-	TG8dYx2Sv0Lx1YE/TgAQ==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ve97r8cs2-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 05 Jan 2024 07:02:39 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 40572aAP002746
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 5 Jan 2024 07:02:36 GMT
-Received: from hu-mkshah-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Thu, 4 Jan 2024 23:02:31 -0800
-From: Maulik Shah <quic_mkshah@quicinc.com>
-To: <agross@kernel.org>, <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <luca.weiss@fairphone.com>,
-        <cros-qcom-dts-watchers@chromium.org>
-CC: <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <quic_lsrao@quicinc.com>,
-        Maulik Shah
-	<quic_mkshah@quicinc.com>
-Subject: [PATCH] arm64: dts: qcom: qcm6490: Update PSCI suspend param for cluster sleep
-Date: Fri, 5 Jan 2024 12:32:23 +0530
-Message-ID: <20240105070223.11415-1-quic_mkshah@quicinc.com>
-X-Mailer: git-send-email 2.17.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B0CE1D68F;
+	Fri,  5 Jan 2024 07:09:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1704438585; x=1735974585;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=yKUXbdD8qpgSi58w2LiSPZgWQ2PW44f2VTnKYrF/+3I=;
+  b=Ddd73IgMI3QeBzBz/e/BqUCpbAN7ioFEhcqpdKfKR7us7rW9i3l2DqXg
+   +KiVdzUg7jX48a3Koz8dXu1Vzl7c+KTg9dILQpaFyuRD3nyLiCOdCfNjP
+   CZHHNLyEiNx1WVZzMjSaZPx3xE5XhUKEK1uCCApuGg9cCg7uHeU1Nv6A3
+   wGen5nKP2t72Ic982XMgOHBq/n0AXcROsxT2LH0IhLG7Y4ktiMda0CPwR
+   6FCVcRm9oFyZQsans+nYkHEV0xxoCNGtMFeX4f9dgZD1nzrZzf69/+wYz
+   FH1r2+Qe32t09B4Jb8r3nnBqbyFjdO3DsfRDppDTR3MqIQ7GhRlmnJhYh
+   A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10943"; a="463845803"
+X-IronPort-AV: E=Sophos;i="6.04,333,1695711600"; 
+   d="scan'208";a="463845803"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Jan 2024 23:09:44 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10943"; a="871167246"
+X-IronPort-AV: E=Sophos;i="6.04,333,1695711600"; 
+   d="scan'208";a="871167246"
+Received: from pg-esw-build.png.intel.com ([10.226.214.65])
+  by FMSMGA003.fm.intel.com with ESMTP; 04 Jan 2024 23:09:39 -0800
+From: Leong Ching Swee <leong.ching.swee@intel.com>
+To: Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Jose Abreu <joabreu@synopsys.com>,
+	"David S . Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Giuseppe Cavallaro <peppe.cavallaro@st.com>
+Cc: linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Swee Leong Ching <leong.ching.swee@intel.com>
+Subject: [PATCH net-next v2 0/4] net: stmmac: Enable Per DMA Channel interrupt
+Date: Fri,  5 Jan 2024 15:09:21 +0800
+Message-Id: <20240105070925.2948871-1-leong.ching.swee@intel.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: hYcjKSKGQ32mQ5INbVVlZT6yek5cFRG4
-X-Proofpoint-GUID: hYcjKSKGQ32mQ5INbVVlZT6yek5cFRG4
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-12-09_02,2023-12-07_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- phishscore=0 impostorscore=0 spamscore=0 adultscore=0 lowpriorityscore=0
- bulkscore=0 malwarescore=0 mlxlogscore=847 suspectscore=0 clxscore=1011
- mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2311290000 definitions=main-2401050059
+Content-Transfer-Encoding: 8bit
 
-QCM6490 uses Trustzone as firmware whereas SC7280 uses arm trusted
-firmware. The PSCI suspend param is different in Trustzone for cluster
-sleep. Update the same for qcm6490 based idp and fairphone fp5 boards.
+From: Swee Leong Ching <leong.ching.swee@intel.com>
 
-Signed-off-by: Maulik Shah <quic_mkshah@quicinc.com>
----
- arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts | 4 ++++
- arch/arm64/boot/dts/qcom/qcm6490-idp.dts           | 4 ++++
- 2 files changed, 8 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts b/arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts
-index 176898c9dbbd..b56f6f26d96f 100644
---- a/arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts
-+++ b/arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts
-@@ -446,6 +446,10 @@
- 	};
- };
+Hi,
+Add Per DMA Channel interrupt feature for DWXGMAC IP.
  
-+&CLUSTER_SLEEP_0 {
-+	arm,psci-suspend-param = <0x4100b344>;
-+};
-+
- &dispcc {
- 	/* Disable for now so simple-framebuffer continues working */
- 	status = "disabled";
-diff --git a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
-index 03e97e27d16d..afac0ea0d297 100644
---- a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
-+++ b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
-@@ -415,6 +415,10 @@
- 	};
- };
+Patchset (link below) contains per DMA channel interrupt, But it was 
+achieved.
+https://lore.kernel.org/lkml/20230821203328.GA2197059-
+robh@kernel.org/t/#m849b529a642e1bff89c05a07efc25d6a94c8bfb4
  
-+&CLUSTER_SLEEP_0 {
-+	arm,psci-suspend-param = <0x4100b344>;
-+};
-+
- &qupv3_id_0 {
- 	status = "okay";
- };
+Some of the changes in this patchset are based on reviewer comment on 
+patchset mentioned beforehand.
+
+changelog v2:
+*extend irq_name array to 9
+*add empty line after int i
+*avoid polluting rx_irq/tx_irq array with temporary variable
+*move tx/rx IRQ loop to bottom of stmmac_get_platform_resource()
+*rename stmmac_xx_queue_interrupt() to stmmac_dma_xx_interrupt()
+*fix error message in stmmac_request_irq_multi()
+*move STMMAC_FLAG_MULTI_IRQ_EN handling to glue driver 
+
+Swee Leong Ching (4):
+  dt-bindings: net: snps,dwmac: per channel irq
+  net: stmmac: Make MSI interrupt routine generic
+  net: stmmac: Add support for TX/RX channel interrupt
+  net: stmmac: Use interrupt mode INTM=1 for per channel irq
+
+ .../devicetree/bindings/net/snps,dwmac.yaml   | 24 ++++++++++----
+ .../net/ethernet/stmicro/stmmac/dwmac-intel.c |  4 +--
+ .../ethernet/stmicro/stmmac/dwmac-socfpga.c   |  3 ++
+ .../net/ethernet/stmicro/stmmac/dwmac4_dma.c  |  2 +-
+ .../net/ethernet/stmicro/stmmac/dwxgmac2.h    |  3 ++
+ .../ethernet/stmicro/stmmac/dwxgmac2_dma.c    | 32 +++++++++++--------
+ .../net/ethernet/stmicro/stmmac/stmmac_main.c | 30 ++++++++---------
+ .../ethernet/stmicro/stmmac/stmmac_platform.c | 28 ++++++++++++++++
+ include/linux/stmmac.h                        |  4 +--
+ 9 files changed, 90 insertions(+), 40 deletions(-)
+
 -- 
-2.17.1
+2.34.1
 
 
