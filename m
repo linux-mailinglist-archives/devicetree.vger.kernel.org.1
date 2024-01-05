@@ -1,214 +1,139 @@
-Return-Path: <devicetree+bounces-29874-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29875-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D813B82551D
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jan 2024 15:26:23 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 31F37825524
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jan 2024 15:27:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4F8832857B3
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jan 2024 14:26:22 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C634CB226B4
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jan 2024 14:27:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB0342D7BE;
-	Fri,  5 Jan 2024 14:26:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F6BA2DF65;
+	Fri,  5 Jan 2024 14:27:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b="AJrqeiCZ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EmWVi5xn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-001ae601.pphosted.com (mx0a-001ae601.pphosted.com [67.231.149.25])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CF272D7AB;
-	Fri,  5 Jan 2024 14:26:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=opensource.cirrus.com
-Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
-	by mx0a-001ae601.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 405CoImA010379;
-	Fri, 5 Jan 2024 08:25:16 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=
-	date:from:to:cc:subject:message-id:references:mime-version
-	:content-type:in-reply-to; s=PODMain02222019; bh=ZumaiG3tWqCqKwL
-	m2w2GskBu2Je61hqPZwFOilMwiIA=; b=AJrqeiCZvg6cBzkMrbWsGf4ZYzTxpLR
-	Aqqpkg+Y+XMxRBryAoyhNeP3dJIZezjOO0zGkvMntEV4AE9QzlSXzutTfl/n/AlQ
-	mttMcDrp0lmUASW0Oot3Yb/uYurB770O90FVhmF0+Ve6fBWosb7J7zsmXUziqiQj
-	I/Ht8LhH7UKwbWFXJY5Xzuq83aRfIXh5bRM+txI8Eu3XyAXQtsOhk6H2Qdr0Su9m
-	csHPRXIiVPgtaSzaCjickhZKe9Yno/hIHhWjiPyxS0JFmXuDnWTg8GgLwG9Ymxfm
-	7fieelw/d4XkZvfyXUGMpPny5j3JidLzVqzDYrKVpKxkPOlLP2MKDcg==
-Received: from ediex02.ad.cirrus.com ([84.19.233.68])
-	by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 3ve9e8gnu1-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 05 Jan 2024 08:25:16 -0600 (CST)
-Received: from ediex02.ad.cirrus.com (198.61.84.81) by ediex02.ad.cirrus.com
- (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Fri, 5 Jan
- 2024 14:25:13 +0000
-Received: from ediswmail.ad.cirrus.com (198.61.86.93) by
- anon-ediex02.ad.cirrus.com (198.61.84.81) with Microsoft SMTP Server id
- 15.2.1118.40 via Frontend Transport; Fri, 5 Jan 2024 14:24:58 +0000
-Received: from ediswmail.ad.cirrus.com (ediswmail.ad.cirrus.com [198.61.86.93])
-	by ediswmail.ad.cirrus.com (Postfix) with ESMTP id A6473468;
-	Fri,  5 Jan 2024 14:24:58 +0000 (UTC)
-Date: Fri, 5 Jan 2024 14:24:58 +0000
-From: Charles Keepax <ckeepax@opensource.cirrus.com>
-To: James Ogletree <jogletre@opensource.cirrus.com>
-CC: James Ogletree <james.ogletree@cirrus.com>,
-        Fred Treven
-	<fred.treven@cirrus.com>,
-        Ben Bright <ben.bright@cirrus.com>,
-        Dmitry Torokhov
-	<dmitry.torokhov@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Simon Trimmer <simont@opensource.cirrus.com>,
-        "Richard
- Fitzgerald" <rf@opensource.cirrus.com>,
-        Lee Jones <lee@kernel.org>, "Liam
- Girdwood" <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, "Jaroslav
- Kysela" <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        James Schulman
-	<james.schulman@cirrus.com>,
-        David Rhodes <david.rhodes@cirrus.com>,
-        "Jacky
- Bai" <ping.bai@nxp.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Jeff LaBundy <jeff@labundy.com>,
-        Sebastian Reichel
-	<sebastian.reichel@collabora.com>,
-        Peng Fan <peng.fan@nxp.com>, Weidong Wang
-	<wangweidong.a@awinic.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Herve Codina
-	<herve.codina@bootlin.com>,
-        Shuming Fan <shumingf@realtek.com>,
-        Shenghao Ding
-	<13916275206@139.com>, Ryan Lee <ryans.lee@analog.com>,
-        Linus Walleij
-	<linus.walleij@linaro.org>,
-        Maxim Kochetkov <fido_max@inbox.ru>,
-        "open
- list:CIRRUS LOGIC HAPTIC DRIVERS" <patches@opensource.cirrus.com>,
-        "open
- list:INPUT (KEYBOARD, MOUSE, JOYSTICK, TOUCHSCREEN)..."
-	<linux-input@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE
- TREE BINDINGS" <devicetree@vger.kernel.org>,
-        open list
-	<linux-kernel@vger.kernel.org>,
-        "open list:SOUND - SOC LAYER / DYNAMIC AUDIO
- POWER MANAGEM..." <linux-sound@vger.kernel.org>,
-        "moderated list:CIRRUS LOGIC
- AUDIO CODEC DRIVERS" <alsa-devel@alsa-project.org>
-Subject: Re: [PATCH v5 5/5] ASoC: cs40l50: Support I2S streaming to CS40L50
-Message-ID: <20240105142458.GH14858@ediswmail.ad.cirrus.com>
-References: <20240104223643.876292-1-jogletre@opensource.cirrus.com>
- <20240104223643.876292-6-jogletre@opensource.cirrus.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00524249E4;
+	Fri,  5 Jan 2024 14:27:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-40e3712d259so9463105e9.3;
+        Fri, 05 Jan 2024 06:27:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1704464850; x=1705069650; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=APs6M2apAcMc7l4gyNVGbiDS8kiXtv8paG4oTVl8I+M=;
+        b=EmWVi5xnxcxZZ1XXRNIERX3OCp9zflu6KisHrOmviY58TiVMUSZMcco1e8EtJC6MK7
+         d9IAjs2vnZhI9Rn3kOAW1Z7yC7JH8LFulJ2OYs8GulJnXpoNJFknqLLZiYmoXCWbw7Vs
+         r1cPt1PoFq1NLjsXBBc5NSRtWtA7DWu7TTYM9GghnsilLlFUXn8PmmdoRnIIjd6nFNoy
+         buH1GGrUxCrBanbqYMZgBBgSC/Tg5dw2udn/10hE5ptXBy/+EhJTnwjHbj91Giu/1nXc
+         0fjSc1cILQGPKCxp8U+MHGw5biqNdXnZHdBKNaGc4FKUzCYKNPSP1eX04G1qSBrQWumd
+         BCog==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1704464850; x=1705069650;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=APs6M2apAcMc7l4gyNVGbiDS8kiXtv8paG4oTVl8I+M=;
+        b=ME154JN+MZq4qWVg/JOUY4ha1L1xHSt2PAPva/ZNI+CKRuMsl0KI0aYZiAQdBrz7NL
+         GhTLyhMj5tgebWTtsLXHSgfR0IIngkncoku1CiPKubHXfs7/PGM1PyaRcfBhjPFprGpW
+         IrwDlgnZDt6fqHb6ERvto+0XsKQ1jWX2ODI7B0n5jVPszWP97ofDa+4MuwgoSP0/Z3jo
+         P+EXNH5HqGEBoyaEN2+hC0dLCKRyR8rYlujyBDqSJqvFDbRGLqNKE05TaWVyYyGOP59Y
+         tbmx7x3cq/OtdGntF1yjTkhUff7tcigfHifR8btlJGUVKao2t/6Linh01Gieu9lPSYbb
+         NAfw==
+X-Gm-Message-State: AOJu0YwPzM+wwUrZMMFtQx9fp4wcWqhxC38LgXRu8Y61RBmTLMMDrdCy
+	KZ+C6RiuqiRzgQtzzL0SD3A=
+X-Google-Smtp-Source: AGHT+IHYUKZEg3ZHc+KdILbEa3OOY5XvzVdKgu2YvZoApQ8eTegy++Sxib9JfwSlgU2ZR06SaA255A==
+X-Received: by 2002:a05:600c:3ac7:b0:40e:3ae4:84ef with SMTP id d7-20020a05600c3ac700b0040e3ae484efmr112839wms.73.1704464849826;
+        Fri, 05 Jan 2024 06:27:29 -0800 (PST)
+Received: from localhost.localdomain (host-80-116-159-187.retail.telecomitalia.it. [80.116.159.187])
+        by smtp.googlemail.com with ESMTPSA id j10-20020a05600c190a00b0040d87100733sm1721901wmq.39.2024.01.05.06.27.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 05 Jan 2024 06:27:29 -0800 (PST)
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: Pavel Machek <pavel@ucw.cz>,
+	Lee Jones <lee@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	William Zhang <william.zhang@broadcom.com>,
+	Anand Gore <anand.gore@broadcom.com>,
+	Kursad Oney <kursad.oney@broadcom.com>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+	=?UTF-8?q?Fern=C3=A1ndez=20Rojas?= <noltari@gmail.com>,
+	Sven Schwermer <sven.schwermer@disruptive-technologies.com>,
+	Christian Marangi <ansuelsmth@gmail.com>,
+	linux-leds@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	netdev@vger.kernel.org
+Subject: [net-next PATCH v9 0/5] net: phy: generic polarity + LED support for qca808x
+Date: Fri,  5 Jan 2024 15:27:12 +0100
+Message-ID: <20240105142719.11042-1-ansuelsmth@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20240104223643.876292-6-jogletre@opensource.cirrus.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-X-Proofpoint-GUID: 0hqQg34txAQs78OTUD5wUFCbmWzwicQt
-X-Proofpoint-ORIG-GUID: 0hqQg34txAQs78OTUD5wUFCbmWzwicQt
-X-Proofpoint-Spam-Reason: safe
+Content-Transfer-Encoding: 8bit
 
-On Thu, Jan 04, 2024 at 10:36:38PM +0000, James Ogletree wrote:
-> Introduce support for Cirrus Logic Device CS40L50: a
-> haptic driver with waveform memory, integrated DSP,
-> and closed-loop algorithms.
-> 
-> The ASoC driver enables I2S streaming to the device.
-> 
-> Signed-off-by: James Ogletree <jogletre@opensource.cirrus.com>
-> ---
-> +#include <linux/mfd/cs40l50.h>
-> +#include <linux/pm_runtime.h>
-> +#include <sound/pcm_params.h>
-> +#include <sound/soc.h>
+This small series add LEDs support for qca808x.
 
-Need to also include bitfield.h for FIELD_PREP etc.
+QCA808x apply on PHY reset a strange polarity settings and require
+some tweak to apply a more common configuration found on devices.
+On adding support for it, it was pointed out that a similar
+feature is also being implemented for a marvell PHY where
+LED polarity is set per LED (and not global) and also have
+a special mode where the LED is tristated.
 
-> +static int cs40l50_clk_en(struct snd_soc_dapm_widget *w,
-> +			  struct snd_kcontrol *kcontrol,
-> +			  int event)
-> +{
-> +	struct snd_soc_component *comp = snd_soc_dapm_to_component(w->dapm);
-> +	struct cs40l50_codec *codec = snd_soc_component_get_drvdata(comp);
-> +	int ret;
-> +
-> +	switch (event) {
-> +	case SND_SOC_DAPM_POST_PMU:
-> +		ret = regmap_write(codec->regmap, CS40L50_DSP_QUEUE, CS40L50_STOP_PLAYBACK);
-> +		if (ret)
-> +			return ret;
-> +
-> +		ret = regmap_write(codec->regmap, CS40L50_DSP_QUEUE, CS40L50_START_I2S);
-> +		if (ret)
-> +			return ret;
-> +
+The first 3 patch are to generalize this as we expect more PHY
+in the future to have a similar configuration.
 
-Feels weird that we don't wait for these two commands to be
-acknowledged by the DSP before doing the clock swap. Is that
-intentional? Is the DSP just guaranteed to be so fast it doesn't
-matter, in which case a comment would be nice.
+The implementation is extensible to support additional special
+mode in the future with minimal changes and don't create regression
+on already implemented PHY drivers.
 
-> +static int cs40l50_set_dai_fmt(struct snd_soc_dai *codec_dai, unsigned int fmt)
-> +{
-> +	struct cs40l50_codec *codec = snd_soc_component_get_drvdata(codec_dai->component);
-> +
-> +	if ((fmt & SND_SOC_DAIFMT_MASTER_MASK) != SND_SOC_DAIFMT_CBS_CFS)
-> +		return -EINVAL;
-> +
-> +	switch (fmt & SND_SOC_DAIFMT_INV_MASK) {
-> +	case SND_SOC_DAIFMT_NB_NF:
-> +		codec->daifmt = 0;
-> +		break;
-> +	case SND_SOC_DAIFMT_NB_IF:
-> +		codec->daifmt = CS40L50_ASP_FSYNC_INV_MASK;
-> +		break;
-> +	case SND_SOC_DAIFMT_IB_NF:
-> +		codec->daifmt = CS40L50_ASP_BCLK_INV_MASK;
-> +		break;
-> +	case SND_SOC_DAIFMT_IB_IF:
-> +		codec->daifmt = CS40L50_ASP_FSYNC_INV_MASK | CS40L50_ASP_BCLK_INV_MASK;
-> +		break;
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +
-> +	if ((fmt & SND_SOC_DAIFMT_FORMAT_MASK) == SND_SOC_DAIFMT_I2S)
-> +		codec->daifmt |= FIELD_PREP(CS40L50_ASP_FMT_MASK, CS40L50_ASP_FMT_I2S);
+(changelog present in single patch)
 
-It feels unlikely the chip supports all formats with no
-additional settings? Probably should have a switch for the
-supported formats and return an error.
+Christian Marangi (5):
+  dt-bindings: net: phy: Make LED active-low property common
+  dt-bindings: net: phy: Document LED inactive high impedance mode
+  net: phy: add support for PHY LEDs polarity modes
+  dt-bindings: net: Document QCA808x PHYs
+  net: phy: at803x: add LED support for qca808x
 
-> +static struct snd_soc_dai_driver cs40l50_dai[] = {
-> +	{
-> +		.name = "cs40l50-pcm",
-> +		.id = 0,
-> +		.playback = {
-> +			.stream_name = "ASP Playback",
-> +			.channels_min = 1,
-> +			.channels_max = 2,
-> +			.rates = SNDRV_PCM_RATE_48000,
-> +			.formats = CS40L50_FORMATS,
-> +		},
-> +		.ops = &cs40l50_dai_ops,
-> +		.symmetric_rate = 1,
+ .../devicetree/bindings/leds/common.yaml      |  12 +
+ .../bindings/leds/leds-bcm63138.yaml          |   4 -
+ .../bindings/leds/leds-bcm6328.yaml           |   4 -
+ .../devicetree/bindings/leds/leds-bcm6358.txt |   2 -
+ .../bindings/leds/leds-pwm-multicolor.yaml    |   4 -
+ .../devicetree/bindings/leds/leds-pwm.yaml    |   5 -
+ .../devicetree/bindings/net/qca,qca808x.yaml  |  54 +++
+ drivers/net/phy/at803x.c                      | 325 ++++++++++++++++++
+ drivers/net/phy/phy_device.c                  |  16 +
+ include/linux/phy.h                           |  22 ++
+ 10 files changed, 429 insertions(+), 19 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/qca,qca808x.yaml
 
-The symmetric_rate feels a bit redundant since we only have
-playback supported.
+-- 
+2.43.0
 
-Thanks,
-Charles
 
