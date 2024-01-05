@@ -1,440 +1,258 @@
-Return-Path: <devicetree+bounces-29852-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29853-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B9CB82522E
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jan 2024 11:37:16 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C7368252A3
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jan 2024 12:20:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0D9581C21735
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jan 2024 10:37:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3656B2853B9
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jan 2024 11:20:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6197E2D63A;
-	Fri,  5 Jan 2024 10:35:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7FE628E38;
+	Fri,  5 Jan 2024 11:20:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="EGNRsJdi"
+	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="gDrAvNh1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (mail-mw2nam12on2069.outbound.protection.outlook.com [40.107.244.69])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75FD72D780;
-	Fri,  5 Jan 2024 10:35:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 4059EWcW019608;
-	Fri, 5 Jan 2024 10:34:58 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=DX460Yla3JE1fc3C7e5AQ5r3Gt0/O9I/ei1HTyGDMo8=; b=EG
-	NRsJdiMxmlWUfliRytrTpaKYhnsH1rA+ffWxh/tYGnFZWt0ufEmEITWIfTdL1oGN
-	3CGzXsvtyvTdP2WqgHJphaOlgfEMJDWOyiBb6ztekR42TZDetrFUIya+R5uTws01
-	uLuMF8oMvCXwq7gZzCROZ2GO9qGdRkRQ46Ho4pflutCfkWJ0hf9Hgq/7pojLuS5Z
-	jJTt9xYEStiue+Zu/ukVqYvdaSEUTP7KazcuuZs9sJXCiJitO6PwJ5V0RPAZaCqB
-	GpltMSiJ+DwOwhalxgN5EVMofpnOSVPYYfYQnvcoZQAGEqFJCMlwR86/iy7ijV9o
-	Kcb7DScSi1K95aBSzImA==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ve99arthd-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 05 Jan 2024 10:34:57 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 405AYuJW026659
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 5 Jan 2024 10:34:56 GMT
-Received: from [10.253.39.156] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Fri, 5 Jan
- 2024 02:34:51 -0800
-Message-ID: <ac1977f5-cd6a-4f16-b0a0-f4322c34c5f5@quicinc.com>
-Date: Fri, 5 Jan 2024 18:34:49 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE14F28E1A;
+	Fri,  5 Jan 2024 11:19:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=IkSaA6KJXTEJGZXwHVBMwUrrKoycqZgBXaHQqDKxrY7WyPvreyxTGnzVXkSVcQzyVwrW7Z5HjKTY+vzGUg1w5s+oKf7p+joof58KfXsfuNzd1b2k6Nuim2xNT/3NWGYFh7mESqGsIcZd4oylf/p53zaz+kOzlZd6QqJebOuNR7TBeIGWPn2VosapJ1cJ9N8IKf+DrHmahK1lq0sPdhb6cuqYdlOS9vaKvvLR3mDJsiXU8VjynEbXOxaMo/vMFkZEr7aqaprtrZEoJBVwmlH5aKZ1Xr2T86NJPUMrtCOV3dk2v1lppkY0VUmyEOfyWZSOX9yUhiaO2ZgxLyJn9PkNKw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=RQHWQTRy5r2/GwauXCXvTQk5Mui9tLiGcvEdABNgQ00=;
+ b=aF7tIWVjd3Tv+EFOtDXtl2JWA450cxeep6MB5RHajX4cwyGUvIslLoOK/8VoezTjmGdvjxOv35+3PVrZrEiAKPjQ2GgAy4drZmgmtuiIB3KQTt5qoYruPHqJ/EbzsxCUDssDVoAqdDlm6fwrvQy3aV5/HPKysRb0guKTGSQp76HFBuEWPJZhOQplr0KV2CRukNmFrXdJUTuoZTo97/g6tE5ZnHnEXLDGEob1KjA9465MwjLnoUewkOwmWGZPsL39X76acfoHTUEXdiIVL3rZhtt0qtIUWhCfSTctWx23E6P1VsGTH+pvaTeCpdLi/J9sEw1B1SFgDU4gKUHL6Ai5oA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=RQHWQTRy5r2/GwauXCXvTQk5Mui9tLiGcvEdABNgQ00=;
+ b=gDrAvNh1U7kQYlIQooPov9RZUL7fxEySfEiv8sWmbsGx06URmGz+8wjfcNUCMkjkKbMeV0212kPDtmbOdT0TDmQTcICryClUHNcR9jc83U7SvkCzyeky5F0NlFE7Dn7jVAtC6WiClWtOet3/sMMAcZ3T55AIqEv7IaWE7JAZpsch4PcUFcLdGm+E6MZx+XlDR3Sxp5TkCAYY3uQWmnKFb2TMVQydqk2qSyCFE+heFm6eKDSaut2ht+A3zd6SwquqM6zn2BQePei1zN7G9A1KIgS/WKi5nd6pudXFd7oWWdEkiPrWKUc+vOhqqMKs5KZmNGC+KFPK4AMhoQqlOPs7Ow==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from BYAPR12MB3205.namprd12.prod.outlook.com (2603:10b6:a03:134::32)
+ by CH3PR12MB8581.namprd12.prod.outlook.com (2603:10b6:610:15d::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7159.16; Fri, 5 Jan
+ 2024 11:19:55 +0000
+Received: from BYAPR12MB3205.namprd12.prod.outlook.com
+ ([fe80::48ee:1bc7:7fdf:cd13]) by BYAPR12MB3205.namprd12.prod.outlook.com
+ ([fe80::48ee:1bc7:7fdf:cd13%7]) with mapi id 15.20.7159.015; Fri, 5 Jan 2024
+ 11:19:55 +0000
+Message-ID: <8241c953-8ae5-4f26-b108-fccf826ed87a@nvidia.com>
+Date: Fri, 5 Jan 2024 16:49:44 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: Query on audio-graph-card DT binding
+Content-Language: en-US
+To: Thierry Reding <thierry.reding@gmail.com>
+Cc: Mark Brown <broonie@kernel.org>, alsa-devel@alsa-project.org,
+ Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+ devicetree@vger.kernel.org, robh+dt@kernel.org,
+ Jon Hunter <jonathanh@nvidia.com>, linux-tegra@vger.kernel.org
+References: <dfe363ef-4638-4b5e-8308-73e286ac0b50@nvidia.com>
+ <ZZblyhfzQjzyoUc_@orome.fritz.box>
+ <42c0c4fa-585e-4194-bbe4-e0377c87e632@sirena.org.uk>
+ <3faec2e9-8cd9-46f9-8807-801922de0edf@nvidia.com>
+ <ZZe5sTNz005Tt4jk@orome.fritz.box>
+From: Sameer Pujar <spujar@nvidia.com>
+In-Reply-To: <ZZe5sTNz005Tt4jk@orome.fritz.box>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: MA0PR01CA0123.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:11d::6) To BYAPR12MB3205.namprd12.prod.outlook.com
+ (2603:10b6:a03:134::32)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 0/5] support ipq5332 platform
-Content-Language: en-US
-To: Sergey Ryazanov <ryazanov.s.a@gmail.com>, <agross@kernel.org>,
-        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
-        <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
-        <pabeni@redhat.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <andrew@lunn.ch>, <hkallweit1@gmail.com>, <linux@armlinux.org.uk>,
-        <robert.marko@sartura.hr>
-CC: <linux-arm-msm@vger.kernel.org>, <netdev@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <quic_srichara@quicinc.com>
-References: <20231225084424.30986-1-quic_luoj@quicinc.com>
- <a6a50fb6-871f-424c-a146-12b2628b8b64@gmail.com>
- <cfb04c82-3cc3-49f6-9a8a-1f6d1a22df40@quicinc.com>
- <dd05a599-247a-4516-8ad3-7550ceea99f7@gmail.com>
-From: Jie Luo <quic_luoj@quicinc.com>
-In-Reply-To: <dd05a599-247a-4516-8ad3-7550ceea99f7@gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: cE3AHuppBvdB7clKnqWI3QKptPi7NCjZ
-X-Proofpoint-GUID: cE3AHuppBvdB7clKnqWI3QKptPi7NCjZ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-12-09_02,2023-12-07_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 bulkscore=0
- phishscore=0 clxscore=1015 malwarescore=0 spamscore=0 priorityscore=1501
- mlxlogscore=999 lowpriorityscore=0 impostorscore=0 adultscore=0 mlxscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2311290000
- definitions=main-2401050090
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BYAPR12MB3205:EE_|CH3PR12MB8581:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8243135c-9fb8-4adf-2545-08dc0de03e40
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	RbUz6Ek4ymqNzSPHyMrwKK+aNQ3yukRib6dVrM+D8Nao76MpCJ8t7WLBusq8RyL2hZXFW6eqZJke1393sIJqOM6Dl1BLrCP+AIyyZfEpOese50WoHsmBzXA89VzQkqShvq4p4WKfp8SGkZla2oXAzNftnVsfYWCrDQJwxHqz5qigmcWw33oPjmBVsSpox87VVYTe1BYVkEKFu5CEYeeIh+qs3j8dSbjm5JBaP8nJVQ8hYUEAZh/f5bD28DDTG5KCb0iRqq9wodIi4qDsM0JmraFdCFy1vs4BBmxCZe5DgupMXGBDuTF7MyEuWRdA2FjWs/Vs1kl82MEJBAz6RxAU3vWVWYPtGGimz2PqpKjVByDFSYBrDJDlA7g3yNDCjhWFTfz+zMB535SyGfLdLnD/x8+CuWyDMcke3hMOTZ7vk9M8UYZuGnnW85vTXmvndmebwqme/YqfmHOhUduWs5OBDzrp61ER6nogKT7wQCwGp+WzxJxkLpa1+2Hk5Hi6hCehZsTWD9epm+B1LcYI4a6vOrXC6/HmgTOWRS3jt3P8Rwd64HDd13okikZ1Ny0+iFdvSl6WkgqKBCuy5Nya2dKji3NXtZ+ubzuCJ+lIB+o+suWqCZlEk/qshAAo77odw7unjYYnwLd3Rmr9d4Nc/HJYrIosW3dfHmwMY4BHSA0z8rhz4j71XKgDX81lGt1GkQAM9z08iPvCUHM0J4dwNK5UKF9jZyQlyxX/XWyLWRYfSTI=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BYAPR12MB3205.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(396003)(376002)(136003)(346002)(39860400002)(366004)(230922051799003)(230273577357003)(230173577357003)(64100799003)(1800799012)(186009)(451199024)(2013699003)(2616005)(53546011)(26005)(478600001)(6506007)(6486002)(6512007)(6666004)(83380400001)(2906002)(41300700001)(66476007)(66556008)(66946007)(54906003)(316002)(8936002)(8676002)(4326008)(5660300002)(6916009)(38100700002)(86362001)(36756003)(31696002)(31686004)(45980500001)(43740500002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?KzIyQ2JIbXBlRjhYN2Vhcld2enRZN0Zqb3FsUWk1K25KbE1uYytMOThWRyti?=
+ =?utf-8?B?TkpheGJ6cWpGZXU1RDl0bTNuOFN2UmlZTGdvM0RRQzh2Vng0TExEZngzaVZo?=
+ =?utf-8?B?WXVmazBsdGpmSDdMQnJ1V2RqU0Zyb2RHTWFRVjdzczloMVNXd1dGNTJzNUxa?=
+ =?utf-8?B?aFBtcnRuMURTMGNRVDdJNHh2UFU3RDdWZ0t3OU1wcGNlWWQzRnVQRDVBUDh6?=
+ =?utf-8?B?TEFxZ2dQMU4yc3pGWXArb0VmZjFvQllSMlFTTDVtMVU4cEdRUXNjNXYvWSth?=
+ =?utf-8?B?RWRScDdKendiSW9hY1p4Szg2Vk9ERVZ6VVRWdVg1N1hGRUhBWEJrSXVTNkRn?=
+ =?utf-8?B?M25PdG4vMHBlcFpmTG5qSXAwZ0R0bm10b3RWZi9SUGNmR1BETjdMSm5YR3ZF?=
+ =?utf-8?B?QmtuWmljSE5HdmU4bmkyb3FYaE9hd0gzZnJlS2ZiU0pUYmNqbHNTcHhhcS9G?=
+ =?utf-8?B?MlpBeDNPQ05SSFJxUWZDWms1TnFQSDlYdnB4K09NRGNYaDhUTU9QbEVBdFBP?=
+ =?utf-8?B?UmVocm8vMEJCV2NGeHdzQ2RUcGJtL0xOVERkL3VWaEZwanUyK0VMcno3VFQ3?=
+ =?utf-8?B?eTdhbnFWS1k5Mk5CbVlVZUhNbUVhMlM1WDkxVEI2V3FzL1VXSkFXNHc5YXlD?=
+ =?utf-8?B?U2tiWTRmbEcvcG8zei9lMGYweWtZdlhMeDdnSEphQjVpVjFPWFJRT2pUN3JV?=
+ =?utf-8?B?QU80d29lSXhleTY0UnNQSHVremJBSmlWM0kweEJIb3c0NWFDdDN3cDFmVTMw?=
+ =?utf-8?B?enV3bzlnUHlSOVpwZzZnYUhwakZaZW5DTk1zdFo2YTB0QkZubTdCTTdRY0Nk?=
+ =?utf-8?B?WkpFNWxLRkJ2bzRyb0Z6UUR2M2F6Z1ZBRE11OHlJa1krUHNXN1FpaitGdkY2?=
+ =?utf-8?B?QTRVUDdYekdNbm9YN0xzMEtFQXlNRWxtVDRDRlV0aUwramdvZzNGeG9OZ2lD?=
+ =?utf-8?B?UUtEMWFyMkM3ZUg3S2w3QW9pM3c3cHI4bXczRXJ4bENBdVdHbXRHdzZyakZa?=
+ =?utf-8?B?UXhnVm1ZRFJhNmxMT1NrYWZtT3l0UlVpSWU5Z05iRFdFbnFyeFQ3YTdxek1h?=
+ =?utf-8?B?ck1hVkhCZmFhVEphSnkvNlJiWVdkZkpQTTV5cWJYTjRzNzVEMi81YWdDSkxi?=
+ =?utf-8?B?TWtyYW9YeUdRVVE4dnVDenFuUnA2dDE4M3k0V2xEdkdyOHhDdzRGZm1mdWlJ?=
+ =?utf-8?B?U1FOV2lKSHBuZGZNR21pM2VHQi9NM3hoM3lxY0tiQUJEUTBrQmlCY1ZXTTU1?=
+ =?utf-8?B?a2lhV2kvRGREbjBYREZObVpvSXBPU1FnTklYQ2JtSUdzUzhZN040RlZ0SXY0?=
+ =?utf-8?B?Tkw4YVYxc2RQdmo0TzlObzlmZUlZVmhPVC9kVldya04zTG5MTldxQjNrZVRi?=
+ =?utf-8?B?OVJ1YU1vSjJDaUNUNmJWVWVuZ2RGTXNucXVzQndReGcvTUZsb3RJTXkrcFlv?=
+ =?utf-8?B?aDA1THpuWnk2SlBBZjRDeTd4UlQwODl2VE9JdlF3RlY4RFJPSTFkTnV2NDZ3?=
+ =?utf-8?B?T3orT3c0NjZDRzQ0SVE4NS9aVzArVmQ4K0xhNG1LNVdOU0tMYUVJa1dpZXJv?=
+ =?utf-8?B?OWh4emVibTg4VmhQWnQ0NWp4dkZmM2hxT2dYT1NvYUZDNUFSdWxQU0Y2Mk5D?=
+ =?utf-8?B?aHViUDgyWDlRN3luajJIQ2paTlJxSWE5bEx6RHBtUndDWUNZWWh4UlZJL0p3?=
+ =?utf-8?B?VFJrWTJDN1FHZE16M21kN2NhRHBUeWdwVlJLZ0lBYVJocDFPNzlObnZOdFo4?=
+ =?utf-8?B?azd0U0U5VlhvWUt0YThoeTk1R2tKMkcxaGh6RndRRFRDZVZaSXV0aTYrb3hT?=
+ =?utf-8?B?MElUdG9HUXEvVG84dnFQRndzMHVhTGJRU2ZOYTdMT0drOGwwVXBzSk9FaXFu?=
+ =?utf-8?B?Qzl6dmxBcnNRMmNOSVZTSWlJTHJ4ZGZ1WDl4VnFsaWJjSWh5RE03VjZnaHBr?=
+ =?utf-8?B?UWJ6TmY0MytRQ1Y5Zm9saDlGQmd5bk5xZHBQUm9BT0tCc1JEb0MvcWl2T2ZB?=
+ =?utf-8?B?Z3J6Q3ZvME9lY3VtNHEwOE5qeTF5Vkxsb2pLS2pCdzVTeVZ2VTMwcUFnVGZh?=
+ =?utf-8?B?aUwzcExXZ2xGYm5xT005ZzdMM0VTR2o5ZGYwaEZqemlOcVRMVlVlaVdHblNO?=
+ =?utf-8?Q?onS4EFJ5pRBFyvOuMVK2GeeDp?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8243135c-9fb8-4adf-2545-08dc0de03e40
+X-MS-Exchange-CrossTenant-AuthSource: BYAPR12MB3205.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Jan 2024 11:19:55.1479
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: AskYfOBGY5YvlsKoJmqNITtl/50BMQRRDsy8/YXHqcsh3EeeG1gY2FMGhUYHCYBaYawFcguQI9E7s07NjkBd8A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB8581
 
 
 
-On 1/5/2024 10:48 AM, Sergey Ryazanov wrote:
-> Hi Luo,
-> 
-> thank you for explaining the case in such details. I also have checked 
-> the related DTSs in the Linaro repository to be more familiar with the 
-> I/O mem layout. Specifically I checked these two, hope they are relevant 
-> to the discussion:
-> https://git.codelinaro.org/clo/qsdk/oss/kernel/linux-ipq-5.4/-/blob/NHSS.QSDK.12.4.r3/arch/arm64/boot/dts/qcom/ipq5332.dtsi
-> https://git.codelinaro.org/clo/qsdk/oss/kernel/linux-ipq-5.4/-/blob/NHSS.QSDK.12.4.r3/arch/arm64/boot/dts/qcom/ipq9574.dtsiThanks Sergey for looking into this driver support.
-> 
-> Please find my comments below.
-> 
-> On 03.01.2024 15:31, Jie Luo wrote:
->> On 1/2/2024 7:01 AM, Sergey Ryazanov wrote:
->>> Hi Luo,
->>>
->>> I have a few questions regarding the high level design of 
->>> implementation. I hope that clarifying these topics will help us to 
->>> find a good model for the case and finally merge a supporting code. 
->>> Please find the questions below.
->>>
->>> On 25.12.2023 10:44, Luo Jie wrote:
->>>> For IPQ5332 platform, there are two MAC PCSs, and qca8084 is
->>>> connected with one of them.
->>>>
->>>> 1. The Ethernet LDO needs to be enabled to make the PHY GPIO
->>>>     reset taking effect, which uses the MDIO bus level reset.
->>>>
->>>> 2. The SoC GCC uniphy AHB and SYS clocks need to be enabled
->>>>     to make the ethernet PHY device accessible.
->>>>
->>>> 3. To provide the clock to the ethernet, the CMN clock needs
->>>>     to be initialized for selecting reference clock and enabling
->>>>     the output clock.
->>>>
->>>> 4. Support optional MDIO clock frequency config.
->>>>
->>>> 5. Update dt-bindings doc for the new added properties.
->>>>
->>>> Changes in v2:
->>>>     * remove the PHY related features such as PHY address
->>>>       program and clock initialization.
->>>>     * leverage the MDIO level GPIO reset for qca8084 PHY.
->>>>
->>>> Changes in v3:
->>>>     * fix the christmas-tree format issue.
->>>>     * improve the dt-binding changes.
->>>>
->>>> Changes in v4:
->>>>     * improve the CMN PLL reference clock config.
->>>>     * improve the dt-binding changes.
->>>>
->>>> Luo Jie (5):
->>>>    net: mdio: ipq4019: move eth_ldo_rdy before MDIO bus register
->>>>    net: mdio: ipq4019: enable the SoC uniphy clocks for ipq5332 
->>>> platform
->>>>    net: mdio: ipq4019: configure CMN PLL clock for ipq5332
->>>>    net: mdio: ipq4019: support MDIO clock frequency divider
->>>>    dt-bindings: net: ipq4019-mdio: Document ipq5332 platform
->>>>
->>>>   .../bindings/net/qcom,ipq4019-mdio.yaml       | 141 ++++++++-
->>>>   drivers/net/mdio/mdio-ipq4019.c               | 288 
->>>> ++++++++++++++++--
->>>>   2 files changed, 399 insertions(+), 30 deletions(-)
->>>
->>> I'm asking these questions because after checking the patches and 
->>> following the earlier discussion, the series is looks like an 
->>> overloading of the MDIO driver with somehow but not strictly related 
->>> functionality.
->>>
->>>
->>> First, let me summarize the case. Feel free to correct me if I took 
->>> something wrong. So, we have:
->>> - a reference design contains IPQ5332 SoC + QCA8084 switch/Phy;
+On 05-01-2024 13:41, Thierry Reding wrote:
+> On Fri, Jan 05, 2024 at 10:24:18AM +0530, Sameer Pujar wrote:
 >>
->> IPQ5322 SoC is currently connected with qca8386(switch that includes
->> QCA8084 PHY), the pure PHY chip qca8084 is currently connected on the
->> SoC IPQ9574.
-> 
-> As far as I understand these chips have standardized interfaces and 
-> QCA8386/QCA8084 can be reused with another SoC(s) in future. As well as 
-> IPQ5332 can be used with different phy. So now we are talking about some 
-> specific reference design. Isn't it?
-
-Not the specific reference design.
-You are right, these chips can be used with other SoC(s) with the
-standardized interfaces supported.
-
-> 
->>> - QCA8084 requires a reference clock for normal functionality;
+>> On 04-01-2024 22:52, Mark Brown wrote:
+>>> On Thu, Jan 04, 2024 at 06:07:22PM +0100, Thierry Reding wrote:
+>>>> On Tue, Dec 26, 2023 at 09:58:02PM +0530, Sameer Pujar wrote:
+>>>>>                 /-----> codec1 endpoint
+>>>>>                /
+>>>>> CPU endpoint \
+>>>>>                 \-----> codec2 endpoint
+>>>> Can you describe the use-case? Is there a need to switch between codec1
+>>>> and codec2 endpoints or do they receive the same data in parallel all
+>>>> the time?
+>>>> Could this perhaps be described by adding multiple CPU ports with one
+>>>> endpoint each?
+>>> Don't know about the specific use case that Sameer is looking at but to
+>>> me this looks like a surround sound setup where multiple stereo (or
+>>> mono) DACs are wired in parallel, either with a TDM setup or with
+>>> multiple data lines.  There's multiple CODECs all taking input from a
+>>> single host controller.
+>> Yes, it is a TDM use case where the same clock and data line is shared with
+>> multiple CODECs. Each CODEC is expected to pickup data based on the allotted
+>> TDM slot.
 >>
->> The reference clock is selected for the CMN PLL block, which outputs
->> the clocks to the Ethernet devices including the qca8084 PHY for normal
->> functionality, also for other connected Ethernet devices, the CMN PLL
->> block is located in SoC such as ipq5332 and ipq9574.
+>> It is possible to create multiple CPU dummy endpoints and use these in DT
+>> binding for each CODEC. I am not sure if this is the best way right now.
+>> There are few things to note here with dummy endpoints. First, it leads to
+>> bit of duplication of endpoint DAIs and DAI links for these. Please note
+>> that host controller pins are actually shared with external CODECs. So
+>> shouldn't DT provide a way to represent this connection? Second, ASoC
+>> provides a way to represent multiple CODECs on a single DAI link in the
+>> driver and my concern is to understand if present binding can be extended to
+>> represent this scenario. Third, one of the user wanted to connect 6 CODECs
+>> and that is the maximum request I have seen so far. I can expose additional
+>> dummy CPU DAIs keeping this maximum request in mind, but not sure if users
+>> would like to extend it further. The concern I have is, how can we make this
+>> easily extendible and simpler to use?
 >>
->>> - IPQ5332, as a chip, is able to provide a set of reference clocks 
->>> for external devices;
->>
->> Yes, the CMN PLL block of IPQ5332 provides the output clocks as the
->> working clocks for the external Ethernet devices such as the QCA8386
->> (switch chip), the reference clocks we are discussing is as the
->> reference clock source of the CMN PLL block.
-> 
-> Ok, I feel we have some ambiguity regarding the reference clock term 
-> here. Sure, CMN PLL needs a reference clock to functioning. And in the 
-> same time, the output clock provided by CMN PLL is a reference clock for 
-> QCA8384.
-> 
-> So, when I was talking about IPQ5332, I meant the whole chip including 
-> CMN PLL block. So, I asked about CMN PLL output clock. But you already 
-> clarified the SoC capabilities below.
+>> With custom DT bindings it may be simpler to resolve this, but Tegra audio
+>> presently relies on standard graph remote-endpoints binding. So I guess
+>> diverging from this may not be preferable?
+> This seems like a legitimate use-case for the graph bindings, but
+> perhaps one that nobody has run into yet. It might be worth looking into
+> extending the bindings to account for this.
+>
+> I think there are two pieces for this. On one hand we have the DTC that
+> complains, which I think is what you were seeing. It's a bit tricky to
+> update because it checks for bidirectionality of the endpoints, which is
+> trivial to do with 1:1 but more complicated with 1:N relationships. I've
+> done some prototyping but not sure if my test DT is exactly what you
+> need. Can you send a snippet of what your DT looks like to test the DTC
+> changes against?
 
-Yes, Sergey.
+This is the snippet I was trying to test:
 
-> 
->>> - you want to configure IPQ5332 to provide the reference clock for 
->>> QCA8084.
->>
->> The reference clocks for CMN PLL block is configurable, and the output
->> clocks of CMN PLL are fixed, the output clocks are 50MHZ, which is given
->> to the external Ethernet devices.
->> here is the topology of clocks.
->>                     ---------
->>                     |        |
->> reference clock --->| CMN PLL|--> output 50M clocks --> qca8084/qca8386
->>                     |        |
->>                     ---------
->>>
->>>
->>> So, the high level questions are:
->>> 1. Is QCA8084 capable to consume the clock from some other generator? 
->>> Is it possible to clock QCA8084 from external XO/PLL/whatever?
->> No, the clock of qca8084/qca8386 is provided from the output clock of
->> CMN PLL as above.
-> 
-> Right, in case of pairing QCA8386 with IPQ5332, it is a good option to 
-> provide the clock from the SoC. But in general QCA8386 will be Ok with 
-> any 50 MHz clock. Right? I would like to say that thinking about this 
-> specific reference design being a single possible combination limits a 
-> scope of driver implementation options.
+diff --git a/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000.dtsi 
+b/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000.dtsi
+index eb79e80..22a97e2 100644
+--- a/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000.dtsi
++++ b/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000.dtsi
+@@ -13,7 +13,8 @@
+                                                 port@1 {
+                                                         endpoint {
+dai-format = "i2s";
+- remote-endpoint = <&rt5640_ep>;
++ remote-endpoint = <&rt5640_ep>,
++ <&rt5640_ep2>;
+                                                         };
+                                                 };
+                                         };
+@@ -53,10 +54,14 @@
+                                 sound-name-prefix = "CVB-RT";
 
-Yes, from the view of qca8386(qca8084), any input 50M reference clock
-should be fine, but normally we should keep the same clock source for
-qca8386 and the connected SoC to avoid any pps offset.
+                                 port {
+-                                       rt5640_ep: endpoint {
++                                       rt5640_ep: endpoint@0 {
+                                                 remote-endpoint = 
+<&i2s1_dap>;
+                                                 mclk-fs = <256>;
+                                         };
++
++                                       rt5640_ep2: endpoint@1 {
++                                               remote-endpoint = 
+<&i2s1_dap>;
++                                       };
+                                 };
+                         };
+                 };
 
-For example, we also tried the crystal 50M as the reference clock of
-qca8386, since the SoC connected with qca8386 has the different clock
-source from qca8386, which leads to some packet drop because of the
-little bit of clock frequency shift.
-Normally we should keep the clock source of qca8386 same as the clock
-from the connected SoC.
 
-> 
->>> 2. Is IPQ5332 capable to provide reference clock to another switch 
->>> model?
->>
->> Yes, IPQ5332 can provide the reference clock to all connected Ethernet
->> devices, such as qca8386(switch), qca8081 phy and others.
-> 
-> Ok. Thank you for clarifying this.
-> 
->>> 3. Is the reference clock generation subsystem part of the MDIO block 
->>> of IPQ5332?
->>
->> the reference clock of CMN PLL block can be from wifi and external 
->> xtal, the CMN PLL is integrated in the MDIO block, CMN PLL is the 
->> independent
->> block that generates the clocks for the connected Ethernet devices.
->>
->>>
->>>
->>> And there are some tiny questions to make sure that we are on the 
->>> same page:
->>> a. What is the mentioned Ethernet LDO? AFAIK, LDO is some kind of 
->>> gate (or switch) that enables clock output through an IPQ5332 pin. 
->>> Isn't it?
->>
->> That's correct, the LDO is for enabling the output 50M clock of CMN PLL
->> to the connected Ethernet device, which is controlled by the hardware
->> register on the IPQ5332.
->>
->>> And if it's true, then can you clarify, what exactly clock is outputted?
->>
->> the 50M clock is outputted to the external Ethernet devices.
->>
->>> b. Is the Ethernet LDO part of the MDIO block of IPQ5332? According 
->>> to iomem addresses that was used in the example reg property, the 
->>> Ethernet LDO is not part of MDIO.
->>
->> LDO is not the part of MDIO block, LDO has the different register space
->> from MDIO, which is located in the independent Ethernet part.
-> 
-> I have checked the Linaro's DTSs and noticed that mentioned LDO 
-> addresses belong to a node called 'ess-uniphy'. So these LDO(s) are part 
-> of UNIPHY block. So far, so good.
+>
+> The other part is the DT schema which currently restricts the
+> remote-endpoint property to be a single phandle. We would want
+> phandle-array in this case with an updated description. Something like
+> this:
+>
+> --- >8 ---
+> diff --git a/dtschema/schemas/graph.yaml b/dtschema/schemas/graph.yaml
+> index bca450514640..1459b88b9b77 100644
+> --- a/dtschema/schemas/graph.yaml
+> +++ b/dtschema/schemas/graph.yaml
+> @@ -42,8 +42,9 @@ $defs:
+>   
+>         remote-endpoint:
+>           description: |
+> -          phandle to an 'endpoint' subnode of a remote device node.
+> -        $ref: /schemas/types.yaml#/definitions/phandle
+> +          A list of phandles to 'endpoint' subnodes of one or more remote
+> +          device node.
+> +        $ref: /schemas/types.yaml#/definitions/phandle-array
+>   
+>     port-base:
+>       type: object
+> --- >8 ---
+>
+> Thierry
 
-Yes, LDO is a part of uniphy block on IPQ5332.
-
-> 
->>> c. Is the CMN PLL part of the MDIO block of IPQ5332? Again, according 
->>> to iomem address, the CMN PLL is not part of MDIO.
->>
->> No, CMN PLL is not the part of MDIO block, which is the independent
->> block, but it generates the clocks to the connected Ethernet devices
->> managed by MDIO bus, and the CMN PLL block needs to be configured
->> correctly to generate the clocks to make the MDIO devices(Ethernet
->> devices) working.
-> 
-> I came to the same conclusion checking Linaro's DTS. So the CMN PLL 
-> block looks like a small block implemented outside of any other block. 
-> Now I am starting to understand, why everything was putted into the MDIO 
-> driver. This PLL is so small that it doesn't seem to deserve a dedicated 
-> driver. Am I got it right?
-
-Yes, you are right. CMN block is a independent block, we just need to
-configure this block for selecting the reference clock and then do a
-reset, which is a simple configuration and the related output clocks
-to the Ethernet devices, so it is put in the MDIO driver currently.
-
-> 
->>> d. Are GCC AHB & SYS clocks really consumed by MDIO itself? Or are 
->>> they need for the external reference clock generation?
->>
->> GCC AHB & SYS clocks are consumed by the uniphy(PCS) that is connected
->> with the Ethernet devices, so we can say the GCC AHB & SYS clocks are
->> consumed by the Ethernet devices, which is not for the external
->> reference clock generation, external reference clock of CMN PLL are the
->> fix clock that are from wifi or external XO.
-> 
-> Again this UNIPHY block. The UNIPHY node was missed from the upstream 
-> DTS, so it was decided to assign AHB & SYS clocks to MDIO. Right?
-
-Right, currently there is no UNIPHY node defined in upstream.
-
-> 
-> What do you think about implementing this clocks handling functionality 
-> in a dedicated driver (e.g. uniphy) and create a dedicated DTS node for 
-> it? This driver could consume AHB & SYS clocks as well as consuming CMN 
-> PLL clock and be a clock provider for the Ethernet PHY (e.g. QCA8336).
-
-As for AHB & SYS clocks, that can be consumed by the dedicated in the
-future uniphy driver, but it seem there is a sequence issue with
-qca8386(qca8084) as mentioned in the reply to your comment below.
-
-Maybe we can enable these uniphy clocks in the GCC(SoC) provider driver?
-i am not sure whether it is acceptable by the GCC(SoC) provider driver.
-
-> 
-> And looks like CMN PLL should be implemented as a dedicated micro 
-> driver. A driver that consumes fixed reference clocks (XO or from WiFi) 
-> and provides the clock to UNIPHY, to be passed to the Ethernet PHY by 
-> means of LDO gate.
-the CMN PLL block can be realized as the independent driver.
-maybe this CMN driver can be put in the directory drivers/clk/qcom?
-
-> 
->>> To speed up the discussion, let me share my user's view of the 
->>> reference clocks modeling. I would like to join the option that has 
->>> already been suggested by the maintainers. It is better to implement 
->>> reference clocks handling using the clocks API, and the clock 
->>> subsystem will take care of enabling and configuring them.
->>>
->>> And considering the expected answers to the above questions, I would 
->>> like to suggest to implement the clock handling using a dedicated 
->>> clock controlling driver. Or even using several of such tiny 
->>> dedicated drivers. So DTS will become like this:
->>>
->>>    ext_ref_clock: ext_ref_clock {
->>>      compatible = "fixed-clock";
->>>      clock-frequency = <48000000>;
->>>    };
->>>
->>>    eth_cmn_pll: clock-controller@9b000 {
->>>      compatible = "qcom,eth-cmn-pll-ipq5223";
->>>      reg = <0x9b000 0x800>;
->>>      clocks = <&ext_ref_clock>; /* use external 48MHz clock */
->>>    };
->>>
->>>    phy0_ext_clk: clock-controller@7a00610 {
->>>      compatible = "qcom,ipq-eth-ldo";
->>>      reg = <0x7a00610 0x4>;
->>>      clocks = <&eth_cmn_pll>;
->>>    };
->>>
->>>    mdio@90000 {
->>>      compatible = "qcom,ipq4019-mdio";
->>>      reg = <0x90000 0x64>;
->>>      clocks = <&gcc GCC_MDIO_AHB_CLK>;
->>>
->>>      ethernet-phy@1 {
->>>        compatible = "...";
->>>        reg = <1>;
->>>        clocks = <&phy0_ext_clk>;
->>>        reset-gpios = <&gcc ...>;
->>>      };
->>>    };
->>
->> Thanks Sergey for the reference DTS.
->> Since the GPIO reset of qca8084/qca8386 is needed before configuring the
->> Ethernet device.
->>
->> The configuration of and phy0_ext_clk(LDO) should be configured
->> firstly, which enables the clocks to the Ethernet devices, then the GPIO
->> reset of the connected Ethernet devices(such as qca8386) can take
->> effect, currently the GPIO reset takes the MDIO bus level reset.
->>
->> So phy0_ext_clk can't be put in the PHY device tree node, one LDO
->> controls the clock output enabled to the connected Ethernet device such
->> as qca8386.
-> 
-> I still feel lost. Why it is impossible to specify clocks and resets in 
-> the PHY node and then implement the initialization sequence in the 
-> QCA8386 driver? I read the discussion of the QCA8386 driver submission. 
-> That driver modeling also looks a complex task. But it still puzzling 
-> me, why a part of the QCA8386 driver should be implemented inside the 
-> MDIO driver.
-> 
-> -- 
-> Sergey
-
-Let me clarify the work sequence here.
-1. configure CMN PLL to generate the reference clocks for qca8386(
-same as qca8084).
-2. enable LDO and configure the uniphy ahb & sys clocks.
-3. do GPIO reset on qca8386(qca8084), the GPIO reset is for chip,
-just need to do one GPIO reset on quad PHYs.
-4. configure the initial clocks and resets, which are from NSSCC
-clock provider driver, the NSSCC is also located in qca8386(qca8084),
-these clocks and resets for all quad PHYs of qca8386(qca8084), which
-just needs to be initialized one time.
-5. then the qca8386(qca8084) PHY capability can be acquired correctly in
-the PHY probe function.
-
-Currently, The GPIO reset of qca8386(qca8084) takes use of the MDIO
-level GPIO reset, so i put the LDO enable in the MDIO probe function
-called before MDIO bus level reset.
-
-To take your proposal, we can't use the MDIO bus level reset and MDIO
-device level reset from the MDIO bus framework code, we need to do
-reset in one PHY probe function, and the CMN driver and uniphy driver
-needs to be initialized before PHY probe function, CMN driver is fine,
-but it seems be not usual for uniphy(pcs) driver called before PHY probe
-function.
 
