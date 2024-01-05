@@ -1,202 +1,185 @@
-Return-Path: <devicetree+bounces-29836-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29837-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63755824F82
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jan 2024 09:12:24 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8EB17824FAA
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jan 2024 09:21:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6824D1C22BB7
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jan 2024 08:12:23 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DBB2AB21A06
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jan 2024 08:21:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1BBE20B19;
-	Fri,  5 Jan 2024 08:11:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0282F210EF;
+	Fri,  5 Jan 2024 08:20:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WcmqHkZZ"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="tT6cNXeG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 180F4208D7;
-	Fri,  5 Jan 2024 08:11:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-a28bf46ea11so59807766b.1;
-        Fri, 05 Jan 2024 00:11:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1704442292; x=1705047092; darn=vger.kernel.org;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=DDc3X/vTCrv9i8PxCPyqlLpcrg6iDYAL/aeEr+2xMyc=;
-        b=WcmqHkZZGkfCtZYRe5WnKJlQNN0i8ae0vjADPUow1Mkzpwed9Z1MHjG+Gyk5pwKbOi
-         tEiHjQbeuWh6PfsFj4t0SatNODGIrGXYtMW/DgyF6wq79TyaQygb4qF2H3raCzbcs1WM
-         W4uvjtlIORwcd0EKYfaw0Vr8l2cecBY/PjIztjDb7LpzCPeQw6aVqLhWT/lA0pnK7tp8
-         2qjZFBxzk6oWm9rtcSAeIQ1vk3lTjNVlcxd9JeAKNmlMZHeyOIyApsRimo2xcprFunF/
-         FxCmuonPoEKudcUD1YeJi39Jg5cUHOiYoXpcvwMljr7or63KnWfnmuEanEKM5qKITCHl
-         E9lA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704442292; x=1705047092;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=DDc3X/vTCrv9i8PxCPyqlLpcrg6iDYAL/aeEr+2xMyc=;
-        b=PG81r9zh6RzGPhWx5mJqNv4b2EffiZRQ0UZtR/ZmK+oBs24oKiqL1WeYRFEqy75cZ1
-         yWPpiNZzTJfLsUkySQi+CcCVuWKSPBWyUVvRhlrqObPr+xFtya34ceku8ZwV+YmhjPZX
-         iufs7b+hw1FrifWkyZ3ET35ovfHsJ4DY6dD+9iH34wa+xFzi6dxo5JJhl8csRaZHRD+E
-         JuCkosrnDGDCqUSd+w3sDfVHLRjDodsWyF/f3OqNtcvz/7I68EX9b2a9ubypyB4MhG53
-         /rvk0AVxQSbAXVShAmxvJIiDBiF/C/0Np+wE27v37kMOnl0yD23JcSjdwRh+DbO6gKy3
-         x5Pw==
-X-Gm-Message-State: AOJu0Yyw3grXiWJvBbtfjNhG43q5Bfqpv1JThM2Yro/XPR5ewNhhqOZM
-	GvdiVA5cn5hrMEjQo8ruwUI=
-X-Google-Smtp-Source: AGHT+IEtSoG6+TQ5lp2vD5o78oLq7FNxPf6otoqjX5IdT3AGC6plY2CLaP4BqbV0ImHtO+r+DFIGtA==
-X-Received: by 2002:a17:906:34d7:b0:a23:671c:2284 with SMTP id h23-20020a17090634d700b00a23671c2284mr1666245ejb.29.1704442291971;
-        Fri, 05 Jan 2024 00:11:31 -0800 (PST)
-Received: from orome.fritz.box (p200300e41f0fa600f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f0f:a600:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id r17-20020a170906551100b00a2356a7eafasm420985ejp.199.2024.01.05.00.11.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 05 Jan 2024 00:11:30 -0800 (PST)
-Date: Fri, 5 Jan 2024 09:11:29 +0100
-From: Thierry Reding <thierry.reding@gmail.com>
-To: Sameer Pujar <spujar@nvidia.com>
-Cc: Mark Brown <broonie@kernel.org>, alsa-devel@alsa-project.org,
-	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-	devicetree@vger.kernel.org, robh+dt@kernel.org,
-	Jon Hunter <jonathanh@nvidia.com>, linux-tegra@vger.kernel.org
-Subject: Re: Query on audio-graph-card DT binding
-Message-ID: <ZZe5sTNz005Tt4jk@orome.fritz.box>
-References: <dfe363ef-4638-4b5e-8308-73e286ac0b50@nvidia.com>
- <ZZblyhfzQjzyoUc_@orome.fritz.box>
- <42c0c4fa-585e-4194-bbe4-e0377c87e632@sirena.org.uk>
- <3faec2e9-8cd9-46f9-8807-801922de0edf@nvidia.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99ABA20DC8;
+	Fri,  5 Jan 2024 08:20:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0369458.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 4052tkx3028984;
+	Fri, 5 Jan 2024 09:19:56 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	selector1; bh=gxrbGKGX0buop+PvuAmG2IkLu4G/QjEo0CpiUPjSvQ4=; b=tT
+	6cNXeGAKaJftgTWYQ4btXPz25NJkoN6rwQ97Z+A70hxVGPC2EACwY9KlFCdwin7x
+	T0eGIn7cyZvSTfTKL9FDgLEXwhSfQvbd3x/0RqhDxui/1vUCSEUHuwwZr9vaSZe9
+	VdlGf5MOsb+NyVQ6ko42YO9d1nlPanGwO/RF/J4coZ/A/Hk91SlDoU+TcPWpChjc
+	VMqXebLXrELMYSyaqHnkwRK2oyoxdP/Ov8ew4yZ4CDuu4GeqUPTeGL0AxMTR94Qn
+	lXgr3Z1OrXzqkGP1ijFxHO1uxSOuRA4iapRhe6ZvvoZRpbUBJFP4zW8Cc7oNPSVD
+	QPxxMGTmlyF9GBQaTcIw==
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3ve9dss0v4-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 05 Jan 2024 09:19:56 +0100 (CET)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 086FC10002A;
+	Fri,  5 Jan 2024 09:19:52 +0100 (CET)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id C8B17210587;
+	Fri,  5 Jan 2024 09:19:52 +0100 (CET)
+Received: from [10.201.20.32] (10.201.20.32) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Fri, 5 Jan
+ 2024 09:19:50 +0100
+Message-ID: <9b66bc71-08de-43bd-b7e1-4e7c9defd400@foss.st.com>
+Date: Fri, 5 Jan 2024 09:19:47 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="eGTPasXYebqI3XK+"
-Content-Disposition: inline
-In-Reply-To: <3faec2e9-8cd9-46f9-8807-801922de0edf@nvidia.com>
-User-Agent: Mutt/2.2.12 (2023-09-09)
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 03/13] dt-bindings: bus: document RIFSC
+To: Rob Herring <robh@kernel.org>
+CC: <Oleksii_Moisieiev@epam.com>, <gregkh@linuxfoundation.org>,
+        <herbert@gondor.apana.org.au>, <davem@davemloft.net>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <alexandre.torgue@foss.st.com>, <vkoul@kernel.org>, <jic23@kernel.org>,
+        <olivier.moysan@foss.st.com>, <arnaud.pouliquen@foss.st.com>,
+        <mchehab@kernel.org>, <fabrice.gasnier@foss.st.com>,
+        <andi.shyti@kernel.org>, <ulf.hansson@linaro.org>,
+        <edumazet@google.com>, <kuba@kernel.org>, <pabeni@redhat.com>,
+        <hugues.fruchet@foss.st.com>, <lee@kernel.org>, <will@kernel.org>,
+        <catalin.marinas@arm.com>, <arnd@kernel.org>,
+        <richardcochran@gmail.com>, Frank Rowand <frowand.list@gmail.com>,
+        <peng.fan@oss.nxp.com>, <lars@metafoo.de>, <rcsekar@samsung.com>,
+        <wg@grandegger.com>, <mkl@pengutronix.de>,
+        <linux-crypto@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <dmaengine@vger.kernel.org>, <linux-i2c@vger.kernel.org>,
+        <linux-iio@vger.kernel.org>, <alsa-devel@alsa-project.org>,
+        <linux-medi.a@vger.kernel.org>, <linux-mmc@vger.kernel.org>,
+        <netdev@vger.kernel.org>, <linux-phy@lists.infradead.org>,
+        <linux-serial@vger.kernel.org>, <linux-spi@vger.kernel.org>,
+        <linux-usb@vger.kernel.org>
+References: <20231212152356.345703-1-gatien.chevallier@foss.st.com>
+ <20231212152356.345703-4-gatien.chevallier@foss.st.com>
+ <20231221215316.GA155023-robh@kernel.org>
+Content-Language: en-US
+From: Gatien CHEVALLIER <gatien.chevallier@foss.st.com>
+In-Reply-To: <20231221215316.GA155023-robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-01-05_04,2024-01-05_01,2023-05-22_02
 
+Hi Rob,
 
---eGTPasXYebqI3XK+
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 12/21/23 22:53, Rob Herring wrote:
+> On Tue, Dec 12, 2023 at 04:23:46PM +0100, Gatien Chevallier wrote:
+>> Document RIFSC (RIF security controller). RIFSC is a firewall controller
+>> composed of different kinds of hardware resources.
+>>
+>> Signed-off-by: Gatien Chevallier <gatien.chevallier@foss.st.com>
+>> ---
+>>
+>> Changes in V6:
+>> 	- Renamed access-controller to access-controllers
+>> 	- Removal of access-control-provider property
+>> 	- Removal of access-controller and access-controller-names
+>> 	  declaration in the patternProperties field. Add
+>> 	  additionalProperties: true in this field.
+>>
+>> Changes in V5:
+>> 	- Renamed feature-domain* to access-control*
+>>
+>> Changes in V2:
+>> 	- Corrected errors highlighted by Rob's robot
+>> 	- No longer define the maxItems for the "feature-domains"
+>> 	  property
+>> 	- Fix example (node name, status)
+>> 	- Declare "feature-domain-names" as an optional
+>> 	  property for child nodes
+>> 	- Fix description of "feature-domains" property
+>>
+>>   .../bindings/bus/st,stm32mp25-rifsc.yaml      | 96 +++++++++++++++++++
+>>   1 file changed, 96 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/bus/st,stm32mp25-rifsc.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/bus/st,stm32mp25-rifsc.yaml b/Documentation/devicetree/bindings/bus/st,stm32mp25-rifsc.yaml
+>> new file mode 100644
+>> index 000000000000..95aa7f04c739
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/bus/st,stm32mp25-rifsc.yaml
+>> @@ -0,0 +1,96 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/bus/st,stm32mp25-rifsc.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: STM32 Resource isolation framework security controller
+>> +
+>> +maintainers:
+>> +  - Gatien Chevallier <gatien.chevallier@foss.st.com>
+>> +
+>> +description: |
+>> +  Resource isolation framework (RIF) is a comprehensive set of hardware blocks
+>> +  designed to enforce and manage isolation of STM32 hardware resources like
+>> +  memory and peripherals.
+>> +
+>> +  The RIFSC (RIF security controller) is composed of three sets of registers,
+>> +  each managing a specific set of hardware resources:
+>> +    - RISC registers associated with RISUP logic (resource isolation device unit
+>> +      for peripherals), assign all non-RIF aware peripherals to zero, one or
+>> +      any security domains (secure, privilege, compartment).
+>> +    - RIMC registers: associated with RIMU logic (resource isolation master
+>> +      unit), assign all non RIF-aware bus master to one security domain by
+>> +      setting secure, privileged and compartment information on the system bus.
+>> +      Alternatively, the RISUP logic controlling the device port access to a
+>> +      peripheral can assign target bus attributes to this peripheral master port
+>> +      (supported attribute: CID).
+>> +    - RISC registers associated with RISAL logic (resource isolation device unit
+>> +      for address space - Lite version), assign address space subregions to one
+>> +      security domains (secure, privilege, compartment).
+>> +
+>> +properties:
+>> +  compatible:
+>> +    contains:
+>> +      const: st,stm32mp25-rifsc
+> 
+> This needs to be exact and include 'simple-bus'. You'll need a custom
+> 'select' with the above to avoid matching all other 'simple-bus' cases.
+> 
+> With that,
+> 
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
-On Fri, Jan 05, 2024 at 10:24:18AM +0530, Sameer Pujar wrote:
->=20
->=20
-> On 04-01-2024 22:52, Mark Brown wrote:
-> > On Thu, Jan 04, 2024 at 06:07:22PM +0100, Thierry Reding wrote:
-> > > On Tue, Dec 26, 2023 at 09:58:02PM +0530, Sameer Pujar wrote:
-> > > >  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 /-----> codec1 endpoint
-> > > >  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 /
-> > > > CPU endpoint \
-> > > >  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 \-----> codec2 endpoint
-> > > Can you describe the use-case? Is there a need to switch between code=
-c1
-> > > and codec2 endpoints or do they receive the same data in parallel all
-> > > the time?
-> > > Could this perhaps be described by adding multiple CPU ports with one
-> > > endpoint each?
-> > Don't know about the specific use case that Sameer is looking at but to
-> > me this looks like a surround sound setup where multiple stereo (or
-> > mono) DACs are wired in parallel, either with a TDM setup or with
-> > multiple data lines.  There's multiple CODECs all taking input from a
-> > single host controller.
->=20
-> Yes, it is a TDM use case where the same clock and data line is shared wi=
-th
-> multiple CODECs. Each CODEC is expected to pickup data based on the allot=
-ted
-> TDM slot.
->=20
-> It is possible to create multiple CPU dummy endpoints and use these in DT
-> binding for each CODEC. I am not sure if this is the best way right now.
-> There are few things to note here with dummy endpoints. First, it leads to
-> bit of duplication of endpoint DAIs and DAI links for these. Please note
-> that host controller pins are actually shared with external CODECs. So
-> shouldn't DT provide a way to represent this connection? Second, ASoC
-> provides a way to represent multiple CODECs on a single DAI link in the
-> driver and my concern is to understand if present binding can be extended=
- to
-> represent this scenario. Third, one of the user wanted to connect 6 CODECs
-> and that is the maximum request I have seen so far. I can expose addition=
-al
-> dummy CPU DAIs keeping this maximum request in mind, but not sure if users
-> would like to extend it further. The concern I have is, how can we make t=
-his
-> easily extendible and simpler to use?
->=20
-> With custom DT bindings it may be simpler to resolve this, but Tegra audio
-> presently relies on standard graph remote-endpoints binding. So I guess
-> diverging from this may not be preferable?
+Thank you for the review,
+I'll update this for the next version whilst applying your tag
 
-This seems like a legitimate use-case for the graph bindings, but
-perhaps one that nobody has run into yet. It might be worth looking into
-extending the bindings to account for this.
-
-I think there are two pieces for this. On one hand we have the DTC that
-complains, which I think is what you were seeing. It's a bit tricky to
-update because it checks for bidirectionality of the endpoints, which is
-trivial to do with 1:1 but more complicated with 1:N relationships. I've
-done some prototyping but not sure if my test DT is exactly what you
-need. Can you send a snippet of what your DT looks like to test the DTC
-changes against?
-
-The other part is the DT schema which currently restricts the
-remote-endpoint property to be a single phandle. We would want
-phandle-array in this case with an updated description. Something like
-this:
-
---- >8 ---
-diff --git a/dtschema/schemas/graph.yaml b/dtschema/schemas/graph.yaml
-index bca450514640..1459b88b9b77 100644
---- a/dtschema/schemas/graph.yaml
-+++ b/dtschema/schemas/graph.yaml
-@@ -42,8 +42,9 @@ $defs:
-=20
-       remote-endpoint:
-         description: |
--          phandle to an 'endpoint' subnode of a remote device node.
--        $ref: /schemas/types.yaml#/definitions/phandle
-+          A list of phandles to 'endpoint' subnodes of one or more remote
-+          device node.
-+        $ref: /schemas/types.yaml#/definitions/phandle-array
-=20
-   port-base:
-     type: object
---- >8 ---
-
-Thierry
-
---eGTPasXYebqI3XK+
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmWXua4ACgkQ3SOs138+
-s6Fx3Q//e7NFejG5s5nQFCW5feme6nEY++g6ZhvBaKWOn/i6PaC3cMLq+WB4tOXQ
-l3x8Spxx/zbbfqMsd9ZbNWp2ayrPjpM3x0NOgdVEDkaX/mQOWskZbjI94rTOqV2O
-qeUoeHivqjmidvel+cjFYMpmCRNGQDv3NQUvHdREbRB9OQu63RyIAiVousP1Y35y
-meXii3XRc0dmp5o4fpb7eQcI0wYAQmJpNhGYSUepqSz5sKvHiBEJszz5Wy5u7ncu
-uM5zdNlTRJGaWH20Tx1YfI5kI6XDvoVRGv9AfRTpZ6vLJplAWB0X1yOWzHNH/F/E
-STMru2d/eq1MHss1aHk7w9l/vR0I6xbyaCjZv2N4xFjxxePMTybzAePDcYNDBFVq
-7DSjCN4q0q715jBiSiFBsXTGJs2D8Ni8PstNdHBcM7QNP1gf22erSiqtvNADTo1v
-wPd5iv0iRiCsiQcI5lJTAH+Ac5hte8Y+O9onaFtdIy8inhZP/5mpyZdrlIHotQef
-oDQ9zXuSYCYqLNytrId+3QzvbaiV4A2v3l+WLMVDhym2fZ4zVnh3Lct7oG3GYfrG
-VvSxeBX8+0C9ktrYWLYxoNf9KxuJ4pMxLtur79GXF/LxTAzkY0V2znfk0eWyBNtO
-66Hx+c26rIiJOC7+lIAVn39TFH+iGAfH6e64ydz6thKdToeDhto=
-=b9dE
------END PGP SIGNATURE-----
-
---eGTPasXYebqI3XK+--
+Gatien
 
