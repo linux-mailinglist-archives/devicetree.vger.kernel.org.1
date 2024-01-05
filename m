@@ -1,138 +1,95 @@
-Return-Path: <devicetree+bounces-29920-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29921-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F30B7825969
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jan 2024 18:50:48 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9947C82599B
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jan 2024 19:02:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A05A1282C00
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jan 2024 17:50:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1BBB9285C78
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jan 2024 18:02:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCDBF328C7;
-	Fri,  5 Jan 2024 17:50:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F33B328D1;
+	Fri,  5 Jan 2024 18:02:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="rGR860DV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f173.google.com (mail-yw1-f173.google.com [209.85.128.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F1A2250E5;
-	Fri,  5 Jan 2024 17:50:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-Received: from i53875a56.versanet.de ([83.135.90.86] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1rLoL6-0006fs-Ab; Fri, 05 Jan 2024 18:50:36 +0100
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: Alex Bee <knaerzche@gmail.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- David Airlie <airlied@gmail.com>, Rob Herring <robh+dt@kernel.org>,
- Sandy Huang <hjc@rock-chips.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>
-Subject: Re: (subset) [PATCH v4 00/29] Add HDMI support for RK3128
-Date: Fri, 05 Jan 2024 18:50:35 +0100
-Message-ID: <7002847.tM3a2QDmDi@diego>
-In-Reply-To: <31af9449-67df-4a1d-942c-60405f653409@gmail.com>
-References:
- <20231222174220.55249-1-knaerzche@gmail.com> <2568547.3Lj2Plt8kZ@diego>
- <31af9449-67df-4a1d-942c-60405f653409@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64B2B35291
+	for <devicetree@vger.kernel.org>; Fri,  5 Jan 2024 18:02:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yw1-f173.google.com with SMTP id 00721157ae682-5eefd0da5c0so18391437b3.2
+        for <devicetree@vger.kernel.org>; Fri, 05 Jan 2024 10:02:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1704477748; x=1705082548; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=t3KinRLo165j61fa4NsbUi17jBU/PExxRI33z/4AFbs=;
+        b=rGR860DVqh3+GpWRht87WWzIYA6U9+zY3BNv/1bDKFoRdcxrdRt/gFpmJoJTc0IMdh
+         Atm+d5WWGFYiRQIz4KsYrIYnm/Sg1e5ddTMKe0J5729+F/+eE63OpKi4jzfEI430QrEc
+         kpeifl7NfUJ3bcvNd0rn9gZhiiph0XaPJVZLUII2lkUSKC7yqF1+LSTeNuraRl/6xw+f
+         8W84tUFq20CTLc6Xb79EAY6vIHUaOQZrrpwVfod1lMTYG5lOgYJN6wAJmWsgVfdaM5w6
+         GFxAe7sExYGuzuy5hrwPiNq6/FgSy5tdUfXBF0lckGpEsagCbJ09BljD+nvtgOOHhdm0
+         42QA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1704477748; x=1705082548;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=t3KinRLo165j61fa4NsbUi17jBU/PExxRI33z/4AFbs=;
+        b=O7zADQ3ORPmR2nrXbhocPVRke2AsiPWw3ZJdwPCbO29irrsL3GFMl2MDGctXpvbGj7
+         FKwqTDibOci5eCQ6JeFPSC6oB24fpRoXIqj8ZDrEz6pY+N8rcKDxUpdKdzxQvjHRHc1R
+         kYnPa7wZQTmKgOu9DLGFjIs7t3QYjCn19V2fWa+zWP985fkB0m2M0UgGSrH/EyKlREB8
+         uOwBeR3hmqrLBzGDGs4BRvDdDidwEbFqsmsRv7w98Sa62kL3xvVrJ6mU3FNkyfoU1vFJ
+         L9WYUSeAUMwD/yPoeYgJl6KT6BwioQ6u2ocYg4Sw7OtrMjnPfQ+i9I5R494GWHz51Fzn
+         G6jQ==
+X-Gm-Message-State: AOJu0YwznD+osIupS0SQxhkC25G+T1yLe/ucbo7kiDahjUTXhaQXUYaa
+	UgpL4urJTeQs9nIOTRkW7TAsmvxqCxaxInPKDIEAQ/+YnBXuCQ==
+X-Google-Smtp-Source: AGHT+IE2vBxHKyLGiNcmtNrg0CxcHLyYuO06CAWql2Vi8SPqJKnsxistIiKgFoDsYTIgSm/0y7GTNErYq8doY+/T6Pw=
+X-Received: by 2002:a81:5fc6:0:b0:5d7:1940:b37b with SMTP id
+ t189-20020a815fc6000000b005d71940b37bmr2624844ywb.71.1704477748240; Fri, 05
+ Jan 2024 10:02:28 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+References: <20240104084206.721824-1-dario.binacchi@amarulasolutions.com> <20240104084206.721824-6-dario.binacchi@amarulasolutions.com>
+In-Reply-To: <20240104084206.721824-6-dario.binacchi@amarulasolutions.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Fri, 5 Jan 2024 19:02:16 +0100
+Message-ID: <CACRpkdZ5988n84Z+G8UccQDdwzj=+BXvUkEHomY1fgMrc6=OAA@mail.gmail.com>
+Subject: Re: [PATCH v4 5/8] dt-bindings: nt35510: add compatible for FRIDA FRD400B25025-A-CTK
+To: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+Cc: linux-kernel@vger.kernel.org, linux-amarula@amarulasolutions.com, 
+	Alexandre Torgue <alexandre.torgue@foss.st.com>, Conor Dooley <conor+dt@kernel.org>, 
+	Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>, 
+	Jessica Zhang <quic_jesszhan@quicinc.com>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
+	Sam Ravnborg <sam@ravnborg.org>, Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
 
-Am Freitag, 5. Januar 2024, 18:33:34 CET schrieb Alex Bee:
->=20
-> Am 05.01.24 um 18:02 schrieb Heiko St=FCbner:
-> > Am Freitag, 5. Januar 2024, 17:47:21 CET schrieb Alex Bee:
-> >> Hi Heiko,
-> >>
-> >>
-> >> Am 04.01.24 um 09:14 schrieb Heiko Stuebner:
-> >>> On Fri, 22 Dec 2023 18:41:51 +0100, Alex Bee wrote:
-> >>>> This is version 4 of my series that aims to add support for the disp=
-lay
-> >>>> controller (VOP) and the HDMI controller block of RK3128 (which is v=
-ery
-> >>>> similar to the one found in RK3036). The original intention of this =
-series
-> >>>> was to add support for this slightly different integration but is by=
- now,
-> >>>> driven by maintainer's feedback, exploded to be a rework of inno-hdmi
-> >>>> driver in large parts. It is, however, a change for the better.
-> >>>>
-> >>>> [...]
-> >>> Applied, thanks!
-> >>>
-> >>> [23/29] drm/rockchip: inno_hdmi: Add variant support
-> >>>           commit: 5f2e93e6719701a91307090f8f7696fd6b3bffdf
-> >>> [24/29] drm/rockchip: inno_hdmi: Add RK3128 support
-> >>>           commit: aa54f334c291effe321aa4b9ac0e67a895fd7b58
-> >>> [25/29] drm/rockchip: inno_hdmi: Add basic mode validation
-> >>>           commit: 701029621d4141d0c9f8b81a88a37b95ec84ce65
-> >>> [26/29] drm/rockchip: inno_hdmi: Drop custom fill_modes hook
-> >>>           commit: 50a3c772bd927dd409c484832ddd9f6bf00b7389
-> >>>
-> >>>
-> >>> For reference, Rob has applied the rk3128 compatible in
-> >>> https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git/commit=
-/?id=3D21960bda59852ca961fcd27fba9f92750caccd06
-> >> thanks for keeping track on this.
-> >>
-> >> Is there any reason the DT paches aren't merged yet? From what I can s=
-ee
-> >> they should be fine to be merged in your v6.8-armsoc/dts32 branch whic=
-h is
-> >> 6.7-rc1 based. There was only a txt-binding at this point and it's very
-> >> likely that both the rockchip,inno-hdmi.yaml-conversion and the rk3128
-> >> additon will both land in 6.8 (they are both in linux-next). Linus' 6.8
-> >> merge-window will open earliest next week.
-> > Exactly ... and the arm subarchitectures (Rockchip, etc) feed into the
-> > more generic soc-tree[0]  and from there in a set of pull requests.
-> >
-> > Normally everything needs to go to the soc tree before -rc7 .
-> > With the whole xmas stuff, I sent some stragglers in a second pull
-> > request on monday, but that was already before Rob applied the
-> > binding on tuesday.
-> >
-> > So 6.8 devicetree stuff is essentially done and the dts patches
-> > from this series will go in to 6.9 .
-> >
-> >
-> > Hope that explains things a bit :-)
-> I assumed (for some reason) that sub-architecture maintainers are allowed
-> to send PRs to the respective upper tree until the merge window opens and
-> "all the rest" is done within this  ~2 weeks.
-> Thanks for explaining.
+On Thu, Jan 4, 2024 at 9:42=E2=80=AFAM Dario Binacchi
+<dario.binacchi@amarulasolutions.com> wrote:
 
-No worries :-) .
+> The patch adds the FRIDA FRD400B25025-A-CTK panel, which belongs to the
+> Novatek NT35510-based panel family.
+>
+> Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
 
-The general rule of thumb is that everything should be done and ready
-before the merge-window opens. Linus often writes very positively about
-people sending him pull-requests even before the merge window opens ;-)
-[meaning their tree is settled early and all test-robots have run]
+v4 looks very nice, thanks!
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
-And there are different rules in every tree.
-
-=46or the soc tree the general rule of thumb of =3D< -rc7 - earlier with la=
-rger
-changesets. On the other side drm-misc stays open all the time, but makes
-a cut at -rc6. So everything targetted at v6.8 needs to be in before
-v6.7-rc6.
-
-
-Heiko
-
-
+Yours,
+Linus Walleij
 
