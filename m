@@ -1,85 +1,100 @@
-Return-Path: <devicetree+bounces-29931-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29932-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C403825C3C
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jan 2024 22:50:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B6B6F825C8D
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jan 2024 23:34:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 172F91F25AC9
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jan 2024 21:50:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4FF7E1F23D2E
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jan 2024 22:34:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80076224F5;
-	Fri,  5 Jan 2024 21:50:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF4022D048;
+	Fri,  5 Jan 2024 22:34:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PDb6/Lrk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lcCrH73U"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6280F2DF98;
-	Fri,  5 Jan 2024 21:50:28 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id EABEAC43395;
-	Fri,  5 Jan 2024 21:50:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84796364A4;
+	Fri,  5 Jan 2024 22:34:34 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F2192C433C7;
+	Fri,  5 Jan 2024 22:34:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1704491428;
-	bh=pxH3U9z6khx6tVHIWqaGql+jUBJveUc94c4ZoAPEGGw=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=PDb6/LrkfooIlMm82I88mGQhEXQJW8ViFM/Tz44pviB3OSSSGgxcOYwOk5/iS3l5E
-	 6896QZax1frH6o66NaAcQIq/c6xxZmaw8yEJDPthHuhGD9R3zw4ARSP3PDpfbdcjhw
-	 kgRuvPXlHJAmcKwBC7imZYworvWieB3g8trxxrJctwfXCQp0BmNsyI2Ny6h/c2nUBA
-	 TuyCmg/PfR8DnxE3A+dRFKHwq6u6wpcLAr3R2kmvxQ2uFuqRCl7kiSbdgIth1f+plT
-	 fwOgYxZqzEVGSuwt4pjyeThQpEtLySJKb/7zOKpzVoKci3PbhoWIcqan347hQSVqQg
-	 e9LZovdjaKx8w==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id D623EC4167E;
-	Fri,  5 Jan 2024 21:50:27 +0000 (UTC)
+	s=k20201202; t=1704494074;
+	bh=Tb5SDEEHLKEtB8wZ888SeU2Y0OfU6QWV1hNfY+neoOs=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=lcCrH73UbLEDNJpb+7e2xoixnomvaaImM99i7LcKsAlO3Fvh4zHpmsXtWNloWy/l1
+	 Wk7F/nvxLeFEmO2P/lt70QNyJdTKRXiCuJ+Lz9FW4+g551mVMxBWf2ZBq5msxG/uQT
+	 MsHiYEITrSwcyfuPwM71ZCDwJZVQJN3K0BpK0+52kpHKccbpBMhlWHdIFDF6o5vuIJ
+	 ATnUpYnbxJknMTOtJsWpowmcDVI/KpE9VVi1s5Eoi3h41cJUQmjKM1FqW9TOsoh0cP
+	 fr6ES5GbC6gCkFhmPGWIcP/L2XUFNmDLIcRFmIv2VVlz0oGPe9kllVHTHeobEq8vIa
+	 5+kykZnfIcwig==
+Received: (nullmailer pid 3814480 invoked by uid 1000);
+	Fri, 05 Jan 2024 22:34:32 -0000
 Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH] dt-bindings: riscv: cpus: Add AMD MicroBlaze V compatible
-From: patchwork-bot+linux-riscv@kernel.org
-Message-Id: 
- <170449142786.26226.3590037133806155543.git-patchwork-notify@kernel.org>
-Date: Fri, 05 Jan 2024 21:50:27 +0000
-References: <d442d916204d26f82c1c3a924a4cdfb117960e1b.1699270661.git.michal.simek@amd.com>
-In-Reply-To: <d442d916204d26f82c1c3a924a4cdfb117960e1b.1699270661.git.michal.simek@amd.com>
-To: Michal Simek <michal.simek@amd.com>
-Cc: linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
- monstr@monstr.eu, michal.simek@xilinx.com, git@xilinx.com,
- aou@eecs.berkeley.edu, conor@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- palmer@dabbelt.com, paul.walmsley@sifive.com, robh+dt@kernel.org,
- devicetree@vger.kernel.org
+From: Rob Herring <robh@kernel.org>
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org, Todor Tomov <todor.too@gmail.com>, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, Robert Foss <rfoss@kernel.org>, Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh+dt@kernel.org>, Mauro Carvalho Chehab <mchehab@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+In-Reply-To: <20240105-linux-next-24-01-02-sc8280xp-camss-core-dtsi-v2-2-7a57b8b07398@linaro.org>
+References: <20240105-linux-next-24-01-02-sc8280xp-camss-core-dtsi-v2-0-7a57b8b07398@linaro.org>
+ <20240105-linux-next-24-01-02-sc8280xp-camss-core-dtsi-v2-2-7a57b8b07398@linaro.org>
+Message-Id: <170449407201.3814449.2801243069272854971.robh@kernel.org>
+Subject: Re: [PATCH v2 2/4] media: dt-bindings: media: camss: Add
+ qcom,sc8280xp-camss binding
+Date: Fri, 05 Jan 2024 15:34:32 -0700
 
-Hello:
 
-This patch was applied to riscv/linux.git (for-next)
-by Palmer Dabbelt <palmer@rivosinc.com>:
-
-On Mon, 6 Nov 2023 12:37:47 +0100 you wrote:
-> MicroBlaze V is new AMD/Xilinx soft-core 32bit RISC-V processor IP.
-> It is hardware compatible with classic MicroBlaze processor.
+On Fri, 05 Jan 2024 20:39:06 +0000, Bryan O'Donoghue wrote:
+> Add bindings for qcom,sc8280xp-camss in order to support the camera
+> subsystem for sc8280xp as found in the Lenovo x13s Laptop.
 > 
-> Signed-off-by: Michal Simek <michal.simek@amd.com>
+> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
+>  .../bindings/media/qcom,sc8280xp-camss.yaml        | 512 +++++++++++++++++++++
+>  1 file changed, 512 insertions(+)
 > 
->  Documentation/devicetree/bindings/riscv/cpus.yaml | 1 +
->  1 file changed, 1 insertion(+)
 
-Here is the summary with links:
-  - dt-bindings: riscv: cpus: Add AMD MicroBlaze V compatible
-    https://git.kernel.org/riscv/c/4a6b93f56296
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
+yamllint warnings/errors:
 
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/media/qcom,sc8280xp-camss.example.dts:26:18: fatal error: dt-bindings/clock/qcom,sc8280xp-camcc.h: No such file or directory
+   26 |         #include <dt-bindings/clock/qcom,sc8280xp-camcc.h>
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+make[2]: *** [scripts/Makefile.lib:419: Documentation/devicetree/bindings/media/qcom,sc8280xp-camss.example.dtb] Error 1
+make[2]: *** Waiting for unfinished jobs....
+make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1424: dt_binding_check] Error 2
+make: *** [Makefile:234: __sub-make] Error 2
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240105-linux-next-24-01-02-sc8280xp-camss-core-dtsi-v2-2-7a57b8b07398@linaro.org
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
