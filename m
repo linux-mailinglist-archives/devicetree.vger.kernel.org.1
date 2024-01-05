@@ -1,95 +1,107 @@
-Return-Path: <devicetree+bounces-29921-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29922-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9947C82599B
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jan 2024 19:02:50 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 89C6F825AC1
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jan 2024 19:54:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1BBB9285C78
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jan 2024 18:02:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DD8831C215D3
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jan 2024 18:54:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F33B328D1;
-	Fri,  5 Jan 2024 18:02:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 525C835F0B;
+	Fri,  5 Jan 2024 18:48:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="rGR860DV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BjZrp9kn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f173.google.com (mail-yw1-f173.google.com [209.85.128.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64B2B35291
-	for <devicetree@vger.kernel.org>; Fri,  5 Jan 2024 18:02:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f173.google.com with SMTP id 00721157ae682-5eefd0da5c0so18391437b3.2
-        for <devicetree@vger.kernel.org>; Fri, 05 Jan 2024 10:02:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704477748; x=1705082548; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=t3KinRLo165j61fa4NsbUi17jBU/PExxRI33z/4AFbs=;
-        b=rGR860DVqh3+GpWRht87WWzIYA6U9+zY3BNv/1bDKFoRdcxrdRt/gFpmJoJTc0IMdh
-         Atm+d5WWGFYiRQIz4KsYrIYnm/Sg1e5ddTMKe0J5729+F/+eE63OpKi4jzfEI430QrEc
-         kpeifl7NfUJ3bcvNd0rn9gZhiiph0XaPJVZLUII2lkUSKC7yqF1+LSTeNuraRl/6xw+f
-         8W84tUFq20CTLc6Xb79EAY6vIHUaOQZrrpwVfod1lMTYG5lOgYJN6wAJmWsgVfdaM5w6
-         GFxAe7sExYGuzuy5hrwPiNq6/FgSy5tdUfXBF0lckGpEsagCbJ09BljD+nvtgOOHhdm0
-         42QA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704477748; x=1705082548;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=t3KinRLo165j61fa4NsbUi17jBU/PExxRI33z/4AFbs=;
-        b=O7zADQ3ORPmR2nrXbhocPVRke2AsiPWw3ZJdwPCbO29irrsL3GFMl2MDGctXpvbGj7
-         FKwqTDibOci5eCQ6JeFPSC6oB24fpRoXIqj8ZDrEz6pY+N8rcKDxUpdKdzxQvjHRHc1R
-         kYnPa7wZQTmKgOu9DLGFjIs7t3QYjCn19V2fWa+zWP985fkB0m2M0UgGSrH/EyKlREB8
-         uOwBeR3hmqrLBzGDGs4BRvDdDidwEbFqsmsRv7w98Sa62kL3xvVrJ6mU3FNkyfoU1vFJ
-         L9WYUSeAUMwD/yPoeYgJl6KT6BwioQ6u2ocYg4Sw7OtrMjnPfQ+i9I5R494GWHz51Fzn
-         G6jQ==
-X-Gm-Message-State: AOJu0YwznD+osIupS0SQxhkC25G+T1yLe/ucbo7kiDahjUTXhaQXUYaa
-	UgpL4urJTeQs9nIOTRkW7TAsmvxqCxaxInPKDIEAQ/+YnBXuCQ==
-X-Google-Smtp-Source: AGHT+IE2vBxHKyLGiNcmtNrg0CxcHLyYuO06CAWql2Vi8SPqJKnsxistIiKgFoDsYTIgSm/0y7GTNErYq8doY+/T6Pw=
-X-Received: by 2002:a81:5fc6:0:b0:5d7:1940:b37b with SMTP id
- t189-20020a815fc6000000b005d71940b37bmr2624844ywb.71.1704477748240; Fri, 05
- Jan 2024 10:02:28 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F72935EF1;
+	Fri,  5 Jan 2024 18:48:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EA156C433C8;
+	Fri,  5 Jan 2024 18:48:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1704480502;
+	bh=RkFt9IIYomhELhaSYrco17mS19Uik7xg/MPUw5WN1mw=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=BjZrp9knsEd0ZweLDzWv7N+f87DyNs5OkDTp+5ClbBUICCwtTt04lVT5BmSjVETjA
+	 9O8uzYpxNT7ZIZG0PDZwD7HATJuurUZQvPkbF6SoAHWBttvdaPqM6UhAHEMNEToVYE
+	 uNoc3diHnH1pTjPAg6CK+MtGA2sJwscDXHWjKzgQOeKaiLiDYLkuaRUC1kccOzt70Z
+	 sqxlgBrFr4SIbgt44EyO9UwD553bQ8woCEBrFaQPLbSDrxU6UesHANlPqlIsHIFSKM
+	 oYDkdMDgTHb8Cf/WkhBE8AproKezZiUSD1pOp+1WzXJ6ZSDum0cWyC3AcqYVG8Xswf
+	 9iaekUGjFVYrQ==
+From: Mark Brown <broonie@kernel.org>
+To: conor+dt@kernel.org, krzysztof.kozlowski@linaro.org, 
+ Shenghao Ding <shenghao-ding@ti.com>
+Cc: robh+dt@kernel.org, andriy.shevchenko@linux.intel.com, kevin-lu@ti.com, 
+ baojun.xu@ti.com, devicetree@vger.kernel.org, lgirdwood@gmail.com, 
+ perex@perex.cz, pierre-louis.bossart@linux.intel.com, 13916275206@139.com, 
+ linux-sound@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ liam.r.girdwood@intel.com, soyer@irl.hu, tiwai@suse.de, peeyush@ti.com, 
+ navada@ti.com
+In-Reply-To: <20240104145721.1398-1-shenghao-ding@ti.com>
+References: <20240104145721.1398-1-shenghao-ding@ti.com>
+Subject: Re: [PATCH v5 1/4] ASoC: dt-bindings: move tas2563 from
+ tas2562.yaml to tas2781.yaml
+Message-Id: <170448049855.417990.715024813727231807.b4-ty@kernel.org>
+Date: Fri, 05 Jan 2024 18:48:18 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240104084206.721824-1-dario.binacchi@amarulasolutions.com> <20240104084206.721824-6-dario.binacchi@amarulasolutions.com>
-In-Reply-To: <20240104084206.721824-6-dario.binacchi@amarulasolutions.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Fri, 5 Jan 2024 19:02:16 +0100
-Message-ID: <CACRpkdZ5988n84Z+G8UccQDdwzj=+BXvUkEHomY1fgMrc6=OAA@mail.gmail.com>
-Subject: Re: [PATCH v4 5/8] dt-bindings: nt35510: add compatible for FRIDA FRD400B25025-A-CTK
-To: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-Cc: linux-kernel@vger.kernel.org, linux-amarula@amarulasolutions.com, 
-	Alexandre Torgue <alexandre.torgue@foss.st.com>, Conor Dooley <conor+dt@kernel.org>, 
-	Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>, 
-	Jessica Zhang <quic_jesszhan@quicinc.com>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
-	Sam Ravnborg <sam@ravnborg.org>, Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.13-dev-5c066
 
-On Thu, Jan 4, 2024 at 9:42=E2=80=AFAM Dario Binacchi
-<dario.binacchi@amarulasolutions.com> wrote:
+On Thu, 04 Jan 2024 22:57:16 +0800, Shenghao Ding wrote:
+> Move tas2563 from tas2562.yaml to tas2781.yaml to unbind tas2563 from
+> tas2562 driver code and bind it to tas2781 driver code, because tas2563
+> only work in bypass-DSP mode with tas2562 driver. In order to enable DSP
+> mode for tas2563, it has been moved to tas2781 driver. As to the hardware
+> part, such as register setting and DSP firmware, all these are stored in
+> the binary firmware. What tas2781 drivder does is to parse the firmware
+> and download it to the chip, then power on the chip. So, tas2781 driver
+> can be resued as tas2563 driver. Only attention will be paid to
+> downloading corresponding firmware.
+> 
+> [...]
 
-> The patch adds the FRIDA FRD400B25025-A-CTK panel, which belongs to the
-> Novatek NT35510-based panel family.
->
-> Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+Applied to
 
-v4 looks very nice, thanks!
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-Yours,
-Linus Walleij
+Thanks!
+
+[1/4] ASoC: dt-bindings: move tas2563 from tas2562.yaml to tas2781.yaml
+      commit: 3dbb4e3602d217d7139b95a36077a6b7252dc290
+[2/4] ASoC: tas2562: move tas2563 from tas2562 driver to tas2781 driver
+      commit: 645994d21287a1ad2f637818d737f7a3d84e97d7
+[3/4] ASoC: tas2781: Add tas2563 into header file for DSP mode
+      commit: e9aa44736cb75e901d76ee59d80db1ae79d516f1
+[4/4] ASoC: tas2781: Add tas2563 into driver
+      commit: 9f1bcd16e2bd41d758438f1d74e5f2d35f1e8c8e
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
 
