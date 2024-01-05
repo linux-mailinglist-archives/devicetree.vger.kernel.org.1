@@ -1,487 +1,420 @@
-Return-Path: <devicetree+bounces-29872-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29873-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BFC78254D0
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jan 2024 15:05:20 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 75B1D82550D
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jan 2024 15:17:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E4CFA1F226AF
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jan 2024 14:05:19 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AD4CAB2109F
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jan 2024 14:17:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0E082D78D;
-	Fri,  5 Jan 2024 14:05:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b="rF/0IQUd"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FE072D796;
+	Fri,  5 Jan 2024 14:17:32 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-001ae601.pphosted.com (mx0b-001ae601.pphosted.com [67.231.152.168])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEC502D7A6;
-	Fri,  5 Jan 2024 14:05:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=opensource.cirrus.com
-Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
-	by mx0b-001ae601.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 405CRxc9029289;
-	Fri, 5 Jan 2024 08:04:25 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=
-	date:from:to:cc:subject:message-id:references:mime-version
-	:content-type:in-reply-to; s=PODMain02222019; bh=NgK0ariODaAJM3u
-	rz57AUlxKnvsuFzT7i1lyaH/qe3g=; b=rF/0IQUdGm0Wd99Ij94Tkra47dqAYQz
-	UGL7T28kFbh9N5oq6IVFe4E6gU8n9KczZ7rnVg0BD/gWCalL+ihrEyh7A+ZumIHi
-	KKmgPlp7oFU3KQ05XhnvLZmWufI8fdzejd6SA6Hckobkld8GfsbPJJQYY9nyZMG1
-	nKMuZcsqdicAfddO5tyRM9C8hR0q4T9KTGRY1NItuS+OLq4MDibork6d+g9yWYqO
-	mppwJtpehHA5CtMtnzWZI0uqc6J0wNTq09hJtZTNLrNfj0DFksQN+7fMkrN0dgJh
-	ckfwTaMxidrgksrvgUc6Jq53quiiHuZC/qWBaMAoWe9JCp7k7evgU3Q==
-Received: from ediex02.ad.cirrus.com ([84.19.233.68])
-	by mx0b-001ae601.pphosted.com (PPS) with ESMTPS id 3ve9d00n13-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 05 Jan 2024 08:04:24 -0600 (CST)
-Received: from ediex01.ad.cirrus.com (198.61.84.80) by ediex02.ad.cirrus.com
- (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Fri, 5 Jan
- 2024 14:04:23 +0000
-Received: from ediswmail.ad.cirrus.com (198.61.86.93) by ediex01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server id 15.2.1118.40 via Frontend
- Transport; Fri, 5 Jan 2024 14:04:08 +0000
-Received: from ediswmail.ad.cirrus.com (ediswmail.ad.cirrus.com [198.61.86.93])
-	by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 0008C468;
-	Fri,  5 Jan 2024 14:04:07 +0000 (UTC)
-Date: Fri, 5 Jan 2024 14:04:07 +0000
-From: Charles Keepax <ckeepax@opensource.cirrus.com>
-To: James Ogletree <jogletre@opensource.cirrus.com>
-CC: James Ogletree <james.ogletree@cirrus.com>,
-        Fred Treven
-	<fred.treven@cirrus.com>,
-        Ben Bright <ben.bright@cirrus.com>,
-        Dmitry Torokhov
-	<dmitry.torokhov@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Simon Trimmer <simont@opensource.cirrus.com>,
-        "Richard
- Fitzgerald" <rf@opensource.cirrus.com>,
-        Lee Jones <lee@kernel.org>, "Liam
- Girdwood" <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, "Jaroslav
- Kysela" <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        James Schulman
-	<james.schulman@cirrus.com>,
-        David Rhodes <david.rhodes@cirrus.com>,
-        Sebastian Reichel <sebastian.reichel@collabora.com>,
-        Jacky Bai
-	<ping.bai@nxp.com>, Jeff LaBundy <jeff@labundy.com>,
-        Peng Fan
-	<peng.fan@nxp.com>, Weidong Wang <wangweidong.a@awinic.com>,
-        Herve Codina
-	<herve.codina@bootlin.com>,
-        Arnd Bergmann <arnd@arndb.de>, Shenghao Ding
-	<13916275206@139.com>,
-        Ryan Lee <ryans.lee@analog.com>,
-        Linus Walleij
-	<linus.walleij@linaro.org>,
-        Maxim Kochetkov <fido_max@inbox.ru>,
-        Shuming Fan
-	<shumingf@realtek.com>,
-        "open list:CIRRUS LOGIC HAPTIC DRIVERS"
-	<patches@opensource.cirrus.com>,
-        "open list:INPUT (KEYBOARD, MOUSE, JOYSTICK,
- TOUCHSCREEN)..." <linux-input@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND
- FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-        open list
-	<linux-kernel@vger.kernel.org>,
-        "open list:SOUND - SOC LAYER / DYNAMIC AUDIO
- POWER MANAGEM..." <linux-sound@vger.kernel.org>,
-        "moderated list:CIRRUS LOGIC
- AUDIO CODEC DRIVERS" <alsa-devel@alsa-project.org>
-Subject: Re: [PATCH v5 3/5] mfd: cs40l50: Add support for CS40L50 core driver
-Message-ID: <20240105140407.GG14858@ediswmail.ad.cirrus.com>
-References: <20240104223643.876292-1-jogletre@opensource.cirrus.com>
- <20240104223643.876292-4-jogletre@opensource.cirrus.com>
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 207F12DF68;
+	Fri,  5 Jan 2024 14:17:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 74CB6C15;
+	Fri,  5 Jan 2024 06:18:13 -0800 (PST)
+Received: from [10.57.44.155] (unknown [10.57.44.155])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 4F5E13F7A6;
+	Fri,  5 Jan 2024 06:17:25 -0800 (PST)
+Message-ID: <4ca7e4b1-7596-4301-b877-7376f226306a@arm.com>
+Date: Fri, 5 Jan 2024 14:17:23 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20240104223643.876292-4-jogletre@opensource.cirrus.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-X-Proofpoint-ORIG-GUID: pMkVg0owTryzh09Kt_vwlElCrMJXezxQ
-X-Proofpoint-GUID: pMkVg0owTryzh09Kt_vwlElCrMJXezxQ
-X-Proofpoint-Spam-Reason: safe
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 2/7] coresight: tmc-etr: Add support to use reserved
+ trace memory
+Content-Language: en-GB
+To: Linu Cherian <lcherian@marvell.com>, mike.leach@linaro.org,
+ james.clark@arm.com, leo.yan@linaro.org
+Cc: linux-arm-kernel@lists.infradead.org, coresight@lists.linaro.org,
+ linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, sgoutham@marvell.com, gcherian@marvell.com,
+ Anil Kumar Reddy <areddy3@marvell.com>
+References: <20240105055840.1977897-1-lcherian@marvell.com>
+ <20240105055840.1977897-3-lcherian@marvell.com>
+From: Suzuki K Poulose <suzuki.poulose@arm.com>
+In-Reply-To: <20240105055840.1977897-3-lcherian@marvell.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Thu, Jan 04, 2024 at 10:36:36PM +0000, James Ogletree wrote:
-> Introduce support for Cirrus Logic Device CS40L50: a
-> haptic driver with waveform memory, integrated DSP,
-> and closed-loop algorithms.
+On 05/01/2024 05:58, Linu Cherian wrote:
+> Add support to use reserved memory for coresight ETR trace buffer.
 > 
-> The MFD component registers and initializes the device.
+> Introduce a new ETR buffer mode called ETR_MODE_RESRV, which
+> becomes available when ETR device tree node is supplied with a valid
+> reserved memory region.
 > 
-> Signed-off-by: James Ogletree <jogletre@opensource.cirrus.com>
+> ETR_MODE_RESRV can be selected only by explicit user request.
+> 
+> $ echo resrv >/sys/bus/coresight/devices/tmc_etr<N>/buf_mode_preferred
+> 
+> Signed-off-by: Anil Kumar Reddy <areddy3@marvell.com>
+> Signed-off-by: Linu Cherian <lcherian@marvell.com>
 > ---
-> +config MFD_CS40L50_CORE
-> +	tristate
-> +	select MFD_CORE
-> +	select FW_CS_DSP
-> +	select REGMAP_IRQ
-> +
-> +config MFD_CS40L50_I2C
-> +	tristate "Cirrus Logic CS40L50 (I2C)"
-> +	select REGMAP_I2C
-> +	select MFD_CS40L50_CORE
-> +	depends on I2C
-> +	help
-> +	  Select this to support the Cirrus Logic CS40L50 Haptic
-> +	  Driver over I2C.
-> +
-> +	  This driver can be built as a module. If built as a module it will be
-> +	  called "cs40l50-i2c".
-> +
-> +config MFD_CS40L50_SPI
-> +	tristate "Cirrus Logic CS40L50 (SPI)"
-> +	select REGMAP_SPI
-> +	select MFD_CS40L50_CORE
-> +	depends on SPI
-> +	help
-> +	  Select this to support the Cirrus Logic CS40L50 Haptic
-> +	  Driver over SPI.
-> +
-> +	  This driver can be built as a module. If built as a module it will be
-> +	  called "cs40l50-spi".
-> +
-
-Generally the order in Kconfigs should be alphabetical, probably
-up around Cirrus Madera stuff would make most sense.
-
-> +static int cs40l50_dsp_init(struct cs40l50 *cs40l50)
+> Changelog from v5:
+> * No changes
+> 
+>   .../hwtracing/coresight/coresight-tmc-core.c  | 51 +++++++++++
+>   .../hwtracing/coresight/coresight-tmc-etr.c   | 87 ++++++++++++++++++-
+>   drivers/hwtracing/coresight/coresight-tmc.h   | 27 ++++++
+>   3 files changed, 164 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/hwtracing/coresight/coresight-tmc-core.c b/drivers/hwtracing/coresight/coresight-tmc-core.c
+> index 7ec5365e2b64..224b969d7d90 100644
+> --- a/drivers/hwtracing/coresight/coresight-tmc-core.c
+> +++ b/drivers/hwtracing/coresight/coresight-tmc-core.c
+> @@ -22,6 +22,7 @@
+>   #include <linux/spinlock.h>
+>   #include <linux/pm_runtime.h>
+>   #include <linux/of.h>
+> +#include <linux/of_address.h>
+>   #include <linux/coresight.h>
+>   #include <linux/amba/bus.h>
+>   
+> @@ -370,6 +371,54 @@ static inline bool tmc_etr_has_non_secure_access(struct tmc_drvdata *drvdata)
+>   	return (auth & TMC_AUTH_NSID_MASK) == 0x3;
+>   }
+>   
+> +static struct device_node *tmc_get_region_byname(struct device_node *node,
+> +						 char *name)
 > +{
-> +	int err;
+> +	int index;
 > +
-> +	cs40l50->dsp.num = 1;
-> +	cs40l50->dsp.type = WMFW_HALO;
-> +	cs40l50->dsp.dev = cs40l50->dev;
-> +	cs40l50->dsp.regmap = cs40l50->regmap;
-> +	cs40l50->dsp.base = CS40L50_CORE_BASE;
-> +	cs40l50->dsp.base_sysinfo = CS40L50_SYS_INFO_ID;
-> +	cs40l50->dsp.mem = cs40l50_dsp_regions;
-> +	cs40l50->dsp.num_mems = ARRAY_SIZE(cs40l50_dsp_regions);
-> +	cs40l50->dsp.no_core_startstop = true;
+> +	index = of_property_match_string(node, "memory-region-names", name);
+> +	if (index < 0)
+> +		return ERR_PTR(-ENODEV);
 > +
-> +	err = cs_dsp_halo_init(&cs40l50->dsp);
-> +	if (err)
-> +		return err;
+> +	return of_parse_phandle(node, "memory-region", index);
+> +}
 > +
-> +	return devm_add_action_or_reset(cs40l50->dev, cs40l50_dsp_remove,
-> +					&cs40l50->dsp);
-
-Hmm... I notice you use this for both dsp_remove and
-dsp_power_down. Are you sure devm will guarantee those are called
-in the right order? Its not immediately clear to me that would be
-have to be the case.
-
-> +static irqreturn_t cs40l50_irq_handler(int irq, void *data)
+> +static void tmc_get_reserved_region(struct device *parent)
 > +{
-> +	struct cs40l50 *cs40l50 = data;
-> +	int err;
+> +	struct tmc_drvdata *drvdata = dev_get_drvdata(parent);
+> +	struct device_node *node;
+> +	struct resource res;
+> +	int rc;
 > +
-> +	mutex_lock(&cs40l50->lock);
-> +
-> +	if (irq == cs40l50_irqs[0].virq)
-> +		err = cs40l50_process_dsp_queue(cs40l50);
-> +	else
-> +		err = cs40l50_handle_hw_err(cs40l50, irq);
+> +	node = tmc_get_region_byname(parent->of_node, "tracedata");
+> +	if (IS_ERR_OR_NULL(node)) {
+> +		dev_dbg(parent, "No reserved trace buffer specified\n");
+> +		goto out;
 
-Feels kinda weird to assign the same handler to every IRQ and
-then depending on which IRQ it was call a different function.
-Would it not be simpler just to assign a different handler?
+Given we don't return anything , the goto is pointless, you could return 
+from here.
 
-> +static int cs40l50_power_up_dsp(struct cs40l50 *cs40l50)
-> +{
-> +	int err;
-> +
-> +	mutex_lock(&cs40l50->lock);
-> +
-> +	if (cs40l50->patch) {
-> +		/* Stop core if loading patch file */
-> +		err = regmap_multi_reg_write(cs40l50->regmap, cs40l50_stop_core,
-> +					     ARRAY_SIZE(cs40l50_stop_core));
-> +		if (err)
-> +			goto err_mutex;
 > +	}
 > +
-> +	err = cs_dsp_power_up(&cs40l50->dsp, cs40l50->patch, "cs40l50.wmfw",
-> +			      cs40l50->bin, "cs40l50.bin", "cs40l50");
-> +	if (err)
-> +		goto err_mutex;
-> +
-> +	err = devm_add_action_or_reset(cs40l50->dev, cs40l50_dsp_power_down,
-> +				       &cs40l50->dsp);
-> +	if (err)
-> +		goto err_mutex;
-> +
-> +	if (cs40l50->patch) {
-> +		/* Resume core after loading patch file */
-> +		err = regmap_write(cs40l50->regmap, CS40L50_CCM_CORE_CONTROL,
-> +				   CS40L50_CLOCK_ENABLE);
+> +	rc = of_address_to_resource(node, 0, &res);
+> +	of_node_put(node);
+> +	if (rc || res.start == 0 || resource_size(&res) == 0) {
+> +		dev_err(parent, "Reserved trace buffer memory is invalid\n");
+> +		goto out;
 
-This feels like this needs a comment, why are we skipping the
-normal DSP init and doing it manually (this appears to be the
-same writes start_core would have done)? I assume its something to
-do with what you are really doing is you don't want lock_memory
-to run?
+Same here.
 
-> +static int cs40l50_configure_dsp(struct cs40l50 *cs40l50)
-> +{
-> +	u32 nwaves;
-> +	int err;
-> +
-> +	if (cs40l50->bin) {
-> +		/* Log number of effects if wavetable was loaded */
-> +		err = regmap_read(cs40l50->regmap, CS40L50_NUM_WAVES, &nwaves);
-> +		if (err)
-> +			return err;
-> +
-> +		dev_info(cs40l50->dev, "Loaded with %u RAM waveforms\n", nwaves);
-
-Kinda nervous about the fact we access all these DSP controls
-directly through address, rather than using the DSP control
-accessors, we have the accessors for a reason. They manage things
-like access permissions etc. and historically, the firmware
-guys have not been able to guarantee these remain in consistent
-locations between firmware versions.
-
-I guess this is so you can access them even in the case of the
-ROM firmware, but you could have a meta-data only firmware file
-that you load in that case to give you the controls.  I don't
-feel the need to NAK the driver based on this but please think
-about this very carefully it's a strange way to use the DSP
-controls, and feels likely to cause problems to me. It is also
-quite hostile to fixing it in the future since as you are not
-using the controls no one will be checking that things like the
-access flags in the firmware are set correctly, which is annoying
-if the decision has to be reversed later since there will likely
-be a bunch of broken firmwares already in the field.
-
-> +int cs40l50_probe(struct cs40l50 *cs40l50)
-> +{
-> +	struct device *dev = cs40l50->dev;
-> +	int err;
-> +
-> +	mutex_init(&cs40l50->lock);
-> +
-> +	cs40l50->reset_gpio = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_HIGH);
-> +	if (IS_ERR(cs40l50->reset_gpio))
-> +		return dev_err_probe(dev, PTR_ERR(cs40l50->reset_gpio),
-> +				     "Failed getting reset GPIO\n");
-> +
-> +	err = devm_regulator_bulk_get_enable(dev, ARRAY_SIZE(cs40l50_supplies),
-> +					     cs40l50_supplies);
-> +	if (err)
-> +		return dev_err_probe(dev, err, "Failed getting supplies\n");
-> +
-> +	/* Ensure minimum reset pulse width */
-> +	usleep_range(CS40L50_RESET_PULSE_US, CS40L50_RESET_PULSE_US + 100);
-> +
-> +	gpiod_set_value_cansleep(cs40l50->reset_gpio, 0);
-> +
-> +	/* Wait for control port to be ready */
-> +	usleep_range(CS40L50_CP_READY_US, CS40L50_CP_READY_US + 100);
-> +
-> +	err = cs40l50_dsp_init(cs40l50);
-> +	if (err)
-> +		return dev_err_probe(dev, err, "Failed to initialize DSP\n");
-> +
-> +	cs40l50_pm_runtime_setup(dev);
-> +
-> +	err = cs40l50_get_model(cs40l50);
-> +	if (err)
-> +		return dev_err_probe(dev, err, "Failed to get part number\n");
-> +
-> +	err = cs40l50_irq_init(cs40l50);
-> +	if (err)
-> +		return dev_err_probe(dev, err, "Failed to initialize IRQs\n");
-> +
-> +	err = request_firmware_nowait(THIS_MODULE, FW_ACTION_UEVENT, CS40L50_FW,
-> +				      dev, GFP_KERNEL, cs40l50, cs40l50_request_patch);
-> +	if (err)
-> +		return dev_err_probe(dev, err, "Failed to request %s\n", CS40L50_FW);
-> +
-> +	err = devm_mfd_add_devices(dev, PLATFORM_DEVID_NONE, cs40l50_devs,
-> +				   ARRAY_SIZE(cs40l50_devs), NULL, 0, NULL);
-> +	if (err)
-> +		return dev_err_probe(dev, err, "Failed to add sub devices\n");
-> +
-
-Do you want to add the child devices here? Or after the firmware
-init has been done? If you do it here then the child devices may
-well probe and become available before all the setup you have in
-the DSP loading stuff is done. What happens if one of those
-drivers tries to do something before init is complete?
-
-> +static int cs40l50_runtime_resume(struct device *dev)
-> +{
-> +	struct cs40l50 *cs40l50 = dev_get_drvdata(dev);
-> +	int err, i;
-> +	u32 val;
-> +
-> +	/* Device NAKs when exiting hibernation, so optionally retry here. */
-> +	for (i = 0; i < CS40L50_DSP_TIMEOUT_COUNT; i++) {
-> +		err = regmap_write(cs40l50->regmap, CS40L50_DSP_QUEUE,
-> +				     CS40L50_PREVENT_HIBER);
-> +		if (!err)
-> +			break;
-> +
-> +		usleep_range(CS40L50_DSP_POLL_US, CS40L50_DSP_POLL_US + 100);
 > +	}
-
-Are you comfortable with the behaviour here? If the chip fails to
-respond before the TIMEOUT, you will proceed on and do the read
-loop. Since the read loop is just looking for a zero in the
-queue, it looks like if for some reason the chip was too slow to
-respond this function would succeed despite the chip never
-receiving the PREVENT_HIBER. Would it not be safer to skip the
-read loop if you fail to send the PREVENT_HIBER?
-
 > +
-> +	for (i = 0; i < CS40L50_DSP_TIMEOUT_COUNT; i++) {
-> +		err = regmap_read(cs40l50->regmap, CS40L50_DSP_QUEUE, &val);
-> +		if (!err && val == 0)
-> +			return 0;
-> +
-> +		usleep_range(CS40L50_DSP_POLL_US, CS40L50_DSP_POLL_US + 100);
+> +	drvdata->crash_tbuf.vaddr = memremap(res.start,
+> +						resource_size(&res),
+> +						MEMREMAP_WC);
+> +	if (IS_ERR_OR_NULL(drvdata->crash_tbuf.vaddr)) {
+> +		dev_err(parent, "Reserved trace buffer mapping failed\n");
+> +		rc = PTR_ERR(drvdata->crash_tbuf.vaddr);
+
+This is pointless, as we never use this.
+
+> +		goto out;
+
+return
+
 > +	}
-
-I am not sure if the ignoring errors is important here (as it is
-for the first loop), but if it is a comment should be added to
-say why, and if it isn't, couldn't this be a
-regmap_read_poll_timeout instead of a manual loop?
-
-> +++ b/drivers/mfd/cs40l50-spi.c
-> @@ -0,0 +1,69 @@
-> +// SPDX-License-Identifier: GPL-2.0
+> +
+> +	drvdata->crash_tbuf.paddr = res.start;
+> +	drvdata->crash_tbuf.size  = resource_size(&res);
+> +
+> +out:
+> +	return;
+> +}
+> +
+>   /* Detect and initialise the capabilities of a TMC ETR */
+>   static int tmc_etr_setup_caps(struct device *parent, u32 devid, void *dev_caps)
+>   {
+> @@ -482,6 +531,8 @@ static int tmc_probe(struct amba_device *adev, const struct amba_id *id)
+>   		drvdata->size = readl_relaxed(drvdata->base + TMC_RSZ) * 4;
+>   	}
+>   
+> +	tmc_get_reserved_region(dev);
+> +
+>   	desc.dev = dev;
+>   
+>   	switch (drvdata->config_type) {
+> diff --git a/drivers/hwtracing/coresight/coresight-tmc-etr.c b/drivers/hwtracing/coresight/coresight-tmc-etr.c
+> index af02ba5d5f15..7fd8c4afef74 100644
+> --- a/drivers/hwtracing/coresight/coresight-tmc-etr.c
+> +++ b/drivers/hwtracing/coresight/coresight-tmc-etr.c
+> @@ -30,6 +30,7 @@ struct etr_buf_hw {
+>   	bool	has_iommu;
+>   	bool	has_etr_sg;
+>   	bool	has_catu;
+> +	bool	has_resrv;
+>   };
+>   
+>   /*
+> @@ -694,6 +695,74 @@ static const struct etr_buf_operations etr_flat_buf_ops = {
+>   	.get_data = tmc_etr_get_data_flat_buf,
+>   };
+>   
 > +/*
-> + * CS40L50 Advanced Haptic Driver with waveform memory,
-> + * integrated DSP, and closed-loop algorithms
-> + *
-> + * Copyright 2023 Cirrus Logic, Inc.
-> + *
-> + * Author: James Ogletree <james.ogletree@cirrus.com>
+> + * tmc_etr_alloc_resrv_buf: Allocate a contiguous DMA buffer from reserved region.
 > + */
+> +static int tmc_etr_alloc_resrv_buf(struct tmc_drvdata *drvdata,
+> +				  struct etr_buf *etr_buf, int node,
+> +				  void **pages)
+> +{
+> +	struct etr_flat_buf *resrv_buf;
+> +	struct device *real_dev = drvdata->csdev->dev.parent;
 > +
-> +#include <linux/mfd/cs40l50.h>
-> +#include <linux/mfd/spi.h>
+> +	/* We cannot reuse existing pages for resrv buf */
+> +	if (pages)
+> +		return -EINVAL;
+> +
+> +	resrv_buf = kzalloc(sizeof(*resrv_buf), GFP_KERNEL);
+> +	if (!resrv_buf)
+> +		return -ENOMEM;
 
-Should be linux/spi/spi.h, make sure your build testing the whole
-patch.
+Shouldn't we also ensure the etr_buf->size < crash_tbuf.size ? Or we 
+could simply allocate the full reserve buf, as we can't use it for 
+anything else. In any case, the buffer should be bounded by the reserved
+space.
 
-> +#ifndef __CS40L50_H__
-> +#define __CS40L50_H__
 > +
-> +#include <linux/firmware/cirrus/cs_dsp.h>
-> +#include <linux/gpio/consumer.h>
-> +#include <linux/pm.h>
-> +#include <linux/regmap.h>
+> +	resrv_buf->daddr = dma_map_resource(real_dev, drvdata->crash_tbuf.paddr,
+> +					   etr_buf->size, DMA_FROM_DEVICE, 0);
+> +	if (dma_mapping_error(real_dev, resrv_buf->daddr)) {
+> +		dev_err(real_dev, "failed to map source buffer address\n");
+> +		kfree(resrv_buf);
+> +		return -ENOMEM;
+> +	}
 > +
-> +/* Power Supply Configuration */
-> +#define CS40L50_BLOCK_ENABLES2			0x201C
-> +#define CS40L50_ERR_RLS				0x2034
-> +#define CS40L50_PWRMGT_CTL			0x2900
-> +#define CS40L50_BST_LPMODE_SEL			0x3810
-> +#define CS40L50_DCM_LOW_POWER		0x1
-> +#define CS40L50_OVERTEMP_WARN		0x4000010
+> +	resrv_buf->vaddr = drvdata->crash_tbuf.vaddr;
+> +	resrv_buf->size = etr_buf->size;
+> +	resrv_buf->dev = &drvdata->csdev->dev;
+> +	etr_buf->hwaddr = resrv_buf->daddr;
+> +	etr_buf->mode = ETR_MODE_RESRV;
+> +	etr_buf->private = resrv_buf;
+> +	return 0;
+> +}
 > +
-> +/* Interrupts */
-> +#define CS40L50_IRQ1_INT_1			0xE010
-> +#define CS40L50_IRQ1_MASK_1			0xE090
-> +#define CS40L50_IRQ1_MASK_2			0xE094
-> +#define CS40L50_IRQ1_MASK_20			0xE0DC
-> +#define CS40L50_IRQ_MASK_2_OVERRIDE	0xFFDF7FFF
-> +#define CS40L50_IRQ_MASK_20_OVERRIDE	0x15C01000
-> +#define CS40L50_IRQ1_INT_1_OFFSET	(4 * 0)
-> +#define CS40L50_IRQ1_INT_2_OFFSET	(4 * 1)
-> +#define CS40L50_IRQ1_INT_8_OFFSET	(4 * 7)
-> +#define CS40L50_IRQ1_INT_9_OFFSET	(4 * 8)
-> +#define CS40L50_IRQ1_INT_10_OFFSET	(4 * 9)
-> +#define CS40L50_IRQ1_INT_18_OFFSET	(4 * 17)
-> +#define CS40L50_GLOBAL_ERR_RLS_SET	BIT(11)
-> +#define CS40L50_GLOBAL_ERR_RLS_CLEAR	0
-> +#define CS40L50_AMP_SHORT_MASK		BIT(31)
-> +#define CS40L50_DSP_QUEUE_MASK		BIT(21)
-> +#define CS40L50_TEMP_ERR_MASK		BIT(31)
-> +#define CS40L50_BST_UVP_MASK		BIT(6)
-> +#define CS40L50_BST_SHORT_MASK		BIT(7)
-> +#define CS40L50_BST_ILIMIT_MASK		BIT(18)
-> +#define CS40L50_UVLO_VDDBATT_MASK	BIT(16)
-> +#define CS40L50_GLOBAL_ERROR_MASK	BIT(15)
+> +static void tmc_etr_free_resrv_buf(struct etr_buf *etr_buf)
+> +{
+> +	struct etr_flat_buf *resrv_buf = etr_buf->private;
 > +
-> +enum cs40l50_irq_list {
-> +	CS40L50_DSP_QUEUE_IRQ,
-> +	CS40L50_GLOBAL_ERROR_IRQ,
-> +	CS40L50_UVLO_VDDBATT_IRQ,
-> +	CS40L50_BST_ILIMIT_IRQ,
-> +	CS40L50_BST_SHORT_IRQ,
-> +	CS40L50_BST_UVP_IRQ,
-> +	CS40L50_TEMP_ERR_IRQ,
-> +	CS40L50_AMP_SHORT_IRQ,
+> +	if (resrv_buf && resrv_buf->daddr) {
+> +		struct device *real_dev = resrv_buf->dev->parent;
+> +
+> +		dma_unmap_resource(real_dev, resrv_buf->daddr,
+> +				resrv_buf->size, DMA_FROM_DEVICE, 0);
+> +	}
+> +	kfree(resrv_buf);
+> +}
+> +
+> +static void tmc_etr_sync_resrv_buf(struct etr_buf *etr_buf, u64 rrp, u64 rwp)
+> +{
+> +	/*
+> +	 * Adjust the buffer to point to the beginning of the trace data
+> +	 * and update the available trace data.
+> +	 */
+> +	etr_buf->offset = rrp - etr_buf->hwaddr;
+> +	if (etr_buf->full)
+> +		etr_buf->len = etr_buf->size;
+> +	else
+> +		etr_buf->len = rwp - rrp;
+
+Don't we need to sync the buffer for CPU via dma_sync_single_for_cpu() ?
+Otherwise, we could be reading stale data ?
+
+> +}
+> +
+> +static const struct etr_buf_operations etr_resrv_buf_ops = {
+> +	.alloc = tmc_etr_alloc_resrv_buf,
+> +	.free = tmc_etr_free_resrv_buf,
+> +	.sync = tmc_etr_sync_resrv_buf,
+> +	.get_data = tmc_etr_get_data_flat_buf,
 > +};
 > +
-> +/* DSP */
-> +#define CS40L50_XMEM_PACKED_0			0x2000000
-> +#define CS40L50_XMEM_UNPACKED24_0		0x2800000
-> +#define CS40L50_SYS_INFO_ID			0x25E0000
-> +#define CS40L50_RAM_INIT			0x28021DC
-> +#define CS40L50_DSP_QUEUE_WT			0x28042C8
-> +#define CS40L50_DSP_QUEUE_RD			0x28042CC
-> +#define CS40L50_POWER_ON_WSEQ			0x2804320
-> +#define CS40L50_NUM_WAVES			0x280CB4C
-> +#define CS40L50_CORE_BASE			0x2B80000
-> +#define CS40L50_CCM_CORE_CONTROL		0x2BC1000
-> +#define CS40L50_YMEM_PACKED_0			0x2C00000
-> +#define CS40L50_YMEM_UNPACKED24_0		0x3400000
-> +#define CS40L50_PMEM_0				0x3800000
-> +#define CS40L50_MEM_RDY_HW		0x2
-> +#define CS40L50_RAM_INIT_FLAG		0x1
-> +#define CS40L50_CLOCK_DISABLE		0x80
-> +#define CS40L50_CLOCK_ENABLE		0x281
-> +#define CS40L50_DSP_POLL_US		1000
-> +#define CS40L50_DSP_TIMEOUT_COUNT	100
-> +#define CS40L50_RESET_PULSE_US		2200
-> +#define CS40L50_CP_READY_US		3100
-> +#define CS40L50_AUTOSUSPEND_MS		2000
-> +#define CS40L50_PSEQ_SIZE		200
-> +
-> +/* DSP Commands */
-> +#define CS40L50_DSP_QUEUE_BASE		0x11004
-> +#define CS40L50_DSP_QUEUE_END		0x1101C
-> +#define CS40L50_DSP_QUEUE		0x11020
-> +#define CS40L50_PREVENT_HIBER	0x2000003
-> +#define CS40L50_ALLOW_HIBER	0x2000004
-> +#define CS40L50_START_I2S	0x3000002
-> +#define CS40L50_OWT_PUSH	0x3000008
-> +#define CS40L50_STOP_PLAYBACK	0x5000000
-> +#define CS40L50_OWT_DELETE	0xD000000
-> +
-> +/* Firmware files */
-> +#define CS40L50_FW	"cs40l50.wmfw"
-> +#define CS40L50_WT	"cs40l50.bin"
-> +
-> +/* Device */
-> +#define CS40L50_DEVID			0x0
-> +#define CS40L50_REVID			0x4
-> +#define CS40L50_DEVID_A		0x40A50
-> +#define CS40L50_REVID_B0	0xB0
+>   /*
+>    * tmc_etr_alloc_sg_buf: Allocate an SG buf @etr_buf. Setup the parameters
+>    * appropriately.
+> @@ -800,6 +869,7 @@ static const struct etr_buf_operations *etr_buf_ops[] = {
+>   	[ETR_MODE_FLAT] = &etr_flat_buf_ops,
+>   	[ETR_MODE_ETR_SG] = &etr_sg_buf_ops,
+>   	[ETR_MODE_CATU] = NULL,
+> +	[ETR_MODE_RESRV] = &etr_resrv_buf_ops
+>   };
+>   
+>   void tmc_etr_set_catu_ops(const struct etr_buf_operations *catu)
+> @@ -825,6 +895,7 @@ static inline int tmc_etr_mode_alloc_buf(int mode,
+>   	case ETR_MODE_FLAT:
+>   	case ETR_MODE_ETR_SG:
+>   	case ETR_MODE_CATU:
+> +	case ETR_MODE_RESRV:
+>   		if (etr_buf_ops[mode] && etr_buf_ops[mode]->alloc)
+>   			rc = etr_buf_ops[mode]->alloc(drvdata, etr_buf,
+>   						      node, pages);
+> @@ -843,6 +914,7 @@ static void get_etr_buf_hw(struct device *dev, struct etr_buf_hw *buf_hw)
+>   	buf_hw->has_iommu = iommu_get_domain_for_dev(dev->parent);
+>   	buf_hw->has_etr_sg = tmc_etr_has_cap(drvdata, TMC_ETR_SG);
+>   	buf_hw->has_catu = !!tmc_etr_get_catu_device(drvdata);
+> +	buf_hw->has_resrv = is_tmc_reserved_region_valid(dev->parent);
+>   }
+>   
+>   static bool etr_can_use_flat_mode(struct etr_buf_hw *buf_hw, ssize_t etr_buf_size)
+> @@ -874,13 +946,19 @@ static struct etr_buf *tmc_alloc_etr_buf(struct tmc_drvdata *drvdata,
+>   	if (!etr_buf)
+>   		return ERR_PTR(-ENOMEM);
+>   
+> -	etr_buf->size = size;
+> +	/* Overiride the buffer size here for reserved mode */
 
-Admittedly a bit nitpicky but the tabbing here is all over the
-place, would be nicer to line up the values on these defines.
+minor nit: "Override"
 
-Thanks,
-Charles
+> +	etr_buf->size = (drvdata->etr_mode == ETR_MODE_RESRV) ?
+> +		drvdata->crash_tbuf.size : size;
+
+Isn't it better to do this from the actual code where we are successful
+in allocating the buffer ? That way, it works for the AUTO mode too ?
+
+>   
+>   	/* If there is user directive for buffer mode, try that first */
+>   	if (drvdata->etr_mode != ETR_MODE_AUTO)
+>   		rc = tmc_etr_mode_alloc_buf(drvdata->etr_mode, drvdata,
+>   					    etr_buf, node, pages);
+>   
+> +	/* Fallback mechanism is not valid for reserved mode */
+> +	if (rc && (drvdata->etr_mode == ETR_MODE_RESRV))
+> +		goto done;
+> +
+>   	/*
+>   	 * If we have to use an existing list of pages, we cannot reliably
+>   	 * use a contiguous DMA memory (even if we have an IOMMU). Otherwise,
+> @@ -902,6 +980,7 @@ static struct etr_buf *tmc_alloc_etr_buf(struct tmc_drvdata *drvdata,
+>   	if (rc && buf_hw.has_catu)
+>   		rc = tmc_etr_mode_alloc_buf(ETR_MODE_CATU, drvdata,
+>   					    etr_buf, node, pages);
+> +done:
+>   	if (rc) {
+>   		kfree(etr_buf);
+>   		return ERR_PTR(rc);
+> @@ -1829,6 +1908,7 @@ static const char *const buf_modes_str[] = {
+>   	[ETR_MODE_FLAT]		= "flat",
+>   	[ETR_MODE_ETR_SG]	= "tmc-sg",
+>   	[ETR_MODE_CATU]		= "catu",
+> +	[ETR_MODE_RESRV]	= "resrv",
+>   	[ETR_MODE_AUTO]		= "auto",
+>   };
+>   
+> @@ -1847,6 +1927,9 @@ static ssize_t buf_modes_available_show(struct device *dev,
+>   	if (buf_hw.has_catu)
+>   		size += sysfs_emit_at(buf, size, "%s ", buf_modes_str[ETR_MODE_CATU]);
+>   
+> +	if (buf_hw.has_resrv)
+> +		size += sysfs_emit_at(buf, size, "%s ", buf_modes_str[ETR_MODE_RESRV]);
+> +
+>   	size += sysfs_emit_at(buf, size, "\n");
+>   	return size;
+>   }
+> @@ -1874,6 +1957,8 @@ static ssize_t buf_mode_preferred_store(struct device *dev,
+>   		drvdata->etr_mode = ETR_MODE_ETR_SG;
+>   	else if (sysfs_streq(buf, buf_modes_str[ETR_MODE_CATU]) && buf_hw.has_catu)
+>   		drvdata->etr_mode = ETR_MODE_CATU;
+> +	else if (sysfs_streq(buf, buf_modes_str[ETR_MODE_RESRV]) && buf_hw.has_resrv)
+> +		drvdata->etr_mode = ETR_MODE_RESRV;
+>   	else if (sysfs_streq(buf, buf_modes_str[ETR_MODE_AUTO]))
+>   		drvdata->etr_mode = ETR_MODE_AUTO;
+>   	else
+> diff --git a/drivers/hwtracing/coresight/coresight-tmc.h b/drivers/hwtracing/coresight/coresight-tmc.h
+> index 8dcb426ac3e7..10dba9f7d76a 100644
+> --- a/drivers/hwtracing/coresight/coresight-tmc.h
+> +++ b/drivers/hwtracing/coresight/coresight-tmc.h
+> @@ -135,6 +135,7 @@ enum etr_mode {
+>   	ETR_MODE_FLAT,		/* Uses contiguous flat buffer */
+>   	ETR_MODE_ETR_SG,	/* Uses in-built TMC ETR SG mechanism */
+>   	ETR_MODE_CATU,		/* Use SG mechanism in CATU */
+> +	ETR_MODE_RESRV,		/* Use reserved region contiguous buffer */
+>   	ETR_MODE_AUTO,		/* Use the default mechanism */
+>   };
+>   
+> @@ -164,6 +165,17 @@ struct etr_buf {
+>   	void				*private;
+>   };
+>   
+> +/**
+> + * @paddr	: Start address of reserved memory region.
+> + * @vaddr	: Corresponding CPU virtual address.
+> + * @size	: Size of reserved memory region.
+> + */
+> +struct tmc_resrv_buf {
+> +	phys_addr_t     paddr;
+> +	void		*vaddr;
+> +	size_t		size;
+> +};
+> +
+>   /**
+>    * struct tmc_drvdata - specifics associated to an TMC component
+>    * @base:	memory mapped base address for this component.
+> @@ -188,6 +200,10 @@ struct etr_buf {
+>    * @idr_mutex:	Access serialisation for idr.
+>    * @sysfs_buf:	SYSFS buffer for ETR.
+>    * @perf_buf:	PERF buffer for ETR.
+> + * @crash_tbuf: Used by ETR as hardware trace buffer and for trace data
+> + *		retention (after crash) only when ETR_MODE_RESRV buffer
+> + *		mode is enabled. Used by ETF for trace data retention
+> + *		(after crash) by default.
+
+minor nit: Please align the comment like the other fields.
+
+Suzuki
+
+>    */
+>   struct tmc_drvdata {
+>   	void __iomem		*base;
+> @@ -213,6 +229,7 @@ struct tmc_drvdata {
+>   	struct mutex		idr_mutex;
+>   	struct etr_buf		*sysfs_buf;
+>   	struct etr_buf		*perf_buf;
+> +	struct tmc_resrv_buf	crash_tbuf;
+>   };
+>   
+>   struct etr_buf_operations {
+> @@ -330,6 +347,16 @@ tmc_sg_table_buf_size(struct tmc_sg_table *sg_table)
+>   	return (unsigned long)sg_table->data_pages.nr_pages << PAGE_SHIFT;
+>   }
+>   
+> +static inline bool is_tmc_reserved_region_valid(struct device *dev)
+> +{
+> +	struct tmc_drvdata *drvdata = dev_get_drvdata(dev);
+> +
+> +	if (drvdata->crash_tbuf.paddr &&
+> +		drvdata->crash_tbuf.size)
+> +		return true;
+> +	return false;
+> +}
+> +
+>   struct coresight_device *tmc_etr_get_catu_device(struct tmc_drvdata *drvdata);
+>   
+>   void tmc_etr_set_catu_ops(const struct etr_buf_operations *catu);
+
 
