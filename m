@@ -1,122 +1,118 @@
-Return-Path: <devicetree+bounces-29917-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29918-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id F08288258CB
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jan 2024 18:02:45 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E411825908
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jan 2024 18:29:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A57741F23AB7
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jan 2024 17:02:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 63D831C23403
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jan 2024 17:29:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0107131758;
-	Fri,  5 Jan 2024 17:02:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFFB63219F;
+	Fri,  5 Jan 2024 17:28:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="DKU9Mesv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f176.google.com (mail-pf1-f176.google.com [209.85.210.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2473131A69;
-	Fri,  5 Jan 2024 17:02:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-Received: from i53875a56.versanet.de ([83.135.90.86] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1rLnaa-0006Ds-1M; Fri, 05 Jan 2024 18:02:32 +0100
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: Alex Bee <knaerzche@gmail.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- David Airlie <airlied@gmail.com>, Rob Herring <robh+dt@kernel.org>,
- Sandy Huang <hjc@rock-chips.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>
-Subject: Re: (subset) [PATCH v4 00/29] Add HDMI support for RK3128
-Date: Fri, 05 Jan 2024 18:02:31 +0100
-Message-ID: <2568547.3Lj2Plt8kZ@diego>
-In-Reply-To: <3e7aa9f2-6e37-44c3-9361-5fa7c4ef203d@gmail.com>
-References:
- <20231222174220.55249-1-knaerzche@gmail.com>
- <170435598418.3166964.9367277671989164237.b4-ty@sntech.de>
- <3e7aa9f2-6e37-44c3-9361-5fa7c4ef203d@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56F9B3219A
+	for <devicetree@vger.kernel.org>; Fri,  5 Jan 2024 17:28:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-pf1-f176.google.com with SMTP id d2e1a72fcca58-6dad22e13dcso518596b3a.3
+        for <devicetree@vger.kernel.org>; Fri, 05 Jan 2024 09:28:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1704475729; x=1705080529; darn=vger.kernel.org;
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=7MvMmIGG1OTvVGECDwkCBOvxHZpT09eejRG7w2yah/U=;
+        b=DKU9MesvWUkllpmmd9HKqy+pBHXz2rmu50KCSN6VFS/KHFXS/z6LFRzKwI9aSNiSfU
+         /T9dzElDk2owcXjMnlRFEuM5+ywubGSlSn0h+wsyVUHlPC3FnL2JwJIsJqScojx/TYck
+         qoTEHMkHc1FbHqU80V+vcnMfDNb5VSEi0KCOVpXsR1NXvVLZHBWswAg1yDVgDMPN68F7
+         5WubSXiLmeZs5xGx9RbXhEE0FdgSSnY5UvHUfs/nPGe5jok86qcXHLsLgquOxg2LG2Hy
+         4PY9sYtfFJAzXUSVrV6vve7HvG7A0QBjnEOyxANftGKGtyJWDTkWBtr/bi8E9/Jyws58
+         1dfg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1704475729; x=1705080529;
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=7MvMmIGG1OTvVGECDwkCBOvxHZpT09eejRG7w2yah/U=;
+        b=K4iUgjJLcZoDla43kB5/ipL+/oumq80j030Eigp+BVkIW9Y6kWSulGpwu8U6P1MoOf
+         oVja5U4IIfDTd/wJuGqPCfjIKYzH7BQ3C3t5vPkxZbbIl+k7yBvkcRKBO7tSnxpwV6f4
+         NkRPFL+6HclfFlv6EhGYPHmCjqHPLFz/tKvBcyadMz2Rte4tDDicGKaZ7z25d0wYHLvJ
+         clkFrHj4Sht0oJNepH+yrdL40ahPtyY+HqRYGC8OAfauuKCVWWji9yqf2DhFhVqvkxVi
+         PtIObM7QMDN8IVfhuTbWgO3kv3E39bFCIF+sCgcKa4ZRk6AVXyjMpcZacLZn0v3Urwqk
+         fIaw==
+X-Gm-Message-State: AOJu0YwZ1TRWUwybnqMc+niQ4WcC/c0oaj7Zt5OVWM3eSQ1VndVBV0EF
+	ROSxfglyYACX4lMjJ6UL5ZokylSWuNgx4w==
+X-Google-Smtp-Source: AGHT+IHuOnm7hs+MIF/YDJktAeTmGWj9vojY0HSziqVUOflzq8jI2uyPNPQQRJu+YUAC/BW/uA1VRg==
+X-Received: by 2002:a05:6a21:6da6:b0:199:4e21:f71d with SMTP id wl38-20020a056a216da600b001994e21f71dmr690529pzb.87.1704475729519;
+        Fri, 05 Jan 2024 09:28:49 -0800 (PST)
+Received: from localhost (75-172-121-199.tukw.qwest.net. [75.172.121.199])
+        by smtp.gmail.com with ESMTPSA id fi39-20020a056a0039a700b006dab0d09ef0sm1622087pfb.45.2024.01.05.09.28.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 05 Jan 2024 09:28:48 -0800 (PST)
+From: Kevin Hilman <khilman@baylibre.com>
+To: Kevin Xie <kevin.xie@starfivetech.com>, Minda Chen
+ <minda.chen@starfivetech.com>, Conor Dooley <conor@kernel.org>, Krzysztof
+ =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>, Rob Herring
+ <robh+dt@kernel.org>, Bjorn Helgaas
+ <bhelgaas@google.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>, Daire
+ McNamara <daire.mcnamara@microchip.com>, Emil
+ Renner Berthing <emil.renner.berthing@canonical.com>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>
+Cc: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
+ "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>, Paul Walmsley
+ <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou
+ <aou@eecs.berkeley.edu>, Philipp Zabel <p.zabel@pengutronix.de>, Mason Huo
+ <mason.huo@starfivetech.com>, Leyfoon Tan <leyfoon.tan@starfivetech.com>,
+ Minda Chen <minda.chen@starfivetech.com>
+Subject: Re: =?utf-8?B?5Zue5aSNOg==?= [PATCH v13 0/21] Refactoring Microchip
+ PCIe driver and add
+ StarFive PCIe
+In-Reply-To: <ZQ0PR01MB098128579D86207B4B9BA7D28266A@ZQ0PR01MB0981.CHNPR01.prod.partner.outlook.cn>
+References: <20231214072839.2367-1-minda.chen@starfivetech.com>
+ <7hfrzeavmj.fsf@baylibre.com>
+ <ZQ0PR01MB098128579D86207B4B9BA7D28266A@ZQ0PR01MB0981.CHNPR01.prod.partner.outlook.cn>
+Date: Fri, 05 Jan 2024 09:28:48 -0800
+Message-ID: <7h34vbbsfj.fsf@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain
 
-Am Freitag, 5. Januar 2024, 17:47:21 CET schrieb Alex Bee:
-> Hi Heiko,
-> 
-> 
-> Am 04.01.24 um 09:14 schrieb Heiko Stuebner:
-> > On Fri, 22 Dec 2023 18:41:51 +0100, Alex Bee wrote:
-> >> This is version 4 of my series that aims to add support for the display
-> >> controller (VOP) and the HDMI controller block of RK3128 (which is very
-> >> similar to the one found in RK3036). The original intention of this series
-> >> was to add support for this slightly different integration but is by now,
-> >> driven by maintainer's feedback, exploded to be a rework of inno-hdmi
-> >> driver in large parts. It is, however, a change for the better.
-> >>
-> >> [...]
-> > Applied, thanks!
-> >
-> > [23/29] drm/rockchip: inno_hdmi: Add variant support
-> >          commit: 5f2e93e6719701a91307090f8f7696fd6b3bffdf
-> > [24/29] drm/rockchip: inno_hdmi: Add RK3128 support
-> >          commit: aa54f334c291effe321aa4b9ac0e67a895fd7b58
-> > [25/29] drm/rockchip: inno_hdmi: Add basic mode validation
-> >          commit: 701029621d4141d0c9f8b81a88a37b95ec84ce65
-> > [26/29] drm/rockchip: inno_hdmi: Drop custom fill_modes hook
-> >          commit: 50a3c772bd927dd409c484832ddd9f6bf00b7389
-> >
-> >
-> > For reference, Rob has applied the rk3128 compatible in
-> > https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git/commit/?id=21960bda59852ca961fcd27fba9f92750caccd06
-> thanks for keeping track on this.
-> 
-> Is there any reason the DT paches aren't merged yet? From what I can see
-> they should be fine to be merged in your v6.8-armsoc/dts32 branch which is
-> 6.7-rc1 based. There was only a txt-binding at this point and it's very
-> likely that both the rockchip,inno-hdmi.yaml-conversion and the rk3128
-> additon will both land in 6.8 (they are both in linux-next). Linus' 6.8
-> merge-window will open earliest next week.
+Kevin Xie <kevin.xie@starfivetech.com> writes:
 
-Exactly ... and the arm subarchitectures (Rockchip, etc) feed into the
-more generic soc-tree[0]  and from there in a set of pull requests.
+>> Minda Chen <minda.chen@starfivetech.com> writes:
+>> 
+>> > This patchset final purpose is add PCIe driver for StarFive JH7110 SoC.
+>> > JH7110 using PLDA XpressRICH PCIe IP. Microchip PolarFire Using the
+>> > same IP and have commit their codes, which are mixed with PLDA
+>> > controller codes and Microchip platform codes.
+>> 
+>> Thank you for this series.
+>> 
+>> I tested this on a VisionFive v2 board, and it seems to probe and find my
+>> M.2 NVMe SSD, but then gets timeouts when trying to use the NVMe (e.g.
+>> 'blkid' command)
+>> 
+>
+> Hi, Kevin:
+> Could you please provide the manufacturer and model of the M.2 NVMe SSD
+> you tested?
 
-Normally everything needs to go to the soc tree before -rc7 .
-With the whole xmas stuff, I sent some stragglers in a second pull
-request on monday, but that was already before Rob applied the
-binding on tuesday.
+I have a 256 Gb Silicon Power P34A60 M.2 NVMe SSD (part number: sp256gbp34a60m28)
 
-So 6.8 devicetree stuff is essentially done and the dts patches
-from this series will go in to 6.9 .
+Also for reference, I tested the same SSD on another arm platform
+(Khadas VIM3) and it works fine.
 
-
-Hope that explains things a bit :-)
-Heiko
-
-[0] https://git.kernel.org/pub/scm/linux/kernel/git/soc/soc.git/
-
-> I'm really not pressuring here and I'm fine if they land in 6.9 - it's just
-> for my understanding for further submissions.
-> 
-> Alex
-> 
-> >
-> > Best regards,
-> 
-
-
-
-
+Kevin
 
