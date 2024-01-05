@@ -1,204 +1,358 @@
-Return-Path: <devicetree+bounces-29833-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29808-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD516824F0D
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jan 2024 08:11:39 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E6CA7824D3D
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jan 2024 03:48:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 277C2B2450A
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jan 2024 07:11:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4F2281F22DA8
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jan 2024 02:48:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4A2F15EA2;
-	Fri,  5 Jan 2024 07:10:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 113FB2113;
+	Fri,  5 Jan 2024 02:48:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XWoQBvYO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from CHN02-SH0-obe.outbound.protection.partner.outlook.cn (mail-sh0chn02on2058.outbound.protection.partner.outlook.cn [139.219.146.58])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEE0818041;
-	Fri,  5 Jan 2024 07:10:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=LABp2Xd8JFXjhBWoVLQVtpZmBrmzBAtPTFoOWTW3DOtkz3rTxFv56pRoBN3xDlxbE4kEiZ6OZN8ylznwblOATKoptMAOXXWsjmvA98b6N5vcdOB6Go4Tba58HNuBbPFO3jQiZOb5qFJZvt7Ms+8DKR7p3HiK14jq9Io7iCpMwNtlJR374YA/DoyfhKcLMxBzS330DotQT2VRYmb8G9CajVIOgJAFoTnAlswFRBXIjUf4ycvpeZ9QGOh9VCD5Ih1/LdY+6RSVI6SXW+3XbYd+6KST26tXzY/A3nGg/4VrIcxU78y9A7BykAhU2oq1tI9fFa6KBpg160VJbANVLOoRJQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=VxmeZJF60lnX5RnKDVwlgUX0Ere9i+J3XylcRcaC1Mc=;
- b=ESdbdyR41eKcDEaoSoxNv/t/MfZRYxoHtk/ZzwPPVTb6T4hbPYPjM28dE6hBXZAUhYy1l77XWC8tUcfXXLNoGe9vG4zAaXBCBBtzqT9o89SVFWyKGP4u+FoHx3e7YTJAKHxr1a0vsSvUgCacVldJ3XDoxrOAQoWwm6MtlkYr14f8Xu/T/C7yD/2WHNspSlgf2TYiJH7l63ThrnG0/411GyLyp8hex0GZHWf23N4NiXErwfLoznpqWGm3K/l/31eyRz6NdbkZf78NC0f7kelgYSQGJMd9BW28l9d2j3a+v29URN31XoqtVJrmKWfUUdCLOyacr3N9/puiE7jTiqXnuQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=starfivetech.com; dmarc=pass action=none
- header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
-Received: from ZQ0PR01MB0981.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c550::13) by ZQ0PR01MB1222.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c550:1b::5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7135.27; Fri, 5 Jan
- 2024 02:35:10 +0000
-Received: from ZQ0PR01MB0981.CHNPR01.prod.partner.outlook.cn
- ([fe80::4583:3e2:da11:265e]) by ZQ0PR01MB0981.CHNPR01.prod.partner.outlook.cn
- ([fe80::4583:3e2:da11:265e%6]) with mapi id 15.20.7135.013; Fri, 5 Jan 2024
- 02:35:10 +0000
-From: Kevin Xie <kevin.xie@starfivetech.com>
-To: Kevin Hilman <khilman@baylibre.com>, Minda Chen
-	<minda.chen@starfivetech.com>, Conor Dooley <conor@kernel.org>,
-	=?gb2312?B?S3J6eXN6dG9mIFdpbGN6eai9c2tp?= <kw@linux.com>, Rob Herring
-	<robh+dt@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, Lorenzo Pieralisi
-	<lpieralisi@kernel.org>, Daire McNamara <daire.mcnamara@microchip.com>, Emil
- Renner Berthing <emil.renner.berthing@canonical.com>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>
-CC: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
-	"linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>, Paul Walmsley
-	<paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou
-	<aou@eecs.berkeley.edu>, Philipp Zabel <p.zabel@pengutronix.de>, Mason Huo
-	<mason.huo@starfivetech.com>, Leyfoon Tan <leyfoon.tan@starfivetech.com>,
-	Minda Chen <minda.chen@starfivetech.com>
-Subject:
- =?gb2312?B?u9i4tDogW1BBVENIIHYxMyAwLzIxXSBSZWZhY3RvcmluZyBNaWNyb2NoaXAg?=
- =?gb2312?Q?PCIe_driver_and_add_StarFive_PCIe?=
-Thread-Topic: [PATCH v13 0/21] Refactoring Microchip PCIe driver and add
- StarFive PCIe
-Thread-Index: AQHaPpXiMe+t6/O8C0OnZGJ4Y32LtrDKgdAQ
-Date: Fri, 5 Jan 2024 02:35:10 +0000
-Message-ID:
- <ZQ0PR01MB098128579D86207B4B9BA7D28266A@ZQ0PR01MB0981.CHNPR01.prod.partner.outlook.cn>
-References: <20231214072839.2367-1-minda.chen@starfivetech.com>
- <7hfrzeavmj.fsf@baylibre.com>
-In-Reply-To: <7hfrzeavmj.fsf@baylibre.com>
-Accept-Language: zh-CN, en-US
-Content-Language: zh-CN
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=starfivetech.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: ZQ0PR01MB0981:EE_|ZQ0PR01MB1222:EE_
-x-ms-office365-filtering-correlation-id: 080d11ca-2a84-44e3-88ea-08dc0d96f03f
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info:
- 10Er+8cBEExcgmcApRf21maOJZ/Crw6wAugR2L6mo0p0zIrJw5hqsB8nLCfJ+egqxIj7+vvr3LY6EujoIloaN7rMeAaeWNMspXVl4ZYSWt10U9oJTCMEwbeHy4D5KCGK2bi21l7BN1eFbiD8stF6mEzH5Wxemmrek47sOQisA67hFX/BkVHKT91M2K4MElewwAaxXJ+UX541gaUtZBQOx0Jv0nJsdpJXsQkhywvvjQnKAP4aNOvL4PVahMdjWetGJn3cqLuGYuoJqTgYh3ZakWs9QuT2uXLR7v32R9Mpr5TBn1K7/LXzuVbKqca5kEBkA5RIl4nVxL8GZfT2yRIy4xGV0oCvp9Y3li7GwHkMn5it9ECe7Nt6jGt3+O5Y68e6lYJNJNqxDXUahkvSpRgkRB5ybus+15wGWlf3dELvtm4BSxHO9EmmovEBz7kJf7X/SX0kOvYQyu0ztqHJ48c8xRziKZ/W8Uuds6faCxD+Og/B8bW0BwKo87h5XX2zeG8QOU712sIZjUy7mqE35OqiZ5wan5+UK5OtOj3ynkxmmyYDDzSh4mm8uu7KEsHID/fv
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:ZQ0PR01MB0981.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230031)(136003)(39830400003)(346002)(366004)(396003)(230922051799003)(1800799012)(451199024)(64100799003)(186009)(508600001)(2906002)(40180700001)(44832011)(5660300002)(7416002)(921011)(122000001)(40160700002)(33656002)(38100700002)(55016003)(4326008)(8936002)(7696005)(224303003)(66446008)(38070700009)(66476007)(76116006)(66946007)(9686003)(71200400001)(54906003)(64756008)(110136005)(66556008)(26005)(41300700001)(86362001)(83380400001)(107886003)(41320700001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?gb2312?B?MkVIR1huZm03b0VFTXdHVGpEcStjUjFkQnBsRnRXYjdKM1E4V0RoOE5PVVgr?=
- =?gb2312?B?cER5d2VlNmpVN2VWTE9LbUVlb0J2VDQ2M1JqTkNpaHlnNGV6Nkg4RUxxVnpL?=
- =?gb2312?B?UGdSdHV5YlpsaDZqSHg0MnN2UjA5a0RNRS9IWnR5emFXb1Z0bWU5SjFFV0w0?=
- =?gb2312?B?WTRYRW40OVVnVnhkQ1hNS3hvb1lxKzNWMURsdDBiNEVqS3RTNXdoQ2tOemtT?=
- =?gb2312?B?c1VLN0x5Vm9jNzdKaW5FTHhLa1NBWko3NmFhNjJoanQvdVRWamp3SmZCNW5z?=
- =?gb2312?B?Q2FsRHFwdE9leThGenVGem5JQ3F0M1loU2xxVTk0REN0Rng0L0tiOCtLT2pz?=
- =?gb2312?B?a0Y0ZzlpMkNjN2ljVjRMTnQrVCszaURTRW1TSDhEMWU4NFM2c00yVU40S2hG?=
- =?gb2312?B?alpJNW8ya2c5SU5LVnZDc09McVVqVTlUcHE4RTljZW9ldHVJWVBBcGVVbzZo?=
- =?gb2312?B?bW9EZmg1c1JULzVodU9Yb0xBZnZuMUFoVVJEV2JJR0NpY1l1R3p2ZEVsdGlp?=
- =?gb2312?B?YkVHRjRJSGE2OGVpR2xSM1FTZitpaHNBZXR1Q3I4VWtlcWxYV09FQlRuais5?=
- =?gb2312?B?OHkzVW56Q05ERjVSV2JkMUtMSzFXZzhPaXM0cHQzWHpWZWRtcFgwRWFvbUZi?=
- =?gb2312?B?UDlCMzNoWEErRHNkZzRjVVNCZFh5bGx5aERQeGo4VktkMHZ0WDZWZStFR3JO?=
- =?gb2312?B?Rmo1SENKVjR1eDBCRmdDakN6bDQ3VG1uNHhyV3c1dFVhV2V1M0tRbWh3ZWt5?=
- =?gb2312?B?NDBnYW5sQ3FZZTdyd3BEM2lCUHFTZldUYTQyUE1lRTJaRUE1ZGNBQlAxeEZN?=
- =?gb2312?B?S2k5ZUZyMWZTN3o3UmhlQmx2eUFQTXZCeC9vWXlRelhQUTFvUHZzU2wvMjBG?=
- =?gb2312?B?TFJTNXpBZzhkT2tERlJSNGVlMk1BVGRtY2ZBZjNJaElhTVhuVkN1ZnpMQnBH?=
- =?gb2312?B?eGVIOWh2M1JobzBySk5qUHZ1bXhNVEE4ait5L0xvb2J1bys2SlIrMjA1UGNC?=
- =?gb2312?B?RTBPWlNBZnRESlFpSHNwNjZwZXdWR0pKajlwbCtVYVprQUJnbjM1eW9pZFkz?=
- =?gb2312?B?VmdlM2p3MUJ5dzgrM1dHeko1VjNyQnhxTndyWmIxNE9sQ0xnOEN1TDg5OHN5?=
- =?gb2312?B?cHV4M3Z2eFJkNGZBY2svNjloWnNGTFhHTVVEWWY5RTNHUFcyMlNoNGRUQk9D?=
- =?gb2312?B?TGhJTGlUMW9OQUdYUGxITHVlMStqdjBxMFJhcmVqbFZoV0VuaHROQnloZ1JS?=
- =?gb2312?B?TFYrYm8vbXAvQkU3VmlwSzNZSk9YSGo1ZkVnS0lVWHlIa2dUMzBlTlZ6NlVG?=
- =?gb2312?B?eDNBOWZXcUorZUsrSzlwWnJYSUxmM2x2ODFEVGNZcXV1d1pTVHg3MU8vWUo0?=
- =?gb2312?B?ZkNwZnJEMzk4K3lQb2Y1MkdqMjV4VFc5cVZvbGFUbEI0UmJuSW9zVjN3ZCtX?=
- =?gb2312?B?SVVVd21vMUxNckVWdUxXN3VuK01TY21DQUNWTzJCT0lTUjFMMWljSEp0Ui9D?=
- =?gb2312?B?N3pNR2xoR1dRTVZWb25tTEFoT3FCcUg5ZXNVdERvTTJsa3lmN1cySU8zamxO?=
- =?gb2312?B?T0hmR1dGVmhsVjNQWVJmZFdzK3h3Z3ZwZjJ3Rm9mRUF5N3Y3VXhXRDBBSnFJ?=
- =?gb2312?B?eXBzcXhDQ0JVSEE0anRSd0RFclNhSksxdDladHNGY1lHaDVMZktUSkRzeUpQ?=
- =?gb2312?B?dW9nNC9KTlhNVk11NzZRbGZoaVF0Z0JwWDEydXFncjRHUTV1Z0U2dm9wNHZI?=
- =?gb2312?B?S295SllPTXE1bll5NW1vMEhZSTlPSHRuM3IrZHBJbkxKV3laS0hMOUE4d0g1?=
- =?gb2312?B?WTVXcnlOUkM3TG5zMXE0b0RkMEwwMm9vUWxZdWh1dVhuSkNIajk4L3lMNm5r?=
- =?gb2312?B?b1NQRGpaOWZISnNINVJ3ME8zZ2hHUkpNd1d4SjNiL2k2ck5PTWNUTklESzhB?=
- =?gb2312?B?V1BHSk16RXdsZy9qNjhnRTRFVExsNFlvVCtUdlcvN1o4LzFhRnFKVzNnd0hR?=
- =?gb2312?B?Y3NIc1F0MkhaSnZQTnpYZzE5a0E1cWdpdDFJTlYxVDdFOTlWN2RYditUUFFh?=
- =?gb2312?Q?E5NpbJ?=
-Content-Type: text/plain; charset="gb2312"
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1040220E4;
+	Fri,  5 Jan 2024 02:48:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-40d89105365so9954845e9.0;
+        Thu, 04 Jan 2024 18:48:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1704422915; x=1705027715; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=NvYkLm26S6ebwPqIbQIT9BDgD9vjodsxLj/e0wbDLwk=;
+        b=XWoQBvYO8Pq0Vg5JmWbCBwuE1uhrgpZv8wwMmxDNH9SK6TBWt3DVGlGBIpiaCqewn9
+         5WWWboXa5LnjZIRcQ8H83dJseSLF9UVZ7OZWxx/IPp4btVP/xdTPP+7x0IOqUQFV4ZuX
+         pnhBkyKMXjiJXbrEOtlkj+gq+L7ngVF23vt2gJS8iGsLVq5Bbk7sWFdtN9csRDImU6LR
+         IOW/G0SJJ8Sjkvq98RV2HCWJtTfiofASRwLJ/NyRqroCzPgQ1IZg67dXU5rwy9tmCt13
+         y6AzV10JzYLJ10HY3hR3eJaCPYTnapTiqLLGERaS8tWunrtdcp+xqTsKDXY2ECZkGFGi
+         Hetw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1704422915; x=1705027715;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=NvYkLm26S6ebwPqIbQIT9BDgD9vjodsxLj/e0wbDLwk=;
+        b=lF+3nVnsqZY2Ln/nJYOn6dHGGvWF5kpcJsk80TCPBQJkSAM14AsPAby815Z0OoFdCb
+         B9ZjDVZQ9LV7jkbjgQBEKnEUJOX4s4MGOtuUc77XW8jMF55VB0BnUkTlBVKpnTTEPNQ/
+         0nAQ6Rdaa/y8MhLYaLpa5No7qwRqLQe68ooQMHVncZcGW5ku3g90M8mVSbXkTkLkihrP
+         ZgA1LXpdJ7SJl76a0ZdJr1FHSzcOT/zxjIFwJEKe/CZzmSuiCjTcXvx52WDGraOvAQDj
+         kLH5wwOhaFOk52ITHly79N/oA5+S9CesOCitH7ss5FNbXUSKm7IgYxzzn8OnvbNCan61
+         TCew==
+X-Gm-Message-State: AOJu0YxZkDop/C6lZYZlUCZyTfKy58sCgkrWCdEcbdPhCOhMt8t4zlKZ
+	3fA2mdmOo67QcHgM24TOg24=
+X-Google-Smtp-Source: AGHT+IFQYpb6XhVztccrIVV5NT+BYOjFLZbTTO4XD3l3MnGWntw1jBWyueNMvVQ++RD45u9wY+DtjA==
+X-Received: by 2002:a05:600c:6a89:b0:40d:92c1:6760 with SMTP id jl9-20020a05600c6a8900b0040d92c16760mr842934wmb.179.1704422914792;
+        Thu, 04 Jan 2024 18:48:34 -0800 (PST)
+Received: from [192.168.0.3] ([69.6.8.124])
+        by smtp.gmail.com with ESMTPSA id v12-20020a05600c470c00b0040d5f3ef2a2sm110523wmo.16.2024.01.04.18.48.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 04 Jan 2024 18:48:34 -0800 (PST)
+Message-ID: <dd05a599-247a-4516-8ad3-7550ceea99f7@gmail.com>
+Date: Fri, 5 Jan 2024 04:48:31 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: starfivetech.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: ZQ0PR01MB0981.CHNPR01.prod.partner.outlook.cn
-X-MS-Exchange-CrossTenant-Network-Message-Id: 080d11ca-2a84-44e3-88ea-08dc0d96f03f
-X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Jan 2024 02:35:10.6310
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: VuW/hQSaTVCShMEefGwO+JscG0WbVMEKYx08f3G0Iwx6Y6sEDx5EJOLThoFx20ErRHNbvG33xkw91Mhsl69tgYSNLNY/tWKD0tWqid/srRw=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: ZQ0PR01MB1222
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 0/5] support ipq5332 platform
+Content-Language: en-US
+To: Jie Luo <quic_luoj@quicinc.com>, agross@kernel.org, andersson@kernel.org,
+ konrad.dybcio@linaro.org, davem@davemloft.net, edumazet@google.com,
+ kuba@kernel.org, pabeni@redhat.com, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, andrew@lunn.ch,
+ hkallweit1@gmail.com, linux@armlinux.org.uk, robert.marko@sartura.hr
+Cc: linux-arm-msm@vger.kernel.org, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ quic_srichara@quicinc.com
+References: <20231225084424.30986-1-quic_luoj@quicinc.com>
+ <a6a50fb6-871f-424c-a146-12b2628b8b64@gmail.com>
+ <cfb04c82-3cc3-49f6-9a8a-1f6d1a22df40@quicinc.com>
+From: Sergey Ryazanov <ryazanov.s.a@gmail.com>
+In-Reply-To: <cfb04c82-3cc3-49f6-9a8a-1f6d1a22df40@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-PiBNaW5kYSBDaGVuIDxtaW5kYS5jaGVuQHN0YXJmaXZldGVjaC5jb20+IHdyaXRlczoNCj4gDQo+
-ID4gVGhpcyBwYXRjaHNldCBmaW5hbCBwdXJwb3NlIGlzIGFkZCBQQ0llIGRyaXZlciBmb3IgU3Rh
-ckZpdmUgSkg3MTEwIFNvQy4NCj4gPiBKSDcxMTAgdXNpbmcgUExEQSBYcHJlc3NSSUNIIFBDSWUg
-SVAuIE1pY3JvY2hpcCBQb2xhckZpcmUgVXNpbmcgdGhlDQo+ID4gc2FtZSBJUCBhbmQgaGF2ZSBj
-b21taXQgdGhlaXIgY29kZXMsIHdoaWNoIGFyZSBtaXhlZCB3aXRoIFBMREENCj4gPiBjb250cm9s
-bGVyIGNvZGVzIGFuZCBNaWNyb2NoaXAgcGxhdGZvcm0gY29kZXMuDQo+IA0KPiBUaGFuayB5b3Ug
-Zm9yIHRoaXMgc2VyaWVzLg0KPiANCj4gSSB0ZXN0ZWQgdGhpcyBvbiBhIFZpc2lvbkZpdmUgdjIg
-Ym9hcmQsIGFuZCBpdCBzZWVtcyB0byBwcm9iZSBhbmQgZmluZCBteQ0KPiBNLjIgTlZNZSBTU0Qs
-IGJ1dCB0aGVuIGdldHMgdGltZW91dHMgd2hlbiB0cnlpbmcgdG8gdXNlIHRoZSBOVk1lIChlLmcu
-DQo+ICdibGtpZCcgY29tbWFuZCkNCj4gDQoNCkhpLCBLZXZpbjoNCkNvdWxkIHlvdSBwbGVhc2Ug
-cHJvdmlkZSB0aGUgbWFudWZhY3R1cmVyIGFuZCBtb2RlbCBvZiB0aGUgTS4yIE5WTWUgU1NEDQp5
-b3UgdGVzdGVkPw0KDQo+IEtlcm5lbCBsb2dzIGJlbG93Lg0KPiANCj4gS2V2aW4NCj4gDQo+IFsg
-ICAxNS4xMzEwOTRdIHBjaWUtc3RhcmZpdmUgOWMwMDAwMDAwLnBjaWU6IGhvc3QgYnJpZGdlDQo+
-IC9zb2MvcGNpZUA5YzAwMDAwMDAgcmFuZ2VzOg0KPiBbICAgMTUuMTM4NjM3XSBwY2llLXN0YXJm
-aXZlIDljMDAwMDAwMC5wY2llOiAgICAgIE1FTQ0KPiAweDAwMzgwMDAwMDAuLjB4MDAzZmZmZmZm
-ZiAtPiAweDAwMzgwMDAwMDANCj4gWyAgIDE1LjE0NzE4MF0gcGNpZS1zdGFyZml2ZSA5YzAwMDAw
-MDAucGNpZTogICAgICBNRU0NCj4gMHgwOTgwMDAwMDAwLi4weDA5YmZmZmZmZmYgLT4gMHgwOTgw
-MDAwMDAwDQo+IFsgICAxNS4zNjgwNDBdIHBjaWUtc3RhcmZpdmUgOWMwMDAwMDAwLnBjaWU6IHBv
-cnQgbGluayB1cA0KPiBbICAgMTUuMzc0MjE5XSBwY2llLXN0YXJmaXZlIDljMDAwMDAwMC5wY2ll
-OiBQQ0kgaG9zdCBicmlkZ2UgdG8gYnVzIDAwMDE6MDANCj4gWyAgIDE1LjM4MDk0NF0gcGNpX2J1
-cyAwMDAxOjAwOiByb290IGJ1cyByZXNvdXJjZSBbYnVzIDAwLWZmXQ0KPiBbICAgMTUuMzg2NDQz
-XSBwY2lfYnVzIDAwMDE6MDA6IHJvb3QgYnVzIHJlc291cmNlIFttZW0NCj4gMHgzODAwMDAwMC0w
-eDNmZmZmZmZmXQ0KPiBbICAgMTUuMzkzMzMwXSBwY2lfYnVzIDAwMDE6MDA6IHJvb3QgYnVzIHJl
-c291cmNlIFttZW0NCj4gMHg5ODAwMDAwMDAtMHg5YmZmZmZmZmYgcHJlZl0NCj4gWyAgIDE1LjQw
-MDg4Ml0gcGNpIDAwMDE6MDA6MDAuMDogWzE1NTY6MTExMV0gdHlwZSAwMSBjbGFzcyAweDA2MDQw
-MA0KPiBbICAgMTUuNDA3MTY1XSBwY2kgMDAwMTowMDowMC4wOiBzdXBwb3J0cyBEMSBEMg0KPiBb
-ICAgMTUuNDExNDQ3XSBwY2kgMDAwMTowMDowMC4wOiBQTUUjIHN1cHBvcnRlZCBmcm9tIEQwIEQx
-IEQyIEQzaG90DQo+IEQzY29sZA0KPiBbICAgMTUuNDE5OTY0XSBwY2kgMDAwMTowMDowMC4wOiBi
-cmlkZ2UgY29uZmlndXJhdGlvbiBpbnZhbGlkIChbYnVzIDAwLTAwXSksDQo+IHJlY29uZmlndXJp
-bmcNCj4gWyAgIDE1LjQyODI0NV0gcGNpIDAwMDE6MDE6MDAuMDogWzEyNmY6MjI2M10gdHlwZSAw
-MCBjbGFzcyAweDAxMDgwMg0KPiBbICAgMTUuNDM0MzMxXSBwY2kgMDAwMTowMTowMC4wOiByZWcg
-MHgxMDogW21lbSAweDAwMDAwMDAwLTB4MDAwMDNmZmYNCj4gNjRiaXRdDQo+IFsgICAxNS40NDE1
-NzhdIHBjaSAwMDAxOjAxOjAwLjA6IDQuMDAwIEdiL3MgYXZhaWxhYmxlIFBDSWUgYmFuZHdpZHRo
-LA0KPiBsaW1pdGVkIGJ5IDUuMCBHVC9zIFBDSWUgeDEgbGluayBhdCAwMDAxOjAwOjAwLjAgKGNh
-cGFibGUgb2YgMzEuNTA0IEdiL3Mgd2l0aA0KPiA4DQo+IC4wIEdUL3MgUENJZSB4NCBsaW5rKQ0K
-PiBbICAgMTUuNDU2OTEwXSBwY2lfYnVzIDAwMDE6MDE6IGJ1c25fcmVzOiBbYnVzIDAxLWZmXSBl
-bmQgaXMgdXBkYXRlZCB0byAwMQ0KPiBbICAgMTUuNDYzNTUzXSBwY2kgMDAwMTowMDowMC4wOiBC
-QVIgODogYXNzaWduZWQgW21lbQ0KPiAweDM4MDAwMDAwLTB4MzgwZmZmZmZdDQo+IFsgICAxNS40
-NzAzNTJdIHBjaSAwMDAxOjAxOjAwLjA6IEJBUiAwOiBhc3NpZ25lZCBbbWVtDQo+IDB4MzgwMDAw
-MDAtMHgzODAwM2ZmZiA2NGJpdF0NCj4gWyAgIDE1LjQ3NzY5OV0gcGNpIDAwMDE6MDA6MDAuMDog
-UENJIGJyaWRnZSB0byBbYnVzIDAxXQ0KPiBbICAgMTUuNDgyNjg2XSBwY2kgMDAwMTowMDowMC4w
-OiAgIGJyaWRnZSB3aW5kb3cgW21lbQ0KPiAweDM4MDAwMDAwLTB4MzgwZmZmZmZdDQo+IFsgICAx
-NS40ODk2MzJdIHBjaWVwb3J0IDAwMDE6MDA6MDAuMDogZW5hYmxpbmcgZGV2aWNlICgwMDAwIC0+
-IDAwMDIpDQo+IFsgICAxNS40OTYwMzhdIHBjaWVwb3J0IDAwMDE6MDA6MDAuMDogUE1FOiBTaWdu
-YWxpbmcgd2l0aCBJUlEgNTYNCj4gWyAgIDE1LjUwMjQ3Ml0gdXNiIDEtMTogbmV3IGhpZ2gtc3Bl
-ZWQgVVNCIGRldmljZSBudW1iZXIgMiB1c2luZyB4aGNpX2hjZA0KPiBbICAgMTUuNTA5NzU1XSB1
-c2IgdXNiMi1wb3J0Mjogb3Zlci1jdXJyZW50IGNvbmRpdGlvbg0KPiBbICAgMTUuNTE1ODgzXSBu
-dm1lIG52bWUwOiBwY2kgZnVuY3Rpb24gMDAwMTowMTowMC4wDQo+IFsgICAxNS41MjA2MTVdIG52
-bWUgMDAwMTowMTowMC4wOiBlbmFibGluZyBkZXZpY2UgKDAwMDAgLT4gMDAwMikNCj4gWyAgIDE1
-LjUzMjY4NV0gbnZtZSBudm1lMDogYWxsb2NhdGVkIDY0IE1pQiBob3N0IG1lbW9yeSBidWZmZXIu
-DQo+IFsgICAxNS41NTAwNzBdIG52bWUgbnZtZTA6IDQvMC8wIGRlZmF1bHQvcmVhZC9wb2xsIHF1
-ZXVlcw0KPiBbICAgMTUuNTYyOTkyXSBudm1lIG52bWUwOiBJZ25vcmluZyBib2d1cyBOYW1lc3Bh
-Y2UgSWRlbnRpZmllcnMNCj4gWyAgIDE1LjY2MzMyN10gaHViIDEtMToxLjA6IFVTQiBodWIgZm91
-bmQNCj4gWyAgIDE1LjY2NzMyMF0gaHViIDEtMToxLjA6IDQgcG9ydHMgZGV0ZWN0ZWQNCj4gDQo+
-IFsgICA0Ni4wNjQwNTJdIG52bWUgbnZtZTA6IEkvTyA0MjQgUUlEIDMgdGltZW91dCwgY29tcGxl
-dGlvbiBwb2xsZWQNCj4gDQo+IFsgICA3Ni43ODQwNDZdIG52bWUgbnZtZTA6IEkvTyA0MjUgKEkv
-TyBDbWQpIFFJRCAzIHRpbWVvdXQsIGFib3J0aW5nDQo+IFsgICA3Ni43OTAxNzldIG52bWUgbnZt
-ZTA6IEkvTyA0MjYgKEkvTyBDbWQpIFFJRCAzIHRpbWVvdXQsIGFib3J0aW5nDQo+IFsgICA3Ni43
-OTYyOTRdIG52bWUgbnZtZTA6IEkvTyA0MjcgKEkvTyBDbWQpIFFJRCAzIHRpbWVvdXQsIGFib3J0
-aW5nDQo+IFsgICA3Ni44MDI0MTFdIG52bWUgbnZtZTA6IEkvTyA0MjggKEkvTyBDbWQpIFFJRCAz
-IHRpbWVvdXQsIGFib3J0aW5nDQo+IFsgICA3Ni44MDg1MjVdIG52bWUgbnZtZTA6IEkvTyA0Mjkg
-KEkvTyBDbWQpIFFJRCAzIHRpbWVvdXQsIGFib3J0aW5nDQoNCg==
+Hi Luo,
+
+thank you for explaining the case in such details. I also have checked 
+the related DTSs in the Linaro repository to be more familiar with the 
+I/O mem layout. Specifically I checked these two, hope they are relevant 
+to the discussion:
+https://git.codelinaro.org/clo/qsdk/oss/kernel/linux-ipq-5.4/-/blob/NHSS.QSDK.12.4.r3/arch/arm64/boot/dts/qcom/ipq5332.dtsi
+https://git.codelinaro.org/clo/qsdk/oss/kernel/linux-ipq-5.4/-/blob/NHSS.QSDK.12.4.r3/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+
+Please find my comments below.
+
+On 03.01.2024 15:31, Jie Luo wrote:
+> On 1/2/2024 7:01 AM, Sergey Ryazanov wrote:
+>> Hi Luo,
+>>
+>> I have a few questions regarding the high level design of 
+>> implementation. I hope that clarifying these topics will help us to 
+>> find a good model for the case and finally merge a supporting code. 
+>> Please find the questions below.
+>>
+>> On 25.12.2023 10:44, Luo Jie wrote:
+>>> For IPQ5332 platform, there are two MAC PCSs, and qca8084 is
+>>> connected with one of them.
+>>>
+>>> 1. The Ethernet LDO needs to be enabled to make the PHY GPIO
+>>>     reset taking effect, which uses the MDIO bus level reset.
+>>>
+>>> 2. The SoC GCC uniphy AHB and SYS clocks need to be enabled
+>>>     to make the ethernet PHY device accessible.
+>>>
+>>> 3. To provide the clock to the ethernet, the CMN clock needs
+>>>     to be initialized for selecting reference clock and enabling
+>>>     the output clock.
+>>>
+>>> 4. Support optional MDIO clock frequency config.
+>>>
+>>> 5. Update dt-bindings doc for the new added properties.
+>>>
+>>> Changes in v2:
+>>>     * remove the PHY related features such as PHY address
+>>>       program and clock initialization.
+>>>     * leverage the MDIO level GPIO reset for qca8084 PHY.
+>>>
+>>> Changes in v3:
+>>>     * fix the christmas-tree format issue.
+>>>     * improve the dt-binding changes.
+>>>
+>>> Changes in v4:
+>>>     * improve the CMN PLL reference clock config.
+>>>     * improve the dt-binding changes.
+>>>
+>>> Luo Jie (5):
+>>>    net: mdio: ipq4019: move eth_ldo_rdy before MDIO bus register
+>>>    net: mdio: ipq4019: enable the SoC uniphy clocks for ipq5332 platform
+>>>    net: mdio: ipq4019: configure CMN PLL clock for ipq5332
+>>>    net: mdio: ipq4019: support MDIO clock frequency divider
+>>>    dt-bindings: net: ipq4019-mdio: Document ipq5332 platform
+>>>
+>>>   .../bindings/net/qcom,ipq4019-mdio.yaml       | 141 ++++++++-
+>>>   drivers/net/mdio/mdio-ipq4019.c               | 288 ++++++++++++++++--
+>>>   2 files changed, 399 insertions(+), 30 deletions(-)
+>>
+>> I'm asking these questions because after checking the patches and 
+>> following the earlier discussion, the series is looks like an 
+>> overloading of the MDIO driver with somehow but not strictly related 
+>> functionality.
+>>
+>>
+>> First, let me summarize the case. Feel free to correct me if I took 
+>> something wrong. So, we have:
+>> - a reference design contains IPQ5332 SoC + QCA8084 switch/Phy;
+> 
+> IPQ5322 SoC is currently connected with qca8386(switch that includes
+> QCA8084 PHY), the pure PHY chip qca8084 is currently connected on the
+> SoC IPQ9574.
+
+As far as I understand these chips have standardized interfaces and 
+QCA8386/QCA8084 can be reused with another SoC(s) in future. As well as 
+IPQ5332 can be used with different phy. So now we are talking about some 
+specific reference design. Isn't it?
+
+>> - QCA8084 requires a reference clock for normal functionality;
+> 
+> The reference clock is selected for the CMN PLL block, which outputs
+> the clocks to the Ethernet devices including the qca8084 PHY for normal
+> functionality, also for other connected Ethernet devices, the CMN PLL
+> block is located in SoC such as ipq5332 and ipq9574.
+> 
+>> - IPQ5332, as a chip, is able to provide a set of reference clocks for 
+>> external devices;
+> 
+> Yes, the CMN PLL block of IPQ5332 provides the output clocks as the
+> working clocks for the external Ethernet devices such as the QCA8386
+> (switch chip), the reference clocks we are discussing is as the
+> reference clock source of the CMN PLL block.
+
+Ok, I feel we have some ambiguity regarding the reference clock term 
+here. Sure, CMN PLL needs a reference clock to functioning. And in the 
+same time, the output clock provided by CMN PLL is a reference clock for 
+QCA8384.
+
+So, when I was talking about IPQ5332, I meant the whole chip including 
+CMN PLL block. So, I asked about CMN PLL output clock. But you already 
+clarified the SoC capabilities below.
+
+>> - you want to configure IPQ5332 to provide the reference clock for 
+>> QCA8084.
+> 
+> The reference clocks for CMN PLL block is configurable, and the output
+> clocks of CMN PLL are fixed, the output clocks are 50MHZ, which is given
+> to the external Ethernet devices.
+> here is the topology of clocks.
+>                     ---------
+>                     |        |
+> reference clock --->| CMN PLL|--> output 50M clocks --> qca8084/qca8386
+>                     |        |
+>                     ---------
+>>
+>>
+>> So, the high level questions are:
+>> 1. Is QCA8084 capable to consume the clock from some other generator? 
+>> Is it possible to clock QCA8084 from external XO/PLL/whatever?
+> No, the clock of qca8084/qca8386 is provided from the output clock of
+> CMN PLL as above.
+
+Right, in case of pairing QCA8386 with IPQ5332, it is a good option to 
+provide the clock from the SoC. But in general QCA8386 will be Ok with 
+any 50 MHz clock. Right? I would like to say that thinking about this 
+specific reference design being a single possible combination limits a 
+scope of driver implementation options.
+
+>> 2. Is IPQ5332 capable to provide reference clock to another switch model?
+> 
+> Yes, IPQ5332 can provide the reference clock to all connected Ethernet
+> devices, such as qca8386(switch), qca8081 phy and others.
+
+Ok. Thank you for clarifying this.
+
+>> 3. Is the reference clock generation subsystem part of the MDIO block 
+>> of IPQ5332?
+> 
+> the reference clock of CMN PLL block can be from wifi and external xtal, 
+> the CMN PLL is integrated in the MDIO block, CMN PLL is the independent
+> block that generates the clocks for the connected Ethernet devices.
+> 
+>>
+>>
+>> And there are some tiny questions to make sure that we are on the same 
+>> page:
+>> a. What is the mentioned Ethernet LDO? AFAIK, LDO is some kind of gate 
+>> (or switch) that enables clock output through an IPQ5332 pin. Isn't it?
+> 
+> That's correct, the LDO is for enabling the output 50M clock of CMN PLL
+> to the connected Ethernet device, which is controlled by the hardware
+> register on the IPQ5332.
+> 
+>> And if it's true, then can you clarify, what exactly clock is outputted?
+> 
+> the 50M clock is outputted to the external Ethernet devices.
+> 
+>> b. Is the Ethernet LDO part of the MDIO block of IPQ5332? According to 
+>> iomem addresses that was used in the example reg property, the 
+>> Ethernet LDO is not part of MDIO.
+> 
+> LDO is not the part of MDIO block, LDO has the different register space
+> from MDIO, which is located in the independent Ethernet part.
+
+I have checked the Linaro's DTSs and noticed that mentioned LDO 
+addresses belong to a node called 'ess-uniphy'. So these LDO(s) are part 
+of UNIPHY block. So far, so good.
+
+>> c. Is the CMN PLL part of the MDIO block of IPQ5332? Again, according 
+>> to iomem address, the CMN PLL is not part of MDIO.
+> 
+> No, CMN PLL is not the part of MDIO block, which is the independent
+> block, but it generates the clocks to the connected Ethernet devices
+> managed by MDIO bus, and the CMN PLL block needs to be configured
+> correctly to generate the clocks to make the MDIO devices(Ethernet
+> devices) working.
+
+I came to the same conclusion checking Linaro's DTS. So the CMN PLL 
+block looks like a small block implemented outside of any other block. 
+Now I am starting to understand, why everything was putted into the MDIO 
+driver. This PLL is so small that it doesn't seem to deserve a dedicated 
+driver. Am I got it right?
+
+>> d. Are GCC AHB & SYS clocks really consumed by MDIO itself? Or are 
+>> they need for the external reference clock generation?
+> 
+> GCC AHB & SYS clocks are consumed by the uniphy(PCS) that is connected
+> with the Ethernet devices, so we can say the GCC AHB & SYS clocks are
+> consumed by the Ethernet devices, which is not for the external
+> reference clock generation, external reference clock of CMN PLL are the
+> fix clock that are from wifi or external XO.
+
+Again this UNIPHY block. The UNIPHY node was missed from the upstream 
+DTS, so it was decided to assign AHB & SYS clocks to MDIO. Right?
+
+What do you think about implementing this clocks handling functionality 
+in a dedicated driver (e.g. uniphy) and create a dedicated DTS node for 
+it? This driver could consume AHB & SYS clocks as well as consuming CMN 
+PLL clock and be a clock provider for the Ethernet PHY (e.g. QCA8336).
+
+And looks like CMN PLL should be implemented as a dedicated micro 
+driver. A driver that consumes fixed reference clocks (XO or from WiFi) 
+and provides the clock to UNIPHY, to be passed to the Ethernet PHY by 
+means of LDO gate.
+
+>> To speed up the discussion, let me share my user's view of the 
+>> reference clocks modeling. I would like to join the option that has 
+>> already been suggested by the maintainers. It is better to implement 
+>> reference clocks handling using the clocks API, and the clock 
+>> subsystem will take care of enabling and configuring them.
+>>
+>> And considering the expected answers to the above questions, I would 
+>> like to suggest to implement the clock handling using a dedicated 
+>> clock controlling driver. Or even using several of such tiny dedicated 
+>> drivers. So DTS will become like this:
+>>
+>>    ext_ref_clock: ext_ref_clock {
+>>      compatible = "fixed-clock";
+>>      clock-frequency = <48000000>;
+>>    };
+>>
+>>    eth_cmn_pll: clock-controller@9b000 {
+>>      compatible = "qcom,eth-cmn-pll-ipq5223";
+>>      reg = <0x9b000 0x800>;
+>>      clocks = <&ext_ref_clock>; /* use external 48MHz clock */
+>>    };
+>>
+>>    phy0_ext_clk: clock-controller@7a00610 {
+>>      compatible = "qcom,ipq-eth-ldo";
+>>      reg = <0x7a00610 0x4>;
+>>      clocks = <&eth_cmn_pll>;
+>>    };
+>>
+>>    mdio@90000 {
+>>      compatible = "qcom,ipq4019-mdio";
+>>      reg = <0x90000 0x64>;
+>>      clocks = <&gcc GCC_MDIO_AHB_CLK>;
+>>
+>>      ethernet-phy@1 {
+>>        compatible = "...";
+>>        reg = <1>;
+>>        clocks = <&phy0_ext_clk>;
+>>        reset-gpios = <&gcc ...>;
+>>      };
+>>    };
+> 
+> Thanks Sergey for the reference DTS.
+> Since the GPIO reset of qca8084/qca8386 is needed before configuring the
+> Ethernet device.
+> 
+> The configuration of and phy0_ext_clk(LDO) should be configured
+> firstly, which enables the clocks to the Ethernet devices, then the GPIO
+> reset of the connected Ethernet devices(such as qca8386) can take
+> effect, currently the GPIO reset takes the MDIO bus level reset.
+> 
+> So phy0_ext_clk can't be put in the PHY device tree node, one LDO
+> controls the clock output enabled to the connected Ethernet device such
+> as qca8386.
+
+I still feel lost. Why it is impossible to specify clocks and resets in 
+the PHY node and then implement the initialization sequence in the 
+QCA8386 driver? I read the discussion of the QCA8386 driver submission. 
+That driver modeling also looks a complex task. But it still puzzling 
+me, why a part of the QCA8386 driver should be implemented inside the 
+MDIO driver.
+
+--
+Sergey
 
