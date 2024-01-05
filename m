@@ -1,64 +1,54 @@
-Return-Path: <devicetree+bounces-29850-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29851-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB1168251CB
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jan 2024 11:22:57 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A866B8251F1
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jan 2024 11:28:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 93C072828A6
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jan 2024 10:22:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 330271F22082
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jan 2024 10:28:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAF0D24B48;
-	Fri,  5 Jan 2024 10:22:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8332124B59;
+	Fri,  5 Jan 2024 10:27:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dOFAPwkS"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="FeKeyRfM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 305F328E1A
-	for <devicetree@vger.kernel.org>; Fri,  5 Jan 2024 10:22:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-2ccec119587so16992371fa.0
-        for <devicetree@vger.kernel.org>; Fri, 05 Jan 2024 02:22:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704450169; x=1705054969; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Otn9loBBsw/UzqwebEZy3Ooa0CujzEAcJwFz8Zj1BXs=;
-        b=dOFAPwkSAsJq5YJUiju4J4fVJz0ZZ0Ky14HRIGt40H8EG8j+SXQVMFUUPmE1PGDfsd
-         wmGVc9s2cytmOHs83v1AY5GlxQqu4zXrB7ic70u71nFRkU5wVSkMRLUBpVbzM2ZHfcRy
-         gMDDroO+8usoVtxCxb9xQV/9H/Ky2W1tSOfAXxoBlX4/MrfkCmESsjnLj/NicbL8sVV4
-         cl7pgnGN63tNP8A78galhMAh9rZsobnRg1PjqGZaUp3mRMOmNOV+//cQbbmhZlledYCh
-         r1lB1AXZZDON/hnwU/8ZRrhwGGqnS33FfxNsZaxgPL7TCzXlZ0LrxoAkMxCEU90Y1F8B
-         uwKA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704450169; x=1705054969;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Otn9loBBsw/UzqwebEZy3Ooa0CujzEAcJwFz8Zj1BXs=;
-        b=a8LZxumifkpiecuHwudw1dmdesZppmggKm575g92CNsAke2UlcgcqGhZ4Wny4B3MKQ
-         xuflikxnTrtVDQ2ryp6zeQqLXQY+whNZFauKYNq1GruujyhrUeQhVKIncFsssENQLxXh
-         6Nb6BGz2fnJchfOuDKHb7kohqwiMIPfbIbWS0fvI7Izwf+uy9YFehaAedQN/AwAi0hvt
-         snbxdE8YyfYa/OrTmggm5gSWRtcjJIu4ZDWrybl/LRN5CvXEyBzTOnNGsWeYsywp8IpL
-         dhOpOoIRQyu+oZ6zy/TmGGL1L0O6AzH08GPafZQzU3RqW9W7HJsy8Kvlx+8omHkuLy9i
-         8sZA==
-X-Gm-Message-State: AOJu0YzNwPE8Mkjs+X7u4DUpkAEe3Y3mNrf2ECf2PHYWZMo7RK4qTm4r
-	4gkUe3z3C16P9u+uyiAAQxGvLZR7xSGMNw==
-X-Google-Smtp-Source: AGHT+IE2UecOtUprnsE+wTP7UJCkRZPB7fx0sJ/qDDVGHx8WV3NGtKzjOZu+swh/2+L77+HG7FmkwQ==
-X-Received: by 2002:a2e:a9a2:0:b0:2cc:6bf6:cdc6 with SMTP id x34-20020a2ea9a2000000b002cc6bf6cdc6mr1295046ljq.7.1704450169091;
-        Fri, 05 Jan 2024 02:22:49 -0800 (PST)
-Received: from [192.168.2.107] ([79.115.63.202])
-        by smtp.gmail.com with ESMTPSA id ek21-20020a056402371500b0055732bd1fc0sm474638edb.82.2024.01.05.02.22.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 05 Jan 2024 02:22:48 -0800 (PST)
-Message-ID: <19746c85-6eff-4f63-9370-9592ad73f22c@linaro.org>
-Date: Fri, 5 Jan 2024 10:22:46 +0000
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C65032CCB8;
+	Fri,  5 Jan 2024 10:27:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 4058CtSL006789;
+	Fri, 5 Jan 2024 10:27:26 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=EkP5kIkm5I5NQXP6fb85AU2ocIb7I4jlvhR2pOBwxJ0=; b=Fe
+	KeyRfMSUAvuqedJh4yvFULzK3tqltvUsNdey0qBe6wLT9kXbU+LDZ40sZmoTPFyK
+	OLE1kMyIMAmL9NEEXKGkJXRK1JOshOADuGY4v8c1g8uCdZ6GVDfMY/Bau/0B5iBf
+	c0Vbd0yA3Yvm4LX3/1gLBCvlAO9nt4eg3M9YZpZhXxq4c9ktQGn2H3biURuPoCPY
+	edpMnInuPsYN9MdF4DhAK5an6HUxRXnoMm8A+STlihqaVFAux0WjOk3+u6n5nKbV
+	Kz8gy/7NrRSRVetf6MoRVgBSi8wriVVaTkqjo/i6Ysjo4yAAfdynKkLoTHyrepXS
+	+jt6v5C38bVR+/ydliow==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ve98hrrvu-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 05 Jan 2024 10:27:25 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 405AR2Qe021417
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 5 Jan 2024 10:27:02 GMT
+Received: from [10.253.39.156] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Fri, 5 Jan
+ 2024 02:26:58 -0800
+Message-ID: <b427c89a-81a9-439f-905e-2a6632065b78@quicinc.com>
+Date: Fri, 5 Jan 2024 18:26:55 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,134 +56,148 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 04/12] tty: serial: samsung: prepare for different IO
- types
+Subject: Re: [PATCH v8 14/14] dt-bindings: net: ar803x: add qca8084 PHY
+ properties
+To: Andrew Lunn <andrew@lunn.ch>
+CC: Christian Marangi <ansuelsmth@gmail.com>,
+        "Russell King (Oracle)"
+	<linux@armlinux.org.uk>,
+        <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
+        <pabeni@redhat.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <hkallweit1@gmail.com>, <corbet@lwn.net>, <p.zabel@pengutronix.de>,
+        <f.fainelli@gmail.com>, <netdev@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-doc@vger.kernel.org>
+References: <7c05b08a-bb6d-4fa1-8cee-c1051badc9d9@lunn.ch>
+ <ZX2rU5OFcZFyBmGl@shell.armlinux.org.uk>
+ <6abe5d6f-9d00-445f-8c81-9c89b9da3e0a@quicinc.com>
+ <ZX3LqN8DSdKXqsYc@shell.armlinux.org.uk>
+ <1bddd434-024c-45ff-9866-92951a3f555f@quicinc.com>
+ <ZZPeHJJU96y1kdlZ@shell.armlinux.org.uk>
+ <6593e0a3.050a0220.5c543.8e12@mx.google.com>
+ <cee9de2c-bfa4-4ca9-9001-725e2041bc25@quicinc.com>
+ <85590a5b-9d5a-40cb-8a0e-a3a3a1c3720a@lunn.ch>
+ <c5263daa-b5f4-4b9c-a216-73d68493a802@quicinc.com>
+ <50252a5a-e4fb-42d3-b838-9ef04faf4c5c@lunn.ch>
 Content-Language: en-US
-To: Greg KH <gregkh@linuxfoundation.org>
-Cc: peter.griffin@linaro.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
- sboyd@kernel.org, conor+dt@kernel.org, andi.shyti@kernel.org,
- alim.akhtar@samsung.com, jirislaby@kernel.org, s.nawrocki@samsung.com,
- tomasz.figa@gmail.com, cw00.choi@samsung.com, arnd@arndb.de,
- semen.protsenko@linaro.org, andre.draszik@linaro.org, saravanak@google.com,
- willmcvicker@google.com, linux-arm-kernel@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-i2c@vger.kernel.org, linux-serial@vger.kernel.org,
- kernel-team@android.com
-References: <20231228125805.661725-1-tudor.ambarus@linaro.org>
- <20231228125805.661725-5-tudor.ambarus@linaro.org>
- <2024010432-taco-moneyless-53e2@gregkh>
- <a3a9df6a-4270-4076-9e9b-ce2fc7284d54@linaro.org>
- <2024010450-heritage-variety-d72d@gregkh>
-From: Tudor Ambarus <tudor.ambarus@linaro.org>
-In-Reply-To: <2024010450-heritage-variety-d72d@gregkh>
-Content-Type: text/plain; charset=UTF-8
+From: Jie Luo <quic_luoj@quicinc.com>
+In-Reply-To: <50252a5a-e4fb-42d3-b838-9ef04faf4c5c@lunn.ch>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: zHj3boj0OggfIBob6oxflhmprqOH5DoK
+X-Proofpoint-GUID: zHj3boj0OggfIBob6oxflhmprqOH5DoK
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-12-09_02,2023-12-07_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 impostorscore=0
+ bulkscore=0 mlxlogscore=999 malwarescore=0 mlxscore=0 adultscore=0
+ suspectscore=0 clxscore=1015 priorityscore=1501 lowpriorityscore=0
+ spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2311290000 definitions=main-2401050089
 
 
 
-On 1/4/24 15:56, Greg KH wrote:
-> On Thu, Jan 04, 2024 at 03:41:28PM +0000, Tudor Ambarus wrote:
+On 1/4/2024 9:57 PM, Andrew Lunn wrote:
+>> 1. For IPQ SoC series, there are only ipq4019, ipq5018, ipq6018,
+>> ipq8074 documented in the current dt-bindings doc qcom,ipq4019-mdio.yaml
+>> and ipq9574, ipq5332 that are being added by the MDIO patch, and one
+>> more ipq8064 whose MDIO driver is mdio-ipq8064.c, on more others.
 >>
+>> 2. For qca8084(pure PHY chip), which is the quad-phy chip, which is just
+>>     like qca8081 PHY(single port PHY), each port can be linked to maximum
+>>     speed 2.5G.
 >>
->> On 1/4/24 15:32, Greg KH wrote:
->>> On Thu, Dec 28, 2023 at 12:57:57PM +0000, Tudor Ambarus wrote:
->>>> GS101's Connectivity Peripheral blocks (peric0/1 blocks) which
->>>> include the I3C and USI (I2C, SPI, UART) only allow 32-bit
->>>> register accesses. If using 8-bit register accesses, a SError
->>>> Interrupt is raised causing the system unusable.
->>>>
->>>> Instead of specifying the reg-io-width = 4 everywhere, for each node,
->>>> the requirement should be deduced from the compatible.
->>>>
->>>> Prepare the samsung tty driver to allow IO types different than
->>>> UPIO_MEM. ``struct uart_port::iotype`` is an unsigned char where all
->>>> its 8 bits are exposed to uapi. We can't make NULL checks on it to
->>>> verify if it's set, thus always set it from the driver's data.
->>>>
->>>> Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
->>>> ---
->>>> v2: new patch
->>>>
->>>>  drivers/tty/serial/samsung_tty.c | 9 ++++++++-
->>>>  1 file changed, 8 insertions(+), 1 deletion(-)
->>>>
->>>> diff --git a/drivers/tty/serial/samsung_tty.c b/drivers/tty/serial/samsung_tty.c
->>>> index 66bd6c090ace..97ce4b2424af 100644
->>>> --- a/drivers/tty/serial/samsung_tty.c
->>>> +++ b/drivers/tty/serial/samsung_tty.c
->>>> @@ -72,6 +72,7 @@ struct s3c24xx_uart_info {
->>>>  	const char		*name;
->>>>  	enum s3c24xx_port_type	type;
->>>>  	unsigned int		port_type;
->>>> +	unsigned char		iotype;
->>>>  	unsigned int		fifosize;
->>>>  	unsigned long		rx_fifomask;
->>>>  	unsigned long		rx_fifoshift;
->>>
->>> Is there a reason you are trying to add unused memory spaces to this
->>> structure for no valid reason?  I don't think you could have picked a
->>> more incorrect place in there to add this :)
->>>
->>> Please fix.
->>>
->>
->> Will put it after "const char *name".
+>>     For qca8386(switch chip), which includes the same PHY CHIP as qca8084
+>>     (4 physical ports and two CPU ports), qca8386 switch can work with
+>>     the current qca8k.c DSA driver with the supplement patches.
 > 
-> If you do, spend some time with the tool, pahole, and see if that's
-> really the best place for it or not.  Might be, might not be, but you
-> should verify it please.
+> Is the qca8386 purely a switch plus integrated PHYs? There is no CPU
+> on it? What is the management path? MDIO?
+
+Yes, qca8386 is a pure switch plus integrated PHYs(same PHY type as
+qca8084), there is no CPU on qca8386, the management path is MDIO.
+the access of switch register is by the multiple MDIO operations.
+
 > 
+>>
+>>     Both qca8084 and qca8386 includes same network clock controller(let's
+>>     call it NSSCC, since this clock controller is located in the
+>>     Ethernet chip qca8084 and qca8386), they have the same clock initial
+>>     configuration sequence to initialize the Ethernet chip.
+> 
+> You said For "qca8084(pure PHY chip)". Here you just called it an
+> Ethernet chip? To me, and Ethernet chip is a MAC, Intel e1000e etc.
+> Do you now see how your explanations are confusing. Is it s pure PHY,
+> or is it an Ethernet chip?
 
-Thanks!
+My bad, sorry for this confusion.
+qca8084 is a pure PHY, there is no MAC in qca8084.
 
-I played with pahole a bit. For arm32 this struct is not as bad defined
-as for arm64, all members fit in the same cacheline. There are some
-holes though and 2 cachelines for arm64 where this struct needs some
-love. The best and minimum invasive change for my iotype member would be
-to put it before the "has_divslot" member, as the has_divslot bitfield
-will be combined with the previous field.
+> 
+> O.K. Since we are getting nowhere at the moment, lets take just the
+> pure PHY chip, and ignore the rest for the moment.
+> 
+> For any pure PHY, there is generally one clock input, which might be a
+> crystal, or an actual clock. If you look at other DT bindings for
+> PHYs, it is only listed if the clock is expected to come from
+> somewhere else, like a SoC, and it needs to be turned on before the
+> PHY will work. And generally, a pure PHY has one defined clock
+> frequency input. If that is true, there is no need to specify the
+> clock. If multiple clock input frequencies are supported, then you do
+> need to specify the clock, so its possible to work out what frequency
+> it is using. How that clock input is then used internally in the PHY
+> is not described in DT, but the driver can set any dividers, PLLs
+> needed etc.
 
-But I think the entire struct has to be reworked and the driver
-butchered a bit so that we get to a better memory footprint and a single
-cacheline. I volunteer to do this in a separate patch set so that we
-don't block this series. I think the final struct can look as following:
+Yes, Andrew, there is only one clock input to qca8084(same as qca8386),
+this input clock rate is 50MHZ, which is from the output clock of CMN
+PLL block that is configured by the MDIO bus driver patch under review.
 
-struct s3c24xx_uart_info {
-	const char  *              name;                 /*     0     8 */
-	enum s3c24xx_port_type     type;                 /*     8     4 */
-	unsigned int               port_type;            /*    12     4 */
-	unsigned int               fifosize;             /*    16     4 */
-	u32                        rx_fifomask;          /*    20     4 */
-	u32                        rx_fifoshift;         /*    24     4 */
-	u32                        rx_fifofull;          /*    28     4 */
-	u32                        tx_fifomask;          /*    32     4 */
-	u32                        tx_fifoshift;         /*    36     4 */
-	u32                        tx_fifofull;          /*    40     4 */
-	u32                        clksel_mask;          /*    44     4 */
-	u32                        clksel_shift;         /*    48     4 */
-	u32                        ucon_mask;            /*    52     4 */
-	u8                         def_clk_sel;          /*    56     1 */
-	u8                         num_clks;             /*    57     1 */
-	u8                         iotype;               /*    58     1 */
-	u8                         has_divslot:1;        /*    59: 0  1 */
+In qca8084(same as qca8386), there is a clock controller, let's call it
+as NSSCC, the logic of NSSCC is same as qualcomm GCC(located in SoC),
+the NSSCC provides the clocks to the quad PHYs, the initial clocks for
+quad PHYs need to be configured before PHY to work.
 
-	/* size: 64, cachelines: 1, members: 17 */
-	/* padding: 4 */
-	/* bit_padding: 7 bits */
-};
+These clocks and resets are provided by the NSSCC provider driver,
+i need to define these clocks and resets in DT to use it.
 
+> 
+> So, for the pure PHY chip, what is the pinout? Is there one clock
+> input? Or 4 clock inputs, one per PHY in the quad package? Typically,
+> where does this/these clocks come from? Is the frequency fixed by the
+> design, or are a number of input frequencies supported?
 
-This looks a lot better than what we have now:
-	/* size: 120, cachelines: 2, members: 17 */
-	/* sum members: 105, holes: 2, sum holes: 8 */
-	/* sum bitfield members: 1 bits (0 bytes) */
-	/* padding: 4 */
-	/* bit_padding: 23 bits */
-	/* last cacheline: 56 bytes */
+There is one 50M clock input for qca8084(same as qca8386), the input
+clock is generated from the CMN PLL block that is configured by MDIO
+driver patch of mdio-ipq4019.c.
+The frequency of input clock is fixed to 50MHZ.
 
-I'll put iotype before has_divslot and then follow up with a patch set
-to clean the driver. Cheers,
-ta
+> 
+>>    The Ethernet chip qca8084 and qca8386 are only connected with IPQ SoC,
+>>    Currently qca8084 is connected with IPQ SoC by 10G-QXGMII mode.
+>>    the 4 PHYs of qca8386 are connected with the internal MAC of qca8386
+>>    by GMII, the maximum speed is also 2.5G.
+>>    The port4 of qca8084 or qca8386 is optionally be able to connected
+>>    with IPQ SoC by sgmii.
+> 
+> To some extent, this does not matter. The DT binding and the driver
+> should not care what the pure PHY is connected to. It has standardised
+> ports, so in theory it could be connected to any vendors MAC.
+
+Yes, it can be connected with any vendors MAC with the interface mode
+supported.
+
+> 
+> Please be very careful with your wording. Because computers
+> instructions should be unambiguous, it does what it is told, we also
+> expect computer scientists to be unambiguous. Wording is very
+> important.
+> 
+>         Andrew
+Got it. Thanks Andrew for the comments and suggestions.
 
