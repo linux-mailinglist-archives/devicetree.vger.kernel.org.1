@@ -1,179 +1,523 @@
-Return-Path: <devicetree+bounces-29814-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29815-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id B64A2824DCF
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jan 2024 05:54:39 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B358824E51
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jan 2024 06:59:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 300E6B220B3
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jan 2024 04:54:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2C53B1C21AA0
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jan 2024 05:59:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE9C9524C;
-	Fri,  5 Jan 2024 04:54:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78015566F;
+	Fri,  5 Jan 2024 05:59:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="hgiuhsQF"
+	dkim=pass (2048-bit key) header.d=marvell.com header.i=@marvell.com header.b="hdw+IV7Z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (mail-mw2nam12on2051.outbound.protection.outlook.com [40.107.244.51])
+Received: from mx0b-0016f401.pphosted.com (mx0a-0016f401.pphosted.com [67.231.148.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50BD05228;
-	Fri,  5 Jan 2024 04:54:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=kWu1xHngqbfdp2Sw0ggPeJnB3ehuTI8zD3ksUxawk2sobubHujoDt5ZXK0IelJM5ZE3ZjTRl0iqfq3XnhW4IK7ujiNsT96PsN26QqmFz+18VMbaOavwmyPzkOuyIXQCRqihW7MegFz1YgzTpQxKsoYaubW0MvVrnjgH6KprBaW2LQznvydf2dnPKCQDvKGuG8l07FB8pR8zLfr+KW4RUYDN8VxjuaRzFm1Eicl1+78Sug1hRa1KkwU+go8eykjZHXuvRrqpEF+4kRs87/PButgtb52+bSt7DfQH+B4QyYNNad0BbVZg2FkQJQJBcMxCgBkZ1UC4JbZyo9c69bbbuAA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Z9Q01E6HOzlASmQ34hVpCXl9hlptHHM5uIRpczARrrU=;
- b=OV3ZhAsmZXWS3YmOBfxo13c6JZlTim0Gw0pAb0Mm4ve9PE/HslVC8XpQmYhFqvtgjIVPEDbEbh/sVmgGtfMiKKVvWVo6Hl6Sao2XmvGLIkQEt48pl6zmuvCZ51uTPjGc98wHBfIhAK2gCjyUwoVyTWjW36C77vlGxIPD8eY4gr1Fiaas/OixNGdGnysxZmFqFxpibVkzyr4nvRbCU7SK6cE4pp9bHyg3DOEeC5lhrSYzqFPBpl/ZqTxzY9WIPFv/giBEbRsOCXfIGhoZj95LfHztMNc0Pbj0ir4y+qc208kgxVTtSrri5O+0hC+aZPZcVBMHA7GU+9CAwon2QCZyDw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Z9Q01E6HOzlASmQ34hVpCXl9hlptHHM5uIRpczARrrU=;
- b=hgiuhsQFc7zLoDkh7Lu+IvLPKxQK1fOZDd5EsxtquD6VlssFECl6bRPl64LzX/31CKSPECa6QliiE5sfrzufFeyr6k3aYNHVY4pn29EabAZThxzdIVMUhVypVgYF1RfO2UjO5wXgdD90A7328BfZtACrs8EiXSrrI14ItBCy0NAJgHamMiteia/4BR1HhfQnv/t3EnHLM8pb2b/WkgYGFMuxGxpDMQoHdGFzA3bIOvW9wqV7qDSoKl0OfwqRMh2T5ZV4ysy4U5+/2PKYp+OScjC17mcp3M2Wqj7DwhqAruJuyhWm5m7kZc2CNk4bBIA7pMwTnQqfDUtdS4mf8VYX4A==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from BYAPR12MB3205.namprd12.prod.outlook.com (2603:10b6:a03:134::32)
- by BN9PR12MB5276.namprd12.prod.outlook.com (2603:10b6:408:101::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7159.16; Fri, 5 Jan
- 2024 04:54:27 +0000
-Received: from BYAPR12MB3205.namprd12.prod.outlook.com
- ([fe80::48ee:1bc7:7fdf:cd13]) by BYAPR12MB3205.namprd12.prod.outlook.com
- ([fe80::48ee:1bc7:7fdf:cd13%7]) with mapi id 15.20.7159.015; Fri, 5 Jan 2024
- 04:54:26 +0000
-Message-ID: <3faec2e9-8cd9-46f9-8807-801922de0edf@nvidia.com>
-Date: Fri, 5 Jan 2024 10:24:18 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: Query on audio-graph-card DT binding
-Content-Language: en-US
-To: Mark Brown <broonie@kernel.org>, Thierry Reding <thierry.reding@gmail.com>
-Cc: alsa-devel@alsa-project.org,
- Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
- devicetree@vger.kernel.org, robh+dt@kernel.org,
- Jon Hunter <jonathanh@nvidia.com>, linux-tegra@vger.kernel.org
-References: <dfe363ef-4638-4b5e-8308-73e286ac0b50@nvidia.com>
- <ZZblyhfzQjzyoUc_@orome.fritz.box>
- <42c0c4fa-585e-4194-bbe4-e0377c87e632@sirena.org.uk>
-From: Sameer Pujar <spujar@nvidia.com>
-In-Reply-To: <42c0c4fa-585e-4194-bbe4-e0377c87e632@sirena.org.uk>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: PN2PR01CA0254.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:c01:21a::20) To BYAPR12MB3205.namprd12.prod.outlook.com
- (2603:10b6:a03:134::32)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 948A95662;
+	Fri,  5 Jan 2024 05:59:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=marvell.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=marvell.com
+Received: from pps.filterd (m0045849.ppops.net [127.0.0.1])
+	by mx0a-0016f401.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 4052r2PD027805;
+	Thu, 4 Jan 2024 21:58:56 -0800
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=marvell.com; h=
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding:content-type; s=pfpt0220; bh=5b+Yw0sr
+	dsjGS+3Far3ocJc2qc2tip4F4NbPVbL6coU=; b=hdw+IV7ZOc1K97KNdXhVgVb/
+	Q7jJbPEz+c/MxNrTK1E/WVxcyJdO1OQsbtr0PS2TJW8PUPFydwBU7L1E7t3h2VJn
+	120IeijwDD9lPKw9PFTDZQOxCwC9oawqp7tOxiocwD2Dj1L1xHk4ZhhT7p6PVP5W
+	edA1t7N98XXr+RTab+GfvWIiCZP+AX4IiNNdQ9dM7RNr/r+inV1wF8EzJTX3luHw
+	rHlybhqZbRG4Tu0eHPNwkR4Le+9BBB0aXPoOA6VsNaFB4/ilyz4HUujO+aAg3pxj
+	QvSf0exS3ghHBBOXmse5O0CNcAjOlJYwgYtqwikLnPWEM7jRO1PseMHLvioVLQ==
+Received: from dc5-exch01.marvell.com ([199.233.59.181])
+	by mx0a-0016f401.pphosted.com (PPS) with ESMTPS id 3ve9c7gdq0-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
+	Thu, 04 Jan 2024 21:58:56 -0800 (PST)
+Received: from DC5-EXCH01.marvell.com (10.69.176.38) by DC5-EXCH01.marvell.com
+ (10.69.176.38) with Microsoft SMTP Server (TLS) id 15.0.1497.48; Thu, 4 Jan
+ 2024 21:58:54 -0800
+Received: from maili.marvell.com (10.69.176.80) by DC5-EXCH01.marvell.com
+ (10.69.176.38) with Microsoft SMTP Server id 15.0.1497.48 via Frontend
+ Transport; Thu, 4 Jan 2024 21:58:54 -0800
+Received: from virtx40.. (unknown [10.28.34.196])
+	by maili.marvell.com (Postfix) with ESMTP id D0F443F704F;
+	Thu,  4 Jan 2024 21:58:50 -0800 (PST)
+From: Linu Cherian <lcherian@marvell.com>
+To: <suzuki.poulose@arm.com>, <mike.leach@linaro.org>, <james.clark@arm.com>,
+        <leo.yan@linaro.org>
+CC: <linux-arm-kernel@lists.infradead.org>, <coresight@lists.linaro.org>,
+        <linux-kernel@vger.kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <devicetree@vger.kernel.org>, <sgoutham@marvell.com>,
+        <gcherian@marvell.com>, Linu Cherian <lcherian@marvell.com>
+Subject: [PATCH v6 0/7]Coresight for Kernel panic and watchdog reset
+Date: Fri, 5 Jan 2024 11:28:33 +0530
+Message-ID: <20240105055840.1977897-1-lcherian@marvell.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BYAPR12MB3205:EE_|BN9PR12MB5276:EE_
-X-MS-Office365-Filtering-Correlation-Id: b60b7eae-3744-49de-d811-08dc0daa6478
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	MJIYukjhHixb7HFfkXVEDExH/TPElfgzzDoS9PksjPB9il9vURKOvAyv83KR4da+qarTPWotPf8avMw6lNIfhHo2W3oVK8k66lATMf/UjnH7TBB3V4mML3WDMSHrErVrk1ujLBTXDrEph52CZc3us7nc3mHE+sLksg5N+hX8nktH+99C1hBeAVSmS0A7RfnjfCg59w5M+/EwS77gmoYTvQfMhUVpIGRJ5vePAnc9+zVM19VhmfVa2cXgKmnITYVVqgxt9v7rPWJLq5BZ+8dELauljX3UV9j3PQfdqEU7sGL/NapbYK+MO4AroQYK2wsllJsfDFNyO/hU4gzBwcDcpgtfT2jw6mjgqLS+Sx3N6OJbmEkPXnYZ5v54GytHubx5nc9knSXUICQXHqAaN6jmsxukwa9ecIc1/j49ANOEA4Ez5mL6Q/qYvvCwiaSRtmb9oED22rBvX7gV5xG6N3U8oI2hfzJGk0W0YBZ/+30nt/5bP8UT5pqmJgVLYTL6reTsLVraDA3iiZH9c5y/W0tinsOd5xYiOQ/ygyt8FzxCgVG6JkV1T5eiEJ7ttAeQl2dUOSAd0Hb0O1f+evsNZ0NlnmF4jzl8vb+HwQIN+gvYb8HJweYhJBGBnuO1ABILWWLad+gtzZaJ5tZBQV8Y03M2ioyjtoiBTbe3WVFu3JAAJcrFZFxV3/GzxRqIuKnW67dqJq3Xf7IjVA/UvlfltVKRLKtuwWLcM5rfc/bYkonQ3Tg=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BYAPR12MB3205.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(346002)(376002)(366004)(39860400002)(396003)(136003)(230273577357003)(230173577357003)(230922051799003)(451199024)(1800799012)(186009)(64100799003)(2616005)(26005)(6666004)(53546011)(6506007)(6512007)(86362001)(83380400001)(4326008)(316002)(54906003)(110136005)(8676002)(8936002)(2906002)(36756003)(5660300002)(6486002)(478600001)(66476007)(66556008)(66946007)(38100700002)(31696002)(31686004)(41300700001)(2013699003)(43740500002)(45980500001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?UHFheG1nRlc4d1dEVFBUNmp3Z2pHM3F6V3psZmpqWW1URmlHWGsyNzAzNmx6?=
- =?utf-8?B?bEdYVU1mY2Nza1RIa1lIY1lPUWg0cEY4MWd4NHVJNjJQWEJpLzJvNlJvVzdj?=
- =?utf-8?B?azBGb3Y3MnlmbWpCOFBrNS8wVFFJZFc1Z1FDWnh5SW1XRTh4SDlReU42ZXdL?=
- =?utf-8?B?aWZFYVF0aDRjczZ0bmVZQW94RGRZWFJJMGtqQlJTVFpEK3FXR25Hc2NsR0p1?=
- =?utf-8?B?SzFUc3ZIZDAxRkxnZWlEL2Z4WlpCTUFMUkQ2SXhUWld3T3BUV1Q1NEk3Mm5N?=
- =?utf-8?B?ZUhwUEc4NnlqSDlVK1cvUThYUXQ3ME44WUd5R3hTU0N0aC9IZkZ6cERGMHJ6?=
- =?utf-8?B?OVVzY3lLbm85aGtDR05NMXJXcUo4Nm5sTFBwaE04ekJtb2FMTnNybCt5K2dI?=
- =?utf-8?B?N2wyTk9XZ2pXVWxzTjBTZEdWZWVYY1hKL3FEM3lERVBIZUtrTEFmd2w1eS9k?=
- =?utf-8?B?YnJLNUFSVFlXb1AvT3NFMUNHNjhCZXNlWTlvdHN1Q210aVVaTDVTUUJOUVpS?=
- =?utf-8?B?eGhZcWo3QWJYdHFnT2pYNEpnZUhJVXJxNkQ3SXh3QzFmeStvM3VIODQrV1Jh?=
- =?utf-8?B?d2FMWE1DZDVGemJ3VHEzZGowVlRLRVlXUmNYVHZ3RGI5MDVhRDBQanhxK0l5?=
- =?utf-8?B?ZklCNnhrTkc2UFNxT3FrM2N2NkU3WjNlejJYMm1neUZDWUppM3dvMjMrazlw?=
- =?utf-8?B?ektHOUgyYmxJRng1SU5GbHY4bVlOWFUxUEE1Qm1rSTlBVGNSdzRhTnRqUDRq?=
- =?utf-8?B?V2dIbHZrQkZoRmd3eU1ScHM0NzdMN0VVRElVQVNpNEs0TVFoZFlXTzVzL0Nq?=
- =?utf-8?B?aFdQWTdsNVJiU3FoTVMwY2lERGxEekNDT1JqUUdDOHV6U3ZrcXUzWEJ4azZh?=
- =?utf-8?B?MTRvYjVTVFVISVV2eGVlVjlkckhjVDNjRW4wSUdBTERvZHRZdnpZVW5GQlh4?=
- =?utf-8?B?SVdBSFhqRzY4aTYvNTRYZ09sMXdJT25Kai9sVmZSVnpkRTdmOU9BbWlORVo3?=
- =?utf-8?B?d1ZMVWx1WTBkWmMrT1ZXcHFYcm5wOVNXRHBJREd0aFR5aE9EWUxuY2IxVXQ1?=
- =?utf-8?B?Q3dqOFR5eFNudStPRFRYd0tJQU9NYjUvUnZmc0wwWHZWSjROdXFrVHpJeFFq?=
- =?utf-8?B?clpEd0xYUU9YOGJmNTdCN0JBbVlINGs3VHc4STBib1lSZE9DM1VFL1Q3RXM5?=
- =?utf-8?B?dGlQZ3NzbFZnT3JtSHM5YmY1ZE9hRElkMmJkZFRMbmFyK3JIL2YzOUhTRjFi?=
- =?utf-8?B?Y2tIWEx6NStRSzJwSFhVQldhRDNtMkNtSFduc25MMWZrSUVPYStYM0xzcWxz?=
- =?utf-8?B?c21jdldXZnBONy9WbFQ2ZERBYnE3ZzZJTE9OeEQ4VzFxVGJZSUN6RVNOaTdH?=
- =?utf-8?B?RmlPUzhJVEFvQ2VWeFVhYmp3Sk1Rb0c3WGxXOHNFNFNrNkN5NXFmMk0xbmps?=
- =?utf-8?B?LzFTVUs4b1pxY1F6ZjR0em9LbnViWFJUUCswdmlibHJGMndoUjdneEMyRWNV?=
- =?utf-8?B?NTc3WXd5SDJCbDBTSjVWWlFiZXk2RkdOL0oyeloyd200b3FoaGJWaG0vTTV3?=
- =?utf-8?B?bnpqRWdwbGZieWhTR0R4T284Vk5jN25qV1MzSGJMRkI0aEpJcU8zOFRWSnV1?=
- =?utf-8?B?aU5QNEcwanl5K0tCRkdFTy9QNFZPZUs3RWEvZHB5QjFTd0EwZDZ5Nlo0SkFk?=
- =?utf-8?B?czNwbUdqOHQxYVc4RktsYnFKZ1hMMkVDdlc3RVo4aEE5YU5COVBvTXZUQ09I?=
- =?utf-8?B?QW82RG96U3RVRWpKS1drQXBWQVJoMEpSYXhUQ0FhUHZJcGZadU5QTlJ6MEVG?=
- =?utf-8?B?cjZScUIrQ0JhN0htdEEweTBMdkpqNUdNWXFHZTBZTXVGd1UwWlJyalA5UTBL?=
- =?utf-8?B?d1R0T0tpTTFSRy9Iam8xUk1kdjVCZkNLdGRZMFNXOGREa3lWNlJHZUgxVFhD?=
- =?utf-8?B?bHgwZ1RXUWpHUVlFeDFSY1h3WFJ3dDAvbm85Vlp2SjJWTGtPVXh0ekF4RkhD?=
- =?utf-8?B?cExFN01ub3c0bFRjMlhFZW1ZZVdTQjVyQUVpU1lSdFBWL2o5Tk53dzc2OUJj?=
- =?utf-8?B?TjUxNVQvYjltUVdxb2FiWmxpaGtBdHppMDk2OTIxS1NUbzAyOTZ0SWNPdWxz?=
- =?utf-8?Q?zMLmMUIJqvdp099TzkCysDWzm?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b60b7eae-3744-49de-d811-08dc0daa6478
-X-MS-Exchange-CrossTenant-AuthSource: BYAPR12MB3205.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Jan 2024 04:54:26.4336
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: UOuYdsX2jyeqCDTo7jCDlK8hjXBcLKs4HJclb3vk5jpnIsmxdwqja82Fhd1UB/rnX0ia/pzyk1+0SgupE2dOKg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN9PR12MB5276
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Proofpoint-GUID: bAhT1ItiXXr-NCK0qnfOkZdLpj2TH3Ds
+X-Proofpoint-ORIG-GUID: bAhT1ItiXXr-NCK0qnfOkZdLpj2TH3Ds
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-12-09_02,2023-12-07_01,2023-05-22_02
+
+This patch series is rebased on v6.7-rc8 and is dependent
+on the below patch.
+- coresight: tmc: Make etr buffer mode user configurable from sysfs[1]
+
+Changelog from v5:
+* Fixed issues reported by CONFIG_DEBUG_ATOMIC_SLEEP
+* Fixed a memory leak while reading data from /dev/tmc_etrx in
+  READ_PREVBOOT mode
+* Tested reading trace data from crashdump kernel
+
+Changelog from v4:
+* Device tree binding
+  - Description is made more explicit on the usage of reserved memory
+    region
+  - Mismatch in memory region names in dts binding and driver fixed
+  - Removed "mem" suffix from the memory region names
+* Rename "struct tmc_register_snapshot" ->  "struct tmc_crash_metadata",
+  since it contains more than register snapshot.
+  Related variables are named accordingly.
+* Rename struct tmc_drvdata members
+   resrv_buf -> crash_tbuf
+   metadata  -> crash_mdata
+* Size field in metadata refers to RSZ register and hence indicates the
+  size in 32 bit words. ETR metadata follows this convention, the same
+  has been extended to ETF metadata as well.
+* Added crc32 for more robust metadata and tracedata validation.
+* Added/modified dev_dbg messages during metadata validation
+* Fixed a typo in patch 5 commit description
+
+Changelog from v3:
+* Converted the Coresight ETM driver change to a named configuration.
+  RFC tag has been removed with this change.
+* Fixed yaml issues reported by "make dt_binding_check"
+* Added names for reserved memory regions 0 and 1
+* Added prevalidation checks for metadata processing
+* Fixed a regression introduced in RFC v3
+  - TMC Status register was getting saved wrongly
+* Reverted memremap attribute changes from _WB to _WC to match
+  with the dma map attributes
+* Introduced reserved buffer mode specific .sync op.
+  This fixes a possible crash when reserved buffer mode was used in
+  normal trace capture, due to unwanted dma maintenance operations.
+
+v4 is posted here:
+https://lore.kernel.org/linux-arm-kernel/20230929133754.857678-1-lcherian@marvell.com/
+Please note, v4 got wrongly tagged as v1 during transitioning to nonRFC
+series.
+
+Using Coresight for Kernel panic and Watchdog reset
+===================================================
+This patch series is about extending Linux coresight driver support to
+address kernel panic and watchdog reset scenarios. This would help
+coresight users to debug kernel panic and watchdog reset using
+coresight trace data.
+
+Coresight trace capture: Kernel panic
+-------------------------------------
+From the coresight driver point of view, addressing the kernel panic
+situation has four main requirements.
+
+a. Support for allocation of trace buffer pages from reserved memory area.
+   Platform can advertise this using a new device tree property added to
+   relevant coresight nodes.
+
+b. Support for stopping coresight blocks at the time of panic
+
+c. Saving required metadata in the specified format
+
+d. Support for reading trace data captured at the time of panic
+
+Allocation of trace buffer pages from reserved RAM
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+A new optional device tree property "memory-region" is added to the
+ETR/ETF device nodes, that would give the base address and size of trace
+buffer.
+
+Static allocation of trace buffers would ensure that both IOMMU enabled
+and disabled cases are handled. Also, platforms that support persistent
+RAM will allow users to read trace data in the subsequent boot without
+booting the crashdump kernel.
+
+Note:
+For ETR sink devices, this reserved region will be used for both trace
+capture and trace data retrieval.
+For ETF sink devices, internal SRAM would be used for trace capture,
+and they would be synced to reserved region for retrieval.
+
+Note: Patches 1 & 2 adds support for this.
+
+Disabling coresight blocks at the time of panic
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In order to avoid the situation of losing relevant trace data after a
+kernel panic, it would be desirable to stop the coresight blocks at the
+time of panic.
+
+This can be achieved by configuring the comparator, CTI and sink
+devices as below,
+
+Comparator(triggers on kernel panic) --->External out --->CTI --
+								|
+		 ETR/ETF stop <------External In <--------------
+Note:
+
+* Patch 6 provides the necessary ETR configuration.
+* Patch 7 provides the necessary ETM configuration.
+
+Saving metadata at the time of kernel panic
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Coresight metadata involves all additional data that are required for a
+successful trace decode in addition to the trace data. This involves
+ETR/ETF, ETE register snapshot etc.
+
+A new optional device property "memory-region" is added to
+the ETR/ETF/ETE device nodes for this.
+
+Note: Patches 3 & 4 adds support for this.
+
+Reading trace data captured at the time of panic
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Trace data captured at the time of panic, can be read from rebooted kernel
+or from crashdump kernel using the below mentioned interface.
+
+Note: Patch 5 adds support for this.
+
+Steps for reading trace data captured in previous boot
+++++++++++++++++++++++++++++++++++++++++++++++++++++++
+1. cd /sys/bus/coresight/devices/tmc_etrXX/
+
+2. Change to special mode called, read_prevboot.
+
+   #echo 1 > read_prevboot
+
+3. Dump trace buffer data to a file,
+
+   #dd if=/dev/tmc_etrXX of=~/cstrace.bin
+
+4. Reset back to normal mode
+
+   #echo 0 > read_prevboot
+
+General flow of trace capture and decode incase of kernel panic
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1. Enable source and sink on all the cores using the sysfs interface.
+   ETR sink will have trace buffers allocated from reserved memory,
+   by selecting "resrv" buffer mode from sysfs.
+
+2. Run relevant tests.
+
+3. On a kernel panic, all coresight blocks are disabled, necessary
+   metadata is synced by kernel panic handler.
+
+   System would eventually reboot or boot a crashdump kernel.
+
+4. For  platforms that supports crashdump kernel, raw trace data can be
+   dumped using the coresight sysfs interface from the crashdump kernel
+   itself. Persistent RAM is not a requirement in this case.
+
+5. For platforms that supports persistent RAM, trace data can be dumped
+   using the coresight sysfs interface in the subsequent Linux boot.
+   Crashdump kernel is not a requirement in this case. Persistent RAM
+   ensures that trace data is intact across reboot.
+
+Coresight trace capture: Watchdog reset
+---------------------------------------
+The main difference between addressing the watchdog reset and kernel panic
+case are below,
+
+a. Saving coresight metadata need to be taken care by the
+   SCP(system control processor) firmware in the specified format,
+   instead of kernel.
+
+b. Reserved memory region given by firmware for trace buffer and metadata
+   has to be in persistent RAM.
+   Note: This is a requirement for watchdog reset case but optional
+   in kernel panic case.
+
+Watchdog reset can be supported only on platforms that meet the above
+two requirements.
+
+Testing Kernel panic on Linux 6.7
+---------------------------------
+1. Enable the preloaded ETM configuration
+
+  #mount -t configfs configs /config
+  #panic_addr=`cat /proc/kallsyms  | grep "\<panic\>"  | awk '{print $1}'`
+  #cd /config/cs-syscfg/features/gen_etrig/params
+  #echo "0x$panic_addr" > address/value
+  #echo 1 > /config/cs-syscfg/configurations/panicstop/enable
+
+2. Configure CTI using sysfs interface
+
+  #./cti_setup.sh
+
+  #cat cti_setup.sh
+
+  cd /sys/bus/coresight/devices/
+
+  ap_cti_config () {
+    #ETM trig out[0] trigger to Channel 0
+    echo 0 4 > channels/trigin_attach
+  }
+
+  etf_cti_config () {
+    #ETF Flush in trigger from Channel 0
+    echo 0 1 > channels/trigout_attach
+    echo 1 > channels/trig_filter_enable
+  }
+
+  etr_cti_config () {
+    #ETR Flush in from Channel 0
+    echo 0 1 > channels/trigout_attach
+    echo 1 > channels/trig_filter_enable
+  }
+
+  ctidevs=`find . -name "cti*"`
+
+  for i in $ctidevs
+  do
+          cd $i
+
+          connection=`find . -name "ete*"`
+          if [ ! -z "$connection" ]
+          then
+                  echo "AP CTI config for $i"
+                  ap_cti_config
+          fi
+
+          connection=`find . -name "tmc_etf*"`
+          if [ ! -z "$connection" ]
+          then
+                  echo "ETF CTI config for $i"
+                  etf_cti_config
+          fi
+
+          connection=`find . -name "tmc_etr*"`
+          if [ ! -z "$connection" ]
+          then
+                  echo "ETR CTI config for $i"
+                  etr_cti_config
+          fi
+
+          cd ..
+  done
+
+Note: CTI connections are SOC specific and hence the above script is
+added just for reference.
+
+3. Choose reserved buffer mode for ETR buffer
+  #echo "resrv" > /sys/bus/coresight/devices/tmc_etr0/buf_mode_preferred
+
+4. Start Coresight tracing on cores 1 and 2 using sysfs interface
+
+5. Run some application on core 1
+  #taskset -c 1 dd if=/dev/urandom of=/dev/null &
+
+6. Invoke kernel panic on core 2
+  #echo 1 > /proc/sys/kernel/panic
+  #taskset -c 2 echo c > /proc/sysrq-trigger
+
+7. From rebooted kernel or crashdump kernel, enable previous boot mode
+
+  #echo 1 > /sys/bus/coresight/devices/tmc_etr0/read_prevboot
+
+  Note: For crashdump kernel option, please make sure "crash_kexec_post_notifiers" is
+  added to the kernel bootargs.
+
+8. Read trace data
+  #dd if=/dev/tmc_etr0 of=/trace/cstrace.bin
+
+9. Run opencsd decoder tools/scripts to generate the instruction trace.
+
+Sample Core 1 instruction trace dump:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	A                                  etm4_enable_hw: ffff800008ae1dd4
+	CONTEXT EL2                        etm4_enable_hw: ffff800008ae1dd4
+	I                                  etm4_enable_hw: ffff800008ae1dd4:
+	d503201f   nop
+	I                                  etm4_enable_hw: ffff800008ae1dd8:
+	d503201f   nop
+	I                                  etm4_enable_hw: ffff800008ae1ddc:
+	d503201f   nop
+	I                                  etm4_enable_hw: ffff800008ae1de0:
+	d503201f   nop
+	I                                  etm4_enable_hw: ffff800008ae1de4:
+	d503201f   nop
+	I                                  etm4_enable_hw: ffff800008ae1de8:
+	d503233f   paciasp
+	I                                  etm4_enable_hw: ffff800008ae1dec:
+	a9be7bfd   stp     x29, x30, [sp, #-32]!
+	I                                  etm4_enable_hw: ffff800008ae1df0:
+	910003fd   mov     x29, sp
+	I                                  etm4_enable_hw: ffff800008ae1df4:
+	a90153f3   stp     x19, x20, [sp, #16]
+	I                                  etm4_enable_hw: ffff800008ae1df8:
+	2a0003f4   mov     w20, w0
+	I                                  etm4_enable_hw: ffff800008ae1dfc:
+	900085b3   adrp    x19, ffff800009b95000 <reserved_mem+0xc48>
+	I                                  etm4_enable_hw: ffff800008ae1e00:
+	910f4273   add     x19, x19, #0x3d0
+	I                                  etm4_enable_hw: ffff800008ae1e04:
+	f8747a60   ldr     x0, [x19, x20, lsl #3]
+	E                                  etm4_enable_hw: ffff800008ae1e08:
+	b4000140   cbz     x0, ffff800008ae1e30 <etm4_starting_cpu+0x50>
+	I    149.039572921                 etm4_enable_hw: ffff800008ae1e30:
+	a94153f3   ldp     x19, x20, [sp, #16]
+	I    149.039572921                 etm4_enable_hw: ffff800008ae1e34:
+	52800000   mov     w0, #0x0                        // #0
+	I    149.039572921                 etm4_enable_hw: ffff800008ae1e38:
+	a8c27bfd   ldp     x29, x30, [sp], #32
+
+	..snip
+
+	    149.052324811           chacha_block_generic: ffff800008642d80:
+	9100a3e0   add     x0,
+	I    149.052324811           chacha_block_generic: ffff800008642d84:
+	b86178a2   ldr     w2, [x5, x1, lsl #2]
+	I    149.052324811           chacha_block_generic: ffff800008642d88:
+	8b010803   add     x3, x0, x1, lsl #2
+	I    149.052324811           chacha_block_generic: ffff800008642d8c:
+	b85fc063   ldur    w3, [x3, #-4]
+	I    149.052324811           chacha_block_generic: ffff800008642d90:
+	0b030042   add     w2, w2, w3
+	I    149.052324811           chacha_block_generic: ffff800008642d94:
+	b8217882   str     w2, [x4, x1, lsl #2]
+	I    149.052324811           chacha_block_generic: ffff800008642d98:
+	91000421   add     x1, x1, #0x1
+	I    149.052324811           chacha_block_generic: ffff800008642d9c:
+	f100443f   cmp     x1, #0x11
+
+
+Sample Core 2 instruction trace dump(kernel panic triggered core):
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	A                                  etm4_enable_hw: ffff800008ae1dd4
+	CONTEXT EL2                        etm4_enable_hw: ffff800008ae1dd4
+	I                                  etm4_enable_hw: ffff800008ae1dd4:
+	d503201f   nop
+	I                                  etm4_enable_hw: ffff800008ae1dd8:
+	d503201f   nop
+	I                                  etm4_enable_hw: ffff800008ae1ddc:
+	d503201f   nop
+	I                                  etm4_enable_hw: ffff800008ae1de0:
+	d503201f   nop
+	I                                  etm4_enable_hw: ffff800008ae1de4:
+	d503201f   nop
+	I                                  etm4_enable_hw: ffff800008ae1de8:
+	d503233f   paciasp
+	I                                  etm4_enable_hw: ffff800008ae1dec:
+	a9be7bfd   stp     x29, x30, [sp, #-32]!
+	I                                  etm4_enable_hw: ffff800008ae1df0:
+	910003fd   mov     x29, sp
+	I                                  etm4_enable_hw: ffff800008ae1df4:
+	a90153f3   stp     x19, x20, [sp, #16]
+	I                                  etm4_enable_hw: ffff800008ae1df8:
+	2a0003f4   mov     w20, w0
+	I                                  etm4_enable_hw: ffff800008ae1dfc:
+	900085b3   adrp    x19, ffff800009b95000 <reserved_mem+0xc48>
+	I                                  etm4_enable_hw: ffff800008ae1e00:
+	910f4273   add     x19, x19, #0x3d0
+	I                                  etm4_enable_hw: ffff800008ae1e04:
+	f8747a60   ldr     x0, [x19, x20, lsl #3]
+	E                                  etm4_enable_hw: ffff800008ae1e08:
+	b4000140   cbz     x0, ffff800008ae1e30 <etm4_starting_cpu+0x50>
+	I    149.046243445                 etm4_enable_hw: ffff800008ae1e30:
+	a94153f3   ldp     x19, x20, [sp, #16]
+	I    149.046243445                 etm4_enable_hw: ffff800008ae1e34:
+	52800000   mov     w0, #0x0                        // #0
+	I    149.046243445                 etm4_enable_hw: ffff800008ae1e38:
+	a8c27bfd   ldp     x29, x30, [sp], #32
+	I    149.046243445                 etm4_enable_hw: ffff800008ae1e3c:
+	d50323bf   autiasp
+	E    149.046243445                 etm4_enable_hw: ffff800008ae1e40:
+	d65f03c0   ret
+	A                                ete_sysreg_write: ffff800008adfa18
+
+	..snip
+
+	I     149.05422547                          panic: ffff800008096300:
+	a90363f7   stp     x23, x24, [sp, #48]
+	I     149.05422547                          panic: ffff800008096304:
+	6b00003f   cmp     w1, w0
+	I     149.05422547                          panic: ffff800008096308:
+	3a411804   ccmn    w0, #0x1, #0x4, ne  // ne = any
+	N     149.05422547                          panic: ffff80000809630c:
+	540001e0   b.eq    ffff800008096348 <panic+0xe0>  // b.none
+	I     149.05422547                          panic: ffff800008096310:
+	f90023f9   str     x25, [sp, #64]
+	E     149.05422547                          panic: ffff800008096314:
+	97fe44ef   bl      ffff8000080276d0 <panic_smp_self_stop>
+	A                                           panic: ffff80000809634c
+	I     149.05422547                          panic: ffff80000809634c:
+	910102d5   add     x21, x22, #0x40
+	I     149.05422547                          panic: ffff800008096350:
+	52800020   mov     w0, #0x1                        // #1
+	E     149.05422547                          panic: ffff800008096354:
+	94166b8b   bl      ffff800008631180 <bust_spinlocks>
+	N    149.054225518                 bust_spinlocks: ffff800008631180:
+	340000c0   cbz     w0, ffff800008631198 <bust_spinlocks+0x18>
+	I    149.054225518                 bust_spinlocks: ffff800008631184:
+	f000a321   adrp    x1, ffff800009a98000 <pbufs.0+0xbb8>
+	I    149.054225518                 bust_spinlocks: ffff800008631188:
+	b9405c20   ldr     w0, [x1, #92]
+	I    149.054225518                 bust_spinlocks: ffff80000863118c:
+	11000400   add     w0, w0, #0x1
+	I    149.054225518                 bust_spinlocks: ffff800008631190:
+	b9005c20   str     w0, [x1, #92]
+	E    149.054225518                 bust_spinlocks: ffff800008631194:
+	d65f03c0   ret
+	A                                           panic: ffff800008096358
+
+
+TODO
+----
+* Explore changing CTI sysfs script to system configuration manager profile
+* Explore Perf based trace capture and decode
+
+Links:
+1. https://lore.kernel.org/linux-arm-kernel/20230818082112.554638-1-anshuman.khandual@arm.com/
 
 
 
-On 04-01-2024 22:52, Mark Brown wrote:
-> On Thu, Jan 04, 2024 at 06:07:22PM +0100, Thierry Reding wrote:
->> On Tue, Dec 26, 2023 at 09:58:02PM +0530, Sameer Pujar wrote:
->>>                /-----> codec1 endpoint
->>>               /
->>> CPU endpoint \
->>>                \-----> codec2 endpoint
->> Can you describe the use-case? Is there a need to switch between codec1
->> and codec2 endpoints or do they receive the same data in parallel all
->> the time?
->> Could this perhaps be described by adding multiple CPU ports with one
->> endpoint each?
-> Don't know about the specific use case that Sameer is looking at but to
-> me this looks like a surround sound setup where multiple stereo (or
-> mono) DACs are wired in parallel, either with a TDM setup or with
-> multiple data lines.  There's multiple CODECs all taking input from a
-> single host controller.
+Linu Cherian (7):
+  dt-bindings: arm: coresight-tmc: Add "memory-region" property
+  coresight: tmc-etr: Add support to use reserved trace memory
+  coresight: core: Add provision for panic callbacks
+  coresight: tmc: Enable panic sync handling
+  coresight: tmc: Add support for reading tracedata from previous boot
+  coresight: tmc: Stop trace capture on FlIn
+  coresight: config: Add preloaded configuration
 
-Yes, it is a TDM use case where the same clock and data line is shared 
-with multiple CODECs. Each CODEC is expected to pickup data based on the 
-allotted TDM slot.
+ .../bindings/arm/arm,coresight-tmc.yaml       |  25 ++
+ drivers/hwtracing/coresight/Makefile          |   2 +-
+ .../coresight/coresight-cfg-preload.c         |   2 +
+ .../coresight/coresight-cfg-preload.h         |   2 +
+ .../hwtracing/coresight/coresight-cfg-pstop.c |  83 +++++
+ drivers/hwtracing/coresight/coresight-core.c  |  32 ++
+ .../coresight/coresight-etm4x-core.c          |   1 +
+ .../hwtracing/coresight/coresight-tmc-core.c  | 173 +++++++++-
+ .../hwtracing/coresight/coresight-tmc-etf.c   | 146 ++++++++-
+ .../hwtracing/coresight/coresight-tmc-etr.c   | 309 +++++++++++++++++-
+ drivers/hwtracing/coresight/coresight-tmc.h   |  76 +++++
+ include/linux/coresight.h                     |  25 ++
+ 12 files changed, 870 insertions(+), 6 deletions(-)
+ create mode 100644 drivers/hwtracing/coresight/coresight-cfg-pstop.c
 
-It is possible to create multiple CPU dummy endpoints and use these in 
-DT binding for each CODEC. I am not sure if this is the best way right 
-now. There are few things to note here with dummy endpoints. First, it 
-leads to bit of duplication of endpoint DAIs and DAI links for these. 
-Please note that host controller pins are actually shared with external 
-CODECs. So shouldn't DT provide a way to represent this connection? 
-Second, ASoC provides a way to represent multiple CODECs on a single DAI 
-link in the driver and my concern is to understand if present binding 
-can be extended to represent this scenario. Third, one of the user 
-wanted to connect 6 CODECs and that is the maximum request I have seen 
-so far. I can expose additional dummy CPU DAIs keeping this maximum 
-request in mind, but not sure if users would like to extend it further. 
-The concern I have is, how can we make this easily extendible and 
-simpler to use?
+--
+2.34.1
 
-With custom DT bindings it may be simpler to resolve this, but Tegra 
-audio presently relies on standard graph remote-endpoints binding. So I 
-guess diverging from this may not be preferable?
 
