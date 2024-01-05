@@ -1,101 +1,69 @@
-Return-Path: <devicetree+bounces-29806-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29807-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFB40824C9F
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jan 2024 02:38:02 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FEB7824CE5
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jan 2024 03:25:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6D4561F2307A
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jan 2024 01:38:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CB7B5286C5C
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jan 2024 02:25:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19C6C1876;
-	Fri,  5 Jan 2024 01:37:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 755E91FC8;
+	Fri,  5 Jan 2024 02:25:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nCAmIKAf"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="o4GsTItl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com [209.85.214.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67DEC1FBE
-	for <devicetree@vger.kernel.org>; Fri,  5 Jan 2024 01:37:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pl1-f174.google.com with SMTP id d9443c01a7336-1d4c91a9adcso1385605ad.1
-        for <devicetree@vger.kernel.org>; Thu, 04 Jan 2024 17:37:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704418674; x=1705023474; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references
-         :mail-followup-to:message-id:subject:cc:to:from:date:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ogVvwDK/Dgt8I5gOLf0rKs+C40ZFKTDawpNUDK/TtKw=;
-        b=nCAmIKAf4W5VQ5WZlzMzbTSXDFyspnQCc2HMRw0jftWtGrTrhlWmKz8W9GBGaKSmPO
-         y9YRaJXB3dTzzNpqtYuLTxB0GLPU6lkfE1TarecJfmbQY3uSOVItO2SKRXnhFMt+CVfI
-         M+FGV4Sub4v4RIWQOIVw7Xdie1B8AJvIqtRceDqrh+WONlqW9ooI+aWGmekLMyCtXMKO
-         2aOOm/tvWvdEwAT5X36CWn35XnMx61Tea9ZwJQ/+F6aXSho4kuRrqHwiO2lKoS8ftExJ
-         mym+X41fy4QnJUPK1PDnzn2HdQQLJckM+6rC6EPyJ5Sh3y26C3zeTPju/gkiRWyOp6d/
-         ub8A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704418674; x=1705023474;
-        h=in-reply-to:content-disposition:mime-version:references
-         :mail-followup-to:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ogVvwDK/Dgt8I5gOLf0rKs+C40ZFKTDawpNUDK/TtKw=;
-        b=I8l9lKq8ypFTBRKDVOvP1ZKeQgrfrWbZoXOhk0GML+kWy8Qc5woxLh3Js2+9B36OyA
-         JZGFMXZbCFaWrfEuafXKfBR4My/nSIC5ojpqgaEw8fp54OUkktue4/i3/lDeHfQbhrH2
-         0f7AfGs1wyFQr7ZaKwFagQ7VuUmyl7EZZJdwPWRJrQH3lQ5iMWXYTXq4inVfIOl7bejR
-         p4C5k3ewcXx9kzDlzJ64BxHzTiFa8CJtpoJYx1nSGwVB7NJxmmy4ZwO9qLff4F4bWNSc
-         HKnN9zcA5Y9belPEJ/l8u8rctK/ZGIxmxuTciKyhzLCmskLLVm+j7sZtSUY/XSNe9G/h
-         HZTw==
-X-Gm-Message-State: AOJu0YySkyzDisl1NYFsbOIjG1T0KYFEaG7vRHHn7NbcmlQAhxdDdotK
-	ghAIFTxFvnSHdbRzmm2DwlVowDlQK1ygbw==
-X-Google-Smtp-Source: AGHT+IHDVbvAWgoJlpyO71KsCze60J3X7wdM90MBV1iT410hUQh1gPAxB7pvYhlLdwetE0WMN8W3og==
-X-Received: by 2002:a05:6a21:3384:b0:196:1899:d756 with SMTP id yy4-20020a056a21338400b001961899d756mr3166699pzb.2.1704418673477;
-        Thu, 04 Jan 2024 17:37:53 -0800 (PST)
-Received: from octopus ([2400:4050:c3e1:100:224b:9c3f:543b:97cb])
-        by smtp.gmail.com with ESMTPSA id i186-20020a62c1c3000000b006d9a1812e35sm306500pfg.119.2024.01.04.17.37.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 04 Jan 2024 17:37:53 -0800 (PST)
-Date: Fri, 5 Jan 2024 10:37:46 +0900
-From: AKASHI Takahiro <takahiro.akashi@linaro.org>
-To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc: Sudeep Holla <sudeep.holla@arm.com>,
-	Cristian Marussi <cristian.marussi@arm.com>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01CC31FBF;
+	Fri,  5 Jan 2024 02:25:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=9Fm13D6HkTMzEZBlOarDnIVaiSDDHq61aKHqbRpbK1E=; b=o4GsTItlbg+grt7he924K/ku2I
+	5+z0tWqqFd2nbLjRcJ8orIs0aKlySKR+eL+k4wUwmoF4/O5x2EniSQ2Qga17JV0zNUmjgPDIaH1Ee
+	s0V1ZkV/FPJ+h0CtIu6Pel8NQDLjdCDPNaPuqRdEaDINZtPui0O9ZNztJI6M/ncFOrcE=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1rLZtq-004Pl0-14; Fri, 05 Jan 2024 03:25:30 +0100
+Date: Fri, 5 Jan 2024 03:25:30 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Oleksii Moisieiev <oleksii_moisieiev@epam.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
-	Peng Fan <peng.fan@nxp.com>
-Subject: Re: [PATCH v2 0/6] firmware: arm_scmi: Add SCMI v3.2 pincontrol
- protocol basic support
-Message-ID: <ZZddarpj14gPqg25@octopus>
-Mail-Followup-To: AKASHI Takahiro <takahiro.akashi@linaro.org>,
-	"Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	Cristian Marussi <cristian.marussi@arm.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Oleksii Moisieiev <oleksii_moisieiev@epam.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
-	Peng Fan <peng.fan@nxp.com>
-References: <20240104-pinctrl-scmi-v2-0-a9bd86ab5a84@nxp.com>
+	William Zhang <william.zhang@broadcom.com>,
+	Anand Gore <anand.gore@broadcom.com>,
+	Kursad Oney <kursad.oney@broadcom.com>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+	=?iso-8859-1?Q?Fern=E1ndez?= Rojas <noltari@gmail.com>,
+	Sven Schwermer <sven.schwermer@disruptive-technologies.com>,
+	linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	netdev@vger.kernel.org
+Subject: Re: [net-next PATCH v8 3/5] net: phy: add support for PHY LEDs
+ polarity modes
+Message-ID: <957df01b-bb92-4f8a-9f2b-aacd3de1208d@lunn.ch>
+References: <20240104110114.2020-1-ansuelsmth@gmail.com>
+ <20240104110114.2020-4-ansuelsmth@gmail.com>
+ <47f18def-d34f-4224-9de2-6e0ae7122a52@lunn.ch>
+ <6597286c.050a0220.4684a.182e@mx.google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -104,140 +72,28 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240104-pinctrl-scmi-v2-0-a9bd86ab5a84@nxp.com>
+In-Reply-To: <6597286c.050a0220.4684a.182e@mx.google.com>
 
-On Thu, Jan 04, 2024 at 06:48:44PM +0800, Peng Fan (OSS) wrote:
-> This patchset is a rework from Oleksii's RFC v5 patchset
-> https://lore.kernel.org/all/cover.1698353854.git.oleksii_moisieiev@epam.com/
+> > > +	 * @dev: PHY device which has the LED
+> > > +	 * @index: Which LED of the PHY device or -1
+> > > +	 * @modes: bitmap of LED polarity modes
+> > > +	 *
+> > > +	 * Configure LED with all the required polarity modes in @modes
+> > > +	 * to make it correctly turn ON or OFF.
+> > 
+> > index == -1 should be explained.
+> >
 > 
-> This patchset introduces some changes based on RFC v5:
-> - introduce helper get_max_msg_size
-> - support compatible string
-> - iterate the id_table
-> - Support multiple configs in one command
-> - Added i.MX support
-> - Patch 5 firmware: arm_scmi: Add SCMI v3.2 pincontrol protocol basic support
->   is almost same as RFCv5 expect multiple configs support.
-> - Patch 4 the dt-bindings includes compatible string to support i.MX
-> - Rebased on 2023-12-15 linux-next/master
+> If you are referring to the special way of setting the LED globally,
+> that is not a thing anymore. Rob pointed out that having the double
+> reference in DT is problematic and PHY driver should handle that
+> internally.
 
-For the record, the translation of pin config types,
-pinctrl_scmi_map_pinconf_type(), is finally implemented in patch 4.
+So it sounds like you need to change
 
-Thanks,
--Takahiro Akashi
+> > > +	 * @index: Which LED of the PHY device or -1
 
-> If any comments from RFC v5 are missed, I am sorry in advance.
-> 
-> This PINCTRL Protocol is following Version 3.2 SCMI Spec Beta release.
-> 
-> On ARM-based systems, a separate Cortex-M based System Control Processor
-> (SCP) provides control on pins, as well as with power, clocks, reset
-> controllers. So implement the driver to support such cases.
-> 
-> The i.MX95 Example as below:
-> 
-> Configuration:
-> The scmi-pinctrl driver can be configured using DT bindings.
-> For example:
-> / {
-> 	sram0: sram@445b1000 {
-> 		compatible = "mmio-sram";
-> 		reg = <0x0 0x445b1000 0x0 0x400>;
-> 
-> 		#address-cells = <1>;
-> 		#size-cells = <1>;
-> 		ranges = <0x0 0x0 0x445b1000 0x400>;
-> 
-> 		scmi_buf0: scmi-sram-section@0 {
-> 			compatible = "arm,scmi-shmem";
-> 			reg = <0x0 0x80>;
-> 		};
-> 
-> 		scmi_buf1: scmi-sram-section@80 {
-> 			compatible = "arm,scmi-shmem";
-> 			reg = <0x80 0x80>;
-> 		};
-> 	};
-> 
-> 	firmware {
-> 		scmi {
-> 			compatible = "arm,scmi";
-> 			mboxes = <&mu2 5 0>, <&mu2 3 0>, <&mu2 3 1>;
-> 			shmem = <&scmi_buf0>, <&scmi_buf1>;
-> 			#address-cells = <1>;
-> 			#size-cells = <0>;
-> 
-> 			scmi_iomuxc: protocol@19 {
-> 				compatible = "fsl,imx95-scmi-pinctrl";
-> 				reg = <0x19>;
-> 			};
-> 		};
-> 	};
-> };
-> 
-> &scmi_iomuxc {
-> 	pinctrl_tpm3: tpm3grp {
-> 		fsl,pins = <
-> 			IMX95_PAD_GPIO_IO12__TPM3_CH2		0x51e
-> 		>;
-> 	};
-> };
-> 
-> This patchset has been tested on i.MX95-19x19-EVK board.
-> 
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> ---
-> Changes in v2:
->  Added comments, and added R-b for Patch 1
->  Moved the compatile string and i.MX patch to the end, marked NOT APPLY
->  Patchset based on lore.kernel.org/all/20231221151129.325749-1-cristian.marussi@arm.com/
->  Addressed the binding doc issue, dropped i.MX content.
->  For the firmware pinctrl scmi driver, addressed the comments from Cristian
->  For the pinctrl scmi driver, addressed comments from Cristian
-> 
->  For the i.MX95 OEM stuff, I not have good idea, expect using compatbile
->  string. Maybe the firmware public an protocol attribute to indicate it is 
->  VENDOR stuff or NXP use a new protocol id, not 0x19. But I think
->  current pinctrl-scmi.c not able to support OEM config, should we extend
->  it with some method? Anyway if patch 1-4 is good enough, they could
->  be picked up first.
-> 
->  Since I am only able to test the patch on i.MX95 which not support
->  geneirc pinconf, only OEM configs are tested in my side.
-> 
-> ---
-> Oleksii Moisieiev (1):
->       firmware: arm_scmi: Add SCMI v3.2 pincontrol protocol basic support
-> 
-> Peng Fan (5):
->       firmware: arm_scmi: introduce helper get_max_msg_size
->       dt-bindings: firmware: arm,scmi: support pinctrl protocol
->       pinctrl: Implementation of the generic scmi-pinctrl driver
->       [NOT APPLY]firmware: scmi: support compatible string
->       [NOT APPLY] pinctrl: scmi: implement pinctrl_scmi_imx_dt_node_to_map
-> 
->  .../devicetree/bindings/firmware/arm,scmi.yaml     |  50 ++
->  MAINTAINERS                                        |   7 +
->  drivers/firmware/arm_scmi/Makefile                 |   1 +
->  drivers/firmware/arm_scmi/bus.c                    |  39 +-
->  drivers/firmware/arm_scmi/common.h                 |   2 +-
->  drivers/firmware/arm_scmi/driver.c                 |  32 +-
->  drivers/firmware/arm_scmi/pinctrl.c                | 930 +++++++++++++++++++++
->  drivers/firmware/arm_scmi/protocols.h              |   3 +
->  drivers/pinctrl/Kconfig                            |  11 +
->  drivers/pinctrl/Makefile                           |   1 +
->  drivers/pinctrl/pinctrl-scmi-imx.c                 | 117 +++
->  drivers/pinctrl/pinctrl-scmi.c                     | 540 ++++++++++++
->  drivers/pinctrl/pinctrl-scmi.h                     |  12 +
->  include/linux/scmi_protocol.h                      |  75 ++
->  14 files changed, 1806 insertions(+), 14 deletions(-)
-> ---
-> base-commit: 8f266a167d1f0ca34668f05cd8c01bd245c8698b
-> change-id: 20231215-pinctrl-scmi-4c5b0374f4c6
-> 
-> Best regards,
-> -- 
-> Peng Fan <peng.fan@nxp.com>
-> 
+to remove the 'or -1'
+
+   Andrew
 
