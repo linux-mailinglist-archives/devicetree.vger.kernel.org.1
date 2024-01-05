@@ -1,65 +1,64 @@
-Return-Path: <devicetree+bounces-29845-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29846-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DFCC3825146
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jan 2024 10:54:39 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F61382514F
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jan 2024 10:56:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 63202287905
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jan 2024 09:54:38 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DE7B1B246E7
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jan 2024 09:56:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91A6524A16;
-	Fri,  5 Jan 2024 09:54:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3203C249F7;
+	Fri,  5 Jan 2024 09:56:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="keZ6YPfU"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Q0ctgFCi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
+Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6908249FA
-	for <devicetree@vger.kernel.org>; Fri,  5 Jan 2024 09:54:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87BC328E27
+	for <devicetree@vger.kernel.org>; Fri,  5 Jan 2024 09:56:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-50e7abe4be4so1767879e87.2
-        for <devicetree@vger.kernel.org>; Fri, 05 Jan 2024 01:54:28 -0800 (PST)
+Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-5537dd673e5so1134216a12.0
+        for <devicetree@vger.kernel.org>; Fri, 05 Jan 2024 01:56:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704448467; x=1705053267; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=MubVK+zn4bzFXdIkBXZPmCYf49kvw+KGKS0dreerKtA=;
-        b=keZ6YPfUFT0UQmHuWM/+/CZH9IYUpKU6ZNzw+xHKuGd8mVL1D+XQwxbIgb4PBJ9FYK
-         dyqN3WsjK7yCJSKdTQhtkuNvBIh4Hu1rajqMsCTu7tFsuPgxw6iIJQZD9BUCWUIor3io
-         MwaM61IqxYjXxe6G3ROQ2nvZxysnI1HtkCj+XJI3Y3SipSFlCx7OXJBx66O67sYyjMUK
-         6z+FOBz35jR5uQNwF0bEQ03D5/iIaUf8NHQ4H7ATUcE3SlW3f3x2wed0jMVvnAct7iCg
-         9koW1Ep8en1P+eX7c1N4P811Ol8oY4WOZCr5wP+Jawhyipcp4CiCyCu8xHhmGnrXpkvB
-         qDeQ==
+        d=linaro.org; s=google; t=1704448572; x=1705053372; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=u9Iu5C/GVumB/IXoYws6S5YktVaX7LOc+T5qf81HMhM=;
+        b=Q0ctgFCitH0H+cnBGE49ecCLwc5p3x+NACrHYemsMrMmCMEWCPre5xKbw2ahXSvvmd
+         3MHV+saiapuCILf9FNiGsWu6P7bdOTWff0olaWsmNE3YbOip82EIJGCOp38DQq8fwj3z
+         x0fBn0CTXA5fKUd+V3wuRcA3FniozJ0IT9zc7afmokz7snBJa+fpEEYs9Yc1J30E+fI5
+         8yMmBIguTaMAzdNNOoMcoSfgNaXCRW8Dee7Uod93VGRZASxgJ9b95WE2bcI/42E6lH5E
+         WlxHQFGcwAOS/12rOWlGj/lOV9o0O/CmGq0eHfdwlsnN17vmDCYHfcth9/NpjRkqBaIL
+         x1RA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704448467; x=1705053267;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=MubVK+zn4bzFXdIkBXZPmCYf49kvw+KGKS0dreerKtA=;
-        b=ggJIwv9LUCxUPMQgwuDvJtzrP+2cgWHwZ0psiMXaDL+OyJ6jyNMFB+SKdB13iEOZuY
-         v1oFwKRXXmg3YDft/DecuRCurE1rt6aPyfsVTdGGvMujinFxMsuUGScZi5dXKVqN94dY
-         usMQMIpQD0xPbvx7X+GsFQroxzqWtUKJxV17eaSlRCtmw1cRf5L16zUoeK6SypUlC0QX
-         TX6H2A0OebdbeFY/LRD2N0cyEmFe3p/K1RnQspR7pShNrpvR0Qsm5jr80Wq1jtUWRm4B
-         TwikA765HtOmxObLCUAhkjvhiyF8TFMMvqkPUq4W94fb4T+YsZnzs2HuyYZnql303G19
-         0Nvw==
-X-Gm-Message-State: AOJu0YzxYemEcHwrYHnb1BHdodPUSs5E9IvSIIU3jxwrVgeg18WHn7HU
-	+A26+q6O+em77b933cadRGam2BMXsa0ttw==
-X-Google-Smtp-Source: AGHT+IFvlsVYcY4TlSmeEhP4rCyW3xF8Rxdn548CQLdrosy9XtrSn1Vlhsifgf79uMrkxH+vixkqSQ==
-X-Received: by 2002:a05:6512:4021:b0:50e:a0e8:4527 with SMTP id br33-20020a056512402100b0050ea0e84527mr1193268lfb.29.1704448466907;
-        Fri, 05 Jan 2024 01:54:26 -0800 (PST)
+        d=1e100.net; s=20230601; t=1704448572; x=1705053372;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=u9Iu5C/GVumB/IXoYws6S5YktVaX7LOc+T5qf81HMhM=;
+        b=BTI8J8/oj4K7V77F+Q+uRDTYpt6cTKlz07m1/CtQDIA3UB+fZHLpgetErRDO+f92+1
+         RLUrOzqZbEOV6cqB3Z+QuMnxJ4vkeRSw1Mcr2pI0+Bk7VylkA12tKCwdzDy4ImRKwFIA
+         xqvikTkhVPZR5lq29YmDqv5dodtRiDJ4/kCxUjZ4s3dHwNEUG4/WVE0ok9BqESW2cgI4
+         i8pgWXwgLsy3H6bFRF6UD3sgjTgI3CbRBOyr8nUEumsUef3D5bb/I5qzGncUlg1ghuRF
+         F3y+gcnxHyQWyLxJ/DMQyZ+7Qo5RiiZ1X6AdWVI+p1DxA4zxYVQgSgovR2Xi78a/fQR8
+         KG7w==
+X-Gm-Message-State: AOJu0Yy+mDIworhEP7eHmrle0GYxYMpm3/P11gpK2VVM4gemPlSB83DT
+	AztCgUK9l2aVX1jNeJO9LKwPmjl0LYgHdg==
+X-Google-Smtp-Source: AGHT+IFGx71E0ByUXixC9REjs3YaNn8LVft8BzLy8mEe1BBgFvVzWqyburV+4JFG3XRga82ymOAIzQ==
+X-Received: by 2002:a50:aa95:0:b0:556:f13c:d6ec with SMTP id q21-20020a50aa95000000b00556f13cd6ecmr1244515edc.76.1704448571734;
+        Fri, 05 Jan 2024 01:56:11 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.223.112])
-        by smtp.gmail.com with ESMTPSA id d11-20020a170906640b00b00a26f1f36708sm694165ejm.78.2024.01.05.01.54.24
+        by smtp.gmail.com with ESMTPSA id r5-20020a50aac5000000b005571c7e4934sm787307edc.93.2024.01.05.01.56.10
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 05 Jan 2024 01:54:26 -0800 (PST)
-Message-ID: <b6beae30-b475-4fde-9afc-4dcbc177e75d@linaro.org>
-Date: Fri, 5 Jan 2024 10:54:23 +0100
+        Fri, 05 Jan 2024 01:56:11 -0800 (PST)
+Message-ID: <97bafa14-c144-4bde-af9c-4f219438f4b1@linaro.org>
+Date: Fri, 5 Jan 2024 10:56:09 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,18 +66,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 1/7] dt-bindings: arm: coresight-tmc: Add
- "memory-region" property
-To: Linu Cherian <lcherian@marvell.com>, suzuki.poulose@arm.com,
- mike.leach@linaro.org, james.clark@arm.com, leo.yan@linaro.org
-Cc: linux-arm-kernel@lists.infradead.org, coresight@lists.linaro.org,
- linux-kernel@vger.kernel.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- devicetree@vger.kernel.org, sgoutham@marvell.com, gcherian@marvell.com,
- Rob Herring <robh@kernel.org>
-References: <20240105055840.1977897-1-lcherian@marvell.com>
- <20240105055840.1977897-2-lcherian@marvell.com>
+Subject: Re: [PATCH v2] dt-bindings: regulator: Convert ti,tps65132 to YAML
 Content-Language: en-US
+To: =?UTF-8?Q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20240104-tps65132-v2-1-6c77fe2f4787@apitzsch.eu>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -124,52 +120,17 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240105055840.1977897-2-lcherian@marvell.com>
+In-Reply-To: <20240104-tps65132-v2-1-6c77fe2f4787@apitzsch.eu>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 05/01/2024 06:58, Linu Cherian wrote:
-> memory-region 0: Reserved trace buffer memory
+On 04/01/2024 23:40, André Apitzsch wrote:
+> Convert TI TPS65132 bindings from .txt to .yaml format.
 > 
->   TMC ETR: When available, use this reserved memory region for
->   trace data capture. Same region is used for trace data
->   retention after a panic or watchdog reset.
-> 
->   TMC ETF: When available, use this reserved memory region for
->   trace data retention synced from internal SRAM after a panic or
->   watchdog reset.
-> 
-> memory-region 1: Reserved meta data memory
-> 
->   TMC ETR, ETF: When available, use this memory for register
->   snapshot retention synced from hardware registers after a panic
->   or watchdog reset.
-> 
-> Reviewed-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: André Apitzsch <git@apitzsch.eu>
+> ---
 
-...
-
-> +  memory-region:
-> +    items:
-> +      - description: Reserved trace buffer memory for ETR and ETF sinks.
-> +          For ETR, this reserved memory region is used for trace data capture.
-> +          Same region is used for trace data retention as well after a panic
-> +          or watchdog reset.
-> +          This reserved memory region is used as trace buffer or used for trace
-> +          data retention only if specifically selected by the user in sysfs
-> +          interface.
-> +          The default memory usage models for ETR in sysfs/perf modes are
-> +          otherwise unaltered.
-> +
-> +          For ETF, this reserved memory region is used by default for
-> +          retention of trace data synced from internal SRAM after a panic
-> +          or watchdog reset.
-> +      - description: Reserved meta data memory. Used for ETR and ETF sinks
-> +          for storing metadata.
-
-If there is going to be new version/resend, add a blank line here. Keep
-the Rb tag.
-
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
