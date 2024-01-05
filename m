@@ -1,199 +1,110 @@
-Return-Path: <devicetree+bounces-29904-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29905-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id C36358257D0
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jan 2024 17:11:46 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9426A8257D4
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jan 2024 17:15:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5523CB20FCB
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jan 2024 16:11:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 90D671C23026
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jan 2024 16:15:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C71E2E84F;
-	Fri,  5 Jan 2024 16:11:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 663E52E85A;
+	Fri,  5 Jan 2024 16:15:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="QZx085Dv"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="0Qd0YOWt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com [209.85.210.177])
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30C543175A
-	for <devicetree@vger.kernel.org>; Fri,  5 Jan 2024 16:11:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pf1-f177.google.com with SMTP id d2e1a72fcca58-6d9ac5bd128so1145866b3a.0
-        for <devicetree@vger.kernel.org>; Fri, 05 Jan 2024 08:11:30 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C84782E844
+	for <devicetree@vger.kernel.org>; Fri,  5 Jan 2024 16:15:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
+Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-a27733ae1dfso202883366b.3
+        for <devicetree@vger.kernel.org>; Fri, 05 Jan 2024 08:15:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704471089; x=1705075889; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=30iRbRIp00TA/PfyCKUbGuGBVTofPojplhmzgjq54FM=;
-        b=QZx085DvLNwj2q/ziRNvtoV168/7nYfvQNTYS+kvTGz6UNUcQCQWFicBlbAYtFqIf0
-         5wWUhmZytNTpEAceTDJFA7d8RYYos3L4kFccuhLpb9QNnkTGp/sdN8UmqVzjr+Y0HOiS
-         Gch04zs0Mr7Ux1R9cs2VR6Z/2sph/FnhkzoAisLYZPEYvdHRGtdQUxllaPRpVISrK2Gd
-         y5mDk8sh1INLSzCmbPpfyQxy6+eox9vcA8PEdIW0MZPPqRipEiaIh23FJRSW7srGGgLk
-         FZN6ZX/REPzQO+hYm61l45Pf21PsavqE/X/vpIDyzCUj35VNSogUS+VMGnpoyQ1BI3C4
-         Y4Kw==
+        d=fairphone.com; s=fair; t=1704471346; x=1705076146; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=9XSaiyQmm79NWYYZKXvu1jjvp4q3CpLJczn8LJj/R3M=;
+        b=0Qd0YOWtUCwI3IwfBQhRUUV3z50CnbU4jorPRmyQ/t878DbzAz7r5qzuDiYIXfbob/
+         NVpdLMdVSJ1qRdKbknZERqagYDp3cKWCjwnbLaZmDFdvvWQZHE4WkGAkUOGrXz3VWKD6
+         gc3UpO70038BHxzMKPo93CZ3/CRuxfkgxEuuoQUVcRNiTK3uvCvUfSsTCpXQWI+G13xT
+         ZXsvc0KoiRFKba5ZJolHz4nYmYQ8oPuWL3ZTdcf94dBIZivqTJ6geGX3Eir8SwKS0T/i
+         Zdp8BnJP/ymBB8EQk5ozLLHQ/zcpMLQyn8y6SicvYR3hlM7pG3WrHUNpvmtL+XRdUSze
+         Oxcw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704471089; x=1705075889;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1704471346; x=1705076146;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=30iRbRIp00TA/PfyCKUbGuGBVTofPojplhmzgjq54FM=;
-        b=nkW/zgFi467YME9kOf2qXBLdLzhVt2UgV34ubM6us1W8aW0aGrhxrlNj/97W/0AqMx
-         UXKiAF6FhH2t+O8bVikX3uSZeEsS1OucLSU92v3Pg1nQRmZ5wKCunJ0LEyELUY24G4qM
-         sosQiMs07qVk0zSoUwhabULsvqLje8ZHTtxwmjrIBIvSNsZuV2epFWIAw0yz9VUUF+zt
-         Ha0Ve+v/w4qztmGtYhmTXVg7ODvw+kO0k85zl1P6owYQGSKySvGZ/uuAERCeMy3b4uXV
-         wgiEaoQUpA7I32Ab98NGjaiUUj2jYznTLFp5RwxZ9U5NH9r/Bnf8a1+PYsV2Wr6Ybd27
-         U8Bg==
-X-Gm-Message-State: AOJu0YyGILZQE3IzJSJzcoKjIHmyaiWRGJWDPvcGdE9Ie8JyZCaWTDDg
-	6xVLQUxB7prhkHRvtEx1PD/ae2neJOEYs4opDWFrySe5rpypYJzpYe2ftngBvcY=
-X-Google-Smtp-Source: AGHT+IGJn9c7Kdn/fwPYYs/b7yOeH9vWnRE43QOLggPt8eJfLcJAlYwTSQ2DISsY9X7skJDjK0vytVYOrsIlDSNzjUQ=
-X-Received: by 2002:a05:6a20:da88:b0:197:3395:a5c9 with SMTP id
- iy8-20020a056a20da8800b001973395a5c9mr2173845pzb.90.1704471089504; Fri, 05
- Jan 2024 08:11:29 -0800 (PST)
+        bh=9XSaiyQmm79NWYYZKXvu1jjvp4q3CpLJczn8LJj/R3M=;
+        b=d+LY2KMYwSouKa5nJCVE81KQKpbzCldy+AlsGGgNOeqTUyrc78hYVDxH/W9hCUD2EM
+         BoqgTEYRicXojsPAMb4bsvkMBju6Sed3LE+VmrVkgBTb+aZAL/hIpOgob3RDoBlzXO7x
+         uEHVW8HzkhkScu/4yR0oHBNFN+uZMcLd+54Yk0BuoPottW6A6yaxHIOutzBT9+bDc5AH
+         qedB3X4wRqVqqbMWmbuE2Cb2Fb/DKXfOcrVfG9rJVadOvLc8HD6zlrPJL4InaHT166/s
+         HvNPWZnSzmTdxhA7CZa5Qju/yHYb27xBywHM4fRreCsRx1Jduo2wG8xH86zGl/p58u2E
+         8eVA==
+X-Gm-Message-State: AOJu0Yw7hvvjyJ7U3WF5GZNZKqXKOuTdEbiMVSlARoW9HfNjLC2Jvmob
+	S9CoYxP3rGwDjgmWaG2yZgx4TmtNWSK0uw==
+X-Google-Smtp-Source: AGHT+IFM6ysmp2Xr9DCU3Vuei4JMO0dEao78HnyRDX+jACWcpbdpi/2nDdNYBR7DbrmN5GkY4BhKSw==
+X-Received: by 2002:a17:906:7483:b0:a28:fc8a:5da5 with SMTP id e3-20020a170906748300b00a28fc8a5da5mr461903ejl.121.1704471346155;
+        Fri, 05 Jan 2024 08:15:46 -0800 (PST)
+Received: from otso.luca.vpn.lucaweiss.eu (144-178-202-138.static.ef-service.nl. [144.178.202.138])
+        by smtp.gmail.com with ESMTPSA id ft33-20020a170907802100b00a26a5632d8fsm1031726ejc.13.2024.01.05.08.15.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 05 Jan 2024 08:15:45 -0800 (PST)
+From: Luca Weiss <luca.weiss@fairphone.com>
+Subject: [PATCH 0/2] Add Crypto Engine support for SM6350
+Date: Fri, 05 Jan 2024 17:15:42 +0100
+Message-Id: <20240105-sm6350-qce-v1-0-416e5c7319ac@fairphone.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240105055840.1977897-1-lcherian@marvell.com> <20240105055840.1977897-7-lcherian@marvell.com>
-In-Reply-To: <20240105055840.1977897-7-lcherian@marvell.com>
-From: Mike Leach <mike.leach@linaro.org>
-Date: Fri, 5 Jan 2024 16:11:18 +0000
-Message-ID: <CAJ9a7VhStuDsNz-BiVe-bW5E91UxQttKTbE4x+M+8NmdEKtAJw@mail.gmail.com>
-Subject: Re: [PATCH v6 6/7] coresight: tmc: Stop trace capture on FlIn
-To: Linu Cherian <lcherian@marvell.com>
-Cc: suzuki.poulose@arm.com, james.clark@arm.com, leo.yan@linaro.org, 
-	linux-arm-kernel@lists.infradead.org, coresight@lists.linaro.org, 
-	linux-kernel@vger.kernel.org, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	devicetree@vger.kernel.org, sgoutham@marvell.com, gcherian@marvell.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAC4rmGUC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIxMDQwNT3eJcM2NTA93C5FTdZDMjY+PEpKQ0U5M0JaCGgqLUtMwKsGHRsbW
+ 1AP+rrvZcAAAA
+To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, 
+ Thara Gopinath <thara.gopinath@gmail.com>, 
+ Herbert Xu <herbert@gondor.apana.org.au>, 
+ "David S. Miller" <davem@davemloft.net>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
+ linux-crypto@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Luca Weiss <luca.weiss@fairphone.com>
+X-Mailer: b4 0.12.4
 
-Hi,
+Add the compatible and nodes for the QCE found on SM6350 SoC.
 
-On Fri, 5 Jan 2024 at 05:59, Linu Cherian <lcherian@marvell.com> wrote:
->
-> Configure TMC ETR and ETF to flush and stop trace capture
-> on FlIn event. As a side effect, do manual flush only if
-> auto flush fails.
->
-> Signed-off-by: Linu Cherian <lcherian@marvell.com>
-> ---
-> Changelog from v5:
-> * No changes
->
->  drivers/hwtracing/coresight/coresight-tmc-etf.c | 10 ++++++++--
->  drivers/hwtracing/coresight/coresight-tmc-etr.c | 10 ++++++++--
->  drivers/hwtracing/coresight/coresight-tmc.h     |  3 +++
->  3 files changed, 19 insertions(+), 4 deletions(-)
->
-> diff --git a/drivers/hwtracing/coresight/coresight-tmc-etf.c b/drivers/hwtracing/coresight/coresight-tmc-etf.c
-> index 72c2315f4e23..57a9a9300d36 100644
-> --- a/drivers/hwtracing/coresight/coresight-tmc-etf.c
-> +++ b/drivers/hwtracing/coresight/coresight-tmc-etf.c
-> @@ -34,7 +34,7 @@ static int __tmc_etb_enable_hw(struct tmc_drvdata *drvdata)
->         writel_relaxed(TMC_MODE_CIRCULAR_BUFFER, drvdata->base + TMC_MODE);
->         writel_relaxed(TMC_FFCR_EN_FMT | TMC_FFCR_EN_TI |
->                        TMC_FFCR_FON_FLIN | TMC_FFCR_FON_TRIG_EVT |
-> -                      TMC_FFCR_TRIGON_TRIGIN,
-> +                      TMC_FFCR_TRIGON_TRIGIN | TMC_FFCR_STOP_ON_FLUSH,
->                        drvdata->base + TMC_FFCR);
->
+Not completely sure how to fully test it but "kcapi-speed --all" shows
+no issues. Let me know if I can/should test this more.
 
-This is a problem. Setting TMC_FFCR_STOP_ON_FLUSH changes the
-fundamentals of trigger event handling. Without this bit ETM can
-generate multiple event  + triggers which are then embedded into the
-formatted trace stream for later search.
-With this new bit the capture will stop on the first event. Setting
-this bit should be dependent on the mode being set to ETR_MODE_RESRV
+Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+---
+Luca Weiss (2):
+      dt-bindings: qcom-qce: Add compatible for SM6350
+      arm64: dts: qcom: sm6350: Add Crypto Engine
 
+ .../devicetree/bindings/crypto/qcom-qce.yaml       |  1 +
+ arch/arm64/boot/dts/qcom/sm6350.dtsi               | 31 ++++++++++++++++++++++
+ 2 files changed, 32 insertions(+)
+---
+base-commit: 610a9b8f49fbcf1100716370d3b5f6f884a2835a
+change-id: 20240105-sm6350-qce-c6233abbf54f
 
+Best regards,
+-- 
+Luca Weiss <luca.weiss@fairphone.com>
 
->         writel_relaxed(drvdata->trigger_cntr, drvdata->base + TMC_TRG);
-> @@ -615,7 +615,13 @@ static int tmc_panic_sync_etf(struct coresight_device *csdev)
->         if (val != TMC_MODE_CIRCULAR_BUFFER)
->                 goto out;
->
-> -       tmc_flush_and_stop(drvdata);
-> +       val = readl(drvdata->base + TMC_FFSR);
-> +       /* Do manual flush and stop only if its not auto-stopped */
-> +       if (!(val & TMC_FFSR_FT_STOPPED)) {
-> +               dev_info(&csdev->dev,
-> +                        "%s: Triggering manual flush\n", __func__);
-> +               tmc_flush_and_stop(drvdata);
-> +       }
->
-Is there some reason to believe that the stop on flush will not work?
-
-Using this conditional skips the  tmc_wait_for_tmcready() called by
-tmc_flush_and_stop() if the formatter is stopped - which is a
-different condition test on a different register.
-
-Why is this block of code not in the patch that introduces the
-tmc_panic_sync_etf()
-
->         /* Sync registers from hardware to metadata region */
->         mdata->sts = csdev_access_relaxed_read32(csa, TMC_STS);
-> diff --git a/drivers/hwtracing/coresight/coresight-tmc-etr.c b/drivers/hwtracing/coresight/coresight-tmc-etr.c
-> index ab7521bbb2f5..4b3c7ec7f62b 100644
-> --- a/drivers/hwtracing/coresight/coresight-tmc-etr.c
-> +++ b/drivers/hwtracing/coresight/coresight-tmc-etr.c
-> @@ -1113,7 +1113,7 @@ static int __tmc_etr_enable_hw(struct tmc_drvdata *drvdata)
->
->         writel_relaxed(TMC_FFCR_EN_FMT | TMC_FFCR_EN_TI |
->                        TMC_FFCR_FON_FLIN | TMC_FFCR_FON_TRIG_EVT |
-> -                      TMC_FFCR_TRIGON_TRIGIN,
-> +                      TMC_FFCR_TRIGON_TRIGIN | TMC_FFCR_STOP_ON_FLUSH,
->                        drvdata->base + TMC_FFCR);
->         writel_relaxed(drvdata->trigger_cntr, drvdata->base + TMC_TRG);
->         tmc_enable_hw(drvdata);
-> @@ -1846,7 +1846,13 @@ static int tmc_panic_sync_etr(struct coresight_device *csdev)
->         if (!(val & TMC_CTL_CAPT_EN))
->                 goto out;
->
-> -       tmc_flush_and_stop(drvdata);
-> +       val = readl(drvdata->base + TMC_FFSR);
-> +       /* Do manual flush and stop only if its not auto-stopped */
-> +       if (!(val & TMC_FFSR_FT_STOPPED)) {
-> +               dev_info(&csdev->dev,
-> +                        "%s: Triggering manual flush\n", __func__);
-> +               tmc_flush_and_stop(drvdata);
-> +       }
->
-
-Above comments for etf apply equally to etr.
-
-Regards
-
-Mike
-
->         /* Sync registers from hardware to metadata region */
->         mdata->size = csdev_access_relaxed_read32(csa, TMC_RSZ);
-> diff --git a/drivers/hwtracing/coresight/coresight-tmc.h b/drivers/hwtracing/coresight/coresight-tmc.h
-> index 6e1e910d5ea4..cf9313b302c7 100644
-> --- a/drivers/hwtracing/coresight/coresight-tmc.h
-> +++ b/drivers/hwtracing/coresight/coresight-tmc.h
-> @@ -77,6 +77,9 @@
->  #define TMC_AXICTL_AXCACHE_OS  (0xf << 2)
->  #define TMC_AXICTL_ARCACHE_OS  (0xf << 16)
->
-> +/* TMC_FFSR - 0x300 */
-> +#define TMC_FFSR_FT_STOPPED    BIT(1)
-> +
->  /* TMC_FFCR - 0x304 */
->  #define TMC_FFCR_FLUSHMAN_BIT  6
->  #define TMC_FFCR_EN_FMT                BIT(0)
-> --
-> 2.34.1
->
-
-
---
-Mike Leach
-Principal Engineer, ARM Ltd.
-Manchester Design Centre. UK
 
