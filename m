@@ -1,100 +1,179 @@
-Return-Path: <devicetree+bounces-29932-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29933-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6B6F825C8D
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jan 2024 23:34:41 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B4FF825C99
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jan 2024 23:51:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4FF7E1F23D2E
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jan 2024 22:34:41 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B10EDB215B0
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jan 2024 22:51:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF4022D048;
-	Fri,  5 Jan 2024 22:34:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lcCrH73U"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D3E436096;
+	Fri,  5 Jan 2024 22:51:18 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx.skole.hr (mx2.hosting.skole.hr [161.53.165.186])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84796364A4;
-	Fri,  5 Jan 2024 22:34:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F2192C433C7;
-	Fri,  5 Jan 2024 22:34:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1704494074;
-	bh=Tb5SDEEHLKEtB8wZ888SeU2Y0OfU6QWV1hNfY+neoOs=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=lcCrH73UbLEDNJpb+7e2xoixnomvaaImM99i7LcKsAlO3Fvh4zHpmsXtWNloWy/l1
-	 Wk7F/nvxLeFEmO2P/lt70QNyJdTKRXiCuJ+Lz9FW4+g551mVMxBWf2ZBq5msxG/uQT
-	 MsHiYEITrSwcyfuPwM71ZCDwJZVQJN3K0BpK0+52kpHKccbpBMhlWHdIFDF6o5vuIJ
-	 ATnUpYnbxJknMTOtJsWpowmcDVI/KpE9VVi1s5Eoi3h41cJUQmjKM1FqW9TOsoh0cP
-	 fr6ES5GbC6gCkFhmPGWIcP/L2XUFNmDLIcRFmIv2VVlz0oGPe9kllVHTHeobEq8vIa
-	 5+kykZnfIcwig==
-Received: (nullmailer pid 3814480 invoked by uid 1000);
-	Fri, 05 Jan 2024 22:34:32 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0D2136094;
+	Fri,  5 Jan 2024 22:51:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=skole.hr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=skole.hr
+Received: from mx2.hosting.skole.hr (localhost.localdomain [127.0.0.1])
+	by mx.skole.hr (mx.skole.hr) with ESMTP id C4FA7852C5;
+	Fri,  5 Jan 2024 23:51:05 +0100 (CET)
+From: =?utf-8?q?Duje_Mihanovi=C4=87?= <duje.mihanovic@skole.hr>
+Date: Fri, 05 Jan 2024 23:50:32 +0100
+Subject: [PATCH] dt-bindings: pxa-pwm: Convert to YAML
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Rob Herring <robh@kernel.org>
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org, Todor Tomov <todor.too@gmail.com>, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, Robert Foss <rfoss@kernel.org>, Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh+dt@kernel.org>, Mauro Carvalho Chehab <mchehab@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-In-Reply-To: <20240105-linux-next-24-01-02-sc8280xp-camss-core-dtsi-v2-2-7a57b8b07398@linaro.org>
-References: <20240105-linux-next-24-01-02-sc8280xp-camss-core-dtsi-v2-0-7a57b8b07398@linaro.org>
- <20240105-linux-next-24-01-02-sc8280xp-camss-core-dtsi-v2-2-7a57b8b07398@linaro.org>
-Message-Id: <170449407201.3814449.2801243069272854971.robh@kernel.org>
-Subject: Re: [PATCH v2 2/4] media: dt-bindings: media: camss: Add
- qcom,sc8280xp-camss binding
-Date: Fri, 05 Jan 2024 15:34:32 -0700
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+Message-Id: <20240105-pxa-pwm-yaml-v1-1-4ded9d00c38f@skole.hr>
+X-B4-Tracking: v=1; b=H4sIALeHmGUC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIxMDQwNT3YKKRN2C8lzdysTcHF2LlKQkA4OUtFTzZDMloJaCotS0zAqwcdG
+ xtbUA6x6XOF4AAAA=
+To: Thierry Reding <thierry.reding@gmail.com>, 
+ =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ =?utf-8?q?Duje_Mihanovi=C4=87?= <duje.mihanovic@skole.hr>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2935;
+ i=duje.mihanovic@skole.hr; h=from:subject:message-id;
+ bh=exJFcZMfLakzLW30XCN4B+b4XSe/8POoE4BDRUIR0eM=;
+ b=owEBbQKS/ZANAwAIAZoRnrBCLZbhAcsmYgBlmIfChkSh+CgUu/dIC5qbtD5pY+rHr6ydJk/RV
+ aTDzQY4m42JAjMEAAEIAB0WIQRT351NnD/hEPs2LXiaEZ6wQi2W4QUCZZiHwgAKCRCaEZ6wQi2W
+ 4dxwD/9TfUze7+TN88Hg8yHNR7YIBQZvmqCYKjo7YA1FpAf1qrSuGQvzfM/If8UjDPXKOheXriX
+ 7WC5xCwb8dFe5yaefC+rIDQH1WsjZpZcik9V9P72hGMGR2HYNhjNDF0hMTbzesQ1IlNNjU4afoF
+ VgMKpD0agGn3GQaKe6O6pgQLwcaLiBr+m+ukqlq1tn1Ps3kCZpdJH3OLqUsxJ3hfPwS1zpKQ59b
+ zB3OJaPpp9kC2vBjq1aW4UfZiiw6zde1ilk5+paRG/vihqdY1OXfJ0fsf7gy1fFc9xrfRwmPt8H
+ zjtANB/r/DF2Zdj4Bskn5vULn+neGfxkddNokV3zXx/c7Mkudt0A14da4/SXX2WAj8PdFwp0Dp+
+ KXV5Ybt6cKX56BFdy3cg/9BgMEBuAno62+5Iyh7emBF5HTfYfbDEpmHS6d1xIpNKFBs/zIu/TzQ
+ cOMt73isETCb53+iGADWX0gCXcJoHC6yRHp75GhLJHNVWNyTyNDDbsb1HPlcBvEFAFHM5vcSVK2
+ 4FJFEIB2DywIIk1pxxybqxgmSuQgfMr0vs0z7DiWYKRM6VPkbiabuW88WZmChd7J0zktlhFNlZ0
+ 7L4l+OPUyzDAfOdn8ua616idpPWYsBmUxdY6J4y+7W3y2s1N4ticl+KwHy0lzilB5Ldbi0Q8i9N
+ vG/ZHe56sarjNDw==
+X-Developer-Key: i=duje.mihanovic@skole.hr; a=openpgp;
+ fpr=53DF9D4D9C3FE110FB362D789A119EB0422D96E1
 
+Convert the PXA PWM binding file from TXT to YAML.
 
-On Fri, 05 Jan 2024 20:39:06 +0000, Bryan O'Donoghue wrote:
-> Add bindings for qcom,sc8280xp-camss in order to support the camera
-> subsystem for sc8280xp as found in the Lenovo x13s Laptop.
-> 
-> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->  .../bindings/media/qcom,sc8280xp-camss.yaml        | 512 +++++++++++++++++++++
->  1 file changed, 512 insertions(+)
-> 
+Signed-off-by: Duje Mihanović <duje.mihanovic@skole.hr>
+---
+ Documentation/devicetree/bindings/pwm/pwm-pxa.yaml | 51 ++++++++++++++++++++++
+ Documentation/devicetree/bindings/pwm/pxa-pwm.txt  | 30 -------------
+ 2 files changed, 51 insertions(+), 30 deletions(-)
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+diff --git a/Documentation/devicetree/bindings/pwm/pwm-pxa.yaml b/Documentation/devicetree/bindings/pwm/pwm-pxa.yaml
+new file mode 100644
+index 000000000000..fb20e4e1daa8
+--- /dev/null
++++ b/Documentation/devicetree/bindings/pwm/pwm-pxa.yaml
+@@ -0,0 +1,51 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/pwm/pwm-pxa.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Marvell PXA PWM
++
++maintainers:
++  - Duje Mihanović <duje.mihanovic@skole.hr>
++
++allOf:
++  - $ref: pwm.yaml#
++
++properties:
++  compatible:
++    enum:
++      - marvell,pxa250-pwm
++      - marvell,pxa270-pwm
++      - marvell,pxa168-pwm
++      - marvell,pxa910-pwm
++
++  reg:
++    # Length should be 0x10
++    maxItems: 1
++
++  "#pwm-cells":
++    # Used for specifying the period length in nanoseconds
++    const: 1
++
++  clocks:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - "#pwm-cells"
++  - clocks
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/pxa-clock.h>
++
++    pwm0: pwm@40b00000 {
++      compatible = "marvell,pxa250-pwm";
++      reg = <0x40b00000 0x10>;
++      #pwm-cells = <1>;
++      clocks = <&clks CLK_PWM0>;
++    };
+diff --git a/Documentation/devicetree/bindings/pwm/pxa-pwm.txt b/Documentation/devicetree/bindings/pwm/pxa-pwm.txt
+deleted file mode 100644
+index 5ae9f1e3c338..000000000000
+--- a/Documentation/devicetree/bindings/pwm/pxa-pwm.txt
++++ /dev/null
+@@ -1,30 +0,0 @@
+-Marvell PWM controller
+-
+-Required properties:
+-- compatible: should be one or more of:
+-  - "marvell,pxa250-pwm"
+-  - "marvell,pxa270-pwm"
+-  - "marvell,pxa168-pwm"
+-  - "marvell,pxa910-pwm"
+-- reg: Physical base address and length of the registers used by the PWM channel
+-  Note that one device instance must be created for each PWM that is used, so the
+-  length covers only the register window for one PWM output, not that of the
+-  entire PWM controller.  Currently length is 0x10 for all supported devices.
+-- #pwm-cells: Should be 1.  This cell is used to specify the period in
+-  nanoseconds.
+-
+-Example PWM device node:
+-
+-pwm0: pwm@40b00000 {
+-	compatible = "marvell,pxa250-pwm";
+-	reg = <0x40b00000 0x10>;
+-	#pwm-cells = <1>;
+-};
+-
+-Example PWM client node:
+-
+-backlight {
+-	compatible = "pwm-backlight";
+-	pwms = <&pwm0 5000000>;
+-	...
+-}
 
-yamllint warnings/errors:
+---
+base-commit: 610a9b8f49fbcf1100716370d3b5f6f884a2835a
+change-id: 20240105-pxa-pwm-yaml-8dbb00dfe7c6
 
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/media/qcom,sc8280xp-camss.example.dts:26:18: fatal error: dt-bindings/clock/qcom,sc8280xp-camcc.h: No such file or directory
-   26 |         #include <dt-bindings/clock/qcom,sc8280xp-camcc.h>
-      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-compilation terminated.
-make[2]: *** [scripts/Makefile.lib:419: Documentation/devicetree/bindings/media/qcom,sc8280xp-camss.example.dtb] Error 1
-make[2]: *** Waiting for unfinished jobs....
-make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1424: dt_binding_check] Error 2
-make: *** [Makefile:234: __sub-make] Error 2
+Best regards,
+-- 
+Duje Mihanović <duje.mihanovic@skole.hr>
 
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240105-linux-next-24-01-02-sc8280xp-camss-core-dtsi-v2-2-7a57b8b07398@linaro.org
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
 
 
