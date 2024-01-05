@@ -1,176 +1,202 @@
-Return-Path: <devicetree+bounces-29835-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29836-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C80F6824F71
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jan 2024 09:02:53 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 63755824F82
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jan 2024 09:12:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7BDA41F22AD1
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jan 2024 08:02:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6824D1C22BB7
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jan 2024 08:12:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 965AD200AA;
-	Fri,  5 Jan 2024 08:02:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1BBE20B19;
+	Fri,  5 Jan 2024 08:11:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WcmqHkZZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from CHN02-SH0-obe.outbound.protection.partner.outlook.cn (mail-sh0chn02on2054.outbound.protection.partner.outlook.cn [139.219.146.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0DD5200AC;
-	Fri,  5 Jan 2024 08:02:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Dt/YuTKLX6PH4tchcIIa/DVwVvv0pzchGHhFaGMukBZSYBrcC0/gu6NenlcGMpQzb5mBNEjRvyI7AxDkTzKxtKgBRsvhw/G3l3lh4js86rWbbSLxrtp4uHpbdVvE0P0Fn5rKX+q3U5QyqNP5Y5BGSAgwIe+DvcPMluQUEwaiL3X9NinhTa/mowifissBkdlLqEihxFBzX/SDimQduJHzL8lc3d+yWudzLgi+Wg+WIznEkFutC0tXRSh1kCENOgynBQHy9Ux3SQJ2fTCXwa8D03bDDbLOrOUrVe/l+QkNQ2WSNNBwRz12C2KiU/UmdbVxUqHzHaZmI/CL+MDMscCgfQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=4+ksHeympk2WGT6O5XIxjIcSOCWZ/HTs79c8bSuT8+4=;
- b=Z+JvFA0piSVG8EWb0A5TF69SbcxWfbDoTcqapJ1cQPACcQGvFZAta7HNHfMD5Na7BWjvYoe2IZc+405R/RzSerFqE+93byUdnifsa1AbvZbJDri461lmPsyFaiGodUNrU3I8exSGqOuRdJG3uAUqoe9OG0u2yuaKLw0sw2q/d5Qx0JRKdM+SKbkyWZnwN0ycASOMaYJc1bBJMjBwmGLEwaBwwku0AV4mIkZj7vQ+H8e0FCPEa8e85lk89Wf6IH7B5B0CVzCGV00XDsC31oYcJvf38Wj5xpr8q7HLN4g9Ki19hPoyjw163lavcnmwAdYL8MUve14Yvj9MvFEGDQ5DKA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=starfivetech.com; dmarc=pass action=none
- header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
-Received: from SHXPR01MB0735.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c311:27::17) by SHXPR01MB0509.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c311:1d::12) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7135.29; Fri, 5 Jan
- 2024 08:02:29 +0000
-Received: from SHXPR01MB0735.CHNPR01.prod.partner.outlook.cn
- ([fe80::ab14:c31e:d14e:f545]) by
- SHXPR01MB0735.CHNPR01.prod.partner.outlook.cn ([fe80::ab14:c31e:d14e:f545%2])
- with mapi id 15.20.7135.028; Fri, 5 Jan 2024 08:02:29 +0000
-From: William Qiu <william.qiu@starfivetech.com>
-To: =?utf-8?B?VXdlIEtsZWluZS1Lw7ZuaWc=?= <u.kleine-koenig@pengutronix.de>
-CC: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
-	"linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>, Emil Renner Berthing
-	<kernel@esmil.dk>, Rob Herring <robh+dt@kernel.org>, Thierry Reding
-	<thierry.reding@gmail.com>, Philipp Zabel <p.zabel@pengutronix.de>, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
-	<conor+dt@kernel.org>, Hal Feng <hal.feng@starfivetech.com>, Paul Walmsley
-	<paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou
-	<aou@eecs.berkeley.edu>
-Subject: RE: [PATCH v10 2/4] pwm: opencores: Add PWM driver support
-Thread-Topic: [PATCH v10 2/4] pwm: opencores: Add PWM driver support
-Thread-Index: AQHaNLumKMWI92ZqLkONpDhrjXMz6LDKVKgAgACWT3A=
-Date: Fri, 5 Jan 2024 08:02:29 +0000
-Message-ID:
- <SHXPR01MB07352176E8B44BF3FD3A7A4A9F66A@SHXPR01MB0735.CHNPR01.prod.partner.outlook.cn>
-References: <20231222094548.54103-1-william.qiu@starfivetech.com>
- <20231222094548.54103-3-william.qiu@starfivetech.com>
- <mtqzl3hdfivkty2gdwabfxpshz276fjke477eql3nua4west63@u53ruikv5hz2>
-In-Reply-To: <mtqzl3hdfivkty2gdwabfxpshz276fjke477eql3nua4west63@u53ruikv5hz2>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=starfivetech.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SHXPR01MB0735:EE_|SHXPR01MB0509:EE_
-x-ms-office365-filtering-correlation-id: 2a360fab-372a-4249-3072-08dc0dc4a9d4
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info:
- DHA3caoETF8DUyo+pciOX3B1pqT1IRwO/H7zkJ4jykNVxuriN9wF7Yus6wmbIT8S4NQ+GrlkhCi2Mq+HplA7r7HKbeeNxK44kVOXT0kx4Q03XMKSCRCbUG1NgetaIV2kxjHwWDTX/fPbiZaJQ0ZkJD95louaTYC/OIRCuYLQkGpt2Tf3bDa0XfY/YMX9DKiViGuMfNhwp5WOujvQjltWqX2l9G1qcsoSC4v8oTby3zAqqXZy9pHfaQxuni7TuuemM+kmnUstqaXitUZ7Dd5ZyKT2a+ePNUI81bEWVzGGuGeBx8pWDVluiJxS7cwU8GXn59sQWdehnBKLvp3YPhXiIoGmBhojOtx9a2suIjrdjoPK4zKc4CBonE5BdbIpL4ueIBPT4P637ESXKtJahv8h98yaOnAnEjeXxKl7/YwXlXVav7oycoYcpl3+IDKWvT9+dfRhT4Eqcd6UkWjM2T20pbWv8zlZuGkUQ3y2Iijwx5OQnqrnqCboNUeuT+zlFCxcyqPmTJs7XlDkFKlnpmAkNJEevD2iN+V5OUZ9j/s7s62F84kJa7IZS3Ftjbhqfv5M
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SHXPR01MB0735.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230031)(136003)(396003)(346002)(366004)(39830400003)(230922051799003)(64100799003)(1800799012)(451199024)(186009)(55016003)(40180700001)(33656002)(41320700001)(38100700002)(38070700009)(122000001)(66446008)(6916009)(966005)(64756008)(8936002)(41300700001)(66556008)(54906003)(76116006)(66476007)(66946007)(40160700002)(86362001)(2906002)(7696005)(83380400001)(53546011)(9686003)(71200400001)(26005)(5660300002)(4326008)(7416002)(8676002)(508600001)(44832011);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?utf-8?B?ekU2L3BHSFZEOGNoM1pSWS81QXZZWUF0YVZxMzlzaTJlaXlRZGFjekJkYWtC?=
- =?utf-8?B?Q3NZUWhCTlVkbVBiL3RHMUhYSEdzeTZUT2dNaDV2WEtFbXhEL0FLZHp2QjJO?=
- =?utf-8?B?cnc2NXRSTlBZc0ZremtIb3I1STBxb2xnK05VTVk3bDZBdVFHUkF0dHNGbkFq?=
- =?utf-8?B?YVFKOHNUV1JIMjhBcktKWTN5NlA1ZWxXckNENkRqUXVUamR5aVhpdHlRbTNE?=
- =?utf-8?B?VUk2aGQ5ZlhvM2tHRFRXTTZleExhdzlOcERvZTA3ZUpETFVicWExdlBZc2V6?=
- =?utf-8?B?VGRBSi9FRUZBTGhyd3Q4UEFTMytOSVRiZjA0c3lRd1NJR2VOdmthOUhUbkp0?=
- =?utf-8?B?UmJEVmV2c0pRNUtiWE54TzJWbDBvRFRmUXR0YUxybzlWc0Z4T0cyMTZ4cDQ0?=
- =?utf-8?B?WUJHVUJ0SU1hZnlzQ3VtazJtTWl4RkkwQ0JMYUdML2QrRUM4eHFLSnVCdlJ2?=
- =?utf-8?B?eWNkc3lXZlJOWW5ldkV4eGxINENNM2g5SUxTczhqRTZrcEZHNTVMMUUyanBB?=
- =?utf-8?B?MjdGMHVGYlozVDgzcVNmSmFSZEV6T2UyS29KNzRqOUxremF4NEVwTU1IZFFC?=
- =?utf-8?B?ZmduK1VZU3dYOEZObXFmK2d6MURVd0k5aDMzWGhSeStJOU1MSTM0ZUpYTVZy?=
- =?utf-8?B?c2lRRGRFTzF3ZDBKcnlkWWpSTDRmYTQyK2RJaHkxMC9xc0ZCdHhyZjBzN3BP?=
- =?utf-8?B?U0c5Y1FVMWM4dTRNUnpMb1o0c0JmbWt6Rk1hWXd6dGZ5YlVGdko3QjhTMURv?=
- =?utf-8?B?eTBCZjZhMTJtczA2UVI5UWFjSk1pR2ZBc3Z5WTB1VlBhZkwxcmNyTlNmZzlQ?=
- =?utf-8?B?Wjk3b2NQS2RJMFliSkF3SGdnWWY4QVRiVm5NTHlncnRueHpSbU5JRExDY2o0?=
- =?utf-8?B?UkZ3UWh3QldzWmVPaDBhT1hHTDI3anYzR28rRGlDc2twS29NUDZkS0tCWkxy?=
- =?utf-8?B?RlJZTnpJMGlrTldPVTlCbWxRaE9qT3BGMEtTSE1SdzNaZzJWbEVWYnVvNjVT?=
- =?utf-8?B?VXhYUzUxQk1USWF4R3lXT2xQV0Iya1FoV0dOT3lONXJyNVpJMU1xTHlySzE2?=
- =?utf-8?B?WVVqRHhvSFY0MVdBcFBibDE5UTIzZ2JRcTk2V1FFZmovRWh4eWFHWUV2QVM0?=
- =?utf-8?B?cDdqSnNvYVJ5V3lKVFFWelF0ZFNDYlZqai92Q29Vdys0azBOMUYyZmlxSTRl?=
- =?utf-8?B?dWVRY3NJakJUWHI1OWlxTzV3L3JtT1N0K3l0djRkVlhQMGF4bkl0T1dZWEVE?=
- =?utf-8?B?eitFWXV1VHlwbFVUb1ZhWi9tYkdSdHRXL2UxbW9SZkw0eXV3amsrSHZLVVUx?=
- =?utf-8?B?MzEwOG5kRTcrSmtpODFDcEIweis5c3lCUmlha202WUpEcDJJTk1TQ1R0UGsv?=
- =?utf-8?B?RW1KL3pJalhPakZhQzV6VGRCMm9JdUJxeldHcXR1VnhDMHFENEM2cGY0cFE2?=
- =?utf-8?B?MzQrQVNjS3J3bHFEVjR6TzNsenhYZlprMGo0ZVprUWxOOGtja2g0WmZhRGRH?=
- =?utf-8?B?ZEtNYnRLU0tPOEYyU3kvaXNaQU5ITHJUTlMxRDZKZGhuR2cyYjREb2hVNW52?=
- =?utf-8?B?OUhhL0FZQVg4RGV4WW5hdE0vcjRseld0cWd6MmF6cnVjNWlhZlU2RjlJcjlz?=
- =?utf-8?B?OWdBOEhnS1BKMFJqTG5yeUlhZjZKbEFjYVdzcmI0aW5ZbmhaZEVZQ3hLajZC?=
- =?utf-8?B?QXFxWnBIdXI5MUJaS3VsdE1UNzExeFlMTmZvU3NNS2x5UngycnJNSHZhdmF2?=
- =?utf-8?B?dkFaUmsrQkczaWFubjRvbGNpOTBybm9MUC9odUhZdE9kdERWWUx6ZWJTMzRM?=
- =?utf-8?B?aTdxYW1TTldCbTNCN2xrTEhET2pSaWRkbkY5ZG1Ec3FrQzZ4WFlLb1hyM0w4?=
- =?utf-8?B?bmMrY3J6Y0laNlRjanpJM2ZCZkdUaEE2MWFDczM2VnVVbGtIUVBaTjNLZWl1?=
- =?utf-8?B?ZGhMbzdIQ2ZMRXc2SmttNllqSkgybEdyTndnMUowMm5oRUZpMFJpaXVFYm81?=
- =?utf-8?B?S04yTFdER2xnTkZKYWRxVVhyWWl4VGRmMEYrM05sd3F5c1d6UGxUdkcyeldC?=
- =?utf-8?B?dHVXY2luY1JvNU5xY0czOXdmN3ZqOE9hWXNzUG8zOE1nSUFqemtCeDUwTFdo?=
- =?utf-8?B?SHV2Ti9xU2E4eHRkOGgxNnNoYmxGZHljNU44emgyYVZocEl2MHkrQWlsYUZC?=
- =?utf-8?B?NFE9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 180F4208D7;
+	Fri,  5 Jan 2024 08:11:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-a28bf46ea11so59807766b.1;
+        Fri, 05 Jan 2024 00:11:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1704442292; x=1705047092; darn=vger.kernel.org;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=DDc3X/vTCrv9i8PxCPyqlLpcrg6iDYAL/aeEr+2xMyc=;
+        b=WcmqHkZZGkfCtZYRe5WnKJlQNN0i8ae0vjADPUow1Mkzpwed9Z1MHjG+Gyk5pwKbOi
+         tEiHjQbeuWh6PfsFj4t0SatNODGIrGXYtMW/DgyF6wq79TyaQygb4qF2H3raCzbcs1WM
+         W4uvjtlIORwcd0EKYfaw0Vr8l2cecBY/PjIztjDb7LpzCPeQw6aVqLhWT/lA0pnK7tp8
+         2qjZFBxzk6oWm9rtcSAeIQ1vk3lTjNVlcxd9JeAKNmlMZHeyOIyApsRimo2xcprFunF/
+         FxCmuonPoEKudcUD1YeJi39Jg5cUHOiYoXpcvwMljr7or63KnWfnmuEanEKM5qKITCHl
+         E9lA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1704442292; x=1705047092;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=DDc3X/vTCrv9i8PxCPyqlLpcrg6iDYAL/aeEr+2xMyc=;
+        b=PG81r9zh6RzGPhWx5mJqNv4b2EffiZRQ0UZtR/ZmK+oBs24oKiqL1WeYRFEqy75cZ1
+         yWPpiNZzTJfLsUkySQi+CcCVuWKSPBWyUVvRhlrqObPr+xFtya34ceku8ZwV+YmhjPZX
+         iufs7b+hw1FrifWkyZ3ET35ovfHsJ4DY6dD+9iH34wa+xFzi6dxo5JJhl8csRaZHRD+E
+         JuCkosrnDGDCqUSd+w3sDfVHLRjDodsWyF/f3OqNtcvz/7I68EX9b2a9ubypyB4MhG53
+         /rvk0AVxQSbAXVShAmxvJIiDBiF/C/0Np+wE27v37kMOnl0yD23JcSjdwRh+DbO6gKy3
+         x5Pw==
+X-Gm-Message-State: AOJu0Yyw3grXiWJvBbtfjNhG43q5Bfqpv1JThM2Yro/XPR5ewNhhqOZM
+	GvdiVA5cn5hrMEjQo8ruwUI=
+X-Google-Smtp-Source: AGHT+IEtSoG6+TQ5lp2vD5o78oLq7FNxPf6otoqjX5IdT3AGC6plY2CLaP4BqbV0ImHtO+r+DFIGtA==
+X-Received: by 2002:a17:906:34d7:b0:a23:671c:2284 with SMTP id h23-20020a17090634d700b00a23671c2284mr1666245ejb.29.1704442291971;
+        Fri, 05 Jan 2024 00:11:31 -0800 (PST)
+Received: from orome.fritz.box (p200300e41f0fa600f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f0f:a600:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id r17-20020a170906551100b00a2356a7eafasm420985ejp.199.2024.01.05.00.11.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 05 Jan 2024 00:11:30 -0800 (PST)
+Date: Fri, 5 Jan 2024 09:11:29 +0100
+From: Thierry Reding <thierry.reding@gmail.com>
+To: Sameer Pujar <spujar@nvidia.com>
+Cc: Mark Brown <broonie@kernel.org>, alsa-devel@alsa-project.org,
+	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+	devicetree@vger.kernel.org, robh+dt@kernel.org,
+	Jon Hunter <jonathanh@nvidia.com>, linux-tegra@vger.kernel.org
+Subject: Re: Query on audio-graph-card DT binding
+Message-ID: <ZZe5sTNz005Tt4jk@orome.fritz.box>
+References: <dfe363ef-4638-4b5e-8308-73e286ac0b50@nvidia.com>
+ <ZZblyhfzQjzyoUc_@orome.fritz.box>
+ <42c0c4fa-585e-4194-bbe4-e0377c87e632@sirena.org.uk>
+ <3faec2e9-8cd9-46f9-8807-801922de0edf@nvidia.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: starfivetech.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SHXPR01MB0735.CHNPR01.prod.partner.outlook.cn
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2a360fab-372a-4249-3072-08dc0dc4a9d4
-X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Jan 2024 08:02:29.3450
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: ckRp6dn6IU8qZI/RRgrs8NWG784DvdvwVrjeCQxoCIwsZWqzic+q8hKbvPn6UlIDfLWfD9rk7+0hubWW31saIvA1imLzijgi55hj/KaG81s=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SHXPR01MB0509
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="eGTPasXYebqI3XK+"
+Content-Disposition: inline
+In-Reply-To: <3faec2e9-8cd9-46f9-8807-801922de0edf@nvidia.com>
+User-Agent: Mutt/2.2.12 (2023-09-09)
 
-PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBVd2UgS2xlaW5lLUvDtm5pZyA8
-dS5rbGVpbmUta29lbmlnQHBlbmd1dHJvbml4LmRlPg0KPiBTZW50OiAyMDI05bm0MeaciDXml6Ug
-Njo0MQ0KPiBUbzogV2lsbGlhbSBRaXUgPHdpbGxpYW0ucWl1QHN0YXJmaXZldGVjaC5jb20+DQo+
-IENjOiBkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZzsgbGludXgta2VybmVsQHZnZXIua2VybmVs
-Lm9yZzsNCj4gbGludXgtcmlzY3ZAbGlzdHMuaW5mcmFkZWFkLm9yZzsgbGludXgtcHdtQHZnZXIu
-a2VybmVsLm9yZzsgRW1pbCBSZW5uZXINCj4gQmVydGhpbmcgPGtlcm5lbEBlc21pbC5kaz47IFJv
-YiBIZXJyaW5nIDxyb2JoK2R0QGtlcm5lbC5vcmc+OyBUaGllcnJ5DQo+IFJlZGluZyA8dGhpZXJy
-eS5yZWRpbmdAZ21haWwuY29tPjsgUGhpbGlwcCBaYWJlbCA8cC56YWJlbEBwZW5ndXRyb25peC5k
-ZT47DQo+IEtyenlzenRvZiBLb3psb3dza2kgPGtyenlzenRvZi5rb3psb3dza2krZHRAbGluYXJv
-Lm9yZz47IENvbm9yIERvb2xleQ0KPiA8Y29ub3IrZHRAa2VybmVsLm9yZz47IEhhbCBGZW5nIDxo
-YWwuZmVuZ0BzdGFyZml2ZXRlY2guY29tPjsgUGF1bA0KPiBXYWxtc2xleSA8cGF1bC53YWxtc2xl
-eUBzaWZpdmUuY29tPjsgUGFsbWVyIERhYmJlbHQNCj4gPHBhbG1lckBkYWJiZWx0LmNvbT47IEFs
-YmVydCBPdSA8YW91QGVlY3MuYmVya2VsZXkuZWR1Pg0KPiBTdWJqZWN0OiBSZTogW1BBVENIIHYx
-MCAyLzRdIHB3bTogb3BlbmNvcmVzOiBBZGQgUFdNIGRyaXZlciBzdXBwb3J0DQo+IA0KPiBIZWxs
-byBhZ2FpbiwNCj4gDQo+IE9uIEZyaSwgRGVjIDIyLCAyMDIzIGF0IDA1OjQ1OjQ2UE0gKzA4MDAs
-IFdpbGxpYW0gUWl1IHdyb3RlOg0KPiA+ICtzdGF0aWMgY29uc3Qgc3RydWN0IG9jb3Jlc19wd21f
-ZGF0YSBqaDcxMDBfcHdtX2RhdGEgPSB7DQo+ID4gKwkuZ2V0X2NoX2Jhc2UgPSBzdGFyZml2ZV9q
-aDcxeDBfZ2V0X2NoX2Jhc2UsIH07DQo+ID4gKw0KPiA+ICtzdGF0aWMgY29uc3Qgc3RydWN0IG9j
-b3Jlc19wd21fZGF0YSBqaDcxMTBfcHdtX2RhdGEgPSB7DQo+ID4gKwkuZ2V0X2NoX2Jhc2UgPSBz
-dGFyZml2ZV9qaDcxeDBfZ2V0X2NoX2Jhc2UsIH07DQo+ID4gKw0KPiA+ICtzdGF0aWMgY29uc3Qg
-c3RydWN0IG9mX2RldmljZV9pZCBvY29yZXNfcHdtX29mX21hdGNoW10gPSB7DQo+ID4gKwl7IC5j
-b21wYXRpYmxlID0gIm9wZW5jb3Jlcyxwd20tdjEiIH0sDQo+ID4gKwl7IC5jb21wYXRpYmxlID0g
-InN0YXJmaXZlLGpoNzEwMC1wd20iLCAuZGF0YSA9ICZqaDcxMDBfcHdtX2RhdGF9LA0KPiA+ICsJ
-eyAuY29tcGF0aWJsZSA9ICJzdGFyZml2ZSxqaDcxMTAtcHdtIiwgLmRhdGEgPSAmamg3MTEwX3B3
-bV9kYXRhfSwNCj4gPiArCXsgLyogc2VudGluZWwgKi8gfQ0KPiANCj4gTG9va2luZyBhdCB0aGUg
-YmluZGluZw0KPiANCj4gCWNvbXBhdGlibGUgPSAib3BlbmNvcmVzLHB3bS12MSI7DQo+IA0KPiBp
-c24ndCBhIHZhbGlkIGNvbmZpZ3VyYXRpb24uIElmIHRoYXQgaXMgaW5kZWVkIHRoZSBjYXNlIGFu
-ZCB5b3UgYWx3YXlzIGhhdmUgZWl0aGVyDQo+IHN0YXJmaXZlLGpoNzEwMC1wd20gb3Igc3RhcmZp
-dmUsamg3MTEwLXB3bSwgeW91IGNhbiBkcm9wIHRoZSBsb2dpYyB0byBvbmx5IHVzZQ0KPiBzdGFy
-Zml2ZV9qaDcxeDBfZ2V0X2NoX2Jhc2UgY29uZGl0aW9uYWxseS4NCj4gDQo+IEJlc3QgcmVnYXJk
-cw0KPiBVd2UNCj4gDQo+IC0tDQo+IFBlbmd1dHJvbml4IGUuSy4gICAgICAgICAgICAgICAgICAg
-ICAgICAgICB8IFV3ZSBLbGVpbmUtS8O2bmlnDQo+IHwNCj4gSW5kdXN0cmlhbCBMaW51eCBTb2x1
-dGlvbnMgICAgICAgICAgICAgICAgIHwgaHR0cHM6Ly93d3cucGVuZ3V0cm9uaXguZGUvIHwNCg0K
-SGkgVXdlLA0KDQpJIGp1c3QgdXBsb2FkIGNvZGUgZm9yIE9wZW5Db3Jlcy4uIEFuZCBJIG5lZWQg
-dG8gYWRkIHRoZSBzdGFyZml2ZV9qaDcxeDBfZ2V0X2NoX2Jhc2UNCnRvIGNvbXBhdGliaWxpdHkg
-d2l0aCBqaDcxeDAuIFNvIGV2ZW4gdGhlICJvcGVuY29yZXMscHdtLXYxIiBpc24ndCBhIHZhbGlk
-DQpjb25maWd1cmF0aW9uLCBidXQgSSBzdGlsbCBuZWVkIHRvIGFkZCBpdCBmb3IgT3BlbkNvcmVz
-Lg0KDQpCZXN0IFJlZ2FyZHMsDQpXaWxsaWFtDQo=
+
+--eGTPasXYebqI3XK+
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Fri, Jan 05, 2024 at 10:24:18AM +0530, Sameer Pujar wrote:
+>=20
+>=20
+> On 04-01-2024 22:52, Mark Brown wrote:
+> > On Thu, Jan 04, 2024 at 06:07:22PM +0100, Thierry Reding wrote:
+> > > On Tue, Dec 26, 2023 at 09:58:02PM +0530, Sameer Pujar wrote:
+> > > >  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 /-----> codec1 endpoint
+> > > >  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 /
+> > > > CPU endpoint \
+> > > >  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 \-----> codec2 endpoint
+> > > Can you describe the use-case? Is there a need to switch between code=
+c1
+> > > and codec2 endpoints or do they receive the same data in parallel all
+> > > the time?
+> > > Could this perhaps be described by adding multiple CPU ports with one
+> > > endpoint each?
+> > Don't know about the specific use case that Sameer is looking at but to
+> > me this looks like a surround sound setup where multiple stereo (or
+> > mono) DACs are wired in parallel, either with a TDM setup or with
+> > multiple data lines.  There's multiple CODECs all taking input from a
+> > single host controller.
+>=20
+> Yes, it is a TDM use case where the same clock and data line is shared wi=
+th
+> multiple CODECs. Each CODEC is expected to pickup data based on the allot=
+ted
+> TDM slot.
+>=20
+> It is possible to create multiple CPU dummy endpoints and use these in DT
+> binding for each CODEC. I am not sure if this is the best way right now.
+> There are few things to note here with dummy endpoints. First, it leads to
+> bit of duplication of endpoint DAIs and DAI links for these. Please note
+> that host controller pins are actually shared with external CODECs. So
+> shouldn't DT provide a way to represent this connection? Second, ASoC
+> provides a way to represent multiple CODECs on a single DAI link in the
+> driver and my concern is to understand if present binding can be extended=
+ to
+> represent this scenario. Third, one of the user wanted to connect 6 CODECs
+> and that is the maximum request I have seen so far. I can expose addition=
+al
+> dummy CPU DAIs keeping this maximum request in mind, but not sure if users
+> would like to extend it further. The concern I have is, how can we make t=
+his
+> easily extendible and simpler to use?
+>=20
+> With custom DT bindings it may be simpler to resolve this, but Tegra audio
+> presently relies on standard graph remote-endpoints binding. So I guess
+> diverging from this may not be preferable?
+
+This seems like a legitimate use-case for the graph bindings, but
+perhaps one that nobody has run into yet. It might be worth looking into
+extending the bindings to account for this.
+
+I think there are two pieces for this. On one hand we have the DTC that
+complains, which I think is what you were seeing. It's a bit tricky to
+update because it checks for bidirectionality of the endpoints, which is
+trivial to do with 1:1 but more complicated with 1:N relationships. I've
+done some prototyping but not sure if my test DT is exactly what you
+need. Can you send a snippet of what your DT looks like to test the DTC
+changes against?
+
+The other part is the DT schema which currently restricts the
+remote-endpoint property to be a single phandle. We would want
+phandle-array in this case with an updated description. Something like
+this:
+
+--- >8 ---
+diff --git a/dtschema/schemas/graph.yaml b/dtschema/schemas/graph.yaml
+index bca450514640..1459b88b9b77 100644
+--- a/dtschema/schemas/graph.yaml
++++ b/dtschema/schemas/graph.yaml
+@@ -42,8 +42,9 @@ $defs:
+=20
+       remote-endpoint:
+         description: |
+-          phandle to an 'endpoint' subnode of a remote device node.
+-        $ref: /schemas/types.yaml#/definitions/phandle
++          A list of phandles to 'endpoint' subnodes of one or more remote
++          device node.
++        $ref: /schemas/types.yaml#/definitions/phandle-array
+=20
+   port-base:
+     type: object
+--- >8 ---
+
+Thierry
+
+--eGTPasXYebqI3XK+
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmWXua4ACgkQ3SOs138+
+s6Fx3Q//e7NFejG5s5nQFCW5feme6nEY++g6ZhvBaKWOn/i6PaC3cMLq+WB4tOXQ
+l3x8Spxx/zbbfqMsd9ZbNWp2ayrPjpM3x0NOgdVEDkaX/mQOWskZbjI94rTOqV2O
+qeUoeHivqjmidvel+cjFYMpmCRNGQDv3NQUvHdREbRB9OQu63RyIAiVousP1Y35y
+meXii3XRc0dmp5o4fpb7eQcI0wYAQmJpNhGYSUepqSz5sKvHiBEJszz5Wy5u7ncu
+uM5zdNlTRJGaWH20Tx1YfI5kI6XDvoVRGv9AfRTpZ6vLJplAWB0X1yOWzHNH/F/E
+STMru2d/eq1MHss1aHk7w9l/vR0I6xbyaCjZv2N4xFjxxePMTybzAePDcYNDBFVq
+7DSjCN4q0q715jBiSiFBsXTGJs2D8Ni8PstNdHBcM7QNP1gf22erSiqtvNADTo1v
+wPd5iv0iRiCsiQcI5lJTAH+Ac5hte8Y+O9onaFtdIy8inhZP/5mpyZdrlIHotQef
+oDQ9zXuSYCYqLNytrId+3QzvbaiV4A2v3l+WLMVDhym2fZ4zVnh3Lct7oG3GYfrG
+VvSxeBX8+0C9ktrYWLYxoNf9KxuJ4pMxLtur79GXF/LxTAzkY0V2znfk0eWyBNtO
+66Hx+c26rIiJOC7+lIAVn39TFH+iGAfH6e64ydz6thKdToeDhto=
+=b9dE
+-----END PGP SIGNATURE-----
+
+--eGTPasXYebqI3XK+--
 
