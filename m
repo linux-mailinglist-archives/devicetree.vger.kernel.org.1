@@ -1,98 +1,85 @@
-Return-Path: <devicetree+bounces-29930-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29931-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06D76825BE0
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jan 2024 21:44:26 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C403825C3C
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jan 2024 22:50:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2D0981C23AB6
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jan 2024 20:44:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 172F91F25AC9
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jan 2024 21:50:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E50321A11;
-	Fri,  5 Jan 2024 20:43:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80076224F5;
+	Fri,  5 Jan 2024 21:50:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nexus-software-ie.20230601.gappssmtp.com header.i=@nexus-software-ie.20230601.gappssmtp.com header.b="v3DSC5bU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PDb6/Lrk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3F5B20B09
-	for <devicetree@vger.kernel.org>; Fri,  5 Jan 2024 20:43:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=nexus-software.ie
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=nexus-software.ie
-Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-33677fb38a3so1769852f8f.0
-        for <devicetree@vger.kernel.org>; Fri, 05 Jan 2024 12:43:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=nexus-software-ie.20230601.gappssmtp.com; s=20230601; t=1704487379; x=1705092179; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=UWUYD0+rz2aiov/xLWapi9mOqqQZpnKEd3A0jej/9rc=;
-        b=v3DSC5bUtSzb1KAI+/SvS7ZVS4xVvWgaTe2ojl3yDBG5mfOLaRvavkcCRXAcGBJ/ic
-         ng3eJAtRO+ZGR15rGfHlblJGWp21hvUDTavzsG6aGp/rzfllcNCB85qdIo4wecC9a2Oy
-         WGq7EOVszhoQcj/BRer5p0xeJeU5DIRCmYsShbP5EbabhK0AQg4ZtrtoN/QyFRrJYglz
-         YXX0coNAVNzmExs/7UWDDPSXEmODqZNHKb3CLCWXUsaaO9tdKKFDTdLkBWOPodiulxpf
-         ps9uyu1TohNI5Dh8ZiQIY77ycKX7Fe9Znn3oTza8WijeaYfZqcpDTFBI3SY+0WPnEY7C
-         PF1Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704487379; x=1705092179;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=UWUYD0+rz2aiov/xLWapi9mOqqQZpnKEd3A0jej/9rc=;
-        b=nFoma2YreQ1Uja5JAV1GQCw+ifHYpXYxlDP+s/7Bs/q2P8Mj/C3rIz0fMEcRDj7L3/
-         Nl1XPb3ygG5pYnanyovuJKLQi2DQ1P+1vGwat5xiLQR5EFJDFVauI79wxzQlXqeveLAW
-         +s7qUyfeKtzxezdPNtXIr+g0pmmIikOPHpEiXTfpg0FdNvgMJUOxUJaGUqHzJslGGp5K
-         w7lzsye6u4vkmLr8AQrRbn6wcpWh4/3oaJGfVcc/gjI9vL23aqgm23yvbgEUhMuHIw10
-         2OwjBi19WAIljEIVTV2jAC4tcxAO1cjkW6guB9qqYGFlpLiOeSDlma1U/y+sI5DaFwSJ
-         opzg==
-X-Gm-Message-State: AOJu0Yz1FcdO1RwwdUK788P5fkt0Fewf6zyf33VRcX9bs2gxTEpPRLOc
-	BeyrimsC+VrzO+FwPoT2HP3/lLdfR26m/g==
-X-Google-Smtp-Source: AGHT+IEGG0xE1de+XjBKFaSdmqM0NFDyksN9nTWagctfvhIj/Cdwfh2O91fuSyDJ5Gle4wDav74AKg==
-X-Received: by 2002:a05:6000:111:b0:332:eaa7:56b0 with SMTP id o17-20020a056000011100b00332eaa756b0mr3670wrx.14.1704487378743;
-        Fri, 05 Jan 2024 12:42:58 -0800 (PST)
-Received: from [192.168.100.48] ([37.228.218.3])
-        by smtp.gmail.com with ESMTPSA id o15-20020adfca0f000000b0033666ec47b7sm2020937wrh.99.2024.01.05.12.42.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 05 Jan 2024 12:42:58 -0800 (PST)
-Message-ID: <6a66331f-4edf-4304-abf1-92d93ff28662@nexus-software.ie>
-Date: Fri, 5 Jan 2024 20:42:57 +0000
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6280F2DF98;
+	Fri,  5 Jan 2024 21:50:28 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id EABEAC43395;
+	Fri,  5 Jan 2024 21:50:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1704491428;
+	bh=pxH3U9z6khx6tVHIWqaGql+jUBJveUc94c4ZoAPEGGw=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=PDb6/LrkfooIlMm82I88mGQhEXQJW8ViFM/Tz44pviB3OSSSGgxcOYwOk5/iS3l5E
+	 6896QZax1frH6o66NaAcQIq/c6xxZmaw8yEJDPthHuhGD9R3zw4ARSP3PDpfbdcjhw
+	 kgRuvPXlHJAmcKwBC7imZYworvWieB3g8trxxrJctwfXCQp0BmNsyI2Ny6h/c2nUBA
+	 TuyCmg/PfR8DnxE3A+dRFKHwq6u6wpcLAr3R2kmvxQ2uFuqRCl7kiSbdgIth1f+plT
+	 fwOgYxZqzEVGSuwt4pjyeThQpEtLySJKb/7zOKpzVoKci3PbhoWIcqan347hQSVqQg
+	 e9LZovdjaKx8w==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id D623EC4167E;
+	Fri,  5 Jan 2024 21:50:27 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/4] media: dt-bindings: media: camss: Add
- qcom,sc8280xp-camss binding
-Content-Language: en-US
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-References: <20240105-linux-next-24-01-02-sc8280xp-camss-core-dtsi-v2-0-7a57b8b07398@linaro.org>
- <20240105-linux-next-24-01-02-sc8280xp-camss-core-dtsi-v2-2-7a57b8b07398@linaro.org>
-From: Bryan O'Donoghue <pure.logic@nexus-software.ie>
-In-Reply-To: <20240105-linux-next-24-01-02-sc8280xp-camss-core-dtsi-v2-2-7a57b8b07398@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH] dt-bindings: riscv: cpus: Add AMD MicroBlaze V compatible
+From: patchwork-bot+linux-riscv@kernel.org
+Message-Id: 
+ <170449142786.26226.3590037133806155543.git-patchwork-notify@kernel.org>
+Date: Fri, 05 Jan 2024 21:50:27 +0000
+References: <d442d916204d26f82c1c3a924a4cdfb117960e1b.1699270661.git.michal.simek@amd.com>
+In-Reply-To: <d442d916204d26f82c1c3a924a4cdfb117960e1b.1699270661.git.michal.simek@amd.com>
+To: Michal Simek <michal.simek@amd.com>
+Cc: linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+ monstr@monstr.eu, michal.simek@xilinx.com, git@xilinx.com,
+ aou@eecs.berkeley.edu, conor@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ palmer@dabbelt.com, paul.walmsley@sifive.com, robh+dt@kernel.org,
+ devicetree@vger.kernel.org
+
+Hello:
+
+This patch was applied to riscv/linux.git (for-next)
+by Palmer Dabbelt <palmer@rivosinc.com>:
+
+On Mon, 6 Nov 2023 12:37:47 +0100 you wrote:
+> MicroBlaze V is new AMD/Xilinx soft-core 32bit RISC-V processor IP.
+> It is hardware compatible with classic MicroBlaze processor.
+> 
+> Signed-off-by: Michal Simek <michal.simek@amd.com>
+> ---
+> 
+>  Documentation/devicetree/bindings/riscv/cpus.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+
+Here is the summary with links:
+  - dt-bindings: riscv: cpus: Add AMD MicroBlaze V compatible
+    https://git.kernel.org/riscv/c/4a6b93f56296
+
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
 
 
-media: dt-bindings: media: camss
-
-doh !
-
-I've just noticed my own typo, please ignore.
-
----
-bod
 
