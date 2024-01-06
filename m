@@ -1,102 +1,108 @@
-Return-Path: <devicetree+bounces-29966-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29971-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 729A282603B
-	for <lists+devicetree@lfdr.de>; Sat,  6 Jan 2024 16:45:30 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B0E43826058
+	for <lists+devicetree@lfdr.de>; Sat,  6 Jan 2024 17:03:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D105D283E40
-	for <lists+devicetree@lfdr.de>; Sat,  6 Jan 2024 15:45:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D75AD1C21718
+	for <lists+devicetree@lfdr.de>; Sat,  6 Jan 2024 16:03:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF18479FD;
-	Sat,  6 Jan 2024 15:45:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 889E679FD;
+	Sat,  6 Jan 2024 16:02:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="OSXQfSwW"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="O4ZdFBQv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACBFF79D2;
-	Sat,  6 Jan 2024 15:45:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=tNlB7/uA5K4ebymu4kVPBZ4jtrA/OS7aEQ6lXpdIR98=; b=OSXQfSwWh2SrU+sRxW2RNmUfGR
-	aFSo3urtubLOcYgj4i+G6VGqiNBD5HQ0aBEMe35JjazFXiN5FUwRrnQ2Wj0MngjhmFtAHZAQt6dxY
-	BogU3KL6nkFDnfXYEf4EC+QPmbi4fRpdld+4u5o7Vaw1KHPCl/kLfluZiRpPoEbjHon0=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1rM8rE-004WpA-CJ; Sat, 06 Jan 2024 16:45:08 +0100
-Date: Sat, 6 Jan 2024 16:45:08 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Sergey Ryazanov <ryazanov.s.a@gmail.com>
-Cc: Jie Luo <quic_luoj@quicinc.com>, agross@kernel.org,
-	andersson@kernel.org, konrad.dybcio@linaro.org, davem@davemloft.net,
-	edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, hkallweit1@gmail.com, linux@armlinux.org.uk,
-	robert.marko@sartura.hr, linux-arm-msm@vger.kernel.org,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, quic_srichara@quicinc.com
-Subject: Re: [PATCH v4 0/5] support ipq5332 platform
-Message-ID: <895eadd7-1631-4b6b-8db4-d371f2e52611@lunn.ch>
-References: <20231225084424.30986-1-quic_luoj@quicinc.com>
- <a6a50fb6-871f-424c-a146-12b2628b8b64@gmail.com>
- <cfb04c82-3cc3-49f6-9a8a-1f6d1a22df40@quicinc.com>
- <dd05a599-247a-4516-8ad3-7550ceea99f7@gmail.com>
- <ac1977f5-cd6a-4f16-b0a0-f4322c34c5f5@quicinc.com>
- <bdeca791-f2e5-4256-b386-a75c03f93686@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31B94847A;
+	Sat,  6 Jan 2024 16:02:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pyrite.hamster-moth.ts.net (unknown [IPv6:2001:268:c203:a8ee:6c57:4243:1eb3:6cb])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id A7932FF3;
+	Sat,  6 Jan 2024 17:01:37 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1704556901;
+	bh=/pjXivSG4goku7eRq54a5o6OqspuBVcEzAsDoABpraA=;
+	h=From:To:Cc:Subject:Date:From;
+	b=O4ZdFBQv06eiLHFTWsS9AMMmzjwa/VDyAi0O/YER15sKfxQJERJVr6PH7T0cLrMam
+	 IPoLroqGwQfW/P5JZnkuZ0B/GoJH1SdPrUfAbNYbq/O+9xgvRxOL82sWkxpBiZmt5q
+	 ygsHcTR+aBUyfbAPRAQ8mRzhzNauo+CVp9KWQbpU=
+From: Paul Elder <paul.elder@ideasonboard.com>
+To: linux-media@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	devicetree@vger.kernel.org
+Cc: kieran.bingham@ideasonboard.com,
+	tomi.valkeinen@ideasonboard.com,
+	umang.jain@ideasonboard.com,
+	aford173@gmail.com,
+	Paul Elder <paul.elder@ideasonboard.com>
+Subject: [PATCH v5 00/10] media: rkisp1: Add support for i.MX8MP
+Date: Sun,  7 Jan 2024 01:02:11 +0900
+Message-Id: <20240106160221.4183409-1-paul.elder@ideasonboard.com>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <bdeca791-f2e5-4256-b386-a75c03f93686@gmail.com>
+Content-Transfer-Encoding: 8bit
 
-> I just realized that the UNIPHY block is a MII (probably SGMII) controller.
-> Isn't it? And I expect that it responsible more then just for clock
-> enabling. It should also activate and perform a basic configuration of MII
-> for actual data transmission. If so, then it should placed somewhere under
-> drivers/net/phy or drivers/net/pcs.
+This patch series depends on the series "media: rkisp1: Fix shared
+interrupt handling" [1]
 
-Before we decide that, we need a description of what the UNIPHY
-actually does, what registers it has, etc. Sometimes blocks like this
-get split into a generic PHY, aka drivers/phy/ and a PCS driver. This
-would be true if the UNIPHY is also used for USB SERDES, SATA SERDES
-etc. The SERDES parts go into a generic PHY driver, and the SGMII on
-to of the SERDES is placed is a PCS driver.
+This series extends the rkisp1 driver to support the ISP found in the
+NXP i.MX8MP SoC.
 
-The problem i have so far is that there is no usable description of
-any of this hardware, and the developers trying to produce drivers for
-this hardware don't actually seem to understand the Linux architecture
-for things like this.
+The ISP IP cores in the Rockchip RK3399 (known as the "Rockchip ISP1")
+and in the NXP i.MX8MP have the same origin, and have slightly diverged
+over time as they are now independently developed (afaik) by Rockchip
+and VeriSilicon. The latter is marketed under the name "ISP8000Nano",
+and is close enough to the RK3399 ISP that it can easily be supported by
+the same driver.
 
-> As far as I understand, we basically agree that clocks configuration can be
-> implemented based on the clock API using a more specialized driver(s) than
-> MDIO. The only obstacle is the PHY chip initialization issue explained
-> below.
-> Thank you for this compact yet detailed summary. Now it much more clear,
-> what this phy chip requires to be initialized.
-> 
-> Looks like you need to implement at least two drivers:
-> 1. chip (package) level driver that is responsible for basic "package"
-> initialization;
-> 2. phy driver to handle actual phy capabilities.
+The last two patches add support for UYVY output format, which can be
+implemented on the ISP version in the i.MX8MP but not in the one in the
+RK3399.
 
-Nope. As i keep saying, please look at the work Christian is
-doing. phylib already has the concept of a PHY package, e.g. look at
-the MSCC driver, and how it uses devm_phy_package_join(). What is
-missing is a DT binding which allows package properties to be
-expressed in DT. And this is what Christian is adding.
+This version of the series specifically has been tested on a Polyhex
+Debix model A with an imx219 (Raspberry Pi cam v2).
 
-	  Andrew
+In v5 the patch "media: rkisp1: Fix RSZ_CTRL bits for i.MX8MP" has been
+dropped.
+
+[1] https://lore.kernel.org/all/20231218-rkisp-shirq-fix-v1-0-173007628248@ideasonboard.com/
+
+Laurent Pinchart (2):
+  media: rkisp1: Add and use rkisp1_has_feature() macro
+  media: rkisp1: Configure gasket on i.MX8MP
+
+Paul Elder (8):
+  media: rkisp1: Support setting memory stride for main path
+  media: rkisp1: Support devices lacking self path
+  media: rkisp1: Support devices lacking dual crop
+  dt-bindings: media: rkisp1: Add i.MX8MP ISP to compatible
+  media: rkisp1: Add match data for i.MX8MP ISP
+  media: rkisp1: Shift DMA buffer addresses on i.MX8MP
+  media: rkisp1: Add YC swap capability
+  media: rkisp1: Add UYVY as an output format
+
+ .../bindings/media/rockchip-isp1.yaml         |  37 ++++-
+ .../platform/rockchip/rkisp1/rkisp1-capture.c | 130 ++++++++++++-----
+ .../platform/rockchip/rkisp1/rkisp1-common.h  |  37 ++++-
+ .../platform/rockchip/rkisp1/rkisp1-dev.c     |  74 ++++++++--
+ .../platform/rockchip/rkisp1/rkisp1-isp.c     | 131 +++++++++++++++++-
+ .../platform/rockchip/rkisp1/rkisp1-regs.h    |  27 ++++
+ .../platform/rockchip/rkisp1/rkisp1-resizer.c |  12 +-
+ include/uapi/linux/rkisp1-config.h            |   2 +
+ 8 files changed, 392 insertions(+), 58 deletions(-)
+
+-- 
+2.39.2
+
 
