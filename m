@@ -1,189 +1,210 @@
-Return-Path: <devicetree+bounces-29995-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29996-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19BC1826182
-	for <lists+devicetree@lfdr.de>; Sat,  6 Jan 2024 21:46:25 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4631282619D
+	for <lists+devicetree@lfdr.de>; Sat,  6 Jan 2024 22:09:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 849B3B21F4F
-	for <lists+devicetree@lfdr.de>; Sat,  6 Jan 2024 20:46:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EB1801F21A63
+	for <lists+devicetree@lfdr.de>; Sat,  6 Jan 2024 21:09:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D70B9E56D;
-	Sat,  6 Jan 2024 20:46:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80B48F51C;
+	Sat,  6 Jan 2024 21:09:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="M/mBLh92"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx.skole.hr (mx2.hosting.skole.hr [161.53.165.186])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-io1-f45.google.com (mail-io1-f45.google.com [209.85.166.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93841F9C2;
-	Sat,  6 Jan 2024 20:46:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=skole.hr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=skole.hr
-Received: from mx2.hosting.skole.hr (localhost.localdomain [127.0.0.1])
-	by mx.skole.hr (mx.skole.hr) with ESMTP id 4FF1A85794;
-	Sat,  6 Jan 2024 21:46:11 +0100 (CET)
-From: =?utf-8?q?Duje_Mihanovi=C4=87?= <duje.mihanovic@skole.hr>
-Date: Sat, 06 Jan 2024 21:45:46 +0100
-Subject: [PATCH v2] dt-bindings: pxa-pwm: Convert to YAML
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0402FF4F0;
+	Sat,  6 Jan 2024 21:09:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-io1-f45.google.com with SMTP id ca18e2360f4ac-7bc32b04dc9so24418839f.2;
+        Sat, 06 Jan 2024 13:09:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1704575362; x=1705180162; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=MpqArUruxHthfiLtOjcLaZ/Ap5x71s3jiZYTNE9aCKM=;
+        b=M/mBLh92VLNV/7xNrM+GBntYK0miMySAGdTDudH2+astcX2M+u5z0gMInKxPu5lkJ0
+         MEadBKgMoJ6UP474do43Z0TSZK46ahcee69ioQaraG6Y+tW8Wy3tbtBN/hbrSTHuJ9zo
+         SkeyFngK3/K4AqgadkRD4/QJ6nfdwbiKFIV3zF7bwFBqi712czlBP9s7EqurlqLu4bKY
+         DibxVHBxpRMe8jpvHwDWa1LrRw6ol72r9+OkS0CzYXxsxxCN7KgfzVN88xPz4BKUm6ED
+         0hKMUXtMTidSItj2EQvNOrwaezja5IuXv7CUzVKneMbUWp7JZbksu1NdgFuyuW44QCvF
+         nncw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1704575362; x=1705180162;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=MpqArUruxHthfiLtOjcLaZ/Ap5x71s3jiZYTNE9aCKM=;
+        b=PYdg14kS3comecVdVluQpQkvWvwy2O0e+RE0YJO3l93jAuuB7RO4//FaxTGEFiCrqZ
+         +gJYfwPmwU1Kwy1SEpwi3NKOa+kPK0m1RsMLuVn3+MsAZtKqagYCF/pzVfFmU+IJh15A
+         5DwBW1Bg03I2yqyTZ6PChjGQMCUYwhkiTFSm2A6TBirT4P3SMKiEvbigESL1dN4NYFFK
+         YgBpO8ngORUeLu9slr+yQ0vCOYFKLijCYp1WFAlOANoDDfxyx03pfjX/V050drmRie6i
+         PeIMMpXDFqX2qXfonjhYgqe2aJ2xqdmy+WJVSrX2EEnDz6qby04/RROvBXU+qVdDf0hm
+         YIqQ==
+X-Gm-Message-State: AOJu0Yw27mgctXEMPspJ1e8rtoDagNZlm3AsvxO3HeZ5FGQCa25LAwAZ
+	LxZN2H8sWQ3Zzd8MqkSkJt8=
+X-Google-Smtp-Source: AGHT+IFb4btxWMK6n5kZJTsVDWdazUiCBKAMxLkzc886XWvkwtjRyFou5s5BpAAgdwWzzUJhFIL5Og==
+X-Received: by 2002:a6b:7404:0:b0:7bb:af7d:6264 with SMTP id s4-20020a6b7404000000b007bbaf7d6264mr1730720iog.28.1704575361907;
+        Sat, 06 Jan 2024 13:09:21 -0800 (PST)
+Received: from aford-System-Version.lan ([2601:447:d002:5be:af2f:17f0:33a3:d6fe])
+        by smtp.gmail.com with ESMTPSA id d101-20020a0285ee000000b0046d2e9a04a9sm1312615jai.135.2024.01.06.13.09.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 06 Jan 2024 13:09:21 -0800 (PST)
+From: Adam Ford <aford173@gmail.com>
+To: dri-devel@lists.freedesktop.org
+Cc: Lucas Stach <l.stach@pengutronix.de>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Adam Ford <aford173@gmail.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>,
+	Daniel Vetter <daniel@ffwll.ch>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	NXP Linux Team <linux-imx@nxp.com>,
+	Liu Ying <victor.liu@nxp.com>,
+	Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH V6 1/2] dt-bindings: display: imx: add binding for i.MX8MP HDMI PVI
+Date: Sat,  6 Jan 2024 15:09:13 -0600
+Message-ID: <20240106210915.5135-1-aford173@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20240106-pxa-pwm-yaml-v2-1-9578ff5f2d7f@skole.hr>
-X-B4-Tracking: v=1; b=H4sIAPm7mWUC/3XMyw6CMBCF4Vchs3bMFFGRle9hWEA7tRO5NK1BC
- OHdrexd/ic53wqRg3CEKlsh8CRRxiFFfshAu2Z4MopJDTnlBSk6o58b9J8el6bvsDRtS2QsX/U
- F0sUHtjLv3KNO7SS+x7Ds+qR+6x9oUqiwMGxuhkifSnuPr7HjowtQb9v2BatjkD2nAAAA
-To: Thierry Reding <thierry.reding@gmail.com>, 
- =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, 
- Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- =?utf-8?q?Duje_Mihanovi=C4=87?= <duje.mihanovic@skole.hr>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3332;
- i=duje.mihanovic@skole.hr; h=from:subject:message-id;
- bh=KY4CNJMb5bu/b1IMZAKf3rxFy79ecGdfzqi7aByQaSA=;
- b=owEBbQKS/ZANAwAIAZoRnrBCLZbhAcsmYgBlmbv9kPQbYS/Zry38ioyNv2pV5E/TQ70/QmEWf
- uM9LUHqdKGJAjMEAAEIAB0WIQRT351NnD/hEPs2LXiaEZ6wQi2W4QUCZZm7/QAKCRCaEZ6wQi2W
- 4cDTD/9/orFpJLwg3vHE2JbDVLSYwM2/kqB0p4fN8meLwVyhuiha4eihm/6LX4TRdi5DliqR5H1
- IK0GiE3G+BI8WYfNyKp4rMchIUSCjQWgGFUkkdcXek6YjM9gzii7IL+UcPYpzWW/g99izT6PVub
- 7He16tvmCDRY0YgwXUWOUBPtGV9GTH52qglMoI0pP9i/3bsqUyTEUydoMqyyEdecSDGjVkB7Emi
- EoBhywmo6Zz7/q3FtBYS2Sybk82kDUfid/nkHHN7oj8f2IOr4oX+0Rmf0umX5kivo7C0N0az8pY
- BgWOlUnjfs/5qzb+I46k+tLDn4HjYdVXQa59FMgcD9BizbR7FAJLzWkRxHjQ8aIb/g1UBWqQp0y
- pkbsreqVbzRQJBhgmFXSMGDU0sT8F7HWERFDJk+mIl/a9kFmV+OzuQf3aX2Byj6cM+cStYjXFDc
- oAj1ZnJx8Twl5liQHnlwBH3E6dRBW0menAUmmkqKGFGUQAZtxwaBCs5DrCt6uNppZycBHvFit4V
- KYUznjQZTaIHkx0Sb5ICOLtpxfaCHASGClZzwAxI7NDz0+qWg67AZ/IryrLgXj65yNSMUdIxgdx
- zDdJIHdxmoAV2wOYNazfIV3bbOJWbTDp16Vc+T2jo0Xmi0UYs6CndJTC87Bu6SRhmhy4arMQh4v
- PG71gxJzScjAXVQ==
-X-Developer-Key: i=duje.mihanovic@skole.hr; a=openpgp;
- fpr=53DF9D4D9C3FE110FB362D789A119EB0422D96E1
 
-Convert the PXA PWM binding file from TXT to YAML.
+From: Lucas Stach <l.stach@pengutronix.de>
 
-The original binding does not mention any clocks, but the PWM controller
-will not probe without a clock.
+Add binding for the i.MX8MP HDMI parallel video interface block.
 
-Reviewed-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
-Signed-off-by: Duje Mihanović <duje.mihanovic@skole.hr>
+Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+Signed-off-by: Adam Ford <aford173@gmail.com>
 ---
-Changes in v2:
-- Rename to marvell,pxa-pwm.yaml
-- Note addition of clock property
-- Update trailers
-- Link to v1: https://lore.kernel.org/r/20240105-pxa-pwm-yaml-v1-1-4ded9d00c38f@skole.hr
----
- .../devicetree/bindings/pwm/marvell,pxa-pwm.yaml   | 51 ++++++++++++++++++++++
- Documentation/devicetree/bindings/pwm/pxa-pwm.txt  | 30 -------------
- 2 files changed, 51 insertions(+), 30 deletions(-)
+V6:  Add s-o-b message for myself (Adam)
 
-diff --git a/Documentation/devicetree/bindings/pwm/marvell,pxa-pwm.yaml b/Documentation/devicetree/bindings/pwm/marvell,pxa-pwm.yaml
+V5:  I tried to help move this along, so I took Lucas' patch and
+     attempted to apply fixes based on feedback.  I don't have
+     all the history, so apologies for that.
+     Removed the pipe character from the Description.
+     Increased the register size from 0x40 to 0x44.
+
+diff --git a/Documentation/devicetree/bindings/display/imx/fsl,imx8mp-hdmi-pvi.yaml b/Documentation/devicetree/bindings/display/imx/fsl,imx8mp-hdmi-pvi.yaml
 new file mode 100644
-index 000000000000..fb20e4e1daa8
+index 000000000000..3377f152f319
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/pwm/marvell,pxa-pwm.yaml
-@@ -0,0 +1,51 @@
++++ b/Documentation/devicetree/bindings/display/imx/fsl,imx8mp-hdmi-pvi.yaml
+@@ -0,0 +1,83 @@
 +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/pwm/pwm-pxa.yaml#
++$id: http://devicetree.org/schemas/display/imx/fsl,imx8mp-hdmi-pvi.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Marvell PXA PWM
++title: Freescale i.MX8MP HDMI Parallel Video Interface
 +
 +maintainers:
-+  - Duje Mihanović <duje.mihanovic@skole.hr>
++  - Lucas Stach <l.stach@pengutronix.de>
 +
-+allOf:
-+  - $ref: pwm.yaml#
++description:
++  The HDMI parallel video interface is a timing and sync generator block in the
++  i.MX8MP SoC, that sits between the video source and the HDMI TX controller.
 +
 +properties:
 +  compatible:
-+    enum:
-+      - marvell,pxa250-pwm
-+      - marvell,pxa270-pwm
-+      - marvell,pxa168-pwm
-+      - marvell,pxa910-pwm
++    const: fsl,imx8mp-hdmi-pvi
 +
 +  reg:
-+    # Length should be 0x10
 +    maxItems: 1
 +
-+  "#pwm-cells":
-+    # Used for specifying the period length in nanoseconds
-+    const: 1
-+
-+  clocks:
++  interrupts:
 +    maxItems: 1
++
++  power-domains:
++    maxItems: 1
++
++  ports:
++    $ref: /schemas/graph.yaml#/properties/ports
++
++    properties:
++      port@0:
++        $ref: /schemas/graph.yaml#/properties/port
++        description: Input from the LCDIF controller.
++
++      port@1:
++        $ref: /schemas/graph.yaml#/properties/port
++        description: Output to the HDMI TX controller.
++
++    required:
++      - port@0
++      - port@1
 +
 +required:
 +  - compatible
 +  - reg
-+  - "#pwm-cells"
-+  - clocks
++  - interrupts
++  - power-domains
++  - ports
 +
 +additionalProperties: false
 +
 +examples:
 +  - |
-+    #include <dt-bindings/clock/pxa-clock.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++    #include <dt-bindings/power/imx8mp-power.h>
 +
-+    pwm0: pwm@40b00000 {
-+      compatible = "marvell,pxa250-pwm";
-+      reg = <0x40b00000 0x10>;
-+      #pwm-cells = <1>;
-+      clocks = <&clks CLK_PWM0>;
++    display-bridge@32fc4000 {
++        compatible = "fsl,imx8mp-hdmi-pvi";
++        reg = <0x32fc4000 0x44>;
++        interrupts = <12 IRQ_TYPE_LEVEL_HIGH>;
++        power-domains = <&hdmi_blk_ctrl IMX8MP_HDMIBLK_PD_PVI>;
++
++        ports {
++            #address-cells = <1>;
++            #size-cells = <0>;
++
++            port@0 {
++                reg = <0>;
++                pvi_from_lcdif3: endpoint {
++                    remote-endpoint = <&lcdif3_to_pvi>;
++                };
++            };
++
++            port@1 {
++                reg = <1>;
++                pvi_to_hdmi_tx: endpoint {
++                    remote-endpoint = <&hdmi_tx_from_pvi>;
++                };
++            };
++        };
 +    };
-diff --git a/Documentation/devicetree/bindings/pwm/pxa-pwm.txt b/Documentation/devicetree/bindings/pwm/pxa-pwm.txt
-deleted file mode 100644
-index 5ae9f1e3c338..000000000000
---- a/Documentation/devicetree/bindings/pwm/pxa-pwm.txt
-+++ /dev/null
-@@ -1,30 +0,0 @@
--Marvell PWM controller
--
--Required properties:
--- compatible: should be one or more of:
--  - "marvell,pxa250-pwm"
--  - "marvell,pxa270-pwm"
--  - "marvell,pxa168-pwm"
--  - "marvell,pxa910-pwm"
--- reg: Physical base address and length of the registers used by the PWM channel
--  Note that one device instance must be created for each PWM that is used, so the
--  length covers only the register window for one PWM output, not that of the
--  entire PWM controller.  Currently length is 0x10 for all supported devices.
--- #pwm-cells: Should be 1.  This cell is used to specify the period in
--  nanoseconds.
--
--Example PWM device node:
--
--pwm0: pwm@40b00000 {
--	compatible = "marvell,pxa250-pwm";
--	reg = <0x40b00000 0x10>;
--	#pwm-cells = <1>;
--};
--
--Example PWM client node:
--
--backlight {
--	compatible = "pwm-backlight";
--	pwms = <&pwm0 5000000>;
--	...
--}
-
----
-base-commit: 610a9b8f49fbcf1100716370d3b5f6f884a2835a
-change-id: 20240105-pxa-pwm-yaml-8dbb00dfe7c6
-
-Best regards,
 -- 
-Duje Mihanović <duje.mihanovic@skole.hr>
-
+2.43.0
 
 
