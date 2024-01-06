@@ -1,152 +1,173 @@
-Return-Path: <devicetree+bounces-30001-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30002-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 104188261CB
-	for <lists+devicetree@lfdr.de>; Sat,  6 Jan 2024 23:03:47 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 913668261E5
+	for <lists+devicetree@lfdr.de>; Sat,  6 Jan 2024 23:19:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2490A1C20E4B
-	for <lists+devicetree@lfdr.de>; Sat,  6 Jan 2024 22:03:46 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0A47BB20998
+	for <lists+devicetree@lfdr.de>; Sat,  6 Jan 2024 22:19:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 304D2F9E8;
-	Sat,  6 Jan 2024 22:03:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AD62101C8;
+	Sat,  6 Jan 2024 22:19:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nJQ1aIUW"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="g7SU09So"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
+Received: from mail-il1-f172.google.com (mail-il1-f172.google.com [209.85.166.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 807CAF9EC;
-	Sat,  6 Jan 2024 22:03:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1032F101C9;
+	Sat,  6 Jan 2024 22:19:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-3368b1e056eso665367f8f.3;
-        Sat, 06 Jan 2024 14:03:39 -0800 (PST)
+Received: by mail-il1-f172.google.com with SMTP id e9e14a558f8ab-36071910050so4006655ab.1;
+        Sat, 06 Jan 2024 14:19:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1704578618; x=1705183418; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Lsex701tK5pEY9KKRutw30UPF14FTBUAFWLK2f3CQHw=;
-        b=nJQ1aIUWgaj80sClMj6gXPIMV3QI8mB4mI7KHOFwb8DEJ7gxixsHnZqVcwEgvzD+PF
-         SvRtaLohc3Myh4aMYP19gZcp0uDT+KknFeT1FbR0yCX4RNdKyoTpjH+NWoPGo9QowcJ9
-         yvVy2QIlAZ+GP+hEm+4ipaPXo9PxSq4naZbrQIOEbNVMhoMcF2KP/iBizO3CkjneveYY
-         Yq6+cWGzeAe2n5P4CAV3dIW/Cspx4KjPUyspdUWmxD5WCJH1NnjmVlKLohF+Kd2xJMnx
-         iUsnP59SHrAnxbxcKl6POQUBdSKJdZi8jZ0TCi+szQ19wUwnVD2EvG/FiYMoollJgUa+
-         mQUQ==
+        d=gmail.com; s=20230601; t=1704579553; x=1705184353; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=TYXO0TXmrPEwqq+/MbuU+qZou0rkBxurEPhJUKxALbc=;
+        b=g7SU09Soo/FaLOtSMKq7SLFcaSN/Ws/hkzr4e/gksHQD9MQAgtdqyu2eJY/a7zgbHY
+         sM0Lj/vypNBrEAw2LHpd2UmhcQT3EAGPIMKLG22TmLHQlpRkNwC7JbigDS0LXL25VOmr
+         vkRQzIQT0YWkbY20ZBMRdJmerHyXPIw0ha0pxnDqYLsKh+0NERbJmMSSBRal3J6H1ECg
+         zXWt51/dsnFEPLePFmMHViEoPHotKAmxJOBFk1auowSXfaW9485hRBjkd7SY3iWMM74Y
+         KG9XQHZp+neEscSfK16HWawAli1wz+kmA0XJH09j8R0bZbpR7wxp54YRftJz6GheMfCV
+         fVxg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704578618; x=1705183418;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Lsex701tK5pEY9KKRutw30UPF14FTBUAFWLK2f3CQHw=;
-        b=laH2UaLNEHvgPYv+RfxQkqwZxtUjCdwP0GB/RVzLkjmqplGbkGMS0GlZhV3Lkc7zhZ
-         GU9evoq0p6dKdpYl+usUuH6h+q3bAZfXPtX1IiW5l/Y895eAnkC56gYRWi80Sganz+5z
-         VFZvLWRaoxrtWKJ+OevWFofENJyt5eNyrz/XgsmgkXhrGbZAl1lnMbBKFbo/1FkieEaJ
-         da8JTJK78QhGgTnYvYTkg333XaN7SEkLrPDXH+/EDl1qiTXhGR1CrV/QbcFSw6fbLwaG
-         35W83ep2w+GRmpQZoqp8iBUlRqhZ1w35Y3yRGpQsGQEQwT95Uchzwrz7AFzCKqbp/E1l
-         QXjg==
-X-Gm-Message-State: AOJu0YzVDZ4TwRd1o3GzC4uDYQzUQWVCsX8zC21cLKQZwtJrnuDzk38v
-	hFvsvFtJs7QqvCWZ1H5jgQw=
-X-Google-Smtp-Source: AGHT+IGDeerTecMM96jf2+5wf4xdFVF5xLpyn984JWv3i9RYFRE/cXWCFvw3+Vz08LFiSgm/8FroqA==
-X-Received: by 2002:a5d:408a:0:b0:337:555b:d320 with SMTP id o10-20020a5d408a000000b00337555bd320mr747108wrp.39.1704578617487;
-        Sat, 06 Jan 2024 14:03:37 -0800 (PST)
-Received: from [192.168.0.3] ([69.6.8.124])
-        by smtp.gmail.com with ESMTPSA id r16-20020a056000015000b003373ef060d5sm4069972wrx.113.2024.01.06.14.03.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 06 Jan 2024 14:03:36 -0800 (PST)
-Message-ID: <1df87389-d78c-48e0-b743-0fd11bd82b85@gmail.com>
-Date: Sun, 7 Jan 2024 00:03:34 +0200
+        d=1e100.net; s=20230601; t=1704579553; x=1705184353;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=TYXO0TXmrPEwqq+/MbuU+qZou0rkBxurEPhJUKxALbc=;
+        b=p/YzMUSu0a0QVWzR/pzIz4vLb2s2M59CmlRkMxJATJ2wPQh2uvOzDTibgeNEukXMg7
+         gmi/VFMxmt4XrKB74gOvytcL0i0iQVFBUj2gy1Fx7ksxT7EIWQqCkz8JFbI6bCVV7alE
+         vKRyG0dwrK5GoEY9YMv/AeLp5wmWhmsn+G2Fa70RHVvyFifHucNbmCyvWWl/RqJ2MbTO
+         NnYWxTOUjVjGX2ca+BowFKDQdePUi4+wUxGXZ7UjsnclK+s488H/vmMHDrflLr/daP6K
+         QE6svBvJKreZWCvRwp4sBRfs72pfS25Bq0a2HuuXl0mvAhML+Oku/c4nYrmh+SDp33tF
+         qjJg==
+X-Gm-Message-State: AOJu0YwqY3RcS2EGVbcMBOPRfNBydbTcfO+E4eH7SmpmvBqs9h+a7Oax
+	fKw/uj4FFo1obdzQOOXbX40=
+X-Google-Smtp-Source: AGHT+IGIt5Rt7HY/t7nCMCZDgRKKmmyUrOXO7GhHrgaSGRvAS7zb2V9Gd2Gt5+TSM/tEeODoTGFjeA==
+X-Received: by 2002:a92:cd8c:0:b0:35f:e0a7:8892 with SMTP id r12-20020a92cd8c000000b0035fe0a78892mr2198542ilb.8.1704579552892;
+        Sat, 06 Jan 2024 14:19:12 -0800 (PST)
+Received: from aford-System-Version.lan ([2601:447:d002:5be:af2f:17f0:33a3:d6fe])
+        by smtp.gmail.com with ESMTPSA id i13-20020a92c94d000000b003607ff64574sm679751ilq.64.2024.01.06.14.19.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 06 Jan 2024 14:19:12 -0800 (PST)
+From: Adam Ford <aford173@gmail.com>
+To: dri-devel@lists.freedesktop.org
+Cc: Lucas Stach <l.stach@pengutronix.de>,
+	Adam Ford <aford173@gmail.com>,
+	Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	NXP Linux Team <linux-imx@nxp.com>,
+	linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH V2 1/2] dt-bindings: phy: add binding for the i.MX8MP HDMI PHY
+Date: Sat,  6 Jan 2024 16:19:04 -0600
+Message-ID: <20240106221907.325127-1-aford173@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 0/5] support ipq5332 platform
-Content-Language: en-US
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: Jie Luo <quic_luoj@quicinc.com>, agross@kernel.org, andersson@kernel.org,
- konrad.dybcio@linaro.org, davem@davemloft.net, edumazet@google.com,
- kuba@kernel.org, pabeni@redhat.com, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- hkallweit1@gmail.com, linux@armlinux.org.uk, robert.marko@sartura.hr,
- linux-arm-msm@vger.kernel.org, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- quic_srichara@quicinc.com
-References: <20231225084424.30986-1-quic_luoj@quicinc.com>
- <a6a50fb6-871f-424c-a146-12b2628b8b64@gmail.com>
- <cfb04c82-3cc3-49f6-9a8a-1f6d1a22df40@quicinc.com>
- <dd05a599-247a-4516-8ad3-7550ceea99f7@gmail.com>
- <ac1977f5-cd6a-4f16-b0a0-f4322c34c5f5@quicinc.com>
- <bdeca791-f2e5-4256-b386-a75c03f93686@gmail.com>
- <895eadd7-1631-4b6b-8db4-d371f2e52611@lunn.ch>
-From: Sergey Ryazanov <ryazanov.s.a@gmail.com>
-In-Reply-To: <895eadd7-1631-4b6b-8db4-d371f2e52611@lunn.ch>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 06.01.2024 17:45, Andrew Lunn wrote:
->> I just realized that the UNIPHY block is a MII (probably SGMII) controller.
->> Isn't it? And I expect that it responsible more then just for clock
->> enabling. It should also activate and perform a basic configuration of MII
->> for actual data transmission. If so, then it should placed somewhere under
->> drivers/net/phy or drivers/net/pcs.
-> 
-> Before we decide that, we need a description of what the UNIPHY
-> actually does, what registers it has, etc. Sometimes blocks like this
-> get split into a generic PHY, aka drivers/phy/ and a PCS driver. This
-> would be true if the UNIPHY is also used for USB SERDES, SATA SERDES
-> etc. The SERDES parts go into a generic PHY driver, and the SGMII on
-> to of the SERDES is placed is a PCS driver.
+From: Lucas Stach <l.stach@pengutronix.de>
 
-As far as I understand, UNIPHY only contains SGMII/PSGMII/whatever and a 
-simple clock controller. PCIe & USB phys are implemented in other 
-hardware blocks. See the lately merged USB support code for similar 
-IPQ5018 SoC. But I can only speak to what I found searching online and 
-checking the vendor's qca-ssdk "driver".
+Add a DT binding for the HDMI PHY found on the i.MX8MP SoC.
 
-https://git.codelinaro.org/clo/qsdk/oss/lklm/qca-ssdk/-/tree/NHSS.QSDK.12.4.5.r3
+Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
+Signed-off-by: Adam Ford <aford173@gmail.com>
 
-I hope Luo can clarify with more confidence.
+---
+V2:  Rebase on Linux-Next
+     Fix bot error due to the word 'binding' being in the description
+     Add phy-cells to the required list
 
-> The problem i have so far is that there is no usable description of
-> any of this hardware, and the developers trying to produce drivers for
-> this hardware don't actually seem to understand the Linux architecture
-> for things like this.
->
->> As far as I understand, we basically agree that clocks configuration can be
->> implemented based on the clock API using a more specialized driver(s) than
->> MDIO. The only obstacle is the PHY chip initialization issue explained
->> below.
->> Thank you for this compact yet detailed summary. Now it much more clear,
->> what this phy chip requires to be initialized.
->>
->> Looks like you need to implement at least two drivers:
->> 1. chip (package) level driver that is responsible for basic "package"
->> initialization;
->> 2. phy driver to handle actual phy capabilities.
-> 
-> Nope. As i keep saying, please look at the work Christian is
-> doing. phylib already has the concept of a PHY package, e.g. look at
-> the MSCC driver, and how it uses devm_phy_package_join(). What is
-> missing is a DT binding which allows package properties to be
-> expressed in DT. And this is what Christian is adding.
+diff --git a/Documentation/devicetree/bindings/phy/fsl,imx8mp-hdmi-phy.yaml b/Documentation/devicetree/bindings/phy/fsl,imx8mp-hdmi-phy.yaml
+new file mode 100644
+index 000000000000..d1b941b48151
+--- /dev/null
++++ b/Documentation/devicetree/bindings/phy/fsl,imx8mp-hdmi-phy.yaml
+@@ -0,0 +1,63 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/phy/fsl,imx8mp-hdmi-phy.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Freescale i.MX8MP HDMI PHY
++
++maintainers:
++  - Lucas Stach <l.stach@pengutronix.de>
++
++properties:
++  compatible:
++    enum:
++      - fsl,imx8mp-hdmi-phy
++
++  reg:
++    maxItems: 1
++
++  "#clock-cells":
++    const: 0
++
++  clocks:
++    minItems: 2
++    maxItems: 2
++
++  clock-names:
++    items:
++      - const: apb
++      - const: ref
++
++  "#phy-cells":
++    const: 0
++
++  power-domains:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - "#clock-cells"
++  - clocks
++  - clock-names
++  - "#phy-cells"
++  - power-domains
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/imx8mp-clock.h>
++    #include <dt-bindings/power/imx8mp-power.h>
++
++    phy@32fdff00 {
++        compatible = "fsl,imx8mp-hdmi-phy";
++        reg = <0x32fdff00 0x100>;
++        clocks = <&clk IMX8MP_CLK_HDMI_APB>,
++                 <&clk IMX8MP_CLK_HDMI_24M>;
++        clock-names = "apb", "ref";
++        power-domains = <&hdmi_blk_ctrl IMX8MP_HDMIBLK_PD_HDMI_TX_PHY>;
++        #clock-cells = <0>;
++        #phy-cells = <0>;
++    };
+-- 
+2.43.0
 
-Andrew, thank you so much for pointing me to that API and Christian's 
-work. I have checked the DT change proposal and it fits this QCA8084 
-case perfectly.
-
-Am I right that all one has to do to solve this QCA8084 initialization 
-case is wrap phys in a ethernet-phy-package node and use 
-devm_phy_package_join() / phy_package_init_once() to do the basic 
-initialization? So simple?
-
-I came to put my 2c in and learnt a couple of new tricks. What a nice day :)
-
---
-Sergey
 
