@@ -1,608 +1,511 @@
-Return-Path: <devicetree+bounces-29969-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29983-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDA7E82604C
-	for <lists+devicetree@lfdr.de>; Sat,  6 Jan 2024 17:02:36 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 326928260AE
+	for <lists+devicetree@lfdr.de>; Sat,  6 Jan 2024 17:49:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 855BA28386B
-	for <lists+devicetree@lfdr.de>; Sat,  6 Jan 2024 16:02:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9BDDD1F22A21
+	for <lists+devicetree@lfdr.de>; Sat,  6 Jan 2024 16:49:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 047408493;
-	Sat,  6 Jan 2024 16:02:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 118DE847E;
+	Sat,  6 Jan 2024 16:48:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NJbd8PgT"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="OsUSlXm4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2075.outbound.protection.outlook.com [40.107.22.75])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D38A3847A;
-	Sat,  6 Jan 2024 16:02:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 5BFFBC433C8;
-	Sat,  6 Jan 2024 16:02:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1704556947;
-	bh=wLC2ox3dYqkH3wQaGG3RdVVosDp4HEObsxCLhjJqsgQ=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=NJbd8PgTCahdnPucAOcMnqHIXZMeF/HzQaWlec3kduukGtDBeNXcK4eXLPohpzaog
-	 /24+uDmljKB+S4gwk2Hn1Ugm5YZcX6pVjXc2Hm9oFr8LuC4yJCcZxKvWAQOd7Ps/o2
-	 H54ke8XOXDhWLg2qASiFaw9B0IBW1cLSqqyTvrXqKofEu2eZZHlEjhZBw7akC8CHYK
-	 FytLJ07yzrvYI0Sgz9oLLEIgVvxhIoRDs34fj1OdmtIn4zXv56xOpfU0uNJQChRNC6
-	 OLWQ6E3kUruofRFJgGgLM8efjdVHrCQie4+VoAYn9WgPWePmgBGfH5UOHKuMDYIeou
-	 AxSzYbUpzETUA==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3E559C47077;
-	Sat,  6 Jan 2024 16:02:27 +0000 (UTC)
-From: Christoph Winklhofer via B4 Relay
- <devnull+cj.winklhofer.gmail.com@kernel.org>
-Date: Sat, 06 Jan 2024 17:02:26 +0100
-Subject: [PATCH v4 3/3] w1: add UART w1 bus driver
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EFBCC8EC;
+	Sat,  6 Jan 2024 16:48:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=fyXGOw7syKSehNxRWabtEjfeSq3yfg/TbC9xohsquq4GsqeztVrvIGUDdloAuPW7WohS1kazpkRab1aeyMa+K2V9ZCu+cPaNnLaPylOD7omJwmz7FlXxXd1ahU7GguuGEYAJEwxHLkQutq7SMYO+6aMALjtOPlFvR3RZpFAan9rYl2X30pN4OU4SMBd/iPQH+7lnAyS3shFPPtmRNKTfbRtU3H5VLrO+sooQcy1dv7J9emIX6Bvt7KjnE2CTkdLwmc2Rp63+eMD0fePduQTnD+7TwHD/Cu8EzQyxZg1WTwbcTFWPvj2j3pEDN16dCaA0FfNIz7GBpmF9EGpsIYYxoA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=zJExCCOCsbbZoX9RsmecaXne8uispAdKq7lX95xRv9k=;
+ b=kTQJdBxZF36fZvvYR4DoI19TrEn89ra9CLPHUbd+jYKJ1qhonlnfkz7WL75aMbNMt/dNGq1Gt2fgqIuVXzy59x/nFGXYeyTnpH7U3+TL+UTxPUqXxdPDRE6JYxHtyxZvIpsNr6Vgbgu6plaa37X4gmWKJmSfdBkBPOFmqg1THuuvuZ7FvnwRRFi0XeMkdwr5T2akaxLG9C4LmkVWUqWKwhooCKA5R1WsfBwA95NlwEqNl7wzhZ/CLolWG8JgGJ3Fup70MCY559/N0rtpuhfCwuOJCzhpN3jYxo78cSCQMhz6/F9ZMmaKbUhe9SUkmHeco/yRa9TTKN31ifPKzSXodQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=zJExCCOCsbbZoX9RsmecaXne8uispAdKq7lX95xRv9k=;
+ b=OsUSlXm4dg8v8XzKmFfqxzTZtcdyw3rVayAkdTWXZIxQ2ea9aLO9kJxnIeqnyMDz0Yxq5AJoBffN0I/IOcJt3h47v5t7qFFWlJXsrtOdOVMAKzYGpxwOnjjE2ury0jwj3R6+jJlDEMjud9UYrTS2b5p2uCH7wzK++bCJA7U/VFI=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AS8PR04MB7511.eurprd04.prod.outlook.com (2603:10a6:20b:23f::5)
+ by DU2PR04MB8598.eurprd04.prod.outlook.com (2603:10a6:10:2d9::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7159.19; Sat, 6 Jan
+ 2024 16:48:46 +0000
+Received: from AS8PR04MB7511.eurprd04.prod.outlook.com
+ ([fe80::8ee3:bac5:a2da:d469]) by AS8PR04MB7511.eurprd04.prod.outlook.com
+ ([fe80::8ee3:bac5:a2da:d469%4]) with mapi id 15.20.7159.018; Sat, 6 Jan 2024
+ 16:48:46 +0000
+Date: Sat, 6 Jan 2024 11:48:35 -0500
+From: Frank Li <Frank.li@nxp.com>
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc: krzysztof.kozlowski@linaro.org, bhelgaas@google.com,
+	conor+dt@kernel.org, devicetree@vger.kernel.org, festevam@gmail.com,
+	helgaas@kernel.org, hongxing.zhu@nxp.com, imx@lists.linux.dev,
+	kernel@pengutronix.de, krzysztof.kozlowski+dt@linaro.org,
+	kw@linux.com, l.stach@pengutronix.de,
+	linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
+	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+	lpieralisi@kernel.org, robh@kernel.org, s.hauer@pengutronix.de,
+	shawnguo@kernel.org
+Subject: Re: [PATCH v7 01/16] PCI: imx6: Simplify clock handling by using
+ bulk_clk_*() function
+Message-ID: <ZZmEY5d6IRcCZjl7@lizhi-Precision-Tower-5810>
+References: <20231227182727.1747435-1-Frank.Li@nxp.com>
+ <20231227182727.1747435-2-Frank.Li@nxp.com>
+ <20240106152708.GD2512@thinkpad>
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240106152708.GD2512@thinkpad>
+X-ClientProxiedBy: BY5PR13CA0023.namprd13.prod.outlook.com
+ (2603:10b6:a03:180::36) To AS8PR04MB7511.eurprd04.prod.outlook.com
+ (2603:10a6:20b:23f::5)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240106-w1-uart-v4-3-7fe1378a8b3e@gmail.com>
-References: <20240106-w1-uart-v4-0-7fe1378a8b3e@gmail.com>
-In-Reply-To: <20240106-w1-uart-v4-0-7fe1378a8b3e@gmail.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
- Rob Herring <robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
- Christoph Winklhofer <cj.winklhofer@gmail.com>, 
- Rob Herring <robh@kernel.org>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Jiri Slaby <jirislaby@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Jonathan Corbet <corbet@lwn.net>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-serial@vger.kernel.org, linux-doc@vger.kernel.org
-X-Mailer: b4 0.12.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1704556945; l=15524;
- i=cj.winklhofer@gmail.com; s=20240104; h=from:subject:message-id;
- bh=UOoGkHAnezlxB6RgYDDo3ul/kN6oDAhar95IjRXXtQ0=;
- b=jN2YfBB0BMEMgEapPX+zV4C71KjYyfBqsThQv6iAIb0N/nCvXjH/I2GaIPWSUhQTAIuphlaH8
- ujuhUhPqKURCRHdsASA+pJvgTTvOkI+/98Avd1qra81vS1tKrzPQIsG
-X-Developer-Key: i=cj.winklhofer@gmail.com; a=ed25519;
- pk=lgjGjOt7hFKJT9UXhgUyrdthxvZ7DJ5F1U/7d9qdAsk=
-X-Endpoint-Received:
- by B4 Relay for cj.winklhofer@gmail.com/20240104 with auth_id=111
-X-Original-From: Christoph Winklhofer <cj.winklhofer@gmail.com>
-Reply-To: <cj.winklhofer@gmail.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AS8PR04MB7511:EE_|DU2PR04MB8598:EE_
+X-MS-Office365-Filtering-Correlation-Id: c71d5f75-8350-4b01-aca2-08dc0ed75988
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	+6qW+X8ZxPU65pm7cXM0QAn6UGqn6npxKxMU9dYFOpkSZMBAanjP65SToiYFKwmCVuZtixPc7YyewRoiYhsBaGqe7f4iwYyRna5uWzvcGGS9F+UYZuwLlXuw0TDqkCFKcZFcqrVaVbsKxmlT5jJr3zJk5rK7yp1nl8blK/IeaeFrk1N7pk59W4urNny+PDVj4nBsM/eV90ByqvAkzOz95dstoZEKAtRdZkUmqzCuvQM9h5axvFf4PMFDHz2MlmRj/cBWsMjBapXRnkC36h8XFgJrS9eNBZfO3XWIpviH7BS7ziuHzw6sgB6o8X3hCKbUseRCGcIPpRdIIN341EbanOCzx20RiUCL+jlI8p66+z+A1U5/gHcHziQFG3T3rDmqx7M+b+HoCPDJ0KcB28a6holzpsVqxWTi8sOn55+U8yiRT1C5tUKs4oMTrLg+sNr4L9sMJkd3gsjsiTNZWk7901bAyjnAwcJZ6ONZtgGGb9LWTwCAbPuSV+Nz0xy1Jwe+XM7qWtsmTuPuXflBMBN04cKbQSdz1R+7Q8WyWIT9cEVLDCTjL/I7fs/qEcVnbHueJWqdzjMI0wkuHbNm/Q79QXyE46r+0tT4vmkTMnLTh4BxXt47Fa3H0DxLqOO5mlV4
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB7511.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(7916004)(376002)(396003)(136003)(346002)(39850400004)(366004)(230922051799003)(1800799012)(451199024)(64100799003)(186009)(6486002)(52116002)(26005)(9686003)(478600001)(6506007)(6512007)(6666004)(83380400001)(5660300002)(2906002)(7416002)(30864003)(41300700001)(33716001)(66476007)(66556008)(66946007)(6916009)(316002)(4326008)(8936002)(8676002)(38100700002)(86362001)(38350700005);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?blhyL3pJQ25zQ1FYUUliT3ZETHZzZWNGVDBtTjJha21Zc3RIR2FVK0NCRUxO?=
+ =?utf-8?B?aFh1TXlkNmZMblRWYmhWVk52NXVBZlZTZGlONzlCUUl0bHBQR1I2MnlSZ0g4?=
+ =?utf-8?B?MTZaSWhGSENQUUNCVDNyQVJFU3UwVldZU3dwOFF4eTJ3bkdJUUVLRTFVQ2Np?=
+ =?utf-8?B?WU96ZkF2aGkvcUNQWGw5b0VmTDJXKzlRRi9pYjd1enlkbDFFcTZiTTBZNTM5?=
+ =?utf-8?B?K2NFTGNCMVUxWDQ0bDNaNlZPVkRJVW9FTk5QRElQbGFqbkJhZCt6WlV2aEZu?=
+ =?utf-8?B?c2ZpVllYRW0wTFlaQzFwMnQ5YVEyY1BjNURDVXNLbGxsczViNmlFZFpWL0U4?=
+ =?utf-8?B?WGI2Z2t0UFBxbXV4eVBrM1Q2bWR1ZEN0dEhGOEFhR3FuUWJmdFl5aEhDOHZM?=
+ =?utf-8?B?UlVSR3dkaGVEazVHVDIycFBrZlVtU3hXN3ZtNDlVa2l5SmNYaS91VmI5RnRq?=
+ =?utf-8?B?NXk1TnFOSWZJajFoZDNsaHRWOFNaK1JKc1NqcS8weUhqZlozNnRqV0Rtb3Fm?=
+ =?utf-8?B?WUkvVENSbHNKMmhDbkFXSXlmT25NV0o1aVFDSStwM2tRZHczRWExNkt6YWcy?=
+ =?utf-8?B?OVQrdHpvdklIeUVjbmpwRjBmUFhWNVNBT1RQRE1hbmhQN3diZVhBS1pldk4r?=
+ =?utf-8?B?K3dxWjdXOFdMSk5LWmZNcCtMZTZQVS9PNkhJbUd5V1IvNm1FNFpkdXB5Ukdo?=
+ =?utf-8?B?ZlhKaHkwbGFiY3g1SXpCTm9aeVFFdXAyU1ZxU1hOSTNIWGlBN00yTDJXRUdn?=
+ =?utf-8?B?Qm1BRER6Ymc1WEFjWDMxb3I1NUlkSmdWdVNIZHYwQVR1Zm1VRlNZZHI2RnFU?=
+ =?utf-8?B?dzhJZEMvZUFWUzM3M1diYU0wNU92NE9UbWNzV1hWYWUwdE1XMjFNVVlJRHdX?=
+ =?utf-8?B?N0lGQ0hrT1dVUlU0cHlwUVJ5eWp2NzFFMm85b2ZFV0J4Sm1jWGJ0WVdpTEhO?=
+ =?utf-8?B?K01FamdpODlaN29wNXRNZkhGVThOMDdyZzh1eEtFdWVBbWhxeUIxRlk4N2Ex?=
+ =?utf-8?B?TldJSkNzUDhlSG5HbUxOWFE1bzlDNlZTMWxvZFlaeGxjSjZ4elRUcG9kdThU?=
+ =?utf-8?B?bGlkL2xLUmZ6RDNadm5iVGNCa0RkTWVJbFJDT1diVkppb0R4NExWaU9oWEJH?=
+ =?utf-8?B?VTRPUEtETitleW9vOWh2T3hMYi9maXcrRGZZalZvWDN5SG12Z0srOHFzSVVS?=
+ =?utf-8?B?ZTFSK0pKMGxNRVFvamRFZjN6RGZZaTlVZEFXakdFeWRqenhTeTNITHAzeHpH?=
+ =?utf-8?B?eXFDWE9EZnMwUHFwYmxXRnRnVTB5VTVFRk51YTVQTzd2Vm1YVmUxZFE1Q0xw?=
+ =?utf-8?B?ZS85Zi9mLzR3bUhtR2VuMXVlOXU0SlUvL3l2MGJQZ1RWWGpvc0IvOW1xTnRY?=
+ =?utf-8?B?MkhrcGhDdVZSeU50VW1yN01yVEVjQVNldzlYZmJIcndnd0FPVGk4T09NcStM?=
+ =?utf-8?B?ZXNGZFYwNStueFN0ZzdHckRQeGZmY2F6c01MQTYvckVCWHB1d09TVmp1S1lz?=
+ =?utf-8?B?SWtpOTdZMm1qck1jaEcrN1FGejFZWk9PcW9wVEVuMkZXQUlXR091d0RNbVVD?=
+ =?utf-8?B?TmZFU2RIaGYwR0Z0OWRJcXhTWFQ1OWxhZk04djB5NGdIY3ViZUVKS2l0VExp?=
+ =?utf-8?B?YTNYWFQyWXBYR05acmlGeTNIMlpjdW45czN1cGtEYVF1WWc4ckNwTTMwWDlt?=
+ =?utf-8?B?c3JOWU9EdUlxLzBGSmU0ZjdScFZ5VXNacCtORDFNWHVSQmZLTHlqNGZYVllZ?=
+ =?utf-8?B?bFB0cWpWNnI2QWNZQ3NsZVpLSFNiVzVDbGY3SWwvQnJWVHJVMnFJTkRUWUNp?=
+ =?utf-8?B?RGE1U05sUGlIUDFEbTNoM003Ynk4U0xGNHRRTWxiSFR2a0JLUmFodmZ3MHJW?=
+ =?utf-8?B?RnBNVlYvTFVxVW9HTlZhSFZSNnoxTnBubWpnUFFBQ0xrWE4yR21mNTdaZFF3?=
+ =?utf-8?B?WDg3VXdUSm4vNGY1TDI5ZjBsckZCYnpQVmU4cjk4VlFBMzEydkovY3NxWEdw?=
+ =?utf-8?B?c1ZjbTk5eUNtTWdvMXVxMmtCaHZtWHRCWVhncXpoRkNNeTRHY3BEWk56MGlC?=
+ =?utf-8?B?cjMxQzRjRU1pZ05GWVhyMm45ZHZsNW03K21NaWNtWWJaTjQ0cXFzMnJMK1lv?=
+ =?utf-8?Q?Ap6XlHLYS8ITFyujdTvqFumcg?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c71d5f75-8350-4b01-aca2-08dc0ed75988
+X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB7511.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jan 2024 16:48:46.4286
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Qn5ajhk1m8RrkYQTdC/22i8Jss/Ic0psV54CzmBvi1gE5lMsz8d8VfjgTWx1r2cooEAqfi3J5WReDkvN+o3gFg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU2PR04MB8598
 
-From: Christoph Winklhofer <cj.winklhofer@gmail.com>
+On Sat, Jan 06, 2024 at 08:57:08PM +0530, Manivannan Sadhasivam wrote:
+> On Wed, Dec 27, 2023 at 01:27:12PM -0500, Frank Li wrote:
+> 
+> Subject mentions, 'bulk_clk' APIs but there is no such thing. It should be
+> 'clk_bulk()' APIs.
+> 
+> > Refactors the clock handling logic. Adds clk_names[] define in drvdata.
+> > Using clk_bulk*() api simplifies the code.
+> > 
+> 
+> I've mentioned this many times in the past. But let me reiterate here again:
+> 
+> Commit message should be in imperative mood as per Linux Kernel rules for
+> submitting patches. Please see here:
+> Documentation/process/submitting-patches.rst
+> 
+> The relevant part is:
+> 
+> "Describe your changes in imperative mood, e.g. "make xyzzy do frotz"
+> instead of "[This patch] makes xyzzy do frotz" or "[I] changed xyzzy
+> to do frotz", as if you are giving orders to the codebase to change
+> its behaviour."
+> 
+> Please use this same format for rest of the patches as well for future ones.
 
-Add a UART 1-Wire bus driver. The driver utilizes the UART interface via
-the Serial Device Bus to create the 1-Wire timing patterns. The driver
-was tested on a "Raspberry Pi 3B" with a DS18B20 and on a "Variscite
-DART-6UL" with a DS18S20 temperature sensor.
+I may have not understand *imperative mode*. Asked an English native
+speaker. Do you menas
 
-The 1-Wire timing pattern and the corresponding UART baud-rate with the
-interpretation of the transferred bytes are described in the document:
+*Refector* the clock handling logic. *Add* clk_names[] define in drvdata.
+*Use* clk_bulk*() api *simplify* the code.
 
-Link: https://www.analog.com/en/technical-articles/using-a-uart-to-implement-a-1wire-bus-master.html
+> 
+> > Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> > ---
+> > 
+> > Notes:
+> >     Change from v4 to v5
+> >     - update commit message
+> >     - direct using clk name list, instead of macro
+> >     - still keep caculate clk list count because sizeof return pre allocated
+> >     array size.
+> >     
+> >     Change from v3 to v4
+> >     - using clk_bulk_*() API
+> >     Change from v1 to v3
+> >     - none
+> > 
+> >  drivers/pci/controller/dwc/pci-imx6.c | 125 ++++++++------------------
+> >  1 file changed, 35 insertions(+), 90 deletions(-)
+> > 
+> > diff --git a/drivers/pci/controller/dwc/pci-imx6.c b/drivers/pci/controller/dwc/pci-imx6.c
+> > index 74703362aeec7..50d9faaa17f71 100644
+> > --- a/drivers/pci/controller/dwc/pci-imx6.c
+> > +++ b/drivers/pci/controller/dwc/pci-imx6.c
+> > @@ -61,12 +61,15 @@ enum imx6_pcie_variants {
+> >  #define IMX6_PCIE_FLAG_IMX6_SPEED_CHANGE	BIT(1)
+> >  #define IMX6_PCIE_FLAG_SUPPORTS_SUSPEND		BIT(2)
+> >  
+> > +#define IMX6_PCIE_MAX_CLKS       6
+> > +
+> >  struct imx6_pcie_drvdata {
+> >  	enum imx6_pcie_variants variant;
+> >  	enum dw_pcie_device_mode mode;
+> >  	u32 flags;
+> >  	int dbi_length;
+> >  	const char *gpr;
+> > +	const char *clk_names[IMX6_PCIE_MAX_CLKS];
+> >  };
+> >  
+> >  struct imx6_pcie {
+> > @@ -74,11 +77,8 @@ struct imx6_pcie {
+> >  	int			reset_gpio;
+> >  	bool			gpio_active_high;
+> >  	bool			link_is_up;
+> > -	struct clk		*pcie_bus;
+> > -	struct clk		*pcie_phy;
+> > -	struct clk		*pcie_inbound_axi;
+> > -	struct clk		*pcie;
+> > -	struct clk		*pcie_aux;
+> > +	struct clk_bulk_data	clks[IMX6_PCIE_MAX_CLKS];
+> > +	u32			clks_cnt;
+> >  	struct regmap		*iomuxc_gpr;
+> >  	u16			msi_ctrl;
+> >  	u32			controller_id;
+> > @@ -407,13 +407,18 @@ static void imx7d_pcie_wait_for_phy_pll_lock(struct imx6_pcie *imx6_pcie)
+> >  
+> >  static int imx6_setup_phy_mpll(struct imx6_pcie *imx6_pcie)
+> >  {
+> > -	unsigned long phy_rate = clk_get_rate(imx6_pcie->pcie_phy);
+> > +	unsigned long phy_rate = 0;
+> >  	int mult, div;
+> >  	u16 val;
+> > +	int i;
+> >  
+> >  	if (!(imx6_pcie->drvdata->flags & IMX6_PCIE_FLAG_IMX6_PHY))
+> >  		return 0;
+> >  
+> > +	for (i = 0; i < imx6_pcie->clks_cnt; i++)
+> > +		if (strncmp(imx6_pcie->clks[i].id, "pcie_phy", 8) == 0)
+> > +			phy_rate = clk_get_rate(imx6_pcie->clks[i].clk);
+> > +
+> >  	switch (phy_rate) {
+> >  	case 125000000:
+> >  		/*
+> > @@ -550,19 +555,11 @@ static int imx6_pcie_attach_pd(struct device *dev)
+> >  
+> >  static int imx6_pcie_enable_ref_clk(struct imx6_pcie *imx6_pcie)
+> >  {
+> > -	struct dw_pcie *pci = imx6_pcie->pci;
+> > -	struct device *dev = pci->dev;
+> >  	unsigned int offset;
+> >  	int ret = 0;
+> >  
+> >  	switch (imx6_pcie->drvdata->variant) {
+> >  	case IMX6SX:
+> > -		ret = clk_prepare_enable(imx6_pcie->pcie_inbound_axi);
+> > -		if (ret) {
+> > -			dev_err(dev, "unable to enable pcie_axi clock\n");
+> > -			break;
+> > -		}
+> > -
+> >  		regmap_update_bits(imx6_pcie->iomuxc_gpr, IOMUXC_GPR12,
+> >  				   IMX6SX_GPR12_PCIE_TEST_POWERDOWN, 0);
+> >  		break;
+> > @@ -589,12 +586,6 @@ static int imx6_pcie_enable_ref_clk(struct imx6_pcie *imx6_pcie)
+> >  	case IMX8MQ_EP:
+> >  	case IMX8MP:
+> >  	case IMX8MP_EP:
+> > -		ret = clk_prepare_enable(imx6_pcie->pcie_aux);
+> > -		if (ret) {
+> > -			dev_err(dev, "unable to enable pcie_aux clock\n");
+> > -			break;
+> > -		}
+> > -
+> >  		offset = imx6_pcie_grp_offset(imx6_pcie);
+> >  		/*
+> >  		 * Set the over ride low and enabled
+> > @@ -615,9 +606,6 @@ static int imx6_pcie_enable_ref_clk(struct imx6_pcie *imx6_pcie)
+> >  static void imx6_pcie_disable_ref_clk(struct imx6_pcie *imx6_pcie)
+> >  {
+> >  	switch (imx6_pcie->drvdata->variant) {
+> > -	case IMX6SX:
+> > -		clk_disable_unprepare(imx6_pcie->pcie_inbound_axi);
+> > -		break;
+> >  	case IMX6QP:
+> >  	case IMX6Q:
+> >  		regmap_update_bits(imx6_pcie->iomuxc_gpr, IOMUXC_GPR1,
+> > @@ -631,14 +619,6 @@ static void imx6_pcie_disable_ref_clk(struct imx6_pcie *imx6_pcie)
+> >  				   IMX7D_GPR12_PCIE_PHY_REFCLK_SEL,
+> >  				   IMX7D_GPR12_PCIE_PHY_REFCLK_SEL);
+> >  		break;
+> > -	case IMX8MM:
+> > -	case IMX8MM_EP:
+> > -	case IMX8MQ:
+> > -	case IMX8MQ_EP:
+> > -	case IMX8MP:
+> > -	case IMX8MP_EP:
+> > -		clk_disable_unprepare(imx6_pcie->pcie_aux);
+> > -		break;
+> >  	default:
+> >  		break;
+> >  	}
+> > @@ -650,23 +630,9 @@ static int imx6_pcie_clk_enable(struct imx6_pcie *imx6_pcie)
+> >  	struct device *dev = pci->dev;
+> >  	int ret;
+> >  
+> > -	ret = clk_prepare_enable(imx6_pcie->pcie_phy);
+> > -	if (ret) {
+> > -		dev_err(dev, "unable to enable pcie_phy clock\n");
+> > +	ret =  clk_bulk_prepare_enable(imx6_pcie->clks_cnt, imx6_pcie->clks);
+> 
+> Extra space after =
+> 
+> > +	if (ret)
+> >  		return ret;
+> > -	}
+> > -
+> > -	ret = clk_prepare_enable(imx6_pcie->pcie_bus);
+> > -	if (ret) {
+> > -		dev_err(dev, "unable to enable pcie_bus clock\n");
+> > -		goto err_pcie_bus;
+> > -	}
+> > -
+> > -	ret = clk_prepare_enable(imx6_pcie->pcie);
+> > -	if (ret) {
+> > -		dev_err(dev, "unable to enable pcie clock\n");
+> > -		goto err_pcie;
+> > -	}
+> >  
+> >  	ret = imx6_pcie_enable_ref_clk(imx6_pcie);
+> >  	if (ret) {
+> > @@ -679,11 +645,7 @@ static int imx6_pcie_clk_enable(struct imx6_pcie *imx6_pcie)
+> >  	return 0;
+> >  
+> >  err_ref_clk:
+> > -	clk_disable_unprepare(imx6_pcie->pcie);
+> > -err_pcie:
+> > -	clk_disable_unprepare(imx6_pcie->pcie_bus);
+> > -err_pcie_bus:
+> > -	clk_disable_unprepare(imx6_pcie->pcie_phy);
+> > +	clk_bulk_disable_unprepare(imx6_pcie->clks_cnt, imx6_pcie->clks);
+> >  
+> >  	return ret;
+> >  }
+> > @@ -691,9 +653,7 @@ static int imx6_pcie_clk_enable(struct imx6_pcie *imx6_pcie)
+> >  static void imx6_pcie_clk_disable(struct imx6_pcie *imx6_pcie)
+> >  {
+> >  	imx6_pcie_disable_ref_clk(imx6_pcie);
+> > -	clk_disable_unprepare(imx6_pcie->pcie);
+> > -	clk_disable_unprepare(imx6_pcie->pcie_bus);
+> > -	clk_disable_unprepare(imx6_pcie->pcie_phy);
+> > +	clk_bulk_disable_unprepare(imx6_pcie->clks_cnt, imx6_pcie->clks);
+> >  }
+> >  
+> >  static void imx6_pcie_assert_core_reset(struct imx6_pcie *imx6_pcie)
+> > @@ -1305,32 +1265,19 @@ static int imx6_pcie_probe(struct platform_device *pdev)
+> >  		return imx6_pcie->reset_gpio;
+> >  	}
+> >  
+> > -	/* Fetch clocks */
+> > -	imx6_pcie->pcie_bus = devm_clk_get(dev, "pcie_bus");
+> > -	if (IS_ERR(imx6_pcie->pcie_bus))
+> > -		return dev_err_probe(dev, PTR_ERR(imx6_pcie->pcie_bus),
+> > -				     "pcie_bus clock source missing or invalid\n");
+> > +	while (imx6_pcie->drvdata->clk_names[imx6_pcie->clks_cnt]) {
+> > +		int i = imx6_pcie->clks_cnt;
+> 
+> Why can't you initialize i to 0 directly?
 
-In short, the UART peripheral must support full-duplex and operate in
-open-drain mode. The timing patterns are generated by a specific
-combination of baud-rate and transmitted byte, which corresponds to a
-1-Wire read bit, write bit or reset.
+can't init i to 0 directly here, otherwise next loop i will not increase.
+i just reduce refer imx6_pcie->clks_cnt in 
 
-Signed-off-by: Christoph Winklhofer <cj.winklhofer@gmail.com>
----
- Documentation/w1/masters/index.rst   |   1 +
- Documentation/w1/masters/w1-uart.rst |  54 +++++
- drivers/w1/masters/Kconfig           |  10 +
- drivers/w1/masters/Makefile          |   1 +
- drivers/w1/masters/w1-uart.c         | 398 +++++++++++++++++++++++++++++++++++
- 5 files changed, 464 insertions(+)
+imx6_pcie->clks[i].id = imx6_pcie->drvdata->clk_names[i];
 
-diff --git a/Documentation/w1/masters/index.rst b/Documentation/w1/masters/index.rst
-index 4442a98850ad..cc40189909fd 100644
---- a/Documentation/w1/masters/index.rst
-+++ b/Documentation/w1/masters/index.rst
-@@ -12,3 +12,4 @@
-    mxc-w1
-    omap-hdq
-    w1-gpio
-+   w1-uart
-diff --git a/Documentation/w1/masters/w1-uart.rst b/Documentation/w1/masters/w1-uart.rst
-new file mode 100644
-index 000000000000..8d0f122178d4
---- /dev/null
-+++ b/Documentation/w1/masters/w1-uart.rst
-@@ -0,0 +1,54 @@
-+.. SPDX-License-Identifier: GPL-2.0-or-later
-+
-+=====================
-+Kernel driver w1-uart
-+=====================
-+
-+Author: Christoph Winklhofer <cj.winklhofer@gmail.com>
-+
-+
-+Description
-+-----------
-+
-+UART 1-Wire bus driver. The driver utilizes the UART interface via the
-+Serial Device Bus to create the 1-Wire timing patterns as described in
-+the document `"Using a UART to Implement a 1-Wire Bus Master"`_.
-+
-+.. _"Using a UART to Implement a 1-Wire Bus Master": https://www.analog.com/en/technical-articles/using-a-uart-to-implement-a-1wire-bus-master.html
-+
-+In short, the UART peripheral must support full-duplex and operate in
-+open-drain mode. The timing patterns are generated by a specific
-+combination of baud-rate and transmitted byte, which corresponds to a
-+1-Wire read bit, write bit or reset pulse.
-+
-+For instance the timing pattern for a 1-Wire reset and presence detect uses
-+the baud-rate 9600, i.e. 104.2 us per bit. The transmitted byte 0xf0 over
-+UART (least significant bit first, start-bit low) sets the reset low time
-+for 1-Wire to 521 us. A present 1-Wire device changes the received byte by
-+pulling the line low, which is used by the driver to evaluate the result of
-+the 1-Wire operation.
-+
-+Similar for a 1-Wire read bit or write bit, which uses the baud-rate
-+115200, i.e. 8.7 us per bit. The transmitted byte 0x80 is used for a
-+Write-0 operation (low time 69.6us) and the byte 0xff for Read-0, Read-1
-+and Write-1 (low time 8.7us).
-+
-+The default baud-rate for reset and presence detection is 9600 and for
-+a 1-Wire read or write operation 115200. In case the actual baud-rate
-+is different from the requested one, the transmitted byte is adapted
-+to generate the 1-Wire timing patterns.
-+
-+
-+Usage
-+-----
-+
-+Specify the UART 1-wire bus in the device tree by adding the single child
-+onewire to the serial node (e.g. uart0). For example:
-+::
-+
-+  @uart0 {
-+    ...
-+    onewire {
-+      compatible = "w1-uart";
-+    };
-+  };
-diff --git a/drivers/w1/masters/Kconfig b/drivers/w1/masters/Kconfig
-index 513c0b114337..e6049a75b35b 100644
---- a/drivers/w1/masters/Kconfig
-+++ b/drivers/w1/masters/Kconfig
-@@ -78,5 +78,15 @@ config W1_MASTER_SGI
- 	  This support is also available as a module.  If so, the module
- 	  will be called sgi_w1.
- 
-+config W1_MASTER_UART
-+	tristate "UART 1-wire driver"
-+	depends on SERIAL_DEV_BUS
-+	help
-+	  Say Y here if you want to communicate with your 1-wire devices using
-+	  UART interface.
-+
-+	  This support is also available as a module.  If so, the module
-+	  will be called w1-uart.
-+
- endmenu
- 
-diff --git a/drivers/w1/masters/Makefile b/drivers/w1/masters/Makefile
-index 6c5a21f9b88c..227f80987e69 100644
---- a/drivers/w1/masters/Makefile
-+++ b/drivers/w1/masters/Makefile
-@@ -12,3 +12,4 @@ obj-$(CONFIG_W1_MASTER_MXC)		+= mxc_w1.o
- obj-$(CONFIG_W1_MASTER_GPIO)		+= w1-gpio.o
- obj-$(CONFIG_HDQ_MASTER_OMAP)		+= omap_hdq.o
- obj-$(CONFIG_W1_MASTER_SGI)		+= sgi_w1.o
-+obj-$(CONFIG_W1_MASTER_UART)		+= w1-uart.o
-diff --git a/drivers/w1/masters/w1-uart.c b/drivers/w1/masters/w1-uart.c
-new file mode 100644
-index 000000000000..e3a1f97e2a4c
---- /dev/null
-+++ b/drivers/w1/masters/w1-uart.c
-@@ -0,0 +1,398 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/*
-+ * w1-uart - UART 1-Wire bus driver
-+ *
-+ * Uses the UART interface (via Serial Device Bus) to create the 1-Wire
-+ * timing patterns. Implements the following 1-Wire master interface:
-+ *
-+ * - reset_bus: requests baud-rate 9600
-+ *
-+ * - touch_bit: requests baud-rate 115200
-+ *
-+ * Author: Christoph Winklhofer <cj.winklhofer@gmail.com>
-+ */
-+
-+#include <linux/completion.h>
-+#include <linux/delay.h>
-+#include <linux/jiffies.h>
-+#include <linux/module.h>
-+#include <linux/mutex.h>
-+#include <linux/of.h>
-+#include <linux/serdev.h>
-+#include <linux/w1.h>
-+
-+#define W1_UART_TIMEOUT msecs_to_jiffies(500)
-+
-+/*
-+ * struct w1_uart_config - configuration for 1-Wire operation
-+ *
-+ * @baudrate: baud-rate returned from serdev
-+ * @delay_us: delay to complete a 1-Wire cycle (in us)
-+ * @tx_byte: byte to generate 1-Wire timing pattern
-+ */
-+struct w1_uart_config {
-+	unsigned int baudrate;
-+	unsigned int delay_us;
-+	unsigned char tx_byte;
-+};
-+
-+struct w1_uart_device {
-+	struct serdev_device *serdev;
-+	struct w1_bus_master bus;
-+
-+	struct w1_uart_config cfg_reset;
-+	struct w1_uart_config cfg_touch_0;
-+	struct w1_uart_config cfg_touch_1;
-+
-+	struct completion rx_byte_received;
-+	unsigned char rx_byte;
-+	int rx_err;
-+
-+	struct mutex mutex;
-+};
-+
-+/*
-+ * struct w1_uart_limits - limits for 1-Wire operations
-+ *
-+ * @baudrate: Requested baud-rate to create 1-Wire timing pattern
-+ * @bit_min_us: minimum time for a bit (in us)
-+ * @bit_max_us: maximum time for a bit (in us)
-+ * @sample_us: timespan to sample 1-Wire response
-+ * @cycle_us: duration of the 1-Wire cycle
-+ */
-+struct w1_uart_limits {
-+	unsigned int baudrate;
-+	unsigned int bit_min_us;
-+	unsigned int bit_max_us;
-+	unsigned int sample_us;
-+	unsigned int cycle_us;
-+};
-+
-+static inline unsigned int baud_to_bit_ns(unsigned int baud)
-+{
-+	return 1000000000 / baud;
-+}
-+
-+static inline unsigned int to_ns(unsigned int us)
-+{
-+	return us * 1000;
-+}
-+
-+/*
-+ * Set baud-rate, delay and tx-byte to create a 1-Wire pulse and adapt
-+ * the tx-byte according to the actual baud-rate.
-+ *
-+ * Reject when:
-+ * - time for a bit outside min/max range
-+ * - a 1-Wire response is not detectable for sent byte
-+ */
-+static int w1_uart_set_config(struct serdev_device *serdev,
-+			      const struct w1_uart_limits *limits,
-+			      struct w1_uart_config *w1cfg)
-+{
-+	unsigned int bits_low;
-+	unsigned int bit_ns;
-+	unsigned int low_ns;
-+
-+	w1cfg->baudrate = serdev_device_set_baudrate(serdev, limits->baudrate);
-+	if (w1cfg->baudrate == 0)
-+		return -EINVAL;
-+
-+	/* Compute in nanoseconds for accuracy */
-+	bit_ns = baud_to_bit_ns(w1cfg->baudrate);
-+	bits_low = to_ns(limits->bit_min_us) / bit_ns;
-+	/* start bit is always low */
-+	low_ns = bit_ns * (bits_low + 1);
-+
-+	if (low_ns < to_ns(limits->bit_min_us))
-+		return -EINVAL;
-+
-+	if (low_ns > to_ns(limits->bit_max_us))
-+		return -EINVAL;
-+
-+	/* 1-Wire response detectable for sent byte */
-+	if (limits->sample_us > 0 &&
-+	    bit_ns * 8 < low_ns + to_ns(limits->sample_us))
-+		return -EINVAL;
-+
-+	/* delay to complete 1-Wire cycle, include start and stop-bit */
-+	w1cfg->delay_us = 0;
-+	if (bit_ns * 10 < to_ns(limits->cycle_us))
-+		w1cfg->delay_us =
-+			(to_ns(limits->cycle_us) - bit_ns * 10) / 1000;
-+
-+	/* byte to create 1-Wire pulse */
-+	w1cfg->tx_byte = 0xff << bits_low;
-+
-+	return 0;
-+}
-+
-+/*
-+ * Configuration for reset and presence detect
-+ * - bit_min_us is 480us, add margin and use 485us
-+ * - limits for sample time 60us-75us, use 65us
-+ */
-+static int w1_uart_set_config_reset(struct w1_uart_device *w1dev)
-+{
-+	struct serdev_device *serdev = w1dev->serdev;
-+	struct device_node *np = serdev->dev.of_node;
-+
-+	struct w1_uart_limits limits = { .baudrate = 9600,
-+					 .bit_min_us = 485,
-+					 .bit_max_us = 640,
-+					 .sample_us = 65,
-+					 .cycle_us = 960 };
-+
-+	of_property_read_u32(np, "reset-speed", &limits.baudrate);
-+
-+	return w1_uart_set_config(serdev, &limits, &w1dev->cfg_reset);
-+}
-+
-+/*
-+ * Configuration for write-0 cycle (touch bit 0)
-+ * - bit_min_us is 60us, add margin and use 65us
-+ * - no sampling required, sample_us = 0
-+ */
-+static int w1_uart_set_config_touch_0(struct w1_uart_device *w1dev)
-+{
-+	struct serdev_device *serdev = w1dev->serdev;
-+	struct device_node *np = serdev->dev.of_node;
-+
-+	struct w1_uart_limits limits = { .baudrate = 115200,
-+					 .bit_min_us = 65,
-+					 .bit_max_us = 120,
-+					 .sample_us = 0,
-+					 .cycle_us = 70 };
-+
-+	of_property_read_u32(np, "touch_0-speed", &limits.baudrate);
-+
-+	return w1_uart_set_config(serdev, &limits, &w1dev->cfg_touch_0);
-+}
-+
-+/*
-+ * Configuration for write-1 and read cycle (touch bit 1)
-+ * - bit_min_us is 5us, add margin and use 6us
-+ * - limits for sample time 5us-15us, use 15us
-+ */
-+static int w1_uart_set_config_touch_1(struct w1_uart_device *w1dev)
-+{
-+	struct serdev_device *serdev = w1dev->serdev;
-+	struct device_node *np = serdev->dev.of_node;
-+
-+	struct w1_uart_limits limits = { .baudrate = 115200,
-+					 .bit_min_us = 6,
-+					 .bit_max_us = 15,
-+					 .sample_us = 15,
-+					 .cycle_us = 70 };
-+
-+	of_property_read_u32(np, "touch_1-speed", &limits.baudrate);
-+
-+	return w1_uart_set_config(serdev, &limits, &w1dev->cfg_touch_1);
-+}
-+
-+/*
-+ * Configure and open the serial device
-+ */
-+static int w1_uart_serdev_open(struct w1_uart_device *w1dev)
-+{
-+	struct serdev_device *serdev = w1dev->serdev;
-+	struct device *dev = &serdev->dev;
-+	int ret;
-+
-+	ret = devm_serdev_device_open(dev, serdev);
-+	if (ret < 0)
-+		return ret;
-+
-+	ret = serdev_device_set_parity(serdev, SERDEV_PARITY_NONE);
-+	if (ret < 0) {
-+		dev_err(dev, "set parity failed\n");
-+		return ret;
-+	}
-+
-+	ret = w1_uart_set_config_reset(w1dev);
-+	if (ret < 0) {
-+		dev_err(dev, "config for reset failed\n");
-+		return ret;
-+	}
-+
-+	ret = w1_uart_set_config_touch_0(w1dev);
-+	if (ret < 0) {
-+		dev_err(dev, "config for touch-0 failed\n");
-+		return ret;
-+	}
-+
-+	ret = w1_uart_set_config_touch_1(w1dev);
-+	if (ret < 0) {
-+		dev_err(dev, "config for touch-1 failed\n");
-+		return ret;
-+	}
-+
-+	serdev_device_set_flow_control(serdev, false);
-+
-+	return 0;
-+}
-+
-+/*
-+ * Send one byte (tx_byte) and read one byte (rx_byte) via serdev.
-+ */
-+static int w1_uart_serdev_tx_rx(struct w1_uart_device *w1dev,
-+				const struct w1_uart_config *w1cfg,
-+				unsigned char *rx_byte)
-+{
-+	struct serdev_device *serdev = w1dev->serdev;
-+	int ret;
-+
-+	serdev_device_write_flush(serdev);
-+	serdev_device_set_baudrate(serdev, w1cfg->baudrate);
-+
-+	/* write and immediately read one byte */
-+	reinit_completion(&w1dev->rx_byte_received);
-+	ret = serdev_device_write_buf(serdev, &w1cfg->tx_byte, 1);
-+	if (ret != 1)
-+		return -EIO;
-+	ret = wait_for_completion_interruptible_timeout(
-+		&w1dev->rx_byte_received, W1_UART_TIMEOUT);
-+	if (ret <= 0)
-+		return -EIO;
-+
-+	/* locking could fail during driver remove or when serdev is
-+	 * unexpectedly in the receive callback.
-+	 */
-+	if (!mutex_trylock(&w1dev->mutex))
-+		return -EIO;
-+
-+	ret = w1dev->rx_err;
-+	if (ret == 0)
-+		*rx_byte = w1dev->rx_byte;
-+
-+	if (w1cfg->delay_us > 0)
-+		fsleep(w1cfg->delay_us);
-+
-+	mutex_unlock(&w1dev->mutex);
-+
-+	return ret;
-+}
-+
-+static int w1_uart_serdev_receive_buf(struct serdev_device *serdev,
-+				      const unsigned char *buf, size_t count)
-+{
-+	struct w1_uart_device *w1dev = serdev_device_get_drvdata(serdev);
-+
-+	mutex_lock(&w1dev->mutex);
-+
-+	/* sent a single byte and receive one single byte */
-+	if (count == 1) {
-+		w1dev->rx_byte = buf[0];
-+		w1dev->rx_err = 0;
-+	} else {
-+		w1dev->rx_err = -EIO;
-+	}
-+
-+	mutex_unlock(&w1dev->mutex);
-+	complete(&w1dev->rx_byte_received);
-+
-+	return count;
-+}
-+
-+static const struct serdev_device_ops w1_uart_serdev_ops = {
-+	.receive_buf = w1_uart_serdev_receive_buf,
-+	.write_wakeup = serdev_device_write_wakeup,
-+};
-+
-+/*
-+ * 1-wire reset and presence detect: A present slave will manipulate
-+ * the received byte by pulling the 1-Wire low.
-+ */
-+static u8 w1_uart_reset_bus(void *data)
-+{
-+	struct w1_uart_device *w1dev = data;
-+	const struct w1_uart_config *w1cfg = &w1dev->cfg_reset;
-+	unsigned char val;
-+	int ret;
-+
-+	ret = w1_uart_serdev_tx_rx(w1dev, w1cfg, &val);
-+	if (ret < 0)
-+		return -1;
-+
-+	/* Device present (0) or no device (1) */
-+	return val != w1cfg->tx_byte ? 0 : 1;
-+}
-+
-+/*
-+ * 1-Wire read and write cycle: Only the read-0 manipulates the
-+ * received byte, all others left the line untouched.
-+ */
-+static u8 w1_uart_touch_bit(void *data, u8 bit)
-+{
-+	struct w1_uart_device *w1dev = data;
-+	const struct w1_uart_config *w1cfg = bit ? &w1dev->cfg_touch_1 :
-+						   &w1dev->cfg_touch_0;
-+	unsigned char val;
-+	int ret;
-+
-+	ret = w1_uart_serdev_tx_rx(w1dev, w1cfg, &val);
-+
-+	/* return inactive bus state on error */
-+	if (ret < 0)
-+		return 1;
-+
-+	return val == w1cfg->tx_byte ? 1 : 0;
-+}
-+
-+static int w1_uart_probe(struct serdev_device *serdev)
-+{
-+	struct device *dev = &serdev->dev;
-+	struct w1_uart_device *w1dev;
-+	int ret;
-+
-+	w1dev = devm_kzalloc(dev, sizeof(*w1dev), GFP_KERNEL);
-+	if (!w1dev)
-+		return -ENOMEM;
-+	w1dev->bus.data = w1dev;
-+	w1dev->bus.reset_bus = w1_uart_reset_bus;
-+	w1dev->bus.touch_bit = w1_uart_touch_bit;
-+	w1dev->serdev = serdev;
-+
-+	init_completion(&w1dev->rx_byte_received);
-+	mutex_init(&w1dev->mutex);
-+
-+	ret = w1_uart_serdev_open(w1dev);
-+	if (ret < 0)
-+		return ret;
-+	serdev_device_set_drvdata(serdev, w1dev);
-+	serdev_device_set_client_ops(serdev, &w1_uart_serdev_ops);
-+
-+	return w1_add_master_device(&w1dev->bus);
-+}
-+
-+static void w1_uart_remove(struct serdev_device *serdev)
-+{
-+	struct w1_uart_device *w1dev = serdev_device_get_drvdata(serdev);
-+
-+	mutex_lock(&w1dev->mutex);
-+
-+	w1_remove_master_device(&w1dev->bus);
-+
-+	mutex_unlock(&w1dev->mutex);
-+}
-+
-+static const struct of_device_id w1_uart_of_match[] = {
-+	{ .compatible = "w1-uart" },
-+	{},
-+};
-+MODULE_DEVICE_TABLE(of, w1_uart_of_match);
-+
-+static struct serdev_device_driver w1_uart_driver = {
-+	.driver	= {
-+		.name		= "w1-uart",
-+		.of_match_table = w1_uart_of_match,
-+	},
-+	.probe	= w1_uart_probe,
-+	.remove	= w1_uart_remove,
-+};
-+
-+module_serdev_device_driver(w1_uart_driver);
-+
-+MODULE_DESCRIPTION("UART w1 bus driver");
-+MODULE_AUTHOR("Christoph Winklhofer <cj.winklhofer@gmail.com>");
-+MODULE_LICENSE("GPL");
+Frank
 
--- 
-2.43.0
-
+> 
+> Rest looks good to me.
+> 
+> - Mani
+> 
+> > +
+> > +		imx6_pcie->clks[i].id = imx6_pcie->drvdata->clk_names[i];
+> > +		imx6_pcie->clks_cnt++;
+> > +	}
+> >  
+> > -	imx6_pcie->pcie = devm_clk_get(dev, "pcie");
+> > -	if (IS_ERR(imx6_pcie->pcie))
+> > -		return dev_err_probe(dev, PTR_ERR(imx6_pcie->pcie),
+> > -				     "pcie clock source missing or invalid\n");
+> > +	/* Fetch clocks */
+> > +	ret = devm_clk_bulk_get(dev, imx6_pcie->clks_cnt, imx6_pcie->clks);
+> > +	if (ret)
+> > +		return ret;
+> >  
+> >  	switch (imx6_pcie->drvdata->variant) {
+> > -	case IMX6SX:
+> > -		imx6_pcie->pcie_inbound_axi = devm_clk_get(dev,
+> > -							   "pcie_inbound_axi");
+> > -		if (IS_ERR(imx6_pcie->pcie_inbound_axi))
+> > -			return dev_err_probe(dev, PTR_ERR(imx6_pcie->pcie_inbound_axi),
+> > -					     "pcie_inbound_axi clock missing or invalid\n");
+> > -		break;
+> > -	case IMX8MQ:
+> > -	case IMX8MQ_EP:
+> > -		imx6_pcie->pcie_aux = devm_clk_get(dev, "pcie_aux");
+> > -		if (IS_ERR(imx6_pcie->pcie_aux))
+> > -			return dev_err_probe(dev, PTR_ERR(imx6_pcie->pcie_aux),
+> > -					     "pcie_aux clock source missing or invalid\n");
+> > -		fallthrough;
+> >  	case IMX7D:
+> >  		if (dbi_base->start == IMX8MQ_PCIE2_BASE_ADDR)
+> >  			imx6_pcie->controller_id = 1;
+> > @@ -1353,10 +1300,6 @@ static int imx6_pcie_probe(struct platform_device *pdev)
+> >  	case IMX8MM_EP:
+> >  	case IMX8MP:
+> >  	case IMX8MP_EP:
+> > -		imx6_pcie->pcie_aux = devm_clk_get(dev, "pcie_aux");
+> > -		if (IS_ERR(imx6_pcie->pcie_aux))
+> > -			return dev_err_probe(dev, PTR_ERR(imx6_pcie->pcie_aux),
+> > -					     "pcie_aux clock source missing or invalid\n");
+> >  		imx6_pcie->apps_reset = devm_reset_control_get_exclusive(dev,
+> >  									 "apps");
+> >  		if (IS_ERR(imx6_pcie->apps_reset))
+> > @@ -1372,14 +1315,6 @@ static int imx6_pcie_probe(struct platform_device *pdev)
+> >  	default:
+> >  		break;
+> >  	}
+> > -	/* Don't fetch the pcie_phy clock, if it has abstract PHY driver */
+> > -	if (imx6_pcie->phy == NULL) {
+> > -		imx6_pcie->pcie_phy = devm_clk_get(dev, "pcie_phy");
+> > -		if (IS_ERR(imx6_pcie->pcie_phy))
+> > -			return dev_err_probe(dev, PTR_ERR(imx6_pcie->pcie_phy),
+> > -					     "pcie_phy clock source missing or invalid\n");
+> > -	}
+> > -
+> >  
+> >  	/* Grab turnoff reset */
+> >  	imx6_pcie->turnoff_reset = devm_reset_control_get_optional_exclusive(dev, "turnoff");
+> > @@ -1477,6 +1412,7 @@ static const struct imx6_pcie_drvdata drvdata[] = {
+> >  			 IMX6_PCIE_FLAG_IMX6_SPEED_CHANGE,
+> >  		.dbi_length = 0x200,
+> >  		.gpr = "fsl,imx6q-iomuxc-gpr",
+> > +		.clk_names = {"pcie_bus", "pcie", "pcie_phy"},
+> >  	},
+> >  	[IMX6SX] = {
+> >  		.variant = IMX6SX,
+> > @@ -1484,6 +1420,7 @@ static const struct imx6_pcie_drvdata drvdata[] = {
+> >  			 IMX6_PCIE_FLAG_IMX6_SPEED_CHANGE |
+> >  			 IMX6_PCIE_FLAG_SUPPORTS_SUSPEND,
+> >  		.gpr = "fsl,imx6q-iomuxc-gpr",
+> > +		.clk_names = {"pcie_bus", "pcie", "pcie_phy", "pcie_inbound_axi"},
+> >  	},
+> >  	[IMX6QP] = {
+> >  		.variant = IMX6QP,
+> > @@ -1492,40 +1429,48 @@ static const struct imx6_pcie_drvdata drvdata[] = {
+> >  			 IMX6_PCIE_FLAG_SUPPORTS_SUSPEND,
+> >  		.dbi_length = 0x200,
+> >  		.gpr = "fsl,imx6q-iomuxc-gpr",
+> > +		.clk_names = {"pcie_bus", "pcie", "pcie_phy"},
+> >  	},
+> >  	[IMX7D] = {
+> >  		.variant = IMX7D,
+> >  		.flags = IMX6_PCIE_FLAG_SUPPORTS_SUSPEND,
+> >  		.gpr = "fsl,imx7d-iomuxc-gpr",
+> > +		.clk_names = {"pcie_bus", "pcie", "pcie_phy"},
+> >  	},
+> >  	[IMX8MQ] = {
+> >  		.variant = IMX8MQ,
+> >  		.gpr = "fsl,imx8mq-iomuxc-gpr",
+> > +		.clk_names = {"pcie_bus", "pcie", "pcie_phy", "pcie_aux"},
+> >  	},
+> >  	[IMX8MM] = {
+> >  		.variant = IMX8MM,
+> >  		.flags = IMX6_PCIE_FLAG_SUPPORTS_SUSPEND,
+> >  		.gpr = "fsl,imx8mm-iomuxc-gpr",
+> > +		.clk_names = {"pcie_bus", "pcie", "pcie_aux"},
+> >  	},
+> >  	[IMX8MP] = {
+> >  		.variant = IMX8MP,
+> >  		.flags = IMX6_PCIE_FLAG_SUPPORTS_SUSPEND,
+> >  		.gpr = "fsl,imx8mp-iomuxc-gpr",
+> > +		.clk_names = {"pcie_bus", "pcie", "pcie_aux"},
+> >  	},
+> >  	[IMX8MQ_EP] = {
+> >  		.variant = IMX8MQ_EP,
+> >  		.mode = DW_PCIE_EP_TYPE,
+> >  		.gpr = "fsl,imx8mq-iomuxc-gpr",
+> > +		.clk_names = {"pcie_bus", "pcie", "pcie_phy", "pcie_aux"},
+> >  	},
+> >  	[IMX8MM_EP] = {
+> >  		.variant = IMX8MM_EP,
+> >  		.mode = DW_PCIE_EP_TYPE,
+> >  		.gpr = "fsl,imx8mm-iomuxc-gpr",
+> > +		.clk_names = {"pcie_bus", "pcie", "pcie_aux"},
+> >  	},
+> >  	[IMX8MP_EP] = {
+> >  		.variant = IMX8MP_EP,
+> >  		.mode = DW_PCIE_EP_TYPE,
+> >  		.gpr = "fsl,imx8mp-iomuxc-gpr",
+> > +		.clk_names = {"pcie_bus", "pcie", "pcie_aux"},
+> >  	},
+> >  };
+> >  
+> > -- 
+> > 2.34.1
+> > 
+> 
+> -- 
+> மணிவண்ணன் சதாசிவம்
 
