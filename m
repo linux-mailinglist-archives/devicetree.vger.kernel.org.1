@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-29963-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29964-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8220F826025
-	for <lists+devicetree@lfdr.de>; Sat,  6 Jan 2024 16:28:56 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A24C982602E
+	for <lists+devicetree@lfdr.de>; Sat,  6 Jan 2024 16:32:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D8374282444
-	for <lists+devicetree@lfdr.de>; Sat,  6 Jan 2024 15:28:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3A59F283890
+	for <lists+devicetree@lfdr.de>; Sat,  6 Jan 2024 15:32:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7149379EC;
-	Sat,  6 Jan 2024 15:28:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D24679FE;
+	Sat,  6 Jan 2024 15:32:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wsrEzVO7"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VnskQgQv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97FAD8474
-	for <devicetree@vger.kernel.org>; Sat,  6 Jan 2024 15:28:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 996BD847B
+	for <devicetree@vger.kernel.org>; Sat,  6 Jan 2024 15:32:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-a2a360dbc11so1745266b.2
-        for <devicetree@vger.kernel.org>; Sat, 06 Jan 2024 07:28:48 -0800 (PST)
+Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-a29da3d61f6so45733066b.3
+        for <devicetree@vger.kernel.org>; Sat, 06 Jan 2024 07:32:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704554927; x=1705159727; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1704555159; x=1705159959; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=JqQSYLD6Y1gr/LDRvUK1g3O32845VQpwLDm/7pkTGqc=;
-        b=wsrEzVO7RJ6GSeK5TG60cdu7n9z+Vvg0yUjpwHoFo6PtALB9kfQHcn0hDhvWFCfl+z
-         D2M0GaTp5DQADm5tk1vGXLadg/QjDp9sKs3/bG/rFJa4u9/mOePkCBR4RFWzsELGPYuZ
-         mCiYWUiiBFDBeAbMPcBePEoYmj/JLGYZFIms0HSmXFBC5EnTvAWuGLQfaYuQFGOmST0c
-         h0kZmln6Ml72MRTEKfDuqDbJwEqb9fDQcBBMT/luAHfq4B8tY0bC3lpd4PFcukwh5QAg
-         wvRwz3xll2i+FhriHJLFMtTI1S+oARcU2dInQ7UuN5IMTboBaS7k+JZM/9WMxlDgYaCp
-         l6MQ==
+        bh=GX/TYOuEaEWdZOe4Via6FfCNhxFRRVBiWsIZwO9fu64=;
+        b=VnskQgQviPQlUaoU7HMD3KYrfvoGAoCSa9jPPvGU0s90I+sDiiYPI9awLkRom3BAXZ
+         D2a6hB9Wpfy5tRIVmb/H0bL2hegFyvsqd1SrbE+DaExu4Suoz4YGPvgzqZ9wHR+ViSYF
+         pqbPXfqGX7fJm+9iEw7ccN2gRvZ++JUdVEprVIsETqh0mee76/AFZSe7t5CZkdV4ijz8
+         +Z9qv0Uc+z897XgzxHGfIgrzjnmQlPmIpxjYr5GIvkO+oGWAjcGtPuZW6H5cKBCoNsm5
+         e219dNPYoxzfPMgRjR6jNwXZRtZHEYx2v0vl7xVM9QhG3DBe5PNRwxXzei1XSMJPmeng
+         Of0w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704554927; x=1705159727;
+        d=1e100.net; s=20230601; t=1704555159; x=1705159959;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=JqQSYLD6Y1gr/LDRvUK1g3O32845VQpwLDm/7pkTGqc=;
-        b=BGgVDxXyUe5OH+9QefLJPrQGLoI0UCffo7qLcGYTv7UZWQAEeSMQ+TcKYQOokFa23n
-         9+cW0fr1iScUrtPyoZIfccwibOF35v2xswwj481x8UKwsRkCqdx1ilHW9q88+Yvvzc4n
-         lZZPUwGscGWLj8i5autcMZ83j3YvNf4sf2Z6QF7wC/Z+PCGHLilxtYeJ2XeGu3A/0UCB
-         XIlOMEvOJRqfCGBzPnKCaSa/h6PUAgWn0AmffX9FcRZPJ9JCskXYB6qz02bIboUUl3Xh
-         m9OT/qqXYe0zR1UllqOZEZjRbpjR6yg5SgZ40MXlYYn08ArjmK6CfUpJBBEmkTmO2XXS
-         oKsQ==
-X-Gm-Message-State: AOJu0Yyf4A0YAS+CpXEXTqUgucblEoKeK12E8nVKOUsJ+uzIIFhJeKOn
-	04NznZ2jYGPf08GpZxyXaIE0eqrnIE6jjg==
-X-Google-Smtp-Source: AGHT+IGsjSq59vSgfMblBL5/zjbLkXeESIfE0JYSbwYvKQ4C5Xqepl3SPwcwDY4p/oZsX7cU4fe2oQ==
-X-Received: by 2002:a17:906:fc0d:b0:a28:afd9:8576 with SMTP id ov13-20020a170906fc0d00b00a28afd98576mr396374ejb.109.1704554926840;
-        Sat, 06 Jan 2024 07:28:46 -0800 (PST)
+        bh=GX/TYOuEaEWdZOe4Via6FfCNhxFRRVBiWsIZwO9fu64=;
+        b=gjTe3gF3Vg0ROBPMreCQ3LMVCO5xX4wjui3j4MH26ex66iTFBV6C7SrmhcLbmaU5Nb
+         PT+2vd3DmeafrD8c2YYCudw3twCz0zpJovG6XXQkEDlmjO4vOCfbbpy+mYMXWxo5dUF3
+         3tDi+FnOGL4HW/7b5HXvvKwsaCXySwjOFF2AfAwaOWN/CWO2cOfqjhUDmCQmk7qub8NC
+         vPZRwoVmLHH98/vMQWYxAAPr+CeeVfl8zjuGGxbzYqdAtDcN8S6vg3zfVeZU6CngCiCM
+         5qahv+RsPzEaWHmoUfPUbmgzeFHZneXBdxD2oDXxRaa/f8igWP6BIoUbJG7cVbMuwruq
+         VQTw==
+X-Gm-Message-State: AOJu0YxBrls+W7aVsD9GVxJ6q5DRkcYps16W29fEmgyymKnharym0fXC
+	wY+BC0Y5kWTvYMtlezfn5AwacSSMjItjzw==
+X-Google-Smtp-Source: AGHT+IH0/XeH7QwrkW7lTxkcr24gZ45qG0SJGvdLsOVexLew253lAEYJOYk6YWQLTeUb2xrFBKkAXQ==
+X-Received: by 2002:a17:907:3603:b0:a23:6c6a:41a5 with SMTP id bk3-20020a170907360300b00a236c6a41a5mr576428ejc.45.1704555158846;
+        Sat, 06 Jan 2024 07:32:38 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.223.112])
-        by smtp.gmail.com with ESMTPSA id dq16-20020a170907735000b00a269357c2e7sm2068038ejc.36.2024.01.06.07.28.44
+        by smtp.gmail.com with ESMTPSA id lb24-20020a170906add800b00a28fa7838d2sm2077369ejb.18.2024.01.06.07.32.36
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 06 Jan 2024 07:28:46 -0800 (PST)
-Message-ID: <40b4d29e-fa5c-43d5-8ccb-4a5a41150546@linaro.org>
-Date: Sat, 6 Jan 2024 16:28:44 +0100
+        Sat, 06 Jan 2024 07:32:38 -0800 (PST)
+Message-ID: <c3c8e68f-ee7e-430b-b890-011573e809b1@linaro.org>
+Date: Sat, 6 Jan 2024 16:32:35 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,28 +66,30 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/4] reset: gpio: Add GPIO-based reset controller
+Subject: Re: [PATCH 2/4] reset: add GPIO-based reset controller
 Content-Language: en-US
-To: Biju Das <biju.das.jz@bp.renesas.com>,
- Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
- Banajit Goswami <bgoswami@quicinc.com>,
+To: Mark Brown <broonie@kernel.org>
+Cc: Sean Anderson <sean.anderson@seco.com>,
  Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Liam Girdwood
- <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+ Banajit Goswami <bgoswami@quicinc.com>, Liam Girdwood <lgirdwood@gmail.com>,
  Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
  Conor Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
  Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
- "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
- "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
- "linux-sound@vger.kernel.org" <linux-sound@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Cc: Bartosz Golaszewski <brgl@bgdev.pl>,
- Sean Anderson <sean.anderson@seco.com>
-References: <20240105155918.279657-1-krzysztof.kozlowski@linaro.org>
- <20240105155918.279657-2-krzysztof.kozlowski@linaro.org>
- <TYCPR01MB11269ABEDCD115064D449267486662@TYCPR01MB11269.jpnprd01.prod.outlook.com>
+ linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
+ linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Bartosz Golaszewski <brgl@bgdev.pl>
+References: <20231222150133.732662-1-krzysztof.kozlowski@linaro.org>
+ <20231222150133.732662-3-krzysztof.kozlowski@linaro.org>
+ <530e3473-eb3b-477c-8599-e7aa12779640@seco.com>
+ <88bd6668-7e67-42c7-97b6-d7029f371349@linaro.org>
+ <075990bb-5fdb-4d30-9484-9df6b978e805@seco.com>
+ <fcbae47b-3b28-42f0-b93f-f83932025dc1@linaro.org>
+ <2be19fbf-4c73-4594-be42-31587dc7b747@seco.com>
+ <d2d17b94-6f29-423d-a7e0-e24513a8e59f@linaro.org>
+ <758c4fe3-1ea1-4a8c-bb6f-3a3df588da75@sirena.org.uk>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -133,165 +135,48 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <TYCPR01MB11269ABEDCD115064D449267486662@TYCPR01MB11269.jpnprd01.prod.outlook.com>
+In-Reply-To: <758c4fe3-1ea1-4a8c-bb6f-3a3df588da75@sirena.org.uk>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 05/01/2024 17:39, Biju Das wrote:
-> Hi Krzysztof Kozlowski,
+On 05/01/2024 15:33, Mark Brown wrote:
+> On Thu, Jan 04, 2024 at 08:08:50PM +0100, Krzysztof Kozlowski wrote:
+>> On 04/01/2024 17:30, Sean Anderson wrote:
 > 
-> Thanks for the patch.
+>>> device post-assert delay post-deassert delay
+>>> ====== ================= ===================
+>>> A                  500us                 1ms
+>>> B                    1ms               300us
 > 
->> -----Original Message-----
->> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> Sent: Friday, January 5, 2024 3:59 PM
->> Subject: [PATCH v2 1/4] reset: gpio: Add GPIO-based reset controller
->>
->> Add a simple driver to control GPIO-based resets using the reset
->> controller API for the cases when the GPIOs are shared and reset should be
->> coordinated.  The driver is expected to be used by reset core framework
->> for ad-hoc reset controllers.
->>
->> Cc: Bartosz Golaszewski <brgl@bgdev.pl>
->> Cc: Sean Anderson <sean.anderson@seco.com>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> ---
->>  MAINTAINERS                |   5 ++
->>  drivers/reset/Kconfig      |   9 +++
->>  drivers/reset/Makefile     |   1 +
->>  drivers/reset/reset-gpio.c | 121 +++++++++++++++++++++++++++++++++++++
->>  4 files changed, 136 insertions(+)
->>  create mode 100644 drivers/reset/reset-gpio.c
->>
->> diff --git a/MAINTAINERS b/MAINTAINERS
->> index 7fe27cd60e1b..a0fbd4814bc7 100644
->> --- a/MAINTAINERS
->> +++ b/MAINTAINERS
->> @@ -8866,6 +8866,11 @@ F:	Documentation/i2c/muxes/i2c-mux-gpio.rst
->>  F:	drivers/i2c/muxes/i2c-mux-gpio.c
->>  F:	include/linux/platform_data/i2c-mux-gpio.h
->>
->> +GENERIC GPIO RESET DRIVER
->> +M:	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> +S:	Maintained
->> +F:	drivers/reset/reset-gpio.c
->> +
->>  GENERIC HDLC (WAN) DRIVERS
->>  M:	Krzysztof Halasa <khc@pm.waw.pl>
->>  S:	Maintained
->> diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig index
->> ccd59ddd7610..bb1b5a326eb7 100644
->> --- a/drivers/reset/Kconfig
->> +++ b/drivers/reset/Kconfig
->> @@ -66,6 +66,15 @@ config RESET_BRCMSTB_RESCAL
->>  	  This enables the RESCAL reset controller for SATA, PCIe0, or PCIe1
->> on
->>  	  BCM7216.
->>
->> +config RESET_GPIO
->> +	tristate "GPIO reset controller"
->> +	help
->> +	  This enables a generic reset controller for resets attached via
->> +	  GPIOs.  Typically for OF platforms this driver expects "reset-
->> gpios"
->> +	  property.
->> +
->> +	  If compiled as module, it will be called reset-gpio.
->> +
->>  config RESET_HSDK
->>  	bool "Synopsys HSDK Reset Driver"
->>  	depends on HAS_IOMEM
->> diff --git a/drivers/reset/Makefile b/drivers/reset/Makefile index
->> 8270da8a4baa..fd8b49fa46fc 100644
->> --- a/drivers/reset/Makefile
->> +++ b/drivers/reset/Makefile
->> @@ -11,6 +11,7 @@ obj-$(CONFIG_RESET_BCM6345) += reset-bcm6345.o
->>  obj-$(CONFIG_RESET_BERLIN) += reset-berlin.o
->>  obj-$(CONFIG_RESET_BRCMSTB) += reset-brcmstb.o
->>  obj-$(CONFIG_RESET_BRCMSTB_RESCAL) += reset-brcmstb-rescal.o
->> +obj-$(CONFIG_RESET_GPIO) += reset-gpio.o
->>  obj-$(CONFIG_RESET_HSDK) += reset-hsdk.o
->>  obj-$(CONFIG_RESET_IMX7) += reset-imx7.o
->>  obj-$(CONFIG_RESET_INTEL_GW) += reset-intel-gw.o diff --git
->> a/drivers/reset/reset-gpio.c b/drivers/reset/reset-gpio.c new file mode
->> 100644 index 000000000000..cf0a867cbc5f
->> --- /dev/null
->> +++ b/drivers/reset/reset-gpio.c
->> @@ -0,0 +1,121 @@
->> +// SPDX-License-Identifier: GPL-2.0
->> +
->> +#include <linux/gpio/consumer.h>
->> +#include <linux/mod_devicetable.h>
->> +#include <linux/module.h>
->> +#include <linux/of.h>
->> +#include <linux/platform_device.h>
->> +#include <linux/reset-controller.h>
->> +
->> +struct reset_gpio_priv {
->> +	struct reset_controller_dev rc;
->> +	struct gpio_desc *reset;
->> +};
->> +
->> +static inline struct reset_gpio_priv
->> +*rc_to_reset_gpio(struct reset_controller_dev *rc) {
->> +	return container_of(rc, struct reset_gpio_priv, rc); }
->> +
->> +static int reset_gpio_assert(struct reset_controller_dev *rc, unsigned
->> +long id) {
->> +	struct reset_gpio_priv *priv = rc_to_reset_gpio(rc);
->> +
->> +	gpiod_set_value_cansleep(priv->reset, 1);
->> +
->> +	return 0;
->> +}
->> +
->> +static int reset_gpio_deassert(struct reset_controller_dev *rc,
->> +			       unsigned long id)
->> +{
->> +	struct reset_gpio_priv *priv = rc_to_reset_gpio(rc);
->> +
->> +	gpiod_set_value_cansleep(priv->reset, 0);
->> +
->> +	return 0;
->> +}
->> +
->> +static int reset_gpio_status(struct reset_controller_dev *rc, unsigned
->> +long id) {
->> +	struct reset_gpio_priv *priv = rc_to_reset_gpio(rc);
->> +
->> +	return gpiod_get_value_cansleep(priv->reset);
->> +}
->> +
->> +static const struct reset_control_ops reset_gpio_ops = {
->> +	.assert = reset_gpio_assert,
->> +	.deassert = reset_gpio_deassert,
->> +	.status = reset_gpio_status,
->> +};
->> +
->> +static void reset_gpio_of_args_put(void *data) {
->> +	of_node_put(data);
->> +}
->> +
->> +static int reset_gpio_probe(struct platform_device *pdev) {
->> +	struct device *dev = &pdev->dev;
->> +	struct device_node **platdata = dev_get_platdata(dev);
->> +	struct of_phandle_args gpio_args;
->> +	struct reset_gpio_priv *priv;
->> +	int ret;
->> +
->> +	if (!platdata || !*platdata)
+> ...
 > 
-> Maybe, if (!(platdata && *platdata)) which reduces 1 inversion operation.
+>> Now, if we are back to realistic cases - use just the longest reset time.
+> 
+> Isn't the main concern here that when one device probes we don't yet
+> know the times for the other devices?
 
-I would not call it easier to understand... To me !A and !*A are quite
-obvious and easy to read instantly because !A is obvious: check if it is
-not NULL. Therefore original check is obvious: is NULL or points to
-NULL? Then exit.
+You can never know when second device will appear. It might come from
+modules, DTB overlay etc. If we want to satisfy all users, then we need
+to wait till all users appear, which I think is not even possible,
+considering runtime loaded overlays.
 
-Now your check is a bit more complicated. It is not even frequent code
-pattern which my brain used to see. You want to check if both are not
-NULL and then negate it, wait, no, opposite, check if they are something
-and then negate? To me it is really opposite of readable code.
+> 
+>>> If we leave things up to the drivers, then whoever probes first will get
+>>> to decide the reset sequence.
+> 
+>> In current design yes, but it's not a problem to change it. Where is the
+>> limitation? Just read other values and update the reset time.
+> 
+> We might have already done a reset by that time and earlier devices
+> might prevent later devices from resetting again.  It shouldn't be such
+> an issue for the post delay, but might be one for the pre delay.
+
+If the reset deassert (or assert, depending what's the default state) is
+triggered in the probe, then it will happen with the probe of the first
+device. If the delays of that reset are not suitable for the second -
+not yet probed - then what do you propose? I have the answer: do not use
+the simple, generic solution. The simple and generic solutions work for
+simple and generic cases.
 
 Best regards,
 Krzysztof
