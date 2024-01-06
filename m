@@ -1,102 +1,105 @@
-Return-Path: <devicetree+bounces-29951-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29952-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 971A0825F6E
-	for <lists+devicetree@lfdr.de>; Sat,  6 Jan 2024 13:16:01 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E69FF825F7B
+	for <lists+devicetree@lfdr.de>; Sat,  6 Jan 2024 13:32:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4918D1F210D2
-	for <lists+devicetree@lfdr.de>; Sat,  6 Jan 2024 12:15:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7EA2F1F23021
+	for <lists+devicetree@lfdr.de>; Sat,  6 Jan 2024 12:32:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21C9C6FC5;
-	Sat,  6 Jan 2024 12:15:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lrEdypnU"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 077367E5;
+	Sat,  6 Jan 2024 12:32:50 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F363B6FAE;
-	Sat,  6 Jan 2024 12:15:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E3244C433C7;
-	Sat,  6 Jan 2024 12:15:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1704543350;
-	bh=cABL46fpGQIFj7II8jVK92sjpTNi0UyS6ulbvmxPVrI=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=lrEdypnUC+MOSjqedtjkkPfTB6x/r0bE0Hc2Ss3kMU9J37gDD6dgVHUBpY6TnUSbn
-	 KWxm5qt+NWuWzw+lvaf3ukZcegld180sJWUuTfrECUpynNFeZKhxnkiusybA/FHvQI
-	 RiFsYM9VvMFkPJXsCj/hrIsfeP8tP66DOrS4+IxyvuXLpdZ56WEz0EMmU1wDYpfCFv
-	 XOUv34eDvy2uzbLwGR3Mx5XMsGofQ39eZBW7wIDK8EvyWXoJRDeZp1LHazGcTvG8gk
-	 XjLF+3Hquz7LYwrcRySzZ/owtw+dgk517kI5KHKrbGMExcjZ80GYyECH8MXATpSc2P
-	 6N0Plih1RItvQ==
-Received: (nullmailer pid 914644 invoked by uid 1000);
-	Sat, 06 Jan 2024 12:15:48 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67CC16FC3
+	for <devicetree@vger.kernel.org>; Sat,  6 Jan 2024 12:32:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rM5qu-0000Ju-6T; Sat, 06 Jan 2024 13:32:36 +0100
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rM5qt-000nso-A6; Sat, 06 Jan 2024 13:32:35 +0100
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rM5qt-0040Bi-0k;
+	Sat, 06 Jan 2024 13:32:35 +0100
+Date: Sat, 6 Jan 2024 13:32:35 +0100
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To: Duje =?utf-8?Q?Mihanovi=C4=87?= <duje.mihanovic@skole.hr>
+Cc: Thierry Reding <thierry.reding@gmail.com>, 
+	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: pxa-pwm: Convert to YAML
+Message-ID: <vp2hqzkfpd45xr6rivbh3l7wrybprdcd3tk63t3w27vktmpkqu@emhbfg4cb2zl>
+References: <20240105-pxa-pwm-yaml-v1-1-4ded9d00c38f@skole.hr>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Rob Herring <robh@kernel.org>
-To: Bhavin Sharma <bhavin.sharma@siliconsignals.io>
-Cc: devicetree@vger.kernel.org, linux-pm@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org, sre@kernel.org
-In-Reply-To: <20240106101435.2927116-2-bhavin.sharma@siliconsignals.io>
-References: <20240106101435.2927116-1-bhavin.sharma@siliconsignals.io>
- <20240106101435.2927116-2-bhavin.sharma@siliconsignals.io>
-Message-Id: <170454334882.914615.2127705669393189024.robh@kernel.org>
-Subject: Re: [PATCH 2/2] dt-bindings: power: supply: stc3117: Convert to DT
- schema format
-Date: Sat, 06 Jan 2024 05:15:48 -0700
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="sjwskbdtxv4t6hpe"
+Content-Disposition: inline
+In-Reply-To: <20240105-pxa-pwm-yaml-v1-1-4ded9d00c38f@skole.hr>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
 
-On Sat, 06 Jan 2024 15:44:34 +0530, Bhavin Sharma wrote:
-> Convert the binding to DT schema format.
-> 
-> Signed-off-by: Bhavin Sharma <bhavin.sharma@siliconsignals.io>
-> ---
->  .../bindings/power/supply/stc3117-fg.yaml     | 42 +++++++++++++++++++
->  1 file changed, 42 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/power/supply/stc3117-fg.yaml
-> 
+--sjwskbdtxv4t6hpe
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Hello,
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/power/supply/stc3117-fg.yaml:4:6: [error] string value is redundantly quoted with any quotes (quoted-strings)
-./Documentation/devicetree/bindings/power/supply/stc3117-fg.yaml:5:10: [error] string value is redundantly quoted with any quotes (quoted-strings)
-./Documentation/devicetree/bindings/power/supply/stc3117-fg.yaml:39:1: [error] syntax error: found character '\t' that cannot start any token (syntax)
+On Fri, Jan 05, 2024 at 11:50:32PM +0100, Duje Mihanovi=C4=87 wrote:
+> Convert the PXA PWM binding file from TXT to YAML.
+>=20
+> Signed-off-by: Duje Mihanovi=C4=87 <duje.mihanovic@skole.hr>
 
-dtschema/dtc warnings/errors:
-make[2]: *** Deleting file 'Documentation/devicetree/bindings/power/supply/stc3117-fg.example.dts'
-Documentation/devicetree/bindings/power/supply/stc3117-fg.yaml:39:1: found a tab character where an indentation space is expected
-make[2]: *** [Documentation/devicetree/bindings/Makefile:26: Documentation/devicetree/bindings/power/supply/stc3117-fg.example.dts] Error 1
-make[2]: *** Waiting for unfinished jobs....
-./Documentation/devicetree/bindings/power/supply/stc3117-fg.yaml:39:1: found a tab character where an indentation space is expected
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/power/supply/stc3117-fg.yaml: ignoring, error parsing file
-make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1424: dt_binding_check] Error 2
-make: *** [Makefile:234: __sub-make] Error 2
+LGTM
 
-doc reference errors (make refcheckdocs):
+Reviewed-by: Uwe Kleine-K=C3=B6nig <u.kleine-koenig@pengutronix.de>
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240106101435.2927116-2-bhavin.sharma@siliconsignals.io
+I'd wait for an ack by the dt people before picking this up.
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
+Best regards
+Uwe
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=C3=B6nig         =
+   |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
 
-pip3 install dtschema --upgrade
+--sjwskbdtxv4t6hpe
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+-----BEGIN PGP SIGNATURE-----
 
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmWZSGIACgkQj4D7WH0S
+/k6VFQgAo+Yqwofg+/xzFQSjMQu1aUvEwWD35jOQFsGUxk8dT+ZHWh6svkbc19cT
+o973u0Ce/BJcDi5w+nxiYUG4po9XZrcppScsW4KrlF6QmZQYuRKSXFA71iTSxAH9
+FJ/aesp2kImVlGCJdpZUsI2lMSgoqwuCmE9W9Hk12ubi1D2iqjUo9CSzlF++TN/r
+tAUkoAlSxGEHp2oAUISAPzV4A7LTWBKADegMesiJhyxIVrMbBycpVPgEpWbGRAMV
+6foVDoeWckSaxqaSO9Us+wEu/Zzks7Pr+0Ct0jD/hCUp2vMgQr7/pfYKPLhHpBgs
+HUpFBLjjrfhRS7qntujrk6kDHWb9vw==
+=qiZx
+-----END PGP SIGNATURE-----
+
+--sjwskbdtxv4t6hpe--
 
