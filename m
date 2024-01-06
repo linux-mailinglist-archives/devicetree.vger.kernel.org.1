@@ -1,201 +1,102 @@
-Return-Path: <devicetree+bounces-29965-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29966-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE303826032
-	for <lists+devicetree@lfdr.de>; Sat,  6 Jan 2024 16:33:38 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 729A282603B
+	for <lists+devicetree@lfdr.de>; Sat,  6 Jan 2024 16:45:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DE05D1C215AA
-	for <lists+devicetree@lfdr.de>; Sat,  6 Jan 2024 15:33:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D105D283E40
+	for <lists+devicetree@lfdr.de>; Sat,  6 Jan 2024 15:45:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBA9779E2;
-	Sat,  6 Jan 2024 15:33:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF18479FD;
+	Sat,  6 Jan 2024 15:45:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="swOYAxVZ"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="OSXQfSwW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f182.google.com (mail-oi1-f182.google.com [209.85.167.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55D1A847A
-	for <devicetree@vger.kernel.org>; Sat,  6 Jan 2024 15:33:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-oi1-f182.google.com with SMTP id 5614622812f47-3bbc7746812so551684b6e.2
-        for <devicetree@vger.kernel.org>; Sat, 06 Jan 2024 07:33:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704555210; x=1705160010; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=q3T5wprtApMiWljw88MpGG732frIyOF5occnfpC34xI=;
-        b=swOYAxVZGoc+1KxQMWz6HJDQrJJD3+s+aElYfHkT0oTJNlYXp6L/bhFBk0hWQXMBaL
-         rk+T+EaZ657bEvbk7blgnm/kFYVzMFFDDhu8XlxkYOUf191vtbKQHxHOkdroWY7y/JHi
-         i/tqqai4uexrSKJKkudLdCScINA9znt1e2zhYGz/azo06t1JLU0czpFEPVjCbx0fDxr+
-         VTVBYwswVed5YzjlJSSg4VHsQ9HdxxhSkztRAd/tqoSSwHj9AV9mr/zyI7zgIYd1aIIK
-         bwrIjYDl6VQhW5h+14bYDlT3eP3/UmWNDJyC6AC+QOVtFPUZ+/0by0NCcaF1H8EDJ+aw
-         bCig==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704555210; x=1705160010;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=q3T5wprtApMiWljw88MpGG732frIyOF5occnfpC34xI=;
-        b=qxO0ESi8wRrhxrcUWTlsSkFYcqyNCGNh5snVZo5+DWMKIa9ie5jQ2ZcsJsy09pMDlS
-         RiOA38THQMN6ZJtA74eSXIB/Dfj62+OHrd7uVv2s4swFPeP0mjky+VxT4MRJK0SNKaLO
-         Ko9JKxNsQ0KKayyjeUkxc+mbr7RCH9QxwBp3TSB2octkLywiQS3cRBkNa1PVRlqvgOvJ
-         wqTM0QhABefDZx6VSJpvzYalfrcpwR/h2iBOKZff3YQDK6He0jXUw/Xgqwk0p/7DIsVS
-         Lp9e196E6D5uVv9kotXsF8Zir7157PGM2x9ze8Cu4Ntni6ptzwf7WDkscpDicJMWGd/Q
-         s3Yw==
-X-Gm-Message-State: AOJu0Yxhdyi3u++KdT1mU1U6TR8plCYe8IsQptU4+o5j7raw83l4u2YH
-	9I9tiP+YRFY0WS2qH/aiX4Vlns9RRadj
-X-Google-Smtp-Source: AGHT+IE48HfYCoztai176Dl774YuvL1b4vOUtB7GUGBwrM5/DUhrnjx+9q3v/swZZE7n5JBxBFc8wg==
-X-Received: by 2002:a05:6808:1286:b0:3bb:e0dc:bef8 with SMTP id a6-20020a056808128600b003bbe0dcbef8mr1483126oiw.87.1704555210246;
-        Sat, 06 Jan 2024 07:33:30 -0800 (PST)
-Received: from thinkpad ([103.197.115.97])
-        by smtp.gmail.com with ESMTPSA id ey1-20020a056a0038c100b006d9a6039745sm3210137pfb.40.2024.01.06.07.33.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 06 Jan 2024 07:33:29 -0800 (PST)
-Date: Sat, 6 Jan 2024 21:03:23 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: krzysztof.kozlowski@linaro.org, bhelgaas@google.com,
-	conor+dt@kernel.org, devicetree@vger.kernel.org, festevam@gmail.com,
-	helgaas@kernel.org, hongxing.zhu@nxp.com, imx@lists.linux.dev,
-	kernel@pengutronix.de, krzysztof.kozlowski+dt@linaro.org,
-	kw@linux.com, l.stach@pengutronix.de,
-	linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
-	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-	lpieralisi@kernel.org, robh@kernel.org, s.hauer@pengutronix.de,
-	shawnguo@kernel.org
-Subject: Re: [PATCH v7 02/16] PCI: imx6: Simplify phy handling by using by
- using IMX6_PCIE_FLAG_HAS_PHY
-Message-ID: <20240106153323.GE2512@thinkpad>
-References: <20231227182727.1747435-1-Frank.Li@nxp.com>
- <20231227182727.1747435-3-Frank.Li@nxp.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACBFF79D2;
+	Sat,  6 Jan 2024 15:45:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=tNlB7/uA5K4ebymu4kVPBZ4jtrA/OS7aEQ6lXpdIR98=; b=OSXQfSwWh2SrU+sRxW2RNmUfGR
+	aFSo3urtubLOcYgj4i+G6VGqiNBD5HQ0aBEMe35JjazFXiN5FUwRrnQ2Wj0MngjhmFtAHZAQt6dxY
+	BogU3KL6nkFDnfXYEf4EC+QPmbi4fRpdld+4u5o7Vaw1KHPCl/kLfluZiRpPoEbjHon0=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1rM8rE-004WpA-CJ; Sat, 06 Jan 2024 16:45:08 +0100
+Date: Sat, 6 Jan 2024 16:45:08 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Sergey Ryazanov <ryazanov.s.a@gmail.com>
+Cc: Jie Luo <quic_luoj@quicinc.com>, agross@kernel.org,
+	andersson@kernel.org, konrad.dybcio@linaro.org, davem@davemloft.net,
+	edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, hkallweit1@gmail.com, linux@armlinux.org.uk,
+	robert.marko@sartura.hr, linux-arm-msm@vger.kernel.org,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, quic_srichara@quicinc.com
+Subject: Re: [PATCH v4 0/5] support ipq5332 platform
+Message-ID: <895eadd7-1631-4b6b-8db4-d371f2e52611@lunn.ch>
+References: <20231225084424.30986-1-quic_luoj@quicinc.com>
+ <a6a50fb6-871f-424c-a146-12b2628b8b64@gmail.com>
+ <cfb04c82-3cc3-49f6-9a8a-1f6d1a22df40@quicinc.com>
+ <dd05a599-247a-4516-8ad3-7550ceea99f7@gmail.com>
+ <ac1977f5-cd6a-4f16-b0a0-f4322c34c5f5@quicinc.com>
+ <bdeca791-f2e5-4256-b386-a75c03f93686@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20231227182727.1747435-3-Frank.Li@nxp.com>
+In-Reply-To: <bdeca791-f2e5-4256-b386-a75c03f93686@gmail.com>
 
-On Wed, Dec 27, 2023 at 01:27:13PM -0500, Frank Li wrote:
-> Refactors the phy handling logic in the imx6 PCI driver by adding
-> IMX6_PCIE_FLAG_HAS_PHY bitmask define for drvdata::flags.
+> I just realized that the UNIPHY block is a MII (probably SGMII) controller.
+> Isn't it? And I expect that it responsible more then just for clock
+> enabling. It should also activate and perform a basic configuration of MII
+> for actual data transmission. If so, then it should placed somewhere under
+> drivers/net/phy or drivers/net/pcs.
+
+Before we decide that, we need a description of what the UNIPHY
+actually does, what registers it has, etc. Sometimes blocks like this
+get split into a generic PHY, aka drivers/phy/ and a PCS driver. This
+would be true if the UNIPHY is also used for USB SERDES, SATA SERDES
+etc. The SERDES parts go into a generic PHY driver, and the SGMII on
+to of the SERDES is placed is a PCS driver.
+
+The problem i have so far is that there is no usable description of
+any of this hardware, and the developers trying to produce drivers for
+this hardware don't actually seem to understand the Linux architecture
+for things like this.
+
+> As far as I understand, we basically agree that clocks configuration can be
+> implemented based on the clock API using a more specialized driver(s) than
+> MDIO. The only obstacle is the PHY chip initialization issue explained
+> below.
+> Thank you for this compact yet detailed summary. Now it much more clear,
+> what this phy chip requires to be initialized.
 > 
-> The drvdata::flags and a bitmask ensures a cleaner and more scalable
-> switch-case structure for handling phy.
-> 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
-> 
-> Notes:
->     Change from v4 to v5:
->     - none, Keep IMX6_PCIE_FLAG_HAS_PHY to indicate dts mismatch when platform
->     require phy suppport.
->     
->     Change from v1 to v3:
->     - none
-> 
->  drivers/pci/controller/dwc/pci-imx6.c | 23 ++++++++++++++++-------
->  1 file changed, 16 insertions(+), 7 deletions(-)
-> 
-> diff --git a/drivers/pci/controller/dwc/pci-imx6.c b/drivers/pci/controller/dwc/pci-imx6.c
-> index 50d9faaa17f71..4d620249f3d52 100644
-> --- a/drivers/pci/controller/dwc/pci-imx6.c
-> +++ b/drivers/pci/controller/dwc/pci-imx6.c
-> @@ -60,6 +60,9 @@ enum imx6_pcie_variants {
->  #define IMX6_PCIE_FLAG_IMX6_PHY			BIT(0)
->  #define IMX6_PCIE_FLAG_IMX6_SPEED_CHANGE	BIT(1)
->  #define IMX6_PCIE_FLAG_SUPPORTS_SUSPEND		BIT(2)
-> +#define IMX6_PCIE_FLAG_HAS_PHY			BIT(3)
+> Looks like you need to implement at least two drivers:
+> 1. chip (package) level driver that is responsible for basic "package"
+> initialization;
+> 2. phy driver to handle actual phy capabilities.
 
-Every PCIe setup requires PHY for its operation. Perhaps you are referring to
-external PHY? If so, please rename this to IMX6_PCIE_FLAG_HAS_EXT_PHY.
+Nope. As i keep saying, please look at the work Christian is
+doing. phylib already has the concept of a PHY package, e.g. look at
+the MSCC driver, and how it uses devm_phy_package_join(). What is
+missing is a DT binding which allows package properties to be
+expressed in DT. And this is what Christian is adding.
 
-> +
-> +#define imx6_check_flag(pci, val)     (pci->drvdata->flags & val)
->  
->  #define IMX6_PCIE_MAX_CLKS       6
->  
-> @@ -1277,6 +1280,13 @@ static int imx6_pcie_probe(struct platform_device *pdev)
->  	if (ret)
->  		return ret;
->  
-> +	if (imx6_check_flag(imx6_pcie, IMX6_PCIE_FLAG_HAS_PHY)) {
-
-IMO, we would not need these kind of checks in the driver if the DT binding is
-properly validated using schema. But folks always want to validate "broken DT"
-in the drivers :(
-
-But I'm fine with this check for now since not everyone agree with above.
-
-- Mani
-
-> +		imx6_pcie->phy = devm_phy_get(dev, "pcie-phy");
-> +		if (IS_ERR(imx6_pcie->phy))
-> +			return dev_err_probe(dev, PTR_ERR(imx6_pcie->phy),
-> +					     "failed to get pcie phy\n");
-> +	}
-> +
->  	switch (imx6_pcie->drvdata->variant) {
->  	case IMX7D:
->  		if (dbi_base->start == IMX8MQ_PCIE2_BASE_ADDR)
-> @@ -1306,11 +1316,6 @@ static int imx6_pcie_probe(struct platform_device *pdev)
->  			return dev_err_probe(dev, PTR_ERR(imx6_pcie->apps_reset),
->  					     "failed to get pcie apps reset control\n");
->  
-> -		imx6_pcie->phy = devm_phy_get(dev, "pcie-phy");
-> -		if (IS_ERR(imx6_pcie->phy))
-> -			return dev_err_probe(dev, PTR_ERR(imx6_pcie->phy),
-> -					     "failed to get pcie phy\n");
-> -
->  		break;
->  	default:
->  		break;
-> @@ -1444,13 +1449,15 @@ static const struct imx6_pcie_drvdata drvdata[] = {
->  	},
->  	[IMX8MM] = {
->  		.variant = IMX8MM,
-> -		.flags = IMX6_PCIE_FLAG_SUPPORTS_SUSPEND,
-> +		.flags = IMX6_PCIE_FLAG_SUPPORTS_SUSPEND |
-> +			 IMX6_PCIE_FLAG_HAS_PHY,
->  		.gpr = "fsl,imx8mm-iomuxc-gpr",
->  		.clk_names = {"pcie_bus", "pcie", "pcie_aux"},
->  	},
->  	[IMX8MP] = {
->  		.variant = IMX8MP,
-> -		.flags = IMX6_PCIE_FLAG_SUPPORTS_SUSPEND,
-> +		.flags = IMX6_PCIE_FLAG_SUPPORTS_SUSPEND |
-> +			 IMX6_PCIE_FLAG_HAS_PHY,
->  		.gpr = "fsl,imx8mp-iomuxc-gpr",
->  		.clk_names = {"pcie_bus", "pcie", "pcie_aux"},
->  	},
-> @@ -1462,12 +1469,14 @@ static const struct imx6_pcie_drvdata drvdata[] = {
->  	},
->  	[IMX8MM_EP] = {
->  		.variant = IMX8MM_EP,
-> +		.flags = IMX6_PCIE_FLAG_HAS_PHY,
->  		.mode = DW_PCIE_EP_TYPE,
->  		.gpr = "fsl,imx8mm-iomuxc-gpr",
->  		.clk_names = {"pcie_bus", "pcie", "pcie_aux"},
->  	},
->  	[IMX8MP_EP] = {
->  		.variant = IMX8MP_EP,
-> +		.flags = IMX6_PCIE_FLAG_HAS_PHY,
->  		.mode = DW_PCIE_EP_TYPE,
->  		.gpr = "fsl,imx8mp-iomuxc-gpr",
->  		.clk_names = {"pcie_bus", "pcie", "pcie_aux"},
-> -- 
-> 2.34.1
-> 
-
--- 
-மணிவண்ணன் சதாசிவம்
+	  Andrew
 
