@@ -1,377 +1,110 @@
-Return-Path: <devicetree+bounces-29997-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29998-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49BA78261A1
-	for <lists+devicetree@lfdr.de>; Sat,  6 Jan 2024 22:09:50 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6241A8261B5
+	for <lists+devicetree@lfdr.de>; Sat,  6 Jan 2024 22:29:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F112A1F2203A
-	for <lists+devicetree@lfdr.de>; Sat,  6 Jan 2024 21:09:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DA18A28307D
+	for <lists+devicetree@lfdr.de>; Sat,  6 Jan 2024 21:29:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFFC1101C9;
-	Sat,  6 Jan 2024 21:09:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C874F51D;
+	Sat,  6 Jan 2024 21:29:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="D1ZYNage"
+	dkim=pass (1024-bit key) header.d=yandex.com header.i=@yandex.com header.b="U5FCXBzs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f170.google.com (mail-il1-f170.google.com [209.85.166.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from forward502c.mail.yandex.net (forward502c.mail.yandex.net [178.154.239.210])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4726FF9E2;
-	Sat,  6 Jan 2024 21:09:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-il1-f170.google.com with SMTP id e9e14a558f8ab-3606f3f2f37so5008215ab.0;
-        Sat, 06 Jan 2024 13:09:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1704575364; x=1705180164; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=CI6ttPa02hRekngGjx7elQP3thGExUT5SmI2imJlzbE=;
-        b=D1ZYNageggWBitaBosIDDg1RSexYCfeH4xLGUBGUiOo5BtSXPxz9Ttnyclaq4ngtU6
-         ORj+gyeITD5VjaWmKAObIK5SEf6XNM3Oizb1WV0bSJz1EkMTxhdLdOyrBliaO+puxsmf
-         o+V4BuQD4WW4KImoCCCHwv8tHqZQwc76ZRLadCoVxZHoOTd+62x8UM4kLBJUH7dQjxOd
-         oNeMZIcBCO3q9040tZaR3wrRM/P5Kn8Z8rHYh+EgiI+Y4SjcdIP9vT1slKUdnip8nqx5
-         pV1dMjgqSTZ6OqMawFJgslZa5k22nN/fsa4yUgrayTCGKYcWlz5TqZjQ+FCRsD02FQJx
-         V3sw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704575364; x=1705180164;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=CI6ttPa02hRekngGjx7elQP3thGExUT5SmI2imJlzbE=;
-        b=tEr0UwIRvO/iNtrmcJ+ugglKNNDSCOcyBD4FfXj9Pp0WfC9v9FXnmB7Hc+KNwnQAJy
-         ms2GrNnTyAuDjHcW0PIlMcKyFSbo4qw0Etu5o6wyBwGMEfcOZ/0px1V2bbTsuAnDT3Ld
-         YlR7s5+an2O9scW0too6ihXAUzC+vm0Jzz+1e6/7Mlo9d2BoaxQCcI8MD/cnSnXUq2JA
-         8eD0sH4v3oBwVerYg3+KRfz4eDRfxV6WF2HGpJhpEjP4qxftX5h4xVt5AHTAb3zynno0
-         7SG/ncjaFtOjNGOuim1N4LYt2mcinUtVrHWw1T0vRdFHHhqjU46VK5OkJTcpPFvS1dhw
-         Dw+Q==
-X-Gm-Message-State: AOJu0YxkSDifH8qcyx26XQw+aCiIyJc6iRkybSjmTsh+gyIQsGPrimis
-	wrmVU5Oz3fNkPhIplKQCHVKjWF4+ilBGhA==
-X-Google-Smtp-Source: AGHT+IFH0av1Ll5NSFwDKAySl9QZcvvqATMc+jyWqYpdnp4NFxVbwqCydC77cIMmDzjKOyJbLDsAwg==
-X-Received: by 2002:a05:6e02:1c87:b0:35f:ced5:5555 with SMTP id w7-20020a056e021c8700b0035fced55555mr1718635ill.25.1704575364098;
-        Sat, 06 Jan 2024 13:09:24 -0800 (PST)
-Received: from aford-System-Version.lan ([2601:447:d002:5be:af2f:17f0:33a3:d6fe])
-        by smtp.gmail.com with ESMTPSA id d101-20020a0285ee000000b0046d2e9a04a9sm1312615jai.135.2024.01.06.13.09.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 06 Jan 2024 13:09:23 -0800 (PST)
-From: Adam Ford <aford173@gmail.com>
-To: dri-devel@lists.freedesktop.org
-Cc: Lucas Stach <l.stach@pengutronix.de>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Marek Vasut <marex@denx.de>,
-	Richard Leitner <richard.leitner@skidata.com>,
-	Frieder Schrempf <frieder.schrempf@kontron.de>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Fabio Estevam <festevam@gmail.com>,
-	Adam Ford <aford173@gmail.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	David Airlie <airlied@gmail.com>,
-	Daniel Vetter <daniel@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	Liu Ying <victor.liu@nxp.com>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Robert Foss <rfoss@kernel.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH V6 2/2] drm/bridge: imx: add driver for HDMI TX Parallel Video Interface
-Date: Sat,  6 Jan 2024 15:09:14 -0600
-Message-ID: <20240106210915.5135-2-aford173@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240106210915.5135-1-aford173@gmail.com>
-References: <20240106210915.5135-1-aford173@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51900F9C7;
+	Sat,  6 Jan 2024 21:29:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yandex.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yandex.com
+Received: from mail-nwsmtp-smtp-production-main-59.iva.yp-c.yandex.net (mail-nwsmtp-smtp-production-main-59.iva.yp-c.yandex.net [IPv6:2a02:6b8:c0c:1580:0:640:de7b:0])
+	by forward502c.mail.yandex.net (Yandex) with ESMTP id F07F660C8A;
+	Sun,  7 Jan 2024 00:25:13 +0300 (MSK)
+Received: by mail-nwsmtp-smtp-production-main-59.iva.yp-c.yandex.net (smtp/Yandex) with ESMTPSA id BPmPnMOr9iE0-yopHyjDh;
+	Sun, 07 Jan 2024 00:25:13 +0300
+X-Yandex-Fwd: 1
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yandex.com; s=mail;
+	t=1704576313; bh=aOO8K1kRwYNcAd+V6oNlanooC+SLRLZcpv5ZyxlV6v4=;
+	h=From:In-Reply-To:Cc:Date:References:To:Subject:Message-ID;
+	b=U5FCXBzs+6/1MnWeYpNMk1BZUW7fx9e5L7a+PS9D9vlrOqHIk6oXEIC2jpEqdmXn7
+	 KBdh4vkHaB+y38iNU6ONbTqf6Y0bisN+9Ik9t2wuoWH6eeBKMljE1alvDE+Nwqs0xq
+	 0BMcYg8yRF6wU3dqaIRX6/KLqy9rfgmfUHqyWzQU=
+Authentication-Results: mail-nwsmtp-smtp-production-main-59.iva.yp-c.yandex.net; dkim=pass header.i=@yandex.com
+Message-ID: <94ad0f59-4095-40ee-963d-4ac379fc8852@yandex.com>
+Date: Sat, 6 Jan 2024 22:25:10 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: pwm: rockchip: Allow "interrupts" prooperty
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
+ Thierry Reding <thierry.reding@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
+Cc: linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, kernel@pengutronix.de
+References: <20240106142654.1262758-2-u.kleine-koenig@pengutronix.de>
+ <7dea73a6-d733-4cd2-b2d5-02f09e2a6dd9@linaro.org>
+Content-Language: en-US
+From: Johan Jonker <jbx6244@yandex.com>
+In-Reply-To: <7dea73a6-d733-4cd2-b2d5-02f09e2a6dd9@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-From: Lucas Stach <l.stach@pengutronix.de>
+Hi,
 
-This IP block is found in the HDMI subsystem of the i.MX8MP SoC. It has a
-full timing generator and can switch between different video sources. On
-the i.MX8MP however the only supported source is the LCDIF. The block
-just needs to be powered up and told about the polarity of the video
-sync signals to act in bypass mode.
+On 1/6/24 18:10, Krzysztof Kozlowski wrote:
+> On 06/01/2024 15:26, Uwe Kleine-König wrote:
+>> This fixes the dtbs_check error
+>>
+>> 	arch/arm/boot/dts/rockchip/rv1108-elgin-r1.dtb: pwm@10280030: 'interrupts' does not match any of the regexes: 'pinctrl-[0-9]+'
+>> 	from schema $id: http://devicetree.org/schemas/pwm/pwm-rockchip.yaml#
+>>
+>> in several device trees.
+>>
+>> Signed-off-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
 
-Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
-Reviewed-by: Luca Ceresoli <luca.ceresoli@bootlin.com> (v2)
-Tested-by: Marek Vasut <marex@denx.de> (v1)
-Tested-by: Luca Ceresoli <luca.ceresoli@bootlin.com> (v2)
-Tested-by: Richard Leitner <richard.leitner@skidata.com> (v2)
-Tested-by: Frieder Schrempf <frieder.schrempf@kontron.de> (v2)
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com> (v3)
-Reviewed-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
-Tested-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
-Tested-by: Fabio Estevam <festevam@gmail.com>
-Signed-off-by: Adam Ford <aford173@gmail.com>
----
-V6:  No change.
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-V5:  I (Adam) tried to help move this along, so I took Lucas' patch and
-     attempted to apply fixes based on feedback.  I don't have
-     all the history, so apologies for that.
-     No changes from V4 to V5
+NAK
 
-diff --git a/drivers/gpu/drm/bridge/imx/Kconfig b/drivers/gpu/drm/bridge/imx/Kconfig
-index 5a4f3d58501e..a4d13331e320 100644
---- a/drivers/gpu/drm/bridge/imx/Kconfig
-+++ b/drivers/gpu/drm/bridge/imx/Kconfig
-@@ -3,6 +3,13 @@ if ARCH_MXC || COMPILE_TEST
- config DRM_IMX_LDB_HELPER
- 	tristate
- 
-+config DRM_IMX8MP_HDMI_PVI
-+	tristate "Freescale i.MX8MP HDMI PVI bridge support"
-+	depends on OF
-+	help
-+	  Choose this to enable support for the internal HDMI TX Parallel
-+	  Video Interface found on the Freescale i.MX8MP SoC.
-+
- config DRM_IMX8QM_LDB
- 	tristate "Freescale i.MX8QM LVDS display bridge"
- 	depends on OF
-diff --git a/drivers/gpu/drm/bridge/imx/Makefile b/drivers/gpu/drm/bridge/imx/Makefile
-index 2b0c2e44aa1b..e2c2106509fa 100644
---- a/drivers/gpu/drm/bridge/imx/Makefile
-+++ b/drivers/gpu/drm/bridge/imx/Makefile
-@@ -1,4 +1,5 @@
- obj-$(CONFIG_DRM_IMX_LDB_HELPER) += imx-ldb-helper.o
-+obj-$(CONFIG_DRM_IMX8MP_HDMI_PVI) += imx8mp-hdmi-pvi.o
- obj-$(CONFIG_DRM_IMX8QM_LDB) += imx8qm-ldb.o
- obj-$(CONFIG_DRM_IMX8QXP_LDB) += imx8qxp-ldb.o
- obj-$(CONFIG_DRM_IMX8QXP_PIXEL_COMBINER) += imx8qxp-pixel-combiner.o
-diff --git a/drivers/gpu/drm/bridge/imx/imx8mp-hdmi-pvi.c b/drivers/gpu/drm/bridge/imx/imx8mp-hdmi-pvi.c
-new file mode 100644
-index 000000000000..9efe051a1e31
---- /dev/null
-+++ b/drivers/gpu/drm/bridge/imx/imx8mp-hdmi-pvi.c
-@@ -0,0 +1,206 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+
-+/*
-+ * Copyright (C) 2022 Pengutronix, Lucas Stach <kernel@pengutronix.de>
-+ */
-+
-+#include <drm/drm_atomic_helper.h>
-+#include <drm/drm_bridge.h>
-+#include <drm/drm_crtc.h>
-+#include <linux/bitfield.h>
-+#include <linux/io.h>
-+#include <linux/module.h>
-+#include <linux/of_device.h>
-+#include <linux/of_graph.h>
-+#include <linux/pm_runtime.h>
-+
-+#define HTX_PVI_CTRL			0x0
-+#define  PVI_CTRL_OP_VSYNC_POL		BIT(18)
-+#define  PVI_CTRL_OP_HSYNC_POL		BIT(17)
-+#define  PVI_CTRL_OP_DE_POL		BIT(16)
-+#define  PVI_CTRL_INP_VSYNC_POL		BIT(14)
-+#define  PVI_CTRL_INP_HSYNC_POL		BIT(13)
-+#define  PVI_CTRL_INP_DE_POL		BIT(12)
-+#define  PVI_CTRL_MODE_MASK		GENMASK(2, 1)
-+#define  PVI_CTRL_MODE_LCDIF		2
-+#define  PVI_CTRL_EN			BIT(0)
-+
-+struct imx8mp_hdmi_pvi {
-+	struct drm_bridge	bridge;
-+	struct device		*dev;
-+	struct drm_bridge	*next_bridge;
-+	void __iomem		*regs;
-+};
-+
-+static inline struct imx8mp_hdmi_pvi *
-+to_imx8mp_hdmi_pvi(struct drm_bridge *bridge)
-+{
-+	return container_of(bridge, struct imx8mp_hdmi_pvi, bridge);
-+}
-+
-+static int imx8mp_hdmi_pvi_bridge_attach(struct drm_bridge *bridge,
-+					 enum drm_bridge_attach_flags flags)
-+{
-+	struct imx8mp_hdmi_pvi *pvi = to_imx8mp_hdmi_pvi(bridge);
-+
-+	return drm_bridge_attach(bridge->encoder, pvi->next_bridge,
-+				 bridge, flags);
-+}
-+
-+static void imx8mp_hdmi_pvi_bridge_enable(struct drm_bridge *bridge,
-+					  struct drm_bridge_state *bridge_state)
-+{
-+	struct drm_atomic_state *state = bridge_state->base.state;
-+	struct imx8mp_hdmi_pvi *pvi = to_imx8mp_hdmi_pvi(bridge);
-+	struct drm_connector_state *conn_state;
-+	const struct drm_display_mode *mode;
-+	struct drm_crtc_state *crtc_state;
-+	struct drm_connector *connector;
-+	u32 bus_flags, val;
-+
-+	connector = drm_atomic_get_new_connector_for_encoder(state, bridge->encoder);
-+	conn_state = drm_atomic_get_new_connector_state(state, connector);
-+	crtc_state = drm_atomic_get_new_crtc_state(state, conn_state->crtc);
-+
-+	if (WARN_ON(pm_runtime_resume_and_get(pvi->dev)))
-+		return;
-+
-+	mode = &crtc_state->adjusted_mode;
-+
-+	val = FIELD_PREP(PVI_CTRL_MODE_MASK, PVI_CTRL_MODE_LCDIF) | PVI_CTRL_EN;
-+
-+	if (mode->flags & DRM_MODE_FLAG_PVSYNC)
-+		val |= PVI_CTRL_OP_VSYNC_POL | PVI_CTRL_INP_VSYNC_POL;
-+
-+	if (mode->flags & DRM_MODE_FLAG_PHSYNC)
-+		val |= PVI_CTRL_OP_HSYNC_POL | PVI_CTRL_INP_HSYNC_POL;
-+
-+	if (pvi->next_bridge->timings)
-+		bus_flags = pvi->next_bridge->timings->input_bus_flags;
-+	else if (bridge_state)
-+		bus_flags = bridge_state->input_bus_cfg.flags;
-+
-+	if (bus_flags & DRM_BUS_FLAG_DE_HIGH)
-+		val |= PVI_CTRL_OP_DE_POL | PVI_CTRL_INP_DE_POL;
-+
-+	writel(val, pvi->regs + HTX_PVI_CTRL);
-+}
-+
-+static void imx8mp_hdmi_pvi_bridge_disable(struct drm_bridge *bridge,
-+					   struct drm_bridge_state *bridge_state)
-+{
-+	struct imx8mp_hdmi_pvi *pvi = to_imx8mp_hdmi_pvi(bridge);
-+
-+	writel(0x0, pvi->regs + HTX_PVI_CTRL);
-+
-+	pm_runtime_put(pvi->dev);
-+}
-+
-+static u32 *
-+imx8mp_hdmi_pvi_bridge_get_input_bus_fmts(struct drm_bridge *bridge,
-+					  struct drm_bridge_state *bridge_state,
-+					  struct drm_crtc_state *crtc_state,
-+					  struct drm_connector_state *conn_state,
-+					  u32 output_fmt,
-+					  unsigned int *num_input_fmts)
-+{
-+	struct imx8mp_hdmi_pvi *pvi = to_imx8mp_hdmi_pvi(bridge);
-+	struct drm_bridge *next_bridge = pvi->next_bridge;
-+	struct drm_bridge_state *next_state;
-+
-+	if (!next_bridge->funcs->atomic_get_input_bus_fmts)
-+		return 0;
-+
-+	next_state = drm_atomic_get_new_bridge_state(crtc_state->state,
-+						     next_bridge);
-+
-+	return next_bridge->funcs->atomic_get_input_bus_fmts(next_bridge,
-+							     next_state,
-+							     crtc_state,
-+							     conn_state,
-+							     output_fmt,
-+							     num_input_fmts);
-+}
-+
-+static const struct drm_bridge_funcs imx_hdmi_pvi_bridge_funcs = {
-+	.attach		= imx8mp_hdmi_pvi_bridge_attach,
-+	.atomic_enable	= imx8mp_hdmi_pvi_bridge_enable,
-+	.atomic_disable	= imx8mp_hdmi_pvi_bridge_disable,
-+	.atomic_get_input_bus_fmts = imx8mp_hdmi_pvi_bridge_get_input_bus_fmts,
-+	.atomic_duplicate_state = drm_atomic_helper_bridge_duplicate_state,
-+	.atomic_destroy_state = drm_atomic_helper_bridge_destroy_state,
-+	.atomic_reset = drm_atomic_helper_bridge_reset,
-+};
-+
-+static int imx8mp_hdmi_pvi_probe(struct platform_device *pdev)
-+{
-+	struct device_node *remote;
-+	struct imx8mp_hdmi_pvi *pvi;
-+
-+	pvi = devm_kzalloc(&pdev->dev, sizeof(*pvi), GFP_KERNEL);
-+	if (!pvi)
-+		return -ENOMEM;
-+
-+	platform_set_drvdata(pdev, pvi);
-+	pvi->dev = &pdev->dev;
-+
-+	pvi->regs = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(pvi->regs))
-+		return PTR_ERR(pvi->regs);
-+
-+	/* Get the next bridge in the pipeline. */
-+	remote = of_graph_get_remote_node(pdev->dev.of_node, 1, -1);
-+	if (!remote)
-+		return -EINVAL;
-+
-+	pvi->next_bridge = of_drm_find_bridge(remote);
-+	of_node_put(remote);
-+
-+	if (!pvi->next_bridge)
-+		return dev_err_probe(&pdev->dev, -EPROBE_DEFER,
-+				     "could not find next bridge\n");
-+
-+	pm_runtime_enable(&pdev->dev);
-+
-+	/* Register the bridge. */
-+	pvi->bridge.funcs = &imx_hdmi_pvi_bridge_funcs;
-+	pvi->bridge.of_node = pdev->dev.of_node;
-+	pvi->bridge.timings = pvi->next_bridge->timings;
-+
-+	drm_bridge_add(&pvi->bridge);
-+
-+	return 0;
-+}
-+
-+static int imx8mp_hdmi_pvi_remove(struct platform_device *pdev)
-+{
-+	struct imx8mp_hdmi_pvi *pvi = platform_get_drvdata(pdev);
-+
-+	drm_bridge_remove(&pvi->bridge);
-+
-+	pm_runtime_disable(&pdev->dev);
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id imx8mp_hdmi_pvi_match[] = {
-+	{
-+		.compatible = "fsl,imx8mp-hdmi-pvi",
-+	}, {
-+		/* sentinel */
-+	}
-+};
-+MODULE_DEVICE_TABLE(of, imx8mp_hdmi_pvi_match);
-+
-+static struct platform_driver imx8mp_hdmi_pvi_driver = {
-+	.probe	= imx8mp_hdmi_pvi_probe,
-+	.remove	= imx8mp_hdmi_pvi_remove,
-+	.driver		= {
-+		.name = "imx-hdmi-pvi",
-+		.of_match_table	= imx8mp_hdmi_pvi_match,
-+	},
-+};
-+module_platform_driver(imx8mp_hdmi_pvi_driver);
-+
-+MODULE_DESCRIPTION("i.MX8MP HDMI TX Parallel Video Interface bridge driver");
-+MODULE_LICENSE("GPL");
--- 
-2.43.0
+There's a reason why this isn't implemented before:
 
+[RFC PATCH v1 1/2] dt-bindings: pwm: rockchip: add interrupts property <https://lore.kernel.org/linux-rockchip/ed3df2c8-ffb5-1723-0ed7-3a2721972852@gmail.com/#r>
+
+https://lore.kernel.org/linux-rockchip/ed3df2c8-ffb5-1723-0ed7-3a2721972852@gmail.com/
+
+[PATCH 1/1] dt-bindings: pwm: rockchip: Add description for rk3588 <https://lore.kernel.org/linux-rockchip/20220901135523.52151-1-sebastian.reichel@collabora.com/#r>
+
+https://lore.kernel.org/linux-rockchip/66b5b616-ae9f-a1aa-e2b5-450f570cfcdd@gmail.com/
+
+[PATCH v1 03/11] dt-bindings: pwm: rockchip: add rockchip,rk3128-pwm <https://lore.kernel.org/linux-rockchip/f5dd0ee4-d97e-d878-ffde-c06e9b233e38@gmail.com/>
+
+https://lore.kernel.org/linux-rockchip/946d8ac2-6ff2-093a-ad3c-aa755e00d1dd@arm.com/
+
+
+On how to correctly model the DT with common interrupts , PWM and one shot as a sort of MFD etc there's no consensus yet.
+
+Leaf it as it is till someone made a working driver demo, so that the coder is free to model a DT solution that fits to him/her.
+
+
+Johan
+
+> Best regards,
+> Krzysztof
+>
+>
+> _______________________________________________
+> Linux-rockchip mailing list
+> Linux-rockchip@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-rockchip
 
