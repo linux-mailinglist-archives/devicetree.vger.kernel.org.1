@@ -1,131 +1,97 @@
-Return-Path: <devicetree+bounces-29957-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29958-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5CCA4825FC4
-	for <lists+devicetree@lfdr.de>; Sat,  6 Jan 2024 15:06:02 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF1D9825FD9
+	for <lists+devicetree@lfdr.de>; Sat,  6 Jan 2024 15:27:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 68ACE1C20CFC
-	for <lists+devicetree@lfdr.de>; Sat,  6 Jan 2024 14:06:01 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E6DF2B2266E
+	for <lists+devicetree@lfdr.de>; Sat,  6 Jan 2024 14:27:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F4937483;
-	Sat,  6 Jan 2024 14:05:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="WnhsEeM4"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECCB6748F;
+	Sat,  6 Jan 2024 14:27:11 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62CC07469;
-	Sat,  6 Jan 2024 14:05:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1704549955; x=1736085955;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=b8S9YQ723Vakq/AypdH+EFs2g1D+6lWqicTwgFrXQVY=;
-  b=WnhsEeM47w4acjUoTE0d+WugJ3tUhpSkBWxmi66OWMQ3eGckmWG26yda
-   n9AU4MOEs2fm3QLE+Y4iw1LVS7fgPhDocTbKK5w0z+UxRSuB9fgenqrz/
-   kRRz/rq/J0A+X//rFleXgYrMzGXKzoqXor3nIKJpPjUNyt/ECWEAEtygf
-   YrCxcm/Q13p21vH37Ft+f9G7JddjO5+RWOIiBDUbPWXGMhY/JuEl4vlpU
-   ppOToTOxeVhNkxdd6zxxmVYSBzp1nwtvw9LzXn3cIWL2xVQlnWyBeVJcq
-   mb1HWSsxucJ6hsN90yQNA6kazJKzNyayxKuGe9XAshKExeCiPDrwDHRWf
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10945"; a="5025338"
-X-IronPort-AV: E=Sophos;i="6.04,337,1695711600"; 
-   d="scan'208";a="5025338"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
-  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Jan 2024 06:05:54 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10945"; a="1112336317"
-X-IronPort-AV: E=Sophos;i="6.04,337,1695711600"; 
-   d="scan'208";a="1112336317"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Jan 2024 06:05:49 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.97)
-	(envelope-from <andriy.shevchenko@intel.com>)
-	id 1rM7J4-0000000BvKX-1CLt;
-	Sat, 06 Jan 2024 16:05:46 +0200
-Date: Sat, 6 Jan 2024 16:05:46 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Mark Hasemeyer <markhas@chromium.org>
-Cc: LKML <linux-kernel@vger.kernel.org>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	Raul Rangel <rrangel@chromium.org>,
-	Tzung-Bi Shih <tzungbi@kernel.org>,
-	Daniel Scally <djrscally@gmail.com>,
-	Frank Rowand <frowand.list@gmail.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-	Len Brown <lenb@kernel.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59C207496
+	for <devicetree@vger.kernel.org>; Sat,  6 Jan 2024 14:27:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rM7df-00074I-2v; Sat, 06 Jan 2024 15:27:03 +0100
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rM7de-000pKj-83; Sat, 06 Jan 2024 15:27:02 +0100
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rM7de-004149-0W;
+	Sat, 06 Jan 2024 15:27:02 +0100
+From: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To: Thierry Reding <thierry.reding@gmail.com>,
 	Rob Herring <robh+dt@kernel.org>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	devicetree@vger.kernel.org, linux-acpi@vger.kernel.org
-Subject: Re: [PATCH v3 21/24] device property: Modify fwnode irq_get() to use
- resource
-Message-ID: <ZZleOi6-ekoTL-Jk@smile.fi.intel.com>
-References: <20231226192149.1830592-1-markhas@chromium.org>
- <20231226122113.v3.21.I38ac58ab04985a404ed6551eb5813fa7841ef410@changeid>
- <ZYxdwrJw7_JudQXB@smile.fi.intel.com>
- <CANg-bXBwWXaJWv9gMtjYvRBnOaP3E8U1nh5-ScWOoyRayzn7Zw@mail.gmail.com>
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>
+Cc: linux-pwm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	kernel@pengutronix.de
+Subject: [PATCH] dt-bindings: pwm: rockchip: Allow "interrupts" prooperty
+Date: Sat,  6 Jan 2024 15:26:55 +0100
+Message-ID: <20240106142654.1262758-2-u.kleine-koenig@pengutronix.de>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CANg-bXBwWXaJWv9gMtjYvRBnOaP3E8U1nh5-ScWOoyRayzn7Zw@mail.gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Type: text/plain; charset=UTF-8
+X-Developer-Signature: v=1; a=openpgp-sha256; l=967; i=u.kleine-koenig@pengutronix.de; h=from:subject; bh=Mriijo/ycRG5GCW7t78UJUceaYg2G2vsBOIGskK9hfU=; b=owGbwMvMwMXY3/A7olbonx/jabUkhtSZyXrPlrj8FroT7dD7g+OcjerjDd9UjAWXcfDVT1sY9 CfrTYR3J6MxCwMjF4OsmCKLfeOaTKsqucjOtf8uwwxiZQKZwsDFKQATqRJh/1/QYJ4cvN3C5rHD TL+dfGc2T837k7jAMN7c2l0uQuqOI48JwzFDI+Nie52rv/pfh1W7mOUdFjymoxTd1uC91nGGdY+ fxMZ73xm7mL9W+Zqs5f0m+Gf3MiZNi636PZUyi3OqMnyUOx1XtN9+s/ijw4rY3urLd+MM+Dr0Qm 8/iuY9xf/MqfTpQhljO/soOdGKAJXV4ZdrZqgeqTzPebKBu/KW/4sJeg6zrs+vWSB3ed8On94d9 XIXHFeXe0y6ln5+VuZ7T5MrOuHNt59ekZ8SeZbt0Y0ds+vLWJRn7L88h0Pg8/lb9569D8r0ieVn E998qOzg1bKmmxbzqn7WrApjWrdwb074yQWdKvMs8wK1AA==
+X-Developer-Key: i=u.kleine-koenig@pengutronix.de; a=openpgp; fpr=0D2511F322BFAB1C1580266BE2DCDD9132669BD6
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On Wed, Dec 27, 2023 at 12:09:19PM -0700, Mark Hasemeyer wrote:
-> > A side note: in all files where you use ioport.h check if you actually included it.
+This fixes the dtbs_check error
 
-...
+	arch/arm/boot/dts/rockchip/rv1108-elgin-r1.dtb: pwm@10280030: 'interrupts' does not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/pwm/pwm-rockchip.yaml#
 
-> > > -#include <linux/types.h>
-> > > -#include <linux/list.h>
-> > >  #include <linux/bits.h>
-> > >  #include <linux/err.h>
-> > > +#include <linux/ioport.h>
-> > > +#include <linux/list.h>
-> > > +#include <linux/types.h>
-> >
-> > Fine, but no. This file is still not using the iopoll.h.
-> > See the forward declarations below? It should be there.
-> >
-> > >  struct fwnode_operations;
-> > >  struct device;
+in several device trees.
 
-...
+Signed-off-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
+---
+ Documentation/devicetree/bindings/pwm/pwm-rockchip.yaml | 3 +++
+ 1 file changed, 3 insertions(+)
 
-> > > --- a/include/linux/property.h
-> > > +++ b/include/linux/property.h
-> >
-> > Same comment(s) here.
-> 
-> I don't fully follow. Are you suggesting adding an explicit 'struct
-> resource' declaration as opposed to including ioport.h?
+diff --git a/Documentation/devicetree/bindings/pwm/pwm-rockchip.yaml b/Documentation/devicetree/bindings/pwm/pwm-rockchip.yaml
+index 65bfb492b3a4..031a448aa2b3 100644
+--- a/Documentation/devicetree/bindings/pwm/pwm-rockchip.yaml
++++ b/Documentation/devicetree/bindings/pwm/pwm-rockchip.yaml
+@@ -45,6 +45,9 @@ properties:
+   clock-names:
+     maxItems: 2
+ 
++  interrupts:
++    maxItems: 1
++
+   "#pwm-cells":
+     enum: [2, 3]
+     description:
 
-Yes.
-
-> If so, why? To reduce scope?
-
-Build time, better granularity, less include hellness.
-
+base-commit: d73f444d06fb8a42a5c0623453f3ea1fe9880229
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.43.0
 
 
