@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-29990-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29991-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 617F78260D8
-	for <lists+devicetree@lfdr.de>; Sat,  6 Jan 2024 18:10:31 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 46CC18260DA
+	for <lists+devicetree@lfdr.de>; Sat,  6 Jan 2024 18:13:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F0F55B2254C
-	for <lists+devicetree@lfdr.de>; Sat,  6 Jan 2024 17:10:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E77CE1F22025
+	for <lists+devicetree@lfdr.de>; Sat,  6 Jan 2024 17:13:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FF76882A;
-	Sat,  6 Jan 2024 17:10:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9840883B;
+	Sat,  6 Jan 2024 17:13:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="IXj7M6/h"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="agZqhKGa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CBBDC144
-	for <devicetree@vger.kernel.org>; Sat,  6 Jan 2024 17:10:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05A80D526
+	for <devicetree@vger.kernel.org>; Sat,  6 Jan 2024 17:12:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-a28ab7ae504so46957666b.3
-        for <devicetree@vger.kernel.org>; Sat, 06 Jan 2024 09:10:22 -0800 (PST)
+Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-a28b1095064so55345066b.2
+        for <devicetree@vger.kernel.org>; Sat, 06 Jan 2024 09:12:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704561021; x=1705165821; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1704561177; x=1705165977; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=IID6xf1hgiaV0Wr0FuYf5r7zkW6w2chj9AsMF1/CnJk=;
-        b=IXj7M6/hpMXvWrcqbMZQ1qaqtG7pOG1S6eOqIGRbdwTXaKi02OirSJqAxkGI5YnuyM
-         /IJZ0wIPBUuqUrzFHZv5qX4tAppX5QvXRzTOx4sNUrJyKajVB8leuamWLjQa0GfKaDBY
-         XyV8J+yK2d3OEMzDjanvfR7JC8HZ4lyXNyqMz6oF4yLx7FbLxNACfpHHYrtQhA/B3mX3
-         CVvKQWgY6RrlYgZzk82MGAmp3F4bmG1TEScrouU5mNAnyclRyN2xEqcosM3a9FGyBURt
-         MvvHW7AT357jb7SrlpcHBSA/MkVAQK7ygFKTrm3jtAr5yiAQme4NF4hbzARxWY9IFMDM
-         /M8w==
+        bh=QKDh++QbukXh77ggABgzqR8S9DLOOEeKI7ydD3buRJk=;
+        b=agZqhKGaSGPeHPy+enHbMpY2oh3x+qGi+/CNAZt3B5vEu2GliVf0LKCszQOX+HsqXf
+         8hj1ekrEX7nIhdixQTcj0JH4STJaj5ravyvzn7wuWDj7WydOrA3255ag/TM+TtV2C/Xl
+         QB+lceqU/BLEQqENdeOhiOAwqhKy0JVXHUJBN6mdoNehPUrCLOJoq7ukfld/5s/32eze
+         TY6Y1vmbJ5BINONdslpgKaAGTSfUY7PAzm5P7t4491ih6r9KETwHUL8nsTle9MFkrSfp
+         9zfxln9voJwnt082qVjSTYan0jvCE2vShYVsf32JXmwhNGODQwaklxhuYiT0JIq9CqU+
+         0UUw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704561021; x=1705165821;
+        d=1e100.net; s=20230601; t=1704561177; x=1705165977;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=IID6xf1hgiaV0Wr0FuYf5r7zkW6w2chj9AsMF1/CnJk=;
-        b=ZDbgjfm+6bFHvaKfif26l+ksoXP4I9vthvRtDdnVxjM0jGZb54Fs94Uokvlp8twqLk
-         VRJgpGuwJ0ucw/lWkT4/+MDOzbePqWOYRH6I6FJicAQk9irzi/4AunWWbgdD/wENWues
-         sgK6dBlCAIYvMHbywa8pS0XI/zBSZZvRfq5UbQu3HHPht+rAbhAyVf5pVqh3S9bdwi7v
-         GaK6hiIqYgILwJ8GtDLyPt3J5ivPvCQbrA/JWgQa+gijmEeFLBylXtTz5TWBqN3HRiCl
-         rbamvbSfSaungiGgbNbO0JtfEWL/gh9UxXzqwU/dZo33RcKzPRaP8uyRuKxxTcIFrjqQ
-         0qCw==
-X-Gm-Message-State: AOJu0YyjNaywuH0Fs7+rNyRsFjNPxOr/6WPJYGdHpBUxW7pPuj6qOSl+
-	KmAxXnVa5Is1ryg9vfixrDAgsF4xou4FBg==
-X-Google-Smtp-Source: AGHT+IHTVt97ddDmjQ893Y1BgeGDp8+ymdOx7+mMV6an4LSwi+ujX6fpSj9mazs3XTXPt4On+9I7+A==
-X-Received: by 2002:a17:907:764c:b0:a28:fb5b:fd3 with SMTP id kj12-20020a170907764c00b00a28fb5b0fd3mr475110ejc.31.1704561021329;
-        Sat, 06 Jan 2024 09:10:21 -0800 (PST)
+        bh=QKDh++QbukXh77ggABgzqR8S9DLOOEeKI7ydD3buRJk=;
+        b=SGdxBYa4MwznS7QXlTFVhS9fQ8FA8egUx3R6Jc3BXWNu6R+Vj1uKWQ0Ke7KRS+asmJ
+         hmCu8PCqFqacr1+7lcvgXJw+F843bibn8+HxWSPWtFc3CLVEKbahuK/novOf1JFl2/+D
+         NnEF3v+IGqhXoa3eSB7gs/T5OoUE8OyKVkun9nqgLth2W1m7T+WkIjClx9ip6lDDdhui
+         Cz5SJXuRxLU+GULMfjWbWABrZu0MJUTo6NUhJPMfgM1nyMiDHGLe0rGWdAmbLJb9EtOT
+         II0rtWPkoNpd8faH00nzYXjp/gbQEc/CO5NxQAZhVliXHeDNAqe753bgrPGlZQ4UJ2aS
+         KM9w==
+X-Gm-Message-State: AOJu0Yw+mQyElDKChHg0bOSBNgTm1C7Ik4D8nz72lI2sOjzdMa/b7oL5
+	rSzlQGlBNzynDRKEYBEXKzxBPjgB04/mlQ==
+X-Google-Smtp-Source: AGHT+IHJPDM7j3bE50yBH1fdHGXaEQhySVFvYij4neZfPDV0DxDO1HRJsR7SH/XL41BdLS85NppCtA==
+X-Received: by 2002:a17:906:2b55:b0:a27:cc46:d2c0 with SMTP id b21-20020a1709062b5500b00a27cc46d2c0mr214619ejg.209.1704561177406;
+        Sat, 06 Jan 2024 09:12:57 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.223.112])
-        by smtp.gmail.com with ESMTPSA id i13-20020a1709061ccd00b00a27a6d59045sm2138016ejh.217.2024.01.06.09.10.20
+        by smtp.gmail.com with ESMTPSA id am19-20020a170906569300b00a26ac57b951sm2138535ejc.23.2024.01.06.09.12.55
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 06 Jan 2024 09:10:20 -0800 (PST)
-Message-ID: <7dea73a6-d733-4cd2-b2d5-02f09e2a6dd9@linaro.org>
-Date: Sat, 6 Jan 2024 18:10:19 +0100
+        Sat, 06 Jan 2024 09:12:56 -0800 (PST)
+Message-ID: <ddad4bb2-1525-4842-b220-edcef7ce0299@linaro.org>
+Date: Sat, 6 Jan 2024 18:12:54 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,15 +66,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: pwm: rockchip: Allow "interrupts" prooperty
+Subject: Re: [PATCH 1/2] dt-bindings: qcom-qce: Add compatible for SM6350
 Content-Language: en-US
-To: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
- Thierry Reding <thierry.reding@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+To: Luca Weiss <luca.weiss@fairphone.com>, Andy Gross <agross@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Thara Gopinath <thara.gopinath@gmail.com>,
+ Herbert Xu <herbert@gondor.apana.org.au>,
+ "David S. Miller" <davem@davemloft.net>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
-Cc: linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-rockchip@lists.infradead.org, kernel@pengutronix.de
-References: <20240106142654.1262758-2-u.kleine-koenig@pengutronix.de>
+ Conor Dooley <conor+dt@kernel.org>,
+ Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+ linux-crypto@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240105-sm6350-qce-v1-0-416e5c7319ac@fairphone.com>
+ <20240105-sm6350-qce-v1-1-416e5c7319ac@fairphone.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -120,19 +127,15 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240106142654.1262758-2-u.kleine-koenig@pengutronix.de>
+In-Reply-To: <20240105-sm6350-qce-v1-1-416e5c7319ac@fairphone.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 06/01/2024 15:26, Uwe Kleine-König wrote:
-> This fixes the dtbs_check error
+On 05/01/2024 17:15, Luca Weiss wrote:
+> Add a compatible for the crypto block found on the SM6350 SoC.
 > 
-> 	arch/arm/boot/dts/rockchip/rv1108-elgin-r1.dtb: pwm@10280030: 'interrupts' does not match any of the regexes: 'pinctrl-[0-9]+'
-> 	from schema $id: http://devicetree.org/schemas/pwm/pwm-rockchip.yaml#
-> 
-> in several device trees.
-> 
-> Signed-off-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
+> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+> ---
 
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
