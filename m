@@ -1,118 +1,189 @@
-Return-Path: <devicetree+bounces-29994-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-29995-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 599E5826176
-	for <lists+devicetree@lfdr.de>; Sat,  6 Jan 2024 21:27:43 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 19BC1826182
+	for <lists+devicetree@lfdr.de>; Sat,  6 Jan 2024 21:46:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 07F14282801
-	for <lists+devicetree@lfdr.de>; Sat,  6 Jan 2024 20:27:42 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 849B3B21F4F
+	for <lists+devicetree@lfdr.de>; Sat,  6 Jan 2024 20:46:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4A2EF50C;
-	Sat,  6 Jan 2024 20:27:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gAAAo91a"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D70B9E56D;
+	Sat,  6 Jan 2024 20:46:17 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx.skole.hr (mx2.hosting.skole.hr [161.53.165.186])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3933FF4EA;
-	Sat,  6 Jan 2024 20:27:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-40e43e489e4so71605e9.1;
-        Sat, 06 Jan 2024 12:27:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1704572852; x=1705177652; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=+qZcxiKBLoslTbSETaLsQdzVkOAcIfS6HTz3Ex8jpyI=;
-        b=gAAAo91asu00xcGu9p6IfphTTFcXnYgm38pgjgwNEv7VzEG8MtWyUtId7CNyzk/xLY
-         0APuhFTAjR5iy38xQJaGZZyJGkvTQ87kgHaw2gjnhgx5KMDmQdOSSP6ZT3E//AfNkfP5
-         EmlfBmTBUFN1aT5cmrUAO9M0GfTcl7WCk6lxIEpm1fOgDRb7vUHbo0GDMBSEsTShn5v5
-         /V9iPAh955zDxzjPd+bYxtQdKFaScoJW2kP0wzlmJoAouW/0DxYpTLzMjGnZaTnzdwtj
-         Ekd5+vQSEMfQ9BOmVATU6Z4j8vmefnrr4LwXbZWGRTk9wAe5AO2yoByFXg7E1puvRVrf
-         7Ncg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704572852; x=1705177652;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=+qZcxiKBLoslTbSETaLsQdzVkOAcIfS6HTz3Ex8jpyI=;
-        b=H86PfwMZY653/iM3jPZRFBYURw8i7zlO+1RcWGuIpckfIn73sGHzx+GFXX8ChoJb5w
-         5ISR397NnbpZnQE8laSwZJRBu6FaVt5UaCIZIOP77odvLcvqs8u2eD28QA/tS61yRhZB
-         jchauQXDAlZ1FVrDf6p2gL1r97mQb6GX7gmbxtW9bDxoZa9l4SyTi8zKu81CdSKVvUUS
-         XXyooKC0ASNmXjbJ+U2SEie7F+I6j6gouZfJK3gBvfLlbKT0XRco+/MDvAA66/pPOGXj
-         FM4XTiAwYxS0PHbWhrxHguPIyAV2jdGIuAWVPptEfKFHY224VdaPBWQHxAbt7ln5rRti
-         3DzQ==
-X-Gm-Message-State: AOJu0Yx7ZruK/2AjvzDcfEsi1OhiTxH/odLJF9Ph1tqDf2oLMsNmiDEP
-	iffdkWC1ReFiVtW350PH+H1TbGNFrzR9rw==
-X-Google-Smtp-Source: AGHT+IF5iAofWhWU64cSQMRwO2U7enBcruZdFFzhEg/Z1fcKWSrXAkhwpvhmzOYS1vOSXDKhsckfwA==
-X-Received: by 2002:a05:600c:cc6:b0:40e:3ce8:a5be with SMTP id fk6-20020a05600c0cc600b0040e3ce8a5bemr695925wmb.164.1704572852308;
-        Sat, 06 Jan 2024 12:27:32 -0800 (PST)
-Received: from latitude-fedora.lan ([2001:8f8:183b:50fb::d35])
-        by smtp.gmail.com with ESMTPSA id k5-20020a05600c1c8500b0040e418494absm1707955wms.46.2024.01.06.12.27.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 06 Jan 2024 12:27:31 -0800 (PST)
-From: Alexey Charkov <alchark@gmail.com>
-To: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Sebastian Reichel <sebastian.reichel@collabora.com>,
-	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
-	Christopher Obbard <chris.obbard@collabora.com>,
-	=?UTF-8?q?Tam=C3=A1s=20Sz=C5=B1cs?= <szucst@iit.uni-miskolc.hu>,
-	Shreeya Patel <shreeya.patel@collabora.com>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Cc: Alexey Charkov <alchark@gmail.com>
-Subject: [PATCH] arm64: dts: rockchip: add rfkill node for M.2 Key E WiFi on rock-5b
-Date: Sun,  7 Jan 2024 00:26:45 +0400
-Message-ID: <20240106202650.22310-1-alchark@gmail.com>
-X-Mailer: git-send-email 2.43.0
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93841F9C2;
+	Sat,  6 Jan 2024 20:46:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=skole.hr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=skole.hr
+Received: from mx2.hosting.skole.hr (localhost.localdomain [127.0.0.1])
+	by mx.skole.hr (mx.skole.hr) with ESMTP id 4FF1A85794;
+	Sat,  6 Jan 2024 21:46:11 +0100 (CET)
+From: =?utf-8?q?Duje_Mihanovi=C4=87?= <duje.mihanovic@skole.hr>
+Date: Sat, 06 Jan 2024 21:45:46 +0100
+Subject: [PATCH v2] dt-bindings: pxa-pwm: Convert to YAML
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
+Message-Id: <20240106-pxa-pwm-yaml-v2-1-9578ff5f2d7f@skole.hr>
+X-B4-Tracking: v=1; b=H4sIAPm7mWUC/3XMyw6CMBCF4Vchs3bMFFGRle9hWEA7tRO5NK1BC
+ OHdrexd/ic53wqRg3CEKlsh8CRRxiFFfshAu2Z4MopJDTnlBSk6o58b9J8el6bvsDRtS2QsX/U
+ F0sUHtjLv3KNO7SS+x7Ds+qR+6x9oUqiwMGxuhkifSnuPr7HjowtQb9v2BatjkD2nAAAA
+To: Thierry Reding <thierry.reding@gmail.com>, 
+ =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ =?utf-8?q?Duje_Mihanovi=C4=87?= <duje.mihanovic@skole.hr>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3332;
+ i=duje.mihanovic@skole.hr; h=from:subject:message-id;
+ bh=KY4CNJMb5bu/b1IMZAKf3rxFy79ecGdfzqi7aByQaSA=;
+ b=owEBbQKS/ZANAwAIAZoRnrBCLZbhAcsmYgBlmbv9kPQbYS/Zry38ioyNv2pV5E/TQ70/QmEWf
+ uM9LUHqdKGJAjMEAAEIAB0WIQRT351NnD/hEPs2LXiaEZ6wQi2W4QUCZZm7/QAKCRCaEZ6wQi2W
+ 4cDTD/9/orFpJLwg3vHE2JbDVLSYwM2/kqB0p4fN8meLwVyhuiha4eihm/6LX4TRdi5DliqR5H1
+ IK0GiE3G+BI8WYfNyKp4rMchIUSCjQWgGFUkkdcXek6YjM9gzii7IL+UcPYpzWW/g99izT6PVub
+ 7He16tvmCDRY0YgwXUWOUBPtGV9GTH52qglMoI0pP9i/3bsqUyTEUydoMqyyEdecSDGjVkB7Emi
+ EoBhywmo6Zz7/q3FtBYS2Sybk82kDUfid/nkHHN7oj8f2IOr4oX+0Rmf0umX5kivo7C0N0az8pY
+ BgWOlUnjfs/5qzb+I46k+tLDn4HjYdVXQa59FMgcD9BizbR7FAJLzWkRxHjQ8aIb/g1UBWqQp0y
+ pkbsreqVbzRQJBhgmFXSMGDU0sT8F7HWERFDJk+mIl/a9kFmV+OzuQf3aX2Byj6cM+cStYjXFDc
+ oAj1ZnJx8Twl5liQHnlwBH3E6dRBW0menAUmmkqKGFGUQAZtxwaBCs5DrCt6uNppZycBHvFit4V
+ KYUznjQZTaIHkx0Sb5ICOLtpxfaCHASGClZzwAxI7NDz0+qWg67AZ/IryrLgXj65yNSMUdIxgdx
+ zDdJIHdxmoAV2wOYNazfIV3bbOJWbTDp16Vc+T2jo0Xmi0UYs6CndJTC87Bu6SRhmhy4arMQh4v
+ PG71gxJzScjAXVQ==
+X-Developer-Key: i=duje.mihanovic@skole.hr; a=openpgp;
+ fpr=53DF9D4D9C3FE110FB362D789A119EB0422D96E1
 
-By default the GPIO pin that connects to the WiFi enable signal
-inside the M.2 Key E slot is driven low, resulting in impossibility
-to connect to any network. Add a DT node to expose it as an RFKILL
-device, which lets the WiFi driver or userspace toggle it as
-required.
+Convert the PXA PWM binding file from TXT to YAML.
 
-Signed-off-by: Alexey Charkov <alchark@gmail.com>
+The original binding does not mention any clocks, but the PWM controller
+will not probe without a clock.
+
+Reviewed-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
+Signed-off-by: Duje Mihanović <duje.mihanovic@skole.hr>
 ---
- arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts | 7 +++++++
- 1 file changed, 7 insertions(+)
+Changes in v2:
+- Rename to marvell,pxa-pwm.yaml
+- Note addition of clock property
+- Update trailers
+- Link to v1: https://lore.kernel.org/r/20240105-pxa-pwm-yaml-v1-1-4ded9d00c38f@skole.hr
+---
+ .../devicetree/bindings/pwm/marvell,pxa-pwm.yaml   | 51 ++++++++++++++++++++++
+ Documentation/devicetree/bindings/pwm/pxa-pwm.txt  | 30 -------------
+ 2 files changed, 51 insertions(+), 30 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-index 741f631db345..a5a104131403 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-@@ -59,6 +59,13 @@ fan: pwm-fan {
- 		#cooling-cells = <2>;
- 	};
- 
-+	rfkill {
-+		compatible = "rfkill-gpio";
-+		label = "rfkill-pcie-wlan";
-+		radio-type = "wlan";
-+		shutdown-gpios = <&gpio4 RK_PA2 GPIO_ACTIVE_HIGH>;
-+	};
+diff --git a/Documentation/devicetree/bindings/pwm/marvell,pxa-pwm.yaml b/Documentation/devicetree/bindings/pwm/marvell,pxa-pwm.yaml
+new file mode 100644
+index 000000000000..fb20e4e1daa8
+--- /dev/null
++++ b/Documentation/devicetree/bindings/pwm/marvell,pxa-pwm.yaml
+@@ -0,0 +1,51 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/pwm/pwm-pxa.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
- 	vcc3v3_pcie2x1l0: vcc3v3-pcie2x1l0-regulator {
- 		compatible = "regulator-fixed";
- 		enable-active-high;
++title: Marvell PXA PWM
++
++maintainers:
++  - Duje Mihanović <duje.mihanovic@skole.hr>
++
++allOf:
++  - $ref: pwm.yaml#
++
++properties:
++  compatible:
++    enum:
++      - marvell,pxa250-pwm
++      - marvell,pxa270-pwm
++      - marvell,pxa168-pwm
++      - marvell,pxa910-pwm
++
++  reg:
++    # Length should be 0x10
++    maxItems: 1
++
++  "#pwm-cells":
++    # Used for specifying the period length in nanoseconds
++    const: 1
++
++  clocks:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - "#pwm-cells"
++  - clocks
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/pxa-clock.h>
++
++    pwm0: pwm@40b00000 {
++      compatible = "marvell,pxa250-pwm";
++      reg = <0x40b00000 0x10>;
++      #pwm-cells = <1>;
++      clocks = <&clks CLK_PWM0>;
++    };
+diff --git a/Documentation/devicetree/bindings/pwm/pxa-pwm.txt b/Documentation/devicetree/bindings/pwm/pxa-pwm.txt
+deleted file mode 100644
+index 5ae9f1e3c338..000000000000
+--- a/Documentation/devicetree/bindings/pwm/pxa-pwm.txt
++++ /dev/null
+@@ -1,30 +0,0 @@
+-Marvell PWM controller
+-
+-Required properties:
+-- compatible: should be one or more of:
+-  - "marvell,pxa250-pwm"
+-  - "marvell,pxa270-pwm"
+-  - "marvell,pxa168-pwm"
+-  - "marvell,pxa910-pwm"
+-- reg: Physical base address and length of the registers used by the PWM channel
+-  Note that one device instance must be created for each PWM that is used, so the
+-  length covers only the register window for one PWM output, not that of the
+-  entire PWM controller.  Currently length is 0x10 for all supported devices.
+-- #pwm-cells: Should be 1.  This cell is used to specify the period in
+-  nanoseconds.
+-
+-Example PWM device node:
+-
+-pwm0: pwm@40b00000 {
+-	compatible = "marvell,pxa250-pwm";
+-	reg = <0x40b00000 0x10>;
+-	#pwm-cells = <1>;
+-};
+-
+-Example PWM client node:
+-
+-backlight {
+-	compatible = "pwm-backlight";
+-	pwms = <&pwm0 5000000>;
+-	...
+-}
+
+---
+base-commit: 610a9b8f49fbcf1100716370d3b5f6f884a2835a
+change-id: 20240105-pxa-pwm-yaml-8dbb00dfe7c6
+
+Best regards,
 -- 
-2.43.0
+Duje Mihanović <duje.mihanovic@skole.hr>
+
 
 
