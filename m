@@ -1,119 +1,145 @@
-Return-Path: <devicetree+bounces-30074-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30075-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5ABC82664F
-	for <lists+devicetree@lfdr.de>; Sun,  7 Jan 2024 23:12:13 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 833A582665E
+	for <lists+devicetree@lfdr.de>; Sun,  7 Jan 2024 23:37:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 835FB1F213AE
-	for <lists+devicetree@lfdr.de>; Sun,  7 Jan 2024 22:12:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2922C281980
+	for <lists+devicetree@lfdr.de>; Sun,  7 Jan 2024 22:37:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD11411721;
-	Sun,  7 Jan 2024 22:12:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8723411C87;
+	Sun,  7 Jan 2024 22:37:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="I7jQcDNT"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="amp24Fri"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E16ED13AE2;
-	Sun,  7 Jan 2024 22:12:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1704665526; x=1736201526;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=/xeVGbq1ohEkkwou+0NT7S2wRq+Kkp0E7oeDwdtlim4=;
-  b=I7jQcDNTXRdNE1z4KQllnMd+UjlAUXJernt45ZiLPMzRAbMIqsQuFRXU
-   96lI3Lxy+GOaKFD4j/6RGFze53WgyS6Ly59uqhD0ouUSgKAjiaHmqcBft
-   b44UJU9NewESqddpm0yUyepiRubbmCcTu8Y8ey4fIlYgePhhsbhP90woV
-   4F7yxwdCMsfqzQY0RabN/jEv3cYEfOj6UubLNymREHMaOw7WzfIC0kAjm
-   D/S3nVmLQwQ8RAhd6EpDHZ7y6iWi3nIpUwuI0l3vJ0kv/QJN893/UWEus
-   FMLUDlVNab3Ux9KLoHwsUmTQhoeDzj0I39rkPkJI6E4fSqvTj7o7eqI1k
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10946"; a="388217493"
-X-IronPort-AV: E=Sophos;i="6.04,340,1695711600"; 
-   d="scan'208";a="388217493"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
-  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Jan 2024 14:12:05 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10946"; a="1028228604"
-X-IronPort-AV: E=Sophos;i="6.04,340,1695711600"; 
-   d="scan'208";a="1028228604"
-Received: from lkp-server02.sh.intel.com (HELO b07ab15da5fe) ([10.239.97.151])
-  by fmsmga006.fm.intel.com with ESMTP; 07 Jan 2024 14:11:59 -0800
-Received: from kbuild by b07ab15da5fe with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1rMbN6-0004CJ-32;
-	Sun, 07 Jan 2024 22:11:56 +0000
-Date: Mon, 8 Jan 2024 06:11:34 +0800
-From: kernel test robot <lkp@intel.com>
-To: Bhavin Sharma <bhavin.sharma@siliconsignals.io>, sre@kernel.org
-Cc: oe-kbuild-all@lists.linux.dev,
-	Bhavin Sharma <bhavin.sharma@siliconsignals.io>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2F4413AC9;
+	Sun,  7 Jan 2024 22:37:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-3367a304091so1292685f8f.3;
+        Sun, 07 Jan 2024 14:37:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1704667066; x=1705271866; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=GhaiKiBvANWo59JD4b18pZUXdSPTrn5nNQAUnRnqMg0=;
+        b=amp24FriP6KTSdndAspI69rC7V4t8YBidHxKgldO5Lighdlgg6zvUqz3d9m6W+65TG
+         pqNAwqIHPYNBNn0KughI4mQ6w1MdnNWtOnqIeq5tTuzS5J7W4+H2gjzVvOC6BngHUPSk
+         Vf+diilmzuiR+iiCTubix2afa/GAOt5we709CHWL++zb3WQAwMuKu6vCAvBAcXGVuT5K
+         i5AhFQleUKzVKraPel4wjJr03onsJy/LOsQDveo2fIEn7hbZOFpQoqgXMW3wdvPhwyi+
+         kQT6fhtDKQeb5+wGDke1YnhNxNPhicgFDvRaLZP6UBgUwKB5sGWpFIDNIYFMD9PxaNAq
+         SrPw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1704667066; x=1705271866;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=GhaiKiBvANWo59JD4b18pZUXdSPTrn5nNQAUnRnqMg0=;
+        b=EJT8XpKFvAUjaINj1ihskK+mabH8d/5QojfNXSVCRgdHySYegg+cvArA9oH9UoOKzA
+         rmCnCSN2w+KDI3AngqrX9SjdhOwyj/VrmX2Bl+g4Ls/yMnYZKLPqPyfSyiNxkEt2XIi4
+         YQeTMTDlAFQ/FoXhev0SjxaPJFp201ucbSUsE7jrNMMzV6eIKNDy7VUzE6WP74Ga95FW
+         SGPid8OX094znIHiZRLoIsraMqKmuiROtad2j4uZrRim+9KS9Ce8gT66t5kWlUe5TyGN
+         Oe9U7aTViXCiK9FtWakemc/b7GUMc2gmx7dtwSeTzV9u66Q4sQHczBjglhCCOoIKLwsw
+         nxJA==
+X-Gm-Message-State: AOJu0Ywz/+Ig+OW/HOWUDN5H304VKet6rvVaaNbZfzxgr0tmu7dQ/5D8
+	lMXtSMj3NCNrsSDHrSvr9wI=
+X-Google-Smtp-Source: AGHT+IHbtTpDJCVHnLbP/mEAXIOl9+IjqLvn0kJzSyWzNt3xLzqfU/7qQMWukM0+J+LsEXRlMUSnmQ==
+X-Received: by 2002:a5d:40c4:0:b0:337:476f:995c with SMTP id b4-20020a5d40c4000000b00337476f995cmr1052171wrq.120.1704667065877;
+        Sun, 07 Jan 2024 14:37:45 -0800 (PST)
+Received: from apple.sigmaris.info ([2a02:8010:6606:0:88c3:ea4a:8702:aa3b])
+        by smtp.gmail.com with ESMTPSA id t3-20020a0560001a4300b003374555d88esm6216095wry.56.2024.01.07.14.37.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 07 Jan 2024 14:37:45 -0800 (PST)
+From: Hugh Cole-Baker <sigmaris@gmail.com>
+To: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>,
-	linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+	Heiko Stuebner <heiko@sntech.de>
+Cc: John Clark <inindev@gmail.com>,
+	Thomas McKahan <tmckahan@singleboardsolutions.com>,
+	Hugh Cole-Baker <sigmaris@gmail.com>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] power: supply: Add STC3117 fuel gauge unit driver
-Message-ID: <202401080530.0hMWnrIg-lkp@intel.com>
-References: <20240106133546.936261-1-bhavin.sharma@siliconsignals.io>
+Subject: [PATCH] arm64: dts: rockchip: enable NanoPC-T6 MiniPCIe power
+Date: Sun,  7 Jan 2024 22:37:14 +0000
+Message-Id: <20240107223714.8158-1-sigmaris@gmail.com>
+X-Mailer: git-send-email 2.39.3 (Apple Git-145)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240106133546.936261-1-bhavin.sharma@siliconsignals.io>
+Content-Transfer-Encoding: 8bit
 
-Hi Bhavin,
+The NanoPC-T6 has a Mini PCIe slot intended to be used for a 4G or LTE
+modem. This slot has no PCIe functionality, only its USB 2.0 pins are
+wired to the SoC, and its USIM pins are wired to a SIM card slot on the
+board. Define the 3.3v supply for the slot so it can be used.
 
-kernel test robot noticed the following build warnings:
+Signed-off-by: Hugh Cole-Baker <sigmaris@gmail.com>
+---
+I've based the names directly on the schematic [1] (page 29) which uses
+VDD_4G_3.3V and 4G_LTE_PWREN for the supply and enable signal respectively.
+This means the enable pinctrl label needs an initial underscore. I'm OK with
+changing that if it's considered ugly or there's a better suggested name.
 
-[auto build test WARNING on sre-power-supply/for-next]
-[also build test WARNING on robh/for-next linus/master v6.7-rc8 next-20240105]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+[1]: https://wiki.friendlyelec.com/wiki/images/9/97/NanoPC-T6_2301_SCH.PDF
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Bhavin-Sharma/dt-bindings-power-supply-stc3117-Convert-to-DT-schema-format/20240106-213744
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/sre/linux-power-supply.git for-next
-patch link:    https://lore.kernel.org/r/20240106133546.936261-1-bhavin.sharma%40siliconsignals.io
-patch subject: [PATCH v2 1/2] power: supply: Add STC3117 fuel gauge unit driver
-config: alpha-randconfig-r112-20240108 (https://download.01.org/0day-ci/archive/20240108/202401080530.0hMWnrIg-lkp@intel.com/config)
-compiler: alpha-linux-gcc (GCC) 13.2.0
-reproduce: (https://download.01.org/0day-ci/archive/20240108/202401080530.0hMWnrIg-lkp@intel.com/reproduce)
+ .../boot/dts/rockchip/rk3588-nanopc-t6.dts      | 17 +++++++++++++++++
+ 1 file changed, 17 insertions(+)
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202401080530.0hMWnrIg-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> drivers/power/supply/stc3117_fuel_gauge.c:34:34: warning: 'stc3117_of_match' defined but not used [-Wunused-const-variable=]
-      34 | static const struct of_device_id stc3117_of_match[] = {
-         |                                  ^~~~~~~~~~~~~~~~
-
-
-vim +/stc3117_of_match +34 drivers/power/supply/stc3117_fuel_gauge.c
-
-    33	
-  > 34	static const struct of_device_id stc3117_of_match[] = {
-    35		{ .compatible = "st,stc3117-fgu" },
-    36		{},
-    37	};
-    38	
-
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dts b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dts
+index d7722772ecd8..d91af387f7c4 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dts
+@@ -159,6 +159,18 @@ vcc3v3_pcie30: vcc3v3-pcie30-regulator {
+ 		regulator-max-microvolt = <3300000>;
+ 		vin-supply = <&vcc5v0_sys>;
+ 	};
++
++	vdd_4g_3v3: vdd-4g-3v3-regulator {
++		compatible = "regulator-fixed";
++		enable-active-high;
++		gpio = <&gpio4 RK_PC6 GPIO_ACTIVE_HIGH>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&_4g_lte_pwren>;
++		regulator-name = "vdd_4g_3v3";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		vin-supply = <&vcc5v0_sys>;
++	};
+ };
+ 
+ &combphy0_ps {
+@@ -504,6 +516,10 @@ pcie_m2_1_pwren: pcie-m21-pwren {
+ 	};
+ 
+ 	usb {
++		_4g_lte_pwren: 4g-lte-pwren {
++			rockchip,pins = <4 RK_PC6 RK_FUNC_GPIO &pcfg_pull_none>;
++		};
++
+ 		typec5v_pwren: typec5v-pwren {
+ 			rockchip,pins = <1 RK_PD2 RK_FUNC_GPIO &pcfg_pull_none>;
+ 		};
+@@ -884,6 +900,7 @@ &uart2 {
+ };
+ 
+ &u2phy2_host {
++	phy-supply = <&vdd_4g_3v3>;
+ 	status = "okay";
+ };
+ 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.39.3 (Apple Git-145)
+
 
