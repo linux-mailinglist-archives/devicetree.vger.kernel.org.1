@@ -1,117 +1,88 @@
-Return-Path: <devicetree+bounces-30052-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30053-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37AC88264DB
-	for <lists+devicetree@lfdr.de>; Sun,  7 Jan 2024 16:58:55 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id ADBD18264EC
+	for <lists+devicetree@lfdr.de>; Sun,  7 Jan 2024 17:08:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3DF18B210F8
-	for <lists+devicetree@lfdr.de>; Sun,  7 Jan 2024 15:58:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BC7DF1C20A41
+	for <lists+devicetree@lfdr.de>; Sun,  7 Jan 2024 16:08:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1F37134D7;
-	Sun,  7 Jan 2024 15:58:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F09F3134DE;
+	Sun,  7 Jan 2024 16:08:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="D/e/N/Qm"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="A0UzMRz0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFDF413AC0;
-	Sun,  7 Jan 2024 15:58:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 790FBC433C8;
-	Sun,  7 Jan 2024 15:58:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1704643127;
-	bh=hyV0n3TYTzj8XaPqJZ9Snjs6Ou2KsAmUpPfk6+9Pr9c=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=D/e/N/QmNbh7aW5o13q79Qm9OfG62hFAxnlmxyhm51wA8sGhTYf40U+iSz9jOyguD
-	 5nzb5zElE6FLYiQC3nwQa2vKJPfIV5jDuL7lhD7Z/DP4uHKmNWI2ZgL14kOb/gKs7S
-	 /Y6Ge1fTTrzUqpRZAlPuHgLp6o9yowOBdlZkx7HzMOgIThC5wKbmOfSYndI7yMZiqP
-	 /r6DWCXtnLoycW8MFQj+1cZV4aOpEb6mhoqkZto00PeYeT2jOT34ReRTo9ffBkx51D
-	 1vnPy3hMmLc0PMD5uYV1DkFIxlKRMcTPX5Wx8JoWhfRfmc6n4x/T6O0FGsoB8iLq8q
-	 /k0HRKLQ1Xgaw==
-Date: Sun, 7 Jan 2024 15:58:38 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Javier Carrasco <javier.carrasco.cruz@gmail.com>
-Cc: Christian Eggers <ceggers@arri.de>, Lars-Peter Clausen
- <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>
-Subject: Re: [PATCH v2 0/3] iio: light: add support for AMS AS7331
-Message-ID: <20240107155838.376bdd1e@jic23-huawei>
-In-Reply-To: <20240103-as7331-v2-0-6f0ad05e0482@gmail.com>
-References: <20240103-as7331-v2-0-6f0ad05e0482@gmail.com>
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.39; x86_64-pc-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7AA6013AC6;
+	Sun,  7 Jan 2024 16:08:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=W5XQx5jK8PhLssysir7FrxPUWqgxrh2IPRl7HIJNB6Y=; b=A0UzMRz0uVAfd4BdgjKVl99KY4
+	PoGXuGRXaplrb0PFHRXrP5fZcXjJcCDQCbaQtoIfYCZEel6fUlO7AyBQW9+ChliajIhuLEvQRZzvu
+	hD/Z1Vxuwo1Qqkl2LxwryCDzzdLOrC5RInVjAwynuv59SOMuapLIyzDriSPLn65v01QM=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1rMVhK-004Zle-Tc; Sun, 07 Jan 2024 17:08:26 +0100
+Date: Sun, 7 Jan 2024 17:08:26 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Sergey Ryazanov <ryazanov.s.a@gmail.com>
+Cc: Jie Luo <quic_luoj@quicinc.com>, agross@kernel.org,
+	andersson@kernel.org, konrad.dybcio@linaro.org, davem@davemloft.net,
+	edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, hkallweit1@gmail.com, linux@armlinux.org.uk,
+	robert.marko@sartura.hr, linux-arm-msm@vger.kernel.org,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, quic_srichara@quicinc.com
+Subject: Re: [PATCH v4 0/5] support ipq5332 platform
+Message-ID: <227543b0-e7a6-4ef6-a0ea-271165f51a6b@lunn.ch>
+References: <20231225084424.30986-1-quic_luoj@quicinc.com>
+ <a6a50fb6-871f-424c-a146-12b2628b8b64@gmail.com>
+ <cfb04c82-3cc3-49f6-9a8a-1f6d1a22df40@quicinc.com>
+ <dd05a599-247a-4516-8ad3-7550ceea99f7@gmail.com>
+ <ac1977f5-cd6a-4f16-b0a0-f4322c34c5f5@quicinc.com>
+ <bdeca791-f2e5-4256-b386-a75c03f93686@gmail.com>
+ <895eadd7-1631-4b6b-8db4-d371f2e52611@lunn.ch>
+ <1df87389-d78c-48e0-b743-0fd11bd82b85@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1df87389-d78c-48e0-b743-0fd11bd82b85@gmail.com>
 
-On Wed, 03 Jan 2024 13:08:50 +0100
-Javier Carrasco <javier.carrasco.cruz@gmail.com> wrote:
+> Andrew, thank you so much for pointing me to that API and Christian's work.
+> I have checked the DT change proposal and it fits this QCA8084 case
+> perfectly.
 
-> The AMS AS7331 UV light sensor measures three ultraviolet bands (UVA,
-> UVB and UVC, also known as deep UV or DUV) as well as temperature.
-> 
-> This device is practically identical to the AMS AS73211 XYZ True Color
-> sensor that is already supported by the iio subsystem, except for the
-> photodiodes used to aquire the desired light wavelengths.
-> 
-> In order to reuse code and reduce maintenance load, this series extends
-> the AS73211 driver to support the AS7331 as well.
-> 
-> Note that the UVA and UVB light modifiers have not been merged into the
-> mainline kernel yet, but they are already available in Greg's char-misc
-> git tree which can be found at
-> git://git.kernel.org/pub/scm/linux/kernel/git/gregkh/char-misc.git
-> in the char-misc-next branch.
-> 
-> The original device AS73211 supported by the driver could only be tested
-> briefly due to the lack of hardware. Instead, the i2c-stub module has
-> been used to make sure that the driver registers the iio device properly
-> and the attributes exported to sysfs are correct. Some basic register
-> assignments reported the expected intensity scales and in principle
-> nothing else should have been affected by the modifications in the code.
-> 
-> Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
-Hi Javier,
+Not too surprising, since Christian is working on another Qualcomm PHY
+which is very similar.
 
-Series applied - but given timing I'll only push this out as testing for
-now as I'll want to rebase the IIO tree on rc1 once available in a couple of
-weeks time.
+> Am I right that all one has to do to solve this QCA8084 initialization case
+> is wrap phys in a ethernet-phy-package node and use devm_phy_package_join()
+> / phy_package_init_once() to do the basic initialization? So simple?
 
-Thanks,
+I hope so. Once the correct kernel abstracts are used, it should be
+reasonably straight forward. The clock stuff should be made into a
+common clock driver, so all the consumer needs to do is enable the one
+clock its needs and common clock driver core goes up the tree and
+enables what ever needs enabling. It could be we need to use ID values
+in the compatible get the PHY driver probed, rather than enumerate it.
 
-Jonathan
+Hopefully Lenaro can help get this all done correctly.
 
-> ---
-> Changes in v2:
-> - as73211.c: Use IIO_VAL_FRACTIONAL to retrieve scales of AS73211.
-> - as73211.c: simplify device-specific data retrieval in probe function.
-> - as73211.c: minor coding-style fix (shorter line).
-> - Link to v1: https://lore.kernel.org/r/20231220-as7331-v1-0-745b73c27703@gmail.com
-> 
-> ---
-> Javier Carrasco (3):
->       iio: light: as73211: use IIO_VAL_FRACTIONAL for intensity scales
->       dt-bindings: iio: light: as73211: add support for as7331
->       iio: light: as73211: add support for as7331
-> 
->  .../devicetree/bindings/iio/light/ams,as73211.yaml |   7 +-
->  drivers/iio/light/Kconfig                          |   5 +-
->  drivers/iio/light/as73211.c                        | 142 +++++++++++++++++----
->  3 files changed, 123 insertions(+), 31 deletions(-)
-> ---
-> base-commit: e9215fcca2561b208c78359110ee4009b454f761
-> change-id: 20231220-as7331-88a25ceeb66d
-> 
-> Best regards,
-
+    Andrew
 
