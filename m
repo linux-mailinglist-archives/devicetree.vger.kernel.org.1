@@ -1,101 +1,117 @@
-Return-Path: <devicetree+bounces-30051-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30052-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17B2B8264B6
-	for <lists+devicetree@lfdr.de>; Sun,  7 Jan 2024 16:26:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 37AC88264DB
+	for <lists+devicetree@lfdr.de>; Sun,  7 Jan 2024 16:58:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id ABFC6B212C5
-	for <lists+devicetree@lfdr.de>; Sun,  7 Jan 2024 15:26:36 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3DF18B210F8
+	for <lists+devicetree@lfdr.de>; Sun,  7 Jan 2024 15:58:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2327134DA;
-	Sun,  7 Jan 2024 15:26:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1F37134D7;
+	Sun,  7 Jan 2024 15:58:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="s5ahOiB9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="D/e/N/Qm"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD868134D9;
-	Sun,  7 Jan 2024 15:26:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8EBA1C433C8;
-	Sun,  7 Jan 2024 15:26:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFDF413AC0;
+	Sun,  7 Jan 2024 15:58:47 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 790FBC433C8;
+	Sun,  7 Jan 2024 15:58:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1704641183;
-	bh=WuaxcPfuNzKvlyOWSf/bOm0f8ErEd90QXyhmgOJXUaU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=s5ahOiB9U31TLZFb7USUSSE/coAfIkDK4kw6qSumgLuQlv25xs04E3H1rR/3JRerF
-	 GQC2dzpgxI1Pl2OH+vo29psSLaPWoNJc6QBovD1n4mWN9HIKkrl33Twbv8d+i5TEBi
-	 RzhKd1UbMrsQhvst1w+xTI5gXklUt8ueQjliiNvV+NBPbmxiyBkYopCpygGdQlHxrt
-	 Mg1HRrkreSuIhi8aN9KTKdqyXFnTkipZKwBObAvbGsttUjm1yTNdzUls2icjhzCUU6
-	 TkR0MkosiYYpdtMeJ3dxOt56mtE3RTF8rNZzkhuTaYqr6kpZfAPL1kN3d+KcF1l1tl
-	 LlXqU7nx7a/tg==
-Date: Sun, 7 Jan 2024 15:26:19 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Karel Balej <karelb@gimli.ms.mff.cuni.cz>
-Cc: Karel Balej <balejk@matfyz.cz>, Lee Jones <lee@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Duje =?utf-8?Q?Mihanovi=C4=87?= <duje.mihanovic@skole.hr>,
-	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
-Subject: Re: [RFC PATCH 4/5] regulator: add 88pm88x regulators driver
-Message-ID: <ZZrCmykT2eY3+6Uh@finisterre.sirena.org.uk>
-References: <20231228100208.2932-1-karelb@gimli.ms.mff.cuni.cz>
- <20231228100208.2932-5-karelb@gimli.ms.mff.cuni.cz>
- <008ee9d6-6259-43df-9af3-2dc9877cfe94@sirena.org.uk>
- <CY8DP6O8C72H.2XTJT3P7XZAKE@gimli.ms.mff.cuni.cz>
+	s=k20201202; t=1704643127;
+	bh=hyV0n3TYTzj8XaPqJZ9Snjs6Ou2KsAmUpPfk6+9Pr9c=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=D/e/N/QmNbh7aW5o13q79Qm9OfG62hFAxnlmxyhm51wA8sGhTYf40U+iSz9jOyguD
+	 5nzb5zElE6FLYiQC3nwQa2vKJPfIV5jDuL7lhD7Z/DP4uHKmNWI2ZgL14kOb/gKs7S
+	 /Y6Ge1fTTrzUqpRZAlPuHgLp6o9yowOBdlZkx7HzMOgIThC5wKbmOfSYndI7yMZiqP
+	 /r6DWCXtnLoycW8MFQj+1cZV4aOpEb6mhoqkZto00PeYeT2jOT34ReRTo9ffBkx51D
+	 1vnPy3hMmLc0PMD5uYV1DkFIxlKRMcTPX5Wx8JoWhfRfmc6n4x/T6O0FGsoB8iLq8q
+	 /k0HRKLQ1Xgaw==
+Date: Sun, 7 Jan 2024 15:58:38 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Javier Carrasco <javier.carrasco.cruz@gmail.com>
+Cc: Christian Eggers <ceggers@arri.de>, Lars-Peter Clausen
+ <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH v2 0/3] iio: light: add support for AMS AS7331
+Message-ID: <20240107155838.376bdd1e@jic23-huawei>
+In-Reply-To: <20240103-as7331-v2-0-6f0ad05e0482@gmail.com>
+References: <20240103-as7331-v2-0-6f0ad05e0482@gmail.com>
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.39; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="s8USj2oRmKnie6rD"
-Content-Disposition: inline
-In-Reply-To: <CY8DP6O8C72H.2XTJT3P7XZAKE@gimli.ms.mff.cuni.cz>
-X-Cookie: You might have mail.
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
+On Wed, 03 Jan 2024 13:08:50 +0100
+Javier Carrasco <javier.carrasco.cruz@gmail.com> wrote:
 
---s8USj2oRmKnie6rD
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+> The AMS AS7331 UV light sensor measures three ultraviolet bands (UVA,
+> UVB and UVC, also known as deep UV or DUV) as well as temperature.
+> 
+> This device is practically identical to the AMS AS73211 XYZ True Color
+> sensor that is already supported by the iio subsystem, except for the
+> photodiodes used to aquire the desired light wavelengths.
+> 
+> In order to reuse code and reduce maintenance load, this series extends
+> the AS73211 driver to support the AS7331 as well.
+> 
+> Note that the UVA and UVB light modifiers have not been merged into the
+> mainline kernel yet, but they are already available in Greg's char-misc
+> git tree which can be found at
+> git://git.kernel.org/pub/scm/linux/kernel/git/gregkh/char-misc.git
+> in the char-misc-next branch.
+> 
+> The original device AS73211 supported by the driver could only be tested
+> briefly due to the lack of hardware. Instead, the i2c-stub module has
+> been used to make sure that the driver registers the iio device properly
+> and the attributes exported to sysfs are correct. Some basic register
+> assignments reported the expected intensity scales and in principle
+> nothing else should have been affected by the modifications in the code.
+> 
+> Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
+Hi Javier,
 
-On Sun, Jan 07, 2024 at 10:49:20AM +0100, Karel Balej wrote:
-> On Fri Jan 5, 2024 at 4:18 PM CET, Mark Brown wrote:
+Series applied - but given timing I'll only push this out as testing for
+now as I'll want to rebase the IIO tree on rc1 once available in a couple of
+weeks time.
 
-> > Why are we adding an of_compatible here?  It's redundant, the MFD split
-> > is a feature of Linux internals not of the hardware, and the existing
-> > 88pm8xx MFD doesn't use them.
+Thanks,
 
-> in a feedback to my MFD series, Rob Herring pointed out that there is no
-> need to have a devicetree node for a subdevice if it only contains
-> "compatible" as the MFD driver can instantiate subdevices itself. I
-> understood that this is what he was referring to, but now I suspect that
-> it is sufficient for the mfd_cell.name to be set to the subdevice driver
-> name for this - is that correct?
+Jonathan
 
-That's what I'd expect, yes.
+> ---
+> Changes in v2:
+> - as73211.c: Use IIO_VAL_FRACTIONAL to retrieve scales of AS73211.
+> - as73211.c: simplify device-specific data retrieval in probe function.
+> - as73211.c: minor coding-style fix (shorter line).
+> - Link to v1: https://lore.kernel.org/r/20231220-as7331-v1-0-745b73c27703@gmail.com
+> 
+> ---
+> Javier Carrasco (3):
+>       iio: light: as73211: use IIO_VAL_FRACTIONAL for intensity scales
+>       dt-bindings: iio: light: as73211: add support for as7331
+>       iio: light: as73211: add support for as7331
+> 
+>  .../devicetree/bindings/iio/light/ams,as73211.yaml |   7 +-
+>  drivers/iio/light/Kconfig                          |   5 +-
+>  drivers/iio/light/as73211.c                        | 142 +++++++++++++++++----
+>  3 files changed, 123 insertions(+), 31 deletions(-)
+> ---
+> base-commit: e9215fcca2561b208c78359110ee4009b454f761
+> change-id: 20231220-as7331-88a25ceeb66d
+> 
+> Best regards,
 
---s8USj2oRmKnie6rD
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmWawpoACgkQJNaLcl1U
-h9DhFwf+Jz6UXXtD4QhjnIO3kEzlyxFuWrVQTr+TtTr7riXooGHR8h4MPzuSIScr
-WdXeG9UwpiOW1ZsTZu4Gf7hV9TuHwzbGwn1a00Kaz4OqezE9NaTXNpYm6AE8ePCY
-zz+uBysvMyx3Fs1AZQJTr2iIc9feFljq71sHJCDDtVABBMHQXq2zMU5RTG6tIo93
-InC8rg0MP0QOo8rZVRpAPgz/ABt42acJ3k+JEfu2gnlR9v83Fq5B4ngOHPm1dztc
-XDYPM/gKAPZ+7TicoXlH72Rj2hMaNBwEDSgx5A+PdrqFUrvuIBaH6KJRTNCGWDWb
-lcAjyGUtrpj/G92M1YuYXHgxOzKunQ==
-=bmif
------END PGP SIGNATURE-----
-
---s8USj2oRmKnie6rD--
 
