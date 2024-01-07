@@ -1,116 +1,95 @@
-Return-Path: <devicetree+bounces-30047-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30048-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E583682641E
-	for <lists+devicetree@lfdr.de>; Sun,  7 Jan 2024 14:02:22 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C3D68826494
+	for <lists+devicetree@lfdr.de>; Sun,  7 Jan 2024 16:04:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 43B0FB2152F
-	for <lists+devicetree@lfdr.de>; Sun,  7 Jan 2024 13:02:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5B573281F5E
+	for <lists+devicetree@lfdr.de>; Sun,  7 Jan 2024 15:04:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1767212E75;
-	Sun,  7 Jan 2024 13:02:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 642BC12E6F;
+	Sun,  7 Jan 2024 15:04:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=gimli.ms.mff.cuni.cz header.i=@gimli.ms.mff.cuni.cz header.b="OZLNm4bn"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KdVm5ub/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from nikam.ms.mff.cuni.cz (nikam.ms.mff.cuni.cz [195.113.20.16])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f47.google.com (mail-pj1-f47.google.com [209.85.216.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C3E1134A5;
-	Sun,  7 Jan 2024 13:02:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gimli.ms.mff.cuni.cz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gimli.ms.mff.cuni.cz
-Received: from gimli.ms.mff.cuni.cz (gimli.ms.mff.cuni.cz [195.113.20.176])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
-	(No client certificate requested)
-	by nikam.ms.mff.cuni.cz (Postfix) with ESMTPS id B25DA2807E5;
-	Sun,  7 Jan 2024 14:02:09 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gimli.ms.mff.cuni.cz;
-	s=gen1; t=1704632529;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=p9vUeDmoQ6ArSFOj4UH5MFCzRsfwDhilZfFeJMCpNBU=;
-	b=OZLNm4bn42sIpotvh4BiK6wETj6k8k7b1ArKiDkvWdGgKZ/woikVHHc163NG5YYqE2CI5W
-	P9GuKmTZE1rZ4hWAZVLpkt0PulLIzAFh78YEeGr8/rhxZpLp1MSB4IEKSBRI+mlh4ByKu1
-	kQYLRdatIC1brvMVZNVho1KnwLwFvYs=
-Received: from localhost (koleje-wifi-0044.koleje.cuni.cz [78.128.191.44])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	(Authenticated sender: karelb)
-	by gimli.ms.mff.cuni.cz (Postfix) with ESMTPSA id 588C14578AF;
-	Sun,  7 Jan 2024 14:02:09 +0100 (CET)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A5B7134B5;
+	Sun,  7 Jan 2024 15:04:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f47.google.com with SMTP id 98e67ed59e1d1-28be024282bso479790a91.3;
+        Sun, 07 Jan 2024 07:04:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1704639857; x=1705244657; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:in-reply-to:mime-version:references
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Y9DFtOnYcuYLbthZu8GyH/yWr9rDVB4FldI//OpySZM=;
+        b=KdVm5ub/bDSgjo2RcTI/W5OWlEA/Uvi6NkVkWsLc9PGzw8Tee6wzXnkV2Jqsey/4pO
+         5QRZct2LwJI+GAFBH5ogkrqPbcZJAMlMAeDlR8mcJeq6UH3UE50Ej+SvJT8eMQdrt9AJ
+         mEm6jBOijbnTnzLWSsHIlORdegFTA5q+h1CRpsqNn874+W2ynxyR/G0+mIB5bSkpJXrc
+         dehmq4lqnenP+Jha/h/RajCNNM4BQBZo0igG7W9g4pTrT7Z3HdYCciMQAO2YnMYTSlZv
+         dtpfRlOROrCgUZA5Vf4FBP2et6VfPMY9Fjn4XEQrPiHTuSF/EBMGFho18yZH8KcT8Kgt
+         cpCQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1704639857; x=1705244657;
+        h=cc:to:subject:message-id:date:in-reply-to:mime-version:references
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Y9DFtOnYcuYLbthZu8GyH/yWr9rDVB4FldI//OpySZM=;
+        b=sw+2ipyb9C6ygykGO8wPY967fyQjOXtU4XfzdPgHEfJbFLxVBeLPamD7vbeUTZ8Ljm
+         N+2wlW6RRT5ZixVYThqqgaohKb3mvHBAgcfYf/jIzL7wLZmrSHtxx9APjZk99o+z0uSH
+         QrUY14HTLgq2SikLZujn6J0qesmT5WT82A6A49C3geEbayDzLGOa55s4/HC/+PH6EzTG
+         p2PH+1ETIlaDi+9pcsXCXES+9OHGmfvdLF/JZf/kPIB3WASD4BUb8dnm+nQNbXzWtNbH
+         e6rt5Gobigq75nMwPQcUQDTQoUo+5XVpG43yuX7NrlX6F1UflhlTOb3YTXcBSe3oahze
+         e6rw==
+X-Gm-Message-State: AOJu0YwwyjInv6G2uwI5RgRtduohAWPlGcXBSLrEKcoN1t2YmXiG1gyr
+	mQJcQdLsjHUrFK75pwiRTTgTS8DuD13YpOvMdt0=
+X-Google-Smtp-Source: AGHT+IEL3+CQwidPkJAtFRVwwztI/bLaVkekxlNulT3EdHSdaC3VJm9hek03kju1FI52ClY9FmszrgkbqfJoTX37rNA=
+X-Received: by 2002:a17:90a:560e:b0:28c:2cd8:583a with SMTP id
+ r14-20020a17090a560e00b0028c2cd8583amr526390pjf.9.1704639857278; Sun, 07 Jan
+ 2024 07:04:17 -0800 (PST)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Sun, 7 Jan 2024 07:04:16 -0800
+From: Amit Dhingra <mechanicalamit@gmail.com>
+References: <CAO=gReHEWnw0fnktH0Ka-bvJdy82HHsoyAuZXyPoEzMDzNu1qQ@mail.gmail.com>
+ <1d214914-9ff1-4756-a9a9-564410013681@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Sun, 07 Jan 2024 14:02:36 +0100
-Message-Id: <CY8HT5NHUF4D.X59U8LV1BCFW@gimli.ms.mff.cuni.cz>
-Cc: =?utf-8?q?Duje_Mihanovi=C4=87?= <duje.mihanovic@skole.hr>,
- <~postmarketos/upstreaming@lists.sr.ht>, <phone-devel@vger.kernel.org>
-Subject: Re: [RFC PATCH 4/5] regulator: add 88pm88x regulators driver
-To: "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>, "Karel Balej"
- <balejk@matfyz.cz>, "Lee Jones" <lee@kernel.org>, "Rob Herring"
- <robh+dt@kernel.org>, "Krzysztof Kozlowski"
- <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley" <conor+dt@kernel.org>,
- "Liam Girdwood" <lgirdwood@gmail.com>, "Mark Brown" <broonie@kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-From: "Karel Balej" <karelb@gimli.ms.mff.cuni.cz>
-References: <20231228100208.2932-1-karelb@gimli.ms.mff.cuni.cz>
- <20231228100208.2932-5-karelb@gimli.ms.mff.cuni.cz>
- <e5e2ff07-fe29-4ff1-abc8-7250c756154e@linaro.org>
-In-Reply-To: <e5e2ff07-fe29-4ff1-abc8-7250c756154e@linaro.org>
+MIME-Version: 1.0
+In-Reply-To: <1d214914-9ff1-4756-a9a9-564410013681@linaro.org>
+Date: Sun, 7 Jan 2024 07:04:16 -0800
+Message-ID: <CAO=gReGp+e9S6UAc+-qLkKa5W7OdwFZuT_Dkn1iVu+gNFR8kCQ@mail.gmail.com>
+Subject: Re: [PATCH] MAINTAINERS : Correct entry for da90??-watchdog in DIALOG SEMICONDUCTOR
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Nik Bune <n2h9z4@gmail.com>, Steve Twiss <stwiss.opensource@diasemi.com>, 
+	Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>, Lee Jones <lee.jones@linaro.org>, 
+	wim@linux-watchdog.org, Support Opensource <support.opensource@diasemi.com>, 
+	kernel-janitors@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On Sun Jan 7, 2024 at 11:35 AM CET, Krzysztof Kozlowski wrote:
-> On 28/12/2023 10:39, Karel Balej wrote:
-> > diff --git a/drivers/mfd/88pm88x.c b/drivers/mfd/88pm88x.c
-> > index 69a8e39d43b3..999d0539b720 100644
-> > --- a/drivers/mfd/88pm88x.c
-> > +++ b/drivers/mfd/88pm88x.c
-> > @@ -68,6 +68,21 @@ static struct mfd_cell pm886_devs[] =3D {
-> >  		.num_resources =3D ARRAY_SIZE(pm88x_onkey_resources),
-> >  		.resources =3D pm88x_onkey_resources,
-> >  	},
-> > +	{
-> > +		.name =3D "88pm88x-regulator",
-> > +		.id =3D PM88X_REGULATOR_ID_LDO2,
-> > +		.of_compatible =3D "marvell,88pm88x-regulator",
-> > +	},
-> > +	{
-> > +		.name =3D "88pm88x-regulator",
-> > +		.id =3D PM88X_REGULATOR_ID_LDO15,
-> > +		.of_compatible =3D "marvell,88pm88x-regulator",
-> > +	},
-> > +	{
-> > +		.name =3D "88pm88x-regulator",
-> > +		.id =3D PM886_REGULATOR_ID_BUCK2,
-> > +		.of_compatible =3D "marvell,88pm88x-regulator",
+On Sun, Jan 07, 2024 at 01:11:52PM +0100, Krzysztof Kozlowski wrote:
+> Already sent:
+> https://lore.kernel.org/all/20231203113159.92316-2-biju.das.jz@bp.renesas.com/
 >
-> Same compatible per each regulator looks suspicious, if not even wrong.
-> What are these?
+> and here:
+>
+> https://lore.kernel.org/all/20231106095349.9564-1-lukas.bulwahn@gmail.com/
 
-The original attempt for upstreaming this MFD had a different compatible
-for each regulator which was not correct according to the reviewers at
-the time. I have thus used the same compatible for all regulators and
-make the distinction in the regulator driver (using the .id property).
-But I think that the problem here is again that I have confused the
-purpose of .name and .of_compatible properties of struct mfd_cell - if a
-driver is probed due to the .name property then I indeed should not need
-compatible for the regulator driver at all.
+The more the merrier?
+
+Note to self: Search lore before working on a patch!!
+
+- Amit
 
 >
 > Best regards,
 > Krzysztof
-
-Best regards,
-K. B.
+>
 
