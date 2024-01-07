@@ -1,119 +1,96 @@
-Return-Path: <devicetree+bounces-30055-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30056-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96BA182650B
-	for <lists+devicetree@lfdr.de>; Sun,  7 Jan 2024 17:20:05 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D3234826523
+	for <lists+devicetree@lfdr.de>; Sun,  7 Jan 2024 17:40:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8FD0DB20FC9
-	for <lists+devicetree@lfdr.de>; Sun,  7 Jan 2024 16:20:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7CD3C282179
+	for <lists+devicetree@lfdr.de>; Sun,  7 Jan 2024 16:40:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2374013ADD;
-	Sun,  7 Jan 2024 16:19:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 767D312B7D;
+	Sun,  7 Jan 2024 16:40:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZqFx6g7I"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IHbt0KpC"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02B7F13AD5;
-	Sun,  7 Jan 2024 16:19:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 54A02C433C8;
-	Sun,  7 Jan 2024 16:19:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5747012B60;
+	Sun,  7 Jan 2024 16:40:24 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id B727BC433C9;
+	Sun,  7 Jan 2024 16:40:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1704644397;
-	bh=uIAD5Kp2kfFIl9FoggQDWcZuqpMzhfaqIRSk/vA2DQM=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=ZqFx6g7ImUgF+nkjBx9CrvDhk+3HY7beJOk1JAw5Kb9KYcl5sIoIiil23pNiWFIzE
-	 H5ZYXTaENWD3s4Uw170hu52T+13Zeeanp2+wBT7DQR25FhAzFzovEQ4EdBuiKcJ0Xa
-	 /RhA7Jel5bjtL+7TszdlfUvkHaW+uWLH28EjLNloNXAcAa+4NFNE5XosVe754Yyx+C
-	 piZIiaGdfBRsXukEtf9LZmdDM4p2OyudONueEz/4iPfAxtFsRJC893biNgAP/hlpjb
-	 yJdCutBCKdCv5it4noOCIsPjQxlvh/giq3Pq00HVigTVlLp4GRBEW61dRyz0FvSl/8
-	 ZmJNeztyA8pIQ==
-Date: Sun, 7 Jan 2024 16:19:49 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: <cy_huang@richtek.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, Rob Herring
- <robh+dt@kernel.org>, Uwe =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?=
- <u.kleine-koenig@pengutronix.de>, <linux-iio@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v4 2/2] iio: adc: rtq6056: Add support for the whole
- RTQ6056 family
-Message-ID: <20240107161949.04ec0011@jic23-huawei>
-In-Reply-To: <2980b67de00bae1fc25004188e8aabf53073d940.1704357933.git.cy_huang@richtek.com>
-References: <cover.1704357933.git.cy_huang@richtek.com>
-	<2980b67de00bae1fc25004188e8aabf53073d940.1704357933.git.cy_huang@richtek.com>
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.39; x86_64-pc-linux-gnu)
+	s=k20201202; t=1704645623;
+	bh=xJqTpdHlsLkBAuHocAoxuNoxLY3qzEXuQy/c9JHk+s0=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=IHbt0KpCwhjDyH/rAE8sir2BMYQ33KvASkvfBX40YxDm4klh+qK8Dhv2ovn9SbnPk
+	 /Vgj1bKs4H42Uav6qUXPT7Kit1VolhcH4kKGgz23+AoGf/NrE/BNG84NYdWZ7af9GQ
+	 jU69Ka6YW/psTlafj5ivo2+IWXITiIGh/RKtKi+WfcyYG2wq+pw1fjW1YI/4sh/n8r
+	 iaN2XwNKmCVLuPprWw8jcQoJlF7PHsjY8M5/KY+MLcejZzDOUk3x3nCxZNJ7K7gQna
+	 gQhS4IzyWYSPdhK5jNtIC5uVrYtsMrle5dQmYQld45tWuCY0WXYj32S3U36ZHsDkqC
+	 lEwU9n9CSk52Q==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 9C3ADC4167E;
+	Sun,  7 Jan 2024 16:40:23 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH net-next v2 0/4] net: stmmac: Enable Per DMA Channel interrupt
+From: patchwork-bot+netdevbpf@kernel.org
+Message-Id: 
+ <170464562363.18664.8264531122295136817.git-patchwork-notify@kernel.org>
+Date: Sun, 07 Jan 2024 16:40:23 +0000
+References: <20240105070925.2948871-1-leong.ching.swee@intel.com>
+In-Reply-To: <20240105070925.2948871-1-leong.ching.swee@intel.com>
+To: Leong Ching Swee <leong.ching.swee@intel.com>
+Cc: mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com,
+ joabreu@synopsys.com, davem@davemloft.net, edumazet@google.com,
+ kuba@kernel.org, pabeni@redhat.com, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ peppe.cavallaro@st.com, linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org
 
-On Thu, 4 Jan 2024 17:03:31 +0800
-<cy_huang@richtek.com> wrote:
+Hello:
 
-> From: ChiYuan Huang <cy_huang@richtek.com>
+This series was applied to netdev/net-next.git (main)
+by David S. Miller <davem@davemloft.net>:
+
+On Fri,  5 Jan 2024 15:09:21 +0800 you wrote:
+> From: Swee Leong Ching <leong.ching.swee@intel.com>
 > 
-> RTQ6053 and RTQ6059 are the same series of RTQ6056.
+> Hi,
+> Add Per DMA Channel interrupt feature for DWXGMAC IP.
 > 
-> The respective differences with RTQ6056 are listed below
-> RTQ6053
-> - chip package type
+> Patchset (link below) contains per DMA channel interrupt, But it was
+> achieved.
+> https://lore.kernel.org/lkml/20230821203328.GA2197059-
+> robh@kernel.org/t/#m849b529a642e1bff89c05a07efc25d6a94c8bfb4
 > 
-> RTQ6059
-> - Reduce the pinout for vbus sensing pin
-> - Some internal ADC scaling change
-> 
-> Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
-Hi. 
+> [...]
 
-One last follow on comment based on v4 changes to the enum naming.
-I think you missed one place they should be updated - the reg_field
-definitions.
+Here is the summary with links:
+  - [net-next,v2,1/4] dt-bindings: net: snps,dwmac: per channel irq
+    https://git.kernel.org/netdev/net-next/c/67d47c8ada0f
+  - [net-next,v2,2/4] net: stmmac: Make MSI interrupt routine generic
+    https://git.kernel.org/netdev/net-next/c/477bd4beb93b
+  - [net-next,v2,3/4] net: stmmac: Add support for TX/RX channel interrupt
+    https://git.kernel.org/netdev/net-next/c/9072e03d3208
+  - [net-next,v2,4/4] net: stmmac: Use interrupt mode INTM=1 for per channel irq
+    https://git.kernel.org/netdev/net-next/c/36af9f25ddfd
 
-Thanks,
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
 
-Jonathan
-
-
->  
-> +/*
-> + * The enum is to present the 0x00 CONFIG RG bitfield for the 16bit RG value
-> + * field value order from LSB to MSB
-> + * RTQ6053/6 is OPMODE->VSHUNTCT->VBUSCT->AVG->RESET
-> + * RTQ6059 is OPMODE->SADC->BADC->PGA->RESET
-> + */
->  enum {
->  	F_OPMODE = 0,
->  	F_VSHUNTCT,
-> +	F_RTQ6059_SADC = F_VSHUNTCT,
->  	F_VBUSCT,
-> +	F_RTQ6059_BADC = F_VBUSCT,
->  	F_AVG,
-> +	F_RTQ6059_PGA = F_AVG,
->  	F_RESET,
->  	F_MAX_FIELDS
->  };
-
->  
-> +static const struct reg_field rtq6059_reg_fields[F_MAX_FIELDS] = {
-> +	[F_OPMODE] = REG_FIELD(RTQ6056_REG_CONFIG, 0, 2),
-> +	[F_VSHUNTCT] = REG_FIELD(RTQ6056_REG_CONFIG, 3, 6),
-> +	[F_VBUSCT] = REG_FIELD(RTQ6056_REG_CONFIG, 7, 10),
-> +	[F_AVG]	= REG_FIELD(RTQ6056_REG_CONFIG, 11, 12),
-> +	[F_RESET] = REG_FIELD(RTQ6056_REG_CONFIG, 15, 15),
-
-Given these are the rtq6059 regfield definitions should they not be
-using the new enum names?
-
-> +};
-> +
 
 
