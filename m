@@ -1,78 +1,77 @@
-Return-Path: <devicetree+bounces-30068-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30069-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C43528265FA
-	for <lists+devicetree@lfdr.de>; Sun,  7 Jan 2024 21:52:23 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B997826612
+	for <lists+devicetree@lfdr.de>; Sun,  7 Jan 2024 22:24:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BFDF61C215A0
-	for <lists+devicetree@lfdr.de>; Sun,  7 Jan 2024 20:52:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0EF1A1F2153D
+	for <lists+devicetree@lfdr.de>; Sun,  7 Jan 2024 21:24:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C543C1171A;
-	Sun,  7 Jan 2024 20:52:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 720D31171C;
+	Sun,  7 Jan 2024 21:24:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hSpIvbE8"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fg+do+RN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
+Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1592F11706;
-	Sun,  7 Jan 2024 20:52:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE086125C1;
+	Sun,  7 Jan 2024 21:24:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-50e7f58c5fbso1313710e87.1;
-        Sun, 07 Jan 2024 12:52:15 -0800 (PST)
+Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-2cd3f7e2aa1so12685521fa.3;
+        Sun, 07 Jan 2024 13:24:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1704660734; x=1705265534; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1704662667; x=1705267467; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=e5PMeecEEo3AqtvbhWJChBGMmTa++0S5sl1/vnCPNtk=;
-        b=hSpIvbE8fDC1To4OQpqhgNOcG7GLsR9cA7R0X/ZXGrqCybSTKL+IOtbwqi58eKU2wq
-         ByA2w6cCqL0GBQRe2vHDvTLhw2ITjsszaABXQXL2DHda8qP5nwZRC8biHuIwu8x9k3Nb
-         Fo0MDvmsNcfSXdkcps/tKXgXlf4gzGvWJic2YSVtFTaX7U/x22sA2diSYIfywHaKd4gv
-         3xMr9akn67DgyE7UIXCH0z8MjKj2/vQgAaBCPIkF3O/w7M9znGM3NKNcfVdLsfvRmanl
-         2Vlq3pGM0W4l/Sf0n1QSRMmUGcYDBtL5ygRxblPGTcMavp8ElFMG8DpScQKGwnnDLZBJ
-         eN5A==
+        bh=XFnIRrpkSbC/64HOL4C9Wb0js1kawE+Mq2O/pxg8xmk=;
+        b=fg+do+RNHgPpGIYi3ECbYkhq0RBbitQaYfPfYR2Xhn6KupiSCHDk8JiDtyWN1yWOtn
+         FbSN1ALTk9D7pBnlkk86Wm7E3os6JS3G0WEm88R+GBTwwhCWDULukE27+qKzOc2Shz9S
+         m+/18lho7XMgJuxQXfvw4R9+PnvkE986AupZM8+uiaQlmGa+y9pHm+hAqfeCl8qrnjyo
+         faNp0BxfAQz2+ziMJM1Y6mwNYUC3/olOmhGsdpAJxZ+HwSry/epO2RbO8L1WO02VTP17
+         luEqLfm8ig7fqArY/4HhPAlEUWFN52QVNjBJbTETIYJYFiGb1ObSe59/zNKg32v6dXD7
+         6mQQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704660734; x=1705265534;
+        d=1e100.net; s=20230601; t=1704662667; x=1705267467;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=e5PMeecEEo3AqtvbhWJChBGMmTa++0S5sl1/vnCPNtk=;
-        b=ZwlOoO5XWeoYAY6417HeArU+x7Z04cZyfCmobAaXZ9h1oLhyM0RD3L0Gwl3/cwQ4tV
-         t9w4uxAdXfguYbSTV328Ii4VE5X7rt5f4oN06dDXf33cSR+nrc40yfznpIzmPPWMdxjZ
-         iL7Ee6ux/3UMrIpzChuf+7yT6nNJZ+BeJnv9vDjZsu0chjAjROKzS86k0VYEKoK7ov3+
-         v5YtDAosRgKfmfnRv/ruyR5Tu5nl28DMcY9J2xsBw+ufYL4kK80LsMobXCKb7GsaGcu4
-         JcypZoCJcRumxXbjmeZnQoyVCIfDfforWwMqzE0JC+lMHLRbluL/Bp2DZlE9yYz0BwxI
-         STkA==
-X-Gm-Message-State: AOJu0YwwcXUjsOun6+tEdhmthtDKGEjr2bpWHqwbC2Zw3x1Rqc00UxI+
-	0bHDN9tQFjdoH0mTBXURtr4=
-X-Google-Smtp-Source: AGHT+IGJQYWRpMRV/Lg31RH/oBbOsUP/kNiVqW8GI/ctj2lJw+LfzVDraxmhGM4BQagSFwFrbPuZTg==
-X-Received: by 2002:a05:6512:3d05:b0:50e:56b6:593e with SMTP id d5-20020a0565123d0500b0050e56b6593emr1380348lfv.89.1704660733959;
-        Sun, 07 Jan 2024 12:52:13 -0800 (PST)
+        bh=XFnIRrpkSbC/64HOL4C9Wb0js1kawE+Mq2O/pxg8xmk=;
+        b=YkvCGPjV9a8zjTh9Xz9zL7MjO0NlT33UFpxLeMLUocSJqvyUwVkEXT2i+x5jbVh9vm
+         peMNKwg3q76hFKMUGUP0XkaAklvaaEmTQi59RX90c6QhWyYjPWJ0kHDiIYCCdfis1aI4
+         qF8VdWobqjYvfDK+qQJ236DdAEfQZ/pocjfdYg/WMrqVwIque627k1Q2pye14L3epu4G
+         pOsQa610pJpQqs+vUJiPuUiDKypuDiRzsLl7EtYCXheTiLn9QZ4ypRFw9tPCjyDc1KkI
+         Ghk+XEt/i/0tBmpSjWXCa1tMSim9vTNUjKeB07Uy1CsIcqUr4H78az1+8xPgAgHy2FY3
+         YNcA==
+X-Gm-Message-State: AOJu0Yw/m6d32/avkoSiETL4cQzRoRVXGQmr0hmlEGx0nT+OqU+WUh1b
+	FgAvXDf5SH4wQbHMdhhQzs8=
+X-Google-Smtp-Source: AGHT+IER9MaKT2qvx1MI99o0WSTaPtwEj5cDYIJcz4ctg0ZfI0flzoX8d2s4lIT+IDI+w9kt9A4HVQ==
+X-Received: by 2002:a2e:9d13:0:b0:2cd:c15:1b6e with SMTP id t19-20020a2e9d13000000b002cd0c151b6emr1038169lji.22.1704662667456;
+        Sun, 07 Jan 2024 13:24:27 -0800 (PST)
 Received: from mobilestation ([95.79.203.166])
-        by smtp.gmail.com with ESMTPSA id a8-20020a19ca08000000b0050e810689e5sm950590lfg.33.2024.01.07.12.52.12
+        by smtp.gmail.com with ESMTPSA id u20-20020a05651c141400b002ccd8e66dd1sm1301962lje.138.2024.01.07.13.24.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 07 Jan 2024 12:52:13 -0800 (PST)
-Date: Sun, 7 Jan 2024 23:52:11 +0300
+        Sun, 07 Jan 2024 13:24:26 -0800 (PST)
+Date: Mon, 8 Jan 2024 00:24:24 +0300
 From: Serge Semin <fancer.lancer@gmail.com>
-To: Leong Ching Swee <leong.ching.swee@intel.com>
-Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
-	Alexandre Torgue <alexandre.torgue@foss.st.com>, Jose Abreu <joabreu@synopsys.com>, 
-	"David S . Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Giuseppe Cavallaro <peppe.cavallaro@st.com>, 
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+	Leong Ching Swee <leong.ching.swee@intel.com>, "David S. Miller" <davem@davemloft.net>
+Cc: patchwork-bot+netdevbpf@kernel.org, mcoquelin.stm32@gmail.com, 
+	alexandre.torgue@foss.st.com, joabreu@synopsys.com, davem@davemloft.net, edumazet@google.com, 
+	kuba@kernel.org, pabeni@redhat.com, robh+dt@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, peppe.cavallaro@st.com, 
 	linux-stm32@st-md-mailman.stormreply.com, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, netdev@vger.kernel.org, devicetree@vger.kernel.org, 
-	Teoh Ji Sheng <ji.sheng.teoh@intel.com>
-Subject: Re: [PATCH net-next v2 4/4] net: stmmac: Use interrupt mode INTM=1
- for per channel irq
-Message-ID: <jvnoq2jo3dzsw3vuqzathjuyox3xipaullzeaur3ppzlmtux5k@v64tckj7pvo2>
+	linux-kernel@vger.kernel.org, netdev@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next v2 0/4] net: stmmac: Enable Per DMA Channel
+ interrupt
+Message-ID: <px2f336zjgibl43utjnnljzjweypu5jxovhgthc4xruidvpl3q@yobulxczk7vh>
 References: <20240105070925.2948871-1-leong.ching.swee@intel.com>
- <20240105070925.2948871-5-leong.ching.swee@intel.com>
+ <170464562363.18664.8264531122295136817.git-patchwork-notify@kernel.org>
+ <2df9fe3e-7971-4aa2-89a9-0e085b3b00d7@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,102 +80,52 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240105070925.2948871-5-leong.ching.swee@intel.com>
+In-Reply-To: <2df9fe3e-7971-4aa2-89a9-0e085b3b00d7@linaro.org>
 
-On Fri, Jan 05, 2024 at 03:09:25PM +0800, Leong Ching Swee wrote:
-> From: Swee Leong Ching <leong.ching.swee@intel.com>
+On Sun, Jan 07, 2024 at 08:06:55PM +0100, Krzysztof Kozlowski wrote:
+> On 07/01/2024 17:40, patchwork-bot+netdevbpf@kernel.org wrote:
+> > Hello:
+> > 
+> > This series was applied to netdev/net-next.git (main)
+> > by David S. Miller <davem@davemloft.net>:
+> > 
+> > On Fri,  5 Jan 2024 15:09:21 +0800 you wrote:
+> >> From: Swee Leong Ching <leong.ching.swee@intel.com>
+> >>
+> >> Hi,
+> >> Add Per DMA Channel interrupt feature for DWXGMAC IP.
+> >>
+> >> Patchset (link below) contains per DMA channel interrupt, But it was
+> >> achieved.
+> >> https://lore.kernel.org/lkml/20230821203328.GA2197059-
+> >> robh@kernel.org/t/#m849b529a642e1bff89c05a07efc25d6a94c8bfb4
+> >>
+> >> [...]
+> > 
+> > Here is the summary with links:
+> >   - [net-next,v2,1/4] dt-bindings: net: snps,dwmac: per channel irq
+> >     https://git.kernel.org/netdev/net-next/c/67d47c8ada0f
 > 
-> Enable per DMA channel interrupt that uses shared peripheral
-> interrupt (SPI), so only per channel TX and RX intr (TI/RI)
-> are handled by TX/RX ISR without calling common interrupt ISR.
-> 
-> Signed-off-by: Teoh Ji Sheng <ji.sheng.teoh@intel.com>
-> Signed-off-by: Swee Leong Ching <leong.ching.swee@intel.com>
-> ---
->  .../net/ethernet/stmicro/stmmac/dwxgmac2.h    |  3 ++
->  .../ethernet/stmicro/stmmac/dwxgmac2_dma.c    | 32 +++++++++++--------
->  2 files changed, 22 insertions(+), 13 deletions(-)
-> 
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwxgmac2.h b/drivers/net/ethernet/stmicro/stmmac/dwxgmac2.h
-> index 207ff1799f2c..04bf731cb7ea 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/dwxgmac2.h
-> +++ b/drivers/net/ethernet/stmicro/stmmac/dwxgmac2.h
-> @@ -346,6 +346,9 @@
->  /* DMA Registers */
->  #define XGMAC_DMA_MODE			0x00003000
->  #define XGMAC_SWR			BIT(0)
+> Please wait for DT bindings review a bit more than one working day (I
+> don't count Saturday and Sunday, because we all have some life...).
 
-> +#define XGMAC_DMA_MODE_INTM_MASK	GENMASK(13, 12)
-> +#define XGMAC_DMA_MODE_INTM_SHIFT	12
-> +#define XGMAC_DMA_MODE_INTM_MODE1	0x1
++1. Would be very nice to have some more time to review the rest of
+the bits too. This would be specifically important for the STMMAC
+driver which doesn't currently have active maintainer. What about 5-10
+work days to make sure that no comment would be submitted? Besides I
+thought that no features were supposed to be submitted during the
+merge window. Are we over the merge window already? (I might have lost
+track of time on the holidays.)
 
-AFAICS the DW XGMAC module doesn't maintain a convention of having the
-CSR fields macro names prefixed with the CSR name. Let's drop the
-DMA_MODE suffix from the macro name then:
-+#define XGMAC_INTM_MASK		GENMASK(13, 12)
-+#define XGMAC_INTM_SHIFT		12
-+#define XGMAC_INTM_MODE1		0x1
-to have it unified with the rest of the macros in dwxgmac2.h.
-
-Other than that the change looks good. Thanks.
+Leong, next time before re-submitting your patchsets please wait for
+some more time than just two days. I waited for your response for
+almost two weeks.
 
 -Serge(y)
 
->  #define XGMAC_DMA_SYSBUS_MODE		0x00003004
->  #define XGMAC_WR_OSR_LMT		GENMASK(29, 24)
->  #define XGMAC_WR_OSR_LMT_SHIFT		24
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwxgmac2_dma.c b/drivers/net/ethernet/stmicro/stmmac/dwxgmac2_dma.c
-> index 3cde695fec91..dcb9f094415d 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/dwxgmac2_dma.c
-> +++ b/drivers/net/ethernet/stmicro/stmmac/dwxgmac2_dma.c
-> @@ -31,6 +31,13 @@ static void dwxgmac2_dma_init(void __iomem *ioaddr,
->  		value |= XGMAC_EAME;
->  
->  	writel(value, ioaddr + XGMAC_DMA_SYSBUS_MODE);
-> +
-> +	if (dma_cfg->multi_irq_en) {
-> +		value = readl(ioaddr + XGMAC_DMA_MODE);
-> +		value &= ~XGMAC_DMA_MODE_INTM_MASK;
-> +		value |= (XGMAC_DMA_MODE_INTM_MODE1 << XGMAC_DMA_MODE_INTM_SHIFT);
-> +		writel(value, ioaddr + XGMAC_DMA_MODE);
-> +	}
->  }
->  
->  static void dwxgmac2_dma_init_chan(struct stmmac_priv *priv,
-> @@ -365,19 +372,18 @@ static int dwxgmac2_dma_interrupt(struct stmmac_priv *priv,
->  	}
->  
->  	/* TX/RX NORMAL interrupts */
-> -	if (likely(intr_status & XGMAC_NIS)) {
-> -		if (likely(intr_status & XGMAC_RI)) {
-> -			u64_stats_update_begin(&rxq_stats->syncp);
-> -			rxq_stats->rx_normal_irq_n++;
-> -			u64_stats_update_end(&rxq_stats->syncp);
-> -			ret |= handle_rx;
-> -		}
-> -		if (likely(intr_status & (XGMAC_TI | XGMAC_TBU))) {
-> -			u64_stats_update_begin(&txq_stats->syncp);
-> -			txq_stats->tx_normal_irq_n++;
-> -			u64_stats_update_end(&txq_stats->syncp);
-> -			ret |= handle_tx;
-> -		}
-> +	if (likely(intr_status & XGMAC_RI)) {
-> +		u64_stats_update_begin(&rxq_stats->syncp);
-> +		rxq_stats->rx_normal_irq_n++;
-> +		u64_stats_update_end(&rxq_stats->syncp);
-> +		ret |= handle_rx;
-> +	}
-> +
-> +	if (likely(intr_status & (XGMAC_TI | XGMAC_TBU))) {
-> +		u64_stats_update_begin(&txq_stats->syncp);
-> +		txq_stats->tx_normal_irq_n++;
-> +		u64_stats_update_end(&txq_stats->syncp);
-> +		ret |= handle_tx;
->  	}
->  
->  	/* Clear interrupts */
-> -- 
-> 2.34.1
+> 
+> Best regards,
+> Krzysztof
 > 
 > 
 
