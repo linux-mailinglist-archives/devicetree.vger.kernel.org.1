@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-30032-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30033-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B6058263C1
-	for <lists+devicetree@lfdr.de>; Sun,  7 Jan 2024 11:30:25 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF3FE8263C4
+	for <lists+devicetree@lfdr.de>; Sun,  7 Jan 2024 11:34:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CBF4E1C20B89
-	for <lists+devicetree@lfdr.de>; Sun,  7 Jan 2024 10:30:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 22D6E1F21B37
+	for <lists+devicetree@lfdr.de>; Sun,  7 Jan 2024 10:34:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93E1710A05;
-	Sun,  7 Jan 2024 10:30:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C294212B9A;
+	Sun,  7 Jan 2024 10:34:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="B5zJxXaU"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="BfUhE9NC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEEA712B8D
-	for <devicetree@vger.kernel.org>; Sun,  7 Jan 2024 10:30:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D726D12B8C
+	for <devicetree@vger.kernel.org>; Sun,  7 Jan 2024 10:34:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-40d5f402571so13097475e9.0
-        for <devicetree@vger.kernel.org>; Sun, 07 Jan 2024 02:30:18 -0800 (PST)
+Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-a29058bb2ceso92548166b.0
+        for <devicetree@vger.kernel.org>; Sun, 07 Jan 2024 02:34:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704623417; x=1705228217; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1704623650; x=1705228450; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=n6FcraxlGE1/DMmhL0QqfoIXdq5XuF0l5shF76vlze0=;
-        b=B5zJxXaUNnMM58P/gKXyvZK5I1kqK/D70SfXFq2MdXIHp9viHySxODcCELxSwioc3+
-         ooPocT1GrrD+/CKv6g0Qrf4Y3TsgVbZDYtPUmNXJz1ZN9Z3qr/Oe+g21z4lCN1TshrLq
-         BGH5Xo214HWPrMZSdj17YderosXIN3sXoBgEHxCedObajVjcrjaTooaNlSP1uJX7lQxC
-         e6CgOvEazUOD2fdubp/y2G8zNADQ0cy425haxeF+oODR2OkFc0nhU3RM+7Z6XoJN3j+f
-         gg5cEvEKL23dowJ0/IGwwcQjB0GTKZoq/9Y21EyCENjP82GTp7vjmUuTOVZ12CHcJgMM
-         BDCg==
+        bh=WIe1BBB7vFKwCN3Qcq4fcZ44bbCcrLCDMm9KDGSJ3OU=;
+        b=BfUhE9NCUoahvynofj5kE5ChtXxL5U0Jyqwu4brpTXuMxknMmtHcdHpnY1q5/N9Xib
+         yvTgjlH6G4HQKnL+z8do40rUP0whfOhLm+7b2NcopfKzhF3m6SGx9o4w1ma05RAd0nNF
+         NOHD10nJSU4S9SFhaJVXqLDajWwkuSUQC+/yepm+0qJz4nrCJR/WG5hNlLveWWDbISug
+         QxPVmXhZjzJ2SoHFb2sxuARC3u0J5FnkpaeuuqLeqEzXWALTb0ck4dP4m9sSn2TOVNoT
+         xNeZyale1CY7U/OuqLN5zaqkp2yAaRNuOnkt8rgJhaF2tDV5HGA1gwB5I0p52JLHjbC3
+         l4GQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704623417; x=1705228217;
+        d=1e100.net; s=20230601; t=1704623650; x=1705228450;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=n6FcraxlGE1/DMmhL0QqfoIXdq5XuF0l5shF76vlze0=;
-        b=fHO1kWO8Q1Y+yUfX+zlHWTSp2XMGcuFsYKcvg1PERFPbs99bh2UAIBb7R/ytQwj3i+
-         iEgKM5a0Ycqwy4cYiNpoLme+IH5hK+cvMp0hlQg9RLkoG8piYSLcQTN8AvaVJMz4L9Dk
-         Jw+/pMJZIuJYPvMFxYM0/+LKpqgc8JLK0OyXPxweIdToGErUlfWQZD+iQAxrEEIhfCog
-         l6sKoWoNMW0bhfivrkCB64m4mZC6be5gHHhpgXUe1Gy/jkGRIL149HHbYxxlL5UcWQyb
-         u0NnJPPn7uj1XacRfwuVlt+vMFAiaZXDq2UY6jfDnRCSN9vhpEK0tQviRPGSyru58dex
-         /oBA==
-X-Gm-Message-State: AOJu0Yy34+k3RtlFPnTEUe2vYO2XyayPXwk+VlUm0hu44KDyvY4bhyk2
-	vJuRF8Tz6LnjOdrtdulYsHYSL9TrfOp4+w==
-X-Google-Smtp-Source: AGHT+IH6RM5E1nwg/foTgnT2LoBhhDt/Lz5BV6jgjqYVzskptkwkhVI2cX2dwIC0HCiRt3QB/gWadA==
-X-Received: by 2002:a7b:cc99:0:b0:40d:88ba:130a with SMTP id p25-20020a7bcc99000000b0040d88ba130amr881874wma.206.1704623416863;
-        Sun, 07 Jan 2024 02:30:16 -0800 (PST)
+        bh=WIe1BBB7vFKwCN3Qcq4fcZ44bbCcrLCDMm9KDGSJ3OU=;
+        b=DkSu78Y/jCNybK8c/MrpGHqTTLmtrsBl2kgzWrXt07whSk71ojUiT0zYtz8LdeWx0h
+         mNFVAOt3D6YNNicjUxcsqM0YOFr5LuUYJstU6sTCCtBN/B0LYU5FsCHcHH5WpZpZnu5i
+         gbLF+YWhQ2MoUwf5p0Rc1KpHy2GT8eymz/y+pL9b/lyvDU/AR71b20DGF5D94ksW6zhr
+         IhK7TmfkBmkriF8acKj8wGzNJ88k9e2RhGj+Z7jFEvKo+yhT/vKY46yDr5gtaZNUNkJl
+         rCDiv1v6Y7mSZpQS/R6Zg4/jPMuYKwDwisylzgjjgT46wz+DGWpggcSz+jNpTfm24/bH
+         dS6g==
+X-Gm-Message-State: AOJu0YwvtAgBUwQHJDUJtAvJ1wq7qKcfOvAukCzC1dbn2+FDZbIW+mlE
+	Dc6/2+dvtm7ug9QjehRWxCJPxaP57l1ltA==
+X-Google-Smtp-Source: AGHT+IGDlGObzuh3cJV9HUAqXOkFaaZXK3J+pWxIMpIyeM0BXWBHLH6ilRBIHL6FqEdg/buvd2/Pqw==
+X-Received: by 2002:a17:906:1746:b0:a27:91fc:19a7 with SMTP id d6-20020a170906174600b00a2791fc19a7mr634202eje.161.1704623650166;
+        Sun, 07 Jan 2024 02:34:10 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.223.112])
-        by smtp.gmail.com with ESMTPSA id p18-20020a170906615200b00a28ec89674bsm2918334ejl.173.2024.01.07.02.30.15
+        by smtp.gmail.com with ESMTPSA id o18-20020a1709064f9200b00a28ace8fb17sm2870616eju.206.2024.01.07.02.34.08
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 07 Jan 2024 02:30:16 -0800 (PST)
-Message-ID: <210132de-a46b-4f9f-8546-0c36d8a34665@linaro.org>
-Date: Sun, 7 Jan 2024 11:30:14 +0100
+        Sun, 07 Jan 2024 02:34:09 -0800 (PST)
+Message-ID: <89fab5fd-34ce-4196-b246-b5c3e4c7e201@linaro.org>
+Date: Sun, 7 Jan 2024 11:34:07 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,20 +66,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: pwm: rockchip: Allow "interrupts" prooperty
+Subject: Re: [RFC PATCH 4/5] regulator: add 88pm88x regulators driver
 Content-Language: en-US
-To: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
- Johan Jonker <jbx6244@yandex.com>
-Cc: Thierry Reding <thierry.reding@gmail.com>,
+To: Karel Balej <karelb@gimli.ms.mff.cuni.cz>, Mark Brown <broonie@kernel.org>
+Cc: Karel Balej <balejk@matfyz.cz>, Lee Jones <lee@kernel.org>,
  Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- linux-pwm@vger.kernel.org, linux-rockchip@lists.infradead.org,
- kernel@pengutronix.de, devicetree@vger.kernel.org
-References: <20240106142654.1262758-2-u.kleine-koenig@pengutronix.de>
- <7dea73a6-d733-4cd2-b2d5-02f09e2a6dd9@linaro.org>
- <94ad0f59-4095-40ee-963d-4ac379fc8852@yandex.com>
- <cvvifoctmgdsgqfadqbhgywfw2ff57fz33w26hghf5kyo5j5sw@mj75xtvczr2h>
+ Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ =?UTF-8?Q?Duje_Mihanovi=C4=87?= <duje.mihanovic@skole.hr>,
+ ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
+References: <20231228100208.2932-1-karelb@gimli.ms.mff.cuni.cz>
+ <20231228100208.2932-5-karelb@gimli.ms.mff.cuni.cz>
+ <008ee9d6-6259-43df-9af3-2dc9877cfe94@sirena.org.uk>
+ <CY8DP6O8C72H.2XTJT3P7XZAKE@gimli.ms.mff.cuni.cz>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -125,58 +125,41 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <cvvifoctmgdsgqfadqbhgywfw2ff57fz33w26hghf5kyo5j5sw@mj75xtvczr2h>
+In-Reply-To: <CY8DP6O8C72H.2XTJT3P7XZAKE@gimli.ms.mff.cuni.cz>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 07/01/2024 00:25, Uwe Kleine-König wrote:
-> Hello,
+On 07/01/2024 10:49, Karel Balej wrote:
+> Mark,
 > 
-> On Sat, Jan 06, 2024 at 10:25:10PM +0100, Johan Jonker wrote:
->> On 1/6/24 18:10, Krzysztof Kozlowski wrote:
->>> On 06/01/2024 15:26, Uwe Kleine-König wrote:
->>>> This fixes the dtbs_check error
->>>>
->>>> 	arch/arm/boot/dts/rockchip/rv1108-elgin-r1.dtb: pwm@10280030: 'interrupts' does not match any of the regexes: 'pinctrl-[0-9]+'
->>>> 	from schema $id: http://devicetree.org/schemas/pwm/pwm-rockchip.yaml#
->>>>
->>>> in several device trees.
->>>>
->>>> Signed-off-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
+> On Fri Jan 5, 2024 at 4:18 PM CET, Mark Brown wrote:
+>> On Thu, Dec 28, 2023 at 10:39:13AM +0100, Karel Balej wrote:
 >>
->>> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>> @@ -68,6 +68,21 @@ static struct mfd_cell pm886_devs[] = {
+>>>  		.num_resources = ARRAY_SIZE(pm88x_onkey_resources),
+>>>  		.resources = pm88x_onkey_resources,
+>>>  	},
+>>> +	{
+>>> +		.name = "88pm88x-regulator",
+>>> +		.id = PM88X_REGULATOR_ID_LDO2,
+>>> +		.of_compatible = "marvell,88pm88x-regulator",
+>>> +	},
 >>
->> NAK
->>
->> There's a reason why this isn't implemented before:
->>
->> [RFC PATCH v1 1/2] dt-bindings: pwm: rockchip: add interrupts property <https://lore.kernel.org/linux-rockchip/ed3df2c8-ffb5-1723-0ed7-3a2721972852@gmail.com/#r>
->>
->> https://lore.kernel.org/linux-rockchip/ed3df2c8-ffb5-1723-0ed7-3a2721972852@gmail.com/
->>
->> [PATCH 1/1] dt-bindings: pwm: rockchip: Add description for rk3588 <https://lore.kernel.org/linux-rockchip/20220901135523.52151-1-sebastian.reichel@collabora.com/#r>
->>
->> https://lore.kernel.org/linux-rockchip/66b5b616-ae9f-a1aa-e2b5-450f570cfcdd@gmail.com/
->>
->> [PATCH v1 03/11] dt-bindings: pwm: rockchip: add rockchip,rk3128-pwm <https://lore.kernel.org/linux-rockchip/f5dd0ee4-d97e-d878-ffde-c06e9b233e38@gmail.com/>
->>
->> https://lore.kernel.org/linux-rockchip/946d8ac2-6ff2-093a-ad3c-aa755e00d1dd@arm.com/
->>
->>
->> On how to correctly model the DT with common interrupts , PWM and one shot as a sort of MFD etc there's no consensus yet.
->>
->> Leaf it as it is till someone made a working driver demo, so that the coder is free to model a DT solution that fits to him/her.
+>> Why are we adding an of_compatible here?  It's redundant, the MFD split
+>> is a feature of Linux internals not of the hardware, and the existing
+>> 88pm8xx MFD doesn't use them.
 > 
-> Having the warnings until this happens is bad though. If describing the
-> irqs in the schema is considered wrong, we should remove the interrupts
-> properties from the device tree sources.
+> in a feedback to my MFD series, Rob Herring pointed out that there is no
+> need to have a devicetree node for a subdevice if it only contains
+> "compatible" as the MFD driver can instantiate subdevices itself. I
+> understood that this is what he was referring to, but now I suspect that
+> it is sufficient for the mfd_cell.name to be set to the subdevice driver
+> name for this - is that correct?
 
-I think the previous thread mixes bindings with driver. Does the
-hardware have interrupt? Yes? Add it to the bindings. No? Don't add it.
+I think Rob was only referring to "no need to have a devicetree node".
+But you added here a devicetree node, plus probably undocumented compatible.
 
-However Johan's reply is saying something about driver, so how is it
-related?
-
+Does it even pass the checkpatch?
 
 Best regards,
 Krzysztof
