@@ -1,119 +1,119 @@
-Return-Path: <devicetree+bounces-30073-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30074-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E036882663F
-	for <lists+devicetree@lfdr.de>; Sun,  7 Jan 2024 22:57:20 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E5ABC82664F
+	for <lists+devicetree@lfdr.de>; Sun,  7 Jan 2024 23:12:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7AE0B28159D
-	for <lists+devicetree@lfdr.de>; Sun,  7 Jan 2024 21:57:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 835FB1F213AE
+	for <lists+devicetree@lfdr.de>; Sun,  7 Jan 2024 22:12:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A17D1173A;
-	Sun,  7 Jan 2024 21:57:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD11411721;
+	Sun,  7 Jan 2024 22:12:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XCfsx6x6"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="I7jQcDNT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E13B411720;
-	Sun,  7 Jan 2024 21:57:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-40d4a7f0c4dso15061685e9.1;
-        Sun, 07 Jan 2024 13:57:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1704664631; x=1705269431; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=bLoq6sRizyRcu59pZvOPlzI1kGMqU5IkWECCp6ikVIE=;
-        b=XCfsx6x6uHZ9cd4muPOYB2daqahxYUCqlN321uO8FbGfqy1GgE7Lhz0GRlVbORV9VJ
-         6+RvVzCHg3PqxnhT0pmMw78vYY8pUGim0/PTo35VxHVBuHBstEI7Rfopv/qP3cMdVqHp
-         3LOzrCFFQYYqyEAJM+GiAvPETh5STsp2Yal3OrrVv5jbwZt/6a340USi6b+dtJmVBv0t
-         XRmS3R6S1+E7u1dkF2wGcWFJGabAcStEQMb1B2sqdHDDzGz369ErB4bKDcw6aqiVGeti
-         0VgRmgHMeRgFSGGW3g3imIl5neY1O3AlsxGFurLKbz6pZfMagrHON/TN4Te0iY1VoP5Y
-         fqOw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704664631; x=1705269431;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=bLoq6sRizyRcu59pZvOPlzI1kGMqU5IkWECCp6ikVIE=;
-        b=xHWMf/QexX4vfB5oISkNvu2pFzhhHLHn8WZfxBX6MU3iBMPZmT+HP4Dtxol05bg0Xg
-         LESswUBwx6hOHmqOgH9cJ39xj+8TEAArLb1et2mS/qPTMWjuLd9YUYP8o1x6pEDqkPhj
-         7nwIg8mf7+qdqNI7uF0i/Y3irWq1VKZn5yEcqL3hWTWp2R16a9uI3aHdWyqRrfLnFFMM
-         Tx/T5q9fzWDBdJLWUICNOb8OB2XnCYdNLM7NUvFAJ5wECuirRtyNixr4G6Dy5v4lEeJ+
-         CuFmyNipQXZXlSkAlBJGonSb/9l9gBFlkGR0RKFdVDQj+v8NpbX5jASLTnmWjw35rPKE
-         K1vA==
-X-Gm-Message-State: AOJu0Yyp4OXgTSFdN3Ka3PWhNs/ROXc9Ut+6RDjwxbdUPHvlq2Qcau2I
-	fZ4C9k8DxDN0LaqYfucAwbo=
-X-Google-Smtp-Source: AGHT+IEd0lL/Mt0NfyWGqJx54tynb9F8fZq+SWpqy1QGZIeI1Gw7htPTuqOT6F3XFFxGCTT/RNBHDg==
-X-Received: by 2002:a05:600c:13c3:b0:40d:5b11:50cd with SMTP id e3-20020a05600c13c300b0040d5b1150cdmr1385720wmg.160.1704664630744;
-        Sun, 07 Jan 2024 13:57:10 -0800 (PST)
-Received: from [192.168.0.3] ([69.6.8.124])
-        by smtp.gmail.com with ESMTPSA id i11-20020a5d558b000000b003367bb8898dsm6137213wrv.66.2024.01.07.13.57.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 07 Jan 2024 13:57:10 -0800 (PST)
-Message-ID: <86755f4d-3cae-41c4-8090-09ae83ea7af9@gmail.com>
-Date: Sun, 7 Jan 2024 23:57:07 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E16ED13AE2;
+	Sun,  7 Jan 2024 22:12:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1704665526; x=1736201526;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=/xeVGbq1ohEkkwou+0NT7S2wRq+Kkp0E7oeDwdtlim4=;
+  b=I7jQcDNTXRdNE1z4KQllnMd+UjlAUXJernt45ZiLPMzRAbMIqsQuFRXU
+   96lI3Lxy+GOaKFD4j/6RGFze53WgyS6Ly59uqhD0ouUSgKAjiaHmqcBft
+   b44UJU9NewESqddpm0yUyepiRubbmCcTu8Y8ey4fIlYgePhhsbhP90woV
+   4F7yxwdCMsfqzQY0RabN/jEv3cYEfOj6UubLNymREHMaOw7WzfIC0kAjm
+   D/S3nVmLQwQ8RAhd6EpDHZ7y6iWi3nIpUwuI0l3vJ0kv/QJN893/UWEus
+   FMLUDlVNab3Ux9KLoHwsUmTQhoeDzj0I39rkPkJI6E4fSqvTj7o7eqI1k
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10946"; a="388217493"
+X-IronPort-AV: E=Sophos;i="6.04,340,1695711600"; 
+   d="scan'208";a="388217493"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Jan 2024 14:12:05 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10946"; a="1028228604"
+X-IronPort-AV: E=Sophos;i="6.04,340,1695711600"; 
+   d="scan'208";a="1028228604"
+Received: from lkp-server02.sh.intel.com (HELO b07ab15da5fe) ([10.239.97.151])
+  by fmsmga006.fm.intel.com with ESMTP; 07 Jan 2024 14:11:59 -0800
+Received: from kbuild by b07ab15da5fe with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1rMbN6-0004CJ-32;
+	Sun, 07 Jan 2024 22:11:56 +0000
+Date: Mon, 8 Jan 2024 06:11:34 +0800
+From: kernel test robot <lkp@intel.com>
+To: Bhavin Sharma <bhavin.sharma@siliconsignals.io>, sre@kernel.org
+Cc: oe-kbuild-all@lists.linux.dev,
+	Bhavin Sharma <bhavin.sharma@siliconsignals.io>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>,
+	linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] power: supply: Add STC3117 fuel gauge unit driver
+Message-ID: <202401080530.0hMWnrIg-lkp@intel.com>
+References: <20240106133546.936261-1-bhavin.sharma@siliconsignals.io>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [net-next PATCH RFC v3 1/8] dt-bindings: net: document ethernet
- PHY package nodes
-Content-Language: en-US
-To: Andrew Lunn <andrew@lunn.ch>, Christian Marangi <ansuelsmth@gmail.com>
-Cc: Robert Marko <robert.marko@sartura.hr>,
- Vladimir Oltean <olteanv@gmail.com>, Rob Herring <robh+dt@kernel.org>,
- Luo Jie <quic_luoj@quicinc.com>, "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Andy Gross <agross@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Heiner Kallweit <hkallweit1@gmail.com>, Russell King
- <linux@armlinux.org.uk>, Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-References: <20231126015346.25208-1-ansuelsmth@gmail.com>
- <20231126015346.25208-2-ansuelsmth@gmail.com>
- <0926ea46-1ce4-4118-a04c-b6badc0b9e15@gmail.com>
- <659aedb1.df0a0220.35691.1853@mx.google.com>
- <a6a155ab-0852-4f08-b49b-952ac74124a8@lunn.ch>
-From: Sergey Ryazanov <ryazanov.s.a@gmail.com>
-In-Reply-To: <a6a155ab-0852-4f08-b49b-952ac74124a8@lunn.ch>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240106133546.936261-1-bhavin.sharma@siliconsignals.io>
 
-Hi Andrew,
+Hi Bhavin,
 
-On 07.01.2024 20:44, Andrew Lunn wrote:
->> Honestly I would postpone untile we have a clear idea of what is
->> actually part of the PHY and what can be handled externally... Example
->> setting the clock in gcc, writing a specific driver...
-> 
-> That is really core of the problem here. We have no reliable
-> description of the hardware. The datasheet often starts with a block
-> diagram of the PHY package. Sometimes there is a product brief with
-> the same diagram. We need that published. I'm not asking for the full
-> data sheet, just the introductory text which gives a high level
-> overview of what the hardware actually is. Then we can sketch out a
-> high level Linux architecture for the PHY package.
+kernel test robot noticed the following build warnings:
 
-True. I am with you on this. Can we put these words over a mailing list 
-entrance door? It will save tons of time for both maintainers and 
-submitters.
+[auto build test WARNING on sre-power-supply/for-next]
+[also build test WARNING on robh/for-next linus/master v6.7-rc8 next-20240105]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
---
-Sergey
+url:    https://github.com/intel-lab-lkp/linux/commits/Bhavin-Sharma/dt-bindings-power-supply-stc3117-Convert-to-DT-schema-format/20240106-213744
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/sre/linux-power-supply.git for-next
+patch link:    https://lore.kernel.org/r/20240106133546.936261-1-bhavin.sharma%40siliconsignals.io
+patch subject: [PATCH v2 1/2] power: supply: Add STC3117 fuel gauge unit driver
+config: alpha-randconfig-r112-20240108 (https://download.01.org/0day-ci/archive/20240108/202401080530.0hMWnrIg-lkp@intel.com/config)
+compiler: alpha-linux-gcc (GCC) 13.2.0
+reproduce: (https://download.01.org/0day-ci/archive/20240108/202401080530.0hMWnrIg-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202401080530.0hMWnrIg-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/power/supply/stc3117_fuel_gauge.c:34:34: warning: 'stc3117_of_match' defined but not used [-Wunused-const-variable=]
+      34 | static const struct of_device_id stc3117_of_match[] = {
+         |                                  ^~~~~~~~~~~~~~~~
+
+
+vim +/stc3117_of_match +34 drivers/power/supply/stc3117_fuel_gauge.c
+
+    33	
+  > 34	static const struct of_device_id stc3117_of_match[] = {
+    35		{ .compatible = "st,stc3117-fgu" },
+    36		{},
+    37	};
+    38	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
