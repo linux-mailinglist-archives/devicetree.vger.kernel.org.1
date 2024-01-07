@@ -1,88 +1,117 @@
-Return-Path: <devicetree+bounces-30053-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30054-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADBD18264EC
-	for <lists+devicetree@lfdr.de>; Sun,  7 Jan 2024 17:08:57 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5EF07826502
+	for <lists+devicetree@lfdr.de>; Sun,  7 Jan 2024 17:15:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BC7DF1C20A41
-	for <lists+devicetree@lfdr.de>; Sun,  7 Jan 2024 16:08:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EF0881F22FC4
+	for <lists+devicetree@lfdr.de>; Sun,  7 Jan 2024 16:15:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F09F3134DE;
-	Sun,  7 Jan 2024 16:08:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6077913ADB;
+	Sun,  7 Jan 2024 16:15:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="A0UzMRz0"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CQPaN9Yy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oo1-f46.google.com (mail-oo1-f46.google.com [209.85.161.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7AA6013AC6;
-	Sun,  7 Jan 2024 16:08:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=W5XQx5jK8PhLssysir7FrxPUWqgxrh2IPRl7HIJNB6Y=; b=A0UzMRz0uVAfd4BdgjKVl99KY4
-	PoGXuGRXaplrb0PFHRXrP5fZcXjJcCDQCbaQtoIfYCZEel6fUlO7AyBQW9+ChliajIhuLEvQRZzvu
-	hD/Z1Vxuwo1Qqkl2LxwryCDzzdLOrC5RInVjAwynuv59SOMuapLIyzDriSPLn65v01QM=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1rMVhK-004Zle-Tc; Sun, 07 Jan 2024 17:08:26 +0100
-Date: Sun, 7 Jan 2024 17:08:26 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Sergey Ryazanov <ryazanov.s.a@gmail.com>
-Cc: Jie Luo <quic_luoj@quicinc.com>, agross@kernel.org,
-	andersson@kernel.org, konrad.dybcio@linaro.org, davem@davemloft.net,
-	edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, hkallweit1@gmail.com, linux@armlinux.org.uk,
-	robert.marko@sartura.hr, linux-arm-msm@vger.kernel.org,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, quic_srichara@quicinc.com
-Subject: Re: [PATCH v4 0/5] support ipq5332 platform
-Message-ID: <227543b0-e7a6-4ef6-a0ea-271165f51a6b@lunn.ch>
-References: <20231225084424.30986-1-quic_luoj@quicinc.com>
- <a6a50fb6-871f-424c-a146-12b2628b8b64@gmail.com>
- <cfb04c82-3cc3-49f6-9a8a-1f6d1a22df40@quicinc.com>
- <dd05a599-247a-4516-8ad3-7550ceea99f7@gmail.com>
- <ac1977f5-cd6a-4f16-b0a0-f4322c34c5f5@quicinc.com>
- <bdeca791-f2e5-4256-b386-a75c03f93686@gmail.com>
- <895eadd7-1631-4b6b-8db4-d371f2e52611@lunn.ch>
- <1df87389-d78c-48e0-b743-0fd11bd82b85@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFABD13AD5;
+	Sun,  7 Jan 2024 16:15:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oo1-f46.google.com with SMTP id 006d021491bc7-59600dbfb58so752903eaf.1;
+        Sun, 07 Jan 2024 08:15:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1704644117; x=1705248917; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=QV/VVD6dHaK1bYL8cRjTlIL7Oac7pxlu4WShQnN00ec=;
+        b=CQPaN9Yy1o001K5TZwT+nW4lMBNpoFRz9XhslR10t95mH4NfXR2wsaJgBnlhSKKk5k
+         S91luE/THxiVxu10w2e9m89FZ0eGz49Zs1vqQCF8gcCHweb7W3qLhulk8+Lbah+/S+4J
+         G/CGS+P19QKFG6XV3ApA7mycqcTGjQ7IuJag9AVigJH3GjMgb1PVQdwhmjm/BUGV4t7e
+         1iELAqtrNqKzOyp51O8/oXyFgmMex2LGnQycn3EbE6U7y/lVvsn/B3UjNPpODGwctsF/
+         vfBslmkgFpRv0hknqbR+dawca8GeGCz0Of3KZtqjqhsd/0NaXaCBFlrc2nh1D2R9JVVU
+         whXA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1704644117; x=1705248917;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=QV/VVD6dHaK1bYL8cRjTlIL7Oac7pxlu4WShQnN00ec=;
+        b=eJgsgbSMMKKibpAFDFfoENZ7yTPOkqWVCZhT/DoHwgRg7BjPZYE/koDMSvYlpUdU1x
+         uZMhtgegf0//r1di7qMxS3m14O+YYnLRwjnWVhU40t/L/LyNWS20hcCIK++Q690Mk5RD
+         nj7QNxmbVngi4JSKkjoUmeOljaK7H8SCTW0ceZnVjz7G4BazIEDoHNRSA2kUZPvg8aQO
+         s2n54e4Jczj87HXLN0wjKQxz4SbFwmOXsitodUe+hybKgbxMbdS84V9Bs17acrneCcU7
+         JVGPGGjtZ2w7XQ7kuuHkX7ZySQ1vGSipQ+ISWMhwAbZsZsBwKb6BoZycBNrw+wMPqFSj
+         Mi4g==
+X-Gm-Message-State: AOJu0YxOkJBRMg5gb4InUDJlAVKF0ZZNh5NHxaftAj8gm76dCg9NTVWA
+	hEudkSLFLjAP3Bbgo+xgJW/Ejy18bjIR86ArBaI=
+X-Google-Smtp-Source: AGHT+IFOmDH9tTVrTLa2cl70prFNFxbUR/Mjctv6yhBsdm4JdnFZ/tr+sFnEyl5K+F9mL0g0JaMPutEVdcZhgPfQsP8=
+X-Received: by 2002:a05:6358:784:b0:172:b74e:582 with SMTP id
+ n4-20020a056358078400b00172b74e0582mr2906325rwj.29.1704644116638; Sun, 07 Jan
+ 2024 08:15:16 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1df87389-d78c-48e0-b743-0fd11bd82b85@gmail.com>
+References: <20240106223951.387067-1-aford173@gmail.com> <90cc67e7-0c46-4313-8ad5-298b3cedbbd5@linaro.org>
+In-Reply-To: <90cc67e7-0c46-4313-8ad5-298b3cedbbd5@linaro.org>
+From: Adam Ford <aford173@gmail.com>
+Date: Sun, 7 Jan 2024 10:15:05 -0600
+Message-ID: <CAHCN7xJtyoxc+zLEwyNTwgStk3t8s-mZ0Gh66sQ2_MizUtGjoA@mail.gmail.com>
+Subject: Re: [PATCH 1/3] dt-bindings: soc: imx: add fdcc clock to i.MX8MP hdmi
+ blk ctrl
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: linux-pm@vger.kernel.org, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
+	NXP Linux Team <linux-imx@nxp.com>, Ulf Hansson <ulf.hansson@linaro.org>, 
+	Lucas Stach <l.stach@pengutronix.de>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-> Andrew, thank you so much for pointing me to that API and Christian's work.
-> I have checked the DT change proposal and it fits this QCA8084 case
-> perfectly.
+On Sun, Jan 7, 2024 at 4:53=E2=80=AFAM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 06/01/2024 23:39, Adam Ford wrote:
+> > Per guidance from the NXP downstream kernel, if the clock is
+> > disabled before HDMI/LCDIF probe, LCDIF will not get pixel
+> > clock from HDMI PHY and throw an error.  Fix this by adding
+> > the fdcc clock to the hdmi_blk_ctrl.
+> >
+>
+> Adding a required clock is ABI break and commit msg is not clear whether
+> this was actually necessary or how did it worked so far...
 
-Not too surprising, since Christian is working on another Qualcomm PHY
-which is very similar.
+As of right now, this power domain isn't enabled in the device tree.
+This power domain is necessary for the HDMI driver which is split
+across several drivers which Lucas attempted to push but got some
+feedback.  One of those items in question is the enabling of FDCC
+during the HDMI Tx probe.  The NXP documentation is vague on what this
+clock is and who uses it.  When I did my investigation into how NXP
+used it, it turned out they didn't use it in the HDMI TX driver,
+because they moved it to the power domain and referenced it from both
+the LCDIF and the HDMI TX.  NXP's downstream commit didn't get into a
+lot of detail on how to reproduce the error, but it sounded like some
+sort of order of operations issue between the LCDIF and HDMI TX.
+Moving this to the power domain appeared to solve the issue for them,
+and it seemed like it would have also resolved the concern about its
+use in the HDMI TX driver that was submitted on the mailing list.  In
+the subsequent patch, I listed the error that NXP described, but I can
+re-do this commit message to make it more clear if you let me know
+what you're wanting to see.
 
-> Am I right that all one has to do to solve this QCA8084 initialization case
-> is wrap phys in a ethernet-phy-package node and use devm_phy_package_join()
-> / phy_package_init_once() to do the basic initialization? So simple?
-
-I hope so. Once the correct kernel abstracts are used, it should be
-reasonably straight forward. The clock stuff should be made into a
-common clock driver, so all the consumer needs to do is enable the one
-clock its needs and common clock driver core goes up the tree and
-enables what ever needs enabling. It could be we need to use ID values
-in the compatible get the PHY driver probed, rather than enumerate it.
-
-Hopefully Lenaro can help get this all done correctly.
-
-    Andrew
+adam
+>
+> Best regards,
+> Krzysztof
+>
 
