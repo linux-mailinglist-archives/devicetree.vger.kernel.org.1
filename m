@@ -1,119 +1,131 @@
-Return-Path: <devicetree+bounces-30057-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30058-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71E07826529
-	for <lists+devicetree@lfdr.de>; Sun,  7 Jan 2024 17:44:12 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0945082654F
+	for <lists+devicetree@lfdr.de>; Sun,  7 Jan 2024 18:34:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 105CA1F21671
-	for <lists+devicetree@lfdr.de>; Sun,  7 Jan 2024 16:44:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 96F29281D41
+	for <lists+devicetree@lfdr.de>; Sun,  7 Jan 2024 17:34:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E66A12B8A;
-	Sun,  7 Jan 2024 16:44:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44B8113AD5;
+	Sun,  7 Jan 2024 17:34:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KYjoohRE"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ltEK5H1/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1726F13ADE;
-	Sun,  7 Jan 2024 16:44:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0C6E1C433C8;
-	Sun,  7 Jan 2024 16:44:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1704645846;
-	bh=yNuz58aVKzYmHclOZSz1fw5Rc9L0KgXBqimMwdOlpUk=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=KYjoohREaK0YSvHr3ECAzknIg8vFcNYObH2tLXzm6mx0i37QXMPrOCCybDv1aN0Z3
-	 U84nhFjdVNZzhd1Aa8neNg9SE7ynhCy0S7IsCpqnPI/8herlXN2DMCXQPZwHzXc6gi
-	 v7oDRftEYjLLSAEtLH7yzgZFG5ZGmoY755pXfXXg+qqHSmRez+pf0MjQC6dPLmGEqV
-	 Ib1TBRJCGcHr4ZjzNgtlCNAhuDWBfbyGP0XwFYzBGENfvrC1cAN2omwe2SuDmiXYv+
-	 mEb834deSX3yKNdsvrYyEgLb+Jvam7Y6jcJag0zgMwxsK/DmMktfuMdmCpQYASQZ8/
-	 k//qs42hwV95Q==
-Date: Sun, 7 Jan 2024 16:43:56 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: David Lechner <dlechner@baylibre.com>
-Cc: linux-iio@vger.kernel.org, linux-spi@vger.kernel.org,
- devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>, Michael Hennerich <michael.hennerich@analog.com>,
- Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Liam Girdwood
- <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/3] dt-bindings: spi: add spi-rx-bus-channels
- peripheral property
-Message-ID: <20240107164356.3e8df266@jic23-huawei>
-In-Reply-To: <20231215-ad7380-mainline-v3-1-7a11ebf642b9@baylibre.com>
-References: <20231215-ad7380-mainline-v3-0-7a11ebf642b9@baylibre.com>
-	<20231215-ad7380-mainline-v3-1-7a11ebf642b9@baylibre.com>
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.39; x86_64-pc-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3F9213ADF;
+	Sun,  7 Jan 2024 17:34:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-40d89446895so6143025e9.0;
+        Sun, 07 Jan 2024 09:34:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1704648876; x=1705253676; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=WCTsJarysC77v3ACP/NKhPe2RrrA50cxy1q5t9LuTHM=;
+        b=ltEK5H1/IjDbTtHUZ13LZ5ojhcEVgW/pRxXnaXyCD3rMS3o90i4z46Wb+l/YSmvh+n
+         eRbSJ1UyRbo8xcIA+/mNu3bj+JjjIF3W3SUfIvAFOsnTbdQyldQQSW9FDRJMftP3I1Mx
+         ctCEFymtlmURbCKtPcoFOe4qewj/1rG+YXF2DoR0kzFdt9sjM9rw5CPWvn7EsMk61M85
+         1dyJ8fnQ0zSlRcYLFjU1IMJfWBu6hqHwC0WoCJK1qFuvs0RT2gP+wAwuQ6p/XmPMP0B+
+         fnClryBDaJs+mvyZzHK4Y+vJ+MQmjc9mvqatTIraa88SH4QHVzx1mJhI9dpkiYAp9x8I
+         5aDA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1704648876; x=1705253676;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=WCTsJarysC77v3ACP/NKhPe2RrrA50cxy1q5t9LuTHM=;
+        b=JN5RTj4bGs1poT6OF2iGby/gbN7Waf80YvA2Eq4ViXf1fbcmLz40v2/FFxJjDK/7/l
+         KFBxQNdE9eFyqVVXqgbDC9gjkw5mBZmvz6gBE/vbMO4eLSehB7SUqot7p/ejvvLfhcyo
+         5dlWKv3Zd8s4FCn/PDGBRIK5biKFbaDmcKGoec7bVLKd2zC5otQw5VFMiQ0NHTy7nOHW
+         Msb/lfEfZu4a1J1JcGcD4+BE7CScUkbe1/wj7g6oaWr4Hj9HQm+u32ycpZof02ZRLOzD
+         wPf8rJ6S1AKt6rmfb8HiF0WVjoiTfLpRh5RZX6fsDs3mrropfB76fxJ4bXwt2kggUhzz
+         vyBQ==
+X-Gm-Message-State: AOJu0YzFXPqEazqOU7o6M4ldPTbUqKeDVZP5IQon88QvG0OnC8dlM9ek
+	j9x9wb05RoKDgUYIA5JMwmQ=
+X-Google-Smtp-Source: AGHT+IH7PVY8CzQUeCsJ1nGmDuxwcPDt3KQz68vpwQ6dpfq0z3lR/rhnWbTMxYZ+I3+lhZO8z2NwDw==
+X-Received: by 2002:a05:600c:310f:b0:40e:4134:236b with SMTP id g15-20020a05600c310f00b0040e4134236bmr1024379wmo.117.1704648875474;
+        Sun, 07 Jan 2024 09:34:35 -0800 (PST)
+Received: from ?IPV6:2a02:8389:41cf:e200:f579:21c9:7f03:46a? (2a02-8389-41cf-e200-f579-21c9-7f03-046a.cable.dynamic.v6.surfer.at. [2a02:8389:41cf:e200:f579:21c9:7f03:46a])
+        by smtp.gmail.com with ESMTPSA id u2-20020a7bc042000000b0040d79997731sm4484033wmc.0.2024.01.07.09.34.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 07 Jan 2024 09:34:35 -0800 (PST)
+Message-ID: <b842c7c6-9c56-4789-80ed-00b969a35709@gmail.com>
+Date: Sun, 7 Jan 2024 18:34:32 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 0/3] iio: light: add support for AMS AS7331
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: Christian Eggers <ceggers@arri.de>, Lars-Peter Clausen <lars@metafoo.de>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Conor Dooley <conor.dooley@microchip.com>
+References: <20240103-as7331-v2-0-6f0ad05e0482@gmail.com>
+ <20240107155838.376bdd1e@jic23-huawei>
+Content-Language: en-US
+From: Javier Carrasco <javier.carrasco.cruz@gmail.com>
+In-Reply-To: <20240107155838.376bdd1e@jic23-huawei>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On Fri, 15 Dec 2023 04:32:02 -0600
-David Lechner <dlechner@baylibre.com> wrote:
-
-> This adds a new spi-rx-bus-channels property to the generic spi
-> peripheral property bindings. This property is used to describe
-> devices that have parallel data output channels.
+On 07.01.24 16:58, Jonathan Cameron wrote:
+> On Wed, 03 Jan 2024 13:08:50 +0100
+> Javier Carrasco <javier.carrasco.cruz@gmail.com> wrote:
 > 
-> This property is different from spi-rx-bus-width in that the latter
-> means that we are reading multiple bits of a single word at one time
-> while the former means that we are reading single bits of multiple words
-> at the same time.
+>> The AMS AS7331 UV light sensor measures three ultraviolet bands (UVA,
+>> UVB and UVC, also known as deep UV or DUV) as well as temperature.
+>>
+>> This device is practically identical to the AMS AS73211 XYZ True Color
+>> sensor that is already supported by the iio subsystem, except for the
+>> photodiodes used to aquire the desired light wavelengths.
+>>
+>> In order to reuse code and reduce maintenance load, this series extends
+>> the AS73211 driver to support the AS7331 as well.
+>>
+>> Note that the UVA and UVB light modifiers have not been merged into the
+>> mainline kernel yet, but they are already available in Greg's char-misc
+>> git tree which can be found at
+>> git://git.kernel.org/pub/scm/linux/kernel/git/gregkh/char-misc.git
+>> in the char-misc-next branch.
+>>
+>> The original device AS73211 supported by the driver could only be tested
+>> briefly due to the lack of hardware. Instead, the i2c-stub module has
+>> been used to make sure that the driver registers the iio device properly
+>> and the attributes exported to sysfs are correct. Some basic register
+>> assignments reported the expected intensity scales and in principle
+>> nothing else should have been affected by the modifications in the code.
+>>
+>> Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
+> Hi Javier,
 > 
-> Signed-off-by: David Lechner <dlechner@baylibre.com>
-> ---
+> Series applied - but given timing I'll only push this out as testing for
+> now as I'll want to rebase the IIO tree on rc1 once available in a couple of
+> weeks time.
 > 
-> The rest of this series is ready to merge, so just looking for an ack from
-> Mark on this one.
-
-Mark, could you take a look at this SPI binding change when you have time?
-
-I don't want to apply it without your view on whether this makes sense
-from a general SPI point of view as we all hate maintaining bindings
-if they turn out to not be sufficiently future looking etc and we need
-to deprecate them in favour of something else.
-
-Thanks,
-
-Jonathan
-
+> Thanks,
 > 
->  .../devicetree/bindings/spi/spi-peripheral-props.yaml        | 12 ++++++++++++
->  1 file changed, 12 insertions(+)
+> Jonathan
 > 
-> diff --git a/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml b/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml
-> index 15938f81fdce..1c8e71c18234 100644
-> --- a/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml
-> +++ b/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml
-> @@ -67,6 +67,18 @@ properties:
->      enum: [0, 1, 2, 4, 8]
->      default: 1
->  
-> +  spi-rx-bus-channels:
-> +    description:
-> +      The number of parallel channels for read transfers. The difference between
-> +      this and spi-rx-bus-width is that a value N for spi-rx-bus-channels means
-> +      the SPI bus is receiving one bit each of N different words at the same
-> +      time whereas a value M for spi-rx-bus-width means that the bus is
-> +      receiving M bits of a single word at the same time. It is also possible to
-> +      use both properties at the same time, meaning the bus is receiving M bits
-> +      of N different words at the same time.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    default: 1
-> +
->    spi-rx-delay-us:
->      description:
->        Delay, in microseconds, after a read transfer.
-> 
+Hi Jonathan,
 
+I am happy with that approach. Some extra time to catch issues before
+going live is a good thing anyway.
+
+Thank you and best regards,
+
+Javier Carrasco
 
