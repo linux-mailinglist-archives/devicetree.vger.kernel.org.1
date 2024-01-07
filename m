@@ -1,101 +1,184 @@
-Return-Path: <devicetree+bounces-30031-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30032-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3C2A8263A4
-	for <lists+devicetree@lfdr.de>; Sun,  7 Jan 2024 10:57:00 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B6058263C1
+	for <lists+devicetree@lfdr.de>; Sun,  7 Jan 2024 11:30:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2889B282250
-	for <lists+devicetree@lfdr.de>; Sun,  7 Jan 2024 09:56:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CBF4E1C20B89
+	for <lists+devicetree@lfdr.de>; Sun,  7 Jan 2024 10:30:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12A4F12B77;
-	Sun,  7 Jan 2024 09:56:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93E1710A05;
+	Sun,  7 Jan 2024 10:30:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=gimli.ms.mff.cuni.cz header.i=@gimli.ms.mff.cuni.cz header.b="JMajUtT4"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="B5zJxXaU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from nikam.ms.mff.cuni.cz (nikam.ms.mff.cuni.cz [195.113.20.16])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78DF712B7A;
-	Sun,  7 Jan 2024 09:56:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gimli.ms.mff.cuni.cz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gimli.ms.mff.cuni.cz
-Received: from gimli.ms.mff.cuni.cz (gimli.ms.mff.cuni.cz [195.113.20.176])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
-	(No client certificate requested)
-	by nikam.ms.mff.cuni.cz (Postfix) with ESMTPS id D480728295E;
-	Sun,  7 Jan 2024 10:48:53 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gimli.ms.mff.cuni.cz;
-	s=gen1; t=1704620933;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=q+5JaUxNv9hPVABXEfoWXdhZ6H5sXzewgbughZ6jl7Y=;
-	b=JMajUtT4JlplmBkg7Xu9tMhjPmyV0a4XidTi0FksOylppM3T1ol4szvV5SCzEdt1EGB0/s
-	84nGrwN4EZ+zgGl0lRlBZBjuLtxcyjEVyk/sw1qLYrhQOLfnfE5MFZ1FSykXaXbF6ueDXP
-	L4YktUzZ6rx9TbMVoMOWlklMFvRZtQw=
-Received: from localhost (koleje-wifi-0044.koleje.cuni.cz [78.128.191.44])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	(Authenticated sender: karelb)
-	by gimli.ms.mff.cuni.cz (Postfix) with ESMTPSA id AF2A7457743;
-	Sun,  7 Jan 2024 10:48:53 +0100 (CET)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEEA712B8D
+	for <devicetree@vger.kernel.org>; Sun,  7 Jan 2024 10:30:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-40d5f402571so13097475e9.0
+        for <devicetree@vger.kernel.org>; Sun, 07 Jan 2024 02:30:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1704623417; x=1705228217; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=n6FcraxlGE1/DMmhL0QqfoIXdq5XuF0l5shF76vlze0=;
+        b=B5zJxXaUNnMM58P/gKXyvZK5I1kqK/D70SfXFq2MdXIHp9viHySxODcCELxSwioc3+
+         ooPocT1GrrD+/CKv6g0Qrf4Y3TsgVbZDYtPUmNXJz1ZN9Z3qr/Oe+g21z4lCN1TshrLq
+         BGH5Xo214HWPrMZSdj17YderosXIN3sXoBgEHxCedObajVjcrjaTooaNlSP1uJX7lQxC
+         e6CgOvEazUOD2fdubp/y2G8zNADQ0cy425haxeF+oODR2OkFc0nhU3RM+7Z6XoJN3j+f
+         gg5cEvEKL23dowJ0/IGwwcQjB0GTKZoq/9Y21EyCENjP82GTp7vjmUuTOVZ12CHcJgMM
+         BDCg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1704623417; x=1705228217;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=n6FcraxlGE1/DMmhL0QqfoIXdq5XuF0l5shF76vlze0=;
+        b=fHO1kWO8Q1Y+yUfX+zlHWTSp2XMGcuFsYKcvg1PERFPbs99bh2UAIBb7R/ytQwj3i+
+         iEgKM5a0Ycqwy4cYiNpoLme+IH5hK+cvMp0hlQg9RLkoG8piYSLcQTN8AvaVJMz4L9Dk
+         Jw+/pMJZIuJYPvMFxYM0/+LKpqgc8JLK0OyXPxweIdToGErUlfWQZD+iQAxrEEIhfCog
+         l6sKoWoNMW0bhfivrkCB64m4mZC6be5gHHhpgXUe1Gy/jkGRIL149HHbYxxlL5UcWQyb
+         u0NnJPPn7uj1XacRfwuVlt+vMFAiaZXDq2UY6jfDnRCSN9vhpEK0tQviRPGSyru58dex
+         /oBA==
+X-Gm-Message-State: AOJu0Yy34+k3RtlFPnTEUe2vYO2XyayPXwk+VlUm0hu44KDyvY4bhyk2
+	vJuRF8Tz6LnjOdrtdulYsHYSL9TrfOp4+w==
+X-Google-Smtp-Source: AGHT+IH6RM5E1nwg/foTgnT2LoBhhDt/Lz5BV6jgjqYVzskptkwkhVI2cX2dwIC0HCiRt3QB/gWadA==
+X-Received: by 2002:a7b:cc99:0:b0:40d:88ba:130a with SMTP id p25-20020a7bcc99000000b0040d88ba130amr881874wma.206.1704623416863;
+        Sun, 07 Jan 2024 02:30:16 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.223.112])
+        by smtp.gmail.com with ESMTPSA id p18-20020a170906615200b00a28ec89674bsm2918334ejl.173.2024.01.07.02.30.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 07 Jan 2024 02:30:16 -0800 (PST)
+Message-ID: <210132de-a46b-4f9f-8546-0c36d8a34665@linaro.org>
+Date: Sun, 7 Jan 2024 11:30:14 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: pwm: rockchip: Allow "interrupts" prooperty
+Content-Language: en-US
+To: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
+ Johan Jonker <jbx6244@yandex.com>
+Cc: Thierry Reding <thierry.reding@gmail.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ linux-pwm@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ kernel@pengutronix.de, devicetree@vger.kernel.org
+References: <20240106142654.1262758-2-u.kleine-koenig@pengutronix.de>
+ <7dea73a6-d733-4cd2-b2d5-02f09e2a6dd9@linaro.org>
+ <94ad0f59-4095-40ee-963d-4ac379fc8852@yandex.com>
+ <cvvifoctmgdsgqfadqbhgywfw2ff57fz33w26hghf5kyo5j5sw@mj75xtvczr2h>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <cvvifoctmgdsgqfadqbhgywfw2ff57fz33w26hghf5kyo5j5sw@mj75xtvczr2h>
 Content-Type: text/plain; charset=UTF-8
-Date: Sun, 07 Jan 2024 10:49:20 +0100
-Message-Id: <CY8DP6O8C72H.2XTJT3P7XZAKE@gimli.ms.mff.cuni.cz>
-Cc: "Karel Balej" <balejk@matfyz.cz>, "Lee Jones" <lee@kernel.org>, "Rob
- Herring" <robh+dt@kernel.org>, "Krzysztof Kozlowski"
- <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley" <conor+dt@kernel.org>,
- "Liam Girdwood" <lgirdwood@gmail.com>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, =?utf-8?q?Duje_Mihanovi=C4=87?=
- <duje.mihanovic@skole.hr>, <~postmarketos/upstreaming@lists.sr.ht>,
- <phone-devel@vger.kernel.org>
-Subject: Re: [RFC PATCH 4/5] regulator: add 88pm88x regulators driver
-To: "Mark Brown" <broonie@kernel.org>
-From: "Karel Balej" <karelb@gimli.ms.mff.cuni.cz>
-References: <20231228100208.2932-1-karelb@gimli.ms.mff.cuni.cz>
- <20231228100208.2932-5-karelb@gimli.ms.mff.cuni.cz>
- <008ee9d6-6259-43df-9af3-2dc9877cfe94@sirena.org.uk>
-In-Reply-To: <008ee9d6-6259-43df-9af3-2dc9877cfe94@sirena.org.uk>
+Content-Transfer-Encoding: 8bit
 
-Mark,
+On 07/01/2024 00:25, Uwe Kleine-König wrote:
+> Hello,
+> 
+> On Sat, Jan 06, 2024 at 10:25:10PM +0100, Johan Jonker wrote:
+>> On 1/6/24 18:10, Krzysztof Kozlowski wrote:
+>>> On 06/01/2024 15:26, Uwe Kleine-König wrote:
+>>>> This fixes the dtbs_check error
+>>>>
+>>>> 	arch/arm/boot/dts/rockchip/rv1108-elgin-r1.dtb: pwm@10280030: 'interrupts' does not match any of the regexes: 'pinctrl-[0-9]+'
+>>>> 	from schema $id: http://devicetree.org/schemas/pwm/pwm-rockchip.yaml#
+>>>>
+>>>> in several device trees.
+>>>>
+>>>> Signed-off-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
+>>
+>>> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>
+>> NAK
+>>
+>> There's a reason why this isn't implemented before:
+>>
+>> [RFC PATCH v1 1/2] dt-bindings: pwm: rockchip: add interrupts property <https://lore.kernel.org/linux-rockchip/ed3df2c8-ffb5-1723-0ed7-3a2721972852@gmail.com/#r>
+>>
+>> https://lore.kernel.org/linux-rockchip/ed3df2c8-ffb5-1723-0ed7-3a2721972852@gmail.com/
+>>
+>> [PATCH 1/1] dt-bindings: pwm: rockchip: Add description for rk3588 <https://lore.kernel.org/linux-rockchip/20220901135523.52151-1-sebastian.reichel@collabora.com/#r>
+>>
+>> https://lore.kernel.org/linux-rockchip/66b5b616-ae9f-a1aa-e2b5-450f570cfcdd@gmail.com/
+>>
+>> [PATCH v1 03/11] dt-bindings: pwm: rockchip: add rockchip,rk3128-pwm <https://lore.kernel.org/linux-rockchip/f5dd0ee4-d97e-d878-ffde-c06e9b233e38@gmail.com/>
+>>
+>> https://lore.kernel.org/linux-rockchip/946d8ac2-6ff2-093a-ad3c-aa755e00d1dd@arm.com/
+>>
+>>
+>> On how to correctly model the DT with common interrupts , PWM and one shot as a sort of MFD etc there's no consensus yet.
+>>
+>> Leaf it as it is till someone made a working driver demo, so that the coder is free to model a DT solution that fits to him/her.
+> 
+> Having the warnings until this happens is bad though. If describing the
+> irqs in the schema is considered wrong, we should remove the interrupts
+> properties from the device tree sources.
 
-On Fri Jan 5, 2024 at 4:18 PM CET, Mark Brown wrote:
-> On Thu, Dec 28, 2023 at 10:39:13AM +0100, Karel Balej wrote:
->
-> > @@ -68,6 +68,21 @@ static struct mfd_cell pm886_devs[] =3D {
-> >  		.num_resources =3D ARRAY_SIZE(pm88x_onkey_resources),
-> >  		.resources =3D pm88x_onkey_resources,
-> >  	},
-> > +	{
-> > +		.name =3D "88pm88x-regulator",
-> > +		.id =3D PM88X_REGULATOR_ID_LDO2,
-> > +		.of_compatible =3D "marvell,88pm88x-regulator",
-> > +	},
->
-> Why are we adding an of_compatible here?  It's redundant, the MFD split
-> is a feature of Linux internals not of the hardware, and the existing
-> 88pm8xx MFD doesn't use them.
+I think the previous thread mixes bindings with driver. Does the
+hardware have interrupt? Yes? Add it to the bindings. No? Don't add it.
 
-in a feedback to my MFD series, Rob Herring pointed out that there is no
-need to have a devicetree node for a subdevice if it only contains
-"compatible" as the MFD driver can instantiate subdevices itself. I
-understood that this is what he was referring to, but now I suspect that
-it is sufficient for the mfd_cell.name to be set to the subdevice driver
-name for this - is that correct?
+However Johan's reply is saying something about driver, so how is it
+related?
 
-Thank you,
-K. B.
+
+Best regards,
+Krzysztof
+
 
