@@ -1,256 +1,325 @@
-Return-Path: <devicetree+bounces-30011-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30012-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CCBC28262A0
-	for <lists+devicetree@lfdr.de>; Sun,  7 Jan 2024 02:58:53 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1911C8262C0
+	for <lists+devicetree@lfdr.de>; Sun,  7 Jan 2024 04:03:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C0C3C1C20D6C
-	for <lists+devicetree@lfdr.de>; Sun,  7 Jan 2024 01:58:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 69AB8282DE9
+	for <lists+devicetree@lfdr.de>; Sun,  7 Jan 2024 03:03:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A015217C0;
-	Sun,  7 Jan 2024 01:58:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9766810A18;
+	Sun,  7 Jan 2024 03:03:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="m5u0jgYm"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="b835g1Q5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com [209.85.214.179])
+Received: from mail-pj1-f41.google.com (mail-pj1-f41.google.com [209.85.216.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39F5C15A6;
-	Sun,  7 Jan 2024 01:58:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f179.google.com with SMTP id d9443c01a7336-1d4ba539f6cso6689285ad.3;
-        Sat, 06 Jan 2024 17:58:48 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04C3C10A11
+	for <devicetree@vger.kernel.org>; Sun,  7 Jan 2024 03:02:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pj1-f41.google.com with SMTP id 98e67ed59e1d1-28c2b8d6f2aso373851a91.2
+        for <devicetree@vger.kernel.org>; Sat, 06 Jan 2024 19:02:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1704592727; x=1705197527; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=gpRuTEKvJx0gbLJtVqj6qMf/1yr9BSLwA5oR8rW2Q5k=;
-        b=m5u0jgYm5aZ+kaY4ALUEX6nHuMsHT3SMD5eGKppWWNQwHlK1taG+kn8hDCDnPgyQIu
-         xJ2ntiHoVRfBbMjCTwiinrCKMjJEHnqB3tgdgn6GtZcEBFTosRaPDHxJ/+WR9MB4uFjh
-         GNv9lSwoS9IyPNmcmtqDRrKlydbCDHqMGpsQBIkx/zEuynZsXJnmDQzi8lWUbZyWvP6w
-         iVqKof70nUJsL/qns67sxOgk7I7ME6U3HTfUzkMK4OHCu/4tqSoF1bC5cnXF/Cl7bLN+
-         PVOW2kIfxLz1wBXo7JZzxkkH22bWSHbAuFWst3bdBgoyldEWHlIZkusgnBOml1j6XrqT
-         0rYw==
+        d=linaro.org; s=google; t=1704596578; x=1705201378; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=4snqkhUuEW8ZG394EttlpuQ67DH0d6MbBqMG4Ly3wkQ=;
+        b=b835g1Q5/8DkxOxdvyY3hZXXFBor5jw2PhT6dORGIKCLB1fAczvq/IBiNVl3gd//OA
+         x1rQFohR+wU1ar0L1Lxmwy7XhEx0NebKD8bUCRM2IhZffMFXSIQThcudCwzk6Vzxmf46
+         06v9bxHxduDs4Qd7g//Mn8Gkvkbxx3k87uSJNy45u50HFmooLw69QKswN6/DWyxEeHXo
+         9P5WEiSeHQVzYD1rc7iwCyMp7NwEehv0jWGL6Sn+0LNUX86QT+4lJqaIocbtT72xcaqN
+         iE8rKr1/dsKDDCh/1/TpLKEuuQu7w8Sls0UUOx4g/jKiRIgJJgpZngoA6NILtmYKxE/G
+         7DEw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704592727; x=1705197527;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=gpRuTEKvJx0gbLJtVqj6qMf/1yr9BSLwA5oR8rW2Q5k=;
-        b=JEXEuMqDFuuLU46torxHCxvsx0ZIZ8quZpmzeCTwnARoXix4MsMPeIoFSxeBijiq1I
-         flKAbECMmAHrUkunTSmwWjlCs4p+2OFosEa8EsMiLp5ruP79TN2xuNNoelqhq+hXi/Lj
-         SW1syGWxdAZWnQDHD4V4aapRYcAtBFdo9VMq/z8X9ow8M8Pala2glH9xWlRutFHn7Nkv
-         vZ03xWc0eBnzijJRvClszIfY1x6QTfjGXdWg9fqIPJoF0n8B8xDyxeKnsvyAEB1VZE51
-         WUDtZt92BQ38Sd6xwKEM8405o5OyNyZ47UD/MqWIO2nuTpBT2eTD+N9fBzTrMci7z2Ha
-         naRQ==
-X-Gm-Message-State: AOJu0Yw1Jfe8FLLsEBBIzdLlOXFGEBjZB0FRn0J+qAn2FJ/gfce2cywT
-	97kAlOYKGMb1HbVZ3BDRH2I=
-X-Google-Smtp-Source: AGHT+IFwORjAQ3+/kya08SFVo6+/B9XcraiA91XJgeooU5o0Nl3IQyfEos3VyTbZ8/ZPHugbwZV8Qw==
-X-Received: by 2002:a17:902:d4d2:b0:1d5:830:19bf with SMTP id o18-20020a170902d4d200b001d5083019bfmr1825830plg.113.1704592727314;
-        Sat, 06 Jan 2024 17:58:47 -0800 (PST)
-Received: from google.com ([2620:15c:9d:2:e05d:9c84:c3e5:2daf])
-        by smtp.gmail.com with ESMTPSA id w5-20020a170902d3c500b001d3e44faf1asm3671567plb.272.2024.01.06.17.58.45
+        d=1e100.net; s=20230601; t=1704596578; x=1705201378;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=4snqkhUuEW8ZG394EttlpuQ67DH0d6MbBqMG4Ly3wkQ=;
+        b=BfGHfgnYw4yPs61HwiRS5tpuJn8ZqWJyP99YCWKOSsW9Kw6LBC1CNIalno6zfAu2XX
+         EWF/43wnNc+9e7UiyFLjmcPHdAI2WaidJkayRGpkIOiBLF209t4Y6Iyr5swJ01k7wH/S
+         YXu9bDQZVectlBulrrqJN73YDWyQhy726WPlxBNSe1xYCAqO4KB9F0tpwyquuUZDXKuz
+         86jKTv3nXEDb9Osu2aBquvlqlYwioK75+Ne54t3yx547Vu0cH8qszytK0kzAw5R8fPAd
+         L+vW3bOPedRV4vAGInpFqcdQngy/BtmTOx5DJGj6q9N9yOEz7qA6JRN9JBZxvDGC77/O
+         isxQ==
+X-Gm-Message-State: AOJu0YyitIOOSf0PwuBneY6VHJAqWGPq6dxZee0B6AP9WCC0KQTGVQ8t
+	2zBCIIJbXr6sPS+lU4TPoxILVjNJL51D
+X-Google-Smtp-Source: AGHT+IFWNyeYcLOxjx7kAt+wXSssgse708DUrf3+R7FincnxfWyy3UrvW3wRM0k+wcgdhEKojCyxOg==
+X-Received: by 2002:a05:6a20:a89a:b0:199:a10e:13e5 with SMTP id ca26-20020a056a20a89a00b00199a10e13e5mr5093pzb.43.1704596578093;
+        Sat, 06 Jan 2024 19:02:58 -0800 (PST)
+Received: from thinkpad ([103.197.115.97])
+        by smtp.gmail.com with ESMTPSA id jb19-20020a170903259300b001d4bcf6cc43sm3707804plb.81.2024.01.06.19.02.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 06 Jan 2024 17:58:46 -0800 (PST)
-Date: Sat, 6 Jan 2024 17:58:43 -0800
-From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To: James Ogletree <jogletre@opensource.cirrus.com>
-Cc: James Ogletree <james.ogletree@cirrus.com>,
-	Fred Treven <fred.treven@cirrus.com>,
-	Ben Bright <ben.bright@cirrus.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Simon Trimmer <simont@opensource.cirrus.com>,
-	Charles Keepax <ckeepax@opensource.cirrus.com>,
-	Richard Fitzgerald <rf@opensource.cirrus.com>,
-	Lee Jones <lee@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
-	Takashi Iwai <tiwai@suse.com>,
-	James Schulman <james.schulman@cirrus.com>,
-	David Rhodes <david.rhodes@cirrus.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Peng Fan <peng.fan@nxp.com>, Jeff LaBundy <jeff@labundy.com>,
-	Sebastian Reichel <sebastian.reichel@collabora.com>,
-	Jacky Bai <ping.bai@nxp.com>,
-	Weidong Wang <wangweidong.a@awinic.com>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Herve Codina <herve.codina@bootlin.com>,
-	Shuming Fan <shumingf@realtek.com>,
-	Shenghao Ding <13916275206@139.com>,
-	Ryan Lee <ryans.lee@analog.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	"open list:CIRRUS LOGIC HAPTIC DRIVERS" <patches@opensource.cirrus.com>,
-	"open list:INPUT (KEYBOARD, MOUSE, JOYSTICK, TOUCHSCREEN)..." <linux-input@vger.kernel.org>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	open list <linux-kernel@vger.kernel.org>,
-	"open list:SOUND - SOC LAYER / DYNAMIC AUDIO POWER MANAGEM..." <linux-sound@vger.kernel.org>,
-	"moderated list:CIRRUS LOGIC AUDIO CODEC DRIVERS" <alsa-devel@alsa-project.org>
-Subject: Re: [PATCH v5 4/5] Input: cs40l50 - Add support for the CS40L50
- haptic driver
-Message-ID: <ZZoFUwOEF6NByIp2@google.com>
-References: <20240104223643.876292-1-jogletre@opensource.cirrus.com>
- <20240104223643.876292-5-jogletre@opensource.cirrus.com>
+        Sat, 06 Jan 2024 19:02:57 -0800 (PST)
+Date: Sun, 7 Jan 2024 08:32:47 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Frank Li <Frank.li@nxp.com>
+Cc: krzysztof.kozlowski@linaro.org, bhelgaas@google.com,
+	conor+dt@kernel.org, devicetree@vger.kernel.org, festevam@gmail.com,
+	helgaas@kernel.org, hongxing.zhu@nxp.com, imx@lists.linux.dev,
+	kernel@pengutronix.de, krzysztof.kozlowski+dt@linaro.org,
+	kw@linux.com, l.stach@pengutronix.de,
+	linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
+	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+	lpieralisi@kernel.org, robh@kernel.org, s.hauer@pengutronix.de,
+	shawnguo@kernel.org
+Subject: Re: [PATCH v7 01/16] PCI: imx6: Simplify clock handling by using
+ bulk_clk_*() function
+Message-ID: <20240107030247.GA3416@thinkpad>
+References: <20231227182727.1747435-1-Frank.Li@nxp.com>
+ <20231227182727.1747435-2-Frank.Li@nxp.com>
+ <20240106152708.GD2512@thinkpad>
+ <ZZmEY5d6IRcCZjl7@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20240104223643.876292-5-jogletre@opensource.cirrus.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <ZZmEY5d6IRcCZjl7@lizhi-Precision-Tower-5810>
 
-Hi James,
+On Sat, Jan 06, 2024 at 11:48:35AM -0500, Frank Li wrote:
+> On Sat, Jan 06, 2024 at 08:57:08PM +0530, Manivannan Sadhasivam wrote:
+> > On Wed, Dec 27, 2023 at 01:27:12PM -0500, Frank Li wrote:
+> > 
+> > Subject mentions, 'bulk_clk' APIs but there is no such thing. It should be
+> > 'clk_bulk()' APIs.
+> > 
+> > > Refactors the clock handling logic. Adds clk_names[] define in drvdata.
+> > > Using clk_bulk*() api simplifies the code.
+> > > 
+> > 
+> > I've mentioned this many times in the past. But let me reiterate here again:
+> > 
+> > Commit message should be in imperative mood as per Linux Kernel rules for
+> > submitting patches. Please see here:
+> > Documentation/process/submitting-patches.rst
+> > 
+> > The relevant part is:
+> > 
+> > "Describe your changes in imperative mood, e.g. "make xyzzy do frotz"
+> > instead of "[This patch] makes xyzzy do frotz" or "[I] changed xyzzy
+> > to do frotz", as if you are giving orders to the codebase to change
+> > its behaviour."
+> > 
+> > Please use this same format for rest of the patches as well for future ones.
+> 
+> I may have not understand *imperative mode*. Asked an English native
+> speaker. Do you menas
+> 
+> *Refector* the clock handling logic. *Add* clk_names[] define in drvdata.
+> *Use* clk_bulk*() api *simplify* the code.
 
-On Thu, Jan 04, 2024 at 10:36:37PM +0000, James Ogletree wrote:
-> +static int vibra_add(struct input_dev *dev, struct ff_effect *effect,
-> +		     struct ff_effect *old)
-> +{
-> +	struct vibra_info *info = input_get_drvdata(dev);
-> +	u32 len = effect->u.periodic.custom_len;
-> +
-> +	if (effect->type != FF_PERIODIC || effect->u.periodic.waveform != FF_CUSTOM) {
-> +		dev_err(info->dev, "Type (%#X) or waveform (%#X) unsupported\n",
-> +			effect->type, effect->u.periodic.waveform);
-> +		return -EINVAL;
-> +	}
-> +
-> +	memcpy(&info->add_effect, effect, sizeof(struct ff_effect));
+Yes!
 
-structures can be assigned, no need for memcpy.
+> 
+> > 
+> > > Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> > > ---
+> > > 
+> > > Notes:
+> > >     Change from v4 to v5
+> > >     - update commit message
+> > >     - direct using clk name list, instead of macro
+> > >     - still keep caculate clk list count because sizeof return pre allocated
+> > >     array size.
+> > >     
+> > >     Change from v3 to v4
+> > >     - using clk_bulk_*() API
+> > >     Change from v1 to v3
+> > >     - none
+> > > 
+> > >  drivers/pci/controller/dwc/pci-imx6.c | 125 ++++++++------------------
+> > >  1 file changed, 35 insertions(+), 90 deletions(-)
+> > > 
+> > > diff --git a/drivers/pci/controller/dwc/pci-imx6.c b/drivers/pci/controller/dwc/pci-imx6.c
+> > > index 74703362aeec7..50d9faaa17f71 100644
+> > > --- a/drivers/pci/controller/dwc/pci-imx6.c
+> > > +++ b/drivers/pci/controller/dwc/pci-imx6.c
 
-> +
-> +	info->add_effect.u.periodic.custom_data = kcalloc(len, sizeof(s16), GFP_KERNEL);
-> +	if (!info->add_effect.u.periodic.custom_data)
-> +		return -ENOMEM;
-> +
-> +	if (copy_from_user(info->add_effect.u.periodic.custom_data,
-> +			   effect->u.periodic.custom_data, sizeof(s16) * len)) {
-> +		info->add_error = -EFAULT;
-> +		goto out_free;
-> +	}
-> +
-> +	queue_work(info->vibe_wq, &info->add_work);
-> +	flush_work(&info->add_work);
+[...]
 
-I do not understand the need of scheduling a work here. You are
-obviously in a sleeping context (otherwise you would not be able to
-execute flush_work()) so you should be able to upload the effect right
-here.
+> > >  
+> > > -	/* Fetch clocks */
+> > > -	imx6_pcie->pcie_bus = devm_clk_get(dev, "pcie_bus");
+> > > -	if (IS_ERR(imx6_pcie->pcie_bus))
+> > > -		return dev_err_probe(dev, PTR_ERR(imx6_pcie->pcie_bus),
+> > > -				     "pcie_bus clock source missing or invalid\n");
+> > > +	while (imx6_pcie->drvdata->clk_names[imx6_pcie->clks_cnt]) {
+> > > +		int i = imx6_pcie->clks_cnt;
+> > 
+> > Why can't you initialize i to 0 directly?
+> 
+> can't init i to 0 directly here, otherwise next loop i will not increase.
+> i just reduce refer imx6_pcie->clks_cnt in 
+> 
+> imx6_pcie->clks[i].id = imx6_pcie->drvdata->clk_names[i];
+> 
 
-...
+Wait... Can't you just use ARRAY_SIZE() to calculate the clks_cnt statically?
 
-> +
-> +static int vibra_playback(struct input_dev *dev, int effect_id, int val)
-> +{
-> +	struct vibra_info *info = input_get_drvdata(dev);
-> +
-> +	if (val > 0) {
+Like,
 
-value is supposed to signal how many times an effect should be repeated.
-It looks like you are not handling this at all.
+	static const char * const imx8_clk_names[] = {
+		"pcie_bus", "pcie", "pcie_aux",
+	};
 
-> +		info->start_effect = &dev->ff->effects[effect_id];
-> +		queue_work(info->vibe_wq, &info->vibe_start_work);
+	[...]
 
-The API allows playback of several effects at once, the way you have it
-done here if multiple requests come at same time only one will be
-handled.
+		.clk_names = imx8_clk_names,
+		.clks_cnt = ARRAY_SIZE(imx8_clk_names),
 
-> +	} else {
-> +		queue_work(info->vibe_wq, &info->vibe_stop_work);
+You can use the same clk_names array for multiple SoCs if the clocks are same.
+I should've mentioned this in last review itself. Sorry about that.
 
-Which effect are you stopping? All of them? You need to stop a
-particular one.
+- Mani
 
-> +	}
-
-Essentially you need a queue of requests and a single work handling all
-of them...
-
-...
-
-> +
-> +static int cs40l50_vibra_probe(struct platform_device *pdev)
-> +{
-> +	struct cs40l50 *cs40l50 = dev_get_drvdata(pdev->dev.parent);
-> +	struct vibra_info *info;
-> +	int error;
-> +
-> +	info = devm_kzalloc(pdev->dev.parent, sizeof(*info), GFP_KERNEL);
-> +	if (!info)
-> +		return -ENOMEM;
-> +
-> +	info->dev = cs40l50->dev;
-> +	info->regmap = cs40l50->regmap;
-> +
-> +	info->input = devm_input_allocate_device(info->dev);
-> +	if (!info->input)
-> +		return -ENOMEM;
-> +
-> +	info->input->id.product = cs40l50->devid & 0xFFFF;
-> +	info->input->id.version = cs40l50->revid;
-> +	info->input->name = "cs40l50_vibra";
-> +
-> +	input_set_drvdata(info->input, info);
-> +	input_set_capability(info->input, EV_FF, FF_PERIODIC);
-> +	input_set_capability(info->input, EV_FF, FF_CUSTOM);
-> +
-> +	error = input_ff_create(info->input, FF_MAX_EFFECTS);
-> +	if (error) {
-> +		dev_err(info->dev, "Failed to create input device\n");
-> +		return error;
-> +	}
-> +
-> +	info->input->ff->upload = vibra_add;
-> +	info->input->ff->playback = vibra_playback;
-> +	info->input->ff->erase = vibra_erase;
-> +
-> +	INIT_LIST_HEAD(&info->effect_head);
-> +
-> +	info->dsp = cs40l50_dsp;
-> +
-> +	info->vibe_wq = alloc_ordered_workqueue("vibe_wq", 0);
-> +	if (!info->vibe_wq)
-> +		return -ENOMEM;
-> +
-> +	error = devm_add_action_or_reset(info->dev, vibra_remove_wq, info);
-> +	if (error)
-> +		return error;
-
-Why do you need a dedicated workqueue? So you can flush works?
-
-> +
-> +	mutex_init(&info->lock);
-> +
-> +	INIT_WORK(&info->vibe_start_work, vibra_start_worker);
-> +	INIT_WORK(&info->vibe_stop_work, vibra_stop_worker);
-> +	INIT_WORK(&info->erase_work, vibra_erase_worker);
-> +	INIT_WORK(&info->add_work, vibra_add_worker);
-> +
-> +	error = input_register_device(info->input);
-> +	if (error) {
-> +		dev_err(info->dev, "Failed to register input device\n");
-> +		input_free_device(info->input);
-
-Not needed, you are using devm_input_allocate_device().
-
-> +		return error;
-> +	}
-> +
-> +	return devm_add_action_or_reset(info->dev, vibra_input_unregister,
-> +					info->input);
-
-Not needed, managed input devices will be unregistered automatically by
-devm.
-
-Thanks.
+> Frank
+> 
+> > 
+> > Rest looks good to me.
+> > 
+> > - Mani
+> > 
+> > > +
+> > > +		imx6_pcie->clks[i].id = imx6_pcie->drvdata->clk_names[i];
+> > > +		imx6_pcie->clks_cnt++;
+> > > +	}
+> > >  
+> > > -	imx6_pcie->pcie = devm_clk_get(dev, "pcie");
+> > > -	if (IS_ERR(imx6_pcie->pcie))
+> > > -		return dev_err_probe(dev, PTR_ERR(imx6_pcie->pcie),
+> > > -				     "pcie clock source missing or invalid\n");
+> > > +	/* Fetch clocks */
+> > > +	ret = devm_clk_bulk_get(dev, imx6_pcie->clks_cnt, imx6_pcie->clks);
+> > > +	if (ret)
+> > > +		return ret;
+> > >  
+> > >  	switch (imx6_pcie->drvdata->variant) {
+> > > -	case IMX6SX:
+> > > -		imx6_pcie->pcie_inbound_axi = devm_clk_get(dev,
+> > > -							   "pcie_inbound_axi");
+> > > -		if (IS_ERR(imx6_pcie->pcie_inbound_axi))
+> > > -			return dev_err_probe(dev, PTR_ERR(imx6_pcie->pcie_inbound_axi),
+> > > -					     "pcie_inbound_axi clock missing or invalid\n");
+> > > -		break;
+> > > -	case IMX8MQ:
+> > > -	case IMX8MQ_EP:
+> > > -		imx6_pcie->pcie_aux = devm_clk_get(dev, "pcie_aux");
+> > > -		if (IS_ERR(imx6_pcie->pcie_aux))
+> > > -			return dev_err_probe(dev, PTR_ERR(imx6_pcie->pcie_aux),
+> > > -					     "pcie_aux clock source missing or invalid\n");
+> > > -		fallthrough;
+> > >  	case IMX7D:
+> > >  		if (dbi_base->start == IMX8MQ_PCIE2_BASE_ADDR)
+> > >  			imx6_pcie->controller_id = 1;
+> > > @@ -1353,10 +1300,6 @@ static int imx6_pcie_probe(struct platform_device *pdev)
+> > >  	case IMX8MM_EP:
+> > >  	case IMX8MP:
+> > >  	case IMX8MP_EP:
+> > > -		imx6_pcie->pcie_aux = devm_clk_get(dev, "pcie_aux");
+> > > -		if (IS_ERR(imx6_pcie->pcie_aux))
+> > > -			return dev_err_probe(dev, PTR_ERR(imx6_pcie->pcie_aux),
+> > > -					     "pcie_aux clock source missing or invalid\n");
+> > >  		imx6_pcie->apps_reset = devm_reset_control_get_exclusive(dev,
+> > >  									 "apps");
+> > >  		if (IS_ERR(imx6_pcie->apps_reset))
+> > > @@ -1372,14 +1315,6 @@ static int imx6_pcie_probe(struct platform_device *pdev)
+> > >  	default:
+> > >  		break;
+> > >  	}
+> > > -	/* Don't fetch the pcie_phy clock, if it has abstract PHY driver */
+> > > -	if (imx6_pcie->phy == NULL) {
+> > > -		imx6_pcie->pcie_phy = devm_clk_get(dev, "pcie_phy");
+> > > -		if (IS_ERR(imx6_pcie->pcie_phy))
+> > > -			return dev_err_probe(dev, PTR_ERR(imx6_pcie->pcie_phy),
+> > > -					     "pcie_phy clock source missing or invalid\n");
+> > > -	}
+> > > -
+> > >  
+> > >  	/* Grab turnoff reset */
+> > >  	imx6_pcie->turnoff_reset = devm_reset_control_get_optional_exclusive(dev, "turnoff");
+> > > @@ -1477,6 +1412,7 @@ static const struct imx6_pcie_drvdata drvdata[] = {
+> > >  			 IMX6_PCIE_FLAG_IMX6_SPEED_CHANGE,
+> > >  		.dbi_length = 0x200,
+> > >  		.gpr = "fsl,imx6q-iomuxc-gpr",
+> > > +		.clk_names = {"pcie_bus", "pcie", "pcie_phy"},
+> > >  	},
+> > >  	[IMX6SX] = {
+> > >  		.variant = IMX6SX,
+> > > @@ -1484,6 +1420,7 @@ static const struct imx6_pcie_drvdata drvdata[] = {
+> > >  			 IMX6_PCIE_FLAG_IMX6_SPEED_CHANGE |
+> > >  			 IMX6_PCIE_FLAG_SUPPORTS_SUSPEND,
+> > >  		.gpr = "fsl,imx6q-iomuxc-gpr",
+> > > +		.clk_names = {"pcie_bus", "pcie", "pcie_phy", "pcie_inbound_axi"},
+> > >  	},
+> > >  	[IMX6QP] = {
+> > >  		.variant = IMX6QP,
+> > > @@ -1492,40 +1429,48 @@ static const struct imx6_pcie_drvdata drvdata[] = {
+> > >  			 IMX6_PCIE_FLAG_SUPPORTS_SUSPEND,
+> > >  		.dbi_length = 0x200,
+> > >  		.gpr = "fsl,imx6q-iomuxc-gpr",
+> > > +		.clk_names = {"pcie_bus", "pcie", "pcie_phy"},
+> > >  	},
+> > >  	[IMX7D] = {
+> > >  		.variant = IMX7D,
+> > >  		.flags = IMX6_PCIE_FLAG_SUPPORTS_SUSPEND,
+> > >  		.gpr = "fsl,imx7d-iomuxc-gpr",
+> > > +		.clk_names = {"pcie_bus", "pcie", "pcie_phy"},
+> > >  	},
+> > >  	[IMX8MQ] = {
+> > >  		.variant = IMX8MQ,
+> > >  		.gpr = "fsl,imx8mq-iomuxc-gpr",
+> > > +		.clk_names = {"pcie_bus", "pcie", "pcie_phy", "pcie_aux"},
+> > >  	},
+> > >  	[IMX8MM] = {
+> > >  		.variant = IMX8MM,
+> > >  		.flags = IMX6_PCIE_FLAG_SUPPORTS_SUSPEND,
+> > >  		.gpr = "fsl,imx8mm-iomuxc-gpr",
+> > > +		.clk_names = {"pcie_bus", "pcie", "pcie_aux"},
+> > >  	},
+> > >  	[IMX8MP] = {
+> > >  		.variant = IMX8MP,
+> > >  		.flags = IMX6_PCIE_FLAG_SUPPORTS_SUSPEND,
+> > >  		.gpr = "fsl,imx8mp-iomuxc-gpr",
+> > > +		.clk_names = {"pcie_bus", "pcie", "pcie_aux"},
+> > >  	},
+> > >  	[IMX8MQ_EP] = {
+> > >  		.variant = IMX8MQ_EP,
+> > >  		.mode = DW_PCIE_EP_TYPE,
+> > >  		.gpr = "fsl,imx8mq-iomuxc-gpr",
+> > > +		.clk_names = {"pcie_bus", "pcie", "pcie_phy", "pcie_aux"},
+> > >  	},
+> > >  	[IMX8MM_EP] = {
+> > >  		.variant = IMX8MM_EP,
+> > >  		.mode = DW_PCIE_EP_TYPE,
+> > >  		.gpr = "fsl,imx8mm-iomuxc-gpr",
+> > > +		.clk_names = {"pcie_bus", "pcie", "pcie_aux"},
+> > >  	},
+> > >  	[IMX8MP_EP] = {
+> > >  		.variant = IMX8MP_EP,
+> > >  		.mode = DW_PCIE_EP_TYPE,
+> > >  		.gpr = "fsl,imx8mp-iomuxc-gpr",
+> > > +		.clk_names = {"pcie_bus", "pcie", "pcie_aux"},
+> > >  	},
+> > >  };
+> > >  
+> > > -- 
+> > > 2.34.1
+> > > 
+> > 
+> > -- 
+> > மணிவண்ணன் சதாசிவம்
 
 -- 
-Dmitry
+மணிவண்ணன் சதாசிவம்
 
