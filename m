@@ -1,114 +1,139 @@
-Return-Path: <devicetree+bounces-30296-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30297-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id EAD25827482
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 16:53:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 420168274B5
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 17:10:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7AB49B21D9C
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 15:53:45 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AD6E6B21F99
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 16:10:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DC1051032;
-	Mon,  8 Jan 2024 15:53:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 722F053819;
+	Mon,  8 Jan 2024 16:10:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="odd55ff7"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="Hq+RPIwQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f173.google.com (mail-vk1-f173.google.com [209.85.221.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB2E451C30;
-	Mon,  8 Jan 2024 15:53:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=oyblU9fS9RIJhRfq92DSb7yUSCuEu12wiegVylc2g30=; b=odd55ff7qVX3LGHrloljObiz1O
-	v2p/97U82lb9laxeFxsG3dQ6za8J5Q/HPzXk6Gsv9WaXA3PTPRXeDZOxJPz1XGlTfO82eaZIj14U9
-	JLnVdnniUiBE2p/5QOoIzO32zAzlMcDICGN9t1Ydbx0khVNbx8jgj+4tMgDgEfuprlmYZPAOeaK4W
-	iLe7w3jD18HHkjB6hHS2oh1PTJQraW4OS9BNS94QYqTJ5KsKOeV2fmNUmJhtRlPJErXhc4rbsJIM3
-	Q0llvh+RPy0yoDh3b545p3E4shhJdRF8rug1bfVCVE1BIpOOTiUa2Za278kUvLqAtVCZWm25p4cMC
-	gCS5fKlw==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:36992)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1rMrwC-0003BF-0e;
-	Mon, 08 Jan 2024 15:53:16 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1rMrwD-0003MQ-F2; Mon, 08 Jan 2024 15:53:17 +0000
-Date: Mon, 8 Jan 2024 15:53:17 +0000
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: Sergey Ryazanov <ryazanov.s.a@gmail.com>,
-	Jie Luo <quic_luoj@quicinc.com>, agross@kernel.org,
-	andersson@kernel.org, konrad.dybcio@linaro.org, davem@davemloft.net,
-	edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, hkallweit1@gmail.com, robert.marko@sartura.hr,
-	linux-arm-msm@vger.kernel.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	quic_srichara@quicinc.com
-Subject: Re: [PATCH v4 0/5] support ipq5332 platform
-Message-ID: <ZZwabT7pmwDof8Cs@shell.armlinux.org.uk>
-References: <20231225084424.30986-1-quic_luoj@quicinc.com>
- <a6a50fb6-871f-424c-a146-12b2628b8b64@gmail.com>
- <cfb04c82-3cc3-49f6-9a8a-1f6d1a22df40@quicinc.com>
- <dd05a599-247a-4516-8ad3-7550ceea99f7@gmail.com>
- <ac1977f5-cd6a-4f16-b0a0-f4322c34c5f5@quicinc.com>
- <bdeca791-f2e5-4256-b386-a75c03f93686@gmail.com>
- <895eadd7-1631-4b6b-8db4-d371f2e52611@lunn.ch>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 842B2537ED
+	for <devicetree@vger.kernel.org>; Mon,  8 Jan 2024 16:10:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
+Received: by mail-vk1-f173.google.com with SMTP id 71dfb90a1353d-4b745fa9671so194586e0c.0
+        for <devicetree@vger.kernel.org>; Mon, 08 Jan 2024 08:10:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1704730213; x=1705335013; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=8JlDxMUsqbGectUh8EIxrkNYT83uPUecoA8VWJ2a5gw=;
+        b=Hq+RPIwQMKBmofXa4sCQcFnurU/20bnMoA1FCPLVo/bDHvLug6jbgMaDlIV2dRb3mW
+         gjMDZPv9bwTfJDwMWRNiUUo44BwUaifWtG5m7eXz4Vf/2eAL6dCQDoC5lxayiP4yQtzG
+         BOAxoxF+YyouDRkd37iWUwaWm0XNDOxj8ga3kLKnVN25bEkD1HL8qSYgzNlQC98/YUEV
+         jp2k45begzs/Xl2Nqyi2qSYfw8bBeWXdUlcT9Ptuf5+qNq0to5Izqe+H72kJc+WtiCYK
+         4cna/q7uJ8ZGF0T7PX9TflEqfQmLCfKntOWaFzthuLsDga8S8OrM5daOe7zIy7SNwHBL
+         0dSw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1704730213; x=1705335013;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=8JlDxMUsqbGectUh8EIxrkNYT83uPUecoA8VWJ2a5gw=;
+        b=IQ3dMcuV6l4ksHXlO25dV1O0faLDa18SvPQa/231Tj1z2kY6O2c8Z+cX9p1gW9/k/W
+         G5GSNR1qqFcI4e6ViRng3LIqh2kThZ4pYiR8CgzM1vDwIY/83mCTSGQIOIEwAeE0kC1z
+         EfnXSoCGKRTJaOIDc39V6uY9hXCCrS4iA5VyX9JVgOL4oukxFAnWwXYF9oSnmwZ6t+9s
+         wmkQYEDVR/dn1nv8da17KrDF9uF+Iy/tDChqyOD0Yxn+PzbeuZrpxrQ6tALddooaA/2W
+         DDKnX4sgZzAHGvLrAO0Pji8q6nYrZfCloIcoNVX7sKfI/ybDXwbWKK24aATEZInsv3hn
+         ayZw==
+X-Gm-Message-State: AOJu0YxFWBq+2Pb1lsQxRi7DrNIVJaaun+0MMZR/TfZHz7lezPHmzsoD
+	mehhb7Opr2Ph0fx7hqRdy5EXmYDiCW3LxUULqO4lLrnn4pSizg==
+X-Google-Smtp-Source: AGHT+IH2ohe7yImgJmTTE/Wko3CMU+zS3sQUItHcrSLheScuDG9+B0iL9MMp/HN2zRHrDOfHcElD6gfDz+jUZpk0DV8=
+X-Received: by 2002:a05:6122:2513:b0:4b7:53cf:bec6 with SMTP id
+ cl19-20020a056122251300b004b753cfbec6mr1204475vkb.0.1704730213337; Mon, 08
+ Jan 2024 08:10:13 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <895eadd7-1631-4b6b-8db4-d371f2e52611@lunn.ch>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+References: <20240104130123.37115-1-brgl@bgdev.pl> <abefffc7-35d0-4c29-a892-48ec606acbf8@linaro.org>
+In-Reply-To: <abefffc7-35d0-4c29-a892-48ec606acbf8@linaro.org>
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+Date: Mon, 8 Jan 2024 17:10:02 +0100
+Message-ID: <CAMRc=MdUgY2XScpe6FjyPoC0hxWcxZ5eaa+qKFjNUrin--updg@mail.gmail.com>
+Subject: Re: [RFC 0/9] PCI: introduce the concept of power sequencing of PCIe devices
+To: neil.armstrong@linaro.org
+Cc: Kalle Valo <kvalo@kernel.org>, "David S . Miller" <davem@davemloft.net>, 
+	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
+	Bjorn Helgaas <bhelgaas@google.com>, Heiko Stuebner <heiko@sntech.de>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Chris Morgan <macromorgan@hotmail.com>, 
+	Linus Walleij <linus.walleij@linaro.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Arnd Bergmann <arnd@arndb.de>, =?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= <nfraprado@collabora.com>, 
+	Marek Szyprowski <m.szyprowski@samsung.com>, Peng Fan <peng.fan@nxp.com>, 
+	Robert Richter <rrichter@amd.com>, Dan Williams <dan.j.williams@intel.com>, 
+	Jonathan Cameron <Jonathan.Cameron@huawei.com>, Terry Bowman <terry.bowman@amd.com>, 
+	Kuppuswamy Sathyanarayanan <sathyanarayanan.kuppuswamy@linux.intel.com>, 
+	=?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>, 
+	Huacai Chen <chenhuacai@kernel.org>, Alex Elder <elder@linaro.org>, 
+	Srini Kandagatla <srinivas.kandagatla@linaro.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, linux-wireless@vger.kernel.org, 
+	netdev@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org, 
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Sat, Jan 06, 2024 at 04:45:08PM +0100, Andrew Lunn wrote:
-> > I just realized that the UNIPHY block is a MII (probably SGMII) controller.
-> > Isn't it? And I expect that it responsible more then just for clock
-> > enabling. It should also activate and perform a basic configuration of MII
-> > for actual data transmission. If so, then it should placed somewhere under
-> > drivers/net/phy or drivers/net/pcs.
-> 
-> Before we decide that, we need a description of what the UNIPHY
-> actually does, what registers it has, etc. Sometimes blocks like this
-> get split into a generic PHY, aka drivers/phy/ and a PCS driver. This
-> would be true if the UNIPHY is also used for USB SERDES, SATA SERDES
-> etc. The SERDES parts go into a generic PHY driver, and the SGMII on
-> to of the SERDES is placed is a PCS driver.
-> 
-> The problem i have so far is that there is no usable description of
-> any of this hardware, and the developers trying to produce drivers for
-> this hardware don't actually seem to understand the Linux architecture
-> for things like this.
+On Mon, Jan 8, 2024 at 4:24=E2=80=AFPM Neil Armstrong <neil.armstrong@linar=
+o.org> wrote:
+>
+> Hi,
+>
+> On 04/01/2024 14:01, Bartosz Golaszewski wrote:
+> > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> >
+> > During last year's Linux Plumbers we had several discussions centered
+> > around the need to power-on PCI devices before they can be detected on
+> > the bus.
+> >
+> > The consensus during the conference was that we need to introduce a
+> > class of "PCI slot drivers" that would handle the power-sequencing.
+> >
+> > After some additional brain-storming with Manivannan and the realizatio=
+n
+> > that the DT maintainers won't like adding any "fake" nodes not
+> > representing actual devices, we decided to reuse the existing
+> > infrastructure provided by the PCIe port drivers.
+> >
+> > The general idea is to instantiate platform devices for child nodes of
+> > the PCIe port DT node. For those nodes for which a power-sequencing
+> > driver exists, we bind it and let it probe. The driver then triggers a
+> > rescan of the PCI bus with the aim of detecting the now powered-on
+> > device. The device will consume the same DT node as the platform,
+> > power-sequencing device. We use device links to make the latter become
+> > the parent of the former.
+> >
+> > The main advantage of this approach is not modifying the existing DT in
+> > any way and especially not adding any "fake" platform devices.
+>
+> I've successfully tested this serie for the WCN7850 Wifi/BT combo onboard=
+ chip
+> present on the SM8550-QRD and SM8650-QRD boards and it works just fine.
+>
+> Here's a branch with the wcn7850 vreg table added to the pwrseq driver,
+> and the DT changes:
+> https://git.codelinaro.org/neil.armstrong/linux/-/commits/topic/sm8x50/wc=
+n7850-wifi-pwrseq/?ref_type=3Dheads
 
-+1. I think it's now more convoluted than ever, and someone needs to
-take a step back, look at the hardware, look at the kernel model, and
-work out how to implement this. It needs to be explained in a clear
-and concise way in _one_ go, not spread over multiple emails. Probably
-with ASCII art diagrams showing the structure.
+Thanks, I'll integrate them into v2.
 
-If that isn't possible, then someone needs to provide a detailed
-description of the hardware so that the subsystem maintainers get a
-proper view of what this hardware is so they can advise. This is the
-least preferable option due to the maintainer time it takes.
-
-If neither of these two things happen, then I'm afraid all bets are
-off for getting this into the kernel.
-
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+Bart
 
