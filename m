@@ -1,95 +1,110 @@
-Return-Path: <devicetree+bounces-30368-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30369-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64D2D8279FA
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 22:09:44 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 87331827A3F
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 22:35:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8AED91C21D7A
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 21:09:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1CD6A1F237B0
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 21:35:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E8EB55E6C;
-	Mon,  8 Jan 2024 21:09:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57D3256456;
+	Mon,  8 Jan 2024 21:34:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LJysBBxa"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oGw7zeYl"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B0AA55E64;
-	Mon,  8 Jan 2024 21:09:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1719AC43390;
-	Mon,  8 Jan 2024 21:09:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B35A5644F;
+	Mon,  8 Jan 2024 21:34:56 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 64B1DC433C7;
+	Mon,  8 Jan 2024 21:34:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1704748180;
-	bh=tOZeUwu8Ym50TZyoye/7s3VUIMz/brOfUTrnWpL/6c0=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=LJysBBxajBMPFfDATpJd+uWkPL3Z5fpOojms4mGLvOAO91gF1W9TpCFLbFI6b/Vg9
-	 FXZn+YmoSnguYsVRJSiuSOOny/i5cwbpl3Zdv/iitV3842uA67jdfd8ERQD1josYtm
-	 Vcc+YUiyGE4jvoONH9istQxAVsBTOloUmkURe68BEBS8U0NVZppgbFNbVKik4XeZZe
-	 VfGMuvKJy74wu1sbbyFS6GlX20UK+unzrDKJJDDyrwd1mUyLmLxyjf84eNQaSwaVDm
-	 hZ8fwKSbS8gQW9SenAcToLaAj1yYZjNJokMkcpzwic95/GRBpstaVco5lDsWZqDidv
-	 Bac3fPiapXvnA==
-Received: (nullmailer pid 2140736 invoked by uid 1000);
-	Mon, 08 Jan 2024 21:09:36 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1704749696;
+	bh=TbKhcaDX991KzdmgWtOOMq+69pB52opa1WG/z42fjVw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=oGw7zeYlNKuhfc3QbUjT9b3DZcn4DgXX75R4CKVqbjUrumGlB1OBnzGdSUABVGIDs
+	 QHiDoWscn6mTQfo2BE2e9PNDIWT1SKuDGH+ter0CuPZMVFcl8rtaMykN4Km8xn1YLq
+	 hUVSIzxMTEqjjeOGYprtLQFq3nRE6Z+tFVxCnjiKPgiSkA0LDZ4+YyJUUT6SvEeY/i
+	 noKtgG1bg3V4t7xoJwQ76yzhFWHs8lnjxFMgyFS33hGdW5ai6tI0I0ySOMLsQZX40C
+	 ZIT5lcRYrXC3C3GFl5OJbjXkcVs9BfBFpz9ttaD8Ua51wBwNVyMlBx0pUAlozbBX5D
+	 cFRnk5Qm/wmVQ==
+Date: Mon, 8 Jan 2024 21:34:47 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Ninad Palsule <ninad@linux.ibm.com>
+Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, joel@jms.id.au, andrew@codeconstruct.com.au,
+	peterhuewe@gmx.de, jarkko@kernel.org, jgg@ziepe.ca,
+	keescook@chromium.org, tony.luck@intel.com, gpiccoli@igalia.com,
+	johannes.holland@infineon.com, linux@roeck-us.net,
+	andre.werner@systec-electronic.com,
+	Andrew Geissler <geissonator@yahoo.com>,
+	patrick.rudolph@9elements.com, vincent@vtremblay.dev,
+	peteryin.openbmc@gmail.com, lakshmiy@us.ibm.com,
+	bhelgaas@google.com, naresh.solanki@9elements.com,
+	alexander.stein@ew.tq-group.com, festevam@denx.de,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+	linux-integrity@vger.kernel.org, linux-hardening@vger.kernel.org,
+	geert+renesas@glider.be, luca.ceresoli@bootlin.com
+Subject: Re: [PATCH v2 3/3] ARM: dts: aspeed: System1: IBM system1 BMC board
+Message-ID: <b09d6e54-66e9-482f-8f45-38381fa6b62e@sirena.org.uk>
+References: <20240108204114.1041390-1-ninad@linux.ibm.com>
+ <20240108204114.1041390-4-ninad@linux.ibm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Rob Herring <robh@kernel.org>
-To: Tomer Maimon <tmaimon77@gmail.com>
-Cc: robh+dt@kernel.org, venture@google.com, linux-kernel@vger.kernel.org, sboyd@kernel.org, tali.perry1@gmail.com, linux-clk@vger.kernel.org, yuenn@google.com, mturquette@baylibre.com, openbmc@lists.ozlabs.org, benjaminfair@google.com, krzysztof.kozlowski+dt@linaro.org, joel@jms.id.au, devicetree@vger.kernel.org
-In-Reply-To: <20240108135421.684263-2-tmaimon77@gmail.com>
-References: <20240108135421.684263-1-tmaimon77@gmail.com>
- <20240108135421.684263-2-tmaimon77@gmail.com>
-Message-Id: <170474817687.2140623.4004065884295248395.robh@kernel.org>
-Subject: Re: [PATCH v22 1/8] dt-bindings: clock: npcm845: Add reference 25m
- clock  property
-Date: Mon, 08 Jan 2024 14:09:36 -0700
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="rIaTAIoZgSKW9gCu"
+Content-Disposition: inline
+In-Reply-To: <20240108204114.1041390-4-ninad@linux.ibm.com>
+X-Cookie: Best if used before date on carton.
 
 
-On Mon, 08 Jan 2024 15:54:14 +0200, Tomer Maimon wrote:
-> The NPCM8XX clock driver uses 25Mhz external clock, therefor adding
-> refclk property.
-> 
-> Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
-> ---
->  .../bindings/clock/nuvoton,npcm845-clk.yaml      | 16 ++++++++++++++++
->  1 file changed, 16 insertions(+)
-> 
+--rIaTAIoZgSKW9gCu
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+On Mon, Jan 08, 2024 at 02:41:14PM -0600, Ninad Palsule wrote:
 
-yamllint warnings/errors:
+> +	regulator@60 {
+> +		compatible = "maxim,max8952";
+> +		reg = <0x60>;
+> +
+> +		max8952,default-mode = <0>;
+> +		max8952,dvs-mode-microvolt = <1250000>, <1200000>,
+> +						<1050000>, <950000>;
+> +		max8952,sync-freq = <0>;
+> +		max8952,ramp-speed = <0>;
+> +
+> +		regulator-name = "VR_1.0V";
+> +		regulator-min-microvolt = <770000>;
+> +		regulator-max-microvolt = <1400000>;
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/clock/nuvoton,npcm845-clk.example.dtb: clock-controller@f0801000: 'clocks' is a required property
-	from schema $id: http://devicetree.org/schemas/clock/nuvoton,npcm845-clk.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/clock/nuvoton,npcm845-clk.example.dtb: clock-controller@f0801000: 'clock-names' is a required property
-	from schema $id: http://devicetree.org/schemas/clock/nuvoton,npcm845-clk.yaml#
+A regulator labelled VR_1.0V can vary between 0.77V and 1.4V and has
+exactly the same configuration as another regulator labelled VR_1.2V?
+That seems...  odd?
 
-doc reference errors (make refcheckdocs):
+--rIaTAIoZgSKW9gCu
+Content-Type: application/pgp-signature; name="signature.asc"
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240108135421.684263-2-tmaimon77@gmail.com
+-----BEGIN PGP SIGNATURE-----
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmWcanYACgkQJNaLcl1U
+h9AQvAf/bBzl7TOXhykZugaGhrwTqbgUhCIJlcRYOC0WPtwpbxLratLbeJHqcSUj
+29OZ0OuopB/FwVtUC2KBORlRBMEQRb/GUCZwNxjtqhrC3Bp9CYOTqJs/0jUD9ZCZ
+IuvRBEKet3+4RpOyOgwplSHhCwwH1XmWfBb9xWNbCKd7r6NxrZ5z4+LiIrJT8Y/s
+fopj53Dmk7MqpK1xl9yBW2CaHAPI2QiA3/Zbh5CJUNJu0zAfw7bASSjseh2pfre9
+50Xg+lhn1TDW2Azid2S9Uzcmefsz1dScLfC4fCsblsSLomp1VJ6VNSJUDApod54N
+xWK8ruqdyGOmlTQ5yd18SEwzEkM3WA==
+=j/GH
+-----END PGP SIGNATURE-----
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+--rIaTAIoZgSKW9gCu--
 
