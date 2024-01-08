@@ -1,216 +1,179 @@
-Return-Path: <devicetree+bounces-30117-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30119-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E03E82693F
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 09:16:33 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F621826977
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 09:27:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A72241C21B33
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 08:16:32 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BA4D5B21208
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 08:27:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42E1B8F55;
-	Mon,  8 Jan 2024 08:16:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4B4E9473;
+	Mon,  8 Jan 2024 08:27:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=siemens.com header.i=@siemens.com header.b="irIuub+K"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="YJi/vpm5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2047.outbound.protection.outlook.com [40.107.22.47])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A8F89467;
-	Mon,  8 Jan 2024 08:16:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=siemens.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=VNI2MmnW5LPi00i+HtO7BbKtXG+chUPGs6sW3aIMMA2M8On6So/rD2+tKpAGGBGKFfT6tOiq12oIzEBh6g2sxihboa+NQYLxx8AuWa3iMrs26rs23tRtyUOe37jxjuqrNzegFHkWGR64r73LTuTg0MGmRH0pjQZmX0wzazIZkqVzib7ORDZ3hAH8jMlUBwVrf4eNUCMBr7PRncIdHOF9As+OAIp3NUxRV2IKyhT5GLWrTcPtKfogULzeaYverr6NimZEMnHYsW3nS9CUeFs5wE5TGxKQ6EQe/XNv6A8zub7pLiabTEkXD2dNQn5LmZJhY1RkXEtPqK0kLckqcFXXuQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=wD4l+bs1YMwoezaICyxoPVf1G8bh5/2Rd4/8Q0noj0s=;
- b=oCqCK5wbJHUH0yjGAdgCBgtbm4spoy1tcWo4MK7yqbwGZjSS6PVePGsiBZ0m5GTUMdURiAMyX40q6MiUGdIxpkmMt3KP7J62Vec/XU1J3WFj34IxDHzbe2v4BH6hjwI+zHf1QcJ63arQwIhUHTgGnhfR3Q4K+AgXiq21wqPvbDjaOqhy78lPXuEDCcNv05hC5LIwZT0uxgRXRZGbvB+z/iT2A4W5PSbx5lyxhcAcV+J/b8ZX+tE9nWnQON1xTYF9K+VyCD7wOOMa2cyZdMyuVzxXiBHqVkb1NdJxaPZIrSE8k4tYlRcNynPtZIywHBKWpaQEi4u3KlFR1mTJ6AYNtw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=siemens.com; dmarc=pass action=none header.from=siemens.com;
- dkim=pass header.d=siemens.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=siemens.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=wD4l+bs1YMwoezaICyxoPVf1G8bh5/2Rd4/8Q0noj0s=;
- b=irIuub+KV4DM5fNedplyqu+u7eDMyrDZ8dOObvPHB4j29wtWUEmb8GGqMeI1Wdp76GelOVlbSlkWZnx4yADwjyDC1PD/EJyyEpBWpbmZMymjflo/Hd5nkKd8f4815b6YGrj9AKp/Dgx8OBtaRftbMKBEXhTFg0Em6ZI5RrqIKdgybhDmGfrIG0+QKk9Z6Yil6NiU7PNKDDMDPf+CWy6LXSdMw3nEiW8Yt26mTJ8hiQZCF6HihKiuv21He7rGliLLdwgAHAy3jBWIeliMjT7Q5CP3VLDIETMF3xRsfw/zYrIX/hn8DxPZxPw3tL/a5TeB0kYkIq2pIHuPl80tTKvPuw==
-Received: from AS8PR10MB6993.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:5a4::10)
- by AM9PR10MB4055.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:1cd::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7159.21; Mon, 8 Jan
- 2024 08:16:15 +0000
-Received: from AS8PR10MB6993.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::11a5:fa0:85c9:ad4f]) by AS8PR10MB6993.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::11a5:fa0:85c9:ad4f%7]) with mapi id 15.20.7159.020; Mon, 8 Jan 2024
- 08:16:15 +0000
-From: "Li, Hua Qian" <HuaQian.Li@siemens.com>
-To: Nishanth Menon <nm@ti.com>
-CC: "wim@linux-watchdog.org" <wim@linux-watchdog.org>, "linux@roeck-us.net"
-	<linux@roeck-us.net>, "robh+dt@kernel.org" <robh+dt@kernel.org>,
-	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>, "huaqianlee@gmail.com"
-	<huaqianlee@gmail.com>, "vigneshr@ti.com" <vigneshr@ti.com>,
-	"kristo@kernel.org" <kristo@kernel.org>, "linux-watchdog@vger.kernel.org"
-	<linux-watchdog@vger.kernel.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "Kiszka, Jan"
-	<jan.kiszka@siemens.com>, "Su, Bao Cheng" <baocheng.su@siemens.com>
-Subject: RE: [PATCH v3 2/3] arm64: dts: ti: Add reserved memory for watchdog
-Thread-Topic: [PATCH v3 2/3] arm64: dts: ti: Add reserved memory for watchdog
-Thread-Index: AQHZtW+sFYwpuU0uCECG57sNkPRn36+5WswAgRdN6nA=
-Date: Mon, 8 Jan 2024 08:16:15 +0000
-Message-ID:
- <AS8PR10MB6993F047652F40675BDA689D9F6B2@AS8PR10MB6993.EURPRD10.PROD.OUTLOOK.COM>
-References: <20230713095127.1230109-1-huaqian.li@siemens.com>
- <20230713095127.1230109-3-huaqian.li@siemens.com>
- <20230714225240.dvlwqaodp2l3cczm@disfigure>
-In-Reply-To: <20230714225240.dvlwqaodp2l3cczm@disfigure>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-msip_labels:
- MSIP_Label_9d258917-277f-42cd-a3cd-14c4e9ee58bc_ActionId=44f9358b-b336-4736-818a-7324bf52d61f;MSIP_Label_9d258917-277f-42cd-a3cd-14c4e9ee58bc_ContentBits=0;MSIP_Label_9d258917-277f-42cd-a3cd-14c4e9ee58bc_Enabled=true;MSIP_Label_9d258917-277f-42cd-a3cd-14c4e9ee58bc_Method=Standard;MSIP_Label_9d258917-277f-42cd-a3cd-14c4e9ee58bc_Name=restricted;MSIP_Label_9d258917-277f-42cd-a3cd-14c4e9ee58bc_SetDate=2024-01-08T08:07:58Z;MSIP_Label_9d258917-277f-42cd-a3cd-14c4e9ee58bc_SiteId=38ae3bcd-9579-4fd4-adda-b42e1495d55a;
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=siemens.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: AS8PR10MB6993:EE_|AM9PR10MB4055:EE_
-x-ms-office365-filtering-correlation-id: cd1f3c1b-772d-4ca1-42c5-08dc10221542
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info:
- 6lMZPOzA+7q2JjrizCF9q4xRsM3dF43dNRqNz+B8Iuf6DLgnMqBmUUwXX7o+Rhwfrxud289Y8ptxcS0EtmQw/kn/eBPrXnjNWSCAem2SmKpCpe2FxRpBW5Om9uZQx2JF3owkZkr76joEoqWaHTZdQ/Y1JFJOG86rZ0EsovnDPgTT2K8M1kDYJ8RDZm4u2xLatXb/bXNljOhlDxxk5prgFc2SNCbPYtu5/lDXXBgSuRCErohWGjyLJLOhWURo0jIjOCVaIm2aWMIud8RMviNtQnnFrhAIisgj2erRgU1rBb3hgx1bd1YrtciWHAiy/9az+mM5FiL678s96Sq7vwulvOmQ1aSCkK92bGhKCEcrLt1OOV+dr6+TIRAbc60zQXJ/rFGLbu0JLHjh7VrIln4rQVP7ke8W64HQFNZKK1RZyT8aULTK6ShmalaMZRxcO3QKE4qHEKaw4ieRSgbicJES1sWL0qr6EIXRIBVMijeFL26AEa7Fnw5TUukFxbCTMGEA0wkX73mhA3VA0LmNHfbmxXuuYTHbrsWtIRQs6787p6duNJ7chiE0Pc0dnkjEjFoPkYkXT1Gh19iTiFFcU2E2iGzPI+LHIBEpxVyyNfTHgPdHr0P1Ibs2WSf3/9otNJMZo4Ug4PFO8WWz37d2SoR3gDruIbiCMHNajAFGgAk4CpA=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR10MB6993.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230031)(366004)(39860400002)(376002)(346002)(396003)(136003)(230922051799003)(230173577357003)(230273577357003)(451199024)(186009)(64100799003)(1800799012)(122000001)(38100700002)(4326008)(7416002)(5660300002)(2906002)(38070700009)(9686003)(478600001)(71200400001)(7696005)(6506007)(53546011)(966005)(83380400001)(33656002)(26005)(107886003)(54906003)(316002)(52536014)(76116006)(66946007)(66476007)(66446008)(64756008)(6916009)(66556008)(8936002)(8676002)(45080400002)(86362001)(41300700001)(82960400001)(55016003)(171213001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?TaAC/HZYMeFRBF90R5wR+rkpv43WW1/yuuycKSV7HEjM0KiIw+8uhhZT76ZY?=
- =?us-ascii?Q?Iw7kAIMaQW3bVnJ3bLTPZufcXuQd2qiDKCXlNMFEgFBbWrQ9Q7dHCf33g7N5?=
- =?us-ascii?Q?hZedaS98s+8Awgodd4EX+t7wbPYhYi6tWKmVTo76lKgo3qB/eO1c2MooihPb?=
- =?us-ascii?Q?RJv0kwlnG2OowP46/7NPb5KbU4msq6hTuiQXw1SodONEllE95NksfnZnRUp7?=
- =?us-ascii?Q?ABWjwjiv2UZkujPg+jYy5CQHG2JlBiz+oSkIDXWaqxP1DfZVAe+prK6efE9S?=
- =?us-ascii?Q?rf55bLUOzM9Q/H1p/fWWHtMt3/x+T0P5DOl0R2SPWT4b3I6QpJNvwTscOJAd?=
- =?us-ascii?Q?Csi/kbm+a8u1msHQlmHNuva/IG6liDBUk5wCADyd2i2dP5ofM9+F+uQRsTQ0?=
- =?us-ascii?Q?iSk9l6wGp4g5qI0jl4dXLUIcpvbxV80OI08VN3fK7E3oFWHfUxEnuCgT8V0v?=
- =?us-ascii?Q?+gMlUAEpXkYXJiau/vdyWefR5eOTdbcEVqJH4HLRxLOe5IPhQvK3E45S/EQc?=
- =?us-ascii?Q?Ttg2S8rBNBOoh6Qx/94K0uzteqKRgB3pyPpOuAez/wowmE6cwFS0aiXbe7Hd?=
- =?us-ascii?Q?bKmq6F9PzqN8wk6CcZCDYpZXQw5FUiSQo5tPH5lKttVCug1N/KNUG42Hc+Yr?=
- =?us-ascii?Q?KsqUAQASMj/Vos6Zo/kg/Ks0eD09knsd3ASv8bdoEJlZKjI6Jsqy2k7ogCtr?=
- =?us-ascii?Q?e94KQr3dfQLKkrWlgn7cRJm6RmcYo4+gba012YhMiMccIc3Gm3SzmnnGhEu5?=
- =?us-ascii?Q?QCCdu1DLRO0q7Qq1FH5gqc26DFOK/rIK1pbbQNH75Ry8yMLNKapR+ECtmXsP?=
- =?us-ascii?Q?rSo4byRNeDLbAbnQPCb6WmRh2O6x5k/0sukVFnGTf9IRHFCeQHXo1IShhsep?=
- =?us-ascii?Q?l187/bJxgC4L/PO1sjadLno7AGo3Fp8L7AHSUBtXdLXnNzaAdGa0WvoHpP2k?=
- =?us-ascii?Q?C1eAGlHU50mToqDc03IM7EEPR5KTSLsng9vRx/zgjPBD1tUkFAGt1/o92BNM?=
- =?us-ascii?Q?wAeUUsT9sytVyScT2bBWO5xhWsQxcXZ2O8Nsgq9O8fCCJafXqTHGAQFsjKzp?=
- =?us-ascii?Q?idbGHSqIAum8J2WTNYOF/qSiLwMyhs7T7Ja8lkAO7IQVGaGPqgAogI+l+4qP?=
- =?us-ascii?Q?Z9rjka5lYLe2tjxolLlfV/XuD8eszuaSsjOU/w9pLPAVeEwtoPxFAaqOicCx?=
- =?us-ascii?Q?6LCByJQZg7wAgKzwYMY2d0oeRF1myZU/hiGe0nSWkYlQpfzSsBR36wwqEjIP?=
- =?us-ascii?Q?sW6ILj6HjcOpTR5ev6Ucx0griaUOQb+SqG0D8qKgQw9ZfVgeDH6vqBIGGYze?=
- =?us-ascii?Q?QQ73DrPhaNZxZkiW6mD6CsHXu9JOENjeRv45xFiIRaSMbpDd7cJMY61DxjP+?=
- =?us-ascii?Q?ugQdX0VZn6As4jFv4r+0PoS2Qvgu292rsaXzk+2DcCOHOHWGiV0fjohcyv6H?=
- =?us-ascii?Q?mWGTGD4ljDY/Yz6y08n75tPUuSicQGHcfUCkEy3aPoYkIIkaafIR4KDltRkj?=
- =?us-ascii?Q?dgNTtN5hIvfP6QvVxk4PIfQtyj1VnxE+O1K2hG+bD9oPKmBu5kuI+M23WvUc?=
- =?us-ascii?Q?qaIM89FLLJyiHOf9w06hpct174L0Xv1x7yAH2rcd?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6721F13AC7;
+	Mon,  8 Jan 2024 08:27:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40860CQ0009945;
+	Mon, 8 Jan 2024 08:27:21 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=lzYxfaFzQtBCI6PD1UXT0CYm6nKTZBF5UPuLGV0Yrgo=; b=YJ
+	i/vpm5/6dC2ufWheJwfAxzTxCI+H0WFqjiZy0Ft9DAouykkn50415nzsW4agGY0Q
+	STiDfae32c5nK2qypCUw834WiQlHsGSJAkVODiTXiJUQ2P9kACimZH8J69uMMw8Q
+	q6mFxhuT2+W3hBtz9mN5c3hN3RJy40lpmqEK5iX65rmqOcK8e8H9FQlvG8/7Iq7l
+	nFvGA3z0rtScWiFo51kyWX48dwrZCE/n+H6XRUWWgGjtVd0+JuXpu2D9FCT43kT9
+	OFjU0bDReu7pe8WpnHaWNv0hRZLIvVnB5XjH1iuamDLl+ZuOmWN1qjCMNOo9AB0B
+	uvwwWsj52loym3JRYJbg==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3veymmbcxg-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 08 Jan 2024 08:27:20 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 4088R9qm018144
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 8 Jan 2024 08:27:09 GMT
+Received: from [10.253.76.26] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Mon, 8 Jan
+ 2024 00:27:04 -0800
+Message-ID: <6a7d62fc-a518-4aab-bb28-9289c398b74b@quicinc.com>
+Date: Mon, 8 Jan 2024 16:27:00 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: siemens.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AS8PR10MB6993.EURPRD10.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: cd1f3c1b-772d-4ca1-42c5-08dc10221542
-X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Jan 2024 08:16:15.0941
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 38ae3bcd-9579-4fd4-adda-b42e1495d55a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Fp4qLb/JJ+55C3r7I8IaknHiz+fUE1rDVMeMWvpTFCjc71yrzAGBx+2OWq2t9o4fXkFgVmL9WXQm6mmm4v14dg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR10MB4055
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 14/14] dt-bindings: net: ar803x: add qca8084 PHY
+ properties
+Content-Language: en-US
+To: Andrew Lunn <andrew@lunn.ch>
+CC: Christian Marangi <ansuelsmth@gmail.com>,
+        "Russell King (Oracle)"
+	<linux@armlinux.org.uk>,
+        <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
+        <pabeni@redhat.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <hkallweit1@gmail.com>, <corbet@lwn.net>, <p.zabel@pengutronix.de>,
+        <f.fainelli@gmail.com>, <netdev@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-doc@vger.kernel.org>
+References: <6abe5d6f-9d00-445f-8c81-9c89b9da3e0a@quicinc.com>
+ <ZX3LqN8DSdKXqsYc@shell.armlinux.org.uk>
+ <1bddd434-024c-45ff-9866-92951a3f555f@quicinc.com>
+ <ZZPeHJJU96y1kdlZ@shell.armlinux.org.uk>
+ <6593e0a3.050a0220.5c543.8e12@mx.google.com>
+ <cee9de2c-bfa4-4ca9-9001-725e2041bc25@quicinc.com>
+ <85590a5b-9d5a-40cb-8a0e-a3a3a1c3720a@lunn.ch>
+ <c5263daa-b5f4-4b9c-a216-73d68493a802@quicinc.com>
+ <50252a5a-e4fb-42d3-b838-9ef04faf4c5c@lunn.ch>
+ <b427c89a-81a9-439f-905e-2a6632065b78@quicinc.com>
+ <864b0867-06c0-4c6d-ae71-9b5025c8d93a@lunn.ch>
+From: Jie Luo <quic_luoj@quicinc.com>
+In-Reply-To: <864b0867-06c0-4c6d-ae71-9b5025c8d93a@lunn.ch>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: _JTl_QMG-Z0PXhZbt5wiQBTQfpaSIKJ7
+X-Proofpoint-GUID: _JTl_QMG-Z0PXhZbt5wiQBTQfpaSIKJ7
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-12-09_01,2023-12-07_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 impostorscore=0
+ mlxlogscore=999 spamscore=0 phishscore=0 malwarescore=0 bulkscore=0
+ suspectscore=0 adultscore=0 mlxscore=0 priorityscore=1501
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2311290000 definitions=main-2401080071
 
-Hi Nishanth,
 
-The maintainers have picked up the driver and bindings, as follows:
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?=
-id=3D29057cc5bddc785ea0a11534d7ad2546fa0872d3
 
-Do you have time to work on the "DONOTMERGE" dts patch?
+On 1/5/2024 9:37 PM, Andrew Lunn wrote:
+>>> O.K. Since we are getting nowhere at the moment, lets take just the
+>>> pure PHY chip, and ignore the rest for the moment.
+>>>
+>>> For any pure PHY, there is generally one clock input, which might be a
+>>> crystal, or an actual clock. If you look at other DT bindings for
+>>> PHYs, it is only listed if the clock is expected to come from
+>>> somewhere else, like a SoC, and it needs to be turned on before the
+>>> PHY will work. And generally, a pure PHY has one defined clock
+>>> frequency input. If that is true, there is no need to specify the
+>>> clock. If multiple clock input frequencies are supported, then you do
+>>> need to specify the clock, so its possible to work out what frequency
+>>> it is using. How that clock input is then used internally in the PHY
+>>> is not described in DT, but the driver can set any dividers, PLLs
+>>> needed etc.
+>>
+>> Yes, Andrew, there is only one clock input to qca8084(same as qca8386),
+>> this input clock rate is 50MHZ, which is from the output clock of CMN
+>> PLL block that is configured by the MDIO bus driver patch under review.
+> 
+> Lets concentrate on the pure PHY. All it sees is a clock. It does not
+> care where it come from. All you need in the device tree for the pure
+> PHY is a clock consumer.
+Yes.
 
------Original Message-----
-From: Nishanth Menon <nm@ti.com>
-Sent: Saturday, July 15, 2023 6:53 AM
-To: Li, Hua Qian (DI FA CTR IPC CN PRC4) <HuaQian.Li@siemens.com>
-Cc: wim@linux-watchdog.org; linux@roeck-us.net; robh+dt@kernel.org; krzyszt=
-of.kozlowski+dt@linaro.org; conor+dt@kernel.org; huaqianlee@gmail.com; vign=
-eshr@ti.com; kristo@kernel.org; linux-watchdog@vger.kernel.org; devicetree@=
-vger.kernel.org; linux-kernel@vger.kernel.org; linux-arm-kernel@lists.infra=
-dead.org; Kiszka, Jan (T CED) <jan.kiszka@siemens.com>; Su, Bao Cheng (DI F=
-A CTR IPC CN PRC4) <baocheng.su@siemens.com>
-Subject: Re: [PATCH v3 2/3] arm64: dts: ti: Add reserved memory for watchdo=
-g
+> 
+> There is one clock input, so its shared by all four instances in the
+> pure PHY package. So you need to use Christians code which extends the
+> PHY DT bindings to allow DT properties for a package of PHYs.
 
-On 17:51-20230713, huaqian.li@siemens.com wrote:
-> From: Li Hua Qian <huaqian.li@siemens.com>
+OK, will
 
-I guess I should be explicit about this: Lets keep this dts patch as "DONOT=
-MERGE" in subject line for driver subsystem maintainer (I don't want a repe=
-at of cpufreq maintainers picking up dts and associated warnings that are n=
-ow pending fixes), resubmit at next rc1 and I can queue up the dts once the=
- maintainers pick up the driver and bindings.
+> 
+> What about resets. Is there one reset pin for the pure PHY package, or
+> one per PHY?
 
-Ref: https://lore.kernel.org/all/20230714084725.27847-1-krzysztof.kozlowski=
-@linaro.org/
+There is only one GPIO hardware reset PIN for the chip qca8084 including
+all 4 PHYs.
 
->
-> This patch adds a reserved memory for the TI AM65X platform watchdog
-> to reserve the specific info, triggering the watchdog reset in last
-> boot, to know if the board reboot is due to a watchdog reset.
->
-> Signed-off-by: Li Hua Qian <huaqian.li@siemens.com>
-> ---
->  arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi | 10 ++++++++++
->  1 file changed, 10 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
-> b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
-> index e26bd988e522..4bb20d493651 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
-> @@ -63,6 +63,12 @@ rtos_ipc_memory_region: ipc-memories@a2000000 {
->                       alignment =3D <0x1000>;
->                       no-map;
->               };
-> +
-> +             /* To reserve the power-on(PON) reason for watchdog reset *=
-/
-> +             wdt_reset_memory_region: wdt-memory@a2200000 {
-> +                     reg =3D <0x00 0xa2200000 0x00 0x1000>;
-> +                     no-map;
-> +             };
->       };
->
->       leds {
-> @@ -718,3 +724,7 @@ &mcu_r5fss0_core1 {
->                       <&mcu_r5fss0_core1_memory_region>;
->       mboxes =3D <&mailbox0_cluster1>, <&mbox_mcu_r5fss0_core1>;  };
-> +
-> +&mcu_rti1 {
-> +     memory-region =3D <&wdt_reset_memory_region>; };
-> --
-> 2.34.1
->
+> 
+> Go find Christians code, understand it, and propose a DT binding for
+> the pure PHY. Include the clock provider and the reset
+> provider. Forget about the MDIO controller, and the PHY integrated
+> into the switch, etc. Baby steps...
 
---
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5=
- 849D 1736 249D
+Thanks Andrew for pointing me the Christians code, i will keep the
+driver of qca8084 synced with Christian's code before pushing the
+next patch set.
+
+> 
+>> In qca8084(same as qca8386), there is a clock controller, let's call it
+>> as NSSCC, the logic of NSSCC is same as qualcomm GCC(located in SoC),
+>> the NSSCC provides the clocks to the quad PHYs, the initial clocks for
+>> quad PHYs need to be configured before PHY to work.
+> 
+> You said above, there is one clock input to the qca8084. Here you use
+> the word clocks, plural. Is there one clock, or multiple clocks?
+> 
+>      Andrew
+
+Yes, Andrew, it is multiple clocks.
+These multiple clocks are generated(PLL, divider) and used internally by
+qca8084 CHIP, these clocks are generated by the clock controller of
+qca8084, let's call the clock controller of qca8084 as NSSCC provider,
+which generates the clocks to the PHYs, this NSSCC is located in
+qca8084.
+
+The only one input clock of qca8084 is the clock source of the chip
+qca8084, which is fixed to 50MHZ.
+
+The NSSCC of qca8084 generates different clock rates for the different
+link speed of the PHY, which is the internal block of qca8084.
+
+
 
