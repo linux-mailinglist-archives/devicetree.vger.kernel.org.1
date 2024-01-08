@@ -1,81 +1,88 @@
-Return-Path: <devicetree+bounces-30359-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30365-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99AD182790E
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 21:17:45 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A1B2827946
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 21:43:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3815E1F238DA
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 20:17:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C92F2284D87
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 20:43:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DED356741;
-	Mon,  8 Jan 2024 20:16:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A823B55E77;
+	Mon,  8 Jan 2024 20:42:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="okVbq72B"
+	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="BXwXiL1B"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com [148.163.158.5])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6BA656463
-	for <devicetree@vger.kernel.org>; Mon,  8 Jan 2024 20:16:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amarulasolutions.com
-Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-50e766937ddso2422736e87.3
-        for <devicetree@vger.kernel.org>; Mon, 08 Jan 2024 12:16:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google; t=1704744990; x=1705349790; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=tEGmlMiozwdCujUlwuswF2ibPRmO4ymakUkp4ma1zKM=;
-        b=okVbq72BEA2zg1Rrx6Fi+E9RP/ZWYxf///rQ7S25RwA1hdxfFw8p+QOm8DQWSN7z7G
-         4mp+DhJEAFYO/s7hRnFLPb4jMXpuanadBxN07dMWkZQBJ258xAPt+wv4WFO7p8midv3E
-         RTCtT3OtEC6h/eOiOe6GSQidnzs8hS0XtQo9o=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704744990; x=1705349790;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=tEGmlMiozwdCujUlwuswF2ibPRmO4ymakUkp4ma1zKM=;
-        b=hA72l0FAke/yKJCepoUTRiXw4jBIWkPGUrKdA9BDlsaTzN0g3e9vTSgReFJ1GIOw7O
-         EVHkIluWcRETKWFuKwQ6CmKq3CB5MR/V0oA4oJsehWzhR0//WnzktwMci5Aecqrg9th2
-         VkWgIucd5qYdxJsWx71ySVULMXn6fR0g+faJMBfZvEcYL9LFkndCxKpGszRIWwTfM8Oo
-         gP4rlaAuDWkQAwBZJ5hGSbvOU9CMjSQknsMCLXegbtW+Ap+mtTBtrD3FB3DEsEiPZlyF
-         j0Mn+2Wh2m+rC+8jV6hCqYQYEC+vlX4Zl6aNe+4JcHSHbNHzAs6r4yvmPAcIN+hWcGYP
-         7jPA==
-X-Gm-Message-State: AOJu0YxcQXbz1h2hRQJGDcQtm0MVFSTgTxTNLWjUPmAIivJ5Ovu8Y5ie
-	gW31/DRege7agWlxBC6qO85Bi141OHNuDw==
-X-Google-Smtp-Source: AGHT+IGUAZ/MQUcd94fksdYS1966HkP13g0jTc0aXi84yDipWsw07G7eealpviiBZga8chmfm/iZDA==
-X-Received: by 2002:ac2:5627:0:b0:50e:3c2a:fd5e with SMTP id b7-20020ac25627000000b0050e3c2afd5emr1595830lff.134.1704744989954;
-        Mon, 08 Jan 2024 12:16:29 -0800 (PST)
-Received: from dario-ThinkPad-T14s-Gen-2i.homenet.telecomitalia.it (host-87-2-38-81.retail.telecomitalia.it. [87.2.38.81])
-        by smtp.gmail.com with ESMTPSA id by26-20020a0564021b1a00b00555fd008741sm173699edb.95.2024.01.08.12.16.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Jan 2024 12:16:29 -0800 (PST)
-From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-To: linux-kernel@vger.kernel.org
-Cc: linux-amarula@amarulasolutions.com,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Dario Binacchi <dario.binacchi@amarulasolutions.com>,
-	Andre Przywara <andre.przywara@arm.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	=?UTF-8?q?Leonard=20G=C3=B6hrs?= <l.goehrs@pengutronix.de>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Peter Rosin <peda@axentia.se>,
-	Rob Herring <robh+dt@kernel.org>,
-	Sean Nyekjaer <sean@geanix.com>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-stm32@st-md-mailman.stormreply.com
-Subject: [PATCH v5 6/8] ARM: dts: add stm32f769-disco-mb1225-revb03-mb1166-reva09
-Date: Mon,  8 Jan 2024 21:15:51 +0100
-Message-ID: <20240108201618.2798649-7-dario.binacchi@amarulasolutions.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240108201618.2798649-1-dario.binacchi@amarulasolutions.com>
-References: <20240108201618.2798649-1-dario.binacchi@amarulasolutions.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F9B555792;
+	Mon,  8 Jan 2024 20:42:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.ibm.com
+Received: from pps.filterd (m0353722.ppops.net [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 408KcPNZ030100;
+	Mon, 8 Jan 2024 20:41:48 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=from : to : cc : subject
+ : date : message-id : mime-version : content-transfer-encoding; s=pp1;
+ bh=9q7+tEry8R9Kh5w+IVwYzZtxPjhplrHIhVcuJenXIJ0=;
+ b=BXwXiL1BpsEOeyvUMpc0T6dgIQgaq7GcabdtrEWZ/q18omPgX5Wxbd908hrjwRLGXmK6
+ 0pBLSZN2pjG24bRqJgl92a05J/hgbnG1CB2uXQ7G/bE6+M48iOXsyqbdXQ1/TQ7cMBR2
+ eOrJPr1DxrG6qJR3VXF40MbKA6jfRXTmpNfqwaQj5K9QxVwFIKNLqZ51IsoXrHO9IEr7
+ 8OAHDG4VRRxdRDiz9coqYfKGGVrJ/gHJmKa15Lf54BC0+lqt0ilZ03nHMIwyI0J48+kS
+ fjEFOiOkhWdihA46hmtROrtKhMxbuPIh4bCw3di5GlkBtiajBkuRdY+gGyz7lt+0Jnwo hw== 
+Received: from pps.reinject (localhost [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3vgkjm83t2-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 08 Jan 2024 20:41:48 +0000
+Received: from m0353722.ppops.net (m0353722.ppops.net [127.0.0.1])
+	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 408KK7MM027395;
+	Mon, 8 Jan 2024 20:41:47 GMT
+Received: from ppma23.wdc07v.mail.ibm.com (5d.69.3da9.ip4.static.sl-reverse.com [169.61.105.93])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3vgkjm83km-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 08 Jan 2024 20:41:47 +0000
+Received: from pps.filterd (ppma23.wdc07v.mail.ibm.com [127.0.0.1])
+	by ppma23.wdc07v.mail.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 408I6FtV004407;
+	Mon, 8 Jan 2024 20:41:19 GMT
+Received: from smtprelay01.wdc07v.mail.ibm.com ([172.16.1.68])
+	by ppma23.wdc07v.mail.ibm.com (PPS) with ESMTPS id 3vfjpkjdag-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 08 Jan 2024 20:41:19 +0000
+Received: from smtpav05.wdc07v.mail.ibm.com (smtpav05.wdc07v.mail.ibm.com [10.39.53.232])
+	by smtprelay01.wdc07v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 408KfIHZ30474918
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Mon, 8 Jan 2024 20:41:18 GMT
+Received: from smtpav05.wdc07v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id C2FD058059;
+	Mon,  8 Jan 2024 20:41:18 +0000 (GMT)
+Received: from smtpav05.wdc07v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id DFF0B58043;
+	Mon,  8 Jan 2024 20:41:16 +0000 (GMT)
+Received: from gfwa153.aus.stglabs.ibm.com (unknown [9.3.84.127])
+	by smtpav05.wdc07v.mail.ibm.com (Postfix) with ESMTP;
+	Mon,  8 Jan 2024 20:41:16 +0000 (GMT)
+From: Ninad Palsule <ninad@linux.ibm.com>
+To: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        joel@jms.id.au, andrew@codeconstruct.com.au, peterhuewe@gmx.de,
+        jarkko@kernel.org, jgg@ziepe.ca, keescook@chromium.org,
+        tony.luck@intel.com, gpiccoli@igalia.com, ninad@linux.ibm.com,
+        johannes.holland@infineon.com, linux@roeck-us.net, broonie@kernel.org,
+        andre.werner@systec-electronic.com
+Cc: patrick.rudolph@9elements.com, vincent@vtremblay.dev,
+        peteryin.openbmc@gmail.com, lakshmiy@us.ibm.com, bhelgaas@google.com,
+        naresh.solanki@9elements.com, alexander.stein@ew.tq-group.com,
+        festevam@denx.de, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
+        linux-kernel@vger.kernel.org, linux-integrity@vger.kernel.org,
+        linux-hardening@vger.kernel.org, geissonator@yahoo.com,
+        geert+renesas@glider.be, luca.ceresoli@bootlin.com
+Subject: [PATCH v2 0/3] Add device tree for IBM system1 BMC
+Date: Mon,  8 Jan 2024 14:41:11 -0600
+Message-Id: <20240108204114.1041390-1-ninad@linux.ibm.com>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,70 +90,58 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-TM-AS-GCONF: 00
+X-Proofpoint-ORIG-GUID: F3ozJSSUjsPBmRPic02j93zmWMaaJZKG
+X-Proofpoint-GUID: gNjXQfcHif7mEFfzs8r41hDA86qeVb4W
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-01-08_10,2024-01-08_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 bulkscore=0
+ spamscore=0 priorityscore=1501 mlxlogscore=985 lowpriorityscore=0
+ clxscore=1015 impostorscore=0 mlxscore=0 adultscore=0 suspectscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2311290000 definitions=main-2401080171
 
-As reported in the section 8.3 (i. e. Board revision history) of document
-UM2033 (i. e. Discovery kit with STM32F769NI MCU) these are the changes
-related to the board revisions addressed by the patch:
-- Board MB1225 revision B-03:
-  - Memory MICRON MT48LC4M32B2B5-6A replaced by ISSI IS42S32400F-6BL
-- Board MB1166 revision A-09:
-  - LCD FRIDA FRD397B25009-D-CTK replaced by FRIDA FRD400B25025-A-CTK
+This patchset adds device tree for IBM system1 bmc board.
 
-The patch only adds the DTS support for the new display which belongs to
-to the Novatek NT35510-based panel family.
+Change log:
+v1:
+ - Added device binding for IBM system1-bmc
+ - Added device binding for TIS I2C devices
+ - Added device tree for IBM system1 BMC board
+ - Added i2c and muxes
+ - Added voltage regulators
+ - Added GPIO, Fan ctrl, Led
+ - Added more compatible strings for tpm_tis_i2c
+ - Added power supplies, sensors, EEPROMS, TPM and more
 
-Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+v2:
+ - Incorporated review comments from Conor Dooley, Jarkko Sakkinen,
+   Guenter Roeck, Rob Herring, Krzysztof Kozlowski
+ - Merge all patches into single patch.
+ - Split the trivial device patch.
+ - Cleanup commit messages.
+ - Fixed bootargs string.
+ - Fixed node names.
+ - Dropped tpm schema patch as it is covered by Lukas's patch.
+ - Dropped "tpm: tis-i2c: Add more compatible strings" patch and
+   send it as a separate patch.
 
----
+Andrew Geissler (1):
+  ARM: dts: aspeed: System1: IBM system1 BMC board
 
-(no changes since v2)
+Ninad Palsule (2):
+  dt-bindings: arm: aspeed: add IBM system1-bmc
+  dt-bindings: Add DPS310 as trivial device
 
-Changes in v2:
-- Change the status of panel_backlight node to "disabled"
-- Delete backlight property from panel0 node.
+ .../bindings/arm/aspeed/aspeed.yaml           |    1 +
+ .../devicetree/bindings/trivial-devices.yaml  |    2 +
+ arch/arm/boot/dts/aspeed/Makefile             |    1 +
+ .../dts/aspeed/aspeed-bmc-ibm-system1.dts     | 1623 +++++++++++++++++
+ 4 files changed, 1627 insertions(+)
+ create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-system1.dts
 
- arch/arm/boot/dts/st/Makefile                  |  1 +
- ...2f769-disco-mb1225-revb03-mb1166-reva09.dts | 18 ++++++++++++++++++
- 2 files changed, 19 insertions(+)
- create mode 100644 arch/arm/boot/dts/st/stm32f769-disco-mb1225-revb03-mb1166-reva09.dts
-
-diff --git a/arch/arm/boot/dts/st/Makefile b/arch/arm/boot/dts/st/Makefile
-index 7892ad69b441..390dbd300a57 100644
---- a/arch/arm/boot/dts/st/Makefile
-+++ b/arch/arm/boot/dts/st/Makefile
-@@ -23,6 +23,7 @@ dtb-$(CONFIG_ARCH_STM32) += \
- 	stm32f469-disco.dtb \
- 	stm32f746-disco.dtb \
- 	stm32f769-disco.dtb \
-+	stm32f769-disco-mb1225-revb03-mb1166-reva09.dts \
- 	stm32429i-eval.dtb \
- 	stm32746g-eval.dtb \
- 	stm32h743i-eval.dtb \
-diff --git a/arch/arm/boot/dts/st/stm32f769-disco-mb1225-revb03-mb1166-reva09.dts b/arch/arm/boot/dts/st/stm32f769-disco-mb1225-revb03-mb1166-reva09.dts
-new file mode 100644
-index 000000000000..014cac192375
---- /dev/null
-+++ b/arch/arm/boot/dts/st/stm32f769-disco-mb1225-revb03-mb1166-reva09.dts
-@@ -0,0 +1,18 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (c) 2023 Dario Binacchi <dario.binacchi@amarulasolutions.com>
-+ */
-+
-+#include "stm32f769-disco.dts"
-+
-+&panel_backlight {
-+	status = "disabled";
-+};
-+
-+&panel0 {
-+	compatible = "frida,frd400b25025", "novatek,nt35510";
-+	vddi-supply = <&vcc_3v3>;
-+	vdd-supply = <&vcc_3v3>;
-+	/delete-property/backlight;
-+	/delete-property/power-supply;
-+};
 -- 
-2.43.0
+2.39.2
 
 
