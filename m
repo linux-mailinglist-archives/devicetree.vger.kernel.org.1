@@ -1,150 +1,144 @@
-Return-Path: <devicetree+bounces-30150-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30151-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5BB55826A50
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 10:10:55 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F2AF826A54
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 10:11:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E366A1F2119D
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 09:10:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E1DEB2812E7
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 09:11:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B75FDD30B;
-	Mon,  8 Jan 2024 09:10:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47D09D310;
+	Mon,  8 Jan 2024 09:11:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WsF6SftS"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="j2VqKcYx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f47.google.com (mail-oo1-f47.google.com [209.85.161.47])
+Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 466F512B74;
-	Mon,  8 Jan 2024 09:10:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C96A10A2C;
+	Mon,  8 Jan 2024 09:11:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oo1-f47.google.com with SMTP id 006d021491bc7-5983686ef62so687748eaf.3;
-        Mon, 08 Jan 2024 01:10:33 -0800 (PST)
+Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-555144cd330so1857581a12.2;
+        Mon, 08 Jan 2024 01:11:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1704705032; x=1705309832; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8BNk0vEp/T06pV48VMkJResRLpbsMI3MWGq9I4p+kNk=;
-        b=WsF6SftS0GQrxkz8NY8BH5/iA2AQhXZ/wXvOvxY2sO4WhUspIUFgugY2zR0CACXEkP
-         1nj8GygmpnEHAlaYsNvT7lhxTdN7YstH0rwBXbM7k0oe2Cu+ciRDeKkuRUZE185YBsfC
-         QvAfamwmhmWMB0TtSBAPUbAoqMVvcaiW0obyBV6jGVw/P90QdWiX7Hxcgp86oo5tWmeo
-         PoOtR8n9aProXuFyj14zvYLuWGm1LR+2pkyJ2Va5x2JqyYLS4T89U0vkO6BC693hpJNW
-         BeBN7tBsPDsJwvvabMAa/jOKhm9sz0Fv7e/vwAeTfmBO6q3qM12q2xmy61aJbs+iYA2c
-         +oTw==
+        d=gmail.com; s=20230601; t=1704705104; x=1705309904; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=q+690ILLvmgoiVG3rWqnA7YdVgSm8xx8o94ASaIKF+E=;
+        b=j2VqKcYxIpZe3vpNASTNnJVf5QUE1+D0ItwoxtJPktdooj1U2TAUFnz+WxbEip+XKz
+         0DinEN6FEsbnobmYtpbX+s6o/oHusFNyeu1OX6NBSsuWU+kuIgMqOH/4KqnptPtTpvza
+         dvIgpbH/q2TbunMDVzPxQjm9U3hwcaSs5dO5EUTtCHTN2+oH7VRxZsydBDe+wFhKothC
+         b9kp1qUg///a/+MeKi3U4dUwD7KqG9srdi0+FOkzXwXjdsK8nUq59XExI1wT7DgGUryz
+         FkzdJWzty7NE6RePFjrxqMrxqOzJt+b4cJT7krKoQFC7fgikyAJrd7Fmsuxkgb2TO29n
+         hqFQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704705032; x=1705309832;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=8BNk0vEp/T06pV48VMkJResRLpbsMI3MWGq9I4p+kNk=;
-        b=Sg9rx3hsEb8Ja+tYYU3+KnwZ7EBbR6FJ1z0hBavLWFPGudhay17Hm+pn0dG8IRlBm2
-         lUDJMtFD8oNaFGRpBJjHSCvbxW9BgCYkpMfAE9AjL9cUHj4p1cWHB9WIQ6HcHLtvFJW3
-         dzJ5Nvps+cLWM+SMnLfc79UedA1xqDbFZy8g3Z0FVnmmrE6Y8XhIbcfmDLE9KB6U91DX
-         Zy1hf0MKxI/tZ8haXe8/rKe17oZ2K2rvlAN6vovSpuYoVNItetLj8QpCdP8GIZXKxAGq
-         jy4K4adx+fF6KeRVdtj8lMQWa7I+gg8XX8Hn4sxvKPtY7fcDNRhz3biRtAa4ZTquJYE3
-         XSpA==
-X-Gm-Message-State: AOJu0YzllBRseun9RnGg1yO9b6BMJQyOL13R6Y3pmH3hQEpHhIivT787
-	E1V8rapzQk5FZkBJeioUi+y6YcSI7ELNaXcUsAY=
-X-Google-Smtp-Source: AGHT+IF2MwJ/UZzPV8uyJamt7LhXi1gqzFtMrt+HSyf/3ZHTC8mbQhMMQTQjX3ZC7FHw0NkGYyqC1jicwunwbc66LFY=
-X-Received: by 2002:a05:6820:60c:b0:596:3121:1425 with SMTP id
- e12-20020a056820060c00b0059631211425mr2183414oow.5.1704705032001; Mon, 08 Jan
- 2024 01:10:32 -0800 (PST)
+        d=1e100.net; s=20230601; t=1704705104; x=1705309904;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=q+690ILLvmgoiVG3rWqnA7YdVgSm8xx8o94ASaIKF+E=;
+        b=F3AyUmrSrqrQPB+El43jpYkfgASHLjHRjT9e9AoeFyk0h8DTBgNlPBpDQ91qfIzxe4
+         lxpyx0oG9PMmUWrY7ftZcIV7oVAbMPdx/KmhSnLuRy9WmD0UgU0IhuPE6mlrXS/VI6I6
+         dEcPC4mVBLS+d2Vq5Xr1tvCbKulnwOdbUBMd7idswIAbuf3l/GyQUUyqvgiuiiEw4pKr
+         nprF4FXGXjWbvfv+LQjbzf1Jgg9yM3RwKLaoOs6W0HsGEh337N6Q/2tfjRhGPmt9fK1C
+         dLB8L4VryLzjyEUFkLaBi4A84bQoQlZ8tpKkkklHqxNxO9EQJobt2tERYFmsks9yeefD
+         FLBg==
+X-Gm-Message-State: AOJu0YxEM7zOyqB7Gt1hE5K72OVHi0MgG4gEBln8WMEtyVXUyTBxhnoi
+	gjBaIsP8Jvfl9FNJLDzKrRo=
+X-Google-Smtp-Source: AGHT+IGWg/D2gzOJy5VZ0MkQ3jSBwyisSv8a+0uDyYO+7UHcw4Ew1YjljFCQhimSw7dKm/fOaIkTrA==
+X-Received: by 2002:a17:906:f350:b0:a26:98a1:9e89 with SMTP id hg16-20020a170906f35000b00a2698a19e89mr1629990ejb.41.1704705103488;
+        Mon, 08 Jan 2024 01:11:43 -0800 (PST)
+Received: from [172.25.98.130] ([86.125.72.218])
+        by smtp.gmail.com with ESMTPSA id d26-20020a170906175a00b00a27c463fbdesm3742109eje.211.2024.01.08.01.11.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 08 Jan 2024 01:11:43 -0800 (PST)
+Message-ID: <3d44d8ec-8c31-40f4-afc4-78e5b7a9c79b@gmail.com>
+Date: Mon, 8 Jan 2024 11:11:40 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240108072253.30183-1-qiujingbao.dlmu@gmail.com>
- <20240108072253.30183-2-qiujingbao.dlmu@gmail.com> <cd4c5c26-fef9-44d8-a2fe-1cff0fc6fd03@linaro.org>
-In-Reply-To: <cd4c5c26-fef9-44d8-a2fe-1cff0fc6fd03@linaro.org>
-From: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
-Date: Mon, 8 Jan 2024 17:10:21 +0800
-Message-ID: <CAJRtX8TcXrP8aqr3ejvtDGR5Y-ogbLkvJvJkLh_MzpnK7wgLGw@mail.gmail.com>
-Subject: Re: [PATCH v5 1/1] dt-bindings: rtc: sophgo: add RTC support for
- Sophgo CV1800 series SoC
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v11 1/2] dt-bindings: adc: add AD7173
 To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: a.zummo@towertech.it, alexandre.belloni@bootlin.com, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu, 
-	linux-rtc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Cc: linus.walleij@linaro.org, brgl@bgdev.pl, andy@kernel.org,
+ linux-gpio@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>,
+ Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Michael Walle <michael@walle.cc>,
+ Andy Shevchenko <andy.shevchenko@gmail.com>, Arnd Bergmann <arnd@arndb.de>,
+ ChiaEn Wu <chiaen_wu@richtek.com>, Niklas Schnelle <schnelle@linux.ibm.com>,
+ =?UTF-8?Q?Leonard_G=C3=B6hrs?= <l.goehrs@pengutronix.de>,
+ Mike Looijmans <mike.looijmans@topic.nl>, Haibo Chen <haibo.chen@nxp.com>,
+ Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+ Ceclan Dumitru <dumitru.ceclan@analog.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20231220104810.3179-1-mitrutzceclan@gmail.com>
+ <5b63afc1-3449-4231-b0f6-2b540237d725@linaro.org>
+Content-Language: en-US
+From: Ceclan Dumitru <mitrutzceclan@gmail.com>
+In-Reply-To: <5b63afc1-3449-4231-b0f6-2b540237d725@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Mon, Jan 8, 2024 at 4:04=E2=80=AFPM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 08/01/2024 08:22, Jingbao Qiu wrote:
-> > Add RTC devicetree binding for Sophgo CV1800 SoC.
-> >
-> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > Signed-off-by: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
-> > ---
-> >  .../bindings/rtc/sophgo,cv1800-rtc.yaml       | 56 +++++++++++++++++++
-> >  1 file changed, 56 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/rtc/sophgo,cv1800=
--rtc.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/rtc/sophgo,cv1800-rtc.ya=
-ml b/Documentation/devicetree/bindings/rtc/sophgo,cv1800-rtc.yaml
-> > new file mode 100644
-> > index 000000000000..01a926cb5c81
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/rtc/sophgo,cv1800-rtc.yaml
-> > @@ -0,0 +1,56 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/rtc/sophgo,cv1800-rtc.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Real Time Clock of the Sophgo CV1800 SoC
-> > +
-> > +allOf:
-> > +  - $ref: rtc.yaml#
->
-> Why the allOf has moved?
 
-Hi,
-Do you mean allof should be under maintainers? Or other meanings.
 
->
-> > +
-> > +maintainers:
-> > +  - Jingbao Qiu <qiujingbao.dlmu@gmail.com>
-> > +
-> > +description:
-> > +  Real Time Clock (RTC) is an independently powered module
-> > +  within the chip, which includes a 32KHz oscillator and a
-> > +  Power On Reset/POR submodule. It can be used for time display
-> > +  and timed alarm generation. In addition, the hardware state
-> > +  machine provides triggering and timing control for chip
-> > +  power on, off, and reset.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    items:
-> > +      - const: sophgo,cv1800-rtc
-> > +      - const: syscon
->
-> Why is this syscon? Description does not explain this.
+On 12/21/23 19:45, Krzysztof Kozlowski wrote:
+> On 20/12/2023 11:48, Dumitru Ceclan wrote:
+>> The AD7173 family offer a complete integrated Sigma-Delta ADC solution
+>> which can be used in high precision, low noise single channel applications
+>> or higher speed multiplexed applications. The Sigma-Delta ADC is intended
+>> primarily for measurement of signals close to DC but also delivers
+>> outstanding performance with input bandwidths out to ~10kHz.
+>>
+>> Signed-off-by: Dumitru Ceclan <mitrutzceclan@gmail.com>
+>> ---
+>> V10->V11
+>>  - Fix example warning: '#gpio-cells' is a dependency of 'gpio-controller'
+>>  - Add description to #gpio-cells property
+>> V9->V10
+> 
+> None of your previous version were tested before sending, so I have
+> really doubts that this version was.
+> 
+>>  - Fix dt_binding_check type warning from adi,reference-select
+>> V8->v9
+> 
+> ...
+> 
+>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>> +# Copyright 2023 Analog Devices Inc.
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/iio/adc/adi,ad7173.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Analog Devices AD7173 ADC
+>> +
+>> +maintainers:
+>> +  - Ceclan Dumitru <dumitru.ceclan@analog.com>
+>> +
+>> +description: |
+>> +  Bindings for the Analog Devices AD717X ADC's. Datasheets for supported chips:
+> 
+> If there is going to be resend:
+> Drop "Bindings for" and instead describe shortly the hardware. Also wrap
+> above according to Linux coding style, so at 80.
+> 
+>> +    https://www.analog.com/media/en/technical-documentation/data-sheets/AD7172-2.pdf
+>> +    https://www.analog.com/media/en/technical-documentation/data-sheets/AD7173-8.pdf
+>> +    https://www.analog.com/media/en/technical-documentation/data-sheets/AD7175-2.pdf
+>> +    https://www.analog.com/media/en/technical-documentation/data-sheets/AD7176-2.pdf
+>> +
+> 
+> Rest looks good, so please tell did you test it?
 
-Because the driver of the submodule POR in RTC only requires register
-address and range to work, according to what you said, it is only a compati=
-ble
-attribute and does not need to be a child node.
-
-So I wrote the following in the changelog.
-
-- add syscon attribute to share registers
-  with POR
-
-Best regards,
-Jingbao Qiu
+Yes.
 
