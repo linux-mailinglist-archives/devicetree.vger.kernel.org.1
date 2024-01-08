@@ -1,122 +1,146 @@
-Return-Path: <devicetree+bounces-30239-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30240-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 512FC8270E2
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 15:19:02 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB3148270E6
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 15:19:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E38141F2322D
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 14:18:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8CAB41F22FC0
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 14:19:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 781994652A;
-	Mon,  8 Jan 2024 14:18:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAAFA45C08;
+	Mon,  8 Jan 2024 14:19:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="y7q0+JSg"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xIjQ5Dv3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f49.google.com (mail-qv1-f49.google.com [209.85.219.49])
+Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D50D14778E
-	for <devicetree@vger.kernel.org>; Mon,  8 Jan 2024 14:18:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 359C647772
+	for <devicetree@vger.kernel.org>; Mon,  8 Jan 2024 14:19:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-qv1-f49.google.com with SMTP id 6a1803df08f44-67f8d9fe99fso16375296d6.2
-        for <devicetree@vger.kernel.org>; Mon, 08 Jan 2024 06:18:34 -0800 (PST)
+Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-5534dcfdd61so3303891a12.0
+        for <devicetree@vger.kernel.org>; Mon, 08 Jan 2024 06:19:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704723514; x=1705328314; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=5Ezznyb8/vx5+hfZyfj88KqUcvTty4zUAzZJ+hlesbo=;
-        b=y7q0+JSglky8dwbo7fPHUAJZrkmcEW3YVv3Rqu0PrY+7plPdrqp/9eTiGoaMVdhvOh
-         QL/EjqH84hKdZ7UuRJZztsY+YMjLeiXfj82UpPSJWi1mrdGljvKaC6xu2bZtJaFOEKhP
-         kQmoZMqrXAV5COSZOL3cAT0Jb56G1loyJF+6aQyCHpCLH/gJP3E5l9tGeqNZsp2PeDSH
-         Xrlii1D0+vn9aXLJ2p3LSp/PncI5p4XoA18K3hNg3Kap3Lvknzz8EYjToXB1XT8jlVC2
-         5HJnFSugmbo68qKZjuT7zbYWDNptfuM33oznYKMZlVDWoSV5e+Rl0NSog4G/YYwW2L0v
-         8fLw==
+        d=linaro.org; s=google; t=1704723570; x=1705328370; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=G8PDv2FSbg+fpG2pH/cK5nA4S/4L/t4rfemMnRunnf4=;
+        b=xIjQ5Dv3h3Cyhi3fK4GHpbkBvGDDccVM5xgclKzgycJ6WmFpBQqdQ6x6ORLkhQWbH5
+         SEdYSN2rjufoWXzM7TRiq5/NWUbxO0VkmzAmeksSLBD23ydPOWgX25fUvm238697ZbhT
+         GOhT57soBWk74MgXJ9shz7wSXF4Xf0nS8vLhGkDT2l4+DhKP4D/wEFLF49uPFSjPYJki
+         5vOxYx2lE6YUMDPpFDmfq3H02gdsYI32qCc+B0BxCoT8QCTGhGrIGaTtzjHnuaRhNnnk
+         u+DEKD5YguXQcATiUKN0Ol2HKPKWihsTkzPIT8G4L5DN5NxofUrlseDMK4pM+qbXM1ZW
+         civQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704723514; x=1705328314;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1704723570; x=1705328370;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=5Ezznyb8/vx5+hfZyfj88KqUcvTty4zUAzZJ+hlesbo=;
-        b=lAaC4n8wwPpoYmzTVxNAkKsskanWbQCBhHsO/KcDp2q9QsSPQQr84IIqgKHdibQNnB
-         35ke/2U8wCombFouDG4p/wDy7b/LmyXqqJHBuu94PuJe4WAMRVhsvfydAZgOualBOHQp
-         bvS79q21vCdOv/0Hn9uyp6kf1ru4lUY5bjxXZ5dGavfsFu5daz+iSOYe7BvW4BIzHZ0y
-         Ai1gHhvdbTNwd6xKZcp4ChXCYcFaq72AxC+cr/XVYCbnoUNh/z8dLubCYgYhgBnZhoNk
-         yv26X+qMa49R5oVWCBQ2egaiQeM3DEWbRIGHUqJmr8Im4btL0pk/KGZVNQLLCzbSrPaZ
-         Uj5A==
-X-Gm-Message-State: AOJu0YzNAjg/HeS0m5V7D6EIbBsM4cv5klCKlWcpQmXCDyZKyLHbglyq
-	/Cdy5gNTUpkpz3slh6ZtfDUPcf9wNXtwrbrhluj3XqZqXKirMQ==
-X-Google-Smtp-Source: AGHT+IGPjgYTxHMolIfwDbJJoI+7GNHNxr913C1/eJoHLVLrZVJqXMfjkqYykrGmoMDgJma1CoSyQSccprDC0VfOBi8=
-X-Received: by 2002:a05:6214:29e4:b0:67a:a721:7837 with SMTP id
- jv4-20020a05621429e400b0067aa7217837mr4866809qvb.92.1704723513781; Mon, 08
- Jan 2024 06:18:33 -0800 (PST)
+        bh=G8PDv2FSbg+fpG2pH/cK5nA4S/4L/t4rfemMnRunnf4=;
+        b=hg4xd6XIpGVH8VZPUvBcswaLUjQYTpIjKQfzKxAPBOSSOqXii9lPzt5ctjP1VgLHP+
+         kDtxCSauSXSZWPc0CzwzMfNpljIMmPKjCqN4vjAT8JW38/e3Th/f0lLTiwhmt8jsAnsj
+         fcNJ+csvqQQSJ8mtC7LzGU0+D926Vq34DZFOEOe1TQAvfYU2zq8re3BYvrxJvn9097Tr
+         WHuI5Ih8Gieif/VWgficZDrewE+USAfHCk98UW4OeGIp6ymDWK+ULjrTnw5HPQV4OGJV
+         i3nD9C9Duaq6xkjkIV0Q9TrQIZigiC3KEvGdnufxpRzqT0Uz4RIacseFLb6Zr5efxury
+         QnZA==
+X-Gm-Message-State: AOJu0YzmRMe/9uxs7MJJF26DtAvpxnlybvBxC6Gm/3FCqG1vSfgTMeik
+	KvJssqXe//idXb9+4zcTfiHi6QA/SWMkpA==
+X-Google-Smtp-Source: AGHT+IHoF2GVMteIAfJWH48edmwJwVsK0y2zNkO6YSRmqdrkn/i7tpiGhd9MrOxF+zqL9qk5f8If9Q==
+X-Received: by 2002:aa7:cd66:0:b0:557:e391:ec65 with SMTP id ca6-20020aa7cd66000000b00557e391ec65mr303770edb.20.1704723570516;
+        Mon, 08 Jan 2024 06:19:30 -0800 (PST)
+Received: from [127.0.1.1] ([178.197.223.112])
+        by smtp.gmail.com with ESMTPSA id cm25-20020a0564020c9900b00556ee10cfe3sm4319832edb.92.2024.01.08.06.19.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 08 Jan 2024 06:19:30 -0800 (PST)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 0/6] dt-bindings: PCI: qcom: move to dedicated schema (part
+ one)
+Date: Mon, 08 Jan 2024 15:19:13 +0100
+Message-Id: <20240108-dt-bindings-pci-qcom-split-v1-0-d541f05f4de0@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231228125805.661725-1-tudor.ambarus@linaro.org> <20231228125805.661725-2-tudor.ambarus@linaro.org>
-In-Reply-To: <20231228125805.661725-2-tudor.ambarus@linaro.org>
-From: Peter Griffin <peter.griffin@linaro.org>
-Date: Mon, 8 Jan 2024 14:18:21 +0000
-Message-ID: <CADrjBPo8tARhHjpBJMABV3dqrd6AqhPVASTK5+3rSmoDA8eStw@mail.gmail.com>
-Subject: Re: [PATCH v2 01/12] dt-bindings: clock: google,gs101-clock: add
- PERIC0 clock management unit
-To: Tudor Ambarus <tudor.ambarus@linaro.org>
-Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
-	mturquette@baylibre.com, sboyd@kernel.org, conor+dt@kernel.org, 
-	andi.shyti@kernel.org, alim.akhtar@samsung.com, gregkh@linuxfoundation.org, 
-	jirislaby@kernel.org, s.nawrocki@samsung.com, tomasz.figa@gmail.com, 
-	cw00.choi@samsung.com, arnd@arndb.de, semen.protsenko@linaro.org, 
-	andre.draszik@linaro.org, saravanak@google.com, willmcvicker@google.com, 
-	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org, 
-	linux-serial@vger.kernel.org, kernel-team@android.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAGIEnGUC/x3MQQqDMBAF0KvIrDsQoxjpVUoXmoz6wcY0I6Ug3
+ t3g8m3eQSoZovSsDsryg2KLBfWjIr8McRZGKCZrbGtq03PYeUQMiLNy8uCv3z6sacXOnW1d4yY
+ 3Dp2jEqQsE/53/nqf5wUeFGbsbAAAAA==
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, 
+ Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+ =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>, 
+ Bjorn Helgaas <bhelgaas@google.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Rob Herring <robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+ Manivannan Sadhasivam <mani@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1747;
+ i=krzysztof.kozlowski@linaro.org; h=from:subject:message-id;
+ bh=GC+f3neoLgboHBTEPpZpMMiPSHU1n1ZZEPHaW9LLjhU=;
+ b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBlnARqEm5SplphLQerlWKUpiXfjyylIZF+WYM4O
+ jjNDw5npXCJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCZZwEagAKCRDBN2bmhouD
+ 12A8EACQi7ZJlgmYenQmBoez5cmbXSh7W6TxErWQFuATKx8vqI8nrdjeJC4VXQi/gzQTMlQ8Sky
+ r+tQmPMQ4yA71THsXQ/yGhG/5MKXzp+vwHF4uHETumYwpM+2TvK4i0YtSGlcsgK9fGDi24t1Z6y
+ s59NuoBYhGDA18QFCgtsJEsjsVpLipzjiVTNextHSjLxu72QsqPgM3sUJLhdt8gP6cCM7Ww9urz
+ xG2Tt80coNRwac7f9JIB+JAK/+NziBCxaAwPTHZbi8g0zAQSQL4ou+IGCxsAuPXFBHzcDHGyHWQ
+ V2qIkRZ2zU4XqCyM36zXD7XDhfIiC7E5wnGn4R4cEQViv/TAxbNc6bESuFgZ+CVyNMcznkDnH6n
+ TsKb07iWgU3XG1xCqD+/794fMMygfH5L0X3XZ0R7EOuHAPMxyLT6CWGIM5DQau4r/qxpsaysWRg
+ 8TO/p8xTIThWv1fAhtsAgNayTjabFZ79R0nc4AyhIz0o6Vn6s64hzvQxFn9475TyBK/I6GG4+i4
+ ei4D4lWIqBI0J2UWhr8PFZHUYLMk/0+0sY7oRXxXs6CrMAiDFWZfy5HuMCjwc2TUhcwWTtq+Nti
+ b7bG0A+HiMnjIk+RmvaGaSo7Ghp60pJ11yHiHMpnRyA7Zk3fItpak2Rb1p3tp3ZxQQ2BTqbFlRX
+ im4/kdb8gGE2I+w==
+X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp;
+ fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
 
-Hi Tudor,
+Hi,
 
-On Thu, 28 Dec 2023 at 12:58, Tudor Ambarus <tudor.ambarus@linaro.org> wrote:
->
-> Add dt-schema documentation for the Connectivity Peripheral 0 (PERIC0)
-> clock management unit.
->
-> Reviewed-by: Sam Protsenko <semen.protsenko@linaro.org>
-> Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
-> ---
-> v2:
-> - fix comments as per Sam's suggestion and collect his R-b tag
-> - Rob's suggestion of renaming the clock-names to just "bus" and "ip"
->   was not implemented as I felt it affects readability in the driver
->   and consistency with other exynos clock drivers. I will happily update
->   the names in the -rc phase if someone else has a stronger opinion than
->   mine.
->
+The qcom,pcie.yaml containing all devices results in huge allOf: section
+with a lot of if:then: clauses making review and changes quite
+difficult.
 
-It would be good to get Krzysztof and Robs view on whether they agree
-with the above rationale or whether they would still like to see the
-names updated.
+Split common parts into common schema and then move few devices to
+dedicated files, so that each file will be easier to review.
 
-Personally I like the consistency, grepability and the fact the
-current name encodes whether it is a gate, divider into the name.
-Seeing 'sss' or 'ip' as a clock name in the driver code doesn't tell
-you a lot without having to then cross reference with the dts.
+I did not split/move all devices yet, so if this gets accepted I plan to
+send more patches.
 
-Is there some rationale and/or benefit behind having the shorter
-names? The only thing I could think of is trying to partially re-use
-this file on future SoCs like gs201 which might be clocked
-differently, but then these exynos clock drivers seem to be SoC
-specific anyway.
+Best regards,
+Krzysztof
 
-Anyways apart from that:
-Reviewed-by: Peter Griffin <peter.griffin@linaro.org>
+---
+Krzysztof Kozlowski (6):
+      dt-bindings: PCI: qcom,pcie-sm8550: move SM8550 to dedicated schema
+      dt-bindings: PCI: qcom,pcie-sm8450: move SM8450 to dedicated schema
+      dt-bindings: PCI: qcom,pcie-sm8250: move SM8250 to dedicated schema
+      dt-bindings: PCI: qcom,pcie-sm8150: move SM8150 to dedicated schema
+      dt-bindings: PCI: qcom,pcie-sm8350: move SM8350 to dedicated schema
+      dt-bindings: PCI: qcom,pcie-sc8280xp: move SC8280XP to dedicated schema
 
-kind regards,
+ .../devicetree/bindings/pci/qcom,pcie-common.yaml  |  98 ++++++++
+ .../bindings/pci/qcom,pcie-sc8280xp.yaml           | 180 ++++++++++++++
+ .../devicetree/bindings/pci/qcom,pcie-sm8150.yaml  | 157 ++++++++++++
+ .../devicetree/bindings/pci/qcom,pcie-sm8250.yaml  | 180 ++++++++++++++
+ .../devicetree/bindings/pci/qcom,pcie-sm8350.yaml  | 169 +++++++++++++
+ .../devicetree/bindings/pci/qcom,pcie-sm8450.yaml  | 215 +++++++++++++++++
+ .../devicetree/bindings/pci/qcom,pcie-sm8550.yaml  | 171 +++++++++++++
+ .../devicetree/bindings/pci/qcom,pcie.yaml         | 268 ---------------------
+ 8 files changed, 1170 insertions(+), 268 deletions(-)
+---
+base-commit: a0bf076e449e022944b440174491f5c583753d84
+change-id: 20240108-dt-bindings-pci-qcom-split-624737f7ba67
 
-Peter
+Best regards,
+-- 
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
 
