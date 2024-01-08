@@ -1,110 +1,337 @@
-Return-Path: <devicetree+bounces-30308-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30309-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E78CC827638
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 18:22:33 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 02C0A82764B
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 18:26:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 04CC41C22460
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 17:22:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6567F1F22419
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 17:26:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EA3253E39;
-	Mon,  8 Jan 2024 17:22:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 038D254676;
+	Mon,  8 Jan 2024 17:26:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="bQ2o5NeC"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ggUW/8pS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB2075465E;
-	Mon,  8 Jan 2024 17:22:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 408HM1KT113925;
-	Mon, 8 Jan 2024 11:22:01 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1704734521;
-	bh=E7eWPFddByOeMt7UVW2EkJOA2jFds+EnthHgXdFdU3Q=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=bQ2o5NeCCj6bOH8tTJKuDMVemOhymoaLA7/S4pSRSqo5EBIM0JUs3EP8Uh4wD+8Uj
-	 jR9RYZ8PKy+x77Wkrn4xaC/HFeJn/U0WyCcdjUDTMhXX/qxlS9JHjIWbbyY/AdhWT8
-	 e0NsQu4UcZZzGqbDKwB31osW0r2ENFqMmx3K9txY=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 408HM1bi000351
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 8 Jan 2024 11:22:01 -0600
-Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 8
- Jan 2024 11:22:01 -0600
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 8 Jan 2024 11:22:01 -0600
-Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 408HM1v6030676;
-	Mon, 8 Jan 2024 11:22:01 -0600
-Date: Mon, 8 Jan 2024 11:22:01 -0600
-From: Nishanth Menon <nm@ti.com>
-To: "Li, Hua Qian" <HuaQian.Li@siemens.com>
-CC: "wim@linux-watchdog.org" <wim@linux-watchdog.org>,
-        "linux@roeck-us.net"
-	<linux@roeck-us.net>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
-        "conor+dt@kernel.org" <conor+dt@kernel.org>,
-        "huaqianlee@gmail.com"
-	<huaqianlee@gmail.com>,
-        "vigneshr@ti.com" <vigneshr@ti.com>,
-        "kristo@kernel.org" <kristo@kernel.org>,
-        "linux-watchdog@vger.kernel.org"
-	<linux-watchdog@vger.kernel.org>,
-        "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>,
-        "Kiszka, Jan"
-	<jan.kiszka@siemens.com>,
-        "Su, Bao Cheng" <baocheng.su@siemens.com>
-Subject: Re: [PATCH v3 2/3] arm64: dts: ti: Add reserved memory for watchdog
-Message-ID: <20240108172201.pifo74t23deuq4vr@cresting>
-References: <20230713095127.1230109-1-huaqian.li@siemens.com>
- <20230713095127.1230109-3-huaqian.li@siemens.com>
- <20230714225240.dvlwqaodp2l3cczm@disfigure>
- <AS8PR10MB6993F047652F40675BDA689D9F6B2@AS8PR10MB6993.EURPRD10.PROD.OUTLOOK.COM>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E415754669
+	for <devicetree@vger.kernel.org>; Mon,  8 Jan 2024 17:26:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-40e4cb5328aso963305e9.1
+        for <devicetree@vger.kernel.org>; Mon, 08 Jan 2024 09:26:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1704734763; x=1705339563; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=QN27VBEQHcgTGcmidTREw1ydFcQQpfGT5IDyKss3q24=;
+        b=ggUW/8pSROQxbZoJXfLG5cBylt3w7cAgqsDh0H0nrs/QpvjbksjJ4W4/iQMi5uobwZ
+         PQ4SXPj6s86oHAqS7msFfqLwBDGaSLLESJpm2Kpg5K8OswY5F8lMfK1ge8zCmqSovhCS
+         CqzXmd2cTOC1Q7/SynBeMNyHgZ3A0cdNkOChc5i/kY2S4ffihYTTsC3L4GFpgfUrA9lO
+         GMI81esDgJyYEEoAS7hBSMQJdatUajFdxFNRVVq8yG8H6p5FV83xDNeMc3twqi6sudFx
+         xy2kbPUf7bUCK1IwxH/ROW3irYg6xiPht3XpRTu6xvKl1g+mWs6EmxrA643JdW6sGp9Q
+         OD2w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1704734763; x=1705339563;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=QN27VBEQHcgTGcmidTREw1ydFcQQpfGT5IDyKss3q24=;
+        b=OBP0U1K269hbFYtqoz5yTVOCDAj4TKSuxGBITJqx9VYCE2WNsmiTPpmQoUy0K6zJCw
+         PsauqW5xrLlTJCH5+BdKJGLu+5N+pYNf5WHh/prL7P1OtRPrZbg/JUXIbmpVK8gMTtF9
+         97xA+u+M1chi2QTa4rkYgEOk+6l6JCX67JDojEcAouGrYNFqD+z+8FQtsWkU+yLgj2Qm
+         CT243ATPEny4UZ2uYoUVIU5Ul+qpMTjI/LRZ8oUQLh455g6HhADVUHRGjAQBQ4xUUfwP
+         OKOc5OWr2fTMN0hcrSwVMCwn1y32sBa0SP6HbNJzLajjFr6l3FtfsSTakPz1uBSwtXDW
+         UX6w==
+X-Gm-Message-State: AOJu0Yw174nv4U0tTDASvXrLjt+WYn2h6SCqBIY/zEvx+MqxYdrhulyt
+	n18ydW8lSPCBkwtE6PvOquoXoCmRo92CL9pbDAXrrPOfsutNPA==
+X-Google-Smtp-Source: AGHT+IHAl9GTlDGzxP/m6RP8NpXy0tlpLGKwdeEbnPIhqHx6xFIoodtHkrqZ4MsVrtMNOERZxIHc825nbShoPPvTMiM=
+X-Received: by 2002:a05:6000:18cc:b0:333:c81:8f9d with SMTP id
+ w12-20020a05600018cc00b003330c818f9dmr1935156wrq.2.1704734763159; Mon, 08 Jan
+ 2024 09:26:03 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <AS8PR10MB6993F047652F40675BDA689D9F6B2@AS8PR10MB6993.EURPRD10.PROD.OUTLOOK.COM>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <20231215235725.1247350-1-tanmay.shah@amd.com> <20231215235725.1247350-4-tanmay.shah@amd.com>
+ <ZZWkqYNqR2/Qq54m@p14s> <0fe87b36-2daf-4b4b-a6b0-28a4c6c599f3@amd.com>
+In-Reply-To: <0fe87b36-2daf-4b4b-a6b0-28a4c6c599f3@amd.com>
+From: Mathieu Poirier <mathieu.poirier@linaro.org>
+Date: Mon, 8 Jan 2024 10:25:51 -0700
+Message-ID: <CANLsYkzszLZe+0+7Amps6OY9PZrAS9PtT6qSro7Tk8FOWjQneQ@mail.gmail.com>
+Subject: Re: [PATCH v8 3/3] remoteproc: zynqmp: parse TCM from device tree
+To: Tanmay Shah <tanmay.shah@amd.com>
+Cc: andersson@kernel.org, robh+dt@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, michal.simek@amd.com, 
+	ben.levinsky@amd.com, linux-remoteproc@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On 08:16-20240108, Li, Hua Qian wrote:
-> Hi Nishanth,
-> 
-> The maintainers have picked up the driver and bindings, as follows:
-> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=29057cc5bddc785ea0a11534d7ad2546fa0872d3
+On Thu, 4 Jan 2024 at 09:14, Tanmay Shah <tanmay.shah@amd.com> wrote:
+>
+>
+> On 1/3/24 12:17 PM, Mathieu Poirier wrote:
+> > On Fri, Dec 15, 2023 at 03:57:25PM -0800, Tanmay Shah wrote:
+> > > ZynqMP TCM information is fixed in driver. Now ZynqMP TCM information
+> >
+> > s/"is fixed in driver"/"was fixed in driver"
+> >
+> > > is available in device-tree. Parse TCM information in driver
+> > > as per new bindings.
+> > >
+> > > Signed-off-by: Tanmay Shah <tanmay.shah@amd.com>
+> > > ---
+> > >
+> > > Changes in v8:
+> > >   - parse power-domains property from device-tree and use EEMI calls
+> > >     to power on/off TCM instead of using pm domains framework
+> > >   - Remove checking of pm_domain_id validation to power on/off tcm
+> > >   - Remove spurious change
+> > >
+> > > Changes in v7:
+> > >   - move checking of pm_domain_id from previous patch
+> > >   - fix mem_bank_data memory allocation
+> > >
+> > >  drivers/remoteproc/xlnx_r5_remoteproc.c | 154 +++++++++++++++++++++++-
+> > >  1 file changed, 148 insertions(+), 6 deletions(-)
+> > >
+> > > diff --git a/drivers/remoteproc/xlnx_r5_remoteproc.c b/drivers/remoteproc/xlnx_r5_remoteproc.c
+> > > index 4395edea9a64..36d73dcd93f0 100644
+> > > --- a/drivers/remoteproc/xlnx_r5_remoteproc.c
+> > > +++ b/drivers/remoteproc/xlnx_r5_remoteproc.c
+> > > @@ -74,8 +74,8 @@ struct mbox_info {
+> > >  };
+> > >
+> > >  /*
+> > > - * Hardcoded TCM bank values. This will be removed once TCM bindings are
+> > > - * accepted for system-dt specifications and upstreamed in linux kernel
+> > > + * Hardcoded TCM bank values. This will stay in driver to maintain backward
+> > > + * compatibility with device-tree that does not have TCM information.
+> > >   */
+> > >  static const struct mem_bank_data zynqmp_tcm_banks_split[] = {
+> > >     {0xffe00000UL, 0x0, 0x10000UL, PD_R5_0_ATCM, "atcm0"}, /* TCM 64KB each */
+> > > @@ -878,6 +878,139 @@ static struct zynqmp_r5_core *zynqmp_r5_add_rproc_core(struct device *cdev)
+> > >     return ERR_PTR(ret);
+> > >  }
+> > >
+> > > +static int zynqmp_r5_get_tcm_node_from_dt(struct zynqmp_r5_cluster *cluster)
+> > > +{
+> > > +   struct of_phandle_args out_args;
+> > > +   int tcm_reg_per_r5, tcm_pd_idx;
+> > > +   struct zynqmp_r5_core *r5_core;
+> > > +   int i, j, tcm_bank_count, ret;
+> > > +   struct platform_device *cpdev;
+> > > +   struct mem_bank_data *tcm;
+> > > +   struct device_node *np;
+> > > +   struct resource *res;
+> > > +   u64 abs_addr, size;
+> > > +   struct device *dev;
+> > > +
+> > > +   for (i = 0; i < cluster->core_count; i++) {
+> > > +           r5_core = cluster->r5_cores[i];
+> > > +           dev = r5_core->dev;
+> > > +           np = of_node_get(dev_of_node(dev));
+> > > +           tcm_pd_idx = 1;
+> > > +
+> > > +           /* we have address cell 2 and size cell as 2 */
+> > > +           tcm_reg_per_r5 = of_property_count_elems_of_size(np, "reg",
+> > > +                                                            4 * sizeof(u32));
+> > > +           if (tcm_reg_per_r5 <= 0) {
+> > > +                   dev_err(dev, "can't get reg property err %d\n", tcm_reg_per_r5);
+> > > +                   return -EINVAL;
+> > > +           }
+> > > +
+> > > +           /*
+> > > +            * In lockstep mode, r5 core 0 will use r5 core 1 TCM
+> > > +            * power domains as well. so allocate twice of per core TCM
+> >
+> > Twice of what?  Please use proper english in your multi line comments, i.e a
+> > capital letter for the first word and a dot at the end.
+> >
+> > > +            */
+> > > +           if (cluster->mode == LOCKSTEP_MODE)
+> > > +                   tcm_bank_count = tcm_reg_per_r5 * 2;
+> > > +           else
+> > > +                   tcm_bank_count = tcm_reg_per_r5;
+> > > +
+> > > +           r5_core->tcm_banks = devm_kcalloc(dev, tcm_bank_count,
+> > > +                                             sizeof(struct mem_bank_data *),
+> > > +                                             GFP_KERNEL);
+> > > +           if (!r5_core->tcm_banks)
+> > > +                   ret = -ENOMEM;
+> > > +
+> > > +           r5_core->tcm_bank_count = tcm_bank_count;
+> > > +           for (j = 0; j < tcm_bank_count; j++) {
+> > > +                   tcm = devm_kzalloc(dev, sizeof(struct mem_bank_data),
+> > > +                                      GFP_KERNEL);
+> > > +                   if (!tcm)
+> > > +                           return -ENOMEM;
+> > > +
+> > > +                   r5_core->tcm_banks[j] = tcm;
+> > > +
+> > > +                   /*
+> > > +                    * In lockstep mode, get second core's TCM power domains id
+> > > +                    * after first core TCM parsing is done as
+> >
+> > There seems to be words missing at the end of the sentence, and there is no dot.
+> >
+> > > +                    */
+> > > +                   if (j == tcm_reg_per_r5) {
+> > > +                           /* dec first core node */
+> > > +                           of_node_put(np);
+> > > +
+> > > +                           /* get second core node */
+> > > +                           np = of_get_next_child(cluster->dev->of_node, np);
+> > > +
+> > > +                           /*
+> > > +                            * reset index of power-domains property list
+> > > +                            * for second core
+> > > +                            */
+> > > +                           tcm_pd_idx = 1;
+> > > +                   }
+> > > +
+> > > +                   /* get power-domains id of tcm */
+> > > +                   ret = of_parse_phandle_with_args(np, "power-domains",
+> > > +                                                    "#power-domain-cells",
+> > > +                                                    tcm_pd_idx,
+> > > +                                                    &out_args);
+> > > +                   if (ret) {
+> > > +                           dev_err(r5_core->dev,
+> > > +                                   "failed to get tcm %d pm domain, ret %d\n",
+> > > +                                   j, ret);
+> > > +                           of_node_put(out_args.np);
+> >
+> > I'm pretty sure this isn't needed in error conditions since @out_args would not
+> > have been assigned.
+> >
+> > > +                           return ret;
+> > > +                   }
+> > > +                   tcm->pm_domain_id = out_args.args[0];
+> > > +                   of_node_put(out_args.np);
+> > > +                   tcm_pd_idx++;
+> > > +
+> > > +                   /*
+> > > +                    * In lockstep mode, we only need second core's power domain
+> > > +                    * ids. Other information from second core isn't needed so
+> > > +                    * ignore it. This forms table as zynqmp_tcm_banks_lockstep
+> >
+> > I don't understand the last sentence of this comment and it is missing a dot at
+> > the end.  Comments should be enlightening, the ones I found in this patch are
+> > sowing confusion.
+> >
+> > > +                    */
+> > > +                   if (j >= tcm_reg_per_r5)
+> > > +                           contiue;
+> > > +
+> >
+> > This condition and the one above (j == tcm_reg_per_r5) is brittle and almost
+> > guaranteed to cause maintenance problems in the future.
+> >
+> > I understand your will to reuse as much code as possible but this is one of the
+> > rare cases where duplicating code is probably better.  Please introduce two new
+> > functions, i.e zynqmp_r5_get_tcm_node_from_dt_split() and
+> > zynqmp_r5_get_tcm_node_from_dt_lockstep(), and do all the necessary processing
+> > based on the use case.
+>
+> Hi Mathieu,
+>
+> I tried to implement this and it still looks hacky, as in lockstep mode unnecessary TCM is being allocated just to store power-domains.
+>
+> Instead, I am taking another cleaner approach where, TCM is parsed in uniform way in both modes from device-tree during
+>
+> zynqmp_r5_core_init. However, during  "add_tcm_carveout_lockstep_mode" call, I will simply parse second core's TCM power-domains
+>
+> from device-tree and turn it on.
+>
+> I will implement this and send v9 after successful testing. I wanted to give you heads up on this approach. I hope it is fine.
+>
 
-Not sure what you want us to look at here.
+Thanks for letting me know - now I don't have to pull out what's left
+of hair on my head to figure out what is going on.
 
-> 
-> Do you have time to work on the "DONOTMERGE" dts patch?
-
-If the binding has hit master. please resubmit from the closest rc1 - at
-this time, see if you can rebase on linux-next or wait till 6.8-rc1 is
-tagged to rebase and re-submit.
-
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+> Thanks,
+> Tanmay
+>
+>
+> >
+> > Thanks,
+> > Mathieu
+> >
+> > > +                   /* get tcm address without translation */
+> > > +                   ret = of_property_read_reg(np, j, &abs_addr, &size);
+> > > +                   if (ret) {
+> > > +                           of_node_put(np);
+> > > +                           dev_err(dev, "failed to get reg property\n");
+> > > +                           return ret;
+> > > +                   }
+> > > +
+> > > +                   /*
+> > > +                    * remote processor can address only 32 bits
+> > > +                    * so convert 64-bits into 32-bits. This will discard
+> > > +                    * any unwanted upper 32-bits.
+> > > +                    */
+> > > +                   tcm->da = (u32)abs_addr;
+> > > +                   tcm->size = (u32)size;
+> > > +
+> > > +                   cpdev = to_platform_device(dev);
+> > > +                   res = platform_get_resource(cpdev, IORESOURCE_MEM, j);
+> > > +                   if (!res) {
+> > > +                           of_node_put(np);
+> > > +                           dev_err(dev, "failed to get tcm resource\n");
+> > > +                           return -EINVAL;
+> > > +                   }
+> > > +
+> > > +                   tcm->addr = (u32)res->start;
+> > > +                   tcm->bank_name = (char *)res->name;
+> > > +                   res = devm_request_mem_region(dev, tcm->addr, tcm->size,
+> > > +                                                 tcm->bank_name);
+> > > +                   if (!res) {
+> > > +                           dev_err(dev, "failed to request tcm resource\n");
+> > > +                           of_node_put(np);
+> > > +                           return -EINVAL;
+> > > +                   }
+> > > +           }
+> > > +   }
+> > > +
+> > > +   of_node_put(np);
+> > > +   return 0;
+> > > +}
+> > > +
+> > >  /**
+> > >   * zynqmp_r5_get_tcm_node()
+> > >   * Ideally this function should parse tcm node and store information
+> > > @@ -956,10 +1089,19 @@ static int zynqmp_r5_core_init(struct zynqmp_r5_cluster *cluster,
+> > >     struct zynqmp_r5_core *r5_core;
+> > >     int ret, i;
+> > >
+> > > -   ret = zynqmp_r5_get_tcm_node(cluster);
+> > > -   if (ret < 0) {
+> > > -           dev_err(dev, "can't get tcm node, err %d\n", ret);
+> > > -           return ret;
+> > > +   r5_core = cluster->r5_cores[0];
+> > > +   if (of_find_property(r5_core->np, "reg", NULL)) {
+> > > +           ret = zynqmp_r5_get_tcm_node_from_dt(cluster);
+> > > +           if (ret) {
+> > > +                   dev_err(dev, "can't get tcm node from dt, err %d\n", ret);
+> > > +                   return ret;
+> > > +           }
+> > > +   } else {
+> > > +           ret = zynqmp_r5_get_tcm_node(cluster);
+> > > +           if (ret < 0) {
+> > > +                   dev_err(dev, "can't get tcm node, err %d\n", ret);
+> > > +                   return ret;
+> > > +           }
+> > >     }
+> > >
+> > >     for (i = 0; i < cluster->core_count; i++) {
+> > > --
+> > > 2.25.1
+> > >
 
