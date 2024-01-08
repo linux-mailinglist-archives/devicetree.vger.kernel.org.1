@@ -1,54 +1,58 @@
-Return-Path: <devicetree+bounces-30311-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30312-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60351827668
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 18:37:39 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E2EB82767C
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 18:46:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3503C2842CE
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 17:37:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BA3AA1F23948
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 17:46:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D81954756;
-	Mon,  8 Jan 2024 17:34:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C240D54BEC;
+	Mon,  8 Jan 2024 17:38:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PMTO9m5j"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="L3NXbRr8"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B86B54725;
-	Mon,  8 Jan 2024 17:34:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 19C6BC433C7;
-	Mon,  8 Jan 2024 17:34:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A518454BD3;
+	Mon,  8 Jan 2024 17:38:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B3E1BC433C8;
+	Mon,  8 Jan 2024 17:38:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1704735264;
-	bh=WxF3mMEMLyJMj2C6OKuTs7PD9Vj4XTLWmmz+TPw4bh0=;
+	s=k20201202; t=1704735517;
+	bh=sRdhFFjG4vYoS4PB2ORGCKITVh+f7hbNwK17Xzu9HJE=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=PMTO9m5jCUZETuKErYC+dV7OLZJ+YU4xfDxmzZiT58AzrzQQ9lIAx5+fwI7pfZFLv
-	 qjZ4HVEJzOmsn6XaBD910G62BsXIy/BDmmbj2K8ic1r049YzHl3wggXHNqL/ghQcHE
-	 7N7o97BvHDTIUyIVv77sZh+tusVjRUNIqf3hy967MLWxQr+O0OgGwzg0YbjowKS3VF
-	 dTYMO5I3buWvcTk5GrQTQGD3JAwAehjIc3mFgy41AFSPdkdehALdnhCMex7BkSzvMs
-	 OHC5W3Bq4MM0n0F/VnYEnDtwyF4BmhmJRxUaPzIWNe8S+56BZJwH5JBJS5pgGFa30U
-	 KnM9gSl54vojQ==
-Date: Mon, 8 Jan 2024 17:34:18 +0000
+	b=L3NXbRr83nXImKXCFXpxAZNBKresHQ1IBQEA4iIqvkN/7DsAGO52Q9E+MkL9bi8JD
+	 h5SN5GDou4STdrkNYGJH/Q6xw8SVp75+Y3Z6LFM4maYoVACCVAh6RyXkJcRpCVnPcv
+	 d9+ASxByUJSsf2oHgM4spoCsPswbnuzI/Sk0xzfQGHkgPLWktfgAUjORhFyjZVdfa+
+	 aUTNnVruF1CvZA+uO/F+eLKMg6bq5ioXqVmk86Vrb0gGCXiLKM2NuggzKDFZHoWN4E
+	 2nXJhwwrllFqP5LgXkYUZijdkE3u201HQdk8IupVy/1YlDjfH73U9uRaKeTGqHew7U
+	 AGBG/3W0Vw8Qg==
+Date: Mon, 8 Jan 2024 17:38:31 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Cc: linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-	Linus Walleij <linus.walleij@linaro.org>,
+To: =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc: Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Jisheng Zhang <jszhang@kernel.org>, Guo Ren <guoren@kernel.org>,
-	Fu Wei <wefu@redhat.com>, Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Drew Fustini <dfustini@baylibre.com>
-Subject: Re: [PATCH v2 3/8] riscv: dts: thead: Add TH1520 pin control nodes
-Message-ID: <20240108-majorette-overtly-4ec65d0a15e9@spud>
-References: <20240103132852.298964-1-emil.renner.berthing@canonical.com>
- <20240103132852.298964-4-emil.renner.berthing@canonical.com>
+	Daniel Golle <daniel@makrotopia.org>,
+	Hsin-Yi Wang <hsinyi@chromium.org>,
+	=?iso-8859-1?Q?N=EDcolas_F_=2E_R_=2E_A_=2E?= Prado <nfraprado@collabora.com>,
+	jason-ch chen <Jason-ch.Chen@mediatek.com>,
+	Macpaul Lin <macpaul.lin@mediatek.com>,
+	Bernhard =?iso-8859-1?Q?Rosenkr=E4nzer?= <bero@baylibre.com>,
+	Sean Wang <sean.wang@mediatek.com>, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+Subject: Re: [PATCH 1/2] dt-bindings: arm64: mediatek: Add MT7988A and BPI-R4
+Message-ID: <20240108-helium-retriever-043ed3e1dbe0@spud>
+References: <20240102205941.29654-1-zajec5@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -56,85 +60,38 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="8Qj2RGfy2RprKGUu"
+	protocol="application/pgp-signature"; boundary="fpLxZoPgQvXVZ2oX"
 Content-Disposition: inline
-In-Reply-To: <20240103132852.298964-4-emil.renner.berthing@canonical.com>
+In-Reply-To: <20240102205941.29654-1-zajec5@gmail.com>
 
 
---8Qj2RGfy2RprKGUu
-Content-Type: text/plain; charset=us-ascii
+--fpLxZoPgQvXVZ2oX
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Jan 03, 2024 at 02:28:40PM +0100, Emil Renner Berthing wrote:
-> Add nodes for pin controllers on the T-Head TH1520 RISC-V SoC.
+On Tue, Jan 02, 2024 at 09:59:40PM +0100, Rafa=C5=82 Mi=C5=82ecki wrote:
+> From: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
 >=20
-> Signed-off-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-> ---
->  .../boot/dts/thead/th1520-beaglev-ahead.dts   |  4 ++++
->  .../dts/thead/th1520-lichee-module-4a.dtsi    |  4 ++++
->  arch/riscv/boot/dts/thead/th1520.dtsi         | 24 +++++++++++++++++++
->  3 files changed, 32 insertions(+)
->=20
-> diff --git a/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts b/arch/ri=
-scv/boot/dts/thead/th1520-beaglev-ahead.dts
-> index 70e8042c8304..6c56318a8705 100644
-> --- a/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts
-> +++ b/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts
-> @@ -44,6 +44,10 @@ &osc_32k {
->  	clock-frequency =3D <32768>;
->  };
-> =20
-> +&aonsys_clk {
-> +	clock-frequency =3D <73728000>;
-> +};
-> +
->  &apb_clk {
->  	clock-frequency =3D <62500000>;
->  };
-> diff --git a/arch/riscv/boot/dts/thead/th1520-lichee-module-4a.dtsi b/arc=
-h/riscv/boot/dts/thead/th1520-lichee-module-4a.dtsi
-> index a802ab110429..9865925be372 100644
-> --- a/arch/riscv/boot/dts/thead/th1520-lichee-module-4a.dtsi
-> +++ b/arch/riscv/boot/dts/thead/th1520-lichee-module-4a.dtsi
-> @@ -25,6 +25,10 @@ &osc_32k {
->  	clock-frequency =3D <32768>;
->  };
-> =20
-> +&aonsys_clk {
-> +	clock-frequency =3D <73728000>;
-> +};
-> +
->  &apb_clk {
->  	clock-frequency =3D <62500000>;
->  };
-> diff --git a/arch/riscv/boot/dts/thead/th1520.dtsi b/arch/riscv/boot/dts/=
-thead/th1520.dtsi
-> index ba4d2c673ac8..e65a306ff575 100644
-> --- a/arch/riscv/boot/dts/thead/th1520.dtsi
-> +++ b/arch/riscv/boot/dts/thead/th1520.dtsi
-> @@ -134,6 +134,12 @@ osc_32k: 32k-oscillator {
->  		#clock-cells =3D <0>;
->  	};
-> =20
-> +	aonsys_clk: aonsys-clk {
-> +		compatible =3D "fixed-clock";
-> +		clock-output-names =3D "aonsys_clk";
-> +		#clock-cells =3D <0>;
-> +	};
+> MT7988A is another MediaTek's SoC with just 1 device available right
+> now: Banana Pi BPI-R4.
 
-Did this stuff sneak into this commit accidentally?
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
---8Qj2RGfy2RprKGUu
+Cheers,
+Conor.
+
+
+--fpLxZoPgQvXVZ2oX
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZZwyGgAKCRB4tDGHoIJi
-0rwgAP97KBxIGWgOemMO6hdqRmD/8ZxeJ0E6JqevM07cpZ+KvgD/UbJ+65Y7gDdm
-xrA0pClmQVdKxcDVsF7lpqNgBw4K4As=
-=LWOW
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZZwzFwAKCRB4tDGHoIJi
+0tmdAP0UWGqGDdPKC8piDlk05QfJDU0tLttpkPbYrD3AcUrQwgEA2oJx1AaHQUav
+Xvqol9sSOmbiJkBSjQLQHDWheer2CgI=
+=J4xX
 -----END PGP SIGNATURE-----
 
---8Qj2RGfy2RprKGUu--
+--fpLxZoPgQvXVZ2oX--
 
