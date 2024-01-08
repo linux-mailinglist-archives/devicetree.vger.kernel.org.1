@@ -1,135 +1,120 @@
-Return-Path: <devicetree+bounces-30318-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30319-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93ED98276CD
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 19:00:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BD5F8276D0
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 19:01:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 26B4A1C20340
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 18:00:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 20EE41C20F55
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 18:00:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 751C054BF0;
-	Mon,  8 Jan 2024 17:54:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EMDmRdTf"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D654D54F9B;
+	Mon,  8 Jan 2024 17:55:37 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D5BF55C03;
-	Mon,  8 Jan 2024 17:54:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 04718C433C8;
-	Mon,  8 Jan 2024 17:54:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1704736465;
-	bh=H8akq1SElUrdBmNdvj6Imrs/eJEK5RTMuhgHPm3mEe0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=EMDmRdTfHqEdybNxER/2rpw1nTHP4SjivCgwHJxSkPAf+NnRdMX0f8vylwCiHrkwK
-	 CHJUtwBLbp9uEAj+HNgxZsUcjq7ZB7R284ghCyrPvdb4ntO8L7IIt9Ued/mVtrvfgW
-	 aQF2aajkWfPDIX0GIk44VAb4mcIVsTakeRS6T55IEM6TIEnIof3Sxk0g3H2lUcUkfZ
-	 6YutlHpqjmd0p4eLe2psk3U/TSCl01DowZlSPYNGKppK3Y6xRo4o2Ren/0e2rZohE+
-	 RlVAkrxT/DJXMiZ9n6D0w/b4c8YEKkCOG8katbETW7JRWh/oCqxiUOlgRy11VvBkIy
-	 Nt4pubSRoPTYA==
-Date: Mon, 8 Jan 2024 17:54:19 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>,
-	Cong Dang <cong.dang.xn@renesas.com>,
-	Duy Nguyen <duy.nguyen.rh@renesas.com>,
-	Hai Pham <hai.pham.ud@renesas.com>,
-	Linh Phung <linh.phung.jy@renesas.com>,
-	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-pm@vger.kernel.org
-Subject: Re: [PATCH 06/15] dt-bindings: soc: renesas: Document R-Car V4M Gray
- Hawk Single
-Message-ID: <20240108-parka-wagon-5a2ef57599c9@spud>
-References: <cover.1704726960.git.geert+renesas@glider.be>
- <3b1baf0eaf9f483308a6df1340dae51d4b88a337.1704726960.git.geert+renesas@glider.be>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C031A54BC5;
+	Mon,  8 Jan 2024 17:55:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E77A9C433C8;
+	Mon,  8 Jan 2024 17:55:34 +0000 (UTC)
+Date: Mon, 8 Jan 2024 17:55:32 +0000
+From: Catalin Marinas <catalin.marinas@arm.com>
+To: Baruch Siach <baruch@tkos.co.il>
+Cc: Christoph Hellwig <hch@lst.de>,
+	Marek Szyprowski <m.szyprowski@samsung.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Frank Rowand <frowand.list@gmail.com>,
+	Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+	iommu@lists.linux.dev, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Petr =?utf-8?B?VGVzYcWZw61r?= <petr@tesarici.cz>,
+	Ramon Fried <ramon@neureality.ai>
+Subject: Re: [PATCH RFC 3/4] dma-direct: add offset to zone_dma_bits
+Message-ID: <ZZw3FDy8800NScEk@arm.com>
+References: <cover.1703683642.git.baruch@tkos.co.il>
+ <fae5b1180161a7d8cd626a96f5df80b0a0796b8b.1703683642.git.baruch@tkos.co.il>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="DNpDcsDGXpd6taFv"
-Content-Disposition: inline
-In-Reply-To: <3b1baf0eaf9f483308a6df1340dae51d4b88a337.1704726960.git.geert+renesas@glider.be>
-
-
---DNpDcsDGXpd6taFv
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <fae5b1180161a7d8cd626a96f5df80b0a0796b8b.1703683642.git.baruch@tkos.co.il>
 
-On Mon, Jan 08, 2024 at 04:33:45PM +0100, Geert Uytterhoeven wrote:
-> Document the compatible values for the Renesas R-Car V4M (R8A779H0) SoC
-> and the Renesas Gray Hawk Single development board.
->=20
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+On Wed, Dec 27, 2023 at 05:04:27PM +0200, Baruch Siach wrote:
+> Current code using zone_dma_bits assume that all addresses range in the
+> bits mask are suitable for DMA. For some existing platforms this
+> assumption is not correct. DMA range might have non zero lower limit.
+> 
+> Add 'zone_dma_off' for platform code to set base address for DMA zone.
+> 
+> Rename the dma_direct_supported() local 'min_mask' variable to better
+> describe its use as limit.
+> 
+> Suggested-by: Catalin Marinas <catalin.marinas@arm.com>
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+When I suggested taking the DMA offsets into account, that's not exactly
+what I meant. Based on patch 4, it looks like zone_dma_off is equivalent
+to the lower CPU address. Let's say a system has DRAM starting at 2GB
+and all 32-bit DMA-capable devices has a DMA offset of 0. We want
+ZONE_DMA32 to end at 4GB rather than 6GB.
 
-Cheers,
-Conor.
+> @@ -59,7 +60,7 @@ static gfp_t dma_direct_optimal_gfp_mask(struct device *dev, u64 *phys_limit)
+>  	 * zones.
+>  	 */
+>  	*phys_limit = dma_to_phys(dev, dma_limit);
+> -	if (*phys_limit <= DMA_BIT_MASK(zone_dma_bits))
+> +	if (*phys_limit <= zone_dma_off + DMA_BIT_MASK(zone_dma_bits))
+>  		return GFP_DMA;
+>  	if (*phys_limit <= DMA_BIT_MASK(32))
+>  		return GFP_DMA32;
 
-> ---
-> The Gray Hawk Single board is an integrated variant of the (not yet
-> supported) Gray Hawk board stack, which is very similar to the White
-> Hawk board stack.
->=20
-> The schematics call it '"Gray Hawk"(1Board)'.
-> The Setup Manual calls it 'Gray Hawk Single Board'.
->=20
-> Alternative naming candidates would be 'Gray Hawk S' and/or
-> 'renesas,gray-hawk-s'.
-> ---
->  Documentation/devicetree/bindings/soc/renesas/renesas.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/soc/renesas/renesas.yaml b=
-/Documentation/devicetree/bindings/soc/renesas/renesas.yaml
-> index 16ca3ff7b1aea146..1c8f5122bccdb5c8 100644
-> --- a/Documentation/devicetree/bindings/soc/renesas/renesas.yaml
-> +++ b/Documentation/devicetree/bindings/soc/renesas/renesas.yaml
-> @@ -354,6 +354,12 @@ properties:
->            - const: renesas,white-hawk-cpu
->            - const: renesas,r8a779g0
-> =20
-> +      - description: R-Car V4M (R8A779H0)
-> +        items:
-> +          - enum:
-> +              - renesas,gray-hawk-single # Gray Hawk Single (RTP8A779H0A=
-SKB0F10S)
-> +          - const: renesas,r8a779h0
-> +
->        - description: R-Car H3e (R8A779M0)
->          items:
->            - enum:
-> --=20
-> 2.34.1
->=20
+Ah, you ignore the zone_dma_off for 32-bit calculations. But the
+argument still stands, the start of DRAM does not necessarily mean that
+all non-64-bit devices have such DMA offset.
 
---DNpDcsDGXpd6taFv
-Content-Type: application/pgp-signature; name="signature.asc"
+The current dma_direct_optimal_gfp_mask() confuses me a bit, I think it
+gives the wrong flag if we have a zone_dma_bits of 30 and a device with
+a coherent_dma_mask of 31, it incorrectly ends up with GFP_DMA32 (I'm
+ignoring dma offsets in this example). Luckily I don't think we have any
+set up where this would fail. Basically if *phys_limit is strictly
+smaller than DMA_BIT_MASK(32), we want GFP_DMA rather than GFP_DMA32
+even if it is larger than DMA_BIT_MASK(zone_dma_bits).
 
------BEGIN PGP SIGNATURE-----
+Anyway, current mainline assumes that DMA_BIT_MASK(zone_dma_bits) and
+DMA_BIT_MASK(32) are CPU addresses. The problem is that we may have the
+start of RAM well above 4GB and neither ZONE_DMA nor ZONE_DMA32 upper
+limits would be a power-of-two. We could change the DMA_BIT_MASK(...) to
+be DMA address limits and we end up with something like:
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZZw2ywAKCRB4tDGHoIJi
-0g4lAP9EeNAWIC9UvvddnzTFvZt54hIHj2qeMfuXTKj/lsKqbgD8CkgXxShQd1A7
-uO/RYoOCYddkw0Viwj/oolfyNDm/QAA=
-=eDue
------END PGP SIGNATURE-----
+static gfp_t dma_direct_optimal_gfp_mask(struct device *dev, u64 *phys_limit)
+{
+	u64 dma_limit = min_not_zero(
+		dev->coherent_dma_mask,
+		dev->bus_dma_limit);
+	u64 dma32_limit = dma_to_phys(dev, DMA_BIT_MASK(32));
 
---DNpDcsDGXpd6taFv--
+	*phys_limit = dma_to_phys(dev, dma_limit);
+	if (*phys_limit > dma_limit)
+		return 0;
+	if (*phys_limit = dma32_limit)
+		return GFP_DMA32;
+	return GFP_DMA;
+}
+
+The alternative is to get rid of the *_bits variants and go for
+zone_dma_limit and zone_dma32_limit in the generic code. For most
+architectures they would match the current DMA_BIT_MASK(32) etc. but
+arm64 would be able to set some higher values.
+
+My preference would be to go for zone_dma{,32}_limit, it's easier to
+change all the places where DMA_BIT_MASK({zone_dma_bits,32}) is used.
+
+-- 
+Catalin
 
