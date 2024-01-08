@@ -1,97 +1,81 @@
-Return-Path: <devicetree+bounces-30226-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30227-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B5FF826F9A
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 14:21:01 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 40FDF826FB3
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 14:28:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 176121C226E8
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 13:21:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 60DE81C22379
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 13:28:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91B854595B;
-	Mon,  8 Jan 2024 13:20:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 639C941766;
+	Mon,  8 Jan 2024 13:28:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Gtd7+FUM"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="PFfi857p"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1518A45031;
-	Mon,  8 Jan 2024 13:20:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1704720028;
-	bh=QYd9GIPj6yyAuJwISI2LWTxi+abe2yiVsoONvxWbh24=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Gtd7+FUMSxNPU4IZDo2Fttv7mljlMYc8huzmLgpplc1nZi4LYvZAhjsdkzz+asZY6
-	 nU6cWUXJJqQp9hgFNoiddXv2Yx7TPsIZwZma3qXuz3szibNA8DxvsHtcbWFYcHQt4l
-	 OyufnWT8UyERf7bKIZknTRwcmALuIWy23fJFvCNTwtocDKJS7VXo89sERBDVx33Isp
-	 PaC2pe+QUpdORZQdVWVKVUJGhMm+mfrP66PfVWu7FRN0g2yK54E/f2sCB96fG7MKdE
-	 E4y38HJX0F3Vi6EtqPzjP6zPdB9BKTge9Y+nNjsSoigm6M/RRtYlJc1LbGkcFYVxBk
-	 dSXhpB3BtEIpQ==
-Received: from [100.74.67.65] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: jmassot)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 089943782047;
-	Mon,  8 Jan 2024 13:20:27 +0000 (UTC)
-Message-ID: <3da48ce6-52fb-482d-ad23-e59adeb51c32@collabora.com>
-Date: Mon, 8 Jan 2024 14:20:26 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8E9B45941;
+	Mon,  8 Jan 2024 13:28:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=TX1ob0NXeEnx/TVxb8PvAQsAyBl2EGpz5La7bAP2skE=; b=PFfi857pgwL8kOAS8tLYDOGgJS
+	QIcAFflZAaIa+sIbbRYLWP9mnqXHMMfkvgf6PfgHXy4GJyz49sknl9dFnEICiccG06bh2gE0+IJ4H
+	ZH3qdTJ+4aJJOhS2DesdN2fIE5yO9gdKyod7aYTAyiPdNRbnrwRY5WGOt6n4s3921jCI=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1rMpfX-004dqX-J3; Mon, 08 Jan 2024 14:27:55 +0100
+Date: Mon, 8 Jan 2024 14:27:55 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Jie Luo <quic_luoj@quicinc.com>
+Cc: Sergey Ryazanov <ryazanov.s.a@gmail.com>, agross@kernel.org,
+	andersson@kernel.org, konrad.dybcio@linaro.org, davem@davemloft.net,
+	edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, hkallweit1@gmail.com, linux@armlinux.org.uk,
+	robert.marko@sartura.hr, linux-arm-msm@vger.kernel.org,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, quic_srichara@quicinc.com
+Subject: Re: [PATCH v4 0/5] support ipq5332 platform
+Message-ID: <3ae7f014-5b51-4198-a8e1-c042a7926969@lunn.ch>
+References: <20231225084424.30986-1-quic_luoj@quicinc.com>
+ <a6a50fb6-871f-424c-a146-12b2628b8b64@gmail.com>
+ <cfb04c82-3cc3-49f6-9a8a-1f6d1a22df40@quicinc.com>
+ <dd05a599-247a-4516-8ad3-7550ceea99f7@gmail.com>
+ <ac1977f5-cd6a-4f16-b0a0-f4322c34c5f5@quicinc.com>
+ <bdeca791-f2e5-4256-b386-a75c03f93686@gmail.com>
+ <895eadd7-1631-4b6b-8db4-d371f2e52611@lunn.ch>
+ <e8722b79-e58a-4856-ae56-e44e2860c2f6@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/4] media: i2c: add MAX96714 driver
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzk@kernel.org>, devicetree@vger.kernel.org,
- linux-media@vger.kernel.org
-Cc: kernel@collabora.com
-References: <20231208143359.469049-1-julien.massot@collabora.com>
- <20231208143359.469049-4-julien.massot@collabora.com>
- <d2e4e887-5b82-40de-aef9-f5f6a228fbd3@kernel.org>
-From: Julien Massot <julien.massot@collabora.com>
-In-Reply-To: <d2e4e887-5b82-40de-aef9-f5f6a228fbd3@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <e8722b79-e58a-4856-ae56-e44e2860c2f6@quicinc.com>
 
-
-
-On 12/8/23 18:18, Krzysztof Kozlowski wrote:
-> On 08/12/2023 15:33, Julien Massot wrote:
->> This driver handle the MAX96714 deserializer in tunnel mode.
->> The CSI output will replicate all the CSI traffic capture by
->> the remote serializer.
->>
->> Signed-off-by: Julien Massot <julien.massot@collabora.com>
+> The IPQ PPE includes MAC and UNIPHY integrated, the connection with
+> external PHY is as below.
+> MAC ---- UNIPHY(PCS) ---- (PCS)external PHY.
 > 
-> ...
-> 
->> +static int max96714_get_hw_resources(struct max96714_priv *priv)
->> +{
->> +	struct device *dev = &priv->client->dev;
->> +
->> +	priv->regmap = devm_regmap_init_i2c(priv->client,
->> +					    &max96714_regmap_config);
->> +	if (IS_ERR(priv->regmap))
->> +		return PTR_ERR(priv->regmap);
->> +
->> +	priv->gpiod_pwdn = devm_gpiod_get_optional(&priv->client->dev, "enable",
->> +						   GPIOD_OUT_HIGH);
->> +	if (IS_ERR(priv->gpiod_pwdn))
->> +		return dev_err_probe(dev, PTR_ERR(priv->gpiod_pwdn),
-> 
-> A powerdown GPIO is not an enable GPIO. Please use correct name - see
-> gpio-consumers-common.yaml
-Ok I will rename it 'pwdn' instead.
-Thanks,
+> The UNIPHY here is the Ethernet dedicated SERDES for connecting with
+> external PHY.
 
--- 
-Julien Massot
+You call it a PCS here. So does it implement clause 37 or 73 of the
+802.3 standard? If it does, the driver for it belongs in
+drivers/net/pcs.
+
+	Andrew
+
+
 
