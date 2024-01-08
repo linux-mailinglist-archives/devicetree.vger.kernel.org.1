@@ -1,187 +1,427 @@
-Return-Path: <devicetree+bounces-30174-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30170-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CBB8826C05
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 12:04:37 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id CFE0C826BEE
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 11:59:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8B920B21B2E
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 11:04:34 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 399CAB21B7E
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 10:58:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9FF414012;
-	Mon,  8 Jan 2024 11:03:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F5F714008;
+	Mon,  8 Jan 2024 10:58:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="pLarAbX3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from CHN02-BJS-obe.outbound.protection.partner.outlook.cn (mail-bjschn02on2071.outbound.protection.partner.outlook.cn [139.219.17.71])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F4DF29412;
-	Mon,  8 Jan 2024 11:03:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=MZMGDbtUTigqpF4YG2ptl0pXzYfbe0vjbHP2RR5PP8npNBtDvgY0a5dv+T4lVKYt+CtweppyxOAt7QidJbt43VGVQhdhYIgXUS0mS4MJMRY6JwzvV+m0JI27uklHZoNYzQxhWmbjMLN+vRZDdee8feU8dc9iMVb8g2dl+h3czTuOCQSmc2n9/qeHoHVR8xE6Vj0W0frEHu1b99KynWt8fElAVI2VlPKaB584LFUfZVwX1vvVFQgls8PN2AZsoUeO2jfxKoZR8lMFN4dvz/d6a+0EYKVBqtm6whuNwxe7Vl1rsWFKsIkUT2+P1i8P07yXwOlN3njyp5NWTqbsinSNmw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=OnoNkc66yulR4F2JLKRij8viozjKKZejnS/oAoKO0QA=;
- b=bSzhpJFb5FMlAeFNNIkdP3nT5aUdZhX0WXBp7HhdVr/6LLQle9IQDIP6hTSp4wNweKObStdHHClqRPsRSdr//Zlfd5p4/0Qd5rKDxoGv7lBGqjzfv7Fy7qE9SpDbN6aBh5+YCxlCg1F1bGVjBw7Ska9jAnhttT/Ffn7KE9uVJuSkYkcuyvQzfwcCFL5oZ7pSRQLe0Pw53Vd0FxYABkPfvUegIcxG+cBzn+aGSBbGd6s3yNh/X7pnHVMADBVhRpHSA3J5Kd4m1ZNbDE3ssRoshAT9a3h108Lm7k/DaDo90Vzhh6LMsWOpXJP6RUgxLZPVsz/ueOR3Hk1AnCTJtDFncA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=starfivetech.com; dmarc=pass action=none
- header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
-Received: from ZQ0PR01MB0981.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c550::13) by ZQ0PR01MB1272.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c550:18::8) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7135.32; Mon, 8 Jan
- 2024 10:48:10 +0000
-Received: from ZQ0PR01MB0981.CHNPR01.prod.partner.outlook.cn
- ([fe80::936f:9f2f:6715:e402]) by
- ZQ0PR01MB0981.CHNPR01.prod.partner.outlook.cn ([fe80::936f:9f2f:6715:e402%6])
- with mapi id 15.20.7159.015; Mon, 8 Jan 2024 10:48:10 +0000
-From: Kevin Xie <kevin.xie@starfivetech.com>
-To: Kevin Hilman <khilman@baylibre.com>, Minda Chen
-	<minda.chen@starfivetech.com>, Conor Dooley <conor@kernel.org>,
-	=?gb2312?B?S3J6eXN6dG9mIFdpbGN6eai9c2tp?= <kw@linux.com>, Rob Herring
-	<robh+dt@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, Lorenzo Pieralisi
-	<lpieralisi@kernel.org>, Daire McNamara <daire.mcnamara@microchip.com>, Emil
- Renner Berthing <emil.renner.berthing@canonical.com>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>
-CC: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
-	"linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>, Paul Walmsley
-	<paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou
-	<aou@eecs.berkeley.edu>, Philipp Zabel <p.zabel@pengutronix.de>, Mason Huo
-	<mason.huo@starfivetech.com>, Leyfoon Tan <leyfoon.tan@starfivetech.com>,
-	Minda Chen <minda.chen@starfivetech.com>
-Subject:
- =?gb2312?B?u9i4tDogu9i4tDogW1BBVENIIHYxMyAwLzIxXSBSZWZhY3RvcmluZyBNaWNy?=
- =?gb2312?Q?ochip_PCIe_driver_and_add_StarFive_PCIe?=
-Thread-Topic:
- =?gb2312?B?u9i4tDogW1BBVENIIHYxMyAwLzIxXSBSZWZhY3RvcmluZyBNaWNyb2NoaXAg?=
- =?gb2312?Q?PCIe_driver_and_add_StarFive_PCIe?=
-Thread-Index: AQHaPpXiMe+t6/O8C0OnZGJ4Y32LtrDKgdAQgAD6TACABDOkUA==
-Date: Mon, 8 Jan 2024 10:48:10 +0000
-Message-ID:
- <ZQ0PR01MB098182407F5F427D9A6C7CD9826BA@ZQ0PR01MB0981.CHNPR01.prod.partner.outlook.cn>
-References: <20231214072839.2367-1-minda.chen@starfivetech.com>
- <7hfrzeavmj.fsf@baylibre.com>
- <ZQ0PR01MB098128579D86207B4B9BA7D28266A@ZQ0PR01MB0981.CHNPR01.prod.partner.outlook.cn>
- <7h34vbbsfj.fsf@baylibre.com>
-In-Reply-To: <7h34vbbsfj.fsf@baylibre.com>
-Accept-Language: zh-CN, en-US
-Content-Language: zh-CN
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=starfivetech.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: ZQ0PR01MB0981:EE_|ZQ0PR01MB1272:EE_
-x-ms-office365-filtering-correlation-id: 4e52aeb4-1b16-4713-b5db-08dc10374e6e
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info:
- pA+qiCg4YESTo9mgbzSlXLXSw11wC2i6bcnbfXSpejURc9wd4/3ij60j7F33TNIzJaHlu/QgubBwfn7HdBiMLoObc+tGCjFKxrEttbegEFN0zsbp2nJ0vOVq+4OBRXijy/IwK+duKv8VzABGLQvK+In+7OlBjFUjtpw5cfsOs7GlYArKpSJJ/uSwOI9jBERPKz/tkGa4Y/ZLMH7m1L5dXnM86/5Od6bv/ehtiAN/83YwDVB8r9kX+/uCA3fmFihteHezjLTlMpc+Kb162h+jA6u1dOupZEDZGhQeWmH9+wikmRlagxA0CHYQPpFjmPqXllAW6lIJBkN88Tt8vhpsvoKq/ZRsUs/39YeVyUL9vqixil7jf4MA3Ibv+MIG81hTzqUaKaH+qhpZ/AgvGG+15LhK2AoGW17XZfE92Clq6gs4THK53mCLYNr8Vr55RyeHawSfh09lx3/8RnsTodDOkXM/fgY+jwUuymTW5Mknj40uOTLjs59CjKPtG7QGhGLjRsAw88EuiOFavMMYnfhf40hIQ+iEXRh6f42apeTicGLXd1tD4QOtXcMAGPyV7NPd
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:ZQ0PR01MB0981.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230031)(346002)(136003)(396003)(366004)(39830400003)(230922051799003)(186009)(1800799012)(451199024)(64100799003)(33656002)(40180700001)(86362001)(40160700002)(38100700002)(122000001)(224303003)(83380400001)(2906002)(26005)(9686003)(55016003)(7696005)(921011)(508600001)(71200400001)(66556008)(66946007)(76116006)(110136005)(66446008)(54906003)(64756008)(8936002)(5660300002)(4326008)(44832011)(7416002)(66476007)(38070700009)(41300700001)(107886003)(41320700001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?gb2312?B?MTkwaGxOOXFZbHR3TGVQbFZaREk0UmhYTjBLeUM3RDRkWDlYTUI1RzhIdmEz?=
- =?gb2312?B?N2xHcmE1OVo0T3RHVUxNSEJxNGc1cVdaWEY0ZXZGRVZGSTJYTE0zV0JvQWFo?=
- =?gb2312?B?TFc1aFQ0WHhDRk4yUDE3c0hNMlpNNisrMFNBQXBaWHpHTUdBRzVIUVRKOFlz?=
- =?gb2312?B?WVYzR3E2T2pRMjNMYXExL1Rqb0lpa3FZWktOUG9VQVV1V3NrODlzY2xlbkdX?=
- =?gb2312?B?V29qYXhOTXlSakVjU3E0UkdoMVdFSk8ranlzNzllRHo0bkJBd3ovaEhEVlpx?=
- =?gb2312?B?NHB6UVBSbzBQbncwODMxOFZ5Qlc0WnR5dzQwZlNqRE9vRnRYRDVzajhSZjFD?=
- =?gb2312?B?MVFNd2pFSzR6b2plSE1yQkgwVjZPanVnUUV1Y1ZCVHg1aHFVNDVwMFRFUXdp?=
- =?gb2312?B?K0JocEpvSnI4ZmMvN2ozcERlNmIxL21PMUw1d0hCcFhpNE4rYlRKa1ZLOGFw?=
- =?gb2312?B?c2xVMVRLUFVSd0doL1pGNVpPbW1KbnY0ZjM4QWJ6OTJIQ3gwNUp6bG51MWFK?=
- =?gb2312?B?ZFozZ1BMRHdHckFWK2RJYnljeGw2WEk2VUI0R1B6eUJ2Vm5iQ3FFZGZ6RmNo?=
- =?gb2312?B?L0RNcVo0OWl0NWxod3lsdGMyYWlUR09CSnlEclBBYlhIc1VhbUZuVmtsQlVE?=
- =?gb2312?B?WGNSQjRDbXFMSXh2andMU2VucjZiY1E2SWJxazRCSXBlUzE2YUpWbzlvaFQz?=
- =?gb2312?B?ak9odFZxYnduaDJQR2tyaXIwYkpiSy96K2NnMlc1cEdoZ3dpclRGQ2FBb092?=
- =?gb2312?B?YjcyQktDamRqY2hKdSt2UzJrblZVZEFlWU1FS2JDaWdSSWxYOWdvcTQ4YUUw?=
- =?gb2312?B?eXJDdTFmUXY2bzZLNTJtYkhOSlRYTTlNeUpuUDI4RFBzV0lDMlFsOStNbG9R?=
- =?gb2312?B?TEs5RTd5NjZJOUMxY1ZST3FtZ2VEMmJ2V1lLYytkQm1IUEdMUTZIR01CSllh?=
- =?gb2312?B?c0VVSFBsOXNoZ1U4NW1Ya2F3dW9HU2xudmF4N0MwMFc0K2VHakdZTnlJVDlG?=
- =?gb2312?B?NU0zUDMxMkRML2tUOEl0YlBPVTlSNXV2cGlRTlJ0MnlBWDVvM3M1bllEb0Vn?=
- =?gb2312?B?MHhDSnk4c1F3QWdsL0Uvc1lSZS9sWkVTU29xYXBqcTZMVklocTVJUE1wTWs0?=
- =?gb2312?B?bG5yWlljYUpNRkgzQmpCZFVLOFNoZTdYeFhqZzExUGJZbWxRZ1UzSHd4RlN1?=
- =?gb2312?B?dkI0end4ZWZseXF1cThRaGhKK1RzeWMrdFY1TlY1WDhZL05XTjAwMVR3VHNj?=
- =?gb2312?B?MFVlaDYzbzlmamcxeTVwQW80N1hDZ0pHekpHdmUwUkNpbnJwSTZRdDhNSnR2?=
- =?gb2312?B?a0N4Mnl2SDhIbzc2c2V6MU91RnRlRkswZE1BUG5iV0dUc2RQa2RYRGVlVFZG?=
- =?gb2312?B?UklyT0p0dVE0bng4M0xubkZRejQxZDc0YTdYN0JVdTluYldVYmFNalRUbXpq?=
- =?gb2312?B?ZU9qMThqYnRWNkRkQWIwNjN1ME1aUGk0L2pEU1ZXSzJ2N3JES0d1eWNBU2Ja?=
- =?gb2312?B?bm54alRpNXRXUG5TblZkZEtnRGc2VmJ4c0VZRUJ6QVdoemRmOThGbVpGZlJN?=
- =?gb2312?B?eTFORCsvT3lEMmQweDFxK0FlblkvNTA1dHR3SWJFWTcxcGRrdVp1a0dvaFJq?=
- =?gb2312?B?OWxXUlVLS2RFdkpWbi90UnVUYW1Bbk5HNVlmRFVVNXdnVFo2dUhubFZhYlZj?=
- =?gb2312?B?dk0zUE5UZGpLQWVmTWpTTHhXUXVaSDFWWmJYN3VocHFpMEYxSVFmYmZVd3pN?=
- =?gb2312?B?bDgycy9lMHRXdkxjd1BLUTYydlpaSkZJWXROTXg4am9TWHhZRUVLM2hLZmd1?=
- =?gb2312?B?S2JKeDg4VDlYZ3JROEpqeG9rVmd2Lzl6R2FCN0VEODg0b2JOY2k5U05DV2h0?=
- =?gb2312?B?aDRBdXB4Mk5OM1B6OG5BTGtRL2pwcWJaNjh5NDRWOVlGWU14YU9VZndVS1Rq?=
- =?gb2312?B?ZTJXOFZNcG5ZUyt0dFh2VENTUVg1Z0xJUjgwYjNQWnFpUnFoUWI0Vy9WaUMx?=
- =?gb2312?B?UHlGRmJRM1Fzb2dYTzd5R2M4ZDFHek9sdGxaQmlXMndCc0ZLSEw5aTljSVRi?=
- =?gb2312?B?TkhyaFFUdmpzd3VNZkswdzZla1dOb2J3WUpxMG0rZE5sY3p0UXBnOGs1QVpB?=
- =?gb2312?Q?VAE/dS/tkwD7Os9Hs940eUEdx?=
-Content-Type: text/plain; charset="gb2312"
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49F8713FF5;
+	Mon,  8 Jan 2024 10:58:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 4087MLIK011734;
+	Mon, 8 Jan 2024 10:58:12 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=S079r9jYCR0DomVPX3bgVSZv0E0kNgudacRbaJeq880=; b=pL
+	arAbX3Aj6adRAB8ZCh37rFQ7tYgCv6IfZdZb2FMefSP+Hwfkb2TjCLG8m96nLc8F
+	n4I8m4oUJPimQDS8H8LRAzC7UI/adVbAz4ZBKox8l6Hcm3A/ooxEMO5ZZpPPy++Q
+	2OLd+GWJGCPxWnCyXJCJWnb+LMbPQ4PmfEJ3/TlSOYeuGuZHe4wykpwkY3LNSct3
+	A9DyKWHKHLWCy7CStrTrRK9f0VBFO+J7KUWtWe/Yc02SMnFOQVKzZfI5GVhxJ6UA
+	sFoqNayNckQ61+ZON8YiJmcfFPPAGil1E8Sw1xI7MzGvYbtW6O/fkUQpO9mcW+p3
+	3eQ6mCh6YtE01Lap2Hzg==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3veymmbpgp-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 08 Jan 2024 10:58:12 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 408AwBbc000514
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 8 Jan 2024 10:58:11 GMT
+Received: from [10.217.90.28] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Mon, 8 Jan
+ 2024 02:58:00 -0800
+Message-ID: <689f7d06-54db-4634-9986-f0a0b0998a34@quicinc.com>
+Date: Mon, 8 Jan 2024 16:27:57 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: starfivetech.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: ZQ0PR01MB0981.CHNPR01.prod.partner.outlook.cn
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4e52aeb4-1b16-4713-b5db-08dc10374e6e
-X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Jan 2024 10:48:10.4631
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: EjSJSNY9AdvsNHGBzztMic2AgEORtvxx1jnqVnsKj8aNPnkq2c0W/T9MX5bQqq+7ZNfSoBcdvPneKVwMG8Q+W/fjFdCULZZz87u4B/Zm+zE=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: ZQ0PR01MB1272
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next v8 3/3] net: stmmac: Add driver support for
+ DWMAC5 common safety IRQ
+Content-Language: en-US
+To: Serge Semin <fancer.lancer@gmail.com>
+CC: "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet
+	<edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni
+	<pabeni@redhat.com>, Vinod Koul <vkoul@kernel.org>,
+        Bhupesh Sharma
+	<bhupesh.sharma@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring
+	<robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu
+	<joabreu@synopsys.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>, <netdev@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        Prasad Sodagudi
+	<psodagud@quicinc.com>,
+        Andrew Halaney <ahalaney@redhat.com>, Rob Herring
+	<robh@kernel.org>,
+        <kernel@quicinc.com>
+References: <20231221073620.232619-1-quic_jsuraj@quicinc.com>
+ <20231221073620.232619-4-quic_jsuraj@quicinc.com>
+ <yromhtr73rwsr6hizr4tq37vfvyzfue7wzpmufqyscwspzffza@uhfcrn573acd>
+ <aec2dc6a-ffa4-4753-a764-77dfe1af995a@quicinc.com>
+ <xdcrwxh7e4t2zkgdcfwzjr2z4ouwgv3vr4drwvshadxmpwyqkd@j3kj3p2u7nd7>
+ <2685432c-a086-4730-9dd6-8b8da1070697@quicinc.com>
+ <bb77706b-0685-4992-b49e-49bef0d11800@quicinc.com>
+ <6tog5feuvgsfootirmbidgl7gakort7tax2gponudo3l574dam@jzdavh4wmkc4>
+From: Suraj Jaiswal <quic_jsuraj@quicinc.com>
+In-Reply-To: <6tog5feuvgsfootirmbidgl7gakort7tax2gponudo3l574dam@jzdavh4wmkc4>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: Mky4ySpRZExFLzejjLiexeaBKl7MQcPe
+X-Proofpoint-GUID: Mky4ySpRZExFLzejjLiexeaBKl7MQcPe
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-12-09_01,2023-12-07_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 impostorscore=0
+ mlxlogscore=999 spamscore=0 phishscore=0 malwarescore=0 bulkscore=0
+ suspectscore=0 adultscore=0 mlxscore=0 priorityscore=1501
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2311290000 definitions=main-2401080093
 
-PiBLZXZpbiBYaWUgPGtldmluLnhpZUBzdGFyZml2ZXRlY2guY29tPiB3cml0ZXM6DQo+IA0KPiA+
-PiBNaW5kYSBDaGVuIDxtaW5kYS5jaGVuQHN0YXJmaXZldGVjaC5jb20+IHdyaXRlczoNCj4gPj4N
-Cj4gPj4gPiBUaGlzIHBhdGNoc2V0IGZpbmFsIHB1cnBvc2UgaXMgYWRkIFBDSWUgZHJpdmVyIGZv
-ciBTdGFyRml2ZSBKSDcxMTAgU29DLg0KPiA+PiA+IEpINzExMCB1c2luZyBQTERBIFhwcmVzc1JJ
-Q0ggUENJZSBJUC4gTWljcm9jaGlwIFBvbGFyRmlyZSBVc2luZyB0aGUNCj4gPj4gPiBzYW1lIElQ
-IGFuZCBoYXZlIGNvbW1pdCB0aGVpciBjb2Rlcywgd2hpY2ggYXJlIG1peGVkIHdpdGggUExEQQ0K
-PiA+PiA+IGNvbnRyb2xsZXIgY29kZXMgYW5kIE1pY3JvY2hpcCBwbGF0Zm9ybSBjb2Rlcy4NCj4g
-Pj4NCj4gPj4gVGhhbmsgeW91IGZvciB0aGlzIHNlcmllcy4NCj4gPj4NCj4gPj4gSSB0ZXN0ZWQg
-dGhpcyBvbiBhIFZpc2lvbkZpdmUgdjIgYm9hcmQsIGFuZCBpdCBzZWVtcyB0byBwcm9iZSBhbmQN
-Cj4gPj4gZmluZCBteQ0KPiA+PiBNLjIgTlZNZSBTU0QsIGJ1dCB0aGVuIGdldHMgdGltZW91dHMg
-d2hlbiB0cnlpbmcgdG8gdXNlIHRoZSBOVk1lIChlLmcuDQo+ID4+ICdibGtpZCcgY29tbWFuZCkN
-Cj4gPj4NCj4gPg0KPiA+IEhpLCBLZXZpbjoNCj4gPiBDb3VsZCB5b3UgcGxlYXNlIHByb3ZpZGUg
-dGhlIG1hbnVmYWN0dXJlciBhbmQgbW9kZWwgb2YgdGhlIE0uMiBOVk1lDQo+ID4gU1NEIHlvdSB0
-ZXN0ZWQ/DQo+IA0KPiBJIGhhdmUgYSAyNTYgR2IgU2lsaWNvbiBQb3dlciBQMzRBNjAgTS4yIE5W
-TWUgU1NEIChwYXJ0IG51bWJlcjoNCj4gc3AyNTZnYnAzNGE2MG0yOCkNCj4gDQpUaGFua3MsIEtl
-dmluLCB3ZSB3aWxsIGJ1eSBvbmUgdG8gdGVzdC4NCg0KQmVmb3JlIGRvaW5nIHRoaXMgcmVmYWN0
-b3JpbmcsIHdlIGVuY291bnRlcmVkIHRoZSBzYW1lIGJ1ZyB3aXRoIEtpbmdzdG9uIE0uMiBTU0Qs
-DQphbmQgd2Ugd29ya2Fyb3VuZCB0aGUgcHJvYmxlbSB3aXRoIHRoZSBiZWxvdyBwYXRjaCwgcGxl
-YXNlIGhhdmUgYSB0cnk6DQpkaWZmIC0tZ2l0IGEvZHJpdmVycy9udm1lL2hvc3QvcGNpLmMgYi9k
-cml2ZXJzL252bWUvaG9zdC9wY2kuYw0KaW5kZXggNTA3YmMxNDkwNDZkLi41YmUzN2YxZWUxNTAg
-MTAwNjQ0DQotLS0gYS9kcml2ZXJzL252bWUvaG9zdC9wY2kuYw0KKysrIGIvZHJpdmVycy9udm1l
-L2hvc3QvcGNpLmMNCkBAIC0xMDU5LDYgKzEwNTksMTYgQEAgc3RhdGljIGlubGluZSBpbnQgbnZt
-ZV9wb2xsX2NxKHN0cnVjdCBudm1lX3F1ZXVlICpudm1lcSwNCiB7DQogICAgICAgIGludCBmb3Vu
-ZCA9IDA7DQoNCisgICAgICAgLyoNCisgICAgICAgICogSW4gc29tZSBjYXNlcywgc3VjaCBhcyBK
-SDcxMTAgU29DIHdvcmtpbmcgd2l0aCBLaW5nc3RvbiBTU0QsDQorICAgICAgICAqIHRoZSBDUUUg
-c3RhdHVzIG1heSB1cGRhdGUgYSBsaXR0bGUgYml0IGxhdGVyIHRoYW4gdGhlIE1TSSwNCisgICAg
-ICAgICogd2hpY2ggY2F1c2UgYW4gSVJRIGhhbmRsZSBtaXNzaW5nLg0KKyAgICAgICAgKiBBcyBh
-IHdvcmthcm91bmQsIGhlcmUgd2Ugd2lsbCBjaGVjayB0aGUgc3RhdHVzIGZpcnN0LCBhbmQgd2Fp
-dA0KKyAgICAgICAgKiAxdXMgaWYgd2UgZ2V0IG5vdGhpbmcuDQorICAgICAgICAqLw0KKyAgICAg
-ICBpZiAoIW52bWVfY3FlX3BlbmRpbmcobnZtZXEpKQ0KKyAgICAgICAgICAgICAgIHVkZWxheSgx
-KTsNCisNCiAgICAgICAgd2hpbGUgKG52bWVfY3FlX3BlbmRpbmcobnZtZXEpKSB7DQogICAgICAg
-ICAgICAgICAgZm91bmQrKzsNCiAgICAgICAgICAgICAgICAvKg0KDQo+IEFsc28gZm9yIHJlZmVy
-ZW5jZSwgSSB0ZXN0ZWQgdGhlIHNhbWUgU1NEIG9uIGFub3RoZXIgYXJtIHBsYXRmb3JtIChLaGFk
-YXMNCj4gVklNMykgYW5kIGl0IHdvcmtzIGZpbmUuDQo+IA0KPiBLZXZpbg0KDQpIaSwgQmpvcm46
-DQpEbyB5b3UgaGF2ZSBhbnkgaWRlYSBhYm91dCB0aGUgbGF0ZSBDUUUgcGhhc2UgdXBkYXRlIGNv
-bmRpdGlvbiBhcyBtZW50aW9uZWQNCmluIHRoZSBwYXRjaCBjb21tZW50cyBhYm92ZT8NClRoaXMg
-aXMgYW4gaXNzdWUgdGhhdCBvY2N1cnMgd2l0aCBhIHNtYWxsIHByb2JhYmlsaXR5IG9uIGluZGl2
-aWR1YWwgZGV2aWNlcyBpbiBvdXINCnBsYXRmb3JtLg0KVGh1cywgSSBzdWdnZXN0IHRoZSByZWZh
-Y3RvcmluZyBwYXRjaCBzZXQgc2hvdWxkIGdvIGZvcndhcmQuDQpMYXRlciB3ZSB3aWxsIHRyeSB0
-byBmaW5kIGEgbW9yZSBmb3JtYWwgc29sdXRpb24gaW5zdGVhZCwgYW5kIHNlbmQgYSBuZXcgcGF0
-Y2guDQo=
+Hi Seren,
+Please find updated comment.
+
+Thanks
+Suraj
+
+On 1/8/2024 1:23 AM, Serge Semin wrote:
+> On Wed, Dec 27, 2023 at 04:33:33PM +0530, Suraj Jaiswal wrote:
+>> Hi Seren,
+>> please find the updated comment .
+>>
+>> Thanks
+>> Suraj
+>>
+>> On 12/26/2023 4:40 PM, Suraj Jaiswal wrote:
+>>> Hi seren
+>>> let me check below on test setup once & get back
+>>>
+>>> Thanks
+>>> Suraj
+>>>
+>>> On 12/22/2023 8:05 PM, Serge Semin wrote:
+>>>> On Fri, Dec 22, 2023 at 02:13:49PM +0530, Suraj Jaiswal wrote:
+>>>>> HI Serge,
+>>>>> please find commnet inline.
+>>>>>
+>>>>> Thanks
+>>>>> Suraj
+>>>>>
+>>>>> On 12/21/2023 6:19 PM, Serge Semin wrote:
+>>>>>> Hi Suraj
+>>>>>>
+>>>>>> On Thu, Dec 21, 2023 at 01:06:20PM +0530, Suraj Jaiswal wrote:
+>>>>>>> Add support to listen HW safety IRQ like ECC(error
+>>>>>>> correction code), DPP(data path parity), FSM(finite state
+>>>>>>> machine) fault in common IRQ line.
+>>>>>>>
+>>>>>>> Signed-off-by: Suraj Jaiswal <quic_jsuraj@quicinc.com>
+>>>>>>
+>>>>>> Thanks for taking my notes into account. One more comment is further
+>>>>>> below.
+>>>>>>
+>>>>>>> ---
+>>>>>>>  drivers/net/ethernet/stmicro/stmmac/common.h  |  1 +
+>>>>>>>  drivers/net/ethernet/stmicro/stmmac/stmmac.h  |  3 ++
+>>>>>>>  .../net/ethernet/stmicro/stmmac/stmmac_main.c | 37 +++++++++++++++++++
+>>>>>>>  .../ethernet/stmicro/stmmac/stmmac_platform.c |  8 ++++
+>>>>>>>  4 files changed, 49 insertions(+)
+>>>>>>>
+>>>>>>> diff --git a/drivers/net/ethernet/stmicro/stmmac/common.h b/drivers/net/ethernet/stmicro/stmmac/common.h
+>>>>>>> index 721c1f8e892f..b9233b09b80f 100644
+>>>>>>> --- a/drivers/net/ethernet/stmicro/stmmac/common.h
+>>>>>>> +++ b/drivers/net/ethernet/stmicro/stmmac/common.h
+>>>>>>> @@ -344,6 +344,7 @@ enum request_irq_err {
+>>>>>>>  	REQ_IRQ_ERR_ALL,
+>>>>>>>  	REQ_IRQ_ERR_TX,
+>>>>>>>  	REQ_IRQ_ERR_RX,
+>>>>>>> +	REQ_IRQ_ERR_SFTY,
+>>>>>>>  	REQ_IRQ_ERR_SFTY_UE,
+>>>>>>>  	REQ_IRQ_ERR_SFTY_CE,
+>>>>>>>  	REQ_IRQ_ERR_LPI,
+>>>>>>> diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac.h b/drivers/net/ethernet/stmicro/stmmac/stmmac.h
+>>>>>>> index 9f89acf31050..ca3d93851bed 100644
+>>>>>>> --- a/drivers/net/ethernet/stmicro/stmmac/stmmac.h
+>>>>>>> +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac.h
+>>>>>>> @@ -31,6 +31,7 @@ struct stmmac_resources {
+>>>>>>>  	int wol_irq;
+>>>>>>>  	int lpi_irq;
+>>>>>>>  	int irq;
+>>>>>>> +	int sfty_irq;
+>>>>>>>  	int sfty_ce_irq;
+>>>>>>>  	int sfty_ue_irq;
+>>>>>>>  	int rx_irq[MTL_MAX_RX_QUEUES];
+>>>>>>> @@ -297,6 +298,7 @@ struct stmmac_priv {
+>>>>>>>  	void __iomem *ptpaddr;
+>>>>>>>  	void __iomem *estaddr;
+>>>>>>>  	unsigned long active_vlans[BITS_TO_LONGS(VLAN_N_VID)];
+>>>>>>> +	int sfty_irq;
+>>>>>>>  	int sfty_ce_irq;
+>>>>>>>  	int sfty_ue_irq;
+>>>>>>>  	int rx_irq[MTL_MAX_RX_QUEUES];
+>>>>>>> @@ -305,6 +307,7 @@ struct stmmac_priv {
+>>>>>>>  	char int_name_mac[IFNAMSIZ + 9];
+>>>>>>>  	char int_name_wol[IFNAMSIZ + 9];
+>>>>>>>  	char int_name_lpi[IFNAMSIZ + 9];
+>>>>>>> +	char int_name_sfty[IFNAMSIZ + 10];
+>>>>>>>  	char int_name_sfty_ce[IFNAMSIZ + 10];
+>>>>>>>  	char int_name_sfty_ue[IFNAMSIZ + 10];
+>>>>>>>  	char int_name_rx_irq[MTL_MAX_TX_QUEUES][IFNAMSIZ + 14];
+>>>>>>> diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+>>>>>>> index 47de466e432c..7d4e827dfeab 100644
+>>>>>>> --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+>>>>>>> +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+>>>>>>> @@ -3592,6 +3592,10 @@ static void stmmac_free_irq(struct net_device *dev,
+>>>>>>>  		if (priv->wol_irq > 0 && priv->wol_irq != dev->irq)
+>>>>>>>  			free_irq(priv->wol_irq, dev);
+>>>>>>>  		fallthrough;
+>>>>>>> +	case REQ_IRQ_ERR_SFTY:
+>>>>>>> +		if (priv->sfty_irq > 0 && priv->sfty_irq != dev->irq)
+>>>>>>> +			free_irq(priv->sfty_irq, dev);
+>>>>>>> +		fallthrough;
+>>>>>>>  	case REQ_IRQ_ERR_WOL:
+>>>>>>>  		free_irq(dev->irq, dev);
+>>>>>>>  		fallthrough;
+>>>>>>> @@ -3661,6 +3665,23 @@ static int stmmac_request_irq_multi_msi(struct net_device *dev)
+>>>>>>>  		}
+>>>>>>>  	}
+>>>>>>>  
+>>>>>>> +	/* Request the common Safety Feature Correctible/Uncorrectible
+>>>>>>> +	 * Error line in case of another line is used
+>>>>>>> +	 */
+>>>>>>> +	if (priv->sfty_irq > 0 && priv->sfty_irq != dev->irq) {
+>>>>>>> +		int_name = priv->int_name_sfty;
+>>>>>>> +		sprintf(int_name, "%s:%s", dev->name, "safety");
+>>>>>>> +		ret = request_irq(priv->sfty_irq, stmmac_safety_interrupt,
+>>>>>>> +				  0, int_name, dev);
+>>>>>>> +		if (unlikely(ret < 0)) {
+>>>>>>> +			netdev_err(priv->dev,
+>>>>>>> +				   "%s: alloc sfty MSI %d (error: %d)\n",
+>>>>>>> +				   __func__, priv->sfty_irq, ret);
+>>>>>>> +			irq_err = REQ_IRQ_ERR_SFTY;
+>>>>>>> +			goto irq_error;
+>>>>>>> +		}
+>>>>>>> +	}
+>>>>>>> +
+>>>>>>>  	/* Request the Safety Feature Correctible Error line in
+>>>>>>>  	 * case of another line is used
+>>>>>>>  	 */
+>>>>>>> @@ -3798,6 +3819,21 @@ static int stmmac_request_irq_single(struct net_device *dev)
+>>>>>>>  		}
+>>>>>>>  	}
+>>>>>>>  
+>>>>>>> +	/* Request the common Safety Feature Correctible/Uncorrectible
+>>>>>>> +	 * Error line in case of another line is used
+>>>>>>> +	 */
+>>>>>>> +	if (priv->sfty_irq > 0 && priv->sfty_irq != dev->irq) {
+>>>>>>
+>>>>>>> +		ret = request_irq(priv->sfty_irq, stmmac_safety_interrupt,
+>>>>>>> +				  IRQF_SHARED, dev->name, dev);
+>>>>>>
+>>>>>> Just noticed yesterday that stmmac_safety_interrupt() is also called
+>>>>>> from the stmmac_interrupt() handler which is supposed to be registered
+>>>>>> on the generic "mac" IRQ. Won't it cause races around the CSRs
+>>>>>> (doubtfully but still worth to note) and the errors handling
+>>>>>> (stmmac_global_err()) in case if both IRQs are raised simultaneously?
+>>>>>> At the very least it looks suspicious and worth double-checking.
+>>>>>>
+>>>>>> I also found out that nobody seemed to care that the same handler is
+>>>>>> registered on MAC, WoL and LPI IRQ lines. Hmm, no race-related
+>>>>>> problems have been reported so far for the platforms with separate
+>>>>>> WoL/LPI IRQs. It's either a lucky coincident or the IRQs are always
+>>>>>> assigned to the same CPU or the IRQs handle is indeed free of races.
+>>>>>> In anyway it looks suspicious too. At the very least AFAICS the DMA
+>>>>>> IRQ-handler is indeed racy on the status CSR access. It isn't
+>>>>>> cleared-on-read, but write-one-to-clear. So the statistics might be
+>>>>>> calculated more than once for the same CSR state. There might be some
+>>>>>> other problems I failed to spot on the first glance.
+>>>>>>
+>>>>>> David, Eric, Jacub, Paolo, your opinion about the note above?
+>>>>>>
+>>>>>> -Serge(y)
+>>>>>>
+>>>>
+>>>>> <Suraj> We are adding common IRQ similar to already present code for correcteable/uncorrecable https://elixir.bootlin.com/linux/latest/source/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c#L3592.
+>>>>
+>>>> From that perspective your change in stmmac_request_irq_multi_msi() is
+>>>> correct, but stmmac_request_irq_single() is another story. The first
+>>>> one method implies assigning the individual IRQ handlers to all
+>>>> available lines. The later method assigns the _common_ handler to all
+>>>> the lines. The common handler already calls the Safety IRQ handler -
+>>>> stmmac_safety_feat_interrupt(). So should the safety IRQ line is
+>>>> separately available it's possible to have the Safety IRQ handlers
+>>>> executed concurrently - in framework of the common IRQ events handling
+>>>> (if safety IRQ is raised during the common IRQ being handled) and
+>>>> individual Safety IRQ. It's prune to the race condition I pointed out
+>>>> to in my message above. Did you consider that problem?
+>>>>
+>>>>> Also, we need the sfty IRQ handling as soon as the fault occured & that can only be handled if we have handler attached with sfty IRQ.
+>>>>> stmmac_interrupt() will only be triggerd when interrupt triggered for rx/tx packet .
+>>>>> while registerting with sfty IRQ will get triggered as soon as emac HW detect the fault. 
+>>>>
+>>>> Please read my comment more carefully. The safety IRQ can be raised
+>>>> during the common IRQ handling, thus the
+>>>> stmmac_safety_feat_interrupt() method might get to be concurrently
+>>>> executed.
+>>>>
+>>>> -Serge(y)
+>>>>
+>> <Suraj> Have testing this on device . We have added print in the both the places stmmac_interrupt() as well as sfty interrupt handler.
+>> We can see that sfty interrupt handler is getting triggred first & stmmac_safety_feat_interrupt () code added in stmmac_intterupt() is not getting triggred because looks like interrupt status bit register is already getting cleared as part of sfty interrupt handler. So it looks good . Please let us know if any further comment. 
+>>
+>> Please find the log below .
+>>
+>>
+>> / # [ 1505.602173] sj: stmmac_safety_interrupt from sfty IRQ handler
+>> [ 1505.607274] qcom-ethqos 23040000.ethernet eth1: Found correctable error in MTL: 'RXCES: MTL RX Memory Error'
+>> [ 1505.617395] sj: stmmac_safety_interrupt from sfty IRQ handler
+>> [ 1505.622494] qcom-ethqos 23040000.ethernet eth1: Found correctable error in MTL: 'TXCES: MTL TX Memory Error'
+>> [ 1505.888913] sj: stmmac_safety_interrupt from sfty IRQ handler
+>> [ 1505.894010] qcom-ethqos 23040000.ethernet eth1: Found correctable error in MTL: 'RXCES: MTL RX Memory Error'
+>> [ 1506.605821] sj: stmmac_safety_interrupt from sfty IRQ handler
+>> [ 1506.610919] qcom-ethqos 23040000.ethernet eth1: Found correctable error in MTL: 'RXCES: MTL RX Memory Error'
+>> [ 1506.621034] sj: stmmac_safety_interrupt from sfty IRQ handler
+>> [ 1506.626131] qcom-ethqos 23040000.ethernet eth1: Found correctable error in MTL: 'TXCES: MTL TX Memory Error'
+>> [ 1507.613036] sj: stmmac_safety_interrupt from sfty IRQ handler
+>> [ 1507.618133] qcom-ethqos 23040000.ethernet eth1: Found correctable error in MTL: 'RXCES: MTL RX Memory Error'
+>> [ 1507.628249] sj: stmmac_safety_interrupt from sfty IRQ handler
+>> [ 1507.633346] qcom-ethqos 23040000.ethernet eth1: Found correctable error in MTL: 'TXCES: MTL TX Memory Error'
+>> [ 1508.619034] sj: stmmac_safety_interrupt from sfty IRQ handler
+>> [ 1508.624132] qcom-ethqos 23040000.ethernet eth1: Found correctable error in MTL: 'RXCES: MTL RX Memory Error'
+>> [ 1508.634245] sj: stmmac_safety_interrupt from sfty IRQ handler
+>> [ 1508.639343] qcom-ethqos 23040000.ethernet eth1: Found correctable error in MTL: 'TXCES: MTL TX Memory Error'
+>> [ 1509.631151] sj: stmmac_safety_interrupt from sfty IRQ handler
+>> [ 1509.636249] qcom-ethqos 23040000.ethernet eth1: Found correctable error in MTL: 'RXCES: MTL RX Memory Error'
+>>
+> 
+> The log and the way you were trying to model out the problem don't
+> prove that the race condition doesn't exist. They just indicate that
+> your test-case doesn't catch the simultaneous MAC and Safety IRQs
+> handling.
+> 
+> Moreover AFAICS from the way the stmmac_ops->safety_feat_irq_status()
+> callbacks are defined in DW QoS Eth and DW XGMAC modules, the race is
+> there. Both
+> dwmac5_safety_feat_irq_status()
+> and
+> dwxgmac3_safety_feat_irq_status()
+> get to read the MTL and DMA Safety Interrupts Status register in order
+> to check whether the Correctable/Uncorrectable errors have actually
+> happened. After that the respective MAC, MTL or DMA error handlers are
+> called, which get to clear the IRQs statue by reading and then writing
+> the respective MAC DPP FRM, MTL/DMA ECC IRQ status registers. So if
+> the stmmac_safety_feat_interrupt() method is concurrently called the
+> driver at the very least may end up with printing the errors twice.
+> 
+> -Serge(y)
+> 
+<Suraj> We did not see issue reported 2 time in the verfication. 
+Also, we can add below change to completetly avoid call of sfty hadling as part of stmmac interrupt if irq is already defined like
+below . Let me if below looks good .
+
+static irqreturn_t stmmac_interrupt(int irq, void *dev_id)
+{
+	struct net_device *dev = (struct net_device *)dev_id;
+	struct stmmac_priv *priv = netdev_priv(dev);
+
+	/* Check if adapter is up */
+	if (test_bit(STMMAC_DOWN, &priv->state))
+		return IRQ_HANDLED;
+
+	+ if (priv->sfty_irq <=0) {
+		/* Check if a fatal error happened */
+		if (stmmac_safety_feat_interrupt(priv))
+			return IRQ_HANDLED;
+	+ }
+	/* To handle Common interrupts */
+	stmmac_common_interrupt(priv);
+
+	/* To handle DMA interrupts */
+	stmmac_dma_interrupt(priv);
+
+	return IRQ_HANDLED;
+}
+
+>>>>>    
+>>>>>>> +		if (unlikely(ret < 0)) {
+>>>>>>> +			netdev_err(priv->dev,
+>>>>>>> +				   "%s: ERROR: allocating the sfty IRQ %d (%d)\n",
+>>>>>>> +				   __func__, priv->sfty_irq, ret);
+>>>>>>> +			irq_err = REQ_IRQ_ERR_SFTY;
+>>>>>>> +			goto irq_error;
+>>>>>>> +		}
+>>>>>>> +	}
+>>>>>>> +
+>>>>>>>  	return 0;
+>>>>>>>  
+>>>>>>>  irq_error:
+>>>>>>> @@ -7462,6 +7498,7 @@ int stmmac_dvr_probe(struct device *device,
+>>>>>>>  	priv->dev->irq = res->irq;
+>>>>>>>  	priv->wol_irq = res->wol_irq;
+>>>>>>>  	priv->lpi_irq = res->lpi_irq;
+>>>>>>> +	priv->sfty_irq = res->sfty_irq;
+>>>>>>>  	priv->sfty_ce_irq = res->sfty_ce_irq;
+>>>>>>>  	priv->sfty_ue_irq = res->sfty_ue_irq;
+>>>>>>>  	for (i = 0; i < MTL_MAX_RX_QUEUES; i++)
+>>>>>>> diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
+>>>>>>> index 70eadc83ca68..ab250161fd79 100644
+>>>>>>> --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
+>>>>>>> +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
+>>>>>>> @@ -743,6 +743,14 @@ int stmmac_get_platform_resources(struct platform_device *pdev,
+>>>>>>>  		dev_info(&pdev->dev, "IRQ eth_lpi not found\n");
+>>>>>>>  	}
+>>>>>>>  
+>>>>>>> +	stmmac_res->sfty_irq =
+>>>>>>> +		platform_get_irq_byname_optional(pdev, "sfty");
+>>>>>>> +	if (stmmac_res->sfty_irq < 0) {
+>>>>>>> +		if (stmmac_res->sfty_irq == -EPROBE_DEFER)
+>>>>>>> +			return -EPROBE_DEFER;
+>>>>>>> +		dev_info(&pdev->dev, "IRQ safety IRQ not found\n");
+>>>>>>> +	}
+>>>>>>> +
+>>>>>>>  	stmmac_res->addr = devm_platform_ioremap_resource(pdev, 0);
+>>>>>>>  
+>>>>>>>  	return PTR_ERR_OR_ZERO(stmmac_res->addr);
+>>>>>>> -- 
+>>>>>>> 2.25.1
+>>>>>>>
+>>>>>>>
+>>>
 
