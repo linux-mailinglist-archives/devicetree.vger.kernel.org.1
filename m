@@ -1,134 +1,144 @@
-Return-Path: <devicetree+bounces-30254-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30255-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59C0A827172
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 15:34:28 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 19C468271A0
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 15:41:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EC4A31F2340F
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 14:34:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B43E71F2325D
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 14:41:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A175CA42;
-	Mon,  8 Jan 2024 14:34:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5922B22070;
+	Mon,  8 Jan 2024 14:41:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="AqQNc60X"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="dfyEKxwt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f54.google.com (mail-qv1-f54.google.com [209.85.219.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CDB047785
-	for <devicetree@vger.kernel.org>; Mon,  8 Jan 2024 14:34:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-qv1-f54.google.com with SMTP id 6a1803df08f44-680fa99a0a5so13971356d6.2
-        for <devicetree@vger.kernel.org>; Mon, 08 Jan 2024 06:34:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704724460; x=1705329260; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=6DI+q5qLC0m4S5PldegpNVIq+GhikISQElmsTEesw/w=;
-        b=AqQNc60XX/MiguGhRC36yhDWITUPAs4zQf/W4e9Re6YcCk45J/1fPnwYmdzEpwttbN
-         cTn+zbnnCcKYm+k7s8jw3C7PPosF5s7bK2+P/RiZgmv57M2NXYSEFMc6g9n0QvdWiiU1
-         xTBUcvxI+rEXpZT6g2BsDW2z/UYbOVbr3Za+XeYJyGQ2JTznwzFz8tZo5KyoRm4Buqom
-         Hd+DEmVGlF5lsfacOxXLtyKIhdDy8kaCqoCTUuiOvZrfgXM0tObdERC0JHFiIvdxt2qZ
-         MEVnemsamXGZ6mxWwBgAnbue4oMwbnBMlSo5nmk8mMu/DrNTsfpU6o3rC1rc1JfJgXoB
-         hZUA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704724460; x=1705329260;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=6DI+q5qLC0m4S5PldegpNVIq+GhikISQElmsTEesw/w=;
-        b=E0Zk00ezqhKg0tfMkQJaX9VU7/VOIWDg5N9Vdkw5/xeaCM0nDGLwH4JHuedCHymWO/
-         Hh4Fo1Cq3jQ+aQJRFofAUdqdE3ppXZpB33i/6IvovgJp7FmuNHdigtmrPgVzs4Ieo06U
-         cpgpYnYLwHYqIwGqCt9h6DWWnkp2A6u7h6YhJ/T9Nvaba9sdhHSt9F4ZITBd0TRP7NRo
-         UJlnD/2Lggru9hJmyL26j2Qx05cY4xazb9sIsPWN2zmak5akVtM+jBEnGqj69V/dsJSn
-         73m/A0bqsgduwhqRGyyUIQ04WGe5FgFv2KaxambZFlRmqPc6P0l8EjuFgajlwxGVbKrH
-         VkYA==
-X-Gm-Message-State: AOJu0YyDxaUU76f93QWYUaxBOJqV8CSJoudWRSVhUyhoh04XVEG5eriB
-	O8aWOQTYmvTZQF5aq4gPdyMayFmC2+gYuPM6HxSj+WUv7TnbpQ==
-X-Google-Smtp-Source: AGHT+IElULHRVxMwPWLAqS1wTYQ8tyXEYos8JXKwiW8eupF+CZehujEPHiFYUOOCEgYWDpd7SlWd4g0/9Z3Fp0gzPWo=
-X-Received: by 2002:a05:6214:c63:b0:680:ca9:6700 with SMTP id
- t3-20020a0562140c6300b006800ca96700mr5415286qvj.108.1704724460150; Mon, 08
- Jan 2024 06:34:20 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8595C38DC5
+	for <devicetree@vger.kernel.org>; Mon,  8 Jan 2024 14:40:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231228125805.661725-1-tudor.ambarus@linaro.org> <20231228125805.661725-7-tudor.ambarus@linaro.org>
-In-Reply-To: <20231228125805.661725-7-tudor.ambarus@linaro.org>
-From: Peter Griffin <peter.griffin@linaro.org>
-Date: Mon, 8 Jan 2024 14:34:08 +0000
-Message-ID: <CADrjBPpkBe4FsTHMOnQ-RLBjDCFM_QW8QZ0uVn35aX_9uiuo1A@mail.gmail.com>
-Subject: Re: [PATCH v2 06/12] tty: serial: samsung: add gs101 earlycon support
-To: Tudor Ambarus <tudor.ambarus@linaro.org>
-Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
-	mturquette@baylibre.com, sboyd@kernel.org, conor+dt@kernel.org, 
-	andi.shyti@kernel.org, alim.akhtar@samsung.com, gregkh@linuxfoundation.org, 
-	jirislaby@kernel.org, s.nawrocki@samsung.com, tomasz.figa@gmail.com, 
-	cw00.choi@samsung.com, arnd@arndb.de, semen.protsenko@linaro.org, 
-	andre.draszik@linaro.org, saravanak@google.com, willmcvicker@google.com, 
-	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org, 
-	linux-serial@vger.kernel.org, kernel-team@android.com
-Content-Type: text/plain; charset="UTF-8"
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1704724856;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=uISbz7HD4BuZssVM2LJNJqirV1xJsD2bp/nKC9OA7Hs=;
+	b=dfyEKxwtBA1OCiuAafzy3qiqjJpxkBHw9JVg1cpW6ZlZ46x8Mt/+zjFp+Lbs1pVoBop7YU
+	1IvD5BdTRrLXwbZvC/HOwoVKcUPPYRrY3O0LJHF6IvQaevZ42vgCcBTwOOcrwTPrJ9HpMa
+	kjvBj2vWQ+37OUQIz9Lg3YYkkQmmfy0BoSOzjAoopgbewdZSyzJK5cYTDGcxtpku2OM4MI
+	YkXjA2LX0TB/bVLoZiDJS/359ohTAr3SEifZFH72fzIw8kPrmnI4EwJg+dJcXubTIrds7E
+	QinAohmxAyInzj+w4WkU4hO2jdPX56tnrc2BTblhIKhLaTIqgT72WZaPFWpnlw==
+Date: Mon, 08 Jan 2024 15:40:55 +0100
+From: Dragan Simic <dsimic@manjaro.org>
+To: Shantur Rathore <i@shantur.com>
+Cc: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
+ linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2] dts: rockpro64: Remove usb regulator-always-on
+In-Reply-To: <CABEcMwWEru2DYnd-Y3qWbEp25unVd96TogSnQ+-L+NXKS3_pZQ@mail.gmail.com>
+References: <20231222141616.508073-1-i@shantur.com>
+ <2323515.eGJsNajkDb@diego>
+ <CABEcMwVwyp0zGvxL0nY3aW1_SFUEh++0bV8qBRZLK1aEpa=NHw@mail.gmail.com>
+ <72f608668d619bda1cc620ce11eb3e40@manjaro.org>
+ <CABEcMwWEru2DYnd-Y3qWbEp25unVd96TogSnQ+-L+NXKS3_pZQ@mail.gmail.com>
+Message-ID: <a21c8a2332ee0053f5c6c62ceb480732@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-Hi Tudor,
+On 2024-01-08 13:11, Shantur Rathore wrote:
+> Hi Dragan,
 
-On Thu, 28 Dec 2023 at 12:58, Tudor Ambarus <tudor.ambarus@linaro.org> wrote:
->
-> The entire bus (PERIC) on which the GS101 serial resides only allows
-> 32-bit register accesses. The reg-io-width dt property is disallowed
-> for the "google,gs101-uart" compatible and instead the iotype is
-> inferred from the compatible. Always set UPIO_MEM32 iotype for the
-> gs101 earlycon.
->
-> Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
+Hello!
 
-That's a nice addition to avoid folks shooting themselves in the foot
-when enabling earlycon.
+> On Thu, Jan 4, 2024 at 9:50 AM Dragan Simic <dsimic@manjaro.org> wrote:
+>> 
+>> On 2024-01-04 10:44, Shantur Rathore wrote:
+>> > On Fri, Dec 29, 2023 at 10:08 PM Heiko Stübner <heiko@sntech.de> wrote:
+>> >> Am Freitag, 22. Dezember 2023, 15:16:16 CET schrieb Shantur Rathore:
+>> >> > USB port regulators should be controlled by PHYs
+>> >> > so we remove always-on property and let PHYs manage the
+>> >> > regulator.
+>> >> >
+>> >> > phy-supply isn't sconfugred for the TypeC port and now that we are
+>> >>                 ^^ configured ?
+>> >>
+>> >> > removing regulator-always-on, we need to fix the phy-supply
+>> >> > so the PHYs are able to turn power to type-c port.
+>> >> >
+>> >> > Series-version: 2
+>> >> >
+>> >> > Signed-off-by: Shantur Rathore <i@shantur.com>
+>> >> > ---
+>> >> >  arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi | 3 +--
+>> >> >  1 file changed, 1 insertion(+), 2 deletions(-)
+>> >> >
+>> >> > diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi
+>> >> > index bca2b50e0a..f7273f7990 100644
+>> >> > --- a/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi
+>> >> > +++ b/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi
+>> >> > @@ -192,7 +192,6 @@ vcc5v0_host: vcc5v0-host-regulator {
+>> >> >               pinctrl-names = "default";
+>> >> >               pinctrl-0 = <&vcc5v0_host_en>;
+>> >> >               regulator-name = "vcc5v0_host";
+>> >> > -             regulator-always-on;
+>> >> >               vin-supply = <&vcc5v0_usb>;
+>> >> >       };
+>> >> >
+>> >> > @@ -203,7 +202,6 @@ vcc5v0_typec: vcc5v0-typec-regulator {
+>> >> >               pinctrl-names = "default";
+>> >> >               pinctrl-0 = <&vcc5v0_typec_en>;
+>> >> >               regulator-name = "vcc5v0_typec";
+>> >> > -             regulator-always-on;
+>> >> >               vin-supply = <&vcc5v0_usb>;
+>> >> >       };
+>> >> >
+>> >> > @@ -859,6 +857,7 @@ &u2phy0 {
+>> >> >       status = "okay";
+>> >> >
+>> >> >       u2phy0_otg: otg-port {
+>> >> > +             phy-supply = <&vcc5v0_typec>;
+>> >> >               status = "okay";
+>> >> >       };
+>> >>
+>> >> Just to explain for me, what is supplying the "other" OTG port
+>> >>         u2phy1_otg: otg-port {}
+>> >>
+>> >> in u2phy1 ... this one is status okay, but does not have any phy
+>> >> supply?
+>> >>
+>> > In RockPro64 there is only 1 USB-C OTG port and the other port
+>> > is a USB-3.0 port.
+>> > To be honest, I am not 100% sure how this all works, as I understand
+>> > the USB3.0 port is wired to the second TypeC Phy.
+>> >
+>> > Maybe Dragan has more info on this.
+>> 
+>> I'll have it checked and tested in detail, of course, but I have to
+>> recover from this nasty flu first.  Unfortunately, it has rendeded me
+>> unable to even think straight.
+> 
+> Hope you feel better soon.
+> It would be awesome if we can get this in while the current merge
+> window is open.
 
-Reviewed-by: Peter Griffin <peter.griffin@linaro.org>
-
-
-
-
-
-
-> ---
-> v2: update commit message
->
->  drivers/tty/serial/samsung_tty.c | 11 +++++++++++
->  1 file changed, 11 insertions(+)
->
-> diff --git a/drivers/tty/serial/samsung_tty.c b/drivers/tty/serial/samsung_tty.c
-> index 938127179acf..2fbaaf0e756b 100644
-> --- a/drivers/tty/serial/samsung_tty.c
-> +++ b/drivers/tty/serial/samsung_tty.c
-> @@ -2812,6 +2812,17 @@ OF_EARLYCON_DECLARE(exynos4210, "samsung,exynos4210-uart",
->  OF_EARLYCON_DECLARE(artpec8, "axis,artpec8-uart",
->                         s5pv210_early_console_setup);
->
-> +static int __init gs101_early_console_setup(struct earlycon_device *device,
-> +                                           const char *opt)
-> +{
-> +       /* gs101 always expects MMIO32 register accesses. */
-> +       device->port.iotype = UPIO_MEM32;
-> +
-> +       return s5pv210_early_console_setup(device, opt);
-> +}
-> +
-> +OF_EARLYCON_DECLARE(gs101, "google,gs101-uart", gs101_early_console_setup);
-> +
->  /* Apple S5L */
->  static int __init apple_s5l_early_console_setup(struct earlycon_device *device,
->                                                 const char *opt)
-> --
-> 2.43.0.472.g3155946c3a-goog
->
+Thankfully, I'm feeling significantly better after more than two weeks 
+of misery, and I hope to be able to work on this in the next few days.  
+I'll do my best to have it done in the current merge window, together 
+with a few new patches that I have planned to submit to the mailing 
+list.
 
