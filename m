@@ -1,85 +1,71 @@
-Return-Path: <devicetree+bounces-30078-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30079-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01C468266E9
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 01:33:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 56990826703
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 02:02:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 280761C2166C
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 00:33:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7C9021C2168C
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 01:02:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D710625;
-	Mon,  8 Jan 2024 00:32:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5436F801;
+	Mon,  8 Jan 2024 01:02:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="nGTGYvft"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="a7zs7eQ4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D66277F;
-	Mon,  8 Jan 2024 00:32:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id B0C38FF806;
-	Mon,  8 Jan 2024 00:32:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1704673972;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=ns+/ewTIcw4+stcnWjnPA8rI/Xmuma3lyLlpNthH0Hc=;
-	b=nGTGYvftRBWmb20dt0pX26y1iurUCfqvc4u1NxPPXehUI+RWsuSchyJwYmqP9eIeKFUiwr
-	gliLlxuoeTQlDsbM41HCdpez5CWvNljsSWTzyLRk+aoCVMNvzMRECki45vEiufQ1ze3Udm
-	uNtu84FMZEQXsq9dZHxG1D9cCNaT5mdtD8rqxXcPPcZSv3vox98S1wwK6vUg55yMid8orZ
-	wTV15inDLFXVccIE7+OUQhxOHi4bsRXKIoyrNeRF8GQYv2mjqXsF1zGwQoxZIgDRmIiUgJ
-	orClUjJOsb6AD3eRBCYUqTVaT5Y+IbSH2Yz1IJaYXB+2zilx1zhfy3mNpMan2w==
-Date: Mon, 8 Jan 2024 01:32:51 +0100
-From: Alexandre Belloni <alexandre.belloni@bootlin.com>
-To: Alessandro Zummo <a.zummo@towertech.it>,
-	Johan Hovold <johan+linaro@kernel.org>
-Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-	linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: rtc: qcom-pm8xxx: fix inconsistent example
-Message-ID: <170467396067.600256.16730322250867568357.b4-ty@bootlin.com>
-References: <20231130173223.12794-1-johan+linaro@kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 300067F0;
+	Mon,  8 Jan 2024 01:02:27 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D6A26C433C8;
+	Mon,  8 Jan 2024 01:02:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1704675747;
+	bh=1V/lcv+qg9gmbaccW5Zgh47dmTCwqWDyrX9MwgtQ/FQ=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=a7zs7eQ4dqqNKdzuA066xvCidEqdqjigWvs47CVk//uZYqOUfkgX0zhrU0k1qF+/M
+	 iqWtJiR8/TrIJA72oIjl/GBk3gkfhhMRXLcct8Q9rzULucRKRKq1Q968JOzCIgUiPc
+	 9Ho7B33Ga2HkGNFAfOXnzo13Q72CrfOT9lCXq8U3JsLUyki/PtnDnwvDsjvRq2FoJf
+	 EQhEz3R8FAkj9S1iF3qEijWXMQkOY5V476dHlI+qUjBdAXcTtTZWVezDXqxzNXD5K1
+	 hQtRBmBFz78MWQkLHzn+S+7JZcYSKGOITsFbYY6DIDWRStl+HiprUbSCETjXdf9Ufo
+	 KHDJCHNhumIYQ==
+Date: Sun, 7 Jan 2024 17:02:25 -0800
+From: Jakub Kicinski <kuba@kernel.org>
+To: Serge Semin <fancer.lancer@gmail.com>, Krzysztof Kozlowski
+ <krzysztof.kozlowski@linaro.org>
+Cc: Leong Ching Swee <leong.ching.swee@intel.com>, "David S. Miller"
+ <davem@davemloft.net>, patchwork-bot+netdevbpf@kernel.org,
+ mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com,
+ joabreu@synopsys.com, edumazet@google.com, pabeni@redhat.com,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ peppe.cavallaro@st.com, linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next v2 0/4] net: stmmac: Enable Per DMA Channel
+ interrupt
+Message-ID: <20240107170225.43c82226@kernel.org>
+In-Reply-To: <px2f336zjgibl43utjnnljzjweypu5jxovhgthc4xruidvpl3q@yobulxczk7vh>
+References: <20240105070925.2948871-1-leong.ching.swee@intel.com>
+	<170464562363.18664.8264531122295136817.git-patchwork-notify@kernel.org>
+	<2df9fe3e-7971-4aa2-89a9-0e085b3b00d7@linaro.org>
+	<px2f336zjgibl43utjnnljzjweypu5jxovhgthc4xruidvpl3q@yobulxczk7vh>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231130173223.12794-1-johan+linaro@kernel.org>
-X-GND-Sasl: alexandre.belloni@bootlin.com
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-
-On Thu, 30 Nov 2023 18:32:23 +0100, Johan Hovold wrote:
-> The PM8921 is an SSBI PMIC but in the binding example it is described
-> as being part of an SPMI PMIC while using an SSBI address.
+On Mon, 8 Jan 2024 00:24:24 +0300 Serge Semin wrote:
+> > Please wait for DT bindings review a bit more than one working day (I
+> > don't count Saturday and Sunday, because we all have some life...).  
 > 
-> Make the example consistent by using the sibling PM8941 SPMI PMIC
-> instead.
-> 
-> 
-> [...]
+> +1. 
 
-Applied, thanks!
-
-[1/1] dt-bindings: rtc: qcom-pm8xxx: fix inconsistent example
-      commit: 33f4ac16540509af518580abe730d409e8098aca
-
-Best regards,
-
--- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Sorry about that, reverting.
 
