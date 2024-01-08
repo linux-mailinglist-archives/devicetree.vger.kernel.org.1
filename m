@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-30221-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30222-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F613826F73
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 14:15:47 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E6248826F77
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 14:16:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3D7381F230A9
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 13:15:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 95A081F2117E
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 13:16:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CEE54174B;
-	Mon,  8 Jan 2024 13:15:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12BB24174B;
+	Mon,  8 Jan 2024 13:15:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Q2xARSq1"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="e0tMXgTQ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B03A40C1F
-	for <devicetree@vger.kernel.org>; Mon,  8 Jan 2024 13:15:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64B5344C8E
+	for <devicetree@vger.kernel.org>; Mon,  8 Jan 2024 13:15:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-50e7ddd999bso1774267e87.1
-        for <devicetree@vger.kernel.org>; Mon, 08 Jan 2024 05:15:41 -0800 (PST)
+Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-50eaabc36bcso2059886e87.2
+        for <devicetree@vger.kernel.org>; Mon, 08 Jan 2024 05:15:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704719739; x=1705324539; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1704719748; x=1705324548; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=fxblkkYWclSJTGaIqngVULfqflK8J7eGMQxQEPi3Hy4=;
-        b=Q2xARSq1kPuHg0arr5K3JVH7+JyCnbtqOJ0nvLJTBhRIgMLVendtp2Pmi+zHd5a5w2
-         5qklECduKUaojmxFmxILCraEs7GCgLKT0WflviCmU8KUlW2vHna7j/KSiNOVKU5v85Uw
-         uuvRPlsv8LJKEmungjQ2nN4AgCDAp8jahyuqRzY+8ayVRE8DpWGBTIdsy9fnVu8kAUhD
-         T6lfXKqlFVW3fpStKzIMDnyc1zXGzmTV5HPqn2eLkkrpekMK9lO/UXRs1q/rX756c7qK
-         Ia6HcCdROtoItgPgBOt8OZX2nwnzkdO4hZLN2/JetVLgUVMbIS9dSR42bdhNPrJ+FkxB
-         fXPA==
+        bh=htuFSdZboQzJzcG36HQEB1sGxlAbTSd2aClfnsdw/5M=;
+        b=e0tMXgTQjZlrnbRuWL9WkvxG6bTVG2f65O3kunnZlZuCK94+YWtMf2W4gIIZNqlN/s
+         PbHv9vszvLn3sOK2gL/RvZsCRDHf13gws+PvMylFFIbNsv/SkSRYMuVXb1OoqhE+/9Il
+         dTMZoeVNyKOlrSGqFuHbBlVWw5VDWEjFuvLBIxHBjdUNnLekxIthGy+mmPJzSWBusABP
+         cNw+Md+TBdGqcjB6m6Leuq3O6DFc9j0+gWHQMeekz8XnL+rtSAv6ExKAknLrZt2gXhI5
+         8qu27/g6EsHD+wtOa/oLhHqlFssr5bwkQ7Inoo2wvSE4zCLiAVY/OrOPrFsjhj870nSJ
+         jCDQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704719739; x=1705324539;
+        d=1e100.net; s=20230601; t=1704719748; x=1705324548;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=fxblkkYWclSJTGaIqngVULfqflK8J7eGMQxQEPi3Hy4=;
-        b=JH9TrFyo+2JRhNdWpLQzFtYGV7VbJouV1lwY6apPlagWJSovXblhOgGyUbvh7tzfLr
-         dYgLUy8d7e3CSUKEIgME++L7c2tLzylafAJVC/Pzd90yb5a22VTiMxccqCf8vsmh5XCQ
-         R3wgS5OTNctTz1F9IP5uFmQzgmOzZgLExnE6MEZRBsIVLPUYyGXKg3GduPaIm1c4654H
-         0mj0W7LIGAECvsqVG/4pan+0vwLWRb/5h8X1cdjHOsXrCB7uWbMzwK9NcecMSVT+H1Ou
-         GkHyBbtqwIOJFJgmBukpjpeDGUhyg3Gy6lKhJ2lKgXj+a+3nxI/7mVpP0hr3T+TQFa0v
-         9XOw==
-X-Gm-Message-State: AOJu0Yx0IMGdr+fL1yulZ8yPpmW2XQoyFVSU27ruFqCEBOCl8A9zX+wL
-	6pzvcOQJrILt8vCKq1rtSbaBIL3xArmAYg==
-X-Google-Smtp-Source: AGHT+IF9fhjxJAShoaqyEajerr9Rz2DILszU0D9G9T5yETJhxWpLmmhIZ1EtNEialEeK3urH3mio2A==
-X-Received: by 2002:a05:6512:2039:b0:50e:5448:3316 with SMTP id s25-20020a056512203900b0050e54483316mr1172760lfs.137.1704719739619;
-        Mon, 08 Jan 2024 05:15:39 -0800 (PST)
+        bh=htuFSdZboQzJzcG36HQEB1sGxlAbTSd2aClfnsdw/5M=;
+        b=gG6OYuk4A7kjWbos9DrlAc/lJsEsmmlpm1l3lHlLQvD+V47Vf3s3/bujGsmEfr4iKx
+         7ViPG8D8sHo/s20tCgijwI4F8HsU2QKdCFC2kwNJSmjCEdn4uT4pB+MuH66Cy4IDOuOv
+         rttMABwVeOgHT+LYY0XBVvrIuPTb+pWdLIO4oR/a/KGBisoOmLrWMRy+PSVoyJ4IS7c1
+         Y+RlMmRnI2fWyNoXcxz1yAvuIcv9S6MVzMx1fAjf5dvGTUt7pyIWxf23Khjn2T1wy/K+
+         awQ2KTxziqG0q3wKdD+ePHLuHTbmeALvP/vsAbBnQy9ddUV6YbL4HVyNum2/QvU6Nwgg
+         Slcw==
+X-Gm-Message-State: AOJu0Yyv5DHJrTtudYAIcHEGziu1XqLienMqOe2ZCjK1nxvrMGTSX7XE
+	2zvl6g4coanRGVv1DLfNKIxj7P2G3lgkSg==
+X-Google-Smtp-Source: AGHT+IEXrAG6Orw4n0maxEz+TJlIfnBT5X1FSp5YFx1cLiMZxIrzhW2qM7eNSvns5oCriLjYJb6rwg==
+X-Received: by 2002:ac2:5205:0:b0:50e:aa46:7572 with SMTP id a5-20020ac25205000000b0050eaa467572mr1340761lfl.58.1704719748466;
+        Mon, 08 Jan 2024 05:15:48 -0800 (PST)
 Received: from [192.168.199.125] (178235179081.dynamic-4-waw-k-1-3-0.vectranet.pl. [178.235.179.81])
-        by smtp.gmail.com with ESMTPSA id b12-20020a0564021f0c00b005574064b4fesm3508492edb.18.2024.01.08.05.15.36
+        by smtp.gmail.com with ESMTPSA id b12-20020a0564021f0c00b005574064b4fesm3508492edb.18.2024.01.08.05.15.46
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 08 Jan 2024 05:15:39 -0800 (PST)
-Message-ID: <6d6abee8-c3ca-4c4c-9e97-35989dd95766@linaro.org>
-Date: Mon, 8 Jan 2024 14:15:35 +0100
+        Mon, 08 Jan 2024 05:15:48 -0800 (PST)
+Message-ID: <ed59a0b4-3ab7-4a08-ae42-2174d776e521@linaro.org>
+Date: Mon, 8 Jan 2024 14:15:46 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,8 +66,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] arm64: dts: qcom: sdm845-db845c: correct PCIe
- wake-gpios
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: sm8150: correct PCIe wake-gpios
 Content-Language: en-US
 To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
  Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh+dt@kernel.org>,
@@ -76,6 +75,7 @@ To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
  Bhupesh Sharma <bhupesh.sharma@linaro.org>, linux-arm-msm@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20240108131216.53867-1-krzysztof.kozlowski@linaro.org>
+ <20240108131216.53867-2-krzysztof.kozlowski@linaro.org>
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
@@ -112,7 +112,7 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <20240108131216.53867-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20240108131216.53867-2-krzysztof.kozlowski@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
@@ -120,9 +120,9 @@ On 8.01.2024 14:12, Krzysztof Kozlowski wrote:
 > Bindings allow a "wake", not "enable", GPIO.  Schematics also use WAKE
 > name for the pin:
 > 
->   sdm845-db845c.dtb: pcie@1c00000: Unevaluated properties are not allowed ('enable-gpio' was unexpected)
+>   sa8155p-adp.dtb: pcie@1c00000: Unevaluated properties are not allowed ('enable-gpio' was unexpected)
 > 
-> Fixes: 4a657c264b78 ("arm64: dts: qcom: db845c: Enable PCIe controllers")
+> Fixes: a1c86c680533 ("arm64: dts: qcom: sm8150: Add PCIe nodes")
 > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
 
