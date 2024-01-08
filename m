@@ -1,194 +1,114 @@
-Return-Path: <devicetree+bounces-30295-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30296-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8065F827475
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 16:49:58 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id EAD25827482
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 16:53:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 351D21F2282C
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 15:49:58 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7AB49B21D9C
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 15:53:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C35CC5101D;
-	Mon,  8 Jan 2024 15:49:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DC1051032;
+	Mon,  8 Jan 2024 15:53:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="WgO51rAN"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="odd55ff7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 190425100D;
-	Mon,  8 Jan 2024 15:49:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1704728980; x=1736264980;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=nH6nxd4x4nwK+IhQjHIRG9EjGOXW493hGshxBqum9Ts=;
-  b=WgO51rANay+uC125bxHvTcy2qqYZ1s6pJVsrzogFV8Imorq9rQApqYLr
-   tqZ4CeJUvjbUZz6pt/tUWHWVWJwMQghrozHN+dL6QKLnEZNd8PQXTSqqD
-   4RiJJqb26UkTFO9lNjiT0KLEFqiAzoXlxGziM0MB6OYXnrtiY9hQcQy1c
-   CpYeUT92J2xXA9UNjJ6kS+JIYYVnJAmLGKSQRxPTH7m73+3uxncXpC5J8
-   nZACExterGlkgEvyOe/4A/nlUc8AzoYXpeAOT0RpkOkiQP5MnGz73720G
-   yxu8fFxY8eGgrcFMVF+GzcXJJBLyYonpov35MWbShN2bmFz9157AViT8V
-   A==;
-X-IronPort-AV: E=Sophos;i="6.04,180,1695679200"; 
-   d="scan'208";a="34790581"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 08 Jan 2024 16:49:37 +0100
-Received: from steina-w.localnet (steina-w.tq-net.de [10.123.53.25])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 3CA10280075;
-	Mon,  8 Jan 2024 16:49:37 +0100 (CET)
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: gregkh@linuxfoundation.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com, linux-arm-kernel@lists.infradead.org
-Cc: linux-imx@nxp.com, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, jun.li@nxp.com, linux-usb@vger.kernel.org, Xu Yang <xu.yang_2@nxp.com>
-Subject: Re: [PATCH v2 4/5] arm64: dts: imx93: add usb nodes
-Date: Mon, 08 Jan 2024 16:49:36 +0100
-Message-ID: <2609601.iZASKD2KPV@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20231218085456.3962720-4-xu.yang_2@nxp.com>
-References: <20231218085456.3962720-1-xu.yang_2@nxp.com> <20231218085456.3962720-4-xu.yang_2@nxp.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB2E451C30;
+	Mon,  8 Jan 2024 15:53:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=oyblU9fS9RIJhRfq92DSb7yUSCuEu12wiegVylc2g30=; b=odd55ff7qVX3LGHrloljObiz1O
+	v2p/97U82lb9laxeFxsG3dQ6za8J5Q/HPzXk6Gsv9WaXA3PTPRXeDZOxJPz1XGlTfO82eaZIj14U9
+	JLnVdnniUiBE2p/5QOoIzO32zAzlMcDICGN9t1Ydbx0khVNbx8jgj+4tMgDgEfuprlmYZPAOeaK4W
+	iLe7w3jD18HHkjB6hHS2oh1PTJQraW4OS9BNS94QYqTJ5KsKOeV2fmNUmJhtRlPJErXhc4rbsJIM3
+	Q0llvh+RPy0yoDh3b545p3E4shhJdRF8rug1bfVCVE1BIpOOTiUa2Za278kUvLqAtVCZWm25p4cMC
+	gCS5fKlw==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:36992)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1rMrwC-0003BF-0e;
+	Mon, 08 Jan 2024 15:53:16 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1rMrwD-0003MQ-F2; Mon, 08 Jan 2024 15:53:17 +0000
+Date: Mon, 8 Jan 2024 15:53:17 +0000
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Sergey Ryazanov <ryazanov.s.a@gmail.com>,
+	Jie Luo <quic_luoj@quicinc.com>, agross@kernel.org,
+	andersson@kernel.org, konrad.dybcio@linaro.org, davem@davemloft.net,
+	edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, hkallweit1@gmail.com, robert.marko@sartura.hr,
+	linux-arm-msm@vger.kernel.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	quic_srichara@quicinc.com
+Subject: Re: [PATCH v4 0/5] support ipq5332 platform
+Message-ID: <ZZwabT7pmwDof8Cs@shell.armlinux.org.uk>
+References: <20231225084424.30986-1-quic_luoj@quicinc.com>
+ <a6a50fb6-871f-424c-a146-12b2628b8b64@gmail.com>
+ <cfb04c82-3cc3-49f6-9a8a-1f6d1a22df40@quicinc.com>
+ <dd05a599-247a-4516-8ad3-7550ceea99f7@gmail.com>
+ <ac1977f5-cd6a-4f16-b0a0-f4322c34c5f5@quicinc.com>
+ <bdeca791-f2e5-4256-b386-a75c03f93686@gmail.com>
+ <895eadd7-1631-4b6b-8db4-d371f2e52611@lunn.ch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <895eadd7-1631-4b6b-8db4-d371f2e52611@lunn.ch>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-Hi,
+On Sat, Jan 06, 2024 at 04:45:08PM +0100, Andrew Lunn wrote:
+> > I just realized that the UNIPHY block is a MII (probably SGMII) controller.
+> > Isn't it? And I expect that it responsible more then just for clock
+> > enabling. It should also activate and perform a basic configuration of MII
+> > for actual data transmission. If so, then it should placed somewhere under
+> > drivers/net/phy or drivers/net/pcs.
+> 
+> Before we decide that, we need a description of what the UNIPHY
+> actually does, what registers it has, etc. Sometimes blocks like this
+> get split into a generic PHY, aka drivers/phy/ and a PCS driver. This
+> would be true if the UNIPHY is also used for USB SERDES, SATA SERDES
+> etc. The SERDES parts go into a generic PHY driver, and the SGMII on
+> to of the SERDES is placed is a PCS driver.
+> 
+> The problem i have so far is that there is no usable description of
+> any of this hardware, and the developers trying to produce drivers for
+> this hardware don't actually seem to understand the Linux architecture
+> for things like this.
 
-thanks for the update.
++1. I think it's now more convoluted than ever, and someone needs to
+take a step back, look at the hardware, look at the kernel model, and
+work out how to implement this. It needs to be explained in a clear
+and concise way in _one_ go, not spread over multiple emails. Probably
+with ASCII art diagrams showing the structure.
 
-Am Montag, 18. Dezember 2023, 09:54:55 CET schrieb Xu Yang:
-> There are 2 USB controllers on i.MX93. Add them.
->=20
-> Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
-> ---
-> Changes in v2:
->  - fix format as suggested by Alexander
->  - change compatible from fsl,imx8mm-usb to fsl,imx93-usb
-> ---
->  arch/arm64/boot/dts/freescale/imx93.dtsi | 58 ++++++++++++++++++++++++
->  1 file changed, 58 insertions(+)
->=20
-> diff --git a/arch/arm64/boot/dts/freescale/imx93.dtsi
-> b/arch/arm64/boot/dts/freescale/imx93.dtsi index 34c0540276d1..043ec8dc9a=
-ca
-> 100644
-> --- a/arch/arm64/boot/dts/freescale/imx93.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx93.dtsi
-> @@ -171,6 +171,20 @@ cm33: remoteproc-cm33 {
->  		status =3D "disabled";
->  	};
->=20
-> +	usbphynop1: usbphynop1 {
-> +		compatible =3D "usb-nop-xceiv";
-> +		#phy-cells =3D <0>;
-> +		clocks =3D <&clk IMX93_CLK_USB_PHY_BURUNIN>;
-> +		clock-names =3D "main_clk";
-> +	};
-> +
-> +	usbphynop2: usbphynop2 {
-> +		compatible =3D "usb-nop-xceiv";
-> +		#phy-cells =3D <0>;
-> +		clocks =3D <&clk IMX93_CLK_USB_PHY_BURUNIN>;
-> +		clock-names =3D "main_clk";
-> +	};
-> +
->  	soc@0 {
->  		compatible =3D "simple-bus";
->  		#address-cells =3D <1>;
-> @@ -1059,5 +1073,49 @@ ddr-pmu@4e300dc0 {
->  			reg =3D <0x4e300dc0 0x200>;
->  			interrupts =3D <GIC_SPI 90 IRQ_TYPE_LEVEL_HIGH>;
->  		};
-> +
-> +		usbotg1: usb@4c100000 {
-> +			compatible =3D "fsl,imx93-usb", "fsl,imx7d-usb",=20
-"fsl,imx27-usb";
-> +			reg =3D <0x4c100000 0x200>;
-> +			interrupts =3D <GIC_SPI 187 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks =3D <&clk IMX93_CLK_USB_CONTROLLER_GATE>,
-> +				 <&clk IMX93_CLK_HSIO_32K_GATE>;
-> +			clock-names =3D "usb_ctrl_root_clk",=20
-"usb_wakeup_clk";
-> +			assigned-clocks =3D <&clk IMX93_CLK_HSIO>;
-> +			assigned-clock-parents =3D <&clk=20
-IMX93_CLK_SYS_PLL_PFD1_DIV2>;
-> +			assigned-clock-rates =3D <133000000>;
-> +			fsl,usbphy =3D <&usbphynop1>;
+If that isn't possible, then someone needs to provide a detailed
+description of the hardware so that the subsystem maintainers get a
+proper view of what this hardware is so they can advise. This is the
+least preferable option due to the maintainer time it takes.
 
-fsl,usbphy is depreacated. Please refer to Documentation/devicetree/binding=
-s/
-usb/ci-hdrc-usb2.yaml
+If neither of these two things happen, then I'm afraid all bets are
+off for getting this into the kernel.
 
-> +			fsl,usbmisc =3D <&usbmisc1 0>;
-> +			status =3D "disabled";
-> +		};
-> +
-> +		usbmisc1: usbmisc@4c100200 {
-> +			compatible =3D "fsl,imx8mm-usbmisc", "fsl,imx7d-
-usbmisc",
-> +					"fsl,imx6q-usbmisc";
-> +			reg =3D <0x4c100200 0x200>;
-> +			#index-cells =3D <1>;
-> +		};
-> +
-> +		usbotg2: usb@4c200000 {
-> +			compatible =3D "fsl,imx93-usb", "fsl,imx7d-usb",=20
-"fsl,imx27-usb";
-> +			reg =3D <0x4c200000 0x200>;
-> +			interrupts =3D <GIC_SPI 188 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks =3D <&clk IMX93_CLK_USB_CONTROLLER_GATE>,
-> +				 <&clk IMX93_CLK_HSIO_32K_GATE>;
-> +			clock-names =3D "usb_ctrl_root_clk",=20
-"usb_wakeup_clk";
-> +			assigned-clocks =3D <&clk IMX93_CLK_HSIO>;
-> +			assigned-clock-parents =3D <&clk=20
-IMX93_CLK_SYS_PLL_PFD1_DIV2>;
-> +			assigned-clock-rates =3D <133000000>;
-> +			fsl,usbphy =3D <&usbphynop2>;
-
-fsl,usbphy is depreacated. Please refer to Documentation/devicetree/binding=
-s/
-usb/ci-hdrc-usb2.yaml
-
-> +			fsl,usbmisc =3D <&usbmisc2 0>;
-> +			status =3D "disabled";
-> +		};
-> +
-> +		usbmisc2: usbmisc@4c200200 {
-> +			compatible =3D "fsl,imx8mm-usbmisc", "fsl,imx7d-
-usbmisc",
-> +					"fsl,imx6q-usbmisc";
-> +			reg =3D <0x4c200200 0x200>;
-> +			#index-cells =3D <1>;
-> +		};
-
-Please insert these nodes sorted by node address. It should be inserted bef=
-ore=20
-ddr-pmu.
-
-Best regards,
-Alexander
-
->  	};
->  };
-
-
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
-
-
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
