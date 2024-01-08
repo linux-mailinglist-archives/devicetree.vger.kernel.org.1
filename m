@@ -1,576 +1,300 @@
-Return-Path: <devicetree+bounces-30172-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30175-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 454DB826BFF
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 12:03:42 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C3630826C17
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 12:06:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 79754B20A52
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 11:03:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 569C12824F3
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 11:06:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC16414280;
-	Mon,  8 Jan 2024 11:03:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gnu.org header.i=@gnu.org header.b="ejZuxHCh"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 019AC14017;
+	Mon,  8 Jan 2024 11:06:33 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from eggs.gnu.org (eggs.gnu.org [209.51.188.92])
+Received: from CHN02-BJS-obe.outbound.protection.partner.outlook.cn (mail-bjschn02on2042.outbound.protection.partner.outlook.cn [139.219.17.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C86CD14282;
-	Mon,  8 Jan 2024 11:03:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gnu.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gnu.org
-Received: from fencepost.gnu.org ([2001:470:142:3::e])
-	by eggs.gnu.org with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.90_1)
-	(envelope-from <othacehe@gnu.org>)
-	id 1rMnPZ-0001SL-Iy; Mon, 08 Jan 2024 06:03:17 -0500
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=gnu.org;
-	s=fencepost-gnu-org; h=MIME-Version:References:In-Reply-To:Date:Subject:To:
-	From; bh=bEuXkbS7GmJBjdYAemrSoXHP/SGYNY9TGYw7x78sdlw=; b=ejZuxHChEeGRGyh14tDK
-	9+LBa6Ls9TBRDysV+lSU1+pNu75nd4c736IYZ7S3jJfcgSOn6Ls/I8hW3MqJuihtcK4cnSu+4dS7p
-	wsd9iP2PuSorv3V5k4U2Qv4u/nHJ0x37qSrcNPepwWkKUkV103VNRQdEk6wcs5firILzlWCGfiY5r
-	fwo8EGZ8783DBLB8jQdy4dv37uCMD92+q97thoXIiLt7HxsOafXTgm7ZwsKTWm2YtqGKUu1vFCc2n
-	JO5i4OPv+p+oLOaakTvO5MXzcv7f46j3XN4NA6CGlPUhVyJ1/xJMnm6XBaI4Ir8q0OAnaJGPdGDdK
-	+xbp0nTOH9isCg==;
-From: Mathieu Othacehe <othacehe@gnu.org>
-To: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	Li Yang <leoyang.li@nxp.com>,
-	Stefan Wahren <wahrenst@gmx.net>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBD7C14012;
+	Mon,  8 Jan 2024 11:06:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=HcRBw64Cwqm7+SNKOgdq227fAkfzk0FpPcJMunmjqwHpEuwa4NhM8Yu/+rT+2VMFWLEffsAnsY69Hc57Qak5TyHeikzUSaEYyKPT81rOcXj8KNBFeEzVJ/2hVbYyRzPrzByvjbvTjeodkoMIkkphbdSuXaPyoX/zg0dGTyBiRM4iofS6twzipw8esPXEE1MXgKhLQ5VEgfASqs9H5d6qJJTQU6stI5yzlLrHpGAQeTQnFNaUXJwwv3JFgPxkhYS2ZaFlpjPWYoUWUcCgD3xLSpXG6Z7fh4cNKtSU9UAUhZ0EKnPfGGZa8YcUVy3QkcrpPdZfwPfYv9NfhpD03DfS6g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=HSU4nVQpTjvXtwDBYUs4PXv7FpI58GzAyC84QZ+DJo8=;
+ b=kqzwx50L4btncKEgRbhZ0uB+j4ZxGXaCAQuz6JrFSc2s1eljq3Mj95z17zSMK9xuRbFmE9KvmjP2UWO2WQaKqY0BaAkW4s4f6r2yGRSaO5XkCSM9iPfS4qVoifcu5WtoBPPUQCl0gRfvOzYU+o1OJB+p16p+sYT/i4R6dIY2KZ6v6BAdmbTzvrvXLzZrRGef0DMZGkAACR+EfQWwgeregJ3IQgJSfoq/PjYwjMhTFpVgCrxoxsmWpebdlMDYnsTzPFyuwF5Y+UH6pH/C3rNT28Jejq9AfjohAtmPjQNJFGdbb3X/TPYOcuVyApR2DhQu4/ZLuzHB5j3NgTnw2T4Pgg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=starfivetech.com; dmarc=pass action=none
+ header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=starfivetech.com;
+Received: from SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn (10.43.107.79) by
+ SHXPR01MB0701.CHNPR01.prod.partner.outlook.cn (10.43.107.150) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.7135.32; Mon, 8 Jan 2024 11:06:22 +0000
+Received: from SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn
+ ([fe80::e6aa:baea:fd8c:4cd2]) by
+ SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn ([fe80::e6aa:baea:fd8c:4cd2%7])
+ with mapi id 15.20.7135.032; Mon, 8 Jan 2024 11:06:22 +0000
+From: Minda Chen <minda.chen@starfivetech.com>
+To: Conor Dooley <conor@kernel.org>,
+	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Daire McNamara <daire.mcnamara@microchip.com>,
+	Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
 Cc: devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Mathieu Othacehe <othacehe@gnu.org>
-Subject: [PATCH v7 2/2] arm64: dts: imx93-var-som: Add Variscite VAR-SOM-MX93
-Date: Mon,  8 Jan 2024 12:02:41 +0100
-Message-ID: <20240108110241.8555-3-othacehe@gnu.org>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20240108110241.8555-1-othacehe@gnu.org>
-References: <20240108110241.8555-1-othacehe@gnu.org>
+	linux-riscv@lists.infradead.org,
+	linux-pci@vger.kernel.org,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Mason Huo <mason.huo@starfivetech.com>,
+	Leyfoon Tan <leyfoon.tan@starfivetech.com>,
+	Kevin Xie <kevin.xie@starfivetech.com>,
+	Minda Chen <minda.chen@starfivetech.com>
+Subject: [PATCH v14 0/22] Refactoring Microchip PCIe driver and add StarFive PCIe
+Date: Mon,  8 Jan 2024 19:05:50 +0800
+Message-Id: <20240108110612.19048-1-minda.chen@starfivetech.com>
+X-Mailer: git-send-email 2.17.1
+Content-Type: text/plain
+X-ClientProxiedBy: ZQ0PR01CA0014.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c550:5::19) To SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c311:25::15)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SHXPR01MB0863:EE_|SHXPR01MB0701:EE_
+X-MS-Office365-Filtering-Correlation-Id: 79377481-3b50-424f-aa3c-08dc1039d907
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	xv69FJ1Xj7on0T+dktG1syKIldFeXrGVKZHz8z2c4Y0n8aFiwy77FQcQ33d+4Ps04UIoPqs34RALq4A+EvD1mEmslSw4TRzXluOq1LMTtYFyzExAgi09pBAEaM+FHWu03Wri9hQJJvx4/Wg85/gg2pI6Mu/w3jjkYLDPluY6L29OAt4dYAyoY3Qgen2uU0spCQ+yUSb2qwjy8Eh9hCMiGnGK73KwrBQKeB20fO7YxmLoOSyo1fXyTXLJ6BRnSIa4r9qndON+HyzRA874U6jlh5xAWpPv1jw7Iy9pWvYTyTEEizuObjd1+ubj++2Ax8okv3+qWyg2oJfGGmwSkXgol8JZGeI4Ed5nZOj3YxLpdhr7Ijaizo1QP1CnDk5v4lJd8u9pajPn9Zt87rTQWc7zALr3Cv6ZNoNydIcgT5hQ7BnNGprRGb/bB9djLKhVlMvK8H2tkErty6O9nal4lIXaRsCn8q0q8h9eKjzOh8J9xlRdwzyEv4y415pyX4anCsVOagLJX+k56Z0P18F/FhQ4WcvzkYucL+RZBSVl07uUo1WIRX5NKqY1CCKd7SgSpBi/
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230031)(39830400003)(346002)(366004)(396003)(136003)(230922051799003)(64100799003)(451199024)(1800799012)(186009)(7416002)(5660300002)(4326008)(2906002)(44832011)(8676002)(8936002)(54906003)(110136005)(66946007)(66556008)(66476007)(41320700001)(508600001)(38350700005)(6666004)(52116002)(2616005)(36756003)(107886003)(26005)(1076003)(41300700001)(40180700001)(83380400001)(38100700002)(40160700002)(86362001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?cMGF6IKXMKyBqZmvc/OgznLQzaXk2uwjCOQvx/aq5K3YF9ONDiwM7oGikUja?=
+ =?us-ascii?Q?HaDddkCJfQg8gMgew2zDTdLArwVUfcUvOHiEtrqCy26yWq3e/yKiP4oB0UYz?=
+ =?us-ascii?Q?uQIyAdLA346SA0JRdTkq/NcLhKBDnsOf+v3k9EsuQPpZONzAbN3slgqL1alJ?=
+ =?us-ascii?Q?rkNxoH1Hq03hkdby/zlny55NUf5ZcBXWz3wQj2SRqfySgBOMq57S0CNP2w0r?=
+ =?us-ascii?Q?gcZxmNk2xcjqpQdGwLoKzw3agqY7Dnreo5J/xaBIhanRwIXBD2nGsFtfUO+w?=
+ =?us-ascii?Q?rwq8G2hR5UzH8pg/+lTziVSxddw4zQwnXJTpS52HLHDDam1T5UfvlPHCZJ20?=
+ =?us-ascii?Q?XG14gMBxtmSyIXgA17f7YGzHrdifPaeyh4GdhiemM9sHuPo7DGNbTvSJLcVU?=
+ =?us-ascii?Q?6sTfdBW0BJ7xdvv2/vtdIzc3GkKB3x1gkTTZr2j5qvwe8qntaOnfCLGIoAzH?=
+ =?us-ascii?Q?03Cl4wwB9xp2ESpAOil+2tlKoD+pXNKLOjMN2W+KBdvZHOE60OFcOynYJFZb?=
+ =?us-ascii?Q?1idpkIQsY3BU3KtmdUEOOSD3T3wKtVx3S3iGGCql3/EROwIUCmnYNx9uODaI?=
+ =?us-ascii?Q?IRmNrAqRmyO23RR3Cc0uxrdg44ZEd61chuIzMI9zEYBkYhEvAOfNK1ZtA7hB?=
+ =?us-ascii?Q?AG1xhxOgzgeUC+KZXe65ZwKLecbNGotYI2J17//gXgkh9Ht1dOmVITczeKt+?=
+ =?us-ascii?Q?xR798Z8w/928DmpAIZMnpyJ+vmEaqyXM4IP4vYVy5NGu21NFEOTki8QZ+ZGw?=
+ =?us-ascii?Q?XUHSKSY23AF80A7QkcJ25nxPFkPhGLNTsSlcBRpwjwuenW64+1oGok2MPren?=
+ =?us-ascii?Q?QwtRpIsotzdBhTNbxBw12RDJa0vUjRIFWhWk4ACtGzD68H32KDHkhfiAC3CL?=
+ =?us-ascii?Q?/L9Bp6aMQdKQK8ElkaDYWupeNI4UkwdD0QLq/kzFPBjVc0SkfUD2ONWW2cGR?=
+ =?us-ascii?Q?UVZUuA5Vl2PfyBbaRGfJ28HAcymU5BW3XvJrqSswCK4jiOl7iAzNxtWA/Reu?=
+ =?us-ascii?Q?su7GEnK70CruXHD+edhwWth4AWJDP0rE2Yh32M+bEp1inPeIkDqqOaSdVY42?=
+ =?us-ascii?Q?r2UQHjXFVsKZ5XX1pYODshMubW+jSqGFjGDfaYPATpRKBNqFG4dTiVm/On2O?=
+ =?us-ascii?Q?8d8ZKpuJj++in1NDfpl7Wbk99+tSWCQxTVz3MnZ6P+SCLeY2yY1IMwKjMxSA?=
+ =?us-ascii?Q?wnUdgByLaF3aDYSadJ5LrMwi4XEI2jYwtLcd0fLliMC02TzT53L+LSVXuxXO?=
+ =?us-ascii?Q?FxY1X+NzEjzehQJjmeO8Jv/Xn7F5ehk9zVac4xBoJ3tdFV/9I6OaEhr25Spw?=
+ =?us-ascii?Q?YL/3I4f63HxznS/45dHHo5uRfxWpSoFsYjXjD5Rkp4NdGD7SQblTe956Y0T7?=
+ =?us-ascii?Q?U5/OVa8YQa/d7AkBZAHP8VLnPkmLQRTVEcu9DGg49RCn+6Eevy3+8WldoqRq?=
+ =?us-ascii?Q?Weo1Mo7a25DzUSL4ZBhqPuE2/rEYLePNdPQZ7AdbB49whfYeV0mqakwUXTWE?=
+ =?us-ascii?Q?J9lES9QA5kaMudFMyR66qH7cTz5wXaYugLJpUlGnZcA3fEdlXJcdQvEyuD50?=
+ =?us-ascii?Q?FhvNlOUWNYWPyldpi6xSgWxzs+/7zuFXyVuVzM//4U20tH/wOpONmVv4w2fW?=
+ =?us-ascii?Q?2g=3D=3D?=
+X-OriginatorOrg: starfivetech.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 79377481-3b50-424f-aa3c-08dc1039d907
+X-MS-Exchange-CrossTenant-AuthSource: SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jan 2024 11:06:22.2517
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: /RM4LZvjdGF6taS1DIvbBKSuY2cUMUm+45Sx1lNiJOj9UGqDOh6oTkfWKev7Ep6N2+byRpP+Upfly8y/FU1eLsUDXKg69KZ+bJMitNPtxV0=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SHXPR01MB0701
 
-Add DTSI for Variscite VAR-SOM-MX93 System on Module and DTS for Variscite
-VAR-SOM-MX93 on Symphony evaluation board.
+This patchset final purpose is add PCIe driver for StarFive JH7110 SoC.
+JH7110 using PLDA XpressRICH PCIe IP. Microchip PolarFire Using the
+same IP and have commit their codes, which are mixed with PLDA
+controller codes and Microchip platform codes.
 
-This version comes with:
-- NXP i.MX 93 Dual, 1.7GHz, Cortex-A55 + Cortex-M33
-- 2 GB of RAM
-- 16GB eMMC
-- 802.11ax/ac/a/b/g/n WiFi with 5.3 Bluetooth
-- CAN bus
-- Audio codec
+For re-use the PLDA controller codes, I request refactoring microchip
+codes, move PLDA common codes to PLDA files.
+Desigware and Cadence is good example for refactoring codes.
 
-Signed-off-by: Mathieu Othacehe <othacehe@gnu.org>
----
- arch/arm64/boot/dts/freescale/Makefile        |   1 +
- .../dts/freescale/imx93-var-som-symphony.dts  | 351 ++++++++++++++++++
- .../boot/dts/freescale/imx93-var-som.dtsi     | 111 ++++++
- 3 files changed, 463 insertions(+)
- create mode 100644 arch/arm64/boot/dts/freescale/imx93-var-som-symphony.dts
- create mode 100644 arch/arm64/boot/dts/freescale/imx93-var-som.dtsi
+----------------------------------------------------------
+The refactoring patches total number is 16,(patch 1-16)
+which do NOT contain changing logic of codes.
 
-diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-index 2e027675d7bb..a6f1700961e3 100644
---- a/arch/arm64/boot/dts/freescale/Makefile
-+++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -203,6 +203,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx8ulp-evk.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx93-11x11-evk.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx93-tqma9352-mba93xxca.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx93-tqma9352-mba93xxla.dtb
-+dtb-$(CONFIG_ARCH_MXC) += imx93-var-som-symphony.dtb
- 
- imx8mm-venice-gw72xx-0x-imx219-dtbs	:= imx8mm-venice-gw72xx-0x.dtb imx8mm-venice-gw72xx-0x-imx219.dtbo
- imx8mm-venice-gw72xx-0x-rpidsi-dtbs	:= imx8mm-venice-gw72xx-0x.dtb imx8mm-venice-gw72xx-0x-rpidsi.dtbo
-diff --git a/arch/arm64/boot/dts/freescale/imx93-var-som-symphony.dts b/arch/arm64/boot/dts/freescale/imx93-var-som-symphony.dts
-new file mode 100644
-index 000000000000..576d6982a4a0
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx93-var-som-symphony.dts
-@@ -0,0 +1,351 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright 2021 NXP
-+ * Copyright 2023 Variscite Ltd.
-+ */
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/leds/common.h>
-+#include "imx93-var-som.dtsi"
-+
-+/{
-+	model = "Variscite VAR-SOM-MX93 on Symphony evaluation board";
-+	compatible = "variscite,var-som-mx93-symphony",
-+		     "variscite,var-som-mx93", "fsl,imx93";
-+
-+	aliases {
-+		ethernet0 = &eqos;
-+		ethernet1 = &fec;
-+	};
-+
-+	chosen {
-+		stdout-path = &lpuart1;
-+	};
-+
-+	/*
-+	 * Needed only for Symphony <= v1.5
-+	 */
-+	reg_fec_phy: regulator-fec-phy {
-+		compatible = "regulator-fixed";
-+		regulator-name = "fec-phy";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		regulator-enable-ramp-delay = <20000>;
-+		gpio = <&pca9534 7 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+		regulator-always-on;
-+	};
-+
-+	reg_usdhc2_vmmc: regulator-usdhc2 {
-+		compatible = "regulator-fixed";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_reg_usdhc2_vmmc>;
-+		regulator-name = "VSD_3V3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		gpio = <&gpio2 18 GPIO_ACTIVE_HIGH>;
-+		off-on-delay-us = <20000>;
-+		enable-active-high;
-+	};
-+
-+	reg_vref_1v8: regulator-adc-vref {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vref_1v8";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+	};
-+
-+	reserved-memory {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		ethosu_mem: ethosu-region@88000000 {
-+			compatible = "shared-dma-pool";
-+			reusable;
-+			reg = <0x0 0x88000000 0x0 0x8000000>;
-+		};
-+
-+		vdev0vring0: vdev0vring0@87ee0000 {
-+			reg = <0 0x87ee0000 0 0x8000>;
-+			no-map;
-+		};
-+
-+		vdev0vring1: vdev0vring1@87ee8000 {
-+			reg = <0 0x87ee8000 0 0x8000>;
-+			no-map;
-+		};
-+
-+		vdev1vring0: vdev1vring0@87ef0000 {
-+			reg = <0 0x87ef0000 0 0x8000>;
-+			no-map;
-+		};
-+
-+		vdev1vring1: vdev1vring1@87ef8000 {
-+			reg = <0 0x87ef8000 0 0x8000>;
-+			no-map;
-+		};
-+
-+		rsc_table: rsc-table@2021f000 {
-+			reg = <0 0x2021f000 0 0x1000>;
-+			no-map;
-+		};
-+
-+		vdevbuffer: vdevbuffer@87f00000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0 0x87f00000 0 0x100000>;
-+			no-map;
-+		};
-+
-+		ele_reserved: ele-reserved@87de0000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0 0x87de0000 0 0x100000>;
-+			no-map;
-+		};
-+	};
-+
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+
-+		key-back {
-+			label = "Back";
-+			gpios = <&pca9534 1 GPIO_ACTIVE_LOW>;
-+			linux,code = <KEY_BACK>;
-+		};
-+
-+		key-home {
-+			label = "Home";
-+			gpios = <&pca9534 2 GPIO_ACTIVE_LOW>;
-+			linux,code = <KEY_HOME>;
-+		};
-+
-+		key-menu {
-+			label = "Menu";
-+			gpios = <&pca9534 3 GPIO_ACTIVE_LOW>;
-+			linux,code = <KEY_MENU>;
-+		};
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		led-0 {
-+			function = LED_FUNCTION_STATUS;
-+			color = <LED_COLOR_ID_GREEN>;
-+			gpios = <&pca9534 0 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "heartbeat";
-+		};
-+	};
-+};
-+
-+/* Use external instead of internal RTC*/
-+&bbnsm_rtc {
-+	status = "disabled";
-+};
-+
-+&eqos {
-+	mdio {
-+		ethphy1: ethernet-phy@5 {
-+			compatible = "ethernet-phy-ieee802.3-c22";
-+			reg = <5>;
-+			qca,disable-smarteee;
-+			eee-broken-1000t;
-+			reset-gpios = <&pca9534 5 GPIO_ACTIVE_LOW>;
-+			reset-assert-us = <10000>;
-+			reset-deassert-us = <20000>;
-+			vddio-supply = <&vddio1>;
-+
-+			vddio1: vddio-regulator {
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+			};
-+		};
-+	};
-+};
-+
-+&fec {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_fec>;
-+	phy-mode = "rgmii";
-+	phy-handle = <&ethphy1>;
-+	phy-supply = <&reg_fec_phy>;
-+	status = "okay";
-+};
-+
-+&flexcan1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_flexcan1>;
-+	status = "okay";
-+};
-+
-+&lpi2c1 {
-+	clock-frequency = <400000>;
-+	pinctrl-names = "default", "sleep", "gpio";
-+	pinctrl-0 = <&pinctrl_lpi2c1>;
-+	pinctrl-1 = <&pinctrl_lpi2c1_gpio>;
-+	pinctrl-2 = <&pinctrl_lpi2c1_gpio>;
-+	scl-gpios = <&gpio1 0 GPIO_ACTIVE_HIGH>;
-+	sda-gpios = <&gpio1 1 GPIO_ACTIVE_HIGH>;
-+	status = "okay";
-+
-+	/* DS1337 RTC module */
-+	rtc@68 {
-+		compatible = "dallas,ds1337";
-+		reg = <0x68>;
-+	};
-+};
-+
-+&lpi2c5 {
-+	clock-frequency = <400000>;
-+	pinctrl-names = "default", "sleep", "gpio";
-+	pinctrl-0 = <&pinctrl_lpi2c5>;
-+	pinctrl-1 = <&pinctrl_lpi2c5_gpio>;
-+	pinctrl-2 = <&pinctrl_lpi2c5_gpio>;
-+	scl-gpios = <&gpio2 23 GPIO_ACTIVE_HIGH>;
-+	sda-gpios = <&gpio2 22 GPIO_ACTIVE_HIGH>;
-+	status = "okay";
-+
-+	pca9534: gpio@20 {
-+		compatible = "nxp,pca9534";
-+		reg = <0x20>;
-+		gpio-controller;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_pca9534>;
-+		interrupt-parent = <&gpio3>;
-+		interrupts = <26 IRQ_TYPE_EDGE_FALLING>;
-+		#gpio-cells = <2>;
-+		wakeup-source;
-+	};
-+};
-+
-+/* Console */
-+&lpuart1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart1>;
-+	status = "okay";
-+};
-+
-+/* J18.7, J18.9 */
-+&lpuart6 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart6>;
-+	status = "okay";
-+};
-+
-+/* SD */
-+&usdhc2 {
-+	pinctrl-names = "default", "state_100mhz", "state_200mhz";
-+	pinctrl-0 = <&pinctrl_usdhc2>, <&pinctrl_usdhc2_gpio>;
-+	pinctrl-1 = <&pinctrl_usdhc2>, <&pinctrl_usdhc2_gpio>;
-+	pinctrl-2 = <&pinctrl_usdhc2>, <&pinctrl_usdhc2_gpio>;
-+	cd-gpios = <&gpio3 00 GPIO_ACTIVE_LOW>;
-+	vmmc-supply = <&reg_usdhc2_vmmc>;
-+	bus-width = <4>;
-+	status = "okay";
-+	no-sdio;
-+	no-mmc;
-+};
-+
-+/* Watchdog */
-+&wdog3 {
-+	status = "okay";
-+};
-+
-+&iomuxc {
-+	pinctrl_fec: fecgrp {
-+		fsl,pins = <
-+			MX93_PAD_ENET2_RD0__ENET1_RGMII_RD0		0x57e
-+			MX93_PAD_ENET2_RD1__ENET1_RGMII_RD1		0x57e
-+			MX93_PAD_ENET2_RD2__ENET1_RGMII_RD2		0x57e
-+			MX93_PAD_ENET2_RD3__ENET1_RGMII_RD3		0x57e
-+			MX93_PAD_ENET2_RXC__ENET1_RGMII_RXC		0x5fe
-+			MX93_PAD_ENET2_RX_CTL__ENET1_RGMII_RX_CTL	0x57e
-+			MX93_PAD_ENET2_TD0__ENET1_RGMII_TD0		0x57e
-+			MX93_PAD_ENET2_TD1__ENET1_RGMII_TD1		0x57e
-+			MX93_PAD_ENET2_TD2__ENET1_RGMII_TD2		0x57e
-+			MX93_PAD_ENET2_TD3__ENET1_RGMII_TD3		0x57e
-+			MX93_PAD_ENET2_TXC__ENET1_RGMII_TXC		0x5fe
-+			MX93_PAD_ENET2_TX_CTL__ENET1_RGMII_TX_CTL	0x57e
-+		>;
-+	};
-+
-+	pinctrl_flexcan1: flexcan1grp {
-+		fsl,pins = <
-+			MX93_PAD_PDM_CLK__CAN1_TX                       0x139e
-+			MX93_PAD_PDM_BIT_STREAM0__CAN1_RX               0x139e
-+		>;
-+	};
-+
-+	pinctrl_lpi2c1: lpi2c1grp {
-+		fsl,pins = <
-+			MX93_PAD_I2C1_SCL__LPI2C1_SCL			0x40000b9e
-+			MX93_PAD_I2C1_SDA__LPI2C1_SDA			0x40000b9e
-+		>;
-+	};
-+
-+	pinctrl_lpi2c1_gpio: lpi2c1gpiogrp {
-+		fsl,pins = <
-+			MX93_PAD_I2C1_SCL__GPIO1_IO00			0x31e
-+			MX93_PAD_I2C1_SDA__GPIO1_IO01			0x31e
-+		>;
-+	};
-+
-+	pinctrl_lpi2c5: lpi2c5grp {
-+		fsl,pins = <
-+			MX93_PAD_GPIO_IO23__LPI2C5_SCL			0x40000b9e
-+			MX93_PAD_GPIO_IO22__LPI2C5_SDA			0x40000b9e
-+		>;
-+	};
-+
-+	pinctrl_lpi2c5_gpio: lpi2c5gpiogrp {
-+		fsl,pins = <
-+			MX93_PAD_GPIO_IO23__GPIO2_IO23			0x31e
-+			MX93_PAD_GPIO_IO22__GPIO2_IO22			0x31e
-+		>;
-+	};
-+
-+	pinctrl_pca9534: pca9534grp {
-+		fsl,pins = <
-+			MX93_PAD_CCM_CLKO1__GPIO3_IO26		0x31e
-+		>;
-+	};
-+
-+	pinctrl_uart1: uart1grp {
-+		fsl,pins = <
-+			MX93_PAD_UART1_RXD__LPUART1_RX			0x31e
-+			MX93_PAD_UART1_TXD__LPUART1_TX			0x31e
-+		>;
-+	};
-+
-+	pinctrl_uart6: uart6grp {
-+		fsl,pins = <
-+			MX93_PAD_GPIO_IO05__LPUART6_RX			0x31e
-+			MX93_PAD_GPIO_IO04__LPUART6_TX			0x31e
-+		>;
-+	};
-+
-+	pinctrl_reg_usdhc2_vmmc: regusdhc2vmmcgrp {
-+		fsl,pins = <
-+			MX93_PAD_GPIO_IO18__GPIO2_IO18		0x31e
-+		>;
-+	};
-+
-+	pinctrl_usdhc2: usdhc2grp {
-+		fsl,pins = <
-+			MX93_PAD_SD2_CLK__USDHC2_CLK		0x15fe
-+			MX93_PAD_SD2_CMD__USDHC2_CMD		0x13fe
-+			MX93_PAD_SD2_DATA0__USDHC2_DATA0	0x13fe
-+			MX93_PAD_SD2_DATA1__USDHC2_DATA1	0x13fe
-+			MX93_PAD_SD2_DATA2__USDHC2_DATA2	0x13fe
-+			MX93_PAD_SD2_DATA3__USDHC2_DATA3	0x13fe
-+			MX93_PAD_SD2_VSELECT__USDHC2_VSELECT	0x51e
-+		>;
-+	};
-+
-+	pinctrl_usdhc2_gpio: usdhc2gpiogrp {
-+		fsl,pins = <
-+			MX93_PAD_SD2_CD_B__GPIO3_IO00		0x31e
-+		>;
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/freescale/imx93-var-som.dtsi b/arch/arm64/boot/dts/freescale/imx93-var-som.dtsi
-new file mode 100644
-index 000000000000..8210d1f63c31
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx93-var-som.dtsi
-@@ -0,0 +1,111 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright 2022 NXP
-+ * Copyright 2023 Variscite Ltd.
-+ */
-+
-+/dts-v1/;
-+
-+#include "imx93.dtsi"
-+
-+/{
-+	model = "Variscite VAR-SOM-MX93 module";
-+	compatible = "variscite,var-som-mx93", "fsl,imx93";
-+
-+	mmc_pwrseq: mmc-pwrseq {
-+		compatible = "mmc-pwrseq-simple";
-+		post-power-on-delay-ms = <100>;
-+		power-off-delay-us = <10000>;
-+		reset-gpios = <&gpio4 14 GPIO_ACTIVE_LOW>,	/* WIFI_RESET */
-+			      <&gpio3 7 GPIO_ACTIVE_LOW>;	/* WIFI_PWR_EN */
-+	};
-+
-+	reg_eqos_phy: regulator-eqos-phy {
-+		compatible = "regulator-fixed";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_reg_eqos_phy>;
-+		regulator-name = "eth_phy_pwr";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		gpio = <&gpio1 7 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+		startup-delay-us = <100000>;
-+		regulator-always-on;
-+	};
-+};
-+
-+&eqos {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_eqos>;
-+	phy-mode = "rgmii";
-+	phy-handle = <&ethphy0>;
-+	phy-supply = <&reg_eqos_phy>;
-+	status = "okay";
-+
-+	mdio {
-+		compatible = "snps,dwmac-mdio";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		clock-frequency = <1000000>;
-+
-+		ethphy0: ethernet-phy@0 {
-+			compatible = "ethernet-phy-ieee802.3-c22";
-+			reg = <0>;
-+			eee-broken-1000t;
-+		};
-+	};
-+};
-+
-+/* eMMC */
-+&usdhc1 {
-+	pinctrl-names = "default", "state_100mhz", "state_200mhz";
-+	pinctrl-0 = <&pinctrl_usdhc1>;
-+	pinctrl-1 = <&pinctrl_usdhc1>;
-+	pinctrl-2 = <&pinctrl_usdhc1>;
-+	bus-width = <8>;
-+	non-removable;
-+	status = "okay";
-+};
-+
-+&iomuxc {
-+	pinctrl_eqos: eqosgrp {
-+		fsl,pins = <
-+			MX93_PAD_ENET1_MDC__ENET_QOS_MDC			0x57e
-+			MX93_PAD_ENET1_MDIO__ENET_QOS_MDIO			0x57e
-+			MX93_PAD_ENET1_RD0__ENET_QOS_RGMII_RD0			0x57e
-+			MX93_PAD_ENET1_RD1__ENET_QOS_RGMII_RD1			0x57e
-+			MX93_PAD_ENET1_RD2__ENET_QOS_RGMII_RD2			0x57e
-+			MX93_PAD_ENET1_RD3__ENET_QOS_RGMII_RD3			0x57e
-+			MX93_PAD_ENET1_RXC__CCM_ENET_QOS_CLOCK_GENERATE_RX_CLK	0x5fe
-+			MX93_PAD_ENET1_RX_CTL__ENET_QOS_RGMII_RX_CTL		0x57e
-+			MX93_PAD_ENET1_TD0__ENET_QOS_RGMII_TD0			0x57e
-+			MX93_PAD_ENET1_TD1__ENET_QOS_RGMII_TD1			0x57e
-+			MX93_PAD_ENET1_TD2__ENET_QOS_RGMII_TD2			0x57e
-+			MX93_PAD_ENET1_TD3__ENET_QOS_RGMII_TD3			0x57e
-+			MX93_PAD_ENET1_TXC__CCM_ENET_QOS_CLOCK_GENERATE_TX_CLK	0x5fe
-+			MX93_PAD_ENET1_TX_CTL__ENET_QOS_RGMII_TX_CTL		0x57e
-+		>;
-+	};
-+
-+	pinctrl_reg_eqos_phy: regeqosgrp {
-+		fsl,pins = <
-+			MX93_PAD_UART2_TXD__GPIO1_IO07			0x51e
-+		>;
-+	};
-+
-+	pinctrl_usdhc1: usdhc1grp {
-+		fsl,pins = <
-+			MX93_PAD_SD1_CLK__USDHC1_CLK		0x15fe
-+			MX93_PAD_SD1_CMD__USDHC1_CMD		0x13fe
-+			MX93_PAD_SD1_DATA0__USDHC1_DATA0	0x13fe
-+			MX93_PAD_SD1_DATA1__USDHC1_DATA1	0x13fe
-+			MX93_PAD_SD1_DATA2__USDHC1_DATA2	0x13fe
-+			MX93_PAD_SD1_DATA3__USDHC1_DATA3	0x13fe
-+			MX93_PAD_SD1_DATA4__USDHC1_DATA4	0x13fe
-+			MX93_PAD_SD1_DATA5__USDHC1_DATA5	0x13fe
-+			MX93_PAD_SD1_DATA6__USDHC1_DATA6	0x13fe
-+			MX93_PAD_SD1_DATA7__USDHC1_DATA7	0x13fe
-+			MX93_PAD_SD1_STROBE__USDHC1_STROBE	0x15fe
-+		>;
-+	};
-+};
+These patches just contain three type basic operations.
+(rename, modify codes to support starfive platform, and moving to common file)
+If these patched are all be reviewed. They can be accepted first.
+
+Refactoring patches can be devided to different groups
+1. (patch 1- 3 is the prepare work of refactoring)
+patch1 is move PLDA XpressRICH PCIe host common properties dt-binding
+       docs from microchip,pcie-host.yaml
+patch2 is move PolarFire codes to PLDA directory.
+patch3 is move PLDA IP register macros to plda-pcie.h
+
+2. (patch4 - 6 is processing and re-use PCIe host instance)
+patch4 is add bridge_addr field to PCIe host instance.
+patch5 is rename data structure in microchip codes.
+patch6 is moving two data structures to head file
+
+3. (patch 7 - 9 are for re-use two PCIe setup function)
+patch7 is rename two setup functions in microchip codes, prepare to move
+to common file.
+patch8 is change the arguments of plda_pcie_setup_iomems()
+patch9 is move the two setup functions to common file pcie-plda-host.c
+
+4.(patch 10 - 16 are for re-use interupt processing codes)
+patch10 is rename the IRQ related functions, prepare to move to
+pcie-plda-host.c
+patch 11 - 15 is modify the interrupt event codes, preparing for support starfive
+and microchip two platforms.
+patch16 is move IRQ related functions to pcie-plda-host.c
+
+------------------------------------------------------------
+The remainder patches (patch 17 -22) are not refactoring patch.
+They are for adding StarFive codes and dont modify the microchip's
+codes.
+
+patch17 is Add event bitmap for mask unused/unimpementes interrupts
+patch18 is Add host init/deinit functions.
+patch19 is add StarFive JH7110 PCIe dt-binding doc.
+patch20 is Add a PCIe delay time macro
+patch21 is add StarFive JH7110 Soc PCIe codes.
+patch22 is Starfive dts config
+
+This patchset is base on v6.7
+
+previous version:
+v9:https://patchwork.kernel.org/project/linux-pci/cover/20231020104341.63157-1-minda.chen@starfivetech.com/
+v10:https://patchwork.kernel.org/project/linux-pci/cover/20231031115430.113586-1-minda.chen@starfivetech.com/
+v11:https://patchwork.kernel.org/project/linux-pci/cover/20231115114912.71448-1-minda.chen@starfivetech.com/
+v12:https://patchwork.kernel.org/project/linux-pci/cover/20231206105839.25805-1-minda.chen@starfivetech.com/
+v13:https://patchwork.kernel.org/project/linux-pci/cover/20231214072839.2367-1-minda.chen@starfivetech.com/
+
+change:
+  v14:
+   Add a new patch 17. Add interrupt eventmap to mask non-implemented or unused interrupt.
+   patch3: rename the PLDA interrupts macro name.
+   patch9: remove the redundant head file.
+   patch10,11: modify the commit message suggested by Lorrenzo.
+   patch12: modify the commit message.
+   patch14, 15: PLDA codes will handle DMA interrupts. Modify the commit message. 
+   patch18 remove plda default events. This is implemented by vendor.
+   patch21 Add plda_event instance stf_pcie_event.
+
+  v13:
+   patch14: 1. Add plda_get_event() function. This can be compare with mc_get_event() easily and 
+		track the codes changes in case in the future..
+            2. The host event_ops is directly set to plda host port.
+	    3. Setting default host event_ops instead of checking event ops.
+   patch15:1. Add PLDA event irq_chip instead of event_domain_ops, The
+		event_domain_ops can be re-used.
+            2. The host event irq_chip is directly set to plda host port.
+	    3. Add PLDA event irqchip ops codes.
+            4. Remove Conor's review tag due to whole patch have been changed.
+   patch16: Also move the new added PLDA event codes.
+   patch18: Add plda host init and deinit function only.
+
+  v12:
+   patch18: modify the commit message and add starfive review tag.
+   Add PCIE_RESET_CONFIG_DEVICE_WAIT_MS to patch 19.
+   patch21: Add disable runtime pm function in starfive_pcie_remove()
+            Add "depens on ARCH_STARFIVE || COMPILE_TEST" in Starfive PCie Kconfig
+
+  v11:
+     check and modify some commit messages again.
+     All the codes are the same with v10.   
+
+  v10:
+   All the commit message set to fit in 75 columns.
+   All the codes fit in less than 80 colunms.
+   patch 14: 
+	Commit message changes suggested by Conor.
+   patch 21:
+        Add 100 ms delay macro to pci.h
+	generic phy pointer related codes moving to pcie-starfive.c
+	This patch Change pcie-starfive only, bus_ops move to patch 16.
+	Some Codes changes suggested by Bjorn.
+
+  v9:
+   v8 patch 10 squash to v9 patch 12, v8 patch 18 squash to v9 patch 16.
+   patch 4 - 16: Add new review tags and add more accurate commit messages.
+   patch 18: move the plda_pcie_host_init/deinit from patch 19. Make
+             plda driver become to whole driver.
+
+Kevin Xie (1):
+  PCI: Add PCIE_RESET_CONFIG_DEVICE_WAIT_MS waiting time value
+
+Minda Chen (21):
+  dt-bindings: PCI: Add PLDA XpressRICH PCIe host common properties
+  PCI: microchip: Move pcie-microchip-host.c to plda directory
+  PCI: microchip: Move PLDA IP register macros to pcie-plda.h
+  PCI: microchip: Add bridge_addr field to struct mc_pcie
+  PCI: microchip: Rename two PCIe data structures
+  PCI: microchip: Move PCIe host data structures to plda-pcie.h
+  PCI: microchip: Rename two setup functions
+  PCI: microchip: Change the argument of plda_pcie_setup_iomems()
+  PCI: microchip: Move setup functions to pcie-plda-host.c
+  PCI: microchip: Rename interrupt related functions
+  PCI: microchip: Add num_events field to struct plda_pcie_rp
+  PCI: microchip: Add request_event_irq() callback function
+  PCI: microchip: Add INTx and MSI event num to struct plda_event
+  PCI: microchip: Add get_events() callback and add PLDA get_event()
+  PCI: microchip: Add event irqchip field to host port and add PLDA
+    irqchip
+  PCI: microchip: Move IRQ functions to pcie-plda-host.c
+  pci: plda: Add event bitmap field to struct plda_pcie_rp
+  PCI: plda: Add host init/deinit and map bus functions
+  dt-bindings: PCI: Add StarFive JH7110 PCIe controller
+  PCI: starfive: Add JH7110 PCIe controller
+  riscv: dts: starfive: add PCIe dts configuration for JH7110
+
+ .../bindings/pci/microchip,pcie-host.yaml     |  55 +-
+ .../pci/plda,xpressrich3-axi-common.yaml      |  75 ++
+ .../bindings/pci/starfive,jh7110-pcie.yaml    | 120 ++++
+ MAINTAINERS                                   |  19 +-
+ .../jh7110-starfive-visionfive-2.dtsi         |  64 ++
+ arch/riscv/boot/dts/starfive/jh7110.dtsi      |  86 +++
+ drivers/pci/controller/Kconfig                |   9 +-
+ drivers/pci/controller/Makefile               |   2 +-
+ drivers/pci/controller/plda/Kconfig           |  30 +
+ drivers/pci/controller/plda/Makefile          |   4 +
+ .../{ => plda}/pcie-microchip-host.c          | 615 ++---------------
+ drivers/pci/controller/plda/pcie-plda-host.c  | 651 ++++++++++++++++++
+ drivers/pci/controller/plda/pcie-plda.h       | 272 ++++++++
+ drivers/pci/controller/plda/pcie-starfive.c   | 473 +++++++++++++
+ drivers/pci/pci.h                             |  16 +
+ 15 files changed, 1875 insertions(+), 616 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/pci/plda,xpressrich3-axi-common.yaml
+ create mode 100644 Documentation/devicetree/bindings/pci/starfive,jh7110-pcie.yaml
+ create mode 100644 drivers/pci/controller/plda/Kconfig
+ create mode 100644 drivers/pci/controller/plda/Makefile
+ rename drivers/pci/controller/{ => plda}/pcie-microchip-host.c (54%)
+ create mode 100644 drivers/pci/controller/plda/pcie-plda-host.c
+ create mode 100644 drivers/pci/controller/plda/pcie-plda.h
+ create mode 100644 drivers/pci/controller/plda/pcie-starfive.c
+
+
+base-commit: 0dd3ee31125508cd67f7e7172247f05b7fd1753a
 -- 
-2.41.0
+2.17.1
 
 
