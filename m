@@ -1,130 +1,162 @@
-Return-Path: <devicetree+bounces-30143-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30144-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F17E9826A08
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 10:01:09 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9125C826A0F
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 10:01:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 741CF284C8F
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 09:01:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AA7051C22BBE
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 09:01:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4897C2E3;
-	Mon,  8 Jan 2024 09:01:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F24CBC2FD;
+	Mon,  8 Jan 2024 09:01:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HGF1z/cP"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="O59smkcF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f51.google.com (mail-oa1-f51.google.com [209.85.160.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D036E570;
-	Mon,  8 Jan 2024 09:00:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oa1-f51.google.com with SMTP id 586e51a60fabf-203fbbff863so811423fac.0;
-        Mon, 08 Jan 2024 01:00:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1704704458; x=1705309258; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=x03s0Nq9cwAwPbt6pv42AapG0mpdoAOSeTQvOKXgJlg=;
-        b=HGF1z/cPjET/JdnQhnRvpiPAvotUvFKV/QoQFpI6dugqCctyUVYFYzQo48DOKyyZfP
-         9b+BQZmoudgwL/e+FbWegmGm4NqsfqURALynd1hliKJ6GV2kC5H3n/3Olsdv71riIYgp
-         7tMI+k9aW7G4Hyv+V2hnwl5dsCcKEXrCrhPoAPyppAopxiSHmHCDrAb5VPEdGesjJClH
-         T3gkoRV37yN7Kwf342CWJW6lfDkkw41MdQcfHBuw2VTJonnm94uw/T6daTG9On0TrNqj
-         8cisBsusfgTcRLNjtzOBmhJ+knhP5DzqPP83O3kD3UyUi3Qc6JpGlg+8pBJn8edT+uxN
-         7jkA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704704458; x=1705309258;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=x03s0Nq9cwAwPbt6pv42AapG0mpdoAOSeTQvOKXgJlg=;
-        b=m2LxI9k+HtQHO5h9ME/qEEP60iDPvKWmoLGIzASdt62fes+imP6fbkRP2Df1VCpR/b
-         oVH6C953G/NOV5CMOf222UawEjg6JigyCqKLeBfjY6S2TizXffCTvmv0nxuApK0e1GWP
-         qVtWynqU+CjmY6Mr9bzrJYFruN79435uw6ojGFMmGCKzvHjFl9YdL0z1y8kklxR0cF8Z
-         hdQboBpqixATUmpYcb8HjkHRwWhkJJ0lwMapIZZ5Udisj3A2LG2OjLPPkMEVLo+X9wRk
-         MxmkU+XR/bVtDbfKEuUjqTHg7O6MdtJ/4Td6k3MjFRKWw33GqgHOWVDGdIMocqOZMvQU
-         Z3dg==
-X-Gm-Message-State: AOJu0YyHYqAmm+0abz36JoxWEd6tQKzUaveZLeEhmS41GcKpC6vGBi9y
-	3dS+2Gz4RYHUIGFTaAhDFxXuuVLSFJ3SKRT5kqI=
-X-Google-Smtp-Source: AGHT+IHmG6KWX9uUyZCYmnkN+k7bcgd//qb+PsvwCeZ7z5dYp+ozm+adj414ul9TgKRmRJhIPcx/j2zSyY2lwqZPuHw=
-X-Received: by 2002:a05:6870:9c8a:b0:203:b571:ab63 with SMTP id
- pq10-20020a0568709c8a00b00203b571ab63mr2431614oab.47.1704704457984; Mon, 08
- Jan 2024 01:00:57 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BD761118C;
+	Mon,  8 Jan 2024 09:01:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 4087Hf5v009254;
+	Mon, 8 Jan 2024 09:01:27 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=rOfctw++PUBILkkvixQPj+AABeHQSmMuQzLQY1deU9w=; b=O5
+	9smkcFbu7vKwQ5VM56PZMnwFDY0xjm59djQkTNuhdOHqeYbkc/NkmvJabbkItjzI
+	bn/nmVRWu5On8IWlNQIJto0rX3L5q1rA4GPkn3M4Lwce4KPmsBEpYgn53tGSb3zT
+	OR8UCkC9AYTQFR05DrjOulXQlXAtpUPMHNFIkZtM2pHGfk51zlhY50DXMN8zysYV
+	MLNMGULo2UsgOL9VpFSaPLQ3bP2aW5NFqdzONHIxjV7/ec3fF9+qWgnga9VvBsY7
+	h2CeHEEzCHLOBAgIr/opXDm0/hUh0qxPKMLbYqhx11/JKVnfbiNyoOdYflKB2w1y
+	P5mzMhXQxi3LNBZZvJZA==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vgbu2g8f5-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 08 Jan 2024 09:01:27 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 40891Qq7008995
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 8 Jan 2024 09:01:26 GMT
+Received: from [10.253.76.26] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Mon, 8 Jan
+ 2024 01:01:18 -0800
+Message-ID: <e8722b79-e58a-4856-ae56-e44e2860c2f6@quicinc.com>
+Date: Mon, 8 Jan 2024 17:01:14 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240108072253.30183-1-qiujingbao.dlmu@gmail.com> <93695e92-233d-460c-a6bd-882b30f1dea8@linaro.org>
-In-Reply-To: <93695e92-233d-460c-a6bd-882b30f1dea8@linaro.org>
-From: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
-Date: Mon, 8 Jan 2024 17:00:47 +0800
-Message-ID: <CAJRtX8T-88x=AeRhOVJP=1ccvOZa-nS4cDEjpSykTxFMRupKZg@mail.gmail.com>
-Subject: Re: [PATCH v5 0/1] dt-bindings: riscv: sophgo: add RTC for CV1800
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: a.zummo@towertech.it, alexandre.belloni@bootlin.com, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu, 
-	linux-rtc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 0/5] support ipq5332 platform
+Content-Language: en-US
+To: Andrew Lunn <andrew@lunn.ch>, Sergey Ryazanov <ryazanov.s.a@gmail.com>
+CC: <agross@kernel.org>, <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
+        <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
+        <pabeni@redhat.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <hkallweit1@gmail.com>, <linux@armlinux.org.uk>,
+        <robert.marko@sartura.hr>, <linux-arm-msm@vger.kernel.org>,
+        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <quic_srichara@quicinc.com>
+References: <20231225084424.30986-1-quic_luoj@quicinc.com>
+ <a6a50fb6-871f-424c-a146-12b2628b8b64@gmail.com>
+ <cfb04c82-3cc3-49f6-9a8a-1f6d1a22df40@quicinc.com>
+ <dd05a599-247a-4516-8ad3-7550ceea99f7@gmail.com>
+ <ac1977f5-cd6a-4f16-b0a0-f4322c34c5f5@quicinc.com>
+ <bdeca791-f2e5-4256-b386-a75c03f93686@gmail.com>
+ <895eadd7-1631-4b6b-8db4-d371f2e52611@lunn.ch>
+From: Jie Luo <quic_luoj@quicinc.com>
+In-Reply-To: <895eadd7-1631-4b6b-8db4-d371f2e52611@lunn.ch>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: rK1-JPpjQXFI3bJprToWqy5EzZNKUM8G
+X-Proofpoint-ORIG-GUID: rK1-JPpjQXFI3bJprToWqy5EzZNKUM8G
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-12-09_01,2023-12-07_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ suspectscore=0 malwarescore=0 bulkscore=0 adultscore=0 phishscore=0
+ spamscore=0 clxscore=1015 mlxlogscore=689 impostorscore=0
+ priorityscore=1501 mlxscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2311290000 definitions=main-2401080075
 
-On Mon, Jan 8, 2024 at 4:02=E2=80=AFPM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 08/01/2024 08:22, Jingbao Qiu wrote:
-> > Real Time Clock (RTC) is an independently powered module
-> > within the chip, which includes a 32KHz oscillator and
-> > a Power On Reset/POR submodule. It can be used for time
-> > display and timed alarm generation.
-> >
-> > Power On Reset/POR submodule only using register resources
-> > so it should be empty. The 32KHz oscillator only provides
-> > pulses for RTC in hardware.
-> >
-> >
-> > Changes since v4:
-> > - remove POR dt-bindings because it empty
-> > - remove MFD dt-bindings because SoC does
-> >   not have MFDs
-> > - add syscon attribute to share registers
-> >   with POR
-> >
-> > v4: https://lore.kernel.org/all/20231229090643.116575-1-qiujingbao.dlmu=
-@gmail.com/
-> >
-> > Changes since v3:
-> > - temporarily not submitting RTC driver code
-> >   waiting for communication with IC designer
->
-> Hm, why?
->
-> We do not need bindings if nothing matches to them. If this binding is
-> for other upstream open-source project, please provide references.
->
-> See also:
-> https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree=
-/bindings/submitting-patches.rst#L61
->
 
-Hi!
 
-There is a function in the RTC driver code used to calibrate the
-clock, which is define in the datasheet.
-However, Alexandre Belloni raised concerns that clock calibration
-should be done using GPS or similar
-methods, rather than using other clock sources. I think what he said
-makes sense. So it is necessary
-to communicate with IC designers.
+On 1/6/2024 11:45 PM, Andrew Lunn wrote:
+>> I just realized that the UNIPHY block is a MII (probably SGMII) controller.
+>> Isn't it? And I expect that it responsible more then just for clock
+>> enabling. It should also activate and perform a basic configuration of MII
+>> for actual data transmission. If so, then it should placed somewhere under
+>> drivers/net/phy or drivers/net/pcs.
 
-link: https://lore.kernel.org/all/202312271350242a208426@mail.local/
+UNIPHY is located in PPE, which controls the interface mode for
+connecting with external PHY, the hardware register(4 bytes) of UNIPHY
+is accessed by local bus(ioremap).
 
-Best regards,
-Jingbao Qiu
+> 
+> Before we decide that, we need a description of what the UNIPHY
+> actually does, what registers it has, etc. Sometimes blocks like this
+> get split into a generic PHY, aka drivers/phy/ and a PCS driver. This
+> would be true if the UNIPHY is also used for USB SERDES, SATA SERDES
+> etc. The SERDES parts go into a generic PHY driver, and the SGMII on
+> to of the SERDES is placed is a PCS driver.
+
+Hi Andrew,
+the UNIPHY is the hardware part of PPE(packet process engine) in IPQ
+platform, which can't be used for USB, SATA serdes, the UNIPHY of
+PPE is dedicated for connecting with external PHY CHIP.
+
+> 
+> The problem i have so far is that there is no usable description of
+> any of this hardware, and the developers trying to produce drivers for
+> this hardware don't actually seem to understand the Linux architecture
+> for things like this.
+
+Sorry for missing this description of UNIPHY, since the UNIPHY block is
+the part of PPE, PPE driver will be posted as the independent driver for
+review, so i did not give the description of UNIPHY.
+
+The IPQ PPE includes MAC and UNIPHY integrated, the connection with
+external PHY is as below.
+MAC ---- UNIPHY(PCS) ---- (PCS)external PHY.
+
+The UNIPHY here is the Ethernet dedicated SERDES for connecting with
+external PHY.
+
+> 
+>> As far as I understand, we basically agree that clocks configuration can be
+>> implemented based on the clock API using a more specialized driver(s) than
+>> MDIO. The only obstacle is the PHY chip initialization issue explained
+>> below.
+>> Thank you for this compact yet detailed summary. Now it much more clear,
+>> what this phy chip requires to be initialized.
+>>
+>> Looks like you need to implement at least two drivers:
+>> 1. chip (package) level driver that is responsible for basic "package"
+>> initialization;
+>> 2. phy driver to handle actual phy capabilities.
+> 
+> Nope. As i keep saying, please look at the work Christian is
+> doing. phylib already has the concept of a PHY package, e.g. look at
+> the MSCC driver, and how it uses devm_phy_package_join(). What is
+> missing is a DT binding which allows package properties to be
+> expressed in DT. And this is what Christian is adding.
+> 
+> 	  Andrew
+
+Thanks Andrew, the driver of qca8084 will be updated based on the
+concept of PHY package.
 
