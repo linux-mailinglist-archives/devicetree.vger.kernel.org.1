@@ -1,367 +1,187 @@
-Return-Path: <devicetree+bounces-30169-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30174-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90112826BB0
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 11:42:55 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3CBB8826C05
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 12:04:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 060511F22313
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 10:42:55 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8B920B21B2E
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 11:04:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B3B813AEE;
-	Mon,  8 Jan 2024 10:42:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9FF414012;
+	Mon,  8 Jan 2024 11:03:37 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A71FD13FFB;
-	Mon,  8 Jan 2024 10:42:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 556FE2F4;
-	Mon,  8 Jan 2024 02:43:27 -0800 (PST)
-Received: from [10.1.197.1] (ewhatever.cambridge.arm.com [10.1.197.1])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id BB0923F5A1;
-	Mon,  8 Jan 2024 02:42:38 -0800 (PST)
-Message-ID: <d449d8ce-d087-4e18-a35a-236daa82ae99@arm.com>
-Date: Mon, 8 Jan 2024 10:42:37 +0000
+Received: from CHN02-BJS-obe.outbound.protection.partner.outlook.cn (mail-bjschn02on2071.outbound.protection.partner.outlook.cn [139.219.17.71])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F4DF29412;
+	Mon,  8 Jan 2024 11:03:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=MZMGDbtUTigqpF4YG2ptl0pXzYfbe0vjbHP2RR5PP8npNBtDvgY0a5dv+T4lVKYt+CtweppyxOAt7QidJbt43VGVQhdhYIgXUS0mS4MJMRY6JwzvV+m0JI27uklHZoNYzQxhWmbjMLN+vRZDdee8feU8dc9iMVb8g2dl+h3czTuOCQSmc2n9/qeHoHVR8xE6Vj0W0frEHu1b99KynWt8fElAVI2VlPKaB584LFUfZVwX1vvVFQgls8PN2AZsoUeO2jfxKoZR8lMFN4dvz/d6a+0EYKVBqtm6whuNwxe7Vl1rsWFKsIkUT2+P1i8P07yXwOlN3njyp5NWTqbsinSNmw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=OnoNkc66yulR4F2JLKRij8viozjKKZejnS/oAoKO0QA=;
+ b=bSzhpJFb5FMlAeFNNIkdP3nT5aUdZhX0WXBp7HhdVr/6LLQle9IQDIP6hTSp4wNweKObStdHHClqRPsRSdr//Zlfd5p4/0Qd5rKDxoGv7lBGqjzfv7Fy7qE9SpDbN6aBh5+YCxlCg1F1bGVjBw7Ska9jAnhttT/Ffn7KE9uVJuSkYkcuyvQzfwcCFL5oZ7pSRQLe0Pw53Vd0FxYABkPfvUegIcxG+cBzn+aGSBbGd6s3yNh/X7pnHVMADBVhRpHSA3J5Kd4m1ZNbDE3ssRoshAT9a3h108Lm7k/DaDo90Vzhh6LMsWOpXJP6RUgxLZPVsz/ueOR3Hk1AnCTJtDFncA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=starfivetech.com; dmarc=pass action=none
+ header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
+Received: from ZQ0PR01MB0981.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c550::13) by ZQ0PR01MB1272.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c550:18::8) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7135.32; Mon, 8 Jan
+ 2024 10:48:10 +0000
+Received: from ZQ0PR01MB0981.CHNPR01.prod.partner.outlook.cn
+ ([fe80::936f:9f2f:6715:e402]) by
+ ZQ0PR01MB0981.CHNPR01.prod.partner.outlook.cn ([fe80::936f:9f2f:6715:e402%6])
+ with mapi id 15.20.7159.015; Mon, 8 Jan 2024 10:48:10 +0000
+From: Kevin Xie <kevin.xie@starfivetech.com>
+To: Kevin Hilman <khilman@baylibre.com>, Minda Chen
+	<minda.chen@starfivetech.com>, Conor Dooley <conor@kernel.org>,
+	=?gb2312?B?S3J6eXN6dG9mIFdpbGN6eai9c2tp?= <kw@linux.com>, Rob Herring
+	<robh+dt@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, Lorenzo Pieralisi
+	<lpieralisi@kernel.org>, Daire McNamara <daire.mcnamara@microchip.com>, Emil
+ Renner Berthing <emil.renner.berthing@canonical.com>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>
+CC: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
+	"linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>, Paul Walmsley
+	<paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou
+	<aou@eecs.berkeley.edu>, Philipp Zabel <p.zabel@pengutronix.de>, Mason Huo
+	<mason.huo@starfivetech.com>, Leyfoon Tan <leyfoon.tan@starfivetech.com>,
+	Minda Chen <minda.chen@starfivetech.com>
+Subject:
+ =?gb2312?B?u9i4tDogu9i4tDogW1BBVENIIHYxMyAwLzIxXSBSZWZhY3RvcmluZyBNaWNy?=
+ =?gb2312?Q?ochip_PCIe_driver_and_add_StarFive_PCIe?=
+Thread-Topic:
+ =?gb2312?B?u9i4tDogW1BBVENIIHYxMyAwLzIxXSBSZWZhY3RvcmluZyBNaWNyb2NoaXAg?=
+ =?gb2312?Q?PCIe_driver_and_add_StarFive_PCIe?=
+Thread-Index: AQHaPpXiMe+t6/O8C0OnZGJ4Y32LtrDKgdAQgAD6TACABDOkUA==
+Date: Mon, 8 Jan 2024 10:48:10 +0000
+Message-ID:
+ <ZQ0PR01MB098182407F5F427D9A6C7CD9826BA@ZQ0PR01MB0981.CHNPR01.prod.partner.outlook.cn>
+References: <20231214072839.2367-1-minda.chen@starfivetech.com>
+ <7hfrzeavmj.fsf@baylibre.com>
+ <ZQ0PR01MB098128579D86207B4B9BA7D28266A@ZQ0PR01MB0981.CHNPR01.prod.partner.outlook.cn>
+ <7h34vbbsfj.fsf@baylibre.com>
+In-Reply-To: <7h34vbbsfj.fsf@baylibre.com>
+Accept-Language: zh-CN, en-US
+Content-Language: zh-CN
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=starfivetech.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: ZQ0PR01MB0981:EE_|ZQ0PR01MB1272:EE_
+x-ms-office365-filtering-correlation-id: 4e52aeb4-1b16-4713-b5db-08dc10374e6e
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info:
+ pA+qiCg4YESTo9mgbzSlXLXSw11wC2i6bcnbfXSpejURc9wd4/3ij60j7F33TNIzJaHlu/QgubBwfn7HdBiMLoObc+tGCjFKxrEttbegEFN0zsbp2nJ0vOVq+4OBRXijy/IwK+duKv8VzABGLQvK+In+7OlBjFUjtpw5cfsOs7GlYArKpSJJ/uSwOI9jBERPKz/tkGa4Y/ZLMH7m1L5dXnM86/5Od6bv/ehtiAN/83YwDVB8r9kX+/uCA3fmFihteHezjLTlMpc+Kb162h+jA6u1dOupZEDZGhQeWmH9+wikmRlagxA0CHYQPpFjmPqXllAW6lIJBkN88Tt8vhpsvoKq/ZRsUs/39YeVyUL9vqixil7jf4MA3Ibv+MIG81hTzqUaKaH+qhpZ/AgvGG+15LhK2AoGW17XZfE92Clq6gs4THK53mCLYNr8Vr55RyeHawSfh09lx3/8RnsTodDOkXM/fgY+jwUuymTW5Mknj40uOTLjs59CjKPtG7QGhGLjRsAw88EuiOFavMMYnfhf40hIQ+iEXRh6f42apeTicGLXd1tD4QOtXcMAGPyV7NPd
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:ZQ0PR01MB0981.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230031)(346002)(136003)(396003)(366004)(39830400003)(230922051799003)(186009)(1800799012)(451199024)(64100799003)(33656002)(40180700001)(86362001)(40160700002)(38100700002)(122000001)(224303003)(83380400001)(2906002)(26005)(9686003)(55016003)(7696005)(921011)(508600001)(71200400001)(66556008)(66946007)(76116006)(110136005)(66446008)(54906003)(64756008)(8936002)(5660300002)(4326008)(44832011)(7416002)(66476007)(38070700009)(41300700001)(107886003)(41320700001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?gb2312?B?MTkwaGxOOXFZbHR3TGVQbFZaREk0UmhYTjBLeUM3RDRkWDlYTUI1RzhIdmEz?=
+ =?gb2312?B?N2xHcmE1OVo0T3RHVUxNSEJxNGc1cVdaWEY0ZXZGRVZGSTJYTE0zV0JvQWFo?=
+ =?gb2312?B?TFc1aFQ0WHhDRk4yUDE3c0hNMlpNNisrMFNBQXBaWHpHTUdBRzVIUVRKOFlz?=
+ =?gb2312?B?WVYzR3E2T2pRMjNMYXExL1Rqb0lpa3FZWktOUG9VQVV1V3NrODlzY2xlbkdX?=
+ =?gb2312?B?V29qYXhOTXlSakVjU3E0UkdoMVdFSk8ranlzNzllRHo0bkJBd3ovaEhEVlpx?=
+ =?gb2312?B?NHB6UVBSbzBQbncwODMxOFZ5Qlc0WnR5dzQwZlNqRE9vRnRYRDVzajhSZjFD?=
+ =?gb2312?B?MVFNd2pFSzR6b2plSE1yQkgwVjZPanVnUUV1Y1ZCVHg1aHFVNDVwMFRFUXdp?=
+ =?gb2312?B?K0JocEpvSnI4ZmMvN2ozcERlNmIxL21PMUw1d0hCcFhpNE4rYlRKa1ZLOGFw?=
+ =?gb2312?B?c2xVMVRLUFVSd0doL1pGNVpPbW1KbnY0ZjM4QWJ6OTJIQ3gwNUp6bG51MWFK?=
+ =?gb2312?B?ZFozZ1BMRHdHckFWK2RJYnljeGw2WEk2VUI0R1B6eUJ2Vm5iQ3FFZGZ6RmNo?=
+ =?gb2312?B?L0RNcVo0OWl0NWxod3lsdGMyYWlUR09CSnlEclBBYlhIc1VhbUZuVmtsQlVE?=
+ =?gb2312?B?WGNSQjRDbXFMSXh2andMU2VucjZiY1E2SWJxazRCSXBlUzE2YUpWbzlvaFQz?=
+ =?gb2312?B?ak9odFZxYnduaDJQR2tyaXIwYkpiSy96K2NnMlc1cEdoZ3dpclRGQ2FBb092?=
+ =?gb2312?B?YjcyQktDamRqY2hKdSt2UzJrblZVZEFlWU1FS2JDaWdSSWxYOWdvcTQ4YUUw?=
+ =?gb2312?B?eXJDdTFmUXY2bzZLNTJtYkhOSlRYTTlNeUpuUDI4RFBzV0lDMlFsOStNbG9R?=
+ =?gb2312?B?TEs5RTd5NjZJOUMxY1ZST3FtZ2VEMmJ2V1lLYytkQm1IUEdMUTZIR01CSllh?=
+ =?gb2312?B?c0VVSFBsOXNoZ1U4NW1Ya2F3dW9HU2xudmF4N0MwMFc0K2VHakdZTnlJVDlG?=
+ =?gb2312?B?NU0zUDMxMkRML2tUOEl0YlBPVTlSNXV2cGlRTlJ0MnlBWDVvM3M1bllEb0Vn?=
+ =?gb2312?B?MHhDSnk4c1F3QWdsL0Uvc1lSZS9sWkVTU29xYXBqcTZMVklocTVJUE1wTWs0?=
+ =?gb2312?B?bG5yWlljYUpNRkgzQmpCZFVLOFNoZTdYeFhqZzExUGJZbWxRZ1UzSHd4RlN1?=
+ =?gb2312?B?dkI0end4ZWZseXF1cThRaGhKK1RzeWMrdFY1TlY1WDhZL05XTjAwMVR3VHNj?=
+ =?gb2312?B?MFVlaDYzbzlmamcxeTVwQW80N1hDZ0pHekpHdmUwUkNpbnJwSTZRdDhNSnR2?=
+ =?gb2312?B?a0N4Mnl2SDhIbzc2c2V6MU91RnRlRkswZE1BUG5iV0dUc2RQa2RYRGVlVFZG?=
+ =?gb2312?B?UklyT0p0dVE0bng4M0xubkZRejQxZDc0YTdYN0JVdTluYldVYmFNalRUbXpq?=
+ =?gb2312?B?ZU9qMThqYnRWNkRkQWIwNjN1ME1aUGk0L2pEU1ZXSzJ2N3JES0d1eWNBU2Ja?=
+ =?gb2312?B?bm54alRpNXRXUG5TblZkZEtnRGc2VmJ4c0VZRUJ6QVdoemRmOThGbVpGZlJN?=
+ =?gb2312?B?eTFORCsvT3lEMmQweDFxK0FlblkvNTA1dHR3SWJFWTcxcGRrdVp1a0dvaFJq?=
+ =?gb2312?B?OWxXUlVLS2RFdkpWbi90UnVUYW1Bbk5HNVlmRFVVNXdnVFo2dUhubFZhYlZj?=
+ =?gb2312?B?dk0zUE5UZGpLQWVmTWpTTHhXUXVaSDFWWmJYN3VocHFpMEYxSVFmYmZVd3pN?=
+ =?gb2312?B?bDgycy9lMHRXdkxjd1BLUTYydlpaSkZJWXROTXg4am9TWHhZRUVLM2hLZmd1?=
+ =?gb2312?B?S2JKeDg4VDlYZ3JROEpqeG9rVmd2Lzl6R2FCN0VEODg0b2JOY2k5U05DV2h0?=
+ =?gb2312?B?aDRBdXB4Mk5OM1B6OG5BTGtRL2pwcWJaNjh5NDRWOVlGWU14YU9VZndVS1Rq?=
+ =?gb2312?B?ZTJXOFZNcG5ZUyt0dFh2VENTUVg1Z0xJUjgwYjNQWnFpUnFoUWI0Vy9WaUMx?=
+ =?gb2312?B?UHlGRmJRM1Fzb2dYTzd5R2M4ZDFHek9sdGxaQmlXMndCc0ZLSEw5aTljSVRi?=
+ =?gb2312?B?TkhyaFFUdmpzd3VNZkswdzZla1dOb2J3WUpxMG0rZE5sY3p0UXBnOGs1QVpB?=
+ =?gb2312?Q?VAE/dS/tkwD7Os9Hs940eUEdx?=
+Content-Type: text/plain; charset="gb2312"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 6/8] coresight-tpdm: Add timestamp control register
- support for the CMB
-To: Tao Zhang <quic_taozha@quicinc.com>,
- Mathieu Poirier <mathieu.poirier@linaro.org>,
- Alexander Shishkin <alexander.shishkin@linux.intel.com>,
- Konrad Dybcio <konradybcio@gmail.com>, Mike Leach <mike.leach@linaro.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: Jinlong Mao <quic_jinlmao@quicinc.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, coresight@lists.linaro.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, Tingwei Zhang <quic_tingweiz@quicinc.com>,
- Yuanfang Zhang <quic_yuanfang@quicinc.com>,
- Trilok Soni <quic_tsoni@quicinc.com>, Song Chai <quic_songchai@quicinc.com>,
- linux-arm-msm@vger.kernel.org, andersson@kernel.org
-References: <1700533494-19276-1-git-send-email-quic_taozha@quicinc.com>
- <1700533494-19276-7-git-send-email-quic_taozha@quicinc.com>
- <ebd7e310-d1b4-4b2e-a915-6241e04763d4@arm.com>
- <b61c3d70-7277-4fe7-ab67-8afc1062c737@quicinc.com>
- <cdad425c-b965-44c7-a612-1c99341e95b9@arm.com>
- <b7ef4e75-69c6-4251-8f9c-58682699e3f6@quicinc.com>
- <cc7b83ec-2c97-4a5d-87a9-36f1e13d8fc4@arm.com>
- <797eadf6-2708-47ad-a61f-88bb0d4fcf28@quicinc.com>
- <4ae81e28-1791-4128-860f-eb6a83ea3742@arm.com>
- <616eba43-678c-4bc9-be7e-7b766e8d7c29@quicinc.com>
-Content-Language: en-US
-From: Suzuki K Poulose <suzuki.poulose@arm.com>
-In-Reply-To: <616eba43-678c-4bc9-be7e-7b766e8d7c29@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+X-OriginatorOrg: starfivetech.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: ZQ0PR01MB0981.CHNPR01.prod.partner.outlook.cn
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4e52aeb4-1b16-4713-b5db-08dc10374e6e
+X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Jan 2024 10:48:10.4631
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: EjSJSNY9AdvsNHGBzztMic2AgEORtvxx1jnqVnsKj8aNPnkq2c0W/T9MX5bQqq+7ZNfSoBcdvPneKVwMG8Q+W/fjFdCULZZz87u4B/Zm+zE=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: ZQ0PR01MB1272
 
-On 05/01/2024 07:49, Tao Zhang wrote:
-> 
-> On 12/30/2023 5:39 PM, Suzuki K Poulose wrote:
->> On 25/12/2023 01:55, Tao Zhang wrote:
->>>
->>> On 12/20/2023 7:07 PM, Suzuki K Poulose wrote:
->>>> On 20/12/2023 09:51, Tao Zhang wrote:
->>>>>
->>>>> On 12/19/2023 9:51 PM, Suzuki K Poulose wrote:
->>>>>> On 19/12/2023 02:43, Tao Zhang wrote:
->>>>>>>
->>>>>>> On 12/18/2023 6:46 PM, Suzuki K Poulose wrote:
->>>>>>>> On 21/11/2023 02:24, Tao Zhang wrote:
->>>>>>>>> CMB_TIER register is CMB subunit timestamp insertion enable 
->>>>>>>>> register.
->>>>>>>>> Bit 0 is PATT_TSENAB bit. Set this bit to 1 to request a timestamp
->>>>>>>>> following a CMB interface pattern match. Bit 1 is XTRIG_TSENAB 
->>>>>>>>> bit.
->>>>>>>>> Set this bit to 1 to request a timestamp following a CMB CTI 
->>>>>>>>> timestamp
->>>>>>>>> request. Bit 2 is TS_ALL bit. Set this bit to 1 to request 
->>>>>>>>> timestamp
->>>>>>>>> for all packets.
->>>>>>>>>
->>>>>>>>> Reviewed-by: James Clark <james.clark@arm.com>
->>>>>>>>> Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
->>>>>>>>> Signed-off-by: Jinlong Mao <quic_jinlmao@quicinc.com>
->>>>>>>>> ---
->>>>>>>>>   .../testing/sysfs-bus-coresight-devices-tpdm  | 35 ++++++
->>>>>>>>>   drivers/hwtracing/coresight/coresight-tpdm.c  | 116 
->>>>>>>>> +++++++++++++++++-
->>>>>>>>>   drivers/hwtracing/coresight/coresight-tpdm.h  | 14 +++
->>>>>>>>>   3 files changed, 162 insertions(+), 3 deletions(-)
->>>>>>>>>
->>>>>>>>> diff --git 
->>>>>>>>> a/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm 
->>>>>>>>> b/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
->>>>>>>>> index 53662ce7c2d0..e0b77107be13 100644
->>>>>>>>> --- a/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
->>>>>>>>> +++ b/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
->>>>>>>>> @@ -214,3 +214,38 @@ KernelVersion    6.7
->>>>>>>>>   Contact:    Jinlong Mao (QUIC) <quic_jinlmao@quicinc.com>, 
->>>>>>>>> Tao Zhang (QUIC) <quic_taozha@quicinc.com>
->>>>>>>>>   Description:
->>>>>>>>>           (RW) Set/Get the mask of the pattern for the CMB 
->>>>>>>>> subunit TPDM.
->>>>>>>>> +
->>>>>>>>> +What: /sys/bus/coresight/devices/<tpdm-name>/cmb_patt/enable_ts
->>>>>>>>> +Date:        September 2023
->>>>>>>>> +KernelVersion    6.7
->>>>>>>>> +Contact:    Jinlong Mao (QUIC) <quic_jinlmao@quicinc.com>, Tao 
->>>>>>>>> Zhang (QUIC) <quic_taozha@quicinc.com>
->>>>>>>>> +Description:
->>>>>>>>> +        (Write) Set the pattern timestamp of CMB tpdm. Read
->>>>>>>>> +        the pattern timestamp of CMB tpdm.
->>>>>>>>> +
->>>>>>>>> +        Accepts only one of the 2 values -  0 or 1.
->>>>>>>>> +        0 : Disable CMB pattern timestamp.
->>>>>>>>> +        1 : Enable CMB pattern timestamp.
->>>>>>>>> +
->>>>>>>>> +What: /sys/bus/coresight/devices/<tpdm-name>/cmb_trig_ts
->>>>>>>>> +Date:        September 2023
->>>>>>>>> +KernelVersion    6.7
->>>>>>>>> +Contact:    Jinlong Mao (QUIC) <quic_jinlmao@quicinc.com>, Tao 
->>>>>>>>> Zhang (QUIC) <quic_taozha@quicinc.com>
->>>>>>>>> +Description:
->>>>>>>>> +        (RW) Set/Get the trigger timestamp of the CMB for tpdm.
->>>>>>>>> +
->>>>>>>>> +        Accepts only one of the 2 values -  0 or 1.
->>>>>>>>> +        0 : Set the CMB trigger type to false
->>>>>>>>> +        1 : Set the CMB trigger type to true
->>>>>>>>> +
->>>>>>>>> +What: /sys/bus/coresight/devices/<tpdm-name>/cmb_ts_all
->>>>>>>>> +Date:        September 2023
->>>>>>>>> +KernelVersion    6.7
->>>>>>>>> +Contact:    Jinlong Mao (QUIC) <quic_jinlmao@quicinc.com>, Tao 
->>>>>>>>> Zhang (QUIC) <quic_taozha@quicinc.com>
->>>>>>>>> +Description:
->>>>>>>>> +        (RW) Read or write the status of timestamp upon all 
->>>>>>>>> interface.
->>>>>>>>> +        Only value 0 and 1  can be written to this node. Set 
->>>>>>>>> this node to 1 to requeset
->>>>>>>>> +        timestamp to all trace packet.
->>>>>>>>> +        Accepts only one of the 2 values -  0 or 1.
->>>>>>>>> +        0 : Disable the timestamp of all trace packets.
->>>>>>>>> +        1 : Enable the timestamp of all trace packets.
->>>>>>>>> diff --git a/drivers/hwtracing/coresight/coresight-tpdm.c 
->>>>>>>>> b/drivers/hwtracing/coresight/coresight-tpdm.c
->>>>>>>>> index 894d4309f1c7..f6cda5616e84 100644
->>>>>>>>> --- a/drivers/hwtracing/coresight/coresight-tpdm.c
->>>>>>>>> +++ b/drivers/hwtracing/coresight/coresight-tpdm.c
->>>>>>>>> @@ -331,6 +331,36 @@ static void tpdm_enable_dsb(struct 
->>>>>>>>> tpdm_drvdata *drvdata)
->>>>>>>>>       writel_relaxed(val, drvdata->base + TPDM_DSB_CR);
->>>>>>>>>   }
->>>>>>>>>   +static void set_cmb_tier(struct tpdm_drvdata *drvdata)
->>>>>>>>> +{
->>>>>>>>> +    u32 val;
->>>>>>>>> +
->>>>>>>>> +    val = readl_relaxed(drvdata->base + TPDM_CMB_TIER);
->>>>>>>>> +
->>>>>>>>> +    /* Clear all relevant fields */
->>>>>>>>> +    val &= ~(TPDM_CMB_TIER_PATT_TSENAB | TPDM_CMB_TIER_TS_ALL |
->>>>>>>>> +         TPDM_CMB_TIER_XTRIG_TSENAB);
->>>>>>>>> +
->>>>>>>>> +    /* Set pattern timestamp type and enablement */
->>>>>>>>> +    if (drvdata->cmb->patt_ts)
->>>>>>>>> +        val |= TPDM_CMB_TIER_PATT_TSENAB;
->>>>>>>>
->>>>>>>>  -- cut --
->>>>>>>>> +    else
->>>>>>>>> +        val &= ~TPDM_CMB_TIER_PATT_TSENAB;
->>>>>>>>
->>>>>>>>
->>>>>>>> All the else cases in this function are superfluous. Please 
->>>>>>>> remove all
->>>>>>>> of them.
->>>>>>> I will update this in the next patch.
->>>>>>>>
->>>>>>>>> +
->>>>>>>>> +    /* Set trigger timestamp */
->>>>>>>>> +    if (drvdata->cmb->trig_ts)
->>>>>>>>> +        val |= TPDM_CMB_TIER_XTRIG_TSENAB;
->>>>>>>>> +    else
->>>>>>>>> +        val &= ~TPDM_CMB_TIER_XTRIG_TSENAB;
->>>>>>>>> +
->>>>>>>>> +    /* Set all timestamp enablement*/
->>>>>>>>> +    if (drvdata->cmb->ts_all)
->>>>>>>>> +        val |= TPDM_CMB_TIER_TS_ALL;
->>>>>>>>> +    else
->>>>>>>>> +        val &= ~TPDM_CMB_TIER_TS_ALL;
->>>>>>>>> +    writel_relaxed(val, drvdata->base + TPDM_CMB_TIER);
->>>>>>>>> +}
->>>>>>>>> +
->>>>>>>>>   static void tpdm_enable_cmb(struct tpdm_drvdata *drvdata)
->>>>>>>>>   {
->>>>>>>>>       u32 val, i;
->>>>>>>>> @@ -347,6 +377,8 @@ static void tpdm_enable_cmb(struct 
->>>>>>>>> tpdm_drvdata *drvdata)
->>>>>>>>>                   drvdata->base + TPDM_CMB_XPMR(i));
->>>>>>>>>       }
->>>>>>>>>   +    set_cmb_tier(drvdata);
->>>>>>>>> +
->>>>>>>>>       val = readl_relaxed(drvdata->base + TPDM_CMB_CR);
->>>>>>>>>       /*
->>>>>>>>>        * Set to 0 for continuous CMB collection mode,
->>>>>>>>> @@ -695,9 +727,17 @@ static ssize_t enable_ts_show(struct 
->>>>>>>>> device *dev,
->>>>>>>>>                     char *buf)
->>>>>>>>>   {
->>>>>>>>>       struct tpdm_drvdata *drvdata = dev_get_drvdata(dev->parent);
->>>>>>>>> +    ssize_t size = 0;
->>>>>>>>>   -    return sysfs_emit(buf, "%u\n",
->>>>>>>>> -             (unsigned int)drvdata->dsb->patt_ts);
->>>>>>>>> +    if (tpdm_has_dsb_dataset(drvdata))
->>>>>>>>> +        size = sysfs_emit(buf, "%u\n",
->>>>>>>>> +                 (unsigned int)drvdata->dsb->patt_ts);
->>>>>>>>> +
->>>>>>>>> +    if (tpdm_has_cmb_dataset(drvdata))
->>>>>>>>> +        size = sysfs_emit(buf, "%u\n",
->>>>>>>>> +                 (unsigned int)drvdata->cmb->patt_ts);
->>>>>>>>
->>>>>>>> Why does this need to show two values ? This must only show ONE 
->>>>>>>> value.
->>>>>>>> How you deduce that might be based on the availability of the 
->>>>>>>> feature
->>>>>>>> set. Or store the TS value in the drvdata and use that instead for
->>>>>>>> controlling CMB/DSB.
->>>>>>>
->>>>>>> Since both of CMB/DSB need to have "enable_ts" SysFs file, can I 
->>>>>>> separate them
->>>>>>
->>>>>> The question really is, do we need fine grained control. i.e.,
->>>>>>
->>>>>> enable TS for DSB but not for CMB or vice versa.
->>>>>>
->>>>>> I am not an expert on the usage scenario of the same. So, if 
->>>>>> you/Qcomm
->>>>>> thinks the users need separate, fine grained control for timestamp
->>>>>> for the DSB and CMB, then yes, follow your recommendation below.
->>>>>> i.e., tpdm.../dsb_patt/enable_ts
->>>>>>
->>>>>>> as "enable_dsb_ts" and "enable_cmb_ts"? The path will be like below.
->>>>>>>
->>>>>>> tpdm0/dsb_patt/enable_dsb_ts
->>>>>>
->>>>>> You don't need enable_dsb_ts. It could be "enable_ts"
->>>>>>
->>>>>>>
->>>>>>> tpdm1/cmb_patt/enable_cmb_ts
->>>>>>>
->>>>>>> Is this design appropriate?
->>>>>>
->>>>>>
->>>>>> Otherwise, stick to single enable_ts : which enables the ts for both
->>>>>> CMB/DSB. And it only ever show one value : 0 (TS is disabled for both
->>>>>> CMB/DSB) 1 : TS enabled for both.
->>>>>
->>>>> We have a very special case, such as the TPDM supporting both CMB and
->>>>>
->>>>> DSB datasets. Although this case is very rare, it still exists.
->>>>>
->>>>> Can I use the data bit to instruct whether timestamp is enabled for 
->>>>> CMB/DSB or not? For example,
->>>>>
->>>>> size = sysfs_emit(buf, "%u\n",
->>>>>                  (unsigned int)(drvdata->dsb->patt_ts << 1 | 
->>>>> drvdata->cmb->patt_ts));
->>>>>
->>>>> Thus, this value can instruct the following situations.
->>>>>
->>>>> 0 - TS is disabled for both CMB/DSB
->>>>>
->>>>> 1 - TS is enabled for CMB
->>>>>
->>>>> 2 - TS is enabled for DSB
->>>>>
->>>>> 3 - TS is enabled for both
->>>>>
->>>>> Is this approach acceptable?
->>>>>
->>>>
->>>> No, please stick to separate controls for TS. Do not complicate
->>>> the user interface.
->>>>
->>>> i.e.,
->>>> tpdm0/dsb_patt/enable_ts
->>>> tpdm0/cmb_patt/enable_ts
->>>
->>> We need to be able to control/show dsb and cmb timestamp enablement 
->>> independently.
->>>
->>> Can we achieve this requirement if we use a sysfs file with the same 
->>> name?
->>
->> They are independent and in their respective directory (group) for CMB 
->> and DSB. What am I missing ?
->> e.g., if you want to enable TS for DSB, you do :
->>
->> $ echo 1 > dsb_patt/enable_ts
->>
->> And that only works for DSB not for CMB.
-> 
-> We have a special case that the TPDM supports both DSB and CMB dataset. 
-> In this special case, when we
-> 
-> issue this command to enable timestamp, it will call enable_ts_store 
-> API, right?
-> 
->      if (tpdm_has_dsb_dataset(drvdata))
->          drvdata->dsb->patt_ts = !!val;
-> 
->      if (tpdm_has_cmb_dataset(drvdata))
->          drvdata->cmb->patt_ts = !!val;
-
-I don't understand. If they both are under different subgroups, why
-should they be conflicting ? Are you not able to distinguish them, when
-  you creat those attributes ? i.e., create two different "attributes" ?
-
-See below.
-
-> Since this special TPDM supports both DSB and CMB dataset, both DSB 
-> patt_ts and CMB patt_ts will be set
-> 
-> in this case even if I only configure the file in the DSB directory, right?
-> 
-> This is the problem we have now.
-> 
-
-
->>>>>>>>
->>>>>>>>
->>>>>>>>> +
->>>>>>>>> +    return size;
->>>>>>>>>   }
->>>>>>>>>     /*
->>>>>>>>> @@ -715,8 +755,13 @@ static ssize_t enable_ts_store(struct 
->>>>>>>>> device *dev,
->>>>>>>>>           return -EINVAL;
->>>>>>>>>         spin_lock(&drvdata->spinlock);
->>>>>>>>> -    drvdata->dsb->patt_ts = !!val;
->>>>>>>>> +    if (tpdm_has_dsb_dataset(drvdata))
->>>>>>>>> +        drvdata->dsb->patt_ts = !!val;
->>>>>>>>> +
->>>>>>>>> +    if (tpdm_has_cmb_dataset(drvdata))
->>>>>>>>> +        drvdata->cmb->patt_ts = !!val;
->>>>>>>>>       spin_unlock(&drvdata->spinlock);
->>>>>>>>> +
->>>>>>>>>       return size;
->>>>>>>>>   }
->>>>>>>>>   static DEVICE_ATTR_RW(enable_ts);
-
-Do not overload the same for both DSB and CMB. Create one for each in 
-DSB and CMB ? They could share the same show/store routines, but could
-be done with additional variable to indicate which attribute they are 
-controlling. Like the other attributes, using dev_ext_attribute or such.
-
-
-Suzuki
-
+PiBLZXZpbiBYaWUgPGtldmluLnhpZUBzdGFyZml2ZXRlY2guY29tPiB3cml0ZXM6DQo+IA0KPiA+
+PiBNaW5kYSBDaGVuIDxtaW5kYS5jaGVuQHN0YXJmaXZldGVjaC5jb20+IHdyaXRlczoNCj4gPj4N
+Cj4gPj4gPiBUaGlzIHBhdGNoc2V0IGZpbmFsIHB1cnBvc2UgaXMgYWRkIFBDSWUgZHJpdmVyIGZv
+ciBTdGFyRml2ZSBKSDcxMTAgU29DLg0KPiA+PiA+IEpINzExMCB1c2luZyBQTERBIFhwcmVzc1JJ
+Q0ggUENJZSBJUC4gTWljcm9jaGlwIFBvbGFyRmlyZSBVc2luZyB0aGUNCj4gPj4gPiBzYW1lIElQ
+IGFuZCBoYXZlIGNvbW1pdCB0aGVpciBjb2Rlcywgd2hpY2ggYXJlIG1peGVkIHdpdGggUExEQQ0K
+PiA+PiA+IGNvbnRyb2xsZXIgY29kZXMgYW5kIE1pY3JvY2hpcCBwbGF0Zm9ybSBjb2Rlcy4NCj4g
+Pj4NCj4gPj4gVGhhbmsgeW91IGZvciB0aGlzIHNlcmllcy4NCj4gPj4NCj4gPj4gSSB0ZXN0ZWQg
+dGhpcyBvbiBhIFZpc2lvbkZpdmUgdjIgYm9hcmQsIGFuZCBpdCBzZWVtcyB0byBwcm9iZSBhbmQN
+Cj4gPj4gZmluZCBteQ0KPiA+PiBNLjIgTlZNZSBTU0QsIGJ1dCB0aGVuIGdldHMgdGltZW91dHMg
+d2hlbiB0cnlpbmcgdG8gdXNlIHRoZSBOVk1lIChlLmcuDQo+ID4+ICdibGtpZCcgY29tbWFuZCkN
+Cj4gPj4NCj4gPg0KPiA+IEhpLCBLZXZpbjoNCj4gPiBDb3VsZCB5b3UgcGxlYXNlIHByb3ZpZGUg
+dGhlIG1hbnVmYWN0dXJlciBhbmQgbW9kZWwgb2YgdGhlIE0uMiBOVk1lDQo+ID4gU1NEIHlvdSB0
+ZXN0ZWQ/DQo+IA0KPiBJIGhhdmUgYSAyNTYgR2IgU2lsaWNvbiBQb3dlciBQMzRBNjAgTS4yIE5W
+TWUgU1NEIChwYXJ0IG51bWJlcjoNCj4gc3AyNTZnYnAzNGE2MG0yOCkNCj4gDQpUaGFua3MsIEtl
+dmluLCB3ZSB3aWxsIGJ1eSBvbmUgdG8gdGVzdC4NCg0KQmVmb3JlIGRvaW5nIHRoaXMgcmVmYWN0
+b3JpbmcsIHdlIGVuY291bnRlcmVkIHRoZSBzYW1lIGJ1ZyB3aXRoIEtpbmdzdG9uIE0uMiBTU0Qs
+DQphbmQgd2Ugd29ya2Fyb3VuZCB0aGUgcHJvYmxlbSB3aXRoIHRoZSBiZWxvdyBwYXRjaCwgcGxl
+YXNlIGhhdmUgYSB0cnk6DQpkaWZmIC0tZ2l0IGEvZHJpdmVycy9udm1lL2hvc3QvcGNpLmMgYi9k
+cml2ZXJzL252bWUvaG9zdC9wY2kuYw0KaW5kZXggNTA3YmMxNDkwNDZkLi41YmUzN2YxZWUxNTAg
+MTAwNjQ0DQotLS0gYS9kcml2ZXJzL252bWUvaG9zdC9wY2kuYw0KKysrIGIvZHJpdmVycy9udm1l
+L2hvc3QvcGNpLmMNCkBAIC0xMDU5LDYgKzEwNTksMTYgQEAgc3RhdGljIGlubGluZSBpbnQgbnZt
+ZV9wb2xsX2NxKHN0cnVjdCBudm1lX3F1ZXVlICpudm1lcSwNCiB7DQogICAgICAgIGludCBmb3Vu
+ZCA9IDA7DQoNCisgICAgICAgLyoNCisgICAgICAgICogSW4gc29tZSBjYXNlcywgc3VjaCBhcyBK
+SDcxMTAgU29DIHdvcmtpbmcgd2l0aCBLaW5nc3RvbiBTU0QsDQorICAgICAgICAqIHRoZSBDUUUg
+c3RhdHVzIG1heSB1cGRhdGUgYSBsaXR0bGUgYml0IGxhdGVyIHRoYW4gdGhlIE1TSSwNCisgICAg
+ICAgICogd2hpY2ggY2F1c2UgYW4gSVJRIGhhbmRsZSBtaXNzaW5nLg0KKyAgICAgICAgKiBBcyBh
+IHdvcmthcm91bmQsIGhlcmUgd2Ugd2lsbCBjaGVjayB0aGUgc3RhdHVzIGZpcnN0LCBhbmQgd2Fp
+dA0KKyAgICAgICAgKiAxdXMgaWYgd2UgZ2V0IG5vdGhpbmcuDQorICAgICAgICAqLw0KKyAgICAg
+ICBpZiAoIW52bWVfY3FlX3BlbmRpbmcobnZtZXEpKQ0KKyAgICAgICAgICAgICAgIHVkZWxheSgx
+KTsNCisNCiAgICAgICAgd2hpbGUgKG52bWVfY3FlX3BlbmRpbmcobnZtZXEpKSB7DQogICAgICAg
+ICAgICAgICAgZm91bmQrKzsNCiAgICAgICAgICAgICAgICAvKg0KDQo+IEFsc28gZm9yIHJlZmVy
+ZW5jZSwgSSB0ZXN0ZWQgdGhlIHNhbWUgU1NEIG9uIGFub3RoZXIgYXJtIHBsYXRmb3JtIChLaGFk
+YXMNCj4gVklNMykgYW5kIGl0IHdvcmtzIGZpbmUuDQo+IA0KPiBLZXZpbg0KDQpIaSwgQmpvcm46
+DQpEbyB5b3UgaGF2ZSBhbnkgaWRlYSBhYm91dCB0aGUgbGF0ZSBDUUUgcGhhc2UgdXBkYXRlIGNv
+bmRpdGlvbiBhcyBtZW50aW9uZWQNCmluIHRoZSBwYXRjaCBjb21tZW50cyBhYm92ZT8NClRoaXMg
+aXMgYW4gaXNzdWUgdGhhdCBvY2N1cnMgd2l0aCBhIHNtYWxsIHByb2JhYmlsaXR5IG9uIGluZGl2
+aWR1YWwgZGV2aWNlcyBpbiBvdXINCnBsYXRmb3JtLg0KVGh1cywgSSBzdWdnZXN0IHRoZSByZWZh
+Y3RvcmluZyBwYXRjaCBzZXQgc2hvdWxkIGdvIGZvcndhcmQuDQpMYXRlciB3ZSB3aWxsIHRyeSB0
+byBmaW5kIGEgbW9yZSBmb3JtYWwgc29sdXRpb24gaW5zdGVhZCwgYW5kIHNlbmQgYSBuZXcgcGF0
+Y2guDQo=
 
