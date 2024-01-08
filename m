@@ -1,279 +1,284 @@
-Return-Path: <devicetree+bounces-30299-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30300-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E41038274CE
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 17:16:44 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 579C1827506
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 17:25:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 508751F20F4D
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 16:16:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0239F2841B2
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 16:25:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0AA2524D1;
-	Mon,  8 Jan 2024 16:16:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23FCE52F7E;
+	Mon,  8 Jan 2024 16:25:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="WPHA5LES"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="HL8tnVM+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8D0F53815;
-	Mon,  8 Jan 2024 16:16:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1704730578; x=1736266578;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=lHewpDju222Rw/uCNRj6okHLUIGcwtjsBM9ErssIwgg=;
-  b=WPHA5LESMDXEa89wVbRyZfQIoamV0QRwu+oZn8eyP29hWX606odhBYiW
-   sZoqNB3AXUxuPH6Xs3A6U9zS0tSK99oaZOGAPj101r3Bgx8Cl/Pb8bJIJ
-   yk20dnIQW+zo1a6CeF+orHJd6nVukjvTQu+4R23Nc5ShqpYIDYUUrlI7y
-   sqWrpS5rw+nOHme6VJHV+KjqsBlODhHUnzznnynfpxdgG/2yEXD5bupr0
-   J9AWV6pTpnK+0hX/cd+eKpPi8Wv224m1CUd9Wybgs3fUStIIMbgsq7Oct
-   Il9zTl07hgqflZbpC7efkKAoO8H9Tdla7y8CVM6P4Os6wsfNQ3YSI5Z8P
-   A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10947"; a="11274302"
-X-IronPort-AV: E=Sophos;i="6.04,180,1695711600"; 
-   d="scan'208";a="11274302"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
-  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Jan 2024 08:16:17 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10947"; a="774549101"
-X-IronPort-AV: E=Sophos;i="6.04,180,1695711600"; 
-   d="scan'208";a="774549101"
-Received: from lkp-server02.sh.intel.com (HELO b07ab15da5fe) ([10.239.97.151])
-  by orsmga007.jf.intel.com with ESMTP; 08 Jan 2024 08:16:12 -0800
-Received: from kbuild by b07ab15da5fe with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1rMsIL-0004rN-3C;
-	Mon, 08 Jan 2024 16:16:09 +0000
-Date: Tue, 9 Jan 2024 00:16:08 +0800
-From: kernel test robot <lkp@intel.com>
-To: Petlozu Pravareshwar <petlozup@nvidia.com>, thierry.reding@gmail.com,
-	jonathanh@nvidia.com, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	p.zabel@pengutronix.de, dmitry.osipenko@collabora.com,
-	ulf.hansson@linaro.org, kkartik@nvidia.com, cai.huoqing@linux.dev,
-	spatra@nvidia.com, linux-tegra@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, petlozup@nvidia.com
-Subject: Re: [PATCH 2/3] dt-bindings: tegra: pmc: Update scratch as an
- optional aperture
-Message-ID: <202401090058.4xtTta86-lkp@intel.com>
-References: <20240106075134.3933491-2-petlozup@nvidia.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59D4452F6C;
+	Mon,  8 Jan 2024 16:25:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 408FD2Nu032201;
+	Mon, 8 Jan 2024 16:25:20 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	date:from:to:cc:subject:message-id:references:mime-version
+	:content-type:in-reply-to; s=qcppdkim1; bh=7BtvbYPfzK5Tc5wemztcm
+	NVEcPSSVbRXg2K0DQH70H0=; b=HL8tnVM+qpCC9dZrAVqV0bOAT2URW+mzvr7Wf
+	ZehzEWqm19kc8OxLmrtRRQ5st+xF62RLuWiF8Xa8THosKHw3J9xXT9g3MN6zNzOk
+	wO07+pmUpcowfpv5VOWE4j2UggAiJqWm4XHHpwUIhHGIO2SFy/6VX89p1GhqvGE3
+	PtqBiJDHx0tFh9ccV4aw/Jtj3rYVsfhIxKIV32rc/z9z+mKLhjebAFKdblH7f9Rl
+	qv21ETjP/omaF+w7DBNfuGN+SrkFdHvnYOb8A130H2bcbzJ8AOOARPnOLsBtBZ0j
+	zIFWhaP7YkAid2lUydcXzA/lMTSWSyf/hFHsy3KytXtRmCBiQ==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vgfwjrpcx-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 08 Jan 2024 16:25:19 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 408GPIW7020674
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 8 Jan 2024 16:25:18 GMT
+Received: from hu-bjorande-lv.qualcomm.com (10.49.16.6) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Mon, 8 Jan 2024 08:25:18 -0800
+Date: Mon, 8 Jan 2024 08:25:16 -0800
+From: Bjorn Andersson <quic_bjorande@quicinc.com>
+To: Johan Hovold <johan@kernel.org>
+CC: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konrad.dybcio@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Wesley Cheng <quic_wcheng@quicinc.com>,
+        Thinh Nguyen
+	<Thinh.Nguyen@synopsys.com>,
+        Felipe Balbi <balbi@kernel.org>,
+        Philipp Zabel
+	<p.zabel@pengutronix.de>,
+        <linux-arm-msm@vger.kernel.org>, <linux-usb@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Krishna Kurapati PSSNV
+	<quic_kriskura@quicinc.com>
+Subject: Re: [PATCH 03/12] usb: dwc3: qcom: Merge resources from urs_usb
+ device
+Message-ID: <20240108162516.GH1315173@hu-bjorande-lv.qualcomm.com>
+References: <20231016-dwc3-refactor-v1-0-ab4a84165470@quicinc.com>
+ <20231016-dwc3-refactor-v1-3-ab4a84165470@quicinc.com>
+ <ZV3WxwxmqH8wRo0A@hovoldconsulting.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20240106075134.3933491-2-petlozup@nvidia.com>
+In-Reply-To: <ZV3WxwxmqH8wRo0A@hovoldconsulting.com>
+X-ClientProxiedBy: nalasex01b.na.qualcomm.com (10.47.209.197) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: pXTZRqHywNPisdlQCuK5blcXasM8QHJ5
+X-Proofpoint-GUID: pXTZRqHywNPisdlQCuK5blcXasM8QHJ5
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-12-09_01,2023-12-07_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 clxscore=1011
+ impostorscore=0 lowpriorityscore=0 phishscore=0 mlxlogscore=999
+ suspectscore=0 priorityscore=1501 mlxscore=0 malwarescore=0 adultscore=0
+ spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2311290000 definitions=main-2401080139
 
-Hi Petlozu,
+On Wed, Nov 22, 2023 at 11:24:07AM +0100, Johan Hovold wrote:
+> On Mon, Oct 16, 2023 at 08:11:11PM -0700, Bjorn Andersson wrote:
+> > With some ACPI DSDT tables, such as the one found in SC8180X devices,
+> > the USB resources are split between the URSn and it's child USBn device
+> > nodes, in particular the interrupts are placed in the child nodes.
+> > 
+> > The solution that was chosen for handling this is to allocate a
+> > platform_device from the child node and selectively pick interrupts
+> > from the main platform_device, or from this created child device, when
+> > creating the platform_device for the DWC3 core.
+> > 
+> > This does however not work with the upcoming change where the DWC3 core
+> > is instantiated from the same platform_device as the glue, as the DRD
+> > and host code will attempt to resolve their interrupts from the shared
+> > device, and not the child device.
+> > 
+> > Work around this by merging the resources of the child device into the
+> > glue device node, to present a single platform_device with all the
+> > resources necessary.
+> 
+> Nice approach.
+> 
+> An alternative would be to drop ACPI support completely as Konrad
+> suggested. Should simplify both this series and the multiport one.
+> 
+> Is anyone really using the ACPI support here anymore?
+> 
 
-kernel test robot noticed the following build warnings:
+At the introduction of SC8180X and the Lenovo Flex 5G we where able to
+run the Debian installer off the ACPI support in the kernel.
 
-[auto build test WARNING on tegra/for-next]
-[also build test WARNING on robh/for-next linus/master v6.7 next-20240108]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Since then, at least the UFS support has regressed to the point that
+this would no longer be possible - without anyone noticing.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Petlozu-Pravareshwar/dt-bindings-tegra-pmc-Update-scratch-as-an-optional-aperture/20240106-155615
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/tegra/linux.git for-next
-patch link:    https://lore.kernel.org/r/20240106075134.3933491-2-petlozup%40nvidia.com
-patch subject: [PATCH 2/3] dt-bindings: tegra: pmc: Update scratch as an optional aperture
-compiler: loongarch64-linux-gcc (GCC) 13.2.0
-reproduce: (https://download.01.org/0day-ci/archive/20240109/202401090058.4xtTta86-lkp@intel.com/reproduce)
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202401090058.4xtTta86-lkp@intel.com/
+I would like to see ACPI supported again in the future, but I can't
+really argue for its existence currently. In the end the new flattened
+code path is mostly shared with the ACPI path, so perhaps it makes sense
+to drop the support after this refactor, perhaps not. I will re-evaluate
+this.
 
-dtcheck warnings: (new ones prefixed by >>)
->> Documentation/devicetree/bindings/arm/tegra/nvidia,tegra186-pmc.yaml:85:12: [warning] wrong indentation: expected 12 but found 11 (indentation)
+> > -static struct platform_device *
+> > -dwc3_qcom_create_urs_usb_platdev(struct device *dev)
+> > +static int dwc3_qcom_acpi_merge_urs_resources(struct platform_device *pdev)
+> >  {
+> > +	struct device *dev = &pdev->dev;
+> > +	struct list_head resource_list;
+> > +	struct resource_entry *rentry;
+> > +	struct resource *resources;
+> >  	struct fwnode_handle *fwh;
+> >  	struct acpi_device *adev;
+> >  	char name[8];
+> > +	int count;
+> >  	int ret;
+> >  	int id;
+> > +	int i;
+> >  
+> >  	/* Figure out device id */
+> >  	ret = sscanf(fwnode_get_name(dev->fwnode), "URS%d", &id);
+> >  	if (!ret)
+> > -		return NULL;
+> > +		return -EINVAL;
+> >  
+> >  	/* Find the child using name */
+> >  	snprintf(name, sizeof(name), "USB%d", id);
+> >  	fwh = fwnode_get_named_child_node(dev->fwnode, name);
+> >  	if (!fwh)
+> > -		return NULL;
+> > +		return 0;
+> >  
+> >  	adev = to_acpi_device_node(fwh);
+> >  	if (!adev)
+> > -		return NULL;
+> > +		return -EINVAL;
+> 
+> This is currently leaking a reference to the fwnode, I fixed that up
+> here:
+> 
+> 	https://lore.kernel.org/linux-usb/20231117173650.21161-4-johan+linaro@kernel.org/
+> 
+> > +	INIT_LIST_HEAD(&resource_list);
+> > +
+> > +	count = acpi_dev_get_resources(adev, &resource_list, NULL, NULL);
+> > +	if (count <= 0)
+> > +		return count;
+> > +
+> > +	count += pdev->num_resources;
+> > +
+> > +	resources = kcalloc(count, sizeof(*resources), GFP_KERNEL);
+> > +	if (!resources) {
+> > +		acpi_dev_free_resource_list(&resource_list);
+> > +		return -ENOMEM;
+> > +	}
+> > +
+> > +	memcpy(resources, pdev->resource, sizeof(struct resource) * pdev->num_resources);
+> > +	count = pdev->num_resources;
+> > +	list_for_each_entry(rentry, &resource_list, node) {
+> > +		/* Avoid inserting duplicate entries, in case this is called more than once */
+> 
+> Either shorten this one or make it a multiline comment to stay within 80
+> chars.
+> 
+> > +		for (i = 0; i < count; i++) {
+> 
+> Should this not be pdev->num_resources?
+> 
 
-vim +85 Documentation/devicetree/bindings/arm/tegra/nvidia,tegra186-pmc.yaml
+count is first used to denote the number of entries to allocate in the
+new list, it's then reset to pdev->num_resources 3 lines above this and
+after this list_for_each_entry() it would be the total number of
+resources in the new list (which could be less than the allocated number
+of items).
 
-     8	
-     9	maintainers:
-    10	  - Thierry Reding <thierry.reding@gmail.com>
-    11	  - Jon Hunter <jonathanh@nvidia.com>
-    12	
-    13	properties:
-    14	  compatible:
-    15	    enum:
-    16	      - nvidia,tegra186-pmc
-    17	      - nvidia,tegra194-pmc
-    18	      - nvidia,tegra234-pmc
-    19	
-    20	  reg:
-    21	    minItems: 4
-    22	    maxItems: 5
-    23	
-    24	  reg-names:
-    25	    minItems: 4
-    26	    maxItems: 5
-    27	
-    28	  interrupt-controller: true
-    29	
-    30	  "#interrupt-cells":
-    31	    description: Specifies the number of cells needed to encode an
-    32	      interrupt source. The value must be 2.
-    33	    const: 2
-    34	
-    35	  nvidia,invert-interrupt:
-    36	    description: If present, inverts the PMU interrupt signal.
-    37	    $ref: /schemas/types.yaml#/definitions/flag
-    38	
-    39	allOf:
-    40	  - if:
-    41	      properties:
-    42	        compatible:
-    43	          contains:
-    44	            const: nvidia,tegra186-pmc
-    45	    then:
-    46	      properties:
-    47	        reg:
-    48	          maxItems: 4
-    49	        reg-names:
-    50	          items:
-    51	            - const: pmc
-    52	            - const: wake
-    53	            - const: aotag
-    54	            - const: scratch
-    55	
-    56	  - if:
-    57	      properties:
-    58	        compatible:
-    59	          contains:
-    60	            const: nvidia,tegra194-pmc
-    61	    then:
-    62	      properties:
-    63	        reg:
-    64	          minItems: 5
-    65	        reg-names:
-    66	          items:
-    67	            - const: pmc
-    68	            - const: wake
-    69	            - const: aotag
-    70	            - const: scratch
-    71	            - const: misc
-    72	
-    73	  - if:
-    74	      properties:
-    75	        compatible:
-    76	          contains:
-    77	            const: nvidia,tegra234-pmc
-    78	    then:
-    79	      properties:
-    80	        reg:
-    81	          minItems: 4
-    82	          maxItems: 5
-    83	        reg-names:
-    84	          anyOf:
-  > 85	           - items:
-    86	               - const: pmc
-    87	               - const: wake
-    88	               - const: aotag
-    89	               - const: misc
-    90	           - items:
-    91	               - const: pmc
-    92	               - const: wake
-    93	               - const: aotag
-    94	               - const: scratch
-    95	               - const: misc
-    96	
-    97	patternProperties:
-    98	  "^[a-z0-9]+-[a-z0-9]+$":
-    99	    if:
-   100	      type: object
-   101	    then:
-   102	      description: |
-   103	        These are pad configuration nodes. On Tegra SoCs a pad is a set of
-   104	        pins which are configured as a group. The pin grouping is a fixed
-   105	        attribute of the hardware. The PMC can be used to set pad power
-   106	        state and signaling voltage. A pad can be either in active or
-   107	        power down mode. The support for power state and signaling voltage
-   108	        configuration varies depending on the pad in question. 3.3 V and
-   109	        1.8 V signaling voltages are supported on pins where software
-   110	        controllable signaling voltage switching is available.
-   111	
-   112	        Pad configurations are described with pin configuration nodes
-   113	        which are placed under the pmc node and they are referred to by
-   114	        the pinctrl client properties. For more information see
-   115	
-   116	          Documentation/devicetree/bindings/pinctrl/pinctrl-bindings.txt
-   117	
-   118	        The following pads are present on Tegra186:
-   119	
-   120	          csia, csib, dsi, mipi-bias, pex-clk-bias, pex-clk3, pex-clk2,
-   121	          pex-clk1, usb0, usb1, usb2, usb-bias, uart, audio, hsic, dbg,
-   122	          hdmi-dp0, hdmi-dp1, pex-cntrl, sdmmc2-hv, sdmmc4, cam, dsib,
-   123	          dsic, dsid, csic, csid, csie, dsif, spi, ufs, dmic-hv, edp,
-   124	          sdmmc1-hv, sdmmc3-hv, conn, audio-hv, ao-hv
-   125	
-   126	        The following pads are present on Tegra194:
-   127	
-   128	          csia, csib, mipi-bias, pex-clk-bias, pex-clk3, pex-clk2,
-   129	          pex-clk1, eqos, pex-clk-2-bias, pex-clk-2, dap3, dap5, uart,
-   130	          pwr-ctl, soc-gpio53, audio, gp-pwm2, gp-pwm3, soc-gpio12,
-   131	          soc-gpio13, soc-gpio10, uart4, uart5, dbg, hdmi-dp3, hdmi-dp2,
-   132	          hdmi-dp0, hdmi-dp1, pex-cntrl, pex-ctl2, pex-l0-rst,
-   133	          pex-l1-rst, sdmmc4, pex-l5-rst, cam, csic, csid, csie, csif,
-   134	          spi, ufs, csig, csih, edp, sdmmc1-hv, sdmmc3-hv, conn,
-   135	          audio-hv, ao-hv
-   136	
-   137	      properties:
-   138	        pins:
-   139	          $ref: /schemas/types.yaml#/definitions/string
-   140	          description: Must contain the name of the pad(s) to be
-   141	            configured.
-   142	
-   143	        low-power-enable:
-   144	          description: Configure the pad into power down mode.
-   145	          $ref: /schemas/types.yaml#/definitions/flag
-   146	
-   147	        low-power-disable:
-   148	          description: Configure the pad into active mode.
-   149	          $ref: /schemas/types.yaml#/definitions/flag
-   150	
-   151	        power-source:
-   152	          $ref: /schemas/types.yaml#/definitions/uint32
-   153	          description: |
-   154	            Must contain either TEGRA_IO_PAD_VOLTAGE_1V8 or
-   155	            TEGRA_IO_PAD_VOLTAGE_3V3 to select between signalling
-   156	            voltages.
-   157	
-   158	            The values are defined in
-   159	
-   160	              include/dt-bindings/pinctrl/pinctrl-tegra-io-pad.h
-   161	
-   162	            The power state can be configured on all of the above pads
-   163	            except for ao-hv. Following pads have software configurable
-   164	            signaling voltages: sdmmc2-hv, dmic-hv, sdmmc1-hv, sdmmc3-hv,
-   165	            audio-hv, ao-hv.
-   166	
-   167	        phandle: true
-   168	
-   169	      required:
-   170	        - pins
-   171	
-   172	      additionalProperties: false
-   173	
-   174	required:
-   175	  - compatible
-   176	  - reg
-   177	  - reg-names
-   178	
+I can avoid reusing the variable, to clarify this - if I choose to keep
+the ACPI support through the series.
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+> > +			if (resource_type(&resources[i]) == resource_type(rentry->res) &&
+> > +			    resources[i].start == rentry->res->start &&
+> > +			    resources[i].end == rentry->res->end)
+> > +				break;
+> > +		}
+> > +
+> > +		if (i == count)
+> 
+> Same here.
+> 
+> > +			resources[count++] = *rentry->res;
+> > +	}
+> >  
+> > -	return acpi_create_platform_device(adev, NULL);
+> > +	ret = platform_device_add_resources(pdev, resources, count);
+> > +	if (ret)
+> > +		dev_err(&pdev->dev, "failed to add resources\n");
+> > +
+> > +	acpi_dev_free_resource_list(&resource_list);
+> > +	kfree(resources);
+> > +
+> > +	return ret;
+> >  }
+> >  
+> >  static int dwc3_qcom_probe(struct platform_device *pdev)
+> > @@ -817,6 +853,12 @@ static int dwc3_qcom_probe(struct platform_device *pdev)
+> >  			dev_err(&pdev->dev, "no supporting ACPI device data\n");
+> >  			return -EINVAL;
+> >  		}
+> > +
+> > +		if (qcom->acpi_pdata->is_urs) {
+> > +			ret = dwc3_qcom_acpi_merge_urs_resources(pdev);
+> > +			if (ret < 0)
+> > +				goto clk_disable;
+> 
+> The clocks have not been enabled here, just return ret.
+> 
+
+Right.
+
+Thanks,
+Bjorn
+
+> > +		}
+> >  	}
+> >  
+> >  	qcom->resets = devm_reset_control_array_get_optional_exclusive(dev);
+> > @@ -857,18 +899,6 @@ static int dwc3_qcom_probe(struct platform_device *pdev)
+> >  			qcom->acpi_pdata->qscratch_base_offset;
+> >  		parent_res->end = parent_res->start +
+> >  			qcom->acpi_pdata->qscratch_base_size;
+> > -
+> > -		if (qcom->acpi_pdata->is_urs) {
+> > -			qcom->urs_usb = dwc3_qcom_create_urs_usb_platdev(dev);
+> > -			if (IS_ERR_OR_NULL(qcom->urs_usb)) {
+> > -				dev_err(dev, "failed to create URS USB platdev\n");
+> > -				if (!qcom->urs_usb)
+> > -					ret = -ENODEV;
+> > -				else
+> > -					ret = PTR_ERR(qcom->urs_usb);
+> > -				goto clk_disable;
+> > -			}
+> > -		}
+> >  	}
+> >  
+> >  	qcom->qscratch_base = devm_ioremap_resource(dev, parent_res);
+> 
+> Johan
 
