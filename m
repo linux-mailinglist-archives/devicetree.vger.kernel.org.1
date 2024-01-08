@@ -1,64 +1,46 @@
-Return-Path: <devicetree+bounces-30222-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30223-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6248826F77
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 14:16:05 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C9A9826F7D
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 14:17:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 95A081F2117E
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 13:16:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0C2B01F212C3
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 13:17:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12BB24174B;
-	Mon,  8 Jan 2024 13:15:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9D0C4174F;
+	Mon,  8 Jan 2024 13:17:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="e0tMXgTQ"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="iniwHoRJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64B5344C8E
-	for <devicetree@vger.kernel.org>; Mon,  8 Jan 2024 13:15:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-50eaabc36bcso2059886e87.2
-        for <devicetree@vger.kernel.org>; Mon, 08 Jan 2024 05:15:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704719748; x=1705324548; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=htuFSdZboQzJzcG36HQEB1sGxlAbTSd2aClfnsdw/5M=;
-        b=e0tMXgTQjZlrnbRuWL9WkvxG6bTVG2f65O3kunnZlZuCK94+YWtMf2W4gIIZNqlN/s
-         PbHv9vszvLn3sOK2gL/RvZsCRDHf13gws+PvMylFFIbNsv/SkSRYMuVXb1OoqhE+/9Il
-         dTMZoeVNyKOlrSGqFuHbBlVWw5VDWEjFuvLBIxHBjdUNnLekxIthGy+mmPJzSWBusABP
-         cNw+Md+TBdGqcjB6m6Leuq3O6DFc9j0+gWHQMeekz8XnL+rtSAv6ExKAknLrZt2gXhI5
-         8qu27/g6EsHD+wtOa/oLhHqlFssr5bwkQ7Inoo2wvSE4zCLiAVY/OrOPrFsjhj870nSJ
-         jCDQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704719748; x=1705324548;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=htuFSdZboQzJzcG36HQEB1sGxlAbTSd2aClfnsdw/5M=;
-        b=gG6OYuk4A7kjWbos9DrlAc/lJsEsmmlpm1l3lHlLQvD+V47Vf3s3/bujGsmEfr4iKx
-         7ViPG8D8sHo/s20tCgijwI4F8HsU2QKdCFC2kwNJSmjCEdn4uT4pB+MuH66Cy4IDOuOv
-         rttMABwVeOgHT+LYY0XBVvrIuPTb+pWdLIO4oR/a/KGBisoOmLrWMRy+PSVoyJ4IS7c1
-         Y+RlMmRnI2fWyNoXcxz1yAvuIcv9S6MVzMx1fAjf5dvGTUt7pyIWxf23Khjn2T1wy/K+
-         awQ2KTxziqG0q3wKdD+ePHLuHTbmeALvP/vsAbBnQy9ddUV6YbL4HVyNum2/QvU6Nwgg
-         Slcw==
-X-Gm-Message-State: AOJu0Yyv5DHJrTtudYAIcHEGziu1XqLienMqOe2ZCjK1nxvrMGTSX7XE
-	2zvl6g4coanRGVv1DLfNKIxj7P2G3lgkSg==
-X-Google-Smtp-Source: AGHT+IEXrAG6Orw4n0maxEz+TJlIfnBT5X1FSp5YFx1cLiMZxIrzhW2qM7eNSvns5oCriLjYJb6rwg==
-X-Received: by 2002:ac2:5205:0:b0:50e:aa46:7572 with SMTP id a5-20020ac25205000000b0050eaa467572mr1340761lfl.58.1704719748466;
-        Mon, 08 Jan 2024 05:15:48 -0800 (PST)
-Received: from [192.168.199.125] (178235179081.dynamic-4-waw-k-1-3-0.vectranet.pl. [178.235.179.81])
-        by smtp.gmail.com with ESMTPSA id b12-20020a0564021f0c00b005574064b4fesm3508492edb.18.2024.01.08.05.15.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 08 Jan 2024 05:15:48 -0800 (PST)
-Message-ID: <ed59a0b4-3ab7-4a08-ae42-2174d776e521@linaro.org>
-Date: Mon, 8 Jan 2024 14:15:46 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 093B141752;
+	Mon,  8 Jan 2024 13:17:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1704719846;
+	bh=0C+qk5jTczq4Or8P9y61UPP0JeZhz44a+u+12PaJMnI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=iniwHoRJfjrKzH7K2sFtKyWgqyXkzcWZetnoxQvKlldrWEtnORg7vhxCvE/1Nimyw
+	 gDr97X8ZENcD/WFocJA5Am2VGmTprc96Q/Y7JGTzH+PU9dmxKm9qWOraCv0qEvuQiq
+	 A/u8ZPOf22ZDewk3BHFb8mioYAZpFvhynjszsIckIXzMRPMFxPwlF2e2p54n3B1hzK
+	 lAQz88vK/Hfk2yn39BJmxAJdHMAgDbA5SMxTo7axj4Qm/fslfdGJYT9GOmr+a0PKzj
+	 Mj4Lq99W3r3A7FdBA++96e4G+jfvOz/SACqHhX1Jjb9DD25x00FZGjzSYWBgnShV8a
+	 +Rykhum5e3E0g==
+Received: from [100.74.67.65] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: jmassot)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id C218D3782047;
+	Mon,  8 Jan 2024 13:17:25 +0000 (UTC)
+Message-ID: <0ddaae18-d34c-40f7-9109-23d71d9324d5@collabora.com>
+Date: Mon, 8 Jan 2024 14:17:24 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,67 +48,178 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: sm8150: correct PCIe wake-gpios
+Subject: Re: [PATCH v2 1/4] dt-bindings: media: add Maxim MAX96714F GMSL2
+ Deserializer
 Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
- Bhupesh Sharma <bhupesh.sharma@linaro.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240108131216.53867-1-krzysztof.kozlowski@linaro.org>
- <20240108131216.53867-2-krzysztof.kozlowski@linaro.org>
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
- BB/OmIWU6X+LZW6P88ZmHe+KeyABLMP5s1tJNK1j4ntT7mECcWZDzafPWF4F6m4WJOG27kTJ
- HGWdmtO+RvadOVi6CoUDqALsmfS3MUG5Pj2Ne9+0jRg4hEnB92AyF9rW2G3qisFcwPgvatt7
- TXD5E38mLyOPOUyXNj9XpDbt1hNwKQfiidmPh5e7VNAWRnW1iCMMoKqzM1Anzq7e5Afyeifz
- zRcQPLaqrPjnKqZGL2BKQSZDh6NkI5ZLRhhHQf61fkWcUpTp1oDC6jWVfT7hwRVIQLrrNj9G
- MpPzrlN4YuAqKeIer1FMt8cq64ifgTzxHzXsMcUdclzq2LTk2RXaPl6Jg/IXWqUClJHbamSk
- t1bfif3SnmhA6TiNvEpDKPiT3IDs42THU6ygslrBxyROQPWLI9IL1y8S6RtEh8H+NZQWZNzm
- UQ3imZirlPjxZtvz1BtnnBWS06e7x/UEAguj7VHCuymVgpl2Za17d1jj81YN5Rp5L9GXxkV1
- aUEwONM3eCI3qcYm5JNc5X+JthZOWsbIPSC1Rhxz3JmWIwP1udr5E3oNRe9u2LIEq+wH/toH
- kpPDhTeMkvt4KfE5m5ercid9+ZXAqoaYLUL4HCEw+HW0DXcKDwARAQABzShLb25yYWQgRHli
- Y2lvIDxrb25yYWQuZHliY2lvQGxpbmFyby5vcmc+wsGOBBMBCAA4FiEEU24if9oCL2zdAAQV
- R4cBcg5dfFgFAmQ5bqwCGwMFCwkIBwIGFQoJCAsCBBYCAwECHgECF4AACgkQR4cBcg5dfFjO
- BQ//YQV6fkbqQCceYebGg6TiisWCy8LG77zV7DB0VMIWJv7Km7Sz0QQrHQVzhEr3trNenZrf
- yy+o2tQOF2biICzbLM8oyQPY8B///KJTWI2khoB8IJSJq3kNG68NjPg2vkP6CMltC/X3ohAo
- xL2UgwN5vj74QnlNneOjc0vGbtA7zURNhTz5P/YuTudCqcAbxJkbqZM4WymjQhe0XgwHLkiH
- 5LHSZ31MRKp/+4Kqs4DTXMctc7vFhtUdmatAExDKw8oEz5NbskKbW+qHjW1XUcUIrxRr667V
- GWH6MkVceT9ZBrtLoSzMLYaQXvi3sSAup0qiJiBYszc/VOu3RbIpNLRcXN3KYuxdQAptacTE
- mA+5+4Y4DfC3rUSun+hWLDeac9z9jjHm5rE998OqZnOU9aztbd6zQG5VL6EKgsVXAZD4D3RP
- x1NaAjdA3MD06eyvbOWiA5NSzIcC8UIQvgx09xm7dThCuQYJR4Yxjd+9JPJHI6apzNZpDGvQ
- BBZzvwxV6L1CojUEpnilmMG1ZOTstktWpNzw3G2Gis0XihDUef0MWVsQYJAl0wfiv/0By+XK
- mm2zRR+l/dnzxnlbgJ5pO0imC2w0TVxLkAp0eo0LHw619finad2u6UPQAkZ4oj++iIGrJkt5
- Lkn2XgB+IW8ESflz6nDY3b5KQRF8Z6XLP0+IEdLOOARkOW7yEgorBgEEAZdVAQUBAQdAwmUx
- xrbSCx2ksDxz7rFFGX1KmTkdRtcgC6F3NfuNYkYDAQgHwsF2BBgBCAAgFiEEU24if9oCL2zd
- AAQVR4cBcg5dfFgFAmQ5bvICGwwACgkQR4cBcg5dfFju1Q//Xta1ShwL0MLSC1KL1lXGXeRM
- 8arzfyiB5wJ9tb9U/nZvhhdfilEDLe0jKJY0RJErbdRHsalwQCrtq/1ewQpMpsRxXzAjgfRN
- jc4tgxRWmI+aVTzSRpywNahzZBT695hMz81cVZJoZzaV0KaMTlSnBkrviPz1nIGHYCHJxF9r
- cIu0GSIyUjZ/7xslxdvjpLth16H27JCWDzDqIQMtg61063gNyEyWgt1qRSaK14JIH/DoYRfn
- jfFQSC8bffFjat7BQGFz4ZpRavkMUFuDirn5Tf28oc5ebe2cIHp4/kajTx/7JOxWZ80U70mA
- cBgEeYSrYYnX+UJsSxpzLc/0sT1eRJDEhI4XIQM4ClIzpsCIN5HnVF76UQXh3a9zpwh3dk8i
- bhN/URmCOTH+LHNJYN/MxY8wuukq877DWB7k86pBs5IDLAXmW8v3gIDWyIcgYqb2v8QO2Mqx
- YMqL7UZxVLul4/JbllsQB8F/fNI8AfttmAQL9cwo6C8yDTXKdho920W4WUR9k8NT/OBqWSyk
- bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
- nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
- izWDgYvmBE8=
-In-Reply-To: <20240108131216.53867-2-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+To: Krzysztof Kozlowski <krzk@kernel.org>, devicetree@vger.kernel.org,
+ linux-media@vger.kernel.org
+Cc: kernel@collabora.com
+References: <20231208143359.469049-1-julien.massot@collabora.com>
+ <20231208143359.469049-2-julien.massot@collabora.com>
+ <e7dd1964-76fa-42a2-a570-2148f439c850@kernel.org>
+From: Julien Massot <julien.massot@collabora.com>
+In-Reply-To: <e7dd1964-76fa-42a2-a570-2148f439c850@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 8.01.2024 14:12, Krzysztof Kozlowski wrote:
-> Bindings allow a "wake", not "enable", GPIO.  Schematics also use WAKE
-> name for the pin:
-> 
->   sa8155p-adp.dtb: pcie@1c00000: Unevaluated properties are not allowed ('enable-gpio' was unexpected)
-> 
-> Fixes: a1c86c680533 ("arm64: dts: qcom: sm8150: Add PCIe nodes")
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
+Hi Krzysztof,
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Thanks for the review.
 
-Konrad
+On 12/8/23 18:16, Krzysztof Kozlowski wrote:
+> On 08/12/2023 15:33, Julien Massot wrote:
+>> Add DT bindings for Maxim MAX96714F GMSL2 Deserializer.
+>>
+>> Signed-off-by: Julien Massot <julien.massot@collabora.com>
+> 
+> Please use scripts/get_maintainers.pl to get a list of necessary people
+> and lists to CC (and consider --no-git-fallback argument). It might
+> happen, that command when run on an older kernel, gives you outdated
+> entries. Therefore please be sure you base your patches on recent Linux
+> kernel.
+Will do
+
+> 
+> Limited review follows, as robot already pointed out issues.. >
+>> ---
+>>   .../bindings/media/i2c/maxim,max96714f.yaml   | 163 ++++++++++++++++++
+>>   1 file changed, 163 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/media/i2c/maxim,max96714f.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/media/i2c/maxim,max96714f.yaml b/Documentation/devicetree/bindings/media/i2c/maxim,max96714f.yaml
+>> new file mode 100644
+>> index 000000000000..8a2a06e7e279
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/media/i2c/maxim,max96714f.yaml
+>> @@ -0,0 +1,163 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +# Copyright (C) 2023 Collabora Ltd.
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/media/i2c/maxim,max96714f.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: GMSL2 to CSI-2 Deserializer
+>> +
+>> +maintainers:
+>> +  - Julien Massot <julien.massot@collabora.com>
+>> +
+>> +description: |
+>> +  The MAX96714F deserializer converts GMSL2 serial inputs into MIPI
+>> +  CSI-2 D-PHY or C-PHY formatted output. The device allows the GMSL2 link to
+>> +  simultaneously transmit bidirectional control-channel data while forward
+>> +  video transmissions are in progress. The MAX96714F can connect to one
+>> +  remotely located serializer using industry-standard coax or STP
+>> +  interconnects. The device cans operate in pixel or tunnel mode. In pixel mode
+>> +  the MAX96714F can select individual video stream, while the tunnel mode forward all
+>> +  the MIPI data received by the serializer.
+>> +
+>> +  The GMSL2 serial link operates at a fixed rate of 3Gbps in the
+>> +  forward direction and 187.5Mbps in the reverse direction.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: maxim,max96714f
+>> +
+>> +  reg:
+>> +    description: I2C device address
+> 
+> Drop
+Ok
+
+> 
+>> +    maxItems: 1
+>> +
+>> +  enable-gpios: true
+>> +
+>> +  ports:
+>> +    $ref: /schemas/graph.yaml#/properties/ports
+>> +
+>> +    properties:
+>> +      port@0:
+>> +        $ref: /schemas/graph.yaml#/properties/port
+>> +        unevaluatedProperties: false
+>> +        description: GMSL Input
+>> +        properties:
+>> +          endpoint:
+>> +            $ref: /schemas/media/video-interfaces.yaml#
+>> +            unevaluatedProperties: false
+>> +            description:
+>> +              Endpoint for GMSL2-Link port.
+>> +
+>> +      port@1:
+>> +        $ref: /schemas/graph.yaml#/$defs/port-base
+>> +        unevaluatedProperties: false
+>> +        description: CSI-2 Output
+>> +
+>> +        properties:
+>> +          endpoint:
+>> +            $ref: /schemas/media/video-interfaces.yaml#
+>> +            unevaluatedProperties: false
+>> +
+>> +            properties:
+>> +              data-lanes: true
+>> +              bus-type:
+>> +                enum:
+>> +                  - 4 # MEDIA_BUS_TYPE_CSI2_DPHY
+>> +
+>> +            required:
+>> +              - data-lanes
+>> +              - bus-type
+>> +
+>> +    required:
+>> +      - port@1
+>> +
+>> +  i2c-gate:
+>> +    $ref: /schemas/i2c/i2c-controller.yaml
+>> +    unevaluatedProperties: false
+>> +    description: |
+>> +      The MAX96714 will pass through and forward the I2C requests from the
+>> +      incoming I2C bus over the GMSL2 link. Therefore it supports an i2c-gate
+>> +      subnode to configure a serializer.
+>> +
+>> +  port0-poc-supply:
+>> +    description: Regulator providing Power over Coax for a particular port
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - ports
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    #include <dt-bindings/gpio/gpio.h>
+>> +    #include <dt-bindings/media/video-interfaces.h>
+>> +
+>> +    main_i2c2 {
+> 
+> Node names should be generic. See also an explanation and list of
+> examples (not exhaustive) in DT specification:
+> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+Ok V3 will use generic node names.
+
+> 
+> 
+>> +        #address-cells = <1>;
+>> +        #size-cells = <0>;
+> 
+>> +            i2c-gate {
+>> +                #address-cells = <1>;
+>> +                #size-cells = <0>;
+>> +
+>> +                gmsl-serializer@40 {
+>> +                    compatible = "maxim,max96717f";
+>> +                    reg = <0x40>;
+> 
+> Not documented.
+Ok I will re-post max96717f binding first and then the max96714f binding.
+
+
+Thank you,
+
+-- 
+Julien Massot
 
