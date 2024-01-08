@@ -1,178 +1,159 @@
-Return-Path: <devicetree+bounces-30350-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30351-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF3AD8278D0
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 20:59:02 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB0F78278E8
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 21:05:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 41EF3284A73
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 19:59:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 086D71C21955
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 20:05:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DACEB54BD6;
-	Mon,  8 Jan 2024 19:59:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B6FE54FAE;
+	Mon,  8 Jan 2024 20:05:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="byx30lTj"
+	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="dBZD3Nol"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com [148.163.156.1])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B467F55C10;
-	Mon,  8 Jan 2024 19:59:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B1E9DC433C8;
-	Mon,  8 Jan 2024 19:58:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1704743940;
-	bh=f29NR9MAWVjCDyn/MbeDD98XbHXmd6KpipbtrQODkYc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=byx30lTjWW7I2tbCrnCBwOs8/77H/g7oT+9KwXCn64R7j3LxUbDHirurOo0CWv06k
-	 SdeSgHz2spp26eS006ixX052ZjXOYDCVvbIg4VhU0Ts2bi2YKsILGxnocmRDMzR/dO
-	 fV9lJug4nmflknc9DDlatdGQ8WhRm5yrU6pqIhfi0f7MFElIXxyZ4LIBHlUZM2r8JH
-	 EyIHmIXnHgHImocleXUEhRVN8dmqa7G9SKiQq1dLhAb3EBGgpw32rtAq6Ccwse6W1n
-	 iOPt826kcZg5Nvo37TuMbcujTvSD6AI0j0MIgRQDEzYsJ4L3FkyVknRY+VGulGgxgF
-	 5t0llNtVvIKGA==
-Received: (nullmailer pid 2013297 invoked by uid 1000);
-	Mon, 08 Jan 2024 19:58:57 -0000
-Date: Mon, 8 Jan 2024 12:58:57 -0700
-From: Rob Herring <robh@kernel.org>
-To: Petlozu Pravareshwar <petlozup@nvidia.com>
-Cc: thierry.reding@gmail.com, jonathanh@nvidia.com, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, p.zabel@pengutronix.de, dmitry.osipenko@collabora.com, ulf.hansson@linaro.org, kkartik@nvidia.com, cai.huoqing@linux.dev, spatra@nvidia.com, linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/3] dt-bindings: tegra: pmc: Update scratch as an
- optional aperture
-Message-ID: <20240108195857.GA1959040-robh@kernel.org>
-References: <20240106075134.3933491-1-petlozup@nvidia.com>
- <20240106075134.3933491-2-petlozup@nvidia.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7006755774;
+	Mon,  8 Jan 2024 20:05:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.ibm.com
+Received: from pps.filterd (m0353728.ppops.net [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 408JCQBm017167;
+	Mon, 8 Jan 2024 20:04:47 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=message-id : date :
+ subject : to : cc : references : from : in-reply-to : content-type :
+ content-transfer-encoding : mime-version; s=pp1;
+ bh=5Rl5b4kNz1Iyh9nA9DJopv7up/07gSPUzt3uEewWmYY=;
+ b=dBZD3NolpiIPP7X5QVH14LW+AyvPjEULG6z7E1HlO0bD1eUX4arZ25DwebFKA7Kmhd9W
+ Cxr6sZ+bzHPAG+yklQ/bf2bBoBmY2TGXyJE7xiDbioDMaZV6W5jO2BG/MogvGWVQ7Ffo
+ pcTInIAkoE7eby5oLx1GdTfbb4f6XXDrHv9HztC7gbVSJG3tcE4I4gLzQscLsy7J34bq
+ 9WQdlJdJ6bjYnZFTf7ZzdgMtuDtp89WUS3HXPXeno2Qo0J7Kxzf6pXXxbgU3k79o+VJM
+ gbustWlDj1epw3dEMi8II4GaR7jJPZCKpyldgZIybIEaV1swIrJ+1uIlY8UP5pBrcwgP ZA== 
+Received: from pps.reinject (localhost [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3vgq0f96hs-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 08 Jan 2024 20:04:47 +0000
+Received: from m0353728.ppops.net (m0353728.ppops.net [127.0.0.1])
+	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 408JkeIt028792;
+	Mon, 8 Jan 2024 20:04:46 GMT
+Received: from ppma12.dal12v.mail.ibm.com (dc.9e.1632.ip4.static.sl-reverse.com [50.22.158.220])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3vgq0f96h0-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 08 Jan 2024 20:04:46 +0000
+Received: from pps.filterd (ppma12.dal12v.mail.ibm.com [127.0.0.1])
+	by ppma12.dal12v.mail.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 408Jx0Qw000400;
+	Mon, 8 Jan 2024 20:04:44 GMT
+Received: from smtprelay04.wdc07v.mail.ibm.com ([172.16.1.71])
+	by ppma12.dal12v.mail.ibm.com (PPS) with ESMTPS id 3vfh6stj7k-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 08 Jan 2024 20:04:44 +0000
+Received: from smtpav04.wdc07v.mail.ibm.com (smtpav04.wdc07v.mail.ibm.com [10.39.53.231])
+	by smtprelay04.wdc07v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 408K4iqR28181140
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Mon, 8 Jan 2024 20:04:44 GMT
+Received: from smtpav04.wdc07v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 0151A58054;
+	Mon,  8 Jan 2024 20:04:44 +0000 (GMT)
+Received: from smtpav04.wdc07v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 78B7958050;
+	Mon,  8 Jan 2024 20:04:42 +0000 (GMT)
+Received: from [9.61.145.235] (unknown [9.61.145.235])
+	by smtpav04.wdc07v.mail.ibm.com (Postfix) with ESMTP;
+	Mon,  8 Jan 2024 20:04:42 +0000 (GMT)
+Message-ID: <d5b2ce4b-ada0-46d3-98b1-8648127dec2b@linux.ibm.com>
+Date: Mon, 8 Jan 2024 14:04:42 -0600
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 7/8] tpm: tis-i2c: Add more compatible strings
+Content-Language: en-US
+To: Conor Dooley <conor@kernel.org>
+Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        joel@jms.id.au, andrew@codeconstruct.com.au, peterhuewe@gmx.de,
+        jarkko@kernel.org, jgg@ziepe.ca, keescook@chromium.org,
+        tony.luck@intel.com, gpiccoli@igalia.com,
+        johannes.holland@infineon.com, linux@roeck-us.net, broonie@kernel.org,
+        patrick.rudolph@9elements.com, vincent@vtremblay.dev,
+        peteryin.openbmc@gmail.com, lakshmiy@us.ibm.com, bhelgaas@google.com,
+        naresh.solanki@9elements.com, alexander.stein@ew.tq-group.com,
+        festevam@denx.de, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
+        linux-kernel@vger.kernel.org, linux-integrity@vger.kernel.org,
+        linux-hardening@vger.kernel.org, geissonator@yahoo.com
+References: <20231212164004.1683589-1-ninad@linux.ibm.com>
+ <20231212164004.1683589-8-ninad@linux.ibm.com>
+ <20231212-avid-grill-dbead068fac8@spud>
+From: Ninad Palsule <ninad@linux.ibm.com>
+In-Reply-To: <20231212-avid-grill-dbead068fac8@spud>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+X-TM-AS-GCONF: 00
+X-Proofpoint-GUID: BcrSbIDUA20AqXyea8yQeaJgquxaRGP_
+X-Proofpoint-ORIG-GUID: t6ymHn9VIXq4mcG7cAxPC29lgDsKcsDm
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-UnRewURL: 0 URL was un-rewritten
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240106075134.3933491-2-petlozup@nvidia.com>
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-01-08_09,2024-01-08_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ mlxlogscore=999 mlxscore=0 clxscore=1015 spamscore=0 malwarescore=0
+ lowpriorityscore=0 bulkscore=0 phishscore=0 adultscore=0 impostorscore=0
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2311290000 definitions=main-2401080166
 
-On Sat, Jan 06, 2024 at 07:51:33AM +0000, Petlozu Pravareshwar wrote:
-> Scratch address space register is used to store reboot reason. For
-> some Tegra234 systems, the scratch space is not available to store
-> the reboot reason. This is because scratch region on these systems
-> is not accessible by the kernel as restricted by the Hypervisor.
-> Such systems would delist scratch aperture from PMC DT node.
-> 
-> Accordingly, this change makes "scratch" as an optional aperture for
-> Tegra234 in PMC dt-binding document.
-> 
-> Signed-off-by: Petlozu Pravareshwar <petlozup@nvidia.com>
-> ---
->  .../arm/tegra/nvidia,tegra186-pmc.yaml        | 83 +++++++++++++------
->  1 file changed, 58 insertions(+), 25 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra186-pmc.yaml b/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra186-pmc.yaml
-> index 0faa403f68c8..2716610a1a02 100644
-> --- a/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra186-pmc.yaml
-> +++ b/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra186-pmc.yaml
-> @@ -23,12 +23,7 @@ properties:
->  
->    reg-names:
->      minItems: 4
-> -    items:
-> -      - const: pmc
-> -      - const: wake
-> -      - const: aotag
-> -      - const: scratch
-> -      - const: misc
-> +    maxItems: 5
+Hello Conor,
 
-You can just make the 4th entry: enum: [ scratch, misc ]
+On 12/12/23 11:15, Conor Dooley wrote:
+> On Tue, Dec 12, 2023 at 10:40:03AM -0600, Ninad Palsule wrote:
+>> From: Joel Stanley <joel@jms.id.au>
+>>
+>> The NPCT75x TPM is TIS compatible. It has an I2C and SPI interface.
+>>
+>> https://www.nuvoton.com/products/cloud-computing/security/trusted-platform-module-tpm/
+>>
+>> Add a compatible string for it, and the generic compatible.
+>>
+>> OpenBMC-Staging-Count: 3
+> Delete this from every patch that it appears from.
+Removed.
+>
+>> Signed-off-by: Joel Stanley <joel@jms.id.au>
+>> Acked-by: Jarkko Sakkinen <jarkko@kernel.org>
+>> Link: https://lore.kernel.org/r/20220928043957.2636877-4-joel@jms.id.au
+>> Signed-off-by: Ninad Palsule <ninad@linux.ibm.com>
+>> ---
+>>   drivers/char/tpm/tpm_tis_i2c.c | 2 ++
+>>   1 file changed, 2 insertions(+)
+>>
+>> diff --git a/drivers/char/tpm/tpm_tis_i2c.c b/drivers/char/tpm/tpm_tis_i2c.c
+>> index a897402cc36a..9511c0d50185 100644
+>> --- a/drivers/char/tpm/tpm_tis_i2c.c
+>> +++ b/drivers/char/tpm/tpm_tis_i2c.c
+>> @@ -383,6 +383,8 @@ MODULE_DEVICE_TABLE(i2c, tpm_tis_i2c_id);
+>>   #ifdef CONFIG_OF
+>>   static const struct of_device_id of_tis_i2c_match[] = {
+>>   	{ .compatible = "infineon,slb9673", },
+>> +	{ .compatible = "nuvoton,npct75x", },
+>> +	{ .compatible = "tcg,tpm-tis-i2c", },
+> What's the point of the generic compatible if you are adding the device
+> specific ones to the driver anyway?
+>
+> Thanks,
+> Conor.
 
->  
->    interrupt-controller: true
->  
-> @@ -41,25 +36,63 @@ properties:
->      description: If present, inverts the PMU interrupt signal.
->      $ref: /schemas/types.yaml#/definitions/flag
->  
-> -if:
-> -  properties:
-> -    compatible:
-> -      contains:
-> -        const: nvidia,tegra186-pmc
-> -then:
-> -  properties:
-> -    reg:
-> -      maxItems: 4
-> -
-> -    reg-names:
-> -      maxItems: 4
-> -else:
-> -  properties:
-> -    reg:
-> -      minItems: 5
-> -
-> -    reg-names:
-> -      minItems: 5
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: nvidia,tegra186-pmc
-> +    then:
-> +      properties:
-> +        reg:
-> +          maxItems: 4
-> +        reg-names:
-> +          items:
-> +            - const: pmc
-> +            - const: wake
-> +            - const: aotag
-> +            - const: scratch
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: nvidia,tegra194-pmc
-> +    then:
-> +      properties:
-> +        reg:
-> +          minItems: 5
-> +        reg-names:
-> +          items:
-> +            - const: pmc
-> +            - const: wake
-> +            - const: aotag
-> +            - const: scratch
-> +            - const: misc
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: nvidia,tegra234-pmc
-> +    then:
-> +      properties:
-> +        reg:
-> +          minItems: 4
-> +          maxItems: 5
-> +        reg-names:
-> +          anyOf:
-> +           - items:
-> +               - const: pmc
-> +               - const: wake
-> +               - const: aotag
-> +               - const: misc
-> +           - items:
-> +               - const: pmc
-> +               - const: wake
-> +               - const: aotag
-> +               - const: scratch
-> +               - const: misc
->  
->  patternProperties:
->    "^[a-z0-9]+-[a-z0-9]+$":
-> -- 
-> 2.17.1
-> 
+I have removed this commit from this patchset and send it as a separate 
+patch.
+
+Regards,
+
+Ninad
+
 
