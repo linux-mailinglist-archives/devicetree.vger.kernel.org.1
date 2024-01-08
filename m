@@ -1,143 +1,90 @@
-Return-Path: <devicetree+bounces-30304-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30305-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB8358275A9
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 17:46:43 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 804E68275F2
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 18:01:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 85FC1283F2F
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 16:46:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A6B041C224DE
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 17:01:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6025A53E29;
-	Mon,  8 Jan 2024 16:46:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF48253E31;
+	Mon,  8 Jan 2024 17:01:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="T0OEpvAU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="i5KcmNz2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C866153E2E;
-	Mon,  8 Jan 2024 16:46:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 408CD3j0026873;
-	Mon, 8 Jan 2024 16:46:20 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	date:from:to:cc:subject:message-id:references:mime-version
-	:content-type:in-reply-to; s=qcppdkim1; bh=HwPgusZd6sVHWD8by0F+C
-	dumsdRLBdsgVOZVKMtEy04=; b=T0OEpvAUtr967xCjX60o8oETNp9uqllaAy2Oa
-	uOckrhDUQ3FSSjKqX7JS+UyUWiqCMWZhCP6Jy/cFDfj1VX1NDDx/xEWLq/ZoBUtb
-	fuqyZOAaO8ctR2Ng4S9eg1JIofymRALjbnp25PxawpHVbkHHSd7pxRabmvDqyvwg
-	OFtoB8+BC3D0xGVM6uVb7QF+C/sAxFVtyxeyL5k1nWKcdHg7eIkJHa/iT02KcqoN
-	uvit8RuSPG7FuX2B7fxxZfsom822jxCDFOst7+UeKUbTg3KT6o09OJ9pVk7r2C1l
-	rIq2uzlsmZh0GlTfRFuZYN93ouX9JSPh37ArstqvYjAMu6jOg==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vgbuj99ad-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 08 Jan 2024 16:46:20 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 408GkJEW019482
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 8 Jan 2024 16:46:19 GMT
-Received: from hu-bjorande-lv.qualcomm.com (10.49.16.6) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Mon, 8 Jan 2024 08:46:18 -0800
-Date: Mon, 8 Jan 2024 08:46:17 -0800
-From: Bjorn Andersson <quic_bjorande@quicinc.com>
-To: Johan Hovold <johan@kernel.org>
-CC: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konrad.dybcio@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Wesley Cheng <quic_wcheng@quicinc.com>,
-        Thinh Nguyen
-	<Thinh.Nguyen@synopsys.com>,
-        Felipe Balbi <balbi@kernel.org>,
-        Philipp Zabel
-	<p.zabel@pengutronix.de>,
-        <linux-arm-msm@vger.kernel.org>, <linux-usb@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Krishna Kurapati PSSNV
-	<quic_kriskura@quicinc.com>
-Subject: Re: [PATCH 00/12] usb: dwc3: qcom: Flatten dwc3 structure
-Message-ID: <20240108164617.GJ1315173@hu-bjorande-lv.qualcomm.com>
-References: <20231016-dwc3-refactor-v1-0-ab4a84165470@quicinc.com>
- <ZV3OgorG4G4mwvv1@hovoldconsulting.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D5C353E2A;
+	Mon,  8 Jan 2024 17:01:16 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AEF68C433C9;
+	Mon,  8 Jan 2024 17:01:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1704733276;
+	bh=v2/TiwSdHE2DinFIJYw+TSu7bM/JscJjrxVzVNK8vfE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=i5KcmNz2ENOnpeTzk/m22X5gOXVhvAWDjNQM+0UYi5EgPCenTbEq0e0iuF1V8y2fs
+	 rEwMPjk3uDtpIMVoxnn2AZm5rNblf3HZeKC8GpbLJsYP5yr+KY+FBM09MrJ/NAtfd/
+	 yAXKV83twJ3nPpudg8zU7SLglFwwqfBpnPmzv32d3MUtwRKt8sJXTKkZclPylLkLi7
+	 Sp2Z7Q3PZA4ywn+4vQcoBDUkrWsI6mXnut1dsFKejk/oNDjXL/mp6nOnSXMNVwJ5VT
+	 4A52FD7+7BQ2zEGZkIPdKmMGt7ZrMTp22F7mM3A2aOcHGjKkxQyl7sk5lxg9DNz3MC
+	 nEF2yJm0V7D8w==
+Date: Mon, 8 Jan 2024 17:01:11 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Michal Simek <michal.simek@amd.com>
+Cc: linux-kernel@vger.kernel.org, monstr@monstr.eu, michal.simek@xilinx.com,
+	git@xilinx.com, Conor Dooley <conor+dt@kernel.org>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Jean Delvare <jdelvare@suse.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	"open list:INA209 HARDWARE MONITOR DRIVER" <linux-hwmon@vger.kernel.org>
+Subject: Re: [PATCH] dt-bindings: hwmon: ina2xx: Describe ina260 chip
+Message-ID: <20240108-generous-expediter-1f4ed78077d8@spud>
+References: <4c82dc4d412e91d1601c1da5bca1cdf1a91cd9b8.1704724242.git.michal.simek@amd.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="65zwX83nMVPDOCON"
 Content-Disposition: inline
-In-Reply-To: <ZV3OgorG4G4mwvv1@hovoldconsulting.com>
-X-ClientProxiedBy: nalasex01b.na.qualcomm.com (10.47.209.197) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: s1k51z_EGZ8hMjCFo420-aH1DU7AN6ss
-X-Proofpoint-ORIG-GUID: s1k51z_EGZ8hMjCFo420-aH1DU7AN6ss
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-12-09_01,2023-12-07_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 suspectscore=0
- bulkscore=0 phishscore=0 adultscore=0 priorityscore=1501 mlxscore=0
- mlxlogscore=832 lowpriorityscore=0 malwarescore=0 impostorscore=0
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2311290000 definitions=main-2401080141
-
-On Wed, Nov 22, 2023 at 10:48:50AM +0100, Johan Hovold wrote:
-> On Mon, Oct 16, 2023 at 08:11:08PM -0700, Bjorn Andersson wrote:
-> > The USB IP-block found in most Qualcomm platforms is modelled in the
-> > Linux kernel as 3 different independent device drivers, but as shown by
-> > the already existing layering violations in the Qualcomm glue driver
-> > they can not be operated independently.
-> > 
-> > With the current implementation, the glue driver registers the core and
-> > has no way to know when this is done. As a result, e.g. the suspend
-> > callbacks needs to guard against NULL pointer dereferences when trying
-> > to peek into the struct dwc3 found in the drvdata of the child.
-> > 
-> > Missing from the upstream Qualcomm USB support is handling of role
-> > switching, in which the glue needs to be notified upon DRD mode changes.
-> > Several attempts has been made through the years to register callbacks
-> > etc, but they always fall short when it comes to handling of the core's
-> > probe deferral on resources etc.
-> 
-> Nice to see this finally being worked on. It's not clear why mode-change
-> notifications would be a problem though, as if you get such a
-> notification, you know that core has been probed.
->  
-
-The problem here is that the usb_role_switch is implemented in the core,
-but the glue needs to act upon the notification as well - and there's
-currently no way to have the core notify the glue about such changes.
+In-Reply-To: <4c82dc4d412e91d1601c1da5bca1cdf1a91cd9b8.1704724242.git.michal.simek@amd.com>
 
 
-You can see this "solved" in the case of extcon, where both the Qualcomm
-glue and core listens to and act upon the extcon updates. This isn't
-pretty, but with the of-graph based role-switching description (and good
-judgement) it's not possible to replicate this on modern platforms.
+--65zwX83nMVPDOCON
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Which means that this leaves a TODO to investigate if we can drop the
-extcon support from dwc3-qcom.c
+On Mon, Jan 08, 2024 at 03:30:51PM +0100, Michal Simek wrote:
+> Describe ina260 chip which is precision digital current and power monitor
+> with precision integrated shunt resistor.
+>=20
+> Signed-off-by: Michal Simek <michal.simek@amd.com>
 
-Regards,
-Bjorn
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-> > Furhtermore, the DeviceTree binding is a direct representation of the
-> > Linux driver model, and doesn't necessarily describe "the USB IP-block".
-> 
-> True.
-> 
-> Johan
+Cheers,
+Conor.
+
+
+--65zwX83nMVPDOCON
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZZwqVwAKCRB4tDGHoIJi
+0he8AQCbN5mPbIoEbzBQ7asM/7ZMjkwb6lp47o9BdzsSYkSyGAD/QXPa5TwZRbhb
+nRM6eDm54N35V7rofzPN+dbKuzk/QQo=
+=Yv7k
+-----END PGP SIGNATURE-----
+
+--65zwX83nMVPDOCON--
 
