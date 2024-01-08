@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-30099-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30100-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E598826862
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 08:04:34 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 118A882686A
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 08:08:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B845E281CAE
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 07:04:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9D052281831
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 07:08:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F49C79EE;
-	Mon,  8 Jan 2024 07:04:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48D0379F4;
+	Mon,  8 Jan 2024 07:08:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xTEEEgTu"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="spe1fGOA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
+Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F4268BED
-	for <devicetree@vger.kernel.org>; Mon,  8 Jan 2024 07:04:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A4668821
+	for <devicetree@vger.kernel.org>; Mon,  8 Jan 2024 07:08:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-50eabbc3dccso1257223e87.2
-        for <devicetree@vger.kernel.org>; Sun, 07 Jan 2024 23:04:19 -0800 (PST)
+Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-a27e323fdd3so129539666b.2
+        for <devicetree@vger.kernel.org>; Sun, 07 Jan 2024 23:08:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704697457; x=1705302257; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1704697707; x=1705302507; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=SL1rSV8LJDmQM8c+9mhidlWqZwK4QsTJy4vBuMNpFw4=;
-        b=xTEEEgTu9wbCe9e4MoAYnV9Lk98d18crxZ5sEANHpH5gQwv09SgwCPXYyj2Zf7cURr
-         Qn3ba79CJNY9OgCZUTndkDWoRyLNA6gx4AX8z98AaVX26TpN3Ycb6kxMMwTKzHrB+gEA
-         I+3USrrxrIJ6wrZMJAHHMMh2/0j7IUYxwmKzJNtv8XLIFsnNxXds2Km9Nef/fUa4WptQ
-         cIji7RUWP6sY8N8EtwzktRiUJl2tm7Vo/mOB8tbvMxvFEev0LlNCossfv5m7+i8ewZrn
-         jrmex+SJcoRo6SctVCrXayOIvlAHYl7NO16HrN/Ij6aKxl8gz5h9zeGaEGX/GZYQ9LJC
-         RfpQ==
+        bh=J1sAVHFZOl+Y3zSMfroy8g3PUHRQxM0Sjmv1D9qWfRU=;
+        b=spe1fGOAomubjXWks2x21EsosZY/V9rIui33e0ezzeXart9HHXaYEudQMYZrNzGuhz
+         u26VACzmSIyJ+hSeOYC2VH9VFN7SAbdPGWLklUtpR7o5pLTwzAcUxMJyaMwMbbeuTYiP
+         l90rgObJfN2K4o7GKaFhPzr3x9WCknYrNBxJbI1FgHl1UEyz71hz5GHHIXhEMR1vJOVB
+         zzGio+BR7lqEr7OByp0BD0ukYJIRlbwgxXbJlLMho7pFbCRrUANXhvYiRM4IqjFtKPAc
+         5rnr+4Wz9ZnRxxDaKW1uWtXiToLjXSIgkuo8lBCPsjg/l9vDX8Bl2AkrDz5UG9XW3sk5
+         4uDw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704697457; x=1705302257;
+        d=1e100.net; s=20230601; t=1704697707; x=1705302507;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=SL1rSV8LJDmQM8c+9mhidlWqZwK4QsTJy4vBuMNpFw4=;
-        b=T1vcLePwZbntQuBgaR/fhuVNO0v63CzwPAgIBINp+6z5qGRThjE9h4Ziw2LYyHks9b
-         S+LJEcpjIJiu+h3hgyJcqiQ+lSsZXEJbPwFqvyNQTlGTONivfFdsJg1tiatlNICy3nMR
-         IloNY+aj6molIvnzxBOkfL+b6BtneC6z+U29KBetbixET3KMyqKJboftyj9/70Iot6lA
-         T/fg4ZRfhRxgEn1FKPBGMXPSliInVxt1WuhH4SMdwyZB4lw3PH6cV7iEeNUKaw1jivPl
-         8HDZ5CGjHmoRUYfBasE7Ur+AKUIUQl2sozcVgopCBX8lTIWqRF+siwKzntG/dutEQRmv
-         wfpg==
-X-Gm-Message-State: AOJu0YwHrGk7ENJ9dbodJ3TigEpkW9Fq6iIj+N163IeCnlLtzBLLQlQ6
-	twjmAw2riFt4iCwsSbqjMYzWwGCeemB6IQ==
-X-Google-Smtp-Source: AGHT+IFgFyWraRxaAqzd7d4j4BvaM+LCCOZNIWcc6ZZR/RQzXb1fVCsPXa3sFAQ+0kJYC5QjpGzYSA==
-X-Received: by 2002:a05:6512:acb:b0:50e:6940:238e with SMTP id n11-20020a0565120acb00b0050e6940238emr720899lfu.19.1704697457605;
-        Sun, 07 Jan 2024 23:04:17 -0800 (PST)
+        bh=J1sAVHFZOl+Y3zSMfroy8g3PUHRQxM0Sjmv1D9qWfRU=;
+        b=f6gQhwLU8+7B8e2To4SPwfK1zYDcYKXf2hJZeFRQLOoWuCMKtATx3ZChbsD97MjgRw
+         DaTjISL2KyPPpQBC30gPFy7unwQ2xti98tVc0WRMfgUC63ynPWBFeeY5e/BExFWG4YI2
+         SBqXGgOqKmyY/2eZWVJbVTlCwwE8JMXHRqXL0D2x9FjDBSHE3DIWRpughRz6hM/5EGjb
+         CWpQpcf6UXY9+rsTj7o83cOzcd/5Ryu2j+Wzpc/zGRTpyCeFn2m4rfEyhrTZr/CrxF2i
+         PGqoOObY/vXOFaXhG+ws6SfBzxS6gEnrbQqYbF7bOPs05+Wf5MJhd8uV3k8S28OX//jU
+         cwAA==
+X-Gm-Message-State: AOJu0YxRSjYHTyQPn7pqhUvOw3mk+78zAyVyAp++kc4IaSLbcmdBSKkF
+	VYf20AvKjuS9F6E8IthjADTqNBzkb6HRHw==
+X-Google-Smtp-Source: AGHT+IHIVTW4VpWRZpYVLTuawLEF47jqYZohjJlKFRHd3zqmfrykNgzyspy13MSoNlMulPNS/h3Nbw==
+X-Received: by 2002:a17:907:31c2:b0:a26:ed70:3c85 with SMTP id xf2-20020a17090731c200b00a26ed703c85mr1566462ejb.7.1704697706878;
+        Sun, 07 Jan 2024 23:08:26 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.223.112])
-        by smtp.gmail.com with ESMTPSA id fd5-20020a056402388500b0055743d6e9ebsm3059360edb.41.2024.01.07.23.04.15
+        by smtp.gmail.com with ESMTPSA id b1-20020a170906490100b00a26b36311ecsm3723082ejq.146.2024.01.07.23.08.25
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 07 Jan 2024 23:04:17 -0800 (PST)
-Message-ID: <f88b79c3-e44b-4136-ae56-10e1f2502e2d@linaro.org>
-Date: Mon, 8 Jan 2024 08:04:14 +0100
+        Sun, 07 Jan 2024 23:08:26 -0800 (PST)
+Message-ID: <8cf79b89-741d-4a68-a93d-3a6496ee1919@linaro.org>
+Date: Mon, 8 Jan 2024 08:08:24 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,20 +66,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 2/4] dt-bindings: clock: sophgo: support SG2042
+Subject: Re: [PATCH V3 2/3] dt-bindings: nvmem: Convert xlnx,zynqmp-nvmem.txt
+ to yaml
 Content-Language: en-US
-To: Chen Wang <unicornxw@gmail.com>, aou@eecs.berkeley.edu,
- chao.wei@sophgo.com, conor@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- mturquette@baylibre.com, palmer@dabbelt.com, paul.walmsley@sifive.com,
- richardcochran@gmail.com, robh+dt@kernel.org, sboyd@kernel.org,
- devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
- haijiao.liu@sophgo.com, xiaoguang.xing@sophgo.com, guoren@kernel.org,
- jszhang@kernel.org, inochiama@outlook.com, samuel.holland@sifive.com
-Cc: Chen Wang <unicorn_wang@outlook.com>,
- Conor Dooley <conor.dooley@microchip.com>
-References: <cover.1704694903.git.unicorn_wang@outlook.com>
- <925d99d5b4ece01337cb3389aaea4b631894dd1d.1704694903.git.unicorn_wang@outlook.com>
+To: Praveen Teja Kundanala <praveen.teja.kundanala@amd.com>,
+ srinivas.kandagatla@linaro.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ michal.simek@amd.com, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+Cc: linux-kernel@vger.kernel.org-, praveent@amd.com
+References: <20240108052617.32510-1-praveen.teja.kundanala@amd.com>
+ <20240108052617.32510-3-praveen.teja.kundanala@amd.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -125,60 +122,26 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <925d99d5b4ece01337cb3389aaea4b631894dd1d.1704694903.git.unicorn_wang@outlook.com>
+In-Reply-To: <20240108052617.32510-3-praveen.teja.kundanala@amd.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 08/01/2024 07:49, Chen Wang wrote:
-> From: Chen Wang <unicorn_wang@outlook.com>
+On 08/01/2024 06:26, Praveen Teja Kundanala wrote:
+> Convert the xlnx,zynqmp-nvmem.txt to yaml.
 > 
-> Add bindings for the clock generator on the SG2042 RISC-V SoC.
-> 
-> Signed-off-by: Chen Wang <unicorn_wang@outlook.com>
-> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> Signed-off-by: Praveen Teja Kundanala <praveen.teja.kundanala@amd.com>
 > ---
->  .../bindings/clock/sophgo,sg2042-clkgen.yaml  |  53 ++++++
->  .../dt-bindings/clock/sophgo,sg2042-clkgen.h  | 169 ++++++++++++++++++
->  2 files changed, 222 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/sophgo,sg2042-clkgen.yaml
->  create mode 100644 include/dt-bindings/clock/sophgo,sg2042-clkgen.h
-> 
-> diff --git a/Documentation/devicetree/bindings/clock/sophgo,sg2042-clkgen.yaml b/Documentation/devicetree/bindings/clock/sophgo,sg2042-clkgen.yaml
-> new file mode 100644
-> index 000000000000..f9935e66fc95
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/sophgo,sg2042-clkgen.yaml
-> @@ -0,0 +1,53 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/sophgo,sg2042-clkgen.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Sophgo SG2042 Clock Generator
-> +
-> +maintainers:
-> +  - Chen Wang <unicorn_wang@outlook.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: sophgo,sg2042-clkgen
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  sophgo,system-ctrl:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description:
-> +      Phandle to SG2042 System Controller node. On SG2042, part of control
-> +      registers of Clock Controller are defined in System controller. Clock
-> +      driver will use this phandle to get the register map base to plus the
-> +      offset of the registers to access them.
+> Please note that DTB check will fail
+> for zyqnmp dtsi with the current changes.
+> Accompanying Device Tree Source (DTS)
+> changes will be sent out separately.
 
-Do not describe the driver, but hardware. What registers are in
-system-ctrl? What are their purpose? Why this hardware needs them?
+So where is that change?
+
+This is v3, where is the changelog?
 
 
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
