@@ -1,306 +1,97 @@
-Return-Path: <devicetree+bounces-30225-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30226-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86368826F8F
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 14:20:20 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B5FF826F9A
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 14:21:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0AAA61F22DD1
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 13:20:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 176121C226E8
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 13:21:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4F3C41761;
-	Mon,  8 Jan 2024 13:20:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91B854595B;
+	Mon,  8 Jan 2024 13:20:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="oGwAScyD"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Gtd7+FUM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53D0025754;
-	Mon,  8 Jan 2024 13:20:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=iMQUfhOKGODVKE5j7lmJb9vjYDymD1aXyaIUsVPYuyY=; b=oGwAScyDtVosDA7OHfpyUWlDYZ
-	Ps+1KDLsZouzt7iLOTnSCi7vIfN1KrCCKkPSBx+zOOyTvP8URff4bcbkmgcrHu1efIzf2yR7T7rQ9
-	vSqGltlTLDjW3Zf2g1rUhReSar9xRROmG4h8YTwuMbFHK/ahLt52/bmak5X7nU4OhHbs=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1rMpXk-004dn5-LD; Mon, 08 Jan 2024 14:19:52 +0100
-Date: Mon, 8 Jan 2024 14:19:52 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Jie Luo <quic_luoj@quicinc.com>
-Cc: Sergey Ryazanov <ryazanov.s.a@gmail.com>,
-	Christian Marangi <ansuelsmth@gmail.com>,
-	Robert Marko <robert.marko@sartura.hr>,
-	Vladimir Oltean <olteanv@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Subject: Re: [net-next PATCH RFC v3 1/8] dt-bindings: net: document ethernet
- PHY package nodes
-Message-ID: <841ef784-b27e-4f7a-94f2-f04f93178c61@lunn.ch>
-References: <20231126015346.25208-1-ansuelsmth@gmail.com>
- <20231126015346.25208-2-ansuelsmth@gmail.com>
- <0926ea46-1ce4-4118-a04c-b6badc0b9e15@gmail.com>
- <1437d9df-2868-43f5-aebd-e0c57fe4d905@lunn.ch>
- <b75e6267-7d54-412e-8882-af4d9a0b54e6@quicinc.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1518A45031;
+	Mon,  8 Jan 2024 13:20:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1704720028;
+	bh=QYd9GIPj6yyAuJwISI2LWTxi+abe2yiVsoONvxWbh24=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Gtd7+FUMSxNPU4IZDo2Fttv7mljlMYc8huzmLgpplc1nZi4LYvZAhjsdkzz+asZY6
+	 nU6cWUXJJqQp9hgFNoiddXv2Yx7TPsIZwZma3qXuz3szibNA8DxvsHtcbWFYcHQt4l
+	 OyufnWT8UyERf7bKIZknTRwcmALuIWy23fJFvCNTwtocDKJS7VXo89sERBDVx33Isp
+	 PaC2pe+QUpdORZQdVWVKVUJGhMm+mfrP66PfVWu7FRN0g2yK54E/f2sCB96fG7MKdE
+	 E4y38HJX0F3Vi6EtqPzjP6zPdB9BKTge9Y+nNjsSoigm6M/RRtYlJc1LbGkcFYVxBk
+	 dSXhpB3BtEIpQ==
+Received: from [100.74.67.65] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: jmassot)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 089943782047;
+	Mon,  8 Jan 2024 13:20:27 +0000 (UTC)
+Message-ID: <3da48ce6-52fb-482d-ad23-e59adeb51c32@collabora.com>
+Date: Mon, 8 Jan 2024 14:20:26 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <b75e6267-7d54-412e-8882-af4d9a0b54e6@quicinc.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 3/4] media: i2c: add MAX96714 driver
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzk@kernel.org>, devicetree@vger.kernel.org,
+ linux-media@vger.kernel.org
+Cc: kernel@collabora.com
+References: <20231208143359.469049-1-julien.massot@collabora.com>
+ <20231208143359.469049-4-julien.massot@collabora.com>
+ <d2e4e887-5b82-40de-aef9-f5f6a228fbd3@kernel.org>
+From: Julien Massot <julien.massot@collabora.com>
+In-Reply-To: <d2e4e887-5b82-40de-aef9-f5f6a228fbd3@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-> Since qca8075 PHY is also multiple port PHY, which is same as qca8084,
-> but qca8084 also includes the integrated clock controller, this is the
-> first qcom PHY chip integrating the clock controller internally.
-> can we also consider designing the clocks and resets DT models in the
-> PHY package DT.
-> 
-> For qca8084 PURE PHY chip, which is the quad PHY chip and two PCSes,
-> it integrates the clock controller that generates the clocks to be used
-> by the link of PHYs, the integrated controller also provides the resets
-> to the PHY,  the clock controller(NSSCC) driver of qca8084 works at the
-> same way of the GCC of SoC(IPQ), qca8084 needs to be initialized with
-> the clocks and resets for the qca8084 PHY package, these clocks and
-> resets are generated by the NSSCC, even for PURE phy chip qca8084, there
-> is also some PHY package level clocks needs to be initialized.
-> 
-> here is the diagram of qca8084.
-> __| |_______________| |__
-> | PCS0 |          |PCS1 |
-> |______|          |_____|
-> |_________________      |
-> |                |      |
-> |     NSSCC      |      |
-> |________________|      |
-> |_______________________|
-> |     |     |     |     |
-> |PHY1 |PHY2 |PHY3 |PHY4 |
-> |_____|_____|_____|_____|
 
-Please add to the diagram the external clocks and external resets.
 
-Additionally, add the resets and clocks between the NSSCC and the
-individual PHYs. Typically, the internal clocks and resets are not in
-DT, at last not for a single PHY. For a quad PHY in a package, it
-might make sense to add them. Before we can decide that, we need a
-clear idea what the hardware looks like.
+On 12/8/23 18:18, Krzysztof Kozlowski wrote:
+> On 08/12/2023 15:33, Julien Massot wrote:
+>> This driver handle the MAX96714 deserializer in tunnel mode.
+>> The CSI output will replicate all the CSI traffic capture by
+>> the remote serializer.
+>>
+>> Signed-off-by: Julien Massot <julien.massot@collabora.com>
+> 
+> ...
+> 
+>> +static int max96714_get_hw_resources(struct max96714_priv *priv)
+>> +{
+>> +	struct device *dev = &priv->client->dev;
+>> +
+>> +	priv->regmap = devm_regmap_init_i2c(priv->client,
+>> +					    &max96714_regmap_config);
+>> +	if (IS_ERR(priv->regmap))
+>> +		return PTR_ERR(priv->regmap);
+>> +
+>> +	priv->gpiod_pwdn = devm_gpiod_get_optional(&priv->client->dev, "enable",
+>> +						   GPIOD_OUT_HIGH);
+>> +	if (IS_ERR(priv->gpiod_pwdn))
+>> +		return dev_err_probe(dev, PTR_ERR(priv->gpiod_pwdn),
+> 
+> A powerdown GPIO is not an enable GPIO. Please use correct name - see
+> gpio-consumers-common.yaml
+Ok I will rename it 'pwdn' instead.
+Thanks,
 
-> let me example the initial clocks and resets for the pure PHY chip qca8084
-> as below, the clocks and resets should be put into the first
-> MDIO node to be initialized firstly before qca8084 PHY will work.
-> 
-> ethernet-phy-package@0 {
-> 
->         #address-cells = <1>;
-> 
->         #size-cells = <0>;
-> 
->         compatible = "ethernet-phy-package";
-> 
->         reg = <0>;
-> 
-> 
-> 
->         /* initial PHY package level clocks */
-> 
->         clocks = <&qca8k_nsscc NSS_CC_APB_BRIDGE_CLK>,
-> 
->                <&qca8k_nsscc NSS_CC_AHB_CLK>,
-> 
->                <&qca8k_nsscc NSS_CC_SEC_CTRL_AHB_CLK>,
-> 
->                <&qca8k_nsscc NSS_CC_TLMM_CLK>,
-> 
->                <&qca8k_nsscc NSS_CC_TLMM_AHB_CLK>,
-> 
->                <&qca8k_nsscc NSS_CC_CNOC_AHB_CLK>,
-> 
->                <&qca8k_nsscc NSS_CC_MDIO_AHB_CLK>;
-
-Device tree effectively defined devices on bus, in a tree, and how
-they interconnect. Does the NSSCC have its own address on the MDIO
-bus? Or does it share an address with one of the PHYs? It could be we
-want to describe the NSSCC as a DT node of its own within the
-package. It is probably both a clock consumer, and a clock provider.
-The individual PHYs are then clock consumers, of the clocks the NSSCC
-exports. Same for resets.
-
-> 
->         clock-names = "apb_bridge",
-> 
->                 "ahb",
-> 
->                 "sec_ctrl_ahb",
-> 
->                 "tlmm",
-> 
->                 "tlmm_ahb",
-> 
->                 "cnoc_ahb",
-> 
->                 "mdio_ahb";
-> 
-> 
-> 
->         /* initial PHY package level reset */
-> 
->         resets = <&qca8k_nsscc NSS_CC_DSP_ARES>;
-> 
->         reset-names = "gephy_dsp";
-> 
-> 
-> 
->         /* initial clocks and resets for first phy */
-> 
->         phy0 {
-> 
->                 reg = <0>;
-> 
->                 clocks = <&qca8k_nsscc NSS_CC_GEPHY0_SYS_CLK>;
-> 
->                 clock-names = "gephy0_sys";
-> 
->                 resets = <&qca8k_nsscc NSS_CC_GEPHY0_SYS_ARES>,
-> 
->                        <&qca8k_nsscc NSS_CC_GEPHY0_ARES>;
-> 
->                 reset-names = "gephy0_sys",
-> 
->                         "gephy0_soft";
-> 
->         };
-> 
-> 
-> 
->         /* initial clocks and resets for second phy */
-> 
->         phy1 {
-> 
->                 reg = <1>;
-> 
->                 clocks = <&qca8k_nsscc NSS_CC_GEPHY1_SYS_CLK>;
-> 
->                 clock-names = "gephy1_sys";
-> 
->                 resets = <&qca8k_nsscc NSS_CC_GEPHY1_SYS_ARES>,
-> 
->                        <&qca8k_nsscc NSS_CC_GEPHY1_ARES>;
-> 
->                 reset-names = "gephy1_sys",
-> 
->                         "gephy1_soft";
-> 
->         };
-> 
-> 
-> 
->         /* initial clocks and resets for third phy */
-> 
->         phy2 {
-> 
->                 reg = <2>;
-> 
->                 clocks = <&qca8k_nsscc NSS_CC_GEPHY2_SYS_CLK>;
-> 
->                 clock-names = "gephy2_sys";
->                 resets = <&qca8k_nsscc NSS_CC_GEPHY2_SYS_ARES>,
-> 
->                        <&qca8k_nsscc NSS_CC_GEPHY2_ARES>;
-> 
->                 reset-names = "gephy2_sys",
-> 
->                         "gephy2_soft";
-> 
->         };
-> 
-> 
-> 
->         /* initial clocks and resets for fourth phy */
-> 
->         phy3 {
-> 
->                 reg = <3>;
-> 
->                 clocks = <&qca8k_nsscc NSS_CC_GEPHY3_SYS_CLK>;
-> 
->                 clock-names = "gephy3_sys";
-> 
->                 resets = <&qca8k_nsscc NSS_CC_GEPHY3_SYS_ARES>,
-> 
->                        <&qca8k_nsscc NSS_CC_GEPHY3_ARES>;
-> 
->                 reset-names = "gephy3_sys",
-> 
->                         "gephy3_soft";
-> 
->         };
-
-This is starting to look O.K.
-
->         /* initial clocks and resets for pcs0. */
-> 
->         pcs0 {
-> 
->                 reg = <4>;
-> 
->                 clocks = <&qca8k_nsscc NSS_CC_SRDS0_SYS_CLK>;
-> 
->                 clock-names = "srds0_sys";
-> 
->                 resets = <&qca8k_nsscc NSS_CC_SRDS0_SYS_ARES>;
-> 
->                 reset-names = "srds0_sys";
-> 
->         };
-> 
-> 
-> 
->         /* initial clocks and resets for pcs1. */
-> 
->         pcs1 {
-> 
->                 reg = <5>;
-> 
->                 clocks = <&qca8k_nsscc NSS_CC_SRDS1_SYS_CLK>;
-> 
->                 clock-names = "srds1_sys";
-> 
->                 resets = <&qca8k_nsscc NSS_CC_SRDS1_SYS_ARES>;
-> 
->                 reset-names = "srds1_sys";
-> 
->         };
-
-PCS will need further work and thinking about. Typically, they are not
-described in DT for a PHY. In general, a PCS in a PHY does not have a
-driver of its own, the firmware in the PHY mostly controls it, not
-Linux. For the moment, lets leave them as they are, and we will come
-back to them once we get the clocks and resets correctly described.
-
-     Andrew
+-- 
+Julien Massot
 
