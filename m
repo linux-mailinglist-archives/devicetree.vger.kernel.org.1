@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-30159-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30160-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9706C826AC9
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 10:35:11 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 25D88826B01
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 10:44:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AF81C1C21DD3
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 09:35:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AD2E3282A5A
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 09:44:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABBB111709;
-	Mon,  8 Jan 2024 09:34:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECCBE11CB0;
+	Mon,  8 Jan 2024 09:44:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fRnSSqtq"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="By94m35f"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
+Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3170134BD
-	for <devicetree@vger.kernel.org>; Mon,  8 Jan 2024 09:34:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59AB613FE4
+	for <devicetree@vger.kernel.org>; Mon,  8 Jan 2024 09:44:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-555bd21f9fdso1725694a12.0
-        for <devicetree@vger.kernel.org>; Mon, 08 Jan 2024 01:34:45 -0800 (PST)
+Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-557c188f313so611081a12.1
+        for <devicetree@vger.kernel.org>; Mon, 08 Jan 2024 01:44:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704706484; x=1705311284; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1704707067; x=1705311867; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=lbx6V4QDjU9SEWWTzLL3est+9/yIVjRXKDyoTqqiNHI=;
-        b=fRnSSqtqtvMluzIeqFEGJWYSiDFzI1zRaiST3VJMFEouavpyKTnF4EGkP0/FuNlrUg
-         eDjjHrY1fU3HlNaCiXuqkVDdVFJgI2e+TamJnkj/YxE1fVXudmcwiTU/9JsBoUUoToDh
-         w1CnofakKicNU48BnhgVlZ40d4pGM4di0Zi+dq6CRwdr7oOZV/x+6+ACboih+VAsZJDr
-         ZZ6llcnC6543OQ0TRyBtj11/82AOsF8UKjDq+1Xy4LB732y/TIVKTY8wnf8GNQEYOHhC
-         Ua/Z+dVt4HEt/GJ0OFj8qIYlyOWy7zH280BnOShXfK/cHvC5TCsGED0gp99B9OYaq0C3
-         LPqA==
+        bh=lBTM4p91xiyIakQ7lifaR+/L5ks2liOhF9cL3JRcytM=;
+        b=By94m35fO1WtnwrRQ+xcoMPajyQDpu8HfenWaD9EGVq1YqSh72sEo8Q4AiiOiL+nWg
+         Wmvzu497r4cVZoLsP4zYLR1HYtTXy/aiEuiPz3Hp7xvVf2/ww7DXZjgeJoHB2xkCZ9m0
+         B+h297aFx0HhJSWAdfJ8P9xdAk6vv3znvujECHyIBqHk4RpS0gqpRtw9PPKHGKUFxs/h
+         hjvqutUzGH0k3EVhTxWdz5ukC8iugysMgJtR0QGnOarRthhrSr+nqYzAxT78mi6Gm/N3
+         MgJ1Wcy1aZ09xrEVLu1mNsK7WpP+gWf9jYKwc6weh2+3yQLLtghE3uXCk4p6IK+OEASf
+         wY0A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704706484; x=1705311284;
+        d=1e100.net; s=20230601; t=1704707068; x=1705311868;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=lbx6V4QDjU9SEWWTzLL3est+9/yIVjRXKDyoTqqiNHI=;
-        b=m0rOMv6Jw4BJbt00DHYtFB1+cKFA1TluuAs3oHUCMW8mwu0Pct/gyq1kDWiYLxcg0S
-         QHBBxNvhO+y0t8oWheQwlSIwdvPp4arSem6CT8vZsRVJjuxuMJpxvTCk+fifobAn0tZY
-         nw+mg9EWAa6wif6W3CcJEwxr9njHdb4XP5Ww+h3+kWYi7G1t7j82pI6lrjQYQ0EDvduP
-         fa5TjCa7vvHhDpAWz33F+2I23AY+DrBbKKtwFrIIpk/0L6NTJ243lGx7BvuFvx67UfND
-         3VwSGZKRY5MLf36RdiuF1mzZTnM9skn2y2TyK6wrghGFwvsQG8fpGo+t6Xe+1XDM3vjA
-         QvDg==
-X-Gm-Message-State: AOJu0YwkgChh1iKDrkvEndpn1+CJKUdIL0dxBX3+mIN77Ukfmpalp3NG
-	qohB0R3pZ4G1+X2fcWdP+w3TZY+KQZkmYA==
-X-Google-Smtp-Source: AGHT+IHZHpyk4pVQx8sQ614mOgBZUEXA10R5BBwI7j7e6VPNrlPWBToxLo8lr4crVGrMa6z5jkE79A==
-X-Received: by 2002:a50:934a:0:b0:557:375e:6dfa with SMTP id n10-20020a50934a000000b00557375e6dfamr2124638eda.13.1704706484289;
-        Mon, 08 Jan 2024 01:34:44 -0800 (PST)
+        bh=lBTM4p91xiyIakQ7lifaR+/L5ks2liOhF9cL3JRcytM=;
+        b=l7CRIiTjC0xnSFXOOQPmMmDWvqBBlnMZWAPx4AoBnF1J0tjuZvsX8SbdQSFjupemJM
+         We7oKgpschM5UyaU/uwwoYA8tVvpPSRU9YnCDxVKhdB7Hc9M4QrC2SUclD5VASE+12yk
+         5NWZKSTKiZe5IC/F5TfmoG/DviLA7MnbnFKOdFIQOkb2grWUOO8eDQKWCLWic2bqdu8J
+         6tX7upyANWdrZjiTOECygRJIPLuOWa6WZIDtxqfQMNL4qzpbnU6Lhcy9iPNBSahmytbd
+         YmAFK6HuHBghQg4FMLWF986QFVi0GmU1NFRK3yVwOv2Q/7dPbTH+sitFxZd8zhlntJ69
+         sdpA==
+X-Gm-Message-State: AOJu0YyN//21ENVkyMwcSeGty1MAzdU0JGfJMYywckQHJXnagU0ynevc
+	MtchrzwXccNLzlt+Yrn2XH9dPDfvlKiTQQ==
+X-Google-Smtp-Source: AGHT+IHgd2Ld22/tWfwOkwfLPcMM3STU1AtC1pRCGdOUdxPOVnC0D7xBIdf53zvtjFCEUO69GPgU2w==
+X-Received: by 2002:a05:6402:b45:b0:557:ddbe:f48b with SMTP id bx5-20020a0564020b4500b00557ddbef48bmr71751edb.2.1704707067687;
+        Mon, 08 Jan 2024 01:44:27 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.223.112])
-        by smtp.gmail.com with ESMTPSA id el15-20020a056402360f00b005574af4acd0sm3008380edb.83.2024.01.08.01.34.42
+        by smtp.gmail.com with ESMTPSA id f24-20020a50a6d8000000b00555ec66a440sm4203598edc.59.2024.01.08.01.44.25
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 08 Jan 2024 01:34:43 -0800 (PST)
-Message-ID: <bd105131-6c77-4ade-b7c4-cbabfb102bde@linaro.org>
-Date: Mon, 8 Jan 2024 10:34:41 +0100
+        Mon, 08 Jan 2024 01:44:27 -0800 (PST)
+Message-ID: <a9997d11-99ee-4df7-b0ab-a8f45e4b5ad8@linaro.org>
+Date: Mon, 8 Jan 2024 10:44:24 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,27 +66,27 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V2 1/3] dt-bindings: arm64: mediatek: Add MT7988A and
- BPI-R4
+Subject: Re: [PATCH v2 0/4] reset: gpio: ASoC: shared GPIO resets
 Content-Language: en-US
-To: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+To: Chris Packham <Chris.Packham@alliedtelesis.co.nz>,
+ Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+ Banajit Goswami <bgoswami@quicinc.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Liam Girdwood
+ <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
  Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: Daniel Golle <daniel@makrotopia.org>, Hsin-Yi Wang <hsinyi@chromium.org>,
- =?UTF-8?Q?N=C3=ADcolas_F_=2E_R_=2E_A_=2E_Prado?= <nfraprado@collabora.com>,
- jason-ch chen <Jason-ch.Chen@mediatek.com>,
- Macpaul Lin <macpaul.lin@mediatek.com>,
- =?UTF-8?Q?Bernhard_Rosenkr=C3=A4nzer?= <bero@baylibre.com>,
- Sean Wang <sean.wang@mediatek.com>,
- Frank Wunderlich <frank-w@public-files.de>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- linux-kernel@vger.kernel.org, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?=
- <rafal@milecki.pl>
-References: <20240108085228.4727-1-zajec5@gmail.com>
- <20240108085228.4727-2-zajec5@gmail.com>
+ Conor Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+ "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
+ "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
+ "linux-sound@vger.kernel.org" <linux-sound@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Cc: Bartosz Golaszewski <brgl@bgdev.pl>,
+ Sean Anderson <sean.anderson@seco.com>
+References: <20240105155918.279657-1-krzysztof.kozlowski@linaro.org>
+ <d86f0d2c-40fc-44d2-94f6-e67068e55594@alliedtelesis.co.nz>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -132,19 +132,25 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240108085228.4727-2-zajec5@gmail.com>
+In-Reply-To: <d86f0d2c-40fc-44d2-94f6-e67068e55594@alliedtelesis.co.nz>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 08/01/2024 09:52, Rafał Miłecki wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
+On 07/01/2024 22:35, Chris Packham wrote:
+> Hi Krzysztof,
 > 
-> MT7988A is another MediaTek's SoC with just 1 device available right
-> now: Banana Pi BPI-R4.
+> On 6/01/24 04:59, Krzysztof Kozlowski wrote:
 > 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> Hi,
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+You quoting got broken.
+
+> 
+> 
+> 
+> I'll try and take these for a spin on my hardware. I think I'll need to update the pca954x mux driver along similar lines to your changes to the wsa884x. Do you happen to have an example of what the reset-controller usage looks like in a devicetree? I can probably figure it out based on the code but I figured I'd ask just in case you already had an example handy.
+
+Just add "reset-gpios" property in the device node, not the bus.
 
 Best regards,
 Krzysztof
