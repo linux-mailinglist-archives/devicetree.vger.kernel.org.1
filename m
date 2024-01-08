@@ -1,179 +1,130 @@
-Return-Path: <devicetree+bounces-30248-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30249-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4AEB827124
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 15:23:29 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 051F182712B
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 15:24:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 074441C21BD4
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 14:23:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A719828414D
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 14:24:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50BF047793;
-	Mon,  8 Jan 2024 14:22:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4ADF346450;
+	Mon,  8 Jan 2024 14:24:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="Z8T0L5q4"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="xJJewCu+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f66.google.com (mail-ed1-f66.google.com [209.85.208.66])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AD6046450
-	for <devicetree@vger.kernel.org>; Mon,  8 Jan 2024 14:22:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-ed1-f66.google.com with SMTP id 4fb4d7f45d1cf-555f95cc2e4so2062053a12.3
-        for <devicetree@vger.kernel.org>; Mon, 08 Jan 2024 06:22:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1704723759; x=1705328559; darn=vger.kernel.org;
-        h=in-reply-to:references:subject:cc:to:from:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=OMMgLl4XRQ9TLf0vUhTzomvNdXTeUOyP7FWSiUcr6oQ=;
-        b=Z8T0L5q4j5AqzRGryoPzRdRWGrL2nOridhnSiCHpPzMRMjY576uZ1tqfG3KUiMcRSX
-         gGmc0sB2rTI47mzYSeUJs0I0A4ItLpL2OvIWf7Fub3I0EGbtRFyTPwMq7pKp+43l1XxV
-         Ob1Ck8xLVwX0Dnv95ZsUQ1AmShw8+6yYlBOHyQQLtgf8fkI8qT+S9akIfp7HD46ztOPd
-         wkk+tB1WzGIY/pRrdXOvAhM+/bp3b8RHXve/Gc77x9HbuZxR5W67e1UVN9mFTpmtXeOq
-         rHMasYauoH9JbGIvgEziHufqa16BhwFQoD8dZnfodWu8n2trFYxnd7YL7+I806ikjmkF
-         R4iQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704723759; x=1705328559;
-        h=in-reply-to:references:subject:cc:to:from:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=OMMgLl4XRQ9TLf0vUhTzomvNdXTeUOyP7FWSiUcr6oQ=;
-        b=ea5DVaDNFSSlzvuwj0Vj46/xJZSORsSn8R7Q1KJQ3fMcmEnPEE2HBwRjant2VPWgVg
-         gY9eMAO1rwjU8tBCP/Ze9OUMR6fNdao9XwfQjSe1i+MRmj2THVMz6h7u6o2my7APu51/
-         Ux+t2uTrJArxukt36hyhutOdsyASoxTbT6GCngvIrzs8jOxGYlrpSyogi0i2FUcpam98
-         Wn+d9Q9XJOcaDpyL4SoBTUnt6K710fuk1PL5zcAWtkWfL/PpFYTKs4rBzL3ffAB9UIQG
-         IXpUJeBbRMAn/DlYh5U8I/haTQpOzdo5MxOMweJGkPN3zY+BG4hd7OZaSlRo1KGsntnW
-         //sA==
-X-Gm-Message-State: AOJu0Yx+eEiZN9rnI7DnnBlmnZGDQ71PCNbZePf8xULSKcp8Anx8PjEm
-	kQYeW2stsB2JZZZvq4Oo7X0WmFicgpx41A==
-X-Google-Smtp-Source: AGHT+IHemUG5qaZGoETj95zldC92QIk78YaPkA4snM+h6XObqyWR81gB9QZGYvlmTpVCVXCM/O+zLQ==
-X-Received: by 2002:a50:c29a:0:b0:557:aba8:631 with SMTP id o26-20020a50c29a000000b00557aba80631mr1026886edf.19.1704723759382;
-        Mon, 08 Jan 2024 06:22:39 -0800 (PST)
-Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id t8-20020a056402020800b0055712dec5a6sm4367215edv.2.2024.01.08.06.22.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 08 Jan 2024 06:22:39 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B348B405C7;
+	Mon,  8 Jan 2024 14:24:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1704723851;
+	bh=mc5HOamFYriYeumJK9D1W6NJdUvkZnUeuFa4C5EjT4U=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=xJJewCu+KvPzQrBNi+2a5MFjUmLSwERs67kGfo1ETpOrHxyqcC/pvQ1aC81P+0ueT
+	 QzBhhgaJOZuK1Jxt4/Hs32Lvf7xkh8rwihSifMjxAOFoRc38cvnj4CBOcP9dhtAiuz
+	 x2Wwov8BJSQ7tupXjNr4FiQQ5jaaZ2TzxMk4u05yo9DJ3Y2nPH9nI1jq05DRXJ9Rhh
+	 B33nCnK2BY9X+2QtZ9sdje4H3hZmWwpZja7F/bMLT68WeXyZUprXTaRFGL0DKX+yJv
+	 leYmMEsERtm04zjCvL5LNDTUx983NBAvkT/xSe22QqS+LuRUdMyoEIKO6plMBUJ/4S
+	 XR5gaOweUb/FQ==
+Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 64BFF378003D;
+	Mon,  8 Jan 2024 14:24:10 +0000 (UTC)
+Message-ID: <19f5ef6e-ecc1-4f6c-b6f1-8a729d170ef6@collabora.com>
+Date: Mon, 8 Jan 2024 15:24:09 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Mon, 08 Jan 2024 15:22:38 +0100
-Message-Id: <CY9E4ZCHOMWU.C18NR0H7V1QX@fairphone.com>
-From: "Luca Weiss" <luca.weiss@fairphone.com>
-To: "Konrad Dybcio" <konrad.dybcio@linaro.org>, "Andy Gross"
- <agross@kernel.org>, "Bjorn Andersson" <andersson@kernel.org>, "Rob
- Herring" <robh+dt@kernel.org>, "Krzysztof Kozlowski"
- <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley" <conor+dt@kernel.org>,
- "Bhupesh Sharma" <bhupesh.linux@gmail.com>, "David Heidelberg"
- <david@ixit.cz>, "Stephan Gerhold" <stephan@gerhold.net>
-Cc: <~postmarketos/upstreaming@lists.sr.ht>, <phone-devel@vger.kernel.org>,
- "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>,
- <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH RFT] arm64: dts: qcom: sm8350: Reenable crypto &
- cryptobam
-X-Mailer: aerc 0.15.2
-References: <20240108-sm8350-qce-v1-1-b7d586ff38af@fairphone.com>
- <a5923bf7-0a05-43bd-b282-b45e5653ac4d@linaro.org>
-In-Reply-To: <a5923bf7-0a05-43bd-b282-b45e5653ac4d@linaro.org>
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] clk: mediatek: add infracfg reset controller for
+ mt7988
+Content-Language: en-US
+To: frank-w@public-files.de, Frank Wunderlich <linux@fw-web.de>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Sam Shih <sam.shih@mediatek.com>, Daniel Golle <daniel@makrotopia.org>,
+ linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-mediatek@lists.infradead.org
+References: <20240105162056.43266-1-linux@fw-web.de>
+ <20240105162056.43266-3-linux@fw-web.de>
+ <717a21bb-de39-4f7d-913c-f2a20d8b02bd@collabora.com>
+ <D0CA0019-A61D-4843-B502-7F40DA619FB3@public-files.de>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <D0CA0019-A61D-4843-B502-7F40DA619FB3@public-files.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Mon Jan 8, 2024 at 3:18 PM CET, Konrad Dybcio wrote:
-> On 8.01.2024 14:49, Luca Weiss wrote:
-> > When num-channels and qcom,num-ees is not provided in devicetree, the
-> > driver will try to read these values from the registers during probe bu=
-t
-> > this fails if the interconnect is not on and then crashes the system.
-> >=20
-> > So we can provide these properties in devicetree (queried after patchin=
-g
-> > BAM driver to enable the necessary interconnect) so we can probe
-> > cryptobam without reading registers and then also use the QCE as
-> > expected.
->
-> This really feels a bit backwards.. Enable the resource to query the
-> hardware for numbers, so that said resource can be enabled, but
-> slightly later :/
+Il 08/01/24 14:46, Frank Wunderlich ha scritto:
+> Am 8. Januar 2024 11:12:26 MEZ schrieb AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>:
+>> Il 05/01/24 17:20, Frank Wunderlich ha scritto:
+>>> From: Frank Wunderlich <frank-w@public-files.de>
+>>>
+>>> Infracfg can also operate as reset controller, add support for it.
+>>>
+>>> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+>>> ---
+>>>    drivers/clk/mediatek/clk-mt7988-infracfg.c | 20 ++++++++++++++++++++
+>>>    1 file changed, 20 insertions(+)
+>>>
+>>> diff --git a/drivers/clk/mediatek/clk-mt7988-infracfg.c b/drivers/clk/mediatek/clk-mt7988-infracfg.c
+>>> index 8011ef278bea..1660a45349ff 100644
+>>> --- a/drivers/clk/mediatek/clk-mt7988-infracfg.c
+>>> +++ b/drivers/clk/mediatek/clk-mt7988-infracfg.c
+>>> @@ -14,6 +14,9 @@
+>>>    #include "clk-gate.h"
+>>>    #include "clk-mux.h"
+>>>    #include <dt-bindings/clock/mediatek,mt7988-clk.h>
+>>> +#include <dt-bindings/reset/mediatek,mt7988-resets.h>
+>>> +
+>>> +#define	INFRA_RST_SET_OFFSET	0x80
+>>>      static DEFINE_SPINLOCK(mt7988_clk_lock);
+>>>    @@ -249,12 +252,29 @@ static const struct mtk_gate infra_clks[] = {
+>>>    	GATE_INFRA3(CLK_INFRA_133M_PCIE_CK_P3, "infra_133m_pcie_ck_p3", "sysaxi_sel", 31),
+>>>    };
+>>>    +static u16 infra_rst_ofs[] = {
+>>> +	INFRA_RST_SET_OFFSET,
+>>> +};
+>>> +
+>>> +static u16 infra_idx_map[] = {
+>>> +	[MT7988_INFRA_RST0_THERM_CTRL_SWRST] = 0 * RST_NR_PER_BANK + 9,
+>>
+>> The MT7988A datasheet says that INFRA_RST0 bit 9 is CONN2EMI_M0_GALS_SLV_SWRST, so
+>> this is wrong: THERM_CTRL_SWRST is in the RST1 register, bit 9.
+>>
+>> Also, I'm sure that you really want to add the PCIe MAC reset bit as well, to be
+>> used with the PCIe driver...
+>>
+>> [MT7988_INFRA_RST0_PEXTP_MAC_SWRST] = 0 * RST_NR_PER_BANK + 6,
+>> [MT7988_INFRA_RST1_THERM_CTRL_SWRST] = 1 * RST_NR_PER_BANK + 9,
+> 
+> Yes you are right...i have only rst1 as screenshot,need to get the full datasheet or can you tell me base address for rst0? Need to change value of INFRA_RST_SET_OFFSET then to rst0 and check RST_NR_PER_BANK to be correct.
 
-If you think adding interconnect support to driver and dtsi is better,
-let me know.
+The datasheet is public ... [1] has it in the Resources paragraph :-)
 
-Stephan (+CC) mentioned it should be okay like this *shrug*
+Anyway, since I already have it here in front of me...
 
-For the record, this is the same way I got the values for sc7280[0] and
-sm6350[1].
+10001070 INFRA_GLOBALCON_RST0_SET
+10001080 INFRA_GLOBALCON_RST1_SET
 
-[0] https://lore.kernel.org/linux-arm-msm/20231229-sc7280-cryptobam-fixup-v=
-1-1-bd8f68589b80@fairphone.com/
-[1] https://lore.kernel.org/linux-arm-msm/20240105-sm6350-qce-v1-0-416e5c73=
-19ac@fairphone.com/
+[1]: https://wiki.banana-pi.org/Banana_Pi_BPI-R4
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi b/arch/arm64/boot/dts/qco=
-m/sm8350.dtsi
-index b46236235b7f..cd4dd9852d9e 100644
---- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
-@@ -1756,8 +1756,8 @@ cryptobam: dma-controller@1dc4000 {
- 			qcom,controlled-remotely;
- 			iommus =3D <&apps_smmu 0x594 0x0011>,
- 				 <&apps_smmu 0x596 0x0011>;
--			/* FIXME: Probing BAM DMA causes some abort and system hang */
--			status =3D "fail";
-+			interconnects =3D <&aggre2_noc MASTER_CRYPTO 0 &mc_virt SLAVE_EBI1 0>;
-+			interconnect-names =3D "memory";
- 		};
-=20
- 		crypto: crypto@1dfa000 {
-diff --git a/drivers/dma/qcom/bam_dma.c b/drivers/dma/qcom/bam_dma.c
-index 5e7d332731e0..9de28f615639 100644
---- a/drivers/dma/qcom/bam_dma.c
-+++ b/drivers/dma/qcom/bam_dma.c
-@@ -40,6 +40,7 @@
- #include <linux/circ_buf.h>
- #include <linux/clk.h>
- #include <linux/dmaengine.h>
-+#include <linux/interconnect.h>
- #include <linux/pm_runtime.h>
-=20
- #include "../dmaengine.h"
-@@ -394,6 +395,7 @@ struct bam_device {
- 	const struct reg_offset_data *layout;
-=20
- 	struct clk *bamclk;
-+	struct icc_path *mem_path;
- 	int irq;
-=20
- 	/* dma start transaction tasklet */
-@@ -1206,6 +1208,7 @@ static int bam_init(struct bam_device *bdev)
- 		bdev->num_channels =3D val & BAM_NUM_PIPES_MASK;
- 	}
-=20
-+	printk(KERN_ERR "%s:%d DBG num_ees=3D%u num_channels=3D%u\n", __func__, _=
-_LINE__, bdev->num_ees, bdev->num_channels);
- 	/* Reset BAM now if fully controlled locally */
- 	if (!bdev->controlled_remotely && !bdev->powered_remotely)
- 		bam_reset(bdev);
-@@ -1298,6 +1301,14 @@ static int bam_dma_probe(struct platform_device *pde=
-v)
- 		return ret;
- 	}
-=20
-+	bdev->mem_path =3D devm_of_icc_get(bdev->dev, "memory");
-+	if (IS_ERR(bdev->mem_path))
-+		return PTR_ERR(bdev->mem_path);
-+
-+	ret =3D icc_set_bw(bdev->mem_path, 1, 1);
-+	if (ret)
-+		return ret;
-+
- 	ret =3D bam_init(bdev);
- 	if (ret)
- 		goto err_disable_clk;
+Cheers,
+Angelo
+
 
