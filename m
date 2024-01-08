@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-30346-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30347-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 759B3827895
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 20:30:10 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 156848278A5
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 20:36:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D009FB2104B
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 19:30:07 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 500F2B20D3A
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 19:36:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDF744645C;
-	Mon,  8 Jan 2024 19:30:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 764D64596B;
+	Mon,  8 Jan 2024 19:36:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="boh5onHu"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="bu6gTd+5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA4D5537E3
-	for <devicetree@vger.kernel.org>; Mon,  8 Jan 2024 19:30:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3D9253811
+	for <devicetree@vger.kernel.org>; Mon,  8 Jan 2024 19:36:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-5537dd673e5so1864055a12.0
-        for <devicetree@vger.kernel.org>; Mon, 08 Jan 2024 11:30:00 -0800 (PST)
+Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-3366e78d872so2365307f8f.3
+        for <devicetree@vger.kernel.org>; Mon, 08 Jan 2024 11:36:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704742199; x=1705346999; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1704742596; x=1705347396; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=fQIGvC3B84QK5cy6jpGTUHpfklayyMVGJTSNMpLqXZU=;
-        b=boh5onHu4tQDLYH3f7Z2hFYQX4G/njtR0zBB7iVYd2gZDuAWKZ3D7epRmnya9sdFGr
-         OFO2sIn9pecuwSkSOdmdGDJywaw+gvDfkLCgbcv/6vX/NDtzMT4KqRXrrERNUw6neQO5
-         lEBW0IS/BA+8M9Rg1SmourwTV4nMO8OSakjZHrFi9DED5GyYd8BtCIDtuVIQTjklmeWT
-         q7Vku0LmqHKNo+T+pe8tH4hOcMptt+nNWkHpQAkfcusMTpiJ8tCSgXjNxLic3oZ/zr5g
-         qPwbVvO53Ik9vkm8dAs+gptZgOWQqySLZ3jkukJtlaQWwUatIPqiHv+YCW4Zgv1gexej
-         8eOQ==
+        bh=ooq6Y/Bu2G6JvyfUEidd2TCbjg/tonoTWRKQtOf1ea4=;
+        b=bu6gTd+57Zt92vtZYfzgE98F8zr16r86kZuzSA2YK4C29YVArXgEFDrBrK/7uEzqq7
+         bkGH/6/Z+jo8tASdoY3Nx83/Gm6brV6vu8O0s/zCKq9Vyk+E434BgNqYSe5UA7cyldXm
+         FxQQ0awe9M3R1S2k9nZAwjXFHERDTH4PdqYuyJ3v2y65QeMJwBBnA3dBkV27bZ2gubY9
+         dzzxvQAUZhFtKTWzr9kB26R+SvacnAclXtK/VC/zNUIu7hkjXdKHcfEdv9jbPsXxqXxf
+         hk8hh4hVi+RFk1Vy61ymLEl4LlI/okX9DpyJdkhu1tEkeNpqma/qRdlj1WZOmswkwtZs
+         tN1w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704742199; x=1705346999;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1704742596; x=1705347396;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=fQIGvC3B84QK5cy6jpGTUHpfklayyMVGJTSNMpLqXZU=;
-        b=nWZR743mZjIjbQCCr4ELHKgDO2pkA0/WUuXrpzD3F999Jao0R6zdS36JttSOG31/Iv
-         DcI40Qmona12EczK1I4sROBSiQag5xo6aWSXyyArjCbal8pw1g3VvjiOGf5X28KiRl30
-         vmLKyrRTSm2zdp2yjvIls+dciIgmnElIMciZ7YyOtg9RdpRgEdmuH29SZTlnqLwffxsI
-         w/QHD0feu90P8uhtXAp0UcPoRH0GZ1Ptq9uKw2lEOHCunIay0XU2znGIUFMBHj/gRdW2
-         2MsuWIO1riH6mWHM0DbG/KjFJXWWZ1jKmrH7vaRqHJPc566i1wkoIpQnJdSQwdBqXS/P
-         6gdg==
-X-Gm-Message-State: AOJu0YxikFFBBuGfC6S9gTjcxnryMM1ixHFhd2vjZdrDjQoGohuj29Zx
-	gguTCP16fF59Y2nz49E/lhX0SOq9mJiUyQ==
-X-Google-Smtp-Source: AGHT+IFtYHpiHrDCzL3b/pxXTojRttl/1NKDVZalEwcDBEluD0lppIhmhbQA9MVn5L1T46+2HjV5eQ==
-X-Received: by 2002:a50:d59a:0:b0:554:5ab4:85a0 with SMTP id v26-20020a50d59a000000b005545ab485a0mr2715915edi.81.1704742199074;
-        Mon, 08 Jan 2024 11:29:59 -0800 (PST)
+        bh=ooq6Y/Bu2G6JvyfUEidd2TCbjg/tonoTWRKQtOf1ea4=;
+        b=D/Mw3nSFHl8TXAM/UZACPJACKi3lcAQFruKpmxniMjVcxtpZEHclkbRG7ayE/nSjFM
+         z0BUmEp3hQJk0GGzzGOrOKzK4yeJQetiYDMNB1sIa582gHrVpiIxrOINT2tNiwlPGv9Y
+         ZbYUK6BLiIfuYbfHEz9i8u713XgHhJnkTouADj9XtFK1ZjJWIEd4Uts9Eb3xzftvV1ou
+         V25Asv7X0K62yLw0OSiDGyzMsPQDZ5QeaZC3CAYjvIuOvGMts0K42PLhsiUH4GmkHK1S
+         jJ2Gqm/aEyghC7bxAybxOMts/YSueTA0iyi8S6lcwTgrJuKb5fsdzq+A4j4fprDe/cIa
+         vQNQ==
+X-Gm-Message-State: AOJu0YygDEF3ygTrn/TM3JZ9pjx+kBBsMyYuyCtXrqVC+Gp0/QrMVGFB
+	vVPlMEyp9rDrUX49tUKgNdku47CTij9BlA==
+X-Google-Smtp-Source: AGHT+IEycGvY/C4DqA9z7Su+zmZMsZIZzzn+/DcKOqASsrM2CwBLnUrpB5NteqL4eWP5a3kZdMkDXQ==
+X-Received: by 2002:a7b:c44f:0:b0:40e:4755:a52f with SMTP id l15-20020a7bc44f000000b0040e4755a52fmr483812wmi.230.1704742595995;
+        Mon, 08 Jan 2024 11:36:35 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.223.112])
-        by smtp.gmail.com with ESMTPSA id e11-20020a056402104b00b0055534d5e75csm148417edu.6.2024.01.08.11.29.57
+        by smtp.gmail.com with ESMTPSA id q14-20020a17090622ce00b00a2ace215a78sm184056eja.114.2024.01.08.11.36.33
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 08 Jan 2024 11:29:58 -0800 (PST)
-Message-ID: <069b44ce-5d95-4d39-91f0-5167a5d941b1@linaro.org>
-Date: Mon, 8 Jan 2024 20:29:57 +0100
+        Mon, 08 Jan 2024 11:36:35 -0800 (PST)
+Message-ID: <1e1ef0a0-6639-4a4d-9b4e-50bcee3fb3c5@linaro.org>
+Date: Mon, 8 Jan 2024 20:36:33 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,21 +66,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 3/3] w1: add UART w1 bus driver
+Subject: Re: [PATCH v7 1/4] dt-bindings: soc: sophgo: Add Sophgo system
+ control module
 Content-Language: en-US
-To: Christoph Winklhofer <cj.winklhofer@gmail.com>,
- Jiri Slaby <jirislaby@kernel.org>
-Cc: Rob Herring <robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Rob Herring <robh@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Jonathan Corbet <corbet@lwn.net>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
- linux-doc@vger.kernel.org
-References: <20240106-w1-uart-v4-0-7fe1378a8b3e@gmail.com>
- <20240106-w1-uart-v4-3-7fe1378a8b3e@gmail.com>
- <5ff1d706-9f06-4eb6-bc86-75f933e54118@kernel.org>
- <ZZw46ZQ5JoxlWflG@cjw-notebook>
+To: Chen Wang <unicorn_wang@outlook.com>, Chen Wang <unicornxw@gmail.com>,
+ aou@eecs.berkeley.edu, chao.wei@sophgo.com, conor@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
+ palmer@dabbelt.com, paul.walmsley@sifive.com, richardcochran@gmail.com,
+ robh+dt@kernel.org, sboyd@kernel.org, devicetree@vger.kernel.org,
+ linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-riscv@lists.infradead.org, haijiao.liu@sophgo.com,
+ xiaoguang.xing@sophgo.com, guoren@kernel.org, jszhang@kernel.org,
+ inochiama@outlook.com, samuel.holland@sifive.com
+References: <cover.1704694903.git.unicorn_wang@outlook.com>
+ <acebc88db3e5fcd2a2607b56842af7443a6e1289.1704694903.git.unicorn_wang@outlook.com>
+ <cc7cc943-7242-4fd1-9b56-3ece0a418e05@linaro.org>
+ <MA0P287MB2822E54A6DD36F914DB56E98FE6B2@MA0P287MB2822.INDP287.PROD.OUTLOOK.COM>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -126,30 +127,69 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <ZZw46ZQ5JoxlWflG@cjw-notebook>
+In-Reply-To: <MA0P287MB2822E54A6DD36F914DB56E98FE6B2@MA0P287MB2822.INDP287.PROD.OUTLOOK.COM>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 08/01/2024 19:03, Christoph Winklhofer wrote:
-> ...
->>> +static int w1_uart_serdev_receive_buf(struct serdev_device *serdev,
->>> +				      const unsigned char *buf, size_t count)
+On 08/01/2024 08:20, Chen Wang wrote:
+> 
+> On 2024/1/8 15:03, Krzysztof Kozlowski wrote:
+>> On 08/01/2024 07:48, Chen Wang wrote:
+>>> From: Chen Wang <unicorn_wang@outlook.com>
+>>>
+>>> Add documentation to describe Sophgo System Controller for SG2042.
+>>>
+>>> Signed-off-by: Chen Wang <unicorn_wang@outlook.com>
+>>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>> ---
+>>>   .../soc/sophgo/sophgo,sg2042-sysctrl.yaml     | 34 +++++++++++++++++++
+>>>   1 file changed, 34 insertions(+)
+>>>   create mode 100644 Documentation/devicetree/bindings/soc/sophgo/sophgo,sg2042-sysctrl.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/soc/sophgo/sophgo,sg2042-sysctrl.yaml b/Documentation/devicetree/bindings/soc/sophgo/sophgo,sg2042-sysctrl.yaml
+>>> new file mode 100644
+>>> index 000000000000..1ec1eaa55598
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/soc/sophgo/sophgo,sg2042-sysctrl.yaml
+>>> @@ -0,0 +1,34 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/soc/sophgo/sophgo,sg2042-sysctrl.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: Sophgo SG2042 SoC system controller
+>>> +
+>>> +maintainers:
+>>> +  - Chen Wang <unicorn_wang@outlook.com>
+>>> +
+>>> +description:
+>>> +  The Sophgo SG2042 SoC system controller provides register information such
+>>> +  as offset, mask and shift that can be used by other modules, such as clocks.
+>> "offset, mask and shift" is not a register information stored in
+>> syscons. Are you really sure, that your system controller hardware
+>> stores offsets of some other registers?
 >>
->> serdev already uses u8 * here. You are basing on the top of some old tree.
+>> Show as some example of such offsets, masks and shifts provided by this
+>> hardware.
+> 
+> The system control module is defined here: 
+> https://github.com/sophgo/sophgo-doc/blob/main/SG2042/TRM/source/system-control.rst. 
+> It contains some registers related to pll and gates.
 
-Old? Your change came for v6.8 and this was sent when all trees were
-based on v6.7-rc1. What newer tree could have this been?
+I do not see there registers providing shifts and offsets... just values.
 
-> Yes, this patch is based on the w1-next branch of
->   git://git.kernel.org/pub/scm/linux/kernel/git/krzk/linux-w1.git
-> was not sure from where to start. I guess that this change is probably in
-> the w1-tree after the next stable release.
+> 
+> Some other clocks registars are defined in 
+> https://github.com/sophgo/sophgo-doc/blob/main/SG2042/TRM/source/clock.rst.
+> 
+> memory-map is defined in 
+> https://github.com/sophgo/sophgo-doc/blob/main/SG2042/TRM/source/mmap.rst
 
-That's a timing issue. For that particular case, where this was
-targeting next-next cycle, you should have based this on linux-next. In
-other cases this would require cross-tree merging due to dependencies
-which none of us were aware, so no harm.
 
+Please fix the wording because it does not make sense. System controller
+does not provide register information. Your datasheet provides register
+information.
 
 Best regards,
 Krzysztof
