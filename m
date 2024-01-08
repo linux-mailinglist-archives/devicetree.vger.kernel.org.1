@@ -1,59 +1,59 @@
-Return-Path: <devicetree+bounces-30355-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30356-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81742827905
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 21:16:42 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B5499827907
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 21:16:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A83C11C22FE5
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 20:16:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 63E872844AB
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 20:16:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAC5755C1A;
-	Mon,  8 Jan 2024 20:16:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0923855C3D;
+	Mon,  8 Jan 2024 20:16:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="len7vc+0"
+	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="dFl0xiqT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
+Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F5405577D
-	for <devicetree@vger.kernel.org>; Mon,  8 Jan 2024 20:16:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69C1955C0B
+	for <devicetree@vger.kernel.org>; Mon,  8 Jan 2024 20:16:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amarulasolutions.com
-Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-5534dcfdd61so3969769a12.0
-        for <devicetree@vger.kernel.org>; Mon, 08 Jan 2024 12:16:25 -0800 (PST)
+Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-557f4fd1278so111590a12.3
+        for <devicetree@vger.kernel.org>; Mon, 08 Jan 2024 12:16:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google; t=1704744984; x=1705349784; darn=vger.kernel.org;
+        d=amarulasolutions.com; s=google; t=1704744986; x=1705349786; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=mmQnQzOW0HVCglZmRdERbSkiK/7LfpA/GFNr/QR6hMQ=;
-        b=len7vc+0zau/hN4mQd6296DfQjx47rOgIvNbijgyy2t+BJghw+Q2lZmedIM9Nj9Gt7
-         eLnENrSQHcnoJs3KxmHR6uuzPuIfvEB6j/cUclSBSwlIR4jORR2oBQXh06yuQUBbApBp
-         94tO9PxGNsojTpSiW9L3KFF4Yd9rrTawCLcQU=
+        bh=/mPDNXnb7QOonc0RYCjpM23Kv+HuP4dW7ug+KwP2qeg=;
+        b=dFl0xiqTIoP0+gAHr8tWcEcWltqmPv3i7MhYW9nZdsDpraOPvFHXLHZqkgAhQgj9Dr
+         DnPglBhHGy5xkziNlqo3EaFVsNgLz15tKeVDLGq0mlmBlavBm6Q1WKgoWArRLYy9+ETL
+         NMo7CLg5DwnvseaBO62/t6gNriieAfdYS30vA=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704744984; x=1705349784;
+        d=1e100.net; s=20230601; t=1704744986; x=1705349786;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=mmQnQzOW0HVCglZmRdERbSkiK/7LfpA/GFNr/QR6hMQ=;
-        b=l7LjQbVdjG7gIxwi/5cT6D7ltp9E6tblS0AI6LRHgVUhUmuL/oSYmU9U5N1GzCJx3d
-         VajTCz/mqd46s6ElEbozKpPq2JBYWcQ9vbBx6QDG+kYpEtmbaa5yHqzm5Iq7W2e6dNUp
-         /9hNOxaejCvjohxrQilRkQ3Xx6Ze2+RnEvZLuiDI1XFUN77/MtKmBQ/8iep2tqwkc7W9
-         b4JTsHh2dQrtUK8bEDOdulbyDSJPCXu3LSjKrgxehySRljGHiSpwJa8S4jemcILKy9ea
-         MaAVIzeyLt5NLulhrlqSz/klqIPUQpI0ueIGEzSbLD2+5sSUg14XIv0LVkFonibBTkWS
-         KY2g==
-X-Gm-Message-State: AOJu0YzPTDT/YxTF7OAPrTH4n1aNGg4Ghq3gbVaIU1DppjJCtPbeaYQG
-	zOSYzbGLbtYj+eAk7TTvaaJjNSxx1IcihQ==
-X-Google-Smtp-Source: AGHT+IGkQ1MYwYhPQpHmfUvm48FJCD16KRlfqQTmXiok9BCXVdNdaFNjBMf2+daPgMlNsn+/b/5DcA==
-X-Received: by 2002:aa7:c6d2:0:b0:557:14da:db43 with SMTP id b18-20020aa7c6d2000000b0055714dadb43mr302217eds.6.1704744984573;
-        Mon, 08 Jan 2024 12:16:24 -0800 (PST)
+        bh=/mPDNXnb7QOonc0RYCjpM23Kv+HuP4dW7ug+KwP2qeg=;
+        b=Lq1qsxDiZjIkCfgUYfneI0Cob/qg86/Gy1sgpOZ0NrJlqvVuWSIaQ5QGKlOpR4lPJ5
+         ff7mdGcAorC7Dn6zGqDUYmJw6iqKhf+iZ1fi4uK4kHuQY+Xnmio5iR+7fYuFC/0+7lgj
+         SQFfkCpv1uhokNvjvTGSFy2GsuiAXfJ8qCLo8IGWaQeNEPmK6L75yBCRx4q7/VY7JHrG
+         msitJbKBvo9EwfEGn0r+BprwjtLDC4mjUur3oxCn5C1aXv5PbZi/F/atvuTdJzUDoMA1
+         oOQy++8jm4WQUsLUfp6pSVWw9PghHFIl/mXzfmQ3hv3HDPhb6rl2y5E7ysD0sHr8oUKK
+         4A9w==
+X-Gm-Message-State: AOJu0Yy3T4e2xSve1ZPWw23ANkT5SDSZglVzsKeQBkO17aCJXeh2rgzH
+	qIXvGtr+N3p+LE5/z0PFT3mMh8bh4uFPkw==
+X-Google-Smtp-Source: AGHT+IHaaI1NSukORL4e4ZmL8fcZPEpDIgOEx1JCxKvw+wV6NYJajXGzcYKLAKRo8vBhmJzZt/w4Hg==
+X-Received: by 2002:a50:d481:0:b0:553:faf6:4c8d with SMTP id s1-20020a50d481000000b00553faf64c8dmr2556328edi.35.1704744985694;
+        Mon, 08 Jan 2024 12:16:25 -0800 (PST)
 Received: from dario-ThinkPad-T14s-Gen-2i.homenet.telecomitalia.it (host-87-2-38-81.retail.telecomitalia.it. [87.2.38.81])
-        by smtp.gmail.com with ESMTPSA id by26-20020a0564021b1a00b00555fd008741sm173699edb.95.2024.01.08.12.16.23
+        by smtp.gmail.com with ESMTPSA id by26-20020a0564021b1a00b00555fd008741sm173699edb.95.2024.01.08.12.16.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Jan 2024 12:16:24 -0800 (PST)
+        Mon, 08 Jan 2024 12:16:25 -0800 (PST)
 From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
 To: linux-kernel@vger.kernel.org
 Cc: linux-amarula@amarulasolutions.com,
@@ -66,9 +66,9 @@ Cc: linux-amarula@amarulasolutions.com,
 	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-stm32@st-md-mailman.stormreply.com
-Subject: [PATCH v5 2/8] ARM: dts: stm32: add DSI support on stm32f769
-Date: Mon,  8 Jan 2024 21:15:47 +0100
-Message-ID: <20240108201618.2798649-3-dario.binacchi@amarulasolutions.com>
+Subject: [PATCH v5 3/8] ARM: dts: stm32: rename mmc_vcard to vcc-3v3 on stm32f769-disco
+Date: Mon,  8 Jan 2024 21:15:48 +0100
+Message-ID: <20240108201618.2798649-4-dario.binacchi@amarulasolutions.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240108201618.2798649-1-dario.binacchi@amarulasolutions.com>
 References: <20240108201618.2798649-1-dario.binacchi@amarulasolutions.com>
@@ -80,46 +80,47 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Add support for MIPI DSI Host controller. Since MIPI DSI is not
-available on stm32f746, the patch adds the "stm32f769.dtsi" file
-containing the dsi node inside.
+In the schematics of document UM2033, the power supply for the micro SD
+card is the same 3v3 voltage that is used to power other devices on the
+board. By generalizing the name of the voltage regulator, it can be
+referenced by other nodes in the device tree without creating
+misunderstandings.
+
+This patch is preparatory for future developments.
 
 Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
 ---
 
 (no changes since v1)
 
- arch/arm/boot/dts/st/stm32f769.dtsi | 21 +++++++++++++++++++++
- 1 file changed, 21 insertions(+)
- create mode 100644 arch/arm/boot/dts/st/stm32f769.dtsi
+ arch/arm/boot/dts/st/stm32f769-disco.dts | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/arch/arm/boot/dts/st/stm32f769.dtsi b/arch/arm/boot/dts/st/stm32f769.dtsi
-new file mode 100644
-index 000000000000..e09184f7079c
---- /dev/null
-+++ b/arch/arm/boot/dts/st/stm32f769.dtsi
-@@ -0,0 +1,21 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (c) 2023 Dario Binacchi <dario.binacchi@amarulasolutions.com>
-+ */
-+
-+#include "stm32f746.dtsi"
-+
-+/ {
-+	soc {
-+		dsi: dsi@40016c00 {
-+			compatible = "st,stm32-dsi";
-+			reg = <0x40016c00 0x800>;
-+			interrupts = <98>;
-+			clocks = <&rcc 1 CLK_F769_DSI>, <&clk_hse>;
-+			clock-names = "pclk", "ref";
-+			resets = <&rcc STM32F7_APB2_RESET(DSI)>;
-+			reset-names = "apb";
-+			status = "disabled";
-+		};
-+	};
-+};
+diff --git a/arch/arm/boot/dts/st/stm32f769-disco.dts b/arch/arm/boot/dts/st/stm32f769-disco.dts
+index 5d12ae25b327..8632bd866272 100644
+--- a/arch/arm/boot/dts/st/stm32f769-disco.dts
++++ b/arch/arm/boot/dts/st/stm32f769-disco.dts
+@@ -92,9 +92,9 @@ usbotg_hs_phy: usb-phy {
+ 		clock-names = "main_clk";
+ 	};
+ 
+-	mmc_vcard: mmc_vcard {
++	vcc_3v3: vcc_3v3 {
+ 		compatible = "regulator-fixed";
+-		regulator-name = "mmc_vcard";
++		regulator-name = "vcc_3v3";
+ 		regulator-min-microvolt = <3300000>;
+ 		regulator-max-microvolt = <3300000>;
+ 	};
+@@ -128,7 +128,7 @@ &rtc {
+ 
+ &sdio2 {
+ 	status = "okay";
+-	vmmc-supply = <&mmc_vcard>;
++	vmmc-supply = <&vcc_3v3>;
+ 	cd-gpios = <&gpioi 15 GPIO_ACTIVE_LOW>;
+ 	broken-cd;
+ 	pinctrl-names = "default", "opendrain", "sleep";
 -- 
 2.43.0
 
