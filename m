@@ -1,401 +1,138 @@
-Return-Path: <devicetree+bounces-30209-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30210-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E488826D9E
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 13:17:59 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 40F3B826DAE
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 13:21:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 71C401F229D9
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 12:17:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E9F5D1F211E3
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 12:21:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5ABF3FE52;
-	Mon,  8 Jan 2024 12:17:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6AD13FE56;
+	Mon,  8 Jan 2024 12:21:45 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F4073FE4C
-	for <devicetree@vger.kernel.org>; Mon,  8 Jan 2024 12:17:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1rMoZR-000761-BP; Mon, 08 Jan 2024 13:17:33 +0100
-Received: from [2a0a:edc0:0:900:1d::4e] (helo=lupine)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1rMoZP-001FLT-Rm; Mon, 08 Jan 2024 13:17:31 +0100
-Received: from pza by lupine with local (Exim 4.96)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1rMoZP-0008v2-2U;
-	Mon, 08 Jan 2024 13:17:31 +0100
-Message-ID: <c2abc08d1b442fdcba7c41e2e1cc1617516441b2.camel@pengutronix.de>
-Subject: Re: [PATCH v2 2/4] reset: Instantiate reset GPIO controller for
- shared reset-gpios
-From: Philipp Zabel <p.zabel@pengutronix.de>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Srinivas
- Kandagatla <srinivas.kandagatla@linaro.org>, Banajit Goswami
- <bgoswami@quicinc.com>,  Bjorn Andersson <andersson@kernel.org>, Konrad
- Dybcio <konrad.dybcio@linaro.org>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,  Conor Dooley
- <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>, Takashi Iwai
- <tiwai@suse.com>,  alsa-devel@alsa-project.org,
- linux-arm-msm@vger.kernel.org,  linux-sound@vger.kernel.org,
- devicetree@vger.kernel.org,  linux-kernel@vger.kernel.org
-Cc: Bartosz Golaszewski <brgl@bgdev.pl>, Sean Anderson
- <sean.anderson@seco.com>
-Date: Mon, 08 Jan 2024 13:17:31 +0100
-In-Reply-To: <20240105155918.279657-3-krzysztof.kozlowski@linaro.org>
-References: <20240105155918.279657-1-krzysztof.kozlowski@linaro.org>
-	 <20240105155918.279657-3-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1B043FE54;
+	Mon,  8 Jan 2024 12:21:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
+Received: from local
+	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
+	 (Exim 4.96.2)
+	(envelope-from <daniel@makrotopia.org>)
+	id 1rMod7-0004sJ-33;
+	Mon, 08 Jan 2024 12:21:23 +0000
+Date: Mon, 8 Jan 2024 12:21:15 +0000
+From: Daniel Golle <daniel@makrotopia.org>
+To: =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc: Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Hsin-Yi Wang <hsinyi@chromium.org>,
+	=?iso-8859-1?Q?N=EDcolas_F_=2E_R_=2E_A_=2E?= Prado <nfraprado@collabora.com>,
+	jason-ch chen <Jason-ch.Chen@mediatek.com>,
+	Macpaul Lin <macpaul.lin@mediatek.com>,
+	Bernhard =?iso-8859-1?Q?Rosenkr=E4nzer?= <bero@baylibre.com>,
+	Sean Wang <sean.wang@mediatek.com>,
+	Frank Wunderlich <frank-w@public-files.de>,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+Subject: Re: [PATCH V2 3/3] arm64: dts: mediatek: mt7988: add clock
+ controllers
+Message-ID: <ZZvou6RXPcXZS72s@makrotopia.org>
+References: <20240108085228.4727-1-zajec5@gmail.com>
+ <20240108085228.4727-4-zajec5@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240108085228.4727-4-zajec5@gmail.com>
 
-On Fr, 2024-01-05 at 16:59 +0100, Krzysztof Kozlowski wrote:
-> Devices sharing a reset GPIO could use the reset framework for
-> coordinated handling of that shared GPIO line.  We have several cases of
-> such needs, at least for Devicetree-based platforms.
->=20
-> If Devicetree-based device requests a reset line, which is missing but
-                                                    ^^^^^^^^^^^^^^^^
-Nitpick: the "resets" property is missing, not the reset line.
+On Mon, Jan 08, 2024 at 09:52:28AM +0100, Rafał Miłecki wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
+> 
+> Add bindings of on-SoC clocks.
+> 
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 
-"If Devicetree-based device requests a reset line, but there only is a
- reset-gpios property instead of a "resets" property, ..." maybe?
+Reviewed-by: Daniel Golle <daniel@makrotopia.org>
 
-> there is a reset-gpios property, instantiate a new "reset-gpio" platform
-> device which will handle such reset line.  This allows seamless handling
-> of such shared reset-gpios without need of changing Devicetree binding [1=
-].
->=20
-> All newly registered "reset-gpio" platform devices will be stored on
-> their own list to avoid any duplicated devices.
-
-That's not strictly true. The reset_gpio_device_list only contains the
-of_phandle_args for lookup.
-
-> The key to find each of
-> such platform device is the entire Devicetree GPIO specifier: phandle to
-> GPIO controller, GPIO number and GPIO flags.  If two devices have
-> conflicting "reset-gpios" property, e.g. with different ACTIVE_xxx
-> flags, this would spawn two separate "reset-gpio" devices, where the
-> second would fail probing on busy GPIO reques
-
-request.
-
-Is that true? The code below looks like overwrites of_phandle_args so
-that only one reset-gpio device is spawned for each gpio node.
-
-> Link: https://lore.kernel.org/all/YXi5CUCEi7YmNxXM@robh.at.kernel.org/ [1=
-]
-> Cc: Bartosz Golaszewski <brgl@bgdev.pl>
-> Cc: Sean Anderson <sean.anderson@seco.com>
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
->  drivers/reset/core.c             | 176 ++++++++++++++++++++++++++++---
->  include/linux/reset-controller.h |   4 +
->  2 files changed, 167 insertions(+), 13 deletions(-)
->=20
-> diff --git a/drivers/reset/core.c b/drivers/reset/core.c
-> index 4d5a78d3c085..ec9b3ff419cf 100644
-> --- a/drivers/reset/core.c
-> +++ b/drivers/reset/core.c
-> @@ -13,6 +13,7 @@
->  #include <linux/module.h>
->  #include <linux/of.h>
->  #include <linux/acpi.h>
-> +#include <linux/platform_device.h>
->  #include <linux/reset.h>
->  #include <linux/reset-controller.h>
->  #include <linux/slab.h>
-> @@ -23,6 +24,10 @@ static LIST_HEAD(reset_controller_list);
->  static DEFINE_MUTEX(reset_lookup_mutex);
->  static LIST_HEAD(reset_lookup_list);
-> =20
-> +/* Protects reset_gpio_device_list */
-> +static DEFINE_MUTEX(reset_gpio_device_mutex);
-> +static LIST_HEAD(reset_gpio_device_list);
-
-I would call this reset_gpio_lookup_list or
-reset_gpio_phandle_args_list.
-
+> V2: New PATCH in the series thanks to Daniel's bindings work
+> 
+>  arch/arm64/boot/dts/mediatek/mt7988a.dtsi | 41 ++++++++++++++++++++++-
+>  1 file changed, 40 insertions(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt7988a.dtsi b/arch/arm64/boot/dts/mediatek/mt7988a.dtsi
+> index 5a778188ac21..bba97de4fb44 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt7988a.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt7988a.dtsi
+> @@ -78,12 +78,51 @@ gic: interrupt-controller@c000000 {
+>  			#interrupt-cells = <3>;
+>  		};
+>  
+> -		watchdog@1001c000 {
+> +		clock-controller@10001000 {
+> +			compatible = "mediatek,mt7988-infracfg", "syscon";
+> +			reg = <0 0x10001000 0 0x1000>;
+> +			#clock-cells = <1>;
+> +		};
 > +
->  /**
->   * struct reset_control - a reset control
->   * @rcdev: a pointer to the reset controller device
-> @@ -63,6 +68,16 @@ struct reset_control_array {
->  	struct reset_control *rstc[] __counted_by(num_rstcs);
->  };
-> =20
-> +/**
-> + * struct reset_gpio_device - ad-hoc created reset-gpio device
-> + * @of_args: phandle to the reset controller with all the args like GPIO=
- number
-> + * @list: list entry for the reset_lookup_list
-> + */
-> +struct reset_gpio_device {
-
-Similarly, I would call this reset_gpio_lookup or
-reset_gpio_phandle_args.
-
-> +	struct of_phandle_args of_args;
-> +	struct list_head list;
-> +};
+> +		clock-controller@1001b000 {
+> +			compatible = "mediatek,mt7988-topckgen", "syscon";
+> +			reg = <0 0x1001b000 0 0x1000>;
+> +			#clock-cells = <1>;
+> +		};
 > +
->  static const char *rcdev_name(struct reset_controller_dev *rcdev)
->  {
->  	if (rcdev->dev)
-> @@ -813,13 +828,119 @@ static void __reset_control_put_internal(struct re=
-set_control *rstc)
->  	kref_put(&rstc->refcnt, __reset_control_release);
->  }
-> =20
-> +static bool __reset_gpios_args_match(const struct of_phandle_args *a1,
-> +				     const struct of_phandle_args *a2)
-> +{
-> +	unsigned int i;
+> +		watchdog: watchdog@1001c000 {
+>  			compatible = "mediatek,mt7988-wdt";
+>  			reg = <0 0x1001c000 0 0x1000>;
+>  			interrupts = <GIC_SPI 110 IRQ_TYPE_LEVEL_HIGH>;
+>  			#reset-cells = <1>;
+>  		};
 > +
-> +	if (!a2)
-> +		return false;
+> +		clock-controller@1001e000 {
+> +			compatible = "mediatek,mt7988-apmixedsys";
+> +			reg = <0 0x1001e000 0 0x1000>;
+> +			#clock-cells = <1>;
+> +		};
 > +
-> +	if (a1->args_count !=3D a2->args_count)
-> +		return false;
+> +		clock-controller@11f40000 {
+> +			compatible = "mediatek,mt7988-xfi-pll";
+> +			reg = <0 0x11f40000 0 0x1000>;
+> +			resets = <&watchdog 16>;
+> +			#clock-cells = <1>;
+> +		};
 > +
-> +	for (i =3D 0; i < a1->args_count; i++)
-> +		if (a1->args[i] !=3D a2->args[i])
-> +			break;
-
-Just return false in the loop and simplify the following to return
-true.
-
+> +		clock-controller@15000000 {
+> +			compatible = "mediatek,mt7988-ethsys", "syscon";
+> +			reg = <0 0x15000000 0 0x1000>;
+> +			#clock-cells = <1>;
+> +			#reset-cells = <1>;
+> +		};
 > +
-> +	/* All args matched? */
-> +	if (i =3D=3D a1->args_count)
-> +		return true;
-> +
-> +	return false;
-> +}
-> +
-> +/*
-> + * @node:	node of the device requesting reset
-> + * @reset_args:	phandle to the reset controller with all the args like G=
-PIO number
-> + */
-> +static int __reset_add_reset_gpio_device(struct device_node *node,
-> +					 struct of_phandle_args *args)
-> +{
-> +	struct reset_gpio_device *rgpio_dev;
-> +	struct platform_device *pdev;
-> +	int ret;
-> +
-> +	lockdep_assert_not_held(&reset_list_mutex);
-> +
-> +	mutex_lock(&reset_gpio_device_mutex);
-> +
-> +	list_for_each_entry(rgpio_dev, &reset_gpio_device_list, list) {
-> +		if (args->np =3D=3D rgpio_dev->of_args.np) {
-> +			if (__reset_gpios_args_match(args,
-> +						     &rgpio_dev->of_args)) {
-> +				ret =3D 0;
-> +				goto out_unlock;
-> +			}
-> +		}
-> +	}
-> +
-> +	/* Not freed in normal path, persisent subsyst data */
-> +	rgpio_dev =3D kzalloc(sizeof(*rgpio_dev), GFP_KERNEL);
-
-Since this is persistent, instead of letting the reset-gpio driver call
-of_parse_phandle_with_args() again, this could be passed in via
-platform data. Is there a reason not to do that instead?
-
-> +	if (!rgpio_dev) {
-> +		ret =3D -ENOMEM;
-> +		goto out_unlock;
-> +	}
-> +
-> +	rgpio_dev->of_args =3D *args;
-> +	pdev =3D platform_device_register_data(NULL, "reset-gpio",
-> +					     PLATFORM_DEVID_AUTO, &node,
-> +					     sizeof(node));
-> +	ret =3D PTR_ERR_OR_ZERO(pdev);
-> +	if (!ret)
-> +		list_add(&rgpio_dev->list, &reset_gpio_device_list);
-> +	else
-> +		kfree(rgpio_dev);
-> +
-> +out_unlock:
-> +	mutex_unlock(&reset_gpio_device_mutex);
-> +
-> +	return ret;
-> +}
-> +
-> +static struct reset_controller_dev *__reset_find_rcdev(struct of_phandle=
-_args *args,
-> +						       bool gpio_fallback,
-> +						       const void *cookie)
-
-Unused cookie.
-
-> +{
-> +	struct reset_controller_dev *r, *rcdev;
-> +
-> +	lockdep_assert_held(&reset_list_mutex);
-> +
-> +	rcdev =3D NULL;
-> +	list_for_each_entry(r, &reset_controller_list, list) {
-> +		if (args->np =3D=3D r->of_node) {
-> +			if (gpio_fallback) {
-> +				if (__reset_gpios_args_match(args, r->of_args)) {
-> +					/*
-> +					 * Fake args (take first reset) and
-> +					 * args_count (to matcg reset-gpio
-
-match
-
-> +					 * of_reset_n_cells) because reset-gpio
-> +					 * has only one reset and does not care
-> +					 * about reset of GPIO specifier.
-> +					 */
-> +					args->args[0] =3D 0;
-> +					args->args_count =3D 1;
-
-I'd expect args to be an input-only argument, but here its contents are
-overwritten after a match. Why?
-
-This has an effect in __of_reset_control_get(), that I find hard to
-follow. See below.
-
-> +					rcdev =3D r;
-> +					break;
-> +				}
-> +			} else {
-> +				rcdev =3D r;
-> +				break;
-> +			}
-> +		}
-> +	}
-> +
-> +	return rcdev;
-> +}
-> +
->  struct reset_control *
->  __of_reset_control_get(struct device_node *node, const char *id, int ind=
-ex,
->  		       bool shared, bool optional, bool acquired)
->  {
-> +	struct of_phandle_args args =3D {0};
-> +	bool gpio_fallback =3D false;
->  	struct reset_control *rstc;
-> -	struct reset_controller_dev *r, *rcdev;
-> -	struct of_phandle_args args;
-> +	struct reset_controller_dev *rcdev;
->  	int rstc_id;
->  	int ret;
-> =20
-> @@ -839,21 +960,50 @@ __of_reset_control_get(struct device_node *node, co=
-nst char *id, int index,
->  					 index, &args);
->  	if (ret =3D=3D -EINVAL)
->  		return ERR_PTR(ret);
-> -	if (ret)
-> -		return optional ? NULL : ERR_PTR(ret);
-> +	if (ret) {
-> +		/*
-> +		 * There can be only one reset-gpio for regular devices, so
-> +		 * don't bother with GPIO index.
-> +		 */
-
-I don't understand this comment. The GPIO index should be checked as
-part of __reset_gpios_args_match(), or should it not?
-
-> +		ret =3D of_parse_phandle_with_args(node, "reset-gpios", "#gpio-cells",
-> +						 0, &args);
-> +		if (ret)
-> +			return optional ? NULL : ERR_PTR(ret);
-> =20
-> -	mutex_lock(&reset_list_mutex);
-> -	rcdev =3D NULL;
-> -	list_for_each_entry(r, &reset_controller_list, list) {
-> -		if (args.np =3D=3D r->of_node) {
-> -			rcdev =3D r;
-> -			break;
-> -		}
-> +		gpio_fallback =3D true;
-
-Is there a reason not just call __reset_add_reset_gpio_device() here?
-With that, there should be no need to call __reset_find_rcdev() twice.
-
->  	}
-> =20
-> +	mutex_lock(&reset_list_mutex);
-> +	rcdev =3D __reset_find_rcdev(&args, gpio_fallback, NULL);
-
-This gets called with args as parsed. If there is a match, this will=20
-overwrite args (in the gpio_fallback case) and return NULL.
-
-> +
->  	if (!rcdev) {
-> -		rstc =3D ERR_PTR(-EPROBE_DEFER);
-> -		goto out;
-> +		if (gpio_fallback) {
-> +			/*
-> +			 * Registering reset-gpio device might cause immediate
-> +			 * bind, thus taking reset_list_mutex lock via
-> +			 * reset_controller_register().
-> +			 */
-> +			mutex_unlock(&reset_list_mutex);
-> +			ret =3D __reset_add_reset_gpio_device(node, &args);
-
-So this will also be called with args as parsed.
-
-> +			mutex_lock(&reset_list_mutex);
-> +			if (ret) {
-> +				rstc =3D ERR_PTR(ret);
-> +				goto out;
-> +			}
-> +			/*
-> +			 * Success: reset-gpio could probe immediately, so
-> +			 * re-check the lookup.
-> +			 */
-> +			rcdev =3D __reset_find_rcdev(&args, gpio_fallback, NULL);
-
-And this will again be called with args as parsed and overwrite args
-again.
-
-> +			if (!rcdev) {
-> +				rstc =3D ERR_PTR(-EPROBE_DEFER);
-> +				goto out;
-> +			}
-> +			/* Success, rcdev is valid thus do not bail out */
-> +		} else {
-> +			rstc =3D ERR_PTR(-EPROBE_DEFER);
-> +			goto out;
-> +		}
->  	}
-
-So at this point args is overwritten in the gpio_fallback case. I would
-find it much clearer to just overwrite args here and make the first
-parameter to __reset_find_rcdev() const.
-
-
-regards
-Philipp
+> +		clock-controller@15031000 {
+> +			compatible = "mediatek,mt7988-ethwarp";
+> +			reg = <0 0x15031000 0 0x1000>;
+> +			#clock-cells = <1>;
+> +			#reset-cells = <1>;
+> +		};
+>  	};
+>  
+>  	timer {
+> -- 
+> 2.35.3
+> 
 
