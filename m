@@ -1,171 +1,118 @@
-Return-Path: <devicetree+bounces-30366-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30367-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 361658279B2
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 21:54:45 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C80C8279E9
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 22:04:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 68FF8B21BFA
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 20:54:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BCA4F1F22883
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 21:04:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED34156763;
-	Mon,  8 Jan 2024 20:53:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="C40OVGRf"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F03BF55776;
+	Mon,  8 Jan 2024 21:03:59 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5256C5467C;
-	Mon,  8 Jan 2024 20:53:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 408KQdwX009770;
-	Mon, 8 Jan 2024 20:52:01 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=PQMgwo5v8yBuXGGB1Ie/PPOVUlA7ykfCipsRApxniaE=; b=C4
-	0OVGRflLQsXRQU4qbFsHilnQoE9bxWtZ1d3oLCtQ1X4Db4vrdVfWIWLZyLT6baVz
-	7HqyX5JZj2yyzCplVCD+P1fwvKLk66+qxIVqNt0WgRoz/e4uqwk9iw3j0rwHz+gj
-	GiiEf1EzoL4Jq2r1HFdnpf0RxbLfXQt//A+WW2i67m+Xhnf+zAh4A6G8JcuZDTq/
-	URVeT8eCU40mRwA9FXA31lgRyCjCbxBH9kgVfL/UWX0KVhgPtpUmsgjW7e5CEZqA
-	+wRUU4PHR7y8j2EK4l3QG1GVU5upMfMHkleMaC5fblrZqlcshg1/pJN6DiP1NAwZ
-	8oO62aJTPPlJvvw8EHtw==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vgkkh8rmf-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 08 Jan 2024 20:52:01 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 408Kq0He011437
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 8 Jan 2024 20:52:00 GMT
-Received: from [10.110.97.125] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Mon, 8 Jan
- 2024 12:51:59 -0800
-Message-ID: <7b2ec96b-b72f-c848-7c35-36e61a4072ac@quicinc.com>
-Date: Mon, 8 Jan 2024 12:51:58 -0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1E5755E50
+	for <devicetree@vger.kernel.org>; Mon,  8 Jan 2024 21:03:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rMwmn-0007Sw-0g; Mon, 08 Jan 2024 22:03:53 +0100
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rMwmj-001KoV-Ei; Mon, 08 Jan 2024 22:03:49 +0100
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rMwmj-005EcE-0e;
+	Mon, 08 Jan 2024 22:03:49 +0100
+Date: Mon, 8 Jan 2024 22:03:49 +0100
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To: Conor Dooley <conor+dt@kernel.org>
+Cc: William Qiu <william.qiu@starfivetech.com>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, linux-pwm@vger.kernel.org, 
+	Emil Renner Berthing <kernel@esmil.dk>, Rob Herring <robh+dt@kernel.org>, 
+	Thierry Reding <thierry.reding@gmail.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Hal Feng <hal.feng@starfivetech.com>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>
+Subject: Re: [PATCH v10 1/4] dt-bindings: pwm: Add bindings for OpenCores PWM
+ Controller
+Message-ID: <p22vjdwk35yc66mb4pkntnst6kjyhhmnv3eb2n25c3dhi5bdeo@bj7amwepprab>
+References: <20231222094548.54103-1-william.qiu@starfivetech.com>
+ <20231222094548.54103-2-william.qiu@starfivetech.com>
+ <t3w2p765fs633nanqsx5yqres7taqpk6juwyl4iex5v4jpobo2@rqw6r4myjmv3>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH v12 04/41] usb: host: xhci-mem: Cleanup pending secondary
- event ring events
-Content-Language: en-US
-To: Mathias Nyman <mathias.nyman@linux.intel.com>,
-        <srinivas.kandagatla@linaro.org>, <mathias.nyman@intel.com>,
-        <perex@perex.cz>, <conor+dt@kernel.org>, <corbet@lwn.net>,
-        <gregkh@linuxfoundation.org>, <lgirdwood@gmail.com>,
-        <andersson@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <konrad.dybcio@linaro.org>, <Thinh.Nguyen@synopsys.com>,
-        <broonie@kernel.org>, <bgoswami@quicinc.com>, <tiwai@suse.com>,
-        <robh+dt@kernel.org>, <agross@kernel.org>
-CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-sound@vger.kernel.org>, <linux-usb@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        <alsa-devel@alsa-project.org>
-References: <20240102214549.22498-1-quic_wcheng@quicinc.com>
- <20240102214549.22498-5-quic_wcheng@quicinc.com>
- <734591a1-50b4-6dc7-0b93-077355ec12e4@linux.intel.com>
-From: Wesley Cheng <quic_wcheng@quicinc.com>
-In-Reply-To: <734591a1-50b4-6dc7-0b93-077355ec12e4@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: h1WdLni0I-RNQn7WJw5CZxOmyf6I2X9g
-X-Proofpoint-ORIG-GUID: h1WdLni0I-RNQn7WJw5CZxOmyf6I2X9g
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-12-09_01,2023-12-07_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 clxscore=1015
- spamscore=0 suspectscore=0 priorityscore=1501 mlxlogscore=748
- impostorscore=0 malwarescore=0 lowpriorityscore=0 bulkscore=0 mlxscore=0
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2311290000 definitions=main-2401080172
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="qdsxa55awznoyul6"
+Content-Disposition: inline
+In-Reply-To: <t3w2p765fs633nanqsx5yqres7taqpk6juwyl4iex5v4jpobo2@rqw6r4myjmv3>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Hi Mathias,
 
-On 1/4/2024 6:48 AM, Mathias Nyman wrote:
-> On 2.1.2024 23.45, Wesley Cheng wrote:
->> As part of xHCI bus suspend, the XHCI is halted.  However, if there are
->> pending events in the secondary event ring, it is observed that the xHCI
->> controller stops responding to further commands upon host or device
->> initiated bus resume.  Iterate through all pending events and update the
->> dequeue pointer to the beginning of the event ring.
->>
->> Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
-> ...
->> +/*
->> + * Move the event ring dequeue pointer to skip events kept in the 
->> secondary
->> + * event ring.  This is used to ensure that pending events in the 
->> ring are
->> + * acknowledged, so the XHCI HCD can properly enter suspend/resume.  The
->> + * secondary ring is typically maintained by an external component.
->> + */
->> +void xhci_skip_sec_intr_events(struct xhci_hcd *xhci,
->> +    struct xhci_ring *ring,    struct xhci_interrupter *ir)
->> +{
->> +    union xhci_trb *erdp_trb, *current_trb;
->> +    u64 erdp_reg;
->> +    u32 iman_reg;
->> +    dma_addr_t deq;
->> +
->> +    /* disable irq, ack pending interrupt and ack all pending events */
->> +    xhci_disable_interrupter(ir);
->> +    iman_reg = readl_relaxed(&ir->ir_set->irq_pending);
->> +    if (iman_reg & IMAN_IP)
->> +        writel_relaxed(iman_reg, &ir->ir_set->irq_pending);
->> +
->> +    /* last acked event trb is in erdp reg  */
->> +    erdp_reg = xhci_read_64(xhci, &ir->ir_set->erst_dequeue);
->> +    deq = (dma_addr_t)(erdp_reg & ERST_PTR_MASK);
->> +    if (!deq) {
->> +        xhci_err(xhci, "event ring handling not required\n");
->> +        return;
->> +    }
->> +
->> +    erdp_trb = current_trb = ir->event_ring->dequeue;
->> +    /* read cycle state of the last acked trb to find out CCS */
->> +    ring->cycle_state = le32_to_cpu(current_trb->event_cmd.flags) & 
->> TRB_CYCLE;
->> +
->> +    while (1) {
->> +        inc_deq(xhci, ir->event_ring);
->> +        erdp_trb = ir->event_ring->dequeue;
->> +        /* cycle state transition */
->> +        if ((le32_to_cpu(erdp_trb->event_cmd.flags) & TRB_CYCLE) !=
->> +            ring->cycle_state)
->> +            break;
->> +    }
->> +
->> +    xhci_update_erst_dequeue(xhci, ir, current_trb, true);
->> +}
-> 
-> Code above is very similar to the existing event ring processing parts 
-> of xhci_irq()
-> and xhci_handle_event()
-> 
-> I'll see if I can refactor the existing event ring processing, decouple 
-> it from
-> event handling so that it could be used by primary and secondary 
-> interrupters with
-> handlers, and this case where we just want to clear the event ring.
-> 
+--qdsxa55awznoyul6
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Thanks, that makes sense.  Will take a look as well.
+Hello Conor,
 
-Thanks
-Wesley Cheng
+On Thu, Jan 04, 2024 at 11:43:13PM +0100, Uwe Kleine-K=F6nig wrote:
+> On Fri, Dec 22, 2023 at 05:45:45PM +0800, William Qiu wrote:
+> > Add bindings for OpenCores PWM Controller.
+> >=20
+> > Signed-off-by: William Qiu <william.qiu@starfivetech.com>
+> > Reviewed-by: Hal Feng <hal.feng@starfivetech.com>
+> > Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+>=20
+> Looks fine to me. I'll assume you reiterate the series for patch #2 and
+> so I will mark this patch as deferred in patchwork.
+>=20
+> Reviewed-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
+
+If you want, pick this patch up that it goes along with the dts changes.
+
+To make this formal:
+
+Acked-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--qdsxa55awznoyul6
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmWcYy8ACgkQj4D7WH0S
+/k5Cxgf/QI/V+M0FjuVw/kgYUfVX9XsL67vIUwYey8CNZjcTRYrd1pch6cjV4Uxa
+Oq7ZKp7LpMxt6yLwKcI9vZHav86KPKPI+CaZtMpC2OuYqEo4ltygCMOUJrXoJnDU
+epVaCEiIS5e3vsOZ35EWGQeOpXUV/xHHNA4VIKfI1F4arIpPvlS6J3t8h/8nICpQ
+jk8Fk0X2HRqdy+kX0P6kSaQFBDBIFS/zRYI0ahlgLWEOGPj7dfpYa6Oqj7sXiZZP
+Mta2dmEwn4C10rTk7Pa7Y/RtpsYU2EVPiqaaHqgbTKrzpFPIPldMS4+f7CTYiKWD
+/s4YD833V/0aPhWZHYCGEQmTv4NlBw==
+=5dXp
+-----END PGP SIGNATURE-----
+
+--qdsxa55awznoyul6--
 
