@@ -1,187 +1,148 @@
-Return-Path: <devicetree+bounces-30102-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30103-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 582A882687C
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 08:21:09 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D3DF7826881
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 08:23:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D21671F21BBA
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 07:21:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 81162281D43
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 07:23:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70C7D8487;
-	Mon,  8 Jan 2024 07:21:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 282F48487;
+	Mon,  8 Jan 2024 07:23:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="GMOOX7pc"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cEvEfP6I"
 X-Original-To: devicetree@vger.kernel.org
-Received: from IND01-BMX-obe.outbound.protection.outlook.com (mail-bmxind01olkn2078.outbound.protection.outlook.com [40.92.103.78])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4448B8BEB;
-	Mon,  8 Jan 2024 07:21:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=lseZgpbPQzhxoQGZ55uuHlrCh7tT6+OCitZXZyNpAGET7JpZtjzWAyT3lrq3BenKLWaSVgGCgS1iB44QyIDmHUSmAOZW/Gg3EzKjq6O+1Ik/iUpO+uy6lCO+F7ZrgJM+t2t1pefHDlJsFsSC1KNxKXgnZtbG5BFFScyTlbfipVNXrZdoX2xChhTzAI3raRz/bLVfeySZWg5rUbOKqSsrByilSOD4sD7MFSg/Nf0f0WP/P4gAJoXYQLXJWNAJWGEnGxIA5cKwNEoMNe+ADCd7g66Tt7/GcIXXWQ+y3/+Uw07nUCnYpNFtX6NF6huXLBMWgapazdzeuQGnzA+6urU5gA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=N9yfH5vj45SJzh5JnMwN3e1M6n9BdsxY8ZaK+OWan1w=;
- b=G0wsk/SU3XiwfiO7CPS7OMRLIhf5qr1WhVwzN3lX1SK8HxS/q657mPxY2ReR3cr3rh4aJiDUEX73Y7dbDEdO6J/gv/0VmXfiCjqwe/GVk6FkfKDHqBCwSkpkUK++y1yiL3H3YqUwgf54J5/pzLc4agKElYT3FhpOUF9Z1h8SoshaOw/PT7YystYnUATRYWeILvJkb3pWU0ccrp9oSQy/SEN/nQtZIJJHw53+wvo1pASsh6IEYRuV04Mxv28yBOcte0DyE8vQ0CeMdgIyEos1blKFvWyeclq9q+VKvjZIYmzxIQnDCLV3MNSfuCWnvtDF0+hear7XjwCmcTwldgdMKg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=N9yfH5vj45SJzh5JnMwN3e1M6n9BdsxY8ZaK+OWan1w=;
- b=GMOOX7pcMCrZun2f+gsVwMKvhTePDO/ofi/hWDsypn/Iz6oevhJiZh9SqJ6Oq3Vf26SXke9fAxQvcRB3dlkQ5NzTVJELKLsOKCBYWtngLhDnFtklnhJGPAOzb2z+SAfeFDyVlmTtN3P236Q/NAV8yNSczgNjin06oqFa1wKsfTPg7GA4KsvnPs6uS0L4E2CGVTmYsB1HGfTKnfH/a0Z6CuUpSPqrWDsIkwlafDyrgTpRPnL2eMyy7mj0tIoK0TkO5Ytwt87EHPJFSi7OM0HCDHNBZKisoVlR+bOhuL085LqEZV1gBQqyB36IzqVIRF4Mh2qoZMlHcMeKCH1eYqDLHw==
-Received: from MA0P287MB2822.INDP287.PROD.OUTLOOK.COM (2603:1096:a01:138::5)
- by PN0P287MB2595.INDP287.PROD.OUTLOOK.COM (2603:1096:c01:1fd::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7159.21; Mon, 8 Jan
- 2024 07:20:52 +0000
-Received: from MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
- ([fe80::6e80:69e1:f2e7:d70d]) by MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
- ([fe80::6e80:69e1:f2e7:d70d%3]) with mapi id 15.20.7159.020; Mon, 8 Jan 2024
- 07:20:51 +0000
-Message-ID:
- <MA0P287MB2822E54A6DD36F914DB56E98FE6B2@MA0P287MB2822.INDP287.PROD.OUTLOOK.COM>
-Date: Mon, 8 Jan 2024 15:20:46 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 1/4] dt-bindings: soc: sophgo: Add Sophgo system
- control module
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Chen Wang <unicornxw@gmail.com>, aou@eecs.berkeley.edu, chao.wei@sophgo.com,
- conor@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- mturquette@baylibre.com, palmer@dabbelt.com, paul.walmsley@sifive.com,
- richardcochran@gmail.com, robh+dt@kernel.org, sboyd@kernel.org,
- devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
- haijiao.liu@sophgo.com, xiaoguang.xing@sophgo.com, guoren@kernel.org,
- jszhang@kernel.org, inochiama@outlook.com, samuel.holland@sifive.com
-References: <cover.1704694903.git.unicorn_wang@outlook.com>
- <acebc88db3e5fcd2a2607b56842af7443a6e1289.1704694903.git.unicorn_wang@outlook.com>
- <cc7cc943-7242-4fd1-9b56-3ece0a418e05@linaro.org>
-From: Chen Wang <unicorn_wang@outlook.com>
-In-Reply-To: <cc7cc943-7242-4fd1-9b56-3ece0a418e05@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-TMN: [pvh8ncbL6CckRfDfZ6tJGYQQknwrYUtV]
-X-ClientProxiedBy: SI2PR02CA0014.apcprd02.prod.outlook.com
- (2603:1096:4:194::19) To MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:138::5)
-X-Microsoft-Original-Message-ID:
- <b5eff2fe-70e0-48a9-88b2-ce832fb21909@outlook.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBABBB642;
+	Mon,  8 Jan 2024 07:22:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-1d3f29fea66so2218095ad.3;
+        Sun, 07 Jan 2024 23:22:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1704698579; x=1705303379; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=KL7gT6puPppmRM1GkmcMzs34cYrfX1sUZhG5f+PKXuU=;
+        b=cEvEfP6IKlCXmJnV662Xszfwv6IQHkt5VYEqh4r8whL7khUs3eNfKD/30ni817rNMT
+         KbOmCQ7rrNO0IrMI5xYBwwhiGfStAZVNYDDqsHXwmCYLWrsYZeAvaya/AYfo9yzfQvly
+         5a04m7eIL8CdbXAx5ktNw9MqzSMMbhq3eV4mUF43S8HlhQQSik1eQSamcidNh0dx3YBu
+         ewh6Ng/mNliQfW+JFM8ZX1Mp5jP09YDVRMO9Xy9CrpH++l0d/n2U0QHkqhWbwYETLotJ
+         Ns/017+JGtrnOI1nKOvFVlvFaznaWq7TAscynlgYWdLTieWm6EZKq5L+qANroCuGXhbS
+         qfxQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1704698579; x=1705303379;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=KL7gT6puPppmRM1GkmcMzs34cYrfX1sUZhG5f+PKXuU=;
+        b=doXM0wHt0G4g5QiMlh73tVZ9UILN+UsVHQw8idnQDer9G3yfC3RLGLIXGXoB+CLAW1
+         L4r3nvhtQDZCTDz1iRXFlIBSaJIbAoqH+jUEluvLPbZVKVT0Mpi+Pk/OWHTqg58DLPvT
+         y4KRNulFbXfM5C4O8m4zvBfuWICbhJjvu6VB2zxRGHSxb48hNqCHLoKq/9tzhYO5IL9N
+         fH0IvCjBsbDN2Xic6prX6D/dw1IT69+HUNsQtLm+TCMi3fdwF3uwGglihRdBfwBPxF4E
+         +XeTanBPZ90xfW8rXH/IvCvCO/JJqq19uQfwXfnAf+g/mmeHNXw7n0aqPT0XrdKbkiI1
+         vGjw==
+X-Gm-Message-State: AOJu0YxupKAnqJATX6FqftSUlAWOhAysd5E2GyCoLUVLCEsfX/gIbzez
+	XvcteDJftlSMz2GoseVDNE0=
+X-Google-Smtp-Source: AGHT+IHerh2T7NqW3Km+xaQexJgE0/20k8yDrEK+JEJuAb6XnQTKLMJIrdIbYrZvzwpQ+g/sWFaMQA==
+X-Received: by 2002:a17:902:db0b:b0:1d4:a31d:f260 with SMTP id m11-20020a170902db0b00b001d4a31df260mr1146867plx.74.1704698578476;
+        Sun, 07 Jan 2024 23:22:58 -0800 (PST)
+Received: from localhost ([39.70.12.102])
+        by smtp.gmail.com with ESMTPSA id g7-20020a1709026b4700b001d083fed5f3sm5524212plt.60.2024.01.07.23.22.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 07 Jan 2024 23:22:58 -0800 (PST)
+From: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
+To: a.zummo@towertech.it,
+	alexandre.belloni@bootlin.com,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	paul.walmsley@sifive.com,
+	palmer@dabbelt.com,
+	aou@eecs.berkeley.edu
+Cc: linux-rtc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v5 0/1] dt-bindings: riscv: sophgo: add RTC for CV1800
+Date: Mon,  8 Jan 2024 15:22:52 +0800
+Message-ID: <20240108072253.30183-1-qiujingbao.dlmu@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MA0P287MB2822:EE_|PN0P287MB2595:EE_
-X-MS-Office365-Filtering-Correlation-Id: e717d7ad-9743-4701-077f-08dc101a583e
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	UApF7vB4N1KNlSUBrI2dlRZkCSREiOW2zLGA88/z7i23/JZU9J5a4eX2UHPum6bcw8hcLHrAzCp5HxtBIk6NbE0HLSYY5K+Va9QzxYYWKfXtdx1rD6Uo0Rk3C9L2S2U/YVqEjV1h3sJH3yeOcWMiK5mE5zR81SSGLK22LBBnHimjqMkIRNZBV8gEimqF9b8OLaXMlfBSrCe2ADriiAwa1x/To46KExjxU96wzlGtYcfUWZRqF1vW0JdQ6pg47stJefkPsrPYNtTx4BVu4GV5Sx+s29cKEvAqV59rA0ZbZ0CePog88Ay6ddZFJvLoGFlQnt5oaokgdy1qt4vyVjd+Ru7YcMDL7ftHsGfinAPOf0055QnRyHgpMv3xaFgRG8HgNl+0pc/VMQufleVBqYzHTFgnqe0aqf6eCh6Z3LTy4IdhVizXyp7wLXJn8qEYx1W79f+xx1zlWZFTFyGuTX52TNt0O6JpEmeSxaOrofx9ubtSzjyp7a8qnBn7wua1FBO2IUH3/xOKBPtdkRXPA+J+/h+7pU/QHJ/C3FnBkdK+3CzBGsNMPkGCz/HcfQ6H+O+etTtearkcHVbT7p9oSBdWQ94XYgh4Y4Ai926+ZidymJ4CbdagKH9EPaQ2mWejr+y07kebCSK9WecQr2lya8VDEw==
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?YjZWakd5RTR6eVRCSXFxRXJQN01WZzhSM09kTkl4RWIwZTBzVysrNWsrU1pZ?=
- =?utf-8?B?b09xTVRWSzh4azhPY0tiWjhGWk9JeFhJZGFNUFRJL2lxOVVsN0owWVBadW1j?=
- =?utf-8?B?VHY3UnpremQ5RW51UUphVkpGZUNmY09yRGJIZjRlRkxMKy9QVzdDVDRpNnRx?=
- =?utf-8?B?em96N2h6cy8rRFpxNjExcHpMQ0djeVJCZjkyK2xaZkRMY2NGTGtPN09NNDQx?=
- =?utf-8?B?VVpDNUtVdDJTaXBuVWJTdUJRQTJSVVhFMUNsblg5aUNlNE9nSktOQ2JCQkZP?=
- =?utf-8?B?Y09SRis0WjBDeDU3dlB6Tm1TaDhUejdBYjNuUVQ3dWlBK1BUVEN3eE5WUWUw?=
- =?utf-8?B?N1c2STFNNEZLR0t4SDM0a2RYZUl5OGIxQVAySHVzdmdxNWkvY0FPTHFEekUz?=
- =?utf-8?B?VzVrZ25nWU9FRytjcUFzZk1WaDVTdW9vY1JEMWo3VkVVU2dGQlJ4emdXQUtC?=
- =?utf-8?B?cGtob1FKMzFBRk83WlIxZ2htOGcrZ2VINEdIZmxwaDk2WnB3ZlJJd2JHcmtn?=
- =?utf-8?B?QmxiRU9DRThudmpIeFR2SU1GV2Z5MUlqbVZ5ZUNGcThHK1BqeURKSGUwTUFk?=
- =?utf-8?B?TmRwUWNwYklqRVVadGNWVFhsZ092TXdYZUZSM0ZaUHdqOC85dXhiaHY4UmVx?=
- =?utf-8?B?M243Q1ovN0gwTUlLeFlxeDhmWVczMWp5OVN3MG9IcEI2dG1VVTQ5bUhnWlpn?=
- =?utf-8?B?T25QNkZ3a3diVFdwWTBMZUJ3Q2pXeFVXRzJrSUdtZU11RGRhKzcrT3o0OUpE?=
- =?utf-8?B?cXNPMGxEODJLUEhUbUd2cTRBdUdkcVd4dld5dVdRTCszdjJqcVZvWTZ0YWtI?=
- =?utf-8?B?bEtGa1BYU1lBU3VrTVJINnJEdnhrYnNCQzNjSzg0U0o2b0Y2TFBlbm5WcmQ3?=
- =?utf-8?B?VFVnQi9oRGFZdDZlblFtcTVuU2E0SEh2UlZFbGVaTkFVOGJIYlF4VnhOL2dn?=
- =?utf-8?B?VEhwVmxZdmVVSkMxdjJ1Vm11SWcyeGp4aHV1UEZuVHo4UHh3NXR3RFJVZ01a?=
- =?utf-8?B?TU93MWZmNzdMdTBhMnNSZ1NRNWwrbnY4aXdtaVQ2TW1Mc09LTWJaUHZJV21y?=
- =?utf-8?B?ajU2ZWxmc2RmR2x1cW5PK3U5OTBURGtnbE8xSVJYWnlDc01KaW15Ly9zMnlD?=
- =?utf-8?B?cXNpdC9oVFRBZFQ3SWhqYWoxTkZnQTlVanNWTEpsYk9SeVRzQmFWVWlTcWlY?=
- =?utf-8?B?Y3VnN2RhbHd0a3B4bEZhaDBGc3k1RHZPZVNIVUNPSEpIL0RiSXpkQVJuVFZ2?=
- =?utf-8?B?eTlUVVlvM0NTTUY5Nk5nell2SEF0NHdSZHJQMlZWaENhZUpyc2ZMZ3F1SWVL?=
- =?utf-8?B?UWo4am1RMkVQVFBLSjNXNnorelpQSHFnT0ZoblU0ZHg1WEVrUHF4YjBaUlZ2?=
- =?utf-8?B?ZXpmSGc4d3h4dU92QUVuQW5IdEFpSXc2VGk0blIxWXVlcHhhcFhzandEOE9q?=
- =?utf-8?B?Ym1aTkxPejArc1hWS1kvS0ZIN04vRXFySFErTTZJeUNGWk45ai93RkIyK1dZ?=
- =?utf-8?B?UlZTakFBQ0o3NW5ZZlRkbi8wUzNobnBXRStwSWdlc3VFLzVCRDZibTdmNnp0?=
- =?utf-8?B?eDk0ZjUxZzRQUDl3b2FPc1dvb2g1ZmR0dS9xVTFmOHhiZEc0SzFCNHE2N2FL?=
- =?utf-8?Q?Ne26g8ZlK+9XHK+Y62rj+EKjTJKit4J9cpWqFq7J71bw=3D?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e717d7ad-9743-4701-077f-08dc101a583e
-X-MS-Exchange-CrossTenant-AuthSource: MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jan 2024 07:20:51.8888
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PN0P287MB2595
+Content-Transfer-Encoding: 8bit
+
+Real Time Clock (RTC) is an independently powered module
+within the chip, which includes a 32KHz oscillator and
+a Power On Reset/POR submodule. It can be used for time
+display and timed alarm generation.
+
+Power On Reset/POR submodule only using register resources
+so it should be empty. The 32KHz oscillator only provides
+pulses for RTC in hardware.
 
 
-On 2024/1/8 15:03, Krzysztof Kozlowski wrote:
-> On 08/01/2024 07:48, Chen Wang wrote:
->> From: Chen Wang <unicorn_wang@outlook.com>
->>
->> Add documentation to describe Sophgo System Controller for SG2042.
->>
->> Signed-off-by: Chen Wang <unicorn_wang@outlook.com>
->> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> ---
->>   .../soc/sophgo/sophgo,sg2042-sysctrl.yaml     | 34 +++++++++++++++++++
->>   1 file changed, 34 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/soc/sophgo/sophgo,sg2042-sysctrl.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/soc/sophgo/sophgo,sg2042-sysctrl.yaml b/Documentation/devicetree/bindings/soc/sophgo/sophgo,sg2042-sysctrl.yaml
->> new file mode 100644
->> index 000000000000..1ec1eaa55598
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/soc/sophgo/sophgo,sg2042-sysctrl.yaml
->> @@ -0,0 +1,34 @@
->> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/soc/sophgo/sophgo,sg2042-sysctrl.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Sophgo SG2042 SoC system controller
->> +
->> +maintainers:
->> +  - Chen Wang <unicorn_wang@outlook.com>
->> +
->> +description:
->> +  The Sophgo SG2042 SoC system controller provides register information such
->> +  as offset, mask and shift that can be used by other modules, such as clocks.
-> "offset, mask and shift" is not a register information stored in
-> syscons. Are you really sure, that your system controller hardware
-> stores offsets of some other registers?
->
-> Show as some example of such offsets, masks and shifts provided by this
-> hardware.
+Changes since v4:
+- remove POR dt-bindings because it empty 
+- remove MFD dt-bindings because SoC does
+  not have MFDs
+- add syscon attribute to share registers
+  with POR
 
-The system control module is defined here: 
-https://github.com/sophgo/sophgo-doc/blob/main/SG2042/TRM/source/system-control.rst. 
-It contains some registers related to pll and gates.
+v4: https://lore.kernel.org/all/20231229090643.116575-1-qiujingbao.dlmu@gmail.com/
 
-Some other clocks registars are defined in 
-https://github.com/sophgo/sophgo-doc/blob/main/SG2042/TRM/source/clock.rst.
+Changes since v3:
+- temporarily not submitting RTC driver code
+  waiting for communication with IC designer
+- add MFD dt-bindings
+- add POR dt-bindings
 
-memory-map is defined in 
-https://github.com/sophgo/sophgo-doc/blob/main/SG2042/TRM/source/mmap.rst
+v3: https://lore.kernel.org/all/20231226100431.331616-1-qiujingbao.dlmu@gmail.com/
 
->
->
-> Best regards,
-> Krzysztof
->
+Changes since v2:
+- add mfd support for CV1800
+- add rtc to mfd
+- using regmap replace iomap
+- merge register address in dts
+
+v2: https://lore.kernel.org/lkml/20231217110952.78784-1-qiujingbao.dlmu@gmail.com/
+
+Changes since v1
+- fix duplicate names in subject
+- using RTC replace RTC controller
+- improve the properties of dt-bindings
+- using `unevaluatedProperties` replace `additionalProperties`
+- dt-bindings passed the test
+- using `devm_platform_ioremap_resource()` replace
+  `platform_get_resource()` and `devm_ioremap_resource()`
+- fix random order of the code
+- fix wrong wrapping of the `devm_request_irq()` and map the flag with dts
+- using devm_clk_get_enabled replace `devm_clk_get()` and
+  `clk_prepare_enable()`
+- fix return style
+- add rtc clock calibration function
+- use spinlock when write register on read/set time
+
+v1: https://lore.kernel.org/lkml/20231121094642.2973795-1-qiujingbao.dlmu@gmail.com/
+
+Jingbao Qiu (1):
+  dt-bindings: rtc: sophgo: add RTC support for Sophgo CV1800 series SoC
+
+ .../bindings/rtc/sophgo,cv1800-rtc.yaml       | 56 +++++++++++++++++++
+ 1 file changed, 56 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/rtc/sophgo,cv1800-rtc.yaml
+
+
+base-commit: 92c255c7157a07614f3e1df4eb63fbd49bc738e0
+-- 
+2.43.0
+
 
