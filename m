@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-30147-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30149-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BCAA826A33
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 10:07:51 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 47C66826A45
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 10:09:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 156DA28290E
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 09:07:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E589128299B
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 09:09:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8893FD51B;
-	Mon,  8 Jan 2024 09:07:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D74ED26D;
+	Mon,  8 Jan 2024 09:09:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="oRrbnQio"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="YaCZrAOZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
+Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC73E125DE
-	for <devicetree@vger.kernel.org>; Mon,  8 Jan 2024 09:07:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0307911715
+	for <devicetree@vger.kernel.org>; Mon,  8 Jan 2024 09:09:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-5571e662b93so1271029a12.2
-        for <devicetree@vger.kernel.org>; Mon, 08 Jan 2024 01:07:22 -0800 (PST)
+Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-5542a7f1f3cso1679277a12.2
+        for <devicetree@vger.kernel.org>; Mon, 08 Jan 2024 01:09:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704704841; x=1705309641; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1704704967; x=1705309767; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=TfyMZ4uxeLeGNsfgNFg36j0oPv91P95/HsCT857d76o=;
-        b=oRrbnQioNUmPLQ4+or0WHNcU8JSk2uJxuvIQUrjpb6fgbHmj/cZOp6vV7hFK3WNAaf
-         JwdUnpYoyUQOjDLZFXXNwjHB2g2+I0J/HD2GGKEqUdxYrjKzOrl3Hj4vauDEB/kh4i8C
-         FFg1A297GcBQ/CTIw8ZKmy6GvTQW13vNc8nSTHK60hgj4Ex4yuc1eRZ11IavWbfQCdvz
-         S0M2YFSrcx05umI1xsL4iqLvVaae3CEFcc6as8O2hxnYzN3bcS5vj4EXuvk14orxXg+k
-         IGO1UtZG5D+rbnQKIEqLzDqCNV0QFBeOihdWidBCZ4ViEHCB1kqwec8ptg2b75g7Loep
-         V7nA==
+        bh=EizMOTOZwmjQW+d4q2xdKFWU01flYGbLzqs3XtK2nA4=;
+        b=YaCZrAOZdQTLSNfsdp4EHpxAKDxwFGgN1ioe5cXcgPYGkF34wg+UcbYqhfZ46AyqVy
+         u+wO4Xcp6/g7GnQEYa4iFdko7+kr3mpJEsyR3sRe9zERsJGaA0VBQmIrcPK24UnlnCJC
+         8kMqXHOH4WlZhJvOE8Bwn9B+R5eaSaG4useYMBR5wh1A7eo7lCJfwp4hnQFLqVoAKZgd
+         WLzLHuVcCOcZWNUJxkGUmyuoW7he2KlB/s+9QSbK5WDe0wqpqy3wCNWHK+pMB7ysmVyT
+         sRtU3DY6QAW2ym+f51x9i0M9x2e3th7XzY56oQcJcgtdtuw9ngrRUef8lCCyws15NDxX
+         0GbA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704704841; x=1705309641;
+        d=1e100.net; s=20230601; t=1704704967; x=1705309767;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=TfyMZ4uxeLeGNsfgNFg36j0oPv91P95/HsCT857d76o=;
-        b=MnJf5FMrNi1p9fSaB7AckLxBS8Lqst3h3Sv4ax+SaU3GC6sMRfO9DffCcEyUaHBv8z
-         7xP84sjAPGkCf2kgbw2vhvi/f7R+bf1gJT0s7BTowLZiIFOy4I8j0+9UXQeqSGCngreB
-         aTvHPGple07Tg4WIHpG4kLY82YszMaDl+YdBxgQuJ5QR42RsWgn6aX6HVDodiGnPPKUL
-         DKzEFUmZSks2OL53Upv5f8uBoeTqHmWGGw8kwaqaYOtPRrotqnptzaTZvCUZx5R+78Q5
-         6w8UMxHeFuOBCPZ8R7L36XBJ/S8MztfNyRcLRCo8qJsP8zsWzol//zKwsBQJLfdaHAxB
-         H9cQ==
-X-Gm-Message-State: AOJu0Yx8xPqfcnVFi8vtEQHRbxEBL90Rrr+usjG3QdRRNVlFPSI7IN5V
-	9mDYUhi8Dywh9RAQEf/7HwrP8fdxqixQOA==
-X-Google-Smtp-Source: AGHT+IEj0NqhOqwtk8SyYsnoIn5h7NwVrFcadbe6AbAfRdzxrvmdmqjHXMThsPJrLRshgFdr6wDX0A==
-X-Received: by 2002:a50:cd0f:0:b0:557:3c34:5c0c with SMTP id z15-20020a50cd0f000000b005573c345c0cmr2054684edi.40.1704704841202;
-        Mon, 08 Jan 2024 01:07:21 -0800 (PST)
+        bh=EizMOTOZwmjQW+d4q2xdKFWU01flYGbLzqs3XtK2nA4=;
+        b=IUQJJwnTFq0VCqfyQFbZ80EdqVffpP4/3PEVO4eGFFAyltCKnW5zhH8JyxCVsk/7Ao
+         kt6J271kTeMwnpEVK6+i/BBCQvdhHfZPgZTCwnkwgMYYqcOad7x9yqf0cbGmzDFRXCwY
+         DE2SQ3syo+xFmgQI/3hDsX5QScp2stR8BlwxkP9Seo/Fjp3ybMQYF8mk15NRJUIxHtnq
+         rhEW0TfLGqgW3caC5sm8PyCm9kXbWzi4Az0uE9zscgdl0bKtDGw+Bz3qDMylNhXfegEZ
+         Pvt28IZNU7WZSbO7nh4Ns3R58lpqZQs3dnruUVnjhQoqIdDf+fwIXaYDm7/iy+1wZUrV
+         gscQ==
+X-Gm-Message-State: AOJu0YxoXqedq0jB03FjfFWpQKEOdQNKQBOSXszrqOc29f3pvwexady7
+	FXJ+7DHujL/qYdYD95XDzR2x5ciG+l6VVg==
+X-Google-Smtp-Source: AGHT+IGl825NasrWPYdgefw8n2mszq7aJq1uRV3HRBA+0uysyX3exl3Vf4kS3k9i0GY1anCP7gVARA==
+X-Received: by 2002:a50:8ad3:0:b0:557:5fdb:4fe0 with SMTP id k19-20020a508ad3000000b005575fdb4fe0mr1742167edk.12.1704704967333;
+        Mon, 08 Jan 2024 01:09:27 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.223.112])
-        by smtp.gmail.com with ESMTPSA id en23-20020a056402529700b00557535489adsm2767091edb.37.2024.01.08.01.07.19
+        by smtp.gmail.com with ESMTPSA id y26-20020a50e61a000000b00552d03a17acsm4013929edm.61.2024.01.08.01.09.25
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 08 Jan 2024 01:07:20 -0800 (PST)
-Message-ID: <1c0474d3-e182-48c8-8ec2-12847c84164b@linaro.org>
-Date: Mon, 8 Jan 2024 10:07:19 +0100
+        Mon, 08 Jan 2024 01:09:26 -0800 (PST)
+Message-ID: <ab6a9a0e-ab03-4d35-9e43-c90c22dbcb1d@linaro.org>
+Date: Mon, 8 Jan 2024 10:09:23 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,29 +66,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] net: stmmac: Add StarFive JH8100 dwmac support
+Subject: Re: [PATCH 1/2] dt-bindings: fpga: Convert bridge binding to yaml
 Content-Language: en-US
-To: Tan Chun Hau <chunhau.tan@starfivetech.com>,
- "David S . Miller" <davem@davemloft.net>, Eric Dumazet
- <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
- Emil Renner Berthing <kernel@esmil.dk>, Rob Herring <robh@kernel.org>,
+To: Michal Simek <michal.simek@amd.com>, linux-kernel@vger.kernel.org,
+ monstr@monstr.eu, michal.simek@xilinx.com, git@xilinx.com
+Cc: Conor Dooley <conor+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Simon Horman <horms@kernel.org>,
- Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
- Andrew Halaney <ahalaney@redhat.com>, Jisheng Zhang <jszhang@kernel.org>,
- =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
- Russell King <rmk+kernel@armlinux.org.uk>
-Cc: Ley Foon Tan <leyfoon.tan@starfivetech.com>,
- Jee Heng Sia <jeeheng.sia@starfivetech.com>, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org
-References: <20240108075810.14161-1-chunhau.tan@starfivetech.com>
- <20240108075810.14161-3-chunhau.tan@starfivetech.com>
+ Moritz Fischer <mdf@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Tom Rix <trix@redhat.com>, Wu Hao <hao.wu@intel.com>,
+ Xu Yilun <yilun.xu@intel.com>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>, kishore Manne <nava.kishore.manne@amd.com>,
+ "open list:FPGA MANAGER FRAMEWORK" <linux-fpga@vger.kernel.org>
+References: <3100bbc4723643ec1ec7d4548e9ab353c856b564.1704470663.git.michal.simek@amd.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -134,29 +124,33 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240108075810.14161-3-chunhau.tan@starfivetech.com>
+In-Reply-To: <3100bbc4723643ec1ec7d4548e9ab353c856b564.1704470663.git.michal.simek@amd.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 08/01/2024 08:58, Tan Chun Hau wrote:
-> Add JH8100 dwmac support.
+On 05/01/2024 17:04, Michal Simek wrote:
+> Convert the generic fpga bridge DT binding to json-schema.
 > 
-> Signed-off-by: Tan Chun Hau <chunhau.tan@starfivetech.com>
-> ---
->  drivers/net/ethernet/stmicro/stmmac/dwmac-starfive.c | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-starfive.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-starfive.c
-> index 5d630affb4d1..373714f6e382 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-starfive.c
-> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-starfive.c
-> @@ -146,6 +146,7 @@ static int starfive_dwmac_probe(struct platform_device *pdev)
->  
->  static const struct of_device_id starfive_dwmac_match[] = {
->  	{ .compatible = "starfive,jh7110-dwmac"	},
-> +	{ .compatible = "starfive,jh8100-dwmac"	},
+> Signed-off-by: Michal Simek <michal.simek@amd.com>
 
-No differences? Then why aren't the devices made compatible with each other?
+> +$id: http://devicetree.org/schemas/fpga/fpga-bridge.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: FPGA Bridge
+> +
+> +maintainers:
+> +  - Michal Simek <michal.simek@amd.com>
+> +
+> +properties:
+> +  $nodename:
+> +    pattern: "^fpga-bridge(@.*)?$"
+
+Not sure, but maybe we need to allow fpga-bridge-1? Could we have more
+than one bridge on given system?
+
+Anyway, looks fine:
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
