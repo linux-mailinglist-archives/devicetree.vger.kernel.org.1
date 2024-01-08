@@ -1,723 +1,1233 @@
-Return-Path: <devicetree+bounces-30257-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30258-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59A4B8271E3
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 15:53:01 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 60DFD827214
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 16:04:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F21A0284014
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 14:52:59 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 84530B222ED
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 15:04:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A3BB46552;
-	Mon,  8 Jan 2024 14:52:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1614A4C3C9;
+	Mon,  8 Jan 2024 15:03:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="li5Kyygg"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="AQMMH+C2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f52.google.com (mail-qv1-f52.google.com [209.85.219.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE3654644C
-	for <devicetree@vger.kernel.org>; Mon,  8 Jan 2024 14:52:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-qv1-f52.google.com with SMTP id 6a1803df08f44-6806914dba7so17605446d6.2
-        for <devicetree@vger.kernel.org>; Mon, 08 Jan 2024 06:52:56 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96EE447784;
+	Mon,  8 Jan 2024 15:03:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704725576; x=1705330376; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=oikT+AoPsbSYZ2ji2pCBbZnl9EEx+eoU6UYiTME23Hc=;
-        b=li5KyyggOWv1QYRCNgY+r5dY8TBnRTIsg7vAuXw1XBVPOUEbd9Z7H27VDFy86wSn2q
-         nttYYzOcNEInOzEhOCRoE8pruRBJN0BRUCotJ2U+1lgjWnE9caQ1er+e48hkWjHiLbkH
-         aozhBW9VYpSXwcpPlo6j+zmKc35lk5hnAmTdbuq69MIbuEjdob1vRvHATxzRePSILGvn
-         Pae2dkxlSpSzMdd0k4lrqnPATxDENSvtpF+Zo2ONaSlF+CoXnl8aYSGePIiy8KjMTuuS
-         k/rXVJ7/3L16t9EOu+0HaT6hFHu/O5QWmkD/Gz9uiIaJYkwzd2r6Bph0s2/jj6qX9Omy
-         LVlg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704725576; x=1705330376;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=oikT+AoPsbSYZ2ji2pCBbZnl9EEx+eoU6UYiTME23Hc=;
-        b=F21HTftJrRgzEtB8p4lq5MEAVGXhqyIWy9dzEyiu7AbDmx55Wl/fpTNVDtJDIg+MQE
-         wl2Fmt49bclOWmC4dPRyKPKig07mjP6a+TAGrxJwbV4kY11viOg1CpD5KkCB4SGg4EuP
-         vh+/vjs0cAfUFXFnMRfr5WM47kZuqn8aHQYdy/fnZJKYZvHLdk3Im2NiRKwJNwHT+c5S
-         fPTKczMwjTN1KV0CdkfOQi0+sR/VZ75hhG+drP2vF2fd4+9PEhkYH95UGNgNDaVcd7v2
-         jngtvTli/bUhOSNoIITPXHOuzQFgzcBl3STG+av2szPYAlEguKpWP3jtHP7r6XvOw52i
-         Z/dQ==
-X-Gm-Message-State: AOJu0YwB1vt++Ylsy5dHExGs8AACr6KGu6HL8e4Mt3HWr3Nb8fVZQO5Z
-	JVoKyTMdXmECAGElkqZuK/DBj8BFBlxJV6Oy48sG/AKO8flKXQ==
-X-Google-Smtp-Source: AGHT+IG0bEPkIWizTdyHKaLWTGxkqZ5/qMKuB+y/2WW98j7B08I2ZiQa+D2XAHiPwD+rcrwJqgUNa3lLTRQ/xa6hbjI=
-X-Received: by 2002:a05:6214:20c9:b0:680:a4a:db94 with SMTP id
- 9-20020a05621420c900b006800a4adb94mr5146626qve.77.1704725575699; Mon, 08 Jan
- 2024 06:52:55 -0800 (PST)
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1704726210; x=1736262210;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=lFLR9/lX88bs5FSXRG+Q/KTqO0KBNbod0EWUerJuI+M=;
+  b=AQMMH+C2TP/ol0fPtEj2yvrfJfRiLANtNoI5zj8UgnXGjkbp0aNLYdMF
+   lihtLB2l7qDdy8uYzmIoBksWEs3eQpl+sVz+cT/wlI7L/vkaAkkGtMVSx
+   5pxeFMmuhY5tMR6Oej9G8mgxzjd5jEfOBoVTuU4JtqDPAVihRf2taJS+o
+   89Gvy1cjFt4myvuysui6W5J1hVX6zvu9CZ30LLIfUm3IEhMaBum8uKVZT
+   Q3tL35CvGBFkU/3x4yz+5GG2Zzj4xuDHGgq2ncMtRJjQlmrQnTdCxTWNQ
+   nweVEvjp3gurjHKnoI3WTKyDv8Y1IRawMjQSDP8eF3Zf6UACrD0kyiWR8
+   w==;
+X-IronPort-AV: E=Sophos;i="6.04,180,1695679200"; 
+   d="scan'208";a="34789682"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 08 Jan 2024 16:03:27 +0100
+Received: from steina-w.localnet (steina-w.tq-net.de [10.123.53.25])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id E78F5280075;
+	Mon,  8 Jan 2024 16:03:26 +0100 (CET)
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: dri-devel@lists.freedesktop.org
+Cc: Kishon Vijay Abraham I <kishon@kernel.org>, devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, Fabio Estevam <festevam@gmail.com>, Pengutronix Kernel Team <kernel@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, linux-kernel@vger.kernel.org, Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>, NXP Linux Team <linux-imx@nxp.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, linux-phy@lists.infradead.org, Adam Ford <aford173@gmail.com>, linux-arm-kernel@lists.infradead.org, Adam Ford <aford173@gmail.com>
+Subject: Re: [PATCH V2 2/2] phy: freescale: add Samsung HDMI PHY
+Date: Mon, 08 Jan 2024 16:03:26 +0100
+Message-ID: <13783659.uLZWGnKmhe@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20240106221907.325127-2-aford173@gmail.com>
+References: <20240106221907.325127-1-aford173@gmail.com> <20240106221907.325127-2-aford173@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231228125805.661725-1-tudor.ambarus@linaro.org> <20231228125805.661725-8-tudor.ambarus@linaro.org>
-In-Reply-To: <20231228125805.661725-8-tudor.ambarus@linaro.org>
-From: Peter Griffin <peter.griffin@linaro.org>
-Date: Mon, 8 Jan 2024 14:52:44 +0000
-Message-ID: <CADrjBPr2=s_57iOieExiZ-F+WsDNXQ_5Tf+ki1PHtpuXhGZEuw@mail.gmail.com>
-Subject: Re: [PATCH v2 07/12] clk: samsung: gs101: add support for cmu_peric0
-To: Tudor Ambarus <tudor.ambarus@linaro.org>
-Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
-	mturquette@baylibre.com, sboyd@kernel.org, conor+dt@kernel.org, 
-	andi.shyti@kernel.org, alim.akhtar@samsung.com, gregkh@linuxfoundation.org, 
-	jirislaby@kernel.org, s.nawrocki@samsung.com, tomasz.figa@gmail.com, 
-	cw00.choi@samsung.com, arnd@arndb.de, semen.protsenko@linaro.org, 
-	andre.draszik@linaro.org, saravanak@google.com, willmcvicker@google.com, 
-	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org, 
-	linux-serial@vger.kernel.org, kernel-team@android.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
 
-Hi Tudor,
+Hi Adam,
 
-On Thu, 28 Dec 2023 at 12:58, Tudor Ambarus <tudor.ambarus@linaro.org> wrote:
->
-> CMU_PERIC0 is the clock management unit used for the peric0 block which
-> is used for USI and I3C. Add support for all cmu_peric0 clocks but
-> CLK_GOUT_PERIC0_IP (not enough info in the datasheet).
->
-> Few clocks are marked as critical because when either of them is
-> disabled, the system hangs even if their clock parents are enabled.
->
-> Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
+thanks for pushing this forward.
 
-Great to see another cmu bank being added,
-/sys/kernel/debug/clk/clk_summary looks good and I compile/boot tested
-this series
-
-Reviewed-by: Peter Griffin <peter.griffin@linaro.org>
-
-
-
-I tested this
-
+Am Samstag, 6. Januar 2024, 23:19:05 CET schrieb Adam Ford:
+> From: Lucas Stach <l.stach@pengutronix.de>
+>=20
+> This adds the driver for the Samsung HDMI PHY found on the
+> i.MX8MP SoC.
+>=20
+> Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
+> Signed-off-by: Adam Ford <aford173@gmail.com>
 > ---
-> v2:
-> - update commit message
-> - identify and mark critical clocks
->
->  drivers/clk/samsung/clk-gs101.c | 583 ++++++++++++++++++++++++++++++++
->  1 file changed, 583 insertions(+)
->
-> diff --git a/drivers/clk/samsung/clk-gs101.c b/drivers/clk/samsung/clk-gs101.c
-> index 0964bb11657f..68a27b78b00b 100644
-> --- a/drivers/clk/samsung/clk-gs101.c
-> +++ b/drivers/clk/samsung/clk-gs101.c
-> @@ -20,6 +20,7 @@
->  #define CLKS_NR_TOP    (CLK_GOUT_CMU_TPU_UART + 1)
->  #define CLKS_NR_APM    (CLK_APM_PLL_DIV16_APM + 1)
->  #define CLKS_NR_MISC   (CLK_GOUT_MISC_XIU_D_MISC_ACLK + 1)
-> +#define CLKS_NR_PERIC0 (CLK_GOUT_PERIC0_SYSREG_PERIC0_PCLK + 1)
->
->  /* ---- CMU_TOP ------------------------------------------------------------- */
->
-> @@ -2478,6 +2479,585 @@ static const struct samsung_cmu_info misc_cmu_info __initconst = {
->         .clk_name               = "dout_cmu_misc_bus",
->  };
->
-> +/* ---- CMU_PERIC0 ---------------------------------------------------------- */
+> V2:  Fixed some whitespace found from checkpatch
+>      Change error handling when enabling apbclk to use dev_err_probe
+>      Rebase on Linux-Next
+>=20
+>      I (Adam) tried to help move this along, so I took Lucas' patch and
+>      attempted to apply fixes based on feedback.  I don't have
+>      all the history, so apologies for that.
+>=20
+> diff --git a/drivers/phy/freescale/Kconfig b/drivers/phy/freescale/Kconfig
+> index 853958fb2c06..5c2b73042dfc 100644
+> --- a/drivers/phy/freescale/Kconfig
+> +++ b/drivers/phy/freescale/Kconfig
+> @@ -35,6 +35,12 @@ config PHY_FSL_IMX8M_PCIE
+>  	  Enable this to add support for the PCIE PHY as found on
+>  	  i.MX8M family of SOCs.
+>=20
+> +config PHY_FSL_SAMSUNG_HDMI_PHY
+> +	tristate "Samsung HDMI PHY support"
+> +	depends on OF && HAS_IOMEM
+> +	help
+> +	  Enable this to add support for the Samsung HDMI PHY in i.MX8MP.
 > +
-> +/* Register Offset definitions for CMU_PERIC0 (0x10800000) */
-> +#define PLL_CON0_MUX_CLKCMU_PERIC0_BUS_USER            0x0600
-> +#define PLL_CON1_MUX_CLKCMU_PERIC0_BUS_USER            0x0604
-> +#define PLL_CON0_MUX_CLKCMU_PERIC0_I3C_USER            0x0610
-> +#define PLL_CON1_MUX_CLKCMU_PERIC0_I3C_USER            0x0614
-> +#define PLL_CON0_MUX_CLKCMU_PERIC0_USI0_UART_USER      0x0620
-> +#define PLL_CON1_MUX_CLKCMU_PERIC0_USI0_UART_USER      0x0624
-> +#define PLL_CON0_MUX_CLKCMU_PERIC0_USI14_USI_USER      0x0640
-> +#define PLL_CON1_MUX_CLKCMU_PERIC0_USI14_USI_USER      0x0644
-> +#define PLL_CON0_MUX_CLKCMU_PERIC0_USI1_USI_USER       0x0650
-> +#define PLL_CON1_MUX_CLKCMU_PERIC0_USI1_USI_USER       0x0654
-> +#define PLL_CON0_MUX_CLKCMU_PERIC0_USI2_USI_USER       0x0660
-> +#define PLL_CON1_MUX_CLKCMU_PERIC0_USI2_USI_USER       0x0664
-> +#define PLL_CON0_MUX_CLKCMU_PERIC0_USI3_USI_USER       0x0670
-> +#define PLL_CON1_MUX_CLKCMU_PERIC0_USI3_USI_USER       0x0674
-> +#define PLL_CON0_MUX_CLKCMU_PERIC0_USI4_USI_USER       0x0680
-> +#define PLL_CON1_MUX_CLKCMU_PERIC0_USI4_USI_USER       0x0684
-> +#define PLL_CON0_MUX_CLKCMU_PERIC0_USI5_USI_USER       0x0690
-> +#define PLL_CON1_MUX_CLKCMU_PERIC0_USI5_USI_USER       0x0694
-> +#define PLL_CON0_MUX_CLKCMU_PERIC0_USI6_USI_USER       0x06a0
-> +#define PLL_CON1_MUX_CLKCMU_PERIC0_USI6_USI_USER       0x06a4
-> +#define PLL_CON0_MUX_CLKCMU_PERIC0_USI7_USI_USER       0x06b0
-> +#define PLL_CON1_MUX_CLKCMU_PERIC0_USI7_USI_USER       0x06b4
-> +#define PLL_CON0_MUX_CLKCMU_PERIC0_USI8_USI_USER       0x06c0
-> +#define PLL_CON1_MUX_CLKCMU_PERIC0_USI8_USI_USER       0x06c4
-> +#define PERIC0_CMU_PERIC0_CONTROLLER_OPTION            0x0800
-> +#define CLKOUT_CON_BLK_PERIC0_CMU_PERIC0_CLKOUT0       0x0810
-> +#define CLK_CON_DIV_DIV_CLK_PERIC0_I3C                 0x1800
-> +#define CLK_CON_DIV_DIV_CLK_PERIC0_USI0_UART           0x1804
-> +#define CLK_CON_DIV_DIV_CLK_PERIC0_USI14_USI           0x180c
-> +#define CLK_CON_DIV_DIV_CLK_PERIC0_USI1_USI            0x1810
-> +#define CLK_CON_DIV_DIV_CLK_PERIC0_USI2_USI            0x1814
-> +#define CLK_CON_DIV_DIV_CLK_PERIC0_USI3_USI            0x1820
-> +#define CLK_CON_DIV_DIV_CLK_PERIC0_USI4_USI            0x1824
-> +#define CLK_CON_DIV_DIV_CLK_PERIC0_USI5_USI            0x1828
-> +#define CLK_CON_DIV_DIV_CLK_PERIC0_USI6_USI            0x182c
-> +#define CLK_CON_DIV_DIV_CLK_PERIC0_USI7_USI            0x1830
-> +#define CLK_CON_DIV_DIV_CLK_PERIC0_USI8_USI            0x1834
-> +#define CLK_CON_BUF_CLKBUF_PERIC0_IP                   0x2000
-> +#define CLK_CON_GAT_CLK_BLK_PERIC0_UID_PERIC0_CMU_PERIC0_IPCLKPORT_PCLK                        0x2004
-> +#define CLK_CON_GAT_CLK_BLK_PERIC0_UID_RSTNSYNC_CLK_PERIC0_OSCCLK_IPCLKPORT_CLK                0x2008
-> +#define CLK_CON_GAT_GOUT_BLK_PERIC0_UID_D_TZPC_PERIC0_IPCLKPORT_PCLK                   0x200c
-> +#define CLK_CON_GAT_GOUT_BLK_PERIC0_UID_GPC_PERIC0_IPCLKPORT_PCLK                      0x2010
-> +#define CLK_CON_GAT_GOUT_BLK_PERIC0_UID_GPIO_PERIC0_IPCLKPORT_PCLK                     0x2014
-> +#define CLK_CON_GAT_GOUT_BLK_PERIC0_UID_LHM_AXI_P_PERIC0_IPCLKPORT_I_CLK               0x2018
-> +#define CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_IPCLK_0                  0x201c
-> +#define CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_IPCLK_1                  0x2020
-> +#define CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_IPCLK_10                 0x2024
-> +#define CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_IPCLK_11                 0x2028
-> +#define CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_IPCLK_12                 0x202c
-> +#define CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_IPCLK_13                 0x2030
-> +#define CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_IPCLK_14                 0x2034
-> +#define CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_IPCLK_15                 0x2038
-> +#define CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_IPCLK_2                  0x203c
-> +#define CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_IPCLK_3                  0x2040
-> +#define CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_IPCLK_4                  0x2044
-> +#define CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_IPCLK_5                  0x2048
-> +#define CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_IPCLK_6                  0x204c
-> +#define CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_IPCLK_7                  0x2050
-> +#define CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_IPCLK_8                  0x2054
-> +#define CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_IPCLK_9                  0x2058
-> +#define CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_PCLK_0                   0x205c
-> +#define CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_PCLK_1                   0x2060
-> +#define CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_PCLK_10                  0x2064
-> +#define CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_PCLK_11                  0x2068
-> +#define CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_PCLK_12                  0x206c
-> +#define CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_PCLK_13                  0x2070
-> +#define CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_PCLK_14                  0x2074
-> +#define CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_PCLK_15                  0x2078
-> +#define CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_PCLK_2                   0x207c
-> +#define CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_PCLK_3                   0x2080
-> +#define CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_PCLK_4                   0x2084
-> +#define CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_PCLK_5                   0x2088
-> +#define CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_PCLK_6                   0x208c
-> +#define CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_PCLK_7                   0x2090
-> +#define CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_PCLK_8                   0x2094
-> +#define CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_PCLK_9                   0x2098
-> +#define CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP1_IPCLKPORT_IPCLK_0                  0x209c
-> +#define CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP1_IPCLKPORT_IPCLK_2                  0x20a4
-> +#define CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP1_IPCLKPORT_PCLK_0                   0x20a8
-> +#define CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP1_IPCLKPORT_PCLK_2                   0x20b0
-> +#define CLK_CON_GAT_GOUT_BLK_PERIC0_UID_RSTNSYNC_CLK_PERIC0_BUSP_IPCLKPORT_CLK         0x20b4
-> +#define CLK_CON_GAT_GOUT_BLK_PERIC0_UID_RSTNSYNC_CLK_PERIC0_I3C_IPCLKPORT_CLK          0x20b8
-> +#define CLK_CON_GAT_GOUT_BLK_PERIC0_UID_RSTNSYNC_CLK_PERIC0_USI0_UART_IPCLKPORT_CLK    0x20bc
-> +#define CLK_CON_GAT_GOUT_BLK_PERIC0_UID_RSTNSYNC_CLK_PERIC0_USI14_USI_IPCLKPORT_CLK    0x20c4
-> +#define CLK_CON_GAT_GOUT_BLK_PERIC0_UID_RSTNSYNC_CLK_PERIC0_USI1_USI_IPCLKPORT_CLK     0x20c8
-> +#define CLK_CON_GAT_GOUT_BLK_PERIC0_UID_RSTNSYNC_CLK_PERIC0_USI2_USI_IPCLKPORT_CLK     0x20cc
-> +#define CLK_CON_GAT_GOUT_BLK_PERIC0_UID_RSTNSYNC_CLK_PERIC0_USI3_USI_IPCLKPORT_CLK     0x20d0
-> +#define CLK_CON_GAT_GOUT_BLK_PERIC0_UID_RSTNSYNC_CLK_PERIC0_USI4_USI_IPCLKPORT_CLK     0x20d4
-> +#define CLK_CON_GAT_GOUT_BLK_PERIC0_UID_RSTNSYNC_CLK_PERIC0_USI5_USI_IPCLKPORT_CLK     0x20d8
-> +#define CLK_CON_GAT_GOUT_BLK_PERIC0_UID_RSTNSYNC_CLK_PERIC0_USI6_USI_IPCLKPORT_CLK     0x20dc
-> +#define CLK_CON_GAT_GOUT_BLK_PERIC0_UID_RSTNSYNC_CLK_PERIC0_USI7_USI_IPCLKPORT_CLK     0x20e0
-> +#define CLK_CON_GAT_GOUT_BLK_PERIC0_UID_RSTNSYNC_CLK_PERIC0_USI8_USI_IPCLKPORT_CLK     0x20e4
-> +#define CLK_CON_GAT_GOUT_BLK_PERIC0_UID_SYSREG_PERIC0_IPCLKPORT_PCLK                   0x20e8
-> +#define DMYQCH_CON_PERIC0_TOP0_QCH_S1                  0x3000
-> +#define DMYQCH_CON_PERIC0_TOP0_QCH_S2                  0x3004
-> +#define DMYQCH_CON_PERIC0_TOP0_QCH_S3                  0x3008
-> +#define DMYQCH_CON_PERIC0_TOP0_QCH_S4                  0x300c
-> +#define DMYQCH_CON_PERIC0_TOP0_QCH_S5                  0x3010
-> +#define DMYQCH_CON_PERIC0_TOP0_QCH_S6                  0x3014
-> +#define DMYQCH_CON_PERIC0_TOP0_QCH_S7                  0x3018
-> +#define DMYQCH_CON_PERIC0_TOP0_QCH_S8                  0x301c
-> +#define PCH_CON_LHM_AXI_P_PERIC0_PCH                   0x3020
-> +#define QCH_CON_D_TZPC_PERIC0_QCH                      0x3024
-> +#define QCH_CON_GPC_PERIC0_QCH                         0x3028
-> +#define QCH_CON_GPIO_PERIC0_QCH                                0x302c
-> +#define QCH_CON_LHM_AXI_P_PERIC0_QCH                   0x3030
-> +#define QCH_CON_PERIC0_CMU_PERIC0_QCH                  0x3034
-> +#define QCH_CON_PERIC0_TOP0_QCH_I3C1                   0x3038
-> +#define QCH_CON_PERIC0_TOP0_QCH_I3C2                   0x303c
-> +#define QCH_CON_PERIC0_TOP0_QCH_I3C3                   0x3040
-> +#define QCH_CON_PERIC0_TOP0_QCH_I3C4                   0x3044
-> +#define QCH_CON_PERIC0_TOP0_QCH_I3C5                   0x3048
-> +#define QCH_CON_PERIC0_TOP0_QCH_I3C6                   0x304c
-> +#define QCH_CON_PERIC0_TOP0_QCH_I3C7                   0x3050
-> +#define QCH_CON_PERIC0_TOP0_QCH_I3C8                   0x3054
-> +#define QCH_CON_PERIC0_TOP0_QCH_USI1_USI               0x3058
-> +#define QCH_CON_PERIC0_TOP0_QCH_USI2_USI               0x305c
-> +#define QCH_CON_PERIC0_TOP0_QCH_USI3_USI               0x3060
-> +#define QCH_CON_PERIC0_TOP0_QCH_USI4_USI               0x3064
-> +#define QCH_CON_PERIC0_TOP0_QCH_USI5_USI               0x3068
-> +#define QCH_CON_PERIC0_TOP0_QCH_USI6_USI               0x306c
-> +#define QCH_CON_PERIC0_TOP0_QCH_USI7_USI               0x3070
-> +#define QCH_CON_PERIC0_TOP0_QCH_USI8_USI               0x3074
-> +#define QCH_CON_PERIC0_TOP1_QCH_USI0_UART              0x3078
-> +#define QCH_CON_PERIC0_TOP1_QCH_USI14_UART             0x307c
-> +#define QCH_CON_SYSREG_PERIC0_QCH                      0x3080
-> +#define QUEUE_CTRL_REG_BLK_PERIC0_CMU_PERIC0           0x3c00
+>  endif
+>=20
+>  config PHY_FSL_LYNX_28G
+> diff --git a/drivers/phy/freescale/Makefile b/drivers/phy/freescale/Makef=
+ile
+> index cedb328bc4d2..dbcafdcc8751 100644
+> --- a/drivers/phy/freescale/Makefile
+> +++ b/drivers/phy/freescale/Makefile
+> @@ -3,4 +3,5 @@ obj-$(CONFIG_PHY_FSL_IMX8MQ_USB)	+=3D phy-fsl-imx8mq-usb.o
+>  obj-$(CONFIG_PHY_MIXEL_LVDS_PHY)	+=3D phy-fsl-imx8qm-lvds-phy.o
+>  obj-$(CONFIG_PHY_MIXEL_MIPI_DPHY)	+=3D phy-fsl-imx8-mipi-dphy.o
+>  obj-$(CONFIG_PHY_FSL_IMX8M_PCIE)	+=3D phy-fsl-imx8m-pcie.o
+> +obj-$(CONFIG_PHY_FSL_SAMSUNG_HDMI_PHY)  +=3D phy-fsl-samsung-hdmi.o
+>  obj-$(CONFIG_PHY_FSL_LYNX_28G)		+=3D phy-fsl-lynx-28g.o
+
+I don't know if there was different feedback already. But I would have adde=
+d=20
+the entry sorted alphabetically, thus after CONFIG_PHY_FSL_LYNX_28G. Same g=
+oes=20
+for Kconfig as well.
+
+> diff --git a/drivers/phy/freescale/phy-fsl-samsung-hdmi.c
+> b/drivers/phy/freescale/phy-fsl-samsung-hdmi.c new file mode 100644
+> index 000000000000..54e93ea898f7
+> --- /dev/null
+> +++ b/drivers/phy/freescale/phy-fsl-samsung-hdmi.c
+> @@ -0,0 +1,1078 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +/*
+> + * Copyright 2020 NXP
+> + * Copyright 2022 Pengutronix, Lucas Stach <kernel@pengutronix.de>
+> + */
 > +
-> +static const unsigned long peric0_clk_regs[] __initconst = {
-> +       PLL_CON0_MUX_CLKCMU_PERIC0_BUS_USER,
-> +       PLL_CON1_MUX_CLKCMU_PERIC0_BUS_USER,
-> +       PLL_CON0_MUX_CLKCMU_PERIC0_I3C_USER,
-> +       PLL_CON1_MUX_CLKCMU_PERIC0_I3C_USER,
-> +       PLL_CON0_MUX_CLKCMU_PERIC0_USI0_UART_USER,
-> +       PLL_CON1_MUX_CLKCMU_PERIC0_USI0_UART_USER,
-> +       PLL_CON0_MUX_CLKCMU_PERIC0_USI14_USI_USER,
-> +       PLL_CON1_MUX_CLKCMU_PERIC0_USI14_USI_USER,
-> +       PLL_CON0_MUX_CLKCMU_PERIC0_USI1_USI_USER,
-> +       PLL_CON1_MUX_CLKCMU_PERIC0_USI1_USI_USER,
-> +       PLL_CON0_MUX_CLKCMU_PERIC0_USI2_USI_USER,
-> +       PLL_CON1_MUX_CLKCMU_PERIC0_USI2_USI_USER,
-> +       PLL_CON0_MUX_CLKCMU_PERIC0_USI3_USI_USER,
-> +       PLL_CON1_MUX_CLKCMU_PERIC0_USI3_USI_USER,
-> +       PLL_CON0_MUX_CLKCMU_PERIC0_USI4_USI_USER,
-> +       PLL_CON1_MUX_CLKCMU_PERIC0_USI4_USI_USER,
-> +       PLL_CON0_MUX_CLKCMU_PERIC0_USI5_USI_USER,
-> +       PLL_CON1_MUX_CLKCMU_PERIC0_USI5_USI_USER,
-> +       PLL_CON0_MUX_CLKCMU_PERIC0_USI6_USI_USER,
-> +       PLL_CON1_MUX_CLKCMU_PERIC0_USI6_USI_USER,
-> +       PLL_CON0_MUX_CLKCMU_PERIC0_USI7_USI_USER,
-> +       PLL_CON1_MUX_CLKCMU_PERIC0_USI7_USI_USER,
-> +       PLL_CON0_MUX_CLKCMU_PERIC0_USI8_USI_USER,
-> +       PLL_CON1_MUX_CLKCMU_PERIC0_USI8_USI_USER,
-> +       PERIC0_CMU_PERIC0_CONTROLLER_OPTION,
-> +       CLKOUT_CON_BLK_PERIC0_CMU_PERIC0_CLKOUT0,
-> +       CLK_CON_DIV_DIV_CLK_PERIC0_I3C,
-> +       CLK_CON_DIV_DIV_CLK_PERIC0_USI0_UART,
-> +       CLK_CON_DIV_DIV_CLK_PERIC0_USI14_USI,
-> +       CLK_CON_DIV_DIV_CLK_PERIC0_USI1_USI,
-> +       CLK_CON_DIV_DIV_CLK_PERIC0_USI2_USI,
-> +       CLK_CON_DIV_DIV_CLK_PERIC0_USI3_USI,
-> +       CLK_CON_DIV_DIV_CLK_PERIC0_USI4_USI,
-> +       CLK_CON_DIV_DIV_CLK_PERIC0_USI5_USI,
-> +       CLK_CON_DIV_DIV_CLK_PERIC0_USI6_USI,
-> +       CLK_CON_DIV_DIV_CLK_PERIC0_USI6_USI,
-> +       CLK_CON_DIV_DIV_CLK_PERIC0_USI8_USI,
-> +       CLK_CON_BUF_CLKBUF_PERIC0_IP,
-> +       CLK_CON_GAT_CLK_BLK_PERIC0_UID_PERIC0_CMU_PERIC0_IPCLKPORT_PCLK,
-> +       CLK_CON_GAT_CLK_BLK_PERIC0_UID_RSTNSYNC_CLK_PERIC0_OSCCLK_IPCLKPORT_CLK,
-> +       CLK_CON_GAT_GOUT_BLK_PERIC0_UID_D_TZPC_PERIC0_IPCLKPORT_PCLK,
-> +       CLK_CON_GAT_GOUT_BLK_PERIC0_UID_GPC_PERIC0_IPCLKPORT_PCLK,
-> +       CLK_CON_GAT_GOUT_BLK_PERIC0_UID_GPIO_PERIC0_IPCLKPORT_PCLK,
-> +       CLK_CON_GAT_GOUT_BLK_PERIC0_UID_LHM_AXI_P_PERIC0_IPCLKPORT_I_CLK,
-> +       CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_IPCLK_0,
-> +       CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_IPCLK_1,
-> +       CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_IPCLK_10,
-> +       CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_IPCLK_11,
-> +       CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_IPCLK_12,
-> +       CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_IPCLK_13,
-> +       CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_IPCLK_14,
-> +       CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_IPCLK_15,
-> +       CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_IPCLK_2,
-> +       CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_IPCLK_3,
-> +       CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_IPCLK_4,
-> +       CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_IPCLK_5,
-> +       CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_IPCLK_6,
-> +       CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_IPCLK_7,
-> +       CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_IPCLK_8,
-> +       CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_IPCLK_9,
-> +       CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_PCLK_0,
-> +       CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_PCLK_1,
-> +       CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_PCLK_10,
-> +       CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_PCLK_11,
-> +       CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_PCLK_12,
-> +       CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_PCLK_13,
-> +       CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_PCLK_14,
-> +       CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_PCLK_15,
-> +       CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_PCLK_2,
-> +       CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_PCLK_3,
-> +       CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_PCLK_4,
-> +       CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_PCLK_5,
-> +       CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_PCLK_6,
-> +       CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_PCLK_7,
-> +       CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_PCLK_8,
-> +       CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_PCLK_9,
-> +       CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP1_IPCLKPORT_IPCLK_0,
-> +       CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP1_IPCLKPORT_IPCLK_2,
-> +       CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP1_IPCLKPORT_PCLK_0,
-> +       CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP1_IPCLKPORT_PCLK_2,
-> +       CLK_CON_GAT_GOUT_BLK_PERIC0_UID_RSTNSYNC_CLK_PERIC0_BUSP_IPCLKPORT_CLK,
-> +       CLK_CON_GAT_GOUT_BLK_PERIC0_UID_RSTNSYNC_CLK_PERIC0_I3C_IPCLKPORT_CLK,
-> +       CLK_CON_GAT_GOUT_BLK_PERIC0_UID_RSTNSYNC_CLK_PERIC0_USI0_UART_IPCLKPORT_CLK,
-> +       CLK_CON_GAT_GOUT_BLK_PERIC0_UID_RSTNSYNC_CLK_PERIC0_USI14_USI_IPCLKPORT_CLK,
-> +       CLK_CON_GAT_GOUT_BLK_PERIC0_UID_RSTNSYNC_CLK_PERIC0_USI1_USI_IPCLKPORT_CLK,
-> +       CLK_CON_GAT_GOUT_BLK_PERIC0_UID_RSTNSYNC_CLK_PERIC0_USI2_USI_IPCLKPORT_CLK,
-> +       CLK_CON_GAT_GOUT_BLK_PERIC0_UID_RSTNSYNC_CLK_PERIC0_USI3_USI_IPCLKPORT_CLK,
-> +       CLK_CON_GAT_GOUT_BLK_PERIC0_UID_RSTNSYNC_CLK_PERIC0_USI4_USI_IPCLKPORT_CLK,
-> +       CLK_CON_GAT_GOUT_BLK_PERIC0_UID_RSTNSYNC_CLK_PERIC0_USI5_USI_IPCLKPORT_CLK,
-> +       CLK_CON_GAT_GOUT_BLK_PERIC0_UID_RSTNSYNC_CLK_PERIC0_USI6_USI_IPCLKPORT_CLK,
-> +       CLK_CON_GAT_GOUT_BLK_PERIC0_UID_RSTNSYNC_CLK_PERIC0_USI7_USI_IPCLKPORT_CLK,
-> +       CLK_CON_GAT_GOUT_BLK_PERIC0_UID_RSTNSYNC_CLK_PERIC0_USI8_USI_IPCLKPORT_CLK,
-> +       CLK_CON_GAT_GOUT_BLK_PERIC0_UID_SYSREG_PERIC0_IPCLKPORT_PCLK,
-> +       DMYQCH_CON_PERIC0_TOP0_QCH_S1,
-> +       DMYQCH_CON_PERIC0_TOP0_QCH_S2,
-> +       DMYQCH_CON_PERIC0_TOP0_QCH_S3,
-> +       DMYQCH_CON_PERIC0_TOP0_QCH_S4,
-> +       DMYQCH_CON_PERIC0_TOP0_QCH_S5,
-> +       DMYQCH_CON_PERIC0_TOP0_QCH_S6,
-> +       DMYQCH_CON_PERIC0_TOP0_QCH_S7,
-> +       DMYQCH_CON_PERIC0_TOP0_QCH_S8,
-> +       PCH_CON_LHM_AXI_P_PERIC0_PCH,
-> +       QCH_CON_D_TZPC_PERIC0_QCH,
-> +       QCH_CON_GPC_PERIC0_QCH,
-> +       QCH_CON_GPIO_PERIC0_QCH,
-> +       QCH_CON_LHM_AXI_P_PERIC0_QCH,
-> +       QCH_CON_PERIC0_CMU_PERIC0_QCH,
-> +       QCH_CON_PERIC0_TOP0_QCH_I3C1,
-> +       QCH_CON_PERIC0_TOP0_QCH_I3C2,
-> +       QCH_CON_PERIC0_TOP0_QCH_I3C3,
-> +       QCH_CON_PERIC0_TOP0_QCH_I3C4,
-> +       QCH_CON_PERIC0_TOP0_QCH_I3C5,
-> +       QCH_CON_PERIC0_TOP0_QCH_I3C6,
-> +       QCH_CON_PERIC0_TOP0_QCH_I3C7,
-> +       QCH_CON_PERIC0_TOP0_QCH_I3C8,
-> +       QCH_CON_PERIC0_TOP0_QCH_USI1_USI,
-> +       QCH_CON_PERIC0_TOP0_QCH_USI2_USI,
-> +       QCH_CON_PERIC0_TOP0_QCH_USI3_USI,
-> +       QCH_CON_PERIC0_TOP0_QCH_USI4_USI,
-> +       QCH_CON_PERIC0_TOP0_QCH_USI5_USI,
-> +       QCH_CON_PERIC0_TOP0_QCH_USI6_USI,
-> +       QCH_CON_PERIC0_TOP0_QCH_USI7_USI,
-> +       QCH_CON_PERIC0_TOP0_QCH_USI8_USI,
-> +       QCH_CON_PERIC0_TOP1_QCH_USI0_UART,
-> +       QCH_CON_PERIC0_TOP1_QCH_USI14_UART,
-> +       QCH_CON_SYSREG_PERIC0_QCH,
-> +       QUEUE_CTRL_REG_BLK_PERIC0_CMU_PERIC0,
+> +#include <linux/clk-provider.h>
+> +#include <linux/clk.h>
+> +#include <linux/delay.h>
+> +#include <linux/io.h>
+> +#include <linux/iopoll.h>
+> +#include <linux/module.h>
+> +#include <linux/of_device.h>
+> +#include <linux/of.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/pm_runtime.h>
+> +
+> +#define HDMI_TX_CONTROL0		0x200
+> +#define  HDMI_TX_CONTROL_PHY_PWRDWN	BIT(3)
+
+These defines are unused here.
+
+> +
+> +#define PHY_REG_33		0x84
+> +#define  REG33_MODE_SET_DONE	BIT(7)
+> +#define  REG33_FIX_DA		BIT(1)
+> +
+> +#define PHY_REG_34		0x88
+> +#define  REG34_PHY_READY	BIT(7)
+> +#define  REG34_PLL_LOCK		BIT(6)
+> +#define  REG34_PHY_CLK_READY	BIT(5)
+> +
+> +
+> +#define PHY_PLL_REGS_NUM 48
+> +
+> +struct phy_config {
+> +	u32	clk_rate;
+> +	u8 regs[PHY_PLL_REGS_NUM];
+
+Shouldn't reg be aligned along clk_rate?
+
+Despite that. Tested on TQMa8MPQL/MBa8MPxL + Full-HD HDMI monitor.
+
+Tested-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+
+Best regards,
+Alexander
+
 > +};
 > +
-> +/* List of parent clocks for Muxes in CMU_PERIC0 */
-> +PNAME(mout_peric0_bus_user_p)          = { "oscclk", "dout_cmu_peric0_bus" };
-> +PNAME(mout_peric0_i3c_user_p)          = { "oscclk", "dout_cmu_peric0_ip" };
-> +PNAME(mout_peric0_usi0_uart_user_p)    = { "oscclk", "dout_cmu_peric0_ip" };
-> +PNAME(mout_peric0_usi_usi_user_p)      = { "oscclk", "dout_cmu_peric0_ip" };
-> +
-> +static const struct samsung_mux_clock peric0_mux_clks[] __initconst = {
-> +       MUX(CLK_MOUT_PERIC0_BUS_USER, "mout_peric0_bus_user",
-> +           mout_peric0_bus_user_p, PLL_CON0_MUX_CLKCMU_PERIC0_BUS_USER, 4, 1),
-> +       MUX(CLK_MOUT_PERIC0_I3C_USER, "mout_peric0_i3c_user",
-> +           mout_peric0_i3c_user_p, PLL_CON0_MUX_CLKCMU_PERIC0_I3C_USER, 4, 1),
-> +       MUX(CLK_MOUT_PERIC0_USI0_UART_USER,
-> +           "mout_peric0_usi0_uart_user", mout_peric0_usi0_uart_user_p,
-> +           PLL_CON0_MUX_CLKCMU_PERIC0_USI0_UART_USER, 4, 1),
-> +       MUX(CLK_MOUT_PERIC0_USI14_USI_USER,
-> +           "mout_peric0_usi14_usi_user", mout_peric0_usi_usi_user_p,
-> +           PLL_CON0_MUX_CLKCMU_PERIC0_USI14_USI_USER, 4, 1),
-> +       MUX(CLK_MOUT_PERIC0_USI1_USI_USER,
-> +           "mout_peric0_usi1_usi_user", mout_peric0_usi_usi_user_p,
-> +           PLL_CON0_MUX_CLKCMU_PERIC0_USI1_USI_USER, 4, 1),
-> +       MUX(CLK_MOUT_PERIC0_USI2_USI_USER,
-> +           "mout_peric0_usi2_usi_user", mout_peric0_usi_usi_user_p,
-> +           PLL_CON0_MUX_CLKCMU_PERIC0_USI2_USI_USER, 4, 1),
-> +       MUX(CLK_MOUT_PERIC0_USI3_USI_USER,
-> +           "mout_peric0_usi3_usi_user", mout_peric0_usi_usi_user_p,
-> +           PLL_CON0_MUX_CLKCMU_PERIC0_USI3_USI_USER, 4, 1),
-> +       MUX(CLK_MOUT_PERIC0_USI4_USI_USER,
-> +           "mout_peric0_usi4_usi_user", mout_peric0_usi_usi_user_p,
-> +           PLL_CON0_MUX_CLKCMU_PERIC0_USI4_USI_USER, 4, 1),
-> +       MUX(CLK_MOUT_PERIC0_USI5_USI_USER,
-> +           "mout_peric0_usi5_usi_user", mout_peric0_usi_usi_user_p,
-> +           PLL_CON0_MUX_CLKCMU_PERIC0_USI5_USI_USER, 4, 1),
-> +       MUX(CLK_MOUT_PERIC0_USI6_USI_USER,
-> +           "mout_peric0_usi6_usi_user", mout_peric0_usi_usi_user_p,
-> +           PLL_CON0_MUX_CLKCMU_PERIC0_USI6_USI_USER, 4, 1),
-> +       MUX(CLK_MOUT_PERIC0_USI7_USI_USER,
-> +           "mout_peric0_usi7_usi_user", mout_peric0_usi_usi_user_p,
-> +           PLL_CON0_MUX_CLKCMU_PERIC0_USI7_USI_USER, 4, 1),
-> +       MUX(CLK_MOUT_PERIC0_USI8_USI_USER,
-> +           "mout_peric0_usi8_usi_user", mout_peric0_usi_usi_user_p,
-> +           PLL_CON0_MUX_CLKCMU_PERIC0_USI8_USI_USER, 4, 1),
+> +const struct phy_config phy_pll_cfg[] =3D {
+> +	{	22250000, {
+> +			0x00, 0xD1, 0x4B, 0xF1, 0x89, 0x88, 0x80, 0x40,
+> +			0x4F, 0x30, 0x33, 0x65, 0x00, 0x15, 0x25, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x8F, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		23750000, {
+> +			0x00, 0xD1, 0x50, 0xF1, 0x86, 0x85, 0x80, 0x40,
+> +			0x4F, 0x30, 0x33, 0x65, 0x00, 0x03, 0x25, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x8F, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		24000000, {
+> +			0x00, 0xD1, 0x50, 0xF0, 0x00, 0x00, 0x80, 0x00,
+> +			0x4F, 0x30, 0x33, 0x65, 0x00, 0x01, 0x25, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x8F, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		24024000, {
+> +			0x00, 0xD1, 0x50, 0xF1, 0x99, 0x02, 0x80, 0x40,
+> +			0x4F, 0x30, 0x33, 0x65, 0x00, 0x00, 0x25, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x8F, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		25175000, {
+> +			0x00, 0xD1, 0x54, 0xFC, 0xCC, 0x91, 0x80, 0x40,
+> +			0x4F, 0x30, 0x33, 0x65, 0x00, 0xF5, 0x24, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x8F, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		25200000, {
+> +			0x00, 0xD1, 0x54, 0xF0, 0x00, 0x00, 0x80, 0x00,
+> +			0x4F, 0x30, 0x33, 0x65, 0x00, 0xF4, 0x24, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x8F, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		26750000, {
+> +			0x00, 0xD1, 0x5A, 0xF2, 0x89, 0x88, 0x80, 0x40,
+> +			0x4F, 0x30, 0x33, 0x65, 0x00, 0xE6, 0x24, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x8F, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		27000000, {
+> +			0x00, 0xD1, 0x5A, 0xF0, 0x00, 0x00, 0x80, 0x00,
+> +			0x4F, 0x30, 0x33, 0x65, 0x00, 0xE4, 0x24, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x8F, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		27027000, {
+> +			0x00, 0xD1, 0x5A, 0xF2, 0xFD, 0x0C, 0x80, 0x40,
+> +			0x4F, 0x30, 0x33, 0x65, 0x00, 0xE4, 0x24, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x8F, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		29500000, {
+> +			0x00, 0xD1, 0x62, 0xF4, 0x95, 0x08, 0x80, 0x40,
+> +			0x4F, 0x30, 0x33, 0x65, 0x00, 0xD1, 0x24, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x8F, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		30750000, {
+> +			0x00, 0xD1, 0x66, 0xF4, 0x82, 0x01, 0x88, 0x45,
+> +			0x4F, 0x30, 0x33, 0x65, 0x00, 0xC8, 0x24, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x8F, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		30888000, {
+> +			0x00, 0xD1, 0x66, 0xF4, 0x99, 0x18, 0x88, 0x45,
+> +			0x4F, 0x30, 0x33, 0x65, 0x00, 0xC7, 0x24, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x8F, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		33750000, {
+> +			0x00, 0xD1, 0x70, 0xF4, 0x82, 0x01, 0x80, 0x40,
+> +			0x4F, 0x30, 0x33, 0x65, 0x00, 0xB7, 0x24, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x8F, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		35000000, {
+> +			0x00, 0xD1, 0x58, 0xB8, 0x8B, 0x88, 0x80, 0x40,
+> +			0x4F, 0x30, 0x33, 0x65, 0x00, 0xB0, 0x24, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x8B, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		36000000, {
+> +			0x00, 0xD1, 0x5A, 0xB0, 0x00, 0x00, 0x80, 0x00,
+> +			0x4F, 0x30, 0x33, 0x65, 0x00, 0xAB, 0x24, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x8B, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		36036000, {
+> +			0x00, 0xD1, 0x5A, 0xB2, 0xFD, 0x0C, 0x80, 0x40,
+> +			0x4F, 0x30, 0x33, 0x65, 0x00, 0xAB, 0x24, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x8B, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		40000000, {
+> +			0x00, 0xD1, 0x64, 0xB0, 0x00, 0x00, 0x80, 0x00,
+> +			0x4F, 0x30, 0x33, 0x65, 0x00, 0x9A, 0x24, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x8B, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		43200000, {
+> +			0x00, 0xD1, 0x5A, 0x90, 0x00, 0x00, 0x80, 0x00,
+> +			0x4F, 0x30, 0x33, 0x65, 0x00, 0x8F, 0x24, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x89, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		43243200, {
+> +			0x00, 0xD1, 0x5A, 0x92, 0xFD, 0x0C, 0x80, 0x40,
+> +			0x4F, 0x30, 0x33, 0x65, 0x00, 0x8F, 0x24, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x89, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		44500000, {
+> +			0x00, 0xD1, 0x5C, 0x92, 0x98, 0x11, 0x84, 0x41,
+> +			0x4F, 0x30, 0x33, 0x65, 0x00, 0x8B, 0x24, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x89, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		47000000, {
+> +			0x00, 0xD1, 0x62, 0x94, 0x95, 0x82, 0x80, 0x40,
+> +			0x4F, 0x30, 0x33, 0x65, 0x00, 0x83, 0x24, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x89, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		47500000, {
+> +			0x00, 0xD1, 0x63, 0x96, 0xA1, 0x82, 0x80, 0x40,
+> +			0x4F, 0x30, 0x33, 0x65, 0x00, 0x82, 0x24, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x89, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		50349650, {
+> +			0x00, 0xD1, 0x54, 0x7C, 0xC3, 0x8F, 0x80, 0x40,
+> +			0x4F, 0x30, 0x33, 0x65, 0x10, 0xF5, 0x24, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x87, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		50400000, {
+> +			0x00, 0xD1, 0x54, 0x70, 0x00, 0x00, 0x80, 0x00,
+> +			0x4F, 0x30, 0x33, 0x65, 0x10, 0xF4, 0x24, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x87, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		53250000, {
+> +			0x00, 0xD1, 0x58, 0x72, 0x84, 0x03, 0x82, 0x41,
+> +			0x4F, 0x30, 0x33, 0x65, 0x10, 0xE7, 0x24, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x87, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		53500000, {
+> +			0x00, 0xD1, 0x5A, 0x72, 0x89, 0x88, 0x80, 0x40,
+> +			0x4F, 0x30, 0x33, 0x65, 0x10, 0xE6, 0x24, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x87, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		54000000, {
+> +			0x00, 0xD1, 0x5A, 0x70, 0x00, 0x00, 0x80, 0x00,
+> +			0x4F, 0x30, 0x33, 0x65, 0x10, 0xE4, 0x24, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x87, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		54054000, {
+> +			0x00, 0xD1, 0x5A, 0x72, 0xFD, 0x0C, 0x80, 0x40,
+> +			0x4F, 0x30, 0x33, 0x65, 0x10, 0xE4, 0x24, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x87, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		59000000, {
+> +			0x00, 0xD1, 0x62, 0x74, 0x95, 0x08, 0x80, 0x40,
+> +			0x4F, 0x30, 0x33, 0x65, 0x10, 0xD1, 0x24, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x87, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		59340659, {
+> +			0x00, 0xD1, 0x62, 0x74, 0xDB, 0x52, 0x88, 0x47,
+> +			0x4F, 0x30, 0x33, 0x65, 0x10, 0xD0, 0x24, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x87, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		59400000, {
+> +			0x00, 0xD1, 0x63, 0x70, 0x00, 0x00, 0x80, 0x00,
+> +			0x4F, 0x30, 0x33, 0x65, 0x10, 0xCF, 0x24, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x87, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		61500000, {
+> +			0x00, 0xD1, 0x66, 0x74, 0x82, 0x01, 0x88, 0x45,
+> +			0x4F, 0x30, 0x33, 0x65, 0x10, 0xC8, 0x24, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x87, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		63500000, {
+> +			0x00, 0xD1, 0x69, 0x74, 0x89, 0x08, 0x80, 0x40,
+> +			0x4F, 0x30, 0x33, 0x65, 0x10, 0xC2, 0x24, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x87, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		67500000, {
+> +			0x00, 0xD1, 0x54, 0x52, 0x87, 0x03, 0x80, 0x40,
+> +			0x4F, 0x30, 0x33, 0x65, 0x10, 0xB7, 0x24, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x85, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		70000000, {
+> +			0x00, 0xD1, 0x58, 0x58, 0x8B, 0x88, 0x80, 0x40,
+> +			0x4F, 0x30, 0x33, 0x65, 0x10, 0xB0, 0x24, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x85, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		72000000, {
+> +			0x00, 0xD1, 0x5A, 0x50, 0x00, 0x00, 0x80, 0x00,
+> +			0x4F, 0x30, 0x33, 0x65, 0x10, 0xAB, 0x24, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x85, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		72072000, {
+> +			0x00, 0xD1, 0x5A, 0x52, 0xFD, 0x0C, 0x80, 0x40,
+> +			0x4F, 0x30, 0x33, 0x65, 0x10, 0xAB, 0x24, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x85, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		74176000, {
+> +			0x00, 0xD1, 0x5D, 0x58, 0xDB, 0xA2, 0x88, 0x41,
+> +			0x4F, 0x30, 0x33, 0x65, 0x10, 0xA6, 0x24, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x85, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		74250000, {
+> +			0x00, 0xD1, 0x5C, 0x52, 0x90, 0x0D, 0x84, 0x41,
+> +			0x4F, 0x30, 0x33, 0x65, 0x10, 0xA6, 0x24, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x85, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		78500000, {
+> +			0x00, 0xD1, 0x62, 0x54, 0x87, 0x01, 0x80, 0x40,
+> +			0x4F, 0x30, 0x33, 0x65, 0x10, 0x9D, 0x24, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x85, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		80000000, {
+> +			0x00, 0xD1, 0x64, 0x50, 0x00, 0x00, 0x80, 0x00,
+> +			0x4F, 0x30, 0x33, 0x65, 0x10, 0x9A, 0x24, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x85, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		82000000, {
+> +			0x00, 0xD1, 0x66, 0x54, 0x82, 0x01, 0x88, 0x45,
+> +			0x4F, 0x30, 0x33, 0x65, 0x10, 0x96, 0x24, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x85, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		82500000, {
+> +			0x00, 0xD1, 0x67, 0x54, 0x88, 0x01, 0x90, 0x49,
+> +			0x4F, 0x30, 0x33, 0x65, 0x10, 0x95, 0x24, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x85, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		89000000, {
+> +			0x00, 0xD1, 0x70, 0x54, 0x84, 0x83, 0x80, 0x40,
+> +			0x4F, 0x30, 0x33, 0x65, 0x10, 0x8B, 0x24, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x85, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		90000000, {
+> +			0x00, 0xD1, 0x70, 0x54, 0x82, 0x01, 0x80, 0x40,
+> +			0x4F, 0x30, 0x33, 0x65, 0x10, 0x89, 0x24, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x85, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		94000000, {
+> +			0x00, 0xD1, 0x4E, 0x32, 0xA7, 0x10, 0x80, 0x40,
+> +			0x4F, 0x30, 0x33, 0x65, 0x10, 0x83, 0x24, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x83, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		95000000, {
+> +			0x00, 0xD1, 0x50, 0x31, 0x86, 0x85, 0x80, 0x40,
+> +			0x4F, 0x30, 0x33, 0x65, 0x10, 0x82, 0x24, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x83, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		98901099, {
+> +			0x00, 0xD1, 0x52, 0x3A, 0xDB, 0x4C, 0x88, 0x47,
+> +			0x4F, 0x30, 0x33, 0x65, 0x10, 0x7D, 0x24, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x83, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		99000000, {
+> +			0x00, 0xD1, 0x52, 0x32, 0x82, 0x01, 0x88, 0x47,
+> +			0x4F, 0x30, 0x33, 0x65, 0x10, 0x7D, 0x24, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x83, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		100699300, {
+> +			0x00, 0xD1, 0x54, 0x3C, 0xC3, 0x8F, 0x80, 0x40,
+> +			0x4F, 0x30, 0x33, 0x65, 0x20, 0xF5, 0x24, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x83, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		100800000, {
+> +			0x00, 0xD1, 0x54, 0x30, 0x00, 0x00, 0x80, 0x00,
+> +			0x4F, 0x30, 0x33, 0x65, 0x20, 0xF4, 0x24, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x83, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		102500000, {
+> +			0x00, 0xD1, 0x55, 0x32, 0x8C, 0x05, 0x90, 0x4B,
+> +			0x4F, 0x30, 0x33, 0x65, 0x20, 0xF0, 0x24, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x83, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		104750000, {
+> +			0x00, 0xD1, 0x57, 0x32, 0x98, 0x07, 0x90, 0x49,
+> +			0x4F, 0x30, 0x33, 0x65, 0x20, 0xEB, 0x24, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x83, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		106500000, {
+> +			0x00, 0xD1, 0x58, 0x32, 0x84, 0x03, 0x82, 0x41,
+> +			0x4F, 0x30, 0x33, 0x65, 0x20, 0xE7, 0x24, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x83, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		107000000, {
+> +			0x00, 0xD1, 0x5A, 0x32, 0x89, 0x88, 0x80, 0x40,
+> +			0x4F, 0x30, 0x33, 0x65, 0x20, 0xE6, 0x24, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x83, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		108000000, {
+> +			0x00, 0xD1, 0x5A, 0x30, 0x00, 0x00, 0x80, 0x00,
+> +			0x4F, 0x30, 0x33, 0x65, 0x20, 0xE4, 0x24, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x83, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		108108000, {
+> +			0x00, 0xD1, 0x5A, 0x32, 0xFD, 0x0C, 0x80, 0x40,
+> +			0x4F, 0x30, 0x33, 0x65, 0x20, 0xE4, 0x24, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x83, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		118000000, {
+> +			0x00, 0xD1, 0x62, 0x34, 0x95, 0x08, 0x80, 0x40,
+> +			0x4F, 0x30, 0x33, 0x65, 0x20, 0xD1, 0x24, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x83, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		118800000, {
+> +			0x00, 0xD1, 0x63, 0x30, 0x00, 0x00, 0x80, 0x00,
+> +			0x4F, 0x30, 0x33, 0x65, 0x20, 0xCF, 0x24, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x83, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		123000000, {
+> +			0x00, 0xD1, 0x66, 0x34, 0x82, 0x01, 0x88, 0x45,
+> +			0x4F, 0x30, 0x33, 0x65, 0x20, 0xC8, 0x24, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x83, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		127000000, {
+> +			0x00, 0xD1, 0x69, 0x34, 0x89, 0x08, 0x80, 0x40,
+> +			0x4F, 0x30, 0x33, 0x65, 0x20, 0xC2, 0x24, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x83, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		135000000, {
+> +			0x00, 0xD1, 0x70, 0x34, 0x82, 0x01, 0x80, 0x40,
+> +			0x4F, 0x30, 0x33, 0x65, 0x20, 0xB7, 0x24, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x83, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		135580000, {
+> +			0x00, 0xD1, 0x71, 0x39, 0xE9, 0x82, 0x9C, 0x5B,
+> +			0x4F, 0x30, 0x33, 0x65, 0x20, 0xB6, 0x24, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x83, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		137520000, {
+> +			0x00, 0xD1, 0x72, 0x38, 0x99, 0x10, 0x85, 0x41,
+> +			0x4F, 0x30, 0x33, 0x65, 0x20, 0xB3, 0x24, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x83, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		138750000, {
+> +			0x00, 0xD1, 0x73, 0x35, 0x88, 0x05, 0x90, 0x4D,
+> +			0x4F, 0x30, 0x33, 0x65, 0x20, 0xB2, 0x24, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x83, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		140000000, {
+> +			0x00, 0xD1, 0x75, 0x36, 0xA7, 0x90, 0x80, 0x40,
+> +			0x4F, 0x30, 0x33, 0x65, 0x20, 0xB0, 0x24, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x83, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		144000000, {
+> +			0x00, 0xD1, 0x78, 0x30, 0x00, 0x00, 0x80, 0x00,
+> +			0x4F, 0x30, 0x33, 0x65, 0x20, 0xAB, 0x24, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x83, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		148352000, {
+> +			0x00, 0xD1, 0x7B, 0x35, 0xDB, 0x39, 0x90, 0x45,
+> +			0x4F, 0x30, 0x33, 0x65, 0x20, 0xA6, 0x24, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x83, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		148500000, {
+> +			0x00, 0xD1, 0x7B, 0x35, 0x84, 0x03, 0x90, 0x45,
+> +			0x4F, 0x30, 0x33, 0x65, 0x20, 0xA6, 0x24, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x83, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		154000000, {
+> +			0x00, 0xD1, 0x40, 0x18, 0x83, 0x01, 0x00, 0x40,
+> +			0x4F, 0x30, 0x33, 0x65, 0x20, 0xA0, 0x24, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x81, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		157000000, {
+> +			0x00, 0xD1, 0x41, 0x11, 0xA7, 0x14, 0x80, 0x40,
+> +			0x4F, 0x30, 0x33, 0x65, 0x20, 0x9D, 0x24, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x81, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		160000000, {
+> +			0x00, 0xD1, 0x42, 0x12, 0xA1, 0x20, 0x80, 0x40,
+> +			0x4F, 0x30, 0x33, 0x65, 0x20, 0x9A, 0x24, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x81, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		162000000, {
+> +			0x00, 0xD1, 0x43, 0x18, 0x8B, 0x08, 0x96, 0x55,
+> +			0x4F, 0x30, 0x33, 0x65, 0x20, 0x98, 0x24, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x81, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		164000000, {
+> +			0x00, 0xD1, 0x45, 0x11, 0x83, 0x82, 0x90, 0x4B,
+> +			0x4F, 0x30, 0x33, 0x65, 0x20, 0x96, 0x24, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x81, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		165000000, {
+> +			0x00, 0xD1, 0x45, 0x11, 0x84, 0x81, 0x90, 0x4B,
+> +			0x4F, 0x30, 0x33, 0x65, 0x20, 0x95, 0x24, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x81, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		180000000, {
+> +			0x00, 0xD1, 0x4B, 0x10, 0x00, 0x00, 0x80, 0x00,
+> +			0x4F, 0x30, 0x33, 0x65, 0x20, 0x89, 0x24, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x81, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		185625000, {
+> +			0x00, 0xD1, 0x4E, 0x12, 0x9A, 0x95, 0x80, 0x40,
+> +			0x4F, 0x30, 0x33, 0x65, 0x20, 0x85, 0x24, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x81, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		188000000, {
+> +			0x00, 0xD1, 0x4E, 0x12, 0xA7, 0x10, 0x80, 0x40,
+> +			0x4F, 0x30, 0x33, 0x65, 0x20, 0x83, 0x24, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x81, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		198000000, {
+> +			0x00, 0xD1, 0x52, 0x12, 0x82, 0x01, 0x88, 0x47,
+> +			0x4F, 0x30, 0x33, 0x65, 0x20, 0x7D, 0x24, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x81, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		205000000, {
+> +			0x00, 0xD1, 0x55, 0x12, 0x8C, 0x05, 0x90, 0x4B,
+> +			0x4F, 0x30, 0x33, 0x65, 0x30, 0xF0, 0x24, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x81, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		209500000, {
+> +			0x00, 0xD1, 0x57, 0x12, 0x98, 0x07, 0x90, 0x49,
+> +			0x4F, 0x30, 0x33, 0x65, 0x30, 0xEB, 0x24, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x81, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		213000000, {
+> +			0x00, 0xD1, 0x58, 0x12, 0x84, 0x03, 0x82, 0x41,
+> +			0x4F, 0x30, 0x33, 0x65, 0x30, 0xE7, 0x24, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x81, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		216000000, {
+> +			0x00, 0xD1, 0x5A, 0x10, 0x00, 0x00, 0x80, 0x00,
+> +			0x4F, 0x30, 0x33, 0x65, 0x30, 0xE4, 0x24, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x81, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		216216000, {
+> +			0x00, 0xD1, 0x5A, 0x12, 0xFD, 0x0C, 0x80, 0x40,
+> +			0x4F, 0x30, 0x33, 0x65, 0x30, 0xE4, 0x24, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x81, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		237600000, {
+> +			0x00, 0xD1, 0x63, 0x10, 0x00, 0x00, 0x80, 0x00,
+> +			0x4F, 0x30, 0x33, 0x65, 0x30, 0xCF, 0x24, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x81, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		254000000, {
+> +			0x00, 0xD1, 0x69, 0x14, 0x89, 0x08, 0x80, 0x40,
+> +			0x4F, 0x30, 0x33, 0x65, 0x30, 0xC2, 0x24, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x81, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		277500000, {
+> +			0x00, 0xD1, 0x73, 0x15, 0x88, 0x05, 0x90, 0x4D,
+> +			0x4F, 0x30, 0x33, 0x65, 0x30, 0xB2, 0x24, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x81, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		288000000, {
+> +			0x00, 0xD1, 0x78, 0x10, 0x00, 0x00, 0x80, 0x00,
+> +			0x4F, 0x30, 0x33, 0x65, 0x30, 0xAB, 0x24, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x81, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	}, {
+> +		297000000, {
+> +			0x00, 0xD1, 0x7B, 0x15, 0x84, 0x03, 0x90, 0x45,
+> +			0x4F, 0x30, 0x33, 0x65, 0x30, 0xA6, 0x24, 0x80,
+> +			0x6C, 0xF2, 0x67, 0x00, 0x10, 0x81, 0x30, 0x32,
+> +			0x60, 0x8F, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
+> +			0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +			0x00, 0xE0, 0x83, 0x0F, 0x3E, 0xF8, 0x00, 0x00,
+> +		},
+> +	},
 > +};
 > +
-> +static const struct samsung_div_clock peric0_div_clks[] __initconst = {
-> +       DIV(CLK_DOUT_PERIC0_I3C, "dout_peric0_i3c", "mout_peric0_i3c_user",
-> +           CLK_CON_DIV_DIV_CLK_PERIC0_I3C, 0, 3),
-> +       DIV(CLK_DOUT_PERIC0_USI0_UART,
-> +           "dout_peric0_usi0_uart", "mout_peric0_usi0_uart_user",
-> +           CLK_CON_DIV_DIV_CLK_PERIC0_USI0_UART, 0, 3),
-> +       DIV(CLK_DOUT_PERIC0_USI14_USI,
-> +           "dout_peric0_usi14_usi", "mout_peric0_usi14_usi_user",
-> +           CLK_CON_DIV_DIV_CLK_PERIC0_USI14_USI, 0, 3),
-> +       DIV(CLK_DOUT_PERIC0_USI1_USI,
-> +           "dout_peric0_usi1_usi", "mout_peric0_usi1_usi_user",
-> +           CLK_CON_DIV_DIV_CLK_PERIC0_USI1_USI, 0, 3),
-> +       DIV(CLK_DOUT_PERIC0_USI2_USI,
-> +           "dout_peric0_usi2_usi", "mout_peric0_usi2_usi_user",
-> +           CLK_CON_DIV_DIV_CLK_PERIC0_USI2_USI, 0, 3),
-> +       DIV(CLK_DOUT_PERIC0_USI3_USI,
-> +           "dout_peric0_usi3_usi", "mout_peric0_usi3_usi_user",
-> +           CLK_CON_DIV_DIV_CLK_PERIC0_USI3_USI, 0, 3),
-> +       DIV(CLK_DOUT_PERIC0_USI4_USI,
-> +           "dout_peric0_usi4_usi", "mout_peric0_usi4_usi_user",
-> +           CLK_CON_DIV_DIV_CLK_PERIC0_USI4_USI, 0, 3),
-> +       DIV(CLK_DOUT_PERIC0_USI5_USI,
-> +           "dout_peric0_usi5_usi", "mout_peric0_usi5_usi_user",
-> +           CLK_CON_DIV_DIV_CLK_PERIC0_USI5_USI, 0, 3),
-> +       DIV(CLK_DOUT_PERIC0_USI6_USI,
-> +           "dout_peric0_usi6_usi", "mout_peric0_usi6_usi_user",
-> +           CLK_CON_DIV_DIV_CLK_PERIC0_USI6_USI, 0, 3),
-> +       DIV(CLK_DOUT_PERIC0_USI7_USI,
-> +           "dout_peric0_usi7_usi", "mout_peric0_usi7_usi_user",
-> +           CLK_CON_DIV_DIV_CLK_PERIC0_USI7_USI, 0, 3),
-> +       DIV(CLK_DOUT_PERIC0_USI8_USI,
-> +           "dout_peric0_usi8_usi", "mout_peric0_usi8_usi_user",
-> +           CLK_CON_DIV_DIV_CLK_PERIC0_USI8_USI, 0, 3),
+> +struct fsl_samsung_hdmi_phy {
+> +	struct device *dev;
+> +	void __iomem *regs;
+> +	struct clk *apbclk;
+> +	struct clk *refclk;
+> +
+> +	/* clk provider */
+> +	struct clk_hw hw;
+> +	const struct phy_config *cur_cfg;
 > +};
 > +
-> +static const struct samsung_gate_clock peric0_gate_clks[] __initconst = {
-> +       /* Disabling this clock makes the system hang. Mark the clock as critical. */
-> +       GATE(CLK_GOUT_PERIC0_PERIC0_CMU_PERIC0_PCLK,
-> +            "gout_peric0_peric0_cmu_peric0_pclk", "mout_peric0_bus_user",
-> +            CLK_CON_GAT_CLK_BLK_PERIC0_UID_PERIC0_CMU_PERIC0_IPCLKPORT_PCLK,
-> +            21, CLK_IS_CRITICAL, 0),
-> +       GATE(CLK_GOUT_PERIC0_CLK_PERIC0_OSCCLK_CLK,
-> +            "gout_peric0_clk_peric0_oscclk_clk", "oscclk",
-> +            CLK_CON_GAT_CLK_BLK_PERIC0_UID_RSTNSYNC_CLK_PERIC0_OSCCLK_IPCLKPORT_CLK,
-> +            21, 0, 0),
-> +       GATE(CLK_GOUT_PERIC0_D_TZPC_PERIC0_PCLK,
-> +            "gout_peric0_d_tzpc_peric0_pclk", "mout_peric0_bus_user",
-> +            CLK_CON_GAT_GOUT_BLK_PERIC0_UID_D_TZPC_PERIC0_IPCLKPORT_PCLK,
-> +            21, 0, 0),
-> +       GATE(CLK_GOUT_PERIC0_GPC_PERIC0_PCLK,
-> +            "gout_peric0_gpc_peric0_pclk", "mout_peric0_bus_user",
-> +            CLK_CON_GAT_GOUT_BLK_PERIC0_UID_GPC_PERIC0_IPCLKPORT_PCLK,
-> +            21, 0, 0),
-> +       GATE(CLK_GOUT_PERIC0_GPIO_PERIC0_PCLK,
-> +            "gout_peric0_gpio_peric0_pclk", "mout_peric0_bus_user",
-> +            CLK_CON_GAT_GOUT_BLK_PERIC0_UID_GPIO_PERIC0_IPCLKPORT_PCLK,
-> +            21, 0, 0),
-> +       /* Disabling this clock makes the system hang. Mark the clock as critical. */
-> +       GATE(CLK_GOUT_PERIC0_LHM_AXI_P_PERIC0_I_CLK,
-> +            "gout_peric0_lhm_axi_p_peric0_i_clk", "mout_peric0_bus_user",
-> +            CLK_CON_GAT_GOUT_BLK_PERIC0_UID_LHM_AXI_P_PERIC0_IPCLKPORT_I_CLK,
-> +            21, CLK_IS_CRITICAL, 0),
-> +       GATE(CLK_GOUT_PERIC0_PERIC0_TOP0_IPCLK_0,
-> +            "gout_peric0_peric0_top0_ipclk_0", "dout_peric0_usi1_usi",
-> +            CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_IPCLK_0,
-> +            21, 0, 0),
-> +       GATE(CLK_GOUT_PERIC0_PERIC0_TOP0_IPCLK_1,
-> +            "gout_peric0_peric0_top0_ipclk_1", "dout_peric0_usi2_usi",
-> +            CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_IPCLK_1,
-> +            21, 0, 0),
-> +       GATE(CLK_GOUT_PERIC0_PERIC0_TOP0_IPCLK_10,
-> +            "gout_peric0_peric0_top0_ipclk_10", "dout_peric0_i3c",
-> +            CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_IPCLK_10,
-> +            21, 0, 0),
-> +       GATE(CLK_GOUT_PERIC0_PERIC0_TOP0_IPCLK_11,
-> +            "gout_peric0_peric0_top0_ipclk_11", "dout_peric0_i3c",
-> +            CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_IPCLK_11,
-> +            21, 0, 0),
-> +       GATE(CLK_GOUT_PERIC0_PERIC0_TOP0_IPCLK_12,
-> +            "gout_peric0_peric0_top0_ipclk_12", "dout_peric0_i3c",
-> +            CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_IPCLK_12,
-> +            21, 0, 0),
-> +       GATE(CLK_GOUT_PERIC0_PERIC0_TOP0_IPCLK_13,
-> +            "gout_peric0_peric0_top0_ipclk_13", "dout_peric0_i3c",
-> +            CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_IPCLK_13,
-> +            21, 0, 0),
-> +       GATE(CLK_GOUT_PERIC0_PERIC0_TOP0_IPCLK_14,
-> +            "gout_peric0_peric0_top0_ipclk_14", "dout_peric0_i3c",
-> +            CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_IPCLK_14,
-> +            21, 0, 0),
-> +       GATE(CLK_GOUT_PERIC0_PERIC0_TOP0_IPCLK_15,
-> +            "gout_peric0_peric0_top0_ipclk_15", "dout_peric0_i3c",
-> +            CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_IPCLK_15,
-> +            21, 0, 0),
-> +       GATE(CLK_GOUT_PERIC0_PERIC0_TOP0_IPCLK_2,
-> +            "gout_peric0_peric0_top0_ipclk_2", "dout_peric0_usi3_usi",
-> +            CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_IPCLK_2,
-> +            21, 0, 0),
-> +       GATE(CLK_GOUT_PERIC0_PERIC0_TOP0_IPCLK_3,
-> +            "gout_peric0_peric0_top0_ipclk_3", "dout_peric0_usi4_usi",
-> +            CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_IPCLK_3,
-> +            21, 0, 0),
-> +       GATE(CLK_GOUT_PERIC0_PERIC0_TOP0_IPCLK_4,
-> +            "gout_peric0_peric0_top0_ipclk_4", "dout_peric0_usi5_usi",
-> +            CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_IPCLK_4,
-> +            21, 0, 0),
-> +       GATE(CLK_GOUT_PERIC0_PERIC0_TOP0_IPCLK_5,
-> +            "gout_peric0_peric0_top0_ipclk_5", "dout_peric0_usi6_usi",
-> +            CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_IPCLK_5,
-> +            21, 0, 0),
-> +       GATE(CLK_GOUT_PERIC0_PERIC0_TOP0_IPCLK_6,
-> +            "gout_peric0_peric0_top0_ipclk_6", "dout_peric0_usi7_usi",
-> +            CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_IPCLK_6,
-> +            21, 0, 0),
-> +       GATE(CLK_GOUT_PERIC0_PERIC0_TOP0_IPCLK_7,
-> +            "gout_peric0_peric0_top0_ipclk_7", "dout_peric0_usi8_usi",
-> +            CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_IPCLK_7,
-> +            21, 0, 0),
-> +       GATE(CLK_GOUT_PERIC0_PERIC0_TOP0_IPCLK_8,
-> +            "gout_peric0_peric0_top0_ipclk_8", "dout_peric0_i3c",
-> +            CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_IPCLK_8,
-> +            21, 0, 0),
-> +       GATE(CLK_GOUT_PERIC0_PERIC0_TOP0_IPCLK_9,
-> +            "gout_peric0_peric0_top0_ipclk_9", "dout_peric0_i3c",
-> +            CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_IPCLK_9,
-> +            21, 0, 0),
-> +       GATE(CLK_GOUT_PERIC0_PERIC0_TOP0_PCLK_0,
-> +            "gout_peric0_peric0_top0_pclk_0", "mout_peric0_bus_user",
-> +            CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_PCLK_0,
-> +            21, 0, 0),
-> +       GATE(CLK_GOUT_PERIC0_PERIC0_TOP0_PCLK_1,
-> +            "gout_peric0_peric0_top0_pclk_1", "mout_peric0_bus_user",
-> +            CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_PCLK_1,
-> +            21, 0, 0),
-> +       GATE(CLK_GOUT_PERIC0_PERIC0_TOP0_PCLK_10,
-> +            "gout_peric0_peric0_top0_pclk_10", "mout_peric0_bus_user",
-> +            CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_PCLK_10,
-> +            21, 0, 0),
-> +       GATE(CLK_GOUT_PERIC0_PERIC0_TOP0_PCLK_11,
-> +            "gout_peric0_peric0_top0_pclk_11", "mout_peric0_bus_user",
-> +            CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_PCLK_11,
-> +            21, 0, 0),
-> +       GATE(CLK_GOUT_PERIC0_PERIC0_TOP0_PCLK_12,
-> +            "gout_peric0_peric0_top0_pclk_12", "mout_peric0_bus_user",
-> +            CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_PCLK_12,
-> +            21, 0, 0),
-> +       GATE(CLK_GOUT_PERIC0_PERIC0_TOP0_PCLK_13,
-> +            "gout_peric0_peric0_top0_pclk_13", "mout_peric0_bus_user",
-> +            CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_PCLK_13,
-> +            21, 0, 0),
-> +       GATE(CLK_GOUT_PERIC0_PERIC0_TOP0_PCLK_14,
-> +            "gout_peric0_peric0_top0_pclk_14", "mout_peric0_bus_user",
-> +            CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_PCLK_14,
-> +            21, 0, 0),
-> +       GATE(CLK_GOUT_PERIC0_PERIC0_TOP0_PCLK_15,
-> +            "gout_peric0_peric0_top0_pclk_15", "mout_peric0_bus_user",
-> +            CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_PCLK_15,
-> +            21, 0, 0),
-> +       GATE(CLK_GOUT_PERIC0_PERIC0_TOP0_PCLK_2,
-> +            "gout_peric0_peric0_top0_pclk_2", "mout_peric0_bus_user",
-> +            CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_PCLK_2,
-> +            21, 0, 0),
-> +       GATE(CLK_GOUT_PERIC0_PERIC0_TOP0_PCLK_3,
-> +            "gout_peric0_peric0_top0_pclk_3", "mout_peric0_bus_user",
-> +            CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_PCLK_3,
-> +            21, 0, 0),
-> +       GATE(CLK_GOUT_PERIC0_PERIC0_TOP0_PCLK_4,
-> +            "gout_peric0_peric0_top0_pclk_4", "mout_peric0_bus_user",
-> +            CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_PCLK_4,
-> +            21, 0, 0),
-> +       GATE(CLK_GOUT_PERIC0_PERIC0_TOP0_PCLK_5,
-> +            "gout_peric0_peric0_top0_pclk_5", "mout_peric0_bus_user",
-> +            CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_PCLK_5,
-> +            21, 0, 0),
-> +       GATE(CLK_GOUT_PERIC0_PERIC0_TOP0_PCLK_6,
-> +            "gout_peric0_peric0_top0_pclk_6", "mout_peric0_bus_user",
-> +            CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_PCLK_6,
-> +            21, 0, 0),
-> +       GATE(CLK_GOUT_PERIC0_PERIC0_TOP0_PCLK_7,
-> +            "gout_peric0_peric0_top0_pclk_7", "mout_peric0_bus_user",
-> +            CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_PCLK_7,
-> +            21, 0, 0),
-> +       GATE(CLK_GOUT_PERIC0_PERIC0_TOP0_PCLK_8,
-> +            "gout_peric0_peric0_top0_pclk_8", "mout_peric0_bus_user",
-> +            CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_PCLK_8,
-> +            21, 0, 0),
-> +       GATE(CLK_GOUT_PERIC0_PERIC0_TOP0_PCLK_9,
-> +            "gout_peric0_peric0_top0_pclk_9", "mout_peric0_bus_user",
-> +            CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_PCLK_9,
-> +            21, 0, 0),
-> +       /* Disabling this clock makes the system hang. Mark the clock as critical. */
-> +       GATE(CLK_GOUT_PERIC0_PERIC0_TOP1_IPCLK_0,
-> +            "gout_peric0_peric0_top1_ipclk_0", "dout_peric0_usi0_uart",
-> +            CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP1_IPCLKPORT_IPCLK_0,
-> +            21, CLK_IS_CRITICAL, 0),
-> +       GATE(CLK_GOUT_PERIC0_PERIC0_TOP1_IPCLK_2,
-> +            "gout_peric0_peric0_top1_ipclk_2", "dout_peric0_usi14_usi",
-> +            CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP1_IPCLKPORT_IPCLK_2,
-> +            21, 0, 0),
-> +       /* Disabling this clock makes the system hang. Mark the clock as critical. */
-> +       GATE(CLK_GOUT_PERIC0_PERIC0_TOP1_PCLK_0,
-> +            "gout_peric0_peric0_top1_pclk_0", "mout_peric0_bus_user",
-> +            CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP1_IPCLKPORT_PCLK_0,
-> +            21, CLK_IS_CRITICAL, 0),
-> +       GATE(CLK_GOUT_PERIC0_PERIC0_TOP1_PCLK_2,
-> +            "gout_peric0_peric0_top1_pclk_2", "mout_peric0_bus_user",
-> +            CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP1_IPCLKPORT_PCLK_2,
-> +            21, 0, 0),
-> +       GATE(CLK_GOUT_PERIC0_CLK_PERIC0_BUSP_CLK,
-> +            "gout_peric0_clk_peric0_busp_clk", "mout_peric0_bus_user",
-> +            CLK_CON_GAT_GOUT_BLK_PERIC0_UID_RSTNSYNC_CLK_PERIC0_BUSP_IPCLKPORT_CLK,
-> +            21, 0, 0),
-> +       GATE(CLK_GOUT_PERIC0_CLK_PERIC0_I3C_CLK,
-> +            "gout_peric0_clk_peric0_i3c_clk", "dout_peric0_i3c",
-> +            CLK_CON_GAT_GOUT_BLK_PERIC0_UID_RSTNSYNC_CLK_PERIC0_I3C_IPCLKPORT_CLK,
-> +            21, 0, 0),
-> +       GATE(CLK_GOUT_PERIC0_CLK_PERIC0_USI0_UART_CLK,
-> +            "gout_peric0_clk_peric0_usi0_uart_clk", "dout_peric0_usi0_uart",
-> +            CLK_CON_GAT_GOUT_BLK_PERIC0_UID_RSTNSYNC_CLK_PERIC0_USI0_UART_IPCLKPORT_CLK,
-> +            21, 0, 0),
-> +       GATE(CLK_GOUT_PERIC0_CLK_PERIC0_USI14_USI_CLK,
-> +            "gout_peric0_clk_peric0_usi14_usi_clk", "dout_peric0_usi14_usi",
-> +            CLK_CON_GAT_GOUT_BLK_PERIC0_UID_RSTNSYNC_CLK_PERIC0_USI14_USI_IPCLKPORT_CLK,
-> +            21, 0, 0),
-> +       GATE(CLK_GOUT_PERIC0_CLK_PERIC0_USI1_USI_CLK,
-> +            "gout_peric0_clk_peric0_usi1_usi_clk", "dout_peric0_usi1_usi",
-> +            CLK_CON_GAT_GOUT_BLK_PERIC0_UID_RSTNSYNC_CLK_PERIC0_USI1_USI_IPCLKPORT_CLK,
-> +            21, 0, 0),
-> +       GATE(CLK_GOUT_PERIC0_CLK_PERIC0_USI2_USI_CLK,
-> +            "gout_peric0_clk_peric0_usi2_usi_clk", "dout_peric0_usi2_usi",
-> +            CLK_CON_GAT_GOUT_BLK_PERIC0_UID_RSTNSYNC_CLK_PERIC0_USI2_USI_IPCLKPORT_CLK,
-> +            21, 0, 0),
-> +       GATE(CLK_GOUT_PERIC0_CLK_PERIC0_USI3_USI_CLK,
-> +            "gout_peric0_clk_peric0_usi3_usi_clk", "dout_peric0_usi3_usi",
-> +            CLK_CON_GAT_GOUT_BLK_PERIC0_UID_RSTNSYNC_CLK_PERIC0_USI3_USI_IPCLKPORT_CLK,
-> +            21, 0, 0),
-> +       GATE(CLK_GOUT_PERIC0_CLK_PERIC0_USI4_USI_CLK,
-> +            "gout_peric0_clk_peric0_usi4_usi_clk", "dout_peric0_usi4_usi",
-> +            CLK_CON_GAT_GOUT_BLK_PERIC0_UID_RSTNSYNC_CLK_PERIC0_USI4_USI_IPCLKPORT_CLK,
-> +            21, 0, 0),
-> +       GATE(CLK_GOUT_PERIC0_CLK_PERIC0_USI5_USI_CLK,
-> +            "gout_peric0_clk_peric0_usi5_usi_clk", "dout_peric0_usi5_usi",
-> +            CLK_CON_GAT_GOUT_BLK_PERIC0_UID_RSTNSYNC_CLK_PERIC0_USI5_USI_IPCLKPORT_CLK,
-> +            21, 0, 0),
-> +       GATE(CLK_GOUT_PERIC0_CLK_PERIC0_USI6_USI_CLK,
-> +            "gout_peric0_clk_peric0_usi6_usi_clk", "dout_peric0_usi6_usi",
-> +            CLK_CON_GAT_GOUT_BLK_PERIC0_UID_RSTNSYNC_CLK_PERIC0_USI6_USI_IPCLKPORT_CLK,
-> +            21, 0, 0),
-> +       GATE(CLK_GOUT_PERIC0_CLK_PERIC0_USI7_USI_CLK,
-> +            "gout_peric0_clk_peric0_usi7_usi_clk", "dout_peric0_usi7_usi",
-> +            CLK_CON_GAT_GOUT_BLK_PERIC0_UID_RSTNSYNC_CLK_PERIC0_USI7_USI_IPCLKPORT_CLK,
-> +            21, 0, 0),
-> +       GATE(CLK_GOUT_PERIC0_CLK_PERIC0_USI8_USI_CLK,
-> +            "gout_peric0_clk_peric0_usi8_usi_clk", "dout_peric0_usi8_usi",
-> +            CLK_CON_GAT_GOUT_BLK_PERIC0_UID_RSTNSYNC_CLK_PERIC0_USI8_USI_IPCLKPORT_CLK,
-> +            21, 0, 0),
-> +       GATE(CLK_GOUT_PERIC0_SYSREG_PERIC0_PCLK,
-> +            "gout_peric0_sysreg_peric0_pclk", "mout_peric0_bus_user",
-> +            CLK_CON_GAT_GOUT_BLK_PERIC0_UID_SYSREG_PERIC0_IPCLKPORT_PCLK,
-> +            21, 0, 0),
+> +static inline struct fsl_samsung_hdmi_phy *
+> +to_fsl_samsung_hdmi_phy(struct clk_hw *hw)
+> +{
+> +	return container_of(hw, struct fsl_samsung_hdmi_phy, hw);
+> +}
+> +
+> +static int fsl_samsung_hdmi_phy_configure(struct fsl_samsung_hdmi_phy *p=
+hy,
+> +					  const struct phy_config=20
+*cfg)
+> +{
+> +	int i, ret;
+> +	u8 val;
+> +
+> +	/* HDMI PHY init */
+> +	writeb(REG33_FIX_DA, phy->regs + PHY_REG_33);
+> +
+> +	for (i =3D 0; i < PHY_PLL_REGS_NUM; i++)
+> +		writeb(cfg->regs[i], phy->regs + i * 4);
+> +
+> +	writeb(REG33_FIX_DA | REG33_MODE_SET_DONE, phy->regs + PHY_REG_33);
+> +
+> +	ret =3D readb_poll_timeout(phy->regs + PHY_REG_34, val,
+> +					 val & REG34_PLL_LOCK,
+> +					 50, 20000);
+> +	if (ret)
+> +		dev_err(phy->dev, "PLL failed to lock\n");
+> +
+> +	return ret;
+> +}
+> +
+> +static unsigned long phy_clk_recalc_rate(struct clk_hw *hw,
+> +					 unsigned long parent_rate)
+> +{
+> +	struct fsl_samsung_hdmi_phy *phy =3D to_fsl_samsung_hdmi_phy(hw);
+> +
+> +	if (!phy->cur_cfg)
+> +		return 74250000;
+> +
+> +	return phy->cur_cfg->clk_rate;
+> +}
+> +
+> +static long phy_clk_round_rate(struct clk_hw *hw,
+> +			       unsigned long rate, unsigned long=20
+*parent_rate)
+> +{
+> +	int i;
+> +
+> +	for (i =3D ARRAY_SIZE(phy_pll_cfg) - 1; i >=3D 0; i--)
+> +		if (phy_pll_cfg[i].clk_rate <=3D rate)
+> +			return phy_pll_cfg[i].clk_rate;
+> +
+> +	return -EINVAL;
+> +}
+> +
+> +static int phy_clk_set_rate(struct clk_hw *hw,
+> +			    unsigned long rate, unsigned long=20
+parent_rate)
+> +{
+> +	struct fsl_samsung_hdmi_phy *phy =3D to_fsl_samsung_hdmi_phy(hw);
+> +	int i;
+> +
+> +	for (i =3D ARRAY_SIZE(phy_pll_cfg) - 1; i >=3D 0; i--)
+> +		if (phy_pll_cfg[i].clk_rate <=3D rate)
+> +			break;
+> +
+> +	if (i < 0)
+> +		return -EINVAL;
+> +
+> +	phy->cur_cfg =3D &phy_pll_cfg[i];
+> +
+> +	return fsl_samsung_hdmi_phy_configure(phy, phy->cur_cfg);
+> +}
+> +
+> +static const struct clk_ops phy_clk_ops =3D {
+> +	.recalc_rate =3D phy_clk_recalc_rate,
+> +	.round_rate =3D phy_clk_round_rate,
+> +	.set_rate =3D phy_clk_set_rate,
 > +};
 > +
-> +static const struct samsung_cmu_info peric0_cmu_info __initconst = {
-> +       .mux_clks               = peric0_mux_clks,
-> +       .nr_mux_clks            = ARRAY_SIZE(peric0_mux_clks),
-> +       .div_clks               = peric0_div_clks,
-> +       .nr_div_clks            = ARRAY_SIZE(peric0_div_clks),
-> +       .gate_clks              = peric0_gate_clks,
-> +       .nr_gate_clks           = ARRAY_SIZE(peric0_gate_clks),
-> +       .nr_clk_ids             = CLKS_NR_PERIC0,
-> +       .clk_regs               = peric0_clk_regs,
-> +       .nr_clk_regs            = ARRAY_SIZE(peric0_clk_regs),
-> +       .clk_name               = "dout_cmu_peric0_bus",
+> +static int phy_clk_register(struct fsl_samsung_hdmi_phy *phy)
+> +{
+> +	struct device *dev =3D phy->dev;
+> +	struct device_node *np =3D dev->of_node;
+> +	struct clk_init_data init;
+> +	const char *parent_name;
+> +	struct clk *phyclk;
+> +	int ret;
+> +
+> +	parent_name =3D __clk_get_name(phy->refclk);
+> +
+> +	init.parent_names =3D &parent_name;
+> +	init.num_parents =3D 1;
+> +	init.flags =3D 0;
+> +	init.name =3D "hdmi_pclk";
+> +	init.ops =3D &phy_clk_ops;
+> +
+> +	phy->hw.init =3D &init;
+> +
+> +	phyclk =3D devm_clk_register(dev, &phy->hw);
+> +	if (IS_ERR(phyclk))
+> +		return dev_err_probe(dev, PTR_ERR(phyclk),
+> +				     "failed to register clock\n");
+> +
+> +	ret =3D of_clk_add_provider(np, of_clk_src_simple_get, phyclk);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret,
+> +				     "failed to register clock=20
+provider\n");
+> +
+> +	return 0;
+> +}
+> +
+> +static int fsl_samsung_hdmi_phy_probe(struct platform_device *pdev)
+> +{
+> +	struct fsl_samsung_hdmi_phy *phy;
+> +	int ret;
+> +
+> +	phy =3D devm_kzalloc(&pdev->dev, sizeof(*phy), GFP_KERNEL);
+> +	if (!phy)
+> +		return -ENOMEM;
+> +
+> +	platform_set_drvdata(pdev, phy);
+> +	phy->dev =3D &pdev->dev;
+> +
+> +	phy->regs =3D devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(phy->regs))
+> +		return PTR_ERR(phy->regs);
+> +
+> +	phy->apbclk =3D devm_clk_get(phy->dev, "apb");
+> +	if (IS_ERR(phy->apbclk))
+> +		return dev_err_probe(phy->dev, PTR_ERR(phy->apbclk),
+> +				     "failed to get apb clk\n");
+> +
+> +	phy->refclk =3D devm_clk_get(phy->dev, "ref");
+> +	if (IS_ERR(phy->refclk))
+> +		return dev_err_probe(phy->dev, PTR_ERR(phy->refclk),
+> +				     "failed to get ref clk\n");
+> +
+> +	ret =3D clk_prepare_enable(phy->apbclk);
+> +	if (ret) {
+> +		return dev_err_probe(phy->dev, PTR_ERR(phy->apbclk),
+> +			      "failed to enable apbclk\n");
+> +	}
+> +
+> +	pm_runtime_get_noresume(phy->dev);
+> +	pm_runtime_set_active(phy->dev);
+> +	pm_runtime_enable(phy->dev);
+> +
+> +	ret =3D phy_clk_register(phy);
+> +	if (ret) {
+> +		dev_err(&pdev->dev, "register clk failed\n");
+> +		goto register_clk_failed;
+> +	}
+> +
+> +	pm_runtime_put(phy->dev);
+> +
+> +	return 0;
+> +
+> +register_clk_failed:
+> +	clk_disable_unprepare(phy->apbclk);
+> +
+> +	return ret;
+> +}
+> +
+> +static int fsl_samsung_hdmi_phy_remove(struct platform_device *pdev)
+> +{
+> +	of_clk_del_provider(pdev->dev.of_node);
+> +
+> +	return 0;
+> +}
+> +
+> +#ifdef CONFIG_PM
+> +static int fsl_samsung_hdmi_phy_suspend(struct device *dev)
+> +{
+> +	struct fsl_samsung_hdmi_phy *phy =3D dev_get_drvdata(dev);
+> +
+> +	clk_disable_unprepare(phy->apbclk);
+> +
+> +	return 0;
+> +}
+> +
+> +static int fsl_samsung_hdmi_phy_resume(struct device *dev)
+> +{
+> +	struct fsl_samsung_hdmi_phy *phy =3D dev_get_drvdata(dev);
+> +	int ret =3D 0;
+> +
+> +	ret =3D clk_prepare_enable(phy->apbclk);
+> +	if (ret) {
+> +		dev_err(phy->dev, "failed to enable apbclk\n");
+> +		return ret;
+> +	}
+> +
+> +	if (phy->cur_cfg)
+> +		ret =3D fsl_samsung_hdmi_phy_configure(phy, phy->cur_cfg);
+> +
+> +	return ret;
+> +
+> +}
+> +#endif
+> +
+> +static const struct dev_pm_ops fsl_samsung_hdmi_phy_pm_ops =3D {
+> +	SET_RUNTIME_PM_OPS(fsl_samsung_hdmi_phy_suspend,
+> +			   fsl_samsung_hdmi_phy_resume, NULL)
+> +	SET_SYSTEM_SLEEP_PM_OPS(pm_runtime_force_suspend,
+> +				pm_runtime_force_resume)
 > +};
 > +
->  /* ---- platform_driver ----------------------------------------------------- */
->
->  static int __init gs101_cmu_probe(struct platform_device *pdev)
-> @@ -2498,6 +3078,9 @@ static const struct of_device_id gs101_cmu_of_match[] = {
->         }, {
->                 .compatible = "google,gs101-cmu-misc",
->                 .data = &misc_cmu_info,
-> +       }, {
-> +               .compatible = "google,gs101-cmu-peric0",
-> +               .data = &peric0_cmu_info,
->         }, {
->         },
->  };
-> --
-> 2.43.0.472.g3155946c3a-goog
->
+> +static const struct of_device_id fsl_samsung_hdmi_phy_of_match[] =3D {
+> +	{
+> +		.compatible =3D "fsl,imx8mp-hdmi-phy",
+> +	}, {
+> +		/* sentinel */
+> +	}
+> +};
+> +MODULE_DEVICE_TABLE(of, fsl_samsung_hdmi_phy_of_match);
+> +
+> +static struct platform_driver fsl_samsung_hdmi_phy_driver =3D {
+> +	.probe  =3D fsl_samsung_hdmi_phy_probe,
+> +	.remove =3D fsl_samsung_hdmi_phy_remove,
+> +	.driver =3D {
+> +		.name =3D "fsl-samsung-hdmi-phy",
+> +		.of_match_table =3D fsl_samsung_hdmi_phy_of_match,
+> +		.pm =3D &fsl_samsung_hdmi_phy_pm_ops,
+> +	},
+> +};
+> +module_platform_driver(fsl_samsung_hdmi_phy_driver);
+> +
+> +MODULE_AUTHOR("Sandor Yu <Sandor.yu@nxp.com>");
+> +MODULE_DESCRIPTION("SAMSUNG HDMI 2.0 Transmitter PHY Driver");
+> +MODULE_LICENSE("GPL v2");
+
+
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
+
+
 
