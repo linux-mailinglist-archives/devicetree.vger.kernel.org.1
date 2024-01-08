@@ -1,101 +1,88 @@
-Return-Path: <devicetree+bounces-30217-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30218-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B262826F06
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 13:54:05 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 03259826F51
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 14:11:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DF9DF1F23008
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 12:54:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8C4571F224AC
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 13:11:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3284B40C0C;
-	Mon,  8 Jan 2024 12:53:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4283941744;
+	Mon,  8 Jan 2024 13:11:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EuKagrB7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16E6640C1F;
-	Mon,  8 Jan 2024 12:53:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-Received: from mail.maildlp.com (unknown [172.18.186.231])
-	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4T7v8l4SYlz6FGXK;
-	Mon,  8 Jan 2024 20:52:07 +0800 (CST)
-Received: from lhrpeml500005.china.huawei.com (unknown [7.191.163.240])
-	by mail.maildlp.com (Postfix) with ESMTPS id BEB981404F5;
-	Mon,  8 Jan 2024 20:53:50 +0800 (CST)
-Received: from localhost (10.202.227.76) by lhrpeml500005.china.huawei.com
- (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Mon, 8 Jan
- 2024 12:53:50 +0000
-Date: Mon, 8 Jan 2024 12:53:49 +0000
-From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To: Jonathan Cameron <jic23@kernel.org>
-CC: Rob Herring <robh@kernel.org>, <linux-iio@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, Frank Rowand <frowand.list@gmail.com>
-Subject: Re: [RFC PATCH 1/4] of: Add cleanup.h based autorelease via
- __free(device_node) markings.
-Message-ID: <20240108125349.000020d9@Huawei.com>
-In-Reply-To: <20231221105434.5842ff3a@jic23-huawei>
-References: <20231217184648.185236-1-jic23@kernel.org>
-	<20231217184648.185236-2-jic23@kernel.org>
-	<20231220221144.GA1188444-robh@kernel.org>
-	<20231221105434.5842ff3a@jic23-huawei>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 257E641236;
+	Mon,  8 Jan 2024 13:11:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 26278C433CA;
+	Mon,  8 Jan 2024 13:10:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1704719459;
+	bh=V/XZirQgER4ZBJmygiwFU3KMch9yuOqE2KjjCbzeoHg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=EuKagrB7TeH7lUsAiqXRwEviA4GHy5IK1lEJLQ6162YbMgXFmu8yPo1RXaUhI0zZi
+	 4gtt+x27DMJrFYE1TiJNNPV1JvCI6hZmhZhNyK2vanSySi085t9fYuI18L2LsSut77
+	 hXYW/OqECYxKXmdJipV4E6RzT2VVRzNlveWMzQH4coC9L+TPW80o6co13zPEz6If5i
+	 iA8C5j61+6tpeU5wKa50ikYvD72+2JgC0fJbQAq350g1aCvH4A4zbNjlvWjKhlJbBf
+	 7GZy7NsEQmGt2m2pD5vbjqThXrG7sUg+4KXBtIOftrIhzKtQlKyN0+Ie/oWpttTYoS
+	 I1KhEOJeTR6LA==
+Date: Mon, 8 Jan 2024 13:10:55 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Mauro Carvalho Chehab <mchehab@kernel.org>
+Subject: Re: [PATCH 2/2] docs: dt: submitting-patches: add commit subject
+ prefix in reversed format
+Message-ID: <ffc45b81-3b37-4afc-b92c-fe98d3357c89@sirena.org.uk>
+References: <20240108083750.16350-1-krzysztof.kozlowski@linaro.org>
+ <20240108083750.16350-2-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: lhrpeml100005.china.huawei.com (7.191.160.25) To
- lhrpeml500005.china.huawei.com (7.191.163.240)
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="rWoBB2uLTiSEIR7r"
+Content-Disposition: inline
+In-Reply-To: <20240108083750.16350-2-krzysztof.kozlowski@linaro.org>
+X-Cookie: Best if used before date on carton.
 
 
-> >   
-> > > 
-> > > Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> > > ---
-> > >  include/linux/of.h | 2 ++
-> > >  1 file changed, 2 insertions(+)
-> > > 
-> > > diff --git a/include/linux/of.h b/include/linux/of.h
-> > > index 6a9ddf20e79a..50e882ee91da 100644
-> > > --- a/include/linux/of.h
-> > > +++ b/include/linux/of.h
-> > > @@ -13,6 +13,7 @@
-> > >   */
-> > >  #include <linux/types.h>
-> > >  #include <linux/bitops.h>
-> > > +#include <linux/cleanup.h>
-> > >  #include <linux/errno.h>
-> > >  #include <linux/kobject.h>
-> > >  #include <linux/mod_devicetable.h>
-> > > @@ -134,6 +135,7 @@ static inline struct device_node *of_node_get(struct device_node *node)
-> > >  }
-> > >  static inline void of_node_put(struct device_node *node) { }
-> > >  #endif /* !CONFIG_OF_DYNAMIC */
-> > > +DEFINE_FREE(device_node, struct device_node *, if (_T) of_node_put(_T))    
-> > 
-> > of_node_put() can be called with NULL, so do we need the "if (_T)"?  
-> 
-> Nope - should be fine to call it without. I was being lazy and didn't check :)
+--rWoBB2uLTiSEIR7r
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Seems there has been a lot of discussion of this for similar cases and
-consensus is to keep the if (_T)
-e.g. 
+On Mon, Jan 08, 2024 at 09:37:50AM +0100, Krzysztof Kozlowski wrote:
+> ASoC, media, regulators and SPI subsystems prefer commits starting with
+> subsystem name (e.g. "spi: dt-bindings:"), so document this to avoid
+> confusing contributors.
 
-https://lore.kernel.org/all/6596edda327c8_8dc68294b2@dwillia2-xfh.jf.intel.com.notmuch/
+Reviewed-by: Mark Brown <broonie@kernel.org>
 
-> 
-> > 
-> > Rob  
-> 
-> 
+--rWoBB2uLTiSEIR7r
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmWb9F4ACgkQJNaLcl1U
+h9AbdQf/SGA/IECUB+nRplLn+0csaT/Ke5n232jTMBgUL3kzIQXTJLVk532pRMhG
+wKR2FDRJzReBWvLHx/tsK2PY+httsqrgx083/aOQGY/jvcZaN5v2VBRKH94iZ+5O
+h46GsTIY4/Fw9Ey4VziwYTTIVNKXKVkvtOKD3jWYgrqIdCDoekH0NjjNJan5gOvK
+tRxL7gFGDLJTQrlBulUdjqZP1wWQQEZJ1ltWDc1I88LL7GeyCntQ8SvWhSz5OR+O
+dkToPyhmQgmLGlrDpkD7SQUwaUNzD7nIe5pHSOno7jI4/3n/HGCarGYtm0bt9spr
+E6GaM3pQfSuUJMjconZVj96WldXv/A==
+=oioo
+-----END PGP SIGNATURE-----
+
+--rWoBB2uLTiSEIR7r--
 
