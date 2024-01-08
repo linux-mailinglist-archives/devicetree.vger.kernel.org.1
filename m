@@ -1,154 +1,401 @@
-Return-Path: <devicetree+bounces-30208-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30209-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15C78826D91
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 13:13:47 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E488826D9E
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 13:17:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 914F0B2270D
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 12:13:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 71C401F229D9
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 12:17:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7BF3405CC;
-	Mon,  8 Jan 2024 12:11:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=shantur-com.20230601.gappssmtp.com header.i=@shantur-com.20230601.gappssmtp.com header.b="YKHV74Tp"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5ABF3FE52;
+	Mon,  8 Jan 2024 12:17:55 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f171.google.com (mail-vk1-f171.google.com [209.85.221.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B95D540BE5
-	for <devicetree@vger.kernel.org>; Mon,  8 Jan 2024 12:11:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=shantur.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=shantur.com
-Received: by mail-vk1-f171.google.com with SMTP id 71dfb90a1353d-4b77c844087so1063599e0c.1
-        for <devicetree@vger.kernel.org>; Mon, 08 Jan 2024 04:11:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=shantur-com.20230601.gappssmtp.com; s=20230601; t=1704715888; x=1705320688; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=HjS8ArwYoYD13Rw/ppxlKL+z8C87I1HaN+kHJCMBTLs=;
-        b=YKHV74TpjzgCsDYO8A6JNDHrBVVEEdZGmYl/+w7BA/alUIblYgOAfcaonuLzL9sXFE
-         fy12Oqb/dwd/Je54rnjZp9629mMeoVtUKMxG8rVuCok5fLSc0Wb2gbQcAhslfQRZ/+aa
-         RGHuF2QyQGbuEfjWIH4dzldKbSOG02f78bp3f4FChvG13/eHq01YJmD6hp6YJjipgvGj
-         TKWLCwIbR53p1AZDmjB0+7Oop7Gv/P7ySrOakC2Oo4JXtd50VngBokPnQVc5a4qT7ODE
-         Q6zUmw6CnWOTdXtyHH1nUrju4b/nhIHk1yxZ8fYH5HQ8qa896jHeaGNH3xCRx8BUoghn
-         sAIA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704715888; x=1705320688;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=HjS8ArwYoYD13Rw/ppxlKL+z8C87I1HaN+kHJCMBTLs=;
-        b=SIhcSFWtwCWjuUbsQiq9pfBGTsuYqHdKjjT+M7iZy1O9Dx96mzF3Py90BCggCGM910
-         /7YgWtFYxPs0Vc/9PuYKzfn7a6F4AWJjKhZV/ef8EVXL4anGmQTIMl1dJiZpGu14vxMR
-         bvNKFirUgfX9SvAE4uyi6FsLAyPLw55gowIJHboZj0tPsxWMr5HhSbA91xibj9U+0aNa
-         r9BaM/eHVQ1ApgJ5BdR2aTqBLBRrYerOYEOeAjEhHPisXO5wjedspRIS/xmQCRjjmJNN
-         H7hdGHA4G7vLsM7B4cwiA0h08TMZBa+Sa3eefa3F3YTluf6nDFv6SPu7EHZM34WEnKYC
-         Wx2Q==
-X-Gm-Message-State: AOJu0YyJSKNa2vja6+EB54nyxTEiyFYoa+f08AC/uFGxI4XcmgjlQ5Lt
-	Rr1t6tdg3bmOMCqQzPhgXeHREDg6PoOzEAOxorWbt992cNT5rA==
-X-Google-Smtp-Source: AGHT+IHuqRQlF0qoGK+dApu+zRih+m3QuW0KO3eELzwwqavuuUrIVzXrVfAsZfH3tCaN78eGW//cpzr663M/l9HvIhg=
-X-Received: by 2002:a05:6122:1798:b0:4b2:c554:cd04 with SMTP id
- o24-20020a056122179800b004b2c554cd04mr1733995vkf.16.1704715888459; Mon, 08
- Jan 2024 04:11:28 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F4073FE4C
+	for <devicetree@vger.kernel.org>; Mon,  8 Jan 2024 12:17:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1rMoZR-000761-BP; Mon, 08 Jan 2024 13:17:33 +0100
+Received: from [2a0a:edc0:0:900:1d::4e] (helo=lupine)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1rMoZP-001FLT-Rm; Mon, 08 Jan 2024 13:17:31 +0100
+Received: from pza by lupine with local (Exim 4.96)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1rMoZP-0008v2-2U;
+	Mon, 08 Jan 2024 13:17:31 +0100
+Message-ID: <c2abc08d1b442fdcba7c41e2e1cc1617516441b2.camel@pengutronix.de>
+Subject: Re: [PATCH v2 2/4] reset: Instantiate reset GPIO controller for
+ shared reset-gpios
+From: Philipp Zabel <p.zabel@pengutronix.de>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Srinivas
+ Kandagatla <srinivas.kandagatla@linaro.org>, Banajit Goswami
+ <bgoswami@quicinc.com>,  Bjorn Andersson <andersson@kernel.org>, Konrad
+ Dybcio <konrad.dybcio@linaro.org>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,  Conor Dooley
+ <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>, Takashi Iwai
+ <tiwai@suse.com>,  alsa-devel@alsa-project.org,
+ linux-arm-msm@vger.kernel.org,  linux-sound@vger.kernel.org,
+ devicetree@vger.kernel.org,  linux-kernel@vger.kernel.org
+Cc: Bartosz Golaszewski <brgl@bgdev.pl>, Sean Anderson
+ <sean.anderson@seco.com>
+Date: Mon, 08 Jan 2024 13:17:31 +0100
+In-Reply-To: <20240105155918.279657-3-krzysztof.kozlowski@linaro.org>
+References: <20240105155918.279657-1-krzysztof.kozlowski@linaro.org>
+	 <20240105155918.279657-3-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231222141616.508073-1-i@shantur.com> <2323515.eGJsNajkDb@diego>
- <CABEcMwVwyp0zGvxL0nY3aW1_SFUEh++0bV8qBRZLK1aEpa=NHw@mail.gmail.com> <72f608668d619bda1cc620ce11eb3e40@manjaro.org>
-In-Reply-To: <72f608668d619bda1cc620ce11eb3e40@manjaro.org>
-From: Shantur Rathore <i@shantur.com>
-Date: Mon, 8 Jan 2024 12:11:17 +0000
-Message-ID: <CABEcMwWEru2DYnd-Y3qWbEp25unVd96TogSnQ+-L+NXKS3_pZQ@mail.gmail.com>
-Subject: Re: [PATCH v2] dts: rockpro64: Remove usb regulator-always-on
-To: Dragan Simic <dsimic@manjaro.org>
-Cc: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, 
-	linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Hi Dragan,
+On Fr, 2024-01-05 at 16:59 +0100, Krzysztof Kozlowski wrote:
+> Devices sharing a reset GPIO could use the reset framework for
+> coordinated handling of that shared GPIO line.  We have several cases of
+> such needs, at least for Devicetree-based platforms.
+>=20
+> If Devicetree-based device requests a reset line, which is missing but
+                                                    ^^^^^^^^^^^^^^^^
+Nitpick: the "resets" property is missing, not the reset line.
 
-On Thu, Jan 4, 2024 at 9:50=E2=80=AFAM Dragan Simic <dsimic@manjaro.org> wr=
-ote:
->
-> On 2024-01-04 10:44, Shantur Rathore wrote:
-> > On Fri, Dec 29, 2023 at 10:08=E2=80=AFPM Heiko St=C3=BCbner <heiko@snte=
-ch.de> wrote:
-> >> Am Freitag, 22. Dezember 2023, 15:16:16 CET schrieb Shantur Rathore:
-> >> > USB port regulators should be controlled by PHYs
-> >> > so we remove always-on property and let PHYs manage the
-> >> > regulator.
-> >> >
-> >> > phy-supply isn't sconfugred for the TypeC port and now that we are
-> >>                 ^^ configured ?
-> >>
-> >> > removing regulator-always-on, we need to fix the phy-supply
-> >> > so the PHYs are able to turn power to type-c port.
-> >> >
-> >> > Series-version: 2
-> >> >
-> >> > Signed-off-by: Shantur Rathore <i@shantur.com>
-> >> > ---
-> >> >  arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi | 3 +--
-> >> >  1 file changed, 1 insertion(+), 2 deletions(-)
-> >> >
-> >> > diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi b/ar=
-ch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi
-> >> > index bca2b50e0a..f7273f7990 100644
-> >> > --- a/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi
-> >> > +++ b/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi
-> >> > @@ -192,7 +192,6 @@ vcc5v0_host: vcc5v0-host-regulator {
-> >> >               pinctrl-names =3D "default";
-> >> >               pinctrl-0 =3D <&vcc5v0_host_en>;
-> >> >               regulator-name =3D "vcc5v0_host";
-> >> > -             regulator-always-on;
-> >> >               vin-supply =3D <&vcc5v0_usb>;
-> >> >       };
-> >> >
-> >> > @@ -203,7 +202,6 @@ vcc5v0_typec: vcc5v0-typec-regulator {
-> >> >               pinctrl-names =3D "default";
-> >> >               pinctrl-0 =3D <&vcc5v0_typec_en>;
-> >> >               regulator-name =3D "vcc5v0_typec";
-> >> > -             regulator-always-on;
-> >> >               vin-supply =3D <&vcc5v0_usb>;
-> >> >       };
-> >> >
-> >> > @@ -859,6 +857,7 @@ &u2phy0 {
-> >> >       status =3D "okay";
-> >> >
-> >> >       u2phy0_otg: otg-port {
-> >> > +             phy-supply =3D <&vcc5v0_typec>;
-> >> >               status =3D "okay";
-> >> >       };
-> >>
-> >> Just to explain for me, what is supplying the "other" OTG port
-> >>         u2phy1_otg: otg-port {}
-> >>
-> >> in u2phy1 ... this one is status okay, but does not have any phy
-> >> supply?
-> >>
-> > In RockPro64 there is only 1 USB-C OTG port and the other port
-> > is a USB-3.0 port.
-> > To be honest, I am not 100% sure how this all works, as I understand
-> > the USB3.0 port is wired to the second TypeC Phy.
-> >
-> > Maybe Dragan has more info on this.
->
-> I'll have it checked and tested in detail, of course, but I have to
-> recover from this nasty flu first.  Unfortunately, it has rendeded me
-> unable to even think straight.
+"If Devicetree-based device requests a reset line, but there only is a
+ reset-gpios property instead of a "resets" property, ..." maybe?
 
-Hope you feel better soon.
-It would be awesome if we can get this in while the current merge
-window is open.
+> there is a reset-gpios property, instantiate a new "reset-gpio" platform
+> device which will handle such reset line.  This allows seamless handling
+> of such shared reset-gpios without need of changing Devicetree binding [1=
+].
+>=20
+> All newly registered "reset-gpio" platform devices will be stored on
+> their own list to avoid any duplicated devices.
 
-Kind regards,
-Shantur
+That's not strictly true. The reset_gpio_device_list only contains the
+of_phandle_args for lookup.
+
+> The key to find each of
+> such platform device is the entire Devicetree GPIO specifier: phandle to
+> GPIO controller, GPIO number and GPIO flags.  If two devices have
+> conflicting "reset-gpios" property, e.g. with different ACTIVE_xxx
+> flags, this would spawn two separate "reset-gpio" devices, where the
+> second would fail probing on busy GPIO reques
+
+request.
+
+Is that true? The code below looks like overwrites of_phandle_args so
+that only one reset-gpio device is spawned for each gpio node.
+
+> Link: https://lore.kernel.org/all/YXi5CUCEi7YmNxXM@robh.at.kernel.org/ [1=
+]
+> Cc: Bartosz Golaszewski <brgl@bgdev.pl>
+> Cc: Sean Anderson <sean.anderson@seco.com>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  drivers/reset/core.c             | 176 ++++++++++++++++++++++++++++---
+>  include/linux/reset-controller.h |   4 +
+>  2 files changed, 167 insertions(+), 13 deletions(-)
+>=20
+> diff --git a/drivers/reset/core.c b/drivers/reset/core.c
+> index 4d5a78d3c085..ec9b3ff419cf 100644
+> --- a/drivers/reset/core.c
+> +++ b/drivers/reset/core.c
+> @@ -13,6 +13,7 @@
+>  #include <linux/module.h>
+>  #include <linux/of.h>
+>  #include <linux/acpi.h>
+> +#include <linux/platform_device.h>
+>  #include <linux/reset.h>
+>  #include <linux/reset-controller.h>
+>  #include <linux/slab.h>
+> @@ -23,6 +24,10 @@ static LIST_HEAD(reset_controller_list);
+>  static DEFINE_MUTEX(reset_lookup_mutex);
+>  static LIST_HEAD(reset_lookup_list);
+> =20
+> +/* Protects reset_gpio_device_list */
+> +static DEFINE_MUTEX(reset_gpio_device_mutex);
+> +static LIST_HEAD(reset_gpio_device_list);
+
+I would call this reset_gpio_lookup_list or
+reset_gpio_phandle_args_list.
+
+> +
+>  /**
+>   * struct reset_control - a reset control
+>   * @rcdev: a pointer to the reset controller device
+> @@ -63,6 +68,16 @@ struct reset_control_array {
+>  	struct reset_control *rstc[] __counted_by(num_rstcs);
+>  };
+> =20
+> +/**
+> + * struct reset_gpio_device - ad-hoc created reset-gpio device
+> + * @of_args: phandle to the reset controller with all the args like GPIO=
+ number
+> + * @list: list entry for the reset_lookup_list
+> + */
+> +struct reset_gpio_device {
+
+Similarly, I would call this reset_gpio_lookup or
+reset_gpio_phandle_args.
+
+> +	struct of_phandle_args of_args;
+> +	struct list_head list;
+> +};
+> +
+>  static const char *rcdev_name(struct reset_controller_dev *rcdev)
+>  {
+>  	if (rcdev->dev)
+> @@ -813,13 +828,119 @@ static void __reset_control_put_internal(struct re=
+set_control *rstc)
+>  	kref_put(&rstc->refcnt, __reset_control_release);
+>  }
+> =20
+> +static bool __reset_gpios_args_match(const struct of_phandle_args *a1,
+> +				     const struct of_phandle_args *a2)
+> +{
+> +	unsigned int i;
+> +
+> +	if (!a2)
+> +		return false;
+> +
+> +	if (a1->args_count !=3D a2->args_count)
+> +		return false;
+> +
+> +	for (i =3D 0; i < a1->args_count; i++)
+> +		if (a1->args[i] !=3D a2->args[i])
+> +			break;
+
+Just return false in the loop and simplify the following to return
+true.
+
+> +
+> +	/* All args matched? */
+> +	if (i =3D=3D a1->args_count)
+> +		return true;
+> +
+> +	return false;
+> +}
+> +
+> +/*
+> + * @node:	node of the device requesting reset
+> + * @reset_args:	phandle to the reset controller with all the args like G=
+PIO number
+> + */
+> +static int __reset_add_reset_gpio_device(struct device_node *node,
+> +					 struct of_phandle_args *args)
+> +{
+> +	struct reset_gpio_device *rgpio_dev;
+> +	struct platform_device *pdev;
+> +	int ret;
+> +
+> +	lockdep_assert_not_held(&reset_list_mutex);
+> +
+> +	mutex_lock(&reset_gpio_device_mutex);
+> +
+> +	list_for_each_entry(rgpio_dev, &reset_gpio_device_list, list) {
+> +		if (args->np =3D=3D rgpio_dev->of_args.np) {
+> +			if (__reset_gpios_args_match(args,
+> +						     &rgpio_dev->of_args)) {
+> +				ret =3D 0;
+> +				goto out_unlock;
+> +			}
+> +		}
+> +	}
+> +
+> +	/* Not freed in normal path, persisent subsyst data */
+> +	rgpio_dev =3D kzalloc(sizeof(*rgpio_dev), GFP_KERNEL);
+
+Since this is persistent, instead of letting the reset-gpio driver call
+of_parse_phandle_with_args() again, this could be passed in via
+platform data. Is there a reason not to do that instead?
+
+> +	if (!rgpio_dev) {
+> +		ret =3D -ENOMEM;
+> +		goto out_unlock;
+> +	}
+> +
+> +	rgpio_dev->of_args =3D *args;
+> +	pdev =3D platform_device_register_data(NULL, "reset-gpio",
+> +					     PLATFORM_DEVID_AUTO, &node,
+> +					     sizeof(node));
+> +	ret =3D PTR_ERR_OR_ZERO(pdev);
+> +	if (!ret)
+> +		list_add(&rgpio_dev->list, &reset_gpio_device_list);
+> +	else
+> +		kfree(rgpio_dev);
+> +
+> +out_unlock:
+> +	mutex_unlock(&reset_gpio_device_mutex);
+> +
+> +	return ret;
+> +}
+> +
+> +static struct reset_controller_dev *__reset_find_rcdev(struct of_phandle=
+_args *args,
+> +						       bool gpio_fallback,
+> +						       const void *cookie)
+
+Unused cookie.
+
+> +{
+> +	struct reset_controller_dev *r, *rcdev;
+> +
+> +	lockdep_assert_held(&reset_list_mutex);
+> +
+> +	rcdev =3D NULL;
+> +	list_for_each_entry(r, &reset_controller_list, list) {
+> +		if (args->np =3D=3D r->of_node) {
+> +			if (gpio_fallback) {
+> +				if (__reset_gpios_args_match(args, r->of_args)) {
+> +					/*
+> +					 * Fake args (take first reset) and
+> +					 * args_count (to matcg reset-gpio
+
+match
+
+> +					 * of_reset_n_cells) because reset-gpio
+> +					 * has only one reset and does not care
+> +					 * about reset of GPIO specifier.
+> +					 */
+> +					args->args[0] =3D 0;
+> +					args->args_count =3D 1;
+
+I'd expect args to be an input-only argument, but here its contents are
+overwritten after a match. Why?
+
+This has an effect in __of_reset_control_get(), that I find hard to
+follow. See below.
+
+> +					rcdev =3D r;
+> +					break;
+> +				}
+> +			} else {
+> +				rcdev =3D r;
+> +				break;
+> +			}
+> +		}
+> +	}
+> +
+> +	return rcdev;
+> +}
+> +
+>  struct reset_control *
+>  __of_reset_control_get(struct device_node *node, const char *id, int ind=
+ex,
+>  		       bool shared, bool optional, bool acquired)
+>  {
+> +	struct of_phandle_args args =3D {0};
+> +	bool gpio_fallback =3D false;
+>  	struct reset_control *rstc;
+> -	struct reset_controller_dev *r, *rcdev;
+> -	struct of_phandle_args args;
+> +	struct reset_controller_dev *rcdev;
+>  	int rstc_id;
+>  	int ret;
+> =20
+> @@ -839,21 +960,50 @@ __of_reset_control_get(struct device_node *node, co=
+nst char *id, int index,
+>  					 index, &args);
+>  	if (ret =3D=3D -EINVAL)
+>  		return ERR_PTR(ret);
+> -	if (ret)
+> -		return optional ? NULL : ERR_PTR(ret);
+> +	if (ret) {
+> +		/*
+> +		 * There can be only one reset-gpio for regular devices, so
+> +		 * don't bother with GPIO index.
+> +		 */
+
+I don't understand this comment. The GPIO index should be checked as
+part of __reset_gpios_args_match(), or should it not?
+
+> +		ret =3D of_parse_phandle_with_args(node, "reset-gpios", "#gpio-cells",
+> +						 0, &args);
+> +		if (ret)
+> +			return optional ? NULL : ERR_PTR(ret);
+> =20
+> -	mutex_lock(&reset_list_mutex);
+> -	rcdev =3D NULL;
+> -	list_for_each_entry(r, &reset_controller_list, list) {
+> -		if (args.np =3D=3D r->of_node) {
+> -			rcdev =3D r;
+> -			break;
+> -		}
+> +		gpio_fallback =3D true;
+
+Is there a reason not just call __reset_add_reset_gpio_device() here?
+With that, there should be no need to call __reset_find_rcdev() twice.
+
+>  	}
+> =20
+> +	mutex_lock(&reset_list_mutex);
+> +	rcdev =3D __reset_find_rcdev(&args, gpio_fallback, NULL);
+
+This gets called with args as parsed. If there is a match, this will=20
+overwrite args (in the gpio_fallback case) and return NULL.
+
+> +
+>  	if (!rcdev) {
+> -		rstc =3D ERR_PTR(-EPROBE_DEFER);
+> -		goto out;
+> +		if (gpio_fallback) {
+> +			/*
+> +			 * Registering reset-gpio device might cause immediate
+> +			 * bind, thus taking reset_list_mutex lock via
+> +			 * reset_controller_register().
+> +			 */
+> +			mutex_unlock(&reset_list_mutex);
+> +			ret =3D __reset_add_reset_gpio_device(node, &args);
+
+So this will also be called with args as parsed.
+
+> +			mutex_lock(&reset_list_mutex);
+> +			if (ret) {
+> +				rstc =3D ERR_PTR(ret);
+> +				goto out;
+> +			}
+> +			/*
+> +			 * Success: reset-gpio could probe immediately, so
+> +			 * re-check the lookup.
+> +			 */
+> +			rcdev =3D __reset_find_rcdev(&args, gpio_fallback, NULL);
+
+And this will again be called with args as parsed and overwrite args
+again.
+
+> +			if (!rcdev) {
+> +				rstc =3D ERR_PTR(-EPROBE_DEFER);
+> +				goto out;
+> +			}
+> +			/* Success, rcdev is valid thus do not bail out */
+> +		} else {
+> +			rstc =3D ERR_PTR(-EPROBE_DEFER);
+> +			goto out;
+> +		}
+>  	}
+
+So at this point args is overwritten in the gpio_fallback case. I would
+find it much clearer to just overwrite args here and make the first
+parameter to __reset_find_rcdev() const.
+
+
+regards
+Philipp
 
