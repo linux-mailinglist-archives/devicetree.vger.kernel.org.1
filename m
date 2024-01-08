@@ -1,71 +1,64 @@
-Return-Path: <devicetree+bounces-30116-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30118-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D3CE82691A
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 09:12:58 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9ED69826941
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 09:16:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B1AEAB20DCF
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 08:12:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B729B1C21B4E
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 08:16:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6F618F47;
-	Mon,  8 Jan 2024 08:12:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 652AA8F6D;
+	Mon,  8 Jan 2024 08:16:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="doPE/VF5"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="jG3NROV1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10on2076.outbound.protection.outlook.com [40.107.94.76])
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (mail-bn8nam12on2056.outbound.protection.outlook.com [40.107.237.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2EF99465;
-	Mon,  8 Jan 2024 08:12:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2131945A
+	for <devicetree@vger.kernel.org>; Mon,  8 Jan 2024 08:16:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
 Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=HMNntXYRR7alZtJECr6OMCRfTWj4AGhwxSWnTOf6DVRCfNrc9uQHdxzM3qmMTFAftIyEkDPR1Z40geRnb4EN/cennwjbqgTWKkLbO0NPg9aRqGdHdPKVNACqxQZ1j6SAeZPFnUsFPGGAqMvPNPTtJU0pTtpEwK5hAL1zfx3y/F/n+aIUXzZyQlmgcdQKYyT+0DmuXgaBiWGx29SI7a+LpPj6N8EvM+Tt40G8IG+AwrmoHsbnGKJ79mfLUiZGdUM6M5heNm7nxAv+px9Dr/AmAveVcHWU0OeqbxuDfLq239mNK5/7Aw203du/8vZ0ijj6rz3HLHTWVyX4xCzTC0S1JQ==
+ b=DrDMHlv3ToC7oftVr0Y/suoeAWRLMnRS6IULV6DDJQfqoR+QQKV8r6Hxo6ah1oNwwqGNGkzFA++GqPLs5p89kyx9snDtvSFfu/S8t3kGL4i7vtwEglxVKazHNEnXoUER9SLp4/NTCAsge2e9XnM7bxeiYv6O8rTgP/cbIKpWXT6B7McqacPmEOxytoZSANhyM3XrNwjhvP0uCT/lpxF1OvdCihSc95t8DVUrExB/GT4XslT3Tw4FBcZxub6DQ9vP/6loC1YMTvWurQeTdLzIrN6jE5z2FMrNM4X2iCo8T+UbPisTlKZZ2GbSZr//RrUrjvQm1eHG5QEEyRtqbyOVPw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=9F50Zi4KIiZ8XhXjXThyV4dJ+8MpF9gV8d/qE9NKrQs=;
- b=oIRLXgGE45md/2h4HHavI5NyTPalaPDwOzIqu/I5ExRkykDRd0kWrBcbfHv6m47NfNQxruhkO9PtVQ/nHykJaYYBnsF2BS3XgzSJ8OVTa90EZ9/ICBQp1SFCNDlVbq1eZWeBriRgSvzQAhPoZfFR8JpoBtjXQDZMkfaabhSd9w6PHFwO76hAjseBxs2dYcyNuIlHqhwGL10rAPTWistR95usFZShqYsvmaJewY2VtzO1muJS/gzCw9lx/LOWq334qokUD2PUp5TDuR9TcqwC+x1ypLF5QujRL5tmurPoKk5Q+n8fUbVUCEZMG2k1WTbYBz0sZr3C7hbgVG/z+ETBXw==
+ bh=mZtT2jnTbTNi38sIj39NNtFanAe9YH8Pc0mK6cZkI1M=;
+ b=aB30oVZb4BdtThBFmSvdtGg7k/I+rlVwvj/UiVNu7qPlkchiHI+r3FphpxXNJBciO2ntzm3MrPTPSABMZ6hEno+gG89zUn+aXe7QeGZUJ4BUp0y3pFiv9eDqt3axA8cv1FmKFNjKX2IFdq22S6uEqvRpde9yAoBWrhUiD6pU2nSJhrLZZdSpGo+vlNlaGzfAq7df5vYq9Vj9zQE63c5lpd7hfZ7JCl9y/PHdnBrqa6kBcYV7tWiuE+xNBjMrF4RyGEUgubUVhwsUFN/Gv+FlkxUKKixGruoKRXtPoJMR+L7exprUj+tM8UBYCpMntLVZZcsS9KCQoNX5Oe8OJ9UELw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=9F50Zi4KIiZ8XhXjXThyV4dJ+8MpF9gV8d/qE9NKrQs=;
- b=doPE/VF5O8TLnWtqGiKRyjeXsU1vHa+DiJyzhaxtRD/CV9ukmx2U5rcOHwMVUp/kgE2rizj9KgKOHbB999FJu52eEE1sesBL8kaOvaDixc9SCCjr+6Fz4XUO/o+yOzkeJ9O70c4KakXDq8rw2jV4xS4VwIVS636JbpTHxKAVyFo=
+ bh=mZtT2jnTbTNi38sIj39NNtFanAe9YH8Pc0mK6cZkI1M=;
+ b=jG3NROV1ActEpidbK0YBFqAk4suu/4OeE9qS3QgBENeFds6BsLEdLZwhmo1nXELVgD5EZpaqmYWp2uLVXCrDMWxlHMeVk9Ov/F1iUU+yx0BslltNVo4nu1F+WJYggTtMeWXzhDbRkRMr9d4gkSnpNJhNne9cd9fcnhxdOYSv0Qc=
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=amd.com;
 Received: from CYXPR12MB9337.namprd12.prod.outlook.com (2603:10b6:930:d8::20)
- by PH7PR12MB6935.namprd12.prod.outlook.com (2603:10b6:510:1b9::16) with
+ by MW4PR12MB5641.namprd12.prod.outlook.com (2603:10b6:303:186::5) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7159.21; Mon, 8 Jan
- 2024 08:12:46 +0000
+ 2024 08:16:18 +0000
 Received: from CYXPR12MB9337.namprd12.prod.outlook.com
  ([fe80::2b19:2045:59c7:cde2]) by CYXPR12MB9337.namprd12.prod.outlook.com
  ([fe80::2b19:2045:59c7:cde2%7]) with mapi id 15.20.7159.020; Mon, 8 Jan 2024
- 08:12:46 +0000
-Message-ID: <485d0685-646c-44b8-823a-49870e109103@amd.com>
-Date: Mon, 8 Jan 2024 09:12:21 +0100
+ 08:16:18 +0000
+Message-ID: <dbe4fe14-18bf-447a-925f-bc5848ebdcf3@amd.com>
+Date: Mon, 8 Jan 2024 09:16:05 +0100
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] dt-bindings: fpga: altera: Convert bridge bindings to
- yaml
+Subject: Re: [PATCH V3 1/3] firmware: xilinx: Add ZynqMP efuse access API
 Content-Language: en-US
-To: Xu Yilun <yilun.xu@linux.intel.com>
-Cc: linux-kernel@vger.kernel.org, monstr@monstr.eu, michal.simek@xilinx.com,
- git@xilinx.com, Conor Dooley <conor+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Moritz Fischer <mdf@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Tom Rix <trix@redhat.com>, Wu Hao <hao.wu@intel.com>,
- Xu Yilun <yilun.xu@intel.com>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>,
- "open list:FPGA MANAGER FRAMEWORK" <linux-fpga@vger.kernel.org>
-References: <3100bbc4723643ec1ec7d4548e9ab353c856b564.1704470663.git.michal.simek@amd.com>
- <e738a64f742982bba6c7a8ea3cbc660f81316d2b.1704470663.git.michal.simek@amd.com>
- <ZZuoTG2wdXQvLlAa@yilunxu-OptiPlex-7050>
+To: Praveen Teja Kundanala <praveen.teja.kundanala@amd.com>,
+ srinivas.kandagatla@linaro.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc: linux-kernel@vger.kernel.org-, praveent@amd.com
+References: <20240108052617.32510-1-praveen.teja.kundanala@amd.com>
+ <20240108052617.32510-2-praveen.teja.kundanala@amd.com>
 From: Michal Simek <michal.simek@amd.com>
 Autocrypt: addr=michal.simek@amd.com; keydata=
  xsFNBFFuvDEBEAC9Amu3nk79+J+4xBOuM5XmDmljuukOc6mKB5bBYOa4SrWJZTjeGRf52VMc
@@ -111,11 +104,11 @@ Autocrypt: addr=michal.simek@amd.com; keydata=
  y7RkYPOpmElF2pwWI/SXKOgMUgigedGCl1QRUio7iifBmXHkRrTgNT0PWQmeGsWTmfRit2+i
  l2dpB2lxha72cQ6MTEmL65HaoeANhtfO1se2R9dej57g+urO9V2v/UglZG1wsyaP/vOrgs+3
  3i3l5DA=
-In-Reply-To: <ZZuoTG2wdXQvLlAa@yilunxu-OptiPlex-7050>
+In-Reply-To: <20240108052617.32510-2-praveen.teja.kundanala@amd.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: VI1PR09CA0139.eurprd09.prod.outlook.com
- (2603:10a6:803:12c::23) To CYXPR12MB9337.namprd12.prod.outlook.com
+X-ClientProxiedBy: VI1PR07CA0133.eurprd07.prod.outlook.com
+ (2603:10a6:802:16::20) To CYXPR12MB9337.namprd12.prod.outlook.com
  (2603:10b6:930:d8::20)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -124,278 +117,162 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CYXPR12MB9337:EE_|PH7PR12MB6935:EE_
-X-MS-Office365-Filtering-Correlation-Id: 06e3d7f8-d144-4de2-2d17-08dc102198b2
+X-MS-TrafficTypeDiagnostic: CYXPR12MB9337:EE_|MW4PR12MB5641:EE_
+X-MS-Office365-Filtering-Correlation-Id: f448e5b1-8e86-4ae3-d718-08dc1022170b
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
 X-Microsoft-Antispam-Message-Info:
-	14HMK5cPWE8399kmQEfIOq75qVQy6mffR0tKzr8O+8sy6hRzSu2TbQoFlME+twfWyVgJWSK1nFKROABu/jN7wqXNLIMyl3nz1TfkIZHr+FE2o76rBTXcF583hXgRCsUTE6MCh4TgkxWkt4FlZjC31KakyuLY+WEvkKziyXPOzLe5Q1oE8u806hvRBtl9NlkcBRMyWKzGNajiISDdmpaSO4IZfAfDSpOzrXnuwa0fQ1Ct5IJQKdku1wF006kaZmShxmQB6DoShZiDMO0eyyRPaX3vbJ6vIEtwr88/Y0aundnwWjciwXgW87FzUjFuE+4mOcTWyRBeoh3xH6ptLOCsRe2Iqge3hecoQPPdpYr5bziaxdKFpSldRDGHrhuKGHEVpPEkReKLeIcUO13g2zOsF+bmgHWy+OpSk+Y02EGaAu+Wo/uYYL9oQCyHEoMY6T2tBdpTr9H2aQEbt2moaDoA+JshKzbH70vivBHmkKp5CLGsNhx4AOF6hDX4fOXrUJNMUzbN+E9ecF3pTIqNyQ246asgkrayBudWtBDw/L5HNonoKeDVwwbpnGKpfGZeZRJahdmwlNWjdIWrX/VktjATXPGqvquGvm5zUhK2R+CsvpEnTJdi39UPBBk9AgsjQL/5tKhdfcRR3jMJ0v/F8UUgZw==
+	hVQ0zrLV0erihv/U5ImOunW0vl2bErg9KcyMRlYt/CudNcY4Ybsy4BdyKuJhlbFiGnR4lsU9q42xA+vULLy3fklRMBbBs2m0g6r0PS1q0hn61Ux+/7rUmw0Ui1XsbRHl1dw47ZXovdEqdntdtwz1ECfhFwY0oJu94Otmyq2RuSOC5V4hI4hfK8tLVDiz5AX7x0qOZ+OGW/J6A9LIxKs00ul1sexsYib+IASsrG+pkM/0SGdS19SJC+rhmm1TEfcy1SDLFAm6eFB2HWc7aC1aLoX5z3wKiPsIQSw7eMF+po4bLDd05Y1vT/e6dMIWeHvTVuRgyy/EdjjYpVPxi3JYgMND7h2RYmqn/nyadvDAGynTj19fWLknV+62UUi9n+X7SmmIvE6YW7rxuAY307M/AFzI5J1F4wp2ilHzVF6czJRVkTvBZMMmxvnrTZ7ldbG1XMw8HE2h0yyh6CgXQLcwdnTUgph+nscXLenzx26e0DGNHVWXW5BUv+4Z1ibtYigBuvjVxVpu5OBYugE669rLha5n+Nj/whpMW/AnKpckNtCurHiQNsTz+bRwdDLPJhw8YHSrZ4huAk68GHJeDm/xxnHfcRxRWk9ItxSaMIa6cvlvwxelibCpQE006zstyrAKA8oeICeZBN3uIQM+EXZQXw==
 X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CYXPR12MB9337.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376002)(366004)(39860400002)(136003)(346002)(396003)(230922051799003)(451199024)(1800799012)(64100799003)(186009)(41300700001)(2616005)(26005)(6486002)(53546011)(6506007)(966005)(6512007)(6666004)(478600001)(38100700002)(36756003)(86362001)(31696002)(31686004)(83380400001)(2906002)(7416002)(5660300002)(8936002)(8676002)(66556008)(66476007)(66946007)(316002)(54906003)(6916009)(44832011)(4326008)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CYXPR12MB9337.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(346002)(39860400002)(396003)(366004)(136003)(376002)(230922051799003)(64100799003)(186009)(451199024)(1800799012)(316002)(86362001)(4326008)(66946007)(66556008)(6486002)(478600001)(31696002)(6666004)(66476007)(38100700002)(31686004)(26005)(2616005)(53546011)(6512007)(6506007)(44832011)(8936002)(8676002)(83380400001)(5660300002)(36756003)(2906002)(41300700001)(45980500001)(43740500002);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?eGluelc3QzlRcEZCZjJxRjlJaTQrbEVFc3RhNUU2R3lvKzV6Vk1LMkR1S3Zn?=
- =?utf-8?B?Uk9wT2Z4S2QxUm9BQlNOWHJwejlJd1IrTWVQUVE3M1NWc0diYU5RakE4dXhM?=
- =?utf-8?B?Yi9lSzhtaXVnY0orYTVHNThmVkJxTkNMUUdzczlnd2c3Q3poVDZyNmtxRnBV?=
- =?utf-8?B?dDdIRlhtNEJlSWdoYmxUK1RKcHB6NnVaYVNEREZZdkZNZEdTWEZTT1YyeTZ6?=
- =?utf-8?B?RTJOREFzRHd2ZHFWNDdJOXluY3hDTU9qS3pxWXdiVWVWRmVGSTUycStBbjls?=
- =?utf-8?B?c1BkWENtbzQzbzJzRFlYMXpGbm1VTkc0Qm9EcmpnVkNqT3k0amZQQkNRSCtD?=
- =?utf-8?B?THpOR2pPVDZiZFpCZldmUFJ3Um83RWpRQXB4eXh3aHIzY0RpczFhcWg0azJI?=
- =?utf-8?B?dW50M3lPSE1Nam42WnFlZDZqRDhkQk1GWUhLY0VWNkMxSE10dU5UcnBnT0cx?=
- =?utf-8?B?eGQ1VDE4VUhBSnRTNTFHTjhDYWYwV3V3TGd1b0FndWN1VmZYV0ZjN2oxZ01V?=
- =?utf-8?B?c0JqT3VZUTJJNmJseFcyTHM4ZU1hNzlnSjFNMkgxSEFHTTRJb3JaNk8vZHlQ?=
- =?utf-8?B?YkY0ZWJvUUt3QWVMUDhiZldmcXpnTDFNQjMxMXU2dkdxem1rWFZsM0hJUGdS?=
- =?utf-8?B?RWJSSWhnemNzWDR3MlNMc1VKc0EyVjlKeXRFZXNmV3Y1SUZsZFE3elRwYWRW?=
- =?utf-8?B?bktOdXg5L1Z4UzhMSFRnMGRmb1VmY09uOVJMbnZ0VC90Tmo1VGMwbzRpWW5a?=
- =?utf-8?B?aGhJaURYdXV4L01KUXlJbkI1dytabG9MeTlUV3ZpS0hJU1pJSUFWT1BKUFFx?=
- =?utf-8?B?UEF4N2o1cVZtb1ZoeVAzOXhJVytlTGdUMHZVVFZ1c09RUEZXQlJWdHhOWjdx?=
- =?utf-8?B?RXpIa1FUR3pXYTBBZ0xoK0ZaY3QxRzZRNVM1UFE5MXljMzNpYlJMUWJYUURl?=
- =?utf-8?B?MGwwSlNiNFVjZWhTYTRoWlBsWDFoQVF2SkhCejlHTkxVVjFLalNYZndweS81?=
- =?utf-8?B?U0xUUEdqTGZrck50S3lLbGZFTmx2TE5lSGFJaFkyQm0wcjZPaDZNd3VySVVj?=
- =?utf-8?B?UUY4UEdLT05LMUlpa05tdmdSTWY0NkJDdFhFMUNDNHpTbjdkTVBkeHdCV3Zl?=
- =?utf-8?B?dkI2UEJmcFd5eHYzSXluTHRlQUZzcUI1SzNnNFUxeGozTTF2UmxrZWRMd2Vs?=
- =?utf-8?B?NHRveGlsbWFYb29uSlBTZlBRUGZIN3VLNGFzR0VBVlhrbFhkaFgweU1ESFZU?=
- =?utf-8?B?d3N1cWlwRGkySk0xalpkTlVxTEdKc3QwVVo5OGVXb2JJOGhHakR1aDFuYXps?=
- =?utf-8?B?KzZuZjR3UlBqK2wyRmxXYU9mdDAxQUMvZTd6SXhIVHR2a09kMzMvaUVtTFla?=
- =?utf-8?B?WE9FNFpZamhsczVpdGpKMXRTVGpLNkdJbXhGZTRlNUxOcm5Sc3pOUERTTEUv?=
- =?utf-8?B?UC81cVBMNnMra3JEMDhhNE9FWXViUTZpdnFyRHpOSTFvNHNGRFVFOGcvbzVI?=
- =?utf-8?B?Tkg0RW9hQjhkcGYzQlNBeDlDRmxtaUt6T0xEREJHYndmcHR4TzU3V1hiaFJi?=
- =?utf-8?B?OWtpNnlsZy9LVzBXY1cwR2poWDJYYVRaYTBsT0pRdUU5N3ZqS0dtUG1lOHY4?=
- =?utf-8?B?eHFucDlMVlg0UTZMd2VuMitPSHpGUWtJNVRQMzNBdG1XSm16Y296c2pxd3hE?=
- =?utf-8?B?ZEVxZXM3QWxMY085VG9KaElMMHdrWk1XTEg3UU9MRE9jRWRZWHRuU24xQ1B3?=
- =?utf-8?B?bHQ0WGJ0RWdnM2RtTUVpQXVNd2VYQlJYalo5NllOMS9iTjlkb0RYb3Vvb2pF?=
- =?utf-8?B?M29CMXhwUXhlZGRPbTZzZ0QyVkljM21RcHQ3NEtKbGtNQ0s1bXArTmdHTnNi?=
- =?utf-8?B?YmVRcTFqRTlhVUlCdzZ4TW42N1dNUGJWOHQ4MDEvTTIrZlY4bHBwTTJpQTNs?=
- =?utf-8?B?T045SEZYcFJCLzBKekdlRm1JOWRZMnJXY1M0Y0IyUHd5YVVhWjlGQ1ZsZVk0?=
- =?utf-8?B?Y3VnSUVyRVZwRUVsOWZhTFNYUWc4ek5VcDh5bEFyUHJIajJ1Vk5JekVreTQv?=
- =?utf-8?B?U05FNjhDNU5uRExPU2phWDJuTDRuTDVsUVpLRllwT29oNmlOYzJNdnAxSkFr?=
- =?utf-8?Q?TKqXt1TEYXPyxZRzxAmIhzQdW?=
+	=?utf-8?B?ZU5ZN29WR1l6QTlpT2Q5eUFOM1hGcWpHR2J0Q1p5ZHFBYk1zSjNZT0Y4NWtq?=
+ =?utf-8?B?bCtJem1paGNUQk41QjlaajJyekd4d0lmVkR4a0VNMmtmMG1YMXNvUHZtZ0Na?=
+ =?utf-8?B?ZkNYTlV0UXFva0FDVC80R3hsS2N1bndOVzVZL1A0VVJ5ZUxPOVFCQ1AvQ3A0?=
+ =?utf-8?B?YUx4d0NsYnYwM3hzRXJoSlNndFlWNXpHVVZJK2JZTmdMWjJPQVk2RytCWjk2?=
+ =?utf-8?B?Q0l6Vkx1djhMQ25zS3VJMmJNbXZFUk1tRlYzOEI5NFczR3F4WTJkbWRzSlg0?=
+ =?utf-8?B?eGRtckhRUm5EMmlnWEIzSlZTdjlEc0dGd0IxYXVMSmFyb2tDaDhvamk1OHQx?=
+ =?utf-8?B?S1p6STJndlM3dERrVlpsYU9YM25IUHhBd3J4bXo2UXIvYjB2RXBaZ1lmdUpY?=
+ =?utf-8?B?NmhSc0VQZzRmZmVPNnF4SGM1aG5sdmxkbEhyNkJsT3MzYUx3dkF4ZHoxL0dF?=
+ =?utf-8?B?N2tIT2drR0VGMkRSOHYxUUxZd0xHeFJWU0gwK1dsZENDa0ZtZTFqUCtNUXlx?=
+ =?utf-8?B?VEcwcGxRTkV2WFFPbUtLemExUHI1VlNMdHFod1NEVlJJc3pUNG02ZXhuZVJh?=
+ =?utf-8?B?VEczUHY0dXVwb2lNaFJJNUFuZ0Fhamp4ZXVTVnlHNE8rb01QUlJhbFF3YWpy?=
+ =?utf-8?B?dzByVE1FSlJiMDFFaERWN21ib0tMbUxwOXp4M0FpUjlzdzhIUFlxcFlHNjFn?=
+ =?utf-8?B?YVU1WDBLMnBjWDYraEtFZWhQcFI2Vml4NXQzOE5KazZHd2llbXI5T1NFUDh6?=
+ =?utf-8?B?YTR6bjhsY3c3RW9aSDRUemgveXBKczlnUkRhNjhIVXp3b1BnVC9TQXpZUTlx?=
+ =?utf-8?B?bWhWMnBEMVBEOVpxb2NtcmhYWEs2bHc5akdDQzNINklmQ3RGSEwrTGt6Mk55?=
+ =?utf-8?B?Z3ZNVzdZcENIYm04TkhhbTA5cG9XK01DZ25GdzdFZ01PYXRjQ3BCU0x4eits?=
+ =?utf-8?B?UEs0Q0l5RHd1VU01Z2t4Vnk1OEQxZytwNHVvZE9uNUhzcU9iQllXSjN4bEV1?=
+ =?utf-8?B?TzhkSU1RYjBlRE1TR05hOS95bEw4dW9mZ3hyQU9IUTA0YSt3MklXNkEvREx0?=
+ =?utf-8?B?YlhJRUpBb29NRHhxUjBxajhWQWQ2ajVoRGhkUmcyejRLSFAwSU9xaHhydXdZ?=
+ =?utf-8?B?VFFhOFViTDFhZlpoaEtPSVUwUmh5cjAvY3FMa3JrekdJemxrZUIyTmxoVzFF?=
+ =?utf-8?B?elJjQzI2NlNpbGlHVFpwQzZPaXVpbEM0ZE9EQmh1dTYyUDBMSzNUZmNKaXJV?=
+ =?utf-8?B?b3NUNFZvRU1Tc3puMStxUEJTcmZzcVUycjdGVWtxRVVtYWZDNXdCVENlVnB2?=
+ =?utf-8?B?WXV0QjgwcHk2dXMvcjF1bnVMYVdUamJjNlNpYjJwKzlxTFZGcXNwYlNWY2Q0?=
+ =?utf-8?B?NWJoMnkwT0hseFJEYm1TSkhtdUQ0ekZ6UmNMOU8zNFljUWVZcy81RTJQeG83?=
+ =?utf-8?B?dTgrdHQ3dlhoY2FuelhaMHFyRk1yM3k4WHFWUTZzbVpKNWdVREVVemd6R2o0?=
+ =?utf-8?B?QnRXVjkrdXZEVTlXa01UTXV0aWt2azNRUXExdHU3TktpVFFUaVhXT2VXdUdU?=
+ =?utf-8?B?MTFHWDcrYVhUM3R1M2RzTG4yb2VUVjNTbkVLbm1nK2NRTWtDUnZZOG9uSTIx?=
+ =?utf-8?B?ZWp5Wm1WeW14ZzdQV3FkdmxIaFNmRERhaTVSbXZhNTBQdEp0eFZWeWJWSDAv?=
+ =?utf-8?B?SEV5akk4eCt5Y09VazRVWHV4MGdTTFhqMlh0OUEyZUVuUHFrZWxjczcrWVRV?=
+ =?utf-8?B?cmpuem1mRFBvUEw3YzFHbzZRd1dnTGdHcmNrd0Q4TERjdklIVDFFbFI0ZzVQ?=
+ =?utf-8?B?ZHdKSGZrN1RKT09sQnFLdlJCSUVOQVlVd3hjNVVOaEwvd0pja2dNOFZuelI2?=
+ =?utf-8?B?MlBESXV2emkzT0xSSmdBdk5BYzd4aUJJb1BmTUJaeDZnbXJFMk5Kc1V1VS9L?=
+ =?utf-8?B?WW5MQkVvcWpVcXJiRHhsQzFnU0xJZTJnaFAzZjJPREJRd3F3bnBwMUJqUmtL?=
+ =?utf-8?B?bnBhekdEMGtXOUw2U2d6NnlkMDdBUFhDdG5COEpYUzlJeTN0eG9uem00VkIx?=
+ =?utf-8?B?emxrRVhVcjhHc3JkN2pzZkJKbkpzV1QxQkhvZHdQWkNGODNBdFQ3Vjh2bHBM?=
+ =?utf-8?Q?0vd4wvdSqqaRXNJAIjp8lVlKs?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 06e3d7f8-d144-4de2-2d17-08dc102198b2
+X-MS-Exchange-CrossTenant-Network-Message-Id: f448e5b1-8e86-4ae3-d718-08dc1022170b
 X-MS-Exchange-CrossTenant-AuthSource: CYXPR12MB9337.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jan 2024 08:12:46.2599
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jan 2024 08:16:18.3725
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: DNTuYNecamoiIE9bC0voo/9su16njlJiSOnttZAGAAZG/wJlSy1WElJOZiNAFngw
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB6935
+X-MS-Exchange-CrossTenant-UserPrincipalName: SHP3nR9qKmaFV7PqMurWLZosRS4fuimJd5TCCjs/M15cv5kkzyBDpH/GlPs+VuRD
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR12MB5641
 
 
 
-On 1/8/24 08:46, Xu Yilun wrote:
-> On Fri, Jan 05, 2024 at 05:04:31PM +0100, Michal Simek wrote:
->> Convert Altera's bridges to yaml with using fpga-bridge.yaml.
->>
->> Signed-off-by: Michal Simek <michal.simek@amd.com>
->> ---
->>
->>   .../fpga/altera-fpga2sdram-bridge.txt         | 13 ----
->>   .../fpga/altera-fpga2sdram-bridge.yaml        | 34 ++++++++++
->>   .../bindings/fpga/altera-freeze-bridge.txt    | 20 ------
->>   .../bindings/fpga/altera-freeze-bridge.yaml   | 41 ++++++++++++
->>   .../bindings/fpga/altera-hps2fpga-bridge.txt  | 36 -----------
->>   .../bindings/fpga/altera-hps2fpga-bridge.yaml | 63 +++++++++++++++++++
->>   6 files changed, 138 insertions(+), 69 deletions(-)
->>   delete mode 100644 Documentation/devicetree/bindings/fpga/altera-fpga2sdram-bridge.txt
->>   create mode 100644 Documentation/devicetree/bindings/fpga/altera-fpga2sdram-bridge.yaml
->>   delete mode 100644 Documentation/devicetree/bindings/fpga/altera-freeze-bridge.txt
->>   create mode 100644 Documentation/devicetree/bindings/fpga/altera-freeze-bridge.yaml
->>   delete mode 100644 Documentation/devicetree/bindings/fpga/altera-hps2fpga-bridge.txt
->>   create mode 100644 Documentation/devicetree/bindings/fpga/altera-hps2fpga-bridge.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/fpga/altera-fpga2sdram-bridge.txt b/Documentation/devicetree/bindings/fpga/altera-fpga2sdram-bridge.txt
->> deleted file mode 100644
->> index 5dd0ff0f7b4e..000000000000
->> --- a/Documentation/devicetree/bindings/fpga/altera-fpga2sdram-bridge.txt
->> +++ /dev/null
->> @@ -1,13 +0,0 @@
->> -Altera FPGA To SDRAM Bridge Driver
->> -
->> -Required properties:
->> -- compatible		: Should contain "altr,socfpga-fpga2sdram-bridge"
->> -
->> -See Documentation/devicetree/bindings/fpga/fpga-bridge.txt for generic bindings.
->> -
->> -Example:
->> -	fpga_bridge3: fpga-bridge@ffc25080 {
->> -		compatible = "altr,socfpga-fpga2sdram-bridge";
->> -		reg = <0xffc25080 0x4>;
->> -		bridge-enable = <0>;
->> -	};
->> diff --git a/Documentation/devicetree/bindings/fpga/altera-fpga2sdram-bridge.yaml b/Documentation/devicetree/bindings/fpga/altera-fpga2sdram-bridge.yaml
->> new file mode 100644
->> index 000000000000..a3f3fe2729f2
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/fpga/altera-fpga2sdram-bridge.yaml
->> @@ -0,0 +1,34 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/fpga/altera-fpga2sdram-bridge.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Altera FPGA To SDRAM Bridge
->> +
->> +maintainers:
->> +  - Xu Yilun <yilun.xu@intel.com>
->> +
->> +allOf:
->> +  - $ref: fpga-bridge.yaml#
->> +
->> +properties:
->> +  compatible:
->> +    const: altr,socfpga-fpga2sdram-bridge
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +required:
->> +  - compatible
->> +  - reg
+On 1/8/24 06:26, Praveen Teja Kundanala wrote:
+> Add zynqmp_pm_efuse_access API in the ZynqMP
+> firmware for read/write access of efuse memory.
 > 
-> Is the 'reg' required? I didn't see it in original txt.
-
-you tell me. It was in example that's why I made it mandatory.
-
+> Signed-off-by: Praveen Teja Kundanala <praveen.teja.kundanala@amd.com>
+> ---
+>   drivers/firmware/xilinx/zynqmp.c     | 25 +++++++++++++++++++++++++
+>   include/linux/firmware/xlnx-zynqmp.h |  8 ++++++++
+>   2 files changed, 33 insertions(+)
 > 
->> +
->> +unevaluatedProperties: false
->> +
->> +examples:
->> +  - |
->> +    fpga-bridge@ffc25080 {
->> +        compatible = "altr,socfpga-fpga2sdram-bridge";
->> +        reg = <0xffc25080 0x4>;
->> +        bridge-enable = <0>;
->> +    };
->> diff --git a/Documentation/devicetree/bindings/fpga/altera-freeze-bridge.txt b/Documentation/devicetree/bindings/fpga/altera-freeze-bridge.txt
->> deleted file mode 100644
->> index 8b26fbcff3c6..000000000000
->> --- a/Documentation/devicetree/bindings/fpga/altera-freeze-bridge.txt
->> +++ /dev/null
->> @@ -1,20 +0,0 @@
->> -Altera Freeze Bridge Controller Driver
->> -
->> -The Altera Freeze Bridge Controller manages one or more freeze bridges.
->> -The controller can freeze/disable the bridges which prevents signal
->> -changes from passing through the bridge.  The controller can also
->> -unfreeze/enable the bridges which allows traffic to pass through the
->> -bridge normally.
->> -
->> -Required properties:
->> -- compatible		: Should contain "altr,freeze-bridge-controller"
->> -- regs			: base address and size for freeze bridge module
->> -
->> -See Documentation/devicetree/bindings/fpga/fpga-bridge.txt for generic bindings.
->> -
->> -Example:
->> -	freeze-controller@100000450 {
->> -		compatible = "altr,freeze-bridge-controller";
->> -		regs = <0x1000 0x10>;
->> -		bridge-enable = <0>;
->> -	};
->> diff --git a/Documentation/devicetree/bindings/fpga/altera-freeze-bridge.yaml b/Documentation/devicetree/bindings/fpga/altera-freeze-bridge.yaml
->> new file mode 100644
->> index 000000000000..4a89e3980669
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/fpga/altera-freeze-bridge.yaml
->> @@ -0,0 +1,41 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/fpga/altera-freeze-bridge.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Altera Freeze Bridge Controller
->> +
->> +description: |
->> +  The Altera Freeze Bridge Controller manages one or more freeze bridges.
->> +  The controller can freeze/disable the bridges which prevents signal
->> +  changes from passing through the bridge. The controller can also
->> +  unfreeze/enable the bridges which allows traffic to pass through the bridge
->> +  normally.
->> +
->> +maintainers:
->> +  - Xu Yilun <yilun.xu@intel.com>
->> +
->> +allOf:
->> +  - $ref: fpga-bridge.yaml#
->> +
->> +properties:
->> +  compatible:
->> +    const: altr,freeze-bridge-controller
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +
->> +unevaluatedProperties: false
->> +
->> +examples:
->> +  - |
->> +    fpga-bridge@100000450 {
->> +        compatible = "altr,freeze-bridge-controller";
->> +        reg = <0x1000 0x10>;
->> +        bridge-enable = <0>;
->> +    };
->> diff --git a/Documentation/devicetree/bindings/fpga/altera-hps2fpga-bridge.txt b/Documentation/devicetree/bindings/fpga/altera-hps2fpga-bridge.txt
->> deleted file mode 100644
->> index 68cce3945b10..000000000000
->> --- a/Documentation/devicetree/bindings/fpga/altera-hps2fpga-bridge.txt
->> +++ /dev/null
->> @@ -1,36 +0,0 @@
->> -Altera FPGA/HPS Bridge Driver
->> -
->> -Required properties:
->> -- regs		: base address and size for AXI bridge module
->> -- compatible	: Should contain one of:
->> -		  "altr,socfpga-lwhps2fpga-bridge",
->> -		  "altr,socfpga-hps2fpga-bridge", or
->> -		  "altr,socfpga-fpga2hps-bridge"
->> -- resets	: Phandle and reset specifier for this bridge's reset
->> -- clocks	: Clocks used by this module.
->> -
->> -See Documentation/devicetree/bindings/fpga/fpga-bridge.txt for generic bindings.
->> -
->> -Example:
->> -	fpga_bridge0: fpga-bridge@ff400000 {
->> -		compatible = "altr,socfpga-lwhps2fpga-bridge";
->> -		reg = <0xff400000 0x100000>;
->> -		resets = <&rst LWHPS2FPGA_RESET>;
->> -		clocks = <&l4_main_clk>;
->> -		bridge-enable = <0>;
->> -	};
->> -
->> -	fpga_bridge1: fpga-bridge@ff500000 {
->> -		compatible = "altr,socfpga-hps2fpga-bridge";
->> -		reg = <0xff500000 0x10000>;
->> -		resets = <&rst HPS2FPGA_RESET>;
->> -		clocks = <&l4_main_clk>;
->> -		bridge-enable = <1>;
->> -	};
->> -
->> -	fpga_bridge2: fpga-bridge@ff600000 {
->> -		compatible = "altr,socfpga-fpga2hps-bridge";
->> -		reg = <0xff600000 0x100000>;
->> -		resets = <&rst FPGA2HPS_RESET>;
->> -		clocks = <&l4_main_clk>;
->> -	};
->> diff --git a/Documentation/devicetree/bindings/fpga/altera-hps2fpga-bridge.yaml b/Documentation/devicetree/bindings/fpga/altera-hps2fpga-bridge.yaml
->> new file mode 100644
->> index 000000000000..f8210449dfed
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/fpga/altera-hps2fpga-bridge.yaml
->> @@ -0,0 +1,63 @@
-> 
-> Is the License identifier also needed?
+> diff --git a/drivers/firmware/xilinx/zynqmp.c b/drivers/firmware/xilinx/zynqmp.c
+> index b0d22d4455d9..5abf882a43f5 100644
+> --- a/drivers/firmware/xilinx/zynqmp.c
+> +++ b/drivers/firmware/xilinx/zynqmp.c
+> @@ -3,6 +3,7 @@
+>    * Xilinx Zynq MPSoC Firmware layer
+>    *
+>    *  Copyright (C) 2014-2022 Xilinx, Inc.
+> + *  Copyright (C) 2022 - 2023, Advanced Micro Devices, Inc.
+>    *
+>    *  Michal Simek <michal.simek@amd.com>
+>    *  Davorin Mista <davorin.mista@aggios.com>
+> @@ -1435,6 +1436,30 @@ int zynqmp_pm_aes_engine(const u64 address, u32 *out)
+>   }
+>   EXPORT_SYMBOL_GPL(zynqmp_pm_aes_engine);
+>   
+> +/**
+> + * zynqmp_pm_efuse_access - Provides access to efuse memory.
+> + * @address:	Address of the efuse params structure
+> + * @out:		Returned output value
+> + *
+> + * Return:	Returns status, either success or error code.
+> + */
+> +int zynqmp_pm_efuse_access(const u64 address, u32 *out)
+> +{
+> +	u32 ret_payload[PAYLOAD_ARG_CNT];
+> +	int ret;
+> +
+> +	if (!out)
+> +		return -EINVAL;
+> +
+> +	ret = zynqmp_pm_invoke_fn(PM_EFUSE_ACCESS, ret_payload, 2,
+> +				  upper_32_bits(address),
+> +				  lower_32_bits(address));
+> +	*out = ret_payload[1];
+> +
+> +	return ret;
+> +}
+> +EXPORT_SYMBOL_GPL(zynqmp_pm_efuse_access);
+> +
+>   /**
+>    * zynqmp_pm_sha_hash - Access the SHA engine to calculate the hash
+>    * @address:	Address of the data/ Address of output buffer where
+> diff --git a/include/linux/firmware/xlnx-zynqmp.h b/include/linux/firmware/xlnx-zynqmp.h
+> index d1ea3898564c..ec3e19065f8d 100644
+> --- a/include/linux/firmware/xlnx-zynqmp.h
+> +++ b/include/linux/firmware/xlnx-zynqmp.h
+> @@ -3,6 +3,7 @@
+>    * Xilinx Zynq MPSoC Firmware layer
+>    *
+>    *  Copyright (C) 2014-2021 Xilinx
+> + *  Copyright (C) 2022 - 2023, Advanced Micro Devices, Inc.
+>    *
+>    *  Michal Simek <michal.simek@amd.com>
+>    *  Davorin Mista <davorin.mista@aggios.com>
+> @@ -155,6 +156,7 @@ enum pm_api_id {
+>   	PM_CLOCK_GETPARENT = 44,
+>   	PM_FPGA_READ = 46,
+>   	PM_SECURE_AES = 47,
+> +	PM_EFUSE_ACCESS = 53,
+>   	PM_FEATURE_CHECK = 63,
+>   };
+>   
+> @@ -546,6 +548,7 @@ int zynqmp_pm_set_requirement(const u32 node, const u32 capabilities,
+>   			      const u32 qos,
+>   			      const enum zynqmp_pm_request_ack ack);
+>   int zynqmp_pm_aes_engine(const u64 address, u32 *out);
+> +int zynqmp_pm_efuse_access(const u64 address, u32 *out);
+>   int zynqmp_pm_sha_hash(const u64 address, const u32 size, const u32 flags);
+>   int zynqmp_pm_fpga_load(const u64 address, const u32 size, const u32 flags);
+>   int zynqmp_pm_fpga_get_status(u32 *value);
+> @@ -739,6 +742,11 @@ static inline int zynqmp_pm_aes_engine(const u64 address, u32 *out)
+>   	return -ENODEV;
+>   }
+>   
+> +static inline int zynqmp_pm_efuse_access(const u64 address, u32 *out)
+> +{
+> +	return -ENODEV;
+> +}
+> +
+>   static inline int zynqmp_pm_sha_hash(const u64 address, const u32 size,
+>   				     const u32 flags)
+>   {
 
-yes it is. Will add in v2. Checkpatch didn't catch it. :-(
+Acked-by: Michal Simek <michal.simek@amd.com>
 
 Thanks,
 Michal
