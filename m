@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-30100-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30101-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 118A882686A
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 08:08:34 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 907C282686B
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 08:09:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9D052281831
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 07:08:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A1E151C20883
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jan 2024 07:09:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48D0379F4;
-	Mon,  8 Jan 2024 07:08:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A892F79F4;
+	Mon,  8 Jan 2024 07:09:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="spe1fGOA"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GJjFKQfz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
+Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A4668821
-	for <devicetree@vger.kernel.org>; Mon,  8 Jan 2024 07:08:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0632C8BED
+	for <devicetree@vger.kernel.org>; Mon,  8 Jan 2024 07:09:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-a27e323fdd3so129539666b.2
-        for <devicetree@vger.kernel.org>; Sun, 07 Jan 2024 23:08:28 -0800 (PST)
+Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-55590da560dso1601143a12.0
+        for <devicetree@vger.kernel.org>; Sun, 07 Jan 2024 23:09:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704697707; x=1705302507; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1704697760; x=1705302560; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=J1sAVHFZOl+Y3zSMfroy8g3PUHRQxM0Sjmv1D9qWfRU=;
-        b=spe1fGOAomubjXWks2x21EsosZY/V9rIui33e0ezzeXart9HHXaYEudQMYZrNzGuhz
-         u26VACzmSIyJ+hSeOYC2VH9VFN7SAbdPGWLklUtpR7o5pLTwzAcUxMJyaMwMbbeuTYiP
-         l90rgObJfN2K4o7GKaFhPzr3x9WCknYrNBxJbI1FgHl1UEyz71hz5GHHIXhEMR1vJOVB
-         zzGio+BR7lqEr7OByp0BD0ukYJIRlbwgxXbJlLMho7pFbCRrUANXhvYiRM4IqjFtKPAc
-         5rnr+4Wz9ZnRxxDaKW1uWtXiToLjXSIgkuo8lBCPsjg/l9vDX8Bl2AkrDz5UG9XW3sk5
-         4uDw==
+        bh=/r8lHoecrIWk9eIYYXkHcjYUzILDbPpq1VHyt1eIYlY=;
+        b=GJjFKQfzJF9PetYsbPTxcm8KPHJk3IKnSkbnQu7FI6t1IIzYfJ41Qmcx4UODAnR9sU
+         UCdWRLxwGGAUqu8hSdCJskLg5JROq60TSiTS8wQtB9NOh1WB3cWK0flq40ZVyKhgW3qE
+         3pEz3PROD6Any3gh4I32j1UzNLctD0xb8mZkYNyITyJAAgN74pGwvXSmdsJijwCqphYC
+         e3bQePicTQ1/T/IPaO5X6pWmx08gA/yfD5WPnkQ/jFo5ydxPCxGZgcPeNqrLHOZt9jdK
+         xmhnb4dGCY1r1qSAPRZbod0s1nD5fUursmUkWMIya2eHQcXRkO37QGmvQK0iDYuK9Xxi
+         s6Ug==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704697707; x=1705302507;
+        d=1e100.net; s=20230601; t=1704697760; x=1705302560;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=J1sAVHFZOl+Y3zSMfroy8g3PUHRQxM0Sjmv1D9qWfRU=;
-        b=f6gQhwLU8+7B8e2To4SPwfK1zYDcYKXf2hJZeFRQLOoWuCMKtATx3ZChbsD97MjgRw
-         DaTjISL2KyPPpQBC30gPFy7unwQ2xti98tVc0WRMfgUC63ynPWBFeeY5e/BExFWG4YI2
-         SBqXGgOqKmyY/2eZWVJbVTlCwwE8JMXHRqXL0D2x9FjDBSHE3DIWRpughRz6hM/5EGjb
-         CWpQpcf6UXY9+rsTj7o83cOzcd/5Ryu2j+Wzpc/zGRTpyCeFn2m4rfEyhrTZr/CrxF2i
-         PGqoOObY/vXOFaXhG+ws6SfBzxS6gEnrbQqYbF7bOPs05+Wf5MJhd8uV3k8S28OX//jU
-         cwAA==
-X-Gm-Message-State: AOJu0YxRSjYHTyQPn7pqhUvOw3mk+78zAyVyAp++kc4IaSLbcmdBSKkF
-	VYf20AvKjuS9F6E8IthjADTqNBzkb6HRHw==
-X-Google-Smtp-Source: AGHT+IHIVTW4VpWRZpYVLTuawLEF47jqYZohjJlKFRHd3zqmfrykNgzyspy13MSoNlMulPNS/h3Nbw==
-X-Received: by 2002:a17:907:31c2:b0:a26:ed70:3c85 with SMTP id xf2-20020a17090731c200b00a26ed703c85mr1566462ejb.7.1704697706878;
-        Sun, 07 Jan 2024 23:08:26 -0800 (PST)
+        bh=/r8lHoecrIWk9eIYYXkHcjYUzILDbPpq1VHyt1eIYlY=;
+        b=sL8gU3FL+uHBU5n8dmuC+pSbxj4Z7vHO8gq8IvjUoK9sKQP63UD+FOtCjtWFgeYQk5
+         o7BXtIyDx5CSokfasRH0o0aI98lrA0Jy2RjJQH7RREecrhus2vNGnKfE+FT5dwDghzYF
+         k/d9k2WX/BhX1OZfUd1KtAXkq6G/C4HAGQWyWS+dQYAIkvRrfbUKWmlaXmKqppLdkeiF
+         ZH+m/GIqr2RuyGJTiD3Xfcj4C5BuG7C2PqfPRnhS6R6azBqBu4Xo6z/ir/tMia2eC13m
+         rCXyfQXmwDACSFaWa8dc6WvchbE07kCivgZvbPklVJCUJAEYlJNkr38ShOmN0GI1mWm+
+         UZlw==
+X-Gm-Message-State: AOJu0Yx9KQqQX/C4u4NzWgCEqTen8e93tR/06O063HLx8K+7x7106jBk
+	jmFG1tjIz1YdvnitnI2l2OPhaCPdTireRg==
+X-Google-Smtp-Source: AGHT+IFkuQ4GFGPgGrJ/wF7HIocKEvMntyOdrTuNq5fwcJJue0OW93Lky2FAUjmmiEQ+cnpFIhHeMw==
+X-Received: by 2002:a17:907:6e86:b0:a28:921e:cc53 with SMTP id sh6-20020a1709076e8600b00a28921ecc53mr1749068ejc.54.1704697760453;
+        Sun, 07 Jan 2024 23:09:20 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.223.112])
-        by smtp.gmail.com with ESMTPSA id b1-20020a170906490100b00a26b36311ecsm3723082ejq.146.2024.01.07.23.08.25
+        by smtp.gmail.com with ESMTPSA id b1-20020a170906490100b00a26b36311ecsm3723082ejq.146.2024.01.07.23.09.18
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 07 Jan 2024 23:08:26 -0800 (PST)
-Message-ID: <8cf79b89-741d-4a68-a93d-3a6496ee1919@linaro.org>
-Date: Mon, 8 Jan 2024 08:08:24 +0100
+        Sun, 07 Jan 2024 23:09:20 -0800 (PST)
+Message-ID: <67af1724-6424-456a-aff6-85d9e010c430@linaro.org>
+Date: Mon, 8 Jan 2024 08:09:18 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,17 +66,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V3 2/3] dt-bindings: nvmem: Convert xlnx,zynqmp-nvmem.txt
- to yaml
+Subject: Re: [RFC PATCH] dt-bindings: PCI: ti,j721e-pci-host: Add device-id
+ for TI's J784S4 SoC
 Content-Language: en-US
-To: Praveen Teja Kundanala <praveen.teja.kundanala@amd.com>,
- srinivas.kandagatla@linaro.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- michal.simek@amd.com, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-Cc: linux-kernel@vger.kernel.org-, praveent@amd.com
-References: <20240108052617.32510-1-praveen.teja.kundanala@amd.com>
- <20240108052617.32510-3-praveen.teja.kundanala@amd.com>
+To: Siddharth Vadapalli <s-vadapalli@ti.com>, lpieralisi@kernel.org,
+ kw@linux.com, robh@kernel.org, bhelgaas@google.com,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
+Cc: linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ srk@ti.com
+References: <20240108050735.512445-1-s-vadapalli@ti.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -122,26 +121,23 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240108052617.32510-3-praveen.teja.kundanala@amd.com>
+In-Reply-To: <20240108050735.512445-1-s-vadapalli@ti.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 08/01/2024 06:26, Praveen Teja Kundanala wrote:
-> Convert the xlnx,zynqmp-nvmem.txt to yaml.
+On 08/01/2024 06:07, Siddharth Vadapalli wrote:
+> Add the device-id of 0xb012 for the PCIe controller on the J784S4 SoC as
+> described in the CTRL_MMR_PCI_DEVICE_ID register's PCI_DEVICE_ID_DEVICE_ID
+> field. The Register descriptions and the Technical Reference Manual for
+> J784S4 SoC can be found at: https://www.ti.com/lit/zip/spruj52
 > 
-> Signed-off-by: Praveen Teja Kundanala <praveen.teja.kundanala@amd.com>
+> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
 > ---
-> Please note that DTB check will fail
-> for zyqnmp dtsi with the current changes.
-> Accompanying Device Tree Source (DTS)
-> changes will be sent out separately.
+> 
+> This patch is based on linux-next tagged next-20240105.
 
-So where is that change?
-
-This is v3, where is the changelog?
-
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Why is this patch incomplete? What is missing here? What are you asking
+about as RFC?
 
 Best regards,
 Krzysztof
