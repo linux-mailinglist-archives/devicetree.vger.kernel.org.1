@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-30652-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30653-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 709898288C2
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 16:14:03 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 795D68288CA
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 16:15:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 164C928638A
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 15:14:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 03D4F1F2192A
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 15:15:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E579D39AF8;
-	Tue,  9 Jan 2024 15:13:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9BB939AF8;
+	Tue,  9 Jan 2024 15:15:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UvMlp2KT"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="BAyxTdBr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B6EE39AEC
-	for <devicetree@vger.kernel.org>; Tue,  9 Jan 2024 15:13:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D6D239AED
+	for <devicetree@vger.kernel.org>; Tue,  9 Jan 2024 15:15:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-3368ac0f74dso2379946f8f.0
-        for <devicetree@vger.kernel.org>; Tue, 09 Jan 2024 07:13:56 -0800 (PST)
+Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-3366ddd1eddso3090306f8f.0
+        for <devicetree@vger.kernel.org>; Tue, 09 Jan 2024 07:15:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704813235; x=1705418035; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1704813332; x=1705418132; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=2SZuXHOPPcvY7/ll3qQazlh81180DUWQsNBi9rScVfI=;
-        b=UvMlp2KTRG29FqQ9PS6Pbw9nBSHPWR86yW/1YTE3jzHQB2gdaNuFG75MXBmH/n3u1y
-         nNAIVl78QnbQje35McyZxTy/mZ02VjhGTKrtRVH0LhkPZffeluJPTEz4YmcTPVEAyVZr
-         CxAE6HyjPJJh5leWctpmwW+cba23EBeRYU5oqugPoxNMZYl3rZwG6YC6DiAhTO6H+ZTy
-         UXOz3Gd5uCR0x4o0bzRiXjF1DMzvsNXTp0sfrfT+djDuASvIm1kJclUk7i0+j3q8Snfs
-         cAfkt399OYHAsPGxfzhi58MNZ5gxKAQy408LIMTFklZ3yIsiY8L5CxGq/BxLlny2Z86J
-         Ow2A==
+        bh=24M+4beCvcf8dZJS2wUWTIVSZ4v6f773ejW3RnRoqfg=;
+        b=BAyxTdBr+olaroIAYbmphojz2he6MBLaKuAiZvw8lS2GOFcxexR/twd9rLBRVUywAZ
+         EY8pllHZXRcELOxurv9rjWTzpWTdeaI2ttw9xlfvKTYvsRGJ8Ugirzsk3bIlsp3+4ksr
+         1XjHITInpEoiuZrovmqlypKFK8d/Wo82HvZcNDS7ByeTX5vVJIbDfHmrrZIUpUkEqgfk
+         dd4CeD3pnf5y5rC+g0BNyt6+gDiy4mCpUqvo/3CGr8OxlbrJV3ozTjHWk/mjrdfYEEpk
+         xlmC/DrAQugeQ4ufMRGv7OK6t1GNK7JVUgeWvzRBpVTLTIxcXvC8qCVM88CBA1TzvHUi
+         5Mbg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704813235; x=1705418035;
+        d=1e100.net; s=20230601; t=1704813332; x=1705418132;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2SZuXHOPPcvY7/ll3qQazlh81180DUWQsNBi9rScVfI=;
-        b=t3ep7ggmo2q0KJJ1v8Ye9UZDUlYLIDYm/Sgbz1IGPWfLIi62FvoX11skriLxu13Ds0
-         9jY5JM4zDqKEMlFuanK9MuipHj4tETy8WFk15yv8j9rOax0faCdEM0Z5yP30j9tTWww+
-         sFWck5WSDgxVI2wPZsLv2Yd0nLrNIlP7eYPf/QX2hbmGQ8cwWk9elgptGZpWXTiTfbUD
-         mcOCTyg4qtevj02vHZ8QPU/I1Mw/ZTgACoNd3joHXz9dR2ZDQjLTw531/ddWuqYCW3wn
-         nrGz9WOT9jMoBnfvIiT8UmlSJwhzmrKMzqgOet7MG1lEuUf6MJa6Tv/cw7UrJATwPuYq
-         AOFQ==
-X-Gm-Message-State: AOJu0YzxTo1edlsCKE/d7RP4wReOKTKG+MtxfylXwYzFxif0J7x0d2rS
-	y79kD/6xLWRJV98elwMXBuLSgXxleQBtwg==
-X-Google-Smtp-Source: AGHT+IGk6taFeqHGo82gT2wB6EMgesAjpGTMz0A4JUfG1nbS39QMz7oFwZLowQly0c58ZYhfwOgWMQ==
-X-Received: by 2002:a5d:6304:0:b0:337:6e99:7404 with SMTP id i4-20020a5d6304000000b003376e997404mr568633wru.143.1704813235499;
-        Tue, 09 Jan 2024 07:13:55 -0800 (PST)
+        bh=24M+4beCvcf8dZJS2wUWTIVSZ4v6f773ejW3RnRoqfg=;
+        b=p8dOQCDXXqlalYJgkt4tJmp5aSIT0kRmbI7zLxufaXd4EdVlcnB+7qQcY302ADZgY6
+         HMxk2nA4sRdAl+2srPcYsJyVMazfKRx9kR+7j2zXySlY6cfwpVrL/53C5qe1x/jZB2zw
+         RQYAcIEBuUOCWzQOizw8oRglFYmNVPhWvD7nU/GGzokNUV0cpzqAUoMmihLHxd5PRyTg
+         Zuus1VKJveo2djrqIDxaZ3hO8W22SMzzF9Nn7SilTFe2dQ4ziAwkkiHcolsCQcL1wwqz
+         3eZT31gzsX1GNV47B2lLWCM0tKkHCcVyhZlDo5eDNa+6Ez1Z7ON82BnSPG5Jbc9SSTgv
+         eNSA==
+X-Gm-Message-State: AOJu0YwSA9hWywr26/RkHefrYCcimCAk3N+lJD6w2kyDmuItj06Du2K0
+	9WVD/7Xzls1XVnLErFJjS7GHW8EtZFvSaw==
+X-Google-Smtp-Source: AGHT+IG6V62p3LglXpXOmc6pIxrMiwBBX+RAd4o9gRxq+0Uvr3h7PwxkmRH3w4t2Y0Y8gpqGCTYZAg==
+X-Received: by 2002:a05:6000:1942:b0:336:6ebb:704f with SMTP id e2-20020a056000194200b003366ebb704fmr365226wry.122.1704813332593;
+        Tue, 09 Jan 2024 07:15:32 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.223.112])
-        by smtp.gmail.com with ESMTPSA id h16-20020a05600004d000b003367ff4aadasm2653977wri.31.2024.01.09.07.13.53
+        by smtp.gmail.com with ESMTPSA id h16-20020a05600004d000b003367ff4aadasm2653977wri.31.2024.01.09.07.15.30
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 09 Jan 2024 07:13:54 -0800 (PST)
-Message-ID: <a1ab57e5-5321-4232-a661-9940f99adcf7@linaro.org>
-Date: Tue, 9 Jan 2024 16:13:52 +0100
+        Tue, 09 Jan 2024 07:15:31 -0800 (PST)
+Message-ID: <685047b0-a907-49c6-919b-e46976d8ef7b@linaro.org>
+Date: Tue, 9 Jan 2024 16:15:30 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,27 +66,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 0/7] LoongArch: Add built-in dtb support
+Subject: Re: [PATCH 1/2] arm64: dts: rockchip: add spi controller aliases on
+ rk3399
 Content-Language: en-US
-To: Huacai Chen <chenhuacai@kernel.org>
-Cc: Conor Dooley <conor@kernel.org>, Binbin Zhou <zhoubb.aaron@gmail.com>,
- Binbin Zhou <zhoubinbin@loongson.cn>, Huacai Chen <chenhuacai@loongson.cn>,
- Rob Herring <robh+dt@kernel.org>,
+To: Quentin Schulz <foss+kernel@0leil.net>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev,
- Jiaxun Yang <jiaxun.yang@flygoat.com>,
- Hongliang Wang <wanghongliang@loongson.cn>
-References: <cover.1703229766.git.zhoubinbin@loongson.cn>
- <20231222-support-relieve-5d8f25292b40@spud>
- <CAMpQs4+Uwu=j56Qa_V211_hC+F4MKE6mvTVtW75M1wuAY3-p1g@mail.gmail.com>
- <20231228-ultimatum-paramedic-6c0301f56d1c@spud>
- <CAAhV-H6O_Ke-xJPGFmgdwNVbGkDS2P6EK3ecfgo9KkkNyi9eOg@mail.gmail.com>
- <CAAhV-H5aZc2sWhodA0+V9aWBUoD0oD4tQHiqDSyg2B-iuHDA9g@mail.gmail.com>
- <a51aec3f-3f1b-4e8a-bfaa-904ef2a79c64@linaro.org>
- <CAAhV-H7QQD9ida52rvkhUgzU6O1KmKD7EsNxn=7YyVZP4HXa=Q@mail.gmail.com>
- <194f95be-59f2-4c71-8642-80e5ced9bf6b@linaro.org>
- <CAAhV-H6qNRHmPe64P7sy14iv0m4qxyM4iwk1EmrQe6-4WE0GYQ@mail.gmail.com>
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Quentin Schulz <quentin.schulz@theobroma-systems.com>
+References: <20240109-rk3399-spi-aliases-v1-0-2009e44e734a@theobroma-systems.com>
+ <20240109-rk3399-spi-aliases-v1-1-2009e44e734a@theobroma-systems.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -132,40 +122,28 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <CAAhV-H6qNRHmPe64P7sy14iv0m4qxyM4iwk1EmrQe6-4WE0GYQ@mail.gmail.com>
+In-Reply-To: <20240109-rk3399-spi-aliases-v1-1-2009e44e734a@theobroma-systems.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 09/01/2024 16:02, Huacai Chen wrote:
->>>>> Applied to loongarch-next, thanks.
->>>>>
->>>>
->>>> It's merge window, why do you apply patches? For which cycle?
->>> I'm sorry I forgot to reply to the email when I applied patches, the
->>> patches have already been pulled in linux-next some days before.
->>
->> Really? I cannot find them on next-20240108, so what happened?
-> Hmm, I applied patches two days ago, and they were only pulled in next-20240109.
+On 09/01/2024 14:35, Quentin Schulz wrote:
+> From: Quentin Schulz <quentin.schulz@theobroma-systems.com>
+> 
+> There are 6 SPI controllers on RK3399 and they are all numbered in the
+> TRM, so let's add the appropriate aliases to the main DTSI so that any
+> RK3399-based board doesn't need to define the aliases themselves to
+> benefit from stable SPI indices in userspace.
 
-Two days ago is weekend, so basically one day ago and definitely not
-"some days before".
-
-Anyway two days ago merge window started, so it means you applied them
-during the merge window or immediately before. That's not good. Patches
-should be in linux-next BEFORE.
+But that contradicts the point that board should define aliases for
+exposable interfaces. Sorry, that's a NAK.
 
 > 
->>
->> Are you aware that patches should be in next for "few next cycles"
->> minimum (which means few days or even a week)?
-> Thank you for your reminder, when I sent my first PR, my mentor had
-> already told me this. So I will wait until next week to send PR for
-> this series.
+> Cc: Quentin Schulz <foss+kernel@0leil.net>
 
-In the future, please be sure that all your patches for next PR are for
-several days in your for-next branch, thus at least for few linux-next
-cycles.
+No need to Cc yourself...
 
+> Signed-off-by: Quentin Schulz <quentin.schulz@theobroma-systems.com>
+> ---
 
 Best regards,
 Krzysztof
