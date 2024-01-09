@@ -1,84 +1,98 @@
-Return-Path: <devicetree+bounces-30645-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30646-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5FA5A8287F0
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 15:22:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CEB84828800
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 15:25:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BCE35B23AFE
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 14:22:48 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 72222B241C6
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 14:25:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37F7C39876;
-	Tue,  9 Jan 2024 14:22:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A13073987B;
+	Tue,  9 Jan 2024 14:25:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WPZFhREK"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GWAUjpmX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com [209.85.128.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 130033984A;
-	Tue,  9 Jan 2024 14:22:42 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8AF7CC43390;
-	Tue,  9 Jan 2024 14:22:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1704810162;
-	bh=ryRBX6Ywx4bF68XYywhf01hIAAubq13J+4hY1ns2/Z8=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=WPZFhREKkRbhhlwgxX2UaooPZ+l43cW338J8zQMtDd8C82GKWlFJTy2Gl+dCsghz0
-	 C8w1zzbdZq/OoLS+JFf3cxxIRVdUVjGHS9gEXtqTwQ1IJyLXhKtFuyA6cSZ5GdR8y7
-	 +ke4PR4edvw6MeMaTZYIGvt7ng46GvYklEGspXl7yaHe+aZvERNvCulBZRKFrTR6+p
-	 wDN0Qdhb/TYoCB9YTM2XC3lKRELbUw5YmmTCNrCLDIub5MRpRn1fAFdxBLUshe4EuI
-	 rl+79L7TQ3UVDRGz7VeJcIB2a8E6rgwbqvYZ1fVeiUy+D/e7OYHt7ixgZ7xy6YHI0Y
-	 c4INLzSKkvfDg==
-Received: by mail-ot1-f46.google.com with SMTP id 46e09a7af769-6dde882e5ccso235605a34.3;
-        Tue, 09 Jan 2024 06:22:42 -0800 (PST)
-X-Gm-Message-State: AOJu0YwIDYETRD/b/KvYUw7h2Ha5AAUYWWhpTgpSgvogx58DJWOAo9yp
-	FIMG1cLsha3vQsK+KToP/fiZDhoDGstGhJTNK5s=
-X-Google-Smtp-Source: AGHT+IG7uz4RcDrqw+FErYNKhx1ue3obCPnmI8Yq6i5H1MvzcGf6YLxWOYuozPD6si4kA2cBuh79PZdjKo1YQ9egr6s=
-X-Received: by 2002:a05:6870:9a0d:b0:203:fbf6:8c36 with SMTP id
- fo13-20020a0568709a0d00b00203fbf68c36mr7015318oab.68.1704810161980; Tue, 09
- Jan 2024 06:22:41 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C2DC39876
+	for <devicetree@vger.kernel.org>; Tue,  9 Jan 2024 14:25:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-5f588ce1b6dso28542547b3.1
+        for <devicetree@vger.kernel.org>; Tue, 09 Jan 2024 06:25:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1704810312; x=1705415112; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=g0jRmYFxyXqqyod1EILUSU0d1jpB9EyuAxZzGSyEy4U=;
+        b=GWAUjpmXLgTriEEiLRrVxfrU2wZjaOkjPeMk5FO4Q3lvYBUdDBXH7vKUZmcImjLPcU
+         sPSWBFq6u42KqiUAFEMqYgkI8oyBW7foJYsfcZN9C3PvTYX7R7AK+xrfO6fj7PS39tvp
+         SETQqrtbjkk7XsNEoYEivGVdZh15NO1MRxmOPDO3GZbAyUdxSY4gPEf4J+x9e25qEBCI
+         UeTukPGhDxe8wgt+q+0tK8EARS84fbkMEBNZWWesEpPwA5LtJSMAbeC9+Pk+CBihEtz0
+         TwiwYF4pZEw2WLhQKtoNcB2WArKS55YiHL0kMZoDLKVa6h2TFlt+gsYoZwP2h5kHZE6o
+         8miw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1704810312; x=1705415112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=g0jRmYFxyXqqyod1EILUSU0d1jpB9EyuAxZzGSyEy4U=;
+        b=e3uqLSvHIliKheNaO9lNVBPJ2NZoiKKg6U427wRNDT5GXXVUYHpDGLzkwQdnSCvvmT
+         bmzB6Du/+wEPjqh4dSXrHj53ADe9M6XSBwLzg8cZZGDO/C05SFQKQCz8fKR2MplG8a7j
+         C9bJqhiLSBGY4jFtSpa1/PnQRTm1y5me63Id2USx39Uo0qnOx8y1veLNtfKp3BhDm+6K
+         c730VYC6yU/sTrw3BMEJv1n2xoBgAR8S/ogupuTFRT0ht2ZkDeuiRW4ojLaW4rdNlfzK
+         kRVgN8brK0iSdHd43CPm1+Hx2oExJUaZr81MzJzIUiYplOSRtwI6TnhzcgKcTCxN+TaV
+         c4YA==
+X-Gm-Message-State: AOJu0YyFBm1SwzACnShEA4pIJrTKRj13Ln13CK8+lXSHxr+Hy5DTTfCr
+	K3DLIFRlqJZLIjhodDys8GW6DQrj4hiksWGj1G+yG2qkOQT0Eg==
+X-Google-Smtp-Source: AGHT+IFurq3cBuNOgcehIXjqiUCCcK6/Nxe5gbiowFcxxVVg2NwMw2ej6jKJBwkmx6aYWD46obc91hznYms/cHNMqqM=
+X-Received: by 2002:a05:6902:220c:b0:dbd:2ae7:f363 with SMTP id
+ dm12-20020a056902220c00b00dbd2ae7f363mr474571ybb.4.1704810312262; Tue, 09 Jan
+ 2024 06:25:12 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240109120738.346061-1-masahiroy@kernel.org> <20240109120738.346061-2-masahiroy@kernel.org>
-In-Reply-To: <20240109120738.346061-2-masahiroy@kernel.org>
-From: Masahiro Yamada <masahiroy@kernel.org>
-Date: Tue, 9 Jan 2024 23:22:05 +0900
-X-Gmail-Original-Message-ID: <CAK7LNASOxi-gzve+_d-sCW9z_eEJ5TMMnzPEvN2Nj2AwgVjF9g@mail.gmail.com>
-Message-ID: <CAK7LNASOxi-gzve+_d-sCW9z_eEJ5TMMnzPEvN2Nj2AwgVjF9g@mail.gmail.com>
-Subject: Re: [PATCH 1/4] kbuild: create a list of all built DTB files
-To: linux-kbuild@vger.kernel.org
-Cc: devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>, 
-	Simon Glass <sjg@chromium.org>, Nathan Chancellor <nathan@kernel.org>, 
-	Nick Desaulniers <ndesaulniers@google.com>, Nicolas Schier <nicolas@fjasle.eu>, 
-	linux-kernel@vger.kernel.org
+References: <20240108201618.2798649-1-dario.binacchi@amarulasolutions.com>
+ <20240108201618.2798649-6-dario.binacchi@amarulasolutions.com>
+ <CACRpkdb73Qrs6MuiC427f=RnyD=rydH_4xVhBx-2bS8bX0mJCw@mail.gmail.com> <CABGWkvq0kbjDZTZj-PN+Sj3jo7SAx0G5PcTeA9KDfceh4D8_yw@mail.gmail.com>
+In-Reply-To: <CABGWkvq0kbjDZTZj-PN+Sj3jo7SAx0G5PcTeA9KDfceh4D8_yw@mail.gmail.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Tue, 9 Jan 2024 15:25:00 +0100
+Message-ID: <CACRpkdY99si4+KZAVdHBTYr-3=jDBsphTgUNi9NMhZekEpXsEA@mail.gmail.com>
+Subject: Re: [PATCH v5 5/8] dt-bindings: nt35510: add compatible for FRIDA FRD400B25025-A-CTK
+To: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+Cc: linux-kernel@vger.kernel.org, linux-amarula@amarulasolutions.com, 
+	Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>, 
+	Jessica Zhang <quic_jesszhan@quicinc.com>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
+	Sam Ravnborg <sam@ravnborg.org>, Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Jan 9, 2024 at 9:07=E2=80=AFPM Masahiro Yamada <masahiroy@kernel.or=
-g> wrote:
->
-> It is useful to have a list of all *.dtb and *.dtbo files generated
-> from the current build.
->
-> With this commit, 'make dtbs' creates arch/*/boot/dts/dtbs-order, which
+On Tue, Jan 9, 2024 at 1:54=E2=80=AFPM Dario Binacchi
+<dario.binacchi@amarulasolutions.com> wrote:
 
+> > do you want me to apply patches 5,7,8 to the dri-misc
+(...)
+> Yes, I would appreciate that very much.
 
-I meant arch/*/boot/dts/dtbs-list
+Pushed to drm-misc-next!
 
+Please submit the DTS files through the ST SoC tree.
 
-
-
-
-
-
---
-Best Regards
-Masahiro Yamada
+Yours,
+Linus Walleij
 
