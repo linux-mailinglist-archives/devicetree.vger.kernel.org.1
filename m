@@ -1,230 +1,149 @@
-Return-Path: <devicetree+bounces-30452-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30454-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40F0A827F9E
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 08:43:08 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 35742827FD0
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 08:57:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DF96A28137F
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 07:43:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 373A61C21616
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 07:56:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13795B65D;
-	Tue,  9 Jan 2024 07:43:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3604F947A;
+	Tue,  9 Jan 2024 07:56:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="rzR+v8jR"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="OUxXYZx7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f43.google.com (mail-pj1-f43.google.com [209.85.216.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR03-DBA-obe.outbound.protection.outlook.com (mail-dbaeur03on2045.outbound.protection.outlook.com [40.107.104.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87CE19475
-	for <devicetree@vger.kernel.org>; Tue,  9 Jan 2024 07:42:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pj1-f43.google.com with SMTP id 98e67ed59e1d1-28c9d424cceso1812597a91.0
-        for <devicetree@vger.kernel.org>; Mon, 08 Jan 2024 23:42:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704786179; x=1705390979; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=hbh9aOHx7+CSCvz+p9Wnk1Alp9/EgNmTd2TSmQXJErs=;
-        b=rzR+v8jRYlcV6Du2wjV9SWn/leGlSxC2xqyL2rlmiqdSltIK5DjRyYmjpE/pmpJK+O
-         sydKGwyjCh4x6VFYcjoKMhTXDZlJj9k1+ttsomsQxlGv2k8mI5j1nqlxeGIGORjfPq7d
-         JLhDFFHFU1d957w5czZAy/H68MUIK7COMZsSXXn2w2MlrFxq1ERIoWZUfrw3QWfiPdPp
-         U6QWmOWa6jDNlPT0zVTjRFzS2vZWeh/GfW125WTC4ltk7LQ5/Y6R2Xm5zsxLEgGGNpAP
-         d3jQLu4SHPkh+dju8hNV7IiQDsXDzOFzKxRRWlk1pjj73nn/0SiobOs+x7MwDNEyxTaa
-         +A6g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704786179; x=1705390979;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=hbh9aOHx7+CSCvz+p9Wnk1Alp9/EgNmTd2TSmQXJErs=;
-        b=dJK1PeLbozWlzan63jMx1yJPTK/E/38SwPyp0359lVj0eKrO2eUTKx4o7rX0sK/ErN
-         UHMR5ojvKIANGnGMD0xwrwDCUZjLcbRtpyuJ80sAcijjMNa1YQBsmyRQ3R0K5UZmp3nz
-         bqar7vTLEwzpBlewClj8i2tcWlFacfWz0Ob9JS7cRKD6895FZMPnlcpZqlHW/N6yWHwk
-         zFGv0scHWN9YktoppGGuJTan/cBsz/zV8ogCO+E0Rm2X2cAOJ/3YPmSXFN2X6lfRddqd
-         n6VKfqetq16ILGVPegRIGrAoA+IV2HeIzXEKys1elmo6CoNemdtId35fL2eaK8ix2cjx
-         OUug==
-X-Gm-Message-State: AOJu0Yyi2wiMsmKPllc6T3WxomVTF06Y3pVOY0hZHkEmQO/CIAPgErit
-	4/l7ZTDs/QHqQteOpGbxIgW1ExQ1y7vy
-X-Google-Smtp-Source: AGHT+IFcxvhYW0JAZdJq+N+9m95XOtUpUXsjOgoxUB/mRwSbbeb71nZBw7f0ddc9ml/vx8VlhUFUbA==
-X-Received: by 2002:a17:90b:f0f:b0:28d:9b5b:e70b with SMTP id br15-20020a17090b0f0f00b0028d9b5be70bmr429191pjb.0.1704786178748;
-        Mon, 08 Jan 2024 23:42:58 -0800 (PST)
-Received: from thinkpad ([117.213.102.45])
-        by smtp.gmail.com with ESMTPSA id g7-20020a1709029f8700b001d425d495c9sm1083349plq.190.2024.01.08.23.41.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Jan 2024 23:42:57 -0800 (PST)
-Date: Tue, 9 Jan 2024 13:11:24 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Chen-Yu Tsai <wenst@chromium.org>
-Cc: Florian Fainelli <f.fainelli@gmail.com>,
-	Bartosz Golaszewski <brgl@bgdev.pl>, Kalle Valo <kvalo@kernel.org>,
-	"David S . Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Chris Morgan <macromorgan@hotmail.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	=?iso-8859-1?Q?N=EDcolas_F_=2E_R_=2E_A_=2E?= Prado <nfraprado@collabora.com>,
-	Marek Szyprowski <m.szyprowski@samsung.com>,
-	Peng Fan <peng.fan@nxp.com>, Robert Richter <rrichter@amd.com>,
-	Dan Williams <dan.j.williams@intel.com>,
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-	Terry Bowman <terry.bowman@amd.com>,
-	Kuppuswamy Sathyanarayanan <sathyanarayanan.kuppuswamy@linux.intel.com>,
-	Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>,
-	Huacai Chen <chenhuacai@kernel.org>, Alex Elder <elder@linaro.org>,
-	Srini Kandagatla <srinivas.kandagatla@linaro.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jim Quinlan <jim2101024@gmail.com>, james.quinlan@broadcom.com,
-	linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-pci@vger.kernel.org,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: Re: [RFC 0/9] PCI: introduce the concept of power sequencing of PCIe
- devices
-Message-ID: <20240109074124.GA3303@thinkpad>
-References: <20240104130123.37115-1-brgl@bgdev.pl>
- <a85dbfc3-e327-442a-9aab-5115f86944f7@gmail.com>
- <CAGXv+5EtvMgbr9oZ7cfnDCDN15BKqgpuiacHHf8_T5kLqYJpJw@mail.gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20650C126;
+	Tue,  9 Jan 2024 07:56:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=huJBwMR9uzWCMHVWjjjLABPsCoM9PuffWb30xa5PzcueGhyPvlmMyLFS5V51QAEjKQp1fvdlc5Pws6tOLuOK7zOoodMhlbClUM9CFMF0RbRtxKvHfBk5B3puw3MzWfx7uv9GRDLlwuf6eK9u2Yj6s3W+8O9nTqzqEQt7VkZqkKwthzAIc5LyHKX0TlPf8qCgc9URcXYV5Jt1qAvOz80otJb95UeePMDNepMdidA5stRstg81PFfXGPMaBTY+0eaghpT4L5fUDnhAX2ZLhZCynCt90CS/OkufobFLBbn4ygE50p4Nben7TqhajL+5Z42anoBR/IuQqCaexLzp47MqkQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=eQbiZjA7EDN5zEOGAyQMMtT+F6XBWMl/5IrKpQIGPBo=;
+ b=fbzsQFFy48i4qFnU2yMFDj8no3U+V9t0hozL1F/3deXi3ngA39CLebP9Y3PtSRE0PSUiyn0S+LPzQzf+xxsR1xtJ4jWmSwmGXzLh9MQTHmK+pwH7Bx0FA6a/xoSIvT9pOnYNtvJ3GM3uG5TBS00EiM4T2gFvEATJCuWS/z/o+ucK+5sgS6tSosPqH9v3Pv0+8aCskYfQjXvqokACJ4jFKNA5ox/p55e+g23HZOPfMXuWzWg+SqF8rqBCdQf7BMWSLUMpmmQd8+7sQc2Z0atR5TtOmmlSDmc/0CzHE4Exb9Ebqa3iBe2FvAfm+eDKuPdNnXyETWvZQP8QoHSo4adk2Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=eQbiZjA7EDN5zEOGAyQMMtT+F6XBWMl/5IrKpQIGPBo=;
+ b=OUxXYZx7z0ZYfE9iCNXjitRt6bnM68xKK1WuMPp6WLe8hLWoOpu08a0GlPuj3ayESGTz0Ej77VqPnJPGkME8gWXgcZ5tR/g39LehDSpISsoPkWv+S0A74m9PjYk3VBvJslLnG+buN5wyex8OLMhaeKmZj49ufk+JolOiBuvld7c=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from DB9PR04MB9498.eurprd04.prod.outlook.com (2603:10a6:10:360::21)
+ by GVXPR04MB9994.eurprd04.prod.outlook.com (2603:10a6:150:11a::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7159.21; Tue, 9 Jan
+ 2024 07:56:49 +0000
+Received: from DB9PR04MB9498.eurprd04.prod.outlook.com
+ ([fe80::2a3c:9a90:b09f:293c]) by DB9PR04MB9498.eurprd04.prod.outlook.com
+ ([fe80::2a3c:9a90:b09f:293c%3]) with mapi id 15.20.7159.020; Tue, 9 Jan 2024
+ 07:56:49 +0000
+From: Chancel Liu <chancel.liu@nxp.com>
+To: lgirdwood@gmail.com,
+	broonie@kernel.org,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	shengjiu.wang@gmail.com,
+	Xiubo.Lee@gmail.com,
+	festevam@gmail.com,
+	nicoleotsuka@gmail.com,
+	perex@perex.cz,
+	tiwai@suse.com,
+	linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	alsa-devel@alsa-project.org,
+	linuxppc-dev@lists.ozlabs.org
+Cc: Chancel Liu <chancel.liu@nxp.com>
+Subject: [PATCH 0/3] ASoC: Support SAI and MICFIL on i.MX95 platform
+Date: Tue,  9 Jan 2024 16:55:48 +0900
+Message-ID: <20240109075551.870001-1-chancel.liu@nxp.com>
+X-Mailer: git-send-email 2.42.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SG2PR06CA0184.apcprd06.prod.outlook.com (2603:1096:4:1::16)
+ To DB9PR04MB9498.eurprd04.prod.outlook.com (2603:10a6:10:360::21)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAGXv+5EtvMgbr9oZ7cfnDCDN15BKqgpuiacHHf8_T5kLqYJpJw@mail.gmail.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DB9PR04MB9498:EE_|GVXPR04MB9994:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4c4bf19f-549a-444b-0dcf-08dc10e8887a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	XQmF9O0KhgBLrmmjDc/Ve5wwNHa+4hDJfs8a6u03zfXubpQSXJe5BLeDJQRynAi6DGh/ffxA11JRS8FqWu3N60pDtyE+0w1gowv57/G/IM9r4t44Y0sEjLcIqRn8SkDydKMkeKgGpGkmoKC7E0OJ9pfgCVeptl3SfmPYuXf7G6BWTOVYM3nBLb1AU3x/fa5HGx1vSEzEhwuPrPdg/71RK8HFRKOfBsnjLSCcUvwNOmBsK6p8HDh8/7AllvIA/tHolS2g7mfEG2d3x07NqtYeNWyL9FX1NdM6E+pgzQku6Yl6f47ymrNaG9IgKp8+RLz3nXN3wgmABIym+P+DJktLPIeNMhnIK5kI3EwcRxDNQDxHkYeapuCguUTdnTe+1ozZfjgI/6kPS7+gea/L8N3Q8AnJ81j9a6221kvYJHHKsLt3A13ZI3ciKfj/Nlsa4ymIf3dDT3WzI5H3Y4V+S/3sSpTtnQ7h47u05OItniRq74h6ZJa34nEpHO9nJ9azII/7Teg0VguLSYgY+v24hEDgUy6NHVLs9igMJRiE278N5ci9d0NR/X0sg3C1CgS9oChoVF4swKUR9WksPeeAvtZ/BnkZcSIZSWY050XZe8R1lVv8Fury7BnzpL9FmTIyKAGglEqVLNTuJiQaHi5zgyO1uA==
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR04MB9498.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376002)(396003)(39860400002)(346002)(136003)(366004)(230922051799003)(64100799003)(451199024)(1800799012)(186009)(1076003)(2616005)(26005)(52116002)(478600001)(6506007)(6512007)(6486002)(38100700002)(921011)(36756003)(86362001)(38350700005)(4744005)(2906002)(7416002)(41300700001)(5660300002)(83380400001)(66556008)(4326008)(66946007)(316002)(44832011)(8936002)(8676002)(66476007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?pNvKrh7DvC11zDfORfF0S762gNEmixDvJ3hB9C5/AB6gGfPNB9kPu6E+F4GO?=
+ =?us-ascii?Q?e/PM4o69ObUVDlDDpx+4TyYxJuoY/zmTY5AmXkqqGasy2HkRFS3QofHbP0r5?=
+ =?us-ascii?Q?p/iRE6ezRF5lH9qyZ5UlYtz6nSshUGbVSRbS3N2jlUCHuufNuQ4vsaHFjq0E?=
+ =?us-ascii?Q?MNe0e2H13N8oPae8TUu1+Pt/lbXAPDIf0OkpaNII6137nTSRlKRfsjQXLLWn?=
+ =?us-ascii?Q?6bAkbiLtjKi3ZMfiG6DJyjJFDRsRZvQ8MnMdPD292QjTgGxMYYjjtMXimQKc?=
+ =?us-ascii?Q?+mNs3InoPAlSfh9SF2uUKMLyytDA1rLSPkqZ1sIbWhhkU66PU1g13rlQVhvL?=
+ =?us-ascii?Q?IXM2Y3oXKuMT56sq3GSihLayvf4uLfhbkBUfVwBMGy/343v9sMKx7G30eY5H?=
+ =?us-ascii?Q?D6Zri8gebSNN2jvmcyWiAMLuaa5ub/SxLUnX5Ow3lPh7RcFoJS6sHjLLWxOP?=
+ =?us-ascii?Q?73Uoi+ORaWFjPJxcqm03S0ljCYRUnefGaa/JECg9QMUIqGuBV2kXZ1D2SL1Y?=
+ =?us-ascii?Q?9DZYGUz2F9U0tpDVMLDwOeqwsFfa736pi7c8qe9wmGJHGSloUWxxtsORWzGR?=
+ =?us-ascii?Q?DkjIAWut+xSrL9QVHceyg+I6vOKhnaLcqM65CzkrGKjv4rNLwHOIK7/fDSHt?=
+ =?us-ascii?Q?rxgpwq+zaE7PC7bA0pC4tlIU8+gYLED54ieaz6cK4RFWoE4hDTCmznWLrDU+?=
+ =?us-ascii?Q?gyObA96sL9OTnYbLTuztLhjTQHiKxPBVCyhiNgJLNXchkLa+WWg/iGVd/Q2B?=
+ =?us-ascii?Q?RG3knf4dZwPV7PO5feMIy9TF9Z4cq0Pyk1hPakR7wLi95CCquLKGRqiAwFnk?=
+ =?us-ascii?Q?zGjPzCOZbKbJSD4vPpk+THftz3wTmIcS1NOGhjkSnTuiFyRZfe0GbbdHt8v7?=
+ =?us-ascii?Q?SYhS1bGNqRBdpbF24nLVaSNZYf2xHWhnjeLrTxm+TsB33YkVOgmF2xdYhlfe?=
+ =?us-ascii?Q?wUnvHNjxEUPBghXJ8AuuX9/7VP0e4MeiPHfBgsZLJuAI67B0Od/UcAV8IwF2?=
+ =?us-ascii?Q?VYvI42iq0KswZ1aEzVgx44+KVWfXo7YBSGT8NzBQVZlWhIY+ZBtWN2Vs0ljm?=
+ =?us-ascii?Q?0NZMG5d6/DED9de5X8xh3a5B2umiUSAwl9KABqFi4XRQHSslQ7/jy0s5OBE+?=
+ =?us-ascii?Q?3IR1jDA0KTIJfbxLF2yZBb9yBnOGseErKBMscXpfFEUk0kUlE4sJPlv3+8uz?=
+ =?us-ascii?Q?6imgWCL9A7PleGtxut5LDNgeVpAg/77vbPDmD9TtnzSBZIHTVGFJh8y5/NHL?=
+ =?us-ascii?Q?FvttA2/IbCo/EswnvCAUzyGqToa0UEazslNNY62QWpXWtSCyYYpDiU06vQ2Z?=
+ =?us-ascii?Q?dbrOwbAdrxtDqF/PrhRcK6sxFqqeQBTq5RgkY9iHNcRV0g2bd6OMk7p77nM4?=
+ =?us-ascii?Q?qi4fnHkikZmdF7nCMJbyZqVFePlSlJSxx0IqAdrR5A+sQ6Xv3WIc69ybwWv+?=
+ =?us-ascii?Q?gfLaLwBhuBMfoiiTHbZpZvavPcD85VBBX8uU2rcw79Dcau963SUxxdgdff/P?=
+ =?us-ascii?Q?tqzByR4C7QDxVhxbaBGiC69z2v4SqW35Me0VaQ5jI+qXaYPChMXqfK40hW5W?=
+ =?us-ascii?Q?LECmwtrWCk81yAdqOqkeaJShu81prGAlIN53wvtA?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4c4bf19f-549a-444b-0dcf-08dc10e8887a
+X-MS-Exchange-CrossTenant-AuthSource: DB9PR04MB9498.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jan 2024 07:56:49.1007
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: r3vwlxZPU7FkZfmVpVWrJhQWBnRPejFFWHpIFnilwDq6vRTMDu2zx3bK3NJSQKVgbDZRS0rt7xjMQR8nuWCxaA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVXPR04MB9994
 
-On Tue, Jan 09, 2024 at 03:08:32PM +0800, Chen-Yu Tsai wrote:
-> On Tue, Jan 9, 2024 at 12:09 PM Florian Fainelli <f.fainelli@gmail.com> wrote:
-> >
-> > Hello,
-> >
-> > On 1/4/2024 5:01 AM, Bartosz Golaszewski wrote:
-> > > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> > >
-> > > During last year's Linux Plumbers we had several discussions centered
-> > > around the need to power-on PCI devices before they can be detected on
-> > > the bus.
-> > >
-> > > The consensus during the conference was that we need to introduce a
-> > > class of "PCI slot drivers" that would handle the power-sequencing.
-> > >
-> > > After some additional brain-storming with Manivannan and the realization
-> > > that the DT maintainers won't like adding any "fake" nodes not
-> > > representing actual devices, we decided to reuse the existing
-> > > infrastructure provided by the PCIe port drivers.
-> > >
-> > > The general idea is to instantiate platform devices for child nodes of
-> > > the PCIe port DT node. For those nodes for which a power-sequencing
-> > > driver exists, we bind it and let it probe. The driver then triggers a
-> > > rescan of the PCI bus with the aim of detecting the now powered-on
-> > > device. The device will consume the same DT node as the platform,
-> > > power-sequencing device. We use device links to make the latter become
-> > > the parent of the former.
-> > >
-> > > The main advantage of this approach is not modifying the existing DT in
-> > > any way and especially not adding any "fake" platform devices.
-> >
-> > There is prior work in that area which was applied, but eventually reverted:
-> >
-> > https://www.spinics.net/lists/linux-pci/msg119136.html
-> >
-> > and finally re-applied albeit in a different shape:
-> >
-> > https://lore.kernel.org/all/20220716222454.29914-1-jim2101024@gmail.com/
-> >
-> > so we might want to think about how to have pcie-brcmstb.c converted
-> > over your proposed approach. AFAIR there is also pcie-rockchip.c which
-> > has some rudimentary support for voltage regulators of PCIe end-points.
-> 
-> I think the current in-tree approaches mostly target either PCIe slots,
-> whether full size or mini-PCIe or M.2, or soldered-on components that
-> either only have a single power rail, have internal regulators, or have
-> surrounding circuitry that would be incorporated on a PCIe card.
-> 
-> These all have standardized power rails (+12V, +3.3V, +3.3V aux, etc.).
-> 
+Support SAI and MICFIL on i.MX95 platform
 
-Right. But ideally, they should also be converted to use this power sequencing
-driver at some point in the future.
+Chancel Liu (3):
+  ASoC: dt-bindings: fsl,sai: Add compatible string for i.MX95 platform
+  ASoC: fsl_sai: Add support for i.MX95 platform
+  ASoC: dt-bindings: fsl,micfil: Add compatible string for i.MX95
+    platform
 
-> > What does not yet appear in this RFC is support for suspend/resume,
-> > especially for power states where both the RC and the EP might be losing
-> > power. There also needs to be some thoughts given to wake-up enabled
-> > PCIe devices like Wi-Fi which might need to remain powered on to service
-> > Wake-on-WLAN frames if nothing else.
-> >
+ .../devicetree/bindings/sound/fsl,micfil.yaml     | 15 +++++++++++----
+ .../devicetree/bindings/sound/fsl,sai.yaml        |  1 +
+ sound/soc/fsl/fsl_sai.c                           | 13 +++++++++++++
+ 3 files changed, 25 insertions(+), 4 deletions(-)
 
-I don't think it is necessary to add PM support in this series itself. Even
-though PM support is always nice to have or even necessary for controllers
-pulling the power plug during suspend, it makes sense to merge this basic
-implementation and add features on top.
+--
+2.42.0
 
-It should be noted that both the controller drivers and the power sequencing
-drivers should be in sync during suspend i.e., if the controller driver decides
-to put the device into D3Cold and turning off the controller power supplies,
-then this driver should also power off the device. But if the controller driver
-decides to keep the device in low power states (ASPM), then this driver
-_should_not_ turn off the device power.
-
-Right now, there is no global policy for controller drivers and each one does a
-different job. IMO this should also be fixed, but that also requires an
-agreement from PM folks.
-
-(Well there is one more entity in this loop, PCIe device drivers... sigh)
-
-> > I sense a potential for a lot of custom power sequencing drivers being
-> > added and ultimately leading to the decision to create a "generic" one
-> > which is entirely driven by Device Tree properties...
-> 
-> We can have one "generic" slot power sequencing driver, which just
-> enables all the power rails together. I would very much like to see that.
-> 
-
-Yeah. And that "generic" driver could be used for simple usecases mentioned
-above.
-
-> I believe the power sequencing in this series is currently targeting more
-> tightly coupled designs that use power rails directly from the PMIC, and
-> thus require more explicit power sequencing.
-> 
-
-Precisely!
-
-- Mani
-
-> ChenYu
-> 
-> 
-> > Thanks for doing this!
-> > --
-> > Florian
-> >
-> > _______________________________________________
-> > linux-arm-kernel mailing list
-> > linux-arm-kernel@lists.infradead.org
-> > http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
-> 
-
--- 
-மணிவண்ணன் சதாசிவம்
 
