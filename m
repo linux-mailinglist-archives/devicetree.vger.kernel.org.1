@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-30554-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30555-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3F3482831D
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 10:25:58 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E869828320
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 10:26:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8EBAE283644
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 09:25:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 27D4E281D68
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 09:26:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D51C2D7AF;
-	Tue,  9 Jan 2024 09:25:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82F9733CFB;
+	Tue,  9 Jan 2024 09:25:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JgCIGLH2"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kBRDQ5+/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
+Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D5A6358B6
-	for <devicetree@vger.kernel.org>; Tue,  9 Jan 2024 09:25:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F25BF33CED
+	for <devicetree@vger.kernel.org>; Tue,  9 Jan 2024 09:25:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-50e5a9bcec9so3330968e87.3
-        for <devicetree@vger.kernel.org>; Tue, 09 Jan 2024 01:25:34 -0800 (PST)
+Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-557dcb0f870so1471010a12.2
+        for <devicetree@vger.kernel.org>; Tue, 09 Jan 2024 01:25:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704792333; x=1705397133; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1704792351; x=1705397151; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=xfRDTz5XPwRHAABQZ2tll4TIOK6h/k/XpgzRQX6/Vwg=;
-        b=JgCIGLH2GFR+myFQT+JH9GX637IflkhvgzEOSuavqseXObAfMQgArOd9xoIMginiva
-         XinpPm0tslFtW5yviv2cFAYbSW0fqbL94lwe3m0wYg71JXUSiRMsrmnNDYqlcmDCSR1Z
-         LXH1Yy4bdkVmTaEEOzloO7z8KlKoO9bxDcHtmqUzri5cZRuk1Jt5Ff2m3zjBQy+Tjr5H
-         vZUpqGIf2Ts0JDSdhC5F4jI7ZOHK2yRy7SlZzT09mPlqllADK+RwnSX8hyW3LrqQwjAp
-         oXR2bB0y5/JNayJgkx+853Vmg0ttl/N4M+7jQOOGRmO5t8BcXJsP44+H4GHjh1OHb6ED
-         TnlQ==
+        bh=hLAQ0XbkOQ9pBOvAMM5d4aYPnzhy2IEgHHWyMPd2+80=;
+        b=kBRDQ5+/KH7CzOQPqu/OUs9BbnareX7K4xHPThwESBHv65uRGcmLUq8Bg87o7szzQC
+         rU5N7BGFsx5SRDUQaoPtHLm5uXlCYIaHq0YCC9Ec+uwRDws4wt5+dcoq/OBbymRXVde8
+         UIkqDEzDc+hu7zEt7+ScKDru0aBw9j6OLbtiyEsJ8ACpwvTgVfdY7U8G59jUuEJzFMNc
+         nFJEhHXyVxWaGt36Pp1PDUGDHhmL/XYkK4je4yqITKH2NQ0d9aDADue0IeRxkLA0IoYP
+         YCKZxPKuhLX6jU5655bi5tvjXmH+l+2B6w93Tuxnj4Pjq4iQe2mIpMNPL8znmRrtZ59X
+         Lecg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704792333; x=1705397133;
+        d=1e100.net; s=20230601; t=1704792351; x=1705397151;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=xfRDTz5XPwRHAABQZ2tll4TIOK6h/k/XpgzRQX6/Vwg=;
-        b=ls/IHazbEGR/e/lQqJ9P2nfrIgwvXFwbeMJsa1khpY508ePqlzfPfixMnIVZS8K7xe
-         S/YgkHiQanoSECZ0gvLCOemNckfHja66yHA6hmX0/F3VBluD/CLgp7ETCHK8Ic6fam/i
-         VG4b8zH3Of8btOfXwhd4A1HDuiR8a48WRLcaVY/0nTfPycN0xDZY+32UzFbcGMihtTom
-         j+g+hc03F1V4rP4Qdk86ft1BeCbqPXJsgap9CdsHEP6zMp8LZhjjLpV5K80aJ0FCIiLG
-         8pExnV+SLMhN7TIOveP9ax1A8PuLPypzHWpQr6rTwSFty3aK4lamY43aSaFi7I7RFti/
-         MGPQ==
-X-Gm-Message-State: AOJu0Yz838ZlSAySIQPoMTdqJtbDwDTGMy7FQB4n5miEC+SqDcoSLl4S
-	b3YBfwf2Kg9GY8AzFqyvkcFnzYN/MKU4fQ==
-X-Google-Smtp-Source: AGHT+IEmmRbyNJqYVoXTsrz7c+lNWBKsMw6fJwxoN04iSulduZF9YIz/Y7jdtyetu9H0eTEY08siMQ==
-X-Received: by 2002:a05:6512:102a:b0:50e:1870:1ef4 with SMTP id r10-20020a056512102a00b0050e18701ef4mr1721012lfr.48.1704792333141;
-        Tue, 09 Jan 2024 01:25:33 -0800 (PST)
+        bh=hLAQ0XbkOQ9pBOvAMM5d4aYPnzhy2IEgHHWyMPd2+80=;
+        b=uZL66spDqutnMczVCj+denFSPq/LJN2rLZaQ+3D39n7sxS6jih0cpPNggY6BKJjkhZ
+         brn+Bp/X9Dxbh0ys81bQ6Zhq/z+SbqFLb2JuQ9crm+f3ePMEZ6GDNjLLFZpi1RojU8Ty
+         Slk6Yk1EKzL7VUsp8Z7h96gEppR2wk4yp2VBTPQvQ0Pr5UfnzOt1sIHTz1Nb5KJDq0w5
+         Oj+bErpfxbyF1rdzc1a0iAJhwNlztI7rpZlr/+0GKcGLF/eVL+SJDu46HtSooUhduopU
+         O9ON3DeuEa/k47Cpzuvq2+Bqcwp0rKovBhP0A8sFH0BFjo3OSa6xodDT/sQTOtVzsqkq
+         IClQ==
+X-Gm-Message-State: AOJu0YxZDQ+5VRNc2K6I05ePmoYWrwe5YvHhUoFNh8UUJJSbMzhl12NW
+	9SgJ5TDetjw3XFgcgdR95IE4kpDv3CaSpQ==
+X-Google-Smtp-Source: AGHT+IHn51OKXc47+wSrI6jDGUtNAI2rvBsuf7vr1vNWFX1eaEhPYK/aGnz3PyJ9fs0Gw2P0rPciWA==
+X-Received: by 2002:a17:907:3e8a:b0:a2a:23a7:1a79 with SMTP id hs10-20020a1709073e8a00b00a2a23a71a79mr388065ejc.100.1704792351273;
+        Tue, 09 Jan 2024 01:25:51 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.223.112])
-        by smtp.gmail.com with ESMTPSA id l25-20020a1709061c5900b00a28956cf75esm813989ejg.130.2024.01.09.01.25.30
+        by smtp.gmail.com with ESMTPSA id l25-20020a1709061c5900b00a28956cf75esm813989ejg.130.2024.01.09.01.25.48
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 09 Jan 2024 01:25:32 -0800 (PST)
-Message-ID: <176f3bcf-d9c6-4672-bb4d-112f1ac17b1f@linaro.org>
-Date: Tue, 9 Jan 2024 10:25:30 +0100
+        Tue, 09 Jan 2024 01:25:50 -0800 (PST)
+Message-ID: <0f3e0819-b23f-4a84-abc9-f213f08c013a@linaro.org>
+Date: Tue, 9 Jan 2024 10:25:48 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,7 +66,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] dt-bindings: arm: aspeed: add IBM system1-bmc
+Subject: Re: [PATCH v2 2/3] dt-bindings: Add DPS310 as trivial device
 Content-Language: en-US
 To: Ninad Palsule <ninad@linux.ibm.com>, robh+dt@kernel.org,
  krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, joel@jms.id.au,
@@ -83,7 +83,7 @@ Cc: patrick.rudolph@9elements.com, vincent@vtremblay.dev,
  linux-hardening@vger.kernel.org, geissonator@yahoo.com,
  geert+renesas@glider.be, luca.ceresoli@bootlin.com
 References: <20240108204114.1041390-1-ninad@linux.ibm.com>
- <20240108204114.1041390-2-ninad@linux.ibm.com>
+ <20240108204114.1041390-3-ninad@linux.ibm.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -129,14 +129,15 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240108204114.1041390-2-ninad@linux.ibm.com>
+In-Reply-To: <20240108204114.1041390-3-ninad@linux.ibm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 08/01/2024 21:41, Ninad Palsule wrote:
-> Document the new compatibles used on IBM system1-bmc
+> Infineon DPS310 is a barometric pressure and temperature sensor.
 > 
 > Signed-off-by: Ninad Palsule <ninad@linux.ibm.com>
+> ---
 
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
