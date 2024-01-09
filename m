@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-30463-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30464-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA9F6827FFC
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 09:01:23 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F755827FFF
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 09:01:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 551761F26051
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 08:01:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B87BD1C20F9F
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 08:01:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A1A2C15B;
-	Tue,  9 Jan 2024 08:01:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFA76BA45;
+	Tue,  9 Jan 2024 08:01:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="FWEzOZmJ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="BjDYCR5k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
+Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9E30BE47
-	for <devicetree@vger.kernel.org>; Tue,  9 Jan 2024 08:01:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FEECB67F
+	for <devicetree@vger.kernel.org>; Tue,  9 Jan 2024 08:01:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-557f4fd1278so445054a12.3
-        for <devicetree@vger.kernel.org>; Tue, 09 Jan 2024 00:01:07 -0800 (PST)
+Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-55719cdc0e1so2950688a12.1
+        for <devicetree@vger.kernel.org>; Tue, 09 Jan 2024 00:01:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704787266; x=1705392066; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1704787295; x=1705392095; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=bdxnAmjWNKq4y1w9DC06BYcijknvo3Hfm6Sa3dcMMKc=;
-        b=FWEzOZmJj+ymarQ0B4TkNySru6LX0kLo+8BrP/3Kftq97YDi7F3p51Xi+9xSQaYKKg
-         KUCuuijYfRzf0G7Nlx4SVNpOOYU3PXPyzuELbdbD8ONSoengGb4FhWUVQ0W5NdLXTLuR
-         Xx6PvtLNO8sW5OpY6KmiXXI98vTWqH9zbGgJma0L83SwLnTxn4qj01uMmr1VlQpLaRJn
-         yGGKqHzH6KG65Ak7M8J+V/qqP19TuAAbfhPrwEN4ElRmpT0TIRgawoa8Ep6h7rCBi7YW
-         Vk3IpKFmaRbck5Fxv++AB/ZsBvjwUCPiTIVudIRIyp2v8whoomH1XX9lVddpfng9Euuo
-         JTpQ==
+        bh=f3XO5DB3PGTjxuxdHbpQfOFkjCrDikXFoyaY9Xd9GxA=;
+        b=BjDYCR5kx/Rn5M63YGx3mU6pPI1hidpi++WUxQJCPF04MzfSzuVM+3CPBvkKMZsb8T
+         fhjyV8bapoH0wdv7Acb7TLrso65AMP5QkoR5+wupEmGnY1DQgNnxR4tUcaWUjPW+BaKA
+         /DwIkH/XocNzU23IKJ0a4gZVP35nnuxuroH5bQf7yQU9wN1lkccrIH9E//YhKpMXvNfF
+         HfnZc62cZEN946IpCb9H/Pa62jh4NZA8JPuL3SYHXXEonqbXc2FGpNnqPasOeMiPykGJ
+         AsPMB/wGdohaDOGfCm5ZfUeVSfUn2seHV+oeVudA1xJJpRWYbUnUSrBIfjkBtTdDFAyA
+         ER0g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704787266; x=1705392066;
+        d=1e100.net; s=20230601; t=1704787295; x=1705392095;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=bdxnAmjWNKq4y1w9DC06BYcijknvo3Hfm6Sa3dcMMKc=;
-        b=ep9RGkep4QuI5z7gt23+0wnHtDMZO/s7lWkV3WoR8qqhBX+p0KZ1IdgDnbKNsQr1sd
-         SvM+rTYtgzto04ibZ4QkNdXth1QoFkgOXvpwxEVbUSpUHtgTdbor/74RgOKRZihLDqOW
-         q/9DLqKfjY3TBhlnl66WZt6mlIKQkpnEDWLdqE6gL8RxtIqXDWKc7wf2nqhDS9ty1TcD
-         +5P6tnJiNxP0M+ugbVenJ1Kfq5LQuHRN4XSzoYd3tRC3jXK3QW1uFrYF6ahX7xhoTmTk
-         yn+nkrMYcFosk4YrtxBRHva334gsBI847PogjqN/lIFbF66Qqw1S2ATwIJps2SXnWL2R
-         Bnuw==
-X-Gm-Message-State: AOJu0YzsUmTqB7Bso46jhFAmgIA1TAHFU4ZYHkXHQAB6gLZrVVbVB2Zn
-	x6nK53IdH4909/rZZ9Gsok4bOtWkqJHn2Q==
-X-Google-Smtp-Source: AGHT+IEa/o2zzbOHIBzotoGx7Xl85bxPkGyo6iosf7bc67LTjXqjkMi5CuZMGjLY2nDSSD4ToGehDg==
-X-Received: by 2002:a50:cc88:0:b0:557:13ad:bc8f with SMTP id q8-20020a50cc88000000b0055713adbc8fmr2800560edi.28.1704787266082;
-        Tue, 09 Jan 2024 00:01:06 -0800 (PST)
+        bh=f3XO5DB3PGTjxuxdHbpQfOFkjCrDikXFoyaY9Xd9GxA=;
+        b=J+a2ivp6KhlZS/L77kvOwiPo8zquhHVWW01FEFIieCOC8I5G4lNEwhZ9L9YrWXBotz
+         QK/xRDl0AgauWB9ei+1Svf0jNMl3Ya3awzQQcQI/8MTD1eLs7VGMYNBYEtcZW5wAZxL+
+         rCnbV4VOMJxLmp/MBKb4npdNtE3uM8ztJ9dRUcR/OoWCRaKCM4z3fHy7JWPR/oiCfW7w
+         20endoKReBWyxUyabP4pzwQzWeaISdCBkWkApKayeUABOQeXWSdHjvjTAUqoc1wDdEV5
+         kgGQL3TQzTzuA9lkPT3xu1yqQccl8GqCicxQ3B2qDgSDmKEwLDuq2yk/OFk5cuZB0j5I
+         AjNA==
+X-Gm-Message-State: AOJu0Yy6Coa922XnrLl9mMRaynY9LA5ZSXcHQ+rc8RGDXnbUVyrOEN5T
+	CMiVOqPfC0GZgcjZcdPn7O48we0kz0U+KQ==
+X-Google-Smtp-Source: AGHT+IF1GSToyQlrpEPofm9UvrPga/MigSZPc/25BkAiBCLnoWx+TRpXlU1tHbQMS8w47mIgUXx3Pw==
+X-Received: by 2002:a50:bae3:0:b0:557:a3c:9d45 with SMTP id x90-20020a50bae3000000b005570a3c9d45mr3106851ede.79.1704787294740;
+        Tue, 09 Jan 2024 00:01:34 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.223.112])
-        by smtp.gmail.com with ESMTPSA id dn1-20020a05640222e100b00557e0e24abbsm657444edb.59.2024.01.09.00.01.03
+        by smtp.gmail.com with ESMTPSA id dn1-20020a05640222e100b00557e0e24abbsm657444edb.59.2024.01.09.00.01.31
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 09 Jan 2024 00:01:05 -0800 (PST)
-Message-ID: <11c58108-4851-4378-b7b9-2c302231ac68@linaro.org>
-Date: Tue, 9 Jan 2024 09:01:02 +0100
+        Tue, 09 Jan 2024 00:01:34 -0800 (PST)
+Message-ID: <1da935b9-3b59-4b09-8883-decd13af2dc2@linaro.org>
+Date: Tue, 9 Jan 2024 09:01:31 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,7 +66,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] media: i2c: Add GC08A3 image sensor driver
+Subject: Re: [PATCH 2/2] media: dt-bindings: media: i2c: Document GC08A3
+ bindings
 Content-Language: en-US
 To: =?UTF-8?B?WmhpIE1hbyAo5q+b5pm6KQ==?= <zhi.mao@mediatek.com>,
  "mchehab@kernel.org" <mchehab@kernel.org>,
@@ -103,9 +104,9 @@ Cc: "heiko@sntech.de" <heiko@sntech.de>,
  <angelogioacchino.delregno@collabora.com>,
  "macromorgan@hotmail.com" <macromorgan@hotmail.com>
 References: <20231207052016.25954-1-zhi.mao@mediatek.com>
- <20231207052016.25954-2-zhi.mao@mediatek.com>
- <1d58c2b9-4206-409c-b312-87f4fb649512@linaro.org>
- <e709beb2acaf0cb68c6922f3b48431644e9a0246.camel@mediatek.com>
+ <20231207052016.25954-3-zhi.mao@mediatek.com>
+ <a7a9a204-cfd2-4510-890d-ce3f72d5fcda@linaro.org>
+ <6b1b6970e715e4bcdb0d72adb8b895b836e34201.camel@mediatek.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -151,36 +152,27 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <e709beb2acaf0cb68c6922f3b48431644e9a0246.camel@mediatek.com>
+In-Reply-To: <6b1b6970e715e4bcdb0d72adb8b895b836e34201.camel@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 09/01/2024 03:50, Zhi Mao (毛智) wrote:
-> On Thu, 2023-12-07 at 09:18 +0100, Krzysztof Kozlowski wrote:
+On 09/01/2024 04:08, Zhi Mao (毛智) wrote:
+> On Thu, 2023-12-07 at 09:21 +0100, Krzysztof Kozlowski wrote:
 > External email : Please do not click links or open attachments until you have verified the sender or the content.
 > 
 > On 07/12/2023 06:20, Zhi Mao wrote:
 > 
->> Add a V4L2 sub-device driver for Galaxycore GC08A3 image sensor.
+>> Add YAML device tree binding for GC08A3 CMOS image sensor,
+> 
+>> and the relevant MAINTAINERS entries.
 > 
 >>
 > 
->> Reviewed-By: yunkec@chromium.org
+>> Signed-off-by: Zhi Mao <zhi.mao@mediatek.com>
 > 
-> 
-> I don't see review given here:
-> 
-> 
-> https://lore.kernel.org/linux-media/20231123115104.32094-1-zhi.mao@mediatek.com/
-> 
-> 
-> This does not look like real review. Where was it performed? How
-> 
-> thorough was it? How many review iterations did it include?  Why there
-> 
-> is no name but anonymous review?
 
-That was my message, not yours! Fix your quoting and reply again.
+What happened to this email? Why so many blank lines and no responses?
+Fix your email program.
 
 Best regards,
 Krzysztof
