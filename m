@@ -1,81 +1,196 @@
-Return-Path: <devicetree+bounces-30582-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30583-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1406D82845C
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 11:55:19 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 055D0828461
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 11:59:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BCB541F250E6
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 10:55:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9554A287B8E
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 10:59:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D327936B09;
-	Tue,  9 Jan 2024 10:55:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD34D364DB;
+	Tue,  9 Jan 2024 10:59:05 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD6D036B02;
-	Tue,  9 Jan 2024 10:55:05 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A2E5C43394;
-	Tue,  9 Jan 2024 10:55:02 +0000 (UTC)
-Date: Tue, 9 Jan 2024 10:54:59 +0000
-From: Catalin Marinas <catalin.marinas@arm.com>
-To: Baruch Siach <baruch@tkos.co.il>
-Cc: Christoph Hellwig <hch@lst.de>,
-	Marek Szyprowski <m.szyprowski@samsung.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Frank Rowand <frowand.list@gmail.com>,
-	Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
-	iommu@lists.linux.dev, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Petr =?utf-8?B?VGVzYcWZw61r?= <petr@tesarici.cz>,
-	Ramon Fried <ramon@neureality.ai>,
-	Elad Nachman <enachman@marvell.com>
-Subject: Re: [PATCH RFC 3/4] dma-direct: add offset to zone_dma_bits
-Message-ID: <ZZ0mAxGupZKRPzWR@arm.com>
-References: <cover.1703683642.git.baruch@tkos.co.il>
- <fae5b1180161a7d8cd626a96f5df80b0a0796b8b.1703683642.git.baruch@tkos.co.il>
- <ZZw3FDy8800NScEk@arm.com>
- <87msterf7b.fsf@tarshish>
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D6C336AE0;
+	Tue,  9 Jan 2024 10:59:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E70B5C15;
+	Tue,  9 Jan 2024 02:59:48 -0800 (PST)
+Received: from [10.1.197.1] (ewhatever.cambridge.arm.com [10.1.197.1])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 9B2173F73F;
+	Tue,  9 Jan 2024 02:59:01 -0800 (PST)
+Message-ID: <8d37d907-68c3-4e77-995b-bc85a0c3b8f0@arm.com>
+Date: Tue, 9 Jan 2024 10:59:00 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <87msterf7b.fsf@tarshish>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 6/7] coresight: tmc: Stop trace capture on FlIn
+Content-Language: en-US
+To: Mike Leach <mike.leach@linaro.org>, Linu Cherian <lcherian@marvell.com>
+Cc: james.clark@arm.com, leo.yan@linaro.org,
+ linux-arm-kernel@lists.infradead.org, coresight@lists.linaro.org,
+ linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, sgoutham@marvell.com, gcherian@marvell.com
+References: <20240105055840.1977897-1-lcherian@marvell.com>
+ <20240105055840.1977897-7-lcherian@marvell.com>
+ <CAJ9a7VhStuDsNz-BiVe-bW5E91UxQttKTbE4x+M+8NmdEKtAJw@mail.gmail.com>
+From: Suzuki K Poulose <suzuki.poulose@arm.com>
+In-Reply-To: <CAJ9a7VhStuDsNz-BiVe-bW5E91UxQttKTbE4x+M+8NmdEKtAJw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Tue, Jan 09, 2024 at 12:03:43PM +0200, Baruch Siach wrote:
-> On Mon, Jan 08 2024, Catalin Marinas wrote:
-> > On Wed, Dec 27, 2023 at 05:04:27PM +0200, Baruch Siach wrote:
-> >> Current code using zone_dma_bits assume that all addresses range in the
-> >> bits mask are suitable for DMA. For some existing platforms this
-> >> assumption is not correct. DMA range might have non zero lower limit.
-> >> 
-> >> Add 'zone_dma_off' for platform code to set base address for DMA zone.
-> >> 
-> >> Rename the dma_direct_supported() local 'min_mask' variable to better
-> >> describe its use as limit.
-> >> 
-> >> Suggested-by: Catalin Marinas <catalin.marinas@arm.com>
-> >
-> > When I suggested taking the DMA offsets into account, that's not exactly
-> > what I meant. Based on patch 4, it looks like zone_dma_off is equivalent
-> > to the lower CPU address. Let's say a system has DRAM starting at 2GB
-> > and all 32-bit DMA-capable devices has a DMA offset of 0. We want
-> > ZONE_DMA32 to end at 4GB rather than 6GB.
+On 05/01/2024 16:11, Mike Leach wrote:
+> Hi,
 > 
-> Patch 4 sets zone_dma_off to the lower limit from 'dma-ranges' property
-> that determines zone_dma_bits. This is not necessarily equivalent to
-> start of DRAM, though it happens to be that way on my platform.
+> On Fri, 5 Jan 2024 at 05:59, Linu Cherian <lcherian@marvell.com> wrote:
+>>
+>> Configure TMC ETR and ETF to flush and stop trace capture
+>> on FlIn event. As a side effect, do manual flush only if
+>> auto flush fails.
+>>
+>> Signed-off-by: Linu Cherian <lcherian@marvell.com>
+>> ---
+>> Changelog from v5:
+>> * No changes
+>>
+>>   drivers/hwtracing/coresight/coresight-tmc-etf.c | 10 ++++++++--
+>>   drivers/hwtracing/coresight/coresight-tmc-etr.c | 10 ++++++++--
+>>   drivers/hwtracing/coresight/coresight-tmc.h     |  3 +++
+>>   3 files changed, 19 insertions(+), 4 deletions(-)
+>>
+>> diff --git a/drivers/hwtracing/coresight/coresight-tmc-etf.c b/drivers/hwtracing/coresight/coresight-tmc-etf.c
+>> index 72c2315f4e23..57a9a9300d36 100644
+>> --- a/drivers/hwtracing/coresight/coresight-tmc-etf.c
+>> +++ b/drivers/hwtracing/coresight/coresight-tmc-etf.c
+>> @@ -34,7 +34,7 @@ static int __tmc_etb_enable_hw(struct tmc_drvdata *drvdata)
+>>          writel_relaxed(TMC_MODE_CIRCULAR_BUFFER, drvdata->base + TMC_MODE);
+>>          writel_relaxed(TMC_FFCR_EN_FMT | TMC_FFCR_EN_TI |
+>>                         TMC_FFCR_FON_FLIN | TMC_FFCR_FON_TRIG_EVT |
+>> -                      TMC_FFCR_TRIGON_TRIGIN,
+>> +                      TMC_FFCR_TRIGON_TRIGIN | TMC_FFCR_STOP_ON_FLUSH,
+>>                         drvdata->base + TMC_FFCR);
+>>
+> 
+> This is a problem. Setting TMC_FFCR_STOP_ON_FLUSH changes the
+> fundamentals of trigger event handling. Without this bit ETM can
+> generate multiple event  + triggers which are then embedded into the
+> formatted trace stream for later search.
+> With this new bit the capture will stop on the first event. Setting
+> this bit should be dependent on the mode being set to ETR_MODE_RESRV
+> 
+> 
+> 
+>>          writel_relaxed(drvdata->trigger_cntr, drvdata->base + TMC_TRG);
+>> @@ -615,7 +615,13 @@ static int tmc_panic_sync_etf(struct coresight_device *csdev)
+>>          if (val != TMC_MODE_CIRCULAR_BUFFER)
+>>                  goto out;
+>>
+>> -       tmc_flush_and_stop(drvdata);
+>> +       val = readl(drvdata->base + TMC_FFSR);
+>> +       /* Do manual flush and stop only if its not auto-stopped */
+>> +       if (!(val & TMC_FFSR_FT_STOPPED)) {
+>> +               dev_info(&csdev->dev,
+>> +                        "%s: Triggering manual flush\n", __func__);
+>> +               tmc_flush_and_stop(drvdata);
+>> +       }
+>>
+> Is there some reason to believe that the stop on flush will not work?
+> 
+> Using this conditional skips the  tmc_wait_for_tmcready() called by
+> tmc_flush_and_stop() if the formatter is stopped - which is a
+> different condition test on a different register.
 
-A bit better but it still assumes that all devices have the same DMA
-offset which may not be the case.
+Or even a new sysfs handle to turn this on ? e.g.,
 
--- 
-Catalin
+/sys/bus/coresight/devices/tmc_etfN/stop_on_flush
+
+That can be honoured only in the sysfs mode and set accordingly by the
+user ?
+
+e.g.,
+
+for f in $(find /sys/bus/coresight/devices/  -maxdepth 1 -name tmc_\*)
+do
+     echo 1 > $f/stop_on_flush
+done
+
+
+Suzuki
+
+
+> 
+> Why is this block of code not in the patch that introduces the
+> tmc_panic_sync_etf()
+> 
+>>          /* Sync registers from hardware to metadata region */
+>>          mdata->sts = csdev_access_relaxed_read32(csa, TMC_STS);
+>> diff --git a/drivers/hwtracing/coresight/coresight-tmc-etr.c b/drivers/hwtracing/coresight/coresight-tmc-etr.c
+>> index ab7521bbb2f5..4b3c7ec7f62b 100644
+>> --- a/drivers/hwtracing/coresight/coresight-tmc-etr.c
+>> +++ b/drivers/hwtracing/coresight/coresight-tmc-etr.c
+>> @@ -1113,7 +1113,7 @@ static int __tmc_etr_enable_hw(struct tmc_drvdata *drvdata)
+>>
+>>          writel_relaxed(TMC_FFCR_EN_FMT | TMC_FFCR_EN_TI |
+>>                         TMC_FFCR_FON_FLIN | TMC_FFCR_FON_TRIG_EVT |
+>> -                      TMC_FFCR_TRIGON_TRIGIN,
+>> +                      TMC_FFCR_TRIGON_TRIGIN | TMC_FFCR_STOP_ON_FLUSH,
+>>                         drvdata->base + TMC_FFCR);
+>>          writel_relaxed(drvdata->trigger_cntr, drvdata->base + TMC_TRG);
+>>          tmc_enable_hw(drvdata);
+>> @@ -1846,7 +1846,13 @@ static int tmc_panic_sync_etr(struct coresight_device *csdev)
+>>          if (!(val & TMC_CTL_CAPT_EN))
+>>                  goto out;
+>>
+>> -       tmc_flush_and_stop(drvdata);
+>> +       val = readl(drvdata->base + TMC_FFSR);
+>> +       /* Do manual flush and stop only if its not auto-stopped */
+>> +       if (!(val & TMC_FFSR_FT_STOPPED)) {
+>> +               dev_info(&csdev->dev,
+>> +                        "%s: Triggering manual flush\n", __func__);
+>> +               tmc_flush_and_stop(drvdata);
+>> +       }
+>>
+> 
+> Above comments for etf apply equally to etr.
+> 
+> Regards
+> 
+> Mike
+> 
+>>          /* Sync registers from hardware to metadata region */
+>>          mdata->size = csdev_access_relaxed_read32(csa, TMC_RSZ);
+>> diff --git a/drivers/hwtracing/coresight/coresight-tmc.h b/drivers/hwtracing/coresight/coresight-tmc.h
+>> index 6e1e910d5ea4..cf9313b302c7 100644
+>> --- a/drivers/hwtracing/coresight/coresight-tmc.h
+>> +++ b/drivers/hwtracing/coresight/coresight-tmc.h
+>> @@ -77,6 +77,9 @@
+>>   #define TMC_AXICTL_AXCACHE_OS  (0xf << 2)
+>>   #define TMC_AXICTL_ARCACHE_OS  (0xf << 16)
+>>
+>> +/* TMC_FFSR - 0x300 */
+>> +#define TMC_FFSR_FT_STOPPED    BIT(1)
+>> +
+>>   /* TMC_FFCR - 0x304 */
+>>   #define TMC_FFCR_FLUSHMAN_BIT  6
+>>   #define TMC_FFCR_EN_FMT                BIT(0)
+>> --
+>> 2.34.1
+>>
+> 
+> 
+> --
+> Mike Leach
+> Principal Engineer, ARM Ltd.
+> Manchester Design Centre. UK
+
 
