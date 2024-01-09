@@ -1,144 +1,202 @@
-Return-Path: <devicetree+bounces-30558-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30559-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 193F4828334
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 10:30:39 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F24082833A
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 10:32:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A8E451F21E2E
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 09:30:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 87F0D1C24278
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 09:32:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3654033CF2;
-	Tue,  9 Jan 2024 09:30:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D23EF341A9;
+	Tue,  9 Jan 2024 09:32:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="OiWUbppT"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="CAWOrMam"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f46.google.com (mail-vs1-f46.google.com [209.85.217.46])
+Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB23632C63
-	for <devicetree@vger.kernel.org>; Tue,  9 Jan 2024 09:30:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-vs1-f46.google.com with SMTP id ada2fe7eead31-4670af5bd56so669293137.2
-        for <devicetree@vger.kernel.org>; Tue, 09 Jan 2024 01:30:28 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1066D328DF
+	for <devicetree@vger.kernel.org>; Tue,  9 Jan 2024 09:32:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-557dcb0f870so1478839a12.2
+        for <devicetree@vger.kernel.org>; Tue, 09 Jan 2024 01:32:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1704792627; x=1705397427; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=b5Mv0Nl8yaYPCz0vAzjt1yZi38rbxQe3qLZ0/Dp0y6Y=;
-        b=OiWUbppTWd8ByIVIdFWSBoDLEVWTHXqrCyWlFClMgQ3YoyaAkq1vSvW9siv1dzKwu9
-         xyB3hEDAN5ftmhma+YkectTj6fsFtPyQiYMsCSUjvgpLHamS6JURN5gx6ZLR53AAubP0
-         OznoRPara4vPKPARQmJ6NhIQPMrPbXIxJzI3JVK6rFp1/iywkouASqsbcistOirQJ0zP
-         p++XPCDhI5woLkWWOAnhPazqtc0uwxmghTLvtbEDqkEkerIQ0cwBx9HT5pOhBbnFzzjy
-         s4/ELTPtfsLtSM6YULIhWe2bs0OCGcSf7zvCSEvia4zkbDPHp5eo5th9xKCT98SEmS8E
-         plmg==
+        d=linaro.org; s=google; t=1704792740; x=1705397540; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=6wah4snQswmGnEFvSDedAhSiW9BcRrZuT8Gd1vEO9mU=;
+        b=CAWOrMammDW7y4JI0PSYOIUyYvEwUNU4iuF9bdBQGuc7z9EMx/OMtNKz/meENclhFH
+         ffuPXUlmtw/WYeNHLbqHnj+CkJt3M9hKi9f9mNSe8wJy6wkhVVKN/mJca/+9GFdRrUdO
+         aPEj+DTSH1UWBrW1S8sBRbBl7YAFBm6myDo2CO3ayvWyNHJfI28dXUCZQ0kwCOVPvNrn
+         U4UrmZ/fdkFAfgI2edvYeo3w+M4Nq03bDPEK2m6iwk44aiAJQo0FDsI41ic3KTihfx+H
+         s7RGZJ0ifG7pfUNPjI9brn/jz+ZLbWsTDnGPqwUR/a6I87behnZIWDbzsKM48G2fzGmK
+         llOQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704792627; x=1705397427;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=b5Mv0Nl8yaYPCz0vAzjt1yZi38rbxQe3qLZ0/Dp0y6Y=;
-        b=tuO6KGfJZDb6kocBGaJxSXllCWVzgOWO5pWb3TfNFu07vDmbMcutVO3epA9OtxPGD1
-         /ma3xlivAaNlz8C68lPVEUA/xw6uwrPMph1ZJjH+ctcMWqzp4bEwwRldyUdB4wphGzmY
-         qJRKzSJJRavnCMs55NucCurykkKdGjT7U+HthPF4wQiCoq5Ux9C2/AC0Uq9yxZtB0/8i
-         7ocb2rjlNBkOHnFZBr0PEQA83IDU6rJ89Uc9UEij9e4YEYVsUDKeuM1Fb9VWBmLNxgOi
-         L0LnHTMPaSg0kQPORAEMDAQF9ABGdJChpGrPajMYGfbCaJr4y6GVHxjUeUEjspWZ0pV/
-         Q3Dg==
-X-Gm-Message-State: AOJu0Yxr2nCAdZffqbWzZ/smr8o6JRAi8tuWFN9dhCha8srPSveCHC4c
-	oIAjmaPZOWLK3R/mSXI/oEvrYCD9RYEagaoAj0CRwIVmAE5KIg==
-X-Google-Smtp-Source: AGHT+IEnh+p9dVhhp4GsPf85OaSuUfAr/hUhqX3r3kxg1wHgmsrumWNQGZCR9EvDSRlqvmMKLX62tyOlBKfNRwBkGSw=
-X-Received: by 2002:a05:6102:d89:b0:467:dda2:825c with SMTP id
- d9-20020a0561020d8900b00467dda2825cmr1755368vst.26.1704792627714; Tue, 09 Jan
- 2024 01:30:27 -0800 (PST)
+        d=1e100.net; s=20230601; t=1704792740; x=1705397540;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=6wah4snQswmGnEFvSDedAhSiW9BcRrZuT8Gd1vEO9mU=;
+        b=irDbNKtxfq4AU+FC5lGt4fAVJ1nkSrXLXvHHYVCCOO6o8GEycegwnYPNZOxEfeqt7Y
+         KXIVFj002phLY8nPU6xXLmPg4yGASOZCvKjr0YiLZYLZATl7bofID9gwE/4/ZdW7OHfR
+         8nNuIA3Mauz2DLzw9BQzQUomlNYuj6gfEe5FYsTERwTlBtVwL3I3m45aVU0Ma/amL5nD
+         y1md5YGihPU6fSsIMRMwKoIA613vyGD06C2RtAx5J1CTosIn/E4NMGKG/2qj7RQEPG9G
+         dTw6/5QaNmQ5YEdQHjokvmp5HG7ksMAMdQFrTyHp42VyAiyXgT9bXbt5vnIiTfqH9ViR
+         aFvw==
+X-Gm-Message-State: AOJu0Yw0m/RBFhCiLjU/gCa3CvOhlsKJ0wrnrkWp+h3zS0A9HQEr6vFw
+	Ct+0nfaIXe8uOvA3K146FXSrq5+TfZms7k5VES79c+kGuNw=
+X-Google-Smtp-Source: AGHT+IHWUgEzQ3qgJUmV7H5rZQgg8+oLvCSvlqVWTHttJ95r8LjS1Mg6cW/tXSaDGLnuO/Q3JfX+eA==
+X-Received: by 2002:a50:a69a:0:b0:553:35f8:e143 with SMTP id e26-20020a50a69a000000b0055335f8e143mr2905308edc.67.1704792740236;
+        Tue, 09 Jan 2024 01:32:20 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.223.112])
+        by smtp.gmail.com with ESMTPSA id g7-20020a056402180700b0055706e6b1f5sm750018edy.89.2024.01.09.01.32.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 09 Jan 2024 01:32:19 -0800 (PST)
+Message-ID: <a1d20997-d09b-464c-8d23-0b7a15972a2b@linaro.org>
+Date: Tue, 9 Jan 2024 10:32:18 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240104130123.37115-1-brgl@bgdev.pl> <20240104130123.37115-7-brgl@bgdev.pl>
- <20240108191052.GA1893484-robh@kernel.org> <CAMRc=Mc7D1rVHaA4yoOC2DHDkkCptF4wjAm=24Rr=kkqM1ztjg@mail.gmail.com>
- <CAL_JsqKGrW-v=fr_9NYKg-8cho_-XbVQ92eXpjYYC1ma0_8UuA@mail.gmail.com> <ac2a2370-322c-4cdd-a940-a07ba99dae06@linaro.org>
-In-Reply-To: <ac2a2370-322c-4cdd-a940-a07ba99dae06@linaro.org>
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Tue, 9 Jan 2024 10:30:16 +0100
-Message-ID: <CAMRc=MfaupJnT4qfjX-qe5THSRMpJkzceaPSL-cU0yFZ4iSwBw@mail.gmail.com>
-Subject: Re: [RFC 6/9] dt-bindings: vendor-prefixes: add a PCI prefix for
- Qualcomm Atheros
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Rob Herring <robh@kernel.org>, Kalle Valo <kvalo@kernel.org>, 
-	"David S . Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
-	Bjorn Helgaas <bhelgaas@google.com>, Heiko Stuebner <heiko@sntech.de>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Chris Morgan <macromorgan@hotmail.com>, 
-	Linus Walleij <linus.walleij@linaro.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Arnd Bergmann <arnd@arndb.de>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	=?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= <nfraprado@collabora.com>, 
-	Marek Szyprowski <m.szyprowski@samsung.com>, Peng Fan <peng.fan@nxp.com>, 
-	Robert Richter <rrichter@amd.com>, Dan Williams <dan.j.williams@intel.com>, 
-	Terry Bowman <terry.bowman@amd.com>, 
-	Kuppuswamy Sathyanarayanan <sathyanarayanan.kuppuswamy@linux.intel.com>, 
-	=?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>, 
-	Huacai Chen <chenhuacai@kernel.org>, Alex Elder <elder@linaro.org>, 
-	Srini Kandagatla <srinivas.kandagatla@linaro.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, linux-wireless@vger.kernel.org, 
-	netdev@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org, 
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [EXT] Re: [PATCH] dt-bindings: usb: Add Marvell ac5
+Content-Language: en-US
+To: Elad Nachman <enachman@marvell.com>, Conor Dooley <conor@kernel.org>
+Cc: "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+ "robh+dt@kernel.org" <robh+dt@kernel.org>,
+ "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20240107152557.3561341-1-enachman@marvell.com>
+ <20240108-zoning-tactical-20501dccfac1@spud>
+ <BN9PR18MB425195C57E2FC24D5F331C19DB6B2@BN9PR18MB4251.namprd18.prod.outlook.com>
+ <20240108-chariot-thinner-7a86808a0571@spud>
+ <BN9PR18MB42513EDDDA454FA50249205BDB6B2@BN9PR18MB4251.namprd18.prod.outlook.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <BN9PR18MB42513EDDDA454FA50249205BDB6B2@BN9PR18MB4251.namprd18.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Tue, Jan 9, 2024 at 10:17=E2=80=AFAM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 09/01/2024 03:56, Rob Herring wrote:
-> > On Mon, Jan 8, 2024 at 12:22=E2=80=AFPM Bartosz Golaszewski <brgl@bgdev=
-.pl> wrote:
-> >>
-> >> On Mon, Jan 8, 2024 at 8:10=E2=80=AFPM Rob Herring <robh@kernel.org> w=
-rote:
-> >>>
-> >>> On Thu, Jan 04, 2024 at 02:01:20PM +0100, Bartosz Golaszewski wrote:
-> >>>> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> >>>>
-> >>>> Document the PCI vendor prefix for Qualcomm Atheros so that we can
-> >>>> define the QCA PCI devices on device tree.
-> >>>
-> >>> Why? vendor-prefixes.yaml is only applied to property names. 'qca'
-> >>> should be the prefix for those.
-> >>>
-> >>> Rob
-> >>
-> >> I didn't have any better idea. PCI devices on DT are defined by their
-> >> "pci<vendor ID>,<model ID>" compatible, not regular human-readable
-> >> strings and this makes checkpatch.pl complain.
-> >>
-> >> I'm open to suggestions.
-> >
-> > The checkpatch.pl check predates schemas and we could consider just
-> > dropping it. The only thing it provides is checking a patch rather
-> > than the tree (which the schema do). It's pretty hacky because it just
-> > greps the tree for a compatible string which is not entirely accurate.
-> > Also, we can extract an exact list of compatibles with
-> > "dt-extract-compatibles" which would make a better check, but I'm not
-> > sure making dtschema a dependency on checkpatch would be good.
-> >
-> > The other option is just ignore the warning. PCI compatibles are fairly=
- rare.
->
-> Yep, the same warnings are for EEPROM and USB VID/PID compatibles, and
-> we live with these, so I don't think PCI should be treated differently.
->
+On 08/01/2024 19:15, Elad Nachman wrote:
+> 
+> 
+>> -----Original Message-----
+>> From: Conor Dooley <conor@kernel.org>
+>> Sent: Monday, January 8, 2024 8:01 PM
+>> To: Elad Nachman <enachman@marvell.com>
+>> Cc: gregkh@linuxfoundation.org; robh+dt@kernel.org;
+>> krzysztof.kozlowski+dt@linaro.org; conor+dt@kernel.org;
+>> devicetree@vger.kernel.org; linux-usb@vger.kernel.org; linux-
+>> kernel@vger.kernel.org
+>> Subject: Re: [EXT] Re: [PATCH] dt-bindings: usb: Add Marvell ac5
+>>
+>> On Mon, Jan 08, 2024 at 05:47:24PM +0000, Elad Nachman wrote:
+>>>
+>>>
+>>>> -----Original Message-----
+>>>> From: Conor Dooley <conor@kernel.org>
+>>>> Sent: Monday, January 8, 2024 7:15 PM
+>>>> To: Elad Nachman <enachman@marvell.com>
+>>>> Cc: gregkh@linuxfoundation.org; robh+dt@kernel.org;
+>>>> krzysztof.kozlowski+dt@linaro.org; conor+dt@kernel.org;
+>>>> devicetree@vger.kernel.org; linux-usb@vger.kernel.org; linux-
+>>>> kernel@vger.kernel.org
+>>>> Subject: [EXT] Re: [PATCH] dt-bindings: usb: Add Marvell ac5
+>>>>
+>>>> External Email
+>>>>
+>>>> --------------------------------------------------------------------
+>>>> -- On Sun, Jan 07, 2024 at 05:25:57PM +0200, Elad Nachman wrote:
+>>>>> From: Elad Nachman <enachman@marvell.com>
+>>>>>
+>>>>> Add Marvell ac5 device tree bindings to generic EHCI.
+>>>>> This compatible enables the Marvell Orion platform code to
+>>>>> properly configure the DMA mask for the Marvell AC5 SOC.
+>>>>>
+>>>>> Signed-off-by: Elad Nachman <enachman@marvell.com>
+>>>>
+>>>> Maybe I am dumb, but I don't understand how this does what the
+>>>> commit message says. There's no fallback to generic-ehci or any
+>>>> other compatible that is already understood by the driver.
+>>>>
+>>>> What am I missing?
+>>>
+>>> Following guidance by Andrew Lunn on my mmc patchset, I have split the
+>>> patchset Into a single patch for dt-bindings review and another for USB
+>> driver review.
+>>
+>> I don't understand that advice. dt-bindings should (almost) always be with
+>> the driver. Otherwise you just confuse people like me.
+>>
+>> Perhaps Andrew meant sending dt*s* patches separately from the driver &
+>> bindings?
+> 
+> The rational was different people making the actual merge, into different intermediate git REPOs, before mering into linux-next.
 
-Got it, I will drop this patch.
+Sorry, but NAK. The submitting-patches for bindings expresses this as
+well: bindings go with the driver.
 
-Bart
+There was never an advice from Andrew about splitting binding. He
+clearly said that FIRST PATCH, so the DTS, goes via separate tree.
+Absolutely nothing about splitting the binding.
+
+https://lore.kernel.org/all/cfbbe706-5953-488c-9bff-f72f6d00b44f@lunn.ch/
+
+
+Best regards,
+Krzysztof
+
 
