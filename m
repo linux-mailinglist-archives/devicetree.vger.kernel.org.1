@@ -1,193 +1,115 @@
-Return-Path: <devicetree+bounces-30393-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30394-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DC9A827CCE
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 03:17:15 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 16C66827CDD
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 03:27:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 90BDA1F2324C
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 02:17:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F3EF11C233A3
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 02:27:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31E952115;
-	Tue,  9 Jan 2024 02:17:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 310D823D0;
+	Tue,  9 Jan 2024 02:27:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b="Oc/XAG+g"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="S3OARUEU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01on2126.outbound.protection.outlook.com [40.107.114.126])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oo1-f49.google.com (mail-oo1-f49.google.com [209.85.161.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D57664A;
-	Tue,  9 Jan 2024 02:17:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=bSv4hUiUtYl/fQfn1Hm6xjI5mII4fb6tyxoq8Z5KBIec9saEWdK2ghgx4c7ccKyUOeN/McP6wL/ZpIFN95nHGNA4M0BwF3pgTLpwq/F7pUOHaQmD3rv2EWMH1TICzvBuG0kftGveyk3aMFvH0dCXW2Zv53CB1zuqRiJTpQv7be5dPG9UjVdsIa3+3R303Vx+fEliCc6tkFHu0N0gqdLKIJsFfNiD8h+uRsjF1z7xJEJNoxsZ1ABF/5ADhbICZLq/ZCrhagQEXzaeu6wAeP86k2Zi+fXn5iXO4LzfWdO+m6j4DDL5gV1t3Nv9o+U3cCz7kSR6Ge/BniJoVnmlBeIhsw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=klqRr6/8+a4sTaVdQ3FY2UrdJi2bxntpe83F94aSq8E=;
- b=V6xSTp+iH4aBlf4T124kEHr1LFslEtPW5tJv9sZ54ZFAiVElq8odzRLZ39kdn2OQhSfF0vHrl5o2KMmtCZoif0l2rYSwtfiSKjHeeYu8jOcZQAEz0EIDlHKuEg9Xo6ntj9Q0zuDohOOClXDyU3nY9BUg9Ng6OQ+dvtMuasnIcqlCgxQroz/FB8fbrR2Qg8PDl6pJqbsLC+KE7Up5lB/mybM9rXufdB4vK0HYMaDBYMbX9+RFM9hfDDFU4P+pSfxveJVN21xPTfyvKVxlwRRgZWLtDf4fx7618VUS7C7K7629ewiC4BL8sJwa9g/QelcoLihGIeRdXDWAvqPzq6unfQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
- dkim=pass header.d=renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=klqRr6/8+a4sTaVdQ3FY2UrdJi2bxntpe83F94aSq8E=;
- b=Oc/XAG+gTL9rq2iwT7ikbTlD9xWfUFldsiZX+k9pVUD93H/xrC72dfkTV6GGRhbHML4XXvso8Eh7MYnaxIX8FpBpHnKZjQ5iFrALQEtz3UnZnhQH7yOYeTTDE4eSeXBQvJY/sROdr9Z9hlma9o3kh5dRS4OabrvAD6f32jxdTI0=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=renesas.com;
-Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
- (2603:1096:400:3a9::11) by TYWPR01MB11111.jpnprd01.prod.outlook.com
- (2603:1096:400:3f3::12) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7181.15; Tue, 9 Jan
- 2024 02:17:04 +0000
-Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
- ([fe80::91d:1bfa:edc4:1c5b]) by TYCPR01MB10914.jpnprd01.prod.outlook.com
- ([fe80::91d:1bfa:edc4:1c5b%7]) with mapi id 15.20.7181.015; Tue, 9 Jan 2024
- 02:17:04 +0000
-Message-ID: <875y03i739.wl-kuninori.morimoto.gx@renesas.com>
-From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-To: Sameer Pujar <spujar@nvidia.com>
-Cc: Thierry Reding <thierry.reding@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	alsa-devel@alsa-project.org,
-	devicetree@vger.kernel.org,
-	robh+dt@kernel.org,
-	Jon Hunter <jonathanh@nvidia.com>,
-	linux-tegra@vger.kernel.org
-Subject: Re: Query on audio-graph-card DT binding
-In-Reply-To: <8241c953-8ae5-4f26-b108-fccf826ed87a@nvidia.com>
-References: <dfe363ef-4638-4b5e-8308-73e286ac0b50@nvidia.com>
-	<ZZblyhfzQjzyoUc_@orome.fritz.box>
-	<42c0c4fa-585e-4194-bbe4-e0377c87e632@sirena.org.uk>
-	<3faec2e9-8cd9-46f9-8807-801922de0edf@nvidia.com>
-	<ZZe5sTNz005Tt4jk@orome.fritz.box>
-	<8241c953-8ae5-4f26-b108-fccf826ed87a@nvidia.com>
-User-Agent: Wanderlust/2.15.9 Emacs/27.1 Mule/6.0
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-Date: Tue, 9 Jan 2024 02:17:04 +0000
-X-ClientProxiedBy: TYCPR01CA0129.jpnprd01.prod.outlook.com
- (2603:1096:400:26d::16) To TYCPR01MB10914.jpnprd01.prod.outlook.com
- (2603:1096:400:3a9::11)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC60B4680;
+	Tue,  9 Jan 2024 02:27:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oo1-f49.google.com with SMTP id 006d021491bc7-596175c0be0so1684613eaf.3;
+        Mon, 08 Jan 2024 18:27:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1704767231; x=1705372031; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=/b5QxT6/6syUsjtZnVefpjrdly7pCfUgvMakpuOn3IQ=;
+        b=S3OARUEUoPb9UjS6dlocNtC7ih2rqL0O0HG33/ASswnaKXr53sITHAJFb9Vq3xRwiX
+         UrwhAJ9LLhysbYy41n5t+rHCqLlAkHeijWQOtZosMXcv5uiCdm0F2uAOMLQ3siltz0pk
+         ieq3Ff79WwbYoXDVPlf3KN1/wuOCWYZMUFbBHtRylI6ftMtcSvnzeF/6C127juRRZM/a
+         FzeifmRkZzURJA1Op//36Z3+ePBOg87VVl6DgoVttSb8V5ssC23DepV5rOIQA3Wx8puk
+         UR0DVwK4xyDK6MiNMP0cQ2Vh1ssW0j/uq+555X7zOxRYif55WoePmoMQy2ahpHhJhPSv
+         mHmg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1704767231; x=1705372031;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=/b5QxT6/6syUsjtZnVefpjrdly7pCfUgvMakpuOn3IQ=;
+        b=m2mEBw7CGiPvh8syiAFcaEZIXjqZdueDidYKSwNXWqz2qwFRPT20vQyx+5xhN5m9zG
+         UdfTJp3OTphc0W7Y3K/pDOgfPzG8NMErCkcDUZDef2p/RGT3bWNmFfsFJAIosG2toHd0
+         ydZMmZLSVm9YBOZS4neVfmjx9wJw/Y8YuBU/cjJgPZHiYrjvawhpnERMVabPBeJKEuV6
+         heIn0K0Clu73HwVnedwZlsVV2mcROMOV71lNFKOfJGx+rN8kLS43NkWC7USJgPjKdKVC
+         KgGQDxgEnSAc/IU4cCnP/uHgbME6Gm7PRjfvedzxT67XVLQ/Y2nrjfqWN22Z/tgiJZtz
+         vbtw==
+X-Gm-Message-State: AOJu0YxnSSqdsNYT3eGavWw4qOxBLRcuyenu+LiWJhiCg7B9P9VtznQ7
+	S5Jqf1pwgbdNbO9TERmcvkcp43jjvFYM80VWZMP2qT8DceKVPuFw
+X-Google-Smtp-Source: AGHT+IFKuWrGoo84LoZFi/ctDsfndCTrRklUyKu2uFMkfPGykr82KTzkVyrpOki2oOspwCcTcoeTZezJvMSrIhka6qo=
+X-Received: by 2002:a05:6820:1acc:b0:596:ab4:64ba with SMTP id
+ bu12-20020a0568201acc00b005960ab464bamr3845492oob.7.1704767230517; Mon, 08
+ Jan 2024 18:27:10 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TYCPR01MB10914:EE_|TYWPR01MB11111:EE_
-X-MS-Office365-Filtering-Correlation-Id: e4b09540-32e7-45a8-03ce-08dc10b9126b
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	A4+4ukqMVe8q2xWroMbzJcaqgz1PgScuqMls70UrjAcNdtqhowd3J+u5/uBnzJVCuis2oGc9pgNCTU8cQaFwDM7mRMXvxL+4zi62vyo+nTVrx9kiIk/+BluROdA8HgWI4DLPwwquk8DcLu3qf6X7LzZ+50W0YB6exve+6UIjeqVXOaleuQLjWd+0z1m5YNUEX/7kiS4UGRfcYSW+XcptlCqXo7p3mHlD1tIwq32o670ReBCy8GhXJ4iiI2FxIW9IjKRRVmmweaTgVL2ZHoR4ce1RpvJIR2yNbvqIKKGv7mAYBQbkN4loi14t5O32t/A0zm70FO644KJTiSImpD2iX0yZ/tZXaxfFOnkyUb4GwTyaypgNiJWQn9ROIQZs/k5iH3O/yUgpx4snmaiI0flV2DNH2BqyJA3aPVbjtzpKTuDJXej+3aRe6zrOFXcLeBvTXyQ9kObhKcZeF8SW/HronzIlW9sHdpUTYfoBegBcWA/jick3BAVMa8+h2Hbhlz3ZhJw4CkP4dLpNUezfSlQUu1zTiOsXIHUXH3rCC3cCPWc/w2o1HsJZcH2/QKoIsuevMAWoPx0I2MOrhuT9NgjbW6ZPRcEdTdf/aIuybR9u67W+b3rkuJtdWlOuNf3kJA4+9CXOpT0sz17CNnF6ClM+Hg==
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB10914.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376002)(136003)(366004)(396003)(346002)(39860400002)(230922051799003)(186009)(64100799003)(1800799012)(451199024)(478600001)(4326008)(8676002)(8936002)(6486002)(26005)(2616005)(6512007)(6506007)(66476007)(66556008)(66946007)(52116002)(316002)(6916009)(54906003)(5660300002)(2906002)(38100700002)(41300700001)(38350700005)(2013699003)(86362001)(36756003);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?iso-8859-1?Q?yOrMHDcunZ5rYbRUA3xgKfGcc+isOMUaGvEFQYByltPe2+xUzCxHcCnyPf?=
- =?iso-8859-1?Q?vGpY51VntttLBOw5CP5n0Ee0c42dA5O5+C20MVgBLa7cxPatEXCsbNdgi0?=
- =?iso-8859-1?Q?AvokZCtVGK6TlkhBkvwJqa/bxk8iMwQ3O5ZFEeo6Ar90mg6LnZrSV7j4nY?=
- =?iso-8859-1?Q?oU3owwUKDZMPD8xUBttcfg35BHWBwElze0xAJ0tm4csV8Qg++YKTwH66vl?=
- =?iso-8859-1?Q?D9jmD7Wr4/ZI92aVp9vPLE2XBSHLFdVHE1R2xV2C+xi6Ny/4NHPYcGoCZR?=
- =?iso-8859-1?Q?zAWWmqVPEeA316lETso1k/Pb1zIHMo7o7bEuyh3s1l9M7PfpNUHG0DgKFA?=
- =?iso-8859-1?Q?lF2CGxhWVxbbT2BCEhVUMPhnUfACBo997N8zMg5llIZ0Bg4jpmPvDhwhea?=
- =?iso-8859-1?Q?o8xy/Zdtc2LYpIAQRZ/WZ4MYD6EYUYKSVti7lbCdB+13gcmnI80sFG0Hf/?=
- =?iso-8859-1?Q?x2TDKGUWi3LKH6wOyQ64yVXua/MoRwa46jhJRbmZ0vziF6q+ZyU2tbb+nI?=
- =?iso-8859-1?Q?nqIAP3xLclPMWJk4CKOMXBNJOHDwtDE5POEXqzqxFEcmedEi6Mz4YEaAjW?=
- =?iso-8859-1?Q?y+2Pg7Kl1CSU+PtJ4s16gq2bGHM8nsXbFhsmDOh6OhzbA7ztftOOnv0R9Z?=
- =?iso-8859-1?Q?D7mjCTlxcUPDPZOH4vjyBMXoTbrpPZ/j0ONItuKtOs/hILG4MjYWpiY93n?=
- =?iso-8859-1?Q?hXgLYogLZJke0vS2N7kVAbyUwj1fpJpY+I/11kRgG1ZcND8XlIytN2SKkH?=
- =?iso-8859-1?Q?nW1lrRBhtE8MBrY45clUQBRsRSe+8HZfHnAyT7DVcR+V686NUTfaFJfXdi?=
- =?iso-8859-1?Q?hkkUDFFBQm8+DGO76PkIN6sIw7pcWQx8uq77JwXshiyydxvhGoX1iYTUc0?=
- =?iso-8859-1?Q?bxMbNrRgN8bmKooxiVvKbQHPK08f8AKV7/J3WN0V7vz3unr2fO6qxS7o8C?=
- =?iso-8859-1?Q?QFrFCFgE1ziExqYUj9iC8we8yKbZREcmfkGEhRDPfICrA5SOdR3Pnx9FVV?=
- =?iso-8859-1?Q?CwyIsy7Y1aIMkocNOF1JIdYUsTR/kp3kMRHPSeJvcwrv3c6sx2DUSoZqby?=
- =?iso-8859-1?Q?y5lM76iUzyEdmmBog6lVjaP/Hz+tYRHshvCws2DDQ/my1B4xl2Ef9KTNrm?=
- =?iso-8859-1?Q?icJ8TZjH+XDJ2aIcBuIT+Q4DZHmLYW5/gnnEj/qpwUV1rGIp9Fu9PjBqd6?=
- =?iso-8859-1?Q?ha8ViSOkMNqiGkplWkyv6csIWokXO/qbHR2Tf9hvxKF2wEPZxp0s7vo4S7?=
- =?iso-8859-1?Q?gNrebb2bdWk0riZJHePg8RFvAWXeO7vRYupyt2gueKycyKK1sAgf2H+jyD?=
- =?iso-8859-1?Q?IikIOwUSBue1Coxz5iHNpEpgKb8JKocPBfWAz4A71JBvzSwEAEXvZ6/WtJ?=
- =?iso-8859-1?Q?TXNK9fF7+naoj5EJsh2tTrsOw9tUd7y7KjBkR0+wrB+2BFGY/RZsIVrO7V?=
- =?iso-8859-1?Q?LUzJtIX20BK2CTBOoOjb9iRWbxGnv75eYq74nlCPYTadP/uyBqoLMoJB84?=
- =?iso-8859-1?Q?LoXAhQ2kQUWanqfwC87DDxaAx62pIRxhcYuDAySMCy4AkWzQCg0SiqR6pX?=
- =?iso-8859-1?Q?KvrwghohYJ4ppqsPWx0q+2VhvpDGdqmayivB/OCdjLm8j+2ftdlKEDzlLI?=
- =?iso-8859-1?Q?RiZDECdRhCn2DmSap7lNyqvYjvuhOOFaitf7xVrM32t0y7K/U/GuGlZKF/?=
- =?iso-8859-1?Q?/lWTsLblMUJEXhxrF2A=3D?=
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e4b09540-32e7-45a8-03ce-08dc10b9126b
-X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB10914.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jan 2024 02:17:04.4781
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: EtfES2L4nvg8pXWyTBfyvwOt+pkeIpTTf+fSuCYa6JKJrFZBjEmGZPpBL8EX0oipDKLrPM78Z0qjt1Vzvo/TWvigQqyap6O7SC6sUo9eqen+EBo6ORjO6t+3z42U5x24
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYWPR01MB11111
+References: <20240108072253.30183-1-qiujingbao.dlmu@gmail.com>
+ <20240108072253.30183-2-qiujingbao.dlmu@gmail.com> <cd4c5c26-fef9-44d8-a2fe-1cff0fc6fd03@linaro.org>
+ <CAJRtX8TcXrP8aqr3ejvtDGR5Y-ogbLkvJvJkLh_MzpnK7wgLGw@mail.gmail.com>
+ <7ceb8f61-6929-4ca0-83e0-c6534241ca5a@linaro.org> <CAJRtX8QSoS72rUj7vu3CLgthfneG-RudUygcZEsw-sBFKw99tw@mail.gmail.com>
+ <086e568f-b9f2-417c-8f94-ebb97fbffbfe@linaro.org>
+In-Reply-To: <086e568f-b9f2-417c-8f94-ebb97fbffbfe@linaro.org>
+From: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
+Date: Tue, 9 Jan 2024 10:26:59 +0800
+Message-ID: <CAJRtX8Ran+MuhtUXyxm0stQJrkzksPeNEnWViOQjfE2QgsCOmg@mail.gmail.com>
+Subject: Re: [PATCH v5 1/1] dt-bindings: rtc: sophgo: add RTC support for
+ Sophgo CV1800 series SoC
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: a.zummo@towertech.it, alexandre.belloni@bootlin.com, robh+dt@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu, 
+	linux-rtc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Mon, Jan 8, 2024 at 11:24=E2=80=AFPM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 08/01/2024 14:47, Jingbao Qiu wrote:
+> >>> So I wrote the following in the changelog.
+> >>>
+> >>> - add syscon attribute to share registers
+> >>>   with POR
+> >>
+> >> Where is this syscon attribute? Please point me to specific line in DT=
+S
+> >> and in the driver.
+> >
+> > I will explain in the next version of DTS.
+> > Thank you again for your patient reply.
+>
+> You added some syscon attribute. What is this?
+>
 
-Hi Sameer
+This RTC device has a POR submodule, which is explained in the description.
+The corresponding driver of the POR submodule provides power off
+restart function.
+The driver of the POR submodule just uses reg to work.As you mentioned in y=
+our
+last comment.POR  is empty, so there is little point in having it as
+subnode. we need
+share the reg to POR. RTC driver and POR driver will access this
+address simultaneously.
+so,I added this syscon attribute.
 
-> =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 /-----> codec1 endpoint
-> =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 /
->CPU endpoint \
-> =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 \-----> codec2 endpoint
-
-It sounds "Single CPU - Mult Codec" connection, and if my understanding
-was correct, current ASoC is not supporting it so far.
-But dummy CPU with Multi-CPU/Codec connection helps you ?
-I'm not 100% sure though...
-See
-	${LINUX}/sound/soc/generic/audio-graph-card2-custom-sample.dtsi
-
-DT looks like
-
-	[Multi-CPU/Codec]
-			 +-+		 +-+
-		cpu   <--| |<-@--------->| |-> codec1
-		dummy <--| |		 | |-> codec2
-			 +-+		 +-+
-
-Use Multi-CPU/Codec connection with dummy.
-
-	audio-graph-card2 {
-		compatible =3D "audio-graph-card2";
-		links =3D <&mcpu>;
-
-		multi {
-			ports@0 {
-			/* [Multi-CPU] */
-			mcpu:	port@0 { mcpu0_ep: endpoint { remote-endpoint =3D <&mcodec0_ep>; }=
-; };
-				port@1 { mcpu1_ep: endpoint { remote-endpoint =3D <&cpu_ep>;     }; };
-				port@2 { mcpu2_ep: endpoint { remote-endpoint =3D <&dummy_ep>;   }; };
-			};
-
-			/* [Multi-Codec] */
-			ports@1 {
-				port@0 { mcodec0_ep: endpoint { remote-endpoint =3D <&mcpu0_ep>;  }; };
-				port@1 { mcodec1_ep: endpoint { remote-endpoint =3D <&codec1_ep>; }; };
-				port@2 { mcodec2_ep: endpoint { remote-endpoint =3D <&codec2_ep>; }; };
-			};
-		};
-	};
-
-	test_cpu {
-		compatible =3D "test-cpu";
-		port { dummy_ep: endpoint { remote-endpoint =3D <&mcpu2_ep>; }; };
-	};
-
-Thank you for your help !!
-
-Best regards
----
-Renesas Electronics
-Ph.D. Kuninori Morimoto
+Best regards,
+Jingbao Qiu
 
