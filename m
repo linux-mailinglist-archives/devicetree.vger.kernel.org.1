@@ -1,291 +1,158 @@
-Return-Path: <devicetree+bounces-30605-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30606-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1FD98285A6
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 12:59:22 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BFA558285AD
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 13:02:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 38761B24029
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 11:59:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D88471C23A2F
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 12:02:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F00B374EF;
-	Tue,  9 Jan 2024 11:59:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09566374C4;
+	Tue,  9 Jan 2024 12:02:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="bd+ciOEX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A3F1374EB
-	for <devicetree@vger.kernel.org>; Tue,  9 Jan 2024 11:58:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1rNAkd-0000oy-VG; Tue, 09 Jan 2024 12:58:35 +0100
-Received: from [2a0a:edc0:0:900:1d::4e] (helo=lupine)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1rNAkc-001Ssr-Oq; Tue, 09 Jan 2024 12:58:34 +0100
-Received: from pza by lupine with local (Exim 4.96)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1rNAkc-0007Bl-2E;
-	Tue, 09 Jan 2024 12:58:34 +0100
-Message-ID: <fda63ae95d050e46dcb2446f0d841e01354a8643.camel@pengutronix.de>
-Subject: Re: [PATCH v2 2/4] reset: Instantiate reset GPIO controller for
- shared reset-gpios
-From: Philipp Zabel <p.zabel@pengutronix.de>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Srinivas
- Kandagatla <srinivas.kandagatla@linaro.org>, Banajit Goswami
- <bgoswami@quicinc.com>,  Bjorn Andersson <andersson@kernel.org>, Konrad
- Dybcio <konrad.dybcio@linaro.org>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,  Conor Dooley
- <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>, Takashi Iwai
- <tiwai@suse.com>,  alsa-devel@alsa-project.org,
- linux-arm-msm@vger.kernel.org,  linux-sound@vger.kernel.org,
- devicetree@vger.kernel.org,  linux-kernel@vger.kernel.org
-Cc: Bartosz Golaszewski <brgl@bgdev.pl>, Sean Anderson
- <sean.anderson@seco.com>
-Date: Tue, 09 Jan 2024 12:58:34 +0100
-In-Reply-To: <767645a7-835d-4ac8-ac70-a701cea6df30@linaro.org>
-References: <20240105155918.279657-1-krzysztof.kozlowski@linaro.org>
-	 <20240105155918.279657-3-krzysztof.kozlowski@linaro.org>
-	 <c2abc08d1b442fdcba7c41e2e1cc1617516441b2.camel@pengutronix.de>
-	 <767645a7-835d-4ac8-ac70-a701cea6df30@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 630E4381A2
+	for <devicetree@vger.kernel.org>; Tue,  9 Jan 2024 12:02:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
+Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 9AD873F373
+	for <devicetree@vger.kernel.org>; Tue,  9 Jan 2024 12:02:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+	s=20210705; t=1704801723;
+	bh=L1elb+jQDH8Ds4j0H9TwFb8qhYJOMk8842XOLWCtnwk=;
+	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
+	 To:Cc:Content-Type;
+	b=bd+ciOEX3IPwfxFJXjKV2I/Wv0gx06Q0MgSrKjmYirIHn77p623UrjLpSVLPXRE1I
+	 rANAJOicubM2wq/Qq2+rrQ0uiCxQHE0eDP56OECPD45MJb5s+i2kH66rCt5Ec4sSqV
+	 ehvzHdqPp2eVtdTuTYk/k1QO5RDH87k75qnI69VXIEplLzxMDQs9Zr0TNhWfsdzLNt
+	 mawJEVix2+AfIJsnEK4Kkm0K76nBCZaYK3SWFrR4oreI1EbPgIHS4CIADuQqDYGjdV
+	 5uIz15/gX6M4Ez7DTP00UO2XN8hV9VK21vEn+0D+82QFu2itT3qkI6/sr9BQ4kOiU5
+	 6/LiI2KwYqA5A==
+Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-427cf4a843cso24527641cf.2
+        for <devicetree@vger.kernel.org>; Tue, 09 Jan 2024 04:02:03 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1704801722; x=1705406522;
+        h=cc:to:subject:message-id:date:mime-version:references:in-reply-to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=L1elb+jQDH8Ds4j0H9TwFb8qhYJOMk8842XOLWCtnwk=;
+        b=hJ/UEHzt7gqAC07CSXi6hAPDckomvARPr0MMVDe2eaHwp4CX1tJ+HENGSIXCuWMMeF
+         ic5MOU4P9ISlB7bvlxrzLrr7ZE9/Dls2unvAGVO21Aq4yuuScmEsrhE0FQarVApCGi1R
+         /EPj2yB2y7wODj9xjZKmw2zqkzv3Dp+1y60v6tFnvzuz8+rpkCSpcsR05k3yAGiYG3Mj
+         np/wWfCEv8DMUi8bzh41iJbBvzMrKnIhCGPogAcL7MlIGtnKSNQ3r1rOwUj14llX5K+4
+         hKTd5i1CkcR/1/ukjQp93AHqJ5Mj2hIi2xGrlhC4J8tI2NEpAZGAflDjk7e7BLPGKW8j
+         x2Vg==
+X-Gm-Message-State: AOJu0YynvDFpW0mk9W9YK0WzZIZc4zlGcJ63/5MTLBG4TDqjVkP6N3dT
+	BlYoqzfD1B3wVBvJ//Y2Mn5Ew3KFKHYny4dTsCLmu70878FDDhmdAFrDywEDQiQsTb9butshJgW
+	6FvDgFMvvoRT2ss/RJcUX73jA5eU24yk1u37YvCUo/WxertViURY9lsswm+dHpA==
+X-Received: by 2002:a05:622a:296:b0:429:8c55:4a47 with SMTP id z22-20020a05622a029600b004298c554a47mr3134582qtw.49.1704801722311;
+        Tue, 09 Jan 2024 04:02:02 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHMPXlm4YerbG4iFFrjePx491jhh9/Le2ba+OtVW+O9m5xRSQ0+oOgEThByi2GFboNj49o1lT5y0Tt5RnHjosQ=
+X-Received: by 2002:a05:622a:296:b0:429:8c55:4a47 with SMTP id
+ z22-20020a05622a029600b004298c554a47mr3134568qtw.49.1704801722008; Tue, 09
+ Jan 2024 04:02:02 -0800 (PST)
+Received: from 348282803490 named unknown by gmailapi.google.com with
+ HTTPREST; Tue, 9 Jan 2024 04:02:01 -0800
+From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+In-Reply-To: <20240108-majorette-overtly-4ec65d0a15e9@spud>
+References: <20240103132852.298964-1-emil.renner.berthing@canonical.com>
+ <20240103132852.298964-4-emil.renner.berthing@canonical.com> <20240108-majorette-overtly-4ec65d0a15e9@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Mime-Version: 1.0
+Date: Tue, 9 Jan 2024 04:02:01 -0800
+Message-ID: <CAJM55Z_2zhELW3E7p94J05We17xTC2Rejs5AigNJOHCGHVr_zg@mail.gmail.com>
+Subject: Re: [PATCH v2 3/8] riscv: dts: thead: Add TH1520 pin control nodes
+To: Conor Dooley <conor@kernel.org>, 
+	Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Cc: linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jisheng Zhang <jszhang@kernel.org>, Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Drew Fustini <dfustini@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"
 
-On Di, 2024-01-09 at 11:59 +0100, Krzysztof Kozlowski wrote:
-> On 08/01/2024 13:17, Philipp Zabel wrote:
-> > On Fr, 2024-01-05 at 16:59 +0100, Krzysztof Kozlowski wrote:
-> > Is that true?=20
->=20
-> It should be true and my tests confirmed it.
->=20
-> The code below looks like overwrites of_phandle_args so
-> > that only one reset-gpio device is spawned for each gpio node.
->=20
-> The code will iterate over list of of_node and of_phandle_args and
-> compare them with __reset_gpios_args_match(). If all match: do not
-> create new platform device.
->=20
-> If they do not match, e.g. ACTIVE_LOW -> ACTIVE_HIGH, create new
-> platform device. This will be the second device for the same GPIO.
-> Probing of that device in reset-gpio driver will fail:
+Conor Dooley wrote:
+> On Wed, Jan 03, 2024 at 02:28:40PM +0100, Emil Renner Berthing wrote:
+> > Add nodes for pin controllers on the T-Head TH1520 RISC-V SoC.
+> >
+> > Signed-off-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+> > ---
+> >  .../boot/dts/thead/th1520-beaglev-ahead.dts   |  4 ++++
+> >  .../dts/thead/th1520-lichee-module-4a.dtsi    |  4 ++++
+> >  arch/riscv/boot/dts/thead/th1520.dtsi         | 24 +++++++++++++++++++
+> >  3 files changed, 32 insertions(+)
+> >
+> > diff --git a/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts b/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts
+> > index 70e8042c8304..6c56318a8705 100644
+> > --- a/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts
+> > +++ b/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts
+> > @@ -44,6 +44,10 @@ &osc_32k {
+> >  	clock-frequency = <32768>;
+> >  };
+> >
+> > +&aonsys_clk {
+> > +	clock-frequency = <73728000>;
+> > +};
+> > +
+> >  &apb_clk {
+> >  	clock-frequency = <62500000>;
+> >  };
+> > diff --git a/arch/riscv/boot/dts/thead/th1520-lichee-module-4a.dtsi b/arch/riscv/boot/dts/thead/th1520-lichee-module-4a.dtsi
+> > index a802ab110429..9865925be372 100644
+> > --- a/arch/riscv/boot/dts/thead/th1520-lichee-module-4a.dtsi
+> > +++ b/arch/riscv/boot/dts/thead/th1520-lichee-module-4a.dtsi
+> > @@ -25,6 +25,10 @@ &osc_32k {
+> >  	clock-frequency = <32768>;
+> >  };
+> >
+> > +&aonsys_clk {
+> > +	clock-frequency = <73728000>;
+> > +};
+> > +
+> >  &apb_clk {
+> >  	clock-frequency = <62500000>;
+> >  };
+> > diff --git a/arch/riscv/boot/dts/thead/th1520.dtsi b/arch/riscv/boot/dts/thead/th1520.dtsi
+> > index ba4d2c673ac8..e65a306ff575 100644
+> > --- a/arch/riscv/boot/dts/thead/th1520.dtsi
+> > +++ b/arch/riscv/boot/dts/thead/th1520.dtsi
+> > @@ -134,6 +134,12 @@ osc_32k: 32k-oscillator {
+> >  		#clock-cells = <0>;
+> >  	};
+> >
+> > +	aonsys_clk: aonsys-clk {
+> > +		compatible = "fixed-clock";
+> > +		clock-output-names = "aonsys_clk";
+> > +		#clock-cells = <0>;
+> > +	};
 >
-> [   19.198775] reset-gpio reset-gpio.2.auto: error -EBUSY: Could not get
-> reset gpios
->=20
-> because GPIO is used by reset-gpio.1.auto already.
+> Did this stuff sneak into this commit accidentally?
 
-Thank you for the clarification.
-I only understood later in the mail and didn't update this properly.
+Not really by accident no. It turns out the clock tree has gates for the bus
+clock of each pinctrl block and I think it's better to add this clock
+dependency to the bindings and driver up front.
 
-> > > +	/* Not freed in normal path, persisent subsyst data */
-> > > +	rgpio_dev =3D kzalloc(sizeof(*rgpio_dev), GFP_KERNEL);
-> >=20
-> > Since this is persistent, instead of letting the reset-gpio driver call
-> > of_parse_phandle_with_args() again, this could be passed in via
-> > platform data. Is there a reason not to do that instead?
->=20
-> We can pass it as read only platform data, but we cannot pass the
-> ownership. This is associated with registered platform device, not with
-> bound one device->driver.
->=20
-> Imagine case:
-> 1. modprobe reset-gpio,
-> 2. Driver is bound to the device,
-> 3. unbind  (echo > unbind)
-> 4. rmmod
-> 5. goto 1
+Since there is not yet any clock driver the initial device tree for the TH1520
+included the dummy apb_clk that two of the pinctrl blocks derive their clock
+from, but not the "aonsys" clock needed by the "always-on" pinctrl. I thought
+it was better to add this dummy clock with the only (so far) user of it, but if
+you have a better idea, let me know.
 
-Keeping ownership on the list is fine, the reset-gpio driver makes its
-own copy of of_phandle_args anyway. I was just wondering whether it
-could make this copy from platform data instead of from the
-of_parse_phandle_with_args() return value.
-
-[...]
-> >=20
-> > > @@ -839,21 +960,50 @@ __of_reset_control_get(struct device_node *node=
-, const char *id, int index,
-> > >  					 index, &args);
-> > >  	if (ret =3D=3D -EINVAL)
-> > >  		return ERR_PTR(ret);
-> > > -	if (ret)
-> > > -		return optional ? NULL : ERR_PTR(ret);
-> > > +	if (ret) {
-> > > +		/*
-> > > +		 * There can be only one reset-gpio for regular devices, so
-> > > +		 * don't bother with GPIO index.
-> > > +		 */
-> >=20
-> > I don't understand this comment. The GPIO index should be checked as
-> > part of __reset_gpios_args_match(), or should it not?
->=20
-> This and earlier comment are result of a bit hacky approach to the
-> problem: how to find reset controllers for that GPIO?
->=20
-> The point is that our reset gpio controller has only 1 reset, thus
-> of_reset_n_cells=3D1. However args_count from of_parse_handle is >0, whic=
-h
-> later is compared in reset core:
->=20
-> https://elixir.bootlin.com/linux/latest/source/drivers/reset/core.c#L859
->=20
-> That part we need to match.
->=20
-> I could make the reset-gpio driver to have of_reset_n_cells=3D2, but what
-> would be the point? The rest of the cells are not really relevant,
-> because you cannot refer to this reset gpio controller with any other
-> arguments.
->=20
-> To remind: my solution spawns one reset-gpio controller for one GPIO.
-
-Thank you. I think we could also just make that check
-
-	if (WARN_ON(!rcdev->of_args && ...))
-
-instead and skip the of_xlate call in that case (or implement of_xlate
-in the reset-gpio driver to make this more explicit).
-
-> >=20
-> > > +		ret =3D of_parse_phandle_with_args(node, "reset-gpios", "#gpio-cel=
-ls",
-> > > +						 0, &args);
-> > > +		if (ret)
-> > > +			return optional ? NULL : ERR_PTR(ret);
-> > > =20
-> > > -	mutex_lock(&reset_list_mutex);
-> > > -	rcdev =3D NULL;
-> > > -	list_for_each_entry(r, &reset_controller_list, list) {
-> > > -		if (args.np =3D=3D r->of_node) {
-> > > -			rcdev =3D r;
-> > > -			break;
-> > > -		}
-> > > +		gpio_fallback =3D true;
-> >=20
-> > Is there a reason not just call __reset_add_reset_gpio_device() here?
-> > With that, there should be no need to call __reset_find_rcdev() twice.
->=20
-> Hm, could be, although not sure if code would be simpler.
->=20
-> This entire function handles two cases:
-> 1. Get normal reset controller ("resets" OF property),
-> 2. If above fails, get reset-gpio controller ("reset-gpios" OF property)
->=20
-> Therefore the entire solution is following approach:
-> 1. of_parse_phandle(resets)
-> 1b. error? Then of_parse_phandle(reset-gpios)
-> 2. Find reset-controller based on any of above phandles.
-> 3. error? Check if we created reset-gpios platform device. If not:
-> create new reset-gpios platform device/
-> 3b. Platform device could probe, so lookup again for reset controller or
-> defer probe.
->=20
-> What type of flow do you propose?
-
-I propose to reorder after parsing the phandles: check/create the gpio
-platform device right after parsing the gpio handle. Only then lock
-reset_list_mutex look for the rcdev.
-
-1. of_parse_phandle(resets)
-1b. error? Then of_parse_phandle(reset-gpios)
-2b. gpio? Then check if we created reset-gpios platform device. If not:
-create new reset-gpios platform device/, defer if probe failed
-3. Lock reset_list_mutex, find reset-controller based on any of above
-phandles.
-
->=20
-> >=20
-> > >  	}
-> > > =20
-> > > +	mutex_lock(&reset_list_mutex);
-> > > +	rcdev =3D __reset_find_rcdev(&args, gpio_fallback, NULL);
-> >=20
-> > This gets called with args as parsed. If there is a match, this will=
-=20
-> > overwrite args (in the gpio_fallback case) and return NULL.
->=20
-> Overwrite not complete. It will only overwrite args_count and return a
-> valid rcdev.
-> I do not see overwriting in case of returning NULL.
-
-Sorry, I meant to write
-
-"This gets called with args as parsed. If there is a match, this will=20
- overwrite args (in the gpio_fallback case) _or_ return NULL."
-
-at least at the end, when I understood the following.
-
-> >=20
-> > > +
-> > >  	if (!rcdev) {
-
-So in this non-NULL branch there was no overwriting.
-
-> > > -		rstc =3D ERR_PTR(-EPROBE_DEFER);
-> > > -		goto out;
-> > > +		if (gpio_fallback) {
-> > > +			/*
-> > > +			 * Registering reset-gpio device might cause immediate
-> > > +			 * bind, thus taking reset_list_mutex lock via
-> > > +			 * reset_controller_register().
-> > > +			 */
-> > > +			mutex_unlock(&reset_list_mutex);
-> > > +			ret =3D __reset_add_reset_gpio_device(node, &args);
-> >=20
-> > So this will also be called with args as parsed.
-> >=20
-> > > +			mutex_lock(&reset_list_mutex);
-> > > +			if (ret) {
-> > > +				rstc =3D ERR_PTR(ret);
-> > > +				goto out;
-> > > +			}
-> > > +			/*
-> > > +			 * Success: reset-gpio could probe immediately, so
-> > > +			 * re-check the lookup.
-> > > +			 */
-> > > +			rcdev =3D __reset_find_rcdev(&args, gpio_fallback, NULL);
-> >=20
-> > And this will again be called with args as parsed and overwrite args
-> > again.>
-> > > +			if (!rcdev) {
-> > > +				rstc =3D ERR_PTR(-EPROBE_DEFER);
-> > > +				goto out;
-> > > +			}
-> > > +			/* Success, rcdev is valid thus do not bail out */
-> > > +		} else {
-> > > +			rstc =3D ERR_PTR(-EPROBE_DEFER);
-> > > +			goto out;
-> > > +		}
-> > >  	}
-> >=20
-> > So at this point args is overwritten in the gpio_fallback case. I would
-> > find it much clearer to just overwrite args here and make the first
-> > parameter to __reset_find_rcdev() const.
->=20
-> I think I get your point. Overwriting happens after we store the
-> original of_args, but the code is indeed not intuitive. I think I can
-> move it further, as you suggested.
-
-Now I think we can skip the overwriting altogether and just adapt the
-following of_reset_n_cells check ad of_xlate call as mentioned above.
-
-regards
-Philipp
+/Emil
 
