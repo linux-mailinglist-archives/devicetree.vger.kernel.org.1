@@ -1,105 +1,164 @@
-Return-Path: <devicetree+bounces-30679-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30680-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 488FF828A26
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 17:40:40 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C76F828A35
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 17:44:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 705B41C21064
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 16:40:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1D65D2880D6
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 16:44:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2703539FFC;
-	Tue,  9 Jan 2024 16:40:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1179E3A1D2;
+	Tue,  9 Jan 2024 16:43:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mS6hffrM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="G4dkcEVL"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07D3339AFA;
-	Tue,  9 Jan 2024 16:40:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 22925C433C7;
-	Tue,  9 Jan 2024 16:40:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7A3E3A26E;
+	Tue,  9 Jan 2024 16:43:49 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7EF17C433F1;
+	Tue,  9 Jan 2024 16:43:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1704818435;
-	bh=xumFkzh9dOhqQuxWQPzQ0UOI+crU8zGpXe3IKeAJiLo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=mS6hffrM8lke09V6OI+rr+zWeUuXVm+yeEU3pex4lAnkO+QzbfFKtZWS6RNtOfBVA
-	 OXxdShG6OWUaVqBcepdY/kNTyzMMux9hWwpIfT7glq08vpVWPk3rkXSwBOOczEpx1b
-	 5pr4Qd4QM/S8EAeiLqRne6LSZ26SOHa8XR8taeUy/aobdgDP28leKB5rK21zF8f7UC
-	 pt1i/Ex4Iz3Rncmy6J3HMrdl6ZqvjDNIw5Bg5qUnGksuQcVyiDUgrx61b7EJCK5KcW
-	 xxGWa/gsx+kaUpbyWXMbgJxTXbt8ECq4NEHX0IOwMQ72xTcW4QIXD9lV7FB4Qt4D/a
-	 8x83Ov3qSVoaw==
-Date: Tue, 9 Jan 2024 16:40:29 +0000
-From: Conor Dooley <conor@kernel.org>
-To: =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Cc: Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Daniel Golle <daniel@makrotopia.org>,
-	Hsin-Yi Wang <hsinyi@chromium.org>,
-	=?iso-8859-1?Q?N=EDcolas_F_=2E_R_=2E_A_=2E?= Prado <nfraprado@collabora.com>,
-	jason-ch chen <Jason-ch.Chen@mediatek.com>,
-	Macpaul Lin <macpaul.lin@mediatek.com>,
-	Bernhard =?iso-8859-1?Q?Rosenkr=E4nzer?= <bero@baylibre.com>,
-	Sean Wang <sean.wang@mediatek.com>, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-Subject: Re: [PATCH 1/2] dt-bindings: arm64: mediatek: Add MT7988A and BPI-R4
-Message-ID: <20240109-perennial-darkroom-953f86a05adb@spud>
-References: <20240102205941.29654-1-zajec5@gmail.com>
- <20240108-helium-retriever-043ed3e1dbe0@spud>
- <1a9d7f5b-4a00-4026-81b8-7af3031c6656@gmail.com>
+	s=k20201202; t=1704818629;
+	bh=yAp04RHGBK3kZbfdthXQtiaJrJ2VNSMii5hP7oiD+zw=;
+	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+	b=G4dkcEVL0oWynRladsUPhZwHfdDo8UD+5c464yEtzLCtGIVanqhEeQwe1/n5CTgM0
+	 B2CqdYV6p+V44I07Mt9gSRhS+Lqvp8DD7HA7Nfj9henMfX/qHATwgT78HqR0qEPClw
+	 fgITg/4pAARBbYA4IiAgLsqB+Sy8geWKI67CP4JUDhbWPzB29ctC5MQ13mXgT3Yxme
+	 yu852Wes/t5ILUt11tKtONA3zuC+OpYLEeVqZNUTFLDr2VMQkWEZNycM8LihQ1SjXl
+	 kl4R6UMi1HH4Vjz/4PCmYe9xSYuEHgM5+QazTkSFUrFew/ZJNUp3fBvlb5T5rMrbLh
+	 /qT6qG0+gcEGg==
+From: Kalle Valo <kvalo@kernel.org>
+To: "Arnd Bergmann" <arnd@arndb.de>
+Cc: "Chen-Yu Tsai" <wenst@chromium.org>,  "Jeff Johnson"
+ <quic_jjohnson@quicinc.com>,  "Bartosz Golaszewski" <brgl@bgdev.pl>,
+  "David S . Miller" <davem@davemloft.net>,  "Eric Dumazet"
+ <edumazet@google.com>,  "Jakub Kicinski" <kuba@kernel.org>,  "Paolo Abeni"
+ <pabeni@redhat.com>,  "Rob Herring" <robh+dt@kernel.org>,  "Krzysztof
+ Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,  "Conor Dooley"
+ <conor+dt@kernel.org>,  "Bjorn Andersson" <andersson@kernel.org>,  "Konrad
+ Dybcio" <konrad.dybcio@linaro.org>,  "Catalin Marinas"
+ <catalin.marinas@arm.com>,  "Will Deacon" <will@kernel.org>,  "Bjorn
+ Helgaas" <bhelgaas@google.com>,  Heiko =?utf-8?Q?St=C3=BCbner?=
+ <heiko@sntech.de>,  "Jernej
+ Skrabec" <jernej.skrabec@gmail.com>,  "Chris Morgan"
+ <macromorgan@hotmail.com>,  "Linus Walleij" <linus.walleij@linaro.org>,
+  "Geert Uytterhoeven" <geert+renesas@glider.be>,  "Neil Armstrong"
+ <neil.armstrong@linaro.org>,  =?utf-8?Q?N=C3=ADcolas?= F. R. A. Prado
+ <nfraprado@collabora.com>,  "Marek Szyprowski" <m.szyprowski@samsung.com>,
+  "Peng Fan" <peng.fan@nxp.com>,  "Robert Richter" <rrichter@amd.com>,
+  "Dan Williams" <dan.j.williams@intel.com>,  "Jonathan Cameron"
+ <Jonathan.Cameron@huawei.com>,  "Terry Bowman" <terry.bowman@amd.com>,
+  "Kuppuswamy Sathyanarayanan"
+ <sathyanarayanan.kuppuswamy@linux.intel.com>,  Ilpo =?utf-8?Q?J=C3=A4rvin?=
+ =?utf-8?Q?en?=
+ <ilpo.jarvinen@linux.intel.com>,  "Huacai Chen" <chenhuacai@kernel.org>,
+  "Alex Elder" <elder@linaro.org>,  "Srinivas Kandagatla"
+ <srinivas.kandagatla@linaro.org>,  "Greg Kroah-Hartman"
+ <gregkh@linuxfoundation.org>,  linux-wireless@vger.kernel.org,  Netdev
+ <netdev@vger.kernel.org>,  devicetree@vger.kernel.org,
+  linux-kernel@vger.kernel.org,  linux-arm-msm@vger.kernel.org,
+  linux-arm-kernel@lists.infradead.org,  linux-pci@vger.kernel.org,
+  "Bartosz Golaszewski" <bartosz.golaszewski@linaro.org>
+Subject: Re: [RFC 8/9] PCI/pwrseq: add a pwrseq driver for QCA6390
+References: <20240104130123.37115-1-brgl@bgdev.pl>
+	<20240104130123.37115-9-brgl@bgdev.pl>
+	<15443d5d-6544-45d0-afeb-b23e6a041ecf@quicinc.com>
+	<87jzoizwz7.fsf@kernel.org>
+	<CAGXv+5FhYY+qyyT8wxY5DggvWPibfM2ypHVKQbsJZ30VkZDAkQ@mail.gmail.com>
+	<87bk9uzum9.fsf@kernel.org>
+	<5904461c-ca3c-4eb1-a44a-876872234545@app.fastmail.com>
+Date: Tue, 09 Jan 2024 18:43:38 +0200
+In-Reply-To: <5904461c-ca3c-4eb1-a44a-876872234545@app.fastmail.com> (Arnd
+	Bergmann's message of "Tue, 09 Jan 2024 11:14:43 +0100")
+Message-ID: <87y1cycv9h.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="Bl2E85BvxztBLFCl"
-Content-Disposition: inline
-In-Reply-To: <1a9d7f5b-4a00-4026-81b8-7af3031c6656@gmail.com>
-
-
---Bl2E85BvxztBLFCl
 Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Jan 09, 2024 at 07:12:35AM +0100, Rafa=C5=82 Mi=C5=82ecki wrote:
-> Hi Conor,
->=20
-> On 8.01.2024 18:38, Conor Dooley wrote:
-> > On Tue, Jan 02, 2024 at 09:59:40PM +0100, Rafa=C5=82 Mi=C5=82ecki wrote:
-> > > From: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
-> > >=20
-> > > MT7988A is another MediaTek's SoC with just 1 device available right
-> > > now: Banana Pi BPI-R4.
-> >=20
-> > Acked-by: Conor Dooley <conor.dooley@microchip.com>
->=20
-> I sent V2 meanwhile, could you reply to below PATCH instead, please?
->=20
-> [PATCH V2 1/3] dt-bindings: arm64: mediatek: Add MT7988A and BPI-R4
+"Arnd Bergmann" <arnd@arndb.de> writes:
 
-In the future, just give me the message-id in these cases.
+> On Tue, Jan 9, 2024, at 11:09, Kalle Valo wrote:
+>
+>> Chen-Yu Tsai <wenst@chromium.org> writes:
+>>> On Tue, Jan 9, 2024 at 5:18=E2=80=AFPM Kalle Valo <kvalo@kernel.org> wr=
+ote:
+>>>> Jeff Johnson <quic_jjohnson@quicinc.com> writes:
+>>>>
+>>>> > On 1/4/2024 5:01 AM, Bartosz Golaszewski wrote:
+>>>> >> diff --git a/drivers/pci/pcie/pwrseq/Kconfig b/drivers/pci/pcie/pwr=
+seq/Kconfig
+>>>> >> index 010e31f432c9..f9fe555b8506 100644
+>>>> >> --- a/drivers/pci/pcie/pwrseq/Kconfig
+>>>> >> +++ b/drivers/pci/pcie/pwrseq/Kconfig
+>>>> >> @@ -6,3 +6,14 @@ menuconfig PCIE_PWRSEQ
+>>>> >>      help
+>>>> >>        Say yes here to enable support for PCIe power sequencing
+>>>> >>        drivers.
+>>>> >> +
+>>>> >> +if PCIE_PWRSEQ
+>>>> >> +
+>>>> >> +config PCIE_PWRSEQ_QCA6390
+>>>> >> +    tristate "PCIe Power Sequencing driver for QCA6390"
+>>>> >> +    depends on ARCH_QCOM || COMPILE_TEST
+>>>> >> +    help
+>>>> >> +      Enable support for the PCIe power sequencing driver for the
+>>>> >> +      ath11k module of the QCA6390 WLAN/BT chip.
+>>>> >> +
+>>>> >> +endif
+>>>> >
+>>>> > As I mentioned in the 5/9 patch I'm concerned that the current
+>>>> > definition of PCIE_PWRSEQ and PCIE_PWRSEQ_QCA6390 will effectively h=
+ide
+>>>> > the fact that QCA6390 may need additional configuration since the me=
+nu
+>>>> > item will only show up if you have already enabled PCIE_PWRSEQ.
+>>>> > Yes I see that these are set in the defconfig in 9/9 but I'm concern=
+ed
+>>>> > about the more generic case.
+>>>> >
+>>>> > I'm wondering if there should be a separate config QCA6390 within at=
+h11k
+>>>> > which would then select PCIE_PWRSEQ and PCIE_PWRSEQ_QCA6390
+>>>>
+>>>> Or is it possible to provide an optional dependency in Kconfig (I guess
+>>>
+>>> imply PCIE_PWRSEQ
+>>> imply PCIE_PWRSEQ_QCA6390
+>>> ?
+>>
+>> Nice, I had forgotten imply altogether. Would 'imply
+>> PCIE_PWRSEQ_QCA6390' in ath11k Kconfig be enough to address Jeff's
+>> concern?
+>
+> Please don't use imply (ever), it doesn't normally do
+> what you want. In this case, the only effect the
+> 'imply' has is to change the default of the PCIE_PWRSEQ_QCA6390
+> option when a defconfig contains QCA6390.
+>
+> If this is indeed what you want, it's still better to do the
+> equivalent expression in PCIE_PWRSEQ_QCA6390 rather than ATH11K:
+>
+> config PCIE_PWRSEQ_QCA6390
+>       tristate "PCIe Power Sequencing driver for QCA6390"
+>       default ATH11K && ARCH_QCOM
 
---Bl2E85BvxztBLFCl
-Content-Type: application/pgp-signature; name="signature.asc"
+Sounds good to me but should it be 'default ATH11K_PCI && ARCH_QCOM'? My
+understanding is that we don't need PWRSEQ for ATH11K_AHB devices.
 
------BEGIN PGP SIGNATURE-----
+--=20
+https://patchwork.kernel.org/project/linux-wireless/list/
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZZ12/QAKCRB4tDGHoIJi
-0pSZAQCakbEDbpyJU1zZrJrksXPLUy1QLurql1JT2lp+rbNL5QD+MXaybdojog9v
-8C36eHKqtqb6uPGDATzIRYl+BUuRRQU=
-=mce9
------END PGP SIGNATURE-----
-
---Bl2E85BvxztBLFCl--
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatc=
+hes
 
