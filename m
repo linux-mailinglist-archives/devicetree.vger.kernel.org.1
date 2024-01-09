@@ -1,125 +1,87 @@
-Return-Path: <devicetree+bounces-30674-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30675-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74E258289D1
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 17:15:57 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 978A18289DB
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 17:20:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 73CE41C23D99
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 16:15:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 46775286402
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 16:20:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 106703A1BB;
-	Tue,  9 Jan 2024 16:15:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 713CB3A1C2;
+	Tue,  9 Jan 2024 16:20:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="DCu/0Xjk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OUNd/Nj+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7677A38DC1;
-	Tue,  9 Jan 2024 16:15:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 409GEqUp101353;
-	Tue, 9 Jan 2024 10:14:52 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1704816892;
-	bh=+s45SriCMFg4wyEvqkMYU7sO4P+s/YfoTTH1GytTXY0=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=DCu/0XjkGzbx4AhW4Q1Bb3nB8rlACZEnZAY0Bpm2ojwjiUTg/cetEuTlDffhw56Yi
-	 JHfZdc5IIQ5KXToNOXeS7i84Lh9OyN5sM8buQlmsnnC/JfTQnTg0SIHnUVI8RMvNlW
-	 o8UI9tzB5evh4h7HsKJ+3yV2TT+cZ+pbdjn9SWKs=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 409GEqtO030730
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 9 Jan 2024 10:14:52 -0600
-Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 9
- Jan 2024 10:14:52 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE110.ent.ti.com
- (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 9 Jan 2024 10:14:52 -0600
-Received: from [10.249.40.136] ([10.249.40.136])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 409GEoPJ008319;
-	Tue, 9 Jan 2024 10:14:50 -0600
-Message-ID: <4cdd5c4a-f940-4635-837b-872ab776f5c4@ti.com>
-Date: Tue, 9 Jan 2024 10:14:50 -0600
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E2DB3A1BB;
+	Tue,  9 Jan 2024 16:20:27 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 96A26C433F1;
+	Tue,  9 Jan 2024 16:20:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1704817226;
+	bh=P21KAUUxSYEu3xFekCmy23VZ39OvyiMglzFNoXQDU7k=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=OUNd/Nj+tSHTfoG05OfMde7bK+K7zbjh2J3YcazJEm+gqdfvLfVmdLq0E6eLodTEa
+	 y2sjE8oWnz6y6Qll9DEFuo6opcL/Et2Q3syYE4pHKnVInP/ctYShbFgDhw8qAiicPS
+	 xBAvzdJZM1RDnYUx+dzamO8w9nvyHZ5QRjqnPWW6i2RuknK7BnZWUnHOTYgbRDVNCE
+	 dVjkEs6Lxm/64LjY5qaTEWrzirSxjEoxLyKdgJ0PZTIRaTP3+bXVpZ8USnl4xb8Syf
+	 tkgCjG9Ry2+MeiSAg9jbY6D88xB+mEyynG6qIWHJX0THse9ipJtZv8ATzqfPNe2mXJ
+	 z1zJCDY3OKzRg==
+Date: Tue, 9 Jan 2024 16:20:22 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Elad Nachman <enachman@marvell.com>
+Cc: gregkh@linuxfoundation.org,
+	rowland.harvard.edu@mx0a-0016f401.pphosted.com, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] dt-bindings: usb: Add Marvell ac5
+Message-ID: <20240109-brink-catfight-1f11df16d2b4@spud>
+References: <20240109081044.10515-1-enachman@marvell.com>
+ <20240109081044.10515-2-enachman@marvell.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC v2 01/11] dt-bindings: gpu: Rename img,powervr to
- img,powervr-rogue
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Frank Binns
-	<frank.binns@imgtec.com>,
-        Donald Robson <donald.robson@imgtec.com>,
-        Matt
- Coster <matt.coster@imgtec.com>,
-        "H . Nikolaus Schaller" <hns@goldelico.com>,
-        Adam Ford <aford173@gmail.com>,
-        Ivaylo Dimitrov
-	<ivo.g.dimitrov.75@gmail.com>,
-        Maarten Lankhorst
-	<maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec
-	<jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        =?UTF-8?Q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>,
-        Tony Lindgren
-	<tony@atomide.com>, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra
-	<vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>, Paul Cercueil
-	<paul@crapouillou.net>
-CC: <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <linux-sunxi@lists.linux.dev>, <linux-omap@vger.kernel.org>,
-        <linux-mips@vger.kernel.org>
-References: <20240108183302.255055-1-afd@ti.com>
- <20240108183302.255055-2-afd@ti.com>
- <c99b898f-61d2-46a3-b639-b4de828dcab1@linaro.org>
-Content-Language: en-US
-From: Andrew Davis <afd@ti.com>
-In-Reply-To: <c99b898f-61d2-46a3-b639-b4de828dcab1@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="1S6LNRWKf4LsTFJ/"
+Content-Disposition: inline
+In-Reply-To: <20240109081044.10515-2-enachman@marvell.com>
 
-On 1/9/24 5:28 AM, Krzysztof Kozlowski wrote:
-> On 08/01/2024 19:32, Andrew Davis wrote:
->> Signed-off-by: Andrew Davis <afd@ti.com>
->> ---
->>   .../bindings/gpu/{img,powervr.yaml => img,powervr-rogue.yaml} | 4 ++--
->>   MAINTAINERS                                                   | 2 +-
->>   2 files changed, 3 insertions(+), 3 deletions(-)
-> 
-> If you are renaming it, why not renaming to match compatible as we
-> usually expect?
-> 
 
-There are (or will be) multiple compatible strings described in this
-file, naming the file after just one would not fully convey the content
-of the file. This generic style naming seems common already for bindings
-with multiple compatibles.
+--1S6LNRWKf4LsTFJ/
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Andrew
+On Tue, Jan 09, 2024 at 10:10:43AM +0200, Elad Nachman wrote:
+> From: Elad Nachman <enachman@marvell.com>
+>=20
+> Add Marvell ac5 device tree bindings to generic EHCI.
+> This compatible enables the Marvell Orion platform code
+> to properly configure the DMA mask for the Marvell AC5 SOC.
+>=20
+> Signed-off-by: Elad Nachman <enachman@marvell.com>
 
-> Best regards,
-> Krzysztof
-> 
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+
+--1S6LNRWKf4LsTFJ/
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZZ1yRgAKCRB4tDGHoIJi
+0gPjAP9wdF7OaFb81LFt0ze6rkEowrwGYZZYzCoFBX33capmpQEAp+XVl/+LMmZ/
+qIVIgJSpgdCdXY7VW7zDJcP1flKBwAI=
+=VtJO
+-----END PGP SIGNATURE-----
+
+--1S6LNRWKf4LsTFJ/--
 
