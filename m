@@ -1,125 +1,150 @@
-Return-Path: <devicetree+bounces-30566-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30569-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51ED382839D
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 11:03:36 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 256E28283AF
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 11:09:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 00AB21F28409
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 10:03:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4AEA51C23DF4
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 10:09:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09BA735EE4;
-	Tue,  9 Jan 2024 10:03:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE871364CD;
+	Tue,  9 Jan 2024 10:09:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Vj/slGvb"
+	dkim=pass (2048-bit key) header.d=tkos.co.il header.i=@tkos.co.il header.b="ra8Abjhd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.tkos.co.il (hours.tkos.co.il [84.110.109.230])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62EC031A7E;
-	Tue,  9 Jan 2024 10:03:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-50eabd1c701so3303501e87.3;
-        Tue, 09 Jan 2024 02:03:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1704794608; x=1705399408; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:from:content-language
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=3Y1yFnGwCxaJ38SAnsqfHX0zi0fQTzVhh1Q60oTmi8w=;
-        b=Vj/slGvbpKPmbdMZGFIqQHfO3GxfCvqhBkpVHCkBlId0Kt86IhWO8GHrbMOK4BuLRE
-         Qq6kEOWPQrFd1RmeBhKVdFPYKoKRtXsLJtd0EwnkO6rliN74ppmigwTn9wfWdIO7bbq6
-         a76NATtxQeUqAJsoWf4L3l1lzb4hfEdVdHKsxb7V/3LWt1Y/wX9oODDR0iXbywixr4IR
-         qainYqZKcyuHuHi5JqI3EHPhO2++frMWv0ASvgMVRmcd6dr0xUSh9CRoltYQKQTTnKQK
-         Lx6luO6hDEYEA89I/MuiBRXnKCEMiJg/7uKw5XgK13Nn6f/tAf1vOYugjTBJLfCkbJ25
-         qbzg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704794608; x=1705399408;
-        h=content-transfer-encoding:cc:to:subject:from:content-language
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=3Y1yFnGwCxaJ38SAnsqfHX0zi0fQTzVhh1Q60oTmi8w=;
-        b=S04UNIgYgg3+urITQyg5LHzlf7RfV/a4b1DAYRRQo/plr/NwAb9IY1TL8q7VAERIv/
-         lBjbCce6jclUO20MIIsiMUF9WJjKBlhqLdUpKZAwM7Hp4JyWffOU3KujMaQZZDXb0Sgf
-         CwuYOoGR22LBbLOS/shNgp+Apy5XUpuskysjciccQ6o4JDuXXwObzGNjFIYjfPA3Fj+l
-         4rIHIJyZEeuOqF1KjrSr0GzEEgU2b/qNNThoA8hZrWx4T7YQEAUrJZ1XWdKMyQhRZCMI
-         7IY5Y8N4n5axO7rnqkfmahR5hV97yyx/j9XSGH3Odk05HbSGa6u5IIMaLadJERwM8C/w
-         r1Wg==
-X-Gm-Message-State: AOJu0YwzChWViz8iKzvhncLXGw7cZza5P9WbWLw7TnPL+Bmv50RM0KaV
-	p2mbfkg38OPEplefS06Fb+6VGYsZmj4=
-X-Google-Smtp-Source: AGHT+IELDKUtj3zZFQ4g/uA/k9Dd1nPZ7q9xaP1hCDi7aXAHt6eU1yOMqsoKuchurA11pt/VMNBLFA==
-X-Received: by 2002:a19:e016:0:b0:50e:99fc:3b48 with SMTP id x22-20020a19e016000000b0050e99fc3b48mr1967337lfg.34.1704794608101;
-        Tue, 09 Jan 2024 02:03:28 -0800 (PST)
-Received: from [192.168.26.149] (031011218106.poznan.vectranet.pl. [31.11.218.106])
-        by smtp.googlemail.com with ESMTPSA id u23-20020a1709063b9700b00a26af4d96c6sm856945ejf.4.2024.01.09.02.03.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 09 Jan 2024 02:03:27 -0800 (PST)
-Message-ID: <bdf7751b-0421-485d-8382-26c084f09d7d@gmail.com>
-Date: Tue, 9 Jan 2024 11:03:26 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B045364CA;
+	Tue,  9 Jan 2024 10:09:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tkos.co.il
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tkos.co.il
+Received: from localhost (unknown [10.0.8.2])
+	by mail.tkos.co.il (Postfix) with ESMTP id 4BF75440525;
+	Tue,  9 Jan 2024 12:07:02 +0200 (IST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=tkos.co.il;
+	s=default; t=1704794822;
+	bh=43xE3vA91KlBiHYDQYZH4+I07czZ0PHwWXpeBYujzyo=;
+	h=References:From:To:Cc:Subject:Date:In-reply-to:From;
+	b=ra8Abjhd3wYdSlybleRufYMxkaE1+BMC4kbkA4imvxpBloAdLz+3ebgDaMB/W1Azc
+	 9v15fDP3UQogHqy6VsccDLOJS3EipJuuoz0UYtXV7iJHgiDknsQx5DLY0O+SFJpqTb
+	 mAVYUR0auLIBB39aooMOEFQSr5JLJXTJC7BGkaW9pn0Tw/dXHD9qrKUo/R+eg0wkNX
+	 iNsasprvywnJBZXfPAQDRwslVPQnDZSvOaJxEIv+HO72TOzf+fkcscL3Zxe4KYVO/7
+	 1foNh71grgTMkCMzS773WPRrxS2IgNoUt3s0qVYTL8HKxvTs3FswJjX0iONRNiSVbp
+	 I7IeKaZZQTjJA==
+References: <cover.1703683642.git.baruch@tkos.co.il>
+ <fae5b1180161a7d8cd626a96f5df80b0a0796b8b.1703683642.git.baruch@tkos.co.il>
+ <ZZw3FDy8800NScEk@arm.com>
+User-agent: mu4e 1.10.8; emacs 29.1
+From: Baruch Siach <baruch@tkos.co.il>
+To: Catalin Marinas <catalin.marinas@arm.com>
+Cc: Christoph Hellwig <hch@lst.de>, Marek Szyprowski
+ <m.szyprowski@samsung.com>, Rob Herring <robh+dt@kernel.org>, Frank Rowand
+ <frowand.list@gmail.com>, Will Deacon <will@kernel.org>, Robin Murphy
+ <robin.murphy@arm.com>, iommu@lists.linux.dev, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, Petr
+ =?utf-8?B?VGVzYcWZw61r?= <petr@tesarici.cz>, Ramon Fried
+ <ramon@neureality.ai>, Elad
+ Nachman <enachman@marvell.com>
+Subject: Re: [PATCH RFC 3/4] dma-direct: add offset to zone_dma_bits
+Date: Tue, 09 Jan 2024 12:03:43 +0200
+In-reply-to: <ZZw3FDy8800NScEk@arm.com>
+Message-ID: <87msterf7b.fsf@tarshish>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Content-Language: en-US
-From: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Subject: Ethernet binding: broken validation parsing of #nvmem-cell-cells ?
-To: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- Network Development <netdev@vger.kernel.org>
-Cc: "David S. Miller" <davem@davemloft.net>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Florian Fainelli <f.fainelli@gmail.com>,
- linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-Hi,
+Hi Catalin,
 
-I'm playing with "dtbs_check" and I stuck on following errors:
+On Mon, Jan 08 2024, Catalin Marinas wrote:
+> On Wed, Dec 27, 2023 at 05:04:27PM +0200, Baruch Siach wrote:
+>> Current code using zone_dma_bits assume that all addresses range in the
+>> bits mask are suitable for DMA. For some existing platforms this
+>> assumption is not correct. DMA range might have non zero lower limit.
+>> 
+>> Add 'zone_dma_off' for platform code to set base address for DMA zone.
+>> 
+>> Rename the dma_direct_supported() local 'min_mask' variable to better
+>> describe its use as limit.
+>> 
+>> Suggested-by: Catalin Marinas <catalin.marinas@arm.com>
+>
+> When I suggested taking the DMA offsets into account, that's not exactly
+> what I meant. Based on patch 4, it looks like zone_dma_off is equivalent
+> to the lower CPU address. Let's say a system has DRAM starting at 2GB
+> and all 32-bit DMA-capable devices has a DMA offset of 0. We want
+> ZONE_DMA32 to end at 4GB rather than 6GB.
 
-arch/arm/boot/dts/broadcom/bcm47094-luxul-xwr-3150-v1.dtb: ethernet@24000: nvmem-cells: [[9], [0]] is too long
-         from schema $id: http://devicetree.org/schemas/net/ethernet-controller.yaml#
-arch/arm/boot/dts/broadcom/bcm47094-luxul-xwr-3150-v1.dtb: ethernet-switch@18007000: ports:port@4:nvmem-cells: [[9], [5]] is too long
-         from schema $id: http://devicetree.org/schemas/net/dsa/brcm,b53.yaml#
+Patch 4 sets zone_dma_off to the lower limit from 'dma-ranges' property
+that determines zone_dma_bits. This is not necessarily equivalent to
+start of DRAM, though it happens to be that way on my platform.
 
+>> @@ -59,7 +60,7 @@ static gfp_t dma_direct_optimal_gfp_mask(struct device *dev, u64 *phys_limit)
+>>  	 * zones.
+>>  	 */
+>>  	*phys_limit = dma_to_phys(dev, dma_limit);
+>> -	if (*phys_limit <= DMA_BIT_MASK(zone_dma_bits))
+>> +	if (*phys_limit <= zone_dma_off + DMA_BIT_MASK(zone_dma_bits))
+>>  		return GFP_DMA;
+>>  	if (*phys_limit <= DMA_BIT_MASK(32))
+>>  		return GFP_DMA32;
+>
+> Ah, you ignore the zone_dma_off for 32-bit calculations. But the
+> argument still stands, the start of DRAM does not necessarily mean that
+> all non-64-bit devices have such DMA offset.
+>
+> The current dma_direct_optimal_gfp_mask() confuses me a bit, I think it
+> gives the wrong flag if we have a zone_dma_bits of 30 and a device with
+> a coherent_dma_mask of 31, it incorrectly ends up with GFP_DMA32 (I'm
+> ignoring dma offsets in this example). Luckily I don't think we have any
+> set up where this would fail. Basically if *phys_limit is strictly
+> smaller than DMA_BIT_MASK(32), we want GFP_DMA rather than GFP_DMA32
+> even if it is larger than DMA_BIT_MASK(zone_dma_bits).
+>
+> Anyway, current mainline assumes that DMA_BIT_MASK(zone_dma_bits) and
+> DMA_BIT_MASK(32) are CPU addresses. The problem is that we may have the
+> start of RAM well above 4GB and neither ZONE_DMA nor ZONE_DMA32 upper
+> limits would be a power-of-two. We could change the DMA_BIT_MASK(...) to
+> be DMA address limits and we end up with something like:
+>
+> static gfp_t dma_direct_optimal_gfp_mask(struct device *dev, u64 *phys_limit)
+> {
+> 	u64 dma_limit = min_not_zero(
+> 		dev->coherent_dma_mask,
+> 		dev->bus_dma_limit);
+> 	u64 dma32_limit = dma_to_phys(dev, DMA_BIT_MASK(32));
+>
+> 	*phys_limit = dma_to_phys(dev, dma_limit);
+> 	if (*phys_limit > dma_limit)
+> 		return 0;
+> 	if (*phys_limit = dma32_limit)
+> 		return GFP_DMA32;
+> 	return GFP_DMA;
+> }
+>
+> The alternative is to get rid of the *_bits variants and go for
+> zone_dma_limit and zone_dma32_limit in the generic code. For most
+> architectures they would match the current DMA_BIT_MASK(32) etc. but
+> arm64 would be able to set some higher values.
+>
+> My preference would be to go for zone_dma{,32}_limit, it's easier to
+> change all the places where DMA_BIT_MASK({zone_dma_bits,32}) is used.
 
-Context:
+Sounds good to me.
 
-nvram@1eff0000 {
-	compatible = "brcm,nvram";
-	reg = <0x1eff0000 0x10000>;
+Thanks for your review of this confusing piece of code.
 
-	et0macaddr: et0macaddr {
-		#nvmem-cell-cells = <1>;
-	};
-};
-
-&gmac0 {
-	nvmem-cells = <&et0macaddr 0>;
-	nvmem-cell-names = "mac-address";
-};
-
-
-The validation error comes from ethernet-controller.yaml which contains:
-
-nvmem-cells:
-   maxItems: 1
-   description:
-     Reference to an nvmem node for the MAC address
-
-
-If I'm not mistaken <&et0macaddr 0> gets treated as two items.
-
-Can someone tell me what's going on here and help me with solving it,
-please? I would expect it to be sth trivial but I can't see any obvious
-mistake.
+baruch
 
 -- 
-Rafał Miłecki
+                                                     ~. .~   Tk Open Systems
+=}------------------------------------------------ooO--U--Ooo------------{=
+   - baruch@tkos.co.il - tel: +972.52.368.4656, http://www.tkos.co.il -
 
