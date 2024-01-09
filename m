@@ -1,422 +1,138 @@
-Return-Path: <devicetree+bounces-30494-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30518-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01F3B8280F5
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 09:27:15 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CF108281D7
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 09:36:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 881F9283FB8
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 08:27:13 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B337BB26A57
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 08:36:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FDE9374DB;
-	Tue,  9 Jan 2024 08:24:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C17F2E839;
+	Tue,  9 Jan 2024 08:25:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="THARGiVG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sakura.ysato.name (ik1-413-38519.vs.sakura.ne.jp [153.127.30.23])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09E8537162;
-	Tue,  9 Jan 2024 08:24:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=users.sourceforge.jp
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=users.sourceforge.jp
-Received: from SIOS1075.ysato.name (ZM005235.ppp.dion.ne.jp [222.8.5.235])
-	by sakura.ysato.name (Postfix) with ESMTPSA id 350061C0786;
-	Tue,  9 Jan 2024 17:24:04 +0900 (JST)
-From: Yoshinori Sato <ysato@users.sourceforge.jp>
-To: linux-sh@vger.kernel.org
-Cc: Yoshinori Sato <ysato@users.sourceforge.jp>,
-	Damien Le Moal <dlemoal@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
+Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 626B73E46D;
+	Tue,  9 Jan 2024 08:24:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-2cd2f472665so28304991fa.2;
+        Tue, 09 Jan 2024 00:24:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1704788697; x=1705393497; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=oS16jOTYEmfjKgmQy0OVZ9aEx2EfxubHt6cv7RuAzio=;
+        b=THARGiVG9/Nm2BWnj83bjae0nkHtnxoFPEMGbhsRuCBwGKhKqIYMnyfPK38f66L0rc
+         3ZLLY5LKSsyzOA6u36VRJVdvShmePeMETGsOJ0T9gQ+bpgr665PeQdtckF2JroPAV0F2
+         IDfjVHlnLkzY+bzxtJ61E+7ppVdmAmYqlAzxJjiIbKRooIrXe7AFp18tWB0mwPAzHBrg
+         JaZrCA7fRIvye/D/XR1bYraseedY5Zt3im/eTV7jfHi11jm9k15VF97/Q/T469969Avm
+         RdviXF1FW0Fpl8N5w34AZMa/EQx06E+kswnH2NOgpWjxZEQX2WIZLAdMvgyb067gWzXH
+         h3Lw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1704788697; x=1705393497;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=oS16jOTYEmfjKgmQy0OVZ9aEx2EfxubHt6cv7RuAzio=;
+        b=GEQcTOkkox84CclREfjRwhKt794H8gVEfP7WlA07lO07HgehIi6Hvyd1ticvIrjJ0/
+         jv6/QDqXrwv3w+LPAX+WOpxiz4MPkAKaJcuc5ZN4pGTOjGhsIKe0cCe1hVOSqFwHT3+m
+         V3qUjAtboSVg029XT1AtbT2LqU4YHV9ydoRwOTAsxR2Fi7dBM6JWnwBgjTsdgIG64BTN
+         vIcP+xBvNFQc/ULd2lSc/tR5GzTPkNKHTIgVMucVGmPQgbGMHlMTXFKLdYoW0Bp2BCmX
+         wJWXLnoex+AryM+QZcSvu1qpy+Cm6W2vR3KEGZjv3/mhVuAHzQgdu5rHHDEdFKtyOmFg
+         EMKg==
+X-Gm-Message-State: AOJu0YzDvBWyqwnvX/9OqB5EeHE6cgsBPM9p2sQneX42WEJTmJGqoiUF
+	qd+Ip45g9977KPKxVD+XG6Q=
+X-Google-Smtp-Source: AGHT+IFkv3rj+4e7K4EAVs0axeb23BF7fwAZsmYAEawsPvIctanXl5Ky9pzu6hd4AvY5vErziW8iEQ==
+X-Received: by 2002:a05:6512:ba6:b0:50e:a219:e05d with SMTP id b38-20020a0565120ba600b0050ea219e05dmr2421838lfv.12.1704788697092;
+        Tue, 09 Jan 2024 00:24:57 -0800 (PST)
+Received: from localhost.lan (031011218106.poznan.vectranet.pl. [31.11.218.106])
+        by smtp.gmail.com with ESMTPSA id l2-20020a1709060e0200b00a26f1f36708sm769094eji.78.2024.01.09.00.24.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 09 Jan 2024 00:24:56 -0800 (PST)
+From: =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To: Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>,
-	Daniel Vetter <daniel@ffwll.ch>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Rich Felker <dalias@libc.org>,
-	John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>,
-	Lee Jones <lee@kernel.org>,
-	Helge Deller <deller@gmx.de>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Chris Morgan <macromorgan@hotmail.com>,
-	Yang Xiwen <forbidden405@foxmail.com>,
-	Sebastian Reichel <sre@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Randy Dunlap <rdunlap@infradead.org>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Vlastimil Babka <vbabka@suse.cz>,
-	Hyeonggon Yoo <42.hyeyoo@gmail.com>,
-	David Rientjes <rientjes@google.com>,
-	Baoquan He <bhe@redhat.com>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Stephen Rothwell <sfr@canb.auug.org.au>,
-	Azeem Shaikh <azeemshaikh38@gmail.com>,
-	Javier Martinez Canillas <javierm@redhat.com>,
-	Max Filippov <jcmvbkbc@gmail.com>,
-	Palmer Dabbelt <palmer@rivosinc.com>,
-	Bin Meng <bmeng@tinylab.org>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Jacky Huang <ychuang3@nuvoton.com>,
-	Lukas Bulwahn <lukas.bulwahn@gmail.com>,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
-	Sam Ravnborg <sam@ravnborg.org>,
-	Sergey Shtylyov <s.shtylyov@omp.ru>,
-	Michael Karcher <kernel@mkarcher.dialup.fu-berlin.de>,
-	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-	linux-ide@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	dri-devel@lists.freedesktop.org,
-	linux-pci@vger.kernel.org,
-	linux-serial@vger.kernel.org,
-	linux-fbdev@vger.kernel.org
-Subject: [DO NOT MERGE v6 14/37] clk: Compatible with narrow registers
-Date: Tue,  9 Jan 2024 17:23:11 +0900
-Message-Id: <222dd134b5e1c8cc5baa7afc64a3441a8174e979.1704788539.git.ysato@users.sourceforge.jp>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <cover.1704788539.git.ysato@users.sourceforge.jp>
-References: <cover.1704788539.git.ysato@users.sourceforge.jp>
+	devicetree@vger.kernel.org
+Cc: linux-leds@vger.kernel.org,
+	openwrt-devel@lists.openwrt.org,
+	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH dt-schema] schemas: chosen: Add OpenWrt LEDs properties for system states
+Date: Tue,  9 Jan 2024 09:23:12 +0100
+Message-Id: <20240109082312.9989-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.35.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-divider and gate only support 32-bit registers.
-Older hardware uses narrower registers, so I want to be able to handle
-8-bit and 16-bit wide registers.
+From: Rafał Miłecki <rafal@milecki.pl>
 
-Seven clk_divider flags are used, and if I add flags for 8bit access and
-16bit access, 8bit will not be enough, so I expanded it to u16.
+OpenWrt project provides downstream support for thousands of embedded
+home network devices. Its custom requirement for DT is to provide info
+about LEDs roles. Currently it does it by using custom non-documented
+aliases. While formally valid (aliases.yaml doesn't limit names or
+purposes of aliases) it's quite a loose solution.
 
-Signed-off-by: Yoshinori Sato <ysato@users.sourceforge.jp>
+Document 4 precise "chosen" biding properties with clearly documented
+OpenWrt usage. This will allow upstreaming tons of DTS files that noone
+cared about so far as those would need to be patched downstream anyway.
+
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 ---
- drivers/clk/clk-divider.c    | 56 ++++++++++++++++++++++++------------
- drivers/clk/clk-gate.c       | 56 +++++++++++++++++++++++++++---------
- include/linux/clk-provider.h | 22 ++++++++++----
- 3 files changed, 97 insertions(+), 37 deletions(-)
+A few weeks ago I was seeking for a help regarding OpenWrt's need for
+specifing LEDs roles in DT, see:
 
-diff --git a/drivers/clk/clk-divider.c b/drivers/clk/clk-divider.c
-index a2c2b5203b0a..a1b5187cd63d 100644
---- a/drivers/clk/clk-divider.c
-+++ b/drivers/clk/clk-divider.c
-@@ -26,20 +26,38 @@
-  * parent - fixed parent.  No clk_set_parent support
-  */
+Describing LEDs roles in device tree?
+https://lore.kernel.org/linux-devicetree/ee912a89-4fd7-43c3-a79b-16659a035fe1@gmail.com/T/#u
+
+I DON'T think OpenWrt's current solution with aliases is good enough:
+* It's not clearly documented
+* It may vary from other projects usa case
+* It may be refused by random maintainers I think
+
+I decided to suggest 4 OpenWrt-prefixed properties for "chosen". I'm
+hoping this small custom binding is sth we could go with. I'm really
+looking forward to upstreaming OpenWrt's downstream DTS files so other
+projects (e.g. Buildroot) can use them.
+
+If you have any better fitting solution in mind please let me know. I
+should be fine with anything that lets me solve this downstream mess
+situation.
+
+ dtschema/schemas/chosen.yaml | 9 +++++++++
+ 1 file changed, 9 insertions(+)
+
+diff --git a/dtschema/schemas/chosen.yaml b/dtschema/schemas/chosen.yaml
+index 6d5c3f1..96d0db7 100644
+--- a/dtschema/schemas/chosen.yaml
++++ b/dtschema/schemas/chosen.yaml
+@@ -264,4 +264,13 @@ properties:
+ patternProperties:
+   "^framebuffer": true
  
--static inline u32 clk_div_readl(struct clk_divider *divider)
--{
--	if (divider->flags & CLK_DIVIDER_BIG_ENDIAN)
--		return ioread32be(divider->reg);
--
--	return readl(divider->reg);
-+static inline u32 clk_div_read(struct clk_divider *divider)
-+{
-+	if (divider->flags & CLK_DIVIDER_REG_8BIT)
-+		return readb(divider->reg);
-+	else if (divider->flags & CLK_DIVIDER_REG_16BIT) {
-+		if (divider->flags & CLK_DIVIDER_BIG_ENDIAN)
-+			return ioread16be(divider->reg);
-+		else
-+			return readw(divider->reg);
-+	} else {
-+		if (divider->flags & CLK_DIVIDER_BIG_ENDIAN)
-+			return ioread32be(divider->reg);
-+		else
-+			return readl(divider->reg);
-+	}
- }
- 
--static inline void clk_div_writel(struct clk_divider *divider, u32 val)
-+static inline void clk_div_write(struct clk_divider *divider, u32 val)
- {
--	if (divider->flags & CLK_DIVIDER_BIG_ENDIAN)
--		iowrite32be(val, divider->reg);
--	else
--		writel(val, divider->reg);
-+	if (divider->flags & CLK_DIVIDER_REG_8BIT)
-+		writeb(val, divider->reg);
-+	else if (divider->flags & CLK_DIVIDER_REG_16BIT) {
-+		if (divider->flags & CLK_DIVIDER_BIG_ENDIAN)
-+			iowrite16be(val, divider->reg);
-+		else
-+			writew(val, divider->reg);
-+	} else {
-+		if (divider->flags & CLK_DIVIDER_BIG_ENDIAN)
-+			iowrite32be(val, divider->reg);
-+		else
-+			writel(val, divider->reg);
-+	}
- }
- 
- static unsigned int _get_table_maxdiv(const struct clk_div_table *table,
-@@ -152,7 +170,7 @@ static unsigned long clk_divider_recalc_rate(struct clk_hw *hw,
- 	struct clk_divider *divider = to_clk_divider(hw);
- 	unsigned int val;
- 
--	val = clk_div_readl(divider) >> divider->shift;
-+	val = clk_div_read(divider) >> divider->shift;
- 	val &= clk_div_mask(divider->width);
- 
- 	return divider_recalc_rate(hw, parent_rate, val, divider->table,
-@@ -434,7 +452,7 @@ static long clk_divider_round_rate(struct clk_hw *hw, unsigned long rate,
- 	if (divider->flags & CLK_DIVIDER_READ_ONLY) {
- 		u32 val;
- 
--		val = clk_div_readl(divider) >> divider->shift;
-+		val = clk_div_read(divider) >> divider->shift;
- 		val &= clk_div_mask(divider->width);
- 
- 		return divider_ro_round_rate(hw, rate, prate, divider->table,
-@@ -455,7 +473,7 @@ static int clk_divider_determine_rate(struct clk_hw *hw,
- 	if (divider->flags & CLK_DIVIDER_READ_ONLY) {
- 		u32 val;
- 
--		val = clk_div_readl(divider) >> divider->shift;
-+		val = clk_div_read(divider) >> divider->shift;
- 		val &= clk_div_mask(divider->width);
- 
- 		return divider_ro_determine_rate(hw, req, divider->table,
-@@ -505,11 +523,11 @@ static int clk_divider_set_rate(struct clk_hw *hw, unsigned long rate,
- 	if (divider->flags & CLK_DIVIDER_HIWORD_MASK) {
- 		val = clk_div_mask(divider->width) << (divider->shift + 16);
- 	} else {
--		val = clk_div_readl(divider);
-+		val = clk_div_read(divider);
- 		val &= ~(clk_div_mask(divider->width) << divider->shift);
- 	}
- 	val |= (u32)value << divider->shift;
--	clk_div_writel(divider, val);
-+	clk_div_write(divider, val);
- 
- 	if (divider->lock)
- 		spin_unlock_irqrestore(divider->lock, flags);
-@@ -538,7 +556,7 @@ struct clk_hw *__clk_hw_register_divider(struct device *dev,
- 		struct device_node *np, const char *name,
- 		const char *parent_name, const struct clk_hw *parent_hw,
- 		const struct clk_parent_data *parent_data, unsigned long flags,
--		void __iomem *reg, u8 shift, u8 width, u8 clk_divider_flags,
-+		void __iomem *reg, u8 shift, u8 width, u32 clk_divider_flags,
- 		const struct clk_div_table *table, spinlock_t *lock)
- {
- 	struct clk_divider *div;
-@@ -610,7 +628,7 @@ EXPORT_SYMBOL_GPL(__clk_hw_register_divider);
- struct clk *clk_register_divider_table(struct device *dev, const char *name,
- 		const char *parent_name, unsigned long flags,
- 		void __iomem *reg, u8 shift, u8 width,
--		u8 clk_divider_flags, const struct clk_div_table *table,
-+		u32 clk_divider_flags, const struct clk_div_table *table,
- 		spinlock_t *lock)
- {
- 	struct clk_hw *hw;
-@@ -664,7 +682,7 @@ struct clk_hw *__devm_clk_hw_register_divider(struct device *dev,
- 		struct device_node *np, const char *name,
- 		const char *parent_name, const struct clk_hw *parent_hw,
- 		const struct clk_parent_data *parent_data, unsigned long flags,
--		void __iomem *reg, u8 shift, u8 width, u8 clk_divider_flags,
-+		void __iomem *reg, u8 shift, u8 width, u32 clk_divider_flags,
- 		const struct clk_div_table *table, spinlock_t *lock)
- {
- 	struct clk_hw **ptr, *hw;
-diff --git a/drivers/clk/clk-gate.c b/drivers/clk/clk-gate.c
-index 68e585a02fd9..8a7e97e8dc73 100644
---- a/drivers/clk/clk-gate.c
-+++ b/drivers/clk/clk-gate.c
-@@ -24,20 +24,38 @@
-  * parent - fixed parent.  No clk_set_parent support
-  */
- 
--static inline u32 clk_gate_readl(struct clk_gate *gate)
-+static inline u32 clk_gate_read(struct clk_gate *gate)
- {
--	if (gate->flags & CLK_GATE_BIG_ENDIAN)
--		return ioread32be(gate->reg);
--
--	return readl(gate->reg);
-+	if (gate->flags & CLK_GATE_REG_8BIT)
-+		return readb(gate->reg);
-+	else if (gate->flags & CLK_GATE_REG_16BIT) {
-+		if (gate->flags & CLK_GATE_BIG_ENDIAN)
-+			return ioread16be(gate->reg);
-+		else
-+			return readw(gate->reg);
-+	} else {
-+		if (gate->flags & CLK_GATE_BIG_ENDIAN)
-+			return ioread32be(gate->reg);
-+		else
-+			return readl(gate->reg);
-+	}
- }
- 
--static inline void clk_gate_writel(struct clk_gate *gate, u32 val)
-+static inline void clk_gate_write(struct clk_gate *gate, u32 val)
- {
--	if (gate->flags & CLK_GATE_BIG_ENDIAN)
--		iowrite32be(val, gate->reg);
--	else
--		writel(val, gate->reg);
-+	if (gate->flags & CLK_GATE_REG_8BIT)
-+		writeb(val, gate->reg);
-+	else if (gate->flags & CLK_GATE_REG_16BIT) {
-+		if (gate->flags & CLK_GATE_BIG_ENDIAN)
-+			iowrite16be(val, gate->reg);
-+		else
-+			writew(val, gate->reg);
-+	} else {
-+		if (gate->flags & CLK_GATE_BIG_ENDIAN)
-+			iowrite32be(val, gate->reg);
-+		else
-+			writel(val, gate->reg);
-+	}
- }
- 
- /*
-@@ -72,7 +90,7 @@ static void clk_gate_endisable(struct clk_hw *hw, int enable)
- 		if (set)
- 			reg |= BIT(gate->bit_idx);
- 	} else {
--		reg = clk_gate_readl(gate);
-+		reg = clk_gate_read(gate);
- 
- 		if (set)
- 			reg |= BIT(gate->bit_idx);
-@@ -80,7 +98,7 @@ static void clk_gate_endisable(struct clk_hw *hw, int enable)
- 			reg &= ~BIT(gate->bit_idx);
- 	}
- 
--	clk_gate_writel(gate, reg);
-+	clk_gate_write(gate, reg);
- 
- 	if (gate->lock)
- 		spin_unlock_irqrestore(gate->lock, flags);
-@@ -105,7 +123,7 @@ int clk_gate_is_enabled(struct clk_hw *hw)
- 	u32 reg;
- 	struct clk_gate *gate = to_clk_gate(hw);
- 
--	reg = clk_gate_readl(gate);
-+	reg = clk_gate_read(gate);
- 
- 	/* if a set bit disables this clk, flip it before masking */
- 	if (gate->flags & CLK_GATE_SET_TO_DISABLE)
-@@ -143,6 +161,18 @@ struct clk_hw *__clk_hw_register_gate(struct device *dev,
- 			return ERR_PTR(-EINVAL);
- 		}
- 	}
-+	if (clk_gate_flags & CLK_GATE_REG_16BIT) {
-+		if (bit_idx > 15) {
-+			pr_err("gate bit exceeds 16 bits\n");
-+			return ERR_PTR(-EINVAL);
-+		}
-+	}
-+	if (clk_gate_flags & CLK_GATE_REG_8BIT) {
-+		if (bit_idx > 7) {
-+			pr_err("gate bit exceeds 8 bits\n");
-+			return ERR_PTR(-EINVAL);
-+		}
-+	}
- 
- 	/* allocate the gate */
- 	gate = kzalloc(sizeof(*gate), GFP_KERNEL);
-diff --git a/include/linux/clk-provider.h b/include/linux/clk-provider.h
-index ace3a4ce2fc9..e2dfc1f083f4 100644
---- a/include/linux/clk-provider.h
-+++ b/include/linux/clk-provider.h
-@@ -508,12 +508,16 @@ void of_fixed_clk_setup(struct device_node *np);
-  * CLK_GATE_BIG_ENDIAN - by default little endian register accesses are used for
-  *	the gate register.  Setting this flag makes the register accesses big
-  *	endian.
-+ * CLK_GATE_REG_8BIT - by default 32bit register accesses are used for
-+ *	the gate register.  Setting this flag makes the register accesses 8bit.
-+ * CLK_GATE_REG_16BIT - by default 32bit register accesses are used for
-+ *	the gate register.  Setting this flag makes the register accesses 16bit.
-  */
- struct clk_gate {
- 	struct clk_hw hw;
- 	void __iomem	*reg;
- 	u8		bit_idx;
--	u8		flags;
-+	u32		flags;
- 	spinlock_t	*lock;
- };
- 
-@@ -522,6 +526,8 @@ struct clk_gate {
- #define CLK_GATE_SET_TO_DISABLE		BIT(0)
- #define CLK_GATE_HIWORD_MASK		BIT(1)
- #define CLK_GATE_BIG_ENDIAN		BIT(2)
-+#define CLK_GATE_REG_8BIT		BIT(3)
-+#define CLK_GATE_REG_16BIT		BIT(4)
- 
- extern const struct clk_ops clk_gate_ops;
- struct clk_hw *__clk_hw_register_gate(struct device *dev,
-@@ -675,13 +681,17 @@ struct clk_div_table {
-  * CLK_DIVIDER_BIG_ENDIAN - By default little endian register accesses are used
-  *	for the divider register.  Setting this flag makes the register accesses
-  *	big endian.
-+ * CLK_DIVIDER_REG_8BIT - by default 32bit register accesses are used for
-+ *	the gate register.  Setting this flag makes the register accesses 8bit.
-+ * CLK_DIVIDER_REG_16BIT - by default 32bit register accesses are used for
-+ *	the gate register.  Setting this flag makes the register accesses 16bit.
-  */
- struct clk_divider {
- 	struct clk_hw	hw;
- 	void __iomem	*reg;
- 	u8		shift;
- 	u8		width;
--	u8		flags;
-+	u16		flags;
- 	const struct clk_div_table	*table;
- 	spinlock_t	*lock;
- };
-@@ -697,6 +707,8 @@ struct clk_divider {
- #define CLK_DIVIDER_READ_ONLY		BIT(5)
- #define CLK_DIVIDER_MAX_AT_ZERO		BIT(6)
- #define CLK_DIVIDER_BIG_ENDIAN		BIT(7)
-+#define CLK_DIVIDER_REG_8BIT		BIT(8)
-+#define CLK_DIVIDER_REG_16BIT		BIT(9)
- 
- extern const struct clk_ops clk_divider_ops;
- extern const struct clk_ops clk_divider_ro_ops;
-@@ -726,18 +738,18 @@ struct clk_hw *__clk_hw_register_divider(struct device *dev,
- 		struct device_node *np, const char *name,
- 		const char *parent_name, const struct clk_hw *parent_hw,
- 		const struct clk_parent_data *parent_data, unsigned long flags,
--		void __iomem *reg, u8 shift, u8 width, u8 clk_divider_flags,
-+		void __iomem *reg, u8 shift, u8 width, u32 clk_divider_flags,
- 		const struct clk_div_table *table, spinlock_t *lock);
- struct clk_hw *__devm_clk_hw_register_divider(struct device *dev,
- 		struct device_node *np, const char *name,
- 		const char *parent_name, const struct clk_hw *parent_hw,
- 		const struct clk_parent_data *parent_data, unsigned long flags,
--		void __iomem *reg, u8 shift, u8 width, u8 clk_divider_flags,
-+		void __iomem *reg, u8 shift, u8 width, u32 clk_divider_flags,
- 		const struct clk_div_table *table, spinlock_t *lock);
- struct clk *clk_register_divider_table(struct device *dev, const char *name,
- 		const char *parent_name, unsigned long flags,
- 		void __iomem *reg, u8 shift, u8 width,
--		u8 clk_divider_flags, const struct clk_div_table *table,
-+		u32 clk_divider_flags, const struct clk_div_table *table,
- 		spinlock_t *lock);
- /**
-  * clk_register_divider - register a divider clock with the clock framework
++  "^openwrt,led-(boot|failsafe|running|upgrade)$":
++    $ref: types.yaml#/definitions/string
++    description:
++      OpenWrt choice of LED for a given role. Value must be a full path (encoded
++      as a string) to a relevant LED node.
++
++      Property user may use specified path to control proper LED during current
++      system boot phase.
++
+ additionalProperties: false
 -- 
-2.39.2
+2.35.3
 
 
