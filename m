@@ -1,64 +1,65 @@
-Return-Path: <devicetree+bounces-30585-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30586-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 962D982846A
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 12:00:31 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD3A782846E
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 12:02:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AC3041C23EA1
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 11:00:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 86B2A286E38
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 11:02:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1040336AE7;
-	Tue,  9 Jan 2024 11:00:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C3E736AEB;
+	Tue,  9 Jan 2024 11:02:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="bRILDwLB"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Nu2hZIV8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
+Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76B7236AE3
-	for <devicetree@vger.kernel.org>; Tue,  9 Jan 2024 11:00:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A01D236AE4
+	for <devicetree@vger.kernel.org>; Tue,  9 Jan 2024 11:02:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-55817a12ad8so369347a12.2
-        for <devicetree@vger.kernel.org>; Tue, 09 Jan 2024 03:00:23 -0800 (PST)
+Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-2cd17a979bcso30612991fa.0
+        for <devicetree@vger.kernel.org>; Tue, 09 Jan 2024 03:02:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704798022; x=1705402822; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=P9AnFxJp5IBwfoS8c8LGaJzOItzvoIUx6a5NFynyjyg=;
-        b=bRILDwLBGgsU3Q8+3ZOVJyD8i/NqogTOCLgLfED1ch1xrS+y3k9aQi8vxCTjSIe4CH
-         qFK2GZxT8LYOMLKo4OBzexVwYKTVyvQpOWqR+/wQEJXgMUTOKiulojf5gUljRMHeAFHX
-         McLi872P2Eb8Ddrw+VEe57o8EmE7LvKQ82GYPovNmPsqeAcqWyjFZd8rD2lM28gxo2l3
-         j/l4OGte9rVtAwmdlL/hpdhvyXeMyc0KEbsi2A11zbU4TwsU9+mH9AD+XZsMSIOAjUwQ
-         2550i3iF065srHuVhLDfsGvQVqin6TFHr3UMpyfspcSb2BCgkk2EIYBiO5yBT4OhQfYo
-         0XIA==
+        d=linaro.org; s=google; t=1704798133; x=1705402933; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:references:cc:to
+         :from:content-language:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=qjEBeMVZO+GpeXATKF6hgJ16lKyNKvKxQRD5r7G4Ngg=;
+        b=Nu2hZIV8yMdoecBZfuJDBD6opKc6tQzikL1VjrG447Rax2ADgZHtWnQyvFfRh07wSc
+         PZ//bop3tJ2YXy+m8knCsN6GVGVRSxXR46QAVSSFIOjrp2IO3Xzpa16K6JkMnn0xpPZK
+         Z54oJWwZq7fjzAJ1EHc1KwXEpem0Bp0FulVq8xxemZqdwWza0SEdCtyFZufHJgShxVzZ
+         A2jBg0Czp1VBVfzmvO3tg+oUToKMWacIewU1oVzNojf8EByj5rHfrool+D/oXjnegq3R
+         LGPo/cqFIsAdnt1QhrdCzv8KqIDHJuaeKLEg7Wfk96fRzB3f+zXUxIyuYEy2pfz98wXV
+         uqeQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704798022; x=1705402822;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=P9AnFxJp5IBwfoS8c8LGaJzOItzvoIUx6a5NFynyjyg=;
-        b=L+Fcc+yAokuPkwDR/Kj7nPj41vYrQR3qF3ecieMwAaLsZSWnr450BTvVJffTW+aQrN
-         H9twyd7clbHo7uAsiceafEn7OqXvgHyfIj4r3EdPDws6pHormHU0im324zOX1SSB6U94
-         F7oDl47gE7twg5w3VZ3VXTAOACy9AQg22D/BrsGksivLYLOD9n0ioHNjCKpkFgFsqdCM
-         jDWvTv4ZSrhKqRYHDiSy6lgc1pTYeiKszEGlYx2FvhQPUJl/c9by3FEXgPvqjR9n7Hzk
-         MPGvq9UCBVTeoYwMIUr+vkSXkKgnXRCIwin8nCfyfEBdzp9anmhi74/xsc+69eQKpRcj
-         vYhQ==
-X-Gm-Message-State: AOJu0Yx6jgACP4AQqB7RJi/rKUI0YiubbwzXigditqgaFwNKSHy2OYdA
-	yWVzYjzfh1Bu5lNjik3bRbZwZf6e0VQrow==
-X-Google-Smtp-Source: AGHT+IEiXSw9p+f9Vll7+bZg1H3TuCf+aRa0RByS9yDfZOzF1kPgXALIKCxVwNzlGs/OJUU13B4J3g==
-X-Received: by 2002:a17:906:f587:b0:a28:e441:7998 with SMTP id cm7-20020a170906f58700b00a28e4417998mr705980ejd.108.1704798021750;
-        Tue, 09 Jan 2024 03:00:21 -0800 (PST)
+        d=1e100.net; s=20230601; t=1704798133; x=1705402933;
+        h=content-transfer-encoding:in-reply-to:autocrypt:references:cc:to
+         :from:content-language:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=qjEBeMVZO+GpeXATKF6hgJ16lKyNKvKxQRD5r7G4Ngg=;
+        b=OBHo8HAIFlcAWrFhfXQL1S/0j09yj5I7xV8pneK51YEFxTMT8BQ00pt4PN1nG6Cox9
+         G30jXGntCUy/o4xsPhibjTV7oueOG/Ge1Wujy9YuemQCwZr4ZHAYdD56ReWBCz8M/rb3
+         t3oyU5FVlc3pa4B1jjqGraV3A94Q5oVrIwOSUzP8ebr9mZzZal2iUvkH6Hl2EiIJb84p
+         ZMXMwBCmf2A/rn3cYM0C0PuQInPLWsIZwYWQNgigvTaEcbQ7vm8cVO7+OT6T9Kct39l4
+         QTKS1pabWPhbIlG+8xwWIk6pxQ4ATldTd9HQx7JvjJdtHKZ0o0mHiBYnxXAMmrEK7VpS
+         8+Tw==
+X-Gm-Message-State: AOJu0YyZXTXk1eoK9IubGbwp5Xjr0OBZABIddrftYsSVowmJWyy2i0mw
+	MI2jRquoo9BmqUka6SzXxot+Kvgk9VED9A==
+X-Google-Smtp-Source: AGHT+IGAZJPNAXDiD4PGBbNu0LPSlOLVTkKlUMxVzi19VHVEBENAevrBqsf9Gn0fK+yLtu4X1OOLkQ==
+X-Received: by 2002:a05:6512:2251:b0:50e:7fe4:cb9e with SMTP id i17-20020a056512225100b0050e7fe4cb9emr1432194lfu.165.1704798133531;
+        Tue, 09 Jan 2024 03:02:13 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.223.112])
-        by smtp.gmail.com with ESMTPSA id d11-20020a170906344b00b00a26a061ae1esm908636ejb.97.2024.01.09.03.00.19
+        by smtp.gmail.com with ESMTPSA id b16-20020a170906195000b00a28a8a7de10sm896738eje.159.2024.01.09.03.02.11
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 09 Jan 2024 03:00:21 -0800 (PST)
-Message-ID: <936b7c75-980d-453b-b4e7-30db8633e7c1@linaro.org>
-Date: Tue, 9 Jan 2024 12:00:19 +0100
+        Tue, 09 Jan 2024 03:02:12 -0800 (PST)
+Message-ID: <76cab916-782b-45fb-8ef4-52a76bde5530@linaro.org>
+Date: Tue, 9 Jan 2024 12:02:10 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,26 +67,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/4] reset: gpio: Add GPIO-based reset controller
+Subject: Re: [v2 1/2] dt-bindings: display: panel: Add Novatek NT36672E LCD
+ DSI
 Content-Language: en-US
-To: Philipp Zabel <p.zabel@pengutronix.de>,
- Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
- Banajit Goswami <bgoswami@quicinc.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Liam Girdwood
- <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
- Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
- linux-arm-msm@vger.kernel.org, linux-sound@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: Bartosz Golaszewski <brgl@bgdev.pl>,
- Sean Anderson <sean.anderson@seco.com>
-References: <20240105155918.279657-1-krzysztof.kozlowski@linaro.org>
- <20240105155918.279657-2-krzysztof.kozlowski@linaro.org>
- <eb41618782e1cd80d469a65bcdbf640ebbfb4f5c.camel@pengutronix.de>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Ritesh Kumar <quic_riteshk@quicinc.com>, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: neil.armstrong@linaro.org, quic_jesszhan@quicinc.com, sam@ravnborg.org,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
+ airlied@gmail.com, daniel@ffwll.ch, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ quic_abhinavk@quicinc.com, quic_rajeevny@quicinc.com,
+ quic_vproddut@quicinc.com, sumit.semwal@linaro.org
+References: <20240108095902.22725-1-quic_riteshk@quicinc.com>
+ <20240108095902.22725-2-quic_riteshk@quicinc.com>
+ <4ca08b91-a950-43cc-946a-932afd855f9a@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -130,34 +126,45 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <eb41618782e1cd80d469a65bcdbf640ebbfb4f5c.camel@pengutronix.de>
+In-Reply-To: <4ca08b91-a950-43cc-946a-932afd855f9a@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 08/01/2024 13:21, Philipp Zabel wrote:
-> On Fr, 2024-01-05 at 16:59 +0100, Krzysztof Kozlowski wrote:
->> Add a simple driver to control GPIO-based resets using the reset
->> controller API for the cases when the GPIOs are shared and reset should
->> be coordinated.  The driver is expected to be used by reset core
->> framework for ad-hoc reset controllers.
+On 08/01/2024 11:07, Krzysztof Kozlowski wrote:
+> On 08/01/2024 10:59, Ritesh Kumar wrote:
+>> Document Novatek NT36672E FHD+ LCD DSI panel.
+>>
+>> Signed-off-by: Ritesh Kumar <quic_riteshk@quicinc.com>
+>>
+>> ---
+>> v2: Fixed review comments from Krzysztof
 > 
-> I don't know how evil it is to set a parent-less platform device's
-> of_node to another device's node, but I like the simplicity of a
-> single-GPIO reset controller driver more that I had expected.
-> 
-> [...]
->> diff --git a/drivers/reset/reset-gpio.c b/drivers/reset/reset-gpio.c
->> new file mode 100644
->> index 000000000000..cf0a867cbc5f
->> --- /dev/null
->> +++ b/drivers/reset/reset-gpio.c
->> @@ -0,0 +1,121 @@
-> [...]
->> +static void reset_gpio_of_args_put(void *data)
-> 
-> This should probably be called reset_gpio_of_node_put().
+> Please use standard email subjects, so with the PATCH keyword in the
+> title. `git format-patch` helps here to create proper versioned patches.
+> Another useful tool is b4. Skipping the PATCH keyword makes filtering of
+> emails more difficult thus making the review process less convenient.
 
-Ack
+That was for the future (I understand making that mistake once with your
+v1, but that's v2), no need to resend only for this.
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+
+---
+
+This is an automated instruction, just in case, because many review tags
+are being ignored. If you know the process, you can skip it (please do
+not feel offended by me posting it here - no bad intentions intended).
+If you do not know the process, here is a short explanation:
+
+Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+versions, under or above your Signed-off-by tag. Tag is "received", when
+provided in a message replied to you on the mailing list. Tools like b4
+can help here. However, there's no need to repost patches *only* to add
+the tags. The upstream maintainer will do that for tags received on the
+version they apply.
+
+https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
 
 Best regards,
 Krzysztof
