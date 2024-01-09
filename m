@@ -1,237 +1,139 @@
-Return-Path: <devicetree+bounces-30415-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30416-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 240F3827DF3
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 05:46:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 62CEA827E0C
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 06:07:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 89BD61F24581
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 04:46:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CC0BC1F244BA
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 05:07:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F59B612E;
-	Tue,  9 Jan 2024 04:46:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1A9D63B;
+	Tue,  9 Jan 2024 05:07:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="YhxfF+8k"
+	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="Dfo/g4Gi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
+Received: from NAM04-MW2-obe.outbound.protection.outlook.com (mail-mw2nam04on2059.outbound.protection.outlook.com [40.107.101.59])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF0E91371;
-	Tue,  9 Jan 2024 04:46:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1704775578; x=1736311578;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=qRDK6Oo9AgDzs3fiuyV3rGxNrCnaC1HrYpHIF810WxY=;
-  b=YhxfF+8kziYysYFxLr+RNmFI2iIg0W8OROPXT5phmpgHUkugQNncSdwu
-   4aL5UpaC2kSSZs9waA9/waEwiN7zmk1WmKvJb6xtrlT9MpQZzO71wmK2Z
-   j72mlb2RHR06H3RgknlqXyMZf2JJGiIL4dCBZ3pal7V7jNRyGXubH/g7G
-   AIgiLsxsVW5QCdSa1rZeRgnhgWigwvgaZzR/IUp8eQLqQLB54widxHMEn
-   zInDRq3oB/efPGJgW70ZIlw9BumTNE7kwBSUlFEObq2+W/HAiKfVXnvQ9
-   9r9CkFysOxcea0njbClPX4EFDnInjN2kHzUsi0iJxnNxRCWzQ7455KQli
-   A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10947"; a="395242008"
-X-IronPort-AV: E=Sophos;i="6.04,181,1695711600"; 
-   d="scan'208";a="395242008"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Jan 2024 20:46:16 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10947"; a="900617596"
-X-IronPort-AV: E=Sophos;i="6.04,181,1695711600"; 
-   d="scan'208";a="900617596"
-Received: from lkp-server02.sh.intel.com (HELO b07ab15da5fe) ([10.239.97.151])
-  by fmsmga002.fm.intel.com with ESMTP; 08 Jan 2024 20:46:13 -0800
-Received: from kbuild by b07ab15da5fe with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1rN40B-0005TY-0t;
-	Tue, 09 Jan 2024 04:46:11 +0000
-Date: Tue, 9 Jan 2024 12:45:15 +0800
-From: kernel test robot <lkp@intel.com>
-To: James Tai <james.tai@realtek.com>, Thomas Gleixner <tglx@linutronix.de>,
-	Marc Zyngier <maz@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: oe-kbuild-all@lists.linux.dev, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 4/6] irqchip: Introduce RTD1319D support using the
- Realtek common interrupt controller driver
-Message-ID: <202401091218.1mO2PJxw-lkp@intel.com>
-References: <20231228060825.1380439-5-james.tai@realtek.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5576F639;
+	Tue,  9 Jan 2024 05:07:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=b5Xtz4ZFFFUVvoO45Sw9TbI7Mq7bI1Ow8nimWveeJqRTZ0e/iod8t++vwzCiiODPe6VDXHCqFjD1aIDGzINEPokNZ/9QNW6tpX2duLgvrv8t7GqzyJoZwaDWeidhnVi25xPSbcZgoEeyt48gR+Q0ZIxtscWAIWDMiCY3CiQwKtL7ebv2w/lDZdO13tOdm1Gke68oLUgRAhBnZSGygGaK7uTgbapye/ruehMt++5ONOUxBYMowAIHyEOH6KnDbfJSa4MpFQjDuET4nuXhbEKQm/v72Q3uPct0nrXsNSPb3Im26hr9L0vGT76iWljH+VuEYdalaEzvn8LNzIcoRH9iwA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=6AMy3VJyk0bfRu6mwzej14nLb9kH1tjkqa1R6d3hsB0=;
+ b=ffQkeJkE2bDPp2+eR8ZersfrVtClMsHhdDonnJqRd3jXN7uEgHKn6BDyXo2aobiLYMdj6pUakjZGHjryJmxtGT4HjY5DOfjUBcuNwIi1oa72N63m9m923MtKmNtvEMXGCpYum0DySSPZqiuSWVou60DX/fOnZmRresFWQZid/S3LWwLMjcY5zLViFD5iX441/eKKyCBS3CpZmMfku3J8xN1az4j5If1hMX+uddRDkh7pcQttCfP3FieHZUmt9olxHrh5THGqthTSe27uZsJOecWP0VD0r14gpqeibFNdh/AJMrPswHLx35hOhgOmCXlGYgYv1c5MMWybFB/3CoXyUg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.118.232) smtp.rcpttodomain=kernel.org smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=6AMy3VJyk0bfRu6mwzej14nLb9kH1tjkqa1R6d3hsB0=;
+ b=Dfo/g4Gi7k1KQWUrXLtZw8mgoveqyGysngHb2ivgeNNOsHvaXGfqe3h/oWB/5ZnyuVmwHaDT60neKmu3tpl/r7aZZ8NFuqfOGGVf8TGT9GKyrmLGOCFtqZ5fi9Z8XSSKUitsT8M9FUV+X7bccWIMiua/52CdS+1dkzTsDjJ2SPY4vLYScDlKfY7V8MUBH33TO6/7S2pwoiLBB4xjuDXERRILDIDD3lEWfZtaRWkZ6OuJNnf4woYhKZJ5TTR0s65oBg56YRjnxTqgT2EB069wCxjmrNYYsVXJIFYFVxp0+UDkkov1HHsYLVB5rBeyLEFkF1zcHwWi3XkH9zO8Vtwv7Q==
+Received: from DM6PR21CA0027.namprd21.prod.outlook.com (2603:10b6:5:174::37)
+ by PH8PR12MB8431.namprd12.prod.outlook.com (2603:10b6:510:25a::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7159.23; Tue, 9 Jan
+ 2024 05:07:14 +0000
+Received: from SA2PEPF00001505.namprd04.prod.outlook.com
+ (2603:10b6:5:174:cafe::c) by DM6PR21CA0027.outlook.office365.com
+ (2603:10b6:5:174::37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7202.6 via Frontend
+ Transport; Tue, 9 Jan 2024 05:07:14 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.118.232)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.118.232 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.118.232; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.118.232) by
+ SA2PEPF00001505.mail.protection.outlook.com (10.167.242.37) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.7181.13 via Frontend Transport; Tue, 9 Jan 2024 05:07:13 +0000
+Received: from drhqmail202.nvidia.com (10.126.190.181) by mail.nvidia.com
+ (10.127.129.5) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.41; Mon, 8 Jan 2024
+ 21:06:59 -0800
+Received: from drhqmail202.nvidia.com (10.126.190.181) by
+ drhqmail202.nvidia.com (10.126.190.181) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.41; Mon, 8 Jan 2024 21:06:58 -0800
+Received: from vidyas-desktop.nvidia.com (10.127.8.9) by mail.nvidia.com
+ (10.126.190.181) with Microsoft SMTP Server id 15.2.986.41 via Frontend
+ Transport; Mon, 8 Jan 2024 21:06:54 -0800
+From: Vidya Sagar <vidyas@nvidia.com>
+To: <lpieralisi@kernel.org>, <kw@linux.com>, <robh@kernel.org>,
+	<bhelgaas@google.com>, <krzysztof.kozlowski+dt@linaro.org>,
+	<conor+dt@kernel.org>, <will@kernel.org>, <frowand.list@gmail.com>
+CC: <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<treding@nvidia.com>, <jonathanh@nvidia.com>, <kthota@nvidia.com>,
+	<mmaddireddy@nvidia.com>, <vidyas@nvidia.com>, <sagar.tv@gmail.com>
+Subject: [PATCH V1 0/2] Add support to preserve boot config in the DT flow
+Date: Tue, 9 Jan 2024 10:36:46 +0530
+Message-ID: <20240109050648.1347255-1-vidyas@nvidia.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231228060825.1380439-5-james.tai@realtek.com>
+X-NVConfidentiality: public
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-NV-OnPremToCloud: ExternallySecured
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SA2PEPF00001505:EE_|PH8PR12MB8431:EE_
+X-MS-Office365-Filtering-Correlation-Id: a14472d5-192d-467e-19fd-08dc10d0d7d9
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	MYb6IbxhLtyMAtL2y4FYs5GTiMbxn3UAfimNZUjbHEPM2iB4+z84K2Cm4vCsxAhNdTMzWfIRAsMrIrYugh/JeG09ddS5htuzgolT5Y32KJOUoSNXxLhp/RWtkkZjKT9t6iyYvGUuRHk87VGTy3yPyPSo4GTV7tnBXWEA64fXHFbYPDWaudljgl5GcJLKX4rYVnQyL8NPaFsLxS5Sv5nlyeXKal1lv0tXvradmxUrLVLXTJKSFPW94RHqoQuZ+2HD4z3FjDhXIjWnglAaW2tuvkY79E0+1l80qActFB1MZD+wpe1M/JPLSn4In7pWlzgmYFvruJj45dT8srcdwpRT8UuvtC1uxRprGltcmyHmEpYhYEWZlhHysMmPmOBDHdKmqxzeAKbCMJfzAAtngS4bKI8YvIsPE2D49ZtM3uYl66+5yZS685jAZX68x0BiPSpDUUFZtsFz+sOO7kW7EZyor/pVAIkXnFa8NetoDiS29i8CekRc7QBbfwgrrwXRaSl+BiuP6ceCfYntJrGM4jADcgMJcN9ljaxIgu99tXJ/+XwER9kfkSR4LfrWEs4nyYzwsFJ9aZgljJQMZvNCN12XpuiMwIOxwHJjq0GOwh2hUJcVY9FSX3GiwtEKe7XfNEdAEPw1CeiAleOoe8bga+1WT1s893VQZEVLm27G/k3uCaKyDWAWw69PtmycP4W2ynrY2BOkGdytb9m1L80ZEBTMj6INLOc4agac/MD4vwg22SSeOkckZIW8YrzPpv1ccn5h
+X-Forefront-Antispam-Report:
+	CIP:216.228.118.232;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc7edge1.nvidia.com;CAT:NONE;SFS:(13230031)(4636009)(39860400002)(396003)(136003)(346002)(376002)(230922051799003)(451199024)(1800799012)(186009)(82310400011)(64100799003)(40470700004)(36840700001)(46966006)(83380400001)(1076003)(336012)(26005)(426003)(2616005)(82740400003)(47076005)(36860700001)(4326008)(8676002)(8936002)(4744005)(7416002)(5660300002)(2906002)(7696005)(54906003)(6666004)(478600001)(110136005)(316002)(41300700001)(70206006)(70586007)(7636003)(356005)(36756003)(86362001)(40480700001)(40460700003);DIR:OUT;SFP:1101;
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jan 2024 05:07:13.9089
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: a14472d5-192d-467e-19fd-08dc10d0d7d9
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.118.232];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	SA2PEPF00001505.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR12MB8431
 
-Hi James,
+Add support to preserve the boot configuration of the PCIe bridges per
+host bridge basis based on the presence of the DT flag "preserve-boot-config"
+in the respective host bridge node. The existing "linux,pci-probe-only" works
+at a system level and can't be used at a single host bridge granularity.
+Also, the support for preserving the boot configuration per host bridge basis
+is already present for the ACPI based boot flow and this patch series extends
+that support for the DT based boot flow.
 
-kernel test robot noticed the following build errors:
+Vidya Sagar (2):
+  dt-bindings: Add PCIe "preserve-boot-config" property
+  PCI: Add support for "preserve-boot-config" property
 
-[auto build test ERROR on tip/irq/core]
-[also build test ERROR on robh/for-next linus/master v6.7 next-20240108]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/James-Tai/dt-bindings-interrupt-controller-Add-support-for-Realtek-DHC-SoCs/20231228-141213
-base:   tip/irq/core
-patch link:    https://lore.kernel.org/r/20231228060825.1380439-5-james.tai%40realtek.com
-patch subject: [PATCH v4 4/6] irqchip: Introduce RTD1319D support using the Realtek common interrupt controller driver
-config: s390-randconfig-r113-20240109 (https://download.01.org/0day-ci/archive/20240109/202401091218.1mO2PJxw-lkp@intel.com/config)
-compiler: clang version 18.0.0git (https://github.com/llvm/llvm-project 7e186d366d6c7def0543acc255931f617e76dff0)
-reproduce: (https://download.01.org/0day-ci/archive/20240109/202401091218.1mO2PJxw-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202401091218.1mO2PJxw-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   In file included from drivers/irqchip/irq-realtek-intc-common.c:8:
-   In file included from include/linux/irqchip.h:17:
-   In file included from include/linux/of_irq.h:7:
-   In file included from include/linux/irq.h:20:
-   In file included from include/linux/io.h:13:
-   In file included from arch/s390/include/asm/io.h:78:
-   include/asm-generic/io.h:547:31: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     547 |         val = __raw_readb(PCI_IOBASE + addr);
-         |                           ~~~~~~~~~~ ^
-   include/asm-generic/io.h:560:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     560 |         val = __le16_to_cpu((__le16 __force)__raw_readw(PCI_IOBASE + addr));
-         |                                                         ~~~~~~~~~~ ^
-   include/uapi/linux/byteorder/big_endian.h:37:59: note: expanded from macro '__le16_to_cpu'
-      37 | #define __le16_to_cpu(x) __swab16((__force __u16)(__le16)(x))
-         |                                                           ^
-   include/uapi/linux/swab.h:102:54: note: expanded from macro '__swab16'
-     102 | #define __swab16(x) (__u16)__builtin_bswap16((__u16)(x))
-         |                                                      ^
-   In file included from drivers/irqchip/irq-realtek-intc-common.c:8:
-   In file included from include/linux/irqchip.h:17:
-   In file included from include/linux/of_irq.h:7:
-   In file included from include/linux/irq.h:20:
-   In file included from include/linux/io.h:13:
-   In file included from arch/s390/include/asm/io.h:78:
-   include/asm-generic/io.h:573:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     573 |         val = __le32_to_cpu((__le32 __force)__raw_readl(PCI_IOBASE + addr));
-         |                                                         ~~~~~~~~~~ ^
-   include/uapi/linux/byteorder/big_endian.h:35:59: note: expanded from macro '__le32_to_cpu'
-      35 | #define __le32_to_cpu(x) __swab32((__force __u32)(__le32)(x))
-         |                                                           ^
-   include/uapi/linux/swab.h:115:54: note: expanded from macro '__swab32'
-     115 | #define __swab32(x) (__u32)__builtin_bswap32((__u32)(x))
-         |                                                      ^
-   In file included from drivers/irqchip/irq-realtek-intc-common.c:8:
-   In file included from include/linux/irqchip.h:17:
-   In file included from include/linux/of_irq.h:7:
-   In file included from include/linux/irq.h:20:
-   In file included from include/linux/io.h:13:
-   In file included from arch/s390/include/asm/io.h:78:
-   include/asm-generic/io.h:584:33: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     584 |         __raw_writeb(value, PCI_IOBASE + addr);
-         |                             ~~~~~~~~~~ ^
-   include/asm-generic/io.h:594:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     594 |         __raw_writew((u16 __force)cpu_to_le16(value), PCI_IOBASE + addr);
-         |                                                       ~~~~~~~~~~ ^
-   include/asm-generic/io.h:604:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     604 |         __raw_writel((u32 __force)cpu_to_le32(value), PCI_IOBASE + addr);
-         |                                                       ~~~~~~~~~~ ^
-   include/asm-generic/io.h:692:20: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     692 |         readsb(PCI_IOBASE + addr, buffer, count);
-         |                ~~~~~~~~~~ ^
-   include/asm-generic/io.h:700:20: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     700 |         readsw(PCI_IOBASE + addr, buffer, count);
-         |                ~~~~~~~~~~ ^
-   include/asm-generic/io.h:708:20: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     708 |         readsl(PCI_IOBASE + addr, buffer, count);
-         |                ~~~~~~~~~~ ^
-   include/asm-generic/io.h:717:21: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     717 |         writesb(PCI_IOBASE + addr, buffer, count);
-         |                 ~~~~~~~~~~ ^
-   include/asm-generic/io.h:726:21: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     726 |         writesw(PCI_IOBASE + addr, buffer, count);
-         |                 ~~~~~~~~~~ ^
-   include/asm-generic/io.h:735:21: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     735 |         writesl(PCI_IOBASE + addr, buffer, count);
-         |                 ~~~~~~~~~~ ^
->> drivers/irqchip/irq-realtek-intc-common.c:204:3: error: call to undeclared function 'iounmap'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     204 |                 iounmap(data->base);
-         |                 ^
-   arch/s390/include/asm/io.h:29:17: note: expanded from macro 'iounmap'
-      29 | #define iounmap iounmap
-         |                 ^
-   drivers/irqchip/irq-realtek-intc-common.c:204:3: note: did you mean 'vunmap'?
-   arch/s390/include/asm/io.h:29:17: note: expanded from macro 'iounmap'
-      29 | #define iounmap iounmap
-         |                 ^
-   include/linux/vmalloc.h:167:13: note: 'vunmap' declared here
-     167 | extern void vunmap(const void *addr);
-         |             ^
-   12 warnings and 1 error generated.
-
-
-vim +/iounmap +204 drivers/irqchip/irq-realtek-intc-common.c
-
-59fe9dce1f284e James Tai 2023-12-28  161  
-59fe9dce1f284e James Tai 2023-12-28  162  int realtek_intc_probe(struct platform_device *pdev, const struct realtek_intc_info *info)
-59fe9dce1f284e James Tai 2023-12-28  163  {
-59fe9dce1f284e James Tai 2023-12-28  164  	struct realtek_intc_data *data;
-59fe9dce1f284e James Tai 2023-12-28  165  	struct device *dev = &pdev->dev;
-59fe9dce1f284e James Tai 2023-12-28  166  	struct device_node *node = dev->of_node;
-59fe9dce1f284e James Tai 2023-12-28  167  	int ret, i;
-59fe9dce1f284e James Tai 2023-12-28  168  
-59fe9dce1f284e James Tai 2023-12-28  169  	data = devm_kzalloc(dev, struct_size(data, subset_data, info->subset_num), GFP_KERNEL);
-59fe9dce1f284e James Tai 2023-12-28  170  	if (!data)
-59fe9dce1f284e James Tai 2023-12-28  171  		return -ENOMEM;
-59fe9dce1f284e James Tai 2023-12-28  172  
-59fe9dce1f284e James Tai 2023-12-28  173  	data->base = of_iomap(node, 0);
-59fe9dce1f284e James Tai 2023-12-28  174  	if (!data->base)
-59fe9dce1f284e James Tai 2023-12-28  175  		goto iomap_cleanup;
-59fe9dce1f284e James Tai 2023-12-28  176  
-59fe9dce1f284e James Tai 2023-12-28  177  	data->info = info;
-59fe9dce1f284e James Tai 2023-12-28  178  
-59fe9dce1f284e James Tai 2023-12-28  179  	raw_spin_lock_init(&data->lock);
-59fe9dce1f284e James Tai 2023-12-28  180  
-59fe9dce1f284e James Tai 2023-12-28  181  	data->domain = irq_domain_add_linear(node, 32, &realtek_intc_domain_ops, data);
-59fe9dce1f284e James Tai 2023-12-28  182  	if (!data->domain)
-59fe9dce1f284e James Tai 2023-12-28  183  		goto iomap_cleanup;
-59fe9dce1f284e James Tai 2023-12-28  184  
-59fe9dce1f284e James Tai 2023-12-28  185  	data->subset_data_num = info->subset_num;
-59fe9dce1f284e James Tai 2023-12-28  186  	for (i = 0; i < info->subset_num; i++) {
-59fe9dce1f284e James Tai 2023-12-28  187  		ret = realtek_intc_subset(node, data, i);
-59fe9dce1f284e James Tai 2023-12-28  188  		if (ret <= 0) {
-59fe9dce1f284e James Tai 2023-12-28  189  			dev_err(dev, "failed to init subset %d: %d", i, ret);
-59fe9dce1f284e James Tai 2023-12-28  190  			goto irq_domain_cleanup;
-59fe9dce1f284e James Tai 2023-12-28  191  		}
-59fe9dce1f284e James Tai 2023-12-28  192  	}
-59fe9dce1f284e James Tai 2023-12-28  193  
-59fe9dce1f284e James Tai 2023-12-28  194  	platform_set_drvdata(pdev, data);
-59fe9dce1f284e James Tai 2023-12-28  195  
-59fe9dce1f284e James Tai 2023-12-28  196  	return 0;
-59fe9dce1f284e James Tai 2023-12-28  197  
-59fe9dce1f284e James Tai 2023-12-28  198  irq_domain_cleanup:
-59fe9dce1f284e James Tai 2023-12-28  199  	if (data->domain)
-59fe9dce1f284e James Tai 2023-12-28  200  		irq_domain_remove(data->domain);
-59fe9dce1f284e James Tai 2023-12-28  201  
-59fe9dce1f284e James Tai 2023-12-28  202  iomap_cleanup:
-59fe9dce1f284e James Tai 2023-12-28  203  	if (data->base)
-59fe9dce1f284e James Tai 2023-12-28 @204  		iounmap(data->base);
-59fe9dce1f284e James Tai 2023-12-28  205  
-59fe9dce1f284e James Tai 2023-12-28  206  	return -ENOMEM;
-59fe9dce1f284e James Tai 2023-12-28  207  }
-59fe9dce1f284e James Tai 2023-12-28  208  EXPORT_SYMBOL_GPL(realtek_intc_probe);
-59fe9dce1f284e James Tai 2023-12-28  209  
+ Documentation/devicetree/bindings/pci/pci.txt |  4 ++++
+ drivers/pci/controller/pci-host-common.c      |  5 ++++-
+ drivers/pci/of.c                              | 15 +++++++++++++++
+ drivers/pci/probe.c                           |  2 +-
+ include/linux/of_pci.h                        |  6 ++++++
+ 5 files changed, 30 insertions(+), 2 deletions(-)
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.25.1
+
 
