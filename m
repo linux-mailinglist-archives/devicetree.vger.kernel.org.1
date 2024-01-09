@@ -1,130 +1,84 @@
-Return-Path: <devicetree+bounces-30644-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30645-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id AADDD8287DD
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 15:16:35 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5FA5A8287F0
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 15:22:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 493DDB23880
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 14:16:28 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BCE35B23AFE
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 14:22:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 290D239875;
-	Tue,  9 Jan 2024 14:16:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37F7C39876;
+	Tue,  9 Jan 2024 14:22:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="b7IxSwhN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WPZFhREK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9969C38FB0;
-	Tue,  9 Jan 2024 14:16:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a28b1095064so321723266b.2;
-        Tue, 09 Jan 2024 06:16:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1704809779; x=1705414579; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=XfKKmsgrBNevkxdWqBtR6SySOi1WLHhsxeOVYSFipik=;
-        b=b7IxSwhNwiEalVIX272dphlPd0yyO9OZBc52kNX/2l8oAHsLCbcjxf+GSokwbPLmLI
-         STKCgCXEHiCmNmWRjuw2ijkKJFuXQwC6yWXsCj6VI4rs+WvFOEsQf5NW2kDC1LZl+cJ0
-         NXY4InjFXq1rZ96AymBuyHJCp2SOsW+QnG+E/FhW9Np6UpWvRgEtSZKCFmzP2OFhZRad
-         T1bU3GuGCvwTYmF9iudUm8YHpCCBjQkf9dc+TCIhKJJgm1I0Yr7WBmvHOmMPqbQkle7c
-         miNMM7yvjQ9U37Qjjeo+txkd71wM9/6JHlNco3dndBDtmDLweuP6+Oh5nLv3GgAu0v3s
-         fBEA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704809779; x=1705414579;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=XfKKmsgrBNevkxdWqBtR6SySOi1WLHhsxeOVYSFipik=;
-        b=pwxunlVGiMcxM2tBTneY/k6KiIJX0WgO+ImQW7Jmxx/jii/fc1dOQVVyyHTuyq5nyB
-         8TmXqiPDlojYHSrgg/9lo4kMEq9LFoGepYKKGfvJ/9YCVglT1VSA4Bus0x9rb4hDdN/r
-         clgh0FCg9WruiyC2v62FjI4rCiZBa4aZCsiuenk4055JaZqnTUaS19I0W7iokJjXjZig
-         uZ/sBJF6pL/Mw8tV/wWP+slgO/I6xURRwzLh+5ZxpgTU/7YiegHOB50l16vDStNApPAf
-         2qII8r2DuT6zPay1fGaFG7VBEFaqFv4fMqdv9m8KtruK289MU8U5uXA0/14ndI0TXOCx
-         4Y4Q==
-X-Gm-Message-State: AOJu0YyeT6iVcZQjlUHL71ATgEfKDQdxVDHicwwYipTl//8mfaI3zEgn
-	81xGTtsYbCGR81w2kip3IOFVJqhovKzaaYdvN0w=
-X-Google-Smtp-Source: AGHT+IHrnXDoXiFmgZB8pnUib0FZSixSpHYIUBlJTfVPoTkImZsXEmElnr3lXwcWDIqgM9foKbqDkNseDvscZLyDkgE=
-X-Received: by 2002:a17:907:2d09:b0:a29:1419:f522 with SMTP id
- gs9-20020a1709072d0900b00a291419f522mr330417ejc.72.1704809778626; Tue, 09 Jan
- 2024 06:16:18 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 130033984A;
+	Tue,  9 Jan 2024 14:22:42 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8AF7CC43390;
+	Tue,  9 Jan 2024 14:22:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1704810162;
+	bh=ryRBX6Ywx4bF68XYywhf01hIAAubq13J+4hY1ns2/Z8=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=WPZFhREKkRbhhlwgxX2UaooPZ+l43cW338J8zQMtDd8C82GKWlFJTy2Gl+dCsghz0
+	 C8w1zzbdZq/OoLS+JFf3cxxIRVdUVjGHS9gEXtqTwQ1IJyLXhKtFuyA6cSZ5GdR8y7
+	 +ke4PR4edvw6MeMaTZYIGvt7ng46GvYklEGspXl7yaHe+aZvERNvCulBZRKFrTR6+p
+	 wDN0Qdhb/TYoCB9YTM2XC3lKRELbUw5YmmTCNrCLDIub5MRpRn1fAFdxBLUshe4EuI
+	 rl+79L7TQ3UVDRGz7VeJcIB2a8E6rgwbqvYZ1fVeiUy+D/e7OYHt7ixgZ7xy6YHI0Y
+	 c4INLzSKkvfDg==
+Received: by mail-ot1-f46.google.com with SMTP id 46e09a7af769-6dde882e5ccso235605a34.3;
+        Tue, 09 Jan 2024 06:22:42 -0800 (PST)
+X-Gm-Message-State: AOJu0YwIDYETRD/b/KvYUw7h2Ha5AAUYWWhpTgpSgvogx58DJWOAo9yp
+	FIMG1cLsha3vQsK+KToP/fiZDhoDGstGhJTNK5s=
+X-Google-Smtp-Source: AGHT+IG7uz4RcDrqw+FErYNKhx1ue3obCPnmI8Yq6i5H1MvzcGf6YLxWOYuozPD6si4kA2cBuh79PZdjKo1YQ9egr6s=
+X-Received: by 2002:a05:6870:9a0d:b0:203:fbf6:8c36 with SMTP id
+ fo13-20020a0568709a0d00b00203fbf68c36mr7015318oab.68.1704810161980; Tue, 09
+ Jan 2024 06:22:41 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240109075551.870001-1-chancel.liu@nxp.com> <20240109075551.870001-4-chancel.liu@nxp.com>
-In-Reply-To: <20240109075551.870001-4-chancel.liu@nxp.com>
-From: Daniel Baluta <daniel.baluta@gmail.com>
-Date: Tue, 9 Jan 2024 16:16:06 +0200
-Message-ID: <CAEnQRZAgwmNZ8ruV6rPJ_OTzjLHL0jgPLFNbBeW1fXYG+QjAbw@mail.gmail.com>
-Subject: Re: [PATCH 3/3] ASoC: dt-bindings: fsl,micfil: Add compatible string
- for i.MX95 platform
-To: Chancel Liu <chancel.liu@nxp.com>
-Cc: lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	shengjiu.wang@gmail.com, Xiubo.Lee@gmail.com, festevam@gmail.com, 
-	nicoleotsuka@gmail.com, perex@perex.cz, tiwai@suse.com, 
-	linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org, 
-	linuxppc-dev@lists.ozlabs.org
+References: <20240109120738.346061-1-masahiroy@kernel.org> <20240109120738.346061-2-masahiroy@kernel.org>
+In-Reply-To: <20240109120738.346061-2-masahiroy@kernel.org>
+From: Masahiro Yamada <masahiroy@kernel.org>
+Date: Tue, 9 Jan 2024 23:22:05 +0900
+X-Gmail-Original-Message-ID: <CAK7LNASOxi-gzve+_d-sCW9z_eEJ5TMMnzPEvN2Nj2AwgVjF9g@mail.gmail.com>
+Message-ID: <CAK7LNASOxi-gzve+_d-sCW9z_eEJ5TMMnzPEvN2Nj2AwgVjF9g@mail.gmail.com>
+Subject: Re: [PATCH 1/4] kbuild: create a list of all built DTB files
+To: linux-kbuild@vger.kernel.org
+Cc: devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>, 
+	Simon Glass <sjg@chromium.org>, Nathan Chancellor <nathan@kernel.org>, 
+	Nick Desaulniers <ndesaulniers@google.com>, Nicolas Schier <nicolas@fjasle.eu>, 
+	linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Jan 9, 2024 at 9:58=E2=80=AFAM Chancel Liu <chancel.liu@nxp.com> wr=
-ote:
+On Tue, Jan 9, 2024 at 9:07=E2=80=AFPM Masahiro Yamada <masahiroy@kernel.or=
+g> wrote:
 >
-> Add compatible string "fsl,imx95-micfil" for i.MX95 platform.
+> It is useful to have a list of all *.dtb and *.dtbo files generated
+> from the current build.
 >
-> Signed-off-by: Chancel Liu <chancel.liu@nxp.com>
-> ---
->  .../devicetree/bindings/sound/fsl,micfil.yaml     | 15 +++++++++++----
->  1 file changed, 11 insertions(+), 4 deletions(-)
->
-> diff --git a/Documentation/devicetree/bindings/sound/fsl,micfil.yaml b/Do=
-cumentation/devicetree/bindings/sound/fsl,micfil.yaml
-> index b7e605835639..f0d3d11d07d2 100644
-> --- a/Documentation/devicetree/bindings/sound/fsl,micfil.yaml
-> +++ b/Documentation/devicetree/bindings/sound/fsl,micfil.yaml
-> @@ -15,10 +15,17 @@ description: |
->
->  properties:
->    compatible:
-> -    enum:
-> -      - fsl,imx8mm-micfil
-> -      - fsl,imx8mp-micfil
-> -      - fsl,imx93-micfil
-> +    oneOf:
-> +      - items:
-> +          - enum:
-> +              - fsl,imx95-micfil
-> +          - const: fsl,imx93-micfil
-> +
-> +      - items:
-> +          - enum:
-> +              - fsl,imx8mm-micfil
-> +              - fsl,imx8mp-micfil
-> +              - fsl,imx93-micfil
-
-My yaml knowledge is very limited. Can you describe in natural
-language in the commit what exactly we are doing here.
-
-Why something like this:
+> With this commit, 'make dtbs' creates arch/*/boot/dts/dtbs-order, which
 
 
->    compatible:
->     enum:
->       - fsl,imx8mm-micfil
->       - fsl,imx8mp-micfil
->       - fsl,imx93-micfil
-+        - fsl,imx95-micfil
+I meant arch/*/boot/dts/dtbs-list
 
-Isn't enough?
+
+
+
+
+
+
+--
+Best Regards
+Masahiro Yamada
 
