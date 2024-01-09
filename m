@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-30778-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30779-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C214A828E97
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 21:45:10 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B976828E9C
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 21:48:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 759F11F25573
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 20:45:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B5E441F25CE4
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 20:48:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DB823D981;
-	Tue,  9 Jan 2024 20:45:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F16C3D985;
+	Tue,  9 Jan 2024 20:47:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="q2NoOc/q"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Bmin4gO1"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FE263D978;
-	Tue,  9 Jan 2024 20:45:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9BDA7C433C7;
-	Tue,  9 Jan 2024 20:45:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A1C23D978;
+	Tue,  9 Jan 2024 20:47:58 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A443DC433C7;
+	Tue,  9 Jan 2024 20:47:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1704833104;
-	bh=dxbOah5qhckGuCtjexbByzLyR10EFPLNDjKXHhaM1Go=;
+	s=k20201202; t=1704833278;
+	bh=QteKBQGsANCi2lfyGrXPvlyFVGCr0qwIbw45fnPbvqw=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=q2NoOc/q98kamAtjgKn+ZdI4U0uY0cjgfNR1+Ry/3Ph/U6N9Geyca4eMHDY6T7Fx1
-	 N1lIoeqBuOzIdELeZc4BsNIhKLeQg8gg51zNyd30jrG4z2cN/rbg9vQNERCUzUwJ4x
-	 teFuBGzwQUI7C0Fma3ng55l18GZKmtO0i9lmhBC1c494yrST0g8zJNZ3yldAsk3s3b
-	 xlvJcc+ycvzmpr2RPbauM8DCjQx414+ad6YSjxnZSdNHMPP/iQSDJcE/HNvitETYID
-	 xzzE19O+MeSfMriURndICd0VyQ34iZ+lxXE05oLlvLnSse/hdE361XxyJzKDO3BYDJ
-	 lr0axrBqVeuPA==
-Received: (nullmailer pid 3189911 invoked by uid 1000);
-	Tue, 09 Jan 2024 20:45:02 -0000
-Date: Tue, 9 Jan 2024 14:45:02 -0600
+	b=Bmin4gO1ml/3fuxC5x1qnS0URvLIYr2G6veI8G49N+D8xVrYnn0D8u7qUYIXqyvBc
+	 PFVL2fWoTiNkIaxWfCOckz9oTs+VuF5X/nVO7lAJsxTx0PZ/0rCX/8tYblCvfP+p09
+	 vMcIxwK6Yf/ntv7LlKo3t3/k+ebm11i5WrupmbF9Q6UviIL5YpU2hmq/LwkjVzQ3AL
+	 IejDYl49avcaMPrXcO/7N3ERTsObBiEqMriFHFlX/K/Q1M/Sb3ZwL19xbx+efNfR+y
+	 EbQXg2MiL3Mo+0oHRMFuYGiBPoilld5KodlfCYkBuciI0U8SbAFt7f3v9imliIhQn2
+	 pF+bFmymv61Vw==
+Received: (nullmailer pid 3193485 invoked by uid 1000);
+	Tue, 09 Jan 2024 20:47:48 -0000
+Date: Tue, 9 Jan 2024 14:47:48 -0600
 From: Rob Herring <robh@kernel.org>
 To: Mark Hasemeyer <markhas@chromium.org>
-Cc: Rob Herring <robh+dt@kernel.org>, Tzung-Bi Shih <tzungbi@kernel.org>, devicetree@vger.kernel.org, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Raul Rangel <rrangel@chromium.org>, LKML <linux-kernel@vger.kernel.org>, Sudeep Holla <sudeep.holla@arm.com>, Konrad Dybcio <konrad.dybcio@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Andy Shevchenko <andriy.shevchenko@intel.com>, AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Subject: Re: [PATCH v4 04/24] dt-bindings: power: Clarify wording for
- wakeup-source property
-Message-ID: <170483310084.3189837.7384632761496015121.robh@kernel.org>
+Cc: Sakari Ailus <sakari.ailus@linux.intel.com>, AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Daniel Scally <djrscally@gmail.com>, Raul Rangel <rrangel@chromium.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Heikki Krogerus <heikki.krogerus@linux.intel.com>, linux-acpi@vger.kernel.org, Andy Shevchenko <andriy.shevchenko@linux.intel.com>, "Rafael J. Wysocki" <rafael@kernel.org>, Andy Shevchenko <andriy.shevchenko@intel.com>, Len Brown <lenb@kernel.org>, devicetree@vger.kernel.org, Konrad Dybcio <konrad.dybcio@linaro.org>, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Tzung-Bi Shih <tzungbi@kernel.org>, LKML <linux-kernel@vger.kernel.org>, Frank Rowand <frowand.list@gmail.com>, Sudeep Holla <sudeep.holla@arm.com>, Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v4 21/24] device property: Modify fwnode irq_get() to use
+ resource
+Message-ID: <170483326744.3193407.6920780554098441341.robh@kernel.org>
 References: <20240102210820.2604667-1-markhas@chromium.org>
- <20240102140734.v4.4.I1016a45ac9e8daf8a9ebc9854ab90ec3542e7c30@changeid>
+ <20240102140734.v4.21.I38ac58ab04985a404ed6551eb5813fa7841ef410@changeid>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -51,36 +51,43 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240102140734.v4.4.I1016a45ac9e8daf8a9ebc9854ab90ec3542e7c30@changeid>
+In-Reply-To: <20240102140734.v4.21.I38ac58ab04985a404ed6551eb5813fa7841ef410@changeid>
 
 
-On Tue, 02 Jan 2024 14:07:28 -0700, Mark Hasemeyer wrote:
-> The wording in the current documentation is a little strong. The
-> intention was not to fix any particular interrupt as wakeup capable but
-> leave those details to the device. It wasn't intended to enforce any
-> rules as what can be or can't be a wakeup interrupt.
+On Tue, 02 Jan 2024 14:07:45 -0700, Mark Hasemeyer wrote:
+> The underlying ACPI and OF subsystems provide their own APIs which
+> provide IRQ information as a struct resource. This allows callers to get
+> more information about the IRQ by looking at the resource flags. For
+> example, whether or not an IRQ is wake capable.
 > 
-> Soften the wording to not mandate that the 'wakeup-source' property be
-> used, and clarify what it means when an interrupt is marked (or not
-> marked) for wakeup.
-> 
-> Link: https://lore.kernel.org/all/ZYAjxxHcCOgDVMTQ@bogus/
-> Link: https://lore.kernel.org/all/CAL_Jsq+MYwOG40X26cYmO9EkZ9xqWrXDi03MaRfxnV-+VGkXWQ@mail.gmail.com/
+> Suggested-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> Reviewed-by: Sakari Ailus <sakari.ailus@linux.intel.com>
 > Signed-off-by: Mark Hasemeyer <markhas@chromium.org>
 > ---
 > 
-> (no changes since v3)
+> Changes in v4:
+> -Add Sakari's Reviewed-by tag from v2
+> -Remove ioport.h dependency in fwnode.h
+> -Use Andy's @linux.intel.com email
 > 
 > Changes in v3:
-> -Update commit title prefixes
+> -Add Suggested-by tag
+> -Initialize struct resource to 0 on stack
+> -EXPORT_SYMBOL()->EXPORT_SYMBOL_GPL()
+> -Remove extra space in commit message
+> -Reformat fwnode_irq_get_resource() declaration
 > 
 > Changes in v2:
 > -New patch
 > 
->  .../bindings/power/wakeup-source.txt           | 18 +++++++++++-------
->  1 file changed, 11 insertions(+), 7 deletions(-)
+>  drivers/acpi/property.c  | 11 +++++------
+>  drivers/base/property.c  | 32 +++++++++++++++++++++++++-------
+>  drivers/of/property.c    |  8 ++++----
+>  include/linux/fwnode.h   |  8 +++++---
+>  include/linux/property.h |  2 ++
+>  5 files changed, 41 insertions(+), 20 deletions(-)
 > 
 
-Applied, thanks!
+Reviewed-by: Rob Herring <robh@kernel.org>
 
 
