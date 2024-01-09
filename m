@@ -1,145 +1,147 @@
-Return-Path: <devicetree+bounces-30775-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30776-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2469828E7E
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 21:27:53 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD340828E87
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 21:32:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 98007287ACA
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 20:27:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3D0011F264AE
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 20:32:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52AFB3D961;
-	Tue,  9 Jan 2024 20:27:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52CBC3D56E;
+	Tue,  9 Jan 2024 20:32:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="E/FKH6/I"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="BMnbu815"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD1D43D546;
-	Tue,  9 Jan 2024 20:27:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-40d88fff7faso35372185e9.3;
-        Tue, 09 Jan 2024 12:27:46 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B38B43A8E3
+	for <devicetree@vger.kernel.org>; Tue,  9 Jan 2024 20:32:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-40d6b4e2945so40405865e9.0
+        for <devicetree@vger.kernel.org>; Tue, 09 Jan 2024 12:32:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1704832065; x=1705436865; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=ewVP7rZY9cEuaCQr23qe+i/CcrhN+qIG+I5XvERPbuQ=;
-        b=E/FKH6/ItDeS8Zx5IQ7iSs2SIUi985JCP8EUEXlesHYxq/KZgA7GGtItwYKwJTaoT3
-         PiGwOX/rF8PYupHZaRFr9KvPWrewzGCDXudD9i+fsUfewSLoEEtGDQvxCaTqjmnFSbHa
-         cqI/PtnOUciqm+fB97BOSXxguAy8kIqI+kp79dXfjd5Lkjd+rpZF2PxT2MLSagwIeRo4
-         xpebjPipQL7GSolFpGT7GdcjvSb0vyEeWGz3zZnSlfLA1Xo17vmnijrwfN8UGxz0x7R0
-         2T1LXhDQj1xQOZ7Wp1caS2Srq9b23yRyTLELDkU2jE9Q17hL+emuc7Ac/TANbBD7mKlW
-         iAug==
+        d=linaro.org; s=google; t=1704832347; x=1705437147; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=w7B5xwPl2hUYQy2MqhsqN5qvO8iXNJaPKlyZhIEcZS8=;
+        b=BMnbu815rK0GP353SqH4gzQ8NipKUBtvyvrLrNj0B6kvuLc8/9o8Qqeg0r9OgCy8ig
+         0fpMzVHNKPRPNRVF0JRfqJU+EjJCL9jMRyKDrQATLa21Mo64NDgwkI4jEThPwnEwi4g6
+         gLCT6EGrL3DyuH0VgrnEAJeeVm4T4xTFBpgEAeOvUEsBCYqine5MAfRk51a6PeZ98enh
+         8ORT/Iy0LQOMtUx1H2W2h1aI1u2H5rSkKP5kOHvWbOcqmBq3ZPIzdztu/+KR35xrHYhU
+         6wC/iNTq0jwVZeCUpe6x8N7zcy/aM5uBACmBfAJHRbxHAO07lkixMGhZgiy129Oqz/7Q
+         ufag==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704832065; x=1705436865;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ewVP7rZY9cEuaCQr23qe+i/CcrhN+qIG+I5XvERPbuQ=;
-        b=ka3+38vL3cikZ94W7YxxHMuAAI0oZgnmRbGX0YpdGSoWOJjfO8wlL7UYJHFjD5eTo+
-         koqyyCRr/4QXhHAT82qMDIsru/ma1MOtnT1rHs5CcHaXu1JEbrpKBDHyagbXBRKJA38A
-         vZ3G6czUUvJMviKU9sgWAHtu3D9SBZSa7Pj92V0D1qGmyXfdveobrKvGPC7oHmHmLNf3
-         Ap4IzxrFqMzYGrQuPbar5jz78WgWI0I2elhRptpFo0f+HsmIS0f7hZufzTAQvjSaznDi
-         XY0Zt5mSb5F2YMc47guu1HUyozS1PS1/VE6+GRgE1OlEXfLwPhw1SiuajUhYXzC9bqIl
-         fHxg==
-X-Gm-Message-State: AOJu0YyP/CDMMVYve/+18mRfyez50GqByr5QcFhDUvoZaCkBNiQHagn6
-	uh4eQ21Dck44ZWcRcnbgxvI=
-X-Google-Smtp-Source: AGHT+IEWNvxc3df+X58TgBYuCL+DhXU6PLckB+Fh6CRFLXqYc7DishxyjF53akilpHK0KkJW3TwJeg==
-X-Received: by 2002:a1c:740e:0:b0:40e:52ec:3500 with SMTP id p14-20020a1c740e000000b0040e52ec3500mr240247wmc.100.1704832064797;
-        Tue, 09 Jan 2024 12:27:44 -0800 (PST)
-Received: from apple.sigmaris.info ([2a02:8010:6606:0:b44b:4534:eb6e:83b7])
-        by smtp.gmail.com with ESMTPSA id je4-20020a05600c1f8400b0040e38b7cfdasm16073665wmb.4.2024.01.09.12.27.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Jan 2024 12:27:44 -0800 (PST)
-From: Hugh Cole-Baker <sigmaris@gmail.com>
-To: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>
-Cc: John Clark <inindev@gmail.com>,
-	Thomas McKahan <tmckahan@singleboardsolutions.com>,
-	Hugh Cole-Baker <sigmaris@gmail.com>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2] arm64: dts: rockchip: enable NanoPC-T6 MiniPCIe power
-Date: Tue,  9 Jan 2024 20:27:28 +0000
-Message-Id: <20240109202729.54292-1-sigmaris@gmail.com>
-X-Mailer: git-send-email 2.39.3 (Apple Git-145)
+        d=1e100.net; s=20230601; t=1704832347; x=1705437147;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=w7B5xwPl2hUYQy2MqhsqN5qvO8iXNJaPKlyZhIEcZS8=;
+        b=r0FRGDooSRgyz8ChVbJOIQ9b7IgfdmWFcYyTcYU45aLYiPdL9oKuV4W/RLDI0OugeH
+         NuZpONu74Vr+1WarA+vdw2oGQ/MDhCi7dz+n8J089laI/n0+FSsntP3QOuhDlJYHehfo
+         in8jHkoALwrJzKeiKTm9KxFCOa/8ELsqg7mivUrq74YRbUWuHF5KMrrrKXdRZF127N4d
+         DAqBH841V7wecV66WYLpMw4Up83vVmM4rrtpZgTSrtnD36XBTurMP8/PjgfTwbryHqx4
+         X1k8QM1sUPSrp6/GhMG/lL5yMFN48k1UcwbB9lQLJLm53f+Jnm7i3FXTtQJJNqkL4FWx
+         pmlA==
+X-Gm-Message-State: AOJu0YwaJRE7ATwPpmEH/SpX+P8hc+zzmXUqaSsxvTGL+IWcQ+7b29Th
+	xOBWrzt4LqZqWgdgLvlmGvtfasPtoxSVAw==
+X-Google-Smtp-Source: AGHT+IFuqMcfcoUeIpMMbETUYI2Z1mmRmOjz+7l+6pl7nYcpKQbAiSrHBr6FZ9f6s/oIter54idXew==
+X-Received: by 2002:a05:600c:4f4a:b0:40e:357e:74c2 with SMTP id m10-20020a05600c4f4a00b0040e357e74c2mr2134368wmq.123.1704832346993;
+        Tue, 09 Jan 2024 12:32:26 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.223.112])
+        by smtp.gmail.com with ESMTPSA id t21-20020a170906179500b00a2b217d72f1sm1388216eje.53.2024.01.09.12.32.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 09 Jan 2024 12:32:26 -0800 (PST)
+Message-ID: <a2be5d2d-869b-4fa3-951c-5a7b8efed0cc@linaro.org>
+Date: Tue, 9 Jan 2024 21:32:24 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: Ethernet binding: broken validation parsing of #nvmem-cell-cells
+ ?
+Content-Language: en-US
+To: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ Network Development <netdev@vger.kernel.org>
+Cc: "David S. Miller" <davem@davemloft.net>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Florian Fainelli <f.fainelli@gmail.com>,
+ linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+References: <bdf7751b-0421-485d-8382-26c084f09d7d@gmail.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzTRLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+wsGUBBMBCgA+FiEE
+ m9B+DgxR+NWWd7dUG5NDfTtBYpsFAmI+BxMCGwMFCRRfreEFCwkIBwIGFQoJCAsCBBYCAwEC
+ HgECF4AACgkQG5NDfTtBYptgbhAAjAGunRoOTduBeC7V6GGOQMYIT5n3OuDSzG1oZyM4kyvO
+ XeodvvYv49/ng473E8ZFhXfrre+c1olbr1A8pnz9vKVQs9JGVa6wwr/6ddH7/yvcaCQnHRPK
+ mnXyP2BViBlyDWQ71UC3N12YCoHE2cVmfrn4JeyK/gHCvcW3hUW4i5rMd5M5WZAeiJj3rvYh
+ v8WMKDJOtZFXxwaYGbvFJNDdvdTHc2x2fGaWwmXMJn2xs1ZyFAeHQvrp49mS6PBQZzcx0XL5
+ cU9ZjhzOZDn6Apv45/C/lUJvPc3lo/pr5cmlOvPq1AsP6/xRXsEFX/SdvdxJ8w9KtGaxdJuf
+ rpzLQ8Ht+H0lY2On1duYhmro8WglOypHy+TusYrDEry2qDNlc/bApQKtd9uqyDZ+rx8bGxyY
+ qBP6bvsQx5YACI4p8R0J43tSqWwJTP/R5oPRQW2O1Ye1DEcdeyzZfifrQz58aoZrVQq+innR
+ aDwu8qDB5UgmMQ7cjDSeAQABdghq7pqrA4P8lkA7qTG+aw8Z21OoAyZdUNm8NWJoQy8m4nUP
+ gmeeQPRc0vjp5JkYPgTqwf08cluqO6vQuYL2YmwVBIbO7cE7LNGkPDA3RYMu+zPY9UUi/ln5
+ dcKuEStFZ5eqVyqVoZ9eu3RTCGIXAHe1NcfcMT9HT0DPp3+ieTxFx6RjY3kYTGLOwU0EVUNc
+ NAEQAM2StBhJERQvgPcbCzjokShn0cRA4q2SvCOvOXD+0KapXMRFE+/PZeDyfv4dEKuCqeh0
+ hihSHlaxTzg3TcqUu54w2xYskG8Fq5tg3gm4kh1Gvh1LijIXX99ABA8eHxOGmLPRIBkXHqJY
+ oHtCvPc6sYKNM9xbp6I4yF56xVLmHGJ61KaWKf5KKWYgA9kfHufbja7qR0c6H79LIsiYqf92
+ H1HNq1WlQpu/fh4/XAAaV1axHFt/dY/2kU05tLMj8GjeQDz1fHas7augL4argt4e+jum3Nwt
+ yupodQBxncKAUbzwKcDrPqUFmfRbJ7ARw8491xQHZDsP82JRj4cOJX32sBg8nO2N5OsFJOcd
+ 5IE9v6qfllkZDAh1Rb1h6DFYq9dcdPAHl4zOj9EHq99/CpyccOh7SrtWDNFFknCmLpowhct9
+ 5ZnlavBrDbOV0W47gO33WkXMFI4il4y1+Bv89979rVYn8aBohEgET41SpyQz7fMkcaZU+ok/
+ +HYjC/qfDxT7tjKXqBQEscVODaFicsUkjheOD4BfWEcVUqa+XdUEciwG/SgNyxBZepj41oVq
+ FPSVE+Ni2tNrW/e16b8mgXNngHSnbsr6pAIXZH3qFW+4TKPMGZ2rZ6zITrMip+12jgw4mGjy
+ 5y06JZvA02rZT2k9aa7i9dUUFggaanI09jNGbRA/ABEBAAHCwXwEGAEKACYCGwwWIQSb0H4O
+ DFH41ZZ3t1Qbk0N9O0FimwUCYDzvagUJFF+UtgAKCRAbk0N9O0Fim9JzD/0auoGtUu4mgnna
+ oEEpQEOjgT7l9TVuO3Qa/SeH+E0m55y5Fjpp6ZToc481za3xAcxK/BtIX5Wn1mQ6+szfrJQ6
+ 59y2io437BeuWIRjQniSxHz1kgtFECiV30yHRgOoQlzUea7FgsnuWdstgfWi6LxstswEzxLZ
+ Sj1EqpXYZE4uLjh6dW292sO+j4LEqPYr53hyV4I2LPmptPE9Rb9yCTAbSUlzgjiyyjuXhcwM
+ qf3lzsm02y7Ooq+ERVKiJzlvLd9tSe4jRx6Z6LMXhB21fa5DGs/tHAcUF35hSJrvMJzPT/+u
+ /oVmYDFZkbLlqs2XpWaVCo2jv8+iHxZZ9FL7F6AHFzqEFdqGnJQqmEApiRqH6b4jRBOgJ+cY
+ qc+rJggwMQcJL9F+oDm3wX47nr6jIsEB5ZftdybIzpMZ5V9v45lUwmdnMrSzZVgC4jRGXzsU
+ EViBQt2CopXtHtYfPAO5nAkIvKSNp3jmGxZw4aTc5xoAZBLo0OV+Ezo71pg3AYvq0a3/oGRG
+ KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
+ fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <bdf7751b-0421-485d-8382-26c084f09d7d@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-The NanoPC-T6 has a Mini PCIe slot intended to be used for a 4G or LTE
-modem. This slot has no PCIe functionality, only USB 2.0 pins are wired
-to the SoC, and USIM pins are wired to a SIM card slot on the board.
-Define the 3.3v supply for the slot so it can be used.
+On 09/01/2024 11:03, Rafał Miłecki wrote:
+> Hi,
+> 
+> I'm playing with "dtbs_check" and I stuck on following errors:
+> 
+> arch/arm/boot/dts/broadcom/bcm47094-luxul-xwr-3150-v1.dtb: ethernet@24000: nvmem-cells: [[9], [0]] is too long
+>          from schema $id: http://devicetree.org/schemas/net/ethernet-controller.yaml#
+> arch/arm/boot/dts/broadcom/bcm47094-luxul-xwr-3150-v1.dtb: ethernet-switch@18007000: ports:port@4:nvmem-cells: [[9], [5]] is too long
+>          from schema $id: http://devicetree.org/schemas/net/dsa/brcm,b53.yaml#
+> 
 
-Signed-off-by: Hugh Cole-Baker <sigmaris@gmail.com>
----
-Changes from v1:
-Renamed pinctrl label to pin_4g_lte_pwren, as labels should start with
-alphanumeric characters, and starting with a numeric character is a
-syntax error.
+Thanks for the report. It looks like a bug in the dtschema. We should
+drop nvmem-cells from phandle_args. I'll send a fix.
 
-v1: https://lore.kernel.org/linux-rockchip/20240107223714.8158-1-sigmaris@gmail.com/
-
- .../boot/dts/rockchip/rk3588-nanopc-t6.dts      | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dts b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dts
-index d7722772ecd8..7e9613f079fa 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dts
-@@ -159,6 +159,18 @@ vcc3v3_pcie30: vcc3v3-pcie30-regulator {
- 		regulator-max-microvolt = <3300000>;
- 		vin-supply = <&vcc5v0_sys>;
- 	};
-+
-+	vdd_4g_3v3: vdd-4g-3v3-regulator {
-+		compatible = "regulator-fixed";
-+		enable-active-high;
-+		gpio = <&gpio4 RK_PC6 GPIO_ACTIVE_HIGH>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pin_4g_lte_pwren>;
-+		regulator-name = "vdd_4g_3v3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&vcc5v0_sys>;
-+	};
- };
- 
- &combphy0_ps {
-@@ -504,6 +516,10 @@ pcie_m2_1_pwren: pcie-m21-pwren {
- 	};
- 
- 	usb {
-+		pin_4g_lte_pwren: 4g-lte-pwren {
-+			rockchip,pins = <4 RK_PC6 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+
- 		typec5v_pwren: typec5v-pwren {
- 			rockchip,pins = <1 RK_PD2 RK_FUNC_GPIO &pcfg_pull_none>;
- 		};
-@@ -884,6 +900,7 @@ &uart2 {
- };
- 
- &u2phy2_host {
-+	phy-supply = <&vdd_4g_3v3>;
- 	status = "okay";
- };
- 
--- 
-2.39.3 (Apple Git-145)
+Best regards,
+Krzysztof
 
 
