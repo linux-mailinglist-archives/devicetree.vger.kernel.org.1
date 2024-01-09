@@ -1,111 +1,122 @@
-Return-Path: <devicetree+bounces-30788-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30790-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C983C828EFC
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 22:38:33 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE0D0828F16
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 22:43:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7B6B71F25F03
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 21:38:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 799481F262D3
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 21:43:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C40383DBA6;
-	Tue,  9 Jan 2024 21:38:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="b27uJhjV"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61B673E461;
+	Tue,  9 Jan 2024 21:41:41 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E8993DB87
-	for <devicetree@vger.kernel.org>; Tue,  9 Jan 2024 21:38:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-a28b1095064so371621766b.2
-        for <devicetree@vger.kernel.org>; Tue, 09 Jan 2024 13:38:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704836296; x=1705441096; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=A5G3kOVOJ3YPkVZuV6/moOWckQ3gnsEMdzz/Vic7oRo=;
-        b=b27uJhjVnSbkpq4sw6ycBiWAcU0t46PWMGyqUm/FqJKSOZfSU0JFN5h4zdh+enaWWj
-         cvegy78/gqpr3LeQSq5KUp1ft+NgZn+Vf/0NUltrIz5meV4cITIFqrMiaCJn6M4rokUZ
-         W5vvISyaWjfwkb65pbobiwi/yD52IlQZfVg8c0SSurQ0a25IBhT46rAhaHNIA8pJQfed
-         ACrLjYWoL7Mxe2UVTDOFQVionzBD3XFwAHqNMosx77s7WWYDgI511j2x+4IHE1j3zYRx
-         jWfJo0yqYNOgjcAjWkVAwYlSVLzZhT0GbfGK8udHYmzeJdcmWK2jHXRQ0NV2EPdFI9KQ
-         r8Uw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704836296; x=1705441096;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=A5G3kOVOJ3YPkVZuV6/moOWckQ3gnsEMdzz/Vic7oRo=;
-        b=wJFAXiMs2HljgwyePeqOqAnfThcHrjot/hIjQY+esRkQGPy2LCgqOe4WfieHtjiR+H
-         AFZqjBO1ozTSc4ENrH4tKCUC070DceQee1fFPELgWGECs47v8C588PwAPmk8pCBJ4JH9
-         Ar2HLyZbbl0E212R9XuNl0YYNCfKkj1cUBM6bxtoICfn8NyMAj61JyKeLoAZEMCxVZ+a
-         2KAiHCDEGYBDHF7moytjRIlzGk9fYiuE3u3ZuyXwKQbdwluDm31Yd4OFrjkDhGhzGhw0
-         fRvh5HRghY1560eysur9ElOaqAgeytacBDhq6VNU6PIB0CPkXUPnO6wNjig1c02KJj9T
-         s50g==
-X-Gm-Message-State: AOJu0Yzz6ihyVA3kVgSice0g9fvhx7VsTi+SSueAAGGlWIeiTP4Mqtzd
-	xojZ+LC862FWZpI3XQ2ZUNn16qx7eZUtSQ==
-X-Google-Smtp-Source: AGHT+IH7hjFDBoKfUKdAfGYFie2ibx6B3yk4kAZkSCroFtKisI44OmhXw4LX0HY1I/6GHFrCWp+sTA==
-X-Received: by 2002:a17:906:39c1:b0:a28:c06d:2e12 with SMTP id i1-20020a17090639c100b00a28c06d2e12mr28962eje.21.1704836295878;
-        Tue, 09 Jan 2024 13:38:15 -0800 (PST)
-Received: from krzk-bin.. ([178.197.223.112])
-        by smtp.gmail.com with ESMTPSA id lf11-20020a170907174b00b00a26ac5e3683sm1420197ejc.100.2024.01.09.13.38.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Jan 2024 13:38:15 -0800 (PST)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] ASoC: dt-bindings: dai-common: Narrow possible sound-dai-cells
-Date: Tue,  9 Jan 2024 22:38:12 +0100
-Message-Id: <20240109213812.558492-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 946D33DBB2
+	for <devicetree@vger.kernel.org>; Tue,  9 Jan 2024 21:41:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rNJpY-000832-VC; Tue, 09 Jan 2024 22:40:16 +0100
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rNJpO-001Z2m-Fk; Tue, 09 Jan 2024 22:40:06 +0100
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rNJpO-0066FS-12;
+	Tue, 09 Jan 2024 22:40:06 +0100
+Date: Tue, 9 Jan 2024 22:40:05 +0100
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To: Yoshinori Sato <ysato@users.sourceforge.jp>
+Cc: linux-sh@vger.kernel.org, Damien Le Moal <dlemoal@kernel.org>, 
+	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
+	Daniel Vetter <daniel@ffwll.ch>, Thomas Gleixner <tglx@linutronix.de>, 
+	Lorenzo Pieralisi <lpieralisi@kernel.org>, Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>, 
+	Bjorn Helgaas <bhelgaas@google.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Jiri Slaby <jirislaby@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, 
+	Daniel Lezcano <daniel.lezcano@linaro.org>, Rich Felker <dalias@libc.org>, 
+	John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>, Lee Jones <lee@kernel.org>, Helge Deller <deller@gmx.de>, 
+	Heiko Stuebner <heiko@sntech.de>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Chris Morgan <macromorgan@hotmail.com>, Yang Xiwen <forbidden405@foxmail.com>, 
+	Sebastian Reichel <sre@kernel.org>, Linus Walleij <linus.walleij@linaro.org>, 
+	Randy Dunlap <rdunlap@infradead.org>, Arnd Bergmann <arnd@arndb.de>, Vlastimil Babka <vbabka@suse.cz>, 
+	Hyeonggon Yoo <42.hyeyoo@gmail.com>, David Rientjes <rientjes@google.com>, 
+	Baoquan He <bhe@redhat.com>, Andrew Morton <akpm@linux-foundation.org>, 
+	Guenter Roeck <linux@roeck-us.net>, Stephen Rothwell <sfr@canb.auug.org.au>, 
+	Azeem Shaikh <azeemshaikh38@gmail.com>, Javier Martinez Canillas <javierm@redhat.com>, 
+	Max Filippov <jcmvbkbc@gmail.com>, Palmer Dabbelt <palmer@rivosinc.com>, 
+	Bin Meng <bmeng@tinylab.org>, Jonathan Corbet <corbet@lwn.net>, 
+	Jacky Huang <ychuang3@nuvoton.com>, Lukas Bulwahn <lukas.bulwahn@gmail.com>, 
+	Biju Das <biju.das.jz@bp.renesas.com>, Sam Ravnborg <sam@ravnborg.org>, 
+	Sergey Shtylyov <s.shtylyov@omp.ru>, Michael Karcher <kernel@mkarcher.dialup.fu-berlin.de>, 
+	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>, linux-ide@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, linux-pci@vger.kernel.org, linux-serial@vger.kernel.org, 
+	linux-fbdev@vger.kernel.org
+Subject: Re: [DO NOT MERGE v6 26/37] dt-bindings: vendor-prefixes:  Add smi
+Message-ID: <c2f7yketm64rqryiq5ldl6gosdot5qv36sf4lqbe3erb2azoh2@k6dml2j4amp5>
+References: <cover.1704788539.git.ysato@users.sourceforge.jp>
+ <c8aaf67e3fcdb7e60632c53a784691aabfc7733e.1704788539.git.ysato@users.sourceforge.jp>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="k3wplihoehcx5dum"
+Content-Disposition: inline
+In-Reply-To: <c8aaf67e3fcdb7e60632c53a784691aabfc7733e.1704788539.git.ysato@users.sourceforge.jp>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Instead of accepting any value for sound-dai-cells, the common DAI
-properties schema should narrow them to sane choice.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+--k3wplihoehcx5dum
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
----
+Hello,
 
-Mostly sound-dai-cells are 0 or 1, but
-Documentation/devicetree/bindings/sound/amlogic,aiu.yaml has value of 2.
----
- Documentation/devicetree/bindings/sound/dai-common.yaml | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+not a complete review, I just note that there is a duplicate space in
+the Subject. You might want to fix for the next patch round.
 
-diff --git a/Documentation/devicetree/bindings/sound/dai-common.yaml b/Documentation/devicetree/bindings/sound/dai-common.yaml
-index 1aed2f0f1775..6db35887cbe6 100644
---- a/Documentation/devicetree/bindings/sound/dai-common.yaml
-+++ b/Documentation/devicetree/bindings/sound/dai-common.yaml
-@@ -13,6 +13,7 @@ allOf:
-   - $ref: component-common.yaml#
- 
- properties:
--  '#sound-dai-cells': true
-+  '#sound-dai-cells':
-+    enum: [0, 1, 2]
- 
- additionalProperties: true
--- 
-2.34.1
+Best regards
+Uwe
 
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--k3wplihoehcx5dum
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmWdvTUACgkQj4D7WH0S
+/k42/Qf+OiUMdWX7ofxy3BcrM4WDosGYD3v051cAkDrM1UU7vn14H4nDlTp0AkUx
+pzhs+r4x5ivYAv9c4UHIXeQOUWIaPLpY2tXJ1SPG5v9qUMxDVvFk28mGM1iidoM4
+hunvGv2nwhdTCDVUSm04aY5nebXW1S7mB4FfTr8A6pNVkYKhuHh92Pk7kS9cvA4f
+2N3ldtz2sW+Qm6s8+Hp2+VGkyD1jnwKgBscsap9G9g54+5TtukrFmNayfApLXoOQ
++kiDrlWzjgencsnRqEVCL8tOjVRiw3f+e9LhRK9df/ebNVLs4CHsxS6Ao1pM0LF9
++e1Wi0ZIExYHQKEGMuiBgD83DdWU5w==
+=MXKF
+-----END PGP SIGNATURE-----
+
+--k3wplihoehcx5dum--
 
