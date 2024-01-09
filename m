@@ -1,118 +1,165 @@
-Return-Path: <devicetree+bounces-30619-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30620-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABD87828652
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 13:54:56 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 651F882865D
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 13:58:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4D3071F248E5
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 12:54:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 09BFE281B3A
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 12:58:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 171C0381D5;
-	Tue,  9 Jan 2024 12:54:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5102038DE2;
+	Tue,  9 Jan 2024 12:58:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="BtLss2aG"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="k0IU/FAQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com [209.85.219.177])
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B556126AF7
-	for <devicetree@vger.kernel.org>; Tue,  9 Jan 2024 12:54:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amarulasolutions.com
-Received: by mail-yb1-f177.google.com with SMTP id 3f1490d57ef6-dbd715ed145so1897408276.1
-        for <devicetree@vger.kernel.org>; Tue, 09 Jan 2024 04:54:44 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4B05381D9
+	for <devicetree@vger.kernel.org>; Tue,  9 Jan 2024 12:58:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-40d604b4b30so22955375e9.1
+        for <devicetree@vger.kernel.org>; Tue, 09 Jan 2024 04:58:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google; t=1704804883; x=1705409683; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=uINQIAiQq6opaJwfh+dSsKqfttMGu6VRZEEKvqx2fC4=;
-        b=BtLss2aGfAjKNOe2k2r/c6vQK9O9bJsqDZQc+FGNtDGSYMfnJfyX1jkriDbGXJz2yh
-         7PeFvSmdaBLCDKy0Fj86EJE7jZM55kDmaY/mm6TJ6yWK8VrQdBP6skf2ElamtXnxqXAH
-         jw9oCrp83FHmUPo+TNckUzEOuKKo4pcDUo3Yw=
+        d=linaro.org; s=google; t=1704805109; x=1705409909; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=9i0+GNnJ7PUDNqQJFZRpfiefslzNtbvECkFwhm7N13k=;
+        b=k0IU/FAQGwAxZsrpNoGZzX3Efy3Omhm5TYGPSF4enkBzp6cwM1n0e0na7lj12qao3P
+         1LssB4rBj2p/PtjqXlgeyX3L0paTauk8IVOHqelkNdIlrxuRQ75uoZ9780Yt2cjMW8VC
+         PW4FsSlsZBvRn6VPVJ4xGWzZZ1mNzcbqflNvpVN7cEDLCcSa7VXoQZHT620K+xC62xWq
+         6mTQLk/DMN5QiqTk2DXXppaF4GT8YnC0DI/VmQJDiDnNUuBPr0/ZEDYLq3tL5muu6IoP
+         PrFt4h7GGdVPyS5O3eGbcm5+mWb2k1SuFMbaO/TwFFYiCWOgsMctt73F7zy4iBMuBWJd
+         +lUg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704804883; x=1705409683;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=uINQIAiQq6opaJwfh+dSsKqfttMGu6VRZEEKvqx2fC4=;
-        b=km3KklICoGc5NHvTYKDOFXGfbuvw2pJYHvmVZ1YW3PIgX+8W26RHsrqz+1iv17IgZd
-         rBpSj9nwD26ZBOzZa1ISzzCNqo+MyEfnyAxuKz0hTi6Ij2MjZja2XewHm0ry76UwMEjA
-         6rauxh8erA82yIoJ4uS0Zo0YFk+zrE/snAPmL6l3V3WnOFH5u8QbcDTaHJRQK/88S059
-         U47rc1EsIoGoIVXIRUT29QOJTgWzyYa2DvssdlHjF9Qs/0gJYy6CIh6QULH5lzzqFBMD
-         fU6r6TwtF/IdPTBhsD/iY9iOKkiL9kDodeB/2gfqKv0E5d2C5mUHhoM4rg1i8JNt/H1Z
-         Q+NA==
-X-Gm-Message-State: AOJu0Ywr9uoqcUxOSy5EnAvlP6s4gGmT9f4iVb7Z+cwhXSvUZDRpqbmM
-	D4o/z5FV2X9kEOuSu5kz7qWgpxEHlk8NNp6bzRu9ve1tjpP5YQ==
-X-Google-Smtp-Source: AGHT+IFx65iGUYcVspn/xUO0KxzMABmp//fRhiLdAyGbwggiEorVZIYs2zzC9P5dcI/pwcKtYSoedhuuhdimn6SekEM=
-X-Received: by 2002:a25:9b41:0:b0:dbe:d45d:1253 with SMTP id
- u1-20020a259b41000000b00dbed45d1253mr2578201ybo.92.1704804882276; Tue, 09 Jan
- 2024 04:54:42 -0800 (PST)
+        d=1e100.net; s=20230601; t=1704805109; x=1705409909;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=9i0+GNnJ7PUDNqQJFZRpfiefslzNtbvECkFwhm7N13k=;
+        b=Y8e9V/3rtk826qWDdmhilbDoumbPcDlrlg4MZshvo7Q8ZWDtx1X+8xowz2US71JyRO
+         59vD89waz77hFhz/CaBF9wqUXuakzrg2s9NdxX1T1aG539Mp7xSG0RL3kvOk6doEssgF
+         cYOmK1FXrO8pP47aa7oO8ZA6e/P+7IvCMLGN8O1MiUNZE1xsHaUfxDJQcYOqrbsiGFJ1
+         SccKUUDFuAUDSKOcGBlSKGj5ry2/nwrpaEU1j4hsWiUi1EKHPqkm0zo9YFzZnzj+jIMT
+         qxsYgh79vIPYgtqnFDtTdtipQmMfjEn2Ir3fbopWjCqmZjdZAsz8NKpKZagE76Tvq+Hs
+         napA==
+X-Gm-Message-State: AOJu0YxS5ss4o5BpKHKZ0nVYMraAZjWCevgt5AyQXxsrFN6Y0oeJS0RO
+	A1ubTgXFGLzJqwsitC8LeNQNBWFN1jBTKA==
+X-Google-Smtp-Source: AGHT+IHQPeZVpACVYWJHOPDubk8UtBjdRQGuYcTeBwwLCvBDewKeTmwELU2B1EfBf9Fp4u7vSaHDEg==
+X-Received: by 2002:a7b:cc10:0:b0:40d:8cb5:1b9f with SMTP id f16-20020a7bcc10000000b0040d8cb51b9fmr374679wmh.81.1704805108903;
+        Tue, 09 Jan 2024 04:58:28 -0800 (PST)
+Received: from ta2.c.googlers.com.com (88.140.78.34.bc.googleusercontent.com. [34.78.140.88])
+        by smtp.gmail.com with ESMTPSA id cw16-20020a056000091000b0033753a61e96sm2351302wrb.108.2024.01.09.04.58.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 09 Jan 2024 04:58:28 -0800 (PST)
+From: Tudor Ambarus <tudor.ambarus@linaro.org>
+To: peter.griffin@linaro.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	gregkh@linuxfoundation.org
+Cc: mturquette@baylibre.com,
+	sboyd@kernel.org,
+	robh+dt@kernel.org,
+	conor+dt@kernel.org,
+	andi.shyti@kernel.org,
+	alim.akhtar@samsung.com,
+	jirislaby@kernel.org,
+	s.nawrocki@samsung.com,
+	tomasz.figa@gmail.com,
+	cw00.choi@samsung.com,
+	linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-i2c@vger.kernel.org,
+	linux-serial@vger.kernel.org,
+	andre.draszik@linaro.org,
+	kernel-team@android.com,
+	willmcvicker@google.com,
+	Tudor Ambarus <tudor.ambarus@linaro.org>
+Subject: [PATCH v3 00/12] GS101 Oriole: CMU_PERIC0 support and USI updates
+Date: Tue,  9 Jan 2024 12:58:02 +0000
+Message-ID: <20240109125814.3691033-1-tudor.ambarus@linaro.org>
+X-Mailer: git-send-email 2.43.0.472.g3155946c3a-goog
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240108201618.2798649-1-dario.binacchi@amarulasolutions.com>
- <20240108201618.2798649-6-dario.binacchi@amarulasolutions.com> <CACRpkdb73Qrs6MuiC427f=RnyD=rydH_4xVhBx-2bS8bX0mJCw@mail.gmail.com>
-In-Reply-To: <CACRpkdb73Qrs6MuiC427f=RnyD=rydH_4xVhBx-2bS8bX0mJCw@mail.gmail.com>
-From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-Date: Tue, 9 Jan 2024 13:54:31 +0100
-Message-ID: <CABGWkvq0kbjDZTZj-PN+Sj3jo7SAx0G5PcTeA9KDfceh4D8_yw@mail.gmail.com>
-Subject: Re: [PATCH v5 5/8] dt-bindings: nt35510: add compatible for FRIDA FRD400B25025-A-CTK
-To: Linus Walleij <linus.walleij@linaro.org>
-Cc: linux-kernel@vger.kernel.org, linux-amarula@amarulasolutions.com, 
-	Alexandre Torgue <alexandre.torgue@foss.st.com>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>, 
-	Jessica Zhang <quic_jesszhan@quicinc.com>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
-	Sam Ravnborg <sam@ravnborg.org>, Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-Hi Linus,
+This patch set shall be queued after the cmu_misc clock name fixes from:
+https://lore.kernel.org/linux-arm-kernel/20240109114908.3623645-1-tudor.ambarus@linaro.org/
 
-On Tue, Jan 9, 2024 at 1:51=E2=80=AFPM Linus Walleij <linus.walleij@linaro.=
-org> wrote:
->
-> Hi Dario,
->
-> do you want me to apply patches 5,7,8 to the dri-misc
-> tree?
->
-> Yours,
-> Linus Walleij
+Add support for PERIC0 clocks. Use them for USI in serial and I2C
+configurations. Tested the serial at different baudrates (115200,
+1M, 3M) and the I2C with an at24 eeprom, all went fine.
 
-Yes, I would appreciate that very much.
+Apart of the DT and defconfig changes, the patch set spans through the tty
+and clk subsystems. The expectation is that Krzysztof will apply the whole
+series through the Samsung SoC tree. If the tty and clk subsystem
+maintainers can give an acked-by or reviewed-by on the relevant patches
+that would be most appreciated!
 
-Thanks and Regards,
-Dario Binacchi
+Thanks!
+ta
 
---=20
+Changes in v3:
+- rename cmu_peric0 clocks to just "bus" and "ip" and then comply with
+  the change in device tree and clock driver
+- reposition ``iotype`` of ``struct s3c24xx_uart_info`` to reduce the
+  memory footprint of the struct. A patch set reworking the members of
+  the struct will follow.
+- fix the usi8 clocks order in the device tree
+- collect Peter's R-b tags
+- changes log in each patch set as well, in the comments section under
+  ```---```
 
-Dario Binacchi
+Changes in v2:
+- gs101 serial - infer the reg-io-width from the compatible as the entire
+  PERIC block allows just 32-bit register accesses.
+- identify the critical clocks faaaaaaarom PERIC0 and mark them accordingly
+  (if disabled theslocks hang the system even if their parents are
+   still enabled).
+- update dtsi and use USI's gate clocks instead of the dividers clocks
+- move hsi2c_8 cells and pinctrls into dtsi
+- address Sam's cosmetic changes in the device tree files
+- drop defconfig patches (savedefconfig output & at24 eeprom enablement)
+- collect Acked-by and Reviewed-by tags
+- changes log in each patch as well, in the comments section under
+  ```---```
 
-Senior Embedded Linux Developer
+Tudor Ambarus (12):
+  dt-bindings: clock: google,gs101-clock: add PERIC0 clock management
+    unit
+  dt-bindings: i2c: exynos5: add google,gs101-hsi2c compatible
+  dt-bindings: serial: samsung: do not allow reg-io-width for gs101
+  tty: serial: samsung: prepare for different IO types
+  tty: serial: samsung: set UPIO_MEM32 iotype for gs101
+  tty: serial: samsung: add gs101 earlycon support
+  clk: samsung: gs101: add support for cmu_peric0
+  arm64: dts: exynos: gs101: remove reg-io-width from serial
+  arm64: dts: exynos: gs101: enable cmu-peric0 clock controller
+  arm64: dts: exynos: gs101: update USI UART to use peric0 clocks
+  arm64: dts: exynos: gs101: define USI8 with I2C configuration
+  arm64: dts: exynos: gs101: enable eeprom on gs101-oriole
 
-dario.binacchi@amarulasolutions.com
+ .../bindings/clock/google,gs101-clock.yaml    |  25 +-
+ .../devicetree/bindings/i2c/i2c-exynos5.yaml  |   1 +
+ .../bindings/serial/samsung_uart.yaml         |   2 +
+ .../boot/dts/exynos/google/gs101-oriole.dts   |  14 +
+ arch/arm64/boot/dts/exynos/google/gs101.dtsi  |  54 +-
+ drivers/clk/samsung/clk-gs101.c               | 583 ++++++++++++++++++
+ drivers/tty/serial/samsung_tty.c              |  58 +-
+ include/dt-bindings/clock/google,gs101.h      |  81 +++
+ 8 files changed, 794 insertions(+), 24 deletions(-)
 
-__________________________________
+-- 
+2.43.0.472.g3155946c3a-goog
 
-
-Amarula Solutions SRL
-
-Via Le Canevare 30, 31100 Treviso, Veneto, IT
-
-T. +39 042 243 5310
-info@amarulasolutions.com
-
-www.amarulasolutions.com
 
