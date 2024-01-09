@@ -1,140 +1,113 @@
-Return-Path: <devicetree+bounces-30640-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30643-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EEE982875E
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 14:48:42 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9334E8287BC
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 15:07:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C3CD11C24042
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 13:48:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2F346282911
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 14:07:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88D8738FAE;
-	Tue,  9 Jan 2024 13:48:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E0AB39867;
+	Tue,  9 Jan 2024 14:07:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="GH4SbNxa"
+	dkim=pass (2048-bit key) header.d=tkos.co.il header.i=@tkos.co.il header.b="aAyidV3w"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from mail.tkos.co.il (guitar.tkos.co.il [84.110.109.230])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9ED9F38FA3;
-	Tue,  9 Jan 2024 13:48:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=wvVG2KQV/oETOX0CukFpt/vsd01F13tBQ9AIaAYqp6w=; b=GH4SbNxaChv564U3M/bDK7+b6W
-	e4yuHL2BbR4aMHapx53lmIvMyxVTYAtqrdRkQYktWCIpUKceG2nUrXqGw2/b97QNGnEZNL4DgCO+j
-	9qS+8VnvXTjPKZu+ILIS9TiPBkLrHFksXOg3/HhB2VxLn1JefXhhBq2PT6SUrN1OF6DY=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1rNCSm-004pw9-Bx; Tue, 09 Jan 2024 14:48:16 +0100
-Date: Tue, 9 Jan 2024 14:48:16 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Jie Luo <quic_luoj@quicinc.com>
-Cc: Sergey Ryazanov <ryazanov.s.a@gmail.com>,
-	Christian Marangi <ansuelsmth@gmail.com>,
-	Robert Marko <robert.marko@sartura.hr>,
-	Vladimir Oltean <olteanv@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Subject: Re: [net-next PATCH RFC v3 1/8] dt-bindings: net: document ethernet
- PHY package nodes
-Message-ID: <2f2328ee-205b-4b4f-a683-2df4fbb22dde@lunn.ch>
-References: <20231126015346.25208-1-ansuelsmth@gmail.com>
- <20231126015346.25208-2-ansuelsmth@gmail.com>
- <0926ea46-1ce4-4118-a04c-b6badc0b9e15@gmail.com>
- <1437d9df-2868-43f5-aebd-e0c57fe4d905@lunn.ch>
- <b75e6267-7d54-412e-8882-af4d9a0b54e6@quicinc.com>
- <841ef784-b27e-4f7a-94f2-f04f93178c61@lunn.ch>
- <07c01c11-0cc2-4837-b371-1404f2ce3359@quicinc.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51C4339848;
+	Tue,  9 Jan 2024 14:07:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tkos.co.il
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tkos.co.il
+Received: from localhost (unknown [10.0.8.2])
+	by mail.tkos.co.il (Postfix) with ESMTP id A125F4403F1;
+	Tue,  9 Jan 2024 16:04:42 +0200 (IST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=tkos.co.il;
+	s=default; t=1704809082;
+	bh=nWkMWvzxZARucV9BKvxgMiKFVZFgW9ZAI35CPkgiN1w=;
+	h=References:From:To:Cc:Subject:Date:In-reply-to:From;
+	b=aAyidV3wDfegVJgn3hj2aDw+IJDBsWlDNykw4JwSxDMX60QxAwvxku7WYwfhglKQX
+	 2r0YYJ4vBr+Je8oNZDOdl03Cx6gpEWss69lfGvbPCQRUa+su3KRCQ2L5JP5uk8NSsT
+	 gKR3SjuvtHwmVr93lXLKe85z8EGw5nJYRq2LITFBorKEpSQoWSM5eydLbl6TM5LuMc
+	 qXaOIwyps6aHgGJmM3j3vuH3oGosFp6h+DNn1Bl79twF0pH0Ke49ZYDFe/6A7k52C/
+	 2zLQhUqhtvbGT9bWpW1uWcR/oxlGh2ALKR9AqV8kfKCO+UVdQa2VwrxbqNbvbyDtKL
+	 AZGd+7diylz+Q==
+References: <cover.1703683642.git.baruch@tkos.co.il>
+ <fae5b1180161a7d8cd626a96f5df80b0a0796b8b.1703683642.git.baruch@tkos.co.il>
+ <ZZw3FDy8800NScEk@arm.com> <87msterf7b.fsf@tarshish>
+ <ZZ0mAxGupZKRPzWR@arm.com>
+User-agent: mu4e 1.10.8; emacs 29.1
+From: Baruch Siach <baruch@tkos.co.il>
+To: Catalin Marinas <catalin.marinas@arm.com>
+Cc: Christoph Hellwig <hch@lst.de>, Marek Szyprowski
+ <m.szyprowski@samsung.com>, Rob Herring <robh+dt@kernel.org>, Frank Rowand
+ <frowand.list@gmail.com>, Will Deacon <will@kernel.org>, Robin Murphy
+ <robin.murphy@arm.com>, iommu@lists.linux.dev, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, Petr
+ =?utf-8?B?VGVzYcWZw61r?= <petr@tesarici.cz>, Ramon Fried
+ <ramon@neureality.ai>, Elad
+ Nachman <enachman@marvell.com>
+Subject: Re: [PATCH RFC 3/4] dma-direct: add offset to zone_dma_bits
+Date: Tue, 09 Jan 2024 15:54:13 +0200
+In-reply-to: <ZZ0mAxGupZKRPzWR@arm.com>
+Message-ID: <871qaqr477.fsf@tarshish>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <07c01c11-0cc2-4837-b371-1404f2ce3359@quicinc.com>
+Content-Type: text/plain
 
-> 
-> __| |_______________| |__
-> | PCS0 |          |PCS1 |
-> |______|          |_____|
-> |_______                |<---- REF clock 50MHZ
-> |      |------------    |
-> |NSSCC |    |clks  |rsts|<---- GPIO reset
-> |______|    |      |    |
-> |           V      V    |
-> |_______________________|
-> |     |     |     |     |
-> |PHY1 |PHY2 |PHY3 |PHY4 |
-> |_____|_____|_____|_____|
+Hi Catalin,
 
-Not the best of improvements. So the ref clock goes to the package,
-and then magically somehow gets to the NSSCC? Are there any more
-blocks it goes through before reaching the NSSCC? How does the GPIO
-reset get converted into multiple reset inside the package? Details,
-details, details.
+On Tue, Jan 09 2024, Catalin Marinas wrote:
+> On Tue, Jan 09, 2024 at 12:03:43PM +0200, Baruch Siach wrote:
+>> On Mon, Jan 08 2024, Catalin Marinas wrote:
+>> > On Wed, Dec 27, 2023 at 05:04:27PM +0200, Baruch Siach wrote:
+>> >> Current code using zone_dma_bits assume that all addresses range in the
+>> >> bits mask are suitable for DMA. For some existing platforms this
+>> >> assumption is not correct. DMA range might have non zero lower limit.
+>> >> 
+>> >> Add 'zone_dma_off' for platform code to set base address for DMA zone.
+>> >> 
+>> >> Rename the dma_direct_supported() local 'min_mask' variable to better
+>> >> describe its use as limit.
+>> >> 
+>> >> Suggested-by: Catalin Marinas <catalin.marinas@arm.com>
+>> >
+>> > When I suggested taking the DMA offsets into account, that's not exactly
+>> > what I meant. Based on patch 4, it looks like zone_dma_off is equivalent
+>> > to the lower CPU address. Let's say a system has DRAM starting at 2GB
+>> > and all 32-bit DMA-capable devices has a DMA offset of 0. We want
+>> > ZONE_DMA32 to end at 4GB rather than 6GB.
+>> 
+>> Patch 4 sets zone_dma_off to the lower limit from 'dma-ranges' property
+>> that determines zone_dma_bits. This is not necessarily equivalent to
+>> start of DRAM, though it happens to be that way on my platform.
+>
+> A bit better but it still assumes that all devices have the same DMA
+> offset which may not be the case.
 
-> There are difference clock trees generated from NSSCC for the different
-> PHYs, all clocks and resets for qca8084 CHIP working are internally
-> provided by the NSSCC.
+Current code calculates zone_dma_bits based on the lowest high limit of
+all 'dma-ranges' properties. The assumption appears to be that this
+limit fits all devices. This series does not change this assumption. It
+only extends the logic to the lower limit of the "winning" 'dma-ranges'
+to set the base address for DMA zone.
 
-So show this in the block diagram.
+Moving to dma_zone_limit would not change that logic. Unless I'm missing
+something.
 
-> Yes, Andrew, the NSSCC provider driver is probed based on the MDIO
-> device, the PHY CHIP occupies the MDIO addresses, so the NSSCC is
-> registered as the MDIO device.
-> 
-> DT of the NSSCC device node:
-> mdio {
->       #address-cells = <1>;
->       #size-cells = <0>;
-> 
->       clock-controller@18 {
->         compatible = "qcom,qca8084-nsscc";
->         reg = <0x18>;
->         clocks = <&qca8k_xo>,
->                  <&qca8k_uniphy0_rx>,
->                  <&qca8k_uniphy0_tx>,
->                  <&qca8k_uniphy1_rx>,
->                  <&qca8k_uniphy1_tx>,
->                  <&qca8k_uniphy1_rx312p5m>,
->                  <&qca8k_uniphy1_tx312p5m>;
->         #clock-cells = <1>;
->         #reset-cells = <1>;
->         #power-domain-cells = <1>;
->       };
->     };
- 
-This does not make any sense. You have one clock input, 50MHz. So why
-are you listing 6 consumer clocks, not one? And where are the clocks
-this clock controller provides, clock-output-names=<...>;
+Breaking the "one DMA zone fits all devices" assumption as Petr
+suggested is a much larger change.
 
-I give up. Please consider this PHY driver NACKed.
+baruch
 
-Get Linaro, or some other organisation with a lot of experience with
-mainline to take over the work.
-
-	 Andrew
+-- 
+                                                     ~. .~   Tk Open Systems
+=}------------------------------------------------ooO--U--Ooo------------{=
+   - baruch@tkos.co.il - tel: +972.52.368.4656, http://www.tkos.co.il -
 
