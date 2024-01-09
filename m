@@ -1,152 +1,128 @@
-Return-Path: <devicetree+bounces-30591-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30590-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 529078284EF
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 12:25:30 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 940B58284AA
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 12:20:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EF705283112
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 11:25:28 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1E234B21BA3
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 11:20:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2520438DE7;
-	Tue,  9 Jan 2024 11:23:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F219E36B00;
+	Tue,  9 Jan 2024 11:20:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Ntb0L3yN"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nEx5WBtU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E3A937162;
-	Tue,  9 Jan 2024 11:23:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1704799399; x=1736335399;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=nri6MxrFIMHTBgggJZSrCHzG3uLau0be+hNOOAXuPX8=;
-  b=Ntb0L3yN9DgJ87TWBJsu/cymRrPNQJtHXbmRMRGtZkwm238ME0uE7ney
-   7rHMdLDzvrjrYckg5JXFbGrS9k2OrBjCn2Oe8e44Hi69yfTOnMfG0KpgL
-   YvWGDHa63BvrgkKxtsi4WwmCvIwqoxwmrTcy0PyyQHHiZhqB0tykjoeU6
-   yt3UlPOTHKllAXtNW+5zrbzvDYZcpqP9l1SsIrRTefbr/mpL+Tqorthgi
-   GNZmqydRyx9xSplilh6M4MR99V0AU8+muUINuid2/xV939V7alveAQwjl
-   tGC9/ET7n/3KVGEUDeK+2En22eTNO3mhlvIsuCm2PfX8EV8YMQC+yrLA7
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10947"; a="11515183"
-X-IronPort-AV: E=Sophos;i="6.04,182,1695711600"; 
-   d="scan'208";a="11515183"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
-  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Jan 2024 03:23:18 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10947"; a="954987339"
-X-IronPort-AV: E=Sophos;i="6.04,182,1695711600"; 
-   d="scan'208";a="954987339"
-Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com) ([10.237.72.44])
-  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Jan 2024 03:23:11 -0800
-Received: from kekkonen.localdomain (localhost [127.0.0.1])
-	by kekkonen.fi.intel.com (Postfix) with ESMTP id B99CB11F913;
-	Tue,  9 Jan 2024 13:23:08 +0200 (EET)
-Date: Tue, 9 Jan 2024 11:23:08 +0000
-From: "sakari.ailus@linux.intel.com" <sakari.ailus@linux.intel.com>
-To: Zhi Mao =?utf-8?B?KOavm+aZuik=?= <zhi.mao@mediatek.com>
-Cc: "heiko@sntech.de" <heiko@sntech.de>,
-	"gerald.loacker@wolfvision.net" <gerald.loacker@wolfvision.net>,
-	"robh+dt@kernel.org" <robh+dt@kernel.org>,
-	"yunkec@chromium.org" <yunkec@chromium.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"dan.scally@ideasonboard.com" <dan.scally@ideasonboard.com>,
-	"linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-	Shengnan Wang =?utf-8?B?KOeOi+Wco+eUtyk=?= <shengnan.wang@mediatek.com>,
-	"hdegoede@redhat.com" <hdegoede@redhat.com>,
-	"linus.walleij@linaro.org" <linus.walleij@linaro.org>,
-	"andy.shevchenko@gmail.com" <andy.shevchenko@gmail.com>,
-	Yaya Chang =?utf-8?B?KOW8tembhea4hSk=?= <Yaya.Chang@mediatek.com>,
-	"mchehab@kernel.org" <mchehab@kernel.org>,
-	"jacopo.mondi@ideasonboard.com" <jacopo.mondi@ideasonboard.com>,
-	"jernej.skrabec@gmail.com" <jernej.skrabec@gmail.com>,
-	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
-	"bingbu.cao@intel.com" <bingbu.cao@intel.com>,
-	Project_Global_Chrome_Upstream_Group <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"10572168@qq.com" <10572168@qq.com>,
-	"hverkuil-cisco@xs4all.nl" <hverkuil-cisco@xs4all.nl>,
-	"tomi.valkeinen@ideasonboard.com" <tomi.valkeinen@ideasonboard.com>,
-	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-	"laurent.pinchart@ideasonboard.com" <laurent.pinchart@ideasonboard.com>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"angelogioacchino.delregno@collabora.com" <angelogioacchino.delregno@collabora.com>,
-	"macromorgan@hotmail.com" <macromorgan@hotmail.com>
-Subject: Re: [PATCH 1/2] media: i2c: Add GC08A3 image sensor driver
-Message-ID: <ZZ0snE1r0BnFHWUh@kekkonen.localdomain>
-References: <20231207052016.25954-1-zhi.mao@mediatek.com>
- <20231207052016.25954-2-zhi.mao@mediatek.com>
- <ZXGtqwjYruBQVaUr@kekkonen.localdomain>
- <d6772a73b61911954b1f0f75325b82da53ad0877.camel@mediatek.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87AF929431;
+	Tue,  9 Jan 2024 11:20:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-557bfc7f7b4so2783649a12.0;
+        Tue, 09 Jan 2024 03:20:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1704799230; x=1705404030; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=4NZX0EHRxNFHTm/t/SYbExyf5aSTC2bJZYYjJUylqqM=;
+        b=nEx5WBtUr1QpKuXgbWyI7Ywtl99doLC0b04T0BRP1D+PMUIlnTu9F8RvXC/zSHSv1E
+         efuPFxd/MJydkLwL+I4KN9dWwSTVugocpSvFkJJg17YkHxsXcKY07LpUViW3d5FTmHz9
+         rvEWcWwR2H6wBofMl70D13atxawDlxx8OyRodNBN+9eBlB2pBCiG+sGTXccY9KJB7lbQ
+         DbPJgjYQk/a25JbB1s5QWzQe9DG5HPtfNKLdU0VrX9tMDVU+87+aOhcBVC2Fub+eYoN+
+         G+qFYpLJP58gUJggxN99HkxpUa/lLQkZK4UjPlZbmG9YOb5J+7lMQ7an4eiL+oTMtwf0
+         okqQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1704799230; x=1705404030;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=4NZX0EHRxNFHTm/t/SYbExyf5aSTC2bJZYYjJUylqqM=;
+        b=pLNs/CoEVkgLfcddyV71SPv5FyFz/gMHnlq5fmaePYfeVm6l0D0+dNG0FEyEUWsoMg
+         AZvilt9WqpRgoaiBkqi2zQsxDpohJLRSxlqvVseq5oWiJPI9Z+VM3L2hsgCGa0Q8CUGy
+         yl/syEN+S5PZmBFQ4EU9ARhMfeZLnDyBEI6PcM5m4ZKjp4zxcgtYtPUVcjzddJdwkw66
+         Z8v/eAK+ZzbaTsyKfurXgnzSXzULU1G76dQwlkZK9rEC4nN3OTDVXaDmXwBYcw9Cuha9
+         4gTAb9w3V1W+NrEBORlPtx6QaTZkB/zPzWsD3zc+LbhDMcpdxokUBHmS8OkHSTWeaoxD
+         WGMg==
+X-Gm-Message-State: AOJu0Yziwd2ccsXDN1PS+Yk241OxWNcuAkjwrEQPNGbU1nOnNhp01VfM
+	G4J0hGq8Kc/feL5p4aQyzf4=
+X-Google-Smtp-Source: AGHT+IGXf/m2QIRzKQ1oStdVxwLExVWwxpRPwZ3jXCPKit0oTg9DYq8+QM8W3Oq2r3tHVJ1af0+Z2w==
+X-Received: by 2002:a17:907:77c1:b0:a2a:19eb:9144 with SMTP id kz1-20020a17090777c100b00a2a19eb9144mr612510ejc.1.1704799229477;
+        Tue, 09 Jan 2024 03:20:29 -0800 (PST)
+Received: from ?IPv6:2003:f6:ef1b:2000:944c:cbc7:1e1c:2c47? (p200300f6ef1b2000944ccbc71e1c2c47.dip0.t-ipconnect.de. [2003:f6:ef1b:2000:944c:cbc7:1e1c:2c47])
+        by smtp.gmail.com with ESMTPSA id c24-20020a170906529800b00a27aabff0dcsm938655ejm.179.2024.01.09.03.20.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 09 Jan 2024 03:20:29 -0800 (PST)
+Message-ID: <e64da4a8907413a75bddda0401bbc2e21b12fd7d.camel@gmail.com>
+Subject: Re: [PATCH v4 4/8] of: property: add device link support for
+ io-backends
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: David Lechner <dlechner@baylibre.com>, Nuno Sa <nuno.sa@analog.com>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, Lars-Peter
+ Clausen <lars@metafoo.de>, Michael Hennerich
+ <Michael.Hennerich@analog.com>,  Jonathan Cameron <jic23@kernel.org>, Rob
+ Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
+ <rafael@kernel.org>, Frank Rowand <frowand.list@gmail.com>, Olivier Moysan
+ <olivier.moysan@foss.st.com>
+Date: Tue, 09 Jan 2024 12:23:39 +0100
+In-Reply-To: <CAMknhBHqnQoEMoaFQxp5Us+X7bs7G2J2QTNZwguPmJ7XwEHe0Q@mail.gmail.com>
+References: <20231220-iio-backend-v4-0-998e9148b692@analog.com>
+	 <20231220-iio-backend-v4-4-998e9148b692@analog.com>
+	 <CAMknhBHqnQoEMoaFQxp5Us+X7bs7G2J2QTNZwguPmJ7XwEHe0Q@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.50.3 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <d6772a73b61911954b1f0f75325b82da53ad0877.camel@mediatek.com>
 
-Hi Zhi,
+On Wed, 2024-01-03 at 15:39 -0600, David Lechner wrote:
+> On Wed, Dec 20, 2023 at 9:32=E2=80=AFAM Nuno Sa <nuno.sa@analog.com> wrot=
+e:
+> >=20
+> > From: Olivier Moysan <olivier.moysan@foss.st.com>
+> >=20
+> > Add support for creating device links out of more DT properties.
+> >=20
+> > Signed-off-by: Olivier Moysan <olivier.moysan@foss.st.com>
+> > Signed-off-by: Nuno Sa <nuno.sa@analog.com>
+> > ---
+> > =C2=A0drivers/of/property.c | 2 ++
+> > =C2=A01 file changed, 2 insertions(+)
+> >=20
+> > diff --git a/drivers/of/property.c b/drivers/of/property.c
+> > index afdaefbd03f6..a4835447759f 100644
+> > --- a/drivers/of/property.c
+> > +++ b/drivers/of/property.c
+> > @@ -1244,6 +1244,7 @@ DEFINE_SIMPLE_PROP(interconnects, "interconnects"=
+,
+> > "#interconnect-cells")
+> > =C2=A0DEFINE_SIMPLE_PROP(iommus, "iommus", "#iommu-cells")
+> > =C2=A0DEFINE_SIMPLE_PROP(mboxes, "mboxes", "#mbox-cells")
+> > =C2=A0DEFINE_SIMPLE_PROP(io_channels, "io-channel", "#io-channel-cells"=
+)
+> > +DEFINE_SIMPLE_PROP(io_backends, "io-backends", NULL)
+>=20
+> In v3 it was agreed that adding #io-backend-cells right way seemed
+> like a good idea. Do we need to include that here?
+>=20
 
-On Tue, Jan 09, 2024 at 10:41:15AM +0000, Zhi Mao (毛智) wrote:
-> > > +static const char *const gc08a3_supply_name[] = {
-> > > +"avdd",
-> > > +"dvdd",
-> > > +"dovdd",
-> > > +};
-> > > +
-> > > +#define GC08A3_NUM_SUPPLIES ARRAY_SIZE(gc08a3_supply_name)
-> > 
-> > Please use ARRAY_SIZE(...) directly.
-> > 
-> [mtk]: About "ARRAY_SIZE", creating a macro with a descriptive name can
-> improve readability of code, especially when it is used in multiple
-> locations in codes. and it seems a common usage in sensor drivers. Can
-> we keep this usage in gc08a3 driver?
+Yeah that's something I forgot and should do in v5. Should also update the =
+core
+code and the backend bindings (axi-adc) to have it (one of Rob's points in
+having the #cells was to easily identify backends - providers).
 
-It improves readability even more if you use ARRAY_SIZE() directly as then
-it's easy to see you're dealing with a single array. GC08A3_NUM_SUPPLIES is
-thus a useless definition.
+Thanks for spotting this!
+- Nuno S=C3=A1
 
-...
-
-> > > +static int gc08a3_g_mbus_config(struct v4l2_subdev *sd, unsigned
-> > int pad,
-> > > +struct v4l2_mbus_config *config)
-> > > +{
-> > > +config->type = V4L2_MBUS_CSI2_DPHY;
-> > > +config->bus.mipi_csi2.num_data_lanes = 4;
-> > > +config->bus.mipi_csi2.flags = 0;
-> > > +return 0;
-> > > +}
-> > 
-> > As you return a static configuration, there's no need to implement
-> > g_mbus_config().
-> > 
-> [mtk]: we can not remove this function, because meidatek ISP driver
-> will use this interface to get some information.
-
-Please fix the Mediatek ISP driver in that case.
-
-I'm also open to adding a V4L2 framework function to obtain the number of
-lanes (and other configuration) for an upstream sub-device, either using
-the local endpoint or g_mbus_config if the sub-device driver implements
-that.
-
--- 
-Regards,
-
-Sakari Ailus
+>=20
 
