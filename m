@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-30654-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30655-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 616448288CB
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 16:16:23 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 083388288D3
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 16:17:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5DCEE1C23B8F
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 15:16:22 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 41815B23B68
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 15:17:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 920B439AED;
-	Tue,  9 Jan 2024 15:16:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE9BF39FD1;
+	Tue,  9 Jan 2024 15:17:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="H1YEIvBX"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WZqIkWSp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02D1539FC1
-	for <devicetree@vger.kernel.org>; Tue,  9 Jan 2024 15:16:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F47339AC5
+	for <devicetree@vger.kernel.org>; Tue,  9 Jan 2024 15:17:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-3366e78d872so3312330f8f.3
-        for <devicetree@vger.kernel.org>; Tue, 09 Jan 2024 07:16:18 -0800 (PST)
+Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-33770772136so1110337f8f.3
+        for <devicetree@vger.kernel.org>; Tue, 09 Jan 2024 07:17:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704813377; x=1705418177; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1704813452; x=1705418252; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=vMaaM4nO+t6Lh+yeQOmhcF9DwBegIxkBM69Bdz+nMO0=;
-        b=H1YEIvBXDyo7rVj/RqkTkv84p2C+OL57aDWs/4AwdjS9OlmH4dT8fsNLyTLSujJqWJ
-         vq+Z/WzDkYraV6AfiPwqpwTSMiVB+Jmrx9uc5LNLH85SE8XMVnYurmT6lOkr07wA4C4z
-         pSGLrYCoHuYoJ0fhaRzFL+jHdPgG4dQQFqfezbPxGGwmMBm778lr9YjuM+91JTmB9mPa
-         f1lz9UuaSQVxl2b32gdp9Vzw92GhbxSKH4MPX9AVG+FG+WicO4NIkNaYOdHJcjYc1yBb
-         6GH6mLz3aG1MO7I/dZfS2EXaXfmPwRKSc2tfYcchsqcEILTMOPABlrfM2JfI8VpzO71k
-         n09Q==
+        bh=Q+t2MvDTifDUi046AjiTt/a3s6JOV3dbN3004LwRA8c=;
+        b=WZqIkWSpQtw2fQoXD7iCA0qkfWlrsH9OoVzLk3PQCxh9rorYyYxlDC1o0/vGD8pDQj
+         QtzrNo0J1Bz4+Lvv/Klq70fGzoJnmNEnssguGW/L71rZzkvlJTmduP+ec3x0i6wetrz0
+         QvSN0EPTZuWn5Td6rIg2iD8Nmhgrw84KpaqIAV3y/bsnv3vGeBJZQ9IrfZ2NJ7J6g/wy
+         GfenAXgXkWxt5KYjuquLITNntwVN0JALbJvowwig+Sz5dNCwBEpRA5L0I31L0bty5Twe
+         /e9jvc8U2wmpyDC96cPO2LamiHMlS0TRfqRaEXszC8kSdTKdtx+16FT8Zz4sOPUFQOMs
+         rnLg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704813377; x=1705418177;
+        d=1e100.net; s=20230601; t=1704813452; x=1705418252;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=vMaaM4nO+t6Lh+yeQOmhcF9DwBegIxkBM69Bdz+nMO0=;
-        b=TypSeUiDjmtG4BZlSNcCMpLacTOX1qoKaDepqBBNVjGc6gADvOGVdeuxFda6rFw6jQ
-         UuskOPanA2kqnqb39UdTn4+mLys+x93POFJZpvF60cd9CYE+gqn5AW31RB7XST3HJ7Lr
-         i1pIUoEsXBO2Nywv8Vs0uVN2omKXPr8Gmdu1uzBRXllXsXP/P0koDhL8KEfevfgTFz/8
-         bwx6iGYJarI8Jiu3oxjSqqiCvHZ8Dr5IYLWBYug8CnMFQyEGIARNbzt01g+jp3BBHiV4
-         jUWLGecRfrboGhTC8lmWTaeqF6BC20TRlaSo1fP4TNjZJpRAtgyDh6bto+Dmjm0QzXK8
-         BZ2g==
-X-Gm-Message-State: AOJu0Yzoy19pWOEzED5vES2FsJTgk39zKxfEyV8noMi84lUGa0Yv4DdH
-	oYieDWEgbF0KYdr7rT7ISq7Q4+sTnSgpXg==
-X-Google-Smtp-Source: AGHT+IGhAsmfeHaPURFXxUfLzCkjoc64uD0WcMUJgxCfFySlkBRR59ITnIcVl1fndci+UVvMjSzymQ==
-X-Received: by 2002:adf:e19d:0:b0:336:5383:a726 with SMTP id az29-20020adfe19d000000b003365383a726mr332327wrb.165.1704813377385;
-        Tue, 09 Jan 2024 07:16:17 -0800 (PST)
+        bh=Q+t2MvDTifDUi046AjiTt/a3s6JOV3dbN3004LwRA8c=;
+        b=maMbcH7lCfTYy5DwZlEl8ntTRoAq4TefJx7yDZmBJs4H6T785HGwGV4BCuDGJhWBqU
+         aK7cj4zbW9416sNXTjmu4x7VB4cPKd6g/HIGilCcja8swh1+Zzee5LrWvClRXDWclUEE
+         KuSGoHI6fnGai3cOsFwMc07IxuTe0CZ8RadOARfKacmBkHYpCkPMWCkwygiHzrNCq0JW
+         8Z3tkOYrjBZjsE2hcdOy18JpwzaIBm0Aa+oATOZRyF5WioSxegIJHKt3w0m7dhStoVNP
+         PwihiLDuej/wuR619sUsIlurSWDEsaRbiZZtMaKVnZvabWx7GJaPFHf1TRpuIgLPv7bE
+         SLhA==
+X-Gm-Message-State: AOJu0YzBlAJq6tiFe1iJ/r8xU0fMoJzOLaX9Ahv8hi1EZ8J2lSmveTLn
+	e+mFz7H3wUaVTlnU9jBgieHBbBxey3/+UQ==
+X-Google-Smtp-Source: AGHT+IGf1g6r6RaoAkMuA3L3zOCJfcDNTT0RrTZbyuKfaEXIFqaTEcsV1rItOBV02ReIYQYFNCviMg==
+X-Received: by 2002:a5d:6243:0:b0:337:5a22:ee0a with SMTP id m3-20020a5d6243000000b003375a22ee0amr725967wrv.71.1704813452414;
+        Tue, 09 Jan 2024 07:17:32 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.223.112])
-        by smtp.gmail.com with ESMTPSA id h16-20020a05600004d000b003367ff4aadasm2653977wri.31.2024.01.09.07.16.15
+        by smtp.gmail.com with ESMTPSA id h16-20020a05600004d000b003367ff4aadasm2653977wri.31.2024.01.09.07.17.30
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 09 Jan 2024 07:16:16 -0800 (PST)
-Message-ID: <103b45c8-3e16-480d-9f39-c677da747090@linaro.org>
-Date: Tue, 9 Jan 2024 16:16:15 +0100
+        Tue, 09 Jan 2024 07:17:31 -0800 (PST)
+Message-ID: <4024d6c8-503f-42da-928a-589f2025188f@linaro.org>
+Date: Tue, 9 Jan 2024 16:17:30 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,17 +66,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: rockchip: remove duplicate SPI aliases
- for helios64
+Subject: Re: [PATCH v4 0/3] Add support for LTC4282
 Content-Language: en-US
-To: Quentin Schulz <foss+kernel@0leil.net>, Rob Herring <robh+dt@kernel.org>,
+To: =?UTF-8?Q?Nuno_S=C3=A1?= <noname.nuno@gmail.com>,
+ Nuno Sa <nuno.sa@analog.com>, linux-hwmon@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-doc@vger.kernel.org
+Cc: Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>,
+ Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- Quentin Schulz <quentin.schulz@theobroma-systems.com>
-References: <20240109-rk3399-spi-aliases-v1-0-2009e44e734a@theobroma-systems.com>
- <20240109-rk3399-spi-aliases-v1-2-2009e44e734a@theobroma-systems.com>
+ Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>
+References: <20231218-b4-ltc4282-support-v4-0-4fc51f7d04f0@analog.com>
+ <09d0ecb0460aafb3f45d3d17b1b40605d7d28b2a.camel@gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -122,19 +122,91 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240109-rk3399-spi-aliases-v1-2-2009e44e734a@theobroma-systems.com>
+In-Reply-To: <09d0ecb0460aafb3f45d3d17b1b40605d7d28b2a.camel@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 09/01/2024 14:35, Quentin Schulz wrote:
-> From: Quentin Schulz <quentin.schulz@theobroma-systems.com>
+On 09/01/2024 13:19, Nuno Sá wrote:
+> On Mon, 2023-12-18 at 17:29 +0100, Nuno Sa wrote:
+>> v1:
+>>  *
+>> https://lore.kernel.org/linux-hwmon/20231110151905.1659873-1-nuno.sa@analog.com/
+>>
+>> v2:
+>>  *
+>> https://lore.kernel.org/linux-hwmon/20231124-ltc4282-support-v2-0-952bf926f83c@analog.com
+>>
+>> v3:
+>>  *
+>> https://lore.kernel.org/r/20231205-ltc4282-support-v3-0-e0877b281bc2@analog.com
+>>
+>> Changes in v4:
+>> - Patch 1:
+>>  * New patch. Support fault attributes in voltage channels.
+>> - Patch 2:
+>>  * Add default values for gpios and divider properties;
+>>  * Add adi,gpio3-monitor-enable property.
+>> - Patch 3:
+>>  - Docs:
+>>   * Document that fault logs are also cleared when writing in reset_history
+>>     attributes;
+>>   * Document debugfs entries;
+>>   * Add new in0_fault attributes and remove dropped ones.
+>>  - Driver:
+>>   * Add hwmon_in_fault attribute to report FET failures in VSOURCE;
+>>   * Clear fault logs in reset_history;
+>>   * Constify 'ltc4282_out_rates';
+>>   * Add missing error check in ltc4282_cache_history();
+>>   * Removed unused functions;
+>>   * Renamed clk provider name so it's unique per device;
+>>   * Support new adi,gpio3-monitor-enable property;
+>>   * Dropped power1_good, fet_bad_fault, fet_short_fault, fault_logs_reset
+>>     custom attributes. Note that only power1_good was really dropped.
+>>     The other ones are supported in standard ABI.
+>>   * Renamed debugfs directory for ltc4282-hwmonX;
+>>   * Added in0 prefix to FET fault logs so it's clear they affect VSOURCE;
+>>   * Fix in_range() condition (false means error);
+>>   * Fix reset_history attributes. We should not write 0 in the lowest
+>>     value. Write the theoretical max value in there. For vsource/vdd,
+>>     also do it during device setup (or we would end up with 0).
+>>   * Directly store the chip vdd instead of vin_mode in our device
+>>     structure. Easier to handle reset_history;
+>>   * Moved the vin_mode enum to reduce it's scope.
+>>
+>> As mentioned in v3 discussion, clearing the power bad fault log has no
+>> effect but I'm still doing it for consistency and because we also allow
+>> to read it in debugfs (so better allow to clear it as well)
+>>
+>> ---
+>> Nuno Sa (3):
+>>       dt-bindings: hwmon: Add LTC4282 bindings
+>>       hwmon: add fault attribute for voltage channels
+>>       hwmon: ltc4282: add support for the LTC4282 chip
+>>
+>>  Documentation/ABI/testing/sysfs-class-hwmon        |    9 +
+>>  .../devicetree/bindings/hwmon/adi,ltc4282.yaml     |  159 ++
+>>  Documentation/hwmon/index.rst                      |    1 +
+>>  Documentation/hwmon/ltc4282.rst                    |  133 ++
+>>  MAINTAINERS                                        |    8 +
+>>  drivers/hwmon/Kconfig                              |   11 +
+>>  drivers/hwmon/Makefile                             |    1 +
+>>  drivers/hwmon/hwmon.c                              |    1 +
+>>  drivers/hwmon/ltc4282.c                            | 1784
+>> ++++++++++++++++++++
+>>  include/linux/hwmon.h                              |    2 +
+>>  10 files changed, 2109 insertions(+)
+>>
+>> Thanks!
+>> - Nuno Sá
+>>
 > 
-> An earlier commit defined an alias for all SPI controllers found on the
-> RK3399, so there's no need to duplicate the aliases in helios64's device
-> tree.
+> Hi Guenter,
+> 
+> Just pinging this one. Not sure if you missed this one or just low priority in
+> your queue :)
 
-That's not what we want. Boards should define aliases for what is
-available, according to the board labeling.
+Merge window is open. Is it a critical fix? Does not look like, so don't
+ping, it's pointless and only adds unnecessary traffic.
 
 Best regards,
 Krzysztof
