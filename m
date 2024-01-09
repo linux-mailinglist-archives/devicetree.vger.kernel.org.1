@@ -1,76 +1,79 @@
-Return-Path: <devicetree+bounces-30773-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30774-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A172828E64
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 21:13:41 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 259B3828E78
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 21:21:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EC1561C236E7
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 20:13:39 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BAA30B21949
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 20:21:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83B773D57A;
-	Tue,  9 Jan 2024 20:13:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B8363D962;
+	Tue,  9 Jan 2024 20:21:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hXyArfN9"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OcmpfsTe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E42DC3A8E5;
-	Tue,  9 Jan 2024 20:13:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E06C13D57C;
+	Tue,  9 Jan 2024 20:21:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-40e461c1f5bso27638515e9.3;
-        Tue, 09 Jan 2024 12:13:34 -0800 (PST)
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-40e4d64a431so12833875e9.0;
+        Tue, 09 Jan 2024 12:21:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1704831213; x=1705436013; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1704831677; x=1705436477; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ri1A4PylPs61GP02N60LyoFg+L+Yu7M2YLplX+7G6Qk=;
-        b=hXyArfN9XRb3TpG+A62w8bVZYJLGVNzx0mKBp5JWS42BIFNRgy5bzCjGsET9gpimMP
-         bxplGRH/L7bjbIvl4Rxl+PGDzvVo1v0qdEH2VTO1dMd3B3occ4twh6qX2ScMVV/yfjvL
-         3xjw4z/JotBwRwrM1CVOX79bBbYe8/Lof5ID4j1cMxP1Mj+6lOCzKb7MreyzUOHMoGXk
-         a3wKtegzaN/+OAzFWsucV0mjJLTo1jyaFo3SaSaezuVEF+edLwMAcUnHBH5MnvbadBnq
-         pB7v8MFOU7guPfGaSdo9kM50AQbGCvlegTOiRR5gdWmVlTPfd+29X03dRlOXzpvqmBBz
-         s/IA==
+         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=SV192nZl7wwZqocnDFeUodUzhIyPq553m7hm6fzBgSg=;
+        b=OcmpfsTeq4AjxwXO2RX4Ud+gF40byL+Sr5+5HQwwDjs4lXAgkopuOITAun895uOGyF
+         B9EFO4ATp45z17GcD5kj2CUyqbGGPq2r+JE3iA5/TxuSCYKgLb42H+W5fX4f9Ll/JmzJ
+         hNXmdfT/2yEGaWF0RsNvw+7Ds+aLoMDiqPglIkrtpnM44E/1zMD/Iqug5qXZU5Nlc/Zn
+         VpebS7wldrXuLSPatSE9/O7C5bbuRw5+Hijnc+Dp35b4QfHGDUdYWrU+fUknem2IVUOM
+         cX14JhNsLMfn+WOOAlCBH+SMyBDQWjbMiGZEEyodFg449dtRBDPh0UgMyiDk1v50/R2S
+         6Dpw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704831213; x=1705436013;
+        d=1e100.net; s=20230601; t=1704831677; x=1705436477;
         h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=ri1A4PylPs61GP02N60LyoFg+L+Yu7M2YLplX+7G6Qk=;
-        b=B9q/jHofoWHZ0jjKOSHkFmc0Q0Fx+fmIeiUDlJx3vWiT2Punanxzmmt+QO88xYuXAG
-         dIcQfS2oD1gQMeLqlDNXaxrINMeLa73Uh83cRMtRKhNIEs8LMe5uFNjuF9OiSfhjKAwn
-         L3uWztV3najy1NsafRwiLmfgxVHTewHewq/Ja38Zvz2I8Z+FDRDP50qa+IydAbttMXuv
-         1zYwC33TWTa36HR6CtI+xrWS30MrKHmvYQGceFb1kzGzyRYE+Ztk+Yv0Vf2sUl22Ja/p
-         6LuEt9+kG5zdnWPAUi0GEpW/wy32uPF8NbuZUcHBW3EIKZlPNwEj8uA1tN7XFf8RMPdl
-         V7IQ==
-X-Gm-Message-State: AOJu0YxNCm5FR5mC12FVU+vklLXth0BkBU718nddoL6WCkmCFb/+HpcX
-	aLbLrd84CAaY7TIPg4hOeuAKY2yI1ZY=
-X-Google-Smtp-Source: AGHT+IFWeqJH8v4d6+tnLLqV4BNVKn2y5I5WhwFYoAeVK8N9t53Q9defYknIcJu4v4RiYmRY0DHgYA==
-X-Received: by 2002:a05:600c:34cd:b0:40e:44eb:c3a with SMTP id d13-20020a05600c34cd00b0040e44eb0c3amr2112091wmq.31.1704831212907;
-        Tue, 09 Jan 2024 12:13:32 -0800 (PST)
+        bh=SV192nZl7wwZqocnDFeUodUzhIyPq553m7hm6fzBgSg=;
+        b=tDlTQSdar3P3SpzwnVrm/gJuBF5uWLCp93q2fzL7dT1jr0zpirTWGMhU3rAMHHhZB/
+         aYnhRK7OsZkIdfcItI2/ErHxsqCpOfRQfOU1LE9dJftkcuwzJd/qZUl7chbzpebCBYWf
+         zDiD9DeboXRCSHuOxwTlJZkN+CYlzypcfXr+WxL6fy7Wqf+ve0mzyzLflrmRLz03TZJ7
+         Yvua3NwHuWmfd+RiYSi2va559VveoHNSNrSdMZzNOE6DW8WzDYF+1g2Rxk7XpwP0h6Py
+         faIKDMD9gsZTuwAzggny/zVHfbwMF2k2BJz22/7mA8HAn4kzWvQm8wf1WLua4MDmyOMU
+         n+QQ==
+X-Gm-Message-State: AOJu0Yyf1bj6a5PYsmPUY0h+7ICRjS3/2jwMCGzTpS+J4HrHUi012/GH
+	HZaA6QKkxonT72iOz8RlLCc=
+X-Google-Smtp-Source: AGHT+IHG/BUU9h0G4AHEcZub4AHtt+rBOqTvADVCj3ASiPBNesPC+msk3izuB2XDdqx2MI2K3BGAfg==
+X-Received: by 2002:a05:600c:4512:b0:40e:3549:9021 with SMTP id t18-20020a05600c451200b0040e35499021mr3368771wmo.33.1704831677080;
+        Tue, 09 Jan 2024 12:21:17 -0800 (PST)
 Received: from jernej-laptop.localnet (213-161-3-116.dynamic.telemach.net. [213.161.3.116])
-        by smtp.gmail.com with ESMTPSA id s11-20020a05600c45cb00b0040e395cd20bsm15857094wmo.7.2024.01.09.12.13.06
+        by smtp.gmail.com with ESMTPSA id f6-20020adfe906000000b0033609584b9dsm3213016wrm.74.2024.01.09.12.21.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Jan 2024 12:13:32 -0800 (PST)
+        Tue, 09 Jan 2024 12:21:16 -0800 (PST)
 From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To: anarsoul@gmail.com, tiny.windzz@gmail.com, linux-sunxi@lists.linux.dev,
- Alexey Klimov <alexey.klimov@linaro.org>
-Cc: rafael@kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- wens@csie.org, samuel@sholland.org, daniel.lezcano@linaro.org,
- peter.griffin@linaro.org, klimov.linux@gmail.com
-Subject:
- Re: [PATCH RESEND] arm64: dts: allwinner: a64: Add thermal trip points for
- GPU
-Date: Tue, 09 Jan 2024 21:13:02 +0100
-Message-ID: <2252115.iZASKD2KPV@jernej-laptop>
-In-Reply-To: <20240101000008.65747-1-alexey.klimov@linaro.org>
-References: <20240101000008.65747-1-alexey.klimov@linaro.org>
+To: Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>,
+ Andre Przywara <andre.przywara@arm.com>,
+ Florian Fainelli <f.fainelli@gmail.com>, Wei Xu <xuwei5@hisilicon.com>,
+ Gregory CLEMENT <gregory.clement@bootlin.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+ linux-kernel@vger.kernel.org,
+ =?utf-8?B?6bqm5YGl5bu6?= <maijianzhang@allwinnertech.com>
+Subject: Re: [PATCH v2] ARM: dts: sun8i: Open FETA40i-C regulator aldo1
+Date: Tue, 09 Jan 2024 21:21:13 +0100
+Message-ID: <1780716.VLH7GnMWUR@jernej-laptop>
+In-Reply-To: <ZYqRZev1g_mztff2@debian.cyg>
+References: <ZYqRZev1g_mztff2@debian.cyg>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -80,106 +83,56 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
 
-Hi Alexey!
+Dne torek, 26. december 2023 ob 09:40:05 CET je Fuyao Kashizuku napisal(a):
+> The USB PHY in the Allwinner R40 SoC seems to rely on voltage on the
+> VCC-TVIN/OUT supply pins for proper operation, on top of its own supply
+> voltage on VCC-USB. Without a 3.3V voltage supplied to VCC-TV*, USB
+> operation becomes unstable and can result in disconnects.
+> 
+> The Forlinx FETA40i-C SoM connects both the VCC-TVOUT and VCC-TVIN pins
+> to the ALDO1 rail of the PMIC, so we need to enable that rail for USB
+> operation. Since there is no supply property in the DT bindings for
+> the USB core, we need to always enable the regulator.
+> 
+> This fixes unstable USB operation on boards using the Forlinx FETA40i-C
+> module.
+> 
+> Signed-off-by: Fuyao Kashizuku <fuyao@sjterm.com>
 
-Dne ponedeljek, 01. januar 2024 ob 01:00:08 CET je Alexey Klimov napisal(a):
-> Without trip points for GPU, the following errors are printed in the
-> dmesg log and the sun8i-thermal driver fails to load:
-> 
-> thermal_sys: Failed to find 'trips' node
-> thermal_sys: Failed to find trip points for thermal-sensor id=1
-> sun8i-thermal: probe of 1c25000.thermal-sensor failed with error -22
-
-Please no Linux specific talk. Since DT is OS neutral let just talk about HW.
-
-> 
-> When thermal zones are defined, trip points definitions are mandatory.
-> Trip values for the GPU are assumed to be the same values as the CPU
-> ones. The available specs do not provide any hints about thermal regimes
-> for the GPU and it seems GPU is implemented on the same die as the CPU.
-> 
-> Tested on Pine a64+.
-> 
-> Cc: Samuel Holland <samuel@sholland.org>
-> Cc: Jernej Skrabec <jernej.skrabec@gmail.com>
-> Cc: Chen-Yu Tsai <wens@csie.org>
-> Cc: Daniel Lezcano <daniel.lezcano@linaro.org>
-> Cc: devicetree@vger.kernel.org
-> Signed-off-by: Alexey Klimov <alexey.klimov@linaro.org>
-> ---
->  arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi | 46 +++++++++++++++++++
->  1 file changed, 46 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
-> index 62f45f71ec65..07963eea1bf0 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
-> @@ -243,6 +243,29 @@ gpu0_thermal: gpu0-thermal {
->  			polling-delay-passive = <0>;
->  			polling-delay = <0>;
->  			thermal-sensors = <&ths 1>;
-> +
-> +			trips {
-> +				gpu0_alert0: gpu0_alert0 {
-> +					/* milliCelsius */
-> +					temperature = <75000>;
-> +					hysteresis = <2000>;
-> +					type = "passive";
-> +				};
-
-Since GPU has OPP, can you add cooling maps with at least first trip point?
+Reviewed-by: Jernej Skrabec <jernej.skrabec@gmail.com>
 
 Best regards,
 Jernej
 
-> +
-> +				gpu0_alert1: gpu0_alert1 {
-> +					/* milliCelsius */
-> +					temperature = <90000>;
-> +					hysteresis = <2000>;
-> +					type = "hot";
-> +				};
-> +
-> +				gpu0_crit: gpu0_crit {
-> +					/* milliCelsius */
-> +					temperature = <110000>;
-> +					hysteresis = <2000>;
-> +					type = "critical";
-> +				};
-> +			};
->  		};
+> ---
+> Changes in v2:
+>  - Subject include board name.
+>  - regulator name changed to vcc-3v3-tv-usb.
+>  - explain why we need to enable the regulator.
+>  - use full name of the commiter
+>  - Link to v1: https://lore.kernel.org/lkml/ZYKjYypuAx7gNuam@debian.cyg/
+> 
+>  arch/arm/boot/dts/allwinner/sun8i-r40-feta40i.dtsi | 7 +++++++
+>  1 file changed, 7 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/allwinner/sun8i-r40-feta40i.dtsi b/arch/arm/boot/dts/allwinner/sun8i-r40-feta40i.dtsi
+> index 9f39b5a2bb35..c12361d0317f 100644
+> --- a/arch/arm/boot/dts/allwinner/sun8i-r40-feta40i.dtsi
+> +++ b/arch/arm/boot/dts/allwinner/sun8i-r40-feta40i.dtsi
+> @@ -42,6 +42,13 @@ &pio {
+>  	vcc-pg-supply = <&reg_dldo1>;
+>  };
 >  
->  		gpu1_thermal: gpu1-thermal {
-> @@ -250,6 +273,29 @@ gpu1_thermal: gpu1-thermal {
->  			polling-delay-passive = <0>;
->  			polling-delay = <0>;
->  			thermal-sensors = <&ths 2>;
+> +&reg_aldo1 {
+> +	regulator-always-on;
+> +	regulator-min-microvolt = <3300000>;
+> +	regulator-max-microvolt = <3300000>;
+> +	regulator-name = "vcc-3v3-tv-usb";
+> +};
 > +
-> +			trips {
-> +				gpu1_alert0: gpu1_alert0 {
-> +					/* milliCelsius */
-> +					temperature = <75000>;
-> +					hysteresis = <2000>;
-> +					type = "passive";
-> +				};
-> +
-> +				gpu1_alert1: gpu1_alert1 {
-> +					/* milliCelsius */
-> +					temperature = <90000>;
-> +					hysteresis = <2000>;
-> +					type = "hot";
-> +				};
-> +
-> +				gpu1_crit: gpu1_crit {
-> +					/* milliCelsius */
-> +					temperature = <110000>;
-> +					hysteresis = <2000>;
-> +					type = "critical";
-> +				};
-> +			};
->  		};
->  	};
->  
+>  &reg_aldo2 {
+>  	regulator-always-on;
+>  	regulator-min-microvolt = <1800000>;
 > 
 
 
