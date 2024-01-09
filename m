@@ -1,253 +1,125 @@
-Return-Path: <devicetree+bounces-30682-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30683-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97270828A7D
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 17:53:47 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 06839828AB3
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 18:08:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9B1991C21D1D
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 16:53:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AEB701F21E5F
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 17:08:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC1213A8C4;
-	Tue,  9 Jan 2024 16:53:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9FD13A8D9;
+	Tue,  9 Jan 2024 17:08:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Yy3bMx4/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oDVnUPUY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5202438DFE;
-	Tue,  9 Jan 2024 16:53:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 409Gr5Xm016878;
-	Tue, 9 Jan 2024 10:53:05 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1704819185;
-	bh=iHiTjx8NHZJnPof+njozBL2G+dd0BsVHIjNWCy6rIek=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=Yy3bMx4/Yzf97w86aOfBS4akux9QB2Kuo5MatkVOI+0K9M8kchw4Oqto7TtkbrtMr
-	 2tL48v1DNa2NdNWNJhQccC9k8qy3/pfg9p32n89F6nuLNtgezOFNwohAzj0oVfL94Z
-	 NuMDjG5qfsIWUm0HKnL/gbstXMeEoeb6OaUgdHkA=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 409Gr57x031093
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 9 Jan 2024 10:53:05 -0600
-Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 9
- Jan 2024 10:53:05 -0600
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 9 Jan 2024 10:53:05 -0600
-Received: from [10.249.40.136] ([10.249.40.136])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 409Gr3gb015005;
-	Tue, 9 Jan 2024 10:53:03 -0600
-Message-ID: <c3664f43-431a-421f-8d2a-a3d2cc6f8777@ti.com>
-Date: Tue, 9 Jan 2024 10:53:03 -0600
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B899333CF4;
+	Tue,  9 Jan 2024 17:08:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1C14DC433F1;
+	Tue,  9 Jan 2024 17:08:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1704820112;
+	bh=U4kYmlfjVvuQFaFjurJRQqErQEHZxXtOV/EVfh6l9Ts=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=oDVnUPUY+hO8m/NE832mRMfIOiDiDHGGrXkRec40Pqq1ofrwJUQnQawFV8f8V+JS3
+	 mCBAytHgBSMuG5jql7YA9PJ77DSEdduU3rQEv7S/y+DDfbCZQcPEbq0LV2+qcVfYPC
+	 yqRHYq4X9cQ5O3W7VSP/B92++WeYMLWjA10O4oa9nZPbR56O48FLIWrgTWEzz50pC2
+	 KxJden1uNhLtH861Whm9ALpE+fIFOlV136ui9EDqbBOC8TWXPLxzBFCKxbJk1I3pbX
+	 KWJSgWFUTNyu6UGC/vVn/WMcd0y4nIabA/bOhfY9J5iMI9LfZivDdHabqSNCbIuM6a
+	 Pbx0PV+QnlzbA==
+Received: (nullmailer pid 2778514 invoked by uid 1000);
+	Tue, 09 Jan 2024 17:08:30 -0000
+Date: Tue, 9 Jan 2024 11:08:30 -0600
+From: Rob Herring <robh@kernel.org>
+To: Tomer Maimon <tmaimon77@gmail.com>
+Cc: mturquette@baylibre.com, sboyd@kernel.org, krzysztof.kozlowski+dt@linaro.org, tali.perry1@gmail.com, joel@jms.id.au, venture@google.com, yuenn@google.com, benjaminfair@google.com, openbmc@lists.ozlabs.org, linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v22 1/8] dt-bindings: clock: npcm845: Add reference 25m
+ clock  property
+Message-ID: <20240109170830.GA2772086-robh@kernel.org>
+References: <20240108135421.684263-1-tmaimon77@gmail.com>
+ <20240108135421.684263-2-tmaimon77@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC v2 02/11] dt-bindings: gpu: Add PowerVR Series5 SGX
- GPUs
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Frank Binns
-	<frank.binns@imgtec.com>,
-        Matt Coster <matt.coster@imgtec.com>,
-        "H . Nikolaus
- Schaller" <hns@goldelico.com>,
-        Adam Ford <aford173@gmail.com>,
-        Ivaylo
- Dimitrov <ivo.g.dimitrov.75@gmail.com>,
-        Maarten Lankhorst
-	<maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec
-	<jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        =?UTF-8?Q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>,
-        Tony Lindgren
-	<tony@atomide.com>, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra
-	<vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>, Paul Cercueil
-	<paul@crapouillou.net>
-CC: <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <linux-sunxi@lists.linux.dev>, <linux-omap@vger.kernel.org>,
-        <linux-mips@vger.kernel.org>
-References: <20240108183302.255055-1-afd@ti.com>
- <20240108183302.255055-3-afd@ti.com>
- <e68b3b0c-7a03-4771-b6e8-c1a263e31425@linaro.org>
-From: Andrew Davis <afd@ti.com>
-In-Reply-To: <e68b3b0c-7a03-4771-b6e8-c1a263e31425@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240108135421.684263-2-tmaimon77@gmail.com>
 
-On 1/9/24 5:32 AM, Krzysztof Kozlowski wrote:
-> On 08/01/2024 19:32, Andrew Davis wrote:
->> The Imagination PowerVR Series5 "SGX" GPU is part of several SoCs from
->> multiple vendors. Describe how the SGX GPU is integrated in these SoC,
->> including register space and interrupts. Clocks, reset, and power domain
->> information is SoC specific.
->>
->> Signed-off-by: Andrew Davis <afd@ti.com>
->> ---
->>   .../bindings/gpu/img,powervr-sgx.yaml         | 124 ++++++++++++++++++
->>   MAINTAINERS                                   |   1 +
->>   2 files changed, 125 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/gpu/img,powervr-sgx.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/gpu/img,powervr-sgx.yaml b/Documentation/devicetree/bindings/gpu/img,powervr-sgx.yaml
->> new file mode 100644
->> index 0000000000000..bb821e1184de9
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/gpu/img,powervr-sgx.yaml
->> @@ -0,0 +1,124 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +# Copyright (c) 2023 Imagination Technologies Ltd.
+On Mon, Jan 08, 2024 at 03:54:14PM +0200, Tomer Maimon wrote:
+> The NPCM8XX clock driver uses 25Mhz external clock, therefor adding
+
+therefore
+
+> refclk property.
+
+'refclk' is not a property.
+
 > 
-> Your email has @TI domain, are you sure you attribute your copyrights to
-> Imagination?
+> Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
+> ---
+>  .../bindings/clock/nuvoton,npcm845-clk.yaml      | 16 ++++++++++++++++
+>  1 file changed, 16 insertions(+)
 > 
+> diff --git a/Documentation/devicetree/bindings/clock/nuvoton,npcm845-clk.yaml b/Documentation/devicetree/bindings/clock/nuvoton,npcm845-clk.yaml
+> index b901ca13cd25..0b642bfce292 100644
+> --- a/Documentation/devicetree/bindings/clock/nuvoton,npcm845-clk.yaml
+> +++ b/Documentation/devicetree/bindings/clock/nuvoton,npcm845-clk.yaml
+> @@ -21,6 +21,14 @@ properties:
+>    reg:
+>      maxItems: 1
+>  
+> +  clocks:
+> +    items:
+> +      - description: 25Mhz referance clock
 
-The file started as a copy/paste from a IMG copyrighted file, even
-though it is now almost completely re-written I've left their (c)
-for good measure. I'll add an additional TI (c).
+reference
 
-> ...
-> 
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  interrupts:
->> +    maxItems: 1
->> +
->> +  clocks: true
-> 
-> Missing min/maxItems
-> 
+> +
+> +  clock-names:
+> +    items:
+> +      - const: refclk
+> +
+>    '#clock-cells':
+>      const: 1
+>      description:
+> @@ -30,12 +38,20 @@ properties:
+>  required:
+>    - compatible
+>    - reg
+> +  - clocks
+> +  - clock-names
 
-These are set in the allOf/if/then blocks below, seems
-if I don't set them to at least something here then I get
-a warning:
+New required properties are an ABI break. That's fine if you explain why 
+that's okay in the commit msg.
 
-    'clock-names', 'clocks' do not match any of the regexes: 'pinctrl-[0-9]+'
 
-even if I define them in the allOf block below. I don't
-know what the min/max should be until I check the compatible
-in the allOf block.
+>    - '#clock-cells'
+>  
+>  additionalProperties: false
+>  
+>  examples:
+>    - |
+> +    refclk: refclk-25mhz {
+> +        compatible = "fixed-clock";
+> +        #clock-cells = <0>;
+> +        clock-frequency = <25000000>;
+> +    }; 
 
->> +
->> +  clock-names:
->> +    minItems: 1
->> +    items:
->> +      - const: core
->> +      - const: mem
->> +      - const: sys
->> +
->> +  power-domains:
->> +    maxItems: 1
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - interrupts
->> +
->> +additionalProperties: false
-> 
-> This goes after allOf: block.
-> 
+Examples don't need to show providers.
 
-ACK
-
->> +
->> +allOf:
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          contains:
->> +            const: ti,am6548-gpu
->> +    then:
->> +      required:
->> +        - power-domains
->> +    else:
->> +      properties:
->> +        power-domains: false
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          contains:
->> +            enum:
->> +              - allwinner,sun6i-a31-gpu
->> +              - ingenic,jz4780-gpu
->> +    then:
->> +      allOf:
->> +        - if:
-> 
-> I don't understand why do you need to embed allOf inside another allOf.
-> The upper (outer) if:then: looks entirely useless.
-> 
-
-It is so that both compatibles falls through to having
-clock being required.
-
-Logic in YAML always seems messy to me, here it is in pseudo C:
-
-if (compatible == allwinner,sun6i-a31-gpu ||
-     compatible == ingenic,jz4780-gpu) {
-	if (compatible == allwinner,sun6i-a31-gpu)
-		clocks: ...
-	if (compatible == ingenic,jz4780-gpu)
-		clocks: ...
-	required:
-		- clocks
-		- clock-names
-} else { /* disallow for all others */
-	properties:
-		clocks: false
-		clock-names: false
-}
-
-Now if I had an "else if" that didn't force the indention to keep
-growing I would have used that. (does one exist?) I also cannot
-simply add the clock properties only for the two compats need
-them for the reasons above and so must add them unconditionally
-before then explicitly disable them in a catch-all else path.
-
-Andrew
-
->> +            properties:
->> +              compatible:
->> +                contains:
->> +                  const: allwinner,sun6i-a31-gpu
->> +          then:
->> +            properties:
->> +              clocks:
->> +                minItems: 2
->> +                maxItems: 2
->> +              clock-names:
->> +                minItems: 2
->> +                maxItems: 2
-> 
-> 
-> Best regards,
-> Krzysztof
+> +  
+>      ahb {
+>          #address-cells = <2>;
+>          #size-cells = <2>;
+> -- 
+> 2.34.1
 > 
 
