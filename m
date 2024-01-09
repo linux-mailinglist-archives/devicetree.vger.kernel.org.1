@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-30407-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30409-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 177FC827D95
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 04:53:38 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id B3FBD827DA3
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 05:03:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AFF451F216D6
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 03:53:37 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F0C08B22985
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 04:03:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A69E24436;
-	Tue,  9 Jan 2024 03:53:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A55375390;
+	Tue,  9 Jan 2024 04:03:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RSbUq6l1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XTPMS5hn"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E4394418;
-	Tue,  9 Jan 2024 03:53:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E5652C433F1;
-	Tue,  9 Jan 2024 03:53:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72526468B;
+	Tue,  9 Jan 2024 04:03:17 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B6248C433F1;
+	Tue,  9 Jan 2024 04:03:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1704772411;
-	bh=8pgrFHvw3R9yjgrxxx423zr61bXGDlf7RpsTt+sa/50=;
+	s=k20201202; t=1704772997;
+	bh=JLURUuRUE3nvesAgFLJyAQ51v0FoQz4YhL+GT2pWcTU=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=RSbUq6l1YQ/5txmME7T8kV3R8NFkIpe2e5z2Ju9G4exXRvfwC+8Z4e4ml4ZBABd28
-	 JLW2W7eq4v36xYr9vO3qJ3ejd+U3RQFi/ZP0ptdX6WuyQWS3/94tGv0fCdzZRxghkt
-	 9UFOakZ20ImvCIiynh0CAwTzSH8K5xtXjSE8ARN1lxZGHAYtjzmJY0zWS30CA1Boks
-	 Zy3JUh8Avg7E0L+yQOxhXhrBYISz7wH8WVSOblQhGEmApC1klVrM+tLnOSCMzmh/HJ
-	 z8/4RgLenEq1/4oLYN5SPzd0GkJva0xuwDH4zdFMAP6QUpPAJ5Gz2AA7LxcY/B20mp
-	 J0f5zDmJyFUDQ==
-Received: (nullmailer pid 2611267 invoked by uid 1000);
-	Tue, 09 Jan 2024 03:53:29 -0000
-Date: Mon, 8 Jan 2024 20:53:29 -0700
+	b=XTPMS5hnJXqXBNVaZ7hHyTAldTIBz2P0NPkF9Qw4/+W3/Q6/A/XuBsey7ac2VOLvF
+	 oy/WkZoKTyVBuhL0lWP+gdjrORy2cwTPRneD/NXI3lXSBrGLLiHp+nCTqSguSyS3DB
+	 wkmk6aZ1L293gLvov3S+zoQ/hdVVA5yVkKFSJnR9V3mOSzCou5A1FUakftUo7a860v
+	 X703ePaudDNLzFVM+0ZJ2fliESsbYAKp1KEQXUHXeTm0B4IELZ5tHeGjJSe5dGVdBi
+	 NuV63VQJLdP3DkH+jV4/c1Phcw3WY5Tm8psQSSA3esu4tmzfA3vdr5wCTT3R+ZCzCP
+	 0wsVemdrz38bw==
+Received: (nullmailer pid 2622098 invoked by uid 1000);
+	Tue, 09 Jan 2024 04:03:15 -0000
+Date: Mon, 8 Jan 2024 21:03:15 -0700
 From: Rob Herring <robh@kernel.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, s.hauer@pengutronix.de, l.stach@pengutronix.de, bhelgaas@google.com, kernel@pengutronix.de, helgaas@kernel.org, kw@linux.com, linux-pci@vger.kernel.org, manivannan.sadhasivam@linaro.org, hongxing.zhu@nxp.com, krzysztof.kozlowski+dt@linaro.org, imx@lists.linux.dev, conor+dt@kernel.org, festevam@gmail.com, lpieralisi@kernel.org, linux-imx@nxp.com, krzysztof.kozlowski@linaro.org, shawnguo@kernel.org
-Subject: Re: [PATCH v7 15/16] dt-bindings: imx6q-pcie: Add iMX95 pcie
- endpoint compatible string
-Message-ID: <170477240853.2611203.9074247440935063853.robh@kernel.org>
-References: <20231227182727.1747435-1-Frank.Li@nxp.com>
- <20231227182727.1747435-16-Frank.Li@nxp.com>
+To: Tudor Ambarus <tudor.ambarus@linaro.org>
+Cc: peter.griffin@linaro.org, krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com, sboyd@kernel.org, conor+dt@kernel.org, andi.shyti@kernel.org, alim.akhtar@samsung.com, gregkh@linuxfoundation.org, jirislaby@kernel.org, s.nawrocki@samsung.com, tomasz.figa@gmail.com, cw00.choi@samsung.com, arnd@arndb.de, semen.protsenko@linaro.org, andre.draszik@linaro.org, saravanak@google.com, willmcvicker@google.com, linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org, linux-serial@vger.kernel.org, kernel-team@android.com
+Subject: Re: [PATCH v2 01/12] dt-bindings: clock: google,gs101-clock: add
+ PERIC0 clock management unit
+Message-ID: <20240109040315.GA2619804-robh@kernel.org>
+References: <20231228125805.661725-1-tudor.ambarus@linaro.org>
+ <20231228125805.661725-2-tudor.ambarus@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -51,25 +51,24 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231227182727.1747435-16-Frank.Li@nxp.com>
+In-Reply-To: <20231228125805.661725-2-tudor.ambarus@linaro.org>
 
-
-On Wed, 27 Dec 2023 13:27:26 -0500, Frank Li wrote:
-> Add i.MX95 PCIe "fsl,imx95-pcie-ep" compatible string.
-> Add reg-name: "atu", "dbi2", "dma" and "app".
-> Reuse PCI linux,pci-domain as controller id at endpoint.
+On Thu, Dec 28, 2023 at 12:57:54PM +0000, Tudor Ambarus wrote:
+> Add dt-schema documentation for the Connectivity Peripheral 0 (PERIC0)
+> clock management unit.
 > 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> Reviewed-by: Sam Protsenko <semen.protsenko@linaro.org>
+> Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
 > ---
-> 
-> Notes:
->     Change from v1 to v3
->     - new patches at v3
-> 
->  .../bindings/pci/fsl,imx6q-pcie-ep.yaml       | 57 ++++++++++++++++---
->  1 file changed, 49 insertions(+), 8 deletions(-)
-> 
+> v2:
+> - fix comments as per Sam's suggestion and collect his R-b tag
+> - Rob's suggestion of renaming the clock-names to just "bus" and "ip"
+>   was not implemented as I felt it affects readability in the driver
+>   and consistency with other exynos clock drivers. I will happily update
+>   the names in the -rc phase if someone else has a stronger opinion than
+>   mine. 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+I'll defer to Krzysztof.
 
+Rob
 
