@@ -1,128 +1,160 @@
-Return-Path: <devicetree+bounces-30590-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30592-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 940B58284AA
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 12:20:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EDA6E8284FA
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 12:26:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1E234B21BA3
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 11:20:38 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 72C68B21B66
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 11:26:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F219E36B00;
-	Tue,  9 Jan 2024 11:20:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECF39381A1;
+	Tue,  9 Jan 2024 11:25:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nEx5WBtU"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="ZNlEBOe/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
+Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87AF929431;
-	Tue,  9 Jan 2024 11:20:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-557bfc7f7b4so2783649a12.0;
-        Tue, 09 Jan 2024 03:20:31 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C47D2374E9
+	for <devicetree@vger.kernel.org>; Tue,  9 Jan 2024 11:24:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
+Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-a28e31563ebso292135466b.2
+        for <devicetree@vger.kernel.org>; Tue, 09 Jan 2024 03:24:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1704799230; x=1705404030; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=4NZX0EHRxNFHTm/t/SYbExyf5aSTC2bJZYYjJUylqqM=;
-        b=nEx5WBtUr1QpKuXgbWyI7Ywtl99doLC0b04T0BRP1D+PMUIlnTu9F8RvXC/zSHSv1E
-         efuPFxd/MJydkLwL+I4KN9dWwSTVugocpSvFkJJg17YkHxsXcKY07LpUViW3d5FTmHz9
-         rvEWcWwR2H6wBofMl70D13atxawDlxx8OyRodNBN+9eBlB2pBCiG+sGTXccY9KJB7lbQ
-         DbPJgjYQk/a25JbB1s5QWzQe9DG5HPtfNKLdU0VrX9tMDVU+87+aOhcBVC2Fub+eYoN+
-         G+qFYpLJP58gUJggxN99HkxpUa/lLQkZK4UjPlZbmG9YOb5J+7lMQ7an4eiL+oTMtwf0
-         okqQ==
+        d=fairphone.com; s=fair; t=1704799497; x=1705404297; darn=vger.kernel.org;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=X66BiEuJEgHo+gMcUmnTpOb7VGeAdI8Ticc89hW7dUM=;
+        b=ZNlEBOe/S5RZU85KZYGnxlmzGdEqUcxk5zFVG2uJ7Uzj8U0FwzIazxz2Uta3GnyKkM
+         CPzybDvBnLYqGiLvL+yrKfdgKaf9ezqcZPw0fodjlwNcn7xVfSaUSstCsUvYVJeeyzQs
+         WeLduJSJQPaiWcLCaBZhQQouo7vDRFIiLaxJDUGOL5HIqYYejJGXC31QELDDZC4PDgGr
+         VYfcg7yz0f657WUXaAcXI5bQeyvNgEESEscpU7sAghvqndh65trbicU6XfjST/N9j0Ec
+         WJM0OgbYpVkkasIA132Nwwbithug64EhU6ctrkXtleXjlUl73t5cyFdagrY1dH8N774g
+         K0og==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704799230; x=1705404030;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=4NZX0EHRxNFHTm/t/SYbExyf5aSTC2bJZYYjJUylqqM=;
-        b=pLNs/CoEVkgLfcddyV71SPv5FyFz/gMHnlq5fmaePYfeVm6l0D0+dNG0FEyEUWsoMg
-         AZvilt9WqpRgoaiBkqi2zQsxDpohJLRSxlqvVseq5oWiJPI9Z+VM3L2hsgCGa0Q8CUGy
-         yl/syEN+S5PZmBFQ4EU9ARhMfeZLnDyBEI6PcM5m4ZKjp4zxcgtYtPUVcjzddJdwkw66
-         Z8v/eAK+ZzbaTsyKfurXgnzSXzULU1G76dQwlkZK9rEC4nN3OTDVXaDmXwBYcw9Cuha9
-         4gTAb9w3V1W+NrEBORlPtx6QaTZkB/zPzWsD3zc+LbhDMcpdxokUBHmS8OkHSTWeaoxD
-         WGMg==
-X-Gm-Message-State: AOJu0Yziwd2ccsXDN1PS+Yk241OxWNcuAkjwrEQPNGbU1nOnNhp01VfM
-	G4J0hGq8Kc/feL5p4aQyzf4=
-X-Google-Smtp-Source: AGHT+IGXf/m2QIRzKQ1oStdVxwLExVWwxpRPwZ3jXCPKit0oTg9DYq8+QM8W3Oq2r3tHVJ1af0+Z2w==
-X-Received: by 2002:a17:907:77c1:b0:a2a:19eb:9144 with SMTP id kz1-20020a17090777c100b00a2a19eb9144mr612510ejc.1.1704799229477;
-        Tue, 09 Jan 2024 03:20:29 -0800 (PST)
-Received: from ?IPv6:2003:f6:ef1b:2000:944c:cbc7:1e1c:2c47? (p200300f6ef1b2000944ccbc71e1c2c47.dip0.t-ipconnect.de. [2003:f6:ef1b:2000:944c:cbc7:1e1c:2c47])
-        by smtp.gmail.com with ESMTPSA id c24-20020a170906529800b00a27aabff0dcsm938655ejm.179.2024.01.09.03.20.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Jan 2024 03:20:29 -0800 (PST)
-Message-ID: <e64da4a8907413a75bddda0401bbc2e21b12fd7d.camel@gmail.com>
-Subject: Re: [PATCH v4 4/8] of: property: add device link support for
- io-backends
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: David Lechner <dlechner@baylibre.com>, Nuno Sa <nuno.sa@analog.com>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, Lars-Peter
- Clausen <lars@metafoo.de>, Michael Hennerich
- <Michael.Hennerich@analog.com>,  Jonathan Cameron <jic23@kernel.org>, Rob
- Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
- <rafael@kernel.org>, Frank Rowand <frowand.list@gmail.com>, Olivier Moysan
- <olivier.moysan@foss.st.com>
-Date: Tue, 09 Jan 2024 12:23:39 +0100
-In-Reply-To: <CAMknhBHqnQoEMoaFQxp5Us+X7bs7G2J2QTNZwguPmJ7XwEHe0Q@mail.gmail.com>
-References: <20231220-iio-backend-v4-0-998e9148b692@analog.com>
-	 <20231220-iio-backend-v4-4-998e9148b692@analog.com>
-	 <CAMknhBHqnQoEMoaFQxp5Us+X7bs7G2J2QTNZwguPmJ7XwEHe0Q@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.3 
+        d=1e100.net; s=20230601; t=1704799497; x=1705404297;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=X66BiEuJEgHo+gMcUmnTpOb7VGeAdI8Ticc89hW7dUM=;
+        b=TEa8+k2Kv8QkgKo8vMuAcFkgsoAWygY9opvrXUlk5sIvlmduw9bui7Kaa2jh957Blb
+         77nRywyKcRDg6QN4SLQKWSpvM+9lPHTmbLGIXMqJst01uoo199V1Tesoc5IRU/9lJRQB
+         DpbH6AcgXLWEebPVvK3Rg/zu/AxxEeftdeX5S/3ZNrfWPMvLtbWCGbT2RUSlT3gN21N6
+         BumFzUuQIiLigjxqzUsf8uBwwB8tRgQ6QtMMbKHbf0vDNwwbgV0Gtqm7ZXUlvr2qJ01s
+         AudRobWMPaGD136iIjtYGq+wjd5tHIbMYyBRpRPTscyUWi5alAToFgm7yD2WLaduLLkA
+         2Yeg==
+X-Gm-Message-State: AOJu0YwBWTo88JAZnNaw/m90FC4x6zdA+LrPwjVb1EOrXjyeR6IzyQI5
+	nfcVIkDMCUwEZeTAfnjiI0YExTiDuQUThw==
+X-Google-Smtp-Source: AGHT+IFQH3ZBab+5v99Ep/opDSM5xrNCAF7LpV2l3rddp8xmaKOcXLRQTR68sqhf8Ph0GBXdXu8a9Q==
+X-Received: by 2002:a17:906:412:b0:a28:fd70:1a1d with SMTP id d18-20020a170906041200b00a28fd701a1dmr476597eja.78.1704799496813;
+        Tue, 09 Jan 2024 03:24:56 -0800 (PST)
+Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
+        by smtp.gmail.com with ESMTPSA id l25-20020a1709061c5900b00a28956cf75esm927657ejg.130.2024.01.09.03.24.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 09 Jan 2024 03:24:56 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Tue, 09 Jan 2024 12:24:56 +0100
+Message-Id: <CYA4ZGOQOJXY.2RO98RBCDKK5J@fairphone.com>
+Cc: <~postmarketos/upstreaming@lists.sr.ht>, <phone-devel@vger.kernel.org>,
+ <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: sm7225-fairphone-fp4: Add PM6150L
+ thermals
+From: "Luca Weiss" <luca.weiss@fairphone.com>
+To: "Konrad Dybcio" <konrad.dybcio@linaro.org>, "Bjorn Andersson"
+ <andersson@kernel.org>, "Rob Herring" <robh+dt@kernel.org>, "Krzysztof
+ Kozlowski" <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley"
+ <conor+dt@kernel.org>
+X-Mailer: aerc 0.15.2
+References: <20240105-fp4-thermals-v1-0-f95875a536b7@fairphone.com>
+ <20240105-fp4-thermals-v1-2-f95875a536b7@fairphone.com>
+ <18dc5f88-6590-4e2d-948f-fd77f4713f8b@linaro.org>
+In-Reply-To: <18dc5f88-6590-4e2d-948f-fd77f4713f8b@linaro.org>
 
-On Wed, 2024-01-03 at 15:39 -0600, David Lechner wrote:
-> On Wed, Dec 20, 2023 at 9:32=E2=80=AFAM Nuno Sa <nuno.sa@analog.com> wrot=
-e:
+On Tue Jan 9, 2024 at 11:09 AM CET, Konrad Dybcio wrote:
+>
+>
+> On 1/5/24 15:54, Luca Weiss wrote:
+> > Configure the thermals for the PA_THERM1, MSM_THERM, PA_THERM0,
+> > RFC_CAM_THERM, CAM_FLASH_THERM and QUIET_THERM thermistors connected to
+> > PM6150L.
 > >=20
-> > From: Olivier Moysan <olivier.moysan@foss.st.com>
+> > Due to hardware constraints we can only register 4 zones with
+> > pm6150l_adc_tm, the other 2 we can register via generic-adc-thermal.
+>
+> Ugh.. so the ADC can support more inputs than the ADC_TM that was
+> designed to ship alongside it can?
+>
+> And that's why the "generic-adc-thermal"-provided zones need to
+> be polled?
+
+This part of the code from qcom-spmi-adc-tm5.c was trigerring if I
+define more than 4 channels, and looking at downstream I can also see
+that only 4 zones are registered properly with adc_tm, the rest is
+registered with "qcom,adc-tm5-iio" which skips from what I could tell
+basically all the HW bits and only registering the thermal zone.
+
+
+	ret =3D adc_tm5_read(chip, ADC_TM5_NUM_BTM,
+			   &channels_available, sizeof(channels_available));
+	if (ret) {
+		dev_err(chip->dev, "read failed for BTM channels\n");
+		return ret;
+	}
+
+	for (i =3D 0; i < chip->nchannels; i++) {
+		if (chip->channels[i].channel >=3D channels_available) {
+			dev_err(chip->dev, "Invalid channel %d\n", chip->channels[i].channel);
+			return -EINVAL;
+		}
+	}
+
+
+>
 > >=20
-> > Add support for creating device links out of more DT properties.
+> > The trip points can really only be considered as placeholders, more
+> > configuration with cooling etc. can be added later.
 > >=20
-> > Signed-off-by: Olivier Moysan <olivier.moysan@foss.st.com>
-> > Signed-off-by: Nuno Sa <nuno.sa@analog.com>
+> > Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
 > > ---
-> > =C2=A0drivers/of/property.c | 2 ++
-> > =C2=A01 file changed, 2 insertions(+)
-> >=20
-> > diff --git a/drivers/of/property.c b/drivers/of/property.c
-> > index afdaefbd03f6..a4835447759f 100644
-> > --- a/drivers/of/property.c
-> > +++ b/drivers/of/property.c
-> > @@ -1244,6 +1244,7 @@ DEFINE_SIMPLE_PROP(interconnects, "interconnects"=
-,
-> > "#interconnect-cells")
-> > =C2=A0DEFINE_SIMPLE_PROP(iommus, "iommus", "#iommu-cells")
-> > =C2=A0DEFINE_SIMPLE_PROP(mboxes, "mboxes", "#mbox-cells")
-> > =C2=A0DEFINE_SIMPLE_PROP(io_channels, "io-channel", "#io-channel-cells"=
-)
-> > +DEFINE_SIMPLE_PROP(io_backends, "io-backends", NULL)
->=20
-> In v3 it was agreed that adding #io-backend-cells right way seemed
-> like a good idea. Do we need to include that here?
->=20
+> [...]
+>
+> I've read the sentence above, but..
+> > +		sdm-skin-thermal {
+> > +			polling-delay-passive =3D <1000>;
+> > +			polling-delay =3D <5000>;
+> > +			thermal-sensors =3D <&msm_therm_sensor>;
+> > +
+> > +			trips {
+> > +				active-config0 {
+> > +					temperature =3D <125000>;
+> > +					hysteresis =3D <1000>;
+> > +					type =3D "passive";
+>
+> I don't fancy burnt fingers for dinner!
 
-Yeah that's something I forgot and should do in v5. Should also update the =
-core
-code and the backend bindings (axi-adc) to have it (one of Rob's points in
-having the #cells was to easily identify backends - providers).
+With passive trip point it wouldn't even do anything now, but at what
+temp do you think it should do what? I'd definitely need more time to
+understand more of how the thermal setup works in downstream Android,
+and then replicate a sane configuration for mainline with proper
+temperatures, cooling, etc.
 
-Thanks for spotting this!
-- Nuno S=C3=A1
+Regards
+Luca
 
->=20
+>
+> Konrad
+
 
