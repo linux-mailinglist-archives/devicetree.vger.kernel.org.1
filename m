@@ -1,128 +1,161 @@
-Return-Path: <devicetree+bounces-30563-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30564-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2464D82837C
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 10:52:07 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F6EF828387
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 10:56:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C900328667F
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 09:52:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0C5D11F264C5
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 09:56:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE22134566;
-	Tue,  9 Jan 2024 09:52:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E96213588B;
+	Tue,  9 Jan 2024 09:56:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NI9g4fEZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uiuI+wXG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com [209.85.167.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B85A36083;
-	Tue,  9 Jan 2024 09:52:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oi1-f177.google.com with SMTP id 5614622812f47-3bc09434600so1297547b6e.0;
-        Tue, 09 Jan 2024 01:52:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1704793919; x=1705398719; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=mPUv3QW7n483OFe/6FoSL+QHdD2N0HZP4qwddKfjG3g=;
-        b=NI9g4fEZR/3AbxqX+zsWNgSSu19AtD5NwI39Qvi4agu7yY6fKWwO5Xctj3CCET7sAh
-         +YMUp8FKZjRyps685HQtGpXIJu9N6ddtD2vT0Hu2Z/wtvVvWe19GMkbiXVZM2MyWqTUG
-         aANbIJkVQfSNB0OdjbB9j909lEwI2ivAMmlgtp4Eb+0pO3Saegl1AbaxP8pssRb3bidr
-         +4OO52FEOO2FgAJxLXEGRJFwHuA4h1fB7yzOhPOdB63AmKjAm9SoQ6a5+3o+OxWY3voH
-         i1SiDV+JaUP/XWvgF/l3HJ5ngSO4D2ICr7b86VfdaALsrF8SsVm8dtQNL3vMs/CvFtr5
-         CMww==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704793919; x=1705398719;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=mPUv3QW7n483OFe/6FoSL+QHdD2N0HZP4qwddKfjG3g=;
-        b=pPSfOtIw94zr1ZQSU4cOnDBwC1B2LSFg+PIoA1/9C+EWxnI2yn0tteOx5TtRWN+kY/
-         /W0weTKLz+IWc0FGrRfWdY9RcdiMo7RbJC8rCzJMV2g+jvLVHQSkcyxc1mc6sF2bOkc5
-         5rPVAP3BZvAgiE7c7lorDE1GJOiU+Ucuy675h7j2Iget8MWx+gmFyZHTKXdOIRaHM0vk
-         4AD5eRgpKOm7YcDl35U9C6SfbfYquUgVpkHPArYuERcQOt2fZojottcx0m25hy3RTqWu
-         qfeoJtI4ans2daWqRE5K2jqTR6g2S7rO41BBUSiqwD2REKaJpTviaf3ygWz4SoHE3apq
-         wZVg==
-X-Gm-Message-State: AOJu0Yx/u/PRlWrvq04rTAzpv3AqrD1y9j288N/elvYHVb6eNxLfvIoi
-	ebhNO2YHAA5XUB3k4a6vrZX7Wf3h9RNKAWOm7I4=
-X-Google-Smtp-Source: AGHT+IHQqkc7BIeln2onubKw0WHBuz69qRZSLNVyH2G06VXYslDMZgE+1lgS7IToN4DVHq446e93GbI+AvSdLkJRmGA=
-X-Received: by 2002:a05:6808:1a0b:b0:3bc:28eb:882a with SMTP id
- bk11-20020a0568081a0b00b003bc28eb882amr212777oib.9.1704793919014; Tue, 09 Jan
- 2024 01:51:59 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC9CB34CFF;
+	Tue,  9 Jan 2024 09:56:44 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4EA3AC433B1;
+	Tue,  9 Jan 2024 09:56:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1704794204;
+	bh=Qj1F7vQXR5INGTzBCvV9vm+Os3PkCrPsecSk0gcowD8=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=uiuI+wXGOgQCsJfodVvD7TtSKMBAuyi1UAeRMEURbK/Ahluvoa5pRYgbG+mUkceAa
+	 ftvRGzM9D5qOPUuDdRXyRdzgnlAQtnfwh8sTmkmCjXkhxeytOWurbIq0JGAZFyMkeH
+	 nXB4GAZG6Q2rfGHE0jzcZNqpBes3dL6iK9+DNN/QkiNAFhiSFxLJO0qluBNfAP4ZOV
+	 Mhtz+ljnpSDLiSUNqKEEr0a79WuGsk4pPbM8WzhDDBOM+rfnu+XAdcrraHtC6nhh4j
+	 x8k6DE6wE75G9OL0IHwjZtA/pCiYon6jVooeJ2fkPSEsTmwMkpbdvyBo+BCc0pKdXl
+	 o3B0bTN5RSq1A==
+Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-a28bf46ea11so483159966b.1;
+        Tue, 09 Jan 2024 01:56:44 -0800 (PST)
+X-Gm-Message-State: AOJu0YwB0MqKKkQY0shBAJ9XeZ/A95pyKe1G2FTvJxU7xvOMLIoaVFmA
+	8XhSV4CLal2jE+hE/AJZgpbGOmFsu2uqQZteiCw=
+X-Google-Smtp-Source: AGHT+IGDZ/SZJpnUYzFx9G1HRdVTWUBV4U15+SGj/OVohDcnnqrlVNy+7QIKS/khbP7ZYDsPMVjRIsIZ+zQBmKjnTI8=
+X-Received: by 2002:a17:907:77c1:b0:a2a:a3dc:621b with SMTP id
+ kz1-20020a17090777c100b00a2aa3dc621bmr597168ejc.4.1704794202753; Tue, 09 Jan
+ 2024 01:56:42 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240108072253.30183-1-qiujingbao.dlmu@gmail.com>
- <20240108072253.30183-2-qiujingbao.dlmu@gmail.com> <cd4c5c26-fef9-44d8-a2fe-1cff0fc6fd03@linaro.org>
- <CAJRtX8TcXrP8aqr3ejvtDGR5Y-ogbLkvJvJkLh_MzpnK7wgLGw@mail.gmail.com>
- <7ceb8f61-6929-4ca0-83e0-c6534241ca5a@linaro.org> <CAJRtX8QSoS72rUj7vu3CLgthfneG-RudUygcZEsw-sBFKw99tw@mail.gmail.com>
- <086e568f-b9f2-417c-8f94-ebb97fbffbfe@linaro.org> <CAJRtX8Ran+MuhtUXyxm0stQJrkzksPeNEnWViOQjfE2QgsCOmg@mail.gmail.com>
- <a6ee48ad-f4c1-4d75-956b-a5283ee92eaa@linaro.org>
-In-Reply-To: <a6ee48ad-f4c1-4d75-956b-a5283ee92eaa@linaro.org>
-From: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
-Date: Tue, 9 Jan 2024 17:51:48 +0800
-Message-ID: <CAJRtX8SBEXBzjs4sU+zOmsGUDF+K+TFw4S4x-f6WR5f2K5h6yw@mail.gmail.com>
-Subject: Re: [PATCH v5 1/1] dt-bindings: rtc: sophgo: add RTC support for
- Sophgo CV1800 series SoC
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: a.zummo@towertech.it, alexandre.belloni@bootlin.com, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu, 
-	linux-rtc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
+References: <cover.1701933946.git.zhoubinbin@loongson.cn> <CAAhV-H4yS5nW9Xg1D+FRRa4jv8vGB9auim74NzTjmkw-CC6yZA@mail.gmail.com>
+In-Reply-To: <CAAhV-H4yS5nW9Xg1D+FRRa4jv8vGB9auim74NzTjmkw-CC6yZA@mail.gmail.com>
+From: Huacai Chen <chenhuacai@kernel.org>
+Date: Tue, 9 Jan 2024 17:56:30 +0800
+X-Gmail-Original-Message-ID: <CAAhV-H4dPHqA5naqowOKxALWsXWHSVMoUqDC_1F_DE2t9=S28A@mail.gmail.com>
+Message-ID: <CAAhV-H4dPHqA5naqowOKxALWsXWHSVMoUqDC_1F_DE2t9=S28A@mail.gmail.com>
+Subject: Re: [PATCH v6 0/2] dt-bindings: interrupt-controller: Fix some
+ loongson,liointc warnings
+To: Binbin Zhou <zhoubinbin@loongson.cn>
+Cc: Binbin Zhou <zhoubb.aaron@gmail.com>, Huacai Chen <chenhuacai@loongson.cn>, 
+	Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	devicetree@vger.kernel.org, Jiaxun Yang <jiaxun.yang@flygoat.com>, lvjianmin@loongson.cn, 
+	WANG Xuerui <git@xen0n.name>, loongarch@lists.linux.dev, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Jan 9, 2024 at 4:02=E2=80=AFPM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
+Applied to loongarch-next, thanks.
+
+Huacai
+
+On Fri, Dec 29, 2023 at 11:08=E2=80=AFPM Huacai Chen <chenhuacai@kernel.org=
+> wrote:
 >
-> On 09/01/2024 03:26, Jingbao Qiu wrote:
-> > On Mon, Jan 8, 2024 at 11:24=E2=80=AFPM Krzysztof Kozlowski
-> > <krzysztof.kozlowski@linaro.org> wrote:
-> >>
-> >> On 08/01/2024 14:47, Jingbao Qiu wrote:
-> >>>>> So I wrote the following in the changelog.
-> >>>>>
-> >>>>> - add syscon attribute to share registers
-> >>>>>   with POR
-> >>>>
-> >>>> Where is this syscon attribute? Please point me to specific line in =
-DTS
-> >>>> and in the driver.
-> >>>
-> >>> I will explain in the next version of DTS.
-> >>> Thank you again for your patient reply.
-> >>
-> >> You added some syscon attribute. What is this?
-> >>
+> Hi, Rob,
+>
+> Since this series doesn't touch the driver any more, I suppose that
+> this series will go through your dt tree?
+>
+> Huacai
+>
+> On Thu, Dec 7, 2023 at 3:29=E2=80=AFPM Binbin Zhou <zhoubinbin@loongson.c=
+n> wrote:
 > >
-> > This RTC device has a POR submodule, which is explained in the descript=
-ion.
-> > The corresponding driver of the POR submodule provides power off
-> > restart function.
-> > The driver of the POR submodule just uses reg to work.As you mentioned =
-in your
-> > last comment.POR  is empty, so there is little point in having it as
-> > subnode. we need
-> > share the reg to POR. RTC driver and POR driver will access this
-> > address simultaneously.
-> > so,I added this syscon attribute.
->
-> Nothing from above explains what is "syscon attribute", but if you
-> cannot explain it, at least point me to where did you add this syscon
-> attribute? Changelog said you added it. Where?
->
-
-Thank you for your comment. I will add it in the next version.
-
-Best regards,
-Jingbao Qiu
+> > Hi all:
+> >
+> > Some liointc-related DTBS_CHECK warnings were found when trying to
+> > introduce the Loongson-2K DTS{I} for LoongArch.
+> > This patch series attempts to fix those warnings.
+> >
+> > Of course, these fixes also apply to MIPS Loongson-2K1000.
+> >
+> > Thanks.
+> >
+> > -----
+> > V6:
+> > - Drop the 'parent_int_map' related patches following Rob's comment.
+> >
+> > Link to V5:
+> > https://lore.kernel.org/all/cover.1700449792.git.zhoubinbin@loongson.cn=
+/
+> >
+> > V5:
+> > - Add Reviewed-by tag;
+> > patch(1/5):
+> >   - Just drop 'loongson,parent_int_map' instead of marking it as
+> >     deprecated.
+> >
+> > Link to V4:
+> > https://lore.kernel.org/all/cover.1699521866.git.zhoubinbin@loongson.cn=
+/
+> >
+> > V4:
+> > - Add Acked-by tag;
+> > patch(2/5):
+> >   - Just add 'maxitem 2' instead of duplicating the list;
+> > patch(3/5):
+> >   - Rewite commit message for 'interrupt-names'.
+> >
+> > Link to V3:
+> > https://lore.kernel.org/all/cover.1698717154.git.zhoubinbin@loongson.cn=
+/
+> >
+> > V3:
+> > patch(1/5):
+> >   - new patch, 'loongson,parent_int_map' renamed to 'loongson,parent-in=
+t-map';
+> > patch(2/5)(3/5):
+> >   - Separate the change points into separate patches;
+> > patch(4/5):
+> >  - new patch, make sure both parent map forms can be parsed;
+> > patch(5/5):
+> >  - new patch, fix 'loongson,parent_int_map' references in mips loongson
+> >    dts{i}.
+> >
+> > Link to V2:
+> > https://lore.kernel.org/all/20230821061315.3416836-1-zhoubinbin@loongso=
+n.cn/
+> >
+> > V2:
+> > 1. Update commit message;
+> > 2. "interruprt-names" should be "required", the driver gets the parent
+> > interrupts through it;
+> > 3. Add more descriptions to explain the rationale for multiple nodes;
+> > 4. Rewrite if-else statements.
+> >
+> > Link to V1:
+> > https://lore.kernel.org/all/20230815084713.1627520-1-zhoubinbin@loongso=
+n.cn/
+> >
+> > Binbin Zhou (2):
+> >   dt-bindings: interrupt-controller: loongson,liointc: Fix dtbs_check
+> >     warning for reg-names
+> >   dt-bindings: interrupt-controller: loongson,liointc: Fix dtbs_check
+> >     warning for interrupt-names
+> >
+> >  .../interrupt-controller/loongson,liointc.yaml | 18 ++++++++++++------
+> >  1 file changed, 12 insertions(+), 6 deletions(-)
+> >
+> > --
+> > 2.39.3
+> >
 
