@@ -1,100 +1,181 @@
-Return-Path: <devicetree+bounces-30701-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30702-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E750828B3E
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 18:29:31 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DAB76828B48
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 18:31:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5465E1C21A3D
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 17:29:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6428A2829E9
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 17:31:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E7C23B2A4;
-	Tue,  9 Jan 2024 17:29:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AA253B2BB;
+	Tue,  9 Jan 2024 17:31:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="h0eRHKFL"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FcCzoDiH"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB8923BB24;
-	Tue,  9 Jan 2024 17:29:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 30B37C43390;
-	Tue,  9 Jan 2024 17:29:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43B563B2A4;
+	Tue,  9 Jan 2024 17:31:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E7782C433F1;
+	Tue,  9 Jan 2024 17:31:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1704821366;
-	bh=c+gLcfL86VXXDQGcoWlKSAU2T+iwkLzgo1A26ePprwY=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=h0eRHKFLFczLzYmZog7EpW5yCoNe8k9dsIan0ZkJ5pABPRcEvZXA/urUm5UwgvXVo
-	 JTl9f+57vN37PZRMLyOuPSIukfnrO5NqyqmEcTV1qLfVjizWGZjALV9hg/w+CpzAkw
-	 PHxCBh171p9rIrcCWqJ0TAmMIUa88NWL1OGfQ2ioWObbXBvmZ6F9C4yhbkQo2q81pe
-	 i3lgndJr8VaexH21F2X1uLbyS5OFhaXihv0zRfViuDSv0lrKeHsTGW8L2EoRf2gmep
-	 KPMFdYqiBq1wX8E2fyqV9twGC9CCTUZLC5HmA5xy0vOita9BvsoPLasS2z6SNfRhhb
-	 x2XwgFxtYO1GA==
-Received: (nullmailer pid 2805791 invoked by uid 1000);
-	Tue, 09 Jan 2024 17:29:24 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1704821492;
+	bh=UOEYJi4gJtE8sc2Wj07/bfw21ESQfkQyPOaOQJ8ntis=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=FcCzoDiHW9klwT7ITiw4GovAPaKPnr72xGYdoRaIK7XAnlsIaojUnauhMcef6+alT
+	 Rm9ONxbPUJh8Bew+DaFyg/rm7F98zKKN76tYI+t0eWNSh3mChToLImHOlZ27csWcmK
+	 A9RsIvRVydPCrdx71CO73qGLeVu91A6M03V0c8dErhG1NmqRg5zQc7+65/2g2o+UV1
+	 OKZfIOQgFL61a5GRIUUU4WRt/RNssERHP21qQenhLA2dHCvOaYxe7LnJ1Yb2foX72k
+	 GZqlnbJj6lyLc2u7YZRUxksAM4Fmjb+Jv6bJNKjh47dK+LISNbCJ5fSJ5btMV276Xm
+	 6aPemIi6bTC8g==
+Received: (nullmailer pid 2808343 invoked by uid 1000);
+	Tue, 09 Jan 2024 17:31:24 -0000
+Date: Tue, 9 Jan 2024 11:31:24 -0600
+From: Rob Herring <robh@kernel.org>
+To: Linus Walleij <linus.walleij@linaro.org>, Yoshinori Sato <ysato@users.sourceforge.jp>
+Cc: linux-sh@vger.kernel.org, Damien Le Moal <dlemoal@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, Thomas Gleixner <tglx@linutronix.de>, Lorenzo Pieralisi <lpieralisi@kernel.org>, Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>, Bjorn Helgaas <bhelgaas@google.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, Daniel Lezcano <daniel.lezcano@linaro.org>, Rich Felker <dalias@libc.org>, John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>, Lee Jones <lee@kernel.org>, Helge Deller <deller@gmx.de>, Heiko Stuebner <heiko@sntech.de
+ >, Jernej Skrabec <jernej.skrabec@gmail.com>, Chris Morgan <macromorgan@hotmail.com>, Yang Xiwen <forbidden405@foxmail.com>, Sebastian Reichel <sre@kernel.org>, Randy Dunlap <rdunlap@infradead.org>, Arnd Bergmann <arnd@arndb.de>, Vlastimil Babka <vbabka@suse.cz>, Hyeonggon Yoo <42.hyeyoo@gmail.com>, David Rientjes <rientjes@google.com>, Baoquan He <bhe@redhat.com>, Andrew Morton <akpm@linux-foundation.org>, Guenter Roeck <linux@roeck-us.net>, Stephen Rothwell <sfr@canb.auug.org.au>, Azeem Shaikh <azeemshaikh38@gmail.com>, Javier Martinez Canillas <javierm@redhat.com>, Max Filippov <jcmvbkbc@gmail.com>, Palmer Dabbelt <palmer@rivosinc.com>, Bin Meng <bmeng@tinylab.org>, Jonathan Corbet <corbet@lwn.net>, Jacky Huang <ychuang3@nuvoton.com>, Lukas Bulwahn <lukas.bulwahn@gmail.com>, Biju Das <biju.das.jz@bp.renesas.com>, Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>, Sam Ravnborg <sam@ravnborg.org>, Sergey Shtylyov <s.shtylyov@omp.ru>, Michael Karcher <kernel@mkarc
+ her.dialup.fu-berlin.de>, Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>, linux-ide@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, dri-devel@lists.freedesktop.org, linux-pci@vger.kernel.org, linux-serial@vger.kernel.org, linux-fbdev@vger.kernel.org
+Subject: Re: [DO NOT MERGE v6 12/37] dt-bindings: pci: pci-sh7751: Add SH7751
+ PCI
+Message-ID: <20240109173124.GB2783042-robh@kernel.org>
+References: <cover.1704788539.git.ysato@users.sourceforge.jp>
+ <160ee086771703c951c5522d997662aeac122a28.1704788539.git.ysato@users.sourceforge.jp>
+ <CACRpkdZMkyJdkFt_x-6iubLZ-KzewvmT0zi4HAas0Xy9DpPn3g@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Rob Herring <robh@kernel.org>
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc: linux-kernel@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-media@vger.kernel.org, Todor Tomov <todor.too@gmail.com>, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Rob Herring <robh+dt@kernel.org>, Robert Foss <rfoss@kernel.org>, Mauro Carvalho Chehab <mchehab@kernel.org>
-In-Reply-To: <20240109-linux-next-24-01-02-sc8280xp-camss-core-dtsi-v3-2-b8e3a74a6e6a@linaro.org>
-References: <20240109-linux-next-24-01-02-sc8280xp-camss-core-dtsi-v3-0-b8e3a74a6e6a@linaro.org>
- <20240109-linux-next-24-01-02-sc8280xp-camss-core-dtsi-v3-2-b8e3a74a6e6a@linaro.org>
-Message-Id: <170482136406.2805773.11743678782463697327.robh@kernel.org>
-Subject: Re: [PATCH v3 2/4] dt-bindings: media: camss: Add
- qcom,sc8280xp-camss binding
-Date: Tue, 09 Jan 2024 11:29:24 -0600
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CACRpkdZMkyJdkFt_x-6iubLZ-KzewvmT0zi4HAas0Xy9DpPn3g@mail.gmail.com>
 
-
-On Tue, 09 Jan 2024 16:06:03 +0000, Bryan O'Donoghue wrote:
-> Add bindings for qcom,sc8280xp-camss in order to support the camera
-> subsystem for sc8280xp as found in the Lenovo x13s Laptop.
+On Tue, Jan 09, 2024 at 01:42:53PM +0100, Linus Walleij wrote:
+> Hi Yoshinori,
 > 
-> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->  .../bindings/media/qcom,sc8280xp-camss.yaml        | 512 +++++++++++++++++++++
->  1 file changed, 512 insertions(+)
+> thanks for your patch!
 > 
+> On Tue, Jan 9, 2024 at 9:24 AM Yoshinori Sato
+> <ysato@users.sourceforge.jp> wrote:
+> 
+> > Renesas SH7751 PCI Controller json-schema.
+> >
+> > Signed-off-by: Yoshinori Sato <ysato@users.sourceforge.jp>
+> (...)
+> > +  renesas,bus-arbit-round-robin:
+> > +    $ref: /schemas/types.yaml#/definitions/flag
+> > +    description: |
+> > +      Set DMA bus arbitration to round robin.
+> > +
+> > +  pci-command-reg-fast-back-to-back:
+> > +    $ref: /schemas/types.yaml#/definitions/flag
+> > +    description: |
+> > +      Set for PCI command register Fast Back-to-Back enable bit.
+> > +
+> > +  pci-command-reg-serr:
+> > +    $ref: /schemas/types.yaml#/definitions/flag
+> > +    description: |
+> > +      Set for PCI command register SERR# enable.
+> > +
+> > +  pci-command-reg-wait-cycle-control:
+> > +    $ref: /schemas/types.yaml#/definitions/flag
+> > +    description: |
+> > +      Set for PCI command register Wait cycle control bit.
+> > +
+> > +  pci-command-reg-parity-error-response:
+> > +    $ref: /schemas/types.yaml#/definitions/flag
+> > +    description: |
+> > +      Set for PCI Command register Parity error response bit.
+> > +
+> > +  pci-command-reg-vga-snoop:
+> > +    $ref: /schemas/types.yaml#/definitions/flag
+> > +    description: |
+> > +      Set for PCI Command register VGA palette snoop bit.
+> > +
+> > +  pci-command-reg-write-invalidate:
+> > +    $ref: /schemas/types.yaml#/definitions/flag
+> > +    description: |
+> > +      Set for PCI Command register Memory write and invaldate enable bit.
+> > +
+> > +  pci-command-reg-special-cycle:
+> > +    $ref: /schemas/types.yaml#/definitions/flag
+> > +    description: |
+> > +      Set for PCI Command register Special cycle bit.
+> > +
+> > +  pci-command-reg-bus-master:
+> > +    $ref: /schemas/types.yaml#/definitions/flag
+> > +    description: |
+> > +      Set for PCI Command register Bus master bit.
+> > +
+> > +  pci-command-reg-memory-space:
+> > +    $ref: /schemas/types.yaml#/definitions/flag
+> > +    description: |
+> > +      Set for PCI Command register Memory space bit.
+> > +
+> > +  pci-command-reg-io-space:
+> > +    $ref: /schemas/types.yaml#/definitions/flag
+> > +    description: |
+> > +      Set for PCI Command register I/O space bit.
+> 
+> Do you really need to configure all these things? It seems they are
+> just set to default values anyway?
+> 
+> Can't you just look at the compatible "renesas,sh7751-pci" and
+> set it to the values you know are needed for that compatible?
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Yes. Please drop all these.
 
-yamllint warnings/errors:
+> 
+> > +  pci-bar:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32-matrix
+> > +    description: Overwrite to  PCI CONFIG Base Address Registers value.
+> > +    items:
+> > +      items:
+> > +        - description: BAR register number
+> > +        - description: BAR register value
+> > +    minItems: 1
+> > +    maxItems: 6
+> 
+> Same with this, isn't this always the same (hardcoded) values
+> for "renesas,sh7751-pci" if used?
 
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/media/qcom,sc8280xp-camss.example.dts:26:18: fatal error: dt-bindings/clock/qcom,sc8280xp-camcc.h: No such file or directory
-   26 |         #include <dt-bindings/clock/qcom,sc8280xp-camcc.h>
-      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-compilation terminated.
-make[2]: *** [scripts/Makefile.lib:419: Documentation/devicetree/bindings/media/qcom,sc8280xp-camss.example.dtb] Error 1
-make[2]: *** Waiting for unfinished jobs....
-make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1424: dt_binding_check] Error 2
-make: *** [Makefile:234: __sub-make] Error 2
+The OpenFirmware PCI bus supplement already defines how to specify BAR 
+values in DT in "reg" or "assigned-addresses". If you need to specify 
+these, use that. Note don't expect the kernel to do anything with them.
 
-doc reference errors (make refcheckdocs):
+Rob
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240109-linux-next-24-01-02-sc8280xp-camss-core-dtsi-v3-2-b8e3a74a6e6a@linaro.org
+> 
+> > +            interrupt-map = <0x0000 0 0 1 &julianintc 5>,
+> > +                            <0x0000 0 0 2 &julianintc 6>,
+> > +                            <0x0000 0 0 3 &julianintc 7>,
+> > +                            <0x0000 0 0 4 &julianintc 8>,
+> > +                            <0x0800 0 0 1 &julianintc 6>,
+> > +                            <0x0800 0 0 2 &julianintc 7>,
+> > +                            <0x0800 0 0 3 &julianintc 8>,
+> > +                            <0x0800 0 0 4 &julianintc 5>,
+> > +                            <0x1000 0 0 1 &julianintc 7>,
+> > +                            <0x1000 0 0 2 &julianintc 8>,
+> > +                            <0x1000 0 0 3 &julianintc 5>,
+> > +                            <0x1000 0 0 4 &julianintc 6>;
+> 
+> This interrupt-map looks very strange, usually the last cell is the polarity
+> flag and here it is omitted? I would expect something like:
+> 
+> <0x0000 0 0 1 &julianintc 5 IRQ_TYPE_LEVEL_LOW>, (...)
+> 
+> The interrupt-map schema in dtschema isn't really looking at this
+> so it is easy to get it wrong.
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
+dtc should IIRC. Maybe not in the example being incomplete.
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+Rob
 
 
