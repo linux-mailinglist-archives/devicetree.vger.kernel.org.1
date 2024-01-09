@@ -1,149 +1,192 @@
-Return-Path: <devicetree+bounces-30763-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30768-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BB87828E02
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 20:45:47 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A8CE828E2C
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 20:52:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 72C301C23966
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 19:45:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A1E181C24A7F
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 19:52:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AD243D55A;
-	Tue,  9 Jan 2024 19:38:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 260183D54B;
+	Tue,  9 Jan 2024 19:52:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="meB4l/v4"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WsJ3PovH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00507481C7;
-	Tue,  9 Jan 2024 19:38:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 409IPgvb009679;
-	Tue, 9 Jan 2024 19:38:13 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	from:date:subject:mime-version:content-type
-	:content-transfer-encoding:message-id:references:in-reply-to:to
-	:cc; s=qcppdkim1; bh=9IXiRln2Duun1O80Yl8EsvifJ9A2nUavg62PHcy0yVQ
-	=; b=meB4l/v4NDsiJs4wRPv7TjhWtf35qjgjlmEZdoe6KtorlH+6+aiyx81qcU+
-	2PSK4XQz5UnVSN7jdEk3INrccSurEXaoUxv6HwXV4Wah+dTHkNcoBGW9Vt1tUYTn
-	D2ystJCaVc519dsmgvFk6EuCPq7DBthg36dkc45Bl06AFbeeR9wVfuQNr3KbslTq
-	bbOqGJJ92LXThkRfDH4ZqQ/f1fPny87Fohj//lhFl6ybLPMoUFkX4+F7nnGa8yq/
-	agQE6NwlTYsZ8lCvPa6yFPR//EvHF5c7jYZR+kKK+EBBCLDnXnWXyd8EgCxS1Bbc
-	5zZpkb70VQJq9PwSBRJrKT+xo6Q==
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vh85t0pp9-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 09 Jan 2024 19:38:12 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 409JcBhQ003587
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 9 Jan 2024 19:38:11 GMT
-Received: from hu-eberman-lv.qualcomm.com (10.49.16.6) by
- nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Tue, 9 Jan 2024 11:38:10 -0800
-From: Elliot Berman <quic_eberman@quicinc.com>
-Date: Tue, 9 Jan 2024 11:38:12 -0800
-Subject: [PATCH v16 34/34] MAINTAINERS: Add Gunyah hypervisor drivers
- section
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5443B3D540
+	for <devicetree@vger.kernel.org>; Tue,  9 Jan 2024 19:52:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-40e461c1f5cso28565995e9.3
+        for <devicetree@vger.kernel.org>; Tue, 09 Jan 2024 11:52:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1704829951; x=1705434751; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=H8e7BIQ+0Uh9OOAYCo0/STP+HvJzJz6KC9y4zPITais=;
+        b=WsJ3PovHf06yDnZxNKUP5I/ypQAW5xjsfXaPhKMMxWM5vOkgub4RLziGk4pH/0xtPw
+         aQdse6fCn/GSXfn98murkkatkYNFhdO9JdUrYAdp/34ExfA0fz+GPtq9ER7E77MxFYMe
+         CHP6fcSWgdvv6No2qaUnCAGil5hdLXxMTAK1a4BxvrbkMX8Z3KScafpF0I5wjAv8r+PZ
+         XCupSStpIYrRBoCojFL/X714dp7l70gP+f9VztuMiMC90Rz5Z9I+jFbmysGGMkB3AZAR
+         KALNOj7k15QeVUwWVNhc3D0y77tKPrB4aB0F7epliCu2uYlqSZmialFNlqR8kb+l6Qvj
+         nPoQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1704829951; x=1705434751;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=H8e7BIQ+0Uh9OOAYCo0/STP+HvJzJz6KC9y4zPITais=;
+        b=hOQ8C3yTWMmMPojzJ28fkvkRXjdDJTISpgKSRAttH/VAsOHvfV+SNShXTnoFfqQHns
+         /TtjKnRZ3X8zdjak/SRVJf6dzPVA/NLOxEphsorNJtXUPvk9mZfAo04WI8DdDx+qnqnN
+         Ovewf0GBDnA2npRtulRjdvuasxBusj7/krZ1On1PUhOhwDgslCPjyrt9uZWVuRSbnxIg
+         FBQsNm7k9KtGPcbnRi60nU6/0GI2DyK0vhCfgV4HswrHpFRRqcUp5HS7LEm/YWaeP05q
+         LlPWef6gH2DzQe5K4SZ1QCGKOdMxwGp9195gDT9oLUxFdMe7Mv7aZOYv0crsAuREUtET
+         yAOA==
+X-Gm-Message-State: AOJu0YwlIRPizZ2TMmXBXgKCvd6irkj4ZpLTLPSOqOfrY7AUdeXfSRHk
+	ed9KPHLviyRdn0UN7rSbIt5ANYxITHE8pg==
+X-Google-Smtp-Source: AGHT+IHmaMSsPHOeRys+SN1gCkDvhPPnnU4xw5om3zeZ1uZJmbZ6bUKv8I/7qxajZHyxo4zm+o/bmQ==
+X-Received: by 2002:a05:600c:511e:b0:40e:5320:2582 with SMTP id o30-20020a05600c511e00b0040e53202582mr212877wms.107.1704829951588;
+        Tue, 09 Jan 2024 11:52:31 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.223.112])
+        by smtp.gmail.com with ESMTPSA id w1-20020a5d6801000000b00336be33649csm3193258wru.9.2024.01.09.11.52.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 09 Jan 2024 11:52:30 -0800 (PST)
+Message-ID: <f1710a31-6729-4a97-afcb-518cb99b9346@linaro.org>
+Date: Tue, 9 Jan 2024 20:52:28 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 01/11] dt-bindings: gpu: Rename img,powervr to
+ img,powervr-rogue
+Content-Language: en-US
+To: Andrew Davis <afd@ti.com>, Frank Binns <frank.binns@imgtec.com>,
+ Matt Coster <matt.coster@imgtec.com>,
+ "H . Nikolaus Schaller" <hns@goldelico.com>, Adam Ford <aford173@gmail.com>,
+ Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>, =?UTF-8?Q?Beno=C3=AEt_Cousson?=
+ <bcousson@baylibre.com>, Tony Lindgren <tony@atomide.com>,
+ Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+ Tero Kristo <kristo@kernel.org>, Paul Cercueil <paul@crapouillou.net>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linux-mips@vger.kernel.org,
+ linux-omap@vger.kernel.org, linux-sunxi@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org
+References: <20240109171950.31010-1-afd@ti.com>
+ <20240109171950.31010-2-afd@ti.com>
+ <11e3afae-76a7-4ebb-82ac-3dca040710dc@linaro.org>
+ <d0c242ef-bb8f-49d9-bbb0-7922db2c322a@ti.com>
+ <d584255f-87ee-48a7-869d-e2a0b40a52b4@linaro.org>
+ <61b0c6c7-e5ad-4cbf-a020-230d96d43d3e@ti.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <61b0c6c7-e5ad-4cbf-a020-230d96d43d3e@ti.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-ID: <20240109-gunyah-v16-34-634904bf4ce9@quicinc.com>
-References: <20240109-gunyah-v16-0-634904bf4ce9@quicinc.com>
-In-Reply-To: <20240109-gunyah-v16-0-634904bf4ce9@quicinc.com>
-To: Alex Elder <elder@linaro.org>,
-        Srinivas Kandagatla
-	<srinivas.kandagatla@linaro.org>,
-        Murali Nalajal <quic_mnalajal@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Srivatsa Vaddagiri
-	<quic_svaddagi@quicinc.com>,
-        Carl van Schaik <quic_cvanscha@quicinc.com>,
-        Philip Derrin <quic_pderrin@quicinc.com>,
-        Prakruthi Deepak Heragu
-	<quic_pheragu@quicinc.com>,
-        Jonathan Corbet <corbet@lwn.net>, Rob Herring
-	<robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        "Fuad
- Tabba" <tabba@google.com>,
-        Sean Christopherson <seanjc@google.com>,
-        "Andrew
- Morton" <akpm@linux-foundation.org>
-CC: <linux-arm-msm@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-mm@kvack.org>,
-        Elliot Berman
-	<quic_eberman@quicinc.com>
-X-Mailer: b4 0.13-dev
-X-ClientProxiedBy: nalasex01c.na.qualcomm.com (10.47.97.35) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: kzM0F7NTMKnUvtJCJV2bCf88yMAs95Pq
-X-Proofpoint-GUID: kzM0F7NTMKnUvtJCJV2bCf88yMAs95Pq
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-12-09_01,2023-12-07_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 bulkscore=0
- malwarescore=0 suspectscore=0 mlxlogscore=744 clxscore=1015
- priorityscore=1501 adultscore=0 impostorscore=0 phishscore=0 spamscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2311290000 definitions=main-2401090158
 
-Add myself and Prakruthi as maintainers of Gunyah hypervisor drivers.
+On 09/01/2024 20:33, Andrew Davis wrote:
+> On 1/9/24 1:17 PM, Krzysztof Kozlowski wrote:
+>> On 09/01/2024 20:04, Andrew Davis wrote:
+>>> On 1/9/24 12:59 PM, Krzysztof Kozlowski wrote:
+>>>> On 09/01/2024 18:19, Andrew Davis wrote:
+>>>>> This binding will be used for GPUs starting from Series6 (Rogue)
+>>>>> and later. A different binding document will describe Series5.
+>>>>> With that the name "img,powervr" is too generic, rename to
+>>>>> "img,powervr-rogue" to avoid confusion.
+>>>>>
+>>>>> Suggested-by: Maxime Ripard <mripard@kernel.org>
+>>>>> Signed-off-by: Andrew Davis <afd@ti.com>
+>>>>> Reviewed-by: Javier Martinez Canillas <javierm@redhat.com>
+>>>>> Reviewed-by: Frank Binns <frank.binns@imgtec.com>
+>>>>> ---
+>>>>
+>>>> Why do you send new version while we still talk about previous?
+>>>>
+>>>> Please implement feedback from v1 (and this is v2, so next is v3) or
+>>>> keep discussing.
+>>>>
+>>>
+>>> I agreed with everything you said in the last round (RFC v2) and
+>>> made all requested changes. Did I miss something in this version?
+>>
+>> The recommendation is that naming of the file matches generic compatible
+>> and your file has only one generic compatible. Therefore I don't
+>> understand why you claimed there are multiple compatibles.
+>>
+> 
+> I said "There are (or will be) multiple compatible strings", the rest
 
-Reviewed-by: Alex Elder <elder@linaro.org>
-Signed-off-by: Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>
-Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
----
- MAINTAINERS | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+OK.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index fa67e2624723..64f70ef1ef91 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -9306,6 +9306,18 @@ L:	linux-efi@vger.kernel.org
- S:	Maintained
- F:	block/partitions/efi.*
- 
-+GUNYAH HYPERVISOR DRIVER
-+M:	Elliot Berman <quic_eberman@quicinc.com>
-+M:	Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>
-+L:	linux-arm-msm@vger.kernel.org
-+S:	Supported
-+F:	Documentation/devicetree/bindings/firmware/gunyah-hypervisor.yaml
-+F:	Documentation/virt/gunyah/
-+F:	arch/arm64/gunyah/
-+F:	drivers/virt/gunyah/
-+F:	include/linux/gunyah*.h
-+K:	gunyah
-+
- HABANALABS PCI DRIVER
- M:	Oded Gabbay <ogabbay@kernel.org>
- L:	dri-devel@lists.freedesktop.org
+> are on the way. So I didn't want to make this file less generic when
+> other bindings are almost ready.
+> 
+> Frank, can you help here, I'm assuming you have "img,img-bxs" and
+> "img,img-8xe" bindings staged for upstreaming somewhere; you'll be
+> putting those in this same file, right?
+> 
 
--- 
-2.34.1
+That's fine then.
+
+Best regards,
+Krzysztof
 
 
