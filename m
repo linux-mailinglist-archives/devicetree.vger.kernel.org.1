@@ -1,170 +1,121 @@
-Return-Path: <devicetree+bounces-30656-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30657-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98CBE8288DA
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 16:19:45 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 30AEA8288DF
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 16:21:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0ABED1F24481
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 15:19:40 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8602CB2433A
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 15:21:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18A3639AFC;
-	Tue,  9 Jan 2024 15:19:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B652B39FCF;
+	Tue,  9 Jan 2024 15:21:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="W/ruIsQl"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="ZIQ9V5qh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68D5639FCF
-	for <devicetree@vger.kernel.org>; Tue,  9 Jan 2024 15:19:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-55818b733f7so727311a12.3
-        for <devicetree@vger.kernel.org>; Tue, 09 Jan 2024 07:19:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704813569; x=1705418369; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=MHf+HMhNEbxSw0NX4eT9XPm8cHNU7EWSWX1g8V7FxBY=;
-        b=W/ruIsQl+9gI+fO/1YG2U/yhZD7PymsfYLPUDCB96wSs1y3iQSoi2Jwg9i+O7tJLgM
-         0CbBUutLht/xk/ZkVlIgtQ20AZBD38wfEingyNaOBGnqG7r69ePxIq1n9x2calEfm+2V
-         6jdLmEFPWVEs6zqkc6ZdWMKqdvMBtph9keg9ELZsU0xbFxrWSubZBD+sDXuwo9aS5Cjk
-         ejy/kIGHhry6MqDd/wd8WeT1MH89VgYvcNxN07Gbra6Qd54DeR6eBdJMg5lxar9dZxJv
-         tZCVRJxa0AyszAry3b41OBbEVVWLx36J476VTBsQ8oCuVVF8kQ8GfjpDMXOpaWb3qMfM
-         gQPg==
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BC2039FC1
+	for <devicetree@vger.kernel.org>; Tue,  9 Jan 2024 15:21:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1704813671;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type;
+	bh=vn1ce8hywqQSUdzE/tq3PAQDOHuc7M+muFOo7RqI5C0=;
+	b=ZIQ9V5qhliT8bdeS0/pV8MmwrGpA/hci8sBcTzLetwqhswCXQpj1dn4jgr56S9YwwQUuWQ
+	KtzmEXcJ/EtarX3sFq77hC1A2S7ixuTfISnNskJPUm46/Yib1IPrJPF4KGvtzQ/nIDOvGT
+	48IFUKR1xIFOoCak+mijMfUq94e9wHU=
+Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com
+ [209.85.222.198]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-692-XIboBzkPPOG5esrpzRvORg-1; Tue, 09 Jan 2024 10:21:02 -0500
+X-MC-Unique: XIboBzkPPOG5esrpzRvORg-1
+Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-7832afe1032so130672285a.1
+        for <devicetree@vger.kernel.org>; Tue, 09 Jan 2024 07:21:02 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704813569; x=1705418369;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=MHf+HMhNEbxSw0NX4eT9XPm8cHNU7EWSWX1g8V7FxBY=;
-        b=jTfBqS/8ah/7n0VBhB7tk/ruqgyPLwPrpe2++fsAtr04HVT7s5xtzWazg4yrwfqDa9
-         7YMQphJU+gzsz7HzpypdJGHumic6XKFtGoEnA5leZ65M9+jwB8T+qNFpJeWhmojmTfmQ
-         ljXlVR5gxIdlRuZwhmyyLx7GapKQqs0SWciWSW8oT7OY5eSkEAJ+B+90WGOJLBBxCj/F
-         I4czfCtFa8Um0fzZYtORCh0N8VOrNwUQEUFHR7Cp8gksvC7K8n4+cbAEwg0dOBuMGeQ3
-         fkRfsS+NMflNkQkaNKcfBWkhq6CHKYeTMkqrNAbxG5HTeYzm3nAJ3G//7tSUr+7fjADy
-         STFw==
-X-Gm-Message-State: AOJu0YzD5Y13BxXxUxpdavFcKv2gimWGDuPVVGjG9E+S+oticDF2KrMf
-	u/+5IMGZilGlU4I3cgftvUYzmd1mO89XXA==
-X-Google-Smtp-Source: AGHT+IGAV1h3boUfzpR1ECaRMxIDcj4APLe71bt7b0mMCIjbbaJ286rGxhuyNOQ6G4bU5rnxUs4dgQ==
-X-Received: by 2002:a17:907:3a13:b0:a19:940f:b9d3 with SMTP id fb19-20020a1709073a1300b00a19940fb9d3mr679799ejc.25.1704813569684;
-        Tue, 09 Jan 2024 07:19:29 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.223.112])
-        by smtp.gmail.com with ESMTPSA id n24-20020a170906379800b00a26aaad6618sm1143256ejc.35.2024.01.09.07.19.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 09 Jan 2024 07:19:29 -0800 (PST)
-Message-ID: <5f724f59-8643-4f30-8cfb-8e3213b50118@linaro.org>
-Date: Tue, 9 Jan 2024 16:19:26 +0100
+        d=1e100.net; s=20230601; t=1704813661; x=1705418461;
+        h=user-agent:content-disposition:mime-version:message-id:subject:cc
+         :to:from:date:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=vn1ce8hywqQSUdzE/tq3PAQDOHuc7M+muFOo7RqI5C0=;
+        b=Y0Q1zcEimjzjA3nDfULuQedtaMj5KM4nqoU5Djatj5rTiBP3CSAnrsko7cTbyNeLCj
+         OH4+48M9MrWmOWk660KtCvAnuUh7r3Ae1fcyTRiGIc5dL7wCpA0SLaxmOJrR4R9L/Cct
+         Y+rBxILg/YztOAMEeq19+T740jiadYnqxCe4+GJ9kyGHFI7+Tba5TM5VNo9+N7uxu3fo
+         cnpg7lahZhc+rLkhpnonZuG6ifTKOgQuHourAOm5+FBcLDpofvmxxAtqK+dQs5L5yyAQ
+         WPhHYyh20k5aOa12/Qv6rUDvv/kLTS8XH3yNuH+Ph35W2WN7dk1jMaQuABPg81Xg7k8R
+         9bkg==
+X-Gm-Message-State: AOJu0Yzmg2De7HvfUdC6RjEKsYnj+DMyH2GO9bVHCDg5V8+FO+bVIZyj
+	dU2p84TMGe3UDTI/RXVP8jsRTwvzl6F6oPExMN8D/xIDSDKgh0LWQQo/sKcRMKBMMoN4JzY47bB
+	VAcg7qSh+w3xXYPKJHLRkhypQR5feDgWtymPpi1T6AEs=
+X-Received: by 2002:a05:620a:4008:b0:783:314c:48c4 with SMTP id h8-20020a05620a400800b00783314c48c4mr605882qko.96.1704813660939;
+        Tue, 09 Jan 2024 07:21:00 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IEn8hS9/EPAk99SwHPz6Ctm7qGK+fZo5cmWdV36DyjYJZKlNIvEBawV15ZkWLFEopPcYMNuVQ==
+X-Received: by 2002:a05:620a:4008:b0:783:314c:48c4 with SMTP id h8-20020a05620a400800b00783314c48c4mr605875qko.96.1704813660554;
+        Tue, 09 Jan 2024 07:21:00 -0800 (PST)
+Received: from fedora ([174.91.39.234])
+        by smtp.gmail.com with ESMTPSA id h2-20020a05620a13e200b007832016a732sm874832qkl.83.2024.01.09.07.20.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 09 Jan 2024 07:21:00 -0800 (PST)
+Date: Tue, 9 Jan 2024 10:20:50 -0500
+From: Lucas Karpinski <lkarpins@redhat.com>
+To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2] arm64: dts: qcom: sa8540p-ride: disable pcie2a node
+Message-ID: <qcoqksikfvdqxk6stezbzc7l2br37ccgqswztzqejmhrkhbrwt@ta4npsm35mqk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/4] dt-bindings: reset: sophgo: support SG2042
-Content-Language: en-US
-To: Chen Wang <unicornxw@gmail.com>, aou@eecs.berkeley.edu,
- chao.wei@sophgo.com, conor@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- palmer@dabbelt.com, paul.walmsley@sifive.com, robh+dt@kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-riscv@lists.infradead.org, haijiao.liu@sophgo.com,
- xiaoguang.xing@sophgo.com, guoren@kernel.org, jszhang@kernel.org,
- inochiama@outlook.com
-Cc: Chen Wang <unicorn_wang@outlook.com>
-References: <cover.1704790558.git.unicorn_wang@outlook.com>
- <9798e2ea0c4e339717cc5c411e0db0188befdc58.1704790558.git.unicorn_wang@outlook.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <9798e2ea0c4e339717cc5c411e0db0188befdc58.1704790558.git.unicorn_wang@outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+User-Agent: NeoMutt/20231103
 
-On 09/01/2024 10:16, Chen Wang wrote:
-> From: Chen Wang <unicorn_wang@outlook.com>
-> 
-> Add bindings for the reset generator on the SOPHGO SG2042 RISC-V SoC.
-> 
-> Signed-off-by: Chen Wang <unicorn_wang@outlook.com>
+pcie2a and pcie3a both cause interrupt storms to occur. However, when
+both are enabled simultaneously, the two combined interrupt storms will
+lead to rcu stalls. Red Hat is the only company still using this board
+and since we still need pcie3a, just disable pcie2a.
 
-...
-
-> +#define RST_UART2			31
-> +
-> +#define RST_UART3			32
-
-No need for blank line above UART3. If there is going to be new
-version/resend, please fix it.
-
-Anyway:
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-
+Signed-off-by: Lucas Karpinski <lkarpins@redhat.com>
 ---
+v2:
+- don't remove the entire pcie2a node, just set status to disabled.
+- update commit message.
 
-This is an automated instruction, just in case, because many review tags
-are being ignored. If you know the process, you can skip it (please do
-not feel offended by me posting it here - no bad intentions intended).
-If you do not know the process, here is a short explanation:
+ arch/arm64/boot/dts/qcom/sa8540p-ride.dts | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new
-versions, under or above your Signed-off-by tag. Tag is "received", when
-provided in a message replied to you on the mailing list. Tools like b4
-can help here. However, there's no need to repost patches *only* to add
-the tags. The upstream maintainer will do that for tags received on the
-version they apply.
-
-https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
-
-Best regards,
-Krzysztof
+diff --git a/arch/arm64/boot/dts/qcom/sa8540p-ride.dts b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
+index b04f72ec097c..177b9dad6ff7 100644
+--- a/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
++++ b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
+@@ -376,14 +376,14 @@ &pcie2a {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pcie2a_default>;
+ 
+-	status = "okay";
++	status = "disabled";
+ };
+ 
+ &pcie2a_phy {
+ 	vdda-phy-supply = <&vreg_l11a>;
+ 	vdda-pll-supply = <&vreg_l3a>;
+ 
+-	status = "okay";
++	status = "disabled";
+ };
+ 
+ &pcie3a {
+-- 
+2.43.0
 
 
