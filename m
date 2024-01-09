@@ -1,48 +1,70 @@
-Return-Path: <devicetree+bounces-30406-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30408-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36317827D89
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 04:50:45 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE2E8827D9A
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 04:56:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DE7381F24463
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 03:50:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0B5281C21F0B
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 03:56:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB636468B;
-	Tue,  9 Jan 2024 03:49:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B56D9443D;
+	Tue,  9 Jan 2024 03:56:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cXADbiya"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="OC78RgLA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A735E2575D;
-	Tue,  9 Jan 2024 03:49:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E57FC433F1;
-	Tue,  9 Jan 2024 03:49:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1704772194;
-	bh=rahJBlD6WKCnL7cz/47HayRSqAAM+zBHOL83nb/2+0E=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=cXADbiyaO/IrZRpiIPE/9Wio7oQ4ImFbFhONLDiODb/FhvXfBbWh2yW6TDsRE5TZH
-	 YRhx5B/AGjAIIKht0p0eYMGXtYpLkOk+1ifkAa9LTww2irVTfCW6InHCJIe4NbirGn
-	 Jcz+HJnBVPZYVQ6pb9JYrgrKCvTuRKA2f+nNVJSznqH3ZqG+jOZiB+9iOVmJd/t8GA
-	 i0LljqEJEIeCGSqsYsYxr+VbcNAyI7V2T92tmJNBAMrATwcmCqZDz89Vl1vd1hZVue
-	 PZAo2kUMRdzR7CDPeC3qD0hWZkO9pdiP5YDCOL7Yu4TZKkkB3XzCbgsArUSoiRYceF
-	 yXwTsP/oCYpSw==
-Received: (nullmailer pid 2607265 invoked by uid 1000);
-	Tue, 09 Jan 2024 03:49:52 -0000
-Date: Mon, 8 Jan 2024 20:49:52 -0700
-From: Rob Herring <robh@kernel.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: s.hauer@pengutronix.de, hongxing.zhu@nxp.com, helgaas@kernel.org, manivannan.sadhasivam@linaro.org, shawnguo@kernel.org, kw@linux.com, linux-imx@nxp.com, krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org, imx@lists.linux.dev, krzysztof.kozlowski@linaro.org, bhelgaas@google.com, conor+dt@kernel.org, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, l.stach@pengutronix.de, linux-pci@vger.kernel.org, festevam@gmail.com, lpieralisi@kernel.org, kernel@pengutronix.de
-Subject: Re: [PATCH v7 04/16] dt-bindings: imx6q-pcie: Add linux,pci-domain
- as required for iMX8MQ
-Message-ID: <170477219183.2607205.10766546617113088833.robh@kernel.org>
-References: <20231227182727.1747435-1-Frank.Li@nxp.com>
- <20231227182727.1747435-5-Frank.Li@nxp.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED3FC5390;
+	Tue,  9 Jan 2024 03:56:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1704772565; x=1736308565;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=T+h4f9Zsp091Wb0KRNrIpykncxfV2hfUXF6oNuy3dNQ=;
+  b=OC78RgLA8LJCRPwGVKmgwDWC45zXfcUfm52BX0FrwMZUXcpI3KcxHhwm
+   QT3sdG9XDZyJTvExjzwLpHMzK9V5/u4NjnfAXoqqILFAusP/qZRTywnl5
+   8XsmVhRq66SyMWTLz9vOfvdi6YKHODVgBuzgyRj/9zs5aznjzTZl03s8z
+   bpzpaSZTr+RYJoUCc4//zZuFkmdNBASu5uHBZxPavZ3RqfxP8YDwC2hid
+   GgaTCQv5ZVj6xZBgOTosmReMZBCzvynJ3g5h1oD7iQgnUoekO9jlpYYuM
+   U5jlB+KBBmpLK8vzQEUtwxi/71Df5d/7MiSVu45BJ4nUAgsgQCyayy0QG
+   g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10947"; a="5421505"
+X-IronPort-AV: E=Sophos;i="6.04,181,1695711600"; 
+   d="scan'208";a="5421505"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Jan 2024 19:56:04 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10947"; a="872101607"
+X-IronPort-AV: E=Sophos;i="6.04,181,1695711600"; 
+   d="scan'208";a="872101607"
+Received: from yilunxu-optiplex-7050.sh.intel.com (HELO localhost) ([10.239.159.165])
+  by FMSMGA003.fm.intel.com with ESMTP; 08 Jan 2024 19:56:00 -0800
+Date: Tue, 9 Jan 2024 11:53:03 +0800
+From: Xu Yilun <yilun.xu@linux.intel.com>
+To: Michal Simek <michal.simek@amd.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	linux-kernel@vger.kernel.org, monstr@monstr.eu,
+	michal.simek@xilinx.com, git@xilinx.com,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Moritz Fischer <mdf@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+	Tom Rix <trix@redhat.com>, Wu Hao <hao.wu@intel.com>,
+	Xu Yilun <yilun.xu@intel.com>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	kishore Manne <nava.kishore.manne@amd.com>,
+	"open list:FPGA MANAGER FRAMEWORK" <linux-fpga@vger.kernel.org>
+Subject: Re: [PATCH 1/2] dt-bindings: fpga: Convert bridge binding to yaml
+Message-ID: <ZZzDHxnMPTuraS4D@yilunxu-OptiPlex-7050>
+References: <3100bbc4723643ec1ec7d4548e9ab353c856b564.1704470663.git.michal.simek@amd.com>
+ <ab6a9a0e-ab03-4d35-9e43-c90c22dbcb1d@linaro.org>
+ <4bcac34b-72a0-464e-91cd-d9e924073619@amd.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -51,41 +73,47 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231227182727.1747435-5-Frank.Li@nxp.com>
+In-Reply-To: <4bcac34b-72a0-464e-91cd-d9e924073619@amd.com>
 
+On Mon, Jan 08, 2024 at 10:16:17AM +0100, Michal Simek wrote:
+> 
+> 
+> On 1/8/24 10:09, Krzysztof Kozlowski wrote:
+> > On 05/01/2024 17:04, Michal Simek wrote:
+> > > Convert the generic fpga bridge DT binding to json-schema.
+> > > 
+> > > Signed-off-by: Michal Simek <michal.simek@amd.com>
+> > 
+> > > +$id: http://devicetree.org/schemas/fpga/fpga-bridge.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: FPGA Bridge
+> > > +
+> > > +maintainers:
+> > > +  - Michal Simek <michal.simek@amd.com>
+> > > +
+> > > +properties:
+> > > +  $nodename:
+> > > +    pattern: "^fpga-bridge(@.*)?$"
+> > 
+> > Not sure, but maybe we need to allow fpga-bridge-1? Could we have more
+> > than one bridge on given system?
+> 
+> Yilun: Any comment on this?
 
-On Wed, 27 Dec 2023 13:27:15 -0500, Frank Li wrote:
-> iMX8MQ have two pci controllers. Adds "linux,pci-domain" as required
-> proptery for iMX8MQ to indicate pci controller index.
-> 
-> This adjustment paves the way for eliminating the hardcoded check on the
-> base register for acquiring the controller_id.
-> 
-> 	...
-> 	if (dbi_base->start == IMX8MQ_PCIE2_BASE_ADDR)
-> 		imx6_pcie->controller_id = 1;
-> 	...
-> 
-> The controller_id is crucial and utilized for certain register bit
-> positions. It must align precisely with the controller index in the SoC.
-> An auto-incremented ID don't fit this case. The DTS or fuse configurations
-> may deactivate specific PCI controllers.
-> 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
-> 
-> Notes:
->     Change from v5 to v6
->     - rework commit message to explain why need required and why auto increase
->     id not work
-> 
->     Change from v4 to v5
->     - new patch at v5
-> 
->  .../bindings/pci/fsl,imx6q-pcie-common.yaml           | 11 +++++++++++
->  1 file changed, 11 insertions(+)
-> 
+We can have more bridges, but IIUC people use fpga-bridge@0, fpga-bridge@0
+to identify them. So the expression is OK to me.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Thanks,
+Yilun
 
+> 
+> > 
+> > Anyway, looks fine:
+> > 
+> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> Thanks,
+> Michal
+> 
 
