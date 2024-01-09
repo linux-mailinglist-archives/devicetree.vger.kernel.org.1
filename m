@@ -1,155 +1,152 @@
-Return-Path: <devicetree+bounces-30589-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30591-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C12E68284A5
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 12:19:17 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 529078284EF
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 12:25:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4C1A8B22967
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 11:19:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EF705283112
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 11:25:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3959636B04;
-	Tue,  9 Jan 2024 11:19:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2520438DE7;
+	Tue,  9 Jan 2024 11:23:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vxE9lA87"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Ntb0L3yN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A428436AFB
-	for <devicetree@vger.kernel.org>; Tue,  9 Jan 2024 11:19:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-3366ddd1eddso2894001f8f.0
-        for <devicetree@vger.kernel.org>; Tue, 09 Jan 2024 03:19:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704799146; x=1705403946; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=chfBbkQWFi3RkRvELDfeIygNC5jObvP1JNIy+u9NYiI=;
-        b=vxE9lA87nQKNiNqR3UjrWv/aCPJaeTUiW3fnnXuhemcjfO0nKdZ5zEF3Obqiu7/pcq
-         JGzlZcoodOUVG8H9svU9yug7lSizT5GEjwVRg5zxfZqeIHccYYJGi3Mf5dRANDnzXJUw
-         XGJViCi6zCOAWXKwBwPRrYeo/xMMFfJ8aXxo/7XPaAPhfawXJaQAR4w3KJb4NdMAgiId
-         GbbotlYCgqcJZPkH3W8wQUWO7Qs58Z3cTPrAeUmbH5ty73BuqxbJTzrSpRST0rluFEL0
-         EA0YDLtDl01lfvZcPuPrE9XqjM7LNRa5IICywRWiPw7QnqTLXgZ7Krk9o02KpDbSP7ki
-         oqUw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704799146; x=1705403946;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=chfBbkQWFi3RkRvELDfeIygNC5jObvP1JNIy+u9NYiI=;
-        b=OtMGO8M00KnVZqxAvGxxQJmrF3DgVoiJaxcH1YHQcJPRwG4ANaOH5eduD+KNEuVZuF
-         Xd9hNifFvccvx00VdMqv9e4GS9tdZM0JOhBu61t9B82wQC9ppfu/FZgiq1Mbs4+0aIqD
-         jSUxmvFdq4jViN8I875UlbcmO0rjpLiPIsEB/Qqxnj5DZe/J0kFm549YH17HeiD57aO4
-         k8qc4+QeJKJ5YJGg3O7uyNrKLUgg3zgkkRJR5TdfGdbHAjx0xWTFTbnxZGknYdDuKGpJ
-         Eu4NKBa5HvvvGxFsyKK1jq/6GEXsRKmkwmbPx77YiRQ18unSvlC58qFe3UoCc2mRV1iY
-         Q12w==
-X-Gm-Message-State: AOJu0YxOyhnPJzX7cw111ucvHQ2UzZPJD/c7EG2NHp6hLicSOCz6Dbrq
-	+cxaX6EgYSqq0GZTCO76DBnIAJ5QzwcUeQ==
-X-Google-Smtp-Source: AGHT+IEsZWXDG5nov5WgGdwrygI/N92ktso1pYJ/WeS1FwkcDt5mdmmfoNvhDk3tFn0aznqgxTrTuw==
-X-Received: by 2002:a05:6000:10c5:b0:336:c963:25ee with SMTP id b5-20020a05600010c500b00336c96325eemr207146wrx.166.1704799145849;
-        Tue, 09 Jan 2024 03:19:05 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:6193:3eba:f3ab:835f? ([2a01:e0a:982:cbb0:6193:3eba:f3ab:835f])
-        by smtp.gmail.com with ESMTPSA id l10-20020adfa38a000000b0033668ac65ddsm2152275wrb.25.2024.01.09.03.19.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 09 Jan 2024 03:19:04 -0800 (PST)
-Message-ID: <99d7bb85-17b0-4b5e-a6cf-f5957ad92298@linaro.org>
-Date: Tue, 9 Jan 2024 12:19:03 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E3A937162;
+	Tue,  9 Jan 2024 11:23:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1704799399; x=1736335399;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=nri6MxrFIMHTBgggJZSrCHzG3uLau0be+hNOOAXuPX8=;
+  b=Ntb0L3yN9DgJ87TWBJsu/cymRrPNQJtHXbmRMRGtZkwm238ME0uE7ney
+   7rHMdLDzvrjrYckg5JXFbGrS9k2OrBjCn2Oe8e44Hi69yfTOnMfG0KpgL
+   YvWGDHa63BvrgkKxtsi4WwmCvIwqoxwmrTcy0PyyQHHiZhqB0tykjoeU6
+   yt3UlPOTHKllAXtNW+5zrbzvDYZcpqP9l1SsIrRTefbr/mpL+Tqorthgi
+   GNZmqydRyx9xSplilh6M4MR99V0AU8+muUINuid2/xV939V7alveAQwjl
+   tGC9/ET7n/3KVGEUDeK+2En22eTNO3mhlvIsuCm2PfX8EV8YMQC+yrLA7
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10947"; a="11515183"
+X-IronPort-AV: E=Sophos;i="6.04,182,1695711600"; 
+   d="scan'208";a="11515183"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Jan 2024 03:23:18 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10947"; a="954987339"
+X-IronPort-AV: E=Sophos;i="6.04,182,1695711600"; 
+   d="scan'208";a="954987339"
+Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com) ([10.237.72.44])
+  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Jan 2024 03:23:11 -0800
+Received: from kekkonen.localdomain (localhost [127.0.0.1])
+	by kekkonen.fi.intel.com (Postfix) with ESMTP id B99CB11F913;
+	Tue,  9 Jan 2024 13:23:08 +0200 (EET)
+Date: Tue, 9 Jan 2024 11:23:08 +0000
+From: "sakari.ailus@linux.intel.com" <sakari.ailus@linux.intel.com>
+To: Zhi Mao =?utf-8?B?KOavm+aZuik=?= <zhi.mao@mediatek.com>
+Cc: "heiko@sntech.de" <heiko@sntech.de>,
+	"gerald.loacker@wolfvision.net" <gerald.loacker@wolfvision.net>,
+	"robh+dt@kernel.org" <robh+dt@kernel.org>,
+	"yunkec@chromium.org" <yunkec@chromium.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"dan.scally@ideasonboard.com" <dan.scally@ideasonboard.com>,
+	"linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+	Shengnan Wang =?utf-8?B?KOeOi+Wco+eUtyk=?= <shengnan.wang@mediatek.com>,
+	"hdegoede@redhat.com" <hdegoede@redhat.com>,
+	"linus.walleij@linaro.org" <linus.walleij@linaro.org>,
+	"andy.shevchenko@gmail.com" <andy.shevchenko@gmail.com>,
+	Yaya Chang =?utf-8?B?KOW8tembhea4hSk=?= <Yaya.Chang@mediatek.com>,
+	"mchehab@kernel.org" <mchehab@kernel.org>,
+	"jacopo.mondi@ideasonboard.com" <jacopo.mondi@ideasonboard.com>,
+	"jernej.skrabec@gmail.com" <jernej.skrabec@gmail.com>,
+	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+	"bingbu.cao@intel.com" <bingbu.cao@intel.com>,
+	Project_Global_Chrome_Upstream_Group <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"10572168@qq.com" <10572168@qq.com>,
+	"hverkuil-cisco@xs4all.nl" <hverkuil-cisco@xs4all.nl>,
+	"tomi.valkeinen@ideasonboard.com" <tomi.valkeinen@ideasonboard.com>,
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+	"laurent.pinchart@ideasonboard.com" <laurent.pinchart@ideasonboard.com>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"angelogioacchino.delregno@collabora.com" <angelogioacchino.delregno@collabora.com>,
+	"macromorgan@hotmail.com" <macromorgan@hotmail.com>
+Subject: Re: [PATCH 1/2] media: i2c: Add GC08A3 image sensor driver
+Message-ID: <ZZ0snE1r0BnFHWUh@kekkonen.localdomain>
+References: <20231207052016.25954-1-zhi.mao@mediatek.com>
+ <20231207052016.25954-2-zhi.mao@mediatek.com>
+ <ZXGtqwjYruBQVaUr@kekkonen.localdomain>
+ <d6772a73b61911954b1f0f75325b82da53ad0877.camel@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: neil.armstrong@linaro.org
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v2 0/2] Add waveshare 7inch touchscreen panel support
-Content-Language: en-US, fr
-To: Shengyang Chen <shengyang.chen@starfivetech.com>,
- devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
-Cc: quic_jesszhan@quicinc.com, sam@ravnborg.org, airlied@gmail.com,
- daniel@ffwll.ch, maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- tzimmermann@suse.de, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, wahrenst@gmx.net, dave.stevenson@raspberrypi.com,
- thierry.reding@gmail.com, changhuang.liang@starfivetech.com,
- keith.zhao@starfivetech.com, jack.zhu@starfivetech.com,
- linux-kernel@vger.kernel.org
-References: <20240109070949.23957-1-shengyang.chen@starfivetech.com>
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro Developer Services
-In-Reply-To: <20240109070949.23957-1-shengyang.chen@starfivetech.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <d6772a73b61911954b1f0f75325b82da53ad0877.camel@mediatek.com>
 
-Hi,
+Hi Zhi,
 
-On 09/01/2024 08:09, Shengyang Chen wrote:
-> This patchset adds waveshare 7inch touchscreen panel support
-> for the StarFive JH7110 SoC.
+On Tue, Jan 09, 2024 at 10:41:15AM +0000, Zhi Mao (毛智) wrote:
+> > > +static const char *const gc08a3_supply_name[] = {
+> > > +"avdd",
+> > > +"dvdd",
+> > > +"dovdd",
+> > > +};
+> > > +
+> > > +#define GC08A3_NUM_SUPPLIES ARRAY_SIZE(gc08a3_supply_name)
+> > 
+> > Please use ARRAY_SIZE(...) directly.
+> > 
+> [mtk]: About "ARRAY_SIZE", creating a macro with a descriptive name can
+> improve readability of code, especially when it is used in multiple
+> locations in codes. and it seems a common usage in sensor drivers. Can
+> we keep this usage in gc08a3 driver?
 
-Could you precise which SKU you're referring to ? is it 19885 => https://www.waveshare.com/7inch-dsi-lcd.htm ?
+It improves readability even more if you use ARRAY_SIZE() directly as then
+it's easy to see you're dealing with a single array. GC08A3_NUM_SUPPLIES is
+thus a useless definition.
 
-Are you sure it requires different timings from the RPi one ? In the Waveshare
-wiki it explicitly uses the rpi setup (vc4-kms-dsi-7inch) to drive it: https://www.waveshare.com/wiki/7inch_DSI_LCD
+...
 
-Neil
+> > > +static int gc08a3_g_mbus_config(struct v4l2_subdev *sd, unsigned
+> > int pad,
+> > > +struct v4l2_mbus_config *config)
+> > > +{
+> > > +config->type = V4L2_MBUS_CSI2_DPHY;
+> > > +config->bus.mipi_csi2.num_data_lanes = 4;
+> > > +config->bus.mipi_csi2.flags = 0;
+> > > +return 0;
+> > > +}
+> > 
+> > As you return a static configuration, there's no need to implement
+> > g_mbus_config().
+> > 
+> [mtk]: we can not remove this function, because meidatek ISP driver
+> will use this interface to get some information.
 
-> 
-> 
-> changes since v1:
-> - Rebased on tag v6.7.
-> 
-> patch 1:
-> - Gave up original changing.
-> - Changed the commit message.
-> - Add compatible in panel-simple.yaml
-> 
-> patch 2:
-> - Gave up original changing.
-> - Changed the commit message.
-> - Add new mode for the panel in panel-simple.c
-> 
-> v1: https://patchwork.kernel.org/project/dri-devel/cover/20231124104451.44271-1-shengyang.chen@starfivetech.com/
-> 
-> Shengyang Chen (2):
->    dt-bindings: display: panel: panel-simple: Add compatible property for
->      waveshare 7inch touchscreen panel
->    gpu: drm: panel: panel-simple: add new display mode for waveshare
->      7inch touchscreen panel
-> 
->   .../bindings/display/panel/panel-simple.yaml  |  2 ++
->   drivers/gpu/drm/panel/panel-simple.c          | 28 +++++++++++++++++++
->   2 files changed, 30 insertions(+)
-> 
+Please fix the Mediatek ISP driver in that case.
 
+I'm also open to adding a V4L2 framework function to obtain the number of
+lanes (and other configuration) for an upstream sub-device, either using
+the local endpoint or g_mbus_config if the sub-device driver implements
+that.
+
+-- 
+Regards,
+
+Sakari Ailus
 
