@@ -1,136 +1,141 @@
-Return-Path: <devicetree+bounces-30404-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30405-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B76AE827D70
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 04:44:18 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 45F2B827D83
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 04:49:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 65968284C3F
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 03:44:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4A9091C234A8
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 03:49:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99DF33FFF;
-	Tue,  9 Jan 2024 03:44:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F7D24422;
+	Tue,  9 Jan 2024 03:49:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o8X/WAVE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="p5oQ67HL"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 714954418;
-	Tue,  9 Jan 2024 03:44:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 56FEEC433C7;
-	Tue,  9 Jan 2024 03:44:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36C054418;
+	Tue,  9 Jan 2024 03:49:36 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9E683C433C7;
+	Tue,  9 Jan 2024 03:49:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1704771852;
-	bh=7dVhBfoj72xsHQ2yfVCr8QOzBAyZHEiGfUpeWkbrrjM=;
+	s=k20201202; t=1704772176;
+	bh=E7n3TsSbDbPjksIo7Blfyj5PMO2YbKS3wrQ5fGz2R58=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=o8X/WAVERCS50ITivwMC8tmQjNyQizua4YXT04dohjGZCuDqmMMIGo3ST5mH0n4nS
-	 wdtI4SaJaNfKJYTTydj5JW0Te1ZJTebnIxr0aQfJVQ19RYdYZh6cmwGA48GGJ5GBU0
-	 sgb/Ap/hwIs6NClER3bjPiL/JdNifxgvZmigjq4Ez3S2HaBjmFb4f2w5/gOag2/CpZ
-	 Ud72sum5Ms+QT9NJtUX073pp7nWFVzVw8UYQX5X4HDy0c/YlQS0N4okMftf3tjuomX
-	 N/n2ohUyG86mH2p/sZeT0bQy4VHGZAydhDVodzUt/TNlApBg8329KKF+G476+7R72G
-	 LsipTg1Y8nEHw==
-Received: (nullmailer pid 2601202 invoked by uid 1000);
-	Tue, 09 Jan 2024 03:44:10 -0000
-Date: Mon, 8 Jan 2024 20:44:10 -0700
+	b=p5oQ67HLaZNAn2pkjhJthcuHCjkORdRQi6bEPqRrA1Qcq2RAIj57r33jmI6jQZSDW
+	 exuoE4K/MQxFN+ICDKaMa8DkSQWHfbaDIXio7RvHToQy53SFbDOhBQ16bBA/Hg43Hj
+	 lkr6+xAh8ws7o4/N7h2yUodZsQRcjdknnNJDVB1SdDgelKp9sGi2MesaiFn/dOFO6g
+	 lnQ1uzFrLiwIlPOT8MEeVZWTWG9QZX/XJknxrvgXdd3nZm6b0eblDTYmRu2HSXl0ZJ
+	 ZBgxvVgg65tnpc2j0F3k6JZ8/kFvZhKulGuGNZk1gz2uCURttiTJc2aCEttkKpSl6N
+	 AxQbY3dGHGtjg==
+Received: (nullmailer pid 2606875 invoked by uid 1000);
+	Tue, 09 Jan 2024 03:49:34 -0000
+Date: Mon, 8 Jan 2024 20:49:34 -0700
 From: Rob Herring <robh@kernel.org>
-To: =?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>
-Cc: Gregory CLEMENT <gregory.clement@bootlin.com>, Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>, Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, linux-mips@vger.kernel.org, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Tawfik Bayouk <tawfik.bayouk@mobileye.com>
-Subject: Re: [PATCH v2 3/6] dt-bindings: soc: mobileye: add EyeQ5 OLB system
- controller
-Message-ID: <20240109034410.GA2585123-robh@kernel.org>
-References: <20231227-mbly-clk-v2-0-a05db63c380f@bootlin.com>
- <20231227-mbly-clk-v2-3-a05db63c380f@bootlin.com>
- <CAL_JsqJD4ZeR+n09gC2fXnk1MFuqO0c0zADSg_-MiY65pck1Yw@mail.gmail.com>
- <CY02002PZ08V.368NYASI51S@bootlin.com>
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc: Frank Li <Frank.li@nxp.com>, krzysztof.kozlowski@linaro.org, bhelgaas@google.com, conor+dt@kernel.org, devicetree@vger.kernel.org, festevam@gmail.com, helgaas@kernel.org, hongxing.zhu@nxp.com, imx@lists.linux.dev, kernel@pengutronix.de, krzysztof.kozlowski+dt@linaro.org, kw@linux.com, l.stach@pengutronix.de, linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com, linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, lpieralisi@kernel.org, s.hauer@pengutronix.de, shawnguo@kernel.org
+Subject: Re: [PATCH v7 04/16] dt-bindings: imx6q-pcie: Add linux,pci-domain
+ as required for iMX8MQ
+Message-ID: <20240109034934.GA2602612-robh@kernel.org>
+References: <20231227182727.1747435-1-Frank.Li@nxp.com>
+ <20231227182727.1747435-5-Frank.Li@nxp.com>
+ <20240107031506.GC3416@thinkpad>
+ <ZZos6LDk4NTfQHyU@lizhi-Precision-Tower-5810>
+ <20240107051917.GG3416@thinkpad>
+ <ZZo4wkHf4RE2O9UN@lizhi-Precision-Tower-5810>
+ <20240107062911.GP3416@thinkpad>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CY02002PZ08V.368NYASI51S@bootlin.com>
+In-Reply-To: <20240107062911.GP3416@thinkpad>
 
-On Thu, Dec 28, 2023 at 03:57:55PM +0100, Théo Lebrun wrote:
-> Hello,
-> 
-> On Wed Dec 27, 2023 at 7:27 PM CET, Rob Herring wrote:
-> > On Wed, Dec 27, 2023 at 10:24 AM Théo Lebrun <theo.lebrun@bootlin.com> wrote:
-> > >
-> > > Add documentation to describe the "Other Logic Block" syscon.
-> > >
-> > > Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
-> > > ---
-> > >  .../bindings/soc/mobileye/mobileye,eyeq5-olb.yaml  | 44 ++++++++++++++++++++++
-> > >  MAINTAINERS                                        |  1 +
-> > >  2 files changed, 45 insertions(+)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/soc/mobileye/mobileye,eyeq5-olb.yaml b/Documentation/devicetree/bindings/soc/mobileye/mobileye,eyeq5-olb.yaml
-> > > new file mode 100644
-> > > index 000000000000..b148a49b08f1
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/soc/mobileye/mobileye,eyeq5-olb.yaml
-> > > @@ -0,0 +1,44 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/soc/mobileye/mobileye,eyeq5-olb.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Mobileye EyeQ5 SoC system controller
-> > > +
-> > > +maintainers:
-> > > +  - Grégory Clement <gregory.clement@bootlin.com>
-> > > +  - Théo Lebrun <theo.lebrun@bootlin.com>
-> > > +  - Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>
-> > > +
-> > > +description:
-> > > +  OLB ("Other Logic Block") is a hardware block grouping smaller blocks. Clocks,
-> > > +  resets, pinctrl are being handled from here.
+On Sun, Jan 07, 2024 at 11:59:11AM +0530, Manivannan Sadhasivam wrote:
+> On Sun, Jan 07, 2024 at 12:38:10AM -0500, Frank Li wrote:
+> > On Sun, Jan 07, 2024 at 10:49:17AM +0530, Manivannan Sadhasivam wrote:
+> > > On Sat, Jan 06, 2024 at 11:47:36PM -0500, Frank Li wrote:
+> > > > On Sun, Jan 07, 2024 at 08:45:06AM +0530, Manivannan Sadhasivam wrote:
+> > > > > On Wed, Dec 27, 2023 at 01:27:15PM -0500, Frank Li wrote:
+> > > > > > iMX8MQ have two pci controllers. Adds "linux,pci-domain" as required
+> > > > > > proptery for iMX8MQ to indicate pci controller index.
+> > > > > > 
+> > > > > 
+> > > > > property
+> > > > > 
+> > > > > > This adjustment paves the way for eliminating the hardcoded check on the
+> > > > > > base register for acquiring the controller_id.
+> > > > > > 
+> > > > > > 	...
+> > > > > > 	if (dbi_base->start == IMX8MQ_PCIE2_BASE_ADDR)
+> > > > > > 		imx6_pcie->controller_id = 1;
+> > > > > > 	...
+> > > > > > 
+> > > > > > The controller_id is crucial and utilized for certain register bit
+> > > > > > positions. It must align precisely with the controller index in the SoC.
+> > > > > > An auto-incremented ID don't fit this case. The DTS or fuse configurations
+> > > > > > may deactivate specific PCI controllers.
+> > > > > > 
+> > > > > 
+> > > > > You cannot change the binding for the sake of driver. But you can make this
+> > > > > change in other way. See below...
+> > > > > 
+> > > > > > Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> > > > > > ---
+> > > > > > 
+> > > > > > Notes:
+> > > > > >     Change from v5 to v6
+> > > > > >     - rework commit message to explain why need required and why auto increase
+> > > > > >     id not work
+> > > > > >     
+> > > > > >     Change from v4 to v5
+> > > > > >     - new patch at v5
+> > > > > > 
+> > > > > >  .../bindings/pci/fsl,imx6q-pcie-common.yaml           | 11 +++++++++++
+> > > > > >  1 file changed, 11 insertions(+)
+> > > > > > 
+> > > > > > diff --git a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie-common.yaml b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie-common.yaml
+> > > > > > index d91b639ae7ae7..8f39b4e6e8491 100644
+> > > > > > --- a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie-common.yaml
+> > > > > > +++ b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie-common.yaml
+> > > > > > @@ -265,6 +265,17 @@ allOf:
+> > > > > >              - const: apps
+> > > > > >              - const: turnoff
+> > > > > >  
+> > > > > > +  - if:
+> > > > > > +      properties:
+> > > > > > +        compatible:
+> > > > > > +          contains:
+> > > > > > +            enum:
+> > > > > > +              - fsl,imx8mq-pcie
+> > > > > > +              - fsl,imx8mq-pcie-ep
+> > > > > 
+> > > > > "linux,pci-domain" is a generic property. So you cannot make it required only
+> > > > > for certain SoCs. 
+> > > > 
+> > > > Sorry, why not? there are many generic property.
+> > > > 
+> > > 
+> > > It doesn't make sense to make it required only for specific SoCs since it is not
+> > > specific to any SoC. You can make it required for all.
+> > 
+> > More than 2 controller need require "linux,pci-domain".
 > >
-> > I don't see resets or pinctrl in the binding. Please make it complete
-> > whether you have the driver or not.
-> >
-> > As-is, you don't need clocks to be a child node.
 > 
-> Will do. Would it make sense to have the three drivers be a single
-> series? 
+> But this property is applicable to single controller also.
 
-You could, but doesn't have to be. Just make the binding complete. 
-Whether you have the drivers done is up to you.
+Not really.
 
-> Else we could have the dt-bindings be part of the base platform
-> support series[1].
-> 
-> [1]: https://lore.kernel.org/lkml/20231212163459.1923041-1-gregory.clement@bootlin.com/
-> 
-> > > +properties:
-> > > +  compatible:
-> > > +    items:
-> > > +      - const: mobileye,eyeq5-olb
-> > > +      - const: syscon
-> > > +      - const: simple-mfd
-> > > +
-> > > +  reg:
-> > > +    maxItems: 1
-> > > +
-> > > +  reg-io-width:
-> > > +    const: 4
-> >
-> > Why do you need this? It is not a generic block and can only ever be 1
-> > value.
-> 
-> This block is still a syscon in the end. I wanted to explicit that
-> access width must be 4 bytes and nothing else.
-> 
-> Does you question mean you think I should be removing it?
-
-Yes. It can be implied by compatible.
+I don't understand the issue. Some SoCs have a dependency on the 
+numbering and need the property. Others don't. They just want 
+(but don't need) consistent numbering. 
 
 Rob
 
