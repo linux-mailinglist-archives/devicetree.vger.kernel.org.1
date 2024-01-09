@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-30726-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30727-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4404D828D23
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 20:10:18 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 92762828D29
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 20:13:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A6CB71F27352
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 19:10:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1D4651F22C94
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 19:13:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E50ED3D0B4;
-	Tue,  9 Jan 2024 19:10:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1596C3D0CA;
+	Tue,  9 Jan 2024 19:13:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Cwc0DLQz"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dF+rxK99"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AB803C694
-	for <devicetree@vger.kernel.org>; Tue,  9 Jan 2024 19:10:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 672303C694
+	for <devicetree@vger.kernel.org>; Tue,  9 Jan 2024 19:13:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-a28ee72913aso753608166b.1
-        for <devicetree@vger.kernel.org>; Tue, 09 Jan 2024 11:10:11 -0800 (PST)
+Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-3376d424a79so1835839f8f.1
+        for <devicetree@vger.kernel.org>; Tue, 09 Jan 2024 11:13:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704827410; x=1705432210; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1704827605; x=1705432405; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=38upq0ZzU1tISIrkowGeYZ8IjZE2mDSS4QnkETG2qGY=;
-        b=Cwc0DLQz+5fUuyKB7lcmoFLqhhZzoeze2/5jos4lvu0gwOwWHESdnQyxw40/o+0VwR
-         CzgX4mXJ95X0u0QnriOGVSnEkjtAeI5+3ZMG7aKPJoR7oYXgZX/K046EE/KTiUgI83ZI
-         ToKuZIIocOTiRlTeqjyCp87OkncKY9adzSizswpAj7kAZ8YrHdL3QxsY0DAW7uUH7DV3
-         J2LEabZW5S+5QGYPRAhTLC0s/W2Ud4sgQwkV8l8VPmlEQVfozl6lEJZVORnyk6MvQvQ9
-         H3Z616yFiCEZCNN2LHHHE/c8lu4+QcL32DTMOCVV1YlMkQPg014zvJk6JD4wfeOphvwd
-         rwvQ==
+        bh=ji+t72/iK+mXhtOq3QrKsZ3sDwVCsKx30AiokbcmA4I=;
+        b=dF+rxK99eQAmEkRfH00Fd+8o3+edoZ+gdwRTlLUcCC1iSG4tLdtzH1AGNMQMDQvHME
+         PrMEZAu2imyCrMow47/ZvR0+JKvjtd+HyuKG9gW0vaCQ1zhndDW2m38+JN7i3j4Y3XH/
+         q2y9PnS3Wed3MghpyA2r8SCyqVlKvvKQ51WuV44TIT6gvw4TG4v+4OVH5T5GL+cFm5Pp
+         +qMyHP6Ttcgzu2324ifAVn0Iy8Gk1dcGZR7XIaoVJ+1Qf5a9fgduDBAc3LcCPO6/oTfT
+         NQUDv059HBnwwlYgjSXBeHsj67Pi4PNzlQMFxscxX0McTGmL0ZmovnMz21KxcQuR050L
+         eu/w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704827410; x=1705432210;
+        d=1e100.net; s=20230601; t=1704827605; x=1705432405;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=38upq0ZzU1tISIrkowGeYZ8IjZE2mDSS4QnkETG2qGY=;
-        b=MwcfGDkwighqGQIS2VgXL99XKxTvpw2WK1fn+8b5xgE1JUSik/IMxkRlc/Sbb9mxv4
-         Yk80bnSKL38zceHXfP2MRm9dAqK2RTa1Vbipng/Bgthypl61vJCKP3hy1dxlaHKTUAee
-         C+gsg/7DssR6mxtdSsL6BC1e0H+28iDQPfZFdAjurgvmMSGglKe4ueET1gMKqun8oe33
-         KIe9934Y4BW1ICHM7VBRp+VUODKZzsWFTxL+e4dnTS6NVLGNf1wiY5UkzqQt0C0YUH3H
-         2i0uoYLGnC+FMztzRvGS41QQlMgdYy5V9I+RWiSUVfu2N94sfe4y5AfKZv1BdN8umQQG
-         qSbQ==
-X-Gm-Message-State: AOJu0Yzl01fjsP7pB8lWJoG8ja5wjO1SHNUFHXm32v5eJpJ7/heRQBsR
-	+bSjtVot7cjWpHwtWFJkhREBzoHRoZOpnKaj2LG/cWcGbxQ=
-X-Google-Smtp-Source: AGHT+IHY53rvYCnjfCP3JID9HswV/uzfoiBe6263UhGYu8ub8K6E0F4Oi3qTfq5lk8/Lns5uAghjYg==
-X-Received: by 2002:a17:907:c987:b0:a28:26e9:a13d with SMTP id uj7-20020a170907c98700b00a2826e9a13dmr945728ejc.55.1704827410302;
-        Tue, 09 Jan 2024 11:10:10 -0800 (PST)
+        bh=ji+t72/iK+mXhtOq3QrKsZ3sDwVCsKx30AiokbcmA4I=;
+        b=YYvS87OrABMsTnRKWpEaZJfINezTeF5xNj5Kw74wxjUz2lXWhiaxXXS045FPTIM3Ii
+         cSc2rrrulF2z43jJ6O++AXPBZgdhgMgObMrBAPVVOeOS8jjPtxnHHjS0ZmxIKvIv7Hq7
+         S8xkeezHIZos1qI9WsF1LXYX4N3yvNZuvLJm8eOZUO+UpyXF04KCUB2JSFAnm5vSdrwk
+         bKvrHtGstg93ebsISgojqmSLNvMSQonZeJlus/VJ814bNSdL6WE4Su6r2rOtybd5wmnP
+         su+IA0zHjXNlEJFl9jGFfuArSxqCbS1NOwuNl0RwUzB7errtFQrVhWk+Aich3qGc8sxK
+         F9ig==
+X-Gm-Message-State: AOJu0YzF7v6CSwQHJMzWJNOO9rGesWDhZk8/hRk22DjbBeeTdIcsr6Vk
+	L2tE4HevPGSp2Qr3MwkhObB62JuTsMdrtw==
+X-Google-Smtp-Source: AGHT+IHuaNgC0qWPYzMBp8x4ot/8i1b063c5ZMumrsotv2/hHzeK0+kWQ1EGL43IilKnAGDF6d3QHA==
+X-Received: by 2002:adf:eb81:0:b0:337:6a70:78ae with SMTP id t1-20020adfeb81000000b003376a7078aemr778541wrn.19.1704827605580;
+        Tue, 09 Jan 2024 11:13:25 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.223.112])
-        by smtp.gmail.com with ESMTPSA id y19-20020a17090668d300b00a27a7fa8691sm1329066ejr.137.2024.01.09.11.10.08
+        by smtp.gmail.com with ESMTPSA id c15-20020adffb0f000000b003374d8306cesm3102746wrr.86.2024.01.09.11.13.23
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 09 Jan 2024 11:10:09 -0800 (PST)
-Message-ID: <987fe3e7-adc8-489f-867b-2d3aaa004d94@linaro.org>
-Date: Tue, 9 Jan 2024 20:10:07 +0100
+        Tue, 09 Jan 2024 11:13:24 -0800 (PST)
+Message-ID: <e5737533-a7fa-4949-a8ca-d2c5c0a6210f@linaro.org>
+Date: Tue, 9 Jan 2024 20:13:23 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,19 +66,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH dt-schema] schemas: chosen: Add OpenWrt LEDs properties
- for system states
+Subject: Re: [PATCH 1/2] arm64: dts: rockchip: add spi controller aliases on
+ rk3399
 Content-Language: en-US
-To: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
- Rob Herring <robh+dt@kernel.org>,
+To: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
+ Quentin Schulz <foss+kernel@0leil.net>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>
-Cc: linux-leds@vger.kernel.org, openwrt-devel@lists.openwrt.org,
- =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-References: <20240109082312.9989-1-zajec5@gmail.com>
- <1b90c50c-0a09-4627-83cd-1794dae7ed9b@linaro.org>
- <69966efa-21ab-4a38-ad06-61e7e2e5b6d3@gmail.com>
+ Conor Dooley <conor+dt@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Quentin Schulz <quentin.schulz@theobroma-systems.com>
+References: <20240109-rk3399-spi-aliases-v1-0-2009e44e734a@theobroma-systems.com>
+ <20240109-rk3399-spi-aliases-v1-1-2009e44e734a@theobroma-systems.com>
+ <685047b0-a907-49c6-919b-e46976d8ef7b@linaro.org> <2305627.1xdlsreqCQ@diego>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -124,134 +124,54 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <69966efa-21ab-4a38-ad06-61e7e2e5b6d3@gmail.com>
+In-Reply-To: <2305627.1xdlsreqCQ@diego>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 09/01/2024 17:38, Rafał Miłecki wrote:
-> On 9.01.2024 10:02, Krzysztof Kozlowski wrote:
->> On 09/01/2024 09:23, Rafał Miłecki wrote:
->>> From: Rafał Miłecki <rafal@milecki.pl>
+On 09/01/2024 16:22, Heiko Stübner wrote:
+> Hi Krzysztof,
+> 
+> Am Dienstag, 9. Januar 2024, 16:15:30 CET schrieb Krzysztof Kozlowski:
+>> On 09/01/2024 14:35, Quentin Schulz wrote:
+>>> From: Quentin Schulz <quentin.schulz@theobroma-systems.com>
 >>>
->>> OpenWrt project provides downstream support for thousands of embedded
->>> home network devices. Its custom requirement for DT is to provide info
->>> about LEDs roles. Currently it does it by using custom non-documented
->>> aliases. While formally valid (aliases.yaml doesn't limit names or
->>> purposes of aliases) it's quite a loose solution.
->>>
->>> Document 4 precise "chosen" biding properties with clearly documented
->>> OpenWrt usage. This will allow upstreaming tons of DTS files that noone
+>>> There are 6 SPI controllers on RK3399 and they are all numbered in the
+>>> TRM, so let's add the appropriate aliases to the main DTSI so that any
+>>> RK3399-based board doesn't need to define the aliases themselves to
+>>> benefit from stable SPI indices in userspace.
 >>
->> typo: none
+>> But that contradicts the point that board should define aliases for
+>> exposable interfaces. Sorry, that's a NAK.
 > 
-> typo: no one ;)
-> 
->>> cared about so far as those would need to be patched downstream anyway.
->>
->>  From all this description I understand why you want to add it, but I
->> don't understand what are you exactly adding and how it is being used by
->> the users/OS.
-> 
-> In OpenWrt we have user space script that reads LED full path:
-> cat /proc/device-tree/aliases/led-<foo>
-> 
-> And then sets LED to state matching current boot stage:
-> echo 1 > /sys/class/leds/<bar>/brightness
+> didn't we have this same discussion some weeks ago? ;-) .
 
-OK, it's nowhere close to a hardware property. You now instruct OS what
-to do. It's software or software policy.
+We could have and my feedback might be repeated every time someone does
+something against common policy or common sense without explaining it.
 
 > 
-> 
->>> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
->>> ---
->>> A few weeks ago I was seeking for a help regarding OpenWrt's need for
->>> specifing LEDs roles in DT, see:
->>>
->>> Describing LEDs roles in device tree?
->>> https://lore.kernel.org/linux-devicetree/ee912a89-4fd7-43c3-a79b-16659a035fe1@gmail.com/T/#u
->>>
->>> I DON'T think OpenWrt's current solution with aliases is good enough:
->>> * It's not clearly documented
->>> * It may vary from other projects usa case
->>> * It may be refused by random maintainers I think
->>>
->>> I decided to suggest 4 OpenWrt-prefixed properties for "chosen". I'm
->>> hoping this small custom binding is sth we could go with. I'm really
->>> looking forward to upstreaming OpenWrt's downstream DTS files so other
->>> projects (e.g. Buildroot) can use them.
->>>
->>> If you have any better fitting solution in mind please let me know. I
->>> should be fine with anything that lets me solve this downstream mess
->>> situation.
->>>
->>>   dtschema/schemas/chosen.yaml | 9 +++++++++
->>>   1 file changed, 9 insertions(+)
->>>
->>> diff --git a/dtschema/schemas/chosen.yaml b/dtschema/schemas/chosen.yaml
->>> index 6d5c3f1..96d0db7 100644
->>> --- a/dtschema/schemas/chosen.yaml
->>> +++ b/dtschema/schemas/chosen.yaml
->>> @@ -264,4 +264,13 @@ properties:
->>>   patternProperties:
->>>     "^framebuffer": true
->>>   
->>> +  "^openwrt,led-(boot|failsafe|running|upgrade)$":
->>> +    $ref: types.yaml#/definitions/string
->>> +    description:
->>> +      OpenWrt choice of LED for a given role.
->>
->> Neither this explains it. What is "OpenWrt choice"? Choice like what?
->> What are the valid choices?
->>
->>> Value must be a full path (encoded
->>> +      as a string) to a relevant LED node.
->>
->> What do you mean by full path? DT node path? Then no, use phandles.
->>
->> Anyway, we have existing properties for this - LED functions. Just
->> choose LED with given function (from sysfs) and you are done. If
->> function is missing in the header: feel free to go, least for me.
-> 
-> In "Describing LEDs roles in device tree?" e-mail I wrote:
-> 
-> "
-> Please note that "function" on its own is not sufficient as multiple
-> LEDs my share the same function name but its meaning may vary depending
-> on color.
-> "
-> 
-> Let me elaborate here.
-> 
-> Values of "function" property match LEDs descriptions (usually it's a
-> physical label). That is OK and makes sense but doesn't allow OpenWrt to
-> automatically pick proper LED to use during given boot stage.
-> 
-> Some devices may have multiple color of a the same LED function. OpenWrt
-> developer needs to choose which color to use for failsafe more and which
-> boot fully booted state (and others too).
-> 
-> Devices also differ in available LEDs by their functions. Some may have
-> LED_FUNCTION_POWER that OpenWrt needs to use. Some may have
-> LED_FUNCTION_STATUS. Or both. There are some more (less common)
-> functions like LED_FUNCTION_ACTIVITY.
-> 
-> We failed at OpenWrt to develop a single generic script to rule all
-> devices and all their LEDs combinations. We ended up with developers
-> *choosing* what LED to use for a given system state.
+> I.e. spi2 on Rockchip socs is called spi2 in _all_ SoC documentation,
 
-So this all is because you want to write easier OS. That's abuse of
-Devicetree. You can define which LEDs have different meaning, e.g.
-physical label or icon attached to them. That's a hardware property.
+This does not matter.
 
-You can also define how pieces of hardware are wired together and create
-entire system, e.g. connect one LED to disk activity.
+> lines in _all_ schematics are also always called spi2_foo , so as before
 
-However what you are proposing here is to dynamically configure one,
-given OS. I don't think it is suitable.
+If you mean board schematics, then this matters.
 
-The problem of OS to nicely figure out which LED to blink when, is not a
-problem of Devicetree. It is a problem of OS and its configuration.
+
+> I really don't see any value in repeating the very same aliases in
+> _every_ board.
+> 
+> Same for i2c, uart .
+> 
+
+The same as in all previous discussions: the board labels them and these
+should match the board labeling.
+
+https://lore.kernel.org/linux-rockchip/CAK8P3a25iYksubCnQb1-e5yj=crEsK37RB9Hn4ZGZMwcVVrG7g@mail.gmail.com/
+
+https://lore.kernel.org/all/27455049.omNFrla0xU@wuerfel/
+
+These are replies from your upstream maintainer, if you disagree with me.
 
 Best regards,
 Krzysztof
