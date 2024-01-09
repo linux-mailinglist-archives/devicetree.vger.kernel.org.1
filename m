@@ -1,54 +1,64 @@
-Return-Path: <devicetree+bounces-30419-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30420-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B889827E52
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 06:23:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BD2EF827EAF
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 07:12:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A11781F245A0
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 05:23:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 774A61F243C6
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 06:12:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46D861873;
-	Tue,  9 Jan 2024 05:23:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52E7020F0;
+	Tue,  9 Jan 2024 06:12:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="cLQ9ZsbL"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hfRDI+0z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A24E9184C;
-	Tue,  9 Jan 2024 05:23:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4095NMDA052464;
-	Mon, 8 Jan 2024 23:23:22 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1704777802;
-	bh=3iv2AViqY+U91e2xM/Gos4xw8jk8fs9OKf31pnj5adU=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=cLQ9ZsbL6NXDrflfml0dnY270OdXgtucHYp69vh+vjvlVwZgML3G1+4mtV4Ezpcgg
-	 iCdB00uJjrP9SKnkzXQJYDIGYDUessxFfNS379l8wmj9nZStUAfaS0fwm1faURIE4A
-	 bkSuKqmv5uQHfHDnSUwMB8yZ+R0HbN2ivD5iXxTs=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4095NM9h054323
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 8 Jan 2024 23:23:22 -0600
-Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 8
- Jan 2024 23:23:21 -0600
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 8 Jan 2024 23:23:21 -0600
-Received: from [10.24.69.25] (danish-tpc.dhcp.ti.com [10.24.69.25])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4095NHsl123518;
-	Mon, 8 Jan 2024 23:23:18 -0600
-Message-ID: <f7dd0868-1eda-4dff-9b9f-ae55f07c7d96@ti.com>
-Date: Tue, 9 Jan 2024 10:53:16 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F8A99442;
+	Tue,  9 Jan 2024 06:12:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-557f4fd1278so376238a12.3;
+        Mon, 08 Jan 2024 22:12:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1704780758; x=1705385558; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=svUThaQL4O0jeqe+j6zcJnwnFNsK7pUnz6sFOsPzHXs=;
+        b=hfRDI+0zQwUvjQhSAqAEjziRLpZNCA94TdTO/NsEGHn13ySfj0Hs/pRBuKUu1zD8U/
+         /k6/xrHRRe+haVvJ5fE5/TJkpZEM3VkeuJjYp2gQEQU9kynKxdanwawCfpz80aV+WDXI
+         NpeB1kvCdEdbseaJdlSOej1enE0V4LDgUL0cWiYxLzP5G3ZaCp27ZxABBKXi8XCL3xT1
+         wrakKSgreYbDXxM0a2oE7S4GZIWET5eDR32R9PfQVgl+FP2lpBN+2IYK5ouvclOYI4ad
+         uWWpViDLi7mGdE0/PwEEDDq8mzu5EEWlU+6EW+RbmS5drzfX1yycHM2cxjQr8nyZ94tr
+         +pbQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1704780758; x=1705385558;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=svUThaQL4O0jeqe+j6zcJnwnFNsK7pUnz6sFOsPzHXs=;
+        b=h7H/1YAmyfzvq51GlM9If8fnqViWuw7vslD3Q8AeWpyaOcyc2hFUrN1Uj/OarwPSVZ
+         RgKyAiWX9H8t8fpV0OfZPi+V5l2onG7VD/IaoEcoq+J5xtxJlxWNnB7CVz0Vxlt70iZG
+         NcNk7B+eSZCoSzrfrp1OCFGEu9qhgru20388CheKUWDr8jH131yb9nCiewjqdnUGYOeC
+         46OlJxtosWILkotYfupVFjHFbqQ3DRKL7pEar8LNYakXGACRIw5znnMzv/rgJOXEPHGu
+         FKcBkCvrW1+EMAkZVD6DSjBAhqe8xv/e/2R9UMhSpI8uMgaUfvlvGfCugXub0mpCox9K
+         SHVQ==
+X-Gm-Message-State: AOJu0YzYE91DYVzl2Nf84uJHEcP7+jrmFKPduP/vNh78cnqwsPGMEB8p
+	yCAruQbN3GyVIpIUAn28Qmg=
+X-Google-Smtp-Source: AGHT+IH9t82biNC1XX+mwqw0X/XMIj5bvFu3P/kSaeV39cU5H2Ey1ialTC3tFvNcWbBMYps99l3iSA==
+X-Received: by 2002:a50:9f2b:0:b0:555:11da:d813 with SMTP id b40-20020a509f2b000000b0055511dad813mr3250528edf.83.1704780757994;
+        Mon, 08 Jan 2024 22:12:37 -0800 (PST)
+Received: from [192.168.26.149] (031011218106.poznan.vectranet.pl. [31.11.218.106])
+        by smtp.googlemail.com with ESMTPSA id t4-20020a056402020400b0055773fb50fbsm572037edv.15.2024.01.08.22.12.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 08 Jan 2024 22:12:37 -0800 (PST)
+Message-ID: <1a9d7f5b-4a00-4026-81b8-7af3031c6656@gmail.com>
+Date: Tue, 9 Jan 2024 07:12:35 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -56,51 +66,42 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/3] arm64: dts: ti: k3-am642-evm: add ICSSG1 Ethernet
- support
+Subject: Re: [PATCH 1/2] dt-bindings: arm64: mediatek: Add MT7988A and BPI-R4
+To: Conor Dooley <conor@kernel.org>
+Cc: Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Daniel Golle <daniel@makrotopia.org>,
+ Hsin-Yi Wang <hsinyi@chromium.org>,
+ =?UTF-8?Q?N=C3=ADcolas_F_=2E_R_=2E_A_=2E_Prado?= <nfraprado@collabora.com>,
+ jason-ch chen <Jason-ch.Chen@mediatek.com>,
+ Macpaul Lin <macpaul.lin@mediatek.com>,
+ =?UTF-8?Q?Bernhard_Rosenkr=C3=A4nzer?= <bero@baylibre.com>,
+ Sean Wang <sean.wang@mediatek.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ linux-kernel@vger.kernel.org, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?=
+ <rafal@milecki.pl>
+References: <20240102205941.29654-1-zajec5@gmail.com>
+ <20240108-helium-retriever-043ed3e1dbe0@spud>
 Content-Language: en-US
-To: Andrew Lunn <andrew@lunn.ch>
-CC: Vignesh Raghavendra <vigneshr@ti.com>, Nishanth Menon <nm@ti.com>,
-        Conor
- Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        Tero Kristo <kristo@kernel.org>, <srk@ti.com>, <r-gunasekaran@ti.com>,
-        <afd@ti.com>
-References: <20231212165832.3933335-1-danishanwar@ti.com>
- <20231212165832.3933335-3-danishanwar@ti.com>
- <1a2aba0c-5c4d-4258-b89c-b1be4593d7ff@lunn.ch>
-From: MD Danish Anwar <danishanwar@ti.com>
-In-Reply-To: <1a2aba0c-5c4d-4258-b89c-b1be4593d7ff@lunn.ch>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+From: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+In-Reply-To: <20240108-helium-retriever-043ed3e1dbe0@spud>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Hi Andrew,
+Hi Conor,
 
-On 13/12/23 6:56 pm, Andrew Lunn wrote:
-> On Tue, Dec 12, 2023 at 10:28:31PM +0530, MD Danish Anwar wrote:
->> ICSSG1 provides dual Gigabit Ethernet support with proper FW loaded.
+On 8.01.2024 18:38, Conor Dooley wrote:
+> On Tue, Jan 02, 2024 at 09:59:40PM +0100, Rafał Miłecki wrote:
+>> From: Rafał Miłecki <rafal@milecki.pl>
 >>
->> The ICSSG1 MII0 (RGMII1) has DP83869 PHY attached to it. The ICSSG1 shares
->> MII1 (RGMII2) PHY DP83869 with CPSW3g and it's assigned by default to
->> CPSW3g. The MDIO access to MII1 (RGMII2) PHY DP83869 is controlled by MDIO
->> bus switch and also assigned to CPSW3g. Therefore the ICSSG1 MII1 (RGMII2)
->> port is kept disable and ICSSG1 is enabled in single MAC mode by
->> default.
+>> MT7988A is another MediaTek's SoC with just 1 device available right
+>> now: Banana Pi BPI-R4.
 > 
-> FYI
-> 
-> I want to review all this MII muxing, but it won't be today.
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-Did you get the chance to review this?
+I sent V2 meanwhile, could you reply to below PATCH instead, please?
 
-> 
->   Andrew
-
--- 
-Thanks and Regards,
-Danish
+[PATCH V2 1/3] dt-bindings: arm64: mediatek: Add MT7988A and BPI-R4
 
