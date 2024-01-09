@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-30464-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30465-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F755827FFF
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 09:01:41 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C179F828004
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 09:02:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B87BD1C20F9F
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 08:01:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CF4CB1C21069
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 08:02:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFA76BA45;
-	Tue,  9 Jan 2024 08:01:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BB77C126;
+	Tue,  9 Jan 2024 08:02:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="BjDYCR5k"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="llSpGTA8"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FEECB67F
-	for <devicetree@vger.kernel.org>; Tue,  9 Jan 2024 08:01:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5D43BA55
+	for <devicetree@vger.kernel.org>; Tue,  9 Jan 2024 08:02:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-55719cdc0e1so2950688a12.1
-        for <devicetree@vger.kernel.org>; Tue, 09 Jan 2024 00:01:36 -0800 (PST)
+Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-55719cdc0e1so2952108a12.1
+        for <devicetree@vger.kernel.org>; Tue, 09 Jan 2024 00:02:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704787295; x=1705392095; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1704787361; x=1705392161; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=f3XO5DB3PGTjxuxdHbpQfOFkjCrDikXFoyaY9Xd9GxA=;
-        b=BjDYCR5kx/Rn5M63YGx3mU6pPI1hidpi++WUxQJCPF04MzfSzuVM+3CPBvkKMZsb8T
-         fhjyV8bapoH0wdv7Acb7TLrso65AMP5QkoR5+wupEmGnY1DQgNnxR4tUcaWUjPW+BaKA
-         /DwIkH/XocNzU23IKJ0a4gZVP35nnuxuroH5bQf7yQU9wN1lkccrIH9E//YhKpMXvNfF
-         HfnZc62cZEN946IpCb9H/Pa62jh4NZA8JPuL3SYHXXEonqbXc2FGpNnqPasOeMiPykGJ
-         AsPMB/wGdohaDOGfCm5ZfUeVSfUn2seHV+oeVudA1xJJpRWYbUnUSrBIfjkBtTdDFAyA
-         ER0g==
+        bh=7lPAFwH6wiHlX5airZQu807p7+ndBDC0HZVn/3ccORc=;
+        b=llSpGTA8bPEIVjitYzZGssg1QCEDgxGxhdwdp5a3gsfnudsziH3eF286ePctSDX2Dl
+         PQ3DTCJhxiRaTJaaCF5tviEcsKKDuCn1CvKh/AHuipF5oQ+i8cUWjfZlZdolU69a77zq
+         gPOcVwxMfRZmyGOh2MXE6+JuqS++NBo1FoJDluQ/TxaewI2m/LpQOk+k+hsqO5rTWoiR
+         XugYwC2G60hSO+j+Ei30q/vm492zwX+ZEah1jZtqponagAXTqh751bfgq231M76M+X6p
+         yrlcy5BHfYGfBABh/IJLaa4ckQeFhTnFfsKS95zaEbK7LJNMKsgdIvsfORvkiTQNIGr6
+         O03w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704787295; x=1705392095;
+        d=1e100.net; s=20230601; t=1704787361; x=1705392161;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=f3XO5DB3PGTjxuxdHbpQfOFkjCrDikXFoyaY9Xd9GxA=;
-        b=J+a2ivp6KhlZS/L77kvOwiPo8zquhHVWW01FEFIieCOC8I5G4lNEwhZ9L9YrWXBotz
-         QK/xRDl0AgauWB9ei+1Svf0jNMl3Ya3awzQQcQI/8MTD1eLs7VGMYNBYEtcZW5wAZxL+
-         rCnbV4VOMJxLmp/MBKb4npdNtE3uM8ztJ9dRUcR/OoWCRaKCM4z3fHy7JWPR/oiCfW7w
-         20endoKReBWyxUyabP4pzwQzWeaISdCBkWkApKayeUABOQeXWSdHjvjTAUqoc1wDdEV5
-         kgGQL3TQzTzuA9lkPT3xu1yqQccl8GqCicxQ3B2qDgSDmKEwLDuq2yk/OFk5cuZB0j5I
-         AjNA==
-X-Gm-Message-State: AOJu0Yy6Coa922XnrLl9mMRaynY9LA5ZSXcHQ+rc8RGDXnbUVyrOEN5T
-	CMiVOqPfC0GZgcjZcdPn7O48we0kz0U+KQ==
-X-Google-Smtp-Source: AGHT+IF1GSToyQlrpEPofm9UvrPga/MigSZPc/25BkAiBCLnoWx+TRpXlU1tHbQMS8w47mIgUXx3Pw==
-X-Received: by 2002:a50:bae3:0:b0:557:a3c:9d45 with SMTP id x90-20020a50bae3000000b005570a3c9d45mr3106851ede.79.1704787294740;
-        Tue, 09 Jan 2024 00:01:34 -0800 (PST)
+        bh=7lPAFwH6wiHlX5airZQu807p7+ndBDC0HZVn/3ccORc=;
+        b=s/KeVISJe+7em0ms5OrRFphn6MT2KkCTRxgkNJAhADX+WNI6xIo6ytO4jxas5wromB
+         qZFuNf/cxiWXtR5R1ERehLJzGuTxLxkwUQRFN6GZHROZFb+l3dMSVZoPW72esmT/Kwwj
+         3tmFlJrKhpgpC3aU/iTrCRjvilZtYSwgwsH2ZKsdsomOkjBTWWidy+yW8zXdSROpPf46
+         Bz7BBJwvdrH95qp39VJqL7onx5kF1pCPzrvzInE0WLk+3JRHXv8xTiVsftdIqSTbNtxI
+         odaNc6hNol60pfUzppE32ywILcR8R7yyE24eIpUsDBvvcokfl4vXReNNyEm6pDPkf98A
+         Qupg==
+X-Gm-Message-State: AOJu0Yzsb37Dyw7gNQHqW5Eo+7V8ntZH3N6kjlfz58MK8JyG3NqBlkQm
+	J354uzs8sY0iDIlZ9DFsNFXNoEf0abzx4A==
+X-Google-Smtp-Source: AGHT+IFLgAglyrqlO9WuReQmjJECbcWLe739jdQUZ8gy62V49uDuW0zNfgg9o6mOoXtdH1b/srWUFQ==
+X-Received: by 2002:a50:d5d2:0:b0:554:7a21:241e with SMTP id g18-20020a50d5d2000000b005547a21241emr2890351edj.40.1704787361119;
+        Tue, 09 Jan 2024 00:02:41 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.223.112])
-        by smtp.gmail.com with ESMTPSA id dn1-20020a05640222e100b00557e0e24abbsm657444edb.59.2024.01.09.00.01.31
+        by smtp.gmail.com with ESMTPSA id i14-20020aa7c9ce000000b00557d29be289sm661280edt.11.2024.01.09.00.02.39
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 09 Jan 2024 00:01:34 -0800 (PST)
-Message-ID: <1da935b9-3b59-4b09-8883-decd13af2dc2@linaro.org>
-Date: Tue, 9 Jan 2024 09:01:31 +0100
+        Tue, 09 Jan 2024 00:02:40 -0800 (PST)
+Message-ID: <a6ee48ad-f4c1-4d75-956b-a5283ee92eaa@linaro.org>
+Date: Tue, 9 Jan 2024 09:02:38 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,47 +66,23 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] media: dt-bindings: media: i2c: Document GC08A3
- bindings
+Subject: Re: [PATCH v5 1/1] dt-bindings: rtc: sophgo: add RTC support for
+ Sophgo CV1800 series SoC
 Content-Language: en-US
-To: =?UTF-8?B?WmhpIE1hbyAo5q+b5pm6KQ==?= <zhi.mao@mediatek.com>,
- "mchehab@kernel.org" <mchehab@kernel.org>,
- "robh+dt@kernel.org" <robh+dt@kernel.org>,
- "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>
-Cc: "heiko@sntech.de" <heiko@sntech.de>,
- "gerald.loacker@wolfvision.net" <gerald.loacker@wolfvision.net>,
- "tomi.valkeinen@ideasonboard.com" <tomi.valkeinen@ideasonboard.com>,
- "yunkec@chromium.org" <yunkec@chromium.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "dan.scally@ideasonboard.com" <dan.scally@ideasonboard.com>,
- "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
- =?UTF-8?B?U2hlbmduYW4gV2FuZyAo546L5Zyj55S3KQ==?=
- <shengnan.wang@mediatek.com>, "hdegoede@redhat.com" <hdegoede@redhat.com>,
- "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
- "andy.shevchenko@gmail.com" <andy.shevchenko@gmail.com>,
- =?UTF-8?B?WWF5YSBDaGFuZyAo5by16ZuF5riFKQ==?= <Yaya.Chang@mediatek.com>,
- "bingbu.cao@intel.com" <bingbu.cao@intel.com>,
- "jacopo.mondi@ideasonboard.com" <jacopo.mondi@ideasonboard.com>,
- "jernej.skrabec@gmail.com" <jernej.skrabec@gmail.com>,
- "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- Project_Global_Chrome_Upstream_Group
- <Project_Global_Chrome_Upstream_Group@mediatek.com>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "10572168@qq.com" <10572168@qq.com>,
- "sakari.ailus@linux.intel.com" <sakari.ailus@linux.intel.com>,
- "hverkuil-cisco@xs4all.nl" <hverkuil-cisco@xs4all.nl>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
- "laurent.pinchart@ideasonboard.com" <laurent.pinchart@ideasonboard.com>,
- "angelogioacchino.delregno@collabora.com"
- <angelogioacchino.delregno@collabora.com>,
- "macromorgan@hotmail.com" <macromorgan@hotmail.com>
-References: <20231207052016.25954-1-zhi.mao@mediatek.com>
- <20231207052016.25954-3-zhi.mao@mediatek.com>
- <a7a9a204-cfd2-4510-890d-ce3f72d5fcda@linaro.org>
- <6b1b6970e715e4bcdb0d72adb8b895b836e34201.camel@mediatek.com>
+To: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
+Cc: a.zummo@towertech.it, alexandre.belloni@bootlin.com, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
+ linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240108072253.30183-1-qiujingbao.dlmu@gmail.com>
+ <20240108072253.30183-2-qiujingbao.dlmu@gmail.com>
+ <cd4c5c26-fef9-44d8-a2fe-1cff0fc6fd03@linaro.org>
+ <CAJRtX8TcXrP8aqr3ejvtDGR5Y-ogbLkvJvJkLh_MzpnK7wgLGw@mail.gmail.com>
+ <7ceb8f61-6929-4ca0-83e0-c6534241ca5a@linaro.org>
+ <CAJRtX8QSoS72rUj7vu3CLgthfneG-RudUygcZEsw-sBFKw99tw@mail.gmail.com>
+ <086e568f-b9f2-417c-8f94-ebb97fbffbfe@linaro.org>
+ <CAJRtX8Ran+MuhtUXyxm0stQJrkzksPeNEnWViOQjfE2QgsCOmg@mail.gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -152,27 +128,42 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <6b1b6970e715e4bcdb0d72adb8b895b836e34201.camel@mediatek.com>
+In-Reply-To: <CAJRtX8Ran+MuhtUXyxm0stQJrkzksPeNEnWViOQjfE2QgsCOmg@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 09/01/2024 04:08, Zhi Mao (毛智) wrote:
-> On Thu, 2023-12-07 at 09:21 +0100, Krzysztof Kozlowski wrote:
-> External email : Please do not click links or open attachments until you have verified the sender or the content.
-> 
-> On 07/12/2023 06:20, Zhi Mao wrote:
-> 
->> Add YAML device tree binding for GC08A3 CMOS image sensor,
-> 
->> and the relevant MAINTAINERS entries.
-> 
+On 09/01/2024 03:26, Jingbao Qiu wrote:
+> On Mon, Jan 8, 2024 at 11:24 PM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>>
+>> On 08/01/2024 14:47, Jingbao Qiu wrote:
+>>>>> So I wrote the following in the changelog.
+>>>>>
+>>>>> - add syscon attribute to share registers
+>>>>>   with POR
+>>>>
+>>>> Where is this syscon attribute? Please point me to specific line in DTS
+>>>> and in the driver.
+>>>
+>>> I will explain in the next version of DTS.
+>>> Thank you again for your patient reply.
+>>
+>> You added some syscon attribute. What is this?
 >>
 > 
->> Signed-off-by: Zhi Mao <zhi.mao@mediatek.com>
-> 
+> This RTC device has a POR submodule, which is explained in the description.
+> The corresponding driver of the POR submodule provides power off
+> restart function.
+> The driver of the POR submodule just uses reg to work.As you mentioned in your
+> last comment.POR  is empty, so there is little point in having it as
+> subnode. we need
+> share the reg to POR. RTC driver and POR driver will access this
+> address simultaneously.
+> so,I added this syscon attribute.
 
-What happened to this email? Why so many blank lines and no responses?
-Fix your email program.
+Nothing from above explains what is "syscon attribute", but if you
+cannot explain it, at least point me to where did you add this syscon
+attribute? Changelog said you added it. Where?
 
 Best regards,
 Krzysztof
