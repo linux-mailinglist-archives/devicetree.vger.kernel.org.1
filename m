@@ -1,249 +1,245 @@
-Return-Path: <devicetree+bounces-30704-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30705-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79821828B83
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 18:52:25 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 13972828BB7
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 19:01:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7DF251C247C4
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 17:52:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2A4D61C24C22
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 18:01:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18BD93B799;
-	Tue,  9 Jan 2024 17:51:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6B743BB29;
+	Tue,  9 Jan 2024 18:00:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sJiZ0TAr"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 023373D0B6;
-	Tue,  9 Jan 2024 17:51:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CCFECC433C7;
-	Tue,  9 Jan 2024 17:51:26 +0000 (UTC)
-Date: Tue, 9 Jan 2024 17:51:24 +0000
-From: Catalin Marinas <catalin.marinas@arm.com>
-To: Baruch Siach <baruch@tkos.co.il>
-Cc: Christoph Hellwig <hch@lst.de>,
-	Marek Szyprowski <m.szyprowski@samsung.com>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F5B33BB25;
+	Tue,  9 Jan 2024 18:00:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 628B3C433F1;
+	Tue,  9 Jan 2024 18:00:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1704823254;
+	bh=ymvzUtrJXnlHdMLNcKVm+KFBPspEJjs12uHChhr3maI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=sJiZ0TArj6/22B0pPKyLwA0bzPVF3T2u3klppNGGEGHUO8M3BDFkwqrb2kwrfM5qM
+	 n8OPX5yutZE5G/UhksJ5cC45vCz64GkCX/M6AWwQxrax01A3STbsKYAKu1F1mPcGJ+
+	 bR3uj/Vh3XkYPmHDi1H1UJ2dMSusvalAqMh97599hj9F185gIgppESZUFItPAS50Fg
+	 S09uA67w7fdcUfEWOniP5ND3dOejivKCVhjuFBECC0uzb1Msa3bIwRy7OT17b8Aum+
+	 t6KsfYBwQKTV5BzlJ5PD1DukrbUrHZc/iioiSTLRbCMeo5N0GMwf/BNU6MCUWdiCNp
+	 Qkw3rr9mZt88Q==
+Date: Tue, 9 Jan 2024 18:00:41 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Yoshinori Sato <ysato@users.sourceforge.jp>
+Cc: linux-sh@vger.kernel.org, Damien Le Moal <dlemoal@kernel.org>,
 	Rob Herring <robh+dt@kernel.org>,
-	Frank Rowand <frowand.list@gmail.com>,
-	Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
-	iommu@lists.linux.dev, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Petr =?utf-8?B?VGVzYcWZw61r?= <petr@tesarici.cz>,
-	Ramon Fried <ramon@neureality.ai>,
-	Elad Nachman <enachman@marvell.com>
-Subject: Re: [PATCH RFC 3/4] dma-direct: add offset to zone_dma_bits
-Message-ID: <ZZ2HnHJV3gdzu1Aj@arm.com>
-References: <cover.1703683642.git.baruch@tkos.co.il>
- <fae5b1180161a7d8cd626a96f5df80b0a0796b8b.1703683642.git.baruch@tkos.co.il>
- <ZZw3FDy8800NScEk@arm.com>
- <87msterf7b.fsf@tarshish>
- <ZZ0mAxGupZKRPzWR@arm.com>
- <871qaqr477.fsf@tarshish>
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Rich Felker <dalias@libc.org>,
+	John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>,
+	Lee Jones <lee@kernel.org>, Helge Deller <deller@gmx.de>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Chris Morgan <macromorgan@hotmail.com>,
+	Yang Xiwen <forbidden405@foxmail.com>,
+	Sebastian Reichel <sre@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Randy Dunlap <rdunlap@infradead.org>, Arnd Bergmann <arnd@arndb.de>,
+	Vlastimil Babka <vbabka@suse.cz>,
+	Hyeonggon Yoo <42.hyeyoo@gmail.com>,
+	David Rientjes <rientjes@google.com>, Baoquan He <bhe@redhat.com>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Stephen Rothwell <sfr@canb.auug.org.au>,
+	Azeem Shaikh <azeemshaikh38@gmail.com>,
+	Javier Martinez Canillas <javierm@redhat.com>,
+	Max Filippov <jcmvbkbc@gmail.com>,
+	Palmer Dabbelt <palmer@rivosinc.com>, Bin Meng <bmeng@tinylab.org>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Jacky Huang <ychuang3@nuvoton.com>,
+	Lukas Bulwahn <lukas.bulwahn@gmail.com>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
+	Sam Ravnborg <sam@ravnborg.org>,
+	Sergey Shtylyov <s.shtylyov@omp.ru>,
+	Michael Karcher <kernel@mkarcher.dialup.fu-berlin.de>,
+	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+	linux-ide@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+	linux-clk@vger.kernel.org, dri-devel@lists.freedesktop.org,
+	linux-pci@vger.kernel.org, linux-serial@vger.kernel.org,
+	linux-fbdev@vger.kernel.org
+Subject: Re: [DO NOT MERGE v6 24/37] dt-binding: sh: cpus: Add SH CPUs
+ json-schema
+Message-ID: <20240109-hankie-glacier-a55818f28b91@spud>
+References: <cover.1704788539.git.ysato@users.sourceforge.jp>
+ <2e8be1e493f315c486b3113adf5d2164c3cd29e2.1704788539.git.ysato@users.sourceforge.jp>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="xPLBpXcvOkLaXIuy"
+Content-Disposition: inline
+In-Reply-To: <2e8be1e493f315c486b3113adf5d2164c3cd29e2.1704788539.git.ysato@users.sourceforge.jp>
+
+
+--xPLBpXcvOkLaXIuy
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <871qaqr477.fsf@tarshish>
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Jan 09, 2024 at 03:54:13PM +0200, Baruch Siach wrote:
-> On Tue, Jan 09 2024, Catalin Marinas wrote:
-> > On Tue, Jan 09, 2024 at 12:03:43PM +0200, Baruch Siach wrote:
-> >> On Mon, Jan 08 2024, Catalin Marinas wrote:
-> >> > On Wed, Dec 27, 2023 at 05:04:27PM +0200, Baruch Siach wrote:
-> >> >> Current code using zone_dma_bits assume that all addresses range in the
-> >> >> bits mask are suitable for DMA. For some existing platforms this
-> >> >> assumption is not correct. DMA range might have non zero lower limit.
-> >> >> 
-> >> >> Add 'zone_dma_off' for platform code to set base address for DMA zone.
-> >> >> 
-> >> >> Rename the dma_direct_supported() local 'min_mask' variable to better
-> >> >> describe its use as limit.
-> >> >> 
-> >> >> Suggested-by: Catalin Marinas <catalin.marinas@arm.com>
-> >> >
-> >> > When I suggested taking the DMA offsets into account, that's not exactly
-> >> > what I meant. Based on patch 4, it looks like zone_dma_off is equivalent
-> >> > to the lower CPU address. Let's say a system has DRAM starting at 2GB
-> >> > and all 32-bit DMA-capable devices has a DMA offset of 0. We want
-> >> > ZONE_DMA32 to end at 4GB rather than 6GB.
-> >> 
-> >> Patch 4 sets zone_dma_off to the lower limit from 'dma-ranges' property
-> >> that determines zone_dma_bits. This is not necessarily equivalent to
-> >> start of DRAM, though it happens to be that way on my platform.
-> >
-> > A bit better but it still assumes that all devices have the same DMA
-> > offset which may not be the case.
-> 
-> Current code calculates zone_dma_bits based on the lowest high limit of
-> all 'dma-ranges' properties. The assumption appears to be that this
-> limit fits all devices. This series does not change this assumption. It
-> only extends the logic to the lower limit of the "winning" 'dma-ranges'
-> to set the base address for DMA zone.
-> 
-> Moving to dma_zone_limit would not change that logic. Unless I'm missing
-> something.
+Yo,
 
-Indeed, the logic here stays the same. What doesn't work currently is
-that we use fls64() of this address and we also cap it to 32 in the
-arm64 zone_sizes_init(). On a system where RAM starts at 4GB and we have
-a (for example) 30-bit device, zone_dma_bits ends up as 32 (fls64(5G)).
-With your patch, IIUC, zone_dma_off would be 4GB in such scenario and
-adding DMA_BIT_MASK(zone_dma_bits) to it results in 8GB, not the 5GB
-limit that we actually need (the first GB of the RAM).
+On Tue, Jan 09, 2024 at 05:23:21PM +0900, Yoshinori Sato wrote:
+> Renesas SH series and compatible ISA CPUs.
+>=20
+> Signed-off-by: Yoshinori Sato <ysato@users.sourceforge.jp>
+> ---
+>  .../devicetree/bindings/sh/cpus.yaml          | 74 +++++++++++++++++++
+>  1 file changed, 74 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/sh/cpus.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/sh/cpus.yaml b/Documentati=
+on/devicetree/bindings/sh/cpus.yaml
+> new file mode 100644
+> index 000000000000..c04f897d2c2a
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sh/cpus.yaml
+> @@ -0,0 +1,74 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sh/cpus.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Renesas SuperH CPUs
+> +
+> +maintainers:
+> +  - Yoshinori Sato <ysato@users.sourceforge.jp>
+> +
+> +description: |+
+> +  The device tree allows to describe the layout of CPUs in a system thro=
+ugh
+> +  the "cpus" node, which in turn contains a number of subnodes (ie "cpu")
+> +  defining properties for every cpu.
+> +
+> +  Bindings for CPU nodes follow the Devicetree Specification, available =
+=66rom:
+> +
+> +  https://www.devicetree.org/specifications/
 
-> Breaking the "one DMA zone fits all devices" assumption as Petr
-> suggested is a much larger change.
+You likely copied this description from the arm binding (or from
+dt-schema), but I don't think this is anything other than a statement of
+the obvious. If there is a description here it should (IMO) talk about
+the superh cpus.
 
-I don't think we should go this way, we just need to make sure the DMA
-zone does not extend above the lowest upper limit of the cpu addresses
-in the 'dma-ranges' property. Basically what
-of_dma_get_max_cpu_address() gives us but without any capping or
-conversion into a power of two. This should cover those sub-32-bit
-devices.
+> +
+> +properties:
+> +  compatible:
+> +    anyOf:
+> +      - items:
+> +          - enum:
+> +              - renesas,sh2a
+> +              - renesas,sh3
+> +              - renesas,sh4
+> +              - renesas,sh4a
+> +              - jcore,j2
+> +          - const: renesas,sh2
+> +      - const: renesas,sh2
+> +
+> +  clock-frequency:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: CPU core clock frequency.
 
-See the partial patch below, not really tested (and it breaks powerpc,
-s390) but it's easier to discuss on code. In addition, we need to figure
-out what to do with ZONE_DMA32 in such case. Do we consider the first
-4GB of the RAM or we just don't bother with setting up this zone if the
-RAM starts above 4GB, only rely on ZONE_DMA? I'd go with the latter but
-needs some thinking.
+What is the point of this? You have a clocks property, can't you obtain
+the clock frequency by looking up the provider of that clock?
 
-diff --git a/arch/arm64/mm/init.c b/arch/arm64/mm/init.c
-index 74c1db8ce271..0a15628ece7e 100644
---- a/arch/arm64/mm/init.c
-+++ b/arch/arm64/mm/init.c
-@@ -113,36 +113,24 @@ static void __init arch_reserve_crashkernel(void)
- 				    low_size, high);
- }
- 
--/*
-- * Return the maximum physical address for a zone accessible by the given bits
-- * limit. If DRAM starts above 32-bit, expand the zone to the maximum
-- * available memory, otherwise cap it at 32-bit.
-- */
--static phys_addr_t __init max_zone_phys(unsigned int zone_bits)
-+static phys_addr_t __init max_zone_phys(phys_addr_t zone_mask)
- {
--	phys_addr_t zone_mask = DMA_BIT_MASK(zone_bits);
--	phys_addr_t phys_start = memblock_start_of_DRAM();
--
--	if (phys_start > U32_MAX)
--		zone_mask = PHYS_ADDR_MAX;
--	else if (phys_start > zone_mask)
--		zone_mask = U32_MAX;
--
- 	return min(zone_mask, memblock_end_of_DRAM() - 1) + 1;
- }
- 
- static void __init zone_sizes_init(void)
- {
- 	unsigned long max_zone_pfns[MAX_NR_ZONES]  = {0};
--	unsigned int __maybe_unused acpi_zone_dma_bits;
--	unsigned int __maybe_unused dt_zone_dma_bits;
--	phys_addr_t __maybe_unused dma32_phys_limit = max_zone_phys(32);
-+	phys_addr_t __maybe_unused acpi_zone_dma_limit;
-+	phys_addr_t __maybe_unused dt_zone_dma_limit;
-+	phys_addr_t __maybe_unused dma32_phys_limit =
-+		max_zone_phys(DMA_BIT_MASK(32));
- 
- #ifdef CONFIG_ZONE_DMA
--	acpi_zone_dma_bits = fls64(acpi_iort_dma_get_max_cpu_address());
--	dt_zone_dma_bits = fls64(of_dma_get_max_cpu_address(NULL));
--	zone_dma_bits = min3(32U, dt_zone_dma_bits, acpi_zone_dma_bits);
--	arm64_dma_phys_limit = max_zone_phys(zone_dma_bits);
-+	acpi_zone_dma_limit = acpi_iort_dma_get_max_cpu_address();
-+	dt_zone_dma_limit = of_dma_get_max_cpu_address(NULL);
-+	zone_dma_limit = min(dt_zone_dma_limit, acpi_zone_dma_limit);
-+	arm64_dma_phys_limit = max_zone_phys(zone_dma_limit);
- 	max_zone_pfns[ZONE_DMA] = PFN_DOWN(arm64_dma_phys_limit);
- #endif
- #ifdef CONFIG_ZONE_DMA32
-diff --git a/include/linux/dma-direct.h b/include/linux/dma-direct.h
-index 18aade195884..f55de778612b 100644
---- a/include/linux/dma-direct.h
-+++ b/include/linux/dma-direct.h
-@@ -12,7 +12,7 @@
- #include <linux/mem_encrypt.h>
- #include <linux/swiotlb.h>
- 
--extern unsigned int zone_dma_bits;
-+extern phys_addr_t zone_dma_limit;
- 
- /*
-  * Record the mapping of CPU physical to DMA addresses for a given region.
-diff --git a/kernel/dma/direct.c b/kernel/dma/direct.c
-index 73c95815789a..1e12c593b6f3 100644
---- a/kernel/dma/direct.c
-+++ b/kernel/dma/direct.c
-@@ -20,7 +20,7 @@
-  * it for entirely different regions. In that case the arch code needs to
-  * override the variable below for dma-direct to work properly.
-  */
--unsigned int zone_dma_bits __ro_after_init = 24;
-+phys_addr_t zone_dma_limit __ro_after_init = DMA_BIT_MASK(24);
- 
- static inline dma_addr_t phys_to_dma_direct(struct device *dev,
- 		phys_addr_t phys)
-@@ -59,7 +59,7 @@ static gfp_t dma_direct_optimal_gfp_mask(struct device *dev, u64 *phys_limit)
- 	 * zones.
- 	 */
- 	*phys_limit = dma_to_phys(dev, dma_limit);
--	if (*phys_limit <= DMA_BIT_MASK(zone_dma_bits))
-+	if (*phys_limit <= zone_dma_limit)
- 		return GFP_DMA;
- 	if (*phys_limit <= DMA_BIT_MASK(32))
- 		return GFP_DMA32;
-@@ -583,7 +583,7 @@ int dma_direct_supported(struct device *dev, u64 mask)
- 	 * part of the check.
- 	 */
- 	if (IS_ENABLED(CONFIG_ZONE_DMA))
--		min_mask = min_t(u64, min_mask, DMA_BIT_MASK(zone_dma_bits));
-+		min_mask = min_t(u64, min_mask, zone_dma_limit);
- 	return mask >= phys_to_dma_unencrypted(dev, min_mask);
- }
- 
-diff --git a/kernel/dma/pool.c b/kernel/dma/pool.c
-index b481c48a31a6..af02948adfff 100644
---- a/kernel/dma/pool.c
-+++ b/kernel/dma/pool.c
-@@ -70,7 +70,7 @@ static bool cma_in_zone(gfp_t gfp)
- 	/* CMA can't cross zone boundaries, see cma_activate_area() */
- 	end = cma_get_base(cma) + size - 1;
- 	if (IS_ENABLED(CONFIG_ZONE_DMA) && (gfp & GFP_DMA))
--		return end <= DMA_BIT_MASK(zone_dma_bits);
-+		return end <= zone_dma_limit;
- 	if (IS_ENABLED(CONFIG_ZONE_DMA32) && (gfp & GFP_DMA32))
- 		return end <= DMA_BIT_MASK(32);
- 	return true;
-diff --git a/kernel/dma/swiotlb.c b/kernel/dma/swiotlb.c
-index 33d942615be5..be76816b3ff9 100644
---- a/kernel/dma/swiotlb.c
-+++ b/kernel/dma/swiotlb.c
-@@ -446,7 +446,7 @@ int swiotlb_init_late(size_t size, gfp_t gfp_mask,
- 	if (!remap)
- 		io_tlb_default_mem.can_grow = true;
- 	if (IS_ENABLED(CONFIG_ZONE_DMA) && (gfp_mask & __GFP_DMA))
--		io_tlb_default_mem.phys_limit = DMA_BIT_MASK(zone_dma_bits);
-+		io_tlb_default_mem.phys_limit = zone_dma_limit;
- 	else if (IS_ENABLED(CONFIG_ZONE_DMA32) && (gfp_mask & __GFP_DMA32))
- 		io_tlb_default_mem.phys_limit = DMA_BIT_MASK(32);
- 	else
-@@ -625,7 +625,7 @@ static struct page *swiotlb_alloc_tlb(struct device *dev, size_t bytes,
- 	}
- 
- 	gfp &= ~GFP_ZONEMASK;
--	if (phys_limit <= DMA_BIT_MASK(zone_dma_bits))
-+	if (phys_limit <= zone_dma_limit)
- 		gfp |= __GFP_DMA;
- 	else if (phys_limit <= DMA_BIT_MASK(32))
- 		gfp |= __GFP_DMA32;
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  clock-names: true
 
--- 
-Catalin
+Why do you need clock-names if you only have one clock?
+
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  device_type: true
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - device_type
+> +
+> +additionalProperties: true
+
+This should be unevaluatedProperties: false
+
+Properties like the icache-size are documented in cpu.yaml and
+you can add an reference to that to permit them. The riscv cpus binding
+does this if you need to see how that works.
+
+Cheers,
+Conor.
+
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/sh7750-cpg.h>
+> +    cpus {
+> +        #address-cells =3D <1>;
+> +        #size-cells =3D <0>;
+> +
+> +        cpu: cpu@0 {
+> +            compatible =3D "renesas,sh4", "renesas,sh2";
+> +            device_type =3D "cpu";
+> +            reg =3D <0>;
+> +            clocks =3D <&cpg SH7750_CPG_ICK>;
+> +            clock-names =3D "ick";
+> +            icache-size =3D <16384>;
+> +            icache-line-size =3D <32>;
+> +            dcache-size =3D <32768>;
+> +            dcache-line-size =3D <32>;
+> +        };
+> +    };
+> +...
+> --=20
+> 2.39.2
+>=20
+
+--xPLBpXcvOkLaXIuy
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZZ2JyAAKCRB4tDGHoIJi
+0hT2AP9R2UBDSiiyTAVtH1K3WE+zVT0M8gt7NsMcQVJTKbB22wD/TgGz2+9lyG+T
+38cOZyNYa1mVFqzsmAghyWQdNloznwo=
+=N8JY
+-----END PGP SIGNATURE-----
+
+--xPLBpXcvOkLaXIuy--
 
