@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-30769-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30770-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38228828E34
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 20:53:20 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 29783828E3C
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 20:54:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3A8961C24CA5
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 19:53:19 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 65BAEB22B32
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 19:54:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C64A3D546;
-	Tue,  9 Jan 2024 19:52:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7005C3D54B;
+	Tue,  9 Jan 2024 19:53:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="W+8tE/mN"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XGp3I2Qy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04F6C3D97C
-	for <devicetree@vger.kernel.org>; Tue,  9 Jan 2024 19:52:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC6343D96A
+	for <devicetree@vger.kernel.org>; Tue,  9 Jan 2024 19:53:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-40e4d64a3d8so16558825e9.0
-        for <devicetree@vger.kernel.org>; Tue, 09 Jan 2024 11:52:52 -0800 (PST)
+Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-336c8ab0b20so3167447f8f.1
+        for <devicetree@vger.kernel.org>; Tue, 09 Jan 2024 11:53:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704829971; x=1705434771; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1704830031; x=1705434831; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=BI/48/E7Md2QE++iHyjNqxZ4Ipvc83BNLpeu7Fm4++A=;
-        b=W+8tE/mNB3hYt4I6aeVIQeTQZP3AA0dF+atDZHHwEpvsnpgtMvHWaGEzeDzAXPHna4
-         ztpxnSYrDhyamk6dwAwYnKT6OvKKZv4SWhCmL2u2V1LyR8QCFqi6DIOt6mKOUUl+mKe8
-         DbQOP7yet5/oLXFsk+zx/1O3EbKFW8m0TYybgHW/o4ZyYrvJTOHP0vkebOaJ0wt9/jeQ
-         2G+Th5XmEMb3CCdS4WdF2fpEt8dvhzcIk1IhR4AfTSMavNnR7+BKrXO+B1S86EsWLKlP
-         kZEoTDWFbevSFmPsdxZxHpwy1nVwwpQqsky1dJ548Iz8QbEEoUWJ3aKjk+lx4Su/27Zp
-         Y+zA==
+        bh=+vcM+EIKLS0Q1eJNlRxuAFOV/R1iZcC4d+uzgO0fQJA=;
+        b=XGp3I2QywoPq4LheznYcdrpVx6OJNLpINcNH5ofzkdD+jkxoTR3aEI/kXjGEqAJioc
+         JR7jpcw3xzvHq0D2A4ljLuR0FKhHxvhWGB7+t+7KOls3jD58m8mLt9yHA0pYNR4dhti2
+         OqP38I1FZcGss5P3Y9rh2Lg0hFrumUYwPFXcdfr9iC+JV9Kw7mRv5x0zd8BLDYh6fHtL
+         IIk7Bl5TN1obUR205xXeMALRoPxUpYGPLPlZx1NtrviYoXOLfvM5cGz77B+/FBqPpc4R
+         SyrZgAug4A1Xib+2DVzJV0gZV3XILkKvY1UVK9jz36Iaa9XFN+zB+G00zLbtlxG/PVOP
+         B3yg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704829971; x=1705434771;
+        d=1e100.net; s=20230601; t=1704830031; x=1705434831;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=BI/48/E7Md2QE++iHyjNqxZ4Ipvc83BNLpeu7Fm4++A=;
-        b=uCmEMyOOlqDLf1ntnuuM8p9iVzEOO2MvmRgCReLPX3DzurbcfN7JqMHnbJKUOogmOB
-         tj+uB1zl5XvlFLn1EhU/SmF29AdhM83UdXDUGj7mIAeMVCNshlctG1LDDPIbAbo+qQ2F
-         CFF1TIXXgVZxfq3S5VYyXiKYn5B1RYwLn8JVJMc8y+giKhSNSc3biqTmhHoRs2h3rBTt
-         K5+FmXPHxCrg9MLyrupJtupS0E/qTw+FOxhGcscK2jCmRllm5pGslPzGcTarvp/5YDDf
-         LxGZJYpTcY9ayN4LjmnjgbMpg5ZDqE6Ryr65AYcxWVXbVpRWhJjuoQICJvOFyRZuNJ4T
-         ZHdw==
-X-Gm-Message-State: AOJu0YzNFfsU0M6e/lbI78o/+kGrBoAGQGWDoZCufq8L9Fy7H203kGI9
-	KcHJbMYWXCmkNOTGN1muDPLuGdNcR9UxhA==
-X-Google-Smtp-Source: AGHT+IE6HSL59hPqBUMbNpE6skT8szvU3eRO5hKrvBl3DRfpljPdLWzn6Ca47i5HcCIyTcytaHSX3w==
-X-Received: by 2002:a05:600c:4504:b0:40d:9255:4aca with SMTP id t4-20020a05600c450400b0040d92554acamr2804029wmo.119.1704829971274;
-        Tue, 09 Jan 2024 11:52:51 -0800 (PST)
+        bh=+vcM+EIKLS0Q1eJNlRxuAFOV/R1iZcC4d+uzgO0fQJA=;
+        b=F+iXND9pfNxh5fa+5WgNZCnoEyp5ywR0B9F0+8Owo/7/prekshjKhRvP7foOx4Yztv
+         oQ2D0MeZgjc1lvUBAUPs+vayy+nEOySXbUKuhktvMKOuoNVELq5vkaUr9pESEigpHYOf
+         a+VpAMObrJizFdk8AuUHiGpwzCH5Wd7eRqoq5CzSwy7O7uqFvEbuLXcXS45m8acTAv34
+         EjD/lhTl0WwV+4VOA1McGDi39EthtWtc5pipOfG7Q+ggbrw1IHJ/Jqmc4D88PWD5TiNn
+         bGewqf+aUGFW6c6G1C+zH3hKFFLxmpWzp/uiwY+YLGcGJP0RQcSgVfJYTMgRvIcotIVK
+         Gj6w==
+X-Gm-Message-State: AOJu0YxY/okG74aICxliUkdxJ1ut94LDVWgMq0kuE5dbxhd6/3L/GaYp
+	njGMdyFt8CLnOdQeluPGBKJtq5HiH4CUPg==
+X-Google-Smtp-Source: AGHT+IEXp9EHl+r52nyZmUYQ2UqnJZ61Ouw6bS+YYSJgi5AM3RP3Y/ohztJJgJzhA0/8e+7u/oL88w==
+X-Received: by 2002:adf:f343:0:b0:337:49d6:d487 with SMTP id e3-20020adff343000000b0033749d6d487mr986977wrp.29.1704830031021;
+        Tue, 09 Jan 2024 11:53:51 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.223.112])
-        by smtp.gmail.com with ESMTPSA id w1-20020a5d6801000000b00336be33649csm3193258wru.9.2024.01.09.11.52.49
+        by smtp.gmail.com with ESMTPSA id w1-20020a5d6801000000b00336be33649csm3193258wru.9.2024.01.09.11.53.48
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 09 Jan 2024 11:52:50 -0800 (PST)
-Message-ID: <2815d43d-d016-4656-9ad9-33d4af04f479@linaro.org>
-Date: Tue, 9 Jan 2024 20:52:48 +0100
+        Tue, 09 Jan 2024 11:53:50 -0800 (PST)
+Message-ID: <e2fce141-4966-4e70-9a5c-865a2737174c@linaro.org>
+Date: Tue, 9 Jan 2024 20:53:48 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,8 +66,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 01/11] dt-bindings: gpu: Rename img,powervr to
- img,powervr-rogue
+Subject: Re: [PATCH 02/11] dt-bindings: gpu: Add PowerVR Series5 SGX GPUs
 Content-Language: en-US
 To: Andrew Davis <afd@ti.com>, Frank Binns <frank.binns@imgtec.com>,
  Matt Coster <matt.coster@imgtec.com>,
@@ -88,7 +87,7 @@ Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
  linux-sunxi@lists.linux.dev, linux-omap@vger.kernel.org,
  linux-mips@vger.kernel.org
 References: <20240109171950.31010-1-afd@ti.com>
- <20240109171950.31010-2-afd@ti.com>
+ <20240109171950.31010-3-afd@ti.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -134,22 +133,31 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240109171950.31010-2-afd@ti.com>
+In-Reply-To: <20240109171950.31010-3-afd@ti.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 09/01/2024 18:19, Andrew Davis wrote:
-> This binding will be used for GPUs starting from Series6 (Rogue)
-> and later. A different binding document will describe Series5.
-> With that the name "img,powervr" is too generic, rename to
-> "img,powervr-rogue" to avoid confusion.
+> The Imagination PowerVR Series5 "SGX" GPU is part of several SoCs from
+> multiple vendors. Describe how the SGX GPU is integrated in these SoC,
+> including register space and interrupts. Clocks, reset, and power domain
+> information is SoC specific.
 > 
-> Suggested-by: Maxime Ripard <mripard@kernel.org>
 > Signed-off-by: Andrew Davis <afd@ti.com>
 > Reviewed-by: Javier Martinez Canillas <javierm@redhat.com>
-> Reviewed-by: Frank Binns <frank.binns@imgtec.com>
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+> +  clock-names:
+> +    minItems: 1
+> +    items:
+> +      - const: core
+> +      - const: mem
+> +      - const: sys
+
+There are no devices currently using third clock, but I assume it is
+expected or possible.
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
