@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-30655-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30656-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 083388288D3
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 16:17:44 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 98CBE8288DA
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 16:19:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 41815B23B68
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 15:17:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0ABED1F24481
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 15:19:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE9BF39FD1;
-	Tue,  9 Jan 2024 15:17:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18A3639AFC;
+	Tue,  9 Jan 2024 15:19:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WZqIkWSp"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="W/ruIsQl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
+Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F47339AC5
-	for <devicetree@vger.kernel.org>; Tue,  9 Jan 2024 15:17:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68D5639FCF
+	for <devicetree@vger.kernel.org>; Tue,  9 Jan 2024 15:19:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-33770772136so1110337f8f.3
-        for <devicetree@vger.kernel.org>; Tue, 09 Jan 2024 07:17:33 -0800 (PST)
+Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-55818b733f7so727311a12.3
+        for <devicetree@vger.kernel.org>; Tue, 09 Jan 2024 07:19:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704813452; x=1705418252; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1704813569; x=1705418369; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Q+t2MvDTifDUi046AjiTt/a3s6JOV3dbN3004LwRA8c=;
-        b=WZqIkWSpQtw2fQoXD7iCA0qkfWlrsH9OoVzLk3PQCxh9rorYyYxlDC1o0/vGD8pDQj
-         QtzrNo0J1Bz4+Lvv/Klq70fGzoJnmNEnssguGW/L71rZzkvlJTmduP+ec3x0i6wetrz0
-         QvSN0EPTZuWn5Td6rIg2iD8Nmhgrw84KpaqIAV3y/bsnv3vGeBJZQ9IrfZ2NJ7J6g/wy
-         GfenAXgXkWxt5KYjuquLITNntwVN0JALbJvowwig+Sz5dNCwBEpRA5L0I31L0bty5Twe
-         /e9jvc8U2wmpyDC96cPO2LamiHMlS0TRfqRaEXszC8kSdTKdtx+16FT8Zz4sOPUFQOMs
-         rnLg==
+        bh=MHf+HMhNEbxSw0NX4eT9XPm8cHNU7EWSWX1g8V7FxBY=;
+        b=W/ruIsQl+9gI+fO/1YG2U/yhZD7PymsfYLPUDCB96wSs1y3iQSoi2Jwg9i+O7tJLgM
+         0CbBUutLht/xk/ZkVlIgtQ20AZBD38wfEingyNaOBGnqG7r69ePxIq1n9x2calEfm+2V
+         6jdLmEFPWVEs6zqkc6ZdWMKqdvMBtph9keg9ELZsU0xbFxrWSubZBD+sDXuwo9aS5Cjk
+         ejy/kIGHhry6MqDd/wd8WeT1MH89VgYvcNxN07Gbra6Qd54DeR6eBdJMg5lxar9dZxJv
+         tZCVRJxa0AyszAry3b41OBbEVVWLx36J476VTBsQ8oCuVVF8kQ8GfjpDMXOpaWb3qMfM
+         gQPg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704813452; x=1705418252;
+        d=1e100.net; s=20230601; t=1704813569; x=1705418369;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Q+t2MvDTifDUi046AjiTt/a3s6JOV3dbN3004LwRA8c=;
-        b=maMbcH7lCfTYy5DwZlEl8ntTRoAq4TefJx7yDZmBJs4H6T785HGwGV4BCuDGJhWBqU
-         aK7cj4zbW9416sNXTjmu4x7VB4cPKd6g/HIGilCcja8swh1+Zzee5LrWvClRXDWclUEE
-         KuSGoHI6fnGai3cOsFwMc07IxuTe0CZ8RadOARfKacmBkHYpCkPMWCkwygiHzrNCq0JW
-         8Z3tkOYrjBZjsE2hcdOy18JpwzaIBm0Aa+oATOZRyF5WioSxegIJHKt3w0m7dhStoVNP
-         PwihiLDuej/wuR619sUsIlurSWDEsaRbiZZtMaKVnZvabWx7GJaPFHf1TRpuIgLPv7bE
-         SLhA==
-X-Gm-Message-State: AOJu0YzBlAJq6tiFe1iJ/r8xU0fMoJzOLaX9Ahv8hi1EZ8J2lSmveTLn
-	e+mFz7H3wUaVTlnU9jBgieHBbBxey3/+UQ==
-X-Google-Smtp-Source: AGHT+IGf1g6r6RaoAkMuA3L3zOCJfcDNTT0RrTZbyuKfaEXIFqaTEcsV1rItOBV02ReIYQYFNCviMg==
-X-Received: by 2002:a5d:6243:0:b0:337:5a22:ee0a with SMTP id m3-20020a5d6243000000b003375a22ee0amr725967wrv.71.1704813452414;
-        Tue, 09 Jan 2024 07:17:32 -0800 (PST)
+        bh=MHf+HMhNEbxSw0NX4eT9XPm8cHNU7EWSWX1g8V7FxBY=;
+        b=jTfBqS/8ah/7n0VBhB7tk/ruqgyPLwPrpe2++fsAtr04HVT7s5xtzWazg4yrwfqDa9
+         7YMQphJU+gzsz7HzpypdJGHumic6XKFtGoEnA5leZ65M9+jwB8T+qNFpJeWhmojmTfmQ
+         ljXlVR5gxIdlRuZwhmyyLx7GapKQqs0SWciWSW8oT7OY5eSkEAJ+B+90WGOJLBBxCj/F
+         I4czfCtFa8Um0fzZYtORCh0N8VOrNwUQEUFHR7Cp8gksvC7K8n4+cbAEwg0dOBuMGeQ3
+         fkRfsS+NMflNkQkaNKcfBWkhq6CHKYeTMkqrNAbxG5HTeYzm3nAJ3G//7tSUr+7fjADy
+         STFw==
+X-Gm-Message-State: AOJu0YzD5Y13BxXxUxpdavFcKv2gimWGDuPVVGjG9E+S+oticDF2KrMf
+	u/+5IMGZilGlU4I3cgftvUYzmd1mO89XXA==
+X-Google-Smtp-Source: AGHT+IGAV1h3boUfzpR1ECaRMxIDcj4APLe71bt7b0mMCIjbbaJ286rGxhuyNOQ6G4bU5rnxUs4dgQ==
+X-Received: by 2002:a17:907:3a13:b0:a19:940f:b9d3 with SMTP id fb19-20020a1709073a1300b00a19940fb9d3mr679799ejc.25.1704813569684;
+        Tue, 09 Jan 2024 07:19:29 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.223.112])
-        by smtp.gmail.com with ESMTPSA id h16-20020a05600004d000b003367ff4aadasm2653977wri.31.2024.01.09.07.17.30
+        by smtp.gmail.com with ESMTPSA id n24-20020a170906379800b00a26aaad6618sm1143256ejc.35.2024.01.09.07.19.27
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 09 Jan 2024 07:17:31 -0800 (PST)
-Message-ID: <4024d6c8-503f-42da-928a-589f2025188f@linaro.org>
-Date: Tue, 9 Jan 2024 16:17:30 +0100
+        Tue, 09 Jan 2024 07:19:29 -0800 (PST)
+Message-ID: <5f724f59-8643-4f30-8cfb-8e3213b50118@linaro.org>
+Date: Tue, 9 Jan 2024 16:19:26 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,17 +66,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 0/3] Add support for LTC4282
+Subject: Re: [PATCH 1/4] dt-bindings: reset: sophgo: support SG2042
 Content-Language: en-US
-To: =?UTF-8?Q?Nuno_S=C3=A1?= <noname.nuno@gmail.com>,
- Nuno Sa <nuno.sa@analog.com>, linux-hwmon@vger.kernel.org,
- devicetree@vger.kernel.org, linux-doc@vger.kernel.org
-Cc: Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>
-References: <20231218-b4-ltc4282-support-v4-0-4fc51f7d04f0@analog.com>
- <09d0ecb0460aafb3f45d3d17b1b40605d7d28b2a.camel@gmail.com>
+To: Chen Wang <unicornxw@gmail.com>, aou@eecs.berkeley.edu,
+ chao.wei@sophgo.com, conor@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ palmer@dabbelt.com, paul.walmsley@sifive.com, robh+dt@kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-riscv@lists.infradead.org, haijiao.liu@sophgo.com,
+ xiaoguang.xing@sophgo.com, guoren@kernel.org, jszhang@kernel.org,
+ inochiama@outlook.com
+Cc: Chen Wang <unicorn_wang@outlook.com>
+References: <cover.1704790558.git.unicorn_wang@outlook.com>
+ <9798e2ea0c4e339717cc5c411e0db0188befdc58.1704790558.git.unicorn_wang@outlook.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -122,91 +123,46 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <09d0ecb0460aafb3f45d3d17b1b40605d7d28b2a.camel@gmail.com>
+In-Reply-To: <9798e2ea0c4e339717cc5c411e0db0188befdc58.1704790558.git.unicorn_wang@outlook.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 09/01/2024 13:19, Nuno Sá wrote:
-> On Mon, 2023-12-18 at 17:29 +0100, Nuno Sa wrote:
->> v1:
->>  *
->> https://lore.kernel.org/linux-hwmon/20231110151905.1659873-1-nuno.sa@analog.com/
->>
->> v2:
->>  *
->> https://lore.kernel.org/linux-hwmon/20231124-ltc4282-support-v2-0-952bf926f83c@analog.com
->>
->> v3:
->>  *
->> https://lore.kernel.org/r/20231205-ltc4282-support-v3-0-e0877b281bc2@analog.com
->>
->> Changes in v4:
->> - Patch 1:
->>  * New patch. Support fault attributes in voltage channels.
->> - Patch 2:
->>  * Add default values for gpios and divider properties;
->>  * Add adi,gpio3-monitor-enable property.
->> - Patch 3:
->>  - Docs:
->>   * Document that fault logs are also cleared when writing in reset_history
->>     attributes;
->>   * Document debugfs entries;
->>   * Add new in0_fault attributes and remove dropped ones.
->>  - Driver:
->>   * Add hwmon_in_fault attribute to report FET failures in VSOURCE;
->>   * Clear fault logs in reset_history;
->>   * Constify 'ltc4282_out_rates';
->>   * Add missing error check in ltc4282_cache_history();
->>   * Removed unused functions;
->>   * Renamed clk provider name so it's unique per device;
->>   * Support new adi,gpio3-monitor-enable property;
->>   * Dropped power1_good, fet_bad_fault, fet_short_fault, fault_logs_reset
->>     custom attributes. Note that only power1_good was really dropped.
->>     The other ones are supported in standard ABI.
->>   * Renamed debugfs directory for ltc4282-hwmonX;
->>   * Added in0 prefix to FET fault logs so it's clear they affect VSOURCE;
->>   * Fix in_range() condition (false means error);
->>   * Fix reset_history attributes. We should not write 0 in the lowest
->>     value. Write the theoretical max value in there. For vsource/vdd,
->>     also do it during device setup (or we would end up with 0).
->>   * Directly store the chip vdd instead of vin_mode in our device
->>     structure. Easier to handle reset_history;
->>   * Moved the vin_mode enum to reduce it's scope.
->>
->> As mentioned in v3 discussion, clearing the power bad fault log has no
->> effect but I'm still doing it for consistency and because we also allow
->> to read it in debugfs (so better allow to clear it as well)
->>
->> ---
->> Nuno Sa (3):
->>       dt-bindings: hwmon: Add LTC4282 bindings
->>       hwmon: add fault attribute for voltage channels
->>       hwmon: ltc4282: add support for the LTC4282 chip
->>
->>  Documentation/ABI/testing/sysfs-class-hwmon        |    9 +
->>  .../devicetree/bindings/hwmon/adi,ltc4282.yaml     |  159 ++
->>  Documentation/hwmon/index.rst                      |    1 +
->>  Documentation/hwmon/ltc4282.rst                    |  133 ++
->>  MAINTAINERS                                        |    8 +
->>  drivers/hwmon/Kconfig                              |   11 +
->>  drivers/hwmon/Makefile                             |    1 +
->>  drivers/hwmon/hwmon.c                              |    1 +
->>  drivers/hwmon/ltc4282.c                            | 1784
->> ++++++++++++++++++++
->>  include/linux/hwmon.h                              |    2 +
->>  10 files changed, 2109 insertions(+)
->>
->> Thanks!
->> - Nuno Sá
->>
+On 09/01/2024 10:16, Chen Wang wrote:
+> From: Chen Wang <unicorn_wang@outlook.com>
 > 
-> Hi Guenter,
+> Add bindings for the reset generator on the SOPHGO SG2042 RISC-V SoC.
 > 
-> Just pinging this one. Not sure if you missed this one or just low priority in
-> your queue :)
+> Signed-off-by: Chen Wang <unicorn_wang@outlook.com>
 
-Merge window is open. Is it a critical fix? Does not look like, so don't
-ping, it's pointless and only adds unnecessary traffic.
+...
+
+> +#define RST_UART2			31
+> +
+> +#define RST_UART3			32
+
+No need for blank line above UART3. If there is going to be new
+version/resend, please fix it.
+
+Anyway:
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+
+---
+
+This is an automated instruction, just in case, because many review tags
+are being ignored. If you know the process, you can skip it (please do
+not feel offended by me posting it here - no bad intentions intended).
+If you do not know the process, here is a short explanation:
+
+Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+versions, under or above your Signed-off-by tag. Tag is "received", when
+provided in a message replied to you on the mailing list. Tools like b4
+can help here. However, there's no need to repost patches *only* to add
+the tags. The upstream maintainer will do that for tags received on the
+version they apply.
+
+https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
 
 Best regards,
 Krzysztof
