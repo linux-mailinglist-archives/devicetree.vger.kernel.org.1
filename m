@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-31181-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31182-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F9E082A2AA
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 21:47:31 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B69482A2AC
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 21:47:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E7257B24AD4
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 20:47:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1C8EF1C24F56
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 20:47:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 588EC55797;
-	Wed, 10 Jan 2024 20:41:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC82655C31;
+	Wed, 10 Jan 2024 20:41:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="oi53gRkz"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ekaFUACo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 933C955C13
-	for <devicetree@vger.kernel.org>; Wed, 10 Jan 2024 20:41:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B7E65788D
+	for <devicetree@vger.kernel.org>; Wed, 10 Jan 2024 20:41:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-3374eb61cbcso4199178f8f.0
-        for <devicetree@vger.kernel.org>; Wed, 10 Jan 2024 12:41:37 -0800 (PST)
+Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-a271a28aeb4so496821666b.2
+        for <devicetree@vger.kernel.org>; Wed, 10 Jan 2024 12:41:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704919296; x=1705524096; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1704919300; x=1705524100; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=HT8/+40avmjc+Q/+o8Va6R9BQAAw7hmidNcWY4xpahQ=;
-        b=oi53gRkz/wafKjbmBA1mvuGl5xb9Sa+HszzZrjCXcsiG4I7C0uoxp64xhdwR1ilJVQ
-         /HiZ5ANVr+zT59xxVwTtBola0Sk8Xz6so5H8+PMvpCLBk/V6sd5/+CSijxjnRax3Q/yl
-         A2dNDZioKVY6vJByasKpZThyREBK1w7Q2zFoI36760zOwPtKHkgNqWq24lw8Og6LPI62
-         RI9Js0nPOctw5hUysNDUvOHkLx8g/P76P0x8unEXjsP6y4gLKlozwkyyFU5JARtOPbrO
-         MRUHfuSzwhlw4LnhDfftv4fgieginuD0+aSiLw1X3rnnCb8cWeZnlb2sQ089LFPvq3/g
-         LYBg==
+        bh=NWflOXnM9bigidO2f7JGiBlNaHD293yyFwJLGH9WBHI=;
+        b=ekaFUACoKhJazjHZNZJ2g807OGZ5nBE8RwFQ+qZ485z/UXgoSLYlg6ykdqSDtyuJ3b
+         +3sZzqSdgsQbL5xTEctmEt7ovaSm/yuL974+b5KXoTY+bcfeqRgrwmsnELy9IEboPy00
+         mv2pPPfd2aQp8jhZzcUthQbkdsotW0MR7qLkMKqtt7KFFviCwO8YRn0/J0FTVAWoV1Tx
+         QwiFZDjGSkZ8OM/YL2SwB+/n4CyLE9CqQnpQLUIPZ+n/NCot6vfMdmS8sgHXcF+1jS9g
+         F08Gv4abFSIwBDV4p0PyTJ44tNmY2GEpS/xecsZijtbEz+PDagiJRHdaEnT6gDvFUqyr
+         0mVQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704919296; x=1705524096;
+        d=1e100.net; s=20230601; t=1704919300; x=1705524100;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=HT8/+40avmjc+Q/+o8Va6R9BQAAw7hmidNcWY4xpahQ=;
-        b=mOUQ5zcmQnmCP6rk28766D7/9mizBqpMhkxGH6z7orqYbneffJI5NrbGtJUL9Te9+G
-         S1mWW8bk7ZFg05qsXGm+VOVo0XNJscDNVNfQvbHQjOItpBdEbumjM73dilrkKNXWB9VS
-         7JTkRN9WBxIWR8HR5mjrWb6Wt31w8r7ZG4GWIAVzeQb0zR7nBVZG8ezoJwXjFIktcRpP
-         Elngd2qHDH4rB2suY+MP1EBpX3lUqVYYauz8/zq+Z4/+9uv7e2fj/VfXRxsTcttLcwXi
-         2msWluUC+TI6a713+9nvz/n5Hmhlxz0GtfIrH9dJpuvUDJDX7std8qwo7gzJ6KkhjMiH
-         nwZg==
-X-Gm-Message-State: AOJu0YyDWl3ROUp/N7JSQ3Qth+gfdj3sqxL2bTxILOYESJS10wMfDosR
-	7jVa6lA4NaBn5wSOkg3oa8VlatYkyUq7Tw==
-X-Google-Smtp-Source: AGHT+IG4XFHXijuupmPrIK4DzDV4wfzCvUj3DBOj7PJJNmb6OJ5rR2RLkLqlb1PgprFbR8AQKvkKTQ==
-X-Received: by 2002:adf:fd8e:0:b0:337:7ca7:caea with SMTP id d14-20020adffd8e000000b003377ca7caeamr28091wrr.92.1704919295939;
-        Wed, 10 Jan 2024 12:41:35 -0800 (PST)
+        bh=NWflOXnM9bigidO2f7JGiBlNaHD293yyFwJLGH9WBHI=;
+        b=kTPlVQPVFY5mMtMs9pHGdVICNwN4sBndXlMgnY5iNAyj+L76MqkDSVM6ycMU5+/LCm
+         Ug0AQqTZ8a1kfuH8Rrrpe1MuM98VjuIu6CIf/o/rg7Y6EWvbbpHQApMLf+gO+LvDyn9p
+         d3bxEXgXY08BtoUwXdBrW6tnoB2P3H2onTohSel4b5tBZNu67izWNS5U2mAahye5/dGr
+         7844DxmDlNjjjFoYJGpc/ikIQsLEO57sgS1r6XOF4GAIRX0oiJOKxmaNEZwRSN7bSdnc
+         aPgxTlwc0s2X4p27Ct6sE4NYcXSxN0e3AP6i7QNuk5aQCVJIZVuNFfv1BbSOpEVwkSO1
+         qGjg==
+X-Gm-Message-State: AOJu0YwTyCmNaOq+6xCY3/z+LJyZ757iBB0Xy/3NAaTYqoNRv/vvC6fh
+	9FKBbg/7jrXCCEkOEr236GauL9CYFbNeBQ==
+X-Google-Smtp-Source: AGHT+IEvuD8nVP1xHAVM5tDE0JKl60s3BCDx96IRLu+0vfoPF/eukrO6ZItTmxc1krVJHXhqEhSivw==
+X-Received: by 2002:a17:906:fb90:b0:a28:a552:ca01 with SMTP id lr16-20020a170906fb9000b00a28a552ca01mr51494ejb.122.1704919300561;
+        Wed, 10 Jan 2024 12:41:40 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.223.112])
-        by smtp.gmail.com with ESMTPSA id bw8-20020a170906c1c800b00a269b4692a9sm2422964ejb.84.2024.01.10.12.41.32
+        by smtp.gmail.com with ESMTPSA id bw8-20020a170906c1c800b00a269b4692a9sm2422964ejb.84.2024.01.10.12.41.38
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 10 Jan 2024 12:41:34 -0800 (PST)
-Message-ID: <7a015fa8-5e9d-40f0-b2e5-a7c036e5a160@linaro.org>
-Date: Wed, 10 Jan 2024 21:41:32 +0100
+        Wed, 10 Jan 2024 12:41:39 -0800 (PST)
+Message-ID: <a5864f3a-49eb-408e-9d12-06967137c9f9@linaro.org>
+Date: Wed, 10 Jan 2024 21:41:38 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,23 +66,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 06/16] arm64: dts: ti: k3-am65: Add MIT license along with
- GPL-2.0
+Subject: Re: [PATCH 07/16] arm64: dts: ti: k3-j7200: Add MIT license along
+ with GPL-2.0
 Content-Language: en-US
 To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
  Tero Kristo <kristo@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
  Rob Herring <robh+dt@kernel.org>
 Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,
- "Alexander A. Klimov" <grandmaster@al2klimov.de>,
- Jan Kiszka <jan.kiszka@siemens.com>,
- Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
- Pierre Gondois <pierre.gondois@arm.com>, Rob Herring <robh@kernel.org>,
- Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
- Tony Lindgren <tony@atomide.com>
+ linux-arm-kernel@lists.infradead.org, Esteban Blanc <eblanc@baylibre.com>,
+ Pierre Gondois <pierre.gondois@arm.com>, Tony Lindgren <tony@atomide.com>
 References: <20240110140903.4090946-1-nm@ti.com>
- <20240110140903.4090946-7-nm@ti.com>
+ <20240110140903.4090946-8-nm@ti.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -128,7 +123,7 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240110140903.4090946-7-nm@ti.com>
+In-Reply-To: <20240110140903.4090946-8-nm@ti.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
@@ -145,28 +140,21 @@ On 10/01/2024 15:08, Nishanth Menon wrote:
 > to indicate license change (and add it at least for one file which was
 > missing TI copyright).
 > 
-> Cc: "Alexander A. Klimov" <grandmaster@al2klimov.de>
-> Cc: Jan Kiszka <jan.kiszka@siemens.com>
+> Cc: Esteban Blanc <eblanc@baylibre.com>
 > Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Cc: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
 > Cc: Pierre Gondois <pierre.gondois@arm.com>
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
 > Cc: Tony Lindgren <tony@atomide.com>
 > 
 > Signed-off-by: Nishanth Menon <nm@ti.com>
 > ---
->  arch/arm64/boot/dts/ti/k3-am65-main.dtsi                     | 4 ++--
->  arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi                      | 4 ++--
->  arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi                   | 4 ++--
->  arch/arm64/boot/dts/ti/k3-am65.dtsi                          | 4 ++--
->  arch/arm64/boot/dts/ti/k3-am652.dtsi                         | 4 ++--
->  .../dts/ti/k3-am654-base-board-rocktech-rk101-panel.dtso     | 4 ++--
->  arch/arm64/boot/dts/ti/k3-am654-base-board.dts               | 4 ++--
->  arch/arm64/boot/dts/ti/k3-am654-icssg2.dtso                  | 4 ++--
->  arch/arm64/boot/dts/ti/k3-am654-idk.dtso                     | 4 ++--
->  arch/arm64/boot/dts/ti/k3-am654-industrial-thermal.dtsi      | 5 ++++-
->  arch/arm64/boot/dts/ti/k3-am654.dtsi                         | 4 ++--
+>  arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts      | 4 ++--
+>  arch/arm64/boot/dts/ti/k3-j7200-evm-quad-port-eth-exp.dtso | 4 ++--
+>  arch/arm64/boot/dts/ti/k3-j7200-main.dtsi                  | 4 ++--
+>  arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi            | 4 ++--
+>  arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi                | 4 ++--
+>  arch/arm64/boot/dts/ti/k3-j7200-thermal.dtsi               | 5 ++++-
+>  arch/arm64/boot/dts/ti/k3-j7200.dtsi                       | 4 ++--
+>  7 files changed, 16 insertions(+), 13 deletions(-)
 
 
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
