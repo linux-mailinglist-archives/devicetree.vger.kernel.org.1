@@ -1,138 +1,109 @@
-Return-Path: <devicetree+bounces-30919-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30920-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 273E582981E
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 11:56:25 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C899B82982B
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 11:59:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B605F28FA11
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 10:56:23 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4C4EFB20C3E
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 10:58:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8222141205;
-	Wed, 10 Jan 2024 10:56:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C67EE41236;
+	Wed, 10 Jan 2024 10:58:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KAUNf7aJ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Du61n+9K"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DBEA405C3;
-	Wed, 10 Jan 2024 10:56:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E2CE8C433C7;
-	Wed, 10 Jan 2024 10:56:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1704884180;
-	bh=xkaWrvfIfP7fZ7XhBOMVv7Q1Juvm5n5GKRa8e8j5ynQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=KAUNf7aJLFZZQ90MjJVa5wr0odvvVCP5rWR+DTYfKeWU38ePHYogD6u6vEMzXM+pU
-	 PVHcAr3qi6SBD4pN8ssWUab2Ap1A2A/3vMgDMtSQvBVYcVMlMFz9hayZ9r9C6Fdp0q
-	 vpLRh4m99k2bMFdc4NkhQijRAkcUeuv4ojSEX8vN2jvk4D7iJAkaFWejbtMIaJW2Cb
-	 EfjdbwC9LpctUoW6EoXHkVB0YvfbqF8pNJ12lxbEfcfOVlU5SL/vXc3HqhRWF99Mug
-	 4Ne4eKP57irYVyFcgPjgbZ8n3/ZfSXSUQXHx7GuB5C2CHNw231DBMmVFvHZHMWhH+D
-	 XE036xOJQDtoQ==
-Date: Wed, 10 Jan 2024 10:56:14 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Chancel Liu <chancel.liu@nxp.com>
-Cc: lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	shengjiu.wang@gmail.com, Xiubo.Lee@gmail.com, festevam@gmail.com,
-	nicoleotsuka@gmail.com, perex@perex.cz, tiwai@suse.com,
-	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
-	linuxppc-dev@lists.ozlabs.org
-Subject: Re: [PATCH 3/3] ASoC: dt-bindings: fsl,micfil: Add compatible string
- for i.MX95 platform
-Message-ID: <20240110-petty-tabasco-e8d86a751dea@spud>
-References: <20240109075551.870001-1-chancel.liu@nxp.com>
- <20240109075551.870001-4-chancel.liu@nxp.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B1FB47A48
+	for <devicetree@vger.kernel.org>; Wed, 10 Jan 2024 10:58:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-50eaaf2c7deso4261345e87.2
+        for <devicetree@vger.kernel.org>; Wed, 10 Jan 2024 02:58:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1704884308; x=1705489108; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=KQl3ayL9sqF0LP6sySgVGCkUNXjL2bpTn4VJ6Si9uJw=;
+        b=Du61n+9K+eYAURDjp6ifN3pf9DVIi9ZGODzDlm4sMcB6f+8NjL3mFkL0DdQfXmQ0L6
+         lvcdAlhFYY8e03vfAQSKupu612PN7fmOd5JWXHbLgAUeYURtputJ0FO/V69/zO5eKKhJ
+         EJdHbQBsUIEUpxkFOBr/LIem60NuOjCKG68PT26Oxf+pss+yd34M0/iBP1rriLGUp3lh
+         0Y1dLgXOYrRtcUWHcQU+ECp+YF2/u2CZnXjQk9PQLu9oUhhrCf1aYy4zf4f9b9u/x1ZY
+         EGjL+V+AZHaRa1epYHuJzLKeSGaBnkWOIyObcbTIEEvXMb12Il/y5WlPICAiirzFbmVz
+         w8GA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1704884308; x=1705489108;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=KQl3ayL9sqF0LP6sySgVGCkUNXjL2bpTn4VJ6Si9uJw=;
+        b=oG81UFe0Vhuo2dsSnlOAN0ktiGDdgROGw8jPOL7vsJi8MC+M07JS8NB9UOTn/7PQ+z
+         e70T3flkS0ZPUjB7S0gneY1FqvGoeF/eA4a2dJKSJ1IBPGPudt0VtV4o1RSMjIso6DBF
+         YEdyCJf5ssuN73JcuucQe20UhLVjHD/ANYDcHhvObLN01V9RJspTU2MUNfSL79eIiG5a
+         aVRuIqv3Ss1q76gn//fQ1jxLnC9dUXdXVpJK+4i5GBVhgH04lhSQ1Gtvx6dPG6bm9UjH
+         nF8KfLyFo71uT4Ju6DY/oI+NeNbeHVLw/WMPseMH3+mCqk8PpRFRAMv1PN4ikBBE4ngd
+         VgVA==
+X-Gm-Message-State: AOJu0YxRykCsEEqAyqdjItlcBBfFBjxCapcfmXpKY5pzN4NHJ60ZJik0
+	0+9H9+xP0KhlAJXE+VXQsBluIB81vO2w/A==
+X-Google-Smtp-Source: AGHT+IGQgra7b8A3guiBeFlLtpRtNPD7srNEqn1+qqwRBRSmoYj0FHlUHQUVTHZRC0a4Jj7cAmxmog==
+X-Received: by 2002:a05:6512:4811:b0:50e:cbf1:d2f8 with SMTP id eo17-20020a056512481100b0050ecbf1d2f8mr256193lfb.134.1704884308105;
+        Wed, 10 Jan 2024 02:58:28 -0800 (PST)
+Received: from [172.30.205.119] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
+        by smtp.gmail.com with ESMTPSA id b13-20020ac2562d000000b0050e7f5cffa6sm617421lff.273.2024.01.10.02.58.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 10 Jan 2024 02:58:27 -0800 (PST)
+Message-ID: <3fdc6e74-d817-4341-bf64-9096608990d6@linaro.org>
+Date: Wed, 10 Jan 2024 11:58:24 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="uKeeFUVPvFzJGMuc"
-Content-Disposition: inline
-In-Reply-To: <20240109075551.870001-4-chancel.liu@nxp.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/3] arm64: dts: qcom: sm7225-fairphone-fp4: Enable
+ display and GPU
+Content-Language: en-US
+To: Luca Weiss <luca.weiss@fairphone.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+References: <20240105-fp4-panel-v1-0-1afbabc55276@fairphone.com>
+ <20240105-fp4-panel-v1-3-1afbabc55276@fairphone.com>
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20240105-fp4-panel-v1-3-1afbabc55276@fairphone.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
 
---uKeeFUVPvFzJGMuc
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Tue, Jan 09, 2024 at 04:55:51PM +0900, Chancel Liu wrote:
-> Add compatible string "fsl,imx95-micfil" for i.MX95 platform.
->=20
-> Signed-off-by: Chancel Liu <chancel.liu@nxp.com>
-> ---
->  .../devicetree/bindings/sound/fsl,micfil.yaml     | 15 +++++++++++----
->  1 file changed, 11 insertions(+), 4 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/sound/fsl,micfil.yaml b/Do=
-cumentation/devicetree/bindings/sound/fsl,micfil.yaml
-> index b7e605835639..f0d3d11d07d2 100644
-> --- a/Documentation/devicetree/bindings/sound/fsl,micfil.yaml
-> +++ b/Documentation/devicetree/bindings/sound/fsl,micfil.yaml
-> @@ -15,10 +15,17 @@ description: |
-> =20
->  properties:
->    compatible:
-> -    enum:
-> -      - fsl,imx8mm-micfil
-> -      - fsl,imx8mp-micfil
-> -      - fsl,imx93-micfil
-> +    oneOf:
-> +      - items:
-> +          - enum:
-> +              - fsl,imx95-micfil
-> +          - const: fsl,imx93-micfil
-> +
+On 1/5/24 15:29, Luca Weiss wrote:
+> Add the description for the display panel found on this phone and remove
+> the simple-framebuffer that was in place until now
 
-> +      - items:
+Why? They should be able to coexist with a smooth-ish handoff
 
-This items is not needed, as the only item in the list is the enum.
-You can just do
-properties:
-  compatible:
-    oneOf:
-      - items:
-          - enum:
-              - fsl,imx95-micfil
-          - const: fsl,imx93-micfil
+[...]
 
-      - enum:
-          - fsl,imx8mm-micfil
-          - fsl,imx8mp-micfil
-          - fsl,imx93-micfil
+>   
+> +&gmu {
+> +	status = "okay";
 
-Cheers,
-Conor.
+Please kick the disablement from the SoC dtsi instead, it won't
+probe without the GPU being enabled
 
-> +          - enum:
-> +              - fsl,imx8mm-micfil
-> +              - fsl,imx8mp-micfil
-> +              - fsl,imx93-micfil
-> =20
->    reg:
->      maxItems: 1
-> --=20
-> 2.42.0
->=20
-
---uKeeFUVPvFzJGMuc
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZZ53zgAKCRB4tDGHoIJi
-0tn/AP9dcugakMRKRZG/ezh4tXsqNC4Q32/3HPFQMtSa/xVWlwD+JAQQ5q83Q6Xt
-RFG9B3BLubQbp2zSeeMNkMv2QI2Hiwg=
-=JTpT
------END PGP SIGNATURE-----
-
---uKeeFUVPvFzJGMuc--
+Konrad
 
