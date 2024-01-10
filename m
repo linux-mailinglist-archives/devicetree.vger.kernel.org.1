@@ -1,155 +1,170 @@
-Return-Path: <devicetree+bounces-30801-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30802-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94BED829115
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 00:56:44 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0F3A82911F
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 01:06:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BB8E01C250FC
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jan 2024 23:56:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8737F2877EF
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 00:06:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE6C43E493;
-	Tue,  9 Jan 2024 23:56:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F33D518A;
+	Wed, 10 Jan 2024 00:06:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="KWHdhVHj"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="MwSBEFMI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com [148.163.156.1])
+Received: from IND01-MAX-obe.outbound.protection.outlook.com (mail-maxind01olkn2081.outbound.protection.outlook.com [40.92.102.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 062B93E487;
-	Tue,  9 Jan 2024 23:56:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.ibm.com
-Received: from pps.filterd (m0356517.ppops.net [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 409NbJm3009737;
-	Tue, 9 Jan 2024 23:55:48 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=message-id : date :
- subject : to : cc : references : from : in-reply-to : content-type :
- content-transfer-encoding : mime-version; s=pp1;
- bh=pIGSxdBl3VdFv5WEtQLCwxeYviazI+Eu7DuRMU0A1oc=;
- b=KWHdhVHj3VKfhziPmSNboFMdSDTaDFdLW9viw4pwp+QoBg7IuvRsRZuBcpZ+5BKqjB1S
- YxCZHa2zuCxWE1AIkjMAWV6GWaGLNqWJ6DrCLkB+Swv5oV2mLt6pjON0FGbYvdlMHCL0
- Fw0Teabh/rqsdHAoSOWJNmHl+VdlRDUNITOjysUl8mx7ThdTaHRnZnVHvnwL3vGvfXWT
- MUblorRxuY30v2EQtSkhaGmFX0J5k5LC5pcAX1z2+vuZso0zkGh9NKLSoqIfshoRUWD+
- SWjUURc4e6D6M3MAwEtmlG5l/G/o0pynqHjVIfE79Qxy/Nzzev61BFdo7JSbu3aGoSwi 9A== 
-Received: from pps.reinject (localhost [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3vhfykrcf4-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 09 Jan 2024 23:55:48 +0000
-Received: from m0356517.ppops.net (m0356517.ppops.net [127.0.0.1])
-	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 409NdZhO015894;
-	Tue, 9 Jan 2024 23:55:47 GMT
-Received: from ppma21.wdc07v.mail.ibm.com (5b.69.3da9.ip4.static.sl-reverse.com [169.61.105.91])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3vhfykrce5-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 09 Jan 2024 23:55:47 +0000
-Received: from pps.filterd (ppma21.wdc07v.mail.ibm.com [127.0.0.1])
-	by ppma21.wdc07v.mail.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 409MFg0l022877;
-	Tue, 9 Jan 2024 23:55:45 GMT
-Received: from smtprelay02.dal12v.mail.ibm.com ([172.16.1.4])
-	by ppma21.wdc07v.mail.ibm.com (PPS) with ESMTPS id 3vfj6nhvxk-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 09 Jan 2024 23:55:45 +0000
-Received: from smtpav05.dal12v.mail.ibm.com (smtpav05.dal12v.mail.ibm.com [10.241.53.104])
-	by smtprelay02.dal12v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 409Nti5113042216
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Tue, 9 Jan 2024 23:55:45 GMT
-Received: from smtpav05.dal12v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id E2BA658052;
-	Tue,  9 Jan 2024 23:55:44 +0000 (GMT)
-Received: from smtpav05.dal12v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id BB20458065;
-	Tue,  9 Jan 2024 23:55:43 +0000 (GMT)
-Received: from [9.61.145.235] (unknown [9.61.145.235])
-	by smtpav05.dal12v.mail.ibm.com (Postfix) with ESMTP;
-	Tue,  9 Jan 2024 23:55:43 +0000 (GMT)
-Message-ID: <01974929-dfbf-4989-ba39-369e521827d0@linux.ibm.com>
-Date: Tue, 9 Jan 2024 17:55:43 -0600
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24B3B180;
+	Wed, 10 Jan 2024 00:06:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=bFG4MVsSdK6LO0wHO9kK3oT6qAotre/x1QStKsHZhFw/ObcqONo3QVgPGLJP6rK1AEYR0YR9EuwZ8xeB9eLEgX6ZVHLExEMWYkdbX+w3F8PBp0yAl7QTjLn0WGlvVNHbo/1PG0+6DaAQewiJ074LfFRh9/nEkWczQbWz080aZLu2/3CbaZT52TpdmyPKNPzMk2O0/8TIXpKIH3Zd/CENsxmEYo9caOPKohlxsn1epghKz6Ox7nUadWXGgDAEJXZrC08EPkktfEbvvaMcAnq9fPeCkIP4J+AF0SvPZ+UfDr71RXUtA8gD3lyVCa5woNGfNI1p22YLub41uVpD3PJS1g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=fLX0Y9YH1/XJdTwYr7OPASZHZRGTOTNDObSBZBW9Qj0=;
+ b=cah/JdzOODDPGCOsmDS0XJEznVyAeWThUEP+X3gnobNnW0s/83jCCkKfZsv53guPIw+9lraNwDD/9D8oLS3PwR1ydNqfNTjjVxpl+lwZ6QkIDJF+w3P2LcPLo1P/f+LFVySzRPbfKyoE6YjQ3d+6euT1axhug98w2t6bqNKftZJk4GWRKbgzyuFAvxunIl/KZARd/pXC58tnNPNwFPmEvhRdIZzxaJpNcQFkwCnf5RSjLeg0fJhflMiw4oP7YBWAbBT1sD21Zdk8GMs7q85n1L4PUQwXWW+Hjyta3wXqjwrbAHXEfIYUXX7ts88G/ZVBIPxU5ehSGRUsiWnoYLUaHA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=fLX0Y9YH1/XJdTwYr7OPASZHZRGTOTNDObSBZBW9Qj0=;
+ b=MwSBEFMIqLOU2dlWtgG8jDKqdYJonrslpegxVTMbGdrR7s7PzBsNCLmixs29gif3u/PftasS78LouA1VCOj1SE/D7TpnOAfMAFV9OWaagqKl+swBKVrSh1iiEid2N+SNfxfYdoec6uyn/d3hSG87cjMwDJJCJSHKOSNBRcPtUCnKsFQhGonuJ0gAPCJ4EBERtqbvv/nhLHukDYrCfamVGJ96JOzRUUvT+DGVBDy9Xi/IyI/AjNJaqxjXR6/hFPgWu9wQtyllbExFRHTLkuhrdV94Da/P4UivvBJRzkJip4gIeN/LmGCgQ4bOsL9e4saEFrxEQgAzSCPrqg4JixQ/iA==
+Received: from MA0P287MB2822.INDP287.PROD.OUTLOOK.COM (2603:1096:a01:138::5)
+ by MA0P287MB1836.INDP287.PROD.OUTLOOK.COM (2603:1096:a01:f7::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7181.17; Wed, 10 Jan
+ 2024 00:06:09 +0000
+Received: from MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
+ ([fe80::6e80:69e1:f2e7:d70d]) by MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
+ ([fe80::6e80:69e1:f2e7:d70d%3]) with mapi id 15.20.7181.015; Wed, 10 Jan 2024
+ 00:06:09 +0000
+Message-ID:
+ <MA0P287MB2822D73E1E63ED48D0B1A271FE692@MA0P287MB2822.INDP287.PROD.OUTLOOK.COM>
+Date: Wed, 10 Jan 2024 08:06:03 +0800
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 7/8] tpm: tis-i2c: Add more compatible strings
-Content-Language: en-US
-To: Conor Dooley <conor@kernel.org>
-Cc: Guenter Roeck <linux@roeck-us.net>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, joel@jms.id.au,
-        andrew@codeconstruct.com.au, peterhuewe@gmx.de, jarkko@kernel.org,
-        jgg@ziepe.ca, keescook@chromium.org, tony.luck@intel.com,
-        gpiccoli@igalia.com, johannes.holland@infineon.com, broonie@kernel.org,
-        patrick.rudolph@9elements.com, vincent@vtremblay.dev,
-        peteryin.openbmc@gmail.com, lakshmiy@us.ibm.com, bhelgaas@google.com,
-        naresh.solanki@9elements.com, alexander.stein@ew.tq-group.com,
-        festevam@denx.de, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
-        linux-kernel@vger.kernel.org, linux-integrity@vger.kernel.org,
-        linux-hardening@vger.kernel.org, geissonator@yahoo.com
-References: <20231212164004.1683589-1-ninad@linux.ibm.com>
- <20231212164004.1683589-8-ninad@linux.ibm.com>
- <20231212-avid-grill-dbead068fac8@spud>
- <73381bb0-7fa7-4a9e-88df-ab0063058e26@roeck-us.net>
- <20231212-mouth-choice-40a83caa34ec@spud>
- <2946fbb1-2a47-4d21-83dc-8e45bf6ba5a9@roeck-us.net>
- <60c8bbdb-4e08-44f0-88d4-ab164d4843b5@linux.ibm.com>
- <20240109-pep-coerce-2a86ae88753d@spud>
-From: Ninad Palsule <ninad@linux.ibm.com>
-In-Reply-To: <20240109-pep-coerce-2a86ae88753d@spud>
+Subject: Re: [PATCH 1/4] dt-bindings: reset: sophgo: support SG2042
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Chen Wang <unicornxw@gmail.com>, aou@eecs.berkeley.edu, chao.wei@sophgo.com,
+ conor@kernel.org, krzysztof.kozlowski+dt@linaro.org, palmer@dabbelt.com,
+ paul.walmsley@sifive.com, robh+dt@kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+ haijiao.liu@sophgo.com, xiaoguang.xing@sophgo.com, guoren@kernel.org,
+ jszhang@kernel.org, inochiama@outlook.com
+References: <cover.1704790558.git.unicorn_wang@outlook.com>
+ <9798e2ea0c4e339717cc5c411e0db0188befdc58.1704790558.git.unicorn_wang@outlook.com>
+ <5f724f59-8643-4f30-8cfb-8e3213b50118@linaro.org>
+From: Chen Wang <unicorn_wang@outlook.com>
+In-Reply-To: <5f724f59-8643-4f30-8cfb-8e3213b50118@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-X-TM-AS-GCONF: 00
-X-Proofpoint-GUID: EkkFGVaYhXbBhJlALwA8NDTvgmLdFbqX
-X-Proofpoint-ORIG-GUID: RWeIWYqaZ-TKAU0q3z3TP5Kvth-CNNwp
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-UnRewURL: 0 URL was un-rewritten
+X-TMN: [AOzC5R6TViePh7MEX26hmm70Gr8Q7138]
+X-ClientProxiedBy: SG2PR06CA0227.apcprd06.prod.outlook.com
+ (2603:1096:4:68::35) To MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:138::5)
+X-Microsoft-Original-Message-ID:
+ <35b58b98-3992-4a12-afbd-c33c0ace6f60@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-01-09_11,2024-01-09_02,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 bulkscore=0
- impostorscore=0 spamscore=0 mlxlogscore=999 adultscore=0 clxscore=1015
- priorityscore=1501 phishscore=0 mlxscore=0 lowpriorityscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2311290000 definitions=main-2401090192
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MA0P287MB2822:EE_|MA0P287MB1836:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4e2c4781-51ac-4160-0929-08dc116ff14e
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	7kaG/L7pMhLsEZrxE9zXiJ0Zp6J+QfHiIGmD1I03onOwkkezZcU2CjhfK8MVe9A0t/H83xdXUpu4N9BA/09D6vFMI5PUR3HXYtTUUjxHb6fgvBmhLh2uFI+2xeuLvjOERQ6L08J5c5O7R4US0+oGeLeg2ICr3nMH3bVzwpgp4su4PXRre98ZcmP57VgDe4z9Jp6Y2EQ5t9t0jpgKi16pQ+UFWMfYjx0sWy4ogfXPl2mgCetEJgSLR+XkLOUeX4w3iQpCsvU4CMTY6pAg9tbBBUx2qmNNNBblcAyP1atRMNMCBjp1QPzw9/gWhh/HCaz8BOCpGV41cHKEW3T/qZnj8ghI9gHeWFEjw/FY9Psi49vf0EpgLeFmjIHxuCxjqLHlis0DR+j1pSScyqGaTbX+7IYBjVkY3mCxWQgMZbRROM0oge9m+r2/jkJ2tOgOAmOHnpWHnU5LZUGZbrF++MNGiwSlkzE8zbjU1+Gy4qGCh5NteVlkJNYg12MPVIECMUjR7Bt68nT8Dvn3N4ev4kmB6siW3tcqqROS6JwwFZhCUr0KI4iwsgIsgQhdTwyRBYOnTrWPyL2sqQr/wG7UKoqDNaRAjpUiX1+TmVY89dlInXg=
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?RGV6TEd0U1pScVJVbndvSWNUc1ZwVHBxYUI2ei9OYkR6d2ZibElkZ0tyLzI2?=
+ =?utf-8?B?c29VLzdqUXdzWjM3N2ZtdGVOZ1J3T2FZOUg0NEwwOFR6SUhRVldFRVBGK3JR?=
+ =?utf-8?B?TzRyeEprdmZPd0lTT2RiOW4wOU9sVk45Rm9Jb1IwN0VmZkJ1NEdtQXhPQUJG?=
+ =?utf-8?B?b3pjSThxU25TTGZHR3dORUIreFNlRkZ1aDJXUGhsYVFFdXFsZkhCZ3VPenJr?=
+ =?utf-8?B?TDUxYXllWWV2SVBrS1o5dFVjSUE3SDQvaWJaampiYTU1d2wrcTNPN0Y0MUNu?=
+ =?utf-8?B?T055UUNObHZYUzdHblY3Wk02OVUyUDBxa05VODlIaHYyTTdzZC9FR3VxZUJ5?=
+ =?utf-8?B?WFg1UzZUZVlyTElmS1huMTZFdDd1YUJTTnpsRGxDYnRIcFpyNFNYdzVHMllW?=
+ =?utf-8?B?Y2ppVUJPd1JyWTBkM2g3RWllZzA0dUFZSGsvRTNkTWcvNUx4S3J0Y0pDY1Z6?=
+ =?utf-8?B?T2RtUXZiOGVXVVRXQ1JuNVN3TVFQaHpCUjN6ckZSdjR3VjIyeDlVSUhYSTZs?=
+ =?utf-8?B?RUZUSEVObjJJT0RidnJuSXBsOFI5RUZuTkdQVzhMOVRrWHJpaitNSk5jNTRD?=
+ =?utf-8?B?a1orMjc0eWZiN0hQdTlSSjlvQWNNaHBKOHRXSWhwT0x6dXF1NVJzelErOWt0?=
+ =?utf-8?B?K3hrOE82YkxSNGpXZC90OHlwWGpCaGY1dVVGMExEVHZUTkxGYTYySFd1UmNW?=
+ =?utf-8?B?dVhpUHpOVlZhWGtrZHd4S3FNS1lyemRZUm9teWgvc1JzNlQ1aDBPRGQrbUMw?=
+ =?utf-8?B?UWlQSzhIbzVYWmZ6ZDFIMjNxam5FSFl4OVI2UVI4RDdDcjZnNk1vM1dxWURw?=
+ =?utf-8?B?VFowc1EvSkg2blJ2UzlXaGMvQjRYdkV3ZkRGVXI2R1cyemJERFBUL255c1B2?=
+ =?utf-8?B?SktCQkxwY1B0dVpDQ0tqVTErMTRHK25SUnNOQnU2YTVUWkhjWjh6N0NvK0dD?=
+ =?utf-8?B?b3hVUzA4ZHlxd1hFQ0xwYU1PM085WWJhYlFYSlZlVWF3SCtoY0RiVW54NlI1?=
+ =?utf-8?B?UTRGUkpObmZpbXJsUEx0N0RIWnJUQ2l6VFVlRmFLU3RoZ1UxcXQvQ2JLdnk3?=
+ =?utf-8?B?V1RZT1ZCaGpYQXB2RGxZdmtzY01DaHMrZDlOS3ZtQ3REL0l3YXc2Y1A4MTVk?=
+ =?utf-8?B?MTE1WGdka0JhV1JhTnQ0cTVXMDJFYmt1VFRCMEY2MG1XTm1sTTdtMUFqbldS?=
+ =?utf-8?B?U2htZThESFRkREJJaGdqRlZCcWpNY1lzOVlwL2ZXbWN5cjBBSkYrMFlEQkt4?=
+ =?utf-8?B?L3Q1eW1HYjhnRHBLZW5CRVpEZW5oVXhJNlhBZjhKWGt1Vk5LTVJscGNYWlFk?=
+ =?utf-8?B?c1hZa0dVRHpKYWhTeVc1cTgyTTA2VWhYYjg4bVZOaVg4Z01oUGk2U2g0MjN5?=
+ =?utf-8?B?MUJkRTZOdytmMTNzcFRaQlVMZ0wwSVdqWXVSQkkrVm9oVXVXeUNhNjRRSjAw?=
+ =?utf-8?B?R1NKYzBMKzh0c1VFQkVaY2NjZk00QWFXazkyT1kvZ3g4YndWVVMzK0lFYnhp?=
+ =?utf-8?B?amlaWkJCUDFGL0JENlNvUkwrUmNuQUZ2bktzR3NIZDIwYWMzZDBLQXNkc0Ri?=
+ =?utf-8?B?N1N6RGFhYVZHbXdXMXltUFJxd3dOVzZyVXdWT1JRZkxMM2lHSWhwVER1bUxm?=
+ =?utf-8?Q?nKOn0W6K/U2oHf+Q4r8u1sMVhrENI+/DGZ0D+uKJevM8=3D?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4e2c4781-51ac-4160-0929-08dc116ff14e
+X-MS-Exchange-CrossTenant-AuthSource: MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jan 2024 00:06:08.8293
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MA0P287MB1836
 
-Hello Conor,
 
-On 1/9/24 11:14, Conor Dooley wrote:
-> On Mon, Jan 08, 2024 at 02:05:53PM -0600, Ninad Palsule wrote:
->> Hello Guenter,
+On 2024/1/9 23:19, Krzysztof Kozlowski wrote:
+> On 09/01/2024 10:16, Chen Wang wrote:
+>> From: Chen Wang <unicorn_wang@outlook.com>
 >>
->> On 12/12/23 13:50, Guenter Roeck wrote:
->>> On 12/12/23 10:51, Conor Dooley wrote:
->>>> On Tue, Dec 12, 2023 at 10:00:39AM -0800, Guenter Roeck wrote:
->>>>> On Tue, Dec 12, 2023 at 05:15:51PM +0000, Conor Dooley wrote:
->>>>>> On Tue, Dec 12, 2023 at 10:40:03AM -0600, Ninad Palsule wrote:
->>>>>>> From: Joel Stanley <joel@jms.id.au>
->>>>>>>
->>>>>>> The NPCT75x TPM is TIS compatible. It has an I2C and SPI interface.
->>>>>>>
->>>>>>> https://www.nuvoton.com/products/cloud-computing/security/trusted-platform-module-tpm/
->>>>>>>
->>>>>>>
->>>>>>> Add a compatible string for it, and the generic compatible.
->>>>>>>
->>>>>>> OpenBMC-Staging-Count: 3
->>>>>> Delete this from every patch that it appears from.
+>> Add bindings for the reset generator on the SOPHGO SG2042 RISC-V SoC.
 >>
->> I have send it as a separate commit. https://lore.kernel.org/linux-kernel/20231214144954.3833998-1-ninad@linux.ibm.com/
-> Why did you do that? It now just adds undocumented compatibles to the
-> driver. Please, as Rob requested, work with Lukas on his series to make
-> sure that these devices are documented.
-
-I think krzysztof kozlowski suggested to send these patches separately: 
-https://lore.kernel.org/linux-kernel/1c5ace65-2fd8-4503-b22f-e0f564d1c83f@linaro.org/
-
-Did I misunderstood it? Do you guys want me to include that commit again?
-
-Regards,
-
-Ninad
-
-
+>> Signed-off-by: Chen Wang <unicorn_wang@outlook.com>
+> ...
+>
+>> +#define RST_UART2			31
+>> +
+>> +#define RST_UART3			32
+> No need for blank line above UART3. If there is going to be new
+> version/resend, please fix it.
+Ok, let's wait a while for other review comments, then I will fix it in 
+next version.
+>
+> Anyway:
+>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>
+>
+> ---
+>
+> This is an automated instruction, just in case, because many review tags
+> are being ignored. If you know the process, you can skip it (please do
+> not feel offended by me posting it here - no bad intentions intended).
+> If you do not know the process, here is a short explanation:
+>
+> Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+> versions, under or above your Signed-off-by tag. Tag is "received", when
+> provided in a message replied to you on the mailing list. Tools like b4
+> can help here. However, there's no need to repost patches *only* to add
+> the tags. The upstream maintainer will do that for tags received on the
+> version they apply.
+>
+> https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
+>
+> Best regards,
+> Krzysztof
+>
 
