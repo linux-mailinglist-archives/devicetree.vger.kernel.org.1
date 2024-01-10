@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-30851-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30852-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3AF29829480
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 08:50:27 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D4108294A4
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 09:03:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BAB671F274C2
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 07:50:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D61FC1F26A22
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 08:03:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 114DC3A27E;
-	Wed, 10 Jan 2024 07:50:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDDAA3C46A;
+	Wed, 10 Jan 2024 08:02:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VEhQPw5G"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="T8Sa6Bgx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A3F63A1C8
-	for <devicetree@vger.kernel.org>; Wed, 10 Jan 2024 07:50:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9006D3E461
+	for <devicetree@vger.kernel.org>; Wed, 10 Jan 2024 08:02:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-50e766937ddso4348215e87.3
-        for <devicetree@vger.kernel.org>; Tue, 09 Jan 2024 23:50:20 -0800 (PST)
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-40e43fb2659so33344045e9.1
+        for <devicetree@vger.kernel.org>; Wed, 10 Jan 2024 00:02:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704873018; x=1705477818; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1704873773; x=1705478573; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=4bk0D59+COImnVTGuEXYLN3X3RO4BozMRlOErcCyLDg=;
-        b=VEhQPw5GzCIT+8ZP1U/wDTqiQeKtZMX9Q5Px4L/HjQKQYfYu64xshnffVMgzlna6qD
-         UTqiABLm/RleWVFNr3L7i+rMNgo8YzALMeMiASPTeBfcjtCmzkNTSIBCgLsO3IOlASbG
-         i1aCQn/D8x9S55dVd3+Akt3FdqDftypL4IwxtUtZ5r4zi+KBb8x37/29ZfwC35eDo+TB
-         xtPK9mWZUdGy4RU9a3Iqx0tvKXwP7V6lDcgZWyPQCSXUj7DNW2Gzxty2ZxonEHZYmsNp
-         wRUZM/CECY9j44ZiOo5LKidCNFP0cHqeSFhF0j23UrsLs5RcSgBCPKflFRWTJY9W1DDZ
-         Ao7w==
+        bh=xYiCKzMbCiV7Iv5PpjCp1Kz+vWWccsrpd8/ewS0uAuE=;
+        b=T8Sa6BgxoVMc82tlMHtd7YcbEtgo0OO4gnK0iSAyuMPC37WWDkSxYiU/br1fKJYiNp
+         kTw5oDZRajOR/h03weOf3twtX0J+h1NdW3fWSOSOh914XogGYy/fnXBxp+eMqjeVYxsS
+         umcBfhA2aJiAK4ibdyxBLENzbkLS3wZwN4pv+zGe5PZniEvvTfv1ZSRXAIcQ1hAl8Dii
+         svPMcTdgiDSvKq8jX7gIKRdLCgdrEuH+f2sz8iF3QAZJZm3N4eRmBBLTGmmljUbnxIop
+         7ymhtT/CV2XsL6RVp2vsMye74syF8kGzIxPh3wAgH/08DUKiS0i/3/Iby8h2iTtKl24W
+         xanw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704873018; x=1705477818;
+        d=1e100.net; s=20230601; t=1704873773; x=1705478573;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=4bk0D59+COImnVTGuEXYLN3X3RO4BozMRlOErcCyLDg=;
-        b=o0QFImsThObW8uj52n9aHD+aMEqy2ZNQhOWl/XRgBGes5+RpVY6sJu3bVFc4SdypZE
-         UC8tLP2QjFHBzZ4VYqY6TrzevQ4hK6pH63/Lhf69PQio8wkLlUFoGhj1ts7xdHup6y/q
-         C2i++wAQ0+EdQ+fGyPXQLaNt1sp0p+8UP0DhL5xKBLpAoi1taNOPaZv3xhSt/nTT0dz5
-         WSiFdQfWXRd1HNlpAutce2MFA9KJPNOc/vfk5B5iLB4n/Idn0j7IEEpXotSEU9rJ8Fka
-         QZj944NavhNM+VM+Q66zN75vBDT1Q+s+kPAmFr85oGNuvrrwYKe+1pylrfFbAmAK4fKe
-         Be9w==
-X-Gm-Message-State: AOJu0YwzjQXfzry83jinP0XiT1o1+PWKNdjYhf0amb0DfT3EU5nDNs4Z
-	NYSveV4SkrZgMZUOsoLBFv6PZjVf1/RjHQ==
-X-Google-Smtp-Source: AGHT+IHHphpisUhBtHEnUo7MVZcNZ4qilP3+KoF7aGvE0GwWl/mLGxWcT3J4KaWAQ4axKuN92E4v5g==
-X-Received: by 2002:ac2:489a:0:b0:50e:bd4d:9e30 with SMTP id x26-20020ac2489a000000b0050ebd4d9e30mr163572lfc.106.1704873018386;
-        Tue, 09 Jan 2024 23:50:18 -0800 (PST)
+        bh=xYiCKzMbCiV7Iv5PpjCp1Kz+vWWccsrpd8/ewS0uAuE=;
+        b=QazBTYiQAsxipBjobYL2UA/aSTfWgUGb8Ws2sjQZwMdoTntD8gikUS7ZkRJCGzb5LJ
+         Rk1IBHzgT9lcIJ0goXxhVDJKe7i/ETIhRo4YX10jKnVyO9q1OsaR0WgQ6lLsJucjWgJI
+         2dG83Tf9synE+CZo4n/IRXA2QRz98txAzq2d1kEfvLZ8MdGzSLD2a1L/58B3pXPRCLun
+         Xfb2qdg9ILTmjSHJ6rcjZSh/c46bo4SkBegXAXf42xs3Jp4zN7OaKbyGwGGC+Ug07lLG
+         EGoNRVkJaohVs+thhH9JKFzDdzjupki4IINf59+OwWRjLVbsArsdmvSSY5gtSNcLXJ0q
+         LVdg==
+X-Gm-Message-State: AOJu0YxrKYK6uELJkAZH8VtGBmFDqTCvfWwnnQZLwdVBPYRfyO89wJ5E
+	PBkdOmWYrgPgKw9rol5BE0y0mYf28EV+0g==
+X-Google-Smtp-Source: AGHT+IERlAq8OlCchW637hYzbIGUGCyjH6rE8EdhNN3zfMhyWWfUXULX2FzBQR6BG45bD7ayH7u0VQ==
+X-Received: by 2002:a05:600c:4e54:b0:40e:5702:f8fd with SMTP id e20-20020a05600c4e5400b0040e5702f8fdmr212800wmq.137.1704873772899;
+        Wed, 10 Jan 2024 00:02:52 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.223.112])
-        by smtp.gmail.com with ESMTPSA id v20-20020a170906339400b00a26aa5c5a60sm1846891eja.19.2024.01.09.23.50.14
+        by smtp.gmail.com with ESMTPSA id p16-20020a05600c469000b0040e39cbf2a4sm1223887wmo.42.2024.01.10.00.02.49
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 09 Jan 2024 23:50:15 -0800 (PST)
-Message-ID: <3d194e84-bf1a-48e4-a376-e5c327c6508d@linaro.org>
-Date: Wed, 10 Jan 2024 08:50:13 +0100
+        Wed, 10 Jan 2024 00:02:52 -0800 (PST)
+Message-ID: <00f8af6a-3221-4e81-b0fa-e42ba384541b@linaro.org>
+Date: Wed, 10 Jan 2024 09:02:48 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,30 +66,23 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 7/8] tpm: tis-i2c: Add more compatible strings
+Subject: Re: [PATCH v3 02/12] dt-bindings: i2c: exynos5: add
+ google,gs101-hsi2c compatible
 Content-Language: en-US
-To: Ninad Palsule <ninad@linux.ibm.com>, Conor Dooley <conor@kernel.org>
-Cc: Guenter Roeck <linux@roeck-us.net>, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, joel@jms.id.au,
- andrew@codeconstruct.com.au, peterhuewe@gmx.de, jarkko@kernel.org,
- jgg@ziepe.ca, keescook@chromium.org, tony.luck@intel.com,
- gpiccoli@igalia.com, johannes.holland@infineon.com, broonie@kernel.org,
- patrick.rudolph@9elements.com, vincent@vtremblay.dev,
- peteryin.openbmc@gmail.com, lakshmiy@us.ibm.com, bhelgaas@google.com,
- naresh.solanki@9elements.com, alexander.stein@ew.tq-group.com,
- festevam@denx.de, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
- linux-kernel@vger.kernel.org, linux-integrity@vger.kernel.org,
- linux-hardening@vger.kernel.org, geissonator@yahoo.com
-References: <20231212164004.1683589-1-ninad@linux.ibm.com>
- <20231212164004.1683589-8-ninad@linux.ibm.com>
- <20231212-avid-grill-dbead068fac8@spud>
- <73381bb0-7fa7-4a9e-88df-ab0063058e26@roeck-us.net>
- <20231212-mouth-choice-40a83caa34ec@spud>
- <2946fbb1-2a47-4d21-83dc-8e45bf6ba5a9@roeck-us.net>
- <60c8bbdb-4e08-44f0-88d4-ab164d4843b5@linux.ibm.com>
- <20240109-pep-coerce-2a86ae88753d@spud>
- <01974929-dfbf-4989-ba39-369e521827d0@linux.ibm.com>
+To: Tudor Ambarus <tudor.ambarus@linaro.org>, peter.griffin@linaro.org,
+ krzysztof.kozlowski+dt@linaro.org, gregkh@linuxfoundation.org
+Cc: mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
+ conor+dt@kernel.org, andi.shyti@kernel.org, alim.akhtar@samsung.com,
+ jirislaby@kernel.org, s.nawrocki@samsung.com, tomasz.figa@gmail.com,
+ cw00.choi@samsung.com, linux-arm-kernel@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-i2c@vger.kernel.org, linux-serial@vger.kernel.org,
+ andre.draszik@linaro.org, kernel-team@android.com, willmcvicker@google.com,
+ Wolfram Sang <wsa@kernel.org>, Rob Herring <robh@kernel.org>,
+ Sam Protsenko <semen.protsenko@linaro.org>
+References: <20240109125814.3691033-1-tudor.ambarus@linaro.org>
+ <20240109125814.3691033-3-tudor.ambarus@linaro.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -135,46 +128,19 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <01974929-dfbf-4989-ba39-369e521827d0@linux.ibm.com>
+In-Reply-To: <20240109125814.3691033-3-tudor.ambarus@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 10/01/2024 00:55, Ninad Palsule wrote:
-> Hello Conor,
+On 09/01/2024 13:58, Tudor Ambarus wrote:
+> Add google,gs101-hsi2c dedicated compatible for representing
+> I2C of Google GS101 SoC.
 > 
-> On 1/9/24 11:14, Conor Dooley wrote:
->> On Mon, Jan 08, 2024 at 02:05:53PM -0600, Ninad Palsule wrote:
->>> Hello Guenter,
->>>
->>> On 12/12/23 13:50, Guenter Roeck wrote:
->>>> On 12/12/23 10:51, Conor Dooley wrote:
->>>>> On Tue, Dec 12, 2023 at 10:00:39AM -0800, Guenter Roeck wrote:
->>>>>> On Tue, Dec 12, 2023 at 05:15:51PM +0000, Conor Dooley wrote:
->>>>>>> On Tue, Dec 12, 2023 at 10:40:03AM -0600, Ninad Palsule wrote:
->>>>>>>> From: Joel Stanley <joel@jms.id.au>
->>>>>>>>
->>>>>>>> The NPCT75x TPM is TIS compatible. It has an I2C and SPI interface.
->>>>>>>>
->>>>>>>> https://www.nuvoton.com/products/cloud-computing/security/trusted-platform-module-tpm/
->>>>>>>>
->>>>>>>>
->>>>>>>> Add a compatible string for it, and the generic compatible.
->>>>>>>>
->>>>>>>> OpenBMC-Staging-Count: 3
->>>>>>> Delete this from every patch that it appears from.
->>>
->>> I have send it as a separate commit. https://lore.kernel.org/linux-kernel/20231214144954.3833998-1-ninad@linux.ibm.com/
->> Why did you do that? It now just adds undocumented compatibles to the
->> driver. Please, as Rob requested, work with Lukas on his series to make
->> sure that these devices are documented.
-> 
-> I think krzysztof kozlowski suggested to send these patches separately: 
-> https://lore.kernel.org/linux-kernel/1c5ace65-2fd8-4503-b22f-e0f564d1c83f@linaro.org/
-> 
-> Did I misunderstood it? Do you guys want me to include that commit again?
+> Acked-by: Wolfram Sang <wsa@kernel.org>
 
-My comment was in DTS thread under specific DTS patch. How did you
-figure out it applies to driver and bindings? This does not make sense.
+OK, I will take it but in general this should not go via SoC tree, but
+I2C. GS101 was already merged, so please send all your future
+submissions regular way.
 
 Best regards,
 Krzysztof
