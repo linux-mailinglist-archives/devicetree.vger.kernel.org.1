@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-31194-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31195-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93B3882A2F8
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 22:01:18 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4054A82A2FA
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 22:01:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0BC021F22763
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 21:01:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 58E531C22488
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 21:01:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93C674F21D;
-	Wed, 10 Jan 2024 21:01:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EB0D4F208;
+	Wed, 10 Jan 2024 21:01:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nuPRlgAS"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="TV72ZIC3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E9E14F1F4
-	for <devicetree@vger.kernel.org>; Wed, 10 Jan 2024 21:01:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48D834F200
+	for <devicetree@vger.kernel.org>; Wed, 10 Jan 2024 21:01:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-336dcebcdb9so4457002f8f.1
-        for <devicetree@vger.kernel.org>; Wed, 10 Jan 2024 13:01:05 -0800 (PST)
+Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-336c5b5c163so2805578f8f.1
+        for <devicetree@vger.kernel.org>; Wed, 10 Jan 2024 13:01:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704920464; x=1705525264; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1704920503; x=1705525303; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=gtGONfHAu/IEGXrUf6iu+COZeP2X33alZi+TZMyD4xc=;
-        b=nuPRlgASsjRNYPmHzLqeZQ4yjSr7atuW2mj2cHOlTxJ/nkpVlVVKtkNqd9NoBnV3uq
-         VXr7X3y64c8ClOM9RpySc1ND7jx28DQcT/GIdQX3BdJn3XJpGQ0QBMXZZXcnfWHTNsNW
-         xZOm7ABGVJl/C3sbk4MUgbTuCiASkqKJG1Yt1swoFfJF7TkItXFDBjxBoJ81mrJyiP+a
-         17imR+PB+Tz3mgx6kLhNYa4oBTRlzVJ2QgZAQpCCVnfUEKCqheJGBFgpNqo9gpVsDpj3
-         mpQGk2i3/W+/f9lDT1LCj5bnCm3/OtwtycoPbrmHhWHEiABrRf43n4KxSYcotLUG7GUN
-         dC+Q==
+        bh=QNiWEhZbhGOgLQpt/nA5yMXWri2ZyXn8Ps7nD2X2HIU=;
+        b=TV72ZIC3Pkbpb1bAkpBRTHUGL4XDjrrEkCBpp3xfEHW9Ed+8VQlKhYjlsg+3ocRq2B
+         0qEhRMm/eUHVT86ydqSwVyMIKPV+zKr/t7Z67iZDBrOlVvxHtzcPo+96/r8sq5cUl89A
+         KVLIwopeE+1MXnIqK/k2J4YqcqY8OX9VUUz0FuiqiH5x4oCPPx5RMToZ8Uupwu5MvEap
+         9lq0x7TUh6Khpm2PVH4HT1y74ssBYgqKl16k64cz4C+VQdiWv5E0PBjvlwkEg0Xcmm+3
+         90PJFxJOxOPzzAqSHQpZdu7ivHqC0n52gUKEcwMHgcu+sS8s8cDia0mq2GFytvpkD+r1
+         YtqQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704920464; x=1705525264;
+        d=1e100.net; s=20230601; t=1704920503; x=1705525303;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=gtGONfHAu/IEGXrUf6iu+COZeP2X33alZi+TZMyD4xc=;
-        b=uv4hi0byptj1a5fik2lxCoIZT05P47U0480xM7MSyz7qjI34U/wh/2ex/ljg1hjMkC
-         5OfLKBs40RASBBy01DAFr4tLdD9DoqHi4Dh3VnIbx7x/hBcvNGg19uEkVsMKLHQRKZf1
-         yToYuMszXr7SbBCK09u/FVm6jfnq26cCYIOaVOmleOYaPEOPImx9kfiqj8beAKTHSGWL
-         ACOPec9jFwLZuhOFest8VtuEnaG7ibDWgFKBN4eUSSCchUbbJPeWby1cdrLWc0DAgMeG
-         7rf9yjzHRk5HCROjx2cqnaUgaDx/n39oJm6KbvfQJBnuNuZPiIkaDUOCoCj8V5hynLln
-         8oDA==
-X-Gm-Message-State: AOJu0YymuXhT+HJ4/HVLlQDJkKNd5k4fv5WWmUp2Xvhi+vb8J629sdQn
-	bkqa1xHDJdJ7PpedUZCbFVhdpVr303/vEQ==
-X-Google-Smtp-Source: AGHT+IHb1OxJu8kv9/wwpgSac8HbcxGmz5FxehJvMfMa1Hl1SLTfmk5ymgdQyllHOUdADDHIdfyOXA==
-X-Received: by 2002:a5d:420e:0:b0:336:6914:4fa0 with SMTP id n14-20020a5d420e000000b0033669144fa0mr18340wrq.257.1704920463681;
-        Wed, 10 Jan 2024 13:01:03 -0800 (PST)
+        bh=QNiWEhZbhGOgLQpt/nA5yMXWri2ZyXn8Ps7nD2X2HIU=;
+        b=wYcpX8hCGRIZJsYUXEDB7YJNB4xbxcMCKcYlG/aVwGMjXeZB7HMRLkS8xdJLashUvZ
+         YjPyDvqupiWV35/PP6jmT2oH5DYjiVpmO6KFETzRQm8DzSNkvse+O3htYWM49/0peLMq
+         LJLQa1z4NH/0lFcZR/YYnHrxKU2IC4oyW64zK2gVJijp+MnPJ50pK+5vEEp1vSpBmqWi
+         RprtO9uaGGQGPADa21g8vH/7rRAJa32VCVncPmwnwrvfuxSrP3m/XaIod01SH7G1QpVu
+         VRDg9BieFqhEn7CQiDMgcmAm3hEUVs+wh6FlZGvOg6XbjphkAnaguWBmsw3A2UTTV7jI
+         jYLA==
+X-Gm-Message-State: AOJu0Yw4DI0P4gDVOMd9o1G6UHeitccYWwaSOKLRderEaDsedGW8mhTO
+	nHDwbYXUGo1XKIr2opEZnCNebPo9b8JW9g==
+X-Google-Smtp-Source: AGHT+IGZbzDSeGaKrT8SOb8XCDNSDaRdnls/WQEmM5LZ6MWjsfVIXYAkcl2qkcuyRKqu/sl7JAJLhQ==
+X-Received: by 2002:a5d:68c8:0:b0:336:8030:214d with SMTP id p8-20020a5d68c8000000b003368030214dmr30720wrw.19.1704920503569;
+        Wed, 10 Jan 2024 13:01:43 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.223.112])
-        by smtp.gmail.com with ESMTPSA id k12-20020a5d6e8c000000b00336f43fa654sm5686931wrz.22.2024.01.10.13.01.00
+        by smtp.gmail.com with ESMTPSA id k12-20020a5d6e8c000000b00336f43fa654sm5686931wrz.22.2024.01.10.13.01.41
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 10 Jan 2024 13:01:02 -0800 (PST)
-Message-ID: <99eca166-7d78-4ada-ac0a-ad67f3d8eb33@linaro.org>
-Date: Wed, 10 Jan 2024 22:01:00 +0100
+        Wed, 10 Jan 2024 13:01:42 -0800 (PST)
+Message-ID: <4e9cc473-dbab-4e7c-ac7f-871a4025ef5b@linaro.org>
+Date: Wed, 10 Jan 2024 22:01:41 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,8 +66,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v22 3/8] arm: dts: nuvoton: npcm7xx: modify rst syscon
- node
+Subject: Re: [PATCH v22 5/8] arm64: dts: nuvoton: npcm8xx: add clock reset
+ syscon node
 Content-Language: en-US
 To: Tomer Maimon <tmaimon77@gmail.com>, mturquette@baylibre.com,
  sboyd@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
@@ -76,7 +76,7 @@ To: Tomer Maimon <tmaimon77@gmail.com>, mturquette@baylibre.com,
 Cc: openbmc@lists.ozlabs.org, linux-clk@vger.kernel.org,
  linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
 References: <20240108135421.684263-1-tmaimon77@gmail.com>
- <20240108135421.684263-4-tmaimon77@gmail.com>
+ <20240108135421.684263-6-tmaimon77@gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -122,33 +122,36 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240108135421.684263-4-tmaimon77@gmail.com>
+In-Reply-To: <20240108135421.684263-6-tmaimon77@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 08/01/2024 14:54, Tomer Maimon wrote:
-> rst node name and compatible property modified since clock and reset are
-> handled in the same memory region.
+> Add clock reset syscon node to handle reset and clock registers
+> controllers.
 > 
 > Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
 > ---
->  arch/arm/boot/dts/nuvoton/nuvoton-common-npcm7xx.dtsi | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
+>  arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi | 5 +++++
+>  1 file changed, 5 insertions(+)
 > 
-> diff --git a/arch/arm/boot/dts/nuvoton/nuvoton-common-npcm7xx.dtsi b/arch/arm/boot/dts/nuvoton/nuvoton-common-npcm7xx.dtsi
-> index 868454ae6bde..f72c5a03d04c 100644
-> --- a/arch/arm/boot/dts/nuvoton/nuvoton-common-npcm7xx.dtsi
-> +++ b/arch/arm/boot/dts/nuvoton/nuvoton-common-npcm7xx.dtsi
-> @@ -93,8 +93,8 @@ gcr: gcr@800000 {
->  			reg = <0x800000 0x1000>;
+> diff --git a/arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi b/arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi
+> index 9c4df91031e7..7d5956e2c9f3 100644
+> --- a/arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi
+> +++ b/arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi
+> @@ -22,6 +22,11 @@ gcr: system-controller@f0800000 {
+>  			reg = <0x0 0xf0800000 0x0 0x1000>;
 >  		};
 >  
-> -		rst: rst@801000 {
-> -			compatible = "nuvoton,npcm750-rst", "syscon", "simple-mfd";
-> +		clk_rst: syscon@801000 {
-> +			compatible = "nuvoton,npcm750-clk-rst", "syscon", "simple-mfd";
+> +		clk_rst: syscon@f0801000 {
+> +			compatible = "nuvoton,npcm845-clk-rst", "syscon", "simple-mfd";
 
-NAK. This breakes the users, is not justified, is not explained.
+This is not a simple-mfd. No children,
+
+> +			reg = <0x0 0xf0801000 0x0 0xC4>;
+
+Use lowercase hex. Please store this feedback in your checklist and do
+not repeat the same mistakes in further submissions.
 
 Best regards,
 Krzysztof
