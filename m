@@ -1,271 +1,270 @@
-Return-Path: <devicetree+bounces-31131-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31132-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1086282A127
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 20:45:14 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1156A82A137
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 20:51:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 619B8B22746
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 19:45:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6DAA91F227E9
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 19:51:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE9A04E1DE;
-	Wed, 10 Jan 2024 19:45:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7252B4EB2C;
+	Wed, 10 Jan 2024 19:51:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=siemens.com header.i=@siemens.com header.b="EY2kGZ94"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="rlV+Lv/2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2067.outbound.protection.outlook.com [40.107.20.67])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oo1-f41.google.com (mail-oo1-f41.google.com [209.85.161.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E26814E1C7;
-	Wed, 10 Jan 2024 19:45:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=siemens.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=G1q2Eh8CMA2yDk61IcYppj52tyusIVVpTzCqTmKJ9fC26QvAG8sqwuAtL6bPmBNLPigs45LdNt8JyCyE+bn9dYlWXAGnLr/J8Ox54tXETIpe1LmSNB73AZ0PTSHNCHhzi8ye885NWrCeYhTLe/DbkBasgBDiNJ2HHACRs0cyVATYzhB4uiEPfX4BQUQuJ01zFj2nyx0hzOC425JNKoMWra3CG7GtBiC2ic7bc9YN3FfYMuVG0mIWIaNYLDCM+n/AqI+g3C0AvghJ9XsRqnsLqLk1ljKTWqNbevw7i7VBgtssuONokD/sJPixIbhdEz9ZjemX4G7h6MMFMX14o7+E9w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=flWgu6+oqFTx+PvAqN0qhK8UeYft/uaWikQP5Gkl3mU=;
- b=Ls+0D5MWWzNRYiUoCV1t4yn8zlXI2lzG4B/EvhLzBICW3Ai3E9hHrq5fjsHKsUlNwG48qlhutrmgS16nrXAWvBqnCt1uv3HtngcEAoLN4gOh3bgWkv1NR2pKW4GMLPNCYZyZS4xDZ/PnpzRaG3smCSy4lmesMDzJpUk5OMcqf2fZkye90XKAnzp+vOT0FGmghwlI3dpbtEDnU710mkskWxkc67QyU2Ke7PV2Rur7pa5UtXG3Ybp4jXSfFUw67YEdoCReYSyraPUXb38YmNaETVd456k38w+qaqczs9b6XVPVSUUUJFUAB+VbNAYXGIHPyZGecQ+Hy1752/VogRmYZg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=siemens.com; dmarc=pass action=none header.from=siemens.com;
- dkim=pass header.d=siemens.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=siemens.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=flWgu6+oqFTx+PvAqN0qhK8UeYft/uaWikQP5Gkl3mU=;
- b=EY2kGZ94lfGbENCmztdcHoM92EeI19WllF/pi5KdtIHkBJrNg6GMPktRd2RBux/Furl+1Y4r6DIirEL7x2ctyE3YoJjEZQC3yfHUsLsc2omHGam8357Smh9OcjTtD68lUffmKeDzMv6fpCpbtNA9pWdgtaaPbnjqKBzgJH5tx4Khpo70qrDAJDjnn4IqSRqs9wmQuaeKveNC86afeb1LJ5XpVy4LKiMYzKh1iBk3OSdprRuqaceAcT1QArOTZbpPwtIDOhqvb0WvUiFUSftj8/Lc2KGN4kjNptu0zWtqsSnXpSXlbZaOl8bYT+shB1LIMTU6ubsoUxq6hfvTixNMXQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=siemens.com;
-Received: from AS4PR10MB6181.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:588::19)
- by DBAPR10MB4106.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:10:1ca::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7159.23; Wed, 10 Jan
- 2024 19:44:56 +0000
-Received: from AS4PR10MB6181.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::8d16:7fbb:4964:94fe]) by AS4PR10MB6181.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::8d16:7fbb:4964:94fe%3]) with mapi id 15.20.7181.018; Wed, 10 Jan 2024
- 19:44:56 +0000
-Message-ID: <8a2b46b4-ff04-4370-8bf1-c92ffe59a6df@siemens.com>
-Date: Wed, 10 Jan 2024 20:44:55 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 14/16] arm64: dts: ti: iot2050*: Clarify GPL-2.0 as
- GPL-2.0-only
-Content-Language: en-US
-To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
- Tero Kristo <kristo@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Rob Herring <robh+dt@kernel.org>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, Chao Zeng <chao.zeng@siemens.com>,
- Le Jin <le.jin@siemens.com>
-References: <20240110140903.4090946-1-nm@ti.com>
- <20240110140903.4090946-15-nm@ti.com>
-From: Jan Kiszka <jan.kiszka@siemens.com>
-In-Reply-To: <20240110140903.4090946-15-nm@ti.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: FR0P281CA0074.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:1e::20) To AS4PR10MB6181.EURPRD10.PROD.OUTLOOK.COM
- (2603:10a6:20b:588::19)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC9604E1D0
+	for <devicetree@vger.kernel.org>; Wed, 10 Jan 2024 19:51:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oo1-f41.google.com with SMTP id 006d021491bc7-5988e55ede0so817033eaf.2
+        for <devicetree@vger.kernel.org>; Wed, 10 Jan 2024 11:51:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1704916268; x=1705521068; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=YMKckuP8XGsuDmaIXHNVROp60ZPbWd85oO+z2O6Q+eU=;
+        b=rlV+Lv/2M46E5d57/s7svXRFPO1G/yjLF1CGfoZ9zySL6EyZTS62oCxYdCPqWGFQGe
+         pwnoGlP67EdxJUtmX1OWNeFkku/W8km3nhLUFQGWkWlJjWRPonuTm8r8E+NUgTd9j+SH
+         M7mnrdu6obv0fI8Qw5VN9mDZa44rrjrxsg6BspL8BhtD2iZC5RjqyWJQBFHJUKFXOlg9
+         +DRCLCfNE6av2Jk0WheJa5Aj8Lmef6uGLnkTGi4qCUt69UF4+Qq/t4at5yUAbTtnbrCo
+         tmQf3vMwecQEhjpVaCieOxKjLCAZs8c6TDUxEW/AY5SQLp/gLOcCNFw6s5C57ehij/9P
+         wyCw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1704916268; x=1705521068;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=YMKckuP8XGsuDmaIXHNVROp60ZPbWd85oO+z2O6Q+eU=;
+        b=onDijB3VewQOc2rlTjVZs3rBzGD/FqvaNuCH7P6KgcC8nfTQlF5de+p084FCFdT9Qd
+         F4LFj4ZZPRB1w8M0/tIbzQfZTnVLIavy+ac+Y3wv8TF3C8BvsYd5gTWCPGrrmBIbHXzy
+         EJ76DxB8u1wDGp1HGlImZtVXaCOCKDoc92qchaj5uVzgYYHbRZ+VXON+7juqNAtwSFzr
+         iqPQDZvBvPiYML5a97ySczNubzwpR4iJz1FT3uRVtvSleuaAn3c54f3a68m0XlKjKAQj
+         otqhs2fzsPaoSmvM0j11EVB7j3XfuUES7sqpsPz6Aq7ChgBRTlNqCY5KuZbfBxQK4RqX
+         95Pw==
+X-Gm-Message-State: AOJu0YwqIveyfP9ND6psE58/VEAINS8wlZXa9jsmkNFY2XbqM/o0OqLp
+	yxoCbLT1MifdSOW9gjXvGVXt7bnpxl2mrQ==
+X-Google-Smtp-Source: AGHT+IFoWmtz9bWO7VnnQScDOXIo/P6RzNPrDSxSQhS3I9XZeWyQUSus9HfRsN+aQncWLIqgoG29dA==
+X-Received: by 2002:a05:6820:22a1:b0:596:1270:cb9 with SMTP id ck33-20020a05682022a100b0059612700cb9mr115534oob.12.1704916268482;
+        Wed, 10 Jan 2024 11:51:08 -0800 (PST)
+Received: from freyr.lechnology.com (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
+        by smtp.gmail.com with ESMTPSA id 187-20020a4a0dc4000000b00595b35927a3sm938513oob.39.2024.01.10.11.51.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 10 Jan 2024 11:51:08 -0800 (PST)
+From: David Lechner <dlechner@baylibre.com>
+To: Mark Brown <broonie@kernel.org>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Michael Hennerich <michael.hennerich@analog.com>,
+	=?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
+	Frank Rowand <frowand.list@gmail.com>
+Cc: David Lechner <dlechner@baylibre.com>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	=?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
+	Jonathan Corbet <corbet@lwn.net>,
+	linux-spi@vger.kernel.org,
+	linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-doc@vger.kernel.org,
+	linux-pwm@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Lars-Peter Clausen <lars@metafoo.de>
+Subject: [PATCH 00/13] spi: axi-spi-engine: add offload support
+Date: Wed, 10 Jan 2024 13:49:41 -0600
+Message-ID: <20240109-axi-spi-engine-series-3-v1-0-e42c6a986580@baylibre.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AS4PR10MB6181:EE_|DBAPR10MB4106:EE_
-X-MS-Office365-Filtering-Correlation-Id: ebf638e7-fa43-413c-6e8a-08dc12149f74
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	FzHTVdgsv2dW7kzPPmOCd9+aRJKtdp+pnwbksFaLV/5t29Swv5YjFZLgL9pndhm5Brq7LWBqdwkGmxvBazrowyBxDd/2r8P8t/UZXgLs0ZVcw2yBgA8GS4N9SpOiZKZ8bp+zfgTRe/Dob36FBB5CKY8KikVDgs9NuCCYzR0iniaMiXzOZenDcG3xmmcb5LLW650H7CgnmYLbPDOxxv7ULAeIv8lNf8I2kp0Iva71wBuqS6gtJloWGDt2HB89v1sqKJAN9+FYfKB2cE2ZHPRW6oIegRE3u9metk/Yd1xwb+jj+HIt5U+i27nt3AIpTZPJJFklie8/AeflLBjM5YeQdoARUzeE6i6M6bdLSSYX7BAueuc+z61skGwBn7ZF5Fd5wVKyyyR8E4rZKWTP3oBf6jqWHITNy15Aa2nnD4ijJoqSJCbymSb1QF04i3tcM8Y+1i5WVIO9aXN2IYwuTd13i9Q2/J6ZWPwNNaSHipTcSXH6kv3JUa+u9HCDQLcZn6sT+U+AAVdOIdkcttl7bUhUlmk+p+oPAClu3dQk+ux1E+CHF2ALecaZhjjR2oD3n24XymnzQx6MmZ4tm8q06ZC5LbPdJ+4BXADSiwoH1wN3pr7wbj28tTzWu/SYFPXE6O//D+g+Eqfrmn3xvkQdTas5tA==
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS4PR10MB6181.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230031)(39860400002)(346002)(366004)(396003)(376002)(136003)(230922051799003)(186009)(1800799012)(451199024)(64100799003)(36756003)(31686004)(6486002)(66476007)(478600001)(53546011)(86362001)(31696002)(66556008)(66946007)(2616005)(82960400001)(26005)(107886003)(2906002)(8676002)(6506007)(44832011)(6512007)(83380400001)(38100700002)(8936002)(41300700001)(316002)(54906003)(4326008)(5660300002)(110136005)(43740500002)(45980500001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?SE95djhnMVlzWXZmK0dxU28yaUV3TEtrVERYOUpWS0VaUzlKaitPbmNVVnRE?=
- =?utf-8?B?UEtDSjRlLzJCZXBVckZmaDl1K2JWa0VkMGs0bFpWLy8yUlhua093QTNlcDFU?=
- =?utf-8?B?VStrVUUyZVRuYUMvMUQ5TVdXRlpXNUpzNVFVSzJhNHFmekpNa0VESW80Skhq?=
- =?utf-8?B?K3RyOXFIWkNaTE1xOGhlR2dZOTZHYmxNbVFjSGpocTh5ODhyVFZyamM0eVZO?=
- =?utf-8?B?SWdvK0wwZEFkQ0ZweldwU3dpM0dZVXBySDB6ZURVNzJwOHFJeDUvL2Y0NHZt?=
- =?utf-8?B?TDhGblR2elJKZEVyRnUyVlRGcjJ5dGNWRXAyZjE1dU00K3Mxb2RpRDBlK0FN?=
- =?utf-8?B?Z0FLQmx5SG1wZWRYMTZNMnlBS3JKTVY5SnQ4bUVxL21wekhESEM4Y3FwYU52?=
- =?utf-8?B?NVBySGk2dXJCV3F6SXhzOVE2N0paR3Ntblk5SEVpbUFjVkpyTEZ2bXdBMkEr?=
- =?utf-8?B?bkM1V00ya1JHY2ZhNFFSYXluNm0xdXdlUXNERjFybnBSWitsaklwYS9CaEJE?=
- =?utf-8?B?SkFub3hvdlZnV2RUNG9FMVFZMFh3SkZiYlorSnF3KzBWQ1BHN3U5V0ZaWWFN?=
- =?utf-8?B?emEwMklUeTluMnJjMEhmN2x4TTBHYllWbDZrekpaaUlHTmNaczJ3WCs5R3R2?=
- =?utf-8?B?dkxoRkFucjRCSU5hR2RjMlNxelRBVmY3bGlRNDQvTXNBRzlaSUR3eTFuS0hk?=
- =?utf-8?B?bWhhdUxteWh0b3RvdUF2blNGOVp6RW9aSFp2NzJORWF1SEJsd0pkWHhQc0RZ?=
- =?utf-8?B?eENTekhPeTJKRHRPWHBvcm1INUFENk5wbWlFSmI2NzNJckFQS1dvNVpVRnRz?=
- =?utf-8?B?M3dVTXNkWnpqYkZvdk0vN0orY2JYb21KR2dBKys1YnIySTFib0JWcy9JRTBi?=
- =?utf-8?B?dEQ1eGtaalA2MDdjVlNraGhFeUsrRm9EOHpVeUlheUw2YWNEZW43NnhxNDBJ?=
- =?utf-8?B?WGczMVJXU29JbU44bHJLWkhDbzRMY0kreWdrZTNiZllJK2h5MWo4aVNZQjNj?=
- =?utf-8?B?K1VOcXdaZWlLV3lyRUtsVldtdDJBMHZqZlByODhtK2dtVHljVWlMYWRXdDJn?=
- =?utf-8?B?eW1FUlRmek5wVFdHaXZXcis4bXJ5cDAzdUtMeGE5K0YyNXo5Ty9zeDZDOUxs?=
- =?utf-8?B?bHMyNWdKSUI5RlEwRlFUeHFQbVpOTkdZODM0eTZYZ0ZlQTZXYS9uM3gvSnox?=
- =?utf-8?B?bWtmcGRvN3FxdWFPeWxmOS9oTVBTbHJPWStDNmkxSldBVmw0YVlMM281aURv?=
- =?utf-8?B?aUhKeitZMW1Fd1RsaFBXMGdrMW1uVWRkZlpYVzF0eGJpL0Q2OFVBbU1keDRI?=
- =?utf-8?B?ejNHMkxUUWNJRGhaTkZ3YUVQTmlYRldia0VGb2NTTUdSN255Sy81WU02YVpL?=
- =?utf-8?B?RzF5Mkl1M3ROS2o3MklreDlkeGJzVzk5ekVRUkU0RHVKNlYzNnEwM3hiVjBy?=
- =?utf-8?B?Uzd0NzFwK201VHI0RkVOUHJabHNsV05vN2NRQytGUG1UM3M2eG5zOWlBdFlw?=
- =?utf-8?B?WXM3bThSQW9PS1V3UnhXMisyWnJxZ0dCam1FcUtQRTBDY2N2RzJ5Nkw1LzRZ?=
- =?utf-8?B?VTg5SldvUlJ1cGs0OGtRbVJtWDhhQmxWMmtHN2w1d0J4NGw5UEdDTUJEYWRX?=
- =?utf-8?B?R3B3WTBPYmdqOWxLNUtPbnBpZU5GWUZyeXlzSXpJeFYvbk9jVk5laStXdGZ2?=
- =?utf-8?B?ejNsR2VmMk5QTlMxNEhxcDRNVW0zQjhnOTBXVzFsNVFDbGpsdGJCQ0hXY2lk?=
- =?utf-8?B?dHQzZ3hhN0lyNnk5Y0w3Q1REd1FtSEtJSzU3ZDFtVHdxeUNPbVk3MWhOVGk0?=
- =?utf-8?B?dUcralMwYmdma1UrQkNpN3pTVVVFanFBb1VERSt5c1ZKRUVpV2t2Vmx5Vm41?=
- =?utf-8?B?SXZYeEdHc1h5K1UvRFdtNll0eTJ2RFNxT3ptTWlROVJ0WjBPa004b2dVTGJM?=
- =?utf-8?B?aUxteWYrenJDL0FDcm0zTmlYUXlhR3F3R3FmSk12RWZUSUxoUDNxeVVFRkc0?=
- =?utf-8?B?azR1ZElRSXRRcVk3S0pCS1VSQjhPVTVEekJqSSs3VFd3V0xBNGlpQUlQM3ZH?=
- =?utf-8?B?QzFhRWUrdWNQZkN0aEdSNGlFVFJGWCtJR3phcnU5c21qcFJ2d2JiNXFzZ1RU?=
- =?utf-8?B?WURqNmVuYUZKeEliSmtnbk15WFZOOEp4ZWZkeEpScGFFZkh4VUZrSFN6UUJp?=
- =?utf-8?B?Wnc9PQ==?=
-X-OriginatorOrg: siemens.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ebf638e7-fa43-413c-6e8a-08dc12149f74
-X-MS-Exchange-CrossTenant-AuthSource: AS4PR10MB6181.EURPRD10.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jan 2024 19:44:56.4485
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 38ae3bcd-9579-4fd4-adda-b42e1495d55a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: HVSxH1G0zyCXKob5iLThlFIDX5oCyM4UUbjKo/eycBfoovWr3j/UsiHodPW1hRrkXn7V/EJ4RiEli/hxHmjmmQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBAPR10MB4106
+Content-Type: text/plain; charset="utf-8"
+X-Mailer: b4 0.12.4
+Content-Transfer-Encoding: 8bit
 
-On 10.01.24 15:09, Nishanth Menon wrote:
-> SPDX identifier GPL-2.0 has been deprecated since license list version
-> 3.0. Use GPL-2.0-only to be specific.
-> 
-> Cc: Chao Zeng <chao.zeng@siemens.com>
-> Cc: Jan Kiszka <jan.kiszka@siemens.com>
-> Cc: Le Jin <le.jin@siemens.com>
-> 
-> Signed-off-by: Nishanth Menon <nm@ti.com>
-> ---
->  arch/arm64/boot/dts/ti/k3-am65-iot2050-common-pg1.dtsi        | 2 +-
->  arch/arm64/boot/dts/ti/k3-am65-iot2050-common-pg2.dtsi        | 2 +-
->  arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi            | 2 +-
->  arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic-common.dtsi    | 2 +-
->  arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic-pg2.dts        | 2 +-
->  arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic.dts            | 2 +-
->  arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-common.dtsi | 2 +-
->  arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-m2.dts      | 2 +-
->  arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-pg2.dts     | 2 +-
->  arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced.dts         | 2 +-
->  10 files changed, 10 insertions(+), 10 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common-pg1.dtsi b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common-pg1.dtsi
-> index 1d1979859583..c424fef19d5f 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common-pg1.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common-pg1.dtsi
-> @@ -1,4 +1,4 @@
-> -// SPDX-License-Identifier: GPL-2.0
-> +// SPDX-License-Identifier: GPL-2.0-only
->  /*
->   * Copyright (c) Siemens AG, 2021-2023
->   *
-> diff --git a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common-pg2.dtsi b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common-pg2.dtsi
-> index e9b57b87e42e..5eeeca27dee6 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common-pg2.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common-pg2.dtsi
-> @@ -1,4 +1,4 @@
-> -// SPDX-License-Identifier: GPL-2.0
-> +// SPDX-License-Identifier: GPL-2.0-only
->  /*
->   * Copyright (c) Siemens AG, 2021
->   *
-> diff --git a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
-> index 61a634afaa4f..00520c75e0f5 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
-> @@ -1,4 +1,4 @@
-> -// SPDX-License-Identifier: GPL-2.0
-> +// SPDX-License-Identifier: GPL-2.0-only
->  /*
->   * Copyright (c) Siemens AG, 2018-2021
->   *
-> diff --git a/arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic-common.dtsi b/arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic-common.dtsi
-> index 1d6cddb11991..c927c8679017 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic-common.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic-common.dtsi
-> @@ -1,4 +1,4 @@
-> -// SPDX-License-Identifier: GPL-2.0
-> +// SPDX-License-Identifier: GPL-2.0-only
->  /*
->   * Copyright (c) Siemens AG, 2018-2021
->   *
-> diff --git a/arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic-pg2.dts b/arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic-pg2.dts
-> index c62549a4b436..ec62dd7921d6 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic-pg2.dts
-> +++ b/arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic-pg2.dts
-> @@ -1,4 +1,4 @@
-> -// SPDX-License-Identifier: GPL-2.0
-> +// SPDX-License-Identifier: GPL-2.0-only
->  /*
->   * Copyright (c) Siemens AG, 2018-2021
->   *
-> diff --git a/arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic.dts b/arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic.dts
-> index 87928ff28214..4968a47f31ea 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic.dts
-> +++ b/arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic.dts
-> @@ -1,4 +1,4 @@
-> -// SPDX-License-Identifier: GPL-2.0
-> +// SPDX-License-Identifier: GPL-2.0-only
->  /*
->   * Copyright (c) Siemens AG, 2018-2021
->   *
-> diff --git a/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-common.dtsi b/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-common.dtsi
-> index 3864ec54e371..ae842b85b70d 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-common.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-common.dtsi
-> @@ -1,4 +1,4 @@
-> -// SPDX-License-Identifier: GPL-2.0
-> +// SPDX-License-Identifier: GPL-2.0-only
->  /*
->   * Copyright (c) Siemens AG, 2018-2021
->   *
-> diff --git a/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-m2.dts b/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-m2.dts
-> index bd6f2e696e94..8f559f4e7dda 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-m2.dts
-> +++ b/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-m2.dts
-> @@ -1,4 +1,4 @@
-> -// SPDX-License-Identifier: GPL-2.0
-> +// SPDX-License-Identifier: GPL-2.0-only
->  /*
->   * Copyright (c) Siemens AG, 2018-2023
->   *
-> diff --git a/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-pg2.dts b/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-pg2.dts
-> index f00dc86d01b9..173c941b1c4b 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-pg2.dts
-> +++ b/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-pg2.dts
-> @@ -1,4 +1,4 @@
-> -// SPDX-License-Identifier: GPL-2.0
-> +// SPDX-License-Identifier: GPL-2.0-only
->  /*
->   * Copyright (c) Siemens AG, 2018-2021
->   *
-> diff --git a/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced.dts b/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced.dts
-> index 077f165bdc68..48b908c19ef7 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced.dts
-> +++ b/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced.dts
-> @@ -1,4 +1,4 @@
-> -// SPDX-License-Identifier: GPL-2.0
-> +// SPDX-License-Identifier: GPL-2.0-only
->  /*
->   * Copyright (c) Siemens AG, 2018-2021
->   *
+This is the culmination of the previous AXI SPI Engine improvement
+series [1] and [2] where we made fixes and improvements to prepare
+for adding offload support.
 
-Acked-by: Jan Kiszka <jan.kiszka@siemens.com>
+Simply put, "offload" support is defined as a capability of advanced
+SPI controllers to record a series of SPI transactions and then play
+them back using a hardware trigger. This allows operations to be
+performed, possibly repeating many times, without any CPU intervention.
 
-Jan
+The offload hardware interface consists of a trigger input and a data
+output for the RX data. These are connected to other hardware external
+to the SPI controller.
 
--- 
-Siemens AG, Technology
-Linux Expert Center
+To record one or more transactions, commands and TX data are written
+to FIFOs on the controller (RX buffer is not used since RX data gets
+piped to external hardware). This sequence of transactions can then be
+played back when the trigger input is asserted.
+
+This series includes core SPI support along with the first SPI
+controller (AXI SPI Engine) and SPI peripheral (AD7380 ADC) that use
+them. This enables capturing analog data at 2 million samples per second
+with virtually no jitter.
+
+The hardware setup looks like this:
+
++-------------------------------+   +------------------+
+|                               |   |                  |
+|  SOC/FPGA                     |   |  AD7380 ADC      |
+|  +---------------------+      |   |                  |
+|  | AXI SPI Engine      |      |   |                  |
+|  |      SDO/SDI/SCK/CS ============ SDI/SDO/SCK/CS   |
+|  |                     |      |   |                  |
+|  |  +---------------+  |      |   |                  |
+|  |  | Offload 0     |  |      |   +------------------+
+|  |  |   RX DATA OUT > > > >   |
+|  |  |    TRIGGER IN < < <  v  |
+|  |  +---------------+  | ^ v  |
+|  +---------------------+ ^ v  |
+|  | AXI PWM             | ^ v  |
+|  |                 CH0 > ^ v  |
+|  +---------------------+   v  |
+|  | AXI DMA             |   v  |
+|  |                 CH0 < < <  |
+|  +---------------------+      |
+|                               |
++-------------------------------+
+
+This series adds support in three phases.
+
+1. Adding support in the SPI subsystem.
+
+    This is broken down into two parts.
+
+    1. Adding offload support to the SPI core.
+
+        * "spi: add core support for controllers with offload capabilities"
+
+    2. Implementing the new offload interface in the AXI SPI Engine
+       controller driver.
+
+        Prerequisites to avoid errors with new DT bindings:
+        * "scripts: dtc: checks: don't warn on SPI non-peripheral child
+          nodes"
+        * "spi: do not attempt to register DT nodes without @ in name"
+
+        DT bindings and corresponding driver changes:
+        * "spi: dt-bindings: adi,axi-spi-engine: add offload bindings"
+        * "spi: axi-spi-engine: add SPI offload support"
+
+    RFC question for this part: I have made the device tree bindings
+    specific to the controller. Would it be better to make them generic
+    SPI bindings since offload is intended to be a generic SPI feature?
+    Or should we require each controller to have its own bindings?
+
+2. Adding a new offload hardware trigger buffer driver in the IIO
+   subsystem.
+
+    Since offloads are generic, we need to specify what is attached to
+    the trigger input and the data output. This is modeled as a platform
+    device that uses a compatible string to specify what is connected.
+
+    In this case, we have a PWM that is used to periodically trigger
+    the offload to read a sample from the ADC. The received data is then
+    piped to a DMA channel that transfers it to an IIO buffer.
+
+    This is broken down into two parts.
+
+    1. Adding a generic interface/helper functions for hardware
+       triggered hardware buffers.
+
+        * "iio: buffer: add hardware triggered buffer support"
+        * "iio: buffer: dmaengine: add INDIO_HW_BUFFER_TRIGGERED flag"
+        * "iio: buffer: add new hardware triggered buffer driver"
+
+    2. Adding a specific implementation of this interface for this
+       particular hardware configuration.
+
+        Prerequisites for new driver:
+        * "bus: auxiliary: increase AUXILIARY_NAME_SIZE"
+        * "iio: buffer: dmaengine: export devm_iio_dmaengine_buffer_alloc()"
+
+        DT bindings and corresponding new driver:
+        * "dt-bindings: iio: offload: add binding for PWM/DMA triggered
+          buffer"
+        * "iio: offload: add new PWM triggered DMA buffer driver"
+
+3. Adding offload support to the AD7380 ADC driver.
+
+    Once the two components above are in place, we can add offload
+    support to the AD7380 ADC driver.
+
+    * "iio: adc: ad7380: add SPI offload support"
+
+Build and runtime dependencies:
+* The "spi: axi-spi-engine:" patch depends on the previous to series
+  [1] and [2] to apply cleanly (these have been applied to spi/for-6.8).
+* The "iio: adc: ad7380:" patch depends on the driver introduced in [3]
+  (accepted but not applied yet).
+* The "iio: buffer:" patches have a runtime dependency on [4] to
+  function properly.
+* A branch with all dependencies and additional patches for a full
+  working system can be found at [5].
+
+[1]: https://lore.kernel.org/linux-spi/20231117-axi-spi-engine-series-1-v1-0-cc59db999b87@baylibre.com
+[2]: https://lore.kernel.org/linux-spi/20231204-axi-spi-engine-series-2-v1-0-063672323fce@baylibre.com
+[3]: https://lore.kernel.org/linux-iio/20231215-ad7380-mainline-v3-0-7a11ebf642b9@baylibre.com
+[4]: https://lore.kernel.org/linux-iio/20240108200647.3916681-1-dlechner@baylibre.com
+[5]: https://github.com/analogdevicesinc/linux/tree/dlech/spi-engine-offload-ad7980
+
+---
+David Lechner (13):
+      spi: add core support for controllers with offload capabilities
+      scripts: dtc: checks: don't warn on SPI non-peripheral child nodes
+      spi: do not attempt to register DT nodes without @ in name
+      spi: dt-bindings: adi,axi-spi-engine: add offload bindings
+      spi: axi-spi-engine: add SPI offload support
+      iio: buffer: add hardware triggered buffer support
+      iio: buffer: dmaengine: add INDIO_HW_BUFFER_TRIGGERED flag
+      iio: buffer: add new hardware triggered buffer driver
+      bus: auxiliary: increase AUXILIARY_NAME_SIZE
+      iio: buffer: dmaengine: export devm_iio_dmaengine_buffer_alloc()
+      dt-bindings: iio: offload: add binding for PWM/DMA triggered buffer
+      iio: offload: add new PWM triggered DMA buffer driver
+      iio: adc: ad7380: add SPI offload support
+
+ .../adi,spi-offload-pwm-trigger-dma-buffer.yaml    |  59 +++++
+ .../spi/adi,axi-spi-engine-peripheral-props.yaml   |  24 ++
+ .../bindings/spi/adi,axi-spi-engine.yaml           |  49 +++-
+ .../bindings/spi/spi-peripheral-props.yaml         |   1 +
+ Documentation/driver-api/driver-model/devres.rst   |   2 +
+ drivers/iio/Kconfig                                |   1 +
+ drivers/iio/Makefile                               |   1 +
+ drivers/iio/adc/Kconfig                            |   1 +
+ drivers/iio/adc/ad7380.c                           |  84 ++++++-
+ drivers/iio/buffer/Kconfig                         |   7 +
+ drivers/iio/buffer/Makefile                        |   1 +
+ drivers/iio/buffer/industrialio-buffer-dmaengine.c |   5 +-
+ .../iio/buffer/industrialio-hw-triggered-buffer.c  | 105 ++++++++
+ drivers/iio/industrialio-buffer.c                  |  43 +++-
+ drivers/iio/offload/Kconfig                        |  21 ++
+ drivers/iio/offload/Makefile                       |   2 +
+ drivers/iio/offload/iio-pwm-triggered-dma-buffer.c | 212 ++++++++++++++++
+ drivers/spi/spi-axi-spi-engine.c                   | 270 +++++++++++++++++++++
+ drivers/spi/spi.c                                  |  43 +++-
+ include/linux/iio/buffer-dmaengine.h               |   2 +
+ include/linux/iio/hw_triggered_buffer.h            |  14 ++
+ include/linux/iio/hw_triggered_buffer_impl.h       |  16 ++
+ include/linux/iio/iio.h                            |  16 +-
+ include/linux/mod_devicetable.h                    |   2 +-
+ include/linux/spi/spi.h                            | 123 ++++++++++
+ scripts/dtc/checks.c                               |   4 +
+ 26 files changed, 1092 insertions(+), 16 deletions(-)
+---
+base-commit: 036589475658287626a9bb78bcb8538a33d3ed34
+prerequisite-patch-id: a57defd70c3f6e806bdff12d940a1c1d3f1ec78f
+change-id: 20231215-axi-spi-engine-series-3-1c6a584d408d
 
 
