@@ -1,129 +1,104 @@
-Return-Path: <devicetree+bounces-30949-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30950-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13789829933
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 12:32:38 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 51C6282993A
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 12:37:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A6C7DB25D64
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 11:32:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6056D1C247AB
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 11:37:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8B1447A5C;
-	Wed, 10 Jan 2024 11:32:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C51D47A5F;
+	Wed, 10 Jan 2024 11:37:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="myUJcrFj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TLl5KJoI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45F2447F42
-	for <devicetree@vger.kernel.org>; Wed, 10 Jan 2024 11:32:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-50e78f1f41fso4119180e87.2
-        for <devicetree@vger.kernel.org>; Wed, 10 Jan 2024 03:32:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704886349; x=1705491149; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=pEYNQVl4EfVcsy1yzh6J8gEcbt+r98QebOoStpii/nY=;
-        b=myUJcrFjTl9ZqjZf7AcZxgux1afGCi1RuGuZNA6BAkNg7IcuTQlAvncxiGN/IcgLuc
-         N/xpTyqAyRFd6722pthMi06bm0j+YydQOjTVxUpFje2mWl49K9nT2OuzpPmNQQhfn3h4
-         pqv6bGVKNLMfeHz8eMV5QDsj2J+6tY4KmWxKj0/Q/NvbKRzG3wsRds5lDyZ0uLLypF9r
-         sj4Rf8/VkrbbNET82v2RtNd9DqkxZEMvKVmUiu96/y/tqGfZEP1XGR1/k0DxXi2vW9kc
-         mZXSiXwdEEhIel7W1XTq+B7chKRzlCS7JO/44mV4NMlUx1TpnNZzHlCV9QXoTvt8fHFb
-         DU1Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704886349; x=1705491149;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=pEYNQVl4EfVcsy1yzh6J8gEcbt+r98QebOoStpii/nY=;
-        b=qnXE+pnZCYppEiC/PJQujJuu1+XsQyw6yzxK0ACHffUsnyLH4BkIjdBRxuCghCMe67
-         VbgOkf/R8N1q6lz0/aC71iLFoveC8k5o8nKz0L+C3wdkT9Qq/SG7MNn7aEl+SnIh1aeb
-         X4T7bsjOkbfPLr8H6FoN0jLLC+q8CzN7v9mSzrML8+0KjY1Ngaqpwq4OJsugwl29v1Js
-         34JmNxL7ILMESe8N3sC41mlh5FCdLTs77Yo8t2lJnv5E1GmDfnN0jhzhvEDIH+MhrDLR
-         IioMS472Fn7dQvRwnc9J56uIKPDMbfFR9ZII6IPuf6vnsoGoCPvvVB6u53dntHOrpGB1
-         aXpg==
-X-Gm-Message-State: AOJu0YyczW5XhtwuV7jjDxeMpQd7Nh6amjO9oBYgrL2kMlnhcoWItXQO
-	eijiK8SFjcjjSIlxuoicpox8Vy0KmPrq8g==
-X-Google-Smtp-Source: AGHT+IGAMkvcpAUqyxRbD5/R78Qb2kagPxgsXLcXC0AOuJ2ThqexDzA5wsbcuzXqLXPlb2wTFi9INw==
-X-Received: by 2002:a19:3856:0:b0:50e:8487:1ec6 with SMTP id d22-20020a193856000000b0050e84871ec6mr253105lfj.56.1704886349316;
-        Wed, 10 Jan 2024 03:32:29 -0800 (PST)
-Received: from [172.30.205.119] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
-        by smtp.gmail.com with ESMTPSA id z22-20020ac25df6000000b0050e6df07728sm629214lfq.180.2024.01.10.03.32.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 10 Jan 2024 03:32:28 -0800 (PST)
-Message-ID: <0ac211de-e3d4-4a41-b0ed-d2bf393e58cb@linaro.org>
-Date: Wed, 10 Jan 2024 12:32:25 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 150AC803;
+	Wed, 10 Jan 2024 11:37:14 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 94CDAC433F1;
+	Wed, 10 Jan 2024 11:37:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1704886634;
+	bh=mwJrCpsKvuUCqcMvNxsHnQZmtYyfQD9QX3G8uiaffuQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=TLl5KJoIiS72N38mQw9egsP0cnZ89Kvj5RF5MUorG0cl7hSslxX8G7NxfXiwkdpyH
+	 SA+zfbuR12Cl/uUrInXED9S2i9I/2EdLGrpLU6rsPAV9eXK743H4NTqVBSONGyifJw
+	 7ko/f8B/4v5OjJYiaDcRTMNtOTIixdRa+ATiEf9dqCYDrP1f3SxwnbrzfonaU1lzxE
+	 0hQLPZArQDUy3izg6lsdcnMJnNhnUjHWH6NmBt1V1UfLaaS+9/h8jtJsm+60ZOetI5
+	 hFZKvmBFbmER3Xr7M8JakP5barYxMTf9laImGOteBPBs//hJAOjrsZAD6/fTyHBD1f
+	 3EtCKQ5rHeprA==
+Date: Wed, 10 Jan 2024 11:37:09 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Jerome Brunet <jbrunet@baylibre.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] ASoC: dt-bindings: dai-common: Narrow possible
+ sound-dai-cells
+Message-ID: <7e312b05-857f-40a6-a1a1-a954dfea7044@sirena.org.uk>
+References: <20240109213812.558492-1-krzysztof.kozlowski@linaro.org>
+ <1ja5pdzb7k.fsf@starbuckisacylon.baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/6] Add PPE device tree node for Qualcomm IPQ SoC
-Content-Language: en-US
-To: Luo Jie <quic_luoj@quicinc.com>, andersson@kernel.org,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
- quic_kkumarcs@quicinc.com, quic_suruchia@quicinc.com, quic_soni@quicinc.com,
- quic_pavir@quicinc.com, quic_souravp@quicinc.com, quic_linchen@quicinc.com,
- quic_leiwei@quicinc.com
-References: <20240110112059.2498-1-quic_luoj@quicinc.com>
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20240110112059.2498-1-quic_luoj@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="uPIbnbsl4a7wx/f4"
+Content-Disposition: inline
+In-Reply-To: <1ja5pdzb7k.fsf@starbuckisacylon.baylibre.com>
+X-Cookie: Do you have lysdexia?
 
 
+--uPIbnbsl4a7wx/f4
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 1/10/24 12:20, Luo Jie wrote:
-> The PPE(packet process engine) hardware block is supported by Qualcomm
-> IPQ platforms, such as IPQ9574 and IPQ5332. The PPE includes the various
-> packet processing modules such as the routing and bridging flow engines,
-> L2 switch capability, VLAN and tunnels. Also included are integrated
-> ethernet MAC and PCS(uniphy), which is used to connect with the external
-> PHY devices by PCS.
-> 
-> This patch series enables support for the following DTSI functionality
-> for Qualcomm IPQ9574 and IPQ5332 chipsets.
-> 
-> 1. Add PPE (Packet Processing Engine) HW support
-> 
-> 2. Add IPQ9574 RDP433 board support, where the PPE is connected
->     with qca8075 PHY and AQ PHY.
-> 
-> 3. Add IPQ5332 RDP441 board support, where the PPE is connected
->     with qca8386 and SFP
-> 
-> PPE DTS depends on the NSSCC clock driver below, which provides the
-> clocks for the PPE driver.
-> https://lore.kernel.org/linux-arm-msm/20230825091234.32713-1-quic_devipriy@quicinc.com/
-> https://lore.kernel.org/linux-arm-msm/20231211-ipq5332-nsscc-v3-0-ad13bef9b137@quicinc.com/
+On Wed, Jan 10, 2024 at 12:07:30PM +0100, Jerome Brunet wrote:
+> On Tue 09 Jan 2024 at 22:38, Krzysztof Kozlowski <krzysztof.kozlowski@lin=
+aro.org> wrote:
+>=20
+> > Instead of accepting any value for sound-dai-cells, the common DAI
+> > properties schema should narrow them to sane choice.
 
-None of these describe (or even use) the compatible in the first
-patch of this series ("qcom,ipq9574-ppe"). I didn't check the
-subsequent ones, as I assume it's the same situtation, so this
-is a NAK.
+> Adding a constraint solely based on current usage feels wrong.
 
-> Lei Wei (2):
->    arm64: dts: qcom: ipq5332: Add RDP441 board device tree
->    arm64: dts: qcom: ipq9574: Add RDP433 board device tree
+> A DAI provider in its generic form must have the sound-dai-cells to
+> provide one. It says nothing about how many parameters an actual device
+> might need. That is the idea behind this binding.
 
-These two look unrelated?
+> It is up to the device specific bindings to define that value.
 
-> 
-> Luo Jie (4):
->    arm64: dts: qcom: ipq9574: Add PPE device tree node
->    arm64: dts: qcom: ipq5332: Add PPE device tree node
->    arm64: dts: qcom: ipq5332: Add MDIO device tree
->    arm64: dts: qcom: ipq9574: Add MDIO device tree
+> If restricting things here is really important, defaulting to 0 (with a
+> comment explaining it) and letting actual devices then override the
+> value would feel less 'made up'
 
-Konrad
+I tend to agree.
+
+--uPIbnbsl4a7wx/f4
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmWegWQACgkQJNaLcl1U
+h9Dc7wf+P2n83klonD5EiADHNArTPBrzWtVooyEDf3soqckt8MR+DtlIo0460+NS
+2oTbfl6e2b1tYShEhraljnpAewMBnsexZWfnszWDt6aMtm1MBQxj0TnK0LTIp6lz
+CYr5voMqzQtQaJOO2XqdlExuT7oK34tf1JA8yg7699wqsdrrPrYq0cYZw3QOMCJx
+i0bTfY4dMNNmBahx9aNeoQdIOfu0272dk9Rj9d8U7TwN3vQSFnt0kz3/bswGhjCx
+gKs81/Kn/sChLbTOzZel4Ctw/AAFBUYpnVsm+JZwpp3ma77LTnmFWw1ogEXq4HZl
+yEfxszZgp4ylkHQ5WLPSFFkR9D5qHw==
+=W+Yk
+-----END PGP SIGNATURE-----
+
+--uPIbnbsl4a7wx/f4--
 
