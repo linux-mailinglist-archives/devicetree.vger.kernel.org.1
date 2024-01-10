@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-30846-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30847-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BC6D829444
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 08:26:15 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 065C182944C
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 08:28:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 26A0B1F25D39
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 07:26:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1D99B1C25700
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 07:28:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7035539FEF;
-	Wed, 10 Jan 2024 07:26:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D27939AFF;
+	Wed, 10 Jan 2024 07:28:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OAas/FW3"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vPx8xnrW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
+Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFDBD39ADE
-	for <devicetree@vger.kernel.org>; Wed, 10 Jan 2024 07:26:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47D6D39AF4
+	for <devicetree@vger.kernel.org>; Wed, 10 Jan 2024 07:28:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-3367601a301so3551081f8f.2
-        for <devicetree@vger.kernel.org>; Tue, 09 Jan 2024 23:26:00 -0800 (PST)
+Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-50e67f70f34so3851932e87.0
+        for <devicetree@vger.kernel.org>; Tue, 09 Jan 2024 23:28:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704871559; x=1705476359; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1704871720; x=1705476520; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=3OiOLhRr/v/UoX6M5hASdWKUoK8n0S9t0J6jvZFucNA=;
-        b=OAas/FW3fsdbePoaO8FMoctN5Z/GFK/mmquIdXpthWjUb9jDyC4Vz16kjhhm6CEvEs
-         zwS4EHfc3zMsf8Lil256/5eHixzvJwiZoMx7LZ/Ijau9m1yqe+gQNhlxssQ7qSRf0h35
-         LWJ3o8WQ2+KGRDuylDJ9BdJJHuS+lPmS71r37J3cggczHFwvvZl9ikw6KnejlUINtaOr
-         vWtM952hwAxXzHAIQOFmR28TYyWYVNAiKsfjRE3Wm+5jJUKAVTqKbopgdH9ec0Lz2w6s
-         8KYIS95MqJxkEvsmAn0Yk1thscAOeiGoTzqbmKhC71w8haKXGYy1Fma8+J9DJUAxaGFl
-         OPQA==
+        bh=JVBX5etdoAzgr9+pLxG10oD5FiibLDWzHD4Y2Mq2tt0=;
+        b=vPx8xnrWQ8ZfToJ3VOxwq5WRTLB7x7ZRsUvryfNQAs529+d4eOOLXcpqCrWKlSF2Wh
+         mIeiP9woZr9YfEDQQRhQ59UvOVeKWFSYVxJTjGYSMivOhdo+oct6CxgdlJN/c4c1LL4w
+         eiy16wMrK0G7Qc6+gvCaQWxZlP7nLeuds/bVlwYW7jzi118b3xK6BFwSnSqR1uB/+ntP
+         K497Gz3xW4NXz8/oPgE9Sw0P4y2QT3Ibm060vVD4tGSZLzgRz7Jg/7pjtonTjIRSRn3v
+         mpmwv4CA9gcjm7tvxCyew+BvbSykC9u20dYIzm4m7jJ+t0E04oTgnJHO7sKgk5BIXTQc
+         6Z2Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704871559; x=1705476359;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1704871720; x=1705476520;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=3OiOLhRr/v/UoX6M5hASdWKUoK8n0S9t0J6jvZFucNA=;
-        b=qBuH7IXbzpa9Prm9h5q0soVZMDOPpWjJvsIo6O1xR7KPhAD8K/9ypvE2hBjhj40dRo
-         6ONsMqdsLwd/XPMjAzGN8/Gw0HoTxQyhr+KQho+FC6kM5CoV/0rEMW9rxAZh67Jm/Phl
-         JjHGoaDFRFpFgO+l3q53vCqC7VA6CR4BnN4V3IoLNywAMwhztFWKGA+DkKESceUNnnWU
-         sZecBJtnU1/u/xu2PT1Hap2GjjsBwWlnD8JFB/ulqvWMeHwEoOK1Nu6/lcC+EqW6GhtR
-         5EUfQqWAWxqAWVJXMTW2E4IGVcGVZGDiF6B8Ls7g7o0yky9Eq+ROQJiS6Z7UoeMDkI3p
-         7M4w==
-X-Gm-Message-State: AOJu0YyW7wi793M9AABhNsjVcBdnbyZygCuVAhppvsM75e4O495tglvE
-	Tyz4KlQNz96g34I7xuTmRd1R21JqdM4hmA==
-X-Google-Smtp-Source: AGHT+IE1O/Q18uyQ9bgM0s5oBgheZhm9Raon+NZw5D/zhrfsAJdZYSoWCcIqwTEWmKfgCMrEQYnWfw==
-X-Received: by 2002:adf:f107:0:b0:336:ca90:3a1a with SMTP id r7-20020adff107000000b00336ca903a1amr195607wro.114.1704871558869;
-        Tue, 09 Jan 2024 23:25:58 -0800 (PST)
-Received: from [192.168.2.107] ([79.115.63.202])
-        by smtp.gmail.com with ESMTPSA id z16-20020a5d4d10000000b0033686e8f02dsm4125387wrt.45.2024.01.09.23.25.56
+        bh=JVBX5etdoAzgr9+pLxG10oD5FiibLDWzHD4Y2Mq2tt0=;
+        b=Llff08GPvXUs8iq0dHCf4wkjBr/piCgDXOihFK55bl+buSST8xHd6qijy4enwhqHaa
+         CLSaWzCmvXuE3XDOYcL9Fz8fsQZAhQ7mxTfR+1H1SjgrN46Y+0JRP9vKTtHTKAF9FlRb
+         4KxfhqQh6niNQ2UfXLrZMIiFN1H93HA3t3yfT1IgwqLoSGn8/LDcvWFr84wPXl1OXaGt
+         8PGZNi2HriutgCHVpISs1qw0QHPEwzIBxVOqq3ibdJ/5G4qltuUNtpaEotnWiHtvb7M+
+         SwpuPw9DF06vG6tlkOSf0x0CcWGqGN2b5GMaUSzPFDbUoAfOA3lfJ8hlrHs9Uegr2+6M
+         4VlA==
+X-Gm-Message-State: AOJu0Yxj2wkoBVI6AoCA/U+ASWaWb6diGBDnfdHJPpGywpY7/0353Z8V
+	8rOMzs2ALkBwsUETnAlGTVFplsfBnQD0Kw==
+X-Google-Smtp-Source: AGHT+IGydUSfCgHpYRePlQnwbswXNg46P9mzqd2WmznBWo9bXKrtJ0dquI7S6+ZrYbY4keGgGj6XpA==
+X-Received: by 2002:a05:6512:1184:b0:50e:b298:9e16 with SMTP id g4-20020a056512118400b0050eb2989e16mr132832lfr.135.1704871720303;
+        Tue, 09 Jan 2024 23:28:40 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.223.112])
+        by smtp.gmail.com with ESMTPSA id a21-20020a170906275500b00a2b94ba997fsm802577ejd.89.2024.01.09.23.28.38
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 09 Jan 2024 23:25:58 -0800 (PST)
-Message-ID: <e35ebe97-1349-4c37-afa5-54c131a9dcbb@linaro.org>
-Date: Wed, 10 Jan 2024 07:25:56 +0000
+        Tue, 09 Jan 2024 23:28:39 -0800 (PST)
+Message-ID: <a2394a4a-0fc1-45a0-9f01-c792a138fe0c@linaro.org>
+Date: Wed, 10 Jan 2024 08:28:37 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,121 +66,171 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 01/12] dt-bindings: clock: google,gs101-clock: add
- PERIC0 clock management unit
+Subject: Re: [PATCH dt-schema] schemas: chosen: Add OpenWrt LEDs properties
+ for system states
 Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Rob Herring <robh@kernel.org>
-Cc: peter.griffin@linaro.org, krzysztof.kozlowski+dt@linaro.org,
- mturquette@baylibre.com, sboyd@kernel.org, conor+dt@kernel.org,
- andi.shyti@kernel.org, alim.akhtar@samsung.com, gregkh@linuxfoundation.org,
- jirislaby@kernel.org, s.nawrocki@samsung.com, tomasz.figa@gmail.com,
- cw00.choi@samsung.com, arnd@arndb.de, semen.protsenko@linaro.org,
- andre.draszik@linaro.org, saravanak@google.com, willmcvicker@google.com,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
- linux-serial@vger.kernel.org, kernel-team@android.com
-References: <20231228125805.661725-1-tudor.ambarus@linaro.org>
- <20231228125805.661725-2-tudor.ambarus@linaro.org>
- <20240109040315.GA2619804-robh@kernel.org>
- <f695f2c0-2d4e-484c-9faa-7d8b28362541@linaro.org>
- <8a55e1d9-c102-4cdf-8f23-edc40889cf6d@linaro.org>
- <ea02d7ca-62e2-4d46-8495-ed6e515625a1@linaro.org>
- <38523622-4963-44a5-a5d6-64896ae47e09@linaro.org>
- <ddd31326-8901-476f-949f-2d1291ba07a0@linaro.org>
-From: Tudor Ambarus <tudor.ambarus@linaro.org>
-In-Reply-To: <ddd31326-8901-476f-949f-2d1291ba07a0@linaro.org>
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
+ linux-leds@vger.kernel.org, openwrt-devel@lists.openwrt.org,
+ =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+References: <20240109082312.9989-1-zajec5@gmail.com>
+ <1b90c50c-0a09-4627-83cd-1794dae7ed9b@linaro.org>
+ <69966efa-21ab-4a38-ad06-61e7e2e5b6d3@gmail.com>
+ <987fe3e7-adc8-489f-867b-2d3aaa004d94@linaro.org>
+ <CAMuHMdW4BVWd93GcKwujb1p_gdOejDKwq9ewrwCqytDFRW9r=A@mail.gmail.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <CAMuHMdW4BVWd93GcKwujb1p_gdOejDKwq9ewrwCqytDFRW9r=A@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-
-
-On 1/9/24 18:38, Krzysztof Kozlowski wrote:
-> On 09/01/2024 17:12, Tudor Ambarus wrote:
->>
->>
->> On 1/9/24 15:01, Krzysztof Kozlowski wrote:
->>> On 09/01/2024 12:58, Tudor Ambarus wrote:
->>>>
->>>>
->>>> On 1/9/24 11:09, Krzysztof Kozlowski wrote:
->>>>> On 09/01/2024 05:03, Rob Herring wrote:
->>>>>> On Thu, Dec 28, 2023 at 12:57:54PM +0000, Tudor Ambarus wrote:
->>>>>>> Add dt-schema documentation for the Connectivity Peripheral 0 (PERIC0)
->>>>>>> clock management unit.
->>>>>>>
->>>>>>> Reviewed-by: Sam Protsenko <semen.protsenko@linaro.org>
->>>>>>> Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
->>>>>>> ---
->>>>>>> v2:
->>>>>>> - fix comments as per Sam's suggestion and collect his R-b tag
->>>>>>> - Rob's suggestion of renaming the clock-names to just "bus" and "ip"
->>>>>>>   was not implemented as I felt it affects readability in the driver
->>>>>>>   and consistency with other exynos clock drivers. I will happily update
->>>>>>>   the names in the -rc phase if someone else has a stronger opinion than
->>>>>>>   mine. 
->>>>>>
->>>>>> I'll defer to Krzysztof.
+On 09/01/2024 22:08, Geert Uytterhoeven wrote:
+> Hi Krzysztof,
+> 
+> On Tue, Jan 9, 2024 at 8:10 PM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>> On 09/01/2024 17:38, Rafał Miłecki wrote:
+>>> On 9.01.2024 10:02, Krzysztof Kozlowski wrote:
+>>>> On 09/01/2024 09:23, Rafał Miłecki wrote:
+>>>>> From: Rafał Miłecki <rafal@milecki.pl>
 >>>>>
->>>>> I miss the point why clock-names cannot be fixed now. This is the name
->>>>> of property, not the input clock name.
+>>>>> OpenWrt project provides downstream support for thousands of embedded
+>>>>> home network devices. Its custom requirement for DT is to provide info
+>>>>> about LEDs roles. Currently it does it by using custom non-documented
+>>>>> aliases. While formally valid (aliases.yaml doesn't limit names or
+>>>>> purposes of aliases) it's quite a loose solution.
+>>>>>
+>>>>> Document 4 precise "chosen" biding properties with clearly documented
+>>>>> OpenWrt usage. This will allow upstreaming tons of DTS files that noone
 >>>>
->>>> They can be fixed now. I've just aired the fixes at:
->>>> https://lore.kernel.org/linux-arm-kernel/20240109114908.3623645-1-tudor.ambarus@linaro.org/
+>>>> typo: none
+>>>
+>>> typo: no one ;)
+>>>
+>>>>> cared about so far as those would need to be patched downstream anyway.
 >>>>
->>>> Preparing v3 for this patch set to include the updated names here too.
+>>>>  From all this description I understand why you want to add it, but I
+>>>> don't understand what are you exactly adding and how it is being used by
+>>>> the users/OS.
 >>>
->>> I think I was not that clear enough. I did not get your current patchset
->>> - so PERIC0 clock controller - cannot use new naming.
+>>> In OpenWrt we have user space script that reads LED full path:
+>>> cat /proc/device-tree/aliases/led-<foo>
 >>>
+>>> And then sets LED to state matching current boot stage:
+>>> echo 1 > /sys/class/leds/<bar>/brightness
 >>
->> Ok, I understand that the fixes from
->> https://lore.kernel.org/linux-arm-kernel/20240109114908.3623645-1-tudor.ambarus@linaro.org/
+>> OK, it's nowhere close to a hardware property. You now instruct OS what
+>> to do. It's software or software policy.
+> 
+>>>> Anyway, we have existing properties for this - LED functions. Just
+>>>> choose LED with given function (from sysfs) and you are done. If
+>>>> function is missing in the header: feel free to go, least for me.
+>>>
+>>> In "Describing LEDs roles in device tree?" e-mail I wrote:
+>>>
+>>> "
+>>> Please note that "function" on its own is not sufficient as multiple
+>>> LEDs my share the same function name but its meaning may vary depending
+>>> on color.
+>>> "
+>>>
+>>> Let me elaborate here.
+>>>
+>>> Values of "function" property match LEDs descriptions (usually it's a
+>>> physical label). That is OK and makes sense but doesn't allow OpenWrt to
+>>> automatically pick proper LED to use during given boot stage.
+>>>
+>>> Some devices may have multiple color of a the same LED function. OpenWrt
+>>> developer needs to choose which color to use for failsafe more and which
+>>> boot fully booted state (and others too).
+>>>
+>>> Devices also differ in available LEDs by their functions. Some may have
+>>> LED_FUNCTION_POWER that OpenWrt needs to use. Some may have
+>>> LED_FUNCTION_STATUS. Or both. There are some more (less common)
+>>> functions like LED_FUNCTION_ACTIVITY.
+>>>
+>>> We failed at OpenWrt to develop a single generic script to rule all
+>>> devices and all their LEDs combinations. We ended up with developers
+>>> *choosing* what LED to use for a given system state.
 >>
->> are NACK-ed and I shall use the full clock-names in this patch set as
->> well, thus "dout_cmu_peric0_bus", and "dout_cmu_peric0_ip". I don't mind
->> changing them back, will send a v4 using the full clock names.
+>> So this all is because you want to write easier OS. That's abuse of
+>> Devicetree. You can define which LEDs have different meaning, e.g.
+>> physical label or icon attached to them. That's a hardware property.
+>>
+>> You can also define how pieces of hardware are wired together and create
+>> entire system, e.g. connect one LED to disk activity.
+>>
+>> However what you are proposing here is to dynamically configure one,
+>> given OS. I don't think it is suitable.
+>>
+>> The problem of OS to nicely figure out which LED to blink when, is not a
+>> problem of Devicetree. It is a problem of OS and its configuration.
 > 
-> They are not rejected, it is just independent thing. At least looks like
-> independent.
-
-The datasheet is not so verbose, but as I understand, CMU_MISC and
-CMU_PERIC0 are clock domains of the same clock controller, thus I think
-they should be treated the same. We should either get rid of the name of
-the block in the clock names or keep it, but be consistent across all
-the clock domains.
+> I'd say it's a grey area...
 > 
->> Out of curiosity, why can't we change the names? All gs101 patches are
->> for v6.8, thus they haven't made a release yet. We still have the -rc
->> phase where we can fix things.
+> What if the colors are printed on the case, next to the LED?
+> Like these multi-color LEDs indicating port speed on network switches?
+> Then it suddenly becomes hardware description, just like
+> "aliases/serial2 = &...;" referring to serial port 2.
 > 
-> We can change. I would not bother that much with doing that, because I
-> sent already them to arm-soc. That means I need to consider this as
-> fixes and I just did not want to deal with it.
-> 
-> The question is quite different for a new clock controller - peric0.
-> What parts of driver readability is affected by using "bus" name?
-> 
+> Next, what if the colors are not printed on the case, but documented
+> in the product's manual?
+> What if there is no paper product manual, but just the OpenWRT online
+> documentation?
 
-As Peter pointed out, if keeping the shorter names, one would have to
-cross reference with the device tree in order to determine which clock
-is used, its type, whether it's a gate or a divider. Whereas if we keep
-the full name, one can see what's the clock about with a glance. The
-full name coincides with the clock names that are defined in the clock
-driver, thus one can grep for the full name from the device tree and hit
-the clock definition from the clock driver.
+Mapping between colors and logical meanings is subjective. I don't think
+it is the same case as LED with a radio-signal or power-plug label.
 
-The cons of keeping the full name is that keeping the name of the block
-in the DT's clock name is just redundant. Rob was clear and said that
-including the block name in the -names is a pattern we don't want.
+Anyway I also agree that this distinction is a bit blurred.
 
-In what concerns my personal preference, I like the full name. At the
-same time, I see Rob's point, and if that turns out to be a rule, let's
-respect it. So I'm fine with both, but let's be consistent across the
-driver and have the same clock name scheme for all the clock domains,
-otherwise it will just look weird.
+Best regards,
+Krzysztof
 
-Thanks,
-ta
 
