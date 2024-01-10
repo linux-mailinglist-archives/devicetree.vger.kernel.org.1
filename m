@@ -1,65 +1,64 @@
-Return-Path: <devicetree+bounces-31177-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31178-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51AEA82A263
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 21:37:09 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id DFAA982A2A2
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 21:46:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 535081C21DF0
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 20:37:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 691F11F218FA
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 20:46:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 938FB4EB32;
-	Wed, 10 Jan 2024 20:36:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B66C4E1C6;
+	Wed, 10 Jan 2024 20:41:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RWDOoiej"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ePiUZSde"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0CAE4F613
-	for <devicetree@vger.kernel.org>; Wed, 10 Jan 2024 20:36:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08D414F209
+	for <devicetree@vger.kernel.org>; Wed, 10 Jan 2024 20:41:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-2cd7e429429so11685391fa.1
-        for <devicetree@vger.kernel.org>; Wed, 10 Jan 2024 12:36:51 -0800 (PST)
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-50eac018059so5677827e87.0
+        for <devicetree@vger.kernel.org>; Wed, 10 Jan 2024 12:41:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704919010; x=1705523810; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:references:cc:to
-         :from:content-language:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=vF5tupcUeWkTYyiJxCJd6V7g3X/1lq74f/KLJG4DSME=;
-        b=RWDOoiejsAFcdf8v1ZYntNf1rd6XfTEBytbDRiC6MfM3OcatmvV2LIv2plTkzTTU7b
-         axYxjFbUiVO+8NqDpN4FovfmHaE8C+yl8VjXbNJaAUzSevEhcvCf18Ql1seBvZezKsca
-         whCxd1opn0mVa0RtBCnf3MLPlcR7x5a5aPQOywq54AiB5q+VRDn+GtKScKu3XJJmJSRa
-         nxrvYo5PMuqwrJu8CVz0Ft5ZradpN/rCm6ICaU/n7vQ/nJeS02LXSwZZ9I1U3jeadqZD
-         Kn+pXJ01APUuEwi4y5lVv+3kUeAtddclSrYupbYDSYwHRqf69wcIFd+wHTAUuJ0jQteM
-         0/TA==
+        d=linaro.org; s=google; t=1704919273; x=1705524073; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=tCuGOsF511hH2n1+4c7buyP4bZscPgBwIUvlIEMBj58=;
+        b=ePiUZSdefqeNlNIcuWNjYZls4mFAAkG7hQ0zqY87XQcCE5YcFW8y166VAlqICSyKUL
+         JnhRq0B5oPhPqlpcWJbqwnz7aoExuFetkSIMIInhmlwV1/DL27YPihib16GYUeehl2kx
+         5PWw+Xo2NmGk5LZ4LLMh91lOWSznh1WpbRdJPZQX9GK3niNoa37j6Eim3ohPHWCoSlXl
+         7Q7diWc94XzZv1XeQIxX1bKNUmQ8w3nJ5y7GkUHfxEY0V1HSg9zg5O/moNRmECg3f8Ju
+         eaxT2sMl9WVrX9KGmN/pTghe2w/K/tKlVxQbYqFxTCqB8ib7mTkLWRrETaXRGxr1WCrO
+         M3Ug==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704919010; x=1705523810;
-        h=content-transfer-encoding:in-reply-to:autocrypt:references:cc:to
-         :from:content-language:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=vF5tupcUeWkTYyiJxCJd6V7g3X/1lq74f/KLJG4DSME=;
-        b=c4h8mpbxV1A8GuAii3YaHDZLFHu1QhBiSnC2xaJxZGjY6VPjOD2viasrIFdeEOXdjv
-         2gY0DkSdXgfsFwWUw2OWre0eB3I/nUqb88RXnYerK50pnEDeRSa3YTBc3wy0Ag590iCZ
-         9QqWvhePWJIUXYpBAFocmIzA7wEKimKahlyF+sMOLUEj5nkxY7bTr2B3aEjBTjej1SFK
-         Jx09CEgavLHwTFrpEv97qC3t5AJ9uLUPyNnaPlmG/KcZ3684KaB72sCbjmMgW7pXS4LO
-         ylMOqq2C84ES49GyoZSdo+uAKu5Gerr8poS4VrpaS2q+5uGHdIvHXI2gQmxE6bSQiVlR
-         1Tkw==
-X-Gm-Message-State: AOJu0Ywx+WsQUo9hMyE9sBsGKqdimZqkNlYXwyHNLC/Gc52Y7eZgoszW
-	Gvo058bc0u+Sx0Z6Nhazn8EQUFOGSKogTQ==
-X-Google-Smtp-Source: AGHT+IF5zSjWoDPn7CNER2fBW1ddHR+9FT1AiH7W996NoEg1yiOxXBFr3ZSsVpapQPPyOnMTjKVqGA==
-X-Received: by 2002:a2e:8205:0:b0:2cd:690d:5d37 with SMTP id w5-20020a2e8205000000b002cd690d5d37mr76802ljg.29.1704919009786;
-        Wed, 10 Jan 2024 12:36:49 -0800 (PST)
+        d=1e100.net; s=20230601; t=1704919273; x=1705524073;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=tCuGOsF511hH2n1+4c7buyP4bZscPgBwIUvlIEMBj58=;
+        b=ICLfJe2A7EXDBw911ou5/ev+AAArdjwidMALJz1UT5TdEkM+tKtUUv7bTj8dAktMlz
+         Oid2xsBptJwMQ5XPSafG0PIjrPbJEqIdMplDw81LRMZJg2eBdvA7x6mDNvpULjS4VTu2
+         SkUaGFVyG84JF+JjuSz5vARAF/+s6WlqlXVlZnu4W3Q5VV2NRozOoNY08RffILHSDSN1
+         4SwuNmrKqzz6+N7CHWqDfdW/P1KGoRLFDnrQasBO9AE/XaXZYfbPeXX/kO4Mqfr4iRWf
+         7NZRzVTGaBaFLtfvVsFMd7xgJvlWzaZaIld0yEVG/bJPv7U+ohwJPWa4x+YIwhzLqSR/
+         32tA==
+X-Gm-Message-State: AOJu0YyisI0gSEM1DR5rRyL4to9GVEPrI4Wxj03g0yXQVVqEpyWML4ph
+	3TWfl2PywSUkNq82Kbst2LNL92TKhyBqsQ==
+X-Google-Smtp-Source: AGHT+IFdk3jUir9Fyt4evV8iBpIo5ko8wxzBBm3uBfh1T9qXkwepRjxuE99PtBvZPbeoKM/awgh9Vg==
+X-Received: by 2002:ac2:5e3c:0:b0:50e:abe1:1c3c with SMTP id o28-20020ac25e3c000000b0050eabe11c3cmr6640lfg.98.1704919273088;
+        Wed, 10 Jan 2024 12:41:13 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.223.112])
-        by smtp.gmail.com with ESMTPSA id x17-20020aa7d391000000b00556cf695da0sm2310685edq.78.2024.01.10.12.36.46
+        by smtp.gmail.com with ESMTPSA id bw8-20020a170906c1c800b00a269b4692a9sm2422964ejb.84.2024.01.10.12.41.10
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 10 Jan 2024 12:36:48 -0800 (PST)
-Message-ID: <eef0aa5a-a9bb-43e4-9066-febf48fce46d@linaro.org>
-Date: Wed, 10 Jan 2024 21:36:45 +0100
+        Wed, 10 Jan 2024 12:41:12 -0800 (PST)
+Message-ID: <10e8c81f-0ebe-441e-b80b-9bf4df7ff782@linaro.org>
+Date: Wed, 10 Jan 2024 21:41:09 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,38 +66,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 7/8] tpm: tis-i2c: Add more compatible strings
+Subject: Re: [PATCH 02/16] arm64: dts: ti: k3-am62a7: Add MIT license along
+ with GPL-2.0
 Content-Language: en-US
+To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+ Tero Kristo <kristo@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Rob Herring <robh+dt@kernel.org>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, Julien Panis <jpanis@baylibre.com>,
+ Pierre Gondois <pierre.gondois@arm.com>, Tony Lindgren <tony@atomide.com>
+References: <20240110140903.4090946-1-nm@ti.com>
+ <20240110140903.4090946-3-nm@ti.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Guenter Roeck <linux@roeck-us.net>, Ninad Palsule <ninad@linux.ibm.com>,
- Conor Dooley <conor@kernel.org>
-Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, joel@jms.id.au, andrew@codeconstruct.com.au,
- peterhuewe@gmx.de, jarkko@kernel.org, jgg@ziepe.ca, keescook@chromium.org,
- tony.luck@intel.com, gpiccoli@igalia.com, johannes.holland@infineon.com,
- broonie@kernel.org, patrick.rudolph@9elements.com, vincent@vtremblay.dev,
- peteryin.openbmc@gmail.com, lakshmiy@us.ibm.com, bhelgaas@google.com,
- naresh.solanki@9elements.com, alexander.stein@ew.tq-group.com,
- festevam@denx.de, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
- linux-kernel@vger.kernel.org, linux-integrity@vger.kernel.org,
- linux-hardening@vger.kernel.org, geissonator@yahoo.com
-References: <20231212164004.1683589-1-ninad@linux.ibm.com>
- <20231212164004.1683589-8-ninad@linux.ibm.com>
- <20231212-avid-grill-dbead068fac8@spud>
- <73381bb0-7fa7-4a9e-88df-ab0063058e26@roeck-us.net>
- <20231212-mouth-choice-40a83caa34ec@spud>
- <2946fbb1-2a47-4d21-83dc-8e45bf6ba5a9@roeck-us.net>
- <60c8bbdb-4e08-44f0-88d4-ab164d4843b5@linux.ibm.com>
- <20240109-pep-coerce-2a86ae88753d@spud>
- <01974929-dfbf-4989-ba39-369e521827d0@linux.ibm.com>
- <3d194e84-bf1a-48e4-a376-e5c327c6508d@linaro.org>
- <2dd37d2b-28da-4e73-9047-61ec5d64bdb5@linux.ibm.com>
- <edbefdfd-eb59-4d86-ad07-feb066a21082@linaro.org>
- <385b06e9-1daa-408a-a0ed-7b09d7d539df@linux.ibm.com>
- <d56b1e3e-72c4-427f-937d-8c8146bf5b28@linaro.org>
- <3830c26d-96be-4084-a04d-8edb9ccbab5e@roeck-us.net>
- <32d46b64-d4a5-437a-8737-c2d172608559@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -143,64 +123,31 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <32d46b64-d4a5-437a-8737-c2d172608559@linaro.org>
+In-Reply-To: <20240110140903.4090946-3-nm@ti.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 10/01/2024 21:34, Krzysztof Kozlowski wrote:
->>>>>>>>>> I have send it as a separate commit. https://lore.kernel.org/linux-kernel/20231214144954.3833998-1-ninad@linux.ibm.com/
->>>>>>>>> Why did you do that? It now just adds undocumented compatibles to the
->>>>>>>>> driver. Please, as Rob requested, work with Lukas on his series to make
->>>>>>>>> sure that these devices are documented.
->>>>>>>> I think krzysztof kozlowski suggested to send these patches separately:
->>>>>>>> https://lore.kernel.org/linux-kernel/1c5ace65-2fd8-4503-b22f-e0f564d1c83f@linaro.org/
->>>>>>>>
->>>>>>>> Did I misunderstood it? Do you guys want me to include that commit again?
->>>>>>> My comment was in DTS thread under specific DTS patch. How did you
->>>>>>> figure out it applies to driver and bindings? This does not make sense.
->>>>>> Sorry for the misunderstanding. Where do you want me to add driver
->>>>>> patch? Before all DTS patches or after all DTS patches?
->>>>> Does not matter, why do you insist on combining them with DTS? Drivers
->>>>> and bindings are going together. DTS better separate, although depending
->>>>> on the case can be together.
->>>>>
->>>> I have combined DTS and Driver because DTS was using compatibility
->>>> string which is not upstream yet hence I thought it is logical to send
->>>> it under same patchset.
->>>
->>> Sometimes yes, sometimes not. DTS must not go via driver subsystem, so
->>> sending it in the same patchset has implications on maintainers applying
->>> it. Some like it, some don't and you will be nagged for combining them.
->>>
->>
->> "DTS must not go via driver subsystem"
->>
->> I always thought the guideline was to submit separate _patches_ for dts
->> and driver changes, but as part of a single series. I didn't know that
->> there is a rule to submit separate patch _series_. I also didn't know
->> (and as far as I know no one called me on it) that I am not supposed
->> to _apply_ dts changes. So far, I typically applied dts changes together
->> with driver patches after receiving an Acked-by: or Reviewed-by:
->> from a devicetree maintainer.
+On 10/01/2024 15:08, Nishanth Menon wrote:
+> Modify license to include dual licensing as GPL-2.0-only OR MIT
+> license for SoC and TI evm device tree files. This allows for Linux
+> kernel device tree to be used in other Operating System ecosystems
+> such as Zephyr or FreeBSD.
 > 
-> I did not notice you applying them, but such guideline - DTS must go via
-> respective SoC tree - was always repeated by me and SoC maintainers.
-> Just like gazillion other things probably was not documented... or even
-> if it was documented, it would be so deep among hundreds of other rules
-> nobody would find it. :)
+> While at this, update the GPL-2.0 to be GPL-2.0-only to be in sync with
+> latest SPDX conventions (GPL-2.0 is deprecated).
 > 
->>
->> This exchange suggests that I did it all wrong. Should I reject devicetree
->> patches submitted as part of a driver patch series going forward ?
+> While at this, update the TI copyright year to sync with current year to
+> indicate license change (and add it at least for one file which was
+> missing TI copyright).
 > 
-> I propose: just ignore them. The SoC maintainer will pick them up.
-> 
->> Should I not apply dts patches submitted as part of a patch series ?
-> 
-> No, please do not apply them.
+> Cc: Julien Panis <jpanis@baylibre.com>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Cc: Pierre Gondois <pierre.gondois@arm.com>
 
-Eh, English can be confusing. Let's make it easier to grasp:
-"Please do not apply DTS patches to a driver subsystem."
+I guess I am listed here due to some contributions, so copyrights. In
+such case, I agree for relicensing to "GPL-2.0-only OR MIT".
+
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
