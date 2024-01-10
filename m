@@ -1,152 +1,142 @@
-Return-Path: <devicetree+bounces-30907-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30909-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D29F8297AA
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 11:31:57 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3EEA18297B1
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 11:36:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1E7DAB2270A
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 10:31:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DB2F328E76E
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 10:36:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 795A13FE33;
-	Wed, 10 Jan 2024 10:31:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C4BA3FE37;
+	Wed, 10 Jan 2024 10:36:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Y1nyBdKO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DfqxjOAz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 208183C49D;
-	Wed, 10 Jan 2024 10:31:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40A8d37s021096;
-	Wed, 10 Jan 2024 10:31:19 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=BOuDR4vqdlLrDwTrZywpOXtBP0nMFyGMe6C1dwrW9lM=; b=Y1
-	nyBdKOB708B5KRgO4tJwiZ46XiN0fs/Rm/lqKQIkFuQGYC2jqlq5OaZAmb7is325
-	NJuNBUHx3pa1lgmmBfDwIVMt+Eql7OeEk+euXXDW8IiLxkOoqBdg4LoLRi0AUWUN
-	m7s/7aXoLM6CsfzmcSEcL4CQIhWZM7JoDBpQ7e1orczGCs3L2U5iqzIj8F0kVmK7
-	lltJ8dPb71pZBK6JXlBS5A2RSo6BBnEcqpapUU2NhjmtYqSytszL+ZmXtHfqoxVs
-	IlVLtrNzvEwDHwX2K9y/avNL4iIFQCYzMSwzcFu4xtZac/lHu+4cYrp9iPyokgpj
-	oTyZdE9h8cbq8tyYz2tQ==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vhjh2rusg-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 10 Jan 2024 10:31:18 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 40AAVHv4020107
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 10 Jan 2024 10:31:17 GMT
-Received: from [10.218.19.46] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Wed, 10 Jan
- 2024 02:31:10 -0800
-Message-ID: <a242202d-c576-05e8-8726-91dfdbe10e7b@quicinc.com>
-Date: Wed, 10 Jan 2024 16:01:06 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45A463FE26;
+	Wed, 10 Jan 2024 10:36:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 21E85C43399;
+	Wed, 10 Jan 2024 10:36:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1704883005;
+	bh=wyOV/LJsR4E42qHMH4S9CWfQEeQYMZb2sHN/hq7z69s=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=DfqxjOAzvmxxlrtfgjsBWM5kOd9J6DM1J4iR8UoturW00QX+6YM0H8absFofzutoI
+	 IKpGFWtQcpipJDvG2R6Z3+Juv7HqxX61c85UD2onEh640uArHaDqIuCUE4+68wxPfi
+	 nBpeUlRh74VF9V6M7Maf5lK7qDwFIerJ7WYMHA07mBPJ5DxEvrheqV0Kn51o1bZ1AF
+	 ZVQVIQFPSRwzdwoK1bH7A9d/WnTpcoWIi6VBK61a5hTusaerrH9NNyZv2Uk0fmUJj1
+	 2UHz4KFa4AuKOU3x9etbWTHuQ97+r/SkaRyFSrDm04n4Tq7iQ8puOFBw5cSmrEuZAP
+	 nDIESOy+HJ1Gg==
+Date: Wed, 10 Jan 2024 10:36:39 +0000
+From: Conor Dooley <conor@kernel.org>
+To: "Jason-JH.Lin" <jason-jh.lin@mediatek.com>
+Cc: Jassi Brar <jassisinghbrar@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-media@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	Jason-ch Chen <jason-ch.chen@mediatek.com>,
+	Johnson Wang <johnson.wang@mediatek.com>,
+	Singo Chang <singo.chang@mediatek.com>,
+	Nancy Lin <nancy.lin@mediatek.com>,
+	Shawn Sung <shawn.sung@mediatek.com>,
+	Project_Global_Chrome_Upstream_Group@mediatek.com
+Subject: Re: [PATCH v2 2/4] dt-bindings: mailbox: mediatek: gce-mailbox: Add
+ reference to gce-props.yaml
+Message-ID: <20240110-grumbling-tattling-0202fc5e21f2@spud>
+References: <20240110063532.14124-1-jason-jh.lin@mediatek.com>
+ <20240110063532.14124-3-jason-jh.lin@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.0
-Subject: Re: [PATCH 1/3] clk: qcom: gcc-sm8150: Register QUPv3 RCGs for DFS on
- SM8150
-Content-Language: en-US
-To: Stephen Boyd <sboyd@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Deepak Katragadda
-	<dkatraga@codeaurora.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Turquette
-	<mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>, Taniya Das
-	<quic_tdas@quicinc.com>,
-        Vinod Koul <vkoul@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Ajit Pandey
-	<quic_ajipan@quicinc.com>,
-        Imran Shaik <quic_imrashai@quicinc.com>,
-        "Jagadeesh Kona" <quic_jkona@quicinc.com>
-References: <20240104-sm8150-dfs-support-v1-0-a5eebfdc1b12@quicinc.com>
- <20240104-sm8150-dfs-support-v1-1-a5eebfdc1b12@quicinc.com>
- <988ae72846dc680382f98b63b61a8c32.sboyd@kernel.org>
-From: "Satya Priya Kakitapalli (Temp)" <quic_skakitap@quicinc.com>
-In-Reply-To: <988ae72846dc680382f98b63b61a8c32.sboyd@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: mYmE384YEGN7sGTWGTAr9sk-pnczqoW2
-X-Proofpoint-GUID: mYmE384YEGN7sGTWGTAr9sk-pnczqoW2
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-12-09_02,2023-12-07_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- mlxlogscore=999 clxscore=1015 bulkscore=0 malwarescore=0 spamscore=0
- phishscore=0 priorityscore=1501 adultscore=0 impostorscore=0
- suspectscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2311290000 definitions=main-2401100085
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="UHPsus4u3u0dm8mG"
+Content-Disposition: inline
+In-Reply-To: <20240110063532.14124-3-jason-jh.lin@mediatek.com>
 
 
-On 1/5/2024 3:06 AM, Stephen Boyd wrote:
-> Quoting Satya Priya Kakitapalli (2024-01-04 06:23:04)
->> diff --git a/drivers/clk/qcom/gcc-sm8150.c b/drivers/clk/qcom/gcc-sm8150.c
->> index 05d115c52dfe..6d76fd344ddf 100644
->> --- a/drivers/clk/qcom/gcc-sm8150.c
->> +++ b/drivers/clk/qcom/gcc-sm8150.c
->> @@ -453,19 +453,29 @@ static const struct freq_tbl ftbl_gcc_qupv3_wrap0_s0_clk_src[] = {
->>          { }
->>   };
->>   
->> +static struct clk_init_data gcc_qupv3_wrap0_s0_clk_src_init = {
-> Can these be const?
+--UHPsus4u3u0dm8mG
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+On Wed, Jan 10, 2024 at 02:35:30PM +0800, Jason-JH.Lin wrote:
+> 1. Add "Provider" to the title to make it clearer.
+> 2. Add reference to gce-props.yaml for adding mediatek,gce-events propert=
+y.
 
-We update the ops inside the qcom_cc_register_rcg_dfs. Hence cannot make 
-this as const.
+I can see this from the diff. There's still no explanation here as to
+why the mailbox provider needs to have a gce-event id. NAK until you can
+explain that.
 
+Cheers,
+Conor.
 
->> +       .name = "gcc_qupv3_wrap0_s0_clk_src",
->> +       .parent_data = gcc_parents_0,
->> +       .num_parents = ARRAY_SIZE(gcc_parents_0),
->> +       .flags = CLK_SET_RATE_PARENT,
->> +       .ops = &clk_rcg2_ops,
->> +};
->> +
->>   static struct clk_rcg2 gcc_qupv3_wrap0_s0_clk_src = {
->>          .cmd_rcgr = 0x17148,
->>          .mnd_width = 16,
->>          .hid_width = 5,
->>          .parent_map = gcc_parent_map_0,
->>          .freq_tbl = ftbl_gcc_qupv3_wrap0_s0_clk_src,
->> -       .clkr.hw.init = &(struct clk_init_data){
->> -               .name = "gcc_qupv3_wrap0_s0_clk_src",
-> [...]
->> @@ -3786,6 +3850,13 @@ static int gcc_sm8150_probe(struct platform_device *pdev)
->>          regmap_update_bits(regmap, 0x4d110, 0x3, 0x3);
->>          regmap_update_bits(regmap, 0x71028, 0x3, 0x3);
->>   
->> +       ret = qcom_cc_register_rcg_dfs(regmap, gcc_dfs_clocks,
->> +                                      ARRAY_SIZE(gcc_dfs_clocks));
->> +       if (ret) {
->> +               dev_err(&pdev->dev, "Failed to register with DFS!\n");
-> Use
->
-> 		return dev_err_probe(...);
+>=20
+> Signed-off-by: Jason-JH.Lin <jason-jh.lin@mediatek.com>
+> ---
+>  .../devicetree/bindings/mailbox/mediatek,gce-mailbox.yaml   | 6 ++++--
+>  1 file changed, 4 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/mailbox/mediatek,gce-mailb=
+ox.yaml b/Documentation/devicetree/bindings/mailbox/mediatek,gce-mailbox.ya=
+ml
+> index cef9d7601398..728dc93117a6 100644
+> --- a/Documentation/devicetree/bindings/mailbox/mediatek,gce-mailbox.yaml
+> +++ b/Documentation/devicetree/bindings/mailbox/mediatek,gce-mailbox.yaml
+> @@ -4,7 +4,7 @@
+>  $id: http://devicetree.org/schemas/mailbox/mediatek,gce-mailbox.yaml#
+>  $schema: http://devicetree.org/meta-schemas/core.yaml#
+> =20
+> -title: Mediatek Global Command Engine Mailbox
+> +title: MediaTek Global Command Engine Mailbox Provider
+> =20
+>  maintainers:
+>    - Houlong Wei <houlong.wei@mediatek.com>
+> @@ -57,6 +57,8 @@ required:
+>    - clocks
+> =20
+>  allOf:
+> +  - $ref: mediatek,gce-props.yaml
+> +
+>    - if:
+>        not:
+>          properties:
+> @@ -67,7 +69,7 @@ allOf:
+>        required:
+>          - clock-names
+> =20
+> -additionalProperties: false
+> +unevaluatedProperties: false
+> =20
+>  examples:
+>    - |
+> --=20
+> 2.18.0
+>=20
 
+--UHPsus4u3u0dm8mG
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Okay.
+-----BEGIN PGP SIGNATURE-----
 
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZZ5zNwAKCRB4tDGHoIJi
+0kjpAP9Yk36rZPZIu4QvFIRWcWvj+BIgAH03XRGq39GAwZCtNQEAlW83e29Zc5Ld
+FJrUZnZshBfMyq32x1MacvUWrJoDsQc=
+=ngct
+-----END PGP SIGNATURE-----
+
+--UHPsus4u3u0dm8mG--
 
