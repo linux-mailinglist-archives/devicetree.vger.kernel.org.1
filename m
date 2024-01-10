@@ -1,85 +1,91 @@
-Return-Path: <devicetree+bounces-31211-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31212-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9371982A386
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 22:46:10 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 11A1F82A3E6
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 23:24:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F20DFB23A08
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 21:46:07 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A658AB21913
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 22:24:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A98CC4F60F;
-	Wed, 10 Jan 2024 21:46:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 445884F88E;
+	Wed, 10 Jan 2024 22:24:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EhR0vvYK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="b88GyTBR"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 834712AE69;
-	Wed, 10 Jan 2024 21:46:02 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E11E0C433F1;
-	Wed, 10 Jan 2024 21:46:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 136B750242;
+	Wed, 10 Jan 2024 22:24:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 09EEEC433C7;
+	Wed, 10 Jan 2024 22:24:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1704923162;
-	bh=hbT21zaEKH9BJDarRM6/a+kiLWB9ebn7plUYWqUhisQ=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=EhR0vvYKUylc/ffJRTLhiUMz4eN/s/9vb5ME9IPglzsrEhg/rZknl1Q4Io8EH846r
-	 FYxqjVYhg/AhaHO3xk6mFAmGKXpzSqLGEKLqaYfcbN50SRm2Q7urgg+VF2h+xZNny7
-	 7UJ4g7lTYiz2aoxnKzYeNvUtucnvRJbzB9PffTbm07MCWE8bS0648WBgTRcrHXK3A8
-	 0lNCdqCaiMkGVfg4+jNPSmL+8OLrj6V27ng9mPNQbyXNbjrRaXlLFP6Mb5ZG8DbAv4
-	 +bMqG4j48/inmnAcm3ammI/JcCIo3jmWiUv3h82R0KyG/mVXCDGB/6inWjJkb09UCC
-	 N8wblpu7kQkpg==
-Message-ID: <78875535469138a0fd0659d7e621a4f2.sboyd@kernel.org>
-Content-Type: text/plain; charset="utf-8"
+	s=k20201202; t=1704925470;
+	bh=AoQukHVcIbmk0qSi1i/n2ripa6DEo4EtqV+Fsg0EiLo=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=b88GyTBR19+wvSfALyqT9ZOU+D8F7q/RzFN/2ZDwFNEmzFg1uFbOu78QHWfCR7Wf8
+	 PQ4S8QOraaWZ30Ok6UM1Ip+dGYaFpN0YDaHr1kF24sc3jqPoS+p9W8Cu8xU95SpG8O
+	 LcJpF836kf+paYwZBvE4hgtvjlF57TuXbpQa8GYL7DWo9BJeoAFDI/It7e817rL/1E
+	 ZeCywLE55Ds+lFCQygYvV3xr7fvo2VlvRx03e9qF6RGxLUSYgPtDj3+wAY7HS52ikn
+	 EYyeKITstDwkMW3mHObAi+F3XMhxOT73IXQqlxkpohel9EImhm2p2Xxz8+YD2ODubr
+	 M8q9+z+kGORRA==
+Date: Wed, 10 Jan 2024 14:24:28 -0800
+From: Jakub Kicinski <kuba@kernel.org>
+To: Luo Jie <quic_luoj@quicinc.com>
+Cc: <agross@kernel.org>, <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
+ <davem@davemloft.net>, <edumazet@google.com>, <pabeni@redhat.com>,
+ <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+ <conor+dt@kernel.org>, <corbet@lwn.net>, <catalin.marinas@arm.com>,
+ <will@kernel.org>, <p.zabel@pengutronix.de>, <linux@armlinux.org.uk>,
+ <shannon.nelson@amd.com>, <anthony.l.nguyen@intel.com>,
+ <jasowang@redhat.com>, <brett.creeley@amd.com>, <rrameshbabu@nvidia.com>,
+ <joshua.a.hay@intel.com>, <arnd@arndb.de>, <geert+renesas@glider.be>,
+ <neil.armstrong@linaro.org>, <dmitry.baryshkov@linaro.org>,
+ <nfraprado@collabora.com>, <m.szyprowski@samsung.com>, <u-kumar1@ti.com>,
+ <jacob.e.keller@intel.com>, <andrew@lunn.ch>, <netdev@vger.kernel.org>,
+ <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+ <linux-arm-kernel@lists.infradead.org>, <ryazanov.s.a@gmail.com>,
+ <ansuelsmth@gmail.com>, <quic_kkumarcs@quicinc.com>,
+ <quic_suruchia@quicinc.com>, <quic_soni@quicinc.com>,
+ <quic_pavir@quicinc.com>, <quic_souravp@quicinc.com>,
+ <quic_linchen@quicinc.com>, <quic_leiwei@quicinc.com>
+Subject: Re: [PATCH net-next 00/20] net: ethernet: Add qcom PPE driver
+Message-ID: <20240110142428.52026d9e@kernel.org>
+In-Reply-To: <20240110114033.32575-1-quic_luoj@quicinc.com>
+References: <20240110114033.32575-1-quic_luoj@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <dc739435-d955-44f7-b5ee-9de4d5336725@linaro.org>
-References: <20240108135421.684263-1-tmaimon77@gmail.com> <20240108135421.684263-2-tmaimon77@gmail.com> <20240109170830.GA2772086-robh@kernel.org> <CAP6Zq1jCHVrFfRa6c3DZ4t2aaJTkWukeEkia0AqhzppC0mjbfg@mail.gmail.com> <dc739435-d955-44f7-b5ee-9de4d5336725@linaro.org>
-Subject: Re: [PATCH v22 1/8] dt-bindings: clock: npcm845: Add reference 25m clock property
-From: Stephen Boyd <sboyd@kernel.org>
-Cc: mturquette@baylibre.com, krzysztof.kozlowski+dt@linaro.org, tali.perry1@gmail.com, joel@jms.id.au, venture@google.com, yuenn@google.com, benjaminfair@google.com, openbmc@lists.ozlabs.org, linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Rob Herring <robh@kernel.org>, Tomer Maimon <tmaimon77@gmail.com>
-Date: Wed, 10 Jan 2024 13:45:59 -0800
-User-Agent: alot/0.10
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-Quoting Krzysztof Kozlowski (2024-01-10 12:54:14)
-> On 10/01/2024 14:47, Tomer Maimon wrote:
-> >>> +
-> >>> +  clock-names:
-> >>> +    items:
-> >>> +      - const: refclk
-> >>> +
-> >>>    '#clock-cells':
-> >>>      const: 1
-> >>>      description:
-> >>> @@ -30,12 +38,20 @@ properties:
-> >>>  required:
-> >>>    - compatible
-> >>>    - reg
-> >>> +  - clocks
-> >>> +  - clock-names
-> >>
-> >> New required properties are an ABI break. That's fine if you explain w=
-hy
-> >> that's okay in the commit msg.
-> > What do you mean?
->=20
-> I think it was clear. Which part is not clear?
->=20
-> > Could I add the new required properties to the required list?
->=20
-> You just did, didn't you? And received feedback that you are breaking
-> the ABI.
->=20
+On Wed, 10 Jan 2024 19:40:12 +0800 Luo Jie wrote:
+> The PPE(packet process engine) hardware block is available in Qualcomm
+> IPQ chipsets that support PPE architecture, such as IPQ9574 and IPQ5332.
 
-It's fine to break the ABI as long as the commit message explains that
-the driver isn't merged yet.
+What's the relationship between this driver and QCA8084?
+
+In the last month I see separate changes from you for mdio-ipq4019.c,
+phy/at803x.c and now this driver (none of which got merged, AFAICT.)
+Are you actually the author of this code, or are you just trying 
+to upstream bunch of vendor code?
+
+Now you're dumping another 10kLoC on the list, and even though this is
+hardly your first posting you're apparently not aware of our most basic
+posting rules:
+https://www.kernel.org/doc/html/next/process/maintainer-netdev.html#tl-dr
+
+The reviewers are getting frustrated. Please, help us help you.
+Stop throwing code at the list and work out a plan with Andrew
+and others on how to get something merged...
+-- 
+pv-bot: 15cnt
+pw-bot: cr
 
