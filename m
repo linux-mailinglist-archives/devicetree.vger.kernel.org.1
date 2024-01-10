@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-30849-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30851-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9C87829470
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 08:40:22 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3AF29829480
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 08:50:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4897928744E
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 07:40:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BAB671F274C2
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 07:50:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 215863A27E;
-	Wed, 10 Jan 2024 07:40:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 114DC3A27E;
+	Wed, 10 Jan 2024 07:50:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="IselThKt"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VEhQPw5G"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 693E13A1A3
-	for <devicetree@vger.kernel.org>; Wed, 10 Jan 2024 07:40:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A3F63A1C8
+	for <devicetree@vger.kernel.org>; Wed, 10 Jan 2024 07:50:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-40e47dc8b0eso25665395e9.3
-        for <devicetree@vger.kernel.org>; Tue, 09 Jan 2024 23:40:12 -0800 (PST)
+Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-50e766937ddso4348215e87.3
+        for <devicetree@vger.kernel.org>; Tue, 09 Jan 2024 23:50:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704872411; x=1705477211; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1704873018; x=1705477818; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=ctTZECAtqC1iPMbP63QXR7yjoHxoDS3skKp3Qzi73/o=;
-        b=IselThKtGIAQtemI/zjjWehTG39xKMWtYOhrSHlwTBlFxkL2IgI74fn5JPipxjlxvR
-         iF4z/tTVChFF7gms+m1cCWewNoqWCcnKexIVazElPxh5XwUd+y3gKULk27UYL2Y4Ul5g
-         Cg7wETEz3BFdZZVfFN9E46zYgIQ3upJXnOIOPLyhC+yv+Qvo/XzALdE8C7H4fA8dmnYR
-         ap2pYVwVchNvqgGRmPPmnJyn/bfDR+6cSymxOCjTfyWcrWIoQTa6GZvnrxEbmezJH1Iu
-         GGJRrdY/o1E3K42p8kOgw/iMAGE0Ha+tG225FsaNxEcEr5ZXvLO2A0xGMnGuiA3CYqEa
-         33UQ==
+        bh=4bk0D59+COImnVTGuEXYLN3X3RO4BozMRlOErcCyLDg=;
+        b=VEhQPw5GzCIT+8ZP1U/wDTqiQeKtZMX9Q5Px4L/HjQKQYfYu64xshnffVMgzlna6qD
+         UTqiABLm/RleWVFNr3L7i+rMNgo8YzALMeMiASPTeBfcjtCmzkNTSIBCgLsO3IOlASbG
+         i1aCQn/D8x9S55dVd3+Akt3FdqDftypL4IwxtUtZ5r4zi+KBb8x37/29ZfwC35eDo+TB
+         xtPK9mWZUdGy4RU9a3Iqx0tvKXwP7V6lDcgZWyPQCSXUj7DNW2Gzxty2ZxonEHZYmsNp
+         wRUZM/CECY9j44ZiOo5LKidCNFP0cHqeSFhF0j23UrsLs5RcSgBCPKflFRWTJY9W1DDZ
+         Ao7w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704872411; x=1705477211;
+        d=1e100.net; s=20230601; t=1704873018; x=1705477818;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ctTZECAtqC1iPMbP63QXR7yjoHxoDS3skKp3Qzi73/o=;
-        b=Aaez4sE8QzF/DoOlO+FIvPkf+iB+duMKLuYA8MLGQGGFj/36+QXPPEpMA7nz9yEzZt
-         viCPzLdu9vO29lAG8NAkin42pbiBI2VjJLtYTvlH9/6H/Gc9a0QRGjj+u+oLTZm2BpbD
-         Yesq0UWSyS9IVlwg6E60SMIQRQ9xH2kSQTCuZT92jV/e7IznAbafSN7Fdre/n4vFqrvA
-         HqEn+4c19sLJVsRDna3lrC6CpXjq+oRZMsrXicspXKW9qNoqGLe3hZRWigNT+rwUFYkv
-         7gOQPXf2nRg/eufd7dudtWKIDAwDLA4+GcQmv2r29QWJovVdSNJACfvx51zHXV2XkrMb
-         qKvw==
-X-Gm-Message-State: AOJu0Yz60Eg7ov0z4UTg7Io6JOLgorImjE8FIVtSFvkVWDWXZHbFMM9P
-	BZn0AXMWrbf0qqEPTSb5ezn+7CEEh4tS2/EmajVZiO2EJJ4=
-X-Google-Smtp-Source: AGHT+IHi7aH6RPqOqnxOyQBMAWOT8awtGLxr4q1o168dRsKDM6Xmd/Lzlb9AMOsLl38dILVFbogsvA==
-X-Received: by 2002:a05:600c:1393:b0:40e:4d7b:b2fb with SMTP id u19-20020a05600c139300b0040e4d7bb2fbmr297804wmf.59.1704872410688;
-        Tue, 09 Jan 2024 23:40:10 -0800 (PST)
+        bh=4bk0D59+COImnVTGuEXYLN3X3RO4BozMRlOErcCyLDg=;
+        b=o0QFImsThObW8uj52n9aHD+aMEqy2ZNQhOWl/XRgBGes5+RpVY6sJu3bVFc4SdypZE
+         UC8tLP2QjFHBzZ4VYqY6TrzevQ4hK6pH63/Lhf69PQio8wkLlUFoGhj1ts7xdHup6y/q
+         C2i++wAQ0+EdQ+fGyPXQLaNt1sp0p+8UP0DhL5xKBLpAoi1taNOPaZv3xhSt/nTT0dz5
+         WSiFdQfWXRd1HNlpAutce2MFA9KJPNOc/vfk5B5iLB4n/Idn0j7IEEpXotSEU9rJ8Fka
+         QZj944NavhNM+VM+Q66zN75vBDT1Q+s+kPAmFr85oGNuvrrwYKe+1pylrfFbAmAK4fKe
+         Be9w==
+X-Gm-Message-State: AOJu0YwzjQXfzry83jinP0XiT1o1+PWKNdjYhf0amb0DfT3EU5nDNs4Z
+	NYSveV4SkrZgMZUOsoLBFv6PZjVf1/RjHQ==
+X-Google-Smtp-Source: AGHT+IHHphpisUhBtHEnUo7MVZcNZ4qilP3+KoF7aGvE0GwWl/mLGxWcT3J4KaWAQ4axKuN92E4v5g==
+X-Received: by 2002:ac2:489a:0:b0:50e:bd4d:9e30 with SMTP id x26-20020ac2489a000000b0050ebd4d9e30mr163572lfc.106.1704873018386;
+        Tue, 09 Jan 2024 23:50:18 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.223.112])
-        by smtp.gmail.com with ESMTPSA id u18-20020a05600c139200b0040e4bcfd826sm1149322wmf.47.2024.01.09.23.40.08
+        by smtp.gmail.com with ESMTPSA id v20-20020a170906339400b00a26aa5c5a60sm1846891eja.19.2024.01.09.23.50.14
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 09 Jan 2024 23:40:09 -0800 (PST)
-Message-ID: <90ba555f-fec5-4fcf-8b70-5c50752e0ed1@linaro.org>
-Date: Wed, 10 Jan 2024 08:40:07 +0100
+        Tue, 09 Jan 2024 23:50:15 -0800 (PST)
+Message-ID: <3d194e84-bf1a-48e4-a376-e5c327c6508d@linaro.org>
+Date: Wed, 10 Jan 2024 08:50:13 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,21 +66,30 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH dt-schema] schemas: chosen: Add OpenWrt LEDs properties
- for system states
+Subject: Re: [PATCH v1 7/8] tpm: tis-i2c: Add more compatible strings
 Content-Language: en-US
-To: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>
-Cc: linux-leds@vger.kernel.org, openwrt-devel@lists.openwrt.org,
- =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-References: <20240109082312.9989-1-zajec5@gmail.com>
- <1b90c50c-0a09-4627-83cd-1794dae7ed9b@linaro.org>
- <69966efa-21ab-4a38-ad06-61e7e2e5b6d3@gmail.com>
- <987fe3e7-adc8-489f-867b-2d3aaa004d94@linaro.org>
- <62fdd030-7eb0-4658-969a-3bbddfa3334f@gmail.com>
+To: Ninad Palsule <ninad@linux.ibm.com>, Conor Dooley <conor@kernel.org>
+Cc: Guenter Roeck <linux@roeck-us.net>, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, joel@jms.id.au,
+ andrew@codeconstruct.com.au, peterhuewe@gmx.de, jarkko@kernel.org,
+ jgg@ziepe.ca, keescook@chromium.org, tony.luck@intel.com,
+ gpiccoli@igalia.com, johannes.holland@infineon.com, broonie@kernel.org,
+ patrick.rudolph@9elements.com, vincent@vtremblay.dev,
+ peteryin.openbmc@gmail.com, lakshmiy@us.ibm.com, bhelgaas@google.com,
+ naresh.solanki@9elements.com, alexander.stein@ew.tq-group.com,
+ festevam@denx.de, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
+ linux-kernel@vger.kernel.org, linux-integrity@vger.kernel.org,
+ linux-hardening@vger.kernel.org, geissonator@yahoo.com
+References: <20231212164004.1683589-1-ninad@linux.ibm.com>
+ <20231212164004.1683589-8-ninad@linux.ibm.com>
+ <20231212-avid-grill-dbead068fac8@spud>
+ <73381bb0-7fa7-4a9e-88df-ab0063058e26@roeck-us.net>
+ <20231212-mouth-choice-40a83caa34ec@spud>
+ <2946fbb1-2a47-4d21-83dc-8e45bf6ba5a9@roeck-us.net>
+ <60c8bbdb-4e08-44f0-88d4-ab164d4843b5@linux.ibm.com>
+ <20240109-pep-coerce-2a86ae88753d@spud>
+ <01974929-dfbf-4989-ba39-369e521827d0@linux.ibm.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -126,97 +135,46 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <62fdd030-7eb0-4658-969a-3bbddfa3334f@gmail.com>
+In-Reply-To: <01974929-dfbf-4989-ba39-369e521827d0@linux.ibm.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 09/01/2024 22:48, Rafał Miłecki wrote:
->>
->> You can also define how pieces of hardware are wired together and create
->> entire system, e.g. connect one LED to disk activity.
->>
->> However what you are proposing here is to dynamically configure one,
->> given OS. I don't think it is suitable.
->>
->> The problem of OS to nicely figure out which LED to blink when, is not a
->> problem of Devicetree. It is a problem of OS and its configuration.
+On 10/01/2024 00:55, Ninad Palsule wrote:
+> Hello Conor,
 > 
-> I'd say it's a thin line. Or just a grey idea as Geert said.
+> On 1/9/24 11:14, Conor Dooley wrote:
+>> On Mon, Jan 08, 2024 at 02:05:53PM -0600, Ninad Palsule wrote:
+>>> Hello Guenter,
+>>>
+>>> On 12/12/23 13:50, Guenter Roeck wrote:
+>>>> On 12/12/23 10:51, Conor Dooley wrote:
+>>>>> On Tue, Dec 12, 2023 at 10:00:39AM -0800, Guenter Roeck wrote:
+>>>>>> On Tue, Dec 12, 2023 at 05:15:51PM +0000, Conor Dooley wrote:
+>>>>>>> On Tue, Dec 12, 2023 at 10:40:03AM -0600, Ninad Palsule wrote:
+>>>>>>>> From: Joel Stanley <joel@jms.id.au>
+>>>>>>>>
+>>>>>>>> The NPCT75x TPM is TIS compatible. It has an I2C and SPI interface.
+>>>>>>>>
+>>>>>>>> https://www.nuvoton.com/products/cloud-computing/security/trusted-platform-module-tpm/
+>>>>>>>>
+>>>>>>>>
+>>>>>>>> Add a compatible string for it, and the generic compatible.
+>>>>>>>>
+>>>>>>>> OpenBMC-Staging-Count: 3
+>>>>>>> Delete this from every patch that it appears from.
+>>>
+>>> I have send it as a separate commit. https://lore.kernel.org/linux-kernel/20231214144954.3833998-1-ninad@linux.ibm.com/
+>> Why did you do that? It now just adds undocumented compatibles to the
+>> driver. Please, as Rob requested, work with Lukas on his series to make
+>> sure that these devices are documented.
 > 
-> What is a LED "function" after all? How exactly are:
-> LED_FUNCTION_STATUS
-> LED_FUNCTION_ACTIVITY
-> LED_FUNCTION_BOOT
-> LED_FUNCTION_HEARTBEAT
-> different from each other?
+> I think krzysztof kozlowski suggested to send these patches separately: 
+> https://lore.kernel.org/linux-kernel/1c5ace65-2fd8-4503-b22f-e0f564d1c83f@linaro.org/
 > 
-> I can imagine OpenWrt seeing a different role for LED_FUNCTION_ACTIVITY
-> or LED_FUNCTION_BOOT than other projects.
+> Did I misunderstood it? Do you guys want me to include that commit again?
 
-...which is not a problem. The meaning of these, except quite obvious
-heartbeat, is defined by the OS or system configurators.
-
-> 
-> Proposed properties "openwrt,led-<foo>" don't exactly describe hardware
-> per se but are still designed to deal with hardware differences.
-> 
->  From a practical point of view it's much easier to put such OS
-> configuration info in DT since it's closely related to LEDs defined
-> there and it helps a lot with maintenance. If at some point we change
-
-I agree, however this is an abuse of DT and therefore it is not an
-argument to put something into DT. And this was told many, many times on
-the lists: just because it is easier to instantiate each Linux struct
-device from DT (with 1-1 mapping between devices and device nodes), does
-not mean you should do it.
-
-Same here. Just because it is easier for OpenWRT, does not mean this is
-the solution.
-
-This is the most frequent argument used in all of such DT abuses.
-Another example: I want to boot some virtual machine and doing ACPI is
-too difficult, so I will just use DT as way to pass from host to guest.
-There were several examples of this. I understand why DT is the easiest
-for the job...
-
-> DT due to previous mistake (e.g. we fix LED color from amber to red)
-> that would mean breaking user space of Linux system (changing LED name).
-> Having DT binding for LEDs roles would prevent that.
-
-I can argue that LEDs "label" can be un-deprecated and used for that
-purpose as well. It will provide you stable sysfs entry, regardless of
-the "color" property.
-
-In your case you could also use to solve the actual problem: just label
-each LED accordingly, e.g. "phase:boot", "phase:upgrade". It might be
-not the best solution though, because we put one's OS expectations
-inside DT device node...
-
-> I was hoping that vendor prefixed "chosen" properties may somehow get
-> accepted as a reasonable solution for dealing with hardware differences
-> even if they don't strictly describe hardware itself.
-
-It's actually not the worst idea considering above "OS expectations
-inside DT device node" when using "label"...
-
-> 
-> Is there any other DT solution you think would be better and could be
-> accepted?
-> Given my hesitation about "function" meaning would something like
-> openwrt,function = "(boot|failsafe|running|upgrade)"
-> be any better?
-
-Your problem is not really that specific to OpenWRT - several embedded
-systems want to do the same, including Android. Some of the LEDs must be
-active before the user-space comes up, so it is the job for kernel
-and/or DT. Therefore let's go with generic solutions?
-
-I still wonder why we cannot define new LED FUNCTION constants and use
-them? You need them only for the pre-userspace phase, so do you expect
-one LED would have two functions? But if you do not have user-space how
-this aliases are being handled? By how?
-
-If you have user-space, then it's not a job for kernel.
+My comment was in DTS thread under specific DTS patch. How did you
+figure out it applies to driver and bindings? This does not make sense.
 
 Best regards,
 Krzysztof
