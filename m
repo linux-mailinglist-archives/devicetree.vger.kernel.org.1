@@ -1,152 +1,118 @@
-Return-Path: <devicetree+bounces-30947-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30944-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4400829924
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 12:31:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F22D82990C
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 12:30:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 161F31C217A6
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 11:31:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A44531C22082
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 11:30:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D888347F57;
-	Wed, 10 Jan 2024 11:31:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3464147A73;
+	Wed, 10 Jan 2024 11:29:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Uw3d5qUD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f175.google.com (mail-il1-f175.google.com [209.85.166.175])
+Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5964347A7C;
-	Wed, 10 Jan 2024 11:31:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-il1-f175.google.com with SMTP id e9e14a558f8ab-3606ad581a5so18766875ab.1;
-        Wed, 10 Jan 2024 03:31:28 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 721FA47A5F
+	for <devicetree@vger.kernel.org>; Wed, 10 Jan 2024 11:29:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-50e7d6565b5so4496042e87.0
+        for <devicetree@vger.kernel.org>; Wed, 10 Jan 2024 03:29:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1704886188; x=1705490988; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=HAkF12kWNFoMruhw1tXFopfrZD7wBVUFQgsn7muBhX8=;
+        b=Uw3d5qUDuqpbjoKUyOJbCGl8R1ZmhTGzqWWEJ2adYLgKNmWphj8Go5t/kxof9ZM3iE
+         W4wbSJ3S4uW94wu/MiVjDxeb5GAVkdPhLMpldSk98WkStWoXYTki69leXKMQOzgzvV5c
+         d3xrV7mJWv9byb723R4OFOXCwEYK5H2yNW7vUSfESisJPJifpKi6joyPYzoleMXu2Gqr
+         Sgj+YBSzkoxqe0oFXx5AStGD2OARC9TtBy1kc7Ya5Pb/4o4c8VjyiudfF2/V5iWvroiG
+         xuFEbwd0O8klkLABG8nAAdkdtlRrVCIMzCPgWzlzIOsaLI42EGis1gUFC4zDckPZp2je
+         3Wbw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704886287; x=1705491087;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=rp53vQ2ebf1f54OIMX+oacHnmEBZZdohJKcQphr0pdo=;
-        b=rEpdbTsX+4AcHrZztMQXm/lIvZD+rvzOXMS8LYDwxJaMzEi+XDrl9c9dq+fNHkCeQK
-         vDY7sXlbMKQzxTSkZAmuNDpYxvuheK247POrSrC2/witgEa53HjeMsbmk/tdkF3TudAE
-         pWiVUCH0qXuAk1hyfbJqnKBqNOjDnWB9UCd0lTyEgk+lM6ol11QDzJpjCHiSYH/nz78b
-         rBvIu0qrFIeGBeVAQTwzscWRkmhqkwxmZj4qcnPFt50g91P2TWjJGn2CWkH5Xc9jel7K
-         k5tsEPHNOKWqjThcsQZmaydIH+sJPDAlvO3hfNsYz7JxdKaosUeijs7YCM6U73AVnWg+
-         2kCQ==
-X-Gm-Message-State: AOJu0YyHOmjVGl85PPY1OKOUpiNMRq/oTOAha3txHbN3aVqEDnJrQB5Y
-	DO4twqeLR9wV9vSzfD3rKCJsIV6i2E354Vc7
-X-Google-Smtp-Source: AGHT+IE4ykJgcq2BqiHgDY8T/mT9u8cCQfTLL2octH67MqlQMtVdHLymoA4Q65ngu5TSMaJ1EcyFXg==
-X-Received: by 2002:a05:6e02:1885:b0:360:a195:a142 with SMTP id o5-20020a056e02188500b00360a195a142mr1273026ilu.65.1704886285326;
-        Wed, 10 Jan 2024 03:31:25 -0800 (PST)
-Received: from mail-io1-f50.google.com (mail-io1-f50.google.com. [209.85.166.50])
-        by smtp.gmail.com with ESMTPSA id bz4-20020a056e02268400b003606ef496c4sm1215421ilb.63.2024.01.10.03.31.25
+        d=1e100.net; s=20230601; t=1704886188; x=1705490988;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=HAkF12kWNFoMruhw1tXFopfrZD7wBVUFQgsn7muBhX8=;
+        b=aCdr/hek3PJTGqPlLcDkyR2eQpzOAlS1LQJ7gtS2VNDCKN9AWgCjWH4K3rA/fcGzLn
+         SVvOu4fNhIAjSEyNZpgwXf4w5HTYfrW/J4vwuZMworCOGplDQFADKHn/Reo6g3EBGYvC
+         A6kpQ6/S+pSYr9JcGRxZxyIHGpVzsXApzDtbhrYB+0ZJjSBjrybzJpY/qdJZgYU2oCVu
+         joSc2M25xJppshgaWHwDGPCUIN8Vxy/qoykgLxdjd+DZcoVyz6iX3puPHMt6GB50XVJD
+         Uis3m2LdMxF/q+8gWKXgEzMkBK/ODC/WgJbfA9s+zsBjL0Idk/y76z68SUK5xHxIBKKe
+         X6yg==
+X-Gm-Message-State: AOJu0YwHB3uu8c9M0fKeCA6ANSI38XOxT1F5bXiIsCbCBdTUGW40Qd+L
+	E97TZup1zKXOKiQTkz+NRyyWQ5AkPtQG5A==
+X-Google-Smtp-Source: AGHT+IEeyrVbvmxHPlptn1HDzewfBjNsVi4jhGnvJVBqvIurtb0y+etCYo4xX4fGB6JzAXSi8Ds8mA==
+X-Received: by 2002:ac2:490e:0:b0:50e:5448:3316 with SMTP id n14-20020ac2490e000000b0050e54483316mr280029lfi.137.1704886188452;
+        Wed, 10 Jan 2024 03:29:48 -0800 (PST)
+Received: from [172.30.205.119] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
+        by smtp.gmail.com with ESMTPSA id f15-20020a19380f000000b0050ea902d191sm640405lfa.153.2024.01.10.03.29.46
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 10 Jan 2024 03:31:25 -0800 (PST)
-Received: by mail-io1-f50.google.com with SMTP id ca18e2360f4ac-7bee8f7df35so49536239f.3;
-        Wed, 10 Jan 2024 03:31:25 -0800 (PST)
-X-Received: by 2002:a81:9295:0:b0:5f0:5816:f339 with SMTP id
- j143-20020a819295000000b005f05816f339mr802434ywg.46.1704885831172; Wed, 10
- Jan 2024 03:23:51 -0800 (PST)
+        Wed, 10 Jan 2024 03:29:48 -0800 (PST)
+Message-ID: <9ba86081-1484-4d1d-9555-317d10e1617f@linaro.org>
+Date: Wed, 10 Jan 2024 12:29:46 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1704788539.git.ysato@users.sourceforge.jp>
- <c8aaf67e3fcdb7e60632c53a784691aabfc7733e.1704788539.git.ysato@users.sourceforge.jp>
- <20240109-fructose-bundle-05d01033277b@spud>
-In-Reply-To: <20240109-fructose-bundle-05d01033277b@spud>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 10 Jan 2024 12:23:37 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdU1z64QHJOVd3jUsOfyuDApB1+khkUV8PvjoKbwsi327g@mail.gmail.com>
-Message-ID: <CAMuHMdU1z64QHJOVd3jUsOfyuDApB1+khkUV8PvjoKbwsi327g@mail.gmail.com>
-Subject: Re: [DO NOT MERGE v6 26/37] dt-bindings: vendor-prefixes: Add smi
-To: Conor Dooley <conor@kernel.org>
-Cc: Yoshinori Sato <ysato@users.sourceforge.jp>, linux-sh@vger.kernel.org, 
-	Damien Le Moal <dlemoal@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
-	Thomas Gleixner <tglx@linutronix.de>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
-	=?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>, 
-	Bjorn Helgaas <bhelgaas@google.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Jiri Slaby <jirislaby@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, 
-	Daniel Lezcano <daniel.lezcano@linaro.org>, Rich Felker <dalias@libc.org>, 
-	John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>, Lee Jones <lee@kernel.org>, 
-	Helge Deller <deller@gmx.de>, Heiko Stuebner <heiko@sntech.de>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Chris Morgan <macromorgan@hotmail.com>, 
-	Yang Xiwen <forbidden405@foxmail.com>, Sebastian Reichel <sre@kernel.org>, 
-	Linus Walleij <linus.walleij@linaro.org>, Randy Dunlap <rdunlap@infradead.org>, 
-	Arnd Bergmann <arnd@arndb.de>, Vlastimil Babka <vbabka@suse.cz>, Hyeonggon Yoo <42.hyeyoo@gmail.com>, 
-	David Rientjes <rientjes@google.com>, Baoquan He <bhe@redhat.com>, 
-	Andrew Morton <akpm@linux-foundation.org>, Guenter Roeck <linux@roeck-us.net>, 
-	Stephen Rothwell <sfr@canb.auug.org.au>, Azeem Shaikh <azeemshaikh38@gmail.com>, 
-	Javier Martinez Canillas <javierm@redhat.com>, Max Filippov <jcmvbkbc@gmail.com>, 
-	Palmer Dabbelt <palmer@rivosinc.com>, Bin Meng <bmeng@tinylab.org>, 
-	Jonathan Corbet <corbet@lwn.net>, Jacky Huang <ychuang3@nuvoton.com>, 
-	Lukas Bulwahn <lukas.bulwahn@gmail.com>, Biju Das <biju.das.jz@bp.renesas.com>, 
-	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, 
-	Sam Ravnborg <sam@ravnborg.org>, Sergey Shtylyov <s.shtylyov@omp.ru>, 
-	Michael Karcher <kernel@mkarcher.dialup.fu-berlin.de>, 
-	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>, linux-ide@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, linux-pci@vger.kernel.org, 
-	linux-serial@vger.kernel.org, linux-fbdev@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/3] arm64: dts: qcom: sm7225-fairphone-fp4: Enable
+ display and GPU
+Content-Language: en-US
+To: Maxime Ripard <mripard@kernel.org>, Luca Weiss <luca.weiss@fairphone.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+ Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+References: <20240105-fp4-panel-v1-0-1afbabc55276@fairphone.com>
+ <20240105-fp4-panel-v1-3-1afbabc55276@fairphone.com>
+ <3fdc6e74-d817-4341-bf64-9096608990d6@linaro.org>
+ <CYAZ37LBKG4E.2096GKVUXN8Y2@fairphone.com>
+ <2zkiop7xg7w4vkpjpol25qna5wwbq4ja5o6iwuqh25m34k6mgd@aemrbzqgx2oe>
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <2zkiop7xg7w4vkpjpol25qna5wwbq4ja5o6iwuqh25m34k6mgd@aemrbzqgx2oe>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Conor,
 
-On Tue, Jan 9, 2024 at 7:06=E2=80=AFPM Conor Dooley <conor@kernel.org> wrot=
-e:
-> On Tue, Jan 09, 2024 at 05:23:23PM +0900, Yoshinori Sato wrote:
-> > Add Silicon Mortion Technology Corporation
 
-Motion
+On 1/10/24 12:23, Maxime Ripard wrote:
+> On Wed, Jan 10, 2024 at 12:00:23PM +0100, Luca Weiss wrote:
+>> On Wed Jan 10, 2024 at 11:58 AM CET, Konrad Dybcio wrote:
+>>>
+>>>
+>>> On 1/5/24 15:29, Luca Weiss wrote:
+>>>> Add the description for the display panel found on this phone and remove
+>>>> the simple-framebuffer that was in place until now
+>>>
+>>> Why? They should be able to coexist with a smooth-ish handoff
+>>
+>> Does that work upstream? I'm aware that downstream can do this but
+>> thought this was still missing upstream.
+> 
+> It depends what you call smooth-ish I guess, but KMS handles the
+> handover just fine. You're likely to get a flicker during the transition
+> though.
 
-> > https://www.siliconmotion.com/
-> >
-> > Signed-off-by: Yoshinori Sato <ysato@users.sourceforge.jp>
-> > ---
-> >  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
-> >  1 file changed, 2 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/D=
-ocumentation/devicetree/bindings/vendor-prefixes.yaml
-> > index 94ed63d9f7de..a338bdd743ab 100644
-> > --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> > +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> > @@ -1283,6 +1283,8 @@ patternProperties:
-> >      description: Skyworks Solutions, Inc.
-> >    "^smartlabs,.*":
-> >      description: SmartLabs LLC
-> > +  "^smi,.*":
-> > +    description: Silicon Motion Technology Corporation
->
-> How come "smi" is used for a company with this name?
-> Why is it not something like SMTC? There's probably some history here
-> that I am unaware of.
+Yes, the panel driver will assert the reset pin to get the hw
+into a predictable state, so there will likely be a split
+second of black or black+garbage.
 
-See Documentation/devicetree/bindings/display/sm501fb.txt
-The stock ticker is "SIMO", though.
-https://www.nasdaq.com/market-activity/stocks/simo
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+Konrad
 
