@@ -1,155 +1,101 @@
-Return-Path: <devicetree+bounces-31067-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31069-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84FB7829D7B
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 16:23:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CA368829DA5
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 16:38:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0FC05B236EB
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 15:23:02 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 53D79B26051
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 15:38:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 497484BAB5;
-	Wed, 10 Jan 2024 15:22:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WG7zrkZ2"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37F4646AD;
+	Wed, 10 Jan 2024 15:38:01 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAD4A495D3
-	for <devicetree@vger.kernel.org>; Wed, 10 Jan 2024 15:22:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a28f66dc7ffso937733566b.0
-        for <devicetree@vger.kernel.org>; Wed, 10 Jan 2024 07:22:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704900173; x=1705504973; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ocW5g+MfpPGGH+YXBPFbzMDUsowtT7v9pCl5haEEOIY=;
-        b=WG7zrkZ2JrerGmsFJiDWr5TpGvd8pE97cTnAuj7OOlLu8tFgSgcwJn0VhFYocYpsQg
-         2bFqRkTDUd+QRw9gJDibm5nw/BdDgpDqmlHoiI/X8n9XYbP2X9YgLDGi50dwlR3QZNr/
-         IoFLSOeFfMyTF20UrnCX8Igm/QIiyldOpwz0bgEvUnHtwR2h1yBkofuK1Vumc0teKuMN
-         /m4FRACQ5pdmLeRQ3uOW/yG/4l7m4dXyYI0vKLTLtiB+QVg/Jn9a3cCEAt/MbgZ85o5W
-         PTJ6+j5rw4wpYJTMn16Czxa/Nq9GANhSAQFhmwXZFx6HMprIZCr5j4AceQQdCqq7Ycmy
-         J+7g==
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AE0A4C3A6;
+	Wed, 10 Jan 2024 15:37:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tomeuvizoso.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-557e76e1bd6so3086995a12.1;
+        Wed, 10 Jan 2024 07:37:59 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704900173; x=1705504973;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ocW5g+MfpPGGH+YXBPFbzMDUsowtT7v9pCl5haEEOIY=;
-        b=joIMEqLR+KL4GvMHJcGtg7DlZxcl6Fyo5o5rHLrOcp+v2ZBGZptx/YMpS1TrqyZt8K
-         Clt6FFD+qBh0XU+trXtrK/qe7GGxq2ta5Qss8pYA96bArowNrGWECBXfCSA5/uNq+F1h
-         7+3ZO3/8r1k+kgeH5f+yRY1CTNXzuPUgrVvbbI4n4azpeYatAyFk2uCZRtmeuXEOKvnb
-         LVrOAsLUrmWnhOJI/I6Z1z7Mg2rFdaTNW95xu/Oob1EILg9q/cOSY8DV2FyM5Z5O37aG
-         a+G3Ma2SadZsg513EDKEsHVFhkK8o+qyv6acztGMW/63t2yHHMqqRbh5sy4eLh68ynyO
-         patA==
-X-Gm-Message-State: AOJu0YyXz0Ck4Rqm7VEHA7/zBHmX/hNfASGix3sV+UD+sB9UPk0CdKXA
-	9eHqeiTTwbUyJ01P/IRwaDvomK5W1oH6mQ==
-X-Google-Smtp-Source: AGHT+IExbouC+KC/ZAVx6mzwntrY7evugoqODglQrHojsF8Id7rsToGoRmMzsvGKdNOGTSo0//Ng2w==
-X-Received: by 2002:a17:906:fa85:b0:a2c:dfa:4f6 with SMTP id lt5-20020a170906fa8500b00a2c0dfa04f6mr246115ejb.16.1704900172981;
-        Wed, 10 Jan 2024 07:22:52 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.223.112])
-        by smtp.gmail.com with ESMTPSA id mb24-20020a170906eb1800b00a27b4e1b189sm2158782ejb.209.2024.01.10.07.22.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 10 Jan 2024 07:22:52 -0800 (PST)
-Message-ID: <4f070678-63b6-4657-ad4f-c32256adbf1f@linaro.org>
-Date: Wed, 10 Jan 2024 16:22:50 +0100
+        d=1e100.net; s=20230601; t=1704901078; x=1705505878;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=E4XrHqEPP20R01xmGCuOPfv+KVCp64Vi1x9YnoG1SFg=;
+        b=Yec0dMz+qlYYGXA8BComR+SImhD9KoGUA5oY1YqorNC/gSsPB7EJfq85lNSazRk7/J
+         gWs92ERkMG68QgmQn3la/8SPJZpa7z8cGEkb9knHRa9kxWPmR1kK1ig2fXuhQ6YG+D/B
+         INrNS6ZArBITSKcX8tjaJStW+FZnxZo0CWu8Idh1aa5h8x8fvOx9zUI8Uh8ukvriVqsP
+         gw8Ozw9u3V55ogQY8Ibk7iwdyhdaEB9VRBtezfrWpZek1TEGu/SqswJBB0oRe3eG14iu
+         zAYFvi/ZRSoY2AC4pErp+G08jTom0LYXKMFY8TtwPdEiJ6xeX7jjZ3LWp0yT3fjfiBdo
+         5Huw==
+X-Gm-Message-State: AOJu0Yw3q+Ny7pzInHAAJXpnfBgZ2huB50ibKMPp1WK0dtMd7vKtfYIb
+	d57Z/V91tNLV2AoD+DlY5Yw=
+X-Google-Smtp-Source: AGHT+IFds5J+pmhXNSFF50B6wsyc8BDblllR+tNwXXxBcdJoJr0VRCEx7inE4wKr+XwWw8//Dz/H9w==
+X-Received: by 2002:a50:f60f:0:b0:557:c43:1fc3 with SMTP id c15-20020a50f60f000000b005570c431fc3mr498857edn.76.1704901077760;
+        Wed, 10 Jan 2024 07:37:57 -0800 (PST)
+Received: from ramallet.home (cst-prg-39-31.cust.vodafone.cz. [46.135.39.31])
+        by smtp.gmail.com with ESMTPSA id da11-20020a056402176b00b0055668ccd9a3sm2113105edb.17.2024.01.10.07.37.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 10 Jan 2024 07:37:57 -0800 (PST)
+From: Tomeu Vizoso <tomeu@tomeuvizoso.net>
+To: 
+Cc: Tomeu Vizoso <tomeu@tomeuvizoso.net>,
+	Lucas Stach <l.stach@pengutronix.de>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
+	linux-arm-kernel@lists.infradead.org (moderated list:ARM/Amlogic Meson SoC support),
+	linux-amlogic@lists.infradead.org (open list:ARM/Amlogic Meson SoC support),
+	linux-kernel@vger.kernel.org (open list)
+Subject: [PATCH 2/2] arm64: dts: amlogic: meson-g12-common: Set the rates of the clocks for the NPU
+Date: Wed, 10 Jan 2024 16:37:01 +0100
+Message-ID: <20240110153704.1364073-2-tomeu@tomeuvizoso.net>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20240110153704.1364073-1-tomeu@tomeuvizoso.net>
+References: <20240110153704.1364073-1-tomeu@tomeuvizoso.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] arm64: dts: qcom: ipq6018: enable sdhci node
-Content-Language: en-US
-To: Chukun Pan <amadeus@jmu.edu.cn>, Bjorn Andersson <andersson@kernel.org>
-Cc: Konrad Dybcio <konrad.dybcio@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20240110151040.2155938-1-amadeus@jmu.edu.cn>
- <20240110151040.2155938-3-amadeus@jmu.edu.cn>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240110151040.2155938-3-amadeus@jmu.edu.cn>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 10/01/2024 16:10, Chukun Pan wrote:
-> Enable mmc device found on ipq6018 devices.
-> This node supports both eMMC and SD cards.
-> 
-> Tested with:
->   eMMC (HS200)
->   SD Card (SDR50/SDR104)
+Otherwise they are left at 24MHz and the NPU runs very slowly.
 
-How? It is disabled...
+Signed-off-by: Tomeu Vizoso <tomeu@tomeuvizoso.net>
+Suggested-by: Lucas Stach <l.stach@pengutronix.de>
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+---
+ arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 3 +++
+ 1 file changed, 3 insertions(+)
 
-...
-
-> +
-> +			clocks = <&gcc GCC_SDCC1_AHB_CLK>,
-> +				 <&gcc GCC_SDCC1_APPS_CLK>,
-> +				 <&xo>;
-> +			clock-names = "iface", "core", "xo";
-> +			resets = <&gcc GCC_SDCC1_BCR>;
-> +			max-frequency = <192000000>;
-> +			mmc-ddr-1_8v;
-> +			mmc-hs200-1_8v;
-
-Aren't these three properties of the board?
-
-Best regards,
-Krzysztof
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+index ff68b911b729..9d5eab6595d0 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+@@ -2502,6 +2502,9 @@ npu: npu@ff100000 {
+ 		clocks = <&clkc CLKID_NNA_CORE_CLK>,
+ 			 <&clkc CLKID_NNA_AXI_CLK>;
+ 		clock-names = "core", "bus";
++		assigned-clocks = <&clkc CLKID_NNA_CORE_CLK>,
++				  <&clkc CLKID_NNA_AXI_CLK>;
++		assigned-clock-rates = <800000000>, <800000000>;
+ 		resets = <&reset RESET_NNA>;
+ 		status = "disabled";
+ 	};
+-- 
+2.43.0
 
 
