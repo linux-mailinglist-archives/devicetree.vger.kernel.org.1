@@ -1,65 +1,64 @@
-Return-Path: <devicetree+bounces-30900-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30901-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E133829720
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 11:17:53 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA385829783
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 11:27:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A46131F217E5
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 10:17:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BB7001C21914
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 10:27:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DC8B3987D;
-	Wed, 10 Jan 2024 10:17:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF5A43FE24;
+	Wed, 10 Jan 2024 10:21:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="PvfUg2f5"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="x4U2yQun"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4F703FB01
-	for <devicetree@vger.kernel.org>; Wed, 10 Jan 2024 10:17:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 425CB495F5
+	for <devicetree@vger.kernel.org>; Wed, 10 Jan 2024 10:21:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-2cd703e9014so14117971fa.1
-        for <devicetree@vger.kernel.org>; Wed, 10 Jan 2024 02:17:46 -0800 (PST)
+Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-336c8ab0b20so3632817f8f.1
+        for <devicetree@vger.kernel.org>; Wed, 10 Jan 2024 02:21:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704881865; x=1705486665; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=NG8CUpJELgn7ssbId5y63NLPW20DKntY5T1HnKz1x9Y=;
-        b=PvfUg2f56ygVO1v7LV507odd5HMYFmaX53RVGlhAdqyX/33PWz/VFgTrmgkOf8HpQS
-         CzqriO1+zv42wGev7R88CJvDwnLX8aoAfj45Ne0mb+RPOBnlER/xsUjh5m2b8w4iJ2Al
-         A6l7SExE6qpMlJY2SCqrAPtmu86fu2yVi4Knm5LRxiihmnlqr2XJvFHgg9jtifLr8BRf
-         8Bh4G83AZcCroDYN0yl++OoX2xhbHcDfEebDzjahz1PeTZ4sumhsLV56atG0F2FRzm2F
-         beLaF5sxKHLERPY5e0ifF63rcM1lysHPtKIDLRd1sx/xefmiAuMMIE5fFRW+dJM6Uxsz
-         UOlQ==
+        d=linaro.org; s=google; t=1704882108; x=1705486908; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=6VZfB4+k8xBaLXi5rEluezR8q2UeljKzFtnJfHi6ZHE=;
+        b=x4U2yQunae75ykvYLplsdyRJmyzOIn+UnX/3rQ4clVrmCwZDkcE6CBwR6oSkJD07nW
+         1ytZS9ENU7d20/R/+4NyD/JPW4ltJBsUtl0zT6sWoAteswadIdCIR0CLMqYMbuEfizC7
+         VmewghzM7IjYz/gB3KtFUMdmyVBKMDS4SMlwVULevyVGT+tR08NCXVTtAfsdFA/SxvjZ
+         nq79ybmDcuKo0K32Dkoye+lQ/Dlmy12H4F14SHEI7DPb0k9jR06JGqX9hPbEbSOAaW6q
+         oSFgpnNo/wqaOqvr6gHRvddel2hOs99vALkrc5+jTq92ALEn9WJZxyR63jWX8fg2mq+9
+         /PtQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704881865; x=1705486665;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=NG8CUpJELgn7ssbId5y63NLPW20DKntY5T1HnKz1x9Y=;
-        b=H5YKGRMqGDA3sc2TrG6gAekPOAh2VHjark2HBbpKHkvjE6Jm+tAoFMh+0hLetLYf/f
-         B9O2UpXb18scvyBZaQ9GEjBPt42jWbastbPCgWE1P1p3viZ/8/gkW3cseIIohoXktbbd
-         OZaKws6O4ngCiWEUQigBjjsvY3xg6q7evNx2cDgl0iIYHO/rR5JDYroisbkjSDXxF7ho
-         csBLzVc/V4yr61wELYUjC/qz1dxe9CWxXadeRniA/ITrlR2rKsI3WooJlm7IuQjLRsb0
-         hApe2fJQzf0D6RGrvkx5feqepbjpc1myYUAzQmToGktR87WNP0UE6AxO9nGLaZUqqG2q
-         ydTw==
-X-Gm-Message-State: AOJu0YyGxWG4P3KNCALtrTYp/BJAph8qOf0iozZk8J0bJUkzLX7kOdo+
-	21KkPEWzL2199k00GC9D0oFLcgYt2NrJVA==
-X-Google-Smtp-Source: AGHT+IGAlcvMMS50wt+G29ostHPMrk8iuH6dKo8CMu+2mu4+Ok6+F3/LWOKLjKUhUgwSGUa/9am2Ng==
-X-Received: by 2002:a05:6512:4010:b0:50e:1870:1ef4 with SMTP id br16-20020a056512401000b0050e18701ef4mr365279lfb.48.1704881864906;
-        Wed, 10 Jan 2024 02:17:44 -0800 (PST)
+        d=1e100.net; s=20230601; t=1704882108; x=1705486908;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=6VZfB4+k8xBaLXi5rEluezR8q2UeljKzFtnJfHi6ZHE=;
+        b=iIFS4kPDZDvrHYOrXWGpPgDPgbo5xCWVRRvbssa/zjSzxiHtWnJ11KKX+ItWlvH393
+         WD5eWizOMUSX8b0YiBnhWPJnbqnf9uUIlIwOqGQNv2AsXlHvpYICvTpTxr4R0/wxfS4r
+         CbxKYotF7akhh6Se5dt37rxkAQ+uPCySZy75gjPounmf3IKcNlP5utc4nSU+c289Gj8a
+         Qyh6J1QsWt34iDiUrUJP/Nb0imDn0LcFKVEtopEErQLQUDQh6OEWUpy3Ksg+dN1PmDMi
+         jnrcQUz4oRQrff+sRJmSM3Ezb3Ko1ZOQswYyBnmu+9z89Ijli1PNWsYLTPLTin3sM4RI
+         8DCA==
+X-Gm-Message-State: AOJu0Yy/F/9BAvp6ErxZ+s8aIWcJlGKTu+urOszjdlFXrV8e10Kqq8pB
+	v9f9ew+jzvDUAokdJxuJwI93DTDfvtbivg==
+X-Google-Smtp-Source: AGHT+IGREV5P5rz2c+mDEX8IVo9nj0il9xGpWE/1eaZeOQ9LI3N8OEsOMdAcmv7G+VrNcgmPF6hO2Q==
+X-Received: by 2002:a05:600c:3790:b0:40e:42cf:805f with SMTP id o16-20020a05600c379000b0040e42cf805fmr496618wmr.146.1704882108475;
+        Wed, 10 Jan 2024 02:21:48 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.223.112])
-        by smtp.gmail.com with ESMTPSA id d23-20020a170906371700b00a1c7b20e9e6sm1941926ejc.32.2024.01.10.02.17.43
+        by smtp.gmail.com with ESMTPSA id s8-20020a05600c45c800b0040e527602c8sm1678078wmo.9.2024.01.10.02.21.47
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 10 Jan 2024 02:17:44 -0800 (PST)
-Message-ID: <bbb1875b-7980-46aa-80b4-dbaf2a2d5755@linaro.org>
-Date: Wed, 10 Jan 2024 11:17:42 +0100
+        Wed, 10 Jan 2024 02:21:48 -0800 (PST)
+Message-ID: <23d69325-11a1-4bb6-9516-051372970fcb@linaro.org>
+Date: Wed, 10 Jan 2024 11:21:46 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,20 +66,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/1] dt-bindings: media: imx-jpeg: Document slot property
-To: Alexander Stein <alexander.stein@ew.tq-group.com>,
- Mirela Rabulea <mirela.rabulea@nxp.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>
-Cc: NXP Linux Team <linux-imx@nxp.com>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-References: <20240110094604.472701-1-alexander.stein@ew.tq-group.com>
+Subject: Re: [PATCH] dt-bindings: nfc: ti,trf7970a: fix usage example
 Content-Language: en-US
+To: Tobias Schramm <t.schramm@manjaro.org>,
+ Mark Greer <mgreer@animalcreek.com>, Rob Herring <robh+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240110100913.587849-1-t.schramm@manjaro.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -126,37 +119,39 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240110094604.472701-1-alexander.stein@ew.tq-group.com>
+In-Reply-To: <20240110100913.587849-1-t.schramm@manjaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 10/01/2024 10:46, Alexander Stein wrote:
-> There are 4 slots available in the IP, which the driver may use.
-> This property lists which slots can be used. In reference to commit
-> 53ebeea50599 ("media: imx-jpeg: Support to assign slot for encoder/decoder")
-> only slot 0 can be used on imx8qxp.
+On 10/01/2024 11:09, Tobias Schramm wrote:
+> The TRF7970A is a SPI device, not I2C.
 > 
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> Signed-off-by: Tobias Schramm <t.schramm@manjaro.org>
 > ---
->  .../devicetree/bindings/media/nxp,imx8-jpeg.yaml       | 10 ++++++++++
->  1 file changed, 10 insertions(+)
+>  Documentation/devicetree/bindings/net/nfc/ti,trf7970a.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/media/nxp,imx8-jpeg.yaml b/Documentation/devicetree/bindings/media/nxp,imx8-jpeg.yaml
-> index 07fef1e723f20..5122c7cff8e73 100644
-> --- a/Documentation/devicetree/bindings/media/nxp,imx8-jpeg.yaml
-> +++ b/Documentation/devicetree/bindings/media/nxp,imx8-jpeg.yaml
-> @@ -54,6 +54,14 @@ properties:
->      minItems: 2               # Wrapper and 1 slot
->      maxItems: 5               # Wrapper and 4 slots
->  
-> +  slot:
-> +    $ref: /schemas/types.yaml#/definitions/uint32-array
 
-NAK for documenting something post factum.
+Please send it to net-next after the merge window.
 
-https://lore.kernel.org/all/9b853b5f-b3e6-4aea-b99a-51a490a29f9d@linaro.org/
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-https://lore.kernel.org/all/cover.1697597713.git.ming.qian@nxp.com/
+
+---
+
+This is an automated instruction, just in case, because many review tags
+are being ignored. If you know the process, you can skip it (please do
+not feel offended by me posting it here - no bad intentions intended).
+If you do not know the process, here is a short explanation:
+
+Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+versions, under or above your Signed-off-by tag. Tag is "received", when
+provided in a message replied to you on the mailing list. Tools like b4
+can help here. However, there's no need to repost patches *only* to add
+the tags. The upstream maintainer will do that for tags received on the
+version they apply.
+
+https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
 
 Best regards,
 Krzysztof
