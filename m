@@ -1,151 +1,116 @@
-Return-Path: <devicetree+bounces-30917-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30918-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40B158297F9
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 11:50:09 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 19ECA82981B
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 11:55:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D653D1F26073
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 10:50:08 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 68C8CB20C58
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 10:55:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79D8741205;
-	Wed, 10 Jan 2024 10:48:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA1E841235;
+	Wed, 10 Jan 2024 10:55:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="si5w8zvv"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pTTr8bPi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B195F40C1C;
-	Wed, 10 Jan 2024 10:48:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40A9VLDp006375;
-	Wed, 10 Jan 2024 11:48:06 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	from:to:cc:subject:date:message-id:in-reply-to:references
-	:mime-version:content-transfer-encoding:content-type; s=
-	selector1; bh=XYFUPkHCquAfdm1z7WpruAcO8XbDhwQU7gWaIj3jlwc=; b=si
-	5w8zvvujTnSCB03AnYmiGORVogLCdq91EPMdw6iymjR5O+ICM/jQyrYMFbz5hbFA
-	66zZ6FoIdsaeUsaDsbjYhbMm+wUQh3TpxgCUcWb//79aPs+XiQrU6JdUCpJvYAzA
-	PzIAj/cDC9JRqLZQt7JwTc4vLLIEI3PftTQwYlPsd99f8kkDU2zlejYHNN23nQV8
-	jPgDBQOQqo/B1izhWB2UfZ6TRa7ek9A0eptbsMs0Wd8N+5gEGnJrZ/KfXrq3dobl
-	eGENXqC6p7NfP5AB5AGolb1ItKRW1SqJrsYIEX04HW8o82EoVwFcdQ3l5heXX2K6
-	IOxk4qkB81SEyN2MEdiQ==
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3vexmffv8v-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 10 Jan 2024 11:48:05 +0100 (CET)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 1020710002A;
-	Wed, 10 Jan 2024 11:48:05 +0100 (CET)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id F132A26C050;
-	Wed, 10 Jan 2024 11:48:04 +0100 (CET)
-Received: from localhost (10.201.20.120) by SHFDAG1NODE1.st.com (10.75.129.69)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Wed, 10 Jan
- 2024 11:48:04 +0100
-From: Hugues Fruchet <hugues.fruchet@foss.st.com>
-To: Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
-        Philipp Zabel
-	<p.zabel@pengutronix.de>,
-        Andrzej Pietrasiewicz <andrzej.p@collabora.com>,
-        Nicolas Dufresne <nicolas.dufresne@collabora.com>,
-        Sakari Ailus
-	<sakari.ailus@linux.intel.com>,
-        Benjamin Gaignard
-	<benjamin.gaignard@collabora.com>,
-        Laurent Pinchart
-	<laurent.pinchart+renesas@ideasonboard.com>,
-        Daniel Almeida
-	<daniel.almeida@collabora.com>,
-        Benjamin Mugnier
-	<benjamin.mugnier@foss.st.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Mauro
- Carvalho Chehab <mchehab@kernel.org>,
-        Hans Verkuil <hverkuil@xs4all.nl>, <linux-media@vger.kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <linux-rockchip@lists.infradead.org>
-CC: Hugues Fruchet <hugues.fruchet@foss.st.com>,
-        Marco Felsch
-	<m.felsch@pengutronix.de>,
-        Adam Ford <aford173@gmail.com>
-Subject: [RESEND PATCH v6 5/5] arm64: dts: st: add video encoder support to stm32mp255
-Date: Wed, 10 Jan 2024 11:46:42 +0100
-Message-ID: <20240110104642.532011-6-hugues.fruchet@foss.st.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240110104642.532011-1-hugues.fruchet@foss.st.com>
-References: <20240110104642.532011-1-hugues.fruchet@foss.st.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35B7433991
+	for <devicetree@vger.kernel.org>; Wed, 10 Jan 2024 10:55:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-2ccae380df2so42782721fa.1
+        for <devicetree@vger.kernel.org>; Wed, 10 Jan 2024 02:55:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1704884147; x=1705488947; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=XovDo6g71dUW3xxSlFZ5p2kN6+6ojspuCXXtemQJf10=;
+        b=pTTr8bPi4cOMTVM2Z7l6d6g6datRjbDOQJrbsgodBNOeDvd+yyw1poWVPQWoU49W+F
+         61dm0GUT0F4X60md0voYZ6BGI/PPYc51xph3HPTffWn3ANR6kTHhQjPmvdd91N+Tf19u
+         oEzUdtppV18u1+c1wD+Ba0Ic/1fi3G0H7E4N/IVh3OOIVR2+ofq7qXc5CzGzEoKlXyJ3
+         t4tl2DoF8hP9OWJcXZ/IdhyLJ+HbHDNTWZZAR6WkTFDEvq9SRJMz3ZW8U9FTlXz9+/Gd
+         7cxNBmAtaInzSSjN7JSYvVUSSe5rNrKxDFvtZgG5n1Oi3w31LCGt1xto+6in+dJzwJCe
+         lcYw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1704884147; x=1705488947;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=XovDo6g71dUW3xxSlFZ5p2kN6+6ojspuCXXtemQJf10=;
+        b=mvvm0CDlDVMlF59bKiN0Qs3/RXsb3zqn8rpTJQhqwhQdDoWyWKmEs8n4+ubIVIaCkm
+         st5xgP5MExdX+s746R6pftIiWIJsmzaZe6AuDFrZbTlIJfEwPUwD9djw9djb1gkKMLW8
+         7DUIcSeGsCXNSib/v+mpEwfSmDBIoDcEPaW3FqQY1p6PY2Xe091TizJttW0MMn32lfH4
+         rjznzZQmckamyAAbVg859ALxmGCBoyLkHHs1+zwyBI0HU48c1Bie8YYhpkSJl7gxwqHk
+         2Kwjax5drwWfEBdnYAF9RKRp//P8SH0u9/PX/8ys/uhihr8bV1uRD682lc8401Xw/q2r
+         Q+2A==
+X-Gm-Message-State: AOJu0YwJtOBBmJRpPTldJkzQhOktha5dblzgwkR3+yNsJAIRWNK9hv7W
+	pUaLx4Tzc/mGSoYvVn/miQP7wdjy2goi0Q==
+X-Google-Smtp-Source: AGHT+IEd1AqxwxGdLm94IyI73PfJOK48J7QaBzT7SKGTGndUmAHxRQneQCtPTI9QE5aJOSdY1d+CIQ==
+X-Received: by 2002:a05:651c:169a:b0:2cd:230c:cc40 with SMTP id bd26-20020a05651c169a00b002cd230ccc40mr404636ljb.42.1704884147334;
+        Wed, 10 Jan 2024 02:55:47 -0800 (PST)
+Received: from [172.30.205.119] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
+        by smtp.gmail.com with ESMTPSA id y27-20020a05651c021b00b002cd77293ddcsm196596ljn.12.2024.01.10.02.55.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 10 Jan 2024 02:55:47 -0800 (PST)
+Message-ID: <9daba002-2c49-49cf-a8e3-5b8350270df8@linaro.org>
+Date: Wed, 10 Jan 2024 11:55:44 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-01-05_08,2024-01-05_01,2023-05-22_02
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/2] Add Crypto Engine support for SM6350
+Content-Language: en-US
+To: Luca Weiss <luca.weiss@fairphone.com>, Andy Gross <agross@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Thara Gopinath <thara.gopinath@gmail.com>,
+ Herbert Xu <herbert@gondor.apana.org.au>,
+ "David S. Miller" <davem@davemloft.net>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+ linux-crypto@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240105-sm6350-qce-v1-0-416e5c7319ac@fairphone.com>
+ <c3e82c7a-fc03-44c6-bf83-97dffaf22dba@linaro.org>
+ <CYA51QMVFQZF.3NEPC3R2QY2VM@fairphone.com>
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <CYA51QMVFQZF.3NEPC3R2QY2VM@fairphone.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Add VENC hardware video encoder support to STM32MP255.
 
-Signed-off-by: Hugues Fruchet <hugues.fruchet@foss.st.com>
----
- arch/arm64/boot/dts/st/stm32mp251.dtsi | 6 ++++++
- arch/arm64/boot/dts/st/stm32mp255.dtsi | 7 +++++++
- 2 files changed, 13 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/st/stm32mp251.dtsi b/arch/arm64/boot/dts/st/stm32mp251.dtsi
-index cd6c4f627739..1584debca7f5 100644
---- a/arch/arm64/boot/dts/st/stm32mp251.dtsi
-+++ b/arch/arm64/boot/dts/st/stm32mp251.dtsi
-@@ -58,6 +58,12 @@ ck_icn_p_vdec: ck-icn-p-vdec {
- 			compatible = "fixed-clock";
- 			clock-frequency = <200000000>;
- 		};
-+
-+		ck_icn_p_venc: ck-icn-p-venc {
-+			#clock-cells = <0>;
-+			compatible = "fixed-clock";
-+			clock-frequency = <200000000>;
-+		};
- 	};
- 
- 	firmware {
-diff --git a/arch/arm64/boot/dts/st/stm32mp255.dtsi b/arch/arm64/boot/dts/st/stm32mp255.dtsi
-index aea5096dac3c..17f197c5b22b 100644
---- a/arch/arm64/boot/dts/st/stm32mp255.dtsi
-+++ b/arch/arm64/boot/dts/st/stm32mp255.dtsi
-@@ -14,6 +14,13 @@ vdec: vdec@480d0000 {
- 				interrupts = <GIC_SPI 117 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&ck_icn_p_vdec>;
- 			};
-+
-+			venc: venc@480e0000 {
-+				compatible = "st,stm32mp25-venc";
-+				reg = <0x480e0000 0x800>;
-+				interrupts = <GIC_SPI 167 IRQ_TYPE_LEVEL_HIGH>;
-+				clocks = <&ck_icn_ls_mcu>;
-+			};
- 		};
- 	};
- };
--- 
-2.25.1
+On 1/9/24 12:27, Luca Weiss wrote:
+> On Mon Jan 8, 2024 at 1:40 PM CET, Konrad Dybcio wrote:
+>> On 5.01.2024 17:15, Luca Weiss wrote:
+>>> Add the compatible and nodes for the QCE found on SM6350 SoC.
+>>>
+>>> Not completely sure how to fully test it but "kcapi-speed --all" shows
+>>> no issues. Let me know if I can/should test this more.
+>>
+>> I think I used `cryptsetup benchmark` with and without the ICE enabled
+>> a couple years back. IIRC the CPU should be faaar faster but also chug
+>> power while at it.
+> 
+> Are you sure you mean QCE here (which this patch is about) and not ICE?
 
+I.. think I do. It's been a while.
+
+> 
+> I'm not aware of them working together somehow but I wouldn't be
+> surprised if there's something since I don't know much of this area at
+> all.
+
+No idea
+
+Konrad
 
