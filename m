@@ -1,159 +1,142 @@
-Return-Path: <devicetree+bounces-31014-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31019-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2FAD0829BA9
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 14:48:37 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2917829BD5
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 14:53:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BDE461F24F46
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 13:48:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6B1F828364C
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 13:53:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91E5A48CD2;
-	Wed, 10 Jan 2024 13:47:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FA9348CFA;
+	Wed, 10 Jan 2024 13:53:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TZxskO5+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="p1LOsVQs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com [209.85.128.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C1F44A98B;
-	Wed, 10 Jan 2024 13:47:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-5ebca94cf74so37826147b3.0;
-        Wed, 10 Jan 2024 05:47:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1704894474; x=1705499274; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=F+Dl/Il2vrbZxDbYc+SRyVGBLpDYXTxt7Tb1vd4cwvQ=;
-        b=TZxskO5+F7i7ifTYtAahV9igz+0F75UmIFJavM8g3O2w79eklotRxdyQn1ynyCCmiK
-         CLifijie7qm4DBswaqrrEuHwfZof8mws3m4v/1jjJyj2O8bPL3A4UMjp1VauWzSfzgyY
-         x/Kb4LJAHJdJHUJ/JPHnELTDJS0QnPVIrVkKfc/VsZoA265dQphwLjfkoD7DH7EEBixn
-         p9rtzP2aSS7oHopeCEUSS9JttrVzCVjHwnELvGszluCVSZKsz9cMWtLzCWSetifcj+co
-         wnHty9fTnU7TrHIXCHmU5pLNFIlI7LOX9cCz5OQhf7CEITfYfn9wCfDZE68umatKF6ax
-         yGWQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704894474; x=1705499274;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=F+Dl/Il2vrbZxDbYc+SRyVGBLpDYXTxt7Tb1vd4cwvQ=;
-        b=obYMQAK43LLfZiSXbGj0DX4dTma4fqBtPrhGFJtCDBeMK4AJT7eEi4w2zCY/1Ilh76
-         aNKhWmnMr70+VT2L01Z4+2gyHnzi//J9MaCXUKBj5VWbjSDIuMIp7kEWMi6rr8Q+L9jy
-         EqlTzJtw5/FiXmvYvNONH5TNAx5RiNXD+fX/72OVPdv19DkJ9yY6YformEscnSlwtXR8
-         IBlJpKgG/3Y80/k7Os9sGtuPfoKr4Lsf1uPUidSZ2Roo/e5xNAH9ktfdk/DmJT4mf5WL
-         vhMMV/0DpZMd11gyUNC0yoCJ635Rt0GlAKT9DFkgTt9EEUTg5497lvyMt9qFbuwGBEAb
-         pS2w==
-X-Gm-Message-State: AOJu0YzkksytFsTkXdoyRIe1GC8nv7D5nE24tq31QcVw3gXPQ7rvC4kl
-	UDy0vwP9QIuvME/xY6itLHTEQbDhf/8AyN0JfWQ=
-X-Google-Smtp-Source: AGHT+IF5GSh+GAYoRYse0osNDKjpebp3XYF6+cNYz6K9Yfp6hvlCj7DACrSbLrXqYpd5qwBs2GWfV/3aVWO2g9Owgg8=
-X-Received: by 2002:a0d:eb07:0:b0:5f9:25b:398b with SMTP id
- u7-20020a0deb07000000b005f9025b398bmr855139ywe.52.1704894473970; Wed, 10 Jan
- 2024 05:47:53 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3D2F48CEC;
+	Wed, 10 Jan 2024 13:53:16 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 41C05C433C7;
+	Wed, 10 Jan 2024 13:53:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1704894796;
+	bh=jlMp/lpi2wGBwS24WgYMjKdamYROtFScTQ27uHssC90=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=p1LOsVQsdC6C0Ev+AVzJ6qcas/m9YtdmXZwSJirqRWZMAASZHZJSzm7BmlZbb3LdO
+	 A/+bAeG0/3+OvM5+cG3kismKx4ZWGKn9JGzIXmqx/+uWOLXL5stNY1cFlhmF+/XbPm
+	 G46Ip3Z39F6OLqeeTO3FPoUDZZ1nTvXcuaAIw0oinmOzZnKy7lr6UCFQbldsJR1fiy
+	 43crXl/NLmVHV8fhegmrW9mp4Do+WkH8a8emgIkguxqtP88veZRVVeRBN7psiKffOz
+	 DPaDY6BBtVBeUr3JrbJvvBYkIt6SH2Sh6V9ecRAT38GHi1JHQJ5At/sogKFLzig3So
+	 PapKmX/sgVHoQ==
+Date: Wed, 10 Jan 2024 13:53:11 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Cc: Jisheng Zhang <jszhang@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Emil Renner Berthing <kernel@esmil.dk>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 0/3] riscv: dts: starfive: add Milkv Mars board device
+ tree
+Message-ID: <20240110-eternal-proofing-8a33201ff727@spud>
+References: <20231202153353.635-1-jszhang@kernel.org>
+ <CAJM55Z-9Y=QitvAX+z=XTTMM0CGRzGMD5z0H_Bzv=Q85b49rpQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240108135421.684263-1-tmaimon77@gmail.com> <20240108135421.684263-2-tmaimon77@gmail.com>
- <20240109170830.GA2772086-robh@kernel.org>
-In-Reply-To: <20240109170830.GA2772086-robh@kernel.org>
-From: Tomer Maimon <tmaimon77@gmail.com>
-Date: Wed, 10 Jan 2024 15:47:42 +0200
-Message-ID: <CAP6Zq1jCHVrFfRa6c3DZ4t2aaJTkWukeEkia0AqhzppC0mjbfg@mail.gmail.com>
-Subject: Re: [PATCH v22 1/8] dt-bindings: clock: npcm845: Add reference 25m
- clock property
-To: Rob Herring <robh@kernel.org>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, tali.perry1@gmail.com, joel@jms.id.au, 
-	venture@google.com, yuenn@google.com, benjaminfair@google.com, 
-	openbmc@lists.ozlabs.org, linux-clk@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="ggN6li4P/Qv8olF8"
+Content-Disposition: inline
+In-Reply-To: <CAJM55Z-9Y=QitvAX+z=XTTMM0CGRzGMD5z0H_Bzv=Q85b49rpQ@mail.gmail.com>
 
-Hi Rob,
 
-Thanks for your comment.
+--ggN6li4P/Qv8olF8
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, 9 Jan 2024 at 19:08, Rob Herring <robh@kernel.org> wrote:
->
-> On Mon, Jan 08, 2024 at 03:54:14PM +0200, Tomer Maimon wrote:
-> > The NPCM8XX clock driver uses 25Mhz external clock, therefor adding
->
-> therefore
->
-> > refclk property.
->
-> 'refclk' is not a property.
->
+On Sat, Dec 02, 2023 at 02:07:50PM -0800, Emil Renner Berthing wrote:
+> Jisheng Zhang wrote:
+> > The Milkv Mars is a development board based on the Starfive JH7110 SoC.
+> > The board features:
 > >
-> > Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
-> > ---
-> >  .../bindings/clock/nuvoton,npcm845-clk.yaml      | 16 ++++++++++++++++
-> >  1 file changed, 16 insertions(+)
+> > - JH7110 SoC
+> > - 1/2/4/8 GiB LPDDR4 DRAM
+> > - AXP15060 PMIC
+> > - 40 pin GPIO header
+> > - 3x USB 3.0 host port
+> > - 1x USB 2.0 host port
+> > - 1x M.2 E-Key
+> > - 1x eMMC slot
+> > - 1x MicroSD slot
+> > - 1x QSPI Flash
+> > - 1x 1Gbps Ethernet port
+> > - 1x HDMI port
+> > - 1x 2-lane DSI and 1x 4-lane DSI
+> > - 1x 2-lane CSI
 > >
-> > diff --git a/Documentation/devicetree/bindings/clock/nuvoton,npcm845-clk.yaml b/Documentation/devicetree/bindings/clock/nuvoton,npcm845-clk.yaml
-> > index b901ca13cd25..0b642bfce292 100644
-> > --- a/Documentation/devicetree/bindings/clock/nuvoton,npcm845-clk.yaml
-> > +++ b/Documentation/devicetree/bindings/clock/nuvoton,npcm845-clk.yaml
-> > @@ -21,6 +21,14 @@ properties:
-> >    reg:
-> >      maxItems: 1
+> > patch1 adds 'cpus' label
+> > patch2 adds "milkv,mars" board dt-binding
+> > patch3 adds the devicetree file describing the currently supported
+> > features:
+> > Namely PMIC, UART, I2C, GPIO, SD card, QSPI Flash, eMMC and Ethernet.
 > >
-> > +  clocks:
-> > +    items:
-> > +      - description: 25Mhz referance clock
->
-> reference
->
-> > +
-> > +  clock-names:
-> > +    items:
-> > +      - const: refclk
-> > +
-> >    '#clock-cells':
-> >      const: 1
-> >      description:
-> > @@ -30,12 +38,20 @@ properties:
-> >  required:
-> >    - compatible
-> >    - reg
-> > +  - clocks
-> > +  - clock-names
->
-> New required properties are an ABI break. That's fine if you explain why
-> that's okay in the commit msg.
-What do you mean?
-Could I add the new required properties to the required list?
->
->
-> >    - '#clock-cells'
+> > Since v1:
+> >  - add two new patches which add "cpus" label and board dt-binding
+> >  - adopt Krzysztof's suggestions, thanks
 > >
-> >  additionalProperties: false
+> > Hi Conor,
 > >
-> >  examples:
-> >    - |
-> > +    refclk: refclk-25mhz {
-> > +        compatible = "fixed-clock";
-> > +        #clock-cells = <0>;
-> > +        clock-frequency = <25000000>;
-> > +    };
->
-> Examples don't need to show providers.
->
-> > +
-> >      ahb {
-> >          #address-cells = <2>;
-> >          #size-cells = <2>;
-> > --
-> > 2.34.1
-> >
+> > I see you have sent a patch which moves the timebase-frequency property
+> > to soc dtsi, but this series doesn't rebase on that. I can update it
+> > once your patch is merged.
+>=20
+> Hi Jisheng,
+>=20
+> Thanks for working on this! On the JH7110 the mtime derives almost direct=
+ly
+> from the external oscillator like this:
+>=20
+> osc (24MHz) -> rtc_toggle (div 6) -> mtime (4MHz)
+>=20
+> So to me it makes sense to define the timebase-frequency in the same file=
+ as
+> the frequency of the external oscillator.
+>=20
+> In general it looks good, but if you do
+>=20
+>   diff -Naur jh7110-{starfive-visionfive-2.dtsi,milkv-mars.dts}
+>=20
+> you'll see that those two files are almost identical. Even external clock
+> speeds and all the pin configuration are the same. I'd strongly prefer to=
+ have
+> all that factored out in a common .dtsi so fixes don't get out of sync.
 
-Best regards,
+I'm gonna mark this as changes requested on patchwork because of this
+comment. LMK if you don't think this is worth another version Emil.
 
-Tomer
+Cheers,
+Conor.
+
+--ggN6li4P/Qv8olF8
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZZ6hRwAKCRB4tDGHoIJi
+0ogBAP4x6iIaTIAS0a/hkKmtjptbBiq1ANLlQfOZxqAPiMlsUwEA5dWpLAZgdPrE
+K8VcCEsLp5nb905zt+fOFYC1bPFoEQY=
+=aqtW
+-----END PGP SIGNATURE-----
+
+--ggN6li4P/Qv8olF8--
 
