@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-31189-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31190-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D335E82A2D3
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 21:51:15 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D40282A2E7
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 21:54:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D393C1C262D7
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 20:51:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 444BA1C25A0F
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 20:54:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B1F651025;
-	Wed, 10 Jan 2024 20:48:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D8454F208;
+	Wed, 10 Jan 2024 20:54:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="KQptysEg"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dBjOg9HK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
+Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5837651017
-	for <devicetree@vger.kernel.org>; Wed, 10 Jan 2024 20:48:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FDE64F1E2
+	for <devicetree@vger.kernel.org>; Wed, 10 Jan 2024 20:54:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-3374c693f92so3565370f8f.1
-        for <devicetree@vger.kernel.org>; Wed, 10 Jan 2024 12:48:39 -0800 (PST)
+Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-a28e31563ebso489813866b.2
+        for <devicetree@vger.kernel.org>; Wed, 10 Jan 2024 12:54:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704919717; x=1705524517; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1704920057; x=1705524857; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=R1M7ps4WkHmNkGZ5ie9/GgPQiwPprEwmBMC0OtQiSIE=;
-        b=KQptysEg6FRvwy4NrwrXC0EqaMoyt5t3dLV3+40MyOrqzJ6g3w535Ym8ucPUsrFmL8
-         ho5kuBORycW/+Gkk5Y/+alc1xZeo5l27qtK6xPeFIaptfegPoYr5JwED900DANs0qHCg
-         V4Qo13bNxKYf7IsTq/0FEHHx3HxtucrFAyaeroO8YcaCOZpCCpBgYGEhvXKbWgmYdsWW
-         qsGmLm5ZG00hVyFuwe+XxGeYB9OhXAzEY9MgwzA4icFNaBBe33/85vq0+GqcIjs3V5Di
-         zSFrsVW55oq3B9QuClzZws2d9IneAxF1vZb5bUsdu4qRo74eYDF+9sAD0xAsO35w4LP6
-         gUlg==
+        bh=AZlzwz2Xm3MExiEQLHcNCcs3pt3gp3Qvxyp+Wgxqrio=;
+        b=dBjOg9HKae+a2uEJY5KwtHvgyPmaEXdbQFw5Qn2P8e/bhQA+jrApqDSv4CfcKXLVEm
+         0CJWRnfDSKg8CCL6BfqMPFfNOi2sXc6yZuUH53LTDDW8QU1g1Ie1W952WKF+LINtig2H
+         /eosTRZELGLaDDNsZkEt7E5y11KkZIlR+ffsH+wAu+W6P0F2gS72vs3dU3Ng6i0bPGvv
+         RvF0on2Z+27zXyeTpVo8/da5b5/VbCNdI01qmValoRwMG2Z7MmyIZCH3qPLypqquWKEb
+         MS7IW4Xrr+YaEzjqeTk/RT+AkZSasXK5bGINWJfiuQIR/72tIi8qpbXxBsgAGRpgQzjc
+         jUkw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704919717; x=1705524517;
+        d=1e100.net; s=20230601; t=1704920057; x=1705524857;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=R1M7ps4WkHmNkGZ5ie9/GgPQiwPprEwmBMC0OtQiSIE=;
-        b=kCK+SszXVwcex3UpNoXuV1eaLVN7+hP4nJwHtNrZ2NDiILVUHrzDmNqea8nPV8oMmR
-         nbEXWRGTHqGbTZB1BQyFjuZUigjaLamLS35ti54s/y/xb3jGAgJ1fvfUTov+8Li3RBN9
-         stGDjOnJ4BbWDJa/9UGn9oDSuK9afEZ7Cw3KramFZMbevj3hNFk/nQ307i0SEWDkcC9w
-         yhXdJg5g9kgrBaWQlCjxAZMU2+ZyzoGWZCp70l+KBNNIfIygUBgIjHNBsHmbUyhtKnE8
-         IIA9Hh7gGKyCmrIi0n1CHWYeEcW17MlnufQo5eMOkYl2sCrIeUB+SRImUyWZUrsxw4xx
-         c+kw==
-X-Gm-Message-State: AOJu0YxzZNQytN91X+AP7fNUMQr7oixTQxYKLfNrJCEY9TxBgmkgPw8i
-	NY0pqv0srsIMN2tk+EDSgjJ26tpWuJp6fw==
-X-Google-Smtp-Source: AGHT+IFFBFLsGgbs9TNQvPPt+398YFKa222APcbfnqPfNgMc1s2czccJJiiPIanyznR2wN82QXE/eQ==
-X-Received: by 2002:a05:6000:885:b0:337:3f72:3dd5 with SMTP id cs5-20020a056000088500b003373f723dd5mr41314wrb.32.1704919717656;
-        Wed, 10 Jan 2024 12:48:37 -0800 (PST)
+        bh=AZlzwz2Xm3MExiEQLHcNCcs3pt3gp3Qvxyp+Wgxqrio=;
+        b=eKkHHB66pilztpZ6M5wJ3CqDQnrOLHI2DRBs0Mug1JDjyDcRF4poah8gmSCGyH9qTK
+         xNxvXA7lhgPdOay2HinQuS6TH7/eYtcU8B75sNMUwRkWVurHxlKxlGuaQaa6vhlblxt+
+         A5HTw8UYaJ1aG3utDvSFkellL7VnQXvUKvf0MjwSfiOuyuEnHtfHJj/yDKQWZZWBMfO7
+         nLHve7zxqtjCFGv5fcF1flsXmkzr4XewUrMlnI5tgQLhFGE3heJt0kaKyVDU5kew2O4I
+         jHIIV/O/0MTe8q5irC3N/Bcj2v4Hj7ynxs3NL8uGdMiPg322rWeHvWOS7MA5e1e2tehS
+         bT9g==
+X-Gm-Message-State: AOJu0YzducJAuWhA6EMMAPIwWgpjns5Eig4CReA40hSg/1IuB9vbFrkh
+	5PFSnao/LdEW+HFQJs+6wBeMUPUVcKrsnw==
+X-Google-Smtp-Source: AGHT+IFUciwUr/SQowab2PkYeuRHlqoN0WjtFUpKgZtmwgxcCaSf+3r2a4D1dPOQeU6kiMXiP37R/w==
+X-Received: by 2002:a17:906:a2c8:b0:a27:e214:96b with SMTP id by8-20020a170906a2c800b00a27e214096bmr52214ejb.112.1704920057575;
+        Wed, 10 Jan 2024 12:54:17 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.223.112])
-        by smtp.gmail.com with ESMTPSA id k14-20020a5d6e8e000000b003366c058509sm5659636wrz.23.2024.01.10.12.48.35
+        by smtp.gmail.com with ESMTPSA id v23-20020a1709061dd700b00a2c2a9b5766sm190411ejh.97.2024.01.10.12.54.15
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 10 Jan 2024 12:48:36 -0800 (PST)
-Message-ID: <bc37f7d8-c43f-4751-9216-fc95f439b2f6@linaro.org>
-Date: Wed, 10 Jan 2024 21:48:34 +0100
+        Wed, 10 Jan 2024 12:54:16 -0800 (PST)
+Message-ID: <dc739435-d955-44f7-b5ee-9de4d5336725@linaro.org>
+Date: Wed, 10 Jan 2024 21:54:14 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,17 +66,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/6] dt-bindings: iio: pressure: honeywell,hsc030pa.yaml
- add sleep-mode
+Subject: Re: [PATCH v22 1/8] dt-bindings: clock: npcm845: Add reference 25m
+ clock property
 Content-Language: en-US
-To: Petre Rodan <petre.rodan@subdimension.ro>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen
- <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-References: <20240110172306.31273-1-petre.rodan@subdimension.ro>
- <20240110172306.31273-3-petre.rodan@subdimension.ro>
+To: Tomer Maimon <tmaimon77@gmail.com>, Rob Herring <robh@kernel.org>
+Cc: mturquette@baylibre.com, sboyd@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, tali.perry1@gmail.com, joel@jms.id.au,
+ venture@google.com, yuenn@google.com, benjaminfair@google.com,
+ openbmc@lists.ozlabs.org, linux-clk@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20240108135421.684263-1-tmaimon77@gmail.com>
+ <20240108135421.684263-2-tmaimon77@gmail.com>
+ <20240109170830.GA2772086-robh@kernel.org>
+ <CAP6Zq1jCHVrFfRa6c3DZ4t2aaJTkWukeEkia0AqhzppC0mjbfg@mail.gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -122,59 +124,36 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240110172306.31273-3-petre.rodan@subdimension.ro>
+In-Reply-To: <CAP6Zq1jCHVrFfRa6c3DZ4t2aaJTkWukeEkia0AqhzppC0mjbfg@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 10/01/2024 18:22, Petre Rodan wrote:
-> Add sleep-mode property present in some custom chips.
-> 
-> This flag activates a special wakeup sequence prior to conversion.
-> 
-> Signed-off-by: Petre Rodan <petre.rodan@subdimension.ro>
-> ---
->  .../bindings/iio/pressure/honeywell,hsc030pa.yaml      | 10 ++++++++++
->  1 file changed, 10 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/pressure/honeywell,hsc030pa.yaml b/Documentation/devicetree/bindings/iio/pressure/honeywell,hsc030pa.yaml
-> index 89977b9f01cf..350da1d6991b 100644
-> --- a/Documentation/devicetree/bindings/iio/pressure/honeywell,hsc030pa.yaml
-> +++ b/Documentation/devicetree/bindings/iio/pressure/honeywell,hsc030pa.yaml
-> @@ -86,6 +86,15 @@ properties:
->        Maximum pressure value the sensor can measure in pascal.
->        To be specified only if honeywell,pressure-triplet is set to "NA".
-> 
-> +  honeywell,sleep-mode:
+On 10/01/2024 14:47, Tomer Maimon wrote:
+>>> +
+>>> +  clock-names:
+>>> +    items:
+>>> +      - const: refclk
+>>> +
+>>>    '#clock-cells':
+>>>      const: 1
+>>>      description:
+>>> @@ -30,12 +38,20 @@ properties:
+>>>  required:
+>>>    - compatible
+>>>    - reg
+>>> +  - clocks
+>>> +  - clock-names
+>>
+>> New required properties are an ABI break. That's fine if you explain why
+>> that's okay in the commit msg.
+> What do you mean?
 
-"Sleep mode" naming suggests there are choices, like mode foo and mode
-bar. Probably you want something like "sleep-between-measurements" or
-something matching how does it work.
+I think it was clear. Which part is not clear?
 
+> Could I add the new required properties to the required list?
 
-> +    description: |
-
-Do not need '|' unless you need to preserve formatting.
-
-> +      'Sleep Mode' is a special factory set mode of the chip that allows the
-> +      sensor to power down between measurements. It is implemented only on
-> +      special request, and it is an attribute not present in the HSC/SSC series
-> +      nomenclature.
-> +      Set in order to enable the special wakeup sequence prior to conversion.
-> +    $ref: /schemas/types.yaml#/definitions/flag
-> +
->    vdd-supply:
->      description:
->        Provide VDD power to the sensor (either 3.3V or 5V depending on the chip)
-> @@ -140,6 +149,7 @@ examples:
->              honeywell,pressure-triplet = "NA";
->              honeywell,pmin-pascal = <0>;
->              honeywell,pmax-pascal = <200000>;
-> +            //honeywell,sleep-mode;
-
-Drop comment.
-
-> 2.41.0
-> 
+You just did, didn't you? And received feedback that you are breaking
+the ABI.
 
 Best regards,
 Krzysztof
