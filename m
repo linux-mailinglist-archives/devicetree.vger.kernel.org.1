@@ -1,49 +1,100 @@
-Return-Path: <devicetree+bounces-31081-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31082-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7FD9829E33
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 17:09:21 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA0CC829E3E
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 17:12:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EA72EB21710
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 16:09:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EF5F71C229FB
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 16:12:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A0FC4C63A;
-	Wed, 10 Jan 2024 16:09:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E7474C63A;
+	Wed, 10 Jan 2024 16:11:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hHiKqD8n"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="a3/tV8d/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B8F84C601;
-	Wed, 10 Jan 2024 16:09:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 44E03C433C7;
-	Wed, 10 Jan 2024 16:09:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF6914CB28;
+	Wed, 10 Jan 2024 16:11:58 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1B2CAC433C7;
+	Wed, 10 Jan 2024 16:11:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1704902952;
-	bh=IN50I227Q+4tz3SlW+Lm0mdV9qShGiS6aGpkLM6W178=;
+	s=k20201202; t=1704903118;
+	bh=TjB+hX1j46U+CflASkOHj4zTVTFUzA+ZbdAbWk2ryio=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=hHiKqD8nAhmRJp7OBjKqI0VP6n3+VwxnX3RIEsMeUhSEJYrmLdtmksU6MwlGWnMTx
-	 Sy5ZMMfklUS2CmCjyPOPxC/3FVgoPKVvtqpJ6MfHyT6SGMuYFhmi9Osm8Ee0H9D39y
-	 AvevsA96j2+nQDRPrs38B/nYglEa6Sev3iILB5oIBvg2o+emQLWoYzFIoZvOA4FjHl
-	 qoRluAWEfi1PE2UjotlCUFbBDS3BA7Hv0ADaHOThMT7qy0iN7pbWClwwuVK270tGeH
-	 derQkg9ulmojGxOrNL+g5BYe33gkcOyRxwNwhDoZMaNSKKz+tLieykiMXx8n0nSP08
-	 1H4XglpDhs+dg==
-Date: Wed, 10 Jan 2024 16:09:07 +0000
+	b=a3/tV8d/TpSrMMPBNe5Bio2tR6BViJo6DwIaOLYJ6dXTqqXN76rzMj52xy/TIVYU7
+	 YzbZtfDGI1pGi7Q//oC4Lp0Acc/UwQQCLOjmh7jQh7VaiOqDdh1HTPGwZSaIbsiby+
+	 cCWurXhUDUygFH/SHOzL1xtk0z4CjUb628cwyw7KwK5NQyVn9isyvX7rtXkjU4nI6S
+	 DQNgr5OzBM4Aitk1dNvvk+XrhQ2Lg0d0lHZa/o80mZ7ygooh+LXNeO/Yn7VkenHUa+
+	 tA/u0+X+ndRiC+QBeR8hwS9cofweI4PMtsBo9b5Fdo2xUbrp3dUKq39pJv1WiqrCDO
+	 edCMvCyR2u92g==
+Date: Wed, 10 Jan 2024 16:11:44 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh+dt@kernel.org>,
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Yoshinori Sato <ysato@users.sourceforge.jp>, linux-sh@vger.kernel.org,
+	Damien Le Moal <dlemoal@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Lucas Stach <l.stach@pengutronix.de>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/1] dt-bindings: interrupt-controller: fsl,irqsteer: Add
- power-domains
-Message-ID: <20240110-ignore-womanhood-a7ee7caa71f1@spud>
-References: <20240110094338.472304-1-alexander.stein@ew.tq-group.com>
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Rich Felker <dalias@libc.org>,
+	John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>,
+	Lee Jones <lee@kernel.org>, Helge Deller <deller@gmx.de>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Chris Morgan <macromorgan@hotmail.com>,
+	Yang Xiwen <forbidden405@foxmail.com>,
+	Sebastian Reichel <sre@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Randy Dunlap <rdunlap@infradead.org>, Arnd Bergmann <arnd@arndb.de>,
+	Vlastimil Babka <vbabka@suse.cz>,
+	Hyeonggon Yoo <42.hyeyoo@gmail.com>,
+	David Rientjes <rientjes@google.com>, Baoquan He <bhe@redhat.com>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Stephen Rothwell <sfr@canb.auug.org.au>,
+	Azeem Shaikh <azeemshaikh38@gmail.com>,
+	Javier Martinez Canillas <javierm@redhat.com>,
+	Max Filippov <jcmvbkbc@gmail.com>,
+	Palmer Dabbelt <palmer@rivosinc.com>, Bin Meng <bmeng@tinylab.org>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Jacky Huang <ychuang3@nuvoton.com>,
+	Lukas Bulwahn <lukas.bulwahn@gmail.com>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
+	Sam Ravnborg <sam@ravnborg.org>,
+	Sergey Shtylyov <s.shtylyov@omp.ru>,
+	Michael Karcher <kernel@mkarcher.dialup.fu-berlin.de>,
+	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+	linux-ide@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+	linux-clk@vger.kernel.org, dri-devel@lists.freedesktop.org,
+	linux-pci@vger.kernel.org, linux-serial@vger.kernel.org,
+	linux-fbdev@vger.kernel.org
+Subject: Re: [DO NOT MERGE v6 26/37] dt-bindings: vendor-prefixes: Add smi
+Message-ID: <20240110-sincere-tripod-9d34175fcbce@spud>
+References: <cover.1704788539.git.ysato@users.sourceforge.jp>
+ <c8aaf67e3fcdb7e60632c53a784691aabfc7733e.1704788539.git.ysato@users.sourceforge.jp>
+ <20240109-fructose-bundle-05d01033277b@spud>
+ <CAMuHMdU1z64QHJOVd3jUsOfyuDApB1+khkUV8PvjoKbwsi327g@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -51,75 +102,70 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="XO/g/Cc5UWBFhjth"
+	protocol="application/pgp-signature"; boundary="NUFAcOAItrfxYJZq"
 Content-Disposition: inline
-In-Reply-To: <20240110094338.472304-1-alexander.stein@ew.tq-group.com>
+In-Reply-To: <CAMuHMdU1z64QHJOVd3jUsOfyuDApB1+khkUV8PvjoKbwsi327g@mail.gmail.com>
 
 
---XO/g/Cc5UWBFhjth
-Content-Type: text/plain; charset=us-ascii
+--NUFAcOAItrfxYJZq
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Jan 10, 2024 at 10:43:38AM +0100, Alexander Stein wrote:
-> Some SoC like i.MX8QXP use a power-domain for this IP add it to the
-> supported proerties. Fixes the dtbs_check warning:
-> freescale/imx8qxp-tqma8xqp-mba8xx.dtb: irqsteer@56000000: 'power-domains'
->  does not match any of the regexes: 'pinctrl-[0-9]+'
-> from schema $id: http://devicetree.org/schemas/interrupt-controller/fsl,i=
-rqsteer.yaml#
+On Wed, Jan 10, 2024 at 12:23:37PM +0100, Geert Uytterhoeven wrote:
+> Hi Conor,
 >=20
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> ---
+> On Tue, Jan 9, 2024 at 7:06=E2=80=AFPM Conor Dooley <conor@kernel.org> wr=
+ote:
+> > On Tue, Jan 09, 2024 at 05:23:23PM +0900, Yoshinori Sato wrote:
+> > > Add Silicon Mortion Technology Corporation
 >=20
-> Notes:
->     Please note that both the board dts and the DT node for irqsteer bein=
-g used,
->     are still work-in-progress.
+> Motion
+>=20
+> > > https://www.siliconmotion.com/
+> > >
+> > > Signed-off-by: Yoshinori Sato <ysato@users.sourceforge.jp>
+> > > ---
+> > >  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+> > >  1 file changed, 2 insertions(+)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b=
+/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> > > index 94ed63d9f7de..a338bdd743ab 100644
+> > > --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> > > +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> > > @@ -1283,6 +1283,8 @@ patternProperties:
+> > >      description: Skyworks Solutions, Inc.
+> > >    "^smartlabs,.*":
+> > >      description: SmartLabs LLC
+> > > +  "^smi,.*":
+> > > +    description: Silicon Motion Technology Corporation
+> >
+> > How come "smi" is used for a company with this name?
+> > Why is it not something like SMTC? There's probably some history here
+> > that I am unaware of.
+>=20
+> See Documentation/devicetree/bindings/display/sm501fb.txt
+> The stock ticker is "SIMO", though.
+> https://www.nasdaq.com/market-activity/stocks/simo
 
-The binding doesn't even support the imx8qxp's irqsteer yet, I think
-this should be added alongside support for that SoC. Am I missing
-something?
+If there's an existing user, there's little reason to stand in the way I
+think.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
 Cheers,
 Conor.
 
->=20
->  .../devicetree/bindings/interrupt-controller/fsl,irqsteer.yaml | 3 +++
->  1 file changed, 3 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/interrupt-controller/fsl,i=
-rqsteer.yaml b/Documentation/devicetree/bindings/interrupt-controller/fsl,i=
-rqsteer.yaml
-> index 20ad4ad82ad64..cb4fcd23627f6 100644
-> --- a/Documentation/devicetree/bindings/interrupt-controller/fsl,irqsteer=
-=2Eyaml
-> +++ b/Documentation/devicetree/bindings/interrupt-controller/fsl,irqsteer=
-=2Eyaml
-> @@ -42,6 +42,9 @@ properties:
->    clock-names:
->      const: ipg
-> =20
-> +  power-domains:
-> +    maxItems: 1
-> +
->    interrupt-controller: true
-> =20
->    "#interrupt-cells":
-> --=20
-> 2.34.1
->=20
-
---XO/g/Cc5UWBFhjth
+--NUFAcOAItrfxYJZq
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZZ7BIwAKCRB4tDGHoIJi
-0iDfAPsGnjAlrCLhui7Olj6NVOB3GH9pRBv6p7fZCUuQpw7YuQD+IMw/52v3rwa9
-cnRkcgZF5tVaI9qo3Cg0Mo8eV2yMkQU=
-=pSDe
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZZ7BwAAKCRB4tDGHoIJi
+0q9OAQDdFxNbk8a1RbWhCTMkuhEoMnbyCFIJrJbkoyX9CvOgjgEA+TlXk2NSR1lR
+ie4wsGsQcBrpiUsYvM61XxlwsOPsRgg=
+=6SO8
 -----END PGP SIGNATURE-----
 
---XO/g/Cc5UWBFhjth--
+--NUFAcOAItrfxYJZq--
 
