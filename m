@@ -1,95 +1,94 @@
-Return-Path: <devicetree+bounces-31022-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31041-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 732BE829C04
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 15:09:20 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7598D829C39
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 15:15:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 859771C20DED
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 14:09:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2CB6D1F25FC7
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 14:15:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A0FA4A992;
-	Wed, 10 Jan 2024 14:09:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90F654B5AA;
+	Wed, 10 Jan 2024 14:13:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="nHlTomTb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n8rvpcHO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A25EE4A989;
-	Wed, 10 Jan 2024 14:09:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 40AE97qt047199;
-	Wed, 10 Jan 2024 08:09:07 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1704895747;
-	bh=WoCxR7stLoZOJs4QNvFFUo+FYL8pkhd68oQD8lBR9RQ=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=nHlTomTbna9aCjQAIaieipw3S+S4fMSApZAy29FzV06qLlXa8NlDejBBu+otZnvFb
-	 7IJVl9vSy/8deBNDGydc0ty1i081PBqG7/E1P6JlQEfSD2yILR9tYriqbDgDmnzd/D
-	 KEec0Ui4agb8lT+fX5n8v6ggOgszgNM9/wmMjnwY=
-Received: from DFLE101.ent.ti.com (dfle101.ent.ti.com [10.64.6.22])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 40AE97RF098354
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 10 Jan 2024 08:09:07 -0600
-Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 10
- Jan 2024 08:09:07 -0600
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 10 Jan 2024 08:09:07 -0600
-Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 40AE97v9025531;
-	Wed, 10 Jan 2024 08:09:07 -0600
-From: Nishanth Menon <nm@ti.com>
-To: Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, Nishanth Menon <nm@ti.com>
-Subject: [PATCH 16/16] arm64: dts: ti: Makefile: Clarify GPL-2.0 as GPL-2.0-only
-Date: Wed, 10 Jan 2024 08:09:03 -0600
-Message-ID: <20240110140903.4090946-17-nm@ti.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240110140903.4090946-1-nm@ti.com>
-References: <20240110140903.4090946-1-nm@ti.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C7DC4CDE1;
+	Wed, 10 Jan 2024 14:13:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 04CA2C433F1;
+	Wed, 10 Jan 2024 14:13:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1704896000;
+	bh=ubT3JpCdUdX478eUAkGKG4N/VQnjYxl/ajam8KuCzW0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=n8rvpcHO+s4fz4TNsN/HyfY+EIuzENurVJp3ihv32jRMWh3bE5uRVQ6yn6TDagupv
+	 AK+L8u0WZmOWZeJKFpLzri36x03PmKAbtEsHTGABMWcA5CnL1Yao6Kh6m/kS/F5UFP
+	 IJ5LBTyhV023i+Ds4OxmscnIxA0mja58bmWf7sszIrKcEjtp9A+oki/mICAftF25o0
+	 vc+dOdx+Tk/A7zsoH9ASJXqLKcottwvx0Paqx/QHCtG8hweuQC/p9/0Dh8g2M94KOP
+	 wxOAjGIw5oq+T5OGqRrrs5PeEkdml7/gM4bdYpuQL7KWSZaV4qLlw0tgu/8Z9w4WDG
+	 osLhuF9hoT/0w==
+Date: Wed, 10 Jan 2024 14:13:13 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Chen Wang <unicornxw@gmail.com>
+Cc: aou@eecs.berkeley.edu, chao.wei@sophgo.com,
+	krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
+	palmer@dabbelt.com, paul.walmsley@sifive.com,
+	richardcochran@gmail.com, robh+dt@kernel.org, sboyd@kernel.org,
+	devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+	haijiao.liu@sophgo.com, xiaoguang.xing@sophgo.com,
+	guoren@kernel.org, jszhang@kernel.org, inochiama@outlook.com,
+	samuel.holland@sifive.com, Chen Wang <unicorn_wang@outlook.com>
+Subject: Re: [PATCH v7 4/4] riscv: dts: add clock generator for Sophgo SG2042
+ SoC
+Message-ID: <20240110-sedative-reggae-389839cef8c4@spud>
+References: <cover.1704694903.git.unicorn_wang@outlook.com>
+ <25650372c373b15309cd9f3822306838e556d3c7.1704694903.git.unicorn_wang@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="nm/CphfyKzDGNTF4"
+Content-Disposition: inline
+In-Reply-To: <25650372c373b15309cd9f3822306838e556d3c7.1704694903.git.unicorn_wang@outlook.com>
 
-SPDX identifier GPL-2.0 has been deprecated since license list version
-3.0. Use GPL-2.0-only to be specific.
 
-Signed-off-by: Nishanth Menon <nm@ti.com>
----
- arch/arm64/boot/dts/ti/Makefile | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+--nm/CphfyKzDGNTF4
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-index 52c1dc910308..40724017de89 100644
---- a/arch/arm64/boot/dts/ti/Makefile
-+++ b/arch/arm64/boot/dts/ti/Makefile
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: GPL-2.0
-+# SPDX-License-Identifier: GPL-2.0-only
- #
- # Make file to build device tree binaries for boards based on
- # Texas Instruments Inc processors
--- 
-2.43.0
+On Mon, Jan 08, 2024 at 02:49:53PM +0800, Chen Wang wrote:
 
+> +	cgi: oscillator {
+> +		compatible = "fixed-clock";
+> +		clock-output-names = "cgi";
+> +		#clock-cells = <0>;
+> +	};
+
+Where does the name "cgi" come from and what does it mean?
+Clock Generator Input? Does the sg2042 documentation call it that?
+
+Cheers,
+Conor.
+
+--nm/CphfyKzDGNTF4
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZZ6l+QAKCRB4tDGHoIJi
+0qa+AQCAkXm3hnS/5roeUv9wiqA5TkGqnJfy0iNrxNKOnLioewEA+fTdCxQZM2mJ
+WwMBMSTwB4ADTuG2ZWVcgoFa66ptYw4=
+=MhZh
+-----END PGP SIGNATURE-----
+
+--nm/CphfyKzDGNTF4--
 
