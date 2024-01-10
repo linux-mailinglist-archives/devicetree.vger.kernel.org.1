@@ -1,39 +1,54 @@
-Return-Path: <devicetree+bounces-30820-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30821-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A39082924B
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 03:06:24 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AAC3A829257
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 03:10:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C5A3A1F26DCD
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 02:06:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 52BEA2893E9
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 02:10:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF9F417C8;
-	Wed, 10 Jan 2024 02:06:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D44D217C9;
+	Wed, 10 Jan 2024 02:10:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hEUsXdPE"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="nRebz5nQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B55C21376;
-	Wed, 10 Jan 2024 02:06:15 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 18AEAC433F1;
-	Wed, 10 Jan 2024 02:06:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1704852375;
-	bh=K20e8jhxQctdn0EQe0a64CVvGFTYjmTc3LS7asQogyo=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=hEUsXdPExgJ/6tyvorNMmv2xbbnN/ksrlzf9XWoz4XzMSpDxk/Su9jRai8A6JmPqT
-	 CROg9vyX/uPgMa6hC3+dIv1+9VwRJuYOHwCZqh4PPAT20xe0N58/U93+wqZ4eMep+N
-	 C9Y9/Yl2ILJOSVXmlxmhAbkx+aAbO4RSpzEDkemhkakgnE8rlLiL7DE1D79+kIKw62
-	 c5+A6TL8g0sDmmmyWP6zXo51r4mcIw9+uHa66sJvr6wGG+GkGqe1ewkKXIi+ONI0Fz
-	 xX64W1DE45sKKqohJS8CPYy6lPEmA17vOTByyqBIbrhq4wLzLuEHnHNC1j3EhDfzcF
-	 aA908fHMhDbXQ==
-Message-ID: <c2f88d7b-cded-42ab-bc5c-3d9a723daa1f@kernel.org>
-Date: Wed, 10 Jan 2024 11:06:06 +0900
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2669610F4;
+	Wed, 10 Jan 2024 02:10:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40A0MEZ9012118;
+	Wed, 10 Jan 2024 02:10:08 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=krkaV+/3T5HCfsTM719GgUw4uSOlXRKe/hrTtbLRB+c=; b=nR
+	ebz5nQJXjTCvRWTm3mb4u5A6tyWFheXl5HQtKad7ARtEZ1bhGqhiwLxDC5itvt7t
+	/DjsKswjh/4D2e4+Vx8M6v3eGWoGU1U93sjSBI/TVoysZSguwD2OjUYXT6ObZAK5
+	I6KPG7ORFGcQ30ay/7JAilRZntSEX1oF+xaKR/jK5ZAxI0U1I/tIDQ3l6hDbuPFk
+	LiMMX/RpcFTCq7RpbAJETjD8a+g5c4Cqq20k0S4jBqNlXXsfYQgrbVQQeg9b/uNb
+	psbndEQXUPfLOd4xY0AKorhVrzfO3h1A79U+7JiZ8tMidhF7oP5oc/7BH+BmvDre
+	v/2D4raZtue4wM0p9/eA==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vh85t1bts-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 10 Jan 2024 02:10:08 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 40A2A7jn008701
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 10 Jan 2024 02:10:07 GMT
+Received: from [10.239.132.245] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Tue, 9 Jan
+ 2024 18:10:04 -0800
+Message-ID: <9e13c2f5-b8e2-410c-9bf4-1ed4a4735dbb@quicinc.com>
+Date: Wed, 10 Jan 2024 10:10:01 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -41,77 +56,102 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [DO NOT MERGE v6 27/37] dt-bindings: ata: ata-generic: Add new
- targets
+Subject: Re: [PATCH] dt-bindings: mtd: Change the schema for nodename which
+ includes "sram"
 Content-Language: en-US
-To: Yoshinori Sato <ysato@users.sourceforge.jp>, linux-sh@vger.kernel.org
-Cc: Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Thomas Gleixner <tglx@linutronix.de>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
- Bjorn Helgaas <bhelgaas@google.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>, Magnus Damm <magnus.damm@gmail.com>,
- Daniel Lezcano <daniel.lezcano@linaro.org>, Rich Felker <dalias@libc.org>,
- John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>,
- Lee Jones <lee@kernel.org>, Helge Deller <deller@gmx.de>,
- Heiko Stuebner <heiko@sntech.de>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Chris Morgan <macromorgan@hotmail.com>, Yang Xiwen
- <forbidden405@foxmail.com>, Sebastian Reichel <sre@kernel.org>,
- Linus Walleij <linus.walleij@linaro.org>,
- Randy Dunlap <rdunlap@infradead.org>, Arnd Bergmann <arnd@arndb.de>,
- Vlastimil Babka <vbabka@suse.cz>, Hyeonggon Yoo <42.hyeyoo@gmail.com>,
- David Rientjes <rientjes@google.com>, Baoquan He <bhe@redhat.com>,
- Andrew Morton <akpm@linux-foundation.org>, Guenter Roeck
- <linux@roeck-us.net>, Stephen Rothwell <sfr@canb.auug.org.au>,
- Azeem Shaikh <azeemshaikh38@gmail.com>,
- Javier Martinez Canillas <javierm@redhat.com>,
- Max Filippov <jcmvbkbc@gmail.com>, Palmer Dabbelt <palmer@rivosinc.com>,
- Bin Meng <bmeng@tinylab.org>, Jonathan Corbet <corbet@lwn.net>,
- Jacky Huang <ychuang3@nuvoton.com>, Lukas Bulwahn <lukas.bulwahn@gmail.com>,
- Biju Das <biju.das.jz@bp.renesas.com>,
- =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
- Sam Ravnborg <sam@ravnborg.org>, Sergey Shtylyov <s.shtylyov@omp.ru>,
- Michael Karcher <kernel@mkarcher.dialup.fu-berlin.de>,
- Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
- linux-ide@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
- linux-clk@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linux-pci@vger.kernel.org, linux-serial@vger.kernel.org,
- linux-fbdev@vger.kernel.org
-References: <cover.1704788539.git.ysato@users.sourceforge.jp>
- <06fdb2cf7927681acf3099b826390ef75ba321af.1704788539.git.ysato@users.sourceforge.jp>
-From: Damien Le Moal <dlemoal@kernel.org>
-Organization: Western Digital Research
-In-Reply-To: <06fdb2cf7927681acf3099b826390ef75ba321af.1704788539.git.ysato@users.sourceforge.jp>
-Content-Type: text/plain; charset=UTF-8
+To: Rob Herring <robh@kernel.org>, Bjorn Andersson <quic_bjorande@quicinc.com>
+CC: <miquel.raynal@bootlin.com>, <richard@nod.at>, <vigneshr@ti.com>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <linux-mtd@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <quic_tingweiz@quicinc.com>
+References: <1704367382-29979-1-git-send-email-quic_zhenhuah@quicinc.com>
+ <20240109184323.GA24189@hu-bjorande-lv.qualcomm.com>
+ <20240109212202.GA3236341-robh@kernel.org>
+From: Zhenhua Huang <quic_zhenhuah@quicinc.com>
+In-Reply-To: <20240109212202.GA3236341-robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: U54xXklOXClsEtD6dvfhWKaVf9VA9pjB
+X-Proofpoint-GUID: U54xXklOXClsEtD6dvfhWKaVf9VA9pjB
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-12-09_01,2023-12-07_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 bulkscore=0
+ malwarescore=0 suspectscore=0 mlxlogscore=999 clxscore=1011
+ priorityscore=1501 adultscore=0 impostorscore=0 phishscore=0 spamscore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2311290000 definitions=main-2401100016
 
-On 1/9/24 17:23, Yoshinori Sato wrote:
-> Added new ata-generic target.
-> - iodata,usl-5p-ata
-> - renesas,rts7751r2d-ata
+
+
+On 2024/1/10 5:22, Rob Herring wrote:
+> On Tue, Jan 09, 2024 at 10:43:23AM -0800, Bjorn Andersson wrote:
+>> On Thu, Jan 04, 2024 at 07:23:02PM +0800, Zhenhua Huang wrote:
+>>> Node name which includes "sram" not only represents MTD devices, but also
+>>> lots of sram devices(eg, qcom,imem.yaml, rules in folder sram/*).
+>>>
+>>> To avoid the conflicts, change the schema as:
+>>>   - if node name includes "sram", must select "compatible" to match
+>>> (I have listed all "comptible" string in mtd.yaml by searching
+>>> drivers/mtd/* to find applicable drivers)
+>>>   - if node name is nand/flash, use "nodename" to select.
+>>>
+>>
+>> You're right, it doesn't seem appropriate for the mtd binding to be
+>> selected for nodes intended to match e.g. the qcom,imem binding.
+>>
+>>> Fixes: 7bdc671822e9 ("dt-bindings: mtd: physmap: Reuse the generic definitions")
+>>> Signed-off-by: Zhenhua Huang <quic_zhenhuah@quicinc.com>
+>>> ---
+>>> Hello,
+>>>
+>>> Tested a few devicetree nodes, which confirms:
+>>> "qcom,imem.yaml" which in sram/ not matches with mtd.yaml anymore.
+>>> All nodes include string "sram" must have "compatible" which listed in
+>>> mtd.yaml to be matched.
+>>>
+>>> Current I just modify the rule for "sram" as it is definitely conflicting with
+>>> rules in sram/*. I have not much backgrounds on nand/flash whether they may have
+>>> similar conflicts.
+>>>
+>>>   Documentation/devicetree/bindings/mtd/mtd.yaml | 24 +++++++++++++++++++++---
+>>>   1 file changed, 21 insertions(+), 3 deletions(-)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/mtd/mtd.yaml b/Documentation/devicetree/bindings/mtd/mtd.yaml
+>>> index f322290..1704437 100644
+>>> --- a/Documentation/devicetree/bindings/mtd/mtd.yaml
+>>> +++ b/Documentation/devicetree/bindings/mtd/mtd.yaml
+>>> @@ -10,10 +10,28 @@ maintainers:
+>>>     - Miquel Raynal <miquel.raynal@bootlin.com>
+>>>     - Richard Weinberger <richard@nod.at>
+>>>   
+>>> -properties:
+>>> -  $nodename:
+>>
+>> The mtd binding is $ref'ed by other bindings, similar to how we do with
+>> other bindings of common properties.
+>>
+>> So, I think the problem with mtd is that this ($nodename) turns into a
+>> "select" automatically, which causes this binding to match nodes by
+>> name, rather than just those $ref'ing it.
+>>
+>>
+>> We should be able to avoid the automatically created select from the
+>> $nodename, and rely on $ref, by just adding:
+>>
+>> select: false
 > 
-> Each boards have simple IDE Interface. Use ATA generic driver.
+> Yes.
+> 
+> Rob
 
-This looks OK to me, so feel free to add:
+Thanks Bjorn and Rob for your suggestion. Let me try and update one new 
+version.
 
-Acked-by: Damien Le Moal <dlemoal@kernel.org>
-
-Note: The "DO NOT MERGE" patch prefix almost got me to immediately delete this
-37 patches in my inbox... If you wish to get this work merged after review,
-please use the regular "PATCH" prefix. No worries, the series will not be merged
-until is is reviewed :)
-
--- 
-Damien Le Moal
-Western Digital Research
-
+Thanks,
+Zhenhua
 
