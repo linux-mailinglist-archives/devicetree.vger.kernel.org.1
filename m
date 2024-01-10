@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-31195-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31196-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4054A82A2FA
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 22:01:53 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D89F982A30A
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 22:06:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 58E531C22488
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 21:01:52 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3E2E0B223B4
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 21:06:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EB0D4F208;
-	Wed, 10 Jan 2024 21:01:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06E7F4F20E;
+	Wed, 10 Jan 2024 21:06:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="TV72ZIC3"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="S/Nab8d+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48D834F200
-	for <devicetree@vger.kernel.org>; Wed, 10 Jan 2024 21:01:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 419394F20D
+	for <devicetree@vger.kernel.org>; Wed, 10 Jan 2024 21:06:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-336c5b5c163so2805578f8f.1
-        for <devicetree@vger.kernel.org>; Wed, 10 Jan 2024 13:01:45 -0800 (PST)
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-40e5c317b34so2016525e9.2
+        for <devicetree@vger.kernel.org>; Wed, 10 Jan 2024 13:06:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704920503; x=1705525303; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1704920779; x=1705525579; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=QNiWEhZbhGOgLQpt/nA5yMXWri2ZyXn8Ps7nD2X2HIU=;
-        b=TV72ZIC3Pkbpb1bAkpBRTHUGL4XDjrrEkCBpp3xfEHW9Ed+8VQlKhYjlsg+3ocRq2B
-         0qEhRMm/eUHVT86ydqSwVyMIKPV+zKr/t7Z67iZDBrOlVvxHtzcPo+96/r8sq5cUl89A
-         KVLIwopeE+1MXnIqK/k2J4YqcqY8OX9VUUz0FuiqiH5x4oCPPx5RMToZ8Uupwu5MvEap
-         9lq0x7TUh6Khpm2PVH4HT1y74ssBYgqKl16k64cz4C+VQdiWv5E0PBjvlwkEg0Xcmm+3
-         90PJFxJOxOPzzAqSHQpZdu7ivHqC0n52gUKEcwMHgcu+sS8s8cDia0mq2GFytvpkD+r1
-         YtqQ==
+        bh=jpzmoubksARMqXWsZukQ4nFns/a5KbT0VTwgd0T9PkY=;
+        b=S/Nab8d+Da3dYMeM4BwzcKNJ61ltINBrb0dclk4w1RY0oWmfjFONlVbmFTmwv2n4qj
+         43MsOYJnsZgCESOjKLNe1P0pqFWoH5Fi8ON0KJofFKv5j6XHIpJzo0ODXSGICuddCDqf
+         7fFrHU7c22s9RLxFo3SUTcPZh/foXsPaFW8rnMX5nS0wJW9FQmUveIkf7av3xrkPNPS2
+         lUDKNATsyzRd7sru+meWg8iMIh74ZG/YhX8pLohYiEGzMP1nyrIQDAeq0khlRzsUVtBq
+         pnhpfpgzneHrdPU0Smp+WFQbpmYqV3FWYbXyH3uHlkNkegwcf2eKiYUL1Xmry+9zKCeU
+         F6nA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704920503; x=1705525303;
+        d=1e100.net; s=20230601; t=1704920779; x=1705525579;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=QNiWEhZbhGOgLQpt/nA5yMXWri2ZyXn8Ps7nD2X2HIU=;
-        b=wYcpX8hCGRIZJsYUXEDB7YJNB4xbxcMCKcYlG/aVwGMjXeZB7HMRLkS8xdJLashUvZ
-         YjPyDvqupiWV35/PP6jmT2oH5DYjiVpmO6KFETzRQm8DzSNkvse+O3htYWM49/0peLMq
-         LJLQa1z4NH/0lFcZR/YYnHrxKU2IC4oyW64zK2gVJijp+MnPJ50pK+5vEEp1vSpBmqWi
-         RprtO9uaGGQGPADa21g8vH/7rRAJa32VCVncPmwnwrvfuxSrP3m/XaIod01SH7G1QpVu
-         VRDg9BieFqhEn7CQiDMgcmAm3hEUVs+wh6FlZGvOg6XbjphkAnaguWBmsw3A2UTTV7jI
-         jYLA==
-X-Gm-Message-State: AOJu0Yw4DI0P4gDVOMd9o1G6UHeitccYWwaSOKLRderEaDsedGW8mhTO
-	nHDwbYXUGo1XKIr2opEZnCNebPo9b8JW9g==
-X-Google-Smtp-Source: AGHT+IGZbzDSeGaKrT8SOb8XCDNSDaRdnls/WQEmM5LZ6MWjsfVIXYAkcl2qkcuyRKqu/sl7JAJLhQ==
-X-Received: by 2002:a5d:68c8:0:b0:336:8030:214d with SMTP id p8-20020a5d68c8000000b003368030214dmr30720wrw.19.1704920503569;
-        Wed, 10 Jan 2024 13:01:43 -0800 (PST)
+        bh=jpzmoubksARMqXWsZukQ4nFns/a5KbT0VTwgd0T9PkY=;
+        b=tVgxesHSrlVosFXG+Glx6mOTS8wPjtxt58OKtTPBpKsEBYEDvgL/ylB8pu+lvJTDwf
+         07TeHD3554BRiSlfmrn75Bc8rS+g8taRVBR2rO4sy0Hx1HZBkII2YnZULRWS3TT/WHCZ
+         swisNHlXz4Vx8oRVabjdNdqzy2h697MfzT58ogjgBEOxfkFjWOS67mzK4jHv+f/s103/
+         9TjdJf3B0aFHZcSAqUQ3uTYKk2bCY8Scr+GI2dgasPlRIEzksA9m9g1s9t6sqqgwCoI8
+         uR+bPilelCruVgB0fd7d8Ro6fEjnGZKdha/KsyKdMCKa5PHJkAl/LSLkgCqMZ1lkIN27
+         IIpA==
+X-Gm-Message-State: AOJu0Yx5A488zJ+aKYyt3QsmuHJ+CNQ4pkF9Z/eZWsPRtWjZZCWy7SKk
+	Mjur/zhCMw8JUQwjZ3NyIxjO2zxIKNeZ+hE+Lr8yqyTu4d4=
+X-Google-Smtp-Source: AGHT+IHFlGncNfu3SoO22D0r5KNlYwKxq23l/A6Gmfh05kYV75OIftfz8SEsujeKzXHGaaZ4YbD6CA==
+X-Received: by 2002:a05:600c:4fc5:b0:40e:556d:7885 with SMTP id o5-20020a05600c4fc500b0040e556d7885mr20137wmq.165.1704920779512;
+        Wed, 10 Jan 2024 13:06:19 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.223.112])
-        by smtp.gmail.com with ESMTPSA id k12-20020a5d6e8c000000b00336f43fa654sm5686931wrz.22.2024.01.10.13.01.41
+        by smtp.gmail.com with ESMTPSA id 27-20020a170906329b00b00a1f738318a5sm2424226ejw.155.2024.01.10.13.06.17
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 10 Jan 2024 13:01:42 -0800 (PST)
-Message-ID: <4e9cc473-dbab-4e7c-ac7f-871a4025ef5b@linaro.org>
-Date: Wed, 10 Jan 2024 22:01:41 +0100
+        Wed, 10 Jan 2024 13:06:18 -0800 (PST)
+Message-ID: <78b8400b-806d-4e8e-b7e3-582b80aff4b2@linaro.org>
+Date: Wed, 10 Jan 2024 22:06:15 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,17 +66,23 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v22 5/8] arm64: dts: nuvoton: npcm8xx: add clock reset
- syscon node
+Subject: Re: [PATCH v2 1/2] dt-bindings: display: bridge: cdns: Add properties
+ to support StarFive JH7110 SoC
 Content-Language: en-US
-To: Tomer Maimon <tmaimon77@gmail.com>, mturquette@baylibre.com,
- sboyd@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- tali.perry1@gmail.com, joel@jms.id.au, venture@google.com, yuenn@google.com,
- benjaminfair@google.com
-Cc: openbmc@lists.ozlabs.org, linux-clk@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20240108135421.684263-1-tmaimon77@gmail.com>
- <20240108135421.684263-6-tmaimon77@gmail.com>
+To: Shengyang Chen <shengyang.chen@starfivetech.com>,
+ devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
+Cc: andrzej.hajda@intel.com, neil.armstrong@linaro.org, rfoss@kernel.org,
+ Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
+ jernej.skrabec@gmail.com, maarten.lankhorst@linux.intel.com,
+ mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, daniel@ffwll.ch,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ p.zabel@pengutronix.de, tomi.valkeinen@ideasonboard.com, r-ravikumar@ti.com,
+ aford173@gmail.com, rdunlap@infradead.org, u.kleine-koenig@pengutronix.de,
+ bbrezillon@kernel.org, changhuang.liang@starfivetech.com,
+ keith.zhao@starfivetech.com, jack.zhu@starfivetech.com,
+ linux-kernel@vger.kernel.org
+References: <20240109072516.24328-1-shengyang.chen@starfivetech.com>
+ <20240109072516.24328-2-shengyang.chen@starfivetech.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -122,36 +128,116 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240108135421.684263-6-tmaimon77@gmail.com>
+In-Reply-To: <20240109072516.24328-2-shengyang.chen@starfivetech.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 08/01/2024 14:54, Tomer Maimon wrote:
-> Add clock reset syscon node to handle reset and clock registers
-> controllers.
+On 09/01/2024 08:25, Shengyang Chen wrote:
+> From: Keith Zhao <keith.zhao@starfivetech.com>
 > 
-> Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
+> Add properties in CDNS DSI yaml file to match with
+> CDNS DSI module in StarFive JH7110 SoC.
+
+Please wrap commit message according to Linux coding style / submission
+process (neither too early nor over the limit):
+https://elixir.bootlin.com/linux/v6.4-rc1/source/Documentation/process/submitting-patches.rst#L597
+
+Subject: Make it concise, like: "Add StarFive JH7110 SoC display bridge
+or something".
+
+> 
+> Signed-off-by: Keith Zhao <keith.zhao@starfivetech.com>
 > ---
->  arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi | 5 +++++
->  1 file changed, 5 insertions(+)
+>  .../bindings/display/bridge/cdns,dsi.yaml     | 44 ++++++++++++++++++-
+>  1 file changed, 42 insertions(+), 2 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi b/arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi
-> index 9c4df91031e7..7d5956e2c9f3 100644
-> --- a/arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi
-> +++ b/arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi
-> @@ -22,6 +22,11 @@ gcr: system-controller@f0800000 {
->  			reg = <0x0 0xf0800000 0x0 0x1000>;
->  		};
+> diff --git a/Documentation/devicetree/bindings/display/bridge/cdns,dsi.yaml b/Documentation/devicetree/bindings/display/bridge/cdns,dsi.yaml
+> index 23060324d16e..da091e105794 100644
+> --- a/Documentation/devicetree/bindings/display/bridge/cdns,dsi.yaml
+> +++ b/Documentation/devicetree/bindings/display/bridge/cdns,dsi.yaml
+> @@ -16,6 +16,7 @@ properties:
+>    compatible:
+>      enum:
+>        - cdns,dsi
+> +      - starfve,jh7110-dsi
+>        - ti,j721e-dsi
 >  
-> +		clk_rst: syscon@f0801000 {
-> +			compatible = "nuvoton,npcm845-clk-rst", "syscon", "simple-mfd";
+>    reg:
+> @@ -27,14 +28,20 @@ properties:
+>            Register block for wrapper settings registers in case of TI J7 SoCs.
+>  
+>    clocks:
+> +    minItems: 2
+>      items:
+>        - description: PSM clock, used by the IP
+>        - description: sys clock, used by the IP
+> +      - description: apb clock, used by the IP
+> +      - description: txesc clock, used by the IP
+>  
+>    clock-names:
+> +    minItems: 2
+>      items:
+>        - const: dsi_p_clk
+>        - const: dsi_sys_clk
+> +      - const: apb
+> +      - const: txesc
+>  
+>    phys:
+>      maxItems: 1
+> @@ -46,10 +53,21 @@ properties:
+>      maxItems: 1
+>  
+>    resets:
+> -    maxItems: 1
+> +    minItems: 1
+> +    items:
+> +      - description: dsi sys reset line
+> +      - description: dsi dpi reset line
+> +      - description: dsi apb reset line
+> +      - description: dsi txesc reset line
+> +      - description: dsi txbytehs reset line
+>  
+>    reset-names:
+> -    const: dsi_p_rst
+> +    items:
+> +      - const: dsi_p_rst
+> +      - const: dpi
+> +      - const: apb
+> +      - const: txesc
+> +      - const: txbytehs
+>  
+>    ports:
+>      $ref: /schemas/graph.yaml#/properties/ports
+> @@ -90,6 +108,28 @@ allOf:
+>          reg:
+>            maxItems: 1
+>  
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: starfive,jh7110-dsi
+> +    then:
+> +      properties:
+> +        clocks:
+> +          minItems: 4
+> +          maxItems: 4
+> +        resets:
+> +          minItems: 5
+> +          maxItems: 5
 
-This is not a simple-mfd. No children,
+Missing constraints for xxx-names.
 
-> +			reg = <0x0 0xf0801000 0x0 0xC4>;
+> +      required:
+> +        - reset-names
+> +    else:
+> +      properties:
+> +        clocks:
+> +          maxItems: 2
+> +        resets:
+> +          maxItems: 1
 
-Use lowercase hex. Please store this feedback in your checklist and do
-not repeat the same mistakes in further submissions.
+Same problem.
 
 Best regards,
 Krzysztof
