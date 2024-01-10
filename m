@@ -1,67 +1,51 @@
-Return-Path: <devicetree+bounces-30898-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30899-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86DE48296E4
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 11:05:46 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF776829702
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 11:12:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 352912895C7
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 10:05:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DF1B01C259D6
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 10:12:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6E1C3F8E3;
-	Wed, 10 Jan 2024 10:05:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9351B3FB01;
+	Wed, 10 Jan 2024 10:10:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="nrxJCeBe"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="S8+AufQw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A2303F8D9
-	for <devicetree@vger.kernel.org>; Wed, 10 Jan 2024 10:05:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1704881130; x=1736417130;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=qiew8Q2EdZRHtClxluWOlp9Xekv6EqPJH7+5O7NGyYg=;
-  b=nrxJCeBe8tpwECgB0eNklh2DMsGOCCu+0BaHTOOCx30yXtRvL6MzLl24
-   pZa4sO5Sah9XQU5JeDwUcZQ6HaIgyscUBy/yuGW0wJ3d09B9JqwkBZlxZ
-   6AejyrFDlp+4qJJHcBP0rlnAPmTkFuu5te+qi1JTBTUOmUe0K4LUPUS5R
-   AFMJJbyCL1R/KiAbY4Y54YnxLWCVlkIs37PSg6vR6AZDzyzyH4TDRgZvw
-   r9MabTZhzNwYwvKD8fB/EHHl0YAHdpj1b51v8Ip9toV21wnZCqpR7mxs4
-   /9rNR5nD5ojBArxJptI8T88LhEZb7P3nHkZVc9vZLKU//slYgyJBFdWoV
-   Q==;
-X-IronPort-AV: E=Sophos;i="6.04,184,1695679200"; 
-   d="scan'208";a="34825193"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 10 Jan 2024 11:05:28 +0100
-Received: from steina-w.tq-net.de (steina-w.tq-net.de [10.123.53.25])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id C6DC4280075;
-	Wed, 10 Jan 2024 11:05:27 +0100 (CET)
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>
-Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	NXP Linux Team <linux-imx@nxp.com>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B24FC4776F;
+	Wed, 10 Jan 2024 10:10:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+From: Tobias Schramm <t.schramm@manjaro.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1704881410;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=77sXWLAHqXDVC5wRoMijHbBW+M2cd0clYpjD4I2uM1s=;
+	b=S8+AufQwFw2PeVpUuBfxpb15QbqWsJSS3MOKhgpnHZGiPFfX8HA8DDjZbkwI7G7WAzrL7s
+	0D3p/ZSGuJ9Lx5PkwhATDeizVaQfgv52zTSZGrwlcCoKtNo0j07Um+oZIWMfU73tAgFNiR
+	7dHWbcVWhHjYogIbB5H3bIFy1TD2MBk5KXAdXVzSMtBYgAp5+sK/m62GbYdrgI/YT1TMqN
+	m2U2tU/APcpPSkms1Anf2+cZop399rh0mntUqn2Mg0Zq8t1e152fV/msaPZoVKCRK2z4ib
+	PfEfopv6rS0Qiquf+vgFwqMYax0gdul6MM/Ml1SuK2EBNmiXbGgfNnnhfFo/Jw==
+To: Mark Greer <mgreer@animalcreek.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-wireless@vger.kernel.org,
+	netdev@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux@ew.tq-group.com
-Subject: [PATCH 1/1] arm64: dts: freescale: tqma9352: Update I2C eeprom compatible
-Date: Wed, 10 Jan 2024 11:05:26 +0100
-Message-Id: <20240110100526.478771-1-alexander.stein@ew.tq-group.com>
-X-Mailer: git-send-email 2.34.1
+	linux-kernel@vger.kernel.org,
+	Tobias Schramm <t.schramm@manjaro.org>
+Subject: [PATCH] dt-bindings: nfc: ti,trf7970a: fix usage example
+Date: Wed, 10 Jan 2024 11:09:13 +0100
+Message-ID: <20240110100913.587849-1-t.schramm@manjaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,33 +53,30 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=t.schramm@manjaro.org smtp.mailfrom=t.schramm@manjaro.org
 
-Now that there is a dedicated compatible for the idendification page use
-that instead. This also allows the removal the size and pagesize
-properties.
+The TRF7970A is a SPI device, not I2C.
 
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+Signed-off-by: Tobias Schramm <t.schramm@manjaro.org>
 ---
- arch/arm64/boot/dts/freescale/imx93-tqma9352.dtsi | 4 +---
- 1 file changed, 1 insertion(+), 3 deletions(-)
+ Documentation/devicetree/bindings/net/nfc/ti,trf7970a.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/freescale/imx93-tqma9352.dtsi b/arch/arm64/boot/dts/freescale/imx93-tqma9352.dtsi
-index f6e422dc2663e..9d2328c185c90 100644
---- a/arch/arm64/boot/dts/freescale/imx93-tqma9352.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx93-tqma9352.dtsi
-@@ -122,10 +122,8 @@ eeprom1: eeprom@57 {
+diff --git a/Documentation/devicetree/bindings/net/nfc/ti,trf7970a.yaml b/Documentation/devicetree/bindings/net/nfc/ti,trf7970a.yaml
+index 9cc236ec42f2..d0332eb76ad2 100644
+--- a/Documentation/devicetree/bindings/net/nfc/ti,trf7970a.yaml
++++ b/Documentation/devicetree/bindings/net/nfc/ti,trf7970a.yaml
+@@ -73,7 +73,7 @@ examples:
+     #include <dt-bindings/gpio/gpio.h>
+     #include <dt-bindings/interrupt-controller/irq.h>
  
- 	/* protectable identification memory (part of M24C64-D @57) */
- 	eeprom@5f {
--		compatible = "st,24c64", "atmel,24c64";
-+		compatible = "atmel,24c64d-wl";
- 		reg = <0x5f>;
--		size = <32>;
--		pagesize = <32>;
- 		vcc-supply = <&reg_v3v3>;
- 	};
+-    i2c {
++    spi {
+         #address-cells = <1>;
+         #size-cells = <0>;
  
 -- 
-2.34.1
+2.43.0
 
 
