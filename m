@@ -1,107 +1,109 @@
-Return-Path: <devicetree+bounces-31213-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31214-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5053082A3F6
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 23:31:48 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id EDB6382A407
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 23:37:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E2500285430
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 22:31:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7BACC1F2511D
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 22:37:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F4974EB40;
-	Wed, 10 Jan 2024 22:31:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 773273FB3D;
+	Wed, 10 Jan 2024 22:37:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="RhtSbEQ2"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="UDAebcMD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com [209.85.208.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B3C4A21
-	for <devicetree@vger.kernel.org>; Wed, 10 Jan 2024 22:31:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-lj1-f175.google.com with SMTP id 38308e7fff4ca-2cd81b09e83so6337681fa.2
-        for <devicetree@vger.kernel.org>; Wed, 10 Jan 2024 14:31:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1704925896; x=1705530696; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=AS+5B9ThhaWkAjgY4ZusJxzHDo4f/Ncehb81K13Thlw=;
-        b=RhtSbEQ2pDbAJjP8epFlqhplpGm4Mme0r5BX/edUmaS+ugJSn3OMPa/2F7ygoVEYvc
-         ZKSohjK5rYgep1BJQ5o9qYVPVfSXeTIIGtI9hwnSDktPySJWl3rmxB8YaKsa0O8E0mFl
-         vM2nAl982Qpwot/sHL/GlHihWBnjr2rzStZpBJi8BmKOsWjVF1nOufQ+Yh4/vUoCWGSa
-         n0Mt74GrBNunIMrO5hMeP1LSNImux6lTQI0X1gP5PX7SYD5CaNsIWY7wCK5iotvU6lmV
-         5Lpa2CzewCQNBo7h9cG+CmHfD3V2E4w3aDBG/ofxaFrOxe7tLaqaDrNOr++1jrZWKflo
-         g77w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704925896; x=1705530696;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=AS+5B9ThhaWkAjgY4ZusJxzHDo4f/Ncehb81K13Thlw=;
-        b=Lvp1szQYzbwzXrcJVABwB1umLgqiEtIfsyX7tVUQ37vFEV63my+QhJbewDkN1WQBYf
-         c6TuzbXVBnJAA5t5Sm7TvxZdGBKKpIH5has6hc80GvQ5iYlonoZ1xtrI7eVYPBhI9nb5
-         QgyRzK6cFezFC95g3MSMHf2mMUCjtX+vEbzOnLCYHkV5+JEGxdSVMZ+b5iKMct8a3P8/
-         oJD4YRgiwJD5rhLOu6N4HA7oabwTK5tk4POJqIOCPIqLCMJYA2xSIQFOUgJxyDLjMCnh
-         nIABv2h7Y9mKjlNfe+1HpEba3YbP8+H1Wm25NGy2i+WRB/kzEYc06d8X84r5JUpGTgUA
-         edQg==
-X-Gm-Message-State: AOJu0YwG3bWKZBsq6rnV3+LbcIbo7jbbWRB/p9N02hq0XrNIWeWBYD1r
-	IwNNShpwOiIjn/GD11CKaLBZDE9/mbfPwooD0hPmLzqrqztsKA==
-X-Google-Smtp-Source: AGHT+IHqjv12pJuJlKgUzfhn+rZJBcMZrf90giph4Z8Bbrvz4o2mzp5/HSLxK9wehcakpm9DT0mJjwm01PT7H0i8d6E=
-X-Received: by 2002:a2e:9290:0:b0:2cc:e9be:90c7 with SMTP id
- d16-20020a2e9290000000b002cce9be90c7mr64793ljh.179.1704925896373; Wed, 10 Jan
- 2024 14:31:36 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5F894D13F;
+	Wed, 10 Jan 2024 22:37:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 40AMav8t003608;
+	Wed, 10 Jan 2024 16:36:57 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1704926217;
+	bh=JVXHGIOSU6hzsUeI0AuBXrAHp/rtmd5pOO9mdvCiweQ=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=UDAebcMDIziq/O9qOajvmsHPxbC4TS6NEsuR4Sv++8CIGu9W0CFw6U1eqfcgwTSHU
+	 BSs4p04FO1bkxD2NeCigieNO86aLvBaB7SsdZ1kL4j1w74DQazda79qMqO71IfQsO/
+	 jK/XFF4b3u1U6csKl1tOQyrSGiR04Kfp9xaPMsk4=
+Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 40AMav5h107905
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 10 Jan 2024 16:36:57 -0600
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 10
+ Jan 2024 16:36:57 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 10 Jan 2024 16:36:57 -0600
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 40AMavCr005709;
+	Wed, 10 Jan 2024 16:36:57 -0600
+Date: Wed, 10 Jan 2024 16:36:57 -0600
+From: Nishanth Menon <nm@ti.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+CC: Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        Julien Panis <jpanis@baylibre.com>,
+        Pierre Gondois <pierre.gondois@arm.com>,
+        Tony Lindgren <tony@atomide.com>
+Subject: Re: [PATCH 02/16] arm64: dts: ti: k3-am62a7: Add MIT license along
+ with GPL-2.0
+Message-ID: <20240110223657.pkochl4c5skf3w3h@amendment>
+References: <20240110140903.4090946-1-nm@ti.com>
+ <20240110140903.4090946-3-nm@ti.com>
+ <10e8c81f-0ebe-441e-b80b-9bf4df7ff782@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240109-axi-spi-engine-series-3-v1-0-e42c6a986580@baylibre.com>
- <20240109-axi-spi-engine-series-3-v1-5-e42c6a986580@baylibre.com> <a94d7aae-3d5c-4204-83f6-5374c3166f58@sirena.org.uk>
-In-Reply-To: <a94d7aae-3d5c-4204-83f6-5374c3166f58@sirena.org.uk>
-From: David Lechner <dlechner@baylibre.com>
-Date: Wed, 10 Jan 2024 16:31:25 -0600
-Message-ID: <CAMknhBEEC4F2_hpJ_405bfrb3KNkAYpjDoJbnmOFXodp8yLACg@mail.gmail.com>
-Subject: Re: [PATCH 05/13] spi: axi-spi-engine: add SPI offload support
-To: Mark Brown <broonie@kernel.org>
-Cc: Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Michael Hennerich <michael.hennerich@analog.com>, =?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
-	Frank Rowand <frowand.list@gmail.com>, Thierry Reding <thierry.reding@gmail.com>, 
-	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, 
-	Jonathan Corbet <corbet@lwn.net>, linux-spi@vger.kernel.org, linux-iio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-doc@vger.kernel.org, 
-	linux-pwm@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Lars-Peter Clausen <lars@metafoo.de>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <10e8c81f-0ebe-441e-b80b-9bf4df7ff782@linaro.org>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On Wed, Jan 10, 2024 at 3:39=E2=80=AFPM Mark Brown <broonie@kernel.org> wro=
-te:
->
-> On Wed, Jan 10, 2024 at 01:49:46PM -0600, David Lechner wrote:
-> > This adds an implementation of the SPI offload_ops to the AXI SPI Engin=
-e
-> > driver to provide offload support.
-> >
-> > Offload lookup is done by device property lookup. SPI Engine commands
-> > and tx data  are recorded by writing to offload-specific FIFOs in the
-> > SPI Engine hardware.
->
-> Glancing through here I'm not seeing anything here that handles DMA
-> mapping, given that the controller will clearly be doing DMA here that
-> seems surprising.
+On 21:41-20240110, Krzysztof Kozlowski wrote:
+> On 10/01/2024 15:08, Nishanth Menon wrote:
+> > Modify license to include dual licensing as GPL-2.0-only OR MIT
+> > license for SoC and TI evm device tree files. This allows for Linux
+> > kernel device tree to be used in other Operating System ecosystems
+> > such as Zephyr or FreeBSD.
+> > 
+> > While at this, update the GPL-2.0 to be GPL-2.0-only to be in sync with
+> > latest SPDX conventions (GPL-2.0 is deprecated).
+> > 
+> > While at this, update the TI copyright year to sync with current year to
+> > indicate license change (and add it at least for one file which was
+> > missing TI copyright).
+> > 
+> > Cc: Julien Panis <jpanis@baylibre.com>
+> > Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > Cc: Pierre Gondois <pierre.gondois@arm.com>
+> 
+> I guess I am listed here due to some contributions, so copyrights. In
+> such case, I agree for relicensing to "GPL-2.0-only OR MIT".
+> 
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-In the use case implemented in this series, the RX data is going to
-DMA, but in general, that doesn't have to be the case. In theory, it
-could get piped directly to a DSP or something like that. So I left
-the RX DMA part out of the SPI controller and implemented as a
-separate device in "iio: offload: add new PWM triggered DMA buffer
-driver". The SPI controller itself isn't aware that it is connected to
-DMA (i.e. there are no registers that have to be poked to enable DMA
-or anything like that).
+Thank you. And, yep, you are explicitly called out since you had one
+or more patch modifying or adding content in the affected file.
+
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
