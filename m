@@ -1,227 +1,254 @@
-Return-Path: <devicetree+bounces-30826-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30828-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 287688292A8
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 04:08:44 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B22548292B8
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 04:14:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A49D41C25201
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 03:08:37 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 278FCB20CC5
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 03:14:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 605963FEF;
-	Wed, 10 Jan 2024 03:08:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2066623D5;
+	Wed, 10 Jan 2024 03:14:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="DDJPbSoV"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="BWJJ5Kks"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com (mail-dm6nam04on2081.outbound.protection.outlook.com [40.107.102.81])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2CE97484;
-	Wed, 10 Jan 2024 03:08:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=aV25UR8uYyH8MJhSFIG6tfsZBxh4yj3Jw3avR0RNBH3ounOIcMZcBRHF/8N2AOb3s9gVWxMx+1fdz23cEmKyS3Eou3VMMhkt29rDNwxBd+zr/IIuPjxqMshjKPv3UmOpxIJiS+duEylEoz2e1RJ9T2MXodE1CGmTHmUCJQ5WYnFL6qZzcW9COuEV16VxsEI0ZjaHReZwFwjXwrs1nNPoyeo6wULc3UFEZhFdJ2fsbwovak9ucqPf6w0PpHkY5rFc6nGqhg3P22kKMut/xL6XRyobev5QWLlxv+bz3EwoC80Dt48NrUrWu8udNStiDz2jUA3Tq2Sz2MmnxWZ3A91PHw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Ws8eUAUXvLKzq5m+4Z1rBqx1wHa1LCUR+6dLSrIMg6I=;
- b=KoV6ZdjAYD0ZFUWMM1acw8IoR4wfxOsWrj2XnjUkKr9jyJ1b0ErzZPS/BTWiGnDFSx/4D/6u3X1KFePoBJ1srmlpAynGKjLHs2c3gagWX7ByZ7m6ieMRhR+iFYT+YfcbQpCtjopbHUy02KrW1msGtXvIg8jhIK5kIYVczzaNP25DgUX9lInxafMW/aiUsdApg3utXdcETXCzp2BUeQmP6CSheTrhFsP9OJBu3EJgivWrV69u6KOuXFLal6/S2HZ5PPuWwK0LzL2Ag+B3tLJeULY2ujVaQqG+Q6nGnmMts08HNpS9KcKJu1Qybfruq2/s/b/7AbI4NU+2LrzgEncfSQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.118.232) smtp.rcpttodomain=kernel.org smtp.mailfrom=nvidia.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Ws8eUAUXvLKzq5m+4Z1rBqx1wHa1LCUR+6dLSrIMg6I=;
- b=DDJPbSoVOrpRNAVREZ086WeDp1WMxXvC+0C0g+wzYTRyBbnORXZgGzwmoWaQcMZgq30P6yMphMjw9wjW5si1BlUP14myjkuyMdTA8029wgRIAtk57sqq0PreZ3Fj5DQmWfRGRn4pcb9ko30v3OCBG+o+8QbpqlLV4nsvaLOdgsNHDPnQ+06+31WbySdk2uy7G5DCYwV6RKMsKGCCo8zZVsKPesXSRIT1U4XuR+Y5PZ/c51K1+RSv9BNtOVeRBaCFSrU4jka+K9gjvMTaNe7hKuK715KcU7lydsxBxDkQQNKrAyC3xND6o14lZsGqDMASrtQR3jyHPnBkcijROvlxGg==
-Received: from CH2PR03CA0024.namprd03.prod.outlook.com (2603:10b6:610:59::34)
- by DS0PR12MB7630.namprd12.prod.outlook.com (2603:10b6:8:11d::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7159.24; Wed, 10 Jan
- 2024 03:08:03 +0000
-Received: from DS3PEPF000099DD.namprd04.prod.outlook.com
- (2603:10b6:610:59:cafe::c) by CH2PR03CA0024.outlook.office365.com
- (2603:10b6:610:59::34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7159.23 via Frontend
- Transport; Wed, 10 Jan 2024 03:08:03 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.118.232)
- smtp.mailfrom=nvidia.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.118.232 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.118.232; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.118.232) by
- DS3PEPF000099DD.mail.protection.outlook.com (10.167.17.199) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7181.14 via Frontend Transport; Wed, 10 Jan 2024 03:08:03 +0000
-Received: from drhqmail203.nvidia.com (10.126.190.182) by mail.nvidia.com
- (10.127.129.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.41; Tue, 9 Jan 2024
- 19:07:46 -0800
-Received: from drhqmail202.nvidia.com (10.126.190.181) by
- drhqmail203.nvidia.com (10.126.190.182) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.41; Tue, 9 Jan 2024 19:07:46 -0800
-Received: from vidyas-desktop.nvidia.com (10.127.8.9) by mail.nvidia.com
- (10.126.190.181) with Microsoft SMTP Server id 15.2.986.41 via Frontend
- Transport; Tue, 9 Jan 2024 19:07:41 -0800
-From: Vidya Sagar <vidyas@nvidia.com>
-To: <lpieralisi@kernel.org>, <kw@linux.com>, <robh@kernel.org>,
-	<bhelgaas@google.com>, <krzysztof.kozlowski+dt@linaro.org>,
-	<conor+dt@kernel.org>, <will@kernel.org>, <frowand.list@gmail.com>
-CC: <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<treding@nvidia.com>, <jonathanh@nvidia.com>, <kthota@nvidia.com>,
-	<mmaddireddy@nvidia.com>, <vidyas@nvidia.com>, <sagar.tv@gmail.com>, "kernel
- test robot" <lkp@intel.com>
-Subject: [PATCH V2 2/2] PCI: Add support for "preserve-boot-config" property
-Date: Wed, 10 Jan 2024 08:37:25 +0530
-Message-ID: <20240110030725.710547-3-vidyas@nvidia.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240110030725.710547-1-vidyas@nvidia.com>
-References: <20240110030725.710547-1-vidyas@nvidia.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F2D9210B;
+	Wed, 10 Jan 2024 03:14:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40A1UMJt030426;
+	Wed, 10 Jan 2024 03:13:29 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=qvs8qvtjNFrrte8K+3p2MUtW8MNqP6IVzNBLDgvst3s=; b=BW
+	JJ5KkshCR1mU2UfZGpb3u59jrM6ePGRsX557mPXzLVGuaIxasYDeo6Sb1QgJGlvv
+	ogvhgoyDYcbcND0muxQa6kFX/hzGJZeCHwqxH2x04dJy5YeOPUAFZeX43Bq9u9YG
+	m4kO50/PrM0kSXtLV0EDwowE5rOF3sJGIUrrcoGSi2iT3rHvcgmkPPbdEuDJux+x
+	rHo+qSagSZCU3kxXGGfD6HH3J/5HFg73DtOHqYhUq1doVob3Sh40V7D0Zk1jfqBb
+	hQWfRUAC1w+pqTD6pPGbOOyVBAD1ZwYFlxNbfewBeG5wI+Z678Rj7Q3ySP+jCd3K
+	xIdpN0OtP+0NM89+GN/Q==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vh9q716jt-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 10 Jan 2024 03:13:28 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 40A3DRk9014164
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 10 Jan 2024 03:13:27 GMT
+Received: from [10.253.15.239] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Tue, 9 Jan
+ 2024 19:13:21 -0800
+Message-ID: <2de50b16-bcf7-401d-a4f9-79540ac24311@quicinc.com>
+Date: Wed, 10 Jan 2024 11:13:17 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-NVConfidentiality: public
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-NV-OnPremToCloud: ExternallySecured
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS3PEPF000099DD:EE_|DS0PR12MB7630:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1c0f881a-afac-48cb-888d-08dc11895c0a
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	1E1a+0fgxta8HwcKIG9QY46PMrMzrCKPt0gfK1vK9sAgtPwOE3htC9q/iy4CMFYzFDGxRydSp94li+zxZkK80mFUonEhFMEgQ3UBfeYI2t+wY9TxwXr4nT3LJqDOzVvj5PZAFw1ToqmZ+Mj+V4gH/bHhRFPPI0rf03aptd1nD1pJuEWs3RXEYravO8zOh17w65QsFxhtKXZz99ei1uoZXaJVwqCpoT/o4ljzKvnFq0D47lrSPjQs4Ki5L632ZvoGhwdm9w9ndQSLJq4H8keT1HBhvnE17Dfsm2LePz60K6/qOF6CzFjDSOukP47vPH48Rq2fn3RN0XxAhCMp0Vz6v54xGzlDeLXLTD2JWzkV3yEkLVjvLjreBXuyLz80GbRSykZz5qpyMWX9qWNBO+yvEtWHrWM9+8J6Zt44F8cClGguksePkU4WMric7FhWpbimEjZc4NVxTpMWX7ylV2nAIQnbppFNN1A32JvdjFu9aWwer9XLI9s5cID/rkDgdUB6lchgrc8oRQXS/RZj0PTHi1tZxJr5V1li2NEB4+//AQcHZRGE9eoypec/IXORCOdSf3ZLB7uQjrUagJ5/FPZ6a8/wKXmgTXLreI1lksiWz0ocm49cliFRVQp9bINeNqAkMH5CJysJHwphxcx9uztUgxcoXb84+JBuYBVXrU+0iAJvhwJ+nQ6+xLUzkTCkbro2NLReSnqDPF/TZfpZxwLsWyd18M94ydlcHD/r6ptzEBHjBxlVbf7Tp+JSwjWT1XSY
-X-Forefront-Antispam-Report:
-	CIP:216.228.118.232;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc7edge1.nvidia.com;CAT:NONE;SFS:(13230031)(4636009)(136003)(346002)(39860400002)(396003)(376002)(230922051799003)(1800799012)(186009)(451199024)(82310400011)(64100799003)(36840700001)(40470700004)(46966006)(2906002)(7416002)(5660300002)(41300700001)(83380400001)(40480700001)(40460700003)(336012)(426003)(1076003)(26005)(2616005)(36860700001)(47076005)(7696005)(6666004)(478600001)(86362001)(356005)(7636003)(4326008)(70206006)(8936002)(8676002)(54906003)(70586007)(82740400003)(36756003)(110136005)(316002);DIR:OUT;SFP:1101;
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jan 2024 03:08:03.0747
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1c0f881a-afac-48cb-888d-08dc11895c0a
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.118.232];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	DS3PEPF000099DD.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB7630
+User-Agent: Mozilla Thunderbird
+Subject: Re: [net-next PATCH RFC v3 1/8] dt-bindings: net: document ethernet
+ PHY package nodes
+Content-Language: en-US
+To: Andrew Lunn <andrew@lunn.ch>
+CC: Sergey Ryazanov <ryazanov.s.a@gmail.com>,
+        Christian Marangi
+	<ansuelsmth@gmail.com>,
+        Robert Marko <robert.marko@sartura.hr>,
+        Vladimir
+ Oltean <olteanv@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+        "David S.
+ Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>, Jakub
+ Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Heiner
+ Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>,
+        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>
+References: <20231126015346.25208-1-ansuelsmth@gmail.com>
+ <20231126015346.25208-2-ansuelsmth@gmail.com>
+ <0926ea46-1ce4-4118-a04c-b6badc0b9e15@gmail.com>
+ <1437d9df-2868-43f5-aebd-e0c57fe4d905@lunn.ch>
+ <b75e6267-7d54-412e-8882-af4d9a0b54e6@quicinc.com>
+ <841ef784-b27e-4f7a-94f2-f04f93178c61@lunn.ch>
+ <07c01c11-0cc2-4837-b371-1404f2ce3359@quicinc.com>
+ <2f2328ee-205b-4b4f-a683-2df4fbb22dde@lunn.ch>
+From: Jie Luo <quic_luoj@quicinc.com>
+In-Reply-To: <2f2328ee-205b-4b4f-a683-2df4fbb22dde@lunn.ch>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: vQvHT32-CIbe2Ge8LoWUTyaNM2oNaS72
+X-Proofpoint-GUID: vQvHT32-CIbe2Ge8LoWUTyaNM2oNaS72
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-12-09_01,2023-12-07_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 adultscore=0
+ clxscore=1015 impostorscore=0 suspectscore=0 bulkscore=0 mlxlogscore=999
+ malwarescore=0 lowpriorityscore=0 priorityscore=1501 mlxscore=0
+ spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2311290000 definitions=main-2401100025
 
-Add support for "preserve-boot-config" property that can be used to
-selectively (i.e. per host bridge) instruct the kernel to preserve the
-boot time configuration done by the platform firmware.
 
-Reported-by: kernel test robot <lkp@intel.com>
-Signed-off-by: Vidya Sagar <vidyas@nvidia.com>
----
-V2:
-* Addressed issues reported by kernel test robot <lkp@intel.com>
 
- drivers/pci/controller/pci-host-common.c |  5 ++++-
- drivers/pci/of.c                         | 18 ++++++++++++++++++
- drivers/pci/probe.c                      |  2 +-
- include/linux/of_pci.h                   |  6 ++++++
- 4 files changed, 29 insertions(+), 2 deletions(-)
+On 1/9/2024 9:48 PM, Andrew Lunn wrote:
+>>
+>> __| |_______________| |__
+>> | PCS0 |          |PCS1 |
+>> |______|          |_____|
+>> |_______                |<---- REF clock 50MHZ
+>> |      |------------    |
+>> |NSSCC |    |clks  |rsts|<---- GPIO reset
+>> |______|    |      |    |
+>> |           V      V    |
+>> |_______________________|
+>> |     |     |     |     |
+>> |PHY1 |PHY2 |PHY3 |PHY4 |
+>> |_____|_____|_____|_____|
+> 
+> Not the best of improvements. So the ref clock goes to the package,
+> and then magically somehow gets to the NSSCC? Are there any more
+> blocks it goes through before reaching the NSSCC? How does the GPIO
+> reset get converted into multiple reset inside the package? Details,
+> details, details.
 
-diff --git a/drivers/pci/controller/pci-host-common.c b/drivers/pci/controller/pci-host-common.c
-index 6be3266cd7b5..d3475dc9ec44 100644
---- a/drivers/pci/controller/pci-host-common.c
-+++ b/drivers/pci/controller/pci-host-common.c
-@@ -68,13 +68,16 @@ int pci_host_common_probe(struct platform_device *pdev)
- 
- 	of_pci_check_probe_only();
- 
-+	bridge->preserve_config =
-+		of_pci_check_preserve_boot_config(dev->of_node);
-+
- 	/* Parse and map our Configuration Space windows */
- 	cfg = gen_pci_init(dev, bridge, ops);
- 	if (IS_ERR(cfg))
- 		return PTR_ERR(cfg);
- 
- 	/* Do not reassign resources if probe only */
--	if (!pci_has_flag(PCI_PROBE_ONLY))
-+	if (!(pci_has_flag(PCI_PROBE_ONLY) || bridge->preserve_config))
- 		pci_add_flags(PCI_REASSIGN_ALL_BUS);
- 
- 	bridge->sysdata = cfg;
-diff --git a/drivers/pci/of.c b/drivers/pci/of.c
-index 51e3dd0ea5ab..ed3c0dd9804e 100644
---- a/drivers/pci/of.c
-+++ b/drivers/pci/of.c
-@@ -258,6 +258,24 @@ void of_pci_check_probe_only(void)
- }
- EXPORT_SYMBOL_GPL(of_pci_check_probe_only);
- 
-+/**
-+ * of_pci_check_preserve_boot_config - Return true if the boot configuration
-+ *                                     needs to be preserved
-+ * @node: Device tree node with the domain information.
-+ *
-+ * This function looks for a property called "preserve-boot-config" for a given
-+ * PCIe controller's node and returns true if found. Having this property
-+ * for a PCIe controller ensures that the kernel doesn't re-enumerate and
-+ * reconfigure the BAR resources that are already done by the platform firmware.
-+ *
-+ * Return: true if the property exists false otherwise.
-+ */
-+bool of_pci_check_preserve_boot_config(struct device_node *node)
-+{
-+	return of_property_read_bool(node, "preserve-boot-config");
-+}
-+EXPORT_SYMBOL_GPL(of_pci_check_preserve_boot_config);
-+
- /**
-  * devm_of_pci_get_host_bridge_resources() - Resource-managed parsing of PCI
-  *                                           host bridge resources from DT
-diff --git a/drivers/pci/probe.c b/drivers/pci/probe.c
-index 795534589b98..79d0ac34f567 100644
---- a/drivers/pci/probe.c
-+++ b/drivers/pci/probe.c
-@@ -3085,7 +3085,7 @@ int pci_host_probe(struct pci_host_bridge *bridge)
- 	 * ioport_resource trees in either pci_bus_claim_resources()
- 	 * or pci_bus_assign_resources().
- 	 */
--	if (pci_has_flag(PCI_PROBE_ONLY)) {
-+	if (pci_has_flag(PCI_PROBE_ONLY) || bridge->preserve_config) {
- 		pci_bus_claim_resources(bus);
- 	} else {
- 		pci_bus_size_bridges(bus);
-diff --git a/include/linux/of_pci.h b/include/linux/of_pci.h
-index 29658c0ee71f..ba5532005125 100644
---- a/include/linux/of_pci.h
-+++ b/include/linux/of_pci.h
-@@ -13,6 +13,7 @@ struct device_node *of_pci_find_child_device(struct device_node *parent,
- 					     unsigned int devfn);
- int of_pci_get_devfn(struct device_node *np);
- void of_pci_check_probe_only(void);
-+bool of_pci_check_preserve_boot_config(struct device_node *node);
- #else
- static inline struct device_node *of_pci_find_child_device(struct device_node *parent,
- 					     unsigned int devfn)
-@@ -26,6 +27,11 @@ static inline int of_pci_get_devfn(struct device_node *np)
- }
- 
- static inline void of_pci_check_probe_only(void) { }
-+
-+static inline bool of_pci_check_preserve_boot_config(struct device_node *node)
-+{
-+	return false;
-+}
- #endif
- 
- #if IS_ENABLED(CONFIG_OF_IRQ)
--- 
-2.25.1
+The GPIO reset for the whole CHIP, like a GPIO reset on the single port
+PHY qca8081, after the GPIO reset, the whole qca8084 chip is in the cold
+reset state, so the initial clocks ans resets need to be initialized as
+we are designing the clock model here.
 
+As for the reference clock 50M input, this reference clock 50MHZ is
+PLLed by the PCS1 block of qca8084, then there are fix 312.5MHZ is
+generated to the NSSCC, NSSCC includes multiple RCG clock trees to
+generate the clocks to the PHY and PCS, all these blocks(PCS and PHY)
+are located in the qca8084 PHY chip, sorry for missed this diagram
+info, updated the diagram as below, since the PCS generates the clocks
+to NSSCC, there are initial clocks ans resets included for PCS need
+to be configured before CHIP to work.
+
+So the parent clocks are PCS0(uniphy0) and PCS1(uniphy1) for NSSCC,
+as i provide the DT of NSSCC provider below, the parent clock rate
+of PCS is changed according to the PHY link speed, and there are
+also fix clock rate 312.5MHZ from PCS1, these parent clocks are
+the root clock of RCG clock tree in NSSCC, the output clocks of
+the RCG are consumed by the PHYs(PHY1-PHY4 and PCS0, PCS1).
+
+    REF 50MHZ
+       |
+       |
+______V__________________
+| PCS1 |       ____|PCS0|
+|______|      |    |____|
+|  |  ________|         |
+|  | |                  |<----------GPIO reset
+|__V_V__                |
+|      |------------    |
+|NSSCC |    |clks  |rsts|
+|______|    |      |    |
+|           V      V    |
+|_______________________|
+|     |     |     |     |
+|PHY1 |PHY2 |PHY3 |PHY4 |
+|_____|_____|_____|_____|
+
+> 
+>> There are difference clock trees generated from NSSCC for the different
+>> PHYs, all clocks and resets for qca8084 CHIP working are internally
+>> provided by the NSSCC.
+> 
+> So show this in the block diagram.
+> 
+>> Yes, Andrew, the NSSCC provider driver is probed based on the MDIO
+>> device, the PHY CHIP occupies the MDIO addresses, so the NSSCC is
+>> registered as the MDIO device.
+>>
+>> DT of the NSSCC device node:
+>> mdio {
+>>        #address-cells = <1>;
+>>        #size-cells = <0>;
+>>
+>>        clock-controller@18 {
+>>          compatible = "qcom,qca8084-nsscc";
+>>          reg = <0x18>;
+>>          clocks = <&qca8k_xo>,
+>>                   <&qca8k_uniphy0_rx>,
+>>                   <&qca8k_uniphy0_tx>,
+>>                   <&qca8k_uniphy1_rx>,
+>>                   <&qca8k_uniphy1_tx>,
+>>                   <&qca8k_uniphy1_rx312p5m>,
+>>                   <&qca8k_uniphy1_tx312p5m>;
+>>          #clock-cells = <1>;
+>>          #reset-cells = <1>;
+>>          #power-domain-cells = <1>;
+>>        };
+>>      };
+>   
+> This does not make any sense. You have one clock input, 50MHz. So why
+> are you listing 6 consumer clocks, not one? And where are the clocks
+> this clock controller provides, clock-output-names=<...>;
+
+Hi Andrew,
+Sorry for the confusion.
+the DT of the NSSCC device node is from the NSSCC provider driver, which
+is under review currently as the link below.
+https://lore.kernel.org/lkml/20231104034858.9159-2-quic_luoj@quicinc.com/T/#m204c22d14be8f9dda7cd7f666ed726b8fc3301ef
+
+the property "clocks" are the parent clock list of RCG clock tree in
+the NSSCC driver, for qca8084 chip, there are two UNIPHY(PCS) as
+mentioned in the diagram, there are also fix rate clocks 312.5MHZ,
+the output clocks of NSSCC are not listed in the DT, which is same
+as the GCC(IPQ SoC) DT.
+
+The output clocks of NSSCC are provided by the DT of the clock consumer
+such as the DT of qca8084 as below.
+phy0 {
+         reg = <0>;
+         clocks = <&qca8k_nsscc NSS_CC_GEPHY0_SYS_CLK>;
+         clock-names = "gephy0_sys";
+         resets = <&qca8k_nsscc NSS_CC_GEPHY0_SYS_ARES>,
+                  <&qca8k_nsscc NSS_CC_GEPHY0_ARES>;
+         reset-names = "gephy0_sys", "gephy0_soft";
+      };
+
+In the DT node above, the qca8k_nssc refers to the NSSCC clock provider
+DT node "clock-controller@18", the clock ID "NSS_CC_GEPHY0_SYS_CLK" is
+also provided by the NSSCC clock provider driver.
+
+The different PHY(PHY1-PHY4) of qca8084 has the different clock
+tree(RCG), the clock consumer driver needs to define the DT properties
+clocks and clcok-names to get the clocks from the NSSCC clock provider.
+
+> 
+> I give up. Please consider this PHY driver NACKed.
+> 
+> Get Linaro, or some other organisation with a lot of experience with
+> mainline to take over the work.
+> 
+> 	 Andrew
 
