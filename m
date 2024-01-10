@@ -1,197 +1,121 @@
-Return-Path: <devicetree+bounces-30905-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30906-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8551F82979E
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 11:29:52 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C40158297A4
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 11:30:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1479C1F218F6
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 10:29:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E87E81C20AA3
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 10:30:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AC8647F43;
-	Wed, 10 Jan 2024 10:26:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E394440C0E;
+	Wed, 10 Jan 2024 10:29:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="QMRWzH1e"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="ZCwUmany"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB2C046BA6;
-	Wed, 10 Jan 2024 10:26:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1704882399; x=1736418399;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=5WUd7zZW6vaz2VFpcySRfwde2JHnsfcvgGymaZA0H0s=;
-  b=QMRWzH1e9gW+jYSuJIF5GsdSF5RBrlor7KuSCb0kOw6fIqNq8uSVkzSu
-   1Y/90fiPzybFg++BmPNYwWkFlmNzmrBIY98uCXc4dFXrPlpGQDyK8ZAqD
-   URLReSa7ZeG2AUSbczMvjmsb2PM6Eomr7k4ge3FIYTfGbxvO+GLcYLshb
-   pxoHJpZSeuDLdiNUie/M4qswfkkX/b/OjSzfyTlvqII6yytoFXvW6ROPk
-   3x6sS8Sql1A5kGo8/g4hNQUYkDAKjNCHqAjZxW7rx2J2LTBrjtjc8TA3P
-   yrtMOPgIq5At0KhdnYHa+C6mGI9hOg1FXQTyWk33DV4YHI4LWWEulQuVK
-   w==;
-X-CSE-ConnectionGUID: 5D2eo3saR72tqfGaKhDyVQ==
-X-CSE-MsgGUID: P1+T+hWdTWqrrzrBB18h6g==
-X-ThreatScanner-Verdict: Negative
-X-IronPort-AV: E=Sophos;i="6.04,184,1695711600"; 
-   d="scan'208";a="14511322"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa4.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 10 Jan 2024 03:26:35 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Wed, 10 Jan 2024 03:26:25 -0700
-Received: from che-lt-i70843lx.microchip.com (10.10.85.11) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
- 15.1.2507.35 via Frontend Transport; Wed, 10 Jan 2024 03:26:17 -0700
-From: Dharma Balasubiramani <dharma.b@microchip.com>
-To: <sam@ravnborg.org>, <bbrezillon@kernel.org>,
-	<maarten.lankhorst@linux.intel.com>, <mripard@kernel.org>,
-	<tzimmermann@suse.de>, <airlied@gmail.com>, <daniel@ffwll.ch>,
-	<robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-	<conor+dt@kernel.org>, <nicolas.ferre@microchip.com>,
-	<alexandre.belloni@bootlin.com>, <claudiu.beznea@tuxon.dev>,
-	<dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<lee@kernel.org>, <thierry.reding@gmail.com>,
-	<u.kleine-koenig@pengutronix.de>, <linux-pwm@vger.kernel.org>
-CC: Dharma Balasubiramani <dharma.b@microchip.com>
-Subject: [PATCH 3/3] dt-bindings: atmel,hlcdc: convert pwm bindings to json-schema
-Date: Wed, 10 Jan 2024 15:55:35 +0530
-Message-ID: <20240110102535.246177-4-dharma.b@microchip.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240110102535.246177-1-dharma.b@microchip.com>
-References: <20240110102535.246177-1-dharma.b@microchip.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85A0740C04;
+	Wed, 10 Jan 2024 10:29:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40A8cp1w020844;
+	Wed, 10 Jan 2024 10:28:56 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=5Paa55GUVgZ+hembfGyj7xkKH2+Z6loGiS8NR1WqkBs=; b=ZC
+	wUmanymbcjgOcrsNaiAQGHcvAWyQmxDz4i5YemJb4KShtFTffy/wUKHZIfbqA4Hm
+	dJPJ8wJluMxEqa52TSTCVJ2IP/9PS7Net9IVkhJ3/4Ho8xnOKGaSEbSg6vDl53Kv
+	IuF+8ovc6wbojgX/BdWNgd/tjgNZo2XC7FHr4FBE9UjyjRrYBSZSIFCRRjuNHhMR
+	aqCxfiGsabZArdNuWJV6heyz3lSCGTSzHcVI1jcI1UB6i9bdnT2h0kbCUcEIcvsa
+	FNPiyceVfrdaol2BX19t6VcrCQbwEPQLNdy7/QHJxQvuFgjIC36UxUv+yHgKlaEi
+	p3lxnTVII4wInpBglvzg==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vhjh2rum5-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 10 Jan 2024 10:28:56 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 40AAStoO014641
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 10 Jan 2024 10:28:55 GMT
+Received: from [10.218.19.46] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Wed, 10 Jan
+ 2024 02:28:48 -0800
+Message-ID: <bea0aa48-605e-b2fe-d1ea-d2ace73e42d6@quicinc.com>
+Date: Wed, 10 Jan 2024 15:58:45 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.0
+Subject: Re: [PATCH 3/3] clk: qcom: gcc-sm8150: Update the gcc resets
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        "Michael
+ Turquette" <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        "Deepak Katragadda" <dkatraga@codeaurora.org>,
+        Vinod Koul <vkoul@kernel.org>, "Taniya Das" <quic_tdas@quicinc.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Ajit Pandey
+	<quic_ajipan@quicinc.com>,
+        Imran Shaik <quic_imrashai@quicinc.com>,
+        "Jagadeesh Kona" <quic_jkona@quicinc.com>
+References: <20240104-sm8150-dfs-support-v1-0-a5eebfdc1b12@quicinc.com>
+ <20240104-sm8150-dfs-support-v1-3-a5eebfdc1b12@quicinc.com>
+ <f2a8f12d-1f1a-4717-b837-69c01e57c677@linaro.org>
+From: "Satya Priya Kakitapalli (Temp)" <quic_skakitap@quicinc.com>
+In-Reply-To: <f2a8f12d-1f1a-4717-b837-69c01e57c677@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: LAemPs0k_EEFQ3b8YB9CK1dswN94KUu_
+X-Proofpoint-GUID: LAemPs0k_EEFQ3b8YB9CK1dswN94KUu_
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-12-09_02,2023-12-07_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ mlxlogscore=711 clxscore=1015 bulkscore=0 malwarescore=0 spamscore=0
+ phishscore=0 priorityscore=1501 adultscore=0 impostorscore=0
+ suspectscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2311290000 definitions=main-2401100085
 
-Convert device tree bindings for Atmel's HLCDC PWM controller to YAML
-format.
 
-Signed-off-by: Dharma Balasubiramani <dharma.b@microchip.com>
----
- .../bindings/pwm/atmel,hlcdc-pwm.yaml         | 62 +++++++++++++++++++
- .../bindings/pwm/atmel-hlcdc-pwm.txt          | 29 ---------
- 2 files changed, 62 insertions(+), 29 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/pwm/atmel,hlcdc-pwm.yaml
- delete mode 100644 Documentation/devicetree/bindings/pwm/atmel-hlcdc-pwm.txt
+On 1/4/2024 9:14 PM, Krzysztof Kozlowski wrote:
+> On 04/01/2024 15:23, Satya Priya Kakitapalli wrote:
+>> Add all the available resets for the global clock controller
+>> on sm8150.
+>>
+>> Fixes: 2a1d7eb854bb ("clk: qcom: gcc: Add global clock controller driver for SM8150")
+> If this is a fix, then please describe observable issue and how users
+> are affected. See stable kernel rules document.
 
-diff --git a/Documentation/devicetree/bindings/pwm/atmel,hlcdc-pwm.yaml b/Documentation/devicetree/bindings/pwm/atmel,hlcdc-pwm.yaml
-new file mode 100644
-index 000000000000..99eaad55ccb3
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pwm/atmel,hlcdc-pwm.yaml
-@@ -0,0 +1,62 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+# Copyright (C) 2024 Microchip Technology, Inc. and its subsidiaries
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/pwm/atmel,hlcdc-pwm.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Atmel's HLCDC (High-end LCD Controller) PWM driver
-+
-+maintainers:
-+  - Nicolas Ferre <nicolas.ferre@microchip.com>
-+  - Alexandre Belloni <alexandre.belloni@bootlin.com>
-+  - Claudiu Beznea <claudiu.beznea@tuxon.dev>
-+
-+description: |
-+  Device-Tree bindings for Atmel's HLCDC PWM driver. The Atmel HLCDC PWM is a
-+  subdevice of the HLCDC MFD device.
-+  # See ../mfd/atmel,hlcdc.yaml for more details.
-+
-+properties:
-+  compatible:
-+    const: atmel,hlcdc-pwm
-+
-+  pinctrl-names:
-+    const: default
-+
-+  pinctrl-0: true
-+
-+  "#pwm-cells":
-+    const: 3
-+    description: |
-+      This PWM chip uses the default 3 cells bindings defined in pwm.yaml in
-+      this directory.
-+
-+required:
-+  - compatible
-+  - pinctrl-names
-+  - pinctrl-0
-+  - "#pwm-cells"
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/at91.h>
-+    #include <dt-bindings/pwm/pwm.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    hlcdc: hlcdc@f0030000 {
-+      compatible = "atmel,sama5d3-hlcdc";
-+      reg = <0xf0030000 0x2000>;
-+      clocks = <&lcdc_clk>, <&lcdck>, <&clk32k>;
-+      clock-names = "periph_clk","sys_clk", "slow_clk";
-+      interrupts = <36 IRQ_TYPE_LEVEL_HIGH 0>;
-+
-+      hlcdc_pwm: hlcdc-pwm {
-+        compatible = "atmel,hlcdc-pwm";
-+        pinctrl-names = "default";
-+        pinctrl-0 = <&pinctrl_lcd_pwm>;
-+        #pwm-cells = <3>;
-+      };
-+    };
-diff --git a/Documentation/devicetree/bindings/pwm/atmel-hlcdc-pwm.txt b/Documentation/devicetree/bindings/pwm/atmel-hlcdc-pwm.txt
-deleted file mode 100644
-index afa501bf7f94..000000000000
---- a/Documentation/devicetree/bindings/pwm/atmel-hlcdc-pwm.txt
-+++ /dev/null
-@@ -1,29 +0,0 @@
--Device-Tree bindings for Atmel's HLCDC (High-end LCD Controller) PWM driver
--
--The Atmel HLCDC PWM is subdevice of the HLCDC MFD device.
--See ../mfd/atmel-hlcdc.txt for more details.
--
--Required properties:
-- - compatible: value should be one of the following:
--   "atmel,hlcdc-pwm"
-- - pinctr-names: the pin control state names. Should contain "default".
-- - pinctrl-0: should contain the pinctrl states described by pinctrl
--   default.
-- - #pwm-cells: should be set to 3. This PWM chip use the default 3 cells
--   bindings defined in pwm.yaml in this directory.
--
--Example:
--
--	hlcdc: hlcdc@f0030000 {
--		compatible = "atmel,sama5d3-hlcdc";
--		reg = <0xf0030000 0x2000>;
--		clocks = <&lcdc_clk>, <&lcdck>, <&clk32k>;
--		clock-names = "periph_clk","sys_clk", "slow_clk";
--
--		hlcdc_pwm: hlcdc-pwm {
--			compatible = "atmel,hlcdc-pwm";
--			pinctrl-names = "default";
--			pinctrl-0 = <&pinctrl_lcd_pwm>;
--			#pwm-cells = <3>;
--		};
--	};
--- 
-2.25.1
 
+No issues are observed as of now, just wanted to make sure all the 
+available resets are added. I'll remove the fixes tag.
+
+
+> Best regards,
+> Krzysztof
+>
 
