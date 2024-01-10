@@ -1,190 +1,119 @@
-Return-Path: <devicetree+bounces-30838-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30841-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C6138293BB
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 07:36:11 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 035D28293E1
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 07:58:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B98F0288C91
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 06:36:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AC1721F26E2E
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 06:58:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC5B838DE0;
-	Wed, 10 Jan 2024 06:35:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 740A336AFE;
+	Wed, 10 Jan 2024 06:58:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="s+Oa81HY"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vEdiWc74"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com [209.85.214.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70414659;
-	Wed, 10 Jan 2024 06:35:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: 75dcd60aaf8211ee9e680517dc993faa-20240110
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=O746dOdENmbBQtujY/4r4cNg6wrPMsTsPcGtObEJqEI=;
-	b=s+Oa81HYK3Xig69u3+G1nWahg+s7mV43DGgSoWgyESVYoWmS6sSSzp70HFFXyeMJB58R+fKKnDzxSA+39VgQ/3t7Ow9E+Ftnr2IRmWfuJ+9IZbaf5/F2tz945Av3M2ICfkmAzAthlhZ6ZVrx2bM+1WDNppIWEdu/W9BEAaosQSI=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.35,REQID:dde43942-eacc-40e7-9259-9f794f72ccf3,IP:0,U
-	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:0
-X-CID-META: VersionHash:5d391d7,CLOUDID:62ab168e-e2c0-40b0-a8fe-7c7e47299109,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-	RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,
-	DKR:0,DKP:0,BRR:0,BRE:0
-X-CID-BVR: 0,NGT
-X-CID-BAS: 0,NGT,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: 75dcd60aaf8211ee9e680517dc993faa-20240110
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
-	(envelope-from <jason-jh.lin@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 1086541307; Wed, 10 Jan 2024 14:35:35 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Wed, 10 Jan 2024 14:35:33 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
- mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Wed, 10 Jan 2024 14:35:33 +0800
-From: Jason-JH.Lin <jason-jh.lin@mediatek.com>
-To: Jassi Brar <jassisinghbrar@gmail.com>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
-	<conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Chun-Kuang Hu <chunkuang.hu@kernel.org>
-CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-media@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-mediatek@lists.infradead.org>, Jason-ch Chen
-	<jason-ch.chen@mediatek.com>, Johnson Wang <johnson.wang@mediatek.com>,
-	"Jason-JH . Lin" <jason-jh.lin@mediatek.com>, Singo Chang
-	<singo.chang@mediatek.com>, Nancy Lin <nancy.lin@mediatek.com>, Shawn Sung
-	<shawn.sung@mediatek.com>,
-	<Project_Global_Chrome_Upstream_Group@mediatek.com>
-Subject: [PATCH v2 4/4] dt-bindings: soc: mediatek: Change mediatek,gce-events to refernece
-Date: Wed, 10 Jan 2024 14:35:32 +0800
-Message-ID: <20240110063532.14124-5-jason-jh.lin@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20240110063532.14124-1-jason-jh.lin@mediatek.com>
-References: <20240110063532.14124-1-jason-jh.lin@mediatek.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20972364C1
+	for <devicetree@vger.kernel.org>; Wed, 10 Jan 2024 06:58:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pl1-f179.google.com with SMTP id d9443c01a7336-1d3ec3db764so13975205ad.2
+        for <devicetree@vger.kernel.org>; Tue, 09 Jan 2024 22:58:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1704869880; x=1705474680; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=GBt4RNNT5Udrunysdba+pFX1wxxljz+GPhqieimh10g=;
+        b=vEdiWc747a15KMtDZcFBtJpMmcSVIRX82MRTCMcXwXemLEIbZ9ufSrF22IH2ui4Ik5
+         VGjDFVllwuwvDNmVNE1DvzAQ8Uja52ibli2jZJ2LYBo5/YagJtsEP83JdtrZvJUjjKMA
+         E+9346PI5C9bMWbohUBfJLmyoaw8sc89HyumwLh7A5Ta6j+aJnNzM2PRDCbMl7iNvQWL
+         jVKI2gyWTZ3O4hB5miqk+lUyPa/knVLFxYZQxppNlt+47a1JtwN5LHOudNnivJjJCPgW
+         7ZtPXwL2O8dgS2HuF1a6CfCs1jenTeR8nrgWhhi99sk4N5v6oTKb+cS7K65TGWHxVBpf
+         g6PA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1704869880; x=1705474680;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=GBt4RNNT5Udrunysdba+pFX1wxxljz+GPhqieimh10g=;
+        b=WSIddxiZY1DyX/wY8X455Oi3+5Yo1E3cJu4uH+n+zhPVKyA+lmzRWhL7I6Cg35AE+O
+         kU7J1VnM/nwgdnabbidWLO73///oEA4gBgQ6LR60cGKZg+A2dDkuDSxvL6krIeiZfh6m
+         b2yGD/DiG3zAnclIavf4VWu4f9dcaaMvQyhkc3VJ2fpq1sk63IA8pZguGIQN0KaPjQEy
+         511uxF68hnJzW9tv0hLZFHZTPeFO78mluQ1vrbUFIYTDqp80h+Rw8ufN7zs+7wc0dIe+
+         wbLmWKG/HMoPlbSNM9Luo2wzcrP43Ac40Kik3feM1oVbqCUaJwlVTvKtgl37vpSlGTLc
+         sOXg==
+X-Gm-Message-State: AOJu0YwruD16EeRHpCMPEimI2vr/N9KaNxaoKeOdJDDLBpUfaqCBeLXh
+	9MJNuhvmPENQZgLDWwNDUR19zt1rTEhteg==
+X-Google-Smtp-Source: AGHT+IE+fzYVlUMTlLXHdh6PBiZwhLw2zWvoqNw2CQsktuCCXv/r/7cTCDcu6yf84bzkmhKGBHha0g==
+X-Received: by 2002:a17:902:ecc2:b0:1d4:28f:29e5 with SMTP id a2-20020a170902ecc200b001d4028f29e5mr515216plh.24.1704869880397;
+        Tue, 09 Jan 2024 22:58:00 -0800 (PST)
+Received: from localhost ([122.172.81.83])
+        by smtp.gmail.com with ESMTPSA id p3-20020a170902b08300b001cfa0c04553sm2882969plr.116.2024.01.09.22.57.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 09 Jan 2024 22:57:59 -0800 (PST)
+Date: Wed, 10 Jan 2024 12:27:57 +0530
+From: Viresh Kumar <viresh.kumar@linaro.org>
+To: Krishna Chaitanya Chundru <quic_krichai@quicinc.com>
+Cc: Bjorn Helgaas <helgaas@kernel.org>, agross@kernel.org,
+	andersson@kernel.org, konrad.dybcio@linaro.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	vireshk@kernel.org, nm@ti.com, sboyd@kernel.org, mani@kernel.org,
+	lpieralisi@kernel.org, kw@linux.com, robh@kernel.org,
+	bhelgaas@google.com, rafael@kernel.org,
+	linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-pm@vger.kernel.org, quic_vbadigan@quicinc.com,
+	quic_nitegupt@quicinc.com, quic_skananth@quicinc.com,
+	quic_ramkri@quicinc.com, quic_parass@quicinc.com
+Subject: Re: [PATCH v5 5/5] PCI: qcom: Add OPP support to scale performance
+ state of power domain
+Message-ID: <20240110065757.xde2nvpr3z7c4isu@vireshk-i7>
+References: <20231102053013.7yt7pxin5awlu7w7@vireshk-i7>
+ <20231102120950.GA115288@bhelgaas>
+ <20231103051247.u4cnckzstcvs4lf5@vireshk-i7>
+ <15a98ec0-214b-218b-1e3c-c09f770fce2e@quicinc.com>
+ <0ba9f2af-169e-a9a2-9ae4-4c6a70b0a94e@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK: N
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <0ba9f2af-169e-a9a2-9ae4-4c6a70b0a94e@quicinc.com>
 
-Change mediatek,gce-events property to reference mediatek,gce-props.yaml
-instead of defining itself.
+On 08-01-24, 18:49, Krishna Chaitanya Chundru wrote:
+> We calculate ICC BW voting based up on PCIe speed and PCIe width.
+> 
+> Right now we are adding the opp table based up on PCIe speed.
+> 
+> Each PCIe controller can support multiple lane configurations like x1, x2,
+> x4, x8, x16 based up on controller capability.
+> 
+> So for each GEN speed we need  up to 5 entries in OPP table. This will make
+> OPP table very long.
+> 
+> It is best to calculate the ICC BW voting in the driver itself and apply
+> them through ICC driver.
 
-Signed-off-by: Jason-JH.Lin <jason-jh.lin@mediatek.com>
----
- .../bindings/soc/mediatek/mediatek,ccorr.yaml        | 12 ++++--------
- .../bindings/soc/mediatek/mediatek,mutex.yaml        | 11 +++--------
- .../bindings/soc/mediatek/mediatek,wdma.yaml         | 12 ++++--------
- 3 files changed, 11 insertions(+), 24 deletions(-)
+I see. Are the lane configurations fixed for a platform ? I mean, do you change
+those configurations at runtime or is that something that never changes, but the
+driver can end up getting used on a hardware that supports any one of them ?
 
-diff --git a/Documentation/devicetree/bindings/soc/mediatek/mediatek,ccorr.yaml b/Documentation/devicetree/bindings/soc/mediatek/mediatek,ccorr.yaml
-index 4380b98b0dfe..9e03de3c721b 100644
---- a/Documentation/devicetree/bindings/soc/mediatek/mediatek,ccorr.yaml
-+++ b/Documentation/devicetree/bindings/soc/mediatek/mediatek,ccorr.yaml
-@@ -34,13 +34,6 @@ properties:
-       4 arguments defined in this property. Each GCE subsys id is mapping to
-       a client defined in the header include/dt-bindings/gce/<chip>-gce.h.
- 
--  mediatek,gce-events:
--    description:
--      The event id which is mapping to the specific hardware event signal
--      to gce. The event id is defined in the gce header
--      include/dt-bindings/gce/<chip>-gce.h of each chips.
--    $ref: /schemas/types.yaml#/definitions/uint32-array
--
-   clocks:
-     minItems: 1
- 
-@@ -51,7 +44,10 @@ required:
-   - mediatek,gce-events
-   - clocks
- 
--additionalProperties: false
-+allOf:
-+  - $ref: ../../mailbox/mediatek,gce-props.yaml#
-+
-+unevaluatedProperties: false
- 
- examples:
-   - |
-diff --git a/Documentation/devicetree/bindings/soc/mediatek/mediatek,mutex.yaml b/Documentation/devicetree/bindings/soc/mediatek/mediatek,mutex.yaml
-index ba2014a8725c..6c3dafe7f9a5 100644
---- a/Documentation/devicetree/bindings/soc/mediatek/mediatek,mutex.yaml
-+++ b/Documentation/devicetree/bindings/soc/mediatek/mediatek,mutex.yaml
-@@ -53,13 +53,6 @@ properties:
-     items:
-       - description: MUTEX Clock
- 
--  mediatek,gce-events:
--    description:
--      The event id which is mapping to the specific hardware event signal
--      to gce. The event id is defined in the gce header
--      include/dt-bindings/gce/<chip>-gce.h of each chips.
--    $ref: /schemas/types.yaml#/definitions/uint32-array
--
-   mediatek,gce-client-reg:
-     $ref: /schemas/types.yaml#/definitions/phandle-array
-     items:
-@@ -73,6 +66,8 @@ properties:
-       a client defined in the header include/dt-bindings/gce/<chip>-gce.h.
- 
- allOf:
-+  - $ref: ../../mailbox/mediatek,gce-props.yaml#
-+
-   - if:
-       properties:
-         compatible:
-@@ -97,7 +92,7 @@ required:
-   - interrupts
-   - power-domains
- 
--additionalProperties: false
-+unevaluatedProperties: false
- 
- examples:
-   - |
-diff --git a/Documentation/devicetree/bindings/soc/mediatek/mediatek,wdma.yaml b/Documentation/devicetree/bindings/soc/mediatek/mediatek,wdma.yaml
-index 69afb329e5f4..a8d393784554 100644
---- a/Documentation/devicetree/bindings/soc/mediatek/mediatek,wdma.yaml
-+++ b/Documentation/devicetree/bindings/soc/mediatek/mediatek,wdma.yaml
-@@ -35,13 +35,6 @@ properties:
-       4 arguments defined in this property. Each GCE subsys id is mapping to
-       a client defined in the header include/dt-bindings/gce/<chip>-gce.h.
- 
--  mediatek,gce-events:
--    description:
--      The event id which is mapping to the specific hardware event signal
--      to gce. The event id is defined in the gce header
--      include/dt-bindings/gce/<chip>-gce.h of each chips.
--    $ref: /schemas/types.yaml#/definitions/uint32-array
--
-   power-domains:
-     maxItems: 1
- 
-@@ -60,7 +53,10 @@ required:
-   - clocks
-   - iommus
- 
--additionalProperties: false
-+allOf:
-+  - $ref: ../../mailbox/mediatek,gce-props.yaml#
-+
-+unevaluatedProperties: false
- 
- examples:
-   - |
+If they are fixed (second case), then you can use dev_pm_opp_set_prop_name() to
+make that easier for you. With that you will only need 5 OPP entries, but each
+of them will have five values of bw:
+
+bw-x1, bw-x2, ....  and you can select one of them during initialization.
+
 -- 
-2.18.0
-
+viresh
 
