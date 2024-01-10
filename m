@@ -1,123 +1,122 @@
-Return-Path: <devicetree+bounces-30892-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30893-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5569F82967F
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 10:47:30 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D450829686
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 10:48:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D3B5AB25D6E
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 09:47:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 84A3D1C23CF3
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 09:48:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 180873EA96;
-	Wed, 10 Jan 2024 09:46:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C0D54177F;
+	Wed, 10 Jan 2024 09:46:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="UPEoGCz1"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="gxDIu/C5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 901333F8F4;
-	Wed, 10 Jan 2024 09:46:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40A8dZTp021783;
-	Wed, 10 Jan 2024 09:45:19 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=TJWOUqqOWfLSHwbrjDN1CSgQZxgpmxtxhOl651aGMzQ=; b=UP
-	EoGCz1JIcJI7najrHCxJQwR8o/m+doI/I+1jBZUEDUeH0wV/JgukuXcC+HK8hZ7P
-	9yVMeGxAl+T2YfE6Qgdc+5kkfqI5jNvJfgF+NO2w08BlghoHSfq3mxh+ct36ZW8p
-	TCbEWCPmVIfUR/xduUOG8UVT9eTIx3Cxvdst/IyApQ+0sSjk6nS9afaN31NNFeKH
-	b4UC93/oxzVG7hbrTJ1YMnBrDeI/A2QMzmYr2kFNZtPm4Sr3Cryg1UJL8Z8tDnkY
-	KSmQ24xE0lndkMFrtWw42dW+pdEzjbOrCsEIxy63wCwmVzpDDyGRSJQjzgdH/mC/
-	kRj53YjMop1hscVvf8jQ==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vh9vfhw4g-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 10 Jan 2024 09:45:18 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 40A9jISZ023539
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 10 Jan 2024 09:45:18 GMT
-Received: from [10.217.217.69] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Wed, 10 Jan
- 2024 01:45:12 -0800
-Message-ID: <c839d2b9-1b4b-f2a0-ff5d-9e841daec9f2@quicinc.com>
-Date: Wed, 10 Jan 2024 15:15:08 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B97B841771;
+	Wed, 10 Jan 2024 09:46:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1704879971; x=1736415971;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=qARngFl8YFW6cJZEV0gLXRU1x9NlrSoRpYfXuFRLnvE=;
+  b=gxDIu/C522zCCCswWKz43sFXgJVYZmcK+AYeEdyrL3Ns1QbYNlwKKiYV
+   mSPDBpgx8PeShYbY6Zc4YtcwgbjLF8DqExXiNZD+GxGt4iqzgDpcj2Oxa
+   CzRFxoMcQ+q+WkYfWryDk3hAg8S9RzeyPbv/c+iGQGk9BXwXqT/asAcYr
+   LwzeVw6Nn8u/PxRIL4t5MdYr8wF0vFJN3GI/a1u5v1pYaqRYDBE0sqt7y
+   f1dDIr2w5mOymJlctvpk+qm4GsvAb6TBACDBje2q11gG/mQ/BsrkBdPI2
+   kr43OQJt68hBY3EvrnBS/paC9uHKT+DvQg09I4iUK3OK4byhXQK9CUGum
+   A==;
+X-IronPort-AV: E=Sophos;i="6.04,184,1695679200"; 
+   d="scan'208";a="34824529"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 10 Jan 2024 10:46:08 +0100
+Received: from steina-w.tq-net.de (steina-w.tq-net.de [10.123.53.25])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id DE40C280075;
+	Wed, 10 Jan 2024 10:46:07 +0100 (CET)
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Mirela Rabulea <mirela.rabulea@nxp.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>
+Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
+	NXP Linux Team <linux-imx@nxp.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: [PATCH 1/1] dt-bindings: media: imx-jpeg: Document slot property
+Date: Wed, 10 Jan 2024 10:46:04 +0100
+Message-Id: <20240110094604.472701-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.0
-Subject: Re: [PATCH 2/3] dt-bindings: clock: Update the gcc resets for sm8150
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        "Michael
- Turquette" <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        "Deepak Katragadda" <dkatraga@codeaurora.org>,
-        Vinod Koul <vkoul@kernel.org>, "Taniya Das" <quic_tdas@quicinc.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Ajit Pandey
-	<quic_ajipan@quicinc.com>,
-        Imran Shaik <quic_imrashai@quicinc.com>,
-        "Jagadeesh Kona" <quic_jkona@quicinc.com>
-References: <20240104-sm8150-dfs-support-v1-0-a5eebfdc1b12@quicinc.com>
- <20240104-sm8150-dfs-support-v1-2-a5eebfdc1b12@quicinc.com>
- <218f9822-0bbf-489e-b3ac-bb5ec6cee8d4@linaro.org>
-From: "Satya Priya Kakitapalli (Temp)" <quic_skakitap@quicinc.com>
-In-Reply-To: <218f9822-0bbf-489e-b3ac-bb5ec6cee8d4@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: bKXOcpCmGzCMjtTd2VmxKzNWt2EPMUPl
-X-Proofpoint-ORIG-GUID: bKXOcpCmGzCMjtTd2VmxKzNWt2EPMUPl
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-12-09_01,2023-12-07_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
- lowpriorityscore=0 suspectscore=0 clxscore=1011 priorityscore=1501
- impostorscore=0 adultscore=0 bulkscore=0 mlxlogscore=774 spamscore=0
- phishscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2311290000 definitions=main-2401100079
+Content-Transfer-Encoding: 8bit
 
+There are 4 slots available in the IP, which the driver may use.
+This property lists which slots can be used. In reference to commit
+53ebeea50599 ("media: imx-jpeg: Support to assign slot for encoder/decoder")
+only slot 0 can be used on imx8qxp.
 
-On 1/4/2024 9:13 PM, Krzysztof Kozlowski wrote:
-> On 04/01/2024 15:23, Satya Priya Kakitapalli wrote:
->> Add all the available resets for the global clock controller
->> on sm8150.
->>
->> Signed-off-by: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
->> ---
-> Subject:
-> Everything can be an update. You also miss prefix. Instead:
-> dt-bindings: clock: qcom,gcc-sm8150: Add Video camcc whatever foobar
-> reset IDs
+Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+---
+ .../devicetree/bindings/media/nxp,imx8-jpeg.yaml       | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
+diff --git a/Documentation/devicetree/bindings/media/nxp,imx8-jpeg.yaml b/Documentation/devicetree/bindings/media/nxp,imx8-jpeg.yaml
+index 07fef1e723f20..5122c7cff8e73 100644
+--- a/Documentation/devicetree/bindings/media/nxp,imx8-jpeg.yaml
++++ b/Documentation/devicetree/bindings/media/nxp,imx8-jpeg.yaml
+@@ -54,6 +54,14 @@ properties:
+     minItems: 2               # Wrapper and 1 slot
+     maxItems: 5               # Wrapper and 4 slots
+ 
++  slot:
++    $ref: /schemas/types.yaml#/definitions/uint32-array
++    minItems: 1
++    maxItems: 4
++    items:
++      enum: [ 0, 1, 2, 3 ]
++    description: Available slot index
++
+ required:
+   - compatible
+   - reg
+@@ -85,6 +93,7 @@ examples:
+                         <&pd IMX_SC_R_MJPEG_DEC_S1>,
+                         <&pd IMX_SC_R_MJPEG_DEC_S2>,
+                         <&pd IMX_SC_R_MJPEG_DEC_S3>;
++        slot = <0>;
+     };
+ 
+     jpegenc: jpegenc@58450000 {
+@@ -102,5 +111,6 @@ examples:
+                         <&pd IMX_SC_R_MJPEG_ENC_S1>,
+                         <&pd IMX_SC_R_MJPEG_ENC_S2>,
+                         <&pd IMX_SC_R_MJPEG_ENC_S3>;
++        slot = <0>;
+     };
+ ...
+-- 
+2.34.1
 
-Okay, will update the subject.
-
-
-> Best regards,
-> Krzysztof
->
 
