@@ -1,175 +1,160 @@
-Return-Path: <devicetree+bounces-31090-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31091-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id C57AC829EA0
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 17:29:38 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 29352829EAB
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 17:36:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 37A33B24087
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 16:29:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3C1531C21FC5
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 16:36:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C4B44CB47;
-	Wed, 10 Jan 2024 16:29:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C4984CDF3;
+	Wed, 10 Jan 2024 16:36:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="glZGQqaX"
+	dkim=pass (2048-bit key) header.d=tenstorrent.com header.i=@tenstorrent.com header.b="cb8bAGIY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F782487B4
-	for <devicetree@vger.kernel.org>; Wed, 10 Jan 2024 16:29:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
-Received: from mail-ot1-f71.google.com (mail-ot1-f71.google.com [209.85.210.71])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 329F73F5A2
-	for <devicetree@vger.kernel.org>; Wed, 10 Jan 2024 16:29:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-	s=20210705; t=1704904155;
-	bh=uv9EP/w/9lKiqxJDFswe5iRGGwCnnVkmNEold/I0ZHc=;
-	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
-	 To:Cc:Content-Type;
-	b=glZGQqaXBD4oKJYeWFxkmEMQnxEa4jXgMMVyXdrshZJeItnwZgpkdnL7zNeXYVakP
-	 VuB24rAqXF0ob99aNVbqrtY6BTjrRpquv7gGKe8tU9+A8R+f5APLa8KGpPpXMSQPxF
-	 g0NHjbNEXNCT9A4cdy4e5O3F8ldM/SEWLF6fTt5nVD9adix4fR8BxvTVqU8S3Z9o2o
-	 uDkfO8O9iCDulYe1VhBaa3yGZwW/aVpB9y0HlxtiiHVJDsu7AqJsSPk9rsV2S52/jO
-	 GaHQ9NyyJQ5tX/di9FjDyRhjUgMqRFjcqVLc74WXy8PiDZP7b/MTVcuNtMvnoSq8WD
-	 F1eawYtRLtgqg==
-Received: by mail-ot1-f71.google.com with SMTP id 46e09a7af769-6de353881d7so522858a34.0
-        for <devicetree@vger.kernel.org>; Wed, 10 Jan 2024 08:29:15 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC506482DC
+	for <devicetree@vger.kernel.org>; Wed, 10 Jan 2024 16:35:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=tenstorrent.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tenstorrent.com
+Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-1d4ab4e65aeso34762145ad.0
+        for <devicetree@vger.kernel.org>; Wed, 10 Jan 2024 08:35:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=tenstorrent.com; s=google; t=1704904557; x=1705509357; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=NUfXOVWjFppBmkTP9/JtvhS+iSH/scaSCcV++osCkg4=;
+        b=cb8bAGIYbccgMwt3dBJmBkKJOLE9WrQfAwAI2g437s6M9DJtPr+LReZWz0Ao4kit2J
+         RSlJrJ/FXkTyCtTYCffNbYaUcVzd4LhlYC52/4UbX8nSrN3mZV11mzEtPlW+8r7/FWGV
+         +1F3PhgiOrAroZ+LfC/RxEb90dRv0ZUQ5NKN1jvVipj1aQRQ+MI5zpeExPwAZME1jaxW
+         8RcBaPqbiGJCmKJCVislUOwbDW3/nVN7rK1xLk5mRzJEuH10HqY3wsisrnfLKUXYpwx8
+         dDMYadITCdMURKOFXew1qU103z1dCK8bPD4EX5wOpKnQu3YyYoHqIc9SjtUw+864pYnx
+         aE2Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704904154; x=1705508954;
-        h=cc:to:subject:message-id:date:mime-version:references:in-reply-to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=uv9EP/w/9lKiqxJDFswe5iRGGwCnnVkmNEold/I0ZHc=;
-        b=i+rSvROcfOe3Bp98fHDL+KUbVbx2tSIaLKKwFOLVSD2wccQeHMo6Cum0s9sLducmFk
-         E0nldBQKgHnzDhFp8D95u5xxsAmV8ZyzmnjwdlrHkfg5dwQS9pbR4puhJyCFTygj+jGY
-         QNn9j84lgGmaRHVfEZfkfOX6e59gpNqWYw4ym08NiYMdGhgMDYBXGL3kuOn0Ar/XBPTl
-         fdeQqFpAl6ZFauFFu698sMFxI0TpTnfChsJzHFirdxqlDFsgLClZc57LwzeIguuhlsY1
-         h0zI9Y9HcT7eoHfgm22A7FuNSO1FFE+DeUF/ERQELwytMWyEi1Y8PdIDIKUM9Uj9h0Ii
-         y7og==
-X-Gm-Message-State: AOJu0Yw07iav23E+cgVjqc479PlcuJaBY9tVA7VtM3/bfbfmZ64TahRT
-	6C6+vkhI0vbTCZ2UqWbKPrt0NlTUYiyQE9dYcGvbdcR3IKnjkWVEiLkKpPLf7DCGQLWjuyyYrf3
-	LU5KV0ug732jrmLZqhJzOAH+yfUc6/odkfi5EFlnFrZlH8POdVdA8CyRYKBMp5Q==
-X-Received: by 2002:a05:6830:1184:b0:6dd:e1a7:985c with SMTP id u4-20020a056830118400b006dde1a7985cmr853579otq.64.1704904154048;
-        Wed, 10 Jan 2024 08:29:14 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFbHlXIe2CrSKgMXB12cTUPD3lT7PL5ZyJdEPF2+t0EcSUNyc5cEMlt0ZMzdAuC3C3APnreiaTINaV7wsxklKM=
-X-Received: by 2002:a05:6830:1184:b0:6dd:e1a7:985c with SMTP id
- u4-20020a056830118400b006dde1a7985cmr853563otq.64.1704904153819; Wed, 10 Jan
- 2024 08:29:13 -0800 (PST)
-Received: from 348282803490 named unknown by gmailapi.google.com with
- HTTPREST; Wed, 10 Jan 2024 11:29:13 -0500
-From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-In-Reply-To: <ZQ0PR01MB098182407F5F427D9A6C7CD9826BA@ZQ0PR01MB0981.CHNPR01.prod.partner.outlook.cn>
-References: <20231214072839.2367-1-minda.chen@starfivetech.com>
- <7hfrzeavmj.fsf@baylibre.com> <ZQ0PR01MB098128579D86207B4B9BA7D28266A@ZQ0PR01MB0981.CHNPR01.prod.partner.outlook.cn>
- <7h34vbbsfj.fsf@baylibre.com> <ZQ0PR01MB098182407F5F427D9A6C7CD9826BA@ZQ0PR01MB0981.CHNPR01.prod.partner.outlook.cn>
+        d=1e100.net; s=20230601; t=1704904557; x=1705509357;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=NUfXOVWjFppBmkTP9/JtvhS+iSH/scaSCcV++osCkg4=;
+        b=rZMJTRKSMV+PfQacPvczivT3pIYKLodSsqxfX2phdGDZvmzN2dJO88Xr6O+8yyd7FC
+         Ip+o3sco2waWFEMmxx9SRrhGZP64g0stipzvpFH7S9teve7Gc4MOjO270124XEHzI3ra
+         Z32PGJ8nXWjcWhJuiP9VP1Hzw/gLZlWnpmjBCM04VnMHqUnsIBcHeAN+2gfejkKSaQYM
+         jm3dtwC6QEis0KBuAISwYjBlmiZVvdJ2HK+XnQcpmx8ny/8pr+F5hTZcMS0dcLdHpOAa
+         r1DfCcCYn1siRsyeBQ5Tmesp0+4JsORbYqK5yGWCQ1C0NIuU0qa/r9X1MUM5GMcigQ/O
+         Y9iA==
+X-Gm-Message-State: AOJu0Yx5q0zXR+/LKkcMioG1Yn86246qu9zHnhW7ww71gnGMrcF8X5yv
+	oAh/5Nt5ORqaSp9Yr+bslqw+lZUV6DpVgg==
+X-Google-Smtp-Source: AGHT+IELbgnMH0ltz/uBIUx7pCZ9sWm8n1TjbxqSStE2MTG0+o4QTGL1FeKISXzpn48z88cNXmnpkw==
+X-Received: by 2002:a17:903:124a:b0:1d5:65c7:dea5 with SMTP id u10-20020a170903124a00b001d565c7dea5mr368928plh.35.1704904557138;
+        Wed, 10 Jan 2024 08:35:57 -0800 (PST)
+Received: from [127.0.1.1] ([2601:1c2:1800:f680:858a:4f95:cb29:907c])
+        by smtp.gmail.com with ESMTPSA id p20-20020a170903249400b001d4b5e444d2sm3872265plw.48.2024.01.10.08.35.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 10 Jan 2024 08:35:56 -0800 (PST)
+From: Drew Fustini <dfustini@tenstorrent.com>
+Subject: [PATCH RFC 0/3] clk: thead: add support for T-HEAD TH1520 AP clock
+ controller
+Date: Wed, 10 Jan 2024 08:35:14 -0800
+Message-Id: <20240110-clk-th1520-v1-0-8b0682567984@tenstorrent.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Date: Wed, 10 Jan 2024 11:29:13 -0500
-Message-ID: <CAJM55Z9HtBSyCq7rDEDFdw644pOWCKJfPqhmi3SD1x6p3g2SLQ@mail.gmail.com>
-Subject: =?UTF-8?B?UmU6IOWbnuWkjTog5Zue5aSNOiBbUEFUQ0ggdjEzIDAvMjFdIFJlZmFjdG9yaW5nIE1pYw==?=
-	=?UTF-8?B?cm9jaGlwIFBDSWUgZHJpdmVyIGFuZCBhZGQgU3RhckZpdmUgUENJZQ==?=
-To: Kevin Xie <kevin.xie@starfivetech.com>, Kevin Hilman <khilman@baylibre.com>, 
-	Minda Chen <minda.chen@starfivetech.com>, Conor Dooley <conor@kernel.org>, 
-	=?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>, 
-	Rob Herring <robh+dt@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, Daire McNamara <daire.mcnamara@microchip.com>, 
-	Emil Renner Berthing <emil.renner.berthing@canonical.com>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
-	"linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>, 
-	"linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Mason Huo <mason.huo@starfivetech.com>, 
-	Leyfoon Tan <leyfoon.tan@starfivetech.com>
-Content-Type: text/plain; charset="UTF-8"
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAELHnmUC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIxMDQwNL3eScbN2SDENTIwNdY0tLEyNLI0vLFFNDJaCGgqLUtMwKsGHRSkF
+ uzkqxtbUAtAQHxWEAAAA=
+To: Jisheng Zhang <jszhang@kernel.org>, Guo Ren <guoren@kernel.org>, 
+ Fu Wei <wefu@redhat.com>, Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Yangtao Li <frank.li@vivo.com>
+Cc: linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+ Emil Renner Berthing <emil.renner.berthing@canonical.com>, 
+ Han Gao <gaohan@iscas.ac.cn>, Xi Ruoyao <xry111@xry111.site>, 
+ Robert Nelson <robertcnelson@beagleboard.org>, 
+ Jason Kridner <jkridner@beagleboard.org>, 
+ Drew Fustini <dfustini@tenstorrent.com>, 
+ Drew Fustini <dfustini@tenstorrent.org>, 
+ Drew Fustini <drew@tenstorrent.org>
+X-Mailer: b4 0.12.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1704904555; l=2938;
+ i=dfustini@tenstorrent.com; s=20230430; h=from:subject:message-id;
+ bh=uYm/4xZs1+S7XBO0sv9/6rdMfUgmhq4fXQa0VDf/0xI=;
+ b=2FFXTCrI1s1CiaVfwXB8XhukXEsvF5hrYCBYiXXPHwq8UfGI0eqE8RV6ocp8CsnYaMDazKEF+
+ C5KmMTEj5uzBXS8I0wRPWllTrjOq4lRPQRxyRP7ELnCqw5YB00qCY84
+X-Developer-Key: i=dfustini@tenstorrent.com; a=ed25519;
+ pk=p3GKE9XFmjhwAayAHG4U108yag7V8xQVd4zJLdW0g7g=
 
-Kevin Xie wrote:
-> > Kevin Xie <kevin.xie@starfivetech.com> writes:
-> >
-> > >> Minda Chen <minda.chen@starfivetech.com> writes:
-> > >>
-> > >> > This patchset final purpose is add PCIe driver for StarFive JH7110 SoC.
-> > >> > JH7110 using PLDA XpressRICH PCIe IP. Microchip PolarFire Using the
-> > >> > same IP and have commit their codes, which are mixed with PLDA
-> > >> > controller codes and Microchip platform codes.
-> > >>
-> > >> Thank you for this series.
-> > >>
-> > >> I tested this on a VisionFive v2 board, and it seems to probe and
-> > >> find my
-> > >> M.2 NVMe SSD, but then gets timeouts when trying to use the NVMe (e.g.
-> > >> 'blkid' command)
-> > >>
-> > >
-> > > Hi, Kevin:
-> > > Could you please provide the manufacturer and model of the M.2 NVMe
-> > > SSD you tested?
-> >
-> > I have a 256 Gb Silicon Power P34A60 M.2 NVMe SSD (part number:
-> > sp256gbp34a60m28)
-> >
-> Thanks, Kevin, we will buy one to test.
->
-> Before doing this refactoring, we encountered the same bug with Kingston M.2 SSD,
-> and we workaround the problem with the below patch, please have a try:
-> diff --git a/drivers/nvme/host/pci.c b/drivers/nvme/host/pci.c
-> index 507bc149046d..5be37f1ee150 100644
-> --- a/drivers/nvme/host/pci.c
-> +++ b/drivers/nvme/host/pci.c
-> @@ -1059,6 +1059,16 @@ static inline int nvme_poll_cq(struct nvme_queue *nvmeq,
->  {
->         int found = 0;
->
-> +       /*
-> +        * In some cases, such as JH7110 SoC working with Kingston SSD,
-> +        * the CQE status may update a little bit later than the MSI,
-> +        * which cause an IRQ handle missing.
-> +        * As a workaround, here we will check the status first, and wait
-> +        * 1us if we get nothing.
-> +        */
-> +       if (!nvme_cqe_pending(nvmeq))
-> +               udelay(1);
-> +
->         while (nvme_cqe_pending(nvmeq)) {
->                 found++;
->                 /*
->
+This series adds support for the AP sub system clock controller in the
+T-HEAD TH1520. This include CPU, DPU, GMAC and TEE PLLs.
 
-Hi Kevin,
+Yangtao Li originally submitted this series back in May [1]. Jisheng
+made additional improvements and then passed on the work in progress to
+me. The driver code is cleaner than the version in the T-Head SDK [2].
 
-Thanks, this fixes the same problem on my WD Blue SN570 250GB.
+I fixed checkpatch and dt_binding_check warnings along with:
+- deduplicated CLK_NPU and CLK_NPU_AXI number in header
+- corrected the npu_clk enable bit
+- fixed c910_i0_clk reg typo
 
-Before this patch I found that CONFIG_INIT_ON_ALLOC_DEFAULT_ON=y fixed the
-problem, but it's now clear that this only slowed my kernel enough that this
-wouldn't trigger as often.
+I am marking this as an RFC because I have not been able to get the eMMC
+controller to work with the clock driver yet. The T-Head SDK does have
+full clock driver support but it still uses a fixed clock for the mmc
+controller. I've not yet determined why that is.
 
-/Emil
+According to the documentation [4], the "emmc sdio ref clk" is listed as
+792 MHz in table "4.3.4 Clock Frequency of Key Module". PERI_CLK_CFG
+contains the clock gate. 792 MHz divided by 4 is 198 MHz which is the
+fixed clock frequency used for the mmc controller. However, I can't seem
+to figured how the divider is controlled for the "emmc sdio ref clk".
 
-> > Also for reference, I tested the same SSD on another arm platform (Khadas
-> > VIM3) and it works fine.
-> >
-> > Kevin
->
-> Hi, Bjorn:
-> Do you have any idea about the late CQE phase update condition as mentioned
-> in the patch comments above?
-> This is an issue that occurs with a small probability on individual devices in our
-> platform.
-> Thus, I suggest the refactoring patch set should go forward.
-> Later we will try to find a more formal solution instead, and send a new patch.
-> _______________________________________________
-> linux-riscv mailing list
-> linux-riscv@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-riscv
+Anyways, Emil is working on the pinctrl driver and Conor asked about the
+state of the clock driver [5]. I thought it best to send this RFC now so
+that discussion can take place on the list.
+
+Thank you,
+Drew
+
+[1] https://lore.kernel.org/linux-riscv/20230515054402.27633-1-frank.li@vivo.com/
+[2] https://openbeagle.org/beaglev-ahead/beaglev-ahead-linux/-/blob/beaglev-v5.10.113-1.1.2/drivers/clk/thead/clk-light-fm.c
+[3] https://openbeagle.org/beaglev-ahead/beaglev-ahead-linux/-/blob/beaglev-v5.10.113-1.1.2/arch/riscv/boot/dts/thead/light.dtsi
+[4] https://openbeagle.org/beaglev-ahead/beaglev-ahead/-/blob/main/docs/TH1520%20System%20User%20Manual.pdf
+[5] https://lore.kernel.org/linux-riscv/20240109-boggle-frugality-03a77cab8308@spud/
+
+Signed-off-by: Drew Fustini <dfustini@tenstorrent.com>
+---
+Jisheng Zhang (1):
+      clk: thead: add support for T-HEAD TH1520 AP clocks
+
+Yangtao Li (2):
+      dt-bindings: clock: Add T-Head TH1520 AP clock definitions
+      dt-bindings: clock: Document T-Head TH1520 AP clock controller
+
+ .../bindings/clock/thead,th1520-clk-ap.yaml        |   65 ++
+ MAINTAINERS                                        |    3 +
+ drivers/clk/Kconfig                                |    1 +
+ drivers/clk/Makefile                               |    1 +
+ drivers/clk/thead/Kconfig                          |   12 +
+ drivers/clk/thead/Makefile                         |    2 +
+ drivers/clk/thead/clk-th1520-ap.c                  | 1018 ++++++++++++++++++++
+ include/dt-bindings/clock/thead,th1520-clk.h       |   96 ++
+ 8 files changed, 1198 insertions(+)
+---
+base-commit: 8cb47d7cd090a690c1785385b2f3d407d4a53ad0
+change-id: 20240109-clk-th1520-399429299d51
+
+Best regards,
+-- 
+Drew Fustini <dfustini@tenstorrent.com>
+
 
