@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-31101-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31102-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E75F2829F6E
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 18:41:46 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 055F5829F76
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 18:42:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8656AB238FA
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 17:41:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7E08028AB80
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 17:42:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A2BE4CB4E;
-	Wed, 10 Jan 2024 17:41:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 222BB4CB4E;
+	Wed, 10 Jan 2024 17:42:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LmDT8IRd"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dvlAHQar"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
+Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A69B54D105
-	for <devicetree@vger.kernel.org>; Wed, 10 Jan 2024 17:41:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8EC594D584
+	for <devicetree@vger.kernel.org>; Wed, 10 Jan 2024 17:42:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-50eaaf2c7deso4771769e87.2
-        for <devicetree@vger.kernel.org>; Wed, 10 Jan 2024 09:41:35 -0800 (PST)
+Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-2cd1ca52f31so50001031fa.3
+        for <devicetree@vger.kernel.org>; Wed, 10 Jan 2024 09:42:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704908494; x=1705513294; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1704908535; x=1705513335; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=HgI3b5nVyvdJT18kOSX4sUXOm57u0vvWVXG95l7nSRE=;
-        b=LmDT8IRd4TWUk80hDga75nI6fXFLf8Ysuog8rnBV8TE9N41z85C05E0zIN9LpAZEXw
-         bn0rautfTZrOxw9gCO267oFAE665OSNvM+2nCys8Zp5hZgSqdybt1B85cB0D8wI5ryB5
-         L0PiU+aHIE3Qj0ny7HZ1Y6p+AL3UxEsgw8fJ7Y+BJQr95N6/gf+Ft8l0UtqWgDcyhp9W
-         +8DzFktC0MFAbdT/s8mpBhn7KSbHAOkHnmcpjHKyqQaf3mLRZl74F6V/HXYHTpmZyLoB
-         DzBlOd2ks1W01tpitDUuD3XAKIL2o/nL88EvKWRLRzjjBmN9YzRp7WGQpE0oQl5G7rFH
-         AF/g==
+        bh=YjMoBaJslgOWw0PjOC5tF8h+iRVzEHZGeY/kRdR3+Yg=;
+        b=dvlAHQar4GJFXERCWrckZBE+0/jIA/JuiPUZ+D9LYW/z8sjehVt5ikv2jAbFLfGWva
+         Nok8C+TJGceViM8MV0U+lAhcfu8ynjsb6UQzAUDclqxhzf2ue4+IwRUVlOJKz62j1FZv
+         +u4vX70sDB7DFWtd3Bbqy3Hr1A0sqfMO0tM0h1WxYqcV1oeEUVF1oA2yFmeKoiPl3jm8
+         7SLgfCVkKzedKP3Gjzp5BR/5zRcEUd3qiWQh2vB+T7YG5oGyaTPE86ld9q35MymA7R92
+         PvnIK5e1/ok7F630RQk3EKGYOgInhF0Ezc1s01209DIkeKpII+m3cdiMmUGxXPQfzKtz
+         neuw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704908494; x=1705513294;
+        d=1e100.net; s=20230601; t=1704908535; x=1705513335;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=HgI3b5nVyvdJT18kOSX4sUXOm57u0vvWVXG95l7nSRE=;
-        b=PfNa3tdEbopNGMw0ucEikm4Wh0peUuqMNqjw8AK9p2HTFlCIWQWdkOfP6nVqXyuJXZ
-         rfknMhKJMRNgK1t60hEW7iUjwt10hQm+nemBJ+9qJU3rV/dozd0rN3ivap5jW40DFSCH
-         ONq1rD+LSFH7ch/XJHdXUXSMkCTYqSriXpS53l093DwR8xA3PDjjSzk8q3hrM2iO6RIc
-         YlZlVMdEPMtzj8J9A/UwA2t66FGmjPm/BCUN0QUpUz7CePdh3cagW5uNKDZ7RWOW/1Bx
-         KalcwOrTBrMHyWvXy3r3LJMlVXk9FotON6Khp0EOiDAFiSF0v9mIaVhtdD/gWFt41Qm4
-         2brA==
-X-Gm-Message-State: AOJu0YwWHv7U2x0TG3jXj5tTfs8WUXL432uGyug6qun+djRRcobkHuqg
-	toypzpcEpfoskxuFlnorR3Z88MdDLu8ibA==
-X-Google-Smtp-Source: AGHT+IEC4uszuGwST+4r1WGXDV8hmFYqZKMqSEx0gyGO+XtHZameYMXu1gqzf4ujDAdIpt9LiMjx0Q==
-X-Received: by 2002:a05:6512:3c83:b0:50e:1daa:6705 with SMTP id h3-20020a0565123c8300b0050e1daa6705mr673715lfv.6.1704908493622;
-        Wed, 10 Jan 2024 09:41:33 -0800 (PST)
+        bh=YjMoBaJslgOWw0PjOC5tF8h+iRVzEHZGeY/kRdR3+Yg=;
+        b=JUqeaTbvKL+my2M3JQ44dyvXcLpYhlYRg8jMMAuAsOoRoLltZWa8Tcm5GnMNX2UwJf
+         0EX7nAAuvGrcKTTf9y0VcbkVldaykXR9EORTtfsdhhY7aydhFNcWNdBuNIJyYN//q7hH
+         nomWVjWJJJ1QOrKYbGr4n3OvCX65AVCmYfC7Td1f2vTm88qFh9SFlA1YTdp/j0z1nkeZ
+         Rn2LqxeTZekl+fTuQrzr+xDwmmPLbc7ZW8wq84u07EOt7PD3hoWAT2dzPD9a7smdgHlp
+         CSw2lrCUtrr78vBf+3ZbXIS8ImluTIkYKEvKhk7qqZJ2nTDlhU7l1no+m0wbQkf6DASC
+         c4nQ==
+X-Gm-Message-State: AOJu0YzmioZMCdhpT2+7QtaTce59TjayJdFfp/pNLfAg/FAcDLXuRppX
+	zyyMmUvlseA/5hgv7BpPMbaEG37zeQ6zNg==
+X-Google-Smtp-Source: AGHT+IHT1prjATADHPcha+6hRVeVajAEKA9n2RxWsP2L6hY0yEyK/iXNVOuhwOgvmCbXJi+mqMHvqw==
+X-Received: by 2002:a05:6512:128c:b0:50e:30a8:4c8e with SMTP id u12-20020a056512128c00b0050e30a84c8emr682347lfs.43.1704908535603;
+        Wed, 10 Jan 2024 09:42:15 -0800 (PST)
 Received: from [172.30.205.123] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
-        by smtp.gmail.com with ESMTPSA id a27-20020a195f5b000000b0050e8cd014d7sm741726lfj.16.2024.01.10.09.41.32
+        by smtp.gmail.com with ESMTPSA id a27-20020a195f5b000000b0050e8cd014d7sm741726lfj.16.2024.01.10.09.42.14
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 10 Jan 2024 09:41:33 -0800 (PST)
-Message-ID: <59ad396a-59c3-4cf6-aae4-5a8d00f1a6a9@linaro.org>
-Date: Wed, 10 Jan 2024 18:41:32 +0100
+        Wed, 10 Jan 2024 09:42:15 -0800 (PST)
+Message-ID: <2d200f5f-37a5-408d-9ca9-3137ec717647@linaro.org>
+Date: Wed, 10 Jan 2024 18:42:14 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,8 +66,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/4] arm64: dts: qcom: sm6350: Remove "disabled" state
- of GMU
+Subject: Re: [PATCH v2 4/4] arm64: dts: qcom: sm7225-fairphone-fp4: Enable
+ display and GPU
 Content-Language: en-US
 To: Luca Weiss <luca.weiss@fairphone.com>,
  Neil Armstrong <neil.armstrong@linaro.org>,
@@ -83,18 +83,21 @@ Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
  dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
 References: <20240110-fp4-panel-v2-0-8ad11174f65b@fairphone.com>
- <20240110-fp4-panel-v2-3-8ad11174f65b@fairphone.com>
+ <20240110-fp4-panel-v2-4-8ad11174f65b@fairphone.com>
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20240110-fp4-panel-v2-3-8ad11174f65b@fairphone.com>
+In-Reply-To: <20240110-fp4-panel-v2-4-8ad11174f65b@fairphone.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
 
 
 On 1/10/24 16:14, Luca Weiss wrote:
-> The GMU won't probe without GPU being enabled, so we can remove the
-> disabled status so we don't have to explicitly enable the GMU in all the
-> devices that enable GPU.
+> Add the description for the display panel found on this phone.
+> Unfortunately the LCDB module on PM6150L isn't yet supported upstream so
+> we need to use a dummy regulator-fixed in the meantime.
+> 
+> And with this done we can also enable the GPU and set the zap shader
+> firmware path.
 > 
 > Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
 > ---
