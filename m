@@ -1,257 +1,332 @@
-Return-Path: <devicetree+bounces-30908-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30910-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29FBA8297AF
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 11:34:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 023F58297B8
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 11:40:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B596428D674
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 10:34:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8CCC0281DDC
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 10:40:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BC7D3FE26;
-	Wed, 10 Jan 2024 10:34:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC419405C5;
+	Wed, 10 Jan 2024 10:39:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QDMST5d7"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JE9ESgpx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 894DD41205;
-	Wed, 10 Jan 2024 10:34:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-a29058bb2ceso427866266b.0;
-        Wed, 10 Jan 2024 02:34:14 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC97E3FE5C
+	for <devicetree@vger.kernel.org>; Wed, 10 Jan 2024 10:39:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-3376555b756so2258269f8f.0
+        for <devicetree@vger.kernel.org>; Wed, 10 Jan 2024 02:39:57 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1704882853; x=1705487653; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=nbrpO+Uk7Iw8WCp3ZB9C1pV0XeCBbgefW9dI7e67LUo=;
-        b=QDMST5d7FmsQ46okG/wIdIGuMMRlLIyR0so0C6U5R4qvWnFEBc6kMTg8kmQyTpYtCP
-         Fg16WqjCe2cKz710G+1Hs1iEjzST9nio1d1A5yJO1uGEHmhiZgiuvu2kgX0JbnB5NGPC
-         +E2Yq2i72U5ogM6NveT4A7WjaKADXtnMWfbhx0oLe8AEUxnmjimfyU3K7umTqHIGh6YR
-         3TmWnuJYqn7DhtDCzGlzmtsHViCqly1xeYA0sUXzyDzy8C4NZf0MiW4PanshaJJc4i+Q
-         gqd+IE4LG4NeGvyizS6SPTZavMqVGfyNDQRChqhySHSLr/C380cwtq8dl//jR5hwbc2e
-         xchg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704882853; x=1705487653;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+        d=linaro.org; s=google; t=1704883196; x=1705487996; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=nbrpO+Uk7Iw8WCp3ZB9C1pV0XeCBbgefW9dI7e67LUo=;
-        b=D9aHwvzLBHfaPZK8CQpv+rs+m8h6M+ChAFlS6NEA9Th4Qp19s65xNhU6m8vs7NKl3G
-         g3bKCcr2cViyZZX3hWeo2JwyKNmEJ3FXfKpEwsUBggqsW30kk4piFE5ti9bkhRbcbfl2
-         t77K8uzv94fnswD/dNAZvkuQbgN2Hkewu8lqmphM9s4Fw7aMEmdlClEUFwVEYmYMU9jC
-         QV3YIX5zR0CdRjIgg9kThKfy6WPKQ37AZvKcZJGSCv4NyirDprnxdZ+EIeGs+8QS30It
-         tsctrPZjXvULCzCJ6PEyBm6TyvFPohfrZ8vw/EdsXsFwXFw7trMTLSeKjExSXfW5+96z
-         ojlg==
-X-Gm-Message-State: AOJu0Yzj3vuaSbWfwgB+GqCMwJKkyIlg4m27loPcVwNbjd3o+e9ne2i5
-	KlqcaSpTv+bdBU6+nAU/2KAcH3So2yBmpN27Nog=
-X-Google-Smtp-Source: AGHT+IEr8VQmfkTYE7ST2zYWV4LeGK2QYdWY+ys2Gl7x6m0VZhZ+++Cnz87Z1jNlLR5EAhKG8otzbA==
-X-Received: by 2002:a17:906:da8a:b0:a23:7576:3552 with SMTP id xh10-20020a170906da8a00b00a2375763552mr408536ejb.45.1704882852496;
-        Wed, 10 Jan 2024 02:34:12 -0800 (PST)
-Received: from ?IPv6:2003:f6:ef1b:2000:944c:cbc7:1e1c:2c47? (p200300f6ef1b2000944ccbc71e1c2c47.dip0.t-ipconnect.de. [2003:f6:ef1b:2000:944c:cbc7:1e1c:2c47])
-        by smtp.gmail.com with ESMTPSA id kx6-20020a170907774600b00a2699a54888sm1939147ejc.64.2024.01.10.02.34.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Jan 2024 02:34:12 -0800 (PST)
-Message-ID: <a16a2241d93696002e718b9e353bc9f798063ce8.camel@gmail.com>
-Subject: Re: [PATCH v4 6/8] iio: add the IIO backend framework
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-Cc: Jonathan Cameron <jic23@kernel.org>, Nuno Sa <nuno.sa@analog.com>, 
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org, Lars-Peter Clausen
- <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, Rob
- Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
- <rafael@kernel.org>, Frank Rowand <frowand.list@gmail.com>, Olivier Moysan
- <olivier.moysan@foss.st.com>
-Date: Wed, 10 Jan 2024 11:37:23 +0100
-In-Reply-To: <20240110091608.00003bfc@Huawei.com>
-References: <20231220-iio-backend-v4-0-998e9148b692@analog.com>
-	 <20231220-iio-backend-v4-6-998e9148b692@analog.com>
-	 <20231221174437.5935a5c3@jic23-huawei>
-	 <f7df488b33c89ce7078c39a87ba1108fac5a10bd.camel@gmail.com>
-	 <20231226155904.043fee13@jic23-huawei>
-	 <8085910199d4b653edb61c51fc80a503ee50131d.camel@gmail.com>
-	 <20240110091608.00003bfc@Huawei.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.3 
+        bh=p/CFezntBDwJgvbMFFPYTvlY4ZLvj7+eyQcOr19vwEo=;
+        b=JE9ESgpxZLJn4qT+SuuKa52V2MTaWHlSmVxgqTkYYFL2tmyKYsekIcpy57UrTjqxCB
+         m7m+bLmNSnrZXiD3zhlPaWBVGSbRQfJuUqYJK8hhasUnueluOwZGGbQ0YiEp0YAMDGnY
+         flhoueLpLdCLRIhP4wiZ6v6kvpCQJ/3mBLWaB8yzmrghRhT9wWjUcL1MoK7l9wsayGbV
+         YXxP4GQXn5nLgLixBJhzG190qky4LRKnYSsD+MgX3hGvcp9CCzL3hhQod029Xvetuivy
+         eeX2s8kdb1q3MzY2qnDYLUzbCW30P77rCiefsdrm5UxWpJxvz/29/GEa6HOCR0DRUT3Y
+         T7cg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1704883196; x=1705487996;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=p/CFezntBDwJgvbMFFPYTvlY4ZLvj7+eyQcOr19vwEo=;
+        b=aUHoOwL3L7t/7RmLTbYtq/O8VNyD1ATkqt36mnNZ2FQQdDkNDOzZSXxjOE8QUjV7rB
+         8ajtruvD6Az5RU/uGULCJGrqmgWqxzEGejuJ4oXX+Om0nf4jBraljEsETMcFagpoeK55
+         VowSds2pPDrt9Ld7bNe2U5wIjHaSfcxJ7pBJk585vM9DRMu+20BfKTSUWp1vMc2IoMKY
+         qrk0WBH462V9n3+0rz5qTZgaTx2q3Z/e17e3rIUHenE301pETiKCMhbAI7MQgzk+eFnK
+         2OBXZJ5rmkFT1VjaQ3VuodZFh3L1IxOPzreNfaILmvTOnAeUJpX74iV5PhCZ7x7h0KMQ
+         KLbw==
+X-Gm-Message-State: AOJu0YzM8xAjHrXL65F3zQeZQQKpviNgKNf/ogTkWlBD1zrwQI7uIhCy
+	jZVfCFL6pHEf49fDPpM8geTejp/0rUdv6A==
+X-Google-Smtp-Source: AGHT+IH0Wzhg7u2tUzT4i2vx4fKztU5ylnTcAD7npyuXoDvijwmVpNciQ74UR/q3fQKCC4R1dNNpSg==
+X-Received: by 2002:adf:f989:0:b0:336:7db7:aaae with SMTP id f9-20020adff989000000b003367db7aaaemr1044442wrr.8.1704883195934;
+        Wed, 10 Jan 2024 02:39:55 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.223.112])
+        by smtp.gmail.com with ESMTPSA id c2-20020adfe742000000b003366a9cb0d1sm4549056wrn.92.2024.01.10.02.39.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 10 Jan 2024 02:39:55 -0800 (PST)
+Message-ID: <7110b0a8-5b0c-4817-9432-26528bbbb5a9@linaro.org>
+Date: Wed, 10 Jan 2024 11:39:53 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] dt-bindings: display: convert Atmel's HLCDC to DT
+ schema
+Content-Language: en-US
+To: Dharma Balasubiramani <dharma.b@microchip.com>, sam@ravnborg.org,
+ bbrezillon@kernel.org, maarten.lankhorst@linux.intel.com,
+ mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, daniel@ffwll.ch,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
+ claudiu.beznea@tuxon.dev, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, lee@kernel.org, thierry.reding@gmail.com,
+ u.kleine-koenig@pengutronix.de, linux-pwm@vger.kernel.org
+References: <20240110102535.246177-1-dharma.b@microchip.com>
+ <20240110102535.246177-2-dharma.b@microchip.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240110102535.246177-2-dharma.b@microchip.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Wed, 2024-01-10 at 09:16 +0000, Jonathan Cameron wrote:
-> On Tue, 09 Jan 2024 13:15:54 +0100
-> Nuno S=C3=A1 <noname.nuno@gmail.com> wrote:
->=20
-> > On Tue, 2023-12-26 at 15:59 +0000, Jonathan Cameron wrote:
-> > > =C2=A0=20
-> > > > > > +
-> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0ret =3D devm_add_act=
-ion_or_reset(dev, iio_backend_release,
-> > > > > > back);
-> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (ret)
-> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0return ret;
-> > > > > > +
-> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0link =3D device_link=
-_add(dev, back->dev,
-> > > > > > DL_FLAG_AUTOREMOVE_CONSUMER);
-> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (!link)
-> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0pr_warn("%s: Could not link to supplier(%s)\n=
-",
-> > > > > > dev_name(dev),
-> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0dev_name(back->dev));=C2=A0=C2=A0=C2=A0=20
-> > > > >=20
-> > > > > Why is that not an error and we try to carry on?=C2=A0=C2=A0=C2=
-=A0=20
-> > > >=20
-> > > > I guess having the links are not really mandatory for the whole thi=
-ng to
-> > > > work (more
-> > > > like a nice to have). That's also how this is handled in another
-> > > > subsystems
-> > > > so I
-> > > > figured it would be fine.
-> > > >=20
-> > > > But since you are speaking about this... After you pointing me to
-> > > > Bartosz's
-> > > > talk and
-> > > > sawing it (as stuff like this is mentioned), I started to question =
-this.
-> > > > The
-> > > > goal
-> > > > with the above comment is that if you remove the backend, all the
-> > > > consumers
-> > > > are
-> > > > automatically removed (unbound). Just not sure if that's what we al=
-ways
-> > > > want
-> > > > (and we
-> > > > are already handling the situation where a backend goes away with -
-> > > > ENODEV)
-> > > > as some
-> > > > frontends could still be useful without the backend (I guess that c=
-ould
-> > > > be
-> > > > plausible). I think for now we don't really have such usecases so t=
-he
-> > > > links
-> > > > can make
-> > > > sense (and we can figure something like optionally creating these l=
-inks
-> > > > if
-> > > > we ever
-> > > > need too) but having your inputs on this will definitely be valuabl=
-e.=C2=A0=20
-> > >=20
-> > > I'm not keen on both trying to make everything tear down cleanly AND
-> > > making
-> > > sure
-> > > it all works even if we don't. That just adds two code paths to test =
-when
-> > > either
-> > > should be sufficient on its own.=C2=A0 I don't really mind which.=C2=
-=A0 Bartosz's
-> > > stuff=C2=A0=20
-> >=20
-> > Agreed...
-> >=20
-> > > is nice, but it may not be the right solution here.=C2=A0=C2=A0=20
-> >=20
-> > There's pros and cons on both options...=C2=A0
-> >=20
-> > For the device links the cons I see is that it depends on patch 3 for i=
-t to
-> > work
-> > (or some other approach if the one in that patch is not good) - not rea=
-lly a
-> > real con though :). The biggest concern is (possible) future uses where=
- we
-> > end
-> > up with cases where removing a backend is not really a "deal breaker". =
-I
-> > could
-> > think of frontends that have multiple backends (one per data path) and
-> > removing
-> > one backend would not tear the whole thing down (we would just have one=
- non
-> > functional data paths/port where the others are still ok).
->=20
-> I wouldn't waste time catering to such set ups.=C2=A0 If the whole thing =
-gets
-> torn down because one element went away that should be fine.
-> To do anything else I'd want to see a real world use case.
+On 10/01/2024 11:25, Dharma Balasubiramani wrote:
+> Convert the existing DT binding to DT schema of the Atmel's HLCDC display
+> controller.
+> 
+> Signed-off-by: Dharma Balasubiramani <dharma.b@microchip.com>
+> ---
+>  .../display/atmel/atmel,hlcdc-dc.yaml         | 133 ++++++++++++++++++
+>  .../bindings/display/atmel/hlcdc-dc.txt       |  75 ----------
+>  2 files changed, 133 insertions(+), 75 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/display/atmel/atmel,hlcdc-dc.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/display/atmel/hlcdc-dc.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/display/atmel/atmel,hlcdc-dc.yaml b/Documentation/devicetree/bindings/display/atmel/atmel,hlcdc-dc.yaml
+> new file mode 100644
+> index 000000000000..49ef28646c48
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/atmel/atmel,hlcdc-dc.yaml
+> @@ -0,0 +1,133 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +# Copyright (C) 2024 Microchip Technology, Inc. and its subsidiaries
 
-Fair enough...
+What about original copyrights from TXT file? Although conversion is
+quite independent, I could imagine some lawyer would call it a
+derivative work of original TXT.
 
->=20
-> >=20
-> > Olivier, for STM usecases, do we always need the backend? I mean, does =
-it
-> > make
-> > sense to always remove/unbind the frontend in case the backend is unbou=
-nd?
-> >=20
-> > Maybe some of your usecases already "forces" us with a decision.=20
-> >=20
-> > The biggest pro I see is code simplicity. If we can assume the frontend=
- can
-> > never exist in case one of the backends is gone, we can:
-> >=20
-> > =C2=A0* get rid of the sync mutex;
-> > =C2=A0* get rid of the kref and bind the backend object lifetime to the=
- backend
-> > device (using devm_kzalloc() instead of kzalloc + refcount.
-> >=20
-> > Basically, we would not need to care about syncing the backend existenc=
-e
-> > with
-> > accessing it...
-> > To sum up, the device_links approach tends to be similar (not identical=
-) to
-> > the
-> > previous approach using the component API.
-> >=20
-> > The biggest pro I see in Bartosz's stuff is flexibility. So it should j=
-ust
-> > work
-> > in whatever future usecases we might have. I fear that going the
-> > device_links
-> > road we might end up needing this stuff anyways.
->=20
-> I'm keen on it if it simplifies code or becomes the dominant paradigm for=
- such
-> things in the kernel (so becomes what people expect).=C2=A0 That isn't tr=
-ue yet
-> and I doubt it will be particularly soon.=C2=A0 If things head that way w=
-e can
-> revisit as it would enable things that currently we don't support - nothi=
-ng
-> should break.
->=20
+If you decide to add explicit copyrights (which anyway I do not
+understand why), then please make it signed off by some of your lawyers
+to be sure that you really claim that, in respect of other people
+copyrights.
 
-Well, If I'm not missing anything, simpler code would be with device_links =
-so I
-guess that's your preferred approach for now :). Also fine by me as this is=
- an
-in kernel interface so we easily revisit it.
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/atmel/atmel,hlcdc-dc.yaml#
 
-I'll just wait a bit more (before sending v5) to see if Olivier has any
-foreseeable usecase where device_links would be an issue.
+Filename like compatible.
 
-- Nuno S=C3=A1
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Atmel's HLCDC (High LCD Controller) DRM driver
 
+Driver as Linux driver? Not suitable for bindings, so please drop.
+
+> +
+> +maintainers:
+> +  - Nicolas Ferre <nicolas.ferre@microchip.com>
+> +  - Alexandre Belloni <alexandre.belloni@bootlin.com>
+> +  - Claudiu Beznea <claudiu.beznea@tuxon.dev>
+> +
+> +description: |
+> +  Device-Tree bindings for Atmel's HLCDC DRM driver. The Atmel HLCDC Display
+
+Drop entire first sentence and instead describe hardware.
+
+> +  Controller is a subdevice of the HLCDC MFD device.
+> +  # See ../../mfd/atmel,hlcdc.yaml for more details.
+
+Full paths please.
+
+> +
+> +properties:
+> +  compatible:
+> +    const: atmel,hlcdc-display-controller
+> +
+> +  pinctrl-names:
+> +    const: default
+> +
+> +  pinctrl-0: true
+
+Why do you need these two? Are they really required?
+
+> +
+> +  '#address-cells':
+> +    const: 1
+> +
+> +  '#size-cells':
+> +    const: 0
+> +
+> +  port@0:
+> +    $ref: /schemas/graph.yaml#/$defs/port-base
+> +    unevaluatedProperties: false
+> +    description:
+> +      Output endpoint of the controller, connecting the LCD panel signals.
+> +
+> +    properties:
+> +      '#address-cells':
+> +        const: 1
+> +
+> +      '#size-cells':
+> +        const: 0
+> +
+> +      reg:
+> +        maxItems: 1
+> +
+> +      endpoint:
+> +        $ref: /schemas/graph.yaml#/$defs/endpoint-base
+
+Hm, why do you reference endpoint-base? This looks oddly different than
+all other bindings for such devices, so please explain why.
+
+> +        unevaluatedProperties: false
+> +        description:
+> +          Endpoint connecting the LCD panel signals.
+> +
+> +        properties:
+> +          bus-width:
+> +            description: |
+> +              Any endpoint grandchild node may specify a desired video interface according to
+> +              ../../media/video-interfaces.yaml, specifically "bus-width" whose recognized
+
+Drop redundant information. Don't you miss some $ref?
+
+
+> +              values are <12>, <16>, <18> and <24>, and override any output mode selection
+> +              heuristic, forcing "rgb444","rgb565", "rgb666" and "rgb888" respectively.
+> +            enum: [ 12, 16, 18, 24 ]
+> +
+> +additionalProperties: false
+
+This goes after required:
+
+> +
+> +required:
+> +  - '#address-cells'
+> +  - '#size-cells'
+> +  - compatible
+> +  - pinctrl-names
+> +  - pinctrl-0
+> +  - port@0
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/at91.h>
+> +    #include <dt-bindings/dma/at91.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    //Example 1
+
+Drop
+
+> +    hlcdc: hlcdc@f0030000 {
+
+Node names should be generic. See also an explanation and list of
+examples (not exhaustive) in DT specification:
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+
+> +      compatible = "atmel,sama5d3-hlcdc";
+> +      reg = <0xf0030000 0x2000>;
+> +      interrupts = <36 IRQ_TYPE_LEVEL_HIGH 0>;
+> +      clocks = <&lcdc_clk>, <&lcdck>, <&clk32k>;
+> +      clock-names = "periph_clk","sys_clk", "slow_clk";
+
+This part does not look related... If this is part of other device,
+usually it is enough to have just one complete example.
+
+Also, fix coding style - space after ,
+
+> +
+> +      hlcdc-display-controller {
+> +        compatible = "atmel,hlcdc-display-controller";
+> +        pinctrl-names = "default";
+> +        pinctrl-0 = <&pinctrl_lcd_base &pinctrl_lcd_rgb888>;
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        port@0 {
+> +          #address-cells = <1>;
+> +          #size-cells = <0>;
+> +          reg = <0>;
+> +
+> +          hlcdc_panel_output: endpoint@0 {
+> +            reg = <0>;
+> +            remote-endpoint = <&panel_input>;
+> +          };
+> +        };
+> +      };
+> +
+> +      hlcdc_pwm: hlcdc-pwm {
+> +        compatible = "atmel,hlcdc-pwm";
+
+How is this related?
+
+> +        pinctrl-names = "default";
+> +        pinctrl-0 = <&pinctrl_lcd_pwm>;
+> +        #pwm-cells = <3>;
+> +      };
+> +    };
+> +  - |
+> +    //Example 2 With a video interface override to force rgb565
+> +    hlcdc-display-controller {
+> +      pinctrl-names = "default";
+> +      pinctrl-0 = <&pinctrl_lcd_base &pinctrl_lcd_rgb565>;
+
+And how is this? Where is the compatible? Maybe just drop second
+example, what are the differences?
+
+Are you sure your Microchip folks reviewed it before?
+
+Best regards,
+Krzysztof
 
 
