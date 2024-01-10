@@ -1,114 +1,128 @@
-Return-Path: <devicetree+bounces-30933-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30935-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 825478298B7
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 12:20:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D2898298C5
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 12:21:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 373921F29ADF
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 11:20:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 196B41F2236E
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 11:21:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CB6A47762;
-	Wed, 10 Jan 2024 11:18:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A4B947A5B;
+	Wed, 10 Jan 2024 11:21:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="cz4ebTh/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 327F0487A3;
-	Wed, 10 Jan 2024 11:18:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-Received: from i53875aaa.versanet.de ([83.135.90.170] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1rNWbA-0002at-RJ; Wed, 10 Jan 2024 12:18:16 +0100
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: Quentin Schulz <foss+kernel@0leil.net>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- Quentin Schulz <quentin.schulz@theobroma-systems.com>
-Subject:
- Re: [PATCH 2/2] arm64: dts: rockchip: remove duplicate SPI aliases for
- helios64
-Date: Wed, 10 Jan 2024 12:18:15 +0100
-Message-ID: <3493720.ktpJ11cQ8Q@diego>
-In-Reply-To: <48f1b3cb-0a98-4b14-89f6-e1ca6b858512@linaro.org>
-References:
- <20240109-rk3399-spi-aliases-v1-0-2009e44e734a@theobroma-systems.com>
- <2258938.QZUTf85G27@diego> <48f1b3cb-0a98-4b14-89f6-e1ca6b858512@linaro.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D45504776F;
+	Wed, 10 Jan 2024 11:21:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40A8dUtu031047;
+	Wed, 10 Jan 2024 11:21:18 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding:content-type; s=qcppdkim1; bh=1pxZF1V
+	gXUObLRMD2bqakwsBATZaMyfK/JhWTXjS5AA=; b=cz4ebTh/QEhFW7Ts2hLygeR
+	VD7ccpEFaVyL78xJiC2I2R6sYJvR6EHs4lTX188jgEZnejS59b1091qk70x6yLPN
+	Zwc73RhPqj/8tIUz9bLXD/aBIGofOBh0AZg4uVV0AfR6ExNjmjkcu3LirNZHoo+i
+	shzq+eVMoMq2wFTX3j4X1/UOystFebrgVq00CytZrOOaI3v6jGKWparnpYAnd1H/
+	K6CliXMbo9sAF69AlevTIvNIuSYwNf/4I5I5yjypw4w7iDi5obolitv/11mEJ1kD
+	rfC1rBriJa45tKp/2LYU9snsopTwlmSb6i8dqminI5JfbqnIibLZhhfTDjvb8BA=
+	=
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vhq2h0egc-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 10 Jan 2024 11:21:18 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 40ABLGeb026369
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 10 Jan 2024 11:21:17 GMT
+Received: from akronite-sh-dev02.qualcomm.com (10.80.80.8) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Wed, 10 Jan 2024 03:21:12 -0800
+From: Luo Jie <quic_luoj@quicinc.com>
+To: <andersson@kernel.org>, <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <netdev@vger.kernel.org>,
+        <quic_kkumarcs@quicinc.com>, <quic_suruchia@quicinc.com>,
+        <quic_soni@quicinc.com>, <quic_pavir@quicinc.com>,
+        <quic_souravp@quicinc.com>, <quic_linchen@quicinc.com>,
+        <quic_leiwei@quicinc.com>
+Subject: [PATCH 0/6] Add PPE device tree node for Qualcomm IPQ SoC
+Date: Wed, 10 Jan 2024 19:20:53 +0800
+Message-ID: <20240110112059.2498-1-quic_luoj@quicinc.com>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: r1Taov093tPbF2j_vgN0jLBhkg6Vpykn
+X-Proofpoint-ORIG-GUID: r1Taov093tPbF2j_vgN0jLBhkg6Vpykn
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-12-09_02,2023-12-07_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 mlxscore=0
+ spamscore=0 bulkscore=0 clxscore=1015 impostorscore=0 malwarescore=0
+ lowpriorityscore=0 priorityscore=1501 phishscore=0 suspectscore=0
+ mlxlogscore=407 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2311290000 definitions=main-2401100092
 
-Hi Krzysztof,
+The PPE(packet process engine) hardware block is supported by Qualcomm
+IPQ platforms, such as IPQ9574 and IPQ5332. The PPE includes the various
+packet processing modules such as the routing and bridging flow engines,
+L2 switch capability, VLAN and tunnels. Also included are integrated
+ethernet MAC and PCS(uniphy), which is used to connect with the external
+PHY devices by PCS.
 
-[I'll limit myself to this thread, as we're essentially discussing the same=
- in both]
+This patch series enables support for the following DTSI functionality
+for Qualcomm IPQ9574 and IPQ5332 chipsets. 
 
-Am Dienstag, 9. Januar 2024, 20:14:38 CET schrieb Krzysztof Kozlowski:
-> On 09/01/2024 16:23, Heiko St=FCbner wrote:
-> > Am Dienstag, 9. Januar 2024, 16:16:15 CET schrieb Krzysztof Kozlowski:
-> >> On 09/01/2024 14:35, Quentin Schulz wrote:
-> >>> From: Quentin Schulz <quentin.schulz@theobroma-systems.com>
-> >>>
-> >>> An earlier commit defined an alias for all SPI controllers found on t=
-he
-> >>> RK3399, so there's no need to duplicate the aliases in helios64's dev=
-ice
-> >>> tree.
-> >>
-> >> That's not what we want. Boards should define aliases for what is
-> >> available, according to the board labeling.
-> >=20
-> > and the board labeling for spi2 has always been spi2-miso, spi2-miso et=
-c.
-> > In the last 10 years of doing Rockchip stuff, I haven't seen any schema=
-tic
-> > doing it differently.
->=20
-> OK, this could be a case... but then you add aliases for things which
-> are not labeled on the board.
+1. Add PPE (Packet Processing Engine) HW support
 
-On the other hand, we did this dance last year for some other SoCs.
-And having to repeat the same list of never-changing aliases for every
-board was a sore spot for a lot of people it seemed.
-Most boards follow the reference schematics quite closely afterall.
+2. Add IPQ9574 RDP433 board support, where the PPE is connected
+   with qca8075 PHY and AQ PHY.
 
-Like very shortly after the last discussion I got patches moving the
-aliases to their then agreed upon position. (numeric busses in the
-soc dtsi, everything else in board dts).
+3. Add IPQ5332 RDP441 board support, where the PPE is connected
+   with qca8386 and SFP
 
-And back in november we ended with [0] - Krzysztof saying that
-"it is just generic guideline, so up to Heiko what to do with it" ;-) .
+PPE DTS depends on the NSSCC clock driver below, which provides the
+clocks for the PPE driver.
+https://lore.kernel.org/linux-arm-msm/20230825091234.32713-1-quic_devipriy@quicinc.com/
+https://lore.kernel.org/linux-arm-msm/20231211-ipq5332-nsscc-v3-0-ad13bef9b137@quicinc.com/
 
+Lei Wei (2):
+  arm64: dts: qcom: ipq5332: Add RDP441 board device tree
+  arm64: dts: qcom: ipq9574: Add RDP433 board device tree
 
-I also made sure to send the changes upwards way before christmas
-to give soc maintainers time to complain if needed and especially did
-point out that change in my pull request text [1] ;-) .
+Luo Jie (4):
+  arm64: dts: qcom: ipq9574: Add PPE device tree node
+  arm64: dts: qcom: ipq5332: Add PPE device tree node
+  arm64: dts: qcom: ipq5332: Add MDIO device tree
+  arm64: dts: qcom: ipq9574: Add MDIO device tree
 
+ arch/arm64/boot/dts/qcom/ipq5332-rdp441.dts |  51 ++
+ arch/arm64/boot/dts/qcom/ipq5332.dtsi       | 414 ++++++++++-
+ arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts |  66 ++
+ arch/arm64/boot/dts/qcom/ipq9574.dtsi       | 758 +++++++++++++++++++-
+ 4 files changed, 1279 insertions(+), 10 deletions(-)
 
-Heiko
-
-> Let's bring Arnd again:
-> https://lore.kernel.org/linux-rockchip/CAK8P3a0ALgbhTVJ7t3XRXALs9vBM=3DXB=
-vkGhNKXxB+QTepo-3AQ@mail.gmail.com/
-
-
-[0] https://lore.kernel.org/linux-rockchip/7b8a830d-42d0-4220-b9fe-3f5fff43=
-e74d@linaro.org/
-[1] https://patchwork.kernel.org/project/linux-soc/patch/3535836.iIbC2pHGDl=
-@phil/
-
+-- 
+2.42.0
 
 
