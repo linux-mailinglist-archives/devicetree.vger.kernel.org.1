@@ -1,107 +1,143 @@
-Return-Path: <devicetree+bounces-31197-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31198-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 594EF82A312
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 22:08:53 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7292582A31A
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 22:10:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0C6B11F23490
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 21:08:48 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EDD37B227A7
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 21:10:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3370E4F214;
-	Wed, 10 Jan 2024 21:08:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39B404F215;
+	Wed, 10 Jan 2024 21:10:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RS0ZlHjD"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ouGtvozT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F7DA4F890;
-	Wed, 10 Jan 2024 21:08:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-40e5bfa260bso2105205e9.3;
-        Wed, 10 Jan 2024 13:08:19 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 953744F21D
+	for <devicetree@vger.kernel.org>; Wed, 10 Jan 2024 21:10:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-40e5bfa260bso2125135e9.3
+        for <devicetree@vger.kernel.org>; Wed, 10 Jan 2024 13:10:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1704920898; x=1705525698; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=sdBkJKGeqx2Ib1rMQ4cwKys6z0bi0e5Co8yXswFscM4=;
-        b=RS0ZlHjDmeI80QME631SJYtxj3ugLmwodMaExE2j6P1lWWywJmdWQ/kaGTUd4XCWt1
-         BR6/c6JO+22xGx221PqdXglMj1ZWSVBPDZf7hRnH23agHb7Mdxmk5tWrxKbmVIi7NWp3
-         vX07jTAvu1PBYr9h60oqbDUWCn86Y97L15T0JcNiXkynUbQNvNPVMDhwWkCTzFyDDDNA
-         gBK3NteEtrK2icBWv0+BAB7DqvruOfezNHoM996/lgVh96IK1lUZ5hMxhRNgGGmfg2cq
-         pN7EKfp0jz8sO7z82v4Ff3CVzW2PHV2AxJ0312Ud3uGbav8hxjGz/GuMabA5CxQlEIjF
-         ThkA==
+        d=linaro.org; s=google; t=1704921035; x=1705525835; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=h8bc9uqgSCRY0vf3gxssjCx9FeoncCvxMtItBIuvXRE=;
+        b=ouGtvozTn7mlbQXr86P/3US30+mVeKJG/LZ8fF+jNHPbS3MAz+4NuvVmW6nSvjhity
+         Wzqza3R6+8N2+cpA+BWY1UcK1p7FUgkV7O4C3i4TNSkSA/Ol43tDKEzw8ngK6cMjFggd
+         cJvCF5s2sAF3shh+erIEcMwo37gf+v4QBsKYo/a+MjdLK//UswfsA4FZbkHSJArTdmuo
+         FhZMBHeiwv1/K+W/tL3qwWJiAPNRIzewj/BoXeQxl1j6+mJWr5NLH6lsU2DZH+kghBSv
+         gtsMULGL64oPqwRUeLDFAttHXwsF95Ouxt4kOiC50Xa6PP3Yq/xVHAKgvVy+sgL21Qhz
+         Q09w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704920898; x=1705525698;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
+        d=1e100.net; s=20230601; t=1704921035; x=1705525835;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=sdBkJKGeqx2Ib1rMQ4cwKys6z0bi0e5Co8yXswFscM4=;
-        b=ttDmxUJivrtmUoXbwcyV0lpIRBdySvDoB1ZIKdfQ+afEoNpRIur/HvX7pJbBteNLp5
-         JZ5AvWQiFo19ql2FaS8WywcCpuG/AKU2RqT1mbUP+M5BoyU2nsrF49oCU2MgFR1DHBXU
-         9IIwWfkNp6gFM1tiVrrEiIPKnWjmurOdZmaVamr0xFMw6O1IKQyq0b1CaRdXBxb8D5bG
-         SGCmv50PUOqeVW61eDmqarIt4Z/cKIGJm1AibSHg87UF7N49cDRkmIiyYWoRNWhfGSmX
-         QWgegERqYpDGHKKewclPcb6vsNlrk6OHS+uygp2XOGcKPAGjrRHXMjUbfkKNFmmHC4Hn
-         VRJA==
-X-Gm-Message-State: AOJu0YwC/hcwqPR42ZpBOSmChpKN92IJSUoVszA6geT7J1NsBW7fqE6d
-	zQKl1TYptpOv0cwmS/EIjJM=
-X-Google-Smtp-Source: AGHT+IEnV73X93ipcA+KqaG2Dc/CRaCkLE83o8sdCdrKdhcEffrQDt94qGVTchMbAPVOs4q40slv7g==
-X-Received: by 2002:a05:600c:2246:b0:40e:455f:fdbb with SMTP id a6-20020a05600c224600b0040e455ffdbbmr9115wmm.280.1704920897638;
-        Wed, 10 Jan 2024 13:08:17 -0800 (PST)
-Received: from Red ([2a01:cb1d:3d5:a100:4a02:2aff:fe07:1efc])
-        by smtp.googlemail.com with ESMTPSA id w10-20020a5d680a000000b003376af392e5sm5670428wru.38.2024.01.10.13.08.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Jan 2024 13:08:17 -0800 (PST)
-Date: Wed, 10 Jan 2024 22:08:15 +0100
-From: Corentin Labbe <clabbe.montjoie@gmail.com>
-To: Alexey Romanov <avromanov@salutedevices.com>
-Cc: narmstrong@baylibre.com, neil.armstrong@linaro.org, clabbe@baylibre.com,
-	herbert@gondor.apana.org.au, davem@davemloft.net,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, khilman@baylibre.com, jbrunet@baylibre.com,
-	artin.blumenstingl@googlemail.com, linux-crypto@vger.kernel.org,
-	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	kernel@salutedevices.com
-Subject: Re: [PATCH v1 00/24] Support more Amlogic SoC families in crypto
- driver
-Message-ID: <ZZ8HP7dJgVaZLMw5@Red>
-References: <20240110201216.18016-1-avromanov@salutedevices.com>
+        bh=h8bc9uqgSCRY0vf3gxssjCx9FeoncCvxMtItBIuvXRE=;
+        b=MP+6THzPbtpDlBc5yR6tOi/CkDGREm44aoN4MNMFGglKeLJt3kDN24tAGtyMadYctM
+         8OmVcVli55D6tKJxTW6gsOAktYVk2Ivv7tiTQCpBn/WpKRQ6u8HmdjR3TE1sLuC9ROyj
+         zFejiCmRK321kTtbRMVgOlYniGV1TkyvhW9DZ4y1LO8ZHi1LP2vENOw5Gj+WDx/7mU8t
+         mwFnrXGK83fpsHiy+IVZDi1aquM0/wI8EMp2Wj6X/bRhYNtifeXZUQDa3zOk0BawkWqQ
+         GP+si3/hvnehcdLee/472v1Ip1w0w6sRKfXvUGU7z15eJQKU6dE7idPSQZlZfSqGEf7u
+         68bw==
+X-Gm-Message-State: AOJu0YwCmgeNcMY6A62eCQ/XejfuGumBPt8i3pPjx3dCgUw95R6bOhq1
+	9iV+/4puvEdmNSMOx1f5Zls1PJcwRrlKNg==
+X-Google-Smtp-Source: AGHT+IEBNrWpVWO5gH/j8bzwQveri69S2YuhfhOfABPQi6H48aY/Ns1LgwynAGlbQgbAGragLSCwYw==
+X-Received: by 2002:a05:600c:3107:b0:40d:8a22:cc7 with SMTP id g7-20020a05600c310700b0040d8a220cc7mr11009wmo.175.1704921034886;
+        Wed, 10 Jan 2024 13:10:34 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.223.112])
+        by smtp.gmail.com with ESMTPSA id jg1-20020a05600ca00100b0040d4e1393dcsm3370508wmb.20.2024.01.10.13.10.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 10 Jan 2024 13:10:33 -0800 (PST)
+Message-ID: <bb2c9c26-a57f-4c77-bea8-e76bc210071e@linaro.org>
+Date: Wed, 10 Jan 2024 22:10:31 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240110201216.18016-1-avromanov@salutedevices.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/2] dt-bindings: phy: Add starfive,jh7110-dphy-tx
+Content-Language: en-US
+To: Shengyang Chen <shengyang.chen@starfivetech.com>,
+ devicetree@vger.kernel.org, linux-phy@lists.infradead.org
+Cc: vkoul@kernel.org, kishon@kernel.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ p.zabel@pengutronix.de, minda.chen@starfivetech.com,
+ changhuang.liang@starfivetech.com, rogerq@kernel.org,
+ geert+renesas@glider.be, keith.zhao@starfivetech.com,
+ linux-kernel@vger.kernel.org
+References: <20240109071246.24065-1-shengyang.chen@starfivetech.com>
+ <20240109071246.24065-2-shengyang.chen@starfivetech.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240109071246.24065-2-shengyang.chen@starfivetech.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Le Wed, Jan 10, 2024 at 11:11:16PM +0300, Alexey Romanov a écrit :
-> Hello!
+On 09/01/2024 08:12, Shengyang Chen wrote:
+> StarFive SoCs like the jh7110 use a MIPI D-PHY TX
+> controller based on a M31 IP. Add a binding for it.
 > 
-> This patchset expand the funcionality of the Amlogic
-> crypto driver by adding support for more SoC families: 
-> AXG, G12A, G12B, SM1, A1, S4.
-> 
-> Also specify and enable crypto node in device tree
-> for reference Amlogic devices.
-> 
-> Tested on AXG, G12A/B, SM1, A1 and S4 devices via
-> custom tests and trcypt module.
+> Signed-off-by: Shengyang Chen <shengyang.chen@starfivetech.com>
+> ---
 
-Hello
 
-Thanks for your patch series.
-Unfortunatly, I fail to apply it for testing on top of linux-next.
-On top of which tree did you have tested ?
-According to patch 01, you used a tree based before "crypto: amlogic - Use new crypto_engine_op interface" so too old.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Regards
+Best regards,
+Krzysztof
+
 
