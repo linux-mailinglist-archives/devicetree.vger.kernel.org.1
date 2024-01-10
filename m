@@ -1,241 +1,193 @@
-Return-Path: <devicetree+bounces-30830-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30831-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 987A68292CD
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 04:36:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AB805829325
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 06:01:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 170E91F26184
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 03:36:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2D3931F26911
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 05:01:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9CC623D5;
-	Wed, 10 Jan 2024 03:36:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E591ED2E0;
+	Wed, 10 Jan 2024 05:01:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="kCaEGGcM"
+	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="tWjNCSp3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12on2072.outbound.protection.outlook.com [40.107.243.72])
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11on2066.outbound.protection.outlook.com [40.107.223.66])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09EAB63A7;
-	Wed, 10 Jan 2024 03:36:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D83F2F35;
+	Wed, 10 Jan 2024 05:01:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=nBZV8J4PQWS5pwGLvUefhqbPb1RWBfDxlr6ZJSxxeAZukkbdsvsB3YteE3PFmidH5yVxeHx/LmYAbXCBzxLh4tji8y6xg1jBNQGmCA7chEdcL45BZppbaTqgQT4WmYwk0FBYyTUs9w+fhXk1cXTqXd+mVnxa1fGChJkTnmxxuMbbUj3mdIJ197KDfiKd4dqcUTfQ30IeK2Nh8lITkouA7J0qT5xYUl7MV1dbHCQqKcOD2FfhGbudDU6jyPl1traps8m2oHPOPAmA21pdtoYRyt5BFaXw9mXCXzxALrBpaDiOkIiPm+zqolztQTTM6atDZfD/zVGWCR6YFSZUCzAMeA==
+ b=Fo1rNBWEYuHWYOUmh6BsjrYIvXiY61R0LnTmt37wqx7C/FLuFNXltXWjoJCFsI4Q1MDhdRJy626u+9+f3K27TsIEllHG7azsYv15rxouAv5e6hSUhpXNOeNP8aF0YoPJEyviBNUAW5z+QfFmYyofxcEwZaJ16+xoEAebaY6vy7B+8N5q3k4wpiSQ7bPh45PU3sDWcbZXtFmWSG6hbJ9gsq+cKozGAGKJ28nBYiSnaAHHosbpYnmEO+lwiCTFW7R/Q15Ctc/Zh9IR6RTqIbKWR7UvsyK3H7qbG5oZifzZkRcANG6HYWWDVpSXou/XviF3DLXk/hMc8lhflKGKPZ7fcg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=pVk2yMJOhPcCnt14t6HVc9NiSyloWmEKGkCzLOTgEMs=;
- b=JrioeC7tF4UJm5E9BAnyMQxuiRWu5IZvTdxhcZdgZKhGw+BPFVN2CSlRKofTqMlks2zvWR2lXSzt4EPkn5nfX933GxRWy5PGhdC0mwRYjtYhjBT5STFhqI7fSsrhOLD0172AhrN8tO0HTEHTtyj6lrBQYZeeqUjPoeO+uyfG1VHYJ9atiHpBYqN9PuG/+gHk3CXUO/AhyY0wW5XRlALg1bboPLi64vx4xedTNWrY8CV/apu0ns8G0NKpeD2v7xeshRU/B+RAC0cU7qros2eowduEeGxPqQWnrVfolHQppghu5ZPvrDHflSKt+e3WbuHo8n7O/sztA/iuUmN0snI0lQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=jms.id.au smtp.mailfrom=amd.com; dmarc=pass
- (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ bh=UTLfd+s/mmZ3625zMaf5ARN+IRhX49JxpvtAOZOYhOA=;
+ b=U9mybs5KXVlCJW6wbRUjxxWZgSzce099zxzgCTAH/oFB78ZDAd2JaSRjVIcuvDhYLlwkD/aumqmWvUys+UoGiS0R+9hliLZQltCPoN/J0/VUjyf1cMqO/BuRn274wQLZ7wIAfJfABmwTBG7Gq4mYIIiCwvRj7hlF9CjiPbOo2Cg8t78jZ8pljyg8rR9ZkIahXoc5UDh8qZpgpjUhyUj7DgikVnAAzWeA9N0VB7/zmsYhxB5NDJgx+9OSusu9ee1iGKLFxtWfVZrkM75wKW7UVPcrQtzQXTl67qAzTLlYUePBHHxN26RH7eX5BEQpGJWyEhd5AHe+I8WSoSYGmYSXAg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=pVk2yMJOhPcCnt14t6HVc9NiSyloWmEKGkCzLOTgEMs=;
- b=kCaEGGcMDdvVP+f8lPX1817oRdK7HkUwZ2kU6DW2faVIE3GjVtQ7716bvnH4wSVVHtC9ZPVC9vuq78tLZ+jmB2gYecRh38gnMo9AALqFQYQInlLM2LNldb/4u1pMz5MqSeFC9Tu/q4ylZe40Fku96uMukV/0c9RsQhQnymTR2r4=
-Received: from MW3PR06CA0019.namprd06.prod.outlook.com (2603:10b6:303:2a::24)
- by SA3PR12MB9092.namprd12.prod.outlook.com (2603:10b6:806:37f::7) with
+ bh=UTLfd+s/mmZ3625zMaf5ARN+IRhX49JxpvtAOZOYhOA=;
+ b=tWjNCSp3gAC8dt/nrEjiEpna2y5D+16ghYv3Tjbw3Bq/fkeT4idihnVjcSbQvlIzdhQOVr9iyfhi5MlyE86tnQYp58YVoKGOpe9R2K9qWz8MijQmJOh8kYOMOorzRsmCDETPoyBqo/jlQKJuDS/Tq3Tcfu/OScHTWMEDx5oJcJZ2+3z1GVC5yUCKhiLSdj7UHMVgs90ggedOxVAPZ/hlijnzSxwYwWE88pHoAac+XKQ98+9RDJA1FFsTUXfAellNiLY5qX0197uF+MAO9Vr5RG+W1rv/QVXsWgtEnZbrcleTfDNpo3Ldh/LmtmEh+Ju5HCMSUTFHDBQEtjCt5WZWvg==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from CY8PR12MB7706.namprd12.prod.outlook.com (2603:10b6:930:85::18)
+ by CH2PR12MB4103.namprd12.prod.outlook.com (2603:10b6:610:7e::17) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7181.17; Wed, 10 Jan
- 2024 03:36:05 +0000
-Received: from MWH0EPF000971E6.namprd02.prod.outlook.com
- (2603:10b6:303:2a:cafe::9e) by MW3PR06CA0019.outlook.office365.com
- (2603:10b6:303:2a::24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7159.23 via Frontend
- Transport; Wed, 10 Jan 2024 03:36:05 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- MWH0EPF000971E6.mail.protection.outlook.com (10.167.243.74) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7181.14 via Frontend Transport; Wed, 10 Jan 2024 03:36:05 +0000
-Received: from BMCDEV-TH3.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.34; Tue, 9 Jan
- 2024 21:36:04 -0600
-From: Supreeth Venkatesh <supreeth.venkatesh@amd.com>
-To: <joel@jms.id.au>, <andrew@aj.id.au>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-aspeed@lists.ozlabs.org>,
-	<linux-kernel@vger.kernel.org>, <openbmc@lists.ozlabs.org>,
-	<robh+dt@kernel.org>
-CC: <supreeth.venkatesh@amd.com>
-Subject: [PATCH 1/1] ARM:dts:aspeed: Initial device tree for AMD Onyx Platform
-Date: Tue, 9 Jan 2024 21:35:43 -0600
-Message-ID: <20240110033543.799919-1-supreeth.venkatesh@amd.com>
-X-Mailer: git-send-email 2.34.1
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7159.23; Wed, 10 Jan
+ 2024 05:01:40 +0000
+Received: from CY8PR12MB7706.namprd12.prod.outlook.com
+ ([fe80::c6c5:6b6c:2422:b70c]) by CY8PR12MB7706.namprd12.prod.outlook.com
+ ([fe80::c6c5:6b6c:2422:b70c%7]) with mapi id 15.20.7159.020; Wed, 10 Jan 2024
+ 05:01:40 +0000
+Message-ID: <cde6d5d5-b6ab-4c64-93f8-78d721a492bb@nvidia.com>
+Date: Wed, 10 Jan 2024 10:31:19 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: Query on audio-graph-card DT binding
+To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Cc: Thierry Reding <thierry.reding@gmail.com>, Mark Brown
+ <broonie@kernel.org>, alsa-devel@alsa-project.org,
+ devicetree@vger.kernel.org, robh+dt@kernel.org,
+ Jon Hunter <jonathanh@nvidia.com>, linux-tegra@vger.kernel.org
+References: <dfe363ef-4638-4b5e-8308-73e286ac0b50@nvidia.com>
+ <ZZblyhfzQjzyoUc_@orome.fritz.box>
+ <42c0c4fa-585e-4194-bbe4-e0377c87e632@sirena.org.uk>
+ <3faec2e9-8cd9-46f9-8807-801922de0edf@nvidia.com>
+ <ZZe5sTNz005Tt4jk@orome.fritz.box>
+ <8241c953-8ae5-4f26-b108-fccf826ed87a@nvidia.com>
+ <875y03i739.wl-kuninori.morimoto.gx@renesas.com>
+ <e7f9085d-9db1-4c5e-9940-e461835b20aa@nvidia.com>
+ <87il42gkua.wl-kuninori.morimoto.gx@renesas.com>
+Content-Language: en-US
+From: Sameer Pujar <spujar@nvidia.com>
+In-Reply-To: <87il42gkua.wl-kuninori.morimoto.gx@renesas.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: MA0PR01CA0116.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:11d::18) To CY8PR12MB7706.namprd12.prod.outlook.com
+ (2603:10b6:930:85::18)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MWH0EPF000971E6:EE_|SA3PR12MB9092:EE_
-X-MS-Office365-Filtering-Correlation-Id: 441f3d2f-5ba6-4237-21a6-08dc118d46ab
+X-MS-TrafficTypeDiagnostic: CY8PR12MB7706:EE_|CH2PR12MB4103:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8dd49dca-ae40-4ff8-7927-08dc11993b54
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
 X-Microsoft-Antispam-Message-Info:
-	7R3XIU4j9APp/3biogsosMeewQnIrOzsWUxlM0UilR7A7OPh0Iieev7VgXZ3sRaR99eNb/SLpMGoNVybzsClSEKu3FISOHy2gJaRMhBo/sr2BrrYigjPJ4+zW8M762p5/omRI8IZjYCamoDgRYV1ZRV5PVcwURQSfmFCURqB/IruuwNtLSpMZAcBkxP9uzaaHCDXgz7BUzs5v1uHAddPVgopb2WVI7DD1d68Iy6wIZLvZkVjpmJvCtZwCgIP8vhfv7Gfnl/pu/PkjYIsRylTuXre0Cx4DjK33AVxvoCBhtuqZ8vlybGddOyD9voH23pebLd8zWgVG+p4kUzLe5qB/9v4KtcGZR3OjSQUCvxqBHKwe3lJSphW72+tZzx4vVTiR1f1YxW6h0Apnu28dJF5VGWizgG3a/iiFWj02EuNnz+e7ANohW0giSvDQecN7bMddbxnOPq0i++Y78/Wmo975t+K6QA38RX9SD9joA6y7cWaZrY9OyS8L9ntcKWXs8rzppl+xyp+KFl4erxLTtizefPoNNLeoSTS5dz6gmCeINA/yrDYDIYGHTZwyuN7IR4HBFbSiHm0vmbbxpBKOt3AzE3AglyuuikCRrwYzAGtIkam88JLKDFof/Njdrc8ff11ahk7SkDPxmIJi012x0yoWUlI5GcWQ92DvGVtCiRW2VzSk8C71x8B7QcdafDL8XESydI3v+zKupL3jqFqMoEA5JnyDWKBTLMyiuT4g7o2E8pMCB/R2oQ6PxfnKuwXAWf7Xkgav+RcC960PH3tUuIrjVj7GRhQ95zyXE/CmQ49dAE=
+	Hm1gPplRvhSGeLCf6PEBdkvTJs9br8+lVdhpcA2gks7u1kntC9vFYi2LhOXs0xEgnkg2xqDW5EOwiW5LKh1gPCgXfEIFBatISg05Ub2Dg6VmY1yaf22MgmbTjUpgvCTg1mU3e4vhE339srOGIwGrZ/lJmVrWoVM/0IeJQrVJsO25fr6kJQJyGIokS3/YJJ5NVOjkCM/i7K+QsG2C145S+/Jd5R1FHwFRkkxrgOfLMkoUTGBbV5tHzDE05nov8jATIulQLzR3HStW+bp0gurDgcqP/f0Iku7ez714JvogEa/QF/aFYzMBds+0p+caPB+jLSgTHOaAiyfltfULnCtj9+IvfgDyTAg/3gQPvIHRSWMGw/AAc/7Pr26hqIAfhiIvX8jPcV56ng71dyayYgvSIFZjCkRHJx7yPzl458oo3CWaFksxkk41rndgA6DC/3F/1V7qTU7MdCZRVfQGvgSCaFrp2/9bYm1TYGSXgqwBtgOUyrjUnnle2QHKm3GIPU9s1xaoj8y8AJZKkA67Ta2rvcpl83qaKr9LPxgvaPROp4BzYRQObBN5RnefcMa7u/n1ShU9+Dqk7ObyfRn+EeiM6gL9dW7Tq8izt9B7Y4Dgms5HWNKsoP9spIAurxn9swU+QwLbsvbix74tn0zV+LCLrkcEnf5CmMfd5C717tjBpz/9JZFy4MjKcrF6If572BE/
 X-Forefront-Antispam-Report:
-	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230031)(4636009)(346002)(136003)(376002)(39860400002)(396003)(230922051799003)(1800799012)(186009)(451199024)(64100799003)(82310400011)(36840700001)(40470700004)(46966006)(2906002)(5660300002)(41300700001)(478600001)(40460700003)(83380400001)(40480700001)(16526019)(426003)(1076003)(26005)(2616005)(336012)(36860700001)(47076005)(7696005)(6666004)(86362001)(81166007)(356005)(44832011)(8936002)(8676002)(4326008)(36756003)(82740400003)(70206006)(70586007)(110136005)(316002)(36900700001)(2101003);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jan 2024 03:36:05.1886
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CY8PR12MB7706.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366004)(136003)(376002)(39860400002)(396003)(346002)(230922051799003)(451199024)(1800799012)(64100799003)(186009)(26005)(6512007)(6506007)(53546011)(2616005)(6666004)(5660300002)(4326008)(2906002)(41300700001)(478600001)(6486002)(66476007)(316002)(54906003)(8676002)(8936002)(6916009)(66556008)(66946007)(2013699003)(86362001)(31696002)(36756003)(38100700002)(31686004)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?Z0xzQjNCK0RDYVRSQUpDY3R5bUtFSnVnd1hBbEJJeS9yM1dkODdyY3ZXS2d6?=
+ =?utf-8?B?Skc5RUFLb0VBQUlkYkVwUUs0YktSUm5JalpvRVlzMStTK21xUVFVbVU4QzJO?=
+ =?utf-8?B?blZYN2c2b3BwNWtRSUtuVVZFZk42NUszY0NQRjlRZUxQNHU4M2o4bFIydFNa?=
+ =?utf-8?B?RXpwbzBKQndrelF2dGF6RWJXVUhkSG04REE1enpkNmJPK3ZBRzcyZHJ4VDRw?=
+ =?utf-8?B?Q1ZTRlh0a0h6ZTJLY3hwNkhqUm1ZL2o3UmdLc09zbWdqclpBZUpQOWprN2I3?=
+ =?utf-8?B?WmFLNXNMb04rdllOVlNKTWhCZWNuWnZtVlFxTnZLa3ZEV0wraTBENm1LWmhQ?=
+ =?utf-8?B?cGt5MFFxanZHMXhxeTlVVkFZaW9vZ2JRcVRIR0NNV1ozUkJ2djJrcEpCQVg5?=
+ =?utf-8?B?OWRmaW40d3RlQ2t0QXZQR0JYZmxPWUljMmNnS0ZtdnUzb0lmbkZTSU1zOHJC?=
+ =?utf-8?B?b2U0Q1BTQ0JodG11T0t0b2NlemkzeEh4Uks2WVhOZUFqc0d1TjNVT1R6c2JB?=
+ =?utf-8?B?a3ZabW42clJGRllselYzQ01Mc2ltKy9vdDZPU0xGcDIwVS9VaXlyemVKRU9i?=
+ =?utf-8?B?Tmd6TjJ1amNGMEZZVzVDWXV1NDhWaHhWMlJmVXNmUmROM2xzbzBkNkNMRmFR?=
+ =?utf-8?B?SEVBTG9DZzF6eTE3RXRUbUNZSW41TzgxN0xtQzVqQ3F5bWV5RlU2N0U0MXd0?=
+ =?utf-8?B?N1IxRTZWVWZEWTJubUdaeU9aUTNHWDIrTXZoMlp3OENiTE5lbXd3dXQvNXhU?=
+ =?utf-8?B?Snk5YXYzZW45S0hva1pEL3UzOTNOZ0xJaUFLS2JYSGJFdTArL0tLdkcxMGJu?=
+ =?utf-8?B?UHZrZTJGQWFWdFcwY0dtcWx5SUI4ak9hYXdYeXp5SnNNajMrdnlJT0g3SW9u?=
+ =?utf-8?B?eGhETytlYXB4Tmt3SjFrUkJubDQ0SVNvZjRmcXBXeThzQVpLUm5Qa0xoZ0ta?=
+ =?utf-8?B?M29OeTd2QXZkNXdwNmg5bW1KMUYraHhDNHdXVHJvOE5jZkxTbGpyYVFTWUF5?=
+ =?utf-8?B?cDZISkJ5YW5HMWhRelpoMk9obzR5MmE0Y3lzRjdUa0g3Z25Qb1ZJQVVYMk4x?=
+ =?utf-8?B?TVNWaFNJSC9XZytqRzRYSkpNb3dsUUZFdHVMcVdWSFN1R3pzOVpLcFZOeDZI?=
+ =?utf-8?B?dGxNQWtra2owSlFlYkR4cGtqakgwNisyYVZ4OEF6U0pFSUFJYzFuOFNSVys0?=
+ =?utf-8?B?RUF2N3pBWklpUDZCU1krUjY0WWdteXFGcEVrbnRldWFKQnlBR3Q2aFJEemts?=
+ =?utf-8?B?aGgrZGphanptaU5KNm1XT0t0QVJwWnlsZjY4U0JDbys1ZzB6Rm5GcnhpczYv?=
+ =?utf-8?B?OWJFdWk1enNUQTdxamFuemxDZGxJd0RPdWJGdm1VUnM1aWwyalhvR2QwTVFL?=
+ =?utf-8?B?UW5GZHh1Sk9SRXI0OXFXZlpjdEFRY2ZBeVJ4UnFFUWIzNzFERWpFM2ROcGd1?=
+ =?utf-8?B?dUZqd2dDa3k3OEhHNENYSVFWQkM0VmNTUE5IZTR2UWU3UFl2eEYxWndWaCty?=
+ =?utf-8?B?cHJYVzQzZmZOa2FYMlpSViswdklKZk5NNGxuRUxCaFhVQXB4WGRsMHk1d2U0?=
+ =?utf-8?B?dHBiWTEybExJQ3kyZi91ZjIwQ0t1eVFkNTZ0T0pqZWZGQ0lmRnRBZ2JZaE1W?=
+ =?utf-8?B?QUNkbVhzdEhkTktjZHd6NkJXSmd4alp3ejB1T0R6bUoyVjNnNHVTTExLTFZl?=
+ =?utf-8?B?VHhIbytEVjhwTjcrakFRVEhPb2t2L3hvZ212eDUvMzduMlVCaG51MzAxejF5?=
+ =?utf-8?B?eTBkdHp2L0xkWFB0c3FOdFpyWnhEaVdhZnZJMGt0dnllNVVxN28rakN0V1l0?=
+ =?utf-8?B?SHBMMUFFMTVxdmJQTXEwY01yTUgxWnRZRXEyNWxXKzRldW9oa2RpTVlYVVRQ?=
+ =?utf-8?B?UkhXakYza25UN0huOXl3eHVCVEVaUjIzaGRPamR1dnRCZys0b1A3OWtjd0hj?=
+ =?utf-8?B?L2NPbFZiUEg5WGRwZ0JmTDBQbnBsVlhLZlZoL0xtWTRRNnNucVkxTUE5d200?=
+ =?utf-8?B?ZzNQWlFUTW5KZG5IN3ZHYytPZDdPRE5nS2R5SjNZaVVvZCtFb2tOcjBwamNM?=
+ =?utf-8?B?Ym5SNEVpWW5EZDE4REJKZzIyT3hZM2NRRzhKVnJ1ekRPUytkZHNzMC96WEww?=
+ =?utf-8?Q?g/jpfRixZEhG+0DRyZ7ofTQHY?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8dd49dca-ae40-4ff8-7927-08dc11993b54
+X-MS-Exchange-CrossTenant-AuthSource: CY8PR12MB7706.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jan 2024 05:01:40.4189
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 441f3d2f-5ba6-4237-21a6-08dc118d46ab
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	MWH0EPF000971E6.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR12MB9092
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: CQeQhvWVoEDp3O7AUYZV/Kz5HJ+HcRZVMeDxnf2YKancnObmQ1UeQ9DGpg/OuyGv9U8qEv5OOiydMFiGIwNU9w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4103
 
-This patch adds initial device tree and makefile updates for
-AMD Onyx platform.
 
-AMD Onyx platform is an AMD customer reference board with an Aspeed
-ast2600 BMC manufactured by AMD.
-It describes I2c devices, Fans, Kcs devices, Uarts, Mac, LEDs, etc.
-present on AMD Onyx platform.
 
-Signed-off-by: Supreeth Venkatesh <supreeth.venkatesh@amd.com>
----
- arch/arm/boot/dts/aspeed/Makefile             |  1 +
- .../boot/dts/aspeed/aspeed-bmc-amd-onyx.dts   | 98 +++++++++++++++++++
- 2 files changed, 99 insertions(+)
- create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-amd-onyx.dts
+On 10-01-2024 04:45, Kuninori Morimoto wrote:
+>>>>                 /-----> codec1 endpoint
+>>>>                /
+>>>> CPU endpoint \
+>>>>                 \-----> codec2 endpoint
+>>> It sounds "Single CPU - Mult Codec" connection, and if my understanding
+>>> was correct, current ASoC is not supporting it so far.
+>> Yes, this is a typical TDM use case.
+>> __soc_pcm_hw_params() call in soc-pcm.c loops over all CODECs for a
+>> given rtd. So is there something else you are referring to which makes
+>> ASoC core doesn't support it?
+> Oops sorry, I was confused. asymmetry Multi CPU/Codec is supported on
+> ASoC / Card2 on for-6.8 branch.
+>> Also the binding properties of "audio-graph-card2" seem to be different
+>> from "audio-graph-card". I am looking at a simpler extension of existing
+>> bindings for Tegra audio without having to re-write the whole bindings.
+>> If "remote-endpoint" can take phandle array it would be simpler from DT
+>> point of view.
+> Yes, "card2" and "card" are similar but different.
+> I'm not DT-man, but I think remote-endpoint phandle array is not allowed ?
 
-diff --git a/arch/arm/boot/dts/aspeed/Makefile b/arch/arm/boot/dts/aspeed/Makefile
-index fb9cc95f1b60..2b27d377aae2 100644
---- a/arch/arm/boot/dts/aspeed/Makefile
-+++ b/arch/arm/boot/dts/aspeed/Makefile
-@@ -5,6 +5,7 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
- 	aspeed-ast2600-evb.dtb \
- 	aspeed-bmc-amd-daytonax.dtb \
- 	aspeed-bmc-amd-ethanolx.dtb \
-+	aspeed-bmc-amd-onyx.dtb \
- 	aspeed-bmc-ampere-mtjade.dtb \
- 	aspeed-bmc-ampere-mtmitchell.dtb \
- 	aspeed-bmc-arm-stardragon4800-rep2.dtb \
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-amd-onyx.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-amd-onyx.dts
-new file mode 100644
-index 000000000000..a7056cd29553
---- /dev/null
-+++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-amd-onyx.dts
-@@ -0,0 +1,98 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+// Copyright (c) 2021 - 2024 AMD Inc.
-+// Author: Supreeth Venkatesh <supreeth.venkatesh@amd.com>
-+
-+/dts-v1/;
-+
-+#include "aspeed-g6.dtsi"
-+#include <dt-bindings/gpio/aspeed-gpio.h>
-+
-+/ {
-+       model = "AMD Onyx BMC";
-+       compatible = "amd,onyx-bmc", "aspeed,ast2600";
-+
-+       aliases {
-+               serial0 = &uart1;
-+               serial4 = &uart5;
-+      };
-+
-+       chosen {
-+               stdout-path = &uart5;
-+               bootargs = "console=ttyS4,115200 earlyprintk vmalloc=512MB";
-+       };
-+
-+       memory@80000000 {
-+               device_type = "memory";
-+               reg = <0x80000000 0x80000000>;
-+       };
-+
-+};
-+
-+&mdio0 {
-+       status = "okay";
-+
-+       ethphy0: ethernet-phy@0 {
-+               compatible = "ethernet-phy-ieee802.3-c22";
-+               reg = <0>;
-+       };
-+};
-+
-+&mac3 {
-+       status = "okay";
-+       phy-mode = "rgmii";
-+       phy-handle = <&ethphy0>;
-+
-+       pinctrl-names = "default";
-+       pinctrl-0 = <&pinctrl_rgmii4_default>;
-+};
-+
-+
-+
-+&fmc {
-+       status = "okay";
-+       flash@0 {
-+               compatible = "jedec,spi-nor";
-+               status = "okay";
-+               #include "openbmc-flash-layout-128.dtsi"
-+       };
-+};
-+
-+//Host Console
-+&uart1 {
-+       status = "okay";
-+};
-+
-+//BMC Console
-+&uart5 {
-+       status = "okay";
-+};
-+
-+&gpio0 {
-+        gpio-line-names =
-+        /*A0-A7*/       "","","","","","","","",
-+        /*B0-B7*/       "","","","","MON_POST_COMPLETE","P0_PRESENT_L","","",
-+        /*C0-C7*/       "","","","","","","","",
-+        /*D0-D7*/       "","","","","","","","",
-+        /*E0-E7*/       "","","","","","","","",
-+        /*F0-F7*/       "","","","","","","","",
-+        /*G0-G7*/       "","","","","","","","",
-+        /*H0-H7*/       "","ASSERT_WARM_RST_BTN_L","ASSERT_SOC_RST_BTN_L","","","","","",
-+        /*I0-I7*/       "","","","","","","","P0_I3C_APML_ALERT_L",
-+        /*J0-J7*/       "","","","","","","","",
-+        /*K0-K7*/       "","","","","","","","",
-+        /*L0-L7*/       "","","","","","","","",
-+        /*M0-M7*/       "","","","","","","","",
-+        /*N0-N7*/       "","","","","","","PSP_SOFT_FUSE_NOTIFY","ASSERT_BMC_READY",
-+        /*O0-O7*/       "","","HDT_SEL","HDT_XTRIG5","HDT_XTRIG6","JTAG_TRST_N","","",
-+        /*P0-P7*/       "MON_RST_BTN_L","ASSERT_RST_BTN_L","MON_PWR_BTN_L","ASSERT_PWR_BTN_L","HPM_FPGA_LOCKOUT","ASSERT_NMI_BTN_L","MON_PWR_GOOD","",
-+        /*Q0-Q7*/       "","","HDT_DBREQ_L","","BIOS_SPD_MUX_CTRL_RELEASED_L","","","",
-+        /*R0-R7*/       "","","","","","","","",
-+        /*S0-S7*/       "","","","","","","P0_DIMM_AF_ERROR","P0_DIMM_GL_ERROR",
-+        /*T0-T7*/       "","","","","","","","",
-+        /*U0-U7*/       "","","","","","","","",
-+        /*V0-V7*/       "","","","","","","","",
-+        /*W0-W7*/       "","","","","","","","",
-+        /*X0-X7*/       "","","","","","","","",
-+        /*Y0-Y7*/       "","","","","","","","",
-+        /*Z0-Z7*/       "","","","","","","","";
-+};
--- 
-2.34.1
+Yes, it is not allowed and there is DTC error. Exploring if there is an 
+extension possible to allow phandle array.
 
+> If my understanding was correct, you need to use multi endpoint in such
+> case instead of phandle array.
+>
+> CPU
+>          port {
+>                  cpu_endpoint0: endpoint@0 { remote-endpoint = <&codec1_endpoint>; };
+>                  cpu_endpoint1: endpoint@1 { remote-endpoint = <&codec2_endpoint>; };
+>          };
+>
+> Codec1
+>          port {
+>                  codec1_endpoint: endpoint { remote-endpoint = <&cpu_endpoint0>; };
+>          };
+>
+> Codec2
+>          port {
+>                  codec2_endpoint: endpoint { remote-endpoint = <&cpu_endpoint1>; };
+>          };
+>
+
+This is a workaround. Note that CPU endpoint@1 doesn't exist and a dummy 
+endpoint needs to be created. Like I mentioned in previous replies, the 
+number of dummy endpoints that need to be created depends on how many 
+CODECs user want to connect and it doesn't look scalable.
 
