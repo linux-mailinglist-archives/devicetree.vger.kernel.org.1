@@ -1,99 +1,86 @@
-Return-Path: <devicetree+bounces-31096-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31097-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F077E829EBA
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 17:41:23 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8453829EFE
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 18:23:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7CA49289A4C
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 16:41:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E8F831C227AA
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 17:23:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 199004C639;
-	Wed, 10 Jan 2024 16:41:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28CA14D11C;
+	Wed, 10 Jan 2024 17:23:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=subdimension.ro header.i=@subdimension.ro header.b="Pp+AexdE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bmailout3.hostsharing.net (bmailout3.hostsharing.net [176.9.242.62])
+Received: from mail.subdimension.ro (skycaves.subdimension.ro [172.104.132.142])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A829B47F56;
-	Wed, 10 Jan 2024 16:41:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=wunner.de
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=h08.hostsharing.net
-Received: from h08.hostsharing.net (h08.hostsharing.net [83.223.95.28])
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78AC94D103;
+	Wed, 10 Jan 2024 17:23:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=subdimension.ro
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=subdimension.ro
+Received: from localhost.localdomain (unknown [188.24.94.216])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256
-	 client-signature RSA-PSS (4096 bits) client-digest SHA256)
-	(Client CN "*.hostsharing.net", Issuer "RapidSSL TLS RSA CA G1" (verified OK))
-	by bmailout3.hostsharing.net (Postfix) with ESMTPS id 2A647100FBE02;
-	Wed, 10 Jan 2024 17:41:06 +0100 (CET)
-Received: by h08.hostsharing.net (Postfix, from userid 100393)
-	id 024392D2CA2; Wed, 10 Jan 2024 17:41:05 +0100 (CET)
-Date: Wed, 10 Jan 2024 17:41:05 +0100
-From: Lukas Wunner <lukas@wunner.de>
-To: Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: Kalle Valo <kvalo@kernel.org>, "David S . Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	by mail.subdimension.ro (Postfix) with ESMTPSA id C3C9628B588;
+	Wed, 10 Jan 2024 17:23:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=subdimension.ro;
+	s=skycaves; t=1704907393;
+	bh=DxtsSCEvWQRHWiPHNXgzK9xMclvnNxJ+k/fFzf/cKLs=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References;
+	b=Pp+AexdEAIHFFgNZSmvhttyO+r9qJ2uPA9N4i+VFnKlFxp3jkhP7+R3KxrmWkv1a2
+	 WdXcwjZvdpr2LTLA5fRyriU5fvvmbfa46qIiP3o59sMbhdw0Js6N4AiM76XWcTQ61o
+	 DpsmzCA2GDEY6xJK7otYa1H4cQNCgfkOs3Uw2kSk=
+From: Petre Rodan <petre.rodan@subdimension.ro>
+To: linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Petre Rodan <petre.rodan@subdimension.ro>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Chris Morgan <macromorgan@hotmail.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	=?iso-8859-1?Q?N=EDcolas_F_=2E_R_=2E_A_=2E?= Prado <nfraprado@collabora.com>,
-	Marek Szyprowski <m.szyprowski@samsung.com>,
-	Peng Fan <peng.fan@nxp.com>, Robert Richter <rrichter@amd.com>,
-	Dan Williams <dan.j.williams@intel.com>,
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-	Terry Bowman <terry.bowman@amd.com>,
-	Kuppuswamy Sathyanarayanan <sathyanarayanan.kuppuswamy@linux.intel.com>,
-	Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>,
-	Huacai Chen <chenhuacai@kernel.org>, Alex Elder <elder@linaro.org>,
-	Srini Kandagatla <srinivas.kandagatla@linaro.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-pci@vger.kernel.org,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: Re: [RFC 3/9] PCI/portdrv: create platform devices for child OF nodes
-Message-ID: <20240110164105.GA13451@wunner.de>
-References: <20240104130123.37115-1-brgl@bgdev.pl>
- <20240104130123.37115-4-brgl@bgdev.pl>
- <20240109144327.GA10780@wunner.de>
- <CAMRc=MdXO6c6asvRSn_Z8-oFS48hroT+dazGKB6WWY1_Zu7f1Q@mail.gmail.com>
- <20240110132853.GA6860@wunner.de>
- <CAMRc=MdBSAb_kEO2r7r-vwLuRAEv7pMODOMtZoCCRAd=zsQb_w@mail.gmail.com>
+	Conor Dooley <conor+dt@kernel.org>
+Subject: [PATCH 1/6] dt-bindings: iio: pressure: honeywell,hsc030pa.yaml add spi props
+Date: Wed, 10 Jan 2024 19:22:36 +0200
+Message-ID: <20240110172306.31273-2-petre.rodan@subdimension.ro>
+X-Mailer: git-send-email 2.41.0
+In-Reply-To: <20240110172306.31273-1-petre.rodan@subdimension.ro>
+References: <20240110172306.31273-1-petre.rodan@subdimension.ro>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAMRc=MdBSAb_kEO2r7r-vwLuRAEv7pMODOMtZoCCRAd=zsQb_w@mail.gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
 
-On Wed, Jan 10, 2024 at 05:26:52PM +0100, Bartosz Golaszewski wrote:
-> Seems like the following must be true but isn't in my case (from
-> pci_bus_add_device()):
-> 
->     if (pci_is_bridge(dev))
->         of_pci_make_dev_node(dev);
-> 
-> Shouldn't it evaluate to true for ports?
+Add spi-peripheral-props.yaml requirement
 
-It should.
+Signed-off-by: Petre Rodan <petre.rodan@subdimension.ro>
+---
+ .../devicetree/bindings/iio/pressure/honeywell,hsc030pa.yaml   | 3 +++
+ 1 file changed, 3 insertions(+)
 
-What does "lspci -vvvvxxxx -s BB:DD.F" say for the port in question?
+diff --git a/Documentation/devicetree/bindings/iio/pressure/honeywell,hsc030pa.yaml b/Documentation/devicetree/bindings/iio/pressure/honeywell,hsc030pa.yaml
+index 65a24ed67b3c..89977b9f01cf 100644
+--- a/Documentation/devicetree/bindings/iio/pressure/honeywell,hsc030pa.yaml
++++ b/Documentation/devicetree/bindings/iio/pressure/honeywell,hsc030pa.yaml
+@@ -99,6 +99,9 @@ required:
+   - honeywell,transfer-function
+   - honeywell,pressure-triplet
+
++allOf:
++  - $ref: /schemas/spi/spi-peripheral-props.yaml
++
+ additionalProperties: false
+
+ dependentSchemas:
+--
+2.41.0
+
 
