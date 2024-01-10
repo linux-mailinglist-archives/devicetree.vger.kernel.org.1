@@ -1,64 +1,66 @@
-Return-Path: <devicetree+bounces-30883-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30884-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 887878295A6
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 10:04:46 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 16CE68295B3
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 10:06:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 20A2528312B
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 09:04:45 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 69D33B2653E
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 09:06:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 262C039FC8;
-	Wed, 10 Jan 2024 09:04:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5080B3B199;
+	Wed, 10 Jan 2024 09:06:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="hqvnyL/t"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LuFTYoR0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7681D3B189
-	for <devicetree@vger.kernel.org>; Wed, 10 Jan 2024 09:04:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 462B53B780
+	for <devicetree@vger.kernel.org>; Wed, 10 Jan 2024 09:06:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-3368ac0f74dso2854238f8f.0
-        for <devicetree@vger.kernel.org>; Wed, 10 Jan 2024 01:04:39 -0800 (PST)
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-40d604b4b30so28880065e9.1
+        for <devicetree@vger.kernel.org>; Wed, 10 Jan 2024 01:06:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704877478; x=1705482278; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=9ENsgunoGMbZfgvfEWJ+ROzlMs04fiRcUoBPATIiU24=;
-        b=hqvnyL/tBS0TlBEYRYtcX/s2PRQstLiA5MRdZX+Iw0SYA+1MnyfsqVk5pmuLqbLq9b
-         5NQyN4LkRzJcqRUBZg/W91WVrw/d0ya6YPn2+6I2DwBCRiAU/S6KBnQ6A2bK5m980TJh
-         g/SpbEkiwobk+Wb7QEncVtZCI61Mpnpu0FKUDc6UyuwuWXytrmLRPwJ/uB2XhhukR4bb
-         hoA16KxMS4mvfHC8DSDdHW5kIVPrCB0fF5IdBIIqFT+kbrqJkhbgkWZjvdgR08X5hd8e
-         1IGhBwNTX6Zi94vcBw16P//lFnsAMO3Me6Qjlin8RHYbFT1jk8IkpcnX+Dmdc7BNSz01
-         EbdQ==
+        d=linaro.org; s=google; t=1704877559; x=1705482359; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :references:cc:to:content-language:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=YGn05+FOp2S6kGAYx1CC3XYu3wPlmxWSpkBFMyATYt8=;
+        b=LuFTYoR0IVXxHT8hgg40KLgFQv/7HjpvXeQpUc0kqD/O5qwK1o0lJaubSjFPttny+a
+         L2LnyGzzX1Nd8VEhdgv8kLsFa8+Sk0G/mxONzDOeTCA+oeETh+yb205SKK9fEwyrOz/r
+         NbP+fod4TV/pgT4vVIh5FcAc7ALRUqeaVs6CEGkjxuHaFSLAl+OyKuNvsCxAGyKPIAZx
+         Nz81QNsioQ5Wu31sW9Hcoak8HFBjFeSLIoSAd21NpoZptNl4A/GbThS71Xp/jajRDlsD
+         YvVbDxch2gbfQzN9ecsRDUMv27HJhNl/JmhUVewklc3RAyL1KWtJJ02EeRVDCZRLVN7I
+         WC3w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704877478; x=1705482278;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9ENsgunoGMbZfgvfEWJ+ROzlMs04fiRcUoBPATIiU24=;
-        b=Lydh8PuypVu94kNTrh+zNHZPJwG8mpSlGzHkZGA5O2ypTdrJJ3n4Y8AV0DcWqCabnA
-         beOCNC580hIgNIqU5599+m4gIqwOSIiy4VOmEmVuhCiB5r+ZQxvVnblPK7NCg00GW+tM
-         pbOAlLzjvbSbb3y5WAM9xs8UEte02cPdeqpMOXD5iSFEksPJuq1BbXwtzJS8rLBy7SIj
-         +bkEJ6TiWGdI+PP8X1Q6eMxsdMd9AYPQ7OXDkaTfzFXrIEkJv1VyxD+6kJTEwiP5d//b
-         B/r+jdDTim82JTv30nrH5S286O1/UFSXtnp/2QMonfeoVB44JsdTHeCAPT3WANPLRqmd
-         X1zg==
-X-Gm-Message-State: AOJu0YyIUQLP4CZsSaqnnQY6o9yaPVl7UJb5jshtXRrtZoBv8jj69Sv+
-	+chK7PphA/Lf/jpXQp4hIZfMBO0TjtqEJQ==
-X-Google-Smtp-Source: AGHT+IGmH7obDcrHPPh8+GTeUn69iyrivY7YHG42CJn+av2pD9yAeNWytG456eVVXSfxMThA2UVowA==
-X-Received: by 2002:a5d:6a01:0:b0:336:66f0:e8b8 with SMTP id m1-20020a5d6a01000000b0033666f0e8b8mr342757wru.89.1704877477728;
-        Wed, 10 Jan 2024 01:04:37 -0800 (PST)
-Received: from [192.168.2.107] ([79.115.63.202])
-        by smtp.gmail.com with ESMTPSA id e8-20020a5d5008000000b00336e6014263sm4339124wrt.98.2024.01.10.01.04.35
+        d=1e100.net; s=20230601; t=1704877559; x=1705482359;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :references:cc:to:content-language:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=YGn05+FOp2S6kGAYx1CC3XYu3wPlmxWSpkBFMyATYt8=;
+        b=s1nRs09GzwabbfsXkmPzkOIFEajBO6uMbQLQ7w9IuXz9UKJMT0e164N7vYneZRBKIN
+         yXo4fysZDOSkXvKWAkE7rqL01gh2fZytIzAxnU2CjQpeO8qKw3/Cn2hKdFUMKn3lDqIg
+         yskQ9zMsx1DDjChm2OQGFYNccxoz84f58xyd9ywaJOrZJ9c4zkJWQBbH088cG90XXZ4D
+         CRGzDsOKZrF12sGuW8p0MJVW4aq3T8ggAn/+cwINi2OG9AjoEP+VZ48GSV6BFA+9jt95
+         Min7YxCA8ZkBnUI4cCvrRxFP4q62AzwjYZVDLBfNePfBc7ZLY6PKuGok2K1+2MabJ5ne
+         rz7Q==
+X-Gm-Message-State: AOJu0YydS686YjWIoZ+EuaDrGq0p8Z0cMHn0uywo/Qqspnl2z9lAtZsX
+	PEGuS7Rnt77mRmRs1pRPIkbqbdUZDwUrQw==
+X-Google-Smtp-Source: AGHT+IEFouJoUbml6X/7HBn2vGnyrbIlj3qsE0X5+d3U6eg+CtsrfuuLfyDPpRGpHb1rp2//5OPqsQ==
+X-Received: by 2002:a05:600c:1e84:b0:40e:4a73:f6b7 with SMTP id be4-20020a05600c1e8400b0040e4a73f6b7mr374107wmb.150.1704877559419;
+        Wed, 10 Jan 2024 01:05:59 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:5dee:51de:9349:2adf? ([2a01:e0a:982:cbb0:5dee:51de:9349:2adf])
+        by smtp.gmail.com with ESMTPSA id fs14-20020a05600c3f8e00b0040e38b7cfdasm1412519wmb.4.2024.01.10.01.05.58
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 10 Jan 2024 01:04:37 -0800 (PST)
-Message-ID: <aeee178d-f4ea-4732-98f4-fa28fcf2990f@linaro.org>
-Date: Wed, 10 Jan 2024 09:04:35 +0000
+        Wed, 10 Jan 2024 01:05:58 -0800 (PST)
+Message-ID: <80b898a0-1f44-4623-9df2-edccb9307098@linaro.org>
+Date: Wed, 10 Jan 2024 10:05:57 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,52 +68,89 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 03/12] dt-bindings: serial: samsung: do not allow
- reg-io-width for gs101
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- peter.griffin@linaro.org, krzysztof.kozlowski+dt@linaro.org,
- gregkh@linuxfoundation.org
-Cc: mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
- conor+dt@kernel.org, andi.shyti@kernel.org, alim.akhtar@samsung.com,
- jirislaby@kernel.org, s.nawrocki@samsung.com, tomasz.figa@gmail.com,
- cw00.choi@samsung.com, linux-arm-kernel@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-i2c@vger.kernel.org, linux-serial@vger.kernel.org,
- andre.draszik@linaro.org, kernel-team@android.com, willmcvicker@google.com
-References: <20240109125814.3691033-1-tudor.ambarus@linaro.org>
- <20240109125814.3691033-4-tudor.ambarus@linaro.org>
- <5d24a5da-e4cd-4d32-ba2b-8e91cfc7dced@linaro.org>
-From: Tudor Ambarus <tudor.ambarus@linaro.org>
-In-Reply-To: <5d24a5da-e4cd-4d32-ba2b-8e91cfc7dced@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+From: neil.armstrong@linaro.org
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: display: panel: panel-simple: Add
+ compatible property for waveshare 7inch touchscreen panel
+Content-Language: en-US, fr
+To: Conor Dooley <conor@kernel.org>,
+ Shengyang Chen <shengyang.chen@starfivetech.com>
+Cc: devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ quic_jesszhan@quicinc.com, sam@ravnborg.org, airlied@gmail.com,
+ daniel@ffwll.ch, maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+ tzimmermann@suse.de, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, wahrenst@gmx.net, dave.stevenson@raspberrypi.com,
+ thierry.reding@gmail.com, changhuang.liang@starfivetech.com,
+ keith.zhao@starfivetech.com, jack.zhu@starfivetech.com,
+ linux-kernel@vger.kernel.org
+References: <20240109070949.23957-1-shengyang.chen@starfivetech.com>
+ <20240109070949.23957-2-shengyang.chen@starfivetech.com>
+ <20240109-worsening-material-fae02ff4e611@spud>
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro Developer Services
+In-Reply-To: <20240109-worsening-material-fae02ff4e611@spud>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-
-
-On 1/10/24 08:06, Krzysztof Kozlowski wrote:
-> On 09/01/2024 13:58, Tudor Ambarus wrote:
->> All gs101 serial ports are restricted to 32-bit register accesses.
->> This requirement will be inferred from the compatible. Do not allow
->> the reg-io-width property for the google,gs101-uart compatible.
+On 09/01/2024 17:32, Conor Dooley wrote:
+> On Tue, Jan 09, 2024 at 03:09:48PM +0800, Shengyang Chen wrote:
+>> The waveshare 7" 800x480 panel is a clone of Raspberry Pi 7" 800x480 panel
+>> It can be drived by Raspberry Pi panel's process but it needs different
+>> timing from Raspberry Pi panel. Add compatible property for it.
 >>
->> Suggested-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> Reviewed-by: Peter Griffin <peter.griffin@linaro.org>
->> Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
+>> Signed-off-by: Keith Zhao <keith.zhao@starfivetech.com>
+>> Signed-off-by: Shengyang Chen <shengyang.chen@starfivetech.com>
 >> ---
->> v3: collect Peter's R-b tag
->> v2: new patch
+>>   .../devicetree/bindings/display/panel/panel-simple.yaml         | 2 ++
+>>   1 file changed, 2 insertions(+)
 >>
+>> diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+>> index 11422af3477e..02f6b1b2ddc9 100644
+>> --- a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+>> +++ b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+>> @@ -335,6 +335,8 @@ properties:
+>>         - vivax,tpc9150-panel
+>>           # VXT 800x480 color TFT LCD panel
+>>         - vxt,vl050-8048nt-c01
+>> +        # Waveshare 7" (800x480) touchscreen LCD panel
+>> +      - waveshare,7inch-touchscreen
 > 
-> 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-> Please split the serial patches into separate patchset and send them
-> usual way, so Greg can pick them up. GS101 was merged, thus this is not
-> initial submission anymore.
-> 
+> Is "7inch-touchscreen" really a specific enough identifier for this
+> device?
 
-Got it, will do. Thanks.
-ta
+Waveshare has very precise SKUs, this should be something like waveshare,7inch-dsi-sku19885 perhaps
+
+Neil
+
+> 
+>>           # Winstar Display Corporation 3.5" QVGA (320x240) TFT LCD panel
+>>         - winstar,wf35ltiacd
+>>           # Yes Optoelectronics YTC700TLAG-05-201C 7" TFT LCD panel
+>> -- 
+>> 2.17.1
+>>
+
 
