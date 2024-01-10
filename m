@@ -1,182 +1,202 @@
-Return-Path: <devicetree+bounces-30887-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30888-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 724018295EA
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 10:10:25 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A954D829614
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 10:17:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 05096288D99
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 09:10:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CF7381C20FEE
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 09:17:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F362C3C067;
-	Wed, 10 Jan 2024 09:09:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="UsBaKBIZ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 563AD3D0C3;
+	Wed, 10 Jan 2024 09:16:50 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR04-HE1-obe.outbound.protection.outlook.com (mail-he1eur04on2084.outbound.protection.outlook.com [40.107.7.84])
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E42B3EA8B;
-	Wed, 10 Jan 2024 09:09:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=K+pn3BDKqaRJn+4gXY7wufp8JnK/Nr/5RYcNAnwAnUd7Vf4JCSCP7Syu4BeowFFfgMV0DvcNZtComO7uBtuEL/9t81whFxIv6jgG3bfilnNcOm2/NAlHV1xRHnX1x0byS+Hjk0IleTaG9XLOpE0swV/ICJ3niln+5k0GbPezi2T4v7q5INNnb9EKo6uhEiEpASQZwy6oX319v0eCdm+YyVcdSF3PcIIEMJYL2gSEycF4iwhiBsKFgNeP+5L53npR4g3sVudwLthUEXM5QEsDNq9qD/XRInepoFsgT03WJHRZ2eBg5iqhcibmlAG//fJYfpXbLZ9v9+W1P9mgJ1zndg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=BF5kvmLCQbMENl8HgNfq7GFDTgNcQ48QVG4RooLZ0l0=;
- b=X3Jj5qC80Gl0UMn0ZTR4TQO614lz+DxdsIkFgsYkJE2GJvHlWft4TgOhs70sH/1NHCqplq5eIEQ5ACi5HjmSKlR2rhWTreR1tEDnAKi07HfMAHwKifpS2SKBA9UYVyBGJD2EGnWbbnOJ7NMglUN8bi2ACPgEwt7HQWp6NPTlpieVF/RzAK8mVlEm/SKlbCLd5qrvi935TuIU6O0m94Jbshohz75MDAs/DuJDKmLp+f6Cff5YTK+Z3XjAr+ZQWmFiwbz4qyxt8Wr97roJoR+FWT5FlOHUmm/njcMA887SDfVV6sP1A8itKsDkxTLRlZDnDHGvKwBANxa7nogrcZ/cfw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=BF5kvmLCQbMENl8HgNfq7GFDTgNcQ48QVG4RooLZ0l0=;
- b=UsBaKBIZQfB23SPSRPkMjHp+iAiE5GqAVvcZaxrpG5XlvxaaCJ5VBkrRO0mD4AkmoyycRuMszfJP8UxPQ5wDTHS0EyFRgV7z1d4ZP6Hvty8g+OFrtdd3k/iah5Rl7XCSsoDIsz9gsskG5svLQ+okqtDqHzNlY1dDGCExa1oKsJs=
-Received: from DB9PR04MB9498.eurprd04.prod.outlook.com (2603:10a6:10:360::21)
- by DB9PR04MB9992.eurprd04.prod.outlook.com (2603:10a6:10:4c1::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7159.23; Wed, 10 Jan
- 2024 09:09:45 +0000
-Received: from DB9PR04MB9498.eurprd04.prod.outlook.com
- ([fe80::2a3c:9a90:b09f:293c]) by DB9PR04MB9498.eurprd04.prod.outlook.com
- ([fe80::2a3c:9a90:b09f:293c%3]) with mapi id 15.20.7159.020; Wed, 10 Jan 2024
- 09:09:45 +0000
-From: Chancel Liu <chancel.liu@nxp.com>
-To: Daniel Baluta <daniel.baluta@gmail.com>
-CC: "lgirdwood@gmail.com" <lgirdwood@gmail.com>, "broonie@kernel.org"
-	<broonie@kernel.org>, "robh+dt@kernel.org" <robh+dt@kernel.org>,
-	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>, "shengjiu.wang@gmail.com"
-	<shengjiu.wang@gmail.com>, "Xiubo.Lee@gmail.com" <Xiubo.Lee@gmail.com>,
-	"festevam@gmail.com" <festevam@gmail.com>, "nicoleotsuka@gmail.com"
-	<nicoleotsuka@gmail.com>, "perex@perex.cz" <perex@perex.cz>, "tiwai@suse.com"
-	<tiwai@suse.com>, "linux-sound@vger.kernel.org"
-	<linux-sound@vger.kernel.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "alsa-devel@alsa-project.org"
-	<alsa-devel@alsa-project.org>, "linuxppc-dev@lists.ozlabs.org"
-	<linuxppc-dev@lists.ozlabs.org>
-Subject: RE: Re: [PATCH 3/3] ASoC: dt-bindings: fsl,micfil: Add compatible
- string for i.MX95 platform
-Thread-Topic: Re: [PATCH 3/3] ASoC: dt-bindings: fsl,micfil: Add compatible
- string for i.MX95 platform
-Thread-Index: AQHaQ6TBFyjZYiWDNU6wGtith3GzYw==
-Date: Wed, 10 Jan 2024 09:09:45 +0000
-Message-ID:
- <DB9PR04MB9498CE3DD725B05EEAFE617FE3692@DB9PR04MB9498.eurprd04.prod.outlook.com>
-References: <20240109075551.870001-1-chancel.liu@nxp.com>
- <20240109075551.870001-4-chancel.liu@nxp.com>
- <CAEnQRZAgwmNZ8ruV6rPJ_OTzjLHL0jgPLFNbBeW1fXYG+QjAbw@mail.gmail.com>
-In-Reply-To:
- <CAEnQRZAgwmNZ8ruV6rPJ_OTzjLHL0jgPLFNbBeW1fXYG+QjAbw@mail.gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DB9PR04MB9498:EE_|DB9PR04MB9992:EE_
-x-ms-office365-filtering-correlation-id: a89c82ac-1c67-4f76-691f-08dc11bbe3b9
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info:
- hwW2nrPN+iSGPSDwjcYtTXEq5Yh4rGZYA4RS1X7gYu2jO5f6zPIHNTbOO7Y4QzvWFtcjyJ/g+uSgET0k3CvmH962ETwUcKc0G6YXS0+decnqd9wXNrqnooELrl5HjNKse17pO2p5AE5oa5GzSIB+9sDVc2Qpo6hd46UouzIg3s2CfhQM3ZJ41exFllkQJwvsylI02UA8yyKBraijfsPNtpKCIWSQlmHJ+PYyle2oal+VG9gJbhOuBnGA6HRNyrSzEF6ZXqHHUuz/IjIiKp3j6ruIP1Sj7wpmeT1AdgrwhAsTsl+MoxA3x5uh2SmvTWn61JvnkGYvyUbMIeq7AWlfuUHS9FJOCg4ceE/vXWPI/F0sPf1l0DJxahjOkQWSCrfsZhFj1H25xAb4ZimvZz7fFmnE9H5AA9tlqYgJ0+GVeDqbxwcMDL9v5FBfAVG6f/P60tcm4FqTcujZwAW3WNnwvdZ9UiBXRgExWKgJi3olizNFiGZVUOqzU2ebiC37NNY+ND5nLJaUe/2VXpkgH+U22l5LugY9HfeZAWUTTBN2OYVJp+WMEolgW7fkb/TYGuVxRVQ862p4yfwzb+MAuG8nhmm/4Oy7pz71yU1QLR4WMNzflmgIED6m6YQDCXiF+wGn
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR04MB9498.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(136003)(376002)(346002)(366004)(39860400002)(396003)(230922051799003)(186009)(1800799012)(64100799003)(451199024)(2906002)(7416002)(66556008)(6916009)(53546011)(6506007)(66946007)(76116006)(478600001)(66446008)(66476007)(7696005)(64756008)(71200400001)(9686003)(122000001)(4326008)(5660300002)(44832011)(52536014)(55016003)(8936002)(316002)(54906003)(8676002)(38070700009)(33656002)(41300700001)(38100700002)(83380400001)(26005)(86362001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?utf-8?B?bE5CV29WZU1BME9OWDlHcXprZmRNaXJOVDQxMjNYem43ZHJFVVl1QksyV1pj?=
- =?utf-8?B?c0Qwd3d1Lzk0TjV0cDFuSjNjc3lqMlBHZUNRMzNGRW9MTUpSTFpMQlQ4OUh6?=
- =?utf-8?B?WDZOb1FINmYxTW5HcHdrYUpDZmRra0oxQ052RS9DelV6V016SUh5REUvNDBN?=
- =?utf-8?B?ZWQzSEFOVVFZSzFjdGNYUC9ycU9KN1NjNTBqa25SVUhFQ0lPdlFqUUFLK1Nk?=
- =?utf-8?B?VXdvT0hNcGxmUGh0THd1Z01aeExBZkRZV2prR3lRdGx1enNWdzNQeWhIclZy?=
- =?utf-8?B?VmN2d1AxR0N1MVJlUGxzRnVGdnVqUUVObXJBcmlIN1ZqZlNlUWRnTDBCSXZq?=
- =?utf-8?B?VWZHTDRkSlNWVXh3QzBlTkM2d09UOUtaZ240cFY4aThLOHBoZC9VQUNGOENk?=
- =?utf-8?B?STdQZEQ1c1FSemJvbC9aRUh3SGE2elRPbFdOdWM1OHQ5RTlWelowdmtEdWVS?=
- =?utf-8?B?Z0lndXJDUlltRzNjeHE1bzRhKzlIZ29CbDhhcE9tVUJBYW9Jc1ZZNm04T3g2?=
- =?utf-8?B?YXYrMnc3bjNkT3NVTHFQT3c2amtkc1lVSHBYajR6S2c0QWN3Wmk5cjl4NTdG?=
- =?utf-8?B?MTUwRC8wZm50U00rVngwS3JFZUxxTzFqNTlYRDY0dVBIREhEK1NwU1I3WmxO?=
- =?utf-8?B?blFsY0Q2aVp3OHFnc2tkR1BzOVhSVWFKSDFyTHppNGp2N1p4UjZlNWFZL25J?=
- =?utf-8?B?WDBxWkRlanhORktCOGtoTGZqdHYxZVA0K0xzN3VaTVdOdGFEemM0V1ltSmZh?=
- =?utf-8?B?T210NnNTNFFoNDhScG9sNFFuWUM0OHA4U3lwZDRycytzaEROQ203b3J3Q0Zk?=
- =?utf-8?B?NnJDdnAzZ2cyd3BNOXg0Q1orOHY5YzR5aysvdVdpcU9vV2M0cmUyRko0bndP?=
- =?utf-8?B?L0xMcldDMHZFRmZmQkdEVVlqQVkvdkFxV2MzU3cxQUtxckNudUwvdVAyTzE3?=
- =?utf-8?B?Sy8wMUZzTXUxek1hUktiVmlNRC8wVjNxT0NMN3JTbUNQRFJpckgrUkdlcWJX?=
- =?utf-8?B?T0E3N3EzbndzTFVtQUovWE5ORzNsdG9QRXRXcjRQMUdUaERxTUhpb3lILzhv?=
- =?utf-8?B?ckg1UTRqTVJmaUlKZytsR2dnTmd6azE5NXhteDQyRGJsRXBzcEdIZk1scGxX?=
- =?utf-8?B?VWplSCtDWWVIVkxTbFFOQ0YrZTladWNsTlMwMENDY1VtNTdkUEsyUzF2WlM4?=
- =?utf-8?B?UlIxQ3didDNKZE1jQWZ3Zm5zcGVUSk0vZWYyQ210MlR2UmFMeFpGOGtJR2Ra?=
- =?utf-8?B?QjB6M3FSWjlKWGNkbjFnNnBEWjhQeThINTFTajBwc1hZc2FLTnl4dm1JS2ZE?=
- =?utf-8?B?TUE2Tmh6ODdvcklTcndieXpKSDRzWFAvS3dCYWRjMXE2WGg3YlhUb0h2cUR3?=
- =?utf-8?B?b3pydmZoYzQ4NmUyd01lNXV5TGhkZjk3QWJocE1wQmxYcG40aWNxOVFySGxs?=
- =?utf-8?B?OHhWcHZBcW1DdkhNM2w1eEJaZTNrcDBGd3BPYTVVNkdFQm1qKzFuSXo3RUNs?=
- =?utf-8?B?R2g0OTE5YklvRlFNdDJ1eDlMaUFkZWVrOGorK0NNSUFEYUNnZDFOWnh1K3hJ?=
- =?utf-8?B?bWxVL1BMWTM2VE45S2ZTNUlsNzdSZjhKZFd6Q2lwZW9LeGJsMm1DcWpiM0Vj?=
- =?utf-8?B?SHllckVGNUgvd05NRTdaVVdXV2h6dTBOZnpxSSsyMWRuRXpVeDg3cUJleTJ5?=
- =?utf-8?B?Q2szUFVHMnVsei9zWE42SkowTFlFNkJEWlFhVXhta2VXUUIvbkFQVkFTbSs5?=
- =?utf-8?B?bEY0aEtmWlQ5NUVZSWVFTjFsS2NuWGlxSGtvSXlhQWlpaWt4eitTUXJaMGNz?=
- =?utf-8?B?dzdOa280TFRTK0R4ei96Nk83TFUwUTB0SG04UUMxOENEOEZZRjBGczVmT3p4?=
- =?utf-8?B?L0RzOWY5R2J4QVpVQWVPY0xkakkxRzUwMmc4a2NRMmFLYWdvd1V5NndyRXNF?=
- =?utf-8?B?K01FOVh0cGgra3Jib05NUGdZY3lPcnpwU3A4enB5RWp2SG03WmtNV2tkTGU4?=
- =?utf-8?B?OHM0SVRhUk50dU5MbWV3eTFpd0xPVGZzNUxHbGVvdElxZi9sUS92clRBbzJI?=
- =?utf-8?B?N3RwMFFySWo5MlNjd3I1Z0xubFNlSWU3VnhNRmVxSjJ2SG5aZW03V2tWY0Q4?=
- =?utf-8?Q?fHzlw4cy7GBkR0ozVHWhw2CM1?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4C573C490;
+	Wed, 10 Jan 2024 09:16:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
+Received: from mail.maildlp.com (unknown [172.18.186.231])
+	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4T92FD12DTz689J2;
+	Wed, 10 Jan 2024 17:14:56 +0800 (CST)
+Received: from lhrpeml500005.china.huawei.com (unknown [7.191.163.240])
+	by mail.maildlp.com (Postfix) with ESMTPS id 1AB6B140DFC;
+	Wed, 10 Jan 2024 17:16:30 +0800 (CST)
+Received: from localhost (10.202.227.76) by lhrpeml500005.china.huawei.com
+ (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Wed, 10 Jan
+ 2024 09:16:09 +0000
+Date: Wed, 10 Jan 2024 09:16:08 +0000
+From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+CC: Jonathan Cameron <jic23@kernel.org>, Nuno Sa <nuno.sa@analog.com>,
+	<linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>, Lars-Peter Clausen
+	<lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, "Rob
+ Herring" <robh+dt@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Greg
+ Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
+	<rafael@kernel.org>, Frank Rowand <frowand.list@gmail.com>, Olivier Moysan
+	<olivier.moysan@foss.st.com>
+Subject: Re: [PATCH v4 6/8] iio: add the IIO backend framework
+Message-ID: <20240110091608.00003bfc@Huawei.com>
+In-Reply-To: <8085910199d4b653edb61c51fc80a503ee50131d.camel@gmail.com>
+References: <20231220-iio-backend-v4-0-998e9148b692@analog.com>
+	<20231220-iio-backend-v4-6-998e9148b692@analog.com>
+	<20231221174437.5935a5c3@jic23-huawei>
+	<f7df488b33c89ce7078c39a87ba1108fac5a10bd.camel@gmail.com>
+	<20231226155904.043fee13@jic23-huawei>
+	<8085910199d4b653edb61c51fc80a503ee50131d.camel@gmail.com>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DB9PR04MB9498.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a89c82ac-1c67-4f76-691f-08dc11bbe3b9
-X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Jan 2024 09:09:45.6541
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: wrhHDEI/0HfiYan2xmJ8QPFwWOrzwTcv4H+adc8MAEdUsl1HESOD+3dGe3HRB01OcSx32nL3B446yysmVCym9g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB9992
+Content-Type: text/plain; charset="ISO-8859-1"
+Content-Transfer-Encoding: quoted-printable
+X-ClientProxiedBy: lhrpeml500004.china.huawei.com (7.191.163.9) To
+ lhrpeml500005.china.huawei.com (7.191.163.240)
 
-PiBPbiBUdWUsIEphbiA5LCAyMDI0IGF0IDk6NTjigK9BTSBDaGFuY2VsIExpdSA8Y2hhbmNlbC5s
-aXVAbnhwLmNvbT4gd3JvdGU6DQo+ID4NCj4gPiBBZGQgY29tcGF0aWJsZSBzdHJpbmcgImZzbCxp
-bXg5NS1taWNmaWwiIGZvciBpLk1YOTUgcGxhdGZvcm0uDQo+ID4NCj4gPiBTaWduZWQtb2ZmLWJ5
-OiBDaGFuY2VsIExpdSA8Y2hhbmNlbC5saXVAbnhwLmNvbT4NCj4gPiAtLS0NCj4gPiAgLi4uL2Rl
-dmljZXRyZWUvYmluZGluZ3Mvc291bmQvZnNsLG1pY2ZpbC55YW1sICAgICB8IDE1ICsrKysrKysr
-KysrLS0tLQ0KPiA+ICAxIGZpbGUgY2hhbmdlZCwgMTEgaW5zZXJ0aW9ucygrKSwgNCBkZWxldGlv
-bnMoLSkNCj4gPg0KPiA+IGRpZmYgLS1naXQgYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmlu
-ZGluZ3Mvc291bmQvZnNsLG1pY2ZpbC55YW1sDQo+IGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVl
-L2JpbmRpbmdzL3NvdW5kL2ZzbCxtaWNmaWwueWFtbA0KPiA+IGluZGV4IGI3ZTYwNTgzNTYzOS4u
-ZjBkM2QxMWQwN2QyIDEwMDY0NA0KPiA+IC0tLSBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9i
-aW5kaW5ncy9zb3VuZC9mc2wsbWljZmlsLnlhbWwNCj4gPiArKysgYi9Eb2N1bWVudGF0aW9uL2Rl
-dmljZXRyZWUvYmluZGluZ3Mvc291bmQvZnNsLG1pY2ZpbC55YW1sDQo+ID4gQEAgLTE1LDEwICsx
-NSwxNyBAQCBkZXNjcmlwdGlvbjogfA0KPiA+DQo+ID4gIHByb3BlcnRpZXM6DQo+ID4gICAgY29t
-cGF0aWJsZToNCj4gPiAtICAgIGVudW06DQo+ID4gLSAgICAgIC0gZnNsLGlteDhtbS1taWNmaWwN
-Cj4gPiAtICAgICAgLSBmc2wsaW14OG1wLW1pY2ZpbA0KPiA+IC0gICAgICAtIGZzbCxpbXg5My1t
-aWNmaWwNCj4gPiArICAgIG9uZU9mOg0KPiA+ICsgICAgICAtIGl0ZW1zOg0KPiA+ICsgICAgICAg
-ICAgLSBlbnVtOg0KPiA+ICsgICAgICAgICAgICAgIC0gZnNsLGlteDk1LW1pY2ZpbA0KPiA+ICsg
-ICAgICAgICAgLSBjb25zdDogZnNsLGlteDkzLW1pY2ZpbA0KPiA+ICsNCj4gPiArICAgICAgLSBp
-dGVtczoNCj4gPiArICAgICAgICAgIC0gZW51bToNCj4gPiArICAgICAgICAgICAgICAtIGZzbCxp
-bXg4bW0tbWljZmlsDQo+ID4gKyAgICAgICAgICAgICAgLSBmc2wsaW14OG1wLW1pY2ZpbA0KPiA+
-ICsgICAgICAgICAgICAgIC0gZnNsLGlteDkzLW1pY2ZpbA0KPiANCj4gTXkgeWFtbCBrbm93bGVk
-Z2UgaXMgdmVyeSBsaW1pdGVkLiBDYW4geW91IGRlc2NyaWJlIGluIG5hdHVyYWwNCj4gbGFuZ3Vh
-Z2UgaW4gdGhlIGNvbW1pdCB3aGF0IGV4YWN0bHkgd2UgYXJlIGRvaW5nIGhlcmUuDQo+IA0KPiBX
-aHkgc29tZXRoaW5nIGxpa2UgdGhpczoNCj4gDQo+IA0KPiA+ICAgIGNvbXBhdGlibGU6DQo+ID4g
-ICAgIGVudW06DQo+ID4gICAgICAgLSBmc2wsaW14OG1tLW1pY2ZpbA0KPiA+ICAgICAgIC0gZnNs
-LGlteDhtcC1taWNmaWwNCj4gPiAgICAgICAtIGZzbCxpbXg5My1taWNmaWwNCj4gKyAgICAgICAg
-LSBmc2wsaW14OTUtbWljZmlsDQo+IA0KPiBJc24ndCBlbm91Z2g/DQoNCk5vLiBUaGlzIHNob3dz
-IE1JQ0ZJTCBvbiBpLk1YOTUgaXMgZGlmZmVyZW50IGZyb20gaXQgb24gSS5NWDkzLg0KDQpIb3dl
-dmVyIGkuTVg5NSBNSUNGSUwgaXMgY29tcGF0aWJsZSB3aXRoIGkuTVg5MyBNSUNGSUwuDQpUaGUg
-RFQgbm9kZSBvZiBNSUNGSUwgb24gaS5NWDk1IGxvb2tzIGxpa2U6DQptaWNmaWw6IG1pY2ZpbEA0
-NDUyMDAwMCB7DQoJY29tcGF0aWJsZSA9ICJmc2wsaW14OTUtbWljZmlsIiwgImZzbCxpbXg5My1t
-aWNmaWwiOw0KCS4uLg0KfTsNCg0KUmVnYXJkcywgDQpDaGFuY2VsIExpdQ0K
+On Tue, 09 Jan 2024 13:15:54 +0100
+Nuno S=E1 <noname.nuno@gmail.com> wrote:
+
+> On Tue, 2023-12-26 at 15:59 +0000, Jonathan Cameron wrote:
+> >  =20
+> > > > > +
+> > > > > +=A0=A0=A0=A0=A0=A0=A0ret =3D devm_add_action_or_reset(dev, iio_b=
+ackend_release, back);
+> > > > > +=A0=A0=A0=A0=A0=A0=A0if (ret)
+> > > > > +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0return ret;
+> > > > > +
+> > > > > +=A0=A0=A0=A0=A0=A0=A0link =3D device_link_add(dev, back->dev,
+> > > > > DL_FLAG_AUTOREMOVE_CONSUMER);
+> > > > > +=A0=A0=A0=A0=A0=A0=A0if (!link)
+> > > > > +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0pr_warn("%s: Could =
+not link to supplier(%s)\n",
+> > > > > dev_name(dev),
+> > > > > +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0dev_name(back->dev));=A0  =20
+> > > >=20
+> > > > Why is that not an error and we try to carry on?=A0  =20
+> > >=20
+> > > I guess having the links are not really mandatory for the whole thing=
+ to
+> > > work (more
+> > > like a nice to have). That's also how this is handled in another subs=
+ystems
+> > > so I
+> > > figured it would be fine.
+> > >=20
+> > > But since you are speaking about this... After you pointing me to Bar=
+tosz's
+> > > talk and
+> > > sawing it (as stuff like this is mentioned), I started to question th=
+is. The
+> > > goal
+> > > with the above comment is that if you remove the backend, all the con=
+sumers
+> > > are
+> > > automatically removed (unbound). Just not sure if that's what we alwa=
+ys want
+> > > (and we
+> > > are already handling the situation where a backend goes away with -EN=
+ODEV)
+> > > as some
+> > > frontends could still be useful without the backend (I guess that cou=
+ld be
+> > > plausible). I think for now we don't really have such usecases so the=
+ links
+> > > can make
+> > > sense (and we can figure something like optionally creating these lin=
+ks if
+> > > we ever
+> > > need too) but having your inputs on this will definitely be valuable.=
+ =20
+> >=20
+> > I'm not keen on both trying to make everything tear down cleanly AND ma=
+king
+> > sure
+> > it all works even if we don't. That just adds two code paths to test wh=
+en
+> > either
+> > should be sufficient on its own.=A0 I don't really mind which.=A0 Barto=
+sz's stuff =20
+>=20
+> Agreed...
+>=20
+> > is nice, but it may not be the right solution here.  =20
+>=20
+> There's pros and cons on both options...=A0
+>=20
+> For the device links the cons I see is that it depends on patch 3 for it =
+to work
+> (or some other approach if the one in that patch is not good) - not reall=
+y a
+> real con though :). The biggest concern is (possible) future uses where w=
+e end
+> up with cases where removing a backend is not really a "deal breaker". I =
+could
+> think of frontends that have multiple backends (one per data path) and re=
+moving
+> one backend would not tear the whole thing down (we would just have one n=
+on
+> functional data paths/port where the others are still ok).
+
+I wouldn't waste time catering to such set ups.  If the whole thing gets
+torn down because one element went away that should be fine.
+To do anything else I'd want to see a real world use case.
+
+>=20
+> Olivier, for STM usecases, do we always need the backend? I mean, does it=
+ make
+> sense to always remove/unbind the frontend in case the backend is unbound?
+>=20
+> Maybe some of your usecases already "forces" us with a decision.=20
+>=20
+> The biggest pro I see is code simplicity. If we can assume the frontend c=
+an
+> never exist in case one of the backends is gone, we can:
+>=20
+>  * get rid of the sync mutex;
+>  * get rid of the kref and bind the backend object lifetime to the backend
+> device (using devm_kzalloc() instead of kzalloc + refcount.
+>=20
+> Basically, we would not need to care about syncing the backend existence =
+with
+> accessing it...
+> To sum up, the device_links approach tends to be similar (not identical) =
+to the
+> previous approach using the component API.
+>=20
+> The biggest pro I see in Bartosz's stuff is flexibility. So it should jus=
+t work
+> in whatever future usecases we might have. I fear that going the device_l=
+inks
+> road we might end up needing this stuff anyways.
+
+I'm keen on it if it simplifies code or becomes the dominant paradigm for s=
+uch
+things in the kernel (so becomes what people expect).  That isn't true yet
+and I doubt it will be particularly soon.  If things head that way we can
+revisit as it would enable things that currently we don't support - nothing
+should break.
+
+Jonathan
+
+
+>=20
+> Obviously, the biggest con is code complexity (not that bad though) as we=
+ always
+> need to properly sync any backend callback.
+>=20
+> - Nuno S=E1
+> >  =20
+>=20
+
 
