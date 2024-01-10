@@ -1,149 +1,158 @@
-Return-Path: <devicetree+bounces-30986-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-30987-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B086A829A3D
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 13:13:27 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE55A829A42
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 13:14:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5EDF01F28F65
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 12:13:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 57BA21F28F61
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 12:14:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32D0E481BD;
-	Wed, 10 Jan 2024 12:13:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF025481D0;
+	Wed, 10 Jan 2024 12:14:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="Hjz2K9n+"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JeWMA7V/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DC8647A57
-	for <devicetree@vger.kernel.org>; Wed, 10 Jan 2024 12:13:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
-Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-50e78f1f41fso4159364e87.2
-        for <devicetree@vger.kernel.org>; Wed, 10 Jan 2024 04:13:21 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AEFF481A5
+	for <devicetree@vger.kernel.org>; Wed, 10 Jan 2024 12:14:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-40e549adb7dso11505615e9.2
+        for <devicetree@vger.kernel.org>; Wed, 10 Jan 2024 04:14:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ragnatech.se; s=google; t=1704888799; x=1705493599; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=sul2vRO9Fzn0UMSUus+BZBPqeYHWDQxaw3bzygHSyZc=;
-        b=Hjz2K9n+E4TEUFPx1YmvKuBiMGZ+YbKgLC8Qp0bogk4tkBLizvHa8CDvKdWSIFTULh
-         S8e6zunhLQ7+6u6ILuOWQxjpWC3B1kg5jHea783ALsmdv0q8L9ExMJAykMz2pE8t9hj/
-         H+45hF2MsKfC9lW+4Jl+jC1PHH+8SNQTnc3ta9IUoQFri3R4cPk1Wie2NrtumArwbgRl
-         siHkWoPu07Zt8ksX4g0l3MPaCmtGKRdISbdyjuCaZfqyxRQm5Zdfx8jQsxoGRM0D05BW
-         OqRdlm8R4tRF1wRboXrpHDozc4BpM0IK2cLG1lAOq6YY3gCFaUsX9OdwQfr2nYPxQ0Ax
-         S1Cg==
+        d=linaro.org; s=google; t=1704888841; x=1705493641; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=SsQ3rn/rM2YAAgrA+elPEtB83uaUKdkc1ov3OY/ym/Q=;
+        b=JeWMA7V/YDK8VUFijfgeaLZ23eaqWQl3EHMGeaGsO79lTm4hUMv353ARNL3xfuPzB/
+         71xJqE7fqSDZGc0sCHwHKrtvBj/NOiFW67SC/EPnaM8TV1XZTpy4nqIxr3o+UQu+0p25
+         EYiCnbjfh44B4y4JM6UitbPmPl/ysFzxXs9YeaEKvHzr70wNi2BqwsCOwd+4u6Qtp3g7
+         x3n0przOPQ5XSbnsWNejTOdPIMLWvZnfHo70AbYx1sG3uCXKcirAOJTL8ISDoL9a8PE4
+         NF8viVPahzhFWVuCdMqmezlOWAuuH6xzqwOKgzD8fEpqGkEP3mbkMXtj4BWzUntdnM5M
+         Xo6Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704888800; x=1705493600;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
+        d=1e100.net; s=20230601; t=1704888841; x=1705493641;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=sul2vRO9Fzn0UMSUus+BZBPqeYHWDQxaw3bzygHSyZc=;
-        b=DVo2glZ0hkodsu/scGU9JCAqyjP6h5hfO6/S0K9GVjaB/UYnEbe0axE5XGDuXpkCpJ
-         42d4AaQZdQdtA5hgNprbn6uXuGTt7YTAIip9RVTxmLJGbNpuyUxU1+zzQzcziOGLZG4W
-         3RaAw/IgTl3g0zEdAsNz3XuC+pZTOeIuXk1N3gTfqNTciDqKDROd2D5n2BBFwjvH/vgb
-         qehfFBDDkwl6FL8/US5dJh8pZJMprp5rfRRugK9b0aDwIx8xG38Yky1jLyRxWiQcI1ca
-         7R91FF3iLlmUPIz4NuqwlATughT0X6Dl0Yl92FyUfdKi41BKtQBqDu1ck9AaL7meI2Wu
-         gbew==
-X-Gm-Message-State: AOJu0YzVWwNJ2EhOP9qlIOHEQLm7XqUNdcaj3Spgarhgv2YwDCjqS5I7
-	2HhgTcsa0+TaKADu/t9Sw/2O52nBFAgn1g==
-X-Google-Smtp-Source: AGHT+IF1BKGjGmz8LspFign6ek2eCcSN5Ct8qEn/F4AJ37X/svKfK3A0NBeEYN5c5XQWGzNUoY3rlA==
-X-Received: by 2002:a05:6512:3991:b0:50e:b1b7:9301 with SMTP id j17-20020a056512399100b0050eb1b79301mr396237lfu.81.1704888799672;
-        Wed, 10 Jan 2024 04:13:19 -0800 (PST)
-Received: from localhost (h-46-59-36-113.A463.priv.bahnhof.se. [46.59.36.113])
-        by smtp.gmail.com with ESMTPSA id d8-20020a193848000000b0050e7d58e58csm659305lfj.174.2024.01.10.04.13.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Jan 2024 04:13:19 -0800 (PST)
-Date: Wed, 10 Jan 2024 13:13:18 +0100
-From: Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>
-To: Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>,
-	Cong Dang <cong.dang.xn@renesas.com>,
-	Duy Nguyen <duy.nguyen.rh@renesas.com>,
-	Hai Pham <hai.pham.ud@renesas.com>,
-	Linh Phung <linh.phung.jy@renesas.com>,
-	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-pm@vger.kernel.org
-Subject: Re: [PATCH 07/15] clk: renesas: rcar-gen4: Add support for FRQCRC1
-Message-ID: <20240110121318.GG1625657@ragnatech.se>
-References: <cover.1704726960.git.geert+renesas@glider.be>
- <b7ec45c86c2bd17cf3b3de43194c4821b606e483.1704726960.git.geert+renesas@glider.be>
+        bh=SsQ3rn/rM2YAAgrA+elPEtB83uaUKdkc1ov3OY/ym/Q=;
+        b=vxEX3eVEbLDFcwwojyj3gJBvKKUUKoZ/AnwA6G3Y53AImuOfjy9QXp7/ocQ2Mq/hXC
+         c0fI0m6o7yM2OpFOKOh77LiHjuI43xgCBaNJ1IIWrr31VGkJSuw4l4k6VY1V/EyS+a5T
+         rIhlesyPIUG3ja37wNsQZ4PV+CrupWUuA9GnCiZE7Zjk76XN9AUZL++Oq0oe5f3uc/D2
+         5o0CCQASOvNlcvkDHajt0Mbb0NEz1BXL33nM/BwD+6yh4cSSrqBCt40VPAHiUbpJCHly
+         uYqrmTh/xcUExlhuRumXGYpydqDnHS/or6TZ9Nd0kyPlUOyOCfcLOUZB4wd1EtZaxZ4g
+         89kA==
+X-Gm-Message-State: AOJu0YwLXhCV78r4kb9o1bzV3knhEGPXUEFtfY6wfoAcPvwSQh19+LWN
+	GUQUoPxglYI/LRBBYobdCM06sFdxQ1XrCA==
+X-Google-Smtp-Source: AGHT+IHXB8FIoN/BqHOSM4SXlaedpMXDdRqNcLWkGEQB6dkpB+xS+piLFG/BsL3LiczGaLcDvMqc9Q==
+X-Received: by 2002:a05:600c:1c85:b0:40e:5972:4970 with SMTP id k5-20020a05600c1c8500b0040e59724970mr157656wms.109.1704888841400;
+        Wed, 10 Jan 2024 04:14:01 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.223.112])
+        by smtp.gmail.com with ESMTPSA id je3-20020a05600c1f8300b0040d87100733sm2000936wmb.39.2024.01.10.04.13.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 10 Jan 2024 04:14:00 -0800 (PST)
+Message-ID: <458ded82-b200-4946-9b22-31cda68f1c8c@linaro.org>
+Date: Wed, 10 Jan 2024 13:13:58 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <b7ec45c86c2bd17cf3b3de43194c4821b606e483.1704726960.git.geert+renesas@glider.be>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/6] Add PPE device tree node for Qualcomm IPQ SoC
+Content-Language: en-US
+To: Luo Jie <quic_luoj@quicinc.com>, andersson@kernel.org,
+ konrad.dybcio@linaro.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+ quic_kkumarcs@quicinc.com, quic_suruchia@quicinc.com, quic_soni@quicinc.com,
+ quic_pavir@quicinc.com, quic_souravp@quicinc.com, quic_linchen@quicinc.com,
+ quic_leiwei@quicinc.com
+References: <20240110112059.2498-1-quic_luoj@quicinc.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240110112059.2498-1-quic_luoj@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Geert,
-
-Thanks for your work.
-
-On 2024-01-08 16:33:46 +0100, Geert Uytterhoeven wrote:
-> R-Car V4H and V4M have a second Frequency Control Register C.
-> Add support for this by treating bit field offsets beyond 31 as
-> referring to the second register.
+On 10/01/2024 12:20, Luo Jie wrote:
+> The PPE(packet process engine) hardware block is supported by Qualcomm
+> IPQ platforms, such as IPQ9574 and IPQ5332. The PPE includes the various
+> packet processing modules such as the routing and bridging flow engines,
+> L2 switch capability, VLAN and tunnels. Also included are integrated
+> ethernet MAC and PCS(uniphy), which is used to connect with the external
+> PHY devices by PCS.
 > 
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-
-Reviewed-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
-
-> ---
-> Tested by enabling CLOCK_ALLOW_WRITE_DEBUGFS and checking the impact of
-> CPU core clk rate on CPU core speed on R-Car V4M.
-> ---
->  drivers/clk/renesas/rcar-gen4-cpg.c | 10 ++++++++--
->  1 file changed, 8 insertions(+), 2 deletions(-)
+> This patch series enables support for the following DTSI functionality
+> for Qualcomm IPQ9574 and IPQ5332 chipsets. 
 > 
-> diff --git a/drivers/clk/renesas/rcar-gen4-cpg.c b/drivers/clk/renesas/rcar-gen4-cpg.c
-> index c68d8b987054131b..a2bbdad021ed8e95 100644
-> --- a/drivers/clk/renesas/rcar-gen4-cpg.c
-> +++ b/drivers/clk/renesas/rcar-gen4-cpg.c
-> @@ -179,7 +179,8 @@ static struct clk * __init cpg_pll_clk_register(const char *name,
->   */
->  #define CPG_FRQCRB			0x00000804
->  #define CPG_FRQCRB_KICK			BIT(31)
-> -#define CPG_FRQCRC			0x00000808
-> +#define CPG_FRQCRC0			0x00000808
-> +#define CPG_FRQCRC1			0x000008e0
->  
->  struct cpg_z_clk {
->  	struct clk_hw hw;
-> @@ -304,7 +305,12 @@ static struct clk * __init cpg_z_clk_register(const char *name,
->  	init.parent_names = &parent_name;
->  	init.num_parents = 1;
->  
-> -	zclk->reg = reg + CPG_FRQCRC;
-> +	if (offset < 32) {
-> +		zclk->reg = reg + CPG_FRQCRC0;
-> +	} else {
-> +		zclk->reg = reg + CPG_FRQCRC1;
-> +		offset -= 32;
-> +	}
->  	zclk->kick_reg = reg + CPG_FRQCRB;
->  	zclk->hw.init = &init;
->  	zclk->mask = GENMASK(offset + 4, offset);
-> -- 
-> 2.34.1
+> 1. Add PPE (Packet Processing Engine) HW support
 > 
+> 2. Add IPQ9574 RDP433 board support, where the PPE is connected
+>    with qca8075 PHY and AQ PHY.
 > 
+> 3. Add IPQ5332 RDP441 board support, where the PPE is connected
+>    with qca8386 and SFP
+> 
+> PPE DTS depends on the NSSCC clock driver below, which provides the
+> clocks for the PPE driver.
 
--- 
-Kind Regards,
-Niklas Söderlund
+DTS cannot depend on clock drivers. Maybe you meant that it depends on
+NSSCC clock controller DTS changes, which would be fine. However
+depending on drivers is neither necessary nor allowed.
+
+Best regards,
+Krzysztof
+
 
