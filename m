@@ -1,109 +1,143 @@
-Return-Path: <devicetree+bounces-31214-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31215-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id EDB6382A407
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 23:37:25 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 248EA82A453
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 23:56:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7BACC1F2511D
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 22:37:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C8C9D1F21B4D
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 22:56:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 773273FB3D;
-	Wed, 10 Jan 2024 22:37:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 158AB4F888;
+	Wed, 10 Jan 2024 22:56:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="UDAebcMD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="axhinZBK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5F894D13F;
-	Wed, 10 Jan 2024 22:37:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 40AMav8t003608;
-	Wed, 10 Jan 2024 16:36:57 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1704926217;
-	bh=JVXHGIOSU6hzsUeI0AuBXrAHp/rtmd5pOO9mdvCiweQ=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=UDAebcMDIziq/O9qOajvmsHPxbC4TS6NEsuR4Sv++8CIGu9W0CFw6U1eqfcgwTSHU
-	 BSs4p04FO1bkxD2NeCigieNO86aLvBaB7SsdZ1kL4j1w74DQazda79qMqO71IfQsO/
-	 jK/XFF4b3u1U6csKl1tOQyrSGiR04Kfp9xaPMsk4=
-Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 40AMav5h107905
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 10 Jan 2024 16:36:57 -0600
-Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 10
- Jan 2024 16:36:57 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 10 Jan 2024 16:36:57 -0600
-Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 40AMavCr005709;
-	Wed, 10 Jan 2024 16:36:57 -0600
-Date: Wed, 10 Jan 2024 16:36:57 -0600
-From: Nishanth Menon <nm@ti.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC: Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        Julien Panis <jpanis@baylibre.com>,
-        Pierre Gondois <pierre.gondois@arm.com>,
-        Tony Lindgren <tony@atomide.com>
-Subject: Re: [PATCH 02/16] arm64: dts: ti: k3-am62a7: Add MIT license along
- with GPL-2.0
-Message-ID: <20240110223657.pkochl4c5skf3w3h@amendment>
-References: <20240110140903.4090946-1-nm@ti.com>
- <20240110140903.4090946-3-nm@ti.com>
- <10e8c81f-0ebe-441e-b80b-9bf4df7ff782@linaro.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCA494F886;
+	Wed, 10 Jan 2024 22:56:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8DB5C433F1;
+	Wed, 10 Jan 2024 22:56:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1704927383;
+	bh=Zyd//6KwNDpLrLV+GuG4nAjU0pYfBNI8SX3KOq9P4J4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=axhinZBK6yzEcNMYnkUu3vO9vUUs2YATjWk7DgANXEsmi8H9Fah5CkS1gDExMeTn4
+	 ldcUtSJKnRYZssRqluLG0PGvCoBMNnZkcdDXxIrv2ptRX94SYN473GTaM0stHt8zOQ
+	 eZI87OsofjSdDy9VwRKhSplkpTOM0zFTWUnflQMk6eiysiaXh8FkOilA0uit5acbQT
+	 w7uPmNWphcnTWkYv64hbzwWnvvhBsEv/MVQHH9NdOWH9fftMsENxNzwN9LpRho6h1w
+	 PIKaWCFcbav0PHCbevEJig03BKVyWKLHNwA7mHaXyLnxq/j7f1wQSN8QUkoKp8AOb2
+	 B+/z5suK0/DNw==
+Received: (nullmailer pid 2864456 invoked by uid 1000);
+	Wed, 10 Jan 2024 22:56:20 -0000
+Date: Wed, 10 Jan 2024 16:56:20 -0600
+From: Rob Herring <robh@kernel.org>
+To: David Lechner <dlechner@baylibre.com>
+Cc: Mark Brown <broonie@kernel.org>, Jonathan Cameron <jic23@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Michael Hennerich <michael.hennerich@analog.com>, Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>, Frank Rowand <frowand.list@gmail.com>, Thierry Reding <thierry.reding@gmail.com>, Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>, Jonathan Corbet <corbet@lwn.net>, linux-spi@vger.kernel.org, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, linux-doc@vger.kernel.org, linux-pwm@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 11/13] dt-bindings: iio: offload: add binding for PWM/DMA
+ triggered buffer
+Message-ID: <20240110225620.GA2854345-robh@kernel.org>
+References: <20240109-axi-spi-engine-series-3-v1-0-e42c6a986580@baylibre.com>
+ <20240109-axi-spi-engine-series-3-v1-11-e42c6a986580@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <10e8c81f-0ebe-441e-b80b-9bf4df7ff782@linaro.org>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240109-axi-spi-engine-series-3-v1-11-e42c6a986580@baylibre.com>
 
-On 21:41-20240110, Krzysztof Kozlowski wrote:
-> On 10/01/2024 15:08, Nishanth Menon wrote:
-> > Modify license to include dual licensing as GPL-2.0-only OR MIT
-> > license for SoC and TI evm device tree files. This allows for Linux
-> > kernel device tree to be used in other Operating System ecosystems
-> > such as Zephyr or FreeBSD.
-> > 
-> > While at this, update the GPL-2.0 to be GPL-2.0-only to be in sync with
-> > latest SPDX conventions (GPL-2.0 is deprecated).
-> > 
-> > While at this, update the TI copyright year to sync with current year to
-> > indicate license change (and add it at least for one file which was
-> > missing TI copyright).
-> > 
-> > Cc: Julien Panis <jpanis@baylibre.com>
-> > Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > Cc: Pierre Gondois <pierre.gondois@arm.com>
+On Wed, Jan 10, 2024 at 01:49:52PM -0600, David Lechner wrote:
+> This adds a new binding for a PWM trigger and DMA data output connected
+> to an SPI controller offload instance.
 > 
-> I guess I am listed here due to some contributions, so copyrights. In
-> such case, I agree for relicensing to "GPL-2.0-only OR MIT".
+> Signed-off-by: David Lechner <dlechner@baylibre.com>
+> ---
+>  .../adi,spi-offload-pwm-trigger-dma-buffer.yaml    | 59 ++++++++++++++++++++++
+>  1 file changed, 59 insertions(+)
 > 
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> diff --git a/Documentation/devicetree/bindings/iio/offload/adi,spi-offload-pwm-trigger-dma-buffer.yaml b/Documentation/devicetree/bindings/iio/offload/adi,spi-offload-pwm-trigger-dma-buffer.yaml
+> new file mode 100644
+> index 000000000000..748cfab19eff
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/offload/adi,spi-offload-pwm-trigger-dma-buffer.yaml
+> @@ -0,0 +1,59 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/offload/adi,spi-offload-pwm-trigger-dma-buffer.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: SPI Offload with PWM Trigger and DMA Buffer Data Output
+> +
+> +maintainers:
+> +  - Michael Hennerich <Michael.Hennerich@analog.com>
+> +  - Nuno Sá <nuno.sa@analog.com>
+> +
+> +description: |
+> +  This binding describes the connection of a PWM device to the trigger input
+> +  and a DMA channel to the output data stream of a SPI Offload instance.
+> +
+> +  https://wiki.analog.com/resources/fpga/peripherals/spi_engine/offload
+> +  https://wiki.analog.com/resources/fpga/peripherals/spi_engine/tutorial
+> +
+> +$ref: /schemas/spi/adi,axi-spi-engine.yaml#/$defs/offload
 
-Thank you. And, yep, you are explicitly called out since you had one
-or more patch modifying or adding content in the affected file.
+Not really worth the complexity just for 'reg'. Generally, the bus 
+schema would define general constraints on reg like range of address 
+values and the device schema (this one) is just how many entries.
 
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+> +
+> +properties:
+> +  compatible:
+> +    const: adi,spi-offload-pwm-trigger-dma-buffer
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  pwms:
+> +    maxItems: 1
+> +
+> +  dmas:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - pwms
+> +  - dmas
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    spi {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        offloads {
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +
+> +            offload@0 {
+> +                compatible = "adi,spi-offload-pwm-trigger-dma-buffer";
+> +                reg = <0>;
+> +                pwms = <&pwm 0>;
+> +                dmas = <&dma 0>;
+> +            };
+> +        };
+
+Just make one complete example for the device.
+
+> +    };
+> 
+> -- 
+> 2.43.0
+> 
 
