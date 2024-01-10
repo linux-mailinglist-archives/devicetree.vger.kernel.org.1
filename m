@@ -1,94 +1,188 @@
-Return-Path: <devicetree+bounces-31041-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31042-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7598D829C39
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 15:15:14 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 510CD829C45
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 15:16:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2CB6D1F25FC7
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 14:15:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 673A11C2199B
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 14:16:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90F654B5AA;
-	Wed, 10 Jan 2024 14:13:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 565674C623;
+	Wed, 10 Jan 2024 14:14:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n8rvpcHO"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="uhq+nv9f"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C7DC4CDE1;
-	Wed, 10 Jan 2024 14:13:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 04CA2C433F1;
-	Wed, 10 Jan 2024 14:13:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1704896000;
-	bh=ubT3JpCdUdX478eUAkGKG4N/VQnjYxl/ajam8KuCzW0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=n8rvpcHO+s4fz4TNsN/HyfY+EIuzENurVJp3ihv32jRMWh3bE5uRVQ6yn6TDagupv
-	 AK+L8u0WZmOWZeJKFpLzri36x03PmKAbtEsHTGABMWcA5CnL1Yao6Kh6m/kS/F5UFP
-	 IJ5LBTyhV023i+Ds4OxmscnIxA0mja58bmWf7sszIrKcEjtp9A+oki/mICAftF25o0
-	 vc+dOdx+Tk/A7zsoH9ASJXqLKcottwvx0Paqx/QHCtG8hweuQC/p9/0Dh8g2M94KOP
-	 wxOAjGIw5oq+T5OGqRrrs5PeEkdml7/gM4bdYpuQL7KWSZaV4qLlw0tgu/8Z9w4WDG
-	 osLhuF9hoT/0w==
-Date: Wed, 10 Jan 2024 14:13:13 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Chen Wang <unicornxw@gmail.com>
-Cc: aou@eecs.berkeley.edu, chao.wei@sophgo.com,
-	krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
-	palmer@dabbelt.com, paul.walmsley@sifive.com,
-	richardcochran@gmail.com, robh+dt@kernel.org, sboyd@kernel.org,
-	devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-	haijiao.liu@sophgo.com, xiaoguang.xing@sophgo.com,
-	guoren@kernel.org, jszhang@kernel.org, inochiama@outlook.com,
-	samuel.holland@sifive.com, Chen Wang <unicorn_wang@outlook.com>
-Subject: Re: [PATCH v7 4/4] riscv: dts: add clock generator for Sophgo SG2042
- SoC
-Message-ID: <20240110-sedative-reggae-389839cef8c4@spud>
-References: <cover.1704694903.git.unicorn_wang@outlook.com>
- <25650372c373b15309cd9f3822306838e556d3c7.1704694903.git.unicorn_wang@outlook.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 003A24C3DB
+	for <devicetree@vger.kernel.org>; Wed, 10 Jan 2024 14:14:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-3366ddd1eddso3974745f8f.0
+        for <devicetree@vger.kernel.org>; Wed, 10 Jan 2024 06:14:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1704896090; x=1705500890; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=J8jYdrd32qpj6UYwFmFTXCiQDt/VqLbFNDBtbxT7ng8=;
+        b=uhq+nv9fAQyMBYF8Pj/TA0VBkt660Ea0Zt8nyeJgpEsM67LHzswYeBs3rzY0xrkPJr
+         EHkzHomTTlG6YDkAAt2SARrEcqAn85va/ckSiyqmqcoPuP5Yxg7I1hjmtzwCd7hAKZ6c
+         dk2pxqlzAIm4Vdgpemhl0RZPq9LvwFRtULcAZTgRr88837vLFRr0+xrzWlq9C3vX0j2/
+         q88d4Vm4B3diJdYCAdstcDlGZtzG9z//kasqvA2On1hrkLPWyrfi4z0dnNVfnEuJySue
+         zDZ3DMzT4HRotFkyf5shHrouk4A+nSTObML1+SHZKL8Jm6G34aiL1OQ/rHO7yM7GhsKf
+         wc1Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1704896090; x=1705500890;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=J8jYdrd32qpj6UYwFmFTXCiQDt/VqLbFNDBtbxT7ng8=;
+        b=qYoBxJCSggnY5r+B2s8v8OZp6EpIiCvXbhmmPy742GOFoHmxrHPpjXbncYvMzS/7W5
+         QapoP+n5s6wyJjxNObdG1pPahk0WX9TdvMddho2z/0cR81rxEtaMTc2bwZznzEMB7AGn
+         EhfyHi08CHvgqL5v479yDsCzb7IsiVH7nKfmBheSf27etlFwOPD9dalnJasRsbMSyI8Z
+         8ixs6V3p3yV6OD7mXrub1SuZXggOJlEmFDuoPIH8bVc/La7Eq93353hl9+g8YoCcVEj0
+         7M+khgQMqXmnyNH88Vwh0Eh5wUIl9H40w25Z/aP4/XT3fNtWdtUQV3shTnuZ3uyHLBuL
+         cmYQ==
+X-Gm-Message-State: AOJu0Yxys0zpbLTbz2KG33iQBFgAJ74qX01Tj8B/BVdysQIum6y5H6Pt
+	bm5WKZQy6fQhKJBh1At+QpeZlK3uqrXDDw==
+X-Google-Smtp-Source: AGHT+IEHRXaEYKtpv9wgkctGP+Dh0vUx/8AF01+K3IuIdoRHwJAw23qEH0nWy3rq7+Sqm821M/hQ1Q==
+X-Received: by 2002:a05:600c:c06:b0:40d:6f03:dd9a with SMTP id fm6-20020a05600c0c0600b0040d6f03dd9amr290341wmb.69.1704896090143;
+        Wed, 10 Jan 2024 06:14:50 -0800 (PST)
+Received: from localhost.localdomain ([2a01:e0a:55f:21e0:9e19:4376:dea6:dbfa])
+        by smtp.gmail.com with ESMTPSA id j17-20020a05600c1c1100b0040c46719966sm2363890wms.25.2024.01.10.06.14.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 10 Jan 2024 06:14:49 -0800 (PST)
+From: Julien Stephan <jstephan@baylibre.com>
+To: 
+Cc: Julien Stephan <jstephan@baylibre.com>,
+	Andy Hsieh <andy.hsieh@mediatek.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	Florian Sylvestre <fsylvestre@baylibre.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-mediatek@lists.infradead.org,
+	linux-media@vger.kernel.org,
+	Louis Kuo <louis.kuo@mediatek.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Paul Elder <paul.elder@ideasonboard.com>,
+	Phi-bang Nguyen <pnguyen@baylibre.com>,
+	Rob Herring <robh+dt@kernel.org>
+Subject: [PATCH v4 0/5] Add Mediatek ISP3.0
+Date: Wed, 10 Jan 2024 15:14:37 +0100
+Message-ID: <20240110141443.364655-1-jstephan@baylibre.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="nm/CphfyKzDGNTF4"
-Content-Disposition: inline
-In-Reply-To: <25650372c373b15309cd9f3822306838e556d3c7.1704694903.git.unicorn_wang@outlook.com>
+Content-Transfer-Encoding: 8bit
+
+This series adds the support of the Mediatek ISP3.0 found on some
+Mediatek SoCs such as the mt8365. The driver is divided into 2 parts:
+
+* SENINF: the sensor interface
+* CAMSV: this driver provides a path to bypass the SoC ISP so that image
+  data coming from the SENINF can go directly into memory without any
+  image processing. This allows the use of an external ISP or camera
+  sensor directly.
+
+The SENINF driver is based on previous work done by Louis Kuo available
+as an RFC here: https://lore.kernel.org/all/20200708104023.3225-1-louis.kuo@mediatek.com/
+
+This series depends on the following series for the phy [1]
+
+Changes in v4:
+- fix suspend/resume deadlock
+- fix various locking issues reported by Laurent Pinchart on v3
+- run LOCKDEP
+- add missing include reported by kernel-test-robot for non mediatek arch and COMPILE_TEST=y
+- use atomic poll inside mtk_camsv30_setup
+- drop second lane support as it was not used 
+- remove useless members in structs
+- fix media entity initialization
+- initialize correct pad for camsv video device
+- add isp support in mt8365.dtsi
+- rebase on 6.7
+
+Changes in v3:
+- fix a lot of formatting issues/coding style issues found in camsv/seninf reported by Angelo on v2
+- fix camsv/seninf binding file error reported by Rob
+
+Changes in v2:
+- renamed clock `cam_seninf` to `camsys`
+- renamed clock `top_mux_seninf` to `top_mux`
+- moved phy properties from port nodes to top level
+- remove patternProperties
+- specify power management dependency in the cover letter description to fix
+  missing include in dt-binding example
+- change '$ref' properties on some endpoint nodes from
+  '$ref: video-interfaces.yaml#' to '$ref: /schemas/graph.yaml#/$defs/endpoint-base'
+ where applicable
+
+Best
+Julien Stephan
+
+[1] : https://lore.kernel.org/all/20230620121928.1231745-1-jstephan@baylibre.com/
 
 
---nm/CphfyKzDGNTF4
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
 
-On Mon, Jan 08, 2024 at 02:49:53PM +0800, Chen Wang wrote:
+Louis Kuo (2):
+  dt-bindings: media: add mediatek ISP3.0 sensor interface
+  media: platform: mediatek: isp_30: add mediatek ISP3.0 sensor
+    interface
 
-> +	cgi: oscillator {
-> +		compatible = "fixed-clock";
-> +		clock-output-names = "cgi";
-> +		#clock-cells = <0>;
-> +	};
+Phi-bang Nguyen (2):
+  dt-bindings: media: add mediatek ISP3.0 camsv
+  media: platform: mediatek: isp_30: add mediatek ISP3.0 camsv
 
-Where does the name "cgi" come from and what does it mean?
-Clock Generator Input? Does the sg2042 documentation call it that?
+ .../bindings/media/mediatek,mt8365-camsv.yaml |  109 ++
+ .../media/mediatek,mt8365-seninf.yaml         |  259 +++
+ MAINTAINERS                                   |   10 +
+ arch/arm64/boot/dts/mediatek/mt8365.dtsi      |  128 ++
+ drivers/media/platform/mediatek/Kconfig       |    1 +
+ drivers/media/platform/mediatek/Makefile      |    1 +
+ drivers/media/platform/mediatek/isp/Kconfig   |    2 +
+ drivers/media/platform/mediatek/isp/Makefile  |    3 +
+ .../platform/mediatek/isp/isp_30/Kconfig      |   35 +
+ .../platform/mediatek/isp/isp_30/Makefile     |    4 +
+ .../mediatek/isp/isp_30/camsv/Makefile        |    7 +
+ .../mediatek/isp/isp_30/camsv/mtk_camsv.c     |  328 ++++
+ .../mediatek/isp/isp_30/camsv/mtk_camsv.h     |  199 +++
+ .../isp/isp_30/camsv/mtk_camsv30_hw.c         |  427 +++++
+ .../isp/isp_30/camsv/mtk_camsv30_regs.h       |   60 +
+ .../isp/isp_30/camsv/mtk_camsv_video.c        |  774 +++++++++
+ .../mediatek/isp/isp_30/seninf/Makefile       |    5 +
+ .../mediatek/isp/isp_30/seninf/mtk_seninf.c   | 1488 +++++++++++++++++
+ .../isp/isp_30/seninf/mtk_seninf_reg.h        |  112 ++
+ 19 files changed, 3952 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/mediatek,mt8365-camsv.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/mediatek,mt8365-seninf.yaml
+ create mode 100644 drivers/media/platform/mediatek/isp/Kconfig
+ create mode 100644 drivers/media/platform/mediatek/isp/Makefile
+ create mode 100644 drivers/media/platform/mediatek/isp/isp_30/Kconfig
+ create mode 100644 drivers/media/platform/mediatek/isp/isp_30/Makefile
+ create mode 100644 drivers/media/platform/mediatek/isp/isp_30/camsv/Makefile
+ create mode 100644 drivers/media/platform/mediatek/isp/isp_30/camsv/mtk_camsv.c
+ create mode 100644 drivers/media/platform/mediatek/isp/isp_30/camsv/mtk_camsv.h
+ create mode 100644 drivers/media/platform/mediatek/isp/isp_30/camsv/mtk_camsv30_hw.c
+ create mode 100644 drivers/media/platform/mediatek/isp/isp_30/camsv/mtk_camsv30_regs.h
+ create mode 100644 drivers/media/platform/mediatek/isp/isp_30/camsv/mtk_camsv_video.c
+ create mode 100644 drivers/media/platform/mediatek/isp/isp_30/seninf/Makefile
+ create mode 100644 drivers/media/platform/mediatek/isp/isp_30/seninf/mtk_seninf.c
+ create mode 100644 drivers/media/platform/mediatek/isp/isp_30/seninf/mtk_seninf_reg.h
 
-Cheers,
-Conor.
+-- 
+2.43.0
 
---nm/CphfyKzDGNTF4
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZZ6l+QAKCRB4tDGHoIJi
-0qa+AQCAkXm3hnS/5roeUv9wiqA5TkGqnJfy0iNrxNKOnLioewEA+fTdCxQZM2mJ
-WwMBMSTwB4ADTuG2ZWVcgoFa66ptYw4=
-=MhZh
------END PGP SIGNATURE-----
-
---nm/CphfyKzDGNTF4--
 
