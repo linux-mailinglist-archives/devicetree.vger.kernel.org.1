@@ -1,242 +1,150 @@
-Return-Path: <devicetree+bounces-31144-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31170-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BDFD82A182
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 20:53:44 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0811E82A224
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 21:21:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2EE71288467
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 19:53:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 85F6BB261EB
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 20:21:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A6A052F8A;
-	Wed, 10 Jan 2024 19:51:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36BF94F20D;
+	Wed, 10 Jan 2024 20:20:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="w7f2pkFZ"
+	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="QL4yN/Ia"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f53.google.com (mail-oo1-f53.google.com [209.85.161.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx1.sberdevices.ru (mx2.sberdevices.ru [45.89.224.132])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18C8350277
-	for <devicetree@vger.kernel.org>; Wed, 10 Jan 2024 19:51:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oo1-f53.google.com with SMTP id 006d021491bc7-598a5448ef5so270396eaf.0
-        for <devicetree@vger.kernel.org>; Wed, 10 Jan 2024 11:51:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1704916281; x=1705521081; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=PEIVZQBdPUNnjAlN4uqFphv/2LrUKMCMcEQYLMsoqo8=;
-        b=w7f2pkFZfTgn8a/UxuzC9V+sUXfy70U27Cq2Grf+5kwldDIsXZFMt+s7LLZ5UNBXXs
-         B9TTqh0z6HVewLwvFBUduFTSc96+anVUQG+iB2cWmHunGVL+U952IlQqau7eguDlKa5Y
-         bNXgiaGecmNdxX8LqsQ312wPxqm58niFPlJuBAFY+rwTxpI/3XwPeLqoS+PoAPX7NsMb
-         vvEUFFaMU0qu3v5xF9YLGKZflRTEFuK2zXN4mjHy0Jv4OmjhXNXAuEDgi8ZXrDuDNqJH
-         ftAQ5x1NhbuQdgYvrIsgc4Iy2NHF0nWQiDBnRT8C+qVNKTkhGe0+2XLFKZb5L/mxfR38
-         Lyzw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704916281; x=1705521081;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=PEIVZQBdPUNnjAlN4uqFphv/2LrUKMCMcEQYLMsoqo8=;
-        b=O0ToojeFWHuhKOhcZL+CRXX918ZtcrjuWtB77Wp5vkVhDyG0lrwndqP700szr8gaZU
-         wabA8DcnbD7wEEmC+kGO1mr3kqytYajOOcptUth7xJDc6Ia6nwxIjIOSKLnRhcImlfyy
-         /OBFcsCQG5F3xeWEllxb8IxEaKFMMLbvs+1wAnFO6Juzju9CyRqV202cdX1HVriDtUcM
-         C4K2YQIi+oxeeibE+k5N/FBLYnKaKdkezZa27dwANqQJN6mx5VK3a7kCsHJVnhs4UoZa
-         hIgM6o8kBf+nbfzRK5vsdEqwpMSyg/nCZ6Z+0HvRt2IAcR5oraXUdzR1MlU142ZZqEEK
-         Dwiw==
-X-Gm-Message-State: AOJu0Ywe0PznRADr2VmDVt7AvzpZcy/t/jQ7/840LS6MxhskJlxEuGfH
-	JuelTuOqBbiHXPI7G4AuT1SN5cgQyt9Qhw==
-X-Google-Smtp-Source: AGHT+IGVUnlE5QFB5qOf5dH/lNuXEUJWtpYSg/QjEdM8LJ0UAk97dhRGFSNb5W/kbU8O5dA7eDesFA==
-X-Received: by 2002:a05:6820:1ac3:b0:596:31c6:c13c with SMTP id bu3-20020a0568201ac300b0059631c6c13cmr119862oob.12.1704916281170;
-        Wed, 10 Jan 2024 11:51:21 -0800 (PST)
-Received: from freyr.lechnology.com (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
-        by smtp.gmail.com with ESMTPSA id 187-20020a4a0dc4000000b00595b35927a3sm938513oob.39.2024.01.10.11.51.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Jan 2024 11:51:20 -0800 (PST)
-From: David Lechner <dlechner@baylibre.com>
-To: Mark Brown <broonie@kernel.org>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Michael Hennerich <michael.hennerich@analog.com>,
-	=?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
-	Frank Rowand <frowand.list@gmail.com>
-Cc: David Lechner <dlechner@baylibre.com>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	=?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
-	Jonathan Corbet <corbet@lwn.net>,
-	linux-spi@vger.kernel.org,
-	linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-doc@vger.kernel.org,
-	linux-pwm@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 13/13] iio: adc: ad7380: add SPI offload support
-Date: Wed, 10 Jan 2024 13:49:54 -0600
-Message-ID: <20240109-axi-spi-engine-series-3-v1-13-e42c6a986580@baylibre.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240109-axi-spi-engine-series-3-v1-0-e42c6a986580@baylibre.com>
-References: <20240109-axi-spi-engine-series-3-v1-0-e42c6a986580@baylibre.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 527E94E1D6;
+	Wed, 10 Jan 2024 20:19:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=salutedevices.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=salutedevices.com
+Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id C4787120005;
+	Wed, 10 Jan 2024 23:12:24 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru C4787120005
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1704917544;
+	bh=tQOLNDPALbZxSNiRcS2Pal6rjPLgkScztVD9MdzJmCc=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
+	b=QL4yN/Ia+nZze44oEFWPXMJlcJ6vkYuSthIXmBOrPbRRA4Ov2ODl0nUWt5QuUMvhr
+	 dpCI6fq0d47KLiIkHPyw2bozA+fll+kLdRFUD0WsoR+fctmJhPLatVrTnxGt3X5ut+
+	 05+4d9D+4SBRuyoCQM3QYeLFx/9JF9yEAqgOg2NrsV78+N6xbGkVsQpXrrgb9X5Fi2
+	 J+B2bW69nGJv4Wwacqf583/jQ0/cqOA5S51yJCrhJVkSHewZTiYum/TKPLrnihzUlW
+	 hZCW0bkIm1bBSwqrQo3ajLzQYBg0PYMovYP0IWkaUkIR6QhUhEgSDRv/bPSzGHBLZP
+	 9fxm/V8t6OzPw==
+Received: from smtp.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Wed, 10 Jan 2024 23:12:24 +0300 (MSK)
+Received: from localhost.localdomain (100.64.160.123) by
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Wed, 10 Jan 2024 23:12:24 +0300
+From: Alexey Romanov <avromanov@salutedevices.com>
+To: <narmstrong@baylibre.com>, <neil.armstrong@linaro.org>,
+	<clabbe@baylibre.com>, <herbert@gondor.apana.org.au>, <davem@davemloft.net>,
+	<robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+	<conor+dt@kernel.org>, <khilman@baylibre.com>, <jbrunet@baylibre.com>,
+	<artin.blumenstingl@googlemail.com>
+CC: <linux-crypto@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <kernel@salutedevices.com>, Alexey
+ Romanov <avromanov@salutedevices.com>
+Subject: [PATCH v1 00/24] Support more Amlogic SoC families in crypto driver
+Date: Wed, 10 Jan 2024 23:11:16 +0300
+Message-ID: <20240110201216.18016-1-avromanov@salutedevices.com>
+X-Mailer: git-send-email 2.41.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-X-Mailer: b4 0.12.4
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 182544 [Jan 10 2024]
+X-KSMG-AntiSpam-Version: 6.1.0.3
+X-KSMG-AntiSpam-Envelope-From: avromanov@salutedevices.com
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 7 0.3.7 6d6bf5bd8eea7373134f756a2fd73e9456bb7d1a, {Tracking_from_domain_doesnt_match_to}, 100.64.160.123:7.1.2;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;salutedevices.com:7.1.1;127.0.0.199:7.1.2;smtp.sberdevices.ru:5.0.1,7.1.1, FromAlignment: s, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/01/10 17:01:00 #23071477
+X-KSMG-AntiVirus-Status: Clean, skipped
 
-This extends the ad7380 ADC driver to use the offload capabilities of
-capable SPI controllers. When offload support is available, a hardware
-triggered buffer is used to allow sampling a high rates without CPU
-intervention.
+Hello!
 
-To keep things simple, when this feature is present in hardware we
-disable the usual IIO triggered buffer and software timestamp rather
-than trying to support multiple buffers.
+This patchset expand the funcionality of the Amlogic
+crypto driver by adding support for more SoC families: 
+AXG, G12A, G12B, SM1, A1, S4.
 
-Signed-off-by: David Lechner <dlechner@baylibre.com>
----
- drivers/iio/adc/Kconfig  |  1 +
- drivers/iio/adc/ad7380.c | 84 +++++++++++++++++++++++++++++++++++++++++++++---
- 2 files changed, 80 insertions(+), 5 deletions(-)
+Also specify and enable crypto node in device tree
+for reference Amlogic devices.
 
-diff --git a/drivers/iio/adc/Kconfig b/drivers/iio/adc/Kconfig
-index cbfd626712e3..da44b585ea46 100644
---- a/drivers/iio/adc/Kconfig
-+++ b/drivers/iio/adc/Kconfig
-@@ -128,6 +128,7 @@ config AD7380
- 	select IIO_BUFFER
- 	select IIO_TRIGGER
- 	select IIO_TRIGGERED_BUFFER
-+	select IIO_HW_TRIGGERED_BUFFER
- 	help
- 	  AD7380 is a family of simultaneous sampling ADCs that share the same
- 	  SPI register map and have similar pinouts.
-diff --git a/drivers/iio/adc/ad7380.c b/drivers/iio/adc/ad7380.c
-index 80712aaa9548..a71e8b81950b 100644
---- a/drivers/iio/adc/ad7380.c
-+++ b/drivers/iio/adc/ad7380.c
-@@ -20,6 +20,7 @@
- #include <linux/sysfs.h>
- 
- #include <linux/iio/buffer.h>
-+#include <linux/iio/hw_triggered_buffer.h>
- #include <linux/iio/iio.h>
- #include <linux/iio/sysfs.h>
- #include <linux/iio/trigger_consumer.h>
-@@ -133,6 +134,7 @@ struct ad7380_state {
- 	struct spi_device *spi;
- 	struct regulator *vref;
- 	struct regmap *regmap;
-+	struct spi_offload *spi_offload;
- 	/*
- 	 * DMA (thus cache coherency maintenance) requires the
- 	 * transfer buffers to live in their own cache lines.
-@@ -335,6 +337,50 @@ static const struct iio_info ad7380_info = {
- 	.debugfs_reg_access = &ad7380_debugfs_reg_access,
- };
- 
-+static int ad7380_buffer_preenable(struct iio_dev *indio_dev)
-+{
-+	struct ad7380_state *st = iio_priv(indio_dev);
-+	struct spi_transfer xfer = {
-+		.bits_per_word = st->chip_info->channels[0].scan_type.realbits,
-+		.len = 4,
-+		.rx_buf = SPI_OFFLOAD_RX_SENTINEL,
-+	};
-+
-+	return spi_offload_prepare(st->spi_offload, st->spi, &xfer, 1);
-+}
-+
-+static int ad7380_buffer_postenable(struct iio_dev *indio_dev)
-+{
-+	struct ad7380_state *st = iio_priv(indio_dev);
-+
-+	return spi_offload_enable(st->spi_offload);
-+}
-+
-+static int ad7380_buffer_predisable(struct iio_dev *indio_dev)
-+{
-+	struct ad7380_state *st = iio_priv(indio_dev);
-+
-+	spi_offload_disable(st->spi_offload);
-+
-+	return 0;
-+}
-+
-+static int ad7380_buffer_postdisable(struct iio_dev *indio_dev)
-+{
-+	struct ad7380_state *st = iio_priv(indio_dev);
-+
-+	spi_offload_unprepare(st->spi_offload);
-+
-+	return 0;
-+}
-+
-+static const struct iio_buffer_setup_ops ad7380_buffer_ops = {
-+	.preenable = &ad7380_buffer_preenable,
-+	.postenable = &ad7380_buffer_postenable,
-+	.predisable = &ad7380_buffer_predisable,
-+	.postdisable = &ad7380_buffer_postdisable,
-+};
-+
- static int ad7380_init(struct ad7380_state *st)
- {
- 	int ret;
-@@ -417,11 +463,39 @@ static int ad7380_probe(struct spi_device *spi)
- 	indio_dev->modes = INDIO_DIRECT_MODE;
- 	indio_dev->available_scan_masks = ad7380_2_channel_scan_masks;
- 
--	ret = devm_iio_triggered_buffer_setup(&spi->dev, indio_dev,
--					      iio_pollfunc_store_time,
--					      ad7380_trigger_handler, NULL);
--	if (ret)
--		return ret;
-+	st->spi_offload = spi_offload_get(spi, 0);
-+	if (IS_ERR(st->spi_offload)) {
-+		ret = PTR_ERR(st->spi_offload);
-+
-+		if (ret == -EOPNOTSUPP)
-+			st->spi_offload = NULL;
-+		else
-+			return dev_err_probe(&spi->dev, ret,
-+					     "failed to get SPI offload\n");
-+	}
-+
-+	if (st->spi_offload) {
-+		/*
-+		 * We can't have a soft timestamp (always last channel) when
-+		 * using a hardware triggered buffer.
-+		 */
-+		indio_dev->num_channels -= 1;
-+
-+		ret = devm_iio_hw_triggered_buffer_setup(&spi->dev,
-+							 indio_dev,
-+							 st->spi_offload->dev,
-+							 &ad7380_buffer_ops);
-+		if (ret)
-+			return dev_err_probe(&spi->dev, ret,
-+					     "failed to setup offload\n");
-+	} else {
-+		ret = devm_iio_triggered_buffer_setup(&spi->dev, indio_dev,
-+						      iio_pollfunc_store_time,
-+						      ad7380_trigger_handler,
-+						      NULL);
-+		if (ret)
-+			return ret;
-+	}
- 
- 	ret = ad7380_init(st);
- 	if (ret)
+Tested on AXG, G12A/B, SM1, A1 and S4 devices via
+custom tests and trcypt module.
+
+Alexey Romanov (17):
+  drivers: crypto: meson: don't hardcode IRQ count
+  drivers: crypto: meson: make CLK controller optional
+  drviers: crypto: meson: add platform data
+  drivers: crypto: meson: add MMIO helpers
+  drivers: crypto: meson: move get_engine_number()
+  drivers: crypto: meson: use fallback for 192-bit keys
+  drivers: crypto: meson: add support for G12-series
+  drivers: crypto: meson: add support for AXG-series
+  dt-bindings: crypto: meson: add new compatibles
+  arch: arm64: dts: meson: a1: add crypto node
+  arch: arm64: dts: meson: s4: add crypto node
+  arch: arm64: dts: meson: g12: add crypto node
+  arch: arm64: dts: meson: axg: add crypto node
+  arch: arm64: dts: meson: s4-s805x2-aq222: enable crypto node
+  arch: arm64: dts: meson: a1-ad401: enable crypto node
+  arch: arm64: dts: meson: axg-s400: enable crypto node
+  arch: arm64: dts: meson: g12a-u200: enable crypto node
+
+Jan Dakinevich (7):
+  drivers: crypto: meson: drop status field from meson_flow
+  drivers: crypto: meson: move algs definition and cipher API to
+    cipher.c
+  drivers: crypto: meson: cleanup defines
+  drivers: crypto: meson: process more than MAXDESCS descriptors
+  drivers: crypto: meson: avoid kzalloc in engine thread
+  drivers: crypto: meson: introduce hasher
+  drivers: crypto: meson: add support for AES-CTR
+
+ .../bindings/crypto/amlogic,gxl-crypto.yaml   |   2 +
+ .../arm64/boot/dts/amlogic/meson-a1-ad401.dts |   4 +
+ arch/arm64/boot/dts/amlogic/meson-a1.dtsi     |   8 +
+ .../arm64/boot/dts/amlogic/meson-axg-s400.dts |   4 +
+ arch/arm64/boot/dts/amlogic/meson-axg.dtsi    |   7 +
+ .../boot/dts/amlogic/meson-g12-common.dtsi    |   7 +
+ .../boot/dts/amlogic/meson-g12a-u200.dts      |   4 +
+ .../dts/amlogic/meson-s4-s805x2-aq222.dts     |   4 +
+ arch/arm64/boot/dts/amlogic/meson-s4.dtsi     |   7 +
+ drivers/crypto/amlogic/Makefile               |   2 +-
+ drivers/crypto/amlogic/amlogic-gxl-cipher.c   | 591 ++++++++++++------
+ drivers/crypto/amlogic/amlogic-gxl-core.c     | 260 ++++----
+ drivers/crypto/amlogic/amlogic-gxl-hasher.c   | 448 +++++++++++++
+ drivers/crypto/amlogic/amlogic-gxl.h          | 116 +++-
+ 14 files changed, 1135 insertions(+), 329 deletions(-)
+ create mode 100644 drivers/crypto/amlogic/amlogic-gxl-hasher.c
 
 -- 
-2.43.0
+2.30.1
 
 
