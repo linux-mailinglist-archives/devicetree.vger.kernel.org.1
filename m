@@ -1,92 +1,117 @@
-Return-Path: <devicetree+bounces-31201-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31202-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE4EF82A342
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 22:25:57 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0EBC282A34E
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 22:33:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 912ADB25355
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 21:25:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9DA191F233C8
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 21:33:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28A7B4F894;
-	Wed, 10 Jan 2024 21:25:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 845D34F5EB;
+	Wed, 10 Jan 2024 21:33:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WV/+YMoO"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="P13+70tD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vs1-f50.google.com (mail-vs1-f50.google.com [209.85.217.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0250D4F890;
-	Wed, 10 Jan 2024 21:25:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C01ECC43390;
-	Wed, 10 Jan 2024 21:25:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1704921934;
-	bh=Ax58DmDjPNW74NGwRvhHHGsYqpwIGIZxv4FkZoGcxV4=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=WV/+YMoOvCEyWpaRpYZfa87kc6mbQ0JnVBbDnIG5yf/huJPTEyQwx8cXxan8KxinN
-	 6sNBXfQFoVBxzqwDGumSVysnHcLmYq9nvcNjV5hKJ7VVI/muQ0GlHvgx+x3+niVmq9
-	 RuxS7Zd6MOXiXUhr0aTG2YCs+G4j0caWW01HTd+aL1Hy5Lw/lJ9cj/lZOsySBKvQWB
-	 er+OO8VqSbL3cviSAhyf8p2dZWVLVPhS4OLTE6iChmLPRf4MhEPa0XRlj+JhQFQ55u
-	 m/xZtqRUdeC3VwXCXxl9xZQ9TjdHsXZYksEUz4gTQpIoWVCmyU/4A+oymlcDeOrDbP
-	 DQq9jAA3AdwNQ==
-Received: (nullmailer pid 2648568 invoked by uid 1000);
-	Wed, 10 Jan 2024 21:25:28 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 114D34F881;
+	Wed, 10 Jan 2024 21:33:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vs1-f50.google.com with SMTP id ada2fe7eead31-46788b25f95so1082931137.0;
+        Wed, 10 Jan 2024 13:33:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1704922389; x=1705527189; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=o6v5CI9Rd44b7UOY4K7sfex6hxeFhVRcBTEwwVc9S/k=;
+        b=P13+70tDRoqfn6d1xpTIx6Fr69Hmy7Yy4k5cQlWFzneSvMbPrptUhXaLQlhMPlEnw8
+         V/YhQnIVgdPow8fkRR38ggN5c9eGO52jmA8lqQNclf718JYWYIpav0VmCLxIkMemJxbl
+         QrvUNCU4d/MwjmBycaIj3uqrnPo7Y7Jt21Tm6IvLmi2dVFlEM55tERhHVlakaDno/Juq
+         dAnqSCdtdt49c4Mkwa8rVNKvIW/VbmvDJ2uyAplm+cy779mzwfTa03WtXHYPMFUN3Zw3
+         jOrXVWXTM1teavU+pmjZHk6/M5imXB0tVo41TvSn/e6AqhfyyC7udzJ0ewZm2xREpe28
+         GXwA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1704922389; x=1705527189;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=o6v5CI9Rd44b7UOY4K7sfex6hxeFhVRcBTEwwVc9S/k=;
+        b=NVcL+ZQFWxotWSeX4Qf+Y4qD9LnfxF0tvy9fSLFR3vj31KYxyYnGkBKHTvym5p9Cf3
+         e/yO3t7n0dY37eBFpglNNzofOJ8GtiufJlo1WFHVbJCXx2ROICf3NJT0eaE6XIEOFsyZ
+         bYjfIfWkClsrHEHwtAFWtAlOVj0zlNoqDm+rNDpC7wDh1IaT+Mohr7EHGzusYAKNikW+
+         cZpbjwX8nT5jF1zLvbjNUYVgJuWgTCEGOvQTGHRDEnER/m6Z7Iw2aZhxVWcersl75n2w
+         E53VK2RqW15GlXq4bpEDfAmubiYMJMxpkG8Km4VDdp2dqJmzlLwCrHkUiVFdPdkyt637
+         /XWA==
+X-Gm-Message-State: AOJu0Yy0yLjCxypnnY0nWlb+iq41cBXIbptx/t0V5jfoC37JO6xrp3OQ
+	piqwIaiGqMWX6wZAybse6iuvCJ8mC7GdsJVMjFc=
+X-Google-Smtp-Source: AGHT+IGuu/ugNHXGHzU9RbZdCb2DhxvyajPX/SjB5pTt5H6IQbtyutWMSsB5qTFq1e+9kKzFTrHGUbPAiWbibjdDW40=
+X-Received: by 2002:a67:c085:0:b0:467:f6c3:14c5 with SMTP id
+ x5-20020a67c085000000b00467f6c314c5mr149205vsi.16.1704922388712; Wed, 10 Jan
+ 2024 13:33:08 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Rob Herring <robh@kernel.org>
-To: Alexey Romanov <avromanov@salutedevices.com>
-Cc: kernel@salutedevices.com, herbert@gondor.apana.org.au, davem@davemloft.net, neil.armstrong@linaro.org, linux-arm-kernel@lists.infradead.org, linux-crypto@vger.kernel.org, khilman@baylibre.com, robh+dt@kernel.org, linux-amlogic@lists.infradead.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, narmstrong@baylibre.com, clabbe@baylibre.com, jbrunet@baylibre.com, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, artin.blumenstingl@googlemail.com
-In-Reply-To: <20240110201216.18016-17-avromanov@salutedevices.com>
-References: <20240110201216.18016-1-avromanov@salutedevices.com>
- <20240110201216.18016-17-avromanov@salutedevices.com>
-Message-Id: <170492192887.2648505.6187306596898979418.robh@kernel.org>
-Subject: Re: [PATCH v1 16/24] dt-bindings: crypto: meson: add new
- compatibles
-Date: Wed, 10 Jan 2024 15:25:28 -0600
+References: <20240110140903.4090946-1-nm@ti.com> <20240110140903.4090946-14-nm@ti.com>
+In-Reply-To: <20240110140903.4090946-14-nm@ti.com>
+From: Robert Nelson <robertcnelson@gmail.com>
+Date: Wed, 10 Jan 2024 15:32:42 -0600
+Message-ID: <CAOCHtYgFtBXdY7_PpsBi4ep0VqHOEXbqBu5+O8rB4qkChPx15w@mail.gmail.com>
+Subject: Re: [PATCH 13/16] arm64: dts: ti: beagle*: Add MIT license along with GPL-2.0
+To: Nishanth Menon <nm@ti.com>
+Cc: Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, Ayush Singh <ayushdevel1325@gmail.com>, 
+	Jason Kridner <jkridner@beagleboard.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Tony Lindgren <tony@atomide.com>, 
+	Wadim Egorov <w.egorov@phytec.de>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-
-On Wed, 10 Jan 2024 23:11:32 +0300, Alexey Romanov wrote:
-> Now we can use crypto driver at G12A/G12B/S4/A1/SM1/AXG.
-> 
-> Signed-off-by: Alexey Romanov <avromanov@salutedevices.com>
+On Wed, Jan 10, 2024 at 8:09=E2=80=AFAM Nishanth Menon <nm@ti.com> wrote:
+>
+> Modify license to include dual licensing as GPL-2.0-only OR MIT
+> license for device trees belonging to BeagleBoard.org Foundation
+> platforms. This allows for Linux kernel device tree to be used in
+> other Operating System ecosystems such as Zephyr or FreeBSD.
+>
+> While at this, update the GPL-2.0 to be GPL-2.0-only to be in sync
+> with latest SPDX conventions (GPL-2.0 is deprecated).
+>
+> While at this, update the copyright year to sync with current year
+> to indicate license change.
+>
+> Cc: Ayush Singh <ayushdevel1325@gmail.com>
+> Cc: Jason Kridner <jkridner@beagleboard.org>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Cc: Robert Nelson <robertcnelson@gmail.com>
+> Cc: Tony Lindgren <tony@atomide.com>
+> Cc: Wadim Egorov <w.egorov@phytec.de>
+>
+> Signed-off-by: Nishanth Menon <nm@ti.com>
 > ---
->  .../devicetree/bindings/crypto/amlogic,gxl-crypto.yaml          | 2 ++
->  1 file changed, 2 insertions(+)
-> 
+>  .../boot/dts/ti/k3-am625-beagleplay-csi2-ov5640.dtso      | 4 ++--
+>  .../boot/dts/ti/k3-am625-beagleplay-csi2-tevi-ov5640.dtso | 4 ++--
+>  arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts            | 6 +++---
+>  arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts        | 8 ++++----
+>  4 files changed, 11 insertions(+), 11 deletions(-)
+>
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Acked-by: Robert Nelson <robertcnelson@gmail.com>
 
-yamllint warnings/errors:
+Regards,
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/crypto/amlogic,gxl-crypto.example.dtb: crypto-engine@c883e000: compatible: ['amlogic,gxl-crypto'] is too short
-	from schema $id: http://devicetree.org/schemas/crypto/amlogic,gxl-crypto.yaml#
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240110201216.18016-17-avromanov@salutedevices.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+--=20
+Robert Nelson
+https://rcn-ee.com/
 
