@@ -1,100 +1,52 @@
-Return-Path: <devicetree+bounces-31082-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31083-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA0CC829E3E
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 17:12:03 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A963F829E55
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 17:17:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EF5F71C229FB
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 16:12:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 43D651F216C6
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 16:17:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E7474C63A;
-	Wed, 10 Jan 2024 16:11:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 816E44CB2A;
+	Wed, 10 Jan 2024 16:17:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="a3/tV8d/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MvsM2yLM"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF6914CB28;
-	Wed, 10 Jan 2024 16:11:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1B2CAC433C7;
-	Wed, 10 Jan 2024 16:11:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F76C4BAA3;
+	Wed, 10 Jan 2024 16:17:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BD2A0C433C7;
+	Wed, 10 Jan 2024 16:17:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1704903118;
-	bh=TjB+hX1j46U+CflASkOHj4zTVTFUzA+ZbdAbWk2ryio=;
+	s=k20201202; t=1704903469;
+	bh=pbmSsy1/d6xhr1NG03LlnQKyRKDqNIQsX4bsmOvDy4I=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=a3/tV8d/TpSrMMPBNe5Bio2tR6BViJo6DwIaOLYJ6dXTqqXN76rzMj52xy/TIVYU7
-	 YzbZtfDGI1pGi7Q//oC4Lp0Acc/UwQQCLOjmh7jQh7VaiOqDdh1HTPGwZSaIbsiby+
-	 cCWurXhUDUygFH/SHOzL1xtk0z4CjUb628cwyw7KwK5NQyVn9isyvX7rtXkjU4nI6S
-	 DQNgr5OzBM4Aitk1dNvvk+XrhQ2Lg0d0lHZa/o80mZ7ygooh+LXNeO/Yn7VkenHUa+
-	 tA/u0+X+ndRiC+QBeR8hwS9cofweI4PMtsBo9b5Fdo2xUbrp3dUKq39pJv1WiqrCDO
-	 edCMvCyR2u92g==
-Date: Wed, 10 Jan 2024 16:11:44 +0000
+	b=MvsM2yLMyutDa9ogOPS0SwOZ4ivFss6rzuKCVYgE4yuHWSWQl2Vc7l/lmRuk4U3JU
+	 3+VNA2r0i95Xy3BB4utIttOd27N1l02xdoJh5GTCGKTTUMjFGnRsSp7zH7yqP+UMS8
+	 kr1gB0+XZBVMxZ4Kbgg7/4To3M55wGyHMiA52n81Y0nSBjsgM3ayhrtaGdHH1xd8yo
+	 hIK46hbKH98MM0KzyUZGT8qFDmw3lQfwhj8l/MPiv0ebRr23kExR7rvkU8roGpoH9D
+	 Xg+sLJx8feKllrMUTCebxd6gIQhuiCrXdWN3H3ndzRQQQCSh3ikR8zhHFL/tYSuYpC
+	 XAaMNkf2F0QzA==
+Date: Wed, 10 Jan 2024 16:17:45 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Yoshinori Sato <ysato@users.sourceforge.jp>, linux-sh@vger.kernel.org,
-	Damien Le Moal <dlemoal@kernel.org>,
+To: Dumitru Ceclan <mitrutzceclan@gmail.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>,
+	Jonathan Cameron <jic23@kernel.org>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Rich Felker <dalias@libc.org>,
-	John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>,
-	Lee Jones <lee@kernel.org>, Helge Deller <deller@gmx.de>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Chris Morgan <macromorgan@hotmail.com>,
-	Yang Xiwen <forbidden405@foxmail.com>,
-	Sebastian Reichel <sre@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Randy Dunlap <rdunlap@infradead.org>, Arnd Bergmann <arnd@arndb.de>,
-	Vlastimil Babka <vbabka@suse.cz>,
-	Hyeonggon Yoo <42.hyeyoo@gmail.com>,
-	David Rientjes <rientjes@google.com>, Baoquan He <bhe@redhat.com>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Stephen Rothwell <sfr@canb.auug.org.au>,
-	Azeem Shaikh <azeemshaikh38@gmail.com>,
-	Javier Martinez Canillas <javierm@redhat.com>,
-	Max Filippov <jcmvbkbc@gmail.com>,
-	Palmer Dabbelt <palmer@rivosinc.com>, Bin Meng <bmeng@tinylab.org>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Jacky Huang <ychuang3@nuvoton.com>,
-	Lukas Bulwahn <lukas.bulwahn@gmail.com>,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
-	Sam Ravnborg <sam@ravnborg.org>,
-	Sergey Shtylyov <s.shtylyov@omp.ru>,
-	Michael Karcher <kernel@mkarcher.dialup.fu-berlin.de>,
-	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-	linux-ide@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-	linux-clk@vger.kernel.org, dri-devel@lists.freedesktop.org,
-	linux-pci@vger.kernel.org, linux-serial@vger.kernel.org,
-	linux-fbdev@vger.kernel.org
-Subject: Re: [DO NOT MERGE v6 26/37] dt-bindings: vendor-prefixes: Add smi
-Message-ID: <20240110-sincere-tripod-9d34175fcbce@spud>
-References: <cover.1704788539.git.ysato@users.sourceforge.jp>
- <c8aaf67e3fcdb7e60632c53a784691aabfc7733e.1704788539.git.ysato@users.sourceforge.jp>
- <20240109-fructose-bundle-05d01033277b@spud>
- <CAMuHMdU1z64QHJOVd3jUsOfyuDApB1+khkUV8PvjoKbwsi327g@mail.gmail.com>
+	Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Ceclan Dumitru <dumitru.ceclan@analog.com>
+Subject: Re: [PATCH v2 1/4] dt-bindings: iio: hmc425a: add conditional GPIO
+ array size constraints
+Message-ID: <20240110-unfitting-squander-b1d71c185bb7@spud>
+References: <20240110153757.5754-1-mitrutzceclan@gmail.com>
+ <20240110153757.5754-2-mitrutzceclan@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -102,70 +54,109 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="NUFAcOAItrfxYJZq"
+	protocol="application/pgp-signature"; boundary="ocmaXkT3FSa5q5AJ"
 Content-Disposition: inline
-In-Reply-To: <CAMuHMdU1z64QHJOVd3jUsOfyuDApB1+khkUV8PvjoKbwsi327g@mail.gmail.com>
+In-Reply-To: <20240110153757.5754-2-mitrutzceclan@gmail.com>
 
 
---NUFAcOAItrfxYJZq
-Content-Type: text/plain; charset=utf-8
+--ocmaXkT3FSa5q5AJ
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Jan 10, 2024 at 12:23:37PM +0100, Geert Uytterhoeven wrote:
-> Hi Conor,
+On Wed, Jan 10, 2024 at 05:37:09PM +0200, Dumitru Ceclan wrote:
+> ADRF5740 and HMC540S have a 4 bit parallel interface.
+> Update ctr-gpios description and min/maxItems values depending on the
+> matched compatible to correctly reflect the hardware properties.
 >=20
-> On Tue, Jan 9, 2024 at 7:06=E2=80=AFPM Conor Dooley <conor@kernel.org> wr=
-ote:
-> > On Tue, Jan 09, 2024 at 05:23:23PM +0900, Yoshinori Sato wrote:
-> > > Add Silicon Mortion Technology Corporation
->=20
-> Motion
->=20
-> > > https://www.siliconmotion.com/
-> > >
-> > > Signed-off-by: Yoshinori Sato <ysato@users.sourceforge.jp>
-> > > ---
-> > >  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
-> > >  1 file changed, 2 insertions(+)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b=
-/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> > > index 94ed63d9f7de..a338bdd743ab 100644
-> > > --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> > > +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> > > @@ -1283,6 +1283,8 @@ patternProperties:
-> > >      description: Skyworks Solutions, Inc.
-> > >    "^smartlabs,.*":
-> > >      description: SmartLabs LLC
-> > > +  "^smi,.*":
-> > > +    description: Silicon Motion Technology Corporation
-> >
-> > How come "smi" is used for a company with this name?
-> > Why is it not something like SMTC? There's probably some history here
-> > that I am unaware of.
->=20
-> See Documentation/devicetree/bindings/display/sm501fb.txt
-> The stock ticker is "SIMO", though.
-> https://www.nasdaq.com/market-activity/stocks/simo
+> Signed-off-by: Dumitru Ceclan <mitrutzceclan@gmail.com>
 
-If there's an existing user, there's little reason to stand in the way I
-think.
+Seems like you need a Fixes: tag, since the original binding was wrong?
+
+> ---
+>  .../bindings/iio/amplifiers/adi,hmc425a.yaml  | 33 +++++++++++++++++--
+>  1 file changed, 30 insertions(+), 3 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/iio/amplifiers/adi,hmc425a=
+=2Eyaml b/Documentation/devicetree/bindings/iio/amplifiers/adi,hmc425a.yaml
+> index 67de9d4e3a1d..a434cb8ddcc9 100644
+> --- a/Documentation/devicetree/bindings/iio/amplifiers/adi,hmc425a.yaml
+> +++ b/Documentation/devicetree/bindings/iio/amplifiers/adi,hmc425a.yaml
+> @@ -33,11 +33,38 @@ properties:
+> =20
+>    ctrl-gpios:
+>      description:
+> -      Must contain an array of 6 GPIO specifiers, referring to the GPIO =
+pins
+> -      connected to the control pins V1-V6.
+> -    minItems: 6
+> +      Must contain an array of GPIO specifiers, referring to the GPIO pi=
+ns
+> +      connected to the control pins.
+> +        ADRF5740  - 4 GPIO connected to D2-D5
+> +        HMC540S   - 4 GPIO connected to V1-V4
+> +        HMC425A   - 6 GPIO connected to V1-V6
+> +    minItems: 1
+>      maxItems: 6
+> =20
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: adi,hmc425a
+> +    then:
+> +      properties:
+> +        ctrl-gpios:
+> +          minItems: 6
+
+> +          maxItems: 6
+
+This one should not be needed, it's already set by constraints on the
+property above.
+
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            anyOf:
+> +              - const: adi,adrf5740
+> +              - const: adi,hmc540s
+> +    then:
+> +      properties:
+> +        ctrl-gpios:
+> +          minItems: 4
+> +          maxItems: 4
+
+I'd say this should be an else, but that clearly would just be churn
+since your next patch adds something with a different set of
+constraints.
+
 Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
 Cheers,
 Conor.
 
---NUFAcOAItrfxYJZq
+> +
+>  required:
+>    - compatible
+>    - ctrl-gpios
+> --=20
+> 2.42.0
+>=20
+
+--ocmaXkT3FSa5q5AJ
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZZ7BwAAKCRB4tDGHoIJi
-0q9OAQDdFxNbk8a1RbWhCTMkuhEoMnbyCFIJrJbkoyX9CvOgjgEA+TlXk2NSR1lR
-ie4wsGsQcBrpiUsYvM61XxlwsOPsRgg=
-=6SO8
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZZ7DKQAKCRB4tDGHoIJi
+0j1+AQDpkvkoiKiOe2NBsll+Y6LgOQPhgPUftyg19N0ErtAPtQD/eOIioUVTYqnh
+quZX75EybwW5nU18g2mZW9A+dBsUzw0=
+=fYKx
 -----END PGP SIGNATURE-----
 
---NUFAcOAItrfxYJZq--
+--ocmaXkT3FSa5q5AJ--
 
