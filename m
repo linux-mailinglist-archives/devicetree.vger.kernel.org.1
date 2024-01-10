@@ -1,94 +1,136 @@
-Return-Path: <devicetree+bounces-31075-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31076-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88C9B829DBF
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 16:40:43 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id E6C1D829DC7
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 16:41:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 981791C22174
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 15:40:42 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 30294B273E1
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jan 2024 15:41:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60EC74BABE;
-	Wed, 10 Jan 2024 15:40:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 334B94C3DB;
+	Wed, 10 Jan 2024 15:40:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="in3sKJOw"
+	dkim=pass (2048-bit key) header.d=tomeuvizoso-net.20230601.gappssmtp.com header.i=@tomeuvizoso-net.20230601.gappssmtp.com header.b="KKa53fjT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com [209.85.128.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B0413FEC;
-	Wed, 10 Jan 2024 15:40:13 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 43A30C433C7;
-	Wed, 10 Jan 2024 15:40:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1704901213;
-	bh=aOTgTnA8nEO8OVvqATRlcEqMBOCoeOSc2xVIPjbo8SQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=in3sKJOwfgN7F0JSNIXK8D9g4a6GmKrI9jocfChwTfMwgGmUKnnnmWdsqHVukn3cu
-	 CoMrOrc9irVLHHOeYfet2aPT7hRGGvHw3DFURO7Xb0T6yfyEJIZUk6b8+rzSR0GOij
-	 7sLECEmhcp10a86mFl89Y5IUtjMY2/sMaq+VP33WyhaDzUtG+ayk4Wn4Or7hh9qbb8
-	 OfRdzLiFs7hmTUz7hHVW5XtgVsujaEFJVs9XmaQE3twz6ICICAshoVE5vGabiO98KY
-	 xnwWaQevXX38VQkn7IHW5Wb4MC7B91Njg32SxFwP03XuOVzH+VmL3QHDx1UaB/Y8kW
-	 alUKmcAYdd3gQ==
-Date: Wed, 10 Jan 2024 15:40:06 +0000
-From: Simon Horman <horms@kernel.org>
-To: Suraj Jaiswal <quic_jsuraj@quicinc.com>
-Cc: Vinod Koul <vkoul@kernel.org>,
-	Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-	Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Jose Abreu <joabreu@synopsys.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>, netdev@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	Prasad Sodagudi <psodagud@quicinc.com>,
-	Andrew Halaney <ahalaney@redhat.com>, Rob Herring <robh@kernel.org>,
-	kernel@quicinc.com
-Subject: Re: [PATCH net-next v8 0/3] Ethernet DWMAC5 fault IRQ support
-Message-ID: <20240110154006.GG9296@kernel.org>
-References: <20240110111649.2256450-1-quic_jsuraj@quicinc.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C9344C3C3
+	for <devicetree@vger.kernel.org>; Wed, 10 Jan 2024 15:40:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tomeuvizoso.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tomeuvizoso.net
+Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-5e7409797a1so40704137b3.0
+        for <devicetree@vger.kernel.org>; Wed, 10 Jan 2024 07:40:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=tomeuvizoso-net.20230601.gappssmtp.com; s=20230601; t=1704901232; x=1705506032; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=LPGs8xHU/Ucg5Eh2JZyutJ+LL1G8nkiyKu0z2j3NLks=;
+        b=KKa53fjTn04VQapmEVUvycTK11UxmiduDSZSxaRsfLTeEqGdjEiPDB4O44flAEyXWO
+         9l1fx6RWB4+zsjb0cWVUWttn7q5FiP2W7UTd8xwsfSwjfCu0rkYnHYSbK5gXS9H3ZZ47
+         9E780qvoxt9oMunEsQViqYjoZV77+6y5+8I2rWubSkKpxJi0QpMB4oRQd9CRcJOxwzwI
+         qB9LTu+nI0/6De1vSYB7ketQIGCQ6geo5EazSyztXpECQx1Ndh4g9YOS6VC3H5LljGjD
+         L4WefNz8NSqHygOMd9hntsUgrO3qPixjJIFb/hpkoc7T7x7TCbKSaEJiRvVXpwpF7pVJ
+         f8cg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1704901232; x=1705506032;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=LPGs8xHU/Ucg5Eh2JZyutJ+LL1G8nkiyKu0z2j3NLks=;
+        b=t2yxtm1weYcA8UFYWdiY7V2KSMD8FlWwNYBC6p5mWXsUluUahDAhkH4W+xcd1nNtlZ
+         6uWoItbGrZXqexRgop3urEzdoZmvbeSPF06/nI6s4mGW1BdNqjKanzIfdHfqP7eoVPWb
+         Al43+C+nRYHbw4OSPQs8obaLpdkVwbkjy9kImTd7Fjs0vgP0mavHo8+F4AJl0/+hvMcy
+         UAjiEDcSMjS8ArZtMpMAyC01xSKGUR/DaOmzk3fprD1/U05hvlD3b2cbQuIMEELaQzBr
+         q9TpAe47se42qMW1ANysY35bMeZ3L0GML2jxKqiTbmP2wTLd6umns/1uKFa6y3EoWdkH
+         U/7Q==
+X-Gm-Message-State: AOJu0YxSS9Hm1Zl3tJtXiUp37MfAChxTo3LDur0Sfj2PPNKNjjpBGOrY
+	1efYpFuA7iWFn1g5g5Wq1SXApBZcVNMzawHfiub7CRZOutFAog==
+X-Google-Smtp-Source: AGHT+IF3vwgXP+/dR+6Cre95yDBOCvCKUvPN+8p+eOxlmkEAHXCPDmxPbjW3qAtObCha7Zy3a4evkw==
+X-Received: by 2002:a0d:c604:0:b0:5ef:fa4f:eec3 with SMTP id i4-20020a0dc604000000b005effa4feec3mr1203377ywd.25.1704901232075;
+        Wed, 10 Jan 2024 07:40:32 -0800 (PST)
+Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com. [209.85.128.175])
+        by smtp.gmail.com with ESMTPSA id cj26-20020a05690c0b1a00b005f96476ad64sm1410278ywb.86.2024.01.10.07.40.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 10 Jan 2024 07:40:31 -0800 (PST)
+Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-5e7409797a1so40703997b3.0;
+        Wed, 10 Jan 2024 07:40:31 -0800 (PST)
+X-Received: by 2002:a0d:d102:0:b0:5e8:dcdd:973e with SMTP id
+ t2-20020a0dd102000000b005e8dcdd973emr1186189ywd.39.1704901231212; Wed, 10 Jan
+ 2024 07:40:31 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240110111649.2256450-1-quic_jsuraj@quicinc.com>
+References: <20231106092202.11127-1-tomeu@tomeuvizoso.net> <569e39a0-b91c-46f1-b55d-c9324d66339b@linaro.org>
+ <1jy1fb9n7d.fsf@starbuckisacylon.baylibre.com>
+In-Reply-To: <1jy1fb9n7d.fsf@starbuckisacylon.baylibre.com>
+From: Tomeu Vizoso <tomeu@tomeuvizoso.net>
+Date: Wed, 10 Jan 2024 16:40:19 +0100
+X-Gmail-Original-Message-ID: <CAAObsKCnbH8nWPx0_OiZur=iXyobCpZ-9EOYkpUch48oOus0_w@mail.gmail.com>
+Message-ID: <CAAObsKCnbH8nWPx0_OiZur=iXyobCpZ-9EOYkpUch48oOus0_w@mail.gmail.com>
+Subject: Re: [PATCH RESEND] arm64: dts: VIM3: Set the rates of the clocks for
+ the NPU
+To: Jerome Brunet <jbrunet@baylibre.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, linux-kernel@vger.kernel.org, 
+	Lucas Stach <l.stach@pengutronix.de>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Kevin Hilman <khilman@baylibre.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, 
+	"moderated list:ARM/Amlogic Meson SoC support" <linux-arm-kernel@lists.infradead.org>, 
+	"open list:ARM/Amlogic Meson SoC support" <linux-amlogic@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Jan 10, 2024 at 04:46:46PM +0530, Suraj Jaiswal wrote:
-> From: Suraj Jaiswal <jsuraj@qti.qualcomm.com>
-> 
-> Add support to listen Ethernet HW common safery IRQ for correctable and 
-> uncorrectable fault. The safety IRQ will be triggered for ECC(error
-> correction code), DPP(data path parity, FSM(finite state machine) error.
+On Mon, Nov 6, 2023 at 11:43=E2=80=AFAM Jerome Brunet <jbrunet@baylibre.com=
+> wrote:
+>
+>
+> On Mon 06 Nov 2023 at 10:26, Neil Armstrong <neil.armstrong@linaro.org> w=
+rote:
+>
+> > On 06/11/2023 10:22, Tomeu Vizoso wrote:
+>
+> patch title is misleading. It does not target the vim3 only but all g12
+> and sm1 HWs.
+>
+> It should start with "arm64: dts: amlogic: g12: " instead
 
-Hi Suraj,
+Thanks, have fixed and resent.
 
-[original text from Jakub]
+Cheers,
 
-## Form letter - net-next-closed
+Tomeu
 
-The merge window for v6.8 has begun and therefore net-next is closed
-for new drivers, features, code refactoring and optimizations.
-We are currently accepting bug fixes only.
-
-Please repost when net-next reopens on or after 21st January.
-
-RFC patches sent for review only are obviously welcome at any time.
-
-See: https://www.kernel.org/doc/html/next/process/maintainer-netdev.html#development-cycle
---
-pw-bot: defer
+> >> Otherwise they are left at 24MHz and the NPU runs very slowly.
+> >> Signed-off-by: Tomeu Vizoso <tomeu@tomeuvizoso.net>
+> >> Suggested-by: Lucas Stach <l.stach@pengutronix.de>
+> >> ---
+> >>   arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 3 +++
+> >>   1 file changed, 3 insertions(+)
+> >> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+> >> b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+> >> index ff68b911b729..9d5eab6595d0 100644
+> >> --- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+> >> +++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+> >> @@ -2502,6 +2502,9 @@ npu: npu@ff100000 {
+> >>              clocks =3D <&clkc CLKID_NNA_CORE_CLK>,
+> >>                       <&clkc CLKID_NNA_AXI_CLK>;
+> >>              clock-names =3D "core", "bus";
+> >> +            assigned-clocks =3D <&clkc CLKID_NNA_CORE_CLK>,
+> >> +                              <&clkc CLKID_NNA_AXI_CLK>;
+> >> +            assigned-clock-rates =3D <800000000>, <800000000>;
+> >>              resets =3D <&reset RESET_NNA>;
+> >>              status =3D "disabled";
+> >>      };
+> >
+> > Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+>
 
