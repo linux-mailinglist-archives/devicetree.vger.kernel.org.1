@@ -1,115 +1,163 @@
-Return-Path: <devicetree+bounces-31349-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31350-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE20082AE01
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 12:56:56 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id AAA5F82AE03
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 12:56:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D5C7D1C22ED6
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 11:56:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 690111F24113
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 11:56:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68473154AC;
-	Thu, 11 Jan 2024 11:56:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aqGxZwYQ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A145F156C7;
+	Thu, 11 Jan 2024 11:56:51 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
+Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com [209.85.167.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7DC5156C1
-	for <devicetree@vger.kernel.org>; Thu, 11 Jan 2024 11:56:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19B41154B6;
+	Thu, 11 Jan 2024 11:56:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-55753dc5cf0so6227746a12.0
-        for <devicetree@vger.kernel.org>; Thu, 11 Jan 2024 03:56:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1704974204; x=1705579004; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=0yIvTPrQ8BLVWMbwm04vU0qsWSE9/MDu1fzqWxMFViM=;
-        b=aqGxZwYQ4wYEearuoVvj52KnoGc9Td6lTbijHP/nwqlNUX/+mwm5NiM8o9oTe9Za6c
-         BmjOtSNiIiQHME7jOvqPDFRNpWOVDClP/tfT4sxnWERTCan9j0bXUt7IHd4Hv8QV/lNe
-         RMq8T8j3mpMAfpmiFgbkgVmvD4aN9C3ofUI2kuZzhiPKA53+hD7XdlRNVK2q3zGkFvcr
-         sn/g9csa8FPCrD9G1pKId0DRbPSGQ2hCeFLxh4nqoqgDx0mTVQ/mcmggfZ0uNygNxGpz
-         Aq28TTeeqeb+F8mDxuxTPDrVfvJeKSe3jrFeb3CxN0rk3J/+uJ8evujmBsMjaEOC8ofJ
-         WLtA==
+Received: by mail-oi1-f176.google.com with SMTP id 5614622812f47-3bbc5636b8eso3279063b6e.2;
+        Thu, 11 Jan 2024 03:56:49 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704974204; x=1705579004;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=0yIvTPrQ8BLVWMbwm04vU0qsWSE9/MDu1fzqWxMFViM=;
-        b=aqRcieGRBi0Z4tSv6UYP3JMdhiunuDCpEL8rrFCiicWrdi3EKNGZr7y1hCA798Gu1z
-         nuCtDvbV7NZwDiJzhfatjr6x24fTtIFgOFqNCs7uvGbjkCCX0AV6ajF8QS4uMWB7LqaY
-         a9zXm69RqSKiU6lPMefISrYrZzyiSu8Bk8tI01UjtnbL81QCjNAuUYnx8bvruZ28Fc0l
-         6S7R6gCADBYgGQBUolsi/yIFiyTBSRWjuawJbZWUhwet6tSytGMjTFCyMfwUmiq9wWP9
-         sYf6QluYrRZSkyDYDWxm+NW4DwcYzLMCSAdZJhA/Qk3ywRcv/UEE9GS1AJqRys0JrzPB
-         7Tyw==
-X-Gm-Message-State: AOJu0Ywm24DPkcK4hk5gMOeWc446j4xRs0WXsfZpqtS0AagCZrL+LXjF
-	5XIUHTQm6YxvGECzEwdUqQQ=
-X-Google-Smtp-Source: AGHT+IFL4l3VfpP9vRsock/rZkFB9cgwPcwFZvhFuWh4tprCmCJhLOqXSdwGPew+ohKpfLFD6n/ZaA==
-X-Received: by 2002:aa7:d318:0:b0:557:7fb6:928a with SMTP id p24-20020aa7d318000000b005577fb6928amr522200edq.72.1704974203881;
-        Thu, 11 Jan 2024 03:56:43 -0800 (PST)
-Received: from localhost.lan (031011218106.poznan.vectranet.pl. [31.11.218.106])
-        by smtp.gmail.com with ESMTPSA id k17-20020aa7c051000000b005574ffc25a0sm529883edo.31.2024.01.11.03.56.42
+        d=1e100.net; s=20230601; t=1704974209; x=1705579009;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=aRRot3fSPqM/q7yv55Kx8nQqL7oWPBUmdwcMoAjnDzI=;
+        b=f3d3u6E6haVdNUl1q1DGEmanBsFJVarbPa+P8lPLm8quExTXEz1sL12OXkURHULrlW
+         1j/hmVlOZc/PBUhScAaZx8eGtzXDgHfRmt9SMNniew1g8WOCv5TxYJGPU2RoTg9aW1B0
+         7vAJRHELmlSXb/pO2nM/Y86RHmqFu4I81b0bUTZdxNV7nPmukDjSpqKZ0igk1UQtj3wr
+         io0XonpKomaDJL8p4BWLP+2OliWdOR1pJXfi97GUIiArjbIJGgErxyayaPX0wIkviSU7
+         ceV8JJwNPkK3Qz1GI5PQhpRkzr2HHfym6mr/rEJ6FTV+MOLbF9DsgRB+Y7iKHA8MjV8r
+         bBWQ==
+X-Gm-Message-State: AOJu0YwoeXqoi87P9TP2xitmzNUXtLpJxmSVu5j58VuCI6pkeSE/HGj+
+	0Xnyou13VhGFZ8/r9JP3Nrw=
+X-Google-Smtp-Source: AGHT+IH6QIRblUbO7LPVLGc5KQtSUtO/9V3RZZMWBTBUf/ouMAQIu3s88JmEiW1PahzxYrrxcTHaSg==
+X-Received: by 2002:a05:6808:3987:b0:3bb:c56e:7f6b with SMTP id gq7-20020a056808398700b003bbc56e7f6bmr1267990oib.56.1704974209024;
+        Thu, 11 Jan 2024 03:56:49 -0800 (PST)
+Received: from localhost (fpd11144dd.ap.nuro.jp. [209.17.68.221])
+        by smtp.gmail.com with ESMTPSA id le5-20020a056a004fc500b006db00cb78a8sm997489pfb.179.2024.01.11.03.56.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 11 Jan 2024 03:56:43 -0800 (PST)
-From: =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To: Florian Fainelli <florian.fainelli@broadcom.com>
-Cc: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	William Zhang <william.zhang@broadcom.com>,
-	Anand Gore <anand.gore@broadcom.com>,
-	Kursad Oney <kursad.oney@broadcom.com>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
+        Thu, 11 Jan 2024 03:56:48 -0800 (PST)
+Date: Thu, 11 Jan 2024 20:56:46 +0900
+From: Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>
+To: Jim Quinlan <james.quinlan@broadcom.com>
+Cc: linux-pci@vger.kernel.org, Nicolas Saenz Julienne <nsaenz@kernel.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+	Cyril Brulebois <kibi@debian.org>,
+	Phil Elwell <phil@raspberrypi.com>,
 	bcm-kernel-feedback-list@broadcom.com,
-	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH] arm64: dts: broadcom: bcmbca: bcm4908: drop invalid switch cells
-Date: Thu, 11 Jan 2024 12:56:36 +0100
-Message-Id: <20240111115636.12095-1-zajec5@gmail.com>
-X-Mailer: git-send-email 2.35.3
+	Conor Dooley <conor+dt@kernel.org>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Jim Quinlan <jim2101024@gmail.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	"moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>,
+	open list <linux-kernel@vger.kernel.org>,
+	"moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" <linux-rpi-kernel@lists.infradead.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v8 0/2] PCI: brcmstb: Configure appropriate HW CLKREQ#
+ mode
+Message-ID: <20240111115646.GA1443933@rocinante>
+References: <20231113185607.1756-1-james.quinlan@broadcom.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231113185607.1756-1-james.quinlan@broadcom.com>
 
-From: Rafał Miłecki <rafal@milecki.pl>
+Hello,
 
-Ethernet switch does not have addressable subnodes.
+> V8 -- Un-advertise L1SS capability when in "no-l1ss" mode (Bjorn)
+>    -- Squashed last two commits of v7 (Bjorn)
+>    -- Fix DT binding description text wrapping (Bjorn)
+>    -- Fix incorrect Spec reference (Bjorn)
+>          s/PCIe Spec/PCIe Express Mini CEM 2.1 specification/
+>    -- Text substitutions (Bjorn)
+>          s/WRT/With respect to/ 
+>          s/Tclron/T_CLRon/
+> 
+> v7 -- Manivannan Sadhasivam suggested (a) making the property look like a
+>       network phy-mode and (b) keeping the code simple (not counting clkreq
+>       signal appearances, un-advertising capabilites, etc).  This is
+>       what I have done.  The property is now "brcm,clkreq-mode" and
+>       the values may be one of "safe", "default", and "no-l1ss".  The
+>       default setting is to employ the most capable power savings mode.
+> 
+> v6 -- No code has been changed.
+>    -- Changed commit subject and comment in "#PERST" commit (Bjorn, Cyril)
+>    -- Changed sign-off and author email address for all commits.
+>       This was due to a change in Broadcom's upstreaming policy.
+> 
+> v5 -- Remove DT property "brcm,completion-timeout-us" from	 
+>       "DT bindings" commit.  Although this error may be reported	 
+>       as a completion timeout, its cause was traced to an	 
+>       internal bus timeout which may occur even when there is	 
+>       no PCIe access being processed.  We set a timeout of four	 
+>       seconds only if we are operating in "L1SS CLKREQ#" mode.
+>    -- Correct CEM 2.0 reference provided by HW engineer,
+>       s/3.2.5.2.5/3.2.5.2.2/ (Bjorn)
+>    -- Add newline to dev_info() string (Stefan)
+>    -- Change variable rval to unsigned (Stefan)
+>    -- s/implementaion/implementation/ (Bjorn)
+>    -- s/superpowersave/powersupersave/ (Bjorn)
+>    -- Slightly modify message on "PERST#" commit.
+>    -- Rebase to torvalds master
+> 
+> v4 -- New commit that asserts PERST# for 2711/RPi SOCs at PCIe RC
+>       driver probe() time.  This is done in Raspian Linux and its
+>       absence may be the cause of a failing test case.
+>    -- New commit that removes stale comment.
+> 
+> v3 -- Rewrote commit msgs and comments refering panics if L1SS
+>       is enabled/disabled; the code snippet that unadvertises L1SS
+>       eliminates the panic scenario. (Bjorn)
+>    -- Add reference for "400ns of CLKREQ# assertion" blurb (Bjorn)
+>    -- Put binding names in DT commit Subject (Bjorn)
+>    -- Add a verb to a commit's subject line (Bjorn)
+>    -- s/accomodat(\w+)/accommodat$1/g (Bjorn)
+>    -- Rewrote commit msgs and comments refering panics if L1SS
+>       is enabled/disabled; the code snippet that unadvertises L1SS
+>       eliminates the panic scenario. (Bjorn)
+> 
+> v2 -- Changed binding property 'brcm,completion-timeout-msec' to
+>       'brcm,completion-timeout-us'.  (StefanW for standard suffix).
+>    -- Warn when clamping timeout value, and include clamped
+>       region in message. Also add min and max in YAML. (StefanW)
+>    -- Qualify description of "brcm,completion-timeout-us" so that
+>       it refers to PCIe transactions. (StefanW)
+>    -- Remvove mention of Linux specifics in binding description. (StefanW)
+>    -- s/clkreq#/CLKREQ#/g (Bjorn)
+>    -- Refactor completion-timeout-us code to compare max and min to
+>       value given by the property (as opposed to the computed value).
+> 
+> v1 -- The current driver assumes the downstream devices can
+>       provide CLKREQ# for ASPM.  These commits accomodate devices
+>       w/ or w/o clkreq# and also handle L1SS-capable devices.
+> 
+>    -- The Raspian Linux folks have already been using a PCIe RC
+>       property "brcm,enable-l1ss".  These commits use the same
+>       property, in a backward-compatible manner, and the implementaion
+>       adds more detail and also automatically identifies devices w/o
+>       a clkreq# signal, i.e. most devices plugged into an RPi CM4
+>       IO board.
 
-This fixes:
-arch/arm64/boot/dts/broadcom/bcmbca/bcm4908-asus-gt-ac5300.dtb: ethernet-switch@0: '#address-cells', '#size-cells' do not match any of the regexes: 'pinctrl-[0-9]+'
-        from schema $id: http://devicetree.org/schemas/net/dsa/brcm,sf2.yaml#
+Applied to controller/broadcom, thank you!
 
-Fixes: 527a3ac9bdf8 ("arm64: dts: broadcom: bcm4908: describe internal switch")
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
----
- arch/arm64/boot/dts/broadcom/bcmbca/bcm4908.dtsi | 3 ---
- 1 file changed, 3 deletions(-)
+[01/02] dt-bindings: PCI: brcmstb: Add property "brcm,clkreq-mode"
+        https://git.kernel.org/pci/pci/c/14b15aeb3628
+[02/02] PCI: brcmstb: Configure HW CLKREQ# mode appropriate for downstream device
+        https://git.kernel.org/pci/pci/c/e2596dcf1e9d
 
-diff --git a/arch/arm64/boot/dts/broadcom/bcmbca/bcm4908.dtsi b/arch/arm64/boot/dts/broadcom/bcmbca/bcm4908.dtsi
-index 2f124b027bbf..aadfa0ae0525 100644
---- a/arch/arm64/boot/dts/broadcom/bcmbca/bcm4908.dtsi
-+++ b/arch/arm64/boot/dts/broadcom/bcmbca/bcm4908.dtsi
-@@ -227,9 +227,6 @@ ethernet-switch@0 {
- 				brcm,num-gphy = <5>;
- 				brcm,num-rgmii-ports = <2>;
- 
--				#address-cells = <1>;
--				#size-cells = <0>;
--
- 				ports: ports {
- 					#address-cells = <1>;
- 					#size-cells = <0>;
--- 
-2.35.3
-
+	Krzysztof
 
