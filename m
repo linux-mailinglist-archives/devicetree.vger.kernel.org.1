@@ -1,138 +1,111 @@
-Return-Path: <devicetree+bounces-31403-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31404-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4855182B140
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 16:02:18 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E71982B14A
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 16:05:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E47D81F2353C
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 15:02:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B1185283FD5
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 15:05:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9DEA4A9B3;
-	Thu, 11 Jan 2024 15:02:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCCB9495D1;
+	Thu, 11 Jan 2024 15:05:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=gimli.ms.mff.cuni.cz header.i=@gimli.ms.mff.cuni.cz header.b="LSfLUfNV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bmailout1.hostsharing.net (bmailout1.hostsharing.net [83.223.95.100])
+Received: from nikam.ms.mff.cuni.cz (nikam.ms.mff.cuni.cz [195.113.20.16])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74AEA4A987;
-	Thu, 11 Jan 2024 15:02:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=wunner.de
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=h08.hostsharing.net
-Received: from h08.hostsharing.net (h08.hostsharing.net [83.223.95.28])
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CE611F191;
+	Thu, 11 Jan 2024 15:05:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gimli.ms.mff.cuni.cz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gimli.ms.mff.cuni.cz
+Received: from gimli.ms.mff.cuni.cz (gimli.ms.mff.cuni.cz [195.113.20.176])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256
-	 client-signature RSA-PSS (4096 bits) client-digest SHA256)
-	(Client CN "*.hostsharing.net", Issuer "RapidSSL TLS RSA CA G1" (verified OK))
-	by bmailout1.hostsharing.net (Postfix) with ESMTPS id 9E573300000BE;
-	Thu, 11 Jan 2024 16:02:01 +0100 (CET)
-Received: by h08.hostsharing.net (Postfix, from userid 100393)
-	id 8FBBBDAB62; Thu, 11 Jan 2024 16:02:01 +0100 (CET)
-Date: Thu, 11 Jan 2024 16:02:01 +0100
-From: Lukas Wunner <lukas@wunner.de>
-To: Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: Kalle Valo <kvalo@kernel.org>, "David S . Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Chris Morgan <macromorgan@hotmail.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	=?iso-8859-1?Q?N=EDcolas_F_=2E_R_=2E_A_=2E?= Prado <nfraprado@collabora.com>,
-	Marek Szyprowski <m.szyprowski@samsung.com>,
-	Peng Fan <peng.fan@nxp.com>, Robert Richter <rrichter@amd.com>,
-	Dan Williams <dan.j.williams@intel.com>,
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-	Terry Bowman <terry.bowman@amd.com>,
-	Kuppuswamy Sathyanarayanan <sathyanarayanan.kuppuswamy@linux.intel.com>,
-	Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>,
-	Huacai Chen <chenhuacai@kernel.org>, Alex Elder <elder@linaro.org>,
-	Srini Kandagatla <srinivas.kandagatla@linaro.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-pci@vger.kernel.org,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: Re: [RFC 3/9] PCI/portdrv: create platform devices for child OF nodes
-Message-ID: <20240111150201.GA28409@wunner.de>
-References: <20240104130123.37115-1-brgl@bgdev.pl>
- <20240104130123.37115-4-brgl@bgdev.pl>
- <20240109144327.GA10780@wunner.de>
- <CAMRc=MdXO6c6asvRSn_Z8-oFS48hroT+dazGKB6WWY1_Zu7f1Q@mail.gmail.com>
- <20240110132853.GA6860@wunner.de>
- <CAMRc=MdBSAb_kEO2r7r-vwLuRAEv7pMODOMtZoCCRAd=zsQb_w@mail.gmail.com>
- <20240110164105.GA13451@wunner.de>
- <CAMRc=MdQKPN8UbagmswjFx7_JvmJuBeuq8+9=z-+GBNUmdpWEA@mail.gmail.com>
- <20240111104211.GA32504@wunner.de>
- <CAMRc=MfT_VLo7++K4M89iYrciqWSrX_JyS1LX5kaGTNDNVQiOg@mail.gmail.com>
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
+	(No client certificate requested)
+	by nikam.ms.mff.cuni.cz (Postfix) with ESMTPS id EAEEE28392C;
+	Thu, 11 Jan 2024 16:05:40 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gimli.ms.mff.cuni.cz;
+	s=gen1; t=1704985540;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=ZJ3MP6ATmvee28CObuFouN18d3lCLkbJd16SrYyeonk=;
+	b=LSfLUfNV6FS3rNsONNFy0FXSj3mOj2FBxr/EgsZ+iudAxmjFiq4Utko0tJmeXez/fWMtM0
+	NJokRw/VcfHfibWYXOoakmWD0Tz3yYUaxulozEj3SqD2DuNUSsfZzBnCcdIuwBrqrOw26h
+	jnW022+Yha8CbbFCL2nbtwGDRMX2Kys=
+Received: from localhost (185-58-42-206.static.masterinter.net [185.58.42.206])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	(Authenticated sender: karelb)
+	by gimli.ms.mff.cuni.cz (Postfix) with ESMTPSA id A3EB8454CF6;
+	Thu, 11 Jan 2024 16:05:40 +0100 (CET)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAMRc=MfT_VLo7++K4M89iYrciqWSrX_JyS1LX5kaGTNDNVQiOg@mail.gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Thu, 11 Jan 2024 16:06:08 +0100
+Message-Id: <CYBYXXCP3O1O.2M5YMCRW3SIMY@gimli.ms.mff.cuni.cz>
+Cc: "Karel Balej" <balejk@matfyz.cz>, "Rob Herring" <robh+dt@kernel.org>,
+ "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley"
+ <conor+dt@kernel.org>, "Liam Girdwood" <lgirdwood@gmail.com>, "Mark Brown"
+ <broonie@kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, =?utf-8?q?Duje_Mihanovi=C4=87?=
+ <duje.mihanovic@skole.hr>, <~postmarketos/upstreaming@lists.sr.ht>,
+ <phone-devel@vger.kernel.org>
+Subject: Re: [RFC PATCH 1/5] mfd: 88pm88x: differences with respect to the
+ PMIC RFC series
+To: "Lee Jones" <lee@kernel.org>
+From: "Karel Balej" <karelb@gimli.ms.mff.cuni.cz>
+References: <20231228100208.2932-1-karelb@gimli.ms.mff.cuni.cz>
+ <20231228100208.2932-2-karelb@gimli.ms.mff.cuni.cz>
+ <20240111105426.GA1678981@google.com>
+In-Reply-To: <20240111105426.GA1678981@google.com>
 
-On Thu, Jan 11, 2024 at 05:09:09AM -0600, Bartosz Golaszewski wrote:
-> On Thu, 11 Jan 2024 11:42:11 +0100, Lukas Wunner <lukas@wunner.de> said:
-> > On Wed, Jan 10, 2024 at 02:18:30PM -0600, Bartosz Golaszewski wrote:
-> >> On Wed, 10 Jan 2024 17:41:05 +0100, Lukas Wunner <lukas@wunner.de> said:
-> >> > On Wed, Jan 10, 2024 at 05:26:52PM +0100, Bartosz Golaszewski wrote:
-> >> > > Seems like the following must be true but isn't in my case (from
-> >> > > pci_bus_add_device()):
-> >> > >
-> >> > >     if (pci_is_bridge(dev))
-> >> > >         of_pci_make_dev_node(dev);
-> >> > >
-> >> > > Shouldn't it evaluate to true for ports?
-> >> >
-> >> > It should.
-> >> >
-> >> > What does "lspci -vvvvxxxx -s BB:DD.F" say for the port in question?
-> 
-> # lspci -vvvvxxxx -s 0000:00:00
-> 0000:00:00.0 PCI bridge: Qualcomm Technologies, Inc Device 010b
-> (prog-if 00 [Normal decode])
-> 	Device tree node: /sys/firmware/devicetree/base/soc@0/pcie@1c00000/pcie@0
-[...]
-> 00: cb 17 0b 01 07 05 10 00 00 00 04 06 00 00 01 00
-                                                ^^
-The Header Type in config space is 0x1, i.e. PCI_HEADER_TYPE_BRIDGE.
+Lee,
 
-So pci_is_bridge(dev) does return true (unlike what you write above)
-and control flow enters of_pci_make_dev_node().
+On Thu Jan 11, 2024 at 11:54 AM CET, Lee Jones wrote:
+> The subject needs work.  Please tell us what the patches is doing.
+>
+> On Thu, 28 Dec 2023, Karel Balej wrote:
+>
+> > From: Karel Balej <balejk@matfyz.cz>
+>
+> A full an complete commit message is a must.
 
-But perhaps of_pci_make_dev_node() returns immediately because:
+I have not provided a detailed description here because as I have noted
+in the cover letter, this patch will be squashed into the MFD series. I
+sent it only as a bridge between the two series, sorry for the
+confusion.
 
-	/*
-	 * If there is already a device tree node linked to this device,
-	 * return immediately.
-	 */
-	if (pci_device_to_OF_node(pdev))
-		return;
+> > diff --git a/include/linux/mfd/88pm88x.h b/include/linux/mfd/88pm88x.h
+> > index a34c57447827..9a335f6b9c07 100644
+> > --- a/include/linux/mfd/88pm88x.h
+> > +++ b/include/linux/mfd/88pm88x.h
+> > @@ -49,6 +49,8 @@ struct pm88x_data {
+> >  	unsigned int whoami;
+> >  	struct reg_sequence *presets;
+> >  	unsigned int num_presets;
+> > +	struct mfd_cell *devs;
+> > +	unsigned int num_devs;
+>
+> Why are you adding extra abstraction?
 
-...and lspci does list a devicetree node for that Root Port.
+Right, this is probably not necessary now since I'm only implementing
+support for one of the chips - it's just that I keep thinking about it
+as a driver for both of them and thus tend to write it a bit more
+abstractly. Shall I then drop this and also the `presets` member which
+is also chip-specific?
 
-In any case, of_pci_make_dev_node() is the right place to add
-the call to of_platform_populate().  Just make sure it's called
-even if there is already a DT node for the Root Port itself.
-
-Thanks,
-
-Lukas
+Thank you, best regards,
+K. B.
 
