@@ -1,100 +1,126 @@
-Return-Path: <devicetree+bounces-31308-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31309-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D58982AC63
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 11:46:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EAC4C82AC8C
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 11:55:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 849AA1C23A0F
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 10:46:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E14C01C227B9
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 10:55:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEFE814ABB;
-	Thu, 11 Jan 2024 10:45:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F4BB14ABB;
+	Thu, 11 Jan 2024 10:53:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="udT+Qc9B"
+	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="B06em8+z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B276314AB9;
-	Thu, 11 Jan 2024 10:45:33 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0A142C43390;
-	Thu, 11 Jan 2024 10:45:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1704969933;
-	bh=1zlWT5FLY0Fih5H5xoaVcmBtvGj8QW2FkGsabbTm2LY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=udT+Qc9BRX4yCSJRvEFLb9REPtzq7Vdr4/YrTD97vO4oGx9xPBN0il0CPPc7VheiY
-	 kx4YHTNSL3Kio0PMiJ+K6a5SV3O+Dn6JtFbxae/mFaiGqnZv2DjCOv+6XILtmuCXZ4
-	 CyOtaDy4tXa6zjMeLsxsh5iNKz5WQ8WQXEM9xqdC9sp5VMSvurLFYNAFP2FXsQGQP3
-	 8gbqeANHNclNu2iU+eADO3ceQFb5UB1mGDX397VidJLj7hM7BFY+x3ypij/hCqWWkl
-	 8dV9XOSNvXQllz5yxc+yQvUrMW8FwCwhEZDLirIVf0u1lrPCIZvy6SlVOoC0XUWyZ3
-	 zQHVqgrbpgjCQ==
-Date: Thu, 11 Jan 2024 10:45:28 +0000
-From: Lee Jones <lee@kernel.org>
-To: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-Cc: linux-kernel@vger.kernel.org, linux-amarula@amarulasolutions.com,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E613F16407
+	for <devicetree@vger.kernel.org>; Thu, 11 Jan 2024 10:53:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amarulasolutions.com
+Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-5582796b85bso2372450a12.2
+        for <devicetree@vger.kernel.org>; Thu, 11 Jan 2024 02:53:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=amarulasolutions.com; s=google; t=1704970398; x=1705575198; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=h3Y6BWXsqLaQ0CLc7SrBzZRmfLfgIq46r2dR5IOpQRs=;
+        b=B06em8+zOY3CKWUGmfk+l8muxkywH0uEEUJjuns9T9Bg98rRxK8eQMBuvPYAs6TGvY
+         1PhTp7jIim/puJ0xqc/lynEY91gRfudufqoforPlPnHp/pHBDFP6EEazsRcENT+mJMzy
+         RZZsPaQeCkT4WlhziYZcqiWA9FPDG3c/b3eCE=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1704970398; x=1705575198;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=h3Y6BWXsqLaQ0CLc7SrBzZRmfLfgIq46r2dR5IOpQRs=;
+        b=Nz0diUy5TTLERgT3rZuUDWXSz8M/E/eMPE1/YAdzUB9Axb1eVTckg0G4vGE4yJG0Z4
+         r3MpIDhwjcVGEdmV5rQp/Ghiqw2NOd43kz58BS8nX3csta40eNUY09a7WkSp86k2dpJm
+         y4RkJzXDd/lucyAnbEKREItRAjyo+K1COpciVgTETLU+E9ek+ro1Rr5ztb7plhWWoqkA
+         vyL7YfIobP98K+9fGCJjipwFnC/WSMgzCm6sg6c4mn4FzbcswebnUexlUtzYETRd/aOx
+         hssTtwUGfI9HTABJvm8Wm0y9mIOxz2Gp7n2vbjinnhzwqrGNSZNFP1cKcfYNMX08/etz
+         5Kiw==
+X-Gm-Message-State: AOJu0Ywqa5J4pP1T0vCqUc8QQC9oP+H+rwlW4DeWBuuFw8+JqX1vb9eT
+	UVfja6VlTVNOlVopHT2gcwbhjp0b8F8q4Q==
+X-Google-Smtp-Source: AGHT+IFMnbbl0piQhtBGbkgqQahM36lABCcV+7XcydjoIDJC93itsIBATsAyeuKgghPVdAz7aI6m2A==
+X-Received: by 2002:aa7:c304:0:b0:558:823c:f337 with SMTP id l4-20020aa7c304000000b00558823cf337mr455943edq.22.1704970398100;
+        Thu, 11 Jan 2024 02:53:18 -0800 (PST)
+Received: from dario-ThinkPad-T14s-Gen-2i.homenet.telecomitalia.it ([95.236.91.90])
+        by smtp.gmail.com with ESMTPSA id eo9-20020a056402530900b00557b0f8d906sm459774edb.70.2024.01.11.02.53.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 11 Jan 2024 02:53:17 -0800 (PST)
+From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+To: linux-kernel@vger.kernel.org
+Cc: linux-amarula@amarulasolutions.com,
 	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Conor Dooley <conor.dooley@microchip.com>,
+	Lee Jones <lee@kernel.org>,
+	Dario Binacchi <dario.binacchi@amarulasolutions.com>,
+	Andre Przywara <andre.przywara@arm.com>,
 	Conor Dooley <conor+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	=?UTF-8?q?Leonard=20G=C3=B6hrs?= <l.goehrs@pengutronix.de>,
 	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+	Michal Simek <michal.simek@amd.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Sean Nyekjaer <sean@geanix.com>,
+	Viresh Kumar <viresh.kumar@linaro.org>,
+	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-stm32@st-md-mailman.stormreply.com
-Subject: Re: [PATCH v2 1/8] dt-bindings: mfd: stm32f7: Add binding definition
- for DSI
-Message-ID: <20240111104528.GC1665043@google.com>
-References: <20240101161601.2232247-1-dario.binacchi@amarulasolutions.com>
- <20240101161601.2232247-2-dario.binacchi@amarulasolutions.com>
+Subject: [RESEND PATCH v6 0/5] Add display support for stm32f769-disco board
+Date: Thu, 11 Jan 2024 11:53:06 +0100
+Message-ID: <20240111105314.8186-1-dario.binacchi@amarulasolutions.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240101161601.2232247-2-dario.binacchi@amarulasolutions.com>
 
-On Mon, 01 Jan 2024, Dario Binacchi wrote:
+The series adds display support for the stm32f769-disco board. It has been
+tested on hardware revisions MB1225-B03 and MB1166-A09. This required
+modifications to the nt35510 driver that have already been applied.
 
-> Add binding definition for MIPI DSI Host controller.
-> 
-> Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> 
-> ---
-> 
-> Changes in v2:
-> - Add Acked-by tag of Conor Dooley
-> 
->  include/dt-bindings/mfd/stm32f7-rcc.h | 1 +
->  1 file changed, 1 insertion(+)
+Changes in v6:
+- Drop patches
+  - [5/8] dt-bindings: nt35510: add compatible for FRIDA FRD400B25025-A-CTK
+  - [7/8] drm/panel: nt35510: move hardwired parameters to configuration
+  - [8/8] drm/panel: nt35510: support FRIDA FRD400B25025-A-CTK
+  because applied by the maintainer Linus Walleij
 
-You haven't send me the rest of the set, so I have no idea what's going
-on with respect to expected merge strategy.  In future please send the
-whole patch to all of the relevant maintainers.
+Changes in v5:
+- Replace GPIOD_ASIS with GPIOD_OUT_HIGH in the call to devm_gpiod_get_optional().
 
-> diff --git a/include/dt-bindings/mfd/stm32f7-rcc.h b/include/dt-bindings/mfd/stm32f7-rcc.h
-> index 8d73a9c51e2b..a4e4f9271395 100644
-> --- a/include/dt-bindings/mfd/stm32f7-rcc.h
-> +++ b/include/dt-bindings/mfd/stm32f7-rcc.h
-> @@ -108,6 +108,7 @@
->  #define STM32F7_RCC_APB2_SAI1		22
->  #define STM32F7_RCC_APB2_SAI2		23
->  #define STM32F7_RCC_APB2_LTDC		26
-> +#define STM32F7_RCC_APB2_DSI		27
->  
->  #define STM32F7_APB2_RESET(bit)	(STM32F7_RCC_APB2_##bit + (0x24 * 8))
->  #define STM32F7_APB2_CLOCK(bit)	(STM32F7_RCC_APB2_##bit + 0xA0)
-> -- 
-> 2.43.0
-> 
+Changes in v2:
+- Add Acked-by tag of Conor Dooley
+- Change the status of panel_backlight node to "disabled"
+- Delete backlight property from panel0 node.
+- Re-write the patch [8/8] "drm/panel: nt35510: support FRIDA FRD400B25025-A-CTK"
+  in the same style as the original driver.
+
+Dario Binacchi (5):
+  dt-bindings: mfd: stm32f7: Add binding definition for DSI
+  ARM: dts: stm32: add DSI support on stm32f769
+  ARM: dts: stm32: rename mmc_vcard to vcc-3v3 on stm32f769-disco
+  ARM: dts: stm32: add display support on stm32f769-disco
+  ARM: dts: add stm32f769-disco-mb1225-revb03-mb1166-reva09
+
+ arch/arm/boot/dts/st/Makefile                 |  1 +
+ ...f769-disco-mb1225-revb03-mb1166-reva09.dts | 18 +++++
+ arch/arm/boot/dts/st/stm32f769-disco.dts      | 78 ++++++++++++++++++-
+ arch/arm/boot/dts/st/stm32f769.dtsi           | 21 +++++
+ include/dt-bindings/mfd/stm32f7-rcc.h         |  1 +
+ 5 files changed, 115 insertions(+), 4 deletions(-)
+ create mode 100644 arch/arm/boot/dts/st/stm32f769-disco-mb1225-revb03-mb1166-reva09.dts
+ create mode 100644 arch/arm/boot/dts/st/stm32f769.dtsi
 
 -- 
-Lee Jones [李琼斯]
+2.43.0
+
 
