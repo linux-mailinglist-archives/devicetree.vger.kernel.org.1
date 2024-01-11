@@ -1,173 +1,118 @@
-Return-Path: <devicetree+bounces-31462-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31463-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4476182B455
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 18:50:53 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1AA5682B463
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 18:58:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AD365B257D8
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 17:50:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BFBBC2872CA
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 17:57:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 920F252F78;
-	Thu, 11 Jan 2024 17:50:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4E7C52F90;
+	Thu, 11 Jan 2024 17:57:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="S/+NHhug"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="fbuJpoFg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com [209.85.208.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD51A52F60
-	for <devicetree@vger.kernel.org>; Thu, 11 Jan 2024 17:50:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-40e62425c60so4996075e9.3
-        for <devicetree@vger.kernel.org>; Thu, 11 Jan 2024 09:50:39 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9EAB94F8AB
+	for <devicetree@vger.kernel.org>; Thu, 11 Jan 2024 17:57:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-lj1-f175.google.com with SMTP id 38308e7fff4ca-2cd84600920so14712441fa.1
+        for <devicetree@vger.kernel.org>; Thu, 11 Jan 2024 09:57:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704995438; x=1705600238; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=6r4fSN+Eb0Ah4b0v0uucoHS1kU8NuFfnog6M3eLAijo=;
-        b=S/+NHhugPuPVns3CLMnIQSdyoffpEwPWhpy+W+esGZpeeVpYQyrPjHMITha7DsSGH9
-         d6je6VdrbvNJfc9R6lMpsRMMbXBX+LuanCW/Uk2Dna4ZjbkmKAGw0qsxQBJRIPmBY5m5
-         u4A5zgrEpsun1577VOl7mtPYZMdlz/3cafFvenD68+bya5AiTQwcv9B60ONk7orJHgQs
-         gJpJ4iZByPFwt7YG6e0fsn8BRaY1pS4q+Ki8OFNKF/edGe1Gtf7OIqH6M18JBji8VHkm
-         fYzLf9sWokGH0IS16Jydu+5stfmEjhijS+bmxyR8ufyULea4RVoRO6Hr9RBjQn+5b8eS
-         Lqlw==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1704995873; x=1705600673; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=QIIeAnjVtiEzwNi51WQJcgMz4b/6vXhUoTESmsgqD3I=;
+        b=fbuJpoFg4XKb+qqfc0DlpQ3P5zlOYh+Hubjz7VmektWFRQT/C+bubbf0xd7luCiqnS
+         W56iKXQK3BKMJ2Fg27SpzxeSGtgS0ja58U4/zFoEdurnagxeuKNnmhZbaNC31TvtKoMR
+         nHthmiScL7GAr/9xyuBCUlVZ5u1DjZMlxHgFY92MaJFBkYya4DF9vmrT77XUH/YzBZ0n
+         qQxCa6LsK6EntUh4dX/lU3Bh55j+V342C+0HHI4LP/XJxNk2pltaUipFNPHeYIYKSWBW
+         EpH+Yj3+7IRt+n7WGtnnGAXxIhBkAN3nMDvrt2zSZkk+3c8j8gss5kqi4ZteVGj44qIr
+         X8zQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704995438; x=1705600238;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6r4fSN+Eb0Ah4b0v0uucoHS1kU8NuFfnog6M3eLAijo=;
-        b=aFpRyXx5p5VG6oMYuCzHvMZn6IlluQ5UPhL6iH0asdsNJ5u3tX5MaAURK27UrGC0Bm
-         YVzatrPA3M5wBA5HGIN6X9tL/1mwGhMi1BFeIWPzsposAKKFX7ekqze8H2b+xfG2QfQy
-         Os0uohE0hgJPl1B01mpO7kdyfumS3ekGa93BgsaEVtyT26TQz0eZVIsnBoRlIDOv2ADy
-         ocaJYUAmulSFajknnlC+WoYEaMaszY09apDeL5oraFnpgZhvYLKfX8TYei7Xl6zzbeRK
-         uVjbSoia8SWsNczJAP39DmfPIC0uvgdvm1bmVCHSY8Vi/WN+3ZCFStLpxY12EnOMPWeC
-         Mg8A==
-X-Gm-Message-State: AOJu0YzTMROcfv0feMZfZOZNLBvLKD6uFxbBrIURceVzbidtoKUWViPs
-	4Sm8i/4SyCG2oTZXVf080XpLatuaaEv0qg==
-X-Google-Smtp-Source: AGHT+IESpGPeLpy16PzNwqOR3aMMajngTGW3vEjja7+S0PWCyfH1q2b8O1HGVXA96N3KrvlvBpNrcQ==
-X-Received: by 2002:a05:600c:3595:b0:40e:3f9f:8f76 with SMTP id p21-20020a05600c359500b0040e3f9f8f76mr133227wmq.23.1704995438076;
-        Thu, 11 Jan 2024 09:50:38 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.223.112])
-        by smtp.gmail.com with ESMTPSA id r19-20020a05600c459300b0040e42391a12sm2767701wmo.13.2024.01.11.09.50.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 11 Jan 2024 09:50:37 -0800 (PST)
-Message-ID: <036823ce-9815-4884-aa3a-9c3831cea9bb@linaro.org>
-Date: Thu, 11 Jan 2024 18:50:35 +0100
+        d=1e100.net; s=20230601; t=1704995873; x=1705600673;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=QIIeAnjVtiEzwNi51WQJcgMz4b/6vXhUoTESmsgqD3I=;
+        b=SYM0oU7+716qHQU2Mp7Og1ThN6ItZ4exn+/doYAAMEUPnQa3fKiyBb/0v+IPVNM54U
+         5Yo05Gwgwl0Y+QFQx1MzRpIBbBEC0LVVmL78QizSfbCLJ7drLpY/glxrWT/n43mmO6r4
+         jKKt04xxhGpdbwKjSBajolkD6uC7+xxMzDz+fpCh0vPYsqaFcvBZ41/BhubIDaA6Nl08
+         EMiJK/2ON6htHb3oqHFCMczSEyX6OOWTOxbQXI9gZwhoPH6KEQfYWuVNrPW5r9YMvgJW
+         prY23UWKLWPuAVzrrN8eUg3MitdH28lplVHrf/8TiIvVNKb1moF3XqjeNUcDcvzorUke
+         CYlw==
+X-Gm-Message-State: AOJu0Yx4v2GFe1TL3lJ0lHsSzbCwkAvRz4LSgoiXcc+fWDBsYqoSbNRu
+	jlrn+oeGolGhnvRXC+LJG/f7f4XZqyLOsbUp9PL9/GjLRLnbAg==
+X-Google-Smtp-Source: AGHT+IHTHFHgOxQHH3kFRf98AOHdLGEvuqdjqKXJ0SrG1lf8zP10i7sGdzjJujc+f8huruMNKYE4dgf6/S/NYhjxxd4=
+X-Received: by 2002:a2e:b0cc:0:b0:2cb:2d48:32b with SMTP id
+ g12-20020a2eb0cc000000b002cb2d48032bmr53184ljl.53.1704995872651; Thu, 11 Jan
+ 2024 09:57:52 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: Proposal for QCOM PCIe switch power and configuration driver
-Content-Language: en-US
-To: Krishna Chaitanya Chundru <quic_krichai@quicinc.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- Veerabhadrarao Badiganti <quic_vbadigan@quicinc.com>,
- quic_skananth@quicinc.com, bartosz.golaszewski@linaro.org,
- open list <linux-kernel@vger.kernel.org>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>,
- "open list:PCIE ENDPOINT DRIVER FOR QUALCOMM" <linux-arm-msm@vger.kernel.org>
-References: <413d612f-0e31-6281-64e3-6484b85afe06@quicinc.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <413d612f-0e31-6281-64e3-6484b85afe06@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20240109-axi-spi-engine-series-3-v1-0-e42c6a986580@baylibre.com>
+ <20240109-axi-spi-engine-series-3-v1-5-e42c6a986580@baylibre.com>
+ <a94d7aae-3d5c-4204-83f6-5374c3166f58@sirena.org.uk> <CAMknhBEEC4F2_hpJ_405bfrb3KNkAYpjDoJbnmOFXodp8yLACg@mail.gmail.com>
+ <d19dac5c-eef6-4543-9eee-787262c0f52c@sirena.org.uk>
+In-Reply-To: <d19dac5c-eef6-4543-9eee-787262c0f52c@sirena.org.uk>
+From: David Lechner <dlechner@baylibre.com>
+Date: Thu, 11 Jan 2024 11:57:41 -0600
+Message-ID: <CAMknhBFXBVXZ8BFaNi9Anih3kH79T2Z8Jy72mQ2GcKj+38mxJg@mail.gmail.com>
+Subject: Re: [PATCH 05/13] spi: axi-spi-engine: add SPI offload support
+To: Mark Brown <broonie@kernel.org>
+Cc: Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Michael Hennerich <michael.hennerich@analog.com>, =?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
+	Frank Rowand <frowand.list@gmail.com>, Thierry Reding <thierry.reding@gmail.com>, 
+	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, 
+	Jonathan Corbet <corbet@lwn.net>, linux-spi@vger.kernel.org, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-doc@vger.kernel.org, 
+	linux-pwm@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Lars-Peter Clausen <lars@metafoo.de>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 11/01/2024 18:38, Krishna Chaitanya Chundru wrote:
-> Hi DT maintainers,
-> 
-> We are trying to upstream the QCOM PCIe switch which has I2C interface
-> to configure the switch.
-> 
-> In generic a PCIe switch is a device that allows expansion of PCI
-> Express hierarchy, which allows more devices(PCIe endpoints) to be
-> connected to a single PCIe port.
-> 
-> We need to configure the QCOM switch like L0s, L1ss entry times, Tx
-> amplitudes etc.. through I2C interface before PCIe link is established
-> as these settings can affect link stability if we don't configure them.
-> 
-> Once PCIe switch is configured, PCIe link between the PCIe switch and
-> PCIe port connected should be established by the QCOM PCIe controller
-> driver to enumerate the PCIe endpoints connected to the PCIe switch.
-> 
-> We had a QCOM switch driver which powers on the switch and do the I2C
-> configurations.
-> 
-> This is how the flow goes.
-> -->Power on the switch
->      -->Do Switch configuration (over i2c) with qcom switch driver
->          -->PCIe link training and enumeration.
+On Thu, Jan 11, 2024 at 7:00=E2=80=AFAM Mark Brown <broonie@kernel.org> wro=
+te:
+>
+> On Wed, Jan 10, 2024 at 04:31:25PM -0600, David Lechner wrote:
+> > On Wed, Jan 10, 2024 at 3:39=E2=80=AFPM Mark Brown <broonie@kernel.org>=
+ wrote:
+>
+> > > Glancing through here I'm not seeing anything here that handles DMA
+> > > mapping, given that the controller will clearly be doing DMA here tha=
+t
+> > > seems surprising.
+>
+> > In the use case implemented in this series, the RX data is going to
+> > DMA, but in general, that doesn't have to be the case. In theory, it
+> > could get piped directly to a DSP or something like that. So I left
+> > the RX DMA part out of the SPI controller and implemented as a
+> > separate device in "iio: offload: add new PWM triggered DMA buffer
+> > driver". The SPI controller itself isn't aware that it is connected to
+> > DMA (i.e. there are no registers that have to be poked to enable DMA
+> > or anything like that).
+>
+> If there's a buffer being assigned to the device (or removed from the
+> device) it needs mapping, this will ensure the device is allowed to
+> access it if there's IOMMUs involved, and that there's no pending cache
+> operations which could corrupt data.
 
-And where is the PCI controller in this? Why isn't this represented like
-I2C or GPIO expander? You need to describe what exactly the switch is doing.
-
-Also, how about using existing solutions? Aren't there any? I am not
-going to look for them for you...
-
-Anyway, you should ask (means Cc) reset controller maintainers if they
-are happy for such usage of reset framework for something not being a
-reset. For similar reasons you should Cc PCI maintainers. If you ask me,
-then no, PCI switch does not look like reset line so, you should not use
-reset lines.
-
-Best regards,
-Krzysztof
-
+Currently, in this series, the mapping is being handled by the
+existing DMA buffer framework in the IIO subsystem. It is the IIO
+device that owns/manages the DMA rather than the SPI controller. Nuno
+has also made some relevant comments in some of the other threads
+about why it would be preferable to do it that way. But this sounds
+like something we should come back to later after we have a look at
+breaking down this series into smaller parts.
 
