@@ -1,46 +1,54 @@
-Return-Path: <devicetree+bounces-31470-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31471-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B020882B4B1
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 19:20:08 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9CDC582B4D2
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 19:40:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5D1A51F260E3
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 18:20:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 39F9D1F23B9F
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 18:40:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BCB653816;
-	Thu, 11 Jan 2024 18:20:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60E13433D9;
+	Thu, 11 Jan 2024 18:40:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="f5f17p5i"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="HMR9BZAA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62C1552F74;
-	Thu, 11 Jan 2024 18:20:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1704997198;
-	bh=rdyPLDn+13S8BwUHnP7YxTnuD0iUYoq80Xm8fz63qzo=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=f5f17p5iX/IKt6UN9Jwhpvty5sF74a26euidP8Pxt2/AltKRl6P2rYTZeD83Ejeds
-	 /dMXSUYZNHdOLM6nKJPpCgQhPvzM0eBkPkFgeTBinDrx6Vs+BQbIbEkBoj0W3VVxR3
-	 agxPbZcpLNRMMfn2q/p85xQq9cgf1sHxDs36uqkaW1DGrPl1hqnKf3bjEAti51u+IB
-	 5JKTT4TlxopMAwm2pQ7vhXLIdpsdF6Lp17eVWH70y/matvJbG46IP3s3JkGtk+PEp2
-	 oLqifpP4etBYdVOMdXc4kp4M64NZp7d8obqjLFjqFk0fz8qWtN+fg6x2JNi2n2yiXG
-	 L7oJjibzUlfsA==
-Received: from [IPV6:fd00::3:29cf] (cola.collaboradmins.com [IPv6:2a01:4f8:1c1c:5717::1])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: cristicc)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 587143781184;
-	Thu, 11 Jan 2024 18:19:49 +0000 (UTC)
-Message-ID: <e821e651-2074-41c2-82c1-0fc88b3f5664@collabora.com>
-Date: Thu, 11 Jan 2024 20:19:38 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8AA615E9B;
+	Thu, 11 Jan 2024 18:40:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40BCjVc0024397;
+	Thu, 11 Jan 2024 18:40:02 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=M6dSsxI5b1GoasriyNGDw+EBcG03gCHOu1sd3MerZdU=; b=HM
+	R9BZAAd2mLb1SZIWc0OIkn+JHEi6mdgCJKbxHJS05rsG3bMMx7amF2RXT4wMeTSJ
+	Uq2zI6UDReXBhsDHPqMXGfp4YkogCfdF1eKde2kzUjo60L3S5TFmpEUOvk8iks88
+	fP6d1Wvo+skXyADrriExpdqKviiGNV3R/mHOVVijrXhDf8PnwKICKzD2ct33iMQn
+	qXENHR1sA+ILpeyO15OBLp6GK0Oz1PlbomrNgZoRBsQUVJjjP8EBmQ5RSfxxksQz
+	Eh54AO3sspgIoVVEk5JMbmEJ7JKd8y+EES0SWxtrHjkTnuWiUYY/YjA4s85QR3OK
+	6b85JEbvtiZqmLuotr7w==
+Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vjckh9e3t-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 11 Jan 2024 18:40:01 +0000 (GMT)
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 40BIe0cH031515
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 11 Jan 2024 18:40:00 GMT
+Received: from [10.251.44.162] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Thu, 11 Jan
+ 2024 10:39:58 -0800
+Message-ID: <7079629a-0226-4bf8-87b9-721bb46439b2@quicinc.com>
+Date: Thu, 11 Jan 2024 20:39:55 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,61 +56,74 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/1] dt-bindings: net: starfive,jh7110-dwmac: Add
- StarFive JH8100 support
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: sm8650-mtp: add gpio74 as reserved
+ gpio
 Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Tan Chun Hau <chunhau.tan@starfivetech.com>,
- "David S . Miller" <davem@davemloft.net>, Eric Dumazet
- <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
- Emil Renner Berthing <kernel@esmil.dk>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Simon Horman <horms@kernel.org>,
- Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
- Andrew Halaney <ahalaney@redhat.com>, Jisheng Zhang <jszhang@kernel.org>,
- =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
- Russell King <rmk+kernel@armlinux.org.uk>
-Cc: Ley Foon Tan <leyfoon.tan@starfivetech.com>,
- Jee Heng Sia <jeeheng.sia@starfivetech.com>, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-riscv@lists.infradead.org
-References: <20240111025531.2875-1-chunhau.tan@starfivetech.com>
- <20240111025531.2875-2-chunhau.tan@starfivetech.com>
- <59bb488f-f2ad-44b0-87fa-206ae3b1c33f@collabora.com>
- <3c552324-2ebf-41c2-b310-70341ebfdd9a@linaro.org>
-From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-In-Reply-To: <3c552324-2ebf-41c2-b310-70341ebfdd9a@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring
+	<robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Georgi Djakov <djakov@kernel.org>
+References: <20240111-topic-sm8650-upstream-qrd-fix-gpio-reserved-v1-0-fad39b4c5def@linaro.org>
+ <20240111-topic-sm8650-upstream-qrd-fix-gpio-reserved-v1-2-fad39b4c5def@linaro.org>
+From: Georgi Djakov <quic_c_gdjako@quicinc.com>
+In-Reply-To: <20240111-topic-sm8650-upstream-qrd-fix-gpio-reserved-v1-2-fad39b4c5def@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: Ki6ShOKvoRNMszexSP4W1pmn6Z04h_pZ
+X-Proofpoint-GUID: Ki6ShOKvoRNMszexSP4W1pmn6Z04h_pZ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-12-09_01,2023-12-07_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
+ priorityscore=1501 bulkscore=0 mlxlogscore=771 phishscore=0 mlxscore=0
+ adultscore=0 spamscore=0 impostorscore=0 lowpriorityscore=0 clxscore=1011
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2311290000 definitions=main-2401110146
 
-On 1/11/24 20:15, Krzysztof Kozlowski wrote:
-> On 11/01/2024 19:07, Cristian Ciocaltea wrote:
->> On 1/11/24 04:55, Tan Chun Hau wrote:
->>> Add StarFive JH8100 dwmac support.
->>> JH8100 dwmac has one reset signal instead of 2 resets as in JH7110.
->>>
->>> Signed-off-by: Tan Chun Hau <chunhau.tan@starfivetech.com>
->>> ---
->>>  .../devicetree/bindings/net/snps,dwmac.yaml   |  1 +
->>>  .../bindings/net/starfive,jh7110-dwmac.yaml   | 50 +++++++++++++------
->>>  2 files changed, 37 insertions(+), 14 deletions(-)
->>
->> [...]
->>
->> Please note this is going to conflict with the about-to-be-merged changes
+On 1/11/2024 6:58 PM, Neil Armstrong wrote:
+> The TLMM gpio74 is also used to communicate with the secure NFC
+> on-board module, some variants of the SM8650-MTP board requires
+> this GPIO to be dedicated to the secure firmware and set reserved
+> in order to successfully initialize the TLMM GPIOs from HLOS (Linux).
+> On the other boards this GPIO is unused so it's still safe to mark
+> the GPIO as reserved.
 > 
-> They weren't picked up, so how they can be merged? If you mean applied,
-> then you suggest your patchset has some kind of preference, but this
-> needs explanation why.
+> Fixes: 6fbdb3c1fac7 ("arm64: dts: qcom: sm8650: add initial SM8650 MTP dts")
+> Reported-by: Georgi Djakov <djakov@kernel.org>
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 
-I just meant they got reviewed and should be ready to be applied.
+The SM8650-MTP board boots successfully with this patch. Thanks Neil!
 
-> Best regards,
-> Krzysztof
+Tested-by: Georgi Djakov <quic_c_gdjako@quicinc.com>
+
+> ---
+>  arch/arm64/boot/dts/qcom/sm8650-mtp.dts | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
+> diff --git a/arch/arm64/boot/dts/qcom/sm8650-mtp.dts b/arch/arm64/boot/dts/qcom/sm8650-mtp.dts
+> index 9d916edb1c73..be133a3d5cbe 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8650-mtp.dts
+> +++ b/arch/arm64/boot/dts/qcom/sm8650-mtp.dts
+> @@ -622,7 +622,7 @@ right_spkr: speaker@0,1 {
+>  
+>  &tlmm {
+>  	/* Reserved I/Os for NFC */
+> -	gpio-reserved-ranges = <32 8>;
+> +	gpio-reserved-ranges = <32 8>, <74 1>;
+>  
+>  	disp0_reset_n_active: disp0-reset-n-active-state {
+>  		pins = "gpio133";
+> 
+
 
