@@ -1,173 +1,123 @@
-Return-Path: <devicetree+bounces-31440-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31441-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3166E82B35F
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 17:54:26 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id E5E0182B374
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 17:59:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9B6031F220E6
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 16:54:25 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 88235B2114A
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 16:59:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 669DD51000;
-	Thu, 11 Jan 2024 16:54:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF52651025;
+	Thu, 11 Jan 2024 16:58:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=leica-geosystems.com header.i=@leica-geosystems.com header.b="lIVNgVjz"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="eVR1qHQc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2139.outbound.protection.outlook.com [40.107.21.139])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B308F50274;
-	Thu, 11 Jan 2024 16:54:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=leica-geosystems.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=leica-geosystems.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=U3sk+/OgtR1rr9hOYuCGQ7vlG/PeNc3+HguJPCh/854oAD8A6tiH0N41+nJDsBE/awYTbmBch1ijm91Q98pS2T+NZA5MktQnflLZAfNhZ63FRmerHHGDWx5+sOriKf8dI+2c63oy0iZ6UlLKiwQkGF2pdvf0TCs+2N+PfgBaOf/YeKo8xaQKnXEWACGkW8nJjU65Xtlj5PEHBNolbmTY4BZOxTZg3wUUduebVsTh2WQmbNXZ8Cpdq/9El5AWohehwehIVpZQPDwWjraLGxpv3lFB+2XK96S5xaT+5sNQTZPtf5ZchuHlAThREYjktsbEcU4/VybQRFF28aWGdl8+pw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=0LB9pJkm3CKoSI/QU3sLP4hkPmbhd5NBp9oEI5wyTt8=;
- b=CdNUXLsrHRAofx+4QPQ5yZ0fGogBVA22OoluAEpo7/OZnRLtM5itePyVCAxBoWECQC9lEsqbzaIRdU+FwrAFQ/KpofPHBVx+BN6kqeDv4y56X7lnimw5hf/26I4ICh1JIVAMg7UPo08NnXX3CtD2bHI/Ja2Ww7LmCWUjLwS2fW3qRjYuRRG5Ig3RMo1It/V66g2O+LJ8d3f2ejv2JR+wnIw3R91+pfHam0HDbgYPDs76lxo4lcLfR5TXR42nYnIwPitFF4nLgFfzwNu6lbU6ssoOATG+yeDcIVFvMcxcq7uDEVPQLPoIfyvw2ClB11/jSG51tgdVRyBJml3Z9Aohhw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=leica-geosystems.com; dmarc=pass action=none
- header.from=leica-geosystems.com; dkim=pass header.d=leica-geosystems.com;
- arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=leica-geosystems.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0LB9pJkm3CKoSI/QU3sLP4hkPmbhd5NBp9oEI5wyTt8=;
- b=lIVNgVjzMO0iEOQuKJYsMyLa9zarfS/mikl6KXLbCAFA/C7llAb9NlmeQOrZsRmKmmsofCQY8zWtaW8DcmfOeY+bl0VYqrPYzHaWGtk3c8bA/5u3aKTSpezPQYmc+eCKWpmOh2mNDvFsXsc/jEfg221GSNA97gPo9iWsBlh4bF4=
-Received: from DB8PR06MB6332.eurprd06.prod.outlook.com (2603:10a6:10:103::23)
- by AS8PR06MB7480.eurprd06.prod.outlook.com (2603:10a6:20b:332::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7159.23; Thu, 11 Jan
- 2024 16:54:14 +0000
-Received: from DB8PR06MB6332.eurprd06.prod.outlook.com
- ([fe80::2ef6:99ac:4fcc:7039]) by DB8PR06MB6332.eurprd06.prod.outlook.com
- ([fe80::2ef6:99ac:4fcc:7039%5]) with mapi id 15.20.7181.019; Thu, 11 Jan 2024
- 16:54:14 +0000
-From: POPESCU Catalin <catalin.popescu@leica-geosystems.com>
-To: Andrew Lunn <andrew@lunn.ch>
-CC: "davem@davemloft.net" <davem@davemloft.net>, "edumazet@google.com"
-	<edumazet@google.com>, "kuba@kernel.org" <kuba@kernel.org>,
-	"pabeni@redhat.com" <pabeni@redhat.com>, "robh+dt@kernel.org"
-	<robh+dt@kernel.org>, "krzysztof.kozlowski+dt@linaro.org"
-	<krzysztof.kozlowski+dt@linaro.org>, "conor+dt@kernel.org"
-	<conor+dt@kernel.org>, "afd@ti.com" <afd@ti.com>, "hkallweit1@gmail.com"
-	<hkallweit1@gmail.com>, "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
-	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	GEO-CHHER-bsp-development <bsp-development.geo@leica-geosystems.com>
-Subject: Re: [PATCH 3/3] net: phy: dp83826: add support for voltage tuning of
- logical levels
-Thread-Topic: [PATCH 3/3] net: phy: dp83826: add support for voltage tuning of
- logical levels
-Thread-Index: AQHaRKoXhlRiE8Hk7k6MCp5S4684SbDU0eeAgAACYQA=
-Date: Thu, 11 Jan 2024 16:54:14 +0000
-Message-ID: <2ead0e15-c00c-4f87-9f76-f6d329b89613@leica-geosystems.com>
-References: <20240111161927.3689084-1-catalin.popescu@leica-geosystems.com>
- <20240111161927.3689084-3-catalin.popescu@leica-geosystems.com>
- <0323cb84-14fe-422b-9423-3b1599f8452b@lunn.ch>
-In-Reply-To: <0323cb84-14fe-422b-9423-3b1599f8452b@lunn.ch>
-Accept-Language: en-CH, en-US
-Content-Language: aa
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=leica-geosystems.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DB8PR06MB6332:EE_|AS8PR06MB7480:EE_
-x-ms-office365-filtering-correlation-id: a5aa5ebf-d530-4c26-31db-08dc12c5f124
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info:
- 4Nf5gk8+/BLCqjOv3242LPLs5Sl1/klbgntCNla+wF87ellWFKiE3715EaMdklEgfAGthhoYqFqzwwoK/MgmLg45vpuuW1R3VfsNTJAH5NTSshOh0n1n8zsymrnFJnsma4EViYBxOtPknngUatbsQJT72Q/HgsX21cVLjWiJcC4w9PajMVGbYgGuxJIeglyPsfmnlpopHC1OATt4Z1KHncmQ+T2uXo+gEn1YEoIDWNiA8Y9Y02JaBs3QTRwKNfPmMxvHj5Xl2RvhsFta+P6jo6iXWKdn0eO8g1FiMikn/Mwlfn3OZbulNh7TZ+S0v280D0c3UWDjNiEY/jcmW/Rxn2gWpFATRBX4hwMCXcdUzWsoz9Ol+B/5lXeeifcgBM4XJJ8nblytSed7005cDIKnkX/maiODXLj0Xa3AH6Lq8sJw5cnTnBL1JgAvYNyDIRaW7+2MxDB/ZkTTsWRz7zqde+k5I3AXHmrjeIal4/Ln3zwwRiyulIMirkW05Wqggmp1q/vpoRxXgu5JZULRliIfFROUr2YK9ZUfQ/7HR+ZQE8n+Q4S+gkQBSvQtXWc5cuDI0crLItfIa7ZlED+Dgmnklv2egpmppk4pEPwbaLnC8rFn68tBrw24UBu0F4Ur+jWjHCeLc0F4zr91FdkGzdGl9R375M8jDPp/Rt9BBvtd7BVQ4lhL0jpmTLaB1AZt79fAdY0oPJ6Dalar+NT2OU2KXaVAHsvWn9Lw1xyxbMzQz/4=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB8PR06MB6332.eurprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(136003)(396003)(366004)(346002)(376002)(39860400002)(230922051799003)(230473577357003)(230273577357003)(230373577357003)(230173577357003)(1800799012)(186009)(64100799003)(451199024)(36756003)(38070700009)(31686004)(86362001)(31696002)(122000001)(76116006)(107886003)(26005)(45080400002)(478600001)(966005)(2616005)(71200400001)(38100700002)(91956017)(6486002)(53546011)(6506007)(6512007)(4326008)(64756008)(66476007)(316002)(6916009)(66446008)(66556008)(66946007)(4744005)(2906002)(54906003)(5660300002)(8676002)(7416002)(8936002)(41300700001)(45980500001);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?utf-8?B?TE11OFMwdzNQTGIxQm5NV1E0d0lGb0x6R2lXYU5PNGZ5Sk1jbkE2UTl6MnYy?=
- =?utf-8?B?d0lBU1Y5NEplZGNZUVpJemZOUnErVHZhZVI3NEtnWVNrSGlIWlMxcTFLRHFF?=
- =?utf-8?B?MWNYbW9QM1RmNDdIMkI4ZklpQmNlR2R2TXpRc1FsYUhNcWg3SmtyQTg1dzZv?=
- =?utf-8?B?cmNleVJKcWRiRURmSWJoZ210UG1mR093Y1dZeUExUG9LOHc4TStQL3RHV3lF?=
- =?utf-8?B?WStFSFFOOGRYZzFNYUE5eWd1aHlmT1VETUVqQjIwN1E5SXFsVzdSdU9NTEoy?=
- =?utf-8?B?NFpQR2orS1lQd0hWL3F6bjdxQm1TUTB1SnRCUThHVEJBaklRbHdCb0ljc2p1?=
- =?utf-8?B?R2UvNUVTcGlzbHJQTWlqSlhpT0x0aFBBdmhudlk2aW9yeFZyN0syYkZSNEFY?=
- =?utf-8?B?aGFJSFM5c1pmbzY3WWRyWEVXczNUMXQrMys5SnNPM3FNZTlRYjZsSnRzdXhv?=
- =?utf-8?B?MjlOek1LdnZMUFB2MlV2MDlZTk9Penh2TlJyREVjczZEVXZsQ1prZWJ4d1J0?=
- =?utf-8?B?SGJnYVd5ZC9NOHBOMmQ2TGtFeUU0WFduajNMRUYrNzdIQ1FJTVRTZUlVQTNz?=
- =?utf-8?B?VWxSVHpzemZHUEJwVWp1bjBFbkk1dFJjdmcxS0FmcjNlTUE3MkJnZ0Z1eW45?=
- =?utf-8?B?MjVwT0lSMVhTb2x6VnRhUHpwTVIyOGtZbVFOUlE3WnNpaGNMMXhRQk5GK0Za?=
- =?utf-8?B?UkRha25QSzErdnd0S0pPRE5hMEUrMjFDVjJncUx1MnlPZVJ2LzF1YWJ0eG5X?=
- =?utf-8?B?ckVlcTVETUpPK0oxRjRMeFBEaDNlaWNkUnVlclZiV1BTanJHNXAzaS9JQmZW?=
- =?utf-8?B?bnNZMmI0eG5TVzAraDNzaDZKTUFSbkkraXFJUktZOVEvbGpUbm1qYWdHKzZx?=
- =?utf-8?B?T3hNeTVCK3NJUitGTzNrTm1MTXBpQU5Ednh2MkxTeHJjRllNV3B6VElhaUJp?=
- =?utf-8?B?cnhkeEVMdndEdmlRNnVBTXUyNzEwZ1ZHNmw3NHRQODBRaVArSjRUR3pRbWNt?=
- =?utf-8?B?Nk00L2ZPVXQ5WXFYLzZlY1dUc3NTaFhtcnBIMWlRMWg3bTFHQXg5ak4zelZh?=
- =?utf-8?B?eDNkd1hFemZneGlWdWNBY0tRMDZYL000dW01UXlUUWl3R2xSczMzVWlVSjBR?=
- =?utf-8?B?cTBySEJ6MDVhRCtpTnlPSjZLT0ExeUpKMkdrOG8vaWRKQWdvS2ptcW4wUmxo?=
- =?utf-8?B?NldkNmhHNCtMclpFRVBvYStkMU93Y2J3VWoxY3cyeStFNTk0bG5GakhoWGJ0?=
- =?utf-8?B?cmhFR1NLanY1VWxmOTFodGxBQzZtaXVlbUFWOERaY08zSDUrL2JKVTVOL0Fa?=
- =?utf-8?B?MkRnSFZQUEFLYzJFY2dwR1N0T3JVandsOEswcDAvQkRWdXpVV1FIQ1JieUVV?=
- =?utf-8?B?b1pCRnlmOWRXdnplR2tCNTJwOGFyekxnWkhxOFRhMFhBQWNMdWN0QWV4Mnpr?=
- =?utf-8?B?U3N1UkVweEdxL2c4OVFSdEZOVEpEdnRsZlVUeHJxR1g5dk82WkhDNS80di9j?=
- =?utf-8?B?dmV4cXJ1MzFZV2VQb2JuQU45WXk0Yy91Zmg2M2FIRWRXek1TSmMwVzhNdERC?=
- =?utf-8?B?VGpNVy9yZWlBMkpOZHhDL0pNZS9vNTQxelNTSWlpWlNMM3JtT2FYSHp3bjMw?=
- =?utf-8?B?Nm5QOG14M0wzeURETDc5QWR6amVGSVI1cGwvdVNlSTk3QVRmMVRUdVg1Y0Nw?=
- =?utf-8?B?VXVvSjBJWkJPTml3bE14R2JidjBCbHJKeDlzbzFkTzVmUllnRkZCQ3ZWVVlI?=
- =?utf-8?B?R25taGQ5dGs4TitpMEJxc2xnMmtSSzNUT01ockxXUzBmOFV6d3JBV0xLRkJG?=
- =?utf-8?B?a0tqNUhDK2JCaVdaNWlndVM2b29aUGNWZjFPeC9MV2pSNHZyOE8yVGFSVDM3?=
- =?utf-8?B?SXBaeUhtMVZML2RyVmdqZDFFRDhmN0d2WWtQZTNQY3hCUUlRVHhhcUVUNmpW?=
- =?utf-8?B?eXlJTzdXbnZpUkpmeGU3QnpmS3ZiWU5VWHV2M0Z5Z2JMV3Jzc3lYV1pBUVlv?=
- =?utf-8?B?M2lvL3BSUFAycHpuYkhRWlllRVBjTnovbFVqeEVkcTZBeERCMm83Q1I4V1J0?=
- =?utf-8?B?TzFtVU5QR3NjdEwyelN4aWJOc1JKcjdLRktsQlNWVDBDeTdROEwvYzRna1N6?=
- =?utf-8?B?RC9ZalY1N0V0TUR6ZDZVbmJWWHA2QTFLUHh4U0lKSUpteWVZVzRTUEdoazUx?=
- =?utf-8?B?UHc9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <38102C861F950741A7FBFBEBFAE829AD@eurprd06.prod.outlook.com>
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FE9550268
+	for <devicetree@vger.kernel.org>; Thu, 11 Jan 2024 16:58:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-40e62e6e3b0so1769305e9.2
+        for <devicetree@vger.kernel.org>; Thu, 11 Jan 2024 08:58:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1704992333; x=1705597133; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=jhvvrsVRrZ+8WIVClmCa0NV+6nlcX/mgm0TQRfXYglQ=;
+        b=eVR1qHQcOBgECHbAOYVA0H5zrNY1PU4+nJDySt5MgVc+4PpWHsBpwqt+NZpSAk7poT
+         W06/aEWXS+V27vd6D1AAmEnm50n1He3n6tH1HFlubrSt4s1bmiCKZqxntfdyRQKlZMsD
+         LtOWTJkOVUjDPoYD2IGJ0ifRAtARsdYLePs1WcFIzTUcGrMXCODxitrBsY/iQhktB8LW
+         D66RzxQBa1aCSm3BqOGttYaXTRUr5QcqVA1NaD3PhA0UN4KXLKVEh495OKi29M5pMpTT
+         Eul6oE/QZ8MGAmvJ9PGnEkLi0OoP+rJBfIZ/fQHkeRNu8IP8h7yl5MQ2d/X7g2LuUa26
+         u7rw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1704992333; x=1705597133;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=jhvvrsVRrZ+8WIVClmCa0NV+6nlcX/mgm0TQRfXYglQ=;
+        b=nu0VQ5HgqCuiLZAWb/BnFuJOj8oC92yPhCaRd7y/pFUnzfj91Yqh1Rifng52k5T/jC
+         Ba3767Pr/Euc7+ZXoBC5PQvs24RkjD0qNXzaHdfFBFOmeguetiqMsCreZwPkYGRSoDxX
+         6zPKAOvOOykO5PF8itcZ60AvAw7F9cguNli9kNFtfGZTTm+XU6KTOROatHaPx1ZdRM3P
+         WL4nuh0yHFYORrzB0eL1flddruV+3vxQ4M6K2ah+M4vfUzeVkysAwOvjUWrKS77UfyO4
+         CTxwdlzkYJuwEUupraCihh1Z2Zufn1F63F6/sGAzeGNEJfbQTgqcgbYRylmxlSr26IJb
+         89ow==
+X-Gm-Message-State: AOJu0Ywpb/5srpt50GfG8eki+u0qD6WmNyN3AUhJGxkENIGHllVJv1OZ
+	OAo3+RiuAeeWXrow48Q/rSIpumFt4AEVKA==
+X-Google-Smtp-Source: AGHT+IHbc5kM12iaZHmsnwhN7KEZQrhJk3jRP6EDSF9h7YmzwBCH/VaHn70LMm77b0UOp6qt+nEotg==
+X-Received: by 2002:a05:600c:3510:b0:40e:4d51:99a2 with SMTP id h16-20020a05600c351000b0040e4d5199a2mr44688wmq.145.1704992333484;
+        Thu, 11 Jan 2024 08:58:53 -0800 (PST)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
+        by smtp.gmail.com with ESMTPSA id iv17-20020a05600c549100b0040e5034d8e0sm6501354wmb.43.2024.01.11.08.58.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 11 Jan 2024 08:58:53 -0800 (PST)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: [PATCH 0/2] arm64: dts: qcom: sm8650: mark gpio74 as reserved
+Date: Thu, 11 Jan 2024 17:58:48 +0100
+Message-Id: <20240111-topic-sm8650-upstream-qrd-fix-gpio-reserved-v1-0-fad39b4c5def@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: leica-geosystems.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DB8PR06MB6332.eurprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a5aa5ebf-d530-4c26-31db-08dc12c5f124
-X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Jan 2024 16:54:14.2966
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 1b16ab3e-b8f6-4fe3-9f3e-2db7fe549f6a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: N3Z32fHSWusloU/1NSVKAWBXB58uz+5wKjBePzhcZLeut2hxjK6K+EUfKwwQFExPsCLH5vAzQwTYQlzeSe3Igosv7p2fEtl+T89suw4X91PMaXOtQ/YQHl90FiONf0IJ
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR06MB7480
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAEgeoGUC/x2NQQqDQAwAvyI5N7C7VhG/UnqQTao56G4TKwXx7
+ w09DgwzJxirsMHYnKB8iEnZHOKtgbxM28wo5AwppHuIMeJeqmS0dei7gJ9qu/K04lsJX/LFuUp
+ BZY8eTBhzS12fE7U8gBerskv/2+N5XT8cGbewfQAAAA==
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>, 
+ Georgi Djakov <djakov@kernel.org>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=openpgp-sha256; l=938;
+ i=neil.armstrong@linaro.org; h=from:subject:message-id;
+ bh=Wt6CfNuJptOIyGlkvERKaMpnubz1M+hUXCgBywQ3HR0=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBloB5L9e13ojZ3UH5DxVNWYBrZHs4HjBZclwrMXlQz
+ uaa6ZyGJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZaAeSwAKCRB33NvayMhJ0dWnEA
+ CowT/fxqsC7aFAgmrYkE7VxaHM0epf9+Hly3qqRGT96ppZNXQ2Ub7ABLYBdMf41pYgJakJ++knUEfk
+ RPg4O1XZy/xluTrd71n1Jjr49a35f1I2gzjRrBsbl58YY/FR66ASxA0iokXG/w+/j+FnomdL+sCiBx
+ doONJcVPmt4ckpnXAlcUVpjrlRFP/gZ63uWeb7NQXiOHlwJq7HhlUF2HVKjhx84t+imwvoydBpzIRk
+ IFHEa/nTW6WZLm27Rgx8xo1PTFyQNEyYS+x0AycZhZCy+G6eMb4Uf7ZUtg9z7D2T9b3Iog59Dm1dPU
+ ZIxMqS6vUjuXCZQX6ZjLlFYJ/CuVKxHaWHTDe4TNXrJ/7M0Gdv9vaA0IrthaXEgCA02Dqy5AnbidjO
+ X1ijmXxCIJiONuk3komRygUF7h0zN7z6V6mA+h9WdRL8N6oyDNsZerTQ9wC7DjjRRR15CUimwnNjeh
+ QBY9LzgH45BbEfQBUkg39qKXZj+i6VUc2BL8iy0VejRvESgB8ZOVw5kqITDlrRZuEBcXl4imaGA+pI
+ 3Rua6L5H3qfu8cSyLssQla5tpMMm0cMBRRjTYw8AF3LpDptBr9Ft0pzjYTp4OxPMt+v94m4Zd1Yhll
+ WCJL9Km9y8pFaRQCjlihxSKAtkC9cJhZmfQOfPDYmn5ombRdBONhplAiPaZw==
+X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
+ fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 
-T24gMTEuMDEuMjQgMTc6NDUsIEFuZHJldyBMdW5uIHdyb3RlOg0KPiBbWW91IGRvbid0IG9mdGVu
-IGdldCBlbWFpbCBmcm9tIGFuZHJld0BsdW5uLmNoLiBMZWFybiB3aHkgdGhpcyBpcyBpbXBvcnRh
-bnQgYXQgaHR0cHM6Ly9ha2EubXMvTGVhcm5BYm91dFNlbmRlcklkZW50aWZpY2F0aW9uIF0NCj4N
-Cj4gVGhpcyBlbWFpbCBpcyBub3QgZnJvbSBIZXhhZ29u4oCZcyBPZmZpY2UgMzY1IGluc3RhbmNl
-LiBQbGVhc2UgYmUgY2FyZWZ1bCB3aGlsZSBjbGlja2luZyBsaW5rcywgb3BlbmluZyBhdHRhY2ht
-ZW50cywgb3IgcmVwbHlpbmcgdG8gdGhpcyBlbWFpbC4NCj4NCj4NCj4+ICt1OCBkcDgzODI2X2Nm
-Z19kYWNfbWludXNfcmF3W0RQODM4MjZfQ0ZHX0RBQ19SQVdfVkFMVUVTX01BWF0gPSB7MHgzOCwg
-MHgzNywgMHgzNiwgMHgzNSwgMHgzNCwgMHgzMywNCj4+ICsgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgMHgzMiwgMHgzMSwgMHgzMCwg
-MHgyZiwgMHgyZSwgMHgyZCwNCj4+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgMHgyYywgMHgyYiwgMHgyYSwgMHgyOSwgMHgyOH07
-DQo+PiArdTggZHA4MzgyNl9jZmdfZGFjX3BsdXNfcmF3W0RQODM4MjZfQ0ZHX0RBQ19SQVdfVkFM
-VUVTX01BWF0gPSB7MHgwOCwgMHgwOSwgMHgwYSwgMHgwYiwgMHgwYywgMHgwZCwNCj4+ICsgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAw
-eDBlLCAweDBmLCAweDEwLCAweDExLCAweDEyLCAweDEzLA0KPj4gKyAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDB4MTQsIDB4MTUsIDB4
-MTYsIDB4MTcsIDB4MTh9Ow0KPiBCb3RoIG9mIHRoZXNlIHNob3VsZCBiZSBzdGF0aWMgY29uc3Qu
-DQpJbmRlZWQuDQo+DQo+IEhvd2V2ZXIsIHRoZXkgYXBwZWFyIHBvaW50bGVzcy4gUGx1cyBpcyBq
-dXN0IGEgc2hpZnQuIG1pbnVzIGlzIHNvbWUNCj4gc2ltcGxlIGFyaXRobWV0aWMgYW5kIGEgc2hp
-ZnQuDQpXZWxsLCBJIGZvdW5kIGl0IG1vcmUgY2xlYXIgdG8gdXNlIGEgYml0IG9mIG1lbW9yeSB0
-aGFuIGFkZGluZyANCmluc3RydWN0aW9ucyB0byBjb21wdXRlIHNvbWUgcmF3IHZhbHVlcyBmcm9t
-IG90aGVyIHJhdyB2YWx1ZXMgdXNlZCBhcyANCnJlZmVyZW5jZS4NCj4NCj4gICAgICAgICBBbmRy
-ZXcNCg0KDQo=
+The TLMM gpio74 is also used to communicate with the secure NFC
+on-board module, some variants of the SM8650 QRD & MTP boards requires
+this GPIO to be dedicated to the secure firmware and set reserved
+in order to successfully initialize the TLMM GPIOs from HLOS (Linux).
+On the other boards this GPIO is unused so it's still safe to mark
+the GPIO as reserved.
+
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+---
+Neil Armstrong (2):
+      arm64: dts: qcom: sm8650-qrd: add gpio74 as reserved gpio
+      arm64: dts: qcom: sm8650-mtp: add gpio74 as reserved gpio
+
+ arch/arm64/boot/dts/qcom/sm8650-mtp.dts | 2 +-
+ arch/arm64/boot/dts/qcom/sm8650-qrd.dts | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+---
+base-commit: bffdfd2e7e63175ae261131a620f809d946cf9a7
+change-id: 20240111-topic-sm8650-upstream-qrd-fix-gpio-reserved-1c3d56c2d3e8
+
+Best regards,
+-- 
+Neil Armstrong <neil.armstrong@linaro.org>
+
 
