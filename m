@@ -1,64 +1,56 @@
-Return-Path: <devicetree+bounces-31432-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31433-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54B5E82B331
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 17:44:06 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C18E82B339
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 17:45:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6B49B1C23092
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 16:44:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 94E44285293
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 16:45:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2D5A50257;
-	Thu, 11 Jan 2024 16:43:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADCF751038;
+	Thu, 11 Jan 2024 16:45:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xDz0ocW8"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="vv5NKnPd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DC7C51C27
-	for <devicetree@vger.kernel.org>; Thu, 11 Jan 2024 16:43:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-336c8ab0b20so4803135f8f.1
-        for <devicetree@vger.kernel.org>; Thu, 11 Jan 2024 08:43:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704991436; x=1705596236; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=jTNEFYhxC94EAl/ojLdJRih+xoob4znGGot3ahEGPpw=;
-        b=xDz0ocW8zL0fRLQa1sIyp/pNbUHSguj1Y8EJrAuN6U6VxHthqqoN5rAI1zSZDB7i/a
-         cZ0OIcIMXYt9mGVqIVQF6co7V+hZk9yFfL0sY2oK+207zGp/8zzjm9flpNE/PjhWghfg
-         ZF+fD/8hlnEZ5Gvus6FH/gUFU0UmhhFqG2jiz3A3RLcVZxQ9NCyulnsvK88Hm4wComMv
-         58CZyvtJebD4qedmBKxdE1gS5445YFMKgQhnrGPSH94Wg/3iySc/UV47WRdFD/QLOdXg
-         nEwYPnPNkD+t6PlqOYw+moNgoyU/lyL5qB7tmyce3pMb/TZCq0ax+9dFc6WBUaH0qmJU
-         mEtA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704991436; x=1705596236;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jTNEFYhxC94EAl/ojLdJRih+xoob4znGGot3ahEGPpw=;
-        b=MYzZeTlsbHjs2STUF60SpLRrlH1+8f3EdW+P4oxsCpHuaLWXy5UdsIWoKF8ziXVp3a
-         IPHPKwp831DXzqiGy3y/+6TyIaJm3JKZ1+H0E3sjT708oeS2mWN6s64/3kr5FI+Wagjt
-         vQERdN03PC2Uc5QAtDjqRh9H0Cj3p0HeFYZ8QP51tJ3mHLPQsSO2/GuqMyofvfIMx6+A
-         krQiD5qa4zS7N2QBygGV3K2WLfp4MLIT+QMxWjCDMY+RR5SIW6s9z/fjEyD9pnos/BIZ
-         US4XhUzgT3NHqOycgq8Ad1XaTR2ybGVCrYBDRhaZCYjq8FVIR+7Y4U9tzFasUm4MAOmX
-         XBmA==
-X-Gm-Message-State: AOJu0YwnavzRnATcGiTQJ+Eru57oIcPcFMrkBcIg4FBI4zMShQi+LTVc
-	KqKfESG04+3mJwh3pqvTq06SYEDsq2iKsw==
-X-Google-Smtp-Source: AGHT+IGFJCtPiincHLPIOfqG9ak9tbib0gBnH22W7vfoQpyy6uHDGNXCtIzUf7vnM3ERfazJiU3rvQ==
-X-Received: by 2002:a5d:53c3:0:b0:336:5ddc:f474 with SMTP id a3-20020a5d53c3000000b003365ddcf474mr15308wrw.51.1704991436311;
-        Thu, 11 Jan 2024 08:43:56 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.223.112])
-        by smtp.gmail.com with ESMTPSA id f6-20020a5d4dc6000000b00336a2566aa2sm1606389wru.61.2024.01.11.08.43.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 11 Jan 2024 08:43:55 -0800 (PST)
-Message-ID: <afb2cc4d-efcd-4d99-ac78-a65ffa148c74@linaro.org>
-Date: Thu, 11 Jan 2024 17:43:54 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9C2B487AC;
+	Thu, 11 Jan 2024 16:45:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40BF03AO016903;
+	Thu, 11 Jan 2024 17:44:50 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	selector1; bh=+RkBvHFsuUajNUtIAcA2Z4Uhkt41wdpJd5SZHqOYvhw=; b=vv
+	5NKnPdw1nAN9QQZ0DEo+TX/nwRwJewLentXW6Q1eWxjhP4UBcM0k9qHCkHvPr6rW
+	lm95/HGclrQdmvsUHmzyU0oscLF3ajhe6XivKcpxJ3ZZulqJoWekUhl6Jc/ChIag
+	vBZFGRS72U44lXoGW/zkea7iVDLYDM6QWODeh9r10Qm+7AdDy2Mbekpa4smDKUd+
+	BAaaPdwKQ5NU47vNiko2sw/bBK1N+JcPynpkdNyZvPQIdlFlH3AgR3veSGZ4ndfK
+	6/ySG+YEwvobgsxIoiYi89J9BAtN98FCm2/YZeAiGvPzMB4tTipznuUJKlDrOGed
+	f4Wdx/0ziJnsQp4goyzg==
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3vexrce1g1-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 11 Jan 2024 17:44:50 +0100 (CET)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 9DA3610002A;
+	Thu, 11 Jan 2024 17:44:47 +0100 (CET)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id C901525AEE7;
+	Thu, 11 Jan 2024 17:44:45 +0100 (CET)
+Received: from [10.201.22.187] (10.201.22.187) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Thu, 11 Jan
+ 2024 17:44:44 +0100
+Message-ID: <4b1ffdc4-edce-4a69-a30b-45c29741dc2c@foss.st.com>
+Date: Thu, 11 Jan 2024 17:44:44 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,92 +58,250 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/6] arm64: dts: qcom: ipq5332: Add MDIO device tree
+Subject: Re: [PATCH v3 0/8] iio: add new backend framework
 Content-Language: en-US
-To: Jie Luo <quic_luoj@quicinc.com>, Andrew Lunn <andrew@lunn.ch>
-Cc: andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
- quic_kkumarcs@quicinc.com, quic_suruchia@quicinc.com, quic_soni@quicinc.com,
- quic_pavir@quicinc.com, quic_souravp@quicinc.com, quic_linchen@quicinc.com,
- quic_leiwei@quicinc.com
-References: <20240110112059.2498-1-quic_luoj@quicinc.com>
- <20240110112059.2498-4-quic_luoj@quicinc.com>
- <4bc0aff5-8a1c-44a6-89d8-460961a61310@lunn.ch>
- <e893c298-fbfa-4ae4-9b76-72a5030a5530@quicinc.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <e893c298-fbfa-4ae4-9b76-72a5030a5530@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+To: =?UTF-8?Q?Nuno_S=C3=A1?= <noname.nuno@gmail.com>,
+        Rob Herring
+	<robh@kernel.org>
+CC: Nuno Sa <nuno.sa@analog.com>, <devicetree@vger.kernel.org>,
+        <linux-iio@vger.kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Frank Rowand
+	<frowand.list@gmail.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter
+ Clausen <lars@metafoo.de>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>
+References: <20231213-dev-iio-backend-v3-0-bb9f12a5c6dc@analog.com>
+ <20231214141600.GA224419-robh@kernel.org>
+ <fa03e4138fe2c8c7e7f619e11f149701c39445e4.camel@gmail.com>
+ <20231214170326.GA458046-robh@kernel.org>
+ <dfe28945b33ddfd1258586b825e5eb3866ee28d8.camel@gmail.com>
+From: Olivier MOYSAN <olivier.moysan@foss.st.com>
+In-Reply-To: <dfe28945b33ddfd1258586b825e5eb3866ee28d8.camel@gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-01-05_08,2024-01-05_01,2023-05-22_02
 
-On 11/01/2024 16:59, Jie Luo wrote:
->>> +				mux_1 {
->>> +					pins = "gpio28";
->>> +					function = "mdio1";
->>> +					drive-strength = <8>;
->>> +					bias-pull-up;
->>> +				};
+Hi Nuno,
+
+On 12/15/23 16:18, Nuno Sá wrote:
+> On Thu, 2023-12-14 at 11:03 -0600, Rob Herring wrote:
+>> On Thu, Dec 14, 2023 at 05:05:20PM +0100, Nuno Sá wrote:
+>>> On Thu, 2023-12-14 at 08:16 -0600, Rob Herring wrote:
+>>>> On Wed, Dec 13, 2023 at 04:02:31PM +0100, Nuno Sa wrote:
+>>>>> v1:
+>>>>>   
+>>>>> https://lore.kernel.org/linux-iio/20231204144925.4fe9922f@jic23-huawei/T/#m222f517
+>>>>> 5273b81dbfe40b7f0daffcdc67d6cb8ff
+>>>>>
+>>>>> v2:
+>>>>>   
+>>>>> https://lore.kernel.org/r/20231208-dev-iio-backend-v2-0-5450951895e1@analog.co
+>>>>> m
+>>>>>
+>>>>> Changes in v3:
+>>>>> - Patch 1:
+>>>>>   * Use proposed generic schema [1]. Also make it a required property;
+>>>>>   * Improved the commit message.
+>>>>> - Patch 2:
+>>>>>   * Improved commit message.
+>>>>> - Patch 4:
+>>>>>   * Namespace all IIO DMAENGINE buffer exports;
+>>>>>   * Removed unrelated new line removal change.
+>>>>> - Patch 5:
+>>>>>   * Namespace all IIO backend exports.
+>>>>> - Patch 6:
+>>>>>   * Set backend.h in alphabetical order;
+>>>>>   * Import IIO backend namespace.
+>>>>> - Patch 7:
+>>>>>   * Don't depend on OF in kbuild anymore;
+>>>>>   * Import IIO backend namespace.
+>>>>>
+>>>>> For the bindings patches, I tried not to enter into much details about
+>>>>> the IIO framework as I think specifics of the implementation don't care
+>>>>> from the bindings perspective. Hopefully the commit messages are good
+>>>>> enough.
+>>>>>
+>>>>> I'm also aware that patch 1 is not backward compatible but we are
+>>>>> anyways doing it on the driver side (and on the driver the property is
+>>>>> indeed required). Anyways, just let me know if making the property
+>>>>> required is not acceptable (I'm fairly confident no one was using the
+>>>>> upstream version of the driver and so validating devicetrees for it).
+>>>>>
+>>>>> Keeping the block diagram in v3's cover so we don't have to follow links
+>>>>> to check the one of the typicals setups.
+>>>>>
+>>>>>                                             ----------------------------------
+>>>>> ----
+>>>>> -----------------
+>>>>>   ------------------                        | -----------         ------------
+>>>>>        -------  FPGA |
+>>>>>   |     ADC        |------------------------| | AXI ADC |---------| DMA CORE
+>>>>> |----
+>>>>> --| RAM |       |
+>>>>>   | (Frontend/IIO) | Serial Data (eg: LVDS) | |(backend)|---------|
+>>>>> |----
+>>>>> --|     |       |
+>>>>>   |                |------------------------| -----------         ------------
+>>>>>        -------       |
+>>>>>   ------------------                        ----------------------------------
+>>>>> ----
+>>>>> -----------------
+>>>>
+>>>> Why doesn't axi-adc just have an io-channels property to adc? It's the
+>>>> opposite direction for the link, but it seems more logical to me that
+>>>> axi-adc depends on adc rather than the other way around.
+>>>>
+>>>
+>>> We are not interested on a single channel but on the complete device. >From the
+>>> axi-
+>>> adc point of view, there's not much we could do with the adc channel. I mean,
+>>> maybe
+>>> we could still do something but it would be far from ideal (see below).
 >>
->> I don't know why i'm asking this, because i don't really expect a
->> usable answer. What sort of MUX is this? Should you be using one of
->> the muxes in drivers/net/mdio/mdio-mux-* or something similar?
+>> Will this hold up for everyone? Could there be a backend device that
+>> handles multiple ADCs? IOW, do you need #io-backend-cells? It's somewhat
+>> better if we add that up front rather than later and have to treat
+>> missing as 0 cells. It is also the only way to generically identify the
+>> providers (well, there's also 'foo-controller' properties, but we've
+>> gone away from those).
 >>
->>      Andrew
 > 
-> Sorry for the confusion, the pin nodes are for the MDIO and MDC, these
-> PINs are used by the dedicated hardware MDIO block in the SoC. I will 
-> update the node name from mux_0 to MDC, mux_1 to MDIO, to make it clear. 
-> The driver for this node is drivers/net/mdio/mdio-ipq4019.c, it is not 
-> related to the mdio-mux-* code.
+> For the axi-adc backend, it's very unlikely. The way the core connects to the
+> converters is through a serial data interface (LVDS, CMOS or JESD in ADI usecases).
+> This interface is not really a bus so it's kind of a 1:1 connection. Now, in more
+> complicated devices (like highly integrated RF transceivers) what we have is that we
+> have multiple of these cores (one per RX/TX port) connected to the frontend. So,
+> effectively 1 frontend could have multiple backends. So, yes, your first "doubts" are
+> not that "crazy" as this is also not the "typical" provider - consumer relationship.
+> However, for all of what I've said in the previous email, even in these cases,
+> thinking in these cores as the provider, makes things much more easier to handle.
+> 
+> However, the above is just ADI usecases. In theory, yes, it can be very possible for
+> another backend other than axi-adc to have multiple frontends connected so I guess we
+> can make #io-backend-cells already available in the schema.
+> 
+> For the axi-adc bindings this would be 'const: 0', right?
+> 
+>>
+>>> The opposite direction is exactly what we had (look at patch 2) just with another
+>>> custom property. The problem with that is that we would then need a bidirectional
+>>> link (we would need to callback into the provider and the provider would need to
+>>> access the consumer) between consumers and providers and that would be far from
+>>> optimal. The bidirectional link would exist because if we want to support
+>>> fundamental
+>>> things like LVDS/CMOS interface tuning we need to set/get settings from the axi-
+>>> adc
+>>> core. And as Jonathan suggested, the real data is captured or sent on the
+>>> converters
+>>> (ADC or DACs) and that is why we have the IIO device/interface in there and why
+>>> we
+>>> call them "frontends". In ADI usecases, backends are these FPGA cores providing
+>>> "services" to the "real" high speed converters. To put it in another way, the
+>>> real
+>>> converter is the one who knows how to use the axi-adc core and not the other way
+>>> around. That's also one of the reasons why it would be way more difficult to
+>>> handle
+>>> things with the opposite link. That's how we have done it so far and the mess we
+>>> have
+>>> out of tree is massive :sweat_smile: We ended up doing raw writes and reads on
+>>> the
+>>> axi-adc MMIO registers from the converter driver just because we had to configure
+>>> or
+>>> get something from the axi-adc device but the link was backwards.
+>>
+>> The direction (for the binding) doesn't really matter. It doesn't
+>> dictate the direction in the OS. In the ad9467 driver, you can search
+>> the DT for 'adi,adc-dev' and find the node which matches your node's
+>> phandle. It's not exactly efficient, but you are doing it once. It would
+>> also prevent the DT ABI break you are introducing.
+>>
+> 
+> Hmm, I think I see your idea. So you mean something like
+> devm_iio_backend_get_optional() and if not present, then we would look for nodes
+> having the 'adi,adc-dev' property and look for the one pointing at us... Then, we
+> would need another API in the backend to look for registered backends matching that
+> fwnode. Right?
+> 
+> I mean, I guess this could work but we would already have to start a fresh framework
+> with API's that are not really meant to be used anymore other than the ad9467 driver
+> (not devm_iio_backend_get_optional() because sooner or later I think we'll need that
+> one). We are already breaking ABI in the driver and I'm still fairly confident no one
+> is really using the upstream driver because it's lacking support for devices and
+> important features (not even in ADI fork we're using it).
+> 
+> Anyways, if you still insist on having something like this (and feel more comfortable
+> in not breaking DT ABI), I can see how this would look like in the next version...
+> 
+>>
+>>>> And if there's another consumer in the chain, then a node could
+>>>> certainly be both an io-channels consumer and producer.
+>>>>
+>>>
+>>> This should also be possible with this architecture. A node can be both a backend
+>>> (provider) and a consumer and we have an out of tree design that fits this (that
+>>> I
+>>> surely want to upstream after the foundations are done).
+>>>
+>>>> The architecture of the drivers seems odd to me. It looks similar to
+>>>> making a phy driver handle all the state and protocol with the host
+>>>> controller being a backend.
+>>>
+>>> In this case, it's not really a controller. It's more like an extension of the
+>>> device
+>>> because we need a way to handle the high sample rates this ADCs can do. Then we
+>>> can
+>>> also do test tones with the backend which is useful for interface tuning (as
+>>> mentioned above).
+>>>
+>>> To give you a bit more context, I'm adding the generic property because we will
+>>> have
+>>> more users for it (from ADI - the next should be the axi-dac core) but STM is
+>>> also
+>>> interested in this (likely the next user).
+>>>
+>>> Hope this makes it a bit more clear...
+>>
+>> Yes, thanks.
+>>
+>> I generally ask for 2 users on new common bindings. I've accepted too
+>> many only to have the 2nd user come in a month later and need additions.
+>> An ack on the binding from the STM folks would be nice here. And
+>> Jonathan too.
+>>
+> 
+> Olivier, could we get an ack on the bindings patch? Do you also have any idea about
+> how long it would take for you to send patches so we have another user of the schema?
+> 
+> On my side, it might very well take a month or so (given we have holidays nearby) as
+> the axi-dac core is more complex than the axi-adc. Bah it might take less than a
+> month to have the first version of it posted in the lists but I can't make any
+> promises.
+> 
 
-NAK. Run dtbs_check tests on your DTS first.
+Sorry for late answer.
+Regarding bindings patch, I assume you refer to [1].
+After adding the #io-backend-cells property in v5 you can add my
+Ack-by Olivier Moysan <olivier.moysan@foss.st.com>
 
-Best regards,
-Krzysztof
+I will prepare a serie based on these bindings. Hopefully it should be 
+possible this month.
 
+BRs
+Olivier
+
+[1] https://github.com/devicetree-org/dt-schema/pull/120
+
+
+> - Nuno Sá
+> 
 
