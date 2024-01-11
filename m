@@ -1,148 +1,94 @@
-Return-Path: <devicetree+bounces-31429-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31430-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6B6982B300
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 17:33:17 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C8ED82B312
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 17:35:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 12E13B20FDB
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 16:33:15 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2B0E0B264BB
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 16:35:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C9E54F8B1;
-	Thu, 11 Jan 2024 16:33:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AC0B5025B;
+	Thu, 11 Jan 2024 16:35:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HtX9kBJ2"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="Du7wM1aQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF9AD51000;
-	Thu, 11 Jan 2024 16:33:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 55C6EC433F1;
-	Thu, 11 Jan 2024 16:33:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1704990787;
-	bh=cBOEHJ4jz+911gd0H8RzE2SvkvqohyMtgT/JyoRoh4I=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=HtX9kBJ2RSIaZ5ApbfyL+BVDfVPnIICVdVWIvT3ELBc6rohF8c68fWZffaqmk1e21
-	 m1f1XHU3TOoLQJUySrZ3+AiibNy3MiERrRcR5TJhzAhbGBqZJPRuS3sXjlMy6q7kMF
-	 Jeegz3p4QclI2UQecnwkIaumwMWFuNI3elKOqlaO0ubg/54TY7fjZonfFuEUsTHsd9
-	 QYfX8U5MDLMa/gMxlJKM0wAsJ6LDnEisFZHSfGVPQdcpjLYXgGhRMGZU2gQ1UfoBQW
-	 acCJmwEWl5e3ltqrGilZXn7AKYIokzifF0+ZpaFZMX6j0UAED9buN1GUg9g2IEqcud
-	 DmYzMVcgBoJlQ==
-Date: Thu, 11 Jan 2024 16:33:03 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Ceclan Dumitru <mitrutzceclan@gmail.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Ceclan Dumitru <dumitru.ceclan@analog.com>
-Subject: Re: [PATCH v2 1/4] dt-bindings: iio: hmc425a: add conditional GPIO
- array size constraints
-Message-ID: <20240111-numerate-aqueduct-9eaaa4dfc572@spud>
-References: <20240110153757.5754-1-mitrutzceclan@gmail.com>
- <20240110153757.5754-2-mitrutzceclan@gmail.com>
- <20240110-unfitting-squander-b1d71c185bb7@spud>
- <478d9445-96aa-44b3-b598-8f7d7716dbba@gmail.com>
- <20240111-suitcase-collage-889fa8404ab2@spud>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27D5050253;
+	Thu, 11 Jan 2024 16:35:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=MW6/932j529IcbPLZuE9sRIM5eRFWB8/wXQ+QFuqeWQ=; b=Du7wM1aQPgJreB3wMQY5XBx7i+
+	Yhj99KSRD7o09HTrI9gr4PIh0Jv8TF2pMYibsbqJ4wcwlFw1bX8C2Vn+DjaMNsyujas/Hi5KI3dh/
+	aIkZOAaOb7/zrkLC4Lib3W1EQQ3hlg02vbaBkCuCRMyZaWUpUSRNa4Ceb9IqJu+J9qTc=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1rNy1L-0050vo-QQ; Thu, 11 Jan 2024 17:35:07 +0100
+Date: Thu, 11 Jan 2024 17:35:07 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Catalin Popescu <catalin.popescu@leica-geosystems.com>
+Cc: davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+	pabeni@redhat.com, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, afd@ti.com,
+	hkallweit1@gmail.com, linux@armlinux.org.uk, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: net: dp83826: add ti,cfg-dac-minus
+ binding
+Message-ID: <c795aa28-b6a2-4db8-b941-05b51b44f1fe@lunn.ch>
+References: <20240111161927.3689084-1-catalin.popescu@leica-geosystems.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="SLcpOGUKLjHDM79r"
-Content-Disposition: inline
-In-Reply-To: <20240111-suitcase-collage-889fa8404ab2@spud>
-
-
---SLcpOGUKLjHDM79r
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20240111161927.3689084-1-catalin.popescu@leica-geosystems.com>
 
-On Thu, Jan 11, 2024 at 04:31:40PM +0000, Conor Dooley wrote:
-> On Thu, Jan 11, 2024 at 10:17:58AM +0200, Ceclan Dumitru wrote:
-> >=20
-> >=20
-> > On 1/10/24 18:17, Conor Dooley wrote:
-> > > On Wed, Jan 10, 2024 at 05:37:09PM +0200, Dumitru Ceclan wrote:...
-> > >>    ctrl-gpios:
-> > >>      description:
-> > >> -      Must contain an array of 6 GPIO specifiers, referring to the =
-GPIO pins
-> > >> -      connected to the control pins V1-V6.
-> > >> -    minItems: 6
-> > >> +      Must contain an array of GPIO specifiers, referring to the GP=
-IO pins
-> > >> +      connected to the control pins.
-> > >> +        ADRF5740  - 4 GPIO connected to D2-D5
-> > >> +        HMC540S   - 4 GPIO connected to V1-V4
-> > >> +        HMC425A   - 6 GPIO connected to V1-V6
-> > >> +    minItems: 1
-> > >>      maxItems: 6
-> > >> =20
-> > >> +allOf:
-> > >> +  - if:
-> > >> +      properties:
-> > >> +        compatible:
-> > >> +          contains:
-> > >> +            const: adi,hmc425a
-> > >> +    then:
-> > >> +      properties:
-> > >> +        ctrl-gpios:
-> > >> +          minItems: 6
-> > >=20
-> > >> +          maxItems: 6
-> > >=20
-> > > This one should not be needed, it's already set by constraints on the
-> > > property above.
-> > >=20
-> >=20
-> > No, not needed, just inspired from:
-> >  /bindings/clock/samsung,exynos7-clock.yaml
-> >=20
-> > Specifically, the top constraints:
-> >   clocks:
-> >=20
-> >     minItems: 1
-> >=20
-> >     maxItems: 13
-> >=20
-> > One of the conditional constraints:
-> >   clocks:
-> >=20
-> >     minItems: 13
-> >=20
-> >     maxItems: 13
-> >=20
-> >=20
-> > I would only have two arguments for this staying here:
-> >  - It stays consistent with other cases
-> >  - In the case a new device with more than 6 GPIOs is added, this would
-> > need to be put back in
->=20
-> Okay.
+On Thu, Jan 11, 2024 at 05:19:25PM +0100, Catalin Popescu wrote:
+> Add property ti,cfg-dac-minus to allow for voltage tuning
+> of logical level -1 of the MLT-3 encoded data.
+> 
+> Signed-off-by: Catalin Popescu <catalin.popescu@leica-geosystems.com>
+> ---
+>  Documentation/devicetree/bindings/net/ti,dp83822.yaml | 9 +++++++++
+>  1 file changed, 9 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/ti,dp83822.yaml b/Documentation/devicetree/bindings/net/ti,dp83822.yaml
+> index db74474207ed..2f010333be49 100644
+> --- a/Documentation/devicetree/bindings/net/ti,dp83822.yaml
+> +++ b/Documentation/devicetree/bindings/net/ti,dp83822.yaml
+> @@ -62,6 +62,15 @@ properties:
+>         for the PHY.  The internal delay for the PHY is fixed to 3.5ns relative
+>         to transmit data.
+>  
+> +  ti,cfg-dac-minus:
+> +    description: |
+> +       DP83826 PHY only.
+> +       Sets the voltage ratio of the logical level -1 for the MLT-3 encoded data.
+> +       0 = 50%, 1 = 56.25%, 2 = 62.50%, 3 = 68.75%, 4 = 75%, 5 = 81.25%, 6 = 87.50%,
+> +       7 = 93.75%, 8 = 100%, 9 = 106.25%, 10 = 112.50%, 11 = 118.75%, 12 = 125%,
+> +       13 = 131.25%, 14 = 137.50%, 15 = 143.75%, 16 = 150%.
+> +    enum: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
 
-Sorry, that's probably super unclear. I meant it's okay to leave it.
+We try to avoid register values in DT. We use real units. This is a
+voltage you are configuring, so can you change the unit to millivolts?
+Have the driver do the conversion of volts to register value.
 
+Is it possible to configure any of the other logical levels?
 
---SLcpOGUKLjHDM79r
-Content-Type: application/pgp-signature; name="signature.asc"
+    Andrew
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZaAYPgAKCRB4tDGHoIJi
-0jalAQCPzckyn2TpzYdmBZKa/c3mDGk156cx45W8rNKZyQr3awD8Chazl9EKk0I2
-8pWYm0pVfUobXV74ZFjqNmRG9pqKMQQ=
-=3NAy
------END PGP SIGNATURE-----
-
---SLcpOGUKLjHDM79r--
+---
+pw-bot: cr
 
