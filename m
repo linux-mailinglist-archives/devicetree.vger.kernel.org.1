@@ -1,64 +1,66 @@
-Return-Path: <devicetree+bounces-31267-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31268-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC9DD82A8E4
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 09:18:20 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B89C282A8E9
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 09:19:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 36927286956
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 08:18:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 61A21286F91
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 08:19:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E1C6DDDA;
-	Thu, 11 Jan 2024 08:18:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1719DDA6;
+	Thu, 11 Jan 2024 08:19:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jO9X2qPz"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Acs4L3C0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6750DDA7;
-	Thu, 11 Jan 2024 08:18:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-40e60c01112so2055065e9.3;
-        Thu, 11 Jan 2024 00:18:02 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4028BE558
+	for <devicetree@vger.kernel.org>; Thu, 11 Jan 2024 08:19:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-3366ddd1eddso4461763f8f.0
+        for <devicetree@vger.kernel.org>; Thu, 11 Jan 2024 00:19:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1704961081; x=1705565881; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=5rwQfo+ZJaEC5dJSMpIgccTGi76fIiQqAqibwMmXhHI=;
-        b=jO9X2qPzzKT26eWkbHdg8X71zHSDYg4ZbGqsJA5IUEhn7VVAmhUAHlLKQ5CFWVZUF7
-         mgDQVX4M23+eflaKNnuj0vFoxmkZQjbhkR2JFvzEwGPk6AVDxEwUu+dCJTKX92xzEn0/
-         IRuR8Lhyn+OjyGAyAFbi0Xoqy0eMvUSmD9ZPZp9nGQAFyo67tqQYfZi5XO4czyYSgQ90
-         M1iqIRAwqKgPJJ8HQfUKBctJXiPJCoFGeYNAK4LY8aK4Mnj+MqAHcgu/uxio0M4Z48xz
-         /CXVNizcuU1/KcupenIzLP27x5N6t9418+kTpoGjdOUqSwDdprtig/WJXEB5662N9uv0
-         ng7A==
+        d=linaro.org; s=google; t=1704961153; x=1705565953; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :references:cc:to:content-language:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=+4qHeI/z66hlwEDi1tGbM9yP5c2kAe5foIFfSXCRpNE=;
+        b=Acs4L3C0LJCQLHKxWGFp+PX345K3pSmxATroorgT2qmm79NFUkUSS/TFbE2EwkhkNz
+         t9wkPUTBQJOLNKDK+CNRJ5E88Q7d7GtW8G45tWjj7oyUXH9bVzNEaHdswJmRfooq/V2v
+         Ok48a9YU/eLPVYP31FpdQs/9T7hS+iUZPMyYeIdO3RIpkvL9VITgNErhLNn/9nddGltR
+         B5zkNCsRZWadK8sNy2NpQLkZBYPEXiORnUCGnVCtC89yX4UdB46RgG6chX+CYT+X1IWr
+         3km14UcpQjtxej9NMtoKUsSUvb2vn+QX7rIb0l3MqKm85dWJq1IzXtwgEvmJdWrTA98b
+         byFw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704961081; x=1705565881;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=5rwQfo+ZJaEC5dJSMpIgccTGi76fIiQqAqibwMmXhHI=;
-        b=GRcQ5OHlKjKZj0T8RoJoKiQcgfggI2gyCfgX3e7y+a/S/kAzuoeRRisYbuYY2WL+t9
-         qQB0ai+iuGPtyIYVeUi/5BDGWPqcyHc+BgMBZwWgMKvyYt/lNfwLCDtjIzgoWpvd3efJ
-         Xa6y4ADsgqsJ8c+fl2gcOLxV4Dgq741kBp5lEKP4sOWj/3BwjeJjxTGXbuS+nywEs4Ho
-         3qj1bXXTvPaNqfpSk3WrYv9m4qaEyKxbnDTjlyRQhjmWTu0trvuOEU7TPHGJE91kVaKR
-         l+mTuQm97HiccluvAZB49YbnS3TQJn5FzUJ5F/zbmJ/vaKlIQydkibT0Sa963iq4haro
-         sv1A==
-X-Gm-Message-State: AOJu0Yw6Hm8dSUzBe12C/Ucr9w2DxHGdKI8kryg94TOTbf74zN3QrOI8
-	WJia3dMdXgq+0P3EXAI3myg=
-X-Google-Smtp-Source: AGHT+IHt/J3AVkSY28dINSArDDnQZqWP8Fj1RL8pSvDrJVbP0V7ClIf6ITN06YHaylgCtNAb15yqgA==
-X-Received: by 2002:a05:600c:34c5:b0:40e:4e14:45bc with SMTP id d5-20020a05600c34c500b0040e4e1445bcmr184476wmq.13.1704961080551;
-        Thu, 11 Jan 2024 00:18:00 -0800 (PST)
-Received: from [172.25.98.130] ([5.2.194.157])
-        by smtp.gmail.com with ESMTPSA id b8-20020a05600c4e0800b0040e60dd364dsm768626wmq.14.2024.01.11.00.17.59
+        d=1e100.net; s=20230601; t=1704961153; x=1705565953;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :references:cc:to:content-language:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=+4qHeI/z66hlwEDi1tGbM9yP5c2kAe5foIFfSXCRpNE=;
+        b=QYN0ioF0sXU2oZnRlGT+0+aYD+2ngbdGoGZkaqQDQDpfDfwUw72L8w4K/bQKzbxntC
+         67HGONmkiDy9fUJM25AfYL+NKLg4d1Ez3J7Rdtuq1/7zCiDCqMJVxPOV/cbNiEFm6hjk
+         lBEvbk4iiYwoUMphnWL6qEiikJVLmdqE+z+xGM5pDWsHY9Mhfi6iDkatpspeK49k+90e
+         Km575P8LojuaYnvvaYIVS49VJNM5OXgma2t5FPOYdTJ9MqWsOLKbu4Rct33NB5qwtlFa
+         AIECzY6Q0xG7R2iHThtW2cliVYbFSp8s6pdCvhAA0ceOhg8BXlGdJwwGiWsj4BXirU6V
+         z7ew==
+X-Gm-Message-State: AOJu0YycoweGgbbHwcMyV9VXvIwVG40g4S67w5eiD1L1LXS98WuUz4Dn
+	K6rZEtt7by2lYCTsrGpX/AA/Mso7WysTrg==
+X-Google-Smtp-Source: AGHT+IG1MXGBZm+5oHqUHBJdJ1Gjre9hhkiIT+3tfrKpHjQyQgK7AuNU3ufYjUEJBIcpbc9DMxgMRg==
+X-Received: by 2002:adf:ed4e:0:b0:336:4bbc:72e4 with SMTP id u14-20020adfed4e000000b003364bbc72e4mr189239wro.81.1704961153283;
+        Thu, 11 Jan 2024 00:19:13 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:a5aa:e466:ae57:5a26? ([2a01:e0a:982:cbb0:a5aa:e466:ae57:5a26])
+        by smtp.gmail.com with ESMTPSA id x18-20020adfffd2000000b003377680c55bsm555821wrs.16.2024.01.11.00.19.12
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 11 Jan 2024 00:18:00 -0800 (PST)
-Message-ID: <478d9445-96aa-44b3-b598-8f7d7716dbba@gmail.com>
-Date: Thu, 11 Jan 2024 10:17:58 +0200
+        Thu, 11 Jan 2024 00:19:12 -0800 (PST)
+Message-ID: <b2caf65d-4bc8-4e16-b4db-b24006e3dce6@linaro.org>
+Date: Thu, 11 Jan 2024 09:19:11 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,78 +68,116 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/4] dt-bindings: iio: hmc425a: add conditional GPIO
- array size constraints
-To: Conor Dooley <conor@kernel.org>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Jonathan Cameron
- <jic23@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Ceclan Dumitru <dumitru.ceclan@analog.com>
-References: <20240110153757.5754-1-mitrutzceclan@gmail.com>
- <20240110153757.5754-2-mitrutzceclan@gmail.com>
- <20240110-unfitting-squander-b1d71c185bb7@spud>
-Content-Language: en-US
-From: Ceclan Dumitru <mitrutzceclan@gmail.com>
-In-Reply-To: <20240110-unfitting-squander-b1d71c185bb7@spud>
-Content-Type: text/plain; charset=UTF-8
+From: neil.armstrong@linaro.org
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v1 00/24] Support more Amlogic SoC families in crypto
+ driver
+Content-Language: en-US, fr
+To: Alexey Romanov <avromanov@salutedevices.com>, narmstrong@baylibre.com,
+ clabbe@baylibre.com, herbert@gondor.apana.org.au, davem@davemloft.net,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ khilman@baylibre.com, jbrunet@baylibre.com, artin.blumenstingl@googlemail.com
+Cc: linux-crypto@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, kernel@salutedevices.com
+References: <20240110201216.18016-1-avromanov@salutedevices.com>
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro Developer Services
+In-Reply-To: <20240110201216.18016-1-avromanov@salutedevices.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
+Hi !
 
-
-On 1/10/24 18:17, Conor Dooley wrote:
-> On Wed, Jan 10, 2024 at 05:37:09PM +0200, Dumitru Ceclan wrote:...
->>    ctrl-gpios:
->>      description:
->> -      Must contain an array of 6 GPIO specifiers, referring to the GPIO pins
->> -      connected to the control pins V1-V6.
->> -    minItems: 6
->> +      Must contain an array of GPIO specifiers, referring to the GPIO pins
->> +      connected to the control pins.
->> +        ADRF5740  - 4 GPIO connected to D2-D5
->> +        HMC540S   - 4 GPIO connected to V1-V4
->> +        HMC425A   - 6 GPIO connected to V1-V6
->> +    minItems: 1
->>      maxItems: 6
->>  
->> +allOf:
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          contains:
->> +            const: adi,hmc425a
->> +    then:
->> +      properties:
->> +        ctrl-gpios:
->> +          minItems: 6
+On 10/01/2024 21:11, Alexey Romanov wrote:
+> Hello!
 > 
->> +          maxItems: 6
+> This patchset expand the funcionality of the Amlogic
+> crypto driver by adding support for more SoC families:
+> AXG, G12A, G12B, SM1, A1, S4.
 > 
-> This one should not be needed, it's already set by constraints on the
-> property above.
+> Also specify and enable crypto node in device tree
+> for reference Amlogic devices.
+> 
+> Tested on AXG, G12A/B, SM1, A1 and S4 devices via
+> custom tests and trcypt module.
+
+Thanks a lot for the patchset, it's very welcome!
+
+Could you provide some procedure used to test and test dumps for all the platforms, like `cryptsetup benchmark` or a summary of tcrypt tests output ?
+
+Thanks,
+Neil
+
+> 
+> Alexey Romanov (17):
+>    drivers: crypto: meson: don't hardcode IRQ count
+>    drivers: crypto: meson: make CLK controller optional
+>    drviers: crypto: meson: add platform data
+>    drivers: crypto: meson: add MMIO helpers
+>    drivers: crypto: meson: move get_engine_number()
+>    drivers: crypto: meson: use fallback for 192-bit keys
+>    drivers: crypto: meson: add support for G12-series
+>    drivers: crypto: meson: add support for AXG-series
+>    dt-bindings: crypto: meson: add new compatibles
+>    arch: arm64: dts: meson: a1: add crypto node
+>    arch: arm64: dts: meson: s4: add crypto node
+>    arch: arm64: dts: meson: g12: add crypto node
+>    arch: arm64: dts: meson: axg: add crypto node
+>    arch: arm64: dts: meson: s4-s805x2-aq222: enable crypto node
+>    arch: arm64: dts: meson: a1-ad401: enable crypto node
+>    arch: arm64: dts: meson: axg-s400: enable crypto node
+>    arch: arm64: dts: meson: g12a-u200: enable crypto node
+> 
+> Jan Dakinevich (7):
+>    drivers: crypto: meson: drop status field from meson_flow
+>    drivers: crypto: meson: move algs definition and cipher API to
+>      cipher.c
+>    drivers: crypto: meson: cleanup defines
+>    drivers: crypto: meson: process more than MAXDESCS descriptors
+>    drivers: crypto: meson: avoid kzalloc in engine thread
+>    drivers: crypto: meson: introduce hasher
+>    drivers: crypto: meson: add support for AES-CTR
+> 
+>   .../bindings/crypto/amlogic,gxl-crypto.yaml   |   2 +
+>   .../arm64/boot/dts/amlogic/meson-a1-ad401.dts |   4 +
+>   arch/arm64/boot/dts/amlogic/meson-a1.dtsi     |   8 +
+>   .../arm64/boot/dts/amlogic/meson-axg-s400.dts |   4 +
+>   arch/arm64/boot/dts/amlogic/meson-axg.dtsi    |   7 +
+>   .../boot/dts/amlogic/meson-g12-common.dtsi    |   7 +
+>   .../boot/dts/amlogic/meson-g12a-u200.dts      |   4 +
+>   .../dts/amlogic/meson-s4-s805x2-aq222.dts     |   4 +
+>   arch/arm64/boot/dts/amlogic/meson-s4.dtsi     |   7 +
+>   drivers/crypto/amlogic/Makefile               |   2 +-
+>   drivers/crypto/amlogic/amlogic-gxl-cipher.c   | 591 ++++++++++++------
+>   drivers/crypto/amlogic/amlogic-gxl-core.c     | 260 ++++----
+>   drivers/crypto/amlogic/amlogic-gxl-hasher.c   | 448 +++++++++++++
+>   drivers/crypto/amlogic/amlogic-gxl.h          | 116 +++-
+>   14 files changed, 1135 insertions(+), 329 deletions(-)
+>   create mode 100644 drivers/crypto/amlogic/amlogic-gxl-hasher.c
 > 
 
-No, not needed, just inspired from:
- /bindings/clock/samsung,exynos7-clock.yaml
-
-Specifically, the top constraints:
-  clocks:
-
-    minItems: 1
-
-    maxItems: 13
-
-One of the conditional constraints:
-  clocks:
-
-    minItems: 13
-
-    maxItems: 13
-
-
-I would only have two arguments for this staying here:
- - It stays consistent with other cases
- - In the case a new device with more than 6 GPIOs is added, this would
-need to be put back in
 
