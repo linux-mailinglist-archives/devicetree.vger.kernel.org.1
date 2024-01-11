@@ -1,78 +1,161 @@
-Return-Path: <devicetree+bounces-31437-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31438-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0464082B347
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 17:48:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 452F482B34F
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 17:49:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2BDFE1C211FB
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 16:48:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 698A81C20CB1
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 16:49:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59D2850267;
-	Thu, 11 Jan 2024 16:48:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D65EF5026B;
+	Thu, 11 Jan 2024 16:49:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="j7Z83Wll"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Tnne66hi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E11AA3C067;
-	Thu, 11 Jan 2024 16:47:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=WtuGr+KIVGoOtPZDsOrWr5v6dnJPQz1Q6opVpNgA6H8=; b=j7Z83WllkN+7g32iyYAdYTYJav
-	5ApcCOG0btxEWHu1l7/qE48M7qZUOGC6h60fu+va/mNhpolw3BJDfEhM1Ej3XCxl+Yad5faXpvwWV
-	nDA44b97/NwAq2+I0ufY7gRWE9R23FwTjGTQI80K4aaMG4dgvPHSMhmWUiws1LrssOQ0=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1rNyDe-0050zp-7k; Thu, 11 Jan 2024 17:47:50 +0100
-Date: Thu, 11 Jan 2024 17:47:50 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: POPESCU Catalin <catalin.popescu@leica-geosystems.com>
-Cc: "davem@davemloft.net" <davem@davemloft.net>,
-	"edumazet@google.com" <edumazet@google.com>,
-	"kuba@kernel.org" <kuba@kernel.org>,
-	"pabeni@redhat.com" <pabeni@redhat.com>,
-	"robh+dt@kernel.org" <robh+dt@kernel.org>,
-	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"afd@ti.com" <afd@ti.com>,
-	"hkallweit1@gmail.com" <hkallweit1@gmail.com>,
-	"linux@armlinux.org.uk" <linux@armlinux.org.uk>,
-	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	GEO-CHHER-bsp-development <bsp-development.geo@leica-geosystems.com>
-Subject: Re: [PATCH 1/3] dt-bindings: net: dp83826: add ti,cfg-dac-minus
- binding
-Message-ID: <5f57479b-59e8-458b-a19c-8306fbfe8ff7@lunn.ch>
-References: <20240111161927.3689084-1-catalin.popescu@leica-geosystems.com>
- <c795aa28-b6a2-4db8-b941-05b51b44f1fe@lunn.ch>
- <a4af4a08-6eea-420b-b76f-47f4e836b476@leica-geosystems.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B912C51C2E;
+	Thu, 11 Jan 2024 16:49:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 691C7C433C7;
+	Thu, 11 Jan 2024 16:49:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1704991747;
+	bh=JdwruGDOEdzB2LuGJA/Hcp7a/rN5jmDIR9zUt6kA1eM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Tnne66himYCZMvtSrB5AQ5bZMV/aVEiGgmUqR3NHgzpaXygBCvM9ZpYjVZVZKmAkb
+	 uBOlalwvgw71CoeqPJI18yaT+y2ob9cnqFzzqAsEufaOOkqQ6qC7zIEbN52jZPjc5v
+	 eviEQeREKmpJeqlUuFSBEGJFHBX4e79zmgl4pdyN0km1nmzvBlCVsU6mRrop63ekmE
+	 kSvfwghGpauqe3OgP+LqqafBnMOBFPrhR3Mq7IWoYtRP7+/xlbLGP9vgOcoH/Bg8HL
+	 Fgr3JpEwE+WJZl46LPFQqv98llIsvSokeBRR6FOaL14JAPKVvg8zpWMn00GSD0poVy
+	 ta31W013FFrjg==
+Date: Thu, 11 Jan 2024 16:49:03 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Lucas Stach <l.stach@pengutronix.de>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/1] dt-bindings: interrupt-controller: fsl, irqsteer:
+ Add power-domains
+Message-ID: <20240111-dullness-blooper-37644405c825@spud>
+References: <20240110094338.472304-1-alexander.stein@ew.tq-group.com>
+ <20240110-ignore-womanhood-a7ee7caa71f1@spud>
+ <9230083.CDJkKcVGEf@steina-w>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="wWaS4J8enbsL6FHr"
 Content-Disposition: inline
-In-Reply-To: <a4af4a08-6eea-420b-b76f-47f4e836b476@leica-geosystems.com>
+In-Reply-To: <9230083.CDJkKcVGEf@steina-w>
 
-> These are not raw register values and these are not voltage values but 
-> voltage ratios. I'm mapping the voltage ratios to enum values [0-16] 
-> which are converted to register raw values by the driver. I don't see a 
-> better way to do this.
 
-I assume 802.3 states what the actual voltage should be? So you can
-calculate what 50% of that is?
+--wWaS4J8enbsL6FHr
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-	  Andrew
+On Thu, Jan 11, 2024 at 09:59:54AM +0100, Alexander Stein wrote:
+> Hi Conor,
+>=20
+> Am Mittwoch, 10. Januar 2024, 17:09:07 CET schrieb Conor Dooley:
+> > On Wed, Jan 10, 2024 at 10:43:38AM +0100, Alexander Stein wrote:
+> > > Some SoC like i.MX8QXP use a power-domain for this IP add it to the
+> > > supported proerties. Fixes the dtbs_check warning:
+> > > freescale/imx8qxp-tqma8xqp-mba8xx.dtb: irqsteer@56000000: 'power-doma=
+ins'
+> > >=20
+> > >  does not match any of the regexes: 'pinctrl-[0-9]+'
+> > >=20
+> > > from schema $id:
+> > > http://devicetree.org/schemas/interrupt-controller/fsl,irqsteer.yaml#
+> > >=20
+> > > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> > > ---
+> > >=20
+> > > Notes:
+> > >     Please note that both the board dts and the DT node for irqsteer =
+being
+> > >     used, are still work-in-progress.
+> >=20
+> > The binding doesn't even support the imx8qxp's irqsteer yet, I think
+> > this should be added alongside support for that SoC. Am I missing
+> > something?
+>=20
+> I'm not sure if any additional SoC support is actually needed. 'fsl,imx-
+> irqsteer' is available and that's what I use in my WiP. Also imx8mp also =
+just=20
+> uses the generic compatible. Only imx8mq uses 'fsl,imx8m-irqsteer'.
+
+Why doesn't it used "imx8mq-irqsteer"? Should it not have its own
+soc-specific compatible?
+
+Cheers,
+Conor.
+
+> AFAICS the bindings support the different amount of IRQs already.
+>=20
+> Best regards,
+> Alexander
+>=20
+> >=20
+> > >  .../devicetree/bindings/interrupt-controller/fsl,irqsteer.yaml | 3 +=
+++
+> > >  1 file changed, 3 insertions(+)
+> > >=20
+> > > diff --git
+> > > a/Documentation/devicetree/bindings/interrupt-controller/fsl,irqsteer=
+=2Eyam
+> > > l
+> > > b/Documentation/devicetree/bindings/interrupt-controller/fsl,irqsteer=
+=2Eyam
+> > > l index 20ad4ad82ad64..cb4fcd23627f6 100644
+> > > ---
+> > > a/Documentation/devicetree/bindings/interrupt-controller/fsl,irqsteer=
+=2Eyam
+> > > l +++
+> > > b/Documentation/devicetree/bindings/interrupt-controller/fsl,irqsteer=
+=2Eyam
+> > > l>=20
+> > > @@ -42,6 +42,9 @@ properties:
+> > >    clock-names:
+> > >      const: ipg
+> > >=20
+> > > +  power-domains:
+> > > +    maxItems: 1
+> > > +
+> > >=20
+> > >    interrupt-controller: true
+> > >   =20
+> > >    "#interrupt-cells":
+>=20
+>=20
+> --=20
+> TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+> Amtsgericht M=FCnchen, HRB 105018
+> Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+> http://www.tq-group.com/
+>=20
+>=20
+
+--wWaS4J8enbsL6FHr
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZaAb/wAKCRB4tDGHoIJi
+0mFtAQCQQn8CGov6Wc2IEhbZM1R3caFBQt9b2jc9NHRpZlKjYgEAiL5ehZjTcg10
+R3lSZNCwyavk+9pMR/M/cs742X7hAwY=
+=jPFd
+-----END PGP SIGNATURE-----
+
+--wWaS4J8enbsL6FHr--
 
