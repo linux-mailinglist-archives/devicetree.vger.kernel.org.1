@@ -1,84 +1,116 @@
-Return-Path: <devicetree+bounces-31231-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31232-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 370B982A659
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 04:10:55 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3626082A681
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 04:33:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 570531F20FAD
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 03:10:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D2E1C283D55
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 03:33:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74511A52;
-	Thu, 11 Jan 2024 03:10:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99F1FEC8;
+	Thu, 11 Jan 2024 03:33:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nX+1BjAo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m49197.qiye.163.com (mail-m49197.qiye.163.com [45.254.49.197])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E042A15C2;
-	Thu, 11 Jan 2024 03:10:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
-Received: from amadeus-Vostro-3710.lan (unknown [113.118.191.185])
-	by mail-m121145.qiye.163.com (Hmail) with ESMTPA id 14CC080007F;
-	Thu, 11 Jan 2024 11:10:30 +0800 (CST)
-From: Chukun Pan <amadeus@jmu.edu.cn>
-To: krzysztof.kozlowski@linaro.org
-Cc: amadeus@jmu.edu.cn,
-	andersson@kernel.org,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	konrad.dybcio@linaro.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	linux-arm-msm@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] arm64: dts: qcom: ipq6018: enable sdhci node
-Date: Thu, 11 Jan 2024 11:10:26 +0800
-Message-Id: <20240111031026.2175521-1-amadeus@jmu.edu.cn>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <4f070678-63b6-4657-ad4f-c32256adbf1f@linaro.org>
-References: <4f070678-63b6-4657-ad4f-c32256adbf1f@linaro.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 551A020F9
+	for <devicetree@vger.kernel.org>; Thu, 11 Jan 2024 03:33:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-1d45f182fa2so41895415ad.3
+        for <devicetree@vger.kernel.org>; Wed, 10 Jan 2024 19:33:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1704943982; x=1705548782; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=iScWVuqhfpheqwtS8P8/yXNx/aCMkmPoM914hptI/Iw=;
+        b=nX+1BjAofLKSavGr9BrS/IxpxaO8EYYt4ruNfmsymXIud7gdiXMtRKb4MiyaVEMrPF
+         qUMv2o8vkPqLOUKit7GZSFDz9r/kNXMZNWwimIRKAi/G0BkBT12/SflZStMJW+o6WjMf
+         R7dFmrJDKbFpVfhIdaumUeOceKbrdGJ8DJwam5ATw0/lIRoVD00lFfzxSBLGKjwKJIYH
+         EJSpWre2w0gIB1A6AfwX6K1Ah1AGtMBnFVwZTyShxhmcy+6AL6ijfEC21e4FadUtfcz4
+         qAr4iMjzDuASVef41kbt02Ka/STFQzVaixD2MZtzus3jdOk7rkIZhHAeS+rc4jURvSZv
+         6K2Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1704943982; x=1705548782;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=iScWVuqhfpheqwtS8P8/yXNx/aCMkmPoM914hptI/Iw=;
+        b=T8JGGRg6tzyAuRHr0r/c806qQtB4Ml5BWYyulHUcVFbxLJ+XxwVgDw6SzHdSiDt0gL
+         721+ks9yy4aRMxNlkN9jiWouv0yextLks5wPgw49hWEJjaoRvTO5V3AQX6BKEAnfizoY
+         mZBfiZeKwfKQDx8DKpG4fsaJod4hevIRLUErFwOo8LV7s7Hy7ACN0MPokFDHbMRoKlvC
+         gve0sZUY4q17HbKPgkKIqiNc0gdLrz38LlRc2gWaDx5u4WfCtgYOpb/YmSXNXUSefYF1
+         TRDe6bFGy+cIDZfK/Mns+lkSinm6621QPL7HfI+4Ti0eahLaPAeyrB+JCj4ZcqzBhYPo
+         UIHg==
+X-Gm-Message-State: AOJu0Yx0+9uAe/Rd0DedefU4sWkMVNnL85M8UOtgsXKF1hT+sE4R7tgF
+	EvW8wZwtXLVlTc78RyNCVOdivbzCtEfNlg==
+X-Google-Smtp-Source: AGHT+IF4eUYLrn4Ez/WaZRqyZDR2oIn8Xra42U1GhajMqpzSX9odZBLq6HasGPuLaVFUI46HmRHpxg==
+X-Received: by 2002:a17:902:eb83:b0:1d5:89c8:3fc9 with SMTP id q3-20020a170902eb8300b001d589c83fc9mr483209plg.1.1704943982624;
+        Wed, 10 Jan 2024 19:33:02 -0800 (PST)
+Received: from localhost ([122.172.81.83])
+        by smtp.gmail.com with ESMTPSA id kk11-20020a170903070b00b001cf96a0e4e6sm80235plb.242.2024.01.10.19.33.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 10 Jan 2024 19:33:01 -0800 (PST)
+Date: Thu, 11 Jan 2024 09:02:59 +0530
+From: Viresh Kumar <viresh.kumar@linaro.org>
+To: Krishna Chaitanya Chundru <quic_krichai@quicinc.com>
+Cc: Bjorn Helgaas <helgaas@kernel.org>, agross@kernel.org,
+	andersson@kernel.org, konrad.dybcio@linaro.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	vireshk@kernel.org, nm@ti.com, sboyd@kernel.org, mani@kernel.org,
+	lpieralisi@kernel.org, kw@linux.com, robh@kernel.org,
+	bhelgaas@google.com, rafael@kernel.org,
+	linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-pm@vger.kernel.org, quic_vbadigan@quicinc.com,
+	quic_nitegupt@quicinc.com, quic_skananth@quicinc.com,
+	quic_ramkri@quicinc.com, quic_parass@quicinc.com
+Subject: Re: [PATCH v5 5/5] PCI: qcom: Add OPP support to scale performance
+ state of power domain
+Message-ID: <20240111033259.7h2jdr76wvkfnges@vireshk-i7>
+References: <20231102053013.7yt7pxin5awlu7w7@vireshk-i7>
+ <20231102120950.GA115288@bhelgaas>
+ <20231103051247.u4cnckzstcvs4lf5@vireshk-i7>
+ <15a98ec0-214b-218b-1e3c-c09f770fce2e@quicinc.com>
+ <0ba9f2af-169e-a9a2-9ae4-4c6a70b0a94e@quicinc.com>
+ <20240110065757.xde2nvpr3z7c4isu@vireshk-i7>
+ <376b3716-46ff-2324-73fc-f3afa3f7af1c@quicinc.com>
+ <20240110073807.sqwmsyr6nmigg6zc@vireshk-i7>
+ <ba732b1c-223c-ee70-d25b-4c78b312402c@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVkZTENPVkxNGRpNGR8ZH01NHlUTARMWGhIXJBQOD1
-	lXWRgSC1lBWUpKSFVKSkNVSkJKVUpDTllXWRYaDxIVHRRZQVlPS0hVSkpLSEpDVUpLS1VLWQY+
-X-HM-Tid: 0a8cf67ff5d9b03akuuu14cc080007f
-X-HM-MType: 10
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6Ngw6EDo*KzwiDCkcFR4pIR5L
-	PFFPCz5VSlVKTEtPQk9JTUhKSUNMVTMWGhIXVRoWGh8eDgg7ERYOVR4fDlUYFUVZV1kSC1lBWUpK
-	SFVKSkNVSkJKVUpDTllXWQgBWUFKQ05DNwY+
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ba732b1c-223c-ee70-d25b-4c78b312402c@quicinc.com>
 
-On 10/01/2024 16:10, Chukun Pan wrote:
-> Changes from v2:
-> * arm64: dts: qcom: ipq6018: add LDOA2 regulator
-> No Changes:
-> * arm64: dts: qcom: ipq8074: add MicroSD node
+On 10-01-24, 18:28, Krishna Chaitanya Chundru wrote:
+> it might be less only for now may be around 20 opp entries, but PCIe spec is
+> being updated every few years and a new gen
+> 
+> gen speed will release, right now PCIe GEN6 is released but I don't we had
+> any device in the market now and GEN7 is in process.
+> 
+> So in future it might become very big table. Either we need to come up with
+> a framework in the OPP to select the BW based up on lane width
+> 
+> for particular speed or use the driver way.
 
-I wrote it wrong in cover-letter, it's ipq6018, not ipq8074.
-No Changes:
-  arm64: dts: qcom: ipq6018: enable sdhci node
+Lets solve the problem the right (current) way for right now and revisit the
+whole thing when it gets complex ? So I would suggest configuring the bw via the
+OPP framework only, since it takes care of that for all other device types too.
 
-On 10/01/2024 16:22, Krzysztof wrote:
-> How? It is disabled...
-
-Disable it because not all devices have eMMC or MicroSD connected.
-I enabled it on the dts of the device and tested it on my ipq6000.
-
-> Aren't these three properties of the board?
-
-These are just general properties.
-
-Thanks,
-Chukun
+We can surely revisit and try to do it differently if we find some issues going
+forward.
 
 -- 
-2.25.1
-
+viresh
 
