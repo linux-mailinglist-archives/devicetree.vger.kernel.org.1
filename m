@@ -1,297 +1,168 @@
-Return-Path: <devicetree+bounces-31217-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31218-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D41A582A52B
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 01:07:21 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5886582A54B
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 01:45:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D86861C21661
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 00:07:20 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 259BAB26599
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 00:45:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37C22379;
-	Thu, 11 Jan 2024 00:07:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A96BDEBB;
+	Thu, 11 Jan 2024 00:45:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="tNBLgFhX"
+	dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b="C52Lg1eh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from JPN01-OS0-obe.outbound.protection.outlook.com (mail-os0jpn01on2091.outbound.protection.outlook.com [40.107.113.91])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2E6E19B
-	for <devicetree@vger.kernel.org>; Thu, 11 Jan 2024 00:07:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-2cd880ceaf2so349721fa.2
-        for <devicetree@vger.kernel.org>; Wed, 10 Jan 2024 16:07:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1704931631; x=1705536431; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=cqlDI/EsbVlvlAFWwYJOMeL8Cf3uO7bR44ZqtCnNXAU=;
-        b=tNBLgFhXzgqb26XyfzARzAwDH7A4+CaxX8T8FBDBIA3GvBqhBbNcypbwl6ERKUiZJp
-         r/tQvxnqiyvPpfUg3uR4t0adAyZF/qu76b8DUbqM7RmIuB8kxTFUi/5c67ZpoGremEpj
-         6wE+9gCPFDBbXjjXGH8vAQJhj2sc7ljIpRyenjbO1lHEq+XiMO22gn6OKsbL1qjlm/RE
-         6uoKc7gjvomORZggPtNoCPcDiJRZ66psXuUQPgfQMhZBdPAMgQC8u4Pfqq07BFMeBNRY
-         kf5mwyZRq72NguvclrHoyeCjR1VWoswECw+WX+n0aqhiZ1Rz0x3hSlwN/uS3qejEZFgw
-         YFTg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704931631; x=1705536431;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=cqlDI/EsbVlvlAFWwYJOMeL8Cf3uO7bR44ZqtCnNXAU=;
-        b=Z+W9KnEDZ5dzBUSqW6g25JcBiPgT3mfBGRZQY+0uVcqqDYVpthp2ruGo1IDUsjxkpp
-         klHLG3GLmttowCJka+WMjqT8DEaaMbj5GYB6AMTYKu55it8csNvM/2ZejBS5K+EZaZyB
-         tZe/rNQDucp9eTLFisw3Gx9+eXZj3pVIvg3/1pbGCBEnHoWhgOX4UJGpx8Llb7umX/SQ
-         Hu+jtcyupDWlFUNiXC7j+c88CUlNBvMQ0gxAKsCNapr8BpkTJxjYh/E5pYkH+025Ysxg
-         pouYg4FxRfw0jwMm4XrKcAnwLxEEE9omJKr5BVIvtwB9DqWCLlnRDHg5MxySSV7lZnSU
-         dRew==
-X-Gm-Message-State: AOJu0Yw0d1usdvT2LldS/u0LfFVPHBg7GO3EYc1kpYActpkiwqA1UxvT
-	3ffI1jxUeB1zmkkCbOBQa5FvaoMT6WJWrEP2E1TXT/kCHPTeWg==
-X-Google-Smtp-Source: AGHT+IF0Mh9RnhzVsC6wF2uQpMFTKctMQ6eNiIrfvgn7uo6xcil5arq2Ah4/SpxNERpEy9uAqdy/mnWErErugXYS1XA=
-X-Received: by 2002:a2e:9989:0:b0:2cd:8070:7f5a with SMTP id
- w9-20020a2e9989000000b002cd80707f5amr142642lji.17.1704931630450; Wed, 10 Jan
- 2024 16:07:10 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D55BBEA3;
+	Thu, 11 Jan 2024 00:45:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Njr9rBAyo2X6BKXdEvw9Ewk/lh7XmICyWkEuyEuy9S3LpCgrc+1ByHfy6xDfv9I8YszUPM4qGMaZ+UxOIXL2Qjcsj9DLQMCURZJiyi/BZSpVN6X7MuE+otOim6WVDxKdQPGNYuq+L44lxGR+x/FMHi9XAQgVSw6GWKhCHj1IZLqN0FMR5mdhqfOGuPHvX1REfhCYdRqVS9eeGM+yGoS65cSSTXZMNAl/xzLP0IOE8V/shEqNiiM2lZvu2+2OKrlxhXoAm6/ofahi1o8QEfjLUkJWFhx7BzP2Lwg+UEe2h2vqwhaj4DDovHv6BzLN6pzHQ/6O0O3PHb63BpMAcMP4Vg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=3UEpDNystJ9JB9faFO04TlwOPAhd6QkTw0OdBwiBcXE=;
+ b=ghLSGcjZdxJih+qcT5aZoDRNvZ98A7SHqCXSvsE6LazjMyj5kRDeSdiy4gYjBncN2v3nxcWmrKraTJ8cMErsEiv6h/DCiuOreIYMlCendmYmwr23VzSdnQx6qtMRYUCkidSR74oXaG5LyfeFydo4LFPwDOiLaqJKlC1+T1H5hs5S3PPPoeHRTMMUrbpYJbYVbAjExFwOZkE5WoWfeWmhwD6mOExXgcJqdpZ/E975W6tMD8OQ6eotjBri9XeMf5CT5dWAko9GRrIuuW106/i82nG5tkV6XbiiuHi2FA4+MCEIyVL5GZ0ZC5u9GL50uyGc7gTPUwmaKQnoGAvZhOwUbw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
+ dkim=pass header.d=renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=3UEpDNystJ9JB9faFO04TlwOPAhd6QkTw0OdBwiBcXE=;
+ b=C52Lg1eh4qfgdmEE5G3V3iqcItkJVVBWedsNJHh7PCa0dcARv0MZV/5bMZH2LQv6K2Ky0Ai0AZ0qb7xPWSaMVIKGHyAuM+3MzaNSWlNrt6WX2CrOgN6F7vX7F4frssjN2GC6HqNMPbBtduHbxLZ1lik914vNWjPHsk1wraHCzDY=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=renesas.com;
+Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
+ (2603:1096:400:3a9::11) by OS0PR01MB5426.jpnprd01.prod.outlook.com
+ (2603:1096:604:96::10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7202.13; Thu, 11 Jan
+ 2024 00:44:58 +0000
+Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
+ ([fe80::91d:1bfa:edc4:1c5b]) by TYCPR01MB10914.jpnprd01.prod.outlook.com
+ ([fe80::91d:1bfa:edc4:1c5b%7]) with mapi id 15.20.7181.015; Thu, 11 Jan 2024
+ 00:44:58 +0000
+Message-ID: <8734v4y9yu.wl-kuninori.morimoto.gx@renesas.com>
+From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+To: Sameer Pujar <spujar@nvidia.com>
+Cc: Thierry Reding <thierry.reding@gmail.com>, Mark Brown <broonie@kernel.org>,
+ alsa-devel@alsa-project.org, devicetree@vger.kernel.org, robh+dt@kernel.org,
+ Jon Hunter <jonathanh@nvidia.com>, linux-tegra@vger.kernel.org
+Subject: Re: Query on audio-graph-card DT binding
+In-Reply-To: <cde6d5d5-b6ab-4c64-93f8-78d721a492bb@nvidia.com>
+References: <dfe363ef-4638-4b5e-8308-73e286ac0b50@nvidia.com>	<ZZblyhfzQjzyoUc_@orome.fritz.box>	<42c0c4fa-585e-4194-bbe4-e0377c87e632@sirena.org.uk>	<3faec2e9-8cd9-46f9-8807-801922de0edf@nvidia.com>	<ZZe5sTNz005Tt4jk@orome.fritz.box>	<8241c953-8ae5-4f26-b108-fccf826ed87a@nvidia.com>	<875y03i739.wl-kuninori.morimoto.gx@renesas.com>	<e7f9085d-9db1-4c5e-9940-e461835b20aa@nvidia.com>	<87il42gkua.wl-kuninori.morimoto.gx@renesas.com>	<cde6d5d5-b6ab-4c64-93f8-78d721a492bb@nvidia.com>
+User-Agent: Wanderlust/2.15.9 Emacs/27.1 Mule/6.0
+Content-Type: text/plain; charset=US-ASCII
+Date: Thu, 11 Jan 2024 00:44:58 +0000
+X-ClientProxiedBy: TYAPR01CA0065.jpnprd01.prod.outlook.com
+ (2603:1096:404:2b::29) To TYCPR01MB10914.jpnprd01.prod.outlook.com
+ (2603:1096:400:3a9::11)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240109-axi-spi-engine-series-3-v1-0-e42c6a986580@baylibre.com>
- <20240109-axi-spi-engine-series-3-v1-4-e42c6a986580@baylibre.com> <20240110231456.GB2854345-robh@kernel.org>
-In-Reply-To: <20240110231456.GB2854345-robh@kernel.org>
-From: David Lechner <dlechner@baylibre.com>
-Date: Wed, 10 Jan 2024 18:06:59 -0600
-Message-ID: <CAMknhBGwb+9Eo5ghG+Zk3BpMuMZfQxAAwGEGUMspcJzHzKWyXA@mail.gmail.com>
-Subject: Re: [PATCH 04/13] spi: dt-bindings: adi,axi-spi-engine: add offload bindings
-To: Rob Herring <robh@kernel.org>
-Cc: Mark Brown <broonie@kernel.org>, Jonathan Cameron <jic23@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Michael Hennerich <michael.hennerich@analog.com>, =?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
-	Frank Rowand <frowand.list@gmail.com>, Thierry Reding <thierry.reding@gmail.com>, 
-	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, 
-	Jonathan Corbet <corbet@lwn.net>, linux-spi@vger.kernel.org, linux-iio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-doc@vger.kernel.org, 
-	linux-pwm@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TYCPR01MB10914:EE_|OS0PR01MB5426:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8415f29a-9e79-4842-5c88-08dc123e8954
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	1YgUb9MyrJWaQUJ8hWD3gmm2GogGfZ/wRhKR9459R3XZ7tsvrIODdZOAo95fJ/QIMHYblotNJjIR06KA7KCmbzLCIIC0e6Cev9i4uU1qJBxQnR1Kos34+Fbc/Ch9K2W2oNXuOyONSzFtUcblYuGTRr/195xgvbPxdsL6Ks+N8O0MXy5n3qthPbbIc6WdgFvmW1t5cgb+7OeQVaxnmzJ79XJdRoeRXbcOVz0iZbgajQcQuTqRd9Ew0KtyVNOBg6HTWPXW9VRR1sf3jF6Mdh51yzhU3gmOSkpYQT0BACytg2qmVvU+bZ51WKg7MBT8qV48vBFRT/eU2N8tai8czpR69sxtAo3I0QJEr8B3DIY3FthFD+Hgu5l+B89DTwIio1Ea2EbHsPqlGJlPj4NTs6NzcQJmK8dYyO0FADUhcXNcV/ZYQJjdIENnu2tlFSUJkT+7SvXKMhEaNn21QmS3Bq88DESpFPqRSOO9AfEhcnE/A7AUk+nDgZzLYy4fWinjlNrHyiyaVL5h2B0NPLTuE2nvzZCAagvzPmD4sxjqut3FtvwdBXjPahYOs4fbuNxJl34Wab2URvQhJl7XPfhBMDzDDlGDC+NgQ2Djr0EwCNQpGLB266Z5UcyAIV3KQuGv+Xfn
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB10914.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366004)(396003)(136003)(346002)(39860400002)(376002)(230922051799003)(1800799012)(186009)(64100799003)(451199024)(5660300002)(8676002)(4326008)(8936002)(2906002)(6916009)(66946007)(54906003)(66556008)(66476007)(316002)(6512007)(6506007)(966005)(6486002)(478600001)(2013699003)(38350700005)(52116002)(36756003)(2616005)(26005)(41300700001)(86362001)(38100700002);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?DnEWx+m5fM5z0Z61j7uuZO2CK9Ho7SM0OQiSt/8+Efg6WxElR3GzqZSSCMZl?=
+ =?us-ascii?Q?6UyUylvUjjsD3CqAjqJUkow3JSWX9PeMnikwv5qlIa/YFGbVuef/klp0KNhy?=
+ =?us-ascii?Q?zTTBrl4K3SRE4RqzoW6N19tz+2PBxZ0YX+uuJsIXTPL2BL9l9xwUGIVIeyDL?=
+ =?us-ascii?Q?u/e2gclgrLSo4ZALe6xUsMCTouvNfso2IzlmcO7QmFbFVoiYCE7yRF0T36nP?=
+ =?us-ascii?Q?itzJBDA27YbYVGMfiQb+pwoouYsLGGXZWAE0UArY4XaRCwdxds/JxY4CejCn?=
+ =?us-ascii?Q?rJPDsbVfcV6/hwgL7iU62B8Z6sPTDYHYw73l2phc+hCs/G24ie/bOikNna/P?=
+ =?us-ascii?Q?BrwmR6pNVECaRHLFV54kIHb0kVlkFRr/I/RVauijt/c3rXMMhbAfsM0EegPW?=
+ =?us-ascii?Q?GnxumbqV/451vGr2W67IPRpOZhiVlOc5KgHUAtcMReYPvgkMCS7duTCex1ia?=
+ =?us-ascii?Q?8aax1Wz75cFBwCeGUUxQ88RvRNR3cQOzyZwkHOar9CYiuLWf+BUhzAlkeQzC?=
+ =?us-ascii?Q?ZufCcpcFBQVlvFkyVc5ianrl49ErkxrH416vwLyw4gif3ufO3DGKa9QVd7b5?=
+ =?us-ascii?Q?vali7M2VojQraCpHPb0qbsef2B3WvFqxiIbk80jX0uWanB0OxTNPtc5lPd8n?=
+ =?us-ascii?Q?5XKC0Pjhf7x9gW0mc0MrfoSPASE1NBLsVIiJA8yi744pahkq99b1TusInCLL?=
+ =?us-ascii?Q?sSoiNViPeri37wKo3nb7dVGbTTARHHwdUVn6qn96M67hm74PmBWR7hmVlqps?=
+ =?us-ascii?Q?SFvfVqVy6ZvVDcBof7u/wlp7f67dLVVKHh0cclkwgyMvZJmVpFmVl51hai9O?=
+ =?us-ascii?Q?NBubGmMHx4IWbdE4Sk3IxSjDlyReBYUtEfLFqEydvJMoOInFBnSK+d5UD+gg?=
+ =?us-ascii?Q?e858eZ8QjxLfa669VdRCfnzq3l5J/fUBF/BOrGm+OYJ/lGvvgPyMG7H7056m?=
+ =?us-ascii?Q?oCdg2P7AAHbzVNfHNaKRUv1LDrZOC4u3BK7/DLwWv9BddRB6cGkAPbUq4EIc?=
+ =?us-ascii?Q?Ovg6Z4Ej0XSV3MvrV4gNKRk0mJUxmZUpN51ZHOmrNq3vfpyRJhuMay079+w1?=
+ =?us-ascii?Q?2vLi56k7TJqxnFjRTaCzmAYvKRuJ40nEWp1kYAbGuWOjc0x/cUzBiWhtfPho?=
+ =?us-ascii?Q?JpVDfyfWh1P1gFuqbxgmKCFuytVYTXPjKMhoPxheWYy0s+nm/tKuc4dFD4ID?=
+ =?us-ascii?Q?zofdXxRo7ZNVXB2kqNVnMF6Vn0Bw7BKKwz1lZuRAsPsmRxTg0BT/ApRhnACP?=
+ =?us-ascii?Q?bMTy22VKFnnqewPJKNmO64eGIRDpwQ0MGlGwgEFpo9wWAHzw514CjZo8wbuv?=
+ =?us-ascii?Q?vri2FnTiLCI0YCqVhtct+zq29gxMeVA/TQbPUxEkRTWndMHuV5jsQRPW040U?=
+ =?us-ascii?Q?2pEUZSSLnOxtlyHVD28VlxA3e3NvM7dohon8YwtcqCv282fQ8J8ySsyONi5Y?=
+ =?us-ascii?Q?Rp4LyiGxZsJRN70jg1Bl6hi2VAbczUKZsqYDMANmEWV17SaU7nnTWoXivNoi?=
+ =?us-ascii?Q?9Qjg65dtSWJIOp7mNREkgRHxETKw1bEAQFDypvASoW4YYSUfJTUxsiMplNCC?=
+ =?us-ascii?Q?OWtQyq0raky41A+3MhAqlgdNJgFGBSmUIyEPjuZ5h5J7/dvAH4ZO6vBlx62r?=
+ =?us-ascii?Q?dLuBosnMMyuwp7aKaoOV3hs=3D?=
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8415f29a-9e79-4842-5c88-08dc123e8954
+X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB10914.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Jan 2024 00:44:58.3168
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: BHBbhA7mnE4P1uX+wkzkULWQ72UVkJUVLTyvBErVfVzLkVIuRqaagW+nUnllTYkHiUNMzoi56YXvO1Pv8scGhX27n/FUcsubAd3onuTdmFfruDGvCYFZKVpEgpsczHJ/
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OS0PR01MB5426
 
-On Wed, Jan 10, 2024 at 5:15=E2=80=AFPM Rob Herring <robh@kernel.org> wrote=
-:
->
-> On Wed, Jan 10, 2024 at 01:49:45PM -0600, David Lechner wrote:
-> > The ADI AXI SPI Engine driver supports offloading SPI transfers to
-> > hardware. This is essentially a feature that allows recording an
-> > arbitrary sequence of SPI transfers and then playing them back with
-> > no CPU intervention via a hardware trigger.
+
+Hi Sameer
+
+> > CPU
+> >          port {
+> >                  cpu_endpoint0: endpoint@0 { remote-endpoint = <&codec1_endpoint>; };
+> >                  cpu_endpoint1: endpoint@1 { remote-endpoint = <&codec2_endpoint>; };
+> >          };
 > >
-> > This adds the bindings for this feature. Each SPI Engine instance
-> > can have from 0 to 32 offload instances. Each offload instance has a
-> > trigger input and a data stream output. As an example, this could be
-> > used with an ADC SPI peripheral. In this case the trigger is connected
-> > to a PWM/clock to determine the sampling rate for the ADC and the outpu=
-t
-> > stream is connected to a DMA channel to pipe the sample data to memory.
+> > Codec1
+> >          port {
+> >                  codec1_endpoint: endpoint { remote-endpoint = <&cpu_endpoint0>; };
+> >          };
 > >
-> > SPI peripherals act as consumers of the offload instances. Typically,
-> > one SPI peripheral will be connected to one offload instance. But to
-> > make the bindings future-proof, the property is an array.
->
-> Is there some sort of arbitration between multiple offload engines on
-> the same chip select? If not, I don't see how it would work.
-
-There is only one SPI engine driving the SPI controller, so if two
-offloads are triggered at the same time, they will be executed
-serially.
-
->
-> I think this whole thing could be simplified down to just 3
-> SPI controller properties: pwms, dmas, and adi,offload-cs-map. Each
-> property is has entries equal the number of offload engines. The last
-> one maps an offload engine to a SPI chip-select.
-
-Offloads could be connected to virtually anything, not just pwms and
-dmas, so making pwms and dmas controller properties doesn't seem right
-to me. What if we have one that uses a gpio trigger or clock trigger?
-Or what if we have one where the output goes to a DSP instead of DMA?
-This is why I made offload@ nodes with a compatible property - to
-describe what is actually connected to each offload instance since it
-could be an unlimited range of different things.
-
->
+> > Codec2
+> >          port {
+> >                  codec2_endpoint: endpoint { remote-endpoint = <&cpu_endpoint1>; };
+> >          };
 > >
-> > Signed-off-by: David Lechner <dlechner@baylibre.com>
-> > ---
-> >  .../spi/adi,axi-spi-engine-peripheral-props.yaml   | 24 +++++++++++
-> >  .../bindings/spi/adi,axi-spi-engine.yaml           | 49 ++++++++++++++=
-+++++++-
-> >  .../bindings/spi/spi-peripheral-props.yaml         |  1 +
-> >  3 files changed, 73 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/spi/adi,axi-spi-engine-p=
-eripheral-props.yaml b/Documentation/devicetree/bindings/spi/adi,axi-spi-en=
-gine-peripheral-props.yaml
-> > new file mode 100644
-> > index 000000000000..19b685fc3b39
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/spi/adi,axi-spi-engine-peripher=
-al-props.yaml
-> > @@ -0,0 +1,24 @@
-> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/spi/adi,axi-spi-engine-peripheral-p=
-rops.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Peripheral properties for Analog Devices AXI SPI Engine Control=
-ler
-> > +
-> > +maintainers:
-> > +  - Michael Hennerich <Michael.Hennerich@analog.com>
-> > +  - Nuno S=C3=A1 <nuno.sa@analog.com>
-> > +
-> > +properties:
-> > +  adi,offloads:
-> > +    description:
-> > +      List of AXI SPI Engine offload instances assigned to this periph=
-eral.
-> > +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> > +    maxItems: 32
-> > +    items:
-> > +      items:
-> > +        - minimum: 0
-> > +          maximum: 31
->
-> This defines a matrix. You want:
->
-> minItems: 1
-> maxItems: 32
-> items:
->   maximum: 31
->
-> (0 is already the min).
+> 
+> This is a workaround. Note that CPU endpoint@1 doesn't exist and a dummy 
+> endpoint needs to be created. Like I mentioned in previous replies, the 
+> number of dummy endpoints that need to be created depends on how many 
+> CODECs user want to connect and it doesn't look scalable.
 
-thanks
+I'm not DT-man, but it sounds you are misunderstanding about port vs endpoint ?
+"port" is for physical interface, "endpoint" is for connection.
+If 1 CPU physical interface is connected to 2 Codecs physical interfaces,
+above is for it in my understanding.
 
->
-> > +
-> > +additionalProperties: true
-> > diff --git a/Documentation/devicetree/bindings/spi/adi,axi-spi-engine.y=
-aml b/Documentation/devicetree/bindings/spi/adi,axi-spi-engine.yaml
-> > index d48faa42d025..69f3261bab47 100644
-> > --- a/Documentation/devicetree/bindings/spi/adi,axi-spi-engine.yaml
-> > +++ b/Documentation/devicetree/bindings/spi/adi,axi-spi-engine.yaml
-> > @@ -21,6 +21,23 @@ maintainers:
-> >  allOf:
-> >    - $ref: /schemas/spi/spi-controller.yaml#
-> >
-> > +$defs:
-> > +  offload:
-> > +    description:
-> > +      Describes the connections of the trigger input and the data outp=
-ut stream
-> > +      of one or more offload instances.
-> > +
-> > +    properties:
-> > +      reg:
-> > +        description:
-> > +          Index of the offload instance.
-> > +        items:
-> > +          - minimum: 0
-> > +            maximum: 31
-> > +
-> > +    required:
-> > +      - reg
-> > +
-> >  properties:
-> >    compatible:
-> >      const: adi,axi-spi-engine-1.00.a
-> > @@ -41,6 +58,22 @@ properties:
-> >        - const: s_axi_aclk
-> >        - const: spi_clk
-> >
-> > +  offloads:
-> > +    type: object
-> > +    description: Zero or more offloads supported by the controller.
-> > +
-> > +    properties:
-> > +      "#address-cells":
-> > +        const: 1
-> > +
-> > +      "#size-cells":
-> > +        const: 0
-> > +
-> > +    patternProperties:
-> > +      "^offload@[0-8a-f]+$":
-> > +        type: object
-> > +        $ref: '#/$defs/offload'
-> > +
-> >  required:
-> >    - compatible
-> >    - reg
-> > @@ -62,5 +95,19 @@ examples:
-> >          #address-cells =3D <1>;
-> >          #size-cells =3D <0>;
-> >
-> > -        /* SPI devices */
-> > +        offloads {
-> > +            #address-cells =3D <1>;
-> > +            #size-cells =3D <0>;
-> > +
-> > +            offload@0 {
-> > +                compatible =3D "adi,example-offload";
->
-> No fake examples please. This should give you a warning.
+Can Audio-Graph-Card2 N:M connection [1][2][3] help you ?
+Sample is for 2:3 connection, but it should be OK for 1:2.
+You need v6.8 or later
 
-Ack.
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git/tree/sound/soc/generic/audio-graph-card2-custom-sample.dtsi?h=asoc-v6.8#n67
+[2] https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git/tree/sound/soc/generic/audio-graph-card2-custom-sample.dtsi?h=asoc-v6.8#n339
+[3] https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git/tree/sound/soc/generic/audio-graph-card2-custom-sample.dtsi?h=asoc-v6.8#n372
 
-FYI, unknown compatibles don't currently give a warning.
+Thank you for your help !!
 
-$ dt-validate --version
-2023.12.dev6+gfb80ec4
-$ make dt_binding_check
-DT_SCHEMA_FILES=3DDocumentation/devicetree/bindings/spi/adi,axi-spi-engine.=
-yaml
-ARCH=3Darm KBUILD_OUTPUT=3D\$HOME/build-area/ad7944-mainline
-make[1]: Entering directory
-'/home/david/work/linux/OME/build-area/ad7944-mainline'
-  DTEX    Documentation/devicetree/bindings/spi/adi,axi-spi-engine.example.=
-dts
-  DTC_CHK Documentation/devicetree/bindings/spi/adi,axi-spi-engine.example.=
-dtb
-make[1]: Leaving directory
-'/home/david/work/linux/OME/build-area/ad7944-mainline'
-
->
-> > +                reg =3D <0>;
-> > +            };
-> > +        };
-> > +
-> > +        adc@0 {
-> > +            compatible =3D "adi,example-adc";
-> > +            reg =3D <0>;
-> > +            adi,offloads =3D <0>;
-> > +        };
-> >      };
-> > diff --git a/Documentation/devicetree/bindings/spi/spi-peripheral-props=
-.yaml b/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml
-> > index 1c8e71c18234..7beb5a3798a5 100644
-> > --- a/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml
-> > +++ b/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml
-> > @@ -132,6 +132,7 @@ properties:
-> >
-> >  # The controller specific properties go here.
-> >  allOf:
-> > +  - $ref: adi,axi-spi-engine-peripheral-props.yaml#
-> >    - $ref: arm,pl022-peripheral-props.yaml#
-> >    - $ref: cdns,qspi-nor-peripheral-props.yaml#
-> >    - $ref: samsung,spi-peripheral-props.yaml#
-> >
-> > --
-> > 2.43.0
-> >
+Best regards
+---
+Renesas Electronics
+Ph.D. Kuninori Morimoto
 
