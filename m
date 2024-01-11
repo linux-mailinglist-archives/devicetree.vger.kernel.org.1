@@ -1,39 +1,39 @@
-Return-Path: <devicetree+bounces-31397-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31395-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 824D682B0F4
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 15:51:15 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F23182B0F2
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 15:51:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E22FE2856EB
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 14:51:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D12AA1F22436
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 14:51:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FFAC4CE0A;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 602FD4B5CB;
 	Thu, 11 Jan 2024 14:50:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FnyAb9IZ"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Aq36s6XH"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 705594CB5D;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30ED5495D5;
 	Thu, 11 Jan 2024 14:50:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 02A90C41674;
-	Thu, 11 Jan 2024 14:50:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id C7DA3C433B2;
+	Thu, 11 Jan 2024 14:50:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1704984638;
-	bh=mHkFOeHTyojA11QtG6B355HuG+5pcJdp5fAe56XIogE=;
+	s=k20201202; t=1704984637;
+	bh=gdgtNpyL3iGYpN5fWGoWRuJ8Tt8QZwxXPQpw0xnUJ6g=;
 	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=FnyAb9IZQY3WpAp8wuQ/asvFicejEPMDKlcADCmkdSP4cT5s21xswPgPcOcXFPuhZ
-	 C2NaK+C0xlRdzlRfD17ghA++TjxLoQPi1Opq/jpZHharguWhpbPXCZ73dvdJI6F2G5
-	 kdn6tgBPTyPvCfO9po5l/9ZveQfRoo7n9HNdtfftavfYlM+tZhFxeWj5/InJbRIlVF
-	 jjUvoNkHqN0IVk4lSCHakjTTMRYX+tiJhXy6WkfHQUqltdhJB5ZMFQwwqEkC7fhoIr
-	 k5VoL/fi3Dmrm7Soj+OgfkRsAMrV8lFGvVl9X8wnqJErs0rvRUqIdzerERwbMrA3y/
-	 XRsnTAJPxTUGw==
+	b=Aq36s6XHWAapk7vNTgj1jWLUkf2EPJwSCz2dwnb24J+GQlMIe0827n+P+ELynHfdU
+	 O5NtyLaHcUK8fP5GsyOU73TJNwxr8DChoQRYNi8NS1lgcnqmORtXclWor8WWvzi0kR
+	 gLasGPPMysgi02WkD4SYV6Vy0+SePqrcaszLe94uoPhoZCtcRqWtsNs+w47NeKeDAG
+	 cPAnFYoNOTSZjNK93f6YYamQ82/wwmz8GKNIsDr4Ds2RgfQvdMjvI5N1aBNmyMPVix
+	 DFUIGwwxhtsr6Z6LX0J7IQbINGUA3FPplzFUFnxuf/sfMfPPrtDQUW44oua91/eI4Q
+	 nk8CURcV3E/Wg==
 Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id E38DDD8C974;
+	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id B20BFD8C96C;
 	Thu, 11 Jan 2024 14:50:37 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
@@ -43,41 +43,48 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH] dt-bindings: riscv: cpus: Clarify mmu-type interpretation
+Subject: Re: [PATCH v2 0/6] riscv: hwprobe: add Zicond, Zacas and Ztso support
 From: patchwork-bot+linux-riscv@kernel.org
 Message-Id: 
- <170498463792.20080.16092078813919262282.git-patchwork-notify@kernel.org>
+ <170498463772.20080.16524587804054627963.git-patchwork-notify@kernel.org>
 Date: Thu, 11 Jan 2024 14:50:37 +0000
-References: <20231227175739.1453782-1-samuel.holland@sifive.com>
-In-Reply-To: <20231227175739.1453782-1-samuel.holland@sifive.com>
-To: Samuel Holland <samuel.holland@sifive.com>
-Cc: linux-riscv@lists.infradead.org, aou@eecs.berkeley.edu, conor@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, palmer@dabbelt.com,
- paul.walmsley@sifive.com, robh+dt@kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
+References: <20231220155723.684081-1-cleger@rivosinc.com>
+In-Reply-To: <20231220155723.684081-1-cleger@rivosinc.com>
+To: =?utf-8?b?Q2zDqW1lbnQgTMOpZ2VyIDxjbGVnZXJAcml2b3NpbmMuY29tPg==?=@codeaurora.org
+Cc: linux-riscv@lists.infradead.org, linux-doc@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, corbet@lwn.net,
+ paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
+ conor@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ rehn@rivosinc.com, gianluca@rivosinc.com
 
 Hello:
 
-This patch was applied to riscv/linux.git (for-next)
+This series was applied to riscv/linux.git (for-next)
 by Palmer Dabbelt <palmer@rivosinc.com>:
 
-On Wed, 27 Dec 2023 09:57:38 -0800 you wrote:
-> The current description implies that only a single address translation
-> mode is available to the operating system. However, some implementations
-> support multiple address translation modes, and the operating system is
-> free to choose between them.
-> 
-> Per the RISC-V privileged specification, Sv48 implementations must also
-> implement Sv39, and likewise Sv57 implies support for Sv48. This means
-> it is possible to describe all supported address translation modes using
-> a single value, by naming the largest supported mode. This appears to
-> have been the intended usage of the property, so note it explicitly.
+On Wed, 20 Dec 2023 16:57:16 +0100 you wrote:
+> This series add support for a few more extensions that are present in
+> the RVA22U64/RVA23U64 (either mandatory or optional) and that are useful
+> for userspace:
+> - Zicond
+> - Zacas
+> - Ztso
 > 
 > [...]
 
 Here is the summary with links:
-  - dt-bindings: riscv: cpus: Clarify mmu-type interpretation
-    https://git.kernel.org/riscv/c/b4070c2a242e
+  - [v2,1/6] riscv: add ISA extension parsing for Ztso
+    https://git.kernel.org/riscv/c/1ec9f381e848
+  - [v2,2/6] riscv: hwprobe: export Ztso ISA extension
+    https://git.kernel.org/riscv/c/5b4d64a819c0
+  - [v2,3/6] dt-bindings: riscv: add Zacas ISA extension description
+    https://git.kernel.org/riscv/c/cd7be4d02f41
+  - [v2,4/6] riscv: add ISA extension parsing for Zacas
+    https://git.kernel.org/riscv/c/188a2122c827
+  - [v2,5/6] riscv: hwprobe: export Zacas ISA extension
+    https://git.kernel.org/riscv/c/154a37061229
+  - [v2,6/6] riscv: hwprobe: export Zicond extension
+    https://git.kernel.org/riscv/c/3359866b40a9
 
 You are awesome, thank you!
 -- 
