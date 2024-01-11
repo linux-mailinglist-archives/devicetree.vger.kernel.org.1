@@ -1,145 +1,199 @@
-Return-Path: <devicetree+bounces-31272-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31275-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 490EB82A950
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 09:46:17 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1284F82A9C7
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 09:55:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F1BCE1F24292
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 08:46:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 160501C23ADC
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 08:55:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CE28F9D6;
-	Thu, 11 Jan 2024 08:46:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB1B0FC0A;
+	Thu, 11 Jan 2024 08:55:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bQpE2h0o"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="hyWHgQPf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+Received: from mail-ed1-f66.google.com (mail-ed1-f66.google.com [209.85.208.66])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9FF211C8C;
-	Thu, 11 Jan 2024 08:45:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-40e61ff3e37so422645e9.1;
-        Thu, 11 Jan 2024 00:45:58 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9B80FC05
+	for <devicetree@vger.kernel.org>; Thu, 11 Jan 2024 08:55:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
+Received: by mail-ed1-f66.google.com with SMTP id 4fb4d7f45d1cf-55753dc5cf0so5997433a12.0
+        for <devicetree@vger.kernel.org>; Thu, 11 Jan 2024 00:55:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1704962757; x=1705567557; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=XnXGwZ90m0aaWtoshE1c+60rdXXd9xE4R+DPUoXirhg=;
-        b=bQpE2h0oOho6RSJJGBJPdo04CCZe45nqNgK8oN+UczucLqK8AJ07HFKt2+IKipXx8R
-         vDX0rzjXzRQXq2bHwacUt2Y7aYCbdKeB5cgTTpYF0K8GwgByAwoCVpYwfDVtxeK0Wbsv
-         rvM92oUnh+A8g6QBUHW8HCgHO0sYGWBBO774qlkBZWY0qdhSspZC5AwndM0cSOymRYff
-         vPUh1sR8iDaeAksE5gpQYbN/3SMpUo5NG/Fs2OjHFRW73F84/9Vgw0Z9+U5WNl8+LDla
-         9wB28AFQ/IJRqgUtND2xihtP4Ozjkbt1Exp3fdsdOznpndmRYCLkgsZCV+aVHf/TLVPn
-         dmSQ==
+        d=fairphone.com; s=fair; t=1704963334; x=1705568134; darn=vger.kernel.org;
+        h=in-reply-to:references:cc:to:from:subject:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=f+urHVCxXYj39IE1pxye+SFmnhznkKtnAt7Qr2ngkeI=;
+        b=hyWHgQPfOCt59gKs95hRuIAfcQjgJoRv/jS+nrBuh7bVX3BEAGbf31AsYf46ZJG/z0
+         K2pnpVocK8miiZ611d21CB5wzF/pr7zd9fp1s9DG5HQs8E2OygkfopLBvKFHxvqzBelX
+         o6fC7B+tcD2d+Sw+yyz3RHcANPOWuhLYQGe1Zc4CujyTL06U6bNas11k26iez4Se31mt
+         cXa8WwSOnQ/nPb/F0yye6z6mk+eBRDVDvD9LPGy9jlZcONXGPPmPQY1Cb21Fl3kGYqZ8
+         rING12D1uNxf61XQntoxcYlKcHNXqaGfYwGw8ItUJ5edI7mkP/HT/x5qWJ7iRg7Hcpdb
+         1sQg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704962757; x=1705567557;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=XnXGwZ90m0aaWtoshE1c+60rdXXd9xE4R+DPUoXirhg=;
-        b=h3qTHl2UCyp3U9edeRUPcdSKPB4jFAytMO8F1RDKU3ySqJh5bPR5hnQsjyZo1c9I4D
-         UGplPy76d5+58iCP8L691AC1INO/CwX7zP5wE7GEKhOdm+SQqkzdyVRg1W5QZdRCl6tE
-         JDxxKKu5EeGa4IAkCz+SlNFhT5koRVD7nOBSDCb9raGkKiX7GSw68C//u6P2ZH3LKMvb
-         9Qxqxo80euySgGEGobjneTFOH0OZise/CnPjca3VOaSLYCUTbaHTaVQDw9GStwO9f9cc
-         FJgn4n1qzibANb/CivgOXwW2RF1kbXVFaufzQKiao50re5Rd/OBgs9fbK68WHupoP7fu
-         NGJA==
-X-Gm-Message-State: AOJu0YxJxl3OYedl2qC/AGkyrUgmRCkk7ZbKN2+5rzsaPBh2IdYe0M7A
-	Py/jChAT+FjpmEpMSNSFhjY=
-X-Google-Smtp-Source: AGHT+IHWay0LKAaf6f5AsLsJfQGOlRBcT0TnnnSJL09Q2WvM12Zsgwn+NZHu8+7z/vzkPhYyU0+OlQ==
-X-Received: by 2002:a7b:c414:0:b0:40e:5be9:2ac3 with SMTP id k20-20020a7bc414000000b0040e5be92ac3mr207183wmi.137.1704962756651;
-        Thu, 11 Jan 2024 00:45:56 -0800 (PST)
-Received: from ?IPv6:2003:f6:ef1b:2000:944c:cbc7:1e1c:2c47? (p200300f6ef1b2000944ccbc71e1c2c47.dip0.t-ipconnect.de. [2003:f6:ef1b:2000:944c:cbc7:1e1c:2c47])
-        by smtp.gmail.com with ESMTPSA id l22-20020a05600c4f1600b0040d6b91efd9sm4930135wmq.44.2024.01.11.00.45.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 11 Jan 2024 00:45:56 -0800 (PST)
-Message-ID: <0c0b1954825dc174cab48060e96ddadadc18aefd.camel@gmail.com>
-Subject: Re: [PATCH 01/13] spi: add core support for controllers with
- offload capabilities
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: David Lechner <dlechner@baylibre.com>, Mark Brown <broonie@kernel.org>, 
- Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>,  Michael Hennerich <michael.hennerich@analog.com>,
- Nuno =?ISO-8859-1?Q?S=E1?= <nuno.sa@analog.com>, Frank Rowand
- <frowand.list@gmail.com>
-Cc: Thierry Reding <thierry.reding@gmail.com>, Uwe
- =?ISO-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>, Jonathan
- Corbet <corbet@lwn.net>,  linux-spi@vger.kernel.org,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-doc@vger.kernel.org, linux-pwm@vger.kernel.org, 
- linux-kernel@vger.kernel.org
-Date: Thu, 11 Jan 2024 09:49:08 +0100
-In-Reply-To: <20240109-axi-spi-engine-series-3-v1-1-e42c6a986580@baylibre.com>
-References: 
-	<20240109-axi-spi-engine-series-3-v1-0-e42c6a986580@baylibre.com>
-	 <20240109-axi-spi-engine-series-3-v1-1-e42c6a986580@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.3 
+        d=1e100.net; s=20230601; t=1704963334; x=1705568134;
+        h=in-reply-to:references:cc:to:from:subject:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=f+urHVCxXYj39IE1pxye+SFmnhznkKtnAt7Qr2ngkeI=;
+        b=Ca1mD7bCQ0LYYCSh6YY7FN1uiJNUBIa3o9JBwf4PKcZKaNj3X54OIjKVSzzAjQal+2
+         meK1ZBr04eFZLNh77r4e+j+F82WwTCCmLsJ6GeJLHS58OZoYaJs2rKZIbXgeB2qeJCBB
+         ZGVNYOXPYJGGgZjxszB31YD5/FywSp1UCC8353U0XEEYlRU7CVUdRKqzvZOvoreSY6FF
+         sovr7c5RUlk9FnpZppRJuFDCJNgsklp/tMbns4MQjr5dnblLRhAuB7FKg4iYdf7+Oka3
+         RaAnX+rTm6OBgPDS1SKksVC0w5ld2ETkY/v2lJbVqhafG/Aioh0lQtYs2glOSZWmQQau
+         7wMA==
+X-Gm-Message-State: AOJu0Yx57iQoRjlToctyHceHKNtJL+FopmoDRQcdkwFEIoCqPdE3lWhA
+	3dAl086dDXOA3QWsi7LfRqofj3vDLFfaNw==
+X-Google-Smtp-Source: AGHT+IFkOaiX1Qj7iGZDGLUwqNZiH0n8d9X2CJnd6YUgczb+xRKH3UmnXd4YgHnjN2v+RKH3pQQJPg==
+X-Received: by 2002:aa7:c69a:0:b0:558:80c7:5e8f with SMTP id n26-20020aa7c69a000000b0055880c75e8fmr372546edq.9.1704963334132;
+        Thu, 11 Jan 2024 00:55:34 -0800 (PST)
+Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
+        by smtp.gmail.com with ESMTPSA id c10-20020a0564021f8a00b00557d29be289sm362971edc.11.2024.01.11.00.55.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 11 Jan 2024 00:55:33 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Thu, 11 Jan 2024 09:55:33 +0100
+Message-Id: <CYBR26JQ2SD4.33ELRAVYZW1PY@fairphone.com>
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: sm7225-fairphone-fp4: Add PM6150L
+ thermals
+From: "Luca Weiss" <luca.weiss@fairphone.com>
+To: "Konrad Dybcio" <konrad.dybcio@linaro.org>, "Bjorn Andersson"
+ <andersson@kernel.org>, "Rob Herring" <robh+dt@kernel.org>, "Krzysztof
+ Kozlowski" <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley"
+ <conor+dt@kernel.org>
+Cc: <~postmarketos/upstreaming@lists.sr.ht>, <phone-devel@vger.kernel.org>,
+ <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, "AngeloGioacchino Del Regno"
+ <angelogioacchino.delregno@collabora.com>
+X-Mailer: aerc 0.15.2
+References: <20240105-fp4-thermals-v1-0-f95875a536b7@fairphone.com>
+ <20240105-fp4-thermals-v1-2-f95875a536b7@fairphone.com>
+ <18dc5f88-6590-4e2d-948f-fd77f4713f8b@linaro.org>
+ <CYA4ZGOQOJXY.2RO98RBCDKK5J@fairphone.com>
+ <f78ce9e6-0a25-4e08-b972-db055b7afd71@linaro.org>
+In-Reply-To: <f78ce9e6-0a25-4e08-b972-db055b7afd71@linaro.org>
 
-Hi David,
+On Wed Jan 10, 2024 at 8:16 PM CET, Konrad Dybcio wrote:
+>
+>
+> On 1/9/24 12:24, Luca Weiss wrote:
+> > On Tue Jan 9, 2024 at 11:09 AM CET, Konrad Dybcio wrote:
+> >>
+> >>
+> >> On 1/5/24 15:54, Luca Weiss wrote:
+> >>> Configure the thermals for the PA_THERM1, MSM_THERM, PA_THERM0,
+> >>> RFC_CAM_THERM, CAM_FLASH_THERM and QUIET_THERM thermistors connected =
+to
+> >>> PM6150L.
+> >>>
+> >>> Due to hardware constraints we can only register 4 zones with
+> >>> pm6150l_adc_tm, the other 2 we can register via generic-adc-thermal.
+> >>
+> >> Ugh.. so the ADC can support more inputs than the ADC_TM that was
+> >> designed to ship alongside it can?
+> >>
+> >> And that's why the "generic-adc-thermal"-provided zones need to
+> >> be polled?
+> >=20
+> > This part of the code from qcom-spmi-adc-tm5.c was trigerring if I
+> > define more than 4 channels, and looking at downstream I can also see
+> > that only 4 zones are registered properly with adc_tm, the rest is
+> > registered with "qcom,adc-tm5-iio" which skips from what I could tell
+> > basically all the HW bits and only registering the thermal zone.
+> >=20
+> >=20
+> > 	ret =3D adc_tm5_read(chip, ADC_TM5_NUM_BTM,
+> > 			   &channels_available, sizeof(channels_available));
+> > 	if (ret) {
+> > 		dev_err(chip->dev, "read failed for BTM channels\n");
+> > 		return ret;
+> > 	}
+> >=20
+> > 	for (i =3D 0; i < chip->nchannels; i++) {
+> > 		if (chip->channels[i].channel >=3D channels_available) {
+> > 			dev_err(chip->dev, "Invalid channel %d\n", chip->channels[i].channel=
+);
+> > 			return -EINVAL;
+> > 		}
+> > 	}
+> >=20
+> >=20
+> >>
+> >>>
+> >>> The trip points can really only be considered as placeholders, more
+> >>> configuration with cooling etc. can be added later.
+> >>>
+> >>> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+> >>> ---
+> >> [...]
+> >>
+> >> I've read the sentence above, but..
+> >>> +		sdm-skin-thermal {
+> >>> +			polling-delay-passive =3D <1000>;
+> >>> +			polling-delay =3D <5000>;
+> >>> +			thermal-sensors =3D <&msm_therm_sensor>;
+> >>> +
+> >>> +			trips {
+> >>> +				active-config0 {
+> >>> +					temperature =3D <125000>;
+> >>> +					hysteresis =3D <1000>;
+> >>> +					type =3D "passive";
+> >>
+> >> I don't fancy burnt fingers for dinner!
+> >=20
+> > With passive trip point it wouldn't even do anything now, but at what
+> > temp do you think it should do what? I'd definitely need more time to
+> > understand more of how the thermal setup works in downstream Android,
+> > and then replicate a sane configuration for mainline with proper
+> > temperatures, cooling, etc.
+> If "skin therm" means "the temperature of some part of the phone's
+> body that can be felt with a human hand", then definitely some
+> throttling should happen at 40ish with heavy throttling at 50
+> and crit at 55 or so..
+>
+> We should probably make this a broader topic and keep a single
+> policy for all supported phones.
 
+I agree that this shouldn't be implemented differently per device since
+it's really more a question "what should Linux do" that's quite a
+general question and not device-specific. Of course some device-specific
+tweaks could be here and there, like if the phone has metal back or
+plastic back but it's only minor.
 
-On Wed, 2024-01-10 at 13:49 -0600, David Lechner wrote:
-> This adds a feature for specialized SPI controllers that can record
-> a series of SPI transfers, including tx data, cs assertions, delays,
-> etc. and then play them back using a hardware trigger without CPU
-> intervention.
->=20
-> The intended use case for this is with the AXI SPI Engine to capture
-> data from ADCs at high rates (MSPS) with a stable sample period.
->=20
-> Most of the implementation is controller-specific and will be handled by
-> drivers that implement the offload_ops callbacks. The API follows a
-> prepare/enable pattern that should be familiar to users of the clk
-> subsystem.
->=20
-> Consumers of this API will make calls similar to this:
->=20
-> =C2=A0=C2=A0=C2=A0 /* in probe() */
-> =C2=A0=C2=A0=C2=A0 offload =3D spi_offload_get(spi, 0);
-> =C2=A0=C2=A0=C2=A0 ...
->=20
-On top of what Mark already stated, and as we already discussed offline, I
-personally don't like this provider - consumer interface for the offload. T=
-he
-first thing is that this is taking into account the possibility of having
-multiple offload cores. While the FGPA core was designed with that in mind,=
- we
-don't really have any design using multiple offloads in one spi engine (alw=
-ays
-one). Hence this is all pretty much untested.
+Based on the config here
+https://gerrit-public.fairphone.software/plugins/gitiles/platform/hardware/=
+qcom/thermal/+/refs/heads/odm/dev/target/13/fp5/thermalConfig.cpp#946
+it looks like throtteling starts for internal components at 95degC with
+a shutdown threshold of 115degC.
+The skin sensor here has a throttling threshold of 40degC and shutdown
+threshold of 95degC.
 
-If we want to already have this support, my feeling is that we should have =
-a
-simple integer dt property for the peripheral devices (similar to cs). When=
- a
-device is being created/added, the spi core would parse this property and g=
-et
-it's offload index. The point is that this would all be transparent for spi
-devices drivers that would only have to call the SPI API's and the core wou=
-ld
-make sure the right index is passed to the controller.
+But actually I'm not even sure this config gets active for QCM6490 with
+socid=3D497. So yeah I need more time digging into the thermal code to see
+what it's actually doing.. Not that it would/should be much different
+for socid=3D497 I guess though.
 
-But honestly, IMO, I would just keep things simple for now and assume one c=
-ore
-per engine.
+There's also plenty of thermal code in qcom proprietary.
 
-I would probably also prefer to see all the new interfaces part of the
-spi_controller struct directly...
+Regards
+Luca
 
-- Nuno S=C3=A1
-
+>
+> + CC AGdR, may be interested in where this leads
+>
+> Konrad
 
 
