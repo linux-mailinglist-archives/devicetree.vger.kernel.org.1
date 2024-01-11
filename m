@@ -1,115 +1,75 @@
-Return-Path: <devicetree+bounces-31377-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31378-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D618E82AFB6
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 14:33:21 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A917082AFBF
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 14:34:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 74BB1B26DDD
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 13:33:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 57B09286DDA
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 13:34:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 916F917990;
-	Thu, 11 Jan 2024 13:33:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 202DB179A9;
+	Thu, 11 Jan 2024 13:34:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vAKS2I68"
+	dkim=pass (2048-bit key) header.d=atomide.com header.i=@atomide.com header.b="n1PnrTZ7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail5.25mail.st (mail5.25mail.st [74.50.62.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60BB01775B;
-	Thu, 11 Jan 2024 13:33:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DAD1FC433F1;
-	Thu, 11 Jan 2024 13:33:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1704979990;
-	bh=EmGMiLyuF8McNaUk0A0meCoizVF29JUoSFDudOh+384=;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B94B917987;
+	Thu, 11 Jan 2024 13:34:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=atomide.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=atomide.com
+Received: from localhost (91-158-86-216.elisa-laajakaista.fi [91.158.86.216])
+	by mail5.25mail.st (Postfix) with ESMTPSA id 948CC60886;
+	Thu, 11 Jan 2024 13:34:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=atomide.com;
+	s=25mailst; t=1704980066;
+	bh=spHBxL0T5QVtiotbfLvZE1HJm4xym++up4FJ1+AM8Bs=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=vAKS2I68D2Sywf9Up0nX2OS+frd2mQKF+NZhSTyYbSAkeUsHJgC1v2Z3O9LRnA5rP
-	 NywmcrehgOdG56cF6YvStXcz6b2UMebmcH9qy3Peq8QFtDdEAUgHTGZVlC4YjA+xnp
-	 y+X1Yo8GDpm946G9D2hWbAYqLHlE3EIn/QsnFuCnL0OLnGIUuer/ch2UG5eMpXwcbI
-	 ZwwEVQrO9/v13SyXP6iqgEQN6WqHDYxt1iwybwqHBnw3Dhi1Mlh33ZLTJozOzFNaJI
-	 jGFY0pG3k947J9c1Kma4Q30dc5DQ2/HAnmTp5fIGJEn4Vezd06/Z1TOlqFeujbpeMk
-	 XU2XiElvVSvtw==
-Date: Thu, 11 Jan 2024 13:33:03 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Nuno =?iso-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-Cc: David Lechner <dlechner@baylibre.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	b=n1PnrTZ7hmDB/4z4jfOJlS3Cz/cMA4btKVdeXmQ1yohcU79B66TyPutTqa1CSuFYX
+	 OuIXjWI9nJ+rHrr/aMFOmCOql9tjSaC6HBUhswerOEdsgArwA7paDK5M/2nVW/nL1I
+	 1RJsZ6tFID6nxTyeRfnSIg6bSd6wYwWCywfiXcCQfATit4JWkd4j4a8IbBIIq+VxvF
+	 WurVBhxxA1TiAqOUYN/RldfuSFpdD6hGDgzXgjy02ObrD/AnUOjUTwwRaH0PnXcbTt
+	 LXyAHnHwssQ0WBhEK0DeCB71a1QL5nDbkDJtyLLPeA5i7xVwyZ3fGlZ2JFND+9bBAo
+	 CArZmRX4DM0wA==
+Date: Thu, 11 Jan 2024 15:34:04 +0200
+From: Tony Lindgren <tony@atomide.com>
+To: Nishanth Menon <nm@ti.com>
+Cc: Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Michael Hennerich <michael.hennerich@analog.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Frank Rowand <frowand.list@gmail.com>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
-	Jonathan Corbet <corbet@lwn.net>, linux-spi@vger.kernel.org,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-doc@vger.kernel.org, linux-pwm@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 01/13] spi: add core support for controllers with offload
- capabilities
-Message-ID: <aae36622-4e05-4f16-9460-d7614fd599aa@sirena.org.uk>
-References: <20240109-axi-spi-engine-series-3-v1-0-e42c6a986580@baylibre.com>
- <20240109-axi-spi-engine-series-3-v1-1-e42c6a986580@baylibre.com>
- <0c0b1954825dc174cab48060e96ddadadc18aefd.camel@gmail.com>
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 04/16] arm64: dts: ti: k3-am62p: Add MIT license along
+ with GPL-2.0
+Message-ID: <20240111133404.GD5185@atomide.com>
+References: <20240110140903.4090946-1-nm@ti.com>
+ <20240110140903.4090946-5-nm@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="F30ei0E0aX6bxcQF"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <0c0b1954825dc174cab48060e96ddadadc18aefd.camel@gmail.com>
-X-Cookie: Does the name Pavlov ring a bell?
+In-Reply-To: <20240110140903.4090946-5-nm@ti.com>
 
+* Nishanth Menon <nm@ti.com> [700101 02:00]:
+> Modify license to include dual licensing as GPL-2.0-only OR MIT
+> license for SoC and TI evm device tree files. This allows for Linux
+> kernel device tree to be used in other Operating System ecosystems
+> such as Zephyr or FreeBSD.
+> 
+> While at this, update the GPL-2.0 to be GPL-2.0-only to be in sync
+> with latest SPDX conventions (GPL-2.0 is deprecated).
+> 
+> While at this, update the TI copyright year to sync with current year
+> to indicate license change (and add it at least for one file which was
+> missing TI copyright).
 
---F30ei0E0aX6bxcQF
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Thu, Jan 11, 2024 at 09:49:08AM +0100, Nuno S=E1 wrote:
-> On Wed, 2024-01-10 at 13:49 -0600, David Lechner wrote:
-
-> > =A0=A0=A0 /* in probe() */
-> > =A0=A0=A0 offload =3D spi_offload_get(spi, 0);
-
-> On top of what Mark already stated, and as we already discussed offline, I
-> personally don't like this provider - consumer interface for the offload.=
- The
-> first thing is that this is taking into account the possibility of having
-> multiple offload cores. While the FGPA core was designed with that in min=
-d, we
-> don't really have any design using multiple offloads in one spi engine (a=
-lways
-> one). Hence this is all pretty much untested.
-
-I tend to agree that we shouldn't be exposing this to SPI device drivers
-however we will want to keep track of if the unit is busy, and designing
-it to cope with multiple offloads does seem like sensible future
-proofing.  There's also the possibility that one engine might be able to
-cope with multiple scripts being active at once (eg, triggering a
-different action depending on the trigger).
-
---F30ei0E0aX6bxcQF
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmWf7g4ACgkQJNaLcl1U
-h9CpZAf/Tlp3sl12nfPE/B+KPrvvSbOwgr6rp8IbKgLqDiflBuVfRC7hUNK8eeVk
-O8hS/4cYUSZzi/UKEIS1n36hrWz8pVFsmMGnaY1oceEISrS6pQNl7KKxhtHzbv6I
-xAWftKist6PFor7KiWJk8XRn7ClDn4OWOl9KRzsQuov9tWC1iEthAfXtzsF8vwjO
-LHfGOfe0d4RGXW/UJqZ89NYlLv4ndfhmXpVt6+KI6L99xNDfqu7+zmhRuxiCZDIA
-t9jbE9gQoPPQAZqr3rPyF3Lgry+a3M/yJksJCzMmbwg6RV7oTw2suHFy3euOjMKx
-4qZHFLGZYXHnsO6k3idEnYTN2EAEFA==
-=qyXJ
------END PGP SIGNATURE-----
-
---F30ei0E0aX6bxcQF--
+Acked-by: Tony Lindgren <tony@atomide.com>
 
