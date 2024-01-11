@@ -1,134 +1,105 @@
-Return-Path: <devicetree+bounces-31391-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31392-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 236AD82B04C
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 15:08:31 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 80D4B82B090
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 15:24:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C7D631F234EB
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 14:08:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7B920B22842
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 14:24:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4B7D3B780;
-	Thu, 11 Jan 2024 14:08:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B4873C485;
+	Thu, 11 Jan 2024 14:24:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="G+oqQ9qM"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="IE2l8bUF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
+Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com [209.85.128.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B0FE3B187;
-	Thu, 11 Jan 2024 14:08:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-a29a4f610b1so579799966b.3;
-        Thu, 11 Jan 2024 06:08:22 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0EFF3D56D
+	for <devicetree@vger.kernel.org>; Thu, 11 Jan 2024 14:24:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-5f68e2e1749so45504677b3.2
+        for <devicetree@vger.kernel.org>; Thu, 11 Jan 2024 06:24:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1704982101; x=1705586901; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=WoJC8tdnDZuFg5WsFgtASovnc1Tl99lnT/+ICbRlVwA=;
-        b=G+oqQ9qMsSnvIG2xsqqlMDBNGN7bdvOXAudCaiFcF3RpwRSoxNq57VZbT679SZpcwR
-         mQv+YkKVIUqDbVaE8jtHv9n/4PHgC41jMsf0wCoGVMeo2ct2W0n2vjr9EM009tMmnIwx
-         +h+Z9FEu4BTwuGnUfHtsNPL+ZED5QhH+44yoTObj9tw2ypKQnAS5upt0OInlEbqwPEqP
-         GE3NR1H8yVgVwcw0MCG+XlPOGHD6FyenNZe91OPM9dWIXA6nkf+rSTAd6VuSu2y+ntjG
-         W98YktW1L4PcwcX0nk0Afl/n8IShAeeR2RHALiMAKMnCS0vsFTHCRIooIgSzN+xcLwf+
-         gsVg==
+        d=linaro.org; s=google; t=1704983060; x=1705587860; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=b5H4wGjXC1DdLzQIpv3zBJ0pf8Lkdr1yQJoU8LqpgzM=;
+        b=IE2l8bUFnOXNQ2XZxuG0XbQjk8GeFxKW4secsFddPzhFIgr60ncrkeDIUSgwTjPR2s
+         tDK8TV9BhabxrYB35PpOdS+8T406fx9c7IiD5Oy/eaI0hTW0thP5WsvoDPmZtKz5GyJL
+         G0i5ULl59GMkvZzjoeo9uqiO6heinnK+Xyh8QA3Sp9TVQ3etAw4m2kkaTA81x4WQy/ao
+         TO6S48HJAmMICIc4iTkSAYtf7l0MHzoYeVEdWPEKrkE5FF0q/WAeK0YotaTUpQbbPubS
+         lj6IIQ7LLvVp2j1Stc6TNf81s/vzX49fnw2iyL/9j6MTyWOn74ympAg9mt+GevhQ5JXN
+         ChGw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704982101; x=1705586901;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=WoJC8tdnDZuFg5WsFgtASovnc1Tl99lnT/+ICbRlVwA=;
-        b=Kqjem/diqyHz2gSf7TRvAoAgbs4eJ7uNtxqT0l9oNpFXtppZe+VlRAoDc1r9iVAgRw
-         gpm95X8PPacIUTN87MwhVOS/fo/9qTFrM1BAbePd9YRw5j7ECZXujNVJim2nDLh5EN/G
-         BSwsTXQ/qOVCFJK319bAq4IasgGki+kQrmeB2GjPhPlLzQ79zelNwHt3dWNLACDzTK9y
-         dJ07MHiRHWlwZ4kCWSRX87BR4nnglBG5V+a4JecAAN+U5R5WBnmNF0L+OPptiuA/lioy
-         T5Bt5k4BQcMay9I8c8aVV+EFYdA+Yy++swWnSx7b4P0+VkioXRSaK/TVjXGygIMuBsZ+
-         89Uw==
-X-Gm-Message-State: AOJu0Yyq8Y0FQmdpv6HcL7dVxzS1aC39CnmABkeykkLUzB3QA4IeAmvf
-	u1Z260p8U4dnZ6m/7hwbpb0=
-X-Google-Smtp-Source: AGHT+IEFa0SyyLPtJIEyD1MDs+PWNcn+s3GPOMBXhDIA1k2L4TV8ak6uzCy/6bBxHMPtd2QnR9l+OQ==
-X-Received: by 2002:a17:906:c08c:b0:a28:bf58:756d with SMTP id f12-20020a170906c08c00b00a28bf58756dmr554052ejz.128.1704982101155;
-        Thu, 11 Jan 2024 06:08:21 -0800 (PST)
-Received: from ?IPv6:2003:f6:ef1b:2000:944c:cbc7:1e1c:2c47? (p200300f6ef1b2000944ccbc71e1c2c47.dip0.t-ipconnect.de. [2003:f6:ef1b:2000:944c:cbc7:1e1c:2c47])
-        by smtp.gmail.com with ESMTPSA id ov18-20020a170906fc1200b00a2a184687dasm618425ejb.31.2024.01.11.06.08.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 11 Jan 2024 06:08:20 -0800 (PST)
-Message-ID: <5b62d742fa789e9860781b6f5f1fda4f583b0e5b.camel@gmail.com>
-Subject: Re: [PATCH 01/13] spi: add core support for controllers with
- offload capabilities
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Mark Brown <broonie@kernel.org>
-Cc: David Lechner <dlechner@baylibre.com>, Jonathan Cameron
- <jic23@kernel.org>,  Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Michael Hennerich <michael.hennerich@analog.com>,  Nuno
- =?ISO-8859-1?Q?S=E1?= <nuno.sa@analog.com>, Frank Rowand
- <frowand.list@gmail.com>, Thierry Reding <thierry.reding@gmail.com>, Uwe
- =?ISO-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>, Jonathan
- Corbet <corbet@lwn.net>,  linux-spi@vger.kernel.org,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-doc@vger.kernel.org, linux-pwm@vger.kernel.org, 
- linux-kernel@vger.kernel.org
-Date: Thu, 11 Jan 2024 15:11:32 +0100
-In-Reply-To: <aae36622-4e05-4f16-9460-d7614fd599aa@sirena.org.uk>
-References: 
-	<20240109-axi-spi-engine-series-3-v1-0-e42c6a986580@baylibre.com>
-	 <20240109-axi-spi-engine-series-3-v1-1-e42c6a986580@baylibre.com>
-	 <0c0b1954825dc174cab48060e96ddadadc18aefd.camel@gmail.com>
-	 <aae36622-4e05-4f16-9460-d7614fd599aa@sirena.org.uk>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.3 
+        d=1e100.net; s=20230601; t=1704983060; x=1705587860;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=b5H4wGjXC1DdLzQIpv3zBJ0pf8Lkdr1yQJoU8LqpgzM=;
+        b=ZARArVlhiQQkfNh3XND4CrNkRMelAhCrrOKCKFV7PRbokJxZKNH0S0hkDUoooHfdiZ
+         OiIjYAeQPa0wZfsjuF5AwazQ1izQLsKj7uTxlXkp/IPY1cJOqXNk7eAmeCK7hjvejLXb
+         xdjMf2eB5jZiP1+nDn6XaNNvhozdRnEzaKr9y8OgcOwBNG1vZPXE4INk82zdp6z9L8Dl
+         mcd2zyqUdN9zRMjBZ9CLoXpLo88PjPM0gqLHk+I9KGNFM90Vu+rsnEhXLe0NfFsF7sTZ
+         31z0Y8JhWltqqB2DgsrI1GqPBtngMULE82Fz80eMGnWzerBlKO4e53oxLD9r71Ko1wH/
+         xN8A==
+X-Gm-Message-State: AOJu0YzNIPhWjmvhsMjzW14VDYNXm3SmRACT3J5gAIA4O05fbZxqqBEv
+	un/i1qUTZR+Z5ODn08Zo283386MayQUlPCX9UgBklEe2k9J5GQ==
+X-Google-Smtp-Source: AGHT+IFaYmLOxFxDAbrD29zJ5P+ZteNYH0C8/fah2rkfr0pwnrnR+2kJeW7gA7vd5Qa94LgZL5/dHpczsnOz/Isabo8=
+X-Received: by 2002:a81:d845:0:b0:5f8:ddb6:f38 with SMTP id
+ n5-20020a81d845000000b005f8ddb60f38mr564900ywl.0.1704983059775; Thu, 11 Jan
+ 2024 06:24:19 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+References: <20240111113146.16011-1-dario.binacchi@amarulasolutions.com> <20240111113146.16011-6-dario.binacchi@amarulasolutions.com>
+In-Reply-To: <20240111113146.16011-6-dario.binacchi@amarulasolutions.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Thu, 11 Jan 2024 15:24:08 +0100
+Message-ID: <CACRpkdbvwmvdv1oH6A2a+BHJ7y0gqAU1O5ZM5grAMnrrMRMdQg@mail.gmail.com>
+Subject: Re: [PATCH v7 5/5] ARM: dts: add stm32f769-disco-mb1225-revb03-mb1166-reva09
+To: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+Cc: linux-kernel@vger.kernel.org, 
+	Alexandre Torgue <alexandre.torgue@foss.st.com>, linux-amarula@amarulasolutions.com, 
+	Lee Jones <lee@kernel.org>, Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>, 
+	Andre Przywara <andre.przywara@arm.com>, Conor Dooley <conor+dt@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	=?UTF-8?Q?Leonard_G=C3=B6hrs?= <l.goehrs@pengutronix.de>, 
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Michal Simek <michal.simek@amd.com>, 
+	Rob Herring <robh+dt@kernel.org>, Sean Nyekjaer <sean@geanix.com>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, 
+	linux-stm32@st-md-mailman.stormreply.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, 2024-01-11 at 13:33 +0000, Mark Brown wrote:
-> On Thu, Jan 11, 2024 at 09:49:08AM +0100, Nuno S=C3=A1 wrote:
-> > On Wed, 2024-01-10 at 13:49 -0600, David Lechner wrote:
->=20
-> > > =C2=A0=C2=A0=C2=A0 /* in probe() */
-> > > =C2=A0=C2=A0=C2=A0 offload =3D spi_offload_get(spi, 0);
->=20
-> > On top of what Mark already stated, and as we already discussed offline=
-, I
-> > personally don't like this provider - consumer interface for the offloa=
-d.
-> > The
-> > first thing is that this is taking into account the possibility of havi=
-ng
-> > multiple offload cores. While the FGPA core was designed with that in m=
-ind,
-> > we
-> > don't really have any design using multiple offloads in one spi engine
-> > (always
-> > one). Hence this is all pretty much untested.
->=20
-> I tend to agree that we shouldn't be exposing this to SPI device drivers
-> however we will want to keep track of if the unit is busy, and designing
-> it to cope with multiple offloads does seem like sensible future
-> proofing.=C2=A0 There's also the possibility that one engine might be abl=
-e to
+On Thu, Jan 11, 2024 at 12:31=E2=80=AFPM Dario Binacchi
+<dario.binacchi@amarulasolutions.com> wrote:
 
-Fair enough. But wouldn't a simple DT integer property (handled by the spi =
-core)
-to identify the offload index be easier for SPI device drivers? We could st=
-ill
-have dedicated interfaces for checking if the unit is busy or not... The po=
-int
-is that we would not need an explicit get() from SPI drivers.
+> As reported in the section 8.3 (i. e. Board revision history) of document
+> UM2033 (i. e. Discovery kit with STM32F769NI MCU) these are the changes
+> related to the board revisions addressed by the patch:
+> - Board MB1225 revision B-03:
+>   - Memory MICRON MT48LC4M32B2B5-6A replaced by ISSI IS42S32400F-6BL
+> - Board MB1166 revision A-09:
+>   - LCD FRIDA FRD397B25009-D-CTK replaced by FRIDA FRD400B25025-A-CTK
+>
+> The patch only adds the DTS support for the new display which belongs to
+> to the Novatek NT35510-based panel family.
+>
+> Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
 
-I'm of course assuming that one spi device can only be connected to one eng=
-ine
-which seems reasonable to me.
+Looks good to me!
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
-- Nuno S=C3=A1
-
+Yours,
+Linus Walleij
 
