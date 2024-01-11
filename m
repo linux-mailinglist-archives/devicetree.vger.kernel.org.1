@@ -1,168 +1,199 @@
-Return-Path: <devicetree+bounces-31218-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31219-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5886582A54B
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 01:45:12 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FB3282A562
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 01:48:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 259BAB26599
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 00:45:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3A664289C4D
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 00:48:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A96BDEBB;
-	Thu, 11 Jan 2024 00:45:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABFA27E4;
+	Thu, 11 Jan 2024 00:48:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b="C52Lg1eh"
+	dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b="ViWZJ+gx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from JPN01-OS0-obe.outbound.protection.outlook.com (mail-os0jpn01on2091.outbound.protection.outlook.com [40.107.113.91])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oo1-f44.google.com (mail-oo1-f44.google.com [209.85.161.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D55BBEA3;
-	Thu, 11 Jan 2024 00:45:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Njr9rBAyo2X6BKXdEvw9Ewk/lh7XmICyWkEuyEuy9S3LpCgrc+1ByHfy6xDfv9I8YszUPM4qGMaZ+UxOIXL2Qjcsj9DLQMCURZJiyi/BZSpVN6X7MuE+otOim6WVDxKdQPGNYuq+L44lxGR+x/FMHi9XAQgVSw6GWKhCHj1IZLqN0FMR5mdhqfOGuPHvX1REfhCYdRqVS9eeGM+yGoS65cSSTXZMNAl/xzLP0IOE8V/shEqNiiM2lZvu2+2OKrlxhXoAm6/ofahi1o8QEfjLUkJWFhx7BzP2Lwg+UEe2h2vqwhaj4DDovHv6BzLN6pzHQ/6O0O3PHb63BpMAcMP4Vg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=3UEpDNystJ9JB9faFO04TlwOPAhd6QkTw0OdBwiBcXE=;
- b=ghLSGcjZdxJih+qcT5aZoDRNvZ98A7SHqCXSvsE6LazjMyj5kRDeSdiy4gYjBncN2v3nxcWmrKraTJ8cMErsEiv6h/DCiuOreIYMlCendmYmwr23VzSdnQx6qtMRYUCkidSR74oXaG5LyfeFydo4LFPwDOiLaqJKlC1+T1H5hs5S3PPPoeHRTMMUrbpYJbYVbAjExFwOZkE5WoWfeWmhwD6mOExXgcJqdpZ/E975W6tMD8OQ6eotjBri9XeMf5CT5dWAko9GRrIuuW106/i82nG5tkV6XbiiuHi2FA4+MCEIyVL5GZ0ZC5u9GL50uyGc7gTPUwmaKQnoGAvZhOwUbw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
- dkim=pass header.d=renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3UEpDNystJ9JB9faFO04TlwOPAhd6QkTw0OdBwiBcXE=;
- b=C52Lg1eh4qfgdmEE5G3V3iqcItkJVVBWedsNJHh7PCa0dcARv0MZV/5bMZH2LQv6K2Ky0Ai0AZ0qb7xPWSaMVIKGHyAuM+3MzaNSWlNrt6WX2CrOgN6F7vX7F4frssjN2GC6HqNMPbBtduHbxLZ1lik914vNWjPHsk1wraHCzDY=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=renesas.com;
-Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
- (2603:1096:400:3a9::11) by OS0PR01MB5426.jpnprd01.prod.outlook.com
- (2603:1096:604:96::10) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7202.13; Thu, 11 Jan
- 2024 00:44:58 +0000
-Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
- ([fe80::91d:1bfa:edc4:1c5b]) by TYCPR01MB10914.jpnprd01.prod.outlook.com
- ([fe80::91d:1bfa:edc4:1c5b%7]) with mapi id 15.20.7181.015; Thu, 11 Jan 2024
- 00:44:58 +0000
-Message-ID: <8734v4y9yu.wl-kuninori.morimoto.gx@renesas.com>
-From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-To: Sameer Pujar <spujar@nvidia.com>
-Cc: Thierry Reding <thierry.reding@gmail.com>, Mark Brown <broonie@kernel.org>,
- alsa-devel@alsa-project.org, devicetree@vger.kernel.org, robh+dt@kernel.org,
- Jon Hunter <jonathanh@nvidia.com>, linux-tegra@vger.kernel.org
-Subject: Re: Query on audio-graph-card DT binding
-In-Reply-To: <cde6d5d5-b6ab-4c64-93f8-78d721a492bb@nvidia.com>
-References: <dfe363ef-4638-4b5e-8308-73e286ac0b50@nvidia.com>	<ZZblyhfzQjzyoUc_@orome.fritz.box>	<42c0c4fa-585e-4194-bbe4-e0377c87e632@sirena.org.uk>	<3faec2e9-8cd9-46f9-8807-801922de0edf@nvidia.com>	<ZZe5sTNz005Tt4jk@orome.fritz.box>	<8241c953-8ae5-4f26-b108-fccf826ed87a@nvidia.com>	<875y03i739.wl-kuninori.morimoto.gx@renesas.com>	<e7f9085d-9db1-4c5e-9940-e461835b20aa@nvidia.com>	<87il42gkua.wl-kuninori.morimoto.gx@renesas.com>	<cde6d5d5-b6ab-4c64-93f8-78d721a492bb@nvidia.com>
-User-Agent: Wanderlust/2.15.9 Emacs/27.1 Mule/6.0
-Content-Type: text/plain; charset=US-ASCII
-Date: Thu, 11 Jan 2024 00:44:58 +0000
-X-ClientProxiedBy: TYAPR01CA0065.jpnprd01.prod.outlook.com
- (2603:1096:404:2b::29) To TYCPR01MB10914.jpnprd01.prod.outlook.com
- (2603:1096:400:3a9::11)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BAA938F
+	for <devicetree@vger.kernel.org>; Thu, 11 Jan 2024 00:48:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=beagleboard.org
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=beagleboard.org
+Received: by mail-oo1-f44.google.com with SMTP id 006d021491bc7-598a32d05ffso449511eaf.1
+        for <devicetree@vger.kernel.org>; Wed, 10 Jan 2024 16:48:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=beagleboard-org.20230601.gappssmtp.com; s=20230601; t=1704934098; x=1705538898; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=nOEWrRl8YYVpU1CBtgGPyMXsnglfEvh/E73IzWifIH8=;
+        b=ViWZJ+gxofOOvb4P19nGkCWefBK0FRIiMSan5KxrhGP/FfuTOQrD6NZT2ri+doshYx
+         kbTSzFu8K2ao3hF86IzcGl9PhdyHozbLr++oIoxoCvhFjxOaFwqCIkYSs6RemB1KbRxT
+         9C39s9xEtif6JjD0VkqTp+Sn1zy1QJjbB/Vv1lKKPMEpe6GhYrd+SekkjTaOK8TwpfY2
+         oXpVQDUVB070wDhvgIDVV3XdFdxHovrM3o9VsV3LqZ5YyzsrupqVtkeBTlMDvZcd1pq0
+         5yN1y4fYdbdKW8AhHz4x0gGtGbOn9l06hozDdAB7RWcaiK1hJ+7oXOdxtaYMQh5rfcO+
+         PRJQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1704934098; x=1705538898;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=nOEWrRl8YYVpU1CBtgGPyMXsnglfEvh/E73IzWifIH8=;
+        b=BoieDW2K+/gwlPuhZ7EGG+IthqCPbifr+PxUPEo8QHB7VPoiD79RnOb1K/B51xNowL
+         4WFFjyow+RMpAb0E8tRFgMwjPAUr7AO15r3AJJE5BjiQHfp5dj2mcs9bnHbGegZqFSxS
+         U+78u2r1ZWAAzG521UdSaMuW37UvPUBRXbZf3vLJmFFDzToO1NqXZBlNizSIh2CZ5oE4
+         HpXW+EXh0EEya9XmWtSD9wmBbwhnLISrF4YNf7lc88hBLVEmwWaW7TDtuT/SkpedXcc4
+         2yx+gZryKORtD3+aS7k5kKA+7LN+gkHLBMvWEIHRfFa2+b/kL/dZ6GN0dA8m+9/magOT
+         9dzQ==
+X-Gm-Message-State: AOJu0YwAzXqpfI0ZtXo3xm/HACRsSuMgnBQBYt5sv79TyFZO4NYTzDug
+	utriOb+EuUd1KArMDFG69blZYnqwE9oSgAGSA1mc1W8o6qjv
+X-Google-Smtp-Source: AGHT+IHz4ad/qvepzF7nLDXuFd9LMeIswNA09PD2TNtK0hUztE+LIcOHtVWm80Wgwv9m+bfFkcSUyz0bZSBbjVCwsow=
+X-Received: by 2002:a4a:4bc7:0:b0:597:ba83:fb9b with SMTP id
+ q190-20020a4a4bc7000000b00597ba83fb9bmr334374ooa.10.1704934098075; Wed, 10
+ Jan 2024 16:48:18 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TYCPR01MB10914:EE_|OS0PR01MB5426:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8415f29a-9e79-4842-5c88-08dc123e8954
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	1YgUb9MyrJWaQUJ8hWD3gmm2GogGfZ/wRhKR9459R3XZ7tsvrIODdZOAo95fJ/QIMHYblotNJjIR06KA7KCmbzLCIIC0e6Cev9i4uU1qJBxQnR1Kos34+Fbc/Ch9K2W2oNXuOyONSzFtUcblYuGTRr/195xgvbPxdsL6Ks+N8O0MXy5n3qthPbbIc6WdgFvmW1t5cgb+7OeQVaxnmzJ79XJdRoeRXbcOVz0iZbgajQcQuTqRd9Ew0KtyVNOBg6HTWPXW9VRR1sf3jF6Mdh51yzhU3gmOSkpYQT0BACytg2qmVvU+bZ51WKg7MBT8qV48vBFRT/eU2N8tai8czpR69sxtAo3I0QJEr8B3DIY3FthFD+Hgu5l+B89DTwIio1Ea2EbHsPqlGJlPj4NTs6NzcQJmK8dYyO0FADUhcXNcV/ZYQJjdIENnu2tlFSUJkT+7SvXKMhEaNn21QmS3Bq88DESpFPqRSOO9AfEhcnE/A7AUk+nDgZzLYy4fWinjlNrHyiyaVL5h2B0NPLTuE2nvzZCAagvzPmD4sxjqut3FtvwdBXjPahYOs4fbuNxJl34Wab2URvQhJl7XPfhBMDzDDlGDC+NgQ2Djr0EwCNQpGLB266Z5UcyAIV3KQuGv+Xfn
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB10914.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366004)(396003)(136003)(346002)(39860400002)(376002)(230922051799003)(1800799012)(186009)(64100799003)(451199024)(5660300002)(8676002)(4326008)(8936002)(2906002)(6916009)(66946007)(54906003)(66556008)(66476007)(316002)(6512007)(6506007)(966005)(6486002)(478600001)(2013699003)(38350700005)(52116002)(36756003)(2616005)(26005)(41300700001)(86362001)(38100700002);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?DnEWx+m5fM5z0Z61j7uuZO2CK9Ho7SM0OQiSt/8+Efg6WxElR3GzqZSSCMZl?=
- =?us-ascii?Q?6UyUylvUjjsD3CqAjqJUkow3JSWX9PeMnikwv5qlIa/YFGbVuef/klp0KNhy?=
- =?us-ascii?Q?zTTBrl4K3SRE4RqzoW6N19tz+2PBxZ0YX+uuJsIXTPL2BL9l9xwUGIVIeyDL?=
- =?us-ascii?Q?u/e2gclgrLSo4ZALe6xUsMCTouvNfso2IzlmcO7QmFbFVoiYCE7yRF0T36nP?=
- =?us-ascii?Q?itzJBDA27YbYVGMfiQb+pwoouYsLGGXZWAE0UArY4XaRCwdxds/JxY4CejCn?=
- =?us-ascii?Q?rJPDsbVfcV6/hwgL7iU62B8Z6sPTDYHYw73l2phc+hCs/G24ie/bOikNna/P?=
- =?us-ascii?Q?BrwmR6pNVECaRHLFV54kIHb0kVlkFRr/I/RVauijt/c3rXMMhbAfsM0EegPW?=
- =?us-ascii?Q?GnxumbqV/451vGr2W67IPRpOZhiVlOc5KgHUAtcMReYPvgkMCS7duTCex1ia?=
- =?us-ascii?Q?8aax1Wz75cFBwCeGUUxQ88RvRNR3cQOzyZwkHOar9CYiuLWf+BUhzAlkeQzC?=
- =?us-ascii?Q?ZufCcpcFBQVlvFkyVc5ianrl49ErkxrH416vwLyw4gif3ufO3DGKa9QVd7b5?=
- =?us-ascii?Q?vali7M2VojQraCpHPb0qbsef2B3WvFqxiIbk80jX0uWanB0OxTNPtc5lPd8n?=
- =?us-ascii?Q?5XKC0Pjhf7x9gW0mc0MrfoSPASE1NBLsVIiJA8yi744pahkq99b1TusInCLL?=
- =?us-ascii?Q?sSoiNViPeri37wKo3nb7dVGbTTARHHwdUVn6qn96M67hm74PmBWR7hmVlqps?=
- =?us-ascii?Q?SFvfVqVy6ZvVDcBof7u/wlp7f67dLVVKHh0cclkwgyMvZJmVpFmVl51hai9O?=
- =?us-ascii?Q?NBubGmMHx4IWbdE4Sk3IxSjDlyReBYUtEfLFqEydvJMoOInFBnSK+d5UD+gg?=
- =?us-ascii?Q?e858eZ8QjxLfa669VdRCfnzq3l5J/fUBF/BOrGm+OYJ/lGvvgPyMG7H7056m?=
- =?us-ascii?Q?oCdg2P7AAHbzVNfHNaKRUv1LDrZOC4u3BK7/DLwWv9BddRB6cGkAPbUq4EIc?=
- =?us-ascii?Q?Ovg6Z4Ej0XSV3MvrV4gNKRk0mJUxmZUpN51ZHOmrNq3vfpyRJhuMay079+w1?=
- =?us-ascii?Q?2vLi56k7TJqxnFjRTaCzmAYvKRuJ40nEWp1kYAbGuWOjc0x/cUzBiWhtfPho?=
- =?us-ascii?Q?JpVDfyfWh1P1gFuqbxgmKCFuytVYTXPjKMhoPxheWYy0s+nm/tKuc4dFD4ID?=
- =?us-ascii?Q?zofdXxRo7ZNVXB2kqNVnMF6Vn0Bw7BKKwz1lZuRAsPsmRxTg0BT/ApRhnACP?=
- =?us-ascii?Q?bMTy22VKFnnqewPJKNmO64eGIRDpwQ0MGlGwgEFpo9wWAHzw514CjZo8wbuv?=
- =?us-ascii?Q?vri2FnTiLCI0YCqVhtct+zq29gxMeVA/TQbPUxEkRTWndMHuV5jsQRPW040U?=
- =?us-ascii?Q?2pEUZSSLnOxtlyHVD28VlxA3e3NvM7dohon8YwtcqCv282fQ8J8ySsyONi5Y?=
- =?us-ascii?Q?Rp4LyiGxZsJRN70jg1Bl6hi2VAbczUKZsqYDMANmEWV17SaU7nnTWoXivNoi?=
- =?us-ascii?Q?9Qjg65dtSWJIOp7mNREkgRHxETKw1bEAQFDypvASoW4YYSUfJTUxsiMplNCC?=
- =?us-ascii?Q?OWtQyq0raky41A+3MhAqlgdNJgFGBSmUIyEPjuZ5h5J7/dvAH4ZO6vBlx62r?=
- =?us-ascii?Q?dLuBosnMMyuwp7aKaoOV3hs=3D?=
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8415f29a-9e79-4842-5c88-08dc123e8954
-X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB10914.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Jan 2024 00:44:58.3168
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: BHBbhA7mnE4P1uX+wkzkULWQ72UVkJUVLTyvBErVfVzLkVIuRqaagW+nUnllTYkHiUNMzoi56YXvO1Pv8scGhX27n/FUcsubAd3onuTdmFfruDGvCYFZKVpEgpsczHJ/
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: OS0PR01MB5426
+References: <20240110140903.4090946-1-nm@ti.com> <20240110140903.4090946-14-nm@ti.com>
+In-Reply-To: <20240110140903.4090946-14-nm@ti.com>
+From: Jason Kridner <jkridner@beagleboard.org>
+Date: Wed, 10 Jan 2024 19:48:07 -0500
+Message-ID: <CAK8RMs3JjtTwbv8NiPMG7nTAbubyObD4z+23W15+tfqDH6ucyw@mail.gmail.com>
+Subject: Re: [PATCH 13/16] arm64: dts: ti: beagle*: Add MIT license along with GPL-2.0
+To: Nishanth Menon <nm@ti.com>
+Cc: Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, Ayush Singh <ayushdevel1325@gmail.com>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Robert Nelson <robertcnelson@gmail.com>, 
+	Tony Lindgren <tony@atomide.com>, Wadim Egorov <w.egorov@phytec.de>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+On Wed, Jan 10, 2024 at 9:09=E2=80=AFAM Nishanth Menon <nm@ti.com> wrote:
+>
+> Modify license to include dual licensing as GPL-2.0-only OR MIT
+> license for device trees belonging to BeagleBoard.org Foundation
+> platforms. This allows for Linux kernel device tree to be used in
+> other Operating System ecosystems such as Zephyr or FreeBSD.
+>
+> While at this, update the GPL-2.0 to be GPL-2.0-only to be in sync
+> with latest SPDX conventions (GPL-2.0 is deprecated).
+>
+> While at this, update the copyright year to sync with current year
+> to indicate license change.
+>
+> Cc: Ayush Singh <ayushdevel1325@gmail.com>
+> Cc: Jason Kridner <jkridner@beagleboard.org>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Cc: Robert Nelson <robertcnelson@gmail.com>
+> Cc: Tony Lindgren <tony@atomide.com>
+> Cc: Wadim Egorov <w.egorov@phytec.de>
+>
+> Signed-off-by: Nishanth Menon <nm@ti.com>
 
 
-Hi Sameer
+Acked-by: Jason Kridner <jkridner@beagleboard.org>
 
-> > CPU
-> >          port {
-> >                  cpu_endpoint0: endpoint@0 { remote-endpoint = <&codec1_endpoint>; };
-> >                  cpu_endpoint1: endpoint@1 { remote-endpoint = <&codec2_endpoint>; };
-> >          };
-> >
-> > Codec1
-> >          port {
-> >                  codec1_endpoint: endpoint { remote-endpoint = <&cpu_endpoint0>; };
-> >          };
-> >
-> > Codec2
-> >          port {
-> >                  codec2_endpoint: endpoint { remote-endpoint = <&cpu_endpoint1>; };
-> >          };
-> >
-> 
-> This is a workaround. Note that CPU endpoint@1 doesn't exist and a dummy 
-> endpoint needs to be created. Like I mentioned in previous replies, the 
-> number of dummy endpoints that need to be created depends on how many 
-> CODECs user want to connect and it doesn't look scalable.
 
-I'm not DT-man, but it sounds you are misunderstanding about port vs endpoint ?
-"port" is for physical interface, "endpoint" is for connection.
-If 1 CPU physical interface is connected to 2 Codecs physical interfaces,
-above is for it in my understanding.
+>
+> ---
+>  .../boot/dts/ti/k3-am625-beagleplay-csi2-ov5640.dtso      | 4 ++--
+>  .../boot/dts/ti/k3-am625-beagleplay-csi2-tevi-ov5640.dtso | 4 ++--
+>  arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts            | 6 +++---
+>  arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts        | 8 ++++----
+>  4 files changed, 11 insertions(+), 11 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/ti/k3-am625-beagleplay-csi2-ov5640.dtso =
+b/arch/arm64/boot/dts/ti/k3-am625-beagleplay-csi2-ov5640.dtso
+> index 5e80ca7033ba..3b4643b7d19c 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am625-beagleplay-csi2-ov5640.dtso
+> +++ b/arch/arm64/boot/dts/ti/k3-am625-beagleplay-csi2-ov5640.dtso
+> @@ -1,7 +1,7 @@
+> -// SPDX-License-Identifier: GPL-2.0
+> +// SPDX-License-Identifier: GPL-2.0-only OR MIT
+>  /*
+>   * ALINX AN5641 & Digilent PCam 5C - OV5640 camera module
+> - * Copyright (C) 2022-2023 Texas Instruments Incorporated - https://www.=
+ti.com/
+> + * Copyright (C) 2022-2024 Texas Instruments Incorporated - https://www.=
+ti.com/
+>   */
+>
+>  /dts-v1/;
+> diff --git a/arch/arm64/boot/dts/ti/k3-am625-beagleplay-csi2-tevi-ov5640.=
+dtso b/arch/arm64/boot/dts/ti/k3-am625-beagleplay-csi2-tevi-ov5640.dtso
+> index 5e1cbbc27c8f..81a2763d43c6 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am625-beagleplay-csi2-tevi-ov5640.dtso
+> +++ b/arch/arm64/boot/dts/ti/k3-am625-beagleplay-csi2-tevi-ov5640.dtso
+> @@ -1,7 +1,7 @@
+> -// SPDX-License-Identifier: GPL-2.0
+> +// SPDX-License-Identifier: GPL-2.0-only OR MIT
+>  /*
+>   * Technexion TEVI-OV5640-*-RPI - OV5640 camera module
+> - * Copyright (C) 2022-2023 Texas Instruments Incorporated - https://www.=
+ti.com/
+> + * Copyright (C) 2022-2024 Texas Instruments Incorporated - https://www.=
+ti.com/
+>   */
+>
+>  /dts-v1/;
+> diff --git a/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts b/arch/arm64/=
+boot/dts/ti/k3-am625-beagleplay.dts
+> index eadbdd9ffe37..600db09b8ad3 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts
+> @@ -1,9 +1,9 @@
+> -// SPDX-License-Identifier: GPL-2.0
+> +// SPDX-License-Identifier: GPL-2.0-only OR MIT
+>  /*
+>   * https://beagleplay.org/
+>   *
+> - * Copyright (C) 2022-2023 Texas Instruments Incorporated - https://www.=
+ti.com/
+> - * Copyright (C) 2022-2023 Robert Nelson, BeagleBoard.org Foundation
+> + * Copyright (C) 2022-2024 Texas Instruments Incorporated - https://www.=
+ti.com/
+> + * Copyright (C) 2022-2024 Robert Nelson, BeagleBoard.org Foundation
+>   */
+>
+>  /dts-v1/;
+> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts b/arch/ar=
+m64/boot/dts/ti/k3-j721e-beagleboneai64.dts
+> index 2f954729f353..dfc9adacd511 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts
+> @@ -1,9 +1,9 @@
+> -// SPDX-License-Identifier: GPL-2.0
+> +// SPDX-License-Identifier: GPL-2.0-only OR MIT
+>  /*
+>   * https://beagleboard.org/ai-64
+> - * Copyright (C) 2022 Texas Instruments Incorporated - https://www.ti.co=
+m/
+> - * Copyright (C) 2022 Jason Kridner, BeagleBoard.org Foundation
+> - * Copyright (C) 2022 Robert Nelson, BeagleBoard.org Foundation
+> + * Copyright (C) 2022-2024 Texas Instruments Incorporated - https://www.=
+ti.com/
+> + * Copyright (C) 2022-2024 Jason Kridner, BeagleBoard.org Foundation
+> + * Copyright (C) 2022-2024 Robert Nelson, BeagleBoard.org Foundation
+>   */
+>
+>  /dts-v1/;
+> --
+> 2.43.0
+>
 
-Can Audio-Graph-Card2 N:M connection [1][2][3] help you ?
-Sample is for 2:3 connection, but it should be OK for 1:2.
-You need v6.8 or later
 
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git/tree/sound/soc/generic/audio-graph-card2-custom-sample.dtsi?h=asoc-v6.8#n67
-[2] https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git/tree/sound/soc/generic/audio-graph-card2-custom-sample.dtsi?h=asoc-v6.8#n339
-[3] https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git/tree/sound/soc/generic/audio-graph-card2-custom-sample.dtsi?h=asoc-v6.8#n372
+--
+BeagleBoard.org Foundation is a US-based 501(c)3 non-profit providing
+education and collaboration around open source hardware and software
 
-Thank you for your help !!
-
-Best regards
----
-Renesas Electronics
-Ph.D. Kuninori Morimoto
+Use https://beagleboard.org/about/jkridner to schedule a meeting
 
