@@ -1,110 +1,107 @@
-Return-Path: <devicetree+bounces-31493-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31494-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD5C482B7FA
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 00:24:58 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2AA0182B836
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 00:46:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8C5DF28A20D
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 23:24:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 51C921C23C2F
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 23:46:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 395E359B62;
-	Thu, 11 Jan 2024 23:24:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12C0159B77;
+	Thu, 11 Jan 2024 23:46:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="CMHcxHp5"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="RHIHvSsE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay.smtp-ext.broadcom.com (relay.smtp-ext.broadcom.com [192.19.144.205])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2846759B5D;
-	Thu, 11 Jan 2024 23:24:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: from mail-lvn-it-01.lvn.broadcom.net (mail-lvn-it-01.lvn.broadcom.net [10.36.132.253])
-	by relay.smtp-ext.broadcom.com (Postfix) with ESMTP id 655E8C0000E4;
-	Thu, 11 Jan 2024 15:15:44 -0800 (PST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 relay.smtp-ext.broadcom.com 655E8C0000E4
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=broadcom.com;
-	s=dkimrelay; t=1705014944;
-	bh=0zK9IlUIaxglY1uUdlByTuJo2PKiDkOIZhKkGpO6xA4=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=CMHcxHp5C+YRIBeq0K7N+oUN1fUdHBCzud8Ob3nw2/g/oK0xprx/CmDTRH7gHG07T
-	 xIfupzM9+2OVqTEi9tMSUQqO859hYCH7xdyTEWtVOigHTHON+qyOe0u8TxcP3suEik
-	 VhV4XGUMG2R5mhGxvANLDBTj1V9HkYdtz/Cfkz0w=
-Received: from fainelli-desktop.igp.broadcom.net (fainelli-desktop.dhcp.broadcom.net [10.67.48.245])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mail-lvn-it-01.lvn.broadcom.net (Postfix) with ESMTPSA id B684418041CAC7;
-	Thu, 11 Jan 2024 15:15:42 -0800 (PST)
-From: Florian Fainelli <florian.fainelli@broadcom.com>
-To: linux-arm-kernel@lists.infradead.org
-Cc: Florian Fainelli <florian.fainelli@broadcom.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
-	linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH 2/2] bus: brcmstb_gisb: Added support for 74165 register layout
-Date: Thu, 11 Jan 2024 15:15:39 -0800
-Message-Id: <20240111231539.783785-3-florian.fainelli@broadcom.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240111231539.783785-1-florian.fainelli@broadcom.com>
-References: <20240111231539.783785-1-florian.fainelli@broadcom.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D0B456B7B;
+	Thu, 11 Jan 2024 23:46:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1705016775; x=1736552775;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=tDQ+Y25+9tjVLydR7nv5+2kZe3IxdEqqQlgXmpvEyYk=;
+  b=RHIHvSsEPzFRWIFgr9oRd6kW32Ma9nxWMD0ICAKI64dDQsS7Qy8WJSQ1
+   W6LdQYm//UvglP4rXnYHsRRY0KW6Tf1pY5TZPipqPVnnMqWR0lguyv0nD
+   pNhIgTcQ+VPXIzU8DWdZA/jlhJ3ifg32aGB6cs2Rz+j+kVhfy0vbuuXV2
+   kJ9eAzlmvhGaWfDKOco8WaiN8EKxA7mBmK03rZ5cPqL0PRE4W4v8M6/Fv
+   H5mcKGdy3HonIzbocfAs9H4AEGocx7IRk5AT+rXA651UEGZRm731JJMl5
+   2DUVYjH4OnTySIX0WM2u2DRtD5dKrMMhlndgLbFdcjiMh33/0Zc2ijoNe
+   A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10950"; a="20500691"
+X-IronPort-AV: E=Sophos;i="6.04,187,1695711600"; 
+   d="scan'208";a="20500691"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Jan 2024 15:46:13 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.04,187,1695711600"; 
+   d="scan'208";a="17208593"
+Received: from lkp-server02.sh.intel.com (HELO b07ab15da5fe) ([10.239.97.151])
+  by fmviesa002.fm.intel.com with ESMTP; 11 Jan 2024 15:46:09 -0800
+Received: from kbuild by b07ab15da5fe with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1rO4kR-0008rG-0N;
+	Thu, 11 Jan 2024 23:46:07 +0000
+Date: Fri, 12 Jan 2024 07:45:07 +0800
+From: kernel test robot <lkp@intel.com>
+To: Frank Li <Frank.Li@nxp.com>, robh@kernel.org
+Cc: oe-kbuild-all@lists.linux.dev, alexandre.belloni@bootlin.com,
+	conor.culhane@silvaco.com, gregkh@linuxfoundation.org,
+	imx@lists.linux.dev, jirislaby@kernel.org, joe@perches.com,
+	linux-i3c@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-serial@vger.kernel.org, miquel.raynal@bootlin.com,
+	zbigniew.lukwinski@linux.intel.com, devicetree@vger.kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, krzysztof.kozlowski@linaro.org
+Subject: Re: [PATCH v2 3/7] Documentation: i3c: Add I3C target mode
+ controller and function
+Message-ID: <202401120713.p7a3HyFl-lkp@intel.com>
+References: <20240110175221.2335480-4-Frank.Li@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240110175221.2335480-4-Frank.Li@nxp.com>
 
-BCM74165 introduces a new register layout which is different from
-previously taped out chips, match the documented compatible and use the
-appropriate table of register offsets.
+Hi Frank,
 
-Signed-off-by: Florian Fainelli <florian.fainelli@broadcom.com>
----
- drivers/bus/brcmstb_gisb.c | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
+kernel test robot noticed the following build warnings:
 
-diff --git a/drivers/bus/brcmstb_gisb.c b/drivers/bus/brcmstb_gisb.c
-index b6dfe4340da2..65ae758f3194 100644
---- a/drivers/bus/brcmstb_gisb.c
-+++ b/drivers/bus/brcmstb_gisb.c
-@@ -96,6 +96,20 @@ static const int gisb_offsets_bcm7400[] = {
- 	[ARB_ERR_CAP_MASTER]	= 0x0d8,
- };
- 
-+static const int gisb_offsets_bcm74165[] = {
-+	[ARB_TIMER]		= 0x008,
-+	[ARB_BP_CAP_CLR]	= 0x044,
-+	[ARB_BP_CAP_HI_ADDR]	= -1,
-+	[ARB_BP_CAP_ADDR]	= 0x048,
-+	[ARB_BP_CAP_STATUS]	= 0x058,
-+	[ARB_BP_CAP_MASTER]	= 0x05c,
-+	[ARB_ERR_CAP_CLR]	= 0x038,
-+	[ARB_ERR_CAP_HI_ADDR]	= -1,
-+	[ARB_ERR_CAP_ADDR]	= 0x020,
-+	[ARB_ERR_CAP_STATUS]	= 0x030,
-+	[ARB_ERR_CAP_MASTER]	= 0x034,
-+};
-+
- static const int gisb_offsets_bcm7435[] = {
- 	[ARB_TIMER]		= 0x00c,
- 	[ARB_BP_CAP_CLR]	= 0x014,
-@@ -393,6 +407,7 @@ static const struct of_device_id brcmstb_gisb_arb_of_match[] = {
- 	{ .compatible = "brcm,bcm7400-gisb-arb", .data = gisb_offsets_bcm7400 },
- 	{ .compatible = "brcm,bcm7278-gisb-arb", .data = gisb_offsets_bcm7278 },
- 	{ .compatible = "brcm,bcm7038-gisb-arb", .data = gisb_offsets_bcm7038 },
-+	{ .compatible = "brcm,bcm74165-gisb-arb", .data = gisb_offsets_bcm74165 },
- 	{ },
- };
- 
+[auto build test WARNING on tty/tty-testing]
+[also build test WARNING on tty/tty-next tty/tty-linus robh/for-next linus/master v6.7 next-20240111]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Frank-Li/i3c-add-target-mode-support/20240111-015711
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/tty.git tty-testing
+patch link:    https://lore.kernel.org/r/20240110175221.2335480-4-Frank.Li%40nxp.com
+patch subject: [PATCH v2 3/7] Documentation: i3c: Add I3C target mode controller and function
+reproduce: (https://download.01.org/0day-ci/archive/20240112/202401120713.p7a3HyFl-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202401120713.p7a3HyFl-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> Warning: Documentation/driver-api/i3c/target/i3c-target-cfs.rst references a file that doesn't exist: Documentation/I3C/target/pci-target.rst
+>> Documentation/driver-api/i3c/target/i3c-target.rst:38: WARNING: Title underline too short.
+>> Documentation/driver-api/i3c/target/i3c-target-cfs.rst:73: WARNING: Title underline too short.
+>> Documentation/driver-api/i3c/target/i3c-tty-howto.rst:45: WARNING: Title underline too short.
+
 -- 
-2.34.1
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
