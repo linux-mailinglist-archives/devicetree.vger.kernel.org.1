@@ -1,111 +1,107 @@
-Return-Path: <devicetree+bounces-31399-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31401-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0F8F82B11A
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 15:56:17 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C341682B127
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 15:57:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 80DC1B26A3A
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 14:56:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 71EAA281F7D
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 14:57:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8981F48CED;
-	Thu, 11 Jan 2024 14:54:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4C444A9A0;
+	Thu, 11 Jan 2024 14:57:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="bZj1tbTV"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LtwipY78"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com [209.85.128.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97A643C48D;
-	Thu, 11 Jan 2024 14:54:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0369458.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40B9T6ox025702;
-	Thu, 11 Jan 2024 15:54:22 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	selector1; bh=H7nacMDmYTQFWcEFfOVo7GeHgZ5bNpycP6h4lcPT5CA=; b=bZ
-	j1tbTVX8q6WE9bFSdKyl9FMmOqENIbFcTlRo+aLUlQKTqNXIe0d5NIh+xZioZcsF
-	6LGHsux10lwwDTn8X/kfThmXp/MdOI2OCYSzngx577Dtls9ZbSQimLLQL14dF6od
-	myYPVRDPLBASpweYKYFNpjh7nyRPL5IBiazO8+kqqqO2rUdgXbW5AyjLkyX4mXJf
-	8aUi2MlrtJSMS1AL9wp7fHrhm3O6ungt+COQlmNn4744uqQOuZi5QBHieAsYjtMe
-	G9Ae4rlT510F5Wp/v33HhIUK7KinCHUBsMZ05EzNYcaTOUFSgmmusetnNKL0xeXo
-	zvYkzqFRvi7l5Tv1PwoA==
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3vfha4uw06-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 11 Jan 2024 15:54:22 +0100 (CET)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 657FB10002A;
-	Thu, 11 Jan 2024 15:54:22 +0100 (CET)
-Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 5BFF12841E6;
-	Thu, 11 Jan 2024 15:54:22 +0100 (CET)
-Received: from [10.252.29.122] (10.252.29.122) by SHFDAG1NODE2.st.com
- (10.75.129.70) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Thu, 11 Jan
- 2024 15:54:19 +0100
-Message-ID: <f2933f17-bc28-4c9e-b1d9-b64fdce52a15@foss.st.com>
-Date: Thu, 11 Jan 2024 15:54:18 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89B804B5B1
+	for <devicetree@vger.kernel.org>; Thu, 11 Jan 2024 14:57:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-5f588ce1b6dso45703567b3.1
+        for <devicetree@vger.kernel.org>; Thu, 11 Jan 2024 06:57:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1704985033; x=1705589833; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=y4QJ/Zk/UxhefO+/Ds686chTEmns6pEsPp66wCH/Tr8=;
+        b=LtwipY78GtVt3Y6uFrZXrDiJiH551VQ/8DFSI1guS+otC8ZssAtguJ1jEXgXnmDaDv
+         pue7uidnE6Zzhty2K5sNdSQ1x+oz+bc3+kJ/m+DdkQPPB34IxUesvLmnGlbqgi52FfpY
+         Qj+UqAfLAPoaetCNTINOVtII+ZOpWPLJsU3sthyo3Co3HSDIqGEvNmp9VIeZZlm7TC8O
+         S9gUu+1V16ITU9K5KT1XnI155I/OHMgwtJv4kcct4wK771Hb97GeOEMJoT1djPqFSNyH
+         ECzVsQxERBCpfPhhiiPUq8jwhedDQhIaclKbuclo4nUTJHN+gzdO7062nHzPqcGDp5OA
+         Iq3g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1704985033; x=1705589833;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=y4QJ/Zk/UxhefO+/Ds686chTEmns6pEsPp66wCH/Tr8=;
+        b=XvtEa813ovk6lZAY1s9W3ucr2HDohbLUuPt6Izzv0LoA8lb4srcMFztNFwMj75R1TV
+         oBgFeE5SRGe08VR5HKSFQokcyIDnaEnPTHTNF8NrplP3cmyd93R1IQBDiny9wYb/WlIL
+         BBvoQKDswMaTN6eRIY5b1cnxqYA/nCGTeULRRHrKauVUidb9V++Ew070Ut4ACn8a3OBo
+         YU8FDNDPLVTYcucNydKzw6c8UmPRSDbr5ZKRFvIDhyyO+3EnhojuQIzKevOVgPqeaR8E
+         xllAHisDJL9Mj6TkLv6+FW+4eEQps1c/LOLhwzpORMOTD21rNNqGbzx94DHVrPfT5MTy
+         Hiyw==
+X-Gm-Message-State: AOJu0YyQbjx1y8QT5ofEZ8+LIDWSfpCDGWb5gDqz0CiKdeI/lSFStJYh
+	9EM+1iSqYdqddtw1eW9L5mSsmktX7YVm3Fl8rjJv088nHuNcJQ==
+X-Google-Smtp-Source: AGHT+IGlqFbVsocwq/Ya8t4EI0KodBoh1TFUMaOyVVs9af4K5210a84z1fodh56RrT3NSO1DP38JsInOPARS+62cxkU=
+X-Received: by 2002:a81:aa11:0:b0:5e7:9454:6a2a with SMTP id
+ i17-20020a81aa11000000b005e794546a2amr407663ywh.42.1704985032557; Thu, 11 Jan
+ 2024 06:57:12 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 3/5] ARM: dts: stm32: rename mmc_vcard to vcc-3v3 on
- stm32f769-disco
-Content-Language: en-US
-To: Dario Binacchi <dario.binacchi@amarulasolutions.com>,
-        <linux-kernel@vger.kernel.org>
-CC: Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        <linux-amarula@amarulasolutions.com>, Lee Jones <lee@kernel.org>,
-        Conor
- Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Coquelin
-	<mcoquelin.stm32@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>
-References: <20240111113146.16011-1-dario.binacchi@amarulasolutions.com>
- <20240111113146.16011-4-dario.binacchi@amarulasolutions.com>
-From: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
-In-Reply-To: <20240111113146.16011-4-dario.binacchi@amarulasolutions.com>
+References: <20240110-fp4-panel-v2-0-8ad11174f65b@fairphone.com> <20240110-fp4-panel-v2-2-8ad11174f65b@fairphone.com>
+In-Reply-To: <20240110-fp4-panel-v2-2-8ad11174f65b@fairphone.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Thu, 11 Jan 2024 15:57:01 +0100
+Message-ID: <CACRpkdaWTfPDCin_L6pefHsokjNyO8Mo6hWPdzPLLi1EUkKUuA@mail.gmail.com>
+Subject: Re: [PATCH v2 2/4] drm/panel: Add driver for DJN HX83112A LCD panel
+To: Luca Weiss <luca.weiss@fairphone.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang <quic_jesszhan@quicinc.com>, 
+	Sam Ravnborg <sam@ravnborg.org>, David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, ~postmarketos/upstreaming@lists.sr.ht, 
+	phone-devel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE2.st.com
- (10.75.129.70)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-01-05_08,2024-01-05_01,2023-05-22_02
+Content-Transfer-Encoding: quoted-printable
 
+On Wed, Jan 10, 2024 at 4:14=E2=80=AFPM Luca Weiss <luca.weiss@fairphone.co=
+m> wrote:
 
-On 1/11/24 12:31, Dario Binacchi wrote:
-> In the schematics of document UM2033, the power supply for the micro SD
-> card is the same 3v3 voltage that is used to power other devices on the
-> board. By generalizing the name of the voltage regulator, it can be
-> referenced by other nodes in the device tree without creating
-> misunderstandings.
+> Add support for the 2340x1080 LCD DJN panel bundled with a HX83112A
+> driver IC, as found on the Fairphone 4 smartphone.
 >
-> This patch is preparatory for future developments.
->
-> Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
 
-Hi Dario,
+This makes it sound like the Himax HX83112A is the driver IC.
 
+This does not seem to be the case:
+https://github.com/HimaxSoftware/HX83112_Android_Driver
 
-Reviewed-by: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
+The driver IC seems to be a truly 5p65.
 
+If this is right, could you rename the driver file to truly-5p65.c
+and all symbols containing hx83112 to truly_5965 or something
+that indicate the driver IC instead of the panel?
 
-Regards,
+My main concern is that the next display using the same IC
+need to find the right file to patch.
 
-Raphaël
-
+Yours,
+Linus Walleij
 
