@@ -1,307 +1,188 @@
-Return-Path: <devicetree+bounces-31433-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31434-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C18E82B339
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 17:45:40 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1394182B33C
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 17:45:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 94E44285293
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 16:45:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2A2701C26C65
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 16:45:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADCF751038;
-	Thu, 11 Jan 2024 16:45:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C52850261;
+	Thu, 11 Jan 2024 16:45:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="vv5NKnPd"
+	dkim=pass (1024-bit key) header.d=leica-geosystems.com header.i=@leica-geosystems.com header.b="femNaw1b"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2126.outbound.protection.outlook.com [40.107.21.126])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9C2B487AC;
-	Thu, 11 Jan 2024 16:45:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40BF03AO016903;
-	Thu, 11 Jan 2024 17:44:50 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	selector1; bh=+RkBvHFsuUajNUtIAcA2Z4Uhkt41wdpJd5SZHqOYvhw=; b=vv
-	5NKnPdw1nAN9QQZ0DEo+TX/nwRwJewLentXW6Q1eWxjhP4UBcM0k9qHCkHvPr6rW
-	lm95/HGclrQdmvsUHmzyU0oscLF3ajhe6XivKcpxJ3ZZulqJoWekUhl6Jc/ChIag
-	vBZFGRS72U44lXoGW/zkea7iVDLYDM6QWODeh9r10Qm+7AdDy2Mbekpa4smDKUd+
-	BAaaPdwKQ5NU47vNiko2sw/bBK1N+JcPynpkdNyZvPQIdlFlH3AgR3veSGZ4ndfK
-	6/ySG+YEwvobgsxIoiYi89J9BAtN98FCm2/YZeAiGvPzMB4tTipznuUJKlDrOGed
-	f4Wdx/0ziJnsQp4goyzg==
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3vexrce1g1-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 11 Jan 2024 17:44:50 +0100 (CET)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 9DA3610002A;
-	Thu, 11 Jan 2024 17:44:47 +0100 (CET)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id C901525AEE7;
-	Thu, 11 Jan 2024 17:44:45 +0100 (CET)
-Received: from [10.201.22.187] (10.201.22.187) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Thu, 11 Jan
- 2024 17:44:44 +0100
-Message-ID: <4b1ffdc4-edce-4a69-a30b-45c29741dc2c@foss.st.com>
-Date: Thu, 11 Jan 2024 17:44:44 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64CE950248;
+	Thu, 11 Jan 2024 16:45:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=leica-geosystems.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=leica-geosystems.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=j3t8yfQ4ZHRFtSDDhl+qKnHk350yBOWrhKrlDgqx4fZXgHB+nlsbdluW5KvMrx/UY5mb0N9A4yt2VHiiegJe2tdGshm2+GK/DawXfM6xIhprq3QeF6aqXs7RqOTpaY/VhB7ihkDpz8jqFT5+ayFbF9T6qz5cQfr36ox9WRTeu8Z1fBrpv1XQNSgsQlvf9ikUjCq/9TV7fTiQTvz7nhF0WqZNpN7Ofz6ZqfRI/fBS0Z0arK5TEcMG6mgkfiDNUQOMjIGat9h2Q7zMiLO9NwFbQs04huZbR79XhEIsFuhZTF51g6FzKxSbe2UfKiSn16wFm8YK66g5S3SByacu/FHS1g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=+JpjShV4jjcuPTYqdGLNXJx+bnhQnqh0n6mwl0BDF6w=;
+ b=ofLsxJIKFsP/wBlJ0jBpcf344uArshPEdJ5cFoFbhIC4znbVwBaQBxbNqfP6DyoFFgl8qo8CsVxst2FQMNWDuJHQEt0dCM1oEA1cRuGmMiNMK67u+VVt/1+DoI3O64wGDzOI0mdooTML0xxKSs/S7MjV/DD8U/ImB8DykvCsSeUsWIaYh8uynYqnE6mx4og4zX+rBpgXPv/eYK5t23oV7XmUn8GeMPIgD/ZD1NL2ojMRZK4vl2J75M6SW6NpGElDQAKdiljM0PXXy7HjVpVp9btyj+n5LszUHFsf17Hu1b3ejRM51TtjtEMXmDQLBG2V8MZ5zpPqU3nSObpUBCpxVg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=leica-geosystems.com; dmarc=pass action=none
+ header.from=leica-geosystems.com; dkim=pass header.d=leica-geosystems.com;
+ arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=leica-geosystems.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=+JpjShV4jjcuPTYqdGLNXJx+bnhQnqh0n6mwl0BDF6w=;
+ b=femNaw1bJbiEbnjmgQfr6G/9HHK2UCQ17e0DotlSdXdvWQa51hHpiRfcc31j6oUuVPLAAM6CP1RTMrhogDXRDeV2yD9z9fGzS7+APXT4T3GvFbde3vFnkJHsBFrRKJiO7EpUueWalwMEKsRsNEuzqEAYeYVD+FvrH9ycj8jdN0Q=
+Received: from DB8PR06MB6332.eurprd06.prod.outlook.com (2603:10a6:10:103::23)
+ by AS8PR06MB7862.eurprd06.prod.outlook.com (2603:10a6:20b:3c8::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7181.19; Thu, 11 Jan
+ 2024 16:45:27 +0000
+Received: from DB8PR06MB6332.eurprd06.prod.outlook.com
+ ([fe80::2ef6:99ac:4fcc:7039]) by DB8PR06MB6332.eurprd06.prod.outlook.com
+ ([fe80::2ef6:99ac:4fcc:7039%5]) with mapi id 15.20.7181.019; Thu, 11 Jan 2024
+ 16:45:26 +0000
+From: POPESCU Catalin <catalin.popescu@leica-geosystems.com>
+To: Andrew Lunn <andrew@lunn.ch>
+CC: "davem@davemloft.net" <davem@davemloft.net>, "edumazet@google.com"
+	<edumazet@google.com>, "kuba@kernel.org" <kuba@kernel.org>,
+	"pabeni@redhat.com" <pabeni@redhat.com>, "robh+dt@kernel.org"
+	<robh+dt@kernel.org>, "krzysztof.kozlowski+dt@linaro.org"
+	<krzysztof.kozlowski+dt@linaro.org>, "conor+dt@kernel.org"
+	<conor+dt@kernel.org>, "afd@ti.com" <afd@ti.com>, "hkallweit1@gmail.com"
+	<hkallweit1@gmail.com>, "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
+	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	GEO-CHHER-bsp-development <bsp-development.geo@leica-geosystems.com>
+Subject: Re: [PATCH 1/3] dt-bindings: net: dp83826: add ti,cfg-dac-minus
+ binding
+Thread-Topic: [PATCH 1/3] dt-bindings: net: dp83826: add ti,cfg-dac-minus
+ binding
+Thread-Index: AQHaRKoS6UQg1dt3TU+QGYO25gfEa7DUzvGAgAAC4gA=
+Date: Thu, 11 Jan 2024 16:45:26 +0000
+Message-ID: <a4af4a08-6eea-420b-b76f-47f4e836b476@leica-geosystems.com>
+References: <20240111161927.3689084-1-catalin.popescu@leica-geosystems.com>
+ <c795aa28-b6a2-4db8-b941-05b51b44f1fe@lunn.ch>
+In-Reply-To: <c795aa28-b6a2-4db8-b941-05b51b44f1fe@lunn.ch>
+Accept-Language: en-CH, en-US
+Content-Language: aa
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=leica-geosystems.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DB8PR06MB6332:EE_|AS8PR06MB7862:EE_
+x-ms-office365-filtering-correlation-id: 52eb0767-cd6a-484c-202e-08dc12c4b6bb
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info:
+ GwomvUtwNwsr3MFfGvaEr6izqEqhYJGOkSKLWYiL+qdLDVItcd6DVJZNE91hNh7eXxQnhOzkN0uL2vCrWeLj10xhMMnwe1+x/AKBujqUXWOsEdKx1XJA/cL0rLUzxVgus3i1ZY6Khb35K8A1EIsKcn+ynaQGQXDlXtZdmZ/JaVZ3cw9su2JDAcCrGK/PXen2F7Z/Xcb9ZYI++6nhKAuOKZsWvCnAA74paADPaRNEgTg8SofXd8nS5P18OVVHBXaL2jp1khgsnOKsoU5P4gptqxu2g6CL6IPQViqgECUOZr8Nl9fRFV40Gs2ViCaqNJxkmeMAngFgsoXnqVAsc/TX0+yO+CF/ZlUgKwIS3uceVbGaq4zvCVzyyO+PkJu6gzZQGKOABSP1Nan/RseyUuZQEyL7Rusbna+BhDsBB0lMIDEriWmitVEfkQ2sRd03j0JovkelELd2VjyHEs6ZpS1lOohtcIsMhl2CxqEk73wR0tjSKBFlAPl/91GYl17J/Ct3Q0wdzpsFhdX5wuEtJ/iCcJd3EsYHOeyqqWiN5aRVZJUpUMZicHI9DSZPUpBDKBB8wKd/qLxZk5NKaG5gjoCUcOF9+ZqdtMEmSBsps/ZQvGqqkejQ2X3xqiFOM9q9fylAAgXHduDCbI6cWzm9Ti4Ge4EsxlfEdeS7th/Cu21KqxXKV89CeE6PhNGIeCgyHtiLeWN7+zEC0oXPuDUDKaioleD0WrsLh+1AlkxUft8c7r0=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB8PR06MB6332.eurprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(136003)(366004)(346002)(396003)(376002)(39860400002)(230373577357003)(230173577357003)(230473577357003)(230922051799003)(230273577357003)(186009)(1800799012)(451199024)(64100799003)(53546011)(6916009)(316002)(31686004)(54906003)(38100700002)(122000001)(5660300002)(6506007)(6512007)(66446008)(64756008)(66476007)(76116006)(107886003)(71200400001)(66556008)(2906002)(7416002)(66946007)(6486002)(966005)(8936002)(4326008)(8676002)(45080400002)(478600001)(2616005)(26005)(91956017)(41300700001)(31696002)(36756003)(86362001)(38070700009)(45980500001);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?utf-8?B?YzJySEI2aEdNM0tpQ3NBUUFwMXpsdkl0UmFwc3FzZXRETFFya0VIQWx5Wmgy?=
+ =?utf-8?B?bmdTa05aeGhTVWcyRFJibEpLdUkva1UzdjRHVGtGVjlnamtqSHJxaUhjZzQ5?=
+ =?utf-8?B?TUpLM3I4cmx0ZjNpRjJuam9ETkJBQkRkUEsvakNGa1l5YUdrcURYZktaaGxo?=
+ =?utf-8?B?OHpDUjYrZ3hLWStJSWlWNFJuMkdCVG9WdjZkQVI5dzNsOUcwS1B4MjVUc1lZ?=
+ =?utf-8?B?ZzY3Z1cyb3ZWTFl0N3h3MTQ5cjFCeC9qQkUwYUJxajZEd3VvZEtIWlpmSThv?=
+ =?utf-8?B?SHRLOEF4YXp6Y041d2E4QU96WU11emZCSTFwWElvUnVBSFlYc1hlNW5JQVVq?=
+ =?utf-8?B?RlI1YVhROENDT2x6YXZWOTg4c1RuK2VZcmhOV1B5Uk05amVIaVZKZUpZY1li?=
+ =?utf-8?B?c280RGlsUmJra3hwTThEeUV4VlhJb0c4YVo1UEp1b3h4aithTXl5a0w0Ly9L?=
+ =?utf-8?B?Ykc0NVVGTXB5MU9NMFkybmlxVndBRExiQVEvQ2xwUlduTVNCcUoxYUhnRkpZ?=
+ =?utf-8?B?bnMyVWgyc0NUeXJmS0xzd2xtT3NhWlMrdnQ5NWdmNXN4MlBxeVRxQUVuMUtl?=
+ =?utf-8?B?QW5ldGUwTmpEa1NHZVFWRDhOZTB5TGpqa1FsR21aa3ZtVXFQa2I4MDJ6WUd3?=
+ =?utf-8?B?cUhPN3k3bjUxWlViaDEya0piR1E3MXEycHRjcUw2Wno1aGdWWG8yWFpNSnB6?=
+ =?utf-8?B?b055empjanYyZEpJR2ZVUzBEOU82YWRvNFZLbGJqam9GUFdhN0hKQktvemtw?=
+ =?utf-8?B?bkEyMUJqaGdwRER5ejVvcDZEMGhJeXhFcnFadkIzVU4wUXYzRUZETWFDWUxX?=
+ =?utf-8?B?YTNvYlZoWC90K3kvVXAwZWphc2NnYUUrQlFmK1MvTjdSckdyTUNoWmZHM1R6?=
+ =?utf-8?B?c2NXemRFUGdoODN0TWwrMWVLMkhRdncrSXBsbHBhVGQ4OTBJWmN4TEdNWkFE?=
+ =?utf-8?B?cG0yYUR2azErb29TSEEvaEZoWTNhc2ZuQkpuS0xRZmlVVGs4YnlmS1doQURU?=
+ =?utf-8?B?dU51M3FJVXY5eVFoZFZiSFdWR1hXM0swM0ViQndxYlBjYk5oY2FtV0VvQlBG?=
+ =?utf-8?B?NG5jZi9USy93TjNrMWVydTFZeFhMa1F4bFlmSDkxaGpEdXgvNWdKS1Nod1d3?=
+ =?utf-8?B?UkVpUXdJZjFlVXpGY1laWUxpb095QktoeTBDdHp3UzY0LzJmZTd1WFRRN2Zo?=
+ =?utf-8?B?U1d0SjVhVytXY0xqTnoxL3Uza1AvY3ZsMmVZdllLWWpteWVkcmJpS3NiOVdK?=
+ =?utf-8?B?dHVGaHNxdEp2Yzcwby9ta1hWQWw0SjMyTDlRRkR0MGk2dDJUSVo0Vm13NFUx?=
+ =?utf-8?B?cVJ5RGg5WmczbHErTFRuaGZMbEJXZUhxbEVTbUlUaDdIbnIyTGtXWHd4TkM4?=
+ =?utf-8?B?QktObjBkNGJuN3VTcXJZdFlvNCtoVFVtOWpVbHd4Q0dGbVpWMmdwSjI3QzNX?=
+ =?utf-8?B?K3QxSlZLVUxkcFhmaklyUitiN3VBd2d0UWVpSnpTMlFPZzhJdDVvc0VzYkxo?=
+ =?utf-8?B?Rm5kdmZoSjJvR2IzdEM1aXdXNncwd2FjNng3VWYxdGo0blU1SndNUWdqbEFr?=
+ =?utf-8?B?Mmt3NnFvUVJILzhVTjE5V1RoNWxSVDJyOVRRaEl3TmwybG1FT0RRRkxSUVNl?=
+ =?utf-8?B?L0pSbUMyOXAvYzFLcjliT1hoVVpQanBnTFFyblk3Y3A0R2RhamVmL0FnQUs4?=
+ =?utf-8?B?WEdNWUU5d29uSE5BNWFQZjZad3IvS2E4QmRpUW1XZW4yVVBtNFg5SEF5RWVX?=
+ =?utf-8?B?Q0ZIR3hkdmozMG9kUUpuMHR1RnQ1TUtDZE5PZ1lxV0NSUlBNTXdRdENwL1A3?=
+ =?utf-8?B?bW9lcFJPMldFdnppUkhPS3dyYVZKcUVkSVc0cmp0dzRQZkhMbkRRZ20rMkEy?=
+ =?utf-8?B?NFp5akNyamtTVGVOK2I1RmZ6bWFGWTZZVFlVMUlINzYwODVKWGpyaHJ2YTU1?=
+ =?utf-8?B?Ym1YUDl4Sk5lb01uVng3S0hLZVY0VW9tclhVdGJDM3M2SVVoakRwem9QQ3Mw?=
+ =?utf-8?B?MHNnWHdhendBUGh3YXBmNllLL09BdWRsVmV3Y1hMVnk4aS84d2lGUEptQnND?=
+ =?utf-8?B?ZkVxYXFQelpNbG9IcEJoTGJ4THVIbGl4NzkrWVA1c1hSOHdkTmFYU1RySkow?=
+ =?utf-8?B?NUt5a2ttZjBQcXVwaUVwT2lOYXF3dDNYRFQrMmE5dDZhakhBVHp3NDM3alFM?=
+ =?utf-8?B?bVE9PQ==?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <55C86D06B8F04047ABDC3BC85CB54FCA@eurprd06.prod.outlook.com>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/8] iio: add new backend framework
-Content-Language: en-US
-To: =?UTF-8?Q?Nuno_S=C3=A1?= <noname.nuno@gmail.com>,
-        Rob Herring
-	<robh@kernel.org>
-CC: Nuno Sa <nuno.sa@analog.com>, <devicetree@vger.kernel.org>,
-        <linux-iio@vger.kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Frank Rowand
-	<frowand.list@gmail.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter
- Clausen <lars@metafoo.de>,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>
-References: <20231213-dev-iio-backend-v3-0-bb9f12a5c6dc@analog.com>
- <20231214141600.GA224419-robh@kernel.org>
- <fa03e4138fe2c8c7e7f619e11f149701c39445e4.camel@gmail.com>
- <20231214170326.GA458046-robh@kernel.org>
- <dfe28945b33ddfd1258586b825e5eb3866ee28d8.camel@gmail.com>
-From: Olivier MOYSAN <olivier.moysan@foss.st.com>
-In-Reply-To: <dfe28945b33ddfd1258586b825e5eb3866ee28d8.camel@gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-01-05_08,2024-01-05_01,2023-05-22_02
+X-OriginatorOrg: leica-geosystems.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DB8PR06MB6332.eurprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 52eb0767-cd6a-484c-202e-08dc12c4b6bb
+X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Jan 2024 16:45:26.8266
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 1b16ab3e-b8f6-4fe3-9f3e-2db7fe549f6a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: H4AQZtPqvVF4+3Ik0jq9+eM7Cy4X4vkkFHc4YpuTdHYthgiEKT3N4QsvES09R4D4ZWyfd/iFqZZO8SHEKTnVdioeTNc6PeGQXf8zUzzrptOYpsgbHVey7KtmaioUXNbz
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR06MB7862
 
-Hi Nuno,
-
-On 12/15/23 16:18, Nuno Sá wrote:
-> On Thu, 2023-12-14 at 11:03 -0600, Rob Herring wrote:
->> On Thu, Dec 14, 2023 at 05:05:20PM +0100, Nuno Sá wrote:
->>> On Thu, 2023-12-14 at 08:16 -0600, Rob Herring wrote:
->>>> On Wed, Dec 13, 2023 at 04:02:31PM +0100, Nuno Sa wrote:
->>>>> v1:
->>>>>   
->>>>> https://lore.kernel.org/linux-iio/20231204144925.4fe9922f@jic23-huawei/T/#m222f517
->>>>> 5273b81dbfe40b7f0daffcdc67d6cb8ff
->>>>>
->>>>> v2:
->>>>>   
->>>>> https://lore.kernel.org/r/20231208-dev-iio-backend-v2-0-5450951895e1@analog.co
->>>>> m
->>>>>
->>>>> Changes in v3:
->>>>> - Patch 1:
->>>>>   * Use proposed generic schema [1]. Also make it a required property;
->>>>>   * Improved the commit message.
->>>>> - Patch 2:
->>>>>   * Improved commit message.
->>>>> - Patch 4:
->>>>>   * Namespace all IIO DMAENGINE buffer exports;
->>>>>   * Removed unrelated new line removal change.
->>>>> - Patch 5:
->>>>>   * Namespace all IIO backend exports.
->>>>> - Patch 6:
->>>>>   * Set backend.h in alphabetical order;
->>>>>   * Import IIO backend namespace.
->>>>> - Patch 7:
->>>>>   * Don't depend on OF in kbuild anymore;
->>>>>   * Import IIO backend namespace.
->>>>>
->>>>> For the bindings patches, I tried not to enter into much details about
->>>>> the IIO framework as I think specifics of the implementation don't care
->>>>> from the bindings perspective. Hopefully the commit messages are good
->>>>> enough.
->>>>>
->>>>> I'm also aware that patch 1 is not backward compatible but we are
->>>>> anyways doing it on the driver side (and on the driver the property is
->>>>> indeed required). Anyways, just let me know if making the property
->>>>> required is not acceptable (I'm fairly confident no one was using the
->>>>> upstream version of the driver and so validating devicetrees for it).
->>>>>
->>>>> Keeping the block diagram in v3's cover so we don't have to follow links
->>>>> to check the one of the typicals setups.
->>>>>
->>>>>                                             ----------------------------------
->>>>> ----
->>>>> -----------------
->>>>>   ------------------                        | -----------         ------------
->>>>>        -------  FPGA |
->>>>>   |     ADC        |------------------------| | AXI ADC |---------| DMA CORE
->>>>> |----
->>>>> --| RAM |       |
->>>>>   | (Frontend/IIO) | Serial Data (eg: LVDS) | |(backend)|---------|
->>>>> |----
->>>>> --|     |       |
->>>>>   |                |------------------------| -----------         ------------
->>>>>        -------       |
->>>>>   ------------------                        ----------------------------------
->>>>> ----
->>>>> -----------------
->>>>
->>>> Why doesn't axi-adc just have an io-channels property to adc? It's the
->>>> opposite direction for the link, but it seems more logical to me that
->>>> axi-adc depends on adc rather than the other way around.
->>>>
->>>
->>> We are not interested on a single channel but on the complete device. >From the
->>> axi-
->>> adc point of view, there's not much we could do with the adc channel. I mean,
->>> maybe
->>> we could still do something but it would be far from ideal (see below).
->>
->> Will this hold up for everyone? Could there be a backend device that
->> handles multiple ADCs? IOW, do you need #io-backend-cells? It's somewhat
->> better if we add that up front rather than later and have to treat
->> missing as 0 cells. It is also the only way to generically identify the
->> providers (well, there's also 'foo-controller' properties, but we've
->> gone away from those).
->>
-> 
-> For the axi-adc backend, it's very unlikely. The way the core connects to the
-> converters is through a serial data interface (LVDS, CMOS or JESD in ADI usecases).
-> This interface is not really a bus so it's kind of a 1:1 connection. Now, in more
-> complicated devices (like highly integrated RF transceivers) what we have is that we
-> have multiple of these cores (one per RX/TX port) connected to the frontend. So,
-> effectively 1 frontend could have multiple backends. So, yes, your first "doubts" are
-> not that "crazy" as this is also not the "typical" provider - consumer relationship.
-> However, for all of what I've said in the previous email, even in these cases,
-> thinking in these cores as the provider, makes things much more easier to handle.
-> 
-> However, the above is just ADI usecases. In theory, yes, it can be very possible for
-> another backend other than axi-adc to have multiple frontends connected so I guess we
-> can make #io-backend-cells already available in the schema.
-> 
-> For the axi-adc bindings this would be 'const: 0', right?
-> 
->>
->>> The opposite direction is exactly what we had (look at patch 2) just with another
->>> custom property. The problem with that is that we would then need a bidirectional
->>> link (we would need to callback into the provider and the provider would need to
->>> access the consumer) between consumers and providers and that would be far from
->>> optimal. The bidirectional link would exist because if we want to support
->>> fundamental
->>> things like LVDS/CMOS interface tuning we need to set/get settings from the axi-
->>> adc
->>> core. And as Jonathan suggested, the real data is captured or sent on the
->>> converters
->>> (ADC or DACs) and that is why we have the IIO device/interface in there and why
->>> we
->>> call them "frontends". In ADI usecases, backends are these FPGA cores providing
->>> "services" to the "real" high speed converters. To put it in another way, the
->>> real
->>> converter is the one who knows how to use the axi-adc core and not the other way
->>> around. That's also one of the reasons why it would be way more difficult to
->>> handle
->>> things with the opposite link. That's how we have done it so far and the mess we
->>> have
->>> out of tree is massive :sweat_smile: We ended up doing raw writes and reads on
->>> the
->>> axi-adc MMIO registers from the converter driver just because we had to configure
->>> or
->>> get something from the axi-adc device but the link was backwards.
->>
->> The direction (for the binding) doesn't really matter. It doesn't
->> dictate the direction in the OS. In the ad9467 driver, you can search
->> the DT for 'adi,adc-dev' and find the node which matches your node's
->> phandle. It's not exactly efficient, but you are doing it once. It would
->> also prevent the DT ABI break you are introducing.
->>
-> 
-> Hmm, I think I see your idea. So you mean something like
-> devm_iio_backend_get_optional() and if not present, then we would look for nodes
-> having the 'adi,adc-dev' property and look for the one pointing at us... Then, we
-> would need another API in the backend to look for registered backends matching that
-> fwnode. Right?
-> 
-> I mean, I guess this could work but we would already have to start a fresh framework
-> with API's that are not really meant to be used anymore other than the ad9467 driver
-> (not devm_iio_backend_get_optional() because sooner or later I think we'll need that
-> one). We are already breaking ABI in the driver and I'm still fairly confident no one
-> is really using the upstream driver because it's lacking support for devices and
-> important features (not even in ADI fork we're using it).
-> 
-> Anyways, if you still insist on having something like this (and feel more comfortable
-> in not breaking DT ABI), I can see how this would look like in the next version...
-> 
->>
->>>> And if there's another consumer in the chain, then a node could
->>>> certainly be both an io-channels consumer and producer.
->>>>
->>>
->>> This should also be possible with this architecture. A node can be both a backend
->>> (provider) and a consumer and we have an out of tree design that fits this (that
->>> I
->>> surely want to upstream after the foundations are done).
->>>
->>>> The architecture of the drivers seems odd to me. It looks similar to
->>>> making a phy driver handle all the state and protocol with the host
->>>> controller being a backend.
->>>
->>> In this case, it's not really a controller. It's more like an extension of the
->>> device
->>> because we need a way to handle the high sample rates this ADCs can do. Then we
->>> can
->>> also do test tones with the backend which is useful for interface tuning (as
->>> mentioned above).
->>>
->>> To give you a bit more context, I'm adding the generic property because we will
->>> have
->>> more users for it (from ADI - the next should be the axi-dac core) but STM is
->>> also
->>> interested in this (likely the next user).
->>>
->>> Hope this makes it a bit more clear...
->>
->> Yes, thanks.
->>
->> I generally ask for 2 users on new common bindings. I've accepted too
->> many only to have the 2nd user come in a month later and need additions.
->> An ack on the binding from the STM folks would be nice here. And
->> Jonathan too.
->>
-> 
-> Olivier, could we get an ack on the bindings patch? Do you also have any idea about
-> how long it would take for you to send patches so we have another user of the schema?
-> 
-> On my side, it might very well take a month or so (given we have holidays nearby) as
-> the axi-dac core is more complex than the axi-adc. Bah it might take less than a
-> month to have the first version of it posted in the lists but I can't make any
-> promises.
-> 
-
-Sorry for late answer.
-Regarding bindings patch, I assume you refer to [1].
-After adding the #io-backend-cells property in v5 you can add my
-Ack-by Olivier Moysan <olivier.moysan@foss.st.com>
-
-I will prepare a serie based on these bindings. Hopefully it should be 
-possible this month.
-
-BRs
-Olivier
-
-[1] https://github.com/devicetree-org/dt-schema/pull/120
-
-
-> - Nuno Sá
-> 
+T24gMTEuMDEuMjQgMTc6MzUsIEFuZHJldyBMdW5uIHdyb3RlOg0KPiBbWW91IGRvbid0IG9mdGVu
+IGdldCBlbWFpbCBmcm9tIGFuZHJld0BsdW5uLmNoLiBMZWFybiB3aHkgdGhpcyBpcyBpbXBvcnRh
+bnQgYXQgaHR0cHM6Ly9ha2EubXMvTGVhcm5BYm91dFNlbmRlcklkZW50aWZpY2F0aW9uIF0NCj4N
+Cj4gVGhpcyBlbWFpbCBpcyBub3QgZnJvbSBIZXhhZ29u4oCZcyBPZmZpY2UgMzY1IGluc3RhbmNl
+LiBQbGVhc2UgYmUgY2FyZWZ1bCB3aGlsZSBjbGlja2luZyBsaW5rcywgb3BlbmluZyBhdHRhY2ht
+ZW50cywgb3IgcmVwbHlpbmcgdG8gdGhpcyBlbWFpbC4NCj4NCj4NCj4gT24gVGh1LCBKYW4gMTEs
+IDIwMjQgYXQgMDU6MTk6MjVQTSArMDEwMCwgQ2F0YWxpbiBQb3Blc2N1IHdyb3RlOg0KPj4gQWRk
+IHByb3BlcnR5IHRpLGNmZy1kYWMtbWludXMgdG8gYWxsb3cgZm9yIHZvbHRhZ2UgdHVuaW5nDQo+
+PiBvZiBsb2dpY2FsIGxldmVsIC0xIG9mIHRoZSBNTFQtMyBlbmNvZGVkIGRhdGEuDQo+Pg0KPj4g
+U2lnbmVkLW9mZi1ieTogQ2F0YWxpbiBQb3Blc2N1IDxjYXRhbGluLnBvcGVzY3VAbGVpY2EtZ2Vv
+c3lzdGVtcy5jb20+DQo+PiAtLS0NCj4+ICAgRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRp
+bmdzL25ldC90aSxkcDgzODIyLnlhbWwgfCA5ICsrKysrKysrKw0KPj4gICAxIGZpbGUgY2hhbmdl
+ZCwgOSBpbnNlcnRpb25zKCspDQo+Pg0KPj4gZGlmZiAtLWdpdCBhL0RvY3VtZW50YXRpb24vZGV2
+aWNldHJlZS9iaW5kaW5ncy9uZXQvdGksZHA4MzgyMi55YW1sIGIvRG9jdW1lbnRhdGlvbi9kZXZp
+Y2V0cmVlL2JpbmRpbmdzL25ldC90aSxkcDgzODIyLnlhbWwNCj4+IGluZGV4IGRiNzQ0NzQyMDdl
+ZC4uMmYwMTAzMzNiZTQ5IDEwMDY0NA0KPj4gLS0tIGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVl
+L2JpbmRpbmdzL25ldC90aSxkcDgzODIyLnlhbWwNCj4+ICsrKyBiL0RvY3VtZW50YXRpb24vZGV2
+aWNldHJlZS9iaW5kaW5ncy9uZXQvdGksZHA4MzgyMi55YW1sDQo+PiBAQCAtNjIsNiArNjIsMTUg
+QEAgcHJvcGVydGllczoNCj4+ICAgICAgICAgIGZvciB0aGUgUEhZLiAgVGhlIGludGVybmFsIGRl
+bGF5IGZvciB0aGUgUEhZIGlzIGZpeGVkIHRvIDMuNW5zIHJlbGF0aXZlDQo+PiAgICAgICAgICB0
+byB0cmFuc21pdCBkYXRhLg0KPj4NCj4+ICsgIHRpLGNmZy1kYWMtbWludXM6DQo+PiArICAgIGRl
+c2NyaXB0aW9uOiB8DQo+PiArICAgICAgIERQODM4MjYgUEhZIG9ubHkuDQo+PiArICAgICAgIFNl
+dHMgdGhlIHZvbHRhZ2UgcmF0aW8gb2YgdGhlIGxvZ2ljYWwgbGV2ZWwgLTEgZm9yIHRoZSBNTFQt
+MyBlbmNvZGVkIGRhdGEuDQo+PiArICAgICAgIDAgPSA1MCUsIDEgPSA1Ni4yNSUsIDIgPSA2Mi41
+MCUsIDMgPSA2OC43NSUsIDQgPSA3NSUsIDUgPSA4MS4yNSUsIDYgPSA4Ny41MCUsDQo+PiArICAg
+ICAgIDcgPSA5My43NSUsIDggPSAxMDAlLCA5ID0gMTA2LjI1JSwgMTAgPSAxMTIuNTAlLCAxMSA9
+IDExOC43NSUsIDEyID0gMTI1JSwNCj4+ICsgICAgICAgMTMgPSAxMzEuMjUlLCAxNCA9IDEzNy41
+MCUsIDE1ID0gMTQzLjc1JSwgMTYgPSAxNTAlLg0KPj4gKyAgICBlbnVtOiBbMCwgMSwgMiwgMywg
+NCwgNSwgNiwgNywgOCwgOSwgMTAsIDExLCAxMiwgMTMsIDE0LCAxNSwgMTZdDQo+IFdlIHRyeSB0
+byBhdm9pZCByZWdpc3RlciB2YWx1ZXMgaW4gRFQuIFdlIHVzZSByZWFsIHVuaXRzLiBUaGlzIGlz
+IGENCj4gdm9sdGFnZSB5b3UgYXJlIGNvbmZpZ3VyaW5nLCBzbyBjYW4geW91IGNoYW5nZSB0aGUg
+dW5pdCB0byBtaWxsaXZvbHRzPw0KPiBIYXZlIHRoZSBkcml2ZXIgZG8gdGhlIGNvbnZlcnNpb24g
+b2Ygdm9sdHMgdG8gcmVnaXN0ZXIgdmFsdWUuDQo+DQo+IElzIGl0IHBvc3NpYmxlIHRvIGNvbmZp
+Z3VyZSBhbnkgb2YgdGhlIG90aGVyIGxvZ2ljYWwgbGV2ZWxzPw0KDQpIaSBBbmRyZXcsDQpUaGVz
+ZSBhcmUgbm90IHJhdyByZWdpc3RlciB2YWx1ZXMgYW5kIHRoZXNlIGFyZSBub3Qgdm9sdGFnZSB2
+YWx1ZXMgYnV0IA0Kdm9sdGFnZSByYXRpb3MuIEknbSBtYXBwaW5nIHRoZSB2b2x0YWdlIHJhdGlv
+cyB0byBlbnVtIHZhbHVlcyBbMC0xNl0gDQp3aGljaCBhcmUgY29udmVydGVkIHRvIHJlZ2lzdGVy
+IHJhdyB2YWx1ZXMgYnkgdGhlIGRyaXZlci4gSSBkb24ndCBzZWUgYSANCmJldHRlciB3YXkgdG8g
+ZG8gdGhpcy4NCg0KPiAgICAgIEFuZHJldw0KPg0KPiAtLS0NCj4gcHctYm90OiBjcg0KDQoNCg==
 
