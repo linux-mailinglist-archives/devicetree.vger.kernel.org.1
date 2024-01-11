@@ -1,199 +1,139 @@
-Return-Path: <devicetree+bounces-31276-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31277-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CAC3782AA14
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 10:02:59 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A24D82AA1C
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 10:03:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 74C7B288F82
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 09:02:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 145B9283AD2
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 09:03:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 012541094E;
-	Thu, 11 Jan 2024 08:58:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6009215AD8;
+	Thu, 11 Jan 2024 09:00:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Jt2phPfC"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="ICPoVClO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 464721772F
-	for <devicetree@vger.kernel.org>; Thu, 11 Jan 2024 08:58:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-a2c375d2430so70864066b.1
-        for <devicetree@vger.kernel.org>; Thu, 11 Jan 2024 00:58:38 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76DBB15ADA;
+	Thu, 11 Jan 2024 09:00:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704963516; x=1705568316; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=mEyCOzWKzhN6fJuNZ8x6DfrD1KxuLW5yl178ZcMbpVM=;
-        b=Jt2phPfCjPKwX0A6qbLtRcbt0BvnJSbqP9E+w4/rJru/CDr1RP9u610lMf0UPIGvzt
-         8LIaUQqVzZT+2Gge9nJxnekH+Q6MxN0oPX9eJLU7EktHz4uqa5dpyIvt3YqQfOy62deU
-         vQFuqRl/vhaAksInZ8qqrgOdERaIXw5sTzc7DmlIZgn5mJXxboEG7S/6AMLf/vrxbzdp
-         Sxs+FVhg83sIJ5lUbduG4LKs+Y8PFOM217/tRv5922rQcLKxBbbo2NubJfAlZaZNi0Re
-         4DsB/Z8gLVHbJJUEbeibf/02h/ABeqXnx39/9+J4rRkk4FG2mZC9UYdrmchI2RleDkoZ
-         3d3Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704963516; x=1705568316;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=mEyCOzWKzhN6fJuNZ8x6DfrD1KxuLW5yl178ZcMbpVM=;
-        b=fAyTmAwBxfBgCBxxLYZmrq0VWn/P4hH1a/DRQ7Dw6GcJ1bn1PCn/u+wHf0YilJjkUc
-         OJJhuv1eDtBav8aySartW+k4fT/cfmRk+jjAnY1Xj57ypCLhinCJ5WyO0j1j3ZFMGpBi
-         upk2B1xdn04ZK7llBZveIbFtV2P2gbRRWcWoifoI/6cFGOzzgzCBbLv9jkkpmesI/uO7
-         6NSr+6Q8BO3ac+P8zRxCTyJzGJyq+r0DI85ZH8PxBnegpbtQ/dtOikZHgTRvijUjxMZG
-         jPN0us84eyHatakobFPUdAZrpT7aYBzjv0GFlS6odmSmG2QcGbwVx9+LEcpfLT0BUo3s
-         fP/A==
-X-Gm-Message-State: AOJu0YzKP5wuU5O/WAPfWB+RnomaSElT6Sea9D708vCuNRcjFlmjSTtd
-	655bHB3P8WJkj2gkLHWb7iItKvzTJlttHA==
-X-Google-Smtp-Source: AGHT+IGGJC7YroF42FIiBLUaEY8Uwq+Z4UdPUsTbm5xkNKjL/CJMPFhImK0PVAA1pnXowysgl9C1OQ==
-X-Received: by 2002:a17:906:e12:b0:a28:e5eb:3f31 with SMTP id l18-20020a1709060e1200b00a28e5eb3f31mr398132eji.80.1704963516564;
-        Thu, 11 Jan 2024 00:58:36 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.223.112])
-        by smtp.gmail.com with ESMTPSA id rv25-20020a17090710d900b00a26c8c70069sm319909ejb.48.2024.01.11.00.58.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 11 Jan 2024 00:58:35 -0800 (PST)
-Message-ID: <3476ab0f-1589-4023-9951-3c03ab2467c3@linaro.org>
-Date: Thu, 11 Jan 2024 09:58:33 +0100
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1704963604; x=1736499604;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=LbzQZ8tnx/iwXB+XjV7lv4rMKxkvy0CEn1w0UhXKSOQ=;
+  b=ICPoVClOckS42n36e6K6M6cmTuDqIyGCw/7j5veptUp964R9UQWOxhyy
+   GWemP4PoN6GuCnW4HfQVz52apWejjbBlARG1H3bl5QPVZJIhlydtONiQO
+   Ik3t72Nnkqw69fJbc8SjpIiyY6PoHOV3NXm/qRtbRrkS/xIVqSv9QxqDK
+   zjT5n/I1Vjx3DEVwzcwqEWrPDRO0nhd6VsPWSkjwDj6ZHS5PHTQDbN6Dx
+   F5Szlv44LycP3++Vrncp+sivc4BD46M+Q99zeZCVKL5vnN2LETPv2c/I4
+   eBI6JfuDIhSl+Khzd0Q/I2kI6qyeCacSiPWiQjdtC0oqkuk3rqcHyau5/
+   A==;
+X-IronPort-AV: E=Sophos;i="6.04,185,1695679200"; 
+   d="scan'208";a="34844570"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 11 Jan 2024 09:59:55 +0100
+Received: from steina-w.localnet (steina-w.tq-net.de [10.123.53.25])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 2D693280075;
+	Thu, 11 Jan 2024 09:59:55 +0100 (CET)
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Conor Dooley <conor@kernel.org>
+Cc: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Lucas Stach <l.stach@pengutronix.de>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/1] dt-bindings: interrupt-controller: fsl, irqsteer: Add power-domains
+Date: Thu, 11 Jan 2024 09:59:54 +0100
+Message-ID: <9230083.CDJkKcVGEf@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20240110-ignore-womanhood-a7ee7caa71f1@spud>
+References: <20240110094338.472304-1-alexander.stein@ew.tq-group.com> <20240110-ignore-womanhood-a7ee7caa71f1@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RESEND v3] arm64: dts: qcom: qcs6490-idp: Add definition
- for three LEDs.
-Content-Language: en-US
-To: Luca Weiss <luca.weiss@fairphone.com>, quic_huliu@quicinc.com,
- Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240111-lpg-v3-1-811c9e82dae4@quicinc.com>
- <CYBQW9KRHVJS.3UOHTOMRWDWVK@fairphone.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <CYBQW9KRHVJS.3UOHTOMRWDWVK@fairphone.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
 
-On 11/01/2024 09:47, Luca Weiss wrote:
-> On Thu Jan 11, 2024 at 3:52 AM CET, Hui Liu via B4 Relay wrote:
->> From: Hui Liu <quic_huliu@quicinc.com>
->>
->> Add definition for three LEDs to make sure they can
->> be enabled base on QCOM LPG LED driver.
->>
->> Signed-off-by: Hui Liu <quic_huliu@quicinc.com>
->> ---
->> Changes in v3:
->> - Rephrased commit text and updated the nodes to qcm6490-idp board file.
->> - Link to v2: https://lore.kernel.org/all/20231110-qcom_leds-v2-1-3cad1fbbc65a@quicinc.com/
->>
->> Changes in v2:
->> - Rephrased commit text and updated the nodes to board file.
->> - Link to v1: https://lore.kernel.org/r/20231108-qcom_leds-v1-1-c3e1c8572cb0@quicinc.com
->> ---
->>  arch/arm64/boot/dts/qcom/qcm6490-idp.dts | 25 +++++++++++++++++++++++++
->>  1 file changed, 25 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
->> index 37c91fdf3ab9..f801144a1556 100644
->> --- a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
->> +++ b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
->> @@ -5,6 +5,7 @@
->>  
->>  /dts-v1/;
->>  
->> +#include <dt-bindings/leds/common.h>
->>  #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
->>  #include "sc7280.dtsi"
->>  #include "pm7325.dtsi"
->> @@ -414,6 +415,30 @@ vreg_bob_3p296: bob {
->>  	};
->>  };
->>  
->> +&pm8350c_pwm {
->> +	#address-cells = <1>;
->> +	#size-cells = <0>;
->> +	status = "okay";
->> +
->> +	led@1 {
->> +		reg = <1>;
-> 
-> Hi Hui Liu,
-> 
->> +		color = <LED_COLOR_ID_RED>;
->> +		label = "red";
-> 
-> Please remove the deprecated "label" property. Since you already have
-> "color" set you only need to add "function". On phones for the
-> notification LED we usually use "function = LED_FUNCTION_STATUS;"
-> 
-> Also depends on what your hardware looks like, if it's 3 separate LEDs
-> then with label replaced it would be okay.
-> If the 3 LEDs are in one spot (so you can mix the colors with it), then
-> please make it a RGB multi-led like e.g. in sm8550-qrd.dts.
-> 
+Hi Conor,
 
-I already asked for this and it was ignored:
+Am Mittwoch, 10. Januar 2024, 17:09:07 CET schrieb Conor Dooley:
+> On Wed, Jan 10, 2024 at 10:43:38AM +0100, Alexander Stein wrote:
+> > Some SoC like i.MX8QXP use a power-domain for this IP add it to the
+> > supported proerties. Fixes the dtbs_check warning:
+> > freescale/imx8qxp-tqma8xqp-mba8xx.dtb: irqsteer@56000000: 'power-domain=
+s'
+> >=20
+> >  does not match any of the regexes: 'pinctrl-[0-9]+'
+> >=20
+> > from schema $id:
+> > http://devicetree.org/schemas/interrupt-controller/fsl,irqsteer.yaml#
+> >=20
+> > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> > ---
+> >=20
+> > Notes:
+> >     Please note that both the board dts and the DT node for irqsteer be=
+ing
+> >     used, are still work-in-progress.
+>=20
+> The binding doesn't even support the imx8qxp's irqsteer yet, I think
+> this should be added alongside support for that SoC. Am I missing
+> something?
 
-https://lore.kernel.org/all/6aa67adb-a4d5-40da-a261-c90050ac04b2@linaro.org/
-
-Let's engage three different community reviewers to repeat the same, one
-feedback. This is just disrespectful to our time.
+I'm not sure if any additional SoC support is actually needed. 'fsl,imx-
+irqsteer' is available and that's what I use in my WiP. Also imx8mp also ju=
+st=20
+uses the generic compatible. Only imx8mq uses 'fsl,imx8m-irqsteer'.
+AFAICS the bindings support the different amount of IRQs already.
 
 Best regards,
-Krzysztof
+Alexander
+
+>=20
+> >  .../devicetree/bindings/interrupt-controller/fsl,irqsteer.yaml | 3 +++
+> >  1 file changed, 3 insertions(+)
+> >=20
+> > diff --git
+> > a/Documentation/devicetree/bindings/interrupt-controller/fsl,irqsteer.y=
+am
+> > l
+> > b/Documentation/devicetree/bindings/interrupt-controller/fsl,irqsteer.y=
+am
+> > l index 20ad4ad82ad64..cb4fcd23627f6 100644
+> > ---
+> > a/Documentation/devicetree/bindings/interrupt-controller/fsl,irqsteer.y=
+am
+> > l +++
+> > b/Documentation/devicetree/bindings/interrupt-controller/fsl,irqsteer.y=
+am
+> > l>=20
+> > @@ -42,6 +42,9 @@ properties:
+> >    clock-names:
+> >      const: ipg
+> >=20
+> > +  power-domains:
+> > +    maxItems: 1
+> > +
+> >=20
+> >    interrupt-controller: true
+> >   =20
+> >    "#interrupt-cells":
+
+
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
+
 
 
