@@ -1,147 +1,167 @@
-Return-Path: <devicetree+bounces-31235-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31236-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4169282A6FF
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 05:45:24 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A4B282A71C
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 05:56:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3BFAB1C22D38
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 04:45:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BE0B228992D
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 04:56:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B40E184D;
-	Thu, 11 Jan 2024 04:45:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAAE0396;
+	Thu, 11 Jan 2024 04:56:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="KMqD5Ssr"
+	dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b="VqQTla4r"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f179.google.com (mail-il1-f179.google.com [209.85.166.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01on2122.outbound.protection.outlook.com [40.107.114.122])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9947617F1
-	for <devicetree@vger.kernel.org>; Thu, 11 Jan 2024 04:45:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-il1-f179.google.com with SMTP id e9e14a558f8ab-36074b286d6so27420645ab.1
-        for <devicetree@vger.kernel.org>; Wed, 10 Jan 2024 20:45:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704948315; x=1705553115; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=7R9gKBrtFfdTSBzgP4ylVTAW1UeNRdgNJL0FxjuEn/Y=;
-        b=KMqD5SsrwNY/c6gl2uaWfyjq2FIurOvhbxladRbN5FczYCV/z/wHv6YYb0j5DR7cGX
-         MiqyCk8JVUf/jrRGExtM1pRyQQ8fttkSfG+yzHAZWlyItGGaM91Eye4+kxDY65F8tkRt
-         NSeTGXyAEEbansF1qPGI4M4IKYMRICOe2d8R8ixKjaN3zrNAU8OhiA0q/5fbWPAs3Xig
-         te6HOjcfS+gGGkv21rV0t3hLbAoWyqxGmV84zStu8qIRsr/PPWjUoOVTsx6OCoqLpsed
-         pXbMcmj/hGvEwpjikViM57FWu56HV0waYp0cpm11LWxTQiuVgbwZ4BM2GQybSlByF+Te
-         s6fQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704948315; x=1705553115;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7R9gKBrtFfdTSBzgP4ylVTAW1UeNRdgNJL0FxjuEn/Y=;
-        b=bQwBlbMJdGpjnEJjiLXV9sal7bb8bewZNz1u6tpB/el0eniGRDDz7Aaqi20PilQECC
-         +esXLOa8wA0LOdlcKxpQbmeUnygOn6/xVobpa/vY9OVEaA3NtwU59MuEVcm6v6fCrCkI
-         Kw0iTCTtzZeF2x/FhrD0Jjcbs4h0VzPHSmwaTuCD4YfKKLaOg9qLNNxYkM+c0zPyO/2D
-         Y7OZqU+AhOVt3EhNAQh10gnsVOInTCP3UjqNe+EFwvvkNxvS7H1XOIRmegY7AR4ypWTn
-         ww9tzIZge0KtyAI7tEvugLwk48h4uC8rzwWaFn9NWtXaNFpXw3ab+1cX/pqL+URzq86b
-         oXdw==
-X-Gm-Message-State: AOJu0Yy/qx7aQYpIu+uhEYuAzQv4eB14v8subqJdgQxRuwwTeSu3/S7f
-	kKFWVSsk4CsuIkhfXL8Yt9VR3A4H5K96
-X-Google-Smtp-Source: AGHT+IGR7jEQOfx+9LAfCrSObcolC0Q08hARoar8x4gxVIDslDvgDR0eK3ZurK9TSXoFOec1bhy69w==
-X-Received: by 2002:a05:6e02:1d81:b0:35f:7d16:c92d with SMTP id h1-20020a056e021d8100b0035f7d16c92dmr813267ila.44.1704948315660;
-        Wed, 10 Jan 2024 20:45:15 -0800 (PST)
-Received: from thinkpad ([202.46.23.19])
-        by smtp.gmail.com with ESMTPSA id f11-20020a63e30b000000b005c661a432d7sm202451pgh.75.2024.01.10.20.45.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Jan 2024 20:45:15 -0800 (PST)
-Date: Thu, 11 Jan 2024 10:15:08 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: qrb2210-rb1: disable cluster power
- domains
-Message-ID: <20240111044508.GA3761@thinkpad>
-References: <20240111-qrb2210-rb1-no-cluster-idle-v1-1-cec14ec15b02@linaro.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69DF820E0;
+	Thu, 11 Jan 2024 04:56:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=gKuvzft5qKFBrlcWaQ4ZI9j+lDIX2SxhWEqgAg15Jxd9nfcDVF+oGnx9bU93toM4SWeHail3L8AmjfbTiOAxSAu+GIuBI97mmpdSEo3J25QTW/RYmi8xN2XaZFCYcsJO6FhEZHxtlIzkIYZuBB0qKc4HUYpBknm1uJV/zeCYEMNuIwQnCdclGrpNeDUmsqWoNIqzVBa54AWPF/hz37x/WHIagH6jtH+sinYrq+lB4++F5/iMGjQoHVj5azmIg0eBtP7iYOP2AyYlqur/9sVBZ6cHpixD6ZEiuterfsFgaUau7hB8OANYiwsFiubCfPYiUAzY5JRgVeIptOpYsiOVsQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=uQO2xtqxGTEnmFNgtTllb24gDI0Z2NvjVDm/ZwuMyYA=;
+ b=W7PrIxzBqvYb4XkhagOWeb3dHyEdaiJTMdQJYQPsa+iq0JsfmYOktZytsdNmPJS1N/URTUfRR9Obd+hDmIU1OV0N3vTpDF20pV0dkSNOAA+wnDTGgXBfRknTPBYHunRT025ixs3WBf/RBDSOLn4ioOkCflrSZ2DF6cJ8BmmCATbFYPlC3O0UcOz3oB2c/tJztIxpE7/DVwsp2tgtLvRQAnFQhy2aD4Qh+McP7umNq2WNAFNNo/M8fXJ2d04S9lisLMyck7Ur2hxpZLZHmG0K326wt4mPzEvbCvFYPbc4Co141lmkhZ6iu91m1z6hCt0sHxY4bqXvjajKRK0SQyQ1Ew==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
+ dkim=pass header.d=renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=uQO2xtqxGTEnmFNgtTllb24gDI0Z2NvjVDm/ZwuMyYA=;
+ b=VqQTla4rQVQjlupiIN/KeJjC/6kaV/OMZ7w5eFTdAcTt4kJSEt+PkLXT6QCHbqyk6kfVib9Jqwgl5Cqa8d67mlB/fFy9wRTccQ7dqboeFkkNvJjZ0iUtGeYR4IQoiOtIAJmExEDlXxEOAUB9XsbCOC4ufE8APmoJLdIMUVh8uiY=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=renesas.com;
+Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
+ (2603:1096:400:3a9::11) by OS0PR01MB5587.jpnprd01.prod.outlook.com
+ (2603:1096:604:b9::6) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7202.13; Thu, 11 Jan
+ 2024 04:56:01 +0000
+Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
+ ([fe80::91d:1bfa:edc4:1c5b]) by TYCPR01MB10914.jpnprd01.prod.outlook.com
+ ([fe80::91d:1bfa:edc4:1c5b%7]) with mapi id 15.20.7181.015; Thu, 11 Jan 2024
+ 04:56:01 +0000
+Message-ID: <87o7dswjry.wl-kuninori.morimoto.gx@renesas.com>
+From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+To: Sameer Pujar <spujar@nvidia.com>
+Cc: Thierry Reding <thierry.reding@gmail.com>,
+	Mark Brown
+ <broonie@kernel.org>,
+	alsa-devel@alsa-project.org,
+	devicetree@vger.kernel.org,
+	robh+dt@kernel.org,
+	Jon Hunter <jonathanh@nvidia.com>,
+	linux-tegra@vger.kernel.org
+Subject: Re: Query on audio-graph-card DT binding
+In-Reply-To: <eeb61f8a-697c-425a-9873-b7b60c0a5558@nvidia.com>
+References: <dfe363ef-4638-4b5e-8308-73e286ac0b50@nvidia.com>
+	<ZZblyhfzQjzyoUc_@orome.fritz.box>
+	<42c0c4fa-585e-4194-bbe4-e0377c87e632@sirena.org.uk>
+	<3faec2e9-8cd9-46f9-8807-801922de0edf@nvidia.com>
+	<ZZe5sTNz005Tt4jk@orome.fritz.box>
+	<8241c953-8ae5-4f26-b108-fccf826ed87a@nvidia.com>
+	<875y03i739.wl-kuninori.morimoto.gx@renesas.com>
+	<e7f9085d-9db1-4c5e-9940-e461835b20aa@nvidia.com>
+	<87il42gkua.wl-kuninori.morimoto.gx@renesas.com>
+	<cde6d5d5-b6ab-4c64-93f8-78d721a492bb@nvidia.com>
+	<8734v4y9yu.wl-kuninori.morimoto.gx@renesas.com>
+	<eeb61f8a-697c-425a-9873-b7b60c0a5558@nvidia.com>
+User-Agent: Wanderlust/2.15.9 Emacs/27.1 Mule/6.0
+Content-Type: text/plain; charset=US-ASCII
+Date: Thu, 11 Jan 2024 04:56:01 +0000
+X-ClientProxiedBy: TYCP301CA0033.JPNP301.PROD.OUTLOOK.COM
+ (2603:1096:400:380::17) To TYCPR01MB10914.jpnprd01.prod.outlook.com
+ (2603:1096:400:3a9::11)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240111-qrb2210-rb1-no-cluster-idle-v1-1-cec14ec15b02@linaro.org>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TYCPR01MB10914:EE_|OS0PR01MB5587:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4a776c36-1574-4eed-1a71-08dc12619bb6
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	nSqmsAUvHSd8EA8oTmB7dY7i7nna2MWjX/kJHrAkTejvog9FYGi7vxAkswmIfQIm3VZM2OU8Hx7CiBce0UWOG8WEssHakX//qoIs4gBjYblWJjcpmXgwjc6/K2WhklHtW1ZnOKqRe6LW58+Y1gimP6j90jDj99qb3bxtrhMsHPC1Ba1wNkqDcJ8Cb1cy2qhh8AbusLaRpz44aIaCBGP+09WJMwA2qF5jYUzta6OiNMpsMOrRNKMfTCwN3ltiygGYx9gB0/LK9/NHxvZP0VckAbwpgh40yQ8RWEkkxdQG6+42KhJaS5PCCHUAu4xxnEHAUfUwR7IVRq3r3tKWQ6T3KwiYnr+4arHqLlFQp0xaQVSmrbjatJ6E7dGXkXQkYE+sGYjjA6aaigTjqxw6SqVT4QG3O3y3D+IxxZJA5lBpmqWzF9EtK0q5avkFK8O8mv4+Bgip4xtMCwrcSa/aSp3u18sFl5XuVeKipquKOZcmFml4ryWu/+pjW0ASt/91jkHyVj+7cp92DxkVa8INBM4TicRoBMsYTvaRplFCeUHgtgdcz6xIWhUaCa7T/oGJQovw4UWM+McoMJLUDbz3TOYOzG7zpNgsvx4MUrJU7qSa6CsIctiBf5ijf0KL0Hhann6IDbCw2iEC4RFoSprPNuP1YA==
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB10914.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376002)(136003)(39860400002)(346002)(396003)(366004)(230922051799003)(1800799012)(186009)(451199024)(64100799003)(2013699003)(6486002)(478600001)(54906003)(316002)(8936002)(8676002)(66946007)(66476007)(4326008)(6916009)(66556008)(2906002)(4744005)(86362001)(5660300002)(38350700005)(36756003)(41300700001)(2616005)(52116002)(26005)(83380400001)(6506007)(6512007)(38100700002);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?ksZ+XUcfGuShS5xdM1g9FYLYq4iX1zcpSFnAz0/C1W0PFE3LjW3JgjVkCRZ9?=
+ =?us-ascii?Q?CMpiEqm7vYB8wFFJ0TI+c2q4bUUiAHwZL4ysFjsLaN7xW7XqJu43nI8A7rMH?=
+ =?us-ascii?Q?mDv68yu03j/fEz2ccERqLoRhX1oc0HdatyGVhj8WAit8joLtzVrh8Gp/wfFJ?=
+ =?us-ascii?Q?oaid9+8lnPNHjV9NsS3nJf38RMmgajmypQ8TbAHgpaBPjCkgcuWctpGrbdvP?=
+ =?us-ascii?Q?2D7EbM7ectoM0T1zF4uPxamP+AvYtsIrX3UXOIyhl7Fg6U9kTD9H0vZt4mSy?=
+ =?us-ascii?Q?mZzSI9c4IZu1m7YPUgcwbjTJG6CNe9cm5gIIfcZ81GUh7jpz147lYCDWXVXb?=
+ =?us-ascii?Q?GUa2hHNYtMbMAU9Ywl7H3lFMw8raKMLpHVye6+dtfNQoTjXhaFNdLDmGrqo+?=
+ =?us-ascii?Q?J57+5NYAyDjFWfr34SSIPQMq9OTKS5XHUy5mddGxL8LF02qddqhjnLYMnam+?=
+ =?us-ascii?Q?gk8wq7SeAoyQITJJCkedbFnHGGdyzhWPiOozK1XwrbAfOfcxYhI3De8KIrmM?=
+ =?us-ascii?Q?wEDVebcTa+uENK9OwlDaBTZu4HXSVH/+2U6vH4yQrmTV/jwVVFO5N/45cthX?=
+ =?us-ascii?Q?3WlmDUw1ob0zFIVZ1mLSh5ooxp7v4onTBLBy9Wa5b0FIECgsrmYaQKiqL9M4?=
+ =?us-ascii?Q?638FpPmDeQGfcNsAMsfFvi/OONdTnBLKSNLvvtNLZ00JuFBcHkZO4SCAjLDn?=
+ =?us-ascii?Q?9fOwb+X8mIE+VINxPoCOcwr4NQjbmVgSmYHNhwTIcvjYJdH5u1y63q+K6PMd?=
+ =?us-ascii?Q?ApimbPnqunzqYA+WlAjp5tsqu9Cqnq80O9pVkRyD68FZVmfVHEbYeZLPWkwB?=
+ =?us-ascii?Q?fcOJa59LQfqNPgC/B+ovrGJXTrQ3thbxIV83+legF0g1vgpk/VyU7q+9skyz?=
+ =?us-ascii?Q?ip9ZD4iJcQll0l5HWRjJ3x16go1du8vwooOpbm8LV68wShg/A95N0Cil5TNz?=
+ =?us-ascii?Q?NZJrObvfxTmavJzxUMKVKF/AeZ3qLpCYGvrRdv16ZiUNGsL8zMXiyvpOFpRo?=
+ =?us-ascii?Q?zVxB6z5nVGnAeyszuzEtNfOeWmuFSXjJasnbVJKmvhq8hVUHqsyF4AXpWiRc?=
+ =?us-ascii?Q?Qrmb/Wee5OeF2dAF0vy6+bd2efrZJQl8FnjnH4LRbB5AS7lo83iMGlpUj7Wt?=
+ =?us-ascii?Q?ChUlvRmQ3NhnDMBCVmthV1BBlIUhOOKlrHoOcDglIht4AI3P8AzDFgZzuukd?=
+ =?us-ascii?Q?3FmUPlKjbpBt5lIpnF3Dhd9JSrzX+KWW6yl/rreWipQO+kh/Bx1Af9YNPcrF?=
+ =?us-ascii?Q?GDD8I4wJBB169erHafS9F/EMFUF4UsnYK71LvMJ9la33+pLinejQ8oL5l82Q?=
+ =?us-ascii?Q?P26hXA87RXHKqD+wycFu8fqV7l+zn9m02Y1xrI+ub/xBTRsqKmMAu/toLssq?=
+ =?us-ascii?Q?q3W5KdQs2Lqv+JAim1VwYpxzeEjCD+Opx8mjz9SQvPNQmyOF33mUX3W1B+yK?=
+ =?us-ascii?Q?l9LKy0PKnm8APk8Y+GMlWtpLwi+A+CCto/uf4nL8ecNGDoQGXlJgxKwaeW3l?=
+ =?us-ascii?Q?86BiSRF4vREdpyowALQI/klrHwkmMHJw2IAymO/VpRqkiJRKu33HIgHJgu6g?=
+ =?us-ascii?Q?VQ5tKCaNtEsJQP87Z0Ue2airGSNDbIANZ5wK9gUEggUBwWZ5CRlbLF0jeGdw?=
+ =?us-ascii?Q?3fhJOZefjhPGB0vZm62aA6Q=3D?=
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4a776c36-1574-4eed-1a71-08dc12619bb6
+X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB10914.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Jan 2024 04:56:01.4851
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: twfZnCMnCOtCbMHWEct5GpcBeYJoBc4xxdnxrU+Gcggzn64LwJrDB05oOLG9WvGwj3tOQ7JDLsFoy9Armf5F8oir3Fs8HUOrQp+CvFi1nZGxRT2P9lP7sh2b6/YHYZKS
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OS0PR01MB5587
 
-On Thu, Jan 11, 2024 at 04:01:14AM +0200, Dmitry Baryshkov wrote:
-> If cluster domain idle state is enabled on the RB1, the board becomes
-> significantly less responsive. Under certain circumstances (if some of
-> the devices are disabled in kernel config) the board can even lock up.
-> 
-> It seems this is caused by the MPM not being pinged during CPU idle (in
-> the same way the RPMh is pinged when cluster idle is entered).
-> 
 
-What does "ping" mean here? Please be more specific.
+Hi Sameer
 
-- Mani
+> >>>           port {
+> >>>                   cpu_endpoint0: endpoint@0 { remote-endpoint = <&codec1_endpoint>; };
+> >>>                   cpu_endpoint1: endpoint@1 { remote-endpoint = <&codec2_endpoint>; };
+> 
+> You expect this endpoint to be exposed by driver right? Or are you 
+> suggesting nothing needs to be done in the driver for this endpoint?
 
-> Disable cluster domain idle for the RB1 board until MPM driver is fixed
-> to cooperate with the CPU idle states.
-> 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/qrb2210-rb1.dts | 18 ++++++++++++++++++
->  1 file changed, 18 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/qrb2210-rb1.dts b/arch/arm64/boot/dts/qcom/qrb2210-rb1.dts
-> index aa53b6af6d9c..9a0308ef8b0f 100644
-> --- a/arch/arm64/boot/dts/qcom/qrb2210-rb1.dts
-> +++ b/arch/arm64/boot/dts/qcom/qrb2210-rb1.dts
-> @@ -177,6 +177,24 @@ vph_pwr: regulator-vph-pwr {
->  	};
->  };
->  
-> +&CPU_PD0 {
-> +	/delete-property/ power-domains;
-> +};
-> +
-> +&CPU_PD1 {
-> +	/delete-property/ power-domains;
-> +};
-> +
-> +&CPU_PD2 {
-> +	/delete-property/ power-domains;
-> +};
-> +
-> +&CPU_PD3 {
-> +	/delete-property/ power-domains;
-> +};
-> +
-> +/delete-node/ &CLUSTER_PD;
-> +
->  &gpi_dma0 {
->  	status = "okay";
->  };
-> 
-> ---
-> base-commit: 39676dfe52331dba909c617f213fdb21015c8d10
-> change-id: 20240111-qrb2210-rb1-no-cluster-idle-7bf43b3a0452
-> 
-> Best regards,
-> -- 
-> Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> 
-> 
+If you use Card2, and if it is normal Codec (= not HDMI sound)
+basically you need is only DT settings, no driver patch is needed.
 
--- 
-மணிவண்ணன் சதாசிவம்
+> > Sample is for 2:3 connection, but it should be OK for 1:2.
+> 
+> For 1:N connection, how many DAI links audio-graph-card2 driver creates?
+
+DAI link max is based on ASoC.
+I think you want to know is connection N max. It is basically no limit
+on Card2
+
+Thank you for your help !!
+
+Best regards
+---
+Renesas Electronics
+Ph.D. Kuninori Morimoto
 
