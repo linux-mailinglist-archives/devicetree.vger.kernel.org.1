@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-31258-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31259-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F45682A8A0
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 09:01:54 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 776FF82A8A8
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 09:02:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6FF831C21969
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 08:01:53 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C8BE7B21663
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 08:02:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1D45D2E5;
-	Thu, 11 Jan 2024 08:01:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA68FD2EA;
+	Thu, 11 Jan 2024 08:02:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Eohl+I9f"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Lz6luGRm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CCECDF4F
-	for <devicetree@vger.kernel.org>; Thu, 11 Jan 2024 08:01:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A77DDDA7
+	for <devicetree@vger.kernel.org>; Thu, 11 Jan 2024 08:02:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-3367a304091so4430612f8f.3
-        for <devicetree@vger.kernel.org>; Thu, 11 Jan 2024 00:01:47 -0800 (PST)
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-40e5f3b390fso2927625e9.2
+        for <devicetree@vger.kernel.org>; Thu, 11 Jan 2024 00:02:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704960106; x=1705564906; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1704960160; x=1705564960; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=WZKZ6+vW+1erVxnNAGJWylr8EnRKbCuzzNhjRFh6P38=;
-        b=Eohl+I9fYaFPa4ypGmCiIfTr2c0q8OY/O1vYtdLjHn0rmnzvyO9DmKrZNJtfUEBWrJ
-         o2L2Y3oUOHwRz3R4QRN5DqKhhD3UPA/im/Lqqckb762ti54MSvU2BnXlDzBpUQjUPjKG
-         +Aqi7Fqv7LyvKUxAJZW39LKtpih6h9NBsCpipIECCRd5TGmDB2Uguka2fZyWXWCFZFHH
-         pRsxAYGbQ103yCcZ+3GK/I93uh/lgJcXkpjw672OGpVeO5sVlthOYqcQx160L3w6hIQj
-         s97UoSK5SKNDvMqLzr7IGjIOYu4yVaK4VR+0ULslXjAuqQvhLiHNYvxIVr9fJ7yYTVbA
-         KMvA==
+        bh=nOs8ElCNg87jQmX45kA4nx4fL2ObfWYIgH0hZlRiouc=;
+        b=Lz6luGRmDWTaXH+rUEoAhdcBOLUmkMwhVaQJHiuyUyvM0/zAM/qtR6C9AFBIP2bXci
+         5R7IW/+ca/AZzujbDTzxLHmlqroQ2iptI9THKpv0okpNrEmyDqt+sVcVNpJefVSu3VM9
+         a5C2da0F+fdY5CbUqExvxSQhGSbFQw7EEwPvvjRT76VhuVGz02Y5MrFihhxW0bUo+KCo
+         Dor7EnXPIKAWmWzJjEBj7fUImXpgT65KzuWBcTabv1kiqA4QBvI8NwLO3qRDA0GxxA2g
+         BTmZDFe2/yeIfIstA6F2QRJUcOyykPH23tnGL3l8rM1IOjEg/39fNG0LdTrkQOX4lbVl
+         dJ8g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704960106; x=1705564906;
+        d=1e100.net; s=20230601; t=1704960160; x=1705564960;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=WZKZ6+vW+1erVxnNAGJWylr8EnRKbCuzzNhjRFh6P38=;
-        b=q8AFe3lV0TnHM2foFYoWjlkyD9WvcCzTR0yCyDIABc9LMz9+xPh7GQT40uMFSX9Tce
-         1MDaSfh3NpHMEWmZW7zCRLLG6h4CCKcKIeZvFoQ0jtWkfordV902qgNjJdO/JN43UF84
-         krnAwo7sVfIQalLBUH1wDj3w7ZfCPguTu/GA2Tup5IuYWTXOX0dd8bmQC7j8BGijkZVs
-         PSTKdSvcPUWZ9p5Ls7UtoWioDxApRc6wIjAaqrY5o7+FnzyTdOBupbPOL+cjOPcOV/sI
-         vfrUI3JO9CI5f2eilOHjXh3K17FfmfO0Vlo5ofVhIZv+piw9Lo0BmSKFRC5mg4j2YotJ
-         HzTQ==
-X-Gm-Message-State: AOJu0Yze1AE9lgOyH5agC7vdTLRpH2ttIbPTyfqhQba1Bk8Pw9okyb9l
-	8VjxD8sts8I5NHuNQAK0licPFFfJmfghcnZxygun9hV5OUU=
-X-Google-Smtp-Source: AGHT+IHjtHYZqki8857ZoizjCaJ8DE6qH+Lt1ZYlzREsi+yMEKA0Ms+5Fv1tt2OCTkyNYxgdIYsRJg==
-X-Received: by 2002:adf:e9cd:0:b0:333:2fd2:3bdf with SMTP id l13-20020adfe9cd000000b003332fd23bdfmr234214wrn.152.1704960106291;
-        Thu, 11 Jan 2024 00:01:46 -0800 (PST)
+        bh=nOs8ElCNg87jQmX45kA4nx4fL2ObfWYIgH0hZlRiouc=;
+        b=ZN/mBekZKB2a3bq38obu9ZoUc4KH9OLn6iajpd0PRYDz5MvBW/MOLFhDl6j5lek+nl
+         /2NBPfMsG9iIy72wYtlDJXQ0FwcIpIWbteWuWGAVH9dC+PZtLMHL4qYKSRw6/48cO2+l
+         sZ2ICmIV+SynggXQHYq3ghiokTuUNcB2GC9uvYzPmQPRN19o8T++oLA/pgg/KRjlsWrU
+         rrm6pdiyHA1URKHP5i2O9X3lPVonFdd5S3tuUXm7ElTPFny5lWVeWG7bzbLFdauG40JV
+         nSRUEnA496mvDRhediYPSzK7o+BTRtin6QgCjJLO+7pklrU07jeq2jtRtUs9QDgv4clw
+         whkg==
+X-Gm-Message-State: AOJu0YwGgqudimS/1MagIGZfQ7BWA4NK1fCutZoSNL64YUNUclpkYDfn
+	h+Gxq2ZYdYbnxuEtV0V8OR25FThigLd/uQ==
+X-Google-Smtp-Source: AGHT+IHXbnjKU8bSb5Ny89gL2tpyW8KRBTJY/gyvEDtTzcimfSUbytjVuIb1ESZm670MsDTiF6vbCQ==
+X-Received: by 2002:a05:600c:3eca:b0:40e:51bf:cd18 with SMTP id ek10-20020a05600c3eca00b0040e51bfcd18mr189309wmb.119.1704960160470;
+        Thu, 11 Jan 2024 00:02:40 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.223.112])
-        by smtp.gmail.com with ESMTPSA id a8-20020a5d5088000000b003364a0e6983sm508176wrt.62.2024.01.11.00.01.44
+        by smtp.gmail.com with ESMTPSA id a8-20020a5d5088000000b003364a0e6983sm508176wrt.62.2024.01.11.00.02.37
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 11 Jan 2024 00:01:45 -0800 (PST)
-Message-ID: <4b114b3b-468c-4759-bb32-9afeac9d5608@linaro.org>
-Date: Thu, 11 Jan 2024 09:01:43 +0100
+        Thu, 11 Jan 2024 00:02:39 -0800 (PST)
+Message-ID: <5e2b83c5-8b13-4d95-8346-1ad36a937129@linaro.org>
+Date: Thu, 11 Jan 2024 09:02:37 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,14 +66,28 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] arm64: dts: qcom: ipq6018: enable sdhci node
+Subject: Re: [PATCH v2 0/1] Add StarFive JH8100 dwmac support
 Content-Language: en-US
-To: Chukun Pan <amadeus@jmu.edu.cn>
-Cc: andersson@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
- konrad.dybcio@linaro.org, krzysztof.kozlowski+dt@linaro.org,
- linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <4f070678-63b6-4657-ad4f-c32256adbf1f@linaro.org>
- <20240111031026.2175521-1-amadeus@jmu.edu.cn>
+To: Tan Chun Hau <chunhau.tan@starfivetech.com>,
+ "David S . Miller" <davem@davemloft.net>, Eric Dumazet
+ <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
+ Emil Renner Berthing <kernel@esmil.dk>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Simon Horman <horms@kernel.org>,
+ Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+ Andrew Halaney <ahalaney@redhat.com>, Jisheng Zhang <jszhang@kernel.org>,
+ =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
+ Russell King <rmk+kernel@armlinux.org.uk>
+Cc: Ley Foon Tan <leyfoon.tan@starfivetech.com>,
+ Jee Heng Sia <jeeheng.sia@starfivetech.com>, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, linux-riscv@lists.infradead.org
+References: <20240111025531.2875-1-chunhau.tan@starfivetech.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -119,20 +133,18 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240111031026.2175521-1-amadeus@jmu.edu.cn>
+In-Reply-To: <20240111025531.2875-1-chunhau.tan@starfivetech.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 11/01/2024 04:10, Chukun Pan wrote:
-> Disable it because not all devices have eMMC or MicroSD connected.
-> I enabled it on the dts of the device and tested it on my ipq6000.
+On 11/01/2024 03:55, Tan Chun Hau wrote:
+> Add StarFive JH8100 dwmac support.
+> JH8100 dwmac has one reset signal instead of 2 resets as in JH7110.
 > 
->> Aren't these three properties of the board?
-> 
-> These are just general properties.
+> Changes in v2:
+> - Drop driver patch.
 
-? What is a general property? I repeat my question - these do not look
-SoC specific, but board.
+? But devices are not compatible, so how can it work?
 
 Best regards,
 Krzysztof
