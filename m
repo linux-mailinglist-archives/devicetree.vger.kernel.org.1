@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-31284-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31285-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 048EE82AAE6
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 10:30:06 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2056382AAFF
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 10:32:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7E3A71F2863B
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 09:30:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 389A21C235D6
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 09:32:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0188E10A08;
-	Thu, 11 Jan 2024 09:30:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC6DA11195;
+	Thu, 11 Jan 2024 09:31:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="i9rUgT1Z"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xhbOqDX1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
+Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5724B1094E
-	for <devicetree@vger.kernel.org>; Thu, 11 Jan 2024 09:29:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 249CA14A92
+	for <devicetree@vger.kernel.org>; Thu, 11 Jan 2024 09:31:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-5589d38de53so426969a12.0
-        for <devicetree@vger.kernel.org>; Thu, 11 Jan 2024 01:29:59 -0800 (PST)
+Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-a26ed1e05c7so599268266b.2
+        for <devicetree@vger.kernel.org>; Thu, 11 Jan 2024 01:31:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704965397; x=1705570197; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=zI8aOKoY1J1LzQGBJCecKcYIvB4FJqN1IGqRzkcldyQ=;
-        b=i9rUgT1ZEzcGgBtvzCddhCA61kOfq5KEeaXh68BGqZtpTCAxM5/65iNYXgoHSmMLPm
-         nxNTcZxBX+Ctx1thUv3gDNnpZxtqJBu+a0iVymZyPYLgUNH4j4YQwz8UmAr/uHdJtm5V
-         9HMaUgQGflQPc+uNuG2cBG4PMoxu5yshzXgi0JUL+72oxelikabHBmn3qrMvDIZWKjT1
-         xp4suj488nlwwHVDi8po3lwVD7WJQV3/XJRmmuIctjmUm/+NuvmYNXKWh4NlFJo/fZ/G
-         ZSi5dpk2mEYgwDjqcySE3e1sYjgS/2vDiMFlRPuNmcPwU7eX3L+Q+AH3vjzaNIVJLC5w
-         4pSw==
+        d=linaro.org; s=google; t=1704965474; x=1705570274; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:references:cc:to
+         :from:content-language:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=Eor6lImS7ySePlUmbye/lNdlPbDxWcSpzNk/0V1lmvk=;
+        b=xhbOqDX1gcf+xuQdqaFkzKm3nkB6C5TFHK7Ffkt9MTSEAxytdHiJK4/a2WY1mKTCcC
+         vDfNt8+9bM72vSOb+pZx3Gu/RsHJljwMqaWYYaGL4OXk/BpK83loZ8keX8QJxdr8rXWF
+         AWMO3CUSPMpRIvW3wi4EIkhJp8BtiaHCrzuplK26kCnlBj9eXNVc/qIWPk0vnWIIpiFu
+         vTOm84cPWDy0RTWLwD1e6QS6dEivAhc8PxiGMa16sSrdsokCgHsiIkHuvSoHwgB9DmRR
+         lD+BU7mFTF2uKfrwTSJj2q5CNFw6tw4TMQgDgyNYfRgDd2O0u+/itA5A7fXwAnrjBkSv
+         avzw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704965397; x=1705570197;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=zI8aOKoY1J1LzQGBJCecKcYIvB4FJqN1IGqRzkcldyQ=;
-        b=S1g8hehKRrlI5oj3i7+IY2JA9TzbYYMZS86I7uVt/OO2gNCBkHoud9WQ5JAoceW4f7
-         p9xmEtTot+0fqfLWNzcd7unFLl/XLpbbHGnWP2Y6dAwDd5V1JOIXkTG5Y+/N+SGEH+Vf
-         L1i67cMbg3ruXFCCht0vJzlfQ8DOtjWAbgvYYGJxMhEPIkAEm8UEa4hbcpKRKMVk+c10
-         7RmvqhcGU0rRs+AUXahecXlheRsj2YcQygRICYdtB3ol0ZIkhMW6rdfVExvYJwmTYzem
-         0dCaKsBq4FpCBV8hfWisjQJEsaLEHDjeLrC4XMD+ORDRUAedtScPKB10c+3Q2E9xto23
-         tnQQ==
-X-Gm-Message-State: AOJu0YxA/uuarl5eH4HR7LpQxvdMR0Rhoe51YXbcWzndKdTftnq5hFbd
-	H/o/INVKBDOJCiu4rdUeNE/Z4Ajc1TqmGw==
-X-Google-Smtp-Source: AGHT+IFmJvC4h8dnnPMKN5HoXLRJV8fo6ByPAMiPWXQlUHuh1MZAApTAIIIoZ7IAwmgZNLXXFThv7A==
-X-Received: by 2002:a17:907:9346:b0:a29:335f:4248 with SMTP id bv6-20020a170907934600b00a29335f4248mr481321ejc.45.1704965397637;
-        Thu, 11 Jan 2024 01:29:57 -0800 (PST)
+        d=1e100.net; s=20230601; t=1704965474; x=1705570274;
+        h=content-transfer-encoding:in-reply-to:autocrypt:references:cc:to
+         :from:content-language:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Eor6lImS7ySePlUmbye/lNdlPbDxWcSpzNk/0V1lmvk=;
+        b=kIoYjiPJ7STQPOVlw7Nhk8mLj75D3yvm0NDkgMUVeX6yfMSWvUMXD3l89SYsIxvk7x
+         vdBq112OBBWUCv2RYsMZO/Amei2ft/lBFRqWX6wZ2LtPO1rbTXpYoifW5TFe/JJS6fWa
+         xSf3ktxCRONmFe9fKvA1Yg7SEPTpOfoM8McoE767tsrLRBPDR1pe26bYDZCh+cVbW2/G
+         rwdLVlv+WcfqpICqy+JW7Fuo6URaLts3yzZUUh1LF5WtirdbtnSuhfDYbwXje21vFgxB
+         gUaslXncTYt82RFAMZipzeR/n+ft2ncwiuvfwquCjGXZNhHUnc5T8imkN3AtMYKVPW78
+         HbFA==
+X-Gm-Message-State: AOJu0YyWZxVHHKT2dCTFyIrdPA3CiNriWJKOKd3IyfzV4TZf9yKKA80g
+	OtEO4dlZecIxYzQw88KGsHnQOsyX6yrVTw==
+X-Google-Smtp-Source: AGHT+IGD9nTnB2PCUwRoN7P9hfHTaak6Rf6N5a7I+i6QTcDjkE0MZWvuwl97F/xmIbbqjFd1l3G8BA==
+X-Received: by 2002:a17:906:2459:b0:a2b:643:322 with SMTP id a25-20020a170906245900b00a2b06430322mr243390ejb.138.1704965474275;
+        Thu, 11 Jan 2024 01:31:14 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.223.112])
-        by smtp.gmail.com with ESMTPSA id b4-20020a170906150400b00a2a37f63216sm353336ejd.171.2024.01.11.01.29.54
+        by smtp.gmail.com with ESMTPSA id b4-20020a170906150400b00a2a37f63216sm353336ejd.171.2024.01.11.01.31.12
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 11 Jan 2024 01:29:56 -0800 (PST)
-Message-ID: <910736a3-069f-430c-ba6c-221777ddcda2@linaro.org>
-Date: Thu, 11 Jan 2024 10:29:53 +0100
+        Thu, 11 Jan 2024 01:31:13 -0800 (PST)
+Message-ID: <039a4223-3412-415e-a5e6-c5dca53c96e1@linaro.org>
+Date: Thu, 11 Jan 2024 10:31:11 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,6 +69,8 @@ MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH v1 00/24] Support more Amlogic SoC families in crypto
  driver
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To: Alexey Romanov <avromanov@salutedevices.com>,
  Corentin Labbe <clabbe.montjoie@gmail.com>
 Cc: "narmstrong@baylibre.com" <narmstrong@baylibre.com>,
@@ -90,8 +92,7 @@ Cc: "narmstrong@baylibre.com" <narmstrong@baylibre.com>,
  <linux-arm-kernel@lists.infradead.org>, kernel <kernel@sberdevices.ru>
 References: <20240110201216.18016-1-avromanov@salutedevices.com>
  <ZZ8HP7dJgVaZLMw5@Red> <20240111091840.7fe4lqx225rdlwly@cab-wsm-0029881>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+ <910736a3-069f-430c-ba6c-221777ddcda2@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -136,37 +137,41 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240111091840.7fe4lqx225rdlwly@cab-wsm-0029881>
+In-Reply-To: <910736a3-069f-430c-ba6c-221777ddcda2@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 11/01/2024 10:18, Alexey Romanov wrote:
-> Hello!
-> 
-> On Wed, Jan 10, 2024 at 10:08:15PM +0100, Corentin Labbe wrote:
->> Le Wed, Jan 10, 2024 at 11:11:16PM +0300, Alexey Romanov a 'ecrit :
->>> Hello!
->>>
->>> This patchset expand the funcionality of the Amlogic
->>> crypto driver by adding support for more SoC families: 
->>> AXG, G12A, G12B, SM1, A1, S4.
->>>
->>> Also specify and enable crypto node in device tree
->>> for reference Amlogic devices.
->>>
->>> Tested on AXG, G12A/B, SM1, A1 and S4 devices via
->>> custom tests and trcypt module.
+On 11/01/2024 10:29, Krzysztof Kozlowski wrote:
+> On 11/01/2024 10:18, Alexey Romanov wrote:
+>> Hello!
 >>
->> Hello
+>> On Wed, Jan 10, 2024 at 10:08:15PM +0100, Corentin Labbe wrote:
+>>> Le Wed, Jan 10, 2024 at 11:11:16PM +0300, Alexey Romanov a 'ecrit :
+>>>> Hello!
+>>>>
+>>>> This patchset expand the funcionality of the Amlogic
+>>>> crypto driver by adding support for more SoC families: 
+>>>> AXG, G12A, G12B, SM1, A1, S4.
+>>>>
+>>>> Also specify and enable crypto node in device tree
+>>>> for reference Amlogic devices.
+>>>>
+>>>> Tested on AXG, G12A/B, SM1, A1 and S4 devices via
+>>>> custom tests and trcypt module.
+>>>
+>>> Hello
+>>>
+>>> Thanks for your patch series.
+>>> Unfortunatly, I fail to apply it for testing on top of linux-next.
+>>> On top of which tree did you have tested ?
 >>
->> Thanks for your patch series.
->> Unfortunatly, I fail to apply it for testing on top of linux-next.
->> On top of which tree did you have tested ?
+>> We use 6.5-rc3.
 > 
-> We use 6.5-rc3.
+> Don't develop on old trees... I mean, internally you can do whatever you
+> wish, but don't work upstream on such trees.
 
-Don't develop on old trees... I mean, internally you can do whatever you
-wish, but don't work upstream on such trees.
+Number of email bounces also prove the point: you did not Cc right
+people due to work on some ancient files.
 
 Best regards,
 Krzysztof
