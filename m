@@ -1,323 +1,597 @@
-Return-Path: <devicetree+bounces-31250-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31251-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 251D582A82C
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 08:17:54 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D8A182A835
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 08:21:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3D4C91C233BA
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 07:17:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 017A8284BC3
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 07:20:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6181DCA6F;
-	Thu, 11 Jan 2024 07:17:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CBDDD26A;
+	Thu, 11 Jan 2024 07:20:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="WmYYR0Kq"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YHN0N1YM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com [209.85.210.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79177D292;
-	Thu, 11 Jan 2024 07:17:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: 737a9224b05111ee9e680517dc993faa-20240111
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=QAGCSwDqUq3ugQLyXDVrlUyjHPOkl/PCtmOmNpGqBUg=;
-	b=WmYYR0Kqqskm8lQTnGVwhOq4TEDaISs6+VzOWmzJS2mIeOhOcDlAmlV9lkoHrHffuFYzNW7DJNuOHsiO172E90PZj7y7iHcbWdeFVwE2vMLKhPqNsO6Z/RKbbfvVojDq08F1/NOOinGNPiTe4++sTag7Zb3yEgM6iRmyFEHWkao=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.35,REQID:04dd53ed-09f4-47cc-b550-a8328920d832,IP:0,U
-	RL:0,TC:0,Content:-25,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
-	N:release,TS:-25
-X-CID-META: VersionHash:5d391d7,CLOUDID:8515bb82-8d4f-477b-89d2-1e3bdbef96d1,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-	RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,
-	DKR:0,DKP:0,BRR:0,BRE:0
-X-CID-BVR: 0,NGT
-X-CID-BAS: 0,NGT,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: 737a9224b05111ee9e680517dc993faa-20240111
-Received: from mtkmbs14n2.mediatek.inc [(172.21.101.76)] by mailgw01.mediatek.com
-	(envelope-from <yunfei.dong@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 600755960; Thu, 11 Jan 2024 15:17:17 +0800
-Received: from mtkmbs13n2.mediatek.inc (172.21.101.108) by
- MTKMBS14N1.mediatek.inc (172.21.101.75) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Thu, 11 Jan 2024 15:17:15 +0800
-Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
- mtkmbs13n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Thu, 11 Jan 2024 15:17:14 +0800
-From: Yunfei Dong <yunfei.dong@mediatek.com>
-To: =?UTF-8?q?N=C3=ADcolas=20F=20=2E=20R=20=2E=20A=20=2E=20Prado?=
-	<nfraprado@collabora.com>, Nicolas Dufresne <nicolas.dufresne@collabora.com>,
-	Hans Verkuil <hverkuil-cisco@xs4all.nl>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>, Benjamin Gaignard
-	<benjamin.gaignard@collabora.com>, Nathan Hebert <nhebert@chromium.org>
-CC: Hsin-Yi Wang <hsinyi@chromium.org>, Fritz Koenig <frkoenig@chromium.org>,
-	Daniel Vetter <daniel@ffwll.ch>, Steve Cho <stevecho@chromium.org>, "Yunfei
- Dong" <yunfei.dong@mediatek.com>, <linux-media@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>,
-	<Project_Global_Chrome_Upstream_Group@mediatek.com>
-Subject: [PATCH] media: mediatek: vcodec: setting request complete before buffer done
-Date: Thu, 11 Jan 2024 15:17:13 +0800
-Message-ID: <20240111071713.16331-1-yunfei.dong@mediatek.com>
-X-Mailer: git-send-email 2.25.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B987CA7B;
+	Thu, 11 Jan 2024 07:20:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f175.google.com with SMTP id d2e1a72fcca58-6d9a79a1ad4so2597774b3a.2;
+        Wed, 10 Jan 2024 23:20:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1704957652; x=1705562452; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=3tj6LfWUix87AyqZdq0UESWLh9bc9GqjuqVP7gpqtcg=;
+        b=YHN0N1YMwI+JlJ5/oO2bAcnZZ8WfeI40hbAdrOZB/vhJmjNue1JkRMD8KR/GUnxYmj
+         qx8x8O26XpolHrbEVgt+Vfeqd9D8x+aTQUT/6UU+/AmXTsyUqV0A3SIY0bUvY2Nv5lnn
+         WomzB5FQm2+YtA4PazAYpahGSe67gMdv/ehFKFUzU9lM9109xve2PwTOPmDg/3Hajac/
+         r6t9jHFYXcMksMzHoimh1pWyN8ufuBl/uAGMpUqeDObJASLiliV2LhIXuHBsgUVfN11j
+         OP7+yiGDnunt4avB5hWdllCEc9rD0M8zN4ABJAoANQ+nae6X7b2RX8ddUO+WPa2iVG4d
+         5XKQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1704957652; x=1705562452;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=3tj6LfWUix87AyqZdq0UESWLh9bc9GqjuqVP7gpqtcg=;
+        b=Bq086oyV/yHpumbRba7cUCEMo06NPY2+r3jqMK04qxszhwn6t/aKVmCyKRprP3r9+1
+         pMP2tPyssDGYefWTERXpFaGXTlw/ActeTdy4N4LVuo/slnOfNkFUTZ0lN6r2rlK4ZQbY
+         HOjUTm33SaB14gZXV791lmTv9iRcXTHpyhyU3kmdPpdpvrTwrc5YJuYUgaWBu+8er5C/
+         PQwLUwqpF/gV7Lj7XeC8I3sICvOiW6UFkIvZh1/8wlInsCrenj9zD2O+rDWP0eMVc/qx
+         VY1nl14uUFBrdZmJX7EzXybr3Pi+7z/UQP99SUmvFRHgsfQhcrLrl8P8aHyosH9LzR6i
+         S4rg==
+X-Gm-Message-State: AOJu0YyR6Cl6PBgeMrQ+dVjF/t67d8fs5C13GDECqYmTHSVmURP//0TW
+	RxKdqV3usYH7PtXRC+elEFu6ZgOohx4=
+X-Google-Smtp-Source: AGHT+IFqpN9SjdGuZaRHePzbbaO8523BBlbWXs88GJC7tlNIKxc/AYhOE4ZYifPZuVfE7y/dNZ/+vA==
+X-Received: by 2002:a05:6a00:130a:b0:6da:bceb:3990 with SMTP id j10-20020a056a00130a00b006dabceb3990mr802859pfu.53.1704957652511;
+        Wed, 10 Jan 2024 23:20:52 -0800 (PST)
+Received: from google.com ([2620:15c:9d:2:70e2:a0a5:5166:fbbf])
+        by smtp.gmail.com with ESMTPSA id bj18-20020a056a02019200b005c2420fb198sm450400pgb.37.2024.01.10.23.20.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 10 Jan 2024 23:20:52 -0800 (PST)
+Date: Wed, 10 Jan 2024 23:20:49 -0800
+From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: linux-input@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bastien Nocera <hadess@hadess.net>,
+	Hans de Goede <hdegoede@redhat.com>,
+	Henrik Rydberg <rydberg@bitmath.org>,
+	Jeff LaBundy <jeff@labundy.com>, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v14 2/4] Input: add core support for Goodix Berlin
+ Touchscreen IC
+Message-ID: <ZZ-W0UPHOdpU-8el@google.com>
+References: <20231221-topic-goodix-berlin-upstream-initial-v14-0-04459853b640@linaro.org>
+ <20231221-topic-goodix-berlin-upstream-initial-v14-2-04459853b640@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-TM-AS-Product-Ver: SMEX-14.0.0.3152-9.1.1006-23728.005
-X-TM-AS-Result: No-10--10.959100-8.000000
-X-TMASE-MatchedRID: CCNvt8z5Ak2+FYZWdxc4kUKcYi5Qw/RVkKAa/khZ3iSYoidDrWJoA3AX
-	R/gLaDwaUtP0ANsDUBbMePXE5HvRkAGEq6uX29KSA9lly13c/gEraL2mh8ZVKwqiCYa6w8tv/Ge
-	vfoH427riq2Kf6Q8mHbww5oZM4lf9IaVPgU+koVHE+QHQwgFpcQBqi9O94W3Vd7TzqAWUgsZdaO
-	8DxOlYWPcqU4dInnrpwEBYRaV0KQ1zx/hJctUaaangbqTYC4GHfS0Ip2eEHnyTitjWv6+zCBe9C
-	QaLe2PP9xS3mVzWUuCgZHIBpyeFpg8B6faX5pGQYJT7u7oJRT6SjcckO6I4aU3zt7BqKFYTftwZ
-	3X11IV0=
-X-TM-AS-User-Approved-Sender: No
-X-TM-AS-User-Blocked-Sender: No
-X-TMASE-Result: 10--10.959100-8.000000
-X-TMASE-Version: SMEX-14.0.0.3152-9.1.1006-23728.005
-X-TM-SNTS-SMTP:
-	4CB914801B4194367F4502AECA63B55A29930B1A85A11025F78E70B1153504EF2000:8
-X-MTK: N
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231221-topic-goodix-berlin-upstream-initial-v14-2-04459853b640@linaro.org>
 
-The request status of output queue will be set to MEDIA_REQUEST_STATE_COMPLETE
-when user space dequeue output buffer. Then calling v4l2_ctrl_request_complete
-will get below warning, need to call v4l2_ctrl_request_complete before
-v4l2_m2m_buf_done.
-Workqueue: core-decoder vdec_msg_queue_core_work [mtk_vcodec_dec]
-pstate: 80c00089 (Nzcv daIf +PAN +UAO -TCO BTYPE=--)
-pc : media_request_object_bind+0xa8/0x124
-lr : media_request_object_bind+0x50/0x124
-sp : ffffffc011393be0
-x29: ffffffc011393be0 x28: 0000000000000000
-x27: ffffff890c280248 x26: ffffffe21a71ab88
-x25: 0000000000000000 x24: ffffff890c280280
-x23: ffffff890c280280 x22: 00000000fffffff0
-x21: 0000000000000000 x20: ffffff890260d280
-x19: ffffff890260d2e8 x18: 0000000000001000
-x17: 0000000000000400 x16: ffffffe21a4584a0
-x15: 000000000053361d x14: 0000000000000018
-x13: 0000000000000004 x12: ffffffa82427d000
-x11: ffffffe21ac3fce0 x10: 0000000000000001
-x9 : 0000000000000000 x8 : 0000000000000003
-x7 : 0000000000000000 x6 : 000000000000003f
-x5 : 0000000000000040 x4 : ffffff89052e7b98
-x3 : 0000000000000000 x2 : 0000000000000001
-x1 : 0000000000000000 x0 : 0000000000000000
-Call trace:
- media_request_object_bind+0xa8/0x124
- v4l2_ctrl_request_bind+0xc4/0x168
- v4l2_ctrl_request_complete+0x198/0x1f4
- mtk_vdec_stateless_cap_to_disp+0x58/0x8c [mtk_vcodec_dec 245a7c1e48ff1b2451a50e1dfcb174262b6b462c]
- vdec_vp9_slice_core_decode+0x1c0/0x268 [mtk_vcodec_dec 245a7c1e48ff1b2451a50e1dfcb174262b6b462c]
- vdec_msg_queue_core_work+0x60/0x11c [mtk_vcodec_dec 245a7c1e48ff1b2451a50e1dfcb174262b6b462c]
- process_one_work+0x140/0x480
- worker_thread+0x12c/0x2f8
- kthread+0x13c/0x1d8
- ret_from_fork+0x10/0x30
+Hi Neil,
 
-'Fixes: 7b182b8d9c852 ("media: mediatek: vcodec: Refactor get and put capture buffer flow")'
-Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
----
- .../mediatek/vcodec/decoder/mtk_vcodec_dec_drv.h     |  3 ++-
- .../vcodec/decoder/mtk_vcodec_dec_stateless.c        | 12 +++++++-----
- .../vcodec/decoder/vdec/vdec_av1_req_lat_if.c        |  7 +++++--
- .../vcodec/decoder/vdec/vdec_h264_req_multi_if.c     |  3 ++-
- .../vcodec/decoder/vdec/vdec_hevc_req_multi_if.c     |  3 ++-
- .../vcodec/decoder/vdec/vdec_vp9_req_lat_if.c        |  6 ++++--
- .../mediatek/vcodec/decoder/vdec_msg_queue.h         |  2 ++
- 7 files changed, 24 insertions(+), 12 deletions(-)
+On Thu, Dec 21, 2023 at 04:21:20PM +0100, Neil Armstrong wrote:
+> Add initial support for the new Goodix "Berlin" touchscreen ICs.
 
-diff --git a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.h b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.h
-index 849b89dd205c..3f5b625330bc 100644
---- a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.h
-+++ b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.h
-@@ -111,7 +111,8 @@ struct mtk_vcodec_dec_pdata {
- 	int (*flush_decoder)(struct mtk_vcodec_dec_ctx *ctx);
- 	struct vdec_fb *(*get_cap_buffer)(struct mtk_vcodec_dec_ctx *ctx);
- 	void (*cap_to_disp)(struct mtk_vcodec_dec_ctx *ctx, int error,
--			    struct media_request *src_buf_req);
-+			    struct media_request *src_buf_req,
-+			    struct vb2_v4l2_buffer *vb2_v4l2_src);
+Thank you very much for explaining how reading of additional contacts
+and checksum works, it makes sense now.
+
+I was a bit unhappy about number of times we copy/move the data over;
+could you please try the patch below to see if the device still works
+with it?
+
+I also shortened some #defines and defines some additional structures.
+Also as far as I can see not everything needs to be packed as the data
+is naturally aligned on the word boundaries.
+
+Thanks!
+
+-- 
+Dmitry
+
+
+diff --git a/drivers/input/touchscreen/goodix_berlin_core.c b/drivers/input/touchscreen/goodix_berlin_core.c
+index 6aca57e6b5d6..d1f1c0474116 100644
+--- a/drivers/input/touchscreen/goodix_berlin_core.c
++++ b/drivers/input/touchscreen/goodix_berlin_core.c
+@@ -39,19 +39,6 @@
  
- 	const struct vb2_ops *vdec_vb2_ops;
+ #define GOODIX_BERLIN_NORMAL_RESET_DELAY_MS	100
  
-diff --git a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_stateless.c b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_stateless.c
-index d54b3833790d..2efa34b6750b 100644
---- a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_stateless.c
-+++ b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_stateless.c
-@@ -245,7 +245,8 @@ static const struct v4l2_frmsize_stepwise stepwise_fhd = {
+-#define GOODIX_BERLIN_IRQ_EVENT_HEAD_LEN	8
+-#define GOODIX_BERLIN_STATUS_OFFSET		0
+-#define GOODIX_BERLIN_REQUEST_TYPE_OFFSET	2
+-
+-#define GOODIX_BERLIN_BYTES_PER_POINT		8
+-#define GOODIX_BERLIN_COOR_DATA_CHECKSUM_SIZE	2
+-#define GOODIX_BERLIN_COOR_DATA_CHECKSUM_MASK	GENMASK(15, 0)
+-
+-/* Read n finger events */
+-#define GOODIX_BERLIN_IRQ_READ_LEN(n)		(GOODIX_BERLIN_IRQ_EVENT_HEAD_LEN + \
+-						 (GOODIX_BERLIN_BYTES_PER_POINT * (n)) + \
+-						 GOODIX_BERLIN_COOR_DATA_CHECKSUM_SIZE)
+-
+ #define GOODIX_BERLIN_TOUCH_EVENT		BIT(7)
+ #define GOODIX_BERLIN_REQUEST_EVENT		BIT(6)
+ #define GOODIX_BERLIN_TOUCH_COUNT_MASK		GENMASK(3, 0)
+@@ -71,6 +58,8 @@
+ #define GOODIX_BERLIN_IC_INFO_MAX_LEN		SZ_1K
+ #define GOODIX_BERLIN_IC_INFO_ADDR		0x10070
+ 
++#define GOODIX_BERLIN_CHECKSUM_SIZE		sizeof(u16)
++
+ struct goodix_berlin_fw_version {
+ 	u8 rom_pid[6];
+ 	u8 rom_vid[3];
+@@ -81,7 +70,7 @@ struct goodix_berlin_fw_version {
+ 	u8 sensor_id;
+ 	u8 reserved[2];
+ 	__le16 checksum;
+-} __packed;
++};
+ 
+ struct goodix_berlin_ic_info_version {
+ 	u8 info_customer_id;
+@@ -147,13 +136,30 @@ struct goodix_berlin_ic_info_misc {
+ 	__le32 esd_addr;
+ } __packed;
+ 
+-struct goodix_berlin_touch_data {
+-	u8 id;
+-	u8 unused;
++struct goodix_berlin_touch {
++	u8 status;
++	u8 reserved;
+ 	__le16 x;
+ 	__le16 y;
+ 	__le16 w;
+-} __packed;
++};
++#define GOODIX_BERLIN_TOUCH_SIZE	sizeof(struct goodix_berlin_touch)
++
++struct goodix_berlin_header {
++	u8 status;
++	u8 reserved1;
++	u8 request_type;
++	u8 reserved2[3];
++	__le16 checksum;
++};
++#define GOODIX_BERLIN_HEADER_SIZE	sizeof(struct goodix_berlin_header)
++
++struct goodix_berlin_event {
++	struct goodix_berlin_header hdr;
++	/* The data below is u16/__le16 aligned */
++	u8 data[GOODIX_BERLIN_TOUCH_SIZE * GOODIX_BERLIN_MAX_TOUCH +
++		GOODIX_BERLIN_CHECKSUM_SIZE];
++};
+ 
+ struct goodix_berlin_core {
+ 	struct device *dev;
+@@ -168,25 +174,25 @@ struct goodix_berlin_core {
+ 
+ 	/* Runtime parameters extracted from IC_INFO buffer  */
+ 	u32 touch_data_addr;
++
++	struct goodix_berlin_event event;
  };
  
- static void mtk_vdec_stateless_cap_to_disp(struct mtk_vcodec_dec_ctx *ctx, int error,
--					   struct media_request *src_buf_req)
-+					   struct media_request *src_buf_req,
-+					   struct vb2_v4l2_buffer *vb2_v4l2_src)
+ static bool goodix_berlin_checksum_valid(const u8 *data, int size)
  {
- 	struct vb2_v4l2_buffer *vb2_dst;
- 	enum vb2_buffer_state state;
-@@ -266,6 +267,9 @@ static void mtk_vdec_stateless_cap_to_disp(struct mtk_vcodec_dec_ctx *ctx, int e
+ 	u32 cal_checksum = 0;
+ 	u16 r_checksum;
+-	u32 i;
++	int i;
  
- 	if (src_buf_req)
- 		v4l2_ctrl_request_complete(src_buf_req, &ctx->ctrl_hdl);
-+
-+	if (vb2_v4l2_src)
-+		v4l2_m2m_buf_done(vb2_v4l2_src, state);
+-	if (size < GOODIX_BERLIN_COOR_DATA_CHECKSUM_SIZE)
++	if (size < GOODIX_BERLIN_CHECKSUM_SIZE)
+ 		return false;
+ 
+-	for (i = 0; i < size - GOODIX_BERLIN_COOR_DATA_CHECKSUM_SIZE; i++)
++	for (i = 0; i < size - GOODIX_BERLIN_CHECKSUM_SIZE; i++)
+ 		cal_checksum += data[i];
+ 
+-	cal_checksum = FIELD_GET(GOODIX_BERLIN_COOR_DATA_CHECKSUM_MASK,
+-				 cal_checksum);
+ 	r_checksum = get_unaligned_le16(&data[i]);
+ 
+-	return cal_checksum == r_checksum;
++	return (u16)cal_checksum == r_checksum;
  }
  
- static struct vdec_fb *vdec_get_cap_buffer(struct mtk_vcodec_dec_ctx *ctx)
-@@ -374,14 +378,12 @@ static void mtk_vdec_worker(struct work_struct *work)
- 	state = ret ? VB2_BUF_STATE_ERROR : VB2_BUF_STATE_DONE;
- 	if (!IS_VDEC_LAT_ARCH(dev->vdec_pdata->hw_arch) ||
- 	    ctx->current_codec == V4L2_PIX_FMT_VP8_FRAME) {
--		v4l2_m2m_buf_done_and_job_finish(dev->m2m_dev_dec, ctx->m2m_ctx, state);
- 		if (src_buf_req)
- 			v4l2_ctrl_request_complete(src_buf_req, &ctx->ctrl_hdl);
-+		v4l2_m2m_buf_done_and_job_finish(dev->m2m_dev_dec, ctx->m2m_ctx, state);
- 	} else {
--		if (ret != -EAGAIN) {
-+		if (ret != -EAGAIN)
- 			v4l2_m2m_src_buf_remove(ctx->m2m_ctx);
--			v4l2_m2m_buf_done(vb2_v4l2_src, state);
+ static bool goodix_berlin_is_dummy_data(struct goodix_berlin_core *cd,
+@@ -291,33 +297,30 @@ static void goodix_berlin_power_off(struct goodix_berlin_core *cd)
+ 
+ static int goodix_berlin_read_version(struct goodix_berlin_core *cd)
+ {
+-	u8 buf[sizeof(struct goodix_berlin_fw_version)];
+ 	int error;
+ 
+ 	error = regmap_raw_read(cd->regmap, GOODIX_BERLIN_FW_VERSION_INFO_ADDR,
+-				buf, sizeof(buf));
++				&cd->fw_version, sizeof(cd->fw_version));
+ 	if (error) {
+ 		dev_err(cd->dev, "error reading fw version, %d\n", error);
+ 		return error;
+ 	}
+ 
+-	if (!goodix_berlin_checksum_valid(buf, sizeof(buf))) {
++	if (!goodix_berlin_checksum_valid((u8 *)&cd->fw_version,
++					  sizeof(cd->fw_version))) {
+ 		dev_err(cd->dev, "invalid fw version: checksum error\n");
+ 		return -EINVAL;
+ 	}
+ 
+-	memcpy(&cd->fw_version, buf, sizeof(cd->fw_version));
+-
+ 	return 0;
+ }
+ 
+ /* Only extract necessary data for runtime */
+-static int goodix_berlin_convert_ic_info(struct goodix_berlin_core *cd,
+-					 const u8 *data, u16 length)
++static int goodix_berlin_parse_ic_info(struct goodix_berlin_core *cd,
++				       const u8 *data, u16 length)
+ {
+-	struct goodix_berlin_ic_info_misc misc;
++	struct goodix_berlin_ic_info_misc *misc;
+ 	unsigned int offset = 0;
+-	u8 param_num;
+ 
+ 	offset += sizeof(__le16); /* length */
+ 	offset += sizeof(struct goodix_berlin_ic_info_version);
+@@ -325,49 +328,25 @@ static int goodix_berlin_convert_ic_info(struct goodix_berlin_core *cd,
+ 
+ 	/* IC_INFO Parameters, variable width structure */
+ 	offset += 4 * sizeof(u8); /* drv_num, sen_num, button_num, force_num */
+-
+-	if (offset >= length)
+-		goto invalid_offset;
+-
+-	param_num = data[offset++]; /* active_scan_rate_num */
+-
+-	offset += param_num * sizeof(__le16);
+-
+-	if (offset >= length)
+-		goto invalid_offset;
+-
+-	param_num = data[offset++]; /* mutual_freq_num*/
+-
+-	offset += param_num * sizeof(__le16);
+-
+-	if (offset >= length)
+-		goto invalid_offset;
+-
+-	param_num = data[offset++]; /* self_tx_freq_num */
+-
+-	offset += param_num * sizeof(__le16);
+-
+-	if (offset >= length)
+-		goto invalid_offset;
+-
+-	param_num = data[offset++]; /* self_rx_freq_num */
+-
+-	offset += param_num * sizeof(__le16);
+-
+ 	if (offset >= length)
+ 		goto invalid_offset;
+ 
+-	param_num = data[offset++]; /* stylus_freq_num */
+-
+-	offset += param_num * sizeof(__le16);
+-
+-	if (offset + sizeof(misc) > length)
+-		goto invalid_offset;
+-
+-	/* goodix_berlin_ic_info_misc */
+-	memcpy(&misc, &data[offset], sizeof(misc));
+-
+-	cd->touch_data_addr = le32_to_cpu(misc.touch_data_addr);
++#define ADVANCE_LE16_PARAMS()				\
++	do {						\
++		u8 param_num = data[offset++];		\
++		offset += param_num * sizeof(__le16);	\
++		if (offset >= length)			\
++			goto invalid_offset;		\
++	} while (0)
++	ADVANCE_LE16_PARAMS(); /* active_scan_rate_num */
++	ADVANCE_LE16_PARAMS(); /* mutual_freq_num*/
++	ADVANCE_LE16_PARAMS(); /* self_tx_freq_num */
++	ADVANCE_LE16_PARAMS(); /* self_rx_freq_num */
++	ADVANCE_LE16_PARAMS(); /* stylus_freq_num */
++#undef ADVANCE_LE16_PARAMS
++
++	misc = (struct goodix_berlin_ic_info_misc *)&data[offset];
++	cd->touch_data_addr = le32_to_cpu(misc->touch_data_addr);
+ 
+ 	return 0;
+ 
+@@ -419,7 +398,7 @@ static int goodix_berlin_get_ic_info(struct goodix_berlin_core *cd)
+ 		return -EINVAL;
+ 	}
+ 
+-	error = goodix_berlin_convert_ic_info(cd, afe_data, length);
++	error = goodix_berlin_parse_ic_info(cd, afe_data, length);
+ 	if (error)
+ 		return error;
+ 
+@@ -432,20 +411,47 @@ static int goodix_berlin_get_ic_info(struct goodix_berlin_core *cd)
+ 	return 0;
+ }
+ 
+-static void goodix_berlin_parse_finger(struct goodix_berlin_core *cd,
+-				       const void *buf, int touch_num)
++static int goodix_berlin_get_remaining_contacts(struct goodix_berlin_core *cd,
++						int n)
++{
++	size_t offset = 2 * GOODIX_BERLIN_TOUCH_SIZE +
++				GOODIX_BERLIN_CHECKSUM_SIZE;
++	u32 addr = cd->touch_data_addr + GOODIX_BERLIN_HEADER_SIZE + offset;
++	int error;
++
++	error = regmap_raw_read(cd->regmap, addr,
++				&cd->event.data[offset],
++				(n - 2) * GOODIX_BERLIN_TOUCH_SIZE);
++	if (error) {
++		dev_err_ratelimited(cd->dev, "failed to get touch data, %d\n",
++				    error);
++		return error;
++	}
++
++	return 0;
++}
++
++static void goodix_berlin_report_state(struct goodix_berlin_core *cd, int n)
+ {
+-	const struct goodix_berlin_touch_data *touch_data = buf;
++	struct goodix_berlin_touch *touch_data =
++			(struct goodix_berlin_touch *)cd->event.data;
++	struct goodix_berlin_touch *t;
+ 	int i;
++	u8 type, id;
++
++	for (i = 0; i < n; i++) {
++		t = &touch_data[i];
+ 
+-	/* Report finger touches */
+-	for (i = 0; i < touch_num; i++) {
+-		unsigned int id = FIELD_GET(GOODIX_BERLIN_TOUCH_ID_MASK,
+-					    touch_data[i].id);
++		type = FIELD_GET(GOODIX_BERLIN_POINT_TYPE_MASK, t->status);
++		if (type == GOODIX_BERLIN_POINT_TYPE_STYLUS ||
++		    type == GOODIX_BERLIN_POINT_TYPE_STYLUS_HOVER) {
++			dev_warn_once(cd->dev, "Stylus event type not handled\n");
++			continue;
++		}
+ 
++		id = FIELD_GET(GOODIX_BERLIN_TOUCH_ID_MASK, t->status);
+ 		if (id >= GOODIX_BERLIN_MAX_TOUCH) {
+-			dev_warn_ratelimited(cd->dev,
+-					     "invalid finger id %d\n", id);
++			dev_warn_ratelimited(cd->dev, "invalid finger id %d\n", id);
+ 			continue;
+ 		}
+ 
+@@ -453,69 +459,46 @@ static void goodix_berlin_parse_finger(struct goodix_berlin_core *cd,
+ 		input_mt_report_slot_state(cd->input_dev, MT_TOOL_FINGER, true);
+ 
+ 		touchscreen_report_pos(cd->input_dev, &cd->props,
+-				       __le16_to_cpu(touch_data[i].x),
+-				       __le16_to_cpu(touch_data[i].y),
++				       __le16_to_cpu(t->x), __le16_to_cpu(t->y),
+ 				       true);
+ 		input_report_abs(cd->input_dev, ABS_MT_TOUCH_MAJOR,
+-				 __le16_to_cpu(touch_data[i].w));
++				 __le16_to_cpu(t->w));
+ 	}
+ 
+ 	input_mt_sync_frame(cd->input_dev);
+ 	input_sync(cd->input_dev);
+ }
+ 
+-static void goodix_berlin_touch_handler(struct goodix_berlin_core *cd,
+-					const void *pre_buf, u32 pre_buf_len)
++static void goodix_berlin_touch_handler(struct goodix_berlin_core *cd)
+ {
+-	u8 buffer[GOODIX_BERLIN_IRQ_READ_LEN(GOODIX_BERLIN_MAX_TOUCH)];
+-	u8 point_type, touch_num;
++	u8 touch_num;
+ 	int error;
+ 
+-	/* copy pre-data to buffer */
+-	memcpy(buffer, pre_buf, pre_buf_len);
+-
+ 	touch_num = FIELD_GET(GOODIX_BERLIN_TOUCH_COUNT_MASK,
+-			      buffer[GOODIX_BERLIN_REQUEST_TYPE_OFFSET]);
+-
++			      cd->event.hdr.request_type);
+ 	if (touch_num > GOODIX_BERLIN_MAX_TOUCH) {
+ 		dev_warn(cd->dev, "invalid touch num %d\n", touch_num);
+ 		return;
+ 	}
+ 
+-	if (touch_num) {
+-		/* read more data if more than 2 touch events */
+-		if (unlikely(touch_num > 2)) {
+-			error = regmap_raw_read(cd->regmap,
+-						cd->touch_data_addr + pre_buf_len,
+-						&buffer[pre_buf_len],
+-						(touch_num - 2) * GOODIX_BERLIN_BYTES_PER_POINT);
+-			if (error) {
+-				dev_err_ratelimited(cd->dev, "failed to get touch data, %d\n",
+-						    error);
+-				return;
+-			}
 -		}
- 		v4l2_m2m_job_finish(dev->m2m_dev_dec, ctx->m2m_ctx);
+-
+-		point_type = FIELD_GET(GOODIX_BERLIN_POINT_TYPE_MASK,
+-				       buffer[GOODIX_BERLIN_IRQ_EVENT_HEAD_LEN]);
+-
+-		if (point_type == GOODIX_BERLIN_POINT_TYPE_STYLUS ||
+-		    point_type == GOODIX_BERLIN_POINT_TYPE_STYLUS_HOVER) {
+-			dev_warn_once(cd->dev, "Stylus event type not handled\n");
++	if (touch_num > 2) {
++		/* read additional contact data if more than 2 touch events */
++		error = goodix_berlin_get_remaining_contacts(cd, touch_num);
++		if (error)
+ 			return;
+-		}
++	}
+ 
+-		if (!goodix_berlin_checksum_valid(&buffer[GOODIX_BERLIN_IRQ_EVENT_HEAD_LEN],
+-						  touch_num * GOODIX_BERLIN_BYTES_PER_POINT + 2)) {
++	if (touch_num) {
++		int len = touch_num * GOODIX_BERLIN_TOUCH_SIZE +
++			  GOODIX_BERLIN_CHECKSUM_SIZE;
++		if (!goodix_berlin_checksum_valid(cd->event.data, len)) {
+ 			dev_err(cd->dev, "touch data checksum error: %*ph\n",
+-				touch_num * GOODIX_BERLIN_BYTES_PER_POINT + 2,
+-				&buffer[GOODIX_BERLIN_IRQ_EVENT_HEAD_LEN]);
++				len, cd->event.data);
+ 			return;
+ 		}
  	}
+ 
+-	goodix_berlin_parse_finger(cd, &buffer[GOODIX_BERLIN_IRQ_EVENT_HEAD_LEN],
+-				   touch_num);
++	goodix_berlin_report_state(cd, touch_num);
  }
-diff --git a/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_av1_req_lat_if.c b/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_av1_req_lat_if.c
-index 2b6a5adbc419..f277b907c345 100644
---- a/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_av1_req_lat_if.c
-+++ b/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_av1_req_lat_if.c
-@@ -1064,6 +1064,8 @@ static int vdec_av1_slice_setup_lat_from_src_buf(struct vdec_av1_slice_instance
- 		return -EINVAL;
  
- 	lat_buf->src_buf_req = src->vb2_buf.req_obj.req;
-+	lat_buf->vb2_v4l2_src = src;
-+
- 	dst = &lat_buf->ts_info;
- 	v4l2_m2m_buf_copy_metadata(src, dst, true);
- 	vsi->frame.cur_ts = dst->vb2_buf.timestamp;
-@@ -2187,7 +2189,7 @@ static int vdec_av1_slice_core_decode(struct vdec_lat_buf *lat_buf)
- 		       &instance->core_vsi->trans.dma_addr_end);
- 	vdec_msg_queue_update_ube_rptr(&ctx->msg_queue, instance->core_vsi->trans.dma_addr_end);
+ static int goodix_berlin_request_handle_reset(struct goodix_berlin_core *cd)
+@@ -532,68 +515,72 @@ static int goodix_berlin_request_handle_reset(struct goodix_berlin_core *cd)
+ static irqreturn_t goodix_berlin_irq(int irq, void *data)
+ {
+ 	struct goodix_berlin_core *cd = data;
+-	u8 buf[GOODIX_BERLIN_IRQ_READ_LEN(2)];
+-	u8 event_status;
+ 	int error;
  
--	ctx->dev->vdec_pdata->cap_to_disp(ctx, 0, lat_buf->src_buf_req);
-+	ctx->dev->vdec_pdata->cap_to_disp(ctx, 0, lat_buf->src_buf_req, lat_buf->vb2_v4l2_src);
- 
- 	return 0;
- 
-@@ -2196,7 +2198,8 @@ static int vdec_av1_slice_core_decode(struct vdec_lat_buf *lat_buf)
- 	vdec_msg_queue_update_ube_rptr(&ctx->msg_queue, pfc->vsi.trans.dma_addr_end);
- 
- 	if (fb)
--		ctx->dev->vdec_pdata->cap_to_disp(ctx, 1, lat_buf->src_buf_req);
-+		ctx->dev->vdec_pdata->cap_to_disp(ctx, 1, lat_buf->src_buf_req,
-+						  lat_buf->vb2_v4l2_src);
- 
- 	return ret;
- }
-diff --git a/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_h264_req_multi_if.c b/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_h264_req_multi_if.c
-index 0e741e0dc8ba..7033999018ca 100644
---- a/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_h264_req_multi_if.c
-+++ b/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_h264_req_multi_if.c
-@@ -533,7 +533,7 @@ static int vdec_h264_slice_core_decode(struct vdec_lat_buf *lat_buf)
- 
- vdec_dec_end:
- 	vdec_msg_queue_update_ube_rptr(&lat_buf->ctx->msg_queue, share_info->trans_end);
--	ctx->dev->vdec_pdata->cap_to_disp(ctx, !!err, lat_buf->src_buf_req);
-+	ctx->dev->vdec_pdata->cap_to_disp(ctx, !!err, lat_buf->src_buf_req, lat_buf->vb2_v4l2_src);
- 	mtk_vdec_debug(ctx, "core decode done err=%d", err);
- 	ctx->decoded_frame_cnt++;
- 	return 0;
-@@ -606,6 +606,7 @@ static int vdec_h264_slice_lat_decode(void *h_vdec, struct mtk_vcodec_mem *bs,
- 
- 	inst->vsi->dec.nal_info = buf[nal_start_idx];
- 	lat_buf->src_buf_req = src_buf_info->m2m_buf.vb.vb2_buf.req_obj.req;
-+	lat_buf->vb2_v4l2_src = &src_buf_info->m2m_buf.vb;
- 	v4l2_m2m_buf_copy_metadata(&src_buf_info->m2m_buf.vb, &lat_buf->ts_info, true);
- 
- 	err = vdec_h264_slice_fill_decode_parameters(inst, share_info);
-diff --git a/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_hevc_req_multi_if.c b/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_hevc_req_multi_if.c
-index 06ed47df693b..67fe3c4bfac3 100644
---- a/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_hevc_req_multi_if.c
-+++ b/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_hevc_req_multi_if.c
-@@ -742,6 +742,7 @@ static int vdec_hevc_slice_setup_lat_buffer(struct vdec_hevc_slice_inst *inst,
- 
- 	src_buf_info = container_of(bs, struct mtk_video_dec_buf, bs_buffer);
- 	lat_buf->src_buf_req = src_buf_info->m2m_buf.vb.vb2_buf.req_obj.req;
-+	lat_buf->vb2_v4l2_src = &src_buf_info->m2m_buf.vb;
- 	v4l2_m2m_buf_copy_metadata(&src_buf_info->m2m_buf.vb, &lat_buf->ts_info, true);
- 
- 	*res_chg = inst->resolution_changed;
-@@ -961,7 +962,7 @@ static int vdec_hevc_slice_core_decode(struct vdec_lat_buf *lat_buf)
- 
- vdec_dec_end:
- 	vdec_msg_queue_update_ube_rptr(&lat_buf->ctx->msg_queue, share_info->trans.dma_addr_end);
--	ctx->dev->vdec_pdata->cap_to_disp(ctx, !!err, lat_buf->src_buf_req);
-+	ctx->dev->vdec_pdata->cap_to_disp(ctx, !!err, lat_buf->src_buf_req, lat_buf->vb2_v4l2_src);
- 	mtk_vdec_debug(ctx, "core decode done err=%d", err);
- 	ctx->decoded_frame_cnt++;
- 	return 0;
-diff --git a/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp9_req_lat_if.c b/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp9_req_lat_if.c
-index 69d37b93bd35..a7734d032269 100644
---- a/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp9_req_lat_if.c
-+++ b/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp9_req_lat_if.c
-@@ -723,6 +723,7 @@ static int vdec_vp9_slice_setup_lat_from_src_buf(struct vdec_vp9_slice_instance
- 		return -EINVAL;
- 
- 	lat_buf->src_buf_req = src->vb2_buf.req_obj.req;
-+	lat_buf->vb2_v4l2_src = src;
- 
- 	dst = &lat_buf->ts_info;
- 	v4l2_m2m_buf_copy_metadata(src, dst, true);
-@@ -2188,7 +2189,7 @@ static int vdec_vp9_slice_core_decode(struct vdec_lat_buf *lat_buf)
- 	mtk_vdec_debug(ctx, "core dma_addr_end 0x%lx\n",
- 		       (unsigned long)pfc->vsi.trans.dma_addr_end);
- 	vdec_msg_queue_update_ube_rptr(&ctx->msg_queue, pfc->vsi.trans.dma_addr_end);
--	ctx->dev->vdec_pdata->cap_to_disp(ctx, 0, lat_buf->src_buf_req);
-+	ctx->dev->vdec_pdata->cap_to_disp(ctx, 0, lat_buf->src_buf_req, lat_buf->vb2_v4l2_src);
- 
- 	return 0;
- 
-@@ -2198,7 +2199,8 @@ static int vdec_vp9_slice_core_decode(struct vdec_lat_buf *lat_buf)
- 		vdec_msg_queue_update_ube_rptr(&ctx->msg_queue, pfc->vsi.trans.dma_addr_end);
- 
- 		if (fb)
--			ctx->dev->vdec_pdata->cap_to_disp(ctx, 1, lat_buf->src_buf_req);
-+			ctx->dev->vdec_pdata->cap_to_disp(ctx, 1, lat_buf->src_buf_req,
-+							  lat_buf->vb2_v4l2_src);
+ 	/*
+ 	 * First, read buffer with space for 2 touch events:
+-	 * - GOODIX_BERLIN_IRQ_EVENT_HEAD = 8 bytes
+-	 * - GOODIX_BERLIN_BYTES_PER_POINT * 2 +
+-	 *   GOODIX_BERLIN_COOR_DATA_CHECKSUM = 18 bytes
++	 * - GOODIX_BERLIN_HEADER_SIZE = 8 bytes
++	 * - GOODIX_BERLIN_TOUCH_SIZE * 2 = 16 bytes
++	 * - GOODIX_BERLIN_CHECKLSUM_SIZE = 2 bytes
+ 	 * For a total of 26 bytes.
+ 	 *
+-	 * If only a single finger is reported, we will read 8 bytes more than needed:
+-	 * - bytes 0-7:   GOODIX_BERLIN_IRQ_EVENT_HEAD
++	 * If only a single finger is reported, we will read 8 bytes more than
++	 * needed:
++	 * - bytes 0-7:   Header (GOODIX_BERLIN_HEADER_SIZE)
+ 	 * - bytes 8-15:  Finger 0 Data
+-	 * - bytes 16-17: GOODIX_BERLIN_COOR_DATA_CHECKSUM
++	 * - bytes 24-25: Checksum
+ 	 * - bytes 18-25: Unused 8 bytes
+ 	 *
+-	 * If 2 fingers are reported, we would have read the exact needed amount of
+-	 * data and checkout would be at the end of the buffer:
+-	 * - bytes 0-7:	  GOODIX_BERLIN_IRQ_EVENT_HEAD_LEN
++	 * If 2 fingers are reported, we would have read the exact needed
++	 * amount of data and checksum would be at the end of the buffer:
++	 * - bytes 0-7:   Header (GOODIX_BERLIN_HEADER_SIZE)
+ 	 * - bytes 8-15:  Finger 0 Bytes 0-7
+ 	 * - bytes 16-23: Finger 1 Bytes 0-7
+-	 * - bytes 24-25: GOODIX_BERLIN_COOR_DATA_CHECKSUM
++	 * - bytes 24-25: Checksum
+ 	 *
+-	 * If more than 2 fingers were reported, the "Checksum" bytes would in fact
+-	 * contain part of the next finger data, and then we would complete the buffer
+-	 * with the missing bytes, but by keeping the GOODIX_BERLIN_IRQ_READ_LEN(2)
+-	 * size as base, it will still contain space for the final 2 bytes checksum:
+-	 * - bytes 0-7:	  GOODIX_BERLIN_IRQ_EVENT_HEAD_LEN]
++	 * If more than 2 fingers were reported, the "Checksum" bytes would
++	 * in fact contain part of the next finger data, and then
++	 * goodix_berlin_get_remaining_contacts() would complete the buffer
++	 * with the missing bytes, including the trailing checksum.
++	 * For example, if 3 fingers are reported, then we would do:
++	 * Read 1:
++	 * - bytes 0-7:   Header (GOODIX_BERLIN_HEADER_SIZE)
+ 	 * - bytes 8-15:  Finger 0 Bytes 0-7
+ 	 * - bytes 16-23: Finger 1 Bytes 0-7
+ 	 * - bytes 24-25: Finger 2 Bytes 0-1
+-	 * for example if 3 fingers are reported, (3 - 2) * 8 = 8 bytes would be read:
++	 * Read 2 (with length of (3 - 2) * 8 = 8 bytes):
+ 	 * - bytes 26-31: Finger 2 Bytes 2-7
+-	 * - bytes 32-33: GOODIX_BERLIN_COOR_DATA_CHECKSUM
++	 * - bytes 32-33: Checksum
+ 	 */
+-	error = regmap_raw_read(cd->regmap, cd->touch_data_addr, buf,
+-				GOODIX_BERLIN_IRQ_READ_LEN(2));
++	error = regmap_raw_read(cd->regmap, cd->touch_data_addr,
++				&cd->event,
++				GOODIX_BERLIN_HEADER_SIZE +
++					2 * GOODIX_BERLIN_TOUCH_SIZE +
++					GOODIX_BERLIN_CHECKSUM_SIZE);
+ 	if (error) {
+ 		dev_warn_ratelimited(cd->dev,
+ 				     "failed get event head data: %d\n", error);
+-		return IRQ_HANDLED;
++		goto out;
  	}
- 	return ret;
- }
-diff --git a/drivers/media/platform/mediatek/vcodec/decoder/vdec_msg_queue.h b/drivers/media/platform/mediatek/vcodec/decoder/vdec_msg_queue.h
-index 1d9beb9e4a14..b0f2443d186f 100644
---- a/drivers/media/platform/mediatek/vcodec/decoder/vdec_msg_queue.h
-+++ b/drivers/media/platform/mediatek/vcodec/decoder/vdec_msg_queue.h
-@@ -55,6 +55,7 @@ struct vdec_msg_queue_ctx {
-  * @rd_mv_addr:	mv addr for av1 lat hardware output, core hardware input
-  * @tile_addr:	tile buffer for av1 core input
-  * @ts_info: need to set timestamp from output to capture
-+ * @vb2_v4l2_src: the vb2 buffer of output queue
-  * @src_buf_req: output buffer media request object
-  *
-  * @private_data: shared information used to lat and core hardware
-@@ -71,6 +72,7 @@ struct vdec_lat_buf {
- 	struct mtk_vcodec_mem rd_mv_addr;
- 	struct mtk_vcodec_mem tile_addr;
- 	struct vb2_v4l2_buffer ts_info;
-+	struct vb2_v4l2_buffer *vb2_v4l2_src;
- 	struct media_request *src_buf_req;
  
- 	void *private_data;
--- 
-2.18.0
-
+-	if (buf[GOODIX_BERLIN_STATUS_OFFSET] == 0)
+-		return IRQ_HANDLED;
++	if (cd->event.hdr.status == 0)
++		goto out;
+ 
+-	if (!goodix_berlin_checksum_valid(buf, GOODIX_BERLIN_IRQ_EVENT_HEAD_LEN)) {
++	if (!goodix_berlin_checksum_valid((u8 *)&cd->event.hdr,
++					  GOODIX_BERLIN_HEADER_SIZE)) {
+ 		dev_warn_ratelimited(cd->dev,
+ 				     "touch head checksum error: %*ph\n",
+-				     GOODIX_BERLIN_IRQ_EVENT_HEAD_LEN, buf);
+-		return IRQ_HANDLED;
++				     (int)GOODIX_BERLIN_HEADER_SIZE,
++				     &cd->event.hdr);
++		// FIXME: should we clear the status?
++		goto out;
+ 	}
+ 
+-	event_status = buf[GOODIX_BERLIN_STATUS_OFFSET];
+-
+-	if (event_status & GOODIX_BERLIN_TOUCH_EVENT)
+-		goodix_berlin_touch_handler(cd, buf,
+-					    GOODIX_BERLIN_IRQ_READ_LEN(2));
++	if (cd->event.hdr.status & GOODIX_BERLIN_TOUCH_EVENT)
++		goodix_berlin_touch_handler(cd);
+ 
+-	if (event_status & GOODIX_BERLIN_REQUEST_EVENT) {
+-		switch (buf[GOODIX_BERLIN_REQUEST_TYPE_OFFSET]) {
++	if (cd->event.hdr.status & GOODIX_BERLIN_REQUEST_EVENT) {
++		switch (cd->event.hdr.request_type) {
+ 		case GOODIX_BERLIN_REQUEST_CODE_RESET:
+ 			if (cd->reset_gpio)
+ 				goodix_berlin_request_handle_reset(cd);
+@@ -601,13 +588,14 @@ static irqreturn_t goodix_berlin_irq(int irq, void *data)
+ 
+ 		default:
+ 			dev_warn(cd->dev, "unsupported request code 0x%x\n",
+-				 buf[GOODIX_BERLIN_REQUEST_TYPE_OFFSET]);
++				 cd->event.hdr.request_type);
+ 		}
+ 	}
+ 
+ 	/* Clear up status field */
+ 	regmap_write(cd->regmap, cd->touch_data_addr, 0);
+ 
++out:
+ 	return IRQ_HANDLED;
+ }
+ 
 
