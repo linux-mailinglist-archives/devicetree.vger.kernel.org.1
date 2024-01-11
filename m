@@ -1,111 +1,124 @@
-Return-Path: <devicetree+bounces-31357-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31358-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBC0C82AE91
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 13:19:50 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 99D4682AE94
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 13:20:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7F9871F28BB1
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 12:19:45 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A38F6B250C1
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 12:20:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B527156F3;
-	Thu, 11 Jan 2024 12:19:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E86F156F6;
+	Thu, 11 Jan 2024 12:19:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mduOEd5z"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PxxFDPoj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
+Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C057015E8B
-	for <devicetree@vger.kernel.org>; Thu, 11 Jan 2024 12:19:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-2cd81b09e83so12291411fa.2
-        for <devicetree@vger.kernel.org>; Thu, 11 Jan 2024 04:19:32 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7931F15AE4;
+	Thu, 11 Jan 2024 12:19:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-a2c375d2430so98099466b.1;
+        Thu, 11 Jan 2024 04:19:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704975571; x=1705580371; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=sB0RisVxzG4fCy/lSv8Ys0Km85GWJSkQtSWNZJfVNYQ=;
-        b=mduOEd5ztWZKxwvltBRjkkcOj2taQea9CAYhsW2kGNELDFgSBwUQFvQOlHviwANp4Z
-         6ujfH/wtdcO3fDdM3F91d3G4fxOKSm9tpzRqN31YBnKn2zMzyZ5k43xLa7q5foykcRIU
-         hwlUm84KqH5cY03VlGYMe0TetRIcvfSrQheZbsxI/iB6A5W2DItkKhbVPjHToaqo/UUq
-         z3VdNGlaOE70GtA/sE7+sjDMyxDXgOc9eEONUhx03zJua0jCeFzt/96QccPUC4P9XRpP
-         lmF4C+6nSPCS1TVjWFvK85OzOdWd92ccJuKPDanwaY1ne5KEbeYqF5Pcwf0RqpIPgwih
-         B45Q==
+        d=gmail.com; s=20230601; t=1704975588; x=1705580388; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=oZKjNuKFpBIgAPNQXHjE+zGWxeFXDpn+QzaU3wJuCUk=;
+        b=PxxFDPojDW5l0Gg8xEs8wrD4wb9+68IQC+nKGfncy9fRbXCueQVMvOhCHUAnqNkIrg
+         sy43l2wI67c3ypLHUGVriSLONzsmXiHnYWWi6XvV5KxAHloURA4f+9OMABsng/YpxvDz
+         cJwL7QGIh2n6jBvSOIPK5hcRLpKBOLekFKKh0nBpRZGRy4PORfrs3Qz78q04wlTJG6Fx
+         1Ol63RkzwSGJZJZ8OBeXteUffNcxFsC0E5IDCsvMH5TRg0KMbg/LzVnRoF6c9mXHPyEu
+         CLcqfmVYyeHI6cq7qIUzLtUrxpfM3sXX6ahD3+qugZLdOGoYx4uMB5OeKHhl8TIl57wi
+         r6EQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704975571; x=1705580371;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=sB0RisVxzG4fCy/lSv8Ys0Km85GWJSkQtSWNZJfVNYQ=;
-        b=nHY73OcsLTVSEGFurYMygenjfsGkVF3nqpsz5hJOoeUtuYmYLT7441ossQdRsvE9DY
-         /zFvmfxneBCtE2Hibf7PRf3Mx/ogyr2F0eT+peGs9vJ+fRkJlF1SujzSrHC8aocOJQN+
-         /WMCTah2ZgO1kH0e2JtijWTGF4CntHrq9/ZyMW/6sQY845yuQgb4LRd3+G3lpKNYJ878
-         y8fHOpJxtkx1sWo/8PS3aUXuwjbHMBqSMYH2Ey7dqcpEiCwJ17D0RI5I47g4uhIMlP2T
-         yKrum5RoVz4epgWev+0pTMBIJLSIzxRzuRUTeReKpDVYEh8M+CH+Fm26QvteoXM0CTAN
-         JNHg==
-X-Gm-Message-State: AOJu0YyEUSdV96DJ3Bf66IQJ5Do1V8K8gMxmgYfqny4diFHr5644qx+o
-	/987aiPRhwqqcIbFgMBBA9J8p/tiwXDyVQq5IOUmrunBSaU53w==
-X-Google-Smtp-Source: AGHT+IGw98QB8JspIZaFT8NnyeapJqJS+aKffDsBw668qr0QiPfv6qoV3Q3lubRojSpsGwQ8+nazXA==
-X-Received: by 2002:a2e:94c3:0:b0:2cd:45dd:73c3 with SMTP id r3-20020a2e94c3000000b002cd45dd73c3mr181748ljh.78.1704975570776;
-        Thu, 11 Jan 2024 04:19:30 -0800 (PST)
-Received: from [172.30.205.123] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
-        by smtp.gmail.com with ESMTPSA id n25-20020a2e7219000000b002cc83210f65sm126181ljc.89.2024.01.11.04.19.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 11 Jan 2024 04:19:30 -0800 (PST)
-Message-ID: <b64a5650-6152-4a66-81c1-22df2abfe359@linaro.org>
-Date: Thu, 11 Jan 2024 13:19:28 +0100
+        d=1e100.net; s=20230601; t=1704975588; x=1705580388;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=oZKjNuKFpBIgAPNQXHjE+zGWxeFXDpn+QzaU3wJuCUk=;
+        b=i/OTBuPMbSHpTUAw4Nkh7Sg3uqRk8JuwL1vtzFbaPFij8gv7zbpSeM/T9jyZcoeoAG
+         ly2ugEgtPxe2Os1DH0PAVShbNONz5aHDUSh8b3GMoM4Ci8PuJbjYIIT8d2nGKi4r+vSJ
+         /GUYFvqGf4WEQyKHyISX3juxLNoHNjGZM6FvA2ApoMU/vS33l3jEhQQFf3sJy+BeFVuW
+         xZeyXamfdvDV/oOh1QP1QToziHyTDt86CGLoGUn4ryr+ajdZ9mskQ36q0CnJx5h50dfc
+         ntJZUC0kOVjy40QkoI0Z+gJ8yIj79nvw0O0k98BFN50LsvAD75BQubFbuWGwGQgzYqQv
+         7YUg==
+X-Gm-Message-State: AOJu0YxochAvMQtd7FnuUgoIRIJf+O6LZS9eCwtnfq4BpzWvBrfuOTYA
+	8TTdtiVdT7ZPIRCC6MamhzI=
+X-Google-Smtp-Source: AGHT+IE0vYW1NN1IddmhLKD400aKBqGOGGa9hyMtY0jMcoJXItKOxufMxs964noz+aSuTeIAVwliDA==
+X-Received: by 2002:a17:906:ae54:b0:a28:7dd0:adb4 with SMTP id lf20-20020a170906ae5400b00a287dd0adb4mr551156ejb.83.1704975587591;
+        Thu, 11 Jan 2024 04:19:47 -0800 (PST)
+Received: from localhost.lan (031011218106.poznan.vectranet.pl. [31.11.218.106])
+        by smtp.gmail.com with ESMTPSA id m17-20020a170906235100b00a26ade46618sm516628eja.99.2024.01.11.04.19.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 11 Jan 2024 04:19:47 -0800 (PST)
+From: =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To: Miquel Raynal <miquel.raynal@bootlin.com>,
+	Richard Weinberger <richard@nod.at>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Ansuel Smith <ansuelsmth@gmail.com>,
+	linux-mtd@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH] dt-bindings: mtd: partitions: make partition an NVMEM provider
+Date: Thu, 11 Jan 2024 13:19:40 +0100
+Message-Id: <20240111121940.15628-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.35.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] arm64: dts: qcom: ipq6018: add LDOA2 regulator
-To: Chukun Pan <amadeus@jmu.edu.cn>, Bjorn Andersson <andersson@kernel.org>
-Cc: Conor Dooley <conor+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, Robert Marko <robimarko@gmail.com>
-References: <20240110151040.2155938-1-amadeus@jmu.edu.cn>
- <20240110151040.2155938-2-amadeus@jmu.edu.cn>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20240110151040.2155938-2-amadeus@jmu.edu.cn>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
+From: Rafał Miłecki <rafal@milecki.pl>
 
+MTD partition provides flash device data and can be used as NVMEM
+device.
 
-On 1/10/24 16:10, Chukun Pan wrote:
-> Add LDOA2 regulator of MP5496 to support SDCC voltage scaling.
-> 
-> Suggested-by: Robert Marko <robimarko@gmail.com>
-> Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
-> ---
->   arch/arm64/boot/dts/qcom/ipq6018.dtsi | 6 ++++++
->   1 file changed, 6 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/ipq6018.dtsi b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-> index 5e1277fea725..2f892d3bbbc6 100644
-> --- a/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-> @@ -174,6 +174,12 @@ ipq6018_s2: s2 {
->   						regulator-max-microvolt = <1062500>;
->   						regulator-always-on;
->   					};
-> +
-> +					ipq6018_l2: l2 {
-> +						regulator-min-microvolt = <1800000>;
-> +						regulator-max-microvolt = <3300000>;
-> +						regulator-always-on;
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+---
+ .../bindings/mtd/partitions/partition.yaml       | 16 +++++++++-------
+ 1 file changed, 9 insertions(+), 7 deletions(-)
 
-Why is is always-on?
+diff --git a/Documentation/devicetree/bindings/mtd/partitions/partition.yaml b/Documentation/devicetree/bindings/mtd/partitions/partition.yaml
+index 1ebe9e2347ea..7b1d84ce5ef5 100644
+--- a/Documentation/devicetree/bindings/mtd/partitions/partition.yaml
++++ b/Documentation/devicetree/bindings/mtd/partitions/partition.yaml
+@@ -57,13 +57,15 @@ properties:
+       user space from
+     type: boolean
+ 
+-if:
+-  not:
+-    required: [ reg ]
+-then:
+-  properties:
+-    $nodename:
+-      pattern: '^partition-.*$'
++allOf:
++  - $ref: /schemas/nvmem/nvmem.yaml
++  - if:
++      not:
++        required: [ reg ]
++    then:
++      properties:
++        $nodename:
++          pattern: '^partition-.*$'
+ 
+ # This is a generic file other binding inherit from and extend
+ additionalProperties: true
+-- 
+2.35.3
 
-Konrad
 
