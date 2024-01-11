@@ -1,110 +1,114 @@
-Return-Path: <devicetree+bounces-31410-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31411-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1283682B1B7
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 16:26:02 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C5D5582B1BC
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 16:26:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 91B4F286574
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 15:26:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 64F411F22843
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 15:26:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E75D94C60A;
-	Thu, 11 Jan 2024 15:25:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DE164D590;
+	Thu, 11 Jan 2024 15:26:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GGYvglm5"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="BlM5Q5eQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C50E04D127;
-	Thu, 11 Jan 2024 15:25:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 927C8C433C7;
-	Thu, 11 Jan 2024 15:25:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1704986755;
-	bh=ZxKTB6mPR4ix+a5ENOF86x5FJJZQzDK6U+BnWyQUhHA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=GGYvglm5SvsGaIX8jj41feRKiWaLnkbslwd+C0Nj0jUfukuNGaUYasmp5QmGDe7y0
-	 ewHud30NKqW9DIIgYVLfQWx98OM9QIyR8rr0FPAH4iQ5utMdS5VD1Y7EOKfgEsF3f3
-	 aiqUs+f7+G/vf2N1HVpuWiRh3y8JbnsYrVGtUSV4Ug/xrDdoQXPqevdrfDVI99cyd1
-	 9S7DXiiv/TcjrgWCln5PaMpd2yxhKAMr/foS1v7d/cokr1aA+QRIm9KiT0lVEo+gpL
-	 WjG1TiVboaTKXVwwTCR3ix5HZYaUTblwvXGt/pynPCEh73h81sdyF/kiysLc6kTzJs
-	 Xozzz7bgZ8bng==
-Date: Thu, 11 Jan 2024 15:25:49 +0000
-From: Lee Jones <lee@kernel.org>
-To: Karel Balej <karelb@gimli.ms.mff.cuni.cz>
-Cc: Karel Balej <balejk@matfyz.cz>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Duje =?utf-8?Q?Mihanovi=C4=87?= <duje.mihanovic@skole.hr>,
-	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
-Subject: Re: [RFC PATCH 1/5] mfd: 88pm88x: differences with respect to the
- PMIC RFC series
-Message-ID: <20240111152549.GL1678981@google.com>
-References: <20231228100208.2932-1-karelb@gimli.ms.mff.cuni.cz>
- <20231228100208.2932-2-karelb@gimli.ms.mff.cuni.cz>
- <20240111105426.GA1678981@google.com>
- <CYBYXXCP3O1O.2M5YMCRW3SIMY@gimli.ms.mff.cuni.cz>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 814AA4D127
+	for <devicetree@vger.kernel.org>; Thu, 11 Jan 2024 15:26:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-3376ead25e1so3606040f8f.3
+        for <devicetree@vger.kernel.org>; Thu, 11 Jan 2024 07:26:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1704986781; x=1705591581; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=bXw9H6cSiYpiMToI+kupK3Rdzo+YplTfXAjuwKGJnNw=;
+        b=BlM5Q5eQm6SPx/oiaE/lQyMIKlv5Q5KOP+dUWZ7DkhfQSWisu5XpEXQJti5laPVobB
+         USe/qLk9+ZxwJMrQGBVsHOGNukNQgDB1aJLSaZl/AfKAN4/hag4Qz+Sw9JE5g2hEfjzO
+         mNrZaAusdlEoGZRJsJjDLbBiCr2tJNgZXL9R0VLiOWQGXQFKzT3jEcKOf9xDojD8NJxn
+         mANr6Y9LzV1lvHrkq5viZCoU1ZNhs7dtoGRHmY3iAjX2hpKIr/sN51bfpopzowke4dwB
+         HPApjEGX3nTN+hLZho2vjFfxQE22bvGjvwVsziNdQo/UQedBMAoxSLqRK2mv1+71RCKZ
+         B3iA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1704986781; x=1705591581;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=bXw9H6cSiYpiMToI+kupK3Rdzo+YplTfXAjuwKGJnNw=;
+        b=je9DbgPUnmmtNqLJe1XTeNaTsbQx23JkByEeYtuIqP9KEeTVkuMMLhN+a7VJTrBxIu
+         /M0QBc7n+jjMSBUc6i7JjAEs7BP528pHC86TE7JB8lPzo9HVH8xNOwiHT0YBjEJ36fqu
+         YakTicYTC7aDcLtynB47VR6JJGsNEoMyE72i5Raa5Qx+IY501tK/TTfvHp5i0mInABKk
+         clxXVb0FVmDJd0uu38eDCxg7PeSCeHLkGBxSKP7f4hTbhbDBNKPQ8jEml3kg02Nh3KXU
+         0MKHlnqtl0aOLPy33/z2c3nkKmYGOeHYoJ0JUtm4DnMKbQGWHoWdXcM3K5QsrCfBk6N7
+         7rtQ==
+X-Gm-Message-State: AOJu0YwuYKC4M0GCdSwhDHwpi8JHhKDhEm1+xXtogA3r0D3hh5mDluI3
+	hW4NnjTLylAySdk1VQeg9rYNb1UQW62MXw==
+X-Google-Smtp-Source: AGHT+IFxCr4MIW/RF7Q6Sf5mLbGyvoYByxzUkNq87mRyNF3dhZ4A0ZXZPPyYjfcaIshkpNNUspbD0w==
+X-Received: by 2002:a05:6000:4009:b0:337:68ab:6183 with SMTP id cp9-20020a056000400900b0033768ab6183mr983007wrb.5.1704986780850;
+        Thu, 11 Jan 2024 07:26:20 -0800 (PST)
+Received: from [192.168.1.70] ([84.102.31.226])
+        by smtp.gmail.com with ESMTPSA id d6-20020a056000114600b003366a9cb0d1sm1445502wrx.92.2024.01.11.07.26.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 11 Jan 2024 07:26:20 -0800 (PST)
+Message-ID: <c5a4c9df-22f3-48f8-93b9-47e89b0f46c6@baylibre.com>
+Date: Thu, 11 Jan 2024 16:26:19 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CYBYXXCP3O1O.2M5YMCRW3SIMY@gimli.ms.mff.cuni.cz>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 03/16] arm64: dts: ti: k3-am625: Add MIT license along
+ with GPL-2.0
+Content-Language: en-US
+To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+ Tero Kristo <kristo@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Rob Herring <robh+dt@kernel.org>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org,
+ Guillaume La Roque <glaroque@baylibre.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Pierre Gondois <pierre.gondois@arm.com>, Roger Quadros <rogerq@kernel.org>,
+ Ronald Wahl <ronald.wahl@raritan.com>, Sarah Walker
+ <sarah.walker@imgtec.com>, Tony Lindgren <tony@atomide.com>
+References: <20240110140903.4090946-1-nm@ti.com>
+ <20240110140903.4090946-4-nm@ti.com>
+From: Julien Panis <jpanis@baylibre.com>
+In-Reply-To: <20240110140903.4090946-4-nm@ti.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Thu, 11 Jan 2024, Karel Balej wrote:
+On 1/10/24 15:08, Nishanth Menon wrote:
+> Modify license to include dual licensing as GPL-2.0-only OR MIT
+> license for SoC and TI evm device tree files. This allows for Linux
+> kernel device tree to be used in other Operating System ecosystems
+> such as Zephyr or FreeBSD.
+>
+> While at this, update the GPL-2.0 to be GPL-2.0-only to be in sync
+> with latest SPDX conventions (GPL-2.0 is deprecated).
+>
+> While at this, update the TI copyright year to sync with current year
+> to indicate license change (and add it at least for one file which was
+> missing TI copyright).
+>
+> Cc: Guillaume La Roque <glaroque@baylibre.com>
+> Cc: Julien Panis <jpanis@baylibre.com>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Cc: Pierre Gondois <pierre.gondois@arm.com>
+> Cc: Roger Quadros <rogerq@kernel.org>
+> Cc: Ronald Wahl <ronald.wahl@raritan.com>
+> Cc: Sarah Walker <sarah.walker@imgtec.com>
+> Cc: Tony Lindgren <tony@atomide.com>
 
-> Lee,
-> 
-> On Thu Jan 11, 2024 at 11:54 AM CET, Lee Jones wrote:
-> > The subject needs work.  Please tell us what the patches is doing.
-> >
-> > On Thu, 28 Dec 2023, Karel Balej wrote:
-> >
-> > > From: Karel Balej <balejk@matfyz.cz>
-> >
-> > A full an complete commit message is a must.
-> 
-> I have not provided a detailed description here because as I have noted
-> in the cover letter, this patch will be squashed into the MFD series. I
-> sent it only as a bridge between the two series, sorry for the
-> confusion.
-> 
-> > > diff --git a/include/linux/mfd/88pm88x.h b/include/linux/mfd/88pm88x.h
-> > > index a34c57447827..9a335f6b9c07 100644
-> > > --- a/include/linux/mfd/88pm88x.h
-> > > +++ b/include/linux/mfd/88pm88x.h
-> > > @@ -49,6 +49,8 @@ struct pm88x_data {
-> > >  	unsigned int whoami;
-> > >  	struct reg_sequence *presets;
-> > >  	unsigned int num_presets;
-> > > +	struct mfd_cell *devs;
-> > > +	unsigned int num_devs;
-> >
-> > Why are you adding extra abstraction?
-> 
-> Right, this is probably not necessary now since I'm only implementing
-> support for one of the chips - it's just that I keep thinking about it
-> as a driver for both of them and thus tend to write it a bit more
-> abstractly. Shall I then drop this and also the `presets` member which
-> is also chip-specific?
+Acked-by:Julien Panis <jpanis@baylibre.com>
 
-Even if you were to support multiple devices, this strategy is unusual
-and isn't likely to be accepted.
-
-With respect to the other variables, you are in a better position to
-know if they are still required.  By the sounds of it, I'd suggest it
-might be better to remove them.
-
--- 
-Lee Jones [李琼斯]
 
