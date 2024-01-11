@@ -1,354 +1,174 @@
-Return-Path: <devicetree+bounces-31452-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31453-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73EE882B3D4
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 18:17:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D1C682B3E3
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 18:20:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DB5351F2183D
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 17:17:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C07381F231C0
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 17:20:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D419D5579C;
-	Thu, 11 Jan 2024 17:16:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E0E6524CB;
+	Thu, 11 Jan 2024 17:20:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="AEplgu4o"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nP9wpPCF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7DD653E3D
-	for <devicetree@vger.kernel.org>; Thu, 11 Jan 2024 17:16:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A0D651C26
+	for <devicetree@vger.kernel.org>; Thu, 11 Jan 2024 17:20:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-40e60e13581so7964645e9.1
-        for <devicetree@vger.kernel.org>; Thu, 11 Jan 2024 09:16:03 -0800 (PST)
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-40e60e1373bso8025515e9.1
+        for <devicetree@vger.kernel.org>; Thu, 11 Jan 2024 09:20:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704993362; x=1705598162; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=OTCpctKriB7uXRSodgWU7ASU0fozf33p4eRnAXNX9ao=;
-        b=AEplgu4oOF6ozBG0lZva+pRo5cGNqxmSZatnSSq/1VVKvLcjxlN/K+Tr83qKcMHI2b
-         4NOfHk6tZvvNQrAQBVYYYE1AJBdGYxqtU23mTczPNuqpoOh8ctAhbh03WRayRzEK9MIM
-         gsqg+EGEbNmZ4CENBZceHYiYZJx1F+hCbKndoWZWjxPAXFtgGrNhap7FhXBiOQHnyjeO
-         sXwdKweweLt6VwplqPmeJ9zCUH30HtZ7Q80zxqHvPG/RSvDb2xLo6PB8vjdguDGBgxOz
-         KcFGhCgia16vWT33Pok3HDWQhG3u/xT9bNqX6Xqz5O3nt4OIKjMOH6ALuTXVJryGrKAQ
-         1O/g==
+        d=linaro.org; s=google; t=1704993633; x=1705598433; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=6s3qiPwrXyAwGU9WfN6p4EwpZ2YgT483oI4li09j9iQ=;
+        b=nP9wpPCFVPg4RS8l2EoGXg9IwbnYRnLvPQrzYZii0PtMaUYb8TnIgQfLBJwmecJ8BC
+         ReI/jijjnWmFlYzeaA7BwRmV8HCuxyyKreDH9s6x8YCeO6JxcLcdM6MlvcpiusGgcv90
+         CT3SFBwcSp4Sqqr5GCDDz9bf4ZpVvF0HI45PcM13GFjG/yCvXzir8X7xLHbRjgboMNg8
+         +T4d0v+aEOKrOSWmhKNyqnNvn9+7Exk+E5GN6CKksGe9DNRXxu5Wt/Z++sHgXfntq2k0
+         pv4o+gpi+NOWQ5Pq6D2P9fOi/n/DqPHzUQSWAGaND6Xy6TVZObn7TQIuki3zL7opXfWI
+         52tQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704993362; x=1705598162;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=OTCpctKriB7uXRSodgWU7ASU0fozf33p4eRnAXNX9ao=;
-        b=cT4lIl8aVEJkCpfWi4W0osGLcmtonSc4Urb1LuYsVsbJdHspg+IeYMBadi+t0yMJVF
-         bCOAZfLb58e3Nixw4haUMONf1WG8bnBVxobpmehWIjWyMaZvXxDLzBBNljEMrAVgjtbW
-         KMM1jFvUBiB7t2as6yoZQqhH35cWEB6XC4q9XlACh8Zbt1KeMfEqE1FCBrN4K9n2XXqb
-         h/HuKb64DQSme3NEu16yQXO0LOWyENm+BjPtznh9KzlSZoyu2OdAr9KQVej9R4XAdZjY
-         D0EYqZm+KmniLa/MXqNMsTs0ux+PvfEuC8HiPsar/zz/iWFHqi07uk5a8H5AP0kJwxNu
-         safw==
-X-Gm-Message-State: AOJu0YyrcnSCO2dz2/JU+kgTlJkFh6ggaEwKig5FadLV53s6BItJjpdK
-	o8Zw1kMJktITnhDTFF5AtiirNPXkpeEawQ==
-X-Google-Smtp-Source: AGHT+IG+6t738GyN4dqGv5Sb2wQ8dIGp8Me3n7bsMDvJOFOz6rJZidY4/EwrRPFM4f+/X49R6RyaWA==
-X-Received: by 2002:a05:600c:4d92:b0:40d:3dbf:9833 with SMTP id v18-20020a05600c4d9200b0040d3dbf9833mr50875wmp.233.1704993362089;
-        Thu, 11 Jan 2024 09:16:02 -0800 (PST)
-Received: from [127.0.1.1] ([37.228.218.3])
-        by smtp.gmail.com with ESMTPSA id fc19-20020a05600c525300b0040d839e7bb3sm6610653wmb.19.2024.01.11.09.16.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 11 Jan 2024 09:16:01 -0800 (PST)
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Date: Thu, 11 Jan 2024 17:15:57 +0000
-Subject: [PATCH v4 4/4] arm64: dts: qcom: sc8280xp: camss: Add CAMSS block
- definition
+        d=1e100.net; s=20230601; t=1704993633; x=1705598433;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=6s3qiPwrXyAwGU9WfN6p4EwpZ2YgT483oI4li09j9iQ=;
+        b=PDJtdMgDHZlbE4kvu3FwHLjyG1ymkYzO7x3n9+MvKFAejbua7ETVAH277I0ASADXcZ
+         jzxe0BJ64qC9ujImNbazXTNTTdrxxOOvxj62KvNHT0uoPbYFA3cd7CsVwFrr4Slpo+zy
+         FLtMRdHhWWg6tDvQbzoalonoOPJRuMuPhfnzM4O7yR2fjwnKfzmngtVy0Hv7yHJFIgE9
+         8lkolTCkDPg0590VZGq3vzV7S2iWyXbaUu3KJ31cIhE/IM3pj37IoS+B0ikQw6KTk/Q1
+         tsnlxyVJL+sHGP8JlQOhlYnVys941dGe2GJNtV+PhqnC35+DT0L+U+UXyyOMnCBsT3zB
+         TaqQ==
+X-Gm-Message-State: AOJu0YwBP1uvLeH6EtXoXOgYfamMtqEjAQA9f6jMQUv1yuHsTgizgGbH
+	YMixIziRE+5I4srLRFIdiab62+xS79Kyvw==
+X-Google-Smtp-Source: AGHT+IFm3GMILTY23wXs8VUd4tWNwejKkPgaXuPR0sV8BhPYXcZmhJ0QM7fAqEXtNCihcjoZGJEOUA==
+X-Received: by 2002:a1c:7705:0:b0:40e:5f23:413 with SMTP id t5-20020a1c7705000000b0040e5f230413mr85378wmi.177.1704993633469;
+        Thu, 11 Jan 2024 09:20:33 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.223.112])
+        by smtp.gmail.com with ESMTPSA id d18-20020a5d6452000000b0033761b2de64sm1673897wrw.76.2024.01.11.09.20.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 11 Jan 2024 09:20:32 -0800 (PST)
+Message-ID: <b6bc84f9-2ff6-40b6-8c1f-90a12f8d9149@linaro.org>
+Date: Thu, 11 Jan 2024 18:20:30 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] dt-bindings: net: dp83826: add ti,cfg-dac-minus
+ binding
+Content-Language: en-US
+To: Catalin Popescu <catalin.popescu@leica-geosystems.com>,
+ davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+ pabeni@redhat.com, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, afd@ti.com, andrew@lunn.ch, hkallweit1@gmail.com,
+ linux@armlinux.org.uk
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240111161927.3689084-1-catalin.popescu@leica-geosystems.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzTRLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+wsGUBBMBCgA+FiEE
+ m9B+DgxR+NWWd7dUG5NDfTtBYpsFAmI+BxMCGwMFCRRfreEFCwkIBwIGFQoJCAsCBBYCAwEC
+ HgECF4AACgkQG5NDfTtBYptgbhAAjAGunRoOTduBeC7V6GGOQMYIT5n3OuDSzG1oZyM4kyvO
+ XeodvvYv49/ng473E8ZFhXfrre+c1olbr1A8pnz9vKVQs9JGVa6wwr/6ddH7/yvcaCQnHRPK
+ mnXyP2BViBlyDWQ71UC3N12YCoHE2cVmfrn4JeyK/gHCvcW3hUW4i5rMd5M5WZAeiJj3rvYh
+ v8WMKDJOtZFXxwaYGbvFJNDdvdTHc2x2fGaWwmXMJn2xs1ZyFAeHQvrp49mS6PBQZzcx0XL5
+ cU9ZjhzOZDn6Apv45/C/lUJvPc3lo/pr5cmlOvPq1AsP6/xRXsEFX/SdvdxJ8w9KtGaxdJuf
+ rpzLQ8Ht+H0lY2On1duYhmro8WglOypHy+TusYrDEry2qDNlc/bApQKtd9uqyDZ+rx8bGxyY
+ qBP6bvsQx5YACI4p8R0J43tSqWwJTP/R5oPRQW2O1Ye1DEcdeyzZfifrQz58aoZrVQq+innR
+ aDwu8qDB5UgmMQ7cjDSeAQABdghq7pqrA4P8lkA7qTG+aw8Z21OoAyZdUNm8NWJoQy8m4nUP
+ gmeeQPRc0vjp5JkYPgTqwf08cluqO6vQuYL2YmwVBIbO7cE7LNGkPDA3RYMu+zPY9UUi/ln5
+ dcKuEStFZ5eqVyqVoZ9eu3RTCGIXAHe1NcfcMT9HT0DPp3+ieTxFx6RjY3kYTGLOwU0EVUNc
+ NAEQAM2StBhJERQvgPcbCzjokShn0cRA4q2SvCOvOXD+0KapXMRFE+/PZeDyfv4dEKuCqeh0
+ hihSHlaxTzg3TcqUu54w2xYskG8Fq5tg3gm4kh1Gvh1LijIXX99ABA8eHxOGmLPRIBkXHqJY
+ oHtCvPc6sYKNM9xbp6I4yF56xVLmHGJ61KaWKf5KKWYgA9kfHufbja7qR0c6H79LIsiYqf92
+ H1HNq1WlQpu/fh4/XAAaV1axHFt/dY/2kU05tLMj8GjeQDz1fHas7augL4argt4e+jum3Nwt
+ yupodQBxncKAUbzwKcDrPqUFmfRbJ7ARw8491xQHZDsP82JRj4cOJX32sBg8nO2N5OsFJOcd
+ 5IE9v6qfllkZDAh1Rb1h6DFYq9dcdPAHl4zOj9EHq99/CpyccOh7SrtWDNFFknCmLpowhct9
+ 5ZnlavBrDbOV0W47gO33WkXMFI4il4y1+Bv89979rVYn8aBohEgET41SpyQz7fMkcaZU+ok/
+ +HYjC/qfDxT7tjKXqBQEscVODaFicsUkjheOD4BfWEcVUqa+XdUEciwG/SgNyxBZepj41oVq
+ FPSVE+Ni2tNrW/e16b8mgXNngHSnbsr6pAIXZH3qFW+4TKPMGZ2rZ6zITrMip+12jgw4mGjy
+ 5y06JZvA02rZT2k9aa7i9dUUFggaanI09jNGbRA/ABEBAAHCwXwEGAEKACYCGwwWIQSb0H4O
+ DFH41ZZ3t1Qbk0N9O0FimwUCYDzvagUJFF+UtgAKCRAbk0N9O0Fim9JzD/0auoGtUu4mgnna
+ oEEpQEOjgT7l9TVuO3Qa/SeH+E0m55y5Fjpp6ZToc481za3xAcxK/BtIX5Wn1mQ6+szfrJQ6
+ 59y2io437BeuWIRjQniSxHz1kgtFECiV30yHRgOoQlzUea7FgsnuWdstgfWi6LxstswEzxLZ
+ Sj1EqpXYZE4uLjh6dW292sO+j4LEqPYr53hyV4I2LPmptPE9Rb9yCTAbSUlzgjiyyjuXhcwM
+ qf3lzsm02y7Ooq+ERVKiJzlvLd9tSe4jRx6Z6LMXhB21fa5DGs/tHAcUF35hSJrvMJzPT/+u
+ /oVmYDFZkbLlqs2XpWaVCo2jv8+iHxZZ9FL7F6AHFzqEFdqGnJQqmEApiRqH6b4jRBOgJ+cY
+ qc+rJggwMQcJL9F+oDm3wX47nr6jIsEB5ZftdybIzpMZ5V9v45lUwmdnMrSzZVgC4jRGXzsU
+ EViBQt2CopXtHtYfPAO5nAkIvKSNp3jmGxZw4aTc5xoAZBLo0OV+Ezo71pg3AYvq0a3/oGRG
+ KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
+ fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240111161927.3689084-1-catalin.popescu@leica-geosystems.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20240111-linux-next-24-01-02-sc8280xp-camss-core-dtsi-v4-4-cdd5c57ff1dc@linaro.org>
-References: <20240111-linux-next-24-01-02-sc8280xp-camss-core-dtsi-v4-0-cdd5c57ff1dc@linaro.org>
-In-Reply-To: <20240111-linux-next-24-01-02-sc8280xp-camss-core-dtsi-v4-0-cdd5c57ff1dc@linaro.org>
-To: Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>, 
- Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, 
- Mauro Carvalho Chehab <mchehab@kernel.org>, 
- Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-X-Mailer: b4 0.13-dev-4e032
 
-Add CAMSS block definition for sc8280xp.
+On 11/01/2024 17:19, Catalin Popescu wrote:
+> Add property ti,cfg-dac-minus to allow for voltage tuning
+> of logical level -1 of the MLT-3 encoded data.
 
-This drop contains definitions for the following components on sc8280xp:
+A nit, subject: drop second/last, redundant "binding". The "dt-bindings"
+prefix is already stating that these are bindings.
+See also:
+https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
+> 
+> Signed-off-by: Catalin Popescu <catalin.popescu@leica-geosystems.com>
+> ---
+>  Documentation/devicetree/bindings/net/ti,dp83822.yaml | 9 +++++++++
+>  1 file changed, 9 insertions(+)
 
-VFE * 4
-VFE Lite * 4
-CSID * 4
-CSIPHY * 4
+Don't add properties one by one. Especially if they are related.
 
-This dtsi definition has been developed and validated on a Lenovo X13s
-laptop.
+> 
+> diff --git a/Documentation/devicetree/bindings/net/ti,dp83822.yaml b/Documentation/devicetree/bindings/net/ti,dp83822.yaml
+> index db74474207ed..2f010333be49 100644
+> --- a/Documentation/devicetree/bindings/net/ti,dp83822.yaml
+> +++ b/Documentation/devicetree/bindings/net/ti,dp83822.yaml
+> @@ -62,6 +62,15 @@ properties:
+>         for the PHY.  The internal delay for the PHY is fixed to 3.5ns relative
+>         to transmit data.
+>  
+> +  ti,cfg-dac-minus:
+> +    description: |
+> +       DP83826 PHY only.
+> +       Sets the voltage ratio of the logical level -1 for the MLT-3 encoded data.
 
-Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
----
- arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 235 +++++++++++++++++++++++++++++++++
- 1 file changed, 235 insertions(+)
+ratio between what and what?
 
-diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-index 1949b4fa04e9..363a89e403bd 100644
---- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-@@ -3614,6 +3614,241 @@ cci3_i2c1: i2c-bus@1 {
- 			};
- 		};
- 
-+		camss: camss@ac5a000 {
-+			compatible = "qcom,sc8280xp-camss";
-+
-+			reg = <0 0x0ac5a000 0 0x2000>,
-+			      <0 0x0ac5c000 0 0x2000>,
-+			      <0 0x0ac65000 0 0x2000>,
-+			      <0 0x0ac67000 0 0x2000>,
-+			      <0 0x0acaf000 0 0x4000>,
-+			      <0 0x0acb3000 0 0x1000>,
-+			      <0 0x0acb6000 0 0x4000>,
-+			      <0 0x0acba000 0 0x1000>,
-+			      <0 0x0acbd000 0 0x4000>,
-+			      <0 0x0acc1000 0 0x1000>,
-+			      <0 0x0acc4000 0 0x4000>,
-+			      <0 0x0acc8000 0 0x1000>,
-+			      <0 0x0accb000 0 0x4000>,
-+			      <0 0x0accf000 0 0x1000>,
-+			      <0 0x0acd2000 0 0x4000>,
-+			      <0 0x0acd6000 0 0x1000>,
-+			      <0 0x0acd9000 0 0x4000>,
-+			      <0 0x0acdd000 0 0x1000>,
-+			      <0 0x0ace0000 0 0x4000>,
-+			      <0 0x0ace4000 0 0x1000>;
-+			reg-names = "csiphy2",
-+				    "csiphy3",
-+				    "csiphy0",
-+				    "csiphy1",
-+				    "vfe0",
-+				    "csid0",
-+				    "vfe1",
-+				    "csid1",
-+				    "vfe2",
-+				    "csid2",
-+				    "vfe_lite0",
-+				    "csid0_lite",
-+				    "vfe_lite1",
-+				    "csid1_lite",
-+				    "vfe_lite2",
-+				    "csid2_lite",
-+				    "vfe_lite3",
-+				    "csid3_lite",
-+				    "vfe3",
-+				    "csid3";
-+
-+			interrupts = <GIC_SPI 359 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 360 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 448 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 464 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 465 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 466 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 467 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 468 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 469 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 477 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 478 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 479 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 640 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 641 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 758 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 759 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 760 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 761 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 762 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 764 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "csid1_lite",
-+					  "vfe_lite1",
-+					  "csiphy3",
-+					  "csid0",
-+					  "vfe0",
-+					  "csid1",
-+					  "vfe1",
-+					  "csid0_lite",
-+					  "vfe_lite0",
-+					  "csiphy0",
-+					  "csiphy1",
-+					  "csiphy2",
-+					  "csid2",
-+					  "vfe2",
-+					  "csid3_lite",
-+					  "csid2_lite",
-+					  "vfe_lite3",
-+					  "vfe_lite2",
-+					  "csid3",
-+					  "vfe3";
-+
-+			power-domains = <&camcc IFE_0_GDSC>,
-+					<&camcc IFE_1_GDSC>,
-+					<&camcc IFE_2_GDSC>,
-+					<&camcc IFE_3_GDSC>,
-+					<&camcc TITAN_TOP_GDSC>;
-+			power-domain-names = "ife0",
-+					     "ife1",
-+					     "ife2",
-+					     "ife3",
-+					     "top";
-+
-+			clocks = <&camcc CAMCC_CAMNOC_AXI_CLK>,
-+				 <&camcc CAMCC_CPAS_AHB_CLK>,
-+				 <&camcc CAMCC_CSIPHY0_CLK>,
-+				 <&camcc CAMCC_CSI0PHYTIMER_CLK>,
-+				 <&camcc CAMCC_CSIPHY1_CLK>,
-+				 <&camcc CAMCC_CSI1PHYTIMER_CLK>,
-+				 <&camcc CAMCC_CSIPHY2_CLK>,
-+				 <&camcc CAMCC_CSI2PHYTIMER_CLK>,
-+				 <&camcc CAMCC_CSIPHY3_CLK>,
-+				 <&camcc CAMCC_CSI3PHYTIMER_CLK>,
-+				 <&camcc CAMCC_IFE_0_AXI_CLK>,
-+				 <&camcc CAMCC_IFE_0_CLK>,
-+				 <&camcc CAMCC_IFE_0_CPHY_RX_CLK>,
-+				 <&camcc CAMCC_IFE_0_CSID_CLK>,
-+				 <&camcc CAMCC_IFE_1_AXI_CLK>,
-+				 <&camcc CAMCC_IFE_1_CLK>,
-+				 <&camcc CAMCC_IFE_1_CPHY_RX_CLK>,
-+				 <&camcc CAMCC_IFE_1_CSID_CLK>,
-+				 <&camcc CAMCC_IFE_2_AXI_CLK>,
-+				 <&camcc CAMCC_IFE_2_CLK>,
-+				 <&camcc CAMCC_IFE_2_CPHY_RX_CLK>,
-+				 <&camcc CAMCC_IFE_2_CSID_CLK>,
-+				 <&camcc CAMCC_IFE_3_AXI_CLK>,
-+				 <&camcc CAMCC_IFE_3_CLK>,
-+				 <&camcc CAMCC_IFE_3_CPHY_RX_CLK>,
-+				 <&camcc CAMCC_IFE_3_CSID_CLK>,
-+				 <&camcc CAMCC_IFE_LITE_0_CLK>,
-+				 <&camcc CAMCC_IFE_LITE_0_CPHY_RX_CLK>,
-+				 <&camcc CAMCC_IFE_LITE_0_CSID_CLK>,
-+				 <&camcc CAMCC_IFE_LITE_1_CLK>,
-+				 <&camcc CAMCC_IFE_LITE_1_CPHY_RX_CLK>,
-+				 <&camcc CAMCC_IFE_LITE_1_CSID_CLK>,
-+				 <&camcc CAMCC_IFE_LITE_2_CLK>,
-+				 <&camcc CAMCC_IFE_LITE_2_CPHY_RX_CLK>,
-+				 <&camcc CAMCC_IFE_LITE_2_CSID_CLK>,
-+				 <&camcc CAMCC_IFE_LITE_3_CLK>,
-+				 <&camcc CAMCC_IFE_LITE_3_CPHY_RX_CLK>,
-+				 <&camcc CAMCC_IFE_LITE_3_CSID_CLK>,
-+				 <&gcc GCC_CAMERA_HF_AXI_CLK>,
-+				 <&gcc GCC_CAMERA_SF_AXI_CLK>;
-+			clock-names = "camnoc_axi",
-+				      "cpas_ahb",
-+				      "csiphy0",
-+				      "csiphy0_timer",
-+				      "csiphy1",
-+				      "csiphy1_timer",
-+				      "csiphy2",
-+				      "csiphy2_timer",
-+				      "csiphy3",
-+				      "csiphy3_timer",
-+				      "vfe0_axi",
-+				      "vfe0",
-+				      "vfe0_cphy_rx",
-+				      "vfe0_csid",
-+				      "vfe1_axi",
-+				      "vfe1",
-+				      "vfe1_cphy_rx",
-+				      "vfe1_csid",
-+				      "vfe2_axi",
-+				      "vfe2",
-+				      "vfe2_cphy_rx",
-+				      "vfe2_csid",
-+				      "vfe3_axi",
-+				      "vfe3",
-+				      "vfe3_cphy_rx",
-+				      "vfe3_csid",
-+				      "vfe_lite0",
-+				      "vfe_lite0_cphy_rx",
-+				      "vfe_lite0_csid",
-+				      "vfe_lite1",
-+				      "vfe_lite1_cphy_rx",
-+				      "vfe_lite1_csid",
-+				      "vfe_lite2",
-+				      "vfe_lite2_cphy_rx",
-+				      "vfe_lite2_csid",
-+				      "vfe_lite3",
-+				      "vfe_lite3_cphy_rx",
-+				      "vfe_lite3_csid",
-+				      "gcc_axi_hf",
-+				      "gcc_axi_sf";
-+
-+			iommus = <&apps_smmu 0x2000 0x4e0>,
-+				 <&apps_smmu 0x2020 0x4e0>,
-+				 <&apps_smmu 0x2040 0x4e0>,
-+				 <&apps_smmu 0x2060 0x4e0>,
-+				 <&apps_smmu 0x2080 0x4e0>,
-+				 <&apps_smmu 0x20e0 0x4e0>,
-+				 <&apps_smmu 0x20c0 0x4e0>,
-+				 <&apps_smmu 0x20a0 0x4e0>,
-+				 <&apps_smmu 0x2400 0x4e0>,
-+				 <&apps_smmu 0x2420 0x4e0>,
-+				 <&apps_smmu 0x2440 0x4e0>,
-+				 <&apps_smmu 0x2460 0x4e0>,
-+				 <&apps_smmu 0x2480 0x4e0>,
-+				 <&apps_smmu 0x24e0 0x4e0>,
-+				 <&apps_smmu 0x24c0 0x4e0>,
-+				 <&apps_smmu 0x24a0 0x4e0>;
-+
-+			interconnects = <&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_CAMERA_CFG 0>,
-+					<&mmss_noc MASTER_CAMNOC_HF 0 &mc_virt SLAVE_EBI1 0>,
-+					<&mmss_noc MASTER_CAMNOC_SF 0 &mc_virt SLAVE_EBI1 0>,
-+					<&mmss_noc MASTER_CAMNOC_ICP 0 &mc_virt SLAVE_EBI1 0>;
-+			interconnect-names = "cam_ahb",
-+					     "cam_hf_mnoc",
-+					     "cam_sf_mnoc",
-+					     "cam_sf_icp_mnoc";
-+
-+			status = "disabled";
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+				};
-+
-+				port@2 {
-+					reg = <2>;
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+				};
-+
-+				port@3 {
-+					reg = <3>;
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+				};
-+			};
-+		};
-+
- 		camcc: clock-controller@ad00000 {
- 			compatible = "qcom,sc8280xp-camcc";
- 			reg = <0 0x0ad00000 0 0x20000>;
+> +       0 = 50%, 1 = 56.25%, 2 = 62.50%, 3 = 68.75%, 4 = 75%, 5 = 81.25%, 6 = 87.50%,
+> +       7 = 93.75%, 8 = 100%, 9 = 106.25%, 10 = 112.50%, 11 = 118.75%, 12 = 125%,
+> +       13 = 131.25%, 14 = 137.50%, 15 = 143.75%, 16 = 150%.
+> +    enum: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
 
--- 
-2.42.0
+Missing: "default:"
+
+
+>  
+
+Best regards,
+Krzysztof
 
 
