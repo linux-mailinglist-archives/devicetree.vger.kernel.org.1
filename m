@@ -1,66 +1,66 @@
-Return-Path: <devicetree+bounces-31448-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31449-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1028682B3C7
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 18:16:25 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E7A282B3CA
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 18:16:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A370A1F259E7
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 17:16:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9381B1C242EB
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 17:16:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CF4B52F9D;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 955695380A;
 	Thu, 11 Jan 2024 17:16:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VCvXiw81"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="qValMmNA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 365B0524C0
-	for <devicetree@vger.kernel.org>; Thu, 11 Jan 2024 17:15:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5027950264
+	for <devicetree@vger.kernel.org>; Thu, 11 Jan 2024 17:16:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-40e6296636fso4648365e9.2
-        for <devicetree@vger.kernel.org>; Thu, 11 Jan 2024 09:15:58 -0800 (PST)
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-40e6296636fso4648655e9.2
+        for <devicetree@vger.kernel.org>; Thu, 11 Jan 2024 09:16:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704993357; x=1705598157; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=akghNAx5zO8q20jwNqMX/JqWUlUpy5+0Dw/bZ3TCarc=;
-        b=VCvXiw81E5k5Q6zVtxCyOhWjRLd2efVdhNXF0TlWnaWolVLhi2ztXc87FZ322lTTDB
-         wLd1V1jygOocfNQSnIJmM7yqgunQ4P53pNpedN0aCGzNdkW+evy7LiOxedV/UGMQicTV
-         dk9NoBgN86l5zusOkzCE5GA6QK+BxisYMu344fqm9L7KYjghECHiccfaWV/eTO+MIaCl
-         ttzl3Sm8Sb+ZzPuDueaa8h8KKri5YBMZXHwCxQYK/4BOSue1eqeWnzc8soEE2t4eFe0o
-         3asD8ZSorNTiEJ7fmkHj83oPwC02dl59vFAiGHqda/LuJ10Bt55lU9oLfajiCC4wjAVG
-         FyoQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704993357; x=1705598157;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=linaro.org; s=google; t=1704993358; x=1705598158; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=akghNAx5zO8q20jwNqMX/JqWUlUpy5+0Dw/bZ3TCarc=;
-        b=O/74p0FEir+DcmjSsSOszN5/b6cVWYYpiJMD8CPhckSNDEbjDqiYFKCRu0BvKurUWe
-         efRIv5vJWdD5U2l8TwnfnpZHjbt7T9CiUri9Cc/pqYd7WnDIxrtAyrwTDid0uR7jYXoO
-         PeZ4hCpBUI7uMULmEdpQa/n1d/WGTTnurd6VbSDp42ssKstFzeb24A+SufCktt7VoSz2
-         uAxGrC2QhC8LIQmBoD0rAOFSEfvkpF+SIKT+pSeHqX7z5MgJdTGkX3+5p9RvYeZ+I3aX
-         1DtPulAgF3J/GOcseBMBuJ5oF9Fve1KsCSUKOMmrPe8tEyfNnAnnhHmcZxbYEHHZ872X
-         CNKA==
-X-Gm-Message-State: AOJu0YxNhZ7CVxPTIEtIgRPqpU86yqVRefAI6L4P+tVl+hBSTdyao3Ep
-	b1ZVtRrFPMaD/5nwCsNXZ2CNpBhEOcZ18w==
-X-Google-Smtp-Source: AGHT+IGoND+UJOh23+LKbFszikkhRBg8DYoBHaZaVw5Op56unEB7OV7Z/lToQn5+W3MkYYACti9X9w==
-X-Received: by 2002:a05:600c:4e41:b0:40e:6164:8ca9 with SMTP id e1-20020a05600c4e4100b0040e61648ca9mr81905wmq.44.1704993357454;
-        Thu, 11 Jan 2024 09:15:57 -0800 (PST)
+        bh=xrDQaKaLoC6HAA7NXSJEUsah06CyH+NV6eUOiFE3MbA=;
+        b=qValMmNAq/SUd21rGyGNGrToWM/cauIEZcx16Uy1UfXhfm4OlxdDTzv5ifJJE174ZU
+         uaam1jFbw6wQm77hkdPoLBscW29q6Zgl2ztLDUGV4ReBcQzLm8z+W2mD07f9Sz/QeYt/
+         OA457uDmGlAXsAMZh6rHR/ix1WVoLWKqPe6rTpYs58Ydts2ZUFgoMSvGQXljFgfVewWI
+         m11Bh9CgrUdSBziCnPCkmMcn3FOpWsbRFnPqbQ4F/BGAPa8BPOQnGYEZODz3kstWzcDq
+         jYzqI15uIzn5vHqqctUdbjiwufpwNpisDS0h+fs3jwS15kqzTUKF0BOGOsGaECqhk+np
+         WjhA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1704993358; x=1705598158;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=xrDQaKaLoC6HAA7NXSJEUsah06CyH+NV6eUOiFE3MbA=;
+        b=F9DB3v2PLkVz0fPQo/Im1Yx0krSdJdYaZuIZjUF+7haHYDdaI7kH1CyYJLy/zqH4Cj
+         BApO2szzX8EJ4hVxT/jDurXQD0id47QWe+UKGgnUeTZ6A0ZMmK4tlpqrBrQagjhxSSTz
+         q58XYl6B8CGEOo9NFAPPCIxn/2U5HiqbmL0S6soWxJgIp9grAjCc3k9RlgW06AkgDz/r
+         BleYrpyNuqG3pOkGONfhJQhcu/8pP3O4AuZtb43D8OPNHekwvVGFdhT7Bhmi3ZAu9Eae
+         8JANwndrbMZ8QMucJApFzJyrdRh/XbQmSvrbKG7PI8bBLG7khYvVK8d03Ovn62WcOujt
+         I1Xg==
+X-Gm-Message-State: AOJu0YyDpkrmWPDSYesTD8sPj+3jONJ/xfbok62ecK1laEzTmYwyYISs
+	aUf+/6M9SBpOt7KpGm2I8ruk5YQXCI7AhQ==
+X-Google-Smtp-Source: AGHT+IG1G2eG5lT3vSWQFdHowYh7/D72MCkWT7L1OuO3vpi6wr96lhndsffYKWW5ipDOq7gKt35mag==
+X-Received: by 2002:a05:600c:1e17:b0:40d:5bbf:71f2 with SMTP id ay23-20020a05600c1e1700b0040d5bbf71f2mr95098wmb.5.1704993358642;
+        Thu, 11 Jan 2024 09:15:58 -0800 (PST)
 Received: from [127.0.1.1] ([37.228.218.3])
-        by smtp.gmail.com with ESMTPSA id fc19-20020a05600c525300b0040d839e7bb3sm6610653wmb.19.2024.01.11.09.15.56
+        by smtp.gmail.com with ESMTPSA id fc19-20020a05600c525300b0040d839e7bb3sm6610653wmb.19.2024.01.11.09.15.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 11 Jan 2024 09:15:56 -0800 (PST)
+        Thu, 11 Jan 2024 09:15:58 -0800 (PST)
 From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Subject: [PATCH v4 0/4] arm64: dts: qcom: sc8280xp: Add CAMSS core dtsi
- support
-Date: Thu, 11 Jan 2024 17:15:53 +0000
-Message-Id: <20240111-linux-next-24-01-02-sc8280xp-camss-core-dtsi-v4-0-cdd5c57ff1dc@linaro.org>
+Date: Thu, 11 Jan 2024 17:15:54 +0000
+Subject: [PATCH v4 1/4] dt-bindings: i2c: qcom-cci: Document sc8280xp
+ compatible
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,11 +69,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAEkioGUC/5XNQQ6CMBCF4auYrh1TWqDFlfcwLoYyaBOlpEWCM
- dzdkcRE44rlm6bf/xSJoqck9puniDT65EPHI99uhLtgdybwDW+hpMplJhVcfXefoKNpAJWDzIB
- vyVll5dSDw1tK4EIkaIbkQRktsWgNtZUVTPaRWj8tueOJ98WnIcTHUh+z9/UT0utCIz8D1ugQS
- 41VmR34O8awC/Es3qVRfevFSl2xbrAwta2l0ZX90/W3Xq3UNeu1JY0mx5JK/NHneX4B40vF8aU
- BAAA=
+Message-Id: <20240111-linux-next-24-01-02-sc8280xp-camss-core-dtsi-v4-1-cdd5c57ff1dc@linaro.org>
+References: <20240111-linux-next-24-01-02-sc8280xp-camss-core-dtsi-v4-0-cdd5c57ff1dc@linaro.org>
+In-Reply-To: <20240111-linux-next-24-01-02-sc8280xp-camss-core-dtsi-v4-0-cdd5c57ff1dc@linaro.org>
 To: Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>, 
  Bjorn Andersson <andersson@kernel.org>, 
  Konrad Dybcio <konrad.dybcio@linaro.org>, 
@@ -87,73 +85,53 @@ Cc: linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
  Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 X-Mailer: b4 0.13-dev-4e032
 
-This series adds the yaml, CAMSS and CCI dts definitions for the sc8280xp.
+Add sc8280xp compatible consistent with recent CAMSS CCI interfaces.
 
-4 x CCI master busses
-4 x VFE
-4 x VFE Lite
-4 x CSID
-4 x CSIPHY
-
-Link: https://git.codelinaro.org/bryan.odonoghue/kernel/-/tree/linux-next-24-01-02-sc8280xp-camss-core-dtsi
-
-To: Robert Foss <rfoss@kernel.org>
-To: Todor Tomov <todor.too@gmail.com>
-To: Bjorn Andersson <andersson@kernel.org>
-To: Konrad Dybcio <konrad.dybcio@linaro.org>
-To: Mauro Carvalho Chehab <mchehab@kernel.org>
-To: Rob Herring <robh+dt@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-To: Conor Dooley <conor+dt@kernel.org>
-Cc:  <linux-media@vger.kernel.org>
-Cc:  <linux-arm-msm@vger.kernel.org>
-Cc:  <devicetree@vger.kernel.org>
-Cc:  <linux-kernel@vger.kernel.org>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-
-Changes in v2:
-- This series depends on "clk: qcom: camcc-sc8280xp: Add sc8280xp CAMCC"
-  in linux-next. - Rob, Krzysztof, dts Robot
-- Drops cci_src clock - Konrad
-- Adds sc8280xp-cci - Konrad
-
-Link: https://lore.kernel.org/r/20240103-linux-next-24-01-02-sc8280xp-camss-core-dtsi-v1-0-abacaa63a961@linaro.org
-Link: https://git.codelinaro.org/bryan.odonoghue/kernel/-/tree/linux-next-24-01-02-sc8280xp-camss-core-dtsi-v2
-
-Changes in v3:
-- This series depends on "clk: qcom: camcc-sc8280xp: Add sc8280xp CAMCC"
-  in linux-next. - Rob, Krzysztof, dts Robot
-- Fixes spurious "media: dt-bindings: media" in patch title - bod
-- Reorders pinctrl declarations per dts-coding-style.rts - Konrad
-- Adds Krzysztofs RB where indicated
-Link: https://lore.kernel.org/r/20240105-linux-next-24-01-02-sc8280xp-camss-core-dtsi-v2-0-7a57b8b07398@linaro.org
-Link: https://git.codelinaro.org/bryan.odonoghue/kernel/-/tree/linux-next-24-01-02-sc8280xp-camss-core-dtsi-v3
-
-Changes in v4:
-- Drops "|" symbol postfixed to description: in patch #2 - Rob
-- Manually adds dependency below "---" in patch #2 - Rob
-- Reverts pinctrl-names as I misinterpreted Konrad's ask - bod
-- Removes newlines between reg/reg-names etc - Konrad
-
-Link: https://lore.kernel.org/r/20240109-linux-next-24-01-02-sc8280xp-camss-core-dtsi-v3-0-b8e3a74a6e6a@linaro.org
-Link: https://git.codelinaro.org/bryan.odonoghue/kernel/-/tree/linux-next-24-01-02-sc8280xp-camss-core-dtsi-v4
 ---
-Bryan O'Donoghue (4):
-      dt-bindings: i2c: qcom-cci: Document sc8280xp compatible
-      dt-bindings: media: camss: Add qcom,sc8280xp-camss binding
-      arm64: dts: qcom: sc8280xp: camss: Add CCI definitions
-      arm64: dts: qcom: sc8280xp: camss: Add CAMSS block definition
+ .../devicetree/bindings/i2c/qcom,i2c-cci.yaml         | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
 
- .../devicetree/bindings/i2c/qcom,i2c-cci.yaml      |  19 +
- .../bindings/media/qcom,sc8280xp-camss.yaml        | 512 +++++++++++++++++++
- arch/arm64/boot/dts/qcom/sc8280xp.dtsi             | 542 +++++++++++++++++++++
- 3 files changed, 1073 insertions(+)
----
-base-commit: ab0b3e6ef50d305278b1971891cf1d82ab050b35
-change-id: 20240102-linux-next-24-01-02-sc8280xp-camss-core-dtsi-2730a5f7ef98
+diff --git a/Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml b/Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml
+index 8386cfe21532..369d72882874 100644
+--- a/Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml
++++ b/Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml
+@@ -26,6 +26,7 @@ properties:
+       - items:
+           - enum:
+               - qcom,sc7280-cci
++              - qcom,sc8280xp-cci
+               - qcom,sdm845-cci
+               - qcom,sm6350-cci
+               - qcom,sm8250-cci
+@@ -176,6 +177,24 @@ allOf:
+             - const: cci
+             - const: cci_src
+ 
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - qcom,sc8280xp-cci
++    then:
++      properties:
++        clocks:
++          minItems: 4
++          maxItems: 4
++        clock-names:
++          items:
++            - const: camnoc_axi
++            - const: slow_ahb_src
++            - const: cpas_ahb
++            - const: cci
++
+ additionalProperties: false
+ 
+ examples:
 
-Best regards,
 -- 
-Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+2.42.0
 
 
