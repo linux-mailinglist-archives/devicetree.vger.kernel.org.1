@@ -1,170 +1,147 @@
-Return-Path: <devicetree+bounces-31423-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31424-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3476B82B299
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 17:17:18 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B2CE582B2CF
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 17:22:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4BBCE1C2345F
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 16:17:17 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 99961B25D9B
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 16:22:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32A3C50245;
-	Thu, 11 Jan 2024 16:16:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 202FB51006;
+	Thu, 11 Jan 2024 16:20:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="B2scXr+O"
+	dkim=pass (1024-bit key) header.d=leica-geosystems.com header.i=@leica-geosystems.com header.b="tybnatGY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com [209.85.167.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR02-AM0-obe.outbound.protection.outlook.com (mail-am0eur02on2100.outbound.protection.outlook.com [40.107.247.100])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7E714F8A1
-	for <devicetree@vger.kernel.org>; Thu, 11 Jan 2024 16:16:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-oi1-f177.google.com with SMTP id 5614622812f47-3bbd6f87959so4431740b6e.1
-        for <devicetree@vger.kernel.org>; Thu, 11 Jan 2024 08:16:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1704989817; x=1705594617; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=M0L8Io9WOaU9zuxGb3WJPoQE4gX/uTxUJ5wFQjECB/w=;
-        b=B2scXr+OKXWnyIR11WNhHl4HnA8sstMVDe5KXjsz/WyqmtmiCB38/AajhI34/s5Zb9
-         Crd5F7aju81hDfjiQs+5gnq8UaWJuK/n9TMraE4vEh1Gg5y78E8xiB6l/bzcuaj6Z/Pe
-         61NPE+Ye0I1ppuwtjod6jxvhHhni9e0TQ+nS9EYK7hTq3mTgGw0XrUMos3m0A5CEkB4I
-         O5wuseypKGTGN3TfA2ZpwDrwE/u3wp/tN/3GKybqgdFvgUbjXUC8OGD1lb2YFc7MaUw9
-         FQYj33p0Wbhbc3fD8yR+tymfYdCD7U5vjcov6VvolmJkaMthF5PkY8/G/jv1jGWet1CB
-         I4LQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704989817; x=1705594617;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=M0L8Io9WOaU9zuxGb3WJPoQE4gX/uTxUJ5wFQjECB/w=;
-        b=AdjW+hwIqG6h52JQAXVbQNXdExrJqOFQdU3gHiFUXeTMqgAfX1mCsLiPfyi9OsXasV
-         E/Z7IYq+4QWLiy3IhDpHN5jIyiUzgLEb2INiXp+F4PhW5HfBoVv5ryEFLE+szkWKvkdm
-         hVpx8oudH9L51TjZe1Erk7/Lrx6j3d9nGKe2xC/OriV6bpmoB6DlagJY1Pm1h7S9Oy44
-         vgr1ktUcuTuvW0ig/+tLrLVhD2qTTtnU424K7GjxyAG+w5L0cOv8jzzCg0dzfVvnpONL
-         LBw4JlJbnYV5PWSuqoTtAXITPQ9M1H6Y5BvDTniWGq0TdSMnCX9wexZLOwVo/k72Qtpn
-         dw6Q==
-X-Gm-Message-State: AOJu0YyTOKPOicq/t+gzUjFYOFpN5KrsWTZ266ldhfA7epbBu8aRiwjp
-	Aibeyn+GmhWy4TqrWVYncWTCopgMdPogU5rSAGG91orw6cGRIg==
-X-Google-Smtp-Source: AGHT+IGJENwweiSWgpyQ2rt2ZAKEMsGtxTp3hgP1clpfKIQ8hkKdJSDGEsbKitZOWDOeRpTbQTmQIXknw6HKsHnJXYg=
-X-Received: by 2002:a05:6808:1289:b0:3bd:3e96:a8ab with SMTP id
- a9-20020a056808128900b003bd3e96a8abmr1572401oiw.53.1704989816773; Thu, 11 Jan
- 2024 08:16:56 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 394735025A;
+	Thu, 11 Jan 2024 16:20:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=leica-geosystems.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=leica-geosystems.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=HWc/uJYrOhlCJ30ixQ+q3HDyvHImT8ftNjUXMxAAf/HNDE8Rcc0+AZKg+nK3ngx+ALCizTq7ChVLcA3S6VSRLcdDwJl4PvHecVw4+ZqZm4+S8n4wKQAOIWAeLFk7RefpMlyOPg/h2HV3APioGd1e75jAppl1rTQ5hYkhwzt7ZiYKLriWHwZRM6QxhMce4qFmQIdzB4KODuuhsSN885Pu+zPYmJgtEC0w57jZbPYu+SQiX247RIqN1f5iWqGT2Z9YE/yJHlz9Ay5Z7Caa5PozY8dR/xxyqTuVq/0f/r2kDkOEBtncfli+QFQkPzmKlJMCVbh+ALJZpBKHymLpfsFWtw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=0aQqe5Pbmg9/g7Hqzu5M8uFwCumDkHgty4VSR4lSNjk=;
+ b=ZPlZE0Qo4Ws+4fEHeyeOI8vsKHG/54YCgyLnjW7MLLFz5yJ46lJtkdPZSKJewJAIMFkTcnWj2eb2ulJ5/3VIqHdn47SziJGOt9Ao6xuixn1zKP90dAl2q5ameou/GY/V19ellYfOlfiv6oH+GWYifwKhg8u8a4rg/1ZVhqmCJjJyd04Rss3nGy5Gx71lTT8Knle1VgKhuVN8TP5adps2eF53yJU29P6WzmoVTRmyZW9elusk56R+BYOEqe9BT8xEwCoAsh2yfzpdwNPnGomAqpSqT4yDtA54pV7XmfA4UqdzlmB0/WLE+xWTqSIMVVcCB813bXh4XoXHX1g1oaU+1Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=temperror (sender ip
+ is 193.8.40.94) smtp.rcpttodomain=vger.kernel.org
+ smtp.mailfrom=leica-geosystems.com; dmarc=temperror action=none
+ header.from=leica-geosystems.com; dkim=none (message not signed); arc=none
+ (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=leica-geosystems.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=0aQqe5Pbmg9/g7Hqzu5M8uFwCumDkHgty4VSR4lSNjk=;
+ b=tybnatGYYYeeQTPjki7liG8Cpdw+tv1vVDkF6rXGw5L3vSKl50++9tORhDqtA4RV//P/g61VLIeqtB/yV6CgNM9bLGx84nm2ljm3DlplQu3CDtPada/yj74CPZ8pCCUPg22Peb3x13PypFE/nqsh13mfEz9OwIxNO11u6cUbIow=
+Received: from DU2P251CA0022.EURP251.PROD.OUTLOOK.COM (2603:10a6:10:230::20)
+ by AM8PR06MB6867.eurprd06.prod.outlook.com (2603:10a6:20b:1dc::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7181.18; Thu, 11 Jan
+ 2024 16:20:20 +0000
+Received: from DB5PEPF00014B9B.eurprd02.prod.outlook.com
+ (2603:10a6:10:230:cafe::9b) by DU2P251CA0022.outlook.office365.com
+ (2603:10a6:10:230::20) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7181.19 via Frontend
+ Transport; Thu, 11 Jan 2024 16:20:20 +0000
+X-MS-Exchange-Authentication-Results: spf=temperror (sender IP is 193.8.40.94)
+ smtp.mailfrom=leica-geosystems.com; dkim=none (message not signed)
+ header.d=none;dmarc=temperror action=none header.from=leica-geosystems.com;
+Received-SPF: TempError (protection.outlook.com: error in processing during
+ lookup of leica-geosystems.com: DNS Timeout)
+Received: from hexagon.com (193.8.40.94) by
+ DB5PEPF00014B9B.mail.protection.outlook.com (10.167.8.168) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.7181.14 via Frontend Transport; Thu, 11 Jan 2024 16:20:19 +0000
+Received: from aherlnxbspsrv01.lgs-net.com ([10.60.34.116]) by hexagon.com with Microsoft SMTPSVC(10.0.17763.1697);
+	 Thu, 11 Jan 2024 17:20:19 +0100
+From: Catalin Popescu <catalin.popescu@leica-geosystems.com>
+To: davem@davemloft.net,
+	edumazet@google.com,
+	kuba@kernel.org,
+	pabeni@redhat.com,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	afd@ti.com,
+	andrew@lunn.ch,
+	hkallweit1@gmail.com,
+	linux@armlinux.org.uk
+Cc: netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Catalin Popescu <catalin.popescu@leica-geosystems.com>
+Subject: [PATCH 1/3] dt-bindings: net: dp83826: add ti,cfg-dac-minus binding
+Date: Thu, 11 Jan 2024 17:19:25 +0100
+Message-Id: <20240111161927.3689084-1-catalin.popescu@leica-geosystems.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240104130123.37115-1-brgl@bgdev.pl> <20240104130123.37115-4-brgl@bgdev.pl>
- <20240109144327.GA10780@wunner.de> <CAMRc=MdXO6c6asvRSn_Z8-oFS48hroT+dazGKB6WWY1_Zu7f1Q@mail.gmail.com>
- <20240110132853.GA6860@wunner.de> <CAMRc=MdBSAb_kEO2r7r-vwLuRAEv7pMODOMtZoCCRAd=zsQb_w@mail.gmail.com>
- <20240110164105.GA13451@wunner.de> <CAMRc=MdQKPN8UbagmswjFx7_JvmJuBeuq8+9=z-+GBNUmdpWEA@mail.gmail.com>
- <20240111104211.GA32504@wunner.de> <CAMRc=MfT_VLo7++K4M89iYrciqWSrX_JyS1LX5kaGTNDNVQiOg@mail.gmail.com>
- <20240111150201.GA28409@wunner.de>
-In-Reply-To: <20240111150201.GA28409@wunner.de>
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Thu, 11 Jan 2024 17:16:45 +0100
-Message-ID: <CAMRc=Mcngw1vw9q0DXRWLKk4o9FOY+Mzz-niueT-v2THvbS1Dw@mail.gmail.com>
-Subject: Re: [RFC 3/9] PCI/portdrv: create platform devices for child OF nodes
-To: Lukas Wunner <lukas@wunner.de>
-Cc: Kalle Valo <kvalo@kernel.org>, "David S . Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
-	Bjorn Helgaas <bhelgaas@google.com>, Heiko Stuebner <heiko@sntech.de>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Chris Morgan <macromorgan@hotmail.com>, 
-	Linus Walleij <linus.walleij@linaro.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Arnd Bergmann <arnd@arndb.de>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	=?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= <nfraprado@collabora.com>, 
-	Marek Szyprowski <m.szyprowski@samsung.com>, Peng Fan <peng.fan@nxp.com>, 
-	Robert Richter <rrichter@amd.com>, Dan Williams <dan.j.williams@intel.com>, 
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>, Terry Bowman <terry.bowman@amd.com>, 
-	Kuppuswamy Sathyanarayanan <sathyanarayanan.kuppuswamy@linux.intel.com>, 
-	=?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>, 
-	Huacai Chen <chenhuacai@kernel.org>, Alex Elder <elder@linaro.org>, 
-	Srini Kandagatla <srinivas.kandagatla@linaro.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, linux-wireless@vger.kernel.org, 
-	netdev@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org, 
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-OriginalArrivalTime: 11 Jan 2024 16:20:19.0199 (UTC) FILETIME=[11A4C0F0:01DA44AA]
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DB5PEPF00014B9B:EE_|AM8PR06MB6867:EE_
+Content-Type: text/plain
+X-MS-Office365-Filtering-Correlation-Id: 21d94795-6ee9-4970-5c92-08dc12c13481
+X-SET-LOWER-SCL-SCANNER: YES
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	NqlWwgovF6YMwSXVrG7JlijejGgjyCIknlQVU/HkMjug1QPSVkMMQZTyppkApvSbQzPcLM+7N08lTXsHhdutd03iukkyhHy3WfnZxNh6/cDWxllq1XTSQE524/IGNIlrchubwpOTGlado1b86R43xYCo3kXhOK6axE33ux6zT1ADlASMU6rH39d1EZ7lQlqhT3X9CWHAh3SVoN7fnV1GkAQr8TuEtc6WzZZDASTikkcaAP7JqlkSVAuoGISiXLsmwlKwpkWx4e87bC2vOl8Zn0TyPomASX1oPtqDxrn1YWLegSQzz59TzMkJR7I0EASWe8qun2QH3tybHYm5tKgdevCfzG3KjdZS+cH+rWBQ5eKTWKqd1IySx32nPDi07dr2siQVMrJZqc3H9IW/aexgsHbE5DG7eIjy2CKRMLGFBBlZELooPPJFkXC2dmr/Goh18jqcq8llP7YU6XNbf3KH6w6me9Dv8F/wuZRi1+jguWpBY+hyc7grQ9d8AvVbUbpKrJgxgT4yO2EQMiIfb6uhwEkNivfbDnEe1C6qkgm05VP3IV6xvKdacWCKLyoBIbRCCsyYO+TPmPpZe5RZteJP99vVSuvm4FQomg2huS/F5dtqUrvzc8h9tMDVIcvnMo1guf4GMXIpJiCYW3JQU9HRiSM2gFb2Su+6W95vrAh2mwzjOcQ6SuSGt+shJjbbT0Q6LeDyCdKspnR+1iFhxeieVftTxms4qDIzBdzDM1rTBDsjwilYVRAppmf69NT9wE6X2Kc5HEKl+5+tf+zwU8OF6A==
+X-Forefront-Antispam-Report:
+	CIP:193.8.40.94;CTRY:CH;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:hexagon.com;PTR:ahersrvdom50.leica-geosystems.com;CAT:NONE;SFS:(13230031)(4636009)(136003)(376002)(396003)(346002)(39860400002)(230922051799003)(1800799012)(451199024)(64100799003)(186009)(82310400011)(36840700001)(40470700004)(46966006)(40460700003)(40480700001)(921011)(70586007)(336012)(36756003)(81166007)(86362001)(356005)(41300700001)(36860700001)(63350400001)(63370400001)(2616005)(82740400003)(1076003)(107886003)(26005)(47076005)(2906002)(6666004)(70206006)(8936002)(316002)(450100002)(478600001)(5660300002)(4326008)(44832011)(8676002);DIR:OUT;SFP:1102;
+X-OriginatorOrg: leica-geosystems.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Jan 2024 16:20:19.6617
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 21d94795-6ee9-4970-5c92-08dc12c13481
+X-MS-Exchange-CrossTenant-Id: 1b16ab3e-b8f6-4fe3-9f3e-2db7fe549f6a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=1b16ab3e-b8f6-4fe3-9f3e-2db7fe549f6a;Ip=[193.8.40.94];Helo=[hexagon.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	DB5PEPF00014B9B.eurprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM8PR06MB6867
 
-On Thu, Jan 11, 2024 at 4:02=E2=80=AFPM Lukas Wunner <lukas@wunner.de> wrot=
-e:
->
-> On Thu, Jan 11, 2024 at 05:09:09AM -0600, Bartosz Golaszewski wrote:
-> > On Thu, 11 Jan 2024 11:42:11 +0100, Lukas Wunner <lukas@wunner.de> said=
-:
-> > > On Wed, Jan 10, 2024 at 02:18:30PM -0600, Bartosz Golaszewski wrote:
-> > >> On Wed, 10 Jan 2024 17:41:05 +0100, Lukas Wunner <lukas@wunner.de> s=
-aid:
-> > >> > On Wed, Jan 10, 2024 at 05:26:52PM +0100, Bartosz Golaszewski wrot=
-e:
-> > >> > > Seems like the following must be true but isn't in my case (from
-> > >> > > pci_bus_add_device()):
-> > >> > >
-> > >> > >     if (pci_is_bridge(dev))
-> > >> > >         of_pci_make_dev_node(dev);
-> > >> > >
-> > >> > > Shouldn't it evaluate to true for ports?
-> > >> >
-> > >> > It should.
-> > >> >
-> > >> > What does "lspci -vvvvxxxx -s BB:DD.F" say for the port in questio=
-n?
-> >
-> > # lspci -vvvvxxxx -s 0000:00:00
-> > 0000:00:00.0 PCI bridge: Qualcomm Technologies, Inc Device 010b
-> > (prog-if 00 [Normal decode])
-> >       Device tree node: /sys/firmware/devicetree/base/soc@0/pcie@1c0000=
-0/pcie@0
-> [...]
-> > 00: cb 17 0b 01 07 05 10 00 00 00 04 06 00 00 01 00
->                                                 ^^
-> The Header Type in config space is 0x1, i.e. PCI_HEADER_TYPE_BRIDGE.
->
-> So pci_is_bridge(dev) does return true (unlike what you write above)
-> and control flow enters of_pci_make_dev_node().
->
-> But perhaps of_pci_make_dev_node() returns immediately because:
->
+Add property ti,cfg-dac-minus to allow for voltage tuning
+of logical level -1 of the MLT-3 encoded data.
 
-No, it was actually a no-op due to CONFIG_PCI_DYNAMIC_OF_NODES not
-being set. But this is only available if CONFIG_OF_DYNAMIC is enabled
-which requires OF_UNITTEST (!).
+Signed-off-by: Catalin Popescu <catalin.popescu@leica-geosystems.com>
+---
+ Documentation/devicetree/bindings/net/ti,dp83822.yaml | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-We definitely don't need to enable dynamic OF nodes. We don't want to
-modify the DT, we want to create devices for existing nodes. Also:
-with the approach in this RFC we maintain a clear hierarchy of devices
-with the port device being the parent of the power sequencing device
-which becomes the parent of the actual PCIe device (the port stays the
-parent of this device too).
+diff --git a/Documentation/devicetree/bindings/net/ti,dp83822.yaml b/Documentation/devicetree/bindings/net/ti,dp83822.yaml
+index db74474207ed..2f010333be49 100644
+--- a/Documentation/devicetree/bindings/net/ti,dp83822.yaml
++++ b/Documentation/devicetree/bindings/net/ti,dp83822.yaml
+@@ -62,6 +62,15 @@ properties:
+        for the PHY.  The internal delay for the PHY is fixed to 3.5ns relative
+        to transmit data.
+ 
++  ti,cfg-dac-minus:
++    description: |
++       DP83826 PHY only.
++       Sets the voltage ratio of the logical level -1 for the MLT-3 encoded data.
++       0 = 50%, 1 = 56.25%, 2 = 62.50%, 3 = 68.75%, 4 = 75%, 5 = 81.25%, 6 = 87.50%,
++       7 = 93.75%, 8 = 100%, 9 = 106.25%, 10 = 112.50%, 11 = 118.75%, 12 = 125%,
++       13 = 131.25%, 14 = 137.50%, 15 = 143.75%, 16 = 150%.
++    enum: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
++
+ required:
+   - reg
+ 
+-- 
+2.34.1
 
-Bartosz
-
->         /*
->          * If there is already a device tree node linked to this device,
->          * return immediately.
->          */
->         if (pci_device_to_OF_node(pdev))
->                 return;
->
-> ...and lspci does list a devicetree node for that Root Port.
->
-> In any case, of_pci_make_dev_node() is the right place to add
-> the call to of_platform_populate().  Just make sure it's called
-> even if there is already a DT node for the Root Port itself.
->
-> Thanks,
->
-> Lukas
 
