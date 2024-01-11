@@ -1,111 +1,70 @@
-Return-Path: <devicetree+bounces-31487-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31488-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id DCBAA82B6F3
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 23:03:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D807A82B709
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 23:18:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7F600B23DE7
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 22:03:44 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 742CDB241CE
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 22:18:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D71A158214;
-	Thu, 11 Jan 2024 22:03:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC56B58AA0;
+	Thu, 11 Jan 2024 22:18:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qQETrqDh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bDSH2aM6"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A495E5820D;
-	Thu, 11 Jan 2024 22:03:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2DFF0C43399;
-	Thu, 11 Jan 2024 22:03:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D0EA58238;
+	Thu, 11 Jan 2024 22:18:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B194AC433C7;
+	Thu, 11 Jan 2024 22:18:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1705010619;
-	bh=jN9g+MnTl+CuJ+/RvoYQJ0TAQWXECkq+Sx15c1NcM4c=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=qQETrqDh5M/ns6SFVKQSqUS42/kaxrvLrN8y2KF4vmyBIt1pOK66I2YZUfAYK80P8
-	 4Ri50DkUoL/qQqqxRtTxh//fxrXSmxd6IeORDZTRpD+5lOl30hO4EOa1CuXOdJkvQN
-	 Uq195P7kItZ4h6nIyqPHGLxZeeXqeJ2JaIyouph2k3r5XEpWduk873MXI5NoTpcEnu
-	 CJm4XunD/djKIX/nD2nOWLWQWO+OsS9Re8qxJq6b+dL8gwEgOylQ70EF4eIf0FmIO7
-	 ixNZdO550n/YmEFVIUR9uMIXHi0KeodQGv+tmV2UhkgiM4KlpAk36iUBaSaKp1qMzG
-	 cJ1WiUt/sMT8w==
-Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-2cd5b467209so52432941fa.3;
-        Thu, 11 Jan 2024 14:03:39 -0800 (PST)
-X-Gm-Message-State: AOJu0YwOZI+pKy/8XYCpN0XHjHhQKZL0tobFaDe/TeeUQIVFhtzbDBgS
-	TaAzzC/7tVv21dDuVVgq772QTuUv0CN3DTNDqg==
-X-Google-Smtp-Source: AGHT+IGqQEJRlx5vqZKnSFNrc+k4aJn7Nwqxw+vCHtTG57ACO6acRmhTsCZusCpdLBlZG73fSAeQv2CiH9ue0nIZVs4=
-X-Received: by 2002:a2e:9e97:0:b0:2cc:610d:ca6 with SMTP id
- f23-20020a2e9e97000000b002cc610d0ca6mr198479ljk.81.1705010617334; Thu, 11 Jan
- 2024 14:03:37 -0800 (PST)
+	s=k20201202; t=1705011491;
+	bh=Yljtk+lS5Y4czYfdpEU4I5eKloXf9DSHq8FeoWJos4s=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=bDSH2aM6GJNV8nN3R59MsSlABhJO8fWj3pcdMdRd10QyDZRNJo7abBI9lM441iZKU
+	 XKUxtDJl/lDcahTZw6+bpDznf1ySc3YHQpu5gflv3BsnA49pOgV2anjp+twWENcEhC
+	 cj1DN46S9cS0r/YrTm/ITBd3Jswbf83r7pBr4GKFn22W3eKgCzqWQo+L6Cwc0S1b8u
+	 LK0MED0D8goWkXKKipTKbZlOTQhM1pXHb76vk5UWFo4fBpc7nVoolSNX4ZC925ES/R
+	 4h5sy0S3AkhxUTsroq/XlUOSrP3u6hLYp/Kvzb38rtwGl4VxW1TB5pbCmEjBzR3bnF
+	 g/HJKCgY5uaGg==
+Date: Thu, 11 Jan 2024 16:18:08 -0600
+From: Rob Herring <robh@kernel.org>
+To: Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: "Christian A . Ehrhardt" <lk@c--e.de>, devicetree@vger.kernel.org,
+	Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+	Frank Rowand <frowand.list@gmail.com>
+Subject: Re: [PATCH] of: unittest: Fix of_count_phandle_with_args() expected
+ value message
+Message-ID: <170501148063.1206625.719560568474772943.robh@kernel.org>
+References: <20240111085025.2073894-1-geert+renesas@glider.be>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240109-axi-spi-engine-series-3-v1-0-e42c6a986580@baylibre.com> <20240109-axi-spi-engine-series-3-v1-2-e42c6a986580@baylibre.com>
-In-Reply-To: <20240109-axi-spi-engine-series-3-v1-2-e42c6a986580@baylibre.com>
-From: Rob Herring <robh+dt@kernel.org>
-Date: Thu, 11 Jan 2024 16:03:24 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJPRwDbQDAg0nqb2VRT3K3qWPWhQo_jsu20f7RcgSgdsg@mail.gmail.com>
-Message-ID: <CAL_JsqJPRwDbQDAg0nqb2VRT3K3qWPWhQo_jsu20f7RcgSgdsg@mail.gmail.com>
-Subject: Re: [PATCH 02/13] scripts: dtc: checks: don't warn on SPI
- non-peripheral child nodes
-To: David Lechner <dlechner@baylibre.com>
-Cc: Mark Brown <broonie@kernel.org>, Jonathan Cameron <jic23@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Michael Hennerich <michael.hennerich@analog.com>, =?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
-	Frank Rowand <frowand.list@gmail.com>, Thierry Reding <thierry.reding@gmail.com>, 
-	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, 
-	Jonathan Corbet <corbet@lwn.net>, linux-spi@vger.kernel.org, linux-iio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-doc@vger.kernel.org, 
-	linux-pwm@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240111085025.2073894-1-geert+renesas@glider.be>
 
-On Wed, Jan 10, 2024 at 1:51=E2=80=AFPM David Lechner <dlechner@baylibre.co=
-m> wrote:
->
-> According to the spi-controller.yaml bindings, SPI peripheral child
-> nodes match the pattern "^.*@[0-9a-f]+$".
->
-> A SPI controller binding may require a child object node that is not a
-> peripheral. For example, the adi,axi-spi-engine binding requires an
-> "offloads" child node that is not a peripheral but rather a part of the
-> controller itself.
->
-> By checking for '@' in the node name, we can avoids a warnings like:
->
->     Warning (spi_bus_reg): /example-0/spi@44a00000/offloads: missing or e=
-mpty reg property
->
-> for a binding like:
->
->     spi {
->         ...
->
->         offloads {
->             offload@0 {
->                 ...
->             };
->             ...
->         };
->
->         peripheral@0 {
->             ...
->         };
->     };
->
-> Signed-off-by: David Lechner <dlechner@baylibre.com>
+
+On Thu, 11 Jan 2024 09:50:25 +0100, Geert Uytterhoeven wrote:
+> The expected result value for the call to of_count_phandle_with_args()
+> was updated from 7 to 8, but the accompanying error message was
+> forgotten.
+> 
+> Fixes: 4dde83569832f937 ("of: Fix double free in of_parse_phandle_with_args_map")
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 > ---
->  scripts/dtc/checks.c | 4 ++++
->  1 file changed, 4 insertions(+)
+>  drivers/of/unittest.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
 
-Check the commit history. We don't take changes to kernel's dtc copy.
-They must go upstream first.
+Applied, thanks!
 
-Rob
 
