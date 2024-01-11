@@ -1,112 +1,80 @@
-Return-Path: <devicetree+bounces-31367-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31386-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5FC0082AF0C
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 14:00:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F0E382AFE6
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 14:44:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E9791287977
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 13:00:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 18DA928C226
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 13:44:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1104615E89;
-	Thu, 11 Jan 2024 13:00:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="p/hWEI5E"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AA7318047;
+	Thu, 11 Jan 2024 13:44:05 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from michel.telenet-ops.be (michel.telenet-ops.be [195.130.137.88])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE52915AFD;
-	Thu, 11 Jan 2024 13:00:49 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C7A51C433C7;
-	Thu, 11 Jan 2024 13:00:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1704978049;
-	bh=PPK6b4HMONAjOLQhJy+dcD8B/FlzQW7e7QMEXCQPqAY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=p/hWEI5EyL2at+hrBZ2ezeBb4JDwY5hc0eaiyuNYU1pX7lRUtqhzgLoMbCwvXZf4Y
-	 1QAXhXrgYkbAlB/jTyNBGjJqM6DoblonT3pMN8NYVhXeAQASD7J/X4Yb0W5H77IXok
-	 6uuOYDDDkO8eJxju/nvNeKFMp9R2teZVf6a4/AX/IDHjoqzZVQ4lMMrDWZjuzFR/ho
-	 uwuoFl644z2MCnUH5yjJRxNnIGs7VAYHLl33XuvMAYTNSMXnIxoNFXZcZGktjLFU8t
-	 jGaXmBPA3J6PU5GpWL+Y5HrfudXReXHNUQArlOXan4vnZNefvz1nchk7ujJjMP+Tn9
-	 kKg4U/QjeLZvA==
-Date: Thu, 11 Jan 2024 13:00:42 +0000
-From: Mark Brown <broonie@kernel.org>
-To: David Lechner <dlechner@baylibre.com>
-Cc: Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Michael Hennerich <michael.hennerich@analog.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 894ED364B7
+	for <devicetree@vger.kernel.org>; Thu, 11 Jan 2024 13:44:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux-m68k.org
+Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed40:8291:a340:26b8:8238])
+	by michel.telenet-ops.be with bizsmtp
+	id ZRju2B0084LvM1A06RjuCM; Thu, 11 Jan 2024 14:43:54 +0100
+Received: from rox.of.borg ([192.168.97.57])
+	by ramsan.of.borg with esmtp (Exim 4.95)
+	(envelope-from <geert@linux-m68k.org>)
+	id 1rNvKw-00F7rd-Qm;
+	Thu, 11 Jan 2024 14:43:54 +0100
+Received: from geert by rox.of.borg with local (Exim 4.95)
+	(envelope-from <geert@linux-m68k.org>)
+	id 1rNqle-008hXN-5V;
+	Thu, 11 Jan 2024 09:50:26 +0100
+From: Geert Uytterhoeven <geert+renesas@glider.be>
+To: Rob Herring <robh+dt@kernel.org>,
 	Frank Rowand <frowand.list@gmail.com>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
-	Jonathan Corbet <corbet@lwn.net>, linux-spi@vger.kernel.org,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-doc@vger.kernel.org, linux-pwm@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>
-Subject: Re: [PATCH 05/13] spi: axi-spi-engine: add SPI offload support
-Message-ID: <d19dac5c-eef6-4543-9eee-787262c0f52c@sirena.org.uk>
-References: <20240109-axi-spi-engine-series-3-v1-0-e42c6a986580@baylibre.com>
- <20240109-axi-spi-engine-series-3-v1-5-e42c6a986580@baylibre.com>
- <a94d7aae-3d5c-4204-83f6-5374c3166f58@sirena.org.uk>
- <CAMknhBEEC4F2_hpJ_405bfrb3KNkAYpjDoJbnmOFXodp8yLACg@mail.gmail.com>
+	"Christian A . Ehrhardt" <lk@c--e.de>
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH] of: unittest: Fix of_count_phandle_with_args() expected value message
+Date: Thu, 11 Jan 2024 09:50:25 +0100
+Message-Id: <20240111085025.2073894-1-geert+renesas@glider.be>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="48Qe3jNucI2DGcEY"
-Content-Disposition: inline
-In-Reply-To: <CAMknhBEEC4F2_hpJ_405bfrb3KNkAYpjDoJbnmOFXodp8yLACg@mail.gmail.com>
-X-Cookie: Does the name Pavlov ring a bell?
+Content-Transfer-Encoding: 8bit
 
+The expected result value for the call to of_count_phandle_with_args()
+was updated from 7 to 8, but the accompanying error message was
+forgotten.
 
---48Qe3jNucI2DGcEY
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Fixes: 4dde83569832f937 ("of: Fix double free in of_parse_phandle_with_args_map")
+Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+---
+ drivers/of/unittest.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-On Wed, Jan 10, 2024 at 04:31:25PM -0600, David Lechner wrote:
-> On Wed, Jan 10, 2024 at 3:39=E2=80=AFPM Mark Brown <broonie@kernel.org> w=
-rote:
+diff --git a/drivers/of/unittest.c b/drivers/of/unittest.c
+index 45bd0d28c7173db9..cfd60e35a8992d7d 100644
+--- a/drivers/of/unittest.c
++++ b/drivers/of/unittest.c
+@@ -574,7 +574,7 @@ static void __init of_unittest_parse_phandle_with_args_map(void)
+ 	}
+ 
+ 	rc = of_count_phandle_with_args(np, "phandle-list", "#phandle-cells");
+-	unittest(rc == 8, "of_count_phandle_with_args() returned %i, expected 7\n", rc);
++	unittest(rc == 8, "of_count_phandle_with_args() returned %i, expected 8\n", rc);
+ 
+ 	for (i = 0; i < 9; i++) {
+ 		bool passed = true;
+-- 
+2.34.1
 
-> > Glancing through here I'm not seeing anything here that handles DMA
-> > mapping, given that the controller will clearly be doing DMA here that
-> > seems surprising.
-
-> In the use case implemented in this series, the RX data is going to
-> DMA, but in general, that doesn't have to be the case. In theory, it
-> could get piped directly to a DSP or something like that. So I left
-> the RX DMA part out of the SPI controller and implemented as a
-> separate device in "iio: offload: add new PWM triggered DMA buffer
-> driver". The SPI controller itself isn't aware that it is connected to
-> DMA (i.e. there are no registers that have to be poked to enable DMA
-> or anything like that).
-
-If there's a buffer being assigned to the device (or removed from the
-device) it needs mapping, this will ensure the device is allowed to
-access it if there's IOMMUs involved, and that there's no pending cache
-operations which could corrupt data.
-
---48Qe3jNucI2DGcEY
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmWf5noACgkQJNaLcl1U
-h9CuKAf/RDosGN2d/f46OnxM+Ws4AH7ATVJNv3+gKUg32xfJT7BjuqncA+1bQ/hS
-cPrZ9A2vf4/n4/+HpsHS1X6REC/rSB0o5u67E7NLYOnJANnmHlATYELNc825KSbc
-ZQTP2fS3CvilSRdIpZWUJv4eaJb++n5tCdiLDvdkPn9kb4If0iBdPCL4rqSOJ+1s
-8QXhb479acdwTTC/CtW+ozWaMASBy9p+UGpyqJ5QWOur0HjJzcdWk2LJnwhupRb/
-4KM9S+a9xXm2zhvSt2OZw+4gE/BDqqdLbGEr+Oyxpkz/kPkXEUEyDemoIuG5qpbK
-snNWOyM2Gd+VVlwlvJCdeQGfxyL/OA==
-=ufYN
------END PGP SIGNATURE-----
-
---48Qe3jNucI2DGcEY--
 
