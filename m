@@ -1,48 +1,58 @@
-Return-Path: <devicetree+bounces-31386-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31368-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F0E382AFE6
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 14:44:17 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB44482AF1E
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 14:04:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 18DA928C226
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 13:44:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 62AA31F222A6
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 13:04:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AA7318047;
-	Thu, 11 Jan 2024 13:44:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9797315E98;
+	Thu, 11 Jan 2024 13:04:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="J3Q3q05Y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from michel.telenet-ops.be (michel.telenet-ops.be [195.130.137.88])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 894ED364B7
-	for <devicetree@vger.kernel.org>; Thu, 11 Jan 2024 13:44:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux-m68k.org
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed40:8291:a340:26b8:8238])
-	by michel.telenet-ops.be with bizsmtp
-	id ZRju2B0084LvM1A06RjuCM; Thu, 11 Jan 2024 14:43:54 +0100
-Received: from rox.of.borg ([192.168.97.57])
-	by ramsan.of.borg with esmtp (Exim 4.95)
-	(envelope-from <geert@linux-m68k.org>)
-	id 1rNvKw-00F7rd-Qm;
-	Thu, 11 Jan 2024 14:43:54 +0100
-Received: from geert by rox.of.borg with local (Exim 4.95)
-	(envelope-from <geert@linux-m68k.org>)
-	id 1rNqle-008hXN-5V;
-	Thu, 11 Jan 2024 09:50:26 +0100
-From: Geert Uytterhoeven <geert+renesas@glider.be>
-To: Rob Herring <robh+dt@kernel.org>,
-	Frank Rowand <frowand.list@gmail.com>,
-	"Christian A . Ehrhardt" <lk@c--e.de>
-Cc: devicetree@vger.kernel.org,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04C4916427;
+	Thu, 11 Jan 2024 13:04:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1704978264;
+	bh=ooZvmBo1ViU5Ji4xyGAIUWPoVDHwEIYn3pOqQSNGq4M=;
+	h=From:To:Cc:Subject:Date:From;
+	b=J3Q3q05YRNunbSoVpob8ozuBPFjZ79aU52V6GY2mi7B1dPGhghLMQEmGiqqysr0xs
+	 MUEq67zQpKvKTR/QfooEzHNaPkDmJlD4/E7McujY20tboFJCs2CtvT4dM8C3IhIWFf
+	 AcOGb/8OpX2qE5Q0cbTaU/VYR4BSx78hKNGtn9TuE10HgczK4AkvJMOR/dxXqOJx0j
+	 Swax238DLsSAWHoPp3UamWXnhx4HSwKE9/rCoqj10Uh0jylK8Q5XlbFXlwrzKD/O7u
+	 HHcQ/gWyM1VIzixbkQyGPvQJu0auqquQ58YG7QJA0ZHV0uEj3Pyss5cpT054RHyoVx
+	 HUDE5kCIsL4nA==
+Received: from stla-brain-8255-1.home (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: jmassot)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 5AC543781FCD;
+	Thu, 11 Jan 2024 13:04:23 +0000 (UTC)
+From: Julien Massot <julien.massot@collabora.com>
+To: linux-media@vger.kernel.org
+Cc: kernel@collabora.com,
+	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH] of: unittest: Fix of_count_phandle_with_args() expected value message
-Date: Thu, 11 Jan 2024 09:50:25 +0100
-Message-Id: <20240111085025.2073894-1-geert+renesas@glider.be>
-X-Mailer: git-send-email 2.34.1
+	mchehab@kernel.org,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	Julien Massot <julien.massot@collabora.com>
+Subject: [PATCH v3 0/4] Add support for MAX96714F and MAX96717F GMSL2 ser/des
+Date: Thu, 11 Jan 2024 14:03:45 +0100
+Message-ID: <20240111130349.2776699-1-julien.massot@collabora.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -51,30 +61,45 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The expected result value for the call to of_count_phandle_with_args()
-was updated from 7 to 8, but the accompanying error message was
-forgotten.
+Change since v2:
+- Convert drivers to use CCI helpers
+- Use generic node name
+- Use 'powerdown' as gpio name instead of 'enable'
+- Add pattern generator support for MAX96714
 
-Fixes: 4dde83569832f937 ("of: Fix double free in of_parse_phandle_with_args_map")
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
- drivers/of/unittest.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+These patches add support for Maxim MAX96714F deserializer and
+MAX96717F serializer.
 
-diff --git a/drivers/of/unittest.c b/drivers/of/unittest.c
-index 45bd0d28c7173db9..cfd60e35a8992d7d 100644
---- a/drivers/of/unittest.c
-+++ b/drivers/of/unittest.c
-@@ -574,7 +574,7 @@ static void __init of_unittest_parse_phandle_with_args_map(void)
- 	}
- 
- 	rc = of_count_phandle_with_args(np, "phandle-list", "#phandle-cells");
--	unittest(rc == 8, "of_count_phandle_with_args() returned %i, expected 7\n", rc);
-+	unittest(rc == 8, "of_count_phandle_with_args() returned %i, expected 8\n", rc);
- 
- 	for (i = 0; i < 9; i++) {
- 		bool passed = true;
+MAX96714F has one GMSL2 input port and one CSI2 4 lanes output port,
+MAX96717F has one CSI2 input port and one GMSL2 output port.
+
+The drivers support the tunnel mode where all the
+CSI2 traffic coming from an imager is replicated through the deserializer
+output port.
+
+Both MAX96714F and MAX96717F are limited to a 3Gbps forward link rate
+leaving a maximum of 2.6Gbps for the video payload.
+
+Julien Massot (4):
+  dt-bindings: media: add Maxim MAX96717F GMSL2 Serializer
+  dt-bindings: media: add Maxim MAX96714F GMSL2 Deserializer
+  media: i2c: add MAX96717 driver
+  media: i2c: add MAX96714 driver
+
+ .../bindings/media/i2c/maxim,max96714f.yaml   |  171 +++
+ .../bindings/media/i2c/maxim,max96717f.yaml   |  147 +++
+ MAINTAINERS                                   |   14 +
+ drivers/media/i2c/Kconfig                     |   26 +
+ drivers/media/i2c/Makefile                    |    2 +
+ drivers/media/i2c/max96714.c                  | 1077 +++++++++++++++++
+ drivers/media/i2c/max96717.c                  |  956 +++++++++++++++
+ 7 files changed, 2393 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/maxim,max96714f.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/maxim,max96717f.yaml
+ create mode 100644 drivers/media/i2c/max96714.c
+ create mode 100644 drivers/media/i2c/max96717.c
+
 -- 
-2.34.1
+2.43.0
 
 
