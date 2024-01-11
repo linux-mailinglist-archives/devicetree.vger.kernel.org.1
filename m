@@ -1,110 +1,134 @@
-Return-Path: <devicetree+bounces-31390-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31391-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0FD882B026
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 15:03:15 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 236AD82B04C
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 15:08:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5D346B20CAB
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 14:03:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C7D631F234EB
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 14:08:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9FA83AC10;
-	Thu, 11 Jan 2024 14:02:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4B7D3B780;
+	Thu, 11 Jan 2024 14:08:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="dUKDcm1U"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="G+oqQ9qM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50AC03C097
-	for <devicetree@vger.kernel.org>; Thu, 11 Jan 2024 14:02:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1704981772;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=w2oiHnQxHwv2fW/BCjTbKgiDncxKv4ZkLpJzyQn0qCM=;
-	b=dUKDcm1UmGMVe8eDb5zgi6nEdSfZc75jj/xpbZW4ahMQiXwFdOVTqFNp4wBp0gZx+nlGDn
-	T204w87EePz9U022ovFc1Z7M+Uqf+XmkjJ++7v8H4SF3hUTyzCBvtCS+GbPnVPZjoXt3Co
-	OBuo8SzKWm4YHkNwBAzLwTsKsTHCH3M=
-Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com
- [209.85.219.72]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-353-XW0QDgvRPkyV9cHSd_UwyA-1; Thu, 11 Jan 2024 09:02:46 -0500
-X-MC-Unique: XW0QDgvRPkyV9cHSd_UwyA-1
-Received: by mail-qv1-f72.google.com with SMTP id 6a1803df08f44-6800aa45af1so101346506d6.3
-        for <devicetree@vger.kernel.org>; Thu, 11 Jan 2024 06:02:45 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B0FE3B187;
+	Thu, 11 Jan 2024 14:08:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-a29a4f610b1so579799966b.3;
+        Thu, 11 Jan 2024 06:08:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1704982101; x=1705586901; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=WoJC8tdnDZuFg5WsFgtASovnc1Tl99lnT/+ICbRlVwA=;
+        b=G+oqQ9qMsSnvIG2xsqqlMDBNGN7bdvOXAudCaiFcF3RpwRSoxNq57VZbT679SZpcwR
+         mQv+YkKVIUqDbVaE8jtHv9n/4PHgC41jMsf0wCoGVMeo2ct2W0n2vjr9EM009tMmnIwx
+         +h+Z9FEu4BTwuGnUfHtsNPL+ZED5QhH+44yoTObj9tw2ypKQnAS5upt0OInlEbqwPEqP
+         GE3NR1H8yVgVwcw0MCG+XlPOGHD6FyenNZe91OPM9dWIXA6nkf+rSTAd6VuSu2y+ntjG
+         W98YktW1L4PcwcX0nk0Afl/n8IShAeeR2RHALiMAKMnCS0vsFTHCRIooIgSzN+xcLwf+
+         gsVg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704981764; x=1705586564;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=w2oiHnQxHwv2fW/BCjTbKgiDncxKv4ZkLpJzyQn0qCM=;
-        b=I9Vs/aVsJr4y9cc3R5vfq2xeI1xAIrCQMbhC2Z7pFl5IKF00EP/5QMOO4NH8vnuQbf
-         hCun3p695mj6nQrmLDZk6blks0b1X/Yj4B+4fvccymGY03qMZ0Zor3gSG7LxgBmtqb7R
-         jgRxLhFLAv26Rnq+v29fUy0JOYXXRT6Dxmpn60FwYHWxbc07RvY0bZ9TulD41InIMb+7
-         lK9vaU5Q06mlzxgE2KUfB+CsUpkaw5ixdcxH3dEDh3mmgHNSKMSm58xilbBxdPud+yzR
-         m3ZiV2N1YlqQV1zEsoMGwkwh/BghSXwrBpXDPI4yA9oH4WciJglByFIQ3LcRulyAV365
-         6JZA==
-X-Gm-Message-State: AOJu0Yw1cjljfhGKoljwcHSM3vKXrCEOT6v6ePlPgHpOTVukqXZlcNx9
-	lAQ3b1T+kmIssfPyr6TQqH1OT/BQ8TEOkgZEqtierZMmEsVCQ/evPQD5y33EnHsFD1bK+QpbxPx
-	MZqsccSEd2R7vtB9RRESw/m4UiwTi5jDQWKr15A==
-X-Received: by 2002:ac8:5841:0:b0:428:318f:e484 with SMTP id h1-20020ac85841000000b00428318fe484mr719673qth.108.1704981764094;
-        Thu, 11 Jan 2024 06:02:44 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IEtflAELoemq0nV2Xk8B+wSndOSPvHCcElj4MrMOV9ESDLlKwYt2d36MOLJ5nZhJxTYASh33A==
-X-Received: by 2002:ac8:5841:0:b0:428:318f:e484 with SMTP id h1-20020ac85841000000b00428318fe484mr719653qth.108.1704981763747;
-        Thu, 11 Jan 2024 06:02:43 -0800 (PST)
-Received: from x1 (c-24-2-114-156.hsd1.pa.comcast.net. [24.2.114.156])
-        by smtp.gmail.com with ESMTPSA id cg5-20020a05622a408500b00429ab4df47csm451462qtb.17.2024.01.11.06.02.42
+        d=1e100.net; s=20230601; t=1704982101; x=1705586901;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=WoJC8tdnDZuFg5WsFgtASovnc1Tl99lnT/+ICbRlVwA=;
+        b=Kqjem/diqyHz2gSf7TRvAoAgbs4eJ7uNtxqT0l9oNpFXtppZe+VlRAoDc1r9iVAgRw
+         gpm95X8PPacIUTN87MwhVOS/fo/9qTFrM1BAbePd9YRw5j7ECZXujNVJim2nDLh5EN/G
+         BSwsTXQ/qOVCFJK319bAq4IasgGki+kQrmeB2GjPhPlLzQ79zelNwHt3dWNLACDzTK9y
+         dJ07MHiRHWlwZ4kCWSRX87BR4nnglBG5V+a4JecAAN+U5R5WBnmNF0L+OPptiuA/lioy
+         T5Bt5k4BQcMay9I8c8aVV+EFYdA+Yy++swWnSx7b4P0+VkioXRSaK/TVjXGygIMuBsZ+
+         89Uw==
+X-Gm-Message-State: AOJu0Yyq8Y0FQmdpv6HcL7dVxzS1aC39CnmABkeykkLUzB3QA4IeAmvf
+	u1Z260p8U4dnZ6m/7hwbpb0=
+X-Google-Smtp-Source: AGHT+IEFa0SyyLPtJIEyD1MDs+PWNcn+s3GPOMBXhDIA1k2L4TV8ak6uzCy/6bBxHMPtd2QnR9l+OQ==
+X-Received: by 2002:a17:906:c08c:b0:a28:bf58:756d with SMTP id f12-20020a170906c08c00b00a28bf58756dmr554052ejz.128.1704982101155;
+        Thu, 11 Jan 2024 06:08:21 -0800 (PST)
+Received: from ?IPv6:2003:f6:ef1b:2000:944c:cbc7:1e1c:2c47? (p200300f6ef1b2000944ccbc71e1c2c47.dip0.t-ipconnect.de. [2003:f6:ef1b:2000:944c:cbc7:1e1c:2c47])
+        by smtp.gmail.com with ESMTPSA id ov18-20020a170906fc1200b00a2a184687dasm618425ejb.31.2024.01.11.06.08.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 11 Jan 2024 06:02:42 -0800 (PST)
-Date: Thu, 11 Jan 2024 09:02:41 -0500
-From: Brian Masney <bmasney@redhat.com>
-To: Lucas Karpinski <lkarpins@redhat.com>
-Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] arm64: dts: qcom: sa8540p-ride: disable pcie2a node
-Message-ID: <ZZ_1ARhDxYNk7Gt2@x1>
-References: <qcoqksikfvdqxk6stezbzc7l2br37ccgqswztzqejmhrkhbrwt@ta4npsm35mqk>
+        Thu, 11 Jan 2024 06:08:20 -0800 (PST)
+Message-ID: <5b62d742fa789e9860781b6f5f1fda4f583b0e5b.camel@gmail.com>
+Subject: Re: [PATCH 01/13] spi: add core support for controllers with
+ offload capabilities
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: Mark Brown <broonie@kernel.org>
+Cc: David Lechner <dlechner@baylibre.com>, Jonathan Cameron
+ <jic23@kernel.org>,  Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Michael Hennerich <michael.hennerich@analog.com>,  Nuno
+ =?ISO-8859-1?Q?S=E1?= <nuno.sa@analog.com>, Frank Rowand
+ <frowand.list@gmail.com>, Thierry Reding <thierry.reding@gmail.com>, Uwe
+ =?ISO-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>, Jonathan
+ Corbet <corbet@lwn.net>,  linux-spi@vger.kernel.org,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-doc@vger.kernel.org, linux-pwm@vger.kernel.org, 
+ linux-kernel@vger.kernel.org
+Date: Thu, 11 Jan 2024 15:11:32 +0100
+In-Reply-To: <aae36622-4e05-4f16-9460-d7614fd599aa@sirena.org.uk>
+References: 
+	<20240109-axi-spi-engine-series-3-v1-0-e42c6a986580@baylibre.com>
+	 <20240109-axi-spi-engine-series-3-v1-1-e42c6a986580@baylibre.com>
+	 <0c0b1954825dc174cab48060e96ddadadc18aefd.camel@gmail.com>
+	 <aae36622-4e05-4f16-9460-d7614fd599aa@sirena.org.uk>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.50.3 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <qcoqksikfvdqxk6stezbzc7l2br37ccgqswztzqejmhrkhbrwt@ta4npsm35mqk>
-User-Agent: Mutt/2.2.10 (2023-03-25)
 
-On Tue, Jan 09, 2024 at 10:20:50AM -0500, Lucas Karpinski wrote:
-> pcie2a and pcie3a both cause interrupt storms to occur. However, when
-> both are enabled simultaneously, the two combined interrupt storms will
-> lead to rcu stalls. Red Hat is the only company still using this board
-> and since we still need pcie3a, just disable pcie2a.
-> 
-> Signed-off-by: Lucas Karpinski <lkarpins@redhat.com>
+On Thu, 2024-01-11 at 13:33 +0000, Mark Brown wrote:
+> On Thu, Jan 11, 2024 at 09:49:08AM +0100, Nuno S=C3=A1 wrote:
+> > On Wed, 2024-01-10 at 13:49 -0600, David Lechner wrote:
+>=20
+> > > =C2=A0=C2=A0=C2=A0 /* in probe() */
+> > > =C2=A0=C2=A0=C2=A0 offload =3D spi_offload_get(spi, 0);
+>=20
+> > On top of what Mark already stated, and as we already discussed offline=
+, I
+> > personally don't like this provider - consumer interface for the offloa=
+d.
+> > The
+> > first thing is that this is taking into account the possibility of havi=
+ng
+> > multiple offload cores. While the FGPA core was designed with that in m=
+ind,
+> > we
+> > don't really have any design using multiple offloads in one spi engine
+> > (always
+> > one). Hence this is all pretty much untested.
+>=20
+> I tend to agree that we shouldn't be exposing this to SPI device drivers
+> however we will want to keep track of if the unit is busy, and designing
+> it to cope with multiple offloads does seem like sensible future
+> proofing.=C2=A0 There's also the possibility that one engine might be abl=
+e to
 
-Reviewed-by: Brian Masney <bmasney@redhat.com>
+Fair enough. But wouldn't a simple DT integer property (handled by the spi =
+core)
+to identify the offload index be easier for SPI device drivers? We could st=
+ill
+have dedicated interfaces for checking if the unit is busy or not... The po=
+int
+is that we would not need an explicit get() from SPI drivers.
 
-To elaborate further: Leaving both pcie2a and pcie3a enabled will lead
-to rcu stalls and the board fails to boot when both are enabled. We
-have the latest firmware that we've been able to get from QC.
-Disabling one of the pcie nodes works around the boot issue. There's
-nothing interesting on pcie2a on the development board, and pcie3a is
-enabled because it has 10GB ethernet that works upstream.
+I'm of course assuming that one spi device can only be connected to one eng=
+ine
+which seems reasonable to me.
 
-The interrupt storm on pcie3a can still occur on this platform, however
-that's a separate issue.
-
-Brian
+- Nuno S=C3=A1
 
 
