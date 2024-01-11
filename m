@@ -1,83 +1,112 @@
-Return-Path: <devicetree+bounces-31366-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31367-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65A8682AEF1
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 13:47:28 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5FC0082AF0C
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 14:00:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 754CF1C22BEC
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 12:47:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E9791287977
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 13:00:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A86015AF6;
-	Thu, 11 Jan 2024 12:47:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1104615E89;
+	Thu, 11 Jan 2024 13:00:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jv6yV/Fp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="p/hWEI5E"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DBDC15AEB;
-	Thu, 11 Jan 2024 12:47:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 885A4C43390;
-	Thu, 11 Jan 2024 12:47:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE52915AFD;
+	Thu, 11 Jan 2024 13:00:49 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C7A51C433C7;
+	Thu, 11 Jan 2024 13:00:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1704977242;
-	bh=1VjuSDi447ndXyR5iHt0YkDIkWP6vai+3+d8VhFBnbU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=jv6yV/FpvH7T7xcObJdtg+YfKwl2NBB9jS7KJMrsBl+ABHzEyz4B60PYCHixUOF7y
-	 IG/zOuhCiePNvOLdv8rti6Po5xbekKW/p3wygx9pGQj7dCdFYAExZM0ChjGMQpLhEo
-	 UNjS3IYDFxu53kKQqTy/EaXSZj/KEaPofTgoEZF/bNak8011VaR1Y/ZcKYEnRehg4H
-	 H8ckgWI4ZW2M1veT9IWIsrbTsZrorLwQi2HsZL2iWLZNiY3t67LXEc/YONTVLybZos
-	 FYibiAwMaCWnhfLFAi1eDqXF/Aj9U3nkzbeHYIQFApy62rhHSTXHrWWr71VN/gDnLp
-	 CCQcDRMCB5v1w==
-Message-ID: <4f693c5e-f350-4f60-bdfc-f0176761ed90@kernel.org>
-Date: Thu, 11 Jan 2024 14:47:19 +0200
+	s=k20201202; t=1704978049;
+	bh=PPK6b4HMONAjOLQhJy+dcD8B/FlzQW7e7QMEXCQPqAY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=p/hWEI5EyL2at+hrBZ2ezeBb4JDwY5hc0eaiyuNYU1pX7lRUtqhzgLoMbCwvXZf4Y
+	 1QAXhXrgYkbAlB/jTyNBGjJqM6DoblonT3pMN8NYVhXeAQASD7J/X4Yb0W5H77IXok
+	 6uuOYDDDkO8eJxju/nvNeKFMp9R2teZVf6a4/AX/IDHjoqzZVQ4lMMrDWZjuzFR/ho
+	 uwuoFl644z2MCnUH5yjJRxNnIGs7VAYHLl33XuvMAYTNSMXnIxoNFXZcZGktjLFU8t
+	 jGaXmBPA3J6PU5GpWL+Y5HrfudXReXHNUQArlOXan4vnZNefvz1nchk7ujJjMP+Tn9
+	 kKg4U/QjeLZvA==
+Date: Thu, 11 Jan 2024 13:00:42 +0000
+From: Mark Brown <broonie@kernel.org>
+To: David Lechner <dlechner@baylibre.com>
+Cc: Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Michael Hennerich <michael.hennerich@analog.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Frank Rowand <frowand.list@gmail.com>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
+	Jonathan Corbet <corbet@lwn.net>, linux-spi@vger.kernel.org,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-doc@vger.kernel.org, linux-pwm@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>
+Subject: Re: [PATCH 05/13] spi: axi-spi-engine: add SPI offload support
+Message-ID: <d19dac5c-eef6-4543-9eee-787262c0f52c@sirena.org.uk>
+References: <20240109-axi-spi-engine-series-3-v1-0-e42c6a986580@baylibre.com>
+ <20240109-axi-spi-engine-series-3-v1-5-e42c6a986580@baylibre.com>
+ <a94d7aae-3d5c-4204-83f6-5374c3166f58@sirena.org.uk>
+ <CAMknhBEEC4F2_hpJ_405bfrb3KNkAYpjDoJbnmOFXodp8yLACg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 05/16] arm64: dts: ti: k3-am64: Add MIT license along with
- GPL-2.0
-Content-Language: en-US
-To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
- Tero Kristo <kristo@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Rob Herring <robh+dt@kernel.org>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,
- Christian Gmeiner <christian.gmeiner@gmail.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
- Pierre Gondois <pierre.gondois@arm.com>, Tony Lindgren <tony@atomide.com>,
- Wadim Egorov <w.egorov@phytec.de>
-References: <20240110140903.4090946-1-nm@ti.com>
- <20240110140903.4090946-6-nm@ti.com>
-From: Roger Quadros <rogerq@kernel.org>
-In-Reply-To: <20240110140903.4090946-6-nm@ti.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="48Qe3jNucI2DGcEY"
+Content-Disposition: inline
+In-Reply-To: <CAMknhBEEC4F2_hpJ_405bfrb3KNkAYpjDoJbnmOFXodp8yLACg@mail.gmail.com>
+X-Cookie: Does the name Pavlov ring a bell?
 
-On 10/01/2024 16:08, Nishanth Menon wrote:
-> Modify license to include dual licensing as GPL-2.0-only OR MIT
-> license for SoC and TI evm device tree files. This allows for Linux
-> kernel device tree to be used in other Operating System ecosystems
-> such as Zephyr or FreeBSD.
-> 
-> While at this, update the GPL-2.0 to be GPL-2.0-only to be in sync
-> with latest SPDX conventions (GPL-2.0 is deprecated).
-> 
-> While at this, update the TI copyright year to sync with current year
-> to indicate license change (and add it at least for one file which was
-> missing TI copyright).
 
-Acked-by: Roger Quadros <rogerq@kernel.org>
+--48Qe3jNucI2DGcEY
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
--- 
-cheers,
--roger
+On Wed, Jan 10, 2024 at 04:31:25PM -0600, David Lechner wrote:
+> On Wed, Jan 10, 2024 at 3:39=E2=80=AFPM Mark Brown <broonie@kernel.org> w=
+rote:
+
+> > Glancing through here I'm not seeing anything here that handles DMA
+> > mapping, given that the controller will clearly be doing DMA here that
+> > seems surprising.
+
+> In the use case implemented in this series, the RX data is going to
+> DMA, but in general, that doesn't have to be the case. In theory, it
+> could get piped directly to a DSP or something like that. So I left
+> the RX DMA part out of the SPI controller and implemented as a
+> separate device in "iio: offload: add new PWM triggered DMA buffer
+> driver". The SPI controller itself isn't aware that it is connected to
+> DMA (i.e. there are no registers that have to be poked to enable DMA
+> or anything like that).
+
+If there's a buffer being assigned to the device (or removed from the
+device) it needs mapping, this will ensure the device is allowed to
+access it if there's IOMMUs involved, and that there's no pending cache
+operations which could corrupt data.
+
+--48Qe3jNucI2DGcEY
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmWf5noACgkQJNaLcl1U
+h9CuKAf/RDosGN2d/f46OnxM+Ws4AH7ATVJNv3+gKUg32xfJT7BjuqncA+1bQ/hS
+cPrZ9A2vf4/n4/+HpsHS1X6REC/rSB0o5u67E7NLYOnJANnmHlATYELNc825KSbc
+ZQTP2fS3CvilSRdIpZWUJv4eaJb++n5tCdiLDvdkPn9kb4If0iBdPCL4rqSOJ+1s
+8QXhb479acdwTTC/CtW+ozWaMASBy9p+UGpyqJ5QWOur0HjJzcdWk2LJnwhupRb/
+4KM9S+a9xXm2zhvSt2OZw+4gE/BDqqdLbGEr+Oyxpkz/kPkXEUEyDemoIuG5qpbK
+snNWOyM2Gd+VVlwlvJCdeQGfxyL/OA==
+=ufYN
+-----END PGP SIGNATURE-----
+
+--48Qe3jNucI2DGcEY--
 
