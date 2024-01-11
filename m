@@ -1,141 +1,163 @@
-Return-Path: <devicetree+bounces-31472-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31473-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BBFDD82B50A
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 20:05:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 74E9A82B55A
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 20:41:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 52DB22841D7
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 19:05:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1E649284BAE
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 19:41:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D39CA54BDE;
-	Thu, 11 Jan 2024 19:05:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E4CF56462;
+	Thu, 11 Jan 2024 19:40:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vbEVo1cf"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="X5DWJz8W"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f174.google.com (mail-yw1-f174.google.com [209.85.128.174])
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C710537E9
-	for <devicetree@vger.kernel.org>; Thu, 11 Jan 2024 19:05:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD7F855E5E
+	for <devicetree@vger.kernel.org>; Thu, 11 Jan 2024 19:40:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f174.google.com with SMTP id 00721157ae682-5ebca94cf74so57130377b3.0
-        for <devicetree@vger.kernel.org>; Thu, 11 Jan 2024 11:05:18 -0800 (PST)
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-40e60e135a7so8081965e9.0
+        for <devicetree@vger.kernel.org>; Thu, 11 Jan 2024 11:40:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704999917; x=1705604717; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=70TTwy7LzJ9GVDP1sBtk+/a7RwgjO7meqYg7DVI2Mn4=;
-        b=vbEVo1cfRNUWDL/9Z0uC33NP/KMt+x6vkpE3hiAg3gX7lxp7yUiQm0ywUOYVRQgdlB
-         17zhnqnx0dkk7Jcdlb/yhtNsISvpGIqMpnPxReOY69eBnjNaWPBdTm5sFlWCZKOsjSXV
-         lgYAvDIl/S3DwqmNiXmJGMY74TKaWaNZzNV1Q4l/TFLIKPbSehhZYya0G1y0krAxXImM
-         MCjZUOSM8y49tW84GeiKCTIMqF1VzFUua6VKZBymxFQo+XmYjEz4R6v/HkFqHf21RjcD
-         YRzR+C6mSQgBYPtG5bZhZT/mgQ9U3s8oD7ECBn44e51CjHtD7Udyy30e+V4kTdRf95I5
-         YhYw==
+        d=linaro.org; s=google; t=1705002055; x=1705606855; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ReaiaKhGMpLyq0G0+kbbV2BQXgDy5aBIFU7RUhXOGuI=;
+        b=X5DWJz8WKAsJVRCC1w/OncJaL4Lw1kgumHBNWCb7SALdrYcqJQkaMcxW6yWBYDKaZ1
+         dRe6YVKwSfqzC9v2xJp73WlYXaMsZd5KhDDLAXpazEjgLbuvX4kal45IvoCOrXv5QgSP
+         beV1kkWaK8uhGTGZtXAUg26toWFJPprWUWXeFs6hE80TD4r2ZMwjiTgTJitYpU2bcWqX
+         5GN2AKcW3cC+1lAlARP5P/OigIOZBew0zVL/uac3+fgxI7XSh5YKMQk8DrLYuWToY+0c
+         RubmIH8zBroOHYe1+J5nRRfe5ijqhw0+y34ewxceeT8gru2vqIsf2cz2RODoXszcDnwe
+         BFDQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704999917; x=1705604717;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=70TTwy7LzJ9GVDP1sBtk+/a7RwgjO7meqYg7DVI2Mn4=;
-        b=Hy1viPfVxIwUtEyKAZnCsXnpCiP7ywkNm81dsfKWTbsEJdKeCY+qa1jz0H3pYRMMzs
-         +bNLZv0f1EVrnw3zRCJHezlqq8SBf0C8AOWdicSunfEG8ICMwGqKmyBwhyPQd9IywVyd
-         remNeNYjB8Nua2bSphEAoA8sSa7azfe98hvN/zu6q0glJmV20fP1j9GVz8QzVH0svjYe
-         IAAcHvzhApvsjVSPqXeJ6Br+ZIjbRWwuUA5JJDsgU6Y90Cy3yESUW1zO4Wn1ewOWdUDg
-         EN51nWGk5BP8FkfOpsOGGjxbp2ObFPW5Pmz07rxpxdM+/XsY+2Kgs8ZQ+NYLza//oXLu
-         i6Og==
-X-Gm-Message-State: AOJu0Yxdtixy//6k9PwbQQC3LdHnh1LI1vQnGAJBKeCZmcAhPC1a+u2c
-	y5Hyffwj7ZUyAHUAjmNVVkavdGgWPHQ+uHLEcBPIWeJ55Dz9Gw==
-X-Google-Smtp-Source: AGHT+IFMkYvl2Wa5/NCqZqn4cbISrWXSUz1HnKOQORQuB44S6pFNOTZlV/+yw0l5PId0r0Bl0UycfcQ6y7eCvxaNdSU=
-X-Received: by 2002:a0d:d5c3:0:b0:5f6:7816:f330 with SMTP id
- x186-20020a0dd5c3000000b005f67816f330mr264155ywd.94.1704999917362; Thu, 11
- Jan 2024 11:05:17 -0800 (PST)
+        d=1e100.net; s=20230601; t=1705002055; x=1705606855;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ReaiaKhGMpLyq0G0+kbbV2BQXgDy5aBIFU7RUhXOGuI=;
+        b=Zuq+4dDd7dtUmdIEfFTq7XXTFkxQS75gWxpx1CsNlMsWJgfWPpwkLv/5xtnSlHAB8/
+         Hf1FenZOOfiiousP8hIDjkne3DTbwrbHUcY9w6M0SWbq5OWBpoQ2iFW0s5URyG6w0cuT
+         hEGq89egGNRXYvwgL1eFOMc3drwTWMqAyDGrq1+mX4KKpAH9d5w7Kg7HZ3lZ5YDLq+KS
+         LgiYvRm9oCBl7Qm2gXYXsspf85qIKS1YtSXCC42Dt9YzYYEvXtvCyejYwgm9m+0dtVmH
+         2/d4fdIUWjOiOfLuiRDrm9VeGSWnZahDvqLbFHcatud9l9jBE7X6jIu7qEwM0tKlI2bc
+         W6+w==
+X-Gm-Message-State: AOJu0YxYDJ6crbAoLuQwP0p8sJ9/nQbDkpK36qZO3HxkB4+c8GxzoY1S
+	Id6VxaTQz649Oe7uKMDHRuX/rA8kHjMSaA==
+X-Google-Smtp-Source: AGHT+IFpgPp6+TFS8mqJ0figBJ6oUJNk53x5VYzpAL9vQ53okPO+Tp97swVXaqXCuX0AVXBpuw9mKQ==
+X-Received: by 2002:a05:600c:340a:b0:40d:560c:eeab with SMTP id y10-20020a05600c340a00b0040d560ceeabmr207276wmp.58.1705002054975;
+        Thu, 11 Jan 2024 11:40:54 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.223.112])
+        by smtp.gmail.com with ESMTPSA id j8-20020a05600c190800b0040d7b340e07sm3019771wmq.45.2024.01.11.11.40.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 11 Jan 2024 11:40:54 -0800 (PST)
+Message-ID: <709a516c-d843-4ed3-8e41-468933f4a022@linaro.org>
+Date: Thu, 11 Jan 2024 20:40:52 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240110-fp4-panel-v2-0-8ad11174f65b@fairphone.com>
- <20240110-fp4-panel-v2-2-8ad11174f65b@fairphone.com> <CACRpkdaWTfPDCin_L6pefHsokjNyO8Mo6hWPdzPLLi1EUkKUuA@mail.gmail.com>
- <CYBZEZ4IM6IL.VR04W7933VI@fairphone.com>
-In-Reply-To: <CYBZEZ4IM6IL.VR04W7933VI@fairphone.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Thu, 11 Jan 2024 20:05:04 +0100
-Message-ID: <CACRpkdZQbVXfBa70nhDOqfWPbsh-6DgX-uvZOxr19pzMmF2giQ@mail.gmail.com>
-Subject: Re: [PATCH v2 2/4] drm/panel: Add driver for DJN HX83112A LCD panel
-To: Luca Weiss <luca.weiss@fairphone.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang <quic_jesszhan@quicinc.com>, 
-	Sam Ravnborg <sam@ravnborg.org>, David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, ~postmarketos/upstreaming@lists.sr.ht, 
-	phone-devel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/3] dt-bindings: arm: aspeed: add IBM system1-bmc
+Content-Language: en-US
+To: Ninad Palsule <ninad@linux.ibm.com>, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, joel@jms.id.au,
+ andrew@codeconstruct.com.au, peterhuewe@gmx.de, jarkko@kernel.org,
+ jgg@ziepe.ca, keescook@chromium.org, tony.luck@intel.com,
+ gpiccoli@igalia.com, johannes.holland@infineon.com, linux@roeck-us.net,
+ broonie@kernel.org, andre.werner@systec-electronic.com
+Cc: patrick.rudolph@9elements.com, vincent@vtremblay.dev,
+ peteryin.openbmc@gmail.com, lakshmiy@us.ibm.com, bhelgaas@google.com,
+ naresh.solanki@9elements.com, alexander.stein@ew.tq-group.com,
+ festevam@denx.de, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
+ linux-kernel@vger.kernel.org, linux-integrity@vger.kernel.org,
+ linux-hardening@vger.kernel.org, geissonator@yahoo.com,
+ geert+renesas@glider.be, luca.ceresoli@bootlin.com
+References: <20240111181251.1817582-1-ninad@linux.ibm.com>
+ <20240111181251.1817582-2-ninad@linux.ibm.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240111181251.1817582-2-ninad@linux.ibm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, Jan 11, 2024 at 4:28=E2=80=AFPM Luca Weiss <luca.weiss@fairphone.co=
-m> wrote:
+On 11/01/2024 19:12, Ninad Palsule wrote:
+> Document the new compatibles used on IBM system1-bmc
+> 
+> Signed-off-by: Ninad Palsule <ninad@linux.ibm.com>
+> ---
+>  Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 
-> In some internal documentation it says "LCD Driver IC" "HX83112A" and I
-> don't see any reference to Truly 5P65 anywhere.
+This is a friendly reminder during the review process.
 
-In the Android directory I pointed to I see this file:
-HX83112_Android_Driver/Truly_5p65_module_fw/UpdateFW.bat
+It looks like you received a tag and forgot to add it.
 
-(Notice the 5p65 fw dir is *inside* the HX82112 dir)
+If you do not know the process, here is a short explanation:
+Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+versions, under or above your Signed-off-by tag. Tag is "received", when
+provided in a message replied to you on the mailing list. Tools like b4
+can help here. However, there's no need to repost patches *only* to add
+the tags. The upstream maintainer will do that for tags received on the
+version they apply.
 
-And in that file:
-adb push TRULY_5P65_1080_2160_HX83112A_D01C01.bin
-/system/etc/firmware/Himax_firmware.bin
+https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
 
-Clearly indicating that they are pushing a Truly 5P65 firmware into
-the Himax display firmware directory.
+If a tag was not added on purpose, please state why and what changed.
 
-To be fair, that is the driver for the touchscreen part of HX83112A,
-but ... Truly is a well known manufacturer of display controllers?
+Best regards,
+Krzysztof
 
-But... given that you have a @fairphone.com mal address and
-a working relationship with them, can't you just ask?
-
-> On their website they have this sentence:
-
-All OEMs want to look like everything is their own product. It is
-business as usual.
-
-Further on the same note since I guess you have a datasheet)
-please bring in #defines for the commands (the first byte in the
-write sequences, for examples:
-
-+       mipi_dsi_dcs_write_seq(dsi, 0xbd, 0x02);
-+       mipi_dsi_dcs_write_seq(dsi, 0xd8,
-+                              0xaa, 0xff, 0xff, 0xff, 0xff, 0xff, 0xaa, 0x=
-ff,
-+                              0xff, 0xff, 0xff, 0xff);
-+       mipi_dsi_dcs_write_seq(dsi, 0xbd, 0x03);
-
-Clearly 0xbd is HX83112_CMD_SETREGBANK?
-(This is easily spotted from the similar structure in the
-existing panel-himax-hx8394.c.) So please add #defines
-for all commands you know, especially if you have a datasheet
-because we reviewers don't have them and "it's just magic
-bytes" isn't very compelling. It adds a lot to understanding.
-
-I strongly suspect other Himax displays such as HX8394 to
-be using a Truly controller as well, hence the similarities.
-
-In a datasheet for their TFT800480-84-V1-E display controller
-Truly kept the init sequence name of void LCD_INIT_HX8290(void)
-for example.
-
-Yours,
-Linus Walleij
 
