@@ -1,163 +1,147 @@
-Return-Path: <devicetree+bounces-31234-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31235-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A4BD82A6F6
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 05:28:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4169282A6FF
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 05:45:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3B6211C2319B
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 04:28:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3BFAB1C22D38
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 04:45:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5491F1110;
-	Thu, 11 Jan 2024 04:28:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B40E184D;
+	Thu, 11 Jan 2024 04:45:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="bPd59GH7"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="KMqD5Ssr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (mail-co1nam11on2071.outbound.protection.outlook.com [40.107.220.71])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-il1-f179.google.com (mail-il1-f179.google.com [209.85.166.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB58D256D;
-	Thu, 11 Jan 2024 04:28:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=KYflU3FLsCzccukWSUH2bVhyqQnahkpD0PDrLu87i3TqKqsPE2nKr6nFfuCxgRuEmFD50u6PodHktUQMh6LN69DcWaXIF6rre4aE1LqbW7yChp1/eMbEGO6/8WKHqwtFSVHHtB2E0rXgtjRxYivhHlwbj8QiwOidfyrO7EsLHRG2JJpV6CArQCS1xorWfqWFc5x/9HLUOZroHpxkQPS1oRsAgUlLFob2Xao27CfKMyDthvfIdSfUeR917hJrRIi7rC+ghhY9UZGpDCU6vAz1vqMNFdHYy//avnQ/BpEIc2Ag+HzGdV1cvdRsQhvrf3GbIE1vtdr7dtKte/kCM830QQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=D+bsuDkrxNOYDusgLbx3t4jXYgdFYisQzpV+ZFkeZkc=;
- b=k2mQlCL/DCpeF9Yy8WZVfER8aGiHOpBdMIrMUQ2gT/poCNdc/3M6NU5DMimlV9U9wxfF7IsMLSjwoLVvsf3LGye95MThWiou0ix9eYexEpE3o79rRO7NyrUW7twxR4FprHSgC8JriEu74RZ7wbinldMfDd9hN2bbhyF8X5zyWNcuIW4wIS9vPYEsW46KDjkZkIIlUkt/bP6A1an7kGI+gfyTfzJ8vKTZ4NOsOQeqIlH8zqHFoXffZ4A7+ZOK03RtITR2MPFnqZ4h2VkdIAwrTUTFYJNNcuNzfDziRxQ42rTO5xWIjz6BR0mtjyNddnc6L7WUc6ixvPCLwhZOlvIuvA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=D+bsuDkrxNOYDusgLbx3t4jXYgdFYisQzpV+ZFkeZkc=;
- b=bPd59GH7h4EijkfvfUIiM89wigyPeM7vPSiAUV5Mn16hm6pCs9N9FCWt8v9qlpnWFfSSo6D5uPmWMiX+RS28Ys0I5rcG6NdNKqxSqzysYPtrP7b7ln1C/BU6axi+L37Ex35KZRqx+GosN3vti2pK266sude2UC+esACqrLSy8CbAx4bVNyugMXAFi1IkZSmKuc77Tj7cVdgVG58pNE6XwsTqR+lTW+FGw5Mna+bobCPYN3M6lq2YG4hMxxClv1gZ6vKqNTqJ1FwcLCbHcyC9vGOqLK1LtBfuSFDoR7pmw7p93iVf1naozxav3f30U3IKrw+e/93QzkQkw1tIrLoYfA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from CY8PR12MB7706.namprd12.prod.outlook.com (2603:10b6:930:85::18)
- by DM6PR12MB4124.namprd12.prod.outlook.com (2603:10b6:5:221::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7181.17; Thu, 11 Jan
- 2024 04:28:49 +0000
-Received: from CY8PR12MB7706.namprd12.prod.outlook.com
- ([fe80::c6c5:6b6c:2422:b70c]) by CY8PR12MB7706.namprd12.prod.outlook.com
- ([fe80::c6c5:6b6c:2422:b70c%7]) with mapi id 15.20.7159.020; Thu, 11 Jan 2024
- 04:28:49 +0000
-Message-ID: <eeb61f8a-697c-425a-9873-b7b60c0a5558@nvidia.com>
-Date: Thu, 11 Jan 2024 09:58:41 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: Query on audio-graph-card DT binding
-Content-Language: en-US
-To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Cc: Thierry Reding <thierry.reding@gmail.com>, Mark Brown
- <broonie@kernel.org>, alsa-devel@alsa-project.org,
- devicetree@vger.kernel.org, robh+dt@kernel.org,
- Jon Hunter <jonathanh@nvidia.com>, linux-tegra@vger.kernel.org
-References: <dfe363ef-4638-4b5e-8308-73e286ac0b50@nvidia.com>
- <ZZblyhfzQjzyoUc_@orome.fritz.box>
- <42c0c4fa-585e-4194-bbe4-e0377c87e632@sirena.org.uk>
- <3faec2e9-8cd9-46f9-8807-801922de0edf@nvidia.com>
- <ZZe5sTNz005Tt4jk@orome.fritz.box>
- <8241c953-8ae5-4f26-b108-fccf826ed87a@nvidia.com>
- <875y03i739.wl-kuninori.morimoto.gx@renesas.com>
- <e7f9085d-9db1-4c5e-9940-e461835b20aa@nvidia.com>
- <87il42gkua.wl-kuninori.morimoto.gx@renesas.com>
- <cde6d5d5-b6ab-4c64-93f8-78d721a492bb@nvidia.com>
- <8734v4y9yu.wl-kuninori.morimoto.gx@renesas.com>
-From: Sameer Pujar <spujar@nvidia.com>
-In-Reply-To: <8734v4y9yu.wl-kuninori.morimoto.gx@renesas.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MA0PR01CA0100.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:af::9) To CY8PR12MB7706.namprd12.prod.outlook.com
- (2603:10b6:930:85::18)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9947617F1
+	for <devicetree@vger.kernel.org>; Thu, 11 Jan 2024 04:45:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-il1-f179.google.com with SMTP id e9e14a558f8ab-36074b286d6so27420645ab.1
+        for <devicetree@vger.kernel.org>; Wed, 10 Jan 2024 20:45:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1704948315; x=1705553115; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=7R9gKBrtFfdTSBzgP4ylVTAW1UeNRdgNJL0FxjuEn/Y=;
+        b=KMqD5SsrwNY/c6gl2uaWfyjq2FIurOvhbxladRbN5FczYCV/z/wHv6YYb0j5DR7cGX
+         MiqyCk8JVUf/jrRGExtM1pRyQQ8fttkSfG+yzHAZWlyItGGaM91Eye4+kxDY65F8tkRt
+         NSeTGXyAEEbansF1qPGI4M4IKYMRICOe2d8R8ixKjaN3zrNAU8OhiA0q/5fbWPAs3Xig
+         te6HOjcfS+gGGkv21rV0t3hLbAoWyqxGmV84zStu8qIRsr/PPWjUoOVTsx6OCoqLpsed
+         pXbMcmj/hGvEwpjikViM57FWu56HV0waYp0cpm11LWxTQiuVgbwZ4BM2GQybSlByF+Te
+         s6fQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1704948315; x=1705553115;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=7R9gKBrtFfdTSBzgP4ylVTAW1UeNRdgNJL0FxjuEn/Y=;
+        b=bQwBlbMJdGpjnEJjiLXV9sal7bb8bewZNz1u6tpB/el0eniGRDDz7Aaqi20PilQECC
+         +esXLOa8wA0LOdlcKxpQbmeUnygOn6/xVobpa/vY9OVEaA3NtwU59MuEVcm6v6fCrCkI
+         Kw0iTCTtzZeF2x/FhrD0Jjcbs4h0VzPHSmwaTuCD4YfKKLaOg9qLNNxYkM+c0zPyO/2D
+         Y7OZqU+AhOVt3EhNAQh10gnsVOInTCP3UjqNe+EFwvvkNxvS7H1XOIRmegY7AR4ypWTn
+         ww9tzIZge0KtyAI7tEvugLwk48h4uC8rzwWaFn9NWtXaNFpXw3ab+1cX/pqL+URzq86b
+         oXdw==
+X-Gm-Message-State: AOJu0Yy/qx7aQYpIu+uhEYuAzQv4eB14v8subqJdgQxRuwwTeSu3/S7f
+	kKFWVSsk4CsuIkhfXL8Yt9VR3A4H5K96
+X-Google-Smtp-Source: AGHT+IGR7jEQOfx+9LAfCrSObcolC0Q08hARoar8x4gxVIDslDvgDR0eK3ZurK9TSXoFOec1bhy69w==
+X-Received: by 2002:a05:6e02:1d81:b0:35f:7d16:c92d with SMTP id h1-20020a056e021d8100b0035f7d16c92dmr813267ila.44.1704948315660;
+        Wed, 10 Jan 2024 20:45:15 -0800 (PST)
+Received: from thinkpad ([202.46.23.19])
+        by smtp.gmail.com with ESMTPSA id f11-20020a63e30b000000b005c661a432d7sm202451pgh.75.2024.01.10.20.45.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 10 Jan 2024 20:45:15 -0800 (PST)
+Date: Thu, 11 Jan 2024 10:15:08 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: qcom: qrb2210-rb1: disable cluster power
+ domains
+Message-ID: <20240111044508.GA3761@thinkpad>
+References: <20240111-qrb2210-rb1-no-cluster-idle-v1-1-cec14ec15b02@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY8PR12MB7706:EE_|DM6PR12MB4124:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5cba8c2c-789b-4576-cf24-08dc125dce80
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	KiHEcVhKMoApBwSHn5S8qfvnGwNqtvf4p7/TLlm6WhRLrchMgRvZ4P2W258rDQeEjlQciLX2DyEk0ZdqCKI817UxA51CZdprLQBR9IEJ/Xd1SpwhwJn6TFfj+5ysGL0AMl5K5InfPI8UwiAvFIO03qiULMQFX/KUDWO0Z8lPsaKAmBjqdjTgrpHb2FFzwQzcidy9ZcwYo1I2ntZwuowB9gfIzU7YcX409e0o3fifJpIUwNOwI9Pxodbt1KdK28lLj3ZvBWOlUhNENagtCJWacwOWOK6mCI61KWC+Kfy4tVzQL066NnI+eCCYAT6E1Rwo/W1WTwtC8zkho8FqHPf/ulIDMkDdP6v8e4u9vSGdLbrWKXS7LbFrJ17LD2+mt7XWtWpo6zAcwdI0aI2eegtP+zC5MeGgDuvpf0euI0aNuaXaVCHxFsBIASAVLmbwsaq128Ep2wLTIAj9tgsJ7QxqaaazoBLzVbDyNdzhEXMCNXlYdP3iCyBikvbSFfIvL3Y11ruawpTJzZiqpmBOlaRn/I4HeBBkl9km/qMoAIQcxknQttYjDBtfPWWLg5hlTu5J5YlJggWjr/GzTdXqm19rf1GOENqkC259pZ20yAvUoytwQidWom2hpD+daN6EE2XTIRnO/nVejD5MiwFne0VBPHcrzdrFGUbwa+zTgmJ1kVHeCb5X4xHCMcSd8d98aYkS
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CY8PR12MB7706.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(346002)(396003)(376002)(136003)(39860400002)(366004)(230922051799003)(186009)(451199024)(64100799003)(1800799012)(31686004)(6512007)(26005)(31696002)(86362001)(2013699003)(38100700002)(36756003)(5660300002)(4326008)(6506007)(4744005)(2616005)(6666004)(53546011)(8936002)(6916009)(316002)(8676002)(66946007)(66556008)(66476007)(2906002)(41300700001)(478600001)(6486002)(54906003)(43740500002)(45980500001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?ZWcyRDdsNXord0E1NGhxQ1oxZjdjYklvakljWUlWQlRucnRZZncwbTdFcVBZ?=
- =?utf-8?B?NXlUZHZTZ05Xdms0MU9td3BRUjNGQU5ZRTAzdFdvcUJYVHdNVFlSN3M0eEQw?=
- =?utf-8?B?eVp2TmgyUDJMU0VtZEUwUmpXb3NhYVlYaER3ZnZGbTI5enBxUGhHNlV2eXNu?=
- =?utf-8?B?MWllRlY2TlVNdHAvMTh2eFpGNEgvS0lxRVVNdHc3Rkc5cWhFMUpXaWRUWDdo?=
- =?utf-8?B?eHhrdlFrTkdLUm1DSWg0MGRMRU8vOGlLLzk1VnpLYmE4NExPeWFVN0VLZFRL?=
- =?utf-8?B?emR4TE1OSTZ5cFA0MndET09IaE5ENWVQSGZVdHVFZFVVa3ZLT1pBQjJaTC9J?=
- =?utf-8?B?NnJaYzJ6Z0NFdmhaR01LcU1NNEtLMUFGeG04TFpWbFUvcUlVUm5ocXl2bVJS?=
- =?utf-8?B?RnRSK0VHeWVJenM1bVNhSktWUWxhOHJ0VzR2dGpZaTVyUE5NcWNQVFJxajA1?=
- =?utf-8?B?UGZLbWM0SmcvcnhYNnE0ZllPc1FTQ3Azbmx0Q1NZVUl4SnJ4b2VaOGFTdklW?=
- =?utf-8?B?WkVNcFdORUZhT2VQWEpHeUY4d2hTZnNodGk0b3JyOGtkaUJOcS9HdlZXUUNG?=
- =?utf-8?B?L0tyNVRwTnRRd21zSlNGTE9sMlRjTUNERm9JWmRVWHBMOTE3cWoxYVhOcGhw?=
- =?utf-8?B?MHFEMkxQQkdsQW9ZcTY0bWFpbWZSTmdPRllGNk01QVFGTm1aelY1VlRWREcz?=
- =?utf-8?B?TGw1ZnI3emVqejNoMUQ3QzYvRVpLMVptelBpaSt3RFYrQTBiWW1uVFNMdnRP?=
- =?utf-8?B?S3BhaTNXT1p3U1BZRTRXT0hEVGRtUTdJRkRQcmNIU01BVkZaOThNdkpGekJa?=
- =?utf-8?B?MFdjVy9FbHlDMXRyemxyV056TWkrc3FEWGFQcTNVeWRMYmZkMU9PamJjaWJ1?=
- =?utf-8?B?MUJneHd2UFRaSEs5UmtxL2hCU0FIYi9URHduRHZ3R1pVVTdMZFQ1VHE5YW1Y?=
- =?utf-8?B?K1k5c3RvVnk5YTZiSnhEdEswTzFOZnlUelVOUlNYWFV5VytsbFpBSkNkY01w?=
- =?utf-8?B?L3IyUkhxL0xDSjdVSW54dzNDSDNsSnNkbEtTOHV0bXZuaklxUzg2c213M3NK?=
- =?utf-8?B?T3krelBnNnEyVlM5VWN6My8weW1ZVUlXQm9EVHU1cTlySXd6T1NmZXhYQURr?=
- =?utf-8?B?VC9ieGxWdjJBT0N5cU9HZzJTMTZObXcxQTdmUjY5a29uVldsdnRVOFJ2QXQy?=
- =?utf-8?B?SnZUSVp6ZVd6ZEt0cmgxc2xrSE9ZQnhVdDFVSEJqVUFReFFFcGVMM28xS0JP?=
- =?utf-8?B?VnVHaFU4T05pek5COXROTS81Z0wxY2JkQk9TUk03ZWNrd1hjU1YvRytVWENK?=
- =?utf-8?B?NnA1ZnNIbzQ4aVh2bk5vRG5FM3RRTEtwUVcwR1YxUFpWMmZSLyt6UU4zMXV1?=
- =?utf-8?B?T0l3RExyRUVXaC9CMlN3ZkMrQTRWZXhGM053T1pRcStOSzJKeHlGdUJOdGtU?=
- =?utf-8?B?S0pxaUl5czBRdGJwQXNuWTIzZE42Q3VQMnFjK2t1STl2UUVsbmlMQjFWZEFW?=
- =?utf-8?B?SmZJU1BoaFI5TWUrZUdJVTNxOWp6V2R1citISzl3NXFCTkdjNGs2UUc3RGln?=
- =?utf-8?B?MXBwODEwYmtGdWovTTFCc2xVbXorcDJreHZwMTYvRUd3K0oyM2dOVTYyZCtG?=
- =?utf-8?B?RE5mRGJhK0YvaGZOS2xOK0VmTXA1eVJNZ01lL2U5YVR4L0g4MEtUbWthQ3py?=
- =?utf-8?B?ZHNjVWVaK1NnQ2M0aWdUeVkzdkhraFZ6WE5ySGdLL1VxQWIvSGFFRTNaeEJ1?=
- =?utf-8?B?bDZSbWl0TWppc0JEeW54SXRVb1ZWUWZycDFzaVkwZ2hwSTlhbHlKeWdNU1dj?=
- =?utf-8?B?MXlXcjlpK2l2U1ZlUWRBSUtPcVlzaCtFVS9saHd3NHN5MGdOSFJzc29Eb2Iw?=
- =?utf-8?B?Ukt5S3RvU3k2Tk5TanY4UXZxSGYxZGpzclZLc3dEK1Y4VmJYS1U5MlNYckxh?=
- =?utf-8?B?ZUpGQjVDdGdVSUhaOGQyQnU3ZjhuQkxXdjU1VUYzT2RzNjNXMGJFZDYrUTdL?=
- =?utf-8?B?VmxjVHFtS2krdVdJWFBEV3hmWjU4NWcwNmliQmU1RmNzT2V3MXNHSUNNa3Z1?=
- =?utf-8?B?T1RnRW9ubGdZNVliMHZTT2pXWXYyMG5wT21lQmpwT1JWRUFOVk5PUU5RZmp2?=
- =?utf-8?Q?nudyOJRIcvc/3oN8jQehqCouN?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5cba8c2c-789b-4576-cf24-08dc125dce80
-X-MS-Exchange-CrossTenant-AuthSource: CY8PR12MB7706.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Jan 2024 04:28:48.9138
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: bFIbLvPufkNXxEX4sFgQP487wScms0tFgOiikzx/80LSpfqaA3DZmv3GEGAJJrHxA/LtHVAvDsk1Ejfpn6mgUw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4124
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240111-qrb2210-rb1-no-cluster-idle-v1-1-cec14ec15b02@linaro.org>
 
+On Thu, Jan 11, 2024 at 04:01:14AM +0200, Dmitry Baryshkov wrote:
+> If cluster domain idle state is enabled on the RB1, the board becomes
+> significantly less responsive. Under certain circumstances (if some of
+> the devices are disabled in kernel config) the board can even lock up.
+> 
+> It seems this is caused by the MPM not being pinged during CPU idle (in
+> the same way the RPMh is pinged when cluster idle is entered).
+> 
 
+What does "ping" mean here? Please be more specific.
 
-On 11-01-2024 06:14, Kuninori Morimoto wrote:
->>> CPU
->>>           port {
->>>                   cpu_endpoint0: endpoint@0 { remote-endpoint = <&codec1_endpoint>; };
+- Mani
 
->>>                   cpu_endpoint1: endpoint@1 { remote-endpoint = <&codec2_endpoint>; };
+> Disable cluster domain idle for the RB1 board until MPM driver is fixed
+> to cooperate with the CPU idle states.
+> 
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+>  arch/arm64/boot/dts/qcom/qrb2210-rb1.dts | 18 ++++++++++++++++++
+>  1 file changed, 18 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/qrb2210-rb1.dts b/arch/arm64/boot/dts/qcom/qrb2210-rb1.dts
+> index aa53b6af6d9c..9a0308ef8b0f 100644
+> --- a/arch/arm64/boot/dts/qcom/qrb2210-rb1.dts
+> +++ b/arch/arm64/boot/dts/qcom/qrb2210-rb1.dts
+> @@ -177,6 +177,24 @@ vph_pwr: regulator-vph-pwr {
+>  	};
+>  };
+>  
+> +&CPU_PD0 {
+> +	/delete-property/ power-domains;
+> +};
+> +
+> +&CPU_PD1 {
+> +	/delete-property/ power-domains;
+> +};
+> +
+> +&CPU_PD2 {
+> +	/delete-property/ power-domains;
+> +};
+> +
+> +&CPU_PD3 {
+> +	/delete-property/ power-domains;
+> +};
+> +
+> +/delete-node/ &CLUSTER_PD;
+> +
+>  &gpi_dma0 {
+>  	status = "okay";
+>  };
+> 
+> ---
+> base-commit: 39676dfe52331dba909c617f213fdb21015c8d10
+> change-id: 20240111-qrb2210-rb1-no-cluster-idle-7bf43b3a0452
+> 
+> Best regards,
+> -- 
+> Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> 
+> 
 
-You expect this endpoint to be exposed by driver right? Or are you 
-suggesting nothing needs to be done in the driver for this endpoint?
-
-...
-
-
-> Sample is for 2:3 connection, but it should be OK for 1:2.
-
-For 1:N connection, how many DAI links audio-graph-card2 driver creates?
+-- 
+மணிவண்ணன் சதாசிவம்
 
