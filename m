@@ -1,173 +1,110 @@
-Return-Path: <devicetree+bounces-31388-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31390-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 067B482B001
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 14:55:36 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0FD882B026
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 15:03:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1E7351C22513
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 13:55:35 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5D346B20CAB
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 14:03:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9E203A8FF;
-	Thu, 11 Jan 2024 13:55:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9FA83AC10;
+	Thu, 11 Jan 2024 14:02:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="qsWDUXof"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="dUKDcm1U"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EC87364C5
-	for <devicetree@vger.kernel.org>; Thu, 11 Jan 2024 13:55:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-40e586a62f7so19920465e9.2
-        for <devicetree@vger.kernel.org>; Thu, 11 Jan 2024 05:55:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1704981326; x=1705586126; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=I0dIPsJGSMOF5s4ZOOWNHew/JfNIDHIN+6H9/lTo/to=;
-        b=qsWDUXofUMjF+0d3/oChIaPrREkGYXaZgKXp1j6NQWjXcfDi2XI+vUS+OmP2+lO0T2
-         R0USQIPPZD/TeJrfYwxlNLgVGe54TB+aatm2DVCa/z4AG08i3P68qMuDZih8cu55/rdH
-         jnzsD5PwsVN8QNqbMCEWyfJA7H6Mu+A8dfoKZarM8OlivA3HSo8QmNZktDW8EJXV5GLb
-         P03BhxSpbCjE5mETzMaAvH93VmxjhmewFMA+3GHGq3P7QEE8ouCA9YfI7+dJwynXGnWO
-         zMs/y93qzXY0nOee6mVRnE5KNR6KvZFoAGtLGIFfqy6Yr3CXBYAPIl36cNs9P54qD8E5
-         U6SA==
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50AC03C097
+	for <devicetree@vger.kernel.org>; Thu, 11 Jan 2024 14:02:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1704981772;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=w2oiHnQxHwv2fW/BCjTbKgiDncxKv4ZkLpJzyQn0qCM=;
+	b=dUKDcm1UmGMVe8eDb5zgi6nEdSfZc75jj/xpbZW4ahMQiXwFdOVTqFNp4wBp0gZx+nlGDn
+	T204w87EePz9U022ovFc1Z7M+Uqf+XmkjJ++7v8H4SF3hUTyzCBvtCS+GbPnVPZjoXt3Co
+	OBuo8SzKWm4YHkNwBAzLwTsKsTHCH3M=
+Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com
+ [209.85.219.72]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-353-XW0QDgvRPkyV9cHSd_UwyA-1; Thu, 11 Jan 2024 09:02:46 -0500
+X-MC-Unique: XW0QDgvRPkyV9cHSd_UwyA-1
+Received: by mail-qv1-f72.google.com with SMTP id 6a1803df08f44-6800aa45af1so101346506d6.3
+        for <devicetree@vger.kernel.org>; Thu, 11 Jan 2024 06:02:45 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704981326; x=1705586126;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=I0dIPsJGSMOF5s4ZOOWNHew/JfNIDHIN+6H9/lTo/to=;
-        b=s3RRrLdSqspoLYreIn3+if8Rr3lydG1ixl5eEjsY5DTbhiLl8z/stjRwSzjJjLmcz5
-         RxBN0auRORvq+pcBpYsEqY8WTKmFYjTLy0Lc0XZUkP1nbuUo855R1pDQ2jKIlAxy7Tmo
-         Tr22yHnDF2IVH2KwdrprJBKmnEqsJ22UH6l8hC6x2xTVMerqhPjCjnEjUMycivccsZhq
-         QwMptnuXkBpiKpec9Kqp9cGrE4gDc5NnlyqZQsCwLzBOOmp6K+uRq5BzcmdwgsIaSk4g
-         sJdEnWIOWQPMNFxmS27UXpwH6qHPfwjh0OLKAmDpE9LVMUnhu4RsBIYzzAtiU0+6bVeS
-         lgsg==
-X-Gm-Message-State: AOJu0Yxp+mfJSAy9RwoD/A/2Lo/KuEy9A27VnmozzJhjSdOTyh1rnlGf
-	557cE6wKnyFI5dI+D6TJOKJnUMknNH9sgA==
-X-Google-Smtp-Source: AGHT+IGtF3QNalwefKPZvWwsQufdvQFpfDZHDVwKS22BIc21HKHHWst7x8VNdyXHzgwLSfb8v4hU0A==
-X-Received: by 2002:a05:600c:444e:b0:40d:7505:a4ca with SMTP id v14-20020a05600c444e00b0040d7505a4camr460918wmn.37.1704981326427;
-        Thu, 11 Jan 2024 05:55:26 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.223.112])
-        by smtp.gmail.com with ESMTPSA id t18-20020a05600c199200b0040e5951f199sm1971457wmq.34.2024.01.11.05.55.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 11 Jan 2024 05:55:25 -0800 (PST)
-Message-ID: <af970ab0-f325-4d6c-9547-750eaa785160@linaro.org>
-Date: Thu, 11 Jan 2024 14:55:21 +0100
+        d=1e100.net; s=20230601; t=1704981764; x=1705586564;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=w2oiHnQxHwv2fW/BCjTbKgiDncxKv4ZkLpJzyQn0qCM=;
+        b=I9Vs/aVsJr4y9cc3R5vfq2xeI1xAIrCQMbhC2Z7pFl5IKF00EP/5QMOO4NH8vnuQbf
+         hCun3p695mj6nQrmLDZk6blks0b1X/Yj4B+4fvccymGY03qMZ0Zor3gSG7LxgBmtqb7R
+         jgRxLhFLAv26Rnq+v29fUy0JOYXXRT6Dxmpn60FwYHWxbc07RvY0bZ9TulD41InIMb+7
+         lK9vaU5Q06mlzxgE2KUfB+CsUpkaw5ixdcxH3dEDh3mmgHNSKMSm58xilbBxdPud+yzR
+         m3ZiV2N1YlqQV1zEsoMGwkwh/BghSXwrBpXDPI4yA9oH4WciJglByFIQ3LcRulyAV365
+         6JZA==
+X-Gm-Message-State: AOJu0Yw1cjljfhGKoljwcHSM3vKXrCEOT6v6ePlPgHpOTVukqXZlcNx9
+	lAQ3b1T+kmIssfPyr6TQqH1OT/BQ8TEOkgZEqtierZMmEsVCQ/evPQD5y33EnHsFD1bK+QpbxPx
+	MZqsccSEd2R7vtB9RRESw/m4UiwTi5jDQWKr15A==
+X-Received: by 2002:ac8:5841:0:b0:428:318f:e484 with SMTP id h1-20020ac85841000000b00428318fe484mr719673qth.108.1704981764094;
+        Thu, 11 Jan 2024 06:02:44 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IEtflAELoemq0nV2Xk8B+wSndOSPvHCcElj4MrMOV9ESDLlKwYt2d36MOLJ5nZhJxTYASh33A==
+X-Received: by 2002:ac8:5841:0:b0:428:318f:e484 with SMTP id h1-20020ac85841000000b00428318fe484mr719653qth.108.1704981763747;
+        Thu, 11 Jan 2024 06:02:43 -0800 (PST)
+Received: from x1 (c-24-2-114-156.hsd1.pa.comcast.net. [24.2.114.156])
+        by smtp.gmail.com with ESMTPSA id cg5-20020a05622a408500b00429ab4df47csm451462qtb.17.2024.01.11.06.02.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 11 Jan 2024 06:02:42 -0800 (PST)
+Date: Thu, 11 Jan 2024 09:02:41 -0500
+From: Brian Masney <bmasney@redhat.com>
+To: Lucas Karpinski <lkarpins@redhat.com>
+Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] arm64: dts: qcom: sa8540p-ride: disable pcie2a node
+Message-ID: <ZZ_1ARhDxYNk7Gt2@x1>
+References: <qcoqksikfvdqxk6stezbzc7l2br37ccgqswztzqejmhrkhbrwt@ta4npsm35mqk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] ASoC: dt-bindings: fsl,sai: Add compatible string for
- i.MX95 platform
-Content-Language: en-US
-To: Chancel Liu <chancel.liu@nxp.com>,
- "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
- "broonie@kernel.org" <broonie@kernel.org>,
- "robh+dt@kernel.org" <robh+dt@kernel.org>,
- "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "shengjiu.wang@gmail.com" <shengjiu.wang@gmail.com>,
- "Xiubo.Lee@gmail.com" <Xiubo.Lee@gmail.com>,
- "festevam@gmail.com" <festevam@gmail.com>,
- "nicoleotsuka@gmail.com" <nicoleotsuka@gmail.com>,
- "perex@perex.cz" <perex@perex.cz>, "tiwai@suse.com" <tiwai@suse.com>,
- "linux-sound@vger.kernel.org" <linux-sound@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
- "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>
-References: <20240109075551.870001-1-chancel.liu@nxp.com>
- <20240109075551.870001-2-chancel.liu@nxp.com>
- <8ed559e8-1f97-45ee-acb9-c792752fd419@linaro.org>
- <DB9PR04MB9498C7C66BD45F2FBDD163D5E3682@DB9PR04MB9498.eurprd04.prod.outlook.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <DB9PR04MB9498C7C66BD45F2FBDD163D5E3682@DB9PR04MB9498.eurprd04.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <qcoqksikfvdqxk6stezbzc7l2br37ccgqswztzqejmhrkhbrwt@ta4npsm35mqk>
+User-Agent: Mutt/2.2.10 (2023-03-25)
 
-On 11/01/2024 12:06, Chancel Liu wrote:
->>> Add compatible string "fsl,imx95-sai" for i.MX95 platform.
->>>
->>> Signed-off-by: Chancel Liu <chancel.liu@nxp.com>
->>> ---
->>>  Documentation/devicetree/bindings/sound/fsl,sai.yaml | 1 +
->>>  1 file changed, 1 insertion(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/sound/fsl,sai.yaml
->> b/Documentation/devicetree/bindings/sound/fsl,sai.yaml
->>> index 088c26b001cc..f3d910aa2dc6 100644
->>> --- a/Documentation/devicetree/bindings/sound/fsl,sai.yaml
->>> +++ b/Documentation/devicetree/bindings/sound/fsl,sai.yaml
->>> @@ -40,6 +40,7 @@ properties:
->>>                - fsl,imx8ulp-sai
->>>                - fsl,imx93-sai
->>>                - fsl,vf610-sai
->>> +              - fsl,imx95-sai
->>
->> Don't break the order, please.
->>
->> Best regards,
->> Krzysztof
+On Tue, Jan 09, 2024 at 10:20:50AM -0500, Lucas Karpinski wrote:
+> pcie2a and pcie3a both cause interrupt storms to occur. However, when
+> both are enabled simultaneously, the two combined interrupt storms will
+> lead to rcu stalls. Red Hat is the only company still using this board
+> and since we still need pcie3a, just disable pcie2a.
 > 
-> Sorry but I don't understand what's the "order" refer to. Could you please
-> explain it to me?
+> Signed-off-by: Lucas Karpinski <lkarpins@redhat.com>
 
-Items look alphabetically ordered.
+Reviewed-by: Brian Masney <bmasney@redhat.com>
 
-Best regards,
-Krzysztof
+To elaborate further: Leaving both pcie2a and pcie3a enabled will lead
+to rcu stalls and the board fails to boot when both are enabled. We
+have the latest firmware that we've been able to get from QC.
+Disabling one of the pcie nodes works around the boot issue. There's
+nothing interesting on pcie2a on the development board, and pcie3a is
+enabled because it has 10GB ethernet that works upstream.
+
+The interrupt storm on pcie3a can still occur on this platform, however
+that's a separate issue.
+
+Brian
 
 
