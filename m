@@ -1,142 +1,101 @@
-Return-Path: <devicetree+bounces-31315-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31316-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2CA782ACA5
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 11:56:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 083E782ACAC
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 11:57:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 917BC1F23343
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 10:56:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9B1AF1F20419
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 10:57:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DFC614F60;
-	Thu, 11 Jan 2024 10:54:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F14F914F61;
+	Thu, 11 Jan 2024 10:56:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tq7X+Qxj"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="dAeApq8O"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 180C31773B;
-	Thu, 11 Jan 2024 10:54:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1867BC433C7;
-	Thu, 11 Jan 2024 10:54:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1704970471;
-	bh=F45rGXqUG2uAkO0sp6Ly0dJuN2iXFQzvSxj7Y6KeR94=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=tq7X+QxjA7bK4hgFg/yRiSGes3CiIQLvTBm4H5I9KTPtRbxND+zNAKYU0PLj7Ap1R
-	 CvRC6cKJRCwHqizTqFnswDwJVOcF/aAkT4AHOM9uGrTaUNqYiY7B5X5RfTmZKyyqFh
-	 i7iOvGxQDyaOHxClroicbwMDQ9bKSqjsaieL++1zqqvk6zHIHCP7t8WlIVbT7nU224
-	 usYwsP/+8yu7cqzB940YwaMlKyYIF1XsLSz3YbrCkVwJKH4tlMBSztbMW65Sh33bES
-	 fQ9UOyYqCeaHtc/zShPXFtojLHtL2oBy9drYTpgquaNAZPU2QhQk7F0WZFzn3zxrVa
-	 hacLHu73nSflg==
-Date: Thu, 11 Jan 2024 10:54:26 +0000
-From: Lee Jones <lee@kernel.org>
-To: Karel Balej <karelb@gimli.ms.mff.cuni.cz>
-Cc: Karel Balej <balejk@matfyz.cz>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Duje =?utf-8?Q?Mihanovi=C4=87?= <duje.mihanovic@skole.hr>,
-	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
-Subject: Re: [RFC PATCH 1/5] mfd: 88pm88x: differences with respect to the
- PMIC RFC series
-Message-ID: <20240111105426.GA1678981@google.com>
-References: <20231228100208.2932-1-karelb@gimli.ms.mff.cuni.cz>
- <20231228100208.2932-2-karelb@gimli.ms.mff.cuni.cz>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AA1E14ABB;
+	Thu, 11 Jan 2024 10:56:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1704970598;
+	bh=HsX3oWaHYvaVq5DEKrjIniKdQPIuXWrIZcYPPGl0S0g=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=dAeApq8OV4J2GdqaCosfDkz6H+gpiKgp/LOCmVgGJaV82DjC57g9WSxrOOfwQv9ki
+	 n1Uu1lCTy4pOpcflys0VNJquTaIgDnVX9iVKOnFSAxwUbpfTaNtOwObRnCcCCGfohn
+	 wo6LVIlBfd8tTtpWEeSBgvDAYJQwRmLl64ap+eanv+SASJb2RP/5NgfgD1ympja7wh
+	 67ylVrT68HjMxHU6fSgF0TkRboWJBLzJwRBWgNWBdUm0dk1/6XFG7AWPRjgLiI8oUQ
+	 GUkJAu1oHrtc18fJXCX07CS5OP5UYg74Ogld1Y+20BWz4L8URqcdUK8c5tL9Er6vcS
+	 DM47q20DfNtQQ==
+Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id B58B537811D1;
+	Thu, 11 Jan 2024 10:56:37 +0000 (UTC)
+Message-ID: <13493023-7b68-4a25-83c3-b870bf00ccb3@collabora.com>
+Date: Thu, 11 Jan 2024 11:56:36 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V2 0/2] mt7981b: initial DT code
+To: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+ Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+ Matthias Brugger <matthias.bgg@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Daniel Golle <daniel@makrotopia.org>, Hsin-Yi Wang <hsinyi@chromium.org>,
+ =?UTF-8?Q?N=C3=ADcolas_F_=2E_R_=2E_A_=2E_Prado?= <nfraprado@collabora.com>,
+ jason-ch chen <Jason-ch.Chen@mediatek.com>,
+ Macpaul Lin <macpaul.lin@mediatek.com>, Sean Wang <sean.wang@mediatek.com>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, soc@kernel.org,
+ linux-kernel@vger.kernel.org, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?=
+ <rafal@milecki.pl>
+References: <20240111103928.721-1-zajec5@gmail.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <20240111103928.721-1-zajec5@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20231228100208.2932-2-karelb@gimli.ms.mff.cuni.cz>
 
-The subject needs work.  Please tell us what the patches is doing.
-
-On Thu, 28 Dec 2023, Karel Balej wrote:
-
-> From: Karel Balej <balejk@matfyz.cz>
-
-A full an complete commit message is a must.
-
-> Signed-off-by: Karel Balej <balejk@matfyz.cz>
-> ---
->  drivers/mfd/88pm88x.c       | 14 ++++++++------
->  include/linux/mfd/88pm88x.h |  2 ++
->  2 files changed, 10 insertions(+), 6 deletions(-)
+Il 11/01/24 11:39, Rafał Miłecki ha scritto:
+> From: Rafał Miłecki <rafal@milecki.pl>
 > 
-> diff --git a/drivers/mfd/88pm88x.c b/drivers/mfd/88pm88x.c
-> index 5db6c65b667d..3424d88a58f6 100644
-> --- a/drivers/mfd/88pm88x.c
-> +++ b/drivers/mfd/88pm88x.c
-> @@ -57,16 +57,16 @@ static struct reg_sequence pm886_presets[] = {
->  	REG_SEQ0(PM88X_REG_BK_OSC_CTRL3, 0xc0),
->  };
->  
-> -static struct resource onkey_resources[] = {
-> +static struct resource pm88x_onkey_resources[] = {
->  	DEFINE_RES_IRQ_NAMED(PM88X_IRQ_ONKEY, "88pm88x-onkey"),
->  };
->  
-> -static struct mfd_cell pm88x_devs[] = {
-> +static struct mfd_cell pm886_devs[] = {
->  	{
->  		.name = "88pm88x-onkey",
-> -		.num_resources = ARRAY_SIZE(onkey_resources),
-> -		.resources = onkey_resources,
-> -		.id = -1,
-> +		.of_compatible = "marvell,88pm88x-onkey",
-> +		.num_resources = ARRAY_SIZE(pm88x_onkey_resources),
-> +		.resources = pm88x_onkey_resources,
->  	},
->  };
->  
-> @@ -74,6 +74,8 @@ static struct pm88x_data pm886_a1_data = {
->  	.whoami = PM886_A1_WHOAMI,
->  	.presets = pm886_presets,
->  	.num_presets = ARRAY_SIZE(pm886_presets),
-> +	.devs = pm886_devs,
-> +	.num_devs = ARRAY_SIZE(pm886_devs),
->  };
->  
->  static const struct regmap_config pm88x_i2c_regmap = {
-> @@ -157,7 +159,7 @@ static int pm88x_probe(struct i2c_client *client)
->  	if (ret)
->  		return ret;
->  
-> -	ret = devm_mfd_add_devices(&client->dev, 0, pm88x_devs, ARRAY_SIZE(pm88x_devs),
-> +	ret = devm_mfd_add_devices(&client->dev, 0, chip->data->devs, chip->data->num_devs,
->  			NULL, 0, regmap_irq_get_domain(chip->irq_data));
->  	if (ret) {
->  		dev_err(&client->dev, "Failed to add devices: %d\n", ret);
-> diff --git a/include/linux/mfd/88pm88x.h b/include/linux/mfd/88pm88x.h
-> index a34c57447827..9a335f6b9c07 100644
-> --- a/include/linux/mfd/88pm88x.h
-> +++ b/include/linux/mfd/88pm88x.h
-> @@ -49,6 +49,8 @@ struct pm88x_data {
->  	unsigned int whoami;
->  	struct reg_sequence *presets;
->  	unsigned int num_presets;
-> +	struct mfd_cell *devs;
-> +	unsigned int num_devs;
+> This work is based on linux-next content and was successfully verified
+> using "dtbs_check".
+> 
+> I'm not sure who should apply this work. Given I received reviews from
+> AngeloGioacchino should I expect Arnd to pick it to his tree directly?
 
-Why are you adding extra abstraction?
+This is MediaTek and gets picked by MediaTek maintainers - either me or Matthias.
 
->  };
->  
->  struct pm88x_chip {
-> -- 
-> 2.43.0
+Cheers,
+Angelo
+
+> 
+> Rafał Miłecki (2):
+>    dt-bindings: arm64: mediatek: Add MT7981B and Xiaomi AX3000T
+>    arm64: dts: mediatek: Add initial MT7981B and Xiaomi AX3000T
+> 
+>   .../devicetree/bindings/arm/mediatek.yaml     |   4 +
+>   arch/arm64/boot/dts/mediatek/Makefile         |   1 +
+>   .../dts/mediatek/mt7981b-xiaomi-ax3000t.dts   |  15 +++
+>   arch/arm64/boot/dts/mediatek/mt7981b.dtsi     | 105 ++++++++++++++++++
+>   4 files changed, 125 insertions(+)
+>   create mode 100644 arch/arm64/boot/dts/mediatek/mt7981b-xiaomi-ax3000t.dts
+>   create mode 100644 arch/arm64/boot/dts/mediatek/mt7981b.dtsi
 > 
 
--- 
-Lee Jones [李琼斯]
+
 
