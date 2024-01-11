@@ -1,133 +1,115 @@
-Return-Path: <devicetree+bounces-31296-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31297-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 994FA82ABF1
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 11:26:51 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 07B8182AC25
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 11:39:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BE36B1C23113
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 10:26:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AA0EC28372E
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 10:39:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4925314AAA;
-	Thu, 11 Jan 2024 10:26:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29C7D14A92;
+	Thu, 11 Jan 2024 10:39:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="SuziKOq7"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="l6exD5dh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DDA014278;
-	Thu, 11 Jan 2024 10:26:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1704968788; x=1736504788;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=75Kadan5gs4ZuP5cPTGG7+GIKF7osPeROaXB2BrU9gM=;
-  b=SuziKOq76gnG9XNyPBW8fuo6P7bB9fEq2dAKQp0UoFflPt95touTDJDm
-   /sTI4VLt1wmW59jq18sC+QPKHRBhVf93Bb7116EWgJSlLHg9prH5KisN0
-   bHC4awATOOrmMLFxRjL+DWg3MP7JJouTnzLsDTayb0kNO9B8fVFDmDBRL
-   w9QJyP5IU8OoYVTGNNTuEwUk2Q0EiQ807/v/usxA4C8CxpnG6SAydNUwn
-   UIsEKTX7Ml2nsRfv35tTroh74u7z/uYsTpq7rTOFM5uyOn7kTI8zaHWng
-   H7aZ4nqDUdQql9TjduDqXDw+CX4qMyqaBODoavCRCebfdKBaOTHSXwvzK
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10949"; a="463093405"
-X-IronPort-AV: E=Sophos;i="6.04,185,1695711600"; 
-   d="scan'208";a="463093405"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
-  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Jan 2024 02:26:27 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.04,185,1695711600"; 
-   d="scan'208";a="30950728"
-Received: from ppglcf0286.png.intel.com ([10.126.161.20])
-  by orviesa001.jf.intel.com with ESMTP; 11 Jan 2024 02:26:22 -0800
-From: Rohan G Thomas <rohan.g.thomas@intel.com>
-To: quic_abchauha@quicinc.com
-Cc: ahalaney@redhat.com,
-	alexandre.torgue@foss.st.com,
-	conor+dt@kernel.org,
-	davem@davemloft.net,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8611914A82;
+	Thu, 11 Jan 2024 10:39:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-50eabfac2b7so5828917e87.0;
+        Thu, 11 Jan 2024 02:39:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1704969574; x=1705574374; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=MuVNFMNu/znFyjhI4YiVPNBcWz8JIXuuibOlcW6cauo=;
+        b=l6exD5dhQxAdw7J509IOWuqTjfdXjGjeKueQkdjjbfb+obmxHG7trxUajB+HY/xGqT
+         8A5dthvizvm1g0TwlOK0HIKyvXRzbzFrw+EsV8bZFixv1Khaw7woxUIF8NAo3q6tk4SG
+         6dQL0meiHsDQRn0FX/qwzbtT4yBZgu0IDz7OKl6JC9kBehFXBOHlxXENjW4KDBK0hSWj
+         C9YUHGzf0W90NhUq2x3gmNDEMZGf/3A6pD390CDMKu7kwWzit3xt95i9p/x3HaHkaJ0a
+         FjIUf/fdMs/Eet78uiK8eEm/hxE0hnyU9g1a4ADKMrpkOOLA3bynQlvAjtqrMOvigAXA
+         2uVA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1704969574; x=1705574374;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=MuVNFMNu/znFyjhI4YiVPNBcWz8JIXuuibOlcW6cauo=;
+        b=gElVf9y2KjxgdXI+4on4Ocbw343IuKfwZ669HxxsJVbdw90+7BeLWgsPtUJ3iUl5DV
+         6CJDjLDlGAwBOp0yWmlSHWzMkS2i94/Mlm0dZcxzyac1dzJa7d/hVIsWdYspcVZhPIQ4
+         x3uqyNq2ycQEd0itNRrc7Z9DfdT9lFBEsZdjlZYjSVvkTVQWbqy0S0K6IhZ8QPFe/XDD
+         uD9eV76x+yn1b/gqDgSyzKb87YHNBUW98/c6Ipn6JJ6+bq5uQ4Qsw+K8PAuImUbEJwOp
+         BKhvIUhJ4vtJgep8N/5peAOgNlInV4BZFXchMseELdlj6lLKNpttjtM8Cp5YLEB0EJmB
+         slBQ==
+X-Gm-Message-State: AOJu0YwXKdTJRk34S8QCfpUkBJ+vJWFr/PehFLFbFQxg8pXCBCGDuK3v
+	k+/oNY+7nxzu24qhhlyAZxU=
+X-Google-Smtp-Source: AGHT+IEnpP/pKX/gXbee57tP/8wAV93Q1jQEFfaBg+OenM/0Ooa1lAhiPzT2sTpofQ+k5kRMXR9eVw==
+X-Received: by 2002:a19:ad4b:0:b0:50e:dc99:b9d4 with SMTP id s11-20020a19ad4b000000b0050edc99b9d4mr385313lfd.44.1704969574165;
+        Thu, 11 Jan 2024 02:39:34 -0800 (PST)
+Received: from localhost.lan (031011218106.poznan.vectranet.pl. [31.11.218.106])
+        by smtp.gmail.com with ESMTPSA id d14-20020a170906c20e00b00a298e2f6b3csm407179ejz.213.2024.01.11.02.39.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 11 Jan 2024 02:39:33 -0800 (PST)
+From: =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To: Arnd Bergmann <arnd@arndb.de>,
+	Olof Johansson <olof@lixom.net>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Daniel Golle <daniel@makrotopia.org>,
+	Hsin-Yi Wang <hsinyi@chromium.org>,
+	=?UTF-8?q?N=C3=ADcolas=20F=20=2E=20R=20=2E=20A=20=2E=20Prado?= <nfraprado@collabora.com>,
+	jason-ch chen <Jason-ch.Chen@mediatek.com>,
+	Macpaul Lin <macpaul.lin@mediatek.com>,
+	Sean Wang <sean.wang@mediatek.com>,
 	devicetree@vger.kernel.org,
-	edumazet@google.com,
-	elder@linaro.org,
-	fancer.lancer@gmail.com,
-	joabreu@synopsys.com,
-	kernel.upstream@quicinc.com,
-	krzysztof.kozlowski+dt@linaro.org,
-	kuba@kernel.org,
 	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	soc@kernel.org,
 	linux-kernel@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	mcoquelin.stm32@gmail.com,
-	netdev@vger.kernel.org,
-	pabeni@redhat.com,
-	peppe.cavallaro@st.com,
-	quic_bhaviks@quicinc.com,
-	robh+dt@kernel.org,
-	rohan.g.thomas@intel.com
-Subject: Re: [PATCH net-next 2/2] net: stmmac: TBS support for platform driver
-Date: Thu, 11 Jan 2024 18:26:18 +0800
-Message-Id: <20240111102618.17734-1-rohan.g.thomas@intel.com>
-X-Mailer: git-send-email 2.19.0
-In-Reply-To: <92892988-bb77-4075-812e-19f6112f436e@quicinc.com>
-References: <92892988-bb77-4075-812e-19f6112f436e@quicinc.com>
+	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH V2 0/2] mt7981b: initial DT code
+Date: Thu, 11 Jan 2024 11:39:26 +0100
+Message-Id: <20240111103928.721-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.35.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On Wed, 10 Jan 2024 20:20:39 +0000 : Abhishek Chauhan (ABC) wrote:
+From: Rafał Miłecki <rafal@milecki.pl>
 
-> Qualcomm had similar discussions with respect to enabling of TBS for a
-> particular queue.
-> We had similar discussion on these terms yesterday with Redhat. Adding
-> Andrew from Redhat here
-> 
-> What we discovered as part of the discussions is listed below.
-> 
-> 1. Today upstream stmmac code is designed in such a way that TBS flag is put
-> as part of queue configurations(see below snippet) and as well know that
-> stmmac queue configuration comes from the dtsi file.
-> 
-> //ndo_open => stmmac_open
-> int tbs_en = priv->plat->tx_queues_cfg[chan].tbs_en;(comes from
-> tx_queues_cfg)
-> 
-> /* Setup per-TXQ tbs flag before TX descriptor alloc */ tx_q->tbs |= tbs_en ?
-> STMMAC_TBS_AVAIL : 0;
-> 
-> 2. There is a no way to do this dynamically from user space because we don't
-> have any API exposed which can do it from user space and also TBS rely on
-> special descriptors aka enhanced desc this cannot be done run time and
-> stmmac has to be aware of it before we do DMA/MAC/MTL start. To do this
-> dynamically would only mean stopping DMA/MAC/MTL realloc resources for
-> enhanced desc and the starting MAC/DMA/MTL. This means we are disrupting
-> other traffic(By stopping MAC block).
-> 
-> 3. I dont think there is a way we can enable this dynamically today. I would like
-> upstream community to share your thoughts as well.
-> 
-> 4. I agree with Rohan's patch here and want upstream community to accept it.
-> This will allow use to configure the queues where TBS needs to be enabled as
-> hardcoding in the code unless upstream has better way to this using
-> userspace.
-> 
-> Please let us know if you think otherwise.
-> 
-> 
+This work is based on linux-next content and was successfully verified
+using "dtbs_check".
 
-Hi Abhishek,
+I'm not sure who should apply this work. Given I received reviews from
+AngeloGioacchino should I expect Arnd to pick it to his tree directly?
 
-Thanks for bringing this to discussion and a better explanation from
-your side. I agree with you.
+Rafał Miłecki (2):
+  dt-bindings: arm64: mediatek: Add MT7981B and Xiaomi AX3000T
+  arm64: dts: mediatek: Add initial MT7981B and Xiaomi AX3000T
 
-Best Regards,
-Rohan
+ .../devicetree/bindings/arm/mediatek.yaml     |   4 +
+ arch/arm64/boot/dts/mediatek/Makefile         |   1 +
+ .../dts/mediatek/mt7981b-xiaomi-ax3000t.dts   |  15 +++
+ arch/arm64/boot/dts/mediatek/mt7981b.dtsi     | 105 ++++++++++++++++++
+ 4 files changed, 125 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt7981b-xiaomi-ax3000t.dts
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt7981b.dtsi
+
+-- 
+2.35.3
+
 
