@@ -1,172 +1,145 @@
-Return-Path: <devicetree+bounces-31274-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31272-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2868E82A9BB
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 09:53:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 490EB82A950
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 09:46:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D9C9D1F2427F
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 08:53:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F1BCE1F24292
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 08:46:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41919F9EA;
-	Thu, 11 Jan 2024 08:53:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CE28F9D6;
+	Thu, 11 Jan 2024 08:46:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="uLMBvb85"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bQpE2h0o"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f66.google.com (mail-ed1-f66.google.com [209.85.208.66])
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B07B12B75
-	for <devicetree@vger.kernel.org>; Thu, 11 Jan 2024 08:53:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-ed1-f66.google.com with SMTP id 4fb4d7f45d1cf-555f581aed9so5886324a12.3
-        for <devicetree@vger.kernel.org>; Thu, 11 Jan 2024 00:53:27 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9FF211C8C;
+	Thu, 11 Jan 2024 08:45:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-40e61ff3e37so422645e9.1;
+        Thu, 11 Jan 2024 00:45:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1704963205; x=1705568005; darn=vger.kernel.org;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8fdzAkRigLOJSs0p8z2FKeIqZxw3OTVE9TPYi8cJXf8=;
-        b=uLMBvb85ZtMTZKMEZWy2NW8vfuoj6cW6ENr7vJ8JDnIyzavVhYT+tKo/Rm9VOmOfPu
-         I6fJ+aJbWwxipmlUYc7oOaOCOfwKivhZppKAwJhDzVP0wqg50V35pY1AoPHxdIRgVe5p
-         cvrEOsqSdK8a73g31+AiWcWq6AFnNTKPk8wuQfqeeTcPhIk0IE7JppLUDLQRDD5yb9j0
-         1sqFXddFoFX5XCWaFMalW7FX08MHsWNDvBgK1+OofqpDZjIgK44bUnnahIm/vBRfKUQM
-         Yn91Uk+pofN3RFZm65WQ7l3h6ke0VYgWadK+9+lYuUWc+l2NloKA/+MP8mlx0x09jYS+
-         ezbA==
+        d=gmail.com; s=20230601; t=1704962757; x=1705567557; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=XnXGwZ90m0aaWtoshE1c+60rdXXd9xE4R+DPUoXirhg=;
+        b=bQpE2h0oOho6RSJJGBJPdo04CCZe45nqNgK8oN+UczucLqK8AJ07HFKt2+IKipXx8R
+         vDX0rzjXzRQXq2bHwacUt2Y7aYCbdKeB5cgTTpYF0K8GwgByAwoCVpYwfDVtxeK0Wbsv
+         rvM92oUnh+A8g6QBUHW8HCgHO0sYGWBBO774qlkBZWY0qdhSspZC5AwndM0cSOymRYff
+         vPUh1sR8iDaeAksE5gpQYbN/3SMpUo5NG/Fs2OjHFRW73F84/9Vgw0Z9+U5WNl8+LDla
+         9wB28AFQ/IJRqgUtND2xihtP4Ozjkbt1Exp3fdsdOznpndmRYCLkgsZCV+aVHf/TLVPn
+         dmSQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1704963205; x=1705568005;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=8fdzAkRigLOJSs0p8z2FKeIqZxw3OTVE9TPYi8cJXf8=;
-        b=aJUIy6xsTctm4SU+K0LODcYGjIWyfnbL5ZEBqp6shZXbb0kqQPbv5eC16CV2d2xaEf
-         zt/JeODT79Ee0NsZ10VIemIHZ8UOfibSC0im4JH7EYvafHWfWCBM3QAI/m909dEh0D4L
-         5R6RXpcdnMHvW6+/YCraEOLECMV6H6pKuVkgOfpRrfg3U8L00QR61L5adn5KjfLAT+lH
-         OzYoJI4McHDtrQPMs3L3P8Nya2072X5W4SryFGA5ztT/VheGL0uUnMNCTAn9CpyCumhp
-         u91lNzYvI8MHl+KLjvkNmEiPDNghUF1FaE0FRVJuzj3CqhKgWKO5ViKrsjDbc/JqpUqi
-         EE4w==
-X-Gm-Message-State: AOJu0YzyKkSSpkEy7z0gyrZfhPKGDAGF+7VHw7s5/qjsS2gCwEPbr/wo
-	F6DG6jWzjhW+Aei2q3oGdvbktbcsPEx7DerCy6l/LO+SmRELy9XH
-X-Google-Smtp-Source: AGHT+IFq5ynQNEJVSXgc5jOV5wTNN9Vjm/J5WWKvAdAgAN+RMQzy+62aeC55Dtrg2J/oQzlpesDVgA==
-X-Received: by 2002:a17:906:17c4:b0:a28:d427:3959 with SMTP id u4-20020a17090617c400b00a28d4273959mr397730eje.62.1704962870935;
-        Thu, 11 Jan 2024 00:47:50 -0800 (PST)
-Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id rv4-20020a17090710c400b00a26e490e3f2sm305391ejb.181.2024.01.11.00.47.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 11 Jan 2024 00:47:50 -0800 (PST)
+        d=1e100.net; s=20230601; t=1704962757; x=1705567557;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=XnXGwZ90m0aaWtoshE1c+60rdXXd9xE4R+DPUoXirhg=;
+        b=h3qTHl2UCyp3U9edeRUPcdSKPB4jFAytMO8F1RDKU3ySqJh5bPR5hnQsjyZo1c9I4D
+         UGplPy76d5+58iCP8L691AC1INO/CwX7zP5wE7GEKhOdm+SQqkzdyVRg1W5QZdRCl6tE
+         JDxxKKu5EeGa4IAkCz+SlNFhT5koRVD7nOBSDCb9raGkKiX7GSw68C//u6P2ZH3LKMvb
+         9Qxqxo80euySgGEGobjneTFOH0OZise/CnPjca3VOaSLYCUTbaHTaVQDw9GStwO9f9cc
+         FJgn4n1qzibANb/CivgOXwW2RF1kbXVFaufzQKiao50re5Rd/OBgs9fbK68WHupoP7fu
+         NGJA==
+X-Gm-Message-State: AOJu0YxJxl3OYedl2qC/AGkyrUgmRCkk7ZbKN2+5rzsaPBh2IdYe0M7A
+	Py/jChAT+FjpmEpMSNSFhjY=
+X-Google-Smtp-Source: AGHT+IHWay0LKAaf6f5AsLsJfQGOlRBcT0TnnnSJL09Q2WvM12Zsgwn+NZHu8+7z/vzkPhYyU0+OlQ==
+X-Received: by 2002:a7b:c414:0:b0:40e:5be9:2ac3 with SMTP id k20-20020a7bc414000000b0040e5be92ac3mr207183wmi.137.1704962756651;
+        Thu, 11 Jan 2024 00:45:56 -0800 (PST)
+Received: from ?IPv6:2003:f6:ef1b:2000:944c:cbc7:1e1c:2c47? (p200300f6ef1b2000944ccbc71e1c2c47.dip0.t-ipconnect.de. [2003:f6:ef1b:2000:944c:cbc7:1e1c:2c47])
+        by smtp.gmail.com with ESMTPSA id l22-20020a05600c4f1600b0040d6b91efd9sm4930135wmq.44.2024.01.11.00.45.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 11 Jan 2024 00:45:56 -0800 (PST)
+Message-ID: <0c0b1954825dc174cab48060e96ddadadc18aefd.camel@gmail.com>
+Subject: Re: [PATCH 01/13] spi: add core support for controllers with
+ offload capabilities
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: David Lechner <dlechner@baylibre.com>, Mark Brown <broonie@kernel.org>, 
+ Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+ <conor+dt@kernel.org>,  Michael Hennerich <michael.hennerich@analog.com>,
+ Nuno =?ISO-8859-1?Q?S=E1?= <nuno.sa@analog.com>, Frank Rowand
+ <frowand.list@gmail.com>
+Cc: Thierry Reding <thierry.reding@gmail.com>, Uwe
+ =?ISO-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>, Jonathan
+ Corbet <corbet@lwn.net>,  linux-spi@vger.kernel.org,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-doc@vger.kernel.org, linux-pwm@vger.kernel.org, 
+ linux-kernel@vger.kernel.org
+Date: Thu, 11 Jan 2024 09:49:08 +0100
+In-Reply-To: <20240109-axi-spi-engine-series-3-v1-1-e42c6a986580@baylibre.com>
+References: 
+	<20240109-axi-spi-engine-series-3-v1-0-e42c6a986580@baylibre.com>
+	 <20240109-axi-spi-engine-series-3-v1-1-e42c6a986580@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.50.3 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Thu, 11 Jan 2024 09:47:49 +0100
-Message-Id: <CYBQW9KRHVJS.3UOHTOMRWDWVK@fairphone.com>
-Cc: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH RESEND v3] arm64: dts: qcom: qcs6490-idp: Add definition
- for three LEDs.
-From: "Luca Weiss" <luca.weiss@fairphone.com>
-To: <quic_huliu@quicinc.com>, "Andy Gross" <agross@kernel.org>, "Bjorn
- Andersson" <andersson@kernel.org>, "Konrad Dybcio"
- <konrad.dybcio@linaro.org>, "Rob Herring" <robh+dt@kernel.org>, "Krzysztof
- Kozlowski" <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley"
- <conor+dt@kernel.org>
-X-Mailer: aerc 0.15.2
-References: <20240111-lpg-v3-1-811c9e82dae4@quicinc.com>
-In-Reply-To: <20240111-lpg-v3-1-811c9e82dae4@quicinc.com>
+MIME-Version: 1.0
 
-On Thu Jan 11, 2024 at 3:52 AM CET, Hui Liu via B4 Relay wrote:
-> From: Hui Liu <quic_huliu@quicinc.com>
->
-> Add definition for three LEDs to make sure they can
-> be enabled base on QCOM LPG LED driver.
->
-> Signed-off-by: Hui Liu <quic_huliu@quicinc.com>
-> ---
-> Changes in v3:
-> - Rephrased commit text and updated the nodes to qcm6490-idp board file.
-> - Link to v2: https://lore.kernel.org/all/20231110-qcom_leds-v2-1-3cad1fb=
-bc65a@quicinc.com/
->
-> Changes in v2:
-> - Rephrased commit text and updated the nodes to board file.
-> - Link to v1: https://lore.kernel.org/r/20231108-qcom_leds-v1-1-c3e1c8572=
-cb0@quicinc.com
-> ---
->  arch/arm64/boot/dts/qcom/qcm6490-idp.dts | 25 +++++++++++++++++++++++++
->  1 file changed, 25 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts b/arch/arm64/boot/d=
-ts/qcom/qcm6490-idp.dts
-> index 37c91fdf3ab9..f801144a1556 100644
-> --- a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
-> +++ b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
-> @@ -5,6 +5,7 @@
-> =20
->  /dts-v1/;
-> =20
-> +#include <dt-bindings/leds/common.h>
->  #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
->  #include "sc7280.dtsi"
->  #include "pm7325.dtsi"
-> @@ -414,6 +415,30 @@ vreg_bob_3p296: bob {
->  	};
->  };
-> =20
-> +&pm8350c_pwm {
-> +	#address-cells =3D <1>;
-> +	#size-cells =3D <0>;
-> +	status =3D "okay";
-> +
-> +	led@1 {
-> +		reg =3D <1>;
+Hi David,
 
-Hi Hui Liu,
 
-> +		color =3D <LED_COLOR_ID_RED>;
-> +		label =3D "red";
+On Wed, 2024-01-10 at 13:49 -0600, David Lechner wrote:
+> This adds a feature for specialized SPI controllers that can record
+> a series of SPI transfers, including tx data, cs assertions, delays,
+> etc. and then play them back using a hardware trigger without CPU
+> intervention.
+>=20
+> The intended use case for this is with the AXI SPI Engine to capture
+> data from ADCs at high rates (MSPS) with a stable sample period.
+>=20
+> Most of the implementation is controller-specific and will be handled by
+> drivers that implement the offload_ops callbacks. The API follows a
+> prepare/enable pattern that should be familiar to users of the clk
+> subsystem.
+>=20
+> Consumers of this API will make calls similar to this:
+>=20
+> =C2=A0=C2=A0=C2=A0 /* in probe() */
+> =C2=A0=C2=A0=C2=A0 offload =3D spi_offload_get(spi, 0);
+> =C2=A0=C2=A0=C2=A0 ...
+>=20
+On top of what Mark already stated, and as we already discussed offline, I
+personally don't like this provider - consumer interface for the offload. T=
+he
+first thing is that this is taking into account the possibility of having
+multiple offload cores. While the FGPA core was designed with that in mind,=
+ we
+don't really have any design using multiple offloads in one spi engine (alw=
+ays
+one). Hence this is all pretty much untested.
 
-Please remove the deprecated "label" property. Since you already have
-"color" set you only need to add "function". On phones for the
-notification LED we usually use "function =3D LED_FUNCTION_STATUS;"
+If we want to already have this support, my feeling is that we should have =
+a
+simple integer dt property for the peripheral devices (similar to cs). When=
+ a
+device is being created/added, the spi core would parse this property and g=
+et
+it's offload index. The point is that this would all be transparent for spi
+devices drivers that would only have to call the SPI API's and the core wou=
+ld
+make sure the right index is passed to the controller.
 
-Also depends on what your hardware looks like, if it's 3 separate LEDs
-then with label replaced it would be okay.
-If the 3 LEDs are in one spot (so you can mix the colors with it), then
-please make it a RGB multi-led like e.g. in sm8550-qrd.dts.
+But honestly, IMO, I would just keep things simple for now and assume one c=
+ore
+per engine.
 
-Regards
-Luca
+I would probably also prefer to see all the new interfaces part of the
+spi_controller struct directly...
 
-> +	};
-> +
-> +	led@2 {
-> +		reg =3D <2>;
-> +		color =3D <LED_COLOR_ID_GREEN>;
-> +		label =3D "green";
-> +	};
-> +
-> +	led@3 {
-> +		reg =3D <3>;
-> +		color =3D <LED_COLOR_ID_BLUE>;
-> +		label =3D "blue";
-> +	};
-> +};
-> +
->  &qupv3_id_0 {
->  	status =3D "okay";
->  };
->
-> ---
-> base-commit: 17cb8a20bde66a520a2ca7aad1063e1ce7382240
-> change-id: 20231215-lpg-4aadd374811a
->
-> Best regards,
+- Nuno S=C3=A1
+
 
 
