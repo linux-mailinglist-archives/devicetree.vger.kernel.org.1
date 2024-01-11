@@ -1,94 +1,89 @@
-Return-Path: <devicetree+bounces-31481-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31482-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E51C682B65A
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 22:02:14 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 386BB82B661
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 22:09:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 140501C23E6E
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 21:02:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CA5201F264F6
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jan 2024 21:09:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CA8558222;
-	Thu, 11 Jan 2024 21:01:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 110DC5811C;
+	Thu, 11 Jan 2024 21:09:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MGXpUEwc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="a+lHXGXi"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 196025821A;
-	Thu, 11 Jan 2024 21:01:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8F02C43390;
-	Thu, 11 Jan 2024 21:01:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFB6C58116;
+	Thu, 11 Jan 2024 21:09:16 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 23D58C433C7;
+	Thu, 11 Jan 2024 21:09:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1705006899;
-	bh=vT9ATkHQ5EKl+YtVVvA9nkiRWFb45uIc4mz/IoDatf4=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=MGXpUEwcdY4/WUf4HhEBogM2Y4+pTu1TLKlV3W0hUAeeXFDqNYWs/+EYZd5oOOAub
-	 c3J35TZYNdvV5tWuhi2X0olclyw9Z8kY5HXHlGxyytHdpO7R4ENlMAa2h07C2sfJBl
-	 CC2MjX55+tqWpK+RqyGLSqjWBr25Y57r147fpiOIuZoPzJq6f4VfuozP/0fxypE5bR
-	 lE+O3axKUK8sZRCc+yfHeuDIY81vltyNRYeiPXtUyAsg0sxpFJC5XxA1BmIoDVN5bv
-	 znrVKXmLy+mv1xDRDkSA99RemcpHeVl/SvMhkCZO5PYlJxyAeLu4ul1TjAErx/hGSf
-	 uH2ZD4Z+dvw/Q==
-Date: Thu, 11 Jan 2024 15:01:38 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1705007356;
+	bh=+KzTILx7kXZyjh5eU7PaENUbBCcP673i64WFILoe7qY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=a+lHXGXi7pbL53BwsXmNiOUMLsRn2/7FCqiwcuXqsQTt2MIo6S3lhxwWEaf3PzX28
+	 OOGI4wXtERUCMb1WC8xxW10WQ9IqYOPfRAHCu0FMdLcnZzMz0aaFRMKN51ePD2CGPw
+	 SBk7/zJrIUAlG2juFn220NWKxQhRi5TcvMiSgbKsItAiItXBcE8uL+C57fo/4MiD9d
+	 mZVHr37tvdQ1T8lwcH3DtAoZ1h7dsTv/R+rVJCdedhfy0/7iZ5uHDGezV/eX7pbSE9
+	 2CG1l9XTeXpcSdvmIQQ/cKQd0ZiHV2L0iaB0hev3RyfnV+nzEyOmjSZ9nhgyqxSmQZ
+	 bSuI+lVicMvKw==
+Date: Thu, 11 Jan 2024 15:09:14 -0600
+From: Rob Herring <robh@kernel.org>
+To: Michal Simek <michal.simek@amd.com>
+Cc: Moritz Fischer <mdf@kernel.org>, Xu Yilun <yilun.xu@intel.com>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	Wu Hao <hao.wu@intel.com>,
+	kishore Manne <nava.kishore.manne@amd.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	linux-kernel@vger.kernel.org, michal.simek@xilinx.com,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Tom Rix <trix@redhat.com>,
+	"open list:FPGA MANAGER FRAMEWORK" <linux-fpga@vger.kernel.org>,
+	monstr@monstr.eu, git@xilinx.com,
+	Conor Dooley <conor+dt@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v3 1/2] dt-bindings: fpga: Convert bridge binding to yaml
+Message-ID: <170500735096.1126044.11641247061906726408.robh@kernel.org>
+References: <14558a4dcfab5255c1683015287e9c7f48b1afc2.1704807147.git.michal.simek@amd.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Rob Herring <robh@kernel.org>
-To: Catalin Popescu <catalin.popescu@leica-geosystems.com>
-Cc: kuba@kernel.org, devicetree@vger.kernel.org, pabeni@redhat.com, 
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
- linux@armlinux.org.uk, edumazet@google.com, netdev@vger.kernel.org, 
- andrew@lunn.ch, davem@davemloft.net, hkallweit1@gmail.com, 
- linux-kernel@vger.kernel.org, afd@ti.com, conor+dt@kernel.org
-In-Reply-To: <20240111161927.3689084-2-catalin.popescu@leica-geosystems.com>
-References: <20240111161927.3689084-1-catalin.popescu@leica-geosystems.com>
- <20240111161927.3689084-2-catalin.popescu@leica-geosystems.com>
-Message-Id: <170500673322.1110591.17657743226495430265.robh@kernel.org>
-Subject: Re: [PATCH 2/3] dt-bindings: net: dp83826: add ti,cfg-dac-plus
- binding
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <14558a4dcfab5255c1683015287e9c7f48b1afc2.1704807147.git.michal.simek@amd.com>
 
 
-On Thu, 11 Jan 2024 17:19:26 +0100, Catalin Popescu wrote:
-> Add property ti,cfg-dac-plus to allow for voltage tuning
-> of logical level +1 of the MLT-3 encoded data.
+On Tue, 09 Jan 2024 14:32:38 +0100, Michal Simek wrote:
+> Convert the generic fpga bridge DT binding to json-schema.
 > 
-> Signed-off-by: Catalin Popescu <catalin.popescu@leica-geosystems.com>
+> Signed-off-by: Michal Simek <michal.simek@amd.com>
+> Reviewed-by: Xu Yilun <yilun.xu@intel.com>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
->  Documentation/devicetree/bindings/net/ti,dp83822.yaml | 9 +++++++++
->  1 file changed, 9 insertions(+)
+> 
+> Changes in v3:
+> - Improve regex to cover also nodes out of bus
+> 
+> Keeping Krzysztof's tag which I got in v1. Feel free to reject if you
+> see any issue there.
+> 
+> ---
+>  .../devicetree/bindings/fpga/fpga-bridge.txt  | 13 --------
+>  .../devicetree/bindings/fpga/fpga-bridge.yaml | 30 +++++++++++++++++++
+>  .../bindings/fpga/xlnx,pr-decoupler.yaml      |  5 +++-
+>  3 files changed, 34 insertions(+), 14 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/fpga/fpga-bridge.txt
+>  create mode 100644 Documentation/devicetree/bindings/fpga/fpga-bridge.yaml
 > 
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/ti,dp83822.yaml: ti,cfg-dac-plus: missing type definition
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240111161927.3689084-2-catalin.popescu@leica-geosystems.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+Applied, thanks!
 
 
