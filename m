@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-31519-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31520-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9EAA82BB82
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 08:13:56 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2478382BB84
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 08:14:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 525E9283D8C
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 07:13:55 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A0882B2100E
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 07:14:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 858155C908;
-	Fri, 12 Jan 2024 07:13:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE15B5C909;
+	Fri, 12 Jan 2024 07:14:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tENNIA+f"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zMJXOm19"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
+Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75EED5D724
-	for <devicetree@vger.kernel.org>; Fri, 12 Jan 2024 07:13:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 460F85C8FE
+	for <devicetree@vger.kernel.org>; Fri, 12 Jan 2024 07:14:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-336c5b5c163so3646768f8f.1
-        for <devicetree@vger.kernel.org>; Thu, 11 Jan 2024 23:13:47 -0800 (PST)
+Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-3368d1c7b23so5296280f8f.0
+        for <devicetree@vger.kernel.org>; Thu, 11 Jan 2024 23:14:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1705043626; x=1705648426; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1705043660; x=1705648460; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=/BOdUm3gdbHMFqsawB5xFPercT0eYdgrEZogleugtcM=;
-        b=tENNIA+fMRtXXC1+s9KKCQNOgRq5mbjtB67UaS+NgMZKtde1acJ4zLRSI5F9blfS/w
-         XDmfrdf77ZpVVB1XSAHWdorPqyxlcQf530ZBDXMJztbmrxzwb39mQvekyy6eMXMm5P9E
-         FJM2EkK01L3pDHkiQgnozcIYMYV6LW64lAqVuLOm+PV6WHVfllfwXU2CCxVRCZDXzPdo
-         IgoKaTzIgLpcj8zZwK/7DPsh/2pE+ur/j9gYDhk0Sx2f1ARlokyLHHTDy8BNWth0L2U3
-         kwEbs93Ijo5OLr0Pgd4tbhs691AqKewyn3Vz4hp8zRHijMg5GZSSoiC8s0B1T+dd1wzO
-         SuNg==
+        bh=pO8yskQ+wiZb8dWLml0fvQDWP9QnZ411FtZvYaQ7ez0=;
+        b=zMJXOm195r6ihtVrj8J6hMGW9W7eA/xLB+y0JopTXoR87BE1ZNblxgOL4g0LX9MuyJ
+         eZczZ+lZJL8cZmnVsSSKBNny19uakEtwsF241Y3wDaVZ/cMSlEKvqoAF1FRFUJR22M0D
+         wsW04tDETAgw22dOi8fyX2pq35Cz0yw/WEsVQJ5/enqvZ9kFFaYvFuUwIyHr2b9IymCG
+         JlIMFbYVfyU9MkuSE2qyrqX0GFMnsFOB8wbQ2aiQSc65l9oVBL07JbkcHY0IdF+b407a
+         bPvL0AnKHTCMPh6Eu3NC8dy1Kls7NMMHt+vXG4a2EwDZasvLn7xiAM0UEqwbT0Y84gf0
+         kS4Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705043626; x=1705648426;
+        d=1e100.net; s=20230601; t=1705043660; x=1705648460;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/BOdUm3gdbHMFqsawB5xFPercT0eYdgrEZogleugtcM=;
-        b=G5eoBcwf0qaY8LaGGxm6ukpOKtIy8e8GYEeiDWvIBaJ4EtFgT93bsRbYOiPXiP4ceh
-         8K7TwwEGeAmyTv2/CQGnRZKUKrizwTZRtELhjfvcMyYgpgKBX/AG09f/SGtU1uzw//WW
-         ZJxa3y1fXA0rifQg7wBGlLjG243N9ALfRbzCri5Z04Hp/MidDuGVZI2RuDMripFQJEU5
-         Ef9D8vGjfUd4gqPD2VUSNOJgsc/NIvSVHdu5YNX4pr+2kzDwNY6mStJZISEAlJ0Y7OFG
-         RoZq0J8zSmx5DomYEeQilnaJegz9NPAmODpQE13S72O+jeSsyGfHkZyB1rBESZ+tabyW
-         9yAw==
-X-Gm-Message-State: AOJu0YxZb78dizfHAi9bsgl+BoBg9R6AWrbjzdZguaCYOMQhXn0AfbIi
-	ugFbS8h8qTMJqTD5RNVFkVbEBnu++t2TJg==
-X-Google-Smtp-Source: AGHT+IEgnYK98s+QMgNWcW2xSyxNyRzqXddcodmtWWfCogARjx9d4g4HzKG/aJEF4Vkl2hRoD7/VPw==
-X-Received: by 2002:adf:e98f:0:b0:336:86af:ede5 with SMTP id h15-20020adfe98f000000b0033686afede5mr494024wrm.46.1705043625766;
-        Thu, 11 Jan 2024 23:13:45 -0800 (PST)
+        bh=pO8yskQ+wiZb8dWLml0fvQDWP9QnZ411FtZvYaQ7ez0=;
+        b=tCY6NOu6zNe7eIGomYopCsaKnxmGQa89+FnhpK/CyZtP2GsGp2uWY8X9eoSbjxLHZL
+         fdhSyPxCVroglMS9iBYF1h6FvSP/joJ+UIT1k1bS8LC3F8OSmitlZq+DtFbpB6zzcQHd
+         2N82UCzR1un5UAGiD0CUfB+8RDEZ+1fs1STjc/A3h9fp9/LtWvjsuGe0rh/egPGBgEsh
+         vlnlTid7TyigB8VsFIHURxaxluIrqP//zxC0Hz3Qh/yteQl24eed379PL6v0F5hEXt4H
+         ikb6VHtQKz73/cdNpdLML9HQOzx9u5pWi3Z2JXhBjwZ+kptxU6S/k5xdrZ1LA8hqzDx/
+         VAPQ==
+X-Gm-Message-State: AOJu0YxlVopsFQPFZN+xQldP3bwkr3gm8N+KYAOdhz2JJkc6v5Vvv/Eq
+	cThU5fvFSyLt/C/YmrNXI5i7b16lLWdidw==
+X-Google-Smtp-Source: AGHT+IG/gm0nC27MHjndVZqBTFlAqUKdyTn7WB4Vs6PRjFVCWcv2wdL6rjCIRGvrCjWD71IGZbBtEw==
+X-Received: by 2002:a05:6000:137b:b0:336:7885:fff7 with SMTP id q27-20020a056000137b00b003367885fff7mr472388wrz.52.1705043660497;
+        Thu, 11 Jan 2024 23:14:20 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.223.112])
-        by smtp.gmail.com with ESMTPSA id f6-20020adfb606000000b00336aa190139sm3018880wre.5.2024.01.11.23.13.44
+        by smtp.gmail.com with ESMTPSA id f6-20020adfb606000000b00336aa190139sm3018880wre.5.2024.01.11.23.14.18
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 11 Jan 2024 23:13:45 -0800 (PST)
-Message-ID: <73732b62-e362-401f-b257-0613593e8557@linaro.org>
-Date: Fri, 12 Jan 2024 08:13:44 +0100
+        Thu, 11 Jan 2024 23:14:20 -0800 (PST)
+Message-ID: <1fba162e-8f59-4e99-8197-94ccb9d7d914@linaro.org>
+Date: Fri, 12 Jan 2024 08:14:18 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,8 +66,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] ASoC: dt-bindings: fsl,sai: Add compatible string
- for i.MX95 platform
+Subject: Re: [PATCH v2 3/3] ASoC: dt-bindings: fsl,micfil: Add compatible
+ string for i.MX95 platform
 Content-Language: en-US
 To: Chancel Liu <chancel.liu@nxp.com>, lgirdwood@gmail.com,
  broonie@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
@@ -77,7 +77,7 @@ To: Chancel Liu <chancel.liu@nxp.com>, lgirdwood@gmail.com,
  linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
  linuxppc-dev@lists.ozlabs.org
 References: <20240112054331.3244104-1-chancel.liu@nxp.com>
- <20240112054331.3244104-2-chancel.liu@nxp.com>
+ <20240112054331.3244104-4-chancel.liu@nxp.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -123,16 +123,17 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240112054331.3244104-2-chancel.liu@nxp.com>
+In-Reply-To: <20240112054331.3244104-4-chancel.liu@nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 12/01/2024 06:43, Chancel Liu wrote:
-> Add compatible string "fsl,imx95-sai" for i.MX95 platform.
+> Add compatible string "fsl,imx95-micfil" for i.MX95 platform.
 > 
 > Signed-off-by: Chancel Liu <chancel.liu@nxp.com>
-> ---
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
