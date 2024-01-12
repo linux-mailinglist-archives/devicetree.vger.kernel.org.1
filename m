@@ -1,54 +1,64 @@
-Return-Path: <devicetree+bounces-31739-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31740-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6605E82C522
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 18:59:26 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E038282C5EC
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 20:35:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 11EDF1F24C51
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 17:59:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 132051C226C5
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 19:35:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5E5C17C93;
-	Fri, 12 Jan 2024 17:59:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4F5D15AFE;
+	Fri, 12 Jan 2024 19:35:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="n3wiSLAW"
+	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="HT+iXscA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qk1-f169.google.com (mail-qk1-f169.google.com [209.85.222.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6B4D1AAA3;
-	Fri, 12 Jan 2024 17:59:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 40CHwjdV078929;
-	Fri, 12 Jan 2024 11:58:45 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1705082325;
-	bh=PhIGoUQlM+uURwcXlMwuAoVz4y5y+HTbgDHxL0fF+zU=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=n3wiSLAWcZx+ECcnA37ns0laYc8I3NhqmaIFXaFj8UfIrsEbaG1dx854YVrdWb+7X
-	 rxxAMCagIT7KZT6osPswwJux/rNarqRVS7a37p9aDqemyEkJ+58+5l+71/wQ+zV7zQ
-	 2Ls0IJHrLkuYQdUa7UuUrJocGcWoOx/K4d4pwUks=
-Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 40CHwjnM030811
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 12 Jan 2024 11:58:45 -0600
-Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 12
- Jan 2024 11:58:45 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 12 Jan 2024 11:58:45 -0600
-Received: from [10.249.40.136] ([10.249.40.136])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 40CHwimu048633;
-	Fri, 12 Jan 2024 11:58:44 -0600
-Message-ID: <c1ea65a6-4aad-4ca1-88cf-ac3fa130b0e4@ti.com>
-Date: Fri, 12 Jan 2024 11:58:44 -0600
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E3B215EBB
+	for <devicetree@vger.kernel.org>; Fri, 12 Jan 2024 19:35:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
+Received: by mail-qk1-f169.google.com with SMTP id af79cd13be357-7834dc40bd2so35945885a.1
+        for <devicetree@vger.kernel.org>; Fri, 12 Jan 2024 11:35:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google; t=1705088139; x=1705692939; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=j7IwvYEPmaSHyWVulXMha0dJbxFMc8lO+ii/l4e0nSY=;
+        b=HT+iXscAX/vrZbRA3+pLZAzUEht3XwTpHbLCbV/4wQ2o9+JJXxKL17sqjmLFD0y0dR
+         Z4QVCnsbQAt4gmDLZ3YUJXd6n2DklHBkHKPqtD12vRRn2lMQC5kJHnaZk//IjchRwvJL
+         /PE7MxLXBqnlZzbbkxJiimyDRLuGmj2wXHdu4zcr9fj41eIJVkoxr8TwDC5epRH7wv/T
+         f7dOY/fJaoUxBcTyMT+BZL2K8JCjdXL/0m+6SBXZhO7zvJEhXbpnQ8RmyK9cG70uxiNl
+         ONmVtgzA8rz2e5KxPr0Re2zWrSVIw3GqmBSlM+NRZ40Bi2SKJJoAehkF7ieVOZkf200R
+         2xcg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1705088139; x=1705692939;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=j7IwvYEPmaSHyWVulXMha0dJbxFMc8lO+ii/l4e0nSY=;
+        b=psc6Ao35PjWliczwtfVfJhlD40hmbtrTZIFHvsEcWlLVrMBW9CCMdeJX93zP9R41gV
+         uDa8MoRxRQLQoPGsmo5gykVoyOF9DdeNER4Hqruw36klVyX31BYu6Uj0spiau9yNU4PZ
+         /oqDObruCe4fU5rAqB0paPnJrXZYworscXPdIh7mqqv0rd54zeL0xSYzt+nFAK117QCl
+         Ajp4OCHnaBigjMiC5bwxjU14LddkJ67uXn+CYYfcIMZrXjP7DmaTdwb5V63RHNaJosSw
+         jDpQmL8pAAkE9h8cfIhvlyAoUP8Mmrz4VID++EE1w3n/nbi+CXCtbz6KPcY7UWKOaoxn
+         viDA==
+X-Gm-Message-State: AOJu0Ywn0YiP3tTnuAfJ0/iJyI4WvQ16NZ/2vEXydnmSePsIuPajjlkQ
+	QL+99Bl2VDmDPLSQq+x3VJmrF3/eT8bdUA==
+X-Google-Smtp-Source: AGHT+IEn+rIOiYc1vvR4dCLtefqWpSfHzxdJHtOG31fmNn1e26lFQwkxQJsbr+u6jS6ZoVkzx4OjsA==
+X-Received: by 2002:a05:620a:2a08:b0:783:4a3f:cb9b with SMTP id o8-20020a05620a2a0800b007834a3fcb9bmr1551707qkp.146.1705088139195;
+        Fri, 12 Jan 2024 11:35:39 -0800 (PST)
+Received: from [100.64.0.1] ([170.85.8.192])
+        by smtp.gmail.com with ESMTPSA id oo18-20020a05620a531200b0078190599d4dsm1279999qkn.39.2024.01.12.11.35.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 12 Jan 2024 11:35:38 -0800 (PST)
+Message-ID: <cd856233-06bb-4a5a-ba12-2996c89cb492@sifive.com>
+Date: Fri, 12 Jan 2024 13:35:36 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -56,152 +66,57 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 5/5] arm64: dts: ti: hummingboard-t: add descriptions
- for m.2 pci-e and usb-3
+Subject: Re: [PATCH v7 2/4] dt-bindings: clock: sophgo: support SG2042
 Content-Language: en-US
-To: Josua Mayer <josua@solid-run.com>, Nishanth Menon <nm@ti.com>,
-        Vignesh
- Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>, Rob Herring
-	<robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni
-	<alexandre.belloni@bootlin.com>
-CC: Yazan Shhady <yazan.shhady@solid-run.com>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-rtc@vger.kernel.org>
-References: <20240112-add-am64-som-v2-0-1385246c428c@solid-run.com>
- <20240112-add-am64-som-v2-5-1385246c428c@solid-run.com>
-From: Andrew Davis <afd@ti.com>
-In-Reply-To: <20240112-add-am64-som-v2-5-1385246c428c@solid-run.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+To: Conor Dooley <conor@kernel.org>, Chen Wang <unicorn_wang@outlook.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Chen Wang <unicornxw@gmail.com>, aou@eecs.berkeley.edu, chao.wei@sophgo.com,
+ krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
+ palmer@dabbelt.com, paul.walmsley@sifive.com, richardcochran@gmail.com,
+ robh+dt@kernel.org, sboyd@kernel.org, devicetree@vger.kernel.org,
+ linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-riscv@lists.infradead.org, haijiao.liu@sophgo.com,
+ xiaoguang.xing@sophgo.com, guoren@kernel.org, jszhang@kernel.org,
+ inochiama@outlook.com, Conor Dooley <conor.dooley@microchip.com>
+References: <cover.1704694903.git.unicorn_wang@outlook.com>
+ <925d99d5b4ece01337cb3389aaea4b631894dd1d.1704694903.git.unicorn_wang@outlook.com>
+ <f88b79c3-e44b-4136-ae56-10e1f2502e2d@linaro.org>
+ <MA0P287MB2822C7A3C1DC7786708E860BFE692@MA0P287MB2822.INDP287.PROD.OUTLOOK.COM>
+ <20240110-untoasted-underfed-fe81479506f6@spud>
+ <MA0P287MB282224A6097B4FCCF721C89AFE682@MA0P287MB2822.INDP287.PROD.OUTLOOK.COM>
+ <20240111-jolly-prize-930931cc648a@spud>
+From: Samuel Holland <samuel.holland@sifive.com>
+In-Reply-To: <20240111-jolly-prize-930931cc648a@spud>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On 1/12/24 11:12 AM, Josua Mayer wrote:
-> HummingBoard-T features two M.2 connectors labeled "M1" and "M2".
-> The single SerDes lane of the SoC can be routed to either M1 pci-e
-> signals, or M2 usb-3 signals by a gpio-controlled mux.
+Hi Conor, Chen,
+
+On 2024-01-11 10:58 AM, Conor Dooley wrote:
+> On Thu, Jan 11, 2024 at 04:00:04PM +0800, Chen Wang wrote:
+>> With this change, we describe the plls defined in system control as pllclk,
+>> as a child node of system controller. clkgen will use pllclk as "input"
+>> because pll clocks are parent of div clocks .
+>>
+>> But there is another remaining question about the gate clock. For those gate
+>> clocks controlled by CLOCK, no problem we will provide then in clkgen, but 
+>> for those gate clocks controlled by registers in SYS_CTRL, they are child
+>> gate of the "clk_gate_rp_cpu_normal", which is a gate clock provided by
+>> clkgen. If I extracted those SYS_CTRL gate clocks and define them in system
+>> controller dts node, I may have to use "clk_gate_rp_cpu_normal" as their
+>> input, it looks a bit wierd becasue there are cases where each other serves
+>> as input. I try to draft below DTS to explan what I meant. I'm not sure if
+>> it can work and I'd love to hear your guidance.
 > 
-> Add dedicated dts for each configuration.
-> - k3-am642-hummingboard-t.dts enables neither configuration
-> - k3-am642-hummingboard-t-pcie.dts (new)
->    configures serdes mux and pci-e controller for M1
-> - k3-am642-hummingboard-t-usb3.dts (new)
->    configures serdes mux and usb-3 controller for M2
-> 
-> Signed-off-by: Josua Mayer <josua@solid-run.com>
-> ---
->   arch/arm64/boot/dts/ti/Makefile                    |  2 ++
->   .../boot/dts/ti/k3-am642-hummingboard-t-pcie.dts   | 31 ++++++++++++++++++
->   .../boot/dts/ti/k3-am642-hummingboard-t-usb3.dts   | 37 ++++++++++++++++++++++
->   3 files changed, 70 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-> index 041c3b71155e..0e408555edf1 100644
-> --- a/arch/arm64/boot/dts/ti/Makefile
-> +++ b/arch/arm64/boot/dts/ti/Makefile
-> @@ -33,6 +33,8 @@ dtb-$(CONFIG_ARCH_K3) += k3-am62p5-sk.dtb
->   # Boards with AM64x SoC
->   dtb-$(CONFIG_ARCH_K3) += k3-am642-evm.dtb
->   dtb-$(CONFIG_ARCH_K3) += k3-am642-hummingboard-t.dtb
-> +dtb-$(CONFIG_ARCH_K3) += k3-am642-hummingboard-t-pcie.dtb
-> +dtb-$(CONFIG_ARCH_K3) += k3-am642-hummingboard-t-usb3.dtb
->   dtb-$(CONFIG_ARCH_K3) += k3-am642-phyboard-electra-rdk.dtb
->   dtb-$(CONFIG_ARCH_K3) += k3-am642-sk.dtb
->   dtb-$(CONFIG_ARCH_K3) += k3-am642-tqma64xxl-mbax4xxl.dtb
-> diff --git a/arch/arm64/boot/dts/ti/k3-am642-hummingboard-t-pcie.dts b/arch/arm64/boot/dts/ti/k3-am642-hummingboard-t-pcie.dts
-> new file mode 100644
-> index 000000000000..5ba0029fcfb9
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/ti/k3-am642-hummingboard-t-pcie.dts
-> @@ -0,0 +1,31 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +/*
-> + * Copyright (C) 2023 Josua Mayer <josua@solid-run.com>
-> + *
-> + * DTS for SolidRun AM642 HummingBoard-T,
-> + * running on Cortex A53, with PCI-E.
-> + *
-> + */
-> +
-> +#include "k3-am642-hummingboard-t.dts"
+> I'm not sure how this sort of circular relationship works for probing
+> works either. Stephen etc would know more than me here.
 
-Avoid including .dts files, if this file is for an option that
-can be chosen (PCIe vs USB3), then it should be a DT overlay.
+It generally works fine. The common clock framework can handle the child clock
+being registered before its parent, even when using a DT (fw_name) reference.
+See for example clk_core_fill_parent_index() and
+clk_core_reparent_orphans_nolock() in drivers/clk/clk.c
 
-> +#include "k3-serdes.h"
-> +
-> +/ {
-> +	model = "SolidRun AM642 HummingBoard-T with PCI-E";
-> +};
-> +
-> +&pcie0_rc {
-> +	status = "okay";
+Regards,
+Samuel
 
-If PCIe is only available here when using this add-on then
-all of the node data should be in this add-on file.
-
-Andrew
-
-> +};
-> +
-> +&serdes0_link {
-> +	cdns,phy-type = <PHY_TYPE_PCIE>;
-> +};
-> +
-> +&serdes_ln_ctrl {
-> +	idle-states = <AM64_SERDES0_LANE0_PCIE0>;
-> +};
-> +
-> +&serdes_mux {
-> +	idle-state = <1>;
-> +};
-> diff --git a/arch/arm64/boot/dts/ti/k3-am642-hummingboard-t-usb3.dts b/arch/arm64/boot/dts/ti/k3-am642-hummingboard-t-usb3.dts
-> new file mode 100644
-> index 000000000000..12b0fedcd2bc
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/ti/k3-am642-hummingboard-t-usb3.dts
-> @@ -0,0 +1,37 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +/*
-> + * Copyright (C) 2023 Josua Mayer <josua@solid-run.com>
-> + *
-> + * DTS for SolidRun AM642 HummingBoard-T,
-> + * running on Cortex A53, with USB-3.1 Gen 1.
-> + *
-> + */
-> +
-> +#include "k3-am642-hummingboard-t.dts"
-> +#include "k3-serdes.h"
-> +
-> +/ {
-> +	model = "SolidRun AM642 HummingBoard-T with USB-3.1 Gen 1";
-> +};
-> +
-> +&serdes0_link {
-> +	cdns,phy-type = <PHY_TYPE_USB3>;
-> +};
-> +
-> +&serdes_ln_ctrl {
-> +	idle-states = <AM64_SERDES0_LANE0_USB>;
-> +};
-> +
-> +&serdes_mux {
-> +	idle-state = <0>;
-> +};
-> +
-> +&usbss0 {
-> +	/delete-property/ ti,usb2-only;
-> +};
-> +
-> +&usb0 {
-> +	maximum-speed = "super-speed";
-> +	phys = <&serdes0_link>;
-> +	phy-names = "cdns3,usb3-phy";
-> +};
-> 
 
