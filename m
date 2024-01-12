@@ -1,214 +1,161 @@
-Return-Path: <devicetree+bounces-31693-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31695-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60D2882C3B8
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 17:38:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D4BE82C3C5
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 17:40:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 771F01C214F1
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 16:38:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3DEB51C21658
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 16:40:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5BF47FBA0;
-	Fri, 12 Jan 2024 16:36:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9383177624;
+	Fri, 12 Jan 2024 16:40:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="SJAM6Zhq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="g9BMChWo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EC9F7E765
-	for <devicetree@vger.kernel.org>; Fri, 12 Jan 2024 16:36:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-40e68ca8e27so2799725e9.1
-        for <devicetree@vger.kernel.org>; Fri, 12 Jan 2024 08:36:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1705077390; x=1705682190; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+tAwGTFBvrjSR+D7qo0JkBwlnmAMUSdISzHDQJb3VJ8=;
-        b=SJAM6ZhqX5sQrxdeKesiLB2E7w0LvCgHKx799uY5OLzvjo4NxuzDGrBLhPq9BPHVdI
-         Z++P/Rah05n4B9lWwAR2+RA1/j9dKLQ1Yu74L6X+sx6eighuBIgINITPXCwGUqZycIAv
-         b7NUMuNA+hnOTUNoJz+xNwvfechsPnBh3M4vdYxOAF5q8mzeT0VYXxOsy+fjApbmvzy1
-         4TW3mGl7GGzcrqpfQM1hWEKqP8OjOYKPUmhKevd/XPabFaYHDDOnc/GCo9rvvvddM176
-         CKWfvGzBtaAk9txmeG+//CrjiT96qxRt1mZv78RjSMdfNlToQXQLHtt5cBc89f4W/s6a
-         ZFzg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705077390; x=1705682190;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=+tAwGTFBvrjSR+D7qo0JkBwlnmAMUSdISzHDQJb3VJ8=;
-        b=GY2EdaQCeumi4Z/0gs6yLUYWo7BWhBYgGucvpthdo1tRbSaKihsOuMS511OcWa0Oon
-         7zFAipBLTncScTqjR9L3+RW8WpWQo5Nm58M2g+brXt3A8ucTDOSM8dhBxBRu3M5wZ4DG
-         kFKh06ybfY8ED4IH2Qh4Buv1H2SmH3tWVQ2mjyipXiSwG2YbPg7O8cVKrCpKSvzICEtZ
-         4PBeMTYA2V/1BphIft2u31erEC2N/aGZRQpDafTcTc+IPa4wYjIL0+K0c4L8r+pxqQCd
-         opK8lSTNe40nkbjwlpw9vR8QGAImpffkoQvHd0z0xl/3scpOJtBXB9RGPABrq2Z4W0oF
-         SlNw==
-X-Gm-Message-State: AOJu0Yx0RDER0fPnUwHTrXJSTuW0/a+7jhOABSfbRRAEueeh0Pq6I+2n
-	7ipG+XGAu5NrS5YR9ky7g9VAPXQnC/o+hw==
-X-Google-Smtp-Source: AGHT+IHwVLaqmPFUtKT7wAZTbrdSc8zyHUbK1fQIZbWvd0QlBC1T6c9jlGWVdUy5gdVHgvbYuB/lxQ==
-X-Received: by 2002:a05:600c:1c25:b0:40e:4613:daae with SMTP id j37-20020a05600c1c2500b0040e4613daaemr1033231wms.30.1705077389852;
-        Fri, 12 Jan 2024 08:36:29 -0800 (PST)
-Received: from krzk-bin.. ([178.197.223.112])
-        by smtp.gmail.com with ESMTPSA id bd16-20020a05600c1f1000b0040e5a93ae53sm6573195wmb.22.2024.01.12.08.36.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 12 Jan 2024 08:36:29 -0800 (PST)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-	Banajit Goswami <bgoswami@quicinc.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Peter Rosin <peda@axentia.se>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Jaroslav Kysela <perex@perex.cz>,
-	Takashi Iwai <tiwai@suse.com>,
-	linux-arm-msm@vger.kernel.org,
-	alsa-devel@alsa-project.org,
-	linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-i2c@vger.kernel.org
-Cc: Chris Packham <chris.packham@alliedtelesis.co.nz>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Sean Anderson <sean.anderson@seco.com>
-Subject: [PATCH v3 5/5] i2c: muxes: pca954x: Allow sharing reset GPIO
-Date: Fri, 12 Jan 2024 17:36:08 +0100
-Message-Id: <20240112163608.528453-6-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240112163608.528453-1-krzysztof.kozlowski@linaro.org>
-References: <20240112163608.528453-1-krzysztof.kozlowski@linaro.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 752C4745C8;
+	Fri, 12 Jan 2024 16:40:27 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id DBF43C43394;
+	Fri, 12 Jan 2024 16:40:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1705077626;
+	bh=llTgEL2jxB3/8LfO0hE7GScF9TdiVC5zVso5JhVVfmI=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=g9BMChWoK0Mdg4LV2VSVQ/6z7bD8+9WLm916ADItEg/He9oCK7e2Z8ZA1C8508T2w
+	 PaCuyK4/cXsaSHFv4onv19o9erT87OkdvUTpQz7uXIjiovjuHoCgRENM/buCG4vhLA
+	 M6gLwp479g1PLHKJ6du+HvMq4ntKzi0CHl4v4afxo5wfukp9n+dY57lK2Vs2FALsCW
+	 Al/mlR4wpNeTBI43yiKmbYkFx/5gTetVdy1FimFaRA9rkrLeS3+cNkTVU9LHnTiyWs
+	 /+UjYPNQCUEHn+YbD89PRK86ibD6VMKj+l48Umf/m8h6OYDCnySX0Nmc9hSzpj5fV6
+	 kVOsy+y7Kb9Fg==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B738CC47258;
+	Fri, 12 Jan 2024 16:40:26 +0000 (UTC)
+From: Nuno Sa via B4 Relay <devnull+nuno.sa.analog.com@kernel.org>
+Subject: [PATCH v5 0/8] iio: add new backend framework
+Date: Fri, 12 Jan 2024 17:40:14 +0100
+Message-Id: <20240112-iio-backend-v5-0-bdecad041ab4@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAG5roWUC/1XMQQ7CIBCF4as0sxZTKK3FlfcwXUxhbCcqGDCNp
+ uHuYuPG5f+S962QKDIlOFYrRFo4cfAl2l0FdkY/kWBXGlStGqmkEcxBjGiv5J3AxlmJHR6w7aE
+ 8HpEu/Nq081B65vQM8b3hi/6uP0fVf86iRS2M6clI3Y+dUSf0eAvT3oY7DDnnD45GvtenAAAA
+To: linux-iio@vger.kernel.org, devicetree@vger.kernel.org
+Cc: Lars-Peter Clausen <lars@metafoo.de>, 
+ Michael Hennerich <Michael.Hennerich@analog.com>, 
+ Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ "Rafael J. Wysocki" <rafael@kernel.org>, 
+ Frank Rowand <frowand.list@gmail.com>, 
+ Olivier Moysan <olivier.moysan@foss.st.com>, Rob Herring <robh@kernel.org>
+X-Mailer: b4 0.12.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1705077624; l=3960;
+ i=nuno.sa@analog.com; s=20231116; h=from:subject:message-id;
+ bh=llTgEL2jxB3/8LfO0hE7GScF9TdiVC5zVso5JhVVfmI=;
+ b=cVl7DqOnCFyUouSXvay6/FEwBFfI9NVb5dJnEPCbhlT5EH3J10NTwU3yGrntnUDE1z3kPH9Nl
+ BiNZIv4ZZGPBKq587wN3xhLAy8Vr5PQljdWTzTc01GEmYDCvCe/gKjZ
+X-Developer-Key: i=nuno.sa@analog.com; a=ed25519;
+ pk=3NQwYA013OUYZsmDFBf8rmyyr5iQlxV/9H4/Df83o1E=
+X-Endpoint-Received:
+ by B4 Relay for nuno.sa@analog.com/20231116 with auth_id=100
+X-Original-From: Nuno Sa <nuno.sa@analog.com>
+Reply-To: <nuno.sa@analog.com>
 
-From: Chris Packham <chris.packham@alliedtelesis.co.nz>
+v1:
+ https://lore.kernel.org/linux-iio/20231204144925.4fe9922f@jic23-huawei/T/#m222f5175273b81dbfe40b7f0daffcdc67d6cb8ff
 
-Some hardware designs with multiple PCA954x devices use a reset GPIO
-connected to all the muxes. Support this configuration by making use of
-the reset controller framework which can deal with the shared reset
-GPIOs. Fall back to the old GPIO descriptor method if the reset
-controller framework is not enabled.
+v2:
+ https://lore.kernel.org/r/20231208-dev-iio-backend-v2-0-5450951895e1@analog.com
 
-Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
-Acked-by: Peter Rosin <peda@axentia.se>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Link: https://lore.kernel.org/r/20240108041913.7078-1-chris.packham@alliedtelesis.co.nz
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+v3:
+ https://lore.kernel.org/linux-iio/20231213-dev-iio-backend-v3-0-bb9f12a5c6dc@analog.com/
+
+v4:
+ https://lore.kernel.org/r/20231220-iio-backend-v4-0-998e9148b692@analog.com
+
+Changes in v5:
+ - Patch 2
+  * Update commit subject and message;
+  * Add '#io-backends-cells' property.
+ - Patch 4
+  * Also support '#io-backends-cells'.
+ - Patch 6
+  * Improve Kconfig help message;
+  * Only use device_links to control backends access. With this, we can remove
+    all the mutex + sync logic as we are now guaranteed that a frontend cannot
+    be up and running if one of the backends is gone.
+  * Error out if we can't create the device_link (so we can guarantee the above).
+  * Improve docs for __devm_iio_backend_get_from_fwnode_lookup();
+  * Add a __ prefix to devm_iio_backend_get_from_fwnode_lookup() so it's clear
+    that API should not be used (or used with care);
+  * Drop devm_iio_backend_get_optional();
+  * remove unneeded headers.
+ - Patch 7
+  * Handle the optional backend in the driver.
+
+The biggest difference is that the backend @ops pointer handling to
+reason about the backend existence is gone. Now, we rely on device_links
+as that makes sure all consumers (in the link) are unbound before the
+provider. Hence, the frontend is guaranteed to be unbound if any of the
+backends is gone. That simplifies things a lot...
+
+Keeping the block diagram  so we don't have to follow links
+to check one of the typical setups.
+
+                                           -------------------------------------------------------
+ ------------------                        | -----------         ------------      -------  FPGA |
+ |     ADC        |------------------------| | AXI ADC |---------| DMA CORE |------| RAM |       |
+ | (Frontend/IIO) | Serial Data (eg: LVDS) | |(backend)|---------|          |------|     |       |
+ |                |------------------------| -----------         ------------      -------       |
+ ------------------                        -------------------------------------------------------
 
 ---
+Nuno Sa (7):
+      dt-bindings: adc: ad9467: add new io-backend property
+      dt-bindings: adc: axi-adc: update bindings for backend framework
+      driver: core: allow modifying device_links flags
+      iio: buffer-dmaengine: export buffer alloc and free functions
+      iio: add the IIO backend framework
+      iio: adc: ad9467: convert to backend framework
+      iio: adc: adi-axi-adc: move to backend framework
 
-If previous patches are fine, then this commit is independent and could
-be taken via I2C.
+Olivier Moysan (1):
+      of: property: add device link support for io-backends
 
-Cc: Chris Packham <chris.packham@alliedtelesis.co.nz>
-Cc: Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: Sean Anderson <sean.anderson@seco.com>
+ .../devicetree/bindings/iio/adc/adi,ad9467.yaml    |   4 +
+ .../devicetree/bindings/iio/adc/adi,axi-adc.yaml   |   7 +-
+ MAINTAINERS                                        |   8 +
+ drivers/base/core.c                                |  14 +-
+ drivers/iio/Kconfig                                |   9 +
+ drivers/iio/Makefile                               |   1 +
+ drivers/iio/adc/Kconfig                            |   4 +-
+ drivers/iio/adc/ad9467.c                           | 283 +++++++++-----
+ drivers/iio/adc/adi-axi-adc.c                      | 381 +++++--------------
+ drivers/iio/buffer/industrialio-buffer-dmaengine.c |   8 +-
+ drivers/iio/industrialio-backend.c                 | 411 +++++++++++++++++++++
+ drivers/of/property.c                              |   2 +
+ include/linux/iio/adc/adi-axi-adc.h                |  68 ----
+ include/linux/iio/backend.h                        |  73 ++++
+ include/linux/iio/buffer-dmaengine.h               |   3 +
+ 15 files changed, 806 insertions(+), 470 deletions(-)
 ---
- drivers/i2c/muxes/i2c-mux-pca954x.c | 46 ++++++++++++++++++++++++-----
- 1 file changed, 38 insertions(+), 8 deletions(-)
+base-commit: 3f4525f924e21d4f532517b17a20ffa5df7c0db7
+change-id: 20231219-iio-backend-a3dc1a6a7a58
+--
 
-diff --git a/drivers/i2c/muxes/i2c-mux-pca954x.c b/drivers/i2c/muxes/i2c-mux-pca954x.c
-index 2219062104fb..1702e8d49b91 100644
---- a/drivers/i2c/muxes/i2c-mux-pca954x.c
-+++ b/drivers/i2c/muxes/i2c-mux-pca954x.c
-@@ -49,6 +49,7 @@
- #include <linux/pm.h>
- #include <linux/property.h>
- #include <linux/regulator/consumer.h>
-+#include <linux/reset.h>
- #include <linux/slab.h>
- #include <linux/spinlock.h>
- #include <dt-bindings/mux/mux.h>
-@@ -102,6 +103,9 @@ struct pca954x {
- 	unsigned int irq_mask;
- 	raw_spinlock_t lock;
- 	struct regulator *supply;
-+
-+	struct gpio_desc *reset_gpio;
-+	struct reset_control *reset_cont;
- };
- 
- /* Provide specs for the MAX735x, PCA954x and PCA984x types we know about */
-@@ -477,6 +481,35 @@ static int pca954x_init(struct i2c_client *client, struct pca954x *data)
- 	return ret;
- }
- 
-+static int pca954x_get_reset(struct device *dev, struct pca954x *data)
-+{
-+	data->reset_cont = devm_reset_control_get_optional_shared(dev, NULL);
-+	if (IS_ERR(data->reset_cont))
-+		return dev_err_probe(dev, PTR_ERR(data->reset_cont),
-+				     "Failed to get reset\n");
-+	else if (data->reset_cont)
-+		return 0;
-+
-+	/*
-+	 * fallback to legacy reset-gpios
-+	 */
-+	data->reset_gpio = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_HIGH);
-+	if (IS_ERR(data->reset_gpio)) {
-+		return dev_err_probe(dev, PTR_ERR(data->reset_gpio),
-+				     "Failed to get reset gpio");
-+	}
-+
-+	return 0;
-+}
-+
-+static void pca954x_reset_deassert(struct pca954x *data)
-+{
-+	if (data->reset_cont)
-+		reset_control_deassert(data->reset_cont);
-+	else
-+		gpiod_set_value_cansleep(data->reset_gpio, 0);
-+}
-+
- /*
-  * I2C init/probing/exit functions
-  */
-@@ -485,7 +518,6 @@ static int pca954x_probe(struct i2c_client *client)
- 	const struct i2c_device_id *id = i2c_client_get_device_id(client);
- 	struct i2c_adapter *adap = client->adapter;
- 	struct device *dev = &client->dev;
--	struct gpio_desc *gpio;
- 	struct i2c_mux_core *muxc;
- 	struct pca954x *data;
- 	int num;
-@@ -513,15 +545,13 @@ static int pca954x_probe(struct i2c_client *client)
- 		return dev_err_probe(dev, ret,
- 				     "Failed to enable vdd supply\n");
- 
--	/* Reset the mux if a reset GPIO is specified. */
--	gpio = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_HIGH);
--	if (IS_ERR(gpio)) {
--		ret = PTR_ERR(gpio);
-+	ret = pca954x_get_reset(dev, data);
-+	if (ret)
- 		goto fail_cleanup;
--	}
--	if (gpio) {
-+
-+	if (data->reset_cont || data->reset_gpio) {
- 		udelay(1);
--		gpiod_set_value_cansleep(gpio, 0);
-+		pca954x_reset_deassert(data);
- 		/* Give the chip some time to recover. */
- 		udelay(1);
- 	}
--- 
-2.34.1
+Thanks!
+- Nuno Sá
 
 
