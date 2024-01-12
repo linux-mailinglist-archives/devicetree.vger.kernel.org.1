@@ -1,258 +1,151 @@
-Return-Path: <devicetree+bounces-31753-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31754-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70CAE82C70D
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 23:16:09 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 737DB82C753
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 23:33:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 728F41C21E9C
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 22:16:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1487E287267
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 22:33:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B29217731;
-	Fri, 12 Jan 2024 22:15:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 347AD18043;
+	Fri, 12 Jan 2024 22:33:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="j6bRLQsI"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vT0tdSK7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f174.google.com (mail-qt1-f174.google.com [209.85.160.174])
+Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D1CE17730
-	for <devicetree@vger.kernel.org>; Fri, 12 Jan 2024 22:15:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-qt1-f174.google.com with SMTP id d75a77b69052e-429d2ebdf05so82071cf.0
-        for <devicetree@vger.kernel.org>; Fri, 12 Jan 2024 14:15:57 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4DD318036
+	for <devicetree@vger.kernel.org>; Fri, 12 Jan 2024 22:33:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-55753dc5cf0so8257249a12.0
+        for <devicetree@vger.kernel.org>; Fri, 12 Jan 2024 14:33:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1705097756; x=1705702556; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=oP5fGZzgpZ9SrgGeq8dIeW2tXFSQwQhUhlpKAu1DbqQ=;
-        b=j6bRLQsIMTu7MjvtVYm+17W91DlDKOc09sNbaC9blJe5qhzFrdfpTT1m9UpqhmOLLR
-         upRgU+xo+hlvbJLqxazgh/wuHcsPB4QLrlLy4WH416z4rpDQtqSC+ye+Tksw58vq/s03
-         Tw1tDb7sGYaXOF9sL6z9KrHe0Zg8xhTJy91486DJrx8SBdT7GwUw1VumiG+SRRX+EsiL
-         sByZ5aWvIGXvSw8uaf1gKd5M/AE4LNIh2jlvzQFhglOZYYVM7KP/orZuU2BFqT9K2Kt3
-         4ws/pnGNKQ8NKsUNqaxXdEr1BLepE5Jm+D1nmM3xJVBNZE/Nqw8NgUX1vh2BVG6xsqgJ
-         ONAg==
+        d=linaro.org; s=google; t=1705098798; x=1705703598; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=21VIzpAcVyElKFBAjt6JPdjAMyK14m0eDmuJCWvWTSw=;
+        b=vT0tdSK74rpG/P2blB/NOpXDVI77zeThFNN3fekhb5K3dVqMd2BoAcv3KabnGQKFgV
+         2/YKkFjreVOB0hlaylDgiSpszQUUVrO0p4E34nRqpQslWvHt19X2ooR773PLby4BwpIx
+         vY3muey2wkPiGkr5LXWfzv2uj+dz0QTpvFag6n/Pny5v0DVn1uVv3TTAWHtWf1a+ixDp
+         MGdWGSMaXRnaU/eqbQFT/EqiXKGfk0/Blcs+dwDkNklQUHjuXMPkIjUNvI9P3ew5Im4B
+         tmhaQbzjTKuG8wT3/FfIJJNePbusszoJT8h76C/jqevdMc3ZE1oi2Av/BxlyNyP/Hy7X
+         U+Qw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705097756; x=1705702556;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=oP5fGZzgpZ9SrgGeq8dIeW2tXFSQwQhUhlpKAu1DbqQ=;
-        b=iqOXjShVhey0BvIrqTRa/wnVNbr26Xz66rc/tgB8IJynD/L+bsTC5Z1t8U/RJgnCGl
-         WWESRvwa905IcMlhSz3OPp0F9+cDlCWedhf1lSH5yw4JRWCQRVqWeCdgL/2dkRHrUA9b
-         wDVb4SSG5LRmgL9sNJ+7lfpi8OCiHFIiSz5gaGx9q7Ovb2UkFa1vLQO0fIVtV50VtAaL
-         4gM6Txn2LbM8gh8QrpnsmTpJf+AAnRBmubG1JT88rGDvfE0RwbN/6LU2jqTzrAiEcW4E
-         HN9JlD11FS8wCb5W7gZ/VzDB4EIKcKRI/ZSs9cwR6b4pPWbgz97j6gnh+iQOc3m9piZE
-         SNgA==
-X-Gm-Message-State: AOJu0YwENk8Cd4Ik7yFjwW+jIHrF7/8svcul1h2hyre87jhZSJfYX4Np
-	b4oSkKPaRLN3E7fu6VgEDQYdmNWqhFyesD3esi206p1tchXj
-X-Google-Smtp-Source: AGHT+IFFoU3MTUjYQMJj8EicBpziSzS7VeX+N1XmF+YFP6bUz5fPV3J53vSVX9kFH6naS1msjeDVFB3ysZ6ZaVwLbG8=
-X-Received: by 2002:a05:622a:174d:b0:429:cba2:8628 with SMTP id
- l13-20020a05622a174d00b00429cba28628mr312680qtk.24.1705097755996; Fri, 12 Jan
- 2024 14:15:55 -0800 (PST)
+        d=1e100.net; s=20230601; t=1705098798; x=1705703598;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=21VIzpAcVyElKFBAjt6JPdjAMyK14m0eDmuJCWvWTSw=;
+        b=ds5Bccrz+tm8lwZVNfqcWO9m4I2ZhP4gm9h96KZ60KvnS3gRcMHKF0gsNZNpnhlvOk
+         Zj/jPfbXBjjhTrjAVcS/Q0lLCOD0XTYcYmrezpyS+omlTqHheB67TAB1VYcMIyOUC1Jx
+         CxidS4Agi692+IXAsr3DZECqAkvv70Ka2xer0GU0z/96y9FVeigBf+2baEFxhNHHo/uT
+         iNSFUzhG/GOaSMQcmW8nlvGF7opjNfoqK3UXDCPA5CrkEzsCi6PR6Fc5RGS9AWnd5CqH
+         PlgvicZJsORN95dzQ3fts4JO30sRLTte9rOstgfKtJVFYK8QQAAV7HpA0sZyvHZh6mTj
+         nZdQ==
+X-Gm-Message-State: AOJu0YzdJo1eNkidX1fv0kcZCp0gaRjIly/HXx8pGqdcD6EtvGwuuGYn
+	mXwSLS4JfFF+SL9JzGzJXOPyJUCBEyQbtA==
+X-Google-Smtp-Source: AGHT+IH8pm44dT/z4IAV6k2Car4N58TCRuCujxBhw2VypwrRO3YPmM4mzK6fyJaDxFfcNsbX69ig+w==
+X-Received: by 2002:a17:907:72c9:b0:a2a:99ae:3ff8 with SMTP id du9-20020a17090772c900b00a2a99ae3ff8mr1180861ejc.37.1705098797915;
+        Fri, 12 Jan 2024 14:33:17 -0800 (PST)
+Received: from [192.168.174.25] (178235179017.dynamic-4-waw-k-1-3-0.vectranet.pl. [178.235.179.17])
+        by smtp.gmail.com with ESMTPSA id k7-20020a17090627c700b00a19b7362dcfsm2193541ejc.139.2024.01.12.14.33.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 12 Jan 2024 14:33:17 -0800 (PST)
+Message-ID: <f9a177e0-3698-4865-9463-220c65c653fb@linaro.org>
+Date: Fri, 12 Jan 2024 23:33:15 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231111014933.1934562-1-davidai@google.com> <20231111014933.1934562-2-davidai@google.com>
- <20231208124503.unhka7c6ihzrrwhu@bogus>
-In-Reply-To: <20231208124503.unhka7c6ihzrrwhu@bogus>
-From: Saravana Kannan <saravanak@google.com>
-Date: Fri, 12 Jan 2024 14:15:20 -0800
-Message-ID: <CAGETcx9p8y7uN08_KyO45KygDU9i4KnU4HLd1XGhK+k0e9sahA@mail.gmail.com>
-Subject: Re: [PATCH v4 1/2] dt-bindings: cpufreq: add virtual cpufreq device
-To: Sudeep Holla <sudeep.holla@arm.com>
-Cc: David Dai <davidai@google.com>, "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Viresh Kumar <viresh.kumar@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Quentin Perret <qperret@google.com>, Masami Hiramatsu <mhiramat@google.com>, Will Deacon <will@kernel.org>, 
-	Peter Zijlstra <peterz@infradead.org>, Vincent Guittot <vincent.guittot@linaro.org>, 
-	Marc Zyngier <maz@kernel.org>, Oliver Upton <oliver.upton@linux.dev>, 
-	Dietmar Eggemann <dietmar.eggemann@arm.com>, Pavan Kondeti <quic_pkondeti@quicinc.com>, 
-	Gupta Pankaj <pankaj.gupta@amd.com>, Mel Gorman <mgorman@suse.de>, kernel-team@android.com, 
-	linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 3/6] PCI: qcom: Add missing icc bandwidth vote for cpu
+ to PCIe path
+Content-Language: en-US
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Krishna chaitanya chundru <quic_krichai@quicinc.com>,
+ Bjorn Andersson <andersson@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Manivannan Sadhasivam <mani@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>, Johan Hovold <johan+linaro@kernel.org>,
+ Brian Masney <bmasney@redhat.com>, Georgi Djakov <djakov@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, vireshk@kernel.org,
+ quic_vbadigan@quicinc.com, quic_skananth@quicinc.com,
+ quic_nitegupt@quicinc.com, linux-pci@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ stable@vger.kernel.org
+References: <20240112-opp_support-v6-0-77bbf7d0cc37@quicinc.com>
+ <20240112-opp_support-v6-3-77bbf7d0cc37@quicinc.com>
+ <fecfd2d9-7302-4eb6-92d0-c2efbe824bf4@linaro.org>
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
+ BB/OmIWU6X+LZW6P88ZmHe+KeyABLMP5s1tJNK1j4ntT7mECcWZDzafPWF4F6m4WJOG27kTJ
+ HGWdmtO+RvadOVi6CoUDqALsmfS3MUG5Pj2Ne9+0jRg4hEnB92AyF9rW2G3qisFcwPgvatt7
+ TXD5E38mLyOPOUyXNj9XpDbt1hNwKQfiidmPh5e7VNAWRnW1iCMMoKqzM1Anzq7e5Afyeifz
+ zRcQPLaqrPjnKqZGL2BKQSZDh6NkI5ZLRhhHQf61fkWcUpTp1oDC6jWVfT7hwRVIQLrrNj9G
+ MpPzrlN4YuAqKeIer1FMt8cq64ifgTzxHzXsMcUdclzq2LTk2RXaPl6Jg/IXWqUClJHbamSk
+ t1bfif3SnmhA6TiNvEpDKPiT3IDs42THU6ygslrBxyROQPWLI9IL1y8S6RtEh8H+NZQWZNzm
+ UQ3imZirlPjxZtvz1BtnnBWS06e7x/UEAguj7VHCuymVgpl2Za17d1jj81YN5Rp5L9GXxkV1
+ aUEwONM3eCI3qcYm5JNc5X+JthZOWsbIPSC1Rhxz3JmWIwP1udr5E3oNRe9u2LIEq+wH/toH
+ kpPDhTeMkvt4KfE5m5ercid9+ZXAqoaYLUL4HCEw+HW0DXcKDwARAQABzShLb25yYWQgRHli
+ Y2lvIDxrb25yYWQuZHliY2lvQGxpbmFyby5vcmc+wsGOBBMBCAA4FiEEU24if9oCL2zdAAQV
+ R4cBcg5dfFgFAmQ5bqwCGwMFCwkIBwIGFQoJCAsCBBYCAwECHgECF4AACgkQR4cBcg5dfFjO
+ BQ//YQV6fkbqQCceYebGg6TiisWCy8LG77zV7DB0VMIWJv7Km7Sz0QQrHQVzhEr3trNenZrf
+ yy+o2tQOF2biICzbLM8oyQPY8B///KJTWI2khoB8IJSJq3kNG68NjPg2vkP6CMltC/X3ohAo
+ xL2UgwN5vj74QnlNneOjc0vGbtA7zURNhTz5P/YuTudCqcAbxJkbqZM4WymjQhe0XgwHLkiH
+ 5LHSZ31MRKp/+4Kqs4DTXMctc7vFhtUdmatAExDKw8oEz5NbskKbW+qHjW1XUcUIrxRr667V
+ GWH6MkVceT9ZBrtLoSzMLYaQXvi3sSAup0qiJiBYszc/VOu3RbIpNLRcXN3KYuxdQAptacTE
+ mA+5+4Y4DfC3rUSun+hWLDeac9z9jjHm5rE998OqZnOU9aztbd6zQG5VL6EKgsVXAZD4D3RP
+ x1NaAjdA3MD06eyvbOWiA5NSzIcC8UIQvgx09xm7dThCuQYJR4Yxjd+9JPJHI6apzNZpDGvQ
+ BBZzvwxV6L1CojUEpnilmMG1ZOTstktWpNzw3G2Gis0XihDUef0MWVsQYJAl0wfiv/0By+XK
+ mm2zRR+l/dnzxnlbgJ5pO0imC2w0TVxLkAp0eo0LHw619finad2u6UPQAkZ4oj++iIGrJkt5
+ Lkn2XgB+IW8ESflz6nDY3b5KQRF8Z6XLP0+IEdLOOARkOW7yEgorBgEEAZdVAQUBAQdAwmUx
+ xrbSCx2ksDxz7rFFGX1KmTkdRtcgC6F3NfuNYkYDAQgHwsF2BBgBCAAgFiEEU24if9oCL2zd
+ AAQVR4cBcg5dfFgFAmQ5bvICGwwACgkQR4cBcg5dfFju1Q//Xta1ShwL0MLSC1KL1lXGXeRM
+ 8arzfyiB5wJ9tb9U/nZvhhdfilEDLe0jKJY0RJErbdRHsalwQCrtq/1ewQpMpsRxXzAjgfRN
+ jc4tgxRWmI+aVTzSRpywNahzZBT695hMz81cVZJoZzaV0KaMTlSnBkrviPz1nIGHYCHJxF9r
+ cIu0GSIyUjZ/7xslxdvjpLth16H27JCWDzDqIQMtg61063gNyEyWgt1qRSaK14JIH/DoYRfn
+ jfFQSC8bffFjat7BQGFz4ZpRavkMUFuDirn5Tf28oc5ebe2cIHp4/kajTx/7JOxWZ80U70mA
+ cBgEeYSrYYnX+UJsSxpzLc/0sT1eRJDEhI4XIQM4ClIzpsCIN5HnVF76UQXh3a9zpwh3dk8i
+ bhN/URmCOTH+LHNJYN/MxY8wuukq877DWB7k86pBs5IDLAXmW8v3gIDWyIcgYqb2v8QO2Mqx
+ YMqL7UZxVLul4/JbllsQB8F/fNI8AfttmAQL9cwo6C8yDTXKdho920W4WUR9k8NT/OBqWSyk
+ bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
+ nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
+ izWDgYvmBE8=
+In-Reply-To: <fecfd2d9-7302-4eb6-92d0-c2efbe824bf4@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Fri, Dec 8, 2023 at 4:47=E2=80=AFAM Sudeep Holla <sudeep.holla@arm.com> =
-wrote:
->
-> On Fri, Nov 10, 2023 at 05:49:29PM -0800, David Dai wrote:
-> > Adding bindings to represent a virtual cpufreq device.
-> >
-> > Virtual machines may expose MMIO regions for a virtual cpufreq device
-> > for guests to read frequency information or to request frequency
-> > selection. The virtual cpufreq device has an individual controller for
-> > each frequency domain.
-> >
-> > Co-developed-by: Saravana Kannan <saravanak@google.com>
-> > Signed-off-by: Saravana Kannan <saravanak@google.com>
-> > Signed-off-by: David Dai <davidai@google.com>
-> > ---
-> >  .../cpufreq/qemu,cpufreq-virtual.yaml         | 99 +++++++++++++++++++
-> >  1 file changed, 99 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/cpufreq/qemu,cpuf=
-req-virtual.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/cpufreq/qemu,cpufreq-vir=
-tual.yaml b/Documentation/devicetree/bindings/cpufreq/qemu,cpufreq-virtual.=
-yaml
-> > new file mode 100644
-> > index 000000000000..16606cf1fd1a
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/cpufreq/qemu,cpufreq-virtual.ya=
-ml
-> > @@ -0,0 +1,99 @@
-> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/cpufreq/qemu,cpufreq-virtual.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Virtual CPUFreq
-> > +
-> > +maintainers:
-> > +  - David Dai <davidai@google.com>
-> > +  - Saravana Kannan <saravanak@google.com>
-> > +
-> > +description:
-> > +  Virtual CPUFreq is a virtualized driver in guest kernels that sends =
-frequency
-> > +  selection of its vCPUs as a hint to the host through MMIO regions. E=
-ach vCPU
-> > +  is associated with a frequency domain which can be shared with other=
- vCPUs.
-> > +  Each frequency domain has its own set of registers for frequency con=
-trols.
-> > +
->
-> Are these register controls described somewhere ? The reason I ask is we
-> should be able to have single implementation of this virtual cpufreq
-> irrespective of the firmware used(DT vs ACPI) IMO.
+On 12.01.2024 16:17, Bryan O'Donoghue wrote:
+> On 12/01/2024 14:22, Krishna chaitanya chundru wrote:
+>> CPU-PCIe path consits for registers PCIe BAR space, config space.
+>> As there is less access on this path compared to pcie to mem path
+>> add minimum vote i.e GEN1x1 bandwidth always.
+>>
+>> In suspend remove the cpu vote after register space access is done.
+>>
+>> Fixes: c4860af88d0c ("PCI: qcom: Add basic interconnect support")
+> 
+> If this patch is a Fixes then don't you need the accompanying dts change as a parallel Fixes too ?
+> 
+> i.e. without the dts update - you won't have the nodes in the dts to consume => applying this code to the stable kernel absent the dts will result in no functional change and therefore no bugfix.
 
-Agree that we want the same driver to work for DT and ACPI. This doc
-was written to be similar to other DT binding docs that don't describe
-the registers in the DT binding. The registers are pretty straight
-forward (can tell from the code too). One register to "set" the
-frequency and another to "get" the current frequency. We don't have
-any ACPI expertise/hardware to test this on or care about it right
-now. But David looked at some ACPI drivers and we think it should be
-trivial to add ACPI support to this. Just a different set of probe
-functions to register and populate the CPUfreq table.
+The Fixes tag denotes a bug fix, its use for backport autosel is just
+a nice "coincidence".
 
->
-> > +properties:
-> > +  compatible:
-> > +    const: qemu,virtual-cpufreq
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +    description:
-> > +      Address and size of region containing frequency controls for eac=
-h of the
-> > +      frequency domains. Regions for each frequency domain is placed
-> > +      contiugously and contain registers for controlling DVFS(Dynamic =
-Frequency
-> > +      and Voltage) characteristics. The size of the region is proporti=
-onal to
-> > +      total number of frequency domains.
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    // This example shows a two CPU configuration with a frequency dom=
-ain
-> > +    // for each CPU.
-> > +    cpus {
-> > +      #address-cells =3D <1>;
-> > +      #size-cells =3D <0>;
-> > +
-> > +      cpu@0 {
-> > +        compatible =3D "arm,armv8";
-> > +        device_type =3D "cpu";
-> > +        reg =3D <0x0>;
-> > +        operating-points-v2 =3D <&opp_table0>;
-> > +      };
-> > +
-> > +      cpu@1 {
-> > +        compatible =3D "arm,armv8";
-> > +        device_type =3D "cpu";
-> > +        reg =3D <0x0>;
-> > +        operating-points-v2 =3D <&opp_table1>;
-> > +      };
-> > +    };
-> > +
-> > +    opp_table0: opp-table-0 {
-> > +      compatible =3D "operating-points-v2";
-> > +      opp-shared;
-> > +
-> > +      opp1098000000 {
-> > +        opp-hz =3D /bits/ 64 <1098000000>;
-> > +        opp-level =3D <1>;
-> > +      };
-> > +
-> > +      opp1197000000 {
-> > +        opp-hz =3D /bits/ 64 <1197000000>;
-> > +        opp-level =3D <2>;
-> > +      };
-> > +    };
-> > +
-> > +    opp_table1: opp-table-1 {
-> > +      compatible =3D "operating-points-v2";
-> > +      opp-shared;
-> > +
-> > +      opp1106000000 {
-> > +        opp-hz =3D /bits/ 64 <1106000000>;
-> > +        opp-level =3D <1>;
-> > +      };
-> > +
-> > +      opp1277000000 {
-> > +        opp-hz =3D /bits/ 64 <1277000000>;
-> > +        opp-level =3D <2>;
-> > +      };
-> > +    };
-> >
->
-> I think using OPP with absolute frequencies seems not appropriate here.
-> Why can't these fetched from the registers and have some abstract values
-> instead ?
+Fixing a lack of a required icc path and having to rely on BL leftovers
+/ keepalive bus settings is definitely worth this tag in my eyes.
 
-Whether the frequencies are real or you want to cap it to 1024 and
-normalize it, you still need to populate the CPUfreq table. And we
-didn't want to reinvent the wheel and want to use existing means of
-representing the table in as cross-architecture as possible -- so, DT
-and ACPI should cover them all. For example, if we want to say CPU0
-and 1 for a single CPUfreq policy, that's all already doable in DT. We
-don't want to reinvent new schemes/register interfaces for that.
-
->
-> > +    soc {
-> > +      #address-cells =3D <1>;
-> > +      #size-cells =3D <1>;
-> > +
-> > +      cpufreq@1040000 {
-> > +        compatible =3D "qemu,virtual-cpufreq";
-> > +        reg =3D <0x1040000 0x10>;
->
-> So just 16bytes for 2 CPU system ? How does the register layout look like=
- ?
-> I assume just 4 x 32bit registers: 2 for reading and 2 for setting the
-> frequencies ?
-
-Yup. 2 registers per CPU frequency domain or policy.
-
-Thanks,
-Saravana
+Konrad
 
