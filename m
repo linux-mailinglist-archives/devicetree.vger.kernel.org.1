@@ -1,800 +1,265 @@
-Return-Path: <devicetree+bounces-31496-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31497-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97A3C82B8A9
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 01:39:46 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC5D382B8CC
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 01:58:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 41984287ABC
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 00:39:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9A2C01C2334F
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 00:58:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D628651;
-	Fri, 12 Jan 2024 00:39:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15451814;
+	Fri, 12 Jan 2024 00:58:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="mr/MZoy6"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="dIMKtZ9I";
+	dkim=pass (1024-bit key) header.d=mediateko365.onmicrosoft.com header.i=@mediateko365.onmicrosoft.com header.b="d7E/OZvu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9EA69379;
-	Fri, 12 Jan 2024 00:39:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40BNuLgA002546;
-	Fri, 12 Jan 2024 00:38:58 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=vDH4LaF6qmHMvXPF2MOAK4CTs+9vOxO6sOghxx6oPo4=; b=mr
-	/MZoy6Uj1qIuKPxwlTfPIZH0tt3CHKjZDoG+sHNhjSmka9TfrtWeaXVT1cm7jF2Y
-	Ew1p/MyoxAx+EVbUbqROdWu/agn1wgaj55dkH8GEGbYFR1SxZXpLIoXTZU0gy80T
-	DvCet3xMilH7ldPsPPeCvc0LSQgE7NmyY5emTYyAjVnD3DQuLjcEazViNVs2ygX7
-	CX974G8+Bb/N+JXhFo9oREPhMkro8hQXN4WamF/icfegmpB8+ZO3EN73o1U/zF3+
-	C+eHO8FDGGPooPUKfW+AcbdwxqGNsA0uqBydLLSqr4g8deeXq1urNXcWJZom3ogL
-	/klIo9muZjE4VHAJiVxg==
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vj7w22ue1-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 12 Jan 2024 00:38:58 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 40C0cv1D008873
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 12 Jan 2024 00:38:57 GMT
-Received: from [10.71.111.207] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Thu, 11 Jan
- 2024 16:38:55 -0800
-Message-ID: <85b83233-7b2f-4fe6-9a86-a625b6606034@quicinc.com>
-Date: Thu, 11 Jan 2024 16:38:34 -0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBEC2657;
+	Fri, 12 Jan 2024 00:58:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: b696f73eb0e511ee9e680517dc993faa-20240112
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=MIME-Version:Content-Transfer-Encoding:Content-ID:Content-Type:In-Reply-To:References:Message-ID:Date:Subject:CC:To:From; bh=e6cI6CCcRmw4zAZLL26n4FrhOTMeMcZGjMtsTz+LfhM=;
+	b=dIMKtZ9IN5nRXuBTZedS+pwQM360j601+HE5X6LT5egREYnandPUNOHyCDa0PWaDEO/hZyGm1tg0swcamSndNUYg1G5EClJwKYaqWzgKKu5xE5YaxcTW+mMVakxkOnKbjpU2F5iwOF8XluLebUl2ODGrqvcE9eXR5thJKCDeovU=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.35,REQID:af1cab76-083d-477b-9cf7-0fc71e3e6d2b,IP:0,U
+	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:0
+X-CID-META: VersionHash:5d391d7,CLOUDID:fce7288e-e2c0-40b0-a8fe-7c7e47299109,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+	RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,
+	DKR:0,DKP:0,BRR:0,BRE:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-UUID: b696f73eb0e511ee9e680517dc993faa-20240112
+Received: from mtkmbs14n2.mediatek.inc [(172.21.101.76)] by mailgw01.mediatek.com
+	(envelope-from <ck.hu@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 217983386; Fri, 12 Jan 2024 08:58:35 +0800
+Received: from mtkmbs10n2.mediatek.inc (172.21.101.183) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Fri, 12 Jan 2024 08:58:33 +0800
+Received: from APC01-TYZ-obe.outbound.protection.outlook.com (172.21.101.237)
+ by mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Fri, 12 Jan 2024 08:58:33 +0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ZHL6/hqLnwYuNeQsn1CCJVRL/b4/jF+trPFJ9bozn/CK4feBVQU3+gtpXCVA8nLy7akD7iwbr8HNhGQFhb7CWIT5fLbi2YgFr+XrIYoF705bV3M4oTHUj1t+oLQKxPfsMMLiB+u9itH+KOV7ZggcMqBuXcRqAJw+HNNqkOSXh90y4XsWwyFG9dHT2Ii8V0HN7pkUSVYWAooYfbvqzUIVzICMIW8KWrJQNrM3pkiagM14jcusceBLUhSk37mQjqyFzwd/ptAFR7j1XhGNld6wCAmPYhfEv8hrSXF8An/3hPVftKYtPQo5ImekgrnP7SP1zrCU+b2LFmp0bFSi524qwQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=e6cI6CCcRmw4zAZLL26n4FrhOTMeMcZGjMtsTz+LfhM=;
+ b=h9v7lnk0FJ5Bd3lMUZ2asT58YrsqqW5pGTA9qkrKO8rfnk+LpCKs6gm4bBF2PIGNuAX2R/LDWyPN7S6ICaXSbNCmHfQn4wz9nQ6RS1P66n8hsJU/thLgTCFuwhiGZgd/eEqEmVFUtPJ2hypSZei2mxT2q2KPgmT8BY1u4gN2EHiphJ2Nt642pQaytF+vhT8uo4LJQUiypxR98WodbhVLWezhCQsB1zFqYfz/K1GTkCq737/Y5xXsRJfXzQ/1dcigLfx0cVft3fVTL5idVUVH2dDj+stsH4//IFI2NVQ0vlWE8EIGo9QfnEO+Ad7Wk5PSnqQOqKfJl3bOekTJ8aU8BA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=mediatek.com; dmarc=pass action=none header.from=mediatek.com;
+ dkim=pass header.d=mediatek.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=mediateko365.onmicrosoft.com; s=selector2-mediateko365-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=e6cI6CCcRmw4zAZLL26n4FrhOTMeMcZGjMtsTz+LfhM=;
+ b=d7E/OZvuowz2rmwaA5HG6qhAVfhNB/Rr3Ok4AaORDVXCyJ0/qgO7BlENCm6Esn6OIjY8R6ApeS3Sx/pdebhtS8A2QHj4MJrwIvoycc3o64CkuIzypAFUH4sJ9WCeJanBMH+Uaqgvn1mrk5hfa7DoKi27QyXjnv2Z/MnBSSCE3Go=
+Received: from TYZPR03MB6624.apcprd03.prod.outlook.com (2603:1096:400:1f4::13)
+ by TYSPR03MB8468.apcprd03.prod.outlook.com (2603:1096:405:5e::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7181.21; Fri, 12 Jan
+ 2024 00:58:31 +0000
+Received: from TYZPR03MB6624.apcprd03.prod.outlook.com
+ ([fe80::eb43:57cb:edfd:3762]) by TYZPR03MB6624.apcprd03.prod.outlook.com
+ ([fe80::eb43:57cb:edfd:3762%7]) with mapi id 15.20.7181.019; Fri, 12 Jan 2024
+ 00:58:31 +0000
+From: =?utf-8?B?Q0sgSHUgKOiDoeS/iuWFiSk=?= <ck.hu@mediatek.com>
+To: "jstephan@baylibre.com" <jstephan@baylibre.com>
+CC: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+	"robh+dt@kernel.org" <robh+dt@kernel.org>, "linux-media@vger.kernel.org"
+	<linux-media@vger.kernel.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "paul.elder@ideasonboard.com"
+	<paul.elder@ideasonboard.com>, "mchehab@kernel.org" <mchehab@kernel.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	=?utf-8?B?QW5keSBIc2llaCAo6Kyd5pm655qTKQ==?= <Andy.Hsieh@mediatek.com>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "krzysztof.kozlowski+dt@linaro.org"
+	<krzysztof.kozlowski+dt@linaro.org>, =?utf-8?B?TG91aXMgS3VvICjpg63lvrflr6cp?=
+	<louis.kuo@mediatek.com>, "laurent.pinchart@ideasonboard.com"
+	<laurent.pinchart@ideasonboard.com>, "fsylvestre@baylibre.com"
+	<fsylvestre@baylibre.com>, "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+	"angelogioacchino.delregno@collabora.com"
+	<angelogioacchino.delregno@collabora.com>, "pnguyen@baylibre.com"
+	<pnguyen@baylibre.com>
+Subject: Re: [PATCH v4 4/5] media: platform: mediatek: isp_30: add mediatek
+ ISP3.0 camsv
+Thread-Topic: [PATCH v4 4/5] media: platform: mediatek: isp_30: add mediatek
+ ISP3.0 camsv
+Thread-Index: AQHaQ8+pgBL6pTKEqkml+zYix0rfyLDVXUsA
+Date: Fri, 12 Jan 2024 00:58:31 +0000
+Message-ID: <e78658d63676d86ddd499ffa636cefbacb09c8ac.camel@mediatek.com>
+References: <20240110141443.364655-1-jstephan@baylibre.com>
+	 <20240110141443.364655-5-jstephan@baylibre.com>
+In-Reply-To: <20240110141443.364655-5-jstephan@baylibre.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=mediatek.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: TYZPR03MB6624:EE_|TYSPR03MB8468:EE_
+x-ms-office365-filtering-correlation-id: fc076654-cea1-4ac2-6f69-08dc13099881
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: Rwp/9hUHvDrLOn55UPOWP1zSMFndOauasXRJR63nrvmXXlaDGjxicBbbtHAI92yBGvtGICyyLFi5xplHojTMbLOrEamGM8d2G5/gHn/TvHPXg7RT3la9wTNp8JvFSglUYt/CTS+1laj81gEb3NmTOumIqloj1ifbdPOs3BeLUFNbsuSQ80bLFwDop6Rq1uJm4xVH9ItOTEDtPlXlrROEITvj3LqTdZpIpnGndnuobijmnHzkxc7d5bWj1nS524YKxA/WgHU96PPH8TjhRxDdPR46Twcl8f/EX1qKXmH6QykamgIKjWnP0/X2ZDp8rs58mr77NrF5UQx/AwSxs4IhMWji6aZgmu2rmUtqTPpxaj8PPOP9EqfLp3+bW38fH8CV78DCyaNtpcAfDMoMSX8m1UIc4FxLTF8JNbgV/hPRBfAaBoPD4B9zR2MvmUTLsvgBopPJQTBjX+HUfyHTNz35j0xCVa8Ep/1VkpD5ofxlwZYDVOsvFlqtAZ1EX/MBsaaisAxwPVte2PX0S6/6oNTd5FZ/nT+NLyTQHBlwbd8rsHUAYVwHC1twO3qMLXmPsPp3ZQ9yJLfXe4cY2UVyD0E7r9OVVkvWGcST7miV5XhNWrGDz91uaYhaNanc5YuNWEBMh6o13SWSY2G0QDSJRoZhxYTZSsnhPnkBSlgJ+oZujn0=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR03MB6624.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376002)(39860400002)(136003)(366004)(346002)(396003)(230173577357003)(230922051799003)(230273577357003)(451199024)(1800799012)(186009)(64100799003)(83380400001)(2616005)(26005)(71200400001)(41300700001)(38100700002)(122000001)(66476007)(66446008)(76116006)(54906003)(64756008)(66556008)(66946007)(6506007)(316002)(6916009)(5660300002)(7416002)(2906002)(6512007)(8676002)(8936002)(4326008)(6486002)(38070700009)(478600001)(86362001)(36756003)(85182001);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?RGtlVkdVTmpJTElZM2M4THdlMzRSaVJlMVFJSWxoeStvSUpNVmdrNXRYSUZp?=
+ =?utf-8?B?YTdTcEo1M21kSENDQXBlOUpFbTE3L2h4bHBSVXZ4bzFLYW44RXhFSjBDUE05?=
+ =?utf-8?B?SkEwOW1zZFdLQUZYV3dJYmgzK3p0Wm5kTDFlbm9QMzZ4VXdpQjlEVG5KVE1C?=
+ =?utf-8?B?dGlNWG05Smg4T0dSL2VOekxyZm9reEl6UlRST0J4RCtEZVNiTVJOR0NVYzNl?=
+ =?utf-8?B?N2F0STlaV3pUQ1JIa2NiYjNycS9iV3dHRXV6QWJ1d2dKZk5VZUE1cStkamty?=
+ =?utf-8?B?b084Vm1KemhyOEI0bnRzOGp0NFoxM0FSMHhPcklXMUNzTmNQOTQrYnlaTXdn?=
+ =?utf-8?B?UXp3QWl1SDFwT3luSy9rVmE5ZEJmYTAvbWc0SHExaEdWQjZRS3BrRm1pc2ZS?=
+ =?utf-8?B?OGRaaW1MNmwzcUhGZGN2bGZVMDQ2NlhBVGIrazJlNS9aVDZjdnAwK0p0d01r?=
+ =?utf-8?B?dElXejY4eWhiVmhpT0YrZ0FTN0pJczh2TG4zaDZ4SGU4Q2o4MkdGQUNYM2V5?=
+ =?utf-8?B?RkxEUmpQNmxSeDNLS1RaQzE5VmxycXRsR0xsOENBbWpSZUU5WkhSbXZQNDlj?=
+ =?utf-8?B?cVo0YmJ3Vll3dzRmZzFuQU1yaVZ0TEk5Tzd0WDhOSTVUb2R1aHV2T2pqWnVX?=
+ =?utf-8?B?L04rOCtlQ3JiUzk5clRhWENibGlHUEZhZlRtRStHUi9Pa1ZBY250NDVVYXJV?=
+ =?utf-8?B?bGhPNzBoVFpiQXh2TVhreXdlenhUT0J0c1lHY3JsUTVaeHQ0L3VMSmhvc0Nh?=
+ =?utf-8?B?SUgrRXZCUVplYkJ5Q3dubTNIb1lqeituWDFzeHZ4ZW5RaGlRLy93VllaTnJo?=
+ =?utf-8?B?SkhDeEJjZW01N2ljM1NBZFpHcEx0QnRQMXJUS3FsMGVpRW91azVFR0xTWFJD?=
+ =?utf-8?B?ZTVCelpmc1JTd1docjhlak5WOWVXb1J4VUFYVEhSOWlXSE0zd2hoK01rTmE4?=
+ =?utf-8?B?NDNEcnNUU003dlZ0dlIwK0drQjUyOCtDbjlxTC9oTkJ4NitBT0dtcXdDNGtq?=
+ =?utf-8?B?MzFJNlA2TEVCVFEyNlYwUzRVcTF4TGljWjk2QWVaZjlJQXhNb01FcWQrVzEz?=
+ =?utf-8?B?STcyOSs4S1JSUEd2YzBoUkN2S0F6R0kzeVg0YVFaVkh6L1d6UlgrdlFIN25k?=
+ =?utf-8?B?Mjl4MGJ1NVgwR2o1U3MwYy92aDVKNXRaRTlNVldjL1VrZ1k4QzdoR1dzVUQ5?=
+ =?utf-8?B?RnM3bTEvL09MVG81WDNtSkorVDUvaHg1T2lMZElmaXp0UnJReHd6U280a1hX?=
+ =?utf-8?B?RmgvYnpBb3VMMU81THkrc0tUWjUyMTMydk8zWkdVYktHWFU5NVlMVmJmeFIv?=
+ =?utf-8?B?SldBSnNaL2RqY3I2RGlBK09pOEllVkUvNW1OZldUVUswUXB2R0lhOCt0ak1v?=
+ =?utf-8?B?ZUd4Tm1nNjdoZ3VaS3RaaGJTMTkwZXc0dldvZURNSDlsTkFNcWZNWHRQSDFX?=
+ =?utf-8?B?amFVNzNhTkF1NVlwRUR4NUhtd2ZkZ0JhMHVPd2k5dlJMNER5eU5maDRPbWVQ?=
+ =?utf-8?B?eDNqRDNkcVRuMjc0MlBUbWg0Y2tYRHp0OU81eXNrL3dxRUUxdVg3SEFTZXBa?=
+ =?utf-8?B?bGdxaUl2UDQyalFSbDdjek5UNDFaWnY2ZFFVeDJqbTFKTHk1UnpjN2NGblBZ?=
+ =?utf-8?B?NlhmaHRvakorT3QwaHp5STd6T0tqbUFyMHo2VDAvc1RRTUQrS3p4RmFHWC9E?=
+ =?utf-8?B?cDFnZVA5NTVPNHpETnFibk0zQjl6RVRYTkNKNnpJTWJYQ2Roa1RqQ2pTMHBk?=
+ =?utf-8?B?VFpnM0ZUQkRpNVNXdnRCc2NrdG9ZRklpbkxlNy9jSzA0dUZ1b1dJUVFqZThs?=
+ =?utf-8?B?ZlZCQURWYkdXTE5UTGVsVU1sb2pmZTFURnp4K1lKbXJZcEhOekkwaFpmeWpo?=
+ =?utf-8?B?d3dZZk5UZjdmdHo5b2VnWUZMdFFYUEV6UmVlQitndGl0cDBLRG9uVVNXZXJZ?=
+ =?utf-8?B?ZjVmUVY5WnZLbHNXeDRQdllLc204WUNHSE5nRXVtMXNBSDNTL3YvcUtaYkZV?=
+ =?utf-8?B?UlF1T1FCenFjdjJNczFKY1l5OEJ1YjVGUjBGZ3dOV1AvN2hiOVF3M3JJWkJY?=
+ =?utf-8?B?ekpVNEMyaUwrMXJWU0RZYjFTeTlmZCtUMHN5UTgzVklLdnAyNVMxSmIvZTNm?=
+ =?utf-8?Q?56dIPJV7Zp9JPWpz6d95rmQu5?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <5DB92DB52FAE6E47A882DAAA56166ECE@apcprd03.prod.outlook.com>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [v2 2/2] drm/panel: Add support for Novatek NT36672E panel driver
-To: Ritesh Kumar <quic_riteshk@quicinc.com>, <dri-devel@lists.freedesktop.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC: <neil.armstrong@linaro.org>, <sam@ravnborg.org>,
-        <maarten.lankhorst@linux.intel.com>, <mripard@kernel.org>,
-        <tzimmermann@suse.de>, <airlied@gmail.com>, <daniel@ffwll.ch>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <quic_abhinavk@quicinc.com>,
-        <quic_rajeevny@quicinc.com>, <quic_vproddut@quicinc.com>,
-        <sumit.semwal@linaro.org>
-References: <20240108095902.22725-1-quic_riteshk@quicinc.com>
- <20240108095902.22725-3-quic_riteshk@quicinc.com>
-Content-Language: en-US
-From: Jessica Zhang <quic_jesszhan@quicinc.com>
-In-Reply-To: <20240108095902.22725-3-quic_riteshk@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: k1_4NT6Z01YG3UA4SICshLuZbaEJr6FR
-X-Proofpoint-ORIG-GUID: k1_4NT6Z01YG3UA4SICshLuZbaEJr6FR
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-12-09_02,2023-12-07_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 suspectscore=0
- priorityscore=1501 spamscore=0 malwarescore=0 impostorscore=0
- clxscore=1011 mlxlogscore=999 adultscore=0 lowpriorityscore=0 phishscore=0
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2311290000 definitions=main-2401120002
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TYZPR03MB6624.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: fc076654-cea1-4ac2-6f69-08dc13099881
+X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Jan 2024 00:58:31.4006
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: a7687ede-7a6b-4ef6-bace-642f677fbe31
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: RubDd2vIex9dnVXI8KtBUt11AT6hLfkQJeEYsHz7yaNRZ5JPwxaK5NFqa/M78kZq8d9nTqdAPKzNz9f4HYupEg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYSPR03MB8468
+X-TM-AS-Product-Ver: SMEX-14.0.0.3152-9.1.1006-23728.005
+X-TM-AS-Result: No-10--18.854000-8.000000
+X-TMASE-MatchedRID: vEvJ7Rh1lGgOwH4pD14DsPHkpkyUphL9meN8m2FdGic3xO2R3boBWFbu
+	qIY+/skQkABPgKBt/0r/XD0CNJ3fxO4dcT3ZaTocyYHhs0mgDoxyETzgIO4sasaQTVtPXXNM8ha
+	W4U9IrFq4+90dmk+Zo6U1g9lh+I50imxB5lXt794jRwcsjqWGAtvhKQZ2RM31yWCL+8tLbvZd0A
+	vwubNGarwujwzWn5JPHg8wGPX6M03xVhA9+h9R2oGU23hVIa8hfrTt+hmA5bLFJnEpmt9OE/z8v
+	ajouc6XLlx4AK+9x+06OPBWq+5S+ZQxl2LaGeYAHPYwOJi6PLm7nrAU9KQxUZ0Koq3EzpuHUCUR
+	iGfUE24S8rHMSL0a8dZ7rGD1hsHWUW22dI8YBTqeAiCmPx4NwMFrpUbb72MU1B0Hk1Q1KyLUZxE
+	AlFPo846HM5rqDwqt3Zr5HLkeu2pRTVKea7+e0cUQpxCpcsgDit3VHNIMQdaADvDq3tlciQ==
+X-TM-AS-User-Approved-Sender: No
+X-TM-AS-User-Blocked-Sender: No
+X-TMASE-Result: 10--18.854000-8.000000
+X-TMASE-Version: SMEX-14.0.0.3152-9.1.1006-23728.005
+X-TM-SNTS-SMTP:
+	8F58043FBB12D665A01F068EB90E8A8B5FB5611AB6482889B8D0A17BEBB7DD272000:8
 
-
-
-On 1/8/2024 1:59 AM, Ritesh Kumar wrote:
-> Add support for the 1080x2408 Novatek NT36672E video mode
-> DSI panel driver.
-> 
-> Signed-off-by: Ritesh Kumar <quic_riteshk@quicinc.com>
-
-Reviewed-by: Jessica Zhang <quic_jesszhan@quicinc.com>
-
-> 
-> ---
-> v2: Fixed review comments from Krzysztof
->        - renamed the panel driver file to reflect that this is a novatek IC.
->        - adjusted internal function names to reflect the same.
->        - corrected compatible string accordingly.
->        - updated CONFIG for the same.
-> ---
->   drivers/gpu/drm/panel/Kconfig                 |  10 +
->   drivers/gpu/drm/panel/Makefile                |   1 +
->   .../gpu/drm/panel/panel-novatek-nt36672e.c    | 643 ++++++++++++++++++
->   3 files changed, 654 insertions(+)
->   create mode 100644 drivers/gpu/drm/panel/panel-novatek-nt36672e.c
-> 
-> diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
-> index 99e14dc212ec..052aaef7d6a2 100644
-> --- a/drivers/gpu/drm/panel/Kconfig
-> +++ b/drivers/gpu/drm/panel/Kconfig
-> @@ -429,6 +429,16 @@ config DRM_PANEL_NOVATEK_NT36672A
->   	  around the Novatek NT36672A display controller, such as some
->   	  Tianma panels used in a few Xiaomi Poco F1 mobile phones.
->   
-> +config DRM_PANEL_NOVATEK_NT36672E
-> +	tristate "Novatek NT36672E DSI panel"
-> +	depends on OF
-> +	depends on DRM_MIPI_DSI
-> +	depends on BACKLIGHT_CLASS_DEVICE
-> +	help
-> +	  Say Y here if you want to enable support for Novatek NT36672E DSI Video Mode
-> +	  LCD panel module. The panel has a resolution of 1080x2408 and uses 24 bit
-> +	  RGB per pixel.
-> +
->   config DRM_PANEL_NOVATEK_NT39016
->   	tristate "Novatek NT39016 RGB/SPI panel"
->   	depends on OF && SPI
-> diff --git a/drivers/gpu/drm/panel/Makefile b/drivers/gpu/drm/panel/Makefile
-> index d10c3de51c6d..93a544a8937c 100644
-> --- a/drivers/gpu/drm/panel/Makefile
-> +++ b/drivers/gpu/drm/panel/Makefile
-> @@ -40,6 +40,7 @@ obj-$(CONFIG_DRM_PANEL_NOVATEK_NT35560) += panel-novatek-nt35560.o
->   obj-$(CONFIG_DRM_PANEL_NOVATEK_NT35950) += panel-novatek-nt35950.o
->   obj-$(CONFIG_DRM_PANEL_NOVATEK_NT36523) += panel-novatek-nt36523.o
->   obj-$(CONFIG_DRM_PANEL_NOVATEK_NT36672A) += panel-novatek-nt36672a.o
-> +obj-$(CONFIG_DRM_PANEL_NOVATEK_NT36672E) += panel-novatek-nt36672e.o
->   obj-$(CONFIG_DRM_PANEL_NOVATEK_NT39016) += panel-novatek-nt39016.o
->   obj-$(CONFIG_DRM_PANEL_MANTIX_MLAF057WE51) += panel-mantix-mlaf057we51.o
->   obj-$(CONFIG_DRM_PANEL_OLIMEX_LCD_OLINUXINO) += panel-olimex-lcd-olinuxino.o
-> diff --git a/drivers/gpu/drm/panel/panel-novatek-nt36672e.c b/drivers/gpu/drm/panel/panel-novatek-nt36672e.c
-> new file mode 100644
-> index 000000000000..d4e85c2fc899
-> --- /dev/null
-> +++ b/drivers/gpu/drm/panel/panel-novatek-nt36672e.c
-> @@ -0,0 +1,643 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +// Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
-> +
-> +#include <linux/delay.h>
-> +#include <linux/gpio/consumer.h>
-> +#include <linux/module.h>
-> +#include <linux/of_device.h>
-> +#include <linux/regulator/consumer.h>
-> +
-> +#include <drm/drm_mipi_dsi.h>
-> +#include <drm/drm_modes.h>
-> +#include <drm/drm_panel.h>
-> +
-> +#include <video/mipi_display.h>
-> +
-> +static const char * const regulator_names[] = {
-> +	"vddi",
-> +	"avdd",
-> +	"avee",
-> +};
-> +
-> +static const unsigned long regulator_enable_loads[] = {
-> +	62000,
-> +	100000,
-> +	100000,
-> +};
-> +
-> +static const unsigned long regulator_disable_loads[] = {
-> +	80,
-> +	100,
-> +	100,
-> +};
-> +
-> +struct panel_desc {
-> +	const struct drm_display_mode *display_mode;
-> +	u32 width_mm;
-> +	u32 height_mm;
-> +	unsigned long mode_flags;
-> +	enum mipi_dsi_pixel_format format;
-> +	unsigned int lanes;
-> +	const char *panel_name;
-> +	int (*init_sequence)(struct mipi_dsi_device *dsi);
-> +};
-> +
-> +struct nt36672e_panel {
-> +	struct drm_panel panel;
-> +	struct mipi_dsi_device *dsi;
-> +	struct gpio_desc *reset_gpio;
-> +	struct regulator_bulk_data supplies[3];
-> +	const struct panel_desc *desc;
-> +};
-> +
-> +static inline struct nt36672e_panel *to_nt36672e_panel(struct drm_panel *panel)
-> +{
-> +	return container_of(panel, struct nt36672e_panel, panel);
-> +}
-> +
-> +static int nt36672e_1080x2408_60hz_init(struct mipi_dsi_device *dsi)
-> +{
-> +	mipi_dsi_dcs_write_seq(dsi, 0xff, 0x10);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xfb, 0x01);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xb0, 0x00);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xc0, 0x00);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xc1, 0x89, 0x28, 0x00, 0x08, 0x00, 0xaa, 0x02,
-> +				0x0e, 0x00, 0x2b, 0x00, 0x07, 0x0d, 0xb7, 0x0c, 0xb7);
-> +
-> +	mipi_dsi_dcs_write_seq(dsi, 0xc2, 0x1b, 0xa0);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xff, 0x20);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xfb, 0x01);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x01, 0x66);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x06, 0x40);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x07, 0x38);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x2f, 0x83);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x69, 0x91);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x95, 0xd1);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x96, 0xd1);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xf2, 0x64);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xf3, 0x54);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xf4, 0x64);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xf5, 0x54);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xf6, 0x64);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xf7, 0x54);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xf8, 0x64);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xf9, 0x54);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xff, 0x24);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xfb, 0x01);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x01, 0x0f);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x03, 0x0c);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x05, 0x1d);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x08, 0x2f);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x09, 0x2e);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x0a, 0x2d);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x0b, 0x2c);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x11, 0x17);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x12, 0x13);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x13, 0x15);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x15, 0x14);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x16, 0x16);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x17, 0x18);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x1b, 0x01);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x1d, 0x1d);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x20, 0x2f);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x21, 0x2e);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x22, 0x2d);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x23, 0x2c);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x29, 0x17);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x2a, 0x13);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x2b, 0x15);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x2f, 0x14);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x30, 0x16);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x31, 0x18);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x32, 0x04);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x34, 0x10);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x35, 0x1f);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x36, 0x1f);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x4d, 0x14);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x4e, 0x36);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x4f, 0x36);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x53, 0x36);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x71, 0x30);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x79, 0x11);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x7a, 0x82);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x7b, 0x8f);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x7d, 0x04);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x80, 0x04);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x81, 0x04);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x82, 0x13);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x84, 0x31);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x85, 0x00);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x86, 0x00);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x87, 0x00);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x90, 0x13);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x92, 0x31);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x93, 0x00);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x94, 0x00);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x95, 0x00);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x9c, 0xf4);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x9d, 0x01);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xa0, 0x0f);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xa2, 0x0f);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xa3, 0x02);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xa4, 0x04);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xa5, 0x04);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xc6, 0xc0);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xc9, 0x00);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xd9, 0x80);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xe9, 0x02);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xff, 0x25);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xfb, 0x01);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x18, 0x22);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x19, 0xe4);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x21, 0x40);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x66, 0xd8);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x68, 0x50);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x69, 0x10);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x6b, 0x00);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x6d, 0x0d);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x6e, 0x48);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x72, 0x41);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x73, 0x4a);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x74, 0xd0);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x77, 0x62);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x79, 0x7e);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x7d, 0x03);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x7e, 0x15);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x7f, 0x00);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x84, 0x4d);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xcf, 0x80);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xd6, 0x80);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xd7, 0x80);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xef, 0x20);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xf0, 0x84);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xff, 0x26);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xfb, 0x01);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x81, 0x0f);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x83, 0x01);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x84, 0x03);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x85, 0x01);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x86, 0x03);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x87, 0x01);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x88, 0x05);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x8a, 0x1a);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x8b, 0x11);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x8c, 0x24);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x8e, 0x42);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x8f, 0x11);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x90, 0x11);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x91, 0x11);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x9a, 0x80);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x9b, 0x04);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x9c, 0x00);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x9d, 0x00);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x9e, 0x00);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xff, 0x27);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xfb, 0x01);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x01, 0x68);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x20, 0x81);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x21, 0x6a);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x25, 0x81);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x26, 0x94);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x6e, 0x00);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x6f, 0x00);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x70, 0x00);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x71, 0x00);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x72, 0x00);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x75, 0x00);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x76, 0x00);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x77, 0x00);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x7d, 0x09);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x7e, 0x67);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x80, 0x23);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x82, 0x09);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x83, 0x67);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x88, 0x01);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x89, 0x10);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xa5, 0x10);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xa6, 0x23);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xa7, 0x01);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xb6, 0x40);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xe5, 0x02);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xe6, 0xd3);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xeb, 0x03);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xec, 0x28);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xff, 0x2a);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xfb, 0x01);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x00, 0x91);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x03, 0x20);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x07, 0x50);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x0a, 0x70);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x0c, 0x04);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x0d, 0x40);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x0f, 0x01);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x11, 0xe0);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x15, 0x0f);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x16, 0xa4);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x19, 0x0f);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x1a, 0x78);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x1b, 0x23);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x1d, 0x36);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x1e, 0x3e);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x1f, 0x3e);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x20, 0x3e);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x28, 0xfd);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x29, 0x12);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x2a, 0xe1);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x2d, 0x0a);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x30, 0x49);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x33, 0x96);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x34, 0xff);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x35, 0x40);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x36, 0xde);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x37, 0xf9);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x38, 0x45);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x39, 0xd9);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x3a, 0x49);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x4a, 0xf0);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x7a, 0x09);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x7b, 0x40);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x7f, 0xf0);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x83, 0x0f);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x84, 0xa4);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x87, 0x0f);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x88, 0x78);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x89, 0x23);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x8b, 0x36);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x8c, 0x7d);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x8d, 0x7d);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x8e, 0x7d);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xff, 0x20);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xfb, 0x01);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xb0, 0x00, 0x00, 0x00, 0x17, 0x00, 0x49, 0x00,
-> +				0x6a, 0x00, 0x89, 0x00, 0x9f, 0x00, 0xb6, 0x00, 0xc8);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xb1, 0x00, 0xd9, 0x01, 0x10, 0x01, 0x3a, 0x01,
-> +				0x7a, 0x01, 0xa9, 0x01, 0xf2, 0x02, 0x2d, 0x02, 0x2e);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xb2, 0x02, 0x64, 0x02, 0xa3, 0x02, 0xca, 0x03,
-> +				0x00, 0x03, 0x1e, 0x03, 0x4a, 0x03, 0x59, 0x03, 0x6a);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xb3, 0x03, 0x7d, 0x03, 0x93, 0x03, 0xab, 0x03,
-> +				0xc8, 0x03, 0xec, 0x03, 0xfe, 0x00, 0x00);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xb4, 0x00, 0x00, 0x00, 0x1b, 0x00, 0x51, 0x00,
-> +				0x71, 0x00, 0x90, 0x00, 0xa7, 0x00, 0xbf, 0x00, 0xd1);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xb5, 0x00, 0xe2, 0x01, 0x1a, 0x01, 0x43, 0x01,
-> +				0x83, 0x01, 0xb2, 0x01, 0xfa, 0x02, 0x34, 0x02, 0x36);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xb6, 0x02, 0x6b, 0x02, 0xa8, 0x02, 0xd0, 0x03,
-> +				0x03, 0x03, 0x21, 0x03, 0x4d, 0x03, 0x5b, 0x03, 0x6b);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xb7, 0x03, 0x7e, 0x03, 0x94, 0x03, 0xac, 0x03,
-> +				0xc8, 0x03, 0xec, 0x03, 0xfe, 0x00, 0x00);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xb8, 0x00, 0x00, 0x00, 0x1b, 0x00, 0x51, 0x00,
-> +				0x72, 0x00, 0x92, 0x00, 0xa8, 0x00, 0xbf, 0x00, 0xd1);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xb9, 0x00, 0xe2, 0x01, 0x18, 0x01, 0x42, 0x01,
-> +				0x81, 0x01, 0xaf, 0x01, 0xf5, 0x02, 0x2f, 0x02, 0x31);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xba, 0x02, 0x68, 0x02, 0xa6, 0x02, 0xcd, 0x03,
-> +				0x01, 0x03, 0x1f, 0x03, 0x4a, 0x03, 0x59, 0x03, 0x6a);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xbb, 0x03, 0x7d, 0x03, 0x93, 0x03, 0xab, 0x03,
-> +				0xc8, 0x03, 0xec, 0x03, 0xfe, 0x00, 0x00);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xff, 0x21);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xfb, 0x01);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xb0, 0x00, 0x00, 0x00, 0x17, 0x00, 0x49, 0x00,
-> +				0x6a, 0x00, 0x89, 0x00, 0x9f, 0x00, 0xb6, 0x00, 0xc8);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xb1, 0x00, 0xd9, 0x01, 0x10, 0x01, 0x3a, 0x01,
-> +				0x7a, 0x01, 0xa9, 0x01, 0xf2, 0x02, 0x2d, 0x02, 0x2e);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xb2, 0x02, 0x64, 0x02, 0xa3, 0x02, 0xca, 0x03,
-> +				0x00, 0x03, 0x1e, 0x03, 0x4a, 0x03, 0x59, 0x03, 0x6a);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xb3, 0x03, 0x7d, 0x03, 0x93, 0x03, 0xab, 0x03,
-> +				0xc8, 0x03, 0xec, 0x03, 0xfe, 0x00, 0x00);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xb4, 0x00, 0x00, 0x00, 0x1b, 0x00, 0x51, 0x00,
-> +				0x71, 0x00, 0x90, 0x00, 0xa7, 0x00, 0xbf, 0x00, 0xd1);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xb5, 0x00, 0xe2, 0x01, 0x1a, 0x01, 0x43, 0x01,
-> +				0x83, 0x01, 0xb2, 0x01, 0xfa, 0x02, 0x34, 0x02, 0x36);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xb6, 0x02, 0x6b, 0x02, 0xa8, 0x02, 0xd0, 0x03,
-> +				0x03, 0x03, 0x21, 0x03, 0x4d, 0x03, 0x5b, 0x03, 0x6b);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xb7, 0x03, 0x7e, 0x03, 0x94, 0x03, 0xac, 0x03,
-> +				0xc8, 0x03, 0xec, 0x03, 0xfe, 0x00, 0x00);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xb8, 0x00, 0x00, 0x00, 0x1b, 0x00, 0x51, 0x00,
-> +				0x72, 0x00, 0x92, 0x00, 0xa8, 0x00, 0xbf, 0x00, 0xd1);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xb9, 0x00, 0xe2, 0x01, 0x18, 0x01, 0x42, 0x01,
-> +				0x81, 0x01, 0xaf, 0x01, 0xf5, 0x02, 0x2f, 0x02, 0x31);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xba, 0x02, 0x68, 0x02, 0xa6, 0x02, 0xcd, 0x03,
-> +				0x01, 0x03, 0x1f, 0x03, 0x4a, 0x03, 0x59, 0x03, 0x6a);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xbb, 0x03, 0x7d, 0x03, 0x93, 0x03, 0xab, 0x03,
-> +				0xc8, 0x03, 0xec, 0x03, 0xfe, 0x00, 0x00);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xff, 0x2c);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xfb, 0x01);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x61, 0x1f);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x62, 0x1f);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x7e, 0x03);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x6a, 0x14);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x6b, 0x36);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x6c, 0x36);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x6d, 0x36);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x53, 0x04);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x54, 0x04);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x55, 0x04);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x56, 0x0f);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x58, 0x0f);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x59, 0x0f);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xff, 0xf0);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xfb, 0x01);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x5a, 0x00);
-> +
-> +	mipi_dsi_dcs_write_seq(dsi, 0xff, 0x10);
-> +	mipi_dsi_dcs_write_seq(dsi, 0xfb, 0x01);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x51, 0xff);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x53, 0x24);
-> +	mipi_dsi_dcs_write_seq(dsi, 0x55, 0x01);
-> +
-> +	return 0;
-> +}
-> +
-> +static int nt36672e_power_on(struct nt36672e_panel *ctx)
-> +{
-> +	struct mipi_dsi_device *dsi = ctx->dsi;
-> +	int ret, i;
-> +
-> +	for (i = 0; i < ARRAY_SIZE(ctx->supplies); i++) {
-> +		ret = regulator_set_load(ctx->supplies[i].consumer,
-> +				regulator_enable_loads[i]);
-> +		if (ret) {
-> +			dev_err(&dsi->dev, "regulator set load failed for supply %s: %d\n",
-> +				ctx->supplies[i].supply, ret);
-> +			return ret;
-> +		}
-> +	}
-> +
-> +	ret = regulator_bulk_enable(ARRAY_SIZE(ctx->supplies), ctx->supplies);
-> +	if (ret < 0) {
-> +		dev_err(&dsi->dev, "regulator bulk enable failed: %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	/*
-> +	 * Reset sequence of nt36672e panel requires the panel to be out of reset
-> +	 * for 10ms, followed by being held in reset for 10ms and then out again.
-> +	 */
-> +	gpiod_set_value(ctx->reset_gpio, 1);
-> +	usleep_range(10000, 20000);
-> +	gpiod_set_value(ctx->reset_gpio, 0);
-> +	usleep_range(10000, 20000);
-> +	gpiod_set_value(ctx->reset_gpio, 1);
-> +	usleep_range(10000, 20000);
-> +
-> +	return 0;
-> +}
-> +
-> +static int nt36672e_power_off(struct nt36672e_panel *ctx)
-> +{
-> +	struct mipi_dsi_device *dsi = ctx->dsi;
-> +	int ret = 0;
-> +	int i;
-> +
-> +	gpiod_set_value(ctx->reset_gpio, 0);
-> +
-> +	for (i = 0; i < ARRAY_SIZE(ctx->supplies); i++) {
-> +		ret = regulator_set_load(ctx->supplies[i].consumer,
-> +				regulator_disable_loads[i]);
-> +		if (ret) {
-> +			dev_err(&dsi->dev, "regulator set load failed for supply %s: %d\n",
-> +				ctx->supplies[i].supply, ret);
-> +			return ret;
-> +		}
-> +	}
-> +
-> +	ret = regulator_bulk_disable(ARRAY_SIZE(ctx->supplies), ctx->supplies);
-> +	if (ret)
-> +		dev_err(&dsi->dev, "regulator bulk disable failed: %d\n", ret);
-> +
-> +	return ret;
-> +}
-> +
-> +static int nt36672e_on(struct nt36672e_panel *ctx)
-> +{
-> +	struct mipi_dsi_device *dsi = ctx->dsi;
-> +	const struct panel_desc *desc = ctx->desc;
-> +	int ret = 0;
-> +
-> +	dsi->mode_flags |= MIPI_DSI_MODE_LPM;
-> +
-> +	if (desc->init_sequence) {
-> +		ret = desc->init_sequence(dsi);
-> +		if (ret < 0) {
-> +			dev_err(&dsi->dev, "panel init sequence failed: %d\n", ret);
-> +			return ret;
-> +		}
-> +	}
-> +
-> +	ret = mipi_dsi_dcs_exit_sleep_mode(dsi);
-> +	if (ret < 0) {
-> +		dev_err(&dsi->dev, "Failed to exit sleep mode: %d\n", ret);
-> +		return ret;
-> +	}
-> +	msleep(120);
-> +
-> +	ret = mipi_dsi_dcs_set_display_on(dsi);
-> +	if (ret < 0) {
-> +		dev_err(&dsi->dev, "Failed to set display on: %d\n", ret);
-> +		return ret;
-> +	}
-> +	msleep(100);
-> +
-> +	return 0;
-> +}
-> +
-> +static int nt36672e_off(struct nt36672e_panel *ctx)
-> +{
-> +	struct mipi_dsi_device *dsi = ctx->dsi;
-> +	int ret = 0;
-> +
-> +	dsi->mode_flags &= ~MIPI_DSI_MODE_LPM;
-> +
-> +	ret = mipi_dsi_dcs_set_display_off(dsi);
-> +	if (ret < 0) {
-> +		dev_err(&dsi->dev, "Failed to set display off: %d\n", ret);
-> +		return ret;
-> +	}
-> +	msleep(20);
-> +
-> +	ret = mipi_dsi_dcs_enter_sleep_mode(dsi);
-> +	if (ret < 0) {
-> +		dev_err(&dsi->dev, "Failed to enter sleep mode: %d\n", ret);
-> +		return ret;
-> +	}
-> +	msleep(60);
-> +
-> +	return 0;
-> +}
-> +
-> +static int nt36672e_panel_prepare(struct drm_panel *panel)
-> +{
-> +	struct nt36672e_panel *ctx = to_nt36672e_panel(panel);
-> +	struct mipi_dsi_device *dsi = ctx->dsi;
-> +	int ret = 0;
-> +
-> +	ret = nt36672e_power_on(ctx);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	ret = nt36672e_on(ctx);
-> +	if (ret < 0) {
-> +		dev_err(&dsi->dev, "Failed to initialize panel: %d\n", ret);
-> +		if (nt36672e_power_off(ctx))
-> +			dev_err(&dsi->dev, "power off failed\n");
-> +		return ret;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int nt36672e_panel_unprepare(struct drm_panel *panel)
-> +{
-> +	struct nt36672e_panel *ctx = to_nt36672e_panel(panel);
-> +	struct mipi_dsi_device *dsi = ctx->dsi;
-> +	int ret = 0;
-> +
-> +	ret = nt36672e_off(ctx);
-> +	if (ret < 0)
-> +		dev_err(&dsi->dev, "Failed to un-initialize panel: %d\n", ret);
-> +
-> +	ret = nt36672e_power_off(ctx);
-> +	if (ret < 0)
-> +		dev_err(&dsi->dev, "power off failed: %d\n", ret);
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct drm_display_mode nt36672e_1080x2408_60hz = {
-> +	.name = "1080x2408",
-> +	.clock = 181690,
-> +	.hdisplay = 1080,
-> +	.hsync_start = 1080 + 76,
-> +	.hsync_end = 1080 + 76 + 12,
-> +	.htotal = 1080 + 76 + 12 + 56,
-> +	.vdisplay = 2408,
-> +	.vsync_start = 2408 + 46,
-> +	.vsync_end = 2408 + 46 + 10,
-> +	.vtotal = 2408 + 46 + 10 + 10,
-> +	.flags = 0,
-> +};
-> +
-> +static const struct panel_desc nt36672e_panel_desc = {
-> +	.display_mode = &nt36672e_1080x2408_60hz,
-> +	.width_mm = 74,
-> +	.height_mm = 131,
-> +	.mode_flags = MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_LPM | MIPI_DSI_CLOCK_NON_CONTINUOUS,
-> +	.format = MIPI_DSI_FMT_RGB888,
-> +	.lanes = 4,
-> +	.panel_name = "nt36672e fhd plus panel",
-> +	.init_sequence = nt36672e_1080x2408_60hz_init,
-> +};
-> +
-> +static int nt36672e_panel_get_modes(struct drm_panel *panel, struct drm_connector *connector)
-> +{
-> +	struct nt36672e_panel *ctx = to_nt36672e_panel(panel);
-> +	struct drm_display_mode *mode;
-> +
-> +	mode = drm_mode_duplicate(connector->dev, ctx->desc->display_mode);
-> +	if (!mode)
-> +		return -ENOMEM;
-> +
-> +	drm_mode_set_name(mode);
-> +
-> +	mode->type = DRM_MODE_TYPE_DRIVER | DRM_MODE_TYPE_PREFERRED;
-> +	connector->display_info.width_mm = ctx->desc->width_mm;
-> +	connector->display_info.height_mm = ctx->desc->height_mm;
-> +	drm_mode_probed_add(connector, mode);
-> +
-> +	return 1;
-> +}
-> +
-> +static const struct drm_panel_funcs nt36672e_drm_funcs = {
-> +	.prepare = nt36672e_panel_prepare,
-> +	.unprepare = nt36672e_panel_unprepare,
-> +	.get_modes = nt36672e_panel_get_modes,
-> +};
-> +
-> +static int nt36672e_panel_probe(struct mipi_dsi_device *dsi)
-> +{
-> +	struct device *dev = &dsi->dev;
-> +	struct nt36672e_panel *ctx;
-> +	int i, ret = 0;
-> +
-> +	ctx = devm_kzalloc(dev, sizeof(*ctx), GFP_KERNEL);
-> +	if (!ctx)
-> +		return -ENOMEM;
-> +
-> +	ctx->desc = of_device_get_match_data(dev);
-> +	if (!ctx->desc) {
-> +		dev_err(dev, "missing device configuration\n");
-> +		return -ENODEV;
-> +	}
-> +
-> +	for (i = 0; i < ARRAY_SIZE(ctx->supplies); i++)
-> +		ctx->supplies[i].supply = regulator_names[i];
-> +
-> +	ret = devm_regulator_bulk_get(dev, ARRAY_SIZE(ctx->supplies),
-> +			ctx->supplies);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	ctx->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_LOW);
-> +	if (IS_ERR(ctx->reset_gpio))
-> +		return dev_err_probe(dev, PTR_ERR(ctx->reset_gpio), "Failed to get reset-gpios\n");
-> +
-> +	ctx->dsi = dsi;
-> +	mipi_dsi_set_drvdata(dsi, ctx);
-> +
-> +	dsi->lanes = ctx->desc->lanes;
-> +	dsi->format = ctx->desc->format;
-> +	dsi->mode_flags = ctx->desc->mode_flags;
-> +
-> +	drm_panel_init(&ctx->panel, dev, &nt36672e_drm_funcs, DRM_MODE_CONNECTOR_DSI);
-> +
-> +	ret = drm_panel_of_backlight(&ctx->panel);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "Failed to get backlight\n");
-> +
-> +	ctx->panel.prepare_prev_first = true;
-> +
-> +	drm_panel_add(&ctx->panel);
-> +
-> +	ret = mipi_dsi_attach(dsi);
-> +	if (ret < 0) {
-> +		dev_err(dev, "Failed to attach to DSI host: %d\n", ret);
-> +		goto err_dsi_attach;
-> +	}
-> +
-> +	return 0;
-> +
-> +err_dsi_attach:
-> +	drm_panel_remove(&ctx->panel);
-> +	return ret;
-> +}
-> +
-> +static void nt36672e_panel_remove(struct mipi_dsi_device *dsi)
-> +{
-> +	struct nt36672e_panel *ctx = mipi_dsi_get_drvdata(dsi);
-> +
-> +	mipi_dsi_detach(ctx->dsi);
-> +	mipi_dsi_device_unregister(ctx->dsi);
-> +
-> +	drm_panel_remove(&ctx->panel);
-> +}
-> +
-> +static const struct of_device_id nt36672e_of_match[] = {
-> +	{
-> +		.compatible = "novatek,nt36672e",
-> +		.data = &nt36672e_panel_desc,
-> +	},
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(of, nt36672e_of_match);
-> +
-> +static struct mipi_dsi_driver nt36672e_panel_driver = {
-> +	.driver = {
-> +		.name = "panel-novatek-nt36672e",
-> +		.of_match_table = nt36672e_of_match,
-> +	},
-> +	.probe = nt36672e_panel_probe,
-> +	.remove = nt36672e_panel_remove,
-> +};
-> +module_mipi_dsi_driver(nt36672e_panel_driver);
-> +
-> +MODULE_AUTHOR("Ritesh Kumar <quic_riteshk@quicinc.com>");
-> +MODULE_DESCRIPTION("Novatek NT36672E DSI Panel Driver");
-> +MODULE_LICENSE("GPL");
-> -- 
-> 2.17.1
-> 
+SGksIEp1bGllbjoNCg0KT24gV2VkLCAyMDI0LTAxLTEwIGF0IDE1OjE0ICswMTAwLCBKdWxpZW4g
+U3RlcGhhbiB3cm90ZToNCj4gIAkgDQo+IEV4dGVybmFsIGVtYWlsIDogUGxlYXNlIGRvIG5vdCBj
+bGljayBsaW5rcyBvciBvcGVuIGF0dGFjaG1lbnRzIHVudGlsDQo+IHlvdSBoYXZlIHZlcmlmaWVk
+IHRoZSBzZW5kZXIgb3IgdGhlIGNvbnRlbnQuDQo+ICBGcm9tOiBQaGktYmFuZyBOZ3V5ZW4gPHBu
+Z3V5ZW5AYmF5bGlicmUuY29tPg0KPiANCj4gVGhpcyBkcml2ZXIgcHJvdmlkZXMgYSBwYXRoIHRv
+IGJ5cGFzcyB0aGUgU29DIElTUCBzbyB0aGF0IGltYWdlIGRhdGENCj4gY29taW5nIGZyb20gdGhl
+IFNFTklORiBjYW4gZ28gZGlyZWN0bHkgaW50byBtZW1vcnkgd2l0aG91dCBhbnkgaW1hZ2UNCj4g
+cHJvY2Vzc2luZy4gVGhpcyBhbGxvd3MgdGhlIHVzZSBvZiBhbiBleHRlcm5hbCBJU1AuDQo+IA0K
+PiBTaWduZWQtb2ZmLWJ5OiBQaGktYmFuZyBOZ3V5ZW4gPHBuZ3V5ZW5AYmF5bGlicmUuY29tPg0K
+PiBTaWduZWQtb2ZmLWJ5OiBGbG9yaWFuIFN5bHZlc3RyZSA8ZnN5bHZlc3RyZUBiYXlsaWJyZS5j
+b20+DQo+IFtQYXVsIEVsZGVyIGZpeCBpcnEgbG9ja2luZ10NCj4gU2lnbmVkLW9mZi1ieTogUGF1
+bCBFbGRlciA8cGF1bC5lbGRlckBpZGVhc29uYm9hcmQuY29tPg0KPiBDby1kZXZlbG9wZWQtYnk6
+IExhdXJlbnQgUGluY2hhcnQgPGxhdXJlbnQucGluY2hhcnRAaWRlYXNvbmJvYXJkLmNvbT4NCj4g
+U2lnbmVkLW9mZi1ieTogTGF1cmVudCBQaW5jaGFydCA8bGF1cmVudC5waW5jaGFydEBpZGVhc29u
+Ym9hcmQuY29tPg0KPiBDby1kZXZlbG9wZWQtYnk6IEp1bGllbiBTdGVwaGFuIDxqc3RlcGhhbkBi
+YXlsaWJyZS5jb20+DQo+IFNpZ25lZC1vZmYtYnk6IEp1bGllbiBTdGVwaGFuIDxqc3RlcGhhbkBi
+YXlsaWJyZS5jb20+DQo+IC0tLQ0KDQpbc25pcF0NCg0KPiArDQo+ICtzdGF0aWMgaW50IG10a19j
+YW1fdmIyX3N0YXJ0X3N0cmVhbWluZyhzdHJ1Y3QgdmIyX3F1ZXVlICp2cSwNCj4gKwkJCQkgICAg
+ICAgdW5zaWduZWQgaW50IGNvdW50KQ0KPiArew0KPiArCXN0cnVjdCBtdGtfY2FtX2RldiAqY2Ft
+ID0gdmIyX2dldF9kcnZfcHJpdih2cSk7DQo+ICsJc3RydWN0IG10a19jYW1fZGV2X2J1ZmZlciAq
+YnVmOw0KPiArCXN0cnVjdCBtdGtfY2FtX3ZpZGVvX2RldmljZSAqdmRldiA9DQo+ICsJCXZiMl9x
+dWV1ZV90b19tdGtfY2FtX3ZpZGVvX2RldmljZSh2cSk7DQo+ICsJc3RydWN0IGRldmljZSAqZGV2
+ID0gY2FtLT5kZXY7DQo+ICsJY29uc3Qgc3RydWN0IHY0bDJfcGl4X2Zvcm1hdF9tcGxhbmUgKmZt
+dCA9ICZ2ZGV2LT5mb3JtYXQ7DQo+ICsJaW50IHJldDsNCj4gKwl1bnNpZ25lZCBsb25nIGZsYWdz
+ID0gMDsNCj4gKw0KPiArCWlmIChwbV9ydW50aW1lX2dldF9zeW5jKGRldikgPCAwKSB7DQo+ICsJ
+CWRldl9lcnIoZGV2LCAiZmFpbGVkIHRvIGdldCBwbV9ydW50aW1lXG4iKTsNCj4gKwkJcG1fcnVu
+dGltZV9wdXRfYXV0b3N1c3BlbmQoZGV2KTsNCj4gKwkJcmV0dXJuIC0xOw0KPiArCX0NCj4gKw0K
+PiArCSgqY2FtLT5od19mdW5jdGlvbnMtPm10a19jYW1fc2V0dXApKGNhbSwgZm10LT53aWR0aCwg
+Zm10LQ0KPiA+aGVpZ2h0LA0KPiArCQkJZm10LT5wbGFuZV9mbXRbMF0uYnl0ZXNwZXJsaW5lLCB2
+ZGV2LT5mbXRpbmZvLQ0KPiA+Y29kZSk7DQo+ICsNCj4gKw0KPiArCS8qIEVuYWJsZSBDTU9TIGFu
+ZCBWRiAqLw0KPiArCW10a19jYW1fY21vc192Zl9lbmFibGUoY2FtLCB0cnVlLCB2ZGV2LT5mbXRp
+bmZvLT5wYWNrZWQpOw0KPiArDQo+ICsJbXV0ZXhfbG9jaygmY2FtLT5vcF9sb2NrKTsNCj4gKw0K
+PiArCXJldCA9IG10a19jYW1fdmVyaWZ5X2Zvcm1hdChjYW0pOw0KPiArCWlmIChyZXQgPCAwKQ0K
+PiArCQlnb3RvIGZhaWxfdW5sb2NrOw0KPiArDQo+ICsJLyogU3RhcnQgc3RyZWFtaW5nIG9mIHRo
+ZSB3aG9sZSBwaXBlbGluZSBub3cqLw0KPiArCWlmICghY2FtLT5waXBlbGluZS5zdGFydF9jb3Vu
+dCkgew0KPiArCQlyZXQgPSBtZWRpYV9waXBlbGluZV9zdGFydCh2ZGV2LT52ZGV2LmVudGl0eS5w
+YWRzLA0KPiArCQkJCQkgICAmY2FtLT5waXBlbGluZSk7DQo+ICsJCWlmIChyZXQpIHsNCj4gKwkJ
+CWRldl9lcnIoZGV2LCAiZmFpbGVkIHRvIHN0YXJ0IHBpcGVsaW5lOiVkXG4iLA0KPiByZXQpOw0K
+PiArCQkJZ290byBmYWlsX3VubG9jazsNCj4gKwkJfQ0KPiArCX0NCj4gKw0KPiArCS8qIE1lZGlh
+IGxpbmtzIGFyZSBmaXhlZCBhZnRlciBtZWRpYV9waXBlbGluZV9zdGFydCAqLw0KPiArCWNhbS0+
+c3RyZWFtX2NvdW50Kys7DQo+ICsNCj4gKwljYW0tPnNlcXVlbmNlID0gKHVuc2lnbmVkIGludCkt
+MTsNCj4gKw0KPiArCS8qIFN0cmVhbSBvbiB0aGUgc3ViLWRldmljZSAqLw0KPiArCXJldCA9IHY0
+bDJfc3ViZGV2X2NhbGwoJmNhbS0+c3ViZGV2LCB2aWRlbywgc19zdHJlYW0sIDEpOw0KPiArCWlm
+IChyZXQpDQo+ICsJCWdvdG8gZmFpbF9ub19zdHJlYW07DQo+ICsNCj4gKwltdXRleF91bmxvY2so
+JmNhbS0+b3BfbG9jayk7DQo+ICsNCj4gKwkvKiBDcmVhdGUgZHVtbXkgYnVmZmVyICovDQo+ICsJ
+Y2FtLT5kdW1teV9zaXplID0gZm10LT5wbGFuZV9mbXRbMF0uc2l6ZWltYWdlOw0KPiArDQo+ICsJ
+Y2FtLT5kdW1teS52YWRkciA9IGRtYV9hbGxvY19jb2hlcmVudChjYW0tPmRldiwgY2FtLQ0KPiA+
+ZHVtbXlfc2l6ZSwNCj4gKwkJCQkJICAgICAgJmNhbS0+ZHVtbXkuZGFkZHIsDQo+IEdGUF9LRVJO
+RUwpOw0KDQpEdW1teSBidWZmZXIgY29zdCBtdWNoIGluIERSQU0gZm9vdHByaW50LiBJIHRoaW5r
+IHdlIGNhbiBnZXQgcmlkIG9mDQp0aGlzIGR1bW15IGJ1ZmZlci4gSWYgbm8gYnVmZmVyIGlzIHF1
+ZXVlZCBmcm9tIHVzZXIgc3BhY2UsIGNhbGwNCm10a19jYW1zdjMwX2Ntb3NfdmZfaHdfZGlzYWJs
+ZSgpIHRvIHN0b3Agd3JpdGUgZGF0YSBpbnRvIERSQU0uIEFmdGVyDQpidWZmZXIgaXMgcXVldWVk
+IGZyb20gdXNlciBzcGFjZSwgY2FsbCBtdGtfY2Ftc3YzMF9jbW9zX3ZmX2h3X2VuYWJsZSgpDQp0
+byBzdGFydCB3cml0ZSBkYXRhIGludG8gRFJBTS4NCg0KUmVnYXJkcywNCkNLDQoNCj4gKwlpZiAo
+IWNhbS0+ZHVtbXkudmFkZHIpIHsNCj4gKwkJcmV0ID0gLUVOT01FTTsNCj4gKwkJZ290byBmYWls
+X25vX2J1ZmZlcjsNCj4gKwl9DQo+ICsNCj4gKwkvKiB1cGRhdGUgZmlyc3QgYnVmZmVyIGFkZHJl
+c3MgKi8NCj4gKw0KPiArCS8qIGFkZGVkIHRoZSBidWZmZXIgaW50byB0aGUgdHJhY2tpbmcgbGlz
+dCAqLw0KPiArCXNwaW5fbG9ja19pcnFzYXZlKCZjYW0tPmlycWxvY2ssIGZsYWdzKTsNCj4gKwlp
+ZiAobGlzdF9lbXB0eSgmY2FtLT5idWZfbGlzdCkpIHsNCj4gKwkJKCpjYW0tPmh3X2Z1bmN0aW9u
+cy0+bXRrX2NhbV91cGRhdGVfYnVmZmVyc19hZGQpKGNhbSwNCj4gJmNhbS0+ZHVtbXkpOw0KPiAr
+CQljYW0tPmlzX2R1bW15X3VzZWQgPSB0cnVlOw0KPiArCX0gZWxzZSB7DQo+ICsJCWJ1ZiA9IGxp
+c3RfZmlyc3RfZW50cnlfb3JfbnVsbCgmY2FtLT5idWZfbGlzdCwNCj4gKwkJCQkJICAgICAgIHN0
+cnVjdA0KPiBtdGtfY2FtX2Rldl9idWZmZXIsDQo+ICsJCQkJCSAgICAgICBsaXN0KTsNCj4gKwkJ
+KCpjYW0tPmh3X2Z1bmN0aW9ucy0+bXRrX2NhbV91cGRhdGVfYnVmZmVyc19hZGQpKGNhbSwNCj4g
+YnVmKTsNCj4gKwkJY2FtLT5pc19kdW1teV91c2VkID0gZmFsc2U7DQo+ICsJfQ0KPiArCXNwaW5f
+dW5sb2NrX2lycXJlc3RvcmUoJmNhbS0+aXJxbG9jaywgZmxhZ3MpOw0KPiArDQo+ICsJcmV0dXJu
+IDA7DQo+ICsNCj4gK2ZhaWxfbm9fYnVmZmVyOg0KPiArCW11dGV4X2xvY2soJmNhbS0+b3BfbG9j
+ayk7DQo+ICsJdjRsMl9zdWJkZXZfY2FsbCgmY2FtLT5zdWJkZXYsIHZpZGVvLCBzX3N0cmVhbSwg
+MCk7DQo+ICtmYWlsX25vX3N0cmVhbToNCj4gKwljYW0tPnN0cmVhbV9jb3VudC0tOw0KPiArCWlm
+IChjYW0tPnN0cmVhbV9jb3VudCA9PSAwKQ0KPiArCQltZWRpYV9waXBlbGluZV9zdG9wKHZkZXYt
+PnZkZXYuZW50aXR5LnBhZHMpOw0KPiArZmFpbF91bmxvY2s6DQo+ICsJbXV0ZXhfdW5sb2NrKCZj
+YW0tPm9wX2xvY2spOw0KPiArCW10a19jYW1fdmIyX3JldHVybl9hbGxfYnVmZmVycyhjYW0sIFZC
+Ml9CVUZfU1RBVEVfUVVFVUVEKTsNCj4gKw0KPiArCXJldHVybiByZXQ7DQo+ICt9DQo+ICsNCg==
 
