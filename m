@@ -1,255 +1,134 @@
-Return-Path: <devicetree+bounces-31610-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31611-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9CA6382BF5F
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 12:42:14 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id B7F2182BF6C
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 12:43:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 27AE41F2195B
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 11:42:14 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4A535B22EE2
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 11:43:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8093B6A355;
-	Fri, 12 Jan 2024 11:41:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3560967E96;
+	Fri, 12 Jan 2024 11:43:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="Mf2grg7G"
+	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="VFLkmTpb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on2053.outbound.protection.outlook.com [40.107.93.53])
+Received: from mx1.sberdevices.ru (mx2.sberdevices.ru [45.89.224.132])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B79FF6A34A;
-	Fri, 12 Jan 2024 11:41:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=aAvMU4DrXQlRAU8qtGmG3sjj6WMM8eGyMPpj1Xsx5kGpNcA7dHupbZf10GKRc0Un0Wg7/38o93G7Pxfr/WcLni5mssqZpN14PcwRfKu4DxwcicK9NdsylDo0s7gb4yzaIEkkR8hA5P2d4ws+pqEjEkbpaIyoIKNiKgRPFSrLL2REvtP65gW8IYhbYJ/UvxG44Ixw66WsBYydumYaZPIAVwdJvRC6PmdluQ/qeIadCduT6ClGVCasfr8SjM7eUzRZ+udNGX2ZhTb2YSC6fU16hX2hNJ7n8ZVfjyetTZ9GPPzzx6yxZwsvccnR2xUL15EA7XLEaD/wvG+dnxjSOiH1pQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=/EIallbDZQqPnj4t5E2adbK7o25+8EmHC2146XW0dC8=;
- b=YahBcic4+ekFvfEdvXmgYazVs4qYTsfDclq5Tk/ckXRoQUaBTx3qWzBHlHoIsRFDi0xHB0F4pzqNBWC97FzPCAsrbGvdNIeopp2dW6oLop8PTPrXqulCWIqcU3j3b9X0EBB7GaQZLIKYGOiqikDn5lOedldkgb7e8TnCqG8bFl1RsyrnzmZ8WErlWAVL5aRlkwd52gd+1RV3l1gxIWCi48xBGeYRybIGw6vwpv5CMFLf2ZCwEFdVjGbM0/x7w305WELOAN4OaMKVkIV+ohIRkEHQORO75zOnwrlQqp7wPhdoAUfSdmTA/aQDpoWIUJ9nLsZGOfeHOFqRqRE9YPHEhw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=grandegger.com smtp.mailfrom=amd.com;
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=/EIallbDZQqPnj4t5E2adbK7o25+8EmHC2146XW0dC8=;
- b=Mf2grg7GX8t7UKqaXSWfy1+vw9loy6C7+lJ4KLrN7gpn48KpSZep9phXZsh3o5EL2Gs6Zn57UFclBzOBwch3+hLCCK70HFxg07Sh0q0jTjU1Jgk5fO+Tgmfe0axNKQjZWwNazsW+Uuu1kF08KPL5zDz+9j5ZBPzlpIr+H3tKBYY=
-Received: from DS7PR06CA0013.namprd06.prod.outlook.com (2603:10b6:8:2a::13) by
- DS0PR12MB6630.namprd12.prod.outlook.com (2603:10b6:8:d2::22) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7181.21; Fri, 12 Jan 2024 11:41:05 +0000
-Received: from SA2PEPF00001509.namprd04.prod.outlook.com
- (2603:10b6:8:2a:cafe::d5) by DS7PR06CA0013.outlook.office365.com
- (2603:10b6:8:2a::13) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7181.19 via Frontend
- Transport; Fri, 12 Jan 2024 11:41:05 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- SA2PEPF00001509.mail.protection.outlook.com (10.167.242.41) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7181.14 via Frontend Transport; Fri, 12 Jan 2024 11:41:05 +0000
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.34; Fri, 12 Jan
- 2024 05:41:04 -0600
-Received: from xhdvnc205.xilinx.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server id 15.1.2507.34 via Frontend
- Transport; Fri, 12 Jan 2024 05:41:00 -0600
-From: Srinivas Goud <srinivas.goud@amd.com>
-To: <wg@grandegger.com>, <mkl@pengutronix.de>, <davem@davemloft.net>,
-	<edumazet@google.com>, <kuba@kernel.org>, <pabeni@redhat.com>,
-	<robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-	<conor+dt@kernel.org>, <p.zabel@pengutronix.de>
-CC: <git@amd.com>, <michal.simek@xilinx.com>, <linux-can@vger.kernel.org>,
-	<netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	Srinivas Goud <srinivas.goud@amd.com>
-Subject: [PATCH RESEND v7 3/3] can: xilinx_can: Add ethtool stats interface for ECC errors
-Date: Fri, 12 Jan 2024 17:07:33 +0530
-Message-ID: <1705059453-29099-4-git-send-email-srinivas.goud@amd.com>
-X-Mailer: git-send-email 2.1.1
-In-Reply-To: <1705059453-29099-1-git-send-email-srinivas.goud@amd.com>
-References: <1705059453-29099-1-git-send-email-srinivas.goud@amd.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98C5D67E8D;
+	Fri, 12 Jan 2024 11:43:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=salutedevices.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=salutedevices.com
+Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 879AD12002F;
+	Fri, 12 Jan 2024 14:43:19 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 879AD12002F
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1705059799;
+	bh=/eFJ5zdlWZNOA1X7gSb3A6Ck0vtdZ8leabcrBG+9O8M=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:From;
+	b=VFLkmTpbsuaDh9fUiaAHc/e91SwHDXGr9Hl/DuIdmwY5PtJpMImE0QbkBFONyvatX
+	 qPQ/BLzDIybSKiWn+rOL2TGdSEwubOPUc2o1AkM1QYftQxGVIuI0J7eKRyJ9sSO9LC
+	 U9HkNWEuEU5MEfJJj3AOjjSQEQ04VGAYs9q6En9iD00pGfCBYn4FLXJkq4rBE0M/J+
+	 ZM9RCt2lw/kKRGOpmoz/3qcga8qiOWD/ajctSAY8ken5j6hdsbqbKq501RAuh01FP0
+	 ZiUPbnfWRPlLuUJXSEEsK2PClikXCrGjgn7mvv6oCiWUQSyL+5lJ15JqOSkw84SRPe
+	 /UFCsSnpvBiCw==
+Received: from smtp.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Fri, 12 Jan 2024 14:43:17 +0300 (MSK)
+Received: from [192.168.1.146] (100.64.160.123) by
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Fri, 12 Jan 2024 14:43:17 +0300
+Message-ID: <85c89859-ae03-4692-9c09-5779e4c40eae@salutedevices.com>
+Date: Fri, 12 Jan 2024 14:43:16 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SA2PEPF00001509:EE_|DS0PR12MB6630:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1fb5ce60-6c16-4143-a33b-08dc13635c59
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	3GZHnkRCEQ30i4/Odm2moTvnFDDYNF4Ttwv8j6QYrusKYLniJkZ5Rlpoh6CrF9ANdkAXNVPCmE2R2o9uNYy5h/5coJLq65dXCbAfBRuMK0LDWxc6CvrP2z5RGf4tSSzfk0Of+Rz69wS3EHeN/dwtXxlSBK9Ci90Ac9K/dKZ7HKaNirtDWYZVngbe9DNleF3zPSBEn8HYFVr/YXEc1eVzURRvqm2m35BYVCqdXG3BSLSrZSre3D6x5CHx6QQHg9fwFT/HBsawckorfFLC3Y+pWyhVBIrGVQNsk3ZIjRumtMO8ODhPSz/Fy9h0rY5zpB361XdID1zoGYki/hk399IzZUYPDVmYJvWtRfpMi/FpUdBcYXfZ7rdkahvUg5MBjmvJY+rouZ96Ug2zlJbghrvg23ZAVV4u20MW06L+ZnAOo3qnhvxHYb8DlD9zqjTRNNhxqwZX1Qn/fzRBypc+b5+hujkzYYdJl8euzWOx/K2nLbfd58R9vkaLz79XtJkLfKITglxwBjTRTfq5fwHxgvcBAgIGShfzb7jmvTILSnPQdEHVwps9WDsDC5Bu1e1J5ngT5mbm+mzqywJkwP6izfUCOt19MbltALINoFMd4h6fA6qhL/ExnR/3fNOlEQTPdXnkAjj/acyNCXtN3/qtOUJm++ERjhIueUJGC2EAxHseZ+4vrwRfABMTzrZ/q3JmEfVg9DDoNey4xfHSRFdusdMLhzWTDXdUZ2gfBkicqjfS3ulgAc5JXcdxMZuGc0FP6g2mma7Mcsxz5pg0Kw3huWNsAtDF9+do9yjUnV3T4V36ijc=
-X-Forefront-Antispam-Report:
-	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230031)(4636009)(39860400002)(346002)(136003)(376002)(396003)(230922051799003)(451199024)(1800799012)(64100799003)(82310400011)(186009)(36840700001)(46966006)(40470700004)(83380400001)(336012)(2616005)(26005)(47076005)(36860700001)(6666004)(4326008)(8676002)(5660300002)(8936002)(44832011)(41300700001)(2906002)(7416002)(426003)(478600001)(54906003)(316002)(70586007)(70206006)(921011)(110136005)(36756003)(86362001)(81166007)(82740400003)(356005)(40480700001)(40460700003)(36900700001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jan 2024 11:41:05.1054
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1fb5ce60-6c16-4143-a33b-08dc13635c59
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	SA2PEPF00001509.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB6630
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 1/2] leds: aw200xx: support for hw pattern controllers
+Content-Language: en-US
+To: Lee Jones <lee@kernel.org>
+CC: Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+	<conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>, Andy Shevchenko
+	<andy.shevchenko@gmail.com>, <linux-kernel@vger.kernel.org>,
+	<linux-leds@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-doc@vger.kernel.org>, <kernel@salutedevices.com>, Greg Kroah-Hartman
+	<gregkh@linuxfoundation.org>
+References: <20231207125938.175119-1-mmkurbanov@salutedevices.com>
+ <20231207125938.175119-2-mmkurbanov@salutedevices.com>
+ <20231221161011.GO10102@google.com>
+From: Martin Kurbanov <mmkurbanov@salutedevices.com>
+In-Reply-To: <20231221161011.GO10102@google.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 182598 [Jan 12 2024]
+X-KSMG-AntiSpam-Version: 6.1.0.3
+X-KSMG-AntiSpam-Envelope-From: mmkurbanov@salutedevices.com
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 7 0.3.7 6d6bf5bd8eea7373134f756a2fd73e9456bb7d1a, {Tracking_from_domain_doesnt_match_to}, smtp.sberdevices.ru:5.0.1,7.1.1;100.64.160.123:7.1.2;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;salutedevices.com:7.1.1;127.0.0.199:7.1.2, FromAlignment: s, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/01/12 10:31:00 #23117109
+X-KSMG-AntiVirus-Status: Clean, skipped
 
-Add ethtool stats interface for reading FIFO 1bit/2bit ECC errors information.
+Hello Lee,
 
-Signed-off-by: Srinivas Goud <srinivas.goud@amd.com>
----
-Changes in v7:
-Update with spinlock only for stats counters
+On 21.12.2023 19:10, Lee Jones wrote:
+> On Thu, 07 Dec 2023, Martin Kurbanov wrote:
+> 
+>> This led-controller supports 3 pattern controllers for auto breathing or
+>> group dimming control. Each pattern controller can work in auto
+>> breathing or manual control mode. All breathing parameters including
+>> rising/falling slope, on/off time, repeat times, min/max brightness
+>> and so on are configurable.
+>>
+>> Signed-off-by: Martin Kurbanov <mmkurbanov@salutedevices.com>
+>> ---
+>>  .../testing/sysfs-class-led-driver-aw200xx    | 108 +++
+>>  Documentation/leds/leds-aw200xx.rst           | 274 ++++++++
+>>  drivers/leds/leds-aw200xx.c                   | 649 ++++++++++++++++++
+>>  3 files changed, 1031 insertions(+)
+>>  create mode 100644 Documentation/leds/leds-aw200xx.rst
+> 
+> This interface is bananas.  Exposing an entire register interface to
+> sysfs does not sit will with me at all.  When we add support to a sysfs
+> class, we usually require it to be generic and work across all devices.
+> Adding device specific interfaces is generally decried and to be
+> avoided.  Don't forget, once we commit something to sysfs, it becomes
+> ABI and we have to support it forever.
+> 
+> A far better approach would be to add support for this in userspace
+> instead  You can use the standard I2C character device API to achieve
+> the same result.  That way we don't have the same level of commitment
+> and is generally a much more flexible/future-proof.
+> 
 
-Changes in v6:
-None
+I used sysfs similarly to other LED drivers (for example, leds-lm3533).
+Additionally, the controller has interrupts about the completion of the pattern,
+which is best to handle in the kernel. In the case of implementation in user
+mode, there may be synchronization problems, as the controller has several
+memory pages that can be switched by writing the page number to register 0xF0.
 
-Changes in v5:
-Address review comments
-Add get_strings and get_sset_count stats interface
-Use u64 stats helper function
-
-Changes in v4:
-None
-
-Changes in v3:
-None
-
-Changes in v2:
-Add ethtool stats interface
-
- drivers/net/can/xilinx_can.c | 54 ++++++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 54 insertions(+)
-
-diff --git a/drivers/net/can/xilinx_can.c b/drivers/net/can/xilinx_can.c
-index c8691a1..80b0586 100644
---- a/drivers/net/can/xilinx_can.c
-+++ b/drivers/net/can/xilinx_can.c
-@@ -228,6 +228,7 @@ struct xcan_devtype_data {
-  * @transceiver:		Optional pointer to associated CAN transceiver
-  * @rstc:			Pointer to reset control
-  * @ecc_enable:			ECC enable flag
-+ * @stats_lock:			Lock for synchronizing ECC errors stats
-  * @ecc_2bit_rxfifo_cnt:	RXFIFO 2bit ECC count
-  * @ecc_1bit_rxfifo_cnt:	RXFIFO 1bit ECC count
-  * @ecc_2bit_txolfifo_cnt:	TXOLFIFO 2bit ECC count
-@@ -254,6 +255,7 @@ struct xcan_priv {
- 	struct phy *transceiver;
- 	struct reset_control *rstc;
- 	bool ecc_enable;
-+	spinlock_t stats_lock; /* Lock for synchronizing ECC errors stats */
- 	u64_stats_t ecc_2bit_rxfifo_cnt;
- 	u64_stats_t ecc_1bit_rxfifo_cnt;
- 	u64_stats_t ecc_2bit_txolfifo_cnt;
-@@ -347,6 +349,12 @@ static const struct can_tdc_const xcan_tdc_const_canfd2 = {
- 	.tdcf_max = 0,
- };
- 
-+static const char xcan_priv_flags_strings[][ETH_GSTRING_LEN] = {
-+	"err-ecc-rx-2-bit", "err-ecc-rx-1-bit",
-+	"err-ecc-txol-2-bit", "err-ecc-txol-1-bit",
-+	"err-ecc-txtl-2-bit", "err-ecc-txtl-1-bit",
-+};
-+
- /**
-  * xcan_write_reg_le - Write a value to the device register little endian
-  * @priv:	Driver private data structure
-@@ -1171,6 +1179,7 @@ static void xcan_err_interrupt(struct net_device *ndev, u32 isr)
- 
- 	if (priv->ecc_enable && isr & XCAN_IXR_ECC_MASK) {
- 		u32 reg_rx_ecc, reg_txol_ecc, reg_txtl_ecc;
-+		unsigned long flags;
- 
- 		reg_rx_ecc = priv->read_reg(priv, XCAN_RXFIFO_ECC_OFFSET);
- 		reg_txol_ecc = priv->read_reg(priv, XCAN_TXOLFIFO_ECC_OFFSET);
-@@ -1182,6 +1191,8 @@ static void xcan_err_interrupt(struct net_device *ndev, u32 isr)
- 		priv->write_reg(priv, XCAN_ECC_CFG_OFFSET, XCAN_ECC_CFG_REECRX_MASK |
- 				XCAN_ECC_CFG_REECTXOL_MASK | XCAN_ECC_CFG_REECTXTL_MASK);
- 
-+		spin_lock_irqsave(&priv->stats_lock, flags);
-+
- 		if (isr & XCAN_IXR_E2BERX_MASK) {
- 			u64_stats_add(&priv->ecc_2bit_rxfifo_cnt,
- 				      FIELD_GET(XCAN_ECC_2BIT_CNT_MASK, reg_rx_ecc));
-@@ -1211,6 +1222,8 @@ static void xcan_err_interrupt(struct net_device *ndev, u32 isr)
- 			u64_stats_add(&priv->ecc_1bit_txtlfifo_cnt,
- 				      FIELD_GET(XCAN_ECC_1BIT_CNT_MASK, reg_txtl_ecc));
- 		}
-+
-+		spin_unlock_irqrestore(&priv->stats_lock, flags);
- 	}
- 
- 	if (cf.can_id) {
-@@ -1637,6 +1650,44 @@ static int xcan_get_auto_tdcv(const struct net_device *ndev, u32 *tdcv)
- 	return 0;
- }
- 
-+static void xcan_get_strings(struct net_device *ndev, u32 stringset, u8 *buf)
-+{
-+	switch (stringset) {
-+	case ETH_SS_STATS:
-+		memcpy(buf, &xcan_priv_flags_strings,
-+		       sizeof(xcan_priv_flags_strings));
-+	}
-+}
-+
-+static int xcan_get_sset_count(struct net_device *netdev, int sset)
-+{
-+	switch (sset) {
-+	case ETH_SS_STATS:
-+		return ARRAY_SIZE(xcan_priv_flags_strings);
-+	default:
-+		return -EOPNOTSUPP;
-+	}
-+}
-+
-+static void xcan_get_ethtool_stats(struct net_device *ndev,
-+				   struct ethtool_stats *stats, u64 *data)
-+{
-+	struct xcan_priv *priv = netdev_priv(ndev);
-+	unsigned long flags;
-+	int i = 0;
-+
-+	spin_lock_irqsave(&priv->stats_lock, flags);
-+
-+	data[i++] = u64_stats_read(&priv->ecc_2bit_rxfifo_cnt);
-+	data[i++] = u64_stats_read(&priv->ecc_1bit_rxfifo_cnt);
-+	data[i++] = u64_stats_read(&priv->ecc_2bit_txolfifo_cnt);
-+	data[i++] = u64_stats_read(&priv->ecc_1bit_txolfifo_cnt);
-+	data[i++] = u64_stats_read(&priv->ecc_2bit_txtlfifo_cnt);
-+	data[i++] = u64_stats_read(&priv->ecc_1bit_txtlfifo_cnt);
-+
-+	spin_unlock_irqrestore(&priv->stats_lock, flags);
-+}
-+
- static const struct net_device_ops xcan_netdev_ops = {
- 	.ndo_open	= xcan_open,
- 	.ndo_stop	= xcan_close,
-@@ -1646,6 +1697,9 @@ static const struct net_device_ops xcan_netdev_ops = {
- 
- static const struct ethtool_ops xcan_ethtool_ops = {
- 	.get_ts_info = ethtool_op_get_ts_info,
-+	.get_strings = xcan_get_strings,
-+	.get_sset_count = xcan_get_sset_count,
-+	.get_ethtool_stats = xcan_get_ethtool_stats,
- };
- 
- /**
 -- 
-2.1.1
-
+Best Regards,
+Martin Kurbanov
 
