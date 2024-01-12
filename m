@@ -1,103 +1,294 @@
-Return-Path: <devicetree+bounces-31565-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31566-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D850C82BD4E
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 10:33:12 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E536282BD62
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 10:41:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 70F9E281D04
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 09:33:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 08D2D1C238EB
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 09:41:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED16056B67;
-	Fri, 12 Jan 2024 09:33:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A47456B7A;
+	Fri, 12 Jan 2024 09:41:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="iNjsALAh"
+	dkim=pass (1024-bit key) header.d=ffwll.ch header.i=@ffwll.ch header.b="NDBTXbaZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60FFC55799
-	for <devicetree@vger.kernel.org>; Fri, 12 Jan 2024 09:33:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-40b5155e154so79707885e9.3
-        for <devicetree@vger.kernel.org>; Fri, 12 Jan 2024 01:33:07 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D3A7168B5
+	for <devicetree@vger.kernel.org>; Fri, 12 Jan 2024 09:41:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ffwll.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=ffwll.ch
+Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-557678c50feso1377353a12.0
+        for <devicetree@vger.kernel.org>; Fri, 12 Jan 2024 01:41:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1705051985; x=1705656785; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=QIRVsOrNS9u8UIkgZdycNtHP1B/M8TKEmYcprHzxnoU=;
-        b=iNjsALAhhESnMO2PeetuGOCyu5ONowO8ErHiLoaq4LIdAzYZtiaBq/hVoAEQnA8FrW
-         Sao+HGG7z8C10Axg7A502bFBhzEx6v4TB8auHfCeztBt1GhhhsNmlOVhdos+nXq+Wdxj
-         OHml14M6v6aDv5yaSZg+YkIltBQsJdObcWhreRFZZMp9hbBlw+Ix/H5FRphBTrnvtv+N
-         kiVyLg7P/EtAS9LeV0ITs5KUAOxMkzf+R17l50W1H4FhN54kaVn+g8kKLqulVzMLKuUA
-         fwSfywVMPrwzw5TO8Sio+W8lXU2Fhd3EiBDJOxCuD6Oj9I4HcOK52LoeToW+oA4w8nTt
-         +AAg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705051985; x=1705656785;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+        d=ffwll.ch; s=google; t=1705052477; x=1705657277; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references
+         :mail-followup-to:message-id:subject:cc:to:from:date:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=QIRVsOrNS9u8UIkgZdycNtHP1B/M8TKEmYcprHzxnoU=;
-        b=tvV87CyYDOv8da1y4XWn/czpjqenkaKekJBnwhuUy+Gk75x2xx6c0bL0t00YIv+Tzy
-         elyRALO6q0x4xT0+VSExpUxqdaa67yC173sp6a+1d0HZdRtBsGv7Jws75EM0RI+wv4dI
-         qDGqZJ3KAVyK3Xh/2i7qOzVzIjOe32PE3JflMooq9E4fnN97DUUrL6RD+EqK8Zn/JOcN
-         hoKT7VmWImnW69SdNJxfBvgQTOmqZHttqpx4rxJ5hcCwNi3E5oAofOs2PMb2WF1yFu6i
-         Dz1WQQS/9BVa7GH7q2EBsBaFxd78edHwBBq+qzxbJDiZc39tb1XgciFK0H9KSGyX91HN
-         V4rw==
-X-Gm-Message-State: AOJu0YxfIoetU8kC8gyzSMBemw5CX4Upo3iqKbjke1TD0ndWp+s5oIlV
-	Qg1KcQHy2Ha3VVyn6cW+cJy3dYfsMIeDUGkhxoENoD6VXGE=
-X-Google-Smtp-Source: AGHT+IEVgOqtLXgDaHDFy3y6Fh8P5cABV4kWuOysnkelqrrbtl4SbnJ7XwvgAhROpYf3af4AGuTxLA==
-X-Received: by 2002:a05:600c:4e41:b0:40e:52e9:5681 with SMTP id e1-20020a05600c4e4100b0040e52e95681mr567614wmq.10.1705051985621;
-        Fri, 12 Jan 2024 01:33:05 -0800 (PST)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id c17-20020a5d63d1000000b003365fcc1846sm3312055wrw.52.2024.01.12.01.33.04
+        bh=6vipcplhMlhbtLQhB0mA3Dqq/xKRhLIIoRd1dJzj/OY=;
+        b=NDBTXbaZ5KvhT8GWHP53frf5scYPkdnBhm+5ct9ywna3dZDqt4adA1cjzv+MnJYeFE
+         G/pL4ai3iN2jVPFYpajcLwD/dz7xNMggpn/ky+3tXvCMvlJhzFxIecCNV6y/g1o8pEk/
+         hX34l96Y9UbovbCC/ERIKHxHCDfFZS/7F/2kQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1705052477; x=1705657277;
+        h=in-reply-to:content-disposition:mime-version:references
+         :mail-followup-to:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=6vipcplhMlhbtLQhB0mA3Dqq/xKRhLIIoRd1dJzj/OY=;
+        b=s6Xl75AbjZ3Ck+Lh4W5seEEN+CE38YxhmPlupkkq1XVYjmC3ahGu/O6zAJnNiBoD7h
+         hN9pDc5851jrtbabzK8Y0Vdis0TPGdW50qhH2nRYQiPKav7jta4WNpirTOitb7yLujK+
+         ZT+YJ7YylJV/uccJw+kG2paDKdMMNU2bwcubQnc1V3KLrMl7vQ2z9uOEIp1Lc2bfii5U
+         XChDCXqd0R7YgNxRvj6VxE9vjrqKIdsRPEecJjGJYytaQbqiDSaWuEcqSqIsMpRRJ3aH
+         6DiyBS+mO9CHyjlTCIBINVVsY8ndzyAdzuSzq7IfiLSEaAxmH6Q3qAykr11OOaxzH5wi
+         wWAQ==
+X-Gm-Message-State: AOJu0YxnDmZGujyCGyPVKUiamQHG9jnT6upDW2QMpnEm4dwwC726tpK2
+	/cgcLiA5WhlliFR8Hmu2PHRY/lw35vGlzA==
+X-Google-Smtp-Source: AGHT+IFUrhEHLoxtmAPHlwzPSqcUm50dU47tJkMYj4SyQG2gZxwrNIyppWWPgxoz02QrYem4DZmo/w==
+X-Received: by 2002:a17:907:1b0f:b0:a2c:ea34:5fa5 with SMTP id mp15-20020a1709071b0f00b00a2cea345fa5mr138146ejc.6.1705052476728;
+        Fri, 12 Jan 2024 01:41:16 -0800 (PST)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+        by smtp.gmail.com with ESMTPSA id f4-20020a170906c08400b00a2b10e20292sm1597859ejz.215.2024.01.12.01.41.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 12 Jan 2024 01:33:05 -0800 (PST)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-To: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Ritesh Kumar <quic_riteshk@quicinc.com>
-Cc: quic_jesszhan@quicinc.com, sam@ravnborg.org, 
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de, 
- airlied@gmail.com, daniel@ffwll.ch, robh+dt@kernel.org, 
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
- quic_abhinavk@quicinc.com, quic_rajeevny@quicinc.com, 
- quic_vproddut@quicinc.com, sumit.semwal@linaro.org
-In-Reply-To: <20240108095902.22725-1-quic_riteshk@quicinc.com>
-References: <20240108095902.22725-1-quic_riteshk@quicinc.com>
-Subject: Re: [v2 0/2] Add support for Novatek NT36672E LCD DSI panel
-Message-Id: <170505198451.981833.5364543733746481600.b4-ty@linaro.org>
-Date: Fri, 12 Jan 2024 10:33:04 +0100
+        Fri, 12 Jan 2024 01:41:16 -0800 (PST)
+Date: Fri, 12 Jan 2024 10:41:14 +0100
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Yong Wu <yong.wu@mediatek.com>
+Cc: Rob Herring <robh+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>, christian.koenig@amd.com,
+	Sumit Semwal <sumit.semwal@linaro.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	dri-devel@lists.freedesktop.org, John Stultz <jstultz@google.com>,
+	Pavel Machek <pavel@ucw.cz>,
+	Jeffrey Kardatzke <jkardatzke@google.com>,
+	Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+	Vijayanand Jitta <quic_vjitta@quicinc.com>,
+	jianjiao.zeng@mediatek.com, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+	linaro-mm-sig@lists.linaro.org,
+	Pekka Paalanen <ppaalanen@gmail.com>,
+	linux-mediatek@lists.infradead.org,
+	Joakim Bech <joakim.bech@linaro.org>, tjmercier@google.com,
+	linux-arm-kernel@lists.infradead.org,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	youlin.pei@mediatek.com, kuohong.wang@mediatek.com,
+	linux-kernel@vger.kernel.org, Robin Murphy <robin.murphy@arm.com>
+Subject: Re: [PATCH v4 4/7] dma-buf: heaps: restricted_heap: Add dma_ops
+Message-ID: <ZaEJOjXP2EJIe9rK@phenom.ffwll.local>
+Mail-Followup-To: Yong Wu <yong.wu@mediatek.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>, christian.koenig@amd.com,
+	Sumit Semwal <sumit.semwal@linaro.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	dri-devel@lists.freedesktop.org, John Stultz <jstultz@google.com>,
+	Pavel Machek <pavel@ucw.cz>,
+	Jeffrey Kardatzke <jkardatzke@google.com>,
+	Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+	Vijayanand Jitta <quic_vjitta@quicinc.com>,
+	jianjiao.zeng@mediatek.com, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+	linaro-mm-sig@lists.linaro.org,
+	Pekka Paalanen <ppaalanen@gmail.com>,
+	linux-mediatek@lists.infradead.org,
+	Joakim Bech <joakim.bech@linaro.org>, tjmercier@google.com,
+	linux-arm-kernel@lists.infradead.org,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	youlin.pei@mediatek.com, kuohong.wang@mediatek.com,
+	linux-kernel@vger.kernel.org, Robin Murphy <robin.murphy@arm.com>
+References: <20240112092014.23999-1-yong.wu@mediatek.com>
+ <20240112092014.23999-5-yong.wu@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.12.4
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240112092014.23999-5-yong.wu@mediatek.com>
+X-Operating-System: Linux phenom 6.5.0-4-amd64 
 
-Hi,
-
-On Mon, 08 Jan 2024 15:29:00 +0530, Ritesh Kumar wrote:
-> Add support for the 1080x2408 Novatek NT36672E LCD DSI mode panel
-> found on the Qualcomm QCM6490 MTP board.
+On Fri, Jan 12, 2024 at 05:20:11PM +0800, Yong Wu wrote:
+> Add the dma_ops for this restricted heap. For restricted buffer,
+> cache_ops/mmap are not allowed, thus return EPERM for them.
 > 
-> The driver will come with the uncompressed video mode support.
+> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
+> ---
+>  drivers/dma-buf/heaps/restricted_heap.c | 103 ++++++++++++++++++++++++
+>  1 file changed, 103 insertions(+)
 > 
+> diff --git a/drivers/dma-buf/heaps/restricted_heap.c b/drivers/dma-buf/heaps/restricted_heap.c
+> index 8c266a0f6192..ec4c63d2112d 100644
+> --- a/drivers/dma-buf/heaps/restricted_heap.c
+> +++ b/drivers/dma-buf/heaps/restricted_heap.c
+> @@ -12,6 +12,10 @@
+>  
+>  #include "restricted_heap.h"
+>  
+> +struct restricted_heap_attachment {
+> +	struct sg_table			*table;
+> +};
+> +
+>  static int
+>  restricted_heap_memory_allocate(struct restricted_heap *heap, struct restricted_buffer *buf)
+>  {
+> @@ -45,6 +49,104 @@ restricted_heap_memory_free(struct restricted_heap *heap, struct restricted_buff
+>  	ops->memory_free(heap, buf);
+>  }
+>  
+> +static int restricted_heap_attach(struct dma_buf *dmabuf, struct dma_buf_attachment *attachment)
+> +{
+> +	struct restricted_buffer *restricted_buf = dmabuf->priv;
+> +	struct restricted_heap_attachment *a;
+> +	struct sg_table *table;
+> +	int ret;
+> +
+> +	a = kzalloc(sizeof(*a), GFP_KERNEL);
+> +	if (!a)
+> +		return -ENOMEM;
+> +
+> +	table = kzalloc(sizeof(*table), GFP_KERNEL);
+> +	if (!table) {
+> +		ret = -ENOMEM;
+> +		goto err_free_attach;
+> +	}
+> +
+> +	ret = sg_alloc_table(table, 1, GFP_KERNEL);
+> +	if (ret)
+> +		goto err_free_sgt;
+> +	sg_set_page(table->sgl, NULL, restricted_buf->size, 0);
 
-Thanks, Applied to https://anongit.freedesktop.org/git/drm/drm-misc.git (drm-misc-next)
+So this is definitely broken and violating the dma-buf api rules. You
+cannot let attach succed and supply a dummy/invalid sg table.
 
-[1/2] dt-bindings: display: panel: Add Novatek NT36672E LCD DSI
-      https://cgit.freedesktop.org/drm/drm-misc/commit/?id=30cc664f0962ed1e62d9009a34bf04b48e1a5a4a
-[2/2] drm/panel: Add support for Novatek NT36672E panel driver
-      https://cgit.freedesktop.org/drm/drm-misc/commit/?id=ea4f9975625af861c2795c557b8fab2b492ff749
+Two options:
+
+- Reject ->attach for all this buffers with -EBUSY and provide instead a
+  private api for these secure buffers, similar to how virtio_dma_buf has
+  private virto-specific apis. This interface would need to be
+  standardized across all arm TEE users, so that we don't have a
+  disastrous proliferation of apis.
+
+- Allow ->attach, but _only_ for drivers/devices which can access the
+  secure buffer correctly, and only if you can put the right secure buffer
+  address into the sg table directly. If dma to a secure buffer for a
+  given struct device * will not work correctly (i.e. without data
+  corruption), you _must_ reject the attach attempt with -EBUSY.
+
+The 2nd approach would be my preferred one, if it's technically possible.
+
+Also my understanding is that arm TEE is standardized, so I think we'll at
+least want some acks from other soc people whether this will work for them
+too.
+
+Finally the usual drill:
+- this also needs the driver side support, if there's any changes needed.
+  Just the new heap isn't enough.
+- and for drm you need open userspace for this. Doesn't have to be the
+  full content protection decode pipeline, the drivers in drm that landed
+  secure buffer support thus far enabled it using the
+  EGL_EXT_protected_content extension using gl, which side steps all the
+  complications around content decryption keys and support
+
+Cheers, Sima
+
+> +
+> +	a->table = table;
+> +	attachment->priv = a;
+> +
+> +	return 0;
+> +
+> +err_free_sgt:
+> +	kfree(table);
+> +err_free_attach:
+> +	kfree(a);
+> +	return ret;
+> +}
+> +
+> +static void restricted_heap_detach(struct dma_buf *dmabuf, struct dma_buf_attachment *attachment)
+> +{
+> +	struct restricted_heap_attachment *a = attachment->priv;
+> +
+> +	sg_free_table(a->table);
+> +	kfree(a->table);
+> +	kfree(a);
+> +}
+> +
+> +static struct sg_table *
+> +restricted_heap_map_dma_buf(struct dma_buf_attachment *attachment, enum dma_data_direction direct)
+> +{
+> +	struct restricted_heap_attachment *a = attachment->priv;
+> +	struct sg_table *table = a->table;
+> +
+> +	return table;
+> +}
+> +
+> +static void
+> +restricted_heap_unmap_dma_buf(struct dma_buf_attachment *attachment, struct sg_table *table,
+> +			      enum dma_data_direction direction)
+> +{
+> +	struct restricted_heap_attachment *a = attachment->priv;
+> +
+> +	WARN_ON(a->table != table);
+> +}
+> +
+> +static int
+> +restricted_heap_dma_buf_begin_cpu_access(struct dma_buf *dmabuf, enum dma_data_direction direction)
+> +{
+> +	return -EPERM;
+> +}
+> +
+> +static int
+> +restricted_heap_dma_buf_end_cpu_access(struct dma_buf *dmabuf, enum dma_data_direction direction)
+> +{
+> +	return -EPERM;
+> +}
+> +
+> +static int restricted_heap_dma_buf_mmap(struct dma_buf *dmabuf, struct vm_area_struct *vma)
+> +{
+> +	return -EPERM;
+> +}
+> +
+> +static void restricted_heap_free(struct dma_buf *dmabuf)
+> +{
+> +	struct restricted_buffer *restricted_buf = dmabuf->priv;
+> +	struct restricted_heap *heap = dma_heap_get_drvdata(restricted_buf->heap);
+> +
+> +	restricted_heap_memory_free(heap, restricted_buf);
+> +	kfree(restricted_buf);
+> +}
+> +
+> +static const struct dma_buf_ops restricted_heap_buf_ops = {
+> +	.attach		= restricted_heap_attach,
+> +	.detach		= restricted_heap_detach,
+> +	.map_dma_buf	= restricted_heap_map_dma_buf,
+> +	.unmap_dma_buf	= restricted_heap_unmap_dma_buf,
+> +	.begin_cpu_access = restricted_heap_dma_buf_begin_cpu_access,
+> +	.end_cpu_access	= restricted_heap_dma_buf_end_cpu_access,
+> +	.mmap		= restricted_heap_dma_buf_mmap,
+> +	.release	= restricted_heap_free,
+> +};
+> +
+>  static struct dma_buf *
+>  restricted_heap_allocate(struct dma_heap *heap, unsigned long size,
+>  			 unsigned long fd_flags, unsigned long heap_flags)
+> @@ -66,6 +168,7 @@ restricted_heap_allocate(struct dma_heap *heap, unsigned long size,
+>  	if (ret)
+>  		goto err_free_buf;
+>  	exp_info.exp_name = dma_heap_get_name(heap);
+> +	exp_info.ops = &restricted_heap_buf_ops;
+>  	exp_info.size = restricted_buf->size;
+>  	exp_info.flags = fd_flags;
+>  	exp_info.priv = restricted_buf;
+> -- 
+> 2.25.1
+> 
 
 -- 
-Neil
-
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 
