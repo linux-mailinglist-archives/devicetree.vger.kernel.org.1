@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-31532-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31533-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D680882BBF5
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 08:44:51 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5132882BC09
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 08:49:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D6F971C2517C
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 07:44:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CE0B51F221F1
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 07:49:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D8FD5D726;
-	Fri, 12 Jan 2024 07:44:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA2B75D740;
+	Fri, 12 Jan 2024 07:49:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Wpd126oR"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ie3A3n5Y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+Received: from mail-pg1-f181.google.com (mail-pg1-f181.google.com [209.85.215.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C33755D72E
-	for <devicetree@vger.kernel.org>; Fri, 12 Jan 2024 07:44:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33F205D72A
+	for <devicetree@vger.kernel.org>; Fri, 12 Jan 2024 07:49:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-40e6275e897so11378705e9.3
-        for <devicetree@vger.kernel.org>; Thu, 11 Jan 2024 23:44:44 -0800 (PST)
+Received: by mail-pg1-f181.google.com with SMTP id 41be03b00d2f7-5cde7afa1d7so3132935a12.1
+        for <devicetree@vger.kernel.org>; Thu, 11 Jan 2024 23:49:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1705045483; x=1705650283; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1705045778; x=1705650578; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=lJ67vGP58fbUmkExgKg2eABxDfVIbi7Bocp1QhPmbiw=;
-        b=Wpd126oRTbx2gO8svFTAY9U5hi06x6gCRshJNQ2rWqBJZJLNH9mXLdk+NZ56KfHsMu
-         Tpp+v0FFlxWsV5lqanSxEEbnfjuiPtL26dJruRqlNJSPzYzWypctWylcjkkVBRXwi3Zr
-         a3D0ZVLGVqFIak/0/U7tT1d9IOr5grP7hhAc2mxngK0UX8u8XqIl+VcH/VIX6IUqtScI
-         srUglN2/QHe6AWoKW/TR41ElOZ5okrI6vwJbzUavNndY47B5m+0S918u2EA7360qlK8O
-         gqFH2BPFy7/1aLyelplrdlYiSCMsFreE9BL5Czm1TqLDxgkflpfzXqfPjwv9QOE6sBJu
-         9c7g==
+        bh=ho7SlJoHvT+wKcAbJ0KHph2ARaFaURvHzXGzLEWuXYo=;
+        b=ie3A3n5YUqqyyK0MT8CgyskoPeCk2RPPtl6sv9bhKYxBMNfbflBYuzwIfYtY7yhcmh
+         NldONS9bAZonsw1jsLO4BNxkedYKFxZ+ClRgTXJcEWkI+Y7i+b1UEmkSINJIPIduuNH7
+         fzTZc+Fylpnb4HQ9WS54bJvgr0hGr4/PSS5fQkr5cpQzhKUiTnF/0yLuqmpUB94f3r3o
+         86edvgHyMf2Ng1Op15divioX9cwUWWN0G4Jf2qQpzLdK3GxshLn38bJ//EHkeQWepVdL
+         WbIh8msDK2kvrEkTdL5XXYzVVfMZJoTMHisD0Xu12CorlP7rb3jtzcEaPuy2kj0BQxD0
+         QmHA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705045483; x=1705650283;
+        d=1e100.net; s=20230601; t=1705045778; x=1705650578;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=lJ67vGP58fbUmkExgKg2eABxDfVIbi7Bocp1QhPmbiw=;
-        b=WZDQKGXH7yD6nguZIL+v8pw1+Lal7ms7t9vT4Paz5km0/gO5MsEWoHPAysTnu50YHH
-         1orvw9ccsF2FarEgk8IOwvWBPACiiMq7U9Zxxk47xk4M6Q2qEyCAsGNBTFrMxIW6h8DN
-         UIoMiirDP80ax29IIM3CcoTeXjdhs1tkqPLErn2V71LQu9VASypgz0wi1HUrox5Q5Gl7
-         vf47LPp1R1e9fuFdpIRLVgNR7WJ2x8L5P9vLLcAw6kUliN7bNnindHp214G7l+Kjdklx
-         WjGV/6+Kx25xQZu+WOv6NPb/yAiD+cAo1HkxfW8flAiQUo5Bq1KZCVVy9L5X4ViA7SVR
-         0/hA==
-X-Gm-Message-State: AOJu0YzL3x8FkVUY4OMcEhHW6LIyhZ5DnbYJbtAJMidtRdOioQ6fFMLy
-	ZMbuZ44Ip3zBSzhvVE18qWSBDM3bnYsirw==
-X-Google-Smtp-Source: AGHT+IE2+4pXuYbHbipr6aHQbxXfnXAz9g22j7lfWZDvutbbjeiinoiAKLBacgBiA237mhb5GvRaYQ==
-X-Received: by 2002:a7b:ce8a:0:b0:40d:685c:3880 with SMTP id q10-20020a7bce8a000000b0040d685c3880mr507398wmj.176.1705045482974;
-        Thu, 11 Jan 2024 23:44:42 -0800 (PST)
+        bh=ho7SlJoHvT+wKcAbJ0KHph2ARaFaURvHzXGzLEWuXYo=;
+        b=H1m7WVGKpkMQXStGZ5uIsejm9+Z9bO1viH9wKeq2I89T+TW9aDj6lNeXFUmXUb1dZW
+         ddF8V+zAzyFi0GOEjLmRNXXEa3ZLx7PBRhVeTrpQPODPYpxVvptjIDjQ4246SbdtIlas
+         LSJHYEunaGYRKnbB+gnN/eMgCYN/Fzc0VcQc3/obMYiq8f3iqVLbcR/2JVJGrC74OS8/
+         JZAkjbau5UI+mOxsCQ5ZzjrBIJvhWjYmYG6sLwWisSeEM7/jIIXiNKCR2vF6vI/z4EkG
+         G7vdrg0cd48WMVx349byNqkKk1n/PDvqKc542lSE23CSeVMqsw3Oba7gO/xomnp384OL
+         Wf0Q==
+X-Gm-Message-State: AOJu0YzIpklZBSXFus3dYLIiCH2Ljih71Qc3YDpCFzdvtqIFay/1LbcK
+	QSyYBVOjN9LoosG82D550Z3W0o+tkejBRw==
+X-Google-Smtp-Source: AGHT+IFwbs5pWLsJXQ2+pUMSzfRVQ2ym1X2Fwi3bxKT6cANJLh811Aeu3ekpMMi253iblSahgxheYA==
+X-Received: by 2002:a05:6a20:72a8:b0:19a:81ff:d24a with SMTP id o40-20020a056a2072a800b0019a81ffd24amr409703pzk.60.1705045778088;
+        Thu, 11 Jan 2024 23:49:38 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.223.112])
-        by smtp.gmail.com with ESMTPSA id v30-20020adf8b5e000000b0033690139ea5sm3130742wra.44.2024.01.11.23.44.41
+        by smtp.gmail.com with ESMTPSA id x1-20020a17090a388100b0028c95804922sm5882465pjb.51.2024.01.11.23.49.30
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 11 Jan 2024 23:44:42 -0800 (PST)
-Message-ID: <1f14bff5-4f3e-426b-b81d-006da061af1e@linaro.org>
-Date: Fri, 12 Jan 2024 08:44:40 +0100
+        Thu, 11 Jan 2024 23:49:37 -0800 (PST)
+Message-ID: <2792ce50-c95c-41b8-b564-7d1f98361e78@linaro.org>
+Date: Fri, 12 Jan 2024 08:49:27 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,17 +66,25 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4] arm64: dts: qcom: qcs6490-idp: Add definition for
- three LEDs.
+Subject: Re: [PATCH v4 2/5] dt-bindings: media: add mediatek ISP3.0 camsv
 Content-Language: en-US
-To: quic_huliu@quicinc.com, Andy Gross <agross@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Julien Stephan <jstephan@baylibre.com>,
+ Phi-bang Nguyen <pnguyen@baylibre.com>, Andy Hsieh
+ <andy.hsieh@mediatek.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ Florian Sylvestre <fsylvestre@baylibre.com>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240112-lpg-v4-1-c4004026686b@quicinc.com>
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-mediatek@lists.infradead.org, linux-media@vger.kernel.org,
+ Louis Kuo <louis.kuo@mediatek.com>, Matthias Brugger
+ <matthias.bgg@gmail.com>, Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Paul Elder <paul.elder@ideasonboard.com>, Rob Herring <robh+dt@kernel.org>
+References: <20240110141443.364655-1-jstephan@baylibre.com>
+ <20240110141443.364655-3-jstephan@baylibre.com>
+ <feb4e04f-8282-4b52-b785-07bf15008e06@linaro.org>
+ <20240112074141.GA21256@pendragon.ideasonboard.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -122,24 +130,110 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240112-lpg-v4-1-c4004026686b@quicinc.com>
+In-Reply-To: <20240112074141.GA21256@pendragon.ideasonboard.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 12/01/2024 04:05, Hui Liu via B4 Relay wrote:
-> From: Hui Liu <quic_huliu@quicinc.com>
+On 12/01/2024 08:41, Laurent Pinchart wrote:
+> On Fri, Jan 12, 2024 at 08:34:45AM +0100, Krzysztof Kozlowski wrote:
+>> On 10/01/2024 15:14, Julien Stephan wrote:
+>>> From: Phi-bang Nguyen <pnguyen@baylibre.com>
+>>>
+>>> This adds the bindings, for the ISP3.0 camsv module embedded in
+>>> some Mediatek SoC, such as the mt8365
+>>>
+>>> Signed-off-by: Phi-bang Nguyen <pnguyen@baylibre.com>
+>>> Signed-off-by: Julien Stephan <jstephan@baylibre.com>
+>>> Link: https://lore.kernel.org/r/20230807094940.329165-4-jstephan@baylibre.com
+>>> ---
+>>>  .../bindings/media/mediatek,mt8365-camsv.yaml | 109 ++++++++++++++++++
+>>>  MAINTAINERS                                   |   1 +
+>>>  2 files changed, 110 insertions(+)
+>>>  create mode 100644 Documentation/devicetree/bindings/media/mediatek,mt8365-camsv.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/media/mediatek,mt8365-camsv.yaml b/Documentation/devicetree/bindings/media/mediatek,mt8365-camsv.yaml
+>>> new file mode 100644
+>>> index 000000000000..097b1ab6bc72
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/media/mediatek,mt8365-camsv.yaml
+>>> @@ -0,0 +1,109 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>> +# Copyright (c) 2023 MediaTek, BayLibre
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/media/mediatek,mt8365-camsv.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: MediaTek CAMSV 3.0
+>>> +
+>>> +maintainers:
+>>> +  - Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+>>> +  - Julien Stephan <jstephan@baylibre.com>
+>>> +  - Andy Hsieh <andy.hsieh@mediatek.com>
+>>> +
+>>> +description:
+>>> +  The CAMSV is a set of DMA engines connected to the SENINF CSI-2
+>>> +  receivers. The number of CAMSVs depend on the SoC model.
+>>
+>> DMA should not go to media, but to dma
 > 
-> Add definition for three LEDs to make sure they can
-> be enabled base on QCOM LPG LED driver.
+> They're not generic DMA engines. The CAMSV is a video capture device
+> that includes a DMA engine, much like pretty much all the other video
+> capture devices.
+
+OK, some more explanation would be useful in description.
+
 > 
-> Signed-off-by: Hui Liu <quic_huliu@quicinc.com>
-> ---
-> Changes in v4:
-> - Removed "label" definition and added "function" definition.
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    const: mediatek,mt8365-camsv
+>>> +
+>>> +  reg:
+>>> +    items:
+>>> +      - description: camsv base
+>>> +      - description: img0 base
+>>> +      - description: tg base
+>>> +
+>>> +  interrupts:
+>>> +    maxItems: 1
+>>> +
+>>> +  power-domains:
+>>> +    maxItems: 1
+>>> +
+>>> +  clocks:
+>>> +    items:
+>>> +      - description: cam clock
+>>> +      - description: camtg clock
+>>> +      - description: camsv clock
+>>> +
+>>> +  clock-names:
+>>> +    items:
+>>> +      - const: cam
+>>> +      - const: camtg
+>>> +      - const: camsv
+>>> +
+>>> +  iommus:
+>>> +    maxItems: 1
+>>> +
+>>> +  ports:
+>>> +    $ref: /schemas/graph.yaml#/properties/ports
+>>> +
+>>> +    properties:
+>>> +      port@0:
+>>> +        $ref: /schemas/graph.yaml#/properties/port
+>>> +        description: connection point for camsv0
+>>
+>> This explains me nothing. What type of connection point? How does it fit
+>> the pipeline going to the display?
+> 
+> The description seems wrong, it should state
+> 
+>         description: Connection to the SENINF output
+> 
+> or something similar.
 
-You did not test your patch before sending.
-
-Subject is still wrong. Also, it still has unnecessary full stop. Drop it.
+I am still not sure whether DMA engine should be connected via graphs.
 
 Best regards,
 Krzysztof
