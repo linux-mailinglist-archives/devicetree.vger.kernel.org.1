@@ -1,133 +1,130 @@
-Return-Path: <devicetree+bounces-31648-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31649-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E93282C1AD
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 15:25:57 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 60FDC82C1B6
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 15:26:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 555C31C23755
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 14:25:56 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D9DAAB216F3
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 14:26:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 957556DCE9;
-	Fri, 12 Jan 2024 14:25:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0AD5F6DCED;
+	Fri, 12 Jan 2024 14:26:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="ME1AYTsv"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dZpIMEOI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D446C6BB45;
-	Fri, 12 Jan 2024 14:25:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 40CEPcfP087825;
-	Fri, 12 Jan 2024 08:25:38 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1705069538;
-	bh=vrIOR55d4f+zfTazwATsPkDxflsXmVUUyKRUlABLwvg=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=ME1AYTsvVj3lKj9pYvLghfQ+lD9PzIZLGhBDfKBUCivY8xPfTe6SoGYa9I5/g4Zkt
-	 IWKiKAe+kga5wit/ikFBY84ECh6uJfDIeHIRjP52o2VeVwpLtDlhFKk03u4tqE8/fh
-	 viMXw0uGjV6gS6Rji4FaZg3UJihU94LW94DvRs+8=
-Received: from DFLE110.ent.ti.com (dfle110.ent.ti.com [10.64.6.31])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 40CEPbCg100103
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 12 Jan 2024 08:25:38 -0600
-Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE110.ent.ti.com
- (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 12
- Jan 2024 08:25:37 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 12 Jan 2024 08:25:37 -0600
-Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 40CEPbwF030055;
-	Fri, 12 Jan 2024 08:25:37 -0600
-Date: Fri, 12 Jan 2024 08:25:37 -0600
-From: Nishanth Menon <nm@ti.com>
-To: Sjoerd Simons <sjoerd@collabora.com>
-CC: <linux-arm-kernel@lists.infradead.org>, Roger Quadros <rogerq@kernel.org>,
-        <kernel@collabora.com>, Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring
-	<robh+dt@kernel.org>, Tero Kristo <kristo@kernel.org>,
-        Vignesh Raghavendra
-	<vigneshr@ti.com>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] arm64: dts: ti: k3-am625-beagleplay: Use the builtin
- mdio bus
-Message-ID: <20240112142537.axjy5risfe5lpnqc@quintet>
-References: <20240112124505.2054212-1-sjoerd@collabora.com>
- <20240112135000.b54xz3boeua7y2jf@music>
- <2ce27ed917b9bd569ee4a7f87b3d9b78d07cecbd.camel@collabora.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B8C1537E6;
+	Fri, 12 Jan 2024 14:26:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-40d87df95ddso66977475e9.0;
+        Fri, 12 Jan 2024 06:26:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1705069587; x=1705674387; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=4K3qORjCWw+gkht7BR5kJjl56gwELapPIu5KXg30nNo=;
+        b=dZpIMEOIpWBKLq1iyMn2j8hKYQNbWiIBV1pB8ex1ezlEmrNUhvcsVMwhRfdmJUwvPM
+         KS76yk9KAHjcLyHcO3Ws5aXfcL+QD/kNcynfH3IozNHKwBqPXwcpcEI5yx3rkqrDf9AD
+         zDXxVFHAxN9QFtbFJgTCOUa42/eFx6ufV24n0emM2SYVrjqPOtRRzPpJLQmccjFkL+IT
+         aHutNdgeE7+FhnvFn9mZjX4He8xgmx+loPUdaL+Xarro4yNdEqjbwxUcslXJcH2sEYdj
+         xWko3g0hEfhxHwF/V3vZhcIc0hUIwyhTUfG6H2aJ/nUvIF8DafrDNO+jzi+RQ5NMLZzp
+         hTtw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1705069587; x=1705674387;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=4K3qORjCWw+gkht7BR5kJjl56gwELapPIu5KXg30nNo=;
+        b=Cjbon7g8E+uhGekWSqlybFPCZQI5++ZXam1dP9+HmKoAJgpnYdjUuKYBt3/sKi1YQP
+         t6qlt8eTnfQFSzNrIDtZ6Zt0XuntKXZRqPR3dwT8b2ql2Sd81QKGq0MQOQcvWmKHssGX
+         o+Met8nTZUob50x4XAL01vNeD2Tc0+ZsEXB8o0gDIA7Hgjoxe9G5u1d+dsj114hg0olo
+         ZU9YJI0/lBQZ02HdCQ5HGQlb7FNS20zOd6jTnVZTB7/5I5G2t/tYKSJSMQqIA44yCbFb
+         b8YD+jLJ/fJuZDCtQ2zBkDAeNfXLeDUYtv2n8oocAhcg7LpmEBnNnIMGDw5VJTDtiS7I
+         900A==
+X-Gm-Message-State: AOJu0YyLChlgu7bE/3DSPsjG5hUiEvHJ/w1eJuEo9HTmLwj8dHFs521M
+	MJFQ2bHbAnFE9uWcqSU7NRvhtVmAssuRXA==
+X-Google-Smtp-Source: AGHT+IHpajvBOFzp7zZrUTgb2u+zy2CCRsm5VcWjvelFGJ7z8i1+xpL84mVdNyt0hzeNAVRCV+krjg==
+X-Received: by 2002:a05:600c:2202:b0:40e:66cc:46e6 with SMTP id z2-20020a05600c220200b0040e66cc46e6mr257214wml.181.1705069587239;
+        Fri, 12 Jan 2024 06:26:27 -0800 (PST)
+Received: from prasmi.home ([2a00:23c8:2500:a01:494d:c489:3d96:1b15])
+        by smtp.gmail.com with ESMTPSA id f6-20020a5d4dc6000000b00336a2566aa2sm4021219wru.61.2024.01.12.06.26.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 12 Jan 2024 06:26:26 -0800 (PST)
+From: Prabhakar <prabhakar.csengg@gmail.com>
+X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Linus Walleij <linus.walleij@linaro.org>
+Cc: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-gpio@vger.kernel.org,
+	Prabhakar <prabhakar.csengg@gmail.com>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH v4 0/4] Add missing port pins for RZ/Five SoC
+Date: Fri, 12 Jan 2024 14:26:17 +0000
+Message-Id: <20240112142621.13525-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <2ce27ed917b9bd569ee4a7f87b3d9b78d07cecbd.camel@collabora.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
 
-On 15:20-20240112, Sjoerd Simons wrote:
-> On Fri, 2024-01-12 at 07:50 -0600, Nishanth Menon wrote:
-> > On 13:44-20240112, Sjoerd Simons wrote:
-> > > The beagleplay dts was using a bit-bang gpio mdio bus as a work-
-> > > around
-> > > for errata i2329. However since commit d04807b80691 ("net:
-> > > ethernet: ti:
-> > > davinci_mdio: Add workaround for errata i2329") the mdio driver
-> > > itself
-> > > already takes care of this errata for effected silicon, which
-> > > landed
-> > > well before the beagleplay dts. So i suspect the reason for the
-> > > workaround in upstream was simply due to copying the vendor dts.
-> > > 
-> > > Switch the dts to the ti,cpsw-mdio instead so it described the
-> > > actual
-> > > hardware and is consistent with other AM625 based boards
-> > > 
-> > > Signed-off-by: Sjoerd Simons <sjoerd@collabora.com>
-> > > 
-> > > ---
-> > 
-> > We have had issues with the ethernet integration previously (also why
-> > ethernet in u-boot is not yet functional on beagleplay[1]).
-> > 
-> > https://openbeagle.org/beagleplay/beagleplay/-/issues/101
-> > 
-> > we should probably do a 1000 boot nfs test or something to ensure
-> > this
-> > doesn't introduce regressions (I recollect mdio wasn't stable on
-> > beagleplay) and switching to bitbang driver stopped all complains.
-> 
-> I can do a longer test with that over the weekend sure; For reference
-> I'm seeing issues in u-boot as well on initial probe with these
-> changes, but i've not seen the same on the linux side.
-> 
-> Do you remember with what kernel versions users saw the mdio
-> instabilities? I wonder if that was a version with the commit mentioned
-> that includes the errata fix for the mdio driver.
-> 
+From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-we were on TI 5.10 kernel (the image that went into production) and it
-did have errata fix (I am not sure if it is similar or same as what
-finally went into upstream now).. I have started an automated multiple
-boot test on my end as well..
+Hi All,
 
-The signature as I recollect was spurious link Down and Up logs
-(though the cable is not physically disconnected).. been a bit of
-time.. so my memory on exact signature might be vague.
+This patch series intends to incorporate the absent port pins P19 to P28,
+which are exclusively available on the RZ/Five SoC.
+
+Cheers,
+Prabhakar
+
+v3->v4:
+* Rebased the changes on top Claudiu's patches
+* patch 1/4 is new patch for using FIELD_PREP_CONST/FIELD_GET as
+  suggested by Geert
+* patch 2/4 adjusted the code again using FIELD_PREP_CONST/FIELD_GET
+* patch 3/4 fixed rzg2l_pinctrl_get_variable_pin_cfg() as pointed by Geert
+* patch 4/4 is unchanged
+* patches 1-3 have been boot tested on g2l family
+
+v2->v3:
+* Fixed build warnings for m68k as reported by Kernel test robot.
+
+RFC -> v2:
+* Fixed review comments pointed by Geert & Biju
+
+RFC:
+Link: https://lore.kernel.org/lkml/20230630120433.49529-3-prabhakar.mahadev-lad.rj@bp.renesas.com/T/
+
+Lad Prabhakar (4):
+  pinctrl: renesas: rzg2l: Improve code for readability
+  pinctrl: renesas: rzg2l: Include pinmap in RZG2L_GPIO_PORT_PACK()
+    macro
+  pinctrl: renesas: pinctrl-rzg2l: Add the missing port pins P19 to P28
+  riscv: dts: renesas: r9a07g043f: Update gpio-ranges property
+
+ arch/riscv/boot/dts/renesas/r9a07g043f.dtsi |   4 +
+ drivers/pinctrl/renesas/pinctrl-rzg2l.c     | 284 +++++++++++++++++---
+ 2 files changed, 248 insertions(+), 40 deletions(-)
 
 -- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+2.34.1
+
 
