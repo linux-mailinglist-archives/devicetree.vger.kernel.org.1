@@ -1,153 +1,207 @@
-Return-Path: <devicetree+bounces-31738-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31739-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D963582C516
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 18:57:05 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6605E82C522
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 18:59:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 41AA628605B
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 17:57:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 11EDF1F24C51
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 17:59:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 750EA17C8A;
-	Fri, 12 Jan 2024 17:57:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5E5C17C93;
+	Fri, 12 Jan 2024 17:59:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="A/rqv0lp"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="n3wiSLAW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1A4117C85;
-	Fri, 12 Jan 2024 17:56:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-33677fb38a3so6125533f8f.0;
-        Fri, 12 Jan 2024 09:56:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1705082217; x=1705687017; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=JqFsKecuSBrO3jxaxuNvcAexfgq6FB4LiqKsGB+p+Ao=;
-        b=A/rqv0lpoU2jEZ50hsU0WL4MbmbBlYijMkrBwRKVxfOG4OlAe9YIuImYaYGJETFKtg
-         O8dSn2xyFn6T55crran0I9r1pwo2HaLHWSpmvdPyml8WxVAXx/LXJEWURBxnLmo/nS0t
-         xvoADAERWZQJjoeRxX6i567i6C+8Puvd85zh7z4x1CGaYBp8mg+KT7RL7h+dlA7BXy6P
-         3o/vddzY55CzuJNInvH689pd+S/SMqOQ+7T1QevkmrLZAfjxXHV0qfrXauIn1ODW2Ydh
-         HIPYVvu/yvHbCiBb2aEBdImk8qfLaFt6qoiXO6L9kMA+zdRv0K2xNapHTPtR5ZXbcZmg
-         JiUQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705082217; x=1705687017;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=JqFsKecuSBrO3jxaxuNvcAexfgq6FB4LiqKsGB+p+Ao=;
-        b=g0jxa2NIfpZDjFqa8SZILOSYAAXVfvY19BmP2udug7mYH9rDK3jPZzkgXDjakzEGLH
-         kocO/j50o0ixfefZgbs5y+V7YdYD9mQgJ9iyD8aRtDK2gKX6/XZe2mN7vRiUS3qaLJfK
-         82a7Jklw1oOtA/uU+H9vtz22sOID2lkWaSOs3vddozzdf7u758EfCo7g07I+aGvHD7jl
-         lnqaeQyxRbQ7hiWId8xixmzesoyP65MaGwC6pVAxleBUwihaVy11N/l5ocMYFDJIxbPl
-         VHvFrHDFO9W0bngPTzXIn1fFtXJgIlU50xhSjaaYHc9IXiNVACr/k4ghEeNmRxNaWjRz
-         RXpg==
-X-Gm-Message-State: AOJu0Yzxw9FgJgmuocOJ/BEmQXaUzDgj1bsFkmTDxXWja+LFNHSf3G5W
-	wB/JwkHI7AI0A3aiznSQSxM=
-X-Google-Smtp-Source: AGHT+IGPZIgGiqiQoRnTNwSkb1n4FM8VBJoZC4UuFdNhrP6t/RZ2bgvGvgxmNKODX86VaJLUmfX0Sw==
-X-Received: by 2002:a5d:614d:0:b0:336:7b51:63e0 with SMTP id y13-20020a5d614d000000b003367b5163e0mr793114wrt.72.1705082216767;
-        Fri, 12 Jan 2024 09:56:56 -0800 (PST)
-Received: from Ansuel-xps. (93-34-89-13.ip49.fastwebnet.it. [93.34.89.13])
-        by smtp.gmail.com with ESMTPSA id e13-20020a056000178d00b0033743c2d17dsm4528385wrg.28.2024.01.12.09.56.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 12 Jan 2024 09:56:56 -0800 (PST)
-Message-ID: <65a17d68.050a0220.cf6ea.e78b@mx.google.com>
-X-Google-Original-Message-ID: <ZaF9Z2upRACKxDZI@Ansuel-xps.>
-Date: Fri, 12 Jan 2024 18:56:55 +0100
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: Jie Luo <quic_luoj@quicinc.com>
-Cc: Jakub Kicinski <kuba@kernel.org>, agross@kernel.org,
-	andersson@kernel.org, konrad.dybcio@linaro.org, davem@davemloft.net,
-	edumazet@google.com, pabeni@redhat.com, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	corbet@lwn.net, catalin.marinas@arm.com, will@kernel.org,
-	p.zabel@pengutronix.de, linux@armlinux.org.uk,
-	shannon.nelson@amd.com, anthony.l.nguyen@intel.com,
-	jasowang@redhat.com, brett.creeley@amd.com, rrameshbabu@nvidia.com,
-	joshua.a.hay@intel.com, arnd@arndb.de, geert+renesas@glider.be,
-	neil.armstrong@linaro.org, dmitry.baryshkov@linaro.org,
-	nfraprado@collabora.com, m.szyprowski@samsung.com, u-kumar1@ti.com,
-	jacob.e.keller@intel.com, andrew@lunn.ch, netdev@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, ryazanov.s.a@gmail.com,
-	quic_kkumarcs@quicinc.com, quic_suruchia@quicinc.com,
-	quic_soni@quicinc.com, quic_pavir@quicinc.com,
-	quic_souravp@quicinc.com, quic_linchen@quicinc.com,
-	quic_leiwei@quicinc.com
-Subject: Re: [PATCH net-next 00/20] net: ethernet: Add qcom PPE driver
-References: <20240110114033.32575-1-quic_luoj@quicinc.com>
- <20240110142428.52026d9e@kernel.org>
- <5ec26378-a5ff-4de3-b69e-806e36907db6@quicinc.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6B4D1AAA3;
+	Fri, 12 Jan 2024 17:59:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 40CHwjdV078929;
+	Fri, 12 Jan 2024 11:58:45 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1705082325;
+	bh=PhIGoUQlM+uURwcXlMwuAoVz4y5y+HTbgDHxL0fF+zU=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=n3wiSLAWcZx+ECcnA37ns0laYc8I3NhqmaIFXaFj8UfIrsEbaG1dx854YVrdWb+7X
+	 rxxAMCagIT7KZT6osPswwJux/rNarqRVS7a37p9aDqemyEkJ+58+5l+71/wQ+zV7zQ
+	 2Ls0IJHrLkuYQdUa7UuUrJocGcWoOx/K4d4pwUks=
+Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 40CHwjnM030811
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 12 Jan 2024 11:58:45 -0600
+Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 12
+ Jan 2024 11:58:45 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 12 Jan 2024 11:58:45 -0600
+Received: from [10.249.40.136] ([10.249.40.136])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 40CHwimu048633;
+	Fri, 12 Jan 2024 11:58:44 -0600
+Message-ID: <c1ea65a6-4aad-4ca1-88cf-ac3fa130b0e4@ti.com>
+Date: Fri, 12 Jan 2024 11:58:44 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <5ec26378-a5ff-4de3-b69e-806e36907db6@quicinc.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 5/5] arm64: dts: ti: hummingboard-t: add descriptions
+ for m.2 pci-e and usb-3
+Content-Language: en-US
+To: Josua Mayer <josua@solid-run.com>, Nishanth Menon <nm@ti.com>,
+        Vignesh
+ Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>, Rob Herring
+	<robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni
+	<alexandre.belloni@bootlin.com>
+CC: Yazan Shhady <yazan.shhady@solid-run.com>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-rtc@vger.kernel.org>
+References: <20240112-add-am64-som-v2-0-1385246c428c@solid-run.com>
+ <20240112-add-am64-som-v2-5-1385246c428c@solid-run.com>
+From: Andrew Davis <afd@ti.com>
+In-Reply-To: <20240112-add-am64-som-v2-5-1385246c428c@solid-run.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On Thu, Jan 11, 2024 at 11:49:53PM +0800, Jie Luo wrote:
+On 1/12/24 11:12 AM, Josua Mayer wrote:
+> HummingBoard-T features two M.2 connectors labeled "M1" and "M2".
+> The single SerDes lane of the SoC can be routed to either M1 pci-e
+> signals, or M2 usb-3 signals by a gpio-controlled mux.
 > 
+> Add dedicated dts for each configuration.
+> - k3-am642-hummingboard-t.dts enables neither configuration
+> - k3-am642-hummingboard-t-pcie.dts (new)
+>    configures serdes mux and pci-e controller for M1
+> - k3-am642-hummingboard-t-usb3.dts (new)
+>    configures serdes mux and usb-3 controller for M2
 > 
-> On 1/11/2024 6:24 AM, Jakub Kicinski wrote:
-> > On Wed, 10 Jan 2024 19:40:12 +0800 Luo Jie wrote:
-> > > The PPE(packet process engine) hardware block is available in Qualcomm
-> > > IPQ chipsets that support PPE architecture, such as IPQ9574 and IPQ5332.
-> > 
-> > What's the relationship between this driver and QCA8084?
+> Signed-off-by: Josua Mayer <josua@solid-run.com>
+> ---
+>   arch/arm64/boot/dts/ti/Makefile                    |  2 ++
+>   .../boot/dts/ti/k3-am642-hummingboard-t-pcie.dts   | 31 ++++++++++++++++++
+>   .../boot/dts/ti/k3-am642-hummingboard-t-usb3.dts   | 37 ++++++++++++++++++++++
+>   3 files changed, 70 insertions(+)
 > 
-> The PPE (packet processing engine) is the network processing hardware block
-> in QCOM IPQ SoC. It includes the ethernet MAC and UNIPHY(PCS). This driver
-> is the base PPE driver which brings up the PPE and handles MAC/UNIPHY
-> operations. QCA8084 is the external 2.5Gbps 4-port PHY device, which can be
-> connected with PPE integrated MAC by UNIPHY(PCS).
-> 
-> Here is the relationship.
-> PPE integrated MAC --- PPE integrated UNIPHY(PCS) --- (PCS)QCA8084.
-> 
-> > 
-> > In the last month I see separate changes from you for mdio-ipq4019.c,
-> > phy/at803x.c and now this driver (none of which got merged, AFAICT.)
-> > Are you actually the author of this code, or are you just trying
-> > to upstream bunch of vendor code?
-> 
-> Yes, Jakub, there are two authors in these patch series, Lei Wei and me.
-> The patches are already ready for some time, the code has been verified
-> on the Qualcomm reference design board. These are not downstream drivers
-> but drivers re-written for upstream.
-> 
-> > 
-> > Now you're dumping another 10kLoC on the list, and even though this is
-> > hardly your first posting you're apparently not aware of our most basic
-> > posting rules:
-> > https://www.kernel.org/doc/html/next/process/maintainer-netdev.html#tl-dr
-> > 
-> > The reviewers are getting frustrated. Please, help us help you.
-> > Stop throwing code at the list and work out a plan with Andrew
-> > and others on how to get something merged...
-> 
-> Sorry for trouble caused, will learn about the guidance provided by
-> the review comments, and follow up on the guidance and have the full
-> internal review of the patch updates before pushing the patch series.
+> diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
+> index 041c3b71155e..0e408555edf1 100644
+> --- a/arch/arm64/boot/dts/ti/Makefile
+> +++ b/arch/arm64/boot/dts/ti/Makefile
+> @@ -33,6 +33,8 @@ dtb-$(CONFIG_ARCH_K3) += k3-am62p5-sk.dtb
+>   # Boards with AM64x SoC
+>   dtb-$(CONFIG_ARCH_K3) += k3-am642-evm.dtb
+>   dtb-$(CONFIG_ARCH_K3) += k3-am642-hummingboard-t.dtb
+> +dtb-$(CONFIG_ARCH_K3) += k3-am642-hummingboard-t-pcie.dtb
+> +dtb-$(CONFIG_ARCH_K3) += k3-am642-hummingboard-t-usb3.dtb
+>   dtb-$(CONFIG_ARCH_K3) += k3-am642-phyboard-electra-rdk.dtb
+>   dtb-$(CONFIG_ARCH_K3) += k3-am642-sk.dtb
+>   dtb-$(CONFIG_ARCH_K3) += k3-am642-tqma64xxl-mbax4xxl.dtb
+> diff --git a/arch/arm64/boot/dts/ti/k3-am642-hummingboard-t-pcie.dts b/arch/arm64/boot/dts/ti/k3-am642-hummingboard-t-pcie.dts
+> new file mode 100644
+> index 000000000000..5ba0029fcfb9
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/ti/k3-am642-hummingboard-t-pcie.dts
+> @@ -0,0 +1,31 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +/*
+> + * Copyright (C) 2023 Josua Mayer <josua@solid-run.com>
+> + *
+> + * DTS for SolidRun AM642 HummingBoard-T,
+> + * running on Cortex A53, with PCI-E.
+> + *
+> + */
+> +
+> +#include "k3-am642-hummingboard-t.dts"
 
-I renew my will of helping in any kind of manner in this, I love the
-intention for EDMAv2 to have an upstream driver instead of SSDK, hoping
-in the future to also have the same treatement for EDMAv1 (it's really a
-pitty to have a support hole with ipq807x not supported)
+Avoid including .dts files, if this file is for an option that
+can be chosen (PCIe vs USB3), then it should be a DT overlay.
 
-Feel free to send an email or anything, considering this is massive, an
-extra eye before sending might make things better than reaching (I can
-already see this) a massive series with at least 20 revision given the
-complexity of this thing.
+> +#include "k3-serdes.h"
+> +
+> +/ {
+> +	model = "SolidRun AM642 HummingBoard-T with PCI-E";
+> +};
+> +
+> +&pcie0_rc {
+> +	status = "okay";
 
--- 
-	Ansuel
+If PCIe is only available here when using this add-on then
+all of the node data should be in this add-on file.
+
+Andrew
+
+> +};
+> +
+> +&serdes0_link {
+> +	cdns,phy-type = <PHY_TYPE_PCIE>;
+> +};
+> +
+> +&serdes_ln_ctrl {
+> +	idle-states = <AM64_SERDES0_LANE0_PCIE0>;
+> +};
+> +
+> +&serdes_mux {
+> +	idle-state = <1>;
+> +};
+> diff --git a/arch/arm64/boot/dts/ti/k3-am642-hummingboard-t-usb3.dts b/arch/arm64/boot/dts/ti/k3-am642-hummingboard-t-usb3.dts
+> new file mode 100644
+> index 000000000000..12b0fedcd2bc
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/ti/k3-am642-hummingboard-t-usb3.dts
+> @@ -0,0 +1,37 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +/*
+> + * Copyright (C) 2023 Josua Mayer <josua@solid-run.com>
+> + *
+> + * DTS for SolidRun AM642 HummingBoard-T,
+> + * running on Cortex A53, with USB-3.1 Gen 1.
+> + *
+> + */
+> +
+> +#include "k3-am642-hummingboard-t.dts"
+> +#include "k3-serdes.h"
+> +
+> +/ {
+> +	model = "SolidRun AM642 HummingBoard-T with USB-3.1 Gen 1";
+> +};
+> +
+> +&serdes0_link {
+> +	cdns,phy-type = <PHY_TYPE_USB3>;
+> +};
+> +
+> +&serdes_ln_ctrl {
+> +	idle-states = <AM64_SERDES0_LANE0_USB>;
+> +};
+> +
+> +&serdes_mux {
+> +	idle-state = <0>;
+> +};
+> +
+> +&usbss0 {
+> +	/delete-property/ ti,usb2-only;
+> +};
+> +
+> +&usb0 {
+> +	maximum-speed = "super-speed";
+> +	phys = <&serdes0_link>;
+> +	phy-names = "cdns3,usb3-phy";
+> +};
+> 
 
