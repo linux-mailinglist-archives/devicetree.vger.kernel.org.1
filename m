@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-31522-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31523-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E925B82BBB1
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 08:23:54 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9BAB182BBB6
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 08:24:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7FB662894A5
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 07:23:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B44DB1C24DC4
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 07:24:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A03F25C91B;
-	Fri, 12 Jan 2024 07:22:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFCF55C90F;
+	Fri, 12 Jan 2024 07:24:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="h+ljQAPB"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vfDnBQab"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E48045C917
-	for <devicetree@vger.kernel.org>; Fri, 12 Jan 2024 07:22:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F7585C90A
+	for <devicetree@vger.kernel.org>; Fri, 12 Jan 2024 07:24:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-33674f60184so5774966f8f.1
-        for <devicetree@vger.kernel.org>; Thu, 11 Jan 2024 23:22:53 -0800 (PST)
+Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-33694bf8835so4717246f8f.3
+        for <devicetree@vger.kernel.org>; Thu, 11 Jan 2024 23:24:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1705044172; x=1705648972; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1705044270; x=1705649070; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=0zod9jOIigkgHYYflYbRUuAS95/eYFPo+RbuUcLeBEY=;
-        b=h+ljQAPB1sEFSIrzkwsbNxJg78+yJb1WrhJuhwoW6xaIFCrbGOLCgRs/lryna3cqqC
-         oKnvFUKHpqEcPbjIUJeOK97HrRQDZFi23OspPe4GT/FeyNbsNmAi5me0PHvboJ3/1FHu
-         BJw9nR6p1N2aiUAaTyg0h1T1yUrk+ppxPoE0BF7oZnvEzSVP/RJu34RC5JBkaNeIb7SS
-         CuQFkQbumxcGeGCp7MdGBcA9XjweLLUw90ecVJF1qguUjEogOR/I2zvnioQd5QWl2myY
-         Dnihu4CVVJaPjivsQcEnHY5daaL0fJW9y/GnBlTbnMT1p2IfmbLRuvZKbr36YxNDwbge
-         c2ww==
+        bh=1fcEEU2wk6GX+jnaxPZQWkZOX1G7oxu1vYGYKPoo5wM=;
+        b=vfDnBQabsdChdC3oEaxsfrUsRfI/mNY3mj0nx+BVUc+KpDoMuygVyzirnUGqF6TxbD
+         bhXkHvdiMipQ1HCkF6cOvVt90uvfJbtrlTUexywrxpNGef8kwBViwgOOyP2IoHcIDZre
+         mZFIi6MPA8rUhlHvowT/wLssjmO/svcHZJFdOK/Pb35k7I5DtxZNCrZF06dzmfbYiQeh
+         LOfUqZvQKJeW8N9xJVLWB3SkkgUqM0RO+hypj+QGf/XXqiG9y7HkNV7fXb2hY8ipy8OI
+         alH2NjJ09V+XVSmb/UJJJvzPCcTDDEp7ne76EWcN8mhSx/XX6SRWKCuamV0wHgNTpD+D
+         1p0Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705044172; x=1705648972;
+        d=1e100.net; s=20230601; t=1705044270; x=1705649070;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0zod9jOIigkgHYYflYbRUuAS95/eYFPo+RbuUcLeBEY=;
-        b=lyS4lXotlJifwjSL1fCP7k3+c6CwSIcrWZW56TkSX2TvdTgCeYpzDkq3xEKDakYIgZ
-         8VbIEQkQSQg0Mm25X17SLwoiHwviU6SDKe/GDMwqDwK7BB37tR36MediHbRhWAKCa2p5
-         /zMWT8MeR+zLjWl8g50lsovL6F2xR7OShzF1VwzreIsKtZf6/i1MJxxbCmnwUureX/ZN
-         nUa2+VQ+dm3dOzOwzXLHbHQMHzzGZM2a+vXFXPm4UNbJFNgMuVJDbxkJF9vjH6x8Suvu
-         iBAVVzkQ20R7xIiMv/EXL8H6//yiuBOTKCXkA+Lk6juv/wAmOha8a/LPXb2CnEYwbmom
-         TgNg==
-X-Gm-Message-State: AOJu0YwkEa7dWtL9t8P0gs81PsJwRh4mXrNhcVRZ+S10rIZnZzoAIk3q
-	tLsFJkRJuEOfvXIOETiEWuN5v0pe19LyBA==
-X-Google-Smtp-Source: AGHT+IH8XR4Nx8gUk/Kge85NcS9avYm1/LLvwfVHCmNYNEidlWnAfkghnFOXYxB52gQp6ClSIF/xkg==
-X-Received: by 2002:a5d:4102:0:b0:336:66f7:2d2e with SMTP id l2-20020a5d4102000000b0033666f72d2emr539289wrp.8.1705044172163;
-        Thu, 11 Jan 2024 23:22:52 -0800 (PST)
+        bh=1fcEEU2wk6GX+jnaxPZQWkZOX1G7oxu1vYGYKPoo5wM=;
+        b=DCuUT3dYbusmPvcBhgSuRS3TyDbwpzNSPEMg5YMpTZkQlYERrzeZCjfb38pD8pA/8f
+         cU4hWIXSO6T6dwHP+AdXcqz7w8MWTwYpqqZrQgH25NWEtbZLVC4kiUG1F0+uTQyn58o1
+         /UBowSUuj6YGDgr+ffTZn0xiKFbYpYDaWvbOdQAvqBiMDvdxYrAkfmjdyOgj2k2y1nfJ
+         cSsxFLuKECRW1bzZIeBjHl5wIrtUoruSEOFjpB8WujdLKho5nNflowaP9Ca115ORGmYM
+         7Fo+k45IO5d6uR3I4DZJRga6d6dzdQUwuVPib6O6Lmp6wJYj8U300SF5WP8CTu/k01OK
+         K6fw==
+X-Gm-Message-State: AOJu0Yw7QcQTS+uEe5BrCJ8LpgjuZF2DxZfS4E3sBboJ8UBgljhs489w
+	x2XZN+xe7+oiKqpuIC9lOBgDjECfixTrMw==
+X-Google-Smtp-Source: AGHT+IFDpJfNOC/qDSzsIAJgRggjO2aHH+rgvnlzbGpv7vnlTaFAtWNBXapkkifVfLKuE6dugsIM3A==
+X-Received: by 2002:a5d:4087:0:b0:336:ca46:2ce1 with SMTP id o7-20020a5d4087000000b00336ca462ce1mr424839wrp.122.1705044270393;
+        Thu, 11 Jan 2024 23:24:30 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.223.112])
-        by smtp.gmail.com with ESMTPSA id q6-20020adf9dc6000000b003378e67fd2asm2407525wre.86.2024.01.11.23.22.50
+        by smtp.gmail.com with ESMTPSA id q6-20020adf9dc6000000b003378e67fd2asm2407525wre.86.2024.01.11.23.24.28
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 11 Jan 2024 23:22:51 -0800 (PST)
-Message-ID: <d1bae8c6-a511-4bd2-9bc6-1b3c4dc6fb42@linaro.org>
-Date: Fri, 12 Jan 2024 08:22:49 +0100
+        Thu, 11 Jan 2024 23:24:30 -0800 (PST)
+Message-ID: <5c789b3a-1a2c-47a4-b8f7-191bb13f060f@linaro.org>
+Date: Fri, 12 Jan 2024 08:24:28 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,26 +66,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/4] dt-bindings: media: mediatek: mdp: Change
- mediatek,gce-events to reference
+Subject: Re: [PATCH v2 3/3] mailbox: zynqmp: Enable Bufferless IPI usage on
+ Versal-based SOC's
 Content-Language: en-US
-To: "Jason-JH.Lin" <jason-jh.lin@mediatek.com>,
- Jassi Brar <jassisinghbrar@gmail.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Chun-Kuang Hu <chunkuang.hu@kernel.org>
+To: Ben Levinsky <ben.levinsky@amd.com>, jassisinghbrar@gmail.com,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ michal.simek@amd.com, shubhrajyoti.datta@amd.com, jaswinder.singh@linaro.org
 Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-media@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org,
- Jason-ch Chen <jason-ch.chen@mediatek.com>,
- Johnson Wang <johnson.wang@mediatek.com>,
- Singo Chang <singo.chang@mediatek.com>, Nancy Lin <nancy.lin@mediatek.com>,
- Shawn Sung <shawn.sung@mediatek.com>,
- Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20240110063532.14124-1-jason-jh.lin@mediatek.com>
- <20240110063532.14124-4-jason-jh.lin@mediatek.com>
+ linux-arm-kernel@lists.infradead.org
+References: <20240111172226.1816105-1-ben.levinsky@amd.com>
+ <20240111172226.1816105-4-ben.levinsky@amd.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -131,48 +121,26 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240110063532.14124-4-jason-jh.lin@mediatek.com>
+In-Reply-To: <20240111172226.1816105-4-ben.levinsky@amd.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 10/01/2024 07:35, Jason-JH.Lin wrote:
-> Change mediatek,gce-events property to reference mediatek,gce-props.yaml
-> instead of defining itself.
-> 
-> Signed-off-by: Jason-JH.Lin <jason-jh.lin@mediatek.com>
-> ---
->  .../bindings/media/mediatek,mdp3-rdma.yaml           | 11 +++--------
->  .../devicetree/bindings/media/mediatek,mdp3-rsz.yaml | 12 ++++--------
->  .../bindings/media/mediatek,mdp3-wrot.yaml           | 12 ++++--------
->  3 files changed, 11 insertions(+), 24 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/media/mediatek,mdp3-rdma.yaml b/Documentation/devicetree/bindings/media/mediatek,mdp3-rdma.yaml
-> index 59db8306485b..1ba70b9a5843 100644
-> --- a/Documentation/devicetree/bindings/media/mediatek,mdp3-rdma.yaml
-> +++ b/Documentation/devicetree/bindings/media/mediatek,mdp3-rdma.yaml
-> @@ -44,13 +44,6 @@ properties:
->        4 arguments defined in this property. Each GCE subsys id is mapping to
->        a client defined in the header include/dt-bindings/gce/<chip>-gce.h.
->  
-> -  mediatek,gce-events:
-> -    description:
-> -      The event id which is mapping to the specific hardware event signal
-> -      to gce. The event id is defined in the gce header
-> -      include/dt-bindings/gce/<chip>-gce.h of each chips.
-> -    $ref: /schemas/types.yaml#/definitions/uint32-array
-> -
->    mediatek,scp:
->      $ref: /schemas/types.yaml#/definitions/phandle
->      description:
-> @@ -96,6 +89,8 @@ required:
->    - '#dma-cells'
->  
->  allOf:
-> +  - $ref: ../mailbox/mediatek,gce-props.yaml
+On 11/01/2024 18:22, Ben Levinsky wrote:
+>  /**
+>   * zynqmp_ipi_free_mboxes - Free IPI mailboxes devices
+>   *
+> @@ -748,6 +861,9 @@ static const struct of_device_id zynqmp_ipi_of_match[] = {
+>  	{ .compatible = "xlnx,zynqmp-ipi-mailbox",
+>  	  .data = &zynqmp_ipi_setup,
+>  	},
+> +	{ .compatible = "xlnx,versal-ipi-mailbox",
 
-You need full path, so /schemas/mailbox/
+Not documented.
 
-Applies to all the patches.
+Please run scripts/checkpatch.pl and fix reported warnings. Some
+warnings can be ignored, but the code here looks like it needs a fix.
+Feel free to get in touch if the warning is not clear.
+
 
 Best regards,
 Krzysztof
