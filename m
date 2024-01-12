@@ -1,171 +1,125 @@
-Return-Path: <devicetree+bounces-31515-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31516-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1B1F82BAFA
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 06:44:46 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 97F3F82BB7A
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 08:10:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8B5D428945A
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 05:44:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BF4EC1C22BE6
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 07:10:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C11A5C900;
-	Fri, 12 Jan 2024 05:44:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E6285C8FE;
+	Fri, 12 Jan 2024 07:10:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="qlxd/xWV"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="VgJ57ubh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2083.outbound.protection.outlook.com [40.107.20.83])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBE665C919;
-	Fri, 12 Jan 2024 05:44:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=CTMc7Jt5mc+zjoYXomMeRonaJWw+IOI+JczlteW75a3GMxfJRLNfoyCMzkCcULeXNhQwgtcbK8Zc1wnJkqRT0FPG04xRTO6bpA5Fn97gI7AZFTUwuvG9n0jaR9PEJP5wRuyKvQmgJuZ1cgAIFPlj1+DrsNXft8K4N5awmGwYTWHYuBu2qFxDN4kSbMktTZOsJ42tlbH32PQro6PH65/4OM3xQlhtl+GvmQoJgd9XUnypjVa5ZnQ7TV93kqkFCYfzg6k5T9+w5KdCEiSS+QYYopBQSuBPER8Tcr7/aivvhQje5Txc8yTNL4G048emP1lFMJJV9NkKZiOMsw/R6Hfb6w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2phDiBW1nwn+xo/+w2XX94Kn5CwPlLpzfQ/7KwUZq3k=;
- b=gBQ3qi2v+ipdtaV6eD+x2GAho+wv3wt3K1gNUmplsT7p86MkmOkYRhkvhMSYDuZHCfkFUOFg9+ixZUmeqIT2LXkXeg//guwzHMPUJGz71I3cYy1VXEOcMyiAhqKng+fCfpM2bGRSGItX14GQMpGOlw9mzEFr+0r5rQ0tPLOtLuO/dOUxKwnpJF3+2OETybnyMF2iLssGg33Urjn5TrL7gxerY2F7TF5YjpZLwqASrDXVFtyMNkbfD2p/vJpyqRLERRJqc4vv7uBMD48M4fWt5ckC+qlsf2StE/4cbFIza4F6CYbLTYNJZr8BlpMdZf3Bkl28VTai04ovMIy2WiU0Hg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2phDiBW1nwn+xo/+w2XX94Kn5CwPlLpzfQ/7KwUZq3k=;
- b=qlxd/xWVR2+QhYj2hTHD+3PIz4NObfkFcroOl6sAizn4vTGEvvFdGSPnkaIV4+v+9UfkcNSjD9AZu+Pg2QUTrXv9g5QswH9IavkTua+I7RK5PFKMnOG29vy54C5B62ZE95X/W44NNyybls3RWTQ49ZKu9eeACPf52RRD0OtHBUQ=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from DB9PR04MB9498.eurprd04.prod.outlook.com (2603:10a6:10:360::21)
- by VI1PR04MB9833.eurprd04.prod.outlook.com (2603:10a6:800:1da::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7181.17; Fri, 12 Jan
- 2024 05:44:09 +0000
-Received: from DB9PR04MB9498.eurprd04.prod.outlook.com
- ([fe80::2a3c:9a90:b09f:293c]) by DB9PR04MB9498.eurprd04.prod.outlook.com
- ([fe80::2a3c:9a90:b09f:293c%3]) with mapi id 15.20.7181.020; Fri, 12 Jan 2024
- 05:44:09 +0000
-From: Chancel Liu <chancel.liu@nxp.com>
-To: lgirdwood@gmail.com,
-	broonie@kernel.org,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	shengjiu.wang@gmail.com,
-	Xiubo.Lee@gmail.com,
-	festevam@gmail.com,
-	nicoleotsuka@gmail.com,
-	perex@perex.cz,
-	tiwai@suse.com,
-	linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	alsa-devel@alsa-project.org,
-	linuxppc-dev@lists.ozlabs.org
-Cc: Chancel Liu <chancel.liu@nxp.com>
-Subject: [PATCH v2 3/3] ASoC: dt-bindings: fsl,micfil: Add compatible string for i.MX95 platform
-Date: Fri, 12 Jan 2024 14:43:31 +0900
-Message-ID: <20240112054331.3244104-4-chancel.liu@nxp.com>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20240112054331.3244104-1-chancel.liu@nxp.com>
-References: <20240112054331.3244104-1-chancel.liu@nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SI2PR01CA0043.apcprd01.prod.exchangelabs.com
- (2603:1096:4:193::12) To DB9PR04MB9498.eurprd04.prod.outlook.com
- (2603:10a6:10:360::21)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C89E05C8E5
+	for <devicetree@vger.kernel.org>; Fri, 12 Jan 2024 07:10:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-2cd7e429429so29450561fa.1
+        for <devicetree@vger.kernel.org>; Thu, 11 Jan 2024 23:10:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1705043424; x=1705648224; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=9CpLoCr6SU3NVlZhezQBUSxWV8XqfLhTOBbyUhiTFb0=;
+        b=VgJ57ubhOvan13TXjAubew5opmw4/johjsTAiLLPdcYfW5AfOgAw2UQPAMFcnvLVsf
+         X+bQ4fYVLhHwuKdC7ROZKhGXMfWt4gqeVAj//3avhTpWXxTIYqR4507uzwPkyApmU6xm
+         CihbrUjHGyBd0nJU3DnPEFuQUcxyDL3HpW/vs=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1705043424; x=1705648224;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=9CpLoCr6SU3NVlZhezQBUSxWV8XqfLhTOBbyUhiTFb0=;
+        b=W6ixuCErbXJ71QUYwUgDCK92FW8w/7sJkeF2nSZXHcR2OGg1cidnvsZl/0ZBurWYws
+         yFPVUAQQTk1Y8pq9laqtp7a+XH16DHXEvvj3PSWs2MWaENZIdsW51qw4IM6iVP03fIqE
+         PXNEiRkzS8ks55yEP9mUVqlV4VbkR1ca0kfckj/NH6H48fH0ovTcpNfyhwR72nP3PcBR
+         GCQR2ugQmI/HPmeLai+mKsb7M5GbBbIs8P3FulpRQ8ZaU+r6zULKLD6kDdvA7FUeHtFu
+         FRDg6Z5/CiaRhpa7BT8SkG2MZdfQ+ZIfRSbIUXYYDQM3nnoj6BFLduz6Ws1jkphbYZU9
+         nwRA==
+X-Gm-Message-State: AOJu0Yw2iGoI7fh5rkBMT3FKipWMQz0zCrW7DzJKbfdDqJNSMRVRmJLY
+	5SO47BNagwTn2Dqv6JTDtvdnLS8NNHNbrYyuzjfsHue/XCA1
+X-Google-Smtp-Source: AGHT+IHlsWzk7VBDrxQbPuwhEzOa8RrYAxu50cHzpD/G4LoHP/3wdiV0QT/8BgrvtuTGNBulNk5QS1QaSxP0kKJsgCE=
+X-Received: by 2002:a05:651c:170c:b0:2cc:a66d:3356 with SMTP id
+ be12-20020a05651c170c00b002cca66d3356mr424298ljb.11.1705043423754; Thu, 11
+ Jan 2024 23:10:23 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DB9PR04MB9498:EE_|VI1PR04MB9833:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4d4a72da-d995-4b94-1701-08dc13317f24
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	kCB5QuNGUaalwlSTunujKNd5VUECDECn0DV1bsQGfstLgtr1woCqqs4rWhug60yOpkCJls0B4RDIRs8NiR83J7QAycF6y6GmwOYf/oYxdo4UtgIx9Ksb88pDnusI/RSwj2e6k99aWCTaQhyo1Nq8G6dIXiZJqhUCGl2v+CZk1RqXMk+VVwllftV9HHx/+jZu7o3lsmAWU5Pi6Na99GpVP6SDpdAcXznfEVsnkavGTFwKrPuhZ5fklBAk2XaONba8nmM4LZEUxSOaRNs3gE8Hg9387l+OZ1I54Zpnel1fN3dgt052laxKJ1cP6KM611Iv7YEhIpPr8APmjDjenIl7A5vY+UJYYFkZI+ZiTr5Uf4dmZ+B39Bwm0BiZZ2PLBslPVG7+wo2S+d/aWLZJ+lcuIRhGjYC7DCWHOzjW9aIW5BJYGhOX04+4zgkm7NU/oWK8JmpzTo7sRJkRf648m3ZJ3fw5/Sn7GNXZFsX8nd9+ouIRkAONqKHEUsybbvlbz7QOel6DwPV29oVDuQFsX2VZ9mcZMSyeCFFLuzcV4gYS/7W0f4nM7QynDbLaripa8vnyzGSuYCIZiCWElqmk30dMaaw2OkzrmJrRvNXdPwX7JKId+DKHIgWsBRSEdigyk6jPfKe0nRusvT5NXJEvYDxvxQ==
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR04MB9498.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(39860400002)(346002)(376002)(366004)(136003)(396003)(230922051799003)(64100799003)(451199024)(186009)(1800799012)(316002)(38100700002)(41300700001)(36756003)(2906002)(86362001)(83380400001)(6486002)(6506007)(66476007)(66946007)(52116002)(66556008)(6666004)(478600001)(7416002)(4744005)(6512007)(5660300002)(4326008)(2616005)(26005)(8936002)(44832011)(1076003)(8676002)(38350700005)(921011);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?JeZU2kNFhBw07a7kfUKpztIRg4qeavfwWPm/uuJYgMycMqGX1Y1mPCKewGhO?=
- =?us-ascii?Q?kqT9kO9RdM5okGYiFkTEah6pBpdvRXl4bPdP0tEsrEUQYqs4QBjeyjCOjqul?=
- =?us-ascii?Q?rVZXguy+o+EbgxhbmplNtqvXCFiRFm9J+Gdhot54LR2Ca9YzNzwrij5FdJkQ?=
- =?us-ascii?Q?3ZwFN5UzW9tsgo4i1Zd1aD3zEw7tbLLpMnsr+LdmZF5w4QtKmWL4NPo+KBQH?=
- =?us-ascii?Q?C1h621hyZCNQn+F6iBmnMxUf545SgWe0GwTksG2dJ6jF6C4wCqMW1VqWz6Gd?=
- =?us-ascii?Q?v064Qk8dyxwmh3kT7D52zZ/HVy3EYeLjZgT4DDwYvvXHPRAvqKTT1ju0PNtc?=
- =?us-ascii?Q?UsIJZ4GIoJifZW7yZHImC0U4V66SrCqvbR27UgHS79Ij4P7XPAbc7ymX9iSi?=
- =?us-ascii?Q?BRhSyxrCyHChg+AsRQt+GcguOSmQJic3jxXiGBf2f3yz/wPM7Dip8aN1+U+k?=
- =?us-ascii?Q?YNdl155mwpGRnYEgKQ57WXIDPWEvF6TvO9LniIeArxjFqsZT6sZPkbLreB+5?=
- =?us-ascii?Q?2Q3YjLUwUIR66QEEK3AqcHFxQizRw0i/0RzbXvefNmhlc8CdMonsRS+9yxMo?=
- =?us-ascii?Q?LutX2VejHdbgnfp+lftBRTMExjMmuGMSmTpoSq5XLvAZWebiwKZrbhXpZL8U?=
- =?us-ascii?Q?Rv/6T+ufvV0fW2GPU6svb0FqqZwte5N+kpb1eGGTbL7gvf9vJDS68IvcZZan?=
- =?us-ascii?Q?y1CRvTbH3CeSBH/JV2V1wPrefE9ISLCw6I4DUJDOJ26lMm2sJ8OwCRuz3XLs?=
- =?us-ascii?Q?icxdIz1DQU1IBflJyUuaViQCMx49qAzgf20oiei2H1rG52rGgkzPnqy5TkLM?=
- =?us-ascii?Q?/GsF6zK/tXwaZZt5iEyAJ0I/DR+ow7Jz1ssjlxfaxyMnd5xGr1MMEAwGiZoD?=
- =?us-ascii?Q?17fF4Shs34MG95TeY9bQdCgEOsAL0FCz1Ua4kdd8rx2TUfZIZGK0CX2et/ai?=
- =?us-ascii?Q?JmTaD+zi6JVL0Mv794O4z6qPJuipAPg9RNIFtrQkHtiAJm6j6GJ++/1LnP7J?=
- =?us-ascii?Q?/dY6d3hnVbu/ghSSVdYI9TAh1LR3M963J5afG1Kij0AYak8M+jziYq/c3xal?=
- =?us-ascii?Q?zL40qLiETdZn0ta4fnfOj9pXXGYoYBPgnd2liuZ1ydDblhNUmcr2uPj5NbZK?=
- =?us-ascii?Q?Q5Qyy5J8eNXDHclYRJbrNKlETfDJaYaiP07E7Eml1oIa17ka7+q0pqo4AV3y?=
- =?us-ascii?Q?o+6yU59gQ78riKA+rzrcPg3Bkgn9gm3XKzDiwx0F4NGqmtPvedNYEjWwgIbA?=
- =?us-ascii?Q?kXJzM6IvFsMcFTK2RGq+Q4nn3MF/M5z7n8ajmmodH1x7lnom4rTzmeyeVKV4?=
- =?us-ascii?Q?v0Bd9Efg1miCiQubfYpWZgFPuwJa0o99n+bOqWGiioxv8lpJV7UG3crQAfRl?=
- =?us-ascii?Q?LqCdR3uJRxh00Z++7zi3anwqfwJDv9lIy7eNetcXbErHnEaarkVASGGxq1kk?=
- =?us-ascii?Q?gJuqVb54a3AflbheUif5kgJ0M1dLRKWBADUCN09mfTSB8zCCWmWeLHNGdiPY?=
- =?us-ascii?Q?zeTBxXBTm2I2IhtRa6waDlKxMjT7djmqAY2UjDCexQPa3H/EyEupXjDAKhig?=
- =?us-ascii?Q?/WBQDHO/kHXb5LTrdW03Ur+bbBxTEq2k7qLP2HLa?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4d4a72da-d995-4b94-1701-08dc13317f24
-X-MS-Exchange-CrossTenant-AuthSource: DB9PR04MB9498.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jan 2024 05:44:09.0532
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 7iWExMouCzy0/l9Yz4pFrMpGGxQJ/lbu3iNk1KcBNRwCn/1+UxuAp2+6B7vURqv5vh7dfXfXKOW8dsKh3VqtOQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB9833
+References: <20240111195335.871096-1-nfraprado@collabora.com>
+In-Reply-To: <20240111195335.871096-1-nfraprado@collabora.com>
+From: Chen-Yu Tsai <wenst@chromium.org>
+Date: Fri, 12 Jan 2024 15:10:12 +0800
+Message-ID: <CAGXv+5FKHX482+QjYP=jWKWz2HD=Af6x9Cahi+fc4EKNmM-MMQ@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: mt8183: juniper: Remove CrosEC base detection node
+To: =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= <nfraprado@collabora.com>
+Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, kernel@collabora.com, 
+	Conor Dooley <conor+dt@kernel.org>, Enric Balletbo i Serra <eballetbo@kernel.org>, 
+	Ikjoon Jang <ikjn@chromium.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Rob Herring <robh+dt@kernel.org>, Stephen Boyd <swboyd@chromium.org>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	linux-mediatek@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Add compatible string "fsl,imx95-micfil" for i.MX95 platform.
+On Fri, Jan 12, 2024 at 3:55=E2=80=AFAM N=C3=ADcolas F. R. A. Prado
+<nfraprado@collabora.com> wrote:
+>
+> The cbas node is used to describe base detection functionality in the
+> ChromeOS EC, which is used for units that have a detachable keyboard and
+> thus rely on this functionality to switch between tablet and laptop
+> mode.
+>
+> The juniper-sku16 machine is a convertible, meaning the keyboard can be
+> flipped but not detached. The detection for the keyboard getting
+> flipped is handled by the driver bound to the keyboard-controller
+> node in the EC.
 
-Signed-off-by: Chancel Liu <chancel.liu@nxp.com>
----
- .../devicetree/bindings/sound/fsl,micfil.yaml      | 14 ++++++++++----
- 1 file changed, 10 insertions(+), 4 deletions(-)
+We could do this for the whole jacuzzi family, which are all clamshell
+or convertibles.
 
-diff --git a/Documentation/devicetree/bindings/sound/fsl,micfil.yaml b/Documentation/devicetree/bindings/sound/fsl,micfil.yaml
-index b7e605835639..c1e9803fc113 100644
---- a/Documentation/devicetree/bindings/sound/fsl,micfil.yaml
-+++ b/Documentation/devicetree/bindings/sound/fsl,micfil.yaml
-@@ -15,10 +15,16 @@ description: |
- 
- properties:
-   compatible:
--    enum:
--      - fsl,imx8mm-micfil
--      - fsl,imx8mp-micfil
--      - fsl,imx93-micfil
-+    oneOf:
-+      - items:
-+          - enum:
-+              - fsl,imx95-micfil
-+          - const: fsl,imx93-micfil
-+
-+      - enum:
-+          - fsl,imx8mm-micfil
-+          - fsl,imx8mp-micfil
-+          - fsl,imx93-micfil
- 
-   reg:
-     maxItems: 1
--- 
-2.42.0
+ChenYu
 
+> Since there is no base detection in this machine, and the device backed
+> by this node fails to probe and goes unused, delete the node from the
+> DT.
+>
+> Fixes: 4fa8492d1e5b ("arm64: dts: mt8183: add cbas node under cros_ec")
+> Signed-off-by: N=C3=ADcolas F. R. A. Prado <nfraprado@collabora.com>
+>
+> ---
+>
+>  .../boot/dts/mediatek/mt8183-kukui-jacuzzi-juniper-sku16.dts   | 3 +++
+>  1 file changed, 3 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-juniper-sk=
+u16.dts b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-juniper-sku16.d=
+ts
+> index 8ac6bf5b17f9..8096ca215258 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-juniper-sku16.dts
+> +++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-juniper-sku16.dts
+> @@ -13,3 +13,6 @@ / {
+>         compatible =3D "google,juniper-sku16", "google,juniper", "mediate=
+k,mt8183";
+>  };
+>
+> +&cros_ec {
+> +       /delete-node/ cbas;
+> +};
+> --
+> 2.43.0
+>
+>
 
