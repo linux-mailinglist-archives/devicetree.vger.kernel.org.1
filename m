@@ -1,283 +1,195 @@
-Return-Path: <devicetree+bounces-31674-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31675-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E329082C2C8
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 16:33:46 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8177D82C2E6
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 16:39:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 585891F23714
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 15:33:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 36F461F236D4
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 15:39:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4CA06EB5C;
-	Fri, 12 Jan 2024 15:33:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22EEE6EB62;
+	Fri, 12 Jan 2024 15:38:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xSEqMrNr"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="NquVzITc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com [209.85.128.170])
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59ED96EB56
-	for <devicetree@vger.kernel.org>; Fri, 12 Jan 2024 15:33:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-5fc2e997804so4212297b3.3
-        for <devicetree@vger.kernel.org>; Fri, 12 Jan 2024 07:33:41 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F02341C62
+	for <devicetree@vger.kernel.org>; Fri, 12 Jan 2024 15:38:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-40d6b4e2945so76325555e9.0
+        for <devicetree@vger.kernel.org>; Fri, 12 Jan 2024 07:38:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1705073620; x=1705678420; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=0J+mgh+Zx+BAS24mdFPK/hF26M4UfTo4a+waDKfwV38=;
-        b=xSEqMrNrtva8qJE+8pN8jfCKWt8b8fSN89Ls0r5uAyTiH8DZr0S1n+KbOGjWcD7qi4
-         oDTaPwfPQFKIxNGVU6TbSRfLZ40aqXJ/FLEzXos0jKJH5p+qlsdd5ioDuH+q4qI+DSH/
-         F7Qs+CqvLzczbLRehW4Mv5kLQLW0Sm7L8h9sZ39OYIf1bpOZcItk+YTgW090zhV01VFU
-         /1VbVqK48srVk/YAOo1tB/Hi+NEh39HCHGZWwOgiNxSdsYNcqBXSkCrsYtVGFPc1E6H4
-         Ok+Wbcjy2mHeQgdjtlqvm5XExyOirh35OzJ/9Gt/UcXDy3SWJ47U/q5SnfTr85Hio38b
-         EH4g==
+        d=tuxon.dev; s=google; t=1705073925; x=1705678725; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=rcF2XsVN5qfBcTnWBw/ZNq4CN89fzFSDAjr71tltvUY=;
+        b=NquVzITc9CUNEHvFsBIGQNJLEO9tlGBF/7BB1idU8AGYFwUavhGWbKTZT/yqBIUk+U
+         QUfUyyrecNUgLoSm37k8i8sRXiJoLHnNNghtmhjS6VgYLkLjA33UkxFakVLaHDw7bZrN
+         l4SFxtvlrRojdIVZTFD0DXvh1fuHwoI3vk/t/hWHpt9eTwRI2rPXpA76azObRyG8acAl
+         ZZLcEddSsdbxwim7gGF2AUrplwHwDC5tsRzMZuK9ssLgxLJTTdJH59Okydltv2q0zgv4
+         HzqVuvRql7wTL46/VJY80CQ4KYW6LthHIw++jtSDx6Tg/weUSALg/eWu3A5WkAHdZCw4
+         HvkQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705073620; x=1705678420;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=0J+mgh+Zx+BAS24mdFPK/hF26M4UfTo4a+waDKfwV38=;
-        b=DYWcNS0DvGu0O8L31Ldz5Sibesh/R1P5KfzF69p3Tc4cKy3lPPEJa8NpVcdJVPPMBH
-         U7sz6axHFyaEWfLArlYmJbdWGehQUcdXOTXESEataG1ViTseMg80weJEJsUVEABhZSRX
-         wGMKU3vVGnn/GnvTJZ1rDXSgGT7N+uNbWe3ZEQSGQ/rbXcb23nlbgnuyHXE38A1esIb+
-         G+bHX9EOYdHTpcCjqruMd7W96UtDiSJ9IJNkhq32gnC6cD4U7bf7gWZMPPJNTA7woNNs
-         Dr8Jug0Sf8eRdAFN2QkUkXOOl4Wc6EpVXTmBBTAeGzGnGp3sB6KwgN5XIZcTyejGKaVV
-         oscw==
-X-Gm-Message-State: AOJu0YwMt+T3peRpYSeoh1DFrcrZrL8tQZZAXGXuPGnv/luNcqSaKx1D
-	E/SPQNlP2zlhI6SrALRDqF25TMyFNfUQpXqs3CcPSST/C8LZdA==
-X-Google-Smtp-Source: AGHT+IGHEFK/VO2iCL3+a+f40HQuY1B4l5ByHYvCrVdLkznfELnIJyvNlwXygCRWvzwslHJ2QXGBP8yc4cCPvTndIvI=
-X-Received: by 2002:a0d:d507:0:b0:5fb:bfa4:f6f7 with SMTP id
- x7-20020a0dd507000000b005fbbfa4f6f7mr1325370ywd.78.1705073619964; Fri, 12 Jan
- 2024 07:33:39 -0800 (PST)
+        d=1e100.net; s=20230601; t=1705073925; x=1705678725;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=rcF2XsVN5qfBcTnWBw/ZNq4CN89fzFSDAjr71tltvUY=;
+        b=ikX/PQvgcoDEQxaDtOmXnkUW8Fp3wyinml2gx5x7Y9wGYBDO2pzS/xsc4bZXQFk9Mp
+         oBtxJ7K6RpRmA1ZjIlsGZFyTIl2v4Y602d/iUXNm2A2ABRzJovrQka1QyuEEcow2ZkKY
+         ZccKhqTt9HWEEh7LYPMpdfNTGW8XrtjnDb4CK4ffPm1qr4Sjc1lu6lhql1FE++UudDJd
+         6A7JBhyNmdozBb/RX2p0hb3zzyKmeIdPUrUI5XAbF2NEHXJis5I7NkXRGJOKgzgNI5h5
+         SdKhHMvfcG985IGNgaoYxhZYHq+kdZVsVhgFUkcGu05VLL5FlXrMae4GK8TCqcv65Z1J
+         7xZA==
+X-Gm-Message-State: AOJu0YxrwHzGs6PvNaZnQjf5AxyH+DT4en44el9SPTRUzkYoyBz/6/87
+	Qhzq7v3xKmfcujZR5FKyp5yyfuBVdN4GL8vH/tqP0BTvj6s=
+X-Google-Smtp-Source: AGHT+IF0zG9DS1T1lBHEK7Tyf5JdSHUKjdp3RO4nxo4seLerrUeIhtouJLMU3LHaBbB/oj0JVvXr3w==
+X-Received: by 2002:a05:600c:4795:b0:40e:470a:d867 with SMTP id k21-20020a05600c479500b0040e470ad867mr560082wmo.222.1705073925366;
+        Fri, 12 Jan 2024 07:38:45 -0800 (PST)
+Received: from [192.168.50.4] ([82.78.167.5])
+        by smtp.gmail.com with ESMTPSA id m6-20020adffa06000000b00336c6b77584sm4192623wrr.91.2024.01.12.07.38.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 12 Jan 2024 07:38:45 -0800 (PST)
+Message-ID: <30608a28-b1e3-4ad3-aad5-1033eb8adc6f@tuxon.dev>
+Date: Fri, 12 Jan 2024 17:38:43 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240112-opp_support-v6-0-77bbf7d0cc37@quicinc.com> <20240112-opp_support-v6-6-77bbf7d0cc37@quicinc.com>
-In-Reply-To: <20240112-opp_support-v6-6-77bbf7d0cc37@quicinc.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Fri, 12 Jan 2024 17:33:28 +0200
-Message-ID: <CAA8EJpqwOfeS-QpLVvYGf0jmTVxiT02POwK+9tkN03Cr4DgL+g@mail.gmail.com>
-Subject: Re: [PATCH v6 6/6] PCI: qcom: Add OPP support to scale performance
- state of power domain
-To: Krishna chaitanya chundru <quic_krichai@quicinc.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Bjorn Helgaas <bhelgaas@google.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
-	=?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
-	Johan Hovold <johan+linaro@kernel.org>, Brian Masney <bmasney@redhat.com>, 
-	Georgi Djakov <djakov@kernel.org>, linux-arm-msm@vger.kernel.org, vireshk@kernel.org, 
-	quic_vbadigan@quicinc.com, quic_skananth@quicinc.com, 
-	quic_nitegupt@quicinc.com, linux-pci@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: renesas: rzg3s-smarc: Add gpio keys
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: geert+renesas@glider.be, magnus.damm@gmail.com, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org,
+ Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+References: <20231227130810.2744550-1-claudiu.beznea.uj@bp.renesas.com>
+ <CAMuHMdVnsJfOtZPpr+_MRNkx-bSXrCm8Hy_j6Gy58WnGn_kaMA@mail.gmail.com>
+From: claudiu beznea <claudiu.beznea@tuxon.dev>
+Content-Language: en-US
+In-Reply-To: <CAMuHMdVnsJfOtZPpr+_MRNkx-bSXrCm8Hy_j6Gy58WnGn_kaMA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Fri, 12 Jan 2024 at 16:25, Krishna chaitanya chundru
-<quic_krichai@quicinc.com> wrote:
->
-> QCOM Resource Power Manager-hardened (RPMh) is a hardware block which
-> maintains hardware state of a regulator by performing max aggregation of
-> the requests made by all of the processors.
->
-> PCIe controller can operate on different RPMh performance state of power
-> domain based up on the speed of the link. And this performance state varies
-> from target to target.
->
-> It is manadate to scale the performance state based up on the PCIe speed
-> link operates so that SoC can run under optimum power conditions.
->
-> Add Operating Performance Points(OPP) support to vote for RPMh state based
-> upon GEN speed link is operating.
->
-> OPP can handle ICC bw voting also, so move icc bw voting through opp
-> framework if opp entries are present.
->
-> In PCIe certain gen speeds like GEN1x2 & GEN2X1 or GEN3x2 & GEN4x1 use
-> same icc bw and has frequency, so use frequency based search to reduce
-> number of entries in the opp table.
->
-> Don't initialize icc if opp is supported.
->
-> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
-> ---
->  drivers/pci/controller/dwc/pcie-qcom.c | 83 ++++++++++++++++++++++++++++------
->  1 file changed, 70 insertions(+), 13 deletions(-)
->
-> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
-> index 035953f0b6d8..31512dc9d6ff 100644
-> --- a/drivers/pci/controller/dwc/pcie-qcom.c
-> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
-> @@ -22,6 +22,7 @@
->  #include <linux/of.h>
->  #include <linux/of_gpio.h>
->  #include <linux/pci.h>
-> +#include <linux/pm_opp.h>
->  #include <linux/pm_runtime.h>
->  #include <linux/platform_device.h>
->  #include <linux/phy/pcie.h>
-> @@ -244,6 +245,7 @@ struct qcom_pcie {
->         const struct qcom_pcie_cfg *cfg;
->         struct dentry *debugfs;
->         bool suspended;
-> +       bool opp_supported;
->  };
->
->  #define to_qcom_pcie(x)                dev_get_drvdata((x)->dev)
-> @@ -1404,16 +1406,14 @@ static int qcom_pcie_icc_init(struct qcom_pcie *pcie)
->         return 0;
->  }
->
-> -static void qcom_pcie_icc_update(struct qcom_pcie *pcie)
-> +static void qcom_pcie_icc_opp_update(struct qcom_pcie *pcie)
->  {
->         struct dw_pcie *pci = pcie->pci;
-> -       u32 offset, status;
-> +       u32 offset, status, freq;
-> +       struct dev_pm_opp *opp;
->         int speed, width;
->         int ret;
->
-> -       if (!pcie->icc_mem)
-> -               return;
-> -
->         offset = dw_pcie_find_capability(pci, PCI_CAP_ID_EXP);
->         status = readw(pci->dbi_base + offset + PCI_EXP_LNKSTA);
->
-> @@ -1424,11 +1424,42 @@ static void qcom_pcie_icc_update(struct qcom_pcie *pcie)
->         speed = FIELD_GET(PCI_EXP_LNKSTA_CLS, status);
->         width = FIELD_GET(PCI_EXP_LNKSTA_NLW, status);
->
-> -       ret = icc_set_bw(pcie->icc_mem, 0, width * QCOM_PCIE_LINK_SPEED_TO_BW(speed));
-> -       if (ret) {
-> -               dev_err(pci->dev, "failed to set interconnect bandwidth: %d\n",
-> -                       ret);
-> +       if (pcie->opp_supported) {
-> +               switch (speed) {
-> +               case 1:
-> +                       freq = 2500000;
-> +                       break;
-> +               case 2:
-> +                       freq = 5000000;
-> +                       break;
-> +               case 3:
-> +                       freq = 8000000;
-> +                       break;
-> +               default:
-> +                       WARN_ON_ONCE(1);
-> +                       fallthrough;
-> +               case 4:
-> +                       freq = 16000000;
+Hi, Geert,
 
-I expected that this kind of detail goes to the OPP table itself. Can
-we index the table using the generation instead of frequency?
+On 12.01.2024 15:55, Geert Uytterhoeven wrote:
+> Hi Claudiu,
+> 
+> On Wed, Dec 27, 2023 at 2:08 PM Claudiu <claudiu.beznea@tuxon.dev> wrote:
+>> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>>
+>> RZ SMARC Carrier II board has 3 user buttons called USER_SW1, USER_SW2,
+>> USER_SW3. Add a DT node in device tree to propertly instantiate the
+>> gpio-keys driver for these buttons.
+>>
+>> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> 
+> Thanks for your patch!
+> 
+>> --- a/arch/arm64/boot/dts/renesas/rzg3s-smarc.dtsi
+>> +++ b/arch/arm64/boot/dts/renesas/rzg3s-smarc.dtsi
+>> @@ -6,6 +6,7 @@
+>>   */
+>>
+>>  #include <dt-bindings/gpio/gpio.h>
+>> +#include <dt-bindings/input/input.h>
+>>  #include <dt-bindings/pinctrl/rzg2l-pinctrl.h>
+>>
+>>  / {
+>> @@ -14,6 +15,37 @@ aliases {
+>>                 mmc1 = &sdhi1;
+>>         };
+>>
+>> +       keys {
+> 
+> Do you mind if I s/keys/keypad/ while applying? ...
 
-> +                       break;
-> +               }
-> +
-> +               opp = dev_pm_opp_find_freq_exact(pci->dev, freq * width, true);
-> +               if (!IS_ERR(opp)) {
-> +                       ret = dev_pm_opp_set_opp(pci->dev, opp);
-> +                       if (ret)
-> +                               dev_err(pci->dev, "Failed to set opp: freq %ld ret %d\n",
-> +                                       dev_pm_opp_get_freq(opp), ret);
-> +                       dev_pm_opp_put(opp);
-> +               }
-> +       } else {
-> +               ret = icc_set_bw(pcie->icc_mem, 0, width * QCOM_PCIE_LINK_SPEED_TO_BW(speed));
-> +               if (ret) {
-> +                       dev_err(pci->dev, "failed to set interconnect bandwidth for pcie-mem: %d\n",
-> +                               ret);
-> +               }
->         }
-> +
-> +       return;
->  }
->
->  static int qcom_pcie_link_transition_count(struct seq_file *s, void *data)
-> @@ -1471,8 +1502,10 @@ static void qcom_pcie_init_debugfs(struct qcom_pcie *pcie)
->  static int qcom_pcie_probe(struct platform_device *pdev)
->  {
->         const struct qcom_pcie_cfg *pcie_cfg;
-> +       unsigned long max_freq = INT_MAX;
->         struct device *dev = &pdev->dev;
->         struct qcom_pcie *pcie;
-> +       struct dev_pm_opp *opp;
->         struct dw_pcie_rp *pp;
->         struct resource *res;
->         struct dw_pcie *pci;
-> @@ -1539,9 +1572,33 @@ static int qcom_pcie_probe(struct platform_device *pdev)
->                 goto err_pm_runtime_put;
->         }
->
-> -       ret = qcom_pcie_icc_init(pcie);
-> -       if (ret)
-> +        /* OPP table is optional */
-> +       ret = devm_pm_opp_of_add_table(dev);
-> +       if (ret && ret != -ENODEV) {
-> +               dev_err_probe(dev, ret, "Failed to add OPP table\n");
->                 goto err_pm_runtime_put;
-> +       }
+Is not actually a keypad... there are 3 buttons in a corner of the board...
 
-Can we initialise the table from the driver if it is not found? This
-will help us by having the common code later on.
+I see only 2 entries in arm64 and arm DTS directory following this pattern
+for gpio-keys compatible node:
 
-> +
-> +       /* vote for max freq in the opp table if opp table is present */
-> +       if (ret != -ENODEV) {
-> +               opp = dev_pm_opp_find_freq_floor(dev, &max_freq);
-> +               if (!IS_ERR(opp)) {
-> +                       ret = dev_pm_opp_set_opp(dev, opp);
-> +                       if (ret)
-> +                               dev_err_probe(pci->dev, ret,
-> +                                             "Failed to set opp: freq %ld\n",
-> +                                             dev_pm_opp_get_freq(opp));
-> +                       dev_pm_opp_put(opp);
-> +               }
-> +               pcie->opp_supported = true;
-> +       }
-> +
-> +       /* Skip icc init if opp is supported as icc bw vote is handled by opp framework */
-> +       if (!pcie->opp_supported) {
-> +               ret = qcom_pcie_icc_init(pcie);
-> +               if (ret)
-> +                       goto err_pm_runtime_put;
-> +       }
->
->         ret = pcie->cfg->ops->get_resources(pcie);
->         if (ret)
-> @@ -1561,7 +1618,7 @@ static int qcom_pcie_probe(struct platform_device *pdev)
->                 goto err_phy_exit;
->         }
->
-> -       qcom_pcie_icc_update(pcie);
-> +       qcom_pcie_icc_opp_update(pcie);
->
->         if (pcie->mhi)
->                 qcom_pcie_init_debugfs(pcie);
-> @@ -1640,7 +1697,7 @@ static int qcom_pcie_resume_noirq(struct device *dev)
->                 pcie->suspended = false;
->         }
->
-> -       qcom_pcie_icc_update(pcie);
-> +       qcom_pcie_icc_opp_update(pcie);
->
->         return 0;
->  }
->
-> --
-> 2.42.0
->
->
+ arch/arm/boot/dts/renesas/r8a7779-marzen.dts
+ arch/arm/boot/dts/renesas/r8a7779-marzen.dts
 
+But if you prefer it like this, I have nothing against.
 
--- 
-With best wishes
-Dmitry
+Just asking, do you have a particular reason for naming it like this?
+
+> 
+>> +               compatible = "gpio-keys";
+>> +
+>> +               key-1 {
+>> +                       interrupts = <RZG2L_GPIO(18, 0) IRQ_TYPE_EDGE_FALLING>;
+> 
+> Oh, the horror of interrupt controllers that don't support generating
+> interrupts on both edges...
+
+Yes.
+
+> 
+>> +                       interrupt-parent = <&pinctrl>;
+> 
+> ... and move these one level up, to avoid duplication?
+
+Moving it just near compatible will make the schema validation to fail with
+this (driver is working, though):
+
+arch/arm64/boot/dts/renesas/r9a08g045s33-smarc.dtb: keys:
+'interrupt-parent' does not match any of the regexes:
+'^(button|event|key|switch|(button|event|key|switch)-[a-z0-9-]+|[a-z0-9-]+-(button|event|key|switch))$',
+'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/input/gpio-keys.yaml#
+
+Thank  you,
+Claudiu Beznea
+
+> 
+>> +                       linux,code = <KEY_1>;
+>> +                       label = "USER_SW1";
+>> +                       wakeup-source;
+>> +                       debounce-interval = <20>;
+>> +               };
+>> +
+>> +               key-2 {
+>> +                       interrupts = <RZG2L_GPIO(0, 1) IRQ_TYPE_EDGE_FALLING>;
+>> +                       interrupt-parent = <&pinctrl>;
+>> +                       linux,code = <KEY_2>;
+>> +                       label = "USER_SW2";
+>> +                       wakeup-source;
+>> +                       debounce-interval = <20>;
+>> +               };
+>> +
+>> +               key-3 {
+>> +                       interrupts = <RZG2L_GPIO(0, 3) IRQ_TYPE_EDGE_FALLING>;
+>> +                       interrupt-parent = <&pinctrl>;
+>> +                       linux,code = <KEY_3>;
+>> +                       label = "USER_SW3";
+>> +                       wakeup-source;
+>> +                       debounce-interval = <20>;
+>> +               };
+>> +       };
+>> +
+>>         vcc_sdhi1: regulator-vcc-sdhi1 {
+>>                 compatible = "regulator-fixed";
+>>                 regulator-name = "SDHI1 Vcc";
+> 
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> i.e. will queue in renesas-devel for v6.9, with the above fixed.
+> 
+> Gr{oetje,eeting}s,
+> 
+>                         Geert
+> 
 
