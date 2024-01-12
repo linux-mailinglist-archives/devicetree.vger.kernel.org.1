@@ -1,184 +1,349 @@
-Return-Path: <devicetree+bounces-31762-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31763-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2783D82C7FC
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jan 2024 00:27:51 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 53B8D82C815
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jan 2024 00:44:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A63031F21BB5
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 23:27:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DD68F286EE3
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 23:44:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C29311A5AC;
-	Fri, 12 Jan 2024 23:27:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 380751A5B2;
+	Fri, 12 Jan 2024 23:44:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="GpKeeSJk"
+	dkim=pass (1024-bit key) header.d=atishpatra.org header.i=@atishpatra.org header.b="MlYt6vMR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
+Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com [209.85.208.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E3AF19BD9
-	for <devicetree@vger.kernel.org>; Fri, 12 Jan 2024 23:27:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-1d3ea8d0f9dso18805ad.1
-        for <devicetree@vger.kernel.org>; Fri, 12 Jan 2024 15:27:40 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 176CD1A5A7
+	for <devicetree@vger.kernel.org>; Fri, 12 Jan 2024 23:44:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=atishpatra.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=atishpatra.org
+Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-2cd33336b32so92467081fa.0
+        for <devicetree@vger.kernel.org>; Fri, 12 Jan 2024 15:44:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1705102060; x=1705706860; darn=vger.kernel.org;
+        d=atishpatra.org; s=google; t=1705103044; x=1705707844; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=OhEbbmE1Z6uLNZgCKtRC6woP3H/Wl1Wl1gQfP+v/DTY=;
-        b=GpKeeSJkCZabPz//ZzQG3Q9Fj6647KdFkn3BeMu/PqsKY8E3c3OMe4DQEYEmzeCC1T
-         5e8isa8rvrCAlKh79DGu/xQYsp8zKQ9vcH0H4NniBDKArVKaisIh+Evi4SQpuQukCf1Q
-         PiILjwXv7z36PuKY3q3TnZuOimTq/QKxxuWdjJgiCegnusj2j3PXtkuEGBJkVTp0nWLR
-         r5SMo3C99asJkRJ5Zji0xWUgAWWOd2R6Ca89PUa35krrzu+1/IwP7HwDWV5vni9/YckD
-         J96NI6+J8eTrhid388NlI0WiRNBZ3RpED4lF0VBTMrWrCbLwP1y1FzmLNLfGSBYehjAw
-         /9Jw==
+        bh=FKzoznfuhAU3mzAePIS1P1Z8bzedL+mTaXOxTBLMlgg=;
+        b=MlYt6vMRJ1Y5DSGSH8KdOy+/Pe1uqDWbAkXOcAPAil8kVVkXzjqeTLfxHuRnYPSZmg
+         qc28jO2jxMvBEjTK0GjAB1lxah/cj04CpN+D0h/iqrS3+GzxNPGRFLofg6Wa1FBjfYln
+         KmjzUAdRrXbCPM5VlEFzi64E1A2lCWdz0r2m4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705102060; x=1705706860;
+        d=1e100.net; s=20230601; t=1705103044; x=1705707844;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=OhEbbmE1Z6uLNZgCKtRC6woP3H/Wl1Wl1gQfP+v/DTY=;
-        b=JXssCUMAJ1C0ZrEpDCwn2wcNytROvtus/GaLMi0nPPzusF5ufHIXxvhPvppNgVG0Y9
-         A2THtF5MwUM3I9gn2No/qk43Rx/1hSs/QlBvUa/B4SFjVgVToyB+L7hdeQ1vvkoeL19P
-         50hzSGtn+nUib5UHTID24CPqf8oruskTAPMxTW6Uoh9ljfTYY+JGbGQy2/9F4qSnxBrS
-         mdsCe+6PFm1fiDEjVLjFUIrSlnZwh6DBAQzKC5jFUmT9NGdhhcp0LsOi+aowt5Wz6Ys6
-         apRCFhBEjb9fy2EgUJ7WPcJ8IBxTxRhA+lRTvyZpdnKNb8zggDaDpfazNQOyE/tiTx4G
-         2FZQ==
-X-Gm-Message-State: AOJu0YyzCHbeL4dzgob7G+9jSM6/IuZfJUczwntHexrYIAuwDZmrT00a
-	15O7Ehq2vWIgEJDoSUUJbf35rLs4thel7FZOkXf8wwJ1gCw=
-X-Google-Smtp-Source: AGHT+IFwwNVRgX+18llMY6Crrv0CZvMC6Ee5jLqPJn9RMR+jzSAJCxBI0rpUZIw0G2/SmU4oxB/NiR3hY1G0xancka4=
-X-Received: by 2002:a17:903:210d:b0:1d5:a791:ef1b with SMTP id
- o13-20020a170903210d00b001d5a791ef1bmr203692ple.1.1705102059466; Fri, 12 Jan
- 2024 15:27:39 -0800 (PST)
+        bh=FKzoznfuhAU3mzAePIS1P1Z8bzedL+mTaXOxTBLMlgg=;
+        b=btyfyeSiIQ652aM1nDOm8ztOhrDZjMt1+yYT13B1o4JZThHseRkPpwPn+MV+OY995u
+         Lgr/Jlp+m86DBkEbJJ0XazENsc+g8b43ALmJHn+hI9+rxPyuvQq6kDxtHffykvKWKq8i
+         M8qI1a9W5StBYeGkYNvzbecXqq6lxp0xJBpyLs37cEznbyDiAYWNFjP59C5/WY8avxyZ
+         o+XlBnVcyCT+GI/pUlHIMB8GTUabbNnhY281Opl9sAma/+j882uTlFqdgyu8BXAnTFvo
+         AnCQ4aoAq5ovtvkftB0F9VIZQgwE0YfaSwVJiciJrB0IDKxB4as/dcdWmZrRcVDxAG96
+         fQ1A==
+X-Gm-Message-State: AOJu0YxMZIgSaA9qoZp6TBXgZ21vI4TkeFIeo+Gc4IqUyN9E0vPr711C
+	AZalyT1wNl/pbWPwWNbuawnretZ9/BGAwSTSh5FPNsvByZLv
+X-Google-Smtp-Source: AGHT+IEuYhuaV0YfY7INlEFt2mMjJ+bbLhiRwxnYyuWvovTDvwX91aHjf1fNHKr+qqOgIt/FeATkjXnlLnqfQo777wg=
+X-Received: by 2002:a2e:b04b:0:b0:2cd:10be:cf1b with SMTP id
+ d11-20020a2eb04b000000b002cd10becf1bmr1260693ljl.12.1705103043924; Fri, 12
+ Jan 2024 15:44:03 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240112092014.23999-1-yong.wu@mediatek.com> <20240112092014.23999-4-yong.wu@mediatek.com>
- <CANDhNCrxpeqEhJD0xJzu3vm8a4jMXD2v+_dbDNvaKhLsLB5-4g@mail.gmail.com>
-In-Reply-To: <CANDhNCrxpeqEhJD0xJzu3vm8a4jMXD2v+_dbDNvaKhLsLB5-4g@mail.gmail.com>
-From: Jeffrey Kardatzke <jkardatzke@google.com>
-Date: Fri, 12 Jan 2024 15:27:27 -0800
-Message-ID: <CA+ddPcNdniUTpE_pJb-fL7+MHNSUZTkQojL48iqvW9JPr-Tc-g@mail.gmail.com>
-Subject: Re: [PATCH v4 3/7] dma-buf: heaps: restricted_heap: Add private heap ops
-To: John Stultz <jstultz@google.com>
-Cc: Yong Wu <yong.wu@mediatek.com>, Rob Herring <robh+dt@kernel.org>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, christian.koenig@amd.com, 
-	Sumit Semwal <sumit.semwal@linaro.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Benjamin Gaignard <benjamin.gaignard@collabora.com>, Brian Starkey <Brian.Starkey@arm.com>, 
-	tjmercier@google.com, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
-	Robin Murphy <robin.murphy@arm.com>, Vijayanand Jitta <quic_vjitta@quicinc.com>, 
-	Joakim Bech <joakim.bech@linaro.org>, Pavel Machek <pavel@ucw.cz>, Simon Ser <contact@emersion.fr>, 
-	Pekka Paalanen <ppaalanen@gmail.com>, jianjiao.zeng@mediatek.com, kuohong.wang@mediatek.com, 
-	youlin.pei@mediatek.com
+References: <20240110073917.2398826-1-peterlin@andestech.com>
+ <20240110073917.2398826-4-peterlin@andestech.com> <CAAhSdy1vsngrYj2tjUJqxepLEcz1zOFfYHvAvL4kqX4p62gnGA@mail.gmail.com>
+In-Reply-To: <CAAhSdy1vsngrYj2tjUJqxepLEcz1zOFfYHvAvL4kqX4p62gnGA@mail.gmail.com>
+From: Atish Patra <atishp@atishpatra.org>
+Date: Fri, 12 Jan 2024 15:43:51 -0800
+Message-ID: <CAOnJCULm0DOEkWZN6sXx-jGzZZaHsQ+H5=dvx15f2KsgfsMrPA@mail.gmail.com>
+Subject: Re: [PATCH v7 03/16] irqchip/riscv-intc: Introduce Andes hart-level
+ interrupt controller
+To: Anup Patel <anup@brainfault.org>
+Cc: Yu Chien Peter Lin <peterlin@andestech.com>, acme@kernel.org, adrian.hunter@intel.com, 
+	ajones@ventanamicro.com, alexander.shishkin@linux.intel.com, 
+	andre.przywara@arm.com, aou@eecs.berkeley.edu, conor+dt@kernel.org, 
+	conor.dooley@microchip.com, conor@kernel.org, devicetree@vger.kernel.org, 
+	dminus@andestech.com, evan@rivosinc.com, geert+renesas@glider.be, 
+	guoren@kernel.org, heiko@sntech.de, irogers@google.com, 
+	jernej.skrabec@gmail.com, jolsa@kernel.org, jszhang@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, linux-perf-users@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	linux-sunxi@lists.linux.dev, locus84@andestech.com, magnus.damm@gmail.com, 
+	mark.rutland@arm.com, mingo@redhat.com, n.shubin@yadro.com, 
+	namhyung@kernel.org, palmer@dabbelt.com, paul.walmsley@sifive.com, 
+	peterz@infradead.org, prabhakar.mahadev-lad.rj@bp.renesas.com, 
+	rdunlap@infradead.org, robh+dt@kernel.org, samuel@sholland.org, 
+	sunilvl@ventanamicro.com, tglx@linutronix.de, tim609@andestech.com, 
+	uwu@icenowy.me, wens@csie.org, will@kernel.org, ycliang@andestech.com, 
+	inochiama@outlook.com, chao.wei@sophgo.com, unicorn_wang@outlook.com, 
+	wefu@redhat.com, Randolph <randolph@andestech.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Jan 12, 2024 at 2:52=E2=80=AFPM John Stultz <jstultz@google.com> wr=
+On Wed, Jan 10, 2024 at 7:13=E2=80=AFAM Anup Patel <anup@brainfault.org> wr=
 ote:
 >
-> On Fri, Jan 12, 2024 at 1:21=E2=80=AFAM Yong Wu <yong.wu@mediatek.com> wr=
-ote:
+> On Wed, Jan 10, 2024 at 1:10=E2=80=AFPM Yu Chien Peter Lin
+> <peterlin@andestech.com> wrote:
 > >
-> > Add "struct restricted_heap_ops". For the restricted memory, totally th=
-ere
-> > are two steps:
-> > a) memory_alloc: Allocate the buffer in kernel;
-> > b) memory_restrict: Restrict/Protect/Secure that buffer.
-> > The memory_alloc is mandatory while memory_restrict is optinal since it=
- may
-> > be part of memory_alloc.
+> > Add support for the Andes hart-level interrupt controller. This
+> > controller provides interrupt mask/unmask functions to access the
+> > custom register (SLIE) where the non-standard S-mode local interrupt
+> > enable bits are located. The base of custom interrupt number is set
+> > to 256.
 > >
-> > Signed-off-by: Yong Wu <yong.wu@mediatek.com>
+> > To share the riscv_intc_domain_map() with the generic RISC-V INTC and
+> > ACPI, add a chip parameter to riscv_intc_init_common(), so it can be
+> > passed to the irq_domain_set_info() as a private data.
+> >
+> > Andes hart-level interrupt controller requires the "andestech,cpu-intc"
+> > compatible string to be present in interrupt-controller of cpu node to
+> > enable the use of custom local interrupt source.
+> > e.g.,
+> >
+> >   cpu0: cpu@0 {
+> >       compatible =3D "andestech,ax45mp", "riscv";
+> >       ...
+> >       cpu0-intc: interrupt-controller {
+> >           #interrupt-cells =3D <0x01>;
+> >           compatible =3D "andestech,cpu-intc", "riscv,cpu-intc";
+> >           interrupt-controller;
+> >       };
+> >   };
+> >
+> > Signed-off-by: Yu Chien Peter Lin <peterlin@andestech.com>
+> > Reviewed-by: Randolph <randolph@andestech.com>
+>
+> Looks good to me.
+>
+> Reviewed-by: Anup Patel <anup@brainfault.org>
+>
+> Regards,
+> Anup
+>
 > > ---
-> >  drivers/dma-buf/heaps/restricted_heap.c | 41 ++++++++++++++++++++++++-
-> >  drivers/dma-buf/heaps/restricted_heap.h | 12 ++++++++
-> >  2 files changed, 52 insertions(+), 1 deletion(-)
+> > Changes v1 -> v2:
+> >   - New patch
+> > Changes v2 -> v3:
+> >   - Return -ENXIO if no valid compatible INTC found
+> >   - Allow falling back to generic RISC-V INTC
+> > Changes v3 -> v4: (Suggested by Thomas [1])
+> >   - Add comment to andes irq chip function
+> >   - Refine code flow to share with generic RISC-V INTC and ACPI
+> >   - Move Andes specific definitions to include/linux/soc/andes/irq.h
+> > Changes v4 -> v5: (Suggested by Thomas)
+> >   - Fix commit message
+> >   - Subtract ANDES_SLI_CAUSE_BASE from d->hwirq to calculate the value =
+of mask
+> >   - Do not set chip_data to the chip itself with irq_domain_set_info()
+> >   - Follow reverse fir tree order variable declarations
+> > Changes v5 -> v6:
+> >   - To follow the naming on datasheet, rename ANDES_RV_IRQ_PMU to ANDES=
+_RV_IRQ_PMOVI
+> >   - Initialize the riscv_intc_* global variables for Andes INTC (Sugges=
+ted by Anup)
+> >   - Use BITS_PER_LONG to compute the bit mask of SIE/SLIE as they are 6=
+4-bit registers (32-bit for RV32)
+> > Changes v6 -> v7:
+> >   - No change
 > >
->
-> Thanks for sending this out! A thought below.
->
-> > diff --git a/drivers/dma-buf/heaps/restricted_heap.h b/drivers/dma-buf/=
-heaps/restricted_heap.h
-> > index 443028f6ba3b..ddeaf9805708 100644
-> > --- a/drivers/dma-buf/heaps/restricted_heap.h
-> > +++ b/drivers/dma-buf/heaps/restricted_heap.h
-> > @@ -15,6 +15,18 @@ struct restricted_buffer {
+> > [1] https://patchwork.kernel.org/project/linux-riscv/patch/202310191357=
+23.3657156-1-peterlin@andestech.com/
+> > ---
+> >  drivers/irqchip/irq-riscv-intc.c | 66 +++++++++++++++++++++++++++-----
+> >  include/linux/soc/andes/irq.h    | 18 +++++++++
+> >  2 files changed, 74 insertions(+), 10 deletions(-)
+> >  create mode 100644 include/linux/soc/andes/irq.h
 > >
-> >  struct restricted_heap {
-> >         const char              *name;
+> > diff --git a/drivers/irqchip/irq-riscv-intc.c b/drivers/irqchip/irq-ris=
+cv-intc.c
+> > index b13a16b164c9..7064857f1f1d 100644
+> > --- a/drivers/irqchip/irq-riscv-intc.c
+> > +++ b/drivers/irqchip/irq-riscv-intc.c
+> > @@ -17,6 +17,7 @@
+> >  #include <linux/module.h>
+> >  #include <linux/of.h>
+> >  #include <linux/smp.h>
+> > +#include <linux/soc/andes/irq.h>
+> >
+> >  static struct irq_domain *intc_domain;
+> >  static unsigned int riscv_intc_nr_irqs __ro_after_init;
+> > @@ -49,6 +50,31 @@ static void riscv_intc_irq_unmask(struct irq_data *d=
+)
+> >         csr_set(CSR_IE, BIT(d->hwirq));
+> >  }
+> >
+> > +static void andes_intc_irq_mask(struct irq_data *d)
+> > +{
+> > +       /*
+> > +        * Andes specific S-mode local interrupt causes (hwirq)
+> > +        * are defined as (256 + n) and controlled by n-th bit
+> > +        * of SLIE.
+> > +        */
+> > +       unsigned int mask =3D BIT(d->hwirq % BITS_PER_LONG);
 > > +
-> > +       const struct restricted_heap_ops *ops;
-> > +};
+> > +       if (d->hwirq < ANDES_SLI_CAUSE_BASE)
+> > +               csr_clear(CSR_IE, mask);
+> > +       else
+> > +               csr_clear(ANDES_CSR_SLIE, mask);
+> > +}
 > > +
-> > +struct restricted_heap_ops {
-> > +       int     (*heap_init)(struct restricted_heap *heap);
+> > +static void andes_intc_irq_unmask(struct irq_data *d)
+> > +{
+> > +       unsigned int mask =3D BIT(d->hwirq % BITS_PER_LONG);
 > > +
-> > +       int     (*memory_alloc)(struct restricted_heap *heap, struct re=
-stricted_buffer *buf);
-> > +       void    (*memory_free)(struct restricted_heap *heap, struct res=
-tricted_buffer *buf);
+> > +       if (d->hwirq < ANDES_SLI_CAUSE_BASE)
+> > +               csr_set(CSR_IE, mask);
+> > +       else
+> > +               csr_set(ANDES_CSR_SLIE, mask);
+> > +}
 > > +
-> > +       int     (*memory_restrict)(struct restricted_heap *heap, struct=
- restricted_buffer *buf);
-> > +       void    (*memory_unrestrict)(struct restricted_heap *heap, stru=
-ct restricted_buffer *buf);
+> >  static void riscv_intc_irq_eoi(struct irq_data *d)
+> >  {
+> >         /*
+> > @@ -72,12 +98,21 @@ static struct irq_chip riscv_intc_chip =3D {
+> >         .irq_eoi =3D riscv_intc_irq_eoi,
 > >  };
 > >
-> >  int restricted_heap_add(struct restricted_heap *rstrd_heap);
->
-> So, I'm a little worried here, because you're basically turning the
-> restricted_heap dma-buf heap driver into a framework itself.
-> Where this patch is creating a subdriver framework.
->
-> Part of my hesitancy, is you're introducing this under the dma-buf
-> heaps. For things like CMA, that's more of a core subsystem that has
-> multiple users, and exporting cma buffers via dmabuf heaps is just an
-> additional interface.  What I like about that is the core kernel has
-> to define the semantics for the memory type and then the dmabuf heap
-> is just exporting that well understood type of buffer.
->
-> But with these restricted buffers, I'm not sure there's yet a well
-> understood set of semantics nor a central abstraction for that which
-> other drivers use directly.
->
-> I know part of this effort here is to start to centralize all these
-> vendor specific restricted buffer implementations, which I think is
-> great, but I just worry that in doing it in the dmabuf heap interface,
-> it is a bit too user-facing. The likelihood of encoding a particular
-> semantic to the singular "restricted_heap" name seems high.
+> > +static struct irq_chip andes_intc_chip =3D {
+> > +       .name           =3D "RISC-V INTC",
+> > +       .irq_mask       =3D andes_intc_irq_mask,
+> > +       .irq_unmask     =3D andes_intc_irq_unmask,
+> > +       .irq_eoi        =3D riscv_intc_irq_eoi,
+> > +};
+> > +
+> >  static int riscv_intc_domain_map(struct irq_domain *d, unsigned int ir=
+q,
+> >                                  irq_hw_number_t hwirq)
+> >  {
+> > +       struct irq_chip *chip =3D d->host_data;
+> > +
+> >         irq_set_percpu_devid(irq);
+> > -       irq_domain_set_info(d, irq, hwirq, &riscv_intc_chip, d->host_da=
+ta,
+> > -                           handle_percpu_devid_irq, NULL, NULL);
+> > +       irq_domain_set_info(d, irq, hwirq, chip, NULL, handle_percpu_de=
+vid_irq,
+> > +                           NULL, NULL);
+> >
+> >         return 0;
+> >  }
+> > @@ -123,11 +158,12 @@ static struct fwnode_handle *riscv_intc_hwnode(vo=
+id)
+> >         return intc_domain->fwnode;
+> >  }
+> >
+> > -static int __init riscv_intc_init_common(struct fwnode_handle *fn)
+> > +static int __init riscv_intc_init_common(struct fwnode_handle *fn,
+> > +                                        struct irq_chip *chip)
+> >  {
+> >         int rc;
+> >
+> > -       intc_domain =3D irq_domain_create_tree(fn, &riscv_intc_domain_o=
+ps, NULL);
+> > +       intc_domain =3D irq_domain_create_tree(fn, &riscv_intc_domain_o=
+ps, chip);
+> >         if (!intc_domain) {
+> >                 pr_err("unable to add IRQ domain\n");
+> >                 return -ENXIO;
+> > @@ -152,8 +188,9 @@ static int __init riscv_intc_init_common(struct fwn=
+ode_handle *fn)
+> >  static int __init riscv_intc_init(struct device_node *node,
+> >                                   struct device_node *parent)
+> >  {
+> > -       int rc;
+> > +       struct irq_chip *chip;
+> >         unsigned long hartid;
+> > +       int rc;
+> >
+> >         rc =3D riscv_of_parent_hartid(node, &hartid);
+> >         if (rc < 0) {
+> > @@ -178,14 +215,23 @@ static int __init riscv_intc_init(struct device_n=
+ode *node,
+> >                 return 0;
+> >         }
+> >
+> > -       riscv_intc_nr_irqs =3D BITS_PER_LONG;
+> > -       riscv_intc_custom_base =3D riscv_intc_nr_irqs;
+> > -       riscv_intc_custom_nr_irqs =3D 0;
+> > +       if (of_device_is_compatible(node, "andestech,cpu-intc")) {
+> > +               riscv_intc_nr_irqs =3D BITS_PER_LONG;
+> > +               riscv_intc_custom_base =3D ANDES_SLI_CAUSE_BASE;
+> > +               riscv_intc_custom_nr_irqs =3D ANDES_RV_IRQ_LAST;
+> > +               chip =3D &andes_intc_chip;
 
-In patch #5 it has the actual driver implementation for the MTK heap
-that includes the heap name of "restricted_mtk_cm", so there shouldn't
-be a heap named "restricted_heap" that's actually getting exposed. The
-restricted_heap code is a framework, and not a driver itself.  Unless
-I'm missing something in this patchset...but that's the way it's
-*supposed* to be.
+There may be similar usage of custom interrupt space in the future as
+well. I think it will be better if we define a generic structure and
+vendor
+specific registration mechanism based on compatible strings. This will
+avoid a bunch of if else blocks here.
 
->
-> Similarly we might run into systems with multiple types of restricted
-> buffers (imagine a discrete gpu having one type along with TEE
-> protected buffers also being used on the same system).
->
-> So the one question I have: Why not just have a mediatek specific
-> restricted_heap dmabuf heap driver?  Since there's already been some
-> talk of slight semantic differences in various restricted buffer
-> implementations, should we just start with separately named dmabuf
-> heaps for each? Maybe consolidating to a common name as more drivers
-> arrive and we gain a better understanding of the variations of
-> semantics folks are using?
->
-> thanks
-> -john
+> > +       } else {
+> > +               riscv_intc_nr_irqs =3D BITS_PER_LONG;
+> > +               riscv_intc_custom_base =3D riscv_intc_nr_irqs;
+> > +               riscv_intc_custom_nr_irqs =3D 0;
+> > +               chip =3D &riscv_intc_chip;
+> > +       }
+> >
+> > -       return riscv_intc_init_common(of_node_to_fwnode(node));
+> > +       return riscv_intc_init_common(of_node_to_fwnode(node), chip);
+> >  }
+> >
+> >  IRQCHIP_DECLARE(riscv, "riscv,cpu-intc", riscv_intc_init);
+> > +IRQCHIP_DECLARE(andes, "andestech,cpu-intc", riscv_intc_init);
+> >
+> >  #ifdef CONFIG_ACPI
+> >
+> > @@ -212,7 +258,7 @@ static int __init riscv_intc_acpi_init(union acpi_s=
+ubtable_headers *header,
+> >                 return -ENOMEM;
+> >         }
+> >
+> > -       return riscv_intc_init_common(fn);
+> > +       return riscv_intc_init_common(fn, &riscv_intc_chip);
+> >  }
+> >
+> >  IRQCHIP_ACPI_DECLARE(riscv_intc, ACPI_MADT_TYPE_RINTC, NULL,
+> > diff --git a/include/linux/soc/andes/irq.h b/include/linux/soc/andes/ir=
+q.h
+> > new file mode 100644
+> > index 000000000000..edc3182d6e66
+> > --- /dev/null
+> > +++ b/include/linux/soc/andes/irq.h
+> > @@ -0,0 +1,18 @@
+> > +/* SPDX-License-Identifier: GPL-2.0-only */
+> > +/*
+> > + * Copyright (C) 2023 Andes Technology Corporation
+> > + */
+> > +#ifndef __ANDES_IRQ_H
+> > +#define __ANDES_IRQ_H
+> > +
+> > +/* Andes PMU irq number */
+> > +#define ANDES_RV_IRQ_PMOVI             18
+> > +#define ANDES_RV_IRQ_LAST              ANDES_RV_IRQ_PMOVI
+> > +#define ANDES_SLI_CAUSE_BASE           256
+> > +
+> > +/* Andes PMU related registers */
+> > +#define ANDES_CSR_SLIE                 0x9c4
+> > +#define ANDES_CSR_SLIP                 0x9c5
+> > +#define ANDES_CSR_SCOUNTEROF           0x9d4
+> > +
+> > +#endif /* __ANDES_IRQ_H */
+> > --
+> > 2.34.1
+> >
+
+
+
+--=20
+Regards,
+Atish
 
