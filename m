@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-31735-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31736-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2576582C4F7
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 18:45:21 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 900EA82C4FD
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 18:46:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 216211C2214D
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 17:45:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A11511C21C75
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 17:46:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A091317C90;
-	Fri, 12 Jan 2024 17:44:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A48017C90;
+	Fri, 12 Jan 2024 17:46:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Srid6E8Q"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wmRKJ2Re"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F412217BDD
-	for <devicetree@vger.kernel.org>; Fri, 12 Jan 2024 17:44:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D67A117C84
+	for <devicetree@vger.kernel.org>; Fri, 12 Jan 2024 17:46:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-33770772136so3372040f8f.3
-        for <devicetree@vger.kernel.org>; Fri, 12 Jan 2024 09:44:29 -0800 (PST)
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-40e6a93e09aso106555e9.1
+        for <devicetree@vger.kernel.org>; Fri, 12 Jan 2024 09:46:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1705081468; x=1705686268; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1705081576; x=1705686376; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=hKEv7YOJq5Zdj/IPrmRwmsM2kCNywg3/rkvBbxiaV8k=;
-        b=Srid6E8QYLtlcgo9RNQSmPX1IHsum8dVw5E0Wzig2aQvSZ38v4IdTvv/m2CCnW35d6
-         LlgH7jDbidY3DRb2jI4iLR8TYGeN0ySTf1s9mZWhVUZ6KkdTkeQTcd7CxO+R5RX9Cjx4
-         dy0EDQ8/NPpAsgLAO1VNfPzWnkJxBxSpyPjmJpS6jZyTVXuautzSz2kngSGcnmL+3XHM
-         5fKhx6GH2hUrUfGfPQLMLkyA9aQzH7u1oQsJkomyBtf47jHgH8bKWTzep5Gi1A1gA2g5
-         bFqSS3HOg8KGR2KDUVP3wilJNscPp9HkRYm6Js+SrdWonwbpzLs9KBWD2nyzyEEpWR0m
-         TNkQ==
+        bh=dl7S1NAFZ0VMy5uxses/Ge8AyRzyd0KPqbKc6GY+0fA=;
+        b=wmRKJ2Rev5W/WEyud0eFZy0GVSndxeKJ6NtKpURIvN9jDVijc9YUjrKiGxFdxYfuMx
+         GIWq+9uHD8+5I1AmQoLP5LCk43vzvceVgA98MGvg2UBhdEQrmMkT5037h3efEWoR2LQY
+         Fg5CUKsUFbfIK9+6CGXkP29xj/0MRGRiGGoyi0//d6hBNqaZibjdp+WVfvoBjXp0bZoB
+         NefBWYziu9K0G4g2FvMIzdd2Dt+O3YLi+MEufsY0GmwVE6TRbWjGvjDppiXf8kJaUzm7
+         uHy7n60KA9C8EF4soy3wC8j918E7pUJLpyvutw/dkCXRVClqwSOGGp/FnC7nivN7eXFT
+         F6Pw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705081468; x=1705686268;
+        d=1e100.net; s=20230601; t=1705081576; x=1705686376;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=hKEv7YOJq5Zdj/IPrmRwmsM2kCNywg3/rkvBbxiaV8k=;
-        b=bGWrOwOvgbq71kfY2iL/L8M5/PjCCaVm4WVoebjuIzwO8QSLk3MYeGBAcyDc+yudRk
-         cX3WyVjiPMfOdmA6oCzx9WL57F8zTYFq9hsbwzcXopp0nUY30RoMyzUJEHFm/xvWLdZQ
-         RR/uO9sEMBbU+S1FlZ47nWLm9MrRaaoTkfoKR+W11FcabQpnbPBto4OGfF8vDSXADGFh
-         AMBE32MUa4Wpazs+yD/14D2eVNkA7uejUmj/iG0nfYqkE8bKpHKIlewZLhcfB2icF8r3
-         krj9qxs/xlyBOAPbKDmVljPj3A1l0mDn4Vl/yCrqJD2QA9PI0uVNRzXrGonBh2U/Wcgq
-         s8jg==
-X-Gm-Message-State: AOJu0YxePKC6yvB8ANK91mchSsuQqalb1x6VDcI62OnRQevzbDo/tLLY
-	BdouPQcHJk96Kn0WERLJ5OsGGUh3B8e8wg==
-X-Google-Smtp-Source: AGHT+IFMr4GNXrnSPMkWmc3f2JQ62mkSCD8u7fOdW9UxTugAVZyexcZuIyp3jIfTHX+CQKKxlnNoKA==
-X-Received: by 2002:a5d:5234:0:b0:337:6a69:e8e with SMTP id i20-20020a5d5234000000b003376a690e8emr1045154wra.84.1705081468320;
-        Fri, 12 Jan 2024 09:44:28 -0800 (PST)
+        bh=dl7S1NAFZ0VMy5uxses/Ge8AyRzyd0KPqbKc6GY+0fA=;
+        b=BRTMKFirrgDyolid/MmRc7cCvNsBCOiv8VGgXemFBizO7XG3sY6snM+9qZ6+Y4rIiM
+         Vcr+QLFd0iVc+vZ3bbCKDQLE8UGRsuopRIYOB3o2DSOgQ+nOmPnrx8QuUEi7E9I6aiUZ
+         1Mug/qZQTVOiiGtdrhXZZyCueYEYsMBPyc4v+btfivAiBADdnCP9ItrDV5YyoAmuhPPZ
+         s0Qz4DYgia199A2OPwVybgJRe0RXiyzvEeEESZN2tnmSeYJT5CJlKykKiPD5f5usR/ll
+         mmT+t2hj161H0tzjsbN//sdHeURoDy1tcfe1ty6qbvV4j1Q2YTkUf//kNDaXnixAL01N
+         alNA==
+X-Gm-Message-State: AOJu0YyKJGpmhOHXezgygki6MQ5DvBJReZ/RHtfAw7F17eM8P0Ws/9Bn
+	TuT8owrpiKrSoDgsH/dzC/zVtB8hJSbGEQ==
+X-Google-Smtp-Source: AGHT+IExNXnfteMV9BfxGzW28CNSMTJA6onBUh7HAdDLcbMAaUD6Z8XAylVAdNrCWD7kP3WcBIbblQ==
+X-Received: by 2002:a1c:7510:0:b0:40e:4244:c01b with SMTP id o16-20020a1c7510000000b0040e4244c01bmr750213wmc.7.1705081576064;
+        Fri, 12 Jan 2024 09:46:16 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.223.112])
-        by smtp.gmail.com with ESMTPSA id b7-20020adfe647000000b0033763a9ea2dsm4462856wrn.63.2024.01.12.09.44.27
+        by smtp.gmail.com with ESMTPSA id c8-20020a05600c0a4800b0040e4746d80fsm6513363wmq.19.2024.01.12.09.46.14
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 12 Jan 2024 09:44:27 -0800 (PST)
-Message-ID: <0ba3e9aa-4546-461a-a90b-0c99bfa9da48@linaro.org>
-Date: Fri, 12 Jan 2024 18:44:26 +0100
+        Fri, 12 Jan 2024 09:46:15 -0800 (PST)
+Message-ID: <61df52a3-860f-4813-9a71-72ab6be2d559@linaro.org>
+Date: Fri, 12 Jan 2024 18:46:13 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,18 +66,26 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: rockchip: Add Hardkernel ODROID-M1S
+Subject: Re: [PATCH v1 1/2] dt-bindings: arm: nuvoton: add Facebook Yosemite 4
  board
 Content-Language: en-US
-To: KyuHyuk Lee <lee@kyuhyuk.kr>, Rob Herring <robh+dt@kernel.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Chris Morgan <macromorgan@hotmail.com>, Jagan Teki <jagan@edgeble.ai>,
- Tianling Shen <cnsztl@gmail.com>, Andy Yan <andyshrk@163.com>,
- Ondrej Jirman <megi@xff.cz>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+To: Patrick Williams <patrick@stwcx.xyz>
+Cc: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>,
+ Avi Fishman <avifishman70@gmail.com>, Tomer Maimon <tmaimon77@gmail.com>,
+ Tali Perry <tali.perry1@gmail.com>, Patrick Venture <venture@google.com>,
+ Nancy Yuen <yuenn@google.com>, Benjamin Fair <benjaminfair@google.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ =?UTF-8?Q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+ openbmc@lists.ozlabs.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org
-References: <20240112134230.28055-1-lee@kyuhyuk.kr>
+References: <20240112013654.1424451-1-Delphine_CC_Chiu@wiwynn.com>
+ <20240112013654.1424451-2-Delphine_CC_Chiu@wiwynn.com>
+ <8efef092-e70f-46c0-a60a-e62e676d6eb2@linaro.org>
+ <ZaFydbPxbeczo97t@heinlein.vulture-banana.ts.net>
+ <c0a83358-09a3-4c51-b8b6-6d6ea8b4f196@linaro.org>
+ <ZaF56lwEi1MES89Q@heinlein.vulture-banana.ts.net>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -123,19 +131,49 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240112134230.28055-1-lee@kyuhyuk.kr>
+In-Reply-To: <ZaF56lwEi1MES89Q@heinlein.vulture-banana.ts.net>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 12/01/2024 14:42, KyuHyuk Lee wrote:
-> Add device tree binding for Hardkernel ODROID-M1S board based on
-> RK3566 SoC.
+On 12/01/2024 18:42, Patrick Williams wrote:
+> On Fri, Jan 12, 2024 at 06:14:26PM +0100, Krzysztof Kozlowski wrote:
+>> On 12/01/2024 18:10, Patrick Williams wrote:
+>>> On Fri, Jan 12, 2024 at 08:10:25AM +0100, Krzysztof Kozlowski wrote:
+>>>> On 12/01/2024 02:36, Delphine CC Chiu wrote:
+>>>>> Document the new compatibles used on Facebook Yosemite 4.
+>>>>
+>>>> There is Yosemite4 board already supported. What is this for?
+>>>> https://lore.kernel.org/all/20240109072053.3980855-5-Delphine_CC_Chiu@wiwynn.com/
+>>>
+>>> Yosemite4 is a server chassis which is managed by a BMC.  The BMC is on
+>>> a pluggable module card.  Typically we've used Aspeed chips for this,
+>>> but we are building an alternative BMC module using Nuvoton BMC chips.
+>>
+>> There are few ways to solve this, like having different compatibles or
+>> having some shared compatibles to note common part of hardware. However
+>> usually the final compatible represents the final device, which here you
+>> use for two entirely different products. This works only for the cases
+>> of carrier boards, where that compatible indeed represents the same
+>> hardware.
+>>
+>> Not your case. This needs fixing.
 > 
-> Signed-off-by: KyuHyuk Lee <lee@kyuhyuk.kr>
+> This patch:
+> +	model = "Facebook Yosemite 4 BMC";
+> +	compatible = "facebook,yosemite4-n-bmc", "nuvoton,npcm845";
+> 
+> Aspeed patch:
+> +       model = "Facebook Yosemite 4 BMC";
+> +       compatible = "facebook,yosemite4-bmc", "aspeed,ast2600";
+> 
+> These have different compatibles already ('-n' for Nuvoton).  Do we just
+> need the model to be clearly different also?  Maybe there is something
+> else I'm not understanding.
 
-Your system bounces emails from Conor, so just formality:
+Ah, no, it's fine. It is just a bit confusing.
 
-Fix the vendor prefix.
+However commit msg for sure misses a lot of this explanation. Please
+write something useful to avoid such discussions...
 
 Best regards,
 Krzysztof
