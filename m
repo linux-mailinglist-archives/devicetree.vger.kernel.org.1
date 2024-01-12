@@ -1,138 +1,170 @@
-Return-Path: <devicetree+bounces-31541-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31542-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CAF3682BC46
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 09:15:31 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1425A82BC59
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 09:27:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7A0D5285F75
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 08:15:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A0A151C24F1E
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 08:27:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 034015D752;
-	Fri, 12 Jan 2024 08:15:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72FEA5D8E2;
+	Fri, 12 Jan 2024 08:27:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nTrfIg57"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="ZrmsPGJb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from IND01-BMX-obe.outbound.protection.outlook.com (mail-bmxind01olkn2091.outbound.protection.outlook.com [40.92.103.91])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FD7C5D74B
-	for <devicetree@vger.kernel.org>; Fri, 12 Jan 2024 08:15:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-3376d424a79so4149513f8f.1
-        for <devicetree@vger.kernel.org>; Fri, 12 Jan 2024 00:15:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1705047324; x=1705652124; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=LdZ2A7dsvgQXBYeHWuarmaG+1syVTAwg3jfZxPSOceA=;
-        b=nTrfIg57vDFGIW2nev0nIrUkLuYyJmqd3Be9AMB47sHSEJ9qLI8yR8RrA2zIfIhtoy
-         8EelnER7CCzCpHKrTyQkVkCWryBMpcPbbkPGZBQL6CIv+zd09Pm1wodYgGZPrvxe2rQo
-         4KXkEqUAAOt+CR8Se4hbgF8eCQGcgy41Jz8LxSNtJlLl/csRm0YoIGEGurAhG9FBhpNY
-         yzGXkIt4pvvZGhoauKpiKJc7BybWAKsD0eDoX+siRdQbu2dj+WXe1lgShkjSoWo9ma6P
-         NhrXmhy2cngBxRcTANIm8c1fz27PfSR3DXzIU01duxSP4VObZRIVtjZZ0rWOJVVaOqxh
-         ruVg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705047324; x=1705652124;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=LdZ2A7dsvgQXBYeHWuarmaG+1syVTAwg3jfZxPSOceA=;
-        b=nBodpA6bAz2mLmXJw0maoBqK/6UIbwWNyoddKD5QlESZ1mqYqQUdbWhkHmstwdPHDg
-         2Dl+iVDamvi6DS2ATxLDc7OThWO0jomAQIaPiZCj9YDNcOZmp0RMtZpzqXeT0/AqtGn/
-         z4H4iYivelYtII8kDd2cXpXcCjIExcdkl3ZgO0Q+yfc3KUulEKdU/m+rL26evAHOHk9o
-         VR8aOw9w6BwV7WREsKMs5f7b1Ck8LPdOaFRNJ5ir40JjRxA3yTo8nNHlpwMxLVX3ywnu
-         6oGrzMw81Lb9YzSIp2QRlw7wuVtWtK80KhHe5DX4u5tYPlqLHcaL8xwl1ZM/yvMztgk2
-         7kJQ==
-X-Gm-Message-State: AOJu0Yz48RrFFAPIfCDc9pgdovOmh94taCh2W03sBn/nZ/KAZZY8ICC9
-	35dSgksm7OArhIHxgWbGREwh1jwTxsXtsw==
-X-Google-Smtp-Source: AGHT+IFOKe1PRp7Z0l54PGVgTBC9V5JuMIp1OeyxyDbdA7WriL32ihY1AnHGT1UHVJkF8k536FU7Bg==
-X-Received: by 2002:a5d:5f4b:0:b0:337:4a10:de9 with SMTP id cm11-20020a5d5f4b000000b003374a100de9mr454411wrb.120.1705047323687;
-        Fri, 12 Jan 2024 00:15:23 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.223.112])
-        by smtp.gmail.com with ESMTPSA id f6-20020adfb606000000b00336aa190139sm3150070wre.5.2024.01.12.00.15.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 12 Jan 2024 00:15:23 -0800 (PST)
-Message-ID: <99d3821d-734f-47ac-b81a-2f7790449660@linaro.org>
-Date: Fri, 12 Jan 2024 09:15:21 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFB525D8E0;
+	Fri, 12 Jan 2024 08:27:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Z8YpJRzh9wOXr1Jn5CoB/HzEtWvEFSsDJTUN9NkjBAONpLUdDC7y1XM2RAVY7A5/xJqj7G+lVncCx1MGs9v0AuDUqlz9bs4K2L+D9P5d2phtTueI57inJAxkv/o07WKgLCwdc/D7krMYg9NJYAFQSNOSnJxKxKfwnzeEAbAC2BlUFKTb66a1MD53YhMrp635DckLJADixSi1NuV+zCHwXrNXIi4yTyb99fVcAqbtbhWc5SgCYC9pb0JpdPwatmLOQldofW/DAjtMASFbh0FsKNVbRu1L8JIPhIbq+36iBpo21pHBH1dv+ghyt17bOtbX6FnmtDR4hidEfY+0kJPsQA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=DaTJdTg3B12wrLgbWoklTTxqPQ7XQJLsmTt/80ssg0Y=;
+ b=Nog92v51G29dQLGTzjVGbdxUWfV1lU2snZkfWALRsaZKGjn9tVFpLtLR11I4B1O+BKet7hbxiuCKjXjXh9IvhaZfQq5OUoSxOBom0iRM6abIcrXuTVmlViqdsUO9U2OcQygxMhT6u64AKrxJiiM6CwG+HUKfXIX+5fSocNZG863bo9BMjau/FXoeiPDl/0Y4ZOMzw5tk2n+VcrSlSp+HDgotH/U/9j57dB6yIrDupJVVGdPM2IqRMJGlYU+zhQRu/V97k00m4uH8+9h6z3mIouFvJhGSFQdbbe6NbWS9OXRoUpRXA9jzGz+HHQv10uyMMBrHahdW6lT4BY9Elp+ejA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=DaTJdTg3B12wrLgbWoklTTxqPQ7XQJLsmTt/80ssg0Y=;
+ b=ZrmsPGJb75h/5NxvGHTMjLQPcTw/uyqjbw1k9NTGaQvOvXHvMbMxz93befVKwW7EdI+4N2qgcWUk0yQ2IR3k6+zniUjMJGyCWuJ/lHkt4Y0Au0xB4+MEjq+oo4VcqoprhwzNk/5acNfJBBboHtcapBgmwZqYYlHF43yCYjdku9RzY/zHpZZ7Qfu1l7PueZwwgTWHGvGLlq8EGD5t08Pb9lYY23pPkMpG/iyZPRlmjvUQsMnvS9BPOdFfXHLynCDOSiek9faimKC5jcfNOkeaUleKd4Sjz0rfYi8hwxUMv1NffznxBbNJB7pjmYJCX8x0bfwv/UPPxw3L5t17YSc4ng==
+Received: from MA0P287MB2822.INDP287.PROD.OUTLOOK.COM (2603:1096:a01:138::5)
+ by PN2P287MB1503.INDP287.PROD.OUTLOOK.COM (2603:1096:c01:1b4::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7181.21; Fri, 12 Jan
+ 2024 08:27:38 +0000
+Received: from MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
+ ([fe80::6e80:69e1:f2e7:d70d]) by MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
+ ([fe80::6e80:69e1:f2e7:d70d%3]) with mapi id 15.20.7181.020; Fri, 12 Jan 2024
+ 08:27:38 +0000
+Message-ID:
+ <MA0P287MB282243605EB9824657607192FE6F2@MA0P287MB2822.INDP287.PROD.OUTLOOK.COM>
+Date: Fri, 12 Jan 2024 16:27:34 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 2/4] dt-bindings: clock: sophgo: support SG2042
+To: Conor Dooley <conor.dooley@microchip.com>
+Cc: Conor Dooley <conor@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Chen Wang <unicornxw@gmail.com>, aou@eecs.berkeley.edu, chao.wei@sophgo.com,
+ krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
+ palmer@dabbelt.com, paul.walmsley@sifive.com, richardcochran@gmail.com,
+ robh+dt@kernel.org, sboyd@kernel.org, devicetree@vger.kernel.org,
+ linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-riscv@lists.infradead.org, haijiao.liu@sophgo.com,
+ xiaoguang.xing@sophgo.com, guoren@kernel.org, jszhang@kernel.org,
+ inochiama@outlook.com, samuel.holland@sifive.com
+References: <cover.1704694903.git.unicorn_wang@outlook.com>
+ <925d99d5b4ece01337cb3389aaea4b631894dd1d.1704694903.git.unicorn_wang@outlook.com>
+ <f88b79c3-e44b-4136-ae56-10e1f2502e2d@linaro.org>
+ <MA0P287MB2822C7A3C1DC7786708E860BFE692@MA0P287MB2822.INDP287.PROD.OUTLOOK.COM>
+ <20240110-untoasted-underfed-fe81479506f6@spud>
+ <MA0P287MB282224A6097B4FCCF721C89AFE682@MA0P287MB2822.INDP287.PROD.OUTLOOK.COM>
+ <20240111-jolly-prize-930931cc648a@spud>
+ <MA0P287MB28229BCC9EA83507B99A9F3BFE6F2@MA0P287MB2822.INDP287.PROD.OUTLOOK.COM>
+ <20240112-overhead-disallow-8c2a4b97c36c@wendy>
+From: Chen Wang <unicorn_wang@outlook.com>
+In-Reply-To: <20240112-overhead-disallow-8c2a4b97c36c@wendy>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-TMN: [epeMN3zhYM4oTnqhGvcLMZ0RAL63rvUA]
+X-ClientProxiedBy: SGXP274CA0007.SGPP274.PROD.OUTLOOK.COM (2603:1096:4:b8::19)
+ To MA0P287MB2822.INDP287.PROD.OUTLOOK.COM (2603:1096:a01:138::5)
+X-Microsoft-Original-Message-ID:
+ <db25cd73-fe54-4e91-95fd-56e4245fa5d7@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/4] dt-bindings: media: add Maxim MAX96714F GMSL2
- Deserializer
-Content-Language: en-US
-To: Julien Massot <julien.massot@collabora.com>, linux-media@vger.kernel.org
-Cc: kernel@collabora.com, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, mchehab@kernel.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
-References: <20240111130349.2776699-1-julien.massot@collabora.com>
- <20240111130349.2776699-3-julien.massot@collabora.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzTRLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+wsGUBBMBCgA+FiEE
- m9B+DgxR+NWWd7dUG5NDfTtBYpsFAmI+BxMCGwMFCRRfreEFCwkIBwIGFQoJCAsCBBYCAwEC
- HgECF4AACgkQG5NDfTtBYptgbhAAjAGunRoOTduBeC7V6GGOQMYIT5n3OuDSzG1oZyM4kyvO
- XeodvvYv49/ng473E8ZFhXfrre+c1olbr1A8pnz9vKVQs9JGVa6wwr/6ddH7/yvcaCQnHRPK
- mnXyP2BViBlyDWQ71UC3N12YCoHE2cVmfrn4JeyK/gHCvcW3hUW4i5rMd5M5WZAeiJj3rvYh
- v8WMKDJOtZFXxwaYGbvFJNDdvdTHc2x2fGaWwmXMJn2xs1ZyFAeHQvrp49mS6PBQZzcx0XL5
- cU9ZjhzOZDn6Apv45/C/lUJvPc3lo/pr5cmlOvPq1AsP6/xRXsEFX/SdvdxJ8w9KtGaxdJuf
- rpzLQ8Ht+H0lY2On1duYhmro8WglOypHy+TusYrDEry2qDNlc/bApQKtd9uqyDZ+rx8bGxyY
- qBP6bvsQx5YACI4p8R0J43tSqWwJTP/R5oPRQW2O1Ye1DEcdeyzZfifrQz58aoZrVQq+innR
- aDwu8qDB5UgmMQ7cjDSeAQABdghq7pqrA4P8lkA7qTG+aw8Z21OoAyZdUNm8NWJoQy8m4nUP
- gmeeQPRc0vjp5JkYPgTqwf08cluqO6vQuYL2YmwVBIbO7cE7LNGkPDA3RYMu+zPY9UUi/ln5
- dcKuEStFZ5eqVyqVoZ9eu3RTCGIXAHe1NcfcMT9HT0DPp3+ieTxFx6RjY3kYTGLOwU0EVUNc
- NAEQAM2StBhJERQvgPcbCzjokShn0cRA4q2SvCOvOXD+0KapXMRFE+/PZeDyfv4dEKuCqeh0
- hihSHlaxTzg3TcqUu54w2xYskG8Fq5tg3gm4kh1Gvh1LijIXX99ABA8eHxOGmLPRIBkXHqJY
- oHtCvPc6sYKNM9xbp6I4yF56xVLmHGJ61KaWKf5KKWYgA9kfHufbja7qR0c6H79LIsiYqf92
- H1HNq1WlQpu/fh4/XAAaV1axHFt/dY/2kU05tLMj8GjeQDz1fHas7augL4argt4e+jum3Nwt
- yupodQBxncKAUbzwKcDrPqUFmfRbJ7ARw8491xQHZDsP82JRj4cOJX32sBg8nO2N5OsFJOcd
- 5IE9v6qfllkZDAh1Rb1h6DFYq9dcdPAHl4zOj9EHq99/CpyccOh7SrtWDNFFknCmLpowhct9
- 5ZnlavBrDbOV0W47gO33WkXMFI4il4y1+Bv89979rVYn8aBohEgET41SpyQz7fMkcaZU+ok/
- +HYjC/qfDxT7tjKXqBQEscVODaFicsUkjheOD4BfWEcVUqa+XdUEciwG/SgNyxBZepj41oVq
- FPSVE+Ni2tNrW/e16b8mgXNngHSnbsr6pAIXZH3qFW+4TKPMGZ2rZ6zITrMip+12jgw4mGjy
- 5y06JZvA02rZT2k9aa7i9dUUFggaanI09jNGbRA/ABEBAAHCwXwEGAEKACYCGwwWIQSb0H4O
- DFH41ZZ3t1Qbk0N9O0FimwUCYDzvagUJFF+UtgAKCRAbk0N9O0Fim9JzD/0auoGtUu4mgnna
- oEEpQEOjgT7l9TVuO3Qa/SeH+E0m55y5Fjpp6ZToc481za3xAcxK/BtIX5Wn1mQ6+szfrJQ6
- 59y2io437BeuWIRjQniSxHz1kgtFECiV30yHRgOoQlzUea7FgsnuWdstgfWi6LxstswEzxLZ
- Sj1EqpXYZE4uLjh6dW292sO+j4LEqPYr53hyV4I2LPmptPE9Rb9yCTAbSUlzgjiyyjuXhcwM
- qf3lzsm02y7Ooq+ERVKiJzlvLd9tSe4jRx6Z6LMXhB21fa5DGs/tHAcUF35hSJrvMJzPT/+u
- /oVmYDFZkbLlqs2XpWaVCo2jv8+iHxZZ9FL7F6AHFzqEFdqGnJQqmEApiRqH6b4jRBOgJ+cY
- qc+rJggwMQcJL9F+oDm3wX47nr6jIsEB5ZftdybIzpMZ5V9v45lUwmdnMrSzZVgC4jRGXzsU
- EViBQt2CopXtHtYfPAO5nAkIvKSNp3jmGxZw4aTc5xoAZBLo0OV+Ezo71pg3AYvq0a3/oGRG
- KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
- fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240111130349.2776699-3-julien.massot@collabora.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MA0P287MB2822:EE_|PN2P287MB1503:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6e12402e-6dd9-432d-b69c-08dc13485618
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	bHqlMV4dkZUPbIklg9fH3lB9tsb6j158qVzwf+0NjlTnixHeS8MSOoFBYfCpOE3kikGZtbpzwrG0vJmqeJY92OkolswdQPgvyV4K7b6fVFbBPUNCSXMSfj8pBr2YcxAF2CjqTVTIySVorkIPtPALQueOgrDia7CjYLqDzcgqa9VL1DGd8bm82//BnqsEV98hGV77AvDlDHVz8Zjufub8Sy6q+42tupn2jL+C0Tvc58QIk3jjla9IK+PiOA84ViedPXal0lVp7vgvuLvdn99vskLs85GmtjyIYY5v+DEbwiQoWLjJYvNl/1jzJjJEgpnoTe02U+gLpEzyxaQB2qDINZKASpDfO9ITZk2tsP3Wpl0XL7u1cq5P0M7q1auqWRDUHjHPGWu8u5z7N4btUlJAnJtEusa+MI6deXkhkW9US0maGox6d7blG9F/M7xp4Skfmke69Ul077JwLLo7ScGnPxbhBqJqOowdtwZ0vcOTOhqkmmFW1a3hOW+fPDOgaOQIsDKqvxDQN1DGWybOZoGKg44rs+DEObxMX6BxVx5HqsJ6We5SEJz47/2L6YXaDfDm
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?QjBpUWNtZ1o1QUZJblA3SmM3S016NFpIZTVtZUhtQ2Q5bFhQK3FuR3pmWDJa?=
+ =?utf-8?B?elovU2lJY1M3U1BDc0ZjMFhoQVJLTGdhVUNaRlhoaHJlZWFheUlvUDFyZ1Ix?=
+ =?utf-8?B?bWt2R0Y3UGNMUjh0SjlqMG9FUS9XdEJDOG1ZY2lIQlkwNldNUVJIai9NaHBq?=
+ =?utf-8?B?a0JHMmJYRUNQNHovcGFpR01FK1RYODZaSXNyRXRic0lycXVpU0UwazVabGwy?=
+ =?utf-8?B?OXBrVWRtd21La1NGTUIzS3loRnBuTk5UMnN1T0hkOXJqY2J1TUVvaG9vaGJI?=
+ =?utf-8?B?dm15TjRCQzFTd24yVEUwMXg2MWorUmtNdXpUWXpHQ1owVlVGNlQxbldtelM4?=
+ =?utf-8?B?MmFWNXpKdkFMVWt1bWlFZkorVnhOczFaakdld3FjeVBJcVZEZUJWU2JmMHJ0?=
+ =?utf-8?B?Z2xsektic21EalB2UWlLVmpIa1hFbFkxYjJxV1RwZE9pVDVWcDRncEd6YTdY?=
+ =?utf-8?B?Ym5hb1NhZ2pIZVZ4QkU5R3FUYW5DbkFOdDdmR1g2bytFTCtaYnF4K0NMWjJ2?=
+ =?utf-8?B?UytReUQvTHFRbHJ6TUtKZGptOVJPMXhaNDd6MG1ZNVZKSVlSeXgrQW1PZ2tK?=
+ =?utf-8?B?NHBVM3BxQnVpQkRqL01QOXlGOGdxNXNMRnh1T0t4YXpqRkVxbFJyWDVrUHdz?=
+ =?utf-8?B?TWtpV0FBZEhFUEJNMVFINDhUOVpUaG1oTGJTRmZkcklMc3dLVmdWMi9oOUcv?=
+ =?utf-8?B?THFOYzJ0ekgycG9kWXIyZXFZRnBiN2NYY2Y3VkcrQmxTTHRYUUhCU1NRYWlD?=
+ =?utf-8?B?N040a3BYODUrK0d3MUVxQ1BGREJiMlFWMUo2Q1RHNjl6UU16NlFwcWhha25U?=
+ =?utf-8?B?WXZnamxINXgwUCtNWUNsWGxtKytMQTEvM1BqK1NvNkUrZjB4Ny9EZ0Y3cVVG?=
+ =?utf-8?B?UmJPUTJHWDAwUFpBa1g5eENMc3pQOUQreU1QVmFEVk80a1lIY01vSTF6L05X?=
+ =?utf-8?B?UytKa0Q2YnR4RmtuZTZDTnRoNWdJekhDQ1A1THRHak5JM0dRMGdlUC9Bbng5?=
+ =?utf-8?B?dTlZWnNnSGdvU3YwWjg2dFErNGVWRVFqMmZTZlVnNjQ3Q0ZSSVZLN1lCWlV3?=
+ =?utf-8?B?WTNFT1REMkJwVndocUFKdVEyd3dsSnF0b24vM2RYZ25YeDY3Y2l5TFJEVUFh?=
+ =?utf-8?B?dzJIVEVGaHVucjRNWmZ0OENFa29hdkh5TWF3bDU1cDB3cDU3VWdoNWJiZDV0?=
+ =?utf-8?B?VmVzbjEzQTEwdHY5WlNkVFlVcXk1ZVU1QXUrSnFXTFNnZ1kvRXFYcnRpcVln?=
+ =?utf-8?B?VGxjN0VyMXI3cVZxdDNaOHcxQWplOEVOeThJNmk0VkErNTFpSlVWNndnNnUr?=
+ =?utf-8?B?RmZrdExzZ3h3THo5Vi91SGR4UFRFcktoWUF3OGVvR1hoN1RxdXE4UmhIWXZp?=
+ =?utf-8?B?UUM5VlNTRGlOY1VmVlJjS3dmSElnV0ZRWG9rbDFES01iZWRSOTV4aDQzejZW?=
+ =?utf-8?B?dURwcENXN05YSTllb1lmamttV25SK092ODh2NXRiUy85YXYzclowWUh6N0pj?=
+ =?utf-8?B?VlV0WDRTb28xa2FMVmY2MjdET1VtRm11ei9lSkY5TjdJdGdGNllOWUQwNFhz?=
+ =?utf-8?B?RHFrWTdrN0FpY0gwSzdPNUtDdlJXMnIya2tMaGpQVzE3em5MZmNVdWUxdzkv?=
+ =?utf-8?Q?gi3dAwc0D8lQJ79MSVCnuE+qnKCyozqNhLYVjO73peOQ=3D?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6e12402e-6dd9-432d-b69c-08dc13485618
+X-MS-Exchange-CrossTenant-AuthSource: MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jan 2024 08:27:38.6134
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PN2P287MB1503
 
-On 11/01/2024 14:03, Julien Massot wrote:
-> Add DT bindings for Maxim MAX96714F GMSL2 Deserializer.
-> 
-> Signed-off-by: Julien Massot <julien.massot@collabora.com>
-> 
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+On 2024/1/12 15:42, Conor Dooley wrote:
+> On Fri, Jan 12, 2024 at 08:08:15AM +0800, Chen Wang wrote:
+>> On 2024/1/12 0:58, Conor Dooley wrote:
+>>> On Thu, Jan 11, 2024 at 04:00:04PM +0800, Chen Wang wrote:
+>>>> There are four types of clocks for SG2042 and following are where their
+>>>> control registers are defined in:
+>>>>
+>>>> PLL：all in SYS_CTRL
+>>>> DIV: all in CLOCK
+>>>> GATE: some are in SYS_CTRL, some others are in CLOCK
+>>> When you say "some", do you meant some entire clocks are in SYS_CTRL and
+>>> some entire clocks are in the CLOCKS? Or do you meant that for a given
+>>> clock, some registers are in SYS_CTRL and some are in CLOCK? It's the
+>>> first option, right?
+>> It's the first option.
+> Then the gate clocks that are fully contained within SYS_CTRL are
+> outputs of SYS_CTRL and gate clocks fully contained within CLOCK are
+> outputs of CLOCK. You should not use a phandle to SYS_CTRL from the
+> CLOCKS node so that you can pretend they are part of CLOCKS just because
+> that makes writing your driver easier. That said, obviously you can
+> share the routines for turning the gates on and off etc.
 
-Best regards,
-Krzysztof
+Um, seems that we need to define two clock-controllers to output their 
+own clocks respectively. Thank you for your patient guidance, let me 
+re-cook the code.
 
+Regards,
+
+Chen
+
+> Cheers,
+> Conor.
 
