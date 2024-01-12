@@ -1,193 +1,143 @@
-Return-Path: <devicetree+bounces-31656-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31659-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8CA8082C200
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 15:40:26 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A73E82C217
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 15:49:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DD9B8B2276D
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 14:40:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DD3CF1F25490
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 14:49:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C2616DD12;
-	Fri, 12 Jan 2024 14:40:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B82EC6E2D4;
+	Fri, 12 Jan 2024 14:49:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="oGSpI0Hc"
+	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="CDow14+I"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE3006DD05;
-	Fri, 12 Jan 2024 14:40:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40C6JMr5025394;
-	Fri, 12 Jan 2024 14:40:12 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=pwMDkgroSGYEImjOj0FjTPpXnnYl3fh4fHyLyRieYAM=; b=oG
-	SpI0HcHsMTEG0VPoQtYtVscmy4J/iVmN1JZIm9nkGOK/Ft9vyLi0ysZ+KazQWGTD
-	lLWpiK2k1d4OOLGwNe3brqQaCXctetRnWWDR+7VrvDEcH+XwtO69n2TWuE0wU1+U
-	sner9x7jLDV3DD9U7/yYdrliAekNpiVj4e0d+DJavFI9aORHYJ3PCi0oM/eF59I0
-	ehUGrYo1yKjess3duQ8VzJI2R47sEOHOIHTchiwjqMy/4vOXIM+XdC1MmJAu3Tkz
-	UiV98XMqY4UAMObv5yjLX++JcxO36fo+MwP+yb7+7qCEzKCXDTyu6DFt3tymdhz7
-	Y/sfCd9tjqrIT/G4yYlg==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vjymn99g4-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 12 Jan 2024 14:40:11 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 40CEe9oU032191
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 12 Jan 2024 14:40:10 GMT
-Received: from [10.253.78.164] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Fri, 12 Jan
- 2024 06:40:05 -0800
-Message-ID: <6fc9e65a-709a-4923-b0b3-7c460199417a@quicinc.com>
-Date: Fri, 12 Jan 2024 22:40:02 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B40D66A345
+	for <devicetree@vger.kernel.org>; Fri, 12 Jan 2024 14:49:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amarulasolutions.com
+Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-558dceca019so764786a12.2
+        for <devicetree@vger.kernel.org>; Fri, 12 Jan 2024 06:49:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=amarulasolutions.com; s=google; t=1705070947; x=1705675747; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=lhyOt+Bt0LSOKZrhQ3fGQqwCGnFrbZHK2Y4XkjmkxSE=;
+        b=CDow14+Iq2V1pqPnYD6wDZqrJXpdCaXHywmi+REeJH1+a+F/V/IF1/CYWyQgvF+JVO
+         FBUQ+OcQ+hH2Noou5sppddZEWsQpdYrTxiU5/2P71Ne0pWto/lFd1IQ+Ons5GPrll5gc
+         BEkHKqncf+VgBID3qkbn+QOZWgNGLIUN2H5YM=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1705070947; x=1705675747;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=lhyOt+Bt0LSOKZrhQ3fGQqwCGnFrbZHK2Y4XkjmkxSE=;
+        b=MRUhjl42J4wZenQ+4YoWSb25o1mlqpYO5NMWsZFWk15kbS/nKnWHnmhLwyNoDN4t+w
+         cdJ7tb8Rtz7qPtoOFs3eJIPqJaQrXigdu2fXq2gclpctJVUsqsVoBUXjGXntqhcFJ0q0
+         XBHAbY3l3Iqx3yLGHtpgjdFlUnPIVf/ZetbJYL4HogQWyn4O9NmW/E35fXU4jAnD9cyV
+         EutrlX0lgcpdbJB/0yyWqFfj3uNBwsNfJzBUnYz/2vLaF8ceKvQftcfwzH5Q+13eGo9n
+         F2PjcccQDYIPOzj9diSuoPkD75uffztl4XBZ7RfD3fu30FFWK4EPMIIoHxsU9pr7CuSn
+         f2LA==
+X-Gm-Message-State: AOJu0Yyo+LnSzFgWTzJs2P32D+quSlWVMXSkr+LIPyRinTrdkXhJXJFe
+	qjLDTjuvvQghBdEjxV2147jW1Gm1i9Cn3Q==
+X-Google-Smtp-Source: AGHT+IEcoMP8G3JKyPd+n/LEP4GOB4o84UQJ6vZGIcbLjNhI1SJbr0135Gjp9TJdkgu13OEPA8g9jg==
+X-Received: by 2002:a17:906:7145:b0:a29:8b1d:7c84 with SMTP id z5-20020a170906714500b00a298b1d7c84mr381653ejj.53.1705070947628;
+        Fri, 12 Jan 2024 06:49:07 -0800 (PST)
+Received: from dario-ThinkPad-T14s-Gen-2i.homenet.telecomitalia.it ([95.236.91.90])
+        by smtp.gmail.com with ESMTPSA id y11-20020a170906524b00b00a233515c39esm1869372ejm.67.2024.01.12.06.49.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 12 Jan 2024 06:49:07 -0800 (PST)
+From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+To: linux-kernel@vger.kernel.org
+Cc: linux-amarula@amarulasolutions.com,
+	Lee Jones <lee@kernel.org>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>,
+	Dario Binacchi <dario.binacchi@amarulasolutions.com>,
+	Andre Przywara <andre.przywara@arm.com>,
+	Baruch Siach <baruch@tkos.co.il>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	=?UTF-8?q?Leonard=20G=C3=B6hrs?= <l.goehrs@pengutronix.de>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Peter Rosin <peda@axentia.se>,
+	Rob Herring <robh+dt@kernel.org>,
+	Sean Nyekjaer <sean@geanix.com>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-stm32@st-md-mailman.stormreply.com
+Subject: [PATCH v8 0/5] Add display support for stm32f769-disco board
+Date: Fri, 12 Jan 2024 15:48:20 +0100
+Message-ID: <20240112144902.40044-1-dario.binacchi@amarulasolutions.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/6] arm64: dts: qcom: ipq9574: Add PPE device tree node
-Content-Language: en-US
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <netdev@vger.kernel.org>, <quic_kkumarcs@quicinc.com>,
-        <quic_suruchia@quicinc.com>, <quic_soni@quicinc.com>,
-        <quic_pavir@quicinc.com>, <quic_souravp@quicinc.com>,
-        <quic_linchen@quicinc.com>, <quic_leiwei@quicinc.com>
-References: <20240110112059.2498-1-quic_luoj@quicinc.com>
- <20240110112059.2498-2-quic_luoj@quicinc.com>
- <a42718a9-d0f9-47d9-9ee8-fb520ed2a7a8@linaro.org>
- <de0ad768-05fa-4bb1-bcbc-0adb28cb2257@quicinc.com>
- <CAA8EJppeQdB4W8u0ux16pxBBwF_fpt1j-5aC0f849n9_iaaYtQ@mail.gmail.com>
-From: Jie Luo <quic_luoj@quicinc.com>
-In-Reply-To: <CAA8EJppeQdB4W8u0ux16pxBBwF_fpt1j-5aC0f849n9_iaaYtQ@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: kjM5EZ7lijKxsSS_w7Rz57nu8buEP20m
-X-Proofpoint-GUID: kjM5EZ7lijKxsSS_w7Rz57nu8buEP20m
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-12-09_02,2023-12-07_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 suspectscore=0
- clxscore=1015 lowpriorityscore=0 bulkscore=0 impostorscore=0 spamscore=0
- mlxscore=0 malwarescore=0 mlxlogscore=999 phishscore=0 priorityscore=1501
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2311290000
- definitions=main-2401120114
+Content-Transfer-Encoding: 8bit
 
+The series adds display support for the stm32f769-disco board. It has been
+tested on hardware revisions MB1225-B03 and MB1166-A09. This required
+modifications to the nt35510 driver that have already been applied.
 
+Changes in v8:
+- Add Acked-by tag of Lee Jones
+- Add Reviewed-by tag of Raphael Gallais-Pou
+- Add Reviewed-by tag of Raphael Gallais-Pou
+- Remove unit name from 'ltdc/port/endpoint@0' to fix the compiling
+  warning:
+  ../arch/arm/boot/dts/st/stm32f769-disco.dts:189.28-191.5: Warning
+  (unit_address_vs_reg): /soc/display-controller@40016800/port/endpoint@0: node
+  has a unit name, but no reg or ranges property
+- Add Reviewed-by tag of Linus Walleij
+- Add Reviewed-by tag of Raphael Gallais-Pou
 
-On 1/12/2024 12:06 AM, Dmitry Baryshkov wrote:
-> On Thu, 11 Jan 2024 at 17:31, Jie Luo <quic_luoj@quicinc.com> wrote:
->>
->>
->>
->>
->> Ok, will update to use a generic name in the link, Thanks for the
->> guidance and the link.
->>>
->>>
->>>> +                    compatible = "qcom,ipq9574-ppe";
->>>
->>> I don't see this documented. I don't see reference to posted bindings.
->>
->> The DT bindings patch was part of the driver series as below. This
->> property was documented in the DT bindings patch. Attaching it to DTSI
->> series should make it more clear. If this is fine, I will update the
->> DTSI series with the DT bindings patch.
->> https://lore.kernel.org/netdev/20240110142428.52026d9e@kernel.org/
->>
->>>
->>> Please run scripts/checkpatch.pl and fix reported warnings. Some
->>> warnings can be ignored, but the code here looks like it needs a fix.
->>> Feel free to get in touch if the warning is not clear.
->>>
->>> Ignoring this warning is a sign you don't really check your patches
->>> before sending.
->>
->> We have run the checkpatch.pl on the whole patch series including this
->> device tree patch set together with PPE driver patch set.
->> As mentioned above, I will add the DT bindings patch into the DTS
->> series. This should help with the checkpatch issue.
-> 
-> This will cause even more confusion, as there will be two instances of
-> the dt-bindings patch. One in the driver patchset, another one in the
-> DT changes. You just have to specify the dependencies in the cover
-> letter. Another option is to wait for the bindings + driver to be
-> accepted, then send the DTSI changes (and again, specify the
-> dependency).
-> 
+Changes in v7:
+- Replace .dts with .dtb in the Makefile
 
-Thanks Dmitry for the suggestions.
+Changes in v6:
+- Drop patches
+  - [5/8] dt-bindings: nt35510: add compatible for FRIDA FRD400B25025-A-CTK
+  - [7/8] drm/panel: nt35510: move hardwired parameters to configuration
+  - [8/8] drm/panel: nt35510: support FRIDA FRD400B25025-A-CTK
+  because applied by the maintainer Linus Walleij
 
+Changes in v5:
+- Replace GPIOD_ASIS with GPIOD_OUT_HIGH in the call to devm_gpiod_get_optional().
 
-As per the ongoing discussion on this series, we will hold off this DTS 
-patch series for some time. We will update the cover letter of the DTSI 
-series to point to the below driver series as a dependency, when we 
-resume the series.
+Changes in v2:
+- Add Acked-by tag of Conor Dooley
+- Change the status of panel_backlight node to "disabled"
+- Delete backlight property from panel0 node.
+- Re-write the patch [8/8] "drm/panel: nt35510: support FRIDA FRD400B25025-A-CTK"
+  in the same style as the original driver.
 
-https://lore.kernel.org/netdev/20240110154414.GH9296@kernel.org/
+Dario Binacchi (5):
+  dt-bindings: mfd: stm32f7: Add binding definition for DSI
+  ARM: dts: stm32: add DSI support on stm32f769
+  ARM: dts: stm32: rename mmc_vcard to vcc-3v3 on stm32f769-disco
+  ARM: dts: stm32: add display support on stm32f769-disco
+  ARM: dts: add stm32f769-disco-mb1225-revb03-mb1166-reva09
 
->>
->>>
->>>> +                    reg = <0x3a000000 0xb00000>;
->>>> +                    #address-cells = <1>;
->>>> +                    #size-cells = <1>;
->>>> +                    ranges;
->>>
->>> Put after reg.
->> Ok.
->>
->>>
->>>> +                    status = "okay";
->>>
->>> Drop
->> Ok.
->>
->>>
->>> All of above comments apply to your entire patchset and all places.
->>>
->>> Looking at code further, it does not look like suitable for mainline,
->>> but copy of downstream code. That's not what we expect upstream. Please
->>> go back to your bindings first. Also, I really insist you reaching out
->>> to other folks to help you in this process.
->>>
->>> Best regards,
->>> Krzysztof
->>>
->> We will do internal review of the gaps and update the patches as per
->> your comments.
->>
->> Thanks for the review comments.
-> 
->  From the first glance, the bindings do not follow upstream principles.
-> You have all the settings (tdm, port config, etc) in the DT, while
-> they should instead go to the driver. Well, unless you expect that the
-> board might need to override them.
-> 
-Hi Dmitry,
-The TDM configuration varies per SoC type, since the ethernet port 
-capabilities of the SoCs vary. So we will have two different TDM 
-configurations for IPQ5332 and IPQ9574 SoC. The driver also will
-need to support future SoC, so we choose to configure this from the 
-DTSI. The same reason applies to the port scheduler config as well.
+ arch/arm/boot/dts/st/Makefile                 |  1 +
+ ...f769-disco-mb1225-revb03-mb1166-reva09.dts | 18 +++++
+ arch/arm/boot/dts/st/stm32f769-disco.dts      | 78 ++++++++++++++++++-
+ arch/arm/boot/dts/st/stm32f769.dtsi           | 21 +++++
+ include/dt-bindings/mfd/stm32f7-rcc.h         |  1 +
+ 5 files changed, 115 insertions(+), 4 deletions(-)
+ create mode 100644 arch/arm/boot/dts/st/stm32f769-disco-mb1225-revb03-mb1166-reva09.dts
+ create mode 100644 arch/arm/boot/dts/st/stm32f769.dtsi
 
-Thanks for review comments.
+-- 
+2.43.0
+
 
